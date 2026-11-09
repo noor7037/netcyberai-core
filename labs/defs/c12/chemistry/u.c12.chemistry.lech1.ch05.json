@@ -1,0 +1,3101 @@
+{
+ "chapter_key": "u.c12.chemistry.lech1.ch05",
+ "class": 12,
+ "subject_id": "chemistry",
+ "title": "Coordination Compounds",
+ "source": "https://ncert.nic.in/textbook/pdf/lech105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Werner's theory of coordination compounds",
+   "labs": [
+    "c12-chemistry-lech1-ch05-werner-agcl"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Terms: coordination entity, ligands, denticity, coordination number",
+   "labs": [
+    "c12-chemistry-lech1-ch05-denticity",
+    "c12-chemistry-lech1-ch05-coordination-number"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Nomenclature of coordination compounds",
+   "labs": [
+    "c12-chemistry-lech1-ch05-naming",
+    "c12-chemistry-lech1-ch05-naming-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Isomerism: geometrical, optical, linkage, ionisation, solvate and coordination",
+   "labs": [
+    "c12-chemistry-lech1-ch05-isomer-types",
+    "c12-chemistry-lech1-ch05-cis-trans"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Bonding: valence bond theory, crystal field theory, magnetism and colour",
+   "labs": [
+    "c12-chemistry-lech1-ch05-vbt-shapes",
+    "c12-chemistry-lech1-ch05-spectrochemical",
+    "c12-chemistry-lech1-ch05-unpaired-electrons",
+    "c12-chemistry-lech1-ch05-colour-wheel"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "Bonding in metal carbonyls",
+   "labs": [
+    "c12-chemistry-lech1-ch05-mond-process"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.7",
+   "title": "Importance and applications of coordination compounds",
+   "labs": [
+    "c12-chemistry-lech1-ch05-complex-uses"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-chemistry-lech1-ch05-werner-agcl",
+   "topic": "5.1",
+   "template": "data",
+   "title": {
+    "en": "Werner's clue: counting free chloride",
+    "hi": "वर्नर का सुराग: मुक्त क्लोराइड की गिनती"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 1,
+    "ask": "max",
+    "title": {
+     "en": "AgCl formed per mole of complex with excess silver nitrate",
+     "hi": "आधिक्य सिल्वर नाइट्रेट के साथ प्रति मोल संकुल बने AgCl के मोल"
+    },
+    "xlabel": {
+     "en": "Cobalt(III) complex",
+     "hi": "कोबाल्ट(III) संकुल"
+    },
+    "ylabel": {
+     "en": "Moles of AgCl",
+     "hi": "AgCl के मोल"
+    },
+    "data": [
+     {
+      "label": "CoCl₃·6NH₃",
+      "value": 3
+     },
+     {
+      "label": "CoCl₃·5NH₃",
+      "value": 2
+     },
+     {
+      "label": "CoCl₃·4NH₃",
+      "value": 1
+     },
+     {
+      "label": "CoCl₃·3NH₃",
+      "value": 0
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to test the complex with 5 NH₃.",
+      "hi": "5 NH₃ वाले संकुल की जाँच के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "CoCl₃·6NH₃ gives 3 AgCl, so all 3 chlorides are free. When one NH₃ is removed, how many AgCl do you expect from CoCl₃·5NH₃?",
+      "hi": "CoCl₃·6NH₃ से 3 AgCl मिलते हैं, यानी तीनों क्लोराइड मुक्त हैं। एक NH₃ हटाने पर CoCl₃·5NH₃ से कितने AgCl की अपेक्षा है?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "2, as one Cl moved inside",
+       "hi": "2, क्योंकि एक Cl भीतर चला गया"
+      },
+      {
+       "id": "three",
+       "en": "Still 3",
+       "hi": "फिर भी 3"
+      },
+      {
+       "id": "zero",
+       "en": "0",
+       "hi": "शून्य (0)"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the complex with 4 NH₃.",
+      "hi": "4 NH₃ वाला संकुल जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the complex with 3 NH₃.",
+      "hi": "3 NH₃ वाला संकुल जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Only free chloride ions precipitate with silver nitrate. As NH₃ is replaced by Cl, fewer chlorides are free: 3, 2, 1, 0. Werner explained this: the metal has two kinds of valency. The primary valency (here +3) is satisfied by negative ions that are free in water. The secondary valency (6 for cobalt) is satisfied by groups bound directly to the metal, which stay together as one unit. So CoCl₃·5NH₃ is [Co(NH₃)₅Cl]Cl₂.",
+      "hi": "सिल्वर नाइट्रेट के साथ केवल मुक्त क्लोराइड आयन अवक्षेपित होते हैं। जैसे-जैसे NH₃ की जगह Cl आता है, मुक्त क्लोराइड घटते हैं: 3, 2, 1, 0। वर्नर ने समझाया: धातु की दो प्रकार की संयोजकताएँ होती हैं। प्राथमिक संयोजकता (यहाँ +3) पानी में मुक्त ऋणायनों से पूरी होती है। द्वितीयक संयोजकता (कोबाल्ट के लिए 6) धातु से सीधे जुड़े समूहों से पूरी होती है, जो एक इकाई की तरह साथ रहते हैं। इसलिए CoCl₃·5NH₃ वास्तव में [Co(NH₃)₅Cl]Cl₂ है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "CoCl₃·4NH₃ gives only 1 AgCl. How many chlorides are inside the coordination sphere?",
+        "hi": "CoCl₃·4NH₃ से केवल 1 AgCl मिलता है। उपसहसंयोजन मंडल के भीतर कितने क्लोराइड हैं?"
+       },
+       "options": [
+        "2",
+        "1",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Of 3 chlorides, 1 is free, so 2 are bound to cobalt: [Co(NH₃)₄Cl₂]Cl.",
+        "hi": "3 में से 1 मुक्त है, इसलिए 2 कोबाल्ट से बँधे हैं: [Co(NH₃)₄Cl₂]Cl।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 is the number of free chlorides, outside the sphere.",
+         "hi": "1 मुक्त क्लोराइडों की संख्या है, जो मंडल के बाहर हैं।"
+        },
+        {
+         "en": "3 would make all of them bound, giving no AgCl at all.",
+         "hi": "3 का अर्थ सभी बँधे होते, तब AgCl बिल्कुल नहीं बनता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For cobalt in these complexes, the secondary valency (coordination number) is…",
+        "hi": "इन संकुलों में कोबाल्ट की द्वितीयक संयोजकता (उपसहसंयोजन संख्या) है…"
+       },
+       "options": [
+        "6",
+        "3",
+        "2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "NH₃ and Cl bound directly to Co always add up to 6 here.",
+        "hi": "यहाँ Co से सीधे बँधे NH₃ और Cl का योग हमेशा 6 रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 is the primary valency, the oxidation state of cobalt.",
+         "hi": "3 प्राथमिक संयोजकता है, यानी कोबाल्ट की ऑक्सीकरण अवस्था।"
+        },
+        {
+         "en": "2 is not a valency of cobalt in this series.",
+         "hi": "2 इस श्रेणी में कोबाल्ट की संयोजकता नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the 3NH₃ bar up to 1. What formula could you then write for that complex?",
+      "hi": "3NH₃ वाले बार को 1 तक ऊपर खींचो। तब उस संकुल का कौन-सा सूत्र लिख सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch05-denticity",
+   "topic": "5.2",
+   "template": "sort",
+   "title": {
+    "en": "How many bonds does a ligand make?",
+    "hi": "लिगैंड कितने आबंध बनाता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mono",
+      "label": {
+       "en": "Monodentate: 1 donor atom",
+       "hi": "एकदंतुर: 1 दाता परमाणु"
+      }
+     },
+     {
+      "id": "bi",
+      "label": {
+       "en": "Bidentate: 2 donor atoms",
+       "hi": "द्विदंतुर: 2 दाता परमाणु"
+      }
+     },
+     {
+      "id": "poly",
+      "label": {
+       "en": "Polydentate: 3 or more",
+       "hi": "बहुदंतुर: 3 या अधिक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cl",
+      "text": {
+       "en": "Chloride, Cl⁻",
+       "hi": "क्लोराइड, Cl⁻"
+      },
+      "bin": "mono",
+      "why": {
+       "en": "One atom, Cl, donates a pair of electrons.",
+       "hi": "एक परमाणु Cl इलेक्ट्रॉन युग्म देता है।"
+      }
+     },
+     {
+      "id": "nh3",
+      "text": {
+       "en": "Ammonia, NH₃",
+       "hi": "अमोनिया, NH₃"
+      },
+      "bin": "mono",
+      "why": {
+       "en": "Only the nitrogen donates its lone pair.",
+       "hi": "केवल नाइट्रोजन अपना एकाकी युग्म देता है।"
+      }
+     },
+     {
+      "id": "h2o",
+      "text": {
+       "en": "Water, H₂O",
+       "hi": "जल, H₂O"
+      },
+      "bin": "mono",
+      "why": {
+       "en": "Oxygen donates one lone pair.",
+       "hi": "ऑक्सीजन एक एकाकी युग्म देता है।"
+      }
+     },
+     {
+      "id": "cn",
+      "text": {
+       "en": "Cyanide, CN⁻",
+       "hi": "साइनाइड, CN⁻"
+      },
+      "bin": "mono",
+      "why": {
+       "en": "Carbon donates its pair; one point of attachment.",
+       "hi": "कार्बन अपना युग्म देता है; जुड़ने का एक ही बिंदु।"
+      }
+     },
+     {
+      "id": "en",
+      "text": {
+       "en": "Ethane-1,2-diamine (en)",
+       "hi": "एथेन-1,2-डाइऐमीन (en)"
+      },
+      "bin": "bi",
+      "why": {
+       "en": "Two nitrogen atoms, one at each end, both donate.",
+       "hi": "दोनों सिरों के दो नाइट्रोजन परमाणु दाता हैं।"
+      }
+     },
+     {
+      "id": "ox",
+      "text": {
+       "en": "Oxalate, C₂O₄²⁻",
+       "hi": "ऑक्सैलेट, C₂O₄²⁻"
+      },
+      "bin": "bi",
+      "why": {
+       "en": "Two oxygen atoms bind to the metal.",
+       "hi": "दो ऑक्सीजन परमाणु धातु से जुड़ते हैं।"
+      }
+     },
+     {
+      "id": "dien",
+      "text": {
+       "en": "Diethylenetriamine (dien)",
+       "hi": "डाइएथिलीनट्राइऐमीन (dien)"
+      },
+      "bin": "poly",
+      "why": {
+       "en": "Three nitrogen atoms donate, so it is tridentate.",
+       "hi": "तीन नाइट्रोजन परमाणु दाता हैं, इसलिए त्रिदंतुर।"
+      }
+     },
+     {
+      "id": "edta",
+      "text": {
+       "en": "EDTA⁴⁻",
+       "hi": "EDTA⁴⁻"
+      },
+      "bin": "poly",
+      "why": {
+       "en": "Six donor atoms (two N and four O): hexadentate.",
+       "hi": "छह दाता परमाणु (दो N और चार O): षड्दंतुर।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:cl",
+     "expect": "correct:cl",
+     "say": {
+      "en": "Tap the card “Chloride, Cl⁻”, then tap the group it belongs to.",
+      "hi": "कार्ड “क्लोराइड, Cl⁻” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ethane-1,2-diamine has a nitrogen atom with a lone pair at each end of its chain. How many bonds can one molecule make to a metal?",
+      "hi": "एथेन-1,2-डाइऐमीन की श्रृंखला के दोनों सिरों पर एकाकी युग्म वाला नाइट्रोजन है। एक अणु धातु से कितने आबंध बना सकता है?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "Two",
+       "hi": "दो"
+      },
+      {
+       "id": "one",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "four",
+       "en": "Four",
+       "hi": "चार"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "card:en",
+     "expect": "correct:en",
+     "say": {
+      "en": "Now sort “Ethane-1,2-diamine (en)”.",
+      "hi": "अब “एथेन-1,2-डाइऐमीन (en)” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:edta",
+     "expect": "correct:edta",
+     "say": {
+      "en": "Now sort “EDTA⁴⁻”.",
+      "hi": "अब “EDTA⁴⁻” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The number of donor atoms through which a ligand binds to the central metal is its denticity. Cl⁻, NH₃, H₂O and CN⁻ are monodentate. Ethane-1,2-diamine and oxalate are bidentate and grip the metal at two points, like a claw: such rings are called chelates. EDTA grips at six points. The coordination number is the number of donor atoms attached to the metal, not the number of ligands.",
+      "hi": "लिगैंड जितने दाता परमाणुओं से केंद्रीय धातु से जुड़ता है वह उसकी दंतुरता है। Cl⁻, NH₃, H₂O और CN⁻ एकदंतुर हैं। एथेन-1,2-डाइऐमीन और ऑक्सैलेट द्विदंतुर हैं और धातु को दो बिंदुओं पर पंजे की तरह पकड़ते हैं: ऐसे वलय कीलेट कहलाते हैं। EDTA छह बिंदुओं पर पकड़ता है। उपसहसंयोजन संख्या धातु से जुड़े दाता परमाणुओं की संख्या है, लिगैंडों की संख्या नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many donor atoms does one EDTA⁴⁻ ion use?",
+        "hi": "एक EDTA⁴⁻ आयन कितने दाता परमाणु प्रयोग करता है?"
+       },
+       "options": [
+        {
+         "en": "Six",
+         "hi": "छह"
+        },
+        {
+         "en": "Two",
+         "hi": "दो"
+        },
+        {
+         "en": "Four",
+         "hi": "चार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two nitrogen atoms and four oxygen atoms from the carboxylate groups.",
+        "hi": "दो नाइट्रोजन परमाणु और कार्बोक्सिलेट समूहों के चार ऑक्सीजन परमाणु।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two is the number for en or oxalate.",
+         "hi": "दो en या ऑक्सैलेट की संख्या है।"
+        },
+        {
+         "en": "Four counts only the oxygen atoms and forgets the two nitrogens.",
+         "hi": "चार में केवल ऑक्सीजन गिने, दो नाइट्रोजन छूट गए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "NO₂⁻ can attach to a metal through N or through O. Such a ligand is called…",
+        "hi": "NO₂⁻ धातु से N या O के द्वारा जुड़ सकता है। ऐसे लिगैंड को कहते हैं…"
+       },
+       "options": [
+        {
+         "en": "Ambidentate",
+         "hi": "उभयदंतुर"
+        },
+        {
+         "en": "Polydentate",
+         "hi": "बहुदंतुर"
+        },
+        {
+         "en": "Chelating",
+         "hi": "कीलेटकारी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It has two different possible donor atoms but uses only one at a time.",
+        "hi": "इसमें दो अलग संभावित दाता परमाणु हैं पर एक समय में एक ही प्रयोग होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Polydentate means several donors used together.",
+         "hi": "बहुदंतुर का अर्थ कई दाता एक साथ प्रयोग होना है।"
+        },
+        {
+         "en": "Chelating ligands bind at two or more points at once.",
+         "hi": "कीलेटकारी लिगैंड एक साथ दो या अधिक बिंदुओं पर जुड़ते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. In [Co(en)₃]³⁺ there are three en ligands. How many donor atoms are attached to cobalt?",
+      "hi": "बाकी छाँटो। [Co(en)₃]³⁺ में तीन en लिगैंड हैं। कोबाल्ट से कितने दाता परमाणु जुड़े हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch05-coordination-number",
+   "topic": "5.2",
+   "template": "match",
+   "title": {
+    "en": "Counting the coordination number",
+    "hi": "उपसहसंयोजन संख्या की गिनती"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "fecn",
+      "left": {
+       "en": "[Fe(CN)₆]⁴⁻",
+       "hi": "[Fe(CN)₆]⁴⁻"
+      },
+      "right": {
+       "en": "6 (six CN⁻ ligands)",
+       "hi": "6 (छह CN⁻ लिगैंड)"
+      },
+      "why": {
+       "en": "Six monodentate cyanide ligands give 6.",
+       "hi": "छह एकदंतुर साइनाइड लिगैंड से 6।"
+      }
+     },
+     {
+      "id": "nico",
+      "left": {
+       "en": "[Ni(CO)₄]",
+       "hi": "[Ni(CO)₄]"
+      },
+      "right": {
+       "en": "4 (four CO ligands)",
+       "hi": "4 (चार CO लिगैंड)"
+      },
+      "why": {
+       "en": "Four monodentate carbonyls give 4.",
+       "hi": "चार एकदंतुर कार्बोनिल से 4।"
+      }
+     },
+     {
+      "id": "cunh3",
+      "left": {
+       "en": "[Cu(NH₃)₄]²⁺",
+       "hi": "[Cu(NH₃)₄]²⁺"
+      },
+      "right": {
+       "en": "4 (four NH₃ ligands)",
+       "hi": "4 (चार NH₃ लिगैंड)"
+      },
+      "why": {
+       "en": "Four ammonia molecules give 4.",
+       "hi": "चार अमोनिया अणुओं से 4।"
+      }
+     },
+     {
+      "id": "coen",
+      "left": {
+       "en": "[Co(en)₃]³⁺",
+       "hi": "[Co(en)₃]³⁺"
+      },
+      "right": {
+       "en": "6 (three en × 2 donor atoms)",
+       "hi": "6 (तीन en × 2 दाता परमाणु)"
+      },
+      "why": {
+       "en": "Each bidentate en gives 2, so 3 × 2 = 6, not 3.",
+       "hi": "हर द्विदंतुर en 2 देता है, इसलिए 3 × 2 = 6, 3 नहीं।"
+      }
+     },
+     {
+      "id": "agnh3",
+      "left": {
+       "en": "[Ag(NH₃)₂]⁺",
+       "hi": "[Ag(NH₃)₂]⁺"
+      },
+      "right": {
+       "en": "2 (two NH₃ ligands)",
+       "hi": "2 (दो NH₃ लिगैंड)"
+      },
+      "why": {
+       "en": "Two ammonia molecules give 2 (used in Tollens' reagent).",
+       "hi": "दो अमोनिया अणुओं से 2 (टॉलेन अभिकर्मक में)।"
+      }
+     },
+     {
+      "id": "ptcl",
+      "left": {
+       "en": "[PtCl₄]²⁻",
+       "hi": "[PtCl₄]²⁻"
+      },
+      "right": {
+       "en": "4 (four Cl⁻ ligands)",
+       "hi": "4 (चार Cl⁻ लिगैंड)"
+      },
+      "why": {
+       "en": "Four chlorides give 4.",
+       "hi": "चार क्लोराइड से 4।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:fecn",
+     "expect": "matched:fecn",
+     "say": {
+      "en": "Tap “[Fe(CN)₆]⁴⁻” on the left, then tap its partner on the right.",
+      "hi": "“[Fe(CN)₆]⁴⁻” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In [Co(en)₃]³⁺ there are three ligands. Is the coordination number 3?",
+      "hi": "[Co(en)₃]³⁺ में तीन लिगैंड हैं। क्या उपसहसंयोजन संख्या 3 है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is 6",
+       "hi": "नहीं, यह 6 है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, 3",
+       "hi": "हाँ, 3"
+      },
+      {
+       "id": "two",
+       "en": "It is 2",
+       "hi": "यह 2 है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "left:coen",
+     "expect": "matched:coen",
+     "say": {
+      "en": "Now match “[Co(en)₃]³⁺”.",
+      "hi": "अब “[Co(en)₃]³⁺” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The coordination number counts the donor atoms bonded to the metal. For monodentate ligands this equals the number of ligands. For bidentate ligands, count two for each. Common coordination numbers are 2, 4 and 6. Six gives an octahedral shape, and four gives a tetrahedral or square planar shape.",
+      "hi": "उपसहसंयोजन संख्या धातु से जुड़े दाता परमाणुओं को गिनती है। एकदंतुर लिगैंडों के लिए यह लिगैंडों की संख्या के बराबर है। द्विदंतुर लिगैंडों के लिए हर एक को दो गिनो। सामान्य उपसहसंयोजन संख्याएँ 2, 4 और 6 हैं। छह से अष्टफलकीय आकार और चार से चतुष्फलकीय या वर्ग समतलीय आकार बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the coordination number in [Fe(CN)₆]⁴⁻?",
+        "hi": "[Fe(CN)₆]⁴⁻ में उपसहसंयोजन संख्या क्या है?"
+       },
+       "options": [
+        "6",
+        "4",
+        "2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Six cyanide ligands, each donating one pair.",
+        "hi": "छह साइनाइड लिगैंड, हर एक एक युग्म देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 would be for [Ni(CO)₄].",
+         "hi": "4 [Ni(CO)₄] के लिए होती है।"
+        },
+        {
+         "en": "2 would be for [Ag(NH₃)₂]⁺.",
+         "hi": "2 [Ag(NH₃)₂]⁺ के लिए होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which has coordination number 4?",
+        "hi": "किसकी उपसहसंयोजन संख्या 4 है?"
+       },
+       "options": [
+        "[Cu(NH₃)₄]²⁺",
+        "[Co(en)₃]³⁺",
+        "[Fe(CN)₆]³⁻"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Four NH₃ molecules are bound to copper.",
+        "hi": "तांबे से चार NH₃ अणु जुड़े हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "[Co(en)₃]³⁺ has 6.",
+         "hi": "[Co(en)₃]³⁺ में 6 है।"
+        },
+        {
+         "en": "[Fe(CN)₆]³⁻ has 6.",
+         "hi": "[Fe(CN)₆]³⁻ में 6 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Which complex ion here is used in the silver-mirror test for aldehydes?",
+      "hi": "बाकी जोड़ियाँ मिलाओ। यहाँ का कौन-सा संकुल आयन एल्डिहाइड की चाँदी-दर्पण जाँच में काम आता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch05-naming",
+   "topic": "5.3",
+   "template": "match",
+   "title": {
+    "en": "Naming coordination compounds",
+    "hi": "उपसहसंयोजन यौगिकों का नामकरण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "co6",
+      "left": {
+       "en": "[Co(NH₃)₆]Cl₃",
+       "hi": "[Co(NH₃)₆]Cl₃"
+      },
+      "right": {
+       "en": "Hexaamminecobalt(III) chloride",
+       "hi": "हेक्साऐम्मीनकोबाल्ट(III) क्लोराइड"
+      },
+      "why": {
+       "en": "Six ammine ligands, cobalt in +3, then the chloride anion.",
+       "hi": "छह ऐम्मीन लिगैंड, कोबाल्ट +3 में, फिर क्लोराइड ऋणायन।"
+      }
+     },
+     {
+      "id": "cu4",
+      "left": {
+       "en": "[Cu(NH₃)₄]SO₄",
+       "hi": "[Cu(NH₃)₄]SO₄"
+      },
+      "right": {
+       "en": "Tetraamminecopper(II) sulphate",
+       "hi": "टेट्राऐम्मीनकॉपर(II) सल्फेट"
+      },
+      "why": {
+       "en": "Four ammine ligands, copper in +2, then sulphate.",
+       "hi": "चार ऐम्मीन लिगैंड, ताँबा +2 में, फिर सल्फेट।"
+      }
+     },
+     {
+      "id": "ni0",
+      "left": {
+       "en": "[Ni(CO)₄]",
+       "hi": "[Ni(CO)₄]"
+      },
+      "right": {
+       "en": "Tetracarbonylnickel(0)",
+       "hi": "टेट्राकार्बोनिलनिकेल(0)"
+      },
+      "why": {
+       "en": "Neutral complex, nickel in zero oxidation state.",
+       "hi": "उदासीन संकुल, निकेल शून्य ऑक्सीकरण अवस्था में।"
+      }
+     },
+     {
+      "id": "fe2",
+      "left": {
+       "en": "K₄[Fe(CN)₆]",
+       "hi": "K₄[Fe(CN)₆]"
+      },
+      "right": {
+       "en": "Potassium hexacyanidoferrate(II)",
+       "hi": "पोटैशियम हेक्सासाइनिडोफेरेट(II)"
+      },
+      "why": {
+       "en": "The complex ion is negative, so iron becomes ferrate; iron is +2.",
+       "hi": "संकुल आयन ऋणात्मक है, इसलिए लोहा फेरेट बनता है; लोहा +2 में है।"
+      }
+     },
+     {
+      "id": "fe3",
+      "left": {
+       "en": "K₃[Fe(CN)₆]",
+       "hi": "K₃[Fe(CN)₆]"
+      },
+      "right": {
+       "en": "Potassium hexacyanidoferrate(III)",
+       "hi": "पोटैशियम हेक्सासाइनिडोफेरेट(III)"
+      },
+      "why": {
+       "en": "Only the oxidation state differs from the one above: iron is +3.",
+       "hi": "ऊपर वाले से केवल ऑक्सीकरण अवस्था अलग है: लोहा +3 है।"
+      }
+     },
+     {
+      "id": "cocl",
+      "left": {
+       "en": "[Co(NH₃)₅Cl]Cl₂",
+       "hi": "[Co(NH₃)₅Cl]Cl₂"
+      },
+      "right": {
+       "en": "Pentaamminechloridocobalt(III) chloride",
+       "hi": "पेन्टाऐम्मीनक्लोरिडोकोबाल्ट(III) क्लोराइड"
+      },
+      "why": {
+       "en": "Ligands in alphabetical order: ammine, then chlorido.",
+       "hi": "लिगैंड वर्णानुक्रम में: पहले ऐम्मीन, फिर क्लोरिडो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:co6",
+     "expect": "matched:co6",
+     "say": {
+      "en": "Tap “[Co(NH₃)₆]Cl₃” on the left, then tap its partner on the right.",
+      "hi": "“[Co(NH₃)₆]Cl₃” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "K₄[Fe(CN)₆] has a negative complex ion. What ending will the metal name take?",
+      "hi": "K₄[Fe(CN)₆] का संकुल आयन ऋणात्मक है। धातु के नाम का अंत क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "ate",
+       "en": "-ate, so ferrate",
+       "hi": "-एट, यानी फेरेट"
+      },
+      {
+       "id": "same",
+       "en": "Unchanged, so iron",
+       "hi": "वही, यानी आयरन"
+      },
+      {
+       "id": "ide",
+       "en": "-ide, so ironide",
+       "hi": "-आइड, यानी आयरनाइड"
+      }
+     ],
+     "answer": "ate"
+    },
+    {
+     "kind": "do",
+     "target": "left:ni0",
+     "expect": "matched:ni0",
+     "say": {
+      "en": "Now match “[Ni(CO)₄]”.",
+      "hi": "अब “[Ni(CO)₄]” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rules: name the cation first and the anion second. Inside the complex, list ligands in alphabetical order (ammine before chlorido), then the metal, then the oxidation state in Roman numerals in brackets. Use hexa-, tetra- for the number of simple ligands. If the complex ion is negative, the metal name ends in -ate, such as ferrate for iron and cuprate for copper.",
+      "hi": "नियम: पहले धनायन का और फिर ऋणायन का नाम लो। संकुल के भीतर लिगैंडों को वर्णानुक्रम में (ऐम्मीन, क्लोरिडो से पहले), फिर धातु और फिर कोष्ठक में रोमन अंकों में ऑक्सीकरण अवस्था लिखो। सरल लिगैंडों की संख्या के लिए हेक्सा-, टेट्रा- का प्रयोग करो। यदि संकुल आयन ऋणात्मक है तो धातु के नाम का अंत -एट होता है, जैसे लोहे के लिए फेरेट और ताँबे के लिए क्यूप्रेट।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the oxidation state of cobalt in [Co(NH₃)₆]Cl₃?",
+        "hi": "[Co(NH₃)₆]Cl₃ में कोबाल्ट की ऑक्सीकरण अवस्था क्या है?"
+       },
+       "options": [
+        "+3",
+        "+6",
+        "+2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "NH₃ is neutral; three Cl⁻ outside balance the complex ion's charge of +3.",
+        "hi": "NH₃ उदासीन है; बाहर के तीन Cl⁻ संकुल आयन के +3 आवेश को संतुलित करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "+6 confuses the number of ligands with the charge.",
+         "hi": "+6 में लिगैंडों की संख्या को आवेश समझ लिया गया।"
+        },
+        {
+         "en": "+2 would need only two chlorides outside.",
+         "hi": "+2 के लिए बाहर केवल दो क्लोराइड चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which comes first in the name of a complex: ligand or metal?",
+        "hi": "संकुल के नाम में पहले क्या आता है: लिगैंड या धातु?"
+       },
+       "options": [
+        {
+         "en": "The ligands, in alphabetical order",
+         "hi": "वर्णानुक्रम में लिगैंड"
+        },
+        {
+         "en": "The metal",
+         "hi": "धातु"
+        },
+        {
+         "en": "The oxidation state",
+         "hi": "ऑक्सीकरण अवस्था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ligands come first, then the metal with its oxidation state.",
+        "hi": "पहले लिगैंड आते हैं, फिर ऑक्सीकरण अवस्था सहित धातु।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The metal is named after its ligands.",
+         "hi": "धातु का नाम लिगैंडों के बाद आता है।"
+        },
+        {
+         "en": "The oxidation state comes last, in brackets.",
+         "hi": "ऑक्सीकरण अवस्था कोष्ठक में सबसे अंत में आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Write the name of [Co(NH₃)₄Cl₂]Cl on your own, ligands in alphabetical order.",
+      "hi": "बाकी मिलाओ। [Co(NH₃)₄Cl₂]Cl का नाम खुद लिखो, लिगैंड वर्णानुक्रम में।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch05-naming-order",
+   "topic": "5.3",
+   "template": "sequence",
+   "title": {
+    "en": "The order of words in a name",
+    "hi": "नाम में शब्दों का क्रम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "cation",
+      "text": {
+       "en": "Name the cation first, then the anion",
+       "hi": "पहले धनायन का नाम लिखो, फिर ऋणायन का"
+      }
+     },
+     {
+      "id": "ligands",
+      "text": {
+       "en": "In the complex ion, name the ligands first, alphabetically",
+       "hi": "संकुल आयन में पहले लिगैंड वर्णानुक्रम में लिखो"
+      }
+     },
+     {
+      "id": "metal",
+      "text": {
+       "en": "Then name the metal",
+       "hi": "फिर धातु का नाम लिखो"
+      }
+     },
+     {
+      "id": "state",
+      "text": {
+       "en": "Give its oxidation state in Roman numerals in brackets",
+       "hi": "उसकी ऑक्सीकरण अवस्था कोष्ठक में रोमन अंकों में लिखो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:cation",
+     "expect": "placed:cation",
+     "say": {
+      "en": "Tap the step “Name the cation first, then the anion” and put it in the slot where you think it belongs.",
+      "hi": "चरण “पहले धनायन का नाम लिखो, फिर ऋणायन का” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part of the name comes right after the ligands?",
+      "hi": "लिगैंडों के ठीक बाद नाम का कौन-सा भाग आता है?"
+     },
+     "options": [
+      {
+       "id": "metal",
+       "en": "The metal",
+       "hi": "धातु"
+      },
+      {
+       "id": "anion",
+       "en": "The anion",
+       "hi": "ऋणायन"
+      },
+      {
+       "id": "number",
+       "en": "The oxidation state",
+       "hi": "ऑक्सीकरण अवस्था"
+      }
+     ],
+     "answer": "metal"
+    },
+    {
+     "kind": "do",
+     "target": "item:state",
+     "expect": "placed:state",
+     "say": {
+      "en": "Now place “Give its oxidation state in Roman numerals in brackets”.",
+      "hi": "अब “उसकी ऑक्सीकरण अवस्था कोष्ठक में रोमन अंकों में लिखो” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A name reads from the outside in: cation, then anion; inside a complex, ligands in alphabetical order, the metal, then its oxidation state in Roman numerals. For [Co(NH₃)₅Cl]Cl₂: pentaammine (a) before chlorido (c), then cobalt(III), and finally the chloride anion.",
+      "hi": "नाम बाहर से भीतर की ओर पढ़ा जाता है: धनायन, फिर ऋणायन; संकुल के भीतर वर्णानुक्रम में लिगैंड, धातु और फिर रोमन अंकों में उसकी ऑक्सीकरण अवस्था। [Co(NH₃)₅Cl]Cl₂ के लिए: पेन्टाऐम्मीन (a) क्लोरिडो (c) से पहले, फिर कोबाल्ट(III) और अंत में क्लोराइड ऋणायन।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the name of a complex, the alphabetical order applies to…",
+        "hi": "संकुल के नाम में वर्णानुक्रम किस पर लागू होता है?"
+       },
+       "options": [
+        {
+         "en": "The ligands",
+         "hi": "लिगैंडों पर"
+        },
+        {
+         "en": "Only the metal",
+         "hi": "केवल धातु पर"
+        },
+        {
+         "en": "The oxidation states",
+         "hi": "ऑक्सीकरण अवस्थाओं पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ligands are listed A to Z by name, ignoring numerical prefixes like tetra-.",
+        "hi": "लिगैंडों को नाम के अनुसार A से Z क्रम में लिखते हैं, टेट्रा- जैसे उपसर्ग छोड़कर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is only one metal, so there is nothing to order.",
+         "hi": "धातु एक ही होती है, इसलिए क्रम का प्रश्न नहीं।"
+        },
+        {
+         "en": "There is only one oxidation state for the metal.",
+         "hi": "धातु की ऑक्सीकरण अवस्था एक ही होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these correctly orders two ligands, ammine and chlorido?",
+        "hi": "ऐम्मीन और क्लोरिडो, इन दो लिगैंडों का सही क्रम कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Ammine, then chlorido",
+         "hi": "पहले ऐम्मीन, फिर क्लोरिडो"
+        },
+        {
+         "en": "Chlorido, then ammine",
+         "hi": "पहले क्लोरिडो, फिर ऐम्मीन"
+        },
+        {
+         "en": "Either way",
+         "hi": "किसी भी क्रम में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A comes before C.",
+        "hi": "A, C से पहले आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Alphabetical order puts a before c.",
+         "hi": "वर्णानुक्रम में a, c से पहले आता है।"
+        },
+        {
+         "en": "The order is fixed, not a free choice.",
+         "hi": "क्रम तय है, अपनी पसंद का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put the steps in order, then read the name of K₃[Fe(CN)₆] aloud following them.",
+      "hi": "चरणों को क्रम में रखो, फिर उन्हीं के अनुसार K₃[Fe(CN)₆] का नाम बोलकर पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch05-isomer-types",
+   "topic": "5.4",
+   "template": "match",
+   "title": {
+    "en": "Six kinds of isomerism",
+    "hi": "समावयवता के छह प्रकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "geo",
+      "left": {
+       "en": "Geometrical isomerism",
+       "hi": "ज्यामितीय समावयवता"
+      },
+      "right": {
+       "en": "cis- and trans-[Pt(NH₃)₂Cl₂]",
+       "hi": "cis- और trans-[Pt(NH₃)₂Cl₂]"
+      },
+      "why": {
+       "en": "Same atoms, but the ligands sit next to each other or opposite.",
+       "hi": "वही परमाणु, पर लिगैंड पास-पास या आमने-सामने हैं।"
+      }
+     },
+     {
+      "id": "opt",
+      "left": {
+       "en": "Optical isomerism",
+       "hi": "ध्रुवण समावयवता"
+      },
+      "right": {
+       "en": "Mirror-image forms of [Co(en)₃]³⁺",
+       "hi": "[Co(en)₃]³⁺ के दर्पण प्रतिबिंब रूप"
+      },
+      "why": {
+       "en": "The two forms cannot be laid on top of each other.",
+       "hi": "दोनों रूप एक-दूसरे पर रखे नहीं जा सकते।"
+      }
+     },
+     {
+      "id": "link",
+      "left": {
+       "en": "Linkage isomerism",
+       "hi": "बंधनी समावयवता"
+      },
+      "right": {
+       "en": "–NO₂ attached through N or through O (–ONO)",
+       "hi": "–NO₂ का N से या O (–ONO) से जुड़ना"
+      },
+      "why": {
+       "en": "An ambidentate ligand binds through different atoms.",
+       "hi": "उभयदंतुर लिगैंड अलग-अलग परमाणुओं से जुड़ता है।"
+      }
+     },
+     {
+      "id": "ion",
+      "left": {
+       "en": "Ionisation isomerism",
+       "hi": "आयनन समावयवता"
+      },
+      "right": {
+       "en": "[Co(NH₃)₅Br]SO₄ and [Co(NH₃)₅SO₄]Br",
+       "hi": "[Co(NH₃)₅Br]SO₄ और [Co(NH₃)₅SO₄]Br"
+      },
+      "why": {
+       "en": "The two give different ions in solution: SO₄²⁻ in one, Br⁻ in the other.",
+       "hi": "विलयन में दोनों अलग आयन देते हैं: एक में SO₄²⁻, दूसरे में Br⁻।"
+      }
+     },
+     {
+      "id": "solv",
+      "left": {
+       "en": "Solvate (hydrate) isomerism",
+       "hi": "विलायकयोजन (जलयोजन) समावयवता"
+      },
+      "right": {
+       "en": "[Cr(H₂O)₆]Cl₃ and [Cr(H₂O)₅Cl]Cl₂·H₂O",
+       "hi": "[Cr(H₂O)₆]Cl₃ और [Cr(H₂O)₅Cl]Cl₂·H₂O"
+      },
+      "why": {
+       "en": "Water is inside the sphere in one and outside as crystal water in the other.",
+       "hi": "एक में जल मंडल के भीतर है और दूसरे में बाहर क्रिस्टल जल के रूप में।"
+      }
+     },
+     {
+      "id": "coord",
+      "left": {
+       "en": "Coordination isomerism",
+       "hi": "उपसहसंयोजन समावयवता"
+      },
+      "right": {
+       "en": "[Co(NH₃)₆][Cr(CN)₆] and [Cr(NH₃)₆][Co(CN)₆]",
+       "hi": "[Co(NH₃)₆][Cr(CN)₆] और [Cr(NH₃)₆][Co(CN)₆]"
+      },
+      "why": {
+       "en": "The ligands swap between the cation and anion metal centres.",
+       "hi": "लिगैंड धनायन और ऋणायन के धातु केंद्रों के बीच बदल जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:geo",
+     "expect": "matched:geo",
+     "say": {
+      "en": "Tap “Geometrical isomerism” on the left, then tap its partner on the right.",
+      "hi": "“ज्यामितीय समावयवता” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "[Co(NH₃)₅Br]SO₄ gives a precipitate with BaCl₂ but none with AgNO₃. Which kind of isomerism does it show with [Co(NH₃)₅SO₄]Br?",
+      "hi": "[Co(NH₃)₅Br]SO₄ BaCl₂ के साथ अवक्षेप देता है पर AgNO₃ के साथ नहीं। [Co(NH₃)₅SO₄]Br के साथ यह किस प्रकार की समावयवता दिखाता है?"
+     },
+     "options": [
+      {
+       "id": "ion",
+       "en": "Ionisation isomerism",
+       "hi": "आयनन समावयवता"
+      },
+      {
+       "id": "geo",
+       "en": "Geometrical isomerism",
+       "hi": "ज्यामितीय समावयवता"
+      },
+      {
+       "id": "opt",
+       "en": "Optical isomerism",
+       "hi": "ध्रुवण समावयवता"
+      }
+     ],
+     "answer": "ion"
+    },
+    {
+     "kind": "do",
+     "target": "left:link",
+     "expect": "matched:link",
+     "say": {
+      "en": "Now match “Linkage isomerism”.",
+      "hi": "अब “बंधनी समावयवता” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Isomers have the same formula but different arrangements. Structural isomers differ in which atoms are bonded (linkage, ionisation, solvate and coordination isomerism). Stereoisomers have the same bonds but different arrangement in space (geometrical and optical). Each pair behaves differently in chemical tests, colour or action on polarised light.",
+      "hi": "समावयवियों का सूत्र एक ही पर विन्यास अलग होता है। संरचनात्मक समावयवी इस बात में भिन्न होते हैं कि कौन-से परमाणु जुड़े हैं (बंधनी, आयनन, विलायकयोजन और उपसहसंयोजन समावयवता)। त्रिविम समावयवियों में आबंध वही पर अंतरिक्ष में व्यवस्था अलग होती है (ज्यामितीय और ध्रुवण)। हर जोड़ी रासायनिक जाँच, रंग या ध्रुवित प्रकाश पर प्रभाव में अलग व्यवहार करती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which pair are stereoisomers, with the same bonds but different arrangement in space?",
+        "hi": "कौन-सी जोड़ी त्रिविम समावयवी है, यानी आबंध वही पर अंतरिक्ष में व्यवस्था अलग?"
+       },
+       "options": [
+        {
+         "en": "cis- and trans-[Pt(NH₃)₂Cl₂]",
+         "hi": "cis- और trans-[Pt(NH₃)₂Cl₂]"
+        },
+        {
+         "en": "[Cr(H₂O)₆]Cl₃ and [Cr(H₂O)₅Cl]Cl₂·H₂O",
+         "hi": "[Cr(H₂O)₆]Cl₃ और [Cr(H₂O)₅Cl]Cl₂·H₂O"
+        },
+        {
+         "en": "–NO₂ and –ONO forms",
+         "hi": "–NO₂ और –ONO रूप"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In cis and trans the same atoms are bonded; only the placement differs.",
+        "hi": "cis और trans में वही परमाणु जुड़े हैं; केवल स्थिति भिन्न है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In the hydrate pair, water moves in or out of the sphere: a structural difference.",
+         "hi": "जलयोजित जोड़ी में जल मंडल के भीतर-बाहर जाता है: संरचनात्मक अंतर।"
+        },
+        {
+         "en": "N-bonded and O-bonded forms differ in which atom is attached: structural.",
+         "hi": "N-बँधे और O-बँधे रूप में जुड़ने वाला परमाणु अलग है: संरचनात्मक।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Linkage isomerism needs a ligand that can…",
+        "hi": "बंधनी समावयवता के लिए ऐसा लिगैंड चाहिए जो…"
+       },
+       "options": [
+        {
+         "en": "Bind through two different atoms, one at a time",
+         "hi": "दो अलग परमाणुओं से, एक बार में एक से, जुड़ सके"
+        },
+        {
+         "en": "Bind through six atoms",
+         "hi": "छह परमाणुओं से जुड़ सके"
+        },
+        {
+         "en": "Never bind to a metal",
+         "hi": "धातु से कभी न जुड़ सके"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ambidentate ligands such as NO₂⁻ and SCN⁻ can do this.",
+        "hi": "NO₂⁻ और SCN⁻ जैसे उभयदंतुर लिगैंड ऐसा कर सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Six donors describes EDTA, not linkage isomerism.",
+         "hi": "छह दाता EDTA के लिए है, बंधनी समावयवता के लिए नहीं।"
+        },
+        {
+         "en": "A ligand that does not bind would form no complex.",
+         "hi": "जो लिगैंड जुड़े ही नहीं, वह संकुल नहीं बनाएगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Which pair would you separate by adding silver nitrate to see which gives AgBr?",
+      "hi": "बाकी जोड़ियाँ मिलाओ। किस जोड़ी को सिल्वर नाइट्रेट डालकर AgBr देखकर अलग करोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch05-cis-trans",
+   "topic": "5.4",
+   "template": "sort",
+   "title": {
+    "en": "Cis or trans?",
+    "hi": "सिस या ट्रांस?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cis",
+      "label": {
+       "en": "cis: same side (90°)",
+       "hi": "सिस: एक ही ओर (90°)"
+      }
+     },
+     {
+      "id": "trans",
+      "label": {
+       "en": "trans: opposite (180°)",
+       "hi": "ट्रांस: आमने-सामने (180°)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cl90",
+      "text": {
+       "en": "The two Cl are at 90° in [Pt(NH₃)₂Cl₂]",
+       "hi": "[Pt(NH₃)₂Cl₂] में दो Cl 90° पर हैं"
+      },
+      "bin": "cis",
+      "why": {
+       "en": "Neighbouring positions are cis.",
+       "hi": "पास-पास की स्थितियाँ सिस होती हैं।"
+      }
+     },
+     {
+      "id": "cl180",
+      "text": {
+       "en": "The two Cl are at opposite corners",
+       "hi": "दोनों Cl सामने के कोनों पर हैं"
+      },
+      "bin": "trans",
+      "why": {
+       "en": "Opposite positions are trans.",
+       "hi": "सामने की स्थितियाँ ट्रांस होती हैं।"
+      }
+     },
+     {
+      "id": "dipole",
+      "text": {
+       "en": "Has a dipole moment (polar)",
+       "hi": "द्विध्रुव आघूर्ण है (ध्रुवीय)"
+      },
+      "bin": "cis",
+      "why": {
+       "en": "The two M–Cl bonds pull to the same side, so they do not cancel.",
+       "hi": "दोनों M–Cl आबंध एक ही ओर खींचते हैं, इसलिए कटते नहीं।"
+      }
+     },
+     {
+      "id": "nodip",
+      "text": {
+       "en": "Dipole moment is zero (non-polar)",
+       "hi": "द्विध्रुव आघूर्ण शून्य है (अध्रुवीय)"
+      },
+      "bin": "trans",
+      "why": {
+       "en": "The two opposite pulls cancel out.",
+       "hi": "दो विपरीत खिंचाव एक-दूसरे को काट देते हैं।"
+      }
+     },
+     {
+      "id": "cisplatin",
+      "text": {
+       "en": "Cisplatin, the anticancer drug",
+       "hi": "सिसप्लैटिन, कैंसर-रोधी औषधि"
+      },
+      "bin": "cis",
+      "why": {
+       "en": "Only the cis form of [Pt(NH₃)₂Cl₂] works as the drug.",
+       "hi": "[Pt(NH₃)₂Cl₂] का केवल सिस रूप औषधि के रूप में काम करता है।"
+      }
+     },
+     {
+      "id": "octa90",
+      "text": {
+       "en": "In [Co(NH₃)₄Cl₂]⁺, two Cl lie next to each other",
+       "hi": "[Co(NH₃)₄Cl₂]⁺ में दो Cl पास-पास हैं"
+      },
+      "bin": "cis",
+      "why": {
+       "en": "Adjacent positions in an octahedron are cis.",
+       "hi": "अष्टफलक में सटी स्थितियाँ सिस हैं।"
+      }
+     },
+     {
+      "id": "octa180",
+      "text": {
+       "en": "In [Co(NH₃)₄Cl₂]⁺, two Cl lie on opposite sides of cobalt",
+       "hi": "[Co(NH₃)₄Cl₂]⁺ में दो Cl कोबाल्ट के सामने की ओर हैं"
+      },
+      "bin": "trans",
+      "why": {
+       "en": "Opposite positions in an octahedron are trans.",
+       "hi": "अष्टफलक में सामने की स्थितियाँ ट्रांस हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:cl90",
+     "expect": "correct:cl90",
+     "say": {
+      "en": "Tap the card “The two Cl are at 90° in [Pt(NH₃)₂Cl₂]”, then tap the group it belongs to.",
+      "hi": "कार्ड “[Pt(NH₃)₂Cl₂] में दो Cl 90° पर हैं” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a square planar complex with two Cl at opposite corners, do the two Pt–Cl pulls cancel?",
+      "hi": "वर्ग समतलीय संकुल में दो Cl सामने के कोनों पर हों तो क्या दोनों Pt–Cl खिंचाव कट जाते हैं?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, so it is non-polar",
+       "hi": "हाँ, इसलिए यह अध्रुवीय है"
+      },
+      {
+       "id": "no",
+       "en": "No, it stays polar",
+       "hi": "नहीं, यह ध्रुवीय ही रहता है"
+      },
+      {
+       "id": "half",
+       "en": "Half of it cancels",
+       "hi": "आधा कटता है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:cl180",
+     "expect": "correct:cl180",
+     "say": {
+      "en": "Now sort “The two Cl are at opposite corners”.",
+      "hi": "अब “दोनों Cl सामने के कोनों पर हैं” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:dipole",
+     "expect": "correct:dipole",
+     "say": {
+      "en": "Now sort “Has a dipole moment (polar)”.",
+      "hi": "अब “द्विध्रुव आघूर्ण है (ध्रुवीय)” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Geometrical isomers arise in square planar [MA₂B₂] and octahedral [MA₄B₂]. Cis puts the same ligands next to each other; trans puts them opposite. The two isomers have different physical properties, such as polarity, colour and solubility, and different biological action: only cis-[Pt(NH₃)₂Cl₂], cisplatin, is used against cancer.",
+      "hi": "ज्यामितीय समावयवता वर्ग समतलीय [MA₂B₂] और अष्टफलकीय [MA₄B₂] में होती है। सिस में एक-से लिगैंड पास-पास और ट्रांस में आमने-सामने होते हैं। दोनों समावयवियों के भौतिक गुण, जैसे ध्रुवता, रंग और विलेयता, अलग होते हैं और जैविक प्रभाव भी: कैंसर के विरुद्ध केवल सिस-[Pt(NH₃)₂Cl₂] यानी सिसप्लैटिन काम आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which isomer of [Pt(NH₃)₂Cl₂] has a dipole moment?",
+        "hi": "[Pt(NH₃)₂Cl₂] के किस समावयवी का द्विध्रुव आघूर्ण है?"
+       },
+       "options": [
+        "cis",
+        "trans",
+        {
+         "en": "Both have the same",
+         "hi": "दोनों का समान है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In cis the unlike pulls do not balance out.",
+        "hi": "सिस में असमान खिंचाव संतुलित नहीं होते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In trans the opposite bond pulls cancel.",
+         "hi": "ट्रांस में आमने-सामने के आबंधों के खिंचाव कट जाते हैं।"
+        },
+        {
+         "en": "They differ: cis is polar and trans is not.",
+         "hi": "वे भिन्न हैं: सिस ध्रुवीय है और ट्रांस नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which type of complex shows cis–trans isomerism?",
+        "hi": "किस प्रकार का संकुल सिस–ट्रांस समावयवता दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "Square planar [MA₂B₂]",
+         "hi": "वर्ग समतलीय [MA₂B₂]"
+        },
+        {
+         "en": "Tetrahedral [MA₂B₂]",
+         "hi": "चतुष्फलकीय [MA₂B₂]"
+        },
+        {
+         "en": "Linear [MA₂]",
+         "hi": "रैखिक [MA₂]"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a tetrahedron all positions touch each other, and linear has only one arrangement.",
+        "hi": "चतुष्फलक में सभी स्थितियाँ एक-दूसरे के पास हैं और रैखिक में एक ही व्यवस्था होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Every position in a tetrahedron is next to all the others, so no cis–trans.",
+         "hi": "चतुष्फलक में हर स्थिति बाकी सबके पास है, इसलिए सिस–ट्रांस नहीं।"
+        },
+        {
+         "en": "A linear complex has just one way to place two ligands.",
+         "hi": "रैखिक संकुल में दो लिगैंड रखने का एक ही तरीका है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Why can two compounds with the same formula, [Pt(NH₃)₂Cl₂], have different melting points?",
+      "hi": "बाकी छाँटो। एक ही सूत्र [Pt(NH₃)₂Cl₂] वाले दो यौगिकों के गलनांक अलग क्यों हो सकते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch05-vbt-shapes",
+   "topic": "5.5",
+   "template": "match",
+   "title": {
+    "en": "Hybridisation and shape (valence bond theory)",
+    "hi": "संकरण और आकार (संयोजकता आबंध सिद्धांत)"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "nico",
+      "left": {
+       "en": "[Ni(CO)₄]",
+       "hi": "[Ni(CO)₄]"
+      },
+      "right": {
+       "en": "sp³, tetrahedral, diamagnetic",
+       "hi": "sp³, चतुष्फलकीय, प्रतिचुंबकीय"
+      },
+      "why": {
+       "en": "Ni(0) is 3d¹⁰, no unpaired electrons.",
+       "hi": "Ni(0) 3d¹⁰ है, कोई अयुग्मित इलेक्ट्रॉन नहीं।"
+      }
+     },
+     {
+      "id": "nicn",
+      "left": {
+       "en": "[Ni(CN)₄]²⁻",
+       "hi": "[Ni(CN)₄]²⁻"
+      },
+      "right": {
+       "en": "dsp², square planar, diamagnetic",
+       "hi": "dsp², वर्ग समतलीय, प्रतिचुंबकीय"
+      },
+      "why": {
+       "en": "Strong-field CN⁻ pairs the 3d⁸ electrons, freeing one d orbital.",
+       "hi": "प्रबल क्षेत्र CN⁻ 3d⁸ इलेक्ट्रॉनों को युग्मित करता है, जिससे एक d कक्षक खाली होता है।"
+      }
+     },
+     {
+      "id": "nicl",
+      "left": {
+       "en": "[NiCl₄]²⁻",
+       "hi": "[NiCl₄]²⁻"
+      },
+      "right": {
+       "en": "sp³, tetrahedral, paramagnetic",
+       "hi": "sp³, चतुष्फलकीय, अनुचुंबकीय"
+      },
+      "why": {
+       "en": "Weak-field Cl⁻ leaves two unpaired electrons.",
+       "hi": "दुर्बल क्षेत्र Cl⁻ दो अयुग्मित इलेक्ट्रॉन छोड़ देता है।"
+      }
+     },
+     {
+      "id": "fecn",
+      "left": {
+       "en": "[Fe(CN)₆]³⁻",
+       "hi": "[Fe(CN)₆]³⁻"
+      },
+      "right": {
+       "en": "d²sp³, octahedral, 1 unpaired electron",
+       "hi": "d²sp³, अष्टफलकीय, 1 अयुग्मित इलेक्ट्रॉन"
+      },
+      "why": {
+       "en": "Inner d orbitals are used; electrons are paired as much as possible.",
+       "hi": "भीतरी d कक्षक काम आते हैं; इलेक्ट्रॉन यथासंभव युग्मित हो जाते हैं।"
+      }
+     },
+     {
+      "id": "fef",
+      "left": {
+       "en": "[FeF₆]³⁻",
+       "hi": "[FeF₆]³⁻"
+      },
+      "right": {
+       "en": "sp³d², octahedral, 5 unpaired electrons",
+       "hi": "sp³d², अष्टफलकीय, 5 अयुग्मित इलेक्ट्रॉन"
+      },
+      "why": {
+       "en": "Outer 4d orbitals are used; the five 3d electrons stay unpaired.",
+       "hi": "बाहरी 4d कक्षक काम आते हैं; पाँचों 3d इलेक्ट्रॉन अयुग्मित रहते हैं।"
+      }
+     },
+     {
+      "id": "conh3",
+      "left": {
+       "en": "[Co(NH₃)₆]³⁺",
+       "hi": "[Co(NH₃)₆]³⁺"
+      },
+      "right": {
+       "en": "d²sp³, octahedral, diamagnetic",
+       "hi": "d²sp³, अष्टफलकीय, प्रतिचुंबकीय"
+      },
+      "why": {
+       "en": "All six 3d electrons are paired, so no unpaired electrons remain.",
+       "hi": "छहों 3d इलेक्ट्रॉन युग्मित हैं, इसलिए कोई अयुग्मित नहीं बचता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:nico",
+     "expect": "matched:nico",
+     "say": {
+      "en": "Tap “[Ni(CO)₄]” on the left, then tap its partner on the right.",
+      "hi": "“[Ni(CO)₄]” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "CN⁻ is a strong-field ligand and Cl⁻ is a weak-field one. Which is more likely to pair up the metal's d electrons?",
+      "hi": "CN⁻ प्रबल क्षेत्र लिगैंड और Cl⁻ दुर्बल क्षेत्र लिगैंड है। धातु के d इलेक्ट्रॉनों को युग्मित करने की अधिक संभावना किसमें है?"
+     },
+     "options": [
+      {
+       "id": "cn",
+       "en": "CN⁻",
+       "hi": "CN⁻ लिगैंड"
+      },
+      {
+       "id": "cl",
+       "en": "Cl⁻",
+       "hi": "Cl⁻ लिगैंड"
+      }
+     ],
+     "answer": "cn"
+    },
+    {
+     "kind": "do",
+     "target": "left:nicn",
+     "expect": "matched:nicn",
+     "say": {
+      "en": "Now match “[Ni(CN)₄]²⁻”.",
+      "hi": "अब “[Ni(CN)₄]²⁻” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:fef",
+     "expect": "matched:fef",
+     "say": {
+      "en": "Now match “[FeF₆]³⁻”.",
+      "hi": "अब “[FeF₆]³⁻” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In valence bond theory the ligands donate electron pairs into empty metal orbitals, which hybridise. Strong-field ligands such as CN⁻, CO and NH₃ pair up the metal's d electrons, free inner d orbitals and give d²sp³ (inner orbital, low spin). Weak-field ligands such as F⁻ and Cl⁻ leave the electrons unpaired and use outer orbitals, giving sp³d² (outer orbital, high spin). Magnetic behaviour tells which case it is.",
+      "hi": "संयोजकता आबंध सिद्धांत में लिगैंड रिक्त धातु कक्षकों में इलेक्ट्रॉन युग्म देते हैं, जो संकरित होते हैं। CN⁻, CO और NH₃ जैसे प्रबल क्षेत्र लिगैंड धातु के d इलेक्ट्रॉनों को युग्मित करते हैं, भीतरी d कक्षक खाली करते हैं और d²sp³ (आंतरिक कक्षक, निम्न चक्रण) देते हैं। F⁻ और Cl⁻ जैसे दुर्बल क्षेत्र लिगैंड इलेक्ट्रॉनों को अयुग्मित रखते हैं और बाहरी कक्षक काम में लेते हैं, जिससे sp³d² (बाह्य कक्षक, उच्च चक्रण) बनता है। चुंबकीय व्यवहार से पता चलता है कि कौन-सा मामला है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "[Fe(CN)₆]³⁻ is paramagnetic with one unpaired electron, while [FeF₆]³⁻ has five. What explains this?",
+        "hi": "[Fe(CN)₆]³⁻ में एक अयुग्मित इलेक्ट्रॉन है और अनुचुंबकीय है, जबकि [FeF₆]³⁻ में पाँच हैं। इसका कारण क्या है?"
+       },
+       "options": [
+        {
+         "en": "CN⁻ is a strong-field ligand and forces pairing",
+         "hi": "CN⁻ प्रबल क्षेत्र लिगैंड है और युग्मन कराता है"
+        },
+        {
+         "en": "Fluorine is heavier",
+         "hi": "फ्लुओरीन भारी है"
+        },
+        {
+         "en": "Iron has different charge in the two",
+         "hi": "दोनों में लोहे का आवेश अलग है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Strong field pairs the electrons; weak field leaves them unpaired. Iron is +3 in both.",
+        "hi": "प्रबल क्षेत्र इलेक्ट्रॉनों को युग्मित करता है; दुर्बल क्षेत्र अयुग्मित छोड़ता है। दोनों में लोहा +3 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mass does not decide the pairing of electrons.",
+         "hi": "द्रव्यमान इलेक्ट्रॉनों के युग्मन को तय नहीं करता।"
+        },
+        {
+         "en": "Iron is Fe³⁺ in both complexes.",
+         "hi": "दोनों संकुलों में लोहा Fe³⁺ है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is [Ni(CN)₄]²⁻ square planar and not tetrahedral?",
+        "hi": "[Ni(CN)₄]²⁻ चतुष्फलकीय की जगह वर्ग समतलीय क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Strong-field CN⁻ pairs the 3d electrons, leaving a d orbital free for dsp²",
+         "hi": "प्रबल क्षेत्र CN⁻ 3d इलेक्ट्रॉनों को युग्मित कर dsp² के लिए एक d कक्षक खाली कर देता है"
+        },
+        {
+         "en": "Nickel has four electrons",
+         "hi": "निकेल में चार इलेक्ट्रॉन हैं"
+        },
+        {
+         "en": "CN⁻ is a gas",
+         "hi": "CN⁻ एक गैस है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The freed d orbital joins one s and two p orbitals in dsp² hybridisation, which points to square-planar corners.",
+        "hi": "खाली हुआ d कक्षक एक s और दो p के साथ dsp² संकरण बनाता है, जो वर्ग समतल के कोनों की ओर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nickel has 28 electrons.",
+         "hi": "निकेल में 28 इलेक्ट्रॉन हैं।"
+        },
+        {
+         "en": "CN⁻ is an ion, not a gas.",
+         "hi": "CN⁻ एक आयन है, गैस नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Two iron complexes are in the list. Both have Fe³⁺: how do their ligands change the number of unpaired electrons?",
+      "hi": "बाकी मिलाओ। सूची में लोहे के दो संकुल हैं। दोनों में Fe³⁺ है: उनके लिगैंड अयुग्मित इलेक्ट्रॉनों की संख्या कैसे बदलते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch05-spectrochemical",
+   "topic": "5.5",
+   "template": "sequence",
+   "title": {
+    "en": "The spectrochemical series",
+    "hi": "स्पेक्ट्रमरासायनिक श्रेणी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "i",
+      "text": {
+       "en": "I⁻ (weakest field)",
+       "hi": "I⁻ (सबसे दुर्बल क्षेत्र)"
+      }
+     },
+     {
+      "id": "cl",
+      "text": {
+       "en": "Cl⁻",
+       "hi": "Cl⁻"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "F⁻",
+       "hi": "F⁻"
+      }
+     },
+     {
+      "id": "h2o",
+      "text": {
+       "en": "H₂O",
+       "hi": "H₂O"
+      }
+     },
+     {
+      "id": "nh3",
+      "text": {
+       "en": "NH₃",
+       "hi": "NH₃"
+      }
+     },
+     {
+      "id": "cn",
+      "text": {
+       "en": "CN⁻ (strongest field here)",
+       "hi": "CN⁻ (यहाँ सबसे प्रबल क्षेत्र)"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:i",
+     "expect": "placed:i",
+     "say": {
+      "en": "Tap the step “I⁻ (weakest field)” and put it in the slot where you think it belongs.",
+      "hi": "चरण “I⁻ (सबसे दुर्बल क्षेत्र)” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A strong-field ligand splits the d orbitals widely. Which ligand here splits them most?",
+      "hi": "प्रबल क्षेत्र लिगैंड d कक्षकों को अधिक अलग करता है। यहाँ कौन-सा लिगैंड उन्हें सबसे अधिक अलग करता है?"
+     },
+     "options": [
+      {
+       "id": "cn",
+       "en": "CN⁻",
+       "hi": "CN⁻ लिगैंड"
+      },
+      {
+       "id": "i",
+       "en": "I⁻",
+       "hi": "I⁻ लिगैंड"
+      },
+      {
+       "id": "h2o",
+       "en": "H₂O",
+       "hi": "H₂O लिगैंड"
+      }
+     ],
+     "answer": "cn"
+    },
+    {
+     "kind": "do",
+     "target": "item:cn",
+     "expect": "placed:cn",
+     "say": {
+      "en": "Now place “CN⁻ (strongest field here)”.",
+      "hi": "अब “CN⁻ (यहाँ सबसे प्रबल क्षेत्र)” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ligands can be ranked by how strongly they split the d orbitals of a metal ion: I⁻ < Cl⁻ < F⁻ < H₂O < NH₃ < CN⁻ (and CO is even stronger). This is the spectrochemical series. Strong-field ligands give a large splitting Δ, which makes electrons pair up (low spin); weak-field ligands give a small Δ, so electrons spread out (high spin). It also decides the colour, because the colour comes from jumps across Δ.",
+      "hi": "लिगैंडों को इस आधार पर क्रमबद्ध किया जा सकता है कि वे धातु आयन के d कक्षकों को कितना अधिक अलग करते हैं: I⁻ < Cl⁻ < F⁻ < H₂O < NH₃ < CN⁻ (और CO इससे भी प्रबल है)। यह स्पेक्ट्रमरासायनिक श्रेणी है। प्रबल क्षेत्र लिगैंड बड़ा विपाटन Δ देते हैं जिससे इलेक्ट्रॉन युग्मित होते हैं (निम्न चक्रण); दुर्बल क्षेत्र लिगैंड छोटा Δ देते हैं, इसलिए इलेक्ट्रॉन फैले रहते हैं (उच्च चक्रण)। यह रंग भी तय करता है, क्योंकि रंग Δ के आर-पार की छलाँगों से आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which ligand is a stronger field than water?",
+        "hi": "कौन-सा लिगैंड पानी से प्रबल क्षेत्र वाला है?"
+       },
+       "options": [
+        "NH₃",
+        "F⁻",
+        "Cl⁻"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "NH₃ comes after H₂O in the series.",
+        "hi": "श्रेणी में NH₃, H₂O के बाद आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "F⁻ comes before water in the series, so it is weaker.",
+         "hi": "श्रेणी में F⁻ पानी से पहले है, इसलिए दुर्बल है।"
+        },
+        {
+         "en": "Cl⁻ is weaker than water too.",
+         "hi": "Cl⁻ भी पानी से दुर्बल है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A large splitting Δ usually leads to…",
+        "hi": "बड़ा विपाटन Δ सामान्यतः किस ओर ले जाता है…"
+       },
+       "options": [
+        {
+         "en": "Paired electrons (low spin)",
+         "hi": "युग्मित इलेक्ट्रॉन (निम्न चक्रण)"
+        },
+        {
+         "en": "Many unpaired electrons (high spin)",
+         "hi": "बहुत अयुग्मित इलेक्ट्रॉन (उच्च चक्रण)"
+        },
+        {
+         "en": "No electrons at all",
+         "hi": "बिल्कुल इलेक्ट्रॉन नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If it costs less to pair up than to jump the big gap, electrons pair in the lower level.",
+        "hi": "यदि बड़ी खाई पार करने से युग्मन सस्ता हो तो इलेक्ट्रॉन निचले स्तर में युग्मित हो जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "High spin goes with a small Δ.",
+         "hi": "उच्च चक्रण छोटे Δ के साथ होता है।"
+        },
+        {
+         "en": "The d electrons remain; only their arrangement changes.",
+         "hi": "d इलेक्ट्रॉन बने रहते हैं; केवल उनकी व्यवस्था बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put them in the right order. Then think: [Fe(H₂O)₆]²⁺ is high spin and [Fe(CN)₆]⁴⁻ is low spin. Which is which in terms of this series?",
+      "hi": "उन्हें सही क्रम में रखो। फिर सोचो: [Fe(H₂O)₆]²⁺ उच्च चक्रण और [Fe(CN)₆]⁴⁻ निम्न चक्रण है। इस श्रेणी के अनुसार कारण क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch05-unpaired-electrons",
+   "topic": "5.5",
+   "template": "data",
+   "title": {
+    "en": "Counting unpaired electrons in complexes",
+    "hi": "संकुलों में अयुग्मित इलेक्ट्रॉनों की गिनती"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 2,
+    "ask": "max",
+    "title": {
+     "en": "Unpaired electrons in some octahedral complexes",
+     "hi": "कुछ अष्टफलकीय संकुलों में अयुग्मित इलेक्ट्रॉन"
+    },
+    "xlabel": {
+     "en": "Complex",
+     "hi": "संकुल"
+    },
+    "ylabel": {
+     "en": "Unpaired electrons",
+     "hi": "अयुग्मित इलेक्ट्रॉन"
+    },
+    "data": [
+     {
+      "label": "[Fe(CN)₆]⁴⁻",
+      "value": 0
+     },
+     {
+      "label": "[Co(NH₃)₆]³⁺",
+      "value": 0
+     },
+     {
+      "label": "[Fe(CN)₆]³⁻",
+      "value": 1
+     },
+     {
+      "label": "[CoF₆]³⁻",
+      "value": 4
+     },
+     {
+      "label": "[Fe(H₂O)₆]²⁺",
+      "value": 4
+     },
+     {
+      "label": "[FeF₆]³⁻",
+      "value": 5
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show [Fe(CN)₆]³⁻.",
+      "hi": "[Fe(CN)₆]³⁻ दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add [CoF₆]³⁻.",
+      "hi": "[CoF₆]³⁻ जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Fe²⁺ is d⁶. With the strong-field CN⁻ the six electrons pair up in the lower level; with weak-field water they spread out. Which will have more unpaired electrons?",
+      "hi": "Fe²⁺ d⁶ है। प्रबल क्षेत्र CN⁻ के साथ छहों इलेक्ट्रॉन निचले स्तर में युग्मित होते हैं; दुर्बल क्षेत्र पानी के साथ वे फैलते हैं। किसमें अयुग्मित इलेक्ट्रॉन अधिक होंगे?"
+     },
+     "options": [
+      {
+       "id": "h2o",
+       "en": "[Fe(H₂O)₆]²⁺",
+       "hi": "[Fe(H₂O)₆]²⁺ संकुल"
+      },
+      {
+       "id": "cn",
+       "en": "[Fe(CN)₆]⁴⁻",
+       "hi": "[Fe(CN)₆]⁴⁻ संकुल"
+      }
+     ],
+     "answer": "h2o"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add [Fe(H₂O)₆]²⁺.",
+      "hi": "[Fe(H₂O)₆]²⁺ जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add [FeF₆]³⁻.",
+      "hi": "[FeF₆]³⁻ जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In an octahedral field the five d orbitals split into a lower t₂g set (three orbitals) and an upper e_g set (two). If the splitting Δ₀ is smaller than the pairing energy, electrons go up and stay unpaired (high spin); if Δ₀ is larger, they pair up in t₂g (low spin). So [Fe(H₂O)₆]²⁺ has four unpaired electrons, but [Fe(CN)₆]⁴⁻ has none. The bar heights show how magnetic each complex is.",
+      "hi": "अष्टफलकीय क्षेत्र में पाँच d कक्षक निचले t₂g समूह (तीन कक्षक) और ऊपरी e_g समूह (दो) में बँट जाते हैं। यदि विपाटन Δ₀ युग्मन ऊर्जा से कम हो तो इलेक्ट्रॉन ऊपर चढ़कर अयुग्मित रहते हैं (उच्च चक्रण); यदि Δ₀ अधिक हो तो वे t₂g में युग्मित हो जाते हैं (निम्न चक्रण)। इसलिए [Fe(H₂O)₆]²⁺ में चार अयुग्मित इलेक्ट्रॉन हैं, पर [Fe(CN)₆]⁴⁻ में कोई नहीं। बार की ऊँचाई बताती है कि हर संकुल कितना चुंबकीय है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does [Fe(CN)₆]⁴⁻ have no unpaired electrons?",
+        "hi": "[Fe(CN)₆]⁴⁻ में कोई अयुग्मित इलेक्ट्रॉन क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "CN⁻ gives a large Δ₀, so all six d electrons pair in t₂g",
+         "hi": "CN⁻ बड़ा Δ₀ देता है, इसलिए छहों d इलेक्ट्रॉन t₂g में युग्मित हो जाते हैं"
+        },
+        {
+         "en": "Iron has lost its d electrons",
+         "hi": "लोहे ने अपने d इलेक्ट्रॉन खो दिए"
+        },
+        {
+         "en": "CN⁻ is neutral",
+         "hi": "CN⁻ उदासीन है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A full t₂g⁶ has all electrons paired.",
+        "hi": "पूर्ण t₂g⁶ में सभी इलेक्ट्रॉन युग्मित होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fe²⁺ still has six d electrons.",
+         "hi": "Fe²⁺ में अब भी छह d इलेक्ट्रॉन हैं।"
+        },
+        {
+         "en": "CN⁻ carries a negative charge.",
+         "hi": "CN⁻ ऋणावेशित है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A d⁵ ion with a weak-field ligand, as in [FeF₆]³⁻, has how many unpaired electrons?",
+        "hi": "दुर्बल क्षेत्र लिगैंड वाले d⁵ आयन, जैसे [FeF₆]³⁻, में कितने अयुग्मित इलेक्ट्रॉन हैं?"
+       },
+       "options": [
+        "5",
+        "1",
+        "0"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With a small Δ₀ each d orbital holds one electron, giving five.",
+        "hi": "छोटे Δ₀ के साथ हर d कक्षक में एक इलेक्ट्रॉन रहता है, कुल पाँच।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 is the strong-field result, as in [Fe(CN)₆]³⁻.",
+         "hi": "1 प्रबल क्षेत्र का परिणाम है, जैसे [Fe(CN)₆]³⁻ में।"
+        },
+        {
+         "en": "0 is impossible for five electrons in five orbitals unless pairs complete, which d⁵ cannot do.",
+         "hi": "पाँच कक्षकों में पाँच इलेक्ट्रॉन होने पर 0 अयुग्मित संभव नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the [FeF₆]³⁻ bar down to 1. Which ligand would you replace fluoride with to make that real?",
+      "hi": "[FeF₆]³⁻ का बार 1 तक नीचे खींचो। इसे सच बनाने के लिए फ्लुओराइड की जगह कौन-सा लिगैंड लोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch05-colour-wheel",
+   "topic": "5.5",
+   "template": "match",
+   "title": {
+    "en": "Absorbed colour and the colour we see",
+    "hi": "सोखा गया रंग और दिखने वाला रंग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "violet",
+      "left": {
+       "en": "Complex absorbs violet",
+       "hi": "संकुल बैंगनी सोखता है"
+      },
+      "right": {
+       "en": "We see yellow-green",
+       "hi": "हमें पीला-हरा दिखता है"
+      },
+      "why": {
+       "en": "Yellow-green is the complement of violet.",
+       "hi": "पीला-हरा बैंगनी का पूरक है।"
+      }
+     },
+     {
+      "id": "blue",
+      "left": {
+       "en": "Complex absorbs blue",
+       "hi": "संकुल नीला सोखता है"
+      },
+      "right": {
+       "en": "We see orange-yellow",
+       "hi": "हमें नारंगी-पीला दिखता है"
+      },
+      "why": {
+       "en": "Orange-yellow is opposite blue on the colour wheel.",
+       "hi": "रंग चक्र पर नारंगी-पीला नीले के सामने है।"
+      }
+     },
+     {
+      "id": "yellow",
+      "left": {
+       "en": "Complex absorbs yellow",
+       "hi": "संकुल पीला सोखता है"
+      },
+      "right": {
+       "en": "We see violet-blue",
+       "hi": "हमें बैंगनी-नीला दिखता है"
+      },
+      "why": {
+       "en": "Violet-blue is the complement of yellow.",
+       "hi": "बैंगनी-नीला पीले का पूरक है।"
+      }
+     },
+     {
+      "id": "red",
+      "left": {
+       "en": "Complex absorbs red",
+       "hi": "संकुल लाल सोखता है"
+      },
+      "right": {
+       "en": "We see blue-green",
+       "hi": "हमें नीला-हरा दिखता है"
+      },
+      "why": {
+       "en": "Hydrated Cu²⁺ absorbs in the red-orange region and looks blue.",
+       "hi": "जलयोजित Cu²⁺ लाल-नारंगी क्षेत्र में सोखता है और नीला दिखता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:red",
+     "expect": "matched:red",
+     "say": {
+      "en": "Tap “Complex absorbs red” on the left, then tap its partner on the right.",
+      "hi": "“संकुल लाल सोखता है” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A white light shines on a solution that absorbs only red light. What colour does the solution look?",
+      "hi": "सफ़ेद प्रकाश ऐसे विलयन पर पड़ता है जो केवल लाल प्रकाश सोखता है। विलयन किस रंग का दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "bg",
+       "en": "Blue-green",
+       "hi": "नीला-हरा"
+      },
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल"
+      },
+      {
+       "id": "black",
+       "en": "Black",
+       "hi": "काला"
+      }
+     ],
+     "answer": "bg"
+    },
+    {
+     "kind": "do",
+     "target": "left:violet",
+     "expect": "matched:violet",
+     "say": {
+      "en": "Now match “Complex absorbs violet”.",
+      "hi": "अब “संकुल बैंगनी सोखता है” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "White light contains all colours. A complex absorbs the colour whose energy matches the jump across the splitting Δ, and we see the colours that are left, the complement of the absorbed one. A bigger Δ absorbs higher-energy (bluer) light, so changing the ligand changes the colour: [Cu(H₂O)₄]²⁺ is pale blue and [Cu(NH₃)₄]²⁺ is deep blue.",
+      "hi": "सफ़ेद प्रकाश में सभी रंग होते हैं। संकुल वही रंग सोखता है जिसकी ऊर्जा विपाटन Δ के आर-पार की छलाँग से मेल खाती है और हमें बचे हुए रंग, यानी सोखे गए रंग के पूरक, दिखते हैं। बड़ा Δ अधिक ऊर्जा वाला (नीलापन लिए) प्रकाश सोखता है, इसलिए लिगैंड बदलने पर रंग बदलता है: [Cu(H₂O)₄]²⁺ हल्का नीला और [Cu(NH₃)₄]²⁺ गहरा नीला है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A complex absorbs light of high energy (violet). Roughly what colour will it appear?",
+        "hi": "कोई संकुल उच्च ऊर्जा वाला प्रकाश (बैंगनी) सोखता है। वह लगभग किस रंग का दिखेगा?"
+       },
+       "options": [
+        {
+         "en": "Yellow-green",
+         "hi": "पीला-हरा"
+        },
+        {
+         "en": "Violet",
+         "hi": "बैंगनी"
+        },
+        {
+         "en": "Colourless",
+         "hi": "रंगहीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The complement of violet is yellow-green.",
+        "hi": "बैंगनी का पूरक पीला-हरा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Violet is what was absorbed, so it is missing.",
+         "hi": "बैंगनी तो सोख लिया गया, इसलिए वह नहीं दिखता।"
+        },
+        {
+         "en": "Absorption of visible light means it is coloured.",
+         "hi": "दृश्य प्रकाश का अवशोषण होने का अर्थ है कि वह रंगीन है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does adding ammonia to blue copper sulphate give a deeper blue?",
+        "hi": "नीले कॉपर सल्फेट में अमोनिया डालने पर गहरा नीला रंग क्यों बनता है?"
+       },
+       "options": [
+        {
+         "en": "NH₃ replaces water and changes the splitting Δ",
+         "hi": "NH₃ पानी की जगह लेकर विपाटन Δ बदल देता है"
+        },
+        {
+         "en": "Ammonia is blue",
+         "hi": "अमोनिया नीली होती है"
+        },
+        {
+         "en": "Copper turns into a new element",
+         "hi": "ताँबा नया तत्व बन जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A new ligand means a new Δ, so a different colour is absorbed.",
+        "hi": "नया लिगैंड यानी नया Δ, इसलिए अलग रंग सोखा जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ammonia solution is colourless.",
+         "hi": "अमोनिया का विलयन रंगहीन होता है।"
+        },
+        {
+         "en": "Copper stays copper; only its ligands change.",
+         "hi": "ताँबा ताँबा ही रहता है; केवल उसके लिगैंड बदलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Which colour would a complex with no d electrons absorb? (Hint: look at the colourless ion lab.)",
+      "hi": "बाकी मिलाओ। बिना d इलेक्ट्रॉन वाला संकुल कौन-सा रंग सोखेगा? (संकेत: रंगहीन आयन वाली लैब देखो।)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch05-mond-process",
+   "topic": "5.6",
+   "template": "sequence",
+   "title": {
+    "en": "Purifying nickel: the Mond process",
+    "hi": "निकेल का शोधन: मॉन्ड प्रक्रम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "co",
+      "text": {
+       "en": "Impure nickel is warmed with carbon monoxide gas",
+       "hi": "अशुद्ध निकेल को कार्बन मोनोऑक्साइड गैस के साथ गर्म करते हैं"
+      }
+     },
+     {
+      "id": "gas",
+      "text": {
+       "en": "Volatile gaseous [Ni(CO)₄] forms and leaves the impurities behind",
+       "hi": "वाष्पशील गैसीय [Ni(CO)₄] बनता है और अशुद्धियाँ पीछे छूट जाती हैं"
+      }
+     },
+     {
+      "id": "hot",
+      "text": {
+       "en": "The gas is passed into a much hotter chamber",
+       "hi": "गैस को बहुत अधिक गर्म कक्ष में भेजते हैं"
+      }
+     },
+     {
+      "id": "pure",
+      "text": {
+       "en": "It breaks down, depositing pure nickel",
+       "hi": "यह टूटता है और शुद्ध निकेल जम जाता है"
+      }
+     },
+     {
+      "id": "recycle",
+      "text": {
+       "en": "The carbon monoxide is collected and used again",
+       "hi": "कार्बन मोनोऑक्साइड एकत्र करके फिर प्रयोग होती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:co",
+     "expect": "placed:co",
+     "say": {
+      "en": "Tap the step “Impure nickel is warmed with carbon monoxide gas” and put it in the slot where you think it belongs.",
+      "hi": "चरण “अशुद्ध निकेल को कार्बन मोनोऑक्साइड गैस के साथ गर्म करते हैं” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Impure nickel changes into a gas with CO. Will the impurities (iron, copper, etc.) turn into a gas too?",
+      "hi": "अशुद्ध निकेल CO के साथ गैस बन जाता है। क्या अशुद्धियाँ (लोहा, ताँबा आदि) भी गैस बनेंगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, they stay as solids",
+       "hi": "नहीं, वे ठोस रहेंगी"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, all of them",
+       "hi": "हाँ, सभी"
+      },
+      {
+       "id": "some",
+       "en": "Only copper",
+       "hi": "केवल ताँबा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "item:pure",
+     "expect": "placed:pure",
+     "say": {
+      "en": "Now place “It breaks down, depositing pure nickel”.",
+      "hi": "अब “यह टूटता है और शुद्ध निकेल जम जाता है” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Metal carbonyls are complexes in which carbon monoxide is the ligand, and the metal is in a low (often zero) oxidation state: [Ni(CO)₄], [Fe(CO)₅]. CO donates a pair to the metal and also takes back electron density from filled metal d orbitals, which strengthens the bond. Nickel forms a volatile carbonyl at about 330 K that decomposes at about 450 K, which is how very pure nickel is made.",
+      "hi": "धातु कार्बोनिल ऐसे संकुल हैं जिनमें कार्बन मोनोऑक्साइड लिगैंड है और धातु निम्न (अक्सर शून्य) ऑक्सीकरण अवस्था में है: [Ni(CO)₄], [Fe(CO)₅]। CO धातु को एक युग्म देता है और धातु के भरे d कक्षकों से इलेक्ट्रॉन घनत्व वापस भी लेता है, जिससे आबंध सुदृढ़ होता है। निकेल लगभग 330 K पर वाष्पशील कार्बोनिल बनाता है जो लगभग 450 K पर विघटित होता है; इसी से अत्यंत शुद्ध निकेल बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the oxidation state of nickel in [Ni(CO)₄]?",
+        "hi": "[Ni(CO)₄] में निकेल की ऑक्सीकरण अवस्था क्या है?"
+       },
+       "options": [
+        "0",
+        "+4",
+        "+2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "CO is neutral and the complex is neutral, so nickel must be 0.",
+        "hi": "CO उदासीन है और संकुल उदासीन है, इसलिए निकेल 0 होगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "+4 would need four negative ligands to cancel.",
+         "hi": "+4 के लिए चार ऋणात्मक लिगैंड चाहिए।"
+        },
+        {
+         "en": "+2 would need two negative ligands.",
+         "hi": "+2 के लिए दो ऋणात्मक लिगैंड चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which property of [Ni(CO)₄] makes the Mond process work?",
+        "hi": "[Ni(CO)₄] का कौन-सा गुण मॉन्ड प्रक्रम को संभव बनाता है?"
+       },
+       "options": [
+        {
+         "en": "It is volatile and breaks down on stronger heating",
+         "hi": "यह वाष्पशील है और अधिक गर्म करने पर टूट जाता है"
+        },
+        {
+         "en": "It is a heavy solid",
+         "hi": "यह एक भारी ठोस है"
+        },
+        {
+         "en": "It does not react with CO",
+         "hi": "यह CO से अभिक्रिया नहीं करता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It forms at a low temperature as a gas and is decomposed at a higher one.",
+        "hi": "यह कम ताप पर गैस के रूप में बनता है और अधिक ताप पर विघटित होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A gas, not a solid, lets nickel leave its impurities behind.",
+         "hi": "ठोस नहीं, गैस होने से निकेल अशुद्धियाँ छोड़कर निकलता है।"
+        },
+        {
+         "en": "The first step is exactly that nickel reacts with CO.",
+         "hi": "पहला चरण यही है कि निकेल CO से अभिक्रिया करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put the steps in order. Why is carbon monoxide kept in a closed circuit in this process?",
+      "hi": "चरणों को क्रम में रखो। इस प्रक्रम में कार्बन मोनोऑक्साइड बंद परिपथ में क्यों रखी जाती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch05-complex-uses",
+   "topic": "5.7",
+   "template": "match",
+   "title": {
+    "en": "Complexes in life and industry",
+    "hi": "जीवन और उद्योग में संकुल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "chloro",
+      "left": {
+       "en": "Chlorophyll (magnesium complex)",
+       "hi": "क्लोरोफ़िल (मैग्नीशियम संकुल)"
+      },
+      "right": {
+       "en": "Absorbs sunlight in photosynthesis",
+       "hi": "प्रकाश संश्लेषण में सूर्य का प्रकाश सोखता है"
+      },
+      "why": {
+       "en": "The green pigment of leaves holds Mg²⁺ at its centre.",
+       "hi": "पत्तियों के हरे वर्णक के केंद्र में Mg²⁺ होता है।"
+      }
+     },
+     {
+      "id": "haem",
+      "left": {
+       "en": "Haemoglobin (iron complex)",
+       "hi": "हीमोग्लोबिन (लोहे का संकुल)"
+      },
+      "right": {
+       "en": "Carries oxygen in the blood",
+       "hi": "रक्त में ऑक्सीजन ले जाता है"
+      },
+      "why": {
+       "en": "Oxygen binds to Fe²⁺ in haem and is released in tissues.",
+       "hi": "ऑक्सीजन हीम के Fe²⁺ से जुड़ती है और ऊतकों में छूट जाती है।"
+      }
+     },
+     {
+      "id": "b12",
+      "left": {
+       "en": "Vitamin B₁₂ (cobalt complex)",
+       "hi": "विटामिन B₁₂ (कोबाल्ट संकुल)"
+      },
+      "right": {
+       "en": "Needed to make red blood cells",
+       "hi": "लाल रक्त कोशिकाएँ बनाने के लिए आवश्यक"
+      },
+      "why": {
+       "en": "A lack of it causes pernicious anaemia.",
+       "hi": "इसकी कमी से घातक रक्ताल्पता होती है।"
+      }
+     },
+     {
+      "id": "cis",
+      "left": {
+       "en": "Cisplatin (platinum complex)",
+       "hi": "सिसप्लैटिन (प्लैटिनम संकुल)"
+      },
+      "right": {
+       "en": "Used against some cancers",
+       "hi": "कुछ कैंसरों के विरुद्ध प्रयुक्त"
+      },
+      "why": {
+       "en": "It binds to the DNA of cancer cells and stops their division.",
+       "hi": "यह कैंसर कोशिकाओं के DNA से जुड़कर उनका विभाजन रोकता है।"
+      }
+     },
+     {
+      "id": "edta",
+      "left": {
+       "en": "EDTA",
+       "hi": "EDTA"
+      },
+      "right": {
+       "en": "Treats lead poisoning and tests water hardness",
+       "hi": "सीसे के विषाक्तन का उपचार और जल की कठोरता की जाँच"
+      },
+      "why": {
+       "en": "It wraps Pb²⁺, Ca²⁺ and Mg²⁺ ions in a stable chelate.",
+       "hi": "यह Pb²⁺, Ca²⁺ और Mg²⁺ आयनों को स्थायी कीलेट में लपेट लेता है।"
+      }
+     },
+     {
+      "id": "cyan",
+      "left": {
+       "en": "Cyanide complexes [Ag(CN)₂]⁻, [Au(CN)₂]⁻",
+       "hi": "साइनाइड संकुल [Ag(CN)₂]⁻, [Au(CN)₂]⁻"
+      },
+      "right": {
+       "en": "Extraction of silver and gold from their ores",
+       "hi": "अयस्कों से चाँदी और सोने का निष्कर्षण"
+      },
+      "why": {
+       "en": "Silver and gold dissolve as complexes and are later recovered with zinc.",
+       "hi": "चाँदी और सोना संकुल बनकर घुलते हैं और बाद में जस्ते से पुनः प्राप्त होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:haem",
+     "expect": "matched:haem",
+     "say": {
+      "en": "Tap “Haemoglobin (iron complex)” on the left, then tap its partner on the right.",
+      "hi": "“हीमोग्लोबिन (लोहे का संकुल)” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Blood carries oxygen with the help of a complex that has a metal at the centre of a ring. Which metal is it?",
+      "hi": "रक्त ऑक्सीजन ले जाने में एक संकुल की मदद लेता है जिसके वलय के केंद्र में एक धातु है। वह कौन-सी धातु है?"
+     },
+     "options": [
+      {
+       "id": "fe",
+       "en": "Iron",
+       "hi": "लोहा"
+      },
+      {
+       "id": "mg",
+       "en": "Magnesium",
+       "hi": "मैग्नीशियम"
+      },
+      {
+       "id": "co",
+       "en": "Cobalt",
+       "hi": "कोबाल्ट"
+      }
+     ],
+     "answer": "fe"
+    },
+    {
+     "kind": "do",
+     "target": "left:edta",
+     "expect": "matched:edta",
+     "say": {
+      "en": "Now match “EDTA”.",
+      "hi": "अब “EDTA” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Coordination compounds are all around us. Chlorophyll (Mg) captures sunlight for photosynthesis; haemoglobin (Fe) carries oxygen; vitamin B₁₂ (Co) is needed for blood. In medicine, cisplatin (Pt) fights cancer and EDTA removes toxic metals by chelation. In industry, cyanide complexes help extract silver and gold, and complexes are used in electroplating, in analysis and as catalysts.",
+      "hi": "उपसहसंयोजन यौगिक हमारे चारों ओर हैं। क्लोरोफ़िल (Mg) प्रकाश संश्लेषण के लिए सूर्य का प्रकाश पकड़ता है; हीमोग्लोबिन (Fe) ऑक्सीजन ले जाता है; विटामिन B₁₂ (Co) रक्त के लिए आवश्यक है। चिकित्सा में सिसप्लैटिन (Pt) कैंसर से लड़ता है और EDTA कीलेटन द्वारा विषैली धातुएँ निकालता है। उद्योग में सायनाइड संकुल चाँदी और सोना निकालने में मदद करते हैं, और संकुल विद्युत लेपन, विश्लेषण और उत्प्रेरक के रूप में काम आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which metal sits at the centre of chlorophyll?",
+        "hi": "क्लोरोफ़िल के केंद्र में कौन-सी धातु होती है?"
+       },
+       "options": [
+        {
+         "en": "Magnesium",
+         "hi": "मैग्नीशियम"
+        },
+        {
+         "en": "Iron",
+         "hi": "लोहा"
+        },
+        {
+         "en": "Copper",
+         "hi": "ताँबा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chlorophyll is a magnesium complex of a ring ligand.",
+        "hi": "क्लोरोफ़िल एक वलय लिगैंड का मैग्नीशियम संकुल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Iron is in haemoglobin, not in chlorophyll.",
+         "hi": "लोहा हीमोग्लोबिन में है, क्लोरोफ़िल में नहीं।"
+        },
+        {
+         "en": "Copper is not found in chlorophyll.",
+         "hi": "क्लोरोफ़िल में ताँबा नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is EDTA given to treat lead poisoning?",
+        "hi": "सीसे के विषाक्तन के उपचार में EDTA क्यों दिया जाता है?"
+       },
+       "options": [
+        {
+         "en": "It binds lead tightly as a complex that the body can remove",
+         "hi": "यह सीसे को संकुल के रूप में कसकर बाँध लेता है जिसे शरीर बाहर निकाल सकता है"
+        },
+        {
+         "en": "It turns lead into gold",
+         "hi": "यह सीसे को सोने में बदल देता है"
+        },
+        {
+         "en": "It makes the blood thicker",
+         "hi": "यह रक्त को गाढ़ा कर देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chelation makes lead unavailable to the body.",
+        "hi": "कीलेटन सीसे को शरीर के लिए अनुपलब्ध बना देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chemistry cannot change one element into another this way.",
+         "hi": "रसायन इस तरह एक तत्व को दूसरे में नहीं बदल सकता।"
+        },
+        {
+         "en": "Thickening the blood would not help.",
+         "hi": "रक्त गाढ़ा करने से कोई लाभ नहीं होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. A pale-green fertiliser leaf looks green because of chlorophyll. What does the metal in chlorophyll have to do with absorbing light?",
+      "hi": "बाकी मिलाओ। हरी पत्ती क्लोरोफ़िल के कारण हरी दिखती है। प्रकाश सोखने में क्लोरोफ़िल की धातु की क्या भूमिका है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "5.1",
+   "use": "Hook of the chapter",
+   "shows": "Five frames of one test tube of pale blue copper sulphate: dropwise ammonia added, light-blue precipitate forms, then more ammonia dissolves it into a deep-blue clear solution",
+   "view": "Fixed camera, white background, same light",
+   "right": "Pale blue, cloudy light blue, then deep clear blue; liquid level rises evenly",
+   "avoid": "Hands without gloves, spilled liquid"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "5.2",
+   "use": "An octahedral complex",
+   "shows": "Ball-and-stick model of [Co(NH₃)₆]³⁺: a central cobalt sphere with six ammonia groups at the corners of an octahedron",
+   "view": "Five fixed angles: front, side, top, three-quarter and along one axis, same size and centre",
+   "right": "Six identical ligands at 90° angles; central atom clearly larger",
+   "avoid": "Labels, element symbols, any text"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "5.4",
+   "use": "Cis and trans isomers",
+   "shows": "Two ball-and-stick models of square planar [Pt(NH₃)₂Cl₂]: the cis form with both chlorine atoms side by side and the trans form with them opposite",
+   "view": "Four fixed angles each (top, front, side, three-quarter)",
+   "right": "Square planar shape, cis and trans clearly different with colours consistent (Cl green, NH₃ blue)",
+   "avoid": "Labels or arrows"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "5.5",
+   "use": "Colours of complex ions",
+   "shows": "Six test tubes in a rack showing [Cu(H₂O)₄]²⁺ pale blue, [Cu(NH₃)₄]²⁺ deep blue, [Fe(SCN)]²⁺ blood red, [Ni(NH₃)₆]²⁺ lilac-blue, [Co(H₂O)₆]²⁺ pink and [Fe(CN)₆]⁴⁻ pale yellow",
+   "view": "Straight front view, white background, soft top light",
+   "right": "Colours true to life; equal liquid levels",
+   "avoid": "Labels on tubes, coloured light"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "5.5",
+   "use": "Crystal field splitting frame",
+   "shows": "A clean diagram frame: a vertical energy axis with a dotted line for the free-ion d level, and two groups of horizontal lines (three below, two above) for the split octahedral levels",
+   "view": "Flat vector on white, 4:3",
+   "right": "Lower group has three lines, upper group two; the gap between groups clear",
+   "avoid": "Written symbols (the app labels t₂g, e_g and Δ₀)"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "5.7",
+   "use": "EDTA titration for water hardness",
+   "shows": "Three frames of a conical flask under a burette: wine-red solution at the start, purple near the end point, and clear blue at the end point",
+   "view": "Fixed camera, white tile under the flask, same light",
+   "right": "Distinct wine-red to blue change; burette tip steady above flask",
+   "avoid": "Readable burette scale numbers, brand names"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "5.7",
+   "use": "Chlorophyll in a living leaf",
+   "shows": "Close-up of green paddy leaves with dew drops in morning sunlight in an Indian field",
+   "view": "Low angle, warm morning light",
+   "right": "Leaf veins and dew visible; a deep green colour",
+   "avoid": "Faces, pesticide sprayers, text"
+  }
+ ]
+}

@@ -1,0 +1,2654 @@
+{
+  "chapter_key": "u.c12.biology.lebo1.ch05",
+  "class": 12,
+  "subject_id": "biology",
+  "title": "Molecular Basis of Inheritance",
+  "source": "https://ncert.nic.in/textbook/pdf/lebo105.pdf",
+  "topics": [
+    {
+      "n": "5.1.1",
+      "title": "Structure of the polynucleotide chain and the DNA double helix",
+      "labs": [
+        "c12-biology-lebo1-ch05-dna-structure"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.1.2",
+      "title": "Packaging of the DNA helix",
+      "labs": [
+        "c12-biology-lebo1-ch05-packaging"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.2",
+      "title": "The search for the genetic material",
+      "labs": [
+        "c12-biology-lebo1-ch05-genetic-material"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.3",
+      "title": "The RNA world",
+      "labs": [
+        "c12-biology-lebo1-ch05-rna-types"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.4",
+      "title": "Replication",
+      "labs": [
+        "c12-biology-lebo1-ch05-replication"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.5",
+      "title": "Transcription",
+      "labs": [
+        "c12-biology-lebo1-ch05-transcription"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.6",
+      "title": "The genetic code",
+      "labs": [
+        "c12-biology-lebo1-ch05-genetic-code"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.7",
+      "title": "Translation",
+      "labs": [
+        "c12-biology-lebo1-ch05-translation"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.8",
+      "title": "Regulation of gene expression: the lac operon",
+      "labs": [
+        "c12-biology-lebo1-ch05-lac-operon"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.9",
+      "title": "The Human Genome Project",
+      "labs": [
+        "c12-biology-lebo1-ch05-human-genome"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.10",
+      "title": "DNA fingerprinting",
+      "labs": [
+        "c12-biology-lebo1-ch05-fingerprinting"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-biology-lebo1-ch05-dna-structure",
+      "topic": "5.1.1",
+      "template": "match",
+      "title": {
+        "en": "Reading the DNA double helix",
+        "hi": "DNA की दोहरी कुंडली पढ़ना"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "backbone",
+            "left": {
+              "en": "Backbone of a strand",
+              "hi": "लड़ी की रीढ़"
+            },
+            "right": {
+              "en": "Sugar and phosphate joined in a chain",
+              "hi": "शर्करा और फ़ॉस्फ़ेट की जुड़ी शृंखला"
+            },
+            "why": {
+              "en": "Deoxyribose and phosphate alternate; bases hang off the sugars.",
+              "hi": "डीऑक्सीराइबोस और फ़ॉस्फ़ेट बारी-बारी से आते हैं; क्षारक शर्करा से लटकते हैं।"
+            }
+          },
+          {
+            "id": "purine",
+            "left": {
+              "en": "Adenine and guanine",
+              "hi": "ऐडेनीन और ग्वानीन"
+            },
+            "right": {
+              "en": "Purines: bases with a double ring",
+              "hi": "प्यूरीन: दोहरे वलय वाले क्षारक"
+            },
+            "why": {
+              "en": "A and G are the large two-ring bases.",
+              "hi": "A और G बड़े दो-वलय वाले क्षारक हैं।"
+            }
+          },
+          {
+            "id": "pyrimidine",
+            "left": {
+              "en": "Cytosine, thymine, uracil",
+              "hi": "साइटोसीन, थाइमीन, यूरेसिल"
+            },
+            "right": {
+              "en": "Pyrimidines: bases with a single ring",
+              "hi": "पिरिमिडीन: एकल वलय वाले क्षारक"
+            },
+            "why": {
+              "en": "C, T and U are the small one-ring bases; U is found in RNA.",
+              "hi": "C, T और U छोटे एक-वलय वाले क्षारक हैं; U RNA में मिलता है।"
+            }
+          },
+          {
+            "id": "at",
+            "left": {
+              "en": "A pairs with T",
+              "hi": "A का जोड़ा T से"
+            },
+            "right": {
+              "en": "Held by two hydrogen bonds",
+              "hi": "दो हाइड्रोजन आबंध से जुड़े"
+            },
+            "why": {
+              "en": "A purine always pairs with a pyrimidine.",
+              "hi": "प्यूरीन हमेशा पिरिमिडीन से जुड़ता है।"
+            }
+          },
+          {
+            "id": "gc",
+            "left": {
+              "en": "G pairs with C",
+              "hi": "G का जोड़ा C से"
+            },
+            "right": {
+              "en": "Held by three hydrogen bonds",
+              "hi": "तीन हाइड्रोजन आबंध से जुड़े"
+            },
+            "why": {
+              "en": "G-C is a stronger pair than A-T.",
+              "hi": "G-C जोड़ा A-T से अधिक मज़बूत है।"
+            }
+          },
+          {
+            "id": "anti",
+            "left": {
+              "en": "Antiparallel strands",
+              "hi": "प्रतिसमांतर लड़ियाँ"
+            },
+            "right": {
+              "en": "One strand runs 5 to 3, the other 3 to 5",
+              "hi": "एक लड़ी 5 से 3 की ओर, दूसरी 3 से 5 की ओर"
+            },
+            "why": {
+              "en": "The two strands run in opposite directions.",
+              "hi": "दोनों लड़ियाँ उलटी दिशाओं में चलती हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:purine",
+          "expect": "matched:purine",
+          "say": {
+            "en": "Match \"Adenine and guanine\" with their class.",
+            "hi": "\"ऐडेनीन और ग्वानीन\" को उनके वर्ग से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "If one strand reads A-T-G-C, what will the partner strand read?",
+            "hi": "एक लड़ी A-T-G-C पढ़ती है तो साथी लड़ी क्या पढ़ेगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "T-A-C-G",
+              "hi": "T-A-C-G क्रम"
+            },
+            {
+              "id": "b",
+              "en": "A-T-G-C",
+              "hi": "A-T-G-C क्रम"
+            },
+            {
+              "id": "c",
+              "en": "G-C-A-T",
+              "hi": "G-C-A-T क्रम"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:at",
+          "expect": "matched:at",
+          "say": {
+            "en": "Match \"A pairs with T\".",
+            "hi": "\"A का जोड़ा T से\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:gc",
+          "expect": "matched:gc",
+          "say": {
+            "en": "Match \"G pairs with C\".",
+            "hi": "\"G का जोड़ा C से\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "DNA is two sugar-phosphate chains twisted into a double helix, with bases inside like the steps of a ladder. A always pairs with T (two hydrogen bonds) and G with C (three), so a big purine always meets a small pyrimidine and the ladder keeps an even width. Because of this, the amount of A equals T and G equals C (Chargaff's rule). The two strands run in opposite directions. One full turn is 3.4 nm long and holds 10 base pairs.",
+            "hi": "DNA शर्करा-फ़ॉस्फ़ेट की दो शृंखलाएँ हैं जो दोहरी कुंडली में मुड़ी हैं, और क्षारक भीतर सीढ़ी के डंडों जैसे हैं। A हमेशा T से (दो हाइड्रोजन आबंध) और G हमेशा C से (तीन) जुड़ता है, इसलिए बड़ा प्यूरीन हमेशा छोटे पिरिमिडीन से मिलता है और सीढ़ी की चौड़ाई एक-सी रहती है। इसी से A की मात्रा T के बराबर और G की C के बराबर होती है (चारगाफ़ का नियम)। दोनों लड़ियाँ उलटी दिशा में चलती हैं। एक पूरा घुमाव 3.4 nm लंबा है और उसमें 10 क्षार युग्म हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "If a DNA sample has 30% adenine, how much thymine does it have?",
+                "hi": "किसी DNA नमूने में 30% ऐडेनीन है तो थाइमीन कितनी होगी?"
+              },
+              "options": [
+                {
+                  "en": "30%",
+                  "hi": "30 प्रतिशत"
+                },
+                {
+                  "en": "20%",
+                  "hi": "20 प्रतिशत"
+                },
+                {
+                  "en": "70%",
+                  "hi": "70 प्रतिशत"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A pairs with T, so their amounts are equal.",
+                "hi": "A का जोड़ा T से है, इसलिए दोनों की मात्रा बराबर।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "20% is the amount of G and of C each (100 - 60 = 40, shared by G and C).",
+                  "hi": "20% G और C में से हर एक की मात्रा है (100 - 60 = 40, G और C में बराबर बँटा)।"
+                },
+                {
+                  "en": "70% would exceed what is left after A and T.",
+                  "hi": "70% तो A और T के बाद बचे हिस्से से अधिक है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which pair has three hydrogen bonds?",
+                "hi": "किस जोड़े में तीन हाइड्रोजन आबंध होते हैं?"
+              },
+              "options": [
+                {
+                  "en": "G and C",
+                  "hi": "G और C"
+                },
+                {
+                  "en": "A and T",
+                  "hi": "A और T"
+                },
+                {
+                  "en": "A and G",
+                  "hi": "A और G"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "G-C is held by three bonds.",
+                "hi": "G-C तीन आबंधों से जुड़ा है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A-T has only two.",
+                  "hi": "A-T में केवल दो हैं।"
+                },
+                {
+                  "en": "A and G are both purines and do not pair.",
+                  "hi": "A और G दोनों प्यूरीन हैं और जोड़ा नहीं बनाते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Finish the rest. In RNA, thymine is replaced by uracil. Which base would pair with adenine in RNA?",
+            "hi": "बाकी जोड़ियाँ मिलाओ। RNA में थाइमीन की जगह यूरेसिल होता है। RNA में ऐडेनीन से कौन-सा क्षारक जुड़ेगा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch05-packaging",
+      "topic": "5.1.2",
+      "template": "sequence",
+      "title": {
+        "en": "Packing two metres of DNA into a nucleus",
+        "hi": "दो मीटर DNA को केंद्रक में समेटना"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "helix",
+            "text": {
+              "en": "DNA double helix: a long thread of DNA",
+              "hi": "DNA दोहरी कुंडली: DNA का लंबा धागा"
+            }
+          },
+          {
+            "id": "octamer",
+            "text": {
+              "en": "DNA wraps around a histone octamer: a nucleosome (about 200 bp)",
+              "hi": "DNA हिस्टोन अष्टक पर लिपटता है: न्यूक्लियोसोम (लगभग 200 bp)"
+            }
+          },
+          {
+            "id": "beads",
+            "text": {
+              "en": "Many nucleosomes in a row: beads on a string (chromatin)",
+              "hi": "कई न्यूक्लियोसोम एक कतार में: धागे में मनके (क्रोमैटिन)"
+            }
+          },
+          {
+            "id": "fibre",
+            "text": {
+              "en": "Chromatin folds into thicker chromatin fibres",
+              "hi": "क्रोमैटिन मुड़कर मोटे क्रोमैटिन तंतु बनाता है"
+            }
+          },
+          {
+            "id": "chromosome",
+            "text": {
+              "en": "Further coiling gives the compact chromosome at metaphase",
+              "hi": "और कुंडलन से मध्यावस्था में सघन गुणसूत्र बनता है"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:helix",
+          "expect": "placed:helix",
+          "say": {
+            "en": "Tap \"DNA double helix\" and put it in place 1.",
+            "hi": "\"DNA दोहरी कुंडली\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:octamer",
+          "expect": "placed:octamer",
+          "say": {
+            "en": "Tap \"DNA wraps around a histone octamer\" and put it in place 2.",
+            "hi": "\"DNA हिस्टोन अष्टक पर लिपटता है\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Histones are rich in basic amino acids. Why would that help them hold DNA?",
+            "hi": "हिस्टोन क्षारीय अमीनो अम्लों से भरपूर हैं। इससे DNA को पकड़ने में क्या मदद मिलती होगी?"
+          },
+          "options": [
+            {
+              "id": "pos",
+              "en": "They are positively charged and DNA is negatively charged",
+              "hi": "वे धनावेशित हैं और DNA ऋणावेशित"
+            },
+            {
+              "id": "neg",
+              "en": "Both are negatively charged",
+              "hi": "दोनों ऋणावेशित हैं"
+            }
+          ],
+          "answer": "pos"
+        },
+        {
+          "kind": "do",
+          "target": "item:beads",
+          "expect": "placed:beads",
+          "say": {
+            "en": "Tap \"Many nucleosomes in a row\" and put it in place 3.",
+            "hi": "\"कई न्यूक्लियोसोम एक कतार में\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:fibre",
+          "expect": "placed:fibre",
+          "say": {
+            "en": "Tap \"Chromatin folds into thicker chromatin fibres\" and put it in place 4.",
+            "hi": "\"क्रोमैटिन मुड़कर मोटे क्रोमैटिन तंतु बनाता है\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "DNA in one human cell would stretch about two metres, yet the nucleus is a few micrometres wide. The negatively charged DNA winds around a core of eight positively charged histone proteins to form a nucleosome with about 200 base pairs. A string of nucleosomes is chromatin, seen as beads on a string. It folds further into fibres and then into a chromosome. In the less coiled euchromatin, genes can be read; the tightly packed heterochromatin is usually inactive.",
+            "hi": "मानव की एक कोशिका का DNA लगभग दो मीटर लंबा होगा, जबकि केंद्रक कुछ माइक्रोमीटर चौड़ा है। ऋणावेशित DNA आठ धनावेशित हिस्टोन प्रोटीनों के कोर पर लिपटकर लगभग 200 क्षार युग्म वाला न्यूक्लियोसोम बनाता है। न्यूक्लियोसोमों की माला क्रोमैटिन है, जो धागे में मनकों जैसी दिखती है। यह आगे मुड़कर तंतु और फिर गुणसूत्र बनाती है। कम कुंडलित यूक्रोमैटिन में जीन पढ़े जा सकते हैं; कसकर बँधा हेटरोक्रोमैटिन प्रायः निष्क्रिय होता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is a nucleosome made of?",
+                "hi": "न्यूक्लियोसोम किससे बनता है?"
+              },
+              "options": [
+                {
+                  "en": "DNA wound round a histone octamer",
+                  "hi": "हिस्टोन अष्टक पर लिपटा DNA"
+                },
+                {
+                  "en": "RNA and ribosomes",
+                  "hi": "RNA और राइबोसोम"
+                },
+                {
+                  "en": "Only histone proteins",
+                  "hi": "केवल हिस्टोन प्रोटीन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "About 200 bp of DNA wrap around eight histone proteins.",
+                "hi": "लगभग 200 bp DNA आठ हिस्टोन प्रोटीनों पर लिपटता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Ribosomes are for making proteins, not packing DNA.",
+                  "hi": "राइबोसोम प्रोटीन बनाते हैं, DNA नहीं समेटते।"
+                },
+                {
+                  "en": "Without DNA there is no nucleosome.",
+                  "hi": "DNA के बिना न्यूक्लियोसोम नहीं बनता।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which chromatin is loosely packed and active?",
+                "hi": "कौन-सा क्रोमैटिन ढीला और सक्रिय होता है?"
+              },
+              "options": [
+                {
+                  "en": "Euchromatin",
+                  "hi": "यूक्रोमैटिन"
+                },
+                {
+                  "en": "Heterochromatin",
+                  "hi": "हेटरोक्रोमैटिन"
+                },
+                {
+                  "en": "Both equally",
+                  "hi": "दोनों बराबर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Loose packing lets the cell's machinery reach the genes.",
+                "hi": "ढीली पैकिंग से कोशिका का तंत्र जीनों तक पहुँच पाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Heterochromatin is densely packed and usually inactive.",
+                  "hi": "हेटरोक्रोमैटिन घना बँधा और प्रायः निष्क्रिय होता है।"
+                },
+                {
+                  "en": "They differ in how tightly they are packed.",
+                  "hi": "दोनों में कसाव का अंतर होता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. Why does a cell need to pack its DNA tightly before it divides?",
+            "hi": "आख़िरी चरण रखो। विभाजन से पहले कोशिका को DNA कसकर क्यों समेटना पड़ता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch05-genetic-material",
+      "topic": "5.2",
+      "template": "match",
+      "title": {
+        "en": "Proving that DNA is the genetic material",
+        "hi": "यह सिद्ध करना कि DNA आनुवंशिक पदार्थ है"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "griffith",
+            "left": {
+              "en": "Griffith (1928)",
+              "hi": "ग्रिफ़िथ (1928)"
+            },
+            "right": {
+              "en": "Heat-killed S bacteria passed something to live R bacteria and made them deadly: transformation",
+              "hi": "मृत S जीवाणुओं ने जीवित R जीवाणुओं को कुछ दिया और वे घातक बन गए: रूपांतरण"
+            },
+            "why": {
+              "en": "Some \"transforming principle\" moved from dead S to live R.",
+              "hi": "कोई \"रूपांतरण कारक\" मृत S से जीवित R में गया।"
+            }
+          },
+          {
+            "id": "avery",
+            "left": {
+              "en": "Avery, MacLeod and McCarty",
+              "hi": "एवरी, मैकलियोड और मैकार्टी"
+            },
+            "right": {
+              "en": "Only DNase stopped transformation, so the transforming principle was DNA",
+              "hi": "केवल DNase ने रूपांतरण रोका, इसलिए रूपांतरण कारक DNA था"
+            },
+            "why": {
+              "en": "Protease and RNase did not stop it.",
+              "hi": "प्रोटीएज़ और RNase ने इसे नहीं रोका।"
+            }
+          },
+          {
+            "id": "hershey",
+            "left": {
+              "en": "Hershey and Chase (1952)",
+              "hi": "हर्शी और चेज़ (1952)"
+            },
+            "right": {
+              "en": "Radioactive phosphorus (DNA) entered bacteria; radioactive sulphur (protein) stayed outside",
+              "hi": "रेडियोधर्मी फ़ॉस्फ़ोरस (DNA) जीवाणु में गया; रेडियोधर्मी सल्फ़र (प्रोटीन) बाहर रहा"
+            },
+            "why": {
+              "en": "Only DNA of the virus entered and directed new viruses.",
+              "hi": "वायरस का केवल DNA भीतर गया और नए वायरस बनवाए।"
+            }
+          },
+          {
+            "id": "meselson",
+            "left": {
+              "en": "Meselson and Stahl (1958)",
+              "hi": "मेसेलसन और स्टाल (1958)"
+            },
+            "right": {
+              "en": "Heavy nitrogen showed that DNA copies itself semi-conservatively",
+              "hi": "भारी नाइट्रोजन ने दिखाया कि DNA अर्ध-संरक्षी ढंग से अपनी प्रतिलिपि बनाता है"
+            },
+            "why": {
+              "en": "Each new DNA kept one old strand.",
+              "hi": "हर नए DNA में एक पुरानी लड़ी रही।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:griffith",
+          "expect": "matched:griffith",
+          "say": {
+            "en": "Match \"Griffith (1928)\".",
+            "hi": "\"ग्रिफ़िथ (1928)\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Hershey and Chase labelled DNA and protein of a virus differently. Which one do you think entered the bacterium?",
+            "hi": "हर्शी और चेज़ ने वायरस के DNA और प्रोटीन को अलग-अलग चिह्नित किया। तुम्हारे विचार से कौन जीवाणु में घुसा?"
+          },
+          "options": [
+            {
+              "id": "dna",
+              "en": "DNA",
+              "hi": "DNA अणु"
+            },
+            {
+              "id": "prot",
+              "en": "Protein",
+              "hi": "प्रोटीन"
+            }
+          ],
+          "answer": "dna"
+        },
+        {
+          "kind": "do",
+          "target": "left:hershey",
+          "expect": "matched:hershey",
+          "say": {
+            "en": "Match \"Hershey and Chase\".",
+            "hi": "\"हर्शी और चेज़\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:meselson",
+          "expect": "matched:meselson",
+          "say": {
+            "en": "Match \"Meselson and Stahl\".",
+            "hi": "\"मेसेलसन और स्टाल\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Griffith saw that something from dead, smooth (S) bacteria could turn harmless rough (R) bacteria into killers. Avery, MacLeod and McCarty showed that this \"transforming principle\" was DNA: enzymes that destroy proteins or RNA did not stop it, but DNase did. Hershey and Chase settled it with viruses: DNA labelled with radioactive phosphorus entered the bacteria, while protein labelled with sulphur stayed outside. Each experiment removed one doubt.",
+            "hi": "ग्रिफ़िथ ने देखा कि मृत चिकने (S) जीवाणुओं से कुछ हानिरहित खुरदरे (R) जीवाणुओं को हत्यारा बना देता है। एवरी, मैकलियोड और मैकार्टी ने दिखाया कि यह \"रूपांतरण कारक\" DNA है: प्रोटीन या RNA नष्ट करने वाले एंज़ाइम इसे नहीं रोक पाए, पर DNase ने रोका। हर्शी और चेज़ ने वायरसों से बात पक्की की: फ़ॉस्फ़ोरस से चिह्नित DNA जीवाणु में घुसा, जबकि सल्फ़र से चिह्नित प्रोटीन बाहर रहा। हर प्रयोग ने एक संदेह दूर किया।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why did Hershey and Chase use radioactive sulphur and phosphorus?",
+                "hi": "हर्शी और चेज़ ने रेडियोधर्मी सल्फ़र और फ़ॉस्फ़ोरस क्यों लिए?"
+              },
+              "options": [
+                {
+                  "en": "Sulphur is in protein but not DNA; phosphorus is in DNA but hardly in protein",
+                  "hi": "सल्फ़र प्रोटीन में है, DNA में नहीं; फ़ॉस्फ़ोरस DNA में है, प्रोटीन में लगभग नहीं"
+                },
+                {
+                  "en": "They glow in the dark",
+                  "hi": "वे अँधेरे में चमकते हैं"
+                },
+                {
+                  "en": "They kill bacteria",
+                  "hi": "वे जीवाणुओं को मारते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Each tag follows only one of the two molecules.",
+                "hi": "हर चिह्न दोनों अणुओं में से केवल एक का पीछा करता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Glowing is not the reason; they were tracked as tags.",
+                  "hi": "चमक कारण नहीं है; उन्हें चिह्न की तरह ट्रैक किया गया।"
+                },
+                {
+                  "en": "The bacteria were not meant to be killed.",
+                  "hi": "उद्देश्य जीवाणुओं को मारना नहीं था।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "In Avery's experiment, which enzyme stopped transformation?",
+                "hi": "एवरी के प्रयोग में किस एंज़ाइम ने रूपांतरण रोका?"
+              },
+              "options": [
+                {
+                  "en": "DNase",
+                  "hi": "DNase एंज़ाइम"
+                },
+                {
+                  "en": "Protease",
+                  "hi": "प्रोटीएज़"
+                },
+                {
+                  "en": "RNase",
+                  "hi": "RNase एंज़ाइम"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Destroying DNA destroyed the transforming ability, which pointed to DNA.",
+                "hi": "DNA नष्ट करने से रूपांतरण क्षमता नष्ट हुई, जो DNA की ओर संकेत करता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Protease destroys protein, and transformation still happened.",
+                  "hi": "प्रोटीएज़ प्रोटीन नष्ट करता है, फिर भी रूपांतरण हुआ।"
+                },
+                {
+                  "en": "RNase destroys RNA, and transformation still happened.",
+                  "hi": "RNase RNA नष्ट करता है, फिर भी रूपांतरण हुआ।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the last pair. Why did people once think protein, not DNA, was the genetic material?",
+            "hi": "आख़िरी जोड़ी मिलाओ। लोग पहले प्रोटीन को आनुवंशिक पदार्थ क्यों मानते थे, DNA को क्यों नहीं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch05-replication",
+      "topic": "5.4",
+      "template": "sequence",
+      "title": {
+        "en": "How DNA copies itself",
+        "hi": "DNA अपनी प्रतिलिपि कैसे बनाता है"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "unwind",
+            "text": {
+              "en": "Helicase unwinds the helix at the origin of replication",
+              "hi": "हेलिकेज़ उत्पत्ति स्थल पर कुंडली खोलता है"
+            }
+          },
+          {
+            "id": "fork",
+            "text": {
+              "en": "A replication fork forms and each strand is a template",
+              "hi": "प्रतिकृतिकरण द्विभुज बनता है और हर लड़ी टेम्पलेट बनती है"
+            }
+          },
+          {
+            "id": "lead",
+            "text": {
+              "en": "DNA polymerase builds the leading strand continuously",
+              "hi": "DNA पॉलीमरेज़ अग्रणी लड़ी को लगातार बनाता है"
+            }
+          },
+          {
+            "id": "lag",
+            "text": {
+              "en": "The lagging strand is made in short Okazaki fragments",
+              "hi": "पश्चगामी लड़ी छोटे ओकाज़ाकी खंडों में बनती है"
+            }
+          },
+          {
+            "id": "ligase",
+            "text": {
+              "en": "DNA ligase joins the fragments",
+              "hi": "DNA लाइगेज़ खंडों को जोड़ता है"
+            }
+          },
+          {
+            "id": "two",
+            "text": {
+              "en": "Two DNA molecules, each with one old and one new strand",
+              "hi": "दो DNA अणु, हर एक में एक पुरानी और एक नई लड़ी"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:unwind",
+          "expect": "placed:unwind",
+          "say": {
+            "en": "Tap \"Helicase unwinds the helix at the origin of replication\" and put it in place 1.",
+            "hi": "\"हेलिकेज़ उत्पत्ति स्थल पर कुंडली खोलता है\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:fork",
+          "expect": "placed:fork",
+          "say": {
+            "en": "Tap \"A replication fork forms and each strand is a template\" and put it in place 2.",
+            "hi": "\"प्रतिकृतिकरण द्विभुज बनता है और हर लड़ी टेम्पलेट बनती है\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "After copying, will each daughter DNA be all new, all old, or half old and half new?",
+            "hi": "प्रतिलिपि के बाद हर पुत्री DNA पूरा नया होगा, पूरा पुराना या आधा पुराना-आधा नया?"
+          },
+          "options": [
+            {
+              "id": "half",
+              "en": "Half old and half new",
+              "hi": "आधा पुराना, आधा नया"
+            },
+            {
+              "id": "new",
+              "en": "All new",
+              "hi": "पूरा नया"
+            },
+            {
+              "id": "old",
+              "en": "All old",
+              "hi": "पूरा पुराना"
+            }
+          ],
+          "answer": "half"
+        },
+        {
+          "kind": "do",
+          "target": "item:lead",
+          "expect": "placed:lead",
+          "say": {
+            "en": "Tap \"DNA polymerase builds the leading strand continuously\" and put it in place 3.",
+            "hi": "\"DNA पॉलीमरेज़ अग्रणी लड़ी को लगातार बनाता है\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:lag",
+          "expect": "placed:lag",
+          "say": {
+            "en": "Tap \"The lagging strand is made in short Okazaki fragments\" and put it in place 4.",
+            "hi": "\"पश्चगामी लड़ी छोटे ओकाज़ाकी खंडों में बनती है\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:ligase",
+          "expect": "placed:ligase",
+          "say": {
+            "en": "Tap \"DNA ligase joins the fragments\" and put it in place 5.",
+            "hi": "\"DNA लाइगेज़ खंडों को जोड़ता है\" छुओ और स्थान 5 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "DNA polymerase can add nucleotides only in the 5 to 3 direction, so one strand is built smoothly (leading) and the other in short pieces (Okazaki fragments) that ligase joins. Each daughter DNA keeps one parent strand and gets one new strand. This is semi-conservative replication, shown by Meselson and Stahl. Copying is very accurate because the polymerase proofreads and bases pair by strict rules.",
+            "hi": "DNA पॉलीमरेज़ न्यूक्लियोटाइड केवल 5 से 3 दिशा में जोड़ सकता है, इसलिए एक लड़ी चिकनाई से (अग्रणी) और दूसरी छोटे टुकड़ों (ओकाज़ाकी खंड) में बनती है, जिन्हें लाइगेज़ जोड़ता है। हर पुत्री DNA में एक जनक लड़ी रहती है और एक नई बनती है। यही अर्ध-संरक्षी प्रतिकृतिकरण है, जिसे मेसेलसन और स्टाल ने दिखाया। प्रतिलिपि बहुत सटीक होती है क्योंकि पॉलीमरेज़ जाँच करता है और क्षारक कड़े नियम से जुड़ते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is the lagging strand made in pieces?",
+                "hi": "पश्चगामी लड़ी टुकड़ों में क्यों बनती है?"
+              },
+              "options": [
+                {
+                  "en": "The polymerase works only in the 5 to 3 direction",
+                  "hi": "पॉलीमरेज़ केवल 5 से 3 दिशा में काम करता है"
+                },
+                {
+                  "en": "The strand is shorter",
+                  "hi": "वह लड़ी छोटी होती है"
+                },
+                {
+                  "en": "Helicase cuts it",
+                  "hi": "हेलिकेज़ उसे काटता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Because the template runs the other way, the new strand must be built backwards in short stretches.",
+                "hi": "टेम्पलेट उलटी दिशा में है, इसलिए नई लड़ी छोटे खंडों में पीछे की ओर बनती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Both strands are the same length.",
+                  "hi": "दोनों लड़ियाँ बराबर लंबी हैं।"
+                },
+                {
+                  "en": "Helicase only unwinds the DNA.",
+                  "hi": "हेलिकेज़ केवल DNA खोलता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What does semi-conservative mean?",
+                "hi": "अर्ध-संरक्षी का क्या अर्थ है?"
+              },
+              "options": [
+                {
+                  "en": "Each new DNA keeps one old strand",
+                  "hi": "हर नए DNA में एक पुरानी लड़ी रहती है"
+                },
+                {
+                  "en": "The old DNA stays whole",
+                  "hi": "पुराना DNA पूरा बना रहता है"
+                },
+                {
+                  "en": "Both strands are new",
+                  "hi": "दोनों लड़ियाँ नई होती हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "One strand is conserved, one is new: half conserved.",
+                "hi": "एक लड़ी संरक्षित, एक नई: आधा संरक्षण।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That would be conservative replication, which was ruled out.",
+                  "hi": "वह संरक्षी प्रतिकृतिकरण होता, जिसे नकार दिया गया।"
+                },
+                {
+                  "en": "Then nothing would be conserved.",
+                  "hi": "तब कुछ भी संरक्षित नहीं होता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. If a cell copies its DNA twice, how many of the four DNA molecules still hold an original strand?",
+            "hi": "आख़िरी चरण रखो। कोशिका अपना DNA दो बार कॉपी करे तो चार DNA अणुओं में से कितनों में मूल लड़ी रहती है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch05-transcription",
+      "topic": "5.5",
+      "template": "sequence",
+      "title": {
+        "en": "Transcription: DNA to mRNA",
+        "hi": "अनुलेखन: DNA से mRNA"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "promoter",
+            "text": {
+              "en": "RNA polymerase binds to the promoter",
+              "hi": "RNA पॉलीमरेज़ प्रमोटर से जुड़ता है"
+            }
+          },
+          {
+            "id": "open",
+            "text": {
+              "en": "The DNA opens a little and the template strand is read",
+              "hi": "DNA थोड़ा खुलता है और टेम्पलेट लड़ी पढ़ी जाती है"
+            }
+          },
+          {
+            "id": "grow",
+            "text": {
+              "en": "mRNA grows, with U opposite A",
+              "hi": "mRNA बढ़ता है, A के सामने U"
+            }
+          },
+          {
+            "id": "stop",
+            "text": {
+              "en": "The terminator is reached and the transcript is released",
+              "hi": "टर्मिनेटर आता है और अनुलेख छूट जाता है"
+            }
+          },
+          {
+            "id": "process",
+            "text": {
+              "en": "In eukaryotes, introns are spliced out, and a cap and a tail are added",
+              "hi": "सुकेंद्रकी में इंट्रॉन हटते हैं और कैप तथा पूँछ जुड़ती है"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:promoter",
+          "expect": "placed:promoter",
+          "say": {
+            "en": "Tap \"RNA polymerase binds to the promoter\" and put it in place 1.",
+            "hi": "\"RNA पॉलीमरेज़ प्रमोटर से जुड़ता है\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:open",
+          "expect": "placed:open",
+          "say": {
+            "en": "Tap \"The DNA opens a little and the template strand is read\" and put it in place 2.",
+            "hi": "\"DNA थोड़ा खुलता है और टेम्पलेट लड़ी पढ़ी जाती है\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In RNA, which base replaces thymine?",
+            "hi": "RNA में थाइमीन की जगह कौन-सा क्षारक होता है?"
+          },
+          "options": [
+            {
+              "id": "u",
+              "en": "Uracil",
+              "hi": "यूरेसिल"
+            },
+            {
+              "id": "c",
+              "en": "Cytosine",
+              "hi": "साइटोसीन"
+            },
+            {
+              "id": "g",
+              "en": "Guanine",
+              "hi": "ग्वानीन"
+            }
+          ],
+          "answer": "u"
+        },
+        {
+          "kind": "do",
+          "target": "item:grow",
+          "expect": "placed:grow",
+          "say": {
+            "en": "Tap \"mRNA grows, with U opposite A\" and put it in place 3.",
+            "hi": "\"mRNA बढ़ता है, A के सामने U\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:stop",
+          "expect": "placed:stop",
+          "say": {
+            "en": "Tap \"The terminator is reached and the transcript is released\" and put it in place 4.",
+            "hi": "\"टर्मिनेटर आता है और अनुलेख छूट जाता है\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Transcription copies one strand of a gene into RNA. RNA polymerase starts at a promoter, reads the template strand and joins RNA nucleotides, with uracil in place of thymine, until it reaches a terminator. In bacteria the mRNA is ready to use. In eukaryotes the first transcript, hnRNA, has coding pieces (exons) and non-coding pieces (introns). Splicing removes introns, and a cap at the start and a tail of adenines at the end are added to make functional mRNA.",
+            "hi": "अनुलेखन जीन की एक लड़ी की RNA में प्रतिलिपि बनाता है। RNA पॉलीमरेज़ प्रमोटर से शुरू होकर टेम्पलेट लड़ी पढ़ता है और RNA न्यूक्लियोटाइड जोड़ता है, थाइमीन की जगह यूरेसिल के साथ, टर्मिनेटर आने तक। जीवाणुओं में mRNA तुरंत प्रयोग योग्य होता है। सुकेंद्रकी में पहला अनुलेख, hnRNA, में कूटलेखक भाग (एक्सॉन) और अकूटलेखक भाग (इंट्रॉन) होते हैं। स्प्लाइसिंग इंट्रॉन हटाती है, और शुरू में कैप तथा अंत में ऐडेनीनों की पूँछ जोड़ने से कार्यशील mRNA बनता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What do introns do in the mRNA that is finally used?",
+                "hi": "अंत में प्रयोग होने वाले mRNA में इंट्रॉन का क्या होता है?"
+              },
+              "options": [
+                {
+                  "en": "They are removed by splicing",
+                  "hi": "स्प्लाइसिंग से हटा दिए जाते हैं"
+                },
+                {
+                  "en": "They code for the protein",
+                  "hi": "वे प्रोटीन का कूट देते हैं"
+                },
+                {
+                  "en": "They become the cap",
+                  "hi": "वे कैप बन जाते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Only exons remain in functional mRNA.",
+                "hi": "कार्यशील mRNA में केवल एक्सॉन रहते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Exons code for the protein; introns do not.",
+                  "hi": "प्रोटीन का कूट एक्सॉन देते हैं, इंट्रॉन नहीं।"
+                },
+                {
+                  "en": "The cap is a chemical addition, not a piece of intron.",
+                  "hi": "कैप रासायनिक जोड़ है, इंट्रॉन का टुकड़ा नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "If the template strand reads TAC, what will the mRNA read?",
+                "hi": "टेम्पलेट लड़ी TAC पढ़े तो mRNA क्या पढ़ेगा?"
+              },
+              "options": [
+                {
+                  "en": "AUG",
+                  "hi": "AUG कोडन"
+                },
+                {
+                  "en": "ATG",
+                  "hi": "ATG क्रम"
+                },
+                {
+                  "en": "UAC",
+                  "hi": "UAC क्रम"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "T pairs with A, A with U, C with G: AUG.",
+                "hi": "T का जोड़ा A, A का U, C का G: AUG।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "mRNA has U, never T.",
+                  "hi": "mRNA में U होता है, T नहीं।"
+                },
+                {
+                  "en": "UAC is a copy of the template, not its complement.",
+                  "hi": "UAC टेम्पलेट की नकल है, उसका पूरक नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. Why must mRNA leave the nucleus in a eukaryotic cell?",
+            "hi": "आख़िरी चरण रखो। सुकेंद्रकी कोशिका में mRNA को केंद्रक से बाहर क्यों जाना पड़ता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch05-rna-types",
+      "topic": "5.3",
+      "template": "match",
+      "title": {
+        "en": "Three kinds of RNA",
+        "hi": "तीन प्रकार के RNA"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "mrna",
+            "left": {
+              "en": "mRNA",
+              "hi": "mRNA"
+            },
+            "right": {
+              "en": "Carries the code of a gene to the ribosome",
+              "hi": "जीन का कूट राइबोसोम तक ले जाता है"
+            },
+            "why": {
+              "en": "\"m\" is for messenger.",
+              "hi": "\"m\" संदेशवाहक के लिए है।"
+            }
+          },
+          {
+            "id": "trna",
+            "left": {
+              "en": "tRNA",
+              "hi": "tRNA"
+            },
+            "right": {
+              "en": "Adapter: reads a codon with its anticodon and brings an amino acid",
+              "hi": "अनुकूलक: प्रतिकूट से कोडन पढ़ता है और अमीनो अम्ल लाता है"
+            },
+            "why": {
+              "en": "It links the language of nucleotides to that of amino acids.",
+              "hi": "यह न्यूक्लियोटाइड की भाषा को अमीनो अम्ल की भाषा से जोड़ता है।"
+            }
+          },
+          {
+            "id": "rrna",
+            "left": {
+              "en": "rRNA",
+              "hi": "rRNA"
+            },
+            "right": {
+              "en": "Forms the ribosome with proteins; helps join amino acids",
+              "hi": "प्रोटीन के साथ राइबोसोम बनाता है; अमीनो अम्ल जोड़ने में सहायक"
+            },
+            "why": {
+              "en": "rRNA acts as a structural and catalytic part of the ribosome.",
+              "hi": "rRNA राइबोसोम का संरचनात्मक और उत्प्रेरक भाग है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:mrna",
+          "expect": "matched:mrna",
+          "say": {
+            "en": "Match \"mRNA\" with its job.",
+            "hi": "\"mRNA\" को उसके काम से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which RNA do you think has an anticodon?",
+            "hi": "तुम्हारे अनुसार किस RNA में प्रतिकूट होता है?"
+          },
+          "options": [
+            {
+              "id": "t",
+              "en": "tRNA",
+              "hi": "tRNA अणु"
+            },
+            {
+              "id": "m",
+              "en": "mRNA",
+              "hi": "mRNA अणु"
+            },
+            {
+              "id": "r",
+              "en": "rRNA",
+              "hi": "rRNA अणु"
+            }
+          ],
+          "answer": "t"
+        },
+        {
+          "kind": "do",
+          "target": "left:trna",
+          "expect": "matched:trna",
+          "say": {
+            "en": "Match \"tRNA\".",
+            "hi": "\"tRNA\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:rrna",
+          "expect": "matched:rrna",
+          "say": {
+            "en": "Match \"rRNA\".",
+            "hi": "\"rRNA\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The three RNAs work as a team. mRNA is the message, copied from the gene. tRNA is the adapter: one end has an anticodon that pairs with a codon on mRNA, the other end carries the matching amino acid. rRNA, along with proteins, forms the ribosome, the workbench where amino acids are joined; in the ribosome it also acts like an enzyme (a ribozyme). This is why some scientists think RNA came before DNA and proteins.",
+            "hi": "तीनों RNA टीम की तरह काम करते हैं। mRNA संदेश है, जो जीन से नकल हुआ है। tRNA अनुकूलक है: एक सिरे पर प्रतिकूट होता है जो mRNA के कोडन से जुड़ता है, दूसरे सिरे पर मेल खाता अमीनो अम्ल। rRNA प्रोटीनों के साथ राइबोसोम बनाता है, जो वह कार्यमेज़ है जहाँ अमीनो अम्ल जुड़ते हैं; राइबोसोम में वह एंज़ाइम (राइबोज़ाइम) जैसा भी काम करता है। इसीलिए कुछ वैज्ञानिक मानते हैं कि RNA, DNA और प्रोटीन से पहले आया।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does the anticodon of a tRNA pair with?",
+                "hi": "tRNA का प्रतिकूट किससे जुड़ता है?"
+              },
+              "options": [
+                {
+                  "en": "A codon on mRNA",
+                  "hi": "mRNA के कोडन से"
+                },
+                {
+                  "en": "A gene in DNA",
+                  "hi": "DNA के जीन से"
+                },
+                {
+                  "en": "Another tRNA",
+                  "hi": "दूसरे tRNA से"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The anticodon is complementary to the codon it reads.",
+                "hi": "प्रतिकूट अपने पढ़े कोडन का पूरक है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "tRNA reads mRNA at the ribosome, not DNA.",
+                  "hi": "tRNA राइबोसोम पर mRNA पढ़ता है, DNA नहीं।"
+                },
+                {
+                  "en": "tRNAs do not pair with each other in translation.",
+                  "hi": "अनुवादन में tRNA आपस में नहीं जुड़ते।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which RNA is part of the ribosome?",
+                "hi": "कौन-सा RNA राइबोसोम का भाग है?"
+              },
+              "options": [
+                {
+                  "en": "rRNA",
+                  "hi": "rRNA अणु"
+                },
+                {
+                  "en": "mRNA",
+                  "hi": "mRNA अणु"
+                },
+                {
+                  "en": "tRNA",
+                  "hi": "tRNA अणु"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "rRNA with proteins makes the ribosome.",
+                "hi": "rRNA प्रोटीनों के साथ राइबोसोम बनाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "mRNA is the message that runs through it.",
+                  "hi": "mRNA वह संदेश है जो उसमें से गुज़रता है।"
+                },
+                {
+                  "en": "tRNA brings amino acids to it.",
+                  "hi": "tRNA उसमें अमीनो अम्ल लाता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of a factory: message, adapter and workbench. Which RNA is which? Explain to a friend.",
+            "hi": "एक कारख़ाने की सोचो: संदेश, अनुकूलक और कार्यमेज़। कौन-सा RNA क्या है? दोस्त को समझाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch05-genetic-code",
+      "topic": "5.6",
+      "template": "match",
+      "title": {
+        "en": "Rules of the genetic code",
+        "hi": "आनुवंशिक कूट के नियम"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "triplet",
+            "left": {
+              "en": "Triplet code",
+              "hi": "त्रिक कूट"
+            },
+            "right": {
+              "en": "Three bases make one codon for one amino acid",
+              "hi": "तीन क्षारक मिलकर एक अमीनो अम्ल का एक कोडन बनाते हैं"
+            },
+            "why": {
+              "en": "4 bases taken 3 at a time give 64 codons.",
+              "hi": "4 क्षारक तीन-तीन लेने पर 64 कोडन देते हैं।"
+            }
+          },
+          {
+            "id": "degenerate",
+            "left": {
+              "en": "Degenerate",
+              "hi": "अपहासित (डीजेनरेट)"
+            },
+            "right": {
+              "en": "Many amino acids have more than one codon",
+              "hi": "कई अमीनो अम्लों के एक से अधिक कोडन होते हैं"
+            },
+            "why": {
+              "en": "There are 61 codons for only 20 amino acids.",
+              "hi": "20 अमीनो अम्लों के लिए 61 कोडन हैं।"
+            }
+          },
+          {
+            "id": "unambig",
+            "left": {
+              "en": "Unambiguous",
+              "hi": "असंदिग्ध"
+            },
+            "right": {
+              "en": "One codon codes for only one amino acid",
+              "hi": "एक कोडन केवल एक ही अमीनो अम्ल का कूट देता है"
+            },
+            "why": {
+              "en": "So the message is read without confusion.",
+              "hi": "इसलिए संदेश बिना भ्रम के पढ़ा जाता है।"
+            }
+          },
+          {
+            "id": "universal",
+            "left": {
+              "en": "Universal",
+              "hi": "सार्वत्रिक"
+            },
+            "right": {
+              "en": "Nearly the same code in bacteria, plants and humans",
+              "hi": "जीवाणु, पौधों और मनुष्य में लगभग एक ही कूट"
+            },
+            "why": {
+              "en": "This is a sign that all life is related.",
+              "hi": "यह संकेत है कि सारा जीवन संबंधित है।"
+            }
+          },
+          {
+            "id": "start",
+            "left": {
+              "en": "AUG",
+              "hi": "AUG"
+            },
+            "right": {
+              "en": "Start codon, also codes for methionine",
+              "hi": "आरंभ कोडन, मेथियोनीन का कूट भी देता है"
+            },
+            "why": {
+              "en": "Translation begins at AUG.",
+              "hi": "अनुवादन AUG से शुरू होता है।"
+            }
+          },
+          {
+            "id": "stop",
+            "left": {
+              "en": "UAA, UAG, UGA",
+              "hi": "UAA, UAG, UGA"
+            },
+            "right": {
+              "en": "Stop codons: they code for no amino acid",
+              "hi": "विराम कोडन: ये किसी अमीनो अम्ल का कूट नहीं देते"
+            },
+            "why": {
+              "en": "They tell the ribosome to end the chain.",
+              "hi": "ये राइबोसोम को शृंखला समाप्त करने का संकेत देते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:triplet",
+          "expect": "matched:triplet",
+          "say": {
+            "en": "Match \"Triplet code\".",
+            "hi": "\"त्रिक कूट\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "How many different codons can 4 bases make when taken three at a time?",
+            "hi": "चार क्षारक तीन-तीन के समूह में कितने अलग कोडन बना सकते हैं?"
+          },
+          "options": [
+            {
+              "id": "64",
+              "en": "64 codons",
+              "hi": "64 कोडन"
+            },
+            {
+              "id": "12",
+              "en": "12 codons",
+              "hi": "12 कोडन"
+            },
+            {
+              "id": "20",
+              "en": "20 codons",
+              "hi": "20 कोडन"
+            }
+          ],
+          "answer": "64"
+        },
+        {
+          "kind": "do",
+          "target": "left:degenerate",
+          "expect": "matched:degenerate",
+          "say": {
+            "en": "Match \"Degenerate\".",
+            "hi": "\"अपहासित\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:start",
+          "expect": "matched:start",
+          "say": {
+            "en": "Match \"AUG\".",
+            "hi": "\"AUG\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The genetic code is the dictionary between mRNA codons and amino acids. Four bases in groups of three give 4 x 4 x 4 = 64 codons: 61 code for the 20 amino acids and 3 are stops. So several codons code for one amino acid (degenerate), but no codon codes for two (unambiguous). AUG starts translation. The code is read continuously with no gaps and no overlap, and it is nearly universal. A mutation that changes one base can change an amino acid, or sometimes nothing, because of degeneracy.",
+            "hi": "आनुवंशिक कूट mRNA के कोडन और अमीनो अम्लों के बीच शब्दकोश है। चार क्षारक तीन-तीन के समूह में 4 x 4 x 4 = 64 कोडन देते हैं: 61 कोडन 20 अमीनो अम्लों के लिए और 3 विराम। इसलिए कई कोडन एक अमीनो अम्ल का कूट देते हैं (अपहासित), पर कोई कोडन दो का नहीं (असंदिग्ध)। AUG अनुवादन शुरू करता है। कूट बिना अंतराल और बिना अतिव्यापन के लगातार पढ़ा जाता है और लगभग सार्वत्रिक है। एक क्षारक बदलने से अमीनो अम्ल बदल सकता है, या अपहासिता के कारण कभी कुछ नहीं बदलता।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many codons act as stop signals?",
+                "hi": "कितने कोडन विराम संकेत हैं?"
+              },
+              "options": [
+                {
+                  "en": "3",
+                  "hi": "3 कोडन"
+                },
+                {
+                  "en": "1",
+                  "hi": "1 कोडन"
+                },
+                {
+                  "en": "20",
+                  "hi": "20 कोडन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "UAA, UAG and UGA.",
+                "hi": "UAA, UAG और UGA।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "AUG is the start codon, not a stop.",
+                  "hi": "AUG आरंभ कोडन है, विराम नहीं।"
+                },
+                {
+                  "en": "20 is the number of amino acids.",
+                  "hi": "20 अमीनो अम्लों की संख्या है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "\"The code is degenerate\" means",
+                "hi": "\"कूट अपहासित है\" का अर्थ है"
+              },
+              "options": [
+                {
+                  "en": "An amino acid can have more than one codon",
+                  "hi": "एक अमीनो अम्ल के एक से अधिक कोडन हो सकते हैं"
+                },
+                {
+                  "en": "A codon can code for two amino acids",
+                  "hi": "एक कोडन दो अमीनो अम्लों का कूट दे सकता है"
+                },
+                {
+                  "en": "The code is getting weaker",
+                  "hi": "कूट कमज़ोर हो रहा है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "61 codons share 20 amino acids.",
+                "hi": "61 कोडन 20 अमीनो अम्लों में बँटे हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That would be ambiguous, but the code is unambiguous.",
+                  "hi": "यह संदिग्ध होता, पर कूट असंदिग्ध है।"
+                },
+                {
+                  "en": "Degenerate here means redundant, not weakening.",
+                  "hi": "यहाँ अपहासित का अर्थ अनावश्यक दोहराव है, कमज़ोर होना नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the rest. Use the code to read the mRNA AUG-GUU-UAA. How many amino acids does it make before it stops?",
+            "hi": "बाकी जोड़ियाँ मिलाओ। कूट से mRNA AUG-GUU-UAA पढ़ो। रुकने से पहले कितने अमीनो अम्ल बनते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch05-translation",
+      "topic": "5.7",
+      "template": "sequence",
+      "title": {
+        "en": "Translation: building a protein",
+        "hi": "अनुवादन: प्रोटीन बनाना"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "charge",
+            "text": {
+              "en": "Each tRNA picks up its amino acid (charging)",
+              "hi": "हर tRNA अपना अमीनो अम्ल उठाता है (आवेशन)"
+            }
+          },
+          {
+            "id": "start",
+            "text": {
+              "en": "mRNA binds the small ribosomal subunit; the first tRNA pairs at AUG",
+              "hi": "mRNA छोटी राइबोसोम उपइकाई से जुड़ता है; पहला tRNA AUG पर जुड़ता है"
+            }
+          },
+          {
+            "id": "large",
+            "text": {
+              "en": "The large subunit joins the small one",
+              "hi": "बड़ी उपइकाई छोटी से जुड़ती है"
+            }
+          },
+          {
+            "id": "bond",
+            "text": {
+              "en": "The next tRNA pairs with its codon and a peptide bond forms",
+              "hi": "अगला tRNA अपने कोडन से जुड़ता है और पेप्टाइड आबंध बनता है"
+            }
+          },
+          {
+            "id": "move",
+            "text": {
+              "en": "The ribosome moves one codon along the mRNA",
+              "hi": "राइबोसोम mRNA पर एक कोडन आगे बढ़ता है"
+            }
+          },
+          {
+            "id": "release",
+            "text": {
+              "en": "A stop codon is reached and the protein is released",
+              "hi": "विराम कोडन आता है और प्रोटीन छूटता है"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:charge",
+          "expect": "placed:charge",
+          "say": {
+            "en": "Tap \"Each tRNA picks up its amino acid (charging)\" and put it in place 1.",
+            "hi": "\"हर tRNA अपना अमीनो अम्ल उठाता है (आवेशन)\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:start",
+          "expect": "placed:start",
+          "say": {
+            "en": "Tap \"mRNA binds the small ribosomal subunit; the first tRNA pairs at AUG\" and put it in place 2.",
+            "hi": "\"mRNA छोटी राइबोसोम उपइकाई से जुड़ता है; पहला tRNA AUG पर जुड़ता है\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What will tell the ribosome to stop making the chain?",
+            "hi": "राइबोसोम को शृंखला बनाना बंद करने का संकेत क्या देगा?"
+          },
+          "options": [
+            {
+              "id": "stop",
+              "en": "A stop codon",
+              "hi": "विराम कोडन"
+            },
+            {
+              "id": "start",
+              "en": "The AUG start codon",
+              "hi": "आरंभ कोडन AUG"
+            },
+            {
+              "id": "trna",
+              "en": "A tRNA running out",
+              "hi": "tRNA का खत्म हो जाना"
+            }
+          ],
+          "answer": "stop"
+        },
+        {
+          "kind": "do",
+          "target": "item:large",
+          "expect": "placed:large",
+          "say": {
+            "en": "Tap \"The large subunit joins the small one\" and put it in place 3.",
+            "hi": "\"बड़ी उपइकाई छोटी से जुड़ती है\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:bond",
+          "expect": "placed:bond",
+          "say": {
+            "en": "Tap \"The next tRNA pairs with its codon and a peptide bond forms\" and put it in place 4.",
+            "hi": "\"अगला tRNA अपने कोडन से जुड़ता है और पेप्टाइड आबंध बनता है\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:move",
+          "expect": "placed:move",
+          "say": {
+            "en": "Tap \"The ribosome moves one codon along the mRNA\" and put it in place 5.",
+            "hi": "\"राइबोसोम mRNA पर एक कोडन आगे बढ़ता है\" छुओ और स्थान 5 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Translation is reading mRNA to build a polypeptide. First tRNAs are charged with amino acids. A ribosome assembles on the mRNA, the first tRNA pairs with AUG, and then tRNAs bring amino acids one by one as their anticodons match the codons. The ribosome catalyses a peptide bond between neighbours and moves along the mRNA. At a stop codon release factors free the chain. Many ribosomes can read the same mRNA at once, so a lot of protein is made quickly.",
+            "hi": "अनुवादन में mRNA पढ़कर पॉलीपेप्टाइड बनाया जाता है। पहले tRNA अमीनो अम्लों से आवेशित होते हैं। mRNA पर राइबोसोम जुड़ता है, पहला tRNA AUG से जुड़ता है, और फिर tRNA एक-एक करके अमीनो अम्ल लाते हैं जब उनके प्रतिकूट कोडन से मेल खाते हैं। राइबोसोम पास के अमीनो अम्लों के बीच पेप्टाइड आबंध बनवाता है और mRNA पर आगे बढ़ता है। विराम कोडन पर मोचक कारक शृंखला को छोड़ देते हैं। कई राइबोसोम एक ही mRNA एक साथ पढ़ सकते हैं, इसलिए बहुत प्रोटीन जल्दी बनता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which bond joins neighbouring amino acids?",
+                "hi": "पास-पास के अमीनो अम्लों को कौन-सा आबंध जोड़ता है?"
+              },
+              "options": [
+                {
+                  "en": "Peptide bond",
+                  "hi": "पेप्टाइड आबंध"
+                },
+                {
+                  "en": "Hydrogen bond",
+                  "hi": "हाइड्रोजन आबंध"
+                },
+                {
+                  "en": "Phosphodiester bond",
+                  "hi": "फ़ॉस्फ़ोडाइएस्टर आबंध"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Amino acids are joined into polypeptides by peptide bonds.",
+                "hi": "अमीनो अम्ल पेप्टाइड आबंध से पॉलीपेप्टाइड में जुड़ते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Hydrogen bonds hold base pairs together.",
+                  "hi": "हाइड्रोजन आबंध क्षार युग्मों को जोड़ते हैं।"
+                },
+                {
+                  "en": "Phosphodiester bonds link nucleotides in DNA and RNA.",
+                  "hi": "फ़ॉस्फ़ोडाइएस्टर आबंध DNA और RNA में न्यूक्लियोटाइड जोड़ते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What is the first amino acid of most new proteins?",
+                "hi": "अधिकतर नए प्रोटीनों का पहला अमीनो अम्ल कौन-सा है?"
+              },
+              "options": [
+                {
+                  "en": "Methionine",
+                  "hi": "मेथियोनीन"
+                },
+                {
+                  "en": "Glycine",
+                  "hi": "ग्लाइसीन"
+                },
+                {
+                  "en": "Valine",
+                  "hi": "वैलीन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The start codon AUG codes for methionine.",
+                "hi": "आरंभ कोडन AUG मेथियोनीन का कूट है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Glycine is coded by GGU, GGC, GGA and GGG.",
+                  "hi": "ग्लाइसीन का कूट GGU, GGC, GGA और GGG है।"
+                },
+                {
+                  "en": "Valine is coded by GUU and its relatives, not by AUG.",
+                  "hi": "वैलीन का कूट GUU आदि है, AUG नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. Why is it useful that many ribosomes read one mRNA together?",
+            "hi": "आख़िरी चरण रखो। कई राइबोसोम का एक mRNA एक साथ पढ़ना उपयोगी क्यों है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch05-lac-operon",
+      "topic": "5.8",
+      "template": "sort",
+      "title": {
+        "en": "The lac operon: switch off or on?",
+        "hi": "लैक ऑपेरॉन: बंद या चालू?"
+      },
+      "minutes": 6,
+      "level": "stretch",
+      "config": {
+        "bins": [
+          {
+            "id": "off",
+            "label": {
+              "en": "Lactose absent: OFF",
+              "hi": "लैक्टोस नहीं: बंद"
+            }
+          },
+          {
+            "id": "on",
+            "label": {
+              "en": "Lactose present: ON",
+              "hi": "लैक्टोस है: चालू"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "repbinds",
+            "text": {
+              "en": "Repressor sits on the operator",
+              "hi": "अवरोधक ऑपरेटर पर बैठा है"
+            },
+            "bin": "off",
+            "why": {
+              "en": "The bound repressor blocks RNA polymerase.",
+              "hi": "जुड़ा अवरोधक RNA पॉलीमरेज़ को रोकता है।"
+            }
+          },
+          {
+            "id": "nomrna",
+            "text": {
+              "en": "No mRNA of z, y and a genes",
+              "hi": "z, y, a जीनों का mRNA नहीं बनता"
+            },
+            "bin": "off",
+            "why": {
+              "en": "Transcription is blocked, so no enzymes are made.",
+              "hi": "अनुलेखन रुका है, इसलिए एंज़ाइम नहीं बनते।"
+            }
+          },
+          {
+            "id": "saves",
+            "text": {
+              "en": "Cell saves energy",
+              "hi": "कोशिका ऊर्जा बचाती है"
+            },
+            "bin": "off",
+            "why": {
+              "en": "Making enzymes with no lactose to digest would be a waste.",
+              "hi": "पचाने के लिए लैक्टोस न हो तो एंज़ाइम बनाना बेकार है।"
+            }
+          },
+          {
+            "id": "inducer",
+            "text": {
+              "en": "Lactose (inducer) binds the repressor",
+              "hi": "लैक्टोस (प्रेरक) अवरोधक से जुड़ता है"
+            },
+            "bin": "on",
+            "why": {
+              "en": "This changes the repressor so it cannot bind the operator.",
+              "hi": "इससे अवरोधक बदल जाता है और ऑपरेटर से नहीं जुड़ पाता।"
+            }
+          },
+          {
+            "id": "free",
+            "text": {
+              "en": "Operator is free of the repressor",
+              "hi": "ऑपरेटर अवरोधक से मुक्त है"
+            },
+            "bin": "on",
+            "why": {
+              "en": "RNA polymerase can now move on.",
+              "hi": "अब RNA पॉलीमरेज़ आगे बढ़ सकता है।"
+            }
+          },
+          {
+            "id": "transcribe",
+            "text": {
+              "en": "RNA polymerase transcribes z, y and a",
+              "hi": "RNA पॉलीमरेज़ z, y, a का अनुलेखन करता है"
+            },
+            "bin": "on",
+            "why": {
+              "en": "One long mRNA carries all three genes.",
+              "hi": "एक लंबा mRNA तीनों जीन ले जाता है।"
+            }
+          },
+          {
+            "id": "galact",
+            "text": {
+              "en": "Beta-galactosidase is made and splits lactose",
+              "hi": "बीटा-गैलैक्टोसाइडेज़ बनता है और लैक्टोस तोड़ता है"
+            },
+            "bin": "on",
+            "why": {
+              "en": "Lactose is split into glucose and galactose.",
+              "hi": "लैक्टोस ग्लूकोस और गैलैक्टोस में टूटता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:repbinds",
+          "expect": "correct:repbinds",
+          "say": {
+            "en": "Sort \"Repressor sits on the operator\".",
+            "hi": "\"अवरोधक ऑपरेटर पर बैठा है\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "When lactose is added, will the repressor stay on the operator?",
+            "hi": "लैक्टोस मिलाने पर क्या अवरोधक ऑपरेटर पर बना रहेगा?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No: it comes off",
+              "hi": "नहीं: वह हट जाएगा"
+            },
+            {
+              "id": "yes",
+              "en": "Yes: it stays",
+              "hi": "हाँ: वह बना रहेगा"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "card:inducer",
+          "expect": "correct:inducer",
+          "say": {
+            "en": "Sort \"Lactose (inducer) binds the repressor\".",
+            "hi": "\"लैक्टोस (प्रेरक) अवरोधक से जुड़ता है\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:galact",
+          "expect": "correct:galact",
+          "say": {
+            "en": "Sort \"Beta-galactosidase is made and splits lactose\".",
+            "hi": "\"बीटा-गैलैक्टोसाइडेज़ बनता है\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Genes can be switched on and off. In E. coli the lac operon has three structural genes (z, y, a), a promoter and an operator, with a separate regulator gene (i) that makes the repressor. Without lactose the repressor sits on the operator and blocks transcription. When lactose arrives, it binds the repressor and releases the operator, so the genes are transcribed and the enzymes (beta-galactosidase, permease, transacetylase) are made. Lactose acts as the inducer, and the enzymes appear only when needed.",
+            "hi": "जीन चालू और बंद किए जा सकते हैं। E. coli के लैक ऑपेरॉन में तीन संरचनात्मक जीन (z, y, a), एक प्रमोटर और एक ऑपरेटर होते हैं, और अलग नियामक जीन (i) अवरोधक बनाता है। लैक्टोस न हो तो अवरोधक ऑपरेटर पर बैठकर अनुलेखन रोकता है। लैक्टोस आए तो वह अवरोधक से जुड़कर ऑपरेटर को मुक्त कर देता है, इसलिए जीनों का अनुलेखन होता है और एंज़ाइम (बीटा-गैलैक्टोसाइडेज़, परमिएज़, ट्रांसएसीटाइलेज़) बनते हैं। लैक्टोस प्रेरक का काम करता है और एंज़ाइम केवल ज़रूरत पर बनते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is the inducer of the lac operon?",
+                "hi": "लैक ऑपेरॉन का प्रेरक क्या है?"
+              },
+              "options": [
+                {
+                  "en": "Lactose",
+                  "hi": "लैक्टोस"
+                },
+                {
+                  "en": "Glucose",
+                  "hi": "ग्लूकोस"
+                },
+                {
+                  "en": "Beta-galactosidase",
+                  "hi": "बीटा-गैलैक्टोसाइडेज़"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Lactose binds the repressor and switches the operon on.",
+                "hi": "लैक्टोस अवरोधक से जुड़कर ऑपेरॉन चालू करता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Glucose is a product of lactose breakdown, not the inducer.",
+                  "hi": "ग्लूकोस लैक्टोस टूटने का उत्पाद है, प्रेरक नहीं।"
+                },
+                {
+                  "en": "The enzyme is made because of the inducer; it is not the inducer.",
+                  "hi": "एंज़ाइम प्रेरक के कारण बनता है; वह स्वयं प्रेरक नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is it good for the cell to keep the operon off without lactose?",
+                "hi": "लैक्टोस न होने पर ऑपेरॉन बंद रखना कोशिका के लिए अच्छा क्यों है?"
+              },
+              "options": [
+                {
+                  "en": "It saves energy and materials",
+                  "hi": "ऊर्जा और पदार्थ बचते हैं"
+                },
+                {
+                  "en": "It kills the bacterium",
+                  "hi": "जीवाणु मर जाता है"
+                },
+                {
+                  "en": "It makes more lactose",
+                  "hi": "अधिक लैक्टोस बनता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Enzymes are made only when they are needed.",
+                "hi": "एंज़ाइम केवल ज़रूरत पर बनते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Switching off does not harm the cell.",
+                  "hi": "बंद करने से कोशिका को हानि नहीं।"
+                },
+                {
+                  "en": "The enzymes break down lactose; they do not make it.",
+                  "hi": "एंज़ाइम लैक्टोस तोड़ते हैं, बनाते नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. If the repressor gene is mutated so the repressor cannot bind the operator, will the operon be on or off when lactose is absent?",
+            "hi": "बाकी कार्ड छाँटो। अवरोधक जीन उत्परिवर्तित हो जाए और अवरोधक ऑपरेटर से न जुड़ सके तो लैक्टोस न होने पर ऑपेरॉन चालू होगा या बंद?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch05-human-genome",
+      "topic": "5.9",
+      "template": "match",
+      "title": {
+        "en": "The human genome in numbers",
+        "hi": "मानव जीनोम संख्याओं में"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "size",
+            "left": {
+              "en": "Size of the human genome",
+              "hi": "मानव जीनोम का आकार"
+            },
+            "right": {
+              "en": "About 3.2 billion base pairs",
+              "hi": "लगभग 3.2 अरब क्षार युग्म"
+            },
+            "why": {
+              "en": "The sequence is 3164.7 million bp long.",
+              "hi": "अनुक्रम 3164.7 मिलियन bp लंबा है।"
+            }
+          },
+          {
+            "id": "genes",
+            "left": {
+              "en": "Number of genes",
+              "hi": "जीनों की संख्या"
+            },
+            "right": {
+              "en": "Estimated at about 30,000, far fewer than once thought",
+              "hi": "अनुमानित लगभग 30,000, पहले के अनुमान से बहुत कम"
+            },
+            "why": {
+              "en": "Earlier guesses were 80,000 to 1,40,000.",
+              "hi": "पहले के अनुमान 80,000 से 1,40,000 थे।"
+            }
+          },
+          {
+            "id": "coding",
+            "left": {
+              "en": "Part that codes for proteins",
+              "hi": "प्रोटीन का कूट देने वाला भाग"
+            },
+            "right": {
+              "en": "Less than 2 per cent of the genome",
+              "hi": "जीनोम का 2 प्रतिशत से भी कम"
+            },
+            "why": {
+              "en": "Most of the genome does not directly code for proteins.",
+              "hi": "अधिकांश जीनोम सीधे प्रोटीन का कूट नहीं देता।"
+            }
+          },
+          {
+            "id": "same",
+            "left": {
+              "en": "Bases the same in all humans",
+              "hi": "सब मनुष्यों में समान क्षारक"
+            },
+            "right": {
+              "en": "99.9 per cent",
+              "hi": "99.9 प्रतिशत"
+            },
+            "why": {
+              "en": "Differences between people are tiny.",
+              "hi": "लोगों के बीच अंतर बहुत थोड़ा है।"
+            }
+          },
+          {
+            "id": "snp",
+            "left": {
+              "en": "SNPs (\"snips\")",
+              "hi": "SNP (\"स्निप\")"
+            },
+            "right": {
+              "en": "Single-base differences, about 1.4 million places found",
+              "hi": "एकल क्षारक अंतर, लगभग 14 लाख स्थान मिले"
+            },
+            "why": {
+              "en": "SNPs help find disease genes and trace human history.",
+              "hi": "SNP रोग-जीन खोजने और मानव इतिहास जानने में मदद करते हैं।"
+            }
+          },
+          {
+            "id": "bioinf",
+            "left": {
+              "en": "Bioinformatics",
+              "hi": "जैव सूचना विज्ञान"
+            },
+            "right": {
+              "en": "Using computers to store and study huge amounts of sequence data",
+              "hi": "अनुक्रम के विशाल आँकड़ों को सँजोने और पढ़ने में कंप्यूटर का उपयोग"
+            },
+            "why": {
+              "en": "The project produced far too much data to handle by hand.",
+              "hi": "परियोजना ने इतना आँकड़ा बनाया जो हाथ से सँभालना संभव नहीं था।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:size",
+          "expect": "matched:size",
+          "say": {
+            "en": "Match \"Size of the human genome\".",
+            "hi": "\"मानव जीनोम का आकार\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Do you think more than half of the human genome codes for proteins?",
+            "hi": "क्या तुम्हारे विचार से मानव जीनोम का आधे से अधिक भाग प्रोटीन का कूट देता है?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No: less than 2 per cent",
+              "hi": "नहीं: 2 प्रतिशत से भी कम"
+            },
+            {
+              "id": "yes",
+              "en": "Yes",
+              "hi": "हाँ"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "left:coding",
+          "expect": "matched:coding",
+          "say": {
+            "en": "Match \"Part that codes for proteins\".",
+            "hi": "\"प्रोटीन का कूट देने वाला भाग\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:same",
+          "expect": "matched:same",
+          "say": {
+            "en": "Match \"Bases the same in all humans\".",
+            "hi": "\"सब मनुष्यों में समान क्षारक\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The Human Genome Project (1990 to 2003) set out to read all 3 billion base pairs of human DNA. It found about 30,000 genes, a lot fewer than guessed, and showed that less than 2 per cent of the genome codes for proteins, while repeated sequences make up a large part. Humans are 99.9 per cent identical at the DNA level; the tiny difference includes SNPs. The work needed computers and new fields like bioinformatics. It opened the way for medicine tuned to each person, but also raises questions about privacy.",
+            "hi": "मानव जीनोम परियोजना (1990 से 2003) ने मानव DNA के सभी 3 अरब क्षार युग्म पढ़ने का लक्ष्य रखा। इसमें लगभग 30,000 जीन मिले, अनुमान से बहुत कम, और पता चला कि जीनोम का 2 प्रतिशत से कम भाग प्रोटीन का कूट देता है, जबकि दोहराए गए अनुक्रम बड़ा हिस्सा हैं। DNA स्तर पर मनुष्य 99.9 प्रतिशत समान हैं; छोटे अंतर में SNP भी हैं। इस काम में कंप्यूटरों और जैव सूचना विज्ञान जैसे नए क्षेत्रों की ज़रूरत पड़ी। इसने हर व्यक्ति के अनुकूल चिकित्सा का रास्ता खोला, पर निजता के प्रश्न भी उठाए।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How alike are the DNA sequences of two unrelated people?",
+                "hi": "दो असंबंधित लोगों के DNA अनुक्रम कितने समान हैं?"
+              },
+              "options": [
+                {
+                  "en": "99.9 per cent the same",
+                  "hi": "99.9 प्रतिशत समान"
+                },
+                {
+                  "en": "50 per cent the same",
+                  "hi": "50 प्रतिशत समान"
+                },
+                {
+                  "en": "Completely different",
+                  "hi": "बिल्कुल अलग"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The small remaining difference makes each person unique.",
+                "hi": "बचा छोटा अंतर हर व्यक्ति को अलग बनाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Humans are far more alike than 50 per cent.",
+                  "hi": "मनुष्य 50 प्रतिशत से कहीं अधिक समान हैं।"
+                },
+                {
+                  "en": "We share almost the whole genome.",
+                  "hi": "हम लगभग पूरा जीनोम साझा करते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What are SNPs?",
+                "hi": "SNP क्या हैं?"
+              },
+              "options": [
+                {
+                  "en": "Places where a single base differs between people",
+                  "hi": "वे स्थान जहाँ लोगों में एक क्षारक अलग होता है"
+                },
+                {
+                  "en": "Genes that code for sugar",
+                  "hi": "शर्करा का कूट देने वाले जीन"
+                },
+                {
+                  "en": "A kind of RNA",
+                  "hi": "एक प्रकार का RNA"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "SNP means single nucleotide polymorphism.",
+                "hi": "SNP का अर्थ एकल न्यूक्लियोटाइड बहुरूपता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "They are not specific to sugar genes.",
+                  "hi": "वे शर्करा के जीनों तक सीमित नहीं हैं।"
+                },
+                {
+                  "en": "They are variations in DNA, not RNA.",
+                  "hi": "वे DNA की विविधताएँ हैं, RNA नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the other pairs. Why should a person's genome information be kept private?",
+            "hi": "बाकी जोड़ियाँ मिलाओ। किसी व्यक्ति की जीनोम जानकारी निजी क्यों रखनी चाहिए?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch05-fingerprinting",
+      "topic": "5.10",
+      "template": "sequence",
+      "title": {
+        "en": "DNA fingerprinting step by step",
+        "hi": "DNA फ़िंगरप्रिंटिंग चरण-दर-चरण"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "isolate",
+            "text": {
+              "en": "Isolate DNA from blood, hair root or other tissue",
+              "hi": "रक्त, बाल की जड़ या ऊतक से DNA अलग करो"
+            }
+          },
+          {
+            "id": "cut",
+            "text": {
+              "en": "Cut the DNA into fragments with restriction enzymes",
+              "hi": "प्रतिबंधन एंज़ाइमों से DNA को खंडों में काटो"
+            }
+          },
+          {
+            "id": "gel",
+            "text": {
+              "en": "Separate the fragments by size on a gel (electrophoresis)",
+              "hi": "जेल पर खंडों को आकार से अलग करो (वैद्युतकण संचलन)"
+            }
+          },
+          {
+            "id": "blot",
+            "text": {
+              "en": "Transfer the fragments to a nylon membrane (blotting)",
+              "hi": "खंडों को नायलॉन झिल्ली पर स्थानांतरित करो (ब्लॉटिंग)"
+            }
+          },
+          {
+            "id": "probe",
+            "text": {
+              "en": "Hybridise with a labelled VNTR probe",
+              "hi": "चिह्नित VNTR प्रोब से संकरण कराओ"
+            }
+          },
+          {
+            "id": "film",
+            "text": {
+              "en": "Autoradiography shows a band pattern to compare",
+              "hi": "ऑटोरेडियोग्राफ़ी तुलना योग्य पट्टी-पैटर्न दिखाती है"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:isolate",
+          "expect": "placed:isolate",
+          "say": {
+            "en": "Tap \"Isolate DNA from blood, hair root or other tissue\" and put it in place 1.",
+            "hi": "\"रक्त, बाल की जड़ या ऊतक से DNA अलग करो\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:cut",
+          "expect": "placed:cut",
+          "say": {
+            "en": "Tap \"Cut the DNA into fragments with restriction enzymes\" and put it in place 2.",
+            "hi": "\"प्रतिबंधन एंज़ाइमों से DNA को खंडों में काटो\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Two people have different numbers of VNTR repeats. Will their band patterns look the same or different?",
+            "hi": "दो लोगों में VNTR दोहराव की संख्या अलग है। उनके पट्टी-पैटर्न एक जैसे दिखेंगे या अलग?"
+          },
+          "options": [
+            {
+              "id": "diff",
+              "en": "Different",
+              "hi": "अलग"
+            },
+            {
+              "id": "same",
+              "en": "The same",
+              "hi": "एक जैसे"
+            }
+          ],
+          "answer": "diff"
+        },
+        {
+          "kind": "do",
+          "target": "item:gel",
+          "expect": "placed:gel",
+          "say": {
+            "en": "Tap \"Separate the fragments by size on a gel (electrophoresis)\" and put it in place 3.",
+            "hi": "\"जेल पर खंडों को आकार से अलग करो (वैद्युतकण संचलन)\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:blot",
+          "expect": "placed:blot",
+          "say": {
+            "en": "Tap \"Transfer the fragments to a nylon membrane (blotting)\" and put it in place 4.",
+            "hi": "\"खंडों को नायलॉन झिल्ली पर स्थानांतरित करो (ब्लॉटिंग)\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:probe",
+          "expect": "placed:probe",
+          "say": {
+            "en": "Tap \"Hybridise with a labelled VNTR probe\" and put it in place 5.",
+            "hi": "\"चिह्नित VNTR प्रोब से संकरण कराओ\" छुओ और स्थान 5 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "DNA fingerprinting compares the pattern of repeated sequences called VNTRs, whose number of repeats differs from person to person. DNA is cut into pieces, sorted by size on a gel, transferred to a membrane and hybridised with a radioactive or labelled VNTR probe. The result is a pattern of bands, like a barcode. Identical twins share a pattern, but otherwise it is unique. It is used to settle disputes about parentage, in crime investigation, and to study diversity. A child's bands come half from each parent.",
+            "hi": "DNA फ़िंगरप्रिंटिंग VNTR नामक दोहराए गए अनुक्रमों का पैटर्न तुलना करती है, जिनकी दोहराव संख्या हर व्यक्ति में अलग होती है। DNA को काटकर टुकड़ों को जेल पर आकार से छाँटा जाता है, झिल्ली पर स्थानांतरित कर रेडियोधर्मी या चिह्नित VNTR प्रोब से संकरित किया जाता है। परिणाम बारकोड जैसा पट्टी-पैटर्न होता है। एक जैसे जुड़वाँ का पैटर्न समान होता है, अन्यथा वह अद्वितीय है। इसका उपयोग संतान संबंधी विवाद सुलझाने, अपराध जाँच और विविधता के अध्ययन में होता है। बच्चे की पट्टियाँ आधी-आधी माता-पिता से आती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is a DNA fingerprint useful in a crime investigation?",
+                "hi": "अपराध जाँच में DNA फ़िंगरप्रिंट क्यों उपयोगी है?"
+              },
+              "options": [
+                {
+                  "en": "A suspect's pattern can be matched with traces left behind",
+                  "hi": "संदिग्ध का पैटर्न छूटे नमूनों से मिलाया जा सकता है"
+                },
+                {
+                  "en": "It shows the person's age",
+                  "hi": "यह व्यक्ति की उम्र बताता है"
+                },
+                {
+                  "en": "It shows what the person ate",
+                  "hi": "यह बताता है कि व्यक्ति ने क्या खाया"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Each person's pattern is nearly unique, so a match is strong evidence.",
+                "hi": "हर व्यक्ति का पैटर्न लगभग अद्वितीय है, इसलिए मिलान मज़बूत प्रमाण है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The fingerprint does not give age.",
+                  "hi": "फ़िंगरप्रिंट से उम्र नहीं पता चलती।"
+                },
+                {
+                  "en": "Diet is not recorded in the DNA pattern.",
+                  "hi": "आहार DNA पैटर्न में दर्ज नहीं होता।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "In a paternity test, how many of a child's bands come from the father?",
+                "hi": "पितृत्व जाँच में बच्चे की कितनी पट्टियाँ पिता से आती हैं?"
+              },
+              "options": [
+                {
+                  "en": "About half",
+                  "hi": "लगभग आधी"
+                },
+                {
+                  "en": "All of them",
+                  "hi": "सभी"
+                },
+                {
+                  "en": "None",
+                  "hi": "कोई नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The child inherits half of the DNA from each parent.",
+                "hi": "बच्चे को हर जनक से आधा DNA मिलता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The other half comes from the mother.",
+                  "hi": "बाक़ी आधी माँ से आती हैं।"
+                },
+                {
+                  "en": "A true father shares about half the bands.",
+                  "hi": "असली पिता की लगभग आधी पट्टियाँ मिलती हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. Why are identical twins the one exception to unique DNA fingerprints?",
+            "hi": "आख़िरी चरण रखो। एक जैसे जुड़वाँ अद्वितीय DNA फ़िंगरप्रिंट का अपवाद क्यों हैं?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "MAC",
+      "topic": "5.1.1",
+      "use": "DNA double helix",
+      "shows": "A clean 3D double helix with sugar-phosphate backbones and colour-coded A-T and G-C pairs",
+      "view": "Slight angle, midnight-blue background",
+      "right": "Hydrogen bonds visible and the two strand directions marked",
+      "avoid": "Cluttered labels"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "5.1.2",
+      "use": "Nucleosome",
+      "shows": "DNA wound around a histone octamer, then beads on a string and a chromosome, in one flowing diagram",
+      "view": "Flat colour with a zoom-out arrow",
+      "right": "Eight histones and about 200 bp marked",
+      "avoid": "Photographs"
+    },
+    {
+      "n": 3,
+      "kind": "SEQ",
+      "topic": "5.2",
+      "use": "Griffith and Hershey-Chase",
+      "shows": "Two panels of the experiments in clear icons: mice, bacteria, viruses and radioactive labels",
+      "view": "Flat icons, consistent colours",
+      "right": "Step order clear",
+      "avoid": "Realistic animal suffering"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "5.4",
+      "use": "Replication fork",
+      "shows": "A replication fork with helicase, leading strand, lagging strand with Okazaki fragments, and ligase",
+      "view": "Schematic with arrows showing 5 to 3",
+      "right": "Direction of synthesis clear for both strands",
+      "avoid": "Too many labels"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "5.5",
+      "use": "Transcription to translation",
+      "shows": "A single wide diagram from gene to mRNA to ribosome to protein",
+      "view": "Flat vector, left to right",
+      "right": "Codon, anticodon and amino acid chain clear",
+      "avoid": "Realistic photographs"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "5.8",
+      "use": "The lac operon",
+      "shows": "Two panels: lactose absent (repressor on operator) and lactose present (repressor off, genes expressed)",
+      "view": "Flat vector, same layout in both panels",
+      "right": "Genes i, p, o, z, y, a in order",
+      "avoid": "Cluttered text"
+    },
+    {
+      "n": 7,
+      "kind": "OBJ",
+      "topic": "5.10",
+      "use": "A DNA fingerprint",
+      "shows": "An autoradiogram showing band patterns of a family: mother, father and children",
+      "view": "Top-down on a light box",
+      "right": "Child bands match parents",
+      "avoid": "Real people or case labels"
+    }
+  ]
+}

@@ -1,0 +1,953 @@
+{
+ "chapter_key": "u.c09.science.iesc1.ch02",
+ "class": 9,
+ "subject_id": "science",
+ "title": "Cell: The Building Block of Life",
+ "source": "https://ncert.nic.in/textbook/pdf/iesc102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "How to study cells: microscopes and the size of cells",
+   "labs": [
+    "c09-science-iesc1-ch02-onion"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Structure of a cell",
+   "labs": [
+    "c09-science-iesc1-ch02-leafpeel"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2.1",
+   "title": "Cell membrane: the universal boundary; diffusion and osmosis",
+   "labs": [
+    "c09-science-iesc1-ch02-cheek",
+    "c09-science-iesc1-ch02-diffusion"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2.2",
+   "title": "Cell wall: the outer covering of plant cells",
+   "labs": [
+    "c09-science-iesc1-ch02-onion"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "The cell interior: organelles working together",
+   "labs": [],
+   "why_no_lab": "Organelles like mitochondria are too small for a school microscope; the 3D cut-away cell image and the reader teach them better."
+  },
+  {
+   "n": "2.3.1",
+   "title": "Why eukaryotic cells need organelles",
+   "labs": [],
+   "why_no_lab": "This is an idea about dividing work inside the cell, best explained by the reader with the cut-away cell picture."
+  },
+  {
+   "n": "2.4",
+   "title": "How normal cells grow and divide",
+   "labs": [
+    "c09-science-iesc1-ch02-roottip"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4.1",
+   "title": "Cell division: mitosis",
+   "labs": [
+    "c09-science-iesc1-ch02-roottip"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Cell theory: the unifying principle of biology",
+   "labs": [],
+   "why_no_lab": "Cell theory is a story of discoveries over time; the reader and a timeline picture tell it better than a lab."
+  },
+  {
+   "n": "2.5.1",
+   "title": "Do cells grow and reproduce forever?",
+   "labs": [],
+   "why_no_lab": "Ageing of cells and totipotency are ideas to read and discuss; nothing here can be safely or usefully simulated."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-science-iesc1-ch02-onion",
+   "topic": "2.1",
+   "template": "scope",
+   "title": {
+    "en": "Study onion cells and estimate their size",
+    "hi": "प्याज़ की कोशिकाएँ देखो और उनका आकार आँको"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "slide": "onion-peel"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Tap the 10× lens to zoom in on the onion peel.",
+      "hi": "प्याज़ की झिल्ली पर ज़ूम करने के लिए 10× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse focus knob until the cells look sharp.",
+      "hi": "मोटे फ़ोकस नॉब को घुमाओ जब तक कोशिकाएँ साफ़ न दिखें।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The cells look almost colourless. What will a drop of iodine do?",
+      "hi": "कोशिकाएँ लगभग रंगहीन दिखती हैं। आयोडीन की एक बूँद क्या करेगी?"
+     },
+     "options": [
+      {
+       "id": "show",
+       "en": "Make the nucleus and the wall stand out",
+       "hi": "केंद्रक और दीवार को उभार देगी"
+      },
+      {
+       "id": "kill",
+       "en": "Make the cells vanish",
+       "hi": "कोशिकाओं को ग़ायब कर देगी"
+      },
+      {
+       "id": "none",
+       "en": "Change nothing",
+       "hi": "कुछ नहीं बदलेगी"
+      }
+     ],
+     "answer": "show"
+    },
+    {
+     "kind": "do",
+     "target": "stain:iodine",
+     "expect": "stained",
+     "say": {
+      "en": "Add iodine stain to the slide.",
+      "hi": "स्लाइड पर आयोडीन का रंग डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "lens:40x",
+     "expect": "zoomed:40x",
+     "say": {
+      "en": "Now tap the 40× lens for a closer look.",
+      "hi": "अब और पास से देखने के लिए 40× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:fine",
+     "expect": "focused",
+     "say": {
+      "en": "Use the fine focus knob to make the picture sharp again.",
+      "hi": "बारीक फ़ोकस नॉब से चित्र को फिर साफ़ करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:nucleus",
+     "expect": "identified:nucleus",
+     "say": {
+      "en": "Tap \"nucleus\" to find the nucleus of a cell.",
+      "hi": "कोशिका का केंद्रक ढूँढने के लिए \"केंद्रक\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Onion cells are brick-shaped and fit tightly together, each with a wall, a nucleus and a large vacuole. The stain makes the nucleus easy to see. The panel shows how wide the circle you see is. If about 8 cells fit end to end across 1.8 mm, one cell is about 1.8 ÷ 8, roughly 0.2 mm long: too small for the eye, easy for a microscope.",
+      "hi": "प्याज़ की कोशिकाएँ ईंट जैसी हैं और कसकर सटी होती हैं; हर एक में दीवार, केंद्रक और बड़ी रिक्तिका है। रंग से केंद्रक आसानी से दिखता है। पैनल बताता है कि दिखने वाला गोला कितना चौड़ा है। अगर 1.8 mm में लगभग 8 कोशिकाएँ एक के बाद एक आती हैं, तो एक कोशिका लगभग 1.8 ÷ 8, यानी करीब 0.2 mm लंबी है: आँख के लिए बहुत छोटी, सूक्ष्मदर्शी के लिए आसान।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did we add iodine?",
+        "hi": "हमने आयोडीन क्यों डाला?"
+       },
+       "options": [
+        {
+         "en": "To make the cell parts easier to see",
+         "hi": "कोशिका के भाग आसानी से देखने के लिए"
+        },
+        {
+         "en": "To make the cells grow",
+         "hi": "कोशिकाओं को बढ़ाने के लिए"
+        },
+        {
+         "en": "To feed the cells",
+         "hi": "कोशिकाओं को भोजन देने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Stains colour some parts more than others, so the nucleus stands out.",
+        "hi": "रंग कुछ भागों को दूसरों से अधिक रंगते हैं, इसलिए केंद्रक उभर आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A stain colours parts that are already there; it does not make cells grow.",
+         "hi": "रंग पहले से मौजूद भागों को रंगता है; यह कोशिकाएँ नहीं बढ़ाता।"
+        },
+        {
+         "en": "Iodine is not food for cells; it only stains them.",
+         "hi": "आयोडीन कोशिकाओं का भोजन नहीं है; यह केवल उन्हें रंगता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "At 40× you see less of the slide than at 10×. Why?",
+        "hi": "40× पर तुम्हें 10× से कम स्लाइड क्यों दिखती है?"
+       },
+       "options": [
+        {
+         "en": "The lens is dirty",
+         "hi": "लेंस गंदा है"
+        },
+        {
+         "en": "More magnification shows a smaller area, but bigger",
+         "hi": "अधिक आवर्धन छोटा क्षेत्र दिखाता है, पर बड़ा करके"
+        },
+        {
+         "en": "The cells moved away",
+         "hi": "कोशिकाएँ दूर चली गईं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Zooming in spreads a smaller part of the slide over the whole view.",
+        "hi": "ज़ूम करने पर स्लाइड का छोटा भाग पूरे दृश्य में फैल जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "A dirty lens blurs the picture; it does not shrink the area you see.",
+         "hi": "गंदा लेंस चित्र धुंधला करता है; दिखने वाला क्षेत्र छोटा नहीं करता।"
+        },
+        "",
+        {
+         "en": "Onion peel cells are fixed in place; they cannot move.",
+         "hi": "प्याज़ की झिल्ली की कोशिकाएँ अपनी जगह स्थिर हैं; वे हिल नहीं सकतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore freely: count the cells across the view at 10×, and use the width shown to estimate the size of one cell. Then try the safranin stain.",
+      "hi": "खुलकर आज़माओ: 10× पर दृश्य के आर-पार कोशिकाएँ गिनो और दिखाई गई चौड़ाई से एक कोशिका का आकार आँको। फिर सैफ़्रेनिन रंग आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch02-leafpeel",
+   "topic": "2.2",
+   "template": "scope",
+   "title": {
+    "en": "Find chloroplasts in a leaf peel",
+    "hi": "पत्ती की झिल्ली में हरितलवक ढूँढो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "slide": "leaf-peel"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Tap the 10× lens.",
+      "hi": "10× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob until the leaf skin is sharp.",
+      "hi": "मोटे नॉब को घुमाओ जब तक पत्ती की त्वचा साफ़ न दिखे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Some cells here look green and some do not. Which ones do you think have the green chloroplasts?",
+      "hi": "यहाँ कुछ कोशिकाएँ हरी दिखती हैं और कुछ नहीं। तुम्हें क्या लगता है, किनमें हरे हरितलवक हैं?"
+     },
+     "options": [
+      {
+       "id": "guard",
+       "en": "The pairs of bean-shaped cells around the pores",
+       "hi": "छिद्रों के चारों ओर सेम जैसी कोशिकाओं के जोड़े"
+      },
+      {
+       "id": "all",
+       "en": "Every skin cell",
+       "hi": "हर त्वचा कोशिका"
+      },
+      {
+       "id": "none",
+       "en": "None of them",
+       "hi": "इनमें से कोई नहीं"
+      }
+     ],
+     "answer": "guard"
+    },
+    {
+     "kind": "do",
+     "target": "part:guard-cell",
+     "expect": "identified:guard-cell",
+     "say": {
+      "en": "Tap \"guard cell\" to find the bean-shaped cells.",
+      "hi": "सेम जैसी कोशिकाएँ ढूँढने के लिए \"रक्षक कोशिका\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "lens:40x",
+     "expect": "zoomed:40x",
+     "say": {
+      "en": "Tap the 40× lens.",
+      "hi": "40× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:fine",
+     "expect": "focused",
+     "say": {
+      "en": "Sharpen the picture with the fine knob.",
+      "hi": "बारीक नॉब से चित्र साफ़ करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:chloroplast",
+     "expect": "identified:chloroplast",
+     "say": {
+      "en": "Tap \"chloroplast\" to find the tiny green ovals.",
+      "hi": "छोटे हरे अंडाकार ढूँढने के लिए \"हरितलवक\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A plant cell has a wall, a membrane, cytoplasm and a nucleus. Many plant cells also have chloroplasts, green plastids where food is made in sunlight. In this leaf skin only the guard cells have them; the ordinary skin cells are clear so light can pass to the cells below.",
+      "hi": "पादप कोशिका में दीवार, झिल्ली, कोशिकाद्रव्य और केंद्रक होते हैं। कई पादप कोशिकाओं में हरितलवक भी होते हैं, हरे लवक जहाँ धूप में भोजन बनता है। इस पत्ती की त्वचा में ये केवल रक्षक कोशिकाओं में हैं; साधारण त्वचा कोशिकाएँ पारदर्शी हैं ताकि प्रकाश नीचे की कोशिकाओं तक जाए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the job of a chloroplast?",
+        "hi": "हरितलवक का काम क्या है?"
+       },
+       "options": [
+        {
+         "en": "To store water",
+         "hi": "पानी जमा करना"
+        },
+        {
+         "en": "To make food using sunlight",
+         "hi": "धूप से भोजन बनाना"
+        },
+        {
+         "en": "To control the cell",
+         "hi": "कोशिका को नियंत्रित करना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Chloroplasts hold chlorophyll and carry out photosynthesis.",
+        "hi": "हरितलवक में पर्णहरित होता है और वे प्रकाश-संश्लेषण करते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Water is stored mainly in the vacuole, not in chloroplasts.",
+         "hi": "पानी मुख्यतः रिक्तिका में जमा होता है, हरितलवक में नहीं।"
+        },
+        "",
+        {
+         "en": "Control is the job of the nucleus.",
+         "hi": "नियंत्रण केंद्रक का काम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find a stoma and the nucleus of a skin cell. Do cheek cells (another slide) have chloroplasts? Think about why not.",
+      "hi": "आज़माओ: एक रंध्र और त्वचा कोशिका का केंद्रक ढूँढो। क्या गाल की कोशिकाओं में हरितलवक होते हैं? सोचो क्यों नहीं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch02-cheek",
+   "topic": "2.2.1",
+   "template": "scope",
+   "title": {
+    "en": "Cheek cells: a cell with only a membrane",
+    "hi": "गाल की कोशिकाएँ: केवल झिल्ली वाली कोशिका"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "cheek-cells"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Tap the 10× lens.",
+      "hi": "10× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob until the flat cells are sharp.",
+      "hi": "मोटे नॉब को घुमाओ जब तक चपटी कोशिकाएँ साफ़ न दिखें।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Onion cells had a thick wall. What will the edge of a cheek cell be?",
+      "hi": "प्याज़ की कोशिकाओं में मोटी दीवार थी। गाल की कोशिका का किनारा कैसा होगा?"
+     },
+     "options": [
+      {
+       "id": "thin",
+       "en": "A thin, soft membrane only",
+       "hi": "केवल एक पतली, लचीली झिल्ली"
+      },
+      {
+       "id": "wall",
+       "en": "A thick wall like the onion",
+       "hi": "प्याज़ जैसी मोटी दीवार"
+      },
+      {
+       "id": "nothing",
+       "en": "No edge at all",
+       "hi": "कोई किनारा नहीं"
+      }
+     ],
+     "answer": "thin"
+    },
+    {
+     "kind": "do",
+     "target": "stain:methylene-blue",
+     "expect": "stained",
+     "say": {
+      "en": "Add methylene blue stain.",
+      "hi": "मेथिलीन ब्लू रंग डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:membrane",
+     "expect": "identified:membrane",
+     "say": {
+      "en": "Tap \"membrane\" to see the edge of a cell.",
+      "hi": "कोशिका का किनारा देखने के लिए \"झिल्ली\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every cell has a cell membrane, a thin, flexible boundary. It is selectively permeable: it lets some substances in and out and stops others. Animal cells like these have no cell wall, so their shapes are irregular, unlike the neat bricks of onion cells.",
+      "hi": "हर कोशिका में कोशिका झिल्ली होती है, एक पतली, लचीली सीमा। यह चयनात्मक पारगम्य है: कुछ पदार्थों को आने-जाने देती है और कुछ को रोकती है। इन जैसी जंतु कोशिकाओं में कोशिका भित्ति नहीं होती, इसलिए इनके आकार अनियमित हैं, प्याज़ की साफ़ ईंटों जैसे नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is found in every cell, plant or animal?",
+        "hi": "कौन-सा भाग हर कोशिका में होता है, चाहे पादप हो या जंतु?"
+       },
+       "options": [
+        {
+         "en": "Cell wall",
+         "hi": "कोशिका भित्ति"
+        },
+        {
+         "en": "Chloroplast",
+         "hi": "हरितलवक"
+        },
+        {
+         "en": "Cell membrane",
+         "hi": "कोशिका झिल्ली"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "The membrane is the universal boundary of all cells.",
+        "hi": "झिल्ली सभी कोशिकाओं की सार्वभौमिक सीमा है।"
+       },
+       "wrong": [
+        {
+         "en": "Animal cells such as cheek cells have no wall.",
+         "hi": "गाल जैसी जंतु कोशिकाओं में भित्ति नहीं होती।"
+        },
+        {
+         "en": "Only some plant cells have chloroplasts.",
+         "hi": "केवल कुछ पादप कोशिकाओं में हरितलवक होते हैं।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "What does \"selectively permeable\" mean?",
+        "hi": "\"चयनात्मक पारगम्य\" का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "It lets some substances pass and stops others",
+         "hi": "यह कुछ पदार्थों को जाने देती है और कुछ को रोकती है"
+        },
+        {
+         "en": "It lets nothing pass",
+         "hi": "यह कुछ भी नहीं जाने देती"
+        },
+        {
+         "en": "It lets everything pass",
+         "hi": "यह सब कुछ जाने देती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The membrane chooses what goes in and out, like a careful gatekeeper.",
+        "hi": "झिल्ली एक सावधान द्वारपाल की तरह चुनती है कि क्या आए और क्या जाए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Then the cell could not take in food or oxygen.",
+         "hi": "तब कोशिका भोजन या ऑक्सीजन नहीं ले पाती।"
+        },
+        {
+         "en": "Then harmful substances would enter freely and useful ones would leak out.",
+         "hi": "तब हानिकारक पदार्थ आसानी से आ जाते और उपयोगी बाहर निकल जाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: zoom to 40×, refocus with the fine knob and find the nucleus. Compare its shape with the onion cell you saw.",
+      "hi": "आज़माओ: 40× पर ज़ूम करो, बारीक नॉब से फिर फ़ोकस करो और केंद्रक ढूँढो। उसके आकार की तुलना प्याज़ की कोशिका से करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch02-diffusion",
+   "topic": "2.2.1",
+   "template": "particles",
+   "title": {
+    "en": "How substances spread: diffusion",
+    "hi": "पदार्थ कैसे फैलते हैं: विसरण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "diffusion",
+    "substance": "ink",
+    "compare": true
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One drop of ink goes into cold water and one into warm water. Where will it spread faster?",
+      "hi": "स्याही की एक बूँद ठंडे पानी में और एक गर्म पानी में डाली जाती है। कहाँ जल्दी फैलेगी?"
+     },
+     "options": [
+      {
+       "id": "warm",
+       "en": "In the warm water",
+       "hi": "गर्म पानी में"
+      },
+      {
+       "id": "cold",
+       "en": "In the cold water",
+       "hi": "ठंडे पानी में"
+      },
+      {
+       "id": "same",
+       "en": "At the same speed",
+       "hi": "एक जैसी चाल से"
+      }
+     ],
+     "answer": "warm"
+    },
+    {
+     "kind": "do",
+     "target": "add",
+     "expect": "spread",
+     "say": {
+      "en": "Tap \"add\" to drop ink into both beakers. Watch the particles.",
+      "hi": "दोनों बीकरों में स्याही डालने के लिए \"डालो\" पर टैप करो। कणों को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Particles are always moving. They spread from where they are crowded to where they are fewer: this is diffusion. Warm particles move faster, so diffusion is quicker. Cells take in oxygen and give out carbon dioxide across the membrane by diffusion. When water moves across a membrane like this, it is called osmosis.",
+      "hi": "कण हमेशा गति करते रहते हैं। वे भीड़ वाली जगह से कम भीड़ वाली जगह की ओर फैलते हैं: यही विसरण है। गर्म कण तेज़ चलते हैं, इसलिए विसरण जल्दी होता है। कोशिकाएँ झिल्ली से विसरण द्वारा ऑक्सीजन लेती हैं और कार्बन डाइऑक्साइड छोड़ती हैं। जब पानी इसी तरह झिल्ली के आर-पार जाता है, तो इसे परासरण कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A raw potato cube is left in very salty water. What happens to it?",
+        "hi": "कच्चे आलू का एक टुकड़ा बहुत नमकीन पानी में रखा जाता है। उसका क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "It loses water and becomes soft and smaller",
+         "hi": "वह पानी खोकर नरम और छोटा हो जाता है"
+        },
+        {
+         "en": "It swells up",
+         "hi": "वह फूल जाता है"
+        },
+        {
+         "en": "Nothing changes",
+         "hi": "कुछ नहीं बदलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water moves by osmosis out of the potato cells into the saltier water, so the cube shrinks.",
+        "hi": "पानी परासरण से आलू की कोशिकाओं से बाहर अधिक नमकीन पानी में जाता है, इसलिए टुकड़ा सिकुड़ जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Swelling happens in plain water, where water moves into the cells.",
+         "hi": "फूलना सादे पानी में होता है, जहाँ पानी कोशिकाओं में जाता है।"
+        },
+        {
+         "en": "Water does move: from the cells, where there is more water, to the salty side.",
+         "hi": "पानी चलता है: कोशिकाओं से, जहाँ पानी अधिक है, नमकीन ओर की तरफ़।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drop more ink and watch closely how long each beaker takes to become one even colour.",
+      "hi": "आज़माओ: और स्याही डालो और ध्यान से देखो कि हर बीकर को एक जैसा रंग होने में कितना समय लगता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch02-roottip",
+   "topic": "2.4.1",
+   "template": "scope",
+   "title": {
+    "en": "Catch cells dividing in an onion root tip",
+    "hi": "प्याज़ की जड़ के सिरे पर विभाजित होती कोशिकाएँ पकड़ो"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "slide": "root-tip"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Tap the 10× lens.",
+      "hi": "10× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Focus with the coarse knob.",
+      "hi": "मोटे नॉब से फ़ोकस करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A root grows longer at its tip. What will you find there?",
+      "hi": "जड़ अपने सिरे पर लंबी होती है। वहाँ तुम्हें क्या मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "dividing",
+       "en": "Many cells in the middle of dividing",
+       "hi": "बहुत-सी कोशिकाएँ जो विभाजित हो रही हैं"
+      },
+      {
+       "id": "dead",
+       "en": "Only dead cells",
+       "hi": "केवल मृत कोशिकाएँ"
+      },
+      {
+       "id": "empty",
+       "en": "No cells at all",
+       "hi": "कोई कोशिका नहीं"
+      }
+     ],
+     "answer": "dividing"
+    },
+    {
+     "kind": "do",
+     "target": "lens:40x",
+     "expect": "zoomed:40x",
+     "say": {
+      "en": "Tap the 40× lens to see the chromosomes.",
+      "hi": "गुणसूत्र देखने के लिए 40× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:fine",
+     "expect": "focused",
+     "say": {
+      "en": "Sharpen the view with the fine knob.",
+      "hi": "बारीक नॉब से दृश्य साफ़ करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:metaphase",
+     "expect": "identified:metaphase",
+     "say": {
+      "en": "Tap \"metaphase\" to find chromosomes lined up in the middle.",
+      "hi": "बीच में पंक्ति में लगे गुणसूत्र ढूँढने के लिए \"मध्यावस्था\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:anaphase",
+     "expect": "identified:anaphase",
+     "say": {
+      "en": "Now tap \"anaphase\" to see chromosomes pulled apart.",
+      "hi": "अब अलग खिंचते गुणसूत्र देखने के लिए \"पश्चावस्था\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Normal cells grow and then divide. In mitosis the chromosomes are copied, line up in the middle and are pulled to the two ends, so each new cell gets an exact copy. This is how the root tip makes new cells and grows. Most cells you see are between divisions, with a round nucleus.",
+      "hi": "सामान्य कोशिकाएँ बढ़ती हैं और फिर विभाजित होती हैं। समसूत्री विभाजन में गुणसूत्रों की प्रतिलिपि बनती है, वे बीच में पंक्ति बनाते हैं और दोनों सिरों की ओर खींचे जाते हैं, ताकि हर नई कोशिका को पूरी प्रतिलिपि मिले। इसी से जड़ का सिरा नई कोशिकाएँ बनाकर बढ़ता है। दिखने वाली अधिकतर कोशिकाएँ दो विभाजनों के बीच हैं, जिनका केंद्रक गोल है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Put the stages of mitosis in order.",
+        "hi": "समसूत्री विभाजन की अवस्थाओं को क्रम में रखो।"
+       },
+       "options": [
+        {
+         "en": "Prophase, metaphase, anaphase, telophase",
+         "hi": "पूर्वावस्था, मध्यावस्था, पश्चावस्था, अंत्यावस्था"
+        },
+        {
+         "en": "Metaphase, prophase, telophase, anaphase",
+         "hi": "मध्यावस्था, पूर्वावस्था, अंत्यावस्था, पश्चावस्था"
+        },
+        {
+         "en": "Anaphase, metaphase, prophase, telophase",
+         "hi": "पश्चावस्था, मध्यावस्था, पूर्वावस्था, अंत्यावस्था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They thicken, line up, separate, and then two new nuclei form.",
+        "hi": "वे मोटे होते हैं, पंक्ति में लगते हैं, अलग होते हैं, और फिर दो नए केंद्रक बनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chromosomes must first thicken (prophase) before they can line up (metaphase).",
+         "hi": "गुणसूत्रों को पंक्ति में लगने (मध्यावस्था) से पहले मोटा होना पड़ता है (पूर्वावस्था)।"
+        },
+        {
+         "en": "Chromosomes cannot be pulled apart before they have lined up.",
+         "hi": "गुणसूत्र पंक्ति में लगने से पहले अलग नहीं खींचे जा सकते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does each new cell need a full set of chromosomes?",
+        "hi": "हर नई कोशिका को गुणसूत्रों का पूरा समूह क्यों चाहिए?"
+       },
+       "options": [
+        {
+         "en": "So it can be bigger",
+         "hi": "ताकि वह बड़ी हो सके"
+        },
+        {
+         "en": "Because chromosomes carry the instructions the cell needs to work",
+         "hi": "क्योंकि गुणसूत्र वे निर्देश रखते हैं जिनसे कोशिका काम करती है"
+        },
+        {
+         "en": "It does not need them",
+         "hi": "उसे इनकी ज़रूरत नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Chromosomes carry the genetic information that controls the cell.",
+        "hi": "गुणसूत्र वह आनुवंशिक जानकारी रखते हैं जो कोशिका को नियंत्रित करती है।"
+       },
+       "wrong": [
+        {
+         "en": "Size comes from growth, not from the number of chromosomes.",
+         "hi": "आकार वृद्धि से आता है, गुणसूत्रों की संख्या से नहीं।"
+        },
+        "",
+        {
+         "en": "Without its chromosomes a cell could not control its work or divide again.",
+         "hi": "गुणसूत्रों के बिना कोशिका न अपना काम नियंत्रित कर सकती है, न फिर विभाजित हो सकती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find prophase and telophase too. Pan across the slide: are dividing cells near the very tip or far from it?",
+      "hi": "आज़माओ: पूर्वावस्था और अंत्यावस्था भी ढूँढो। स्लाइड पर इधर-उधर जाओ: विभाजित कोशिकाएँ बिल्कुल सिरे के पास हैं या दूर?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Hook of the chapter",
+   "shows": "A Class 9 student's hands adjusting the focus of a school microscope on a classroom bench, a tray of prepared slides beside it (microscope: reuse LIB-BIO-microscope)",
+   "view": "Three-quarter view from the side, window light",
+   "right": "Hands on the coarse focus knob; slides labelled-free",
+   "avoid": "Faces, school names"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "2.1",
+   "use": "Onion peel cells stained with iodine",
+   "shows": "Brick-shaped onion epidermis cells, each with a dark brown nucleus, seen through a microscope at about 100×",
+   "view": "Circular field of view, sharp focus, square crop",
+   "right": "Walls clear, nuclei brown-yellow from iodine, no air bubbles",
+   "avoid": "Labels, arrows"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "2.3",
+   "use": "A plant cell cut open to show its organelles",
+   "shows": "A 3D model of a plant cell with a quarter cut away: wall, membrane, cytoplasm, nucleus, large vacuole, chloroplasts, mitochondria",
+   "view": "Front, side, top, three-quarter and inside views, same size and centre, transparent background",
+   "right": "Chloroplasts green with stacks; mitochondria smaller with folded inner membrane; wall outside the membrane",
+   "avoid": "Text labels"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "2.3",
+   "use": "Prokaryotic and eukaryotic cells side by side",
+   "shows": "A bacterium (no nucleus, DNA loose in the cytoplasm, a cell wall) beside an animal cell (nucleus with a membrane, organelles)",
+   "view": "Flat clean drawing, soft colours, same scale note left to the app",
+   "right": "Bacterium much smaller; no membrane around its DNA",
+   "avoid": "Labels"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "2.2.1",
+   "use": "Osmosis in potato cubes",
+   "shows": "Two glasses: a potato cube in plain water and one in very salty water; frames at the start and after 1 hour, cubes then cut and pressed",
+   "view": "Front view on a white table, same framing in both frames",
+   "right": "Cube in salt water visibly smaller and floppy; cube in plain water firm",
+   "avoid": "Brand labels on salt packets"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "2.4",
+   "use": "Onion roots growing over a jar of water",
+   "shows": "An onion resting on the mouth of a glass jar of water: day 1 no roots, day 3 short white roots, day 6 long roots",
+   "view": "Side view at eye level, same framing in all three, plain light background",
+   "right": "Roots white and growing down into the water",
+   "avoid": "Mould on the onion"
+  },
+  {
+   "n": 7,
+   "kind": "MAC",
+   "topic": "2.4.1",
+   "use": "An onion root tip squash with dividing cells",
+   "shows": "Stained onion root tip cells at about 400×, several cells showing chromosomes in different stages of division",
+   "view": "Circular field of view, sharp, square crop",
+   "right": "Chromosomes dark; a cell in metaphase with chromosomes in a line",
+   "avoid": "Labels"
+  }
+ ]
+}

@@ -1,0 +1,468 @@
+{
+ "chapter_key": "u.c10.science.jesc1.ch13",
+ "class": 10,
+ "subject_id": "science",
+ "title": "Our Environment",
+ "source": "https://ncert.nic.in/textbook/pdf/jesc113.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Ecosystem: components, food chains and webs",
+   "labs": [
+    "c10-science-jesc1-ch13-food-chain"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2",
+   "title": "How our activities affect the environment: ozone layer depletion, managing the garbage we produce",
+   "labs": [
+    "c10-science-jesc1-ch13-waste-sorter"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-science-jesc1-ch13-food-chain",
+   "topic": "13.1",
+   "template": "eco",
+   "title": {
+    "en": "A food chain and the 10 per cent rule",
+    "hi": "आहार शृंखला और 10 प्रतिशत का नियम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "chain",
+    "habitat": "grassland",
+    "organisms": [
+     "grass",
+     "grasshopper",
+     "frog"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:grass",
+     "expect": "picked:grass",
+     "say": {
+      "en": "Tap Grass in the tray. A food chain starts with a plant.",
+      "hi": "ट्रे में घास पर टैप करो। आहार शृंखला पौधे से शुरू होती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap Link to start the chain.",
+      "hi": "शृंखला शुरू करने के लिए जोड़ें पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:grasshopper",
+     "expect": "picked:grasshopper",
+     "say": {
+      "en": "Tap the grasshopper, which eats grass.",
+      "hi": "टिड्डे पर टैप करो, जो घास खाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap Link to add it.",
+      "hi": "उसे जोड़ने के लिए जोड़ें पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The grass captured 1000 J of energy from sunlight. About how much reaches the grasshopper?",
+      "hi": "घास ने सूर्य के प्रकाश से 1000 J ऊर्जा ली। टिड्डे तक लगभग कितनी पहुँचती है?"
+     },
+     "options": [
+      {
+       "id": "ten",
+       "en": "About 100 J (10 per cent)",
+       "hi": "लगभग 100 J (10 प्रतिशत)"
+      },
+      {
+       "id": "half",
+       "en": "About 500 J",
+       "hi": "लगभग 500 J"
+      },
+      {
+       "id": "all",
+       "en": "All 1000 J",
+       "hi": "पूरी 1000 J"
+      }
+     ],
+     "answer": "ten"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "energy",
+     "say": {
+      "en": "Tap Play to send the energy along the chain.",
+      "hi": "ऊर्जा को शृंखला में आगे भेजने के लिए प्ले पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Green plants are producers: they capture sunlight and make food. Herbivores like the grasshopper are primary consumers, and the frog that eats it is a secondary consumer. Each step is a trophic level. Only about 10 per cent of the energy passes from one level to the next; the rest is used for living or lost as heat. So food chains usually have only three or four steps. Decomposers such as bacteria and fungi return the matter of dead bodies to the soil.",
+      "hi": "हरे पौधे उत्पादक हैं: वे सूर्य का प्रकाश पकड़कर भोजन बनाते हैं। टिड्डे जैसे शाकाहारी प्राथमिक उपभोक्ता हैं, और उसे खाने वाला मेंढक द्वितीयक उपभोक्ता। हर चरण एक पोषी स्तर है। एक स्तर से अगले तक केवल लगभग 10 प्रतिशत ऊर्जा जाती है; बाकी जीने में ख़र्च होती है या ऊष्मा बनकर खो जाती है। इसलिए आहार शृंखलाओं में आमतौर पर केवल तीन या चार चरण होते हैं। जीवाणु और कवक जैसे अपघटक मृत शरीरों के पदार्थ को मिट्टी में लौटाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are food chains usually short?",
+        "hi": "आहार शृंखलाएँ आमतौर पर छोटी क्यों होती हैं?"
+       },
+       "options": [
+        {
+         "en": "Too little energy is left after a few steps",
+         "hi": "कुछ चरणों के बाद बहुत कम ऊर्जा बचती है"
+        },
+        {
+         "en": "Animals do not like long chains",
+         "hi": "जंतुओं को लंबी शृंखलाएँ पसंद नहीं"
+        },
+        {
+         "en": "Plants stop growing",
+         "hi": "पौधे बढ़ना बंद कर देते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After four levels only about 0.1 per cent of the energy is left.",
+        "hi": "चार स्तरों के बाद लगभग 0.1 प्रतिशत ऊर्जा ही बचती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is not about liking; there is not enough energy to support more levels.",
+         "hi": "बात पसंद की नहीं; और स्तरों के लिए पर्याप्त ऊर्जा नहीं होती।"
+        },
+        {
+         "en": "Plants keep making food; the loss happens at each step up.",
+         "hi": "पौधे भोजन बनाते रहते हैं; ऊर्जा हर ऊपरी चरण पर खोती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A pesticide sprayed on crops is found most in which animal of a food chain?",
+        "hi": "फ़सलों पर छिड़का गया कीटनाशक आहार शृंखला के किस जंतु में सबसे ज़्यादा पाया जाता है?"
+       },
+       "options": [
+        {
+         "en": "The top predator, like an eagle",
+         "hi": "शीर्ष शिकारी, जैसे बाज़"
+        },
+        {
+         "en": "The grass",
+         "hi": "घास"
+        },
+        {
+         "en": "The grasshopper",
+         "hi": "टिड्डा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The chemical does not break down, so it builds up at every level: biological magnification.",
+        "hi": "यह रसायन टूटता नहीं, इसलिए हर स्तर पर जमा होता जाता है: जैव आवर्धन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The grass takes in the chemical, but each eater above collects it from many meals.",
+         "hi": "घास रसायन लेती है, पर ऊपर का हर भक्षक कई भोजनों से उसे इकट्ठा करता है।"
+        },
+        {
+         "en": "The grasshopper has some, but the animals that eat many grasshoppers have more.",
+         "hi": "टिड्डे में कुछ होता है, पर कई टिड्डे खाने वाले जंतुओं में और ज़्यादा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: link the frog to finish the chain and play again. How much of the 1000 J reaches the frog?",
+      "hi": "आज़माओ: शृंखला पूरी करने के लिए मेंढक जोड़ो और फिर प्ले करो। 1000 J में से मेंढक तक कितनी पहुँचती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch13-waste-sorter",
+   "topic": "13.2",
+   "template": "eco",
+   "title": {
+    "en": "Sorting the garbage we produce",
+    "hi": "हमारे कचरे की छँटाई"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "waste",
+    "organisms": [
+     "banana",
+     "bottle",
+     "newspaper",
+     "veg",
+     "bag",
+     "leaves"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:banana",
+     "expect": "picked:banana",
+     "say": {
+      "en": "Tap the banana peel.",
+      "hi": "केले के छिलके पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:green",
+     "expect": "sorted",
+     "say": {
+      "en": "Put it in the green bin for wet waste.",
+      "hi": "इसे गीले कचरे के हरे डिब्बे में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which bin does a plastic bottle go in, and how long does it take to rot?",
+      "hi": "प्लास्टिक की बोतल किस डिब्बे में जाती है, और उसे सड़ने में कितना समय लगता है?"
+     },
+     "options": [
+      {
+       "id": "blue",
+       "en": "The blue bin; it lasts hundreds of years",
+       "hi": "नीला डिब्बा; यह सैकड़ों साल रहती है"
+      },
+      {
+       "id": "green",
+       "en": "The green bin; it rots in a week",
+       "hi": "हरा डिब्बा; यह एक हफ़्ते में सड़ जाती है"
+      },
+      {
+       "id": "road",
+       "en": "Neither; throw it on the road",
+       "hi": "किसी में नहीं; सड़क पर फेंक दो"
+      }
+     ],
+     "answer": "blue"
+    },
+    {
+     "kind": "do",
+     "target": "card:bottle",
+     "expect": "picked:bottle",
+     "say": {
+      "en": "Tap the plastic bottle.",
+      "hi": "प्लास्टिक की बोतल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:blue",
+     "expect": "sorted",
+     "say": {
+      "en": "Put it in the blue bin for dry waste.",
+      "hi": "इसे सूखे कचरे के नीले डिब्बे में डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Peels, leaves and leftover food are biodegradable: bacteria and fungi break them down in days or weeks, and they can become compost. Plastic, glass and metal are non-biodegradable or take very long to break down; they harm soil, drains and animals, so they should be collected dry and recycled. Using kulhads, leaf plates and cloth or jute bags instead of plastic makes less waste.",
+      "hi": "छिलके, पत्तियाँ और बचा भोजन जैव निम्नीकरणीय हैं: जीवाणु और कवक उन्हें कुछ दिनों या हफ़्तों में तोड़ देते हैं, और उनसे खाद बन सकती है। प्लास्टिक, काँच और धातु अजैव निम्नीकरणीय हैं या बहुत लंबे समय में टूटते हैं; ये मिट्टी, नालियों और जंतुओं को नुकसान पहुँचाते हैं, इसलिए इन्हें सूखा इकट्ठा करके पुनर्चक्रित करना चाहिए। प्लास्टिक की जगह कुल्हड़, पत्तल और कपड़े या जूट के थैले इस्तेमाल करने से कचरा कम बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is non-biodegradable?",
+        "hi": "इनमें से कौन अजैव निम्नीकरणीय है?"
+       },
+       "options": [
+        {
+         "en": "A polythene bag",
+         "hi": "पॉलिथीन की थैली"
+        },
+        {
+         "en": "Vegetable peels",
+         "hi": "सब्ज़ी के छिलके"
+        },
+        {
+         "en": "Dry leaves",
+         "hi": "सूखी पत्तियाँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Microbes cannot break down polythene, so it stays for hundreds of years.",
+        "hi": "सूक्ष्मजीव पॉलिथीन को तोड़ नहीं सकते, इसलिए यह सैकड़ों साल बनी रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Peels rot in days; they are biodegradable.",
+         "hi": "छिलके कुछ दिनों में सड़ जाते हैं; वे जैव निम्नीकरणीय हैं।"
+        },
+        {
+         "en": "Dry leaves rot into soil in a few months.",
+         "hi": "सूखी पत्तियाँ कुछ महीनों में सड़कर मिट्टी बन जाती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the ozone layer high in the sky important to us?",
+        "hi": "आसमान में ऊँचाई पर ओज़ोन परत हमारे लिए क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "It blocks harmful ultraviolet rays from the Sun",
+         "hi": "यह सूर्य की हानिकारक पराबैंगनी किरणों को रोकती है"
+        },
+        {
+         "en": "It makes the rain",
+         "hi": "इससे वर्षा होती है"
+        },
+        {
+         "en": "It gives us oxygen to breathe",
+         "hi": "यह हमें साँस के लिए ऑक्सीजन देती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ozone (O3) absorbs UV radiation, which can cause skin cancer. CFCs from old refrigerants damage it.",
+        "hi": "ओज़ोन (O3) पराबैंगनी विकिरण सोखती है, जिससे त्वचा का कैंसर हो सकता है। पुराने प्रशीतकों के CFC इसे नुकसान पहुँचाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rain comes from clouds much lower down.",
+         "hi": "वर्षा बहुत नीचे के बादलों से होती है।"
+        },
+        {
+         "en": "We breathe oxygen (O2) near the ground; ozone up high is poisonous to breathe.",
+         "hi": "हम ज़मीन के पास ऑक्सीजन (O2) में साँस लेते हैं; ऊपर की ओज़ोन साँस के लिए विषैली है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: sort the newspaper, the vegetable scraps, the plastic bag and the dry leaves, then press the rot clock to see how long each takes.",
+      "hi": "आज़माओ: अख़बार, सब्ज़ी के छिलके, पॉलिथीन की थैली और सूखी पत्तियाँ छाँटो, फिर सड़ने की घड़ी दबाकर देखो कि हर एक को कितना समय लगता है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "Hook: a pond ecosystem",
+   "shows": "A village pond in India with lotus, reeds, a heron, frogs and fish visible near the surface",
+   "view": "Wide, morning light",
+   "right": "Both living and non-living parts visible",
+   "avoid": "Plastic litter in this image"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "13.1.1",
+   "use": "Food chain cards",
+   "shows": "Separate cut-outs: grass, a grasshopper, a frog, a snake, an eagle; also a deer and a tiger, a phytoplankton cluster, a small fish and a large fish",
+   "view": "Each in profile, same lighting",
+   "right": "Species found in India",
+   "avoid": "Animals eating each other"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "A man-made ecosystem",
+   "shows": "A green crop field with a farmer's scarecrow and birds",
+   "view": "Wide landscape",
+   "right": "Irrigation channel visible",
+   "avoid": "Pesticide brands"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "13.2.2",
+   "use": "Segregating waste",
+   "shows": "Green and blue household waste bins: peels and leaves in the green, plastic bottles and wrappers in the blue",
+   "view": "From slightly above",
+   "right": "Correct items in each bin",
+   "avoid": "Brand logos on the waste"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "13.2.2",
+   "use": "Composting",
+   "shows": "A backyard compost pit on day 1 (fresh peels and leaves) and after two months (dark crumbly compost)",
+   "view": "From above, two frames",
+   "right": "Finished compost dark brown and crumbly",
+   "avoid": "Plastic in the compost"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "13.2.2",
+   "use": "Non-biodegradable waste",
+   "shows": "Plastic waste choking a drain beside a road",
+   "view": "Eye level",
+   "right": "Realistic, not exaggerated",
+   "avoid": "People"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "13.2.1",
+   "use": "The ozone layer",
+   "shows": "The Earth from space with a thin glowing layer high in the atmosphere and the Sun's ultraviolet rays approaching",
+   "view": "Realistic render",
+   "right": "Thin layer in the upper atmosphere",
+   "avoid": "Labels"
+  },
+  {
+   "n": 8,
+   "kind": "OBJ",
+   "topic": "13.2.2",
+   "use": "Biodegradable choices",
+   "shows": "Separate cut-outs: a kulhad, a leaf plate (pattal), a jute bag; and a plastic cup, a plastic plate, a polythene bag",
+   "view": "From slightly above, same scale",
+   "right": "Real materials",
+   "avoid": "Brands"
+  }
+ ]
+}

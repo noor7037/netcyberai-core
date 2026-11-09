@@ -1,0 +1,261 @@
+{
+  "chapter_key": "u.c12.history.lehs1.ch02",
+  "class": 12,
+  "subject_id": "history",
+  "title": "Kings, Farmers and Towns",
+  "source": "https://ncert.nic.in/textbook/pdf/lehs1ps.pdf",
+  "topics": [
+    { "n": "1", "title": "Prinsep and Piyadassi: how the inscriptions were read", "labs": [], "why_no_lab": "The story of decipherment is best read as a story of discovery; a lab would only repeat letter names." },
+    { "n": "2", "title": "The earliest states: the sixteen mahajanapadas", "labs": ["c12-history-lehs1-ch02-mahajanapadas"], "why_no_lab": null },
+    { "n": "3", "title": "An early empire: the Mauryas and Ashoka", "labs": ["c12-history-lehs1-ch02-mauryas"], "why_no_lab": null },
+    { "n": "4", "title": "New notions of kingship", "labs": [], "why_no_lab": "Divine kingship is an argument about evidence, best taught by reading the chapter's sources side by side." },
+    { "n": "5", "title": "A changing countryside: production and rural elites", "labs": ["c12-history-lehs1-ch02-production"], "why_no_lab": null },
+    { "n": "6", "title": "Towns and trade: new cities, coins and kings", "labs": ["c12-history-lehs1-ch02-trade"], "why_no_lab": null },
+    { "n": "7", "title": "Back to basics: deciphering Brahmi and Kharosthi", "labs": [], "why_no_lab": "Letter shapes are learned best on the page; a lab would only repeat the alphabet." },
+    { "n": "8", "title": "The limitations of inscriptions", "labs": [], "why_no_lab": "A discussion of what inscriptions can and cannot tell us, taught through the chapter's own examples." }
+  ],
+  "labs": [
+    {
+      "id": "c12-history-lehs1-ch02-mahajanapadas",
+      "topic": "2",
+      "template": "map",
+      "title": { "en": "Find the early great kingdoms", "hi": "शुरुआती बड़े राज्य खोजो" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["rivers", "historic:mahajanapadas"],
+        "show": ["rivers"],
+        "task": "locate",
+        "places": ["rajagriha", "vaishali", "ujjayini"]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Around 600 BCE, sixteen mahajanapadas, or large states, existed. Where do you think the strongest one, Magadha, was?", "hi": "लगभग 600 ई.पू. में सोलह महाजनपद, यानी बड़े राज्य, मौजूद थे। तुम्हें लगता है सबसे शक्तिशाली मगध कहाँ रहा होगा?" },
+          "options": [
+            { "id": "east", "en": "In the Ganga valley of the east, around Bihar", "hi": "पूर्व में गंगा घाटी में, बिहार के आसपास" },
+            { "id": "west", "en": "On the far western desert", "hi": "सुदूर पश्चिमी रेगिस्तान में" },
+            { "id": "south", "en": "On the southern tip of the peninsula", "hi": "प्रायद्वीप के दक्षिणी सिरे पर" }
+          ],
+          "answer": "east"
+        },
+        { "kind": "do", "target": "layer:historic:mahajanapadas", "expect": "layer:historic:mahajanapadas", "say": { "en": "Tap the layer 'Mahajanapadas' to switch on the old kingdoms.", "hi": "'महाजनपद' परत टैप करके पुराने राज्य चालू करो।" } },
+        { "kind": "do", "target": "answer", "expect": "located:rajagriha", "say": { "en": "Find Rajagriha, the first capital of Magadha. Tap the map and press Check.", "hi": "मगध की पहली राजधानी राजगृह खोजो। मानचित्र पर टैप करो और जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "located:vaishali", "say": { "en": "Now find Vaishali, where an assembly of people ruled the Vajji sangha.", "hi": "अब वैशाली खोजो, जहाँ वज्जि संघ की सभा शासन करती थी।" } },
+        { "kind": "do", "target": "answer", "expect": "located:ujjayini", "say": { "en": "Last, find Ujjayini, the capital of Avanti in the west.", "hi": "आख़िर में पश्चिम में अवंति की राजधानी उज्जयिनी खोजो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The sixteen mahajanapadas were spread across the north. Magadha grew strong because of iron, fertile soil and rivers that linked trade. Vaishali had an assembly of many people instead of a single king, which shows that not every state was a monarchy.", "hi": "सोलह महाजनपद उत्तर भारत में फैले थे। मगध लोहे, उपजाऊ मिट्टी और व्यापार की नदियों के कारण ताक़तवर बना। वैशाली में एक राजा की जगह बहुत लोगों की सभा शासन करती थी, यानी हर राज्य राजतंत्र नहीं था।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which kind of state was Vaishali, as the lab shows?", "hi": "लैब के अनुसार वैशाली किस तरह का राज्य था?" },
+              "options": [
+                { "en": "A state ruled by an assembly of people", "hi": "लोगों की सभा द्वारा शासित राज्य" },
+                { "en": "A desert kingdom with no capital", "hi": "बिना राजधानी वाला रेगिस्तानी राज्य" },
+                { "en": "A village with no rulers at all", "hi": "कोई शासक न होने वाला गाँव" }
+              ],
+              "answer": 0,
+              "why": { "en": "Vaishali was the centre of the Vajji sangha, where a group of people took decisions together.", "hi": "वैशाली वज्जि संघ का केंद्र था, जहाँ लोगों का समूह मिलकर फ़ैसले लेता था।" },
+              "wrong": [
+                "",
+                { "en": "Vaishali was a capital in the Ganga plain, not a desert kingdom.", "hi": "वैशाली गंगा मैदान की राजधानी थी, रेगिस्तानी राज्य नहीं।" },
+                { "en": "Vaishali had a strong government; it was a state, not a village without rulers.", "hi": "वैशाली में मज़बूत शासन था; वह राज्य था, बिना शासक वाला गाँव नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Switch on the rivers layer again. Which mahajanapada sat by a major river, and why would that help it?", "hi": "नदियों वाली परत फिर से चालू करो। कौन-सा महाजनपद किसी बड़ी नदी के किनारे था, और इससे उसे क्या फ़ायदा होता?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch02-mauryas",
+      "topic": "3",
+      "template": "timeline",
+      "title": { "en": "The Mauryas in order", "hi": "मौर्य काल का क्रम" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [-400, 100],
+        "task": "order",
+        "title": { "en": "From Chandragupta to the end of the Mauryas", "hi": "चंद्रगुप्त से मौर्य वंश के अंत तक" },
+        "events": [
+          { "id": "founded", "year": -321, "label": { "en": "Chandragupta Maurya founds the empire", "hi": "चंद्रगुप्त मौर्य साम्राज्य की स्थापना करते हैं" } },
+          { "id": "kalinga", "year": -261, "label": { "en": "Ashoka fights the war in Kalinga", "hi": "अशोक कलिंग का युद्ध लड़ते हैं" } },
+          { "id": "edicts", "year": -250, "label": { "en": "Ashoka's edicts are carved on rocks and pillars", "hi": "अशोक के शिलालेख चट्टानों और स्तंभों पर उकेरे जाते हैं" } },
+          { "id": "ends", "year": -185, "label": { "en": "The Mauryan empire breaks up", "hi": "मौर्य साम्राज्य बिखर जाता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Four events are on the strip. Which one happened first?", "hi": "पट्टी पर चार घटनाएँ हैं। इनमें से कौन-सी सबसे पहले हुई?" },
+          "options": [
+            { "id": "edicts", "en": "Ashoka's edicts", "hi": "अशोक के शिलालेख" },
+            { "id": "founded", "en": "The founding of the empire", "hi": "साम्राज्य की स्थापना" },
+            { "id": "ends", "en": "The break-up of the empire", "hi": "साम्राज्य का बिखरना" }
+          ],
+          "answer": "founded"
+        },
+        { "kind": "do", "target": "event:founded", "expect": "placed:founded", "say": { "en": "Tap the founding of the empire first.", "hi": "सबसे पहले साम्राज्य की स्थापना वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:kalinga", "expect": "placed:kalinga", "say": { "en": "Next, tap the war in Kalinga.", "hi": "अब कलिंग युद्ध वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:edicts", "expect": "placed:edicts", "say": { "en": "Now tap the carving of the edicts.", "hi": "अब शिलालेख उकेरने वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:ends", "expect": "placed:ends", "say": { "en": "Last, tap the break-up of the empire, then press Check.", "hi": "आख़िर में साम्राज्य के बिखरने वाली घटना टैप करो, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to see if your order is right.", "hi": "जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Mauryan empire began with Chandragupta, grew under Ashoka, and broke up about a century and a half after its founding. Ashoka's war in Kalinga changed his policy, and his edicts show his ideas about conduct and welfare, carved in several languages and scripts.", "hi": "मौर्य साम्राज्य चंद्रगुप्त से शुरू हुआ, अशोक के समय में बढ़ा, और स्थापना के लगभग डेढ़ सौ साल बाद बिखर गया। अशोक के कलिंग युद्ध ने उनकी नीति बदली, और उनके शिलालेख आचरण और कल्याण के उनके विचार बताते हैं, जो कई भाषाओं और लिपियों में उकेरे गए।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which event came after the Kalinga war?", "hi": "कलिंग युद्ध के बाद कौन-सी घटना हुई?" },
+              "options": [
+                { "en": "The founding of the empire", "hi": "साम्राज्य की स्थापना" },
+                { "en": "Ashoka's edicts carved on stone", "hi": "पत्थर पर उकेरे गए अशोक के शिलालेख" },
+                { "en": "The start of the Gupta age", "hi": "गुप्त काल की शुरुआत" }
+              ],
+              "answer": 1,
+              "why": { "en": "The edicts were carved after the Kalinga war, in the years that followed, and they reflect Ashoka's changed ideas.", "hi": "शिलालेख कलिंग युद्ध के बाद के वर्षों में उकेरे गए, और वे अशोक के बदले विचार दिखाते हैं।" },
+              "wrong": [
+                { "en": "The empire was founded long before the Kalinga war, by Chandragupta.", "hi": "साम्राज्य कलिंग युद्ध से बहुत पहले चंद्रगुप्त ने स्थापित किया था।" },
+                "",
+                { "en": "The Gupta age came centuries later, long after the Mauryas broke up.", "hi": "गुप्त काल कई सदियों बाद आया, मौर्यों के बिखरने के बहुत बाद।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Zoom in on the strip. How many years lie between the founding and the break-up?", "hi": "पट्टी पर ज़ूम करो। स्थापना और बिखरने के बीच कितने साल हैं?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch02-production",
+      "topic": "5",
+      "template": "sort",
+      "title": { "en": "What helped farmers grow more?", "hi": "किसानों को ज़्यादा उगाने में क्या मदद करता था?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "water", "label": { "en": "Better tools and water", "hi": "बेहतर औज़ार और पानी" } },
+          { "id": "grants", "label": { "en": "Land grants to people and temples", "hi": "लोगों और मंदिरों को भूमि-अनुदान" } }
+        ],
+        "cards": [
+          { "id": "ploughshare", "text": { "en": "Iron ploughshares that cut hard soil", "hi": "कड़ी मिट्टी को काटने वाले लोहे के हल-फाल" }, "bin": "water", "why": { "en": "Iron tools let farmers break hard soil, so they could till more land and grow more food.", "hi": "लोहे के औज़ारों से किसान कड़ी मिट्टी तोड़ पाते थे, इसलिए ज़्यादा ज़मीन जोतकर ज़्यादा अन्न उगा सकते थे।" } },
+          { "id": "tank", "text": { "en": "Tanks that store rainwater for the fields", "hi": "खेतों के लिए बारिश का पानी रोकने वाले तालाब" }, "bin": "water", "why": { "en": "Tanks and wells gave water in dry months, which allowed farmers to grow crops in more places.", "hi": "तालाब और कुएँ सूखे महीनों में पानी देते थे, जिससे अधिक जगहों पर फ़सल उगाई जा सकती थी।" } },
+          { "id": "grant", "text": { "en": "Village land given to a brahmana", "hi": "किसी ब्राह्मण को दिया गया गाँव का भूमि-अनुदान" }, "bin": "grants", "why": { "en": "Kings and chiefs gave land grants to brahmanas and to temples, so the land and its revenue went to them.", "hi": "राजा और सरदार ब्राह्मणों और मंदिरों को भूमि-अनुदान देते थे, जिससे ज़मीन और उसका लगान उन्हें मिलता था।" } },
+          { "id": "temple", "text": { "en": "Fields given to a temple to support its work", "hi": "मंदिर के कामकाज के लिए दिए गए खेत" }, "bin": "grants", "why": { "en": "Temples often received land, and the people who farmed it paid their dues to the temple.", "hi": "मंदिरों को अक्सर ज़मीन मिलती थी, और उस पर खेती करने वाले लोग मंदिर को हिस्सा देते थे।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A farmer can grow more in two ways: better tools and water, or more land. Which do you think changed the countryside most?", "hi": "किसान दो तरीकों से ज़्यादा उगा सकता है: बेहतर औज़ार और पानी, या ज़्यादा ज़मीन। तुम्हें लगता है गाँवों को किसने सबसे ज़्यादा बदला?" },
+          "options": [
+            { "id": "tools", "en": "Better tools and water", "hi": "बेहतर औज़ार और पानी" },
+            { "id": "rain", "en": "Only good luck with rain", "hi": "केवल बारिश की अच्छी किस्मत" }
+          ],
+          "answer": "tools"
+        },
+        { "kind": "do", "target": "bin:water", "expect": "correct:ploughshare", "say": { "en": "Pick the iron ploughshare card, then tap 'Better tools and water'.", "hi": "लोहे के हल-फाल वाला कार्ड उठाओ, फिर 'बेहतर औज़ार और पानी' टैप करो।" } },
+        { "kind": "do", "target": "bin:grants", "expect": "correct:grant", "say": { "en": "Pick the brahmana land card and tap 'Land grants'.", "hi": "ब्राह्मण को दी गई ज़मीन वाला कार्ड उठाकर 'भूमि-अनुदान' टैप करो।" } },
+        { "kind": "do", "target": "bin:water", "expect": "correct:tank", "say": { "en": "Now sort the tank card into 'Better tools and water'.", "hi": "अब तालाब वाले कार्ड को 'बेहतर औज़ार और पानी' में रखो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Two things changed the countryside. Iron tools and tanks helped farmers grow more. Kings and chiefs also gave land to brahmanas and temples, so some people gained revenue and rights over the land, and a new rural elite began to form.", "hi": "गाँवों को दो बातों ने बदला। लोहे के औज़ार और तालाब किसानों को ज़्यादा उगाने में मदद करते थे। राजा और सरदार ब्राह्मणों और मंदिरों को भी ज़मीन देते थे, इसलिए कुछ लोगों को लगान और ज़मीन पर अधिकार मिले, और गाँवों में नया प्रभावशाली वर्ग बनने लगा।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Who received a land grant in the lab's examples?", "hi": "लैब के उदाहरणों में भूमि-अनुदान किसे मिला?" },
+              "options": [
+                { "en": "A brahmana, who was given village land", "hi": "एक ब्राह्मण, जिसे गाँव की ज़मीन मिली" },
+                { "en": "A farmer who bought iron tools", "hi": "लोहे के औज़ार खरीदने वाला किसान" },
+                { "en": "A merchant who sold cloth abroad", "hi": "विदेश में कपड़ा बेचने वाला व्यापारी" }
+              ],
+              "answer": 0,
+              "why": { "en": "Grants went to brahmanas and temples, so the village land and its revenue went to them.", "hi": "अनुदान ब्राह्मणों और मंदिरों को मिलते थे, इसलिए गाँव की ज़मीन और उसका लगान उन्हें मिलता था।" },
+              "wrong": [
+                "",
+                { "en": "A farmer buying an iron tool was a use of tools, not a land grant.", "hi": "लोहे का औज़ार खरीदना औज़ार का इस्तेमाल था, भूमि-अनुदान नहीं।" },
+                { "en": "A merchant selling cloth was trade, which is a different topic from land grants.", "hi": "कपड़ा बेचने वाला व्यापारी व्यापार था, भूमि-अनुदान नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Try the ploughshare card in the grants bin. Why does the reason shown matter?", "hi": "हल-फाल वाला कार्ड भूमि-अनुदान वाले खाने में रखकर देखो। दिखने वाला कारण क्यों मायने रखता है?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch02-trade",
+      "topic": "6",
+      "template": "sort",
+      "title": { "en": "Goods going out and coming in", "hi": "बाहर जाने और अंदर आने वाला सामान" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "out", "label": { "en": "Sent out from India", "hi": "भारत से बाहर भेजा गया" } },
+          { "id": "in", "label": { "en": "Brought into India", "hi": "भारत में लाया गया" } }
+        ],
+        "cards": [
+          { "id": "spice", "text": { "en": "Black pepper and spices", "hi": "काली मिर्च और मसाले" }, "bin": "out", "why": { "en": "Spices from south India were in demand in distant lands, and they travelled by sea and land routes.", "hi": "दक्षिण भारत के मसाले दूर के देशों में बहुत माँगे जाते थे, और वे समुद्र और ज़मीन के रास्तों से जाते थे।" } },
+          { "id": "cloth", "text": { "en": "Fine cotton cloth and textiles", "hi": "बढ़िया सूती कपड़ा और वस्त्र" }, "bin": "out", "why": { "en": "Indian cloth was valued abroad, so it was one of the goods that earned money for traders.", "hi": "भारतीय कपड़े की विदेश में बड़ी कीमत थी, इसलिए इससे व्यापारियों को कमाई होती थी।" } },
+          { "id": "horse", "text": { "en": "Horses brought from Central Asia", "hi": "मध्य एशिया से लाए गए घोड़े" }, "bin": "in", "why": { "en": "Horses were brought into the subcontinent from Central Asia and were important for armies.", "hi": "घोड़े मध्य एशिया से उपमहाद्वीप में लाए जाते थे और सेनाओं के लिए ज़रूरी थे।" } },
+          { "id": "coin", "text": { "en": "Gold coins from the Roman world", "hi": "रोमन दुनिया के सोने के सिक्के" }, "bin": "in", "why": { "en": "Roman gold coins have been found in India, which shows the goods that came in return for Indian exports.", "hi": "भारत में रोमन सोने के सिक्के मिले हैं, जो बताते हैं कि भारतीय माल के बदले क्या आता था।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Traders moved goods in both directions. Do you think a town gained only from the goods it sold?", "hi": "व्यापारी दोनों ओर माल ले जाते थे। तुम्हें लगता है कि नगर को केवल बेचे गए सामान से फ़ायदा होता था?" },
+          "options": [
+            { "id": "one", "en": "Yes, selling was all that mattered", "hi": "हाँ, केवल बेचना ही मायने रखता था" },
+            { "id": "two", "en": "No, goods also came in from distant lands", "hi": "नहीं, दूर के देशों से भी सामान आता था" }
+          ],
+          "answer": "two"
+        },
+        { "kind": "do", "target": "bin:out", "expect": "correct:spice", "say": { "en": "Pick the pepper and spices card, then tap 'Sent out from India'.", "hi": "काली मिर्च और मसालों वाला कार्ड उठाओ, फिर 'भारत से बाहर भेजा गया' टैप करो।" } },
+        { "kind": "do", "target": "bin:in", "expect": "correct:horse", "say": { "en": "Pick the horses card and tap 'Brought into India'.", "hi": "घोड़ों वाला कार्ड उठाकर 'भारत में लाया गया' टैप करो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Trade ran both ways. Spices and cloth left India for markets abroad, while horses and foreign coins came in. Coins found in many towns show how far the trade reached, and they also tell us which rulers issued them.", "hi": "व्यापार दोनों तरफ़ चलता था। मसाले और कपड़ा भारत से विदेशी बाज़ारों को जाते थे, जबकि घोड़े और विदेशी सिक्के भारत आते थे। कई नगरों में मिले सिक्के बताते हैं कि व्यापार कितनी दूर तक पहुँचा, और यह भी कि उन्हें किन शासकों ने जारी किया।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which item came into India in the lab's examples?", "hi": "लैब के उदाहरणों में कौन-सा सामान भारत में आया?" },
+              "options": [
+                { "en": "Black pepper", "hi": "काली मिर्च" },
+                { "en": "Fine cotton cloth", "hi": "बढ़िया सूती कपड़ा" },
+                { "en": "Horses from Central Asia", "hi": "मध्य एशिया के घोड़े" }
+              ],
+              "answer": 2,
+              "why": { "en": "Horses were brought into India from Central Asia, while pepper and cloth were sent out.", "hi": "घोड़े मध्य एशिया से भारत लाए जाते थे, जबकि काली मिर्च और कपड़ा बाहर भेजे जाते थे।" },
+              "wrong": [
+                { "en": "Pepper was grown in the south and sent to distant markets, so it went out.", "hi": "काली मिर्च दक्षिण में उगती थी और दूर के बाज़ारों में भेजी जाती थी, इसलिए वह बाहर गई।" },
+                { "en": "Indian cloth was valued abroad, so it was exported, not imported.", "hi": "भारतीय कपड़े की विदेश में कीमत थी, इसलिए वह निर्यात हुआ, आयात नहीं।" },
+                ""
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Put the gold coins card in the 'Sent out' bin and read why it is wrong. What does a coin tell a historian?", "hi": "सोने के सिक्के वाला कार्ड 'भेजा गया' वाले खाने में रखकर पढ़ो कि वह गलत क्यों है। सिक्का इतिहासकार को क्या बताता है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "2", "use": "Opening picture of the great kingdoms", "shows": "Old fort walls of the Rajgir hills in Bihar at sunrise, stone ramparts climbing a green slope", "view": "Wide 16:9 at eye level, soft morning light from the left, no people", "right": "Grey-brown stone walls, dry grass, green hill behind, true local colour", "avoid": "Tourist signs, modern railings, visitors, text boards" },
+    { "n": 2, "kind": "MAP", "topic": "3", "use": "The Mauryan empire as a base map for the timeline and map labs", "shows": "Plain relief map of the Indian subcontinent with mountains, rivers and the coast, no borders, no names", "view": "Top-down, 16:9, soft relief shading in muted greens and browns", "right": "Himalayas in the north, the Ganga plain, the Deccan plateau, the coast and rivers in true positions", "avoid": "State borders, city names, capital dots" },
+    { "n": 3, "kind": "SCN", "topic": "3", "use": "An inscribed rock face as the setting of Ashoka's edicts", "shows": "A rough stone surface on a hillside with faint incised lines, photographed with permission at a protected site, no visitors", "view": "Close, side-lit to bring out the carving, 4:3", "right": "Pale grey-brown sandstone with natural cracks, lines cut into the surface by hand", "avoid": "Modern graffiti, signboards, people touching the stone" },
+    { "n": 4, "kind": "OBJ", "topic": "5", "use": "Iron tools and water, the countryside changes", "shows": "A rusty iron ploughshare and a small clay pot of water on a cloth, two separate objects", "view": "Cut-out on transparent background, lit from top-left, object fills about 80 percent", "right": "Iron with an old reddish-brown finish and a worn cutting edge, clay pot in natural earth colour", "avoid": "Modern tractor parts, plastic containers, brand marks" },
+    { "n": 5, "kind": "CUT", "topic": "5", "use": "Inside view of a village tank", "shows": "Cross-section of a low earth embankment holding back water, with a sluice gate and the stored water below the ground line", "view": "Side section, clean neutral background, 4:3, soft light", "right": "Layers of earth and clay visible, water clear and still, the embankment sloping gently", "avoid": "Plants that hide the structure, people, modern concrete pipes" },
+    { "n": 6, "kind": "OBJ", "topic": "6", "use": "Coins and goods that show long-distance trade", "shows": "Replica coins: a silver punch-marked coin and a gold coin with a ruler's figure, each shown front and back", "view": "Top-down, cut-out on transparent background, each coin fully in frame", "right": "Silver dull and uneven, gold bright and even, the coins in true proportion", "avoid": "Modern currency, readable inscriptions, brand marks" }
+  ]
+}

@@ -1,0 +1,466 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.ch16",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Janmdivas Par Ped Lagao (जन्मदिवस पर पेड़ लगाओ)",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "16.1",
+   "title": "Poem: planting a tree on a birthday",
+   "labs": [
+    "c01-hindi-ahsr1-ch16-plant-tree"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "16.2",
+   "title": "What trees give us",
+   "labs": [
+    "c01-hindi-ahsr1-ch16-tree-gives"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "16.3",
+   "title": "Finding birthdays of grandparents and friends",
+   "labs": [],
+   "why_no_lab": "Asking family members and writing their birthdays is a home activity."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-ch16-plant-tree",
+   "topic": "16.1",
+   "template": "sequence",
+   "title": {
+    "en": "Plant a tree on your birthday",
+    "hi": "जन्मदिन पर पेड़ लगाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "dig",
+      "text": {
+       "en": "Dig a small pit in the soil",
+       "hi": "मिट्टी में छोटा-सा गड्ढा खोदो"
+      }
+     },
+     {
+      "id": "plant",
+      "text": {
+       "en": "Put the small plant in the pit",
+       "hi": "छोटा पौधा गड्ढे में रखो"
+      }
+     },
+     {
+      "id": "soil",
+      "text": {
+       "en": "Fill soil around the plant and press gently",
+       "hi": "पौधे के चारों ओर मिट्टी भरो और हल्के से दबाओ"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Give it water",
+       "hi": "उसे पानी दो"
+      }
+     },
+     {
+      "id": "care",
+      "text": {
+       "en": "Look after it every day as it grows",
+       "hi": "हर दिन उसकी देखभाल करो, वह बड़ा होगा"
+      }
+     },
+     {
+      "id": "fruit",
+      "text": {
+       "en": "One day it gives flowers, fruits and shade",
+       "hi": "एक दिन उसमें फूल, फल और छाया मिलेंगे"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:dig",
+     "expect": "placed:dig",
+     "say": {
+      "en": "Tap the card that happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the LAST step?",
+      "hi": "आख़िरी चरण कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "fruit",
+       "en": "One day it gives flowers, fruits and shade",
+       "hi": "एक दिन उसमें फूल, फल और छाया मिलेंगे"
+      },
+      {
+       "id": "dig",
+       "en": "Dig a small pit in the soil",
+       "hi": "मिट्टी में छोटा-सा गड्ढा खोदो"
+      },
+      {
+       "id": "water",
+       "en": "Give it water",
+       "hi": "उसे पानी दो"
+      }
+     ],
+     "answer": "fruit"
+    },
+    {
+     "kind": "do",
+     "target": "item:fruit",
+     "expect": "placed:fruit",
+     "say": {
+      "en": "Now put the LAST card in the last place.",
+      "hi": "अब सबसे आख़िरी कार्ड को आख़िरी स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To grow a tree, we dig, plant, cover, water and care. The tree grows slowly, and one day we get flowers, fruits and cool shade. A tree planted on a birthday is a gift to the whole world.",
+      "hi": "पेड़ उगाने के लिए हम खोदते, लगाते, मिट्टी भरते, पानी देते और देखभाल करते हैं। पेड़ धीरे-धीरे बड़ा होता है और एक दिन हमें फूल, फल और ठंडी छाया मिलती है। जन्मदिन पर लगाया पेड़ सारी दुनिया के लिए उपहार है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What should we do right after putting the plant in the pit?",
+        "hi": "पौधा गड्ढे में रखने के बाद तुरंत क्या करना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Fill soil around it",
+         "hi": "उसके चारों ओर मिट्टी भरनी चाहिए"
+        },
+        {
+         "en": "Dig another pit",
+         "hi": "एक और गड्ढा खोदना चाहिए"
+        },
+        {
+         "en": "Pull the plant out",
+         "hi": "पौधा बाहर निकालना चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Soil holds the plant steady so it can grow.",
+        "hi": "मिट्टी पौधे को थामे रखती है ताकि वह बढ़ सके।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "We already have the pit; the plant needs soil around it.",
+         "hi": "गड्ढा तो बन चुका है; पौधे के चारों ओर मिट्टी चाहिए।"
+        },
+        {
+         "en": "The plant must stay in the soil to grow.",
+         "hi": "बढ़ने के लिए पौधे को मिट्टी में ही रहना चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "On your next birthday, which tree will you plant? Where will you plant it?",
+      "hi": "अपने अगले जन्मदिन पर तुम कौन-सा पेड़ लगाओगे? कहाँ लगाओगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch16-tree-gives",
+   "topic": "16.2",
+   "template": "sort",
+   "title": {
+    "en": "What do trees give us?",
+    "hi": "पेड़ हमें क्या देते हैं?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Trees give this",
+       "hi": "पेड़ से मिलता है"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Trees do not give this",
+       "hi": "पेड़ से नहीं मिलता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "phal",
+      "text": {
+       "en": "Phal (fruit)",
+       "hi": "फल"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Trees give fruits like mango and guava.",
+       "hi": "पेड़ों से आम, अमरूद जैसे फल मिलते हैं।"
+      }
+     },
+     {
+      "id": "phool",
+      "text": {
+       "en": "Phool (flower)",
+       "hi": "फूल"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Many trees have beautiful flowers.",
+       "hi": "कई पेड़ों पर सुंदर फूल खिलते हैं।"
+      }
+     },
+     {
+      "id": "chhaya",
+      "text": {
+       "en": "Chhaya (shade)",
+       "hi": "छाया"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "A big tree gives cool shade.",
+       "hi": "बड़ा पेड़ ठंडी छाया देता है।"
+      }
+     },
+     {
+      "id": "lakdi",
+      "text": {
+       "en": "Lakdi (wood)",
+       "hi": "लकड़ी"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Wood for tables and doors comes from trees.",
+       "hi": "मेज़ और दरवाज़ों की लकड़ी पेड़ों से मिलती है।"
+      }
+     },
+     {
+      "id": "plastic",
+      "text": {
+       "en": "Plastic bag",
+       "hi": "प्लास्टिक की थैली"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Plastic is made in factories, not by trees.",
+       "hi": "प्लास्टिक कारख़ानों में बनता है, पेड़ से नहीं।"
+      }
+     },
+     {
+      "id": "loha",
+      "text": {
+       "en": "Loha (iron)",
+       "hi": "लोहा"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Iron comes from the ground.",
+       "hi": "लोहा धरती के भीतर से मिलता है।"
+      }
+     },
+     {
+      "id": "kaanch",
+      "text": {
+       "en": "Kaanch (glass)",
+       "hi": "काँच"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Glass is made from sand in factories.",
+       "hi": "काँच कारख़ानों में रेत से बनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:phal",
+     "expect": "placed:phal",
+     "say": {
+      "en": "Tap a card, then tap the group where it belongs.",
+      "hi": "कोई कार्ड छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these does a tree give?",
+      "hi": "इनमें से पेड़ क्या देता है?"
+     },
+     "options": [
+      {
+       "id": "shade",
+       "en": "Shade",
+       "hi": "छाया"
+      },
+      {
+       "id": "glass",
+       "en": "Glass",
+       "hi": "काँच"
+      },
+      {
+       "id": "iron",
+       "en": "Iron",
+       "hi": "लोहा"
+      }
+     ],
+     "answer": "shade"
+    },
+    {
+     "kind": "do",
+     "target": "card:kaanch",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards until every one is in a group.",
+      "hi": "सारे कार्ड तब तक छाँटो जब तक हर कार्ड किसी समूह में न चला जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Trees give us fruits, flowers, shade and wood. They also clean the air. Plastic, iron and glass are made from other materials, not by trees.",
+      "hi": "पेड़ हमें फल, फूल, छाया और लकड़ी देते हैं। वे हवा को भी साफ़ करते हैं। प्लास्टिक, लोहा और काँच दूसरी चीज़ों से बनते हैं, पेड़ से नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which thing does NOT come from a tree?",
+        "hi": "कौन-सी चीज़ पेड़ से नहीं मिलती?"
+       },
+       "options": [
+        {
+         "en": "फल",
+         "hi": "फल"
+        },
+        {
+         "en": "काँच",
+         "hi": "काँच"
+        },
+        {
+         "en": "लकड़ी",
+         "hi": "लकड़ी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Glass is made from sand, not from a tree.",
+        "hi": "काँच रेत से बनता है, पेड़ से नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "Fruit grows on trees.",
+         "hi": "फल पेड़ों पर लगते हैं।"
+        },
+        "",
+        {
+         "en": "Wood comes from trees.",
+         "hi": "लकड़ी पेड़ों से मिलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Count how many trees you can see from your window. Which gives shade?",
+      "hi": "अपनी खिड़की से कितने पेड़ दिखते हैं, गिनो। कौन-सा छाया देता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "16.1",
+   "use": "Opening picture",
+   "shows": "A family planting a sapling in a courtyard on a birthday, a child watering it",
+   "view": "Eye level, morning",
+   "right": "Small sapling, spade, watering can; no faces",
+   "avoid": "Faces of children",
+   "n": 1
+  },
+  {
+   "kind": "SEQ",
+   "topic": "16.1",
+   "use": "Planting steps",
+   "shows": "Five frames: pit, sapling placed, soil filled, watering, grown sapling",
+   "view": "Same spot, top-front view",
+   "right": "Sapling in all frames; soil darker after watering",
+   "avoid": "Different spots",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "16.1",
+   "use": "Gardening tools",
+   "shows": "A small spade, watering can and a sapling in a bag",
+   "view": "Front view",
+   "right": "Green sapling with 4-6 leaves",
+   "avoid": "Brand names",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "16.2",
+   "use": "Tree gifts",
+   "shows": "Cut-outs: mango, guava, flower, wooden plank, a leafy shade tree",
+   "view": "Front view",
+   "right": "Mango ripe yellow-orange; plank with grain",
+   "avoid": "Plastic fruits",
+   "n": 4
+  },
+  {
+   "kind": "SCN",
+   "topic": "16.2",
+   "use": "Green world",
+   "shows": "A leafy neem tree with a bench under it and a child's silhouette resting",
+   "view": "Low angle",
+   "right": "Dappled shade under tree",
+   "avoid": "Faces",
+   "n": 5
+  }
+ ]
+}

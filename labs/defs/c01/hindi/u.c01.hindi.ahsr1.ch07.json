@@ -1,0 +1,446 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.ch07",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Wah, Mere Ghode! (वाह, मेरे घोड़े!)",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Poem: the horse's walk, beat and steps",
+   "labs": [
+    "c01-hindi-ahsr1-ch07-horse-rhythm"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "First sounds त, घ, ड in words",
+   "labs": [
+    "c01-hindi-ahsr1-ch07-first-sound"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-ch07-horse-rhythm",
+   "topic": "7.1",
+   "template": "reader",
+   "title": {
+    "en": "Horse walk rhythm",
+    "hi": "घोड़े की चाल की ताल"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "rhythm",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "The little horse",
+      "hi": "छोटा घोड़ा"
+     },
+     "lines": [
+      "टप-टप-टप घोड़ा चला।",
+      "ताल से ताल मिलाकर चला।",
+      "घास के मैदान तक पहुँचा।",
+      "पेट भरकर वापस आया।"
+     ]
+    },
+    "bpm": 90,
+    "question": {
+     "q": {
+      "en": "What sound do the horse's feet make in our poem?",
+      "hi": "हमारी कविता में घोड़े के पैरों की आवाज़ क्या है?"
+     },
+     "options": [
+      {
+       "en": "टप-टप",
+       "hi": "टप-टप"
+      },
+      {
+       "en": "भौं-भौं",
+       "hi": "भौं-भौं"
+      },
+      {
+       "en": "म्याऊँ",
+       "hi": "म्याऊँ"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "A horse's hooves go tap-tap-tap on the road.",
+      "hi": "घोड़े के खुर सड़क पर टप-टप-टप करते हैं।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line to hear it.",
+      "hi": "पहली पंक्ति छूकर सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A horse walks with equal steps. Will the beats be even?",
+      "hi": "घोड़ा बराबर क़दमों से चलता है। क्या ताल बराबर होगी?"
+     },
+     "options": [
+      {
+       "id": "even",
+       "en": "Yes, even beats",
+       "hi": "हाँ, बराबर ताल"
+      },
+      {
+       "id": "random",
+       "en": "No, random beats",
+       "hi": "नहीं, बेतरतीब ताल"
+      }
+     ],
+     "answer": "even"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play. Walk in your place with the beat.",
+      "hi": "चलाओ दबाओ। ताल के साथ अपनी जगह पर चलो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beat",
+     "expect": "beat-ok",
+     "say": {
+      "en": "Tap the drum like horse steps.",
+      "hi": "घोड़े के क़दमों की तरह ढोल बजाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A poem about a horse can be walked to. Equal beats feel like steady steps. Words like चला and मिलाकर end with the same sound, which makes a rhyme.",
+      "hi": "घोड़े की कविता पर हम चलकर ताल दे सकते हैं। बराबर ताल क़दमों जैसी लगती है। 'चला' और 'मिलाकर' जैसे शब्दों का अंत मिलता है, जिससे तुक बनती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do equal beats feel like?",
+        "hi": "बराबर ताल कैसी लगती है?"
+       },
+       "options": [
+        {
+         "en": "Steady steps",
+         "hi": "आराम से चलते क़दम"
+        },
+        {
+         "en": "A sudden jump",
+         "hi": "अचानक की छलाँग"
+        },
+        {
+         "en": "Silence",
+         "hi": "चुप्पी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal beats are like equal steps.",
+        "hi": "बराबर ताल बराबर क़दमों जैसी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A jump is not equal; steady beats come one after the other.",
+         "hi": "छलाँग बराबर नहीं होती; ताल एक के बाद एक बराबर आती है।"
+        },
+        {
+         "en": "A beat is a sound or a clap; silence has no beat.",
+         "hi": "ताल आवाज़ या ताली होती है; चुप्पी में ताल नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make the sound of another animal walking: a camel, a goat or an elephant. Is its beat slow or fast?",
+      "hi": "किसी और जानवर की चाल की आवाज़ बनाओ: ऊँट, बकरी या हाथी। उसकी ताल धीमी है या तेज़?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch07-first-sound",
+   "topic": "7.2",
+   "template": "sort",
+   "title": {
+    "en": "First sounds: त, घ, ड",
+    "hi": "पहली ध्वनि: त, घ, ड"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ta",
+      "label": {
+       "en": "Starts with त",
+       "hi": "त से शुरू"
+      }
+     },
+     {
+      "id": "gha",
+      "label": {
+       "en": "Starts with घ",
+       "hi": "घ से शुरू"
+      }
+     },
+     {
+      "id": "da",
+      "label": {
+       "en": "Starts with ड",
+       "hi": "ड से शुरू"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "taala",
+      "text": {
+       "en": "Taala (lock)",
+       "hi": "ताला"
+      },
+      "bin": "ta",
+      "why": {
+       "en": "ताला starts with the sound त.",
+       "hi": "ताला त की ध्वनि से शुरू होता है।"
+      }
+     },
+     {
+      "id": "tota",
+      "text": {
+       "en": "Tota (parrot)",
+       "hi": "तोता"
+      },
+      "bin": "ta",
+      "why": {
+       "en": "तोता starts with त.",
+       "hi": "तोता त से शुरू होता है।"
+      }
+     },
+     {
+      "id": "ghar",
+      "text": {
+       "en": "Ghar (house)",
+       "hi": "घर"
+      },
+      "bin": "gha",
+      "why": {
+       "en": "घर starts with घ.",
+       "hi": "घर घ से शुरू होता है।"
+      }
+     },
+     {
+      "id": "ghadi",
+      "text": {
+       "en": "Ghadi (clock)",
+       "hi": "घड़ी"
+      },
+      "bin": "gha",
+      "why": {
+       "en": "घड़ी starts with घ.",
+       "hi": "घड़ी घ से शुरू होती है।"
+      }
+     },
+     {
+      "id": "daal",
+      "text": {
+       "en": "Daal (branch)",
+       "hi": "डाल"
+      },
+      "bin": "da",
+      "why": {
+       "en": "डाल starts with ड.",
+       "hi": "डाल ड से शुरू होती है।"
+      }
+     },
+     {
+      "id": "damru",
+      "text": {
+       "en": "Damru (small drum)",
+       "hi": "डमरू"
+      },
+      "bin": "da",
+      "why": {
+       "en": "डमरू starts with ड.",
+       "hi": "डमरू ड से शुरू होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:taala",
+     "expect": "placed:taala",
+     "say": {
+      "en": "Tap a card, then tap the group where it belongs.",
+      "hi": "कोई कार्ड छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which letter does the word 'घोड़ा' (horse) start with?",
+      "hi": "'घोड़ा' शब्द किस अक्षर से शुरू होता है?"
+     },
+     "options": [
+      {
+       "id": "t",
+       "en": "त",
+       "hi": "त"
+      },
+      {
+       "id": "g",
+       "en": "घ",
+       "hi": "घ"
+      },
+      {
+       "id": "d",
+       "en": "ड",
+       "hi": "ड"
+      }
+     ],
+     "answer": "g"
+    },
+    {
+     "kind": "do",
+     "target": "card:damru",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards until every one is in a group.",
+      "hi": "सारे कार्ड तब तक छाँटो जब तक हर कार्ड किसी समूह में न चला जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every word begins with a first sound. Listen to it and find the letter. तोता and ताला begin with त, घर and घड़ी with घ, डाल and डमरू with ड.",
+      "hi": "हर शब्द की एक पहली ध्वनि होती है। उसे सुनो और अक्षर पहचानो। तोता और ताला त से, घर और घड़ी घ से, डाल और डमरू ड से शुरू होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word starts with ड?",
+        "hi": "कौन-सा शब्द ड से शुरू होता है?"
+       },
+       "options": [
+        {
+         "en": "डमरू",
+         "hi": "डमरू"
+        },
+        {
+         "en": "तोता",
+         "hi": "तोता"
+        },
+        {
+         "en": "घर",
+         "hi": "घर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "डमरू starts with ड.",
+        "hi": "डमरू ड से शुरू होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "तोता starts with the sound त.",
+         "hi": "तोता त की ध्वनि से शुरू होता है।"
+        },
+        {
+         "en": "घर starts with the sound घ.",
+         "hi": "घर घ की ध्वनि से शुरू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find three things in your room that start with त, घ or ड. Say the first sound loudly.",
+      "hi": "अपने कमरे में त, घ या ड से शुरू होने वाली तीन चीज़ें ढूँढो। पहली ध्वनि ज़ोर से बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Opening picture",
+   "shows": "A brown horse walking along a village road with a boy's silhouette leading it",
+   "view": "Low angle, golden hour",
+   "right": "Horse with realistic gait and four legs clearly seen",
+   "avoid": "Whip or harsh handling",
+   "n": 1
+  },
+  {
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Horse steps",
+   "shows": "Four frames of a horse's walk: left front, right front, left back, right back hoof lifted",
+   "view": "Side view, same road",
+   "right": "Hoof sequence is correct for a walk",
+   "avoid": "Blurred frames",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "7.2",
+   "use": "Sound word pictures",
+   "shows": "Cut-outs: lock, parrot, house, wall clock, tree branch, small damru drum",
+   "view": "Front or three-quarter view",
+   "right": "Real Indian objects; branch with leaves",
+   "avoid": "Brand names on the clock",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Chana dal",
+   "shows": "A small bowl of yellow chana dal",
+   "view": "Top view",
+   "right": "Bright yellow, loose grains",
+   "avoid": "Packaging",
+   "n": 4
+  },
+  {
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Stable scene",
+   "shows": "A horse stable with a hay bale, a bucket of water and a rope halter on a hook",
+   "view": "Eye level",
+   "right": "Hay golden, water clear",
+   "avoid": "Branded feed bags",
+   "n": 5
+  }
+ ]
+}

@@ -1,0 +1,477 @@
+{
+ "chapter_key": "u.c10.english.jeff1.x16",
+ "class": 10,
+ "subject_id": "english",
+ "title": "The Tale of Custard the Dragon",
+ "source": "https://ncert.nic.in/textbook/pdf/jeff107.pdf",
+ "topics": [
+  {
+   "n": "16.1",
+   "title": "The household of Belinda and the dragon Custard",
+   "labs": [
+    "c10-english-jeff1-x16-cast"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "16.2",
+   "title": "Bravery in words and bravery in action",
+   "labs": [
+    "c10-english-jeff1-x16-brave"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "16.3",
+   "title": "Rhyme and humour of the ballad",
+   "labs": [],
+   "why_no_lab": "The comic rhyme and rhythm are enjoyed by reading the poem aloud together."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-english-jeff1-x16-cast",
+   "topic": "16.1",
+   "template": "reader",
+   "title": {
+    "en": "Who is who in the little house?",
+    "hi": "छोटे घर में कौन क्या है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "The brave household and the dragon: a retelling",
+      "hi": "बहादुर घर और अजगर: पुनर्कथन"
+     },
+     "lines": [
+      "Belinda lived in a little house with a kitten called Ink, a dog called Mustard, and a dragon called Custard.",
+      "Belinda and Ink were very proud of how brave they were.",
+      "Mustard barked that he was as bold as a tiger.",
+      "Only Custard the dragon was afraid and cried for a nice safe cage.",
+      "When a pirate burst in, Belinda, Ink and Mustard all ran away to hide.",
+      "But Custard fought the pirate and swallowed him up, to everyone's surprise."
+     ]
+    },
+    "characters": [
+     {
+      "id": "belinda",
+      "name": "Belinda",
+      "traits": [
+       {
+        "en": "Loves to boast about her bravery",
+        "hi": "अपनी बहादुरी की डींग हाँकना पसंद करती है"
+       }
+      ]
+     },
+     {
+      "id": "ink",
+      "name": "Ink",
+      "traits": [
+       {
+        "en": "A small kitten, but proud of his courage",
+        "hi": "छोटा बिलौटा, पर अपने साहस पर इतराता है"
+       }
+      ]
+     },
+     {
+      "id": "mustard",
+      "name": "Mustard",
+      "traits": [
+       {
+        "en": "Barks loudly but hides when danger comes",
+        "hi": "ज़ोर से भौंकता है पर ख़तरे में छिप जाता है"
+       }
+      ]
+     },
+     {
+      "id": "custard",
+      "name": "Custard",
+      "traits": [
+       {
+        "en": "Seems cowardly, but turns out to be the real hero",
+        "hi": "डरपोक दिखता है, पर असली हीरो निकलता है"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who do you think will save the house from the pirate: the boastful ones or the dragon who is afraid?",
+      "hi": "तुम्हें क्या लगता है, समुद्री डाकू से घर को कौन बचाएगा: डींग हाँकने वाले या डरा हुआ अजगर?"
+     },
+     "options": [
+      {
+       "id": "dragon",
+       "en": "The dragon who is afraid",
+       "hi": "डरा हुआ अजगर"
+      },
+      {
+       "id": "boasters",
+       "en": "The boastful ones",
+       "hi": "डींग हाँकने वाले"
+      }
+     ],
+     "answer": "dragon"
+    },
+    {
+     "kind": "do",
+     "target": "character:custard",
+     "expect": "picked:custard",
+     "say": {
+      "en": "Tap the character who always cries for a safe cage.",
+      "hi": "उस पात्र पर टैप करो जो हमेशा सुरक्षित पिंजरे के लिए रोता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:mustard",
+     "expect": "picked:mustard",
+     "say": {
+      "en": "Now tap the one who barks that he is bold, but hides.",
+      "hi": "अब उस पर टैप करो जो भौंककर बहादुर बनता है, पर छिप जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:belinda",
+     "expect": "picked:belinda",
+     "say": {
+      "en": "Now tap the one who loves to boast.",
+      "hi": "अब उस पर टैप करो जिसे डींग हाँकना पसंद है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This funny poem turns our idea of bravery upside down. The loud, boasting characters run away when real danger comes. The quiet dragon who says he is afraid is the one who acts. Real courage is shown by what we do when danger arrives, not by what we say before it.",
+      "hi": "यह मज़ेदार कविता बहादुरी के हमारे विचार को उलट देती है। जो शोर मचाते और डींग हाँकते हैं, असली ख़तरा आते ही भाग जाते हैं। जो चुप अजगर कहता है कि वह डरता है, वही कुछ कर दिखाता है। असली साहस इससे पता चलता है कि ख़तरा आने पर हम क्या करते हैं, पहले क्या कहते हैं उससे नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who is the real hero of the poem?",
+        "hi": "कविता का असली हीरो कौन है?"
+       },
+       "options": [
+        {
+         "en": "Custard the dragon",
+         "hi": "अजगर कस्टर्ड"
+        },
+        {
+         "en": "Belinda",
+         "hi": "बेलिंडा"
+        },
+        {
+         "en": "Mustard the dog",
+         "hi": "कुत्ता मस्टर्ड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Custard acted and defeated the pirate, even though he often said he was afraid.",
+        "hi": "कस्टर्ड ने कार्रवाई की और डाकू को हरा दिया, भले ही वह अक्सर कहता था कि वह डरता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Belinda ran and hid when the pirate came.",
+         "hi": "डाकू आने पर बेलिंडा भागकर छिप गई।"
+        },
+        {
+         "en": "Mustard hid too, in spite of his barking.",
+         "hi": "भौंकने के बावजूद मस्टर्ड भी छिप गया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Do you know someone who is quiet but brave? Tell the class how they showed it.",
+      "hi": "क्या तुम किसी ऐसे को जानते हो जो चुप है पर बहादुर है? कक्षा को बताओ कि उसने कैसे दिखाया।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-english-jeff1-x16-brave",
+   "topic": "16.2",
+   "template": "sort",
+   "title": {
+    "en": "Brave in words or brave in action?",
+    "hi": "शब्दों में बहादुर या कर्म में?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "words",
+      "label": {
+       "en": "Brave only in words",
+       "hi": "केवल शब्दों में बहादुर"
+      }
+     },
+     {
+      "id": "action",
+      "label": {
+       "en": "Brave in action",
+       "hi": "कर्म में बहादुर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tiger",
+      "text": {
+       "en": "Mustard says he is as bold as a tiger",
+       "hi": "मस्टर्ड कहता है कि वह बाघ-सा निडर है"
+      },
+      "bin": "words",
+      "why": {
+       "en": "Saying he is bold is not the same as being bold.",
+       "hi": "निडर कहना निडर होना नहीं है।"
+      }
+     },
+     {
+      "id": "boast",
+      "text": {
+       "en": "Belinda boasts about her courage",
+       "hi": "बेलिंडा अपनी हिम्मत की डींग हाँकती है"
+      },
+      "bin": "words",
+      "why": {
+       "en": "She talks about being brave, but runs when the pirate comes.",
+       "hi": "वह बहादुरी की बात करती है, पर डाकू आने पर भाग जाती है।"
+      }
+     },
+     {
+      "id": "hide",
+      "text": {
+       "en": "Everyone runs and hides from the pirate",
+       "hi": "डाकू से सब भागकर छिप जाते हैं"
+      },
+      "bin": "words",
+      "why": {
+       "en": "Hiding is the opposite of acting bravely.",
+       "hi": "छिपना बहादुरी से काम करने का उल्टा है।"
+      }
+     },
+     {
+      "id": "fight",
+      "text": {
+       "en": "Custard fights the pirate",
+       "hi": "कस्टर्ड डाकू से लड़ता है"
+      },
+      "bin": "action",
+      "why": {
+       "en": "He faced the danger when it came.",
+       "hi": "ख़तरा आने पर उसने उसका सामना किया।"
+      }
+     },
+     {
+      "id": "swallow",
+      "text": {
+       "en": "Custard gobbles the pirate up",
+       "hi": "कस्टर्ड डाकू को निगल जाता है"
+      },
+      "bin": "action",
+      "why": {
+       "en": "He saved the house by what he did.",
+       "hi": "उसने जो किया, उससे घर बच गया।"
+      }
+     },
+     {
+      "id": "afraid",
+      "text": {
+       "en": "Custard acts even though he is afraid",
+       "hi": "कस्टर्ड डरकर भी कदम उठाता है"
+      },
+      "bin": "action",
+      "why": {
+       "en": "True courage is acting even when afraid.",
+       "hi": "सच्चा साहस डरकर भी कदम उठाना है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which kind of brave person is more useful in danger: one who talks or one who acts?",
+      "hi": "ख़तरे में कौन ज़्यादा काम का है: जो बातें करे या जो कुछ करे?"
+     },
+     "options": [
+      {
+       "id": "acts",
+       "en": "One who acts",
+       "hi": "जो कुछ करे"
+      },
+      {
+       "id": "talks",
+       "en": "One who talks",
+       "hi": "जो बातें करे"
+      }
+     ],
+     "answer": "acts"
+    },
+    {
+     "kind": "do",
+     "target": "card:tiger",
+     "expect": "correct:tiger",
+     "say": {
+      "en": "Tap the 'bold as a tiger' card and place it.",
+      "hi": "'बाघ-सा निडर' कार्ड पर टैप करके उसे रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:fight",
+     "expect": "correct:fight",
+     "say": {
+      "en": "Now place the card about fighting the pirate.",
+      "hi": "अब डाकू से लड़ने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Telling people you are brave is easy. Being brave means doing the right thing when it is hard, even when you are afraid. That is what Custard does. The poet has fun with our ideas about heroes: sometimes the one who says the least does the most.",
+      "hi": "लोगों को बताना कि तुम बहादुर हो आसान है। बहादुर होने का मतलब है कठिन समय में सही काम करना, डर के बावजूद। कस्टर्ड यही करता है। कवि हमारे नायकों के विचार से खेलता है: कभी-कभी जो सबसे कम बोलता है, वही सबसे ज़्यादा करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the poem teach about courage?",
+        "hi": "कविता साहस के बारे में क्या सिखाती है?"
+       },
+       "options": [
+        {
+         "en": "It is shown by what we do, not what we say",
+         "hi": "यह हमारे कर्म से दिखता है, बातों से नहीं"
+        },
+        {
+         "en": "Only loud people are brave",
+         "hi": "केवल शोर करने वाले बहादुर होते हैं"
+        },
+        {
+         "en": "Brave people are never afraid",
+         "hi": "बहादुर लोग कभी नहीं डरते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The talkers ran; the afraid dragon acted. So courage is in deeds.",
+        "hi": "बातें करने वाले भाग गए; डरे हुए अजगर ने काम किया। इसलिए साहस कर्म में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The loud ones in this poem were the ones who ran.",
+         "hi": "इस कविता में शोर करने वाले ही भागे।"
+        },
+        {
+         "en": "Custard was afraid and yet acted. Brave people may feel fear too.",
+         "hi": "कस्टर्ड डरा हुआ था फिर भी उसने किया। बहादुर भी डर महसूस कर सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a time you did something brave even though you were afraid. What helped?",
+      "hi": "कोई ऐसा समय सोचो जब तुमने डरकर भी कुछ बहादुरी का काम किया। किस बात ने मदद की?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "16.1",
+   "use": "The little house",
+   "shows": "A small white cottage with a red-tiled roof and a toy wagon outside",
+   "view": "Eye level, sunny",
+   "right": "Warm cottage garden",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "16.1",
+   "use": "Kitten",
+   "shows": "A small black kitten with green eyes",
+   "view": "Transparent, side",
+   "right": "Fluffy black coat",
+   "avoid": "Text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "16.1",
+   "use": "Dog",
+   "shows": "A yellow dog standing alert",
+   "view": "Transparent, side",
+   "right": "Golden coat",
+   "avoid": "Text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "16.1",
+   "use": "Dragon",
+   "shows": "A cute red dragon with a friendly face and small wings, toy-like",
+   "view": "Transparent, three-quarter",
+   "right": "Round red body, gentle eyes",
+   "avoid": "Frightening features"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "16.1",
+   "use": "Pirate hat and sword",
+   "shows": "A pirate's hat and toy cutlass",
+   "view": "Transparent",
+   "right": "Black hat, toy sword",
+   "avoid": "Real weapons"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "16.1",
+   "use": "The fight",
+   "shows": "Three frames: the dragon trembling, the pirate bursting in, the dragon puffing smoke",
+   "view": "Same camera, toy scene",
+   "right": "Clear sequence",
+   "avoid": "Violence, text"
+  }
+ ]
+}

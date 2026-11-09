@@ -1,0 +1,901 @@
+{
+ "chapter_key": "u.c10.sanskrit.jsab1.ch09",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "अव्ययानि",
+ "source": "https://ncert.nic.in/textbook/pdf/jsab1ps.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "What an avyaya is",
+   "labs": [
+    "c10-sanskrit-jsab1-ch09-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Common avyayas and their meanings",
+   "labs": [
+    "c10-sanskrit-jsab1-ch09-meanings"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Using avyayas in sentences",
+   "labs": [
+    "c10-sanskrit-jsab1-ch09-sentences"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jsab1-ch09-sort",
+   "topic": "9.1",
+   "template": "sort",
+   "title": {
+    "en": "Does it change or not?",
+    "hi": "बदलता है या नहीं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "av",
+      "label": {
+       "en": "Avyaya (never changes)",
+       "hi": "अव्यय (कभी नहीं बदलता)"
+      }
+     },
+     {
+      "id": "ch",
+      "label": {
+       "en": "Changing word",
+       "hi": "बदलने वाला शब्द"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sada",
+      "text": {
+       "en": "सदा",
+       "hi": "सदा"
+      },
+      "bin": "av",
+      "why": {
+       "en": "Always: the same in every sentence.",
+       "hi": "हमेशा: हर वाक्य में एक-सा।"
+      }
+     },
+     {
+      "id": "atra",
+      "text": {
+       "en": "अत्र",
+       "hi": "अत्र"
+      },
+      "bin": "av",
+      "why": {
+       "en": "Here: it does not change for gender or number.",
+       "hi": "यहाँ: लिंग या वचन से नहीं बदलता।"
+      }
+     },
+     {
+      "id": "cha",
+      "text": {
+       "en": "च",
+       "hi": "च"
+      },
+      "bin": "av",
+      "why": {
+       "en": "And: never changes.",
+       "hi": "और: कभी नहीं बदलता।"
+      }
+     },
+     {
+      "id": "api",
+      "text": {
+       "en": "अपि",
+       "hi": "अपि"
+      },
+      "bin": "av",
+      "why": {
+       "en": "Also: बालः अपि and बालिका अपि use the same अपि.",
+       "hi": "भी: बालः अपि और बालिका अपि में एक ही अपि।"
+      }
+     },
+     {
+      "id": "na",
+      "text": {
+       "en": "न",
+       "hi": "न"
+      },
+      "bin": "av",
+      "why": {
+       "en": "Not: the same everywhere.",
+       "hi": "नहीं: हर जगह एक-सा।"
+      }
+     },
+     {
+      "id": "yada",
+      "text": {
+       "en": "यदा",
+       "hi": "यदा"
+      },
+      "bin": "av",
+      "why": {
+       "en": "When: the same even for plural doers.",
+       "hi": "जब: बहुत कर्ताओं के साथ भी एक-सा।"
+      }
+     },
+     {
+      "id": "tada",
+      "text": {
+       "en": "तदा",
+       "hi": "तदा"
+      },
+      "bin": "av",
+      "why": {
+       "en": "Then: never changes.",
+       "hi": "तब: कभी नहीं बदलता।"
+      }
+     },
+     {
+      "id": "kutra",
+      "text": {
+       "en": "कुत्र",
+       "hi": "कुत्र"
+      },
+      "bin": "av",
+      "why": {
+       "en": "Where: never changes.",
+       "hi": "कहाँ: कभी नहीं बदलता।"
+      }
+     },
+     {
+      "id": "balakah",
+      "text": {
+       "en": "बालकः",
+       "hi": "बालकः"
+      },
+      "bin": "ch",
+      "why": {
+       "en": "बालकः becomes बालकौ and बालकाः: it changes with number.",
+       "hi": "बालकः से बालकौ और बालकाः बनता है: वचन से बदलता है।"
+      }
+     },
+     {
+      "id": "phalani",
+      "text": {
+       "en": "फलानि",
+       "hi": "फलानि"
+      },
+      "bin": "ch",
+      "why": {
+       "en": "फलम् becomes फलानि, फलेन and so on: it changes with number and case.",
+       "hi": "फलम् से फलानि, फलेन आदि बनते हैं: वचन और विभक्ति से बदलता है।"
+      }
+     },
+     {
+      "id": "pathati",
+      "text": {
+       "en": "पठति",
+       "hi": "पठति"
+      },
+      "bin": "ch",
+      "why": {
+       "en": "पठति becomes पठतः and पठन्ति: a verb changes with its doer.",
+       "hi": "पठति से पठतः और पठन्ति बनते हैं: क्रिया कर्ता के अनुसार बदलती है।"
+      }
+     },
+     {
+      "id": "grihe",
+      "text": {
+       "en": "गृहे",
+       "hi": "गृहे"
+      },
+      "bin": "ch",
+      "why": {
+       "en": "गृहम् changes to गृहे, गृहात् and so on with the case.",
+       "hi": "गृहम् विभक्ति के साथ गृहे, गृहात् आदि बनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:sada",
+     "expect": "placed:sada",
+     "say": {
+      "en": "Tap सदा and choose its group.",
+      "hi": "सदा छुओ और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "बालः अपि धावति. बालिका अपि धावति. Does अपि change when the doer changes?",
+      "hi": "बालः अपि धावति। बालिका अपि धावति। कर्ता बदलने पर क्या अपि बदलता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, अपि stays the same",
+       "hi": "नहीं, अपि वैसा ही रहता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, to अपिका",
+       "hi": "हाँ, अपिका हो जाता है"
+      },
+      {
+       "id": "some",
+       "en": "Only in the plural",
+       "hi": "केवल बहुवचन में"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all twelve words, then press Check.",
+      "hi": "सभी बारह शब्द रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An avyaya (अव्यय, 'that which does not change') is a word whose form is the same in every gender, number and case. अपि, च, सदा, अत्र, यदा, तदा, न, कुत्र are all avyayas. Nouns change with number and case (बालकः, बालकौ, बालकाः), and verbs change with the doer (पठति, पठतः, पठन्ति). Avyayas help us join sentences, give time and place, and say yes or no.",
+      "hi": "अव्यय वह शब्द है जिसका रूप हर लिंग, वचन और विभक्ति में एक-सा रहता है। अपि, च, सदा, अत्र, यदा, तदा, न, कुत्र सब अव्यय हैं। संज्ञाएँ वचन और विभक्ति के साथ बदलती हैं (बालकः, बालकौ, बालकाः), और क्रियाएँ कर्ता के साथ (पठति, पठतः, पठन्ति)। अव्यय वाक्यों को जोड़ने, समय और स्थान बताने तथा हाँ-ना कहने में काम आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is NOT an avyaya?",
+        "hi": "इनमें अव्यय कौन नहीं है?"
+       },
+       "options": [
+        {
+         "en": "बालकः",
+         "hi": "बालकः"
+        },
+        {
+         "en": "अत्र",
+         "hi": "अत्र"
+        },
+        {
+         "en": "तदा",
+         "hi": "तदा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "बालकः changes to बालकौ and बालकाः.",
+        "hi": "बालकः बदलकर बालकौ और बालकाः बन जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "अत्र means here and never changes.",
+         "hi": "अत्र का अर्थ यहाँ है और वह कभी नहीं बदलता।"
+        },
+        {
+         "en": "तदा means then and never changes.",
+         "hi": "तदा का अर्थ तब है और वह कभी नहीं बदलता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is 'पठति' not an avyaya?",
+        "hi": "'पठति' अव्यय क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "It changes with the doer: पठतः, पठन्ति",
+         "hi": "वह कर्ता के साथ बदलता है: पठतः, पठन्ति"
+        },
+        {
+         "en": "It is a noun",
+         "hi": "वह संज्ञा है"
+        },
+        {
+         "en": "It has three letters",
+         "hi": "उसमें तीन अक्षर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A verb must match its doer, so its form changes.",
+        "hi": "क्रिया को कर्ता से मेल खाना होता है, इसलिए रूप बदलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is a verb, not a noun.",
+         "hi": "वह क्रिया है, संज्ञा नहीं।"
+        },
+        {
+         "en": "The number of letters has nothing to do with it.",
+         "hi": "अक्षरों की संख्या का इससे कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take any Sanskrit sentence you know and underline the avyayas.",
+      "hi": "कोई भी संस्कृत वाक्य लो और उसके अव्यय रेखांकित करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch09-meanings",
+   "topic": "9.2",
+   "template": "match",
+   "title": {
+    "en": "What the avyayas mean",
+    "hi": "अव्ययों के अर्थ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "atra",
+      "left": {
+       "en": "अत्र",
+       "hi": "अत्र"
+      },
+      "right": {
+       "en": "here",
+       "hi": "यहाँ"
+      },
+      "why": {
+       "en": "अत्र पुस्तकम् अस्ति: the book is here.",
+       "hi": "अत्र पुस्तकम् अस्ति: पुस्तक यहाँ है।"
+      }
+     },
+     {
+      "id": "tatra",
+      "left": {
+       "en": "तत्र",
+       "hi": "तत्र"
+      },
+      "right": {
+       "en": "there",
+       "hi": "वहाँ"
+      },
+      "why": {
+       "en": "तत्र बालकः अस्ति: the boy is there.",
+       "hi": "तत्र बालकः अस्ति: लड़का वहाँ है।"
+      }
+     },
+     {
+      "id": "yada",
+      "left": {
+       "en": "यदा",
+       "hi": "यदा"
+      },
+      "right": {
+       "en": "when",
+       "hi": "जब"
+      },
+      "why": {
+       "en": "यदा वर्षा भवति: when it rains.",
+       "hi": "यदा वर्षा भवति: जब वर्षा होती है।"
+      }
+     },
+     {
+      "id": "tada",
+      "left": {
+       "en": "तदा",
+       "hi": "तदा"
+      },
+      "right": {
+       "en": "then",
+       "hi": "तब"
+      },
+      "why": {
+       "en": "तदा मयूरः नृत्यति: then the peacock dances.",
+       "hi": "तदा मयूरः नृत्यति: तब मोर नाचता है।"
+      }
+     },
+     {
+      "id": "sada",
+      "left": {
+       "en": "सदा",
+       "hi": "सदा"
+      },
+      "right": {
+       "en": "always",
+       "hi": "हमेशा"
+      },
+      "why": {
+       "en": "सदा सत्यं वद: always speak the truth.",
+       "hi": "सदा सत्यं वद: हमेशा सच बोलो।"
+      }
+     },
+     {
+      "id": "adya",
+      "left": {
+       "en": "अद्य",
+       "hi": "अद्य"
+      },
+      "right": {
+       "en": "today",
+       "hi": "आज"
+      },
+      "why": {
+       "en": "अद्य विद्यालयः अस्ति: school is on today.",
+       "hi": "अद्य विद्यालयः अस्ति: आज विद्यालय है।"
+      }
+     },
+     {
+      "id": "shvah",
+      "left": {
+       "en": "श्वः",
+       "hi": "श्वः"
+      },
+      "right": {
+       "en": "tomorrow",
+       "hi": "कल (आने वाला)"
+      },
+      "why": {
+       "en": "श्वः अवकाशः अस्ति: tomorrow is a holiday.",
+       "hi": "श्वः अवकाशः अस्ति: कल अवकाश है।"
+      }
+     },
+     {
+      "id": "hyah",
+      "left": {
+       "en": "ह्यः",
+       "hi": "ह्यः"
+      },
+      "right": {
+       "en": "yesterday",
+       "hi": "कल (बीता हुआ)"
+      },
+      "why": {
+       "en": "ह्यः अहं गृहे आसम्: yesterday I was at home.",
+       "hi": "ह्यः अहं गृहे आसम्: कल मैं घर में था।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:atra",
+     "expect": "matched:atra",
+     "say": {
+      "en": "Match अत्र with its meaning.",
+      "hi": "अत्र को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "यदा and तदा always travel together. If यदा means 'when', what does तदा mean?",
+      "hi": "यदा और तदा सदा साथ चलते हैं। यदि यदा का अर्थ 'जब' है, तो तदा का अर्थ क्या है?"
+     },
+     "options": [
+      {
+       "id": "then",
+       "en": "then",
+       "hi": "तब"
+      },
+      {
+       "id": "here",
+       "en": "here",
+       "hi": "यहाँ"
+      },
+      {
+       "id": "not",
+       "en": "not",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "then"
+    },
+    {
+     "kind": "do",
+     "target": "left:hyah",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the avyayas.",
+      "hi": "सब अव्यय मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many avyayas come in pairs. अत्र (here) and तत्र (there); यदा (when) and तदा (then); यत्र (where) and तत्र (there). The time words come in a line: ह्यः (yesterday), अद्य (today), श्वः (tomorrow). Learning the pairs means learning two words at once. Note that ह्यः and श्वः both mean 'kal' in Hindi, so only the verb tells which day is meant.",
+      "hi": "बहुत-से अव्यय जोड़े में आते हैं। अत्र (यहाँ) और तत्र (वहाँ); यदा (जब) और तदा (तब); यत्र (जहाँ) और तत्र (वहाँ)। समय के शब्द एक पंक्ति में आते हैं: ह्यः (बीता कल), अद्य (आज), श्वः (आने वाला कल)। जोड़े सीखने से एक साथ दो शब्द सीख जाते हैं। ध्यान दो कि ह्यः और श्वः दोनों का हिंदी में अर्थ 'कल' है, इसलिए कौन-सा दिन है यह क्रिया से पता चलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which avyaya means 'tomorrow'?",
+        "hi": "'आने वाला कल' के लिए कौन-सा अव्यय है?"
+       },
+       "options": [
+        {
+         "en": "श्वः",
+         "hi": "श्वः"
+        },
+        {
+         "en": "ह्यः",
+         "hi": "ह्यः"
+        },
+        {
+         "en": "अद्य",
+         "hi": "अद्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "श्वः is the day after today.",
+        "hi": "श्वः आज के बाद का दिन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "ह्यः is yesterday.",
+         "hi": "ह्यः बीता हुआ कल है।"
+        },
+        {
+         "en": "अद्य is today.",
+         "hi": "अद्य आज है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which pair of avyayas goes together in 'when ... then'?",
+        "hi": "'जब ... तब' के लिए कौन-सा जोड़ा साथ आता है?"
+       },
+       "options": [
+        {
+         "en": "यदा – तदा",
+         "hi": "यदा – तदा"
+        },
+        {
+         "en": "अत्र – सदा",
+         "hi": "अत्र – सदा"
+        },
+        {
+         "en": "न – च",
+         "hi": "न – च"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "यदा opens the first part and तदा the second.",
+        "hi": "यदा पहले भाग को खोलता है और तदा दूसरे को।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "अत्र is a place word and सदा a time word; they do not pair.",
+         "hi": "अत्र स्थान का शब्द है और सदा समय का; वे जोड़ा नहीं बनाते।"
+        },
+        {
+         "en": "न means not and च means and; they do not pair.",
+         "hi": "न का अर्थ नहीं और च का अर्थ और है; वे जोड़ा नहीं बनाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say three sentences about yesterday, today and tomorrow using ह्यः, अद्य and श्वः.",
+      "hi": "ह्यः, अद्य और श्वः से कल, आज और आने वाले कल के बारे में तीन वाक्य बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch09-sentences",
+   "topic": "9.3",
+   "template": "grammar",
+   "title": {
+    "en": "Avyayas in sentences",
+    "hi": "वाक्यों में अव्यय"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "q1",
+      "words": [
+       "छात्रः",
+       "सदा",
+       "सत्यं",
+       "वदति",
+       "कदा"
+      ],
+      "answer": [
+       "छात्रः सदा सत्यं वदति",
+       "सदा छात्रः सत्यं वदति"
+      ],
+      "rule": {
+       "en": "सदा (always) fits before the verb and does not change.",
+       "hi": "सदा (हमेशा) क्रिया के पहले आता है और बदलता नहीं।"
+      }
+     },
+     {
+      "id": "q2",
+      "words": [
+       "यदा",
+       "वर्षा",
+       "भवति",
+       "तदा",
+       "मयूरः",
+       "नृत्यति"
+      ],
+      "answer": "यदा वर्षा भवति तदा मयूरः नृत्यति",
+      "rule": {
+       "en": "यदा begins the first part and तदा the second: when it rains, then the peacock dances.",
+       "hi": "यदा पहले भाग को शुरू करता है और तदा दूसरे को: जब वर्षा होती है, तब मोर नाचता है।"
+      }
+     },
+     {
+      "id": "q3",
+      "words": [
+       "अत्र",
+       "बालकः",
+       "पठति",
+       "तत्र",
+       "बालिका",
+       "लिखति"
+      ],
+      "answer": "अत्र बालकः पठति तत्र बालिका लिखति",
+      "rule": {
+       "en": "अत्र (here) and तत्र (there) place the two doers.",
+       "hi": "अत्र (यहाँ) और तत्र (वहाँ) दोनों कर्ताओं का स्थान बताते हैं।"
+      }
+     },
+     {
+      "id": "q4",
+      "words": [
+       "अद्य",
+       "अहं",
+       "विद्यालयं",
+       "न",
+       "गच्छामि",
+       "श्वः"
+      ],
+      "answer": [
+       "अद्य अहं विद्यालयं न गच्छामि",
+       "अद्य विद्यालयं न गच्छामि"
+      ],
+      "rule": {
+       "en": "अद्य (today) and न (not) are avyayas; न comes just before the verb.",
+       "hi": "अद्य (आज) और न (नहीं) अव्यय हैं; न क्रिया के ठीक पहले आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:q1",
+     "say": {
+      "en": "Build the first sentence from the tiles.",
+      "hi": "टाइलों से पहला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which avyaya starts the second half of 'यदा वर्षा भवति ___ मयूरः नृत्यति'?",
+      "hi": "'यदा वर्षा भवति ___ मयूरः नृत्यति' में दूसरे भाग को कौन-सा अव्यय शुरू करता है?"
+     },
+     "options": [
+      {
+       "id": "tada",
+       "en": "तदा",
+       "hi": "तदा"
+      },
+      {
+       "id": "atra",
+       "en": "अत्र",
+       "hi": "अत्र"
+      },
+      {
+       "id": "sada",
+       "en": "सदा",
+       "hi": "सदा"
+      }
+     ],
+     "answer": "tada"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:q2",
+     "say": {
+      "en": "Build the yada-tada sentence.",
+      "hi": "यदा-तदा वाला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Finish all the sentences.",
+      "hi": "सारे वाक्य पूरे करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Avyayas make sentences richer without changing their own form. सदा, अद्य and न sit before the verb. यदा and तदा start two linked parts. अत्र and तत्र contrast two places. Because the avyaya never changes, you only need to choose the right one; the rest of the sentence keeps its normal agreement (the verb still matches the doer).",
+      "hi": "अव्यय अपना रूप बदले बिना वाक्यों को समृद्ध बनाते हैं। सदा, अद्य और न क्रिया से पहले आते हैं। यदा और तदा दो जुड़े भागों को शुरू करते हैं। अत्र और तत्र दो स्थानों की तुलना करते हैं। अव्यय बदलता नहीं, इसलिए केवल सही अव्यय चुनना होता है; वाक्य का बाकी भाग सामान्य मेल रखता है (क्रिया कर्ता के अनुसार रहती है)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence means 'I do not go today'?",
+        "hi": "कौन-सा वाक्य 'मैं आज नहीं जाता' कहता है?"
+       },
+       "options": [
+        {
+         "en": "अद्य अहं न गच्छामि।",
+         "hi": "अद्य अहं न गच्छामि।"
+        },
+        {
+         "en": "श्वः अहं गच्छामि।",
+         "hi": "श्वः अहं गच्छामि।"
+        },
+        {
+         "en": "अद्य सः गच्छति।",
+         "hi": "अद्य सः गच्छति।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "अद्य is today, न is not, and गच्छामि matches अहम्.",
+        "hi": "अद्य आज है, न नहीं है, और गच्छामि अहम् के अनुसार है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "श्वः is tomorrow and there is no 'not'.",
+         "hi": "श्वः आने वाला कल है और 'नहीं' नहीं है।"
+        },
+        {
+         "en": "सः means he, and there is no 'not'.",
+         "hi": "सः का अर्थ वह है और 'नहीं' नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Does the verb change if you add the avyaya सदा?",
+        "hi": "क्या अव्यय सदा जोड़ने पर क्रिया बदलती है?"
+       },
+       "options": [
+        {
+         "en": "No, the verb still matches the doer",
+         "hi": "नहीं, क्रिया अब भी कर्ता से मेल खाती है"
+        },
+        {
+         "en": "Yes, it becomes plural",
+         "hi": "हाँ, बहुवचन हो जाती है"
+        },
+        {
+         "en": "Yes, it is dropped",
+         "hi": "हाँ, हट जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An avyaya does not affect the agreement of the verb.",
+        "hi": "अव्यय का क्रिया के मेल पर कोई असर नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding an avyaya does not change the number.",
+         "hi": "अव्यय जोड़ने से वचन नहीं बदलता।"
+        },
+        {
+         "en": "The verb is needed to complete the sentence.",
+         "hi": "वाक्य पूरा करने के लिए क्रिया चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write two sentences of your own with अत्र and तत्र.",
+      "hi": "अत्र और तत्र के साथ अपने दो वाक्य लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "9.2",
+   "use": "Yesterday, today, tomorrow",
+   "shows": "Three frames of the same desk calendar page: one day crossed, the current day circled, the next day plain, numbers left blank",
+   "view": "Same camera and light in all frames",
+   "right": "Marked, circled and plain are clearly different",
+   "avoid": "Any numbers, dates, writing"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "Here and there",
+   "shows": "A boy standing near the camera in a garden and another child far away at the gate, both seen from behind",
+   "view": "Wide shot, daylight",
+   "right": "Near and far are clearly different",
+   "avoid": "Faces, signs"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "9.3",
+   "use": "When it rains, the peacock dances",
+   "shows": "A peacock with its feathers spread on a wet field in light rain",
+   "view": "Side view, grey sky",
+   "right": "Feathers fully spread with the eye-spots",
+   "avoid": "People, fences"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "9.1",
+   "use": "Always: a clock face",
+   "shows": "A plain analogue clock with no numbers, cut-out",
+   "view": "Front view",
+   "right": "Hands visible, no numbers",
+   "avoid": "Writing, brand names"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "9.1",
+   "use": "Changing and not changing",
+   "shows": "A blank two-column frame, left column wavy line pattern, right column straight line pattern",
+   "view": "Flat front view on white",
+   "right": "Patterns differ in shape, not only colour",
+   "avoid": "Text, numbers"
+  }
+ ]
+}

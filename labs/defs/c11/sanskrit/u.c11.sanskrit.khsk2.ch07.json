@@ -1,0 +1,540 @@
+{
+ "chapter_key": "u.c11.sanskrit.khsk2.ch07",
+ "class": 11,
+ "subject_id": "sanskrit",
+ "title": "विज्ञाननौका (The boat of science)",
+ "source": "https://ncert.nic.in/textbook/pdf/khsk207.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Science as a boat: boons and dangers",
+   "labs": [
+    "c11-sanskrit-khsk2-ch07-boon"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Words of science and life",
+   "labs": [
+    "c11-sanskrit-khsk2-ch07-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "The poet and the poem",
+   "labs": [],
+   "why_no_lab": "The poet's life and the poem's setting are read and discussed; there is nothing to sort or build."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-sanskrit-khsk2-ch07-boon",
+   "topic": "7.1",
+   "template": "sort",
+   "title": {
+    "en": "Boon or danger?",
+    "hi": "वरदान या खतरा?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "boon",
+      "label": {
+       "en": "A boon of science",
+       "hi": "विज्ञान का वरदान"
+      }
+     },
+     {
+      "id": "risk",
+      "label": {
+       "en": "A danger when values are forgotten",
+       "hi": "मूल्य भूलने पर खतरा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "b1",
+      "text": {
+       "en": "Medicines and vaccines save lives",
+       "hi": "दवाइयाँ और टीके जीवन बचाते हैं"
+      },
+      "bin": "boon",
+      "why": {
+       "en": "Science has made many diseases curable.",
+       "hi": "विज्ञान ने कई रोगों का इलाज संभव किया है।"
+      }
+     },
+     {
+      "id": "b2",
+      "text": {
+       "en": "Trains and roads connect far places",
+       "hi": "रेल और सड़कें दूर स्थानों को जोड़ती हैं"
+      },
+      "bin": "boon",
+      "why": {
+       "en": "Travel and trade become easy.",
+       "hi": "यात्रा और व्यापार आसान हो जाते हैं।"
+      }
+     },
+     {
+      "id": "b3",
+      "text": {
+       "en": "Solar power lights up villages",
+       "hi": "सौर ऊर्जा गाँवों में रोशनी करती है"
+      },
+      "bin": "boon",
+      "why": {
+       "en": "Clean energy reaches remote homes.",
+       "hi": "स्वच्छ ऊर्जा दूर-दराज़ के घरों तक पहुँचती है।"
+      }
+     },
+     {
+      "id": "r1",
+      "text": {
+       "en": "Family members stare at phones instead of talking",
+       "hi": "परिवार के लोग बातचीत की जगह फ़ोन देखते रहते हैं"
+      },
+      "bin": "risk",
+      "why": {
+       "en": "Technology can take away our time for people.",
+       "hi": "तकनीक हमारा लोगों के लिए समय छीन सकती है।"
+      }
+     },
+     {
+      "id": "r2",
+      "text": {
+       "en": "People treat machines as friends and forget humans",
+       "hi": "लोग मशीनों को मित्र मानकर इंसानों को भूल जाते हैं"
+      },
+      "bin": "risk",
+      "why": {
+       "en": "Feelings and care cannot be replaced by machines.",
+       "hi": "भावनाओं और देखभाल की जगह मशीनें नहीं ले सकतीं।"
+      }
+     },
+     {
+      "id": "r3",
+      "text": {
+       "en": "Greed for every new gadget",
+       "hi": "हर नए गैजेट का लालच"
+      },
+      "bin": "risk",
+      "why": {
+       "en": "Greed makes people restless and wasteful.",
+       "hi": "लालच लोगों को बेचैन और फ़िज़ूलखर्च बनाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:b1",
+     "expect": "placed:b1",
+     "say": {
+      "en": "Tap the first card, then tap the group where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर वह समूह छुओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A family eats dinner with every person watching a different screen. Is this a boon or a danger of science?",
+      "hi": "एक परिवार रात का खाना खाते हुए हर कोई अलग स्क्रीन देखता है। यह विज्ञान का वरदान है या खतरा?"
+     },
+     "options": [
+      {
+       "id": "r",
+       "en": "A danger when values are forgotten",
+       "hi": "मूल्य भूलने पर खतरा"
+      },
+      {
+       "id": "b",
+       "en": "A boon of science",
+       "hi": "विज्ञान का वरदान"
+      },
+      {
+       "id": "n",
+       "en": "Neither",
+       "hi": "दोनों नहीं"
+      }
+     ],
+     "answer": "r"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The poem uses the picture of a boat. Science is a strong boat that can carry us across, but a boat needs a steersman. Values (मूल्यानि) such as love, honesty and care are the steersman. Without them, the same boat can drift or sink.",
+      "hi": "कविता नाव का चित्र लेती है। विज्ञान एक मज़बूत नाव है जो हमें पार ले जा सकती है, पर नाव को मल्लाह चाहिए। प्रेम, ईमानदारी और देखभाल जैसे मूल्य (मूल्यानि) ही मल्लाह हैं। उनके बिना वही नाव भटक या डूब सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the 'steersman' of the boat stand for?",
+        "hi": "नाव का 'मल्लाह' किसका प्रतीक है?"
+       },
+       "options": [
+        {
+         "en": "Values like care and honesty",
+         "hi": "देखभाल और ईमानदारी जैसे मूल्य"
+        },
+        {
+         "en": "More machines",
+         "hi": "और अधिक मशीनें"
+        },
+        {
+         "en": "Speed",
+         "hi": "गति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Values guide how science is used.",
+        "hi": "मूल्य तय करते हैं कि विज्ञान का उपयोग कैसे हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Machines are part of the boat, not its steersman.",
+         "hi": "मशीनें नाव का भाग हैं, मल्लाह नहीं।"
+        },
+        {
+         "en": "Speed without direction is dangerous.",
+         "hi": "दिशा के बिना गति खतरनाक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which one is a boon of science?",
+        "hi": "इनमें विज्ञान का वरदान कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Vaccines that save lives",
+         "hi": "जीवन बचाने वाले टीके"
+        },
+        {
+         "en": "Greed for gadgets",
+         "hi": "गैजेट का लालच"
+        },
+        {
+         "en": "Forgetting family time",
+         "hi": "परिवार का समय भूल जाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Vaccines protect children from disease.",
+        "hi": "टीके बच्चों को रोगों से बचाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Greed is a danger, not a boon.",
+         "hi": "लालच खतरा है, वरदान नहीं।"
+        },
+        {
+         "en": "Forgetting family is also a danger.",
+         "hi": "परिवार को भूलना भी खतरा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one gadget you use daily and one rule that helps you use it wisely.",
+      "hi": "रोज़ उपयोग होने वाले एक गैजेट का नाम बताओ और एक नियम बताओ जो उसका सही उपयोग करने में मदद करे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sanskrit-khsk2-ch07-words",
+   "topic": "7.2",
+   "template": "match",
+   "title": {
+    "en": "Words of science and life",
+    "hi": "विज्ञान और जीवन के शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "vijnana",
+      "left": {
+       "en": "विज्ञानम्",
+       "hi": "विज्ञानम्"
+      },
+      "right": {
+       "en": "science, special knowledge",
+       "hi": "विज्ञान, विशेष ज्ञान"
+      },
+      "why": {
+       "en": "वि- (special) + ज्ञानम् (knowledge).",
+       "hi": "वि- (विशेष) + ज्ञानम् (ज्ञान)।"
+      }
+     },
+     {
+      "id": "nauka",
+      "left": {
+       "en": "नौका",
+       "hi": "नौका"
+      },
+      "right": {
+       "en": "boat",
+       "hi": "नाव"
+      },
+      "why": {
+       "en": "The poem's picture for science.",
+       "hi": "कविता में विज्ञान के लिए प्रतीक।"
+      }
+     },
+     {
+      "id": "yantra",
+      "left": {
+       "en": "यन्त्रम्",
+       "hi": "यन्त्रम्"
+      },
+      "right": {
+       "en": "machine, device",
+       "hi": "मशीन, यंत्र"
+      },
+      "why": {
+       "en": "A tool made with skill.",
+       "hi": "कौशल से बना साधन।"
+      }
+     },
+     {
+      "id": "kritrima",
+      "left": {
+       "en": "कृत्रिमम्",
+       "hi": "कृत्रिमम्"
+      },
+      "right": {
+       "en": "artificial, man-made",
+       "hi": "कृत्रिम, मानव-निर्मित"
+      },
+      "why": {
+       "en": "Not natural: made by people.",
+       "hi": "प्राकृतिक नहीं: लोगों का बनाया हुआ।"
+      }
+     },
+     {
+      "id": "moha",
+      "left": {
+       "en": "मोहः",
+       "hi": "मोहः"
+      },
+      "right": {
+       "en": "attraction, blind attachment",
+       "hi": "मोह, अंधा लगाव"
+      },
+      "why": {
+       "en": "Being carried away without thinking.",
+       "hi": "बिना सोचे बह जाना।"
+      }
+     },
+     {
+      "id": "mulya",
+      "left": {
+       "en": "मूल्यानि",
+       "hi": "मूल्यानि"
+      },
+      "right": {
+       "en": "values",
+       "hi": "मूल्य, जीवन के आदर्श"
+      },
+      "why": {
+       "en": "Things like truth, love and care.",
+       "hi": "सत्य, प्रेम और देखभाल जैसी बातें।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:nauka",
+     "expect": "matched:nauka",
+     "say": {
+      "en": "Pick the first word in the list and match it with its meaning.",
+      "hi": "सूची का पहला शब्द चुनो और उसे उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word means 'artificial', that is, made by people?",
+      "hi": "'कृत्रिम' यानी मानव-निर्मित के लिए कौन-सा शब्द है?"
+     },
+     "options": [
+      {
+       "id": "k",
+       "en": "कृत्रिमम्",
+       "hi": "कृत्रिमम्"
+      },
+      {
+       "id": "n",
+       "en": "नौका",
+       "hi": "नौका"
+      },
+      {
+       "id": "m",
+       "en": "मोहः",
+       "hi": "मोहः"
+      }
+     ],
+     "answer": "k"
+    },
+    {
+     "kind": "do",
+     "target": "left:vijnana",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the other pairs.",
+      "hi": "अब बाकी सब जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The poem warns about two things: becoming too fond of the artificial (कृत्रिमम्) and forgetting values (मूल्यानि). The modern words 'kritrim buddhi' (artificial intelligence) and 'yantra' keep the old Sanskrit roots.",
+      "hi": "कविता दो बातों के प्रति सावधान करती है: कृत्रिम चीज़ों से अत्यधिक लगाव और मूल्यों को भूलना। 'कृत्रिम बुद्धि' और 'यंत्र' जैसे आधुनिक शब्द पुरानी संस्कृत जड़ें रखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does मोहः mean in the poem?",
+        "hi": "कविता में मोहः का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Blind attachment",
+         "hi": "अंधा लगाव"
+        },
+        {
+         "en": "Science",
+         "hi": "विज्ञान"
+        },
+        {
+         "en": "Boat",
+         "hi": "नाव"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is being carried away by attraction without thinking.",
+        "hi": "यह बिना सोचे आकर्षण में बह जाना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Science is विज्ञानम्.",
+         "hi": "विज्ञान विज्ञानम् है।"
+        },
+        {
+         "en": "Boat is नौका.",
+         "hi": "नाव नौका है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a Sanskrit-rooted word used in news about technology and say what it means.",
+      "hi": "तकनीक की ख़बरों में कोई संस्कृत-मूल का शब्द ढूँढो और उसका अर्थ बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Opens the chapter: a boat on a calm river at dawn",
+   "shows": "A wooden country boat with a single boatman on a calm river at sunrise, mist rising",
+   "view": "Wide shot, 16:9, soft golden light",
+   "right": "Boat strong, boatman steering with a pole",
+   "avoid": "Faces, text on the boat"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Science helping life",
+   "shows": "A rural clinic with a health worker giving a vaccine to a child, mother holding the child, seen from the side",
+   "view": "Eye level, bright natural light",
+   "right": "Clean clinic, calm child",
+   "avoid": "Faces, brand logos"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Screens at the dinner table",
+   "shows": "A family at a table in a living room, each looking down at a glowing phone or tablet, food in front, shot from behind",
+   "view": "Back view, dim evening light, glowing screens",
+   "right": "All posture bent down, food untouched",
+   "avoid": "Faces, brand logos"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.2",
+   "use": "Gadgets of daily life",
+   "shows": "A mobile phone, a pair of earphones and a calculator laid on a table, cut-out",
+   "view": "Top-down three-quarter, soft light, transparent background",
+   "right": "Screens off, plain bodies",
+   "avoid": "Logos, apps"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Solar panels in a village",
+   "shows": "Rows of solar panels on a rooftop with a village and fields behind, evening light",
+   "view": "Wide shot, 16:9",
+   "right": "Panels clear, village below",
+   "avoid": "People, brand names"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "7.1",
+   "use": "Two-bin base for the boon/danger lab",
+   "shows": "Two wide blank bins, one with a small boat shape and one with a small cloud shape",
+   "view": "Flat front view on white",
+   "right": "Clear shapes and colours",
+   "avoid": "Words"
+  }
+ ]
+}

@@ -1,0 +1,434 @@
+{
+  "chapter_key": "u.c04.hindi.dhve1.x11",
+  "class": 4,
+  "subject_id": "hindi",
+  "title": "Golgappa (गोलगप्पा)",
+  "source": "https://ncert.nic.in/textbook.php?dhve1=0-13",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Poem: how to eat a golgappa",
+      "labs": [
+        "c04-hindi-dhve1-x11-eating"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Poem words: बताशा, चटपटा, पिचकू",
+      "labs": [
+        "c04-hindi-dhve1-x11-words"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-hindi-dhve1-x11-eating",
+      "topic": "1",
+      "template": "sequence",
+      "title": {
+        "en": "How to eat a golgappa",
+        "hi": "गोलगप्पा कैसे खाएँ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "take",
+            "text": {
+              "en": "Take the crisp puffed puri with peas and tangy water",
+              "hi": "मटर और चटपटे पानी से भरा कुरकुरा बताशा लो"
+            }
+          },
+          {
+            "id": "open",
+            "text": {
+              "en": "Open your mouth wide",
+              "hi": "मुँह खूब बड़ा खोलो"
+            }
+          },
+          {
+            "id": "put",
+            "text": {
+              "en": "Put it inside quickly",
+              "hi": "उसे झटपट अंदर रख लो"
+            }
+          },
+          {
+            "id": "burst",
+            "text": {
+              "en": "It bursts in the mouth and the water comes out",
+              "hi": "वह मुँह में फूटता है और पानी निकलता है"
+            }
+          },
+          {
+            "id": "taste",
+            "text": {
+              "en": "Enjoy the tangy, spicy taste carefully",
+              "hi": "सावधानी से खट्टे-तीखे स्वाद का आनंद लो"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:take",
+          "expect": "placed:take",
+          "say": {
+            "en": "Tap the card that happens FIRST, then tap place 1.",
+            "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर जगह 1 छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which card comes LAST?",
+            "hi": "अनुमान लगाओ: सबसे अंत में कौन-सा कार्ड आएगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Open your mouth wide",
+              "hi": "मुँह खूब बड़ा खोलो"
+            },
+            {
+              "id": "b",
+              "en": "Enjoy the tangy, spicy taste carefully",
+              "hi": "सावधानी से खट्टे-तीखे स्वाद का आनंद लो"
+            },
+            {
+              "id": "c",
+              "en": "Put it inside quickly",
+              "hi": "उसे झटपट अंदर रख लो"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "item:taste",
+          "expect": "placed:taste",
+          "say": {
+            "en": "Now put the LAST card in the last place.",
+            "hi": "अब सबसे अंतिम कार्ड को आखिरी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Fill all the places in order, then press Check.",
+            "hi": "सारी जगहें क्रम से भरो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The poem tells us to eat golgappa with care: a big open mouth, a quick bite and a careful taste. If we miss, we may cough and stain our clothes! The poem also uses sound words like phakk and bhakk to show the burst.",
+            "hi": "कविता गोलगप्पा सावधानी से खाना सिखाती है: बड़ा खुला मुँह, झटपट कौर और सावधानी से स्वाद। चूके तो खाँसी आ सकती है और कपड़े खराब हो सकते हैं! कविता में फक्क और भक्क जैसे ध्वनि-शब्द फूटने की आवाज़ बताते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which card comes right after: 'Take the crisp puffed puri with peas and tangy water'?",
+                "hi": "'मटर और चटपटे पानी से भरा कुरकुरा बताशा लो' के ठीक बाद कौन-सा कार्ड आता है?"
+              },
+              "options": [
+                {
+                  "en": "Put it inside quickly",
+                  "hi": "उसे झटपट अंदर रख लो"
+                },
+                {
+                  "en": "Open your mouth wide",
+                  "hi": "मुँह खूब बड़ा खोलो"
+                },
+                {
+                  "en": "It bursts in the mouth and the water comes out",
+                  "hi": "वह मुँह में फूटता है और पानी निकलता है"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "After step 1 comes step 2: Open your mouth wide",
+                "hi": "क्रम 1 के बाद क्रम 2 आता है: मुँह खूब बड़ा खोलो"
+              },
+              "wrong": [
+                {
+                  "en": "That is step 3, not the step right after step 1.",
+                  "hi": "यह तो क्रम में 3 नंबर पर आता है, 1 के ठीक बाद नहीं।"
+                },
+                "",
+                {
+                  "en": "That is step 4, not the step right after step 1.",
+                  "hi": "यह तो क्रम में 4 नंबर पर आता है, 1 के ठीक बाद नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which card comes right after: 'Open your mouth wide'?",
+                "hi": "'मुँह खूब बड़ा खोलो' के ठीक बाद कौन-सा कार्ड आता है?"
+              },
+              "options": [
+                {
+                  "en": "Put it inside quickly",
+                  "hi": "उसे झटपट अंदर रख लो"
+                },
+                {
+                  "en": "Take the crisp puffed puri with peas and tangy water",
+                  "hi": "मटर और चटपटे पानी से भरा कुरकुरा बताशा लो"
+                },
+                {
+                  "en": "It bursts in the mouth and the water comes out",
+                  "hi": "वह मुँह में फूटता है और पानी निकलता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "After step 2 comes step 3: Put it inside quickly",
+                "hi": "क्रम 2 के बाद क्रम 3 आता है: उसे झटपट अंदर रख लो"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is step 1, not the step right after step 2.",
+                  "hi": "यह तो क्रम में 1 नंबर पर आता है, 2 के ठीक बाद नहीं।"
+                },
+                {
+                  "en": "That is step 4, not the step right after step 2.",
+                  "hi": "यह तो क्रम में 4 नंबर पर आता है, 2 के ठीक बाद नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Say the sound words phakk and bhakk aloud. Can you make two sound words for another snack?",
+            "hi": "फक्क और भक्क ध्वनि-शब्द ज़ोर से बोलो। किसी और खाने की चीज़ के लिए दो ध्वनि-शब्द बना सकते हो?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-hindi-dhve1-x11-words",
+      "topic": "2",
+      "template": "reader",
+      "title": {
+        "en": "Golgappa words",
+        "hi": "गोलगप्पा के शब्द"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "vocab",
+        "lang": "hi",
+        "passage": {
+          "title": {
+            "en": "The tangy snack",
+            "hi": "चटपटा नाश्ता"
+          },
+          "lines": [
+            "बताशे के अंदर मटर भरी होती है।",
+            "मुँह में रखते ही वह फक्क से फूटता है।",
+            "उसका स्वाद खट्टा, तीखा और चटपटा होता है।",
+            "कोई इसे पिचकू कहता है, कोई गोलगप्पा।",
+            "सावधानी से न खाओ तो कपड़े गंदे हो सकते हैं।"
+          ]
+        },
+        "words": [
+          {
+            "w": "बताशे",
+            "meaning": {
+              "en": "Small puffed hollow puris",
+              "hi": "छोटी खोखली फूली पूरियाँ"
+            }
+          },
+          {
+            "w": "चटपटा",
+            "meaning": {
+              "en": "Tangy and spicy, tasty",
+              "hi": "खट्टा-तीखा और स्वादिष्ट"
+            }
+          },
+          {
+            "w": "पिचकू",
+            "meaning": {
+              "en": "Another name for golgappa",
+              "hi": "गोलगप्पे का एक और नाम"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "word:बताशे",
+          "expect": "found:बताशे",
+          "say": {
+            "en": "Tap the word 'बताशे' in the text and read its meaning.",
+            "hi": "पाठ में शब्द 'बताशे' को छुओ और उसका अर्थ पढ़ो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What do you think 'चटपटा' tastes like?",
+            "hi": "तुम्हारे अनुसार 'चटपटा' स्वाद कैसा होता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Tangy and spicy",
+              "hi": "खट्टा और तीखा"
+            },
+            {
+              "id": "b",
+              "en": "Only plain sweet",
+              "hi": "केवल फीका मीठा"
+            },
+            {
+              "id": "c",
+              "en": "Bitter like neem",
+              "hi": "नीम जैसा कड़वा"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "word:चटपटा",
+          "expect": "found:चटपटा",
+          "say": {
+            "en": "Now tap the word 'चटपटा'.",
+            "hi": "अब शब्द 'चटपटा' को छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question at the bottom.",
+            "hi": "नीचे दिए प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Chatpata is the word for the lovely tangy, spicy taste. The same snack has different names in different places, like pichku and golgappa, and the poem enjoys them all.",
+            "hi": "चटपटा खट्टे-तीखे स्वादिष्ट स्वाद के लिए शब्द है। इसी नाश्ते के अलग-अलग जगह अलग नाम होते हैं, जैसे पिचकू और गोलगप्पा, और कविता सब का मज़ा लेती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which is another name for golgappa in the poem?",
+                "hi": "कविता में गोलगप्पे का दूसरा नाम क्या है?"
+              },
+              "options": [
+                {
+                  "en": "Pichku",
+                  "hi": "पिचकू"
+                },
+                {
+                  "en": "Jalebi",
+                  "hi": "जलेबी"
+                },
+                {
+                  "en": "Laddu",
+                  "hi": "लड्डू"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The poem says some call it pichku and some call it golgappa.",
+                "hi": "कविता कहती है कि कोई इसे पिचकू कहता है और कोई गोलगप्पा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Jalebi is a sweet, not a golgappa.",
+                  "hi": "जलेबी मिठाई है, गोलगप्पा नहीं।"
+                },
+                {
+                  "en": "Laddu is a round sweet, not a name for golgappa.",
+                  "hi": "लड्डू गोल मिठाई है, गोलगप्पे का नाम नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "What do people call golgappa in your area? Ask someone at home.",
+            "hi": "तुम्हारे इलाके में गोलगप्पे को क्या कहते हैं? घर पर किसी से पूछो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the poem",
+      "shows": "A street golgappa stall in the evening: a vendor's hands filling puris with spiced water, steel stand, plates",
+      "view": "Close on hands, side",
+      "right": "Hygienic, covered water pots, warm street light",
+      "avoid": "Vendor's face, brand names"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sequence card: the puri",
+      "shows": "Five crisp hollow golgappa puris stacked in a steel plate, on transparent background",
+      "view": "Three-quarter view",
+      "right": "True golden colour, bubbly surface",
+      "avoid": "Shadow baked in"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Words lab: filling",
+      "shows": "A small steel bowl of boiled peas with a spoon, on transparent background",
+      "view": "Top view",
+      "right": "Natural colour",
+      "avoid": "Brand or text"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "1",
+      "use": "Sequence of eating",
+      "shows": "Four hand-only frames: holding a filled puri, hand near open mouth (mouth cropped), eating, leaf plate empty",
+      "view": "Same angle, four times",
+      "right": "Gentle motion, safe hygiene",
+      "avoid": "Faces fully shown"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Words lab: tangy water",
+      "shows": "A clear glass jug of green tangy mint water with ice, on transparent background",
+      "view": "Front view",
+      "right": "Real mint-green colour",
+      "avoid": "Straws with brand marks"
+    }
+  ]
+}

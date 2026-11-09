@@ -1,0 +1,954 @@
+{
+ "chapter_key": "u.c03.mathematics.cemm1.ch14",
+ "class": 3,
+ "subject_id": "mathematics",
+ "title": "The Surajkund Fair",
+ "source": "https://ncert.nic.in/textbook/pdf/cemm114.pdf",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "Things that look the same on both sides at the fair: mirror image and the mirror game",
+   "labs": [
+    "c3-mathematics-cemm1-ch14-butterfly-mirror"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.2",
+   "title": "Lines of symmetry: folding shapes to find where the halves match",
+   "labs": [
+    "c3-mathematics-cemm1-ch14-fold-triangle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.3",
+   "title": "Making malas from 8 beads: symmetrical and not symmetrical",
+   "labs": [
+    "c3-mathematics-cemm1-ch14-mala-beads"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.4",
+   "title": "Rangolis and kolams: symmetrical designs and completing the other half",
+   "labs": [
+    "c3-mathematics-cemm1-ch14-kolam-draw"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.5",
+   "title": "Making masks by folding paper; the painter's mirror trick",
+   "labs": [
+    "c3-mathematics-cemm1-ch14-mask-fold"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.6",
+   "title": "Soni at the fair: looking for symmetry in stalls and shops",
+   "labs": [],
+   "why_no_lab": "Looking for symmetry in the fair picture and in things around us is spotting and discussing; the scene image and the reader suit it better than a lab."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-mathematics-cemm1-ch14-butterfly-mirror",
+   "topic": "14.1",
+   "template": "shapes",
+   "title": {
+    "en": "The mirror game: complete the butterfly",
+    "hi": "दर्पण का खेल: तितली पूरी करो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "symmetry",
+    "task": "complete"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Avi places 4 counters on his side of the line. Soni must place hers as a mirror image. Will her counters be on the same side of the line?",
+      "hi": "अवि रेखा की अपनी तरफ़ 4 गोटियाँ रखता है। सोनी को अपनी गोटियाँ दर्पण प्रतिबिंब की तरह रखनी हैं। क्या उसकी गोटियाँ रेखा की उसी तरफ़ होंगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, on the other side, the same distance from the line",
+       "hi": "नहीं, दूसरी तरफ़, रेखा से उतनी ही दूरी पर"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, on the same side",
+       "hi": "हाँ, उसी तरफ़"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "cell:6-0",
+     "expect": "drawn",
+     "say": {
+      "en": "The left half of a butterfly is coloured. Tap the square on the right that mirrors the top coloured square of the left half.",
+      "hi": "तितली का बायाँ आधा भाग रंगा है। दाईं तरफ़ वह खाना छुओ जो बाएँ आधे भाग के सबसे ऊपर के रंगे खाने का दर्पण प्रतिबिंब है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "mirror",
+     "expect": "symmetric",
+     "say": {
+      "en": "Colour all the matching squares on the right, then tap the dashed mirror line to fold. The two halves should match exactly.",
+      "hi": "दाईं तरफ़ के सारे मेल खाते खाने रंगो, फिर मोड़ने के लिए बिंदीदार दर्पण रेखा पर टैप करो। दोनों आधे भाग ठीक-ठीक मिलने चाहिए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A mirror image is the same picture on the other side of a line, as far from the line as the original. If you fold along the line, one half lands exactly on the other half. A picture that does this is symmetrical. The butterfly is symmetrical about the dashed line.",
+      "hi": "दर्पण प्रतिबिंब रेखा की दूसरी तरफ़ वही चित्र होता है, रेखा से उतनी ही दूरी पर जितनी असली चित्र की है। रेखा पर मोड़ने से एक आधा भाग दूसरे आधे भाग पर ठीक बैठ जाता है। जिस चित्र में ऐसा होता है वह सममित है। तितली बिंदीदार रेखा के आर-पार सममित है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does \"symmetrical\" mean?",
+        "hi": "\"सममित\" का क्या मतलब है?"
+       },
+       "options": [
+        {
+         "en": "Two halves that match exactly when folded",
+         "hi": "मोड़ने पर दो आधे भाग ठीक मिलते हैं"
+        },
+        {
+         "en": "Two halves of different sizes",
+         "hi": "दो आधे भाग अलग माप के"
+        },
+        {
+         "en": "A shape with curved lines only",
+         "hi": "सिर्फ़ टेढ़ी रेखाओं वाली आकृति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A symmetrical thing has two halves that fit exactly over each other.",
+        "hi": "सममित चीज़ के दो आधे भाग एक-दूसरे पर ठीक बैठ जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If the halves differ, the thing is not symmetrical.",
+         "hi": "अगर आधे भाग अलग हों तो चीज़ सममित नहीं है।"
+        },
+        {
+         "en": "Curved lines do not decide symmetry.",
+         "hi": "सममित होना टेढ़ी रेखाओं से तय नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A coloured square is 2 squares to the left of the mirror line. Where is its mirror image?",
+        "hi": "एक रंगा खाना दर्पण रेखा से 2 खाने बाईं तरफ़ है। उसका दर्पण प्रतिबिंब कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "2 squares to the right of the line",
+         "hi": "रेखा से 2 खाने दाईं तरफ़"
+        },
+        {
+         "en": "2 squares to the left of the line",
+         "hi": "रेखा से 2 खाने बाईं तरफ़"
+        },
+        {
+         "en": "4 squares to the right of the line",
+         "hi": "रेखा से 4 खाने दाईं तरफ़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The mirror image is on the other side at the same distance, 2 squares.",
+        "hi": "प्रतिबिंब दूसरी तरफ़ उतनी ही दूरी, 2 खाने, पर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the same side as the original, not the mirror side.",
+         "hi": "वह असली खाने की ही तरफ़ है, दर्पण की तरफ़ नहीं।"
+        },
+        {
+         "en": "4 squares is too far; the distance must match.",
+         "hi": "4 खाने बहुत दूर हैं; दूरी बराबर होनी चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Next picture and complete the rangoli and the rocket. Do you notice how each square on the left has a partner on the right?",
+      "hi": "अब ख़ुद आज़माओ। अगला चित्र दबाओ और रंगोली और रॉकेट पूरे करो। क्या तुम देख पाते हो कि बाईं तरफ़ के हर खाने का दाईं तरफ़ एक साथी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch14-fold-triangle",
+   "topic": "14.2",
+   "template": "shapes",
+   "title": {
+    "en": "Lines of symmetry: fold and test",
+    "hi": "सममिति रेखाएँ: मोड़ो और जाँचो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "symmetry",
+    "task": "lines"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You fold a paper triangle that has two equal sides. Can you fold it so the two halves match?",
+      "hi": "तुम दो बराबर भुजाओं वाले कागज़ के त्रिभुज को मोड़ते हो। क्या उसे इस तरह मोड़ा जा सकता है कि दोनों आधे भाग मिल जाएँ?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, in at least one way",
+       "hi": "हाँ, कम से कम एक तरीक़े से"
+      },
+      {
+       "id": "no",
+       "en": "No, never",
+       "hi": "नहीं, कभी नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "mirror",
+     "expect": "symmetric",
+     "say": {
+      "en": "Tap each dashed line to fold the shape along it. Keep trying until you find the line where the halves match.",
+      "hi": "हर बिंदीदार रेखा पर टैप करके आकृति को उसी पर मोड़ो। जब तक वह रेखा न मिले जहाँ दोनों आधे मिलते हैं, कोशिश करते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "How many lines of symmetry does this shape have? Choose the answer.",
+      "hi": "इस आकृति में सममिति की कितनी रेखाएँ हैं? उत्तर चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A line of symmetry is a line along which you can fold a shape so that the two halves fit exactly. A triangle with two equal sides has one such line, running from the top corner to the middle of the bottom side. Lines where the halves do not match are not lines of symmetry.",
+      "hi": "सममिति रेखा वह रेखा है जिस पर आकृति को मोड़ने से उसके दोनों आधे भाग ठीक बैठ जाते हैं। दो बराबर भुजाओं वाले त्रिभुज में ऐसी एक रेखा होती है, जो ऊपर के कोने से नीचे की भुजा के बीच तक जाती है। जिन रेखाओं पर आधे भाग नहीं मिलते, वे सममिति रेखाएँ नहीं हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A square sheet of paper is folded exactly in half along a line through the middle of two sides. Do the halves match?",
+        "hi": "वर्गाकार कागज़ को दो भुजाओं के बीच से जाती रेखा पर ठीक आधा मोड़ा जाता है। क्या दोनों भाग मिलते हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes, they match",
+         "hi": "हाँ, मिलते हैं"
+        },
+        {
+         "en": "No, one half is bigger",
+         "hi": "नहीं, एक आधा बड़ा है"
+        },
+        {
+         "en": "It depends on the colour",
+         "hi": "यह रंग पर निर्भर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A square can be folded in half through the middles of opposite sides, and the halves match exactly.",
+        "hi": "वर्ग को आमने-सामने की भुजाओं के बीच से मोड़ने पर दोनों भाग ठीक मिलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Folding in the middle gives two equal halves.",
+         "hi": "बीच से मोड़ने पर दो बराबर भाग मिलते हैं।"
+        },
+        {
+         "en": "Colour does not decide the match.",
+         "hi": "मिलना रंग से तय नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is NOT symmetrical?",
+        "hi": "इनमें से कौन-सा सममित नहीं है?"
+       },
+       "options": [
+        {
+         "en": "The letter A",
+         "hi": "अक्षर A"
+        },
+        {
+         "en": "A butterfly",
+         "hi": "तितली"
+        },
+        {
+         "en": "A shoe print drawn with a slanted heel on one side only",
+         "hi": "एक तरफ़ ही टेढ़ी एड़ी वाले जूते का निशान"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "When the two sides of a drawing are different, folding will not make them match.",
+        "hi": "जब चित्र की दोनों तरफ़ अलग हों तो मोड़ने से वे नहीं मिलते।"
+       },
+       "wrong": [
+        {
+         "en": "The letter A has two matching halves.",
+         "hi": "अक्षर A के दो भाग एक-जैसे होते हैं।"
+        },
+        {
+         "en": "A butterfly has two matching wings.",
+         "hi": "तितली के दोनों पंख एक-जैसे होते हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Next and test a rectangle, a square and a rhombus. Which shape has the most lines of symmetry?",
+      "hi": "अब ख़ुद आज़माओ। आगे दबाओ और आयत, वर्ग और समचतुर्भुज परखो। किस आकृति में सममिति रेखाएँ सबसे ज़्यादा हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch14-mala-beads",
+   "topic": "14.3",
+   "template": "sort",
+   "title": {
+    "en": "Symmetrical malas",
+    "hi": "सममित मालाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sym",
+      "label": {
+       "en": "Symmetrical mala",
+       "hi": "सममित माला"
+      }
+     },
+     {
+      "id": "not",
+      "label": {
+       "en": "Not symmetrical",
+       "hi": "सममित नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "m1",
+      "text": {
+       "en": "Mala: R R B B B B R R",
+       "hi": "माला: ला ला नी नी नी नी ला ला"
+      },
+      "bin": "sym",
+      "why": {
+       "en": "The left half is R R B B and the right half is its mirror B B R R, so the mala is symmetrical.",
+       "hi": "बायाँ आधा ला ला नी नी है और दायाँ आधा उसका दर्पण नी नी ला ला है, इसलिए माला सममित है।"
+      }
+     },
+     {
+      "id": "m2",
+      "text": {
+       "en": "Mala: R B R B B R B R",
+       "hi": "माला: ला नी ला नी नी ला नी ला"
+      },
+      "bin": "sym",
+      "why": {
+       "en": "Reading from the middle outwards, both sides are B R B R, so it is symmetrical.",
+       "hi": "बीच से बाहर की ओर पढ़ने पर दोनों तरफ़ नी ला नी ला है, इसलिए यह सममित है।"
+      }
+     },
+     {
+      "id": "m3",
+      "text": {
+       "en": "Mala: R B B R R B B R",
+       "hi": "माला: ला नी नी ला ला नी नी ला"
+      },
+      "bin": "sym",
+      "why": {
+       "en": "Both ends are R and the pattern B B R matches on both sides of the middle, so it is symmetrical.",
+       "hi": "दोनों छोर ला हैं और बीच के दोनों तरफ़ नी नी ला का क्रम मिलता है, इसलिए यह सममित है।"
+      }
+     },
+     {
+      "id": "m4",
+      "text": {
+       "en": "Mala: R R R R B B B B",
+       "hi": "माला: ला ला ला ला नी नी नी नी"
+      },
+      "bin": "not",
+      "why": {
+       "en": "All the red beads are on one side and all the blue beads on the other, so the halves do not match.",
+       "hi": "सारे लाल मनके एक तरफ़ और सारे नीले मनके दूसरी तरफ़ हैं, इसलिए आधे भाग नहीं मिलते।"
+      }
+     },
+     {
+      "id": "m5",
+      "text": {
+       "en": "Mala: R B B B R R R B",
+       "hi": "माला: ला नी नी नी ला ला ला नी"
+      },
+      "bin": "not",
+      "why": {
+       "en": "The first bead is R but the last bead is B, so the two sides do not match.",
+       "hi": "पहला मनका ला है पर आख़िरी नी है, इसलिए दोनों तरफ़ नहीं मिलतीं।"
+      }
+     },
+     {
+      "id": "m6",
+      "text": {
+       "en": "Mala: R R B R B R B B",
+       "hi": "माला: ला ला नी ला नी ला नी नी"
+      },
+      "bin": "not",
+      "why": {
+       "en": "The first two beads are R R but the last two are B B, so it is not symmetrical.",
+       "hi": "पहले दो मनके ला ला हैं पर आख़िरी दो नी नी हैं, इसलिए यह सममित नहीं है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A mala has 4 red (R) and 4 blue (B) beads. Soni says \"R R B B B B R R\" is symmetrical. Is she right?",
+      "hi": "एक माला में 4 लाल (ला) और 4 नीले (नी) मनके हैं। सोनी कहती है \"ला ला नी नी नी नी ला ला\" सममित है। क्या वह सही है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, the two halves are mirror images",
+       "hi": "हाँ, दोनों आधे भाग दर्पण प्रतिबिंब हैं"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:m1",
+     "expect": "placed:m1",
+     "say": {
+      "en": "Tap the first mala card, then tap the group where it belongs.",
+      "hi": "पहली माला के कार्ड पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह रहेगी।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:m6",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other malas. To test, imagine folding the mala in the middle. Tap Check when all are placed.",
+      "hi": "बाकी मालाएँ छाँटो। जाँचने के लिए सोचो कि माला को बीच से मोड़ा गया है। सब रख देने पर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A mala is symmetrical when its left half is the mirror image of its right half. The first bead matches the last, the second matches the second from the end, and so on. With 4 red and 4 blue beads we can make several symmetrical malas, but also many that are not.",
+      "hi": "माला तब सममित होती है जब उसका बायाँ आधा भाग दाएँ आधे भाग का दर्पण प्रतिबिंब हो। पहला मनका आख़िरी से मिलता है, दूसरा आख़िरी से दूसरे से, और इसी तरह आगे। 4 लाल और 4 नीले मनकों से हम कई सममित मालाएँ बना सकते हैं, पर कई ऐसी भी बनती हैं जो सममित नहीं हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which mala is symmetrical?",
+        "hi": "कौन-सी माला सममित है?"
+       },
+       "options": [
+        {
+         "en": "R B B R",
+         "hi": "ला नी नी ला"
+        },
+        {
+         "en": "R R B B",
+         "hi": "ला ला नी नी"
+        },
+        {
+         "en": "R B R R",
+         "hi": "ला नी ला ला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Reading from both ends, R matches R and B matches B.",
+        "hi": "दोनों छोर से पढ़ने पर ला, ला से और नी, नी से मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The first bead is R but the last is B.",
+         "hi": "पहला मनका ला है पर आख़िरी नी है।"
+        },
+        {
+         "en": "The first bead is R and the last is R, but the second is B and the second from the end is R.",
+         "hi": "पहला और आख़िरी ला हैं, पर दूसरा नी है और आख़िरी से दूसरा ला है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A mala has 6 red beads and 2 blue beads. Which arrangement is symmetrical?",
+        "hi": "एक माला में 6 लाल और 2 नीले मनके हैं। कौन-सी बनावट सममित है?"
+       },
+       "options": [
+        {
+         "en": "B R R R R R R B",
+         "hi": "नी ला ला ला ला ला ला नी"
+        },
+        {
+         "en": "B B R R R R R R",
+         "hi": "नी नी ला ला ला ला ला ला"
+        },
+        {
+         "en": "R R R R R R B B",
+         "hi": "ला ला ला ला ला ला नी नी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Blue beads at both ends and red in the middle are mirror images.",
+        "hi": "दोनों छोर पर नीले और बीच में लाल मनके दर्पण प्रतिबिंब होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both blue beads are on the left, so the right half is different.",
+         "hi": "दोनों नीले मनके बाईं तरफ़ हैं, इसलिए दायाँ आधा भाग अलग है।"
+        },
+        {
+         "en": "Both blue beads are on the right, so the left half is different.",
+         "hi": "दोनों नीले मनके दाईं तरफ़ हैं, इसलिए बायाँ आधा भाग अलग है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make your own symmetrical mala with 8 beads of two colours using real beads or coloured pencils. Show it to a friend. Can they find the middle?",
+      "hi": "अब ख़ुद आज़माओ। असली मनकों या रंगीन पेंसिलों से दो रंगों के 8 मनकों की अपनी सममित माला बनाओ। दोस्त को दिखाओ। क्या वह बीच ढूँढ पाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch14-kolam-draw",
+   "topic": "14.4",
+   "template": "art",
+   "title": {
+    "en": "Draw a symmetrical kolam",
+    "hi": "सममित कोलम बनाओ"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "rangoli",
+    "grid": 7,
+    "symmetry": "mirror"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Soni's amma draws a kolam with dots. When she draws a curve on the left, what will the mirror do on the right?",
+      "hi": "सोनी की अम्मा बिंदुओं से कोलम बनाती हैं। जब वह बाईं तरफ़ कोई रेखा बनाती है तो दर्पण दाईं तरफ़ क्या करेगा?"
+     },
+     "options": [
+      {
+       "id": "copy",
+       "en": "Draw the same curve, flipped, on the right",
+       "hi": "दाईं तरफ़ वही रेखा उलटकर बना देगा"
+      },
+      {
+       "id": "nothing",
+       "en": "Draw nothing",
+       "hi": "कुछ नहीं बनाएगा"
+      }
+     ],
+     "answer": "copy"
+    },
+    {
+     "kind": "do",
+     "target": "canvas",
+     "expect": "drawn",
+     "say": {
+      "en": "Make sure Symmetry is on. Draw a line or a petal between the dots on the left side of the grid. Watch the mirror copy it.",
+      "hi": "देखो कि सममिति चालू है। ग्रिड की बाईं तरफ़ बिंदुओं के बीच कोई रेखा या पंखुड़ी बनाओ। देखो दर्पण उसकी नक़ल कैसे बनाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "canvas",
+     "expect": "drawn",
+     "say": {
+      "en": "Add one more line or flower. Use a bright colour.",
+      "hi": "एक और रेखा या फूल जोड़ो। कोई चटक रंग इस्तेमाल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The mirror line splits the kolam into two halves. Whatever you draw on one side is copied on the other, at the same distance from the line. The kolam is symmetrical, so if you trace it and fold along the line, the two halves fit on each other. Many rangolis from Tamil Nadu, Kerala and Uttarakhand are symmetrical.",
+      "hi": "दर्पण रेखा कोलम को दो आधे भागों में बाँटती है। एक तरफ़ जो बनाते हो वह दूसरी तरफ़ रेखा से उतनी ही दूरी पर नक़ल हो जाता है। कोलम सममित है, इसलिए उसे ट्रेस करके रेखा पर मोड़ने पर दोनों आधे भाग एक-दूसरे पर बैठ जाते हैं। तमिलनाडु, केरल और उत्तराखंड की कई रंगोलियाँ सममित होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Your kolam is symmetrical about a vertical line. You draw a flower 3 dots to the left of the line. Where does the mirror put its copy?",
+        "hi": "तुम्हारा कोलम एक खड़ी रेखा के आर-पार सममित है। तुम रेखा से 3 बिंदु बाईं ओर फूल बनाते हो। दर्पण उसकी नक़ल कहाँ बनाता है?"
+       },
+       "options": [
+        {
+         "en": "3 dots to the right of the line",
+         "hi": "रेखा से 3 बिंदु दाईं ओर"
+        },
+        {
+         "en": "3 dots to the left, on top of it",
+         "hi": "रेखा से 3 बिंदु बाईं ओर, उसी के ऊपर"
+        },
+        {
+         "en": "6 dots to the right",
+         "hi": "रेखा से 6 बिंदु दाईं ओर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The copy is on the other side at the same distance, 3 dots.",
+        "hi": "नक़ल दूसरी तरफ़ उतनी ही दूरी, 3 बिंदु, पर बनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The copy goes to the other side, not on top of the original.",
+         "hi": "नक़ल दूसरी तरफ़ बनती है, असली के ऊपर नहीं।"
+        },
+        {
+         "en": "6 dots is the distance between the original and the copy, not from the line.",
+         "hi": "6 बिंदु असली और नक़ल के बीच की दूरी है, रेखा से नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How can you check that a rangoli is symmetrical?",
+        "hi": "तुम कैसे जाँचोगे कि कोई रंगोली सममित है?"
+       },
+       "options": [
+        {
+         "en": "Trace it and fold the paper on the line",
+         "hi": "उसे ट्रेस करके कागज़ को रेखा पर मोड़ो"
+        },
+        {
+         "en": "Count the colours",
+         "hi": "रंग गिनो"
+        },
+        {
+         "en": "Measure the whole paper",
+         "hi": "पूरा कागज़ नापो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If one half falls exactly on the other when folded, it is symmetrical.",
+        "hi": "अगर मोड़ने पर एक आधा दूसरे पर ठीक बैठे तो वह सममित है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The number of colours does not show symmetry.",
+         "hi": "रंगों की संख्या से सममिति का पता नहीं चलता।"
+        },
+        {
+         "en": "The size of the paper does not show symmetry.",
+         "hi": "कागज़ की माप से सममिति का पता नहीं चलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Switch Symmetry off and draw the same pattern. Is it still symmetrical now? Then switch it on and draw again.",
+      "hi": "अब ख़ुद आज़माओ। सममिति बंद करो और वही पैटर्न बनाओ। क्या वह अब भी सममित है? फिर उसे चालू करो और फिर से बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch14-mask-fold",
+   "topic": "14.5",
+   "template": "art",
+   "title": {
+    "en": "Fold a paper mask: why one eye?",
+    "hi": "कागज़ का मुखौटा मोड़ो: एक आँख क्यों?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "symmetry",
+    "fold": 2,
+    "mirror": true
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Soni folds a paper in half, draws half a cat face on one side and cuts it out. When she opens it, how many eyes will the mask have?",
+      "hi": "सोनी कागज़ को आधा मोड़ती है, एक तरफ़ आधा बिल्ली का चेहरा बनाती है और काट लेती है। खोलने पर मुखौटे में कितनी आँखें होंगी?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "2",
+       "hi": "2 (दो)"
+      },
+      {
+       "id": "one",
+       "en": "1",
+       "hi": "1 (एक)"
+      },
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 (चार)"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "canvas",
+     "expect": "drawn",
+     "say": {
+      "en": "Draw half a face or any shape with your finger on one side of the fold line. The other side is made by the mirror.",
+      "hi": "मोड़ की रेखा की एक तरफ़ उँगली से आधा चेहरा या कोई आकृति बनाओ। दूसरी तरफ़ दर्पण बना देता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "canvas",
+     "expect": "drawn",
+     "say": {
+      "en": "Add an eye and a nose with another colour.",
+      "hi": "दूसरे रंग से एक आँख और नाक जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When you fold a paper and cut or draw on it, both halves are the same when you open it. That is why Soni's cat mask has two matching eyes and she can see through both. Avi cut his mask without folding, so the eyes did not line up and he could use only one. A symmetrical mask has its two sides matching.",
+      "hi": "जब तुम कागज़ को मोड़कर उस पर काटते या बनाते हो तो खोलने पर दोनों आधे भाग एक-से होते हैं। इसीलिए सोनी के बिल्ली वाले मुखौटे में दो मिलती-जुलती आँखें हैं और वह दोनों से देख पाती है। अवि ने मुखौटा बिना मोड़े काटा, इसलिए आँखें सीध में नहीं आईं और वह सिर्फ़ एक आँख से देख पाया। सममित मुखौटे के दोनों तरफ़ मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did Soni's mask have two matching eyes?",
+        "hi": "सोनी के मुखौटे में दो मिलती-जुलती आँखें क्यों थीं?"
+       },
+       "options": [
+        {
+         "en": "She folded the paper before cutting",
+         "hi": "उसने काटने से पहले कागज़ मोड़ा था"
+        },
+        {
+         "en": "She used two scissors",
+         "hi": "उसने दो कैंचियाँ इस्तेमाल कीं"
+        },
+        {
+         "en": "Her paper was blue",
+         "hi": "उसका कागज़ नीला था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cutting a folded paper makes both halves the same.",
+        "hi": "मोड़े हुए कागज़ को काटने से दोनों आधे भाग एक-से बनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The number of scissors does not matter.",
+         "hi": "कैंचियों की संख्या मायने नहीं रखती।"
+        },
+        {
+         "en": "The colour of the paper does not matter.",
+         "hi": "कागज़ का रंग मायने नहीं रखता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is symmetrical about a vertical line?",
+        "hi": "इनमें से कौन खड़ी रेखा के आर-पार सममित है?"
+       },
+       "options": [
+        {
+         "en": "The letter M",
+         "hi": "अक्षर M"
+        },
+        {
+         "en": "The letter F",
+         "hi": "अक्षर F"
+        },
+        {
+         "en": "The letter R",
+         "hi": "अक्षर R"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "M looks the same on the left and the right of its middle line.",
+        "hi": "M अपनी बीच की रेखा के बाएँ और दाएँ एक-जैसा दिखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "F has arms only on the right.",
+         "hi": "F की बाँहें सिर्फ़ दाईं तरफ़ हैं।"
+        },
+        {
+         "en": "R has a loop and a leg only on the right.",
+         "hi": "R का गोला और टाँग सिर्फ़ दाईं तरफ़ हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Fold a paper in half at home and cut a shape on the fold. Open it. Is the shape symmetrical? Draw the fold line with a pencil.",
+      "hi": "अब ख़ुद आज़माओ। घर पर कागज़ को आधा मोड़ो और मोड़ पर कोई आकृति काटो। खोलकर देखो। क्या आकृति सममित है? पेंसिल से मोड़ की रेखा खींचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Chapter hook: the Surajkund fair",
+   "shows": "Entrance of a crafts fair with decorated stalls, colourful gates with matching left and right sides, folk dancers and wooden toys",
+   "view": "Wide, front on so the symmetry shows, bright winter daylight",
+   "right": "Gate and stalls clearly symmetrical, rich colours, no readable signboard text",
+   "avoid": "Faces close up, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "14.3",
+   "use": "Malas of beads",
+   "shows": "Six malas of 8 beads in red and blue laid flat in a row, three symmetrical and three not",
+   "view": "Top-down, plain cloth",
+   "right": "Bead colours match the six cards in the lab",
+   "avoid": "Metal clasps that hide the pattern"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "14.4",
+   "use": "Kolams and rangolis from India",
+   "shows": "A Tamil kolam, a Kerala pookalam and an Uttarakhand aipan, each a separate top-down photo",
+   "view": "Top-down, even light",
+   "right": "Each design clearly symmetrical, true to its tradition",
+   "avoid": "Faces, shoes"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "14.5",
+   "use": "Making a cat mask",
+   "shows": "Five frames: a paper folded in half, half a cat face drawn, cut out, opened and a child holding the finished mask",
+   "view": "Top-down for the first four frames, hands only",
+   "right": "Fold line visible, finished mask clearly symmetrical",
+   "avoid": "Child's face behind the mask"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "14.1",
+   "use": "Mirror on a line",
+   "shows": "A small flat mirror standing on a line drawn on paper beside a half-picture of a butterfly so that the picture looks whole",
+   "view": "Three-quarter view, soft light",
+   "right": "The reflection completes the butterfly exactly",
+   "avoid": "Smudged glass"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Soni's painter story",
+   "shows": "A roadside portrait painter showing half a drawn face and a mirror placed along the middle line",
+   "view": "Eye level, warm light",
+   "right": "Half face clear, mirror placed upright on the line",
+   "avoid": "Real known person's face"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "14.2",
+   "use": "Symmetry in letters and leaves",
+   "shows": "Paper letters A, M, F and R, and a peepal leaf with its midrib, each as a separate file",
+   "view": "Top-down, transparent background",
+   "right": "Midrib or fold line clearly visible",
+   "avoid": "Writing other than the letters"
+  }
+ ]
+}

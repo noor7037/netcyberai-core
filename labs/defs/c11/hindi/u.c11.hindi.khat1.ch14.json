@@ -1,0 +1,657 @@
+{
+ "chapter_key": "u.c11.hindi.khat1.ch14",
+ "class": 11,
+ "subject_id": "hindi",
+ "title": "बादल को घिरते देखा है",
+ "source": "https://ncert.nic.in/textbook/pdf/khat114.pdf",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "The Himalaya in pictures (हिमालय के चित्र)",
+   "labs": [
+    "c11-hindi-khat1-ch14-panels"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.2",
+   "title": "Sky, lake and forest (आकाश, झील और वन)",
+   "labs": [
+    "c11-hindi-khat1-ch14-scenes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.3",
+   "title": "Words of the mountain (पहाड़ के शब्द)",
+   "labs": [
+    "c11-hindi-khat1-ch14-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.4",
+   "title": "Nagarjun the traveller poet (कवि परिचय)",
+   "labs": [],
+   "why_no_lab": "A short note on the poet is better read than played."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-hindi-khat1-ch14-panels",
+   "topic": "14.1",
+   "template": "reader",
+   "title": {
+    "en": "The Himalaya in panels",
+    "hi": "हिमालय चित्र-पट्टियों में"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "panels",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Clouds in the Himalaya",
+      "hi": "हिमालय में बादल"
+     },
+     "lines": [
+      "ऊँचे हिमालय के शिखरों पर काले-सफ़ेद बादल घिर आए हैं।",
+      "बर्फ़ीली चोटियों से बूँदें मोतियों जैसी झिलमिलाती हैं।",
+      "नीचे मानसरोवर में सुनहरे कमल खिले हैं और हंस तैर रहे हैं।",
+      "घाटी में कस्तूरी मृग अपनी ही सुगंध ढूँढ़ता भटकता है।",
+      "देवदार के वनों में किन्नर और किन्नरियाँ बाँसुरी बजाते हैं।",
+      "कवि कहता है कि मैंने ये सारे दृश्य अपनी आँखों से देखे हैं।"
+     ]
+    },
+    "question": {
+     "q": {
+      "en": "What does the poet want to show with these scenes?",
+      "hi": "इन दृश्यों से कवि क्या दिखाना चाहता है?"
+     },
+     "options": [
+      {
+       "en": "The beauty and life of the mountains in the rainy season",
+       "hi": "वर्षा-ऋतु में पहाड़ों की सुंदरता और जीवन"
+      },
+      {
+       "en": "A desert in summer",
+       "hi": "गर्मी में रेगिस्तान"
+      },
+      {
+       "en": "A busy city",
+       "hi": "व्यस्त शहर"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "Every panel shows a lively mountain scene under clouds.",
+      "hi": "हर पट्टी बादलों के नीचे पहाड़ का जीवंत दृश्य है।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first panel and see the clouds gather.",
+      "hi": "पहली पट्टी छुओ और बादलों को घिरते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where do the golden lotuses bloom?",
+      "hi": "सुनहरे कमल कहाँ खिले हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "In Mansarovar lake",
+       "hi": "मानसरोवर झील में"
+      },
+      {
+       "id": "b",
+       "en": "In a desert",
+       "hi": "रेगिस्तान में"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "line:2",
+     "expect": "line:2",
+     "say": {
+      "en": "Tap the panel with the lake and the swans.",
+      "hi": "झील और हंस वाली पट्टी छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Play all the panels one by one.",
+      "hi": "सभी पट्टियाँ एक-एक करके चलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question.",
+      "hi": "प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Nagarjun is a poet who looks at everything with a traveller's eyes. His poem is a gallery of pictures: peaks, lake, deer and forest. Each one is described so simply that we see it too.",
+      "hi": "नागार्जुन हर वस्तु को यात्री की आँख से देखते हैं। उनकी कविता चित्रों की दीर्घा है: शिखर, झील, मृग और वन। हर चित्र इतना सरल बताया गया है कि हम भी उसे देख लेते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which animal wanders after its own scent?",
+        "hi": "कौन-सा पशु अपनी ही सुगंध के पीछे भटकता है?"
+       },
+       "options": [
+        {
+         "en": "The musk deer",
+         "hi": "कस्तूरी मृग"
+        },
+        {
+         "en": "The swan",
+         "hi": "हंस"
+        },
+        {
+         "en": "The cow",
+         "hi": "गाय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The musk deer carries musk inside and searches for it outside.",
+        "hi": "कस्तूरी मृग के भीतर कस्तूरी है और वह उसे बाहर ढूँढ़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The swan floats on the lake.",
+         "hi": "हंस झील में तैरता है।"
+        },
+        {
+         "en": "The cow is not in these scenes.",
+         "hi": "इन दृश्यों में गाय नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw any one panel and colour the clouds, snow and flowers.",
+      "hi": "कोई एक पट्टी बनाओ और बादल, बर्फ़ और फूलों में रंग भरो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khat1-ch14-scenes",
+   "topic": "14.2",
+   "template": "sort",
+   "title": {
+    "en": "Sky, lake or forest",
+    "hi": "आकाश, झील या वन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sky",
+      "label": {
+       "en": "Peaks and sky",
+       "hi": "शिखर और आकाश"
+      }
+     },
+     {
+      "id": "lake",
+      "label": {
+       "en": "Lake",
+       "hi": "झील"
+      }
+     },
+     {
+      "id": "forest",
+      "label": {
+       "en": "Forest and valley",
+       "hi": "वन और घाटी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cloud",
+      "text": {
+       "en": "Dark clouds gathering on the peaks",
+       "hi": "शिखरों पर घिरते काले बादल"
+      },
+      "bin": "sky",
+      "why": {
+       "en": "Clouds belong to the sky above the peaks.",
+       "hi": "बादल शिखरों के ऊपर आकाश के हैं।"
+      }
+     },
+     {
+      "id": "snow",
+      "text": {
+       "en": "Snow glowing in the sun",
+       "hi": "धूप में चमकती बर्फ़"
+      },
+      "bin": "sky",
+      "why": {
+       "en": "Snow lies on the high peaks.",
+       "hi": "बर्फ़ ऊँचे शिखरों पर होती है।"
+      }
+     },
+     {
+      "id": "lotus",
+      "text": {
+       "en": "Golden lotuses on the water",
+       "hi": "पानी पर सुनहरे कमल"
+      },
+      "bin": "lake",
+      "why": {
+       "en": "Lotuses bloom in the lake.",
+       "hi": "कमल झील में खिलते हैं।"
+      }
+     },
+     {
+      "id": "swan",
+      "text": {
+       "en": "Swans gliding on Mansarovar",
+       "hi": "मानसरोवर पर तैरते हंस"
+      },
+      "bin": "lake",
+      "why": {
+       "en": "Swans swim on the lake.",
+       "hi": "हंस झील में तैरते हैं।"
+      }
+     },
+     {
+      "id": "deer",
+      "text": {
+       "en": "The musk deer running in the valley",
+       "hi": "घाटी में दौड़ता कस्तूरी मृग"
+      },
+      "bin": "forest",
+      "why": {
+       "en": "The deer lives in the valley and forest.",
+       "hi": "मृग घाटी और वन में रहता है।"
+      }
+     },
+     {
+      "id": "devdar",
+      "text": {
+       "en": "Deodar trees in a thick forest",
+       "hi": "घने वन में देवदार के वृक्ष"
+      },
+      "bin": "forest",
+      "why": {
+       "en": "Deodar grows in the mountain forests.",
+       "hi": "देवदार पहाड़ी वनों में उगता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:cloud",
+     "expect": "placed:cloud",
+     "say": {
+      "en": "Put the clouds in the right place.",
+      "hi": "बादलों को सही जगह रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where will the swans go?",
+      "hi": "हंस कहाँ जाएँगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Peaks and sky",
+       "hi": "शिखर और आकाश"
+      },
+      {
+       "id": "b",
+       "en": "Lake",
+       "hi": "झील"
+      },
+      {
+       "id": "c",
+       "en": "Forest",
+       "hi": "वन"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:swan",
+     "expect": "placed:swan",
+     "say": {
+      "en": "Place the swans.",
+      "hi": "हंसों को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The poem moves from high to low: peaks, then lake, then forest. Sorting by place helps us see how the poet takes us down the mountain in one smooth look.",
+      "hi": "कविता ऊपर से नीचे चलती है: शिखर, फिर झील, फिर वन। जगह के अनुसार छाँटने से दिखता है कि कवि हमें एक सहज दृष्टि में पहाड़ से नीचे उतारता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where would you find deodar trees?",
+        "hi": "देवदार के वृक्ष कहाँ मिलते हैं?"
+       },
+       "options": [
+        {
+         "en": "In mountain forests",
+         "hi": "पहाड़ी वनों में"
+        },
+        {
+         "en": "In the sea",
+         "hi": "समुद्र में"
+        },
+        {
+         "en": "On a desert dune",
+         "hi": "रेगिस्तान के टीले पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Deodar grows on Himalayan slopes.",
+        "hi": "देवदार हिमालय की ढलानों पर उगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Trees do not grow in the open sea.",
+         "hi": "खुले समुद्र में पेड़ नहीं उगते।"
+        },
+        {
+         "en": "Deodar needs cool hills, not desert heat.",
+         "hi": "देवदार को ठंडे पहाड़ चाहिए, रेगिस्तान की गर्मी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find these three places on a map of India.",
+      "hi": "इन तीन जगहों को भारत के मानचित्र पर ढूँढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khat1-ch14-words",
+   "topic": "14.3",
+   "template": "reader",
+   "title": {
+    "en": "Words of the mountain",
+    "hi": "पहाड़ के शब्द"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "The mountain in the rains",
+      "hi": "वर्षा में पहाड़"
+     },
+     "lines": [
+      "शिखर पर बादल घिर आते हैं और बर्फ़ पिघलने लगती है।",
+      "मानसरोवर के जल में हंस तैरते हैं।",
+      "घाटी में कस्तूरी मृग सुगंध के पीछे भागता है।",
+      "देवदार के वन में किन्नर बाँसुरी बजाते हैं।"
+     ]
+    },
+    "words": [
+     {
+      "w": "शिखर",
+      "meaning": {
+       "en": "peak, mountain top",
+       "hi": "पर्वत की चोटी"
+      }
+     },
+     {
+      "w": "हंस",
+      "meaning": {
+       "en": "swan",
+       "hi": "एक सुंदर जल-पक्षी"
+      }
+     },
+     {
+      "w": "कस्तूरी",
+      "meaning": {
+       "en": "musk, a sweet-smelling substance from a deer",
+       "hi": "एक मृग से मिलने वाली सुगंधित वस्तु"
+      }
+     },
+     {
+      "w": "देवदार",
+      "meaning": {
+       "en": "a tall mountain tree",
+       "hi": "पहाड़ पर उगने वाला ऊँचा पेड़"
+      }
+     },
+     {
+      "w": "किन्नर",
+      "meaning": {
+       "en": "a mountain people of folk tales, known for music",
+       "hi": "लोक-कथाओं के पर्वतवासी, संगीतप्रिय"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press play and listen.",
+      "hi": "चलाओ दबाकर सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is a 'शिखर'?",
+      "hi": "'शिखर' क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "A mountain peak",
+       "hi": "पर्वत की चोटी"
+      },
+      {
+       "id": "b",
+       "en": "A pond",
+       "hi": "तालाब"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:शिखर",
+     "expect": "found:शिखर",
+     "say": {
+      "en": "Find the word for peak.",
+      "hi": "चोटी वाला शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:देवदार",
+     "expect": "found:देवदार",
+     "say": {
+      "en": "Find the tall mountain tree.",
+      "hi": "ऊँचे पहाड़ी पेड़ का शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Nagarjun's words are simple and earthy. शिखर, हंस, देवदार and कस्तूरी paint the Himalayan scene with just one word each.",
+      "hi": "नागार्जुन के शब्द सरल और माटी से जुड़े हैं। शिखर, हंस, देवदार और कस्तूरी हर एक शब्द में हिमालय का चित्र खींच देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word means 'swan'?",
+        "hi": "'हंस' किसे कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "A water bird",
+         "hi": "एक जल-पक्षी"
+        },
+        {
+         "en": "A tree",
+         "hi": "एक पेड़"
+        },
+        {
+         "en": "A hill",
+         "hi": "एक पहाड़ी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A swan is a graceful bird that floats on lakes.",
+        "hi": "हंस सुंदर पक्षी है जो झीलों में तैरता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A tree is rooted on land.",
+         "hi": "पेड़ ज़मीन में जड़ जमाता है।"
+        },
+        {
+         "en": "A hill is a landform.",
+         "hi": "पहाड़ी भू-आकृति है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write a sentence using शिखर and बादल.",
+      "hi": "शिखर और बादल से एक वाक्य लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Hook of the chapter",
+   "shows": "Dark monsoon clouds gathering around Himalayan snow peaks, wide view",
+   "view": "Wide, high ridge viewpoint",
+   "right": "True mountain palette, mist",
+   "avoid": "Cities, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "14.2",
+   "use": "Mansarovar-like lake",
+   "shows": "A high-altitude lake with golden lotuses and a pair of swans, soft light",
+   "view": "Eye level, calm",
+   "right": "Clear water, snow peaks behind",
+   "avoid": "Boats, signs"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "14.3",
+   "use": "Word card: हंस",
+   "shows": "A white swan on plain background, cut-out",
+   "view": "Side view",
+   "right": "Natural proportions",
+   "avoid": "Text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "14.2",
+   "use": "Deodar forest",
+   "shows": "Tall deodar trees with mist and light rays",
+   "view": "Low angle",
+   "right": "Real bark and needles",
+   "avoid": "People"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "14.3",
+   "use": "Word card: कस्तूरी मृग",
+   "shows": "A male musk deer in profile, showing its small tusks, cut-out",
+   "view": "Side view",
+   "right": "Correct anatomy",
+   "avoid": "Hunting scenes"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "14.2",
+   "use": "Himalaya relief",
+   "shows": "Relief map of the Himalaya with Mansarovar location, no names",
+   "view": "Top view, relief shading",
+   "right": "Terrain colours",
+   "avoid": "Borders, names"
+  }
+ ]
+}

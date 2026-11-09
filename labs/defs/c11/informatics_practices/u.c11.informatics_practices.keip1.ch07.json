@@ -1,0 +1,1790 @@
+{
+ "chapter_key": "u.c11.informatics_practices.keip1.ch07",
+ "class": 11,
+ "subject_id": "informatics_practices",
+ "title": "Database Concepts",
+ "source": "https://ncert.nic.in/textbook/pdf/keip107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Introduction to databases",
+   "labs": [],
+   "why_no_lab": "The introduction sets the scene with everyday examples; the labs below handle each idea."
+  },
+  {
+   "n": "7.2.1",
+   "title": "Limitations of a file system",
+   "labs": [
+    "c11-informatics_practices-keip1-ch07-file-problems"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3.1",
+   "title": "From file system to DBMS",
+   "labs": [],
+   "why_no_lab": "This topic is the answer to the file problems already explored in the lab before it."
+  },
+  {
+   "n": "7.3.2",
+   "title": "Key concepts in a DBMS",
+   "labs": [
+    "c11-informatics_practices-keip1-ch07-dbms-terms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "The relational data model",
+   "labs": [
+    "c11-informatics_practices-keip1-ch07-relation-terms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4.1",
+   "title": "Three important properties of a relation",
+   "labs": [
+    "c11-informatics_practices-keip1-ch07-relation-rules"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5.1",
+   "title": "Candidate key and primary key",
+   "labs": [
+    "c11-informatics_practices-keip1-ch07-find-keys",
+    "c11-informatics_practices-keip1-ch07-key-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5.4",
+   "title": "Foreign key",
+   "labs": [
+    "c11-informatics_practices-keip1-ch07-foreign-join"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-informatics_practices-keip1-ch07-file-problems",
+   "topic": "7.2.1",
+   "template": "match",
+   "title": {
+    "en": "Problems of keeping data in files",
+    "hi": "फ़ाइलों में डेटा रखने की समस्याएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "access",
+      "left": {
+       "en": "Difficulty in access",
+       "hi": "पहुँचने में कठिनाई"
+      },
+      "right": {
+       "en": "To see the data in a new way, a programmer must write a new program",
+       "hi": "डेटा को नए ढंग से देखने के लिए प्रोग्रामर को नया प्रोग्राम लिखना पड़ता है"
+      },
+      "why": {
+       "en": "Files give no easy way to ask new questions.",
+       "hi": "फ़ाइलें नए सवाल पूछने का आसान तरीक़ा नहीं देतीं।"
+      }
+     },
+     {
+      "id": "redund",
+      "left": {
+       "en": "Data redundancy",
+       "hi": "डेटा की पुनरावृत्ति (रिडंडेंसी)"
+      },
+      "right": {
+       "en": "A student's name is stored again in a second file",
+       "hi": "विद्यार्थी का नाम दूसरी फ़ाइल में फिर रखा है"
+      },
+      "why": {
+       "en": "The same data is copied in many places.",
+       "hi": "वही डेटा कई जगह दोहराया गया है।"
+      }
+     },
+     {
+      "id": "incons",
+      "left": {
+       "en": "Data inconsistency",
+       "hi": "डेटा में असंगति"
+      },
+      "right": {
+       "en": "A name is corrected in one file but not in the other",
+       "hi": "एक फ़ाइल में नाम सुधरा पर दूसरी में नहीं"
+      },
+      "why": {
+       "en": "Copies of the same data no longer match.",
+       "hi": "एक ही डेटा की प्रतियाँ अब मेल नहीं खातीं।"
+      }
+     },
+     {
+      "id": "isol",
+      "left": {
+       "en": "Data isolation",
+       "hi": "डेटा का अलगाव"
+      },
+      "right": {
+       "en": "Two files about students have no link between them",
+       "hi": "विद्यार्थियों की दो फ़ाइलों में कोई कड़ी नहीं है"
+      },
+      "why": {
+       "en": "Related data sits apart, so joining it is hard.",
+       "hi": "जुड़ा हुआ डेटा अलग पड़ा है, इसलिए उसे जोड़ना कठिन है।"
+      }
+     },
+     {
+      "id": "depend",
+      "left": {
+       "en": "Data dependence",
+       "hi": "डेटा पर निर्भरता"
+      },
+      "right": {
+       "en": "Changing a file's format breaks the programs that read it",
+       "hi": "फ़ाइल का प्रारूप बदलने से उसे पढ़ने वाले प्रोग्राम टूट जाते हैं"
+      },
+      "why": {
+       "en": "Programs are tied to the file's exact structure.",
+       "hi": "प्रोग्राम फ़ाइल की सटीक बनावट से बँधे हैं।"
+      }
+     },
+     {
+      "id": "share",
+      "left": {
+       "en": "Controlled data sharing",
+       "hi": "डेटा साझा करने पर नियंत्रण"
+      },
+      "right": {
+       "en": "Parents should see attendance but not the whole school record",
+       "hi": "अभिभावक हाज़िरी देखें पर पूरा स्कूल रिकॉर्ड नहीं"
+      },
+      "why": {
+       "en": "A file cannot easily show different users different parts.",
+       "hi": "फ़ाइल अलग-अलग उपयोगकर्ताओं को अलग हिस्से आसानी से नहीं दिखा सकती।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:redund",
+     "expect": "matched:redund",
+     "say": {
+      "en": "Match data redundancy with its example.",
+      "hi": "डेटा की पुनरावृत्ति को उसका उदाहरण मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If a name is stored in two files and only one is corrected, what problem appears?",
+      "hi": "अगर एक नाम दो फ़ाइलों में रखा हो और सिर्फ़ एक सुधरे, तो कौन-सी समस्या आती है?"
+     },
+     "options": [
+      {
+       "id": "i",
+       "en": "Inconsistency",
+       "hi": "असंगति"
+      },
+      {
+       "id": "a",
+       "en": "Easy access",
+       "hi": "आसान पहुँच"
+      },
+      {
+       "id": "s",
+       "en": "Better security",
+       "hi": "बेहतर सुरक्षा"
+      }
+     ],
+     "answer": "i"
+    },
+    {
+     "kind": "do",
+     "target": "left:incons",
+     "expect": "matched:incons",
+     "say": {
+      "en": "Match data inconsistency.",
+      "hi": "डेटा की असंगति को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When a school keeps data in separate files, the same fact is stored again and again (redundancy). If one copy is changed and another is not, they disagree (inconsistency). The files are not linked (isolation), they depend on their exact format, they are hard to query, and different users cannot be shown different parts. A DBMS is designed to solve these problems.",
+      "hi": "जब स्कूल डेटा अलग-अलग फ़ाइलों में रखता है तो वही तथ्य बार-बार रखा जाता है (पुनरावृत्ति)। एक प्रति बदले और दूसरी नहीं, तो वे असहमत हो जाती हैं (असंगति)। फ़ाइलें आपस में जुड़ी नहीं होतीं (अलगाव), अपने सटीक प्रारूप पर निर्भर होती हैं, उनमें सवाल पूछना कठिन है, और अलग-अलग उपयोगकर्ताओं को अलग हिस्से नहीं दिखाए जा सकते। DBMS इन समस्याओं को हल करने के लिए बना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which problem causes inconsistency?",
+        "hi": "असंगति किस समस्या से पैदा होती है?"
+       },
+       "options": [
+        {
+         "en": "Keeping the same data in many places",
+         "hi": "एक ही डेटा को कई जगह रखना"
+        },
+        {
+         "en": "Having too few files",
+         "hi": "बहुत कम फ़ाइलें होना"
+        },
+        {
+         "en": "Using a fast computer",
+         "hi": "तेज़ कंप्यूटर इस्तेमाल करना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More copies mean more chances that one is changed and another is forgotten.",
+        "hi": "जितनी ज़्यादा प्रतियाँ, उतनी संभावना कि एक बदले और दूसरी भूल जाए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fewer files would reduce, not cause, the mismatch.",
+         "hi": "कम फ़ाइलें बेमेल को घटातीं, बढ़ातीं नहीं।"
+        },
+        {
+         "en": "Speed has nothing to do with copies disagreeing.",
+         "hi": "गति का प्रतियों के असहमत होने से कोई संबंध नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does a change in a file format break old programs?",
+        "hi": "फ़ाइल का प्रारूप बदलने से पुराने प्रोग्राम क्यों टूटते हैं?"
+       },
+       "options": [
+        {
+         "en": "The programs were written for the old structure",
+         "hi": "प्रोग्राम पुरानी बनावट के लिए लिखे गए थे"
+        },
+        {
+         "en": "The computer forgets how to read files",
+         "hi": "कंप्यूटर फ़ाइलें पढ़ना भूल जाता है"
+        },
+        {
+         "en": "Files can never be changed",
+         "hi": "फ़ाइलें कभी बदली नहीं जा सकतीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This is data dependence.",
+        "hi": "यह डेटा पर निर्भरता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The computer is fine; the programs expect a particular layout.",
+         "hi": "कंप्यूटर ठीक है; प्रोग्राम एक ख़ास बनावट की उम्मीद करते हैं।"
+        },
+        {
+         "en": "Files can be changed; that is the trouble for programs tied to them.",
+         "hi": "फ़ाइलें बदली जा सकती हैं; यही उनसे बँधे प्रोग्रामों की मुश्किल है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a school with separate files for fees, marks and library. Which problem would trouble it most?",
+      "hi": "फ़ीस, अंक और पुस्तकालय की अलग फ़ाइलों वाले स्कूल के बारे में सोचो। उसे कौन-सी समस्या सबसे ज़्यादा परेशान करेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch07-dbms-terms",
+   "topic": "7.3.2",
+   "template": "match",
+   "title": {
+    "en": "Key words of a DBMS",
+    "hi": "DBMS के मुख्य शब्द"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "schema",
+      "left": {
+       "en": "Database schema",
+       "hi": "डेटाबेस स्कीमा"
+      },
+      "right": {
+       "en": "The design: table names, columns, types and rules",
+       "hi": "बनावट: तालिकाओं के नाम, स्तंभ, प्रकार और नियम"
+      },
+      "why": {
+       "en": "It is the skeleton of the database, with no data yet.",
+       "hi": "यह डेटाबेस का ढाँचा है, अभी डेटा नहीं।"
+      }
+     },
+     {
+      "id": "constraint",
+      "left": {
+       "en": "Data constraint",
+       "hi": "डेटा की बाध्यता (कंस्ट्रेंट)"
+      },
+      "right": {
+       "en": "A rule on a column, such as 10 digits for a mobile number",
+       "hi": "स्तंभ पर नियम, जैसे मोबाइल नंबर में 10 अंक"
+      },
+      "why": {
+       "en": "Constraints keep the data accurate and reliable.",
+       "hi": "बाध्यताएँ डेटा को सटीक और भरोसेमंद रखती हैं।"
+      }
+     },
+     {
+      "id": "instance",
+      "left": {
+       "en": "Database instance",
+       "hi": "डेटाबेस इंस्टेंस"
+      },
+      "right": {
+       "en": "The data in the database at one moment",
+       "hi": "किसी एक पल में डेटाबेस में मौजूद डेटा"
+      },
+      "why": {
+       "en": "One schema can have many instances over time.",
+       "hi": "एक स्कीमा के समय के साथ कई इंस्टेंस हो सकते हैं।"
+      }
+     },
+     {
+      "id": "query",
+      "left": {
+       "en": "Query",
+       "hi": "क्वेरी"
+      },
+      "right": {
+       "en": "A request to the database for information",
+       "hi": "जानकारी के लिए डेटाबेस से अनुरोध"
+      },
+      "why": {
+       "en": "For example, find all students present on a date.",
+       "hi": "जैसे, किसी तारीख़ को उपस्थित सब विद्यार्थी ढूँढ़ो।"
+      }
+     },
+     {
+      "id": "meta",
+      "left": {
+       "en": "Metadata (data dictionary)",
+       "hi": "मेटाडेटा (डेटा डिक्शनरी)"
+      },
+      "right": {
+       "en": "Data about the data, kept by the DBMS",
+       "hi": "डेटा के बारे में डेटा, जिसे DBMS रखता है"
+      },
+      "why": {
+       "en": "It stores the schema and constraints.",
+       "hi": "इसमें स्कीमा और बाध्यताएँ रखी जाती हैं।"
+      }
+     },
+     {
+      "id": "manip",
+      "left": {
+       "en": "Data manipulation",
+       "hi": "डेटा हेरफेर"
+      },
+      "right": {
+       "en": "Inserting, deleting or updating records",
+       "hi": "रिकॉर्ड जोड़ना, हटाना या बदलना"
+      },
+      "why": {
+       "en": "These three operations change the state of the database.",
+       "hi": "ये तीन क्रियाएँ डेटाबेस की स्थिति बदलती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:schema",
+     "expect": "matched:schema",
+     "say": {
+      "en": "Match the database schema.",
+      "hi": "डेटाबेस स्कीमा को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A new student joins and her details are added. Is that a query or data manipulation?",
+      "hi": "एक नई छात्रा आती है और उसका विवरण जोड़ा जाता है। यह क्वेरी है या डेटा हेरफेर?"
+     },
+     "options": [
+      {
+       "id": "m",
+       "en": "Data manipulation (insertion)",
+       "hi": "डेटा हेरफेर (जोड़ना)"
+      },
+      {
+       "id": "q",
+       "en": "A query",
+       "hi": "क्वेरी"
+      }
+     ],
+     "answer": "m"
+    },
+    {
+     "kind": "do",
+     "target": "left:manip",
+     "expect": "matched:manip",
+     "say": {
+      "en": "Match data manipulation.",
+      "hi": "डेटा हेरफेर को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The schema is the design of a database and it does not change often. The instance is the actual data at one moment and changes whenever records are inserted, updated or deleted. A query only asks for information; manipulation changes the data. Metadata stores the schema and constraints.",
+      "hi": "स्कीमा डेटाबेस की बनावट है और वह बार-बार नहीं बदलती। इंस्टेंस किसी पल का असली डेटा है और रिकॉर्ड जुड़ने, बदलने या हटने पर बदलता है। क्वेरी सिर्फ़ जानकारी माँगती है; हेरफेर डेटा बदलता है। मेटाडेटा स्कीमा और बाध्यताएँ रखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which stays the same when a new record is added?",
+        "hi": "नया रिकॉर्ड जुड़ने पर क्या वही रहता है?"
+       },
+       "options": [
+        {
+         "en": "The schema",
+         "hi": "स्कीमा"
+        },
+        {
+         "en": "The instance",
+         "hi": "इंस्टेंस"
+        },
+        {
+         "en": "The number of records",
+         "hi": "रिकॉर्ड की संख्या"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The design is unchanged; only the data in it changes.",
+        "hi": "बनावट वही रहती है; सिर्फ़ उसके अंदर का डेटा बदलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The instance is the data, and it just changed.",
+         "hi": "इंस्टेंस डेटा है, और वह अभी बदला है।"
+        },
+        {
+         "en": "It goes up by one.",
+         "hi": "वह एक बढ़ जाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is \"find all students present on 2 February\" a query or a manipulation?",
+        "hi": "\"2 फ़रवरी को उपस्थित सब विद्यार्थी ढूँढ़ो\" क्वेरी है या हेरफेर?"
+       },
+       "options": [
+        {
+         "en": "A query",
+         "hi": "क्वेरी"
+        },
+        {
+         "en": "A manipulation",
+         "hi": "हेरफेर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It asks for information without changing the data.",
+        "hi": "यह डेटा बदले बिना जानकारी माँगती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It only reads the data. It does not insert, update or delete anything.",
+         "hi": "यह सिर्फ़ डेटा पढ़ती है। कुछ जोड़ती, बदलती या हटाती नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Give an example of a constraint for a Class column in a school database.",
+      "hi": "स्कूल डेटाबेस के कक्षा वाले स्तंभ के लिए बाध्यता का एक उदाहरण दो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch07-relation-terms",
+   "topic": "7.4",
+   "template": "match",
+   "title": {
+    "en": "Table words: relation, tuple, attribute",
+    "hi": "तालिका के शब्द: रिलेशन, टपल, एट्रीब्यूट"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "rel",
+      "left": {
+       "en": "Relation",
+       "hi": "रिलेशन"
+      },
+      "right": {
+       "en": "A table",
+       "hi": "एक तालिका"
+      },
+      "why": {
+       "en": "In the relational model data is kept in tables called relations.",
+       "hi": "रिलेशनल मॉडल में डेटा रिलेशन नामक तालिकाओं में रखा जाता है।"
+      }
+     },
+     {
+      "id": "tuple",
+      "left": {
+       "en": "Tuple",
+       "hi": "टपल"
+      },
+      "right": {
+       "en": "A row, one record",
+       "hi": "एक पंक्ति, एक रिकॉर्ड"
+      },
+      "why": {
+       "en": "Each row describes one entity, such as one student.",
+       "hi": "हर पंक्ति एक इकाई, जैसे एक विद्यार्थी, का वर्णन करती है।"
+      }
+     },
+     {
+      "id": "attr",
+      "left": {
+       "en": "Attribute",
+       "hi": "एट्रीब्यूट"
+      },
+      "right": {
+       "en": "A column, one property",
+       "hi": "एक स्तंभ, एक गुण"
+      },
+      "why": {
+       "en": "For example SName or Section.",
+       "hi": "जैसे SName या Section।"
+      }
+     },
+     {
+      "id": "domain",
+      "left": {
+       "en": "Domain",
+       "hi": "डोमेन"
+      },
+      "right": {
+       "en": "The set of values a column may hold",
+       "hi": "वे मान जो एक स्तंभ में रखे जा सकते हैं"
+      },
+      "why": {
+       "en": "For Section the domain might be just A and B.",
+       "hi": "Section का डोमेन सिर्फ़ A और B हो सकता है।"
+      }
+     },
+     {
+      "id": "degree",
+      "left": {
+       "en": "Degree",
+       "hi": "डिग्री"
+      },
+      "right": {
+       "en": "The number of attributes (columns)",
+       "hi": "एट्रीब्यूट (स्तंभों) की संख्या"
+      },
+      "why": {
+       "en": "Count across the table.",
+       "hi": "तालिका में आड़े गिनो।"
+      }
+     },
+     {
+      "id": "card",
+      "left": {
+       "en": "Cardinality",
+       "hi": "कार्डिनैलिटी"
+      },
+      "right": {
+       "en": "The number of tuples (rows)",
+       "hi": "टपल (पंक्तियों) की संख्या"
+      },
+      "why": {
+       "en": "Count down the table.",
+       "hi": "तालिका में नीचे की ओर गिनो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:rel",
+     "expect": "matched:rel",
+     "say": {
+      "en": "Match relation with its meaning.",
+      "hi": "रिलेशन को उसका अर्थ मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A table has 5 columns and 30 rows. What is its degree?",
+      "hi": "एक तालिका में 5 स्तंभ और 30 पंक्तियाँ हैं। उसकी डिग्री क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "5",
+       "hi": "उत्तर: 5"
+      },
+      {
+       "id": "b",
+       "en": "30",
+       "hi": "उत्तर: 30"
+      },
+      {
+       "id": "c",
+       "en": "35",
+       "hi": "उत्तर: 35"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:degree",
+     "expect": "matched:degree",
+     "say": {
+      "en": "Match degree.",
+      "hi": "डिग्री को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the relational model, a relation is a table. Its rows are tuples and its columns are attributes. Each attribute draws its values from a domain. The degree counts the columns and the cardinality counts the rows, so a table with 5 columns and 30 rows has degree 5 and cardinality 30.",
+      "hi": "रिलेशनल मॉडल में रिलेशन एक तालिका है। उसकी पंक्तियाँ टपल हैं और स्तंभ एट्रीब्यूट। हर एट्रीब्यूट अपने मान एक डोमेन से लेता है। डिग्री स्तंभ गिनती है और कार्डिनैलिटी पंक्तियाँ, इसलिए 5 स्तंभ और 30 पंक्तियों वाली तालिका की डिग्री 5 और कार्डिनैलिटी 30 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A new student row is added to a table. Which number changes?",
+        "hi": "तालिका में नई विद्यार्थी की पंक्ति जुड़ती है। कौन-सी संख्या बदलती है?"
+       },
+       "options": [
+        {
+         "en": "Cardinality",
+         "hi": "कार्डिनैलिटी"
+        },
+        {
+         "en": "Degree",
+         "hi": "डिग्री"
+        },
+        {
+         "en": "Both",
+         "hi": "दोनों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cardinality counts rows, and a row was added.",
+        "hi": "कार्डिनैलिटी पंक्तियाँ गिनती है, और एक पंक्ति जुड़ी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The number of columns is unchanged by a new row.",
+         "hi": "नई पंक्ति से स्तंभों की संख्या नहीं बदलती।"
+        },
+        {
+         "en": "Only the row count grows.",
+         "hi": "सिर्फ़ पंक्तियों की संख्या बढ़ती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Another word for a record is...",
+        "hi": "रिकॉर्ड का दूसरा नाम है..."
+       },
+       "options": [
+        {
+         "en": "Tuple",
+         "hi": "टपल"
+        },
+        {
+         "en": "Attribute",
+         "hi": "एट्रीब्यूट"
+        },
+        {
+         "en": "Domain",
+         "hi": "डोमेन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A tuple is one row, i.e. one record.",
+        "hi": "टपल एक पंक्ति, यानी एक रिकॉर्ड है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An attribute is a column, not a whole record.",
+         "hi": "एट्रीब्यूट स्तंभ है, पूरा रिकॉर्ड नहीं।"
+        },
+        {
+         "en": "A domain is a set of allowed values.",
+         "hi": "डोमेन अनुमत मानों का समूह है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a table of your class friends. What are its degree and cardinality?",
+      "hi": "अपने कक्षा-मित्रों की एक तालिका सोचो। उसकी डिग्री और कार्डिनैलिटी क्या होंगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch07-relation-rules",
+   "topic": "7.4.1",
+   "template": "sort",
+   "title": {
+    "en": "What makes a table a relation?",
+    "hi": "तालिका को रिलेशन क्या बनाता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "True for a relation",
+       "hi": "रिलेशन के लिए सही"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Not allowed in a relation",
+       "hi": "रिलेशन में मान्य नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "uname",
+      "text": {
+       "en": "Each column has its own unique name",
+       "hi": "हर स्तंभ का अपना अलग नाम होता है"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Attribute names must be unique in a relation.",
+       "hi": "एट्रीब्यूट के नाम रिलेशन में अलग-अलग होने चाहिए।"
+      }
+     },
+     {
+      "id": "rorder",
+      "text": {
+       "en": "The order of the rows does not matter",
+       "hi": "पंक्तियों का क्रम मायने नहीं रखता"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Tuples are not ordered, even though they are drawn in a table.",
+       "hi": "टपल क्रमबद्ध नहीं माने जाते, भले ही तालिका में बने हों।"
+      }
+     },
+     {
+      "id": "dom",
+      "text": {
+       "en": "All values in a column come from the same domain",
+       "hi": "एक स्तंभ के सभी मान एक ही डोमेन से होते हैं"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "A column holds only one kind of value.",
+       "hi": "एक स्तंभ में एक ही तरह के मान होते हैं।"
+      }
+     },
+     {
+      "id": "null",
+      "text": {
+       "en": "An unknown value is stored as NULL",
+       "hi": "अज्ञात मान NULL के रूप में रखा जाता है"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "NULL stands for unknown or not applicable.",
+       "hi": "NULL का अर्थ अज्ञात या लागू नहीं।"
+      }
+     },
+     {
+      "id": "dup",
+      "text": {
+       "en": "Two rows may be exactly identical in every column",
+       "hi": "दो पंक्तियाँ हर स्तंभ में बिलकुल एक जैसी हो सकती हैं"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Each tuple must be distinct.",
+       "hi": "हर टपल अलग होना चाहिए।"
+      }
+     },
+     {
+      "id": "multi",
+      "text": {
+       "en": "One cell may hold two phone numbers",
+       "hi": "एक खाने में दो फ़ोन नंबर हो सकते हैं"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Each value must be atomic: one value per cell.",
+       "hi": "हर मान अविभाज्य होना चाहिए: एक खाने में एक मान।"
+      }
+     },
+     {
+      "id": "corder",
+      "text": {
+       "en": "The order of the columns is important",
+       "hi": "स्तंभों का क्रम महत्वपूर्ण है"
+      },
+      "bin": "no",
+      "why": {
+       "en": "The order of attributes is immaterial.",
+       "hi": "एट्रीब्यूट का क्रम मायने नहीं रखता।"
+      }
+     },
+     {
+      "id": "same",
+      "text": {
+       "en": "Two columns may have the same name",
+       "hi": "दो स्तंभों का नाम एक ही हो सकता है"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Names must be unique so each attribute can be told apart.",
+       "hi": "नाम अलग होने चाहिए ताकि हर एट्रीब्यूट पहचाना जा सके।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:uname",
+     "expect": "placed:uname",
+     "say": {
+      "en": "Place the unique-column-name card.",
+      "hi": "अलग स्तंभ-नाम वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can one cell hold two phone numbers in a relation?",
+      "hi": "क्या रिलेशन में एक खाने में दो फ़ोन नंबर हो सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, one value per cell",
+       "hi": "नहीं, एक खाने में एक मान"
+      },
+      {
+       "id": "y",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "card:multi",
+     "expect": "placed:multi",
+     "say": {
+      "en": "Place the card about two phone numbers.",
+      "hi": "दो फ़ोन नंबर वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A relation is a table that follows some rules. Column names are unique and their order does not matter. Every row is distinct and the order of rows does not matter. Every value is atomic and comes from the column's domain, and unknown values are stored as NULL. A simple spreadsheet may break these rules; a relation cannot.",
+      "hi": "रिलेशन वह तालिका है जो कुछ नियम मानती है। स्तंभों के नाम अलग-अलग होते हैं और उनका क्रम मायने नहीं रखता। हर पंक्ति अलग होती है और पंक्तियों का क्रम मायने नहीं रखता। हर मान अविभाज्य होता है और स्तंभ के डोमेन से आता है, और अज्ञात मान NULL के रूप में रखे जाते हैं। साधारण स्प्रेडशीट ये नियम तोड़ सकती है; रिलेशन नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A guardian does not share a phone number. What goes in the GPhone column?",
+        "hi": "एक अभिभावक फ़ोन नंबर नहीं बताते। GPhone स्तंभ में क्या जाएगा?"
+       },
+       "options": [
+        {
+         "en": "NULL",
+         "hi": "उत्तर: NULL"
+        },
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        },
+        {
+         "en": "The name of another column",
+         "hi": "दूसरे स्तंभ का नाम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "NULL marks a value that is unknown or not applicable.",
+        "hi": "NULL अज्ञात या लागू न होने वाले मान को दिखाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zero is a number and would be wrong data. NULL says \"unknown\".",
+         "hi": "शून्य एक संख्या है और ग़लत डेटा होगा। NULL कहता है \"अज्ञात\"।"
+        },
+        {
+         "en": "That would put unrelated data in the cell.",
+         "hi": "इससे खाने में असंबंधित डेटा चला जाएगा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these makes a table NOT a relation?",
+        "hi": "इनमें से कौन-सी बात तालिका को रिलेशन नहीं रहने देती?"
+       },
+       "options": [
+        {
+         "en": "Two identical rows",
+         "hi": "दो एक जैसी पंक्तियाँ"
+        },
+        {
+         "en": "Rows listed in a different order",
+         "hi": "पंक्तियाँ अलग क्रम में सजी"
+        },
+        {
+         "en": "A NULL in one cell",
+         "hi": "एक खाने में NULL"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each tuple must be distinct from every other.",
+        "hi": "हर टपल बाक़ी सबसे अलग होना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The order of rows does not matter.",
+         "hi": "पंक्तियों का क्रम मायने नहीं रखता।"
+        },
+        {
+         "en": "NULL is allowed for unknown values.",
+         "hi": "अज्ञात मानों के लिए NULL मान्य है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Check a table in your notebook: does it follow all four rules?",
+      "hi": "अपनी कॉपी की किसी तालिका को जाँचो: क्या वह सब चारों नियम मानती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch07-find-keys",
+   "topic": "7.5.1",
+   "template": "table",
+   "title": {
+    "en": "Which column can identify a student?",
+    "hi": "कौन-सा स्तंभ विद्यार्थी की पहचान कर सकता है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "sql",
+    "tables": {
+     "STUDENT": {
+      "columns": [
+       "RollNo",
+       "AdmNo",
+       "SName",
+       "Section",
+       "City"
+      ],
+      "rows": [
+       [
+        1,
+        "A101",
+        "Asha",
+        "A",
+        "Pune"
+       ],
+       [
+        2,
+        "A102",
+        "Bilal",
+        "A",
+        "Pune"
+       ],
+       [
+        3,
+        "A103",
+        "Chitra",
+        "B",
+        "Jaipur"
+       ],
+       [
+        4,
+        "A104",
+        "Asha",
+        "B",
+        "Kochi"
+       ],
+       [
+        5,
+        "A105",
+        "Dev",
+        "A",
+        "Jaipur"
+       ],
+       [
+        6,
+        "A106",
+        "Esha",
+        "B",
+        "Pune"
+       ]
+      ]
+     }
+    },
+    "query": "SELECT COUNT(*) AS total_rows, COUNT(DISTINCT RollNo) AS distinct_rollno, COUNT(DISTINCT SName) AS distinct_names, COUNT(DISTINCT City) AS distinct_cities FROM STUDENT",
+    "task": {
+     "en": "Find which columns never repeat a value. Those can identify every student.",
+     "hi": "ढूँढ़ो कि कौन-से स्तंभ में कोई मान दोहराया नहीं जाता। वे हर विद्यार्थी की पहचान कर सकते हैं।"
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Press Run to count the rows and the different values in each column.",
+      "hi": "पंक्तियाँ और हर स्तंभ के अलग-अलग मान गिनने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "There are 6 students. Which column has 6 different values, one for every student?",
+      "hi": "6 विद्यार्थी हैं। किस स्तंभ में 6 अलग-अलग मान हैं, हर विद्यार्थी का एक?"
+     },
+     "options": [
+      {
+       "id": "r",
+       "en": "RollNo",
+       "hi": "उत्तर: RollNo"
+      },
+      {
+       "id": "n",
+       "en": "SName",
+       "hi": "उत्तर: SName"
+      },
+      {
+       "id": "c",
+       "en": "City",
+       "hi": "उत्तर: City"
+      }
+     ],
+     "answer": "r"
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The result shows 6 rows, 6 different RollNo values, 5 different names and 3 different cities. Two students are called Asha, so a name cannot identify a student. Three cities repeat too. RollNo never repeats, so it can tell every row apart. A column (or set of columns) that can uniquely identify rows is a candidate key. The one chosen to identify rows is the primary key, and it can never be NULL.",
+      "hi": "नतीजा दिखाता है: 6 पंक्तियाँ, RollNo के 6 अलग मान, 5 अलग नाम और 3 अलग शहर। दो विद्यार्थियों का नाम आशा है, इसलिए नाम से विद्यार्थी पहचाना नहीं जा सकता। शहर भी दोहराए गए हैं। RollNo कभी नहीं दोहराता, इसलिए वह हर पंक्ति को अलग पहचान सकता है। जो स्तंभ (या स्तंभों का समूह) पंक्तियों को अनोखे ढंग से पहचान सके वह कैंडिडेट की (candidate key) है। जिसे पहचान के लिए चुना जाए वह प्राइमरी की (primary key) है, और वह कभी NULL नहीं हो सकती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is SName a poor choice for a primary key here?",
+        "hi": "यहाँ SName प्राइमरी की के लिए बुरा चुनाव क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Two students share the name Asha",
+         "hi": "दो विद्यार्थियों का नाम आशा है"
+        },
+        {
+         "en": "Names are too long",
+         "hi": "नाम बहुत लंबे होते हैं"
+        },
+        {
+         "en": "Names cannot be stored",
+         "hi": "नाम रखे नहीं जा सकते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A key must have a different value for every row.",
+        "hi": "की का मान हर पंक्ति के लिए अलग होना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Length is not the issue. Uniqueness is.",
+         "hi": "समस्या लंबाई नहीं है। अनोखापन है।"
+        },
+        {
+         "en": "Names can be stored; they just do not identify uniquely.",
+         "hi": "नाम रखे जा सकते हैं; बस वे अनोखी पहचान नहीं देते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Both RollNo and AdmNo never repeat. What are they?",
+        "hi": "RollNo और AdmNo दोनों कभी नहीं दोहराते। वे क्या हैं?"
+       },
+       "options": [
+        {
+         "en": "Candidate keys",
+         "hi": "कैंडिडेट की"
+        },
+        {
+         "en": "Foreign keys",
+         "hi": "फ़ॉरेन की"
+        },
+        {
+         "en": "Not keys at all",
+         "hi": "बिलकुल की नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each could be chosen as the primary key.",
+        "hi": "दोनों में से कोई भी प्राइमरी की के रूप में चुना जा सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A foreign key points to another table; these identify rows in this table.",
+         "hi": "फ़ॉरेन की दूसरी तालिका की ओर इशारा करती है; ये इसी तालिका की पंक्तियाँ पहचानते हैं।"
+        },
+        {
+         "en": "They can identify every row, so they qualify as keys.",
+         "hi": "वे हर पंक्ति को पहचान सकते हैं, इसलिए की कहलाने के योग्य हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Edit the query to count how many different values Section has. Can Section be a key?",
+      "hi": "क्वेरी बदलकर गिनो कि Section में कितने अलग मान हैं। क्या Section की हो सकती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch07-key-types",
+   "topic": "7.5.1",
+   "template": "sort",
+   "title": {
+    "en": "Name the key",
+    "hi": "की को नाम दो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cand",
+      "label": {
+       "en": "Candidate key",
+       "hi": "कैंडिडेट की"
+      }
+     },
+     {
+      "id": "pri",
+      "label": {
+       "en": "Primary key",
+       "hi": "प्राइमरी की"
+      }
+     },
+     {
+      "id": "comp",
+      "label": {
+       "en": "Composite primary key",
+       "hi": "कंपोज़िट प्राइमरी की"
+      }
+     },
+     {
+      "id": "fk",
+      "label": {
+       "en": "Foreign key",
+       "hi": "फ़ॉरेन की"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "roll",
+      "text": {
+       "en": "RollNo in STUDENT, chosen to identify a student",
+       "hi": "STUDENT में RollNo, जो विद्यार्थी की पहचान के लिए चुना गया"
+      },
+      "bin": "pri",
+      "why": {
+       "en": "A candidate key picked to identify the rows is the primary key.",
+       "hi": "पंक्तियाँ पहचानने के लिए चुनी गई कैंडिडेट की प्राइमरी की है।"
+      }
+     },
+     {
+      "id": "adm",
+      "text": {
+       "en": "AdmNo in STUDENT, also unique",
+       "hi": "STUDENT में AdmNo, जो अनोखा भी है"
+      },
+      "bin": "cand",
+      "why": {
+       "en": "It could identify a student too, but RollNo was chosen.",
+       "hi": "यह भी विद्यार्थी को पहचान सकता है, पर RollNo चुना गया।"
+      }
+     },
+     {
+      "id": "att",
+      "text": {
+       "en": "RollNo and AttDate together in ATTENDANCE",
+       "hi": "ATTENDANCE में RollNo और AttDate मिलकर"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "One column alone repeats, but the two together are unique.",
+       "hi": "एक स्तंभ अकेला दोहराता है, पर दोनों मिलकर अनोखे हैं।"
+      }
+     },
+     {
+      "id": "mark",
+      "text": {
+       "en": "StudentID and SubjectCode together in MARKS",
+       "hi": "MARKS में StudentID और SubjectCode मिलकर"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "A student has several subjects, so only the pair identifies a row.",
+       "hi": "एक विद्यार्थी के कई विषय होते हैं, इसलिए केवल जोड़ी पंक्ति पहचानती है।"
+      }
+     },
+     {
+      "id": "frk",
+      "text": {
+       "en": "RollNo in ATTENDANCE, pointing to STUDENT",
+       "hi": "ATTENDANCE में RollNo, जो STUDENT की ओर इशारा करता है"
+      },
+      "bin": "fk",
+      "why": {
+       "en": "It refers to the primary key of another table.",
+       "hi": "यह दूसरी तालिका की प्राइमरी की का हवाला देता है।"
+      }
+     },
+     {
+      "id": "gfk",
+      "text": {
+       "en": "GuardianID in STUDENT, pointing to GUARDIAN",
+       "hi": "STUDENT में GuardianID, जो GUARDIAN की ओर इशारा करता है"
+      },
+      "bin": "fk",
+      "why": {
+       "en": "It links each student to a row of the GUARDIAN table.",
+       "hi": "यह हर विद्यार्थी को GUARDIAN तालिका की एक पंक्ति से जोड़ता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:roll",
+     "expect": "placed:roll",
+     "say": {
+      "en": "Place the RollNo card.",
+      "hi": "RollNo वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "RollNo in ATTENDANCE points back to STUDENT. Which key is that?",
+      "hi": "ATTENDANCE का RollNo वापस STUDENT की ओर इशारा करता है। यह कौन-सी की है?"
+     },
+     "options": [
+      {
+       "id": "f",
+       "en": "Foreign key",
+       "hi": "फ़ॉरेन की"
+      },
+      {
+       "id": "p",
+       "en": "Primary key",
+       "hi": "प्राइमरी की"
+      },
+      {
+       "id": "c",
+       "en": "Candidate key",
+       "hi": "कैंडिडेट की"
+      }
+     ],
+     "answer": "f"
+    },
+    {
+     "kind": "do",
+     "target": "card:frk",
+     "expect": "placed:frk",
+     "say": {
+      "en": "Place the RollNo-in-ATTENDANCE card.",
+      "hi": "ATTENDANCE के RollNo वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Candidate keys are the columns that could identify rows. The one we choose is the primary key. If no single column is unique, two or more together can form a composite primary key. A foreign key is a column in one table that refers to the primary key of another table, and so links the tables.",
+      "hi": "कैंडिडेट की वे स्तंभ हैं जो पंक्तियाँ पहचान सकते हैं। जिसे हम चुनते हैं वह प्राइमरी की है। अगर कोई अकेला स्तंभ अनोखा नहीं है तो दो या ज़्यादा मिलकर कंपोज़िट प्राइमरी की बना सकते हैं। फ़ॉरेन की एक तालिका का वह स्तंभ है जो दूसरी तालिका की प्राइमरी की का हवाला देता है, और इस तरह तालिकाओं को जोड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When do we need a composite primary key?",
+        "hi": "कंपोज़िट प्राइमरी की की ज़रूरत कब पड़ती है?"
+       },
+       "options": [
+        {
+         "en": "When no single column is unique but two together are",
+         "hi": "जब कोई अकेला स्तंभ अनोखा न हो पर दो मिलकर हों"
+        },
+        {
+         "en": "When a table has only one column",
+         "hi": "जब तालिका में सिर्फ़ एक स्तंभ हो"
+        },
+        {
+         "en": "When we want to join two tables",
+         "hi": "जब हम दो तालिकाएँ जोड़ना चाहें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The pair of columns together is unique for every row.",
+        "hi": "स्तंभों की जोड़ी हर पंक्ति के लिए मिलकर अनोखी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A single unique column is simply the primary key.",
+         "hi": "एक अकेला अनोखा स्तंभ सीधे प्राइमरी की होता है।"
+        },
+        {
+         "en": "Joining uses a foreign key, not a composite key.",
+         "hi": "जोड़ने के लिए फ़ॉरेन की इस्तेमाल होती है, कंपोज़िट की नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can a foreign key have repeated values?",
+        "hi": "क्या फ़ॉरेन की में मान दोहराए जा सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes, many rows can refer to the same row of the other table",
+         "hi": "हाँ, कई पंक्तियाँ दूसरी तालिका की एक ही पंक्ति का हवाला दे सकती हैं"
+        },
+        {
+         "en": "No, it must always be unique",
+         "hi": "नहीं, वह हमेशा अनोखी होनी चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "RollNo 1 appears in ATTENDANCE once for every day that student is marked.",
+        "hi": "RollNo 1 ATTENDANCE में उस विद्यार्थी के हर चिह्नित दिन के लिए एक बार आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Uniqueness is the rule for a primary key. A student appears on many attendance days.",
+         "hi": "अनोखापन प्राइमरी की का नियम है। एक विद्यार्थी कई दिन की हाज़िरी में आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a library card system. Which would be the primary key of BOOK, and which foreign key links to MEMBER?",
+      "hi": "पुस्तकालय कार्ड प्रणाली को देखो। BOOK की प्राइमरी की क्या होगी, और MEMBER से कौन-सी फ़ॉरेन की जोड़ेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch07-foreign-join",
+   "topic": "7.5.4",
+   "template": "table",
+   "title": {
+    "en": "A foreign key joins two tables",
+    "hi": "फ़ॉरेन की दो तालिकाओं को जोड़ती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "join",
+    "tables": {
+     "STUDENT": {
+      "columns": [
+       "RollNo",
+       "SName"
+      ],
+      "rows": [
+       [
+        1,
+        "Asha"
+       ],
+       [
+        2,
+        "Bilal"
+       ],
+       [
+        3,
+        "Chitra"
+       ],
+       [
+        4,
+        "Dev"
+       ]
+      ]
+     },
+     "ATTENDANCE": {
+      "columns": [
+       "RollNo",
+       "AttDate",
+       "Status"
+      ],
+      "rows": [
+       [
+        1,
+        "2026-02-02",
+        "P"
+       ],
+       [
+        2,
+        "2026-02-02",
+        "A"
+       ],
+       [
+        3,
+        "2026-02-02",
+        "P"
+       ],
+       [
+        1,
+        "2026-02-03",
+        "P"
+       ],
+       [
+        4,
+        "2026-02-03",
+        "P"
+       ]
+      ]
+     }
+    },
+    "task": {
+     "en": "Join the two tables on RollNo.",
+     "hi": "दोनों तालिकाओं को RollNo पर जोड़ो।"
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Press Run to join STUDENT and ATTENDANCE on RollNo.",
+      "hi": "STUDENT और ATTENDANCE को RollNo पर जोड़ने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "ATTENDANCE has 5 rows, each with a RollNo that exists in STUDENT. How many rows will the join show?",
+      "hi": "ATTENDANCE में 5 पंक्तियाँ हैं, हर एक का RollNo STUDENT में मौजूद है। जोड़ने पर कितनी पंक्तियाँ दिखेंगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "5",
+       "hi": "उत्तर: 5"
+      },
+      {
+       "id": "b",
+       "en": "4",
+       "hi": "उत्तर: 4"
+      },
+      {
+       "id": "c",
+       "en": "9",
+       "hi": "उत्तर: 9"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The two tables are linked by RollNo. RollNo is the primary key in STUDENT and a foreign key in ATTENDANCE. The join sets each attendance row beside the matching student, so Asha (RollNo 1) appears twice, once for each day. Because the key lives in both tables, we store the name only once and avoid redundancy.",
+      "hi": "दोनों तालिकाएँ RollNo से जुड़ी हैं। RollNo, STUDENT में प्राइमरी की है और ATTENDANCE में फ़ॉरेन की। जोड़ हर हाज़िरी-पंक्ति को उसके मिलते विद्यार्थी के पास रखता है, इसलिए आशा (RollNo 1) दो बार आती है, हर दिन के लिए एक बार। क्योंकि की दोनों तालिकाओं में है, हम नाम सिर्फ़ एक बार रखते हैं और पुनरावृत्ति से बचते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the student's name not repeated inside ATTENDANCE?",
+        "hi": "विद्यार्थी का नाम ATTENDANCE में बार-बार क्यों नहीं रखा जाता?"
+       },
+       "options": [
+        {
+         "en": "The RollNo foreign key points to the name in STUDENT",
+         "hi": "RollNo फ़ॉरेन की STUDENT के नाम की ओर इशारा करती है"
+        },
+        {
+         "en": "Names are not allowed in attendance",
+         "hi": "हाज़िरी में नाम की अनुमति नहीं है"
+        },
+        {
+         "en": "Attendance tables cannot store text",
+         "hi": "हाज़िरी की तालिका पाठ नहीं रख सकती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The key lets the DBMS look up the name when needed.",
+        "hi": "की से DBMS ज़रूरत पड़ने पर नाम ढूँढ़ लेता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing forbids it. The key simply makes it unnecessary.",
+         "hi": "इसकी कोई मनाही नहीं। की इसे बस ग़ैरज़रूरी बना देती है।"
+        },
+        {
+         "en": "They can store text; they just do not need the name.",
+         "hi": "वे पाठ रख सकती हैं; उन्हें नाम की ज़रूरत ही नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What would happen if ATTENDANCE had a RollNo 9 that is not in STUDENT?",
+        "hi": "अगर ATTENDANCE में RollNo 9 हो जो STUDENT में नहीं है तो क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "It would point to a student who does not exist, which is a mistake",
+         "hi": "वह ऐसे विद्यार्थी की ओर इशारा करेगा जो है ही नहीं, यानी भूल"
+        },
+        {
+         "en": "Nothing, it is fine",
+         "hi": "कुछ नहीं, यह ठीक है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A foreign key value should always match a row in the other table.",
+        "hi": "फ़ॉरेन की का मान हमेशा दूसरी तालिका की किसी पंक्ति से मिलना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A foreign key must refer to an existing primary key value.",
+         "hi": "फ़ॉरेन की को किसी मौजूदा प्राइमरी की मान का हवाला देना चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the LEFT join option if the tables give one. Which student has no attendance?",
+      "hi": "अगर तालिकाएँ दें तो LEFT जोड़ आज़माओ। किस विद्यार्थी की कोई हाज़िरी नहीं है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Chapter hook: a school office with files",
+   "shows": "A school office cupboard full of paper files and ledgers with a desktop computer on the desk beside it",
+   "view": "Wide, 16:9, soft indoor light",
+   "right": "Real Indian school office; ledgers shown closed so no names are readable",
+   "avoid": "Faces, readable labels"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.2",
+   "use": "Paper files that repeat data",
+   "shows": "Two open school registers side by side, one for attendance and one for fees, with handwritten blurred entries",
+   "view": "Top-down view, soft light",
+   "right": "Both registers look related but clearly separate",
+   "avoid": "Readable names or numbers"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "7.4",
+   "use": "Table frame with labelled-less parts",
+   "shows": "A clean table frame of 5 columns and 6 rows with the top row styled as a header, drawn in a neutral style",
+   "view": "Flat front view on white",
+   "right": "Rows and columns are easy to count so the app can mark tuple, attribute, degree and cardinality",
+   "avoid": "Words or numbers"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.5",
+   "use": "Roll-number cards",
+   "shows": "Six identical stiff cards with a blank space for a number, fanned out like a hand of cards, as a cut-out",
+   "view": "Front view, plain background",
+   "right": "Cards are alike so a number written on each shows uniqueness",
+   "avoid": "Any printed numbers"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "7.5.4",
+   "use": "Two tables linked by a key",
+   "shows": "Two empty table frames side by side with a plain line joining one column of the left to one column of the right",
+   "view": "Flat view on white",
+   "right": "Link lands exactly on one column in each table",
+   "avoid": "Words, arrows with text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "7.3",
+   "use": "A teacher looking things up on a computer",
+   "shows": "A teacher's hands on a laptop keyboard in a school staff room, a cup of tea and a stack of registers at the side, screen angled away",
+   "view": "Side view, warm light",
+   "right": "Screen shows nothing readable; the registers show that the computer replaces searching by hand",
+   "avoid": "Faces, readable screen text"
+  }
+ ]
+}

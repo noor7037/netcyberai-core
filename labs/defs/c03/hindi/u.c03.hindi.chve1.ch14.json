@@ -1,0 +1,681 @@
+{
+ "chapter_key": "u.c03.hindi.chve1.ch14",
+ "class": 3,
+ "subject_id": "hindi",
+ "title": "The Farmer's Cleverness (किसान की होशियारी)",
+ "source": "https://ncert.nic.in/textbook.php?chve1=0-18",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "Story: the farmer outwits the bear with crops above and below the ground",
+   "labs": [
+    "c03-hindi-chve1-ch14-bear-deal"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.2",
+   "title": "Which food crops grow above or below the soil",
+   "labs": [
+    "c03-hindi-chve1-ch14-crop-parts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.3",
+   "title": "What would you say to the bear? What do you think of the farmer's cleverness?",
+   "labs": [],
+   "why_no_lab": "An open opinion question; best talked through in class."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-hindi-chve1-ch14-bear-deal",
+   "topic": "14.1",
+   "template": "scenario",
+   "title": {
+    "en": "The farmer and the bear",
+    "hi": "किसान और भालू"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "farm",
+    "role": {
+     "en": "A clever farmer",
+     "hi": "एक होशियार किसान"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "A bear rushes at you in the field. You say, 'Let the crop grow first.' The bear says: 'Whatever grows ABOVE the ground is mine. What grows BELOW is yours.' What will you sow?",
+       "hi": "खेत में भालू तुम पर झपटता है। तुम कहते हो, 'पहले फ़सल उगने दो।' भालू कहता है: 'ज़मीन के ऊपर की उपज मेरी, नीचे की तुम्हारी।' तुम क्या बोओगे?"
+      },
+      "choices": [
+       {
+        "id": "potato-1",
+        "text": {
+         "en": "Potatoes",
+         "hi": "आलू"
+        },
+        "next": "s2",
+        "good": true,
+        "feedback": {
+         "en": "Potatoes grow below the ground. The bear gets only the leaves, and you get the potatoes!",
+         "hi": "आलू ज़मीन के नीचे उगते हैं। भालू को केवल पत्ते मिलेंगे और आलू तुम्हारे होंगे!"
+        }
+       },
+       {
+        "id": "wheat-1",
+        "text": {
+         "en": "Wheat",
+         "hi": "गेहूँ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Wheat grains grow above the ground, so the bear would take the grains and leave you only roots.",
+         "hi": "गेहूँ के दाने ज़मीन के ऊपर उगते हैं, इसलिए भालू दाने ले जाएगा और तुम्हारे हाथ में केवल जड़ें आएँगी।"
+        }
+       },
+       {
+        "id": "spinach-1",
+        "text": {
+         "en": "Spinach",
+         "hi": "पालक"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "We eat the leaves of spinach, which are above the ground. The bear would take them all.",
+         "hi": "पालक की पत्तियाँ खाते हैं, जो ज़मीन के ऊपर होती हैं। भालू सब ले जाएगा।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Next year the bear is angry. He says: 'This time what grows BELOW the ground is mine, and what is ABOVE is yours.' What will you sow now?",
+       "hi": "अगले साल भालू गुस्से में है। वह कहता है: 'इस बार ज़मीन के नीचे की उपज मेरी और ऊपर की तुम्हारी।' अब तुम क्या बोओगे?"
+      },
+      "choices": [
+       {
+        "id": "wheat-2",
+        "text": {
+         "en": "Wheat",
+         "hi": "गेहूँ"
+        },
+        "next": "s3",
+        "good": true,
+        "feedback": {
+         "en": "Wheat grains grow above the ground. The bear gets only the roots, and you get the shining wheat!",
+         "hi": "गेहूँ के दाने ज़मीन के ऊपर उगते हैं। भालू को केवल जड़ें मिलेंगी और चमकीला गेहूँ तुम्हारा होगा!"
+        }
+       },
+       {
+        "id": "radish-2",
+        "text": {
+         "en": "Radish",
+         "hi": "मूली"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "A radish grows below the ground, so the bear would get the radish.",
+         "hi": "मूली ज़मीन के नीचे उगती है, इसलिए मूली भालू ले जाएगा।"
+        }
+       },
+       {
+        "id": "potato-2",
+        "text": {
+         "en": "Potatoes",
+         "hi": "आलू"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Potatoes are below the ground, so the bear would take them.",
+         "hi": "आलू ज़मीन के नीचे होते हैं, इसलिए भालू उन्हें ले जाएगा।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "The third time the bear says: 'The TOP and the BOTTOM are mine. You can keep what is in the middle.' What will you sow?",
+       "hi": "तीसरी बार भालू कहता है: 'ऊपर की और नीचे की उपज मेरी। बीच की तुम रख लो।' अब तुम क्या बोओगे?"
+      },
+      "choices": [
+       {
+        "id": "cane-3",
+        "text": {
+         "en": "Sugarcane",
+         "hi": "गन्ना"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "In sugarcane the leaves are at the top and the roots at the bottom. The sweet stalk in the middle is yours!",
+         "hi": "गन्ने में पत्ते ऊपर और जड़ें नीचे होती हैं। बीच का मीठा तना तुम्हारा है!"
+        }
+       },
+       {
+        "id": "potato-3",
+        "text": {
+         "en": "Potatoes",
+         "hi": "आलू"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "The potatoes grow at the bottom, so the bear would take them.",
+         "hi": "आलू नीचे उगते हैं, इसलिए भालू उन्हें ले जाएगा।"
+        }
+       },
+       {
+        "id": "wheat-3",
+        "text": {
+         "en": "Wheat",
+         "hi": "गेहूँ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Wheat grains are at the top, so the bear would take them.",
+         "hi": "गेहूँ के दाने ऊपर होते हैं, इसलिए भालू उन्हें ले जाएगा।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:s1:potato-1",
+     "expect": "chose:potato-1",
+     "say": {
+      "en": "Choose what to sow so that the bear gets only the part above the ground.",
+      "hi": "वह फ़सल चुनो जिससे भालू को ज़मीन के ऊपर वाला भाग ही मिले।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next year the bear wants what grows BELOW the ground. Which crop gives the farmer the top part?",
+      "hi": "अगले साल भालू को ज़मीन के नीचे की उपज चाहिए। किसान को ऊपर का भाग किस फ़सल से मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "wheat",
+       "en": "Wheat",
+       "hi": "गेहूँ"
+      },
+      {
+       "id": "radish",
+       "en": "Radish",
+       "hi": "मूली"
+      },
+      {
+       "id": "carrot",
+       "en": "Carrot",
+       "hi": "गाजर"
+      }
+     ],
+     "answer": "wheat"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s2:wheat-2",
+     "expect": "chose:wheat-2",
+     "say": {
+      "en": "Now choose the crop whose grains are above the ground.",
+      "hi": "अब वह फ़सल चुनो जिसके दाने ज़मीन के ऊपर होते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:s3:cane-3",
+     "expect": "ended:good",
+     "say": {
+      "en": "The bear wants the top and the bottom. Choose the crop that gives the farmer the middle.",
+      "hi": "भालू को ऊपर और नीचे का भाग चाहिए। वह फ़सल चुनो जिसका बीच का भाग किसान को मिले।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The farmer used his brain, not force. Potatoes grow below the soil, wheat grains grow above it, and in sugarcane the useful part, the stalk, is in the middle. Knowing which part of a plant is above or below the ground helped him win.",
+      "hi": "किसान ने ताकत नहीं, दिमाग से काम लिया। आलू मिट्टी के नीचे उगते हैं, गेहूँ के दाने ऊपर उगते हैं और गन्ने में काम का भाग यानी तना बीच में होता है। पौधे का कौन-सा भाग ऊपर और कौन-सा नीचे होता है, यह जानने से किसान जीत गया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which crop grows below the ground?",
+        "hi": "कौन-सी फ़सल ज़मीन के नीचे उगती है?"
+       },
+       "options": [
+        {
+         "en": "Potato",
+         "hi": "आलू"
+        },
+        {
+         "en": "Wheat",
+         "hi": "गेहूँ"
+        },
+        {
+         "en": "Spinach",
+         "hi": "पालक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A potato is a part of the plant that grows under the soil.",
+        "hi": "आलू पौधे का वह भाग है जो मिट्टी के नीचे उगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wheat grains grow above, on the stalk.",
+         "hi": "गेहूँ के दाने ऊपर, डंठल पर उगते हैं।"
+        },
+        {
+         "en": "We eat the leaves of spinach, which are above the ground.",
+         "hi": "पालक की पत्तियाँ खाते हैं, जो ज़मीन के ऊपर होती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did the farmer choose sugarcane the third time?",
+        "hi": "तीसरी बार किसान ने गन्ना क्यों चुना?"
+       },
+       "options": [
+        {
+         "en": "Its sweet stalk is in the middle",
+         "hi": "उसका मीठा तना बीच में होता है"
+        },
+        {
+         "en": "It grows only underground",
+         "hi": "वह केवल ज़मीन के नीचे उगता है"
+        },
+        {
+         "en": "It has no leaves",
+         "hi": "उसमें पत्ते नहीं होते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bear took the top (leaves) and the bottom (roots), but the stalk in the middle was the farmer's.",
+        "hi": "भालू को ऊपर (पत्ते) और नीचे (जड़ें) मिले, पर बीच का तना किसान का रहा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sugarcane grows above the ground, with roots below.",
+         "hi": "गन्ना ज़मीन के ऊपर उगता है, जड़ें नीचे होती हैं।"
+        },
+        {
+         "en": "Sugarcane does have leaves.",
+         "hi": "गन्ने में पत्ते होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "If you were the bear, what would you ask the farmer the fourth time? Think of a crop that would trick him!",
+      "hi": "अगर तुम भालू होते, तो चौथी बार किसान से क्या माँगते? ऐसी फ़सल सोचो जो उसे उलझा दे!"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-hindi-chve1-ch14-crop-parts",
+   "topic": "14.2",
+   "template": "sort",
+   "title": {
+    "en": "Above or below the ground?",
+    "hi": "ज़मीन के ऊपर या नीचे?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "below",
+      "label": {
+       "en": "Grows below the ground",
+       "hi": "ज़मीन के नीचे उगती है"
+      }
+     },
+     {
+      "id": "above",
+      "label": {
+       "en": "Grows above the ground",
+       "hi": "ज़मीन के ऊपर उगती है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "potato",
+      "text": {
+       "en": "Potato",
+       "hi": "आलू"
+      },
+      "bin": "below",
+      "why": {
+       "en": "Potatoes grow under the soil.",
+       "hi": "आलू मिट्टी के नीचे उगते हैं।"
+      }
+     },
+     {
+      "id": "carrot",
+      "text": {
+       "en": "Carrot",
+       "hi": "गाजर"
+      },
+      "bin": "below",
+      "why": {
+       "en": "A carrot is a root that grows below the ground.",
+       "hi": "गाजर एक जड़ है जो ज़मीन के नीचे उगती है।"
+      }
+     },
+     {
+      "id": "radish",
+      "text": {
+       "en": "Radish",
+       "hi": "मूली"
+      },
+      "bin": "below",
+      "why": {
+       "en": "A radish is a root below the soil.",
+       "hi": "मूली मिट्टी के नीचे की जड़ है।"
+      }
+     },
+     {
+      "id": "sweetpotato",
+      "text": {
+       "en": "Sweet potato",
+       "hi": "शकरकंद"
+      },
+      "bin": "below",
+      "why": {
+       "en": "Sweet potatoes grow below the soil.",
+       "hi": "शकरकंद मिट्टी के नीचे उगती है।"
+      }
+     },
+     {
+      "id": "wheat",
+      "text": {
+       "en": "Wheat grains",
+       "hi": "गेहूँ के दाने"
+      },
+      "bin": "above",
+      "why": {
+       "en": "Wheat grains grow on the stalk above the ground.",
+       "hi": "गेहूँ के दाने ज़मीन के ऊपर डंठल पर उगते हैं।"
+      }
+     },
+     {
+      "id": "spinach",
+      "text": {
+       "en": "Spinach leaves",
+       "hi": "पालक की पत्तियाँ"
+      },
+      "bin": "above",
+      "why": {
+       "en": "Leaves grow above the ground.",
+       "hi": "पत्तियाँ ज़मीन के ऊपर उगती हैं।"
+      }
+     },
+     {
+      "id": "tomato",
+      "text": {
+       "en": "Tomato",
+       "hi": "टमाटर"
+      },
+      "bin": "above",
+      "why": {
+       "en": "Tomatoes hang on the plant above the ground.",
+       "hi": "टमाटर पौधे पर ज़मीन के ऊपर लगते हैं।"
+      }
+     },
+     {
+      "id": "okra",
+      "text": {
+       "en": "Okra (bhindi)",
+       "hi": "भिंडी"
+      },
+      "bin": "above",
+      "why": {
+       "en": "Okra pods grow on the plant above the ground.",
+       "hi": "भिंडी की फलियाँ पौधे पर ज़मीन के ऊपर लगती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:potato",
+     "expect": "placed:potato",
+     "say": {
+      "en": "Tap the card 'आलू', then tap the box where it belongs.",
+      "hi": "'आलू' का कार्ड छुओ, फिर सही डिब्बा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does a carrot grow?",
+      "hi": "गाजर कहाँ उगती है?"
+     },
+     "options": [
+      {
+       "id": "below",
+       "en": "Below the ground",
+       "hi": "ज़मीन के नीचे"
+      },
+      {
+       "id": "above",
+       "en": "Above the ground",
+       "hi": "ज़मीन के ऊपर"
+      }
+     ],
+     "answer": "below"
+    },
+    {
+     "kind": "do",
+     "target": "card:carrot",
+     "expect": "placed:carrot",
+     "say": {
+      "en": "Place the carrot card.",
+      "hi": "गाजर का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:okra",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other vegetables and grains.",
+      "hi": "बाकी सारी सब्ज़ियाँ और अनाज भी छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Some foods grow below the soil, such as potato, carrot and radish. Others grow above the soil, such as wheat, spinach, tomato and okra. Knowing this helped the farmer in the story.",
+      "hi": "कुछ चीज़ें मिट्टी के नीचे उगती हैं, जैसे आलू, गाजर और मूली। कुछ ऊपर उगती हैं, जैसे गेहूँ, पालक, टमाटर और भिंडी। यह बात जानने से कहानी में किसान की मदद हुई।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one grows above the ground?",
+        "hi": "इनमें से कौन-सा ज़मीन के ऊपर उगता है?"
+       },
+       "options": [
+        {
+         "en": "Radish",
+         "hi": "मूली"
+        },
+        {
+         "en": "Tomato",
+         "hi": "टमाटर"
+        },
+        {
+         "en": "Sweet potato",
+         "hi": "शकरकंद"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Tomatoes hang on the plant above the soil.",
+        "hi": "टमाटर मिट्टी के ऊपर पौधे पर लगते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A radish is a root below the soil.",
+         "hi": "मूली मिट्टी के नीचे की जड़ है।"
+        },
+        "",
+        {
+         "en": "A sweet potato grows below the soil.",
+         "hi": "शकरकंद मिट्टी के नीचे उगती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The bear says 'the part above the ground is mine'. Which crop leaves the farmer a good share?",
+        "hi": "भालू कहता है 'ऊपर की उपज मेरी'। किस फ़सल से किसान को अच्छा हिस्सा मिलेगा?"
+       },
+       "options": [
+        {
+         "en": "Carrot",
+         "hi": "गाजर"
+        },
+        {
+         "en": "Wheat",
+         "hi": "गेहूँ"
+        },
+        {
+         "en": "Okra",
+         "hi": "भिंडी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The carrot grows below the soil, so the farmer keeps the carrots.",
+        "hi": "गाजर मिट्टी के नीचे उगती है, इसलिए गाजर किसान के पास रहेगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wheat grows above, so it goes to the bear.",
+         "hi": "गेहूँ ऊपर उगता है, इसलिए वह भालू को चला जाएगा।"
+        },
+        {
+         "en": "Okra grows above, so it goes to the bear.",
+         "hi": "भिंडी ऊपर उगती है, इसलिए वह भालू को चली जाएगी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Visit a vegetable market or look at your kitchen. Which vegetables grow below the ground and which above?",
+      "hi": "सब्ज़ी मंडी में जाओ या रसोई देखो। कौन-सी सब्ज़ियाँ ज़मीन के नीचे उगती हैं और कौन-सी ऊपर?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Opens the story",
+   "shows": "A farmer with a plough in a field seen from behind, a bear in the distance at the edge of the field (render, friendly)",
+   "view": "Wide, back view",
+   "right": "Calm composition, the bear far and not threatening",
+   "avoid": "Violence, faces"
+  },
+  {
+   "n": 2,
+   "kind": "CUT",
+   "topic": "14.2",
+   "use": "Potato plant",
+   "shows": "A potato plant cut through the soil showing green leaves above and tubers below, clean neutral background",
+   "view": "Side view, 4:3",
+   "right": "Tubers on underground stems",
+   "avoid": "Labels and arrows"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "14.1",
+   "use": "Sugarcane parts",
+   "shows": "A sugarcane plant showing leaves at the top, a thick jointed stalk in the middle and roots at the bottom",
+   "view": "Side view, tall frame",
+   "right": "Joints on the stalk, true green and purple",
+   "avoid": "Labels"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "14.2",
+   "use": "Wheat field",
+   "shows": "A golden wheat field at harvest time with ears of wheat in front",
+   "view": "Low, wide",
+   "right": "Ripe golden ears, blue sky",
+   "avoid": "Machines with text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "14.2",
+   "use": "Sort card: carrot",
+   "shows": "A carrot with its green leaves on transparent background",
+   "view": "Front",
+   "right": "Orange root, green feathery leaves",
+   "avoid": "Packaging"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "14.2",
+   "use": "Sort card: tomato and okra",
+   "shows": "Two tomatoes and three okra pods on transparent background",
+   "view": "Front, slightly above",
+   "right": "Fresh colours",
+   "avoid": "Brand stickers"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "14.2",
+   "use": "Sort card: potato",
+   "shows": "Three potatoes with soil on them on transparent background",
+   "view": "Front, slightly above",
+   "right": "Earthy skin, a few eyes",
+   "avoid": "Plastic bag"
+  }
+ ]
+}

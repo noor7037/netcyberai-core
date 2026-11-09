@@ -1,0 +1,646 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch13",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Statistics",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh113.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Introduction: from ungrouped to grouped data",
+   "labs": [],
+   "why_no_lab": "A recap of mean, median and mode from Class 9; the reader revises them before the labs."
+  },
+  {
+   "n": "13.2",
+   "title": "Mean of grouped data: direct, assumed mean and step-deviation methods",
+   "labs": [
+    "c10-mathematics-jemh1-ch13-mean"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3",
+   "title": "Mode of grouped data",
+   "labs": [
+    "c10-mathematics-jemh1-ch13-mode"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4",
+   "title": "Median of grouped data",
+   "labs": [
+    "c10-mathematics-jemh1-ch13-median"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.5",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch13-mean",
+   "topic": "13.2",
+   "template": "data",
+   "title": {
+    "en": "Mean of grouped data",
+    "hi": "समूहित आँकड़ों का माध्य"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "chart": "histogram",
+    "data": [
+     {
+      "label": "0-10",
+      "value": 4
+     },
+     {
+      "label": "10-20",
+      "value": 6
+     },
+     {
+      "label": "20-30",
+      "value": 10
+     },
+     {
+      "label": "30-40",
+      "value": 12
+     },
+     {
+      "label": "40-50",
+      "value": 8
+     }
+    ],
+    "show": 3,
+    "views": [
+     "histogram",
+     "frequency-polygon"
+    ],
+    "title": {
+     "en": "Minutes 40 students read each day (sample data)",
+     "hi": "40 विद्यार्थी रोज़ कितने मिनट पढ़ते हैं (नमूना आँकड़े)"
+    },
+    "xlabel": {
+     "en": "Minutes of reading",
+     "hi": "पढ़ने के मिनट"
+    },
+    "ylabel": {
+     "en": "Number of students",
+     "hi": "विद्यार्थियों की संख्या"
+    },
+    "ask": "mean"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to plot the class 30–40.",
+      "hi": "30–40 वर्ग का दंड बनाने के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row again for the last class, 40–50.",
+      "hi": "आख़िरी वर्ग 40–50 के लिए फिर पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Most students read for 20 to 40 minutes. Where will the mean lie?",
+      "hi": "ज़्यादातर विद्यार्थी 20 से 40 मिनट पढ़ते हैं। माध्य कहाँ होगा?"
+     },
+     "options": [
+      {
+       "id": "mid",
+       "en": "Between 25 and 35",
+       "hi": "25 और 35 के बीच"
+      },
+      {
+       "id": "low",
+       "en": "Below 20",
+       "hi": "20 से कम"
+      },
+      {
+       "id": "high",
+       "en": "Above 40",
+       "hi": "40 से ज़्यादा"
+      }
+     ],
+     "answer": "mid"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Use the class marks to find the mean. Type it and press Check.",
+      "hi": "वर्ग चिह्नों से माध्य निकालो। लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We do not know each student's exact minutes, so we take each class's middle value, the class mark (5, 15, 25, 35, 45). Mean = Σfx ÷ Σf = (20 + 90 + 250 + 420 + 360) ÷ 40 = 1140 ÷ 40 = 28.5 minutes. Choosing an assumed mean or a step size only shortens the arithmetic; the answer is the same.",
+      "hi": "हमें हर विद्यार्थी के सटीक मिनट नहीं पता, इसलिए हर वर्ग का मध्य मान, यानी वर्ग चिह्न (5, 15, 25, 35, 45), लेते हैं। माध्य = Σfx ÷ Σf = (20 + 90 + 250 + 420 + 360) ÷ 40 = 1140 ÷ 40 = 28.5 मिनट। कल्पित माध्य या पग-विचलन विधि केवल हिसाब छोटा करती है; उत्तर वही रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the class mark of the class 20–30?",
+        "hi": "वर्ग 20–30 का वर्ग चिह्न क्या है?"
+       },
+       "options": [
+        "25",
+        "10",
+        "50",
+        "20"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Class mark = (lower + upper) ÷ 2 = (20 + 30) ÷ 2 = 25.",
+        "hi": "वर्ग चिह्न = (निम्न + उच्च) ÷ 2 = (20 + 30) ÷ 2 = 25।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "10 is the class width (30 − 20), not its middle.",
+         "hi": "10 वर्ग की चौड़ाई (30 − 20) है, उसका मध्य नहीं।"
+        },
+        {
+         "en": "50 is the sum of the limits; divide by 2.",
+         "hi": "50 सीमाओं का योग है; 2 से भाग दो।"
+        },
+        {
+         "en": "20 is the lower limit, the start of the class.",
+         "hi": "20 निम्न सीमा है, यानी वर्ग की शुरुआत।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we multiply each class mark by its frequency before adding?",
+        "hi": "जोड़ने से पहले हर वर्ग चिह्न को उसकी बारंबारता से गुणा क्यों करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Each class mark stands for all the students in that class",
+         "hi": "हर वर्ग चिह्न उस वर्ग के सभी विद्यार्थियों का प्रतिनिधि है"
+        },
+        {
+         "en": "To make the numbers bigger",
+         "hi": "संख्याएँ बड़ी करने के लिए"
+        },
+        {
+         "en": "Because the classes are 10 wide",
+         "hi": "क्योंकि वर्ग 10 चौड़े हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "12 students in 30–40 each count as about 35 minutes, adding 12 × 35 = 420.",
+        "hi": "30–40 के 12 विद्यार्थी हर एक लगभग 35 मिनट गिने जाते हैं, जो 12 × 35 = 420 जोड़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size is not the reason; the products count each student once.",
+         "hi": "आकार कारण नहीं है; गुणनफल हर विद्यार्थी को एक बार गिनते हैं।"
+        },
+        {
+         "en": "The width is used in the step-deviation shortcut, not in Σfx.",
+         "hi": "चौड़ाई पग-विचलन वाले छोटे तरीक़े में आती है, Σfx में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag the 40–50 bar higher. Which way does the mean move? Why does a big class pull the mean towards it?",
+      "hi": "आज़माओ: 40–50 वाले दंड को ऊँचा खींचो। माध्य किस ओर खिसकता है? बड़ा वर्ग माध्य को अपनी ओर क्यों खींचता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch13-mode",
+   "topic": "13.3",
+   "template": "data",
+   "title": {
+    "en": "Mode of grouped data",
+    "hi": "समूहित आँकड़ों का बहुलक"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "chart": "histogram",
+    "data": [
+     {
+      "label": "0-10",
+      "value": 4
+     },
+     {
+      "label": "10-20",
+      "value": 6
+     },
+     {
+      "label": "20-30",
+      "value": 10
+     },
+     {
+      "label": "30-40",
+      "value": 12
+     },
+     {
+      "label": "40-50",
+      "value": 8
+     }
+    ],
+    "show": 3,
+    "views": [
+     "histogram",
+     "frequency-polygon"
+    ],
+    "title": {
+     "en": "Minutes 40 students read each day (sample data)",
+     "hi": "40 विद्यार्थी रोज़ कितने मिनट पढ़ते हैं (नमूना आँकड़े)"
+    },
+    "xlabel": {
+     "en": "Minutes of reading",
+     "hi": "पढ़ने के मिनट"
+    },
+    "ylabel": {
+     "en": "Number of students",
+     "hi": "विद्यार्थियों की संख्या"
+    },
+    "ask": "mode"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to plot the class 30–40.",
+      "hi": "30–40 वर्ग का दंड बनाने के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The tallest bar is 30–40. Its left neighbour (10) is taller than its right neighbour (8). Where in 30–40 will the mode be?",
+      "hi": "सबसे ऊँचा दंड 30–40 है। उसका बायाँ पड़ोसी (10) दाएँ पड़ोसी (8) से ऊँचा है। 30–40 में बहुलक कहाँ होगा?"
+     },
+     "options": [
+      {
+       "id": "left",
+       "en": "A little left of the middle, near 33",
+       "hi": "बीच से थोड़ा बाएँ, 33 के पास"
+      },
+      {
+       "id": "right",
+       "en": "Right of the middle, near 37",
+       "hi": "बीच से दाएँ, 37 के पास"
+      },
+      {
+       "id": "mid",
+       "en": "Exactly at 35",
+       "hi": "ठीक 35 पर"
+      }
+     ],
+     "answer": "left"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row once more to plot 40–50.",
+      "hi": "40–50 बनाने के लिए एक बार और पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Use the modal class and the formula to find the mode. Type it to 1 decimal place.",
+      "hi": "बहुलक वर्ग और सूत्र से बहुलक निकालो। एक दशमलव तक लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The modal class has the highest frequency: 30–40 with f₁ = 12, f₀ = 10 before it and f₂ = 8 after it. Mode = l + (f₁ − f₀) ÷ (2f₁ − f₀ − f₂) × h = 30 + 2 ÷ 6 × 10 ≈ 33.3 minutes. The bigger left neighbour pulls the mode to the left of the middle.",
+      "hi": "बहुलक वर्ग की बारंबारता सबसे अधिक होती है: 30–40, जिसमें f₁ = 12, उससे पहले f₀ = 10 और बाद में f₂ = 8। बहुलक = l + (f₁ − f₀) ÷ (2f₁ − f₀ − f₂) × h = 30 + 2 ÷ 6 × 10 ≈ 33.3 मिनट। बड़ा बायाँ पड़ोसी बहुलक को बीच से बाईं ओर खींचता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Classes 0–5, 5–10, 10–15, 15–20 have frequencies 3, 8, 12, 7. What is the mode?",
+        "hi": "वर्ग 0–5, 5–10, 10–15, 15–20 की बारंबारताएँ 3, 8, 12, 7 हैं। बहुलक क्या है?"
+       },
+       "options": [
+        {
+         "en": "About 12.2",
+         "hi": "लगभग 12.2"
+        },
+        "12",
+        "12.5",
+        "15"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Modal class 10–15: 10 + (12 − 8) ÷ (24 − 8 − 7) × 5 = 10 + 4/9 × 5 ≈ 12.2.",
+        "hi": "बहुलक वर्ग 10–15: 10 + (12 − 8) ÷ (24 − 8 − 7) × 5 = 10 + 4/9 × 5 ≈ 12.2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 is the highest frequency, not the mode; the mode is a value of the data.",
+         "hi": "12 सबसे अधिक बारंबारता है, बहुलक नहीं; बहुलक आँकड़ों का एक मान है।"
+        },
+        {
+         "en": "12.5 is the class mark; the formula shifts it towards the bigger neighbour.",
+         "hi": "12.5 वर्ग चिह्न है; सूत्र उसे बड़े पड़ोसी की ओर खिसकाता है।"
+        },
+        {
+         "en": "15 is the upper limit of the modal class.",
+         "hi": "15 बहुलक वर्ग की उच्च सीमा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag the 20–30 bar up to 12 too. Now two classes tie. What does the tool say about the mode, and why?",
+      "hi": "आज़माओ: 20–30 वाले दंड को भी 12 तक खींचो। अब दो वर्ग बराबर हैं। उपकरण बहुलक के बारे में क्या कहता है, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch13-median",
+   "topic": "13.4",
+   "template": "data",
+   "title": {
+    "en": "Median of grouped data",
+    "hi": "समूहित आँकड़ों की माध्यिका"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "chart": "histogram",
+    "data": [
+     {
+      "label": "0-10",
+      "value": 4
+     },
+     {
+      "label": "10-20",
+      "value": 6
+     },
+     {
+      "label": "20-30",
+      "value": 10
+     },
+     {
+      "label": "30-40",
+      "value": 12
+     },
+     {
+      "label": "40-50",
+      "value": 8
+     }
+    ],
+    "show": 3,
+    "views": [
+     "histogram",
+     "frequency-polygon"
+    ],
+    "title": {
+     "en": "Minutes 40 students read each day (sample data)",
+     "hi": "40 विद्यार्थी रोज़ कितने मिनट पढ़ते हैं (नमूना आँकड़े)"
+    },
+    "xlabel": {
+     "en": "Minutes of reading",
+     "hi": "पढ़ने के मिनट"
+    },
+    "ylabel": {
+     "en": "Number of students",
+     "hi": "विद्यार्थियों की संख्या"
+    },
+    "ask": "median"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to plot the class 30–40.",
+      "hi": "30–40 वर्ग का दंड बनाने के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row again to plot 40–50.",
+      "hi": "40–50 बनाने के लिए फिर पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "There are 40 students. The median is the minutes of the student in the middle. How many students come before the middle?",
+      "hi": "कुल 40 विद्यार्थी हैं। माध्यिका बीच वाले विद्यार्थी के मिनट हैं। बीच से पहले कितने विद्यार्थी आते हैं?"
+     },
+     "options": [
+      {
+       "id": "twenty",
+       "en": "Half of 40, that is 20",
+       "hi": "40 का आधा, यानी 20"
+      },
+      {
+       "id": "ten",
+       "en": "10",
+       "hi": "10 विद्यार्थी"
+      },
+      {
+       "id": "twelve",
+       "en": "12, the biggest class",
+       "hi": "12, सबसे बड़ा वर्ग"
+      }
+     ],
+     "answer": "twenty"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Use the cumulative frequencies to find the median. Type it and press Check.",
+      "hi": "संचयी बारंबारता से माध्यिका निकालो। लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cumulative frequencies: 4, 10, 20, 32, 40. Half of 40 is 20, and the 20th student is at the very end of 20–30, where the cumulative frequency reaches 20. Using the median class 30–40 (the first with cf more than 20): median = l + (n/2 − cf) ÷ f × h = 30 + (20 − 20) ÷ 12 × 10 = 30 minutes.",
+      "hi": "संचयी बारंबारताएँ: 4, 10, 20, 32, 40। 40 का आधा 20 है, और 20वाँ विद्यार्थी 20–30 के ठीक अंत में है, जहाँ संचयी बारंबारता 20 तक पहुँचती है। माध्यिका वर्ग 30–40 (पहला वर्ग जिसकी संचयी बारंबारता 20 से अधिक है) से: माध्यिका = l + (n/2 − cf) ÷ f × h = 30 + (20 − 20) ÷ 12 × 10 = 30 मिनट।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For 50 students with cumulative frequencies 5, 15, 32, 45, 50 (classes of width 10 starting at 0), which is the median class?",
+        "hi": "50 विद्यार्थियों की संचयी बारंबारताएँ 5, 15, 32, 45, 50 हैं (0 से शुरू, 10 चौड़े वर्ग)। माध्यिका वर्ग कौन-सा है?"
+       },
+       "options": [
+        "20–30",
+        "10–20",
+        "30–40"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "n/2 = 25, and the cumulative frequency first passes 25 at 32, in the class 20–30.",
+        "hi": "n/2 = 25 है, और संचयी बारंबारता पहली बार 32 पर 25 से आगे जाती है, जो 20–30 वर्ग में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "By the end of 10–20 only 15 students are counted, fewer than 25.",
+         "hi": "10–20 के अंत तक केवल 15 विद्यार्थी गिने गए, जो 25 से कम हैं।"
+        },
+        {
+         "en": "The 25th student is already inside 20–30, before 30–40 begins.",
+         "hi": "25वाँ विद्यार्थी 30–40 शुरू होने से पहले ही 20–30 में है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For our data, mean ≈ 28.5, median = 30 and mode ≈ 33.3. Which is true?",
+        "hi": "हमारे आँकड़ों में माध्य ≈ 28.5, माध्यिका = 30 और बहुलक ≈ 33.3 है। क्या सही है?"
+       },
+       "options": [
+        {
+         "en": "3 × median ≈ mode + 2 × mean",
+         "hi": "3 × माध्यिका ≈ बहुलक + 2 × माध्य"
+        },
+        {
+         "en": "All three must be equal",
+         "hi": "तीनों बराबर होने चाहिए"
+        },
+        {
+         "en": "The median is always the biggest",
+         "hi": "माध्यिका हमेशा सबसे बड़ी होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 × 30 = 90 and 33.3 + 57 = 90.3: the usual rough link between the three.",
+        "hi": "3 × 30 = 90 और 33.3 + 57 = 90.3: तीनों के बीच का सामान्य अनुमानित संबंध।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They are equal only for perfectly balanced data; here they differ.",
+         "hi": "वे केवल पूरी तरह संतुलित आँकड़ों में बराबर होते हैं; यहाँ अलग हैं।"
+        },
+        {
+         "en": "Here the mode is the biggest; the order depends on the shape of the data.",
+         "hi": "यहाँ बहुलक सबसे बड़ा है; क्रम आँकड़ों की बनावट पर निर्भर करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag the 0–10 bar up to 10. Does the median move left or right? Work out the new cumulative frequencies.",
+      "hi": "आज़माओ: 0–10 वाले दंड को 10 तक खींचो। माध्यिका बाएँ जाती है या दाएँ? नई संचयी बारंबारताएँ निकालो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "Chapter hook: a class reading corner",
+   "shows": "A school library corner in India with books on low shelves and a wall clock, empty chairs around a table",
+   "view": "Wide view, soft daylight from a window",
+   "right": "Clock visible but hands not readable as a time",
+   "avoid": "Children's faces, school name"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "13.2",
+   "use": "Tally sheet for collecting data",
+   "shows": "A clipboard with a blank tally sheet and a pencil",
+   "view": "From above, transparent background",
+   "right": "Sheet blank so the app can fill it",
+   "avoid": "Printed text, brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "13.3",
+   "use": "Most common shoe size at a shop",
+   "shows": "Rows of school shoes of many sizes on the shelves of a small Indian shoe shop, one size clearly in larger stock",
+   "view": "Straight on to the shelves, even light",
+   "right": "One stack clearly bigger than the rest",
+   "avoid": "Brand names, price tags, people"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "13.4",
+   "use": "Lining up by height to find the middle",
+   "shows": "Shadows of a row of children standing in order of height on a school ground at morning assembly (only shadows, no faces)",
+   "view": "From above at an angle, low morning sun",
+   "right": "Shadows clearly in increasing order",
+   "avoid": "Faces, identifiable children"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "13.2",
+   "use": "Histogram base",
+   "shows": "A sheet of graph paper with axes drawn and five empty touching rectangles outlined lightly in pencil",
+   "view": "From above, even light",
+   "right": "Rectangles touch each other with no gaps (continuous classes)",
+   "avoid": "Numbers or labels"
+  }
+ ]
+}

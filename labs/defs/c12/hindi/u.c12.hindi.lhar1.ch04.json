@@ -1,0 +1,515 @@
+{
+ "chapter_key": "u.c12.hindi.lhar1.ch04",
+ "class": 12,
+ "subject_id": "hindi",
+ "title": "कैमरे में बंद अपाहिज",
+ "source": "https://ncert.nic.in/textbook/pdf/lhar104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "कार्यक्रम का निर्माता: दर्द को बेचने की प्रवृत्ति",
+   "labs": [
+    "c12-hindi-lhar1-ch04-studio"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "मीडिया की संवेदनशीलता और संवेदनहीनता",
+   "labs": [
+    "c12-hindi-lhar1-ch04-vyavahar"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-hindi-lhar1-ch04-studio",
+   "topic": "4.1",
+   "template": "scenario",
+   "title": {
+    "en": "In the TV studio",
+    "hi": "टीवी स्टूडियो में"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "setting": "studio",
+    "role": {
+     "en": "A TV producer making a programme with a disabled guest",
+     "hi": "विकलांग अतिथि के साथ कार्यक्रम बनाने वाला टीवी निर्माता"
+    },
+    "scenes": [
+     {
+      "id": "plan",
+      "text": {
+       "en": "Your channel wants a programme with a guest who cannot walk. The ratings team says: make the viewers cry. What do you plan?",
+       "hi": "आपका चैनल एक ऐसे अतिथि के साथ कार्यक्रम चाहता है जो चल नहीं सकता। रेटिंग टीम कहती है: दर्शकों को रुलाओ। आप क्या योजना बनाएँगे?"
+      },
+      "choices": [
+       {
+        "id": "cry",
+        "text": {
+         "en": "Ask hard questions until he breaks down",
+         "hi": "तब तक कठिन सवाल पूछो जब तक वह टूट न जाए"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "This uses his pain to sell the show. The poem calls this cruelty dressed up as concern.",
+         "hi": "यह उसके दुख को कार्यक्रम बेचने में लगाना है। कविता इसे दया का दिखावा करती क्रूरता कहती है।"
+        }
+       },
+       {
+        "id": "respect",
+        "text": {
+         "en": "Talk about his work and ideas with respect",
+         "hi": "उसके काम और विचारों पर आदर से बात करो"
+        },
+        "next": "ask",
+        "good": true,
+        "feedback": {
+         "en": "Good. A guest is a person first, not a way to raise ratings.",
+         "hi": "अच्छा। अतिथि पहले इंसान है, रेटिंग बढ़ाने का साधन नहीं।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "ask",
+      "text": {
+       "en": "During the show the guest pauses before answering. The camera is on him. What do you do?",
+       "hi": "कार्यक्रम में अतिथि उत्तर देने से पहले रुक जाता है। कैमरा उस पर है। आप क्या करेंगे?"
+      },
+      "choices": [
+       {
+        "id": "zoom",
+        "text": {
+         "en": "Zoom in on his face to catch tears",
+         "hi": "आँसू पकड़ने के लिए उसके चेहरे पर कैमरा ले जाओ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "A close-up for tears makes his suffering a spectacle, the very thing the poem criticises.",
+         "hi": "आँसुओं के लिए क्लोज़-अप उसके दुख को तमाशा बनाना है, जिसकी कविता आलोचना करती है।"
+        }
+       },
+       {
+        "id": "wait",
+        "text": {
+         "en": "Give him time and let him speak in his own way",
+         "hi": "उसे समय दो और अपने ढंग से बोलने दो"
+        },
+        "next": "close",
+        "good": true,
+        "feedback": {
+         "en": "Patience shows that you care about him, not about the shot.",
+         "hi": "धैर्य दिखाता है कि आपको उसकी परवाह है, शॉट की नहीं।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "close",
+      "text": {
+       "en": "The time is nearly over. How do you end the programme?",
+       "hi": "समय लगभग ख़त्म है। आप कार्यक्रम का अंत कैसे करेंगे?"
+      },
+      "choices": [
+       {
+        "id": "pity",
+        "text": {
+         "en": "Tell viewers to feel sorry and keep watching",
+         "hi": "दर्शकों से कहो कि अफ़सोस करें और देखते रहें"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Pity used as a hook still treats him as a show piece.",
+         "hi": "हथकंडे के रूप में दया उसे अब भी प्रदर्शन की वस्तु बनाती है।"
+        }
+       },
+       {
+        "id": "thank",
+        "text": {
+         "en": "Thank him and show his strength, not his pain",
+         "hi": "उसे धन्यवाद दो और उसकी ताक़त दिखाओ, दर्द नहीं"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "This is the poem's hope: a media that respects the person it shows.",
+         "hi": "यही कविता की आशा है: ऐसा मीडिया जो जिसे दिखाता है उसका सम्मान करे।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:plan:respect",
+     "expect": "chose:respect",
+     "say": {
+      "en": "Choose how to plan the programme.",
+      "hi": "तय करो कि कार्यक्रम की योजना कैसे बनाओगे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The next scene is about the camera. Which choice will serve the guest better?",
+      "hi": "अगला दृश्य कैमरे के बारे में है। कौन-सा चुनाव अतिथि के लिए बेहतर होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Zoom in for tears",
+       "hi": "आँसुओं पर ज़ूम"
+      },
+      {
+       "id": "b",
+       "en": "Give him time",
+       "hi": "उसे समय देना"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "choice:ask:wait",
+     "expect": "chose:wait",
+     "say": {
+      "en": "Choose what to do when he pauses.",
+      "hi": "जब वह रुके तो क्या करना है, चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:close:thank",
+     "expect": "chose:thank",
+     "say": {
+      "en": "Choose how to end the show.",
+      "hi": "कार्यक्रम का अंत कैसे हो, चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Raghuvir Sahay shows a programme that turns a disabled man's pain into a product. The camera and the questions are used to make the viewer feel, so that the channel earns. The poem asks us to see the guest as a person with dignity.",
+      "hi": "रघुवीर सहाय एक ऐसे कार्यक्रम को दिखाते हैं जो विकलांग व्यक्ति के दर्द को बिकाऊ बना देता है। कैमरा और सवाल दर्शकों को भावुक करने के लिए हैं ताकि चैनल कमाए। कविता हमें अतिथि को गरिमा वाले इंसान की तरह देखना सिखाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the poem's main complaint?",
+        "hi": "कविता की मुख्य शिकायत क्या है?"
+       },
+       "options": [
+        {
+         "en": "Media sells a person's pain for profit",
+         "hi": "मीडिया किसी के दर्द को मुनाफ़े के लिए बेचता है"
+        },
+        {
+         "en": "Cameras are too costly",
+         "hi": "कैमरे बहुत महँगे हैं"
+        },
+        {
+         "en": "Guests speak too softly",
+         "hi": "अतिथि बहुत धीरे बोलते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The programme uses the guest's suffering to attract viewers.",
+        "hi": "कार्यक्रम अतिथि की पीड़ा से दर्शक खींचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cost is not the issue; the cruelty of using pain is.",
+         "hi": "खर्च मुद्दा नहीं है; दर्द के इस्तेमाल की क्रूरता मुद्दा है।"
+        },
+        {
+         "en": "The guest's voice is not the fault; the questioning is.",
+         "hi": "दोष अतिथि की आवाज़ का नहीं, सवालों का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Restart and choose the cruel option each time. What does the programme become?",
+      "hi": "फिर से शुरू करो और हर बार क्रूर विकल्प चुनो। कार्यक्रम क्या बन जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhar1-ch04-vyavahar",
+   "topic": "4.2",
+   "template": "sort",
+   "title": {
+    "en": "Kind or cruel on camera",
+    "hi": "कैमरे पर संवेदनशील या संवेदनहीन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "kind",
+      "label": {
+       "en": "Sensitive",
+       "hi": "संवेदनशील"
+      }
+     },
+     {
+      "id": "cruel",
+      "label": {
+       "en": "Insensitive",
+       "hi": "संवेदनहीन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "k1",
+      "text": {
+       "en": "Ask what the guest wants to share",
+       "hi": "अतिथि जो बताना चाहे वही पूछना"
+      },
+      "bin": "kind",
+      "why": {
+       "en": "It lets the guest decide.",
+       "hi": "इससे निर्णय अतिथि के हाथ में रहता है।"
+      }
+     },
+     {
+      "id": "k2",
+      "text": {
+       "en": "Repeat painful questions for tears",
+       "hi": "आँसू लाने के लिए दर्द भरे सवाल दोहराना"
+      },
+      "bin": "cruel",
+      "why": {
+       "en": "It forces pain for ratings.",
+       "hi": "यह रेटिंग के लिए दर्द उभारना है।"
+      }
+     },
+     {
+      "id": "k3",
+      "text": {
+       "en": "Respect his silence",
+       "hi": "उसकी चुप्पी का आदर करना"
+      },
+      "bin": "kind",
+      "why": {
+       "en": "Silence can be an answer.",
+       "hi": "चुप्पी भी उत्तर हो सकती है।"
+      }
+     },
+     {
+      "id": "k4",
+      "text": {
+       "en": "Zoom in on a trembling face",
+       "hi": "काँपते चेहरे पर कैमरा ले जाना"
+      },
+      "bin": "cruel",
+      "why": {
+       "en": "It turns feeling into a spectacle.",
+       "hi": "यह भावना को तमाशा बनाता है।"
+      }
+     },
+     {
+      "id": "k5",
+      "text": {
+       "en": "Show his skills and achievements",
+       "hi": "उसके हुनर और उपलब्धियाँ दिखाना"
+      },
+      "bin": "kind",
+      "why": {
+       "en": "It honours the whole person.",
+       "hi": "इससे पूरे इंसान का सम्मान होता है।"
+      }
+     },
+     {
+      "id": "k6",
+      "text": {
+       "en": "Tell viewers to pity him",
+       "hi": "दर्शकों से उस पर तरस खाने को कहना"
+      },
+      "bin": "cruel",
+      "why": {
+       "en": "Pity lowers a person; respect lifts him.",
+       "hi": "तरस इंसान को छोटा करता है; आदर बड़ा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:k1",
+     "expect": "placed:k1",
+     "say": {
+      "en": "Place the first card.",
+      "hi": "पहला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does 'zoom in on a trembling face' belong?",
+      "hi": "'काँपते चेहरे पर ज़ूम' कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Sensitive",
+       "hi": "संवेदनशील"
+      },
+      {
+       "id": "b",
+       "en": "Insensitive",
+       "hi": "संवेदनहीन"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:k4",
+     "expect": "placed:k4",
+     "say": {
+      "en": "Place the zoom card.",
+      "hi": "ज़ूम वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all cards and tap Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sensitive behaviour treats the guest as a person with a voice and a choice. Insensitive behaviour treats him as material for the programme. The poem wants us, as viewers too, to notice the difference.",
+      "hi": "संवेदनशील व्यवहार अतिथि को आवाज़ और चुनाव वाला इंसान मानता है। संवेदनहीन व्यवहार उसे कार्यक्रम की सामग्री मानता है। कविता चाहती है कि हम दर्शक भी यह फ़र्क पहचानें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is repeating painful questions wrong?",
+        "hi": "दर्द भरे सवाल दोहराना ग़लत क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It hurts a person only to attract viewers",
+         "hi": "यह केवल दर्शक पाने के लिए किसी को दुख देना है"
+        },
+        {
+         "en": "It wastes studio time",
+         "hi": "इससे स्टूडियो का समय बर्बाद होता है"
+        },
+        {
+         "en": "It makes the programme too long",
+         "hi": "इससे कार्यक्रम बहुत लंबा हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The harm to the guest is the issue, not the minutes.",
+        "hi": "असली मुद्दा अतिथि को पहुँची चोट है, मिनट नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Time is a small matter next to hurting someone.",
+         "hi": "किसी को चोट पहुँचाने के आगे समय छोटी बात है।"
+        },
+        {
+         "en": "Length is not what the poet objects to.",
+         "hi": "कवि को लंबाई से आपत्ति नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Watch a news clip at home. Does it respect the people it shows?",
+      "hi": "घर पर कोई समाचार-क्लिप देखो। क्या वह दिखाए गए लोगों का सम्मान करती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Hook for the poem",
+   "shows": "An empty TV studio: two chairs, soft lights, a camera on a tripod, a monitor showing a blank screen",
+   "view": "Wide, eye level",
+   "right": "Real studio lights and cables",
+   "avoid": "People, channel logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Word card: कैमरा",
+   "shows": "A broadcast video camera on a tripod, cut-out",
+   "view": "Three-quarter view",
+   "right": "Lens and viewfinder clear",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Wheelchair as a plain object",
+   "shows": "An empty manual wheelchair in a sunny corridor",
+   "view": "Side view",
+   "right": "Ordinary, not shown as pitiful",
+   "avoid": "Faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Respectful interview",
+   "shows": "Two empty chairs facing each other at the same height by a window, notes on a table",
+   "view": "Wide",
+   "right": "Equal eye level, warm light",
+   "avoid": "People"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "4.1",
+   "use": "Ratings idea",
+   "shows": "A clean bar-chart frame with no values, for the app to label",
+   "view": "Flat, white",
+   "right": "Even bars",
+   "avoid": "Numbers"
+  }
+ ]
+}

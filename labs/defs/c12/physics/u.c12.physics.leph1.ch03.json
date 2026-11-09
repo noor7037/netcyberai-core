@@ -1,0 +1,1314 @@
+{
+ "chapter_key": "u.c12.physics.leph1.ch03",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Current Electricity",
+ "source": "https://ncert.nic.in/textbook/pdf/leph103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "A short opening about current and its uses; the labs that follow carry the ideas."
+  },
+  {
+   "n": "3.2",
+   "title": "Electric current",
+   "labs": [],
+   "why_no_lab": "The idea of current as charge per second is covered by the reader and the Ohm's law lab that follows."
+  },
+  {
+   "n": "3.3",
+   "title": "Electric currents in conductors",
+   "labs": [],
+   "why_no_lab": "The random motion of electrons in a wire is best shown by a drawn picture and the reader."
+  },
+  {
+   "n": "3.4",
+   "title": "Ohm's law",
+   "labs": [
+    "c12-physics-leph1-ch03-ohm"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Drift of electrons and the origin of resistivity",
+   "labs": [],
+   "why_no_lab": "Drift velocity and relaxation time are derivations; a diagram and the reader teach them, and the resistivity lab shows the effect."
+  },
+  {
+   "n": "3.6",
+   "title": "Limitations of Ohm's law",
+   "labs": [
+    "c12-physics-leph1-ch03-diode-not-ohmic"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.7",
+   "title": "Resistivity of various materials",
+   "labs": [
+    "c12-physics-leph1-ch03-resistivity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.8",
+   "title": "Temperature dependence of resistivity",
+   "labs": [
+    "c12-physics-leph1-ch03-temperature"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.9",
+   "title": "Electrical energy and power",
+   "labs": [
+    "c12-physics-leph1-ch03-power-bill"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.10",
+   "title": "Cells, emf and internal resistance",
+   "labs": [
+    "c12-physics-leph1-ch03-internal-resistance"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.11",
+   "title": "Cells in series and in parallel",
+   "labs": [
+    "c12-physics-leph1-ch03-opposite-cells"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.12",
+   "title": "Kirchhoff's rules",
+   "labs": [
+    "c12-physics-leph1-ch03-kirchhoff"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.13",
+   "title": "Wheatstone bridge",
+   "labs": [
+    "c12-physics-leph1-ch03-wheatstone"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph1-ch03-ohm",
+   "topic": "3.4",
+   "template": "circuit",
+   "title": {
+    "en": "Ohm's law: V and I are in proportion",
+    "hi": "ओम का नियम: V और I समानुपाती"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "ohm",
+    "preset": "basic"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The resistor stays the same. If you double the voltage, the current through it will",
+      "hi": "प्रतिरोधक वही रहता है। वोल्टता दोगुनी करने पर उससे बहने वाली धारा"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "double",
+       "hi": "दोगुनी हो जाएगी"
+      },
+      {
+       "id": "o1",
+       "en": "halve",
+       "hi": "आधी हो जाएगी"
+      },
+      {
+       "id": "o2",
+       "en": "not change",
+       "hi": "वही रहेगी"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "closed",
+     "say": {
+      "en": "Close the switch to let the current flow.",
+      "hi": "धारा बहाने के लिए स्विच बंद करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:voltage",
+     "expect": "reading:ammeter",
+     "say": {
+      "en": "Raise the voltage with the slider and watch the ammeter.",
+      "hi": "स्लाइडर से वोल्टता बढ़ाओ और ऐमीटर देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "plot",
+     "expect": "plotted",
+     "say": {
+      "en": "Press plot to put the point (V, I) on the graph. Then change V and plot again.",
+      "hi": "आलेख बनाओ दबाओ ताकि बिंदु (V, I) ग्राफ़ पर आ जाए। फिर V बदलकर दोबारा अंकित करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The points fall on a straight line through the origin: V/I is the same every time. That fixed ratio is the resistance, R = V/I, measured in ohm. A steeper current line means a smaller resistance. This straight-line behaviour is Ohm's law, and it holds for metals at steady temperature.",
+      "hi": "बिंदु मूलबिंदु से जाती सीधी रेखा पर आते हैं: हर बार V/I एक ही रहता है। यह स्थिर अनुपात प्रतिरोध है, R = V/I, जो ओम में मापा जाता है। I की रेखा जितनी तीखी, प्रतिरोध उतना कम। सीधी रेखा वाला यह व्यवहार ही ओम का नियम है, जो स्थिर ताप पर धातुओं के लिए सही है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A wire gives 0.5 A at 2 V. At 6 V (same temperature) the current is",
+        "hi": "एक तार 2 वोल्ट पर 0.5 ऐम्पियर देता है। 6 वोल्ट पर (उसी ताप पर) धारा होगी"
+       },
+       "options": [
+        {
+         "en": "1.5 A",
+         "hi": "1.5 ऐम्पियर"
+        },
+        {
+         "en": "0.17 A",
+         "hi": "0.17 ऐम्पियर"
+        },
+        {
+         "en": "0.5 A",
+         "hi": "0.5 ऐम्पियर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "R = 2/0.5 = 4 Ω, so I = 6/4 = 1.5 A.",
+        "hi": "R = 2/0.5 = 4 Ω, इसलिए I = 6/4 = 1.5 ऐम्पियर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That divides instead of multiplying. More voltage gives more current.",
+         "hi": "यह गुणा की जगह भाग है। अधिक वोल्टता से अधिक धारा बहती है।"
+        },
+        {
+         "en": "Current changes with voltage when R is fixed: I = V/R.",
+         "hi": "R स्थिर हो तो धारा वोल्टता के साथ बदलती है: I = V/R।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the other resistor presets in your head: with a larger R, would the plotted line be steeper or flatter?",
+      "hi": "सोचो कि बड़ा R लेने पर अंकित रेखा तीखी होगी या सपाट?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch03-diode-not-ohmic",
+   "topic": "3.6",
+   "template": "circuit",
+   "title": {
+    "en": "When Ohm's law fails: the diode",
+    "hi": "जब ओम का नियम काम नहीं करता: डायोड"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "diode",
+    "preset": "silicon"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a diode, if you keep raising the forward voltage from zero, the current",
+      "hi": "डायोड में अग्र वोल्टता शून्य से बढ़ाते जाएँ तो धारा"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "falls steadily",
+       "hi": "लगातार घटती है"
+      },
+      {
+       "id": "o0",
+       "en": "stays tiny at first, then shoots up",
+       "hi": "पहले बहुत कम रहती है, फिर तेज़ी से बढ़ती है"
+      },
+      {
+       "id": "o1",
+       "en": "rises in a straight line",
+       "hi": "सीधी रेखा में बढ़ती है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "closed",
+     "say": {
+      "en": "Close the switch.",
+      "hi": "स्विच बंद करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:voltage",
+     "expect": "reading:ammeter",
+     "say": {
+      "en": "Raise the voltage slowly and watch the ammeter.",
+      "hi": "वोल्टता धीरे-धीरे बढ़ाओ और ऐमीटर देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "plot",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot a few points at different voltages.",
+      "hi": "अलग-अलग वोल्टताओं पर कुछ बिंदु अंकित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:battery",
+     "expect": "reverse",
+     "say": {
+      "en": "Flip the battery to reverse the bias.",
+      "hi": "बैटरी पलटकर उल्टा बायस लगाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The graph is a curve, not a straight line, so a diode does not obey Ohm's law: its V/I is not constant. In the forward direction almost nothing flows until the voltage crosses a threshold (about 0.7 V for silicon), and then the current rises steeply. Reversed, almost no current flows. Many useful devices are non-ohmic.",
+      "hi": "आलेख वक्र है, सीधी रेखा नहीं, इसलिए डायोड ओम का नियम नहीं मानता: उसका V/I स्थिर नहीं है। अग्र दिशा में तब तक लगभग कुछ नहीं बहता जब तक वोल्टता देहली (सिलिकॉन के लिए लगभग 0.7 वोल्ट) पार न करे, फिर धारा तेज़ी से बढ़ती है। उल्टी दिशा में लगभग शून्य धारा बहती है। कई उपयोगी युक्तियाँ अओमीय होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is true for a non-ohmic device?",
+        "hi": "अओमीय युक्ति के लिए इनमें से क्या सही है?"
+       },
+       "options": [
+        {
+         "en": "V/I changes with V",
+         "hi": "V/I, V के साथ बदलता है"
+        },
+        {
+         "en": "V/I is always the same",
+         "hi": "V/I हमेशा वही रहता है"
+        },
+        {
+         "en": "It never carries current",
+         "hi": "उसमें कभी धारा नहीं बहती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without a constant V/I the V–I graph bends, which is the mark of a non-ohmic device.",
+        "hi": "V/I स्थिर न होने पर V–I आलेख मुड़ जाता है, यही अओमीय युक्ति की पहचान है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That describes an ohmic conductor, which gives a straight line.",
+         "hi": "यह ओमीय चालक का वर्णन है, जिसका आलेख सीधी रेखा होता है।"
+        },
+        {
+         "en": "A diode carries current well in one direction; non-ohmic only means the V–I graph is not a straight line.",
+         "hi": "डायोड एक दिशा में अच्छी धारा देता है; अओमीय का अर्थ केवल इतना है कि V–I आलेख सीधी रेखा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the material chip to germanium or LED. Which one starts conducting at the lowest voltage?",
+      "hi": "पदार्थ को जर्मेनियम या LED करके देखो। कौन सबसे कम वोल्टता पर चालन शुरू करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch03-resistivity",
+   "topic": "3.7",
+   "template": "circuit",
+   "title": {
+    "en": "Resistance depends on length, area and material",
+    "hi": "प्रतिरोध लंबाई, क्षेत्रफल और पदार्थ पर निर्भर है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "resistivity",
+    "preset": "copper"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A wire is made twice as long (same material, same thickness). Its resistance becomes",
+      "hi": "तार दोगुना लंबा किया गया (वही पदार्थ, वही मोटाई)। उसका प्रतिरोध हो जाता है"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "half",
+       "hi": "आधा"
+      },
+      {
+       "id": "o2",
+       "en": "the same",
+       "hi": "वही"
+      },
+      {
+       "id": "o0",
+       "en": "double",
+       "hi": "दोगुना"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "closed",
+     "say": {
+      "en": "Close the switch.",
+      "hi": "स्विच बंद करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:length",
+     "expect": "reading:ammeter",
+     "say": {
+      "en": "Make the wire longer and see the current fall.",
+      "hi": "तार लंबा करो और धारा को घटते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:area",
+     "expect": "reading:ammeter",
+     "say": {
+      "en": "Make the wire thicker and see the current rise.",
+      "hi": "तार मोटा करो और धारा को बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "material:nichrome",
+     "expect": "material:nichrome",
+     "say": {
+      "en": "Change the metal to nichrome, the metal used in heaters.",
+      "hi": "धातु को नाइक्रोम में बदलो, जो हीटरों में प्रयोग होती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The resistance is R = ρl/A. It grows with length l, falls as the cross-section A grows, and depends on the material through the resistivity ρ. Copper has a very small ρ, so it carries current easily. Nichrome has a large ρ, so it heats up, which suits toaster and heater coils.",
+      "hi": "प्रतिरोध R = ρl/A होता है। यह लंबाई l से बढ़ता है, अनुप्रस्थ क्षेत्रफल A बढ़ने पर घटता है, और पदार्थ पर प्रतिरोधकता ρ के रूप में निर्भर है। ताँबे का ρ बहुत कम है, इसलिए वह धारा आसानी से ले जाता है। नाइक्रोम का ρ अधिक है, इसलिए वह गर्म होता है, जो टोस्टर और हीटर की कुंडली के लिए ठीक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are the wires in home cables made of copper and not nichrome?",
+        "hi": "घर की केबलों के तार नाइक्रोम की जगह ताँबे के क्यों होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Copper has a much lower resistivity",
+         "hi": "ताँबे की प्रतिरोधकता बहुत कम है"
+        },
+        {
+         "en": "Copper is a better insulator",
+         "hi": "ताँबा बेहतर विद्युतरोधी है"
+        },
+        {
+         "en": "Nichrome is too thick",
+         "hi": "नाइक्रोम बहुत मोटा होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Low ρ means little loss of energy as heat in the wire.",
+        "hi": "कम ρ का अर्थ है तार में ऊष्मा के रूप में कम ऊर्जा की हानि।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An insulator carries no current. Copper is a very good conductor.",
+         "hi": "विद्युतरोधी में धारा नहीं बहती। ताँबा बहुत अच्छा चालक है।"
+        },
+        {
+         "en": "Thickness is not set by the metal. The reason is resistivity.",
+         "hi": "मोटाई पदार्थ से तय नहीं होती। कारण प्रतिरोधकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick several metals one by one and keep l and A the same. Rank them from best to worst conductor.",
+      "hi": "l और A वही रखकर कई धातुएँ बारी-बारी चुनो। उन्हें सबसे अच्छे से सबसे बुरे चालक के क्रम में रखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch03-temperature",
+   "topic": "3.8",
+   "template": "grapher",
+   "title": {
+    "en": "Resistance of a metal rises with temperature",
+    "hi": "ताप बढ़ने पर धातु का प्रतिरोध बढ़ता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "b + a*x",
+    "params": {
+     "a": [
+      0.1,
+      0.5,
+      0.4
+     ],
+     "b": [
+      50,
+      150,
+      100
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When a metal wire heats up, its resistance",
+      "hi": "जब धातु का तार गर्म होता है तो उसका प्रतिरोध"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "rises",
+       "hi": "बढ़ता है"
+      },
+      {
+       "id": "o1",
+       "en": "falls",
+       "hi": "घटता है"
+      },
+      {
+       "id": "o2",
+       "en": "stays fixed",
+       "hi": "स्थिर रहता है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the rise in temperature. Slide it and read the resistance (height of the line).",
+      "hi": "x ताप की वृद्धि है। उसे चलाओ और प्रतिरोध (रेखा की ऊँचाई) पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a is the temperature coefficient. A larger a means resistance rises faster with heat.",
+      "hi": "a ताप-गुणांक है। बड़ा a यानी गर्मी से प्रतिरोध अधिक तेज़ी से बढ़ता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a metal, the ions vibrate more when hot, so the electrons collide more often and the resistance rises: R = R0(1 + αΔT). For semiconductors it is the opposite: heat frees more charge carriers and their resistance falls. Platinum wire thermometers use this steady rise to measure temperature.",
+      "hi": "धातु में गर्म होने पर आयन अधिक कंपन करते हैं, इसलिए इलेक्ट्रॉन अधिक बार टकराते हैं और प्रतिरोध बढ़ता है: R = R0(1 + αΔT)। अर्धचालकों में उल्टा होता है: गर्मी से अधिक आवेश वाहक मुक्त होते हैं और प्रतिरोध घटता है। प्लैटिनम तार के तापमापी इसी नियमित वृद्धि से ताप मापते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bulb filament glows at a high temperature. Compared with when it is cold, its resistance is",
+        "hi": "बल्ब का तंतु उच्च ताप पर चमकता है। ठंडे समय की तुलना में उसका प्रतिरोध है"
+       },
+       "options": [
+        {
+         "en": "much higher",
+         "hi": "बहुत अधिक"
+        },
+        {
+         "en": "much lower",
+         "hi": "बहुत कम"
+        },
+        {
+         "en": "exactly the same",
+         "hi": "बिलकुल वही"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The hot metal filament has a larger R, which is why a bulb draws a big current at the instant it is switched on.",
+        "hi": "गर्म धातु के तंतु का R अधिक होता है, इसीलिए स्विच दबाते ही बल्ब बड़ी धारा लेता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The filament is a metal, and a hot metal has more resistance.",
+         "hi": "तंतु धातु है, और गर्म धातु का प्रतिरोध अधिक होता है।"
+        },
+        {
+         "en": "Resistance of a metal follows its temperature, so it cannot be the same.",
+         "hi": "धातु का प्रतिरोध उसके ताप के साथ बदलता है, इसलिए वही नहीं रह सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a to its largest value and drag x to the end. How many times has the resistance grown?",
+      "hi": "a को सबसे बड़े मान पर रखकर x को अंत तक ले जाओ। प्रतिरोध कितने गुना बढ़ा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch03-power-bill",
+   "topic": "3.9",
+   "template": "circuit",
+   "title": {
+    "en": "Power, energy and the electricity bill",
+    "hi": "शक्ति, ऊर्जा और बिजली का बिल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "power",
+    "preset": "lights"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which uses more energy in an hour: a 100 W bulb or a 9 W LED giving similar light?",
+      "hi": "एक घंटे में अधिक ऊर्जा कौन लेता है: 100 वाट का बल्ब या उतनी ही रोशनी देने वाला 9 वाट का LED?"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "both the same",
+       "hi": "दोनों बराबर"
+      },
+      {
+       "id": "o0",
+       "en": "the 100 W bulb",
+       "hi": "100 वाट का बल्ब"
+      },
+      {
+       "id": "o1",
+       "en": "the 9 W LED",
+       "hi": "9 वाट का LED"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "closed",
+     "say": {
+      "en": "Switch on the supply.",
+      "hi": "आपूर्ति चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "appliance:bulb100",
+     "expect": "appliance:*",
+     "say": {
+      "en": "Turn on the 100 W bulb and note the power.",
+      "hi": "100 वाट का बल्ब चालू करो और शक्ति देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "appliance:led",
+     "expect": "appliance:*",
+     "say": {
+      "en": "Now turn on the LED as well and compare the totals.",
+      "hi": "अब LED भी चालू करो और कुल मानों की तुलना करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "appliance:bulb",
+     "expect": "appliance:*",
+     "say": {
+      "en": "Add the ordinary bulb too and see the total power and the monthly bill.",
+      "hi": "साधारण बल्ब भी चालू करो और कुल शक्ति तथा महीने का बिल देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Power is P = VI, the rate of using energy. Energy used is E = P × t, and the bill counts it in kilowatt-hour (kWh), the 'unit' on your meter: 1 kWh is 1000 W for 1 hour. A 100 W bulb for 10 hours uses 1 unit. An LED does the same job with less than a tenth of the power, so it is cheaper to run.",
+      "hi": "शक्ति P = VI ऊर्जा खर्च होने की दर है। ऊर्जा E = P × t होती है, और बिल उसे किलोवाट-घंटा (kWh) में गिनता है, जो तुम्हारे मीटर की 'यूनिट' है: 1 kWh यानी 1000 वाट का 1 घंटा। 100 वाट का बल्ब 10 घंटे में 1 यूनिट लेता है। LED वही काम दसवें हिस्से से भी कम शक्ति में करता है, इसलिए वह चलाने में सस्ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 2000 W heater runs for 3 hours. Energy used is",
+        "hi": "2000 वाट का हीटर 3 घंटे चलता है। खर्च ऊर्जा है"
+       },
+       "options": [
+        {
+         "en": "6 kWh",
+         "hi": "6 किलोवाट-घंटा"
+        },
+        {
+         "en": "2 kWh",
+         "hi": "2 किलोवाट-घंटा"
+        },
+        {
+         "en": "0.67 kWh",
+         "hi": "0.67 किलोवाट-घंटा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 kW × 3 h = 6 kWh.",
+        "hi": "2 kW × 3 घंटे = 6 kWh।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That forgets the 3 hours. Energy is power times time.",
+         "hi": "इसमें 3 घंटे छूट गए। ऊर्जा = शक्ति × समय।"
+        },
+        {
+         "en": "That divides power by time. Multiply them instead.",
+         "hi": "यह शक्ति को समय से भाग देना है। इसके बजाय गुणा करो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the hours and the electricity rate (tariff) sliders. How much does the monthly bill of the same lights change?",
+      "hi": "घंटे और बिजली की दर (टैरिफ़) वाले स्लाइडर बदलो। उन्हीं बल्बों का महीने का बिल कितना बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch03-internal-resistance",
+   "topic": "3.10",
+   "template": "grapher",
+   "title": {
+    "en": "A cell's emf and its internal resistance",
+    "hi": "सेल का विद्युत वाहक बल और आंतरिक प्रतिरोध"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "line",
+    "expr": "a - b*x",
+    "params": {
+     "a": [
+      1,
+      3,
+      1.5
+     ],
+     "b": [
+      0.1,
+      2,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As a cell supplies more and more current, its terminal voltage",
+      "hi": "सेल जैसे-जैसे अधिक धारा देता है, उसकी टर्मिनल वोल्टता"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "rises",
+       "hi": "बढ़ती जाती है"
+      },
+      {
+       "id": "o2",
+       "en": "stays equal to emf",
+       "hi": "विद्युत वाहक बल के बराबर रहती है"
+      },
+      {
+       "id": "o0",
+       "en": "drops",
+       "hi": "घटती जाती है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the current drawn I. Slide it and read the terminal voltage V.",
+      "hi": "x खींची गई धारा I है। उसे चलाओ और टर्मिनल वोल्टता V पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "b is the internal resistance r. Make the cell worse (bigger r) and see V sag faster.",
+      "hi": "b आंतरिक प्रतिरोध r है। सेल को खराब (बड़ा r) करो और V को तेज़ी से गिरते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a is the emf ε, the voltage with no current. Change it and see the line shift up.",
+      "hi": "a विद्युत वाहक बल ε है, यानी बिना धारा की वोल्टता। उसे बदलो और रेखा को ऊपर खिसकते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The terminal voltage is V = ε − Ir. At zero current V equals the emf. As the current grows, some voltage is lost inside the cell across its own internal resistance r, so V falls along a straight line with slope −r. An old, weak cell has a large r, so a torch dims quickly with it.",
+      "hi": "टर्मिनल वोल्टता V = ε − Ir है। शून्य धारा पर V, विद्युत वाहक बल के बराबर होती है। धारा बढ़ने पर सेल के अपने आंतरिक प्रतिरोध r में कुछ वोल्टता खो जाती है, इसलिए V ढलान −r की सीधी रेखा में घटती है। पुराने कमज़ोर सेल का r बड़ा होता है, इसलिए उससे टॉर्च जल्दी धीमी पड़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A cell has emf 1.5 V and r = 0.5 Ω. When it gives 1 A, the terminal voltage is",
+        "hi": "सेल का विद्युत वाहक बल 1.5 वोल्ट और r = 0.5 ओम है। 1 ऐम्पियर देने पर टर्मिनल वोल्टता है"
+       },
+       "options": [
+        {
+         "en": "1.0 V",
+         "hi": "1.0 वोल्ट"
+        },
+        {
+         "en": "1.5 V",
+         "hi": "1.5 वोल्ट"
+        },
+        {
+         "en": "2.0 V",
+         "hi": "2.0 वोल्ट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "V = 1.5 − (1 × 0.5) = 1.0 V.",
+        "hi": "V = 1.5 − (1 × 0.5) = 1.0 वोल्ट।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the emf, which is the voltage only when no current flows.",
+         "hi": "यह विद्युत वाहक बल है, जो वोल्टता तभी होता है जब धारा नहीं बहती।"
+        },
+        {
+         "en": "You added Ir. It must be subtracted: V = ε − Ir.",
+         "hi": "तुमने Ir जोड़ दिया। इसे घटाना है: V = ε − Ir।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide b to its smallest value. Does an ideal cell with r = 0 lose any voltage?",
+      "hi": "b को सबसे छोटे मान पर ले जाओ। r = 0 वाला आदर्श सेल क्या वोल्टता खोता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch03-opposite-cells",
+   "topic": "3.11",
+   "template": "circuit",
+   "title": {
+    "en": "Cells in the same and opposite directions",
+    "hi": "सेल एक ही दिशा में और उल्टी दिशा में"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "free",
+    "preset": "opposite-cells",
+    "parts": [
+     "cell",
+     "bulb",
+     "switch"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two identical cells face opposite ways in a circuit with a bulb. The bulb will",
+      "hi": "दो एक जैसे सेल बल्ब वाले परिपथ में उल्टी दिशा में लगे हैं। बल्ब"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "stay dark",
+       "hi": "नहीं जलेगा"
+      },
+      {
+       "id": "o1",
+       "en": "glow brightly",
+       "hi": "तेज़ जलेगा"
+      },
+      {
+       "id": "o2",
+       "en": "glow half-bright",
+       "hi": "आधा जलेगा"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "closed",
+     "say": {
+      "en": "Close the switch and look at the bulb.",
+      "hi": "स्विच बंद करो और बल्ब को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "board",
+     "expect": "flipped",
+     "say": {
+      "en": "Tap one of the cells to turn it around so both face the same way. The bulb now lights.",
+      "hi": "एक सेल पर टैप करके उसे घुमाओ ताकि दोनों एक ही दिशा में हो जाएँ। अब बल्ब जल उठता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cells in series add their emfs when they point the same way, and subtract when they oppose. Two equal opposed cells give zero net emf, so no current and no light. This is why in a torch every cell must go in the same direction. Cells joined in parallel keep the same emf but can supply a larger total current.",
+      "hi": "सेल जब एक ही दिशा में श्रेणी में हों तो उनके विद्युत वाहक बल जुड़ते हैं, और उल्टे हों तो घटते हैं। दो बराबर उल्टे सेल शून्य कुल बल देते हैं, इसलिए धारा और रोशनी नहीं होती। इसीलिए टॉर्च में सभी सेल एक ही दिशा में लगाने होते हैं। समांतर जुड़े सेल उतना ही विद्युत वाहक बल रखते हैं पर कुल धारा अधिक दे सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two 1.5 V cells in series, same direction, give an emf of",
+        "hi": "श्रेणी में एक ही दिशा में दो 1.5 वोल्ट के सेल का विद्युत वाहक बल है"
+       },
+       "options": [
+        {
+         "en": "3.0 V",
+         "hi": "3.0 वोल्ट"
+        },
+        {
+         "en": "0 V",
+         "hi": "0 वोल्ट"
+        },
+        {
+         "en": "1.5 V",
+         "hi": "1.5 वोल्ट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Same direction in series: 1.5 + 1.5 = 3.0 V.",
+        "hi": "एक दिशा में श्रेणी में: 1.5 + 1.5 = 3.0 वोल्ट।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zero would happen only if they were opposed.",
+         "hi": "शून्य तब होता जब वे उल्टे लगे होते।"
+        },
+        {
+         "en": "That is what two cells in parallel give. In series the emfs add.",
+         "hi": "यह समांतर में दो सेलों का मान है। श्रेणी में विद्युत वाहक बल जुड़ते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Flip the cell again. When does the bulb go dark, and when does it shine?",
+      "hi": "सेल को फिर पलटो। बल्ब कब बुझता है और कब जलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch03-kirchhoff",
+   "topic": "3.12",
+   "template": "circuit",
+   "title": {
+    "en": "Kirchhoff's rules in a two-loop circuit",
+    "hi": "दो पाश वाले परिपथ में किरखोफ़ के नियम"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "mode": "kirchhoff",
+    "preset": "basic"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At a junction where three wires meet, the current going in compared with the total going out is",
+      "hi": "जहाँ तीन तार मिलते हैं वहाँ अंदर आने वाली धारा और बाहर जाने वाली कुल धारा"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "less",
+       "hi": "अंदर आने वाली कम होती है"
+      },
+      {
+       "id": "o0",
+       "en": "equal",
+       "hi": "बराबर होती हैं"
+      },
+      {
+       "id": "o1",
+       "en": "greater",
+       "hi": "अंदर आने वाली अधिक होती है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "closed",
+     "say": {
+      "en": "Close the switch.",
+      "hi": "स्विच बंद करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:e1",
+     "expect": "reading:ammeter",
+     "say": {
+      "en": "Change the first cell's emf and watch the branch currents.",
+      "hi": "पहले सेल का विद्युत वाहक बल बदलो और शाखाओं की धाराएँ देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:r3",
+     "expect": "reading:ammeter",
+     "say": {
+      "en": "Change the middle resistor r3. The three currents change, yet the junction rule stays true.",
+      "hi": "बीच का प्रतिरोधक r3 बदलो। तीनों धाराएँ बदलती हैं, पर संधि नियम सही रहता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The junction rule says the current into a junction equals the current out: charge does not pile up. The loop rule says the voltage rises and drops around any closed loop add up to zero: energy is conserved. Together they let us solve circuits that are not simple series or parallel.",
+      "hi": "संधि नियम कहता है कि संधि में आने वाली धारा, जाने वाली धारा के बराबर है: आवेश जमा नहीं होता। पाश नियम कहता है कि किसी बंद पाश में वोल्टता की वृद्धियों और गिरावटों का योग शून्य होता है: ऊर्जा संरक्षित रहती है। दोनों मिलकर ऐसे परिपथ हल करने देते हैं जो साधारण श्रेणी या समांतर नहीं हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Currents of 3 A and 2 A flow into a junction. A third wire carries away",
+        "hi": "एक संधि में 3 ऐम्पियर और 2 ऐम्पियर की धाराएँ आती हैं। तीसरा तार ले जाता है"
+       },
+       "options": [
+        {
+         "en": "5 A",
+         "hi": "5 ऐम्पियर"
+        },
+        {
+         "en": "1 A",
+         "hi": "1 ऐम्पियर"
+        },
+        {
+         "en": "6 A",
+         "hi": "6 ऐम्पियर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In = out, so 3 + 2 = 5 A leaves.",
+        "hi": "अंदर = बाहर, इसलिए 3 + 2 = 5 ऐम्पियर बाहर जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That subtracts the currents. Both are coming in, so they add.",
+         "hi": "यह धाराओं को घटाना है। दोनों अंदर आ रही हैं, इसलिए जुड़ेंगी।"
+        },
+        {
+         "en": "That multiplies. The rule only needs addition.",
+         "hi": "यह गुणा है। नियम में केवल जोड़ चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make e2 zero. Does the junction rule still hold between the three readings?",
+      "hi": "e2 को शून्य करो। क्या तीनों पाठ्यांकों में संधि नियम अब भी सही है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch03-wheatstone",
+   "topic": "3.13",
+   "template": "circuit",
+   "title": {
+    "en": "Balance the Wheatstone bridge",
+    "hi": "व्हीटस्टोन सेतु को संतुलित करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "wheatstone",
+    "preset": "unbalanced"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The bridge has P = 10 Ω, Q = 20 Ω, R = 10 Ω. For no current in the galvanometer, S must be",
+      "hi": "सेतु में P = 10 ओम, Q = 20 ओम, R = 10 ओम है। गैल्वेनोमीटर में धारा शून्य होने के लिए S होना चाहिए"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "10 Ω",
+       "hi": "10 ओम"
+      },
+      {
+       "id": "o2",
+       "en": "5 Ω",
+       "hi": "5 ओम"
+      },
+      {
+       "id": "o0",
+       "en": "20 Ω",
+       "hi": "20 ओम"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:s",
+     "expect": "balanced",
+     "say": {
+      "en": "Slide S until the galvanometer reads zero and the bridge says balanced.",
+      "hi": "S को तब तक चलाओ जब तक गैल्वेनोमीटर शून्य न दिखाए और सेतु 'संतुलित' न कहे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:r",
+     "expect": "reading:ammeter",
+     "say": {
+      "en": "Now change R. The balance breaks. Slide S again to bring it back.",
+      "hi": "अब R बदलो। संतुलन टूट जाता है। S को फिर चलाकर संतुलन लाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A bridge is balanced when P/Q = R/S. Then points B and D are at the same potential, so no current flows through the galvanometer. This gives a way to find an unknown resistance exactly: set three known resistors, balance, and calculate the fourth. The metre bridge works on the same idea.",
+      "hi": "सेतु तब संतुलित होता है जब P/Q = R/S। तब बिंदु B और D समान विभव पर होते हैं, इसलिए गैल्वेनोमीटर में धारा नहीं बहती। इससे अज्ञात प्रतिरोध ठीक-ठीक पता करने का तरीका मिलता है: तीन ज्ञात प्रतिरोध रखो, संतुलन लाओ और चौथे की गणना करो। मीटर सेतु भी यही विचार प्रयोग करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A balanced bridge has P = 4 Ω, Q = 8 Ω and R = 6 Ω. Then S equals",
+        "hi": "संतुलित सेतु में P = 4 ओम, Q = 8 ओम और R = 6 ओम है। तब S बराबर है"
+       },
+       "options": [
+        {
+         "en": "12 Ω",
+         "hi": "12 ओम"
+        },
+        {
+         "en": "3 Ω",
+         "hi": "3 ओम"
+        },
+        {
+         "en": "2 Ω",
+         "hi": "2 ओम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "S = RQ/P = 6 × 8 / 4 = 12 Ω.",
+        "hi": "S = RQ/P = 6 × 8 / 4 = 12 ओम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That inverts the ratio. P/Q = R/S gives S = RQ/P.",
+         "hi": "यह अनुपात उलट देता है। P/Q = R/S से S = RQ/P मिलता है।"
+        },
+        {
+         "en": "This does not come out of P/Q = R/S. Put in the numbers: S = 6 × 8 ÷ 4.",
+         "hi": "यह P/Q = R/S से नहीं निकलता। संख्याएँ रखो: S = 6 × 8 ÷ 4।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find two different (R, S) pairs that both balance the bridge. What do they share?",
+      "hi": "(R, S) की दो अलग जोड़ियाँ खोजो जो दोनों सेतु को संतुलित करें। उनमें क्या समान है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Chapter hook: power lines at dusk",
+   "shows": "Electric pylons and wires along a field at dusk with a small village's lights coming on beyond",
+   "view": "Wide, low sun behind the pylons",
+   "right": "Wires clearly visible against a warm sky",
+   "avoid": "People close up, vehicle number plates"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.7",
+   "use": "Wires of different metals",
+   "shows": "Short coils of copper wire, aluminium wire and nichrome wire side by side on white, labelled by colour only",
+   "view": "Straight overhead",
+   "right": "Three clearly different colours and equal coil sizes",
+   "avoid": "Brand tags, writing on the wires"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.9",
+   "use": "Home electricity meter",
+   "shows": "An analogue energy meter showing kilowatt-hour dials and the rotating disc, on a wall",
+   "view": "Straight front view, even light",
+   "right": "Digits readable, disc visible",
+   "avoid": "Readable consumer numbers or addresses"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "3.10",
+   "use": "Inside a dry cell",
+   "shows": "A cutaway 3D render of a cylindrical dry cell: zinc case, carbon rod, black paste, brass cap",
+   "view": "Side cutaway, soft shadows",
+   "right": "Each layer in a clear different colour",
+   "avoid": "Brand names, text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "3.13",
+   "use": "Metre bridge",
+   "shows": "A real metre bridge on a lab table: a one-metre wire on a wooden board, copper strips, jockey and galvanometer beside it",
+   "view": "Three-quarter view, bright lab light",
+   "right": "Wire straight and scale visible",
+   "avoid": "Student faces"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "3.11",
+   "use": "Cells in series and parallel",
+   "shows": "Two clean circuit drawings: three cells in series and three in parallel, with a bulb, white background",
+   "view": "Flat front-on, equal sizes side by side",
+   "right": "Cell polarity drawn clearly",
+   "avoid": "Numbers or labels baked in"
+  }
+ ]
+}

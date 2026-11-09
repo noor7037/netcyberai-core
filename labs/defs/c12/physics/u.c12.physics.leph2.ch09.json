@@ -1,0 +1,1199 @@
+{
+ "chapter_key": "u.c12.physics.leph2.ch09",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Ray Optics and Optical Instruments",
+ "source": "https://ncert.nic.in/textbook/pdf/leph209.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "An opening about light as rays and the eye; photos and the reader set the scene."
+  },
+  {
+   "n": "9.2",
+   "title": "Reflection of light by spherical mirrors (sign convention, focal length, mirror equation)",
+   "labs": [
+    "c12-physics-leph2-ch09-concave-mirror",
+    "c12-physics-leph2-ch09-convex-mirror"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Refraction",
+   "labs": [
+    "c12-physics-leph2-ch09-slab"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Total internal reflection",
+   "labs": [
+    "c12-physics-leph2-ch09-tir"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "Refraction at spherical surfaces and by lenses; power; combination of lenses",
+   "labs": [
+    "c12-physics-leph2-ch09-convex-lens",
+    "c12-physics-leph2-ch09-concave-lens",
+    "c12-physics-leph2-ch09-contact-lenses"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.6",
+   "title": "Refraction through a prism",
+   "labs": [
+    "c12-physics-leph2-ch09-prism"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.7",
+   "title": "Optical instruments: the microscope and the telescope",
+   "labs": [
+    "c12-physics-leph2-ch09-telescope"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph2-ch09-concave-mirror",
+   "topic": "9.2",
+   "template": "optics",
+   "title": {
+    "en": "Images in a concave mirror",
+    "hi": "अवतल दर्पण में प्रतिबिंब"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "element": "concave-mirror",
+    "f": 15,
+    "object": 40
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An object is placed closer to a concave mirror than its focus. The image is",
+      "hi": "वस्तु अवतल दर्पण के फोकस से भी पास रखी है। प्रतिबिंब होता है"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "virtual, upright and magnified",
+       "hi": "आभासी, सीधा और बड़ा"
+      },
+      {
+       "id": "o1",
+       "en": "real and inverted",
+       "hi": "वास्तविक और उल्टा"
+      },
+      {
+       "id": "o2",
+       "en": "no image forms",
+       "hi": "कोई प्रतिबिंब नहीं बनता"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Move the object closer than the focus (15 cm) and look behind the mirror.",
+      "hi": "वस्तु को फोकस (15 सेमी) से पास लाओ और दर्पण के पीछे देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:real",
+     "say": {
+      "en": "Move the object far away again. The image is real and flipped.",
+      "hi": "वस्तु को फिर दूर ले जाओ। प्रतिबिंब वास्तविक और उल्टा है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "screen",
+     "expect": "image:sharp",
+     "say": {
+      "en": "Put the screen where the image forms and make it sharp.",
+      "hi": "पर्दे को वहाँ रखो जहाँ प्रतिबिंब बनता है और उसे स्पष्ट करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For a mirror, 1/v + 1/u = 1/f with the sign convention (distances measured from the pole, against the incoming light are negative). Beyond the focus a concave mirror makes a real, inverted image that can fall on a screen. Closer than the focus the rays seem to come from behind the mirror: a virtual, upright, magnified image, which is why a shaving mirror and a dentist's mirror are concave.",
+      "hi": "दर्पण के लिए 1/v + 1/u = 1/f, चिह्न परिपाटी के साथ (दूरियाँ ध्रुव से मापी जाती हैं, आपतित प्रकाश के विरुद्ध ऋणात्मक)। फोकस से दूर अवतल दर्पण वास्तविक, उल्टा प्रतिबिंब बनाता है जो पर्दे पर आ सकता है। फोकस से पास किरणें दर्पण के पीछे से आती-सी लगती हैं: आभासी, सीधा, बड़ा प्रतिबिंब। इसीलिए दाढ़ी बनाने और दंत चिकित्सक के दर्पण अवतल होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A concave mirror has f = 15 cm. An object is at 30 cm (u = −30). The image is at",
+        "hi": "अवतल दर्पण की f = 15 सेमी है। वस्तु 30 सेमी पर है (u = −30)। प्रतिबिंब बनता है"
+       },
+       "options": [
+        {
+         "en": "30 cm in front, same size, real, inverted",
+         "hi": "सामने 30 सेमी पर, बराबर माप, वास्तविक, उल्टा"
+        },
+        {
+         "en": "15 cm behind the mirror",
+         "hi": "दर्पण के पीछे 15 सेमी पर"
+        },
+        {
+         "en": "at infinity",
+         "hi": "अनंत पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Object at 2f gives an image at 2f, the same size, real and inverted.",
+        "hi": "2f पर वस्तु का प्रतिबिंब 2f पर बनता है, बराबर माप, वास्तविक और उल्टा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Using 1/v = 1/f − 1/u gives v = −30 cm, in front of the mirror, not behind.",
+         "hi": "1/v = 1/f − 1/u से v = −30 सेमी मिलता है, यानी दर्पण के सामने, पीछे नहीं।"
+        },
+        {
+         "en": "An image at infinity needs the object at the focus, 15 cm.",
+         "hi": "अनंत पर प्रतिबिंब के लिए वस्तु फोकस पर, 15 सेमी पर, चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the object exactly at the focus. What happens to the image? Then at 2f. Which gives a same-size image?",
+      "hi": "वस्तु को ठीक फोकस पर रखो। प्रतिबिंब का क्या होता है? फिर 2f पर। किससे बराबर माप का प्रतिबिंब मिलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch09-convex-mirror",
+   "topic": "9.2",
+   "template": "optics",
+   "title": {
+    "en": "The convex mirror always shrinks",
+    "hi": "उत्तल दर्पण हमेशा छोटा दिखाता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "element": "convex-mirror",
+    "f": 15,
+    "object": 40
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a convex mirror (a car's side mirror), the image of a distant truck is",
+      "hi": "उत्तल दर्पण (कार के साइड मिरर) में दूर के ट्रक का प्रतिबिंब होता है"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "real and on a screen",
+       "hi": "वास्तविक और पर्दे पर"
+      },
+      {
+       "id": "o0",
+       "en": "small, upright and virtual",
+       "hi": "छोटा, सीधा और आभासी"
+      },
+      {
+       "id": "o1",
+       "en": "large and inverted",
+       "hi": "बड़ा और उल्टा"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Move the object to different distances. The image stays virtual.",
+      "hi": "वस्तु को अलग-अलग दूरियों पर ले जाओ। प्रतिबिंब हमेशा आभासी रहता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:f",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Make the mirror more curved (smaller f). The image gets even smaller.",
+      "hi": "दर्पण को अधिक वक्र (छोटी f) करो। प्रतिबिंब और छोटा हो जाता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A convex mirror spreads parallel rays so they seem to come from a point behind it. Wherever the object is, the image is virtual, upright and smaller, and it lies between the pole and the focus behind. It gives a wide field of view, which is why it is used as a rear-view mirror and on blind road corners. Objects in it look farther than they are.",
+      "hi": "उत्तल दर्पण समांतर किरणों को ऐसे फैलाता है कि वे उसके पीछे के एक बिंदु से आती लगें। वस्तु कहीं भी हो, प्रतिबिंब आभासी, सीधा और छोटा होता है और पीछे ध्रुव तथा फोकस के बीच बनता है। इससे दृष्टि-क्षेत्र चौड़ा मिलता है, इसीलिए इसे पश्च-दृश्य दर्पण और सड़कों के अंधे मोड़ों पर लगाते हैं। इसमें वस्तुएँ वास्तविकता से दूर दिखती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a convex mirror used as a rear-view mirror?",
+        "hi": "उत्तल दर्पण पश्च-दृश्य दर्पण क्यों बनाया जाता है?"
+       },
+       "options": [
+        {
+         "en": "It shows a wide field of view",
+         "hi": "वह चौड़ा दृष्टि-क्षेत्र दिखाता है"
+        },
+        {
+         "en": "It makes things look bigger",
+         "hi": "वह वस्तुओं को बड़ा दिखाता है"
+        },
+        {
+         "en": "It makes real images",
+         "hi": "वह वास्तविक प्रतिबिंब बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Smaller images let a larger scene fit in the mirror.",
+        "hi": "छोटे प्रतिबिंबों से बड़ा दृश्य दर्पण में समा जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It makes things smaller, not bigger.",
+         "hi": "वह वस्तुओं को छोटा दिखाता है, बड़ा नहीं।"
+        },
+        {
+         "en": "A convex mirror gives only virtual images.",
+         "hi": "उत्तल दर्पण केवल आभासी प्रतिबिंब बनाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Is there any object position that gives a real image in this mirror? Try the whole range.",
+      "hi": "क्या इस दर्पण में किसी वस्तु-स्थिति पर वास्तविक प्रतिबिंब बनता है? पूरा परास आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch09-slab",
+   "topic": "9.3",
+   "template": "optics",
+   "title": {
+    "en": "Refraction through a glass slab",
+    "hi": "काँच की पट्टी से अपवर्तन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "element": "slab",
+    "n": 1.5,
+    "angle": 40
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A ray passes through a parallel glass slab. The ray that leaves is",
+      "hi": "काँच की समांतर पट्टी से किरण गुज़रती है। बाहर निकलने वाली किरण"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "bent permanently towards the normal",
+       "hi": "अभिलंब की ओर स्थायी रूप से मुड़ी हुई"
+      },
+      {
+       "id": "o2",
+       "en": "absorbed",
+       "hi": "अवशोषित"
+      },
+      {
+       "id": "o0",
+       "en": "parallel to the incoming ray, shifted sideways",
+       "hi": "आपतित किरण के समांतर, बगल में खिसकी हुई"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "refracted",
+     "say": {
+      "en": "Change the angle of incidence and watch the ray inside the glass.",
+      "hi": "आपतन कोण बदलो और काँच के भीतर की किरण देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:n",
+     "expect": "refracted",
+     "say": {
+      "en": "Raise the refractive index n. The ray bends more towards the normal.",
+      "hi": "अपवर्तनांक n बढ़ाओ। किरण अभिलंब की ओर अधिक मुड़ती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When light goes from air into glass it slows down and bends towards the normal. Snell's law gives n = sin i / sin r. Leaving the other face it bends away from the normal by the same amount, so the emergent ray is parallel to the incident one, only shifted sideways. A larger n means a slower speed in the medium, v = c/n, and more bending.",
+      "hi": "हवा से काँच में जाने पर प्रकाश धीमा होकर अभिलंब की ओर मुड़ता है। स्नेल का नियम n = sin i / sin r देता है। दूसरी सतह से निकलते समय वह उतना ही अभिलंब से दूर मुड़ता है, इसलिए निर्गत किरण आपतित किरण के समांतर रहती है, बस बगल में खिसक जाती है। अधिक n का अर्थ है माध्यम में कम चाल, v = c/n, और अधिक मुड़ाव।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Light of speed 3×10⁸ m/s enters glass of n = 1.5. Its speed in glass is",
+        "hi": "3×10⁸ मी/से वाला प्रकाश n = 1.5 वाले काँच में जाता है। काँच में उसकी चाल है"
+       },
+       "options": [
+        {
+         "en": "2×10⁸ m/s",
+         "hi": "2×10⁸ मी/से"
+        },
+        {
+         "en": "4.5×10⁸ m/s",
+         "hi": "4.5×10⁸ मी/से"
+        },
+        {
+         "en": "3×10⁸ m/s",
+         "hi": "3×10⁸ मी/से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "v = c/n = 3×10⁸ / 1.5 = 2×10⁸ m/s.",
+        "hi": "v = c/n = 3×10⁸ / 1.5 = 2×10⁸ मी/से।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That multiplies by n. Light slows down in glass: v = c/n.",
+         "hi": "यह n से गुणा है। काँच में प्रकाश धीमा होता है: v = c/n।"
+        },
+        {
+         "en": "The speed changes in glass; only the frequency stays the same.",
+         "hi": "काँच में चाल बदलती है; केवल आवृत्ति वही रहती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set the angle to 0. Does the ray bend at all? Why?",
+      "hi": "कोण को 0 पर रखो। क्या किरण कुछ मुड़ती है? क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch09-tir",
+   "topic": "9.4",
+   "template": "optics",
+   "title": {
+    "en": "Total internal reflection",
+    "hi": "पूर्ण आंतरिक परावर्तन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "element": "prism",
+    "n": 1.5,
+    "angle": 45
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Inside glass, a ray hits the glass-air surface at a very large angle of incidence. It",
+      "hi": "काँच के भीतर किरण काँच-हवा सतह पर बहुत बड़े आपतन कोण पर पहुँचती है। वह"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "reflects back completely",
+       "hi": "पूरी तरह वापस परावर्तित हो जाती है"
+      },
+      {
+       "id": "o1",
+       "en": "passes straight out",
+       "hi": "सीधी बाहर निकल जाती है"
+      },
+      {
+       "id": "o2",
+       "en": "is absorbed",
+       "hi": "अवशोषित हो जाती है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:n",
+     "expect": "tir",
+     "say": {
+      "en": "Raise n (a denser glass) until the ray can no longer leave the second face.",
+      "hi": "n बढ़ाओ (सघन काँच) जब तक किरण दूसरी सतह से बाहर न निकल पाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "refracted",
+     "say": {
+      "en": "Now raise the angle of incidence until the ray leaves the glass again.",
+      "hi": "अब आपतन कोण बढ़ाओ जब तक किरण फिर काँच से बाहर न निकले।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When light travels from a denser to a rarer medium and the angle of incidence exceeds the critical angle C, with sin C = 1/n, nothing is refracted out: the light is totally reflected. For glass C is about 42°, for water 49°, for diamond only 24°. This is why diamonds sparkle, why optical fibres carry internet signals, and why a mirage and the shine of an air bubble in water occur.",
+      "hi": "जब प्रकाश सघन से विरल माध्यम में चलता है और आपतन कोण क्रांतिक कोण C से अधिक हो, जहाँ sin C = 1/n, तब कुछ भी बाहर अपवर्तित नहीं होता: प्रकाश पूर्णतः परावर्तित हो जाता है। काँच के लिए C लगभग 42°, जल के लिए 49° और हीरे के लिए केवल 24° है। इसीलिए हीरे चमकते हैं, प्रकाशीय तंतु इंटरनेट संकेत ले जाते हैं, और मरीचिका तथा जल में हवा के बुलबुले की चमक बनती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For which pair is total internal reflection possible?",
+        "hi": "किस जोड़ी में पूर्ण आंतरिक परावर्तन संभव है?"
+       },
+       "options": [
+        {
+         "en": "glass to air",
+         "hi": "काँच से हवा"
+        },
+        {
+         "en": "air to glass",
+         "hi": "हवा से काँच"
+        },
+        {
+         "en": "air to air",
+         "hi": "हवा से हवा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "TIR needs the ray to start in the denser medium and hit a rarer one.",
+        "hi": "TIR के लिए किरण का सघन माध्यम से चलकर विरल माध्यम से टकराना ज़रूरी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Light going into a denser medium always bends towards the normal and enters. TIR needs dense to rare.",
+         "hi": "सघन माध्यम में जाता प्रकाश हमेशा अभिलंब की ओर मुड़कर प्रवेश करता है। TIR के लिए सघन से विरल चाहिए।"
+        },
+        {
+         "en": "No change of medium, no bending and no TIR.",
+         "hi": "माध्यम नहीं बदलता, इसलिए न मुड़ाव है न TIR।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the smallest n at which the ray is just trapped. Is it higher or lower than water (1.33)?",
+      "hi": "वह सबसे छोटा n खोजो जहाँ किरण ठीक फँस जाती है। वह जल (1.33) से अधिक है या कम?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch09-convex-lens",
+   "topic": "9.5",
+   "template": "optics",
+   "title": {
+    "en": "Images in a convex lens",
+    "hi": "उत्तल लेंस में प्रतिबिंब"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "element": "convex-lens",
+    "f": 15,
+    "object": 40
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An object is placed between a convex lens and its focus. The image is",
+      "hi": "वस्तु उत्तल लेंस और उसके फोकस के बीच रखी है। प्रतिबिंब है"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "same size",
+       "hi": "बराबर माप का"
+      },
+      {
+       "id": "o0",
+       "en": "virtual, upright and larger",
+       "hi": "आभासी, सीधा और बड़ा"
+      },
+      {
+       "id": "o1",
+       "en": "real and inverted",
+       "hi": "वास्तविक और उल्टा"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Bring the object closer than the focus (15 cm). It works as a magnifying glass.",
+      "hi": "वस्तु को फोकस (15 सेमी) से पास लाओ। यह आवर्धक लेंस की तरह काम करता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:real",
+     "say": {
+      "en": "Take the object far again. A real image forms on the other side.",
+      "hi": "वस्तु को फिर दूर ले जाओ। दूसरी ओर वास्तविक प्रतिबिंब बनता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "screen",
+     "expect": "image:sharp",
+     "say": {
+      "en": "Place the screen so that the image is sharp.",
+      "hi": "पर्दे को ऐसे रखो कि प्रतिबिंब स्पष्ट हो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The lens formula is 1/v − 1/u = 1/f, with magnification m = v/u. A convex lens converges light. For an object beyond f it forms a real, inverted image on the other side that you can catch on a screen, as in a camera or a projector. For an object closer than f it forms a virtual, upright, magnified image, as in a magnifying glass.",
+      "hi": "लेंस सूत्र 1/v − 1/u = 1/f है, आवर्धन m = v/u। उत्तल लेंस प्रकाश को अभिसरित करता है। f से दूर की वस्तु का वह दूसरी ओर वास्तविक, उल्टा प्रतिबिंब बनाता है जिसे पर्दे पर पकड़ा जा सकता है, जैसे कैमरे या प्रोजेक्टर में। f से पास की वस्तु का वह आभासी, सीधा, बड़ा प्रतिबिंब बनाता है, जैसे आवर्धक लेंस में।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A convex lens has f = 10 cm. An object is at 30 cm (u = −30). The image distance v is",
+        "hi": "उत्तल लेंस की f = 10 सेमी है। वस्तु 30 सेमी पर है (u = −30)। प्रतिबिंब-दूरी v है"
+       },
+       "options": [
+        {
+         "en": "+15 cm",
+         "hi": "+15 सेमी"
+        },
+        {
+         "en": "−15 cm",
+         "hi": "−15 सेमी"
+        },
+        {
+         "en": "+7.5 cm",
+         "hi": "+7.5 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1/v = 1/f + 1/u = 1/10 − 1/30 = 1/15, so v = +15 cm.",
+        "hi": "1/v = 1/f + 1/u = 1/10 − 1/30 = 1/15, इसलिए v = +15 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Negative v would put the image on the object's side. A real image is on the other side, so v is positive.",
+         "hi": "ऋणात्मक v प्रतिबिंब को वस्तु की ओर रखता है। वास्तविक प्रतिबिंब दूसरी ओर होता है, इसलिए v धनात्मक है।"
+        },
+        {
+         "en": "Check 1/v = 1/10 − 1/30 = 2/30, which gives 15 cm.",
+         "hi": "जाँचो 1/v = 1/10 − 1/30 = 2/30, जिससे 15 सेमी मिलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the object position that gives an image of exactly the same size as the object. What is the relation with f?",
+      "hi": "वस्तु की वह स्थिति खोजो जिससे वस्तु के बराबर माप का प्रतिबिंब बने। f से क्या संबंध है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch09-concave-lens",
+   "topic": "9.5",
+   "template": "optics",
+   "title": {
+    "en": "The concave lens always diverges",
+    "hi": "अवतल लेंस हमेशा अपसरित करता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "element": "concave-lens",
+    "f": 15,
+    "object": 40
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A concave lens forms an image that is always",
+      "hi": "अवतल लेंस हमेशा ऐसा प्रतिबिंब बनाता है जो"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "real and inverted",
+       "hi": "वास्तविक और उल्टा हो"
+      },
+      {
+       "id": "o2",
+       "en": "larger than the object",
+       "hi": "वस्तु से बड़ा हो"
+      },
+      {
+       "id": "o0",
+       "en": "virtual, upright and smaller",
+       "hi": "आभासी, सीधा और छोटा हो"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Move the object near and far. The image stays virtual and small.",
+      "hi": "वस्तु को पास और दूर ले जाओ। प्रतिबिंब आभासी और छोटा रहता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:f",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Make the lens stronger (smaller f). The image shrinks more.",
+      "hi": "लेंस को प्रबल (छोटी f) करो। प्रतिबिंब और छोटा होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A concave lens spreads out parallel rays so they seem to come from its focus on the same side. It has a negative focal length in the sign convention, and it is used to correct short sight (myopia). The power of a lens is P = 1/f with f in metres, measured in dioptre (D): a convex lens has positive power and a concave lens negative.",
+      "hi": "अवतल लेंस समांतर किरणों को ऐसे फैलाता है कि वे उसी ओर के फोकस से आती लगें। चिह्न परिपाटी में उसकी फोकस दूरी ऋणात्मक होती है, और वह निकट-दृष्टि दोष सुधारने में काम आता है। लेंस की क्षमता P = 1/f है, जहाँ f मीटर में है, इसकी इकाई डायोप्टर (D) है: उत्तल लेंस की क्षमता धनात्मक और अवतल की ऋणात्मक होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A lens has f = −0.5 m. Its power is",
+        "hi": "एक लेंस की f = −0.5 मीटर है। उसकी क्षमता है"
+       },
+       "options": [
+        {
+         "en": "−2 D",
+         "hi": "−2 डायोप्टर"
+        },
+        {
+         "en": "+2 D",
+         "hi": "+2 डायोप्टर"
+        },
+        {
+         "en": "−0.5 D",
+         "hi": "−0.5 डायोप्टर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P = 1/f = 1/(−0.5) = −2 D.",
+        "hi": "P = 1/f = 1/(−0.5) = −2 डायोप्टर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A negative focal length gives a negative power: it is a concave lens.",
+         "hi": "ऋणात्मक फोकस दूरी ऋणात्मक क्षमता देती है: यह अवतल लेंस है।"
+        },
+        {
+         "en": "Power is 1/f, not f: 1 / (−0.5) = −2.",
+         "hi": "क्षमता 1/f है, f नहीं: 1 / (−0.5) = −2।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare this lab with the convex lens lab. Which lens can make a real image?",
+      "hi": "इस प्रयोग की तुलना उत्तल लेंस वाले प्रयोग से करो। कौन-सा लेंस वास्तविक प्रतिबिंब बना सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch09-contact-lenses",
+   "topic": "9.5",
+   "template": "optics",
+   "title": {
+    "en": "Two thin lenses in contact",
+    "hi": "संपर्क में दो पतले लेंस"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "element": "combination",
+    "f": 20,
+    "f2": 20,
+    "object": 60
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two convex lenses, each f = 20 cm, are touching. The combination behaves like one lens of focal length",
+      "hi": "20 सेमी फोकस दूरी के दो उत्तल लेंस सटे हुए हैं। यह संयोजन एक लेंस की तरह व्यवहार करता है जिसकी फोकस दूरी है"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "10 cm",
+       "hi": "10 सेमी"
+      },
+      {
+       "id": "o1",
+       "en": "40 cm",
+       "hi": "40 सेमी"
+      },
+      {
+       "id": "o2",
+       "en": "20 cm",
+       "hi": "20 सेमी"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:f",
+     "expect": "image:real",
+     "say": {
+      "en": "Change the focal length of the first lens and look at where the image moves.",
+      "hi": "पहले लेंस की फोकस दूरी बदलो और देखो प्रतिबिंब कहाँ खिसकता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "screen",
+     "expect": "image:sharp",
+     "say": {
+      "en": "Place the screen at the image of the combined lens.",
+      "hi": "पर्दे को संयुक्त लेंस के प्रतिबिंब पर रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For thin lenses in contact the powers add: P = P1 + P2, or 1/f = 1/f1 + 1/f2. Two 20 cm lenses give 1/f = 1/20 + 1/20 = 1/10, so f = 10 cm. The combined lens is stronger. Opticians use this to combine a convex and a concave lens, and a camera uses several lenses to cancel faults in the image.",
+      "hi": "संपर्क में पतले लेंसों की क्षमताएँ जुड़ती हैं: P = P1 + P2, या 1/f = 1/f1 + 1/f2। दो 20 सेमी के लेंस 1/f = 1/20 + 1/20 = 1/10 देते हैं, इसलिए f = 10 सेमी। संयुक्त लेंस अधिक प्रबल है। चश्मा बनाने वाले उत्तल और अवतल लेंस जोड़ने में इसका उपयोग करते हैं, और कैमरा प्रतिबिंब की त्रुटियाँ मिटाने के लिए कई लेंस लगाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A +4 D lens is joined to a −1 D lens. The combined power is",
+        "hi": "+4 डायोप्टर का लेंस −1 डायोप्टर के लेंस से जोड़ा गया। संयुक्त क्षमता है"
+       },
+       "options": [
+        {
+         "en": "+3 D",
+         "hi": "+3 डायोप्टर"
+        },
+        {
+         "en": "+5 D",
+         "hi": "+5 डायोप्टर"
+        },
+        {
+         "en": "−3 D",
+         "hi": "−3 डायोप्टर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P = +4 + (−1) = +3 D.",
+        "hi": "P = +4 + (−1) = +3 डायोप्टर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The concave lens has negative power, so it subtracts.",
+         "hi": "अवतल लेंस की क्षमता ऋणात्मक है, इसलिए वह घटाता है।"
+        },
+        {
+         "en": "The positive lens is stronger, so the total stays positive.",
+         "hi": "धनात्मक लेंस अधिक प्रबल है, इसलिए कुल क्षमता धनात्मक रहती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the second lens to a concave one with the lens chips. What happens to the combined focal length?",
+      "hi": "लेंस चिप्स से दूसरे लेंस को अवतल कर दो। संयुक्त फोकस दूरी का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch09-prism",
+   "topic": "9.6",
+   "template": "optics",
+   "title": {
+    "en": "Dispersion of white light by a prism",
+    "hi": "प्रिज़्म द्वारा श्वेत प्रकाश का वर्ण-विक्षेपण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "element": "prism",
+    "n": 1.5,
+    "angle": 45
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "White light passing through a glass prism comes out",
+      "hi": "काँच के प्रिज़्म से गुज़रने के बाद श्वेत प्रकाश निकलता है"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "dimmer but white",
+       "hi": "धीमा पर श्वेत"
+      },
+      {
+       "id": "o0",
+       "en": "split into colours",
+       "hi": "रंगों में बँटकर"
+      },
+      {
+       "id": "o1",
+       "en": "still white",
+       "hi": "श्वेत ही"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:white",
+     "expect": "dispersed",
+     "say": {
+      "en": "Switch on white light and watch the colours spread.",
+      "hi": "श्वेत प्रकाश चालू करो और रंगों को फैलते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "refracted",
+     "say": {
+      "en": "Change the angle of incidence and find where the deviation is smallest.",
+      "hi": "आपतन कोण बदलो और खोजो जहाँ विचलन सबसे कम है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Glass bends light of different colours by different amounts: violet the most, red the least, because the refractive index depends on the wavelength. A prism therefore spreads white light into the spectrum VIBGYOR. The deviation of the ray is smallest at one particular angle of incidence. A rainbow is dispersion in raindrops, and Newton used two prisms to show that white light is a mixture of colours.",
+      "hi": "काँच अलग-अलग रंगों को अलग-अलग मात्रा में मोड़ता है: बैंगनी को सबसे अधिक, लाल को सबसे कम, क्योंकि अपवर्तनांक तरंगदैर्घ्य पर निर्भर करता है। इसलिए प्रिज़्म श्वेत प्रकाश को VIBGYOR स्पेक्ट्रम में फैला देता है। किरण का विचलन आपतन कोण के एक विशेष मान पर सबसे कम होता है। इंद्रधनुष वर्षा की बूँदों में वर्ण-विक्षेपण है, और न्यूटन ने दो प्रिज़्मों से दिखाया कि श्वेत प्रकाश रंगों का मिश्रण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which colour is bent the most by a glass prism?",
+        "hi": "काँच के प्रिज़्म से कौन-सा रंग सबसे अधिक मुड़ता है?"
+       },
+       "options": [
+        {
+         "en": "violet",
+         "hi": "बैंगनी"
+        },
+        {
+         "en": "red",
+         "hi": "लाल"
+        },
+        {
+         "en": "green",
+         "hi": "हरा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Shorter wavelength means a larger n and more bending.",
+        "hi": "छोटा तरंगदैर्घ्य यानी बड़ा n और अधिक मुड़ाव।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Red has the longest wavelength in the visible range and bends the least.",
+         "hi": "लाल का तरंगदैर्घ्य दृश्य परास में सबसे अधिक है और वह सबसे कम मुड़ता है।"
+        },
+        {
+         "en": "Green is in the middle; violet is bent more.",
+         "hi": "हरा बीच में है; बैंगनी उससे अधिक मुड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Raise n. Does the spread of colours become wider or narrower?",
+      "hi": "n बढ़ाओ। रंगों का फैलाव अधिक चौड़ा होता है या कम?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch09-telescope",
+   "topic": "9.7",
+   "template": "grapher",
+   "title": {
+    "en": "Magnifying power of a telescope",
+    "hi": "दूरदर्शी की आवर्धन क्षमता"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "a/x",
+    "params": {
+     "a": [
+      10,
+      50,
+      30
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To get a larger magnification from an astronomical telescope you should",
+      "hi": "खगोलीय दूरदर्शी से अधिक आवर्धन पाने के लिए तुम्हें चाहिए"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "use a shorter objective",
+       "hi": "अभिदृश्यक की फोकस दूरी छोटी रखो"
+      },
+      {
+       "id": "o2",
+       "en": "use a longer eyepiece",
+       "hi": "नेत्रिका की फोकस दूरी बड़ी रखो"
+      },
+      {
+       "id": "o0",
+       "en": "use a longer objective focal length or a shorter eyepiece focal length",
+       "hi": "अभिदृश्यक की फोकस दूरी बड़ी या नेत्रिका की छोटी रखो"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a is the objective focal length fo (cm). Make it bigger.",
+      "hi": "a अभिदृश्यक की फोकस दूरी fo (सेमी) है। उसे बड़ा करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the eyepiece focal length fe (cm). Slide it smaller and see M = fo/fe jump up.",
+      "hi": "x नेत्रिका की फोकस दूरी fe (सेमी) है। उसे छोटा करो और M = fo/fe को ऊपर जाते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In normal adjustment the magnifying power of an astronomical telescope is M = fo/fe: a big, weakly curved objective gathers light and a small, strongly curved eyepiece enlarges the image. For a compound microscope M is about (L/fo)(D/fe), so both lenses must have short focal lengths. A large objective also gathers more light, which is why astronomers build telescopes with huge mirrors.",
+      "hi": "सामान्य समायोजन में खगोलीय दूरदर्शी की आवर्धन क्षमता M = fo/fe होती है: बड़ा, कम वक्र अभिदृश्यक प्रकाश एकत्र करता है और छोटी, अधिक वक्र नेत्रिका प्रतिबिंब को बड़ा करती है। संयुक्त सूक्ष्मदर्शी के लिए M लगभग (L/fo)(D/fe) होता है, इसलिए दोनों लेंसों की फोकस दूरियाँ छोटी चाहिए। बड़ा अभिदृश्यक अधिक प्रकाश भी जुटाता है, इसीलिए खगोलशास्त्री विशाल दर्पणों वाले दूरदर्शी बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A telescope has fo = 100 cm and fe = 2 cm. Its magnifying power is",
+        "hi": "एक दूरदर्शी की fo = 100 सेमी और fe = 2 सेमी है। उसकी आवर्धन क्षमता है"
+       },
+       "options": [
+        {
+         "en": "50 times",
+         "hi": "50 गुना"
+        },
+        {
+         "en": "200 times",
+         "hi": "200 गुना"
+        },
+        {
+         "en": "0.02 times",
+         "hi": "0.02 गुना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "M = 100 / 2 = 50.",
+        "hi": "M = 100 / 2 = 50।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That multiplies the focal lengths. The magnification is the ratio fo / fe.",
+         "hi": "यह फोकस दूरियों को गुणा करना है। आवर्धन अनुपात fo / fe है।"
+        },
+        {
+         "en": "That is fe / fo, upside down.",
+         "hi": "यह fe / fo है, उलटा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What eyepiece focal length would give M = 100 with the largest fo here?",
+      "hi": "यहाँ सबसे बड़े fo के साथ M = 100 पाने के लिए नेत्रिका की फोकस दूरी कितनी चाहिए?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Chapter hook: light rays through a window",
+   "shows": "Sunbeams (crepuscular rays) entering a dusty room through a window and showing straight lines",
+   "view": "Wide interior view, dark room",
+   "right": "Straight beams clearly visible",
+   "avoid": "People, brand items"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "9.3",
+   "use": "A pencil bending in water",
+   "shows": "Three frames of a pencil in a glass: dry glass, half-filled, full of water, showing the pencil appearing bent at the surface",
+   "view": "Same side view, plain background",
+   "right": "Bend clearly visible in frames 2 and 3",
+   "avoid": "Changing the glass between frames"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.5",
+   "use": "A set of lenses",
+   "shows": "A convex lens, a concave lens and a magnifying glass on a plain white background, with a printed word seen through the convex lens",
+   "view": "Straight overhead",
+   "right": "Word magnified through the convex lens",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "9.4",
+   "use": "Optical fibres glowing",
+   "shows": "A bundle of optical fibres lit at the tip, glowing in many colours against a dark background",
+   "view": "Close macro, dark background",
+   "right": "Tips glowing evenly",
+   "avoid": "Text, logos"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "9.7",
+   "use": "Telescope and microscope",
+   "shows": "A school compound microscope next to a small astronomical telescope on a tripod, on white",
+   "view": "Three-quarter view, even light",
+   "right": "Both clearly seen with lenses visible",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "9.6",
+   "use": "A rainbow over a field",
+   "shows": "A full rainbow arching over green fields after rain with dark clouds behind",
+   "view": "Wide landscape, sun behind the viewer",
+   "right": "Seven bands clear with the red outside",
+   "avoid": "People, buildings with signs"
+  }
+ ]
+}

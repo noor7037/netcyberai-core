@@ -1,0 +1,992 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch02",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "The Origin and Evolution of the Earth",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy202.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Early ideas and the Big Bang theory",
+   "labs": [
+    "c11-geography-kegy2-ch02-theories"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Origin and growth of the universe: galaxies and stars",
+   "labs": [
+    "c11-geography-kegy2-ch02-bigbang"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Formation of the planets: terrestrial and Jovian",
+   "labs": [
+    "c11-geography-kegy2-ch02-planets",
+    "c11-geography-kegy2-ch02-planet-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Evolution of the Earth: layers, atmosphere and oceans",
+   "labs": [
+    "c11-geography-kegy2-ch02-earth-evolves"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Origin of life on Earth",
+   "labs": [],
+   "why_no_lab": "A story and a timeline of life, best told by the reader and photos of ancient rocks and fossils; there is no step a child can safely do."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch02-theories",
+   "topic": "2.1",
+   "template": "match",
+   "title": {
+    "en": "Ideas about how the Earth began",
+    "hi": "पृथ्वी की शुरुआत के बारे में विचार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "nebular",
+      "left": {
+       "en": "Nebular hypothesis (Kant, Laplace)",
+       "hi": "निहारिका परिकल्पना (कांट, लाप्लास)"
+      },
+      "right": {
+       "en": "Planets formed from a slowly spinning cloud of gas around the young Sun",
+       "hi": "युवा सूर्य के चारों ओर धीरे घूमते गैस-बादल से ग्रह बने"
+      },
+      "why": {
+       "en": "The nebular hypothesis says a rotating cloud of gas and dust around the young Sun gave birth to the planets.",
+       "hi": "निहारिका परिकल्पना कहती है कि युवा सूर्य के चारों ओर घूमते गैस-धूल के बादल से ग्रह बने।"
+      }
+     },
+     {
+      "id": "bigbang",
+      "left": {
+       "en": "Big Bang theory",
+       "hi": "महाविस्फोट सिद्धांत"
+      },
+      "right": {
+       "en": "The universe began from one very hot, dense point and has been expanding",
+       "hi": "ब्रह्मांड एक अत्यंत गर्म, घने बिंदु से शुरू हुआ और फैल रहा है"
+      },
+      "why": {
+       "en": "The Big Bang theory is the accepted explanation for how the universe began and grew.",
+       "hi": "महाविस्फोट सिद्धांत ब्रह्मांड की शुरुआत और फैलाव की मान्य व्याख्या है।"
+      }
+     },
+     {
+      "id": "hubble",
+      "left": {
+       "en": "Hubble's observation (1920)",
+       "hi": "हबल का अवलोकन (1920)"
+      },
+      "right": {
+       "en": "Galaxies are moving away from each other, so the universe is expanding",
+       "hi": "आकाशगंगाएँ एक-दूसरे से दूर जा रही हैं, इसलिए ब्रह्मांड फैल रहा है"
+      },
+      "why": {
+       "en": "Edwin Hubble found that distant galaxies move apart, which supports the Big Bang idea.",
+       "hi": "एडविन हबल ने पाया कि दूर की आकाशगंगाएँ दूर भाग रही हैं; इससे महाविस्फोट के विचार को बल मिलता है।"
+      }
+     },
+     {
+      "id": "planetesimal",
+      "left": {
+       "en": "Planetesimals",
+       "hi": "ग्रहाणु"
+      },
+      "right": {
+       "en": "Small rocky lumps in the spinning disc that stuck together to form planets",
+       "hi": "घूमती चक्रिका के छोटे चट्टानी टुकड़े जो जुड़कर ग्रह बने"
+      },
+      "why": {
+       "en": "Gravity pulled small planetesimals together until they grew into planets.",
+       "hi": "गुरुत्वाकर्षण ने छोटे ग्रहाणुओं को खींचकर जोड़ा, और वे ग्रह बन गए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:nebular",
+     "expect": "matched:nebular",
+     "say": {
+      "en": "Match \"Nebular hypothesis (Kant, Laplace)\" with its meaning.",
+      "hi": "\"निहारिका परिकल्पना (कांट, लाप्लास)\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Big Bang theory\"?",
+      "hi": "\"महाविस्फोट सिद्धांत\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "nebular",
+       "en": "Planets formed from a slowly spinning cloud of gas around the young Sun",
+       "hi": "युवा सूर्य के चारों ओर धीरे घूमते गैस-बादल से ग्रह बने"
+      },
+      {
+       "id": "bigbang",
+       "en": "The universe began from one very hot, dense point and has been expanding",
+       "hi": "ब्रह्मांड एक अत्यंत गर्म, घने बिंदु से शुरू हुआ और फैल रहा है"
+      },
+      {
+       "id": "hubble",
+       "en": "Galaxies are moving away from each other, so the universe is expanding",
+       "hi": "आकाशगंगाएँ एक-दूसरे से दूर जा रही हैं, इसलिए ब्रह्मांड फैल रहा है"
+      }
+     ],
+     "answer": "bigbang"
+    },
+    {
+     "kind": "do",
+     "target": "left:bigbang",
+     "expect": "matched:bigbang",
+     "say": {
+      "en": "Now match \"Big Bang theory\".",
+      "hi": "अब \"महाविस्फोट सिद्धांत\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Scientists build ideas to explain the past and test them with evidence. Early ideas, like the nebular hypothesis, said the planets came from a spinning cloud around the Sun. The modern view starts earlier, with the Big Bang, and explains the Sun and planets as part of the growth of the whole universe.",
+      "hi": "वैज्ञानिक अतीत को समझाने के लिए विचार बनाते हैं और प्रमाणों से उन्हें परखते हैं। निहारिका परिकल्पना जैसे पुराने विचार कहते थे कि ग्रह सूर्य के चारों ओर घूमते बादल से बने। आधुनिक मत और पहले, महाविस्फोट से, शुरू होता है और सूर्य तथा ग्रहों को पूरे ब्रह्मांड के विकास का हिस्सा मानता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What did Hubble's observation of galaxies show?",
+        "hi": "आकाशगंगाओं के बारे में हबल के अवलोकन ने क्या दिखाया?"
+       },
+       "options": [
+        {
+         "en": "They are moving apart, so the universe is expanding",
+         "hi": "वे दूर जा रही हैं, इसलिए ब्रह्मांड फैल रहा है"
+        },
+        {
+         "en": "They are coming closer and the universe is shrinking",
+         "hi": "वे पास आ रही हैं और ब्रह्मांड सिकुड़ रहा है"
+        },
+        {
+         "en": "They never move at all",
+         "hi": "वे बिल्कुल नहीं हिलतीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Distant galaxies are moving away from us and from each other, so space itself is expanding.",
+        "hi": "दूर की आकाशगंगाएँ हमसे और एक-दूसरे से दूर जा रही हैं, यानी अंतरिक्ष ही फैल रहा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The observation was the opposite: galaxies move apart, not closer.",
+         "hi": "अवलोकन इसका उलटा था: आकाशगंगाएँ दूर जाती हैं, पास नहीं आतीं।"
+        },
+        {
+         "en": "Galaxies do move; their motion is exactly what was measured.",
+         "hi": "आकाशगंगाएँ चलती हैं; उनकी गति ही मापी गई थी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask: if the universe is expanding now, what must it have been like long ago? Say it in one sentence.",
+      "hi": "पूछो: अगर ब्रह्मांड अब फैल रहा है, तो बहुत पहले वह कैसा रहा होगा? एक वाक्य में बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch02-bigbang",
+   "topic": "2.2",
+   "template": "sequence",
+   "title": {
+    "en": "From the Big Bang to planets",
+    "hi": "महाविस्फोट से ग्रहों तक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "bb",
+      "text": {
+       "en": "All matter and energy start in one tiny, extremely hot, dense point",
+       "hi": "सारा पदार्थ और ऊर्जा एक छोटे, अत्यंत गर्म, घने बिंदु में थे"
+      }
+     },
+     {
+      "id": "expand",
+      "text": {
+       "en": "A huge explosion: the universe begins to expand very fast",
+       "hi": "एक बड़ा विस्फोट: ब्रह्मांड बहुत तेज़ी से फैलने लगा"
+      }
+     },
+     {
+      "id": "cool",
+      "text": {
+       "en": "It cools, and the first atoms, hydrogen and helium, form",
+       "hi": "यह ठंडा हुआ और पहले परमाणु, हाइड्रोजन और हीलियम, बने"
+      }
+     },
+     {
+      "id": "gal",
+      "text": {
+       "en": "Gravity pulls the gas into huge clumps that become galaxies",
+       "hi": "गुरुत्वाकर्षण ने गैस को विशाल गुच्छों में खींचा, जो आकाशगंगाएँ बनीं"
+      }
+     },
+     {
+      "id": "star",
+      "text": {
+       "en": "Inside the galaxies, gas clouds shrink and glow as stars",
+       "hi": "आकाशगंगाओं के भीतर गैस के बादल सिकुड़कर तारे बनकर चमके"
+      }
+     },
+     {
+      "id": "planets",
+      "text": {
+       "en": "A spinning disc around a star clumps together into planets",
+       "hi": "तारे के चारों ओर घूमती चक्रिका जुड़कर ग्रह बन गई"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:bb",
+     "expect": "placed:bb",
+     "say": {
+      "en": "Tap the step you think comes first, then tap slot 1.",
+      "hi": "जो चरण तुम्हें सबसे पहले लगे, उस पर टैप करो, फिर खाना 1 पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes right after \"All matter and energy start in one tiny, extremely hot, dense point\"?",
+      "hi": "\"सारा पदार्थ और ऊर्जा एक छोटे, अत्यंत गर्म, घने बिंदु में थे\" के ठीक बाद क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "cool",
+       "en": "It cools, and the first atoms, hydrogen and helium, form",
+       "hi": "यह ठंडा हुआ और पहले परमाणु, हाइड्रोजन और हीलियम, बने"
+      },
+      {
+       "id": "expand",
+       "en": "A huge explosion: the universe begins to expand very fast",
+       "hi": "एक बड़ा विस्फोट: ब्रह्मांड बहुत तेज़ी से फैलने लगा"
+      },
+      {
+       "id": "gal",
+       "en": "Gravity pulls the gas into huge clumps that become galaxies",
+       "hi": "गुरुत्वाकर्षण ने गैस को विशाल गुच्छों में खींचा, जो आकाशगंगाएँ बनीं"
+      }
+     ],
+     "answer": "expand"
+    },
+    {
+     "kind": "do",
+     "target": "item:expand",
+     "expect": "placed:expand",
+     "say": {
+      "en": "Now place the next step in slot 2.",
+      "hi": "अब अगला चरण खाना 2 में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps in order, then press Check.",
+      "hi": "सब चरण क्रम से रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The story of the universe moves from tiny to huge. After the Big Bang the universe expanded and cooled, so atoms could form. Gravity gathered the gas into galaxies, then stars, and around young stars like our Sun, discs of dust and gas formed planets.",
+      "hi": "ब्रह्मांड की कहानी छोटे से विशाल की ओर बढ़ती है। महाविस्फोट के बाद ब्रह्मांड फैला और ठंडा हुआ, तब परमाणु बन सके। गुरुत्वाकर्षण ने गैस को आकाशगंगाओं, फिर तारों में इकट्ठा किया, और हमारे सूर्य जैसे युवा तारों के चारों ओर धूल-गैस की चक्रिकाओं से ग्रह बने।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which came first in the story?",
+        "hi": "कहानी में पहले क्या आया?"
+       },
+       "options": [
+        {
+         "en": "The first atoms of hydrogen and helium",
+         "hi": "हाइड्रोजन और हीलियम के पहले परमाणु"
+        },
+        {
+         "en": "Planets such as Earth",
+         "hi": "पृथ्वी जैसे ग्रह"
+        },
+        {
+         "en": "Stars like the Sun",
+         "hi": "सूर्य जैसे तारे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Atoms had to form first. Stars and planets are built from them later.",
+        "hi": "पहले परमाणु बनने ज़रूरी थे। तारे और ग्रह बाद में उन्हीं से बने।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Planets formed much later, from material left around young stars.",
+         "hi": "ग्रह बहुत बाद में बने, युवा तारों के आसपास बचे पदार्थ से।"
+        },
+        {
+         "en": "Stars needed clouds of hydrogen and helium to exist first.",
+         "hi": "तारे बनने के लिए पहले हाइड्रोजन-हीलियम के बादल ज़रूरी थे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try re-shuffling and ordering again from memory. Which two steps are easiest to mix up, and why?",
+      "hi": "फिर से मिलाकर याद से क्रम लगाओ। कौन-से दो चरण सबसे आसानी से गड़बड़ हो जाते हैं, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch02-planets",
+   "topic": "2.3",
+   "template": "sky",
+   "title": {
+    "en": "Meet the planets of the Solar System",
+    "hi": "सौरमंडल के ग्रहों से मिलो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "solar-system"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "planet:mercury",
+     "expect": "picked:mercury",
+     "say": {
+      "en": "Tap Mercury, the planet nearest the Sun.",
+      "hi": "सूर्य के सबसे पास वाले ग्रह बुध पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Jupiter is much further from the Sun than Earth. Compared with Earth, will it be small and rocky or huge and gassy?",
+      "hi": "बृहस्पति सूर्य से पृथ्वी की तुलना में बहुत दूर है। पृथ्वी की तुलना में वह छोटा और चट्टानी होगा या विशाल और गैसीय?"
+     },
+     "options": [
+      {
+       "id": "gas",
+       "en": "Huge and mostly gas",
+       "hi": "विशाल और अधिकतर गैस"
+      },
+      {
+       "id": "rock",
+       "en": "Small and rocky",
+       "hi": "छोटा और चट्टानी"
+      },
+      {
+       "id": "same",
+       "en": "Same as Earth",
+       "hi": "पृथ्वी जैसा"
+      }
+     ],
+     "answer": "gas"
+    },
+    {
+     "kind": "do",
+     "target": "planet:jupiter",
+     "expect": "picked:jupiter",
+     "say": {
+      "en": "Tap Jupiter and compare its size with Mercury.",
+      "hi": "बृहस्पति पर टैप करो और उसके आकार की बुध से तुलना करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "planet:earth",
+     "expect": "picked:earth",
+     "say": {
+      "en": "Tap Earth, the third planet.",
+      "hi": "तीसरे ग्रह पृथ्वी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "play",
+     "say": {
+      "en": "Press Play to watch the planets go round the Sun.",
+      "hi": "ग्रहों को सूर्य का चक्कर लगाते देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Four planets near the Sun, Mercury, Venus, Earth and Mars, are small and rocky: the terrestrial planets. The four far out, Jupiter, Saturn, Uranus and Neptune, are huge and made mostly of gas and ice: the Jovian planets. Near the Sun the heat and solar wind swept the light gases away, so only the heavy rock stayed.",
+      "hi": "सूर्य के पास के चार ग्रह, बुध, शुक्र, पृथ्वी और मंगल, छोटे और चट्टानी हैं: पार्थिव ग्रह। दूर के चार, बृहस्पति, शनि, अरुण और वरुण, विशाल हैं और अधिकतर गैस व बर्फ़ से बने हैं: बृहस्पति-सदृश ग्रह। सूर्य के पास की गर्मी और सौर पवन ने हल्की गैसें उड़ा दीं, इसलिए केवल भारी चट्टान बची।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which planet is a terrestrial (rocky) planet?",
+        "hi": "कौन-सा ग्रह पार्थिव (चट्टानी) ग्रह है?"
+       },
+       "options": [
+        {
+         "en": "Mars",
+         "hi": "मंगल"
+        },
+        {
+         "en": "Saturn",
+         "hi": "शनि"
+        },
+        {
+         "en": "Neptune",
+         "hi": "वरुण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mars is the fourth planet and is small and rocky.",
+        "hi": "मंगल चौथा ग्रह है और छोटा व चट्टानी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Saturn is a huge gas giant far from the Sun.",
+         "hi": "शनि सूर्य से दूर एक विशाल गैसीय ग्रह है।"
+        },
+        {
+         "en": "Neptune is a huge icy and gassy planet, the farthest from the Sun.",
+         "hi": "वरुण विशाल बर्फ़ीला और गैसीय ग्रह है, सूर्य से सबसे दूर।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch on the orbits and labels. Which planets take longest to go round the Sun, and are they near or far?",
+      "hi": "कक्षाएँ और नाम चालू करो। कौन-से ग्रह सूर्य का चक्कर लगाने में सबसे ज़्यादा समय लेते हैं, पास वाले या दूर वाले?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch02-planet-types",
+   "topic": "2.3",
+   "template": "sort",
+   "title": {
+    "en": "Rocky or gassy planet?",
+    "hi": "चट्टानी या गैसीय ग्रह?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "terr",
+      "label": {
+       "en": "Terrestrial (rocky)",
+       "hi": "पार्थिव (चट्टानी)"
+      }
+     },
+     {
+      "id": "jov",
+      "label": {
+       "en": "Jovian (gas giant)",
+       "hi": "बृहस्पति-सदृश (गैसीय)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "mercury",
+      "bin": "terr",
+      "text": {
+       "en": "Mercury",
+       "hi": "बुध"
+      },
+      "why": {
+       "en": "Mercury is small, rocky and nearest the Sun.",
+       "hi": "बुध छोटा, चट्टानी और सूर्य के सबसे पास है।"
+      }
+     },
+     {
+      "id": "venus",
+      "bin": "terr",
+      "text": {
+       "en": "Venus",
+       "hi": "शुक्र"
+      },
+      "why": {
+       "en": "Venus is a rocky planet about the size of Earth.",
+       "hi": "शुक्र पृथ्वी जितना बड़ा चट्टानी ग्रह है।"
+      }
+     },
+     {
+      "id": "earth",
+      "bin": "terr",
+      "text": {
+       "en": "Earth",
+       "hi": "पृथ्वी"
+      },
+      "why": {
+       "en": "Earth is a rocky planet with a solid crust.",
+       "hi": "पृथ्वी ठोस भूपर्पटी वाला चट्टानी ग्रह है।"
+      }
+     },
+     {
+      "id": "mars",
+      "bin": "terr",
+      "text": {
+       "en": "Mars",
+       "hi": "मंगल"
+      },
+      "why": {
+       "en": "Mars is a small rocky planet.",
+       "hi": "मंगल एक छोटा चट्टानी ग्रह है।"
+      }
+     },
+     {
+      "id": "jupiter",
+      "bin": "jov",
+      "text": {
+       "en": "Jupiter",
+       "hi": "बृहस्पति"
+      },
+      "why": {
+       "en": "Jupiter is the largest planet, mostly hydrogen and helium.",
+       "hi": "बृहस्पति सबसे बड़ा ग्रह है, मुख्यतः हाइड्रोजन और हीलियम।"
+      }
+     },
+     {
+      "id": "saturn",
+      "bin": "jov",
+      "text": {
+       "en": "Saturn",
+       "hi": "शनि"
+      },
+      "why": {
+       "en": "Saturn is a gas giant with bright rings.",
+       "hi": "शनि चमकीले छल्लों वाला गैसीय ग्रह है।"
+      }
+     },
+     {
+      "id": "uranus",
+      "bin": "jov",
+      "text": {
+       "en": "Uranus",
+       "hi": "अरुण"
+      },
+      "why": {
+       "en": "Uranus is a large planet of gas and ice.",
+       "hi": "अरुण गैस और बर्फ़ का बड़ा ग्रह है।"
+      }
+     },
+     {
+      "id": "neptune",
+      "bin": "jov",
+      "text": {
+       "en": "Neptune",
+       "hi": "वरुण"
+      },
+      "why": {
+       "en": "Neptune is a large planet of gas and ice, far from the Sun.",
+       "hi": "वरुण सूर्य से दूर गैस और बर्फ़ का बड़ा ग्रह है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:mars",
+     "expect": "correct:mars",
+     "say": {
+      "en": "Tap the card \"Mars\", then tap the group where it belongs.",
+      "hi": "कार्ड \"मंगल\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Saturn\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"शनि\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "terr",
+       "en": "Terrestrial (rocky)",
+       "hi": "पार्थिव (चट्टानी)"
+      },
+      {
+       "id": "jov",
+       "en": "Jovian (gas giant)",
+       "hi": "बृहस्पति-सदृश (गैसीय)"
+      }
+     ],
+     "answer": "jov"
+    },
+    {
+     "kind": "do",
+     "target": "card:saturn",
+     "expect": "correct:saturn",
+     "say": {
+      "en": "Now sort the card \"Saturn\".",
+      "hi": "अब कार्ड \"शनि\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Solar System has two families. Terrestrial planets are small, rocky and close to the Sun. Jovian planets are huge, made of gas and ice, and far out. Weak gravity and strong heat near the Sun let the light gases escape from the inner planets.",
+      "hi": "सौरमंडल के ग्रहों के दो परिवार हैं। पार्थिव ग्रह छोटे, चट्टानी और सूर्य के पास हैं। बृहस्पति-सदृश ग्रह विशाल, गैस-बर्फ़ से बने और दूर हैं। सूर्य के पास गर्मी अधिक और गुरुत्वाकर्षण कम होने से भीतरी ग्रहों की हल्की गैसें निकल गईं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do the inner planets have so little gas?",
+        "hi": "भीतरी ग्रहों के पास गैस इतनी कम क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Heat and solar wind drove the light gases away, and their gravity is weak",
+         "hi": "गर्मी और सौर पवन ने हल्की गैसें उड़ा दीं और उनका गुरुत्वाकर्षण कमज़ोर है"
+        },
+        {
+         "en": "There was no gas anywhere in the universe",
+         "hi": "ब्रह्मांड में कहीं भी गैस थी ही नहीं"
+        },
+        {
+         "en": "The planets are too far from the Sun",
+         "hi": "ग्रह सूर्य से बहुत दूर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Near the Sun it was hot and windy, so light gases escaped and heavy rock remained.",
+        "hi": "सूर्य के पास गर्मी और हवा तेज़ थी, इसलिए हल्की गैसें निकल गईं और भारी चट्टान बची।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Gas was plentiful: hydrogen and helium formed the universe's first atoms.",
+         "hi": "गैस बहुत थी: हाइड्रोजन और हीलियम ब्रह्मांड के पहले परमाणु थे।"
+        },
+        {
+         "en": "The inner planets are close to the Sun, not far.",
+         "hi": "भीतरी ग्रह सूर्य के पास हैं, दूर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Without looking, say the planets in order from the Sun and mark where the rocky family ends.",
+      "hi": "देखे बिना सूर्य से क्रम में ग्रहों के नाम बोलो और बताओ कि चट्टानी परिवार कहाँ ख़त्म होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch02-earth-evolves",
+   "topic": "2.4",
+   "template": "sequence",
+   "title": {
+    "en": "How the young Earth changed",
+    "hi": "युवा पृथ्वी कैसे बदली"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "hot",
+      "text": {
+       "en": "The young Earth is very hot and its materials are partly molten",
+       "hi": "युवा पृथ्वी बहुत गर्म थी और उसका पदार्थ आंशिक रूप से पिघला था"
+      }
+     },
+     {
+      "id": "sink",
+      "text": {
+       "en": "Heavy materials such as iron sink towards the centre",
+       "hi": "लोहे जैसे भारी पदार्थ केंद्र की ओर धँसे"
+      }
+     },
+     {
+      "id": "rise",
+      "text": {
+       "en": "Lighter materials rise, cool and harden into the crust",
+       "hi": "हल्के पदार्थ ऊपर आए, ठंडे हुए और भूपर्पटी बन गए"
+      }
+     },
+     {
+      "id": "gas",
+      "text": {
+       "en": "Gases escaping from the inside form a new atmosphere",
+       "hi": "भीतर से निकली गैसों से नया वायुमंडल बना"
+      }
+     },
+     {
+      "id": "rain",
+      "text": {
+       "en": "Water vapour cools and falls as rain, filling hollows: oceans form",
+       "hi": "जलवाष्प ठंडी होकर वर्षा बनी और गड्ढे भरे: महासागर बने"
+      }
+     },
+     {
+      "id": "life",
+      "text": {
+       "en": "Life appears, and photosynthesis slowly adds oxygen to the air",
+       "hi": "जीवन आया और प्रकाश-संश्लेषण ने हवा में धीरे-धीरे ऑक्सीजन जोड़ी"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:hot",
+     "expect": "placed:hot",
+     "say": {
+      "en": "Tap the step you think comes first, then tap slot 1.",
+      "hi": "जो चरण तुम्हें सबसे पहले लगे, उस पर टैप करो, फिर खाना 1 पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes right after \"The young Earth is very hot and its materials are partly molten\"?",
+      "hi": "\"युवा पृथ्वी बहुत गर्म थी और उसका पदार्थ आंशिक रूप से पिघला था\" के ठीक बाद क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "rise",
+       "en": "Lighter materials rise, cool and harden into the crust",
+       "hi": "हल्के पदार्थ ऊपर आए, ठंडे हुए और भूपर्पटी बन गए"
+      },
+      {
+       "id": "sink",
+       "en": "Heavy materials such as iron sink towards the centre",
+       "hi": "लोहे जैसे भारी पदार्थ केंद्र की ओर धँसे"
+      },
+      {
+       "id": "gas",
+       "en": "Gases escaping from the inside form a new atmosphere",
+       "hi": "भीतर से निकली गैसों से नया वायुमंडल बना"
+      }
+     ],
+     "answer": "sink"
+    },
+    {
+     "kind": "do",
+     "target": "item:sink",
+     "expect": "placed:sink",
+     "say": {
+      "en": "Now place the next step in slot 2.",
+      "hi": "अब अगला चरण खाना 2 में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps in order, then press Check.",
+      "hi": "सब चरण क्रम से रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Earth became layered because it was once hot enough to flow: heavy iron sank to form the core and lighter rock floated up as the crust. Gases from the inside made the first air, and cooling turned water vapour into rain and oceans. Much later, living things added the oxygen we breathe.",
+      "hi": "पृथ्वी परतदार इसलिए बनी कि कभी वह बहने जितनी गर्म थी: भारी लोहा डूबकर क्रोड बना और हल्की चट्टान तैरकर भूपर्पटी बनी। भीतर की गैसों से पहली हवा बनी और ठंडक से जलवाष्प वर्षा और महासागर बनी। बहुत बाद में जीवों ने वह ऑक्सीजन जोड़ी जिसमें हम साँस लेते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did the heavy materials end up at the centre?",
+        "hi": "भारी पदार्थ केंद्र में क्यों पहुँचे?"
+       },
+       "options": [
+        {
+         "en": "The Earth was molten, so heavy material sank and light material rose",
+         "hi": "पृथ्वी पिघली थी, इसलिए भारी पदार्थ डूबा और हल्का ऊपर आया"
+        },
+        {
+         "en": "Someone placed them there",
+         "hi": "किसी ने उन्हें वहाँ रखा"
+        },
+        {
+         "en": "The Moon pulled them in",
+         "hi": "चाँद ने उन्हें खींचा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a flowing, hot Earth, heavier things sink and lighter things float, like oil over water.",
+        "hi": "बहती, गर्म पृथ्वी में भारी चीज़ें डूबती और हल्की तैरती हैं, जैसे पानी पर तेल।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No one placed them; natural forces sorted them.",
+         "hi": "किसी ने नहीं रखा; प्राकृतिक बलों ने उन्हें अलग किया।"
+        },
+        {
+         "en": "The Moon's pull is too weak to move the Earth's materials like this.",
+         "hi": "चाँद का खिंचाव पृथ्वी के पदार्थ को इस तरह हिलाने के लिए बहुत कमज़ोर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine a jar of mud shaken and left. What settles at the bottom first? How is this like the young Earth?",
+      "hi": "सोचो कि एक बर्तन में कीचड़ हिलाकर छोड़ दिया गया है। सबसे पहले नीचे क्या बैठता है? यह युवा पृथ्वी जैसा कैसे है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Hook of the chapter",
+   "shows": "A clear night sky with the Milky Way over an Indian village or desert, no light pollution",
+   "view": "Wide, 16:9, camera low, tripod long exposure",
+   "right": "Milky Way band bright; stars sharp; horizon dark",
+   "avoid": "Satellite trails, text, buildings lit up"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "2.2",
+   "use": "Big Bang to planets sequence",
+   "shows": "Four computer-rendered frames: dense glowing point, expanding cloud, galaxy cluster, young star with a disc",
+   "view": "Same frame size and dark background in all four",
+   "right": "Colours realistic for gas and stars; progress left to right",
+   "avoid": "Any text or arrows"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "2.3",
+   "use": "Planets lab and reader",
+   "shows": "Each of the eight planets as a rendered sphere from one side with true relative colours",
+   "view": "Transparent background, equal centre, front view",
+   "right": "True colours: Mars rusty red, Earth blue-white, Jupiter banded",
+   "avoid": "Sizes not to scale in one image; text"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "2.4",
+   "use": "Earth differentiation",
+   "shows": "A cut-away of the young molten Earth with iron sinking to the centre",
+   "view": "4:3, neutral dark background",
+   "right": "Glowing orange interior; thin dark crust",
+   "avoid": "Labels, human figures"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "2.4",
+   "use": "Earth evolves sequence",
+   "shows": "Same view of the Earth in four stages: molten, cooling crust, rain and oceans, blue Earth with clouds",
+   "view": "Same camera, equal size",
+   "right": "Smooth change from red-orange to blue-white",
+   "avoid": "Text, arrows"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "2.4",
+   "use": "Rocks that record Earth's history",
+   "shows": "A very old granite or banded gneiss rock slab, polished edge visible",
+   "view": "Top view, square, soft light with a ruler beside it",
+   "right": "Visible crystals and bands in true colours",
+   "avoid": "Brand tags, hands with jewellery"
+  }
+ ]
+}

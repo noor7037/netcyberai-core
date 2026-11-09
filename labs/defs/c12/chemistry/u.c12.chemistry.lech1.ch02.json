@@ -1,0 +1,2161 @@
+{
+ "chapter_key": "u.c12.chemistry.lech1.ch02",
+ "class": 12,
+ "subject_id": "chemistry",
+ "title": "Electrochemistry",
+ "source": "https://ncert.nic.in/textbook/pdf/lech102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Electrochemical cells",
+   "labs": [
+    "c12-chemistry-lech1-ch02-displacement-cell"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Galvanic cells: anode, cathode, electrode potential and cell voltage",
+   "labs": [
+    "c12-chemistry-lech1-ch02-anode-cathode",
+    "c12-chemistry-lech1-ch02-electrochemical-series",
+    "c12-chemistry-lech1-ch02-cell-emf"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Nernst equation, equilibrium constant and Gibbs energy",
+   "labs": [
+    "c12-chemistry-lech1-ch02-nernst-daniell"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Conductance: conductivity, molar conductivity and Kohlrausch's law",
+   "labs": [
+    "c12-chemistry-lech1-ch02-ion-conductivity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Electrolytic cells and products of electrolysis",
+   "labs": [
+    "c12-chemistry-lech1-ch02-electrolysis-products"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Batteries: primary and secondary",
+   "labs": [
+    "c12-chemistry-lech1-ch02-battery-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.7",
+   "title": "Fuel cells",
+   "labs": [
+    "c12-chemistry-lech1-ch02-battery-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.8",
+   "title": "Corrosion",
+   "labs": [
+    "c12-chemistry-lech1-ch02-rusting-steps"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-chemistry-lech1-ch02-displacement-cell",
+   "topic": "2.1",
+   "template": "beaker",
+   "title": {
+    "en": "Zinc and copper sulphate: the idea behind a cell",
+    "hi": "जस्ता और कॉपर सल्फेट: सेल के पीछे का विचार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "zinc",
+     "copperwire",
+     "znso4",
+     "cuso4"
+    ],
+    "start": [
+     "cuso4"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:zinc",
+     "expect": "pick:zinc",
+     "say": {
+      "en": "Pick up the zinc granules.",
+      "hi": "जस्ते के दाने उठाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will drop zinc into the blue copper sulphate solution. What will you see?",
+      "hi": "तुम नीले कॉपर सल्फेट विलयन में जस्ता डालोगे। तुम्हें क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "coat",
+       "en": "A reddish-brown coat on the zinc and the blue fades",
+       "hi": "जस्ते पर लाल-भूरी परत और नीला रंग फीका"
+      },
+      {
+       "id": "none",
+       "en": "Nothing happens",
+       "hi": "कुछ नहीं होता"
+      },
+      {
+       "id": "blue",
+       "en": "The zinc turns blue",
+       "hi": "जस्ता नीला हो जाता है"
+      }
+     ],
+     "answer": "coat"
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Drop the zinc into the beaker and watch.",
+      "hi": "जस्ता बीकर में डालो और देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Zinc gives two electrons to each copper ion: Zn → Zn²⁺ + 2e⁻ (oxidation) and Cu²⁺ + 2e⁻ → Cu (reduction). Copper sticks to the zinc and the blue colour fades as Cu²⁺ ions are used up. Here the electrons jump directly, so the energy is lost as heat. In a Daniell cell the two half-reactions are kept in separate beakers, and the electrons are forced to travel through a wire. That moving charge is the electric current.",
+      "hi": "जस्ता हर कॉपर आयन को दो इलेक्ट्रॉन देता है: Zn → Zn²⁺ + 2e⁻ (ऑक्सीकरण) और Cu²⁺ + 2e⁻ → Cu (अपचयन)। ताँबा जस्ते पर चिपक जाता है और Cu²⁺ आयन घटने से नीला रंग फीका पड़ता है। यहाँ इलेक्ट्रॉन सीधे कूदते हैं, इसलिए ऊर्जा ऊष्मा बनकर खो जाती है। डेनियल सेल में दोनों अर्ध-अभिक्रियाएँ अलग बीकरों में रखी जाती हैं और इलेक्ट्रॉनों को तार से होकर जाना पड़ता है। यही गतिमान आवेश विद्युत धारा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In this reaction, which species is oxidised?",
+        "hi": "इस अभिक्रिया में कौन-सा पदार्थ ऑक्सीकृत होता है?"
+       },
+       "options": [
+        {
+         "en": "Zinc, which loses electrons",
+         "hi": "जस्ता, जो इलेक्ट्रॉन खोता है"
+        },
+        {
+         "en": "Copper ions, which gain electrons",
+         "hi": "कॉपर आयन, जो इलेक्ट्रॉन पाते हैं"
+        },
+        {
+         "en": "Sulphate ions",
+         "hi": "सल्फेट आयन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Oxidation is loss of electrons, and zinc loses two.",
+        "hi": "ऑक्सीकरण इलेक्ट्रॉन खोना है और जस्ता दो इलेक्ट्रॉन खोता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Copper ions gain electrons, so they are reduced, not oxidised.",
+         "hi": "कॉपर आयन इलेक्ट्रॉन पाते हैं, इसलिए वे अपचयित होते हैं, ऑक्सीकृत नहीं।"
+        },
+        {
+         "en": "Sulphate ions do not change; they are only spectator ions.",
+         "hi": "सल्फेट आयन नहीं बदलते; वे केवल दर्शक आयन हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the blue colour fade?",
+        "hi": "नीला रंग फीका क्यों पड़ता है?"
+       },
+       "options": [
+        {
+         "en": "Blue Cu²⁺ ions are turned into copper metal",
+         "hi": "नीले Cu²⁺ आयन ताँबा धातु में बदल जाते हैं"
+        },
+        {
+         "en": "Zinc dyes the water colourless",
+         "hi": "जस्ता पानी को रंगहीन कर देता है"
+        },
+        {
+         "en": "The water evaporates",
+         "hi": "पानी वाष्पित हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The colour came from Cu²⁺ ions; as they become copper, the colour goes. Zn²⁺ is colourless.",
+        "hi": "रंग Cu²⁺ आयनों का था; वे ताँबा बनते हैं तो रंग चला जाता है। Zn²⁺ रंगहीन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zinc does not dye anything; the change is a chemical reaction.",
+         "hi": "जस्ता कुछ रंगता नहीं; यह रासायनिक अभिक्रिया है।"
+        },
+        {
+         "en": "The level of the liquid stays the same; water has not evaporated.",
+         "hi": "द्रव का स्तर वही रहता है; पानी वाष्पित नहीं हुआ।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker. Put the copper wire into zinc sulphate. Nothing happens. What does that tell you about zinc and copper?",
+      "hi": "बीकर साफ़ करो। ताँबे का तार जिंक सल्फेट में डालो। कुछ नहीं होता। इससे जस्ते और ताँबे के बारे में क्या पता चलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch02-anode-cathode",
+   "topic": "2.2",
+   "template": "sort",
+   "title": {
+    "en": "Anode and cathode of a galvanic cell",
+    "hi": "गैल्वेनी सेल का ऐनोड और कैथोड"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "anode",
+      "label": {
+       "en": "Anode (negative)",
+       "hi": "ऐनोड (ऋणात्मक)"
+      }
+     },
+     {
+      "id": "cathode",
+      "label": {
+       "en": "Cathode (positive)",
+       "hi": "कैथोड (धनात्मक)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "zn",
+      "text": {
+       "en": "Zinc rod slowly dissolves",
+       "hi": "जस्ते की छड़ धीरे-धीरे घुलती है"
+      },
+      "bin": "anode",
+      "why": {
+       "en": "Zn → Zn²⁺ + 2e⁻ happens here: zinc is oxidised.",
+       "hi": "यहाँ Zn → Zn²⁺ + 2e⁻ होता है: जस्ता ऑक्सीकृत होता है।"
+      }
+     },
+     {
+      "id": "cu",
+      "text": {
+       "en": "Copper is deposited on the rod",
+       "hi": "छड़ पर ताँबा जमता है"
+      },
+      "bin": "cathode",
+      "why": {
+       "en": "Cu²⁺ + 2e⁻ → Cu: copper ions are reduced here.",
+       "hi": "Cu²⁺ + 2e⁻ → Cu: कॉपर आयन यहाँ अपचयित होते हैं।"
+      }
+     },
+     {
+      "id": "ox",
+      "text": {
+       "en": "Oxidation takes place here",
+       "hi": "यहाँ ऑक्सीकरण होता है"
+      },
+      "bin": "anode",
+      "why": {
+       "en": "Remember: oxidation at the anode.",
+       "hi": "याद रखो: ऑक्सीकरण ऐनोड पर।"
+      }
+     },
+     {
+      "id": "red",
+      "text": {
+       "en": "Reduction takes place here",
+       "hi": "यहाँ अपचयन होता है"
+      },
+      "bin": "cathode",
+      "why": {
+       "en": "Remember: reduction at the cathode.",
+       "hi": "याद रखो: अपचयन कैथोड पर।"
+      }
+     },
+     {
+      "id": "out",
+      "text": {
+       "en": "Electrons leave the cell from here",
+       "hi": "इलेक्ट्रॉन यहाँ से बाहर निकलते हैं"
+      },
+      "bin": "anode",
+      "why": {
+       "en": "Oxidation frees electrons, which go into the wire.",
+       "hi": "ऑक्सीकरण से इलेक्ट्रॉन मुक्त होकर तार में जाते हैं।"
+      }
+     },
+     {
+      "id": "in",
+      "text": {
+       "en": "Electrons arrive here from the wire",
+       "hi": "तार से इलेक्ट्रॉन यहाँ पहुँचते हैं"
+      },
+      "bin": "cathode",
+      "why": {
+       "en": "The reduction needs electrons, and they come through the wire.",
+       "hi": "अपचयन को इलेक्ट्रॉन चाहिए और वे तार से आते हैं।"
+      }
+     },
+     {
+      "id": "neg",
+      "text": {
+       "en": "Negative pole of the galvanic cell",
+       "hi": "गैल्वेनी सेल का ऋण ध्रुव"
+      },
+      "bin": "anode",
+      "why": {
+       "en": "It collects the electrons released, so it is the negative pole.",
+       "hi": "यह मुक्त हुए इलेक्ट्रॉन इकट्ठा करता है, इसलिए ऋण ध्रुव है।"
+      }
+     },
+     {
+      "id": "pos",
+      "text": {
+       "en": "Positive pole of the galvanic cell",
+       "hi": "गैल्वेनी सेल का धन ध्रुव"
+      },
+      "bin": "cathode",
+      "why": {
+       "en": "It takes electrons from the wire, so it is the positive pole.",
+       "hi": "यह तार से इलेक्ट्रॉन लेता है, इसलिए धन ध्रुव है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:zn",
+     "expect": "correct:zn",
+     "say": {
+      "en": "Tap the card “Zinc rod slowly dissolves”, then tap the group it belongs to.",
+      "hi": "कार्ड “जस्ते की छड़ धीरे-धीरे घुलती है” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the Daniell cell, zinc dissolves. Is the zinc rod the anode or the cathode?",
+      "hi": "डेनियल सेल में जस्ता घुलता है। जस्ते की छड़ ऐनोड है या कैथोड?"
+     },
+     "options": [
+      {
+       "id": "anode",
+       "en": "Anode",
+       "hi": "ऐनोड"
+      },
+      {
+       "id": "cathode",
+       "en": "Cathode",
+       "hi": "कैथोड"
+      }
+     ],
+     "answer": "anode"
+    },
+    {
+     "kind": "do",
+     "target": "card:cu",
+     "expect": "correct:cu",
+     "say": {
+      "en": "Now sort “Copper is deposited on the rod”.",
+      "hi": "अब “छड़ पर ताँबा जमता है” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:out",
+     "expect": "correct:out",
+     "say": {
+      "en": "Now sort “Electrons leave the cell from here”.",
+      "hi": "अब “इलेक्ट्रॉन यहाँ से बाहर निकलते हैं” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a galvanic cell the anode is where oxidation happens, so electrons are set free there and it is the negative pole. Electrons travel through the outside wire to the cathode, where reduction happens, so the cathode is the positive pole. The salt bridge lets ions move between the two beakers to keep both solutions neutral and complete the circuit.",
+      "hi": "गैल्वेनी सेल में ऐनोड पर ऑक्सीकरण होता है, इसलिए वहाँ इलेक्ट्रॉन मुक्त होते हैं और वह ऋण ध्रुव है। इलेक्ट्रॉन बाहरी तार से कैथोड तक जाते हैं, जहाँ अपचयन होता है, इसलिए कैथोड धन ध्रुव है। लवण सेतु दोनों बीकरों के बीच आयनों को चलने देता है, जिससे दोनों विलयन उदासीन रहते हैं और परिपथ पूरा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which direction do electrons flow in the outside wire of a Zn–Cu galvanic cell?",
+        "hi": "Zn–Cu गैल्वेनी सेल के बाहरी तार में इलेक्ट्रॉन किस दिशा में चलते हैं?"
+       },
+       "options": [
+        {
+         "en": "From zinc (anode) to copper (cathode)",
+         "hi": "जस्ते (ऐनोड) से ताँबे (कैथोड) की ओर"
+        },
+        {
+         "en": "From copper to zinc",
+         "hi": "ताँबे से जस्ते की ओर"
+        },
+        {
+         "en": "They do not flow in the wire",
+         "hi": "तार में नहीं चलते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Electrons are released at zinc and are taken in at copper.",
+        "hi": "इलेक्ट्रॉन जस्ते पर मुक्त होते हैं और ताँबे पर लिए जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the wrong way; copper has no spare electrons to give.",
+         "hi": "यह उलटी दिशा है; ताँबे के पास देने को अतिरिक्त इलेक्ट्रॉन नहीं हैं।"
+        },
+        {
+         "en": "The wire is the path electrons take; without it there is no current.",
+         "hi": "तार ही इलेक्ट्रॉनों का रास्ता है; उसके बिना धारा नहीं बनती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the job of the salt bridge?",
+        "hi": "लवण सेतु का क्या काम है?"
+       },
+       "options": [
+        {
+         "en": "To let ions move and keep both solutions neutral",
+         "hi": "आयनों को चलने देना और दोनों विलयनों को उदासीन रखना"
+        },
+        {
+         "en": "To carry electrons from zinc to copper",
+         "hi": "जस्ते से ताँबे तक इलेक्ट्रॉन ले जाना"
+        },
+        {
+         "en": "To make the zinc rod dissolve faster",
+         "hi": "जस्ते की छड़ को तेज़ी से घुलाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without it, charge would pile up in each beaker and the reaction would stop quickly.",
+        "hi": "इसके बिना हर बीकर में आवेश जमा होता और अभिक्रिया जल्दी रुक जाती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Electrons travel in the metal wire, not through the salt bridge.",
+         "hi": "इलेक्ट्रॉन धातु के तार में चलते हैं, लवण सेतु में नहीं।"
+        },
+        {
+         "en": "It does not speed up the dissolving; it only completes the circuit.",
+         "hi": "यह घुलने की गति नहीं बढ़ाता; केवल परिपथ पूरा करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the other cards. Then think: if you swap the two rods in the beakers, would the same cell still work?",
+      "hi": "बाकी कार्ड छाँटो। फिर सोचो: यदि दोनों छड़ें बीकरों में अदल-बदल दें तो क्या वही सेल काम करेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch02-electrochemical-series",
+   "topic": "2.2",
+   "template": "sequence",
+   "title": {
+    "en": "Metals in order of reducing power",
+    "hi": "अपचायक क्षमता के क्रम में धातुएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "li",
+      "text": {
+       "en": "Lithium: E° = −3.05 V",
+       "hi": "लिथियम: E° = −3.05 V"
+      }
+     },
+     {
+      "id": "mg",
+      "text": {
+       "en": "Magnesium: E° = −2.36 V",
+       "hi": "मैग्नीशियम: E° = −2.36 V"
+      }
+     },
+     {
+      "id": "zn",
+      "text": {
+       "en": "Zinc: E° = −0.76 V",
+       "hi": "जस्ता: E° = −0.76 V"
+      }
+     },
+     {
+      "id": "fe",
+      "text": {
+       "en": "Iron: E° = −0.44 V",
+       "hi": "लोहा: E° = −0.44 V"
+      }
+     },
+     {
+      "id": "cu",
+      "text": {
+       "en": "Copper: E° = +0.34 V",
+       "hi": "ताँबा: E° = +0.34 V"
+      }
+     },
+     {
+      "id": "ag",
+      "text": {
+       "en": "Silver: E° = +0.80 V",
+       "hi": "चाँदी: E° = +0.80 V"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:li",
+     "expect": "placed:li",
+     "say": {
+      "en": "Tap the step “Lithium: E° = −3.05 V” and put it in the slot where you think it belongs.",
+      "hi": "चरण “लिथियम: E° = −3.05 V” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Put the metals in order from the most negative E° to the most positive. Which metal gives up its electrons most easily?",
+      "hi": "धातुओं को सबसे ऋणात्मक E° से सबसे धनात्मक E° के क्रम में रखो। कौन-सी धातु अपने इलेक्ट्रॉन सबसे आसानी से देती है?"
+     },
+     "options": [
+      {
+       "id": "li",
+       "en": "Lithium",
+       "hi": "लिथियम"
+      },
+      {
+       "id": "cu",
+       "en": "Copper",
+       "hi": "ताँबा"
+      },
+      {
+       "id": "ag",
+       "en": "Silver",
+       "hi": "चाँदी"
+      }
+     ],
+     "answer": "li"
+    },
+    {
+     "kind": "do",
+     "target": "item:ag",
+     "expect": "placed:ag",
+     "say": {
+      "en": "Now place “Silver: E° = +0.80 V”.",
+      "hi": "अब “चाँदी: E° = +0.80 V” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The more negative the standard electrode potential, the more easily the metal gives up electrons, so the stronger it is as a reducing agent. This list, from Li to Ag, is the electrochemical series. A metal higher up in the list (more negative) pushes out one lower down from its salt solution, which is why zinc displaces copper but copper does not displace zinc. Metals above hydrogen (E° = 0.00 V) dissolve in dilute acids.",
+      "hi": "मानक इलेक्ट्रोड विभव जितना अधिक ऋणात्मक हो, धातु उतनी आसानी से इलेक्ट्रॉन देती है, यानी उतनी प्रबल अपचायक होती है। Li से Ag तक की यह सूची विद्युत रासायनिक श्रेणी है। सूची में ऊपर (अधिक ऋणात्मक) की धातु नीचे की धातु को उसके लवण विलयन से विस्थापित कर देती है, इसलिए जस्ता ताँबे को विस्थापित करता है पर ताँबा जस्ते को नहीं। हाइड्रोजन (E° = 0.00 V) से ऊपर की धातुएँ तनु अम्लों में घुलती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Will copper displace silver from silver nitrate solution?",
+        "hi": "क्या ताँबा सिल्वर नाइट्रेट विलयन से चाँदी को विस्थापित करेगा?"
+       },
+       "options": [
+        {
+         "en": "Yes, because copper has the lower E°",
+         "hi": "हाँ, क्योंकि ताँबे का E° कम है"
+        },
+        {
+         "en": "No, because copper is more noble",
+         "hi": "नहीं, क्योंकि ताँबा अधिक उत्कृष्ट है"
+        },
+        {
+         "en": "Only if the solution is heated",
+         "hi": "केवल तब जब विलयन गर्म किया जाए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cu (+0.34 V) is below Ag (+0.80 V) in E°, so Cu is the better reducing agent: Cu + 2Ag⁺ → Cu²⁺ + 2Ag.",
+        "hi": "Cu (+0.34 V) का E° Ag (+0.80 V) से कम है, इसलिए Cu बेहतर अपचायक है: Cu + 2Ag⁺ → Cu²⁺ + 2Ag।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Silver, not copper, is the more noble of the two.",
+         "hi": "दोनों में अधिक उत्कृष्ट चाँदी है, ताँबा नहीं।"
+        },
+        {
+         "en": "The order of E° decides this at room temperature; heating is not needed.",
+         "hi": "यह E° के क्रम से तय होता है; गर्म करने की ज़रूरत नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Will silver dissolve in dilute hydrochloric acid, giving hydrogen?",
+        "hi": "क्या चाँदी तनु हाइड्रोक्लोरिक अम्ल में घुलकर हाइड्रोजन देगी?"
+       },
+       "options": [
+        {
+         "en": "No, because its E° is above that of hydrogen",
+         "hi": "नहीं, क्योंकि इसका E° हाइड्रोजन से ऊपर है"
+        },
+        {
+         "en": "Yes, like zinc does",
+         "hi": "हाँ, जैसे जस्ता घुलता है"
+        },
+        {
+         "en": "Yes, but only very slowly",
+         "hi": "हाँ, पर बहुत धीरे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only metals with E° below 0.00 V can push hydrogen out of an acid.",
+        "hi": "केवल 0.00 V से कम E° वाली धातुएँ अम्ल से हाइड्रोजन बाहर निकाल सकती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zinc dissolves because its E° is −0.76 V; silver has +0.80 V.",
+         "hi": "जस्ता घुलता है क्योंकि उसका E° −0.76 V है; चाँदी का +0.80 V है।"
+        },
+        {
+         "en": "It does not dissolve slowly either; the reaction is not possible at all.",
+         "hi": "यह धीरे भी नहीं घुलती; अभिक्रिया संभव ही नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put the iron nail and copper sulphate into a mental beaker: will iron displace copper? Then check your answer with the earlier beaker lab.",
+      "hi": "मन में लोहे की कील और कॉपर सल्फेट रखो: क्या लोहा ताँबे को विस्थापित करेगा? फिर पिछली बीकर लैब से अपना उत्तर जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch02-cell-emf",
+   "topic": "2.2",
+   "template": "data",
+   "title": {
+    "en": "Voltage of different cells",
+    "hi": "अलग-अलग सेलों का वोल्टेज"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 2,
+    "ask": "max",
+    "title": {
+     "en": "Standard cell potential, E°cell = E°cathode − E°anode (volts)",
+     "hi": "मानक सेल विभव, E°सेल = E°कैथोड − E°ऐनोड (वोल्ट)"
+    },
+    "xlabel": {
+     "en": "Cell (anode–cathode)",
+     "hi": "सेल (ऐनोड–कैथोड)"
+    },
+    "ylabel": {
+     "en": "E°cell (V)",
+     "hi": "E°सेल (V)"
+    },
+    "data": [
+     {
+      "label": "Cu–Ag",
+      "value": 0.46
+     },
+     {
+      "label": "Fe–Cu",
+      "value": 0.78
+     },
+     {
+      "label": "Zn–Cu",
+      "value": 1.1
+     },
+     {
+      "label": "Zn–Ag",
+      "value": 1.56
+     },
+     {
+      "label": "Mg–Cu",
+      "value": 2.7
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show the Zn–Cu (Daniell) cell.",
+      "hi": "डेनियल सेल Zn–Cu दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The further apart two metals are in the electrochemical series, the bigger the voltage. Which cell will give the biggest voltage?",
+      "hi": "विद्युत रासायनिक श्रेणी में दो धातुएँ जितनी दूर हों, वोल्टेज उतना अधिक होता है। कौन-सा सेल सबसे अधिक वोल्टेज देगा?"
+     },
+     "options": [
+      {
+       "id": "mgcu",
+       "en": "Mg–Cu cell",
+       "hi": "Mg–Cu सेल"
+      },
+      {
+       "id": "cuag",
+       "en": "Cu–Ag cell",
+       "hi": "Cu–Ag सेल"
+      },
+      {
+       "id": "fecu",
+       "en": "Fe–Cu cell",
+       "hi": "Fe–Cu सेल"
+      }
+     ],
+     "answer": "mgcu"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the Zn–Ag cell.",
+      "hi": "Zn–Ag सेल जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the Mg–Cu cell.",
+      "hi": "Mg–Cu सेल जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "E°cell is E°cathode − E°anode. For the Daniell cell: 0.34 − (−0.76) = 1.10 V. For Mg–Cu: 0.34 − (−2.36) = 2.70 V, the largest here, because magnesium and copper are far apart. Always subtract: the anode is the one with the lower (more negative) E°. A positive E°cell means the reaction can run on its own.",
+      "hi": "E°सेल = E°कैथोड − E°ऐनोड। डेनियल सेल के लिए: 0.34 − (−0.76) = 1.10 V। Mg–Cu के लिए: 0.34 − (−2.36) = 2.70 V, जो यहाँ सबसे अधिक है क्योंकि मैग्नीशियम और ताँबा दूर-दूर हैं। हमेशा घटाओ: ऐनोड वह है जिसका E° कम (अधिक ऋणात्मक) हो। धनात्मक E°सेल का अर्थ है कि अभिक्रिया अपने आप चल सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Cathode is copper (+0.34 V) and anode is zinc (−0.76 V). What is E°cell?",
+        "hi": "कैथोड ताँबा (+0.34 V) और ऐनोड जस्ता (−0.76 V) है। E°सेल क्या है?"
+       },
+       "options": [
+        "1.10 V",
+        "−0.42 V",
+        "0.76 V"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "0.34 − (−0.76) = 0.34 + 0.76 = 1.10 V.",
+        "hi": "0.34 − (−0.76) = 0.34 + 0.76 = 1.10 V।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "−0.42 V comes from adding the two numbers instead of subtracting.",
+         "hi": "−0.42 V दोनों संख्याओं को घटाने के बजाय जोड़ने से आता है।"
+        },
+        {
+         "en": "0.76 V uses only the anode value and forgets the copper.",
+         "hi": "0.76 V में केवल ऐनोड का मान लिया गया और ताँबे को भूल गए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If a cell reaction has a negative E°cell, what does that mean?",
+        "hi": "यदि किसी सेल अभिक्रिया का E°सेल ऋणात्मक हो तो इसका क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "It will not run on its own as written",
+         "hi": "वह लिखे अनुसार अपने आप नहीं चलेगी"
+        },
+        {
+         "en": "It will give a very strong current",
+         "hi": "वह बहुत प्रबल धारा देगी"
+        },
+        {
+         "en": "The cell is a perfect battery",
+         "hi": "यह सेल एक आदर्श बैटरी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A negative E°cell means ΔG° is positive; the reverse reaction is the natural one.",
+        "hi": "ऋणात्मक E°सेल का अर्थ ΔG° धनात्मक है; उलटी अभिक्रिया ही स्वाभाविक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A negative voltage cannot drive a strong current in that direction.",
+         "hi": "ऋणात्मक वोल्टेज उस दिशा में प्रबल धारा नहीं चला सकता।"
+        },
+        {
+         "en": "A useful battery has a positive E°cell.",
+         "hi": "उपयोगी बैटरी का E°सेल धनात्मक होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the Zn–Cu bar. Which two metals would give about 0.5 V? Use the series from the previous lab.",
+      "hi": "Zn–Cu का बार खींचो। कौन-सी दो धातुएँ लगभग 0.5 V देंगी? पिछली लैब की श्रेणी का उपयोग करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch02-nernst-daniell",
+   "topic": "2.3",
+   "template": "data",
+   "title": {
+    "en": "A cell loses voltage as it works",
+    "hi": "काम करते-करते सेल का वोल्टेज घटता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "show": 2,
+    "title": {
+     "en": "Daniell cell voltage at 298 K as products build up",
+     "hi": "298 K पर उत्पाद बनने के साथ डेनियल सेल का वोल्टेज"
+    },
+    "xlabel": {
+     "en": "log Q, where Q = [Zn²⁺] ÷ [Cu²⁺]",
+     "hi": "log Q, जहाँ Q = [Zn²⁺] ÷ [Cu²⁺]"
+    },
+    "ylabel": {
+     "en": "Cell voltage E (V)",
+     "hi": "सेल वोल्टेज E (V)"
+    },
+    "data": {
+     "rows": [
+      [
+       -2,
+       1.16
+      ],
+      [
+       -1,
+       1.13
+      ],
+      [
+       0,
+       1.1
+      ],
+      [
+       1,
+       1.07
+      ],
+      [
+       2,
+       1.04
+      ],
+      [
+       3,
+       1.01
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the point where Q = 1, so log Q = 0.",
+      "hi": "वह बिंदु जोड़ो जहाँ Q = 1 है, यानी log Q = 0।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As the cell works, Zn²⁺ builds up and Cu²⁺ is used up, so Q grows. What will happen to the voltage?",
+      "hi": "सेल चलने पर Zn²⁺ बढ़ता है और Cu²⁺ घटता है, इसलिए Q बढ़ता है। वोल्टेज का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "fall",
+       "en": "It will slowly fall",
+       "hi": "धीरे-धीरे घटेगा"
+      },
+      {
+       "id": "rise",
+       "en": "It will rise",
+       "hi": "बढ़ेगा"
+      },
+      {
+       "id": "same",
+       "en": "It stays at 1.10 V",
+       "hi": "1.10 V पर ही रहेगा"
+      }
+     ],
+     "answer": "fall"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add log Q = 1.",
+      "hi": "log Q = 1 जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add log Q = 2.",
+      "hi": "log Q = 2 जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add log Q = 3.",
+      "hi": "log Q = 3 जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Nernst equation at 298 K is E = E° − (0.0591 ÷ n) log Q. When Q = 1 the voltage is E°, 1.10 V. As the products build up, Q grows, log Q grows, and E falls. When E reaches zero, the cell is at equilibrium (Q = K) and gives no current: the battery is dead. The same link gives ΔG = −nFE.",
+      "hi": "298 K पर नेर्न्स्ट समीकरण है E = E° − (0.0591 ÷ n) log Q। जब Q = 1 हो तो वोल्टेज E° यानी 1.10 V होता है। उत्पाद बनने पर Q बढ़ता है, log Q बढ़ता है और E घटता है। जब E शून्य हो जाए तो सेल साम्य (Q = K) पर होता है और धारा नहीं देता: बैटरी खत्म हो गई। इसी संबंध से ΔG = −nFE मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the cell voltage when Q = 1?",
+        "hi": "Q = 1 होने पर सेल का वोल्टेज क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "Equal to E°, 1.10 V",
+         "hi": "E° के बराबर, 1.10 V"
+        },
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        },
+        {
+         "en": "Always 0.0591 V",
+         "hi": "हमेशा 0.0591 V"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "log 1 = 0, so the correction term vanishes and E = E°.",
+        "hi": "log 1 = 0, इसलिए सुधार पद गायब हो जाता है और E = E°।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zero voltage happens only at equilibrium, when Q = K.",
+         "hi": "शून्य वोल्टेज केवल साम्य पर होता है, जब Q = K।"
+        },
+        {
+         "en": "0.0591 is only a constant in the equation, not a voltage.",
+         "hi": "0.0591 समीकरण का केवल एक स्थिरांक है, वोल्टेज नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the voltage of a completely discharged (dead) battery at equilibrium?",
+        "hi": "साम्य पर पूरी तरह खत्म (डिस्चार्ज) बैटरी का वोल्टेज क्या है?"
+       },
+       "options": [
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        },
+        {
+         "en": "Equal to E°",
+         "hi": "E° के बराबर"
+        },
+        {
+         "en": "Negative and very large",
+         "hi": "ऋणात्मक और बहुत बड़ा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At equilibrium there is no tendency for the reaction to go on, so E = 0 and ΔG = 0.",
+        "hi": "साम्य पर अभिक्रिया के आगे बढ़ने की कोई प्रवृत्ति नहीं रहती, इसलिए E = 0 और ΔG = 0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "E° is the voltage only when all concentrations are 1 M.",
+         "hi": "E° वोल्टेज तभी होता है जब सभी सांद्रताएँ 1 M हों।"
+        },
+        {
+         "en": "A dead cell just stops; it does not become a large reverse voltage.",
+         "hi": "खत्म सेल बस रुक जाता है; वह बड़ा उलटा वोल्टेज नहीं बन जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the log Q = 3 point down to 0.9 V. What would that say about the concentrations of Zn²⁺ and Cu²⁺?",
+      "hi": "log Q = 3 वाले बिंदु को 0.9 V तक नीचे खींचो। Zn²⁺ और Cu²⁺ की सांद्रताओं के बारे में यह क्या कहेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch02-ion-conductivity",
+   "topic": "2.4",
+   "template": "data",
+   "title": {
+    "en": "Which ions carry current best?",
+    "hi": "कौन-से आयन धारा सबसे अच्छी ले जाते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 3,
+    "ask": "max",
+    "title": {
+     "en": "Limiting molar conductivity of ions in water at 298 K",
+     "hi": "298 K पर पानी में आयनों की सीमांत मोलर चालकता"
+    },
+    "xlabel": {
+     "en": "Ion",
+     "hi": "आयन"
+    },
+    "ylabel": {
+     "en": "λ° (S cm² mol⁻¹)",
+     "hi": "λ° (S cm² mol⁻¹)"
+    },
+    "data": [
+     {
+      "label": "CH₃COO⁻",
+      "value": 40.9
+     },
+     {
+      "label": "Na⁺",
+      "value": 50.1
+     },
+     {
+      "label": "K⁺",
+      "value": 73.5
+     },
+     {
+      "label": "Cl⁻",
+      "value": 76.3
+     },
+     {
+      "label": "SO₄²⁻",
+      "value": 160
+     },
+     {
+      "label": "OH⁻",
+      "value": 199.1
+     },
+     {
+      "label": "H⁺",
+      "value": 349.6
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show K⁺.",
+      "hi": "K⁺ दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add Cl⁻.",
+      "hi": "Cl⁻ जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Among these ions, which do you expect to conduct best in water?",
+      "hi": "इन आयनों में पानी में कौन सबसे अच्छा चालक होगा?"
+     },
+     "options": [
+      {
+       "id": "h",
+       "en": "H⁺ ion",
+       "hi": "H⁺ आयन"
+      },
+      {
+       "id": "na",
+       "en": "Na⁺ ion",
+       "hi": "Na⁺ आयन"
+      },
+      {
+       "id": "ch3coo",
+       "en": "CH₃COO⁻ ion",
+       "hi": "CH₃COO⁻ आयन"
+      }
+     ],
+     "answer": "h"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add SO₄²⁻.",
+      "hi": "SO₄²⁻ जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add OH⁻ and H⁺.",
+      "hi": "OH⁻ और H⁺ जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "H⁺ and OH⁻ ions conduct far better than the others, because they pass their charge along the chain of water molecules instead of travelling the whole way. Kohlrausch's law says that the limiting molar conductivity of an electrolyte is the sum of the values for its ions. So for ethanoic acid: 349.6 + 40.9 = 390.5 S cm² mol⁻¹. This is how we find the value for weak electrolytes, which cannot be measured directly.",
+      "hi": "H⁺ और OH⁻ आयन बाकियों से कहीं अच्छे चालक हैं, क्योंकि वे पानी के अणुओं की श्रृंखला में अपना आवेश आगे बढ़ा देते हैं, पूरा रास्ता खुद नहीं तय करते। कोलराउश का नियम कहता है कि किसी विद्युत अपघट्य की सीमांत मोलर चालकता उसके आयनों के मानों का योग होती है। इसलिए एथेनॉइक अम्ल के लिए: 349.6 + 40.9 = 390.5 S cm² mol⁻¹। इसी तरह दुर्बल विद्युत अपघट्यों का मान निकालते हैं, जिसे सीधे नापा नहीं जा सकता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Using the bars, what is λ° for sodium chloride, NaCl (Na⁺ + Cl⁻)?",
+        "hi": "बार देखकर बताओ, सोडियम क्लोराइड NaCl (Na⁺ + Cl⁻) के लिए λ° क्या है?"
+       },
+       "options": [
+        "126.4 S cm² mol⁻¹",
+        "26.2 S cm² mol⁻¹",
+        "76.3 S cm² mol⁻¹"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Add the two ion values: 50.1 + 76.3 = 126.4.",
+        "hi": "दोनों आयनों के मान जोड़ो: 50.1 + 76.3 = 126.4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "26.2 comes from subtracting; Kohlrausch's law adds the values.",
+         "hi": "26.2 घटाने से आता है; कोलराउश का नियम मान जोड़ता है।"
+        },
+        {
+         "en": "76.3 is the chloride ion alone; sodium must be added too.",
+         "hi": "76.3 केवल क्लोराइड आयन का है; सोडियम भी जोड़ना होगा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which ion has the highest limiting molar conductivity?",
+        "hi": "किस आयन की सीमांत मोलर चालकता सबसे अधिक है?"
+       },
+       "options": [
+        "H⁺",
+        "SO₄²⁻",
+        "K⁺"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "H⁺ at 349.6 S cm² mol⁻¹ is the highest, far above the rest.",
+        "hi": "349.6 S cm² mol⁻¹ के साथ H⁺ सबसे अधिक है, बाकी से कहीं ऊपर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "SO₄²⁻ is high (160) but H⁺ is more than twice as high.",
+         "hi": "SO₄²⁻ ऊँचा (160) है पर H⁺ उससे दोगुने से भी अधिक है।"
+        },
+        {
+         "en": "K⁺ is only 73.5, much lower than H⁺.",
+         "hi": "K⁺ केवल 73.5 है, H⁺ से बहुत कम।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the H⁺ bar down to 100. Would acids still conduct better than salts of the same concentration?",
+      "hi": "H⁺ का बार 100 तक नीचे खींचो। क्या तब भी समान सांद्रता पर अम्ल लवणों से अच्छे चालक रहेंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch02-electrolysis-products",
+   "topic": "2.5",
+   "template": "sort",
+   "title": {
+    "en": "Products of electrolysis",
+    "hi": "विद्युत-अपघटन के उत्पाद"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cathode",
+      "label": {
+       "en": "Cathode (negative): reduction",
+       "hi": "कैथोड (ऋण): अपचयन"
+      }
+     },
+     {
+      "id": "anode",
+      "label": {
+       "en": "Anode (positive): oxidation",
+       "hi": "ऐनोड (धन): ऑक्सीकरण"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "na",
+      "text": {
+       "en": "Sodium metal, from molten NaCl",
+       "hi": "सोडियम धातु, गलित NaCl से"
+      },
+      "bin": "cathode",
+      "why": {
+       "en": "Na⁺ gains one electron: Na⁺ + e⁻ → Na.",
+       "hi": "Na⁺ एक इलेक्ट्रॉन पाता है: Na⁺ + e⁻ → Na।"
+      }
+     },
+     {
+      "id": "cl2m",
+      "text": {
+       "en": "Chlorine gas, from molten NaCl",
+       "hi": "क्लोरीन गैस, गलित NaCl से"
+      },
+      "bin": "anode",
+      "why": {
+       "en": "Cl⁻ loses an electron: 2Cl⁻ → Cl₂ + 2e⁻.",
+       "hi": "Cl⁻ एक इलेक्ट्रॉन खोता है: 2Cl⁻ → Cl₂ + 2e⁻।"
+      }
+     },
+     {
+      "id": "h2a",
+      "text": {
+       "en": "Hydrogen gas, from aqueous NaCl",
+       "hi": "हाइड्रोजन गैस, NaCl के जलीय विलयन से"
+      },
+      "bin": "cathode",
+      "why": {
+       "en": "Water is reduced more easily than Na⁺, so H₂ forms.",
+       "hi": "पानी का अपचयन Na⁺ से आसान है, इसलिए H₂ बनती है।"
+      }
+     },
+     {
+      "id": "cl2a",
+      "text": {
+       "en": "Chlorine gas, from aqueous NaCl",
+       "hi": "क्लोरीन गैस, NaCl के जलीय विलयन से"
+      },
+      "bin": "anode",
+      "why": {
+       "en": "Cl⁻ is oxidised in preference to water at the anode.",
+       "hi": "ऐनोड पर Cl⁻ का ऑक्सीकरण पानी से पहले होता है।"
+      }
+     },
+     {
+      "id": "cu",
+      "text": {
+       "en": "Copper metal, from aqueous CuSO₄ (inert electrodes)",
+       "hi": "ताँबा धातु, CuSO₄ जलीय विलयन से (अक्रिय इलेक्ट्रोड)"
+      },
+      "bin": "cathode",
+      "why": {
+       "en": "Cu²⁺ is reduced more easily than water: Cu²⁺ + 2e⁻ → Cu.",
+       "hi": "Cu²⁺ का अपचयन पानी से आसान है: Cu²⁺ + 2e⁻ → Cu।"
+      }
+     },
+     {
+      "id": "o2c",
+      "text": {
+       "en": "Oxygen gas, from aqueous CuSO₄ (inert electrodes)",
+       "hi": "ऑक्सीजन गैस, CuSO₄ जलीय विलयन से (अक्रिय इलेक्ट्रोड)"
+      },
+      "bin": "anode",
+      "why": {
+       "en": "Water is oxidised, since sulphate does not oxidise: 2H₂O → O₂ + 4H⁺ + 4e⁻.",
+       "hi": "पानी का ऑक्सीकरण होता है क्योंकि सल्फेट का नहीं होता: 2H₂O → O₂ + 4H⁺ + 4e⁻।"
+      }
+     },
+     {
+      "id": "h2w",
+      "text": {
+       "en": "Hydrogen gas, from acidified water",
+       "hi": "हाइड्रोजन गैस, अम्लीय पानी से"
+      },
+      "bin": "cathode",
+      "why": {
+       "en": "H⁺ gains electrons: 2H⁺ + 2e⁻ → H₂. Twice as much gas as at the other electrode.",
+       "hi": "2H⁺ + 2e⁻ → H₂। दूसरे इलेक्ट्रोड की तुलना में दोगुनी गैस।"
+      }
+     },
+     {
+      "id": "o2w",
+      "text": {
+       "en": "Oxygen gas, from acidified water",
+       "hi": "ऑक्सीजन गैस, अम्लीय पानी से"
+      },
+      "bin": "anode",
+      "why": {
+       "en": "Water loses electrons: 2H₂O → O₂ + 4H⁺ + 4e⁻.",
+       "hi": "पानी इलेक्ट्रॉन खोता है: 2H₂O → O₂ + 4H⁺ + 4e⁻।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:na",
+     "expect": "correct:na",
+     "say": {
+      "en": "Tap the card “Sodium metal, from molten NaCl”, then tap the group it belongs to.",
+      "hi": "कार्ड “सोडियम धातु, गलित NaCl से” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In electrolysis, the positive ions are pulled towards the negative electrode. Is that electrode the anode or the cathode?",
+      "hi": "विद्युत-अपघटन में धन आयन ऋण इलेक्ट्रोड की ओर खिंचते हैं। वह इलेक्ट्रोड ऐनोड है या कैथोड?"
+     },
+     "options": [
+      {
+       "id": "cathode",
+       "en": "Cathode",
+       "hi": "कैथोड"
+      },
+      {
+       "id": "anode",
+       "en": "Anode",
+       "hi": "ऐनोड"
+      }
+     ],
+     "answer": "cathode"
+    },
+    {
+     "kind": "do",
+     "target": "card:cl2m",
+     "expect": "correct:cl2m",
+     "say": {
+      "en": "Now sort “Chlorine gas, from molten NaCl”.",
+      "hi": "अब “क्लोरीन गैस, गलित NaCl से” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:h2a",
+     "expect": "correct:h2a",
+     "say": {
+      "en": "Now sort “Hydrogen gas, from aqueous NaCl”.",
+      "hi": "अब “हाइड्रोजन गैस, NaCl के जलीय विलयन से” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In an electrolytic cell the battery forces the reaction. The cathode is negative and attracts cations, which are reduced. The anode is positive and attracts anions, which are oxidised. When water is present, the product depends on which species is easier to reduce or oxidise: that is why aqueous NaCl gives H₂ and Cl₂ (and NaOH), but molten NaCl gives Na and Cl₂.",
+      "hi": "विद्युत-अपघटनी सेल में बैटरी अभिक्रिया को ज़बरदस्ती चलाती है। कैथोड ऋणात्मक होता है और धनायनों को खींचता है, जिनका अपचयन होता है। ऐनोड धनात्मक होता है और ऋणायनों को खींचता है, जिनका ऑक्सीकरण होता है। जब पानी हो तो उत्पाद इस पर निर्भर है कि कौन-सी स्पीशीज़ आसानी से अपचयित या ऑक्सीकृत होती है: इसीलिए NaCl का जलीय विलयन H₂ और Cl₂ (और NaOH) देता है, पर गलित NaCl से Na और Cl₂ मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does aqueous NaCl give hydrogen at the cathode and not sodium?",
+        "hi": "NaCl का जलीय विलयन कैथोड पर सोडियम की जगह हाइड्रोजन क्यों देता है?"
+       },
+       "options": [
+        {
+         "en": "Water is easier to reduce than Na⁺",
+         "hi": "पानी का अपचयन Na⁺ से आसान है"
+        },
+        {
+         "en": "Sodium is a gas",
+         "hi": "सोडियम एक गैस है"
+        },
+        {
+         "en": "Hydrogen is heavier than sodium",
+         "hi": "हाइड्रोजन सोडियम से भारी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Na⁺ has a very negative reduction potential (−2.71 V), so water (about −0.83 V) is reduced first.",
+        "hi": "Na⁺ का अपचयन विभव बहुत ऋणात्मक (−2.71 V) है, इसलिए पानी (लगभग −0.83 V) पहले अपचयित होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sodium is a solid metal, and it is hydrogen that is a gas.",
+         "hi": "सोडियम ठोस धातु है; गैस तो हाइड्रोजन है।"
+        },
+        {
+         "en": "Hydrogen is the lightest element, not heavier than sodium.",
+         "hi": "हाइड्रोजन सबसे हल्का तत्व है, सोडियम से भारी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In electrolysis of acidified water, how do the volumes of hydrogen and oxygen compare?",
+        "hi": "अम्लीय पानी के विद्युत-अपघटन में हाइड्रोजन और ऑक्सीजन का आयतन कैसा रहता है?"
+       },
+       "options": [
+        {
+         "en": "Hydrogen is twice the oxygen",
+         "hi": "हाइड्रोजन ऑक्सीजन का दोगुना है"
+        },
+        {
+         "en": "Equal volumes",
+         "hi": "बराबर आयतन"
+        },
+        {
+         "en": "Oxygen is twice the hydrogen",
+         "hi": "ऑक्सीजन हाइड्रोजन की दोगुनी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2H₂O → 2H₂ + O₂, and equal moles of gas have equal volumes, so the ratio is 2 : 1.",
+        "hi": "2H₂O → 2H₂ + O₂ और समान मोल की गैसों के आयतन समान होते हैं, इसलिए अनुपात 2 : 1 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water has twice as many H atoms as O atoms, so equal volumes is wrong.",
+         "hi": "पानी में H परमाणु O के दोगुने हैं, इसलिए बराबर आयतन सही नहीं।"
+        },
+        {
+         "en": "It is hydrogen, not oxygen, that comes out twice as much.",
+         "hi": "दोगुनी मात्रा में हाइड्रोजन निकलती है, ऑक्सीजन नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Which would you collect to make \"caustic soda\" in industry, and why does the cathode area turn alkaline?",
+      "hi": "बाकी छाँटो। उद्योग में \"कॉस्टिक सोडा\" बनाने के लिए तुम क्या एकत्र करोगे, और कैथोड वाला भाग क्षारीय क्यों हो जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch02-battery-types",
+   "topic": "2.6",
+   "template": "sort",
+   "title": {
+    "en": "Primary, secondary and fuel cells",
+    "hi": "प्राथमिक, द्वितीयक और ईंधन सेल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "primary",
+      "label": {
+       "en": "Primary cell",
+       "hi": "प्राथमिक सेल"
+      }
+     },
+     {
+      "id": "secondary",
+      "label": {
+       "en": "Secondary cell",
+       "hi": "द्वितीयक सेल"
+      }
+     },
+     {
+      "id": "fuel",
+      "label": {
+       "en": "Fuel cell",
+       "hi": "ईंधन सेल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "dry",
+      "text": {
+       "en": "Dry cell in a TV remote",
+       "hi": "टीवी रिमोट का शुष्क सेल"
+      },
+      "bin": "primary",
+      "why": {
+       "en": "Once its reactants are used up, it is thrown away; it cannot be recharged.",
+       "hi": "अभिकारक खत्म होने पर इसे फेंक देते हैं; इसे फिर से चार्ज नहीं कर सकते।"
+      }
+     },
+     {
+      "id": "mercury",
+      "text": {
+       "en": "Mercury cell in a watch or hearing aid",
+       "hi": "घड़ी या श्रवण यंत्र का मरकरी सेल"
+      },
+      "bin": "primary",
+      "why": {
+       "en": "A small button cell that gives steady voltage but is not rechargeable.",
+       "hi": "छोटा बटन सेल, जो स्थिर वोल्टेज देता है पर रिचार्ज नहीं होता।"
+      }
+     },
+     {
+      "id": "lead",
+      "text": {
+       "en": "Lead storage battery of an inverter",
+       "hi": "इन्वर्टर की लेड संचायक बैटरी"
+      },
+      "bin": "secondary",
+      "why": {
+       "en": "Current from outside reverses the reaction and recharges it.",
+       "hi": "बाहर से धारा देने पर अभिक्रिया उलट जाती है और यह फिर चार्ज हो जाती है।"
+      }
+     },
+     {
+      "id": "nicad",
+      "text": {
+       "en": "Nickel–cadmium rechargeable cell",
+       "hi": "निकेल–कैडमियम रिचार्जेबल सेल"
+      },
+      "bin": "secondary",
+      "why": {
+       "en": "It can be charged and used again many times.",
+       "hi": "इसे कई बार चार्ज करके दोबारा इस्तेमाल कर सकते हैं।"
+      }
+     },
+     {
+      "id": "liion",
+      "text": {
+       "en": "Lithium-ion battery of a mobile phone",
+       "hi": "मोबाइल फ़ोन की लिथियम-आयन बैटरी"
+      },
+      "bin": "secondary",
+      "why": {
+       "en": "You plug it in each night to reverse the discharge reaction.",
+       "hi": "हर रात प्लग लगाकर आप डिस्चार्ज अभिक्रिया को उलट देते हैं।"
+      }
+     },
+     {
+      "id": "h2o2",
+      "text": {
+       "en": "Hydrogen–oxygen cell that gives water as its product",
+       "hi": "हाइड्रोजन–ऑक्सीजन सेल जिसका उत्पाद पानी है"
+      },
+      "bin": "fuel",
+      "why": {
+       "en": "A fuel cell: H₂ and O₂ combine to give electricity and pure water.",
+       "hi": "ईंधन सेल: H₂ और O₂ मिलकर बिजली और शुद्ध पानी देते हैं।"
+      }
+     },
+     {
+      "id": "feed",
+      "text": {
+       "en": "Cell fed with fuel and oxygen from outside all the time",
+       "hi": "ईंधन और ऑक्सीजन लगातार बाहर से पाने वाला सेल"
+      },
+      "bin": "fuel",
+      "why": {
+       "en": "Reactants are supplied continuously, so it never runs flat while the supply lasts.",
+       "hi": "अभिकारक लगातार मिलते रहते हैं, इसलिए आपूर्ति रहने तक यह कभी खत्म नहीं होता।"
+      }
+     },
+     {
+      "id": "rev",
+      "text": {
+       "en": "Reverse reaction restores the reactants when charged",
+       "hi": "चार्ज करने पर उलटी अभिक्रिया अभिकारकों को लौटा देती है"
+      },
+      "bin": "secondary",
+      "why": {
+       "en": "That is the meaning of a rechargeable cell.",
+       "hi": "रिचार्जेबल सेल का यही अर्थ है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:dry",
+     "expect": "correct:dry",
+     "say": {
+      "en": "Tap the card “Dry cell in a TV remote”, then tap the group it belongs to.",
+      "hi": "कार्ड “टीवी रिमोट का शुष्क सेल” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which cell can you charge again and again after it runs down?",
+      "hi": "कौन-सा सेल खत्म होने के बाद बार-बार चार्ज किया जा सकता है?"
+     },
+     "options": [
+      {
+       "id": "primary",
+       "en": "Primary cell",
+       "hi": "प्राथमिक सेल"
+      },
+      {
+       "id": "secondary",
+       "en": "Secondary cell",
+       "hi": "द्वितीयक सेल"
+      },
+      {
+       "id": "fuel",
+       "en": "Fuel cell",
+       "hi": "ईंधन सेल"
+      }
+     ],
+     "answer": "secondary"
+    },
+    {
+     "kind": "do",
+     "target": "card:lead",
+     "expect": "correct:lead",
+     "say": {
+      "en": "Now sort “Lead storage battery of an inverter”.",
+      "hi": "अब “इन्वर्टर की लेड संचायक बैटरी” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:h2o2",
+     "expect": "correct:h2o2",
+     "say": {
+      "en": "Now sort “Hydrogen–oxygen cell that gives water as its product”.",
+      "hi": "अब “हाइड्रोजन–ऑक्सीजन सेल जिसका उत्पाद पानी है” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A primary cell is used once: its reaction cannot be reversed. A secondary cell stores charge: current from outside reverses the reaction, so it can be recharged, as in an inverter or a phone. A fuel cell turns the chemical energy of a fuel straight into electricity, with fuel and oxygen supplied from outside. A hydrogen–oxygen fuel cell leaves only water behind and is more efficient than burning the fuel.",
+      "hi": "प्राथमिक सेल एक ही बार चलता है: उसकी अभिक्रिया उलटी नहीं हो सकती। द्वितीयक सेल आवेश संचित करता है: बाहर से धारा देने पर अभिक्रिया उलट जाती है, इसलिए उसे फिर चार्ज कर सकते हैं, जैसे इन्वर्टर या फ़ोन में। ईंधन सेल ईंधन की रासायनिक ऊर्जा को सीधे बिजली में बदलता है, जिसमें ईंधन और ऑक्सीजन बाहर से मिलते हैं। हाइड्रोजन–ऑक्सीजन ईंधन सेल में केवल पानी बचता है और वह ईंधन जलाने से अधिक दक्ष है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can an inverter battery be used again and again?",
+        "hi": "इन्वर्टर की बैटरी बार-बार क्यों इस्तेमाल हो सकती है?"
+       },
+       "options": [
+        {
+         "en": "Passing current from outside reverses its cell reaction",
+         "hi": "बाहर से धारा देने पर उसकी सेल अभिक्रिया उलट जाती है"
+        },
+        {
+         "en": "It makes its own fuel from air",
+         "hi": "वह हवा से अपना ईंधन बना लेती है"
+        },
+        {
+         "en": "Its reactants never get used up",
+         "hi": "उसके अभिकारक कभी खत्म नहीं होते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The products turn back into reactants when charged, so the battery is restored.",
+        "hi": "चार्ज करने पर उत्पाद फिर अभिकारक बन जाते हैं, इसलिए बैटरी बहाल हो जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A battery stores chemicals; it does not make fuel from air.",
+         "hi": "बैटरी रसायन संचित रखती है; वह हवा से ईंधन नहीं बनाती।"
+        },
+        {
+         "en": "Its reactants do get used up when it discharges; charging restores them.",
+         "hi": "डिस्चार्ज होने पर अभिकारक खत्म होते हैं; चार्ज करने से वे लौट आते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is a main advantage of a hydrogen–oxygen fuel cell?",
+        "hi": "हाइड्रोजन–ऑक्सीजन ईंधन सेल का एक मुख्य लाभ क्या है?"
+       },
+       "options": [
+        {
+         "en": "It is efficient and its only product is water",
+         "hi": "यह दक्ष है और इसका एकमात्र उत्पाद पानी है"
+        },
+        {
+         "en": "It gives out poisonous gases",
+         "hi": "यह ज़हरीली गैसें छोड़ता है"
+        },
+        {
+         "en": "It can be recharged from a plug",
+         "hi": "इसे प्लग से रिचार्ज कर सकते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It converts fuel energy directly to electricity and gives no pollution at the point of use.",
+        "hi": "यह ईंधन की ऊर्जा को सीधे बिजली में बदलता है और उपयोग के स्थान पर प्रदूषण नहीं करता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It gives out water, not poisonous gases.",
+         "hi": "यह पानी छोड़ता है, ज़हरीली गैसें नहीं।"
+        },
+        {
+         "en": "A fuel cell is not recharged; it is refuelled with hydrogen and oxygen.",
+         "hi": "ईंधन सेल रिचार्ज नहीं होता; उसमें हाइड्रोजन और ऑक्सीजन भरी जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Why are button cells in watches thrown into special recycling boxes instead of the dustbin?",
+      "hi": "बाकी छाँटो। घड़ी के बटन सेल कूड़ेदान की जगह विशेष रीसाइक्लिंग बक्सों में क्यों डाले जाते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch02-rusting-steps",
+   "topic": "2.8",
+   "template": "sequence",
+   "title": {
+    "en": "How iron rusts: a tiny cell",
+    "hi": "लोहे में जंग: एक छोटा सेल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "drop",
+      "text": {
+       "en": "A drop of water with dissolved gases sits on the iron",
+       "hi": "लोहे पर घुली गैसों वाली पानी की एक बूँद टिकी है"
+      }
+     },
+     {
+      "id": "anode",
+      "text": {
+       "en": "At one spot iron gives up electrons: Fe → Fe²⁺ + 2e⁻",
+       "hi": "एक जगह लोहा इलेक्ट्रॉन देता है: Fe → Fe²⁺ + 2e⁻"
+      }
+     },
+     {
+      "id": "flow",
+      "text": {
+       "en": "The electrons flow through the metal to another spot",
+       "hi": "इलेक्ट्रॉन धातु से होकर दूसरी जगह पहुँचते हैं"
+      }
+     },
+     {
+      "id": "cathode",
+      "text": {
+       "en": "There, oxygen takes the electrons and is reduced to water",
+       "hi": "वहाँ ऑक्सीजन इलेक्ट्रॉन लेकर पानी में अपचयित होती है"
+      }
+     },
+     {
+      "id": "rust",
+      "text": {
+       "en": "Fe²⁺ is oxidised further and brown rust forms",
+       "hi": "Fe²⁺ का और ऑक्सीकरण होता है और भूरा जंग बनता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:drop",
+     "expect": "placed:drop",
+     "say": {
+      "en": "Tap the step “A drop of water with dissolved gases sits on the iron” and put it in the slot where you think it belongs.",
+      "hi": "चरण “लोहे पर घुली गैसों वाली पानी की एक बूँद टिकी है” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rusting needs both water and oxygen. Will an iron nail kept in dry air with no moisture rust quickly?",
+      "hi": "जंग लगने के लिए पानी और ऑक्सीजन दोनों चाहिए। क्या सूखी हवा में, नमी के बिना, रखी लोहे की कील जल्दी जंग खाएगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it rusts very slowly",
+       "hi": "नहीं, उसमें बहुत धीरे जंग लगता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, very quickly",
+       "hi": "हाँ, बहुत जल्दी"
+      },
+      {
+       "id": "only",
+       "en": "Only at night",
+       "hi": "केवल रात में"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "item:rust",
+     "expect": "placed:rust",
+     "say": {
+      "en": "Now place “Fe²⁺ is oxidised further and brown rust forms”.",
+      "hi": "अब “Fe²⁺ का और ऑक्सीकरण होता है और भूरा जंग बनता है” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rusting is corrosion, an electrochemical process. A water drop acts like an electrolyte. One spot of the iron becomes the anode, where Fe is oxidised to Fe²⁺. Electrons flow through the iron to a spot that acts as the cathode, where oxygen is reduced. The Fe²⁺ ions are oxidised further to hydrated iron(III) oxide, which we call rust. Salt in the water makes the electrolyte stronger and speeds up rusting.",
+      "hi": "जंग लगना संक्षारण है, जो एक विद्युत रासायनिक प्रक्रिया है। पानी की बूँद विद्युत अपघट्य का काम करती है। लोहे का एक स्थान ऐनोड बनता है, जहाँ Fe का ऑक्सीकरण होकर Fe²⁺ बनता है। इलेक्ट्रॉन लोहे से होकर उस स्थान पर जाते हैं जो कैथोड का काम करता है, जहाँ ऑक्सीजन का अपचयन होता है। Fe²⁺ आयनों का आगे ऑक्सीकरण होकर जलयोजित आयरन(III) ऑक्साइड बनता है, जिसे हम जंग कहते हैं। पानी में नमक होने से विद्युत अपघट्य प्रबल हो जाता है और जंग तेज़ी से लगता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does iron near the sea (Mumbai, Chennai) rust faster than iron in a dry place?",
+        "hi": "समुद्र के पास (मुंबई, चेन्नई) लोहा सूखी जगह की तुलना में तेज़ी से जंग क्यों खाता है?"
+       },
+       "options": [
+        {
+         "en": "Salty moisture is a better electrolyte",
+         "hi": "नमकीन नमी बेहतर विद्युत अपघट्य है"
+        },
+        {
+         "en": "The sea air has no oxygen",
+         "hi": "समुद्री हवा में ऑक्सीजन नहीं होती"
+        },
+        {
+         "en": "Salt is a catalyst for making iron",
+         "hi": "नमक लोहा बनाने का उत्प्रेरक है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dissolved salt carries current well between the anode and cathode spots, so rusting speeds up.",
+        "hi": "घुला नमक ऐनोड और कैथोड स्थानों के बीच धारा अच्छी तरह ले जाता है, इसलिए जंग तेज़ होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sea air has plenty of oxygen; rusting needs it.",
+         "hi": "समुद्री हवा में खूब ऑक्सीजन होती है; जंग के लिए वही चाहिए।"
+        },
+        {
+         "en": "Salt does not make iron; it helps destroy it faster.",
+         "hi": "नमक लोहा नहीं बनाता; वह उसे तेज़ी से नष्ट करने में मदद करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A zinc-coated (galvanised) iron bucket is scratched and iron shows. Why does it still not rust quickly?",
+        "hi": "जस्ते की परत वाली (गैल्वेनाइज़्ड) लोहे की बाल्टी खरोंची गई और लोहा दिखने लगा। फिर भी उसमें जल्दी जंग क्यों नहीं लगता?"
+       },
+       "options": [
+        {
+         "en": "Zinc is oxidised first and protects the iron",
+         "hi": "जस्ते का ऑक्सीकरण पहले होता है और वह लोहे की रक्षा करता है"
+        },
+        {
+         "en": "Zinc is heavier than iron",
+         "hi": "जस्ता लोहे से भारी है"
+        },
+        {
+         "en": "Zinc turns into iron slowly",
+         "hi": "जस्ता धीरे-धीरे लोहे में बदल जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Zinc has the lower E° than iron, so it acts as the anode and corrodes in place of the iron (sacrificial protection).",
+        "hi": "जस्ते का E° लोहे से कम है, इसलिए वह ऐनोड बनता है और लोहे की जगह स्वयं संक्षारित होता है (त्यागी सुरक्षा)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Weight has nothing to do with protection.",
+         "hi": "सुरक्षा का भार से कोई संबंध नहीं।"
+        },
+        {
+         "en": "One element does not turn into another in a chemical reaction.",
+         "hi": "रासायनिक अभिक्रिया में एक तत्व दूसरे में नहीं बदलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which would protect an iron pipe underground better: a block of magnesium or a block of copper joined to it? Use the electrochemical series.",
+      "hi": "भूमिगत लोहे के पाइप को कौन-सा बेहतर बचाएगा: उससे जुड़ा मैग्नीशियम का टुकड़ा या ताँबे का? विद्युत रासायनिक श्रेणी का उपयोग करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.6",
+   "use": "Hook of the chapter",
+   "shows": "A small Indian shop selling inverter batteries: tall tubular lead-acid batteries stacked on a shelf, one open with a technician's gloved hand topping up distilled water",
+   "view": "Eye level, indoor shop light",
+   "right": "Plate terminals marked + and − visible; gloves and goggles on the worker",
+   "avoid": "Brand names, logos, bare-handed acid contact"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "The Daniell cell, built",
+   "shows": "Two glass beakers: a zinc strip in clear zinc sulphate and a copper strip in blue copper sulphate, joined by a salt bridge (U-tube with cotton plugs) and a voltmeter showing about 1.1 V",
+   "view": "Straight front view, light background, 4:3",
+   "right": "Zinc solution colourless, copper solution clear blue; salt-bridge ends dip below both liquid levels",
+   "avoid": "Text on the voltmeter other than numerals, any brand"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "2.1",
+   "use": "Zinc in copper sulphate",
+   "shows": "Four frames of one zinc strip dipped in blue copper sulphate solution at 0, 5, 15 and 30 minutes",
+   "view": "Fixed camera, same light and background",
+   "right": "Reddish-brown copper coat growing on the strip; blue fading frame by frame",
+   "avoid": "Different glassware in different frames"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "2.6",
+   "use": "Inside a dry cell",
+   "shows": "Cut-away of a dry (zinc–carbon) cell showing the zinc outer can, the black manganese dioxide paste, the white electrolyte layer and the central graphite rod with a brass cap",
+   "view": "Side view, studio light, 4:3",
+   "right": "Graphite rod in the centre; zinc can forms the outer wall",
+   "avoid": "Labels, brand names, battery markings"
+  },
+  {
+   "n": 5,
+   "kind": "CUT",
+   "topic": "2.6",
+   "use": "Inside a lead storage battery",
+   "shows": "Cut-away of a lead-acid battery cell showing alternating grey lead plates and brown lead dioxide plates, thin separators and the liquid electrolyte level",
+   "view": "Three-quarter cut view, 4:3, clean neutral background",
+   "right": "Alternating plate colours; liquid covers the plates",
+   "avoid": "Brand names, warning symbols, children near the battery"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "2.8",
+   "use": "Rusting under four conditions",
+   "shows": "Four iron nails each in a different glass: dry air with a drying agent, tap water, salty water, and under a layer of oil. Photographed on day 1, 3, 7 and 14",
+   "view": "Fixed camera, same light; the rack of four glasses in every frame",
+   "right": "Heaviest rust in the salty-water nail, none in the dry and oil glasses",
+   "avoid": "Different nails per frame, labels written on the glass"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "2.5",
+   "use": "Electrolysis of acidified water",
+   "shows": "A Hofmann voltameter (two graduated tubes joined at the base) with power supply leads, hydrogen tube filled to twice the volume of the oxygen tube",
+   "view": "Straight front view, light background",
+   "right": "Gas volumes in a 2 : 1 ratio; both electrodes platinum or carbon",
+   "avoid": "Printed numbers other than the graduation marks, brand names"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "2.7",
+   "use": "Fuel cell demonstration",
+   "shows": "A school-lab model fuel-cell kit on a table: a small solar panel, a mini electrolyser, a fuel-cell block and a tiny fan running",
+   "view": "Eye level, bright classroom light",
+   "right": "Fan turning; tubes connected as in a real kit; teacher's hands only",
+   "avoid": "Gas cylinders, any open flame, brand names"
+  }
+ ]
+}

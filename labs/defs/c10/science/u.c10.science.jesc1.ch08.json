@@ -1,0 +1,714 @@
+{
+ "chapter_key": "u.c10.science.jesc1.ch08",
+ "class": 10,
+ "subject_id": "science",
+ "title": "Heredity",
+ "source": "https://ncert.nic.in/textbook/pdf/jesc108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Accumulation of variation during reproduction",
+   "labs": [],
+   "why_no_lab": "How small differences pile up over generations is an idea best shown by the reader's family-tree style diagram, not an experiment."
+  },
+  {
+   "n": "8.2",
+   "title": "Heredity: inherited traits, Mendel's rules of inheritance, how traits are expressed, sex determination",
+   "labs": [
+    "c10-science-jesc1-ch08-tall-dwarf",
+    "c10-science-jesc1-ch08-f2-ratio",
+    "c10-science-jesc1-ch08-two-traits",
+    "c10-science-jesc1-ch08-boy-or-girl"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-science-jesc1-ch08-tall-dwarf",
+   "topic": "8.2",
+   "template": "cross",
+   "title": {
+    "en": "Mendel's cross: tall × dwarf",
+    "hi": "मेंडल का संकरण: लंबा × बौना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "monohybrid",
+    "trait": "height",
+    "parents": [
+     "TT",
+     "tt"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cross",
+     "expect": "crossed",
+     "say": {
+      "en": "A pure tall pea plant (TT) and a pure dwarf one (tt) are the parents. Tap Cross.",
+      "hi": "शुद्ध लंबा मटर का पौधा (TT) और शुद्ध बौना पौधा (tt) जनक हैं। संकरण पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Every gamete of the tall parent carries T and every gamete of the dwarf parent carries t. What will the children (F1) look like?",
+      "hi": "लंबे जनक के हर युग्मक में T है और बौने जनक के हर युग्मक में t। संतति (F1) कैसी दिखेगी?"
+     },
+     "options": [
+      {
+       "id": "tall",
+       "en": "All tall",
+       "hi": "सभी लंबे"
+      },
+      {
+       "id": "dwarf",
+       "en": "All dwarf",
+       "hi": "सभी बौने"
+      },
+      {
+       "id": "half",
+       "en": "Half tall, half dwarf",
+       "hi": "आधे लंबे, आधे बौने"
+      },
+      {
+       "id": "middle",
+       "en": "All of middle height",
+       "hi": "सभी मध्यम ऊँचाई के"
+      }
+     ],
+     "answer": "tall"
+    },
+    {
+     "kind": "do",
+     "target": "grow",
+     "expect": "ratio",
+     "say": {
+      "en": "Tap Grow to raise sixteen F1 plants.",
+      "hi": "सोलह F1 पौधे उगाने के लिए उगाओ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every F1 plant is Tt, and every one is tall. The trait T shows even when only one copy is present: it is dominant. The trait t hides when T is present: it is recessive. The dwarf trait is not lost; it is still carried inside the F1 plants, and the next cross will show it.",
+      "hi": "हर F1 पौधा Tt है, और हर एक लंबा है। T का लक्षण एक प्रति होने पर भी दिखता है: यह प्रभावी है। T के रहते t का लक्षण छिप जाता है: यह अप्रभावी है। बौनेपन का लक्षण खोया नहीं; वह F1 पौधों के अंदर मौजूद है, और अगला संकरण इसे दिखाएगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are no F1 plants of middle height?",
+        "hi": "कोई भी F1 पौधा मध्यम ऊँचाई का क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "T is dominant, so Tt looks just like TT",
+         "hi": "T प्रभावी है, इसलिए Tt बिल्कुल TT जैसा दिखता है"
+        },
+        {
+         "en": "The dwarf gene was destroyed",
+         "hi": "बौनेपन का जीन नष्ट हो गया"
+        },
+        {
+         "en": "Only the mother passes on traits",
+         "hi": "केवल माँ लक्षण देती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Traits do not blend: one dominant copy is enough to make the plant tall.",
+        "hi": "लक्षण मिश्रित नहीं होते: एक प्रभावी प्रति पौधे को लंबा करने के लिए काफ़ी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The t is still there; it reappears in the F2 generation.",
+         "hi": "t अब भी मौजूद है; यह F2 पीढ़ी में फिर दिखता है।"
+        },
+        {
+         "en": "Each parent gives one copy of every gene.",
+         "hi": "हर जनक हर जीन की एक प्रति देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the genotype of the F1 plants?",
+        "hi": "F1 पौधों का जीनोटाइप क्या है?"
+       },
+       "options": [
+        "Tt",
+        "TT",
+        "tt"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One T from the tall parent and one t from the dwarf parent.",
+        "hi": "एक T लंबे जनक से और एक t बौने जनक से।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "TT would need a T from both parents; the dwarf gives only t.",
+         "hi": "TT के लिए दोनों जनकों से T चाहिए; बौना जनक केवल t देता है।"
+        },
+        {
+         "en": "tt plants are dwarf, and every F1 plant was tall.",
+         "hi": "tt पौधे बौने होते हैं, और हर F1 पौधा लंबा था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap the squares of the Punnett square to fill them in, then tap a parent to change it and cross again.",
+      "hi": "आज़माओ: पनेट वर्ग के खानों पर टैप करके उन्हें भरो, फिर किसी जनक को बदलकर दोबारा संकरण करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch08-f2-ratio",
+   "topic": "8.2",
+   "template": "cross",
+   "title": {
+    "en": "The F2 generation: 3 tall to 1 dwarf",
+    "hi": "F2 पीढ़ी: 3 लंबे और 1 बौना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "monohybrid",
+    "trait": "height",
+    "parents": [
+     "Tt",
+     "Tt"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cross",
+     "expect": "crossed",
+     "say": {
+      "en": "Now both parents are F1 plants, Tt. Tap Cross.",
+      "hi": "अब दोनों जनक F1 पौधे, Tt, हैं। संकरण पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each Tt parent makes half T gametes and half t gametes. What will the children look like?",
+      "hi": "हर Tt जनक आधे T और आधे t युग्मक बनाता है। संतति कैसी दिखेगी?"
+     },
+     "options": [
+      {
+       "id": "three",
+       "en": "About 3 tall for every 1 dwarf",
+       "hi": "हर 1 बौने पर लगभग 3 लंबे"
+      },
+      {
+       "id": "all",
+       "en": "All tall",
+       "hi": "सभी लंबे"
+      },
+      {
+       "id": "half",
+       "en": "Half tall, half dwarf",
+       "hi": "आधे लंबे, आधे बौने"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "grow",
+     "expect": "ratio",
+     "say": {
+      "en": "Tap Grow to raise sixteen plants.",
+      "hi": "सोलह पौधे उगाने के लिए उगाओ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "grow",
+     "expect": "ratio",
+     "say": {
+      "en": "Tap Grow again for sixteen more. The more you grow, the closer to 3 : 1.",
+      "hi": "सोलह और के लिए फिर उगाओ पर टैप करो। जितने ज़्यादा उगाओगे, अनुपात 3 : 1 के उतना पास होगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Punnett square gives TT, Tt, Tt and tt: three plants with a T are tall and one tt plant is dwarf, a 3 : 1 ratio. The dwarf trait came back in F2, so it was carried hidden in F1. Real counts are close to 3 : 1, not exact, because gametes meet by chance, like Mendel's 787 tall and 277 dwarf plants.",
+      "hi": "पनेट वर्ग से TT, Tt, Tt और tt मिलते हैं: T वाले तीन पौधे लंबे हैं और एक tt पौधा बौना, यानी 3 : 1 अनुपात। बौनेपन का लक्षण F2 में लौट आया, इसलिए वह F1 में छिपा हुआ था। असली गिनती 3 : 1 के पास होती है, ठीक बराबर नहीं, क्योंकि युग्मक संयोग से मिलते हैं, जैसे मेंडल के 787 लंबे और 277 बौने पौधे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In F2, what fraction of the plants are pure tall (TT)?",
+        "hi": "F2 में कितने भाग पौधे शुद्ध लंबे (TT) होते हैं?"
+       },
+       "options": [
+        {
+         "en": "1 in 4",
+         "hi": "4 में से 1"
+        },
+        {
+         "en": "3 in 4",
+         "hi": "4 में से 3"
+        },
+        {
+         "en": "2 in 4",
+         "hi": "4 में से 2"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only one square of four is TT; two are Tt and one is tt.",
+        "hi": "चार में से केवल एक खाना TT है; दो Tt हैं और एक tt।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 in 4 are tall, but two of those three are Tt, not pure.",
+         "hi": "4 में से 3 लंबे हैं, पर उन तीन में से दो Tt हैं, शुद्ध नहीं।"
+        },
+        {
+         "en": "2 in 4 is the share of Tt plants, not TT.",
+         "hi": "4 में से 2 Tt पौधों का हिस्सा है, TT का नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A tall plant could be TT or Tt. How can you tell?",
+        "hi": "एक लंबा पौधा TT या Tt हो सकता है। कैसे पता करोगे?"
+       },
+       "options": [
+        {
+         "en": "Cross it with a dwarf plant and see if any dwarf children appear",
+         "hi": "उसे बौने पौधे से संकरित करो और देखो कि कोई बौनी संतति आती है या नहीं"
+        },
+        {
+         "en": "Measure how tall it is",
+         "hi": "उसकी ऊँचाई नापो"
+        },
+        {
+         "en": "Look at its colour",
+         "hi": "उसका रंग देखो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If any child is dwarf, the tall parent must carry t, so it is Tt.",
+        "hi": "अगर कोई संतति बौनी हो, तो लंबे जनक में t है, यानी वह Tt है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "TT and Tt plants are equally tall, so height cannot tell them apart.",
+         "hi": "TT और Tt पौधे बराबर लंबे होते हैं, इसलिए ऊँचाई से अंतर नहीं पता चलता।"
+        },
+        {
+         "en": "Colour is a different trait with its own gene.",
+         "hi": "रंग एक अलग लक्षण है जिसका अपना जीन है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: fill in the four squares by tapping them. Then keep growing until you have over 100 plants and check the ratio.",
+      "hi": "आज़माओ: चारों खानों पर टैप करके उन्हें भरो। फिर 100 से ज़्यादा पौधे होने तक उगाते रहो और अनुपात देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch08-two-traits",
+   "topic": "8.2",
+   "template": "cross",
+   "title": {
+    "en": "Two traits at once: 9 : 3 : 3 : 1",
+    "hi": "एक साथ दो लक्षण: 9 : 3 : 3 : 1"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "dihybrid",
+    "trait": "seed-shape",
+    "parents": [
+     "RrYy",
+     "RrYy"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cross",
+     "expect": "crossed",
+     "say": {
+      "en": "Both parents have round, yellow seeds and are RrYy. Tap Cross.",
+      "hi": "दोनों जनकों के बीज गोल और पीले हैं और वे RrYy हैं। संकरण पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Will round seeds always be yellow, or can the shape and colour mix in new ways?",
+      "hi": "क्या गोल बीज हमेशा पीले होंगे, या आकार और रंग नए तरीक़ों से मिल सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "new",
+       "en": "New mixes appear, like round-green and wrinkled-yellow",
+       "hi": "नए मेल बनेंगे, जैसे गोल-हरे और झुर्रीदार-पीले"
+      },
+      {
+       "id": "same",
+       "en": "Only round-yellow and wrinkled-green",
+       "hi": "केवल गोल-पीले और झुर्रीदार-हरे"
+      },
+      {
+       "id": "all",
+       "en": "All round and yellow",
+       "hi": "सभी गोल और पीले"
+      }
+     ],
+     "answer": "new"
+    },
+    {
+     "kind": "do",
+     "target": "grow",
+     "expect": "ratio",
+     "say": {
+      "en": "Tap Grow to raise sixteen plants.",
+      "hi": "सोलह पौधे उगाने के लिए उगाओ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "grow",
+     "expect": "ratio",
+     "say": {
+      "en": "Grow sixteen more and look at the four kinds of seed.",
+      "hi": "सोलह और उगाओ और चारों तरह के बीज देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Four kinds of seed appear: round-yellow, round-green, wrinkled-yellow and wrinkled-green, close to 9 : 3 : 3 : 1. Two of them are new mixes not seen in either parent. This shows that the genes for shape and for colour are passed on independently of each other.",
+      "hi": "चार तरह के बीज मिलते हैं: गोल-पीले, गोल-हरे, झुर्रीदार-पीले और झुर्रीदार-हरे, लगभग 9 : 3 : 3 : 1 में। इनमें दो नए मेल हैं जो किसी जनक में नहीं थे। इससे पता चलता है कि आकार और रंग के जीन एक-दूसरे से स्वतंत्र होकर आगे जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Out of 16, how many seeds are expected to be wrinkled and green?",
+        "hi": "16 में से कितने बीज झुर्रीदार और हरे होने की आशा है?"
+       },
+       "options": [
+        "1",
+        "9",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Wrinkled-green needs rr and yy together: 1 in 16.",
+        "hi": "झुर्रीदार-हरे के लिए rr और yy दोनों साथ चाहिए: 16 में 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9 is the share of round-yellow, which show both dominant traits.",
+         "hi": "9 गोल-पीले बीजों का हिस्सा है, जिनमें दोनों प्रभावी लक्षण दिखते हैं।"
+        },
+        {
+         "en": "3 is the share of each mixed type, like round-green.",
+         "hi": "3 हर मिश्रित प्रकार का हिस्सा है, जैसे गोल-हरे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What do the new mixes tell us?",
+        "hi": "नए मेल हमें क्या बताते हैं?"
+       },
+       "options": [
+        {
+         "en": "Genes for different traits are inherited independently",
+         "hi": "अलग-अलग लक्षणों के जीन स्वतंत्र रूप से आगे जाते हैं"
+        },
+        {
+         "en": "Traits always stay in their old pairs",
+         "hi": "लक्षण हमेशा अपने पुराने जोड़ों में रहते हैं"
+        },
+        {
+         "en": "The parents were not RrYy",
+         "hi": "जनक RrYy नहीं थे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Round-green and wrinkled-yellow could appear only if shape and colour sort separately.",
+        "hi": "गोल-हरे और झुर्रीदार-पीले तभी बन सकते हैं जब आकार और रंग अलग-अलग बँटें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If they stayed together, we would see only the two parent types.",
+         "hi": "अगर वे साथ रहते, तो केवल जनकों जैसे दो प्रकार दिखते।"
+        },
+        {
+         "en": "Only RrYy parents can give all four kinds of seed.",
+         "hi": "केवल RrYy जनक चारों तरह के बीज दे सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: keep growing and watch the four counts move towards 9 : 3 : 3 : 1.",
+      "hi": "आज़माओ: उगाते रहो और देखो चारों गिनतियाँ 9 : 3 : 3 : 1 की ओर कैसे बढ़ती हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch08-boy-or-girl",
+   "topic": "8.2",
+   "template": "cross",
+   "title": {
+    "en": "Boy or girl? Sex determination",
+    "hi": "लड़का या लड़की? लिंग निर्धारण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "sex",
+    "parents": [
+     "XX",
+     "XY"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cross",
+     "expect": "crossed",
+     "say": {
+      "en": "The mother is XX and the father is XY. Tap Cross.",
+      "hi": "माँ XX है और पिता XY। संकरण पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Every egg carries an X. What decides whether the baby is a boy or a girl?",
+      "hi": "हर अंडाणु में X होता है। बच्चा लड़का होगा या लड़की, यह किससे तय होता है?"
+     },
+     "options": [
+      {
+       "id": "father",
+       "en": "Whether the sperm carries X or Y",
+       "hi": "शुक्राणु में X है या Y"
+      },
+      {
+       "id": "mother",
+       "en": "The mother's egg",
+       "hi": "माँ का अंडाणु"
+      },
+      {
+       "id": "food",
+       "en": "What the mother eats",
+       "hi": "माँ क्या खाती है"
+      }
+     ],
+     "answer": "father"
+    },
+    {
+     "kind": "do",
+     "target": "grow",
+     "expect": "ratio",
+     "say": {
+      "en": "Tap Grow to see sixteen babies.",
+      "hi": "सोलह बच्चे देखने के लिए उगाओ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every egg has an X chromosome. Half the sperms carry X and half carry Y. An X sperm gives XX, a girl; a Y sperm gives XY, a boy. So the chance is half and half each time, and it is the father's sperm that decides. Nobody can be blamed for having a girl or a boy.",
+      "hi": "हर अंडाणु में X गुणसूत्र होता है। आधे शुक्राणुओं में X और आधे में Y होता है। X वाले शुक्राणु से XX, यानी लड़की, और Y वाले शुक्राणु से XY, यानी लड़का, होता है। इसलिए हर बार संभावना आधी-आधी है, और फ़ैसला पिता का शुक्राणु करता है। लड़की या लड़का होने के लिए किसी को दोष नहीं दिया जा सकता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A sperm carrying Y joins an egg. The baby will be…",
+        "hi": "Y वाला शुक्राणु अंडाणु से मिलता है। बच्चा होगा…"
+       },
+       "options": [
+        {
+         "en": "A boy (XY)",
+         "hi": "लड़का (XY)"
+        },
+        {
+         "en": "A girl (XX)",
+         "hi": "लड़की (XX)"
+        },
+        {
+         "en": "Either, by chance",
+         "hi": "संयोग से कोई भी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The egg gives X and the sperm gives Y: XY is a boy.",
+        "hi": "अंडाणु X देता है और शुक्राणु Y: XY लड़का है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A girl needs an X from the sperm too.",
+         "hi": "लड़की के लिए शुक्राणु से भी X चाहिए।"
+        },
+        {
+         "en": "Once the sperm is known, the result is fixed, not left to chance.",
+         "hi": "शुक्राणु तय होने के बाद परिणाम तय है, संयोग पर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A family has two girls. What is the chance the third baby is a boy?",
+        "hi": "एक परिवार में दो लड़कियाँ हैं। तीसरे बच्चे के लड़का होने की संभावना क्या है?"
+       },
+       "options": [
+        {
+         "en": "Half (1 in 2)",
+         "hi": "आधी (2 में 1)"
+        },
+        {
+         "en": "Certain",
+         "hi": "निश्चित"
+        },
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each birth is a fresh half-and-half chance; earlier births do not change it.",
+        "hi": "हर जन्म नई आधी-आधी संभावना है; पहले के जन्म इसे नहीं बदलते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Earlier girls do not make a boy certain; each sperm is X or Y by chance.",
+         "hi": "पहले की लड़कियाँ लड़का होना निश्चित नहीं करतीं; हर शुक्राणु संयोग से X या Y होता है।"
+        },
+        {
+         "en": "Half the sperms carry Y, so the chance is never zero.",
+         "hi": "आधे शुक्राणुओं में Y होता है, इसलिए संभावना कभी शून्य नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap the squares to fill in the cross and tap Grow many times. Does the count of boys and girls stay close to equal?",
+      "hi": "आज़माओ: खानों पर टैप करके संकरण भरो और कई बार उगाओ दबाओ। क्या लड़कों और लड़कियों की गिनती लगभग बराबर रहती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.2.2",
+   "use": "Hook: Mendel's plants",
+   "shows": "Rows of tall and short pea plants in a garden plot",
+   "view": "Low side view along the rows",
+   "right": "Clearly tall and dwarf plants, same species",
+   "avoid": "Portraits of real people"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.2.2",
+   "use": "Seed traits for the cross lab",
+   "shows": "Separate cut-outs: round yellow, round green, wrinkled yellow, wrinkled green pea seeds; and a green and a yellow pod",
+   "view": "From above, same scale",
+   "right": "Wrinkled seeds visibly creased",
+   "avoid": "Labels"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "8.2.2",
+   "use": "F1 and F2 generations",
+   "shows": "Three plots of pea plants: parents (tall and short), F1 (all tall), F2 (about three tall to one short)",
+   "view": "Same angle, three frames",
+   "right": "Ratio visible in the F2 plot (e.g. 12 tall, 4 short)",
+   "avoid": "Text"
+  },
+  {
+   "n": 4,
+   "kind": "3DM",
+   "topic": "8.2.3",
+   "use": "DNA and chromosomes",
+   "shows": "A DNA double helix unwinding from a condensed chromosome",
+   "view": "Front and three-quarter",
+   "right": "Right-handed helix; base pairs as rungs",
+   "avoid": "Text"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "8.2.4",
+   "use": "Sex chromosomes",
+   "shows": "A pair of X chromosomes and an X with a smaller Y chromosome, realistic microscope style on white",
+   "view": "Front",
+   "right": "Y visibly smaller than X",
+   "avoid": "Labels"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "8.2.1",
+   "use": "An inherited trait",
+   "shows": "Two close-ups of adult ears: free earlobe and attached earlobe",
+   "view": "Side profile, plain background",
+   "right": "Clear difference at the lobe",
+   "avoid": "Faces"
+  }
+ ]
+}

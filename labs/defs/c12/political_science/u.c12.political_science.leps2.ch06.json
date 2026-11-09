@@ -1,0 +1,209 @@
+{
+  "chapter_key": "u.c12.political_science.leps2.ch06",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "The Crisis of Democratic Order",
+  "source": "https://ncert.nic.in/textbook/pdf/leps206.pdf",
+  "topics": [
+    { "n": "6.1", "title": "Background: the Congress, the courts and the rising discontent", "labs": ["c12-political_science-leps2-ch06-background-timeline"], "why_no_lab": null },
+    { "n": "6.2", "title": "The economic context: prices, jobs and protests", "labs": [], "why_no_lab": "Needs the reader's graphs and the text on prices; a lab would only repeat the timeline." },
+    { "n": "6.3", "title": "The Gujarat and Bihar movements and the railway strike", "labs": [], "why_no_lab": "Covered by the sequence lab, which follows the same steps to the Emergency." },
+    { "n": "6.4", "title": "The declaration of the Emergency, step by step", "labs": ["c12-political_science-leps2-ch06-emergency-sequence"], "why_no_lab": null },
+    { "n": "6.5", "title": "The consequences of the Emergency and its lessons", "labs": ["c12-political_science-leps2-ch06-lessons-sort"], "why_no_lab": null },
+    { "n": "6.6", "title": "Politics after the Emergency: the Janata government", "labs": [], "why_no_lab": "The 1977 result is the last event in the timeline lab; the rest is for class discussion." }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps2-ch06-background-timeline",
+      "topic": "6.1",
+      "template": "timeline",
+      "title": { "en": "The road to the Emergency, in order", "hi": "आपातकाल तक का रास्ता, क्रम से" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1970, 1980],
+        "task": "order",
+        "title": { "en": "From a court case to a new government", "hi": "एक अदालती मामले से नई सरकार तक" },
+        "events": [
+          { "id": "kesav", "year": 1973, "label": { "en": "The Supreme Court's Kesavananda Bharati case sets the basic structure rule", "hi": "सुप्रीम कोर्ट का केशवानंद भारती मामला संविधान के मूल ढाँचे का सिद्धांत तय करता है" } },
+          { "id": "gujarat", "year": 1974, "label": { "en": "Student protests in Gujarat and a people's movement in Bihar spread", "hi": "गुजरात में छात्र आंदोलन और बिहार में जन-आंदोलन फैलते हैं" } },
+          { "id": "emerg", "year": 1975, "label": { "en": "The Emergency is declared on 25 June", "hi": "25 जून को आपातकाल घोषित होता है" } },
+          { "id": "janata", "year": 1977, "label": { "en": "The Janata Party wins the general election after the Emergency", "hi": "आपातकाल के बाद जनता पार्टी आम चुनाव जीतती है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these came first?", "hi": "इनमें से सबसे पहले कौन-सी घटना हुई?" },
+          "options": [
+            { "id": "kesav", "en": "The Kesavananda Bharati case, 1973", "hi": "केशवानंद भारती मामला, 1973" },
+            { "id": "emerg", "en": "The Emergency is declared, 1975", "hi": "आपातकाल की घोषणा, 1975" },
+            { "id": "janata", "en": "The Janata Party wins, 1977", "hi": "जनता पार्टी की जीत, 1977" }
+          ],
+          "answer": "kesav"
+        },
+        { "kind": "do", "target": "event:kesav", "expect": "placed:kesav", "say": { "en": "Tap the Kesavananda Bharati case of 1973.", "hi": "1973 का केशवानंद भारती मामला छुओ।" } },
+        { "kind": "do", "target": "event:gujarat", "expect": "placed:gujarat", "say": { "en": "Tap the protests in Gujarat and Bihar in 1974.", "hi": "1974 में गुजरात और बिहार के आंदोलन छुओ।" } },
+        { "kind": "do", "target": "event:emerg", "expect": "placed:emerg", "say": { "en": "Tap the Emergency of 1975.", "hi": "1975 का आपातकाल छुओ।" } },
+        { "kind": "do", "target": "event:janata", "expect": "placed:janata", "say": { "en": "Tap the Janata Party's win in 1977.", "hi": "1977 में जनता पार्टी की जीत छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to test the order.", "hi": "क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The 1973 judgment protected the basic structure of the Constitution. In 1974 student and people's movements spread in Gujarat and Bihar. The Emergency was declared in 1975. After it, the Janata Party won the general election of 1977.", "hi": "1973 के फ़ैसले ने संविधान के मूल ढाँचे की रक्षा की। 1974 में गुजरात और बिहार में छात्र और जन-आंदोलन फैले। 1975 में आपातकाल घोषित हुआ। उसके बाद 1977 के आम चुनाव में जनता पार्टी जीती।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "In which year did the Janata Party win the general election?", "hi": "जनता पार्टी ने आम चुनाव किस वर्ष जीता?" },
+              "options": [
+                { "en": "1975 (उन्नीस सौ पचहत्तर)", "hi": "1975 (उन्नीस सौ पचहत्तर)" },
+                { "en": "1977 (उन्नीस सौ सतहत्तर)", "hi": "1977 (उन्नीस सौ सतहत्तर)" },
+                { "en": "1980 (उन्नीस सौ अस्सी)", "hi": "1980 (उन्नीस सौ अस्सी)" }
+              ],
+              "answer": 1,
+              "why": { "en": "The Janata Party won the general election held in 1977.", "hi": "जनता पार्टी ने 1977 में हुए आम चुनाव में जीत हासिल की।" },
+              "wrong": [
+                { "en": "The Emergency was declared in 1975, before the Janata Party came to power.", "hi": "आपातकाल 1975 में घोषित हुआ था, जनता पार्टी के सत्ता में आने से पहले।" },
+                "",
+                { "en": "Congress returned to power in 1980, after the Janata years.", "hi": "कांग्रेस 1980 में जनता के शासन के बाद फिर सत्ता में लौटी।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Write one reason why a court judgment can matter for a whole democracy. Use the 1973 case as your example.", "hi": "एक कारण लिखो कि अदालती फ़ैसला पूरे लोकतंत्र के लिए क्यों मायने रखता है। 1973 के मामले को उदाहरण बनाओ।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch06-emergency-sequence",
+      "topic": "6.4",
+      "template": "sequence",
+      "title": { "en": "How the Emergency was declared, step by step", "hi": "आपातकाल कैसे घोषित हुआ, एक-एक कदम" },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "items": [
+          { "id": "gujarat", "text": { "en": "Student and people's movements grow in Gujarat and Bihar in 1974", "hi": "1974 में गुजरात और बिहार में छात्र और जन-आंदोलन बढ़ते हैं" } },
+          { "id": "rail", "text": { "en": "Railway workers call a national strike in 1974, and it is crushed", "hi": "1974 में रेल कर्मचारी राष्ट्रव्यापी हड़ताल करते हैं, जिसे दबा दिया जाता है" } },
+          { "id": "court", "text": { "en": "The Allahabad High Court sets aside the Prime Minister's election in June 1975", "hi": "जून 1975 में इलाहाबाद उच्च न्यायालय प्रधानमंत्री का चुनाव रद्द करता है" } },
+          { "id": "emerg", "text": { "en": "The President declares a national Emergency on 25 June 1975", "hi": "25 जून 1975 को राष्ट्रपति राष्ट्रीय आपातकाल की घोषणा करते हैं" } },
+          { "id": "arrests", "text": { "en": "Opposition leaders are arrested and the press is censored", "hi": "विपक्षी नेता गिरफ़्तार होते हैं और प्रेस पर सेंसरशिप लगती है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "What happened first in this chain?", "hi": "इस श्रृंखला में सबसे पहले क्या हुआ?" },
+          "options": [
+            { "id": "gujarat", "en": "Student movements in Gujarat and Bihar", "hi": "गुजरात और बिहार में छात्र आंदोलन" },
+            { "id": "emerg", "en": "The Emergency is declared", "hi": "आपातकाल की घोषणा" },
+            { "id": "arrests", "en": "Leaders are arrested", "hi": "नेता गिरफ़्तार होते हैं" }
+          ],
+          "answer": "gujarat"
+        },
+        { "kind": "do", "target": "slot:1", "expect": "placed:gujarat", "say": { "en": "Tap the Gujarat and Bihar movements card, then box 1.", "hi": "गुजरात और बिहार आंदोलन वाला कार्ड छुओ, फिर खाना 1 पर टैप करो।" } },
+        { "kind": "do", "target": "slot:2", "expect": "placed:rail", "say": { "en": "Tap the railway strike card, then box 2.", "hi": "रेल हड़ताल वाला कार्ड छुओ, फिर खाना 2 पर टैप करो।" } },
+        { "kind": "do", "target": "slot:3", "expect": "placed:court", "say": { "en": "Tap the High Court card, then box 3.", "hi": "उच्च न्यायालय वाला कार्ड छुओ, फिर खाना 3 पर टैप करो।" } },
+        { "kind": "do", "target": "slot:4", "expect": "placed:emerg", "say": { "en": "Tap the Emergency declaration card, then box 4.", "hi": "आपातकाल की घोषणा वाला कार्ड छुओ, फिर खाना 4 पर टैप करो।" } },
+        { "kind": "do", "target": "slot:5", "expect": "placed:arrests", "say": { "en": "Tap the arrests and censorship card, then box 5.", "hi": "गिरफ़्तारी और सेंसरशिप वाला कार्ड छुओ, फिर खाना 5 पर टैप करो।" } },
+        { "kind": "do", "target": "check", "expect": "ordered", "say": { "en": "Press Check to test the chain.", "hi": "श्रृंखला जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Protests about prices, jobs and corruption grew in 1974. A railway strike followed and was crushed. In June 1975 a court set aside the Prime Minister's election, and on 25 June the Emergency was declared. Opposition leaders were then arrested and the press was censored.", "hi": "1974 में कीमतों, नौकरियों और भ्रष्टाचार पर विरोध बढ़ा। फिर रेल हड़ताल हुई, जिसे दबा दिया गया। जून 1975 में एक अदालत ने प्रधानमंत्री का चुनाव रद्द किया, और 25 जून को आपातकाल घोषित हुआ। इसके बाद विपक्षी नेता गिरफ़्तार हुए और प्रेस पर सेंसरशिप लगी।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which step came right before the Emergency was declared?", "hi": "आपातकाल घोषित होने से ठीक पहले कौन-सा कदम आया?" },
+              "options": [
+                { "en": "The arrest of opposition leaders", "hi": "विपक्षी नेताओं की गिरफ़्तारी" },
+                { "en": "The High Court verdict on the Prime Minister's election", "hi": "प्रधानमंत्री के चुनाव पर उच्च न्यायालय का फ़ैसला" },
+                { "en": "The 1977 election", "hi": "1977 का चुनाव" }
+              ],
+              "answer": 1,
+              "why": { "en": "The court verdict of June 1975 came just before the declaration on 25 June.", "hi": "जून 1975 का अदालती फ़ैसला 25 जून की घोषणा से ठीक पहले आया।" },
+              "wrong": [
+                { "en": "The arrests came after the Emergency was declared, so they cannot be the step before it.", "hi": "गिरफ़्तारियाँ आपातकाल की घोषणा के बाद हुईं, इसलिए वे उससे पहले का कदम नहीं हो सकतीं।" },
+                "",
+                { "en": "The 1977 election came two years after the Emergency.", "hi": "1977 का चुनाव आपातकाल के दो साल बाद हुआ।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Move the court card to the last box and press Check. Would the story still make sense? Explain why not.", "hi": "अदालत वाला कार्ड आख़िरी खाने में रखकर जाँचो दबाओ। क्या कहानी फिर भी सही लगती है? क्यों नहीं, समझाओ।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch06-lessons-sort",
+      "topic": "6.5",
+      "template": "sort",
+      "title": { "en": "Undemocratic step or democratic check?", "hi": "अलोकतांत्रिक कदम या लोकतांत्रिक अंकुश?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "undem", "label": { "en": "Undemocratic steps", "hi": "अलोकतांत्रिक कदम" } },
+          { "id": "dem", "label": { "en": "Democratic checks", "hi": "लोकतांत्रिक अंकुश" } }
+        ],
+        "cards": [
+          { "id": "censor", "text": { "en": "Newspapers had to get approval before printing", "hi": "छपने से पहले अख़बारों को मंज़ूरी लेनी पड़ती थी" }, "bin": "undem", "why": { "en": "Press censorship took away the free press that democracy needs.", "hi": "प्रेस सेंसरशिप ने वह स्वतंत्र प्रेस छीन लिया जिसकी लोकतंत्र को ज़रूरत है।" } },
+          { "id": "detain", "text": { "en": "Opposition leaders were held without trial", "hi": "विपक्षी नेताओं को बिना मुकदमे के हिरासत में रखा गया" }, "bin": "undem", "why": { "en": "Holding people without trial goes against the rule of law.", "hi": "बिना मुकदमे के हिरासत में रखना क़ानून के राज के ख़िलाफ़ है।" } },
+          { "id": "vote1977", "text": { "en": "Voters defeated the government in the 1977 election", "hi": "1977 के चुनाव में मतदाताओं ने सरकार हराई" }, "bin": "dem", "why": { "en": "Elections are the final check: voters can remove a government that abused power.", "hi": "चुनाव अंतिम अंकुश है: मतदाता उस सरकार को हटा सकते हैं जिसने सत्ता का दुरुपयोग किया।" } },
+          { "id": "shah", "text": { "en": "A commission looked into the abuses of the Emergency", "hi": "एक आयोग ने आपातकाल की ज़्यादतियों की जाँच की" }, "bin": "dem", "why": { "en": "An inquiry into abuses shows that institutions could hold power to account.", "hi": "ज़्यादतियों की जाँच दिखाती है कि संस्थाएँ सत्ता को जवाबदेह ठहरा सकती हैं।" } },
+          { "id": "amend44", "text": { "en": "An amendment restored safeguards for civil liberties", "hi": "एक संशोधन ने नागरिक स्वतंत्रता के सुरक्षा उपाय लौटाए" }, "bin": "dem", "why": { "en": "Later changes made it harder to misuse emergency powers.", "hi": "बाद के बदलावों से आपातकाल की शक्तियों का दुरुपयोग कठिन हुआ।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these was a democratic check after the Emergency?", "hi": "आपातकाल के बाद इनमें से कौन-सा लोकतांत्रिक अंकुश था?" },
+          "options": [
+            { "id": "censor", "en": "Press censorship", "hi": "प्रेस सेंसरशिप" },
+            { "id": "vote1977", "en": "Voters defeating the government in 1977", "hi": "1977 में मतदाताओं का सरकार हराना" },
+            { "id": "detain", "en": "Holding leaders without trial", "hi": "नेताओं को बिना मुकदमे के रखना" }
+          ],
+          "answer": "vote1977"
+        },
+        { "kind": "do", "target": "bin:undem", "expect": "placed:censor", "say": { "en": "Tap the censorship card, then the Undemocratic steps box.", "hi": "सेंसरशिप वाला कार्ड छुओ, फिर अलोकतांत्रिक कदम वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:undem", "expect": "placed:detain", "say": { "en": "Tap the detention card, then the Undemocratic steps box.", "hi": "हिरासत वाला कार्ड छुओ, फिर अलोकतांत्रिक कदम वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:dem", "expect": "placed:vote1977", "say": { "en": "Tap the 1977 vote card, then the Democratic checks box.", "hi": "1977 के मतदान वाला कार्ड छुओ, फिर लोकतांत्रिक अंकुश वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:dem", "expect": "placed:shah", "say": { "en": "Tap the inquiry card, then the Democratic checks box.", "hi": "जाँच वाला कार्ड छुओ, फिर लोकतांत्रिक अंकुश वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:dem", "expect": "placed:amend44", "say": { "en": "Tap the amendment card, then the Democratic checks box.", "hi": "संशोधन वाला कार्ड छुओ, फिर लोकतांत्रिक अंकुश वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Press Check to see the sorting.", "hi": "छँटाई देखने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Emergency suspended many civil liberties. Press censorship and detention without trial were undemocratic steps. Democracy recovered through the 1977 election, an inquiry into the abuses, and later amendments that protected civil liberties.", "hi": "आपातकाल ने कई नागरिक स्वतंत्रताएँ रोक दीं। प्रेस सेंसरशिप और बिना मुकदमे की हिरासत अलोकतांत्रिक कदम थे। लोकतंत्र 1977 के चुनाव, ज़्यादतियों की जाँच और नागरिक स्वतंत्रता बचाने वाले बाद के संशोधनों से लौटा।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these was an undemocratic step?", "hi": "इनमें से कौन-सा अलोकतांत्रिक कदम था?" },
+              "options": [
+                { "en": "Press censorship", "hi": "प्रेस सेंसरशिप" },
+                { "en": "A commission of inquiry", "hi": "जाँच आयोग" },
+                { "en": "A constitutional safeguard", "hi": "संवैधानिक सुरक्षा उपाय" }
+              ],
+              "answer": 0,
+              "why": { "en": "Press censorship limited the free press and was an undemocratic step.", "hi": "प्रेस सेंसरशिप ने स्वतंत्र प्रेस को सीमित किया, इसलिए यह अलोकतांत्रिक कदम था।" },
+              "wrong": [
+                "",
+                { "en": "An inquiry was a democratic check, not an undemocratic step.", "hi": "जाँच एक लोकतांत्रिक अंकुश थी, अलोकतांत्रिक कदम नहीं।" },
+                { "en": "Safeguards restore liberties, so they are democratic.", "hi": "सुरक्षा उपाय स्वतंत्रता लौटाते हैं, इसलिए वे लोकतांत्रिक हैं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick one check and write one way a citizen can help it work today.", "hi": "एक अंकुश चुनो और लिखो कि आज नागरिक उसे कैसे कारगर बनाने में मदद कर सकता है।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "OBJ", "topic": "6.4", "use": "A symbol of limits on freedom during the Emergency", "shows": "A closed brass padlock on a plain wooden hasp, cut-out on a transparent background", "view": "Three-quarter view, object fills about 80 percent", "right": "Real metal wear, plain wood, soft shadow", "avoid": "Readable marks, keys, labels" },
+    { "n": 2, "kind": "SCN", "topic": "6.3", "use": "Opening picture of the 1974 railway strike", "shows": "A railway platform with no train at early morning, the rails empty and quiet, no people in frame", "view": "Eye level, wide 16:9, soft morning light", "right": "Real platform, steel rails, true early light", "avoid": "Readable station signs, crowds, police" },
+    { "n": 3, "kind": "DIA", "topic": "6.1", "use": "Blank timeline for the road to the Emergency", "shows": "A horizontal white strip with four evenly spaced marks, ready for dates and labels added by the app", "view": "Flat, 16:9, straight-on", "right": "Clean line, round marks, no words", "avoid": "Any text" },
+    { "n": 4, "kind": "SEQ", "topic": "6.4", "use": "Newspapers under control, frame by frame", "shows": "Three frames of a folded newspaper stack: uncovered, covered with a plain cloth, then tied with string, same camera position", "view": "Same frame size and angle, soft daylight, numbered files", "right": "Real paper and cloth texture, true light", "avoid": "Readable headlines, logos" },
+    { "n": 5, "kind": "SCN", "topic": "6.5", "use": "Picture of the courts that checked power", "shows": "An empty courtroom with wooden benches and a window of soft light, no people in frame", "view": "Eye level, wide 16:9", "right": "Real wood, true light, calm space", "avoid": "Readable plaques, people in close-up" }
+  ]
+}

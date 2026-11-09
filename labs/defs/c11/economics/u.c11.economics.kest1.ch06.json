@@ -1,0 +1,850 @@
+{
+ "chapter_key": "u.c11.economics.kest1.ch06",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Correlation",
+ "source": "https://ncert.nic.in/textbook/pdf/kest106.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "Explains what it means for two variables to move together; best read."
+  },
+  {
+   "n": "2",
+   "title": "Types of relationship: positive, negative, none; correlation and causation",
+   "labs": [
+    "c11-economics-kest1-ch06-causation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "Techniques: scatter diagram, Karl Pearson's coefficient, Spearman's rank correlation",
+   "labs": [
+    "c11-economics-kest1-ch06-positive",
+    "c11-economics-kest1-ch06-negative",
+    "c11-economics-kest1-ch06-spearman"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary best read."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-kest1-ch06-positive",
+   "topic": "3",
+   "template": "data",
+   "title": {
+    "en": "Study hours and marks",
+    "hi": "पढ़ाई के घंटे और अंक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "scatter",
+    "ask": "correlation",
+    "show": 5,
+    "title": {
+     "en": "Hours of study a day and marks of eight students (sample)",
+     "hi": "आठ विद्यार्थियों की रोज़ की पढ़ाई के घंटे और अंक (नमूना)"
+    },
+    "xlabel": {
+     "en": "Hours of study a day",
+     "hi": "रोज़ पढ़ाई के घंटे"
+    },
+    "ylabel": {
+     "en": "Marks out of 100",
+     "hi": "100 में से अंक"
+    },
+    "data": {
+     "rows": [
+      [
+       1,
+       35
+      ],
+      [
+       2,
+       40
+      ],
+      [
+       3,
+       48
+      ],
+      [
+       4,
+       50
+      ],
+      [
+       5,
+       58
+      ],
+      [
+       6,
+       62
+      ],
+      [
+       7,
+       70
+      ],
+      [
+       8,
+       75
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As study hours go up, what do you expect to happen to marks?",
+      "hi": "पढ़ाई के घंटे बढ़ने पर अंकों का क्या होगा, तुम्हारा अनुमान?"
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "Marks tend to go up",
+       "hi": "अंक बढ़ने की प्रवृत्ति"
+      },
+      {
+       "id": "down",
+       "en": "Marks tend to go down",
+       "hi": "अंक घटने की प्रवृत्ति"
+      },
+      {
+       "id": "none",
+       "en": "No pattern",
+       "hi": "कोई ढाँचा नहीं"
+      }
+     ],
+     "answer": "up"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the 6th student.",
+      "hi": "\"जोड़ो\" पर टैप करो और छठे विद्यार्थी को दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the 7th student.",
+      "hi": "\"जोड़ो\" पर टैप करो और सातवें विद्यार्थी को दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the 8th student.",
+      "hi": "\"जोड़ो\" पर टैप करो और आठवें विद्यार्थी को दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the dots and choose the kind of correlation below.",
+      "hi": "बिंदुओं को देखो और नीचे सहसंबंध का प्रकार चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A scatter diagram plots each pair of values as a dot. Here the dots rise from left to right, close to a straight line, so the correlation is positive and strong: more study goes with higher marks. Karl Pearson's coefficient r measures how close the dots are to a straight line, from −1 to +1. Here r is close to +1. The numbers are a sample.",
+      "hi": "प्रकीर्ण आरेख हर मान-जोड़ी को एक बिंदु से दिखाता है। यहाँ बिंदु बाएँ से दाएँ ऊपर उठते हैं, एक सीधी रेखा के पास, इसलिए सहसंबंध धनात्मक और मज़बूत है: ज़्यादा पढ़ाई के साथ ज़्यादा अंक आते हैं। कार्ल पियर्सन का गुणांक r मापता है कि बिंदु सीधी रेखा के कितने पास हैं, −1 से +1 तक। यहाँ r +1 के पास है। अंक नमूने के हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does r = +1 mean?",
+        "hi": "r = +1 का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Perfect positive correlation: all dots on a rising straight line",
+         "hi": "पूर्ण धनात्मक सहसंबंध: सारे बिंदु ऊपर उठती सीधी रेखा पर"
+        },
+        {
+         "en": "No correlation",
+         "hi": "कोई सहसंबंध नहीं"
+        },
+        {
+         "en": "Perfect negative correlation",
+         "hi": "पूर्ण ऋणात्मक सहसंबंध"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "r = +1 is the strongest possible positive linear relation.",
+        "hi": "r = +1 सबसे मज़बूत संभव धनात्मक रैखिक संबंध है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No correlation is r = 0.",
+         "hi": "कोई सहसंबंध न होना r = 0 है।"
+        },
+        {
+         "en": "Perfect negative correlation is r = −1.",
+         "hi": "पूर्ण ऋणात्मक सहसंबंध r = −1 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag one dot far down, like a student who studied a lot but was ill on the exam day. How does the correlation change?",
+      "hi": "एक बिंदु बहुत नीचे खींचो, जैसे कोई विद्यार्थी जिसने बहुत पढ़ा पर परीक्षा के दिन बीमार था। सहसंबंध कैसे बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch06-negative",
+   "topic": "3",
+   "template": "data",
+   "title": {
+    "en": "Price and quantity bought",
+    "hi": "दाम और ख़रीदी गई मात्रा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "scatter",
+    "ask": "correlation",
+    "show": 4,
+    "title": {
+     "en": "Price of tomatoes and kg a family buys each week (sample)",
+     "hi": "टमाटर का दाम और परिवार की साप्ताहिक ख़रीद (नमूना)"
+    },
+    "xlabel": {
+     "en": "Price (₹ per kg)",
+     "hi": "दाम (₹ प्रति किलो)"
+    },
+    "ylabel": {
+     "en": "Kg bought a week",
+     "hi": "प्रति सप्ताह किलो"
+    },
+    "data": {
+     "rows": [
+      [
+       20,
+       5
+      ],
+      [
+       30,
+       4.5
+      ],
+      [
+       40,
+       3.5
+      ],
+      [
+       50,
+       3
+      ],
+      [
+       60,
+       2.5
+      ],
+      [
+       70,
+       2
+      ],
+      [
+       80,
+       1.5
+      ],
+      [
+       90,
+       1
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When the price of tomatoes rises, what usually happens to how much a family buys?",
+      "hi": "जब टमाटर का दाम बढ़ता है, तो परिवार की ख़रीद का आमतौर पर क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "It falls",
+       "hi": "घटती है"
+      },
+      {
+       "id": "up",
+       "en": "It rises",
+       "hi": "बढ़ती है"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "उतनी ही रहती है"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the week when the price was ₹60.",
+      "hi": "\"जोड़ो\" पर टैप करो और ₹60 दाम वाला सप्ताह दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" for ₹70.",
+      "hi": "₹70 के लिए \"जोड़ो\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" for ₹80.",
+      "hi": "₹80 के लिए \"जोड़ो\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" for ₹90.",
+      "hi": "₹90 के लिए \"जोड़ो\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the kind of correlation the dots show.",
+      "hi": "बिंदु जो सहसंबंध दिखाते हैं उसका प्रकार चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Here the dots fall from left to right: as the price rises, the family buys less. That is negative correlation, and r is close to −1. Correlation measures how strongly two variables move together, but it does not by itself prove that one causes the other. In this case economic reasoning, the law of demand, explains the link.",
+      "hi": "यहाँ बिंदु बाएँ से दाएँ नीचे गिरते हैं: दाम बढ़ने पर परिवार कम ख़रीदता है। यह ऋणात्मक सहसंबंध है, और r −1 के पास है। सहसंबंध मापता है कि दो चर कितनी मज़बूती से साथ चलते हैं, पर अपने आप यह साबित नहीं करता कि एक दूसरे का कारण है। इस उदाहरण में आर्थिक तर्क, माँग का नियम, संबंध समझाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which pair is likely to show negative correlation?",
+        "hi": "किस जोड़ी में ऋणात्मक सहसंबंध होने की संभावना है?"
+       },
+       "options": [
+        {
+         "en": "Hours of TV a day and marks in exams",
+         "hi": "रोज़ टीवी देखने के घंटे और परीक्षा के अंक"
+        },
+        {
+         "en": "Height and weight of children",
+         "hi": "बच्चों की लंबाई और वज़न"
+        },
+        {
+         "en": "Income and spending of families",
+         "hi": "परिवारों की आय और ख़र्च"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More TV time often goes with less study time and lower marks.",
+        "hi": "ज़्यादा टीवी अक्सर कम पढ़ाई और कम अंकों के साथ जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Taller children usually weigh more: positive.",
+         "hi": "लंबे बच्चे आमतौर पर ज़्यादा वज़न के होते हैं: धनात्मक।"
+        },
+        {
+         "en": "Families with more income usually spend more: positive.",
+         "hi": "ज़्यादा आय वाले परिवार आमतौर पर ज़्यादा ख़र्च करते हैं: धनात्मक।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the dots into a random cloud. Which kind of correlation is it now?",
+      "hi": "बिंदुओं को खींचकर बेतरतीब बादल बनाओ। अब कौन-सा सहसंबंध है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch06-causation",
+   "topic": "2",
+   "template": "scenario",
+   "title": {
+    "en": "Correlation is not causation",
+    "hi": "सहसंबंध कारण नहीं है"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "setting": "newsroom",
+    "role": {
+     "en": "Science reporter",
+     "hi": "विज्ञान रिपोर्टर"
+    },
+    "scenes": [
+     {
+      "id": "ice",
+      "text": {
+       "en": "Data show that on days when more ice cream is sold, more people get sunburn. A headline says: \"Ice cream causes sunburn!\" What do you say?",
+       "hi": "आँकड़े दिखाते हैं कि जिन दिनों ज़्यादा आइसक्रीम बिकती है, उन दिनों ज़्यादा लोगों को धूप से जलन होती है। एक शीर्षक कहता है: \"आइसक्रीम से धूप-जलन होती है!\" तुम क्या कहोगे?"
+      },
+      "choices": [
+       {
+        "id": "third",
+        "text": {
+         "en": "A third factor, hot sunny weather, causes both",
+         "hi": "एक तीसरा कारक, गर्म धूप वाला मौसम, दोनों का कारण है"
+        },
+        "next": "chance",
+        "feedback": {
+         "en": "Right. Both rise in hot weather. The correlation is real, but ice cream does not cause sunburn.",
+         "hi": "सही। दोनों गर्म मौसम में बढ़ते हैं। सहसंबंध सच है, पर आइसक्रीम धूप-जलन का कारण नहीं है।"
+        },
+        "good": true
+       },
+       {
+        "id": "cause",
+        "text": {
+         "en": "The headline is right",
+         "hi": "शीर्षक सही है"
+        },
+        "next": "chance",
+        "feedback": {
+         "en": "Moving together does not prove that one causes the other.",
+         "hi": "साथ चलने से यह साबित नहीं होता कि एक दूसरे का कारण है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "chance",
+      "text": {
+       "en": "Another story: for six years, the number of films released and the number of mangoes grown both went up. Is there a causal link?",
+       "hi": "दूसरी ख़बर: छह सालों तक रिलीज़ हुई फ़िल्मों की संख्या और उगे आमों की संख्या दोनों बढ़ीं। क्या कोई कारण संबंध है?"
+      },
+      "choices": [
+       {
+        "id": "spurious",
+        "text": {
+         "en": "Probably chance: a spurious correlation",
+         "hi": "शायद संयोग: एक आभासी सहसंबंध"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Two things can rise together by chance with no real link.",
+         "hi": "हाँ। दो चीज़ें बिना किसी असली संबंध के संयोग से साथ बढ़ सकती हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "films",
+        "text": {
+         "en": "Films make mangoes grow",
+         "hi": "फ़िल्मों से आम उगते हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "There is no sensible reason for such a link.",
+         "hi": "ऐसे संबंध का कोई तार्किक कारण नहीं है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ice cream sales and sunburn cases rise together. Does eating ice cream cause sunburn?",
+      "hi": "आइसक्रीम की बिक्री और धूप-जलन के मामले साथ बढ़ते हैं। क्या आइसक्रीम खाने से धूप-जलन होती है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, hot weather causes both",
+       "hi": "नहीं, गर्म मौसम दोनों का कारण है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:ice:third",
+     "expect": "chose:third",
+     "say": {
+      "en": "Tap your reply to the headline.",
+      "hi": "शीर्षक को अपना जवाब टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Correlation measures how two variables move together: positively, negatively or not at all. It does not tell us why. Two things may move together because a third factor drives both, or simply by chance. To claim a cause, we need reasoning and other evidence, not just a correlation coefficient.",
+      "hi": "सहसंबंध मापता है कि दो चर कैसे साथ चलते हैं: धनात्मक, ऋणात्मक या बिल्कुल नहीं। यह नहीं बताता कि क्यों। दो चीज़ें इसलिए साथ चल सकती हैं कि कोई तीसरा कारक दोनों को चलाता है, या बस संयोग से। कारण का दावा करने के लिए हमें तर्क और दूसरे प्रमाण चाहिए, केवल सहसंबंध गुणांक नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement is true?",
+        "hi": "कौन-सा कथन सही है?"
+       },
+       "options": [
+        {
+         "en": "A high correlation does not by itself prove cause and effect",
+         "hi": "ऊँचा सहसंबंध अपने आप कारण और प्रभाव साबित नहीं करता"
+        },
+        {
+         "en": "If r is high, one variable must cause the other",
+         "hi": "अगर r ऊँचा है, तो एक चर दूसरे का कारण होना चाहिए"
+        },
+        {
+         "en": "Correlation always means nothing",
+         "hi": "सहसंबंध का कभी कोई अर्थ नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Correlation shows association; causation needs reasoning and evidence.",
+        "hi": "सहसंबंध साहचर्य दिखाता है; कारणता के लिए तर्क और प्रमाण चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A third factor or chance can produce a high r.",
+         "hi": "कोई तीसरा कारक या संयोग भी ऊँचा r दे सकता है।"
+        },
+        {
+         "en": "Correlation is useful; it just cannot show the cause alone.",
+         "hi": "सहसंबंध उपयोगी है; बस अकेले कारण नहीं दिखा सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Read the mango story in the next scene. Then think of one pair of things that move together in your town and ask: what might cause both?",
+      "hi": "अगले दृश्य में आम वाली ख़बर पढ़ो। फिर अपने शहर की दो चीज़ें सोचो जो साथ चलती हैं और पूछो: दोनों का कारण क्या हो सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch06-spearman",
+   "topic": "3",
+   "template": "scenario",
+   "title": {
+    "en": "Do two judges agree? Rank correlation",
+    "hi": "क्या दोनों निर्णायक सहमत हैं? कोटि सहसंबंध"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "setting": "quiz contest",
+    "role": {
+     "en": "Scorer at an inter-school contest",
+     "hi": "अंतर-विद्यालय प्रतियोगिता का अंक-लेखक"
+    },
+    "scenes": [
+     {
+      "id": "d",
+      "text": {
+       "en": "Two judges ranked five teams. Judge 1: A=1, B=2, C=3, D=4, E=5. Judge 2: A=2, B=1, C=3, D=5, E=4. The rank differences d are −1, 1, 0, −1, 1. What is Σd²?",
+       "hi": "दो निर्णायकों ने पाँच टीमों को कोटि दी। निर्णायक 1: A=1, B=2, C=3, D=4, E=5। निर्णायक 2: A=2, B=1, C=3, D=5, E=4। कोटि अंतर d हैं −1, 1, 0, −1, 1। Σd² क्या है?"
+      },
+      "choices": [
+       {
+        "id": "d4",
+        "text": {
+         "en": "4",
+         "hi": "4"
+        },
+        "next": "rs",
+        "feedback": {
+         "en": "Yes: 1 + 1 + 0 + 1 + 1 = 4. Squaring removes the minus signs.",
+         "hi": "हाँ: 1 + 1 + 0 + 1 + 1 = 4। वर्ग करने से ऋण चिह्न हट जाते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "d0",
+        "text": {
+         "en": "0",
+         "hi": "0"
+        },
+        "next": "rs",
+        "feedback": {
+         "en": "Adding d without squaring gives 0; you must square each d first.",
+         "hi": "बिना वर्ग किए d जोड़ने पर 0 आता है; पहले हर d का वर्ग करो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "rs",
+      "text": {
+       "en": "Spearman's formula: rs = 1 − 6Σd² ÷ (n³ − n). With n = 5 and Σd² = 4, what is rs?",
+       "hi": "स्पीयरमैन का सूत्र: rs = 1 − 6Σd² ÷ (n³ − n)। n = 5 और Σd² = 4 पर rs क्या है?"
+      },
+      "choices": [
+       {
+        "id": "r08",
+        "text": {
+         "en": "0.8",
+         "hi": "0.8"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right: 1 − 24 ÷ 120 = 1 − 0.2 = 0.8. The judges agree strongly.",
+         "hi": "सही: 1 − 24 ÷ 120 = 1 − 0.2 = 0.8। निर्णायक काफ़ी सहमत हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "r02",
+        "text": {
+         "en": "0.2",
+         "hi": "0.2"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "0.2 is 6Σd² ÷ (n³ − n); remember to subtract it from 1.",
+         "hi": "0.2, 6Σd² ÷ (n³ − n) है; इसे 1 में से घटाना याद रखो।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If two judges give exactly the same ranks to every team, what is the rank correlation?",
+      "hi": "अगर दोनों निर्णायक हर टीम को ठीक एक जैसी कोटि दें, तो कोटि सहसंबंध क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "+1",
+       "hi": "+1 (पूर्ण सहमति)"
+      },
+      {
+       "id": "zero",
+       "en": "0",
+       "hi": "0 (कोई संबंध नहीं)"
+      },
+      {
+       "id": "minus",
+       "en": "−1",
+       "hi": "−1 (पूर्ण असहमति)"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "choice:d:d4",
+     "expect": "chose:d4",
+     "say": {
+      "en": "Square each d, add them and tap your answer for Σd².",
+      "hi": "हर d का वर्ग करो, जोड़ो और Σd² के लिए अपना उत्तर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Spearman's rank correlation is used when values are ranks, or when exact measurement is hard, such as judging beauty or honesty. Find d, the difference between the two ranks of each item, square it, add, and use rs = 1 − 6Σd² ÷ (n³ − n). It lies between −1 and +1. Here rs = 0.8, a high level of agreement between the judges.",
+      "hi": "स्पीयरमैन का कोटि सहसंबंध तब उपयोग होता है जब मान कोटियाँ हों, या जब ठीक माप कठिन हो, जैसे सुंदरता या ईमानदारी का आकलन। हर मद की दोनों कोटियों का अंतर d निकालो, उसका वर्ग करो, जोड़ो, और rs = 1 − 6Σd² ÷ (n³ − n) लगाओ। यह −1 और +1 के बीच होता है। यहाँ rs = 0.8 है, यानी निर्णायकों में ऊँची सहमति।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When is rank correlation especially useful?",
+        "hi": "कोटि सहसंबंध ख़ास तौर पर कब उपयोगी है?"
+       },
+       "options": [
+        {
+         "en": "When qualities like honesty can be ranked but not measured",
+         "hi": "जब ईमानदारी जैसे गुणों को कोटि दी जा सके पर मापा न जा सके"
+        },
+        {
+         "en": "Only when data are in rupees",
+         "hi": "केवल जब आँकड़े रुपयों में हों"
+        },
+        {
+         "en": "When there is only one variable",
+         "hi": "जब केवल एक चर हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ranks let us compare qualities that have no units.",
+        "hi": "कोटियाँ उन गुणों की तुलना करने देती हैं जिनकी कोई इकाई नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rupee values can be measured directly; ranks are for hard-to-measure things.",
+         "hi": "रुपयों के मान सीधे मापे जा सकते हैं; कोटियाँ कठिन से मापी जाने वाली चीज़ों के लिए हैं।"
+        },
+        {
+         "en": "Correlation always needs two variables.",
+         "hi": "सहसंबंध के लिए हमेशा दो चर चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If the two judges ranked in exactly opposite order, what would rs be?",
+        "hi": "अगर दोनों निर्णायक ठीक उलटे क्रम में कोटि दें, तो rs क्या होगा?"
+       },
+       "options": [
+        "−1",
+        "0",
+        "+1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Complete disagreement gives the lowest value, −1.",
+        "hi": "पूरी असहमति सबसे कम मान, −1, देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0 means no relation, not opposite order.",
+         "hi": "0 का अर्थ है कोई संबंध नहीं, उलटा क्रम नहीं।"
+        },
+        {
+         "en": "+1 means exactly the same order.",
+         "hi": "+1 का अर्थ है ठीक एक जैसा क्रम।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Work out rs in the second scene. Then rank five fruits by taste with a friend and find your own rs.",
+      "hi": "दूसरे दृश्य में rs निकालो। फिर एक दोस्त के साथ पाँच फलों को स्वाद के अनुसार कोटि दो और अपना rs निकालो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2",
+   "use": "Hook of the chapter: a hot summer day",
+   "shows": "An ice-cream cart on a sunny Indian street with people holding umbrellas against the sun, seen from behind",
+   "view": "Eye level, harsh noon light, 16:9",
+   "right": "Strong sun and shadows; plain cart without brand",
+   "avoid": "Logos, faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Price and quantity",
+   "shows": "Two tomato baskets at a stall: one heaped full with a low hand-written price board (blurred), one with a few tomatoes",
+   "view": "Two-panel layout, same stall, 16:9",
+   "right": "Real tomatoes; price boards blurred",
+   "avoid": "Readable prices, faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Study and marks",
+   "shows": "A student's desk at night with books, a lamp and a timetable sheet (unreadable)",
+   "view": "Three-quarter top view, warm lamp light, 4:3",
+   "right": "Real school books, nothing readable",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Judges ranking teams",
+   "shows": "Two judges' hands writing on score sheets at a school contest table, a trophy in the background",
+   "view": "Close view of hands and sheets, 16:9",
+   "right": "Sheets unreadable",
+   "avoid": "Faces, school names"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "3",
+   "use": "Base for scatter diagrams",
+   "shows": "A plain empty pair of x and y axes with light grid lines on white",
+   "view": "Flat, square",
+   "right": "Clean axes and grid, no numbers",
+   "avoid": "Labels or dots baked in"
+  }
+ ]
+}

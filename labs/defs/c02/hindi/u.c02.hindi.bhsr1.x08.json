@@ -1,0 +1,391 @@
+{
+ "chapter_key": "u.c02.hindi.bhsr1.x08",
+ "class": 2,
+ "subject_id": "hindi",
+ "title": "Mischievous Diwakar (नटखट दिवाकर)",
+ "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Reading: Diwakar and Meena's number rhymes",
+   "labs": [
+    "c02-hindi-bhsr1-x08-number-rhymes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Reading: the Sunday kulfi",
+   "labs": [
+    "c02-hindi-bhsr1-x08-sunday-kulfi"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c02-hindi-bhsr1-x08-number-rhymes",
+   "topic": "8.1",
+   "template": "match",
+   "title": {
+    "en": "Numbers and the words that rhyme",
+    "hi": "संख्याएँ और उनकी तुक वाले शब्द"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "teen",
+      "left": {
+       "en": "Teen (three)",
+       "hi": "तीन"
+      },
+      "right": {
+       "en": "बीन",
+       "hi": "बीन"
+      },
+      "why": {
+       "en": "तीन and बीन end with 'ईन'.",
+       "hi": "तीन और बीन का अंत 'ईन' होता है।"
+      }
+     },
+     {
+      "id": "saat",
+      "left": {
+       "en": "Saat (seven)",
+       "hi": "सात"
+      },
+      "right": {
+       "en": "दवात",
+       "hi": "दवात"
+      },
+      "why": {
+       "en": "सात and दवात end with 'आत'.",
+       "hi": "सात और दवात का अंत 'आत' होता है।"
+      }
+     },
+     {
+      "id": "chaar",
+      "left": {
+       "en": "Chaar (four)",
+       "hi": "चार"
+      },
+      "right": {
+       "en": "बार",
+       "hi": "बार"
+      },
+      "why": {
+       "en": "चार and बार end with 'आर'.",
+       "hi": "चार और बार का अंत 'आर' होता है।"
+      }
+     },
+     {
+      "id": "paanch",
+      "left": {
+       "en": "Paanch (five)",
+       "hi": "पाँच"
+      },
+      "right": {
+       "en": "नाच",
+       "hi": "नाच"
+      },
+      "why": {
+       "en": "पाँच and नाच end with 'आँच / आच'.",
+       "hi": "पाँच और नाच का अंत एक जैसा सुनाई देता है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:teen",
+     "expect": "matched:teen",
+     "say": {
+      "en": "Tap 'तीन' and the word that rhymes with it.",
+      "hi": "'तीन' छुओ और उससे तुक मिलाने वाला शब्द छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What rhymes with सात?",
+      "hi": "'सात' से कौन-सा शब्द मिलता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "दवात",
+       "hi": "दवात"
+      },
+      {
+       "id": "b",
+       "en": "बीन",
+       "hi": "बीन"
+      },
+      {
+       "id": "c",
+       "en": "चार",
+       "hi": "चार"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all pairs and press Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Diwakar and Meena make little rhymes while they learn to add. Rhymes help us remember: three and ...?, seven and ...?. Learning numbers can be a game.",
+      "hi": "दिवाकर और मीना जोड़ना सीखते हुए छोटी-छोटी तुकें बनाते हैं। तुक से याद रखना आसान होता है। गिनती भी खेल बन जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Diwakar says 3 + 4. What is the answer?",
+        "hi": "दिवाकर कहता है 3 + 4। उत्तर क्या है?"
+       },
+       "options": [
+        {
+         "en": "Seven",
+         "hi": "सात"
+        },
+        {
+         "en": "Six",
+         "hi": "छह"
+        },
+        {
+         "en": "Eight",
+         "hi": "आठ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Count 3, then 4 more: 4, 5, 6, 7.",
+        "hi": "3 से शुरू करके 4 और गिनो: 4, 5, 6, 7।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 is one short of the right answer.",
+         "hi": "6 सही उत्तर से एक कम है।"
+        },
+        {
+         "en": "8 is one more than the right answer.",
+         "hi": "8 सही उत्तर से एक ज़्यादा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a rhyme for 'आठ' or 'नौ'. Say it with a clap.",
+      "hi": "'आठ' या 'नौ' के लिए कोई तुक बनाओ। ताली के साथ बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-hindi-bhsr1-x08-sunday-kulfi",
+   "topic": "8.2",
+   "template": "sequence",
+   "title": {
+    "en": "Kulfi on Sunday",
+    "hi": "इतवार की कुल्फ़ी"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "order",
+      "text": {
+       "en": "Dadaji orders a lot of milk for making kulfi.",
+       "hi": "दादाजी कुल्फ़ी बनाने के लिए बहुत-सा दूध मँगाते हैं।"
+      }
+     },
+     {
+      "id": "boil",
+      "text": {
+       "en": "At nine, Dadi puts the milk to boil.",
+       "hi": "नौ बजे दादी दूध को उबलने के लिए रखती हैं।"
+      }
+     },
+     {
+      "id": "stir",
+      "text": {
+       "en": "Mother and Chacha take turns to stir the milk.",
+       "hi": "माँ और चाचाजी बारी-बारी से दूध चलाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:order",
+     "expect": "placed:order",
+     "say": {
+      "en": "Place the card that happens first.",
+      "hi": "जो कार्ड पहले होता है, उसे रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who puts the milk to boil?",
+      "hi": "दूध उबलने के लिए कौन रखता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Dadi",
+       "hi": "दादी"
+      },
+      {
+       "id": "b",
+       "en": "Diwakar",
+       "hi": "दिवाकर"
+      },
+      {
+       "id": "c",
+       "en": "Meena",
+       "hi": "मीना"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all cards in order and press Check.",
+      "hi": "सारे कार्ड क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Kulfi starts with milk. The milk must be boiled and stirred again and again so that it does not stick to the pot. The whole family works together on a Sunday.",
+      "hi": "कुल्फ़ी की शुरुआत दूध से होती है। दूध को उबालकर बार-बार चलाना पड़ता है ताकि वह बर्तन में चिपके नहीं। इतवार को पूरा परिवार मिलकर काम करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the milk stirred?",
+        "hi": "दूध को क्यों चलाते हैं?"
+       },
+       "options": [
+        {
+         "en": "So that it does not stick",
+         "hi": "ताकि वह बर्तन में चिपके नहीं"
+        },
+        {
+         "en": "To make it cold",
+         "hi": "उसे ठंडा करने के लिए"
+        },
+        {
+         "en": "To change its colour",
+         "hi": "रंग बदलने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Stirring keeps the hot milk from sticking and burning.",
+        "hi": "चलाने से गर्म दूध नीचे चिपककर जलता नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hot milk cools slowly; stirring is not for making it cold.",
+         "hi": "गर्म दूध धीरे ठंडा होता है; चलाना उसके लिए नहीं है।"
+        },
+        {
+         "en": "Stirring does not change colour.",
+         "hi": "चलाने से रंग नहीं बदलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask an elder at home how kulfi or another sweet is made. Tell the class the steps.",
+      "hi": "घर में किसी बड़े से पूछो कि कुल्फ़ी या कोई मिठाई कैसे बनती है। कक्षा में चरण बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Brother and sister practising sums",
+   "shows": "A boy and an older girl on a floor mat with a slate and number cards",
+   "view": "Eye level, daylight",
+   "right": "Cards with digits 1 to 9; colourful",
+   "avoid": "Identifiable faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "Pen and inkpot",
+   "shows": "A reed pen with a small inkpot, cut-out",
+   "view": "Slight angle",
+   "right": "Black ink visible",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "8.2",
+   "use": "Pot of milk",
+   "shows": "A large steel pot of milk on a low flame, seen from above",
+   "view": "High angle",
+   "right": "Surface of milk with soft bubbles",
+   "avoid": "Open flame close to child"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "8.2",
+   "use": "Kulfi",
+   "shows": "Three kulfi sticks in a clay pot, cut-out",
+   "view": "Slight top angle",
+   "right": "Creamy cream colour with nuts",
+   "avoid": "Brand wraps"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.2",
+   "use": "Family stirring",
+   "shows": "Adult hands stirring milk with a long ladle in a courtyard kitchen",
+   "view": "Close, side view",
+   "right": "Steam rising; only hands visible",
+   "avoid": "Children near the heat"
+  }
+ ]
+}

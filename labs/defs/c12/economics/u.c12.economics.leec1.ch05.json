@@ -1,0 +1,1064 @@
+{
+ "chapter_key": "u.c12.economics.leec1.ch05",
+ "class": 12,
+ "subject_id": "economics",
+ "title": "Government Budget and the Economy",
+ "source": "https://ncert.nic.in/textbook/pdf/leec105.pdf",
+ "topics": [
+  {
+   "n": "5.1.1",
+   "title": "Government budget: meaning, objectives (allocation, redistribution, stabilisation)",
+   "labs": [
+    "c12-economics-leec1-ch05-functions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.1.2",
+   "title": "Classification of receipts and expenditure: revenue and capital",
+   "labs": [
+    "c12-economics-leec1-ch05-receipts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Balanced, surplus and deficit budget",
+   "labs": [
+    "c12-economics-leec1-ch05-balance"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2.1",
+   "title": "Measures of government deficit: revenue, fiscal and primary",
+   "labs": [
+    "c12-economics-leec1-ch05-deficits"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Government expenditure, taxes and income: the multipliers",
+   "labs": [
+    "c12-economics-leec1-ch05-multipliers"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-economics-leec1-ch05-functions",
+   "topic": "5.1.1",
+   "template": "sort",
+   "title": {
+    "en": "What is the budget for?",
+    "hi": "बजट किसलिए है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "alloc",
+      "label": {
+       "en": "Allocation",
+       "hi": "आवंटन"
+      }
+     },
+     {
+      "id": "dist",
+      "label": {
+       "en": "Redistribution",
+       "hi": "पुनर्वितरण"
+      }
+     },
+     {
+      "id": "stab",
+      "label": {
+       "en": "Stabilisation",
+       "hi": "स्थिरीकरण"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "b1",
+      "text": {
+       "en": "Building roads and street lights for all",
+       "hi": "सबके लिए सड़कें और सड़क की बत्तियाँ बनाना"
+      },
+      "bin": "alloc",
+      "why": {
+       "en": "Public goods that the market would not provide well are an allocation task.",
+       "hi": "जिन सार्वजनिक वस्तुओं को बाज़ार ठीक से नहीं देता, उनका प्रबंध आवंटन का काम है।"
+      }
+     },
+     {
+      "id": "b2",
+      "text": {
+       "en": "Running public parks and clean water supply",
+       "hi": "सार्वजनिक बाग़ और स्वच्छ पानी की आपूर्ति चलाना"
+      },
+      "bin": "alloc",
+      "why": {
+       "en": "Nobody can be kept out of public goods, so the State provides them.",
+       "hi": "सार्वजनिक वस्तुओं से किसी को रोका नहीं जा सकता, इसलिए राज्य उन्हें देता है।"
+      }
+     },
+     {
+      "id": "b3",
+      "text": {
+       "en": "Taxing high incomes more to fund free meals for the poor",
+       "hi": "ऊँची आय पर ज़्यादा कर लेकर ग़रीबों को मुफ़्त भोजन"
+      },
+      "bin": "dist",
+      "why": {
+       "en": "Moving income from the better-off to the poor is redistribution.",
+       "hi": "ज़्यादा संपन्न से ग़रीबों तक आय पहुँचाना पुनर्वितरण है।"
+      }
+     },
+     {
+      "id": "b4",
+      "text": {
+       "en": "Giving subsidised grain to poor families",
+       "hi": "ग़रीब परिवारों को रियायती अनाज देना"
+      },
+      "bin": "dist",
+      "why": {
+       "en": "A transfer that narrows differences in living standards.",
+       "hi": "एक अंतरण जो जीवन-स्तर का अंतर घटाता है।"
+      }
+     },
+     {
+      "id": "b5",
+      "text": {
+       "en": "Spending more when jobs are scarce",
+       "hi": "जब रोज़गार कम हो तब ख़र्च बढ़ाना"
+      },
+      "bin": "stab",
+      "why": {
+       "en": "Using the budget to steady the economy in a slump.",
+       "hi": "मंदी में अर्थव्यवस्था को थामने के लिए बजट का उपयोग।"
+      }
+     },
+     {
+      "id": "b6",
+      "text": {
+       "en": "Raising taxes when prices rise too fast",
+       "hi": "कीमतें बहुत तेज़ी से बढ़ें तो कर बढ़ाना"
+      },
+      "bin": "stab",
+      "why": {
+       "en": "Cooling demand when the economy overheats.",
+       "hi": "अर्थव्यवस्था गरम होने पर माँग ठंडी करना।"
+      }
+     },
+     {
+      "id": "b7",
+      "text": {
+       "en": "Funding a free public library for all",
+       "hi": "सबके लिए मुफ़्त सार्वजनिक पुस्तकालय का ख़र्च"
+      },
+      "bin": "alloc",
+      "why": {
+       "en": "A service everyone can use, provided by the State.",
+       "hi": "ऐसी सेवा जिसे सब इस्तेमाल कर सकते हैं और जो राज्य देता है।"
+      }
+     },
+     {
+      "id": "b8",
+      "text": {
+       "en": "Pensions for the elderly paid from taxes",
+       "hi": "करों से दी जाने वाली बुज़ुर्गों की पेंशन"
+      },
+      "bin": "dist",
+      "why": {
+       "en": "Taxes from the working are transferred to the elderly.",
+       "hi": "कमाने वालों के कर बुज़ुर्गों को अंतरित होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Using the budget to correct a slump or too-fast price rises is called...",
+      "hi": "मंदी या तेज़ी से बढ़ती कीमतों को ठीक करने में बजट का उपयोग कहलाता है..."
+     },
+     "options": [
+      {
+       "id": "stab",
+       "en": "stabilisation",
+       "hi": "स्थिरीकरण"
+      },
+      {
+       "id": "alloc",
+       "en": "allocation",
+       "hi": "आवंटन"
+      },
+      {
+       "id": "dist",
+       "en": "redistribution",
+       "hi": "पुनर्वितरण"
+      }
+     ],
+     "answer": "stab"
+    },
+    {
+     "kind": "do",
+     "target": "card:b1",
+     "expect": "placed:b1",
+     "say": {
+      "en": "Tap the first card, then its group.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The government budget has three jobs: to provide public goods (allocation), to reduce gaps in income and living standards (redistribution), and to keep the economy steady with output and prices stable (stabilisation).",
+      "hi": "सरकारी बजट के तीन काम हैं: सार्वजनिक वस्तुएँ देना (आवंटन), आय और जीवन-स्तर के अंतर घटाना (पुनर्वितरण), और उत्पादन-कीमतों को स्थिर रखकर अर्थव्यवस्था को थामे रखना (स्थिरीकरण)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the State provide public goods like street lights?",
+        "hi": "राज्य सड़क की बत्तियों जैसी सार्वजनिक वस्तुएँ क्यों देता है?"
+       },
+       "options": [
+        {
+         "en": "Nobody can be excluded, so private firms cannot easily charge",
+         "hi": "किसी को रोका नहीं जा सकता, इसलिए निजी फ़र्में आसानी से शुल्क नहीं ले सकतीं"
+        },
+        {
+         "en": "Private firms never build roads",
+         "hi": "निजी फ़र्में कभी सड़कें नहीं बनातीं"
+        },
+        {
+         "en": "It is cheaper to ignore them",
+         "hi": "उन्हें अनदेखा करना सस्ता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Everyone benefits whether they pay or not, so the market under-provides them.",
+        "hi": "सब फ़ायदा उठाते हैं चाहे भुगतान करें या न करें, इसलिए बाज़ार उन्हें कम देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Some roads are private, but public goods as a whole are not well supplied by the market.",
+         "hi": "कुछ सड़कें निजी हैं, पर कुल मिलाकर बाज़ार सार्वजनिक वस्तुएँ ठीक से नहीं देता।"
+        },
+        {
+         "en": "Ignoring them would hurt everyone.",
+         "hi": "उन्हें अनदेखा करने से सबको नुक़सान होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of the three jobs matters most in your town right now? Why?",
+      "hi": "तुम्हारे कस्बे में अभी इन तीन कामों में से कौन-सा सबसे ज़्यादा ज़रूरी है? क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch05-receipts",
+   "topic": "5.1.2",
+   "template": "sort",
+   "title": {
+    "en": "Where does it go in the budget?",
+    "hi": "बजट में यह कहाँ जाता है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "rr",
+      "label": {
+       "en": "Revenue receipt",
+       "hi": "राजस्व प्राप्ति"
+      }
+     },
+     {
+      "id": "cr",
+      "label": {
+       "en": "Capital receipt",
+       "hi": "पूँजीगत प्राप्ति"
+      }
+     },
+     {
+      "id": "re",
+      "label": {
+       "en": "Revenue expenditure",
+       "hi": "राजस्व व्यय"
+      }
+     },
+     {
+      "id": "ce",
+      "label": {
+       "en": "Capital expenditure",
+       "hi": "पूँजीगत व्यय"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "r1",
+      "text": {
+       "en": "Income tax collected",
+       "hi": "वसूला गया आयकर"
+      },
+      "bin": "rr",
+      "why": {
+       "en": "It does not create a liability or reduce an asset: a revenue receipt.",
+       "hi": "इससे न देनदारी बनती है न संपत्ति घटती है: राजस्व प्राप्ति।"
+      }
+     },
+     {
+      "id": "r2",
+      "text": {
+       "en": "Dividend from a public sector company",
+       "hi": "सार्वजनिक क्षेत्र की कंपनी से लाभांश"
+      },
+      "bin": "rr",
+      "why": {
+       "en": "A non-tax revenue receipt.",
+       "hi": "ग़ैर-कर राजस्व प्राप्ति।"
+      }
+     },
+     {
+      "id": "c1",
+      "text": {
+       "en": "A loan taken from the public",
+       "hi": "जनता से लिया गया ऋण"
+      },
+      "bin": "cr",
+      "why": {
+       "en": "It creates a liability, so it is a capital receipt.",
+       "hi": "इससे देनदारी बनती है, इसलिए पूँजीगत प्राप्ति।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Selling shares of a public company",
+       "hi": "सार्वजनिक कंपनी के शेयर बेचना"
+      },
+      "bin": "cr",
+      "why": {
+       "en": "Selling an asset (disinvestment) is a capital receipt.",
+       "hi": "संपत्ति बेचना (विनिवेश) पूँजीगत प्राप्ति है।"
+      }
+     },
+     {
+      "id": "e1",
+      "text": {
+       "en": "Salaries of government staff",
+       "hi": "सरकारी कर्मचारियों का वेतन"
+      },
+      "bin": "re",
+      "why": {
+       "en": "It does not create an asset: revenue expenditure.",
+       "hi": "इससे संपत्ति नहीं बनती: राजस्व व्यय।"
+      }
+     },
+     {
+      "id": "e2",
+      "text": {
+       "en": "Interest paid on past borrowing",
+       "hi": "पुराने उधार पर चुकाया ब्याज"
+      },
+      "bin": "re",
+      "why": {
+       "en": "Interest payments are revenue expenditure.",
+       "hi": "ब्याज भुगतान राजस्व व्यय हैं।"
+      }
+     },
+     {
+      "id": "x1",
+      "text": {
+       "en": "Building a new bridge",
+       "hi": "नया पुल बनाना"
+      },
+      "bin": "ce",
+      "why": {
+       "en": "It creates an asset: capital expenditure.",
+       "hi": "इससे संपत्ति बनती है: पूँजीगत व्यय।"
+      }
+     },
+     {
+      "id": "x2",
+      "text": {
+       "en": "Constructing a government school building",
+       "hi": "सरकारी स्कूल की इमारत बनाना"
+      },
+      "bin": "ce",
+      "why": {
+       "en": "A building is a lasting asset.",
+       "hi": "इमारत टिकाऊ संपत्ति है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A government borrows money from the public. Is this a revenue or a capital receipt?",
+      "hi": "सरकार जनता से उधार लेती है। यह राजस्व प्राप्ति है या पूँजीगत?"
+     },
+     "options": [
+      {
+       "id": "cap",
+       "en": "Capital receipt: it creates a debt",
+       "hi": "पूँजीगत प्राप्ति: इससे क़र्ज़ बनता है"
+      },
+      {
+       "id": "rev",
+       "en": "Revenue receipt",
+       "hi": "राजस्व प्राप्ति"
+      }
+     ],
+     "answer": "cap"
+    },
+    {
+     "kind": "do",
+     "target": "card:r1",
+     "expect": "placed:r1",
+     "say": {
+      "en": "Tap the first card, then its group.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Receipts that create no liability and reduce no asset, like taxes and fees, are revenue receipts. Receipts that create a liability, like borrowing, or reduce an asset, like selling shares, are capital receipts. On the spending side, expenditure that creates an asset is capital expenditure; the rest is revenue expenditure.",
+      "hi": "जिन प्राप्तियों से देनदारी नहीं बनती और संपत्ति नहीं घटती, जैसे कर और शुल्क, वे राजस्व प्राप्तियाँ हैं। जिनसे देनदारी बनती है, जैसे उधार, या संपत्ति घटती है, जैसे शेयर बेचना, वे पूँजीगत प्राप्तियाँ हैं। व्यय की ओर, जो ख़र्च संपत्ति बनाता है वह पूँजीगत व्यय है; बाक़ी राजस्व व्यय।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which test tells a capital receipt from a revenue receipt?",
+        "hi": "पूँजीगत प्राप्ति और राजस्व प्राप्ति में अंतर कौन-सी कसौटी बताती है?"
+       },
+       "options": [
+        {
+         "en": "Does it create a liability or reduce an asset?",
+         "hi": "क्या इससे देनदारी बनती है या संपत्ति घटती है?"
+        },
+        {
+         "en": "Is the amount large?",
+         "hi": "क्या रक़म बड़ी है?"
+        },
+        {
+         "en": "Is it paid in cash?",
+         "hi": "क्या भुगतान नकद है?"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If yes, it is a capital receipt; if no, it is a revenue receipt.",
+        "hi": "हाँ हो तो पूँजीगत प्राप्ति; नहीं हो तो राजस्व प्राप्ति।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size does not decide the type.",
+         "hi": "रक़म का आकार प्रकार तय नहीं करता।"
+        },
+        {
+         "en": "The mode of payment does not decide it either.",
+         "hi": "भुगतान का तरीक़ा भी इसे तय नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List one more item for each of the four groups from a newspaper budget story.",
+      "hi": "अख़बार की बजट-ख़बर से चारों समूहों के लिए एक-एक और मद लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch05-deficits",
+   "topic": "5.2.1",
+   "template": "economy",
+   "title": {
+    "en": "Three kinds of deficit",
+    "hi": "घाटे के तीन प्रकार"
+   },
+   "minutes": 9,
+   "level": "core",
+   "config": {
+    "mode": "budget",
+    "params": {}
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the government's total spending is more than its receipts (not counting borrowing), the gap is...",
+      "hi": "यदि सरकार का कुल ख़र्च उसकी प्राप्तियों (उधार छोड़कर) से ज़्यादा है, तो अंतर है..."
+     },
+     "options": [
+      {
+       "id": "fd",
+       "en": "the fiscal deficit, which must be borrowed",
+       "hi": "राजकोषीय घाटा, जिसे उधार लेना पड़ेगा"
+      },
+      {
+       "id": "rd",
+       "en": "the revenue deficit",
+       "hi": "राजस्व घाटा"
+      },
+      {
+       "id": "none",
+       "en": "a surplus",
+       "hi": "अधिशेष"
+      }
+     ],
+     "answer": "fd"
+    },
+    {
+     "kind": "do",
+     "target": "slider:tax",
+     "expect": "computed",
+     "say": {
+      "en": "Raise tax revenue. Watch the deficits shrink.",
+      "hi": "कर राजस्व बढ़ाओ। घाटों को घटते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:revexp",
+     "expect": "computed",
+     "say": {
+      "en": "Now lower revenue expenditure. Which deficit changes first?",
+      "hi": "अब राजस्व व्यय घटाओ। कौन-सा घाटा पहले बदलता है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:interest",
+     "expect": "computed",
+     "say": {
+      "en": "Raise the interest payments. Which deficit does this change, and which stays the same?",
+      "hi": "ब्याज भुगतान बढ़ाओ। इससे कौन-सा घाटा बदलता है और कौन-सा वही रहता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "With the starting numbers (₹ crore): revenue receipts are 2,000 + 300 = 2,300 and revenue expenditure is 2,800, so the revenue deficit is 500. Total expenditure is 2,800 + 700 = 3,500 and receipts excluding borrowing are 2,300 + 50 = 2,350, so the fiscal deficit is 1,150: the amount to be borrowed. The primary deficit is the fiscal deficit minus interest payments: 1,150 − 900 = 250. The numbers are an example.",
+      "hi": "शुरुआती अंकों से (₹ करोड़): राजस्व प्राप्तियाँ 2,000 + 300 = 2,300 और राजस्व व्यय 2,800, इसलिए राजस्व घाटा 500 है। कुल व्यय 2,800 + 700 = 3,500 और उधार छोड़कर प्राप्तियाँ 2,300 + 50 = 2,350, इसलिए राजकोषीय घाटा 1,150 है: उधार लेने की रक़म। प्राथमिक घाटा = राजकोषीय घाटा − ब्याज भुगतान: 1,150 − 900 = 250। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Revenue expenditure is ₹2,800 crore and revenue receipts are ₹2,300 crore. The revenue deficit is...",
+        "hi": "राजस्व व्यय ₹2,800 करोड़ और राजस्व प्राप्तियाँ ₹2,300 करोड़ हैं। राजस्व घाटा है..."
+       },
+       "options": [
+        {
+         "en": "₹500 crore",
+         "hi": "₹500 करोड़"
+        },
+        {
+         "en": "₹5,100 crore",
+         "hi": "₹5,100 करोड़"
+        },
+        {
+         "en": "₹2,300 crore",
+         "hi": "₹2,300 करोड़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Revenue expenditure − revenue receipts = 2,800 − 2,300.",
+        "hi": "राजस्व व्यय − राजस्व प्राप्तियाँ = 2,800 − 2,300।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹5,100 adds the two.",
+         "hi": "₹5,100 में दोनों जोड़ दिए गए हैं।"
+        },
+        {
+         "en": "₹2,300 crore is the receipts themselves.",
+         "hi": "₹2,300 करोड़ स्वयं प्राप्तियाँ हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The primary deficit is the fiscal deficit minus...",
+        "hi": "प्राथमिक घाटा = राजकोषीय घाटा − ..."
+       },
+       "options": [
+        {
+         "en": "interest payments",
+         "hi": "ब्याज भुगतान"
+        },
+        {
+         "en": "tax revenue",
+         "hi": "कर राजस्व"
+        },
+        {
+         "en": "capital expenditure",
+         "hi": "पूँजीगत व्यय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It shows borrowing needs apart from past debt's interest.",
+        "hi": "यह पुराने क़र्ज़ के ब्याज को छोड़कर उधार की ज़रूरत दिखाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Taxes are on the receipts side; they are not subtracted this way.",
+         "hi": "कर प्राप्तियों की ओर हैं; इस तरह नहीं घटाए जाते।"
+        },
+        {
+         "en": "Capital expenditure is already part of the fiscal deficit.",
+         "hi": "पूँजीगत व्यय पहले से राजकोषीय घाटे का हिस्सा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make every receipt bigger until no borrowing is needed. What does the picture say?",
+      "hi": "हर प्राप्ति इतनी बढ़ाओ कि उधार की ज़रूरत न रहे। चित्र क्या कहता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch05-balance",
+   "topic": "5.2",
+   "template": "economy",
+   "title": {
+    "en": "Balanced, surplus or deficit?",
+    "hi": "संतुलित, अधिशेष या घाटा?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "budget",
+    "params": {}
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Government receipts (without borrowing) are less than its total expenditure. The budget is a...",
+      "hi": "सरकार की प्राप्तियाँ (उधार के बिना) कुल व्यय से कम हैं। बजट है..."
+     },
+     "options": [
+      {
+       "id": "def",
+       "en": "deficit budget",
+       "hi": "घाटे का बजट"
+      },
+      {
+       "id": "sur",
+       "en": "surplus budget",
+       "hi": "अधिशेष का बजट"
+      },
+      {
+       "id": "bal",
+       "en": "balanced budget",
+       "hi": "संतुलित बजट"
+      }
+     ],
+     "answer": "def"
+    },
+    {
+     "kind": "do",
+     "target": "slider:tax",
+     "expect": "computed",
+     "say": {
+      "en": "Raise tax revenue to about ₹3,150 crore, until the budget just balances.",
+      "hi": "कर राजस्व लगभग ₹3,150 करोड़ तक बढ़ाओ, जब तक बजट ठीक संतुलित न हो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:tax",
+     "expect": "computed",
+     "say": {
+      "en": "Raise it a little more to ₹3,300 crore. What kind of budget is it now?",
+      "hi": "थोड़ा और बढ़ाकर ₹3,300 करोड़ करो। अब कैसा बजट है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:capexp",
+     "expect": "computed",
+     "say": {
+      "en": "Raise capital expenditure to ₹1,200 crore. Does the surplus last?",
+      "hi": "पूँजीगत व्यय ₹1,200 करोड़ करो। क्या अधिशेष बना रहता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A budget is balanced when receipts equal expenditure, a surplus when receipts are more, and a deficit when expenditure is more. With the starting figures total expenditure is ₹3,500 crore and receipts without borrowing are 2,000 + 300 + 50 = 2,350, so there is a deficit of 1,150. If tax revenue rises to 3,150, receipts become 3,500 and the budget balances. Above that, there is a surplus. The numbers are an example.",
+      "hi": "बजट संतुलित है जब प्राप्तियाँ व्यय के बराबर हों, अधिशेष जब प्राप्तियाँ ज़्यादा हों, और घाटे का जब व्यय ज़्यादा हो। शुरुआती अंकों में कुल व्यय ₹3,500 करोड़ है और उधार छोड़कर प्राप्तियाँ 2,000 + 300 + 50 = 2,350, इसलिए 1,150 का घाटा है। कर राजस्व 3,150 हो जाए तो प्राप्तियाँ 3,500 हो जाती हैं और बजट संतुलित होता है। उससे ऊपर अधिशेष होता है। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Receipts of ₹3,600 crore and expenditure of ₹3,500 crore make the budget...",
+        "hi": "₹3,600 करोड़ की प्राप्तियाँ और ₹3,500 करोड़ का व्यय बजट को बनाते हैं..."
+       },
+       "options": [
+        {
+         "en": "surplus",
+         "hi": "अधिशेष"
+        },
+        {
+         "en": "deficit",
+         "hi": "घाटा"
+        },
+        {
+         "en": "balanced",
+         "hi": "संतुलित"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Receipts exceed expenditure by ₹100 crore.",
+        "hi": "प्राप्तियाँ व्यय से ₹100 करोड़ ज़्यादा हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A deficit needs expenditure above receipts.",
+         "hi": "घाटे के लिए व्यय का प्राप्तियों से ज़्यादा होना ज़रूरी है।"
+        },
+        {
+         "en": "Balanced needs the two to be equal.",
+         "hi": "संतुलन में दोनों बराबर होने चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How does the government finance a deficit?",
+        "hi": "सरकार घाटे का वित्तपोषण कैसे करती है?"
+       },
+       "options": [
+        {
+         "en": "by borrowing",
+         "hi": "उधार लेकर"
+        },
+        {
+         "en": "by raising nothing",
+         "hi": "कुछ भी जुटाए बिना"
+        },
+        {
+         "en": "by printing no money and spending less",
+         "hi": "मुद्रा न छापकर और कम ख़र्च करके"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The gap has to be filled by borrowing from the public, banks or abroad.",
+        "hi": "अंतर जनता, बैंकों या विदेश से उधार लेकर भरना पड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The gap cannot be wished away.",
+         "hi": "अंतर को चाहने भर से मिटाया नहीं जा सकता।"
+        },
+        {
+         "en": "Spending less would shrink the deficit, but it is not how a deficit is financed.",
+         "hi": "कम ख़र्च से घाटा घटेगा, पर घाटे का वित्तपोषण इस तरह नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which would you cut first to remove a deficit: spending or raising taxes? Argue both sides.",
+      "hi": "घाटा मिटाने के लिए पहले क्या घटाओगे: ख़र्च या कर बढ़ाओगे? दोनों पक्ष रखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch05-multipliers",
+   "topic": "5.3",
+   "template": "match",
+   "title": {
+    "en": "Spending, taxes and income",
+    "hi": "ख़र्च, कर और आय"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "gm",
+      "left": {
+       "en": "Government spending multiplier, MPC = 0.8",
+       "hi": "सरकारी व्यय गुणक, MPC = 0.8"
+      },
+      "right": {
+       "en": "5: income rises 5 times the extra spending",
+       "hi": "5: आय अतिरिक्त व्यय की 5 गुना बढ़ती है"
+      },
+      "why": {
+       "en": "1 ÷ (1 − 0.8) = 5.",
+       "hi": "1 ÷ (1 − 0.8) = 5।"
+      }
+     },
+     {
+      "id": "tm",
+      "left": {
+       "en": "Tax multiplier, MPC = 0.8",
+       "hi": "कर गुणक, MPC = 0.8"
+      },
+      "right": {
+       "en": "−4: a ₹100 tax rise cuts income by ₹400",
+       "hi": "−4: ₹100 का कर बढ़ाने से आय ₹400 घटती है"
+      },
+      "why": {
+       "en": "−0.8 ÷ (1 − 0.8) = −4. A tax cut works the other way.",
+       "hi": "−0.8 ÷ (1 − 0.8) = −4। कर घटाने पर उलटा होता है।"
+      }
+     },
+     {
+      "id": "bb",
+      "left": {
+       "en": "Spend ₹100 more and tax ₹100 more",
+       "hi": "₹100 ज़्यादा ख़र्च और ₹100 ज़्यादा कर"
+      },
+      "right": {
+       "en": "Income rises by ₹100 (5 − 4 = 1)",
+       "hi": "आय ₹100 बढ़ती है (5 − 4 = 1)"
+      },
+      "why": {
+       "en": "Balanced budget multiplier is 1.",
+       "hi": "संतुलित बजट गुणक 1 है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The government spends ₹100 crore more, and the MPC is 0.8. Income rises by...",
+      "hi": "सरकार ₹100 करोड़ ज़्यादा ख़र्च करती है और MPC 0.8 है। आय बढ़ेगी..."
+     },
+     "options": [
+      {
+       "id": "500",
+       "en": "₹500 crore",
+       "hi": "₹500 करोड़"
+      },
+      {
+       "id": "100",
+       "en": "₹100 crore",
+       "hi": "₹100 करोड़"
+      },
+      {
+       "id": "400",
+       "en": "₹400 crore",
+       "hi": "₹400 करोड़"
+      }
+     ],
+     "answer": "500"
+    },
+    {
+     "kind": "do",
+     "target": "left:gm",
+     "expect": "matched:gm",
+     "say": {
+      "en": "Tap \"Government spending multiplier\" and match it.",
+      "hi": "\"सरकारी व्यय गुणक\" दबाओ और उसका मेल दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all three and press Check.",
+      "hi": "तीनों मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Extra government spending acts like extra investment: income rises by 1 ÷ (1 − MPC) times it. A tax rise takes away income first, so spending falls by the MPC times the tax, and income falls by MPC ÷ (1 − MPC) times the tax: a smaller effect than spending. If the government raises spending and taxes by the same amount, income still rises by that amount: the balanced budget multiplier is 1.",
+      "hi": "अतिरिक्त सरकारी व्यय अतिरिक्त निवेश की तरह काम करता है: आय उसके 1 ÷ (1 − MPC) गुना बढ़ती है। कर बढ़ने से पहले आय घटती है, इसलिए ख़र्च कर का MPC गुना घटता है और आय कर का MPC ÷ (1 − MPC) गुना घटती है: यह असर व्यय के असर से छोटा है। यदि सरकार व्यय और कर बराबर बढ़ाए, तो भी आय उतनी ही बढ़ती है: संतुलित बजट गुणक 1 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A ₹50 crore tax cut with MPC 0.8 raises income by...",
+        "hi": "MPC 0.8 पर ₹50 करोड़ की कर कटौती से आय बढ़ती है..."
+       },
+       "options": [
+        {
+         "en": "₹200 crore",
+         "hi": "₹200 करोड़"
+        },
+        {
+         "en": "₹250 crore",
+         "hi": "₹250 करोड़"
+        },
+        {
+         "en": "₹40 crore",
+         "hi": "₹40 करोड़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 × 50 = 200: the tax multiplier is 4 in size.",
+        "hi": "4 × 50 = 200: कर गुणक का मान 4 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹250 crore uses the spending multiplier of 5, not the tax multiplier.",
+         "hi": "₹250 करोड़ में सरकारी व्यय गुणक 5 लिया गया है, कर गुणक नहीं।"
+        },
+        {
+         "en": "₹40 crore only takes the first-round spending.",
+         "hi": "₹40 करोड़ केवल पहले दौर का ख़र्च है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try MPC 0.5: work out all three multipliers.",
+      "hi": "MPC 0.5 लेकर तीनों गुणक निकालो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "The budget briefcase and a blank budget booklet",
+   "shows": "A plain leather briefcase and a closed booklet with a blank cover, each separate",
+   "view": "Front three-quarter view, soft top-left light, transparent background",
+   "right": "Plain material and stitching",
+   "avoid": "Any text or emblem"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "5.1.1",
+   "use": "Allocation: a street light and a public water tap",
+   "shows": "A village or town lane at dusk with a working street light and a public water tap with a queue of pots",
+   "view": "Eye level, dusk light, 16:9",
+   "right": "Brass or steel pots, simple tap stand",
+   "avoid": "Faces, readable signs"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.1.1",
+   "use": "Redistribution: a fair-price shop and school meal",
+   "shows": "A school mid-day meal being served from a large steel vessel to children seen from behind",
+   "view": "Eye level, daylight, 16:9",
+   "right": "Steel plates and a vessel, children from behind",
+   "avoid": "Faces, readable text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.1.2",
+   "use": "Capital expenditure: a bridge under construction",
+   "shows": "A river bridge half built with scaffolding and cranes, workers in helmets seen from afar",
+   "view": "Wide view, clear sky, 16:9",
+   "right": "Real scaffolding and concrete pillars",
+   "avoid": "Faces, signs, brand names"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "5.2",
+   "use": "Base for the deficit chart",
+   "shows": "Two tall empty bars side by side (receipts and expenditure) with a baseline, no labels",
+   "view": "Flat vector style, white or transparent, 4:3",
+   "right": "Equal widths and a clear baseline",
+   "avoid": "Words or numbers inside"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Rupee notes in a bundle for borrowing and tax",
+   "shows": "A bundle of ₹500 notes tied with a band and a stack of ₹100 notes, each separate",
+   "view": "Straight front view, soft top-left light, transparent background",
+   "right": "Real note colours, even stacks",
+   "avoid": "Bank names, hands"
+  }
+ ]
+}

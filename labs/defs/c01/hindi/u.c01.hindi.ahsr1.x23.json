@@ -1,0 +1,525 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.x23",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Akshar Geet (अक्षर गीत) - alphabet song",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "x.1",
+   "title": "Vowel letters and the words they start",
+   "labs": [
+    "c01-hindi-ahsr1-x23-vowels"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "x.2",
+   "title": "First sounds ठ, ध, ढ",
+   "labs": [
+    "c01-hindi-ahsr1-x23-first-sound"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-x23-vowels",
+   "topic": "x.1",
+   "template": "match",
+   "title": {
+    "en": "Vowel letters and their words",
+    "hi": "स्वर और उनके शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "A (अ)",
+       "hi": "अ"
+      },
+      "right": {
+       "en": "Anar (pomegranate)",
+       "hi": "अनार"
+      },
+      "why": {
+       "en": "अनार starts with अ.",
+       "hi": "अनार अ से शुरू होता है।"
+      }
+     },
+     {
+      "id": "aa",
+      "left": {
+       "en": "Aa (आ)",
+       "hi": "आ"
+      },
+      "right": {
+       "en": "Aam (mango)",
+       "hi": "आम"
+      },
+      "why": {
+       "en": "आम starts with आ.",
+       "hi": "आम आ से शुरू होता है।"
+      }
+     },
+     {
+      "id": "i",
+      "left": {
+       "en": "I (इ)",
+       "hi": "इ"
+      },
+      "right": {
+       "en": "Imli (tamarind)",
+       "hi": "इमली"
+      },
+      "why": {
+       "en": "इमली starts with इ.",
+       "hi": "इमली इ से शुरू होती है।"
+      }
+     },
+     {
+      "id": "ee",
+      "left": {
+       "en": "Ee (ई)",
+       "hi": "ई"
+      },
+      "right": {
+       "en": "Eekh (sugarcane)",
+       "hi": "ईख"
+      },
+      "why": {
+       "en": "ईख starts with ई.",
+       "hi": "ईख ई से शुरू होती है।"
+      }
+     },
+     {
+      "id": "u",
+      "left": {
+       "en": "U (उ)",
+       "hi": "उ"
+      },
+      "right": {
+       "en": "Ullu (owl)",
+       "hi": "उल्लू"
+      },
+      "why": {
+       "en": "उल्लू starts with उ.",
+       "hi": "उल्लू उ से शुरू होता है।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "E (ए)",
+       "hi": "ए"
+      },
+      "right": {
+       "en": "Edi (heel)",
+       "hi": "एड़ी"
+      },
+      "why": {
+       "en": "एड़ी starts with ए.",
+       "hi": "एड़ी ए से शुरू होती है।"
+      }
+     },
+     {
+      "id": "ai",
+      "left": {
+       "en": "Ai (ऐ)",
+       "hi": "ऐ"
+      },
+      "right": {
+       "en": "Ainak (spectacles)",
+       "hi": "ऐनक"
+      },
+      "why": {
+       "en": "ऐनक starts with ऐ.",
+       "hi": "ऐनक ऐ से शुरू होता है।"
+      }
+     },
+     {
+      "id": "o",
+      "left": {
+       "en": "O (ओ)",
+       "hi": "ओ"
+      },
+      "right": {
+       "en": "Okhal (mortar)",
+       "hi": "ओखल"
+      },
+      "why": {
+       "en": "ओखल starts with ओ.",
+       "hi": "ओखल ओ से शुरू होता है।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Tap a card on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर का कोई कार्ड छुओ, फिर दाईं ओर उसकी जोड़ी छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word goes with the letter अ?",
+      "hi": "अ अक्षर के साथ कौन-सा शब्द जाएगा?"
+     },
+     "options": [
+      {
+       "id": "anar",
+       "en": "अनार",
+       "hi": "अनार"
+      },
+      {
+       "id": "aam",
+       "en": "आम",
+       "hi": "आम"
+      },
+      {
+       "id": "imli",
+       "en": "इमली",
+       "hi": "इमली"
+      }
+     ],
+     "answer": "anar"
+    },
+    {
+     "kind": "do",
+     "target": "left:o",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the pairs until all are joined.",
+      "hi": "बाकी जोड़ियाँ तब तक मिलाओ जब तक सब जुड़ न जाएँ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each vowel letter begins some words: अनार, आम, इमली, ईख, उल्लू, एड़ी, ऐनक, ओखल. Say the word slowly and listen to its first sound. That sound is the vowel letter.",
+      "hi": "हर स्वर किसी शब्द की शुरुआत में आता है: अनार, आम, इमली, ईख, उल्लू, एड़ी, ऐनक, ओखल। शब्द धीरे से बोलो और उसकी पहली ध्वनि सुनो। वही ध्वनि स्वर अक्षर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word starts with ई?",
+        "hi": "कौन-सा शब्द ई से शुरू होता है?"
+       },
+       "options": [
+        {
+         "en": "ईख",
+         "hi": "ईख"
+        },
+        {
+         "en": "इमली",
+         "hi": "इमली"
+        },
+        {
+         "en": "आम",
+         "hi": "आम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ईख (sugarcane) starts with the long ई.",
+        "hi": "ईख (गन्ना) बड़ी ई से शुरू होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "इमली starts with the short इ.",
+         "hi": "इमली छोटी इ से शुरू होती है।"
+        },
+        {
+         "en": "आम starts with आ.",
+         "hi": "आम आ से शुरू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find one more word that starts with each vowel. Tell the class.",
+      "hi": "हर स्वर से शुरू होने वाला एक और शब्द ढूँढो। कक्षा को बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-x23-first-sound",
+   "topic": "x.2",
+   "template": "sort",
+   "title": {
+    "en": "First sounds: ठ, ध, ढ",
+    "hi": "पहली ध्वनि: ठ, ध, ढ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "tha",
+      "label": {
+       "en": "Starts with ठ",
+       "hi": "ठ से शुरू"
+      }
+     },
+     {
+      "id": "dha",
+      "label": {
+       "en": "Starts with ध",
+       "hi": "ध से शुरू"
+      }
+     },
+     {
+      "id": "ddha",
+      "label": {
+       "en": "Starts with ढ",
+       "hi": "ढ से शुरू"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "thela",
+      "text": {
+       "en": "Thela (handcart)",
+       "hi": "ठेला"
+      },
+      "bin": "tha",
+      "why": {
+       "en": "ठेला starts with ठ.",
+       "hi": "ठेला ठ से शुरू होता है।"
+      }
+     },
+     {
+      "id": "thanda",
+      "text": {
+       "en": "Thanda (cold)",
+       "hi": "ठंडा"
+      },
+      "bin": "tha",
+      "why": {
+       "en": "ठंडा starts with ठ.",
+       "hi": "ठंडा ठ से शुरू होता है।"
+      }
+     },
+     {
+      "id": "dhaan",
+      "text": {
+       "en": "Dhaan (paddy)",
+       "hi": "धान"
+      },
+      "bin": "dha",
+      "why": {
+       "en": "धान starts with ध.",
+       "hi": "धान ध से शुरू होता है।"
+      }
+     },
+     {
+      "id": "dhanush",
+      "text": {
+       "en": "Dhanush (bow)",
+       "hi": "धनुष"
+      },
+      "bin": "dha",
+      "why": {
+       "en": "धनुष starts with ध.",
+       "hi": "धनुष ध से शुरू होता है।"
+      }
+     },
+     {
+      "id": "dholak",
+      "text": {
+       "en": "Dholak (drum)",
+       "hi": "ढोलक"
+      },
+      "bin": "ddha",
+      "why": {
+       "en": "ढोलक starts with ढ.",
+       "hi": "ढोलक ढ से शुरू होता है।"
+      }
+     },
+     {
+      "id": "dhakkan",
+      "text": {
+       "en": "Dhakkan (lid)",
+       "hi": "ढक्कन"
+      },
+      "bin": "ddha",
+      "why": {
+       "en": "ढक्कन starts with ढ.",
+       "hi": "ढक्कन ढ से शुरू होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:thela",
+     "expect": "placed:thela",
+     "say": {
+      "en": "Tap a card, then tap the group where it belongs.",
+      "hi": "कोई कार्ड छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which letter does 'ढोलक' start with?",
+      "hi": "'ढोलक' किस अक्षर से शुरू होता है?"
+     },
+     "options": [
+      {
+       "id": "th",
+       "en": "ठ",
+       "hi": "ठ"
+      },
+      {
+       "id": "dh",
+       "en": "ध",
+       "hi": "ध"
+      },
+      {
+       "id": "ddh",
+       "en": "ढ",
+       "hi": "ढ"
+      }
+     ],
+     "answer": "ddh"
+    },
+    {
+     "kind": "do",
+     "target": "card:dhakkan",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards until every one is in a group.",
+      "hi": "सारे कार्ड तब तक छाँटो जब तक हर कार्ड किसी समूह में न चला जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The letters ठ, ध and ढ look a little alike but sound different. Listen to the first sound of each word and sort. ठेला and ठंडा go with ठ, धान and धनुष with ध, ढोलक and ढक्कन with ढ.",
+      "hi": "ठ, ध और ढ देखने में मिलते-जुलते हैं पर उनकी ध्वनियाँ अलग हैं। हर शब्द की पहली ध्वनि सुनकर छाँटो। ठेला और ठंडा ठ के पास, धान और धनुष ध के पास, ढोलक और ढक्कन ढ के पास जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word starts with ध?",
+        "hi": "कौन-सा शब्द ध से शुरू होता है?"
+       },
+       "options": [
+        {
+         "en": "धनुष",
+         "hi": "धनुष"
+        },
+        {
+         "en": "ढक्कन",
+         "hi": "ढक्कन"
+        },
+        {
+         "en": "ठेला",
+         "hi": "ठेला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "धनुष starts with ध.",
+        "hi": "धनुष ध से शुरू होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "ढक्कन starts with ढ, a different letter.",
+         "hi": "ढक्कन ढ से शुरू होता है, जो अलग अक्षर है।"
+        },
+        {
+         "en": "ठेला starts with ठ.",
+         "hi": "ठेला ठ से शुरू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the three letters carefully. How are they alike and how are they different? Draw them in the air.",
+      "hi": "तीनों अक्षरों को ध्यान से देखो। वे कैसे मिलते हैं और कैसे अलग हैं? उन्हें हवा में लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "OBJ",
+   "topic": "x.1",
+   "use": "Vowel word pictures",
+   "shows": "Eight cut-outs: pomegranate, mango, tamarind, sugarcane, owl, heel, spectacles, wooden mortar",
+   "view": "Front view",
+   "right": "Real colours and shapes; owl in natural pose",
+   "avoid": "Letter shapes drawn in",
+   "n": 1
+  },
+  {
+   "kind": "SCN",
+   "topic": "x.1",
+   "use": "Alphabet song poster",
+   "shows": "A bright classroom wall with a large empty alphabet chart and children's drawings around it",
+   "view": "Wide",
+   "right": "Empty chart so the app can fill letters",
+   "avoid": "Printed letters",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "x.2",
+   "use": "Sound word pictures",
+   "shows": "Cut-outs: handcart, glass of cold water, paddy sheaf, a bow, a dholak drum, a pot lid",
+   "view": "Front view",
+   "right": "Paddy golden; dholak with ropes",
+   "avoid": "Brand names",
+   "n": 3
+  },
+  {
+   "kind": "DIA",
+   "topic": "x.2",
+   "use": "Letter houses",
+   "shows": "Three coloured houses with doors, empty, for sorting words",
+   "view": "Front view, pastel",
+   "right": "Three clearly different houses",
+   "avoid": "Text on houses",
+   "n": 4
+  },
+  {
+   "kind": "MAC",
+   "topic": "x.1",
+   "use": "Sugarcane",
+   "shows": "Sugarcane stalks with joints",
+   "view": "Close, side lit",
+   "right": "Green-purple stalk with clear nodes",
+   "avoid": "Cut juice stalls with signs",
+   "n": 5
+  }
+ ]
+}

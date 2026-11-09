@@ -1,0 +1,1979 @@
+{
+  "chapter_key": "u.c12.biology.lebo1.ch06",
+  "class": 12,
+  "subject_id": "biology",
+  "title": "Evolution",
+  "source": "https://ncert.nic.in/textbook/pdf/lebo106.pdf",
+  "topics": [
+    {
+      "n": "6.1",
+      "title": "Origin of life",
+      "labs": [
+        "c12-biology-lebo1-ch06-origin-of-life"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.2",
+      "title": "Evolution of life forms: a theory",
+      "labs": [],
+      "why_no_lab": "Best told as the story of Earth and the reader; the next labs test it with evidence."
+    },
+    {
+      "n": "6.3",
+      "title": "Evidences for evolution",
+      "labs": [
+        "c12-biology-lebo1-ch06-homologous-analogous"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.4",
+      "title": "Adaptive radiation",
+      "labs": [
+        "c12-biology-lebo1-ch06-adaptive-radiation"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.5",
+      "title": "Biological evolution: Lamarck and Darwin",
+      "labs": [
+        "c12-biology-lebo1-ch06-darwin-lamarck"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.6",
+      "title": "Mechanism of evolution",
+      "labs": [
+        "c12-biology-lebo1-ch06-peppered-moth"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.7",
+      "title": "Hardy-Weinberg principle",
+      "labs": [
+        "c12-biology-lebo1-ch06-hardy-weinberg"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.8",
+      "title": "A brief account of evolution",
+      "labs": [
+        "c12-biology-lebo1-ch06-life-through-time"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.9",
+      "title": "Origin and evolution of man",
+      "labs": [
+        "c12-biology-lebo1-ch06-human-evolution"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-biology-lebo1-ch06-origin-of-life",
+      "topic": "6.1",
+      "template": "sequence",
+      "title": {
+        "en": "How life may have begun",
+        "hi": "जीवन की शुरुआत कैसे हुई होगी"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "earth",
+            "text": {
+              "en": "The young Earth cools; there is no free oxygen in the air",
+              "hi": "युवा पृथ्वी ठंडी होती है; हवा में मुक्त ऑक्सीजन नहीं है"
+            }
+          },
+          {
+            "id": "simple",
+            "text": {
+              "en": "Simple gases (methane, ammonia, hydrogen, water vapour) are present",
+              "hi": "सरल गैसें (मीथेन, अमोनिया, हाइड्रोजन, जलवाष्प) मौजूद हैं"
+            }
+          },
+          {
+            "id": "organic",
+            "text": {
+              "en": "Energy turns them into amino acids and other organic molecules",
+              "hi": "ऊर्जा से वे अमीनो अम्ल और अन्य कार्बनिक अणु बन जाते हैं"
+            }
+          },
+          {
+            "id": "large",
+            "text": {
+              "en": "Small molecules join into larger ones such as proteins and RNA",
+              "hi": "छोटे अणु जुड़कर प्रोटीन और RNA जैसे बड़े अणु बनाते हैं"
+            }
+          },
+          {
+            "id": "cell",
+            "text": {
+              "en": "The first simple cells appear in water",
+              "hi": "पानी में पहली सरल कोशिकाएँ प्रकट होती हैं"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:earth",
+          "expect": "placed:earth",
+          "say": {
+            "en": "Tap \"The young Earth cools; there is no free oxygen in the air\" and put it in place 1.",
+            "hi": "\"युवा पृथ्वी ठंडी होती है; हवा में मुक्त ऑक्सीजन नहीं है\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:simple",
+          "expect": "placed:simple",
+          "say": {
+            "en": "Tap \"Simple gases (methane, ammonia, hydrogen, water vapour) are present\" and put it in place 2.",
+            "hi": "\"सरल गैसें (मीथेन, अमोनिया, हाइड्रोजन, जलवाष्प) मौजूद हैं\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Stanley Miller sent electric sparks through a flask of such gases and water vapour in 1953. What do you think he found in the flask?",
+            "hi": "स्टैनली मिलर ने 1953 में ऐसी गैसों और जलवाष्प के फ़्लास्क में बिजली की चिंगारियाँ गुज़ारीं। फ़्लास्क में क्या मिला होगा?"
+          },
+          "options": [
+            {
+              "id": "aa",
+              "en": "Amino acids",
+              "hi": "अमीनो अम्ल"
+            },
+            {
+              "id": "cells",
+              "en": "Living cells",
+              "hi": "जीवित कोशिकाएँ"
+            },
+            {
+              "id": "nothing",
+              "en": "Nothing",
+              "hi": "कुछ नहीं"
+            }
+          ],
+          "answer": "aa"
+        },
+        {
+          "kind": "do",
+          "target": "item:organic",
+          "expect": "placed:organic",
+          "say": {
+            "en": "Tap \"Energy turns them into amino acids and other organic molecules\" and put it in place 3.",
+            "hi": "\"ऊर्जा से वे अमीनो अम्ल और अन्य कार्बनिक अणु बन जाते हैं\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:large",
+          "expect": "placed:large",
+          "say": {
+            "en": "Tap \"Small molecules join into larger ones such as proteins and RNA\" and put it in place 4.",
+            "hi": "\"छोटे अणु जुड़कर प्रोटीन और RNA जैसे बड़े अणु बनाते हैं\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Oparin and Haldane proposed that the first life came from non-living molecules: chemical evolution. In 1953 S. L. Miller copied the early Earth in a flask, with methane, ammonia, hydrogen and water vapour at 800 degrees C and electric discharges, and obtained amino acids. Later experiments gave sugars and nitrogen bases. Large molecules then gathered into the first cells in water. This explains how life might have begun from chemicals, but life from existing life is what we see today.",
+            "hi": "ओपेरिन और हाल्डेन ने कहा कि पहला जीवन निर्जीव अणुओं से आया: रासायनिक विकास। 1953 में एस. एल. मिलर ने प्रारंभिक पृथ्वी की नकल फ़्लास्क में की, मीथेन, अमोनिया, हाइड्रोजन और जलवाष्प 800 अंश C पर और बिजली की चिंगारियों के साथ, और अमीनो अम्ल पाए। बाद के प्रयोगों में शर्कराएँ और नाइट्रोजनी क्षारक मिले। फिर बड़े अणु जुड़कर पानी में पहली कोशिकाएँ बने। इससे समझ आता है कि जीवन रसायनों से कैसे शुरू हुआ होगा, जबकि आज हम जीवन से ही जीवन आता देखते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What did Miller's experiment show?",
+                "hi": "मिलर के प्रयोग ने क्या दिखाया?"
+              },
+              "options": [
+                {
+                  "en": "Organic molecules can form from simple gases",
+                  "hi": "सरल गैसों से कार्बनिक अणु बन सकते हैं"
+                },
+                {
+                  "en": "Living cells form from gases",
+                  "hi": "गैसों से जीवित कोशिकाएँ बनती हैं"
+                },
+                {
+                  "en": "Oxygen was plentiful on early Earth",
+                  "hi": "प्रारंभिक पृथ्वी पर ऑक्सीजन प्रचुर थी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The amino acids showed that the building blocks of life can arise without life.",
+                "hi": "अमीनो अम्लों ने दिखाया कि जीवन के निर्माण-खंड बिना जीवन के बन सकते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "No cells formed in the flask, only molecules.",
+                  "hi": "फ़्लास्क में कोशिकाएँ नहीं बनीं, केवल अणु।"
+                },
+                {
+                  "en": "The early atmosphere had no free oxygen; that is why the gases were chosen.",
+                  "hi": "प्रारंभिक वायुमंडल में मुक्त ऑक्सीजन नहीं थी; इसीलिए ये गैसें ली गईं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which gas was NOT part of the early atmosphere in Miller's flask?",
+                "hi": "मिलर के फ़्लास्क में कौन-सी गैस प्रारंभिक वायुमंडल का भाग नहीं थी?"
+              },
+              "options": [
+                {
+                  "en": "Oxygen",
+                  "hi": "ऑक्सीजन"
+                },
+                {
+                  "en": "Ammonia",
+                  "hi": "अमोनिया"
+                },
+                {
+                  "en": "Methane",
+                  "hi": "मीथेन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Free oxygen came later, from photosynthesis.",
+                "hi": "मुक्त ऑक्सीजन बाद में प्रकाश संश्लेषण से आई।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Ammonia was used.",
+                  "hi": "अमोनिया ली गई थी।"
+                },
+                {
+                  "en": "Methane was used.",
+                  "hi": "मीथेन ली गई थी।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. Why is it important to remember that free oxygen came after the first cells?",
+            "hi": "आख़िरी चरण रखो। यह याद रखना क्यों ज़रूरी है कि मुक्त ऑक्सीजन पहली कोशिकाओं के बाद आई?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch06-homologous-analogous",
+      "topic": "6.3",
+      "template": "sort",
+      "title": {
+        "en": "Same origin or same job?",
+        "hi": "एक उत्पत्ति या एक काम?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "homo",
+            "label": {
+              "en": "Homologous: same origin",
+              "hi": "समजात: एक ही उत्पत्ति"
+            }
+          },
+          {
+            "id": "ana",
+            "label": {
+              "en": "Analogous: same function",
+              "hi": "समवृत्ति: एक ही कार्य"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "limbs",
+            "text": {
+              "en": "Forelimbs of whale, bat, cheetah and human",
+              "hi": "व्हेल, चमगादड़, चीता और मनुष्य के अग्रपाद"
+            },
+            "bin": "homo",
+            "why": {
+              "en": "Same bone plan, different jobs: divergent evolution.",
+              "hi": "हड्डियों की योजना एक, काम अलग-अलग: अपसारी विकास।"
+            }
+          },
+          {
+            "id": "thorn",
+            "text": {
+              "en": "Thorn of Bougainvillea and tendril of Cucurbita",
+              "hi": "बोगनवेलिया का काँटा और कुकुरबिटा का प्रतान"
+            },
+            "bin": "homo",
+            "why": {
+              "en": "Both arise from axillary buds, but look different.",
+              "hi": "दोनों कक्षीय कलिका से बनते हैं पर अलग दिखते हैं।"
+            }
+          },
+          {
+            "id": "vert",
+            "text": {
+              "en": "Heart and brain of vertebrates",
+              "hi": "कशेरुकी जीवों का हृदय और मस्तिष्क"
+            },
+            "bin": "homo",
+            "why": {
+              "en": "They share an ancestral plan.",
+              "hi": "वे साझा पूर्वज की योजना रखते हैं।"
+            }
+          },
+          {
+            "id": "wings",
+            "text": {
+              "en": "Wings of a butterfly and of a bird",
+              "hi": "तितली और पक्षी के पंख"
+            },
+            "bin": "ana",
+            "why": {
+              "en": "Both fly, but they are built differently: convergent evolution.",
+              "hi": "दोनों उड़ते हैं पर बनावट अलग है: अभिसारी विकास।"
+            }
+          },
+          {
+            "id": "eyes",
+            "text": {
+              "en": "Eyes of an octopus and of a mammal",
+              "hi": "ऑक्टोपस और स्तनधारी की आँखें"
+            },
+            "bin": "ana",
+            "why": {
+              "en": "Similar function, different origin.",
+              "hi": "कार्य समान, उत्पत्ति अलग।"
+            }
+          },
+          {
+            "id": "potato",
+            "text": {
+              "en": "Sweet potato (root) and potato (stem)",
+              "hi": "शकरकंद (जड़) और आलू (तना)"
+            },
+            "bin": "ana",
+            "why": {
+              "en": "Both store food, but one is a root and the other a stem.",
+              "hi": "दोनों भोजन जमा करते हैं पर एक जड़ है और दूसरा तना।"
+            }
+          },
+          {
+            "id": "flipper",
+            "text": {
+              "en": "Flippers of a penguin and of a dolphin",
+              "hi": "पेंगुइन और डॉल्फ़िन के फ़्लिपर"
+            },
+            "bin": "ana",
+            "why": {
+              "en": "Both swim, but one is a bird's wing and the other a mammal's limb.",
+              "hi": "दोनों तैरते हैं पर एक पक्षी का पंख है और दूसरा स्तनधारी का पाद।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:limbs",
+          "expect": "correct:limbs",
+          "say": {
+            "en": "Sort \"Forelimbs of whale, bat, cheetah and human\".",
+            "hi": "\"व्हेल, चमगादड़, चीता और मनुष्य के अग्रपाद\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A butterfly and a bird both have wings. Is that evidence of a shared ancestor?",
+            "hi": "तितली और पक्षी दोनों के पंख होते हैं। क्या यह साझा पूर्वज का प्रमाण है?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No: a similar job only",
+              "hi": "नहीं: केवल एक-सा काम"
+            },
+            {
+              "id": "yes",
+              "en": "Yes: same origin",
+              "hi": "हाँ: एक ही उत्पत्ति"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "card:wings",
+          "expect": "correct:wings",
+          "say": {
+            "en": "Sort \"Wings of a butterfly and of a bird\".",
+            "hi": "\"तितली और पक्षी के पंख\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:thorn",
+          "expect": "correct:thorn",
+          "say": {
+            "en": "Sort \"Thorn and tendril\".",
+            "hi": "\"काँटा और प्रतान\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Structures with the same basic plan but different functions are homologous, showing common ancestry and divergent evolution (the forelimbs of a whale, bat, cheetah and human). Structures that do the same job but have different origins are analogous, and they come from convergent evolution, when unrelated organisms adapt to similar surroundings. Homologous organs are evidence of evolution from a common ancestor, but analogous organs are not.",
+            "hi": "जिन संरचनाओं की मूल योजना एक पर कार्य अलग हों वे समजात हैं; वे साझा पूर्वज और अपसारी विकास दिखाती हैं (व्हेल, चमगादड़, चीते और मनुष्य के अग्रपाद)। जो संरचनाएँ एक ही काम करती हैं पर उत्पत्ति अलग हो वे समवृत्ति हैं, और वे अभिसारी विकास से आती हैं, जब असंबंधित जीव एक-से परिवेश में अनुकूलित होते हैं। समजात अंग साझा पूर्वज से विकास का प्रमाण हैं, समवृत्ति अंग नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which pair is an example of homologous organs?",
+                "hi": "कौन-सा जोड़ा समजात अंगों का उदाहरण है?"
+              },
+              "options": [
+                {
+                  "en": "Whale flipper and human arm",
+                  "hi": "व्हेल का फ़्लिपर और मनुष्य की भुजा"
+                },
+                {
+                  "en": "Bird wing and butterfly wing",
+                  "hi": "पक्षी का पंख और तितली का पंख"
+                },
+                {
+                  "en": "Potato and sweet potato",
+                  "hi": "आलू और शकरकंद"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Both have the same bone plan from a common ancestor.",
+                "hi": "दोनों में साझा पूर्वज की एक-सी हड्डी योजना है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "These are analogous, since the origin differs.",
+                  "hi": "ये समवृत्ति हैं, क्योंकि उत्पत्ति अलग है।"
+                },
+                {
+                  "en": "A stem and a root are different organs.",
+                  "hi": "तना और जड़ अलग अंग हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Analogous organs result from",
+                "hi": "समवृत्ति अंग किससे बनते हैं"
+              },
+              "options": [
+                {
+                  "en": "Convergent evolution",
+                  "hi": "अभिसारी विकास"
+                },
+                {
+                  "en": "Divergent evolution",
+                  "hi": "अपसारी विकास"
+                },
+                {
+                  "en": "No evolution at all",
+                  "hi": "बिल्कुल विकास नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Unrelated organisms evolve similar solutions to similar problems.",
+                "hi": "असंबंधित जीव एक-सी समस्याओं के एक-से हल विकसित करते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Divergent evolution gives homologous organs.",
+                  "hi": "अपसारी विकास समजात अंग देता है।"
+                },
+                {
+                  "en": "Every organ has an evolutionary history.",
+                  "hi": "हर अंग का विकासात्मक इतिहास होता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the remaining cards. Which is better evidence for common ancestry: homologous or analogous organs? Why?",
+            "hi": "बाकी कार्ड छाँटो। साझा पूर्वज का बेहतर प्रमाण कौन है: समजात या समवृत्ति अंग? क्यों?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch06-adaptive-radiation",
+      "topic": "6.4",
+      "template": "match",
+      "title": {
+        "en": "Many forms from one ancestor",
+        "hi": "एक पूर्वज से अनेक रूप"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "finch",
+            "left": {
+              "en": "Darwin's finches",
+              "hi": "डार्विन की फ़िंच"
+            },
+            "right": {
+              "en": "Different beak shapes evolved on the Galapagos Islands from one seed-eating ancestor",
+              "hi": "गैलापागोस द्वीपों पर एक बीजभक्षी पूर्वज से अलग-अलग चोंच आकार विकसित हुए"
+            },
+            "why": {
+              "en": "Beaks fit the food: seeds, insects, buds.",
+              "hi": "चोंच भोजन के अनुरूप है: बीज, कीट, कलियाँ।"
+            }
+          },
+          {
+            "id": "marsupial",
+            "left": {
+              "en": "Australian marsupials",
+              "hi": "ऑस्ट्रेलिया के शिशुधानीधारी"
+            },
+            "right": {
+              "en": "Many forms arose from one ancestral stock in Australia",
+              "hi": "ऑस्ट्रेलिया में एक पूर्वज वंश से अनेक रूप बने"
+            },
+            "why": {
+              "en": "This is adaptive radiation too.",
+              "hi": "यह भी अनुकूली विकिरण है।"
+            }
+          },
+          {
+            "id": "radiation",
+            "left": {
+              "en": "Adaptive radiation",
+              "hi": "अनुकूली विकिरण"
+            },
+            "right": {
+              "en": "Evolution of different species in an area from a common ancestor, filling different habitats",
+              "hi": "किसी क्षेत्र में साझा पूर्वज से भिन्न प्रजातियों का विकास, जो अलग आवास भरती हैं"
+            },
+            "why": {
+              "en": "The process starts from one ancestor and spreads like rays.",
+              "hi": "प्रक्रिया एक पूर्वज से शुरू होकर किरणों-सी फैलती है।"
+            }
+          },
+          {
+            "id": "convergent",
+            "left": {
+              "en": "Convergent evolution",
+              "hi": "अभिसारी विकास"
+            },
+            "right": {
+              "en": "Placental wolf and Tasmanian wolf look alike though unrelated",
+              "hi": "अपरायुक्त भेड़िया और तस्मानियाई भेड़िया असंबंधित होकर भी एक-से दिखते हैं"
+            },
+            "why": {
+              "en": "Similar surroundings, similar looks.",
+              "hi": "एक-सा परिवेश, एक-सा रूप।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:finch",
+          "expect": "matched:finch",
+          "say": {
+            "en": "Match \"Darwin's finches\".",
+            "hi": "\"डार्विन की फ़िंच\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Darwin's finches have different beaks because they eat different foods. What caused the beaks to change over many generations?",
+            "hi": "डार्विन की फ़िंच की चोंचें अलग हैं क्योंकि भोजन अलग है। कई पीढ़ियों में चोंचें किससे बदलीं?"
+          },
+          "options": [
+            {
+              "id": "ns",
+              "en": "Natural selection of useful variations",
+              "hi": "उपयोगी विभिन्नताओं का प्राकृतिक चयन"
+            },
+            {
+              "id": "will",
+              "en": "The birds wanted to change",
+              "hi": "पक्षी बदलना चाहते थे"
+            }
+          ],
+          "answer": "ns"
+        },
+        {
+          "kind": "do",
+          "target": "left:radiation",
+          "expect": "matched:radiation",
+          "say": {
+            "en": "Match \"Adaptive radiation\".",
+            "hi": "\"अनुकूली विकिरण\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:convergent",
+          "expect": "matched:convergent",
+          "say": {
+            "en": "Match \"Convergent evolution\".",
+            "hi": "\"अभिसारी विकास\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "When an ancestor reaches new, empty surroundings, its descendants may spread into many habitats and become different species. This is adaptive radiation. Darwin's finches on the Galapagos and the marsupials of Australia are classic examples. Convergent evolution is the opposite pattern: unrelated animals in similar surroundings, like the placental wolf and the Tasmanian wolf (a marsupial), come to look alike.",
+            "hi": "जब कोई पूर्वज नए, खाली परिवेश में पहुँचता है तो उसके वंशज कई आवासों में फैलकर अलग प्रजातियाँ बन सकते हैं। यह अनुकूली विकिरण है। गैलापागोस की डार्विन फ़िंच और ऑस्ट्रेलिया के शिशुधानीधारी इसके जाने-माने उदाहरण हैं। अभिसारी विकास इसका उलटा रूप है: एक-से परिवेश में असंबंधित जंतु, जैसे अपरायुक्त भेड़िया और तस्मानियाई भेड़िया (शिशुधानीधारी), एक-से दिखने लगते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Darwin's finches are an example of",
+                "hi": "डार्विन की फ़िंच किसका उदाहरण हैं"
+              },
+              "options": [
+                {
+                  "en": "Adaptive radiation",
+                  "hi": "अनुकूली विकिरण"
+                },
+                {
+                  "en": "Convergent evolution",
+                  "hi": "अभिसारी विकास"
+                },
+                {
+                  "en": "Artificial selection",
+                  "hi": "कृत्रिम चयन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "One ancestor gave rise to many species suited to different foods.",
+                "hi": "एक पूर्वज से अलग भोजन के अनुकूल कई प्रजातियाँ बनीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Convergent evolution is unrelated forms becoming alike.",
+                  "hi": "अभिसारी विकास असंबंधित रूपों का एक-सा होना है।"
+                },
+                {
+                  "en": "Nobody selected the finches; natural selection acted.",
+                  "hi": "फ़िंच को किसी ने नहीं चुना; प्राकृतिक चयन ने काम किया।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "The Tasmanian wolf and the placental wolf look alike because",
+                "hi": "तस्मानियाई भेड़िया और अपरायुक्त भेड़िया एक-से दिखते हैं क्योंकि"
+              },
+              "options": [
+                {
+                  "en": "They adapted to similar surroundings independently",
+                  "hi": "वे एक-से परिवेश में स्वतंत्र रूप से अनुकूलित हुए"
+                },
+                {
+                  "en": "They are the same species",
+                  "hi": "वे एक ही प्रजाति हैं"
+                },
+                {
+                  "en": "One is the child of the other",
+                  "hi": "एक दूसरे की संतान है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "This is convergent evolution.",
+                "hi": "यह अभिसारी विकास है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "They are not even in the same mammal group.",
+                  "hi": "वे एक ही स्तनधारी समूह में भी नहीं हैं।"
+                },
+                {
+                  "en": "They live on different continents.",
+                  "hi": "वे अलग महाद्वीपों में रहते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the rest. If you saw two animals in different continents that look alike, how could you tell whether they are relatives?",
+            "hi": "बाकी जोड़ियाँ मिलाओ। अलग महाद्वीपों के दो एक-से दिखने वाले जंतु दिखें तो कैसे जानोगे कि वे रिश्तेदार हैं या नहीं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch06-darwin-lamarck",
+      "topic": "6.5",
+      "template": "sort",
+      "title": {
+        "en": "Lamarck or Darwin?",
+        "hi": "लैमार्क या डार्विन?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "lam",
+            "label": {
+              "en": "Lamarck",
+              "hi": "लैमार्क"
+            }
+          },
+          {
+            "id": "dar",
+            "label": {
+              "en": "Darwin",
+              "hi": "डार्विन"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "use",
+            "text": {
+              "en": "Organs used more become stronger; unused ones fade",
+              "hi": "अधिक उपयोग वाले अंग मज़बूत होते हैं, अनुपयोगी लुप्त"
+            },
+            "bin": "lam",
+            "why": {
+              "en": "The idea of use and disuse of organs.",
+              "hi": "अंगों के उपयोग और अनुपयोग का विचार।"
+            }
+          },
+          {
+            "id": "acq",
+            "text": {
+              "en": "Characters gained in life are passed to children",
+              "hi": "जीवन में पाए लक्षण संतान को मिलते हैं"
+            },
+            "bin": "lam",
+            "why": {
+              "en": "Inheritance of acquired characters; not supported by evidence.",
+              "hi": "अर्जित लक्षणों की वंशागति; प्रमाणों से समर्थित नहीं।"
+            }
+          },
+          {
+            "id": "giraffe",
+            "text": {
+              "en": "Giraffes stretched their necks and children had longer necks",
+              "hi": "जिराफ़ ने गर्दन खींची और बच्चों की गर्दन लंबी हुई"
+            },
+            "bin": "lam",
+            "why": {
+              "en": "A classic example of the Lamarckian idea.",
+              "hi": "लैमार्क के विचार का जाना-माना उदाहरण।"
+            }
+          },
+          {
+            "id": "var",
+            "text": {
+              "en": "Small heritable variations exist in a population",
+              "hi": "समष्टि में छोटी वंशागत विभिन्नताएँ होती हैं"
+            },
+            "bin": "dar",
+            "why": {
+              "en": "Variation is the raw material of natural selection.",
+              "hi": "विभिन्नता प्राकृतिक चयन का कच्चा माल है।"
+            }
+          },
+          {
+            "id": "struggle",
+            "text": {
+              "en": "More offspring are born than can survive",
+              "hi": "जन्मने वाली संतानें बच सकने वालों से अधिक हैं"
+            },
+            "bin": "dar",
+            "why": {
+              "en": "Limited resources create a struggle for existence.",
+              "hi": "सीमित संसाधन अस्तित्व के लिए संघर्ष बनाते हैं।"
+            }
+          },
+          {
+            "id": "fit",
+            "text": {
+              "en": "Those best fitted survive and leave more offspring",
+              "hi": "सर्वाधिक अनुकूल बचते और अधिक संतान छोड़ते हैं"
+            },
+            "bin": "dar",
+            "why": {
+              "en": "This is natural selection: survival of the fittest.",
+              "hi": "यही प्राकृतिक चयन है: योग्यतम की उत्तरजीविता।"
+            }
+          },
+          {
+            "id": "wallace",
+            "text": {
+              "en": "Worked with Alfred Wallace on the same idea",
+              "hi": "यही विचार अल्फ्रेड वैलेस के साथ विकसित किया"
+            },
+            "bin": "dar",
+            "why": {
+              "en": "Wallace reached a similar idea from the Malay Archipelago.",
+              "hi": "वैलेस मलय द्वीपसमूह से इसी विचार पर पहुँचे।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:use",
+          "expect": "correct:use",
+          "say": {
+            "en": "Sort \"Organs used more become stronger\".",
+            "hi": "\"अधिक उपयोग वाले अंग मज़बूत होते हैं\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A weightlifter builds big muscles. Will his children be born with big muscles because of that?",
+            "hi": "भारोत्तोलक के बड़े पेशी बन गए। क्या इसके कारण उसके बच्चे बड़ी पेशियों के साथ जन्मेंगे?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No: acquired traits are not inherited",
+              "hi": "नहीं: अर्जित लक्षण वंशागत नहीं होते"
+            },
+            {
+              "id": "yes",
+              "en": "Yes",
+              "hi": "हाँ"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "card:giraffe",
+          "expect": "correct:giraffe",
+          "say": {
+            "en": "Sort the giraffe card.",
+            "hi": "जिराफ़ वाला कार्ड छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:fit",
+          "expect": "correct:fit",
+          "say": {
+            "en": "Sort \"Those best fitted survive\".",
+            "hi": "\"सर्वाधिक अनुकूल बचते हैं\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Lamarck suggested that organs used more get stronger and the changes pass to offspring. We now know that body changes gained in a lifetime are not inherited. Darwin proposed natural selection: individuals vary, more offspring are born than the resources can support, and those with useful variations survive and leave more offspring, so the population slowly changes. Fitness here means the ability to survive and reproduce, not to be the strongest.",
+            "hi": "लैमार्क ने सुझाया कि अधिक उपयोग वाले अंग मज़बूत होते हैं और बदलाव संतान को मिलते हैं। अब हम जानते हैं कि जीवन में पाए शारीरिक बदलाव वंशागत नहीं होते। डार्विन ने प्राकृतिक चयन बताया: जीवों में विभिन्नता है, संसाधनों से अधिक संतानें जन्मती हैं, और उपयोगी विभिन्नता वाले बचकर अधिक संतान छोड़ते हैं, इसलिए समष्टि धीरे-धीरे बदलती है। यहाँ योग्यता का अर्थ जीवित रहने और संतान पैदा करने की क्षमता है, सबसे बलवान होना नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In Darwin's idea, what does \"fitness\" mean?",
+                "hi": "डार्विन के विचार में \"योग्यता\" का क्या अर्थ है?"
+              },
+              "options": [
+                {
+                  "en": "Ability to survive and reproduce",
+                  "hi": "जीवित रहने और संतान पैदा करने की क्षमता"
+                },
+                {
+                  "en": "Being the strongest",
+                  "hi": "सबसे बलवान होना"
+                },
+                {
+                  "en": "Being the largest",
+                  "hi": "सबसे बड़ा होना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The fit leave the most surviving offspring.",
+                "hi": "योग्य सबसे अधिक जीवित संतान छोड़ते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A weak but well-hidden animal can still be fit.",
+                  "hi": "कमज़ोर पर अच्छी तरह छिपा जंतु भी योग्य हो सकता है।"
+                },
+                {
+                  "en": "Size alone does not decide survival.",
+                  "hi": "केवल आकार जीवित रहना तय नहीं करता।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which source of variation does natural selection act on?",
+                "hi": "प्राकृतिक चयन किस विभिन्नता पर कार्य करता है?"
+              },
+              "options": [
+                {
+                  "en": "Heritable variation",
+                  "hi": "वंशागत विभिन्नता"
+                },
+                {
+                  "en": "Exercise-built muscles",
+                  "hi": "व्यायाम से बनी पेशियाँ"
+                },
+                {
+                  "en": "Scars from injury",
+                  "hi": "चोट के निशान"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Only variations that pass to offspring can change a population.",
+                "hi": "केवल संतान को मिलने वाली विभिन्नताएँ समष्टि बदल सकती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "These are not inherited.",
+                  "hi": "ये वंशागत नहीं हैं।"
+                },
+                {
+                  "en": "Scars are not inherited either.",
+                  "hi": "निशान भी वंशागत नहीं होते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Explain the long neck of the giraffe in a Darwinian way, in two sentences.",
+            "hi": "बाकी कार्ड छाँटो। जिराफ़ की लंबी गर्दन को डार्विन के ढंग से दो वाक्यों में समझाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch06-peppered-moth",
+      "topic": "6.6",
+      "template": "sequence",
+      "title": {
+        "en": "Natural selection in action: the moths",
+        "hi": "क्रियाशील प्राकृतिक चयन: पतंगे"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "var",
+            "text": {
+              "en": "A population has both white and dark moths",
+              "hi": "एक समष्टि में सफ़ेद और काले दोनों पतंगे हैं"
+            }
+          },
+          {
+            "id": "soot",
+            "text": {
+              "en": "Factory smoke darkens the tree trunks",
+              "hi": "कारख़ाने के धुएँ से पेड़ों के तने काले पड़ जाते हैं"
+            }
+          },
+          {
+            "id": "eaten",
+            "text": {
+              "en": "Birds see white moths easily and eat more of them",
+              "hi": "पक्षी सफ़ेद पतंगे आसानी से देखकर अधिक खाते हैं"
+            }
+          },
+          {
+            "id": "survive",
+            "text": {
+              "en": "Dark moths survive and leave more offspring",
+              "hi": "काले पतंगे बचते और अधिक संतान छोड़ते हैं"
+            }
+          },
+          {
+            "id": "shift",
+            "text": {
+              "en": "After many generations most moths are dark",
+              "hi": "कई पीढ़ियों बाद अधिकतर पतंगे काले हैं"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:var",
+          "expect": "placed:var",
+          "say": {
+            "en": "Tap \"A population has both white and dark moths\" and put it in place 1.",
+            "hi": "\"एक समष्टि में सफ़ेद और काले दोनों पतंगे हैं\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:soot",
+          "expect": "placed:soot",
+          "say": {
+            "en": "Tap \"Factory smoke darkens the tree trunks\" and put it in place 2.",
+            "hi": "\"कारख़ाने के धुएँ से पेड़ों के तने काले पड़ जाते हैं\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "After the trunks turn dark, which moths will the birds find harder to see?",
+            "hi": "तने काले होने के बाद पक्षियों को कौन-से पतंगे देखना कठिन होगा?"
+          },
+          "options": [
+            {
+              "id": "dark",
+              "en": "Dark moths",
+              "hi": "काले पतंगे"
+            },
+            {
+              "id": "white",
+              "en": "White moths",
+              "hi": "सफ़ेद पतंगे"
+            }
+          ],
+          "answer": "dark"
+        },
+        {
+          "kind": "do",
+          "target": "item:eaten",
+          "expect": "placed:eaten",
+          "say": {
+            "en": "Tap \"Birds see white moths easily and eat more of them\" and put it in place 3.",
+            "hi": "\"पक्षी सफ़ेद पतंगे आसानी से देखकर अधिक खाते हैं\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:survive",
+          "expect": "placed:survive",
+          "say": {
+            "en": "Tap \"Dark moths survive and leave more offspring\" and put it in place 4.",
+            "hi": "\"काले पतंगे बचते और अधिक संतान छोड़ते हैं\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "This story from industrial England shows natural selection. Before the soot, white moths on pale trunks were hidden and common. After the trunks turned dark, white moths were eaten more and the dark ones survived and bred, so dark moths became common. When the air was cleaned later, the white moths increased again. No moth changed its colour during its life; the population changed because of who survived. The variation was already there.",
+            "hi": "औद्योगिक इंग्लैंड की यह कहानी प्राकृतिक चयन दिखाती है। धुएँ से पहले हल्के तनों पर सफ़ेद पतंगे छिपे रहते थे और अधिक थे। तने काले होने पर सफ़ेद पतंगे अधिक खाए गए और काले बचकर प्रजनन करते रहे, इसलिए काले पतंगे आम हो गए। बाद में हवा साफ़ हुई तो सफ़ेद पतंगे फिर बढ़े। किसी पतंगे ने अपने जीवन में रंग नहीं बदला; समष्टि इसलिए बदली कि कौन बचा। विभिन्नता पहले से मौजूद थी।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why did dark moths become more common?",
+                "hi": "काले पतंगे अधिक क्यों हो गए?"
+              },
+              "options": [
+                {
+                  "en": "They were harder for birds to see, so more survived",
+                  "hi": "पक्षियों को वे कम दिखे, इसलिए अधिक बचे"
+                },
+                {
+                  "en": "White moths changed colour",
+                  "hi": "सफ़ेद पतंगों ने रंग बदल लिया"
+                },
+                {
+                  "en": "Dark moths wanted to be dark",
+                  "hi": "काले पतंगे काले रहना चाहते थे"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Survival differed with colour, so the dark ones passed on their genes more.",
+                "hi": "रंग के अनुसार बचना अलग था, इसलिए काले अपने जीन अधिक फैला सके।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Individuals did not change colour; the proportion changed.",
+                  "hi": "व्यक्तियों ने रंग नहीं बदला; अनुपात बदला।"
+                },
+                {
+                  "en": "Evolution has no wish or aim.",
+                  "hi": "विकास की कोई इच्छा या उद्देश्य नहीं होता।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What does this story show?",
+                "hi": "यह कहानी क्या दिखाती है?"
+              },
+              "options": [
+                {
+                  "en": "The environment decides which variations are useful",
+                  "hi": "पर्यावरण तय करता है कि कौन-सी विभिन्नता उपयोगी है"
+                },
+                {
+                  "en": "Moths can choose their colour",
+                  "hi": "पतंगे अपना रंग चुन सकते हैं"
+                },
+                {
+                  "en": "Pollution is good for moths",
+                  "hi": "प्रदूषण पतंगों के लिए अच्छा है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The same colour can help in one place and hurt in another.",
+                "hi": "वही रंग एक जगह मददगार और दूसरी जगह हानिकारक हो सकता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Colour is not chosen.",
+                  "hi": "रंग चुना नहीं जाता।"
+                },
+                {
+                  "en": "Pollution only changed which colour was favoured.",
+                  "hi": "प्रदूषण ने केवल यह बदला कि कौन-सा रंग अनुकूल रहा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. What do you think happened to the moth numbers when the air became clean again?",
+            "hi": "आख़िरी चरण रखो। हवा फिर साफ़ होने पर पतंगों की संख्या का क्या हुआ होगा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch06-hardy-weinberg",
+      "topic": "6.7",
+      "template": "sort",
+      "title": {
+        "en": "Hardy-Weinberg: steady or evolving?",
+        "hi": "हार्डी-वाइनबर्ग: स्थिर या विकसित होता?"
+      },
+      "minutes": 6,
+      "level": "stretch",
+      "config": {
+        "bins": [
+          {
+            "id": "steady",
+            "label": {
+              "en": "Keeps gene frequency steady",
+              "hi": "जीन आवृत्ति स्थिर रखता है"
+            }
+          },
+          {
+            "id": "change",
+            "label": {
+              "en": "Changes gene frequency",
+              "hi": "जीन आवृत्ति बदलता है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "random",
+            "text": {
+              "en": "Random mating",
+              "hi": "यादृच्छिक संगम"
+            },
+            "bin": "steady",
+            "why": {
+              "en": "Every pairing is equally likely, so alleles are not favoured.",
+              "hi": "हर जोड़ी समान संभावना की है, इसलिए कोई एलील विशेष नहीं।"
+            }
+          },
+          {
+            "id": "big",
+            "text": {
+              "en": "A very large population",
+              "hi": "बहुत बड़ी समष्टि"
+            },
+            "bin": "steady",
+            "why": {
+              "en": "Chance changes are small in a big population.",
+              "hi": "बड़ी समष्टि में संयोग से बदलाव कम होते हैं।"
+            }
+          },
+          {
+            "id": "none",
+            "text": {
+              "en": "No mutation, no migration, no selection",
+              "hi": "न उत्परिवर्तन, न प्रवास, न चयन"
+            },
+            "bin": "steady",
+            "why": {
+              "en": "If nothing disturbs the alleles, p and q stay the same.",
+              "hi": "एलील को कोई न छेड़े तो p और q वही रहते हैं।"
+            }
+          },
+          {
+            "id": "mut",
+            "text": {
+              "en": "A new mutation appears",
+              "hi": "नया उत्परिवर्तन होता है"
+            },
+            "bin": "change",
+            "why": {
+              "en": "A new allele changes the frequencies.",
+              "hi": "नया एलील आवृत्तियाँ बदलता है।"
+            }
+          },
+          {
+            "id": "gene",
+            "text": {
+              "en": "Gene flow: individuals migrate in or out",
+              "hi": "जीन प्रवाह: व्यक्ति आते-जाते हैं"
+            },
+            "bin": "change",
+            "why": {
+              "en": "Migrants carry alleles with them.",
+              "hi": "प्रवासी अपने साथ एलील ले जाते हैं।"
+            }
+          },
+          {
+            "id": "drift",
+            "text": {
+              "en": "Genetic drift: chance changes in a small group",
+              "hi": "आनुवंशिक अपवाह: छोटे समूह में संयोग से बदलाव"
+            },
+            "bin": "change",
+            "why": {
+              "en": "Random events can remove or fix alleles, as in the founder effect.",
+              "hi": "यादृच्छिक घटनाएँ एलील हटा या स्थिर कर सकती हैं, जैसे संस्थापक प्रभाव।"
+            }
+          },
+          {
+            "id": "select",
+            "text": {
+              "en": "Natural selection favours one allele",
+              "hi": "प्राकृतिक चयन एक एलील को अनुकूल बनाता है"
+            },
+            "bin": "change",
+            "why": {
+              "en": "Carriers of that allele leave more offspring.",
+              "hi": "उस एलील के वाहक अधिक संतान छोड़ते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:random",
+          "expect": "correct:random",
+          "say": {
+            "en": "Sort \"Random mating\".",
+            "hi": "\"यादृच्छिक संगम\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is p + q equal to, in a population with two alleles?",
+            "hi": "दो एलील वाली समष्टि में p + q किसके बराबर होता है?"
+          },
+          "options": [
+            {
+              "id": "one",
+              "en": "1",
+              "hi": "एक (1)"
+            },
+            {
+              "id": "two",
+              "en": "2",
+              "hi": "दो (2)"
+            },
+            {
+              "id": "half",
+              "en": "0.5",
+              "hi": "आधा (0.5)"
+            }
+          ],
+          "answer": "one"
+        },
+        {
+          "kind": "do",
+          "target": "card:mut",
+          "expect": "correct:mut",
+          "say": {
+            "en": "Sort \"A new mutation appears\".",
+            "hi": "\"नया उत्परिवर्तन होता है\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:select",
+          "expect": "correct:select",
+          "say": {
+            "en": "Sort \"Natural selection favours one allele\".",
+            "hi": "\"प्राकृतिक चयन एक एलील को अनुकूल बनाता है\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The Hardy-Weinberg principle says that, in a population where nothing is disturbing the genes, allele frequencies stay the same from generation to generation: p + q = 1 and the genotypes are in the proportion p squared + 2pq + q squared = 1. This is like a ruler to measure evolution: when frequencies change, something is acting on the population. The disturbing forces are gene flow (migration), genetic drift, mutation, genetic recombination and natural selection. Evolution is, in this sense, a change in allele frequency.",
+            "hi": "हार्डी-वाइनबर्ग सिद्धांत कहता है कि जिस समष्टि में जीनों को कोई नहीं छेड़ता, वहाँ एलील आवृत्तियाँ पीढ़ी-दर-पीढ़ी वही रहती हैं: p + q = 1 और जीनप्ररूप अनुपात p वर्ग + 2pq + q वर्ग = 1। यह विकास मापने के पैमाने जैसा है: आवृत्तियाँ बदलें तो समष्टि पर कुछ काम कर रहा है। छेड़ने वाले कारक हैं जीन प्रवाह (प्रवास), आनुवंशिक अपवाह, उत्परिवर्तन, आनुवंशिक पुनर्योजन और प्राकृतिक चयन। इस अर्थ में विकास एलील आवृत्ति में बदलाव है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "If the frequency of allele A is p = 0.7, what is q (for allele a)?",
+                "hi": "एलील A की आवृत्ति p = 0.7 है तो q (एलील a) क्या होगा?"
+              },
+              "options": [
+                {
+                  "en": "0.3",
+                  "hi": "q का मान 0.3"
+                },
+                {
+                  "en": "0.7",
+                  "hi": "q का मान 0.7"
+                },
+                {
+                  "en": "0.49",
+                  "hi": "q का मान 0.49"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "p + q = 1, so q = 1 - 0.7 = 0.3.",
+                "hi": "p + q = 1, इसलिए q = 1 - 0.7 = 0.3।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "0.7 is p itself.",
+                  "hi": "0.7 तो स्वयं p है।"
+                },
+                {
+                  "en": "0.49 is p squared, the frequency of AA individuals.",
+                  "hi": "0.49 p का वर्ग है, यानी AA व्यक्तियों की आवृत्ति।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A change in allele frequency in a population means",
+                "hi": "समष्टि में एलील आवृत्ति में बदलाव का अर्थ है"
+              },
+              "options": [
+                {
+                  "en": "Evolution is taking place",
+                  "hi": "विकास हो रहा है"
+                },
+                {
+                  "en": "The population is in equilibrium",
+                  "hi": "समष्टि साम्य में है"
+                },
+                {
+                  "en": "No genes are changing",
+                  "hi": "कोई जीन नहीं बदल रहा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A shift from Hardy-Weinberg values shows an evolutionary force at work.",
+                "hi": "हार्डी-वाइनबर्ग मानों से हटना बताता है कि कोई विकासात्मक बल काम कर रहा है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Equilibrium means the frequencies stay constant.",
+                  "hi": "साम्य का अर्थ है आवृत्तियाँ स्थिर रहें।"
+                },
+                {
+                  "en": "Genes are changing in frequency, which is the point.",
+                  "hi": "जीनों की आवृत्ति बदल रही है, यही बात है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Why is a very small island population more affected by drift than a big mainland one?",
+            "hi": "बाकी कार्ड छाँटो। छोटे द्वीप की समष्टि बड़ी मुख्यभूमि की समष्टि से अपवाह से अधिक प्रभावित क्यों होती है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch06-life-through-time",
+      "topic": "6.8",
+      "template": "sequence",
+      "title": {
+        "en": "Life through time",
+        "hi": "समय के साथ जीवन"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "cells",
+            "text": {
+              "en": "First cellular life in the oceans",
+              "hi": "महासागरों में पहला कोशिकीय जीवन"
+            }
+          },
+          {
+            "id": "invert",
+            "text": {
+              "en": "Invertebrates are formed and active",
+              "hi": "अकशेरुकी जीव बने और सक्रिय हुए"
+            }
+          },
+          {
+            "id": "jawless",
+            "text": {
+              "en": "Jawless fish appear",
+              "hi": "जबड़ाहीन मछलियाँ प्रकट होती हैं"
+            }
+          },
+          {
+            "id": "fish",
+            "text": {
+              "en": "Fish with stout, lobed fins appear",
+              "hi": "मज़बूत पालियुक्त पख वाली मछलियाँ प्रकट होती हैं"
+            }
+          },
+          {
+            "id": "amph",
+            "text": {
+              "en": "Amphibians move onto land",
+              "hi": "उभयचर ज़मीन पर आते हैं"
+            }
+          },
+          {
+            "id": "rept",
+            "text": {
+              "en": "Reptiles, including dinosaurs, spread",
+              "hi": "सरीसृप, डायनासोर सहित, फैलते हैं"
+            }
+          },
+          {
+            "id": "mammal",
+            "text": {
+              "en": "Mammals spread after the dinosaurs disappear",
+              "hi": "डायनासोर लुप्त होने के बाद स्तनधारी फैलते हैं"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:cells",
+          "expect": "placed:cells",
+          "say": {
+            "en": "Tap \"First cellular life in the oceans\" and put it in place 1.",
+            "hi": "\"महासागरों में पहला कोशिकीय जीवन\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:invert",
+          "expect": "placed:invert",
+          "say": {
+            "en": "Tap \"Invertebrates are formed and active\" and put it in place 2.",
+            "hi": "\"अकशेरुकी जीव बने और सक्रिय हुए\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Fish with strong, lobed fins could drag themselves on land. Which group do you think came from them?",
+            "hi": "मज़बूत पालियुक्त पख वाली मछलियाँ ज़मीन पर घिसट सकती थीं। तुम्हारे अनुसार उनसे कौन-सा समूह निकला?"
+          },
+          "options": [
+            {
+              "id": "amph",
+              "en": "Amphibians",
+              "hi": "उभयचर"
+            },
+            {
+              "id": "bird",
+              "en": "Birds",
+              "hi": "पक्षी"
+            },
+            {
+              "id": "mam",
+              "en": "Mammals",
+              "hi": "स्तनधारी"
+            }
+          ],
+          "answer": "amph"
+        },
+        {
+          "kind": "do",
+          "target": "item:jawless",
+          "expect": "placed:jawless",
+          "say": {
+            "en": "Tap \"Jawless fish appear\" and put it in place 3.",
+            "hi": "\"जबड़ाहीन मछलियाँ प्रकट होती हैं\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:fish",
+          "expect": "placed:fish",
+          "say": {
+            "en": "Tap \"Fish with stout, lobed fins appear\" and put it in place 4.",
+            "hi": "\"मज़बूत पालियुक्त पख वाली मछलियाँ प्रकट होती हैं\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:amph",
+          "expect": "placed:amph",
+          "say": {
+            "en": "Tap \"Amphibians move onto land\" and put it in place 5.",
+            "hi": "\"उभयचर ज़मीन पर आते हैं\" छुओ और स्थान 5 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Fossils tell the order in which groups appeared. Cellular life came first, in water, followed by invertebrates, then jawless fish and fish with lobed fins. Some of those, like the lobe-finned Coelacanth, are living links. Amphibians came out onto land, then reptiles, whose dinosaurs ruled for a long time. After the dinosaurs disappeared about 65 million years ago, mammals spread into many forms. Plants moved to land before animals, and flowering plants came much later.",
+            "hi": "जीवाश्म बताते हैं कि समूह किस क्रम में प्रकट हुए। पहले जल में कोशिकीय जीवन आया, फिर अकशेरुकी, फिर जबड़ाहीन और पालियुक्त पख वाली मछलियाँ। उनमें से कुछ, जैसे पालियुक्त पख वाली कोएलाकैंथ, जीवित कड़ी हैं। उभयचर ज़मीन पर आए, फिर सरीसृप, जिनके डायनासोर बहुत समय तक राज करते रहे। लगभग 6.5 करोड़ वर्ष पहले डायनासोर लुप्त हुए तो स्तनधारी कई रूपों में फैले। पौधे जंतुओं से पहले ज़मीन पर आए और पुष्पी पौधे बहुत बाद में।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which group came onto land first among these?",
+                "hi": "इनमें से कौन-सा समूह पहले ज़मीन पर आया?"
+              },
+              "options": [
+                {
+                  "en": "Amphibians",
+                  "hi": "उभयचर"
+                },
+                {
+                  "en": "Mammals",
+                  "hi": "स्तनधारी"
+                },
+                {
+                  "en": "Birds",
+                  "hi": "पक्षी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Amphibians evolved from lobe-finned fish and could live on land and in water.",
+                "hi": "उभयचर पालियुक्त पख वाली मछलियों से बने और ज़मीन तथा पानी दोनों में रह सकते थे।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Mammals came after reptiles.",
+                  "hi": "स्तनधारी सरीसृपों के बाद आए।"
+                },
+                {
+                  "en": "Birds came after reptiles too.",
+                  "hi": "पक्षी भी सरीसृपों के बाद आए।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What do fossils help us know?",
+                "hi": "जीवाश्म हमें क्या जानने में मदद करते हैं?"
+              },
+              "options": [
+                {
+                  "en": "The order in which life forms appeared",
+                  "hi": "जीवन रूप किस क्रम में प्रकट हुए"
+                },
+                {
+                  "en": "The colour of ancient animals for sure",
+                  "hi": "प्राचीन जंतुओं का रंग निश्चित रूप से"
+                },
+                {
+                  "en": "What animals dreamt",
+                  "hi": "जंतुओं ने क्या सपना देखा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The age of rocks with fossils gives a timeline.",
+                "hi": "जीवाश्म वाली चट्टानों की आयु से समयरेखा मिलती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Colour is rarely preserved.",
+                  "hi": "रंग शायद ही सुरक्षित रहता है।"
+                },
+                {
+                  "en": "Fossils cannot show dreams.",
+                  "hi": "जीवाश्म सपने नहीं दिखा सकते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last two steps. Which group in this list is most distantly related to you, and which is closest?",
+            "hi": "आख़िरी चरण रखो। इस सूची में तुमसे सबसे दूर का संबंधी कौन-सा समूह है और सबसे पास का कौन-सा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch06-human-evolution",
+      "topic": "6.9",
+      "template": "sequence",
+      "title": {
+        "en": "Our family tree: human evolution",
+        "hi": "हमारा वंश-वृक्ष: मानव विकास"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "dryo",
+            "text": {
+              "en": "Dryopithecus and Ramapithecus: ape-like, about 15 million years ago",
+              "hi": "ड्रायोपिथेकस और रामापिथेकस: कपि-जैसे, लगभग 1.5 करोड़ वर्ष पहले"
+            }
+          },
+          {
+            "id": "austral",
+            "text": {
+              "en": "Australopithecus: walked upright, about 2 million years ago",
+              "hi": "ऑस्ट्रैलोपिथेकस: सीधे चलता था, लगभग 20 लाख वर्ष पहले"
+            }
+          },
+          {
+            "id": "habilis",
+            "text": {
+              "en": "Homo habilis: the first human-like, brain about 650 to 800 cc",
+              "hi": "होमो हैबिलिस: पहला मानव-जैसा, मस्तिष्क लगभग 650 से 800 cc"
+            }
+          },
+          {
+            "id": "erectus",
+            "text": {
+              "en": "Homo erectus: brain about 900 cc, ate meat",
+              "hi": "होमो इरेक्टस: मस्तिष्क लगभग 900 cc, माँस खाता था"
+            }
+          },
+          {
+            "id": "neander",
+            "text": {
+              "en": "Neanderthal: brain about 1400 cc, used hides and buried the dead",
+              "hi": "निएंडरथल: मस्तिष्क लगभग 1400 cc, खाल पहनता, शव दफ़नाता"
+            }
+          },
+          {
+            "id": "sapiens",
+            "text": {
+              "en": "Homo sapiens: modern humans, with language, art and agriculture",
+              "hi": "होमो सेपियन्स: आधुनिक मनुष्य, भाषा, कला और खेती के साथ"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:dryo",
+          "expect": "placed:dryo",
+          "say": {
+            "en": "Tap \"Dryopithecus and Ramapithecus\" and put it in place 1.",
+            "hi": "\"ड्रायोपिथेकस और रामापिथेकस\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:austral",
+          "expect": "placed:austral",
+          "say": {
+            "en": "Tap \"Australopithecus\" and put it in place 2.",
+            "hi": "\"ऑस्ट्रैलोपिथेकस\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "As we go from Australopithecus to Homo sapiens, what happens to brain size?",
+            "hi": "ऑस्ट्रैलोपिथेकस से होमो सेपियन्स तक मस्तिष्क का आकार कैसे बदलता है?"
+          },
+          "options": [
+            {
+              "id": "up",
+              "en": "It generally grows larger",
+              "hi": "सामान्यतः बड़ा होता जाता है"
+            },
+            {
+              "id": "down",
+              "en": "It gets smaller",
+              "hi": "छोटा होता जाता है"
+            },
+            {
+              "id": "same",
+              "en": "It stays the same",
+              "hi": "वही रहता है"
+            }
+          ],
+          "answer": "up"
+        },
+        {
+          "kind": "do",
+          "target": "item:habilis",
+          "expect": "placed:habilis",
+          "say": {
+            "en": "Tap \"Homo habilis\" and put it in place 3.",
+            "hi": "\"होमो हैबिलिस\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:erectus",
+          "expect": "placed:erectus",
+          "say": {
+            "en": "Tap \"Homo erectus\" and put it in place 4.",
+            "hi": "\"होमो इरेक्टस\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:neander",
+          "expect": "placed:neander",
+          "say": {
+            "en": "Tap \"Neanderthal\" and put it in place 5.",
+            "hi": "\"निएंडरथल\" छुओ और स्थान 5 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Our family tree is more like a bush than a ladder, but the broad trend is clear. Fossils show a move from ape-like forms to upright walking (Australopithecus), then bigger brains and tools in the genus Homo: H. habilis, H. erectus, Neanderthals, and finally Homo sapiens, who appeared in Africa and spread across the world. Humans did not come from chimpanzees; humans and apes share a common ancestor. Language, art and farming marked later changes in culture.",
+            "hi": "हमारा वंश-वृक्ष सीढ़ी से अधिक झाड़ी जैसा है, पर मोटा रुझान साफ़ है। जीवाश्म कपि-जैसे रूपों से सीधे चलने (ऑस्ट्रैलोपिथेकस) की ओर, फिर वंश होमो में बड़े मस्तिष्क और औज़ारों की ओर बढ़ते दिखाते हैं: होमो हैबिलिस, होमो इरेक्टस, निएंडरथल और अंत में होमो सेपियन्स, जो अफ़्रीका में प्रकट होकर सारी दुनिया में फैले। मनुष्य चिंपैंज़ी से नहीं आए; मनुष्य और कपियों का साझा पूर्वज है। भाषा, कला और खेती बाद के सांस्कृतिक बदलावों के चिह्न हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which is true about humans and chimpanzees?",
+                "hi": "मनुष्य और चिंपैंज़ी के बारे में कौन-सा कथन सही है?"
+              },
+              "options": [
+                {
+                  "en": "They share a common ancestor",
+                  "hi": "उनका एक साझा पूर्वज है"
+                },
+                {
+                  "en": "Humans came from chimpanzees",
+                  "hi": "मनुष्य चिंपैंज़ी से आए"
+                },
+                {
+                  "en": "They have no relation",
+                  "hi": "उनमें कोई संबंध नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Both lines came from an earlier ape-like ancestor.",
+                "hi": "दोनों वंश पहले के कपि-जैसे पूर्वज से आए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Living chimpanzees are cousins, not ancestors.",
+                  "hi": "आज के चिंपैंज़ी चचेरे संबंधी हैं, पूर्वज नहीं।"
+                },
+                {
+                  "en": "DNA and fossils show a close relationship.",
+                  "hi": "DNA और जीवाश्म निकट संबंध दिखाते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which of these is the first to be called a human-like form with a bigger brain?",
+                "hi": "इनमें से बड़े मस्तिष्क वाला पहला मानव-जैसा रूप किसे कहा जाता है?"
+              },
+              "options": [
+                {
+                  "en": "Homo habilis",
+                  "hi": "होमो हैबिलिस"
+                },
+                {
+                  "en": "Dryopithecus",
+                  "hi": "ड्रायोपिथेकस"
+                },
+                {
+                  "en": "Homo sapiens",
+                  "hi": "होमो सेपियन्स"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Homo habilis (about 650 to 800 cc) is the first human-like form.",
+                "hi": "होमो हैबिलिस (लगभग 650 से 800 cc) पहला मानव-जैसा रूप है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Dryopithecus was ape-like.",
+                  "hi": "ड्रायोपिथेकस कपि-जैसा था।"
+                },
+                {
+                  "en": "Homo sapiens is the most recent, not the first.",
+                  "hi": "होमो सेपियन्स सबसे हाल का है, पहला नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. Humans have spread to every continent. What helped them do this: strong claws, or language, tools and cooperation?",
+            "hi": "आख़िरी चरण रखो। मनुष्य हर महाद्वीप में फैल गए। इसमें क्या सहायक रहा: मज़बूत पंजे या भाषा, औज़ार और सहयोग?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "DIA",
+      "topic": "6.1",
+      "use": "Miller's experiment",
+      "shows": "A clean diagram of the Miller flask apparatus with spark electrodes, condenser and collecting trap",
+      "view": "Side view, flat colour",
+      "right": "Gases and the collected amino acids labelled",
+      "avoid": "Realistic clutter"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "6.3",
+      "use": "Homologous forelimbs",
+      "shows": "Skeletons of a human arm, cat leg, whale flipper and bat wing arranged in a row with matching bones in the same colour",
+      "view": "Flat-lay, white background",
+      "right": "Humerus, radius, ulna, carpals and phalanges colour-matched",
+      "avoid": "Mislabelled bones"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "6.4",
+      "use": "Darwin's finches",
+      "shows": "Four finch species perched on a branch, each with a different beak and a seed, insect or bud",
+      "view": "Eye-level, soft light",
+      "right": "Beak shapes clear and distinct",
+      "avoid": "Fake-looking illustrations"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "6.6",
+      "use": "Peppered moths",
+      "shows": "Two paired panels: pale and dark moths on a pale tree trunk, then on a sooty trunk",
+      "view": "Macro on the bark",
+      "right": "Camouflage obvious in the matching panels",
+      "avoid": "Staged plastic moths"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "6.8",
+      "use": "Timeline of life",
+      "shows": "A circular or horizontal timeline with major groups placed by approximate age",
+      "view": "Flat vector, one colour per era",
+      "right": "Order of groups correct and age marks clear",
+      "avoid": "Cluttered text"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "6.9",
+      "use": "Human evolution",
+      "shows": "Skull silhouettes of Australopithecus, H. habilis, H. erectus, Neanderthal and H. sapiens in a row with brain sizes",
+      "view": "Side profile, flat tones",
+      "right": "Brain size trend visible",
+      "avoid": "Cartoon apes"
+    }
+  ]
+}

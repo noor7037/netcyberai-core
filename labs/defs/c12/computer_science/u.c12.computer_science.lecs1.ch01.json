@@ -1,0 +1,1460 @@
+{
+ "chapter_key": "u.c12.computer_science.lecs1.ch01",
+ "class": 12,
+ "subject_id": "computer_science",
+ "title": "Exception Handling in Python",
+ "source": "https://ncert.nic.in/textbook/pdf/lecs101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Introduction: why programs go wrong",
+   "labs": [],
+   "why_no_lab": "A short idea the reader and a photo story cover; the labs start straight from the kinds of errors."
+  },
+  {
+   "n": "1.2",
+   "title": "Syntax errors, exceptions and logical errors",
+   "labs": [
+    "c12-computer_science-lecs1-ch01-kinds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Exceptions: what they are",
+   "labs": [
+    "c12-computer_science-lecs1-ch01-kinds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Built-in exceptions",
+   "labs": [
+    "c12-computer_science-lecs1-ch01-names"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Raising exceptions: raise and assert",
+   "labs": [
+    "c12-computer_science-lecs1-ch01-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Handling exceptions: need, process, catching, try...except...else",
+   "labs": [
+    "c12-computer_science-lecs1-ch01-guard",
+    "c12-computer_science-lecs1-ch01-flow",
+    "c12-computer_science-lecs1-ch01-blocks"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.7",
+   "title": "The finally clause",
+   "labs": [
+    "c12-computer_science-lecs1-ch01-blocks"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-computer_science-lecs1-ch01-kinds",
+   "topic": "1.2",
+   "template": "sort",
+   "title": {
+    "en": "Three kinds of errors",
+    "hi": "तीन तरह की गलतियाँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "syntax",
+      "label": {
+       "en": "Syntax error",
+       "hi": "सिंटैक्स त्रुटि"
+      }
+     },
+     {
+      "id": "runtime",
+      "label": {
+       "en": "Exception (runtime)",
+       "hi": "अपवाद (चलते समय)"
+      }
+     },
+     {
+      "id": "logic",
+      "label": {
+       "en": "Logical error",
+       "hi": "तार्किक त्रुटि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "colon",
+      "text": {
+       "en": "if x > 5  (no colon)",
+       "hi": "if x > 5  (कोलन नहीं)"
+      },
+      "bin": "syntax",
+      "why": {
+       "en": "Python must read the whole program first. A missing colon breaks the grammar, so it stops before running.",
+       "hi": "Python पहले पूरा प्रोग्राम पढ़ता है। कोलन छूटने से व्याकरण टूटता है, इसलिए वह चलने से पहले ही रुक जाता है।"
+      }
+     },
+     {
+      "id": "bracket",
+      "text": {
+       "en": "print(\"Hi\"  (no bracket)",
+       "hi": "print(\"Hi\"  (कोष्ठक नहीं)"
+      },
+      "bin": "syntax",
+      "why": {
+       "en": "A bracket that is opened but never closed breaks the rules of the language: a syntax error.",
+       "hi": "कोष्ठक खोला पर बंद नहीं किया। यह भाषा के नियम तोड़ता है: सिंटैक्स त्रुटि।"
+      }
+     },
+     {
+      "id": "indent",
+      "text": {
+       "en": "else not lined up with if",
+       "hi": "else, if के सीध में नहीं"
+      },
+      "bin": "syntax",
+      "why": {
+       "en": "Wrong indentation is an IndentationError, which is a kind of syntax error found before the program runs.",
+       "hi": "गलत इंडेंटेशन IndentationError है, जो सिंटैक्स त्रुटि का ही एक रूप है और प्रोग्राम चलने से पहले पकड़ी जाती है।"
+      }
+     },
+     {
+      "id": "zero",
+      "text": {
+       "en": "10 / 0",
+       "hi": "10 / 0"
+      },
+      "bin": "runtime",
+      "why": {
+       "en": "The line is written correctly, but dividing by zero is impossible when it runs: ZeroDivisionError.",
+       "hi": "लाइन सही लिखी है, पर चलते समय शून्य से भाग संभव नहीं: ZeroDivisionError।"
+      }
+     },
+     {
+      "id": "int",
+      "text": {
+       "en": "int(\"abc\")",
+       "hi": "int(\"abc\")"
+      },
+      "bin": "runtime",
+      "why": {
+       "en": "The grammar is fine, but \"abc\" cannot become a number when the line runs: ValueError.",
+       "hi": "व्याकरण ठीक है, पर \"abc\" संख्या नहीं बन सकता: ValueError।"
+      }
+     },
+     {
+      "id": "name",
+      "text": {
+       "en": "print(total) before total is set",
+       "hi": "total बनाने से पहले print(total)"
+      },
+      "bin": "runtime",
+      "why": {
+       "en": "Python meets the name total while running and does not know it: NameError.",
+       "hi": "चलते समय Python को total नाम मिलता है और वह उसे नहीं जानता: NameError।"
+      }
+     },
+     {
+      "id": "area",
+      "text": {
+       "en": "Area of a rectangle as l + b",
+       "hi": "आयत का क्षेत्रफल l + b से"
+      },
+      "bin": "logic",
+      "why": {
+       "en": "The program runs without any error message but gives wrong answers, because the formula is wrong.",
+       "hi": "प्रोग्राम बिना किसी त्रुटि संदेश के चलता है, पर उत्तर गलत देता है, क्योंकि सूत्र ही गलत है।"
+      }
+     },
+     {
+      "id": "avg",
+      "text": {
+       "en": "Average of 6 marks, divided by 5",
+       "hi": "6 अंकों का औसत, 5 से भाग"
+      },
+      "bin": "logic",
+      "why": {
+       "en": "Python cannot know what you meant. It happily divides by 5, so the answer is wrong and no error appears.",
+       "hi": "Python नहीं जान सकता कि तुम क्या चाहते थे। वह 5 से भाग दे देता है, उत्तर गलत आता है और कोई त्रुटि नहीं दिखती।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:colon",
+     "expect": "correct:colon",
+     "say": {
+      "en": "Tap the card \"if x > 5 (no colon)\", then tap the group it belongs to.",
+      "hi": "कार्ड \"if x > 5 (कोलन नहीं)\" दबाओ, फिर वह समूह दबाओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: 10 / 0. The line is written in perfect Python grammar. When will the problem appear?",
+      "hi": "अगला कार्ड: 10 / 0। लाइन Python के व्याकरण के हिसाब से बिल्कुल सही है। समस्या कब दिखेगी?"
+     },
+     "options": [
+      {
+       "id": "before",
+       "en": "Before the program starts running",
+       "hi": "प्रोग्राम चलने से पहले"
+      },
+      {
+       "id": "during",
+       "en": "While that line is running",
+       "hi": "जब वह लाइन चल रही हो"
+      },
+      {
+       "id": "never",
+       "en": "Never, there is no problem",
+       "hi": "कभी नहीं, कोई समस्या नहीं है"
+      }
+     ],
+     "answer": "during"
+    },
+    {
+     "kind": "do",
+     "target": "card:zero",
+     "expect": "correct:zero",
+     "say": {
+      "en": "Now place the card \"10 / 0\".",
+      "hi": "अब कार्ड \"10 / 0\" को उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:area",
+     "expect": "correct:area",
+     "say": {
+      "en": "Place the card \"Area of a rectangle as l + b\". Does Python complain here?",
+      "hi": "कार्ड \"आयत का क्षेत्रफल l + b से\" रखो। क्या Python यहाँ शिकायत करता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A syntax error breaks the grammar rules, so Python finds it before running anything. An exception happens while the program runs, when a correct-looking line meets a situation that cannot work, like dividing by zero. A logical error is the sneakiest: the program runs fully but the answer is wrong, because the idea in the program is wrong.",
+      "hi": "सिंटैक्स त्रुटि व्याकरण के नियम तोड़ती है, इसलिए Python उसे कुछ भी चलाने से पहले पकड़ लेता है। अपवाद (exception) प्रोग्राम चलते समय आता है, जब सही दिखने वाली लाइन ऐसी स्थिति से टकराती है जो हो नहीं सकती, जैसे शून्य से भाग। तार्किक त्रुटि सबसे चालाक है: प्रोग्राम पूरा चलता है पर उत्तर गलत आता है, क्योंकि प्रोग्राम का विचार ही गलत है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A program prints a wrong total, but Python shows no error at all. What kind of error is this?",
+        "hi": "एक प्रोग्राम गलत जोड़ छापता है, पर Python कोई त्रुटि नहीं दिखाता। यह किस तरह की त्रुटि है?"
+       },
+       "options": [
+        "Syntax error",
+        "Logical error",
+        "Exception"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The program ran fully and Python had nothing to complain about. Only the idea was wrong, so it is a logical error.",
+        "hi": "प्रोग्राम पूरा चला और Python को शिकायत की कोई बात नहीं मिली। गलत केवल विचार था, इसलिए यह तार्किक त्रुटि है।"
+       },
+       "wrong": [
+        {
+         "en": "A syntax error stops the program before it runs. Here the program ran to the end.",
+         "hi": "सिंटैक्स त्रुटि प्रोग्राम को चलने से पहले रोक देती है। यहाँ प्रोग्राम अंत तक चला।"
+        },
+        "",
+        {
+         "en": "An exception shows an error message while running. Here there was no message.",
+         "hi": "अपवाद चलते समय त्रुटि संदेश दिखाता है। यहाँ कोई संदेश नहीं था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which error does Python catch before running even the first line?",
+        "hi": "कौन-सी त्रुटि Python पहली लाइन चलाने से पहले ही पकड़ लेता है?"
+       },
+       "options": [
+        "Syntax error",
+        "ZeroDivisionError",
+        "Logical error"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Python reads the whole program first to check the grammar, so syntax errors are found before anything runs.",
+        "hi": "Python पहले पूरा प्रोग्राम पढ़कर व्याकरण जाँचता है, इसलिए सिंटैक्स त्रुटियाँ कुछ भी चलने से पहले मिल जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "ZeroDivisionError can only happen when the division line actually runs.",
+         "hi": "ZeroDivisionError तभी हो सकती है जब भाग वाली लाइन सचमुच चले।"
+        },
+        {
+         "en": "Python cannot see a logical error at all; only the programmer can.",
+         "hi": "तार्किक त्रुटि Python देख ही नहीं सकता; केवल प्रोग्रामर देख सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of one mistake you made in a Python program in class. Which of the three groups did it belong to? How did you find it?",
+      "hi": "कक्षा में Python प्रोग्राम में हुई अपनी कोई एक गलती सोचो। वह किस समूह की थी? तुमने उसे कैसे पकड़ा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch01-names",
+   "topic": "1.4",
+   "template": "match",
+   "title": {
+    "en": "Meet the built-in exceptions",
+    "hi": "जानो अंतर्निहित अपवादों को"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "zero",
+      "left": {
+       "en": "10 / 0",
+       "hi": "10 / 0"
+      },
+      "right": {
+       "en": "ZeroDivisionError",
+       "hi": "ZeroDivisionError"
+      },
+      "why": {
+       "en": "Division by zero is not allowed in arithmetic, so Python raises ZeroDivisionError.",
+       "hi": "गणित में शून्य से भाग नहीं होता, इसलिए Python ZeroDivisionError उठाता है।"
+      }
+     },
+     {
+      "id": "value",
+      "left": {
+       "en": "int(\"twelve\")",
+       "hi": "int(\"twelve\")"
+      },
+      "right": {
+       "en": "ValueError",
+       "hi": "ValueError"
+      },
+      "why": {
+       "en": "The type (text) is fine for int(), but this particular value cannot become a number.",
+       "hi": "int() के लिए प्रकार (टेक्स्ट) ठीक है, पर यह खास मान संख्या नहीं बन सकता।"
+      }
+     },
+     {
+      "id": "index",
+      "left": {
+       "en": "marks[10] when marks has 5 items",
+       "hi": "marks[10], जबकि marks में 5 चीज़ें हैं"
+      },
+      "right": {
+       "en": "IndexError",
+       "hi": "IndexError"
+      },
+      "why": {
+       "en": "Positions run from 0 to 4, so position 10 is outside the list.",
+       "hi": "स्थान 0 से 4 तक होते हैं, इसलिए स्थान 10 सूची से बाहर है।"
+      }
+     },
+     {
+      "id": "name",
+      "left": {
+       "en": "print(total) when total was never created",
+       "hi": "print(total), पर total कभी बना ही नहीं"
+      },
+      "right": {
+       "en": "NameError",
+       "hi": "NameError"
+      },
+      "why": {
+       "en": "Python does not know any name called total.",
+       "hi": "Python total नाम का कुछ नहीं जानता।"
+      }
+     },
+     {
+      "id": "type",
+      "left": {
+       "en": "\"5\" + 3",
+       "hi": "\"5\" + 3"
+      },
+      "right": {
+       "en": "TypeError",
+       "hi": "TypeError"
+      },
+      "why": {
+       "en": "Text and a number cannot be added: the types do not fit the operation.",
+       "hi": "टेक्स्ट और संख्या को जोड़ नहीं सकते: प्रकार इस क्रिया के अनुकूल नहीं हैं।"
+      }
+     },
+     {
+      "id": "import",
+      "left": {
+       "en": "import mathss  (no such module)",
+       "hi": "import mathss  (ऐसा मॉड्यूल नहीं)"
+      },
+      "right": {
+       "en": "ImportError",
+       "hi": "ImportError"
+      },
+      "why": {
+       "en": "The module cannot be found, so the import fails (ModuleNotFoundError is a kind of ImportError).",
+       "hi": "मॉड्यूल मिलता नहीं, इसलिए import असफल होता है (ModuleNotFoundError, ImportError का ही रूप है)।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:zero",
+     "expect": "matched:zero",
+     "say": {
+      "en": "Match \"10 / 0\" with the exception it raises.",
+      "hi": "\"10 / 0\" को उस अपवाद से मिलाओ जो वह उठाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next: int(\"twelve\"). Which exception will Python raise?",
+      "hi": "अगला: int(\"twelve\")। Python कौन-सा अपवाद उठाएगा?"
+     },
+     "options": [
+      {
+       "id": "type",
+       "en": "TypeError",
+       "hi": "TypeError अपवाद"
+      },
+      {
+       "id": "value",
+       "en": "ValueError",
+       "hi": "ValueError अपवाद"
+      },
+      {
+       "id": "name",
+       "en": "NameError",
+       "hi": "NameError अपवाद"
+      }
+     ],
+     "answer": "value"
+    },
+    {
+     "kind": "do",
+     "target": "left:value",
+     "expect": "matched:value",
+     "say": {
+      "en": "Match int(\"twelve\") with its exception.",
+      "hi": "int(\"twelve\") को उसके अपवाद से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:index",
+     "expect": "matched:index",
+     "say": {
+      "en": "Match the list position that does not exist.",
+      "hi": "उस सूची-स्थान को मिलाओ जो मौजूद ही नहीं है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:type",
+     "expect": "matched:type",
+     "say": {
+      "en": "Match \"5\" + 3 with its exception.",
+      "hi": "\"5\" + 3 को उसके अपवाद से मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Python has a ready-made exception for each kind of trouble, and the name tells you what went wrong. NameError: an unknown name. TypeError: the wrong type for an operation. ValueError: the right type but a bad value. IndexError: a position outside the list. ZeroDivisionError: dividing by zero. ImportError: a module that cannot be found. When a program stops, read the name first: it points straight to the problem.",
+      "hi": "हर तरह की परेशानी के लिए Python के पास पहले से बना अपवाद है, और उसका नाम बताता है कि क्या बिगड़ा। NameError: अनजाना नाम। TypeError: क्रिया के लिए गलत प्रकार। ValueError: प्रकार सही पर मान गलत। IndexError: सूची से बाहर का स्थान। ZeroDivisionError: शून्य से भाग। ImportError: ऐसा मॉड्यूल जो मिला नहीं। प्रोग्राम रुके तो पहले नाम पढ़ो: वह सीधे समस्या की ओर इशारा करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "int(\"3.5x\") raises which exception?",
+        "hi": "int(\"3.5x\") कौन-सा अपवाद उठाता है?"
+       },
+       "options": [
+        "TypeError",
+        "ValueError",
+        "IndexError"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The argument is text, which int() accepts, but this text is not a valid number: a bad value, so ValueError.",
+        "hi": "int() टेक्स्ट स्वीकार करता है, पर यह टेक्स्ट सही संख्या नहीं है: मान गलत है, इसलिए ValueError।"
+       },
+       "wrong": [
+        {
+         "en": "TypeError means the whole type is wrong for the operation. Text is an allowed type for int().",
+         "hi": "TypeError तब आता है जब पूरा प्रकार ही गलत हो। int() के लिए टेक्स्ट अनुमत प्रकार है।"
+        },
+        "",
+        {
+         "en": "IndexError is about a list position, and there is no list here.",
+         "hi": "IndexError सूची के स्थान के बारे में है, और यहाँ कोई सूची नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A list has 4 items and the program asks for item number 7. What is raised?",
+        "hi": "एक सूची में 4 चीज़ें हैं और प्रोग्राम सातवीं चीज़ माँगता है। क्या उठता है?"
+       },
+       "options": [
+        "NameError",
+        "ZeroDivisionError",
+        "IndexError"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "There is no position 7 in a list of 4 items, so the index is out of range: IndexError.",
+        "hi": "4 चीज़ों की सूची में स्थान 7 नहीं है, इसलिए इंडेक्स सीमा से बाहर है: IndexError।"
+       },
+       "wrong": [
+        {
+         "en": "NameError is for a name Python does not know. The list name is known here.",
+         "hi": "NameError उस नाम के लिए है जिसे Python नहीं जानता। यहाँ सूची का नाम ज्ञात है।"
+        },
+        {
+         "en": "Nothing is being divided in this line.",
+         "hi": "इस लाइन में कुछ भी भाग नहीं दिया जा रहा।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the remaining pairs. Then invent one new line of code that would raise TypeError and tell a friend why.",
+      "hi": "बाकी जोड़ियाँ मिलाओ। फिर कोड की एक नई लाइन सोचो जो TypeError उठाए और दोस्त को बताओ कि क्यों।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch01-guard",
+   "topic": "1.6",
+   "template": "code",
+   "title": {
+    "en": "Why a program needs a safety net",
+    "hi": "प्रोग्राम को सुरक्षा-जाल क्यों चाहिए"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "divisors = [5, 0, 2]",
+     "for d in divisors:",
+     "    if d == 0:",
+     "        print(\"Cannot divide by zero, skipping\")",
+     "    else:",
+     "        print(100 / d)",
+     "print(\"Program finished\")"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The list has 5, 0 and 2. The program checks each divisor before dividing 100 by it. What will it print for the 0?",
+      "hi": "सूची में 5, 0 और 2 हैं। प्रोग्राम 100 को भाग देने से पहले हर भाजक को जाँचता है। 0 के लिए वह क्या छापेगा?"
+     },
+     "options": [
+      {
+       "id": "skip",
+       "en": "A message, then it carries on",
+       "hi": "एक संदेश, फिर आगे बढ़ेगा"
+      },
+      {
+       "id": "crash",
+       "en": "It crashes with ZeroDivisionError",
+       "hi": "ZeroDivisionError से रुक जाएगा"
+      },
+      {
+       "id": "zero",
+       "en": "It prints 0",
+       "hi": "0 छापेगा"
+      }
+     ],
+     "answer": "skip"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step a few times. Watch the yellow line and the variable d change.",
+      "hi": "\"एक क़दम\" कुछ बार दबाओ। पीली लाइन और वेरिएबल d को बदलते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish the program.",
+      "hi": "प्रोग्राम पूरा करने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Here the programmer guessed the trouble (a zero) and wrote an if to dodge it. So the program did not stop, and the last line still ran. But a programmer cannot guess every trouble: a missing file, a bad number typed by a user, a network that drops. Exception handling with try and except gives a general safety net: try the risky work, and if an exception happens, run a plan B instead of crashing.",
+      "hi": "यहाँ प्रोग्रामर ने परेशानी (शून्य) का अंदाज़ा लगाकर if लगाया, इसलिए प्रोग्राम रुका नहीं और आख़िरी लाइन भी चली। पर हर परेशानी का अंदाज़ा नहीं लग सकता: फ़ाइल का न मिलना, उपयोगकर्ता का गलत संख्या लिखना, नेटवर्क का टूटना। try और except वाला अपवाद प्रबंधन एक सामान्य सुरक्षा-जाल देता है: जोखिम वाला काम try में करो, और अपवाद आए तो रुकने के बजाय योजना B चलाओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the program print for 5?",
+        "hi": "प्रोग्राम 5 के लिए क्या छापता है?"
+       },
+       "options": [
+        "20.0",
+        "20",
+        "500"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "100 / 5 is 20, and the division symbol / always gives a decimal answer in Python, so 20.0 is printed.",
+        "hi": "100 / 5 = 20, और Python में / हमेशा दशमलव वाला उत्तर देता है, इसलिए 20.0 छपता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Python prints division results with a decimal point; plain 20 would come from //.",
+         "hi": "Python भाग का परिणाम दशमलव के साथ छापता है; सादा 20 तो // से आता।"
+        },
+        {
+         "en": "500 is 100 times 5. The program divides, it does not multiply.",
+         "hi": "500, 100 गुणा 5 है। प्रोग्राम भाग देता है, गुणा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is try...except still needed when we can use if?",
+        "hi": "जब if लगा सकते हैं तो try...except की ज़रूरत फिर भी क्यों है?"
+       },
+       "options": [
+        "An if can only dodge troubles the programmer has thought of",
+        "Because if does not work in loops",
+        "Because try makes the program faster"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The world has many surprises (no file, bad input, no network). try...except catches the ones nobody predicted.",
+        "hi": "दुनिया में कई अचरज होते हैं (फ़ाइल नहीं, गलत इनपुट, नेटवर्क नहीं)। try...except उन्हें भी पकड़ता है जिनका किसी ने अंदाज़ा नहीं लगाया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "if works perfectly well inside loops, as you just saw.",
+         "hi": "if लूप के अंदर बिल्कुल ठीक चलता है, जैसा तुमने अभी देखा।"
+        },
+        {
+         "en": "try does not make anything faster; it makes the program safer.",
+         "hi": "try कुछ भी तेज़ नहीं करता; वह प्रोग्राम को सुरक्षित बनाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the thinking: what if the list also held the word \"ten\"? Would the if d == 0 check help? Explain to a friend.",
+      "hi": "सोचो: अगर सूची में शब्द \"ten\" भी होता तो? क्या if d == 0 वाली जाँच काम आती? दोस्त को समझाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch01-flow",
+   "topic": "1.6",
+   "template": "sequence",
+   "title": {
+    "en": "What happens when an exception strikes",
+    "hi": "अपवाद आने पर क्या होता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Python starts running the statements inside try",
+       "hi": "Python try के अंदर के कथन चलाना शुरू करता है"
+      }
+     },
+     {
+      "id": "raise",
+      "text": {
+       "en": "One statement in try raises an exception",
+       "hi": "try का कोई कथन अपवाद उठाता है"
+      }
+     },
+     {
+      "id": "skip",
+      "text": {
+       "en": "The rest of the try block is skipped",
+       "hi": "try का बाकी हिस्सा छोड़ दिया जाता है"
+      }
+     },
+     {
+      "id": "search",
+      "text": {
+       "en": "Python looks for an except block that matches",
+       "hi": "Python मेल खाता except ब्लॉक ढूँढ़ता है"
+      }
+     },
+     {
+      "id": "handler",
+      "text": {
+       "en": "The matching except block runs",
+       "hi": "मेल खाता except ब्लॉक चलता है"
+      }
+     },
+     {
+      "id": "finally",
+      "text": {
+       "en": "The finally block runs, if there is one",
+       "hi": "finally ब्लॉक चलता है, अगर हो"
+      }
+     },
+     {
+      "id": "next",
+      "text": {
+       "en": "The program carries on after the whole try statement",
+       "hi": "पूरे try कथन के बाद प्रोग्राम आगे चलता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A try block has 3 lines. The second line raises an exception. Does the third line run?",
+      "hi": "एक try ब्लॉक में 3 लाइनें हैं। दूसरी लाइन अपवाद उठाती है। क्या तीसरी लाइन चलेगी?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it still runs",
+       "hi": "हाँ, फिर भी चलेगी"
+      },
+      {
+       "id": "no",
+       "en": "No, it is skipped",
+       "hi": "नहीं, छोड़ दी जाएगी"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "item:start",
+     "expect": "placed:start",
+     "say": {
+      "en": "Put the first step in slot 1: Python starts running the try block.",
+      "hi": "पहला चरण स्थान 1 में रखो: Python try ब्लॉक चलाना शुरू करता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:raise",
+     "expect": "placed:raise",
+     "say": {
+      "en": "Place the step where the exception is raised.",
+      "hi": "वह चरण रखो जहाँ अपवाद उठता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other steps in order, then press Check.",
+      "hi": "बाकी चरण क्रम में लगाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Inside try, statements run one after another like normal. The moment one of them raises an exception, Python jumps out of the try block at once, skipping everything left in it. It then looks down the except blocks for one that names that exception. If it finds one, that code runs. A finally block, if present, runs last, and then the program carries on.",
+      "hi": "try के अंदर कथन रोज़ की तरह एक के बाद एक चलते हैं। जैसे ही कोई अपवाद उठता है, Python तुरंत try ब्लॉक से बाहर कूद जाता है और उसका बचा हुआ हिस्सा छोड़ देता है। फिर वह नीचे के except ब्लॉक देखता है कि किसमें उसी अपवाद का नाम है। मिल जाए तो वह कोड चलता है। finally हो तो वह सबसे बाद में चलता है, और फिर प्रोग्राम आगे बढ़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After an exception in the try block, what happens to the rest of the try block?",
+        "hi": "try ब्लॉक में अपवाद आने पर उसके बाकी हिस्से का क्या होता है?"
+       },
+       "options": [
+        "It still runs",
+        "It is skipped",
+        "It runs twice"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Control leaves the try block at the moment of the exception, so the remaining lines never run.",
+        "hi": "अपवाद के क्षण में नियंत्रण try ब्लॉक से निकल जाता है, इसलिए बची लाइनें कभी नहीं चलतीं।"
+       },
+       "wrong": [
+        {
+         "en": "If the rest still ran, the exception would not have stopped anything.",
+         "hi": "अगर बाकी हिस्सा भी चलता तो अपवाद ने कुछ रोका ही नहीं होता।"
+        },
+        "",
+        {
+         "en": "Nothing in Python repeats the try block by itself.",
+         "hi": "Python में कुछ भी try ब्लॉक को अपने-आप दोहराता नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which block does Python look for next after skipping the rest of try?",
+        "hi": "try का बाकी हिस्सा छोड़ने के बाद Python आगे क्या ढूँढ़ता है?"
+       },
+       "options": [
+        "An except block that matches the exception",
+        "The first line of the program",
+        "The else block"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Python searches the except blocks for one that names the raised exception, then runs it.",
+        "hi": "Python उठे हुए अपवाद के नाम वाला except ब्लॉक ढूँढ़कर उसे चलाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Python never goes back to the start of the program on its own.",
+         "hi": "Python अपने-आप कभी प्रोग्राम की शुरुआत पर वापस नहीं जाता।"
+        },
+        {
+         "en": "else runs only when there was no exception.",
+         "hi": "else तभी चलता है जब कोई अपवाद न आया हो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the story: what if no exception happens in the try block at all? Which steps would be left out? Tell it in your own words.",
+      "hi": "कहानी बदलो: अगर try ब्लॉक में कोई अपवाद आए ही नहीं तो कौन-से चरण छूट जाएँगे? अपने शब्दों में बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch01-blocks",
+   "topic": "1.6",
+   "template": "sort",
+   "title": {
+    "en": "Which block does each line belong to?",
+    "hi": "कौन-सी लाइन किस ब्लॉक में?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "try",
+      "label": {
+       "en": "try block",
+       "hi": "try ब्लॉक"
+      }
+     },
+     {
+      "id": "except",
+      "label": {
+       "en": "except block",
+       "hi": "except ब्लॉक"
+      }
+     },
+     {
+      "id": "else",
+      "label": {
+       "en": "else block",
+       "hi": "else ब्लॉक"
+      }
+     },
+     {
+      "id": "finally",
+      "label": {
+       "en": "finally block",
+       "hi": "finally ब्लॉक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "t1",
+      "text": {
+       "en": "num = int(input(\"Enter: \"))",
+       "hi": "num = int(input(\"Enter: \"))"
+      },
+      "bin": "try",
+      "why": {
+       "en": "Typing can fail, so the risky input line goes inside try.",
+       "hi": "टाइप करने में गड़बड़ हो सकती है, इसलिए जोखिम वाली इनपुट लाइन try के अंदर जाती है।"
+      }
+     },
+     {
+      "id": "t2",
+      "text": {
+       "en": "result = 100 / num",
+       "hi": "result = 100 / num"
+      },
+      "bin": "try",
+      "why": {
+       "en": "This division fails when num is 0, so it is risky code: it goes in try.",
+       "hi": "num 0 हो तो यह भाग असफल होता है, इसलिए यह जोखिम वाला कोड है: try में जाएगा।"
+      }
+     },
+     {
+      "id": "e1",
+      "text": {
+       "en": "print(\"Enter digits only\")",
+       "hi": "print(\"Enter digits only\")"
+      },
+      "bin": "except",
+      "why": {
+       "en": "This is the plan B when int() fails with ValueError: it belongs in except ValueError.",
+       "hi": "int() के ValueError से असफल होने पर यह योजना B है: except ValueError में जाएगी।"
+      }
+     },
+     {
+      "id": "e2",
+      "text": {
+       "en": "print(\"Zero is not allowed\")",
+       "hi": "print(\"Zero is not allowed\")"
+      },
+      "bin": "except",
+      "why": {
+       "en": "This message answers a ZeroDivisionError, so it lives in except ZeroDivisionError.",
+       "hi": "यह संदेश ZeroDivisionError का जवाब है, इसलिए except ZeroDivisionError में रहता है।"
+      }
+     },
+     {
+      "id": "l1",
+      "text": {
+       "en": "print(\"Answer is\", result)",
+       "hi": "print(\"Answer is\", result)"
+      },
+      "bin": "else",
+      "why": {
+       "en": "It must run only when everything in try worked. That is exactly what else is for.",
+       "hi": "यह तभी चलना चाहिए जब try में सब ठीक रहा। else इसी के लिए है।"
+      }
+     },
+     {
+      "id": "l2",
+      "text": {
+       "en": "print(\"No error happened\")",
+       "hi": "print(\"No error happened\")"
+      },
+      "bin": "else",
+      "why": {
+       "en": "else runs only if the try block finished without any exception.",
+       "hi": "else तभी चलता है जब try ब्लॉक बिना किसी अपवाद के पूरा हो।"
+      }
+     },
+     {
+      "id": "f1",
+      "text": {
+       "en": "print(\"Thank you\")",
+       "hi": "print(\"Thank you\")"
+      },
+      "bin": "finally",
+      "why": {
+       "en": "It must appear whatever happened, success or failure: finally always runs.",
+       "hi": "यह हर हाल में दिखना चाहिए, सफलता हो या असफलता: finally हमेशा चलता है।"
+      }
+     },
+     {
+      "id": "f2",
+      "text": {
+       "en": "data.close()",
+       "hi": "data.close()"
+      },
+      "bin": "finally",
+      "why": {
+       "en": "Clean-up such as closing a file must always happen, even after an error: put it in finally.",
+       "hi": "फ़ाइल बंद करने जैसी सफ़ाई हर हाल में होनी चाहिए, त्रुटि के बाद भी: इसे finally में रखो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:t2",
+     "expect": "correct:t2",
+     "say": {
+      "en": "Tap the card \"result = 100 / num\", then the block where risky code goes.",
+      "hi": "कार्ड \"result = 100 / num\" दबाओ, फिर वह ब्लॉक दबाओ जहाँ जोखिम वाला कोड जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The card print(\"Answer is\", result) should show only when no error happened. Which block fits?",
+      "hi": "कार्ड print(\"Answer is\", result) तभी दिखना चाहिए जब कोई त्रुटि न हुई हो। कौन-सा ब्लॉक ठीक है?"
+     },
+     "options": [
+      {
+       "id": "except",
+       "en": "except block",
+       "hi": "except ब्लॉक"
+      },
+      {
+       "id": "else",
+       "en": "else block",
+       "hi": "else ब्लॉक"
+      },
+      {
+       "id": "finally",
+       "en": "finally block",
+       "hi": "finally ब्लॉक"
+      }
+     ],
+     "answer": "else"
+    },
+    {
+     "kind": "do",
+     "target": "card:l1",
+     "expect": "correct:l1",
+     "say": {
+      "en": "Place the card print(\"Answer is\", result).",
+      "hi": "कार्ड print(\"Answer is\", result) रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:f1",
+     "expect": "correct:f1",
+     "say": {
+      "en": "Place the card print(\"Thank you\"), which must show every time.",
+      "hi": "कार्ड print(\"Thank you\") रखो, जो हर बार दिखना चाहिए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "try holds the risky code. except holds the plan B for a named exception. else holds code that should run only when try finished without any exception. finally holds code that runs in every case, even after an error, which makes it the right place for clean-up like closing a file.",
+      "hi": "try में जोखिम वाला कोड रहता है। except में नामित अपवाद की योजना B रहती है। else में वह कोड रहता है जो तभी चले जब try बिना अपवाद के पूरा हो। finally में वह कोड रहता है जो हर हाल में चलता है, त्रुटि के बाद भी, इसलिए फ़ाइल बंद करने जैसी सफ़ाई के लिए वही सही जगह है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which block runs whether or not an exception happened?",
+        "hi": "कौन-सा ब्लॉक अपवाद आए या न आए, दोनों हाल में चलता है?"
+       },
+       "options": [
+        "except",
+        "else",
+        "finally"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "finally is the always-block. It runs after success and after failure alike.",
+        "hi": "finally हमेशा वाला ब्लॉक है। वह सफलता और असफलता, दोनों के बाद चलता है।"
+       },
+       "wrong": [
+        {
+         "en": "except runs only when a matching exception happened.",
+         "hi": "except तभी चलता है जब मेल खाता अपवाद आया हो।"
+        },
+        {
+         "en": "else runs only when no exception happened.",
+         "hi": "else तभी चलता है जब कोई अपवाद न आया हो।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "The user types 0 and 100 / num fails. Which of these cards will NOT show?",
+        "hi": "उपयोगकर्ता 0 लिखता है और 100 / num असफल होता है। इनमें से कौन-सा कार्ड नहीं दिखेगा?"
+       },
+       "options": [
+        "print(\"Zero is not allowed\")",
+        "print(\"Answer is\", result)",
+        "print(\"Thank you\")"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The else block is skipped because an exception happened. The except message and the finally message both show.",
+        "hi": "अपवाद आया, इसलिए else ब्लॉक छोड़ दिया जाता है। except का संदेश और finally का संदेश दोनों दिखते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "This is the except message for ZeroDivisionError, and it does run.",
+         "hi": "यह ZeroDivisionError का except संदेश है, और यह चलता है।"
+        },
+        "",
+        {
+         "en": "finally runs every time, so \"Thank you\" shows.",
+         "hi": "finally हर बार चलता है, इसलिए \"Thank you\" दिखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the remaining cards. Then say aloud what the screen shows when the user types the letters \"abc\" instead of a number.",
+      "hi": "बाकी कार्ड रखो। फिर ज़ोर से बोलो कि उपयोगकर्ता संख्या की जगह \"abc\" लिखे तो स्क्रीन पर क्या दिखेगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch01-words",
+   "topic": "1.5",
+   "template": "match",
+   "title": {
+    "en": "raise, assert, try, except, else, finally",
+    "hi": "raise, assert, try, except, else, finally के काम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "raise",
+      "left": {
+       "en": "raise",
+       "hi": "raise"
+      },
+      "right": {
+       "en": "You create (throw) an exception yourself",
+       "hi": "तुम खुद अपवाद बनाते (उठाते) हो"
+      },
+      "why": {
+       "en": "raise lets the programmer signal a problem on purpose, for example raise ValueError(\"bad age\").",
+       "hi": "raise से प्रोग्रामर जानबूझकर समस्या का संकेत देता है, जैसे raise ValueError(\"bad age\")।"
+      }
+     },
+     {
+      "id": "assert",
+      "left": {
+       "en": "assert",
+       "hi": "assert"
+      },
+      "right": {
+       "en": "Stops with AssertionError if a condition is False",
+       "hi": "शर्त False हो तो AssertionError के साथ रुक जाता है"
+      },
+      "why": {
+       "en": "assert checks something that must be true. If it is not, Python raises AssertionError.",
+       "hi": "assert वह जाँचता है जो सच होना ही चाहिए। सच न हो तो Python AssertionError उठाता है।"
+      }
+     },
+     {
+      "id": "try",
+      "left": {
+       "en": "try",
+       "hi": "try"
+      },
+      "right": {
+       "en": "Holds the risky code",
+       "hi": "जोखिम वाले कोड को रखता है"
+      },
+      "why": {
+       "en": "The statements that might raise an exception are placed inside try.",
+       "hi": "जो कथन अपवाद उठा सकते हैं, वे try के अंदर रखे जाते हैं।"
+      }
+     },
+     {
+      "id": "except",
+      "left": {
+       "en": "except",
+       "hi": "except"
+      },
+      "right": {
+       "en": "Holds the plan B for an exception",
+       "hi": "अपवाद की योजना B रखता है"
+      },
+      "why": {
+       "en": "except names an exception and says what to do when it happens.",
+       "hi": "except एक अपवाद का नाम लेता है और बताता है कि उसके आने पर क्या करना है।"
+      }
+     },
+     {
+      "id": "else",
+      "left": {
+       "en": "else (after except)",
+       "hi": "else (except के बाद)"
+      },
+      "right": {
+       "en": "Runs only if try had no exception",
+       "hi": "तभी चलता है जब try में अपवाद न आया हो"
+      },
+      "why": {
+       "en": "else is the success block of try...except.",
+       "hi": "else, try...except का सफलता वाला ब्लॉक है।"
+      }
+     },
+     {
+      "id": "finally",
+      "left": {
+       "en": "finally",
+       "hi": "finally"
+      },
+      "right": {
+       "en": "Runs in every case, for clean-up",
+       "hi": "हर हाल में चलता है, सफ़ाई के लिए"
+      },
+      "why": {
+       "en": "finally runs whether or not an exception happened.",
+       "hi": "अपवाद आए या न आए, finally चलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:raise",
+     "expect": "matched:raise",
+     "say": {
+      "en": "Match raise with what it does.",
+      "hi": "raise को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In assert age >= 0, \"Age cannot be negative\", what happens when age is -5?",
+      "hi": "assert age >= 0, \"Age cannot be negative\" में age = -5 हो तो क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "stop",
+       "en": "AssertionError is raised with the message",
+       "hi": "संदेश के साथ AssertionError उठता है"
+      },
+      {
+       "id": "ok",
+       "en": "Nothing, the program goes on",
+       "hi": "कुछ नहीं, प्रोग्राम चलता रहता है"
+      },
+      {
+       "id": "fix",
+       "en": "Python changes age to 0",
+       "hi": "Python age को 0 कर देता है"
+      }
+     ],
+     "answer": "stop"
+    },
+    {
+     "kind": "do",
+     "target": "left:assert",
+     "expect": "matched:assert",
+     "say": {
+      "en": "Match assert with its job.",
+      "hi": "assert को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:finally",
+     "expect": "matched:finally",
+     "say": {
+      "en": "Match finally.",
+      "hi": "finally को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "raise and assert are for creating exceptions: raise throws one whenever you decide, and assert throws AssertionError only when a condition that should be true turns out false. try, except, else and finally are for handling exceptions: try holds the risky code, except the plan B, else the success code and finally the always-code.",
+      "hi": "raise और assert अपवाद बनाने के लिए हैं: raise तुम्हारे चाहने पर कभी भी अपवाद उठाता है, और assert तभी AssertionError उठाता है जब कोई शर्त जो सच होनी चाहिए, झूठी निकले। try, except, else और finally अपवाद सँभालने के लिए हैं: try में जोखिम वाला कोड, except में योजना B, else में सफलता वाला कोड और finally में हमेशा चलने वाला कोड।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement checks that something is true and raises AssertionError if it is not?",
+        "hi": "कौन-सा कथन जाँचता है कि कुछ सच है, और न हो तो AssertionError उठाता है?"
+       },
+       "options": [
+        "raise",
+        "assert",
+        "finally"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "assert is the checker. If its condition is False it raises AssertionError.",
+        "hi": "assert जाँचने वाला है। उसकी शर्त False हो तो वह AssertionError उठाता है।"
+       },
+       "wrong": [
+        {
+         "en": "raise throws an exception whenever you tell it to, without checking any condition by itself.",
+         "hi": "raise तुम्हारे कहने पर अपवाद उठाता है, अपने-आप कोई शर्त नहीं जाँचता।"
+        },
+        "",
+        {
+         "en": "finally is for handling, not for checking.",
+         "hi": "finally सँभालने के लिए है, जाँचने के लिए नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which one is used when you want to HANDLE an exception, not create one?",
+        "hi": "अपवाद बनाने के लिए नहीं, उसे सँभालने के लिए कौन-सा काम आता है?"
+       },
+       "options": [
+        "raise",
+        "assert",
+        "except"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "except catches an exception and runs the plan B.",
+        "hi": "except अपवाद को पकड़कर योजना B चलाता है।"
+       },
+       "wrong": [
+        {
+         "en": "raise creates an exception.",
+         "hi": "raise अपवाद बनाता है।"
+        },
+        {
+         "en": "assert also creates one (AssertionError) when its condition fails.",
+         "hi": "assert भी शर्त टूटने पर अपवाद (AssertionError) बनाता है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the other three words. Then write one sentence using each of raise and assert for a program that asks for a person's age.",
+      "hi": "बाकी तीन शब्द मिलाओ। फिर किसी व्यक्ति की उम्र पूछने वाले प्रोग्राम के लिए raise और assert, दोनों का एक-एक वाक्य लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Opens the chapter: a program that stops with an error",
+   "shows": "A Class 12 student at a school computer lab desk, seen from behind, looking at a monitor that shows a plain dark terminal window with red text",
+   "view": "Over-the-shoulder, 16:9, soft overhead classroom light",
+   "right": "Screen text is unreadable red lines on dark, no real words; a school lab with Indian students",
+   "avoid": "Readable code or a real error message; a visible face; any brand logo"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.6",
+   "use": "The safety-net idea for try and except",
+   "shows": "A trapeze-style circus safety net stretched below a rope, with a small toy figure resting safely in it",
+   "view": "Front view slightly from above, soft left light, transparent background",
+   "right": "Net is clearly under the rope and holds the figure",
+   "avoid": "Real people in the circus, brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "1.6",
+   "use": "A train stopped by a signal then continuing: control flow after an exception",
+   "shows": "Four frames of a train on a track: running, red signal ahead, stopped, switched to a side track and continuing",
+   "view": "Same side view and light in all four frames, 16:9",
+   "right": "The signal state changes between frames and the camera does not move",
+   "avoid": "Readable station names, real railway logos"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.7",
+   "use": "Finally: a door that must be locked at the end of the day",
+   "shows": "A brass padlock hanging open next to a closed wooden cupboard door",
+   "view": "Front view, light from top left, transparent background",
+   "right": "The lock is clearly open and the cupboard clearly closed",
+   "avoid": "Engraved text or brand marks on the lock"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "1.6",
+   "use": "Blank frame for the flow of try, except, else and finally",
+   "shows": "Four empty rounded boxes in a vertical flow with arrows between them, no words",
+   "view": "Flat white background, vector, 4:3",
+   "right": "Boxes equal size, arrows clean so the app can label each box",
+   "avoid": "Any text or code inside the boxes"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "A student entering marks on a simple form",
+   "shows": "Hands of a girl typing numbers on a keyboard while a paper marks list lies beside it",
+   "view": "Top-down, 16:9, daylight from a window",
+   "right": "Only hands and paper visible, paper numbers blurred",
+   "avoid": "A visible face, readable personal data"
+  }
+ ]
+}

@@ -1,0 +1,280 @@
+{
+  "chapter_key": "u.c12.english.levt1.ch04",
+  "class": 12,
+  "subject_id": "english",
+  "title": "The Enemy",
+  "source": "https://ncert.nic.in/textbook/pdf/levt1ps.pdf",
+  "topics": [
+    {
+      "n": "4.1",
+      "title": "Before you read: a moral dilemma in wartime",
+      "labs": [
+        "c12-english-levt1-ch04-doctor"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.2",
+      "title": "Reading with insight: loyalty and duty",
+      "labs": [],
+      "why_no_lab": "Discussion of private and national loyalty is held in class."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-english-levt1-ch04-doctor",
+      "topic": "4.1",
+      "template": "scenario",
+      "minutes": 7,
+      "level": "core",
+      "title": {
+        "en": "A doctor and an enemy prisoner",
+        "hi": "एक डॉक्टर और एक दुश्मन क़ैदी"
+      },
+      "config": {
+        "setting": "coastal house",
+        "role": {
+          "en": "Dr Sadao, a surgeon",
+          "hi": "डॉ. सदाओ, सर्जन"
+        },
+        "scenes": [
+          {
+            "id": "start",
+            "text": {
+              "en": "A badly hurt enemy prisoner is washed ashore at your door. He needs a doctor now. What do you do first?",
+              "hi": "एक गंभीर रूप से घायल दुश्मन क़ैदी किनारे पर बहकर आपके दरवाज़े पर आ गया है। उसे अभी डॉक्टर की ज़रूरत है। आप सबसे पहले क्या करेंगे?"
+            },
+            "choices": [
+              {
+                "id": "treat",
+                "text": {
+                  "en": "Treat his wounds, as a doctor must",
+                  "hi": "उसके घाव का इलाज करें, जैसे एक डॉक्टर को करना चाहिए"
+                },
+                "next": "s2",
+                "feedback": {
+                  "en": "A doctor's first duty is to ease suffering. Treating him is the start of a humane choice.",
+                  "hi": "डॉक्टर का पहला कर्तव्य दुख कम करना है। उसका इलाज करना मानवीय फ़ैसले की शुरुआत है।"
+                },
+                "good": true
+              },
+              {
+                "id": "report",
+                "text": {
+                  "en": "Hand him over to the army at once, without a word",
+                  "hi": "बिना कुछ कहे तुरंत सेना के हवाले कर दें"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Handing him over at once ignores his pain. It may feel safe for you, but it leaves a dying man alone.",
+                  "hi": "तुरंत सौंप देने से उसका दर्द अनदेखा होता है। यह शायद आपको सुरक्षित लगे, पर एक मरते हुए आदमी को अकेला छोड़ देता है।"
+                },
+                "good": false
+              },
+              {
+                "id": "wait",
+                "text": {
+                  "en": "Wait and see what happens to him",
+                  "hi": "इंतज़ार करें और देखें उसके साथ क्या होता है"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Waiting can cost a life. A doctor acts first and thinks next.",
+                  "hi": "इंतज़ार से जान जा सकती है। डॉक्टर पहले काम करता है, फिर सोचता है।"
+                },
+                "good": false
+              }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "The army asks you to report the prisoner. He is still weak. What will you say?",
+              "hi": "सेना आपसे क़ैदी की रिपोर्ट माँगती है। वह अभी कमज़ोर है। आप क्या कहेंगे?"
+            },
+            "choices": [
+              {
+                "id": "keep",
+                "text": {
+                  "en": "Say he is your patient and must recover before he can be moved",
+                  "hi": "कहें कि वह आपका मरीज़ है और ठीक होने के बाद ही उसे ले जाया जा सकता है"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "This is honest. You speak as a doctor and state the medical fact clearly.",
+                  "hi": "यह ईमानदार है। आप डॉक्टर की तरह बात करते हैं और चिकित्सा का तथ्य साफ़ कहते हैं।"
+                },
+                "good": true
+              },
+              {
+                "id": "hide",
+                "text": {
+                  "en": "Hide him in secret and tell no one",
+                  "hi": "उसे चुपके से छिपा दें और किसी को न बताएँ"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Secret action can put you and others in danger, and it is not fair to the patient either.",
+                  "hi": "गुप्त कार्रवाई आपको और दूसरों को ख़तरे में डाल सकती है, और मरीज़ के साथ भी न्याय नहीं करती।"
+                },
+                "good": false
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A doctor sees a wounded enemy. What is the doctor's first duty?",
+            "hi": "एक डॉक्टर को घायल दुश्मन दिखता है। डॉक्टर का पहला कर्तव्य क्या है?"
+          },
+          "options": [
+            {
+              "id": "punish",
+              "en": "To punish him",
+              "hi": "उसे सज़ा देना"
+            },
+            {
+              "id": "ease",
+              "en": "To ease his suffering",
+              "hi": "उसका दर्द कम करना"
+            },
+            {
+              "id": "win",
+              "en": "To win the war",
+              "hi": "युद्ध जीतना"
+            }
+          ],
+          "answer": "ease"
+        },
+        {
+          "kind": "do",
+          "target": "choice:start:treat",
+          "expect": "chose:treat",
+          "say": {
+            "en": "Read the first scene and choose what the doctor does first.",
+            "hi": "पहला दृश्य पढ़ो और चुनो कि डॉक्टर सबसे पहले क्या करता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "choice:s2:keep",
+          "expect": "chose:keep",
+          "say": {
+            "en": "Read the second scene and choose what you will say to the army.",
+            "hi": "दूसरा दृश्य पढ़ो और चुनो कि आप सेना से क्या कहेंगे।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A doctor's duty to a patient can meet a duty to the country. In the story and in this role play, the surgeon must choose between fear and humanity. Choosing to treat and to speak honestly shows how one person can act with care in a hard time.",
+            "hi": "मरीज़ के प्रति डॉक्टर का कर्तव्य और देश के प्रति कर्तव्य एक-दूसरे से टकरा सकते हैं। कहानी में और इस भूमिका-अभ्यास में सर्जन को डर और मानवता के बीच चुनना है। इलाज करना और ईमानदारी से बोलना दिखाता है कि कठिन समय में एक व्यक्ति भी करुणा से काम कर सकता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which choice best shows a doctor's duty?",
+                "hi": "कौन-सा फ़ैसला डॉक्टर के कर्तव्य को सबसे अच्छी तरह दिखाता है?"
+              },
+              "options": [
+                {
+                  "en": "Treat the patient and speak honestly about his condition",
+                  "hi": "मरीज़ का इलाज करना और उसकी हालत के बारे में ईमानदारी से बोलना"
+                },
+                {
+                  "en": "Hand him over without treating him",
+                  "hi": "बिना इलाज किए उसे सौंप देना"
+                },
+                {
+                  "en": "Hide him and tell no one",
+                  "hi": "उसे छिपाना और किसी को न बताना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A doctor's first duty is treatment, and honesty keeps the duty clear and fair.",
+                "hi": "डॉक्टर का पहला कर्तव्य इलाज है, और ईमानदारी उस कर्तव्य को साफ़ और न्यायपूर्ण रखती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Leaving a wounded man untreated ignores the first duty of a doctor.",
+                  "hi": "घायल आदमी को बिना इलाज छोड़ना डॉक्टर के पहले कर्तव्य को अनदेखा करना है।"
+                },
+                {
+                  "en": "Secret action can harm others and does not solve the patient's need in the open.",
+                  "hi": "गुप्त कार्रवाई दूसरों को नुकसान पहुँचा सकती है और मरीज़ की ज़रूरत खुले में हल नहीं करती।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Replay the role play. If the army threatened you, which choice would you make? Write your reason in two lines.",
+            "hi": "भूमिका-अभ्यास दोबारा खेलो। अगर सेना तुम्हें धमकाए, तो तुम कौन-सा फ़ैसला करोगे? अपना कारण दो पंक्तियों में लिखो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "4.1",
+      "use": "The stone house on the coast",
+      "shows": "A low stone house on rocks above a narrow beach, bent pine trees and dawn fog",
+      "view": "Wide, dawn fog",
+      "right": "Quiet and isolated",
+      "avoid": "Readable signs"
+    },
+    {
+      "n": 2,
+      "kind": "SCN",
+      "topic": "4.1",
+      "use": "A surgery room",
+      "shows": "A plain surgery room with a simple table, a lamp and neat bandages on a tray",
+      "view": "Medium, warm lamp light",
+      "right": "Care and calm",
+      "avoid": "Real patients' faces"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "4.1",
+      "use": "A surgeon's clean tools",
+      "shows": "A tray of clean steel surgical tools laid out in order on a white cloth",
+      "view": "Close, bright light",
+      "right": "Care and order",
+      "avoid": "Brand logos"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "4.2",
+      "use": "A washed-up board on the beach",
+      "shows": "A grey wooden board lying on wet sand at the edge of fog",
+      "view": "Wide, misty",
+      "right": "Mystery and arrival",
+      "avoid": "Readable marks"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "4.2",
+      "use": "Hands that care",
+      "shows": "A doctor's hands holding a clean glass of water beside a folded blanket",
+      "view": "Medium, soft light",
+      "right": "Humane act",
+      "avoid": "Real faces"
+    }
+  ]
+}

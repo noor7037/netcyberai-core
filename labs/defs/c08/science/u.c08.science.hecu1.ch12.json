@@ -1,0 +1,1701 @@
+{
+ "chapter_key": "u.c08.science.hecu1.ch12",
+ "class": 8,
+ "subject_id": "science",
+ "title": "How Nature Works in Harmony",
+ "source": "https://ncert.nic.in/textbook/pdf/hecu112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "How do we experience and interpret nature? Habitats",
+   "labs": [
+    "c08-science-hecu1-ch12-habitat"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Who all live together in nature? Population and community",
+   "labs": [
+    "c08-science-hecu1-ch12-count"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Does every organism in a community matter?",
+   "labs": [],
+   "why_no_lab": "Taught through the reading of the pond study (fish, dragonflies, bees and seeds); the balance lab of 12.7 lets the child test the same idea."
+  },
+  {
+   "n": "12.4",
+   "title": "Types of interactions: biotic and abiotic components",
+   "labs": [
+    "c08-science-hecu1-ch12-biotic"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.5",
+   "title": "Who eats whom? Food chains, food webs and trophic levels",
+   "labs": [
+    "c08-science-hecu1-ch12-chain"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.6",
+   "title": "What happens to waste in nature? Producers, consumers and decomposers",
+   "labs": [
+    "c08-science-hecu1-ch12-roles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.7",
+   "title": "How does one change lead to another?",
+   "labs": [
+    "c08-science-hecu1-ch12-balance"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.8",
+   "title": "How interactions maintain balance: mutualism, commensalism, parasitism",
+   "labs": [
+    "c08-science-hecu1-ch12-together"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.9",
+   "title": "What are the benefits of an ecosystem?",
+   "labs": [],
+   "why_no_lab": "A list of benefits (air, water, food, medicine, climate) best shown with photographs; the farm lab of 12.9.2 makes the idea concrete."
+  },
+  {
+   "n": "12.9.1",
+   "title": "Human-made ecosystems",
+   "labs": [],
+   "why_no_lab": "Fields, gardens and aquariums are shown as photos; the farm lab treats a field as an ecosystem."
+  },
+  {
+   "n": "12.9.2",
+   "title": "How do healthy ecosystems serve our farms?",
+   "labs": [
+    "c08-science-hecu1-ch12-farm"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-science-hecu1-ch12-habitat",
+   "topic": "12.1",
+   "template": "eco",
+   "title": {
+    "en": "Who lives in the pond?",
+    "hi": "तालाब में कौन रहता है?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "habitat",
+    "habitat": "pond"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:lotus",
+     "expect": "picked:lotus",
+     "say": {
+      "en": "Tap the lotus.",
+      "hi": "कमल को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "sorted",
+     "say": {
+      "en": "Place it in the pond.",
+      "hi": "इसे तालाब में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A camel is also on the tray. Can it live in this pond?",
+      "hi": "ट्रे में ऊँट भी है। क्या वह इस तालाब में रह सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, its home is the desert",
+       "hi": "नहीं, उसका घर मरुस्थल है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, every animal can live anywhere",
+       "hi": "हाँ, हर जंतु कहीं भी रह सकता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:rohu",
+     "expect": "picked:rohu",
+     "say": {
+      "en": "Tap the rohu fish.",
+      "hi": "रोहू मछली छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "sorted",
+     "say": {
+      "en": "Place it in the pond.",
+      "hi": "इसे तालाब में रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A habitat is a place that gives an organism the right conditions to live and grow: food, water, shelter and the right temperature. A pond gives fish, lotus, algae and frogs what they need. A camel is suited to the desert and would not survive here.",
+      "hi": "आवास वह जगह है जो किसी जीव को जीने और बढ़ने की सही परिस्थितियाँ देती है: भोजन, पानी, आश्रय और सही तापमान। तालाब मछली, कमल, शैवाल और मेंढक को उनकी ज़रूरत की चीज़ें देता है। ऊँट मरुस्थल के अनुकूल है और यहाँ जी नहीं पाएगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is NOT part of what a habitat provides?",
+        "hi": "आवास इनमें से क्या नहीं देता?"
+       },
+       "options": [
+        {
+         "en": "A name for the animal",
+         "hi": "जंतु का नाम"
+        },
+        {
+         "en": "Food and water",
+         "hi": "भोजन और पानी"
+        },
+        {
+         "en": "Shelter",
+         "hi": "आश्रय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A habitat gives the conditions for life, not names.",
+        "hi": "आवास जीवन की परिस्थितियाँ देता है, नाम नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Food and water are exactly what a habitat must provide.",
+         "hi": "भोजन और पानी वही है जो आवास को देना होता है।"
+        },
+        {
+         "en": "Shelter, like reeds for frogs, is part of a habitat.",
+         "hi": "आश्रय, जैसे मेंढकों के लिए सरकंडे, आवास का हिस्सा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place every pond organism, and try the camel and tiger to read why they do not fit. Then switch to another habitat such as a forest or desert.",
+      "hi": "तालाब के हर जीव को रखो, और ऊँट और बाघ को आज़माकर पढ़ो कि वे क्यों नहीं जमते। फिर वन या मरुस्थल जैसा दूसरा आवास चुनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch12-count",
+   "topic": "12.2",
+   "template": "data",
+   "title": {
+    "en": "Count a population",
+    "hi": "आबादी गिनो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 0,
+    "ask": "max",
+    "title": {
+     "en": "Living things counted in one school garden patch (example counts)",
+     "hi": "स्कूल के बगीचे के एक हिस्से में गिने गए जीव (उदाहरण की गिनती)"
+    },
+    "xlabel": {
+     "en": "Organism",
+     "hi": "जीव"
+    },
+    "ylabel": {
+     "en": "Number counted",
+     "hi": "गिनी गई संख्या"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Grass clumps",
+       "hi": "घास के गुच्छे"
+      },
+      "value": 40
+     },
+     {
+      "label": {
+       "en": "Marigold plants",
+       "hi": "गेंदे के पौधे"
+      },
+      "value": 12
+     },
+     {
+      "label": {
+       "en": "Ants",
+       "hi": "चींटियाँ"
+      },
+      "value": 30
+     },
+     {
+      "label": {
+       "en": "Sparrows",
+       "hi": "गौरैया"
+      },
+      "value": 5
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the first count: grass clumps.",
+      "hi": "पहली गिनती दिखाओ: घास के गुच्छे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the marigold plants.",
+      "hi": "गेंदे के पौधे दिखाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ants come next. Will their bar be taller than the marigolds?",
+      "hi": "अब चींटियाँ आएँगी। क्या उनका स्तंभ गेंदे से ऊँचा होगा?"
+     },
+     "options": [
+      {
+       "id": "taller",
+       "en": "Taller",
+       "hi": "ऊँचा"
+      },
+      {
+       "id": "shorter",
+       "en": "Shorter",
+       "hi": "छोटा"
+      }
+     ],
+     "answer": "taller"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the ants.",
+      "hi": "चींटियाँ दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the sparrows.",
+      "hi": "गौरैया दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap the organism with the largest population here.",
+      "hi": "वह जीव छुओ जिसकी आबादी यहाँ सबसे ज़्यादा है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All the members of one kind of organism in a place at a time make a population, like the 12 marigold plants. All the populations living together, grass, marigolds, ants and sparrows, make a community. Counting in the same patch at different times shows how populations change.",
+      "hi": "किसी जगह पर एक समय में एक तरह के सभी जीव मिलकर आबादी (समष्टि) बनाते हैं, जैसे 12 गेंदे के पौधे। साथ रहने वाली सभी आबादियाँ, घास, गेंदा, चींटियाँ और गौरैया, मिलकर समुदाय बनाती हैं। एक ही हिस्से में अलग-अलग समय पर गिनने से पता चलता है कि आबादी कैसे बदलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "All the sparrows, ants, marigolds and grass in the patch together form a ___.",
+        "hi": "उस हिस्से की सारी गौरैया, चींटियाँ, गेंदा और घास मिलकर एक ___ बनाते हैं।"
+       },
+       "options": [
+        {
+         "en": "community",
+         "hi": "समुदाय"
+        },
+        {
+         "en": "population",
+         "hi": "आबादी"
+        },
+        {
+         "en": "habitat only",
+         "hi": "केवल आवास"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Different populations living together make a community.",
+        "hi": "साथ रहने वाली अलग-अलग आबादियाँ समुदाय बनाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A population is one kind only, like just the ants.",
+         "hi": "आबादी केवल एक तरह के जीवों की होती है, जैसे केवल चींटियाँ।"
+        },
+        {
+         "en": "The habitat is the place; the living things in it form the community.",
+         "hi": "आवास जगह है; उसमें रहने वाले जीव समुदाय बनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the bars to show what a count might look like after the monsoon. With your class, count a real patch and compare.",
+      "hi": "स्तंभों को खींचकर दिखाओ कि बारिश के बाद गिनती कैसी हो सकती है। अपनी कक्षा के साथ असली हिस्सा गिनकर तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch12-biotic",
+   "topic": "12.4",
+   "template": "sort",
+   "title": {
+    "en": "Living or non-living part?",
+    "hi": "सजीव या निर्जीव घटक?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "biotic",
+      "label": {
+       "en": "Biotic: living",
+       "hi": "जैविक: सजीव"
+      }
+     },
+     {
+      "id": "abiotic",
+      "label": {
+       "en": "Abiotic: non-living",
+       "hi": "अजैविक: निर्जीव"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tree",
+      "text": {
+       "en": "Neem tree",
+       "hi": "नीम का पेड़"
+      },
+      "bin": "biotic",
+      "why": {
+       "en": "A plant is alive: it grows and makes food.",
+       "hi": "पौधा सजीव है: बढ़ता है और भोजन बनाता है।"
+      }
+     },
+     {
+      "id": "frog",
+      "text": {
+       "en": "Frog",
+       "hi": "मेंढक"
+      },
+      "bin": "biotic",
+      "why": {
+       "en": "An animal is a living part of the ecosystem.",
+       "hi": "जंतु पारितंत्र का सजीव घटक है।"
+      }
+     },
+     {
+      "id": "fungus",
+      "text": {
+       "en": "Mushroom",
+       "hi": "कुकुरमुत्ता"
+      },
+      "bin": "biotic",
+      "why": {
+       "en": "Fungi are living decomposers.",
+       "hi": "कवक सजीव अपघटक हैं।"
+      }
+     },
+     {
+      "id": "bact",
+      "text": {
+       "en": "Soil bacteria",
+       "hi": "मिट्टी के जीवाणु"
+      },
+      "bin": "biotic",
+      "why": {
+       "en": "Microbes are living, even if too small to see.",
+       "hi": "सूक्ष्मजीव सजीव हैं, भले दिखते नहीं।"
+      }
+     },
+     {
+      "id": "sun",
+      "text": {
+       "en": "Sunlight",
+       "hi": "धूप"
+      },
+      "bin": "abiotic",
+      "why": {
+       "en": "Light is not alive, but plants need it.",
+       "hi": "प्रकाश सजीव नहीं, पर पौधों को इसकी ज़रूरत है।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Rainwater",
+       "hi": "वर्षा का पानी"
+      },
+      "bin": "abiotic",
+      "why": {
+       "en": "Water is non-living but every organism depends on it.",
+       "hi": "पानी निर्जीव है पर हर जीव उस पर निर्भर है।"
+      }
+     },
+     {
+      "id": "soil",
+      "text": {
+       "en": "Soil minerals",
+       "hi": "मिट्टी के खनिज"
+      },
+      "bin": "abiotic",
+      "why": {
+       "en": "Minerals are non-living nutrients for plants.",
+       "hi": "खनिज पौधों के निर्जीव पोषक हैं।"
+      }
+     },
+     {
+      "id": "temp",
+      "text": {
+       "en": "Temperature",
+       "hi": "तापमान"
+      },
+      "bin": "abiotic",
+      "why": {
+       "en": "Hot or cold is a condition, not a living thing.",
+       "hi": "गर्मी या ठंड एक परिस्थिति है, सजीव नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:tree",
+     "expect": "correct:tree",
+     "say": {
+      "en": "Tap the neem tree, then its group.",
+      "hi": "नीम का पेड़ छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:sun",
+     "expect": "correct:sun",
+     "say": {
+      "en": "Now place sunlight.",
+      "hi": "अब धूप रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Soil bacteria are too small to see. Are they biotic or abiotic?",
+      "hi": "मिट्टी के जीवाणु दिखते नहीं। वे जैविक हैं या अजैविक?"
+     },
+     "options": [
+      {
+       "id": "biotic",
+       "en": "Biotic: they are alive",
+       "hi": "जैविक: वे सजीव हैं"
+      },
+      {
+       "id": "abiotic",
+       "en": "Abiotic: they are part of the soil",
+       "hi": "अजैविक: वे मिट्टी का हिस्सा हैं"
+      }
+     ],
+     "answer": "biotic"
+    },
+    {
+     "kind": "do",
+     "target": "card:bact",
+     "expect": "correct:bact",
+     "say": {
+      "en": "Place the soil bacteria.",
+      "hi": "मिट्टी के जीवाणु रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An ecosystem is made of biotic components (plants, animals and microbes) and abiotic components (air, water, soil, sunlight and temperature), and the interactions between them. Plants use sunlight, water and minerals; animals eat plants; microbes return nutrients to the soil.",
+      "hi": "पारितंत्र जैविक घटकों (पौधे, जंतु और सूक्ष्मजीव) और अजैविक घटकों (हवा, पानी, मिट्टी, धूप और तापमान) तथा उनके आपसी संबंधों से बनता है। पौधे धूप, पानी और खनिज लेते हैं; जंतु पौधे खाते हैं; सूक्ष्मजीव पोषक तत्व मिट्टी में लौटाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A pond dries up in a hot summer. Which change started it?",
+        "hi": "गर्म गर्मियों में एक तालाब सूख जाता है। बदलाव किससे शुरू हुआ?"
+       },
+       "options": [
+        {
+         "en": "An abiotic factor: high temperature and no rain",
+         "hi": "एक अजैविक कारक: ज़्यादा तापमान और बारिश नहीं"
+        },
+        {
+         "en": "A biotic factor: the fish",
+         "hi": "एक जैविक कारक: मछलियाँ"
+        },
+        {
+         "en": "Nothing; ponds dry for no reason",
+         "hi": "कुछ नहीं; तालाब बिना कारण सूखते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heat and lack of rain are non-living factors, and they affect all the living things.",
+        "hi": "गर्मी और बारिश की कमी निर्जीव कारक हैं, और ये सब सजीवों पर असर डालते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fish suffer from the drying; they did not cause it.",
+         "hi": "मछलियाँ सूखने से कष्ट पाती हैं; उन्होंने इसे शुरू नहीं किया।"
+        },
+        {
+         "en": "Every change in nature has a cause; here it is heat and no rain.",
+         "hi": "प्रकृति के हर बदलाव का कारण होता है; यहाँ गर्मी और बारिश की कमी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again, then list three biotic and three abiotic things you can see from your classroom window.",
+      "hi": "फिर से छाँटो, फिर अपनी कक्षा की खिड़की से दिखने वाली तीन जैविक और तीन अजैविक चीज़ें लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch12-chain",
+   "topic": "12.5",
+   "template": "eco",
+   "title": {
+    "en": "Who eats whom in the grassland?",
+    "hi": "घास के मैदान में कौन किसे खाता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "chain",
+    "habitat": "grassland"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:grass",
+     "expect": "picked:grass",
+     "say": {
+      "en": "Tap the grass. Every food chain starts with a plant.",
+      "hi": "घास को छुओ। हर आहार शृंखला पौधे से शुरू होती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Press Link to start the chain.",
+      "hi": "शृंखला शुरू करने के लिए जोड़ें दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:grasshopper",
+     "expect": "picked:grasshopper",
+     "say": {
+      "en": "Tap the animal that eats grass: the grasshopper.",
+      "hi": "घास खाने वाले जंतु को छुओ: टिड्डा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Link it.",
+      "hi": "इसे जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who eats the grasshopper?",
+      "hi": "टिड्डे को कौन खाता है?"
+     },
+     "options": [
+      {
+       "id": "frog",
+       "en": "The frog",
+       "hi": "मेंढक"
+      },
+      {
+       "id": "grass",
+       "en": "The grass",
+       "hi": "घास"
+      },
+      {
+       "id": "eagle",
+       "en": "Nobody",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "frog"
+    },
+    {
+     "kind": "do",
+     "target": "card:frog",
+     "expect": "picked:frog",
+     "say": {
+      "en": "Tap the frog.",
+      "hi": "मेंढक को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Link it.",
+      "hi": "इसे जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A food chain shows who eats whom: grass → grasshopper → frog → snake → eagle. Grass is a producer; the grasshopper is a herbivore; the frog, snake and eagle are carnivores. Each step is a trophic level. Only about 10 per cent of the energy passes from one level to the next, so food chains are short and there are fewer animals at the top.",
+      "hi": "आहार शृंखला दिखाती है कि कौन किसे खाता है: घास → टिड्डा → मेंढक → साँप → चील। घास उत्पादक है; टिड्डा शाकाहारी है; मेंढक, साँप और चील मांसाहारी हैं। हर कदम एक पोषी स्तर है। एक स्तर से अगले तक केवल लगभग 10 प्रतिशत ऊर्जा जाती है, इसलिए आहार शृंखलाएँ छोटी होती हैं और ऊपर जंतु कम होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are there far fewer eagles than grasshoppers in a grassland?",
+        "hi": "घास के मैदान में टिड्डों से चीलें बहुत कम क्यों होती हैं?"
+       },
+       "options": [
+        {
+         "en": "Energy shrinks at each step up the chain",
+         "hi": "शृंखला में हर कदम ऊपर ऊर्जा घटती है"
+        },
+        {
+         "en": "Eagles do not like grass",
+         "hi": "चीलों को घास पसंद नहीं"
+        },
+        {
+         "en": "Eagles live only in cities",
+         "hi": "चीलें केवल शहरों में रहती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only about a tenth of the energy reaches each higher level, so it can feed fewer animals.",
+        "hi": "हर ऊँचे स्तर तक केवल लगभग दसवाँ भाग ऊर्जा पहुँचती है, इसलिए वह कम जंतुओं का पेट भरती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Eagles never eat grass; the point is how much energy reaches them.",
+         "hi": "चीलें घास नहीं खातीं; बात यह है कि उन तक कितनी ऊर्जा पहुँचती है।"
+        },
+        {
+         "en": "Eagles do live in grasslands; they are just fewer.",
+         "hi": "चीलें घास के मैदानों में रहती हैं; बस कम होती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the chain with the snake and the eagle, then press Show energy. Switch to the food web to see how chains link together.",
+      "hi": "साँप और चील जोड़कर शृंखला पूरी करो, फिर ऊर्जा दिखाओ दबाओ। आहार जाल पर जाकर देखो कि शृंखलाएँ कैसे जुड़ती हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch12-roles",
+   "topic": "12.6",
+   "template": "sort",
+   "title": {
+    "en": "Producer, consumer or decomposer?",
+    "hi": "उत्पादक, उपभोक्ता या अपघटक?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "prod",
+      "label": {
+       "en": "Producer",
+       "hi": "उत्पादक"
+      }
+     },
+     {
+      "id": "cons",
+      "label": {
+       "en": "Consumer",
+       "hi": "उपभोक्ता"
+      }
+     },
+     {
+      "id": "decomp",
+      "label": {
+       "en": "Decomposer",
+       "hi": "अपघटक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "grass",
+      "text": {
+       "en": "Grass",
+       "hi": "घास"
+      },
+      "bin": "prod",
+      "why": {
+       "en": "It makes its own food from sunlight.",
+       "hi": "यह धूप से अपना भोजन बनाती है।"
+      }
+     },
+     {
+      "id": "mango",
+      "text": {
+       "en": "Mango tree",
+       "hi": "आम का पेड़"
+      },
+      "bin": "prod",
+      "why": {
+       "en": "Green leaves make food by photosynthesis.",
+       "hi": "हरी पत्तियाँ प्रकाश-संश्लेषण से भोजन बनाती हैं।"
+      }
+     },
+     {
+      "id": "deer",
+      "text": {
+       "en": "Deer",
+       "hi": "हिरण"
+      },
+      "bin": "cons",
+      "why": {
+       "en": "A herbivore: it eats plants.",
+       "hi": "शाकाहारी: यह पौधे खाता है।"
+      }
+     },
+     {
+      "id": "tiger",
+      "text": {
+       "en": "Tiger",
+       "hi": "बाघ"
+      },
+      "bin": "cons",
+      "why": {
+       "en": "A carnivore: it eats other animals.",
+       "hi": "मांसाहारी: यह दूसरे जंतु खाता है।"
+      }
+     },
+     {
+      "id": "crow",
+      "text": {
+       "en": "Crow",
+       "hi": "कौआ"
+      },
+      "bin": "cons",
+      "why": {
+       "en": "An omnivore: it eats plants and animals.",
+       "hi": "सर्वाहारी: यह पौधे और जंतु दोनों खाता है।"
+      }
+     },
+     {
+      "id": "mush",
+      "text": {
+       "en": "Mushroom on a fallen log",
+       "hi": "गिरे लट्ठे पर कुकुरमुत्ता"
+      },
+      "bin": "decomp",
+      "why": {
+       "en": "Fungi break down dead wood into simple substances.",
+       "hi": "कवक मरी लकड़ी को सरल पदार्थों में तोड़ते हैं।"
+      }
+     },
+     {
+      "id": "bact2",
+      "text": {
+       "en": "Bacteria in leaf litter",
+       "hi": "पत्तियों के ढेर में जीवाणु"
+      },
+      "bin": "decomp",
+      "why": {
+       "en": "Bacteria rot dead leaves and return nutrients to soil.",
+       "hi": "जीवाणु मरी पत्तियों को सड़ाकर पोषक मिट्टी में लौटाते हैं।"
+      }
+     },
+     {
+      "id": "mould",
+      "text": {
+       "en": "Mould on old bread",
+       "hi": "पुरानी ब्रेड पर फफूँद"
+      },
+      "bin": "decomp",
+      "why": {
+       "en": "Mould is a fungus that decomposes food.",
+       "hi": "फफूँद एक कवक है जो भोजन को अपघटित करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:grass",
+     "expect": "correct:grass",
+     "say": {
+      "en": "Tap grass, then its group.",
+      "hi": "घास छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:tiger",
+     "expect": "correct:tiger",
+     "say": {
+      "en": "Now place the tiger.",
+      "hi": "अब बाघ रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A mushroom grows on a fallen log. What is its role?",
+      "hi": "गिरे लट्ठे पर कुकुरमुत्ता उगता है। उसकी भूमिका क्या है?"
+     },
+     "options": [
+      {
+       "id": "decomp",
+       "en": "Decomposer: it breaks down dead matter",
+       "hi": "अपघटक: यह मृत पदार्थ तोड़ता है"
+      },
+      {
+       "id": "prod",
+       "en": "Producer",
+       "hi": "उत्पादक"
+      },
+      {
+       "id": "cons",
+       "en": "Consumer",
+       "hi": "उपभोक्ता"
+      }
+     ],
+     "answer": "decomp"
+    },
+    {
+     "kind": "do",
+     "target": "card:mush",
+     "expect": "correct:mush",
+     "say": {
+      "en": "Place the mushroom.",
+      "hi": "कुकुरमुत्ता रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Producers make their own food. Consumers eat plants (herbivores), animals (carnivores) or both (omnivores). Decomposers, mainly bacteria and fungi, break down dead plants, animals and waste into simple substances that return to the soil. Without them, nature would be buried in waste and plants would run out of nutrients.",
+      "hi": "उत्पादक अपना भोजन ख़ुद बनाते हैं। उपभोक्ता पौधे (शाकाहारी), जंतु (मांसाहारी) या दोनों (सर्वाहारी) खाते हैं। अपघटक, मुख्यतः जीवाणु और कवक, मरे पौधों, जंतुओं और कचरे को सरल पदार्थों में तोड़ते हैं जो मिट्टी में लौटते हैं। इनके बिना प्रकृति कचरे में दब जाती और पौधों को पोषक नहीं मिलते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What would happen in a forest with no decomposers?",
+        "hi": "बिना अपघटकों वाले वन में क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "Dead leaves would pile up and soil would lose nutrients",
+         "hi": "मरी पत्तियाँ जमा होंगी और मिट्टी के पोषक घटेंगे"
+        },
+        {
+         "en": "Trees would grow faster",
+         "hi": "पेड़ तेज़ बढ़ेंगे"
+        },
+        {
+         "en": "Nothing would change",
+         "hi": "कुछ नहीं बदलेगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Decomposers recycle nutrients; without them, matter stays locked in dead remains.",
+        "hi": "अपघटक पोषक तत्वों का पुनर्चक्रण करते हैं; उनके बिना पदार्थ मृत अवशेषों में बंद रह जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Without recycled nutrients, trees would slowly starve, not grow faster.",
+         "hi": "पुनर्चक्रित पोषक के बिना पेड़ धीरे-धीरे भूखे रहेंगे, तेज़ नहीं बढ़ेंगे।"
+        },
+        {
+         "en": "Waste would build up everywhere, a huge change.",
+         "hi": "हर जगह कचरा जमा होगा, जो बहुत बड़ा बदलाव है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again. Then look under a pile of fallen leaves with a stick: can you find signs of decomposers at work?",
+      "hi": "फिर से छाँटो। फिर गिरी पत्तियों के ढेर के नीचे डंडी से देखो: क्या अपघटकों के काम के निशान मिलते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch12-balance",
+   "topic": "12.7",
+   "template": "eco",
+   "title": {
+    "en": "Keep the pond in balance",
+    "hi": "तालाब का संतुलन बनाए रखो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "population",
+    "habitat": "pond"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "balanced",
+     "say": {
+      "en": "Press Play and watch the algae, fish and kingfishers settle.",
+      "hi": "चलाओ दबाओ और शैवाल, मछली और किंगफ़िशर को स्थिर होते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will happen to the fish if many more kingfishers arrive?",
+      "hi": "अगर बहुत-से और किंगफ़िशर आ जाएँ तो मछलियों का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "fewer",
+       "en": "Fish numbers fall, then algae grow more",
+       "hi": "मछलियाँ घटेंगी, फिर शैवाल बढ़ेंगे"
+      },
+      {
+       "id": "more",
+       "en": "Fish numbers rise",
+       "hi": "मछलियाँ बढ़ेंगी"
+      },
+      {
+       "id": "none",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "fewer"
+    },
+    {
+     "kind": "do",
+     "target": "card:kingfisher",
+     "expect": "picked:kingfisher",
+     "say": {
+      "en": "Add more kingfishers by tapping them.",
+      "hi": "किंगफ़िशर पर टैप करके और किंगफ़िशर जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In an ecosystem one change leads to another. More kingfishers eat more fish; with fewer fish, more algae survive; with less food, some kingfishers then leave or die, and the fish recover. Predators and prey keep each other in check, so numbers swing and settle near a balance. Removing one population can upset the whole community.",
+      "hi": "पारितंत्र में एक बदलाव दूसरे को जन्म देता है। ज़्यादा किंगफ़िशर ज़्यादा मछलियाँ खाते हैं; मछलियाँ घटने से ज़्यादा शैवाल बचते हैं; भोजन कम होने पर कुछ किंगफ़िशर चले जाते या मर जाते हैं, और मछलियाँ फिर बढ़ती हैं। शिकारी और शिकार एक-दूसरे को नियंत्रण में रखते हैं, इसलिए संख्याएँ घटती-बढ़ती हुई संतुलन के पास टिकती हैं। एक आबादी हटाने से पूरा समुदाय बिगड़ सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Frogs in a paddy field are all caught. What may happen next?",
+        "hi": "धान के खेत के सारे मेंढक पकड़ लिए जाते हैं। आगे क्या हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "Insect pests increase and damage the crop",
+         "hi": "कीट बढ़कर फ़सल को नुक़सान पहुँचाएँगे"
+        },
+        {
+         "en": "The crop grows better",
+         "hi": "फ़सल बेहतर उगेगी"
+        },
+        {
+         "en": "Nothing at all",
+         "hi": "कुछ भी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Frogs eat insects; without them insect numbers rise.",
+        "hi": "मेंढक कीट खाते हैं; उनके बिना कीटों की संख्या बढ़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More pests eat more of the crop, so it grows worse.",
+         "hi": "ज़्यादा कीट ज़्यादा फ़सल खाते हैं, इसलिए फ़सल ख़राब होती है।"
+        },
+        {
+         "en": "Removing a population always changes others in the food web.",
+         "hi": "एक आबादी हटाने से आहार जाल में दूसरों पर हमेशा असर पड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the mode to remove and take away most of the fish. What happens to the algae and the kingfishers? Press Start again to reset.",
+      "hi": "मोड बदलकर \"हटाओ\" करो और ज़्यादातर मछलियाँ हटा दो। शैवाल और किंगफ़िशर का क्या होता है? फिर से शुरू दबाकर दोबारा करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch12-together",
+   "topic": "12.8",
+   "template": "sort",
+   "title": {
+    "en": "Living together: who gains?",
+    "hi": "साथ रहना: फ़ायदा किसे?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mutual",
+      "label": {
+       "en": "Both benefit (mutualism)",
+       "hi": "दोनों को लाभ (सहोपकारिता)"
+      }
+     },
+     {
+      "id": "comm",
+      "label": {
+       "en": "One benefits, other unaffected",
+       "hi": "एक को लाभ, दूसरा अप्रभावित"
+      }
+     },
+     {
+      "id": "para",
+      "label": {
+       "en": "One benefits, other harmed",
+       "hi": "एक को लाभ, दूसरे को हानि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "bee",
+      "text": {
+       "en": "Bee and flower",
+       "hi": "मधुमक्खी और फूल"
+      },
+      "bin": "mutual",
+      "why": {
+       "en": "The bee gets nectar; the flower gets pollinated.",
+       "hi": "मधुमक्खी को रस मिलता है; फूल का परागण होता है।"
+      }
+     },
+     {
+      "id": "nodule",
+      "text": {
+       "en": "Bacteria in gram root nodules",
+       "hi": "चने की जड़ ग्रंथिकाओं में जीवाणु"
+      },
+      "bin": "mutual",
+      "why": {
+       "en": "Bacteria get food and shelter; the plant gets nitrogen.",
+       "hi": "जीवाणुओं को भोजन और आश्रय मिलता है; पौधे को नाइट्रोजन।"
+      }
+     },
+     {
+      "id": "egret",
+      "text": {
+       "en": "Cattle egret walking with cows",
+       "hi": "गायों के साथ चलता बगुला"
+      },
+      "bin": "comm",
+      "why": {
+       "en": "The egret catches insects stirred up by the cows; the cows are not affected.",
+       "hi": "बगुला गायों से उड़े कीड़े पकड़ता है; गायों पर असर नहीं पड़ता।"
+      }
+     },
+     {
+      "id": "orchid",
+      "text": {
+       "en": "Orchid growing on a tree branch",
+       "hi": "पेड़ की डाल पर उगता ऑर्किड"
+      },
+      "bin": "comm",
+      "why": {
+       "en": "The orchid gets a place in the light; the tree is not harmed.",
+       "hi": "ऑर्किड को रोशनी में जगह मिलती है; पेड़ को नुक़सान नहीं होता।"
+      }
+     },
+     {
+      "id": "cuscuta",
+      "text": {
+       "en": "Amarbel (Cuscuta) on a plant",
+       "hi": "पौधे पर अमरबेल (कस्कुटा)"
+      },
+      "bin": "para",
+      "why": {
+       "en": "Amarbel takes food from the host plant and weakens it.",
+       "hi": "अमरबेल मेज़बान पौधे से भोजन लेकर उसे कमज़ोर करती है।"
+      }
+     },
+     {
+      "id": "lice",
+      "text": {
+       "en": "Lice on a person's head",
+       "hi": "सिर में जूँ"
+      },
+      "bin": "para",
+      "why": {
+       "en": "Lice feed on blood and harm the host.",
+       "hi": "जूँ ख़ून चूसकर मेज़बान को हानि पहुँचाती हैं।"
+      }
+     },
+     {
+      "id": "tick",
+      "text": {
+       "en": "Ticks on a dog",
+       "hi": "कुत्ते पर किलनी"
+      },
+      "bin": "para",
+      "why": {
+       "en": "Ticks suck blood and can spread disease.",
+       "hi": "किलनी ख़ून चूसती है और रोग फैला सकती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:bee",
+     "expect": "correct:bee",
+     "say": {
+      "en": "Tap the bee and flower, then their group.",
+      "hi": "मधुमक्खी और फूल छुओ, फिर उनका समूह।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Amarbel wraps round a plant and takes its food. What kind of relationship is it?",
+      "hi": "अमरबेल पौधे से लिपटकर उसका भोजन लेती है। यह कैसा संबंध है?"
+     },
+     "options": [
+      {
+       "id": "para",
+       "en": "One benefits, the other is harmed",
+       "hi": "एक को लाभ, दूसरे को हानि"
+      },
+      {
+       "id": "mutual",
+       "en": "Both benefit",
+       "hi": "दोनों को लाभ"
+      },
+      {
+       "id": "comm",
+       "en": "The plant is unaffected",
+       "hi": "पौधा अप्रभावित है"
+      }
+     ],
+     "answer": "para"
+    },
+    {
+     "kind": "do",
+     "target": "card:cuscuta",
+     "expect": "correct:cuscuta",
+     "say": {
+      "en": "Place amarbel.",
+      "hi": "अमरबेल रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Organisms that live closely together have different relationships. In mutualism both gain, like bees and flowers. In commensalism one gains and the other is not affected, like an egret with cattle. In parasitism one gains and the other is harmed, like amarbel or lice. These interactions help keep an ecosystem in balance.",
+      "hi": "साथ रहने वाले जीवों के बीच अलग-अलग संबंध होते हैं। सहोपकारिता में दोनों को लाभ होता है, जैसे मधुमक्खी और फूल। सहभोजिता में एक को लाभ होता है और दूसरा अप्रभावित रहता है, जैसे गायों के साथ बगुला। परजीविता में एक को लाभ और दूसरे को हानि होती है, जैसे अमरबेल या जूँ। ये संबंध पारितंत्र को संतुलित रखने में मदद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the egret and cow pair, why is it not mutualism?",
+        "hi": "बगुले और गाय की जोड़ी सहोपकारिता क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "Only the egret gains; the cow is unaffected",
+         "hi": "केवल बगुले को लाभ है; गाय अप्रभावित है"
+        },
+        {
+         "en": "Both are harmed",
+         "hi": "दोनों को हानि होती है"
+        },
+        {
+         "en": "The cow eats the egret",
+         "hi": "गाय बगुले को खाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mutualism needs both to benefit; here only the egret does.",
+        "hi": "सहोपकारिता में दोनों को लाभ चाहिए; यहाँ केवल बगुले को है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Neither is harmed; the egret just finds food.",
+         "hi": "किसी को हानि नहीं; बगुला बस भोजन पाता है।"
+        },
+        {
+         "en": "Cows eat plants, not birds.",
+         "hi": "गायें पौधे खाती हैं, पक्षी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again, then find one more example of each relationship in your area.",
+      "hi": "फिर से छाँटो, फिर अपने इलाक़े में हर संबंध का एक और उदाहरण खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch12-farm",
+   "topic": "12.9.2",
+   "template": "scenario",
+   "title": {
+    "en": "A farm that works with nature",
+    "hi": "प्रकृति के साथ चलने वाला खेत"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "farm",
+    "role": {
+     "en": "A young farmer helping the family",
+     "hi": "परिवार की मदद करता युवा किसान"
+    },
+    "scenes": [
+     {
+      "id": "pests",
+      "text": {
+       "en": "Caterpillars are eating your vegetable crop. Birds and frogs live near the field. What do you try first?",
+       "hi": "इल्लियाँ तुम्हारी सब्ज़ी की फ़सल खा रही हैं। खेत के पास पक्षी और मेंढक रहते हैं। पहले क्या आज़माओगे?"
+      },
+      "choices": [
+       {
+        "id": "birds",
+        "text": {
+         "en": "Put up bird perches and keep the field edges green for frogs",
+         "hi": "पक्षियों के लिए बैठने के डंडे लगाओ और मेंढकों के लिए खेत के किनारे हरे रखो"
+        },
+        "next": "bees",
+        "feedback": {
+         "en": "Good. Birds and frogs eat insect pests for free, and no poison enters the food chain.",
+         "hi": "अच्छा। पक्षी और मेंढक मुफ़्त में कीट खाते हैं, और आहार शृंखला में ज़हर नहीं जाता।"
+        },
+        "good": true
+       },
+       {
+        "id": "spray",
+        "text": {
+         "en": "Spray a strong pesticide on everything",
+         "hi": "हर चीज़ पर तेज़ कीटनाशक छिड़को"
+        },
+        "next": "bees",
+        "feedback": {
+         "en": "Strong sprays also kill helpful insects, birds and frogs, and can poison the soil and water.",
+         "hi": "तेज़ छिड़काव मददगार कीटों, पक्षियों और मेंढकों को भी मारता है, और मिट्टी व पानी को ज़हरीला कर सकता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "bees",
+      "text": {
+       "en": "Your mustard is flowering, and few bees visit this year. What helps?",
+       "hi": "तुम्हारी सरसों फूल रही है, और इस साल कम मधुमक्खियाँ आ रही हैं। क्या मदद करेगा?"
+      },
+      "choices": [
+       {
+        "id": "flowers",
+        "text": {
+         "en": "Grow flowering plants along the edges and avoid spraying when bees are out",
+         "hi": "किनारों पर फूलदार पौधे उगाओ और मधुमक्खियों के समय छिड़काव मत करो"
+        },
+        "next": "soil",
+        "feedback": {
+         "en": "Bees pollinate crops; more pollination means more seeds and a better harvest.",
+         "hi": "मधुमक्खियाँ फ़सलों का परागण करती हैं; ज़्यादा परागण से ज़्यादा बीज और अच्छी पैदावार।"
+        },
+        "good": true
+       },
+       {
+        "id": "nothing",
+        "text": {
+         "en": "Do nothing; bees do not matter",
+         "hi": "कुछ मत करो; मधुमक्खियों से फ़र्क नहीं पड़ता"
+        },
+        "next": "soil",
+        "feedback": {
+         "en": "They matter a lot: without pollinators, many crops give fewer seeds and fruits.",
+         "hi": "बहुत फ़र्क पड़ता है: परागणकों के बिना कई फ़सलें कम बीज और फल देती हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "soil",
+      "text": {
+       "en": "After harvest, there are crop leftovers and cow dung. What do you do with them?",
+       "hi": "कटाई के बाद फ़सल के अवशेष और गोबर बचे हैं। इनका क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "compost",
+        "text": {
+         "en": "Make compost and return it to the soil",
+         "hi": "खाद बनाकर मिट्टी में लौटाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Decomposers turn waste into manure, and earthworms keep the soil loose and fertile.",
+         "hi": "अपघटक कचरे को खाद बनाते हैं, और केंचुए मिट्टी को भुरभुरी और उपजाऊ रखते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "burn",
+        "text": {
+         "en": "Burn the leftovers in the field",
+         "hi": "अवशेष खेत में जला दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Burning pollutes the air and kills soil organisms that keep the soil healthy.",
+         "hi": "जलाने से हवा प्रदूषित होती है और मिट्टी को स्वस्थ रखने वाले जीव मर जाते हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which living things help a farmer for free?",
+      "hi": "कौन-से जीव किसान की मुफ़्त में मदद करते हैं?"
+     },
+     "options": [
+      {
+       "id": "helpers",
+       "en": "Bees, earthworms, frogs and birds",
+       "hi": "मधुमक्खियाँ, केंचुए, मेंढक और पक्षी"
+      },
+      {
+       "id": "none",
+       "en": "None; only machines help",
+       "hi": "कोई नहीं; केवल मशीनें मदद करती हैं"
+      }
+     ],
+     "answer": "helpers"
+    },
+    {
+     "kind": "do",
+     "target": "choice:pests:birds",
+     "expect": "chose:birds",
+     "say": {
+      "en": "Choose how to deal with the caterpillars.",
+      "hi": "चुनो कि इल्लियों से कैसे निपटोगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:bees:flowers",
+     "expect": "chose:flowers",
+     "say": {
+      "en": "Choose what will bring back the bees.",
+      "hi": "चुनो कि मधुमक्खियाँ कैसे वापस आएँगी।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:soil:compost",
+     "expect": "chose:compost",
+     "say": {
+      "en": "Choose what to do with the leftovers.",
+      "hi": "चुनो कि अवशेषों का क्या करोगे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A farm is a human-made ecosystem, and it works best when its living parts are healthy. Birds and frogs control pests, bees pollinate flowers, and earthworms and decomposers keep the soil fertile. Ecosystems also give clean air and water, food and medicines; pollution and habitat loss threaten these benefits.",
+      "hi": "खेत मनुष्य का बनाया पारितंत्र है, और यह सबसे अच्छा तब चलता है जब उसके सजीव भाग स्वस्थ हों। पक्षी और मेंढक कीटों पर नियंत्रण रखते हैं, मधुमक्खियाँ फूलों का परागण करती हैं, और केंचुए व अपघटक मिट्टी को उपजाऊ रखते हैं। पारितंत्र साफ़ हवा और पानी, भोजन और दवाएँ भी देते हैं; प्रदूषण और आवास का नाश इन लाभों के लिए ख़तरा हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is burning crop leftovers harmful?",
+        "hi": "फ़सल के अवशेष जलाना हानिकारक क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It pollutes the air and kills soil organisms",
+         "hi": "इससे हवा प्रदूषित होती है और मिट्टी के जीव मरते हैं"
+        },
+        {
+         "en": "It makes the soil too rich",
+         "hi": "इससे मिट्टी बहुत उपजाऊ हो जाती है"
+        },
+        {
+         "en": "It brings more bees",
+         "hi": "इससे ज़्यादा मधुमक्खियाँ आती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Smoke harms people's health, and the heat kills earthworms and microbes.",
+        "hi": "धुआँ लोगों के स्वास्थ्य को नुक़सान पहुँचाता है, और गर्मी केंचुओं और सूक्ष्मजीवों को मारती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Burning loses most of the nutrients that compost would return.",
+         "hi": "जलाने से वे ज़्यादातर पोषक नष्ट होते हैं जो खाद लौटाती।"
+        },
+        {
+         "en": "Smoke and fire drive bees away.",
+         "hi": "धुआँ और आग मधुमक्खियों को भगाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and pick the harmful choices to read what goes wrong. Then talk to a farmer you know: which of these practices do they use?",
+      "hi": "फिर से खेलो और हानिकारक विकल्प चुनकर पढ़ो कि क्या बिगड़ता है। फिर किसी जानकार किसान से बात करो: वे इनमें से कौन-से तरीके अपनाते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Hook of the chapter",
+   "shows": "A village pond at dawn with lotus leaves, a kingfisher on a branch, a frog on a leaf and buffaloes at the far bank",
+   "view": "Wide view at water level, soft gold light",
+   "right": "Several organisms visible at once in one habitat",
+   "avoid": "Plastic waste, people's faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "12.2",
+   "use": "Counting a patch",
+   "shows": "Students' hands placing a 1 m × 1 m square of string pegged in a school garden, a clipboard with a tally table beside it",
+   "view": "From above at an angle",
+   "right": "Square marked clearly; plants inside visible",
+   "avoid": "Faces, school names"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "12.3",
+   "use": "Pond with and without fish",
+   "shows": "Two ponds side by side: pond A with fish, few dragonfly larvae and many bees on the shore flowers; pond B without fish, many dragonflies and few bees",
+   "view": "Same framing, illustrated realistic style",
+   "right": "Differences shown by counts of insects",
+   "avoid": "Text labels"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "12.5",
+   "use": "Grassland food chain",
+   "shows": "Grass, grasshopper, frog, snake and eagle in a row with arrows pointing from food to eater, the Sun at the start",
+   "view": "Clean flat render, white background",
+   "right": "Arrows point from the eaten to the eater",
+   "avoid": "Text in the picture"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "12.6",
+   "use": "Decomposers at work",
+   "shows": "Bracket fungi and mushrooms on a rotting log on a forest floor covered with brown leaf litter",
+   "view": "Close, low angle, soft forest light",
+   "right": "Fungi attached to dead wood",
+   "avoid": "People picking mushrooms to eat"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "12.8",
+   "use": "Living together",
+   "shows": "Three frames: a bee on a mustard flower; a cattle egret beside a grazing cow; amarbel (Cuscuta) twining round a hedge plant",
+   "view": "Each a close natural shot",
+   "right": "Amarbel yellow and leafless",
+   "avoid": "Lice or ticks shown large (keep it gentle)"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "12.9.2",
+   "use": "A farm working with nature",
+   "shows": "A vegetable field with bird perches, a hedge of flowering plants buzzing with bees, and a compost pit at the corner",
+   "view": "Wide view from the field edge",
+   "right": "Perches and compost pit clearly visible",
+   "avoid": "Pesticide cans, brand names"
+  },
+  {
+   "n": 8,
+   "kind": "MAC",
+   "topic": "12.6",
+   "use": "Earthworm in soil",
+   "shows": "An earthworm in a handful of dark crumbly soil held in gloved hands",
+   "view": "Close-up, soft daylight",
+   "right": "Worm moist and pink-brown; soil loose",
+   "avoid": "Bare hands"
+  }
+ ]
+}

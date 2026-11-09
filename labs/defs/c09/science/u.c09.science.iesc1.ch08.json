@@ -1,0 +1,1018 @@
+{
+ "chapter_key": "u.c09.science.iesc1.ch08",
+ "class": 9,
+ "subject_id": "science",
+ "title": "Journey Inside the Atom",
+ "source": "https://ncert.nic.in/textbook/pdf/iesc108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Rediscovering the roots of atomic theory",
+   "labs": [],
+   "why_no_lab": "The ideas of Kanad, Democritus and Dalton are a story to read; the reader and a timeline picture teach it."
+  },
+  {
+   "n": "8.2",
+   "title": "A short historical journey through atomic models",
+   "labs": [
+    "c09-science-iesc1-ch08-models"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2.1",
+   "title": "Thomson's model of an atom",
+   "labs": [
+    "c09-science-iesc1-ch08-models"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2.2",
+   "title": "Testing Thomson's model: the gold foil experiment",
+   "labs": [
+    "c09-science-iesc1-ch08-models"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2.3",
+   "title": "Bohr's model of the atom",
+   "labs": [
+    "c09-science-iesc1-ch08-models"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "The particles of an atom; discovery of the neutron",
+   "labs": [
+    "c09-science-iesc1-ch08-build"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Symbols of elements",
+   "labs": [
+    "c09-science-iesc1-ch08-symbols"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Atomic number",
+   "labs": [
+    "c09-science-iesc1-ch08-build"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Mass number",
+   "labs": [
+    "c09-science-iesc1-ch08-build"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.7",
+   "title": "How electrons are distributed in orbits",
+   "labs": [
+    "c09-science-iesc1-ch08-shells"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.7.1",
+   "title": "Building up atoms",
+   "labs": [
+    "c09-science-iesc1-ch08-shells"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.8",
+   "title": "Combining capacity of an atom: valency",
+   "labs": [
+    "c09-science-iesc1-ch08-valency"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.9.1",
+   "title": "Isotopes",
+   "labs": [
+    "c09-science-iesc1-ch08-isotopes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.9.2",
+   "title": "Isobars",
+   "labs": [],
+   "why_no_lab": "Comparing argon-40 and calcium-40 side by side on a card teaches isobars; building forty particles twice adds nothing."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-science-iesc1-ch08-models",
+   "topic": "8.2",
+   "template": "atom",
+   "title": {
+    "en": "From plum pudding to Bohr: models of the atom",
+    "hi": "प्लम पुडिंग से बोर तक: परमाणु के मॉडल"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "models"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "model:thomson",
+     "expect": "model:thomson",
+     "say": {
+      "en": "Tap Thomson's model: positive charge spread out, with electrons dotted in it.",
+      "hi": "टॉमसन के मॉडल पर टैप करो: धन आवेश फैला हुआ, उसमें बिखरे इलेक्ट्रॉन।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Fast alpha particles are fired at a thin gold foil. If Thomson's model were right, what would happen to them?",
+      "hi": "तेज़ अल्फ़ा कण सोने की पतली पन्नी पर दागे जाते हैं। अगर टॉमसन का मॉडल सही होता, तो उनका क्या होता?"
+     },
+     "options": [
+      {
+       "id": "through",
+       "en": "Almost all would pass straight through, a few bending slightly",
+       "hi": "लगभग सभी सीधे निकल जाते, कुछ थोड़ा मुड़ते"
+      },
+      {
+       "id": "back",
+       "en": "Most would bounce straight back",
+       "hi": "अधिकतर सीधे वापस उछलते"
+      },
+      {
+       "id": "stop",
+       "en": "All would stop in the foil",
+       "hi": "सभी पन्नी में रुक जाते"
+      }
+     ],
+     "answer": "through"
+    },
+    {
+     "kind": "do",
+     "target": "gold-foil",
+     "expect": "deflected",
+     "say": {
+      "en": "Start the gold foil experiment and watch the alpha particles.",
+      "hi": "सोने की पन्नी का प्रयोग शुरू करो और अल्फ़ा कणों को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "model:rutherford",
+     "expect": "model:rutherford",
+     "say": {
+      "en": "Now tap Rutherford's model.",
+      "hi": "अब रदरफ़ोर्ड के मॉडल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "model:bohr",
+     "expect": "model:bohr",
+     "say": {
+      "en": "Finally tap Bohr's model.",
+      "hi": "अंत में बोर के मॉडल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Most alpha particles passed straight through, so the atom is mostly empty space. A very few bounced back, so they hit something tiny, heavy and positive: the nucleus. Rutherford put all the positive charge and almost all the mass in the nucleus, with electrons moving around it. Bohr added that electrons move only in fixed orbits (shells) with fixed energies, so the atom is stable.",
+      "hi": "अधिकतर अल्फ़ा कण सीधे निकल गए, इसलिए परमाणु का अधिकतर भाग ख़ाली है। बहुत थोड़े वापस उछले, यानी वे किसी बहुत छोटी, भारी और धनात्मक चीज़ से टकराए: नाभिक से। रदरफ़ोर्ड ने सारा धन आवेश और लगभग सारा द्रव्यमान नाभिक में रखा, और इलेक्ट्रॉन उसके चारों ओर घूमते हैं। बोर ने जोड़ा कि इलेक्ट्रॉन केवल तय कक्षाओं (कोशों) में तय ऊर्जा के साथ घूमते हैं, इसलिए परमाणु स्थिर रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which observation showed that the atom is mostly empty space?",
+        "hi": "किस अवलोकन से पता चला कि परमाणु का अधिकतर भाग ख़ाली है?"
+       },
+       "options": [
+        {
+         "en": "Most alpha particles went straight through the foil",
+         "hi": "अधिकतर अल्फ़ा कण पन्नी से सीधे निकल गए"
+        },
+        {
+         "en": "A few bounced back",
+         "hi": "कुछ वापस उछले"
+        },
+        {
+         "en": "The foil was made of gold",
+         "hi": "पन्नी सोने की बनी थी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If most particles meet nothing, most of the atom must be empty.",
+        "hi": "अगर अधिकतर कणों को कुछ नहीं मिलता, तो परमाणु का अधिकतर भाग ख़ाली होना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The few that bounced back showed a tiny dense nucleus, not empty space.",
+         "hi": "वापस उछले कुछ कणों ने छोटा घना नाभिक दिखाया, ख़ाली जगह नहीं।"
+        },
+        {
+         "en": "Gold was chosen because it can be beaten very thin; that is not an observation about the atom.",
+         "hi": "सोना इसलिए चुना गया कि उसे बहुत पतला पीटा जा सकता है; यह परमाणु के बारे में अवलोकन नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What problem with Rutherford's model did Bohr solve?",
+        "hi": "रदरफ़ोर्ड के मॉडल की कौन-सी समस्या बोर ने हल की?"
+       },
+       "options": [
+        {
+         "en": "Why circling electrons do not lose energy and fall into the nucleus",
+         "hi": "घूमते इलेक्ट्रॉन ऊर्जा खोकर नाभिक में क्यों नहीं गिरते"
+        },
+        {
+         "en": "Where the nucleus is",
+         "hi": "नाभिक कहाँ है"
+        },
+        {
+         "en": "Why gold is shiny",
+         "hi": "सोना चमकीला क्यों है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In fixed orbits electrons do not radiate energy, so the atom stays stable.",
+        "hi": "तय कक्षाओं में इलेक्ट्रॉन ऊर्जा नहीं छोड़ते, इसलिए परमाणु स्थिर रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rutherford had already found the nucleus at the centre.",
+         "hi": "रदरफ़ोर्ड नाभिक को केंद्र में पहले ही खोज चुके थे।"
+        },
+        {
+         "en": "Bohr's model is about the stability of atoms, not the shine of gold.",
+         "hi": "बोर का मॉडल परमाणुओं की स्थिरता के बारे में है, सोने की चमक के बारे में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: in Bohr's model, move an electron to a higher level and back. What does the atom give out?",
+      "hi": "आज़माओ: बोर के मॉडल में एक इलेक्ट्रॉन को ऊँचे स्तर पर ले जाओ और वापस लाओ। परमाणु क्या छोड़ता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch08-build",
+   "topic": "8.5",
+   "template": "atom",
+   "title": {
+    "en": "Build an atom: atomic number and mass number",
+    "hi": "परमाणु बनाओ: परमाणु क्रमांक और द्रव्यमान संख्या"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "show": [
+     "charge",
+     "mass"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add:proton",
+     "expect": "isotope:H-1",
+     "say": {
+      "en": "Add one proton to the empty nucleus.",
+      "hi": "ख़ाली नाभिक में एक प्रोटॉन जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:electron",
+     "expect": "built:H",
+     "say": {
+      "en": "Add one electron so the atom has no charge.",
+      "hi": "एक इलेक्ट्रॉन जोड़ो ताकि परमाणु पर कोई आवेश न रहे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You have hydrogen. If you add a second proton, which element will it become?",
+      "hi": "यह हाइड्रोजन है। अगर तुम दूसरा प्रोटॉन जोड़ो, तो यह कौन-सा तत्व बनेगा?"
+     },
+     "options": [
+      {
+       "id": "he",
+       "en": "Helium",
+       "hi": "हीलियम"
+      },
+      {
+       "id": "h",
+       "en": "Still hydrogen",
+       "hi": "अब भी हाइड्रोजन"
+      },
+      {
+       "id": "li",
+       "en": "Lithium",
+       "hi": "लिथियम"
+      }
+     ],
+     "answer": "he"
+    },
+    {
+     "kind": "do",
+     "target": "add:proton",
+     "expect": "ion",
+     "say": {
+      "en": "Add a second proton.",
+      "hi": "दूसरा प्रोटॉन जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:neutron",
+     "expect": "isotope:He-4",
+     "say": {
+      "en": "Add two neutrons to the nucleus.",
+      "hi": "नाभिक में दो न्यूट्रॉन जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:electron",
+     "expect": "built:He",
+     "say": {
+      "en": "Add one more electron to make a neutral helium atom.",
+      "hi": "एक और इलेक्ट्रॉन जोड़कर उदासीन हीलियम परमाणु बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The number of protons is the atomic number, Z. It decides the element: 1 proton is hydrogen, 2 is helium. Neutrons have no charge and add mass; Chadwick discovered them in 1932. The mass number, A, is protons + neutrons: helium has A = 2 + 2 = 4. A neutral atom has as many electrons as protons.",
+      "hi": "प्रोटॉनों की संख्या परमाणु क्रमांक, Z, है। यही तत्व तय करती है: 1 प्रोटॉन हाइड्रोजन, 2 हीलियम। न्यूट्रॉन पर आवेश नहीं होता और वे द्रव्यमान बढ़ाते हैं; चैडविक ने 1932 में इन्हें खोजा। द्रव्यमान संख्या, A, प्रोटॉन + न्यूट्रॉन है: हीलियम में A = 2 + 2 = 4। उदासीन परमाणु में जितने प्रोटॉन, उतने ही इलेक्ट्रॉन होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An atom has 11 protons and 12 neutrons. What are its atomic number and mass number?",
+        "hi": "एक परमाणु में 11 प्रोटॉन और 12 न्यूट्रॉन हैं। उसका परमाणु क्रमांक और द्रव्यमान संख्या क्या है?"
+       },
+       "options": [
+        "Z = 11, A = 23",
+        "Z = 12, A = 23",
+        "Z = 23, A = 11"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Z = protons = 11 (sodium); A = 11 + 12 = 23.",
+        "hi": "Z = प्रोटॉन = 11 (सोडियम); A = 11 + 12 = 23।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Z counts protons, not neutrons.",
+         "hi": "Z प्रोटॉन गिनता है, न्यूट्रॉन नहीं।"
+        },
+        {
+         "en": "These are swapped: Z is the smaller number of protons.",
+         "hi": "ये उलट गए हैं: Z प्रोटॉनों की छोटी संख्या है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which particle has almost no mass compared with the others?",
+        "hi": "किस कण का द्रव्यमान दूसरों की तुलना में लगभग नगण्य है?"
+       },
+       "options": [
+        {
+         "en": "Proton",
+         "hi": "प्रोटॉन"
+        },
+        {
+         "en": "Electron",
+         "hi": "इलेक्ट्रॉन"
+        },
+        {
+         "en": "Neutron",
+         "hi": "न्यूट्रॉन"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "An electron is about 1/1840 of the mass of a proton, so the mass number counts only protons and neutrons.",
+        "hi": "इलेक्ट्रॉन का द्रव्यमान प्रोटॉन का लगभग 1/1840 है, इसलिए द्रव्यमान संख्या केवल प्रोटॉन और न्यूट्रॉन गिनती है।"
+       },
+       "wrong": [
+        {
+         "en": "A proton's mass is about 1 u.",
+         "hi": "प्रोटॉन का द्रव्यमान लगभग 1 u है।"
+        },
+        "",
+        {
+         "en": "A neutron is about as heavy as a proton.",
+         "hi": "न्यूट्रॉन लगभग प्रोटॉन जितना भारी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: build lithium (3 protons, 4 neutrons, 3 electrons). Then remove an electron: what do you get?",
+      "hi": "आज़माओ: लिथियम बनाओ (3 प्रोटॉन, 4 न्यूट्रॉन, 3 इलेक्ट्रॉन)। फिर एक इलेक्ट्रॉन हटाओ: क्या मिलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch08-symbols",
+   "topic": "8.4",
+   "template": "atom",
+   "title": {
+    "en": "Symbols of elements",
+    "hi": "तत्वों के प्रतीक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "table"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The symbol of sodium is Na, not S. Where do you think Na comes from?",
+      "hi": "सोडियम का प्रतीक Na है, S नहीं। तुम्हें क्या लगता है, Na कहाँ से आया?"
+     },
+     "options": [
+      {
+       "id": "latin",
+       "en": "Its Latin name, natrium",
+       "hi": "इसका लैटिन नाम, नेट्रियम"
+      },
+      {
+       "id": "mistake",
+       "en": "A printing mistake",
+       "hi": "छपाई की ग़लती"
+      },
+      {
+       "id": "random",
+       "en": "Letters chosen at random",
+       "hi": "बिना सोचे चुने अक्षर"
+      }
+     ],
+     "answer": "latin"
+    },
+    {
+     "kind": "do",
+     "target": "element:Na",
+     "expect": "picked:Na",
+     "say": {
+      "en": "Tap Na, sodium, in the table.",
+      "hi": "तालिका में Na, सोडियम, पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:Fe",
+     "expect": "picked:Fe",
+     "say": {
+      "en": "Tap Fe, iron.",
+      "hi": "Fe, लोहा, पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:K",
+     "expect": "picked:K",
+     "say": {
+      "en": "Tap K, potassium.",
+      "hi": "K, पोटैशियम, पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every element has a symbol of one or two letters: the first is a capital, the second small. Many come from the English name (H for hydrogen, C for carbon, Cl for chlorine). Some come from Latin: Na from natrium, Fe from ferrum, K from kalium, Cu from cuprum. The same symbols are used all over the world.",
+      "hi": "हर तत्व का एक या दो अक्षरों का प्रतीक होता है: पहला बड़ा, दूसरा छोटा। कई अंग्रेज़ी नाम से आते हैं (हाइड्रोजन के लिए H, कार्बन के लिए C, क्लोरीन के लिए Cl)। कुछ लैटिन से: Na नेट्रियम से, Fe फ़ेरम से, K कैलियम से, Cu क्यूप्रम से। पूरी दुनिया में यही प्रतीक प्रयोग होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the correct way to write the symbol of cobalt?",
+        "hi": "कोबाल्ट का प्रतीक लिखने का सही तरीक़ा कौन-सा है?"
+       },
+       "options": [
+        "Co",
+        "CO",
+        "co"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "First letter capital, second letter small: Co.",
+        "hi": "पहला अक्षर बड़ा, दूसरा छोटा: Co।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two capitals mean two elements: CO is carbon monoxide, carbon and oxygen.",
+         "hi": "दो बड़े अक्षरों का अर्थ दो तत्व: CO कार्बन मोनोऑक्साइड है, कार्बन और ऑक्सीजन।"
+        },
+        {
+         "en": "The first letter of a symbol is always a capital.",
+         "hi": "प्रतीक का पहला अक्षर हमेशा बड़ा होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find Cu, Ag, Au and Pb in the table. Their symbols come from Latin too. Which metals are they?",
+      "hi": "आज़माओ: तालिका में Cu, Ag, Au और Pb ढूँढो। इनके प्रतीक भी लैटिन से हैं। ये कौन-सी धातुएँ हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch08-shells",
+   "topic": "8.7",
+   "template": "atom",
+   "title": {
+    "en": "Fill the shells of a sodium atom",
+    "hi": "सोडियम परमाणु के कोश भरो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "shells",
+    "show": [
+     "config",
+     "valency"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "element:Na",
+     "expect": "picked:Na",
+     "say": {
+      "en": "Pick sodium, Na, which has 11 protons.",
+      "hi": "सोडियम, Na, चुनो, जिसमें 11 प्रोटॉन हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The first shell (K) holds at most 2 electrons and the second (L) at most 8. How will sodium's 11 electrons be arranged?",
+      "hi": "पहला कोश (K) अधिकतम 2 और दूसरा (L) अधिकतम 8 इलेक्ट्रॉन रखता है। सोडियम के 11 इलेक्ट्रॉन कैसे सजेंगे?"
+     },
+     "options": [
+      {
+       "id": "281",
+       "en": "2, 8, 1",
+       "hi": "2, 8, 1 (दो, आठ, एक)"
+      },
+      {
+       "id": "83",
+       "en": "8, 3",
+       "hi": "8, 3 (आठ, तीन)"
+      },
+      {
+       "id": "2252",
+       "en": "2, 2, 5, 2",
+       "hi": "2, 2, 5, 2 (दो, दो, पाँच, दो)"
+      }
+     ],
+     "answer": "281"
+    },
+    {
+     "kind": "do",
+     "target": "add:electron",
+     "expect": "shell-full",
+     "say": {
+      "en": "Add electrons one at a time until the K shell is full.",
+      "hi": "एक-एक करके इलेक्ट्रॉन जोड़ो जब तक K कोश भर न जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:electron",
+     "expect": "shell-full",
+     "say": {
+      "en": "Keep adding until the L shell is full.",
+      "hi": "जोड़ते रहो जब तक L कोश भर न जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:electron",
+     "expect": "built:Na",
+     "say": {
+      "en": "Add the last electron to make a neutral sodium atom.",
+      "hi": "आख़िरी इलेक्ट्रॉन जोड़कर उदासीन सोडियम परमाणु बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Electrons fill shells from the inside out: K holds 2, L holds 8, and in the first 20 elements the M shell takes up to 8 before the N shell starts. A shell is filled before the next one begins. Sodium is 2, 8, 1, with one lonely electron in its outer shell.",
+      "hi": "इलेक्ट्रॉन अंदर से बाहर की ओर कोश भरते हैं: K में 2, L में 8, और पहले 20 तत्वों में M कोश 8 तक लेता है, फिर N शुरू होता है। अगला कोश तभी शुरू होता है जब पिछला भर जाए। सोडियम 2, 8, 1 है, जिसके बाहरी कोश में एक अकेला इलेक्ट्रॉन है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the electron arrangement of magnesium (Z = 12)?",
+        "hi": "मैग्नीशियम (Z = 12) का इलेक्ट्रॉन विन्यास क्या है?"
+       },
+       "options": [
+        "2, 8, 2",
+        "2, 10",
+        "8, 4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 in K, 8 in L and the remaining 2 in M.",
+        "hi": "K में 2, L में 8 और बचे 2, M में।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The L shell can hold only 8.",
+         "hi": "L कोश केवल 8 रख सकता है।"
+        },
+        {
+         "en": "The K shell holds only 2.",
+         "hi": "K कोश केवल 2 रखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: pick argon (Z = 18) and fill its shells. Then try calcium (Z = 20): where do its last two electrons go?",
+      "hi": "आज़माओ: आर्गन (Z = 18) चुनो और उसके कोश भरो। फिर कैल्शियम (Z = 20) आज़माओ: उसके आख़िरी दो इलेक्ट्रॉन कहाँ जाते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch08-valency",
+   "topic": "8.8",
+   "template": "atom",
+   "title": {
+    "en": "Valency: why chlorine wants one more electron",
+    "hi": "संयोजकता: क्लोरीन को एक और इलेक्ट्रॉन क्यों चाहिए"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "shells",
+    "show": [
+     "config",
+     "valency",
+     "charge"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "element:Cl",
+     "expect": "picked:Cl",
+     "say": {
+      "en": "Pick chlorine, Cl (Z = 17).",
+      "hi": "क्लोरीन, Cl (Z = 17), चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:electron",
+     "expect": "shell-full",
+     "say": {
+      "en": "Add electrons until the K shell is full.",
+      "hi": "इलेक्ट्रॉन जोड़ो जब तक K कोश भर न जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:electron",
+     "expect": "shell-full",
+     "say": {
+      "en": "Keep going until the L shell is full.",
+      "hi": "L कोश भरने तक जारी रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:electron",
+     "expect": "built:Cl",
+     "say": {
+      "en": "Add electrons until chlorine is neutral: 2, 8, 7.",
+      "hi": "क्लोरीन के उदासीन होने तक इलेक्ट्रॉन जोड़ो: 2, 8, 7।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chlorine's outer shell has 7 electrons. What happens if it gains one more?",
+      "hi": "क्लोरीन के बाहरी कोश में 7 इलेक्ट्रॉन हैं। एक और मिलने पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "full",
+       "en": "Its outer shell becomes full and it becomes Cl⁻",
+       "hi": "उसका बाहरी कोश भर जाता है और वह Cl⁻ बनता है"
+      },
+      {
+       "id": "na",
+       "en": "It turns into sodium",
+       "hi": "वह सोडियम बन जाता है"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलता"
+      }
+     ],
+     "answer": "full"
+    },
+    {
+     "kind": "do",
+     "target": "add:electron",
+     "expect": "ion",
+     "say": {
+      "en": "Add one extra electron.",
+      "hi": "एक अतिरिक्त इलेक्ट्रॉन जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Atoms are most stable with a full outer shell of 8 electrons (2 for the K shell), like the noble gases. Valency is the number of electrons an atom gains, loses or shares to reach this. Chlorine has 7 outer electrons and gains 1, so its valency is 1. Sodium has 1 and loses it, so its valency is also 1. Oxygen (2, 6) needs 2: valency 2.",
+      "hi": "परमाणु बाहरी कोश में 8 इलेक्ट्रॉन (K कोश के लिए 2) से भरे होने पर सबसे स्थिर होते हैं, उत्कृष्ट गैसों की तरह। संयोजकता वह संख्या है जितने इलेक्ट्रॉन परमाणु यह पाने के लिए लेता, देता या साझा करता है। क्लोरीन के 7 बाहरी इलेक्ट्रॉन हैं और वह 1 लेता है, इसलिए संयोजकता 1। सोडियम का 1 है और वह उसे देता है, इसलिए उसकी संयोजकता भी 1। ऑक्सीजन (2, 6) को 2 चाहिए: संयोजकता 2।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Nitrogen is 2, 5. What is its valency?",
+        "hi": "नाइट्रोजन 2, 5 है। उसकी संयोजकता क्या है?"
+       },
+       "options": [
+        {
+         "en": "3",
+         "hi": "3 (तीन)"
+        },
+        {
+         "en": "5",
+         "hi": "5 (पाँच)"
+        },
+        {
+         "en": "7",
+         "hi": "7 (सात)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It needs 3 more to make 8 in its outer shell, so its valency is 3, as in NH₃.",
+        "hi": "बाहरी कोश में 8 के लिए इसे 3 और चाहिए, इसलिए संयोजकता 3 है, जैसे NH₃ में।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Losing 5 electrons is far harder than gaining 3; valency is the smaller number needed.",
+         "hi": "5 इलेक्ट्रॉन खोना 3 पाने से बहुत कठिन है; संयोजकता ज़रूरत की छोटी संख्या है।"
+        },
+        {
+         "en": "7 is the number of electrons, its atomic number, not its valency.",
+         "hi": "7 इलेक्ट्रॉनों की संख्या, यानी परमाणु क्रमांक है, संयोजकता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: pick neon and fill it. Why does neon hardly ever react? Then try magnesium and see how many electrons it would lose.",
+      "hi": "आज़माओ: नियॉन चुनो और भरो। नियॉन लगभग कभी अभिक्रिया क्यों नहीं करता? फिर मैग्नीशियम आज़माओ और देखो वह कितने इलेक्ट्रॉन खोएगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch08-isotopes",
+   "topic": "8.9.1",
+   "template": "atom",
+   "title": {
+    "en": "Isotopes of carbon",
+    "hi": "कार्बन के समस्थानिक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "isotopes",
+    "target": "C"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Carbon-12 has 6 protons and 6 neutrons. If you add a neutron, is it still carbon?",
+      "hi": "कार्बन-12 में 6 प्रोटॉन और 6 न्यूट्रॉन हैं। एक न्यूट्रॉन जोड़ने पर क्या यह अब भी कार्बन है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, because the protons did not change",
+       "hi": "हाँ, क्योंकि प्रोटॉन नहीं बदले"
+      },
+      {
+       "id": "no",
+       "en": "No, it becomes nitrogen",
+       "hi": "नहीं, यह नाइट्रोजन बन जाता है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "add:neutron",
+     "expect": "isotope:C-13",
+     "say": {
+      "en": "Add one neutron to the nucleus.",
+      "hi": "नाभिक में एक न्यूट्रॉन जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:neutron",
+     "expect": "isotope:C-14",
+     "say": {
+      "en": "Add one more neutron.",
+      "hi": "एक और न्यूट्रॉन जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Isotopes are atoms of the same element with the same number of protons but different numbers of neutrons, so their mass numbers differ. Carbon-12, carbon-13 and carbon-14 all have 6 protons and 6 electrons, so they react the same way. Carbon-14 is radioactive and is used to find the age of old wood and bones.",
+      "hi": "समस्थानिक एक ही तत्व के परमाणु हैं जिनमें प्रोटॉन बराबर पर न्यूट्रॉन अलग होते हैं, इसलिए उनकी द्रव्यमान संख्या अलग होती है। कार्बन-12, कार्बन-13 और कार्बन-14 सभी में 6 प्रोटॉन और 6 इलेक्ट्रॉन हैं, इसलिए वे एक जैसी अभिक्रिया करते हैं। कार्बन-14 रेडियोधर्मी है और पुरानी लकड़ी व हड्डियों की आयु पता करने में काम आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Chlorine-35 and chlorine-37 differ in their number of…",
+        "hi": "क्लोरीन-35 और क्लोरीन-37 में किसकी संख्या अलग है?"
+       },
+       "options": [
+        {
+         "en": "Neutrons",
+         "hi": "न्यूट्रॉन"
+        },
+        {
+         "en": "Protons",
+         "hi": "प्रोटॉन"
+        },
+        {
+         "en": "Electrons",
+         "hi": "इलेक्ट्रॉन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "35 − 17 = 18 neutrons and 37 − 17 = 20 neutrons.",
+        "hi": "35 − 17 = 18 न्यूट्रॉन और 37 − 17 = 20 न्यूट्रॉन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both are chlorine, so both have 17 protons.",
+         "hi": "दोनों क्लोरीन हैं, इसलिए दोनों में 17 प्रोटॉन हैं।"
+        },
+        {
+         "en": "Neutral atoms of both have 17 electrons.",
+         "hi": "दोनों के उदासीन परमाणुओं में 17 इलेक्ट्रॉन हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: take neutrons away again. Which carbon isotope is the most common in nature? Read the panel.",
+      "hi": "आज़माओ: न्यूट्रॉन फिर से हटाओ। प्रकृति में कार्बन का कौन-सा समस्थानिक सबसे आम है? पैनल पढ़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Hook of the chapter",
+   "shows": "A grain of rice on a fingertip next to a ruler, with a magnified inset area left empty for the app to zoom into",
+   "view": "Close-up, soft light, shallow depth of field",
+   "right": "Ruler in millimetres; rice grain sharp",
+   "avoid": "Text"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "8.2.2",
+   "use": "Gold foil experiment base",
+   "shows": "A lead box with a small hole, a thin gold foil, and a circular zinc sulphide screen around it, seen from above",
+   "view": "Top view, clean realistic render, dark background",
+   "right": "Foil thin and flat; screen surrounds the foil almost completely",
+   "avoid": "Particle paths (the app animates them), labels"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "8.2.3",
+   "use": "Bohr model of an atom",
+   "shows": "A glowing small nucleus with three circular electron shells around it, electrons as small bright beads",
+   "view": "Front, three-quarter and side views, transparent background",
+   "right": "Nucleus tiny compared with the shells (note: not to scale)",
+   "avoid": "Labels, numbers"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "Samples of common elements",
+   "shows": "Each a separate file: a piece of copper wire, an iron nail, aluminium foil, a lump of sulphur, a piece of graphite pencil lead (iron nail: reuse LIB-CHEM-iron-nails)",
+   "view": "From slightly above, transparent background",
+   "right": "True colours: copper reddish, sulphur yellow, graphite grey-black",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "8.7",
+   "use": "Empty shells for electron diagrams",
+   "shows": "A central circle with four concentric rings, clean and empty, for the app to place electrons",
+   "view": "Flat, white background",
+   "right": "Rings evenly spaced",
+   "avoid": "Electrons, labels"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "8.9.1",
+   "use": "Carbon-14 dating",
+   "shows": "An archaeologist's gloved hands brushing soil from an old wooden beam at an excavation site in India",
+   "view": "Close view from above, natural light",
+   "right": "Old dark wood, measuring scale beside it",
+   "avoid": "Faces, site names"
+  }
+ ]
+}

@@ -1,0 +1,941 @@
+{
+ "chapter_key": "u.c06.science.fecu1.ch09",
+ "class": 6,
+ "subject_id": "science",
+ "title": "Methods of Separation in Everyday Life",
+ "source": "https://ncert.nic.in/textbook/pdf/fecu109.pdf",
+ "topics": [
+  {
+   "n": "hand",
+   "title": "Handpicking",
+   "labs": [],
+   "why_no_lab": "Picking stones from dal is done for real at home; the handpicking card in the \"choose a method\" lab covers the idea."
+  },
+  {
+   "n": "thresh",
+   "title": "Threshing and winnowing",
+   "labs": [],
+   "why_no_lab": "A farm photo sequence shows threshing and winnowing better than a screen; winnowing is also in the \"choose a method\" lab."
+  },
+  {
+   "n": "sieve",
+   "title": "Sieving",
+   "labs": [
+    "c06-science-fecu1-ch09-sieve"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "evap",
+   "title": "Evaporation: salt from sea water",
+   "labs": [
+    "c06-science-fecu1-ch09-salt"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "decant",
+   "title": "Sedimentation and decantation",
+   "labs": [
+    "c06-science-fecu1-ch09-decant"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "filter",
+   "title": "Filtration",
+   "labs": [
+    "c06-science-fecu1-ch09-filter"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "churn",
+   "title": "Churning: butter from curd",
+   "labs": [],
+   "why_no_lab": "Churning is best seen in a short photo sequence of a mathni; it also appears in the \"choose a method\" lab."
+  },
+  {
+   "n": "magnet",
+   "title": "Magnetic separation",
+   "labs": [
+    "c06-science-fecu1-ch09-magnet"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "choose",
+   "title": "Choosing the right method for a mixture",
+   "labs": [
+    "c06-science-fecu1-ch09-choose"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-science-fecu1-ch09-sieve",
+   "topic": "sieve",
+   "template": "particles",
+   "title": {
+    "en": "Sieving flour",
+    "hi": "आटा छानना"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "flour-bran",
+    "method": "sieve"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You shake flour with bran in a sieve. What stays on top?",
+      "hi": "तुम चोकर वाले आटे को छलनी में हिलाते हो। ऊपर क्या बचेगा?"
+     },
+     "options": [
+      {
+       "id": "bran",
+       "en": "The bigger bran flakes",
+       "hi": "बड़े चोकर के टुकड़े"
+      },
+      {
+       "id": "flour",
+       "en": "The fine flour",
+       "hi": "बारीक आटा"
+      },
+      {
+       "id": "both",
+       "en": "Both, mixed",
+       "hi": "दोनों, मिले हुए"
+      }
+     ],
+     "answer": "bran"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Press Start to shake the sieve.",
+      "hi": "छलनी हिलाने के लिए \"शुरू करो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Fine flour fell through the holes and the bigger bran stayed on top. Sieving separates parts of a mixture that are of different sizes. Builders sieve sand to remove pebbles in the same way.",
+      "hi": "बारीक आटा छेदों से गिर गया और बड़ा चोकर ऊपर रह गया। छानना (चालना) मिश्रण के अलग-अलग आकार वाले भागों को अलग करता है। मिस्त्री भी इसी तरह रेत छानकर कंकड़ अलग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Will sieving work if the holes are bigger than the bran?",
+        "hi": "अगर छेद चोकर से बड़े हों तो क्या छानना काम करेगा?"
+       },
+       "options": [
+        {
+         "en": "No, the bran will fall through too",
+         "hi": "नहीं, चोकर भी गिर जाएगा"
+        },
+        {
+         "en": "Yes, it always works",
+         "hi": "हाँ, हमेशा काम करता है"
+        },
+        {
+         "en": "Only if we sieve faster",
+         "hi": "केवल तेज़ छानने पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The holes must be bigger than the flour but smaller than the bran.",
+        "hi": "छेद आटे से बड़े और चोकर से छोटे होने चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sieving depends on the size of the holes compared with the bits.",
+         "hi": "छानना कणों की तुलना में छेदों के आकार पर निर्भर है।"
+        },
+        {
+         "en": "Shaking faster does not stop big holes letting the bran through.",
+         "hi": "तेज़ हिलाने से बड़े छेद चोकर को रोक नहीं पाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Again and watch closely as the flour falls. At home, see how a tea strainer or a sieve for rice works.",
+      "hi": "\"फिर से\" दबाओ और आटे को गिरते ध्यान से देखो। घर पर चाय की छलनी या चावल की छलनी कैसे काम करती है, देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch09-salt",
+   "topic": "evap",
+   "template": "particles",
+   "title": {
+    "en": "Getting salt from salty water",
+    "hi": "खारे पानी से नमक निकालना"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "salt-water",
+    "method": "evaporate"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You heat salty water in a china dish until all the water is gone. What is left?",
+      "hi": "तुम खारे पानी को चीनी मिट्टी की प्याली में तब तक गर्म करते हो जब तक सारा पानी न उड़ जाए। क्या बचेगा?"
+     },
+     "options": [
+      {
+       "id": "salt",
+       "en": "White salt crystals",
+       "hi": "नमक के सफ़ेद क्रिस्टल"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing at all",
+       "hi": "कुछ भी नहीं"
+      },
+      {
+       "id": "water",
+       "en": "Fresh water",
+       "hi": "साफ़ पानी"
+      }
+     ],
+     "answer": "salt"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Press Start to heat the dish.",
+      "hi": "प्याली गर्म करने के लिए \"शुरू करो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The water turned into vapour and left; the salt stayed behind as crystals. This is evaporation. In Gujarat and Tamil Nadu, sea water is kept in shallow pans in the sun, and salt is collected after the water evaporates.",
+      "hi": "पानी वाष्प बनकर उड़ गया; नमक क्रिस्टल के रूप में बच गया। यह वाष्पन है। गुजरात और तमिलनाडु में समुद्र का पानी धूप में उथली क्यारियों में रखा जाता है, और पानी उड़ने के बाद नमक इकट्ठा किया जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can you not get the salt out by filtering?",
+        "hi": "छानकर (निस्यंदन से) नमक क्यों नहीं निकाला जा सकता?"
+       },
+       "options": [
+        {
+         "en": "Dissolved salt passes through the filter paper",
+         "hi": "घुला नमक फ़िल्टर पेपर से निकल जाता है"
+        },
+        {
+         "en": "Salt sticks to filter paper",
+         "hi": "नमक फ़िल्टर पेपर से चिपक जाता है"
+        },
+        {
+         "en": "Filter paper melts in salt water",
+         "hi": "फ़िल्टर पेपर खारे पानी में पिघल जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dissolved salt particles are far smaller than the holes in filter paper.",
+        "hi": "घुले नमक के कण फ़िल्टर पेपर के छेदों से बहुत छोटे होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The salt does not stick; it goes through with the water, which stays salty.",
+         "hi": "नमक चिपकता नहीं; पानी के साथ निकल जाता है, जो खारा ही रहता है।"
+        },
+        {
+         "en": "Filter paper does not melt; it just cannot catch dissolved salt.",
+         "hi": "फ़िल्टर पेपर पिघलता नहीं; बस घुले नमक को रोक नहीं पाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Again and watch the level fall as the water evaporates. (Heating is done by an adult; a china dish gets very hot.)",
+      "hi": "\"फिर से\" दबाओ और वाष्पन के साथ स्तर गिरते देखो। (गर्म करने का काम बड़े करें; चीनी मिट्टी की प्याली बहुत गर्म हो जाती है।)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch09-decant",
+   "topic": "decant",
+   "template": "particles",
+   "title": {
+    "en": "Let it settle, then pour off",
+    "hi": "बैठने दो, फिर निथारो"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "sand-water",
+    "method": "decant"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Muddy water with sand is left still for a while. What happens to the sand?",
+      "hi": "रेत वाले गंदे पानी को कुछ देर स्थिर छोड़ा। रेत का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "settle",
+       "en": "It settles at the bottom",
+       "hi": "वह तली में बैठ जाएगी"
+      },
+      {
+       "id": "float",
+       "en": "It floats on top",
+       "hi": "वह ऊपर तैरेगी"
+      },
+      {
+       "id": "dissolve",
+       "en": "It dissolves",
+       "hi": "वह घुल जाएगी"
+      }
+     ],
+     "answer": "settle"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Press Start to let it settle and pour off the water.",
+      "hi": "बैठने देने और पानी निथारने के लिए \"शुरू करो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The heavy sand settled at the bottom: this is sedimentation. Then the clearer water was poured off gently into another beaker: this is decantation. We do the same when we wash rice or dal and pour off the water.",
+      "hi": "भारी रेत तली में बैठ गई: यह अवसादन है। फिर ऊपर का साफ़ पानी धीरे से दूसरे बीकर में डाल दिया गया: यह निथारना (निस्तारण) है। चावल या दाल धोकर पानी निकालते समय हम यही करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the poured-off water often still a little cloudy?",
+        "hi": "निथारा हुआ पानी अक्सर थोड़ा धुँधला क्यों रहता है?"
+       },
+       "options": [
+        {
+         "en": "Very fine particles have not settled yet",
+         "hi": "बहुत बारीक कण अभी नहीं बैठे"
+        },
+        {
+         "en": "Decanting adds dirt",
+         "hi": "निथारने से गंदगी जुड़ती है"
+        },
+        {
+         "en": "Sand dissolved in the water",
+         "hi": "रेत पानी में घुल गई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Decantation does not remove all particles; filtration is needed next.",
+        "hi": "निथारने से सारे कण नहीं हटते; इसके बाद छानना ज़रूरी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Pouring gently does not add dirt; some fine bits were already floating.",
+         "hi": "धीरे डालने से गंदगी नहीं जुड़ती; कुछ बारीक कण पहले से तैर रहे थे।"
+        },
+        {
+         "en": "Sand does not dissolve in water.",
+         "hi": "रेत पानी में नहीं घुलती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Again and watch the sand settle. Try it at home with a glass of muddy water left for ten minutes.",
+      "hi": "\"फिर से\" दबाओ और रेत को बैठते देखो। घर पर गंदे पानी का गिलास दस मिनट रखकर आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch09-filter",
+   "topic": "filter",
+   "template": "particles",
+   "title": {
+    "en": "Filtering muddy water",
+    "hi": "गंदा पानी छानना"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "chalk-water",
+    "method": "filter"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You pour cloudy chalky water through filter paper in a funnel. What comes out below?",
+      "hi": "तुम धुँधले चॉक वाले पानी को कीप में लगे फ़िल्टर पेपर से डालते हो। नीचे क्या निकलेगा?"
+     },
+     "options": [
+      {
+       "id": "clear",
+       "en": "Clear water",
+       "hi": "साफ़ पानी"
+      },
+      {
+       "id": "cloudy",
+       "en": "The same cloudy water",
+       "hi": "वही धुँधला पानी"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing at all",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "clear"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Press Start to pour it through the filter.",
+      "hi": "इसे फ़िल्टर से डालने के लिए \"शुरू करो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The fine chalk was caught on the filter paper and clear water dripped into the beaker. This is filtration. The clear liquid is the filtrate. A tea strainer and a cloth over a water pot are filters too.",
+      "hi": "बारीक चॉक फ़िल्टर पेपर पर रुक गया और साफ़ पानी बीकर में टपक गया। यह छानना (निस्यंदन) है। साफ़ द्रव को निस्यंद कहते हैं। चाय की छलनी और घड़े पर बँधा कपड़ा भी फ़िल्टर हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Is filtered water always safe to drink?",
+        "hi": "क्या छना हुआ पानी हमेशा पीने के लिए सुरक्षित है?"
+       },
+       "options": [
+        {
+         "en": "No, germs and dissolved things can still pass",
+         "hi": "नहीं, कीटाणु और घुली चीज़ें अब भी निकल सकती हैं"
+        },
+        {
+         "en": "Yes, it is always pure",
+         "hi": "हाँ, यह हमेशा शुद्ध है"
+        },
+        {
+         "en": "Only if it is cold",
+         "hi": "केवल ठंडा होने पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Filter paper stops bits we can see, not germs or dissolved salts; water must also be boiled or purified.",
+        "hi": "फ़िल्टर पेपर दिखने वाले कण रोकता है, कीटाणु या घुले लवण नहीं; पानी को उबालना या शुद्ध करना भी ज़रूरी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Clear does not always mean safe; tiny germs pass through.",
+         "hi": "साफ़ दिखने का अर्थ सुरक्षित होना नहीं; छोटे कीटाणु निकल जाते हैं।"
+        },
+        {
+         "en": "Temperature does not make water safe; boiling or purifying does.",
+         "hi": "तापमान से पानी सुरक्षित नहीं होता; उबालने या शुद्ध करने से होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Again and watch the drops. Then think: why did we not just decant this water?",
+      "hi": "\"फिर से\" दबाओ और बूँदें देखो। फिर सोचो: इस पानी को सिर्फ़ निथारा क्यों नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch09-magnet",
+   "topic": "magnet",
+   "template": "particles",
+   "title": {
+    "en": "Pulling out iron with a magnet",
+    "hi": "चुंबक से लोहा निकालना"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "iron-sand",
+    "method": "magnet"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Iron filings are mixed with sand. You move a magnet over them. What happens?",
+      "hi": "लोहे का बुरादा रेत में मिला है। तुम उसके ऊपर चुंबक घुमाते हो। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "iron",
+       "en": "Only the iron filings stick to it",
+       "hi": "केवल लोहे का बुरादा चिपकेगा"
+      },
+      {
+       "id": "both",
+       "en": "Both stick to it",
+       "hi": "दोनों चिपकेंगे"
+      },
+      {
+       "id": "none",
+       "en": "Nothing sticks",
+       "hi": "कुछ नहीं चिपकेगा"
+      }
+     ],
+     "answer": "iron"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Press Start to move the magnet over the mixture.",
+      "hi": "मिश्रण के ऊपर चुंबक घुमाने के लिए \"शुरू करो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The iron filings jumped to the magnet and the sand stayed on the plate. Separating magnetic things from non-magnetic things with a magnet is magnetic separation. Scrap dealers use big magnets to pull iron out of waste.",
+      "hi": "लोहे का बुरादा चुंबक से चिपक गया और रेत प्लेट पर रह गई। चुंबक से चुंबकीय और अचुंबकीय चीज़ों को अलग करना चुंबकीय पृथक्करण है। कबाड़ी बड़े चुंबकों से कचरे में से लोहा खींचते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Could a magnet separate sand from sawdust?",
+        "hi": "क्या चुंबक रेत को लकड़ी के बुरादे से अलग कर सकता है?"
+       },
+       "options": [
+        {
+         "en": "No, neither is magnetic",
+         "hi": "नहीं, दोनों में से कोई चुंबकीय नहीं"
+        },
+        {
+         "en": "Yes, it pulls the sand",
+         "hi": "हाँ, वह रेत को खींचेगा"
+        },
+        {
+         "en": "Yes, it pulls the sawdust",
+         "hi": "हाँ, वह बुरादे को खींचेगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A magnet only works when one part is magnetic, like iron.",
+        "hi": "चुंबक तभी काम करता है जब एक भाग चुंबकीय हो, जैसे लोहा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sand is not attracted by a magnet.",
+         "hi": "रेत चुंबक से आकर्षित नहीं होती।"
+        },
+        {
+         "en": "Wood is not attracted by a magnet.",
+         "hi": "लकड़ी चुंबक से आकर्षित नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Again. Then remember the chapter on magnets: which other materials would a magnet pull out?",
+      "hi": "\"फिर से\" दबाओ। फिर चुंबक वाला अध्याय याद करो: चुंबक और कौन-से पदार्थ खींच लेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch09-choose",
+   "topic": "choose",
+   "template": "sort",
+   "title": {
+    "en": "Which method would you use?",
+    "hi": "तुम कौन-सी विधि अपनाओगे?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "hand",
+      "label": {
+       "en": "Handpicking",
+       "hi": "हाथ से बीनना"
+      }
+     },
+     {
+      "id": "winnow",
+      "label": {
+       "en": "Winnowing",
+       "hi": "फटकना (ओसाई)"
+      }
+     },
+     {
+      "id": "sieve",
+      "label": {
+       "en": "Sieving",
+       "hi": "छानना (चालना)"
+      }
+     },
+     {
+      "id": "magnet",
+      "label": {
+       "en": "Using a magnet",
+       "hi": "चुंबक से"
+      }
+     },
+     {
+      "id": "churn",
+      "label": {
+       "en": "Churning",
+       "hi": "मथना"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "stones",
+      "text": {
+       "en": "Small stones in dal",
+       "hi": "दाल में छोटे कंकड़"
+      },
+      "bin": "hand",
+      "why": {
+       "en": "The stones are few and easy to see, so we pick them out by hand.",
+       "hi": "कंकड़ कम हैं और आसानी से दिखते हैं, इसलिए हाथ से बीन लेते हैं।"
+      }
+     },
+     {
+      "id": "chilli",
+      "text": {
+       "en": "Green chillies in cooked dalia",
+       "hi": "पके दलिये में हरी मिर्च"
+      },
+      "bin": "hand",
+      "why": {
+       "en": "Big pieces we can see are easily picked out.",
+       "hi": "बड़े, दिखने वाले टुकड़े आसानी से बीने जाते हैं।"
+      }
+     },
+     {
+      "id": "husk",
+      "text": {
+       "en": "Husk mixed with grain",
+       "hi": "अनाज में मिला भूसा"
+      },
+      "bin": "winnow",
+      "why": {
+       "en": "Light husk is blown away by the wind; heavier grain falls straight down.",
+       "hi": "हल्का भूसा हवा से उड़ जाता है; भारी अनाज सीधा नीचे गिरता है।"
+      }
+     },
+     {
+      "id": "chaff",
+      "text": {
+       "en": "Chaff from threshed paddy",
+       "hi": "गहाई के बाद धान का भूसा"
+      },
+      "bin": "winnow",
+      "why": {
+       "en": "Farmers drop it from a height in the wind to blow off the chaff.",
+       "hi": "किसान इसे हवा में ऊँचाई से गिराकर भूसा उड़ा देते हैं।"
+      }
+     },
+     {
+      "id": "flour",
+      "text": {
+       "en": "Bran in wheat flour",
+       "hi": "आटे में चोकर"
+      },
+      "bin": "sieve",
+      "why": {
+       "en": "Fine flour passes the holes; bigger bran stays.",
+       "hi": "बारीक आटा छेदों से निकलता है; बड़ा चोकर रह जाता है।"
+      }
+     },
+     {
+      "id": "pebbles",
+      "text": {
+       "en": "Pebbles in sand",
+       "hi": "रेत में कंकड़"
+      },
+      "bin": "sieve",
+      "why": {
+       "en": "Sand falls through; pebbles stay on the sieve.",
+       "hi": "रेत नीचे गिरती है; कंकड़ छलनी पर रह जाते हैं।"
+      }
+     },
+     {
+      "id": "pins",
+      "text": {
+       "en": "Iron pins in sawdust",
+       "hi": "लकड़ी के बुरादे में लोहे की पिनें"
+      },
+      "bin": "magnet",
+      "why": {
+       "en": "Iron is magnetic; sawdust is not.",
+       "hi": "लोहा चुंबकीय है; बुरादा नहीं।"
+      }
+     },
+     {
+      "id": "butter",
+      "text": {
+       "en": "Butter from curd",
+       "hi": "दही से मक्खन"
+      },
+      "bin": "churn",
+      "why": {
+       "en": "Churning curd makes the fat collect as butter.",
+       "hi": "दही मथने से वसा मक्खन के रूप में इकट्ठा हो जाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A farmer drops threshed grain from a height on a windy day. Why?",
+      "hi": "किसान हवा वाले दिन गहाई किया अनाज ऊँचाई से गिराता है। क्यों?"
+     },
+     "options": [
+      {
+       "id": "blow",
+       "en": "The wind blows the light husk away",
+       "hi": "हवा हल्के भूसे को उड़ा देती है"
+      },
+      {
+       "id": "dry",
+       "en": "To dry the grain",
+       "hi": "अनाज सुखाने के लिए"
+      },
+      {
+       "id": "count",
+       "en": "To count the grains",
+       "hi": "दाने गिनने के लिए"
+      }
+     ],
+     "answer": "blow"
+    },
+    {
+     "kind": "do",
+     "target": "card:husk",
+     "expect": "correct:husk",
+     "say": {
+      "en": "Tap \"Husk mixed with grain\", then the method.",
+      "hi": "\"अनाज में मिला भूसा\" छुओ, फिर विधि।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:stones",
+     "expect": "correct:stones",
+     "say": {
+      "en": "Now sort the small stones in dal.",
+      "hi": "अब दाल के छोटे कंकड़ छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी को छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We choose a method by how the parts differ: in size (sieving, handpicking big bits), in weight (winnowing), in being magnetic (a magnet), or in other ways (churning). Threshing first separates grain from the stalks.",
+      "hi": "हम विधि इस आधार पर चुनते हैं कि भाग किस तरह अलग हैं: आकार में (छानना, बड़े टुकड़े बीनना), भार में (फटकना), चुंबकीय होने में (चुंबक), या दूसरे तरीक़ों से (मथना)। गहाई (थ्रेशिंग) पहले अनाज को डंठल से अलग करती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which method separates watermelon seeds from the slices?",
+        "hi": "तरबूज़ के टुकड़ों से बीज किस विधि से अलग होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Handpicking",
+         "hi": "हाथ से बीनना"
+        },
+        {
+         "en": "Winnowing",
+         "hi": "फटकना"
+        },
+        {
+         "en": "Using a magnet",
+         "hi": "चुंबक से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The seeds are big and easy to see, so we pick them out.",
+        "hi": "बीज बड़े हैं और आसानी से दिखते हैं, इसलिए हम उन्हें बीन लेते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Winnowing needs a light part the wind can blow; the fruit is wet and heavy.",
+         "hi": "फटकने के लिए हल्का भाग चाहिए जिसे हवा उड़ा सके; फल गीला और भारी है।"
+        },
+        {
+         "en": "Seeds are not magnetic.",
+         "hi": "बीज चुंबकीय नहीं होते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Watch how the people at home clean grain, dal and curd. Which methods do they use?",
+      "hi": "\"फिर से शुरू\" दबाओ। देखो घर में लोग अनाज, दाल और दही कैसे साफ़ करते हैं। वे कौन-सी विधियाँ अपनाते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "hand",
+   "use": "Chapter opener: handpicking",
+   "shows": "A pair of hands picking small stones out of toor dal spread on a steel thali, in an Indian kitchen",
+   "view": "From above, daylight",
+   "right": "Stones clearly different from the dal",
+   "avoid": "Faces, jewellery"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "thresh",
+   "use": "Threshing and winnowing",
+   "shows": "Three frames on an Indian farm: paddy stalks beaten on a stone (threshing); a farmer dropping grain from a winnowing basket (soop) in the wind with husk flying sideways; the clean grain heap",
+   "view": "Wide, side view, same field",
+   "right": "Husk drifting with the wind, grain falling straight",
+   "avoid": "Machines with brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "evap",
+   "use": "Salt pans",
+   "shows": "Salt pans on the coast of Gujarat with white salt heaps and shallow water reflecting the sky",
+   "view": "Wide, morning light",
+   "right": "Shallow rectangular pans, heaps of white salt",
+   "avoid": "Workers' faces close-up"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "decant",
+   "use": "Sedimentation and decantation",
+   "shows": "A glass of muddy water just stirred, then after 10 minutes with sand settled, then the top water being poured gently into another glass",
+   "view": "Front view, white background",
+   "right": "Settled layer at the bottom; poured water clearer",
+   "avoid": "Spills, logos"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "filter",
+   "use": "Filtration",
+   "shows": "A funnel with folded filter paper on a conical flask, cloudy water poured in and clear drops coming out",
+   "view": "Side view, eye level",
+   "right": "Residue on the paper; clear filtrate (reuses LIB-LAB-conical-flask)",
+   "avoid": "Dirty fingers on the paper"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "churn",
+   "use": "Churning",
+   "shows": "A wooden mathni in a clay pot of curd: churning, then butter lumps floating on buttermilk",
+   "view": "From above and from the side, two frames",
+   "right": "Butter pale yellow, buttermilk white",
+   "avoid": "Plastic churners with logos"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "magnet",
+   "use": "Magnetic separation in a scrapyard",
+   "shows": "A crane with a big electromagnet lifting iron scrap from a heap in an Indian scrapyard",
+   "view": "Wide, low angle",
+   "right": "Iron pieces stuck under the magnet",
+   "avoid": "Company names, workers' faces"
+  }
+ ]
+}

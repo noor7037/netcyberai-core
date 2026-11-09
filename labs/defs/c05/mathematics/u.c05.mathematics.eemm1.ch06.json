@@ -1,0 +1,943 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch06",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "The Dairy Farm",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Order of numbers in multiplication",
+   "labs": [
+    "c05-mathematics-eemm1-ch06-hops-of-four"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Patterns in multiplication by 10s and 100s",
+   "labs": [
+    "c05-mathematics-eemm1-ch06-tens-hundreds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Double and half method",
+   "labs": [
+    "c05-mathematics-eemm1-ch06-double-and-half"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Nearest multiple and breaking numbers apart",
+   "labs": [
+    "c05-mathematics-eemm1-ch06-split-multiplier",
+    "c05-mathematics-eemm1-ch06-near-fifty"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "The doubling story (a chessboard of grains)",
+   "labs": [
+    "c05-mathematics-eemm1-ch06-grain-doubling"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch06-hops-of-four",
+   "topic": "6.1",
+   "template": "number-line",
+   "title": {
+    "en": "3 groups of 4, 4 groups of 3",
+    "hi": "4 के 3 समूह, 3 के 4 समूह"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 12,
+    "start": 0,
+    "jumps": [
+     4
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A dairy packs butter in 3 rows with 4 packets in each row. How many packets in all?",
+      "hi": "एक डेयरी मक्खन के पैकेट 3 कतारों में रखती है, हर कतार में 4 पैकेट। कुल कितने पैकेट?"
+     },
+     "options": [
+      {
+       "id": "twelve",
+       "en": "12 packets",
+       "hi": "12 पैकेट"
+      },
+      {
+       "id": "seven",
+       "en": "7 packets",
+       "hi": "7 पैकेट"
+      },
+      {
+       "id": "sixteen",
+       "en": "16 packets",
+       "hi": "16 पैकेट"
+      }
+     ],
+     "answer": "twelve"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:12",
+     "say": {
+      "en": "Hop forward in jumps of 4, three times. Where do you land?",
+      "hi": "4 की छलाँग तीन बार आगे लगाओ। कहाँ पहुँचे?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "3 jumps of 4 land on 12: 3 × 4 = 12. If the same packets are arranged in 4 rows of 3, there are still 12 packets: 4 × 3 = 12. Changing the order of the two numbers does not change the product.",
+      "hi": "4 की 3 छलाँगें 12 पर पहुँचती हैं: 3 × 4 = 12। उन्हीं पैकेटों को 3-3 की 4 कतारों में रखें तो भी 12 पैकेट हैं: 4 × 3 = 12। दोनों संख्याओं का क्रम बदलने से गुणनफल नहीं बदलता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "8 × 5 = 40. What is 5 × 8?",
+        "hi": "8 × 5 = 40 है। 5 × 8 कितना है?"
+       },
+       "options": [
+        "40",
+        "13",
+        "45"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Swapping the numbers in a multiplication gives the same product.",
+        "hi": "गुणा में संख्याओं की अदला-बदली से वही गुणनफल मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "13 is 8 + 5, an addition. We are multiplying.",
+         "hi": "13 तो 8 + 5 है, यह जोड़ है। हम गुणा कर रहे हैं।"
+        },
+        {
+         "en": "5 × 8 is 8 jumps of 5 or 5 jumps of 8. Both land on 40.",
+         "hi": "5 × 8 यानी 5 की 8 छलाँगें या 8 की 5 छलाँगें। दोनों 40 पर पहुँचती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is 9 × 0?",
+        "hi": "9 × 0 कितना है?"
+       },
+       "options": [
+        "0",
+        "9",
+        "90"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "9 groups with nothing in each group is 0. Also 0 × 9 = 0.",
+        "hi": "9 समूह जिनमें कुछ नहीं, कुल 0। साथ ही 0 × 9 = 0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9 would mean 9 groups of 1.",
+         "hi": "9 का मतलब होगा 1-1 के 9 समूह।"
+        },
+        {
+         "en": "90 would mean 9 groups of 10. Here each group has 0.",
+         "hi": "90 का मतलब होगा 10-10 के 9 समूह। यहाँ हर समूह में 0 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset. Make jumps of 4 until you pass 12. What numbers do you touch? These are the multiples of 4.",
+      "hi": "रीसेट दबाओ। 4 की छलाँगें 12 से आगे तक लगाओ। कौन-सी संख्याएँ छूती हैं? ये 4 के गुणज हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch06-tens-hundreds",
+   "topic": "6.2",
+   "template": "match",
+   "title": {
+    "en": "Multiplying by 10 and 100",
+    "hi": "10 और 100 से गुणा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "7 × 10",
+       "hi": "7 × 10"
+      },
+      "right": {
+       "en": "70",
+       "hi": "70"
+      },
+      "why": {
+       "en": "7 ten times is 70: the 7 moves one place to the left and a zero fills the ones.",
+       "hi": "7 का दस गुना 70 है: 7 एक स्थान बाईं ओर खिसकता है और इकाई में शून्य आता है।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "7 × 100",
+       "hi": "7 × 100"
+      },
+      "right": {
+       "en": "700",
+       "hi": "700"
+      },
+      "why": {
+       "en": "A hundred times: the 7 moves two places to the left.",
+       "hi": "सौ गुना: 7 दो स्थान बाईं ओर खिसकता है।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "70 × 100",
+       "hi": "70 × 100"
+      },
+      "right": {
+       "en": "7,000",
+       "hi": "7,000"
+      },
+      "why": {
+       "en": "70 is 7 tens. 7 tens × 100 = 7 thousands, which is 7,000.",
+       "hi": "70 यानी 7 दहाई। 7 दहाई × 100 = 7 हज़ार, यानी 7,000।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "70 × 20",
+       "hi": "70 × 20"
+      },
+      "right": {
+       "en": "1,400",
+       "hi": "1,400"
+      },
+      "why": {
+       "en": "7 × 2 = 14, and the two zeros of 70 and 20 add on: 1,400.",
+       "hi": "7 × 2 = 14 और 70 व 20 के दोनों शून्य जुड़ते हैं: 1,400।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "700 × 20",
+       "hi": "700 × 20"
+      },
+      "right": {
+       "en": "14,000",
+       "hi": "14,000"
+      },
+      "why": {
+       "en": "7 × 2 = 14, with three zeros after it: 14,000.",
+       "hi": "7 × 2 = 14, उसके बाद तीन शून्य: 14,000।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Match 7 × 10 with its answer.",
+      "hi": "7 × 10 को उसके उत्तर से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What happens to the digits of a number when you multiply it by 100?",
+      "hi": "किसी संख्या को 100 से गुणा करने पर उसके अंकों का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "Each digit moves two places to the left",
+       "hi": "हर अंक दो स्थान बाईं ओर खिसकता है"
+      },
+      {
+       "id": "one",
+       "en": "Each digit moves one place to the left",
+       "hi": "हर अंक एक स्थान बाईं ओर खिसकता है"
+      },
+      {
+       "id": "none",
+       "en": "The digits stay where they are",
+       "hi": "अंक अपनी जगह रहते हैं"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Now match 7 × 100.",
+      "hi": "अब 7 × 100 को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then tap Check.",
+      "hi": "बाकी मिलाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Multiplying by 10 makes every place value 10 times bigger, so each digit moves one place to the left. Multiplying by 100 moves digits two places to the left. For numbers like 70 × 20, multiply 7 × 2 first and then add the zeros: 14 and three zeros is 14,000 for 700 × 20.",
+      "hi": "10 से गुणा करने पर हर स्थानीय मान 10 गुना बड़ा हो जाता है, इसलिए हर अंक एक स्थान बाईं ओर खिसकता है। 100 से गुणा करने पर अंक दो स्थान बाईं ओर खिसकते हैं। 70 × 20 जैसे गुणा में पहले 7 × 2 करो और फिर शून्य लगाओ: 700 × 20 के लिए 14 और उसके बाद तीन शून्य, यानी 14,000।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 30 × 50?",
+        "hi": "30 × 50 कितना है?"
+       },
+       "options": [
+        "1,500",
+        "150",
+        "15,000"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 × 5 = 15, and the two zeros (one from 30, one from 50) follow: 1,500.",
+        "hi": "3 × 5 = 15, और दो शून्य (30 से एक, 50 से एक) लगते हैं: 1,500।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only one zero was added. There are two zeros in 30 and 50 together.",
+         "hi": "केवल एक शून्य लगाया गया। 30 और 50 में कुल दो शून्य हैं।"
+        },
+        {
+         "en": "Three zeros are too many; 30 and 50 have two zeros in all.",
+         "hi": "तीन शून्य ज़्यादा हैं; 30 और 50 में कुल दो शून्य हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try 4 × 1,000, 40 × 1,000 and 400 × 1,000. How many zeros does each answer have?",
+      "hi": "4 × 1,000, 40 × 1,000 और 400 × 1,000 आज़माओ। हर उत्तर में कितने शून्य हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch06-double-and-half",
+   "topic": "6.3",
+   "template": "sequence",
+   "title": {
+    "en": "Double one, halve the other",
+    "hi": "एक को दुगुना, दूसरी को आधा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "d1",
+      "text": {
+       "en": "16 × 25",
+       "hi": "16 × 25"
+      }
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "Halve 16, double 25: 8 × 50",
+       "hi": "16 का आधा, 25 का दुगुना: 8 × 50"
+      }
+     },
+     {
+      "id": "d3",
+      "text": {
+       "en": "Halve 8, double 50: 4 × 100",
+       "hi": "8 का आधा, 50 का दुगुना: 4 × 100"
+      }
+     },
+     {
+      "id": "d4",
+      "text": {
+       "en": "4 × 100 = 400",
+       "hi": "4 × 100 = 400"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do you think happens to the product if you halve one number and double the other?",
+      "hi": "तुम्हें क्या लगता है, एक संख्या को आधा और दूसरी को दुगुना करने पर गुणनफल का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वह वही रहेगा"
+      },
+      {
+       "id": "double",
+       "en": "It doubles",
+       "hi": "वह दुगुना हो जाएगा"
+      },
+      {
+       "id": "half",
+       "en": "It halves",
+       "hi": "वह आधा हो जाएगा"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "item:d1",
+     "expect": "placed:d1",
+     "say": {
+      "en": "Put the starting multiplication in the first place.",
+      "hi": "शुरू का गुणा पहली जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all four steps in order, then tap Check.",
+      "hi": "चारों चरण क्रम में लगाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "If you halve one number and double the other, the product does not change. 16 × 25 = 8 × 50 = 4 × 100 = 400. We chose to make one number 100, because multiplying by 100 is easy.",
+      "hi": "एक संख्या को आधा और दूसरी को दुगुना करें तो गुणनफल नहीं बदलता। 16 × 25 = 8 × 50 = 4 × 100 = 400। हमने एक संख्या को 100 बनाया क्योंकि 100 से गुणा करना आसान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Use double and half: what is 12 × 5?",
+        "hi": "दुगुना और आधा करके बताओ: 12 × 5 कितना है?"
+       },
+       "options": [
+        "60",
+        "17",
+        "120"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Halve 12 and double 5: 6 × 10 = 60.",
+        "hi": "12 का आधा और 5 का दुगुना: 6 × 10 = 60।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "17 is 12 + 5. We are multiplying.",
+         "hi": "17 तो 12 + 5 है। हम गुणा कर रहे हैं।"
+        },
+        {
+         "en": "120 is the product if you only doubled one number. You must halve the other.",
+         "hi": "120 तब मिलता है जब केवल एक संख्या दुगुनी की जाए। दूसरी को आधा करना ज़रूरी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use double and half to find 14 × 50 and 18 × 25 in your head.",
+      "hi": "दुगुना और आधा करके 14 × 50 और 18 × 25 मन में निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch06-split-multiplier",
+   "topic": "6.4",
+   "template": "sequence",
+   "title": {
+    "en": "Break the number to multiply",
+    "hi": "गुणा के लिए संख्या तोड़ो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "p1",
+      "text": {
+       "en": "Break 12 into 10 + 2",
+       "hi": "12 को 10 + 2 में तोड़ो"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "124 × 10 = 1,240",
+       "hi": "124 × 10 = 1,240"
+      }
+     },
+     {
+      "id": "p3",
+      "text": {
+       "en": "124 × 2 = 248",
+       "hi": "124 × 2 = 248"
+      }
+     },
+     {
+      "id": "p4",
+      "text": {
+       "en": "1,240 + 248 = 1,488",
+       "hi": "1,240 + 248 = 1,488"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A dairy fills 124 pouches every hour. How many pouches in 12 hours? Which way is easiest?",
+      "hi": "एक डेयरी हर घंटे 124 थैलियाँ भरती है। 12 घंटों में कितनी थैलियाँ? सबसे आसान तरीका कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "split",
+       "en": "Multiply by 10 and by 2, then add",
+       "hi": "10 और 2 से गुणा करो, फिर जोड़ो"
+      },
+      {
+       "id": "add",
+       "en": "Add 124 twelve times",
+       "hi": "124 को बारह बार जोड़ो"
+      },
+      {
+       "id": "guess",
+       "en": "Guess the answer",
+       "hi": "अनुमान से उत्तर लगाओ"
+      }
+     ],
+     "answer": "split"
+    },
+    {
+     "kind": "do",
+     "target": "item:p1",
+     "expect": "placed:p1",
+     "say": {
+      "en": "Put the first step in place: break the 12.",
+      "hi": "पहला चरण रखो: 12 को तोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all four steps in order, then tap Check.",
+      "hi": "चारों चरण क्रम में लगाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "12 is 10 + 2. So 124 × 12 is 124 × 10 plus 124 × 2. The easy parts are 1,240 and 248. Adding them gives 1,488 pouches. Splitting a number into easy parts and adding the answers is called partitioning.",
+      "hi": "12 = 10 + 2। इसलिए 124 × 12, 124 × 10 और 124 × 2 का योग है। आसान भाग 1,240 और 248 हैं। उन्हें जोड़ने पर 1,488 थैलियाँ मिलती हैं। किसी संख्या को आसान भागों में तोड़कर उत्तर जोड़ने को भागों में तोड़ना कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Use the same idea: 53 × 6 = 50 × 6 + 3 × 6. What is the answer?",
+        "hi": "यही तरीका अपनाओ: 53 × 6 = 50 × 6 + 3 × 6। उत्तर क्या है?"
+       },
+       "options": [
+        "318",
+        "308",
+        "328"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "50 × 6 = 300 and 3 × 6 = 18. 300 + 18 = 318.",
+        "hi": "50 × 6 = 300 और 3 × 6 = 18। 300 + 18 = 318।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 × 6 = 18, not 8. 300 + 8 forgets the ten in 18.",
+         "hi": "3 × 6 = 18 है, 8 नहीं। 300 + 8 में 18 की दहाई छूट गई।"
+        },
+        {
+         "en": "3 × 6 = 18, not 28. Check the small multiplication.",
+         "hi": "3 × 6 = 18 है, 28 नहीं। छोटा गुणा फिर जाँचो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Break 15 into 10 + 5 and find 132 × 15 the same way.",
+      "hi": "15 को 10 + 5 में तोड़ो और 132 × 15 इसी तरह निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch06-near-fifty",
+   "topic": "6.4",
+   "template": "sequence",
+   "title": {
+    "en": "Use the nearest easy number",
+    "hi": "सबसे पास की आसान संख्या का उपयोग"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "items": [
+     {
+      "id": "n1",
+      "text": {
+       "en": "49 is close to 50, so find 50 × 6",
+       "hi": "49, 50 के पास है, इसलिए 50 × 6 निकालो"
+      }
+     },
+     {
+      "id": "n2",
+      "text": {
+       "en": "50 × 6 = 300",
+       "hi": "50 × 6 = 300"
+      }
+     },
+     {
+      "id": "n3",
+      "text": {
+       "en": "50 sixes is one six too many, so take away 1 × 6 = 6",
+       "hi": "50 छक्के, 49 छक्कों से एक छक्का ज़्यादा हैं, इसलिए 1 × 6 = 6 घटाओ"
+      }
+     },
+     {
+      "id": "n4",
+      "text": {
+       "en": "300 − 6 = 294",
+       "hi": "300 − 6 = 294"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "49 × 6 is close to 50 × 6 = 300. Will 49 × 6 be a little less or a little more than 300?",
+      "hi": "49 × 6, 50 × 6 = 300 के पास है। 49 × 6, 300 से थोड़ा कम होगा या थोड़ा ज़्यादा?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "A little less",
+       "hi": "थोड़ा कम"
+      },
+      {
+       "id": "more",
+       "en": "A little more",
+       "hi": "थोड़ा ज़्यादा"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "item:n1",
+     "expect": "placed:n1",
+     "say": {
+      "en": "Put the first step in place.",
+      "hi": "पहला चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all four steps in order and tap Check.",
+      "hi": "चारों चरण क्रम में लगाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "49 is one less than 50. So 49 sixes are one six less than 50 sixes. 300 − 6 = 294. When a number is just below an easy number, multiply by the easy number and take away the extra.",
+      "hi": "49, 50 से 1 कम है। इसलिए 49 छक्के, 50 छक्कों से एक छक्का कम हैं। 300 − 6 = 294। जब संख्या किसी आसान संख्या से थोड़ी कम हो तो आसान संख्या से गुणा करो और फालतू हिस्सा घटा दो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Use 100 as the nearest easy number: 99 × 4 = ?",
+        "hi": "सबसे पास की आसान संख्या 100 लेकर बताओ: 99 × 4 = ?"
+       },
+       "options": [
+        "396",
+        "404",
+        "400"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "100 × 4 = 400. We counted one extra 4, so 400 − 4 = 396.",
+        "hi": "100 × 4 = 400। एक 4 ज़्यादा गिन लिया, इसलिए 400 − 4 = 396।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "404 would add the extra 4. 99 is less than 100, so we must take it away.",
+         "hi": "404 में फालतू 4 जोड़ दिया गया। 99, 100 से कम है, इसलिए उसे घटाना है।"
+        },
+        {
+         "en": "400 forgets the correction. 99 × 4 is a little less than 400.",
+         "hi": "400 में सुधार भूल गए। 99 × 4, 400 से थोड़ा कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find 19 × 5 and 98 × 3 by using a nearby easy number.",
+      "hi": "पास की आसान संख्या से 19 × 5 और 98 × 3 निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch06-grain-doubling",
+   "topic": "6.5",
+   "template": "pattern",
+   "title": {
+    "en": "Doubling grains on a board",
+    "hi": "बोर्ड पर दाने दुगुने करना"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     1,
+     2,
+     4,
+     8
+    ],
+    "rule": "×2",
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A game board has squares. Put 1 rice grain on the first square, then double the grains on each next square: 1, 2, 4, 8. How many grains on the fifth square?",
+      "hi": "एक खेल के बोर्ड में खाने हैं। पहले खाने में चावल का 1 दाना रखो, फिर हर अगले खाने में दाने दुगुने: 1, 2, 4, 8। पाँचवें खाने में कितने दाने होंगे?"
+     },
+     "options": [
+      {
+       "id": "sixteen",
+       "en": "16 grains",
+       "hi": "16 दाने"
+      },
+      {
+       "id": "twelve",
+       "en": "12 grains",
+       "hi": "12 दाने"
+      },
+      {
+       "id": "ten",
+       "en": "10 grains",
+       "hi": "10 दाने"
+      }
+     ],
+     "answer": "sixteen"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number of grains on the fifth square.",
+      "hi": "पाँचवें खाने के दानों की संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number on the sixth square.",
+      "hi": "छठे खाने के दाने लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Say the rule of the pattern.",
+      "hi": "पैटर्न का नियम बताओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each square has double the grains of the square before it: ×2. 1, 2, 4, 8, 16, 32, 64, 128. Doubling grows very fast: after only 10 squares there are 512 grains on the last square, and it keeps growing.",
+      "hi": "हर खाने में पिछले खाने से दुगुने दाने हैं: ×2। 1, 2, 4, 8, 16, 32, 64, 128। दुगुना करने पर संख्या बहुत तेज़ी से बढ़ती है: केवल 10 खानों के बाद आख़िरी खाने में 512 दाने हो जाते हैं, और यह बढ़ता ही जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many grains are on the 7th square?",
+        "hi": "सातवें खाने में कितने दाने हैं?"
+       },
+       "options": [
+        "64",
+        "48",
+        "56"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The 6th square has 32, so the 7th has double: 64.",
+        "hi": "छठे खाने में 32 हैं, इसलिए सातवें में उसके दुगुने: 64।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "48 is 32 + 16, adding the fifth square. We must double 32.",
+         "hi": "48 तो 32 + 16 है। हमें 32 का दुगुना करना है।"
+        },
+        {
+         "en": "56 is 32 + 24. Doubling means multiplying by 2, not adding.",
+         "hi": "56 तो 32 + 24 है। दुगुना करने का मतलब 2 से गुणा है, जोड़ना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep going with Next and watch how fast the number grows. On which square do the grains pass 1,000?",
+      "hi": "अगला दबाते रहो और देखो संख्या कितनी तेज़ी से बढ़ती है। किस खाने में दाने 1,000 से ज़्यादा हो जाते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Chapter hook: dairy farm",
+   "shows": "A small dairy farm in the morning with several cows in a shed, a worker carrying a steel milk can, hay in the foreground",
+   "view": "Wide, eye level, soft light",
+   "right": "Cows of an Indian breed; clean shed; workers as backs",
+   "avoid": "Faces, brand logos on cans"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Butter packets in rows",
+   "shows": "Twelve identical wrapped butter packets, arranged as 3 rows of 4 on a steel tray, and then the same twelve as 4 rows of 3",
+   "view": "Top-down, even light",
+   "right": "Rows and columns exactly aligned so the array can be counted",
+   "avoid": "Brand names, text on wrappers"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.3",
+   "use": "Milk pouch crates",
+   "shows": "A stack of milk pouch crates at a dairy loading area, 4 crates across and 5 high",
+   "view": "Front view, even light",
+   "right": "Crates identical and aligned; pouches without writing",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "6.5",
+   "use": "Board with grains",
+   "shows": "A square game board with eight squares in a row, with rice grains 1, 2, 4, 8, 16, 32, 64 and 128 placed on successive squares",
+   "view": "Top-down, bright light",
+   "right": "Grain counts exact and countable in the smaller squares",
+   "avoid": "Overlapping grains that hide the count"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "6.2",
+   "use": "Place value table frame",
+   "shows": "An empty table with columns TTh, Th, H, T, O and four blank rows",
+   "view": "Flat, white background",
+   "right": "Columns equally wide, space for the app to write digits",
+   "avoid": "Digits or labels baked in"
+  }
+ ]
+}

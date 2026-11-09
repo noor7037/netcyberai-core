@@ -1,0 +1,590 @@
+{
+ "chapter_key": "u.c11.physics.keph1.ch01",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "Units and Measurements",
+ "source": "https://ncert.nic.in/textbook/pdf/keph1ps.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Introduction: physical quantities, units, base and derived units",
+   "labs": [],
+   "why_no_lab": "An introduction to what a unit is; the reader's everyday examples, like a kilo of rice and a metre of cloth, teach it better than a simulation."
+  },
+  {
+   "n": "1.2",
+   "title": "The International System of Units (SI): base units and prefixes",
+   "labs": [],
+   "why_no_lab": "The seven base units and prefixes are facts to learn from the reader's table and flash cards; there is nothing to experiment with."
+  },
+  {
+   "n": "1.3",
+   "title": "Significant figures: arithmetic rules, rounding off and uncertainty in results",
+   "labs": [
+    "c11-physics-keph1-ch01-vernier-sigfigs",
+    "c11-physics-keph1-ch01-screw-gauge-hair"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Dimensions of physical quantities",
+   "labs": [],
+   "why_no_lab": "Dimensions are found by writing a quantity in base quantities on paper; the reader's worked table teaches it."
+  },
+  {
+   "n": "1.5",
+   "title": "Dimensional formulae and dimensional equations",
+   "labs": [],
+   "why_no_lab": "This is a written skill practised through the reader's table of formulae and short exercises."
+  },
+  {
+   "n": "1.6",
+   "title": "Dimensional analysis: checking equations and deducing relations",
+   "labs": [
+    "c11-physics-keph1-ch01-pendulum-dimensions"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph1-ch01-vernier-sigfigs",
+   "topic": "1.3",
+   "template": "measure",
+   "title": {
+    "en": "Vernier callipers and significant figures",
+    "hi": "वर्नियर कैलिपर्स और सार्थक अंक"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "instrument": "vernier",
+    "units": "cm"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "object:marble",
+     "expect": "placed",
+     "say": {
+      "en": "Tap the marble to put it between the jaws of the vernier callipers.",
+      "hi": "मार्बल (कंचे) पर टैप करो ताकि वह वर्नियर कैलिपर्स के जबड़ों के बीच आ जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:jaw",
+     "expect": "aligned",
+     "say": {
+      "en": "Move the jaw slider until the jaws just touch the marble, without squeezing it.",
+      "hi": "जबड़े वाले स्लाइडर को तब तक खिसकाओ जब तक जबड़े कंचे को बस छू लें, दबाएँ नहीं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The main scale marks are 1 mm apart, and 10 vernier divisions fit into 9 mm. What is the smallest length this instrument can read?",
+      "hi": "मुख्य पैमाने के निशान 1 mm की दूरी पर हैं, और वर्नियर के 10 भाग 9 mm में आते हैं। यह उपकरण सबसे छोटी कितनी लंबाई पढ़ सकता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "1 mm",
+       "hi": "1 मिमी (mm)"
+      },
+      {
+       "id": "b",
+       "en": "0.1 mm",
+       "hi": "0.1 मिमी (mm)"
+      },
+      {
+       "id": "c",
+       "en": "0.01 mm",
+       "hi": "0.01 मिमी (mm)"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Press Read and look closely: find the vernier line that lines up exactly with a main scale line.",
+      "hi": "पढ़ो दबाओ और ध्यान से देखो: वर्नियर की वह रेखा खोजो जो मुख्य पैमाने की किसी रेखा से ठीक मिलती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Work out the diameter (main scale reading + matching division × least count, then correct any zero error). Type it in cm and submit.",
+      "hi": "व्यास निकालो (मुख्य पैमाने का पाठ्यांक + मिलने वाला भाग × अल्पतमांक, फिर शून्य त्रुटि हो तो सुधारो)। इसे cm में लिखकर भेजो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One vernier division is 0.9 mm, so each one is 0.1 mm shorter than a main scale division. That 0.1 mm (0.01 cm) is the least count. A reading like 1.64 cm has three significant figures: 1 and 6 are certain, and the last digit, 4, is the first uncertain one. You cannot honestly write more digits than your instrument can read.",
+      "hi": "वर्नियर का एक भाग 0.9 mm है, यानी मुख्य पैमाने के भाग से 0.1 mm छोटा। यही 0.1 mm (0.01 cm) अल्पतमांक है। 1.64 cm जैसे पाठ्यांक में तीन सार्थक अंक हैं: 1 और 6 पक्के हैं, और आख़िरी अंक 4 पहला अनिश्चित अंक है। उपकरण जितना पढ़ सकता है, उससे ज़्यादा अंक लिखना सही नहीं है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A vernier reading is 1.64 cm. How many significant figures does it have?",
+        "hi": "वर्नियर का पाठ्यांक 1.64 cm है। इसमें कितने सार्थक अंक हैं?"
+       },
+       "options": [
+        "2",
+        "3",
+        "4"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "All non-zero digits are significant, so 1, 6 and 4 make three significant figures.",
+        "hi": "सभी शून्य-रहित अंक सार्थक होते हैं, इसलिए 1, 6 और 4 मिलाकर तीन सार्थक अंक हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Counting only the digits after the decimal point leaves out the 1, which was also measured.",
+         "hi": "केवल दशमलव के बाद के अंक गिनने से 1 छूट जाता है, जबकि वह भी मापा गया है।"
+        },
+        "",
+        {
+         "en": "There is no fourth digit; adding a zero (1.640) would claim a precision of 0.001 cm that this instrument does not have.",
+         "hi": "चौथा अंक है ही नहीं; शून्य जोड़कर 1.640 लिखना 0.001 cm की परिशुद्धता का दावा होगा, जो इस उपकरण में नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Riya writes the same marble as 1.6 cm and Arjun as 1.64 cm. Which is better, and why?",
+        "hi": "रिया उसी कंचे को 1.6 cm और अर्जुन 1.64 cm लिखता है। कौन बेहतर है, और क्यों?"
+       },
+       "options": [
+        {
+         "en": "Arjun: the callipers really read to 0.01 cm",
+         "hi": "अर्जुन: कैलिपर्स सच में 0.01 cm तक पढ़ते हैं"
+        },
+        {
+         "en": "Riya: fewer digits are always safer",
+         "hi": "रिया: कम अंक हमेशा सुरक्षित होते हैं"
+        },
+        {
+         "en": "Both are equally good",
+         "hi": "दोनों बराबर अच्छे हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A result should keep every digit the instrument measured, and the last one is uncertain. The callipers read to 0.01 cm, so 1.64 cm is the honest reading.",
+        "hi": "परिणाम में उपकरण से मापे गए सारे अंक रहने चाहिए, आख़िरी अंक अनिश्चित होता है। कैलिपर्स 0.01 cm तक पढ़ते हैं, इसलिए 1.64 cm सही पाठ्यांक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dropping a digit you really measured throws away information; it is not safer, just less exact.",
+         "hi": "जो अंक सच में मापा, उसे छोड़ने से जानकारी खो जाती है; यह सुरक्षित नहीं, बस कम सटीक है।"
+        },
+        {
+         "en": "1.6 cm says the size is only known to 0.1 cm, which hides what the callipers showed.",
+         "hi": "1.6 cm का अर्थ है कि माप केवल 0.1 cm तक पता है, जिससे कैलिपर्स की दिखाई जानकारी छिप जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Measure the coin and the steel ball too. Press the zero check: if the jaws do not read zero when closed, see how the correction changes your answer.",
+      "hi": "सिक्का और स्टील की गेंद भी नापो। शून्य जाँच दबाओ: अगर बंद जबड़े शून्य नहीं दिखाते, तो देखो सुधार से तुम्हारा उत्तर कैसे बदलता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch01-screw-gauge-hair",
+   "topic": "1.3",
+   "template": "measure",
+   "title": {
+    "en": "Screw gauge: the thickness of a hair",
+    "hi": "स्क्रू गेज: बाल की मोटाई"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "instrument": "screw-gauge",
+    "units": "mm"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "object:hair",
+     "expect": "placed",
+     "say": {
+      "en": "Tap the human hair to place it between the anvil and the spindle.",
+      "hi": "बाल पर टैप करो ताकि वह एन्विल और स्पिंडल के बीच आ जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:thimble",
+     "expect": "aligned",
+     "say": {
+      "en": "Turn the thimble slider until the spindle just holds the hair.",
+      "hi": "थिम्बल स्लाइडर को तब तक घुमाओ जब तक स्पिंडल बाल को बस पकड़ ले।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One full turn moves the spindle 0.5 mm, and the thimble has 50 divisions. What is the least count?",
+      "hi": "एक पूरे चक्कर में स्पिंडल 0.5 mm आगे बढ़ता है, और थिम्बल पर 50 भाग हैं। अल्पतमांक क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "0.5 mm",
+       "hi": "0.5 मिमी (mm)"
+      },
+      {
+       "id": "b",
+       "en": "0.1 mm",
+       "hi": "0.1 मिमी (mm)"
+      },
+      {
+       "id": "c",
+       "en": "0.01 mm",
+       "hi": "0.01 मिमी (mm)"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Press Read and note the main scale and the thimble division on the line.",
+      "hi": "पढ़ो दबाओ और मुख्य पैमाना तथा रेखा पर आया थिम्बल का भाग देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Work out the thickness in mm (correct any zero error) and submit it.",
+      "hi": "मोटाई mm में निकालो (शून्य त्रुटि हो तो सुधारो) और भेजो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The least count is 0.5 mm ÷ 50 = 0.01 mm, ten times finer than the vernier. A hair is about 0.08 mm thick. The zeros in front only place the decimal point, so 0.08 mm has just one significant figure. Written as 8 × 10⁻⁵ m it still has one.",
+      "hi": "अल्पतमांक 0.5 mm ÷ 50 = 0.01 mm है, वर्नियर से दस गुना बारीक। बाल लगभग 0.08 mm मोटा है। आगे के शून्य केवल दशमलव की जगह बताते हैं, इसलिए 0.08 mm में केवल एक सार्थक अंक है। 8 × 10⁻⁵ m लिखने पर भी एक ही रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many significant figures are there in 0.08 mm?",
+        "hi": "0.08 mm में कितने सार्थक अंक हैं?"
+       },
+       "options": [
+        "1",
+        "2",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Zeros to the left of the first non-zero digit are never significant; only the 8 counts.",
+        "hi": "पहले शून्य-रहित अंक के बाईं ओर के शून्य कभी सार्थक नहीं होते; केवल 8 गिना जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Counting the zero after the point treats it as measured, but it only shows where the decimal point is.",
+         "hi": "दशमलव के बाद वाले शून्य को गिनना उसे मापा हुआ मानना है, जबकि वह केवल दशमलव की जगह दिखाता है।"
+        },
+        {
+         "en": "Counting every zero mixes up place-holding zeros with measured digits.",
+         "hi": "सारे शून्य गिनने से जगह भरने वाले शून्य और मापे गए अंक आपस में मिल जाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A wire reads 0.52 mm. In metres it is 5.2 × 10⁻⁴ m. What happens to the significant figures?",
+        "hi": "एक तार का पाठ्यांक 0.52 mm है। मीटर में यह 5.2 × 10⁻⁴ m है। सार्थक अंकों का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "They stay 2",
+         "hi": "वे 2 ही रहते हैं"
+        },
+        {
+         "en": "They become 5",
+         "hi": "वे 5 हो जाते हैं"
+        },
+        {
+         "en": "They become 1",
+         "hi": "वे 1 हो जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Changing the unit does not change how precisely you measured, so the number of significant figures stays the same.",
+        "hi": "इकाई बदलने से माप की परिशुद्धता नहीं बदलती, इसलिए सार्थक अंकों की संख्या वही रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Writing 0.00052 m adds zeros, but they only hold places; they were not measured.",
+         "hi": "0.00052 m लिखने से शून्य बढ़ते हैं, पर वे केवल जगह भरते हैं; मापे नहीं गए।"
+        },
+        {
+         "en": "Moving the decimal point does not throw away the 2 you measured.",
+         "hi": "दशमलव खिसकाने से मापा गया 2 नहीं हटता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Measure the thin and the thick copper wire and the plastic card. Which reading has the most significant figures?",
+      "hi": "पतला और मोटा ताँबे का तार तथा प्लास्टिक कार्ड नापो। किस पाठ्यांक में सबसे ज़्यादा सार्थक अंक हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch01-pendulum-dimensions",
+   "topic": "1.6",
+   "template": "waves",
+   "title": {
+    "en": "Dimensional analysis meets a real pendulum",
+    "hi": "विमीय विश्लेषण और असली लोलक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "pendulum"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The period T of a pendulum can depend only on its length l (dimension L) and on g (dimension LT⁻²). Which combination has the dimension of time?",
+      "hi": "लोलक का आवर्तकाल T केवल उसकी लंबाई l (विमा L) और g (विमा LT⁻²) पर निर्भर कर सकता है। किस मेल की विमा समय की है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "√(l/g)",
+       "hi": "√(l/g) का मेल"
+      },
+      {
+       "id": "b",
+       "en": "l/g",
+       "hi": "l/g का मेल"
+      },
+      {
+       "id": "c",
+       "en": "√(g/l)",
+       "hi": "√(g/l) का मेल"
+      },
+      {
+       "id": "d",
+       "en": "l × g",
+       "hi": "l × g का मेल"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "period",
+     "say": {
+      "en": "Press Play and let the 1 m pendulum make one full swing. Watch the time it takes.",
+      "hi": "चलाओ दबाओ और 1 m लंबे लोलक को एक पूरा दोलन करने दो। देखो इसमें कितना समय लगता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "l/g has dimension L ÷ LT⁻² = T², so √(l/g) has the dimension of time. Dimensional analysis gives T ∝ √(l/g) but cannot find the number in front; the experiment shows it is 2π, so T = 2π√(l/g) ≈ 2.0 s for 1 m on Earth.",
+      "hi": "l/g की विमा L ÷ LT⁻² = T² है, इसलिए √(l/g) की विमा समय की है। विमीय विश्लेषण से T ∝ √(l/g) मिलता है, पर आगे की संख्या नहीं मिलती; प्रयोग बताता है कि यह 2π है, इसलिए पृथ्वी पर 1 m के लिए T = 2π√(l/g) ≈ 2.0 s।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the string is made 4 times longer, the period becomes:",
+        "hi": "अगर धागा 4 गुना लंबा कर दें, तो आवर्तकाल हो जाएगा:"
+       },
+       "options": [
+        {
+         "en": "2 times",
+         "hi": "2 गुना"
+        },
+        {
+         "en": "4 times",
+         "hi": "4 गुना"
+        },
+        {
+         "en": "16 times",
+         "hi": "16 गुना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "T ∝ √l, and √4 = 2, so the period doubles.",
+        "hi": "T ∝ √l है और √4 = 2, इसलिए आवर्तकाल दोगुना होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would be true if T ∝ l, but the dimensions demand a square root.",
+         "hi": "यह तब सही होता जब T ∝ l होता, पर विमाएँ वर्गमूल माँगती हैं।"
+        },
+        {
+         "en": "That squares the change instead of taking its square root.",
+         "hi": "इसमें बदलाव का वर्गमूल लेने के बजाय वर्ग कर दिया गया है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What can dimensional analysis NOT tell you about T = 2π√(l/g)?",
+        "hi": "T = 2π√(l/g) के बारे में विमीय विश्लेषण क्या नहीं बता सकता?"
+       },
+       "options": [
+        {
+         "en": "The number 2π",
+         "hi": "संख्या 2π"
+        },
+        {
+         "en": "That T depends on √l",
+         "hi": "कि T, √l पर निर्भर है"
+        },
+        {
+         "en": "That T depends on 1/√g",
+         "hi": "कि T, 1/√g पर निर्भर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pure numbers like 2π have no dimension, so balancing dimensions can never reveal them; only an experiment or full theory can.",
+        "hi": "2π जैसी शुद्ध संख्याओं की कोई विमा नहीं होती, इसलिए विमाएँ मिलाकर ये कभी नहीं मिलतीं; केवल प्रयोग या पूरा सिद्धांत बताता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The power of l is exactly what matching the dimensions finds.",
+         "hi": "l की घात ही तो विमाएँ मिलाकर निकलती है।"
+        },
+        {
+         "en": "The power of g also comes out of matching dimensions: it must be −½.",
+         "hi": "g की घात भी विमाएँ मिलाकर निकलती है: वह −½ होनी चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set the length to 0.25 m and then to 2 m and play again. Does the period follow √l? Try a bigger starting angle too.",
+      "hi": "लंबाई 0.25 m और फिर 2 m करके दोबारा चलाओ। क्या आवर्तकाल √l के अनुसार बदलता है? बड़ा शुरुआती कोण भी आज़माओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook of the chapter: measuring in daily life",
+   "shows": "A kirana shopkeeper weighing rice on a digital scale, and a tailor measuring cloth with a tape, as two separate photos",
+   "view": "Eye level, the scale and tape sharp in the centre, warm shop light",
+   "right": "Real Indian shop and tailoring counter; tape laid flat along the cloth",
+   "avoid": "Readable brand names, faces in focus, prices"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.3",
+   "use": "Instrument in the vernier lab and the reader",
+   "shows": "Steel vernier callipers, first file with the jaws open, second file with the jaws closed on a glass marble",
+   "view": "Straight on from the front, scales parallel to the image edge, top-left light",
+   "right": "Main scale in mm and a 10-division vernier clearly engraved; jaws meet flat",
+   "avoid": "Brand names, a slanted angle that hides the scales"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "1.3",
+   "use": "Close-up for reading a vernier",
+   "shows": "Macro of the vernier and main scale where exactly one vernier line lines up with a main scale line",
+   "view": "Square, face-on, sharp across the whole scale",
+   "right": "Only one pair of lines coincides; division spacing true (10 vernier = 9 main)",
+   "avoid": "Blur at the edges, glare on the steel"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.3",
+   "use": "Instrument in the screw-gauge lab",
+   "shows": "A screw gauge with its U-frame, anvil, spindle, sleeve scale and 50-division thimble",
+   "view": "Three-quarter view from the thimble side, top-left light",
+   "right": "Thimble has 50 divisions; sleeve has a half-millimetre scale",
+   "avoid": "Rust, brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "1.3",
+   "use": "How thin things are",
+   "shows": "A single human hair beside a thin and a thick copper wire on millimetre graph paper",
+   "view": "From above, square, even light",
+   "right": "Hair visibly much thinner than 1 mm; wires copper-coloured",
+   "avoid": "Hands, cluttered background"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.6",
+   "use": "Pendulum experiment in a school lab",
+   "shows": "A brass bob on a cotton thread from a clamp stand, with a stopwatch on the bench beside it",
+   "view": "Side view at bob height, plain wall behind",
+   "right": "Thread straight and taut; bob small compared with the length",
+   "avoid": "Faces, a child standing on a stool"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "1.2",
+   "use": "Base of the SI units card",
+   "shows": "A clean seven-tile grid, each tile with a simple icon: ruler, weight, clock, wire with current, thermometer, beaker of particles, lamp",
+   "view": "Flat, white background, equal tiles",
+   "right": "Seven tiles for the seven base quantities, no text",
+   "avoid": "Any words or unit symbols baked in"
+  }
+ ]
+}

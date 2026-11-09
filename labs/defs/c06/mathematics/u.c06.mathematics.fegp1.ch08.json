@@ -1,0 +1,712 @@
+{
+ "chapter_key": "u.c06.mathematics.fegp1.ch08",
+ "class": 6,
+ "subject_id": "mathematics",
+ "title": "Playing with Constructions",
+ "source": "https://ncert.nic.in/textbook/pdf/fegp108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Artwork with circles and a compass",
+   "labs": [
+    "c06-mathematics-fegp1-ch08-circle-parts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Squares and rectangles: their properties",
+   "labs": [
+    "c06-mathematics-fegp1-ch08-square-props"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Constructing squares and rectangles",
+   "labs": [
+    "c06-mathematics-fegp1-ch08-right-corner"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "An exploration in rectangles",
+   "labs": [],
+   "why_no_lab": "An open puzzle about points inside a rectangle that needs paper, compass and trial; the reader guides it and no template sets up the puzzle yet."
+  },
+  {
+   "n": "8.5",
+   "title": "Exploring diagonals of rectangles and squares",
+   "labs": [
+    "c06-mathematics-fegp1-ch08-rect-diagonals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Points equidistant from two given points",
+   "labs": [
+    "c06-mathematics-fegp1-ch08-equidistant"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-mathematics-fegp1-ch08-circle-parts",
+   "topic": "8.1",
+   "template": "shapes",
+   "title": {
+    "en": "Parts of a circle for artwork",
+    "hi": "चित्रकारी के लिए वृत्त के भाग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "circle",
+    "task": "parts"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:radius",
+     "expect": "drawn",
+     "say": {
+      "en": "Move the radius slider. A compass opened wider draws a bigger circle.",
+      "hi": "त्रिज्या का स्लाइडर खिसकाओ। परकार को ज़्यादा खोलने से बड़ा वृत्त बनता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A compass point stays on one spot while the pencil goes round. What is that fixed spot called?",
+      "hi": "परकार की नोक एक जगह टिकी रहती है और पेंसिल घूमती है। उस स्थिर जगह को क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "centre",
+       "en": "The centre",
+       "hi": "केंद्र"
+      },
+      {
+       "id": "radius",
+       "en": "The radius",
+       "hi": "त्रिज्या"
+      },
+      {
+       "id": "edge",
+       "en": "The edge",
+       "hi": "किनारा"
+      }
+     ],
+     "answer": "centre"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the part shown in pink and choose its name.",
+      "hi": "गुलाबी रंग में दिखाया भाग देखो और उसका नाम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every point on a circle is the same distance from its centre. That distance is the radius, the gap you open the compass to. This is why a compass draws a perfect circle, and why artists use it for designs with circles.",
+      "hi": "वृत्त का हर बिंदु उसके केंद्र से बराबर दूरी पर होता है। वह दूरी त्रिज्या है, यानी परकार को जितना खोलते हो। इसीलिए परकार सही वृत्त बनाता है, और कलाकार वृत्तों वाले डिज़ाइनों के लिए उसका प्रयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You open a compass to 3 cm. What is the diameter of the circle it draws?",
+        "hi": "तुम परकार को 3 सेमी खोलते हो। उससे बने वृत्त का व्यास कितना होगा?"
+       },
+       "options": [
+        {
+         "en": "6 cm",
+         "hi": "6 सेमी"
+        },
+        {
+         "en": "3 cm",
+         "hi": "3 सेमी"
+        },
+        {
+         "en": "1.5 cm",
+         "hi": "1.5 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The opening is the radius; the diameter is 2 × 3 = 6 cm.",
+        "hi": "खुलाव त्रिज्या है; व्यास 2 × 3 = 6 सेमी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 cm is the radius, from the centre to the circle.",
+         "hi": "3 सेमी त्रिज्या है, केंद्र से वृत्त तक।"
+        },
+        {
+         "en": "1.5 cm is half the radius, not twice it.",
+         "hi": "1.5 सेमी त्रिज्या का आधा है, दोगुना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Next to learn the names of the other parts: diameter, chord, arc and more.",
+      "hi": "अब ख़ुद आज़माओ। दूसरे भागों के नाम जानने के लिए अगला दबाओ: व्यास, जीवा, चाप और भी।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch08-square-props",
+   "topic": "8.2",
+   "template": "shapes",
+   "title": {
+    "en": "What makes a square a square?",
+    "hi": "वर्ग को वर्ग क्या बनाता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "square"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler to measure all four sides.",
+      "hi": "चारों भुजाएँ मापने के लिए रूलर पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tool:protractor",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the protractor to measure all four corners.",
+      "hi": "चारों कोने मापने के लिए चाँदे पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you drag a corner, will the sides stay equal and the corners stay 90°?",
+      "hi": "अगर तुम कोई कोना खिसकाओ, तो क्या भुजाएँ बराबर और कोने 90° रहेंगे?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it stays a square",
+       "hi": "हाँ, वह वर्ग ही रहेगा"
+      },
+      {
+       "id": "no",
+       "en": "No, it becomes another shape",
+       "hi": "नहीं, वह कोई और आकृति बन जाएगी"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "drag:C",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag corner C and watch the measures.",
+      "hi": "कोना C खिसकाओ और माप देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A square has all four sides equal and all four corners 90°. A rectangle has all corners 90° and only opposite sides equal. So every square is a special rectangle, but not every rectangle is a square.",
+      "hi": "वर्ग की चारों भुजाएँ बराबर और चारों कोने 90° के होते हैं। आयत के सारे कोने 90° के होते हैं, पर केवल सम्मुख भुजाएँ बराबर। इसलिए हर वर्ग एक ख़ास आयत है, पर हर आयत वर्ग नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A shape has 4 equal sides but its corners are not 90°. Is it a square?",
+        "hi": "एक आकृति की 4 भुजाएँ बराबर हैं पर कोने 90° के नहीं। क्या वह वर्ग है?"
+       },
+       "options": [
+        {
+         "en": "No, the corners must be 90°",
+         "hi": "नहीं, कोने 90° होने चाहिए"
+        },
+        {
+         "en": "Yes, the sides are equal",
+         "hi": "हाँ, भुजाएँ बराबर हैं"
+        },
+        {
+         "en": "Yes, it has 4 sides",
+         "hi": "हाँ, इसकी 4 भुजाएँ हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A square needs equal sides and right angles. With slanted corners it is a rhombus.",
+        "hi": "वर्ग के लिए बराबर भुजाएँ और समकोण दोनों चाहिए। तिरछे कोनों वाली आकृति समचतुर्भुज है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equal sides alone give a rhombus, which can lean over.",
+         "hi": "केवल बराबर भुजाओं से समचतुर्भुज बनता है, जो झुका हो सकता है।"
+        },
+        {
+         "en": "Every quadrilateral has 4 sides; that does not make it a square.",
+         "hi": "हर चतुर्भुज की 4 भुजाएँ होती हैं; इससे वह वर्ग नहीं बनता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Diagonals. Are the two diagonals of a square equal? Do they cross at 90°?",
+      "hi": "अब ख़ुद आज़माओ। विकर्ण दबाओ। क्या वर्ग के दोनों विकर्ण बराबर हैं? क्या वे 90° पर काटते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch08-right-corner",
+   "topic": "8.3",
+   "template": "shapes",
+   "title": {
+    "en": "Making the right-angled corner",
+    "hi": "समकोण वाला कोना बनाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "angle",
+    "task": "make",
+    "given": {
+     "angles": [
+      90
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:protractor",
+     "expect": "measured:*",
+     "say": {
+      "en": "To build a rectangle you first need a 90° corner. Tap the protractor.",
+      "hi": "आयत बनाने के लिए पहले 90° का कोना चाहिए। चाँदे पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After the corner, how many more 90° corners does a rectangle need?",
+      "hi": "इस कोने के बाद आयत को और कितने 90° कोने चाहिए?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "3 more",
+       "hi": "3 और"
+      },
+      {
+       "id": "1",
+       "en": "1 more",
+       "hi": "1 और"
+      },
+      {
+       "id": "0",
+       "en": "None",
+       "hi": "एक भी नहीं"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "constructed",
+     "say": {
+      "en": "Drag point B until the angle at O is exactly 90°.",
+      "hi": "बिंदु B को तब तक खिसकाओ जब तक O पर कोण ठीक 90° न हो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A rectangle has four right-angled corners. When you construct one, you draw one side, make a 90° corner at each end, mark the other side on both arms, and join the top. The opposite sides then come out equal.",
+      "hi": "आयत में चार समकोण वाले कोने होते हैं। आयत बनाते समय एक भुजा खींचो, उसके दोनों सिरों पर 90° के कोने बनाओ, दोनों भुजाओं पर दूसरी भुजा की लंबाई अंकित करो, और ऊपर जोड़ दो। तब सम्मुख भुजाएँ बराबर आती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You make the corners 85° instead of 90°. What will you get?",
+        "hi": "तुम कोने 90° की जगह 85° के बनाते हो। क्या बनेगा?"
+       },
+       "options": [
+        {
+         "en": "A shape that is not a rectangle",
+         "hi": "ऐसी आकृति जो आयत नहीं है"
+        },
+        {
+         "en": "A smaller rectangle",
+         "hi": "छोटा आयत"
+        },
+        {
+         "en": "A square",
+         "hi": "वर्ग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A rectangle must have 90° corners; any other angle gives a slanted shape.",
+        "hi": "आयत के कोने 90° के होने ही चाहिए; किसी और कोण से तिरछी आकृति बनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size does not depend on the angle; the shape will lean.",
+         "hi": "आकार कोण पर निर्भर नहीं; आकृति झुक जाएगी।"
+        },
+        {
+         "en": "A square needs 90° corners too.",
+         "hi": "वर्ग के लिए भी 90° के कोने चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make angles of 45° and 135°. Together, do they make a straight angle?",
+      "hi": "अब ख़ुद आज़माओ। 45° और 135° के कोण बनाओ। क्या मिलकर वे ऋजु कोण बनाते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch08-rect-diagonals",
+   "topic": "8.5",
+   "template": "shapes",
+   "title": {
+    "en": "Diagonals of a rectangle",
+    "hi": "आयत के विकर्ण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "rectangle"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "show:diagonals",
+     "expect": "drawn",
+     "say": {
+      "en": "Tap Diagonals to join the opposite corners.",
+      "hi": "सम्मुख कोनों को जोड़ने के लिए विकर्ण दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Are the two diagonals of a rectangle the same length?",
+      "hi": "क्या आयत के दोनों विकर्ण बराबर लंबाई के होते हैं?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      },
+      {
+       "id": "no",
+       "en": "No, never",
+       "hi": "नहीं, कभी नहीं"
+      },
+      {
+       "id": "some",
+       "en": "Only for some rectangles",
+       "hi": "केवल कुछ आयतों में"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "drag:C",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag corner C to change the rectangle. Watch the list.",
+      "hi": "कोना C खिसकाकर आयत बदलो। सूची पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the fact that is true for every rectangle.",
+      "hi": "वह बात चुनो जो हर आयत के लिए सही है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "However you change it, a rectangle’s diagonals stay equal and cut each other in half. They meet at 90° only when the rectangle is a square.",
+      "hi": "तुम आयत को कैसे भी बदलो, उसके विकर्ण बराबर रहते हैं और एक-दूसरे को आधा-आधा काटते हैं। वे 90° पर केवल तब मिलते हैं जब आयत वर्ग हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The diagonals of a rectangle cross at point O. One diagonal is 10 cm. How far is O from each corner?",
+        "hi": "आयत के विकर्ण बिंदु O पर काटते हैं। एक विकर्ण 10 सेमी है। O हर कोने से कितनी दूर है?"
+       },
+       "options": [
+        {
+         "en": "5 cm",
+         "hi": "5 सेमी"
+        },
+        {
+         "en": "10 cm",
+         "hi": "10 सेमी"
+        },
+        {
+         "en": "It depends on the corner",
+         "hi": "यह कोने पर निर्भर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The diagonals are equal and cut each other in half, so O is 5 cm from all four corners.",
+        "hi": "विकर्ण बराबर हैं और एक-दूसरे को आधा काटते हैं, इसलिए O चारों कोनों से 5 सेमी दूर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "10 cm is the whole diagonal; O is in its middle.",
+         "hi": "10 सेमी पूरा विकर्ण है; O उसके बीच में है।"
+        },
+        {
+         "en": "Both diagonals are 10 cm and halved, so all four distances are equal.",
+         "hi": "दोनों विकर्ण 10 सेमी के हैं और आधे-आधे बँटते हैं, इसलिए चारों दूरियाँ बराबर हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make the rectangle into a square. What changes about the diagonals?",
+      "hi": "अब ख़ुद आज़माओ। आयत को वर्ग बना दो। विकर्णों में क्या बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch08-equidistant",
+   "topic": "8.6",
+   "template": "shapes",
+   "title": {
+    "en": "A point equally far from B and C",
+    "hi": "B और C से बराबर दूरी वाला बिंदु"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "triangle",
+    "task": "classify"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler to see the lengths AB and AC.",
+      "hi": "AB और AC की लंबाई देखने के लिए रूलर पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where must point A be so that AB and AC are equal?",
+      "hi": "बिंदु A कहाँ होना चाहिए ताकि AB और AC बराबर हों?"
+     },
+     "options": [
+      {
+       "id": "mid",
+       "en": "Straight above the middle of BC",
+       "hi": "BC के बीच के ठीक ऊपर"
+      },
+      {
+       "id": "nearB",
+       "en": "Close to B",
+       "hi": "B के पास"
+      },
+      {
+       "id": "any",
+       "en": "Anywhere above BC",
+       "hi": "BC के ऊपर कहीं भी"
+      }
+     ],
+     "answer": "mid"
+    },
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "answered:right",
+     "say": {
+      "en": "Drag point A until AB and AC are the same length.",
+      "hi": "बिंदु A को तब तक खिसकाओ जब तक AB और AC की लंबाई बराबर न हो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A point is equally far from B and C only when it lies on the line that crosses BC at its middle at 90°, the perpendicular bisector. Every point on that line works. With a compass you find such points by drawing equal arcs from B and from C.",
+      "hi": "कोई बिंदु B और C से बराबर दूरी पर तभी होता है जब वह उस रेखा पर हो जो BC को उसके बीच में 90° पर काटती है, यानी लंब समद्विभाजक। उस रेखा का हर बिंदु ऐसा होता है। परकार से B और C से बराबर चाप खींचकर ऐसे बिंदु मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two houses are at B and C. Where can a well be dug so it is equally far from both?",
+        "hi": "दो घर B और C पर हैं। कुआँ कहाँ खोदा जाए ताकि दोनों से बराबर दूर हो?"
+       },
+       "options": [
+        {
+         "en": "On the perpendicular bisector of BC",
+         "hi": "BC के लंब समद्विभाजक पर"
+        },
+        {
+         "en": "Only at the middle of BC",
+         "hi": "केवल BC के बीच में"
+        },
+        {
+         "en": "On the line BC, near B",
+         "hi": "रेखा BC पर, B के पास"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every point on the perpendicular bisector is the same distance from B and C.",
+        "hi": "लंब समद्विभाजक का हर बिंदु B और C से बराबर दूरी पर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The middle works, but so do all the points above and below it on that line.",
+         "hi": "बीच का बिंदु ठीक है, पर उस रेखा पर उसके ऊपर-नीचे के सारे बिंदु भी ठीक हैं।"
+        },
+        {
+         "en": "Near B it would be closer to B than to C.",
+         "hi": "B के पास वह C से ज़्यादा B के क़रीब होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Keep A equally far from B and C but move it higher. Do the two sides stay equal?",
+      "hi": "अब ख़ुद आज़माओ। A को B और C से बराबर दूर रखते हुए ऊपर ले जाओ। क्या दोनों भुजाएँ बराबर रहती हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Chapter hook: circle artwork",
+   "shows": "A floor design of overlapping circles drawn with chalk around a pivot nail and string, in a courtyard",
+   "view": "Top-down, soft daylight",
+   "right": "Circles truly round and evenly overlapping",
+   "avoid": "Feet, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "Geometry box",
+   "shows": "An open school geometry box with a compass, a 15 cm ruler, a protractor and set squares",
+   "view": "Top-down, transparent background",
+   "right": "Real school instruments; compass with a sharp pencil",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "8.3",
+   "use": "Constructing a rectangle",
+   "shows": "A rectangle being constructed on paper: base line, 90° corners at both ends, sides marked, top joined",
+   "view": "Top-down, same sheet, four frames",
+   "right": "Corners are true right angles; sides measured correctly",
+   "avoid": "Hands covering the drawing"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "8.2",
+   "use": "Squares and rectangles around us",
+   "shows": "A window with square glass panes and a rectangular wooden door in an Indian home",
+   "view": "Straight on, daylight",
+   "right": "Corners really square; frames straight",
+   "avoid": "People, house numbers"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "8.5",
+   "use": "Diagonals base",
+   "shows": "A rectangle and a square drawn side by side with their diagonals, clean lines on white",
+   "view": "Flat, centred",
+   "right": "Diagonals join opposite corners exactly",
+   "avoid": "Labels or numbers"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "8.6",
+   "use": "Equal distance",
+   "shows": "Two houses on a village path with a hand pump between them in an open field",
+   "view": "Wide, eye level",
+   "right": "The pump visibly about the same distance from both houses",
+   "avoid": "People, signs"
+  }
+ ]
+}

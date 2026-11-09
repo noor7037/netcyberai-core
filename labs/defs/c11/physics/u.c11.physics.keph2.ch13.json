@@ -1,0 +1,713 @@
+{
+ "chapter_key": "u.c11.physics.keph2.ch13",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "Oscillations",
+ "source": "https://ncert.nic.in/textbook/pdf/keph206.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "An overview of motions that repeat; the reader's photos of a swing, a sitar string and a heartbeat trace set the scene."
+  },
+  {
+   "n": "13.2",
+   "title": "Periodic and oscillatory motions: period, frequency and displacement",
+   "labs": [
+    "c11-physics-keph2-ch13-spring-period"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3",
+   "title": "Simple harmonic motion",
+   "labs": [],
+   "why_no_lab": "The definition x = A cos(ωt + φ) and its graph are met in the reader; the next lab shows the same motion as the shadow of a turning point."
+  },
+  {
+   "n": "13.4",
+   "title": "Simple harmonic motion and uniform circular motion",
+   "labs": [
+    "c11-physics-keph2-ch13-shm-shadow"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.5",
+   "title": "Velocity and acceleration in simple harmonic motion",
+   "labs": [],
+   "why_no_lab": "The formulas v = −ωA sin(ωt + φ) and a = −ω²x are worked in the reader; the shadow lab of 13.4 already shows the bob fastest in the middle and stopping at the ends."
+  },
+  {
+   "n": "13.6",
+   "title": "Force law for simple harmonic motion",
+   "labs": [
+    "c11-physics-keph2-ch13-force-law"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.7",
+   "title": "Energy in simple harmonic motion",
+   "labs": [],
+   "why_no_lab": "The swap of kinetic and potential energy is the pendulum energy lab of Chapter 5; the reader's KE-PE graph adds the SHM formulas."
+  },
+  {
+   "n": "13.8",
+   "title": "The simple pendulum",
+   "labs": [
+    "c11-physics-keph2-ch13-pendulum-period"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph2-ch13-spring-period",
+   "topic": "13.2",
+   "template": "waves",
+   "title": {
+    "en": "Timing a bouncing mass: period and frequency",
+    "hi": "उछलते द्रव्यमान का समय: आवर्तकाल और आवृत्ति"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "spring"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 0.5 kg mass bounces on a spring. If one full up-and-down takes 1 s, how many bounces does it make each second?",
+      "hi": "0.5 kg का द्रव्यमान एक स्प्रिंग पर उछलता है। अगर एक पूरा ऊपर-नीचे 1 s लेता है, तो यह हर सेकंड कितनी बार उछलता है?"
+     },
+     "options": [
+      {
+       "id": "1",
+       "en": "1 (frequency 1 Hz)",
+       "hi": "1 (आवृत्ति 1 Hz)"
+      },
+      {
+       "id": "2",
+       "en": "2, one up and one down",
+       "hi": "2, एक ऊपर और एक नीचे"
+      },
+      {
+       "id": "0.5",
+       "en": "Half a bounce",
+       "hi": "आधा उछाल"
+      }
+     ],
+     "answer": "1"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "period",
+     "say": {
+      "en": "Press Start and wait for one full oscillation to be timed.",
+      "hi": "\"शुरू करो\" दबाओ और एक पूरे दोलन का समय मापे जाने तक रुको।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A motion that repeats after equal times is periodic; moving to and fro about a middle (equilibrium) position is oscillatory. The time for one full oscillation is the period T; the number of oscillations per second is the frequency ν = 1/T, in hertz. Here T ≈ 0.99 s, so ν ≈ 1 Hz. The displacement is the distance from the middle position at any moment.",
+      "hi": "जो गति बराबर समय बाद दोहराए, वह आवर्ती है; किसी बीच की (साम्य) स्थिति के आगे-पीछे चलना दोलनी गति है। एक पूरे दोलन का समय आवर्तकाल T है; हर सेकंड दोलनों की संख्या आवृत्ति ν = 1/T है, हर्ट्ज़ में। यहाँ T ≈ 0.99 s, इसलिए ν ≈ 1 Hz। विस्थापन किसी पल बीच की स्थिति से दूरी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A ceiling fan turns 300 times a minute. Its frequency is:",
+        "hi": "छत का पंखा एक मिनट में 300 बार घूमता है। इसकी आवृत्ति है:"
+       },
+       "options": [
+        {
+         "en": "5 Hz",
+         "hi": "5 Hz (हर्ट्ज़)"
+        },
+        {
+         "en": "300 Hz",
+         "hi": "300 Hz (हर्ट्ज़)"
+        },
+        {
+         "en": "0.2 Hz",
+         "hi": "0.2 Hz (हर्ट्ज़)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "300 turns in 60 s is 300 ÷ 60 = 5 turns per second = 5 Hz; T = 0.2 s.",
+        "hi": "60 s में 300 चक्कर, यानी 300 ÷ 60 = 5 चक्कर प्रति सेकंड = 5 Hz; T = 0.2 s।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "300 is per minute; hertz counts per second.",
+         "hi": "300 प्रति मिनट है; हर्ट्ज़ प्रति सेकंड गिनता है।"
+        },
+        {
+         "en": "0.2 s is the period T, not the frequency.",
+         "hi": "0.2 s आवर्तकाल T है, आवृत्ति नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is the Earth's turning on its axis periodic, oscillatory, or both?",
+        "hi": "पृथ्वी का अपनी धुरी पर घूमना आवर्ती है, दोलनी है, या दोनों?"
+       },
+       "options": [
+        {
+         "en": "Periodic but not oscillatory",
+         "hi": "आवर्ती, पर दोलनी नहीं"
+        },
+        {
+         "en": "Oscillatory",
+         "hi": "दोलनी"
+        },
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It repeats every day, but it does not move to and fro about a middle position.",
+        "hi": "यह हर दिन दोहराता है, पर किसी बीच की स्थिति के आगे-पीछे नहीं चलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Oscillation means to and fro; the Earth always turns the same way.",
+         "hi": "दोलन का अर्थ है आगे-पीछे; पृथ्वी हमेशा एक ही दिशा में घूमती है।"
+        },
+        {
+         "en": "It repeats at equal intervals, so it is periodic.",
+         "hi": "यह बराबर अंतराल पर दोहराता है, इसलिए आवर्ती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the mass and the stiffness, then start again. Which change makes the period longer?",
+      "hi": "द्रव्यमान और कठोरता बदलकर फिर शुरू करो। कौन-सा बदलाव आवर्तकाल लंबा करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch13-shm-shadow",
+   "topic": "13.4",
+   "template": "waves",
+   "title": {
+    "en": "SHM is the shadow of circular motion",
+    "hi": "सरल आवर्त गति वृत्तीय गति की छाया है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "shm"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A ball goes round a circle at steady speed. Its shadow on the wall below moves to and fro. Where is the shadow fastest?",
+      "hi": "एक गेंद वृत्त पर एक-सी चाल से घूमती है। नीचे दीवार पर उसकी छाया आगे-पीछे चलती है। छाया सबसे तेज़ कहाँ होती है?"
+     },
+     "options": [
+      {
+       "id": "middle",
+       "en": "In the middle",
+       "hi": "बीच में"
+      },
+      {
+       "id": "ends",
+       "en": "At the two ends",
+       "hi": "दोनों सिरों पर"
+      },
+      {
+       "id": "same",
+       "en": "Everywhere the same",
+       "hi": "हर जगह बराबर"
+      }
+     ],
+     "answer": "middle"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "period",
+     "say": {
+      "en": "Press Start and watch the yellow shadow for one full turn.",
+      "hi": "\"शुरू करो\" दबाओ और एक पूरे चक्कर तक पीली छाया देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The projection of uniform circular motion on a diameter is simple harmonic motion: x = A cos(ωt + φ), with ω the angular speed of the turning point. In the middle the turning point moves along the diameter, so the shadow is fastest; at the ends it moves across, so the shadow stops for an instant. Here ν = 0.25 Hz, so one turn takes T = 4 s.",
+      "hi": "एकसमान वृत्तीय गति का किसी व्यास पर प्रक्षेप सरल आवर्त गति है: x = A cos(ωt + φ), जहाँ ω घूमते बिंदु की कोणीय चाल है। बीच में घूमता बिंदु व्यास के साथ चलता है, इसलिए छाया सबसे तेज़ होती है; सिरों पर वह व्यास के आर-पार चलता है, इसलिए छाया एक पल रुकती है। यहाँ ν = 0.25 Hz, इसलिए एक चक्कर में T = 4 s लगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "At the ends of an SHM, the acceleration is:",
+        "hi": "सरल आवर्त गति के सिरों पर त्वरण होता है:"
+       },
+       "options": [
+        {
+         "en": "Largest, pointing back to the middle",
+         "hi": "सबसे अधिक, बीच की ओर"
+        },
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        },
+        {
+         "en": "Pointing away from the middle",
+         "hi": "बीच से दूर की ओर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "a = −ω²x is biggest where x is biggest, and always points to the middle.",
+        "hi": "a = −ω²x वहाँ सबसे बड़ा है जहाँ x सबसे बड़ा है, और हमेशा बीच की ओर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The velocity is zero at the ends; the acceleration is largest there.",
+         "hi": "सिरों पर वेग शून्य है; त्वरण वहाँ सबसे अधिक है।"
+        },
+        {
+         "en": "The minus sign means it always pulls back towards x = 0.",
+         "hi": "ऋण चिह्न का अर्थ है कि यह हमेशा x = 0 की ओर वापस खींचता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If the frequency is raised to 0.5 Hz with the same amplitude, the shadow's top speed:",
+        "hi": "अगर उसी आयाम के साथ आवृत्ति 0.5 Hz कर दी जाए, तो छाया की सबसे अधिक चाल:"
+       },
+       "options": [
+        {
+         "en": "Doubles",
+         "hi": "दुगुनी हो जाती है"
+        },
+        {
+         "en": "Stays the same",
+         "hi": "वही रहती है"
+        },
+        {
+         "en": "Halves",
+         "hi": "आधी हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Top speed = ωA = 2πνA; doubling ν doubles it.",
+        "hi": "सबसे अधिक चाल = ωA = 2πνA; ν दुगुना करने पर यह दुगुनी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The same path in half the time needs twice the speed.",
+         "hi": "वही रास्ता आधे समय में तय करने के लिए दुगुनी चाल चाहिए।"
+        },
+        {
+         "en": "A faster turn makes the shadow faster, not slower.",
+         "hi": "तेज़ चक्कर छाया को तेज़ करता है, धीमा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the frequency and the amplitude while it runs, and watch the period and the top speed.",
+      "hi": "चलते हुए आवृत्ति और आयाम बदलो, और आवर्तकाल तथा सबसे अधिक चाल देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch13-force-law",
+   "topic": "13.6",
+   "template": "forces",
+   "title": {
+    "en": "The force law F = −kx and the period of a spring",
+    "hi": "बल नियम F = −kx और स्प्रिंग का आवर्तकाल"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "spring",
+    "object": "soft",
+    "mass": 0.1
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "moved",
+     "say": {
+      "en": "A 100 g mass hangs on the soft spring. Press Pull down and let go, and read its period.",
+      "hi": "नरम स्प्रिंग पर 100 g का द्रव्यमान लटका है। \"नीचे खींचकर छोड़ो\" दबाओ और इसका आवर्तकाल पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:load",
+     "expect": "measured",
+     "say": {
+      "en": "Now move the mass slider to 400 g (four times as much).",
+      "hi": "अब द्रव्यमान का स्लाइडर 400 g (चार गुना) पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "With four times the mass on the same spring, one bounce will take:",
+      "hi": "उसी स्प्रिंग पर चार गुने द्रव्यमान से एक उछाल में लगेगा:"
+     },
+     "options": [
+      {
+       "id": "2x",
+       "en": "Twice as long",
+       "hi": "दुगुना समय"
+      },
+      {
+       "id": "4x",
+       "en": "Four times as long",
+       "hi": "चार गुना समय"
+      },
+      {
+       "id": "same",
+       "en": "The same time",
+       "hi": "उतना ही समय"
+      }
+     ],
+     "answer": "2x"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "moved",
+     "say": {
+      "en": "Press Pull down and let go again and compare the period.",
+      "hi": "फिर \"नीचे खींचकर छोड़ो\" दबाओ और आवर्तकाल की तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Pulled from its rest position by x, the spring pushes back with F = −kx: proportional to the displacement and always towards the middle. Any force like this gives SHM with ω = √(k/m), so T = 2π√(m/k). For k = 10 N/m, 100 g gives about 0.63 s and 400 g about 1.26 s: four times the mass, twice the period.",
+      "hi": "विरामावस्था से x खींचने पर स्प्रिंग F = −kx से वापस धकेलती है: विस्थापन के समानुपाती और हमेशा बीच की ओर। ऐसा कोई भी बल ω = √(k/m) वाली सरल आवर्त गति देता है, इसलिए T = 2π√(m/k)। k = 10 N/m पर 100 g से लगभग 0.63 s और 400 g से लगभग 1.26 s: चार गुना द्रव्यमान, दुगुना आवर्तकाल।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why was \"four times as long\" wrong?",
+        "hi": "\"चार गुना समय\" गलत क्यों था?"
+       },
+       "options": [
+        {
+         "en": "T depends on the square root of m",
+         "hi": "T, m के वर्गमूल पर निर्भर करता है"
+        },
+        {
+         "en": "T does not depend on m",
+         "hi": "T, m पर निर्भर नहीं करता"
+        },
+        {
+         "en": "A heavier mass bounces faster",
+         "hi": "भारी द्रव्यमान तेज़ उछलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "T = 2π√(m/k): √4 = 2.",
+        "hi": "T = 2π√(m/k): √4 = 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It does depend on m for a spring; it is the pendulum whose period does not.",
+         "hi": "स्प्रिंग के लिए यह m पर निर्भर है; लोलक का आवर्तकाल m पर निर्भर नहीं करता।"
+        },
+        {
+         "en": "The lab showed the heavier mass bouncing more slowly.",
+         "hi": "लैब ने दिखाया कि भारी द्रव्यमान धीमे उछलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A stiffer spring (larger k) with the same mass gives:",
+        "hi": "उसी द्रव्यमान के साथ कड़ी स्प्रिंग (बड़ा k) देती है:"
+       },
+       "options": [
+        {
+         "en": "A shorter period",
+         "hi": "छोटा आवर्तकाल"
+        },
+        {
+         "en": "A longer period",
+         "hi": "लंबा आवर्तकाल"
+        },
+        {
+         "en": "No oscillation",
+         "hi": "कोई दोलन नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A larger k means a stronger pull back, so ω = √(k/m) grows and T shrinks.",
+        "hi": "बड़े k का अर्थ है ज़्यादा ज़ोर से वापस खिंचाव, इसलिए ω = √(k/m) बढ़ता है और T घटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "k is in the bottom of T = 2π√(m/k), so a bigger k makes T smaller.",
+         "hi": "T = 2π√(m/k) में k नीचे है, इसलिए बड़ा k, T को छोटा करता है।"
+        },
+        {
+         "en": "Any spring with a mass on it oscillates when pulled and let go.",
+         "hi": "कोई भी स्प्रिंग जिस पर द्रव्यमान हो, खींचकर छोड़ने पर दोलन करती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick the stiff spring and try 100 g and 400 g again. Is the period still doubled?",
+      "hi": "कड़ी स्प्रिंग चुनकर 100 g और 400 g फिर आज़माओ। क्या आवर्तकाल फिर भी दुगुना होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch13-pendulum-period",
+   "topic": "13.8",
+   "template": "waves",
+   "title": {
+    "en": "The simple pendulum: T = 2π√(l/g)",
+    "hi": "सरल लोलक: T = 2π√(l/g)"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "pendulum"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A pendulum has a 1 m string and swings through a small angle on the Earth. One full swing takes about:",
+      "hi": "एक लोलक का धागा 1 m का है और यह पृथ्वी पर छोटे कोण से झूलता है। एक पूरे झूले में लगभग लगता है:"
+     },
+     "options": [
+      {
+       "id": "2",
+       "en": "2 s",
+       "hi": "2 सेकंड"
+      },
+      {
+       "id": "1",
+       "en": "1 s",
+       "hi": "1 सेकंड"
+      },
+      {
+       "id": "6.3",
+       "en": "6.3 s",
+       "hi": "6.3 सेकंड"
+      }
+     ],
+     "answer": "2"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "period",
+     "say": {
+      "en": "Press Start and wait for one swing to be timed.",
+      "hi": "\"शुरू करो\" दबाओ और एक झूले का समय मापे जाने तक रुको।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For small swings the pull of gravity back to the middle is nearly proportional to the displacement, so the bob moves in SHM with T = 2π√(l/g) = 2π√(1/9.8) ≈ 2.0 s. The mass of the bob does not appear: a heavy and a light bob on the same string keep time together. Large swings are a little slower than the formula.",
+      "hi": "छोटे झूलों में बीच की ओर गुरुत्व का खिंचाव लगभग विस्थापन के समानुपाती होता है, इसलिए गोलक T = 2π√(l/g) = 2π√(1/9.8) ≈ 2.0 s वाली सरल आवर्त गति करता है। गोलक का द्रव्यमान सूत्र में नहीं आता: एक ही धागे पर भारी और हल्का गोलक साथ-साथ झूलते हैं। बड़े झूले सूत्र से थोड़े धीमे होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "To make a pendulum with a period of 4 s on the Earth, the string must be about:",
+        "hi": "पृथ्वी पर 4 s आवर्तकाल वाला लोलक बनाने के लिए धागा लगभग होना चाहिए:"
+       },
+       "options": [
+        {
+         "en": "4 m",
+         "hi": "4 m (मीटर)"
+        },
+        {
+         "en": "2 m",
+         "hi": "2 m (मीटर)"
+        },
+        {
+         "en": "16 m",
+         "hi": "16 m (मीटर)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "T ∝ √l: to double T from 2 s to 4 s, l must be 2² = 4 times, 4 m.",
+        "hi": "T ∝ √l: T को 2 s से 4 s दुगुना करने के लिए l को 2² = 4 गुना, यानी 4 m करना होगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Doubling l multiplies T only by √2 ≈ 1.41.",
+         "hi": "l दुगुना करने से T केवल √2 ≈ 1.41 गुना होता है।"
+        },
+        {
+         "en": "16 m would give T = 8 s.",
+         "hi": "16 m से T = 8 s आएगा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "On the Moon (g = 1.62 m/s²) the same 1 m pendulum swings:",
+        "hi": "चंद्रमा पर (g = 1.62 m/s²) वही 1 m का लोलक झूलता है:"
+       },
+       "options": [
+        {
+         "en": "More slowly, about 4.9 s per swing",
+         "hi": "धीमे, हर झूले में लगभग 4.9 s"
+        },
+        {
+         "en": "Faster",
+         "hi": "तेज़"
+        },
+        {
+         "en": "Not at all",
+         "hi": "बिल्कुल नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "T = 2π√(1/1.62) ≈ 4.9 s: weaker gravity, a slower swing.",
+        "hi": "T = 2π√(1/1.62) ≈ 4.9 s: कमज़ोर गुरुत्व, धीमा झूला।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "g is in the bottom of the formula, so smaller g gives a larger T.",
+         "hi": "सूत्र में g नीचे है, इसलिए छोटा g बड़ा T देता है।"
+        },
+        {
+         "en": "There is gravity on the Moon, just less, so it still swings.",
+         "hi": "चंद्रमा पर गुरुत्व है, बस कम, इसलिए यह फिर भी झूलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the string length and take the pendulum to the Moon, Mars and Jupiter. Check each period against 2π√(l/g).",
+      "hi": "धागे की लंबाई बदलो और लोलक को चंद्रमा, मंगल और बृहस्पति पर ले जाओ। हर आवर्तकाल को 2π√(l/g) से मिलाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "Chapter hook: motions that repeat",
+   "shows": "A child on a park swing, a sitar being played with one string blurred, and a wall clock with a pendulum, as three photos",
+   "view": "Eye level, the moving part in focus",
+   "right": "Motion blur only on the moving part",
+   "avoid": "Faces in focus, brand names on the clock"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "13.2",
+   "use": "One oscillation of a spring",
+   "shows": "Five frames of a mass on a spring: middle going down, lowest point, middle going up, highest point, middle again, with a stopwatch reading on each",
+   "view": "Fixed camera, side view, a metre scale behind",
+   "right": "The fifth frame matches the first; times equally spaced",
+   "avoid": "Shaking camera"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "13.4",
+   "use": "SHM as a shadow",
+   "shows": "A point going round a circle and its projection on the horizontal diameter, drawn at eight equal time steps",
+   "view": "Flat diagram, the shadow dots crowded near the ends and spread in the middle",
+   "right": "Dots equally spaced in angle on the circle",
+   "avoid": "Shadow dots drawn equally spaced"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "13.5",
+   "use": "Displacement, velocity and acceleration graphs",
+   "shows": "Three stacked graphs against time for SHM: x (cosine), v (minus sine), a (minus cosine), with a dotted line showing x largest where v is zero",
+   "view": "Flat graphs, the same time axis",
+   "right": "Each curve shifted by a quarter period from the last",
+   "avoid": "Curves with different periods"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "13.8",
+   "use": "Pendulum for the lab",
+   "shows": "A school simple pendulum: a brass bob on a thread hanging from a split cork in a clamp stand",
+   "view": "Side view, plain background",
+   "right": "Thread straight; the bob hangs at rest",
+   "avoid": "Brand marks on the stand"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "13.6",
+   "use": "Springs that oscillate in daily life",
+   "shows": "The shock-absorber spring of a motorcycle, close up",
+   "view": "Side view, the coil fully visible",
+   "right": "Coils evenly spaced",
+   "avoid": "Number plates, brand logos"
+  }
+ ]
+}

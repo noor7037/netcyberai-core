@@ -1,0 +1,940 @@
+{
+ "chapter_key": "u.c11.economics.kest1.ch07",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Index Numbers",
+ "source": "https://ncert.nic.in/textbook/pdf/kest107.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "Explains why we need index numbers; best read."
+  },
+  {
+   "n": "2",
+   "title": "What is an index number?",
+   "labs": [
+    "c11-economics-kest1-ch07-simple-index"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "Construction: simple aggregative, price relatives, weighted (Laspeyres, Paasche)",
+   "labs": [
+    "c11-economics-kest1-ch07-simple-index",
+    "c11-economics-kest1-ch07-laspeyres"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4",
+   "title": "Some important index numbers: CPI, WPI, IIP, Sensex",
+   "labs": [
+    "c11-economics-kest1-ch07-which-index"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5",
+   "title": "Issues in the construction of an index number",
+   "labs": [],
+   "why_no_lab": "Choosing the base, items, weights and data sources is best discussed with the reader's examples."
+  },
+  {
+   "n": "6",
+   "title": "Index numbers in economics: inflation, real wages, purchasing power",
+   "labs": [
+    "c11-economics-kest1-ch07-cpi"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary best read."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-kest1-ch07-simple-index",
+   "topic": "3",
+   "template": "scenario",
+   "title": {
+    "en": "Building a price index",
+    "hi": "मूल्य सूचकांक बनाना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "kitchen",
+    "role": {
+     "en": "Family accountant",
+     "hi": "परिवार का हिसाब रखने वाला"
+    },
+    "scenes": [
+     {
+      "id": "agg",
+      "text": {
+       "en": "In the base year, rice cost ₹40 a kg, dal ₹100 a kg and milk ₹50 a litre: total ₹190. This year they cost ₹50, ₹120 and ₹60: total ₹230. What is the simple aggregative price index?",
+       "hi": "आधार वर्ष में चावल ₹40 प्रति किलो, दाल ₹100 प्रति किलो और दूध ₹50 प्रति लीटर था: कुल ₹190। इस साल ये ₹50, ₹120 और ₹60 हैं: कुल ₹230। सरल समूहित मूल्य सूचकांक क्या है?"
+      },
+      "choices": [
+       {
+        "id": "i121",
+        "text": {
+         "en": "230 ÷ 190 × 100 ≈ 121.1",
+         "hi": "230 ÷ 190 × 100 ≈ 121.1"
+        },
+        "next": "rel",
+        "feedback": {
+         "en": "Right. Prices are about 21 per cent higher than in the base year.",
+         "hi": "सही। दाम आधार वर्ष से लगभग 21 प्रतिशत ज़्यादा हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "i83",
+        "text": {
+         "en": "190 ÷ 230 × 100 ≈ 82.6",
+         "hi": "190 ÷ 230 × 100 ≈ 82.6"
+        },
+        "next": "rel",
+        "feedback": {
+         "en": "The current year goes on top: ΣP1 ÷ ΣP0 × 100.",
+         "hi": "चालू वर्ष ऊपर आता है: ΣP1 ÷ ΣP0 × 100।"
+        },
+        "good": false
+       },
+       {
+        "id": "i40",
+        "text": {
+         "en": "230 − 190 = 40",
+         "hi": "230 − 190 = 40"
+        },
+        "next": "rel",
+        "feedback": {
+         "en": "An index is a ratio times 100, not a difference.",
+         "hi": "सूचकांक एक अनुपात × 100 है, अंतर नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "rel",
+      "text": {
+       "en": "What is the price relative of dal, P1 ÷ P0 × 100?",
+       "hi": "दाल का मूल्यानुपात, P1 ÷ P0 × 100, क्या है?"
+      },
+      "choices": [
+       {
+        "id": "r120",
+        "text": {
+         "en": "120",
+         "hi": "120"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes: 120 ÷ 100 × 100 = 120. Dal is 20 per cent dearer.",
+         "hi": "हाँ: 120 ÷ 100 × 100 = 120। दाल 20 प्रतिशत महँगी है।"
+        },
+        "good": true
+       },
+       {
+        "id": "r20",
+        "text": {
+         "en": "20",
+         "hi": "20"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "20 is the rise in rupees; the price relative is 120.",
+         "hi": "20 रुपयों में बढ़ोतरी है; मूल्यानुपात 120 है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the base year an index number always equals…",
+      "hi": "आधार वर्ष में सूचकांक हमेशा बराबर होता है…"
+     },
+     "options": [
+      {
+       "id": "h",
+       "en": "100",
+       "hi": "100 के"
+      },
+      {
+       "id": "z",
+       "en": "0",
+       "hi": "शून्य के"
+      },
+      {
+       "id": "o",
+       "en": "1,000",
+       "hi": "1,000 के"
+      }
+     ],
+     "answer": "h"
+    },
+    {
+     "kind": "do",
+     "target": "choice:agg:i121",
+     "expect": "chose:i121",
+     "say": {
+      "en": "Work out ΣP1 ÷ ΣP0 × 100 and tap your answer.",
+      "hi": "ΣP1 ÷ ΣP0 × 100 निकालो और अपना उत्तर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An index number measures the change in a group of related variables over time, compared with a base period whose index is 100. The simple aggregative price index is ΣP1 ÷ ΣP0 × 100. It treats every item as equally important, which is a weakness: a rise in the price of rice matters more to a family than a rise in the price of salt. Weighted indices fix this.",
+      "hi": "सूचकांक समय के साथ संबंधित चरों के समूह में बदलाव को आधार अवधि से तुलना करके मापता है, जिसका सूचकांक 100 होता है। सरल समूहित मूल्य सूचकांक ΣP1 ÷ ΣP0 × 100 है। यह हर मद को बराबर महत्वपूर्ण मानता है, जो इसकी कमज़ोरी है: परिवार के लिए चावल के दाम बढ़ना नमक के दाम बढ़ने से ज़्यादा मायने रखता है। भारित सूचकांक इसे ठीक करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An index of 121 means prices are…",
+        "hi": "121 का सूचकांक बताता है कि दाम…"
+       },
+       "options": [
+        {
+         "en": "About 21 per cent higher than in the base year",
+         "hi": "आधार वर्ष से लगभग 21 प्रतिशत ज़्यादा हैं"
+        },
+        {
+         "en": "121 rupees",
+         "hi": "121 रुपये हैं"
+        },
+        {
+         "en": "21 per cent lower",
+         "hi": "21 प्रतिशत कम हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "121 − 100 = 21, a 21 per cent rise over the base.",
+        "hi": "121 − 100 = 21, यानी आधार से 21 प्रतिशत बढ़ोतरी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An index has no unit; it is not a price in rupees.",
+         "hi": "सूचकांक की कोई इकाई नहीं; यह रुपयों में दाम नहीं है।"
+        },
+        {
+         "en": "Above 100 means higher, not lower.",
+         "hi": "100 से ऊपर का अर्थ ज़्यादा है, कम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the price relative of dal in the next scene. Then compute the price relatives of rice and milk too.",
+      "hi": "अगले दृश्य में दाल का मूल्यानुपात निकालो। फिर चावल और दूध के मूल्यानुपात भी निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch07-laspeyres",
+   "topic": "3",
+   "template": "scenario",
+   "title": {
+    "en": "Weighted index: Laspeyres",
+    "hi": "भारित सूचकांक: लास्पेयर"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "setting": "kitchen",
+    "role": {
+     "en": "Family accountant",
+     "hi": "परिवार का हिसाब रखने वाला"
+    },
+    "scenes": [
+     {
+      "id": "base",
+      "text": {
+       "en": "Each month the family bought 10 kg rice, 2 kg dal and 30 litres milk in the base year (q0). Prices then (P0) were ₹40, ₹100 and ₹50. What is ΣP0q0?",
+       "hi": "आधार वर्ष में परिवार हर महीने 10 किलो चावल, 2 किलो दाल और 30 लीटर दूध ख़रीदता था (q0)। तब दाम (P0) ₹40, ₹100 और ₹50 थे। ΣP0q0 क्या है?"
+      },
+      "choices": [
+       {
+        "id": "b2100",
+        "text": {
+         "en": "₹2,100",
+         "hi": "₹2,100"
+        },
+        "next": "now",
+        "feedback": {
+         "en": "Yes: 400 + 200 + 1,500 = ₹2,100, the cost of the basket in the base year.",
+         "hi": "हाँ: 400 + 200 + 1,500 = ₹2,100, आधार वर्ष में टोकरी की लागत।"
+        },
+        "good": true
+       },
+       {
+        "id": "b190",
+        "text": {
+         "en": "₹190",
+         "hi": "₹190"
+        },
+        "next": "now",
+        "feedback": {
+         "en": "₹190 adds prices only; multiply each price by its quantity.",
+         "hi": "₹190 केवल दाम जोड़ता है; हर दाम को उसकी मात्रा से गुणा करो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "now",
+      "text": {
+       "en": "This year the same basket at new prices ₹50, ₹120 and ₹60 costs ΣP1q0 = 500 + 240 + 1,800 = ₹2,540. What is Laspeyres' price index?",
+       "hi": "इस साल नए दाम ₹50, ₹120 और ₹60 पर वही टोकरी ΣP1q0 = 500 + 240 + 1,800 = ₹2,540 की है। लास्पेयर का मूल्य सूचकांक क्या है?"
+      },
+      "choices": [
+       {
+        "id": "l121",
+        "text": {
+         "en": "2,540 ÷ 2,100 × 100 ≈ 121.0",
+         "hi": "2,540 ÷ 2,100 × 100 ≈ 121.0"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. The base-year basket costs about 21 per cent more now.",
+         "hi": "सही। आधार वर्ष की टोकरी अब लगभग 21 प्रतिशत ज़्यादा की है।"
+        },
+        "good": true
+       },
+       {
+        "id": "l440",
+        "text": {
+         "en": "2,540 − 2,100 = 440",
+         "hi": "2,540 − 2,100 = 440"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "That is the extra cost in rupees; the index is a ratio × 100.",
+         "hi": "यह रुपयों में अतिरिक्त लागत है; सूचकांक अनुपात × 100 है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Milk is bought in much larger amounts than dal. In a weighted index, which matters more?",
+      "hi": "दूध दाल से बहुत ज़्यादा मात्रा में ख़रीदा जाता है। भारित सूचकांक में किसका महत्व ज़्यादा है?"
+     },
+     "options": [
+      {
+       "id": "milk",
+       "en": "Milk",
+       "hi": "दूध"
+      },
+      {
+       "id": "dal",
+       "en": "Dal",
+       "hi": "दाल"
+      },
+      {
+       "id": "equal",
+       "en": "Both equally",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "milk"
+    },
+    {
+     "kind": "do",
+     "target": "choice:base:b2100",
+     "expect": "chose:b2100",
+     "say": {
+      "en": "Multiply each price by its quantity, add, and tap ΣP0q0.",
+      "hi": "हर दाम को उसकी मात्रा से गुणा करो, जोड़ो, और ΣP0q0 पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A weighted index gives each item a weight for its importance. Laspeyres' price index uses base-year quantities as weights: ΣP1q0 ÷ ΣP0q0 × 100. It answers: how much more does the same basket cost now? Paasche's index uses current-year quantities instead: ΣP1q1 ÷ ΣP0q1 × 100. Consumer price indices are weighted in this way.",
+      "hi": "भारित सूचकांक हर मद को उसके महत्व के अनुसार भार देता है। लास्पेयर का मूल्य सूचकांक आधार वर्ष की मात्राओं को भार मानता है: ΣP1q0 ÷ ΣP0q0 × 100। यह बताता है: वही टोकरी अब कितनी महँगी है? पाशे का सूचकांक इसके बजाय चालू वर्ष की मात्राएँ इस्तेमाल करता है: ΣP1q1 ÷ ΣP0q1 × 100। उपभोक्ता मूल्य सूचकांक इसी तरह भारित होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which quantities does Paasche's index use as weights?",
+        "hi": "पाशे का सूचकांक किन मात्राओं को भार मानता है?"
+       },
+       "options": [
+        {
+         "en": "Current-year quantities (q1)",
+         "hi": "चालू वर्ष की मात्राएँ (q1)"
+        },
+        {
+         "en": "Base-year quantities (q0)",
+         "hi": "आधार वर्ष की मात्राएँ (q0)"
+        },
+        {
+         "en": "No quantities at all",
+         "hi": "कोई मात्रा नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Paasche uses q1; Laspeyres uses q0.",
+        "hi": "पाशे q1 इस्तेमाल करता है; लास्पेयर q0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Base-year quantities are Laspeyres' weights.",
+         "hi": "आधार वर्ष की मात्राएँ लास्पेयर के भार हैं।"
+        },
+        {
+         "en": "Using no quantities is the simple, unweighted index.",
+         "hi": "बिना मात्रा वाला सरल, अभारित सूचकांक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the index in the next scene. Then try: if milk rose to ₹70, how would the Laspeyres index change?",
+      "hi": "अगले दृश्य में सूचकांक पूरा करो। फिर आज़माओ: अगर दूध ₹70 हो जाए, तो लास्पेयर सूचकांक कैसे बदलेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch07-cpi",
+   "topic": "6",
+   "template": "data",
+   "title": {
+    "en": "Reading a consumer price index",
+    "hi": "उपभोक्ता मूल्य सूचकांक पढ़ना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "ask": "range",
+    "show": 2,
+    "title": {
+     "en": "A consumer price index, base year = 100 (example)",
+     "hi": "एक उपभोक्ता मूल्य सूचकांक, आधार वर्ष = 100 (उदाहरण)"
+    },
+    "xlabel": {
+     "en": "Year",
+     "hi": "वर्ष"
+    },
+    "ylabel": {
+     "en": "Index",
+     "hi": "सूचकांक"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Base year",
+       "hi": "आधार वर्ष"
+      },
+      "value": 100
+     },
+     {
+      "label": {
+       "en": "Year 2",
+       "hi": "वर्ष 2"
+      },
+      "value": 104
+     },
+     {
+      "label": {
+       "en": "Year 3",
+       "hi": "वर्ष 3"
+      },
+      "value": 109
+     },
+     {
+      "label": {
+       "en": "Year 4",
+       "hi": "वर्ष 4"
+      },
+      "value": 115
+     },
+     {
+      "label": {
+       "en": "Year 5",
+       "hi": "वर्ष 5"
+      },
+      "value": 121
+     },
+     {
+      "label": {
+       "en": "Year 6",
+       "hi": "वर्ष 6"
+      },
+      "value": 126
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the index keeps rising, what happens to what ₹100 can buy?",
+      "hi": "अगर सूचकांक बढ़ता रहे, तो ₹100 से ख़रीदी जा सकने वाली चीज़ों का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "It buys less",
+       "hi": "कम ख़रीदता है"
+      },
+      {
+       "id": "more",
+       "en": "It buys more",
+       "hi": "ज़्यादा ख़रीदता है"
+      },
+      {
+       "id": "same",
+       "en": "It buys the same",
+       "hi": "उतना ही ख़रीदता है"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot year 3.",
+      "hi": "\"जोड़ो\" पर टैप करो और वर्ष 3 दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot year 4.",
+      "hi": "\"जोड़ो\" पर टैप करो और वर्ष 4 दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot year 5.",
+      "hi": "\"जोड़ो\" पर टैप करो और वर्ष 5 दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot year 6.",
+      "hi": "\"जोड़ो\" पर टैप करो और वर्ष 6 दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer below: by how many points did the index rise from the lowest to the highest year?",
+      "hi": "नीचे उत्तर दो: सबसे कम से सबसे ऊँचे वर्ष तक सूचकांक कितने अंक बढ़ा?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A consumer price index (CPI) tracks the cost of a fixed basket of goods and services bought by a group of consumers. A rising CPI means inflation. The rate of inflation between two years is the percentage change in the index, for example (109 − 104) ÷ 104 × 100 ≈ 4.8 per cent. The purchasing power of money is 100 ÷ CPI × 100: in year 6, ₹100 buys what about ₹79 bought in the base year. Wages are often raised in line with the CPI.",
+      "hi": "उपभोक्ता मूल्य सूचकांक (CPI) उपभोक्ताओं के किसी समूह द्वारा ख़रीदी जाने वाली वस्तुओं और सेवाओं की एक तय टोकरी की लागत पर नज़र रखता है। बढ़ता CPI महँगाई का संकेत है। दो सालों के बीच महँगाई दर सूचकांक में प्रतिशत बदलाव है, जैसे (109 − 104) ÷ 104 × 100 ≈ 4.8 प्रतिशत। पैसे की क्रय शक्ति 100 ÷ CPI × 100 है: वर्ष 6 में ₹100 से उतना आता है जितना आधार वर्ष में लगभग ₹79 से आता था। वेतन अक्सर CPI के अनुसार बढ़ाए जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What was the rate of inflation from year 5 to year 6?",
+        "hi": "वर्ष 5 से वर्ष 6 तक महँगाई दर क्या थी?"
+       },
+       "options": [
+        {
+         "en": "About 4.1 per cent",
+         "hi": "लगभग 4.1 प्रतिशत"
+        },
+        {
+         "en": "5 per cent",
+         "hi": "5 प्रतिशत"
+        },
+        {
+         "en": "26 per cent",
+         "hi": "26 प्रतिशत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(126 − 121) ÷ 121 × 100 ≈ 4.1 per cent.",
+        "hi": "(126 − 121) ÷ 121 × 100 ≈ 4.1 प्रतिशत।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 is the rise in points; divide by the earlier year's index, 121.",
+         "hi": "5 अंकों की बढ़ोतरी है; इसे पिछले वर्ष के सूचकांक, 121, से भाग दो।"
+        },
+        {
+         "en": "26 per cent is the rise since the base year, not in one year.",
+         "hi": "26 प्रतिशत आधार वर्ष से बढ़ोतरी है, एक साल में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A worker's wage rose from ₹10,000 to ₹12,000 while the CPI rose from 100 to 126. Is the worker better off in real terms?",
+        "hi": "एक श्रमिक का वेतन ₹10,000 से ₹12,000 हुआ, जबकि CPI 100 से 126 हुआ। क्या असल में श्रमिक बेहतर स्थिति में है?"
+       },
+       "options": [
+        {
+         "en": "No: the wage rose 20 per cent but prices rose 26 per cent",
+         "hi": "नहीं: वेतन 20 प्रतिशत बढ़ा पर दाम 26 प्रतिशत बढ़े"
+        },
+        {
+         "en": "Yes: the wage went up by ₹2,000",
+         "hi": "हाँ: वेतन ₹2,000 बढ़ा"
+        },
+        {
+         "en": "It is impossible to say",
+         "hi": "कहना असंभव है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Real wage = 12,000 ÷ 126 × 100 ≈ ₹9,524, less than ₹10,000.",
+        "hi": "वास्तविक वेतन = 12,000 ÷ 126 × 100 ≈ ₹9,524, जो ₹10,000 से कम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The money wage rose, but its purchasing power fell.",
+         "hi": "मौद्रिक वेतन बढ़ा, पर उसकी क्रय शक्ति घटी।"
+        },
+        {
+         "en": "Dividing by the index tells us exactly.",
+         "hi": "सूचकांक से भाग देकर ठीक पता चलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag year 6 down to 110. What would the inflation rate from year 5 be then?",
+      "hi": "वर्ष 6 को 110 तक नीचे खींचो। तब वर्ष 5 से महँगाई दर क्या होगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch07-which-index",
+   "topic": "4",
+   "template": "scenario",
+   "title": {
+    "en": "Which index measures what?",
+    "hi": "कौन-सा सूचकांक क्या मापता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "economics club",
+    "role": {
+     "en": "Member of the school economics club",
+     "hi": "स्कूल के अर्थशास्त्र क्लब का सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "wage",
+      "text": {
+       "en": "A factory union wants wages to keep up with the cost of living of its workers. Which index should it look at?",
+       "hi": "एक कारख़ाना यूनियन चाहती है कि वेतन उसके श्रमिकों के जीवन-यापन ख़र्च के साथ बढ़े। उसे कौन-सा सूचकांक देखना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "cpi",
+        "text": {
+         "en": "Consumer price index (CPI)",
+         "hi": "उपभोक्ता मूल्य सूचकांक (CPI)"
+        },
+        "next": "factory",
+        "feedback": {
+         "en": "Right. The CPI measures the retail prices that consumers pay.",
+         "hi": "सही। CPI उन खुदरा दामों को मापता है जो उपभोक्ता देते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "sensex",
+        "text": {
+         "en": "Sensex",
+         "hi": "सेंसेक्स"
+        },
+        "next": "factory",
+        "feedback": {
+         "en": "The Sensex tracks share prices, not the cost of living.",
+         "hi": "सेंसेक्स शेयरों के दाम दिखाता है, जीवन-यापन ख़र्च नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "factory",
+      "text": {
+       "en": "A news report says factory output in mining, manufacturing and electricity rose this year. Which index is it using?",
+       "hi": "एक ख़बर कहती है कि इस साल खनन, विनिर्माण और बिजली में कारख़ाना उत्पादन बढ़ा। यह कौन-सा सूचकांक इस्तेमाल कर रही है?"
+      },
+      "choices": [
+       {
+        "id": "iip",
+        "text": {
+         "en": "Index of Industrial Production",
+         "hi": "औद्योगिक उत्पादन सूचकांक"
+        },
+        "next": "shares",
+        "feedback": {
+         "en": "Yes. The IIP measures changes in the quantity of industrial output.",
+         "hi": "हाँ। औद्योगिक उत्पादन सूचकांक औद्योगिक उत्पादन की मात्रा में बदलाव मापता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "wpi",
+        "text": {
+         "en": "Wholesale price index",
+         "hi": "थोक मूल्य सूचकांक"
+        },
+        "next": "shares",
+        "feedback": {
+         "en": "The WPI tracks wholesale prices, not quantities produced.",
+         "hi": "थोक मूल्य सूचकांक थोक दाम दिखाता है, उत्पादन की मात्रा नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "shares",
+      "text": {
+       "en": "Your uncle checks how the share market did today. Which index does he look at?",
+       "hi": "तुम्हारे चाचा देखते हैं कि आज शेयर बाज़ार कैसा रहा। वे कौन-सा सूचकांक देखते हैं?"
+      },
+      "choices": [
+       {
+        "id": "sensex2",
+        "text": {
+         "en": "Sensex",
+         "hi": "सेंसेक्स"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. The Sensex is based on the shares of 30 large companies on the Bombay Stock Exchange.",
+         "hi": "सही। सेंसेक्स बॉम्बे स्टॉक एक्सचेंज की 30 बड़ी कंपनियों के शेयरों पर आधारित है।"
+        },
+        "good": true
+       },
+       {
+        "id": "cpi2",
+        "text": {
+         "en": "CPI",
+         "hi": "उपभोक्ता मूल्य सूचकांक"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The CPI is about prices of goods consumers buy, not shares.",
+         "hi": "CPI उपभोक्ताओं की ख़रीदी चीज़ों के दाम के बारे में है, शेयरों के नहीं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which index tells us how fast prices in shops are rising for families?",
+      "hi": "कौन-सा सूचकांक बताता है कि परिवारों के लिए दुकानों में दाम कितनी तेज़ी से बढ़ रहे हैं?"
+     },
+     "options": [
+      {
+       "id": "cpi",
+       "en": "Consumer price index",
+       "hi": "उपभोक्ता मूल्य सूचकांक"
+      },
+      {
+       "id": "iip",
+       "en": "Index of Industrial Production",
+       "hi": "औद्योगिक उत्पादन सूचकांक"
+      },
+      {
+       "id": "sensex",
+       "en": "Sensex",
+       "hi": "सेंसेक्स"
+      }
+     ],
+     "answer": "cpi"
+    },
+    {
+     "kind": "do",
+     "target": "choice:wage:cpi",
+     "expect": "chose:cpi",
+     "say": {
+      "en": "Tap the index the union should use.",
+      "hi": "यूनियन को जो सूचकांक इस्तेमाल करना चाहिए उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India publishes several important index numbers. The consumer price index (CPI) measures retail prices paid by consumers and is the main measure of inflation. The wholesale price index (WPI) measures prices in bulk trade. The index of industrial production (IIP) measures the quantity of output of industry. The Sensex measures the prices of shares of 30 big companies on the Bombay Stock Exchange.",
+      "hi": "भारत कई महत्वपूर्ण सूचकांक प्रकाशित करता है। उपभोक्ता मूल्य सूचकांक (CPI) उपभोक्ताओं द्वारा दिए गए खुदरा दाम मापता है और महँगाई का मुख्य पैमाना है। थोक मूल्य सूचकांक (WPI) थोक व्यापार के दाम मापता है। औद्योगिक उत्पादन सूचकांक (IIP) उद्योग के उत्पादन की मात्रा मापता है। सेंसेक्स बॉम्बे स्टॉक एक्सचेंज की 30 बड़ी कंपनियों के शेयरों के दाम मापता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A rising Sensex usually shows that…",
+        "hi": "बढ़ता सेंसेक्स आमतौर पर दिखाता है कि…"
+       },
+       "options": [
+        {
+         "en": "Investors are confident about the share market",
+         "hi": "निवेशक शेयर बाज़ार को लेकर आश्वस्त हैं"
+        },
+        {
+         "en": "Vegetable prices are falling",
+         "hi": "सब्ज़ियों के दाम गिर रहे हैं"
+        },
+        {
+         "en": "Factories produce nothing",
+         "hi": "कारख़ाने कुछ नहीं बनाते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Higher share prices reflect investors' confidence in companies' future earnings.",
+        "hi": "ऊँचे शेयर दाम कंपनियों की भविष्य की कमाई में निवेशकों के भरोसे को दिखाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Vegetable prices are in the CPI, not the Sensex.",
+         "hi": "सब्ज़ियों के दाम CPI में हैं, सेंसेक्स में नहीं।"
+        },
+        {
+         "en": "The Sensex is about share prices, not output.",
+         "hi": "सेंसेक्स शेयर दाम के बारे में है, उत्पादन के बारे में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the factory and share-market scenes. Then look for one of these indices in today's newspaper.",
+      "hi": "कारख़ाने और शेयर बाज़ार वाले दृश्य खेलो। फिर आज के अख़बार में इनमें से कोई एक सूचकांक खोजो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2",
+   "use": "Hook of the chapter: a family shopping basket",
+   "shows": "A cloth shopping bag spilling rice, dal packets, a milk packet, vegetables and a small cooking oil bottle on a kitchen counter",
+   "view": "Three-quarter view, morning light, 16:9",
+   "right": "Plain packets without brand names",
+   "avoid": "Logos, price tags"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "6",
+   "use": "Prices over the years",
+   "shows": "The same steel kitchen shelf photographed with a full jar of dal, then a half jar, then a nearly empty jar, beside the same few coins",
+   "view": "Identical framing and light in three frames, 4:3",
+   "right": "Same jar and coins in every frame",
+   "avoid": "Text, brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4",
+   "use": "Industrial production",
+   "shows": "An Indian steel rolling mill with hot steel bars on rollers, seen from a safe walkway",
+   "view": "Wide view, glowing light, 16:9",
+   "right": "Workers in protective gear far away",
+   "avoid": "Company names, faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4",
+   "use": "Wholesale trade",
+   "shows": "A wholesale grain market godown with stacks of sacks and a forklift",
+   "view": "Wide view inside the godown, 16:9",
+   "right": "Plain sacks",
+   "avoid": "Brand names, faces"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "3",
+   "use": "Base for an index calculation table",
+   "shows": "An empty table grid with five columns and four rows in soft colours on white",
+   "view": "Flat, 4:3",
+   "right": "Even rows and columns",
+   "avoid": "Text or numbers"
+  }
+ ]
+}

@@ -1,0 +1,902 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch09",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "Coconut Farm",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Arrays of coconuts: multiplication and division facts",
+   "labs": [
+    "c05-mathematics-eemm1-ch09-fact-families",
+    "c05-mathematics-eemm1-ch09-which-family"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Division with tens and hundreds, and place value patterns",
+   "labs": [
+    "c05-mathematics-eemm1-ch09-tens-division"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Word problems on sharing and grouping",
+   "labs": [
+    "c05-mathematics-eemm1-ch09-share-gift"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch09-fact-families",
+   "topic": "9.1",
+   "template": "match",
+   "title": {
+    "en": "From multiplying to dividing",
+    "hi": "गुणा से भाग तक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "5 × 7 = 35",
+       "hi": "5 × 7 = 35"
+      },
+      "right": {
+       "en": "35 ÷ 7 = 5",
+       "hi": "35 ÷ 7 = 5"
+      },
+      "why": {
+       "en": "35 coconuts in 5 rows of 7: splitting 35 into 7 groups gives 5 in each group.",
+       "hi": "35 नारियल, 7-7 की 5 कतारों में: 35 को 7 समूहों में बाँटने पर हर समूह में 5 आते हैं।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "9 × 6 = 54",
+       "hi": "9 × 6 = 54"
+      },
+      "right": {
+       "en": "54 ÷ 6 = 9",
+       "hi": "54 ÷ 6 = 9"
+      },
+      "why": {
+       "en": "If 9 groups of 6 make 54, then 54 split into groups of 6 gives 9 groups.",
+       "hi": "अगर 6-6 के 9 समूह मिलकर 54 बनाते हैं, तो 54 को 6-6 में बाँटने पर 9 समूह मिलते हैं।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "8 × 4 = 32",
+       "hi": "8 × 4 = 32"
+      },
+      "right": {
+       "en": "32 ÷ 4 = 8",
+       "hi": "32 ÷ 4 = 8"
+      },
+      "why": {
+       "en": "32 ÷ 4 = 8 undoes 8 × 4 = 32.",
+       "hi": "32 ÷ 4 = 8, 8 × 4 = 32 को उलट देता है।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "3 × 12 = 36",
+       "hi": "3 × 12 = 36"
+      },
+      "right": {
+       "en": "36 ÷ 12 = 3",
+       "hi": "36 ÷ 12 = 3"
+      },
+      "why": {
+       "en": "36 split into groups of 12 gives 3 groups.",
+       "hi": "36 को 12-12 के समूहों में बाँटने पर 3 समूह मिलते हैं।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "7 × 8 = 56",
+       "hi": "7 × 8 = 56"
+      },
+      "right": {
+       "en": "56 ÷ 8 = 7",
+       "hi": "56 ÷ 8 = 7"
+      },
+      "why": {
+       "en": "56 shared into groups of 8 gives 7 groups.",
+       "hi": "56 को 8-8 के समूहों में बाँटने पर 7 समूह मिलते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Match the multiplication fact with a division fact from the same array.",
+      "hi": "गुणा के तथ्य को उसी क़तार-चित्र के भाग के तथ्य से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "5 rows of 7 coconuts make 35. If you split the 35 coconuts into groups of 5, how many groups do you get?",
+      "hi": "7-7 नारियल की 5 कतारें मिलकर 35 हैं। 35 नारियल को 5-5 के समूहों में बाँटो तो कितने समूह मिलते हैं?"
+     },
+     "options": [
+      {
+       "id": "seven",
+       "en": "7 groups",
+       "hi": "7 समूह"
+      },
+      {
+       "id": "five",
+       "en": "5 groups",
+       "hi": "5 समूह"
+      },
+      {
+       "id": "thirty",
+       "en": "30 groups",
+       "hi": "30 समूह"
+      }
+     ],
+     "answer": "seven"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Match 9 × 6 = 54.",
+      "hi": "9 × 6 = 54 को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाकी मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every multiplication fact gives two division facts. From 5 × 7 = 35 we get 35 ÷ 7 = 5 and 35 ÷ 5 = 7. The number we divide is the dividend (35). The number we divide by is the divisor (7 or 5). The answer is the quotient. Dividend = divisor × quotient.",
+      "hi": "हर गुणा के तथ्य से दो भाग के तथ्य बनते हैं। 5 × 7 = 35 से हमें 35 ÷ 7 = 5 और 35 ÷ 5 = 7 मिलते हैं। जिस संख्या को भाग देते हैं वह भाज्य (35) है। जिससे भाग देते हैं वह भाजक (7 या 5) है। उत्तर भागफल है। भाज्य = भाजक × भागफल।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which division fact comes from 6 × 9 = 54?",
+        "hi": "6 × 9 = 54 से कौन-सा भाग का तथ्य बनता है?"
+       },
+       "options": [
+        "54 ÷ 9 = 6",
+        "9 ÷ 54 = 6",
+        "54 ÷ 6 = 6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The product 54 is the dividend. Dividing by one factor gives the other: 54 ÷ 9 = 6.",
+        "hi": "गुणनफल 54 भाज्य है। एक गुणनखंड से भाग देने पर दूसरा मिलता है: 54 ÷ 9 = 6।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The small number cannot be divided by the big one to give 6. The product must come first.",
+         "hi": "छोटी संख्या को बड़ी संख्या से भाग देकर 6 नहीं मिल सकता। गुणनफल सबसे पहले आना चाहिए।"
+        },
+        {
+         "en": "54 ÷ 6 = 9, not 6. Check: 6 × 6 = 36, not 54.",
+         "hi": "54 ÷ 6 = 9 है, 6 नहीं। जाँचो: 6 × 6 = 36 है, 54 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In 40 ÷ 5 = 8, which number is the divisor?",
+        "hi": "40 ÷ 5 = 8 में भाजक कौन-सी संख्या है?"
+       },
+       "options": [
+        "5",
+        "40",
+        "8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The divisor is the number we divide by: 5.",
+        "hi": "भाजक वह संख्या है जिससे हम भाग देते हैं: 5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "40 is the dividend, the number being divided.",
+         "hi": "40 भाज्य है, जिस संख्या को भाग दिया जा रहा है।"
+        },
+        {
+         "en": "8 is the quotient, the answer.",
+         "hi": "8 भागफल है, यानी उत्तर।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write the two division facts for 4 × 9 = 36 and for 12 × 5 = 60.",
+      "hi": "4 × 9 = 36 और 12 × 5 = 60 के दो-दो भाग के तथ्य लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch09-which-family",
+   "topic": "9.1",
+   "template": "sort",
+   "title": {
+    "en": "Which fact family?",
+    "hi": "कौन-सा तथ्य परिवार?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "f48",
+      "label": {
+       "en": "Family of 6 × 8 = 48",
+       "hi": "6 × 8 = 48 का परिवार"
+      }
+     },
+     {
+      "id": "f56",
+      "label": {
+       "en": "Family of 7 × 8 = 56",
+       "hi": "7 × 8 = 56 का परिवार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "k1",
+      "text": {
+       "en": "48 ÷ 6 = 8",
+       "hi": "48 ÷ 6 = 8"
+      },
+      "bin": "f48",
+      "why": {
+       "en": "It starts from the product 48 and the factors 6 and 8.",
+       "hi": "यह गुणनफल 48 और गुणनखंड 6 व 8 से बना है।"
+      }
+     },
+     {
+      "id": "k2",
+      "text": {
+       "en": "48 ÷ 8 = 6",
+       "hi": "48 ÷ 8 = 6"
+      },
+      "bin": "f48",
+      "why": {
+       "en": "48 and the factors 8 and 6: same family.",
+       "hi": "48 और गुणनखंड 8 व 6: एक ही परिवार।"
+      }
+     },
+     {
+      "id": "k3",
+      "text": {
+       "en": "8 × 6 = 48",
+       "hi": "8 × 6 = 48"
+      },
+      "bin": "f48",
+      "why": {
+       "en": "Swapping the order of 6 × 8 gives the same product.",
+       "hi": "6 × 8 का क्रम बदलने पर वही गुणनफल मिलता है।"
+      }
+     },
+     {
+      "id": "k4",
+      "text": {
+       "en": "56 ÷ 7 = 8",
+       "hi": "56 ÷ 7 = 8"
+      },
+      "bin": "f56",
+      "why": {
+       "en": "The product is 56 and the factors are 7 and 8.",
+       "hi": "गुणनफल 56 है और गुणनखंड 7 व 8 हैं।"
+      }
+     },
+     {
+      "id": "k5",
+      "text": {
+       "en": "56 ÷ 8 = 7",
+       "hi": "56 ÷ 8 = 7"
+      },
+      "bin": "f56",
+      "why": {
+       "en": "56 divided by the factor 8 gives the other factor 7.",
+       "hi": "56 को गुणनखंड 8 से भाग देने पर दूसरा गुणनखंड 7 मिलता है।"
+      }
+     },
+     {
+      "id": "k6",
+      "text": {
+       "en": "8 × 7 = 56",
+       "hi": "8 × 7 = 56"
+      },
+      "bin": "f56",
+      "why": {
+       "en": "This is 7 × 8 with the numbers swapped.",
+       "hi": "यह 7 × 8 है जिसमें संख्याओं का क्रम बदला गया है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:k1",
+     "expect": "correct:k1",
+     "say": {
+      "en": "Place '48 ÷ 6 = 8' in the right family.",
+      "hi": "'48 ÷ 6 = 8' को सही परिवार में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which family does 56 ÷ 8 = 7 belong to?",
+      "hi": "56 ÷ 8 = 7 किस परिवार का है?"
+     },
+     "options": [
+      {
+       "id": "f56",
+       "en": "Family of 7 × 8 = 56",
+       "hi": "7 × 8 = 56 का परिवार"
+      },
+      {
+       "id": "f48",
+       "en": "Family of 6 × 8 = 48",
+       "hi": "6 × 8 = 48 का परिवार"
+      }
+     ],
+     "answer": "f56"
+    },
+    {
+     "kind": "do",
+     "target": "card:k5",
+     "expect": "correct:k5",
+     "say": {
+      "en": "Place '56 ÷ 8 = 7'.",
+      "hi": "'56 ÷ 8 = 7' को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाकी छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A fact family has the same three numbers. For 6, 8 and 48: 6 × 8 = 48, 8 × 6 = 48, 48 ÷ 6 = 8 and 48 ÷ 8 = 6. The biggest number is always the product, or the dividend in the division facts.",
+      "hi": "तथ्य परिवार में वही तीन संख्याएँ होती हैं। 6, 8 और 48 के लिए: 6 × 8 = 48, 8 × 6 = 48, 48 ÷ 6 = 8 और 48 ÷ 8 = 6। सबसे बड़ी संख्या हमेशा गुणनफल, या भाग में भाज्य, होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The numbers 4, 9 and 36 are in a fact family. Which fact is NOT in it?",
+        "hi": "संख्याएँ 4, 9 और 36 एक तथ्य परिवार में हैं। इनमें कौन-सा तथ्य परिवार में नहीं है?"
+       },
+       "options": [
+        "36 ÷ 6 = 6",
+        "36 ÷ 9 = 4",
+        "9 × 4 = 36"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "36 ÷ 6 = 6 uses the number 6, which is not in this family.",
+        "hi": "36 ÷ 6 = 6 में संख्या 6 है, जो इस परिवार में नहीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "36 ÷ 9 = 4 uses exactly 4, 9 and 36: it is in the family.",
+         "hi": "36 ÷ 9 = 4 में ठीक 4, 9 और 36 हैं: यह परिवार में है।"
+        },
+        {
+         "en": "9 × 4 = 36 uses 4, 9 and 36: it is in the family.",
+         "hi": "9 × 4 = 36 में 4, 9 और 36 हैं: यह परिवार में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose three numbers of your own, such as 3, 7 and 21. Write all four facts of their family.",
+      "hi": "अपनी तीन संख्याएँ चुनो, जैसे 3, 7 और 21। उनके परिवार के चारों तथ्य लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch09-tens-division",
+   "topic": "9.3",
+   "template": "match",
+   "title": {
+    "en": "Dividing tens and hundreds",
+    "hi": "दहाई और सैकड़े को भाग देना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "600 ÷ 3",
+       "hi": "600 ÷ 3"
+      },
+      "right": {
+       "en": "200",
+       "hi": "200"
+      },
+      "why": {
+       "en": "6 hundreds shared by 3 give 2 hundreds, 200.",
+       "hi": "6 सैकड़े को 3 में बाँटने पर 2 सैकड़े मिलते हैं, यानी 200।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "4,200 ÷ 100",
+       "hi": "4,200 ÷ 100"
+      },
+      "right": {
+       "en": "42",
+       "hi": "42"
+      },
+      "why": {
+       "en": "Dividing by 100 moves each digit two places to the right: 4,200 becomes 42.",
+       "hi": "100 से भाग देने पर हर अंक दो स्थान दाईं ओर खिसकता है: 4,200 बदलकर 42 हो जाता है।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "2,000 ÷ 20",
+       "hi": "2,000 ÷ 20"
+      },
+      "right": {
+       "en": "100",
+       "hi": "100"
+      },
+      "why": {
+       "en": "20 × 100 = 2,000, so 2,000 ÷ 20 = 100.",
+       "hi": "20 × 100 = 2,000, इसलिए 2,000 ÷ 20 = 100।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "160 ÷ 20",
+       "hi": "160 ÷ 20"
+      },
+      "right": {
+       "en": "8",
+       "hi": "8"
+      },
+      "why": {
+       "en": "16 tens ÷ 2 tens = 8, since 2 × 8 = 16.",
+       "hi": "16 दहाई ÷ 2 दहाई = 8, क्योंकि 2 × 8 = 16।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "5,500 ÷ 5",
+       "hi": "5,500 ÷ 5"
+      },
+      "right": {
+       "en": "1,100",
+       "hi": "1,100"
+      },
+      "why": {
+       "en": "55 hundreds ÷ 5 = 11 hundreds = 1,100.",
+       "hi": "55 सैकड़े ÷ 5 = 11 सैकड़े = 1,100।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Match 600 ÷ 3 with its answer.",
+      "hi": "600 ÷ 3 को उसके उत्तर से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is 4,200 ÷ 100?",
+      "hi": "4,200 ÷ 100 कितना है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The answer is 42",
+       "hi": "उत्तर 42 है"
+      },
+      {
+       "id": "b",
+       "en": "The answer is 420",
+       "hi": "उत्तर 420 है"
+      },
+      {
+       "id": "c",
+       "en": "The answer is 4",
+       "hi": "उत्तर 4 है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Now match 4,200 ÷ 100.",
+      "hi": "अब 4,200 ÷ 100 को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाकी मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To divide numbers with zeros, divide the small digits first. 600 ÷ 3: 6 ÷ 3 = 2, then keep the two zeros: 200. When both numbers end in zeros, cancel the same number of zeros: 160 ÷ 20 is 16 ÷ 2 = 8. Dividing by 10 moves digits one place right; dividing by 100 moves them two places.",
+      "hi": "शून्य वाली संख्याओं को भाग देने के लिए पहले छोटे अंकों को भाग दो। 600 ÷ 3: 6 ÷ 3 = 2, फिर दोनों शून्य रखो: 200। जब दोनों संख्याओं के अंत में शून्य हों तो बराबर शून्य हटा दो: 160 ÷ 20 यानी 16 ÷ 2 = 8। 10 से भाग देने पर अंक एक स्थान दाएँ, 100 से भाग देने पर दो स्थान दाएँ खिसकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 3,000 ÷ 30?",
+        "hi": "3,000 ÷ 30 कितना है?"
+       },
+       "options": [
+        "100",
+        "10",
+        "1,000"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cancel one zero from both: 300 ÷ 3 = 100. Check: 30 × 100 = 3,000.",
+        "hi": "दोनों से एक शून्य हटाओ: 300 ÷ 3 = 100। जाँच: 30 × 100 = 3,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "30 × 10 = 300, not 3,000. Check by multiplying.",
+         "hi": "30 × 10 = 300 है, 3,000 नहीं। गुणा करके जाँचो।"
+        },
+        {
+         "en": "30 × 1,000 = 30,000, which is too big.",
+         "hi": "30 × 1,000 = 30,000 है, जो बहुत बड़ा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up three division problems that end in zeros and solve them. Check each by multiplying back.",
+      "hi": "शून्य पर खत्म होने वाले तीन भाग के सवाल बनाओ और हल करो। हर एक को गुणा करके जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch09-share-gift",
+   "topic": "9.3",
+   "template": "scenario",
+   "title": {
+    "en": "Sharing money equally",
+    "hi": "बराबर बाँटना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "farm office",
+    "role": {
+     "en": "Farm manager",
+     "hi": "फ़ार्म के प्रबंधक"
+    },
+    "scenes": [
+     {
+      "id": "four",
+      "text": {
+       "en": "The coconut farm gives ₹3,600 as a Diwali gift. It is shared equally among 4 workers. How much does each worker get?",
+       "hi": "नारियल के फ़ार्म ने दिवाली का उपहार ₹3,600 दिया। इसे 4 मज़दूरों में बराबर बाँटना है। हर मज़दूर को कितना मिलेगा?"
+      },
+      "choices": [
+       {
+        "id": "r900",
+        "text": {
+         "en": "₹900",
+         "hi": "₹900"
+        },
+        "next": "nine",
+        "good": true,
+        "feedback": {
+         "en": "Yes! 3,600 ÷ 4 = 900. Check: 4 × 900 = 3,600.",
+         "hi": "हाँ! 3,600 ÷ 4 = 900। जाँच: 4 × 900 = 3,600।"
+        }
+       },
+       {
+        "id": "r90",
+        "text": {
+         "en": "₹90",
+         "hi": "₹90"
+        },
+        "next": "nine",
+        "good": false,
+        "feedback": {
+         "en": "Check: 4 × 90 = 360, not 3,600. The answer is 10 times bigger: ₹900.",
+         "hi": "जाँचो: 4 × 90 = 360 है, 3,600 नहीं। उत्तर 10 गुना बड़ा है: ₹900।"
+        }
+       },
+       {
+        "id": "r9000",
+        "text": {
+         "en": "₹9,000",
+         "hi": "₹9,000"
+        },
+        "next": "nine",
+        "good": false,
+        "feedback": {
+         "en": "Each worker cannot get more than the whole ₹3,600 shared. Check: 4 × 900 = 3,600.",
+         "hi": "हर मज़दूर को बाँटी गई पूरी राशि ₹3,600 से ज़्यादा नहीं मिल सकता। जाँचो: 4 × 900 = 3,600।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "nine",
+      "text": {
+       "en": "Now the same ₹3,600 is shared equally among 9 workers. Will each worker get more or less than before, and how much?",
+       "hi": "अब वही ₹3,600 बराबर 9 मज़दूरों में बाँटा गया। हर मज़दूर को पहले से ज़्यादा मिलेगा या कम, और कितना?"
+      },
+      "choices": [
+       {
+        "id": "less400",
+        "text": {
+         "en": "Less: ₹400 each",
+         "hi": "कम: हर एक को ₹400"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Yes! More workers share the same money, so each gets less. 3,600 ÷ 9 = 400.",
+         "hi": "हाँ! ज़्यादा मज़दूर वही पैसा बाँटते हैं, इसलिए हर एक को कम मिलता है। 3,600 ÷ 9 = 400।"
+        }
+       },
+       {
+        "id": "more400",
+        "text": {
+         "en": "More: ₹400 each",
+         "hi": "ज़्यादा: हर एक को ₹400"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "₹400 is right, but it is less than ₹900. More people means smaller shares.",
+         "hi": "₹400 सही है, पर वह ₹900 से कम है। ज़्यादा लोग यानी छोटे हिस्से।"
+        }
+       },
+       {
+        "id": "less40",
+        "text": {
+         "en": "Less: ₹40 each",
+         "hi": "कम: हर एक को ₹40"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Less is right, but check: 9 × 40 = 360, not 3,600. Each gets ₹400.",
+         "hi": "कम होना सही है, पर जाँचो: 9 × 40 = 360 है, 3,600 नहीं। हर एक को ₹400 मिलेंगे।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:four:r900",
+     "expect": "chose:r900",
+     "say": {
+      "en": "Work out 3,600 ÷ 4 and choose the right share.",
+      "hi": "3,600 ÷ 4 निकालो और सही हिस्सा चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The same money is shared among more workers (9 instead of 4). Will each worker get more or less?",
+      "hi": "वही पैसा ज़्यादा मज़दूरों (4 की जगह 9) में बाँटा जाएगा। हर मज़दूर को ज़्यादा मिलेगा या कम?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Less",
+       "hi": "कम"
+      },
+      {
+       "id": "more",
+       "en": "More",
+       "hi": "ज़्यादा"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "उतना ही"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "choice:nine:less400",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose the right answer for 9 workers.",
+      "hi": "9 मज़दूरों के लिए सही उत्तर चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Dividing the same total by a bigger number gives a smaller share. 3,600 ÷ 4 = 900 and 3,600 ÷ 9 = 400. We can always check a division by multiplying: 9 × 400 = 3,600.",
+      "hi": "उसी कुल को बड़ी संख्या से भाग देने पर हिस्सा छोटा मिलता है। 3,600 ÷ 4 = 900 और 3,600 ÷ 9 = 400। भाग को हम हमेशा गुणा करके जाँच सकते हैं: 9 × 400 = 3,600।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many ₹100 notes make ₹4,200?",
+        "hi": "₹4,200 में ₹100 के कितने नोट होते हैं?"
+       },
+       "options": [
+        "42",
+        "420",
+        "4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4,200 ÷ 100 = 42 notes.",
+        "hi": "4,200 ÷ 100 = 42 नोट।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "420 notes of ₹100 would be ₹42,000.",
+         "hi": "₹100 के 420 नोट ₹42,000 होते।"
+        },
+        {
+         "en": "4 notes would be only ₹400.",
+         "hi": "4 नोट केवल ₹400 होते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Share ₹2,400 equally among 6, 8 and 12 people. What do you notice about the shares as the number of people grows?",
+      "hi": "₹2,400 को 6, 8 और 12 लोगों में बराबर बाँटो। लोग बढ़ने पर हिस्सों के बारे में क्या दिखता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Chapter hook: coconut farm",
+   "shows": "Rows of coconut palms on a coastal farm in South India, evenly spaced in a neat grid, a path between rows",
+   "view": "Slightly raised, long lens to show rows, morning light",
+   "right": "Palms in clear straight rows and columns",
+   "avoid": "Faces, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "9.1",
+   "use": "Coconut array",
+   "shows": "35 whole green coconuts arranged on a mat in 5 rows of 7, evenly spaced",
+   "view": "Top-down, even light",
+   "right": "Exactly 5 rows by 7 columns, easy to count",
+   "avoid": "Cut or broken coconuts"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.3",
+   "use": "Rupee notes for sharing",
+   "shows": "A neat bundle of ten play-money ₹100 notes and loose notes in piles of 4 and 9",
+   "view": "Top-down, even light",
+   "right": "Notes look like play money and are countable",
+   "avoid": "Real-money security marks, text beyond ₹100"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "9.3",
+   "use": "Coconut stall sharing",
+   "shows": "A roadside coconut stall with coconuts stacked in neat groups of equal size, a vendor's hands cutting one",
+   "view": "Eye level, daylight",
+   "right": "Groups clearly equal in size and countable",
+   "avoid": "Faces, price boards"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "9.1",
+   "use": "Array grid frame",
+   "shows": "An empty grid of 6 rows by 8 columns with faint cell borders",
+   "view": "Flat, white background",
+   "right": "Cells equal squares, outline thin",
+   "avoid": "Dots or numbers baked in"
+  }
+ ]
+}

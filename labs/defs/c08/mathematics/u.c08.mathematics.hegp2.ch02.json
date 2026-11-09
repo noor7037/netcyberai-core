@@ -1,0 +1,1182 @@
+{
+  "chapter_key": "u.c08.mathematics.hegp2.ch02",
+  "class": 8,
+  "subject_id": "mathematics",
+  "title": "The Baudhāyana-Pythagoras Theorem",
+  "source": "https://ncert.nic.in/textbook/pdf/hegp202.pdf",
+  "topics": [
+    {
+      "n": "2.1",
+      "title": "Doubling a square: the square on the diagonal",
+      "labs": [
+        "c08-mathematics-hegp2-ch02-double"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.2",
+      "title": "Halving a square",
+      "labs": [
+        "c08-mathematics-hegp2-ch02-halve"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.3",
+      "title": "Hypotenuse of an isosceles right triangle and the number √2",
+      "labs": [
+        "c08-mathematics-hegp2-ch02-root2"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.4",
+      "title": "Combining two different squares: a² + b² = c²",
+      "labs": [
+        "c08-mathematics-hegp2-ch02-squares"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.5",
+      "title": "Right triangles having integer sidelengths: Baudhāyana-Pythagoras triples",
+      "labs": [
+        "c08-mathematics-hegp2-ch02-converse",
+        "c08-mathematics-hegp2-ch02-triples"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.6",
+      "title": "A long-standing open problem (Fermat's Last Theorem)",
+      "labs": [],
+      "why_no_lab": "A story of a problem that took about 350 years to solve; the reader and a timeline picture tell it better than a lab."
+    },
+    {
+      "n": "2.7",
+      "title": "Further applications of the theorem",
+      "labs": [
+        "c08-mathematics-hegp2-ch02-ladder"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c08-mathematics-hegp2-ch02-double",
+      "topic": "2.1",
+      "template": "shapes",
+      "title": {
+        "en": "A square twice as big",
+        "hi": "दुगुना बड़ा वर्ग"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "pythagoras",
+        "task": "squares",
+        "given": {
+          "lengths": [
+            3,
+            3
+          ]
+        }
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A rangoli square has side 3 units, so its area is 9 square units. We want a square with double the area, 18. Here a right triangle has two equal sides of 3, and a square is drawn on each side.",
+            "hi": "एक रंगोली वर्ग की भुजा 3 इकाई है, इसलिए उसका क्षेत्रफल 9 वर्ग इकाई है। हमें दुगुने क्षेत्रफल, 18, वाला वर्ग चाहिए। यहाँ एक समकोण त्रिभुज की दो बराबर भुजाएँ 3 की हैं, और हर भुजा पर एक वर्ग बना है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "To double the area, should the new square have side 6?",
+            "hi": "क्षेत्रफल दुगुना करने के लिए क्या नए वर्ग की भुजा 6 होनी चाहिए?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "No, side 6 gives 4 times the area",
+              "hi": "नहीं, भुजा 6 से क्षेत्रफल 4 गुना होता है"
+            },
+            {
+              "id": "b",
+              "en": "Yes, double the side doubles the area",
+              "hi": "हाँ, भुजा दुगुनी तो क्षेत्रफल दुगुना"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "prove",
+          "expect": "proved",
+          "say": {
+            "en": "Tap the button to show the squares and watch the two small squares fill the big one.",
+            "hi": "बटन दबाकर वर्ग दिखाओ और देखो कि दोनों छोटे वर्ग बड़े वर्ग को भर देते हैं।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The square on the diagonal (the slanting side) has area 9 + 9 = 18, exactly double. The ancient Śulba-sūtras used this to build fire altars of double size. Its side is not 6 but a little more than 4.2.",
+            "hi": "विकर्ण (तिरछी भुजा) पर बने वर्ग का क्षेत्रफल 9 + 9 = 18 है, ठीक दुगुना। प्राचीन शुल्ब-सूत्रों में दुगुने आकार की यज्ञ-वेदियाँ बनाने में इसका उपयोग हुआ। इसकी भुजा 6 नहीं, बल्कि 4.2 से थोड़ी ज़्यादा है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A square has area 25 cm². What is the area of the square drawn on its diagonal?",
+                "hi": "एक वर्ग का क्षेत्रफल 25 सेमी² है। उसके विकर्ण पर बने वर्ग का क्षेत्रफल क्या है?"
+              },
+              "options": [
+                "50 cm²",
+                "100 cm²",
+                "25 cm²"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The square on the diagonal is always double: 2 × 25 = 50 cm².",
+                "hi": "विकर्ण पर बना वर्ग हमेशा दुगुना होता है: 2 × 25 = 50 सेमी²।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "100 cm² is the square with double the side (10 cm), which is 4 times the area.",
+                  "hi": "100 सेमी² दुगुनी भुजा (10 सेमी) वाला वर्ग है, जिसका क्षेत्रफल 4 गुना है।"
+                },
+                {
+                  "en": "The diagonal is longer than the side, so its square must be bigger than 25.",
+                  "hi": "विकर्ण भुजा से लंबा है, इसलिए उसका वर्ग 25 से बड़ा होगा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make side a different from side b with the sliders, then tap the button again. Do the two small squares still fill the big one?",
+            "hi": "स्लाइडर से भुजा a को भुजा b से अलग करो, फिर बटन दोबारा दबाओ। क्या दोनों छोटे वर्ग अब भी बड़े को भरते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch02-halve",
+      "topic": "2.2",
+      "template": "sequence",
+      "title": {
+        "en": "Fold a square in half (and keep it square)",
+        "hi": "वर्ग को आधा करो (और वर्ग ही रखो)"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "h1",
+            "text": {
+              "en": "Take a square sheet of paper.",
+              "hi": "काग़ज़ की एक वर्गाकार शीट लो।"
+            }
+          },
+          {
+            "id": "h2",
+            "text": {
+              "en": "Fold along both diagonals and open, to mark the centre.",
+              "hi": "दोनों विकर्णों पर मोड़कर खोलो, ताकि केंद्र दिखे।"
+            }
+          },
+          {
+            "id": "h3",
+            "text": {
+              "en": "Fold each corner in to touch the centre.",
+              "hi": "हर कोने को अंदर मोड़कर केंद्र से मिलाओ।"
+            }
+          },
+          {
+            "id": "h4",
+            "text": {
+              "en": "The four flaps now cover a smaller square.",
+              "hi": "चारों फ़्लैप अब एक छोटा वर्ग ढकते हैं।"
+            }
+          },
+          {
+            "id": "h5",
+            "text": {
+              "en": "Each flap covers one quarter of the inner square, so the inner square is half the sheet.",
+              "hi": "हर फ़्लैप भीतरी वर्ग का एक चौथाई ढकता है, इसलिए भीतरी वर्ग शीट का आधा है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "If the sheet has side 10 cm (area 100 cm²), what is the area of the folded square?",
+            "hi": "अगर शीट की भुजा 10 सेमी है (क्षेत्रफल 100 सेमी²), तो मुड़े हुए वर्ग का क्षेत्रफल क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "50 cm²",
+              "hi": "50 सेमी²"
+            },
+            {
+              "id": "b",
+              "en": "25 cm²",
+              "hi": "25 सेमी²"
+            },
+            {
+              "id": "c",
+              "en": "75 cm²",
+              "hi": "75 सेमी²"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:h1",
+          "expect": "placed:h1",
+          "say": {
+            "en": "Put the folding steps in order. Start with the plain sheet.",
+            "hi": "मोड़ने के चरण क्रम में लगाओ। सादी शीट से शुरू करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:h2",
+          "expect": "placed:h2",
+          "say": {
+            "en": "Place the next step.",
+            "hi": "अगला चरण रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place the rest and tap Check.",
+            "hi": "बाक़ी रखो और “जाँचो” दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The new square's side joins the midpoints of the old sides. Its area is half, 50 cm². So its side times itself is 50, which makes the side about 7.07 cm. Halving and doubling a square both lead to the same idea: the side of a square of area 2 is √2.",
+            "hi": "नए वर्ग की भुजा पुरानी भुजाओं के मध्य-बिंदुओं को जोड़ती है। इसका क्षेत्रफल आधा, 50 सेमी², है। तो भुजा × भुजा = 50, जिससे भुजा लगभग 7.07 सेमी होती है। वर्ग को आधा या दुगुना करना, दोनों एक ही विचार पर ले जाते हैं: क्षेत्रफल 2 वाले वर्ग की भुजा √2 है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "You fold the corners of the folded square in to its centre again. What fraction of the first sheet is the newest square?",
+                "hi": "मुड़े हुए वर्ग के कोने फिर उसके केंद्र तक मोड़ो। सबसे नया वर्ग पहली शीट का कितना भाग है?"
+              },
+              "options": [
+                "1/4",
+                "1/2",
+                "1/8"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Each fold halves the area: 1/2 × 1/2 = 1/4.",
+                "hi": "हर बार मोड़ने पर क्षेत्रफल आधा: 1/2 × 1/2 = 1/4।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That was after the first fold. A second fold halves it again.",
+                  "hi": "यह पहली बार मोड़ने के बाद था। दूसरी बार फिर आधा होता है।"
+                },
+                {
+                  "en": "1/8 would need three folds.",
+                  "hi": "1/8 के लिए तीन बार मोड़ना पड़ेगा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Try it with a real square of paper. Measure the side of the folded square with a ruler.",
+            "hi": "असली वर्गाकार काग़ज़ से करके देखो। मुड़े वर्ग की भुजा रूलर से नापो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch02-root2",
+      "topic": "2.3",
+      "template": "number-line",
+      "title": {
+        "en": "Hunting for √2 on the number line",
+        "hi": "संख्या रेखा पर √2 की खोज"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "zoom",
+        "min": 1,
+        "max": 2,
+        "ask": "sqrt(2)"
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A right triangle with two sides of 1 has a hypotenuse c with c² = 1 + 1 = 2. So c = √2. The marker shows where √2 sits between 1 and 2.",
+            "hi": "दो भुजाएँ 1 वाले समकोण त्रिभुज का कर्ण c है, जहाँ c² = 1 + 1 = 2। इसलिए c = √2। निशान दिखाता है कि √2, 1 और 2 के बीच कहाँ है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "1.4 × 1.4 = 1.96 and 1.5 × 1.5 = 2.25. So √2 is …",
+            "hi": "1.4 × 1.4 = 1.96 और 1.5 × 1.5 = 2.25। तो √2 …"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "between 1.4 and 1.5",
+              "hi": "1.4 और 1.5 के बीच है"
+            },
+            {
+              "id": "b",
+              "en": "exactly 1.5",
+              "hi": "ठीक 1.5 है"
+            },
+            {
+              "id": "c",
+              "en": "between 1.9 and 2",
+              "hi": "1.9 और 2 के बीच है"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "zoom",
+          "expect": "zoomed",
+          "say": {
+            "en": "Tap Zoom to look closer between the two ticks around the marker.",
+            "hi": "निशान के आसपास के दो चिह्नों के बीच पास से देखने के लिए “ज़ूम” दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "zoom",
+          "expect": "zoomed",
+          "say": {
+            "en": "Zoom again. A new digit appears each time.",
+            "hi": "फिर ज़ूम करो। हर बार एक नया अंक दिखता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about the marker.",
+            "hi": "निशान के बारे में प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each zoom traps √2 between closer numbers: 1.4 and 1.5, then 1.41 and 1.42, then 1.414 and 1.415. The digits never stop and never repeat in a pattern. √2 cannot be written as a fraction: it is an irrational number.",
+            "hi": "हर ज़ूम √2 को और पास की संख्याओं के बीच फँसाता है: 1.4 और 1.5, फिर 1.41 और 1.42, फिर 1.414 और 1.415। अंक कभी ख़त्म नहीं होते और किसी पैटर्न में दोहराते भी नहीं। √2 को भिन्न के रूप में नहीं लिख सकते: यह एक अपरिमेय संख्या है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which is the best estimate of √2?",
+                "hi": "√2 का सबसे अच्छा अनुमान कौन-सा है?"
+              },
+              "options": [
+                "1.414",
+                "1.5",
+                "1.4142 exactly"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "1.414² = 1.999396, very close to 2.",
+                "hi": "1.414² = 1.999396, 2 के बहुत पास।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "1.5² = 2.25, which is too big.",
+                  "hi": "1.5² = 2.25, जो बहुत बड़ा है।"
+                },
+                {
+                  "en": "1.4142 is close, but √2 is not exactly any decimal that stops.",
+                  "hi": "1.4142 पास है, पर √2 किसी रुकने वाले दशमलव के ठीक बराबर नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Without a calculator, find which is bigger: √2 or 7/5. Square both to compare.",
+            "hi": "कैलकुलेटर के बिना बताओ, कौन बड़ा है: √2 या 7/5। तुलना के लिए दोनों का वर्ग करो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch02-squares",
+      "topic": "2.4",
+      "template": "shapes",
+      "title": {
+        "en": "Two squares make one",
+        "hi": "दो वर्ग मिलकर एक"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "pythagoras",
+        "task": "squares",
+        "given": {
+          "lengths": [
+            3,
+            4
+          ]
+        }
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Now the two shorter sides are different: a = 3 and b = 4. Squares are drawn on all three sides of the right triangle.",
+            "hi": "अब दोनों छोटी भुजाएँ अलग हैं: a = 3 और b = 4। समकोण त्रिभुज की तीनों भुजाओं पर वर्ग बने हैं।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The squares on a and b have areas 9 and 16. What is the area of the square on the longest side?",
+            "hi": "a और b पर बने वर्गों का क्षेत्रफल 9 और 16 है। सबसे लंबी भुजा पर बने वर्ग का क्षेत्रफल क्या है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "25",
+              "hi": "25 वर्ग इकाई"
+            },
+            {
+              "id": "b",
+              "en": "49",
+              "hi": "49 वर्ग इकाई"
+            },
+            {
+              "id": "c",
+              "en": "7",
+              "hi": "7 वर्ग इकाई"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "prove",
+          "expect": "proved",
+          "say": {
+            "en": "Tap the button and watch the pieces rearrange.",
+            "hi": "बटन दबाओ और टुकड़ों को नए ढंग से जमते देखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slider:a",
+          "expect": "drawn",
+          "say": {
+            "en": "Change side a. Then tap the button again to see if it still works.",
+            "hi": "भुजा a बदलो। फिर बटन दोबारा दबाकर देखो कि क्या यह अब भी सही है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In a right triangle, the square on the hypotenuse equals the sum of the squares on the other two sides: a² + b² = c². Here 9 + 16 = 25, so c = 5. Baudhāyana stated this rule in his Śulba-sūtra, long before it was named after Pythagoras.",
+            "hi": "समकोण त्रिभुज में कर्ण पर बना वर्ग बाक़ी दो भुजाओं पर बने वर्गों के योग के बराबर होता है: a² + b² = c²। यहाँ 9 + 16 = 25, इसलिए c = 5। बौधायन ने अपने शुल्ब-सूत्र में यह नियम बताया था, पाइथागोरस के नाम से जाने जाने से बहुत पहले।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The two shorter sides of a right triangle are 6 cm and 8 cm. The hypotenuse is …",
+                "hi": "किसी समकोण त्रिभुज की दो छोटी भुजाएँ 6 सेमी और 8 सेमी हैं। कर्ण है …"
+              },
+              "options": [
+                "10 cm",
+                "14 cm",
+                "100 cm"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "36 + 64 = 100, and √100 = 10.",
+                "hi": "36 + 64 = 100, और √100 = 10।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "14 = 6 + 8 adds the sides. It is the squares that add.",
+                  "hi": "14 = 6 + 8 में भुजाएँ जोड़ीं। जुड़ते वर्ग हैं।"
+                },
+                {
+                  "en": "100 is c², the area of the big square. Take its square root.",
+                  "hi": "100 तो c² है, बड़े वर्ग का क्षेत्रफल। उसका वर्गमूल लो।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Does a² + b² = c² work for a triangle that has no right angle?",
+                "hi": "क्या a² + b² = c² ऐसे त्रिभुज के लिए सही है जिसमें समकोण न हो?"
+              },
+              "options": [
+                {
+                  "en": "No, only for right triangles",
+                  "hi": "नहीं, सिर्फ़ समकोण त्रिभुजों के लिए"
+                },
+                {
+                  "en": "Yes, for every triangle",
+                  "hi": "हाँ, हर त्रिभुज के लिए"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "For an equilateral triangle of side 2: 4 + 4 is 8, not 4.",
+                "hi": "भुजा 2 वाले समबाहु त्रिभुज में: 4 + 4 = 8, 4 नहीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Try an equilateral triangle: all sides 2, but 2² + 2² ≠ 2².",
+                  "hi": "समबाहु त्रिभुज लो: सब भुजाएँ 2, पर 2² + 2² ≠ 2²।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Use the sliders to find another pair a, b where the hypotenuse is a whole number.",
+            "hi": "स्लाइडर से एक और जोड़ी a, b खोजो जिसमें कर्ण पूर्ण संख्या हो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch02-converse",
+      "topic": "2.5",
+      "template": "shapes",
+      "title": {
+        "en": "Is it a right angle? Test with sides",
+        "hi": "क्या यह समकोण है? भुजाओं से जाँचो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "pythagoras",
+        "task": "converse",
+        "given": {
+          "lengths": [
+            6,
+            8,
+            9
+          ]
+        }
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A mason checks a corner of a new room. He measures 6 units along one wall and 8 units along the other. The slanting distance is 9 units.",
+            "hi": "एक मिस्त्री नए कमरे का कोना जाँचता है। वह एक दीवार पर 6 इकाई और दूसरी पर 8 इकाई नापता है। तिरछी दूरी 9 इकाई है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "For a true right angle, what should the slanting distance be?",
+            "hi": "सच्चे समकोण के लिए तिरछी दूरी कितनी होनी चाहिए?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "10 units",
+              "hi": "10 इकाई"
+            },
+            {
+              "id": "b",
+              "en": "9 units",
+              "hi": "9 इकाई"
+            },
+            {
+              "id": "c",
+              "en": "14 units",
+              "hi": "14 इकाई"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "slider:c",
+          "expect": "proved",
+          "say": {
+            "en": "Move side c until the corner becomes a right angle.",
+            "hi": "भुजा c तब तक खिसकाओ जब तक कोना समकोण न बन जाए।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "If a² + b² = c², the angle between a and b is a right angle. 36 + 64 = 100 = 10². When c was 9, c² = 81 was less than 100, so the angle was smaller than 90°. Builders still use a 3-4-5 rope to make square corners.",
+            "hi": "अगर a² + b² = c², तो a और b के बीच का कोण समकोण है। 36 + 64 = 100 = 10²। जब c = 9 था, c² = 81, जो 100 से कम था, इसलिए कोण 90° से छोटा था। राजमिस्त्री आज भी समकोण बनाने के लिए 3-4-5 की रस्सी इस्तेमाल करते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Sides 7, 24 and 25. Is there a right angle?",
+                "hi": "भुजाएँ 7, 24 और 25। क्या समकोण है?"
+              },
+              "options": [
+                {
+                  "en": "Yes",
+                  "hi": "हाँ"
+                },
+                {
+                  "en": "No",
+                  "hi": "नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "49 + 576 = 625 = 25². So yes.",
+                "hi": "49 + 576 = 625 = 25²। इसलिए हाँ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Check the squares: 49 + 576 is exactly 625.",
+                  "hi": "वर्ग जाँचो: 49 + 576 ठीक 625 है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Sides 4, 5 and 6. The angle opposite 6 is …",
+                "hi": "भुजाएँ 4, 5 और 6। 6 के सामने वाला कोण …"
+              },
+              "options": [
+                {
+                  "en": "less than 90°",
+                  "hi": "90° से कम"
+                },
+                {
+                  "en": "exactly 90°",
+                  "hi": "ठीक 90°"
+                },
+                {
+                  "en": "more than 90°",
+                  "hi": "90° से ज़्यादा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "16 + 25 = 41, and 6² = 36 is less than 41, so the angle is acute.",
+                "hi": "16 + 25 = 41, और 6² = 36, 41 से कम है, इसलिए कोण न्यून है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "For exactly 90°, 6² would need to be 41.",
+                  "hi": "ठीक 90° के लिए 6² को 41 होना चाहिए।"
+                },
+                {
+                  "en": "The angle is more than 90° only when c² is more than a² + b². Here 36 < 41.",
+                  "hi": "कोण 90° से ज़्यादा तभी होता है जब c², a² + b² से ज़्यादा हो। यहाँ 36 < 41।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make side c bigger than 10. What kind of angle do you get now?",
+            "hi": "भुजा c को 10 से बड़ा करो। अब कैसा कोण बनता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch02-triples",
+      "topic": "2.5",
+      "template": "sort",
+      "title": {
+        "en": "Find the Baudhāyana-Pythagoras triples",
+        "hi": "बौधायन-पाइथागोरस त्रिक खोजो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "yes",
+            "label": {
+              "en": "A triple",
+              "hi": "त्रिक है"
+            }
+          },
+          {
+            "id": "no",
+            "label": {
+              "en": "Not a triple",
+              "hi": "त्रिक नहीं"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "t1",
+            "text": {
+              "en": "(3, 4, 5)",
+              "hi": "(3, 4, 5)"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "9 + 16 = 25.",
+              "hi": "9 + 16 = 25।"
+            }
+          },
+          {
+            "id": "t2",
+            "text": {
+              "en": "(5, 12, 13)",
+              "hi": "(5, 12, 13)"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "25 + 144 = 169.",
+              "hi": "25 + 144 = 169।"
+            }
+          },
+          {
+            "id": "t3",
+            "text": {
+              "en": "(4, 5, 6)",
+              "hi": "(4, 5, 6)"
+            },
+            "bin": "no",
+            "why": {
+              "en": "16 + 25 = 41, but 6² = 36.",
+              "hi": "16 + 25 = 41, पर 6² = 36।"
+            }
+          },
+          {
+            "id": "t4",
+            "text": {
+              "en": "(6, 8, 10)",
+              "hi": "(6, 8, 10)"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "Double (3, 4, 5): 36 + 64 = 100.",
+              "hi": "(3, 4, 5) का दुगुना: 36 + 64 = 100।"
+            }
+          },
+          {
+            "id": "t5",
+            "text": {
+              "en": "(8, 15, 17)",
+              "hi": "(8, 15, 17)"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "64 + 225 = 289 = 17².",
+              "hi": "64 + 225 = 289 = 17²।"
+            }
+          },
+          {
+            "id": "t6",
+            "text": {
+              "en": "(2, 3, 4)",
+              "hi": "(2, 3, 4)"
+            },
+            "bin": "no",
+            "why": {
+              "en": "4 + 9 = 13, but 4² = 16.",
+              "hi": "4 + 9 = 13, पर 4² = 16।"
+            }
+          },
+          {
+            "id": "t7",
+            "text": {
+              "en": "(9, 12, 15)",
+              "hi": "(9, 12, 15)"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "Three times (3, 4, 5): 81 + 144 = 225.",
+              "hi": "(3, 4, 5) का तीन गुना: 81 + 144 = 225।"
+            }
+          },
+          {
+            "id": "t8",
+            "text": {
+              "en": "(5, 6, 7)",
+              "hi": "(5, 6, 7)"
+            },
+            "bin": "no",
+            "why": {
+              "en": "25 + 36 = 61, but 7² = 49.",
+              "hi": "25 + 36 = 61, पर 7² = 49।"
+            }
+          },
+          {
+            "id": "t9",
+            "text": {
+              "en": "(1, 1, 2)",
+              "hi": "(1, 1, 2)"
+            },
+            "bin": "no",
+            "why": {
+              "en": "1 + 1 = 2, but 2² = 4. The true hypotenuse is √2, not a whole number.",
+              "hi": "1 + 1 = 2, पर 2² = 4। असली कर्ण √2 है, पूर्ण संख्या नहीं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:t1",
+          "expect": "correct:t1",
+          "say": {
+            "en": "Tap (3, 4, 5). Check if 3² + 4² = 5², then choose its group.",
+            "hi": "(3, 4, 5) छुओ। जाँचो कि क्या 3² + 4² = 5², फिर उसका समूह चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "(4, 5, 6) are three numbers in a row like (3, 4, 5). Is it a triple?",
+            "hi": "(4, 5, 6) भी (3, 4, 5) की तरह लगातार तीन संख्याएँ हैं। क्या यह त्रिक है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "No",
+              "hi": "नहीं"
+            },
+            {
+              "id": "b",
+              "en": "Yes",
+              "hi": "हाँ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:t3",
+          "expect": "correct:t3",
+          "say": {
+            "en": "Sort (4, 5, 6).",
+            "hi": "(4, 5, 6) छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:yes",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the rest.",
+            "hi": "बाक़ी छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Three whole numbers (a, b, c) with a² + b² = c² form a Baudhāyana-Pythagoras triple. Multiplying a triple by any whole number gives another triple, so there are infinitely many. (3, 4, 5) is the only one made of three numbers in a row.",
+            "hi": "तीन पूर्ण संख्याएँ (a, b, c) जिनमें a² + b² = c² हो, बौधायन-पाइथागोरस त्रिक बनाती हैं। किसी त्रिक को किसी भी पूर्ण संख्या से गुणा करने पर नई त्रिक मिलती है, इसलिए ये अनगिनत हैं। लगातार तीन संख्याओं वाली त्रिक सिर्फ़ (3, 4, 5) है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "(20, 21, ?) is a triple. What is the missing number?",
+                "hi": "(20, 21, ?) एक त्रिक है। छूटी संख्या क्या है?"
+              },
+              "options": [
+                "29",
+                "41",
+                "22"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "400 + 441 = 841 = 29².",
+                "hi": "400 + 441 = 841 = 29²।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "41 = 20 + 21 adds the sides; 41² = 1681, not 841.",
+                  "hi": "41 = 20 + 21 में भुजाएँ जोड़ीं; 41² = 1681, 841 नहीं।"
+                },
+                {
+                  "en": "22² = 484, much less than 841.",
+                  "hi": "22² = 484, जो 841 से बहुत कम है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Start from (5, 12, 13) and make three more triples by multiplying. Then try (2n, n² − 1, n² + 1) for n = 4.",
+            "hi": "(5, 12, 13) से गुणा करके तीन और त्रिक बनाओ। फिर n = 4 के लिए (2n, n² − 1, n² + 1) आज़माओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch02-ladder",
+      "topic": "2.7",
+      "template": "shapes",
+      "title": {
+        "en": "How long is the ladder?",
+        "hi": "सीढ़ी कितनी लंबी है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "pythagoras",
+        "task": "find-side",
+        "given": {
+          "lengths": [
+            5,
+            12
+          ]
+        }
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A painter leans a ladder on a wall. The foot of the ladder is 5 units from the wall and its top reaches 12 units up. The wall and the ground meet at a right angle.",
+            "hi": "एक पेंटर दीवार से सीढ़ी टिकाता है। सीढ़ी का निचला सिरा दीवार से 5 इकाई दूर है और ऊपरी सिरा 12 इकाई ऊँचाई तक पहुँचता है। दीवार और ज़मीन समकोण पर मिलते हैं।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is the ladder longer than 12 units?",
+            "hi": "क्या सीढ़ी 12 इकाई से लंबी है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Yes, the hypotenuse is the longest side",
+              "hi": "हाँ, कर्ण सबसे लंबी भुजा है"
+            },
+            {
+              "id": "b",
+              "en": "No, it is exactly 12",
+              "hi": "नहीं, यह ठीक 12 है"
+            },
+            {
+              "id": "c",
+              "en": "It is 17, the sum",
+              "hi": "यह 17 है, योग"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "tool:ruler",
+          "expect": "measured:*",
+          "say": {
+            "en": "Use the ruler to measure the slanting side.",
+            "hi": "रूलर से तिरछी भुजा नापो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer: how long is the ladder?",
+            "hi": "उत्तर दो: सीढ़ी कितनी लंबी है?"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Ladder² = 5² + 12² = 25 + 144 = 169, so the ladder is √169 = 13 units. The theorem finds a missing side whenever a right angle hides in the picture: ladders, ramps, the diagonal of a screen or a cricket field.",
+            "hi": "सीढ़ी² = 5² + 12² = 25 + 144 = 169, इसलिए सीढ़ी √169 = 13 इकाई है। जब भी चित्र में समकोण छिपा हो, यह प्रमेय छूटी भुजा निकाल देता है: सीढ़ी, ढलान, स्क्रीन का विकर्ण या क्रिकेट का मैदान।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A 10 m ladder has its foot 6 m from a wall. How high up the wall does it reach?",
+                "hi": "10 मीटर की सीढ़ी का निचला सिरा दीवार से 6 मीटर दूर है। यह दीवार पर कितनी ऊँचाई तक पहुँचती है?"
+              },
+              "options": [
+                "8 m",
+                "4 m",
+                "11.7 m"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "h² = 10² − 6² = 100 − 36 = 64, so h = 8 m.",
+                "hi": "h² = 10² − 6² = 100 − 36 = 64, इसलिए h = 8 मीटर।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "4 = 10 − 6 subtracts sides. Subtract the squares, then take the square root.",
+                  "hi": "4 = 10 − 6 में भुजाएँ घटाईं। वर्ग घटाओ, फिर वर्गमूल लो।"
+                },
+                {
+                  "en": "11.7 m is √(100 + 36): it adds, but the ladder is the hypotenuse, so subtract.",
+                  "hi": "11.7 मी = √(100 + 36): इसमें जोड़ा, पर सीढ़ी कर्ण है, इसलिए घटाओ।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A phone screen is 6 cm wide and 8 cm tall. Its diagonal is …",
+                "hi": "एक फ़ोन स्क्रीन 6 सेमी चौड़ी और 8 सेमी ऊँची है। उसका विकर्ण है …"
+              },
+              "options": [
+                "10 cm",
+                "14 cm",
+                "7 cm"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "36 + 64 = 100, √100 = 10 cm.",
+                "hi": "36 + 64 = 100, √100 = 10 सेमी।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "14 cm adds the sides; the diagonal is shorter than going round the edge.",
+                  "hi": "14 सेमी में भुजाएँ जोड़ीं; विकर्ण किनारे से घूमकर जाने से छोटा है।"
+                },
+                {
+                  "en": "7 cm is shorter than the 8 cm side, but the diagonal must be the longest.",
+                  "hi": "7 सेमी, 8 सेमी की भुजा से भी छोटा है, पर विकर्ण सबसे लंबा होना चाहिए।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Measure the length and width of your study table. Work out its diagonal, then check it with a tape.",
+            "hi": "अपनी पढ़ाई की मेज़ की लंबाई और चौड़ाई नापो। उसका विकर्ण निकालो, फिर फ़ीते से जाँचो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "2.1",
+      "use": "Chapter hook: a fire altar of squares",
+      "shows": "A recreated Vedic fire altar (vedi) built of baked square bricks in a courtyard, seen as a neat square",
+      "view": "High angle, soft morning light",
+      "right": "Bricks in a clean square grid; realistic clay colour",
+      "avoid": "Fire, people, religious figures, text"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "2.2",
+      "use": "Folding a square in half",
+      "shows": "Four frames of a coloured paper square: plain, both diagonals creased, corners folded to the centre, finished smaller square",
+      "view": "Top-down on a wooden table, files -f1 to -f4",
+      "right": "Creases crisp; corners meet exactly at the centre",
+      "avoid": "Hands covering the paper, printed patterns"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "2.4",
+      "use": "Squares on the sides",
+      "shows": "Three square tiles of 3 × 3, 4 × 4 and 5 × 5 small cells placed around a right triangle cut from plywood",
+      "view": "Straight from above, flat light",
+      "right": "Cell counts 9, 16 and 25 clearly countable",
+      "avoid": "Numbers, labels"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "2.5",
+      "use": "A mason's 3-4-5 rope",
+      "shows": "A mason on a building site holding a knotted rope stretched into a 3-4-5 triangle at a wall corner",
+      "view": "Low three-quarter view, daylight",
+      "right": "Knots evenly spaced; triangle clearly right-angled",
+      "avoid": "Faces in close-up, brand names on bags"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "2.7",
+      "use": "Ladder against a wall",
+      "shows": "An aluminium ladder leaning on a whitewashed house wall, foot on the ground a short distance from the wall",
+      "view": "Side view so the wall, ground and ladder make a clear triangle",
+      "right": "Ladder straight; wall vertical",
+      "avoid": "People on the ladder, unsafe angles"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "2.3",
+      "use": "Spiral of square roots",
+      "shows": "A clean spiral of right triangles each with an outer side of 1, coloured from teal to violet",
+      "view": "Flat vector render on white",
+      "right": "Each new hypotenuse exactly in place",
+      "avoid": "Any numbers or labels baked in"
+    }
+  ]
+}

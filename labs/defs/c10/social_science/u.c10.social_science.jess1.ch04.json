@@ -1,0 +1,1654 @@
+{
+ "chapter_key": "u.c10.social_science.jess1.ch04",
+ "class": 10,
+ "subject_id": "social_science",
+ "title": "Agriculture",
+ "source": "https://ncert.nic.in/textbook/pdf/jess104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Types of farming: primitive subsistence, intensive subsistence, commercial and plantation",
+   "labs": [
+    "c10-social_science-jess1-ch04-farming-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Cropping pattern: rabi, kharif and zaid seasons",
+   "labs": [
+    "c10-social_science-jess1-ch04-seasons"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Major crops: food crops, plantation, fibre, horticulture and where they grow",
+   "labs": [
+    "c10-social_science-jess1-ch04-crop-needs",
+    "c10-social_science-jess1-ch04-crop-map"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Technological and institutional reforms, Bhoodan-Gramdan",
+   "labs": [
+    "c10-social_science-jess1-ch04-reforms",
+    "c10-social_science-jess1-ch04-bhoodan"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-social_science-jess1-ch04-farming-types",
+   "topic": "4.1",
+   "template": "sort",
+   "title": {
+    "en": "Four ways of farming",
+    "hi": "खेती के चार तरीक़े"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "prim",
+      "label": {
+       "en": "Primitive subsistence",
+       "hi": "आदिम निर्वाह"
+      }
+     },
+     {
+      "id": "inten",
+      "label": {
+       "en": "Intensive subsistence",
+       "hi": "गहन निर्वाह"
+      }
+     },
+     {
+      "id": "comm",
+      "label": {
+       "en": "Commercial farming",
+       "hi": "वाणिज्यिक खेती"
+      }
+     },
+     {
+      "id": "plant",
+      "label": {
+       "en": "Plantation",
+       "hi": "बागान खेती"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "slash",
+      "text": {
+       "en": "Slash and burn, then move to a fresh patch",
+       "hi": "काटो-जलाओ, फिर नई ज़मीन पर जाओ"
+      },
+      "bin": "prim",
+      "why": {
+       "en": "This is shifting cultivation, called jhumming in the North-east.",
+       "hi": "यह स्थानांतरित खेती है, जिसे पूर्वोत्तर में झूम कहते हैं।"
+      }
+     },
+     {
+      "id": "hoe",
+      "text": {
+       "en": "Hoe, dao and digging stick with family labour",
+       "hi": "कुदाल, दाव, खुरपी और परिवार का श्रम"
+      },
+      "bin": "prim",
+      "why": {
+       "en": "Primitive tools and family labour mark primitive subsistence farming.",
+       "hi": "आदिम औज़ार और पारिवारिक श्रम आदिम निर्वाह खेती की पहचान हैं।"
+      }
+     },
+     {
+      "id": "labour",
+      "text": {
+       "en": "Many people crowd on little land, using irrigation",
+       "hi": "कम ज़मीन पर बहुत लोग, सिंचाई का उपयोग"
+      },
+      "bin": "inten",
+      "why": {
+       "en": "High population pressure on land leads to intensive farming with heavy inputs.",
+       "hi": "ज़मीन पर अधिक जनसंख्या दबाव से भारी लागत वाली गहन खेती होती है।"
+      }
+     },
+     {
+      "id": "inherit",
+      "text": {
+       "en": "Small plots after land is divided among heirs",
+       "hi": "उत्तराधिकार में बँटे छोटे खेत"
+      },
+      "bin": "inten",
+      "why": {
+       "en": "Farmers take the maximum from tiny fields because they have no other work.",
+       "hi": "अन्य काम न होने से किसान छोटे खेतों से अधिकतम उपज लेते हैं।"
+      }
+     },
+     {
+      "id": "hyv",
+      "text": {
+       "en": "High-yielding seeds, fertilisers and pesticides",
+       "hi": "उच्च उपज वाले बीज, उर्वरक और कीटनाशक"
+      },
+      "bin": "comm",
+      "why": {
+       "en": "Heavy use of modern inputs is the mark of commercial farming.",
+       "hi": "आधुनिक लागतों का भारी उपयोग वाणिज्यिक खेती की पहचान है।"
+      }
+     },
+     {
+      "id": "rice",
+      "text": {
+       "en": "Rice grown for sale in Punjab and Haryana",
+       "hi": "पंजाब और हरियाणा में बिक्री के लिए धान"
+      },
+      "bin": "comm",
+      "why": {
+       "en": "Rice is a commercial crop in Punjab and Haryana, though a subsistence crop in Odisha.",
+       "hi": "धान पंजाब-हरियाणा में वाणिज्यिक फ़सल है, पर ओडिशा में निर्वाह फ़सल।"
+      }
+     },
+     {
+      "id": "estate",
+      "text": {
+       "en": "One crop on a huge estate with migrant labour",
+       "hi": "विशाल बागान में एक फ़सल, प्रवासी मज़दूर"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "Plantations grow a single crop over large areas.",
+       "hi": "बागानों में बड़े क्षेत्र पर एक ही फ़सल उगाई जाती है।"
+      }
+     },
+     {
+      "id": "tea",
+      "text": {
+       "en": "Tea in Assam and coffee in Karnataka",
+       "hi": "असम में चाय और कर्नाटक में कॉफ़ी"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "Tea and coffee are important plantation crops.",
+       "hi": "चाय और कॉफ़ी महत्त्वपूर्ण बागानी फ़सलें हैं।"
+      }
+     },
+     {
+      "id": "raw",
+      "text": {
+       "en": "All the produce goes to factories as raw material",
+       "hi": "पूरी उपज कारख़ानों में कच्चे माल के रूप में जाती है"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "Plantations link agriculture and industry.",
+       "hi": "बागान कृषि को उद्योग से जोड़ते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A family clears a forest patch, burns the trees, grows food for a few years, and then moves. Which type of farming is this?",
+      "hi": "एक परिवार जंगल का टुकड़ा साफ़ करता है, पेड़ जलाता है, कुछ साल अपने लिए अन्न उगाता है और फिर आगे चला जाता है। यह कौन-सी खेती है?"
+     },
+     "options": [
+      {
+       "id": "prim",
+       "en": "Primitive subsistence farming",
+       "hi": "आदिम निर्वाह खेती"
+      },
+      {
+       "id": "comm",
+       "en": "Commercial farming",
+       "hi": "वाणिज्यिक खेती"
+      },
+      {
+       "id": "plant",
+       "en": "Plantation",
+       "hi": "बागान खेती"
+      }
+     ],
+     "answer": "prim"
+    },
+    {
+     "kind": "do",
+     "target": "card:slash",
+     "expect": "correct:slash",
+     "say": {
+      "en": "Tap \"Slash and burn\" and put it in Primitive subsistence.",
+      "hi": "\"काटो-जलाओ\" पर टैप करो और उसे आदिम निर्वाह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:estate",
+     "expect": "correct:estate",
+     "say": {
+      "en": "Tap the huge-estate card and put it in Plantation.",
+      "hi": "विशाल बागान वाले कार्ड पर टैप करो और उसे बागान खेती में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:hyv",
+     "expect": "correct:hyv",
+     "say": {
+      "en": "Tap the high-yielding seeds card and place it.",
+      "hi": "उच्च उपज वाले बीजों का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाक़ी छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In primitive subsistence farming, families grow food for themselves with simple tools, often by slash and burn. The fields shift when the soil tires. Intensive subsistence farming squeezes the most from tiny fields with irrigation and heavy inputs. Commercial farming grows crops for sale with modern inputs. Plantations grow a single crop like tea on large estates for factories.",
+      "hi": "आदिम निर्वाह खेती में परिवार सरल औज़ारों से अपने लिए अन्न उगाते हैं, अक्सर काटो-जलाओ विधि से। मिट्टी थकने पर खेत बदल जाते हैं। गहन निर्वाह खेती में छोटे खेतों से सिंचाई और भारी लागत द्वारा अधिकतम उपज ली जाती है। वाणिज्यिक खेती में आधुनिक लागतों से बिक्री के लिए फ़सल उगाई जाती है। बागानों में बड़े क्षेत्र पर चाय जैसी एक फ़सल उद्योगों के लिए उगाई जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do shifting cultivators move to a fresh patch?",
+        "hi": "स्थानांतरित खेती करने वाले नई ज़मीन पर क्यों जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "The soil fertility decreases",
+         "hi": "मिट्टी की उर्वरता घट जाती है"
+        },
+        {
+         "en": "They are tired of the old village",
+         "hi": "वे पुराने गाँव से ऊब जाते हैं"
+        },
+        {
+         "en": "The government asks them to",
+         "hi": "सरकार उनसे कहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Moving lets nature replenish the soil's fertility.",
+        "hi": "आगे बढ़ने से प्रकृति मिट्टी की उर्वरता को फिर भर लेती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The reason is the falling fertility of the soil.",
+         "hi": "कारण मिट्टी की घटती उर्वरता है।"
+        },
+        {
+         "en": "They move because the soil needs time to recover.",
+         "hi": "वे इसलिए चलते हैं कि मिट्टी को उबरने का समय चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Rice is a commercial crop in Punjab but a subsistence crop in Odisha. What does that show?",
+        "hi": "धान पंजाब में वाणिज्यिक और ओडिशा में निर्वाह फ़सल है। इससे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "The same crop can be grown for sale in one place and for the family in another",
+         "hi": "वही फ़सल एक जगह बिक्री के लिए और दूसरी जगह परिवार के लिए उगाई जा सकती है"
+        },
+        {
+         "en": "Rice is a plantation crop",
+         "hi": "धान बागानी फ़सल है"
+        },
+        {
+         "en": "Odisha never grows rice",
+         "hi": "ओडिशा में धान कभी नहीं उगता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The degree of commercialisation varies from one region to another.",
+        "hi": "वाणिज्यीकरण का स्तर एक क्षेत्र से दूसरे क्षेत्र में बदलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rice is not grown on plantations of a single crop in these States.",
+         "hi": "इन राज्यों में धान एक-फ़सल वाले बागानों में नहीं उगता।"
+        },
+        {
+         "en": "Odisha does grow rice, mostly for its own food.",
+         "hi": "ओडिशा में धान उगता है, अधिकतर अपने भोजन के लिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name a crop grown near you. Is it grown for the family or for sale? Which of the four types does it fit?",
+      "hi": "अपने आसपास उगने वाली कोई फ़सल बताओ। क्या वह परिवार के लिए उगती है या बिक्री के लिए? वह चारों में से किस प्रकार में आती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch04-seasons",
+   "topic": "4.2",
+   "template": "sort",
+   "title": {
+    "en": "Rabi, kharif and zaid",
+    "hi": "रबी, खरीफ़ और जायद"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "rabi",
+      "label": {
+       "en": "Rabi: sown in winter",
+       "hi": "रबी: सर्दियों में बोई"
+      }
+     },
+     {
+      "id": "kharif",
+      "label": {
+       "en": "Kharif: sown with the monsoon",
+       "hi": "खरीफ़: मानसून में बोई"
+      }
+     },
+     {
+      "id": "zaid",
+      "label": {
+       "en": "Zaid: summer season",
+       "hi": "जायद: गर्मी का मौसम"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "wheat",
+      "text": {
+       "en": "Wheat",
+       "hi": "गेहूँ"
+      },
+      "bin": "rabi",
+      "why": {
+       "en": "Wheat is the main rabi crop of the north and north-west.",
+       "hi": "गेहूँ उत्तर और उत्तर-पश्चिम की मुख्य रबी फ़सल है।"
+      }
+     },
+     {
+      "id": "gram",
+      "text": {
+       "en": "Gram",
+       "hi": "चना"
+      },
+      "bin": "rabi",
+      "why": {
+       "en": "Gram is a rabi crop.",
+       "hi": "चना रबी फ़सल है।"
+      }
+     },
+     {
+      "id": "mustard",
+      "text": {
+       "en": "Mustard",
+       "hi": "सरसों"
+      },
+      "bin": "rabi",
+      "why": {
+       "en": "Mustard is a rabi oilseed.",
+       "hi": "सरसों रबी की तिलहन फ़सल है।"
+      }
+     },
+     {
+      "id": "peas",
+      "text": {
+       "en": "Peas",
+       "hi": "मटर"
+      },
+      "bin": "rabi",
+      "why": {
+       "en": "Peas are rabi crops.",
+       "hi": "मटर रबी फ़सल है।"
+      }
+     },
+     {
+      "id": "paddy",
+      "text": {
+       "en": "Paddy (rice)",
+       "hi": "धान (चावल)"
+      },
+      "bin": "kharif",
+      "why": {
+       "en": "Paddy is sown with the monsoon and harvested in September-October.",
+       "hi": "धान मानसून के साथ बोया जाता है और सितंबर-अक्तूबर में कटता है।"
+      }
+     },
+     {
+      "id": "maize",
+      "text": {
+       "en": "Maize",
+       "hi": "मक्का"
+      },
+      "bin": "kharif",
+      "why": {
+       "en": "Maize is a kharif crop.",
+       "hi": "मक्का खरीफ़ फ़सल है।"
+      }
+     },
+     {
+      "id": "bajra",
+      "text": {
+       "en": "Bajra",
+       "hi": "बाजरा"
+      },
+      "bin": "kharif",
+      "why": {
+       "en": "Bajra is a kharif millet.",
+       "hi": "बाजरा खरीफ़ का मोटा अनाज है।"
+      }
+     },
+     {
+      "id": "cotton",
+      "text": {
+       "en": "Cotton",
+       "hi": "कपास"
+      },
+      "bin": "kharif",
+      "why": {
+       "en": "Cotton is a kharif crop that takes six to eight months.",
+       "hi": "कपास खरीफ़ फ़सल है और पकने में छह से आठ महीने लेती है।"
+      }
+     },
+     {
+      "id": "jute",
+      "text": {
+       "en": "Jute",
+       "hi": "जूट"
+      },
+      "bin": "kharif",
+      "why": {
+       "en": "Jute is a kharif fibre crop.",
+       "hi": "जूट खरीफ़ की रेशेदार फ़सल है।"
+      }
+     },
+     {
+      "id": "melon",
+      "text": {
+       "en": "Watermelon",
+       "hi": "तरबूज़"
+      },
+      "bin": "zaid",
+      "why": {
+       "en": "Watermelon grows in the short summer season between rabi and kharif.",
+       "hi": "तरबूज़ रबी और खरीफ़ के बीच के छोटे गर्मी मौसम में उगता है।"
+      }
+     },
+     {
+      "id": "cucumber",
+      "text": {
+       "en": "Cucumber",
+       "hi": "खीरा"
+      },
+      "bin": "zaid",
+      "why": {
+       "en": "Cucumber is a zaid crop.",
+       "hi": "खीरा जायद की फ़सल है।"
+      }
+     },
+     {
+      "id": "muskmelon",
+      "text": {
+       "en": "Muskmelon",
+       "hi": "खरबूज़ा"
+      },
+      "bin": "zaid",
+      "why": {
+       "en": "Muskmelon is a zaid crop.",
+       "hi": "खरबूज़ा जायद की फ़सल है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Wheat needs a cool growing season and bright sunshine when it ripens. Is it sown in winter or at the start of the monsoon?",
+      "hi": "गेहूँ को ठंडा मौसम और पकते समय तेज़ धूप चाहिए। क्या यह सर्दियों में बोया जाता है या मानसून के आरंभ में?"
+     },
+     "options": [
+      {
+       "id": "winter",
+       "en": "In winter",
+       "hi": "सर्दियों में"
+      },
+      {
+       "id": "monsoon",
+       "en": "At the start of the monsoon",
+       "hi": "मानसून के आरंभ में"
+      }
+     ],
+     "answer": "winter"
+    },
+    {
+     "kind": "do",
+     "target": "card:wheat",
+     "expect": "correct:wheat",
+     "say": {
+      "en": "Tap Wheat and put it in Rabi.",
+      "hi": "गेहूँ पर टैप करो और उसे रबी में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:paddy",
+     "expect": "correct:paddy",
+     "say": {
+      "en": "Tap Paddy and put it in Kharif.",
+      "hi": "धान पर टैप करो और उसे खरीफ़ में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other crops and press Check.",
+      "hi": "बाक़ी फ़सलें छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has three cropping seasons. Rabi crops are sown in winter, from October to December, and harvested in summer, from April to June. Kharif crops are sown with the onset of the monsoon and harvested in September-October. Zaid is a short season in between, in the summer months, for watermelon, muskmelon and cucumber.",
+      "hi": "भारत में तीन फ़सल मौसम हैं। रबी की फ़सलें अक्तूबर से दिसंबर में सर्दियों में बोई जाती हैं और अप्रैल से जून में गर्मियों में कटती हैं। खरीफ़ की फ़सलें मानसून के आरंभ में बोई जाती हैं और सितंबर-अक्तूबर में कटती हैं। जायद बीच का छोटा गर्मी का मौसम है, जिसमें तरबूज़, खरबूज़ा और खीरा उगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When are rabi crops harvested?",
+        "hi": "रबी की फ़सलें कब काटी जाती हैं?"
+       },
+       "options": [
+        {
+         "en": "September to October",
+         "hi": "सितंबर से अक्तूबर"
+        },
+        {
+         "en": "April to June",
+         "hi": "अप्रैल से जून"
+        },
+        {
+         "en": "January only",
+         "hi": "केवल जनवरी में"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Rabi crops are sown in winter and harvested in summer, April to June.",
+        "hi": "रबी फ़सलें सर्दियों में बोई जाती हैं और अप्रैल से जून में कटती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "That is the kharif harvest.",
+         "hi": "यह खरीफ़ की कटाई का समय है।"
+        },
+        "",
+        {
+         "en": "Rabi crops ripen in summer, from April to June.",
+         "hi": "रबी फ़सलें गर्मियों में अप्रैल से जून में पकती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What helps the success of wheat in the north-west in winter?",
+        "hi": "सर्दियों में उत्तर-पश्चिम में गेहूँ की सफलता में क्या मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "Winter rain from western temperate cyclones",
+         "hi": "पश्चिमी शीतोष्ण चक्रवातों से सर्दियों की वर्षा"
+        },
+        {
+         "en": "The south-west monsoon",
+         "hi": "दक्षिण-पश्चिम मानसून"
+        },
+        {
+         "en": "Heavy summer floods",
+         "hi": "गर्मियों की भारी बाढ़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Winter precipitation from western temperate cyclones helps rabi crops.",
+        "hi": "पश्चिमी शीतोष्ण चक्रवातों से सर्दियों में वर्षा रबी फ़सलों की मदद करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That brings the kharif rains, not winter rain.",
+         "hi": "यह खरीफ़ की वर्षा लाता है, सर्दियों की नहीं।"
+        },
+        {
+         "en": "Floods in summer do not help a winter crop.",
+         "hi": "गर्मी की बाढ़ सर्दी की फ़सल की मदद नहीं करती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask a farmer or look at the market: which rabi, kharif and zaid foods are on your plate this month?",
+      "hi": "किसी किसान से पूछो या बाज़ार देखो: इस महीने तुम्हारी थाली में कौन-से रबी, खरीफ़ और जायद के भोजन हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch04-crop-needs",
+   "topic": "4.3",
+   "template": "match",
+   "title": {
+    "en": "What each crop needs",
+    "hi": "हर फ़सल को क्या चाहिए"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "rice",
+      "left": {
+       "en": "Rice",
+       "hi": "धान"
+      },
+      "right": {
+       "en": "Above 25°C, high humidity and over 100 cm of rain",
+       "hi": "25°C से अधिक तापमान, उच्च आर्द्रता और 100 सेमी से अधिक वर्षा"
+      },
+      "why": {
+       "en": "Where rain is less, irrigation makes up for it.",
+       "hi": "जहाँ वर्षा कम है वहाँ सिंचाई कमी पूरी करती है।"
+      }
+     },
+     {
+      "id": "wheat",
+      "left": {
+       "en": "Wheat",
+       "hi": "गेहूँ"
+      },
+      "right": {
+       "en": "Cool growing season, bright sun to ripen, 50 to 75 cm of rain",
+       "hi": "ठंडा मौसम, पकते समय तेज़ धूप, 50 से 75 सेमी वर्षा"
+      },
+      "why": {
+       "en": "It is the main rabi food crop of the north-west.",
+       "hi": "यह उत्तर-पश्चिम की मुख्य रबी खाद्य फ़सल है।"
+      }
+     },
+     {
+      "id": "sugarcane",
+      "left": {
+       "en": "Sugarcane",
+       "hi": "गन्ना"
+      },
+      "right": {
+       "en": "21 to 27°C, 75 to 100 cm of rain and manual labour all through",
+       "hi": "21 से 27°C, 75 से 100 सेमी वर्षा और पूरे समय हाथ का श्रम"
+      },
+      "why": {
+       "en": "It takes almost a year to grow.",
+       "hi": "इसे उगने में लगभग एक वर्ष लगता है।"
+      }
+     },
+     {
+      "id": "cotton",
+      "left": {
+       "en": "Cotton",
+       "hi": "कपास"
+      },
+      "right": {
+       "en": "Black soil, high temperature, light rain and 210 frost-free days",
+       "hi": "काली मिट्टी, ऊँचा तापमान, हल्की वर्षा और 210 पाला-रहित दिन"
+      },
+      "why": {
+       "en": "It grows well in the drier parts of the black cotton soil of the Deccan.",
+       "hi": "यह दक्कन की काली कपास मिट्टी के शुष्क भागों में अच्छी उगती है।"
+      }
+     },
+     {
+      "id": "jute",
+      "left": {
+       "en": "Jute",
+       "hi": "जूट"
+      },
+      "right": {
+       "en": "Well-drained fertile flood plains renewed by floods every year",
+       "hi": "हर वर्ष बाढ़ से नवीकृत अच्छी जल-निकास वाली उपजाऊ बाढ़ मैदान की मिट्टी"
+      },
+      "why": {
+       "en": "Jute is called the golden fibre.",
+       "hi": "जूट को सुनहरा रेशा कहा जाता है।"
+      }
+     },
+     {
+      "id": "rubber",
+      "left": {
+       "en": "Rubber",
+       "hi": "रबड़"
+      },
+      "right": {
+       "en": "Moist, humid climate with over 200 cm of rain and above 25°C",
+       "hi": "नम, आर्द्र जलवायु, 200 सेमी से अधिक वर्षा और 25°C से ऊपर तापमान"
+      },
+      "why": {
+       "en": "It is an equatorial crop, grown in Kerala, Tamil Nadu and Karnataka.",
+       "hi": "यह भूमध्यरेखीय फ़सल है, जो केरल, तमिलनाडु और कर्नाटक में उगती है।"
+      }
+     },
+     {
+      "id": "tea",
+      "left": {
+       "en": "Tea",
+       "hi": "चाय"
+      },
+      "right": {
+       "en": "Warm, moist, frost-free weather with showers all year",
+       "hi": "गर्म, नम, पाला-रहित मौसम और साल भर बौछारें"
+      },
+      "why": {
+       "en": "Tea needs plentiful cheap and skilled labour.",
+       "hi": "चाय को भरपूर सस्ते और कुशल श्रमिक चाहिए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which crop needs the most rain: rice, wheat or rubber?",
+      "hi": "किस फ़सल को सबसे अधिक वर्षा चाहिए: धान, गेहूँ या रबड़?"
+     },
+     "options": [
+      {
+       "id": "rice",
+       "en": "Rice",
+       "hi": "धान"
+      },
+      {
+       "id": "wheat",
+       "en": "Wheat",
+       "hi": "गेहूँ"
+      },
+      {
+       "id": "rubber",
+       "en": "Rubber",
+       "hi": "रबड़"
+      }
+     ],
+     "answer": "rubber"
+    },
+    {
+     "kind": "do",
+     "target": "left:rice",
+     "expect": "matched:rice",
+     "say": {
+      "en": "Match Rice with its conditions.",
+      "hi": "धान को उसकी परिस्थितियों से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:wheat",
+     "expect": "matched:wheat",
+     "say": {
+      "en": "Match Wheat.",
+      "hi": "गेहूँ को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:rubber",
+     "expect": "matched:rubber",
+     "say": {
+      "en": "Match Rubber.",
+      "hi": "रबड़ को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाक़ी मिलाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Crops grow where soil and climate suit them. Rice loves heat, humidity and rain above 100 cm; wheat needs a cool season with 50 to 75 cm of rain; rubber needs over 200 cm of rain; cotton likes black soil and bright sun; jute grows on flood plains; tea needs frost-free, showery weather. Irrigation, canals and tube-wells have let rice grow even in Punjab and Haryana.",
+      "hi": "फ़सलें वहीं उगती हैं जहाँ मिट्टी और जलवायु अनुकूल हों। धान को गर्मी, आर्द्रता और 100 सेमी से अधिक वर्षा चाहिए; गेहूँ को ठंडा मौसम और 50 से 75 सेमी वर्षा; रबड़ को 200 सेमी से अधिक वर्षा; कपास को काली मिट्टी और तेज़ धूप; जूट बाढ़ मैदानों में उगता है; चाय को पाला-रहित, बौछारों वाला मौसम चाहिए। सिंचाई, नहरों और नलकूपों से धान पंजाब-हरियाणा में भी उगने लगा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which crop needs a frost-free, warm and moist climate with showers spread over the year?",
+        "hi": "किस फ़सल को साल भर बौछारों वाला पाला-रहित, गर्म और नम मौसम चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Wheat",
+         "hi": "गेहूँ"
+        },
+        {
+         "en": "Tea",
+         "hi": "चाय"
+        },
+        {
+         "en": "Bajra",
+         "hi": "बाजरा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Tea bushes need warm, moist, frost-free weather with evenly spread showers.",
+        "hi": "चाय की झाड़ियों को गर्म, नम, पाला-रहित मौसम और समान रूप से बँटी बौछारें चाहिए।"
+       },
+       "wrong": [
+        {
+         "en": "Wheat needs a cool season, not an all-year moist one.",
+         "hi": "गेहूँ को ठंडा मौसम चाहिए, साल भर नमी नहीं।"
+        },
+        "",
+        {
+         "en": "Bajra grows on sandy soils in dry places.",
+         "hi": "बाजरा शुष्क जगहों की रेतीली मिट्टी में उगता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What made it possible to grow rice in Punjab, Haryana and western Uttar Pradesh?",
+        "hi": "पंजाब, हरियाणा और पश्चिमी उत्तर प्रदेश में धान उगाना कैसे संभव हुआ?"
+       },
+       "options": [
+        {
+         "en": "More snowfall in the plains",
+         "hi": "मैदानों में अधिक हिमपात"
+        },
+        {
+         "en": "A dense network of canals and tube-wells",
+         "hi": "नहरों और नलकूपों का घना जाल"
+        },
+        {
+         "en": "Rice no longer needs water",
+         "hi": "धान को अब पानी नहीं चाहिए"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Canal irrigation and tube-wells supply the water.",
+        "hi": "नहर सिंचाई और नलकूप पानी उपलब्ध कराते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Snow does not fall in these plains.",
+         "hi": "इन मैदानों में हिमपात नहीं होता।"
+        },
+        "",
+        {
+         "en": "Rice still needs plenty of water, which irrigation supplies.",
+         "hi": "धान को अब भी बहुत पानी चाहिए, जो सिंचाई देती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick any two crops from the match. Why can you not grow the one needing 200 cm rain in a place with 50 cm?",
+      "hi": "मिलान में से कोई दो फ़सलें चुनो। जिसे 200 सेमी वर्षा चाहिए उसे 50 सेमी वर्षा वाली जगह पर क्यों नहीं उगा सकते?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch04-crop-map",
+   "topic": "4.3",
+   "template": "map",
+   "title": {
+    "en": "Crop country",
+    "hi": "फ़सलों का देश"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "crops:tea",
+     "crops:wheat",
+     "crops:rice",
+     "crops:cotton",
+     "crops:jute",
+     "states"
+    ],
+    "show": [
+     "crops:tea"
+    ],
+    "task": "locate",
+    "places": [
+     "assam",
+     "punjab",
+     "west-bengal",
+     "maharashtra"
+    ],
+    "ask": "assam"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:crops:tea",
+     "expect": "layer:crops:tea",
+     "say": {
+      "en": "Switch on the Tea layer and see where the tea gardens are.",
+      "hi": "चाय की परत चालू करो और देखो चाय बागान कहाँ हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "India produces the second largest quantity of tea in the world. Which State leads, with its hot, humid, showery climate?",
+      "hi": "भारत विश्व में चाय का दूसरा सबसे बड़ा उत्पादक है। गर्म, आर्द्र, बौछारों वाली जलवायु के कारण कौन-सा राज्य आगे है?"
+     },
+     "options": [
+      {
+       "id": "assam",
+       "en": "Assam",
+       "hi": "असम"
+      },
+      {
+       "id": "raj",
+       "en": "Rajasthan",
+       "hi": "राजस्थान"
+      },
+      {
+       "id": "punjab",
+       "en": "Punjab",
+       "hi": "पंजाब"
+      }
+     ],
+     "answer": "assam"
+    },
+    {
+     "kind": "do",
+     "target": "pin",
+     "expect": "located:assam",
+     "say": {
+      "en": "Drop the pin on Assam and check it.",
+      "hi": "असम पर पिन रखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:crops:wheat",
+     "expect": "layer:crops:wheat",
+     "say": {
+      "en": "Now switch on the Wheat layer.",
+      "hi": "अब गेहूँ की परत चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pin",
+     "expect": "located:punjab",
+     "say": {
+      "en": "Find Punjab, a leading wheat State of the north-west.",
+      "hi": "पंजाब खोजो, जो उत्तर-पश्चिम का प्रमुख गेहूँ उत्पादक राज्य है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Crops follow climate and soil. Tea grows in the warm, showery north-east and in hills of West Bengal, Tamil Nadu and Kerala. Wheat grows in the cooler Ganga-Sutlej plains. Rice thrives in the humid east, the coasts and the deltas. Cotton grows on the black soil of the Deccan and jute on the fertile flood plains of West Bengal.",
+      "hi": "फ़सलें जलवायु और मिट्टी के अनुसार उगती हैं। चाय गर्म, बौछारों वाले पूर्वोत्तर और पश्चिम बंगाल, तमिलनाडु व केरल की पहाड़ियों में उगती है। गेहूँ ठंडे गंगा-सतलुज मैदानों में उगता है। धान आर्द्र पूर्व, तटों और डेल्टाओं में खूब उगता है। कपास दक्कन की काली मिट्टी में और जूट पश्चिम बंगाल के उपजाऊ बाढ़ मैदानों में उगता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which State is best known for jute?",
+        "hi": "जूट के लिए कौन-सा राज्य सबसे प्रसिद्ध है?"
+       },
+       "options": [
+        {
+         "en": "Punjab",
+         "hi": "पंजाब"
+        },
+        {
+         "en": "West Bengal",
+         "hi": "पश्चिम बंगाल"
+        },
+        {
+         "en": "Rajasthan",
+         "hi": "राजस्थान"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "West Bengal, Bihar, Assam, Odisha and Meghalaya are the major jute-producing States.",
+        "hi": "पश्चिम बंगाल, बिहार, असम, ओडिशा और मेघालय प्रमुख जूट उत्पादक राज्य हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Punjab is known for wheat and rice.",
+         "hi": "पंजाब गेहूँ और धान के लिए जाना जाता है।"
+        },
+        "",
+        {
+         "en": "Rajasthan is known for bajra, in dry sandy soils.",
+         "hi": "राजस्थान शुष्क रेतीली मिट्टी के बाजरे के लिए जाना जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which part of India has the Ganga-Sutlej plains where wheat grows well?",
+        "hi": "भारत के किस भाग में गंगा-सतलुज मैदान हैं जहाँ गेहूँ खूब होता है?"
+       },
+       "options": [
+        {
+         "en": "North-west",
+         "hi": "उत्तर-पश्चिम"
+        },
+        {
+         "en": "Far south",
+         "hi": "सुदूर दक्षिण"
+        },
+        {
+         "en": "Islands in the east",
+         "hi": "पूर्व के द्वीप"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Ganga-Sutlej plains of the north-west are a major wheat zone.",
+        "hi": "उत्तर-पश्चिम के गंगा-सतलुज मैदान गेहूँ का प्रमुख क्षेत्र हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The far south is warm and humid, better for rice, rubber and coconut.",
+         "hi": "सुदूर दक्षिण गर्म और आर्द्र है, धान, रबड़ और नारियल के लिए बेहतर।"
+        },
+        {
+         "en": "Wheat is a crop of the cool north-west, not the islands.",
+         "hi": "गेहूँ ठंडे उत्तर-पश्चिम की फ़सल है, द्वीपों की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch on the rice and cotton layers. In which States do the two overlap, and why?",
+      "hi": "धान और कपास की परतें चालू करो। किन राज्यों में दोनों साथ मिलती हैं, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch04-reforms",
+   "topic": "4.4",
+   "template": "match",
+   "title": {
+    "en": "Helping the farmer",
+    "hi": "किसान की मदद"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "green",
+      "left": {
+       "en": "Green Revolution",
+       "hi": "हरित क्रांति"
+      },
+      "right": {
+       "en": "Package of improved seeds, fertilisers and irrigation from the 1960s",
+       "hi": "1960 के दशक से उन्नत बीज, उर्वरक और सिंचाई का पैकेज"
+      },
+      "why": {
+       "en": "It lifted yields but grew only in a few selected areas.",
+       "hi": "इसने उपज बढ़ाई, पर कुछ चुने हुए क्षेत्रों में ही फैली।"
+      }
+     },
+     {
+      "id": "white",
+      "left": {
+       "en": "White Revolution (Operation Flood)",
+       "hi": "श्वेत क्रांति (ऑपरेशन फ़्लड)"
+      },
+      "right": {
+       "en": "A campaign to improve dairy farming and milk supply",
+       "hi": "डेयरी और दूध की आपूर्ति सुधारने का अभियान"
+      },
+      "why": {
+       "en": "Along with the Green Revolution it aimed at improving agriculture.",
+       "hi": "हरित क्रांति के साथ इसका लक्ष्य कृषि सुधारना था।"
+      }
+     },
+     {
+      "id": "land",
+      "left": {
+       "en": "Land reform",
+       "hi": "भूमि सुधार"
+      },
+      "right": {
+       "en": "The main focus of the First Five Year Plan",
+       "hi": "पहली पंचवर्षीय योजना का मुख्य केंद्र"
+      },
+      "why": {
+       "en": "It included consolidation of holdings and abolition of zamindari.",
+       "hi": "इसमें चकबंदी और ज़मींदारी उन्मूलन शामिल था।"
+      }
+     },
+     {
+      "id": "msp",
+      "left": {
+       "en": "Minimum support price",
+       "hi": "न्यूनतम समर्थन मूल्य"
+      },
+      "right": {
+       "en": "A price announced to protect farmers from speculators and middlemen",
+       "hi": "सट्टेबाज़ों और बिचौलियों से किसानों को बचाने के लिए घोषित मूल्य"
+      },
+      "why": {
+       "en": "The government announces it for important crops.",
+       "hi": "सरकार इसे महत्त्वपूर्ण फ़सलों के लिए घोषित करती है।"
+      }
+     },
+     {
+      "id": "insure",
+      "left": {
+       "en": "Crop insurance",
+       "hi": "फ़सल बीमा"
+      },
+      "right": {
+       "en": "Protection against drought, flood, cyclone, fire and disease",
+       "hi": "सूखा, बाढ़, चक्रवात, आग और रोग से सुरक्षा"
+      },
+      "why": {
+       "en": "It cushions the farmer when the crop fails.",
+       "hi": "फ़सल नष्ट होने पर यह किसान को सहारा देता है।"
+      }
+     },
+     {
+      "id": "credit",
+      "left": {
+       "en": "Grameen banks and cooperatives",
+       "hi": "ग्रामीण बैंक और सहकारी समितियाँ"
+      },
+      "right": {
+       "en": "Loans to farmers at lower rates of interest",
+       "hi": "किसानों को कम ब्याज दर पर ऋण"
+      },
+      "why": {
+       "en": "They reduce the farmer's dependence on moneylenders.",
+       "hi": "ये किसानों की साहूकारों पर निर्भरता घटाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The land of a farming family keeps being divided among children, making each plot smaller. Which kind of reform helps?",
+      "hi": "किसान परिवार की ज़मीन बच्चों में बँटते-बँटते छोटी होती जाती है। कौन-सा सुधार मदद करता है?"
+     },
+     "options": [
+      {
+       "id": "cons",
+       "en": "Consolidation of holdings",
+       "hi": "चकबंदी"
+      },
+      {
+       "id": "nothing",
+       "en": "No reform can help",
+       "hi": "कोई सुधार मदद नहीं कर सकता"
+      }
+     ],
+     "answer": "cons"
+    },
+    {
+     "kind": "do",
+     "target": "left:green",
+     "expect": "matched:green",
+     "say": {
+      "en": "Match the Green Revolution.",
+      "hi": "हरित क्रांति को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:msp",
+     "expect": "matched:msp",
+     "say": {
+      "en": "Match the minimum support price.",
+      "hi": "न्यूनतम समर्थन मूल्य को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाक़ी मिलाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Farming supports more than 60 per cent of the people, but it needs both technical and institutional reforms. After independence the focus was land reform. The Green Revolution and the White Revolution brought new technology, though mainly to a few areas. Later came crop insurance, cheap credit through Grameen banks and cooperatives, Kisan Credit Cards and minimum support prices.",
+      "hi": "कृषि 60 प्रतिशत से अधिक लोगों की रोज़ी-रोटी है, पर उसे तकनीकी और संस्थागत सुधार चाहिए। स्वतंत्रता के बाद ध्यान भूमि सुधार पर रहा। हरित क्रांति और श्वेत क्रांति नई तकनीक लाईं, पर मुख्यतः कुछ क्षेत्रों में। बाद में फ़सल बीमा, ग्रामीण बैंकों और सहकारी समितियों से सस्ता ऋण, किसान क्रेडिट कार्ड और न्यूनतम समर्थन मूल्य आए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the purpose of the minimum support price?",
+        "hi": "न्यूनतम समर्थन मूल्य का उद्देश्य क्या है?"
+       },
+       "options": [
+        {
+         "en": "To make seeds free",
+         "hi": "बीज मुफ़्त करना"
+        },
+        {
+         "en": "To protect farmers from exploitation by speculators and middlemen",
+         "hi": "सट्टेबाज़ों और बिचौलियों के शोषण से किसानों को बचाना"
+        },
+        {
+         "en": "To stop farmers from selling crops",
+         "hi": "किसानों को फ़सल बेचने से रोकना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The government announces minimum support prices to check exploitation of farmers.",
+        "hi": "सरकार किसानों के शोषण को रोकने के लिए न्यूनतम समर्थन मूल्य घोषित करती है।"
+       },
+       "wrong": [
+        {
+         "en": "MSP is a price for the crop that farmers sell, not a free-seeds scheme.",
+         "hi": "MSP किसानों की बेची फ़सल का मूल्य है, मुफ़्त बीज की योजना नहीं।"
+        },
+        "",
+        {
+         "en": "The aim is to help them sell at a fair price.",
+         "hi": "उद्देश्य उन्हें उचित दाम पर बेचने में मदद करना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The Green Revolution mainly helped...",
+        "hi": "हरित क्रांति ने मुख्यतः किसकी मदद की..."
+       },
+       "options": [
+        {
+         "en": "Every part of India equally",
+         "hi": "भारत के हर भाग की बराबर"
+        },
+        {
+         "en": "A few selected areas with package technology",
+         "hi": "पैकेज तकनीक वाले कुछ चुने हुए क्षेत्रों की"
+        },
+        {
+         "en": "Only the hill States",
+         "hi": "केवल पर्वतीय राज्यों की"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It led to concentration of development in a few areas, so later programmes were needed.",
+        "hi": "इससे विकास कुछ क्षेत्रों में केंद्रित हुआ, इसलिए बाद के कार्यक्रम ज़रूरी हुए।"
+       },
+       "wrong": [
+        {
+         "en": "The development concentrated in a few selected areas.",
+         "hi": "विकास कुछ चुने हुए क्षेत्रों में केंद्रित रहा।"
+        },
+        "",
+        {
+         "en": "It was strongest in Punjab, Haryana and western Uttar Pradesh.",
+         "hi": "यह पंजाब, हरियाणा और पश्चिमी उत्तर प्रदेश में सबसे मज़बूत रही।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these six helps farmers in your State the most? Ask a farmer or look in the newspaper.",
+      "hi": "इन छह में से कौन तुम्हारे राज्य के किसानों की सबसे अधिक मदद करता है? किसी किसान से पूछो या अख़बार देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch04-bhoodan",
+   "topic": "4.4",
+   "template": "sequence",
+   "title": {
+    "en": "The Bhoodan story",
+    "hi": "भूदान की कहानी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "padyatra",
+      "text": {
+       "en": "Vinoba Bhave walks across the country to spread Gandhiji's message",
+       "hi": "विनोबा भावे गांधीजी का संदेश फैलाने देश भर में पैदल चलते हैं"
+      }
+     },
+     {
+      "id": "ask",
+      "text": {
+       "en": "At Pochampally poor landless villagers ask him for land",
+       "hi": "पोचमपल्ली में भूमिहीन गरीब ग्रामीण उनसे ज़मीन माँगते हैं"
+      }
+     },
+     {
+      "id": "promise",
+      "text": {
+       "en": "He says he will speak to the government if they farm cooperatively",
+       "hi": "वे कहते हैं कि सहकारी खेती करें तो वे सरकार से बात करेंगे"
+      }
+     },
+     {
+      "id": "gift",
+      "text": {
+       "en": "Ram Chandra Reddy offers 80 acres for 80 landless villagers",
+       "hi": "रामचंद्र रेड्डी 80 भूमिहीन ग्रामीणों के लिए 80 एकड़ देते हैं"
+      }
+     },
+     {
+      "id": "gramdan",
+      "text": {
+       "en": "Landowners then offer land, and some zamindars offer whole villages: Gramdan",
+       "hi": "फिर भू-स्वामी ज़मीन देते हैं और कुछ ज़मींदार पूरे गाँव देते हैं: ग्रामदान"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Do you think land can be given willingly, without a law or a fight?",
+      "hi": "क्या तुम्हारे विचार से ज़मीन बिना क़ानून या लड़ाई के अपनी इच्छा से दी जा सकती है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, never",
+       "hi": "नहीं, कभी नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, if people are moved to share",
+       "hi": "हाँ, यदि लोग बाँटने के लिए प्रेरित हों"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "item:padyatra",
+     "expect": "placed:padyatra",
+     "say": {
+      "en": "Put the first step in place: Vinoba Bhave's walk.",
+      "hi": "पहला चरण रखो: विनोबा भावे की पदयात्रा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:gift",
+     "expect": "placed:gift",
+     "say": {
+      "en": "Place the step where land is first offered.",
+      "hi": "वह चरण रखो जहाँ पहली बार ज़मीन दी जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the rest in order and press Check.",
+      "hi": "बाक़ी क्रम में लगाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Vinoba Bhave, Gandhiji's spiritual heir, walked across India to spread Gandhi's message. At Pochampally in Telangana, landless villagers asked him for land. Shri Ram Chandra Reddy offered 80 acres for 80 families. This act of Bhoodan, \"gift of land\", grew into Gramdan, \"gift of villages\". The movement is also known as the Blood-less Revolution.",
+      "hi": "गांधीजी के आध्यात्मिक उत्तराधिकारी विनोबा भावे ने गांधीजी का संदेश फैलाने के लिए पूरे भारत की पदयात्रा की। तेलंगाना के पोचमपल्ली में भूमिहीन ग्रामीणों ने उनसे ज़मीन माँगी। श्री रामचंद्र रेड्डी ने 80 परिवारों के लिए 80 एकड़ दी। भूदान के इस कार्य से ग्रामदान की शुरुआत हुई। इस आंदोलन को रक्तहीन क्रांति भी कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the Bhoodan-Gramdan movement called a Blood-less Revolution?",
+        "hi": "भूदान-ग्रामदान आंदोलन को रक्तहीन क्रांति क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Land was given willingly, without violence",
+         "hi": "ज़मीन बिना हिंसा के अपनी इच्छा से दी गई"
+        },
+        {
+         "en": "Because no one took part",
+         "hi": "क्योंकि किसी ने भाग नहीं लिया"
+        },
+        {
+         "en": "Because it used soldiers",
+         "hi": "क्योंकि इसमें सैनिकों का उपयोग हुआ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Land was gifted voluntarily, so no blood was shed.",
+        "hi": "ज़मीन स्वेच्छा से दान हुई, इसलिए रक्त नहीं बहा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Many landowners did take part and gave land.",
+         "hi": "कई भू-स्वामियों ने भाग लिया और ज़मीन दी।"
+        },
+        {
+         "en": "It was a peaceful movement of persuasion.",
+         "hi": "यह मनाने का शांतिपूर्ण आंदोलन था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does \"Gramdan\" mean?",
+        "hi": "\"ग्रामदान\" का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Gift of a village",
+         "hi": "गाँव का दान"
+        },
+        {
+         "en": "Gift of a cow",
+         "hi": "गाय का दान"
+        },
+        {
+         "en": "Gift of a loan",
+         "hi": "ऋण का दान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Some zamindars offered to distribute entire villages among the landless.",
+        "hi": "कुछ ज़मींदारों ने पूरे गाँव भूमिहीनों में बाँटने की पेशकश की।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Gram here means village; Gramdan is the gift of villages.",
+         "hi": "यहाँ ग्राम का अर्थ गाँव है; ग्रामदान गाँवों का दान है।"
+        },
+        {
+         "en": "Gramdan was about giving villages to the landless, not loans.",
+         "hi": "ग्रामदान भूमिहीनों को गाँव देने के बारे में था, ऋण के नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why did some landowners give land even without being forced? Discuss it with a friend.",
+      "hi": "कुछ भू-स्वामियों ने बिना दबाव के भी ज़मीन क्यों दी? अपने मित्र से चर्चा करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Hook of the chapter",
+   "shows": "A farmer ploughing a green field with a pair of bullocks at sunrise in an Indian village",
+   "view": "Side view, long light, mist over the field",
+   "right": "Healthy bullocks, wooden plough, green sprouts; no machines",
+   "avoid": "Brand-name tractors, text on clothing"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "4.1",
+   "use": "Shifting cultivation",
+   "shows": "Four frames of one hill patch in the North-east: forest, cleared and burned patch, young crop, abandoned patch regrowing",
+   "view": "Same hill and camera position in each frame",
+   "right": "Hill slopes; smoke in frame 2; green regrowth in frame 4",
+   "avoid": "Faces, weapons"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Plantation",
+   "shows": "Rows of tea bushes on a hill in Assam with women plucking leaves, mist in the valley",
+   "view": "Wide view along the rows, morning light",
+   "right": "Neat rows; two-leaves-and-a-bud pluckers; shade trees",
+   "avoid": "Brand-name boxes"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "4.2",
+   "use": "Seasons of one field",
+   "shows": "The same field in Punjab in 4 frames: wheat sown in winter, wheat golden at harvest, empty summer field, paddy transplanting in the monsoon",
+   "view": "Same camera spot and tree on the bank",
+   "right": "Colour of each season is true; water in the paddy frame",
+   "avoid": "Machines with logos"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.3",
+   "use": "Crop cut-outs",
+   "shows": "Eight cut-out crops: wheat ears, rice panicle, sugarcane stalks, cotton boll, jute stalks, tea shoot, coffee berries, rubber latex cup",
+   "view": "Each on a white background, lit from the top left",
+   "right": "Species true to life; ripe colours",
+   "avoid": "Packaging, labels"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "4.3",
+   "use": "Crop distribution base",
+   "shows": "A plain relief map of India with rainfall zones shaded from dry to wet and no text",
+   "view": "Top-down, 16:9, soft shading",
+   "right": "Wet north-east and west coast; dry north-west; India as officially depicted",
+   "avoid": "Names, borders of States"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Cotton and sugarcane fields",
+   "shows": "A Maharashtra black-soil cotton field beside a sugarcane field, with a sugar mill chimney far away",
+   "view": "Wide view from a field bund, afternoon sun",
+   "right": "Open cotton bolls; tall green sugarcane; dark soil",
+   "avoid": "People in close-up, mill name"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "4.4",
+   "use": "Bhoodan",
+   "shows": "A white-clad padyatri walking a rural road with villagers gathered around him under a tree in the 1950s style",
+   "view": "Medium-wide, evenly lit, calm mood",
+   "right": "Simple clothes of the period; no flags or party symbols",
+   "avoid": "A real identifiable portrait, political symbols"
+  }
+ ]
+}

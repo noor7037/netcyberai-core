@@ -1,0 +1,1370 @@
+{
+ "chapter_key": "u.c12.computer_science.lecs1.ch03",
+ "class": 12,
+ "subject_id": "computer_science",
+ "title": "Stack",
+ "source": "https://ncert.nic.in/textbook/pdf/lecs103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Introduction to stacks",
+   "labs": [],
+   "why_no_lab": "The idea of a pile is covered by the picture and the next topics."
+  },
+  {
+   "n": "3.2",
+   "title": "Stack and its applications",
+   "labs": [
+    "c12-computer_science-lecs1-ch03-apps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Operations on a stack: push, pop, overflow, underflow",
+   "labs": [
+    "c12-computer_science-lecs1-ch03-lifo",
+    "c12-computer_science-lecs1-ch03-overflow"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Implementation of a stack in Python",
+   "labs": [
+    "c12-computer_science-lecs1-ch03-listpy"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Notations for arithmetic expressions",
+   "labs": [
+    "c12-computer_science-lecs1-ch03-notation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Conversion from infix to postfix notation",
+   "labs": [
+    "c12-computer_science-lecs1-ch03-convert"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.7",
+   "title": "Evaluation of a postfix expression",
+   "labs": [
+    "c12-computer_science-lecs1-ch03-evaluate"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-computer_science-lecs1-ch03-lifo",
+   "topic": "3.3",
+   "template": "code",
+   "title": {
+    "en": "Push and pop: last in, first out",
+    "hi": "Push और pop: जो आख़िर में आया, वह पहले गया"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "stack",
+    "data": [
+     10,
+     20,
+     30
+    ],
+    "capacity": 5
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "block:push",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap push to put the first plate on the stack.",
+      "hi": "पहली प्लेट स्टैक पर रखने के लिए push दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "block:push",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap push again, twice more. Watch where each new plate lands.",
+      "hi": "push फिर दो बार दबाओ। देखो हर नई प्लेट कहाँ जाती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The plates 10, 20 and 30 were pushed in that order. If you pop once, which plate comes off?",
+      "hi": "प्लेटें 10, 20 और 30 इसी क्रम में रखी गईं। एक बार pop करने पर कौन-सी प्लेट निकलेगी?"
+     },
+     "options": [
+      {
+       "id": "p30",
+       "en": "30, the last one pushed",
+       "hi": "30, जो आख़िर में रखी गई"
+      },
+      {
+       "id": "p10",
+       "en": "10, the first one pushed",
+       "hi": "10, जो सबसे पहले रखी गई"
+      },
+      {
+       "id": "p20",
+       "en": "20, the middle one",
+       "hi": "20, बीच वाली"
+      }
+     ],
+     "answer": "p30"
+    },
+    {
+     "kind": "do",
+     "target": "block:pop",
+     "expect": "output",
+     "say": {
+      "en": "Tap pop and see which plate leaves.",
+      "hi": "pop दबाओ और देखो कौन-सी प्लेट जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "block:peek",
+     "expect": "output",
+     "say": {
+      "en": "Tap peek to look at the top plate without removing it.",
+      "hi": "ऊपर वाली प्लेट को बिना हटाए देखने के लिए peek दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A stack works like a pile of plates in the kitchen: you add and remove only at the top. push puts a new item on top, pop removes the top item, and peek just looks at it. So the item pushed last is the first to come out. This rule is called LIFO: Last In, First Out.",
+      "hi": "स्टैक रसोई में रखी प्लेटों के ढेर जैसा है: तुम केवल ऊपर से जोड़ते और हटाते हो। push नई चीज़ ऊपर रखता है, pop ऊपर की चीज़ हटाता है, और peek उसे केवल देखता है। इसलिए जो चीज़ आख़िर में रखी गई वही सबसे पहले निकलती है। इस नियम को LIFO कहते हैं: Last In, First Out।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Items 5, 6 and 7 are pushed in order. Then pop is done twice. What is left on the stack?",
+        "hi": "चीज़ें 5, 6 और 7 क्रम से push की जाती हैं। फिर दो बार pop होता है। स्टैक में क्या बचा?"
+       },
+       "options": [
+        "5",
+        "6",
+        "7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The two pops remove 7 and then 6, so only 5, the first one pushed, is left.",
+        "hi": "दो pop पहले 7 और फिर 6 हटाते हैं, इसलिए सबसे पहले रखी गई 5 ही बचती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 was removed by the second pop.",
+         "hi": "6 को दूसरे pop ने हटा दिया।"
+        },
+        {
+         "en": "7 was on top, so it was removed first.",
+         "hi": "7 ऊपर थी, इसलिए सबसे पहले हट गई।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does LIFO stand for?",
+        "hi": "LIFO का पूरा रूप क्या है?"
+       },
+       "options": [
+        "Last In, First Out",
+        "Last In, Fixed Out",
+        "Late In, First Out"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "LIFO means the last item to go in is the first to come out.",
+        "hi": "LIFO का मतलब है कि जो चीज़ सबसे बाद में अंदर गई, वही सबसे पहले बाहर आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is nothing \"fixed\" in the rule; the order is set by the pile itself.",
+         "hi": "नियम में \"fixed\" जैसा कुछ नहीं; क्रम ढेर की बनावट से तय होता है।"
+        },
+        {
+         "en": "\"Late\" is not the word used in computer science for this rule.",
+         "hi": "कंप्यूटर विज्ञान में इस नियम के लिए \"Late\" शब्द नहीं आता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and pop before you push anything. What does the lab say? Why can a stack not give you an item that is not there?",
+      "hi": "\"फिर से\" दबाओ और कुछ भी push किए बिना pop करो। लैब क्या कहती है? स्टैक ऐसी चीज़ क्यों नहीं दे सकता जो वहाँ है ही नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch03-overflow",
+   "topic": "3.3",
+   "template": "code",
+   "title": {
+    "en": "A full stack and an empty stack",
+    "hi": "भरा स्टैक और ख़ाली स्टैक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "stack",
+    "data": [
+     5,
+     10,
+     15,
+     20
+    ],
+    "capacity": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This stack has room for only 3 plates, but we try to push 4. What happens on the fourth push?",
+      "hi": "इस स्टैक में केवल 3 प्लेटों की जगह है, पर हम 4 push करने की कोशिश करते हैं। चौथे push पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "over",
+       "en": "Overflow: there is no room",
+       "hi": "ओवरफ़्लो: जगह नहीं है"
+      },
+      {
+       "id": "ok",
+       "en": "The stack grows by itself",
+       "hi": "स्टैक अपने-आप बढ़ जाता है"
+      },
+      {
+       "id": "pop",
+       "en": "The bottom plate is removed",
+       "hi": "सबसे नीचे की प्लेट हट जाती है"
+      }
+     ],
+     "answer": "over"
+    },
+    {
+     "kind": "do",
+     "target": "block:push",
+     "expect": "stepped",
+     "say": {
+      "en": "Push the first plate.",
+      "hi": "पहली प्लेट push करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "block:push",
+     "expect": "stepped",
+     "say": {
+      "en": "Push the second and the third plate.",
+      "hi": "दूसरी और तीसरी प्लेट push करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "block:push",
+     "expect": "stepped",
+     "say": {
+      "en": "Push the fourth plate and read the message.",
+      "hi": "चौथी प्लेट push करो और संदेश पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "block:pop",
+     "expect": "output",
+     "say": {
+      "en": "Now pop. Keep popping until the stack is empty and the lab complains.",
+      "hi": "अब pop करो। ख़ाली होने तक pop करते रहो, जब तक लैब शिकायत न करे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A stack with a fixed size can become full. Pushing onto a full stack is called overflow, and the new item is refused. The opposite trouble is underflow: popping from an empty stack, where there is nothing to give. A good program checks whether the stack is full before push and empty before pop.",
+      "hi": "तय आकार वाला स्टैक भर सकता है। भरे स्टैक पर push करना ओवरफ़्लो कहलाता है और नई चीज़ ठुकरा दी जाती है। इसका उलटा संकट अंडरफ़्लो है: ख़ाली स्टैक से pop करना, जहाँ देने को कुछ नहीं होता। अच्छा प्रोग्राम push से पहले जाँचता है कि स्टैक भरा तो नहीं और pop से पहले कि ख़ाली तो नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is it called when you pop from an empty stack?",
+        "hi": "ख़ाली स्टैक से pop करने को क्या कहते हैं?"
+       },
+       "options": [
+        "Overflow",
+        "Underflow",
+        "Peek"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Underflow means trying to remove from a stack that has nothing in it.",
+        "hi": "अंडरफ़्लो का मतलब है ऐसे स्टैक से हटाने की कोशिश जिसमें कुछ है ही नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "Overflow is the trouble when pushing onto a full stack.",
+         "hi": "ओवरफ़्लो भरे स्टैक पर push करने की परेशानी है।"
+        },
+        "",
+        {
+         "en": "peek is a safe look at the top, not an error name.",
+         "hi": "peek ऊपर की चीज़ का सुरक्षित दर्शन है, त्रुटि का नाम नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which check should happen before every push in a stack of fixed size?",
+        "hi": "तय आकार वाले स्टैक में हर push से पहले कौन-सी जाँच होनी चाहिए?"
+       },
+       "options": [
+        "Is the stack empty?",
+        "Is the stack full?",
+        "Is the top an even number?"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "If the stack is full, a push would overflow, so the program must check this first.",
+        "hi": "स्टैक भरा हो तो push ओवरफ़्लो करेगा, इसलिए प्रोग्राम को पहले यह जाँचना चाहिए।"
+       },
+       "wrong": [
+        {
+         "en": "Being empty matters before pop, not before push.",
+         "hi": "ख़ाली होना pop से पहले मायने रखता है, push से पहले नहीं।"
+        },
+        "",
+        {
+         "en": "The value of the top plate has no role in push.",
+         "hi": "ऊपर वाली प्लेट के मान का push में कोई रोल नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which is worse for a program, overflow or underflow? Argue for your choice in two sentences.",
+      "hi": "प्रोग्राम के लिए कौन-सा बुरा है, ओवरफ़्लो या अंडरफ़्लो? अपनी राय दो वाक्यों में तर्क के साथ बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch03-apps",
+   "topic": "3.2",
+   "template": "sort",
+   "title": {
+    "en": "Where do we meet a stack?",
+    "hi": "स्टैक हमें कहाँ मिलता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "stack",
+      "label": {
+       "en": "A stack (last in, first out)",
+       "hi": "स्टैक (आख़िर में आया, पहले गया)"
+      }
+     },
+     {
+      "id": "notstack",
+      "label": {
+       "en": "Not a stack",
+       "hi": "स्टैक नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "undo",
+      "text": {
+       "en": "Undo button in a text editor",
+       "hi": "टेक्स्ट एडिटर का Undo बटन"
+      },
+      "bin": "stack",
+      "why": {
+       "en": "Undo takes back the most recent change first: last in, first out.",
+       "hi": "Undo सबसे हाल का बदलाव पहले वापस लेता है: आख़िर में आया, पहले गया।"
+      }
+     },
+     {
+      "id": "back",
+      "text": {
+       "en": "Back button of a web browser",
+       "hi": "ब्राउज़र का Back बटन"
+      },
+      "bin": "stack",
+      "why": {
+       "en": "Back goes to the page you visited last, then the one before it.",
+       "hi": "Back सबसे आख़िर में देखे पेज पर जाता है, फिर उससे पहले वाले पर।"
+      }
+     },
+     {
+      "id": "rev",
+      "text": {
+       "en": "Reversing the word \"BOOK\"",
+       "hi": "शब्द \"BOOK\" को उलटना"
+      },
+      "bin": "stack",
+      "why": {
+       "en": "Push the letters, then pop them: K, O, O, B come out, so the word is reversed.",
+       "hi": "अक्षर push करो, फिर pop करो: K, O, O, B निकलते हैं, यानी शब्द उलट जाता है।"
+      }
+     },
+     {
+      "id": "plates",
+      "text": {
+       "en": "Plates piled in the kitchen",
+       "hi": "रसोई में रखी प्लेटों का ढेर"
+      },
+      "bin": "stack",
+      "why": {
+       "en": "You pick the plate on top, which was put there last.",
+       "hi": "तुम ऊपर की प्लेट उठाते हो, जो सबसे आख़िर में रखी गई थी।"
+      }
+     },
+     {
+      "id": "ticket",
+      "text": {
+       "en": "People in a ticket line",
+       "hi": "टिकट की पंक्ति में लोग"
+      },
+      "bin": "notstack",
+      "why": {
+       "en": "The person who came first is served first. That is a queue, not a stack.",
+       "hi": "जो पहले आया, उसे पहले टिकट मिलता है। यह क्यू है, स्टैक नहीं।"
+      }
+     },
+     {
+      "id": "print",
+      "text": {
+       "en": "Print jobs waiting for the printer",
+       "hi": "प्रिंटर की प्रतीक्षा में प्रिंट काम"
+      },
+      "bin": "notstack",
+      "why": {
+       "en": "Jobs print in the order they were sent: first in, first out, so it is a queue.",
+       "hi": "काम भेजे गए क्रम में छपते हैं: पहले आया, पहले गया, इसलिए यह क्यू है।"
+      }
+     },
+     {
+      "id": "rail",
+      "text": {
+       "en": "Passengers boarding a bus one by one",
+       "hi": "यात्री एक-एक करके बस में चढ़ते हुए"
+      },
+      "bin": "notstack",
+      "why": {
+       "en": "Boarding by turn is a line, a queue, not a pile.",
+       "hi": "बारी से चढ़ना पंक्ति है, यानी क्यू, ढेर नहीं।"
+      }
+     },
+     {
+      "id": "brackets",
+      "text": {
+       "en": "Checking that brackets ( ) match in a formula",
+       "hi": "सूत्र में कोष्ठक ( ) जोड़ी में हैं या नहीं, यह जाँचना"
+      },
+      "bin": "stack",
+      "why": {
+       "en": "Each closing bracket must match the latest opening one, which a stack remembers.",
+       "hi": "हर बंद कोष्ठक सबसे हाल के खुले कोष्ठक से मिलना चाहिए, जिसे स्टैक याद रखता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:undo",
+     "expect": "correct:undo",
+     "say": {
+      "en": "Place the card \"Undo button\" in its group.",
+      "hi": "कार्ड \"Undo बटन\" को उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The next card: people standing in a ticket line. Is it a stack?",
+      "hi": "अगला कार्ड: टिकट की पंक्ति में खड़े लोग। क्या यह स्टैक है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, a stack",
+       "hi": "हाँ, स्टैक"
+      },
+      {
+       "id": "no",
+       "en": "No, the first person is served first",
+       "hi": "नहीं, पहले आने वाले को पहले सेवा मिलती है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:ticket",
+     "expect": "correct:ticket",
+     "say": {
+      "en": "Place the ticket line card.",
+      "hi": "टिकट की पंक्ति वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:rev",
+     "expect": "correct:rev",
+     "say": {
+      "en": "Place the card about reversing \"BOOK\".",
+      "hi": "\"BOOK\" उलटने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A stack is useful whenever the latest thing must be dealt with first: undoing changes, going back through pages, reversing a word, matching brackets, and the way a computer remembers function calls. A line of people is different: the first to arrive is served first, which is a queue (FIFO).",
+      "hi": "जब भी सबसे ताज़ा चीज़ को पहले निपटाना हो, तब स्टैक काम आता है: बदलाव वापस लेना, पेजों में पीछे जाना, शब्द उलटना, कोष्ठक मिलाना, और कंप्यूटर का फ़ंक्शन कॉल याद रखना। लोगों की कतार अलग है: जो पहले पहुँचा उसे पहले सेवा मिलती है, यह क्यू (FIFO) है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one uses a stack?",
+        "hi": "इनमें से कौन स्टैक का इस्तेमाल करता है?"
+       },
+       "options": [
+        "A bank queue",
+        "The Undo button",
+        "A printer line"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Undo reverses the latest change first. That is last in, first out.",
+        "hi": "Undo सबसे हाल का बदलाव पहले पलटता है। यही आख़िर में आया, पहले गया है।"
+       },
+       "wrong": [
+        {
+         "en": "A bank queue serves people in the order of arrival.",
+         "hi": "बैंक की कतार में आने के क्रम से सेवा मिलती है।"
+        },
+        "",
+        {
+         "en": "The printer prints jobs in the order they were sent.",
+         "hi": "प्रिंटर काम भेजे गए क्रम में छापता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If you push the letters C, A, T and then pop all three, in what order do they come out?",
+        "hi": "अक्षर C, A, T को push करके तीनों pop करो तो किस क्रम में निकलेंगे?"
+       },
+       "options": [
+        "C, A, T",
+        "T, A, C",
+        "A, C, T"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The last pushed, T, comes out first, and C comes out last: the word is reversed.",
+        "hi": "सबसे बाद में रखा गया T पहले निकलता है और C सबसे अंत में: शब्द उलट जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "That is the order they went in, which would be a queue.",
+         "hi": "यह तो अंदर जाने का क्रम है, जो क्यू का होता।"
+        },
+        "",
+        {
+         "en": "A stack never mixes the middle letter to the front.",
+         "hi": "स्टैक बीच के अक्षर को आगे नहीं ले आता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the sorting. Then think of one more thing from daily life that behaves like a stack.",
+      "hi": "छँटाई पूरी करो। फिर रोज़ की ज़िंदगी से एक और चीज़ सोचो जो स्टैक की तरह चलती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch03-listpy",
+   "topic": "3.4",
+   "template": "code",
+   "title": {
+    "en": "A stack in Python using a list",
+    "hi": "लिस्ट से Python में स्टैक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "stack = []",
+     "stack.append(\"A\")",
+     "stack.append(\"B\")",
+     "stack.append(\"C\")",
+     "print(stack)",
+     "print(stack.pop())",
+     "print(stack.pop())",
+     "print(len(stack))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The program pushes A, B and C with append(), then pops twice. What will the first pop print?",
+      "hi": "प्रोग्राम A, B और C को append() से push करता है, फिर दो बार pop करता है। पहला pop क्या छापेगा?"
+     },
+     "options": [
+      {
+       "id": "c",
+       "en": "C",
+       "hi": "C है"
+      },
+      {
+       "id": "a",
+       "en": "A",
+       "hi": "A है"
+      },
+      {
+       "id": "b",
+       "en": "B",
+       "hi": "B है"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch the list grow with each append().",
+      "hi": "\"एक क़दम\" दबाओ और देखो हर append() से सूची कैसे बढ़ती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish and read the printed lines.",
+      "hi": "पूरा करने के लिए \"चलाओ\" दबाओ और छपी पंक्तियाँ पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Python has no ready-made stack, but a list does the job. append() is push: it adds at the end of the list, which is the top. pop() with no number removes the last item, which is the top, and gives it back. len() tells how many items remain, and a stack is empty when len(stack) is 0.",
+      "hi": "Python में तैयार स्टैक नहीं है, पर सूची यह काम कर देती है। append() ही push है: वह सूची के अंत में, यानी ऊपर, जोड़ता है। बिना संख्या वाला pop() अंतिम चीज़, यानी ऊपर वाली, हटाकर लौटाता है। len() बताता है कितनी चीज़ें बचीं, और स्टैक तब ख़ाली है जब len(stack) 0 हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which list method works as push?",
+        "hi": "सूची का कौन-सा तरीका push का काम करता है?"
+       },
+       "options": [
+        "append()",
+        "pop()",
+        "len()"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "append() adds a new item at the end, which is the top of the stack.",
+        "hi": "append() अंत में नई चीज़ जोड़ता है, जो स्टैक का ऊपर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "pop() removes an item; it is the opposite of push.",
+         "hi": "pop() चीज़ हटाता है; वह push का उलटा है।"
+        },
+        {
+         "en": "len() only counts the items.",
+         "hi": "len() केवल चीज़ें गिनता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "After the program ends, what does the last print( ) show?",
+        "hi": "प्रोग्राम ख़त्म होने पर आख़िरी print( ) क्या दिखाता है?"
+       },
+       "options": [
+        "0",
+        "1",
+        "3"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Three items were pushed and two were popped, so 1 item (A) is left.",
+        "hi": "तीन चीज़ें push हुईं और दो pop हुईं, इसलिए 1 चीज़ (A) बची।"
+       },
+       "wrong": [
+        {
+         "en": "0 would mean all three were popped.",
+         "hi": "0 तब होता जब तीनों pop हो जातीं।"
+        },
+        "",
+        {
+         "en": "3 is the number pushed, not what is left.",
+         "hi": "3 push की गई चीज़ों की संख्या है, बची हुई नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which letter is left in the list at the end? Add a fourth append of your own on paper and work out what the two pops would print.",
+      "hi": "अंत में सूची में कौन-सा अक्षर बचा है? काग़ज़ पर अपना चौथा append जोड़ो और सोचो कि दोनों pop क्या छापेंगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch03-notation",
+   "topic": "3.5",
+   "template": "match",
+   "title": {
+    "en": "Infix to postfix: same sum, different writing",
+    "hi": "इन्फ़िक्स से पोस्टफ़िक्स: वही जोड़, अलग लिखावट"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "p1",
+      "left": {
+       "en": "A + B",
+       "hi": "A + B"
+      },
+      "right": {
+       "en": "A B +",
+       "hi": "A B +"
+      },
+      "why": {
+       "en": "With postfix the operator comes after the two operands.",
+       "hi": "पोस्टफ़िक्स में ऑपरेटर दोनों ऑपरेंड के बाद आता है।"
+      }
+     },
+     {
+      "id": "p2",
+      "left": {
+       "en": "A * B + C",
+       "hi": "A * B + C"
+      },
+      "right": {
+       "en": "A B * C +",
+       "hi": "A B * C +"
+      },
+      "why": {
+       "en": "* is done first: A B *, then C is added.",
+       "hi": "पहले * होता है: A B *, फिर C जोड़ा जाता है।"
+      }
+     },
+     {
+      "id": "p3",
+      "left": {
+       "en": "A + B * C",
+       "hi": "A + B * C"
+      },
+      "right": {
+       "en": "A B C * +",
+       "hi": "A B C * +"
+      },
+      "why": {
+       "en": "B * C is done before the addition, so * comes before +.",
+       "hi": "जोड़ से पहले B * C होता है, इसलिए * का स्थान + से पहले है।"
+      }
+     },
+     {
+      "id": "p4",
+      "left": {
+       "en": "(A + B) * C",
+       "hi": "(A + B) * C"
+      },
+      "right": {
+       "en": "A B + C *",
+       "hi": "A B + C *"
+      },
+      "why": {
+       "en": "The bracket forces A + B first; then the product.",
+       "hi": "कोष्ठक A + B को पहले करवाता है; फिर गुणा।"
+      }
+     },
+     {
+      "id": "p5",
+      "left": {
+       "en": "A - B - C",
+       "hi": "A - B - C"
+      },
+      "right": {
+       "en": "A B - C -",
+       "hi": "A B - C -"
+      },
+      "why": {
+       "en": "Same rank operators work from left to right.",
+       "hi": "बराबर दर्जे के ऑपरेटर बाएँ से दाएँ चलते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p1",
+     "expect": "matched:p1",
+     "say": {
+      "en": "Match A + B with its postfix form.",
+      "hi": "A + B को उसके पोस्टफ़िक्स रूप से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For A + B * C, which operator is done first?",
+      "hi": "A + B * C में कौन-सा ऑपरेटर पहले किया जाता है?"
+     },
+     "options": [
+      {
+       "id": "mul",
+       "en": "* (multiplication)",
+       "hi": "* (गुणा)"
+      },
+      {
+       "id": "add",
+       "en": "+ (addition)",
+       "hi": "+ (जोड़)"
+      }
+     ],
+     "answer": "mul"
+    },
+    {
+     "kind": "do",
+     "target": "left:p3",
+     "expect": "matched:p3",
+     "say": {
+      "en": "Match A + B * C.",
+      "hi": "A + B * C को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:p4",
+     "expect": "matched:p4",
+     "say": {
+      "en": "Match (A + B) * C.",
+      "hi": "(A + B) * C को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In infix notation the operator sits between its operands, like A + B, and we need precedence rules and brackets to know what is done first. In postfix notation the operator comes after its operands, like A B +. The order of the operators in postfix is exactly the order in which they must be done, so no brackets are needed and a computer can evaluate it easily with a stack.",
+      "hi": "इन्फ़िक्स में ऑपरेटर अपने ऑपरेंड के बीच में बैठता है, जैसे A + B, और क्या पहले होगा यह जानने के लिए प्राथमिकता के नियम और कोष्ठक चाहिए। पोस्टफ़िक्स में ऑपरेटर ऑपरेंड के बाद आता है, जैसे A B +। पोस्टफ़िक्स में ऑपरेटरों का क्रम ठीक वही है जिस क्रम में उन्हें करना है, इसलिए कोष्ठक नहीं चाहिए और कंप्यूटर स्टैक से उसे आसानी से हल कर सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Write A * B in postfix.",
+        "hi": "A * B को पोस्टफ़िक्स में लिखो।"
+       },
+       "options": [
+        "* A B",
+        "A * B",
+        "A B *"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Postfix puts the operator after both operands: A B *.",
+        "hi": "पोस्टफ़िक्स में ऑपरेटर दोनों ऑपरेंड के बाद आता है: A B *।"
+       },
+       "wrong": [
+        {
+         "en": "That puts the operator first; it is prefix notation.",
+         "hi": "इसमें ऑपरेटर सबसे पहले है; यह प्रीफ़िक्स संकेतन है।"
+        },
+        {
+         "en": "That is the infix form, with the operator in the middle.",
+         "hi": "यह इन्फ़िक्स रूप है, जिसमें ऑपरेटर बीच में है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can a computer evaluate postfix without brackets?",
+        "hi": "कंप्यूटर पोस्टफ़िक्स को बिना कोष्ठक के क्यों हल कर सकता है?"
+       },
+       "options": [
+        "The order of the operators already shows the order of work",
+        "Postfix has no operators",
+        "Computers cannot read brackets"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In postfix each operator acts on the values just before it, so the order is already fixed.",
+        "hi": "पोस्टफ़िक्स में हर ऑपरेटर अपने ठीक पहले के मानों पर काम करता है, इसलिए क्रम पहले से तय है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Postfix certainly has operators, like + and *.",
+         "hi": "पोस्टफ़िक्स में ऑपरेटर, जैसे + और *, ज़रूर होते हैं।"
+        },
+        {
+         "en": "Computers read brackets fine; they are just not needed here.",
+         "hi": "कंप्यूटर कोष्ठक पढ़ लेते हैं; यहाँ बस ज़रूरत नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the last two. Then convert B + C * D to postfix on your own and compare with a friend.",
+      "hi": "आख़िरी दो मिलाओ। फिर B + C * D को ख़ुद पोस्टफ़िक्स में बदलो और दोस्त से मिलाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch03-convert",
+   "topic": "3.6",
+   "template": "sequence",
+   "title": {
+    "en": "Converting A + B * C to postfix with a stack",
+    "hi": "स्टैक से A + B * C को पोस्टफ़िक्स में बदलना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "a",
+      "text": {
+       "en": "Read A: it is an operand, so write it to the output",
+       "hi": "A पढ़ा: यह ऑपरेंड है, इसलिए आउटपुट में लिखो"
+      }
+     },
+     {
+      "id": "plus",
+      "text": {
+       "en": "Read +: the stack is empty, so push +",
+       "hi": "+ पढ़ा: स्टैक ख़ाली है, इसलिए + को push करो"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "Read B: write it to the output",
+       "hi": "B पढ़ा: आउटपुट में लिखो"
+      }
+     },
+     {
+      "id": "star",
+      "text": {
+       "en": "Read *: it is stronger than +, so push * on top",
+       "hi": "* पढ़ा: यह + से प्रबल है, इसलिए ऊपर push करो"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "Read C: write it to the output",
+       "hi": "C पढ़ा: आउटपुट में लिखो"
+      }
+     },
+     {
+      "id": "empty",
+      "text": {
+       "en": "The expression ends: pop * to the output, then +",
+       "hi": "व्यंजक ख़त्म: पहले * फिर + को pop करके आउटपुट में लिखो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At the end, the stack holds + at the bottom and * on top. Which operator goes to the output first?",
+      "hi": "अंत में स्टैक में नीचे + और ऊपर * है। आउटपुट में पहले कौन-सा ऑपरेटर जाएगा?"
+     },
+     "options": [
+      {
+       "id": "star",
+       "en": "* , because it is on top",
+       "hi": "* , क्योंकि वह ऊपर है"
+      },
+      {
+       "id": "plus",
+       "en": "+ , because it came first",
+       "hi": "+ , क्योंकि वह पहले आया"
+      }
+     ],
+     "answer": "star"
+    },
+    {
+     "kind": "do",
+     "target": "item:a",
+     "expect": "placed:a",
+     "say": {
+      "en": "Put the first step in slot 1: reading A.",
+      "hi": "पहला चरण स्थान 1 में रखो: A पढ़ना।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:star",
+     "expect": "placed:star",
+     "say": {
+      "en": "Place the step where * is pushed on top of +.",
+      "hi": "वह चरण रखो जहाँ * को + के ऊपर push किया जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the rest in order and press Check.",
+      "hi": "बाकी चरण क्रम से रखो और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To convert infix to postfix we scan the expression from left to right. Operands go straight to the output. An operator waits on the stack. If a stronger operator arrives (* over +), it just sits on top; if a weaker or equal one arrives, the ones above it are popped to the output first. At the end, everything left on the stack is popped to the output. The result for A + B * C is A B C * +.",
+      "hi": "इन्फ़िक्स को पोस्टफ़िक्स में बदलने के लिए व्यंजक को बाएँ से दाएँ पढ़ते हैं। ऑपरेंड सीधे आउटपुट में जाते हैं। ऑपरेटर स्टैक पर इंतज़ार करता है। प्रबल ऑपरेटर (+ के ऊपर *) आए तो वह ऊपर बैठ जाता है; कमज़ोर या बराबर वाला आए तो उसके ऊपर वाले पहले आउटपुट में चले जाते हैं। अंत में स्टैक में बचा सब कुछ pop होकर आउटपुट में जाता है। A + B * C का उत्तर A B C * + है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the postfix form of A + B * C?",
+        "hi": "A + B * C का पोस्टफ़िक्स रूप क्या है?"
+       },
+       "options": [
+        "A B + C *",
+        "A B C * +",
+        "A B C + *"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "* is stronger, so B C * is formed first and then + joins A.",
+        "hi": "* प्रबल है, इसलिए पहले B C * बनता है और फिर + उसे A से जोड़ता है।"
+       },
+       "wrong": [
+        {
+         "en": "That is the postfix of (A + B) * C. Here there are no brackets.",
+         "hi": "यह (A + B) * C का पोस्टफ़िक्स है। यहाँ कोष्ठक नहीं हैं।"
+        },
+        "",
+        {
+         "en": "The operators are in the wrong order: * must come before +.",
+         "hi": "ऑपरेटरों का क्रम गलत है: * को + से पहले आना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where do operands (A, B, C) go during conversion?",
+        "hi": "बदलने के दौरान ऑपरेंड (A, B, C) कहाँ जाते हैं?"
+       },
+       "options": [
+        "Straight to the output",
+        "On the stack",
+        "They are thrown away"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Operands are never held back; they are written to the output at once.",
+        "hi": "ऑपरेंड कभी रोके नहीं जाते; उन्हें तुरंत आउटपुट में लिख दिया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only operators wait on the stack.",
+         "hi": "केवल ऑपरेटर स्टैक पर इंतज़ार करते हैं।"
+        },
+        {
+         "en": "Nothing is thrown away; the postfix needs every operand.",
+         "hi": "कुछ भी फेंका नहीं जाता; पोस्टफ़िक्स को हर ऑपरेंड चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try A * B + C on paper with the same method. When + arrives, what must leave the stack first?",
+      "hi": "इसी तरीके से काग़ज़ पर A * B + C हल करो। + आने पर स्टैक से पहले क्या हटाना पड़ेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch03-evaluate",
+   "topic": "3.7",
+   "template": "code",
+   "title": {
+    "en": "Evaluating a postfix expression",
+    "hi": "पोस्टफ़िक्स व्यंजक का मान निकालना"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "# postfix: 2 3 4 * +",
+     "stack = []",
+     "stack.append(2)",
+     "stack.append(3)",
+     "stack.append(4)",
+     "b = stack.pop()",
+     "a = stack.pop()",
+     "stack.append(a * b)",
+     "b = stack.pop()",
+     "a = stack.pop()",
+     "stack.append(a + b)",
+     "print(stack[0])"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The postfix expression is 2 3 4 * +. In ordinary maths this is 2 + 3 * 4. What do you think the answer is?",
+      "hi": "पोस्टफ़िक्स व्यंजक 2 3 4 * + है। साधारण गणित में यह 2 + 3 * 4 है। तुम्हारे हिसाब से उत्तर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "14",
+       "en": "14",
+       "hi": "14 है"
+      },
+      {
+       "id": "20",
+       "en": "20",
+       "hi": "20 है"
+      },
+      {
+       "id": "24",
+       "en": "24",
+       "hi": "24 है"
+      }
+     ],
+     "answer": "14"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch the stack: operands are pushed, an operator pops two and pushes the result.",
+      "hi": "\"एक क़दम\" दबाओ और स्टैक देखो: ऑपरेंड push होते हैं, ऑपरेटर दो को pop करके नतीजा push करता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the final answer printed.",
+      "hi": "अंतिम उत्तर छपते देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To evaluate postfix, read from left to right. A number is pushed on the stack. An operator pops the top two numbers, applies the operation and pushes the result back. Here 3 * 4 gives 12, then 2 + 12 gives 14. When the expression ends, the one number left on the stack is the answer.",
+      "hi": "पोस्टफ़िक्स का मान निकालने के लिए बाएँ से दाएँ पढ़ो। संख्या को स्टैक पर push करो। ऑपरेटर ऊपर की दो संख्याएँ pop करता है, क्रिया करता है और नतीजा वापस push करता है। यहाँ 3 * 4 से 12 बना, फिर 2 + 12 से 14। व्यंजक ख़त्म होने पर स्टैक में बची एक संख्या ही उत्तर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Evaluate the postfix 5 2 + 3 *.",
+        "hi": "पोस्टफ़िक्स 5 2 + 3 * का मान निकालो।"
+       },
+       "options": [
+        "21",
+        "11",
+        "30"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 + 2 = 7, then 7 * 3 = 21.",
+        "hi": "5 + 2 = 7, फिर 7 * 3 = 21।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "11 would be 5 + 2 * 3, which is a different expression.",
+         "hi": "11, 5 + 2 * 3 का उत्तर होता, जो अलग व्यंजक है।"
+        },
+        {
+         "en": "30 comes from 5 * 2 * 3, but the first operator here is +.",
+         "hi": "30, 5 * 2 * 3 से आता है, पर यहाँ पहला ऑपरेटर + है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When an operator is read, how many numbers does it pop from the stack?",
+        "hi": "ऑपरेटर पढ़ने पर वह स्टैक से कितनी संख्याएँ pop करता है?"
+       },
+       "options": [
+        "One",
+        "Two",
+        "All of them"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "+, -, * and / need two operands, so two numbers are popped.",
+        "hi": "+, -, * और / को दो ऑपरेंड चाहिए, इसलिए दो संख्याएँ pop होती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "One number is not enough for a two-operand operator.",
+         "hi": "दो ऑपरेंड वाले ऑपरेटर के लिए एक संख्या काफ़ी नहीं।"
+        },
+        "",
+        {
+         "en": "Only the top two are needed; the rest wait.",
+         "hi": "केवल ऊपर की दो चाहिए; बाकी इंतज़ार करती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Note down how 8 2 / 3 + is evaluated, step by step. What goes on the stack first? What is the answer?",
+      "hi": "8 2 / 3 + को चरण-दर-चरण हल करके लिखो। स्टैक पर पहले क्या जाता है? उत्तर क्या है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "A stack of plates",
+   "shows": "Five steel thali plates piled neatly in a stack",
+   "view": "Front view, eye level, light from top left, transparent background",
+   "right": "Plates same size, each edge visible so the app can add and remove them",
+   "avoid": "Food in the plates, brand marks"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Undo and back: going backwards one step",
+   "shows": "A student at a desk with a laptop and a notebook page where the last line has been struck out with a neat pencil line",
+   "view": "Over the shoulder, 16:9, daylight",
+   "right": "Struck line clearly the most recent",
+   "avoid": "Readable names, visible face"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Books piled on a table",
+   "shows": "Four textbooks of different colours stacked, spines hidden by plain covers",
+   "view": "Three-quarter view from the front, transparent background",
+   "right": "Top book clearly distinct from the others",
+   "avoid": "Real book titles or publisher logos"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "A queue is not a stack: people in a line",
+   "shows": "Six people seen from behind waiting in a line at a railway ticket window",
+   "view": "Side-on, 16:9, bright station light",
+   "right": "The first person is nearest the window; faces not visible",
+   "avoid": "Visible faces, readable station name"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "3.6",
+   "use": "Blank stack and output strip for infix to postfix",
+   "shows": "A tall empty open box (the stack) beside a long empty strip (the output) and a row of empty boxes for the input",
+   "view": "Flat white background, vector, 16:9",
+   "right": "Stack box tall enough for 4 items, strip wide enough for 6",
+   "avoid": "Any text or symbols"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "3.7",
+   "use": "Calculator with two numbers",
+   "shows": "A plain scientific calculator showing a blank screen beside two small paper chits with numbers cut off",
+   "view": "Top-down, soft light, square",
+   "right": "Calculator buttons real-looking and unbranded",
+   "avoid": "Brand names"
+  }
+ ]
+}

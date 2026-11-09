@@ -1,0 +1,1187 @@
+{
+ "chapter_key": "u.c09.science.iesc1.ch04",
+ "class": 9,
+ "subject_id": "science",
+ "title": "Describing Motion Around Us",
+ "source": "https://ncert.nic.in/textbook/pdf/iesc104.pdf",
+ "topics": [
+  {
+   "n": "4.1.1",
+   "title": "Describing position from a reference point",
+   "labs": [],
+   "why_no_lab": "Choosing an origin and a direction is best shown by the reader's map of a road; every motion lab here measures from a start mark."
+  },
+  {
+   "n": "4.1.2",
+   "title": "Distance travelled and displacement",
+   "labs": [
+    "c09-science-iesc1-ch04-throwup"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.1.3",
+   "title": "Average speed and average velocity",
+   "labs": [
+    "c09-science-iesc1-ch04-uniform"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.1.4",
+   "title": "Average acceleration",
+   "labs": [
+    "c09-science-iesc1-ch04-accel"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2.1",
+   "title": "Plotting a graph",
+   "labs": [
+    "c09-science-iesc1-ch04-plot"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2.2",
+   "title": "Position–time graphs",
+   "labs": [
+    "c09-science-iesc1-ch04-slopes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2.3",
+   "title": "Velocity–time graphs",
+   "labs": [
+    "c09-science-iesc1-ch04-brake"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Kinematic equations for motion in a straight line",
+   "labs": [
+    "c09-science-iesc1-ch04-drop"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4.1",
+   "title": "Motion in a plane: uniform circular motion",
+   "labs": [
+    "c09-science-iesc1-ch04-circle"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-science-iesc1-ch04-throwup",
+   "topic": "4.1.2",
+   "template": "motion",
+   "title": {
+    "en": "Distance or displacement? A ball thrown up",
+    "hi": "दूरी या विस्थापन? ऊपर फेंकी गेंद"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "free-fall",
+    "u": 10,
+    "h": 1,
+    "g": 9.8
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You throw a ball straight up from your hand, 1 m above the ground, and it falls to the ground. Which is bigger?",
+      "hi": "तुम ज़मीन से 1 m ऊपर हाथ से गेंद सीधी ऊपर फेंकते हो, और वह ज़मीन पर गिरती है। कौन बड़ा है?"
+     },
+     "options": [
+      {
+       "id": "distance",
+       "en": "The distance it travelled",
+       "hi": "तय की गई दूरी"
+      },
+      {
+       "id": "disp",
+       "en": "Its displacement",
+       "hi": "उसका विस्थापन"
+      },
+      {
+       "id": "same",
+       "en": "They are equal",
+       "hi": "दोनों बराबर हैं"
+      }
+     ],
+     "answer": "distance"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "landed",
+     "say": {
+      "en": "Press play and watch the ball go up, stop for an instant, and fall.",
+      "hi": "प्ले दबाओ और देखो: गेंद ऊपर जाती है, एक पल रुकती है, और गिरती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:vt",
+     "say": {
+      "en": "Open the velocity–time graph.",
+      "hi": "वेग–समय ग्राफ़ खोलो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Distance is the total length of the path: up about 5 m and down about 6 m, so about 11 m. Displacement is the shortest straight line from start to finish with a direction: only 1 m, downward. At the top the velocity is zero for an instant, but gravity keeps pulling, so the ball comes back.",
+      "hi": "दूरी पूरे रास्ते की कुल लंबाई है: लगभग 5 m ऊपर और लगभग 6 m नीचे, यानी लगभग 11 m। विस्थापन शुरू से अंत तक की सबसे छोटी सीधी रेखा है, दिशा के साथ: केवल 1 m, नीचे की ओर। सबसे ऊपर एक पल के लिए वेग शून्य होता है, पर गुरुत्व खींचता रहता है, इसलिए गेंद लौट आती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You walk 50 m to a shop and 50 m back home. What is your displacement?",
+        "hi": "तुम 50 m दुकान तक जाते हो और 50 m वापस घर आते हो। तुम्हारा विस्थापन क्या है?"
+       },
+       "options": [
+        "100 m",
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        },
+        "50 m"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Start and finish are the same place, so the displacement is zero even though you walked 100 m.",
+        "hi": "शुरू और अंत एक ही जगह हैं, इसलिए 100 m चलने पर भी विस्थापन शून्य है।"
+       },
+       "wrong": [
+        {
+         "en": "100 m is the distance, the total path, not the displacement.",
+         "hi": "100 m दूरी है, कुल रास्ता, विस्थापन नहीं।"
+        },
+        "",
+        {
+         "en": "At the end you are back where you started, not 50 m away.",
+         "hi": "अंत में तुम वहीं हो जहाँ से चले थे, 50 m दूर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "At the highest point of its flight, the ball's velocity is…",
+        "hi": "उड़ान के सबसे ऊँचे बिंदु पर गेंद का वेग…"
+       },
+       "options": [
+        {
+         "en": "Zero for an instant",
+         "hi": "एक पल के लिए शून्य"
+        },
+        {
+         "en": "At its largest",
+         "hi": "सबसे अधिक"
+        },
+        {
+         "en": "Pointing upward and steady",
+         "hi": "ऊपर की ओर और स्थिर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It stops rising and begins to fall, so for a moment its velocity is zero.",
+        "hi": "वह उठना बंद करके गिरना शुरू करती है, इसलिए एक पल वेग शून्य होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The ball is slowest at the top; it is fastest when it hits the ground.",
+         "hi": "गेंद सबसे ऊपर सबसे धीमी है; ज़मीन से टकराते समय सबसे तेज़ है।"
+        },
+        {
+         "en": "Gravity changes its velocity all the time; it never stays steady in the air.",
+         "hi": "गुरुत्व उसके वेग को लगातार बदलता है; हवा में यह कभी स्थिर नहीं रहता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: throw harder with the slider and look at the distance–time and velocity–time graphs. Where does the velocity line cross zero?",
+      "hi": "आज़माओ: स्लाइडर से और ज़ोर से फेंको और दूरी–समय तथा वेग–समय ग्राफ़ देखो। वेग की रेखा शून्य को कहाँ पार करती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch04-uniform",
+   "topic": "4.1.3",
+   "template": "motion",
+   "title": {
+    "en": "Average speed of a cyclist",
+    "hi": "साइकिल सवार की औसत चाल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "1d",
+    "vehicle": "cycle",
+    "u": 5,
+    "a": 0
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A cyclist rides at a steady 5 m/s. How far does she go in 10 seconds?",
+      "hi": "एक साइकिल सवार स्थिर 5 m/s से चलती है। वह 10 सेकंड में कितनी दूर जाएगी?"
+     },
+     "options": [
+      {
+       "id": "50",
+       "en": "50 m",
+       "hi": "50 मीटर"
+      },
+      {
+       "id": "5",
+       "en": "5 m",
+       "hi": "5 मीटर"
+      },
+      {
+       "id": "15",
+       "en": "15 m",
+       "hi": "15 मीटर"
+      }
+     ],
+     "answer": "50"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "stopped",
+     "say": {
+      "en": "Press play and watch the readings until the ride ends.",
+      "hi": "प्ले दबाओ और यात्रा पूरी होने तक माप देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:dt",
+     "say": {
+      "en": "Open the distance–time graph.",
+      "hi": "दूरी–समय ग्राफ़ खोलो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Average speed is the total distance divided by the total time. Average velocity is the displacement divided by the time, so it also has a direction. On a straight road in one direction they are equal. At a steady 5 m/s the cyclist covers 5 m every second, 50 m in 10 s, and the distance–time graph is a straight line.",
+      "hi": "औसत चाल कुल दूरी को कुल समय से भाग देने पर मिलती है। औसत वेग विस्थापन को समय से भाग देने पर मिलता है, इसलिए उसकी दिशा भी होती है। एक ही दिशा में सीधी सड़क पर दोनों बराबर होते हैं। स्थिर 5 m/s पर साइकिल सवार हर सेकंड 5 m चलती है, 10 s में 50 m, और दूरी–समय ग्राफ़ एक सीधी रेखा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bus goes 60 km in 2 hours. What is its average speed?",
+        "hi": "एक बस 2 घंटे में 60 km जाती है। उसकी औसत चाल क्या है?"
+       },
+       "options": [
+        "120 km/h",
+        "30 km/h",
+        "62 km/h"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Average speed = 60 km ÷ 2 h = 30 km/h.",
+        "hi": "औसत चाल = 60 km ÷ 2 h = 30 km/h।"
+       },
+       "wrong": [
+        {
+         "en": "That multiplies instead of dividing.",
+         "hi": "यह भाग की जगह गुणा करना है।"
+        },
+        "",
+        {
+         "en": "Adding the numbers does not give speed.",
+         "hi": "संख्याएँ जोड़ने से चाल नहीं मिलती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A runner does one full lap of a 400 m track in 80 s. What is her average velocity?",
+        "hi": "एक धाविका 400 m के ट्रैक का एक पूरा चक्कर 80 s में लगाती है। उसका औसत वेग क्या है?"
+       },
+       "options": [
+        "5 m/s",
+        "400 m/s",
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "She ends where she started, so her displacement and her average velocity are zero.",
+        "hi": "वह वहीं ख़त्म करती है जहाँ से शुरू किया, इसलिए उसका विस्थापन और औसत वेग शून्य हैं।"
+       },
+       "wrong": [
+        {
+         "en": "5 m/s is her average speed. Velocity uses displacement, which is zero for a full lap.",
+         "hi": "5 m/s उसकी औसत चाल है। वेग विस्थापन से निकलता है, जो पूरे चक्कर में शून्य है।"
+        },
+        {
+         "en": "That ignores the time taken.",
+         "hi": "इसमें लगा समय छोड़ दिया गया है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the speed with the slider and replay. How does the slope of the distance–time line change?",
+      "hi": "आज़माओ: स्लाइडर से चाल बदलो और फिर चलाओ। दूरी–समय रेखा का ढलान कैसे बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch04-accel",
+   "topic": "4.1.4",
+   "template": "motion",
+   "title": {
+    "en": "A car speeding up: acceleration",
+    "hi": "तेज़ होती कार: त्वरण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "1d",
+    "vehicle": "car",
+    "u": 0,
+    "a": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A car starts from rest and gains 3 m/s of speed every second. What is its speed after 5 s?",
+      "hi": "एक कार विराम से चलती है और हर सेकंड 3 m/s चाल बढ़ाती है। 5 s बाद उसकी चाल क्या होगी?"
+     },
+     "options": [
+      {
+       "id": "15",
+       "en": "15 m/s",
+       "hi": "15 मीटर प्रति सेकंड"
+      },
+      {
+       "id": "3",
+       "en": "3 m/s",
+       "hi": "3 मीटर प्रति सेकंड"
+      },
+      {
+       "id": "8",
+       "en": "8 m/s",
+       "hi": "8 मीटर प्रति सेकंड"
+      }
+     ],
+     "answer": "15"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "stopped",
+     "say": {
+      "en": "Press play and watch the speed reading climb.",
+      "hi": "प्ले दबाओ और चाल का माप बढ़ता देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:vt",
+     "say": {
+      "en": "Open the velocity–time graph.",
+      "hi": "वेग–समय ग्राफ़ खोलो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Acceleration is the change in velocity divided by the time taken: a = (v − u) ÷ t, in m/s². This car gains 3 m/s each second, so after 5 s it moves at 15 m/s. On the velocity–time graph, steady acceleration is a straight sloping line; the steeper the line, the bigger the acceleration.",
+      "hi": "त्वरण वेग में बदलाव को लगे समय से भाग देने पर मिलता है: a = (v − u) ÷ t, m/s² में। यह कार हर सेकंड 3 m/s बढ़ाती है, इसलिए 5 s बाद 15 m/s से चलती है। वेग–समय ग्राफ़ पर स्थिर त्वरण एक सीधी झुकी रेखा है; रेखा जितनी खड़ी, त्वरण उतना अधिक।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A scooter goes from 0 to 20 m/s in 10 s. What is its average acceleration?",
+        "hi": "एक स्कूटर 10 s में 0 से 20 m/s तक पहुँचता है। उसका औसत त्वरण क्या है?"
+       },
+       "options": [
+        "2 m/s²",
+        "200 m/s²",
+        "20 m/s²"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "a = (20 − 0) ÷ 10 = 2 m/s².",
+        "hi": "a = (20 − 0) ÷ 10 = 2 m/s²।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That multiplies; acceleration divides the change in velocity by the time.",
+         "hi": "यह गुणा है; त्वरण में वेग के बदलाव को समय से भाग दिया जाता है।"
+        },
+        {
+         "en": "That forgets to divide by the 10 seconds.",
+         "hi": "इसमें 10 सेकंड से भाग देना भूल गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: set a negative acceleration with a starting speed and replay. What does the velocity–time line look like when the car slows down?",
+      "hi": "आज़माओ: शुरुआती चाल के साथ ऋणात्मक त्वरण रखो और फिर चलाओ। कार धीमी होने पर वेग–समय रेखा कैसी दिखती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch04-plot",
+   "topic": "4.2.1",
+   "template": "data",
+   "title": {
+    "en": "Plot the journey of an auto",
+    "hi": "ऑटो की यात्रा का ग्राफ़ बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "show": 2,
+    "title": {
+     "en": "Position of an auto on a straight road",
+     "hi": "सीधी सड़क पर एक ऑटो की स्थिति"
+    },
+    "xlabel": {
+     "en": "Time (s)",
+     "hi": "समय (s)"
+    },
+    "ylabel": {
+     "en": "Position from the stop (m)",
+     "hi": "स्टॉप से स्थिति (m)"
+    },
+    "data": {
+     "rows": [
+      [
+       0,
+       0
+      ],
+      [
+       2,
+       10
+      ],
+      [
+       4,
+       20
+      ],
+      [
+       6,
+       30
+      ],
+      [
+       8,
+       40
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The first two points are at 0 s, 0 m and 2 s, 10 m. If the auto keeps the same speed, where will the next points go?",
+      "hi": "पहले दो बिंदु 0 s, 0 m और 2 s, 10 m पर हैं। अगर ऑटो उसी चाल से चलता रहे, तो अगले बिंदु कहाँ होंगे?"
+     },
+     "options": [
+      {
+       "id": "line",
+       "en": "On the same straight line",
+       "hi": "उसी सीधी रेखा पर"
+      },
+      {
+       "id": "flat",
+       "en": "On a flat line",
+       "hi": "एक सपाट रेखा पर"
+      },
+      {
+       "id": "curve",
+       "en": "On a curve that bends down",
+       "hi": "नीचे मुड़ते वक्र पर"
+      }
+     ],
+     "answer": "line"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"add a row\" to plot the reading at 4 s.",
+      "hi": "4 s का माप लगाने के लिए \"पंक्ति जोड़ो\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the reading at 6 s.",
+      "hi": "6 s का माप जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the last reading, at 8 s.",
+      "hi": "आख़िरी माप, 8 s वाला, जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A graph turns a table into a picture. Time goes on the x-axis and position on the y-axis. All the points fall on one straight line because the auto covers 10 m every 2 s, a steady 5 m/s. The slope of a position–time graph is the velocity.",
+      "hi": "ग्राफ़ तालिका को चित्र में बदल देता है। समय x-अक्ष पर और स्थिति y-अक्ष पर जाती है। सब बिंदु एक सीधी रेखा पर आते हैं क्योंकि ऑटो हर 2 s में 10 m चलता है, स्थिर 5 m/s। स्थिति–समय ग्राफ़ का ढलान वेग होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the velocity of the auto from this graph?",
+        "hi": "इस ग्राफ़ से ऑटो का वेग क्या है?"
+       },
+       "options": [
+        "5 m/s",
+        "10 m/s",
+        "40 m/s"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Slope = 40 m ÷ 8 s = 5 m/s.",
+        "hi": "ढलान = 40 m ÷ 8 s = 5 m/s।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "10 m is covered in 2 s, not in 1 s.",
+         "hi": "10 m, 2 s में तय होता है, 1 s में नहीं।"
+        },
+        {
+         "en": "40 m is the final position after 8 s, not the distance per second.",
+         "hi": "40 m, 8 s बाद की अंतिम स्थिति है, प्रति सेकंड दूरी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: use a slider to make the reading at 6 s the same as at 4 s, as if the auto stopped. What does a flat part of a position–time graph mean?",
+      "hi": "आज़माओ: स्लाइडर से 6 s वाला माप 4 s वाले जितना कर दो, मानो ऑटो रुक गया। स्थिति–समय ग्राफ़ का सपाट भाग क्या बताता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch04-slopes",
+   "topic": "4.2.2",
+   "template": "motion",
+   "title": {
+    "en": "Two slopes on a position–time graph",
+    "hi": "स्थिति–समय ग्राफ़ पर दो ढलान"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "relative",
+    "vehicle": "cycle",
+    "vehicle2": "auto",
+    "u": 5,
+    "speed": 10
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:dt",
+     "say": {
+      "en": "Open the distance–time graph first.",
+      "hi": "पहले दूरी–समय ग्राफ़ खोलो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A cycle moves at 5 m/s and an auto at 10 m/s. Whose line on the graph will be steeper?",
+      "hi": "साइकिल 5 m/s और ऑटो 10 m/s से चलता है। ग्राफ़ पर किसकी रेखा अधिक खड़ी होगी?"
+     },
+     "options": [
+      {
+       "id": "auto",
+       "en": "The auto's",
+       "hi": "ऑटो की"
+      },
+      {
+       "id": "cycle",
+       "en": "The cycle's",
+       "hi": "साइकिल की"
+      },
+      {
+       "id": "same",
+       "en": "Both the same",
+       "hi": "दोनों एक जैसी"
+      }
+     ],
+     "answer": "auto"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "stopped",
+     "say": {
+      "en": "Press play and watch both lines grow.",
+      "hi": "प्ले दबाओ और दोनों रेखाएँ बढ़ती देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On a position–time graph a steeper line means a faster object, because it covers more distance in the same time. The auto's line rises twice as fast as the cycle's. A straight line means steady speed; a curving line means the speed is changing.",
+      "hi": "स्थिति–समय ग्राफ़ पर अधिक खड़ी रेखा का अर्थ है तेज़ वस्तु, क्योंकि वह उतने ही समय में अधिक दूरी तय करती है। ऑटो की रेखा साइकिल की रेखा से दोगुनी तेज़ी से उठती है। सीधी रेखा का अर्थ है स्थिर चाल; मुड़ती रेखा का अर्थ है बदलती चाल।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On a position–time graph, a line that stays flat means the object is…",
+        "hi": "स्थिति–समय ग्राफ़ पर सपाट रहने वाली रेखा का अर्थ है वस्तु…"
+       },
+       "options": [
+        {
+         "en": "Moving very fast",
+         "hi": "बहुत तेज़ चल रही है"
+        },
+        {
+         "en": "At rest",
+         "hi": "विराम में है"
+        },
+        {
+         "en": "Speeding up",
+         "hi": "तेज़ हो रही है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "If the position does not change as time passes, the object is not moving.",
+        "hi": "अगर समय बीतने पर स्थिति न बदले, तो वस्तु चल नहीं रही।"
+       },
+       "wrong": [
+        {
+         "en": "Fast motion gives a steep line, not a flat one.",
+         "hi": "तेज़ गति खड़ी रेखा देती है, सपाट नहीं।"
+        },
+        "",
+        {
+         "en": "Speeding up gives a line that curves upward.",
+         "hi": "तेज़ होने पर रेखा ऊपर की ओर मुड़ती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make the auto go backwards with a negative speed. What does its line do?",
+      "hi": "आज़माओ: ऋणात्मक चाल से ऑटो को पीछे चलाओ। उसकी रेखा क्या करती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch04-brake",
+   "topic": "4.2.3",
+   "template": "motion",
+   "title": {
+    "en": "Braking: what a velocity–time graph tells",
+    "hi": "ब्रेक लगाना: वेग–समय ग्राफ़ क्या बताता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "1d",
+    "vehicle": "car",
+    "u": 20,
+    "a": -5
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A car at 20 m/s brakes and slows by 5 m/s every second. How long until it stops?",
+      "hi": "20 m/s की कार ब्रेक लगाती है और हर सेकंड 5 m/s धीमी होती है। रुकने में कितना समय लगेगा?"
+     },
+     "options": [
+      {
+       "id": "4",
+       "en": "4 s",
+       "hi": "4 सेकंड"
+      },
+      {
+       "id": "20",
+       "en": "20 s",
+       "hi": "20 सेकंड"
+      },
+      {
+       "id": "1",
+       "en": "1 s",
+       "hi": "1 सेकंड"
+      }
+     ],
+     "answer": "4"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "stopped",
+     "say": {
+      "en": "Press play and watch the car brake to a stop.",
+      "hi": "प्ले दबाओ और कार को ब्रेक लगाकर रुकते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:vt",
+     "say": {
+      "en": "Open the velocity–time graph.",
+      "hi": "वेग–समय ग्राफ़ खोलो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The velocity–time line slopes down from 20 m/s to zero in 4 s: the slope is the acceleration, −5 m/s². The area under the line is the distance travelled: a triangle of ½ × 20 × 4 = 40 m. That is the braking distance.",
+      "hi": "वेग–समय रेखा 4 s में 20 m/s से शून्य तक नीचे ढलती है: ढलान त्वरण है, −5 m/s²। रेखा के नीचे का क्षेत्रफल तय की गई दूरी है: त्रिभुज ½ × 20 × 4 = 40 m। यही ब्रेक लगने की दूरी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On a velocity–time graph, what does the area under the line give?",
+        "hi": "वेग–समय ग्राफ़ पर रेखा के नीचे का क्षेत्रफल क्या देता है?"
+       },
+       "options": [
+        {
+         "en": "The acceleration",
+         "hi": "त्वरण"
+        },
+        {
+         "en": "The distance travelled",
+         "hi": "तय की गई दूरी"
+        },
+        {
+         "en": "The time taken",
+         "hi": "लगा समय"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Velocity × time is distance, so the area under the line is the distance.",
+        "hi": "वेग × समय दूरी है, इसलिए रेखा के नीचे का क्षेत्रफल दूरी है।"
+       },
+       "wrong": [
+        {
+         "en": "Acceleration is the slope of the line, not the area.",
+         "hi": "त्वरण रेखा का ढलान है, क्षेत्रफल नहीं।"
+        },
+        "",
+        {
+         "en": "Time is read along the x-axis.",
+         "hi": "समय x-अक्ष पर पढ़ा जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If the car were going twice as fast, 40 m/s, with the same brakes, its braking distance would be…",
+        "hi": "अगर कार दोगुनी तेज़, 40 m/s, होती और ब्रेक वही होते, तो ब्रेक की दूरी होती…"
+       },
+       "options": [
+        {
+         "en": "Twice as long",
+         "hi": "दोगुनी"
+        },
+        {
+         "en": "The same",
+         "hi": "उतनी ही"
+        },
+        {
+         "en": "Four times as long",
+         "hi": "चार गुनी"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "½ × 40 × 8 = 160 m, four times 40 m. Speed on the road is dangerous.",
+        "hi": "½ × 40 × 8 = 160 m, 40 m का चार गुना। सड़क पर तेज़ रफ़्तार ख़तरनाक है।"
+       },
+       "wrong": [
+        {
+         "en": "Both the time and the starting speed double, so the triangle grows four times.",
+         "hi": "समय और शुरुआती चाल दोनों दोगुने होते हैं, इसलिए त्रिभुज चार गुना बड़ा होता है।"
+        },
+        {
+         "en": "A faster car needs more road to stop.",
+         "hi": "तेज़ कार को रुकने के लिए अधिक सड़क चाहिए।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try a starting speed of 10 m/s with the same braking. Compare the area under the new line.",
+      "hi": "आज़माओ: उसी ब्रेक के साथ 10 m/s की शुरुआती चाल रखो। नई रेखा के नीचे के क्षेत्रफल की तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch04-drop",
+   "topic": "4.3",
+   "template": "motion",
+   "title": {
+    "en": "Use the equations of motion: a falling stone",
+    "hi": "गति के समीकरण: गिरता पत्थर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "free-fall",
+    "u": 0,
+    "h": 20,
+    "g": 9.8
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A stone is dropped from a 20 m roof. Using s = ½gt², about how long does it take to land?",
+      "hi": "एक पत्थर 20 m ऊँची छत से गिराया जाता है। s = ½gt² से, उसे गिरने में लगभग कितना समय लगेगा?"
+     },
+     "options": [
+      {
+       "id": "2",
+       "en": "About 2 s",
+       "hi": "लगभग 2 s"
+      },
+      {
+       "id": "10",
+       "en": "About 10 s",
+       "hi": "लगभग 10 s"
+      },
+      {
+       "id": "half",
+       "en": "About 0.5 s",
+       "hi": "लगभग 0.5 s"
+      }
+     ],
+     "answer": "2"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "landed",
+     "say": {
+      "en": "Press play to drop the stone.",
+      "hi": "पत्थर गिराने के लिए प्ले दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:vt",
+     "say": {
+      "en": "Open the velocity–time graph.",
+      "hi": "वेग–समय ग्राफ़ खोलो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For motion with steady acceleration we use v = u + at, s = ut + ½at² and v² = u² + 2as. Here u = 0, a = g = 9.8 m/s² and s = 20 m. So t = √(2 × 20 ÷ 9.8), about 2.0 s, and v = 9.8 × 2.0, about 19.8 m/s when it lands. The velocity–time graph is a straight line rising at 9.8 m/s every second.",
+      "hi": "स्थिर त्वरण वाली गति के लिए हम v = u + at, s = ut + ½at² और v² = u² + 2as प्रयोग करते हैं। यहाँ u = 0, a = g = 9.8 m/s² और s = 20 m है। इसलिए t = √(2 × 20 ÷ 9.8), लगभग 2.0 s, और गिरते समय v = 9.8 × 2.0, लगभग 19.8 m/s। वेग–समय ग्राफ़ एक सीधी रेखा है जो हर सेकंड 9.8 m/s बढ़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A ball is dropped from rest. What is its speed after 3 s (g = 9.8 m/s², no air)?",
+        "hi": "एक गेंद विराम से गिराई जाती है। 3 s बाद उसकी चाल क्या होगी (g = 9.8 m/s², हवा नहीं)?"
+       },
+       "options": [
+        "29.4 m/s",
+        "9.8 m/s",
+        "3 m/s"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "v = u + at = 0 + 9.8 × 3 = 29.4 m/s.",
+        "hi": "v = u + at = 0 + 9.8 × 3 = 29.4 m/s।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the speed after only 1 s.",
+         "hi": "यह केवल 1 s बाद की चाल है।"
+        },
+        {
+         "en": "That forgets to multiply by g.",
+         "hi": "इसमें g से गुणा करना भूल गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drop it from 40 m and from 80 m. Does doubling the height double the time?",
+      "hi": "आज़माओ: 40 m और 80 m से गिराओ। क्या ऊँचाई दोगुनी करने पर समय दोगुना होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch04-circle",
+   "topic": "4.4.1",
+   "template": "motion",
+   "title": {
+    "en": "Uniform circular motion: let go of the string",
+    "hi": "एकसमान वृत्तीय गति: डोरी छोड़ दो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "circular",
+    "speed": 3,
+    "r": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A stone whirls on a string at a steady speed. Is it accelerating?",
+      "hi": "एक पत्थर डोरी पर स्थिर चाल से घूमता है। क्या उसमें त्वरण है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, because its direction keeps changing",
+       "hi": "हाँ, क्योंकि उसकी दिशा बदलती रहती है"
+      },
+      {
+       "id": "no",
+       "en": "No, because its speed is steady",
+       "hi": "नहीं, क्योंकि उसकी चाल स्थिर है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "moving",
+     "say": {
+      "en": "Press play to whirl the stone.",
+      "hi": "पत्थर घुमाने के लिए प्ले दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "stopped",
+     "say": {
+      "en": "Now let go of the string and watch where the stone flies.",
+      "hi": "अब डोरी छोड़ो और देखो पत्थर कहाँ जाता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In uniform circular motion the speed stays the same but the direction changes at every point, so the velocity changes and the object is accelerating towards the centre. The string pulls it inward. When you let go, nothing pulls it in, so it flies off in a straight line along the tangent.",
+      "hi": "एकसमान वृत्तीय गति में चाल वही रहती है पर हर बिंदु पर दिशा बदलती है, इसलिए वेग बदलता है और वस्तु केंद्र की ओर त्वरित होती है। डोरी उसे अंदर की ओर खींचती है। छोड़ने पर उसे कोई अंदर नहीं खींचता, इसलिए वह स्पर्श रेखा पर सीधी उड़ जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An athlete spins a hammer and lets go. Which way does the hammer fly?",
+        "hi": "एक खिलाड़ी हथौड़ा घुमाकर छोड़ता है। हथौड़ा किस ओर उड़ता है?"
+       },
+       "options": [
+        {
+         "en": "Straight along the tangent at that point",
+         "hi": "उस बिंदु पर स्पर्श रेखा के साथ सीधा"
+        },
+        {
+         "en": "Straight out from the centre",
+         "hi": "केंद्र से सीधा बाहर की ओर"
+        },
+        {
+         "en": "In a curve, still circling",
+         "hi": "वक्र में, घूमता हुआ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At release it keeps moving in the direction it had: along the tangent.",
+        "hi": "छोड़ते समय वह उसी दिशा में चलता रहता है जो उसकी थी: स्पर्श रेखा के साथ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing pushes it outward; it simply keeps the direction it had at that moment.",
+         "hi": "कोई उसे बाहर नहीं धकेलता; वह बस उस पल की दिशा बनाए रखता है।"
+        },
+        {
+         "en": "Without the pull of the wire nothing can keep it turning.",
+         "hi": "तार के खिंचाव के बिना उसे घुमाता रखने वाला कोई नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: raise the speed with the slider. Does one turn take more or less time? Let go at different points of the circle.",
+      "hi": "आज़माओ: स्लाइडर से चाल बढ़ाओ। एक चक्कर में कम समय लगता है या अधिक? वृत्त के अलग-अलग बिंदुओं पर छोड़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Hook of the chapter",
+   "shows": "A long straight stretch of an Indian highway with a car, an auto and a cyclist moving in the same direction, kilometre stones on the roadside",
+   "view": "High wide view from a flyover, early morning",
+   "right": "Kilometre stones blank-faced; vehicles spaced out",
+   "avoid": "Number plates, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "4.1.2",
+   "use": "A ball thrown straight up (Activity 4.1)",
+   "shows": "A cricket ball tossed straight up by a hand in front of a plain wall, shown at 6 moments on the way up and down",
+   "view": "Fixed camera, same framing, multiple-exposure style frames",
+   "right": "Ball positions closer together near the top (it slows there)",
+   "avoid": "Faces"
+  },
+  {
+   "n": 3,
+   "kind": "MAP",
+   "topic": "4.1.1",
+   "use": "Base for describing position",
+   "shows": "A straight village road seen from above with a school, a bus stop, a temple and a well along it",
+   "view": "Top-down, clean, no names",
+   "right": "Buildings in a straight line along the road",
+   "avoid": "Text, signs"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "4.1.4",
+   "use": "A car speedometer",
+   "shows": "A car speedometer dial in km/h with the needle at zero",
+   "view": "Straight on, transparent background",
+   "right": "Numbers on the dial left plain so the app can animate the needle",
+   "avoid": "Brand logo"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "4.2.1",
+   "use": "Graph paper base",
+   "shows": "A clean sheet of graph paper with x and y axes drawn and no numbers",
+   "view": "Flat, white, square",
+   "right": "Fine 1 mm and bold 1 cm lines",
+   "avoid": "Numbers, labels"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.2.3",
+   "use": "Braking distance",
+   "shows": "A car stopped at a zebra crossing with skid-free tyre marks behind it on a dry road, a school zone sign without text",
+   "view": "From the pavement, low angle",
+   "right": "Gap clearly visible between car and crossing",
+   "avoid": "People on the crossing, number plates"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "4.4.1",
+   "use": "A marble rolling inside a tape ring (Activity 4.5)",
+   "shows": "A marble circling inside a ring of tape on a table; last frame: one gap opened in the ring and the marble rolling out in a straight line",
+   "view": "From directly above, same framing in four frames",
+   "right": "The marble leaves along the tangent, not outward from the centre",
+   "avoid": "Hands blocking the ring"
+  }
+ ]
+}

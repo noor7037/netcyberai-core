@@ -1,0 +1,1891 @@
+{
+  "chapter_key": "u.c12.accountancy.leca1.ch02",
+  "class": 12,
+  "subject_id": "accountancy",
+  "title": "Spreadsheet",
+  "source": "https://ncert.nic.in/textbook/pdf/leca102.pdf",
+  "topics": [
+    {
+      "n": "2.1",
+      "title": "Basic concepts of spreadsheet",
+      "labs": [
+        "c12-accountancy-leca1-ch02-cells"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.1.1",
+      "title": "Labels",
+      "labs": [
+        "c12-accountancy-leca1-ch02-entries"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.1.2",
+      "title": "Formulas",
+      "labs": [
+        "c12-accountancy-leca1-ch02-entries"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.1.3",
+      "title": "Functions",
+      "labs": [
+        "c12-accountancy-leca1-ch02-entries"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.1.2b",
+      "title": "Derived values with formulas",
+      "labs": [
+        "c12-accountancy-leca1-ch02-formula-value"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.1.3b",
+      "title": "Built-in functions: SUM, AVERAGE, MAX, MIN, COUNT",
+      "labs": [
+        "c12-accountancy-leca1-ch02-functions"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.1.3c",
+      "title": "Cell references",
+      "labs": [
+        "c12-accountancy-leca1-ch02-references"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.1.4",
+      "title": "Logical IF function",
+      "labs": [
+        "c12-accountancy-leca1-ch02-if"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.1.4b",
+      "title": "Nested IF",
+      "labs": [
+        "c12-accountancy-leca1-ch02-nested-if"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.1.5",
+      "title": "Other useful functions: SUMIF and criteria-based functions",
+      "labs": [
+        "c12-accountancy-leca1-ch02-sumif"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.1.6",
+      "title": "Lookup functions",
+      "labs": [
+        "c12-accountancy-leca1-ch02-lookup"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-accountancy-leca1-ch02-cells",
+      "topic": "2.1",
+      "template": "match",
+      "title": {
+        "en": "Workbook, sheet, cell and range",
+        "hi": "वर्कबुक, शीट, सेल और रेंज"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "wb",
+            "left": {
+              "en": "Workbook",
+              "hi": "वर्कबुक"
+            },
+            "right": {
+              "en": "The whole spreadsheet file, holding many worksheets",
+              "hi": "पूरी स्प्रेडशीट फ़ाइल, जिसमें कई वर्कशीट होती हैं"
+            },
+            "why": {
+              "en": "A file in Excel is called a workbook.",
+              "hi": "एक्सेल में फ़ाइल को वर्कबुक कहते हैं।"
+            }
+          },
+          {
+            "id": "ws",
+            "left": {
+              "en": "Worksheet",
+              "hi": "वर्कशीट"
+            },
+            "right": {
+              "en": "One grid of rows and columns inside the workbook",
+              "hi": "वर्कबुक के भीतर पंक्तियों और स्तंभों का एक जाल"
+            },
+            "why": {
+              "en": "Only one worksheet is active at a time.",
+              "hi": "एक समय में एक ही वर्कशीट सक्रिय होती है।"
+            }
+          },
+          {
+            "id": "cell",
+            "left": {
+              "en": "Cell",
+              "hi": "सेल"
+            },
+            "right": {
+              "en": "The box where a row and a column meet",
+              "hi": "वह खाना जहाँ पंक्ति और स्तंभ मिलते हैं"
+            },
+            "why": {
+              "en": "Each value, label or formula sits in a cell.",
+              "hi": "हर मान, लेबल या सूत्र एक सेल में रहता है।"
+            }
+          },
+          {
+            "id": "addr",
+            "left": {
+              "en": "Cell address such as B3",
+              "hi": "सेल पता जैसे B3"
+            },
+            "right": {
+              "en": "Column letter first, then row number",
+              "hi": "पहले स्तंभ का अक्षर, फिर पंक्ति की संख्या"
+            },
+            "why": {
+              "en": "B3 is column B, row 3.",
+              "hi": "B3 यानी स्तंभ B, पंक्ति 3।"
+            }
+          },
+          {
+            "id": "range",
+            "left": {
+              "en": "Range such as A1:E2",
+              "hi": "रेंज जैसे A1:E2"
+            },
+            "right": {
+              "en": "All cells between two corners, joined by a colon",
+              "hi": "दो कोनों के बीच के सब सेल, कोलन से जुड़े"
+            },
+            "why": {
+              "en": "A range can be used inside a function.",
+              "hi": "रेंज को फ़ंक्शन में दिया जा सकता है।"
+            }
+          },
+          {
+            "id": "active",
+            "left": {
+              "en": "Active cell",
+              "hi": "सक्रिय सेल"
+            },
+            "right": {
+              "en": "The cell the pointer is on, where typing goes",
+              "hi": "जिस सेल पर पॉइंटर है, जहाँ टाइप होता है"
+            },
+            "why": {
+              "en": "A1 is active when you open a new sheet.",
+              "hi": "नई शीट खोलने पर A1 सक्रिय होता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In the address C5, which part is the column?",
+            "hi": "पता C5 में स्तंभ कौन-सा भाग है?"
+          },
+          "options": [
+            {
+              "id": "c",
+              "en": "C",
+              "hi": "स्तंभ का अक्षर C"
+            },
+            {
+              "id": "5",
+              "en": "5",
+              "hi": "पंक्ति की संख्या 5"
+            }
+          ],
+          "answer": "c"
+        },
+        {
+          "kind": "do",
+          "target": "left:addr",
+          "expect": "matched:addr",
+          "say": {
+            "en": "Tap “Cell address such as B3”, then tap the meaning that goes with it.",
+            "hi": "“सेल पता जैसे B3” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:range",
+          "expect": "matched:range",
+          "say": {
+            "en": "Tap “Range such as A1:E2”, then tap the meaning that goes with it.",
+            "hi": "“रेंज जैसे A1:E2” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the pairs, then press Check.",
+            "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A workbook holds worksheets; a worksheet is a grid of rows (numbers) and columns (letters). Where they cross is a cell, named by column letter then row number, like C5. Two corners joined by a colon, like A1:E2, name a range.",
+            "hi": "वर्कबुक में वर्कशीट होती हैं; वर्कशीट पंक्तियों (संख्याएँ) और स्तंभों (अक्षर) का जाल है। जहाँ वे मिलते हैं वह सेल है, जिसका नाम पहले स्तंभ अक्षर फिर पंक्ति संख्या, जैसे C5। कोलन से जुड़े दो कोने, जैसे A1:E2, रेंज बताते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many cells are in the range A1:B3?",
+                "hi": "रेंज A1:B3 में कितने सेल हैं?"
+              },
+              "options": [
+                {
+                  "en": "6 cells",
+                  "hi": "6 सेल"
+                },
+                {
+                  "en": "3 cells",
+                  "hi": "3 सेल"
+                },
+                {
+                  "en": "2 cells",
+                  "hi": "2 सेल"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Two columns × three rows = 6 cells.",
+                "hi": "दो स्तंभ × तीन पंक्तियाँ = 6 सेल।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "3 counts only one column.",
+                  "hi": "3 में केवल एक स्तंभ गिना गया।"
+                },
+                {
+                  "en": "2 counts only the columns.",
+                  "hi": "2 में केवल स्तंभ गिने गए।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Name the address of the cell in column D, row 7, and write a range of 4 cells in column A.",
+            "hi": "स्तंभ D, पंक्ति 7 के सेल का पता लिखो और स्तंभ A में 4 सेल की एक रेंज लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch02-entries",
+      "topic": "2.1.1",
+      "template": "sort",
+      "title": {
+        "en": "Label, number, formula or function?",
+        "hi": "लेबल, संख्या, सूत्र या फ़ंक्शन?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "lab",
+            "label": {
+              "en": "Label",
+              "hi": "लेबल"
+            }
+          },
+          {
+            "id": "num",
+            "label": {
+              "en": "Number",
+              "hi": "संख्या"
+            }
+          },
+          {
+            "id": "frm",
+            "label": {
+              "en": "Formula",
+              "hi": "सूत्र"
+            }
+          },
+          {
+            "id": "fn",
+            "label": {
+              "en": "Function",
+              "hi": "फ़ंक्शन"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "l1",
+            "text": {
+              "en": "Item name",
+              "hi": "मद का नाम"
+            },
+            "bin": "lab",
+            "why": {
+              "en": "Text that describes data is a label.",
+              "hi": "डेटा का वर्णन करने वाला पाठ लेबल है।"
+            }
+          },
+          {
+            "id": "l2",
+            "text": {
+              "en": "Total",
+              "hi": "कुल"
+            },
+            "bin": "lab",
+            "why": {
+              "en": "A heading is a label.",
+              "hi": "शीर्षक लेबल है।"
+            }
+          },
+          {
+            "id": "n1",
+            "text": {
+              "en": "250",
+              "hi": "250"
+            },
+            "bin": "num",
+            "why": {
+              "en": "A plain value typed in.",
+              "hi": "सीधे टाइप किया मान।"
+            }
+          },
+          {
+            "id": "n2",
+            "text": {
+              "en": "12.5",
+              "hi": "12.5"
+            },
+            "bin": "num",
+            "why": {
+              "en": "Numbers can have decimals.",
+              "hi": "संख्याओं में दशमलव हो सकता है।"
+            }
+          },
+          {
+            "id": "f1",
+            "text": {
+              "en": "=B2*C2",
+              "hi": "=B2*C2"
+            },
+            "bin": "frm",
+            "why": {
+              "en": "It starts with = and works on cell references.",
+              "hi": "यह = से शुरू होता है और सेल संदर्भों पर चलता है।"
+            }
+          },
+          {
+            "id": "f2",
+            "text": {
+              "en": "=B2+B3-C2",
+              "hi": "=B2+B3-C2"
+            },
+            "bin": "frm",
+            "why": {
+              "en": "An arithmetic expression on cells.",
+              "hi": "सेलों पर गणितीय व्यंजक।"
+            }
+          },
+          {
+            "id": "g1",
+            "text": {
+              "en": "=SUM(B2:B9)",
+              "hi": "=SUM(B2:B9)"
+            },
+            "bin": "fn",
+            "why": {
+              "en": "A ready-made function working on a range.",
+              "hi": "रेंज पर चलने वाला बना-बनाया फ़ंक्शन।"
+            }
+          },
+          {
+            "id": "g2",
+            "text": {
+              "en": "=AVERAGE(C2:C6)",
+              "hi": "=AVERAGE(C2:C6)"
+            },
+            "bin": "fn",
+            "why": {
+              "en": "AVERAGE is a built-in function.",
+              "hi": "AVERAGE अंतर्निर्मित फ़ंक्शन है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What must every formula and function begin with?",
+            "hi": "हर सूत्र और फ़ंक्शन किससे शुरू होना चाहिए?"
+          },
+          "options": [
+            {
+              "id": "e",
+              "en": "The = sign",
+              "hi": "= चिह्न"
+            },
+            {
+              "id": "p",
+              "en": "A plus sign",
+              "hi": "+ चिह्न"
+            }
+          ],
+          "answer": "e"
+        },
+        {
+          "kind": "do",
+          "target": "card:f1",
+          "expect": "correct:f1",
+          "say": {
+            "en": "Tap the card “=B2*C2”, then tap the group it belongs to.",
+            "hi": "कार्ड “=B2*C2” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:g1",
+          "expect": "correct:g1",
+          "say": {
+            "en": "Tap the card “=SUM(B2:B9)”, then tap the group it belongs to.",
+            "hi": "कार्ड “=SUM(B2:B9)” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A label is text, a number is a plain value, a formula is your own calculation on cells, and a function is a ready-made formula such as SUM. Formulas and functions start with =. Their great strength: change one number and every result updates.",
+            "hi": "लेबल पाठ है, संख्या सीधा मान है, सूत्र सेलों पर तुम्हारी अपनी गणना है, और फ़ंक्शन SUM जैसा बना-बनाया सूत्र है। सूत्र और फ़ंक्शन = से शुरू होते हैं। इनकी बड़ी ताक़त: एक संख्या बदलो तो हर परिणाम अपने-आप बदल जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A cell shows 500 after you typed =B2*C2. What is stored in the cell?",
+                "hi": "=B2*C2 टाइप करने पर सेल में 500 दिखता है। सेल में क्या रखा है?"
+              },
+              "options": [
+                {
+                  "en": "The formula; 500 is its result",
+                  "hi": "सूत्र; 500 उसका परिणाम है"
+                },
+                {
+                  "en": "Only the number 500",
+                  "hi": "केवल संख्या 500"
+                },
+                {
+                  "en": "A label",
+                  "hi": "एक लेबल"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The cell keeps the formula and displays the result, so it updates when B2 or C2 changes.",
+                "hi": "सेल सूत्र रखता है और परिणाम दिखाता है, इसलिए B2 या C2 बदलने पर बदलता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "If it stored only 500 it could not update.",
+                  "hi": "अगर केवल 500 रखा होता तो वह बदल नहीं सकता था।"
+                },
+                {
+                  "en": "A label is text and does not calculate.",
+                  "hi": "लेबल पाठ है और गणना नहीं करता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Why is it better to write =B2*C2 than to type the answer 500?",
+            "hi": "=B2*C2 लिखना उत्तर 500 टाइप करने से बेहतर क्यों है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch02-formula-value",
+      "topic": "2.1.2",
+      "template": "table",
+      "title": {
+        "en": "Value = quantity × price",
+        "hi": "मूल्य = मात्रा × दर"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "spreadsheet",
+        "tables": {
+          "stock": {
+            "columns": [
+              "Item",
+              "Qty",
+              "Price"
+            ],
+            "rows": [
+              [
+                "Notebook",
+                40,
+                25
+              ],
+              [
+                "Pen",
+                100,
+                10
+              ],
+              [
+                "Ruler",
+                30,
+                15
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "A shop buys three items. Find the value of the notebooks, then the total quantity bought.",
+          "hi": "एक दुकान तीन वस्तुएँ ख़रीदती है। कॉपियों का मूल्य निकालो, फिर ख़रीदी कुल मात्रा।"
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =B2*C2 to find the value of the notebooks, then calculate.",
+            "hi": "कॉपियों का मूल्य निकालने के लिए =B2*C2 लिखो, फिर गणना करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The pens are 100 at ₹10. Will their value be 1,000 or 110?",
+            "hi": "पेन 100 हैं, ₹10 प्रति। मूल्य 1,000 होगा या 110?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "1,000",
+              "hi": "1,000 (संख्या)"
+            },
+            {
+              "id": "b",
+              "en": "110",
+              "hi": "110 (संख्या)"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =B3*C3 for the pens.",
+            "hi": "पेनों के लिए =B3*C3 लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Now the value of all three: =B2*C2+B3*C3+B4*C4.",
+            "hi": "अब तीनों का कुल मूल्य: =B2*C2+B3*C3+B4*C4।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the sheet.",
+            "hi": "शीट के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Quantity and price are basic values; value is derived from them: 40 × 25 = 1,000 and 100 × 10 = 1,000. The formula refers to cells, not numbers, so editing a quantity changes the value at once. Total quantity is 40 + 100 + 30 = 170.",
+            "hi": "मात्रा और दर मूल मान हैं; मूल्य उनसे निकला हुआ मान है: 40 × 25 = 1,000 और 100 × 10 = 1,000। सूत्र संख्याओं की नहीं, सेलों की बात करता है, इसलिए मात्रा बदलते ही मूल्य बदल जाता है। कुल मात्रा 40 + 100 + 30 = 170 है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "If the notebook quantity changes to 50, the formula =B2*C2 gives:",
+                "hi": "कॉपियों की मात्रा 50 होने पर सूत्र =B2*C2 देगा:"
+              },
+              "options": [
+                {
+                  "en": "1,250",
+                  "hi": "1,250 (संख्या)"
+                },
+                {
+                  "en": "1,000",
+                  "hi": "1,000 (संख्या)"
+                },
+                {
+                  "en": "75",
+                  "hi": "75 (संख्या)"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "50 × 25 = 1,250, with no change to the formula.",
+                "hi": "50 × 25 = 1,250, सूत्र बदले बिना।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "1,000 is the old value; the formula recalculates.",
+                  "hi": "1,000 पुराना मूल्य है; सूत्र दोबारा गणना करता है।"
+                },
+                {
+                  "en": "75 adds instead of multiplying.",
+                  "hi": "75 में गुणा की जगह जोड़ दिया गया।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change a price in the sheet and calculate the total again.",
+            "hi": "शीट में कोई दर बदलो और कुल फिर निकालो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch02-functions",
+      "topic": "2.1.3",
+      "template": "table",
+      "title": {
+        "en": "Functions: total, average, highest, lowest",
+        "hi": "फ़ंक्शन: कुल, औसत, उच्चतम, न्यूनतम"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "spreadsheet",
+        "tables": {
+          "sales": {
+            "columns": [
+              "Day",
+              "Amount"
+            ],
+            "rows": [
+              [
+                "Mon",
+                1200
+              ],
+              [
+                "Tue",
+                1800
+              ],
+              [
+                "Wed",
+                900
+              ],
+              [
+                "Thu",
+                2100
+              ],
+              [
+                "Fri",
+                1500
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "A shop's sales for five days are shown. Use functions to find the total, the average, the best day and the worst day.",
+          "hi": "एक दुकान की पाँच दिन की बिक्री दी है। फ़ंक्शन से कुल, औसत, सबसे अच्छा दिन और सबसे बुरा दिन निकालो।"
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =SUM(B2:B6) and calculate.",
+            "hi": "=SUM(B2:B6) लिखो और गणना करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The total is ₹7,500 for 5 days. Is the average ₹1,500 or ₹37,500?",
+            "hi": "5 दिन का कुल ₹7,500 है। औसत ₹1,500 है या ₹37,500?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "₹1,500",
+              "hi": "1,500 रुपये"
+            },
+            {
+              "id": "b",
+              "en": "₹37,500",
+              "hi": "37,500 रुपये"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =AVERAGE(B2:B6).",
+            "hi": "=AVERAGE(B2:B6) लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Now the best day: =MAX(B2:B6).",
+            "hi": "अब सबसे अच्छा दिन: =MAX(B2:B6)।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the sheet.",
+            "hi": "शीट के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A function does a whole job in one word. SUM adds a range (₹7,500), AVERAGE divides the total by the count (₹1,500), MAX finds the largest (₹2,100) and MIN the smallest (₹900). COUNT tells how many numbers there are.",
+            "hi": "फ़ंक्शन एक शब्द में पूरा काम करता है। SUM रेंज जोड़ता है (₹7,500), AVERAGE कुल को गिनती से भाग देता है (₹1,500), MAX सबसे बड़ा (₹2,100) और MIN सबसे छोटा (₹900) खोजता है। COUNT बताता है कितनी संख्याएँ हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which function finds the lowest sales day?",
+                "hi": "कौन-सा फ़ंक्शन सबसे कम बिक्री वाला दिन खोजता है?"
+              },
+              "options": [
+                {
+                  "en": "MIN",
+                  "hi": "फ़ंक्शन MIN"
+                },
+                {
+                  "en": "MAX",
+                  "hi": "फ़ंक्शन MAX"
+                },
+                {
+                  "en": "SUM",
+                  "hi": "फ़ंक्शन SUM"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "MIN returns the smallest number in the range.",
+                "hi": "MIN रेंज की सबसे छोटी संख्या देता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "MAX gives the largest.",
+                  "hi": "MAX सबसे बड़ी देता है।"
+                },
+                {
+                  "en": "SUM gives the total.",
+                  "hi": "SUM कुल देता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Try =COUNT(B2:B6) and =ROUND(AVERAGE(B2:B6),0).",
+            "hi": "=COUNT(B2:B6) और =ROUND(AVERAGE(B2:B6),0) आज़माओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch02-references",
+      "topic": "2.1",
+      "template": "match",
+      "title": {
+        "en": "Relative, absolute and mixed references",
+        "hi": "सापेक्ष, निरपेक्ष और मिश्रित संदर्भ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "rel",
+            "left": {
+              "en": "C4",
+              "hi": "C4"
+            },
+            "right": {
+              "en": "Relative: changes when the formula is copied",
+              "hi": "सापेक्ष: सूत्र कॉपी करने पर बदलता है"
+            },
+            "why": {
+              "en": "Copy the formula one row down and C4 becomes C5.",
+              "hi": "सूत्र एक पंक्ति नीचे कॉपी करें तो C4 बदलकर C5 हो जाता है।"
+            }
+          },
+          {
+            "id": "abs",
+            "left": {
+              "en": "$C$4",
+              "hi": "$C$4"
+            },
+            "right": {
+              "en": "Absolute: stays fixed on that cell when copied",
+              "hi": "निरपेक्ष: कॉपी करने पर उसी सेल पर टिका रहता है"
+            },
+            "why": {
+              "en": "The dollar signs lock both column and row.",
+              "hi": "डॉलर चिह्न स्तंभ और पंक्ति दोनों को बाँधते हैं।"
+            }
+          },
+          {
+            "id": "mc",
+            "left": {
+              "en": "$C4",
+              "hi": "$C4"
+            },
+            "right": {
+              "en": "Mixed: column fixed, row can change",
+              "hi": "मिश्रित: स्तंभ स्थिर, पंक्ति बदल सकती है"
+            },
+            "why": {
+              "en": "Only the column is locked.",
+              "hi": "केवल स्तंभ बँधा है।"
+            }
+          },
+          {
+            "id": "mr",
+            "left": {
+              "en": "C$4",
+              "hi": "C$4"
+            },
+            "right": {
+              "en": "Mixed: row fixed, column can change",
+              "hi": "मिश्रित: पंक्ति स्थिर, स्तंभ बदल सकता है"
+            },
+            "why": {
+              "en": "Only the row is locked.",
+              "hi": "केवल पंक्ति बँधी है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A tax rate sits in C4 and must be used in every row. Which reference should the copied formulas use?",
+            "hi": "कर की दर C4 में है और हर पंक्ति में वही चाहिए। कॉपी होने वाले सूत्रों में कौन-सा संदर्भ लगे?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "$C$4",
+              "hi": "$C$4 (निरपेक्ष)"
+            },
+            {
+              "id": "r",
+              "en": "C4",
+              "hi": "C4 (सापेक्ष)"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:rel",
+          "expect": "matched:rel",
+          "say": {
+            "en": "Tap “C4”, then tap the meaning that goes with it.",
+            "hi": "“C4” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:abs",
+          "expect": "matched:abs",
+          "say": {
+            "en": "Tap “$C$4”, then tap the meaning that goes with it.",
+            "hi": "“$C$4” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the pairs, then press Check.",
+            "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "By default a reference is relative: it moves when the formula is copied. Put $ before the column letter and row number to make it absolute, so it always points to the same cell, like a rate or a percentage that every row uses.",
+            "hi": "सामान्यतः संदर्भ सापेक्ष होता है: सूत्र कॉपी करने पर खिसकता है। स्तंभ अक्षर और पंक्ति संख्या से पहले $ लगाने पर वह निरपेक्ष हो जाता है और हमेशा उसी सेल को देखता है, जैसे दर या प्रतिशत जिसे हर पंक्ति काम में लेती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A formula =B2*$F$1 in row 2 is copied to row 3. It becomes:",
+                "hi": "पंक्ति 2 का सूत्र =B2*$F$1 पंक्ति 3 में कॉपी हो तो बनेगा:"
+              },
+              "options": [
+                {
+                  "en": "=B3*$F$1",
+                  "hi": "सूत्र =B3*$F$1"
+                },
+                {
+                  "en": "=B3*$F$2",
+                  "hi": "सूत्र =B3*$F$2"
+                },
+                {
+                  "en": "=B2*$F$1",
+                  "hi": "सूत्र =B2*$F$1"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "B2 is relative and moves to B3; $F$1 is absolute and stays.",
+                "hi": "B2 सापेक्ष है और B3 हो जाता है; $F$1 निरपेक्ष है और वही रहता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The absolute reference does not move.",
+                  "hi": "निरपेक्ष संदर्भ नहीं खिसकता।"
+                },
+                {
+                  "en": "The relative B2 does move down.",
+                  "hi": "सापेक्ष B2 नीचे खिसकता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think: where in a payroll sheet would you use an absolute reference?",
+            "hi": "सोचो: वेतन-पत्रक में निरपेक्ष संदर्भ कहाँ लगाओगे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch02-if",
+      "topic": "2.1.4",
+      "template": "sort",
+      "title": {
+        "en": "The IF function: pass or fail",
+        "hi": "IF फ़ंक्शन: उत्तीर्ण या अनुत्तीर्ण"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "p",
+            "label": {
+              "en": "Pass",
+              "hi": "उत्तीर्ण"
+            }
+          },
+          {
+            "id": "f",
+            "label": {
+              "en": "Fail",
+              "hi": "अनुत्तीर्ण"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "m72",
+            "text": {
+              "en": "Marks 72",
+              "hi": "अंक 72"
+            },
+            "bin": "p",
+            "why": {
+              "en": "72 is at least 40.",
+              "hi": "72, 40 से कम नहीं है।"
+            }
+          },
+          {
+            "id": "m39",
+            "text": {
+              "en": "Marks 39",
+              "hi": "अंक 39"
+            },
+            "bin": "f",
+            "why": {
+              "en": "39 is below 40.",
+              "hi": "39, 40 से कम है।"
+            }
+          },
+          {
+            "id": "m40",
+            "text": {
+              "en": "Marks 40",
+              "hi": "अंक 40"
+            },
+            "bin": "p",
+            "why": {
+              "en": "The test is 'greater than or equal to 40', so 40 passes.",
+              "hi": "शर्त 'बराबर या अधिक 40' है, इसलिए 40 उत्तीर्ण है।"
+            }
+          },
+          {
+            "id": "m15",
+            "text": {
+              "en": "Marks 15",
+              "hi": "अंक 15"
+            },
+            "bin": "f",
+            "why": {
+              "en": "15 is below 40.",
+              "hi": "15, 40 से कम है।"
+            }
+          },
+          {
+            "id": "m100",
+            "text": {
+              "en": "Marks 100",
+              "hi": "अंक 100"
+            },
+            "bin": "p",
+            "why": {
+              "en": "100 is far above 40.",
+              "hi": "100, 40 से बहुत ऊपर है।"
+            }
+          },
+          {
+            "id": "m41",
+            "text": {
+              "en": "Marks 41",
+              "hi": "अंक 41"
+            },
+            "bin": "p",
+            "why": {
+              "en": "41 is above 40.",
+              "hi": "41, 40 से ऊपर है।"
+            }
+          },
+          {
+            "id": "m0",
+            "text": {
+              "en": "Marks 0",
+              "hi": "अंक 0"
+            },
+            "bin": "f",
+            "why": {
+              "en": "0 is below 40.",
+              "hi": "0, 40 से कम है।"
+            }
+          },
+          {
+            "id": "m55",
+            "text": {
+              "en": "Marks 55",
+              "hi": "अंक 55"
+            },
+            "bin": "p",
+            "why": {
+              "en": "55 is above 40.",
+              "hi": "55, 40 से ऊपर है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The cell holds =IF(B2>=40,\"Pass\",\"Fail\") and B2 is 40. What does it show?",
+            "hi": "सेल में =IF(B2>=40,\"Pass\",\"Fail\") है और B2 में 40 है। क्या दिखेगा?"
+          },
+          "options": [
+            {
+              "id": "p",
+              "en": "Pass",
+              "hi": "उत्तीर्ण"
+            },
+            {
+              "id": "f",
+              "en": "Fail",
+              "hi": "अनुत्तीर्ण"
+            }
+          ],
+          "answer": "p"
+        },
+        {
+          "kind": "do",
+          "target": "card:m72",
+          "expect": "correct:m72",
+          "say": {
+            "en": "Tap the card “Marks 72”, then tap the group it belongs to.",
+            "hi": "कार्ड “अंक 72” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:m40",
+          "expect": "correct:m40",
+          "say": {
+            "en": "Tap the card “Marks 40”, then tap the group it belongs to.",
+            "hi": "कार्ड “अंक 40” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "IF(test, value if true, value if false) lets the sheet decide. The test B2>=40 is true for 40 and above, so those rows show Pass; others show Fail. The decision is remade every time the marks change.",
+            "hi": "IF(शर्त, सत्य होने पर मान, असत्य होने पर मान) शीट को निर्णय लेने देता है। शर्त B2>=40, 40 और उससे ऊपर के लिए सत्य है, इसलिए वे पंक्तियाँ Pass दिखाती हैं; बाक़ी Fail। अंक बदलते ही निर्णय फिर से होता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What are the three parts inside IF( )?",
+                "hi": "IF( ) के भीतर तीन भाग कौन-से हैं?"
+              },
+              "options": [
+                {
+                  "en": "A test, a result if true, a result if false",
+                  "hi": "एक शर्त, सत्य का परिणाम, असत्य का परिणाम"
+                },
+                {
+                  "en": "A name, a date, an amount",
+                  "hi": "एक नाम, एक तारीख़, एक राशि"
+                },
+                {
+                  "en": "A row, a column, a sheet",
+                  "hi": "एक पंक्ति, एक स्तंभ, एक शीट"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "IF works on a test and chooses between two results.",
+                "hi": "IF एक शर्त पर चलता है और दो परिणामों में से चुनता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Those are data items, not the parts of IF.",
+                  "hi": "ये डेटा मदें हैं, IF के भाग नहीं।"
+                },
+                {
+                  "en": "Those describe locations, not an IF test.",
+                  "hi": "ये स्थान बताते हैं, IF की शर्त नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the pass mark to 50 in your head: which cards change group?",
+            "hi": "मन में उत्तीर्ण अंक 50 कर दो: कौन-से कार्ड समूह बदलेंगे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch02-nested-if",
+      "topic": "2.1.4",
+      "template": "sort",
+      "title": {
+        "en": "Nested IF: grades A, B and C",
+        "hi": "नेस्टेड IF: ग्रेड A, B और C"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "a",
+            "label": {
+              "en": "Grade A",
+              "hi": "ग्रेड A"
+            }
+          },
+          {
+            "id": "b",
+            "label": {
+              "en": "Grade B",
+              "hi": "ग्रेड B"
+            }
+          },
+          {
+            "id": "cc",
+            "label": {
+              "en": "Grade C",
+              "hi": "ग्रेड C"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "m90",
+            "text": {
+              "en": "Marks 90",
+              "hi": "अंक 90"
+            },
+            "bin": "a",
+            "why": {
+              "en": "90 is 75 or more.",
+              "hi": "90, 75 या अधिक है।"
+            }
+          },
+          {
+            "id": "m75",
+            "text": {
+              "en": "Marks 75",
+              "hi": "अंक 75"
+            },
+            "bin": "a",
+            "why": {
+              "en": "75 meets 'at least 75'.",
+              "hi": "75, 'कम से कम 75' पूरा करता है।"
+            }
+          },
+          {
+            "id": "m74",
+            "text": {
+              "en": "Marks 74",
+              "hi": "अंक 74"
+            },
+            "bin": "b",
+            "why": {
+              "en": "Below 75 but at least 50.",
+              "hi": "75 से कम पर कम से कम 50।"
+            }
+          },
+          {
+            "id": "m50",
+            "text": {
+              "en": "Marks 50",
+              "hi": "अंक 50"
+            },
+            "bin": "b",
+            "why": {
+              "en": "50 meets 'at least 50'.",
+              "hi": "50, 'कम से कम 50' पूरा करता है।"
+            }
+          },
+          {
+            "id": "m49",
+            "text": {
+              "en": "Marks 49",
+              "hi": "अंक 49"
+            },
+            "bin": "cc",
+            "why": {
+              "en": "Below 50.",
+              "hi": "50 से कम।"
+            }
+          },
+          {
+            "id": "m20",
+            "text": {
+              "en": "Marks 20",
+              "hi": "अंक 20"
+            },
+            "bin": "cc",
+            "why": {
+              "en": "Below 50.",
+              "hi": "50 से कम।"
+            }
+          },
+          {
+            "id": "m88",
+            "text": {
+              "en": "Marks 88",
+              "hi": "अंक 88"
+            },
+            "bin": "a",
+            "why": {
+              "en": "88 is above 75.",
+              "hi": "88, 75 से ऊपर है।"
+            }
+          },
+          {
+            "id": "m60",
+            "text": {
+              "en": "Marks 60",
+              "hi": "अंक 60"
+            },
+            "bin": "b",
+            "why": {
+              "en": "60 is between 50 and 74.",
+              "hi": "60, 50 और 74 के बीच है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "=IF(B2>=75,\"A\",IF(B2>=50,\"B\",\"C\")) with B2 = 60. Which grade appears?",
+            "hi": "=IF(B2>=75,\"A\",IF(B2>=50,\"B\",\"C\")) में B2 = 60। कौन-सा ग्रेड आएगा?"
+          },
+          "options": [
+            {
+              "id": "b",
+              "en": "B",
+              "hi": "ग्रेड B"
+            },
+            {
+              "id": "a",
+              "en": "A",
+              "hi": "ग्रेड A"
+            },
+            {
+              "id": "c",
+              "en": "C",
+              "hi": "ग्रेड C"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "card:m90",
+          "expect": "correct:m90",
+          "say": {
+            "en": "Tap the card “Marks 90”, then tap the group it belongs to.",
+            "hi": "कार्ड “अंक 90” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:m74",
+          "expect": "correct:m74",
+          "say": {
+            "en": "Tap the card “Marks 74”, then tap the group it belongs to.",
+            "hi": "कार्ड “अंक 74” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A nested IF puts one IF inside another, so the sheet can choose among three or more results. It asks the first question; only if the answer is no does it ask the next. The order of questions matters: ask the highest mark first.",
+            "hi": "नेस्टेड IF एक IF को दूसरे के भीतर रखता है, ताकि शीट तीन या अधिक परिणामों में से चुन सके। वह पहला प्रश्न पूछता है; उत्तर 'नहीं' हो तभी अगला पूछता है। प्रश्नों का क्रम मायने रखता है: सबसे ऊँचे अंक का प्रश्न पहले।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "If the formula asked B2>=50 first, then B2>=75, what would 90 get?",
+                "hi": "यदि सूत्र पहले B2>=50 पूछे, फिर B2>=75, तो 90 को क्या मिलेगा?"
+              },
+              "options": [
+                {
+                  "en": "The first result, wrongly, since 90 passes the first test",
+                  "hi": "पहला परिणाम, ग़लती से, क्योंकि 90 पहली शर्त पूरी करता है"
+                },
+                {
+                  "en": "Grade A, as it should",
+                  "hi": "ग्रेड A, जैसा होना चाहिए"
+                },
+                {
+                  "en": "An error message",
+                  "hi": "त्रुटि संदेश"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The first true test wins, so the strictest test must come first.",
+                "hi": "पहली सत्य शर्त जीतती है, इसलिए सबसे सख़्त शर्त पहले आनी चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It would give the lower grade, not A.",
+                  "hi": "यह निचला ग्रेड देगा, A नहीं।"
+                },
+                {
+                  "en": "The formula is valid; it just gives the wrong grade.",
+                  "hi": "सूत्र वैध है; बस ग़लत ग्रेड देता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Add a fourth grade D below 35 and write the new nested formula.",
+            "hi": "35 से नीचे चौथा ग्रेड D जोड़ो और नया नेस्टेड सूत्र लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch02-sumif",
+      "topic": "2.1.4",
+      "template": "table",
+      "title": {
+        "en": "Adding only what matches: the idea behind SUMIF",
+        "hi": "केवल मेल खाने वाली राशि जोड़ना: SUMIF का विचार"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "sql",
+        "tables": {
+          "sales": {
+            "columns": [
+              "Region",
+              "Amount"
+            ],
+            "rows": [
+              [
+                "North",
+                5000
+              ],
+              [
+                "South",
+                3000
+              ],
+              [
+                "North",
+                4000
+              ],
+              [
+                "East",
+                2000
+              ],
+              [
+                "South",
+                6000
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "SUMIF adds only the cells that meet a condition. The query below does the same: add the Amount of the North region only. (Sample data made up for this lab.)",
+          "hi": "SUMIF केवल वे सेल जोड़ता है जो शर्त पूरी करते हैं। नीचे की क्वेरी वही करती है: केवल उत्तर क्षेत्र की राशि जोड़ो। (इस लैब के लिए बनाया नमूना डेटा।)"
+        },
+        "query": "SELECT SUM(Amount) FROM sales WHERE Region = 'North'"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "North has 5,000 and 4,000. What will the conditional sum be?",
+            "hi": "उत्तर क्षेत्र में 5,000 और 4,000 हैं। शर्त वाला योग क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "9,000",
+              "hi": "9,000 (संख्या)"
+            },
+            {
+              "id": "b",
+              "en": "20,000",
+              "hi": "20,000 (संख्या)"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Press Run to add the North amounts only.",
+            "hi": "केवल उत्तर की राशियाँ जोड़ने के लिए चलाओ दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the table.",
+            "hi": "तालिका के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In a spreadsheet the same job is =SUMIF(A2:A6,\"North\",B2:B6): look in the range A2:A6 for North and add the matching cells of B2:B6. Only 5,000 and 4,000 qualify, so the answer is 9,000. SUMIF is a criteria-based function; COUNTIF counts instead of adding.",
+            "hi": "स्प्रेडशीट में यही काम =SUMIF(A2:A6,\"North\",B2:B6) करता है: रेंज A2:A6 में North ढूँढो और B2:B6 के मेल खाते सेल जोड़ो। केवल 5,000 और 4,000 योग्य हैं, इसलिए उत्तर 9,000 है। SUMIF शर्त आधारित फ़ंक्शन है; COUNTIF जोड़ने की जगह गिनता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which function would COUNT how many sales were in the North region?",
+                "hi": "उत्तर क्षेत्र में कितनी बिक्री हुई, यह कौन-सा फ़ंक्शन गिनेगा?"
+              },
+              "options": [
+                {
+                  "en": "COUNTIF",
+                  "hi": "फ़ंक्शन COUNTIF"
+                },
+                {
+                  "en": "SUMIF",
+                  "hi": "फ़ंक्शन SUMIF"
+                },
+                {
+                  "en": "MAX",
+                  "hi": "फ़ंक्शन MAX"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "COUNTIF counts cells meeting a condition.",
+                "hi": "COUNTIF शर्त पूरी करने वाले सेल गिनता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "SUMIF adds amounts, it does not count entries.",
+                  "hi": "SUMIF राशियाँ जोड़ता है, प्रविष्टियाँ नहीं गिनता।"
+                },
+                {
+                  "en": "MAX finds the largest value only.",
+                  "hi": "MAX केवल सबसे बड़ा मान खोजता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the query to South and run it again.",
+            "hi": "क्वेरी में South लिखो और फिर चलाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch02-lookup",
+      "topic": "2.1.6",
+      "template": "table",
+      "title": {
+        "en": "Lookup: finding basic pay from the grade",
+        "hi": "लुकअप: ग्रेड से मूल वेतन खोजना"
+      },
+      "minutes": 6,
+      "level": "stretch",
+      "config": {
+        "mode": "join",
+        "tables": {
+          "staff": {
+            "columns": [
+              "Name",
+              "Grade"
+            ],
+            "rows": [
+              [
+                "Asha",
+                "A"
+              ],
+              [
+                "Bilal",
+                "B"
+              ],
+              [
+                "Chetna",
+                "A"
+              ],
+              [
+                "Dinesh",
+                "C"
+              ]
+            ]
+          },
+          "payscale": {
+            "columns": [
+              "Grade",
+              "Basic"
+            ],
+            "rows": [
+              [
+                "A",
+                30000
+              ],
+              [
+                "B",
+                22000
+              ],
+              [
+                "C",
+                15000
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "A lookup finds a value in a table by matching a key. Join the staff table with the pay scale on Grade to see each person's basic pay. (Sample data made up for this lab.)",
+          "hi": "लुकअप किसी तालिका में कुंजी मिलाकर मान खोजता है। स्टाफ़ तालिका को वेतन-मान तालिका से Grade पर जोड़ो और हर व्यक्ति का मूल वेतन देखो। (इस लैब के लिए बनाया नमूना डेटा।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Asha is in grade A, and grade A has a basic of 30,000. What will the lookup give for Asha?",
+            "hi": "आशा ग्रेड A में है और ग्रेड A का मूल वेतन 30,000 है। आशा के लिए लुकअप क्या देगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "30,000",
+              "hi": "30,000 (संख्या)"
+            },
+            {
+              "id": "c",
+              "en": "15,000",
+              "hi": "15,000 (संख्या)"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Press Run to match each person's grade with the pay scale.",
+            "hi": "हर व्यक्ति का ग्रेड वेतन-मान से मिलाने के लिए चलाओ दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the table.",
+            "hi": "तालिका के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "This is what VLOOKUP does: take a key (the grade), search the first column of a table, and return the value from another column in the same row. Here each staff member's grade is matched with the pay scale, giving basic pay of 30,000, 22,000, 30,000 and 15,000. Lookups save you from typing the same pay again and again.",
+            "hi": "VLOOKUP यही करता है: एक कुंजी (ग्रेड) लेता है, तालिका का पहला स्तंभ खोजता है और उसी पंक्ति के दूसरे स्तंभ से मान लौटाता है। यहाँ हर कर्मचारी का ग्रेड वेतन-मान से मिलाया गया और मूल वेतन 30,000, 22,000, 30,000 और 15,000 मिला। लुकअप से वही वेतन बार-बार टाइप नहीं करना पड़ता।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does the lookup need so that it can find a person's basic pay?",
+                "hi": "व्यक्ति का मूल वेतन खोजने के लिए लुकअप को क्या चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "A key that appears in both tables, such as the grade",
+                  "hi": "दोनों तालिकाओं में आने वाली कुंजी, जैसे ग्रेड"
+                },
+                {
+                  "en": "The person's age",
+                  "hi": "व्यक्ति की आयु"
+                },
+                {
+                  "en": "Nothing at all",
+                  "hi": "कुछ भी नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Matching needs a common key.",
+                "hi": "मिलान के लिए साझा कुंजी चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Age is not in the pay scale, so it cannot match.",
+                  "hi": "आयु वेतन-मान में नहीं है, इसलिए मिलान नहीं हो सकता।"
+                },
+                {
+                  "en": "Without a key, nothing can be matched.",
+                  "hi": "कुंजी के बिना कुछ मिलाया नहीं जा सकता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "If a new grade D appears in the staff table but not in the pay scale, what should the lookup show?",
+            "hi": "यदि स्टाफ़ तालिका में नया ग्रेड D आए पर वेतन-मान में न हो, तो लुकअप को क्या दिखाना चाहिए?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "2.1",
+      "use": "Hook: counting by hand",
+      "shows": "A shop assistant adding a long column of bills with a pencil and a calculator beside a stack of paper slips",
+      "view": "Over the shoulder, warm light, 16:9",
+      "right": "Slips look real; no readable figures",
+      "avoid": "Faces, brand names"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "2.1",
+      "use": "Spreadsheet grid frame",
+      "shows": "A blank spreadsheet window with column letters A to F, row numbers 1 to 8, an empty formula bar and sheet tabs at the bottom, all drawn simply",
+      "view": "Flat, 16:9, white background",
+      "right": "Letters and numbers only in the margins so the app can fill cells",
+      "avoid": "Brand look, real software logos"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "2.1.3",
+      "use": "Calculator and notepad",
+      "shows": "A basic desk calculator beside a notepad with a pencil",
+      "view": "Three-quarter view, PNG with transparent background",
+      "right": "Clear buttons without symbols that are brand-specific",
+      "avoid": "Brand names"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "2.1.4",
+      "use": "IF decision fork",
+      "shows": "A path splitting into two at a signpost, one branch with a green tick shape, the other with a red cross shape, flat style",
+      "view": "Front view, 16:9, transparent background",
+      "right": "Shapes differ (tick and cross) so colour-blind children can tell them apart",
+      "avoid": "Words"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "2.1.6",
+      "use": "Two tables joined by a key",
+      "shows": "Two small blank tables side by side, one cell in each highlighted and joined by a curved line",
+      "view": "Flat, 16:9, white background",
+      "right": "Highlighted cells clearly linked",
+      "avoid": "Text, numbers"
+    },
+    {
+      "n": 6,
+      "kind": "SEQ",
+      "topic": "2.1.2",
+      "use": "One number changes, results follow",
+      "shows": "Four frames of the same sheet-like card grid, one cell lit in each frame and the cells to its right changing shade",
+      "view": "Same camera, 4:3",
+      "right": "Same layout every frame",
+      "avoid": "Readable numbers"
+    }
+  ]
+}

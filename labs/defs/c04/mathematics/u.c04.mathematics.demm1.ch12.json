@@ -1,0 +1,1056 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch12",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "Ticking Clocks and Turning Calendar",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "12.1",
+      "title": "Leap years: the extra day on 29 February",
+      "labs": [
+        "c04-mathematics-demm1-ch12-leap-year"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "12.2",
+      "title": "Chotu's birthday: days in the months",
+      "labs": [
+        "c04-mathematics-demm1-ch12-months-sort"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "12.3",
+      "title": "Which day of the week is a date?",
+      "labs": [
+        "c04-mathematics-demm1-ch12-weekday-of-date"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "12.4",
+      "title": "Reading clocks: 12-hour and 24-hour time",
+      "labs": [
+        "c04-mathematics-demm1-ch12-read-the-clock",
+        "c04-mathematics-demm1-ch12-twenty-four-hour"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "12.5",
+      "title": "A daily routine in clock times",
+      "labs": [
+        "c04-mathematics-demm1-ch12-set-the-routine"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch12-leap-year",
+      "topic": "12.1",
+      "template": "clock",
+      "title": {
+        "en": "The extra day: 29 February",
+        "hi": "अतिरिक्त दिन: 29 फ़रवरी"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "calendar",
+        "month": 2,
+        "year": 2024
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Most years have 28 days in February. In 2024, Parv's birthday date, 29 February, is on the calendar. How many days does February 2024 have?",
+            "hi": "ज़्यादातर सालों में फ़रवरी में 28 दिन होते हैं। 2024 में 29 फ़रवरी कैलेंडर में है। फ़रवरी 2024 में कितने दिन हैं?"
+          },
+          "options": [
+            {
+              "id": "28",
+              "en": "28 days",
+              "hi": "28 दिन"
+            },
+            {
+              "id": "29",
+              "en": "29 days",
+              "hi": "29 दिन"
+            },
+            {
+              "id": "30",
+              "en": "30 days",
+              "hi": "30 दिन"
+            }
+          ],
+          "answer": "29"
+        },
+        {
+          "kind": "do",
+          "target": "year:prev",
+          "expect": "year:2023",
+          "say": {
+            "en": "Tap the left year arrow to go back to February 2023. Count the days.",
+            "hi": "बाएँ साल वाले तीर पर टैप करके फ़रवरी 2023 पर जाओ। दिन गिनो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "year:next",
+          "expect": "year:2024",
+          "say": {
+            "en": "Tap the right year arrow to come back to February 2024. Is there one more day?",
+            "hi": "वापस फ़रवरी 2024 पर आने के लिए दाएँ साल वाले तीर पर टैप करो। क्या एक दिन ज़्यादा है?"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "How many days does February 2024 have? Tap the number.",
+            "hi": "फ़रवरी 2024 में कितने दिन हैं? संख्या पर टैप करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "February 2023 has 28 days, but February 2024 has 29. A year with 29 February is called a leap year. A leap year comes every four years: 2020, 2024, 2028. A leap year has 366 days instead of the usual 365.",
+            "hi": "फ़रवरी 2023 में 28 दिन हैं, पर फ़रवरी 2024 में 29। जिस साल में 29 फ़रवरी होती है उसे लीप वर्ष कहते हैं। लीप वर्ष हर चार साल में आता है: 2020, 2024, 2028। लीप वर्ष में 365 की जगह 366 दिन होते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these is a leap year?",
+                "hi": "इनमें से कौन-सा लीप वर्ष है?"
+              },
+              "options": [
+                "2028",
+                "2026",
+                "2027"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Leap years come every 4 years: 2024, 2028. So 2028 is a leap year.",
+                "hi": "लीप वर्ष हर 4 साल में आते हैं: 2024, 2028। इसलिए 2028 लीप वर्ष है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "2026 comes 2 years after 2024. It is not a leap year.",
+                  "hi": "2026, 2024 के 2 साल बाद आता है। यह लीप वर्ष नहीं है।"
+                },
+                {
+                  "en": "2027 comes 3 years after 2024. It is not a leap year.",
+                  "hi": "2027, 2024 के 3 साल बाद आता है। यह लीप वर्ष नहीं है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many days does a leap year have?",
+                "hi": "लीप वर्ष में कितने दिन होते हैं?"
+              },
+              "options": [
+                "366",
+                "365",
+                "364"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The usual 365 days plus the extra day, 29 February: 366.",
+                "hi": "सामान्य 365 दिन और अतिरिक्त दिन 29 फ़रवरी: 366।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "365 is a usual year with 28 days in February.",
+                  "hi": "365 सामान्य साल के हैं, जिसमें फ़रवरी में 28 दिन होते हैं।"
+                },
+                {
+                  "en": "364 is less than a usual year. A leap year has one more day, not one less.",
+                  "hi": "364 सामान्य साल से कम है। लीप वर्ष में एक दिन ज़्यादा होता है, कम नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Use the month buttons. Which months have 31 days, which have 30 and which one changes with the year?",
+            "hi": "महीनों के बटन दबाओ। किन महीनों में 31 दिन हैं, किनमें 30 और कौन-सा साल के हिसाब से बदलता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch12-months-sort",
+      "topic": "12.2",
+      "template": "sort",
+      "title": {
+        "en": "How many days in each month?",
+        "hi": "हर महीने में कितने दिन?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "d31",
+            "label": {
+              "en": "31 days",
+              "hi": "31 दिन"
+            }
+          },
+          {
+            "id": "d30",
+            "label": {
+              "en": "30 days",
+              "hi": "30 दिन"
+            }
+          },
+          {
+            "id": "feb",
+            "label": {
+              "en": "28 or 29 days",
+              "hi": "28 या 29 दिन"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "jan",
+            "text": {
+              "en": "January",
+              "hi": "जनवरी"
+            },
+            "bin": "d31",
+            "why": {
+              "en": "January has 31 days.",
+              "hi": "जनवरी में 31 दिन होते हैं।"
+            }
+          },
+          {
+            "id": "mar",
+            "text": {
+              "en": "March",
+              "hi": "मार्च"
+            },
+            "bin": "d31",
+            "why": {
+              "en": "March has 31 days.",
+              "hi": "मार्च में 31 दिन होते हैं।"
+            }
+          },
+          {
+            "id": "may",
+            "text": {
+              "en": "May",
+              "hi": "मई"
+            },
+            "bin": "d31",
+            "why": {
+              "en": "May has 31 days.",
+              "hi": "मई में 31 दिन होते हैं।"
+            }
+          },
+          {
+            "id": "jul",
+            "text": {
+              "en": "July",
+              "hi": "जुलाई"
+            },
+            "bin": "d31",
+            "why": {
+              "en": "July has 31 days.",
+              "hi": "जुलाई में 31 दिन होते हैं।"
+            }
+          },
+          {
+            "id": "aug",
+            "text": {
+              "en": "August",
+              "hi": "अगस्त"
+            },
+            "bin": "d31",
+            "why": {
+              "en": "August has 31 days, like July.",
+              "hi": "अगस्त में 31 दिन होते हैं, जुलाई की तरह।"
+            }
+          },
+          {
+            "id": "oct",
+            "text": {
+              "en": "October",
+              "hi": "अक्तूबर"
+            },
+            "bin": "d31",
+            "why": {
+              "en": "October has 31 days.",
+              "hi": "अक्तूबर में 31 दिन होते हैं।"
+            }
+          },
+          {
+            "id": "dec",
+            "text": {
+              "en": "December",
+              "hi": "दिसंबर"
+            },
+            "bin": "d31",
+            "why": {
+              "en": "December has 31 days.",
+              "hi": "दिसंबर में 31 दिन होते हैं।"
+            }
+          },
+          {
+            "id": "apr",
+            "text": {
+              "en": "April",
+              "hi": "अप्रैल"
+            },
+            "bin": "d30",
+            "why": {
+              "en": "April has 30 days.",
+              "hi": "अप्रैल में 30 दिन होते हैं।"
+            }
+          },
+          {
+            "id": "jun",
+            "text": {
+              "en": "June",
+              "hi": "जून"
+            },
+            "bin": "d30",
+            "why": {
+              "en": "June has 30 days.",
+              "hi": "जून में 30 दिन होते हैं।"
+            }
+          },
+          {
+            "id": "sep",
+            "text": {
+              "en": "September",
+              "hi": "सितंबर"
+            },
+            "bin": "d30",
+            "why": {
+              "en": "September has 30 days.",
+              "hi": "सितंबर में 30 दिन होते हैं।"
+            }
+          },
+          {
+            "id": "nov",
+            "text": {
+              "en": "November",
+              "hi": "नवंबर"
+            },
+            "bin": "d30",
+            "why": {
+              "en": "November has 30 days.",
+              "hi": "नवंबर में 30 दिन होते हैं।"
+            }
+          },
+          {
+            "id": "feb",
+            "text": {
+              "en": "February",
+              "hi": "फ़रवरी"
+            },
+            "bin": "feb",
+            "why": {
+              "en": "February has 28 days, and 29 in a leap year.",
+              "hi": "फ़रवरी में 28 दिन होते हैं, और लीप वर्ष में 29।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Chotu says that February is the shortest month. Which group will February go in?",
+            "hi": "छोटू कहता है कि फ़रवरी सबसे छोटा महीना है। फ़रवरी किस समूह में जाएगी?"
+          },
+          "options": [
+            {
+              "id": "feb",
+              "en": "28 or 29 days",
+              "hi": "28 या 29 दिन"
+            },
+            {
+              "id": "d31",
+              "en": "31 days",
+              "hi": "31 दिन"
+            }
+          ],
+          "answer": "feb"
+        },
+        {
+          "kind": "do",
+          "target": "card:feb",
+          "expect": "correct:feb",
+          "say": {
+            "en": "Tap the card February, then tap the group it belongs to.",
+            "hi": "फ़रवरी वाले कार्ड पर टैप करो, फिर उसके समूह पर।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:apr",
+          "expect": "correct:apr",
+          "say": {
+            "en": "Now sort the card April. Use the knuckle trick if you know it.",
+            "hi": "अब अप्रैल का कार्ड छाँटो। अगर आता है तो मुट्ठी वाली तरकीब इस्तेमाल करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the other months, then press Check.",
+            "hi": "बाक़ी महीने छाँटो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Seven months have 31 days: January, March, May, July, August, October and December. Four months have 30 days: April, June, September and November. February has 28 days, or 29 in a leap year. A knuckle trick: make a fist, and every month on a knuckle has 31 days, every month in a dip between knuckles has 30 days.",
+            "hi": "सात महीनों में 31 दिन होते हैं: जनवरी, मार्च, मई, जुलाई, अगस्त, अक्तूबर और दिसंबर। चार महीनों में 30 दिन होते हैं: अप्रैल, जून, सितंबर और नवंबर। फ़रवरी में 28 दिन, या लीप वर्ष में 29। मुट्ठी की तरकीब: मुट्ठी बंद करो; जो महीना गाँठ पर पड़े उसमें 31 दिन, और जो दो गाँठों के बीच के गड्ढे में पड़े उसमें 30 दिन।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many months have 30 days?",
+                "hi": "कितने महीनों में 30 दिन होते हैं?"
+              },
+              "options": [
+                "4",
+                "7",
+                "1"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "April, June, September and November: 4 months.",
+                "hi": "अप्रैल, जून, सितंबर और नवंबर: 4 महीने।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "7 is the number of months with 31 days.",
+                  "hi": "7, 31 दिन वाले महीनों की संख्या है।"
+                },
+                {
+                  "en": "1 is the number of months with 28 or 29 days, which is February.",
+                  "hi": "1, 28 या 29 दिन वाले महीनों की संख्या है, यानी फ़रवरी।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many days are there in July and August together?",
+                "hi": "जुलाई और अगस्त में मिलाकर कितने दिन होते हैं?"
+              },
+              "options": [
+                "62",
+                "61",
+                "60"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Both have 31 days: 31 + 31 = 62.",
+                "hi": "दोनों में 31 दिन होते हैं: 31 + 31 = 62।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "61 would mean one of them has 30 days. Both have 31.",
+                  "hi": "61 का मतलब होता कि उनमें से एक में 30 दिन हैं। दोनों में 31 हैं।"
+                },
+                {
+                  "en": "60 would mean both have 30 days. Both have 31.",
+                  "hi": "60 का मतलब होता कि दोनों में 30 दिन हैं। दोनों में 31 हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Count the months in a year that have 31 days. Then add them up: 7 months of 31, 4 of 30 and 1 of 28. Do you get 365?",
+            "hi": "साल के 31 दिन वाले महीने गिनो। फिर जोड़ो: 31 के 7 महीने, 30 के 4 और 28 का 1। क्या 365 आते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch12-weekday-of-date",
+      "topic": "12.3",
+      "template": "clock",
+      "title": {
+        "en": "Which day is 15 August?",
+        "hi": "15 अगस्त किस दिन पड़ती है?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "calendar",
+        "month": 8,
+        "year": 2026,
+        "ask": 15
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In a calendar, dates 7 days apart fall on the same weekday. If 1 August is a Saturday, will 8 August also be a Saturday?",
+            "hi": "कैलेंडर में 7 दिन के अंतर वाली तारीख़ें एक ही वार पर पड़ती हैं। अगर 1 अगस्त शनिवार है तो क्या 8 अगस्त भी शनिवार होगी?"
+          },
+          "options": [
+            {
+              "id": "yes",
+              "en": "Yes",
+              "hi": "हाँ"
+            },
+            {
+              "id": "no",
+              "en": "No",
+              "hi": "नहीं"
+            }
+          ],
+          "answer": "yes"
+        },
+        {
+          "kind": "do",
+          "target": "day:15",
+          "expect": "day:15",
+          "say": {
+            "en": "Tap the date 15 on the calendar. Look at the top of its column.",
+            "hi": "कैलेंडर में तारीख़ 15 पर टैप करो। उसके स्तंभ के ऊपर देखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Which day of the week is 15 August 2026? Tap it.",
+            "hi": "15 अगस्त 2026 सप्ताह का कौन-सा दिन है? उस पर टैप करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "All the dates in one column of the calendar fall on the same weekday. 1, 8, 15, 22 and 29 are in the same column, and all are Saturdays. So 15 August 2026 is a Saturday. Adding 7 days always brings you back to the same weekday.",
+            "hi": "कैलेंडर के एक स्तंभ की सारी तारीख़ें एक ही वार पर पड़ती हैं। 1, 8, 15, 22 और 29 एक ही स्तंभ में हैं, और सब शनिवार हैं। इसलिए 15 अगस्त 2026 शनिवार है। 7 दिन जोड़ने पर हमेशा वही वार लौट आता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "15 August 2026 is a Saturday. Which day is 16 August 2026?",
+                "hi": "15 अगस्त 2026 शनिवार है। 16 अगस्त 2026 कौन-सा दिन है?"
+              },
+              "options": [
+                {
+                  "en": "Sunday",
+                  "hi": "रविवार"
+                },
+                {
+                  "en": "Friday",
+                  "hi": "शुक्रवार"
+                },
+                {
+                  "en": "Saturday",
+                  "hi": "शनिवार"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The day after Saturday is Sunday.",
+                "hi": "शनिवार के बाद का दिन रविवार है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Friday is the day before Saturday, not the day after.",
+                  "hi": "शुक्रवार शनिवार से पहले का दिन है, बाद का नहीं।"
+                },
+                {
+                  "en": "Saturday comes again only after 7 days, on 22 August.",
+                  "hi": "शनिवार 7 दिन बाद, 22 अगस्त को, फिर आता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "If 15 August is a Saturday, which date is the next Saturday?",
+                "hi": "अगर 15 अगस्त शनिवार है तो अगला शनिवार किस तारीख़ को है?"
+              },
+              "options": [
+                {
+                  "en": "22 August",
+                  "hi": "22 अगस्त"
+                },
+                {
+                  "en": "20 August",
+                  "hi": "20 अगस्त"
+                },
+                {
+                  "en": "25 August",
+                  "hi": "25 अगस्त"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A week has 7 days. 15 + 7 = 22.",
+                "hi": "एक सप्ताह में 7 दिन होते हैं। 15 + 7 = 22।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "20 August is only 5 days later, a Thursday.",
+                  "hi": "20 अगस्त केवल 5 दिन बाद है, गुरुवार।"
+                },
+                {
+                  "en": "25 August is 10 days later, a Tuesday.",
+                  "hi": "25 अगस्त 10 दिन बाद है, मंगलवार।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Use the month buttons to find the weekday of your own birthday this year.",
+            "hi": "महीनों के बटन से इस साल अपने जन्मदिन का वार ढूँढो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch12-read-the-clock",
+      "topic": "12.4",
+      "template": "clock",
+      "title": {
+        "en": "Read the clock",
+        "hi": "घड़ी पढ़ो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "read",
+        "time": "04:45"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The short hand is almost on 5 and the long hand points at 9. Is it about quarter past four or quarter to five?",
+            "hi": "छोटी सुई लगभग 5 पर है और बड़ी सुई 9 पर। यह सवा चार बजे का समय है या पौने पाँच का?"
+          },
+          "options": [
+            {
+              "id": "qt5",
+              "en": "Quarter to five",
+              "hi": "पौने पाँच"
+            },
+            {
+              "id": "qp4",
+              "en": "Quarter past four",
+              "hi": "सवा चार"
+            }
+          ],
+          "answer": "qt5"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Look at both hands. Pick the time the clock shows.",
+            "hi": "दोनों सुइयों को देखो। घड़ी जो समय दिखा रही है उसे चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The short hand shows hours and the long hand shows minutes. The long hand on 9 means 45 minutes past the hour, which is 15 minutes before the next hour. So the clock shows 4:45, quarter to five.",
+            "hi": "छोटी सुई घंटे बताती है और बड़ी सुई मिनट। बड़ी सुई 9 पर हो तो घंटे के 45 मिनट बीत चुके होते हैं, यानी अगले घंटे में 15 मिनट बाक़ी हैं। इसलिए घड़ी 4:45 दिखा रही है, पौने पाँच।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The long hand is on 3 and the short hand is just after 6. What time is it?",
+                "hi": "बड़ी सुई 3 पर है और छोटी सुई 6 के ठीक बाद है। कितने बजे हैं?"
+              },
+              "options": [
+                "6:15",
+                "3:30",
+                "6:45"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The long hand on 3 means 15 minutes past. The short hand is just after 6, so it is quarter past six: 6:15.",
+                "hi": "बड़ी सुई 3 पर होने का मतलब 15 मिनट बीत गए। छोटी सुई 6 के बाद है, इसलिए सवा छह बजे हैं: 6:15।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "3:30 swaps the hands. The short hand tells the hour, which is 6.",
+                  "hi": "3:30 में सुइयाँ बदल गईं। घंटा छोटी सुई बताती है, जो 6 है।"
+                },
+                {
+                  "en": "6:45 needs the long hand on 9. Here it is on 3.",
+                  "hi": "6:45 के लिए बड़ी सुई 9 पर होनी चाहिए। यहाँ वह 3 पर है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at a real clock at home. Say the time in two ways: past the hour and to the next hour.",
+            "hi": "घर की असली घड़ी देखो। समय दो तरीक़ों से बोलो: घंटे के बाद और अगले घंटे से पहले।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch12-twenty-four-hour",
+      "topic": "12.4",
+      "template": "clock",
+      "title": {
+        "en": "The 24-hour clock",
+        "hi": "24 घंटे वाली घड़ी"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "24h",
+        "time": "08:00",
+        "ask": "20:00"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "School starts at 8 in the morning, which is 08:00. What do we write for 8 in the evening?",
+            "hi": "स्कूल सुबह 8 बजे शुरू होता है, यानी 08:00। शाम के 8 बजे के लिए हम क्या लिखते हैं?"
+          },
+          "options": [
+            {
+              "id": "2000",
+              "en": "The time 20:00",
+              "hi": "समय 20:00"
+            },
+            {
+              "id": "0800",
+              "en": "08:00 again",
+              "hi": "फिर 08:00"
+            },
+            {
+              "id": "1800",
+              "en": "The time 18:00",
+              "hi": "समय 18:00"
+            }
+          ],
+          "answer": "2000"
+        },
+        {
+          "kind": "do",
+          "target": "hour:20",
+          "expect": "set:20:00",
+          "say": {
+            "en": "Tap the hour 20 to set the clock to 8 in the evening.",
+            "hi": "शाम के 8 बजे घड़ी लगाने के लिए घंटा 20 पर टैप करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A day has 24 hours, so after 12 noon the hours go on: 13, 14, 15 and so on up to 23. To change an afternoon or evening time to the 24-hour clock, add 12. So 8 in the evening is 8 + 12 = 20:00. Trains and buses use this clock so that nobody mixes up morning and evening.",
+            "hi": "दिन में 24 घंटे होते हैं, इसलिए दोपहर 12 बजे के बाद घंटे आगे बढ़ते हैं: 13, 14, 15 और 23 तक। दोपहर या शाम के समय को 24 घंटे की घड़ी में बदलने के लिए 12 जोड़ो। इसलिए शाम के 8 बजे 8 + 12 = 20:00 हुए। रेल और बस इसी घड़ी का इस्तेमाल करती हैं ताकि सुबह और शाम में कोई गड़बड़ी न हो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is 3 in the afternoon on the 24-hour clock?",
+                "hi": "24 घंटे की घड़ी में दोपहर बाद 3 बजे क्या लिखा जाता है?"
+              },
+              "options": [
+                "15:00",
+                "03:00",
+                "13:00"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "3 + 12 = 15, so 15:00.",
+                "hi": "3 + 12 = 15, इसलिए 15:00।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "03:00 is 3 in the night, after midnight.",
+                  "hi": "03:00 रात के 3 बजे हैं, आधी रात के बाद।"
+                },
+                {
+                  "en": "13:00 is 1 in the afternoon. 3 + 12 is 15.",
+                  "hi": "13:00 दोपहर के 1 बजे हैं। 3 + 12 = 15।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "The train leaves at 21:00. What time is that in the usual 12-hour clock?",
+                "hi": "ट्रेन 21:00 बजे चलती है। सामान्य 12 घंटे की घड़ी में यह कितने बजे हैं?"
+              },
+              "options": [
+                {
+                  "en": "9 in the evening",
+                  "hi": "रात के 9 बजे"
+                },
+                {
+                  "en": "9 in the morning",
+                  "hi": "सुबह के 9 बजे"
+                },
+                {
+                  "en": "12 at night",
+                  "hi": "रात के 12 बजे"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "21 - 12 = 9, so it is 9 in the evening.",
+                "hi": "21 - 12 = 9, इसलिए रात के 9 बजे हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "9 in the morning would be written 09:00.",
+                  "hi": "सुबह के 9 बजे 09:00 लिखे जाते हैं।"
+                },
+                {
+                  "en": "12 at night is 00:00 or 24:00, not 21:00.",
+                  "hi": "रात के 12 बजे 00:00 या 24:00 होते हैं, 21:00 नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Set the clock to 14:30 and then to 06:15. Say each time in the usual way.",
+            "hi": "घड़ी को 14:30 पर और फिर 06:15 पर लगाओ। हर समय को सामान्य तरीक़े से बोलो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch12-set-the-routine",
+      "topic": "12.5",
+      "template": "clock",
+      "title": {
+        "en": "Set the clock for school time",
+        "hi": "स्कूल के समय पर घड़ी लगाओ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "set",
+        "time": "12:00",
+        "ask": "07:30"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "School bus leaves at half past seven. Where will the long hand point: 6 or 12?",
+            "hi": "स्कूल बस साढ़े सात बजे चलती है। बड़ी सुई कहाँ होगी: 6 पर या 12 पर?"
+          },
+          "options": [
+            {
+              "id": "six",
+              "en": "On 6",
+              "hi": "6 पर"
+            },
+            {
+              "id": "twelve",
+              "en": "On 12",
+              "hi": "12 पर"
+            }
+          ],
+          "answer": "six"
+        },
+        {
+          "kind": "do",
+          "target": "step:*",
+          "expect": "set:07:30",
+          "say": {
+            "en": "Use the plus buttons to move the hands until the clock shows 7:30. Add hours first, then minutes.",
+            "hi": "प्लस वाले बटनों से सुइयाँ तब तक घुमाओ जब तक घड़ी 7:30 न दिखाए। पहले घंटे जोड़ो, फिर मिनट।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Tap Check to see if it is right.",
+            "hi": "सही है या नहीं देखने के लिए जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Half past seven means 30 minutes after 7. The long hand points at 6, which is half of the clock face, and the short hand is halfway between 7 and 8. A half hour is 30 minutes, and 30 minutes are half of 60.",
+            "hi": "साढ़े सात का मतलब है 7 के 30 मिनट बाद। बड़ी सुई 6 पर है, जो घड़ी के आधे हिस्से पर है, और छोटी सुई 7 और 8 के ठीक बीच में है। आधा घंटा 30 मिनट का होता है, और 30 मिनट 60 के आधे हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where is the long hand at half past anything?",
+                "hi": "किसी भी समय के \"साढ़े\" होने पर बड़ी सुई कहाँ होती है?"
+              },
+              "options": [
+                {
+                  "en": "On 6",
+                  "hi": "6 पर"
+                },
+                {
+                  "en": "On 3",
+                  "hi": "3 पर"
+                },
+                {
+                  "en": "On 12",
+                  "hi": "12 पर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "At half past, 30 minutes have gone, so the long hand has gone half way round to 6.",
+                "hi": "साढ़े पर 30 मिनट बीत चुके होते हैं, इसलिए बड़ी सुई आधा चक्कर लगाकर 6 पर होती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The long hand on 3 means quarter past, 15 minutes.",
+                  "hi": "बड़ी सुई 3 पर हो तो सवा बजे होते हैं, यानी 15 मिनट।"
+                },
+                {
+                  "en": "The long hand on 12 means o'clock, exactly on the hour.",
+                  "hi": "बड़ी सुई 12 पर हो तो ठीक बजे होते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press Next and set the clock for your own times: when you wake up, eat lunch and go to bed.",
+            "hi": "आगे दबाओ और अपने समय पर घड़ी लगाओ: जब तुम उठते हो, खाना खाते हो और सोते हो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "12.1",
+      "use": "Chapter hook: a birthday on 29 February",
+      "shows": "A small birthday cake with a single candle and a paper calendar page showing 29 February beside it on a table",
+      "view": "Slightly above, warm light",
+      "right": "Calendar page with February's last row visible and a circle drawn round 29",
+      "avoid": "Faces, readable names"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "12.1",
+      "use": "Wall calendar",
+      "shows": "A plain paper wall calendar for a leap-year February, week starting on Sunday, no pictures",
+      "view": "Straight on, even light",
+      "right": "Dates in neat columns, Sundays in a distinct colour",
+      "avoid": "Brand names, festival labels"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "12.4",
+      "use": "Analogue clock",
+      "shows": "A white wall clock with 12 numbers, a short hour hand and a long minute hand showing 4:45",
+      "view": "Straight on, centred",
+      "right": "Hands clearly different lengths; all numbers readable",
+      "avoid": "Brand names, second hand"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "12.4",
+      "use": "Station clock with 24-hour numbers",
+      "shows": "A railway station clock with an outer ring of 13 to 24 in addition to the 1 to 12",
+      "view": "Straight on, soft light",
+      "right": "Outer ring of 13 to 24 readable and aligned with the inner numbers",
+      "avoid": "Station names, brand marks"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "12.5",
+      "use": "A day in four clocks",
+      "shows": "Four clocks showing 7:30, 12:30, 4:00 and 8:30 beside four scenes of waking, lunch, play and dinner",
+      "view": "Same size clocks; each scene with hands only",
+      "right": "Clocks and scenes clearly match the times",
+      "avoid": "Faces, text"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "12.2",
+      "use": "Fist and knuckle months",
+      "shows": "A closed fist seen from above with the four knuckles and three dips visible, in even light",
+      "view": "Close, hand only",
+      "right": "Knuckles and dips clear",
+      "avoid": "Writing on the hand"
+    },
+    {
+      "n": 7,
+      "kind": "SCN",
+      "topic": "12.3",
+      "use": "Chapter close: a weekly timetable",
+      "shows": "A weekly timetable chart pinned on a classroom board with seven coloured columns, no text",
+      "view": "Straight on, even light",
+      "right": "Seven columns equal in width",
+      "avoid": "Words or numbers"
+    }
+  ]
+}

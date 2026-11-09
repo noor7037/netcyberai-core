@@ -1,0 +1,884 @@
+{
+ "chapter_key": "u.c10.sanskrit.jhva1.ch11",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "वाच्य परिवर्तन",
+ "source": "https://ncert.nic.in/textbook/pdf/jhva1ps.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Kartri voice and telling the three voices apart",
+   "labs": [
+    "c10-sanskrit-jhva1-ch11-identify"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Karma voice",
+   "labs": [
+    "c10-sanskrit-jhva1-ch11-karma"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Bhava voice",
+   "labs": [
+    "c10-sanskrit-jhva1-ch11-bhava"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jhva1-ch11-identify",
+   "topic": "11.1",
+   "template": "sort",
+   "title": {
+    "en": "Which voice is it?",
+    "hi": "यह कौन-सा वाच्य है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "kr",
+      "label": {
+       "en": "Kartri (doer leads)",
+       "hi": "कर्तृवाच्य (कर्ता मुख्य)"
+      }
+     },
+     {
+      "id": "km",
+      "label": {
+       "en": "Karma (object leads)",
+       "hi": "कर्मवाच्य (कर्म मुख्य)"
+      }
+     },
+     {
+      "id": "bh",
+      "label": {
+       "en": "Bhava (the action leads)",
+       "hi": "भाववाच्य (क्रिया मुख्य)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "k1",
+      "text": {
+       "en": "बालकः पाठं पठति",
+       "hi": "बालकः पाठं पठति"
+      },
+      "bin": "kr",
+      "why": {
+       "en": "The doer बालकः is in the first case and the verb follows it.",
+       "hi": "कर्ता बालकः प्रथमा में है और क्रिया उसके अनुसार है।"
+      }
+     },
+     {
+      "id": "k2",
+      "text": {
+       "en": "कृषकः कार्यं करोति",
+       "hi": "कृषकः कार्यं करोति"
+      },
+      "bin": "kr",
+      "why": {
+       "en": "The farmer is the doer in the first case.",
+       "hi": "किसान कर्ता है, प्रथमा में।"
+      }
+     },
+     {
+      "id": "k3",
+      "text": {
+       "en": "बालिका नृत्यति",
+       "hi": "बालिका नृत्यति"
+      },
+      "bin": "kr",
+      "why": {
+       "en": "The girl is the doer; there is no object.",
+       "hi": "बालिका कर्ता है; कर्म नहीं है।"
+      }
+     },
+     {
+      "id": "k4",
+      "text": {
+       "en": "वयं कार्यं कुर्मः",
+       "hi": "वयं कार्यं कुर्मः"
+      },
+      "bin": "kr",
+      "why": {
+       "en": "वयं (we) is the doer in the first case.",
+       "hi": "वयं (हम) कर्ता है, प्रथमा में।"
+      }
+     },
+     {
+      "id": "m1",
+      "text": {
+       "en": "बालकेन पाठः पठ्यते",
+       "hi": "बालकेन पाठः पठ्यते"
+      },
+      "bin": "km",
+      "why": {
+       "en": "The doer is in the third case, the lesson पाठः is in the first, the verb ends in -यते.",
+       "hi": "कर्ता तृतीया में है, पाठः प्रथमा में, और क्रिया -यते पर समाप्त है।"
+      }
+     },
+     {
+      "id": "m2",
+      "text": {
+       "en": "छात्रेण लेखः लिख्यते",
+       "hi": "छात्रेण लेखः लिख्यते"
+      },
+      "bin": "km",
+      "why": {
+       "en": "छात्रेण (3rd case), लेखः (1st case), लिख्यते.",
+       "hi": "छात्रेण (तृतीया), लेखः (प्रथमा), लिख्यते।"
+      }
+     },
+     {
+      "id": "m3",
+      "text": {
+       "en": "मया गृहं गम्यते",
+       "hi": "मया गृहं गम्यते"
+      },
+      "bin": "km",
+      "why": {
+       "en": "The doer मया is in the third case and the verb is passive.",
+       "hi": "कर्ता मया तृतीया में है और क्रिया कर्मवाच्य की है।"
+      }
+     },
+     {
+      "id": "m4",
+      "text": {
+       "en": "अस्माभिः कार्यं क्रियते",
+       "hi": "अस्माभिः कार्यं क्रियते"
+      },
+      "bin": "km",
+      "why": {
+       "en": "अस्माभिः (by us) is third case, and क्रियते is passive.",
+       "hi": "अस्माभिः (हमारे द्वारा) तृतीया है और क्रियते कर्मवाच्य है।"
+      }
+     },
+     {
+      "id": "b1",
+      "text": {
+       "en": "बालिकया नृत्यते",
+       "hi": "बालिकया नृत्यते"
+      },
+      "bin": "bh",
+      "why": {
+       "en": "Only the doer is named, in the third case; there is no object, and the verb is in the third person singular.",
+       "hi": "केवल कर्ता तृतीया में है; कर्म नहीं है, और क्रिया अन्य पुरुष एकवचन में है।"
+      }
+     },
+     {
+      "id": "b2",
+      "text": {
+       "en": "धावकेन धाव्यते",
+       "hi": "धावकेन धाव्यते"
+      },
+      "bin": "bh",
+      "why": {
+       "en": "Running has no object: bhava voice with the third-case doer.",
+       "hi": "दौड़ने में कर्म नहीं होता: तृतीया के कर्ता वाला भाववाच्य।"
+      }
+     },
+     {
+      "id": "b3",
+      "text": {
+       "en": "तेन हस्यते",
+       "hi": "तेन हस्यते"
+      },
+      "bin": "bh",
+      "why": {
+       "en": "'By him it is laughed': no object, third-case doer.",
+       "hi": "'उसके द्वारा हँसा जाता है': कर्म नहीं, तृतीया का कर्ता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:k1",
+     "expect": "placed:k1",
+     "say": {
+      "en": "Tap बालकः पाठं पठति, then its group.",
+      "hi": "बालकः पाठं पठति छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at the doer. In which case does it stand in a kartri (active) sentence?",
+      "hi": "कर्ता को देखो। कर्तृवाच्य के वाक्य में वह किस विभक्ति में होता है?"
+     },
+     "options": [
+      {
+       "id": "first",
+       "en": "The first case, प्रथमा",
+       "hi": "प्रथमा"
+      },
+      {
+       "id": "third",
+       "en": "The third case, तृतीया",
+       "hi": "तृतीया"
+      },
+      {
+       "id": "seventh",
+       "en": "The seventh case, सप्तमी",
+       "hi": "सप्तमी"
+      }
+     ],
+     "answer": "first"
+    },
+    {
+     "kind": "do",
+     "target": "card:b1",
+     "expect": "placed:b1",
+     "say": {
+      "en": "Place बालिकया नृत्यते. Does it have an object?",
+      "hi": "बालिकया नृत्यते रखो। क्या इसमें कर्म है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Voice (वाच्य) tells which part of the sentence leads. Kartri: the doer leads, it is in the first case and the verb agrees with it. Karma: the object leads, in the first case, and the doer steps back into the third case; the verb ends in -यते. Bhava: there is no object; the doer is in the third case and the verb is always third person singular. The meaning of the sentence stays the same.",
+      "hi": "वाच्य बताता है कि वाक्य में कौन-सा भाग मुख्य है। कर्तृवाच्य में कर्ता मुख्य होता है, प्रथमा में, और क्रिया उसके अनुसार चलती है। कर्मवाच्य में कर्म मुख्य होता है, प्रथमा में, और कर्ता तृतीया में पीछे हट जाता है; क्रिया -यते पर समाप्त होती है। भाववाच्य में कर्म नहीं होता; कर्ता तृतीया में और क्रिया सदा अन्य पुरुष एकवचन में। वाक्य का अर्थ वही रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "बालकेन पाठः पठ्यते is in which voice?",
+        "hi": "बालकेन पाठः पठ्यते किस वाच्य में है?"
+       },
+       "options": [
+        {
+         "en": "Karma voice",
+         "hi": "कर्मवाच्य"
+        },
+        {
+         "en": "Kartri voice",
+         "hi": "कर्तृवाच्य"
+        },
+        {
+         "en": "Bhava voice",
+         "hi": "भाववाच्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The object पाठः leads in the first case and the doer is in the third.",
+        "hi": "कर्म पाठः प्रथमा में मुख्य है और कर्ता तृतीया में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In kartri the doer would be in the first case: बालकः.",
+         "hi": "कर्तृवाच्य में कर्ता प्रथमा में होता: बालकः।"
+        },
+        {
+         "en": "Bhava has no object at all, but here the lesson is the object.",
+         "hi": "भाववाच्य में कर्म नहीं होता, यहाँ पाठ कर्म है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What marks bhava voice?",
+        "hi": "भाववाच्य की पहचान क्या है?"
+       },
+       "options": [
+        {
+         "en": "No object, a third-case doer, and a third person singular verb",
+         "hi": "कर्म नहीं, तृतीया का कर्ता और अन्य पुरुष एकवचन क्रिया"
+        },
+        {
+         "en": "A first-case doer and an object",
+         "hi": "प्रथमा का कर्ता और कर्म"
+        },
+        {
+         "en": "A verb ending in -ति",
+         "hi": "-ति पर समाप्त क्रिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Bhava voice speaks of the action itself, not of an object.",
+        "hi": "भाववाच्य क्रिया की बात करता है, किसी कर्म की नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That describes the kartri voice.",
+         "hi": "यह कर्तृवाच्य का वर्णन है।"
+        },
+        {
+         "en": "A verb ending in -ति is active, not -ते.",
+         "hi": "-ति वाली क्रिया कर्तृवाच्य की है, -ते वाली नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take your own sentence and say it in two voices.",
+      "hi": "अपना कोई वाक्य लो और उसे दो वाच्यों में बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch11-karma",
+   "topic": "11.2",
+   "template": "grammar",
+   "title": {
+    "en": "Kartri to Karma",
+    "hi": "कर्तृवाच्य से कर्मवाच्य"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "transform",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "v1",
+      "sentence": "बालकः पाठं पठति",
+      "words": [
+       "बालकेन",
+       "पाठः",
+       "पठ्यते",
+       "बालकः",
+       "पठति",
+       "पाठं"
+      ],
+      "answer": [
+       "बालकेन पाठः पठ्यते",
+       "पाठः बालकेन पठ्यते"
+      ],
+      "task": {
+       "en": "Change to karma voice.",
+       "hi": "कर्मवाच्य में बदलो।"
+      },
+      "rule": {
+       "en": "Doer to the third case (बालकेन), object to the first (पाठः), verb with -यते.",
+       "hi": "कर्ता तृतीया में (बालकेन), कर्म प्रथमा में (पाठः), क्रिया -यते के साथ।"
+      }
+     },
+     {
+      "id": "v2",
+      "sentence": "छात्रः लेखं लिखति",
+      "words": [
+       "छात्रेण",
+       "लेखः",
+       "लिख्यते",
+       "छात्रः",
+       "लिखति",
+       "लेखं"
+      ],
+      "answer": [
+       "छात्रेण लेखः लिख्यते",
+       "लेखः छात्रेण लिख्यते"
+      ],
+      "task": {
+       "en": "Change to karma voice.",
+       "hi": "कर्मवाच्य में बदलो।"
+      },
+      "rule": {
+       "en": "छात्रः becomes छात्रेण, लेखं becomes लेखः, लिखति becomes लिख्यते.",
+       "hi": "छात्रः से छात्रेण, लेखं से लेखः, लिखति से लिख्यते।"
+      }
+     },
+     {
+      "id": "v3",
+      "sentence": "कृषकः कार्यं करोति",
+      "words": [
+       "कृषकेण",
+       "कार्यं",
+       "क्रियते",
+       "कृषकः",
+       "करोति",
+       "कृषकम्"
+      ],
+      "answer": [
+       "कृषकेण कार्यं क्रियते",
+       "कार्यं कृषकेण क्रियते"
+      ],
+      "task": {
+       "en": "Change to karma voice.",
+       "hi": "कर्मवाच्य में बदलो।"
+      },
+      "rule": {
+       "en": "The verb root कृ becomes क्रियते. The word कार्यं is neuter, so it looks the same in both voices.",
+       "hi": "धातु कृ से क्रियते बनता है। कार्यं नपुंसक है, इसलिए दोनों वाच्यों में एक-सा दिखता है।"
+      }
+     },
+     {
+      "id": "v4",
+      "sentence": "अहं गृहं गच्छामि",
+      "words": [
+       "मया",
+       "गृहं",
+       "गम्यते",
+       "अहं",
+       "गच्छामि",
+       "माम्"
+      ],
+      "answer": [
+       "मया गृहं गम्यते",
+       "गृहं मया गम्यते"
+      ],
+      "task": {
+       "en": "Change to karma voice.",
+       "hi": "कर्मवाच्य में बदलो।"
+      },
+      "rule": {
+       "en": "अहम् becomes मया (by me) and गच्छामि becomes गम्यते.",
+       "hi": "अहम् से मया (मेरे द्वारा) और गच्छामि से गम्यते।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'बालकः पाठं पठति' the boy reads. In karma voice, what happens to बालकः?",
+      "hi": "'बालकः पाठं पठति' में बालक पढ़ता है। कर्मवाच्य में बालकः का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "third",
+       "en": "It goes to the third case: बालकेन",
+       "hi": "तृतीया में जाता है: बालकेन"
+      },
+      {
+       "id": "stay",
+       "en": "It stays unchanged",
+       "hi": "वैसा ही रहता है"
+      },
+      {
+       "id": "second",
+       "en": "It goes to the second case: बालकम्",
+       "hi": "द्वितीया में जाता है: बालकम्"
+      }
+     ],
+     "answer": "third"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap the tiles in order and press the answer button.",
+      "hi": "टाइल क्रम से छुओ और उत्तर बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Change the other three sentences.",
+      "hi": "बाकी तीन वाक्य बदलो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To change kartri into karma: (1) put the doer in the third case, (2) put the object in the first case, (3) change the verb to the -य- form with a -ते ending (पठति to पठ्यते, लिखति to लिख्यते, करोति to क्रियते, गच्छति to गम्यते). The verb then agrees with the new subject, the object. Neuter words like कार्यं and गृहं keep the same shape in the first and second case.",
+      "hi": "कर्तृवाच्य से कर्मवाच्य बनाने के लिए: (1) कर्ता को तृतीया में रखो, (2) कर्म को प्रथमा में रखो, (3) क्रिया को -य- वाले रूप में -ते अंत के साथ बदलो (पठति से पठ्यते, लिखति से लिख्यते, करोति से क्रियते, गच्छति से गम्यते)। क्रिया नए कर्ता, यानी कर्म, के अनुसार चलती है। कार्यं और गृहं जैसे नपुंसक शब्द प्रथमा और द्वितीया में एक-से रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the karma voice of 'कृषकः कार्यं करोति'?",
+        "hi": "'कृषकः कार्यं करोति' का कर्मवाच्य कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "कृषकेण कार्यं क्रियते",
+         "hi": "कृषकेण कार्यं क्रियते"
+        },
+        {
+         "en": "कृषकः कार्येण क्रियते",
+         "hi": "कृषकः कार्येण क्रियते"
+        },
+        {
+         "en": "कृषकेण कार्यं करोति",
+         "hi": "कृषकेण कार्यं करोति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The doer takes the third case and the verb takes the passive form.",
+        "hi": "कर्ता तृतीया में और क्रिया कर्मवाच्य रूप में आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Here the doer stayed in the first case and the object took the third: both are swapped wrongly.",
+         "hi": "यहाँ कर्ता प्रथमा में रह गया और कर्म तृतीया में चला गया: दोनों गलत बदले।"
+        },
+        {
+         "en": "The doer is right, but the verb is still active (करोति).",
+         "hi": "कर्ता ठीक है, पर क्रिया अब भी कर्तृवाच्य की है (करोति)।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the passive form of पठति?",
+        "hi": "पठति का कर्मवाच्य रूप क्या है?"
+       },
+       "options": [
+        {
+         "en": "पठ्यते",
+         "hi": "पठ्यते"
+        },
+        {
+         "en": "पठति",
+         "hi": "पठति"
+        },
+        {
+         "en": "पठन्ति",
+         "hi": "पठन्ति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-य- is added to the root, with the ending -ते.",
+        "hi": "धातु में -य- जुड़ता है और -ते अंत आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This is the active form, unchanged.",
+         "hi": "यह कर्तृवाच्य रूप है, बिना बदला।"
+        },
+        {
+         "en": "This is active too, in the plural.",
+         "hi": "यह भी कर्तृवाच्य है, बहुवचन में।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn 'सः ग्रन्थं पठति' into karma voice and say it aloud.",
+      "hi": "'सः ग्रन्थं पठति' को कर्मवाच्य में बदलकर बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch11-bhava",
+   "topic": "11.3",
+   "template": "grammar",
+   "title": {
+    "en": "Bhava voice: only the action",
+    "hi": "भाववाच्य: केवल क्रिया"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "transform",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "h1",
+      "sentence": "बालकः हसति",
+      "words": [
+       "बालकेन",
+       "हस्यते",
+       "बालकः",
+       "हसति",
+       "बालकम्"
+      ],
+      "answer": "बालकेन हस्यते",
+      "task": {
+       "en": "Change to bhava voice.",
+       "hi": "भाववाच्य में बदलो।"
+      },
+      "rule": {
+       "en": "Doer to the third case, verb to हस्यते. There is no object.",
+       "hi": "कर्ता तृतीया में और क्रिया हस्यते। कर्म नहीं है।"
+      }
+     },
+     {
+      "id": "h2",
+      "sentence": "बालिका नृत्यति",
+      "words": [
+       "बालिकया",
+       "नृत्यते",
+       "बालिका",
+       "नृत्यति",
+       "बालिकाम्"
+      ],
+      "answer": "बालिकया नृत्यते",
+      "task": {
+       "en": "Change to bhava voice.",
+       "hi": "भाववाच्य में बदलो।"
+      },
+      "rule": {
+       "en": "बालिका becomes बालिकया (third case) and नृत्यति becomes नृत्यते.",
+       "hi": "बालिका से बालिकया (तृतीया) और नृत्यति से नृत्यते।"
+      }
+     },
+     {
+      "id": "h3",
+      "sentence": "धावकः धावति",
+      "words": [
+       "धावकेन",
+       "धाव्यते",
+       "धावकः",
+       "धावति",
+       "धावकम्"
+      ],
+      "answer": "धावकेन धाव्यते",
+      "task": {
+       "en": "Change to bhava voice.",
+       "hi": "भाववाच्य में बदलो।"
+      },
+      "rule": {
+       "en": "The runner goes to the third case and the verb takes -यते.",
+       "hi": "धावक तृतीया में जाता है और क्रिया -यते लेती है।"
+      }
+     },
+     {
+      "id": "h4",
+      "sentence": "त्वं हससि",
+      "words": [
+       "त्वया",
+       "हस्यते",
+       "त्वं",
+       "हससि",
+       "त्वाम्"
+      ],
+      "answer": "त्वया हस्यते",
+      "task": {
+       "en": "Change to bhava voice.",
+       "hi": "भाववाच्य में बदलो।"
+      },
+      "rule": {
+       "en": "त्वम् becomes त्वया. Even for 'you', the verb stays third person singular: हस्यते.",
+       "hi": "त्वम् से त्वया। 'तुम' के लिए भी क्रिया अन्य पुरुष एकवचन ही रहती है: हस्यते।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Verbs like हसति (laughs) and नृत्यति (dances) have no object. In bhava voice, which person and number is the verb?",
+      "hi": "हसति (हँसता है) और नृत्यति (नाचता है) जैसी क्रियाओं का कर्म नहीं होता। भाववाच्य में क्रिया किस पुरुष और वचन में होती है?"
+     },
+     "options": [
+      {
+       "id": "third",
+       "en": "Always third person singular",
+       "hi": "सदा अन्य पुरुष एकवचन"
+      },
+      {
+       "id": "agree",
+       "en": "It agrees with the doer",
+       "hi": "कर्ता के अनुसार बदलती है"
+      },
+      {
+       "id": "plural",
+       "en": "Always plural",
+       "hi": "सदा बहुवचन"
+      }
+     ],
+     "answer": "third"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Build the first sentence and press the answer button.",
+      "hi": "पहला वाक्य बनाओ और उत्तर बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Change the other three sentences.",
+      "hi": "बाकी तीन वाक्य बदलो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bhava voice is used with verbs that take no object, such as हसति, नृत्यति, धावति. Since there is no object to lead, the action itself leads. The doer goes to the third case (बालकेन, बालिकया, त्वया) and the verb is always third person singular with -ते: हस्यते, नृत्यते. We may translate it as 'laughing is done by the boy'.",
+      "hi": "भाववाच्य उन क्रियाओं के साथ आता है जिनका कर्म नहीं होता, जैसे हसति, नृत्यति, धावति। नेतृत्व करने के लिए कर्म नहीं है, इसलिए क्रिया स्वयं मुख्य होती है। कर्ता तृतीया में चला जाता है (बालकेन, बालिकया, त्वया) और क्रिया सदा अन्य पुरुष एकवचन में -ते के साथ आती है: हस्यते, नृत्यते। हम इसका अर्थ कर सकते हैं 'बालक के द्वारा हँसा जाता है'।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the bhava voice of 'बालिका नृत्यति'?",
+        "hi": "'बालिका नृत्यति' का भाववाच्य कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "बालिकया नृत्यते",
+         "hi": "बालिकया नृत्यते"
+        },
+        {
+         "en": "बालिका नृत्यते",
+         "hi": "बालिका नृत्यते"
+        },
+        {
+         "en": "बालिकया नृत्यति",
+         "hi": "बालिकया नृत्यति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Third-case doer and the -ते verb.",
+        "hi": "तृतीया का कर्ता और -ते वाली क्रिया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The doer stayed in the first case, so the voice did not change.",
+         "hi": "कर्ता प्रथमा में ही रहा, इसलिए वाच्य नहीं बदला।"
+        },
+        {
+         "en": "The verb is still the active form -ति.",
+         "hi": "क्रिया अब भी कर्तृवाच्य की -ति वाली है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does bhava voice need no object?",
+        "hi": "भाववाच्य को कर्म की ज़रूरत क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "The verb has no object to begin with, like हसति",
+         "hi": "क्रिया का कर्म होता ही नहीं, जैसे हसति"
+        },
+        {
+         "en": "Because the doer is missing",
+         "hi": "क्योंकि कर्ता नहीं है"
+        },
+        {
+         "en": "Because the sentence is a question",
+         "hi": "क्योंकि वाक्य प्रश्न है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is used exactly with verbs that act on nothing.",
+        "hi": "यह उन्हीं क्रियाओं के साथ होता है जो किसी पर काम नहीं करतीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The doer is present, in the third case.",
+         "hi": "कर्ता मौजूद है, तृतीया में।"
+        },
+        {
+         "en": "Questions can be in any voice.",
+         "hi": "प्रश्न किसी भी वाच्य में हो सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say 'The children play' in bhava voice: बालकाः क्रीडन्ति. Which word changes?",
+      "hi": "'बच्चे खेलते हैं' को भाववाच्य में बोलो: बालकाः क्रीडन्ति। कौन-सा शब्द बदलता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "11.1",
+   "use": "Doer in focus and object in focus",
+   "shows": "The same desk scene twice: first the hands writing a letter in focus, then the finished letter in focus",
+   "view": "Same camera, same light, from above and to the right",
+   "right": "Same hands and paper in both frames, only the focus changes",
+   "avoid": "Faces, words legible on the paper"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "11.2",
+   "use": "The work leads, karma voice",
+   "shows": "A half-ploughed field with a pair of bullocks and a plough, furrows leading to the horizon",
+   "view": "Low angle along the furrows, golden light",
+   "right": "Straight furrows, both ploughed and unploughed land visible",
+   "avoid": "Faces, tractors, signs"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "11.3",
+   "use": "Bhava voice: only the action",
+   "shows": "A girl dancing on a courtyard seen from far away, only her motion and swirl of skirt matter",
+   "view": "Wide shot, back or side view, daylight",
+   "right": "Clear motion and no object in her hands",
+   "avoid": "Faces, props in her hands, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "11.3",
+   "use": "Bhava voice: running",
+   "shows": "A runner on a school track seen from behind, mid-stride",
+   "view": "Low angle behind the runner, soft morning light",
+   "right": "A clear running pose, lanes marked on the track",
+   "avoid": "Faces, numbers, brand logos"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "11.1",
+   "use": "Three voices table",
+   "shows": "An empty three-column table frame with three rows",
+   "view": "Flat front view on white",
+   "right": "Three columns and three rows exactly, each column a different logo colour header",
+   "avoid": "Text, numbers"
+  }
+ ]
+}

@@ -1,0 +1,992 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch12",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Limits and Derivatives",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Introduction: calculus, the study of change",
+   "labs": [],
+   "why_no_lab": "A short reading idea; the speed lab in 12.2 begins the real work."
+  },
+  {
+   "n": "12.2",
+   "title": "Intuitive idea of derivatives: speed at an instant",
+   "labs": [
+    "c11-mathematics-kemh1-ch12-speed-at-instant"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Limits: left and right hand limits, algebra of limits, limits of polynomials and rational functions",
+   "labs": [
+    "c11-mathematics-kemh1-ch12-limit-hole",
+    "c11-mathematics-kemh1-ch12-one-sided"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "Limits of trigonometric functions",
+   "labs": [
+    "c11-mathematics-kemh1-ch12-sin-x-over-x"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.5",
+   "title": "Derivatives: first principle, algebra of derivatives, derivatives of polynomials and trigonometric functions",
+   "labs": [
+    "c11-mathematics-kemh1-ch12-tangent-slope",
+    "c11-mathematics-kemh1-ch12-derivative-of-sin"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch12-speed-at-instant",
+   "topic": "12.2",
+   "template": "code",
+   "title": {
+    "en": "How fast is the falling ball at t = 2 s?",
+    "hi": "t = 2 s पर गिरती गेंद कितनी तेज़ है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "def s(t):",
+     "    return 4.9 * t * t",
+     "for h in [1, 0.1, 0.01, 0.001, 0.0001]:",
+     "    v = (s(2 + h) - s(2)) / h",
+     "    print('h =', h, '  average speed =', round(v, 4))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A ball dropped from a tall building falls s(t) = 4.9t² metres in t seconds. Average speed over a short time h after t = 2 is (s(2 + h) − s(2))/h. The program makes h smaller and smaller.",
+      "hi": "एक ऊँची इमारत से छोड़ी गई गेंद t सेकंड में s(t) = 4.9t² मीटर गिरती है। t = 2 के बाद थोड़े समय h में औसत चाल (s(2 + h) − s(2))/h है। प्रोग्राम h को छोटा और छोटा करता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As h shrinks towards 0, what will the average speed settle near?",
+      "hi": "h के 0 की ओर घटने पर औसत चाल किस संख्या के पास टिकेगी?"
+     },
+     "options": [
+      {
+       "id": "19.6",
+       "en": "About 19.6 m/s",
+       "hi": "लगभग 19.6 m/s"
+      },
+      {
+       "id": "9.8",
+       "en": "About 9.8 m/s",
+       "hi": "लगभग 9.8 m/s"
+      },
+      {
+       "id": "0",
+       "en": "Down to 0 m/s",
+       "hi": "घटकर 0 m/s"
+      }
+     ],
+     "answer": "19.6"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to see the function s(t) set up.",
+      "hi": "फलन s(t) बनते देखने के लिए Step दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to see the average speeds.",
+      "hi": "औसत चालें देखने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The averages are 24.5, 20.09, 19.649, 19.6049, 19.6005: they close in on 19.6. Algebra shows why: the average is 19.6 + 4.9h, and as h → 0 the 4.9h part vanishes. The speed at the instant t = 2 is the limit 19.6 m/s: this is the derivative of s at t = 2.",
+      "hi": "औसत 24.5, 20.09, 19.649, 19.6049, 19.6005 हैं: ये 19.6 के पास आते जाते हैं। बीजगणित कारण बताता है: औसत 19.6 + 4.9h है, और h → 0 पर 4.9h वाला भाग मिट जाता है। ठीक t = 2 पल की चाल सीमा 19.6 m/s है: यही t = 2 पर s का अवकलज है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can we not just put h = 0 in (s(2 + h) − s(2))/h?",
+        "hi": "(s(2 + h) − s(2))/h में सीधे h = 0 क्यों नहीं रख सकते?"
+       },
+       "options": [
+        {
+         "en": "It gives 0/0, which has no value",
+         "hi": "इससे 0/0 मिलता है, जिसका कोई मान नहीं"
+        },
+        {
+         "en": "Because time cannot be 2 s",
+         "hi": "क्योंकि समय 2 s नहीं हो सकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With h = 0 both the top and the bottom are 0. That is why we look at what happens as h gets close to 0: a limit.",
+        "hi": "h = 0 पर ऊपर और नीचे दोनों 0 हैं। इसलिए हम देखते हैं कि h के 0 के पास जाने पर क्या होता है: सीमा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "t = 2 s is a perfectly good moment; the trouble is the division by h = 0.",
+         "hi": "t = 2 s एक बिल्कुल ठीक पल है; समस्या h = 0 से भाग की है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Using the same idea, what is the speed at t = 3 s?",
+        "hi": "इसी विचार से t = 3 s पर चाल क्या है?"
+       },
+       "options": [
+        "29.4 m/s",
+        "44.1 m/s",
+        "14.7 m/s"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The derivative of 4.9t² is 9.8t, so at t = 3 it is 29.4 m/s.",
+        "hi": "4.9t² का अवकलज 9.8t है, इसलिए t = 3 पर यह 29.4 m/s है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "44.1 = 4.9 × 9 is the distance fallen, s(3), not the speed.",
+         "hi": "44.1 = 4.9 × 9 तो गिरी दूरी s(3) है, चाल नहीं।"
+        },
+        {
+         "en": "14.7 = 44.1/3 is the average speed over the whole 3 s, not the speed at that instant.",
+         "hi": "14.7 = 44.1/3 पूरे 3 s की औसत चाल है, उस पल की चाल नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine h negative: −0.1, −0.01, … (just before t = 2). Do the averages come towards 19.6 from below? Work out one by hand.",
+      "hi": "h ऋणात्मक सोचो: −0.1, −0.01, … (t = 2 से ठीक पहले)। क्या औसत नीचे से 19.6 की ओर आते हैं? एक हाथ से निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch12-limit-hole",
+   "topic": "12.3",
+   "template": "code",
+   "title": {
+    "en": "A limit where the function has a hole",
+    "hi": "एक सीमा जहाँ फलन में छेद है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "def f(x):",
+     "    return (x * x - 4) / (x - 2)",
+     "for x in [1.9, 1.99, 1.999, 2.001, 2.01, 2.1]:",
+     "    print('x =', x, '  f(x) =', round(f(x), 4))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "f(x) = (x² − 4)/(x − 2) is not defined at x = 2, because that gives 0/0. The program works out f(x) for x close to 2 on both sides.",
+      "hi": "f(x) = (x² − 4)/(x − 2), x = 2 पर परिभाषित नहीं है, क्योंकि उससे 0/0 मिलता है। प्रोग्राम 2 के दोनों ओर पास के x के लिए f(x) निकालता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will f(x) get close to as x gets close to 2?",
+      "hi": "x के 2 के पास जाने पर f(x) किसके पास जाएगा?"
+     },
+     "options": [
+      {
+       "id": "4",
+       "en": "To 4",
+       "hi": "4 के पास"
+      },
+      {
+       "id": "0",
+       "en": "To 0",
+       "hi": "0 के पास"
+      },
+      {
+       "id": "none",
+       "en": "Nothing: it blows up",
+       "hi": "किसी के नहीं: बहुत बड़ा हो जाएगा"
+      }
+     ],
+     "answer": "4"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to see the table.",
+      "hi": "तालिका देखने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "From the left, 3.9, 3.99, 3.999; from the right, 4.1, 4.01, 4.001. Both sides close in on 4, so lim x→2 f(x) = 4. The reason: x² − 4 = (x − 2)(x + 2), so for x ≠ 2, f(x) = x + 2, and x + 2 → 4. A limit asks where the values are heading, not what happens at the point itself.",
+      "hi": "बाईं ओर से 3.9, 3.99, 3.999; दाईं ओर से 4.1, 4.01, 4.001। दोनों ओर 4 के पास आते हैं, इसलिए lim x→2 f(x) = 4। कारण: x² − 4 = (x − 2)(x + 2), इसलिए x ≠ 2 के लिए f(x) = x + 2, और x + 2 → 4। सीमा पूछती है कि मान किधर जा रहे हैं, न कि उसी बिंदु पर क्या होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is lim x→3 of (x² − 9)/(x − 3)?",
+        "hi": "lim x→3 (x² − 9)/(x − 3) क्या है?"
+       },
+       "options": [
+        "6",
+        "0",
+        {
+         "en": "It does not exist",
+         "hi": "अस्तित्व में नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(x² − 9)/(x − 3) = x + 3 for x ≠ 3, which tends to 6.",
+        "hi": "x ≠ 3 के लिए (x² − 9)/(x − 3) = x + 3, जो 6 की ओर जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Putting x = 3 gives 0/0, not 0; 0/0 tells us to simplify first.",
+         "hi": "x = 3 रखने से 0/0 मिलता है, 0 नहीं; 0/0 बताता है कि पहले सरल करो।"
+        },
+        {
+         "en": "The limit exists even though f(3) does not: both sides head to 6.",
+         "hi": "f(3) न होने पर भी सीमा है: दोनों ओर 6 की ओर जाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For a polynomial like p(x) = x³ − 2x + 1, what is lim x→2 p(x)?",
+        "hi": "p(x) = x³ − 2x + 1 जैसे बहुपद के लिए lim x→2 p(x) क्या है?"
+       },
+       "options": [
+        "5",
+        "9",
+        {
+         "en": "It cannot be found",
+         "hi": "निकाला नहीं जा सकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "For a polynomial the limit is just the value: p(2) = 8 − 4 + 1 = 5.",
+        "hi": "बहुपद के लिए सीमा उसका मान ही है: p(2) = 8 − 4 + 1 = 5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9 forgets the −2x term: 8 + 1 = 9.",
+         "hi": "9 में −2x वाला पद छूट गया: 8 + 1 = 9।"
+        },
+        {
+         "en": "A polynomial has no holes, so we can put x = 2 directly.",
+         "hi": "बहुपद में छेद नहीं होते, इसलिए सीधे x = 2 रख सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use x = 2 + h in your head: (4 + 4h + h² − 4)/h = 4 + h. What happens as h → 0? Does it agree with the table?",
+      "hi": "मन में x = 2 + h रखो: (4 + 4h + h² − 4)/h = 4 + h। h → 0 पर क्या होता है? क्या यह तालिका से मेल खाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch12-one-sided",
+   "topic": "12.3",
+   "template": "code",
+   "title": {
+    "en": "Left and right limits that disagree",
+    "hi": "बाएँ और दाएँ की सीमाएँ जो मेल नहीं खातीं"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "def f(x):",
+     "    return abs(x) / x",
+     "for x in [-0.1, -0.01, -0.001, 0.001, 0.01, 0.1]:",
+     "    print('x =', x, '  f(x) =', f(x))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "f(x) = |x|/x. For x < 0 it is −1 and for x > 0 it is 1. The program checks values just left and just right of 0.",
+      "hi": "f(x) = |x|/x। x < 0 के लिए यह −1 है और x > 0 के लिए 1। प्रोग्राम 0 के ठीक बाएँ और ठीक दाएँ के मान जाँचता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does lim x→0 f(x) exist?",
+      "hi": "क्या lim x→0 f(x) का अस्तित्व है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No: the two sides disagree",
+       "hi": "नहीं: दोनों ओर अलग हैं"
+      },
+      {
+       "id": "zero",
+       "en": "Yes, it is 0",
+       "hi": "हाँ, यह 0 है"
+      },
+      {
+       "id": "one",
+       "en": "Yes, it is 1",
+       "hi": "हाँ, यह 1 है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to see both sides.",
+      "hi": "दोनों ओर देखने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The left hand limit is −1 and the right hand limit is 1. A limit exists only when the left and right hand limits are equal, so lim x→0 |x|/x does not exist. This is the signum function from Chapter 2, which jumps at 0.",
+      "hi": "बाईं ओर की सीमा −1 है और दाईं ओर की 1। सीमा तभी होती है जब बाईं और दाईं सीमाएँ बराबर हों, इसलिए lim x→0 |x|/x का अस्तित्व नहीं है। यह अध्याय 2 का चिह्न फलन है, जो 0 पर कूदता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "f(x) = x + 1 for x < 1 and f(x) = 3 for x ≥ 1. What is the right hand limit at x = 1?",
+        "hi": "f(x) = x + 1 जब x < 1, और f(x) = 3 जब x ≥ 1। x = 1 पर दाईं ओर की सीमा क्या है?"
+       },
+       "options": [
+        "3",
+        "2",
+        {
+         "en": "It does not exist",
+         "hi": "अस्तित्व में नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Just right of 1 the function is 3, so the right hand limit is 3.",
+        "hi": "1 के ठीक दाईं ओर फलन 3 है, इसलिए दाईं सीमा 3 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 is the left hand limit, from x + 1 as x → 1 from the left.",
+         "hi": "2 तो बाईं सीमा है, बाईं ओर से x → 1 पर x + 1 से।"
+        },
+        {
+         "en": "A one-sided limit can exist even when the full limit does not.",
+         "hi": "पूरी सीमा न हो तब भी एक-तरफ़ा सीमा हो सकती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For the same f, does lim x→1 f(x) exist?",
+        "hi": "इसी f के लिए, क्या lim x→1 f(x) का अस्तित्व है?"
+       },
+       "options": [
+        {
+         "en": "No, 2 ≠ 3",
+         "hi": "नहीं, 2 ≠ 3"
+        },
+        {
+         "en": "Yes, it is 3",
+         "hi": "हाँ, यह 3 है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The left limit is 2 and the right limit is 3; they differ, so there is no limit.",
+        "hi": "बाईं सीमा 2 और दाईं 3; ये अलग हैं, इसलिए सीमा नहीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "f(1) = 3, but the limit needs both sides to agree, and the left side heads to 2.",
+         "hi": "f(1) = 3 है, पर सीमा के लिए दोनों ओर का मेल चाहिए, और बाईं ओर 2 की ओर जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of f(x) = |x| instead. Do its left and right limits at 0 agree? What is the limit?",
+      "hi": "इसकी जगह f(x) = |x| सोचो। क्या 0 पर इसकी बाईं और दाईं सीमाएँ मेल खाती हैं? सीमा क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch12-sin-x-over-x",
+   "topic": "12.4",
+   "template": "grapher",
+   "title": {
+    "en": "Why sin x / x → 1",
+    "hi": "sin x / x → 1 क्यों"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trig",
+    "expr": "sin(x)/x"
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The curve is y = sin x / x, with x in radians. At x = 0 it gives 0/0, so there is a hole there. Look at what happens near 0.",
+      "hi": "वक्र y = sin x / x है, x रेडियन में। x = 0 पर 0/0 मिलता है, इसलिए वहाँ एक छेद है। देखो 0 के पास क्या होता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As x gets close to 0, what will y get close to?",
+      "hi": "x के 0 के पास जाने पर y किसके पास जाएगा?"
+     },
+     "options": [
+      {
+       "id": "1",
+       "en": "To 1",
+       "hi": "1 के पास"
+      },
+      {
+       "id": "0",
+       "en": "To 0",
+       "hi": "0 के पास"
+      },
+      {
+       "id": "inf",
+       "en": "It grows without limit",
+       "hi": "बिना सीमा बढ़ेगा"
+      }
+     ],
+     "answer": "1"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the x slider close to 0 from the right and read y.",
+      "hi": "x स्लाइडर को दाईं ओर से 0 के पास खींचो और y पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "zoom",
+     "expect": "changed",
+     "say": {
+      "en": "Zoom in near the top of the curve.",
+      "hi": "वक्र के शीर्ष के पास ज़ूम करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "y gets as close to 1 as you like on both sides: lim x→0 sin x / x = 1. For a small angle in radians, sin x and x are almost the same length (the arc and the half-chord in a circle). This only works in radians; in degrees the limit would be π/180.",
+      "hi": "दोनों ओर y, 1 के जितना चाहो उतना पास आता है: lim x→0 sin x / x = 1। रेडियन में छोटे कोण के लिए sin x और x लगभग बराबर लंबाई के हैं (वृत्त में चाप और आधी जीवा)। यह केवल रेडियन में चलता है; अंशों में सीमा π/180 होती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is lim x→0 sin 3x / x?",
+        "hi": "lim x→0 sin 3x / x क्या है?"
+       },
+       "options": [
+        "3",
+        "1",
+        "1/3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "sin 3x / x = 3 × (sin 3x / 3x), and sin 3x / 3x → 1, so the limit is 3.",
+        "hi": "sin 3x / x = 3 × (sin 3x / 3x), और sin 3x / 3x → 1, इसलिए सीमा 3 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The angle is 3x but the bottom is only x; multiply and divide by 3.",
+         "hi": "कोण 3x है पर नीचे केवल x; 3 से गुणा और भाग करो।"
+        },
+        {
+         "en": "This divides by 3 instead of multiplying.",
+         "hi": "यह 3 से गुणा की जगह भाग देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is lim x→0 (1 − cos x)/x?",
+        "hi": "lim x→0 (1 − cos x)/x क्या है?"
+       },
+       "options": [
+        "0",
+        "1",
+        {
+         "en": "It does not exist",
+         "hi": "अस्तित्व में नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This is the second standard limit: (1 − cos x)/x → 0, because 1 − cos x shrinks much faster than x.",
+        "hi": "यह दूसरी मानक सीमा है: (1 − cos x)/x → 0, क्योंकि 1 − cos x, x से बहुत तेज़ी से घटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 is the limit of sin x / x, a different expression.",
+         "hi": "1 तो sin x / x की सीमा है, एक अलग व्यंजक।"
+        },
+        {
+         "en": "Both sides head to 0, so the limit exists.",
+         "hi": "दोनों ओर 0 की ओर जाते हैं, इसलिए सीमा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag x to π, 2π and 3π. Why is y = 0 there? Do the waves get smaller as x grows?",
+      "hi": "x को π, 2π और 3π पर ले जाओ। वहाँ y = 0 क्यों है? क्या x बढ़ने पर लहरें छोटी होती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch12-tangent-slope",
+   "topic": "12.5",
+   "template": "grapher",
+   "title": {
+    "en": "The derivative is the slope of the tangent",
+    "hi": "अवकलज स्पर्श रेखा की ढाल है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "x^2"
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The solid curve is f(x) = x². The dashed line is the slope of the curve at every x, the derivative f′(x). From first principles, f′(x) = lim h→0 ((x + h)² − x²)/h = lim (2x + h) = 2x.",
+      "hi": "ठोस वक्र f(x) = x² है। धराशायी रेखा हर x पर वक्र की ढाल, यानी अवकलज f′(x) है। प्रथम सिद्धांत से f′(x) = lim h→0 ((x + h)² − x²)/h = lim (2x + h) = 2x।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tangent",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap the tangent button to show the tangent line.",
+      "hi": "स्पर्श रेखा दिखाने के लिए tangent बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will the slope of the tangent be at x = 1.5?",
+      "hi": "x = 1.5 पर स्पर्श रेखा की ढाल क्या होगी?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "It is 3",
+       "hi": "यह 3 होगी"
+      },
+      {
+       "id": "2.25",
+       "en": "It is 2.25",
+       "hi": "यह 2.25 होगी"
+      },
+      {
+       "id": "1.5",
+       "en": "It is 1.5",
+       "hi": "यह 1.5 होगी"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the x slider to 1.5 and read the slope.",
+      "hi": "x स्लाइडर को 1.5 पर ले जाओ और ढाल पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At x = 1.5 the slope is 2 × 1.5 = 3, while the height is 1.5² = 2.25. At x = 0 the tangent is flat (slope 0); for negative x the slope is negative. The rule d/dx(xⁿ) = n xⁿ⁻¹ gives these at once, and derivatives add: (u + v)′ = u′ + v′.",
+      "hi": "x = 1.5 पर ढाल 2 × 1.5 = 3 है, जबकि ऊँचाई 1.5² = 2.25। x = 0 पर स्पर्श रेखा सपाट है (ढाल 0); ऋणात्मक x पर ढाल ऋणात्मक है। नियम d/dx(xⁿ) = n xⁿ⁻¹ ये तुरंत देता है, और अवकलज जुड़ते हैं: (u + v)′ = u′ + v′।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab about the slope here.",
+      "hi": "यहाँ की ढाल वाले प्रश्न का उत्तर लैब में दो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the derivative of 3x² + 5x?",
+        "hi": "3x² + 5x का अवकलज क्या है?"
+       },
+       "options": [
+        "6x + 5",
+        "3x + 5",
+        "6x"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "d/dx(3x²) = 6x and d/dx(5x) = 5; derivatives of a sum add.",
+        "hi": "d/dx(3x²) = 6x और d/dx(5x) = 5; योग के अवकलज जुड़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The power 2 must come down and multiply: 3 × 2x = 6x.",
+         "hi": "घात 2 नीचे आकर गुणा करती है: 3 × 2x = 6x।"
+        },
+        {
+         "en": "The 5x term also has a slope, 5.",
+         "hi": "5x पद की भी ढाल है, 5।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where is the tangent to y = x² horizontal?",
+        "hi": "y = x² की स्पर्श रेखा कहाँ क्षैतिज है?"
+       },
+       "options": [
+        {
+         "en": "At x = 0",
+         "hi": "x = 0 पर"
+        },
+        {
+         "en": "At x = 1",
+         "hi": "x = 1 पर"
+        },
+        {
+         "en": "Nowhere",
+         "hi": "कहीं नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Horizontal means slope 0: 2x = 0 gives x = 0, the bottom of the curve.",
+        "hi": "क्षैतिज का अर्थ ढाल 0: 2x = 0 से x = 0, वक्र का सबसे नीचे का बिंदु।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At x = 1 the slope is 2, so the tangent climbs.",
+         "hi": "x = 1 पर ढाल 2 है, इसलिए स्पर्श रेखा चढ़ती है।"
+        },
+        {
+         "en": "At the lowest point the curve turns, and there the tangent is flat.",
+         "hi": "सबसे निचले बिंदु पर वक्र मुड़ता है, और वहाँ स्पर्श रेखा सपाट है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag x to −2 and to 2. The slopes are −4 and 4. Why are they opposite? Look at the shape of the curve.",
+      "hi": "x को −2 और 2 पर ले जाओ। ढालें −4 और 4 हैं। ये उलटी क्यों हैं? वक्र का आकार देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch12-derivative-of-sin",
+   "topic": "12.5",
+   "template": "grapher",
+   "title": {
+    "en": "The slope of sin x is cos x",
+    "hi": "sin x की ढाल cos x है"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "derivative",
+    "expr": "sin(x)"
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The solid curve is y = sin x and the dashed curve is its slope at each x. Look at where the sine wave is steepest and where it is flat.",
+      "hi": "ठोस वक्र y = sin x है और धराशायी वक्र हर x पर उसकी ढाल। देखो साइन लहर कहाँ सबसे खड़ी है और कहाँ सपाट।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At the top of the wave, x = π/2, what is the slope?",
+      "hi": "लहर के शीर्ष x = π/2 पर ढाल क्या है?"
+     },
+     "options": [
+      {
+       "id": "0",
+       "en": "It is 0",
+       "hi": "यह 0 है"
+      },
+      {
+       "id": "1",
+       "en": "It is 1",
+       "hi": "यह 1 है"
+      },
+      {
+       "id": "-1",
+       "en": "It is −1",
+       "hi": "यह −1 है"
+      }
+     ],
+     "answer": "0"
+    },
+    {
+     "kind": "do",
+     "target": "tangent",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap the tangent button.",
+      "hi": "tangent बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "max",
+     "say": {
+      "en": "Drag the x slider to the top of the wave.",
+      "hi": "x स्लाइडर को लहर के शीर्ष पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At the top the tangent is flat, so the slope is 0 = cos(π/2). At x = 0 the wave climbs most steeply with slope 1 = cos 0. The dashed slope curve is exactly cos x: d/dx(sin x) = cos x. In the same way d/dx(cos x) = −sin x. These come from the limits sin h / h → 1 and (1 − cos h)/h → 0.",
+      "hi": "शीर्ष पर स्पर्श रेखा सपाट है, इसलिए ढाल 0 = cos(π/2)। x = 0 पर लहर सबसे तेज़ चढ़ती है, ढाल 1 = cos 0। धराशायी ढाल-वक्र ठीक cos x है: d/dx(sin x) = cos x। इसी तरह d/dx(cos x) = −sin x। ये सीमाओं sin h / h → 1 और (1 − cos h)/h → 0 से आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the derivative of 2 sin x + x²?",
+        "hi": "2 sin x + x² का अवकलज क्या है?"
+       },
+       "options": [
+        "2 cos x + 2x",
+        "2 cos x + x",
+        "−2 cos x + 2x"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "d/dx(2 sin x) = 2 cos x and d/dx(x²) = 2x.",
+        "hi": "d/dx(2 sin x) = 2 cos x और d/dx(x²) = 2x।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "d/dx(x²) is 2x, not x.",
+         "hi": "d/dx(x²) = 2x है, x नहीं।"
+        },
+        {
+         "en": "The derivative of sin x is +cos x; the minus sign belongs to the derivative of cos x.",
+         "hi": "sin x का अवकलज +cos x है; ऋण चिह्न cos x के अवकलज का है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "At x = π, is sin x going up or going down?",
+        "hi": "x = π पर sin x बढ़ रहा है या घट रहा है?"
+       },
+       "options": [
+        {
+         "en": "Going down, slope −1",
+         "hi": "घट रहा है, ढाल −1"
+        },
+        {
+         "en": "Going up, slope 1",
+         "hi": "बढ़ रहा है, ढाल 1"
+        },
+        {
+         "en": "Flat, slope 0",
+         "hi": "सपाट, ढाल 0"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The slope is cos π = −1: the wave is falling through the axis.",
+        "hi": "ढाल cos π = −1 है: लहर अक्ष से होकर नीचे जा रही है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At x = 0 it rises with slope 1; at π it falls.",
+         "hi": "x = 0 पर यह ढाल 1 से चढ़ती है; π पर गिरती है।"
+        },
+        {
+         "en": "sin π = 0 is the height, not the slope; the slope there is −1.",
+         "hi": "sin π = 0 ऊँचाई है, ढाल नहीं; वहाँ ढाल −1 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the bottom of the wave. What is the slope there, and which value of cos x matches it?",
+      "hi": "लहर का सबसे नीचे का बिंदु खोजो। वहाँ ढाल क्या है, और cos x का कौन-सा मान उससे मेल खाता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Chapter hook: change at an instant",
+   "shows": "A cricket ball frozen in mid-air just after a bowler's release at a village ground, motion blur on the arm only",
+   "view": "Side view, late afternoon light",
+   "right": "Ball sharp, showing a single instant of a moving thing",
+   "avoid": "Faces, sponsor logos"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "12.2",
+   "use": "A falling ball in equal time steps",
+   "shows": "Six frames of a ball falling beside a tall plain wall, taken at equal time gaps, overlaid as separate files",
+   "view": "Same fixed camera and light",
+   "right": "Gaps between ball positions grow each frame, as real falling motion does",
+   "avoid": "Any measuring numbers or people"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "12.3",
+   "use": "A graph with a hole",
+   "shows": "A clean straight rising line on a light grid with one small open circle on the line",
+   "view": "Flat, white background",
+   "right": "The open circle clearly hollow, sitting exactly on the line",
+   "avoid": "Numbers, letters, extra marks"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "12.4",
+   "use": "Small angles: arc and chord almost the same",
+   "shows": "A close-up of a thin wedge cut from a large round roti, the curved edge and the straight cut edge nearly the same length",
+   "view": "Top view, soft light",
+   "right": "Wedge thin enough that the arc looks almost straight",
+   "avoid": "Hands, plates with brand names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "12.5",
+   "use": "Tangent: the direction of motion at one point",
+   "shows": "Water drops flying off the edge of a spinning wet bicycle wheel in sunlight, each drop leaving in a straight line",
+   "view": "Side view, bright light, dark background",
+   "right": "Drops leave along straight lines that just touch the wheel",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "12.5",
+   "use": "Base for a curve and its tangent",
+   "shows": "A smooth U-shaped curve on a light grid with a short straight ruler-like segment touching it at one point",
+   "view": "Flat, white background",
+   "right": "The segment touches the curve at exactly one point without crossing it",
+   "avoid": "Numbers, letters"
+  }
+ ]
+}

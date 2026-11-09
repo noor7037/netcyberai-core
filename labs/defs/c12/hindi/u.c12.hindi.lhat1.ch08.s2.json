@@ -1,0 +1,106 @@
+{
+  "chapter_key": "u.c12.hindi.lhat1.ch08.s2",
+  "class": 12,
+  "subject_id": "hindi",
+  "title": "कुटज",
+  "source": "https://ncert.nic.in/textbook.php?lhat1=0-21",
+  "topics": [
+    {
+      "n": "8.1",
+      "title": "कुटज का स्वभाव: कठिन परिस्थिति में भी आत्मसम्मान से जीना",
+      "labs": ["c12-hindi-lhat1-ch08-kutaj-sort"],
+      "why_no_lab": null
+    },
+    {
+      "n": "8.2",
+      "title": "लेखक की दृष्टि: छोटे फूल में जीवन का सार",
+      "labs": ["c12-hindi-lhat1-ch08-kutaj-feel"],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-hindi-lhat1-ch08-kutaj-sort",
+      "topic": "8.1",
+      "template": "sort",
+      "title": { "en": "The kutaj way of living", "hi": "कुटज का जीने का ढंग" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "kutaj", "label": { "en": "A kutaj quality: tough in hardship", "hi": "कुटज जैसा गुण: कठिनाई में भी जीना" } },
+          { "id": "nirbhar", "label": { "en": "Depending on comfort and care", "hi": "सुविधा और देखभाल पर निर्भर रहना" } }
+        ],
+        "cards": [
+          { "id": "dararh", "text": { "en": "Staying green in a crack of dry rock", "hi": "सूखी चट्टान की दरार में भी हरा रहना" }, "bin": "kutaj", "why": { "en": "Kutaj grows on dry, rocky ground and still stays green.", "hi": "कुटज सूखी और पथरीली ज़मीन पर उगकर भी हरा रहता है।" } },
+          { "id": "phool", "text": { "en": "Blooming in harsh weather", "hi": "कठोर मौसम में भी फूल खिलाना" }, "bin": "kutaj", "why": { "en": "Its flowers come out even when the weather is harsh.", "hi": "कठोर मौसम में भी इस पर फूल आते हैं।" } },
+          { "id": "malee", "text": { "en": "Living in a garden only because a gardener waters it", "hi": "माली के पानी पर ही बाग़ में पलना" }, "bin": "nirbhar", "why": { "en": "That depends on care. It is not the self-reliance kutaj shows.", "hi": "यह देखभाल पर निर्भर है; कुटज जैसा आत्मनिर्भर स्वभाव नहीं।" } },
+          { "id": "shikayat", "text": { "en": "Living through every season without complaint", "hi": "हर मौसम में बिना शिकायत जीना" }, "bin": "kutaj", "why": { "en": "Accepting hardship with dignity is the kutaj way.", "hi": "कठिनाई को गरिमा से स्वीकारना ही कुटज का ढंग है।" } },
+          { "id": "murjhana", "text": { "en": "Wilting at the first hint of heat", "hi": "हल्की गर्मी देखते ही मुरझा जाना" }, "bin": "nirbhar", "why": { "en": "Wilting at small heat shows no toughness, which kutaj has.", "hi": "हल्की गर्मी में मुरझाना कठोरता नहीं दिखाता, जो कुटज में है।" } },
+          { "id": "jadon", "text": { "en": "Standing firm on its own roots", "hi": "अपनी जड़ों के सहारे अडिग खड़े रहना" }, "bin": "kutaj", "why": { "en": "Its own roots hold it firm, and the author admires that.", "hi": "अपनी जड़ों से वह टिका रहता है, और लेखक इसी की प्रशंसा करता है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "card:dararh", "expect": "placed:dararh", "say": { "en": "Tap the card about staying green in a dry rock, then tap its group.", "hi": "सूखी चट्टान में हरे रहने वाला कार्ड छुओ, फिर उसका समूह छुओ।" } },
+        { "kind": "predict", "say": { "en": "What is the main lesson of kutaj in the essay?", "hi": "निबंध में कुटज की मुख्य सीख क्या है?" }, "options": [ { "id": "self", "en": "To live with self-respect even in hardship", "hi": "कठिनाई में भी आत्मसम्मान से जीना" }, { "id": "ask", "en": "To ask for every comfort", "hi": "हर सुविधा माँगते रहना" }, { "id": "depend", "en": "To look to others for every need", "hi": "हर ज़रूरत के लिए दूसरों की ओर देखना" } ], "answer": "self" },
+        { "kind": "do", "target": "card:phool", "expect": "placed:phool", "say": { "en": "Now tap the card about blooming in harsh weather, then its group.", "hi": "अब कठोर मौसम में फूल खिलाने वाला कार्ड छुओ, फिर उसका समूह।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Press Check after you have placed all the cards.", "hi": "सभी कार्ड रखने के बाद जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Kutaj stands for a quality that a person can admire: it grows in harsh and dry places, flowers, and stays green through hard seasons. It does not wait for care or comfort. The cards that show toughness and self-reliance belong to kutaj; the cards that show dependence do not.", "hi": "कुटज उस गुण का प्रतीक है जिसे इंसान सराह सकता है: वह कठोर और सूखी जगहों पर उगता है, फूलता है और कठिन मौसम में भी हरा रहता है। वह देखभाल या सुविधा की राह नहीं देखता। कठोरता और आत्मनिर्भरता दिखाने वाले कार्ड कुटज के हैं; निर्भरता दिखाने वाले नहीं।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which card is NOT a kutaj quality?", "hi": "कौन-सा कार्ड कुटज का गुण नहीं है?" },
+            "options": [ { "en": "Staying green in dry rock", "hi": "सूखी चट्टान में हरे रहना" }, { "en": "Blooming in harsh weather", "hi": "कठोर मौसम में फूल खिलाना" }, { "en": "Wilting at the first heat", "hi": "पहली गर्मी में मुरझा जाना" } ],
+            "answer": 2,
+            "why": { "en": "Wilting at small heat shows no toughness. Kutaj is tough.", "hi": "हल्की गर्मी में मुरझाना कठोरता नहीं; कुटज कठोर है।" },
+            "wrong": [ { "en": "Staying green in dry rock is exactly the kutaj quality.", "hi": "सूखी चट्टान में हरे रहना ठीक कुटज का गुण है।" }, { "en": "Blooming in harsh weather is a kutaj quality.", "hi": "कठोर मौसम में फूल खिलाना कुटज का गुण है।" }, "" ]
+          }
+        ] },
+        { "kind": "explore", "say": { "en": "Think of a person you know who keeps dignity in hard times. Which kutaj quality do they show? Say why in two lines.", "hi": "एक ऐसे व्यक्ति को सोचो जो कठिन समय में भी गरिमा बनाए रखता है। उसमें कुटज का कौन-सा गुण है? दो पंक्तियों में कारण बताओ।" } }
+      ]
+    },
+    {
+      "id": "c12-hindi-lhat1-ch08-kutaj-feel",
+      "topic": "8.2",
+      "template": "reader",
+      "title": { "en": "A small flower, line by line", "hi": "एक छोटा फूल, पंक्ति-दर-पंक्ति" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "emotion-map",
+        "lang": "hi",
+        "passage": {
+          "title": { "en": "The flower on the hard rock", "hi": "कठोर चट्टान पर फूल" },
+          "lines": [
+            "लेखक एक छोटे-से फूल को देखता है, जो सूखी चट्टान पर भी खिला है।",
+            "उसे देखकर लगता है कि जीवन का सार संघर्ष में भी हार न मानना है।",
+            "जो जीवन दूसरों की दया पर नहीं टिका, वह सच्चा और ऊँचा होता है।",
+            "कठिन समय में भी मन की मौज बनाए रखना आसान नहीं होता।",
+            "फिर भी कुटज की तरह जीने का साहस मन में उतर आता है।"
+          ]
+        },
+        "emotions": ["wonder", "pride", "calm", "worry", "joy"]
+      },
+      "steps": [
+        { "kind": "do", "target": "line:0", "expect": "line:0", "say": { "en": "Tap the first line to see the writer look at the flower.", "hi": "पहली पंक्ति पर टैप करो और लेखक की नज़र से फूल को देखो।" } },
+        { "kind": "predict", "say": { "en": "What is the writer's first feeling when he sees the flower on the rock?", "hi": "चट्टान पर फूल देखकर लेखक का पहला भाव क्या है?" }, "options": [ { "id": "wonder", "en": "Wonder and admiration", "hi": "अचरज और प्रशंसा" }, { "id": "fear", "en": "Fear", "hi": "डर" }, { "id": "anger", "en": "Anger", "hi": "ग़ुस्सा" } ], "answer": "wonder" },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Give the first line its feeling and press Answer.", "hi": "पहली पंक्ति का भाव चुनो और उत्तर दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "map-done", "say": { "en": "Finish the feelings for all five lines.", "hi": "पाँचों पंक्तियों के भाव पूरे करो।" } },
+        { "kind": "explain", "say": { "en": "The writer starts with wonder at a small flower on a dry rock. He admires that such life does not give up. Then he thinks of a life that does not lean on others, which he finds noble. Hard times are not easy to keep cheerful in. Still, the spirit of kutaj moves him to courage.", "hi": "लेखक सूखी चट्टान पर एक छोटे फूल को देखकर अचरज में पड़ता है। उसे प्रशंसा है कि ऐसा जीवन हार नहीं मानता। फिर वह उस जीवन के बारे में सोचता है जो दूसरों पर नहीं टिका, और उसे वह ऊँचा लगता है। कठिन समय में मन की मौज बनाए रखना आसान नहीं, फिर भी कुटज का भाव साहस भर देता है।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "What does the writer finally feel inspired to do?", "hi": "अंत में लेखक को किस बात की प्रेरणा मिलती है?" },
+            "options": [ { "en": "To live with courage like kutaj", "hi": "कुटज की तरह साहस से जीने की" }, { "en": "To ask others for help", "hi": "दूसरों से मदद माँगने की" }, { "en": "To give up hope", "hi": "आशा छोड़ देने की" } ],
+            "answer": 0,
+            "why": { "en": "The courage of kutaj moves him in the end.", "hi": "अंत में कुटज का साहस उसे प्रेरित करता है।" },
+            "wrong": [ "", { "en": "The essay praises a life that does not depend on others, not asking for help.", "hi": "निबंध उस जीवन की सराहना करता है जो दूसरों पर निर्भर नहीं, मदद माँगने की नहीं।" }, { "en": "The essay speaks of courage, the opposite of giving up hope.", "hi": "निबंध साहस की बात करता है, आशा छोड़ने की नहीं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Read the five lines aloud, first with wonder and then with courage. Which line do you want to keep in mind?", "hi": "पाँचों पंक्तियाँ पहले अचरज से और फिर साहस से पढ़ो। कौन-सी पंक्ति तुम मन में रखना चाहोगे?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "8.1", "use": "Hook: a small flower on a dry rock", "shows": "A small flower blooms in a crack of a dry, grey rock on a hillside, a bit of green around it", "view": "Medium close, soft daylight", "right": "Dry grey stone, one small flower, green leaves", "avoid": "Faces, text, brand marks" },
+    { "n": 2, "kind": "OBJ", "topic": "8.1", "use": "A kutaj flower and leaves as a clean cut-out", "shows": "A cluster of small kutaj-style flowers with leaves, cut-out, for the sort cards", "view": "Three-quarter view, soft top-left light", "right": "Accurate leaf shape, small flowers, real colour", "avoid": "Garden-show flowers, plastic look" },
+    { "n": 3, "kind": "DIA", "topic": "8.1", "use": "Two groups: kutaj quality and dependence", "shows": "Two boxes labelled in Devanagari, one with a rock and a flower, one with a watering can", "view": "Flat, two boxes", "right": "Simple icons, clear labels", "avoid": "Clutter" },
+    { "n": 4, "kind": "SEQ", "topic": "8.2", "use": "The writer's view as five small panels", "shows": "Five panels: a flower on rock, a hillside, a person at a window, a dry sky, a flower again", "view": "Strip, 5 panels", "right": "Same flower across panels, shifts in light", "avoid": "Text inside panels, faces in close-up" },
+    { "n": 5, "kind": "SCN", "topic": "8.2", "use": "A hillside walk in the heat", "shows": "A lone walker crosses a dry hillside under a hot sky, a small flower beside the path", "view": "Wide, midday light", "right": "Dry grass, hot haze, one flower", "avoid": "Face in full view, text" }
+  ]
+}

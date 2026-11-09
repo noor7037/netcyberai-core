@@ -1,0 +1,1502 @@
+{
+ "chapter_key": "u.c11.accountancy.keac2.ch08",
+ "class": 11,
+ "subject_id": "accountancy",
+ "title": "Financial Statements - I",
+ "source": "https://ncert.nic.in/textbook/pdf/keac201.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Stakeholders and their information needs",
+   "labs": [],
+   "why_no_lab": "Who uses accounts and what each wants to know is a comparison of people, best taught by the reader’s table with photos of an owner, a banker and a tax officer."
+  },
+  {
+   "n": "8.2",
+   "title": "Capital and revenue: expenditure, receipts and why the difference matters",
+   "labs": [
+    "c11-accountancy-keac2-ch08-capital-revenue"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Financial statements and their objectives",
+   "labs": [],
+   "why_no_lab": "The two statements and their purpose are built in the labs of 8.4 and 8.6; naming them is a reading task."
+  },
+  {
+   "n": "8.4",
+   "title": "Trading and profit and loss account: the relevant items",
+   "labs": [
+    "c11-accountancy-keac2-ch08-trading-pl"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4.2",
+   "title": "Closing entries",
+   "labs": [],
+   "why_no_lab": "Closing entries transfer balances to the trading and profit and loss account, which the accounts book does as a step of its own; the reader shows the entries in a worked example."
+  },
+  {
+   "n": "8.4.3",
+   "title": "Gross profit and net profit",
+   "labs": [
+    "c11-accountancy-keac2-ch08-gross-net"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4.4",
+   "title": "Cost of goods sold and closing stock",
+   "labs": [
+    "c11-accountancy-keac2-ch08-cost-of-goods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Operating profit (EBIT)",
+   "labs": [],
+   "why_no_lab": "Operating profit is one subtraction from net profit, shown in the reader with a short worked statement; the accounts book does not separate operating and non-operating items."
+  },
+  {
+   "n": "8.6",
+   "title": "Balance sheet: preparing it and its relevant items",
+   "labs": [
+    "c11-accountancy-keac2-ch08-balance-sheet"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6.3",
+   "title": "Marshalling and grouping of assets and liabilities",
+   "labs": [],
+   "why_no_lab": "The order of liquidity and permanence is learnt by reading a laid-out balance sheet in the reader; the balance sheet lab ends by reading its assets in that order."
+  },
+  {
+   "n": "8.7",
+   "title": "Opening entry",
+   "labs": [],
+   "why_no_lab": "The opening entry is one compound entry with many debits and credits, which the journal here (one debit and one credit per entry) cannot show; the reader works it."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-accountancy-keac2-ch08-capital-revenue",
+   "topic": "8.2",
+   "template": "ledger",
+   "title": {
+    "en": "Capital or revenue?",
+    "hi": "पूँजीगत या आयगत?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "final-accounts",
+    "business": {
+     "en": "Meera Electronics",
+     "hi": "मीरा इलेक्ट्रॉनिक्स"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-04-01",
+      "text": {
+       "en": "Meera started the shop with cash",
+       "hi": "मीरा ने नकद लगाकर दुकान शुरू की"
+      },
+      "amount": 100000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2025-04-03",
+      "text": {
+       "en": "Bought a glass display counter for cash",
+       "hi": "नकद में काँच का डिस्प्ले काउंटर ख़रीदा"
+      },
+      "amount": 30000,
+      "debit": "furniture",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2025-04-10",
+      "text": {
+       "en": "Took a loan from the bank",
+       "hi": "बैंक से ऋण लिया"
+      },
+      "amount": 50000,
+      "debit": "bank",
+      "credit": "loan"
+     },
+     {
+      "id": "t4",
+      "date": "2025-05-15",
+      "text": {
+       "en": "Bought fans and mixers for resale, for cash",
+       "hi": "बेचने के लिए पंखे और मिक्सर नकद ख़रीदे"
+      },
+      "amount": 60000,
+      "debit": "purchases",
+      "credit": "cash"
+     },
+     {
+      "id": "t5",
+      "date": "2025-09-30",
+      "text": {
+       "en": "Paid for repairs to the display counter",
+       "hi": "डिस्प्ले काउंटर की मरम्मत का भुगतान किया"
+      },
+      "amount": 2000,
+      "debit": "repairs",
+      "credit": "cash"
+     },
+     {
+      "id": "t6",
+      "date": "2026-02-28",
+      "text": {
+       "en": "Sold goods for cash during the year",
+       "hi": "साल भर में नकद माल बेचा"
+      },
+      "amount": 90000,
+      "debit": "cash",
+      "credit": "sales"
+     },
+     {
+      "id": "t7",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Paid salaries to the shop assistant",
+       "hi": "दुकान सहायक को वेतन दिया"
+      },
+      "amount": 18000,
+      "debit": "salaries",
+      "credit": "cash"
+     }
+    ],
+    "closingStock": 10000
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "account:furniture",
+     "expect": "chose:furniture",
+     "say": {
+      "en": "Tap the Furniture balance: the display counter Meera will use for many years.",
+      "hi": "फ़र्नीचर के शेष पर टैप करो: वह डिस्प्ले काउंटर जिसे मीरा कई साल इस्तेमाल करेगी।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The ₹2,000 repair only keeps the same counter working this year. Where will Repairs go?",
+      "hi": "₹2,000 की मरम्मत बस उसी काउंटर को इस साल चालू रखती है। मरम्मत कहाँ जाएगी?"
+     },
+     "options": [
+      {
+       "id": "trading",
+       "en": "Trading account",
+       "hi": "व्यापार खाता"
+      },
+      {
+       "id": "pl",
+       "en": "Profit and loss account",
+       "hi": "लाभ-हानि खाता"
+      },
+      {
+       "id": "bs",
+       "en": "Balance sheet",
+       "hi": "तुलन पत्र"
+      }
+     ],
+     "answer": "pl"
+    },
+    {
+     "kind": "do",
+     "target": "account:repairs",
+     "expect": "chose:repairs",
+     "say": {
+      "en": "Now tap the Repairs balance.",
+      "hi": "अब मरम्मत के शेष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:loan",
+     "expect": "chose:loan",
+     "say": {
+      "en": "Tap the Bank loan balance: money that came in but must be paid back.",
+      "hi": "बैंक ऋण के शेष पर टैप करो: ऐसा पैसा जो आया पर लौटाना है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The counter helps the shop for many years, so it is capital expenditure: an asset in the balance sheet. The repair helps only this year, so it is revenue expenditure: an expense in the profit and loss account. The loan must be returned, so it is a capital receipt and a liability; the sales are revenue receipts and go to the trading account.",
+      "hi": "काउंटर कई साल दुकान के काम आएगा, इसलिए यह पूँजीगत व्यय है: तुलन पत्र में एक परिसंपत्ति। मरम्मत सिर्फ़ इस साल काम आती है, इसलिए यह आयगत व्यय है: लाभ-हानि खाते में एक व्यय। ऋण लौटाना है, इसलिए यह पूँजीगत प्राप्ति और देयता है; विक्रय आयगत प्राप्ति है और व्यापार खाते में जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The real net profit here is ₹20,000. If the ₹2,000 repair had been wrongly added to the Furniture account, what profit would the books show?",
+        "hi": "यहाँ सही शुद्ध लाभ ₹20,000 है। अगर ₹2,000 की मरम्मत ग़लती से फ़र्नीचर खाते में जोड़ दी जाती, तो पुस्तकें कितना लाभ दिखातीं?"
+       },
+       "options": [
+        {
+         "en": "₹22,000, too much",
+         "hi": "₹22,000, ज़्यादा"
+        },
+        {
+         "en": "₹18,000, too little",
+         "hi": "₹18,000, कम"
+        },
+        {
+         "en": "₹20,000, no change",
+         "hi": "₹20,000, कोई बदलाव नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The expense would vanish from the profit and loss account, so profit rises by ₹2,000 and the asset is shown too high. Wrong classification gives a wrong profit.",
+        "hi": "व्यय लाभ-हानि खाते से ग़ायब हो जाता, इसलिए लाभ ₹2,000 बढ़ जाता और परिसंपत्ति भी ज़्यादा दिखती। ग़लत वर्गीकरण से लाभ ग़लत आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Profit falls only when an expense is added. Here an expense is taken out of the profit and loss account, so profit goes up.",
+         "hi": "लाभ तभी घटता है जब कोई व्यय जुड़ता है। यहाँ व्यय लाभ-हानि खाते से निकल जाता है, इसलिए लाभ बढ़ता है।"
+        },
+        {
+         "en": "The repair would no longer be charged against this year’s income, so the profit cannot stay the same.",
+         "hi": "मरम्मत इस साल की आय से नहीं घटती, इसलिए लाभ वही नहीं रह सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Meera sells an old cash register of the shop for ₹3,000. What kind of receipt is this?",
+        "hi": "मीरा दुकान का एक पुराना कैश रजिस्टर ₹3,000 में बेचती है। यह किस तरह की प्राप्ति है?"
+       },
+       "options": [
+        {
+         "en": "A revenue receipt, like sales",
+         "hi": "आयगत प्राप्ति, विक्रय की तरह"
+        },
+        {
+         "en": "A capital receipt",
+         "hi": "पूँजीगत प्राप्ति"
+        },
+        {
+         "en": "Not a receipt at all",
+         "hi": "यह प्राप्ति ही नहीं है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Money from selling a fixed asset is a capital receipt; only the sale of goods the shop deals in is a revenue receipt.",
+        "hi": "स्थायी परिसंपत्ति बेचने से मिला पैसा पूँजीगत प्राप्ति है; केवल उस माल की बिक्री आयगत प्राप्ति है जिसका दुकान व्यापार करती है।"
+       },
+       "wrong": [
+        {
+         "en": "Meera does not trade in cash registers; it was a fixed asset of the shop, so this is not ordinary sales.",
+         "hi": "मीरा कैश रजिस्टर का व्यापार नहीं करती; यह दुकान की स्थायी परिसंपत्ति थी, इसलिए यह सामान्य विक्रय नहीं है।"
+        },
+        "",
+        {
+         "en": "Cash really comes in, so it is a receipt; the question is only which kind.",
+         "hi": "नकद सच में आता है, इसलिए यह प्राप्ति है; सवाल बस इतना है कि किस तरह की।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place every other balance, then tap “Find the profit”. Check: is the gross profit ₹40,000 and the net profit ₹20,000? Which side of the balance sheet shows the loan?",
+      "hi": "बाक़ी हर शेष को सही जगह रखो, फिर “लाभ निकालो” दबाओ। जाँचो: क्या सकल लाभ ₹40,000 और शुद्ध लाभ ₹20,000 है? तुलन पत्र के किस पक्ष में ऋण दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac2-ch08-trading-pl",
+   "topic": "8.4",
+   "template": "ledger",
+   "title": {
+    "en": "Trading or profit and loss?",
+    "hi": "व्यापार या लाभ-हानि?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "final-accounts",
+    "business": {
+     "en": "Kaveri Spices",
+     "hi": "कावेरी मसाले"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-04-01",
+      "text": {
+       "en": "Started the spice unit with cash",
+       "hi": "नकद लगाकर मसाला इकाई शुरू की"
+      },
+      "amount": 80000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2025-04-05",
+      "text": {
+       "en": "Bought dry chillies and turmeric for cash",
+       "hi": "नकद में सूखी मिर्च और हल्दी ख़रीदी"
+      },
+      "amount": 50000,
+      "debit": "purchases",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2025-04-06",
+      "text": {
+       "en": "Paid the tempo hire to bring the goods in",
+       "hi": "माल लाने का टेम्पो भाड़ा दिया"
+      },
+      "amount": 1000,
+      "debit": "carriage-in",
+      "credit": "cash"
+     },
+     {
+      "id": "t4",
+      "date": "2025-04-30",
+      "text": {
+       "en": "Paid wages to the grinding workers",
+       "hi": "पिसाई करने वाले मज़दूरों को मज़दूरी दी"
+      },
+      "amount": 6000,
+      "debit": "wages",
+      "credit": "cash"
+     },
+     {
+      "id": "t5",
+      "date": "2025-06-10",
+      "text": {
+       "en": "Returned damp turmeric to the supplier for cash",
+       "hi": "सीली हल्दी विक्रेता को लौटाई, नकद वापस मिला"
+      },
+      "amount": 2000,
+      "debit": "cash",
+      "credit": "purchase-returns"
+     },
+     {
+      "id": "t6",
+      "date": "2025-12-20",
+      "text": {
+       "en": "Sold spice packets for cash during the year",
+       "hi": "साल भर में मसाले के पैकेट नकद बेचे"
+      },
+      "amount": 85000,
+      "debit": "cash",
+      "credit": "sales"
+     },
+     {
+      "id": "t7",
+      "date": "2026-01-15",
+      "text": {
+       "en": "Paid courier charges to deliver to customers",
+       "hi": "ग्राहकों तक माल पहुँचाने का कूरियर ख़र्च दिया"
+      },
+      "amount": 1500,
+      "debit": "carriage-out",
+      "credit": "cash"
+     },
+     {
+      "id": "t8",
+      "date": "2026-02-10",
+      "text": {
+       "en": "Paid for a newspaper advertisement",
+       "hi": "अख़बार में विज्ञापन का भुगतान किया"
+      },
+      "amount": 3000,
+      "debit": "advertisement",
+      "credit": "cash"
+     },
+     {
+      "id": "t9",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Received commission for selling a friend’s pickles",
+       "hi": "मित्र के अचार बिकवाने का कमीशन मिला"
+      },
+      "amount": 2500,
+      "debit": "cash",
+      "credit": "commission"
+     }
+    ],
+    "closingStock": 8000
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "account:wages",
+     "expect": "chose:wages",
+     "say": {
+      "en": "Tap the Wages balance: pay for the workers who grind the spices.",
+      "hi": "मज़दूरी के शेष पर टैप करो: मसाले पीसने वाले मज़दूरों का भुगतान।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:carriage-in",
+     "expect": "chose:carriage-in",
+     "say": {
+      "en": "Tap Carriage inwards: the tempo hire to bring the goods in.",
+      "hi": "आवक ढुलाई पर टैप करो: माल अंदर लाने का टेम्पो भाड़ा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Courier charges to send packets to customers come after the goods are ready and sold. Where will Carriage outwards go?",
+      "hi": "ग्राहकों को पैकेट भेजने का कूरियर ख़र्च माल तैयार होने और बिकने के बाद आता है। जावक ढुलाई कहाँ जाएगी?"
+     },
+     "options": [
+      {
+       "id": "trading",
+       "en": "Trading account",
+       "hi": "व्यापार खाता"
+      },
+      {
+       "id": "pl",
+       "en": "Profit and loss account",
+       "hi": "लाभ-हानि खाता"
+      },
+      {
+       "id": "bs",
+       "en": "Balance sheet",
+       "hi": "तुलन पत्र"
+      }
+     ],
+     "answer": "pl"
+    },
+    {
+     "kind": "do",
+     "target": "account:carriage-out",
+     "expect": "chose:carriage-out",
+     "say": {
+      "en": "Now tap the Carriage outwards balance.",
+      "hi": "अब जावक ढुलाई के शेष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Costs of buying the goods and making them ready to sell (purchases, carriage inwards, wages) are direct expenses: they go to the trading account and decide the gross profit. Costs of selling, advertising and running the office are indirect expenses: they go to the profit and loss account. Other incomes, like commission, are credited there too.",
+      "hi": "माल ख़रीदने और उसे बिकने लायक बनाने के ख़र्च (क्रय, आवक ढुलाई, मज़दूरी) प्रत्यक्ष व्यय हैं: ये व्यापार खाते में जाते हैं और सकल लाभ तय करते हैं। बेचने, विज्ञापन और दफ़्तर चलाने के ख़र्च अप्रत्यक्ष व्यय हैं: ये लाभ-हानि खाते में जाते हैं। कमीशन जैसी दूसरी आय भी वहीं जमा होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Purchases are ₹50,000 and purchases returns ₹2,000. What does the trading account show as net purchases?",
+        "hi": "क्रय ₹50,000 और क्रय वापसी ₹2,000 है। व्यापार खाता शुद्ध क्रय कितना दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "₹48,000",
+         "hi": "48,000 रुपये"
+        },
+        {
+         "en": "₹52,000",
+         "hi": "52,000 रुपये"
+        },
+        {
+         "en": "₹50,000, with ₹2,000 shown as income",
+         "hi": "50,000 रुपये, और 2,000 रुपये आय के रूप में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Goods sent back were never really kept, so returns are taken away from purchases inside the trading account.",
+        "hi": "लौटाया गया माल असल में रखा ही नहीं गया, इसलिए वापसी को व्यापार खाते में ही क्रय से घटाया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Returns lower the goods bought; adding them would count goods the business no longer has.",
+         "hi": "वापसी से ख़रीदा गया माल घटता है; इसे जोड़ने से वह माल गिना जाएगा जो अब व्यापार के पास नहीं है।"
+        },
+        {
+         "en": "A return is not an income; it is shown as a deduction from purchases.",
+         "hi": "वापसी कोई आय नहीं है; इसे क्रय में से घटाकर दिखाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these goes to the profit and loss account?",
+        "hi": "इनमें से कौन-सा लाभ-हानि खाते में जाता है?"
+       },
+       "options": [
+        {
+         "en": "Wages of the grinding workers",
+         "hi": "पिसाई मज़दूरों की मज़दूरी"
+        },
+        {
+         "en": "Advertisement in the newspaper",
+         "hi": "अख़बार में विज्ञापन"
+        },
+        {
+         "en": "Tempo hire to bring the chillies in",
+         "hi": "मिर्च लाने का टेम्पो भाड़ा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Advertising helps to sell; it is an indirect expense of running the business.",
+        "hi": "विज्ञापन बेचने में मदद करता है; यह व्यापार चलाने का अप्रत्यक्ष व्यय है।"
+       },
+       "wrong": [
+        {
+         "en": "These workers make the goods ready to sell, so their wages are a direct expense in the trading account.",
+         "hi": "ये मज़दूर माल को बिकने लायक बनाते हैं, इसलिए उनकी मज़दूरी व्यापार खाते का प्रत्यक्ष व्यय है।"
+        },
+        "",
+        {
+         "en": "Bringing goods in is part of their cost, so carriage inwards goes to the trading account.",
+         "hi": "माल अंदर लाना उसकी लागत का हिस्सा है, इसलिए आवक ढुलाई व्यापार खाते में जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest and tap “Find the profit”. Is the gross profit ₹38,000 and the net profit ₹36,000? Why is the net profit only a little lower here?",
+      "hi": "बाक़ी शेष रखो और “लाभ निकालो” दबाओ। क्या सकल लाभ ₹38,000 और शुद्ध लाभ ₹36,000 है? यहाँ शुद्ध लाभ थोड़ा ही कम क्यों है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac2-ch08-gross-net",
+   "topic": "8.4.3",
+   "template": "ledger",
+   "title": {
+    "en": "Gross profit and net profit",
+    "hi": "सकल लाभ और शुद्ध लाभ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "final-accounts",
+    "business": {
+     "en": "Sharma Shoe House",
+     "hi": "शर्मा शू हाउस"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-04-01",
+      "text": {
+       "en": "Started the shop with cash",
+       "hi": "नकद लगाकर दुकान शुरू की"
+      },
+      "amount": 60000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2025-04-08",
+      "text": {
+       "en": "Bought school shoes on credit from a supplier",
+       "hi": "विक्रेता से उधार में स्कूल के जूते ख़रीदे"
+      },
+      "amount": 40000,
+      "debit": "purchases",
+      "credit": "creditors"
+     },
+     {
+      "id": "t3",
+      "date": "2025-06-30",
+      "text": {
+       "en": "Sold shoes for cash in the school season",
+       "hi": "स्कूल के मौसम में नकद जूते बेचे"
+      },
+      "amount": 55000,
+      "debit": "cash",
+      "credit": "sales"
+     },
+     {
+      "id": "t4",
+      "date": "2025-07-05",
+      "text": {
+       "en": "Paid the supplier part of the dues",
+       "hi": "विक्रेता को बकाये का कुछ हिस्सा चुकाया"
+      },
+      "amount": 30000,
+      "debit": "creditors",
+      "credit": "cash"
+     },
+     {
+      "id": "t5",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Paid shop rent for the year",
+       "hi": "साल भर का दुकान किराया दिया"
+      },
+      "amount": 6000,
+      "debit": "rent",
+      "credit": "cash"
+     },
+     {
+      "id": "t6",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Paid the electricity bill for the year",
+       "hi": "साल भर का बिजली बिल भरा"
+      },
+      "amount": 2000,
+      "debit": "electricity",
+      "credit": "cash"
+     }
+    ],
+    "closingStock": 5000
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "account:purchases",
+     "expect": "chose:purchases",
+     "say": {
+      "en": "Tap the Purchases balance.",
+      "hi": "क्रय के शेष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:sales",
+     "expect": "chose:sales",
+     "say": {
+      "en": "Tap the Sales balance.",
+      "hi": "विक्रय के शेष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sales ₹55,000, purchases ₹40,000, unsold shoes ₹5,000. What will the gross profit be?",
+      "hi": "विक्रय ₹55,000, क्रय ₹40,000, बिना बिके जूते ₹5,000। सकल लाभ कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "g20",
+       "en": "₹20,000",
+       "hi": "20,000 रुपये"
+      },
+      {
+       "id": "g15",
+       "en": "₹15,000",
+       "hi": "15,000 रुपये"
+      },
+      {
+       "id": "g12",
+       "en": "₹12,000",
+       "hi": "12,000 रुपये"
+      }
+     ],
+     "answer": "g20"
+    },
+    {
+     "kind": "do",
+     "target": "account:rent",
+     "expect": "chose:rent",
+     "say": {
+      "en": "Tap the Rent balance.",
+      "hi": "किराया के शेष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Gross profit is what the trading account leaves: sales minus the cost of the goods sold, ₹55,000 − (₹40,000 − ₹5,000) = ₹20,000. The profit and loss account then takes away the costs of running the shop, rent and electricity, leaving the net profit of ₹12,000. Gross profit judges the buying and selling; net profit judges the whole business.",
+      "hi": "सकल लाभ वह है जो व्यापार खाता बचाता है: विक्रय में से बेचे गए माल की लागत घटाओ, ₹55,000 − (₹40,000 − ₹5,000) = ₹20,000। फिर लाभ-हानि खाता दुकान चलाने के ख़र्च, किराया और बिजली, घटाता है और ₹12,000 शुद्ध लाभ बचता है। सकल लाभ ख़रीद-बिक्री को परखता है; शुद्ध लाभ पूरे व्यापार को।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Next year rent rises but sales, purchases and stock stay the same. What changes?",
+        "hi": "अगले साल किराया बढ़ता है पर विक्रय, क्रय और स्टॉक वही रहते हैं। क्या बदलेगा?"
+       },
+       "options": [
+        {
+         "en": "Only the net profit falls",
+         "hi": "केवल शुद्ध लाभ घटेगा"
+        },
+        {
+         "en": "Only the gross profit falls",
+         "hi": "केवल सकल लाभ घटेगा"
+        },
+        {
+         "en": "Both fall by the same amount",
+         "hi": "दोनों उतने ही घटेंगे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rent is an indirect expense in the profit and loss account, which comes after the gross profit.",
+        "hi": "किराया लाभ-हानि खाते का अप्रत्यक्ष व्यय है, जो सकल लाभ के बाद आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Gross profit uses only sales and the cost of goods; rent is not part of it.",
+         "hi": "सकल लाभ में केवल विक्रय और माल की लागत आती है; किराया उसका हिस्सा नहीं है।"
+        },
+        {
+         "en": "The gross profit does not see rent at all, so it stays the same; only the net profit falls.",
+         "hi": "सकल लाभ में किराया आता ही नहीं, इसलिए वह वही रहता है; केवल शुद्ध लाभ घटता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where does the net profit of ₹12,000 finally go?",
+        "hi": "₹12,000 का शुद्ध लाभ अंत में कहाँ जाता है?"
+       },
+       "options": [
+        {
+         "en": "Added to capital in the balance sheet",
+         "hi": "तुलन पत्र में पूँजी में जुड़ता है"
+        },
+        {
+         "en": "Into the cash box",
+         "hi": "गल्ले में"
+        },
+        {
+         "en": "Paid to the supplier",
+         "hi": "विक्रेता को दिया जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Profit belongs to the owner, so it is added to the capital on the liabilities side.",
+        "hi": "लाभ स्वामी का होता है, इसलिए यह देयता पक्ष में पूँजी में जोड़ा जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Profit is not a pile of cash: the cash here is ₹77,000, a different figure, because cash also moved for capital and the supplier.",
+         "hi": "लाभ नकद का ढेर नहीं है: यहाँ नकद ₹77,000 है, अलग आँकड़ा, क्योंकि पूँजी और विक्रेता के कारण भी नकद बदला।"
+        },
+        {
+         "en": "The supplier is owed only for goods bought; the profit is the owner’s.",
+         "hi": "विक्रेता का बकाया सिर्फ़ ख़रीदे माल का है; लाभ स्वामी का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the other balances and tap “Find the profit”. Then compare the gross profit line with the net profit line. Which costs sit between them?",
+      "hi": "बाक़ी शेष रखो और “लाभ निकालो” दबाओ। फिर सकल लाभ और शुद्ध लाभ की पंक्तियों की तुलना करो। उनके बीच कौन-से ख़र्च आते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac2-ch08-cost-of-goods",
+   "topic": "8.4.4",
+   "template": "ledger",
+   "title": {
+    "en": "Cost of goods sold and closing stock",
+    "hi": "बेचे गए माल की लागत और अंतिम स्टॉक"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "final-accounts",
+    "business": {
+     "en": "Gupta Kirana Store",
+     "hi": "गुप्ता किराना स्टोर"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-04-01",
+      "text": {
+       "en": "Started the store with cash",
+       "hi": "नकद लगाकर दुकान शुरू की"
+      },
+      "amount": 50000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2025-04-02",
+      "text": {
+       "en": "Bought rice, dal and oil for cash",
+       "hi": "नकद में चावल, दाल और तेल ख़रीदा"
+      },
+      "amount": 45000,
+      "debit": "purchases",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2025-04-02",
+      "text": {
+       "en": "Paid the hand-cart puller to bring the goods",
+       "hi": "माल लाने के लिए ठेले वाले को भाड़ा दिया"
+      },
+      "amount": 1000,
+      "debit": "carriage-in",
+      "credit": "cash"
+     },
+     {
+      "id": "t4",
+      "date": "2026-03-20",
+      "text": {
+       "en": "Sold groceries for cash during the year",
+       "hi": "साल भर में नकद किराना बेचा"
+      },
+      "amount": 48000,
+      "debit": "cash",
+      "credit": "sales"
+     },
+     {
+      "id": "t5",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Paid the helper’s salary for the year",
+       "hi": "सहायक का साल भर का वेतन दिया"
+      },
+      "amount": 4000,
+      "debit": "salaries",
+      "credit": "cash"
+     }
+    ],
+    "closingStock": 12000
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "account:purchases",
+     "expect": "chose:purchases",
+     "say": {
+      "en": "Tap the Purchases balance.",
+      "hi": "क्रय के शेष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On 31 March, groceries worth ₹12,000 are still on the shelves. If we forgot them, what would happen to the gross profit?",
+      "hi": "31 मार्च को ₹12,000 का किराना अभी भी शेल्फ़ पर है। अगर हम इसे भूल जाएँ, तो सकल लाभ का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "low",
+       "en": "It would look ₹12,000 too low",
+       "hi": "यह ₹12,000 कम दिखेगा"
+      },
+      {
+       "id": "high",
+       "en": "It would look ₹12,000 too high",
+       "hi": "यह ₹12,000 ज़्यादा दिखेगा"
+      },
+      {
+       "id": "same",
+       "en": "No change",
+       "hi": "कोई बदलाव नहीं"
+      }
+     ],
+     "answer": "low"
+    },
+    {
+     "kind": "do",
+     "target": "account:closing-stock",
+     "expect": "chose:closing-stock",
+     "say": {
+      "en": "Tap Closing stock: the unsold groceries.",
+      "hi": "अंतिम स्टॉक पर टैप करो: बिना बिका किराना।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes. It may go to two places.",
+      "hi": "चुनो कि यह कहाँ जाएगा। यह दो जगह जा सकता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The trading account should charge only the goods that were sold. Cost of goods sold = purchases + direct expenses − closing stock = ₹45,000 + ₹1,000 − ₹12,000 = ₹34,000. So closing stock is credited in the trading account, and because the store still owns it, it is also an asset in the balance sheet.",
+      "hi": "व्यापार खाते में केवल बिके हुए माल की लागत लगनी चाहिए। बेचे गए माल की लागत = क्रय + प्रत्यक्ष व्यय − अंतिम स्टॉक = ₹45,000 + ₹1,000 − ₹12,000 = ₹34,000। इसलिए अंतिम स्टॉक व्यापार खाते में जमा होता है, और दुकान के पास होने से यह तुलन पत्र में परिसंपत्ति भी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Sales are ₹48,000 and the cost of goods sold is ₹34,000. What is the gross profit?",
+        "hi": "विक्रय ₹48,000 और बेचे गए माल की लागत ₹34,000 है। सकल लाभ कितना है?"
+       },
+       "options": [
+        {
+         "en": "₹14,000",
+         "hi": "14,000 रुपये"
+        },
+        {
+         "en": "₹2,000",
+         "hi": "2,000 रुपये"
+        },
+        {
+         "en": "₹10,000",
+         "hi": "10,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gross profit = sales − cost of goods sold = ₹48,000 − ₹34,000 = ₹14,000.",
+        "hi": "सकल लाभ = विक्रय − बेचे गए माल की लागत = ₹48,000 − ₹34,000 = ₹14,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹2,000 comes from taking all the goods bought as sold; the ₹12,000 still on the shelves was not sold.",
+         "hi": "₹2,000 तब आता है जब सारा ख़रीदा माल बिका मान लें; शेल्फ़ पर पड़ा ₹12,000 का माल बिका नहीं।"
+        },
+        {
+         "en": "₹10,000 is the net profit, after the helper’s salary; the gross profit comes before that.",
+         "hi": "₹10,000 सहायक के वेतन के बाद का शुद्ध लाभ है; सकल लाभ उससे पहले आता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Next year this ₹12,000 of stock is on the shelves on 1 April. What is it called then?",
+        "hi": "अगले साल यही ₹12,000 का स्टॉक 1 अप्रैल को शेल्फ़ पर है। तब इसे क्या कहेंगे?"
+       },
+       "options": [
+        {
+         "en": "Opening stock",
+         "hi": "प्रारंभिक स्टॉक"
+        },
+        {
+         "en": "Purchases",
+         "hi": "क्रय"
+        },
+        {
+         "en": "Sales returns",
+         "hi": "विक्रय वापसी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This year’s closing stock is next year’s opening stock, and it is debited in next year’s trading account.",
+        "hi": "इस साल का अंतिम स्टॉक अगले साल का प्रारंभिक स्टॉक है, और यह अगले साल के व्यापार खाते में नाम होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing new is bought on 1 April; the goods are carried forward from last year.",
+         "hi": "1 अप्रैल को कुछ नया नहीं ख़रीदा गया; माल पिछले साल से आगे लाया गया है।"
+        },
+        {
+         "en": "No customer returned these goods; they were simply not sold yet.",
+         "hi": "किसी ग्राहक ने यह माल नहीं लौटाया; यह बस अभी तक बिका नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest and tap “Find the profit”. Find closing stock in two places: the credit side of the trading account and the assets in the balance sheet.",
+      "hi": "बाक़ी शेष रखो और “लाभ निकालो” दबाओ। अंतिम स्टॉक को दो जगह खोजो: व्यापार खाते के जमा पक्ष में और तुलन पत्र की परिसंपत्तियों में।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac2-ch08-balance-sheet",
+   "topic": "8.6",
+   "template": "ledger",
+   "title": {
+    "en": "Building the balance sheet",
+    "hi": "तुलन पत्र बनाना"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "final-accounts",
+    "business": {
+     "en": "Fatima Tailors",
+     "hi": "फ़ातिमा टेलर्स"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-04-01",
+      "text": {
+       "en": "Fatima started the unit with money in the bank",
+       "hi": "फ़ातिमा ने बैंक में पैसा डालकर इकाई शुरू की"
+      },
+      "amount": 150000,
+      "debit": "bank",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2025-04-02",
+      "text": {
+       "en": "Bought sewing machines by cheque",
+       "hi": "चेक से सिलाई मशीनें ख़रीदीं"
+      },
+      "amount": 60000,
+      "debit": "machinery",
+      "credit": "bank"
+     },
+     {
+      "id": "t3",
+      "date": "2025-04-10",
+      "text": {
+       "en": "Bought cloth on credit from a textile trader",
+       "hi": "कपड़ा व्यापारी से उधार में कपड़ा ख़रीदा"
+      },
+      "amount": 70000,
+      "debit": "purchases",
+      "credit": "creditors"
+     },
+     {
+      "id": "t4",
+      "date": "2025-08-15",
+      "text": {
+       "en": "Sold school uniforms on credit to a school",
+       "hi": "एक स्कूल को उधार में स्कूल यूनिफ़ॉर्म बेचीं"
+      },
+      "amount": 90000,
+      "debit": "debtors",
+      "credit": "sales"
+     },
+     {
+      "id": "t5",
+      "date": "2025-10-01",
+      "text": {
+       "en": "The school paid part of its dues into the bank",
+       "hi": "स्कूल ने बकाये का कुछ हिस्सा बैंक में जमा किया"
+      },
+      "amount": 60000,
+      "debit": "bank",
+      "credit": "debtors"
+     },
+     {
+      "id": "t6",
+      "date": "2025-11-05",
+      "text": {
+       "en": "Paid the textile trader part of the dues",
+       "hi": "कपड़ा व्यापारी को बकाये का कुछ हिस्सा चुकाया"
+      },
+      "amount": 50000,
+      "debit": "creditors",
+      "credit": "bank"
+     },
+     {
+      "id": "t7",
+      "date": "2026-01-10",
+      "text": {
+       "en": "Took a loan from the bank",
+       "hi": "बैंक से ऋण लिया"
+      },
+      "amount": 40000,
+      "debit": "bank",
+      "credit": "loan"
+     },
+     {
+      "id": "t8",
+      "date": "2026-02-01",
+      "text": {
+       "en": "Fatima withdrew money for her home",
+       "hi": "फ़ातिमा ने घर के लिए पैसा निकाला"
+      },
+      "amount": 10000,
+      "debit": "drawings",
+      "credit": "bank"
+     },
+     {
+      "id": "t9",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Paid wages to the tailors",
+       "hi": "दर्ज़ियों को मज़दूरी दी"
+      },
+      "amount": 15000,
+      "debit": "wages",
+      "credit": "bank"
+     }
+    ],
+    "closingStock": 20000
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "account:debtors",
+     "expect": "chose:debtors",
+     "say": {
+      "en": "Tap the Debtors balance: the school still owes ₹30,000.",
+      "hi": "देनदार के शेष पर टैप करो: स्कूल पर अभी ₹30,000 बाक़ी हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:creditors",
+     "expect": "chose:creditors",
+     "say": {
+      "en": "Tap the Creditors balance: Fatima still owes the trader ₹20,000.",
+      "hi": "लेनदार के शेष पर टैप करो: फ़ातिमा को व्यापारी के ₹20,000 देने हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Fatima took ₹10,000 for her home. It is not a cost of running the business. Where do Drawings go?",
+      "hi": "फ़ातिमा ने घर के लिए ₹10,000 लिए। यह व्यापार चलाने का ख़र्च नहीं है। आहरण कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "pl",
+       "en": "Profit and loss account, as an expense",
+       "hi": "लाभ-हानि खाते में, व्यय के रूप में"
+      },
+      {
+       "id": "bs",
+       "en": "Balance sheet, taken away from capital",
+       "hi": "तुलन पत्र में, पूँजी में से घटाकर"
+      },
+      {
+       "id": "trading",
+       "en": "Trading account",
+       "hi": "व्यापार खाता"
+      }
+     ],
+     "answer": "bs"
+    },
+    {
+     "kind": "do",
+     "target": "account:drawings",
+     "expect": "chose:drawings",
+     "say": {
+      "en": "Now tap the Drawings balance.",
+      "hi": "अब आहरण के शेष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The balance sheet shows the position on 31 March. Assets are on one side: bank, machinery, debtors and closing stock. On the other side are what the business owes: creditors and the loan, and the owner’s capital. Drawings are taken away from capital and the net profit is added. Both sides must show the same total.",
+      "hi": "तुलन पत्र 31 मार्च की स्थिति दिखाता है। एक ओर परिसंपत्तियाँ हैं: बैंक, मशीनरी, देनदार और अंतिम स्टॉक। दूसरी ओर वह है जो व्यापार को देना है: लेनदार और ऋण, और स्वामी की पूँजी। आहरण पूँजी में से घटता है और शुद्ध लाभ जुड़ता है। दोनों पक्षों का योग बराबर होना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Capital ₹1,50,000, drawings ₹10,000, net profit ₹25,000. What capital does the balance sheet show at the end?",
+        "hi": "पूँजी ₹1,50,000, आहरण ₹10,000, शुद्ध लाभ ₹25,000। तुलन पत्र अंत में कितनी पूँजी दिखाएगा?"
+       },
+       "options": [
+        {
+         "en": "₹1,65,000",
+         "hi": "1,65,000 रुपये"
+        },
+        {
+         "en": "₹1,85,000",
+         "hi": "1,85,000 रुपये"
+        },
+        {
+         "en": "₹1,40,000",
+         "hi": "1,40,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹1,50,000 + ₹25,000 profit − ₹10,000 drawings = ₹1,65,000.",
+        "hi": "₹1,50,000 + ₹25,000 लाभ − ₹10,000 आहरण = ₹1,65,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Drawings lower the owner’s capital, so they are taken away, not added.",
+         "hi": "आहरण स्वामी की पूँजी घटाता है, इसलिए इसे घटाते हैं, जोड़ते नहीं।"
+        },
+        {
+         "en": "This forgets the year’s profit, which belongs to the owner and is added to capital.",
+         "hi": "इसमें साल का लाभ छूट गया, जो स्वामी का है और पूँजी में जुड़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why must the two sides of the balance sheet agree?",
+        "hi": "तुलन पत्र के दोनों पक्ष बराबर क्यों होने चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Every asset is funded either by the owner or by outsiders",
+         "hi": "हर परिसंपत्ति या तो स्वामी के पैसे से है या बाहर वालों के"
+        },
+        {
+         "en": "The bank checks it",
+         "hi": "बैंक इसे जाँचता है"
+        },
+        {
+         "en": "Profit is always zero",
+         "hi": "लाभ हमेशा शून्य होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Assets = liabilities + capital: this is the accounting equation, so the totals always match when the books are right.",
+        "hi": "परिसंपत्तियाँ = देयताएँ + पूँजी: यही लेखांकन समीकरण है, इसलिए सही हिसाब में योग हमेशा बराबर होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sides agree because of double entry, not because anyone outside checks them.",
+         "hi": "दोनों पक्ष दोहरा लेखा के कारण बराबर होते हैं, किसी बाहर वाले की जाँच के कारण नहीं।"
+        },
+        {
+         "en": "Here the profit is ₹25,000; the sides still agree because the profit is added to capital.",
+         "hi": "यहाँ लाभ ₹25,000 है; फिर भी पक्ष बराबर हैं क्योंकि लाभ पूँजी में जुड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place every balance and tap “Find the profit”. Are both totals ₹2,25,000? Read the assets from the most permanent (machinery) to the most liquid (bank).",
+      "hi": "हर शेष रखो और “लाभ निकालो” दबाओ। क्या दोनों योग ₹2,25,000 हैं? परिसंपत्तियों को सबसे स्थायी (मशीनरी) से सबसे तरल (बैंक) तक पढ़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Hook: who reads the accounts",
+   "shows": "A small Indian shop owner at her counter showing a bound account book to a bank officer in a branch, both seen from behind or the side, with a printed statement on the desk",
+   "view": "Eye level, office daylight, 16:9",
+   "right": "An ordinary Indian bank branch desk; papers look like real statements",
+   "avoid": "Readable figures, bank logos, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.2",
+   "use": "Capital or revenue: the counter and the repair",
+   "shows": "Separate cut-outs: a glass-topped shop display counter, and a small repair kit (screwdriver, hinge, glass clips) on a cloth",
+   "view": "Front three-quarter view, lit from top left, transparent background",
+   "right": "The counter looks like real shop furniture; the kit is clearly for a small repair",
+   "avoid": "Brand names, price tags"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "Direct expenses in a spice unit",
+   "shows": "Inside a small Indian spice grinding unit: a grinding machine, sacks of dry red chillies and turmeric, workers’ hands filling packets",
+   "view": "Eye level, warm light, 16:9",
+   "right": "Real colours of chilli and turmeric; safe working, covered machine parts",
+   "avoid": "Faces, brand labels on packets, unsafe acts"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "8.4.4",
+   "use": "Closing stock",
+   "shows": "Three frames of the same kirana shelf: full on 1 April, half empty after sales, and the goods left on 31 March being counted with a clipboard",
+   "view": "Same camera position and light in all three frames; 4:3",
+   "right": "Real Indian grocery packs (rice, dal, oil) with no readable brands",
+   "avoid": "Readable labels, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.6",
+   "use": "Hook for the balance sheet",
+   "shows": "A small tailoring unit: sewing machines in a row, bolts of cloth on a rack and folded school uniforms ready for delivery",
+   "view": "Wide, eye level, daylight, 16:9",
+   "right": "Real sewing machines and uniform cloth; tidy workshop",
+   "avoid": "Brand names, school logos, faces"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "8.6",
+   "use": "Balance sheet base",
+   "shows": "A blank two-sided balance sheet form: a liabilities column on the left and an assets column on the right, each with an amount column and a double-ruled totals row",
+   "view": "Flat, front-on, A4 landscape proportion",
+   "right": "Both sides equal in width; totals rows level with each other",
+   "avoid": "Any words or numbers (the app adds them)"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "8.4",
+   "use": "Trading and profit and loss base",
+   "shows": "A blank T-shaped account form in two stacked parts, the upper part shorter than the lower, each with debit and credit sides and an amount column",
+   "view": "Flat, front-on, A4 portrait proportion",
+   "right": "Clean ruled lines; a clear gap between the two parts",
+   "avoid": "Any words or numbers (the app adds them)"
+  }
+ ]
+}

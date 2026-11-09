@@ -1,0 +1,1018 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh2.ch12",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "Quadrilaterals",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh204.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "What exactly is a quadrilateral?",
+   "labs": [
+    "c09-mathematics-iemh2-ch12-angle-sum"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Parallelograms: properties and their converses",
+   "labs": [
+    "c09-mathematics-iemh2-ch12-parallelogram",
+    "c09-mathematics-iemh2-ch12-tests"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3.1",
+   "title": "An important property of triangles: the midpoint theorem and its converse",
+   "labs": [
+    "c09-mathematics-iemh2-ch12-midpoint"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3.2",
+   "title": "A surprising property of medians",
+   "labs": [
+    "c09-mathematics-iemh2-ch12-medians"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "Tiling the plane using any 4-gon",
+   "labs": [
+    "c09-mathematics-iemh2-ch12-tiling"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh2-ch12-angle-sum",
+   "topic": "12.1",
+   "template": "shapes",
+   "title": {
+    "en": "What is a quadrilateral? Its angle sum",
+    "hi": "चतुर्भुज क्या है? उसके कोणों का योग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "angle-sum"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:protractor",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the protractor to measure all four angles.",
+      "hi": "चारों कोण मापने के लिए चाँदा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you drag a corner and make the shape very different, what happens to the total of the four angles?",
+      "hi": "अगर किसी कोने को खींचकर आकृति बहुत बदल दो, तो चारों कोणों के योग का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "It stays 360°",
+       "hi": "360° ही रहेगा"
+      },
+      {
+       "id": "more",
+       "en": "It grows",
+       "hi": "बढ़ जाएगा"
+      },
+      {
+       "id": "less",
+       "en": "It shrinks",
+       "hi": "घट जाएगा"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag corner B and read the total again.",
+      "hi": "कोना B खींचो और फिर योग पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "prove",
+     "expect": "proved",
+     "say": {
+      "en": "Tap Prove to see why.",
+      "hi": "क्यों, यह देखने के लिए सिद्ध करो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question.",
+      "hi": "प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A quadrilateral is a closed shape with four straight sides that do not cross. A diagonal cuts it into two triangles, each with angles adding to 180°, so the four angles add to 2 × 180° = 360°.",
+      "hi": "चतुर्भुज चार सीधी भुजाओं वाली बंद आकृति है जिसकी भुजाएँ एक-दूसरे को नहीं काटतीं। एक विकर्ण इसे दो त्रिभुजों में बाँटता है, हर एक के कोणों का योग 180° है, इसलिए चारों कोणों का योग 2 × 180° = 360° है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Three angles of a quadrilateral are 80°, 95° and 110°. What is the fourth?",
+        "hi": "किसी चतुर्भुज के तीन कोण 80°, 95° और 110° हैं। चौथा कितना है?"
+       },
+       "options": [
+        "75°",
+        "105°",
+        "285°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "360 − (80 + 95 + 110) = 360 − 285 = 75.",
+        "hi": "360 − (80 + 95 + 110) = 360 − 285 = 75।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That uses 390° instead of 360°.",
+         "hi": "इसमें 360° की जगह 390° लिया।"
+        },
+        {
+         "en": "285 is the sum of the three given angles.",
+         "hi": "285 तो दिए गए तीन कोणों का योग है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag a corner inwards to make an arrowhead (concave) shape. Is the sum still 360°?",
+      "hi": "किसी कोने को अंदर खींचकर तीर जैसी (अवतल) आकृति बनाओ। क्या योग अब भी 360° है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch12-parallelogram",
+   "topic": "12.2",
+   "template": "shapes",
+   "title": {
+    "en": "Properties of a parallelogram",
+    "hi": "समांतर चतुर्भुज के गुण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "parallelogram"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler to show the side lengths.",
+      "hi": "भुजाओं की लंबाई देखने के लिए रूलर छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Draw both diagonals of a parallelogram. Where do they meet?",
+      "hi": "समांतर चतुर्भुज के दोनों विकर्ण खींचो। वे कहाँ मिलेंगे?"
+     },
+     "options": [
+      {
+       "id": "mid",
+       "en": "At the midpoint of each",
+       "hi": "दोनों के मध्य-बिंदु पर"
+      },
+      {
+       "id": "perp",
+       "en": "Always at right angles",
+       "hi": "हमेशा समकोण पर"
+      },
+      {
+       "id": "near",
+       "en": "Nearer one corner",
+       "hi": "किसी एक कोने के पास"
+      }
+     ],
+     "answer": "mid"
+    },
+    {
+     "kind": "do",
+     "target": "show:diagonals",
+     "expect": "drawn",
+     "say": {
+      "en": "Show the diagonals.",
+      "hi": "विकर्ण दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:C",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag C and watch the sides, angles and diagonals.",
+      "hi": "C खींचो और भुजाएँ, कोण और विकर्ण देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: which is true for every parallelogram?",
+      "hi": "उत्तर दो: हर समांतर चतुर्भुज के लिए क्या सत्य है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A parallelogram has both pairs of opposite sides parallel. A diagonal splits it into two congruent triangles (ASA), so opposite sides are equal and opposite angles are equal. Using the two diagonals, the triangles show the diagonals bisect each other.",
+      "hi": "समांतर चतुर्भुज की सम्मुख भुजाओं के दोनों जोड़े समांतर होते हैं। एक विकर्ण इसे दो सर्वांगसम त्रिभुजों (ASA) में बाँटता है, इसलिए सम्मुख भुजाएँ बराबर और सम्मुख कोण बराबर हैं। दोनों विकर्णों से बने त्रिभुज दिखाते हैं कि विकर्ण एक-दूसरे को समद्विभाजित करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In parallelogram ABCD, ∠A = 70°. What is ∠B?",
+        "hi": "समांतर चतुर्भुज ABCD में ∠A = 70°। ∠B कितना है?"
+       },
+       "options": [
+        "110°",
+        "70°",
+        "290°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Neighbouring angles between parallel sides add to 180°.",
+        "hi": "समांतर भुजाओं के बीच के पड़ोसी कोणों का योग 180° है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "70° is ∠C, the opposite angle.",
+         "hi": "70° तो ∠C है, सम्मुख कोण।"
+        },
+        {
+         "en": "That subtracts from 360° using only one angle.",
+         "hi": "इसमें केवल एक कोण को 360° से घटाया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the corners to make a rectangle and then a rhombus. Which properties stay, and which new ones appear?",
+      "hi": "कोने खींचकर आयत और फिर समचतुर्भुज बनाओ। कौन-से गुण बने रहते हैं, और कौन-से नए आते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch12-tests",
+   "topic": "12.2",
+   "template": "sort",
+   "title": {
+    "en": "Tests for a parallelogram",
+    "hi": "समांतर चतुर्भुज की कसौटियाँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "y",
+      "label": {
+       "en": "Surely a parallelogram",
+       "hi": "निश्चित रूप से समांतर चतुर्भुज"
+      }
+     },
+     {
+      "id": "n",
+      "label": {
+       "en": "Not necessarily",
+       "hi": "ज़रूरी नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sides",
+      "text": {
+       "en": "Both pairs of opposite sides equal",
+       "hi": "सम्मुख भुजाओं के दोनों जोड़े बराबर"
+      },
+      "bin": "y",
+      "why": {
+       "en": "This is a converse that is true: the two triangles are congruent by SSS.",
+       "hi": "यह सत्य विलोम है: दोनों त्रिभुज SSS से सर्वांगसम हैं।"
+      }
+     },
+     {
+      "id": "angles",
+      "text": {
+       "en": "Both pairs of opposite angles equal",
+       "hi": "सम्मुख कोणों के दोनों जोड़े बराबर"
+      },
+      "bin": "y",
+      "why": {
+       "en": "Neighbouring angles then add to 180°, so the sides are parallel.",
+       "hi": "तब पड़ोसी कोणों का योग 180° होता है, इसलिए भुजाएँ समांतर हैं।"
+      }
+     },
+     {
+      "id": "bisect",
+      "text": {
+       "en": "Diagonals bisect each other",
+       "hi": "विकर्ण एक-दूसरे को समद्विभाजित करते हैं"
+      },
+      "bin": "y",
+      "why": {
+       "en": "The triangles at the centre are congruent by SAS.",
+       "hi": "केंद्र पर बने त्रिभुज SAS से सर्वांगसम हैं।"
+      }
+     },
+     {
+      "id": "eqpar",
+      "text": {
+       "en": "One pair of sides equal and parallel",
+       "hi": "भुजाओं का एक जोड़ा बराबर और समांतर"
+      },
+      "bin": "y",
+      "why": {
+       "en": "The equal-parallel-sides test.",
+       "hi": "बराबर-समांतर भुजाओं वाली कसौटी।"
+      }
+     },
+     {
+      "id": "onepar",
+      "text": {
+       "en": "Only one pair of opposite sides parallel",
+       "hi": "सम्मुख भुजाओं का केवल एक जोड़ा समांतर"
+      },
+      "bin": "n",
+      "why": {
+       "en": "That is a trapezium.",
+       "hi": "यह समलंब है।"
+      }
+     },
+     {
+      "id": "eqdiag",
+      "text": {
+       "en": "Diagonals equal",
+       "hi": "विकर्ण बराबर"
+      },
+      "bin": "n",
+      "why": {
+       "en": "An isosceles trapezium also has equal diagonals.",
+       "hi": "समद्विबाहु समलंब के विकर्ण भी बराबर होते हैं।"
+      }
+     },
+     {
+      "id": "oneeq",
+      "text": {
+       "en": "One pair of opposite sides equal",
+       "hi": "सम्मुख भुजाओं का एक जोड़ा बराबर"
+      },
+      "bin": "n",
+      "why": {
+       "en": "An isosceles trapezium has this too.",
+       "hi": "समद्विबाहु समलंब में भी यह होता है।"
+      }
+     },
+     {
+      "id": "perp",
+      "text": {
+       "en": "Diagonals at right angles",
+       "hi": "विकर्ण समकोण पर"
+      },
+      "bin": "n",
+      "why": {
+       "en": "A kite has perpendicular diagonals.",
+       "hi": "पतंग के विकर्ण भी लंबवत होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:bisect",
+     "expect": "correct:bisect",
+     "say": {
+      "en": "A quadrilateral's diagonals bisect each other. Is it surely a parallelogram? Place the card.",
+      "hi": "किसी चतुर्भुज के विकर्ण एक-दूसरे को समद्विभाजित करते हैं। क्या वह निश्चित रूप से समांतर चतुर्भुज है? कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A quadrilateral has equal diagonals. Must it be a parallelogram?",
+      "hi": "किसी चतुर्भुज के विकर्ण बराबर हैं। क्या वह समांतर चतुर्भुज ही होगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:eqdiag",
+     "expect": "correct:eqdiag",
+     "say": {
+      "en": "Place the equal-diagonals card.",
+      "hi": "बराबर विकर्णों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The properties of a parallelogram have converses. Four of them are true tests: opposite sides equal, opposite angles equal, diagonals bisecting each other, or one pair of sides equal and parallel. Other facts can also belong to trapeziums or kites, so one counterexample rules them out.",
+      "hi": "समांतर चतुर्भुज के गुणों के विलोम हैं। इनमें चार सही कसौटियाँ हैं: सम्मुख भुजाएँ बराबर, सम्मुख कोण बराबर, विकर्ण एक-दूसरे को समद्विभाजित करें, या भुजाओं का एक जोड़ा बराबर और समांतर। बाक़ी तथ्य समलंब या पतंग में भी हो सकते हैं, इसलिए एक प्रति-उदाहरण उन्हें हटा देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A carpenter checks that a door frame's diagonals are equal AND bisect each other. What shape is it?",
+        "hi": "बढ़ई जाँचता है कि दरवाज़े के फ़्रेम के विकर्ण बराबर भी हैं और एक-दूसरे को समद्विभाजित भी करते हैं। फ़्रेम कैसा है?"
+       },
+       "options": [
+        {
+         "en": "A rectangle",
+         "hi": "आयत"
+        },
+        {
+         "en": "Any parallelogram",
+         "hi": "कोई भी समांतर चतुर्भुज"
+        },
+        {
+         "en": "A kite",
+         "hi": "पतंग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Bisecting diagonals make it a parallelogram; equal diagonals then make every angle 90°.",
+        "hi": "समद्विभाजित विकर्ण इसे समांतर चतुर्भुज बनाते हैं; बराबर विकर्ण फिर हर कोण 90° कर देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A slanted parallelogram has unequal diagonals.",
+         "hi": "तिरछे समांतर चतुर्भुज के विकर्ण बराबर नहीं होते।"
+        },
+        {
+         "en": "A kite's diagonals do not bisect each other.",
+         "hi": "पतंग के विकर्ण एक-दूसरे को समद्विभाजित नहीं करते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "With two sticks of equal length crossed at their midpoints, what shapes can you make by joining their ends?",
+      "hi": "बराबर लंबाई की दो डंडियाँ उनके मध्य-बिंदुओं पर क्रॉस करो। उनके सिरे जोड़कर कौन-सी आकृतियाँ बना सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch12-midpoint",
+   "topic": "12.3.1",
+   "template": "shapes",
+   "title": {
+    "en": "The midpoint theorem and its converse",
+    "hi": "मध्य-बिंदु प्रमेय और उसका विलोम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "similarity",
+    "task": "bpt"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "D is the midpoint of AB, and DE is drawn parallel to BC. Where does E land on AC?",
+      "hi": "D, AB का मध्य-बिंदु है, और DE को BC के समांतर खींचा गया। E, AC पर कहाँ आएगा?"
+     },
+     "options": [
+      {
+       "id": "mid",
+       "en": "At the midpoint of AC",
+       "hi": "AC के मध्य-बिंदु पर"
+      },
+      {
+       "id": "nearA",
+       "en": "Nearer A",
+       "hi": "A के ज़्यादा पास"
+      },
+      {
+       "id": "nearC",
+       "en": "Nearer C",
+       "hi": "C के ज़्यादा पास"
+      }
+     ],
+     "answer": "mid"
+    },
+    {
+     "kind": "do",
+     "target": "drag:D",
+     "expect": "proved",
+     "say": {
+      "en": "Drag D to the middle of AB and compare AD : DB with AE : EC.",
+      "hi": "D को AB के बीच में खींचो और AD : DB की तुलना AE : EC से करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:D",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag D somewhere else. Do the two ratios still match?",
+      "hi": "D को कहीं और खींचो। क्या दोनों अनुपात अब भी मेल खाते हैं?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When DE is parallel to BC, it cuts AB and AC in the same ratio. With D at the midpoint the ratio is 1 : 1, so E is the midpoint of AC: that is the converse of the midpoint theorem. The theorem itself says the segment joining the midpoints of two sides is parallel to the third side and half as long.",
+      "hi": "जब DE, BC के समांतर हो, तो वह AB और AC को एक ही अनुपात में काटती है। D मध्य-बिंदु पर हो तो अनुपात 1 : 1 है, इसलिए E, AC का मध्य-बिंदु है: यह मध्य-बिंदु प्रमेय का विलोम है। प्रमेय स्वयं कहता है कि दो भुजाओं के मध्य-बिंदुओं को मिलाने वाला रेखाखंड तीसरी भुजा के समांतर और उसका आधा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In triangle ABC, BC = 10 cm. D and E are midpoints of AB and AC. How long is DE?",
+        "hi": "त्रिभुज ABC में BC = 10 सेमी। D और E, AB और AC के मध्य-बिंदु हैं। DE कितना लंबा है?"
+       },
+       "options": [
+        {
+         "en": "5 cm",
+         "hi": "5 सेमी"
+        },
+        {
+         "en": "10 cm",
+         "hi": "10 सेमी"
+        },
+        {
+         "en": "20 cm",
+         "hi": "20 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The midpoint segment is half the third side.",
+        "hi": "मध्य-बिंदुओं वाला रेखाखंड तीसरी भुजा का आधा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "DE is parallel to BC but not equal to it.",
+         "hi": "DE, BC के समांतर है पर उसके बराबर नहीं।"
+        },
+        {
+         "en": "It is half, not double; it lies inside the triangle.",
+         "hi": "यह आधा है, दुगुना नहीं; यह त्रिभुज के अंदर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Join the midpoints of the four sides of any quadrilateral. What shape do you always get?",
+        "hi": "किसी भी चतुर्भुज की चारों भुजाओं के मध्य-बिंदु मिलाओ। हमेशा कौन-सी आकृति बनती है?"
+       },
+       "options": [
+        {
+         "en": "A parallelogram",
+         "hi": "समांतर चतुर्भुज"
+        },
+        {
+         "en": "A square",
+         "hi": "वर्ग"
+        },
+        {
+         "en": "A trapezium",
+         "hi": "समलंब"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each pair of opposite midpoint segments is parallel to the same diagonal (midpoint theorem).",
+        "hi": "मध्य-बिंदु वाले सम्मुख रेखाखंडों का हर जोड़ा एक ही विकर्ण के समांतर है (मध्य-बिंदु प्रमेय)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A square needs special diagonals; a general quadrilateral does not give one.",
+         "hi": "वर्ग के लिए ख़ास विकर्ण चाहिए; सामान्य चतुर्भुज से वर्ग नहीं बनता।"
+        },
+        {
+         "en": "Both pairs of sides come out parallel, not just one.",
+         "hi": "दोनों जोड़े समांतर निकलते हैं, केवल एक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag A to change the triangle. Does DE stay half of BC when D is the midpoint?",
+      "hi": "A खींचकर त्रिभुज बदलो। जब D मध्य-बिंदु हो, क्या DE हमेशा BC का आधा रहता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch12-medians",
+   "topic": "12.3.2",
+   "template": "shapes",
+   "title": {
+    "en": "A surprising property of medians",
+    "hi": "माध्यिकाओं का एक अनोखा गुण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "triangle",
+    "task": "median-altitude"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Draw the three medians of a triangle (each joins a corner to the midpoint of the opposite side). What happens?",
+      "hi": "त्रिभुज की तीनों माध्यिकाएँ खींचो (हर एक कोने को सामने की भुजा के मध्य-बिंदु से जोड़ती है)। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "They meet at one point",
+       "hi": "वे एक ही बिंदु पर मिलती हैं"
+      },
+      {
+       "id": "three",
+       "en": "They make a small triangle",
+       "hi": "वे एक छोटा त्रिभुज बनाती हैं"
+      },
+      {
+       "id": "par",
+       "en": "Two are parallel",
+       "hi": "दो समांतर हैं"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "show:medians",
+     "expect": "drawn",
+     "say": {
+      "en": "Show the medians.",
+      "hi": "माध्यिकाएँ दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag A. Do the medians still meet at one point?",
+      "hi": "A खींचो। क्या माध्यिकाएँ अब भी एक बिंदु पर मिलती हैं?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "show:altitudes",
+     "expect": "drawn",
+     "say": {
+      "en": "Now show the altitudes too. Do they also meet at one point?",
+      "hi": "अब शीर्षलंब भी दिखाओ। क्या वे भी एक बिंदु पर मिलते हैं?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The three medians always meet at one point, the centroid G. G cuts each median in the ratio 2 : 1, the longer part on the corner's side. The midpoint theorem proves it. (The altitudes also meet at one point, but usually a different one.) The centroid is the balance point: a card triangle balances on a pin there.",
+      "hi": "तीनों माध्यिकाएँ हमेशा एक बिंदु, केन्द्रक G, पर मिलती हैं। G हर माध्यिका को 2 : 1 में बाँटता है, बड़ा भाग कोने की ओर। मध्य-बिंदु प्रमेय इसे सिद्ध करता है। (शीर्षलंब भी एक बिंदु पर मिलते हैं, पर आमतौर पर किसी दूसरे बिंदु पर।) केन्द्रक संतुलन बिंदु है: गत्ते का त्रिभुज वहाँ पिन पर टिक जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A median is 12 cm long. How far is the centroid from the corner it starts at?",
+        "hi": "एक माध्यिका 12 सेमी लंबी है। केन्द्रक उसके कोने से कितनी दूर है?"
+       },
+       "options": [
+        {
+         "en": "8 cm",
+         "hi": "8 सेमी"
+        },
+        {
+         "en": "6 cm",
+         "hi": "6 सेमी"
+        },
+        {
+         "en": "4 cm",
+         "hi": "4 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 : 1 splits 12 into 8 and 4; the 8 is on the corner's side.",
+        "hi": "2 : 1 से 12, 8 और 4 में बँटता है; 8 कोने की ओर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 would be the midpoint; the centroid is not halfway.",
+         "hi": "6 मध्य-बिंदु होता; केन्द्रक आधे पर नहीं है।"
+        },
+        {
+         "en": "4 cm is the short part, from G to the side.",
+         "hi": "4 सेमी छोटा भाग है, G से भुजा तक।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Cut a triangle from card, draw its medians and try to balance it on a pencil tip at G.",
+      "hi": "गत्ते से त्रिभुज काटो, उसकी माध्यिकाएँ बनाओ और उसे G पर पेंसिल की नोक पर टिकाने की कोशिश करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch12-tiling",
+   "topic": "12.4",
+   "template": "sequence",
+   "title": {
+    "en": "Tile a floor with any quadrilateral",
+    "hi": "किसी भी चतुर्भुज से फ़र्श ढको"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "t1",
+      "text": {
+       "en": "Cut out many copies of the same quadrilateral",
+       "hi": "एक ही चतुर्भुज की कई प्रतियाँ काटो"
+      }
+     },
+     {
+      "id": "t2",
+      "text": {
+       "en": "Turn one copy half a turn (180°) about the midpoint of a side",
+       "hi": "एक प्रति को किसी भुजा के मध्य-बिंदु के चारों ओर आधा चक्कर (180°) घुमाओ"
+      }
+     },
+     {
+      "id": "t3",
+      "text": {
+       "en": "The two copies fit along that side, making a hexagon",
+       "hi": "दोनों प्रतियाँ उस भुजा पर फिट होकर षट्भुज बनाती हैं"
+      }
+     },
+     {
+      "id": "t4",
+      "text": {
+       "en": "At each corner the four angles of the quadrilateral meet: 360°",
+       "hi": "हर कोने पर चतुर्भुज के चारों कोण मिलते हैं: 360°"
+      }
+     },
+     {
+      "id": "t5",
+      "text": {
+       "en": "Repeat in every direction to cover the floor with no gaps",
+       "hi": "हर दिशा में दोहराओ और फ़र्श को बिना ख़ाली जगह के ढक दो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can copies of any four-sided shape, even a lopsided one, cover a floor with no gaps?",
+      "hi": "क्या किसी भी चार भुजाओं वाली आकृति की प्रतियाँ, टेढ़ी-मेढ़ी भी, फ़र्श को बिना ख़ाली जगह ढक सकती हैं?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      },
+      {
+       "id": "no",
+       "en": "No, only rectangles",
+       "hi": "नहीं, केवल आयत"
+      },
+      {
+       "id": "some",
+       "en": "Only parallelograms",
+       "hi": "केवल समांतर चतुर्भुज"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "item:t1",
+     "expect": "placed:t1",
+     "say": {
+      "en": "Put the first step in place.",
+      "hi": "पहला चरण उसकी जगह रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the other steps and tap Check.",
+      "hi": "बाक़ी चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Turning a copy half a turn about a side's midpoint makes that side fit exactly. At every meeting point the four different angles of the quadrilateral come together, and they add to 360°, a full turn, so there are no gaps or overlaps.",
+      "hi": "किसी भुजा के मध्य-बिंदु के चारों ओर प्रति को आधा घुमाने से वह भुजा ठीक फिट हो जाती है। हर मिलन बिंदु पर चतुर्भुज के चारों अलग कोण मिलते हैं, और उनका योग 360°, यानी पूरा चक्कर, है, इसलिए न ख़ाली जगह बचती है, न टुकड़े चढ़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why must the four angles at a meeting point add to 360°?",
+        "hi": "मिलन बिंदु पर चारों कोणों का योग 360° क्यों होना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "They go all the way round the point with no gap",
+         "hi": "वे बिना ख़ाली जगह बिंदु के चारों ओर पूरा घूमते हैं"
+        },
+        {
+         "en": "Because every tile is a square",
+         "hi": "क्योंकि हर टाइल वर्ग है"
+        },
+        {
+         "en": "Because the sides are equal",
+         "hi": "क्योंकि भुजाएँ बराबर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Angles that fill the space around a point make a full turn, 360°, and a quadrilateral's angles add to exactly that.",
+        "hi": "किसी बिंदु के चारों ओर की जगह भरने वाले कोण पूरा चक्कर, 360°, बनाते हैं, और चतुर्भुज के कोणों का योग ठीक इतना ही है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The tiles here are not squares; the reason works for any quadrilateral.",
+         "hi": "यहाँ टाइलें वर्ग नहीं हैं; यह कारण किसी भी चतुर्भुज पर चलता है।"
+        },
+        {
+         "en": "The sides need not be equal at all.",
+         "hi": "भुजाओं का बराबर होना बिलकुल ज़रूरी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Cut 8 copies of a lopsided quadrilateral from an old box and tile part of a table with them.",
+      "hi": "पुराने डिब्बे से किसी टेढ़े चतुर्भुज की 8 प्रतियाँ काटो और उनसे मेज़ का एक हिस्सा ढको।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Chapter hook: quadrilaterals around us",
+   "shows": "An Indian street of shops with shutters, windows and signboards of many four-sided shapes",
+   "view": "Eye level, daylight",
+   "right": "Clear rectangles, trapeziums and parallelogram shadows",
+   "avoid": "Readable shop names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "12.2",
+   "use": "Parallelogram from sticks",
+   "shows": "Four ice-cream sticks pinned at the corners into a parallelogram, with two rubber bands as diagonals",
+   "view": "Straight from above",
+   "right": "Opposite sticks equal; bands cross at their middles",
+   "avoid": "Glue blobs"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "12.3.1",
+   "use": "Midpoints of any quadrilateral",
+   "shows": "A paper quadrilateral with its side midpoints joined by a coloured pencil, then the inner shape cut out, in two frames",
+   "view": "Straight from above",
+   "right": "Inner shape is clearly a parallelogram",
+   "avoid": "Labels"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "12.3.2",
+   "use": "Balancing a triangle at the centroid",
+   "shows": "A card triangle with its three medians drawn, balanced on a pencil tip at the meeting point",
+   "view": "Side view slightly above",
+   "right": "Triangle level and steady on the tip",
+   "avoid": "Hands"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "12.4",
+   "use": "A floor tiled with one quadrilateral",
+   "shows": "A courtyard floor tiled entirely with copies of one irregular four-sided stone, rotated so they fit with no gaps",
+   "view": "Straight from above",
+   "right": "No gaps; four angles meet at each corner",
+   "avoid": "Square or rectangular tiles"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "12.2",
+   "use": "A door frame being checked",
+   "shows": "A carpenter's measuring tape stretched across the diagonal of a wooden door frame",
+   "view": "Three-quarter view",
+   "right": "Tape runs corner to corner",
+   "avoid": "Faces, brand names"
+  }
+ ]
+}

@@ -1,0 +1,308 @@
+{
+ "chapter_key": "u.c10.english.jeff1.x10",
+ "class": 10,
+ "subject_id": "english",
+ "title": "Amanda!",
+ "source": "https://ncert.nic.in/textbook/pdf/jeff104.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "The poem: Amanda and the grown-up voices",
+   "labs": [
+    "c10-english-jeff1-x10-voices"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "The use of brackets and the two voices in the poem",
+   "labs": [],
+   "why_no_lab": "The two voices are heard best by reading the poem aloud in two voices in class."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-english-jeff1-x10-voices",
+   "topic": "10.1",
+   "template": "sort",
+   "title": {
+    "en": "Orders and dreams",
+    "hi": "आदेश और सपने"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "says",
+      "label": {
+       "en": "What grown-ups tell Amanda",
+       "hi": "बड़े अमांडा से क्या कहते हैं"
+      }
+     },
+     {
+      "id": "dreams",
+      "label": {
+       "en": "What Amanda dreams of",
+       "hi": "अमांडा क्या सपने देखती है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "nails",
+      "text": {
+       "en": "'Don't bite your nails!'",
+       "hi": "'नाखून मत चबाओ!'"
+      },
+      "bin": "says",
+      "why": {
+       "en": "This is an order from a grown-up voice.",
+       "hi": "यह बड़ों की आवाज़ का आदेश है।"
+      }
+     },
+     {
+      "id": "sit",
+      "text": {
+       "en": "'Sit up straight, don't slouch!'",
+       "hi": "'सीधी बैठो, झुको मत!'"
+      },
+      "bin": "says",
+      "why": {
+       "en": "Another order about how to behave.",
+       "hi": "बर्ताव के बारे में एक और आदेश।"
+      }
+     },
+     {
+      "id": "homework",
+      "text": {
+       "en": "'Have you finished your homework?'",
+       "hi": "'क्या तुमने होमवर्क कर लिया?'"
+      },
+      "bin": "says",
+      "why": {
+       "en": "A grown-up's question that sounds like a command.",
+       "hi": "बड़ों का सवाल जो आदेश-सा लगता है।"
+      }
+     },
+     {
+      "id": "room",
+      "text": {
+       "en": "'Go and clean up your room!'",
+       "hi": "'जाओ, अपना कमरा साफ़ करो!'"
+      },
+      "bin": "says",
+      "why": {
+       "en": "Again a command from outside.",
+       "hi": "फिर बाहर से आया आदेश।"
+      }
+     },
+     {
+      "id": "mermaid",
+      "text": {
+       "en": "Swimming free as a mermaid in a calm sea",
+       "hi": "शांत समुद्र में जलपरी की तरह आज़ाद तैरना"
+      },
+      "bin": "dreams",
+      "why": {
+       "en": "Amanda imagines herself as a mermaid, with nobody ordering her about.",
+       "hi": "अमांडा ख़ुद को जलपरी सोचती है, जिसे कोई आदेश नहीं देता।"
+      }
+     },
+     {
+      "id": "rapunzel",
+      "text": {
+       "en": "Being Rapunzel in a tower, hair flowing",
+       "hi": "रैपंज़ेल बनकर मीनार में, बाल लहराते हुए"
+      },
+      "bin": "dreams",
+      "why": {
+       "en": "Amanda dreams of a story-book life far from her room.",
+       "hi": "अमांडा अपने कमरे से दूर परीकथा के जीवन का सपना देखती है।"
+      }
+     },
+     {
+      "id": "free",
+      "text": {
+       "en": "Having no one to tell her what to do",
+       "hi": "कोई न हो जो उसे बताए कि क्या करना है"
+      },
+      "bin": "dreams",
+      "why": {
+       "en": "Her dream is of freedom from constant orders.",
+       "hi": "उसका सपना लगातार आदेशों से आज़ादी का है।"
+      }
+     },
+     {
+      "id": "sea",
+      "text": {
+       "en": "Floating alone in a quiet boat",
+       "hi": "अकेले शांत नाव में तैरना"
+      },
+      "bin": "dreams",
+      "why": {
+       "en": "A quiet, peaceful picture she makes in her mind.",
+       "hi": "उसके मन में बनी एक शांत, सुकून भरी तस्वीर।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who is Amanda: a girl who is always told what to do, or a girl who is always praised?",
+      "hi": "अमांडा कौन है: जिसे हमेशा बताया जाता है कि क्या करना है, या जिसकी हमेशा तारीफ़ होती है?"
+     },
+     "options": [
+      {
+       "id": "told",
+       "en": "A girl always told what to do",
+       "hi": "जिसे हमेशा बताया जाता है कि क्या करना है"
+      },
+      {
+       "id": "praised",
+       "en": "A girl always praised",
+       "hi": "जिसकी हमेशा तारीफ़ होती है"
+      }
+     ],
+     "answer": "told"
+    },
+    {
+     "kind": "do",
+     "target": "card:nails",
+     "expect": "correct:nails",
+     "say": {
+      "en": "Tap the nail-biting card and place it in the right bin.",
+      "hi": "नाखून वाले कार्ड पर टैप करो और उसे सही डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:mermaid",
+     "expect": "correct:mermaid",
+     "say": {
+      "en": "Now place the mermaid card.",
+      "hi": "अब जलपरी वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The poem has two voices. One is the voice of grown-ups, who keep giving orders. The other is Amanda's own dreamy voice, which wanders to the sea and to fairy tales where nobody scolds. The poet is on Amanda's side: she shows that children need room to dream and to be themselves.",
+      "hi": "कविता में दो आवाज़ें हैं। एक बड़ों की, जो लगातार आदेश देती है। दूसरी अमांडा की अपनी सपनीली आवाज़, जो समुद्र और परीकथाओं की ओर भटक जाती है जहाँ कोई डाँटता नहीं। कवयित्री अमांडा के पक्ष में है: वह दिखाती है कि बच्चों को सपने देखने और ख़ुद जैसा होने की जगह चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does Amanda's daydreaming tell us?",
+        "hi": "अमांडा के दिवास्वप्नों से हमें क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "She longs for freedom from constant orders",
+         "hi": "वह लगातार आदेशों से आज़ादी चाहती है"
+        },
+        {
+         "en": "She is lazy and does not care",
+         "hi": "वह आलसी है और परवाह नहीं करती"
+        },
+        {
+         "en": "She wants to be a grown-up at once",
+         "hi": "वह तुरंत बड़ी हो जाना चाहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each dream is a place with no orders, so the daydreams show how tired she is of being told what to do.",
+        "hi": "हर सपना ऐसी जगह है जहाँ कोई आदेश नहीं, यानी वह हर समय की टोका-टाकी से थक चुकी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The poem does not call her lazy. It shows her longing for freedom.",
+         "hi": "कविता उसे आलसी नहीं कहती। वह उसकी आज़ादी की चाह दिखाती है।"
+        },
+        {
+         "en": "She dreams of being a mermaid, not a grown-up.",
+         "hi": "वह जलपरी बनने का सपना देखती है, बड़ा होने का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which order do you hear most often at home? How could you and your family speak about it kindly?",
+      "hi": "तुम घर में सबसे ज़्यादा कौन-सा आदेश सुनते हो? तुम और तुम्हारा परिवार उस पर प्यार से बात कैसे कर सकते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Poem scene",
+   "shows": "A child's untidy bedroom with books and a school bag, afternoon light",
+   "view": "Wide, from the doorway, no child",
+   "right": "Real clutter, toys and books on the floor",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Dream: sea",
+   "shows": "A calm blue sea at golden hour with a small wooden boat",
+   "view": "Wide",
+   "right": "Smooth water, warm sky",
+   "avoid": "People, text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "Dream: mermaid",
+   "shows": "A mermaid tail resting on a sunlit rock by the sea, no face",
+   "view": "Cut-out three-quarter",
+   "right": "Shimmering scales, no human face",
+   "avoid": "Face, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Dream: tower",
+   "shows": "A tall stone tower among green hills with a long braid of hair hanging from a window",
+   "view": "Wide, low angle",
+   "right": "Long golden braid, stone tower",
+   "avoid": "Face, text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "Habit",
+   "shows": "A hand biting nails (close) vs a child's hunched back",
+   "view": "Two shots",
+   "right": "Hands and back only",
+   "avoid": "Face, text"
+  }
+ ]
+}

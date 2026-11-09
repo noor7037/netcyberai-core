@@ -1,0 +1,1578 @@
+{
+ "chapter_key": "u.c12.economics.leec2.ch01",
+ "class": 12,
+ "subject_id": "economics",
+ "title": "Introduction",
+ "source": "https://ncert.nic.in/textbook/pdf/leec201.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "A simple economy",
+   "labs": [
+    "c12-economics-leec2-ch01-goods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Central problems of an economy",
+   "labs": [
+    "c12-economics-leec2-ch01-ppc",
+    "c12-economics-leec2-ch01-problems"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Organisation of economic activities: centrally planned and market economies",
+   "labs": [
+    "c12-economics-leec2-ch01-systems"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Positive and normative economics",
+   "labs": [
+    "c12-economics-leec2-ch01-positive"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Microeconomics and macroeconomics",
+   "labs": [
+    "c12-economics-leec2-ch01-micromacro"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Plan of the book",
+   "labs": [],
+   "why_no_lab": "A short map of the chapters ahead, best read in the reader."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-economics-leec2-ch01-goods",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "Goods, services or resources?",
+    "hi": "वस्तु, सेवा या संसाधन?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "good",
+      "label": {
+       "en": "Good",
+       "hi": "वस्तु"
+      }
+     },
+     {
+      "id": "service",
+      "label": {
+       "en": "Service",
+       "hi": "सेवा"
+      }
+     },
+     {
+      "id": "resource",
+      "label": {
+       "en": "Resource (used to make things)",
+       "hi": "संसाधन (उत्पादन में काम आता है)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "rice",
+      "text": {
+       "en": "Rice bought for the kitchen",
+       "hi": "रसोई के लिए ख़रीदा चावल"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Rice is a thing you can touch and use directly: a good.",
+       "hi": "चावल छू सकने वाली चीज़ है जिसे सीधे इस्तेमाल करते हैं: यह वस्तु है।"
+      }
+     },
+     {
+      "id": "doctor",
+      "text": {
+       "en": "A doctor treating a patient",
+       "hi": "मरीज़ का इलाज करता डॉक्टर"
+      },
+      "bin": "service",
+      "why": {
+       "en": "Treatment cannot be touched or stored. It is a service.",
+       "hi": "इलाज को छुआ या जमा नहीं किया जा सकता। यह सेवा है।"
+      }
+     },
+     {
+      "id": "plough",
+      "text": {
+       "en": "A bullock plough used on a farm",
+       "hi": "खेत में चलता बैल-हल"
+      },
+      "bin": "resource",
+      "why": {
+       "en": "It helps grow crops, so it is used to make other goods: a resource.",
+       "hi": "यह फ़सल उगाने में मदद करता है, यानी दूसरी चीज़ें बनाने में काम आता है: संसाधन।"
+      }
+     },
+     {
+      "id": "lesson",
+      "text": {
+       "en": "A teacher's lesson in school",
+       "hi": "स्कूल में शिक्षक का पाठ"
+      },
+      "bin": "service",
+      "why": {
+       "en": "A lesson is an intangible help given to students: a service.",
+       "hi": "पाठ विद्यार्थियों को दी गई अदृश्य मदद है: सेवा।"
+      }
+     },
+     {
+      "id": "weaving",
+      "text": {
+       "en": "The weaver's own work at her loom",
+       "hi": "करघे पर बुनकर का अपना श्रम"
+      },
+      "bin": "resource",
+      "why": {
+       "en": "Labour is used to make cloth, so it is a resource.",
+       "hi": "श्रम से कपड़ा बनता है, इसलिए यह संसाधन है।"
+      }
+     },
+     {
+      "id": "shoes",
+      "text": {
+       "en": "A pair of shoes a customer buys",
+       "hi": "ग्राहक का ख़रीदा जूतों का जोड़ा"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Shoes are a physical thing used by the buyer: a good.",
+       "hi": "जूते छू सकने वाली चीज़ हैं जो ख़रीदार इस्तेमाल करता है: वस्तु।"
+      }
+     },
+     {
+      "id": "land",
+      "text": {
+       "en": "Land on which a factory stands",
+       "hi": "ज़मीन जिस पर कारख़ाना खड़ा है"
+      },
+      "bin": "resource",
+      "why": {
+       "en": "Land is needed to produce goods: a resource.",
+       "hi": "चीज़ें बनाने के लिए ज़मीन चाहिए: यह संसाधन है।"
+      }
+     },
+     {
+      "id": "train",
+      "text": {
+       "en": "A train journey from Delhi to Agra",
+       "hi": "दिल्ली से आगरा की रेल यात्रा"
+      },
+      "bin": "service",
+      "why": {
+       "en": "You get carried, but you take nothing home: a service.",
+       "hi": "आपको पहुँचाया जाता है, पर घर कुछ नहीं आता: सेवा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tailor uses a sewing machine to stitch shirts for sale. For the tailor, the machine is a...",
+      "hi": "एक दर्ज़ी बिक्री के लिए कमीज़ें सिलने में सिलाई मशीन इस्तेमाल करता है। दर्ज़ी के लिए मशीन क्या है?"
+     },
+     "options": [
+      {
+       "id": "res",
+       "en": "Resource",
+       "hi": "संसाधन"
+      },
+      {
+       "id": "serv",
+       "en": "Service",
+       "hi": "सेवा"
+      },
+      {
+       "id": "neither",
+       "en": "Nothing special",
+       "hi": "कुछ ख़ास नहीं"
+      }
+     ],
+     "answer": "res"
+    },
+    {
+     "kind": "do",
+     "target": "card:plough",
+     "expect": "placed:plough",
+     "say": {
+      "en": "Tap \"A bullock plough used on a farm\", then tap the group where it belongs.",
+      "hi": "\"खेत में चलता बैल-हल\" दबाओ, फिर वह समूह दबाओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Goods are things you can touch. Services, like a doctor's care, you cannot. Resources are goods and services used to make other things: land, labour, tools and machines. Nobody has all she needs, so each of us makes some things and swaps. Because resources are limited, every family must choose.",
+      "hi": "वस्तुएँ छू सकने वाली चीज़ें हैं। सेवाएँ, जैसे डॉक्टर की देखभाल, छुई नहीं जातीं। संसाधन वे वस्तुएँ और सेवाएँ हैं जो दूसरी चीज़ें बनाने में काम आती हैं: ज़मीन, श्रम, औज़ार और मशीनें। किसी के पास अपनी सारी ज़रूरत की चीज़ें नहीं होतीं, इसलिए हर कोई कुछ बनाता है और बदलता है। संसाधन सीमित हैं, इसलिए हर परिवार को चुनना पड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a SERVICE?",
+        "hi": "इनमें से सेवा कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "A bag of wheat",
+         "hi": "गेहूँ की बोरी"
+        },
+        {
+         "en": "A teacher's lesson",
+         "hi": "शिक्षक का पाठ"
+        },
+        {
+         "en": "A sewing machine",
+         "hi": "सिलाई मशीन"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A lesson cannot be touched; it is help given by a person.",
+        "hi": "पाठ को छुआ नहीं जा सकता; यह किसी व्यक्ति की दी हुई मदद है।"
+       },
+       "wrong": [
+        {
+         "en": "Wheat is a physical thing, so it is a good.",
+         "hi": "गेहूँ छू सकने वाली चीज़ है, इसलिए वस्तु है।"
+        },
+        "",
+        {
+         "en": "A machine is a physical tool used to make shirts, a resource.",
+         "hi": "मशीन छू सकने वाला औज़ार है जिससे कमीज़ें बनती हैं, यानी संसाधन।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why must every family choose between things it wants?",
+        "hi": "हर परिवार को चाहतों में से चुनना क्यों पड़ता है?"
+       },
+       "options": [
+        {
+         "en": "Its resources are limited",
+         "hi": "उसके संसाधन सीमित हैं"
+        },
+        {
+         "en": "Goods are never sold",
+         "hi": "वस्तुएँ कभी बिकती नहीं"
+        },
+        {
+         "en": "Services are free",
+         "hi": "सेवाएँ मुफ़्त हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Resources are limited, so more of one thing means less of another.",
+        "hi": "संसाधन सीमित हैं, इसलिए एक चीज़ ज़्यादा लेने पर दूसरी कम मिलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Goods are sold in markets all the time.",
+         "hi": "वस्तुएँ बाज़ार में हर समय बिकती हैं।"
+        },
+        {
+         "en": "Most services have to be paid for too, and that does not explain choice.",
+         "hi": "ज़्यादातर सेवाओं के पैसे भी देने पड़ते हैं, और इससे चुनाव की ज़रूरत नहीं समझ आती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of your own home. Which things at home are goods, which are services, and which help someone earn money?",
+      "hi": "अपने घर के बारे में सोचो। घर की कौन-सी चीज़ें वस्तुएँ हैं, कौन-सी सेवाएँ, और कौन-सी किसी की कमाई में काम आती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch01-ppc",
+   "topic": "1.2",
+   "template": "grapher",
+   "title": {
+    "en": "The choice a village must make",
+    "hi": "गाँव को जो चुनाव करना पड़ता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "quadratic",
+    "expr": "y = b - x^2/b",
+    "params": {
+     "b": [
+      3,
+      8,
+      5,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A village has fixed land and workers. It makes only rice and cloth. To make more cloth, it must make... rice.",
+      "hi": "एक गाँव के पास तय ज़मीन और मज़दूर हैं। वह केवल चावल और कपड़ा बनाता है। ज़्यादा कपड़ा बनाने के लिए उसे... चावल बनाना होगा।"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "less",
+       "hi": "कम"
+      },
+      {
+       "id": "more",
+       "en": "more",
+       "hi": "ज़्यादा"
+      },
+      {
+       "id": "same",
+       "en": "the same",
+       "hi": "उतना ही"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "The curve shows every best choice. Here x is cloth and y is rice. Move the x slider and watch y.",
+      "hi": "यह वक्र हर सबसे अच्छा चुनाव दिखाता है। यहाँ x कपड़ा है और y चावल। x स्लाइडर चलाओ और y देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Now move slider b. The village gets more land and better tools. Watch the whole curve move out.",
+      "hi": "अब स्लाइडर b चलाओ। गाँव को ज़्यादा ज़मीन और बेहतर औज़ार मिलते हैं। पूरा वक्र बाहर खिसकते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every point on the curve uses all the resources. To get more cloth the village gives up some rice: that lost rice is the opportunity cost. A point inside the curve wastes resources. A point outside cannot be reached. More resources or better technology push the curve outward.",
+      "hi": "वक्र का हर बिंदु सारे संसाधन लगाता है। ज़्यादा कपड़े के लिए गाँव को कुछ चावल छोड़ना पड़ता है: छोड़ा हुआ चावल अवसर लागत है। वक्र के अंदर का बिंदु संसाधन बेकार करता है। बाहर का बिंदु पाया नहीं जा सकता। ज़्यादा संसाधन या बेहतर तकनीक वक्र को बाहर खिसकाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A point INSIDE the curve means...",
+        "hi": "वक्र के अंदर का बिंदु बताता है कि..."
+       },
+       "options": [
+        {
+         "en": "some resources are unused or wasted",
+         "hi": "कुछ संसाधन बेकार पड़े हैं"
+        },
+        {
+         "en": "the village cannot reach it",
+         "hi": "गाँव वहाँ पहुँच नहीं सकता"
+        },
+        {
+         "en": "the village is making the most possible",
+         "hi": "गाँव सबसे ज़्यादा उत्पादन कर रहा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Inside the curve the village can still make more of both goods.",
+        "hi": "वक्र के अंदर गाँव दोनों चीज़ें और ज़्यादा बना सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Points outside the curve cannot be reached, not points inside.",
+         "hi": "बाहर के बिंदु पाए नहीं जा सकते, अंदर के नहीं।"
+        },
+        {
+         "en": "The most possible output lies on the curve itself.",
+         "hi": "सबसे ज़्यादा संभव उत्पादन वक्र पर ही है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the opportunity cost of making more cloth?",
+        "hi": "ज़्यादा कपड़ा बनाने की अवसर लागत क्या है?"
+       },
+       "options": [
+        {
+         "en": "The rice given up",
+         "hi": "छोड़ा गया चावल"
+        },
+        {
+         "en": "The money paid to weavers",
+         "hi": "बुनकरों को दिया पैसा"
+        },
+        {
+         "en": "Nothing, it is free",
+         "hi": "कुछ नहीं, वह मुफ़्त है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Opportunity cost is the next best thing you give up.",
+        "hi": "अवसर लागत वह अगली सबसे अच्छी चीज़ है जिसे आप छोड़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Money paid is a cost in rupees, but opportunity cost is the other good given up.",
+         "hi": "दिया हुआ पैसा रुपयों की लागत है, पर अवसर लागत वह दूसरी चीज़ है जो छोड़नी पड़ी।"
+        },
+        {
+         "en": "Using resources always means giving up something else, so it is never free.",
+         "hi": "संसाधन लगाने पर हमेशा कुछ और छोड़ना पड़ता है, इसलिए वह मुफ़्त नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide x to the far right. How much rice is left? Slide b to 8 and try again.",
+      "hi": "x को दाईं ओर तक ले जाओ। कितना चावल बचता है? b को 8 करके फिर देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch01-problems",
+   "topic": "1.2",
+   "template": "scenario",
+   "title": {
+    "en": "Three questions every economy must answer",
+    "hi": "हर अर्थव्यवस्था के तीन सवाल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "island",
+    "role": {
+     "en": "Adviser to an island council",
+     "hi": "द्वीप परिषद के सलाहकार"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "A small island has little land, some fishers and a few weavers. The council says: \"We can grow more rice or weave more cloth, but not more of both.\" Which central problem is this?",
+       "hi": "एक छोटे द्वीप में थोड़ी ज़मीन, कुछ मछुआरे और कुछ बुनकर हैं। परिषद कहती है: \"हम ज़्यादा चावल उगा सकते हैं या ज़्यादा कपड़ा बुन सकते हैं, पर दोनों ज़्यादा नहीं।\" यह कौन-सी केंद्रीय समस्या है?"
+      },
+      "choices": [
+       {
+        "id": "s1-what",
+        "text": {
+         "en": "What to produce, and how much",
+         "hi": "क्या उत्पादन करें और कितना"
+        },
+        "next": "s2",
+        "good": true,
+        "feedback": {
+         "en": "Yes. Choosing which goods to make, and how much of each, is the first central problem.",
+         "hi": "हाँ। कौन-सी चीज़ें और कितनी बनानी हैं, यह पहली केंद्रीय समस्या है।"
+        }
+       },
+       {
+        "id": "s1-how",
+        "text": {
+         "en": "How to produce",
+         "hi": "उत्पादन कैसे करें"
+        },
+        "next": "s2",
+        "good": false,
+        "feedback": {
+         "en": "Not this one. The council is not asking about methods yet; it is choosing between two goods.",
+         "hi": "यह नहीं। परिषद अभी तरीक़ों की बात नहीं कर रही; वह दो चीज़ों में से चुन रही है।"
+        }
+       },
+       {
+        "id": "s1-whom",
+        "text": {
+         "en": "For whom to produce",
+         "hi": "किसके लिए उत्पादन करें"
+        },
+        "next": "s2",
+        "good": false,
+        "feedback": {
+         "en": "Not this one. Nobody is asking who receives the goods yet.",
+         "hi": "यह नहीं। अभी कोई यह नहीं पूछ रहा कि चीज़ें किसे मिलेंगी।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "The island decides to grow more rice. Now: should the farmers use many workers with simple tools, or a few workers with a tractor? Which central problem is this?",
+       "hi": "द्वीप ज़्यादा चावल उगाने का फ़ैसला करता है। अब: किसान बहुत मज़दूरों और सादे औज़ारों से काम करें, या कुछ मज़दूरों और ट्रैक्टर से? यह कौन-सी केंद्रीय समस्या है?"
+      },
+      "choices": [
+       {
+        "id": "s2-what",
+        "text": {
+         "en": "What to produce",
+         "hi": "क्या उत्पादन करें"
+        },
+        "next": "s3",
+        "good": false,
+        "feedback": {
+         "en": "That was settled: it is rice. The question now is about the method.",
+         "hi": "वह तय हो चुका: चावल। अब सवाल तरीक़े का है।"
+        }
+       },
+       {
+        "id": "s2-how",
+        "text": {
+         "en": "How to produce",
+         "hi": "उत्पादन कैसे करें"
+        },
+        "next": "s3",
+        "good": true,
+        "feedback": {
+         "en": "Right. Choosing the technique, more labour or more machines, is the second central problem.",
+         "hi": "सही। तकनीक चुनना, ज़्यादा श्रम या ज़्यादा मशीनें, दूसरी केंद्रीय समस्या है।"
+        }
+       },
+       {
+        "id": "s2-whom",
+        "text": {
+         "en": "For whom to produce",
+         "hi": "किसके लिए उत्पादन करें"
+        },
+        "next": "s3",
+        "good": false,
+        "feedback": {
+         "en": "Not yet. Nothing here is about who gets the rice.",
+         "hi": "अभी नहीं। यहाँ चावल किसे मिले, इसकी बात नहीं है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "The harvest is in. Some families are rich and some are poor. The council argues about who should get how much rice. Which central problem is this?",
+       "hi": "फ़सल आ गई है। कुछ परिवार अमीर हैं, कुछ ग़रीब। परिषद बहस करती है कि किसे कितना चावल मिले। यह कौन-सी केंद्रीय समस्या है?"
+      },
+      "choices": [
+       {
+        "id": "s3-what",
+        "text": {
+         "en": "What to produce",
+         "hi": "क्या उत्पादन करें"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "The rice is already grown. The question is about sharing it.",
+         "hi": "चावल उग चुका है। सवाल उसे बाँटने का है।"
+        }
+       },
+       {
+        "id": "s3-how",
+        "text": {
+         "en": "How to produce",
+         "hi": "उत्पादन कैसे करें"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "The method is already chosen. The question now is about sharing the output.",
+         "hi": "तरीक़ा चुना जा चुका है। अब सवाल उत्पादन के बँटवारे का है।"
+        }
+       },
+       {
+        "id": "s3-whom",
+        "text": {
+         "en": "For whom to produce",
+         "hi": "किसके लिए उत्पादन करें"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Yes. How the output is shared among people is the third central problem.",
+         "hi": "हाँ। उत्पादन लोगों में कैसे बँटे, यह तीसरी केंद्रीय समस्या है।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which question does NOT have to be answered by an economy?",
+      "hi": "किस सवाल का जवाब अर्थव्यवस्था को देना ज़रूरी नहीं है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "What to produce",
+       "hi": "क्या उत्पादन करें"
+      },
+      {
+       "id": "b",
+       "en": "How to produce",
+       "hi": "उत्पादन कैसे करें"
+      },
+      {
+       "id": "c",
+       "en": "What colour the flag is",
+       "hi": "झंडे का रंग क्या हो"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:s1-what",
+     "expect": "chose:s1-what",
+     "say": {
+      "en": "Read the first scene and tap the central problem it shows.",
+      "hi": "पहला दृश्य पढ़ो और जो केंद्रीय समस्या दिखती है उसे दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Because resources are scarce, every economy must answer three questions: what to produce and how much, how to produce (which technique), and for whom to produce (how the output is shared).",
+      "hi": "संसाधन दुर्लभ हैं, इसलिए हर अर्थव्यवस्था को तीन सवाल हल करने पड़ते हैं: क्या और कितना उत्पादन करें, कैसे करें (कौन-सी तकनीक), और किसके लिए करें (उत्पादन कैसे बँटे)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A factory chooses between hiring 100 workers or buying a machine. This is the problem of...",
+        "hi": "एक कारख़ाना 100 मज़दूर रखे या एक मशीन ख़रीदे। यह किस समस्या का उदाहरण है?"
+       },
+       "options": [
+        {
+         "en": "how to produce",
+         "hi": "उत्पादन कैसे करें"
+        },
+        {
+         "en": "what to produce",
+         "hi": "क्या उत्पादन करें"
+        },
+        {
+         "en": "for whom to produce",
+         "hi": "किसके लिए उत्पादन करें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Choosing between labour and machines is choosing the technique.",
+        "hi": "श्रम और मशीन में से चुनना तकनीक चुनना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The product is already fixed; only the method is being chosen.",
+         "hi": "उत्पाद तय है; केवल तरीक़ा चुना जा रहा है।"
+        },
+        {
+         "en": "Nothing here is about who receives the output.",
+         "hi": "यहाँ उत्पादन किसे मिलेगा, इसकी बात नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do these problems arise at all?",
+        "hi": "ये समस्याएँ पैदा ही क्यों होती हैं?"
+       },
+       "options": [
+        {
+         "en": "Resources are scarce",
+         "hi": "संसाधन दुर्लभ हैं"
+        },
+        {
+         "en": "Money is printed",
+         "hi": "पैसा छापा जाता है"
+        },
+        {
+         "en": "People dislike work",
+         "hi": "लोगों को काम पसंद नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With limited resources we cannot have everything, so we must choose.",
+        "hi": "सीमित संसाधनों से सब कुछ नहीं मिल सकता, इसलिए चुनना पड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Printing money does not create more resources.",
+         "hi": "पैसा छापने से संसाधन नहीं बढ़ते।"
+        },
+        {
+         "en": "Choice is needed even when people love their work.",
+         "hi": "लोग काम पसंद करें तब भी चुनाव ज़रूरी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and pick every wrong answer once. Read what each feedback says.",
+      "hi": "फिर से खेलो और हर ग़लत जवाब एक बार चुनो। हर प्रतिक्रिया पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch01-systems",
+   "topic": "1.3",
+   "template": "sort",
+   "title": {
+    "en": "Planned or market?",
+    "hi": "योजना वाली या बाज़ार वाली?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "central",
+      "label": {
+       "en": "Centrally planned economy",
+       "hi": "केंद्रीय नियोजित अर्थव्यवस्था"
+      }
+     },
+     {
+      "id": "market",
+      "label": {
+       "en": "Market economy",
+       "hi": "बाज़ार अर्थव्यवस्था"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "A planning office decides how much wheat to grow",
+       "hi": "योजना कार्यालय तय करता है कि कितना गेहूँ उगे"
+      },
+      "bin": "central",
+      "why": {
+       "en": "A central authority takes the production decision.",
+       "hi": "उत्पादन का फ़ैसला एक केंद्रीय सत्ता लेती है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Umbrella prices rise when the rain starts",
+       "hi": "बारिश शुरू होने पर छाते महँगे हो जाते हैं"
+      },
+      "bin": "market",
+      "why": {
+       "en": "Prices move with demand and supply in a market.",
+       "hi": "बाज़ार में माँग और आपूर्ति से कीमतें बदलती हैं।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "The government orders each factory what to make",
+       "hi": "सरकार हर कारख़ाने को आदेश देती है कि क्या बनाए"
+      },
+      "bin": "central",
+      "why": {
+       "en": "Orders from the centre replace the market signal.",
+       "hi": "केंद्र के आदेश बाज़ार के संकेत की जगह लेते हैं।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "Firms make what buyers will pay for",
+       "hi": "फ़र्में वही बनाती हैं जो ख़रीदार चाहते हैं"
+      },
+      "bin": "market",
+      "why": {
+       "en": "Firms follow what buyers want, shown by prices.",
+       "hi": "फ़र्में ख़रीदारों की चाह के पीछे चलती हैं, जो कीमतों से दिखती है।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "Planners decide who gets which goods",
+       "hi": "योजनाकार तय करते हैं कि किसे कौन-सी चीज़ मिलेगी"
+      },
+      "bin": "central",
+      "why": {
+       "en": "Sharing the output is decided by planners, not by buying power.",
+       "hi": "उत्पादन का बँटवारा योजनाकार तय करते हैं, ख़रीदने की ताक़त नहीं।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "Many shops in a bazaar compete on price",
+       "hi": "बाज़ार की कई दुकानें कीमत पर होड़ करती हैं"
+      },
+      "bin": "market",
+      "why": {
+       "en": "Competition between sellers is a feature of a market economy.",
+       "hi": "विक्रेताओं की होड़ बाज़ार अर्थव्यवस्था की पहचान है।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "One authority takes the main economic decisions",
+       "hi": "एक सत्ता मुख्य आर्थिक फ़ैसले लेती है"
+      },
+      "bin": "central",
+      "why": {
+       "en": "Decision making sits at one centre.",
+       "hi": "फ़ैसले एक केंद्र पर होते हैं।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "Buyers and sellers trade freely at agreed prices",
+       "hi": "ख़रीदार और विक्रेता तय कीमतों पर आज़ादी से व्यापार करते हैं"
+      },
+      "bin": "market",
+      "why": {
+       "en": "Free exchange at prices set by buyers and sellers is the market way.",
+       "hi": "ख़रीदारों और विक्रेताओं की तय की कीमतों पर आज़ाद लेन-देन बाज़ार का तरीक़ा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In which kind of economy do prices of goods mainly guide what is produced?",
+      "hi": "किस तरह की अर्थव्यवस्था में कीमतें मुख्यतः तय करती हैं कि क्या बनेगा?"
+     },
+     "options": [
+      {
+       "id": "market",
+       "en": "Market economy",
+       "hi": "बाज़ार अर्थव्यवस्था"
+      },
+      {
+       "id": "central",
+       "en": "Centrally planned economy",
+       "hi": "केंद्रीय नियोजित अर्थव्यवस्था"
+      }
+     ],
+     "answer": "market"
+    },
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Tap the first card, then tap the group it belongs to.",
+      "hi": "पहला कार्ड दबाओ, फिर वह समूह दबाओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a centrally planned economy one authority decides what, how and for whom to produce. In a market economy these choices come from the actions of buyers and sellers and the prices they meet at. Real countries, including India, mix both.",
+      "hi": "केंद्रीय नियोजित अर्थव्यवस्था में एक सत्ता तय करती है कि क्या, कैसे और किसके लिए उत्पादन हो। बाज़ार अर्थव्यवस्था में ये चुनाव ख़रीदारों-विक्रेताओं के कामों और उनकी कीमतों से निकलते हैं। असली देश, भारत समेत, दोनों को मिलाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who takes the main decisions in a centrally planned economy?",
+        "hi": "केंद्रीय नियोजित अर्थव्यवस्था में मुख्य फ़ैसले कौन लेता है?"
+       },
+       "options": [
+        {
+         "en": "A central authority",
+         "hi": "एक केंद्रीय सत्ता"
+        },
+        {
+         "en": "Millions of buyers and sellers",
+         "hi": "लाखों ख़रीदार और विक्रेता"
+        },
+        {
+         "en": "Only foreign firms",
+         "hi": "केवल विदेशी फ़र्में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Planners at the centre decide what, how and for whom.",
+        "hi": "केंद्र के योजनाकार तय करते हैं कि क्या, कैसे और किसके लिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That describes a market economy.",
+         "hi": "यह बाज़ार अर्थव्यवस्था का वर्णन है।"
+        },
+        {
+         "en": "Foreign firms do not make the decisions of a planned economy.",
+         "hi": "विदेशी फ़र्में नियोजित अर्थव्यवस्था के फ़ैसले नहीं लेतीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In a market economy, what brings buyers and sellers together?",
+        "hi": "बाज़ार अर्थव्यवस्था में ख़रीदार और विक्रेता किससे जुड़ते हैं?"
+       },
+       "options": [
+        {
+         "en": "Prices",
+         "hi": "कीमतें"
+        },
+        {
+         "en": "Government orders",
+         "hi": "सरकारी आदेश"
+        },
+        {
+         "en": "A single plan",
+         "hi": "एक ही योजना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Prices tell sellers what to make and tell buyers what things cost.",
+        "hi": "कीमतें विक्रेताओं को बताती हैं क्या बनाएँ और ख़रीदारों को बताती हैं चीज़ों की लागत।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Orders belong to a planned economy.",
+         "hi": "आदेश नियोजित अर्थव्यवस्था की बात है।"
+        },
+        {
+         "en": "A single plan is how a planned economy works.",
+         "hi": "एक योजना नियोजित अर्थव्यवस्था का तरीक़ा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of one thing near you that the government plans and one that the market decides.",
+      "hi": "अपने पास की एक चीज़ सोचो जिसे सरकार तय करती है और एक जिसे बाज़ार तय करता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch01-positive",
+   "topic": "1.4",
+   "template": "sort",
+   "title": {
+    "en": "Fact or opinion?",
+    "hi": "तथ्य या राय?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pos",
+      "label": {
+       "en": "Positive: can be tested",
+       "hi": "सकारात्मक: जाँचा जा सकता है"
+      }
+     },
+     {
+      "id": "norm",
+      "label": {
+       "en": "Normative: what should be",
+       "hi": "आदर्श: क्या होना चाहिए"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "p1",
+      "text": {
+       "en": "Onion prices rose after the rains failed.",
+       "hi": "बारिश न होने के बाद प्याज़ की कीमतें बढ़ीं।"
+      },
+      "bin": "pos",
+      "why": {
+       "en": "We can check this with data.",
+       "hi": "इसे आँकड़ों से जाँचा जा सकता है।"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "The government should lower the price of milk.",
+       "hi": "सरकार को दूध की कीमत घटानी चाहिए।"
+      },
+      "bin": "norm",
+      "why": {
+       "en": "\"Should\" is a view about what ought to be, not a fact.",
+       "hi": "\"चाहिए\" राय है कि क्या होना चाहिए, तथ्य नहीं।"
+      }
+     },
+     {
+      "id": "p3",
+      "text": {
+       "en": "A fall in price raises the quantity demanded.",
+       "hi": "कीमत गिरने से माँगी गई मात्रा बढ़ती है।"
+      },
+      "bin": "pos",
+      "why": {
+       "en": "It is a cause-and-effect statement that can be tested.",
+       "hi": "यह कारण-परिणाम का कथन है जिसे जाँचा जा सकता है।"
+      }
+     },
+     {
+      "id": "p4",
+      "text": {
+       "en": "Rich people ought to pay more tax.",
+       "hi": "अमीर लोगों को ज़्यादा कर देना चाहिए।"
+      },
+      "bin": "norm",
+      "why": {
+       "en": "\"Ought\" shows a value judgement.",
+       "hi": "\"चाहिए\" मूल्य-निर्णय दिखाता है।"
+      }
+     },
+     {
+      "id": "p5",
+      "text": {
+       "en": "Unemployment in a town fell after a factory opened.",
+       "hi": "कारख़ाना खुलने के बाद एक कस्बे में बेरोज़गारी घटी।"
+      },
+      "bin": "pos",
+      "why": {
+       "en": "We can look at job records and check it.",
+       "hi": "रोज़गार के रिकॉर्ड देखकर इसे जाँचा जा सकता है।"
+      }
+     },
+     {
+      "id": "p6",
+      "text": {
+       "en": "Everyone deserves free healthcare.",
+       "hi": "हर किसी को मुफ़्त इलाज मिलना चाहिए।"
+      },
+      "bin": "norm",
+      "why": {
+       "en": "What people \"deserve\" is a matter of opinion.",
+       "hi": "लोग क्या \"पाने के हक़दार\" हैं, यह राय की बात है।"
+      }
+     },
+     {
+      "id": "p7",
+      "text": {
+       "en": "A tax on sugar reduces how much sugar people buy.",
+       "hi": "चीनी पर कर लगने से लोग कम चीनी ख़रीदते हैं।"
+      },
+      "bin": "pos",
+      "why": {
+       "en": "This can be tested by comparing purchases before and after.",
+       "hi": "पहले और बाद की ख़रीद की तुलना करके इसे जाँचा जा सकता है।"
+      }
+     },
+     {
+      "id": "p8",
+      "text": {
+       "en": "Schools should get more money than roads.",
+       "hi": "स्कूलों को सड़कों से ज़्यादा पैसा मिलना चाहिए।"
+      },
+      "bin": "norm",
+      "why": {
+       "en": "Which matters more is a value choice.",
+       "hi": "कौन ज़्यादा ज़रूरी है, यह मूल्यों का चुनाव है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which statement is positive: \"Petrol should be cheaper\" or \"Petrol demand falls when its price rises\"?",
+      "hi": "कौन-सा कथन सकारात्मक है: \"पेट्रोल सस्ता होना चाहिए\" या \"पेट्रोल की कीमत बढ़ने पर माँग घटती है\"?"
+     },
+     "options": [
+      {
+       "id": "b",
+       "en": "Demand falls when price rises",
+       "hi": "कीमत बढ़ने पर माँग घटती है"
+      },
+      {
+       "id": "a",
+       "en": "Petrol should be cheaper",
+       "hi": "पेट्रोल सस्ता होना चाहिए"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:p1",
+     "expect": "placed:p1",
+     "say": {
+      "en": "Tap the first card, then the group it belongs to.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Positive economics describes how things are and how they work, and its claims can be tested. Normative economics says how things ought to be and rests on values. Good economists keep the two apart.",
+      "hi": "सकारात्मक अर्थशास्त्र बताता है कि चीज़ें कैसी हैं और कैसे काम करती हैं; उसके दावे जाँचे जा सकते हैं। आदर्श अर्थशास्त्र बताता है कि चीज़ें कैसी होनी चाहिए और यह मूल्यों पर टिका है। अच्छे अर्थशास्त्री दोनों को अलग रखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word often shows a normative statement?",
+        "hi": "कौन-सा शब्द अक्सर आदर्श कथन दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "should",
+         "hi": "चाहिए"
+        },
+        {
+         "en": "rose",
+         "hi": "बढ़ा"
+        },
+        {
+         "en": "fell",
+         "hi": "घटा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "\"Should\" says what ought to happen, which is a judgement.",
+        "hi": "\"चाहिए\" बताता है क्या होना चाहिए, जो निर्णय है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "\"Rose\" reports what happened and can be checked.",
+         "hi": "\"बढ़ा\" जो हुआ उसे बताता है, जिसे जाँचा जा सकता है।"
+        },
+        {
+         "en": "\"Fell\" also reports a fact that can be checked.",
+         "hi": "\"घटा\" भी ऐसा तथ्य है जिसे जाँचा जा सकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can data settle a normative debate on its own?",
+        "hi": "क्या अकेले आँकड़े किसी आदर्श बहस को सुलझा सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "No, values also matter",
+         "hi": "नहीं, मूल्य भी मायने रखते हैं"
+        },
+        {
+         "en": "Yes, always",
+         "hi": "हाँ, हमेशा"
+        },
+        {
+         "en": "Only if the data is large",
+         "hi": "केवल अगर आँकड़े बड़े हों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Facts help us decide, but what is \"right\" depends on our values.",
+        "hi": "तथ्य फ़ैसले में मदद करते हैं, पर क्या \"सही\" है यह हमारे मूल्यों पर निर्भर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Different people can read the same facts and still disagree on what ought to be done.",
+         "hi": "एक ही तथ्य देखकर भी लोग इस पर असहमत हो सकते हैं कि क्या किया जाना चाहिए।"
+        },
+        {
+         "en": "More data does not turn an opinion into a fact.",
+         "hi": "ज़्यादा आँकड़े राय को तथ्य नहीं बना देते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write one positive and one normative sentence about school fees. Swap with a friend and sort each other's.",
+      "hi": "स्कूल की फ़ीस के बारे में एक सकारात्मक और एक आदर्श वाक्य लिखो। दोस्त से बदलकर एक-दूसरे के वाक्य छाँटो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch01-micromacro",
+   "topic": "1.5",
+   "template": "sort",
+   "title": {
+    "en": "Micro or macro question?",
+    "hi": "सूक्ष्म या समष्टि सवाल?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "micro",
+      "label": {
+       "en": "Microeconomics",
+       "hi": "व्यष्टि अर्थशास्त्र"
+      }
+     },
+     {
+      "id": "macro",
+      "label": {
+       "en": "Macroeconomics",
+       "hi": "समष्टि अर्थशास्त्र"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "m1",
+      "text": {
+       "en": "Why mango prices fall in summer",
+       "hi": "गर्मी में आम की कीमतें क्यों गिरती हैं"
+      },
+      "bin": "micro",
+      "why": {
+       "en": "It is about one market.",
+       "hi": "यह एक बाज़ार की बात है।"
+      }
+     },
+     {
+      "id": "m2",
+      "text": {
+       "en": "Why prices of all goods rise together",
+       "hi": "सभी चीज़ों की कीमतें साथ क्यों बढ़ती हैं"
+      },
+      "bin": "macro",
+      "why": {
+       "en": "The general price level is a whole-economy matter.",
+       "hi": "सामान्य कीमत स्तर पूरी अर्थव्यवस्था की बात है।"
+      }
+     },
+     {
+      "id": "m3",
+      "text": {
+       "en": "How a family splits income between food and books",
+       "hi": "परिवार आय को खाने और किताबों में कैसे बाँटे"
+      },
+      "bin": "micro",
+      "why": {
+       "en": "One decision-maker chooses.",
+       "hi": "एक निर्णयकर्ता चुनता है।"
+      }
+     },
+     {
+      "id": "m4",
+      "text": {
+       "en": "How much the whole country produces in a year",
+       "hi": "पूरा देश एक साल में कितना उत्पादन करता है"
+      },
+      "bin": "macro",
+      "why": {
+       "en": "Total output of the country is a macro quantity.",
+       "hi": "देश का कुल उत्पादन समष्टि मात्रा है।"
+      }
+     },
+     {
+      "id": "m5",
+      "text": {
+       "en": "How many workers one factory should hire",
+       "hi": "एक कारख़ाने को कितने मज़दूर रखने चाहिए"
+      },
+      "bin": "micro",
+      "why": {
+       "en": "It is one firm's decision.",
+       "hi": "यह एक फ़र्म का निर्णय है।"
+      }
+     },
+     {
+      "id": "m6",
+      "text": {
+       "en": "Why so many people in the country have no jobs",
+       "hi": "देश में इतने लोग बेरोज़गार क्यों हैं"
+      },
+      "bin": "macro",
+      "why": {
+       "en": "Overall unemployment concerns the economy as a whole.",
+       "hi": "कुल बेरोज़गारी पूरी अर्थव्यवस्था से जुड़ी है।"
+      }
+     },
+     {
+      "id": "m7",
+      "text": {
+       "en": "How a bakery decides the price of bread",
+       "hi": "बेकरी ब्रेड की कीमत कैसे तय करती है"
+      },
+      "bin": "micro",
+      "why": {
+       "en": "A single seller's pricing is a micro question.",
+       "hi": "एक विक्रेता की कीमत तय करना सूक्ष्म सवाल है।"
+      }
+     },
+     {
+      "id": "m8",
+      "text": {
+       "en": "How the RBI controls the supply of money",
+       "hi": "RBI मुद्रा की आपूर्ति को कैसे नियंत्रित करता है"
+      },
+      "bin": "macro",
+      "why": {
+       "en": "Money supply affects the whole economy.",
+       "hi": "मुद्रा आपूर्ति पूरी अर्थव्यवस्था पर असर डालती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "\"Why is the price of tomatoes going up in my town?\" is a ... question.",
+      "hi": "\"मेरे कस्बे में टमाटर की कीमत क्यों बढ़ रही है?\" यह ... सवाल है।"
+     },
+     "options": [
+      {
+       "id": "micro",
+       "en": "micro",
+       "hi": "सूक्ष्म"
+      },
+      {
+       "id": "macro",
+       "en": "macro",
+       "hi": "समष्टि"
+      }
+     ],
+     "answer": "micro"
+    },
+    {
+     "kind": "do",
+     "target": "card:m1",
+     "expect": "placed:m1",
+     "say": {
+      "en": "Tap the first card, then the group it belongs to.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Microeconomics studies individual units: a consumer, a firm, one market. Macroeconomics studies the economy as a whole: total output, general prices, jobs, money and trade. Each one needs the other.",
+      "hi": "व्यष्टि अर्थशास्त्र अलग-अलग इकाइयों को पढ़ता है: एक उपभोक्ता, एक फ़र्म, एक बाज़ार। समष्टि अर्थशास्त्र पूरी अर्थव्यवस्था को पढ़ता है: कुल उत्पादन, सामान्य कीमतें, रोज़गार, मुद्रा और व्यापार। दोनों एक-दूसरे के काम आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is a MACRO topic?",
+        "hi": "इनमें समष्टि विषय कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Inflation in the whole country",
+         "hi": "पूरे देश की मुद्रास्फीति"
+        },
+        {
+         "en": "The price of one brand of biscuit",
+         "hi": "बिस्कुट के एक ब्रांड की कीमत"
+        },
+        {
+         "en": "How one student spends pocket money",
+         "hi": "एक विद्यार्थी जेब ख़र्च कैसे ख़र्च करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Inflation describes the whole economy.",
+        "hi": "मुद्रास्फीति पूरी अर्थव्यवस्था की बात करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One brand's price is a single-market, micro matter.",
+         "hi": "एक ब्रांड की कीमत एक बाज़ार की, सूक्ष्म बात है।"
+        },
+        {
+         "en": "One student's choice is an individual, micro decision.",
+         "hi": "एक विद्यार्थी का चुनाव व्यक्तिगत, सूक्ष्म निर्णय है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up two questions about a bus service: one micro and one macro.",
+      "hi": "बस सेवा के बारे में दो सवाल बनाओ: एक सूक्ष्म और एक समष्टि।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook of the chapter: a simple economy in a village haat",
+   "shows": "A weekly village haat: a farmer with sacks of grain, a weaver with folded cloth, a potter with pots, all swapping goods and coins",
+   "view": "Wide view from a raised corner, morning light, 16:9",
+   "right": "Real handloom cloth, clay pots, jute sacks, rupee notes changing hands",
+   "avoid": "Readable signs, faces, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Scarcity and choice on one piece of land",
+   "shows": "One small plot split in two: half green rice seedlings in water, half a covered handloom workshop shed on the same land",
+   "view": "Slight aerial view, soft daylight, 16:9",
+   "right": "Rice seedlings in rows; a thatched or tin-roof loom shed; same land clearly shared",
+   "avoid": "Text, people's faces"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "1.2",
+   "use": "Base for the choice curve (rice against cloth)",
+   "shows": "A clean empty graph frame with two axes, light grid and rounded corner, ready for the app to draw the curve and labels",
+   "view": "Flat, white or transparent background, 4:3",
+   "right": "Equal grid spacing, axis arrows",
+   "avoid": "Any numbers, words or lines inside"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Market economy: a busy vegetable bazaar",
+   "shows": "A crowded vegetable bazaar: stalls of tomatoes, onions and greens, sellers calling out, buyers bargaining",
+   "view": "Eye level along the lane, morning light, 16:9",
+   "right": "Real heaps of vegetables, hand scales, a mix of buyers",
+   "avoid": "Readable price boards, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Planned distribution: a fair-price (ration) shop counter",
+   "shows": "A government fair-price shop counter with sacks of rice and wheat, a spring scale, and a register on the counter",
+   "view": "Eye level from the customer side, even light, 16:9",
+   "right": "Plain sacks, brass or steel scale, bound register with unreadable writing",
+   "avoid": "Readable notices, brand names, faces"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "The economy as a whole (macro view)",
+   "shows": "A wide aerial view of a city edge: farms, a factory zone, a railway line and a port crane, together",
+   "view": "High oblique aerial, clear daylight, 16:9",
+   "right": "Fields, chimneys, rail tracks and port cranes in one frame",
+   "avoid": "Readable signs, logos, a real identifiable city landmark"
+  }
+ ]
+}

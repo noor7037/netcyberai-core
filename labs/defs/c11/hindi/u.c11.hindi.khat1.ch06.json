@@ -1,0 +1,673 @@
+{
+ "chapter_key": "u.c11.hindi.khat1.ch06",
+ "class": 11,
+ "subject_id": "hindi",
+ "title": "खानाबदोश",
+ "source": "https://ncert.nic.in/textbook/pdf/khat106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "How a brick is made (ईंट कैसे बनती है)",
+   "labs": [
+    "c11-hindi-khat1-ch06-brick"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "The people of the kiln (भट्ठे के लोग)",
+   "labs": [
+    "c11-hindi-khat1-ch06-people"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Words of labour (मेहनत के शब्द)",
+   "labs": [
+    "c11-hindi-khat1-ch06-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "The writer: Omprakash Valmiki (लेखक परिचय)",
+   "labs": [],
+   "why_no_lab": "A short author note is better read than played."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-hindi-khat1-ch06-brick",
+   "topic": "6.1",
+   "template": "sequence",
+   "title": {
+    "en": "From mud to a brick house",
+    "hi": "मिट्टी से ईंट के घर तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "mud",
+      "text": {
+       "en": "Mud is dug, wetted and kneaded until it is soft",
+       "hi": "मिट्टी खोदी, गीली की और गूँधी जाती है जब तक वह नरम न हो जाए"
+      }
+     },
+     {
+      "id": "mould",
+      "text": {
+       "en": "The soft mud is pressed into a wooden mould to give the shape of a brick",
+       "hi": "नरम मिट्टी को लकड़ी के साँचे में दबाकर ईंट का आकार दिया जाता है"
+      }
+     },
+     {
+      "id": "dry",
+      "text": {
+       "en": "The raw bricks are laid out in the sun to dry",
+       "hi": "कच्ची ईंटें धूप में सूखने के लिए बिछाई जाती हैं"
+      }
+     },
+     {
+      "id": "fire",
+      "text": {
+       "en": "The dry bricks are stacked in the kiln and fired by a slow fire",
+       "hi": "सूखी ईंटें भट्ठे में लगाकर धीमी आग में पकाई जाती हैं"
+      }
+     },
+     {
+      "id": "carry",
+      "text": {
+       "en": "The baked red bricks are taken out and carried to the builders",
+       "hi": "पकी लाल ईंटें निकालकर राजमिस्त्रियों तक ढोई जाती हैं"
+      }
+     },
+     {
+      "id": "house",
+      "text": {
+       "en": "Masons lay the bricks into the walls of a house",
+       "hi": "राजमिस्त्री ईंटों से घर की दीवारें चिनते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:mud",
+     "expect": "placed:mud",
+     "say": {
+      "en": "Place the first step of making a brick.",
+      "hi": "ईंट बनाने का पहला चरण रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What makes a raw brick hard and red?",
+      "hi": "कच्ची ईंट को कड़ा और लाल क्या बनाता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Rain",
+       "hi": "बारिश"
+      },
+      {
+       "id": "b",
+       "en": "Firing in the kiln",
+       "hi": "भट्ठे में पकाना"
+      },
+      {
+       "id": "c",
+       "en": "Painting",
+       "hi": "रंग करना"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "item:fire",
+     "expect": "placed:fire",
+     "say": {
+      "en": "Place the card about firing in the kiln.",
+      "hi": "भट्ठे में पकाने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order and tap Check.",
+      "hi": "सारे चरण क्रम में लगाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sukhiya and Mano in the story do work like this at a brick kiln. Their hands turn mud into bricks, but the owner and contractor keep the profit. The sequence shows how much labour is hidden in every wall we see.",
+      "hi": "कहानी में सुकिया और मानो भट्ठे पर ऐसा ही काम करते हैं। उनके हाथ मिट्टी को ईंट बनाते हैं, पर मुनाफ़ा मालिक और ठेकेदार ले जाते हैं। यह क्रम दिखाता है कि हर दीवार में कितनी छिपी मेहनत है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are bricks fired in a kiln?",
+        "hi": "ईंटें भट्ठे में क्यों पकाई जाती हैं?"
+       },
+       "options": [
+        {
+         "en": "Fire hardens clay so the brick lasts",
+         "hi": "आग मिट्टी को कड़ा बनाती है ताकि ईंट टिके"
+        },
+        {
+         "en": "To make them wet",
+         "hi": "उन्हें गीला करने के लिए"
+        },
+        {
+         "en": "To make them lighter in colour",
+         "hi": "रंग हल्का करने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heat bakes the clay into a hard, strong material.",
+        "hi": "ताप मिट्टी को पकाकर कठोर और मज़बूत बना देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Firing dries and hardens; it does not wet.",
+         "hi": "पकाने से ईंट सूखती और कड़ी होती है, गीली नहीं।"
+        },
+        {
+         "en": "Fired bricks become red, not lighter.",
+         "hi": "पकी ईंट लाल होती है, हल्की नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which step comes just after moulding?",
+        "hi": "साँचे में ढालने के ठीक बाद कौन-सा चरण आता है?"
+       },
+       "options": [
+        {
+         "en": "Firing",
+         "hi": "पकाना"
+        },
+        {
+         "en": "Drying in the sun",
+         "hi": "धूप में सुखाना"
+        },
+        {
+         "en": "Building the wall",
+         "hi": "दीवार चिनना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Raw bricks must dry before they go into the kiln.",
+        "hi": "कच्ची ईंटें सूखने के बाद ही भट्ठे में जाती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Wet bricks would crack in the fire, so they dry first.",
+         "hi": "गीली ईंटें आग में चटक जाएँगी, इसलिए पहले सूखती हैं।"
+        },
+        "",
+        {
+         "en": "Walls are the last step.",
+         "hi": "दीवार तो सबसे अंत में बनती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a wall near you. Imagine the people who made each brick.",
+      "hi": "अपने पास की दीवार को देखो। सोचो कि हर ईंट किन लोगों ने बनाई होगी।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khat1-ch06-people",
+   "topic": "6.2",
+   "template": "reader",
+   "title": {
+    "en": "The people of the kiln",
+    "hi": "भट्ठे के लोग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Life at the brick kiln",
+      "hi": "भट्ठे का जीवन"
+     },
+     "lines": [
+      "सुकिया और मानो काम की तलाश में गाँव छोड़कर ईंट के भट्ठे पर आए थे।",
+      "मानो का सपना था कि वे अपनी बनाई ईंटों से एक दिन अपना पक्का घर बनाएँ।",
+      "ठेकेदार ने मज़दूरों से दिन-रात काम लिया और मज़दूरी कम दी।",
+      "भट्ठे का मालिक मुखत्यार सिंह दूर से सब देखता और मुनाफ़ा गिनता था।",
+      "मेहनत करने वालों के हिस्से में बस थकान और अगली जगह का इंतज़ार आया।"
+     ]
+    },
+    "characters": [
+     {
+      "id": "sukia",
+      "name": "सुकिया",
+      "traits": [
+       {
+        "en": "A hard-working labourer who hopes for a better life",
+        "hi": "मेहनती मज़दूर जो बेहतर जीवन की आशा रखता है"
+       }
+      ]
+     },
+     {
+      "id": "mano",
+      "name": "मानो",
+      "traits": [
+       {
+        "en": "Dreams of a pucca house of her own, brave and sensitive",
+        "hi": "अपने पक्के घर का सपना देखती है, साहसी और संवेदनशील"
+       }
+      ]
+     },
+     {
+      "id": "thekedar",
+      "name": "ठेकेदार",
+      "traits": [
+       {
+        "en": "Takes work from the labourers and pays little",
+        "hi": "मज़दूरों से काम लेता है और कम मज़दूरी देता है"
+       }
+      ]
+     },
+     {
+      "id": "mukhtar",
+      "name": "मुखत्यार",
+      "traits": [
+       {
+        "en": "The kiln owner who sits away and counts the profit",
+        "hi": "भट्ठे का मालिक जो दूर बैठकर मुनाफ़ा गिनता है"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:mano",
+     "expect": "picked:mano",
+     "say": {
+      "en": "Pick the character who dreams of a pucca house.",
+      "hi": "उस पात्र को चुनो जो पक्के घर का सपना देखती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who gains most from the labourers' work?",
+      "hi": "मज़दूरों के काम से सबसे ज़्यादा लाभ किसे होता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Sukhiya",
+       "hi": "सुकिया"
+      },
+      {
+       "id": "b",
+       "en": "The kiln owner",
+       "hi": "भट्ठे का मालिक"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "character:sukia",
+     "expect": "picked:sukia",
+     "say": {
+      "en": "Pick the labourer who hopes for a better life.",
+      "hi": "उस मज़दूर को चुनो जो बेहतर जीवन की आशा रखता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:thekedar",
+     "expect": "picked:thekedar",
+     "say": {
+      "en": "Pick the one who pays little.",
+      "hi": "उसे चुनो जो कम मज़दूरी देता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:mukhtar",
+     "expect": "picked:mukhtar",
+     "say": {
+      "en": "Pick the kiln owner.",
+      "hi": "भट्ठे के मालिक को चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The story is about two worlds: those who make and those who own. The labourers build houses for others yet dream of one for themselves. The word खानाबदोश means a wanderer who has no home.",
+      "hi": "कहानी दो दुनियाओं की है: जो बनाते हैं और जो मालिक हैं। मज़दूर दूसरों के घर बनाते हैं और अपने घर का सपना देखते हैं। खानाबदोश वह है जो घूमता रहता है और जिसका कोई ठिकाना नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'खानाबदोश' mean?",
+        "hi": "'खानाबदोश' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "One who wanders with no settled home",
+         "hi": "जो बिना ठिकाने के घूमता रहे"
+        },
+        {
+         "en": "A rich landlord",
+         "hi": "एक अमीर ज़मींदार"
+        },
+        {
+         "en": "A bricklayer's tool",
+         "hi": "राजमिस्त्री का औज़ार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The labourers keep moving from one work place to another and own no house.",
+        "hi": "मज़दूर एक काम की जगह से दूसरी पर जाते रहते हैं और उनका कोई घर नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A landlord is the opposite of a wanderer: he has land and a home.",
+         "hi": "ज़मींदार इसका उलटा है: उसके पास ज़मीन और घर है।"
+        },
+        {
+         "en": "It is a person's way of life, not a tool.",
+         "hi": "यह जीवन-शैली का शब्द है, औज़ार का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why do people who build homes often have none? Discuss with a friend.",
+      "hi": "जो घर बनाते हैं उनके पास अक्सर घर क्यों नहीं होता? दोस्त से चर्चा करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khat1-ch06-words",
+   "topic": "6.3",
+   "template": "match",
+   "title": {
+    "en": "Words of labour",
+    "hi": "मेहनत के शब्द"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "bhattha",
+      "left": {
+       "en": "भट्ठा",
+       "hi": "भट्ठा"
+      },
+      "right": {
+       "en": "A big oven where bricks are baked",
+       "hi": "बड़ी भट्ठी जहाँ ईंटें पकाई जाती हैं"
+      },
+      "why": {
+       "en": "The story is set at one.",
+       "hi": "कहानी इसी जगह है।"
+      }
+     },
+     {
+      "id": "majdoor",
+      "left": {
+       "en": "मज़दूरी",
+       "hi": "मज़दूरी"
+      },
+      "right": {
+       "en": "The money paid for a day's work",
+       "hi": "दिन भर के काम के बदले मिला पैसा"
+      },
+      "why": {
+       "en": "The labourers get too little of it.",
+       "hi": "मज़दूरों को यह बहुत कम मिलती है।"
+      }
+     },
+     {
+      "id": "shoshan",
+      "left": {
+       "en": "शोषण",
+       "hi": "शोषण"
+      },
+      "right": {
+       "en": "Taking unfair advantage of someone's work or helplessness",
+       "hi": "किसी की मेहनत या मजबूरी का अनुचित लाभ उठाना"
+      },
+      "why": {
+       "en": "The owner and contractor do this.",
+       "hi": "मालिक और ठेकेदार यही करते हैं।"
+      }
+     },
+     {
+      "id": "palayan",
+      "left": {
+       "en": "पलायन",
+       "hi": "पलायन"
+      },
+      "right": {
+       "en": "Leaving one's village in search of work",
+       "hi": "काम की तलाश में अपना गाँव छोड़ना"
+      },
+      "why": {
+       "en": "Sukhiya and Mano did this.",
+       "hi": "सुकिया और मानो ने यही किया।"
+      }
+     },
+     {
+      "id": "pakka",
+      "left": {
+       "en": "पक्का घर",
+       "hi": "पक्का घर"
+      },
+      "right": {
+       "en": "A house of baked brick and cement, not of mud",
+       "hi": "ईंट और सीमेंट का बना घर, मिट्टी का नहीं"
+      },
+      "why": {
+       "en": "Mano's dream.",
+       "hi": "मानो का सपना।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:bhattha",
+     "expect": "matched:bhattha",
+     "say": {
+      "en": "Match the oven word with its meaning.",
+      "hi": "भट्ठे वाला शब्द उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word means taking unfair advantage of workers?",
+      "hi": "मज़दूरों का अनुचित लाभ उठाने के लिए कौन-सा शब्द है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "शोषण",
+       "hi": "शोषण"
+      },
+      {
+       "id": "b",
+       "en": "पलायन",
+       "hi": "पलायन"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:shoshan",
+     "expect": "matched:shoshan",
+     "say": {
+      "en": "Match शोषण with its meaning.",
+      "hi": "शोषण को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Finish the pairs and tap Check.",
+      "hi": "जोड़ियाँ पूरी करो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "These words tell the whole story: people leave home (पलायन), work at a भट्ठा, get little मज़दूरी, suffer शोषण and still dream of a पक्का घर.",
+      "hi": "ये शब्द पूरी कहानी कह देते हैं: लोग घर छोड़ते हैं (पलायन), भट्ठे पर काम करते हैं, थोड़ी मज़दूरी पाते हैं, शोषण सहते हैं और फिर भी पक्के घर का सपना देखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is पलायन?",
+        "hi": "पलायन क्या है?"
+       },
+       "options": [
+        {
+         "en": "Leaving one's home place to look for work",
+         "hi": "काम ढूँढ़ने के लिए अपना स्थान छोड़ना"
+        },
+        {
+         "en": "A festival",
+         "hi": "एक त्योहार"
+        },
+        {
+         "en": "A kind of brick",
+         "hi": "एक प्रकार की ईंट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Villagers move to far places when there is no work at home.",
+        "hi": "गाँव में काम न हो तो लोग दूर जाकर काम खोजते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is not a festival but a hard necessity.",
+         "hi": "यह त्योहार नहीं, कठिन मजबूरी है।"
+        },
+        {
+         "en": "It is a movement of people, not a type of brick.",
+         "hi": "यह लोगों का जाना है, ईंट की क़िस्म नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write a sentence using शोषण and one using पक्का घर.",
+      "hi": "शोषण और पक्का घर, दोनों शब्दों से एक-एक वाक्य लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Hook of the chapter",
+   "shows": "A brick kiln with a tall chimney at dawn, rows of raw bricks drying in the foreground",
+   "view": "Wide, low sun",
+   "right": "Real red-brown bricks, smoke from the chimney",
+   "avoid": "Faces, company names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "6.1",
+   "use": "Brick in four stages",
+   "shows": "The same brick in 4 frames: wet mud in a mould, raw brick, dry brick, fired red brick",
+   "view": "Same top view each time",
+   "right": "Same size; colours go grey-brown, then deep red",
+   "avoid": "Text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Word card: साँचा",
+   "shows": "A wooden brick mould with a bit of wet mud",
+   "view": "Three-quarter view, cut-out",
+   "right": "Real wood grain and mud",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Labourers at work",
+   "shows": "Silhouettes of labourers carrying stacked bricks on their heads in single file at dusk",
+   "view": "Wide, backlit",
+   "right": "Silhouettes only; head-loads of bricks",
+   "avoid": "Faces"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "6.3",
+   "use": "Word card: पक्का घर",
+   "shows": "A small pucca house of red brick with a tin roof, cut-out",
+   "view": "Three-quarter view",
+   "right": "Real brick courses, simple door",
+   "avoid": "Brand names"
+  }
+ ]
+}

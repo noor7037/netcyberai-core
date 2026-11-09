@@ -1,0 +1,994 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch13",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Statistics",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh113.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Introduction: averages are not the whole story",
+   "labs": [],
+   "why_no_lab": "A short reading idea; the two-batters lab in 13.2 shows it."
+  },
+  {
+   "n": "13.2",
+   "title": "Measures of dispersion",
+   "labs": [
+    "c11-mathematics-kemh1-ch13-two-batters"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3",
+   "title": "Range",
+   "labs": [
+    "c11-mathematics-kemh1-ch13-range"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4",
+   "title": "Mean deviation for ungrouped and grouped data, and its limitations",
+   "labs": [
+    "c11-mathematics-kemh1-ch13-mean-deviation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.5",
+   "title": "Variance and standard deviation: ungrouped data, discrete and continuous frequency distributions",
+   "labs": [
+    "c11-mathematics-kemh1-ch13-standard-deviation",
+    "c11-mathematics-kemh1-ch13-frequency-sd"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch13-two-batters",
+   "topic": "13.2",
+   "template": "data",
+   "title": {
+    "en": "Same average, different spread",
+    "hi": "औसत एक, फैलाव अलग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "double-bar",
+    "title": {
+     "en": "Runs scored in five matches",
+     "hi": "पाँच मैचों में बनाए रन"
+    },
+    "xlabel": {
+     "en": "Match",
+     "hi": "मैच"
+    },
+    "ylabel": {
+     "en": "Runs",
+     "hi": "रन"
+    },
+    "series": [
+     {
+      "en": "Arjun",
+      "hi": "अर्जुन"
+     },
+     {
+      "en": "Kabir",
+      "hi": "कबीर"
+     }
+    ],
+    "data": [
+     {
+      "label": {
+       "en": "Match 1",
+       "hi": "मैच 1"
+      },
+      "value": 48,
+      "value2": 10
+     },
+     {
+      "label": {
+       "en": "Match 2",
+       "hi": "मैच 2"
+      },
+      "value": 52,
+      "value2": 95
+     },
+     {
+      "label": {
+       "en": "Match 3",
+       "hi": "मैच 3"
+      },
+      "value": 50,
+      "value2": 20
+     },
+     {
+      "label": {
+       "en": "Match 4",
+       "hi": "मैच 4"
+      },
+      "value": 47,
+      "value2": 100
+     },
+     {
+      "label": {
+       "en": "Match 5",
+       "hi": "मैच 5"
+      },
+      "value": 53,
+      "value2": 25
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two batters in a school team each scored 250 runs in 5 matches, so both have a mean of 50 runs. The bars show their scores match by match.",
+      "hi": "स्कूल टीम के दो बल्लेबाज़ों ने 5 मैचों में 250-250 रन बनाए, इसलिए दोनों का माध्य 50 रन है। दंड हर मैच के रन दिखाते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:1",
+     "expect": "selected:*",
+     "say": {
+      "en": "Tap Arjun's bar for Match 2 to read it.",
+      "hi": "मैच 2 के लिए अर्जुन का दंड छूकर पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The captain needs a batter who scores close to 50 every time. Whom should she pick?",
+      "hi": "कप्तान को ऐसा बल्लेबाज़ चाहिए जो हर बार 50 के पास रन बनाए। उसे किसे चुनना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "arjun",
+       "en": "Arjun",
+       "hi": "अर्जुन"
+      },
+      {
+       "id": "kabir",
+       "en": "Kabir",
+       "hi": "कबीर"
+      },
+      {
+       "id": "either",
+       "en": "Either: their means are equal",
+       "hi": "कोई भी: दोनों के माध्य बराबर हैं"
+      }
+     ],
+     "answer": "arjun"
+    },
+    {
+     "kind": "do",
+     "target": "bar:6",
+     "expect": "selected:*",
+     "say": {
+      "en": "Now tap Kabir's bar for Match 2 and compare.",
+      "hi": "अब मैच 2 के लिए कबीर का दंड छूकर तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Arjun's scores stay between 47 and 53; Kabir's jump from 10 to 100. The mean is the same, but the scatter or spread of the data about the mean is very different. Numbers that measure this spread are called measures of dispersion: range, mean deviation, variance and standard deviation.",
+      "hi": "अर्जुन के रन 47 और 53 के बीच रहते हैं; कबीर के 10 से 100 तक उछलते हैं। माध्य एक ही है, पर माध्य के चारों ओर आँकड़ों का बिखराव या फैलाव बहुत अलग है। इस फैलाव को मापने वाली संख्याओं को प्रकीर्णन की माप कहते हैं: परिसर, माध्य विचलन, प्रसरण और मानक विचलन।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the range of Kabir's scores?",
+        "hi": "कबीर के रनों का परिसर क्या है?"
+       },
+       "options": [
+        "90",
+        "50",
+        "100"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Range = highest − lowest = 100 − 10 = 90. Arjun's range is only 53 − 47 = 6.",
+        "hi": "परिसर = सबसे बड़ा − सबसे छोटा = 100 − 10 = 90। अर्जुन का परिसर केवल 53 − 47 = 6 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "50 is the mean, not a measure of spread.",
+         "hi": "50 तो माध्य है, फैलाव की माप नहीं।"
+        },
+        {
+         "en": "100 is only the highest score; subtract the lowest.",
+         "hi": "100 केवल सबसे बड़ा स्कोर है; सबसे छोटा घटाओ।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the mean alone not enough here?",
+        "hi": "यहाँ केवल माध्य काफ़ी क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "It says nothing about how far scores are from it",
+         "hi": "यह नहीं बताता कि रन उससे कितनी दूर हैं"
+        },
+        {
+         "en": "It was worked out wrongly",
+         "hi": "उसे ग़लत निकाला गया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two very different sets can share a mean; dispersion tells them apart.",
+        "hi": "दो बहुत अलग समुच्चयों का माध्य एक हो सकता है; प्रकीर्णन उन्हें अलग पहचानता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both means really are 250 ÷ 5 = 50; the mean is right but incomplete.",
+         "hi": "दोनों माध्य सच में 250 ÷ 5 = 50 हैं; माध्य सही है पर अधूरा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the sliders to change Kabir's scores so that his total stays 250 but his bars look like Arjun's. What happens to the spread?",
+      "hi": "स्लाइडरों से कबीर के रन ऐसे बदलो कि कुल 250 रहे पर दंड अर्जुन जैसे दिखें। फैलाव का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch13-range",
+   "topic": "13.3",
+   "template": "data",
+   "title": {
+    "en": "Range: the simplest spread",
+    "hi": "परिसर: सबसे सरल फैलाव"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "title": {
+     "en": "Highest temperature on 7 days at the school weather station",
+     "hi": "स्कूल के मौसम केंद्र पर 7 दिनों का अधिकतम तापमान"
+    },
+    "xlabel": {
+     "en": "Day",
+     "hi": "दिन"
+    },
+    "ylabel": {
+     "en": "°C",
+     "hi": "°C"
+    },
+    "ask": "range",
+    "data": [
+     {
+      "label": {
+       "en": "Mon",
+       "hi": "सोम"
+      },
+      "value": 24
+     },
+     {
+      "label": {
+       "en": "Tue",
+       "hi": "मंगल"
+      },
+      "value": 27
+     },
+     {
+      "label": {
+       "en": "Wed",
+       "hi": "बुध"
+      },
+      "value": 22
+     },
+     {
+      "label": {
+       "en": "Thu",
+       "hi": "गुरु"
+      },
+      "value": 29
+     },
+     {
+      "label": {
+       "en": "Fri",
+       "hi": "शुक्र"
+      },
+      "value": 31
+     },
+     {
+      "label": {
+       "en": "Sat",
+       "hi": "शनि"
+      },
+      "value": 26
+     },
+     {
+      "label": {
+       "en": "Sun",
+       "hi": "रवि"
+      },
+      "value": 25
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The school weather station noted the highest temperature for a week. The range is the highest value minus the lowest value.",
+      "hi": "स्कूल के मौसम केंद्र ने एक सप्ताह का अधिकतम तापमान लिखा। परिसर सबसे बड़े मान में से सबसे छोटा मान घटाकर मिलता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: what is the range?",
+      "hi": "लैब के प्रश्न का उत्तर दो: परिसर क्या है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Suppose Friday had been 40 °C instead of 31 °C. What happens to the range?",
+      "hi": "मान लो शुक्रवार 31 °C की जगह 40 °C होता। परिसर का क्या होता?"
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "It jumps from 9 to 18",
+       "hi": "यह 9 से 18 हो जाता"
+      },
+      {
+       "id": "same",
+       "en": "It stays 9",
+       "hi": "यह 9 ही रहता"
+      },
+      {
+       "id": "down",
+       "en": "It gets smaller",
+       "hi": "यह घट जाता"
+      }
+     ],
+     "answer": "up"
+    },
+    {
+     "kind": "do",
+     "target": "slider:4",
+     "expect": "changed",
+     "say": {
+      "en": "Move Friday's slider up to 40.",
+      "hi": "शुक्रवार का स्लाइडर ऊपर 40 तक ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "31 − 22 = 9 °C at first. With one very hot day, 40 − 22 = 18 °C: the range doubled though six days did not change. The range is quick to find but depends only on the two extreme values, so one unusual value can change it a lot. That is why we also need measures that use every value.",
+      "hi": "शुरू में 31 − 22 = 9 °C। एक बहुत गर्म दिन से 40 − 22 = 18 °C: छह दिन वही रहे फिर भी परिसर दुगुना हो गया। परिसर जल्दी निकलता है पर केवल दो छोर के मानों पर निर्भर है, इसलिए एक असामान्य मान उसे बहुत बदल सकता है। इसीलिए हमें ऐसी माप भी चाहिए जो हर मान का उपयोग करें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The marks of five students are 35, 48, 72, 51, 64. What is the range?",
+        "hi": "पाँच विद्यार्थियों के अंक 35, 48, 72, 51, 64 हैं। परिसर क्या है?"
+       },
+       "options": [
+        "37",
+        "29",
+        "72"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "72 − 35 = 37.",
+        "hi": "72 − 35 = 37।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "29 is 64 − 35; the highest mark is 72, not 64.",
+         "hi": "29 = 64 − 35; सबसे बड़े अंक 72 हैं, 64 नहीं।"
+        },
+        {
+         "en": "72 is only the highest mark.",
+         "hi": "72 केवल सबसे बड़े अंक हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the main weakness of the range?",
+        "hi": "परिसर की मुख्य कमज़ोरी क्या है?"
+       },
+       "options": [
+        {
+         "en": "It uses only the largest and smallest values",
+         "hi": "यह केवल सबसे बड़े और सबसे छोटे मान लेता है"
+        },
+        {
+         "en": "It is hard to calculate",
+         "hi": "इसे निकालना कठिन है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Everything between the two extremes is ignored, so it can mislead.",
+        "hi": "दोनों छोरों के बीच का सब कुछ छूट जाता है, इसलिए यह भ्रम में डाल सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is the easiest measure of spread to find; its problem is what it leaves out.",
+         "hi": "यह फैलाव की सबसे आसान माप है; समस्या यह है कि यह क्या छोड़ देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move other days' sliders. Which changes alter the range and which do not? Can the range ever be negative?",
+      "hi": "दूसरे दिनों के स्लाइडर चलाओ। कौन-से बदलाव परिसर बदलते हैं और कौन-से नहीं? क्या परिसर कभी ऋणात्मक हो सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch13-mean-deviation",
+   "topic": "13.4",
+   "template": "code",
+   "title": {
+    "en": "Mean deviation about the mean",
+    "hi": "माध्य के सापेक्ष माध्य विचलन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "marks = [12, 15, 9, 18, 11, 14, 10, 15]",
+     "n = len(marks)",
+     "mean = sum(marks) / n",
+     "total = 0",
+     "for x in marks:",
+     "    total = total + abs(x - mean)",
+     "print('mean =', mean)",
+     "print('mean deviation =', total / n)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Eight students scored 12, 15, 9, 18, 11, 14, 10, 15 in a 20-mark quiz. Mean deviation asks: on average, how far is each score from the mean? It adds the distances |x − x̄| and divides by n.",
+      "hi": "आठ विद्यार्थियों को 20 अंक की क्विज़ में 12, 15, 9, 18, 11, 14, 10, 15 अंक मिले। माध्य विचलन पूछता है: औसतन हर स्कोर माध्य से कितना दूर है? यह दूरियाँ |x − x̄| जोड़कर n से भाग देता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why use |x − x̄| and not just x − x̄?",
+      "hi": "|x − x̄| क्यों, केवल x − x̄ क्यों नहीं?"
+     },
+     "options": [
+      {
+       "id": "cancel",
+       "en": "Plain differences add up to 0",
+       "hi": "साधारण अंतरों का योग 0 होता है"
+      },
+      {
+       "id": "big",
+       "en": "To make the answer bigger",
+       "hi": "उत्तर बड़ा करने के लिए"
+      },
+      {
+       "id": "rule",
+       "en": "There is no reason",
+       "hi": "कोई कारण नहीं"
+      }
+     ],
+     "answer": "cancel"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step until the mean is found.",
+      "hi": "Step दबाते रहो जब तक माध्य न निकल जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to finish.",
+      "hi": "पूरा करने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The mean is 104/8 = 13. The distances are 1, 2, 4, 5, 2, 1, 3, 2, which add to 20, so M.D.(x̄) = 20/8 = 2.5 marks. Without the absolute value, the + and − differences would cancel to 0 every time. For grouped data we use the mid-points of the classes and their frequencies: M.D. = Σ fᵢ|xᵢ − x̄| / N.",
+      "hi": "माध्य 104/8 = 13 है। दूरियाँ 1, 2, 4, 5, 2, 1, 3, 2 हैं, जिनका योग 20, इसलिए M.D.(x̄) = 20/8 = 2.5 अंक। निरपेक्ष मान के बिना + और − अंतर हर बार कटकर 0 हो जाते। वर्गीकृत आँकड़ों के लिए वर्गों के मध्य-बिंदु और उनकी बारंबारता लेते हैं: M.D. = Σ fᵢ|xᵢ − x̄| / N।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Find the mean deviation about the mean of 2, 4, 6, 8.",
+        "hi": "2, 4, 6, 8 का माध्य के सापेक्ष माध्य विचलन निकालो।"
+       },
+       "options": [
+        "2",
+        "0",
+        "5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mean 5; distances 3, 1, 1, 3 add to 8; 8/4 = 2.",
+        "hi": "माध्य 5; दूरियाँ 3, 1, 1, 3 का योग 8; 8/4 = 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0 is what plain differences give: −3 − 1 + 1 + 3 = 0. Distances must be positive.",
+         "hi": "0 तो साधारण अंतरों से आता है: −3 − 1 + 1 + 3 = 0। दूरियाँ धनात्मक होनी चाहिए।"
+        },
+        {
+         "en": "5 is the mean itself, not the spread about it.",
+         "hi": "5 तो माध्य ही है, उसके चारों ओर का फैलाव नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is one limitation of mean deviation?",
+        "hi": "माध्य विचलन की एक सीमा क्या है?"
+       },
+       "options": [
+        {
+         "en": "The absolute value is awkward to use in further algebra",
+         "hi": "निरपेक्ष मान आगे के बीजगणित में असुविधाजनक है"
+        },
+        {
+         "en": "It ignores most of the data",
+         "hi": "यह ज़्यादातर आँकड़े छोड़ देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Absolute values are hard to handle in formulas, and the sum of distances is not least about the mean. Variance fixes this by squaring.",
+        "hi": "निरपेक्ष मान सूत्रों में संभालना कठिन है, और दूरियों का योग माध्य के सापेक्ष न्यूनतम नहीं होता। प्रसरण वर्ग करके इसे सुधारता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mean deviation uses every value; that is what the range fails to do.",
+         "hi": "माध्य विचलन हर मान का उपयोग करता है; यह तो परिसर नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the median of the eight scores in your head (sort them first). Work out the mean deviation about the median too. Is it smaller or bigger than 2.5?",
+      "hi": "मन में आठों स्कोर की माध्यिका निकालो (पहले क्रम में लगाओ)। माध्यिका के सापेक्ष माध्य विचलन भी निकालो। क्या यह 2.5 से छोटा है या बड़ा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch13-standard-deviation",
+   "topic": "13.5",
+   "template": "code",
+   "title": {
+    "en": "Variance and standard deviation",
+    "hi": "प्रसरण और मानक विचलन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "hours = [2, 4, 4, 4, 5, 5, 7, 9]",
+     "n = len(hours)",
+     "mean = sum(hours) / n",
+     "sq = 0",
+     "for v in hours:",
+     "    sq = sq + (v - mean) ** 2",
+     "var = sq / n",
+     "print('mean =', mean)",
+     "print('variance =', var)",
+     "print('standard deviation =', var ** 0.5)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Eight friends studied 2, 4, 4, 4, 5, 5, 7, 9 hours in a week. Variance squares each difference from the mean, adds them and divides by n. The standard deviation is the square root of the variance, so it is back in hours.",
+      "hi": "आठ दोस्तों ने एक सप्ताह में 2, 4, 4, 4, 5, 5, 7, 9 घंटे पढ़ाई की। प्रसरण माध्य से हर अंतर का वर्ग करता है, उन्हें जोड़कर n से भाग देता है। मानक विचलन प्रसरण का वर्गमूल है, इसलिए यह फिर घंटों में आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The mean is 5. What will the standard deviation be?",
+      "hi": "माध्य 5 है। मानक विचलन क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "2",
+       "en": "2 hours",
+       "hi": "2 घंटे"
+      },
+      {
+       "id": "4",
+       "en": "4 hours",
+       "hi": "4 घंटे"
+      },
+      {
+       "id": "0",
+       "en": "0 hours",
+       "hi": "0 घंटे"
+      }
+     ],
+     "answer": "2"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step and watch sq grow in the variables box.",
+      "hi": "Step दबाओ और वेरिएबल डिब्बे में sq बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to finish.",
+      "hi": "पूरा करने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The squared differences are 9, 1, 1, 1, 0, 0, 4, 16, which add to 32. Variance σ² = 32/8 = 4 square hours, and the standard deviation σ = √4 = 2 hours. Squaring removes the signs without absolute values, and big differences count more.",
+      "hi": "अंतरों के वर्ग 9, 1, 1, 1, 0, 0, 4, 16 हैं, जिनका योग 32। प्रसरण σ² = 32/8 = 4 वर्ग घंटे, और मानक विचलन σ = √4 = 2 घंटे। वर्ग करने से निरपेक्ष मान के बिना चिह्न हट जाते हैं, और बड़े अंतर ज़्यादा गिने जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The variance of a data set is 25. What is its standard deviation?",
+        "hi": "एक आँकड़े का प्रसरण 25 है। उसका मानक विचलन क्या है?"
+       },
+       "options": [
+        "5",
+        "625",
+        "12.5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "σ = √σ² = √25 = 5.",
+        "hi": "σ = √σ² = √25 = 5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "625 squares the variance; we take the square root instead.",
+         "hi": "625 प्रसरण का वर्ग है; हमें वर्गमूल लेना है।"
+        },
+        {
+         "en": "12.5 halves the variance; the SD is its square root.",
+         "hi": "12.5 प्रसरण का आधा है; SD उसका वर्गमूल है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If every friend studies 1 hour more, what happens to the standard deviation?",
+        "hi": "यदि हर दोस्त 1 घंटा ज़्यादा पढ़े, तो मानक विचलन का क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "It stays 2",
+         "hi": "यह 2 ही रहेगा"
+        },
+        {
+         "en": "It becomes 3",
+         "hi": "यह 3 हो जाएगा"
+        },
+        {
+         "en": "It becomes 0",
+         "hi": "यह 0 हो जाएगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The mean also goes up by 1, so every difference from the mean is unchanged.",
+        "hi": "माध्य भी 1 बढ़ता है, इसलिए माध्य से हर अंतर वही रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding the same amount shifts the data, it does not spread it; σ stays 2.",
+         "hi": "एक जैसी मात्रा जोड़ने से आँकड़े खिसकते हैं, फैलते नहीं; σ, 2 ही रहता है।"
+        },
+        {
+         "en": "σ = 0 only when all values are equal, and they still differ.",
+         "hi": "σ = 0 तभी होता है जब सभी मान बराबर हों, और वे अब भी अलग हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think: if every value were doubled (4, 8, 8, …), what would happen to the mean, the variance and the SD?",
+      "hi": "सोचो: यदि हर मान दुगुना हो (4, 8, 8, …), तो माध्य, प्रसरण और SD का क्या होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch13-frequency-sd",
+   "topic": "13.5",
+   "template": "code",
+   "title": {
+    "en": "Standard deviation from a frequency table",
+    "hi": "बारंबारता सारणी से मानक विचलन"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "x = [1, 2, 3, 4, 5]",
+     "f = [3, 5, 8, 5, 3]",
+     "N = sum(f)",
+     "mean = 0",
+     "for i in range(5):",
+     "    mean = mean + f[i] * x[i]",
+     "mean = mean / N",
+     "sq = 0",
+     "for i in range(5):",
+     "    sq = sq + f[i] * (x[i] - mean) ** 2",
+     "print('N =', N, ' mean =', mean)",
+     "print('variance =', round(sq / N, 3))",
+     "print('SD =', round((sq / N) ** 0.5, 3))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A class rated a canteen snack from 1 to 5 stars. The value x has frequency f: 3 students gave 1 star, 5 gave 2, 8 gave 3, 5 gave 4, 3 gave 5. The program finds the mean Σfx/N, then the variance Σf(x − x̄)²/N.",
+      "hi": "एक कक्षा ने कैंटीन के नाश्ते को 1 से 5 तारे दिए। मान x की बारंबारता f है: 3 विद्यार्थियों ने 1 तारा दिया, 5 ने 2, 8 ने 3, 5 ने 4, 3 ने 5। प्रोग्राम माध्य Σfx/N, फिर प्रसरण Σf(x − x̄)²/N निकालता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The table is the same on both sides of 3. What will the mean be?",
+      "hi": "सारणी 3 के दोनों ओर एक जैसी है। माध्य क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "Exactly 3 stars",
+       "hi": "ठीक 3 तारे"
+      },
+      {
+       "id": "2.5",
+       "en": "2.5 stars",
+       "hi": "2.5 तारे"
+      },
+      {
+       "id": "4",
+       "en": "4 stars",
+       "hi": "4 तारे"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to see N being found.",
+      "hi": "N निकलते देखने के लिए Step दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to finish.",
+      "hi": "पूरा करने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "N = 24 and the mean is 72/24 = 3. Σf(x − 3)² = 3(4) + 5(1) + 8(0) + 5(1) + 3(4) = 34, so the variance is 34/24 ≈ 1.417 and σ ≈ 1.19 stars. For a continuous table we do the same with the mid-point of each class as x.",
+      "hi": "N = 24 और माध्य 72/24 = 3। Σf(x − 3)² = 3(4) + 5(1) + 8(0) + 5(1) + 3(4) = 34, इसलिए प्रसरण 34/24 ≈ 1.417 और σ ≈ 1.19 तारे। सतत सारणी में यही करते हैं, हर वर्ग के मध्य-बिंदु को x लेकर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we multiply each squared difference by f?",
+        "hi": "हर वर्ग-अंतर को f से गुणा क्यों करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Each value occurs f times",
+         "hi": "हर मान f बार आता है"
+        },
+        {
+         "en": "To make the variance bigger",
+         "hi": "प्रसरण बड़ा करने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A value with frequency 8 stands for 8 students, so its squared difference is counted 8 times.",
+        "hi": "बारंबारता 8 वाला मान 8 विद्यार्थियों का है, इसलिए उसका वर्ग-अंतर 8 बार गिना जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Frequencies are counts of students, not a trick to change the size of the answer.",
+         "hi": "बारंबारता विद्यार्थियों की गिनती है, उत्तर का आकार बदलने की तरकीब नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In a continuous table, a class is 20–30. What x do we use for it?",
+        "hi": "सतत सारणी में एक वर्ग 20–30 है। उसके लिए कौन-सा x लेते हैं?"
+       },
+       "options": [
+        {
+         "en": "25, the mid-point",
+         "hi": "25, मध्य-बिंदु"
+        },
+        {
+         "en": "20, the lower limit",
+         "hi": "20, निम्न सीमा"
+        },
+        {
+         "en": "10, the width",
+         "hi": "10, चौड़ाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each class is represented by its mid-point (20 + 30)/2 = 25.",
+        "hi": "हर वर्ग को उसके मध्य-बिंदु (20 + 30)/2 = 25 से दर्शाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The lower limit would make every value too small; the mid-point balances the class.",
+         "hi": "निम्न सीमा से हर मान बहुत छोटा होगा; मध्य-बिंदु वर्ग को संतुलित करता है।"
+        },
+        {
+         "en": "10 is the class width, used for the shortcut method, not as x.",
+         "hi": "10 तो वर्ग की चौड़ाई है, संक्षिप्त विधि में काम आती है, x के रूप में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine all 24 students gave 3 stars. What would the variance and SD be, and why?",
+      "hi": "सोचो, सभी 24 विद्यार्थियों ने 3 तारे दिए। प्रसरण और SD क्या होते, और क्यों?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "Chapter hook: same average, different story",
+   "shows": "Two rows of potted plants on a school terrace: one row all about the same height, the other row very short and very tall plants mixed",
+   "view": "Side view at plant level, soft daylight",
+   "right": "Both rows look like they have the same middle height",
+   "avoid": "Faces, school names, pot brands"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "13.2",
+   "use": "Spread of results",
+   "shows": "Two dartboard-style cork targets with pins: on one the pins are tightly bunched near the centre, on the other they are scattered all over",
+   "view": "Front view, even light, transparent background",
+   "right": "Both groups of pins centred on the same point on average",
+   "avoid": "Brand names, numbers on the boards"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "13.3",
+   "use": "Range: highest and lowest",
+   "shows": "A school weather-station thermometer box on a pole in a playground, with a max-min thermometer inside visible",
+   "view": "Close front view, morning light",
+   "right": "The two indicator markers of the max-min thermometer clearly visible",
+   "avoid": "Readable numbers or school name"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "13.4",
+   "use": "Base for distances from the mean",
+   "shows": "A horizontal number line with a bold centre mark and eight small dots above it at different positions, with vertical dashed drop lines",
+   "view": "Flat, white background",
+   "right": "Dots on both sides of the centre mark",
+   "avoid": "Numbers, letters"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "13.5",
+   "use": "Squaring a difference as an area",
+   "shows": "Frame 1: a 1 by 1 tile square; frame 2: a 2 by 2 square of tiles; frame 3: a 3 by 3 square of tiles, all on one tabletop",
+   "view": "Same top camera and light in every frame",
+   "right": "Tiles exactly equal; squares grow by one tile each side",
+   "avoid": "Numbers or letters on the tiles"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "13.5",
+   "use": "Ratings as data",
+   "shows": "A school canteen counter with a simple wooden box of five slots for paper feedback slips, some slots fuller than others",
+   "view": "Front view, warm indoor light",
+   "right": "Five slots clearly separate, slip heights visibly different",
+   "avoid": "Readable writing on slips, brand names on food"
+  }
+ ]
+}

@@ -1,0 +1,2031 @@
+{
+ "chapter_key": "u.c12.computer_science.lecs1.ch09",
+ "class": 12,
+ "subject_id": "computer_science",
+ "title": "Structured Query Language (SQL)",
+ "source": "https://ncert.nic.in/textbook/pdf/lecs109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Introduction to SQL",
+   "labs": [],
+   "why_no_lab": "Why we need a language to talk to a database is covered in the previous chapter and the reader."
+  },
+  {
+   "n": "9.2",
+   "title": "Structured Query Language and installing MySQL",
+   "labs": [
+    "c12-computer_science-lecs1-ch09-kinds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Data types and constraints in MySQL",
+   "labs": [
+    "c12-computer_science-lecs1-ch09-types",
+    "c12-computer_science-lecs1-ch09-constraints"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "SQL for data definition: CREATE, DESCRIBE, ALTER, DROP",
+   "labs": [
+    "c12-computer_science-lecs1-ch09-kinds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "SQL for data manipulation: inserting records",
+   "labs": [
+    "c12-computer_science-lecs1-ch09-kinds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.6",
+   "title": "SELECT and querying a database",
+   "labs": [
+    "c12-computer_science-lecs1-ch09-select",
+    "c12-computer_science-lecs1-ch09-clauses"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.7",
+   "title": "Data updation and deletion",
+   "labs": [
+    "c12-computer_science-lecs1-ch09-modify"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.8",
+   "title": "Functions in SQL: single-row and aggregate",
+   "labs": [
+    "c12-computer_science-lecs1-ch09-aggregate"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.9",
+   "title": "GROUP BY clause",
+   "labs": [
+    "c12-computer_science-lecs1-ch09-groupby"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.10",
+   "title": "Operations on relations: UNION, INTERSECT, MINUS, Cartesian product",
+   "labs": [
+    "c12-computer_science-lecs1-ch09-relops"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-computer_science-lecs1-ch09-kinds",
+   "topic": "9.2",
+   "template": "sort",
+   "title": {
+    "en": "DDL or DML? The two families of SQL",
+    "hi": "DDL या DML? SQL के दो परिवार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ddl",
+      "label": {
+       "en": "DDL: defines the structure",
+       "hi": "DDL: ढाँचा तय करता है"
+      }
+     },
+     {
+      "id": "dml",
+      "label": {
+       "en": "DML: works with the data",
+       "hi": "DML: डेटा के साथ काम करता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "create",
+      "text": {
+       "en": "CREATE TABLE cars (...)",
+       "hi": "CREATE TABLE cars (...)"
+      },
+      "bin": "ddl",
+      "why": {
+       "en": "It builds a new table, so it defines structure.",
+       "hi": "यह नई तालिका बनाता है, यानी ढाँचा तय करता है।"
+      }
+     },
+     {
+      "id": "alter",
+      "text": {
+       "en": "ALTER TABLE cars ADD city CHAR(20)",
+       "hi": "ALTER TABLE cars ADD city CHAR(20)"
+      },
+      "bin": "ddl",
+      "why": {
+       "en": "It changes the table design by adding a column.",
+       "hi": "यह स्तंभ जोड़कर तालिका का डिज़ाइन बदलता है।"
+      }
+     },
+     {
+      "id": "drop",
+      "text": {
+       "en": "DROP TABLE cars",
+       "hi": "DROP TABLE cars"
+      },
+      "bin": "ddl",
+      "why": {
+       "en": "It removes the table itself, structure and all.",
+       "hi": "यह पूरी तालिका ही हटा देता है, ढाँचे समेत।"
+      }
+     },
+     {
+      "id": "desc",
+      "text": {
+       "en": "DESCRIBE cars",
+       "hi": "DESCRIBE cars"
+      },
+      "bin": "ddl",
+      "why": {
+       "en": "It shows the structure of the table: its columns and types.",
+       "hi": "यह तालिका का ढाँचा दिखाता है: उसके स्तंभ और प्रकार।"
+      }
+     },
+     {
+      "id": "insert",
+      "text": {
+       "en": "INSERT INTO cars VALUES (...)",
+       "hi": "INSERT INTO cars VALUES (...)"
+      },
+      "bin": "dml",
+      "why": {
+       "en": "It adds a new row of data.",
+       "hi": "यह डेटा की नई पंक्ति जोड़ता है।"
+      }
+     },
+     {
+      "id": "select",
+      "text": {
+       "en": "SELECT * FROM cars",
+       "hi": "SELECT * FROM cars"
+      },
+      "bin": "dml",
+      "why": {
+       "en": "It reads data from the table.",
+       "hi": "यह तालिका से डेटा पढ़ता है।"
+      }
+     },
+     {
+      "id": "update",
+      "text": {
+       "en": "UPDATE cars SET qty = 5 WHERE carid = 3",
+       "hi": "UPDATE cars SET qty = 5 WHERE carid = 3"
+      },
+      "bin": "dml",
+      "why": {
+       "en": "It changes values in existing rows.",
+       "hi": "यह मौजूदा पंक्तियों के मान बदलता है।"
+      }
+     },
+     {
+      "id": "delete",
+      "text": {
+       "en": "DELETE FROM cars WHERE carid = 8",
+       "hi": "DELETE FROM cars WHERE carid = 8"
+      },
+      "bin": "dml",
+      "why": {
+       "en": "It removes rows, but the table stays.",
+       "hi": "यह पंक्तियाँ हटाता है, पर तालिका बनी रहती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:create",
+     "expect": "correct:create",
+     "say": {
+      "en": "Place the CREATE TABLE card.",
+      "hi": "CREATE TABLE वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "DELETE FROM cars WHERE carid = 8 removes one row. Does it change the design of the table?",
+      "hi": "DELETE FROM cars WHERE carid = 8 एक पंक्ति हटाता है। क्या वह तालिका का डिज़ाइन बदलता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, only the data changes",
+       "hi": "नहीं, केवल डेटा बदलता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, the columns change",
+       "hi": "हाँ, स्तंभ बदल जाते हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:delete",
+     "expect": "correct:delete",
+     "say": {
+      "en": "Place the DELETE card.",
+      "hi": "DELETE वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:drop",
+     "expect": "correct:drop",
+     "say": {
+      "en": "Place the DROP TABLE card.",
+      "hi": "DROP TABLE वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "SQL statements come in two families. Data Definition Language (DDL) shapes the structure: CREATE, ALTER, DROP and DESCRIBE deal with tables and columns. Data Manipulation Language (DML) works with the data inside: INSERT adds rows, SELECT reads them, UPDATE changes them and DELETE removes them. A good question to ask: does this change the table design, or only what is in it?",
+      "hi": "SQL के कथन दो परिवारों में आते हैं। डेटा डेफ़िनिशन लैंग्वेज (DDL) ढाँचा बनाती है: CREATE, ALTER, DROP और DESCRIBE तालिकाओं और स्तंभों से जुड़े हैं। डेटा मैनिपुलेशन लैंग्वेज (DML) भीतर के डेटा के साथ काम करती है: INSERT पंक्तियाँ जोड़ता है, SELECT पढ़ता है, UPDATE बदलता है और DELETE हटाता है। अच्छा सवाल यह है: क्या यह तालिका का डिज़ाइन बदल रहा है, या केवल उसके भीतर का डेटा?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement belongs to DDL?",
+        "hi": "कौन-सा कथन DDL का है?"
+       },
+       "options": [
+        "INSERT",
+        "ALTER TABLE",
+        "UPDATE"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "ALTER TABLE changes the structure of a table.",
+        "hi": "ALTER TABLE तालिका का ढाँचा बदलता है।"
+       },
+       "wrong": [
+        {
+         "en": "INSERT adds data, which is DML.",
+         "hi": "INSERT डेटा जोड़ता है, जो DML है।"
+        },
+        "",
+        {
+         "en": "UPDATE changes data, which is DML.",
+         "hi": "UPDATE डेटा बदलता है, जो DML है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the difference between DELETE and DROP TABLE?",
+        "hi": "DELETE और DROP TABLE में क्या अंतर है?"
+       },
+       "options": [
+        "DELETE removes rows; DROP TABLE removes the whole table",
+        "They are the same",
+        "DELETE removes columns; DROP removes rows"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "DELETE keeps the table and takes out rows. DROP TABLE removes the table and everything in it.",
+        "hi": "DELETE तालिका रखकर पंक्तियाँ निकालता है। DROP TABLE तालिका और उसका सब कुछ हटा देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They behave very differently, so they are not the same.",
+         "hi": "दोनों का असर बहुत अलग है, इसलिए वे एक नहीं हैं।"
+        },
+        {
+         "en": "It is the other way round: columns are changed with ALTER.",
+         "hi": "मामला उलटा है: स्तंभ ALTER से बदलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the remaining cards. Which statement would you be most careful with, and why?",
+      "hi": "बाकी कार्ड छाँटो। किस कथन में तुम सबसे ज़्यादा सावधानी रखोगे, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch09-types",
+   "topic": "9.3",
+   "template": "match",
+   "title": {
+    "en": "Data types: pick the right one",
+    "hi": "डेटा टाइप: सही वाला चुनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "int",
+      "left": {
+       "en": "INT",
+       "hi": "INT"
+      },
+      "right": {
+       "en": "Whole numbers, like a roll number or quantity",
+       "hi": "पूर्ण संख्याएँ, जैसे रोल नंबर या मात्रा"
+      },
+      "why": {
+       "en": "INT stores whole numbers without a decimal point.",
+       "hi": "INT दशमलव के बिना पूर्ण संख्याएँ रखता है।"
+      }
+     },
+     {
+      "id": "float",
+      "left": {
+       "en": "FLOAT",
+       "hi": "FLOAT"
+      },
+      "right": {
+       "en": "Numbers with a decimal part, like 72.5 kg",
+       "hi": "दशमलव वाली संख्याएँ, जैसे 72.5 किग्रा"
+      },
+      "why": {
+       "en": "FLOAT holds real numbers with fractions.",
+       "hi": "FLOAT भिन्न वाली वास्तविक संख्याएँ रखता है।"
+      }
+     },
+     {
+      "id": "char",
+      "left": {
+       "en": "CHAR(2)",
+       "hi": "CHAR(2)"
+      },
+      "right": {
+       "en": "Text of fixed length, like a state code \"MP\"",
+       "hi": "तय लंबाई का टेक्स्ट, जैसे राज्य कोड \"MP\""
+      },
+      "why": {
+       "en": "CHAR(n) always uses n characters, padding if needed.",
+       "hi": "CHAR(n) हमेशा n अक्षर लेता है, ज़रूरत हो तो ख़ाली जगह भरकर।"
+      }
+     },
+     {
+      "id": "varchar",
+      "left": {
+       "en": "VARCHAR(30)",
+       "hi": "VARCHAR(30)"
+      },
+      "right": {
+       "en": "Text of changing length, like a name",
+       "hi": "बदलती लंबाई का टेक्स्ट, जैसे नाम"
+      },
+      "why": {
+       "en": "VARCHAR(n) uses only as many characters as the text needs, up to n.",
+       "hi": "VARCHAR(n) टेक्स्ट को जितने अक्षर चाहिए उतने ही लेता है, अधिकतम n तक।"
+      }
+     },
+     {
+      "id": "date",
+      "left": {
+       "en": "DATE",
+       "hi": "DATE"
+      },
+      "right": {
+       "en": "A calendar date, like 2026-07-15",
+       "hi": "कैलेंडर की तारीख़, जैसे 2026-07-15"
+      },
+      "why": {
+       "en": "DATE stores a year, month and day.",
+       "hi": "DATE वर्ष, महीना और दिन रखता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:int",
+     "expect": "matched:int",
+     "say": {
+      "en": "Match INT with what it stores.",
+      "hi": "INT को उससे मिलाओ जो वह रखता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which type would you choose for a student's name, which may be short or long?",
+      "hi": "विद्यार्थी के नाम के लिए, जो छोटा या लंबा हो सकता है, तुम कौन-सा टाइप चुनोगे?"
+     },
+     "options": [
+      {
+       "id": "varchar",
+       "en": "VARCHAR(30)",
+       "hi": "VARCHAR(30) है"
+      },
+      {
+       "id": "int",
+       "en": "INT",
+       "hi": "INT है"
+      },
+      {
+       "id": "date",
+       "en": "DATE",
+       "hi": "DATE है"
+      }
+     ],
+     "answer": "varchar"
+    },
+    {
+     "kind": "do",
+     "target": "left:varchar",
+     "expect": "matched:varchar",
+     "say": {
+      "en": "Match VARCHAR(30).",
+      "hi": "VARCHAR(30) को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:date",
+     "expect": "matched:date",
+     "say": {
+      "en": "Match DATE.",
+      "hi": "DATE को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every column in a table has a data type, which says what kind of values it may hold and how much space it needs. Whole numbers go in INT, numbers with decimals in FLOAT, fixed-length text in CHAR(n), text of changing length in VARCHAR(n), and calendar dates in DATE. Choosing the right type lets the database check values and calculate correctly.",
+      "hi": "तालिका के हर स्तंभ का एक डेटा टाइप होता है, जो बताता है कि वह किस तरह के मान रख सकता है और उसे कितनी जगह चाहिए। पूर्ण संख्याएँ INT में, दशमलव वाली FLOAT में, तय लंबाई का टेक्स्ट CHAR(n) में, बदलती लंबाई का टेक्स्ट VARCHAR(n) में और कैलेंडर की तारीख़ें DATE में जाती हैं। सही टाइप चुनने से डेटाबेस मान जाँच सकता है और सही हिसाब लगा सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which type suits the price 549.99?",
+        "hi": "कीमत 549.99 के लिए कौन-सा टाइप ठीक है?"
+       },
+       "options": [
+        "INT",
+        "FLOAT",
+        "DATE"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It has a decimal part, so FLOAT.",
+        "hi": "इसमें दशमलव भाग है, इसलिए FLOAT।"
+       },
+       "wrong": [
+        {
+         "en": "INT would cut off the .99.",
+         "hi": "INT .99 को काट देगा।"
+        },
+        "",
+        {
+         "en": "DATE holds calendar dates only.",
+         "hi": "DATE केवल कैलेंडर की तारीख़ें रखता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "CHAR(10) versus VARCHAR(10): what is the difference?",
+        "hi": "CHAR(10) और VARCHAR(10) में क्या अंतर है?"
+       },
+       "options": [
+        "CHAR always uses 10 characters; VARCHAR uses what the text needs",
+        "CHAR holds numbers; VARCHAR holds text",
+        "There is no difference"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "CHAR is fixed in length; VARCHAR is variable, up to the limit.",
+        "hi": "CHAR की लंबाई तय है; VARCHAR की बदलती है, सीमा तक।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both hold text; neither is for numbers.",
+         "hi": "दोनों टेक्स्ट रखते हैं; कोई भी संख्याओं के लिए नहीं।"
+        },
+        {
+         "en": "There is a real difference in how space is used.",
+         "hi": "जगह के इस्तेमाल में असली अंतर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Then pick a type for each: roll number, percentage, birthday, section letter.",
+      "hi": "बाकी मिलाओ। फिर हर एक के लिए टाइप चुनो: रोल नंबर, प्रतिशत, जन्मदिन, सेक्शन अक्षर।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch09-constraints",
+   "topic": "9.3",
+   "template": "match",
+   "title": {
+    "en": "Constraints: rules that guard the data",
+    "hi": "बाधाएँ: डेटा की रखवाली करने वाले नियम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "notnull",
+      "left": {
+       "en": "NOT NULL",
+       "hi": "NOT NULL"
+      },
+      "right": {
+       "en": "The column cannot be left empty",
+       "hi": "स्तंभ ख़ाली नहीं छोड़ा जा सकता"
+      },
+      "why": {
+       "en": "A row without a value in this column is refused.",
+       "hi": "इस स्तंभ में मान के बिना पंक्ति ठुकरा दी जाती है।"
+      }
+     },
+     {
+      "id": "unique",
+      "left": {
+       "en": "UNIQUE",
+       "hi": "UNIQUE"
+      },
+      "right": {
+       "en": "No two rows may repeat a value",
+       "hi": "कोई दो पंक्तियाँ मान नहीं दोहरा सकतीं"
+      },
+      "why": {
+       "en": "For example, no two students may have the same admission number.",
+       "hi": "जैसे दो विद्यार्थियों की प्रवेश संख्या एक नहीं हो सकती।"
+      }
+     },
+     {
+      "id": "default",
+      "left": {
+       "en": "DEFAULT",
+       "hi": "DEFAULT"
+      },
+      "right": {
+       "en": "A value used when none is given",
+       "hi": "कोई मान न दिया जाए तो यह मान लगता है"
+      },
+      "why": {
+       "en": "DEFAULT 12 would give 12 when no class is typed.",
+       "hi": "DEFAULT 12 होने पर कक्षा न लिखी जाए तो 12 लगता है।"
+      }
+     },
+     {
+      "id": "pk",
+      "left": {
+       "en": "PRIMARY KEY",
+       "hi": "PRIMARY KEY"
+      },
+      "right": {
+       "en": "Unique and not empty: identifies each row",
+       "hi": "अनूठा और ख़ाली नहीं: हर पंक्ति को पहचानता है"
+      },
+      "why": {
+       "en": "It combines UNIQUE and NOT NULL.",
+       "hi": "यह UNIQUE और NOT NULL दोनों को मिलाता है।"
+      }
+     },
+     {
+      "id": "fk",
+      "left": {
+       "en": "FOREIGN KEY",
+       "hi": "FOREIGN KEY"
+      },
+      "right": {
+       "en": "Must match a primary key value in another table",
+       "hi": "दूसरी तालिका की प्राथमिक कुंजी के किसी मान से मेल खाना ज़रूरी"
+      },
+      "why": {
+       "en": "It stops a student from being given a class that does not exist.",
+       "hi": "यह किसी विद्यार्थी को ऐसी कक्षा देने से रोकता है जो मौजूद ही नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:notnull",
+     "expect": "matched:notnull",
+     "say": {
+      "en": "Match NOT NULL with its rule.",
+      "hi": "NOT NULL को उसके नियम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "PRIMARY KEY combines two other constraints. Which two?",
+      "hi": "PRIMARY KEY दो और बाधाओं को मिलाती है। कौन-सी दो?"
+     },
+     "options": [
+      {
+       "id": "un",
+       "en": "UNIQUE and NOT NULL",
+       "hi": "UNIQUE और NOT NULL"
+      },
+      {
+       "id": "df",
+       "en": "DEFAULT and UNIQUE",
+       "hi": "DEFAULT और UNIQUE"
+      },
+      {
+       "id": "fk",
+       "en": "FOREIGN KEY and DEFAULT",
+       "hi": "FOREIGN KEY और DEFAULT"
+      }
+     ],
+     "answer": "un"
+    },
+    {
+     "kind": "do",
+     "target": "left:pk",
+     "expect": "matched:pk",
+     "say": {
+      "en": "Match PRIMARY KEY.",
+      "hi": "PRIMARY KEY को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:fk",
+     "expect": "matched:fk",
+     "say": {
+      "en": "Match FOREIGN KEY.",
+      "hi": "FOREIGN KEY को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A constraint is a rule the database enforces. NOT NULL forbids empty values. UNIQUE forbids repeats. DEFAULT fills in a value when none is given. PRIMARY KEY is unique and not empty, identifying each row. FOREIGN KEY makes sure a value refers to a real row of another table. With constraints, wrong data is stopped at the door.",
+      "hi": "बाधा (constraint) वह नियम है जिसे डेटाबेस लागू करता है। NOT NULL ख़ाली मान मना करता है। UNIQUE दोहराव मना करता है। DEFAULT मान न दिया जाए तो एक मान भर देता है। PRIMARY KEY अनूठी और ख़ाली न होने वाली होती है, जो हर पंक्ति को पहचानती है। FOREIGN KEY पक्का करती है कि मान दूसरी तालिका की किसी असली पंक्ति की ओर इशारा करे। बाधाओं से गलत डेटा दरवाज़े पर ही रुक जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which constraint makes sure every student has a name entered?",
+        "hi": "कौन-सी बाधा पक्का करती है कि हर विद्यार्थी का नाम भरा गया हो?"
+       },
+       "options": [
+        "UNIQUE",
+        "NOT NULL",
+        "DEFAULT"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "NOT NULL refuses a row with no name.",
+        "hi": "NOT NULL बिना नाम वाली पंक्ति को ठुकरा देती है।"
+       },
+       "wrong": [
+        {
+         "en": "UNIQUE only stops repeats; an empty value could still pass.",
+         "hi": "UNIQUE केवल दोहराव रोकती है; ख़ाली मान फिर भी निकल सकता है।"
+        },
+        "",
+        {
+         "en": "DEFAULT fills a value in, it does not force the user to type one.",
+         "hi": "DEFAULT मान भर देती है, उपयोगकर्ता से लिखवाती नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A student row names class 15, but the classes table has only 11 and 12. Which constraint stops it?",
+        "hi": "एक विद्यार्थी की पंक्ति कक्षा 15 बताती है, पर classes तालिका में केवल 11 और 12 हैं। कौन-सी बाधा इसे रोकेगी?"
+       },
+       "options": [
+        "FOREIGN KEY",
+        "UNIQUE",
+        "NOT NULL"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A foreign key value must exist in the other table.",
+        "hi": "विदेशी कुंजी का मान दूसरी तालिका में मौजूद होना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "UNIQUE is about repeats, not about the other table.",
+         "hi": "UNIQUE दोहराव के बारे में है, दूसरी तालिका के बारे में नहीं।"
+        },
+        {
+         "en": "15 is not empty, so NOT NULL is satisfied.",
+         "hi": "15 ख़ाली नहीं है, इसलिए NOT NULL पूरी हो जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Then pick constraints for a column \"mobile\" in a table of parents.",
+      "hi": "बाकी मिलाओ। फिर अभिभावकों की तालिका के \"mobile\" स्तंभ के लिए बाधाएँ चुनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch09-select",
+   "topic": "9.6",
+   "template": "table",
+   "title": {
+    "en": "SELECT with WHERE: ask the table a question",
+    "hi": "SELECT और WHERE: तालिका से सवाल पूछो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sql",
+    "tables": {
+     "cars": {
+      "columns": [
+       "carid",
+       "model",
+       "colour",
+       "price",
+       "qty"
+      ],
+      "rows": [
+       [
+        1,
+        "Surya",
+        "White",
+        650000,
+        4
+       ],
+       [
+        2,
+        "Tara",
+        "Grey",
+        1100000,
+        2
+       ],
+       [
+        3,
+        "Vayu",
+        "Blue",
+        900000,
+        3
+       ],
+       [
+        4,
+        "Surya",
+        "Red",
+        660000,
+        5
+       ],
+       [
+        5,
+        "Nila",
+        "White",
+        550000,
+        6
+       ],
+       [
+        6,
+        "Tara",
+        "White",
+        1150000,
+        1
+       ],
+       [
+        7,
+        "Vayu",
+        "Red",
+        920000,
+        2
+       ],
+       [
+        8,
+        "Nila",
+        "Blue",
+        560000,
+        4
+       ]
+      ]
+     }
+    },
+    "task": {
+     "en": "Which models of white cars does the showroom sell, and at what price? Run the query and read the rows. (Sample data made up for this lab.)",
+     "hi": "शोरूम में सफ़ेद रंग की कौन-सी गाड़ियाँ किस कीमत पर बिकती हैं? क्वेरी चलाओ और पंक्तियाँ पढ़ो। (इस लैब के लिए बनाया नमूना डेटा।)"
+    },
+    "query": "SELECT model, price FROM cars WHERE colour = 'White'"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at the cars table. How many rows have the colour White?",
+      "hi": "cars तालिका देखो। कितनी पंक्तियों में रंग White है?"
+     },
+     "options": [
+      {
+       "id": "three",
+       "en": "3",
+       "hi": "3 है"
+      },
+      {
+       "id": "two",
+       "en": "2",
+       "hi": "2 है"
+      },
+      {
+       "id": "eight",
+       "en": "8",
+       "hi": "8 है"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Press Run. SELECT picks the columns; WHERE picks the rows.",
+      "hi": "\"चलाओ\" दबाओ। SELECT स्तंभ चुनता है; WHERE पंक्तियाँ चुनता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "SELECT names the columns we want to see, FROM names the table, and WHERE keeps only the rows that satisfy a condition. Here only model and price are shown, and only for rows whose colour is White. Text in a condition is written in single quotes. The table itself is not changed: SELECT only reads.",
+      "hi": "SELECT उन स्तंभों के नाम बताता है जो हमें देखने हैं, FROM तालिका का नाम बताता है, और WHERE केवल वही पंक्तियाँ रखता है जो किसी शर्त को पूरा करती हैं। यहाँ केवल model और price दिखे, और केवल उन पंक्तियों के जिनका colour White है। शर्त में टेक्स्ट एकल उद्धरण चिह्नों में लिखा जाता है। तालिका बदलती नहीं: SELECT केवल पढ़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the WHERE clause do?",
+        "hi": "WHERE उपवाक्य क्या करता है?"
+       },
+       "options": [
+        "Chooses which rows to show",
+        "Chooses which columns to show",
+        "Deletes rows"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "WHERE filters rows by a condition.",
+        "hi": "WHERE शर्त के आधार पर पंक्तियाँ छानता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Columns are chosen by SELECT.",
+         "hi": "स्तंभ SELECT चुनता है।"
+        },
+        {
+         "en": "SELECT never deletes anything.",
+         "hi": "SELECT कभी कुछ नहीं हटाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which query lists the models of cars costing more than 900000?",
+        "hi": "कौन-सी क्वेरी 900000 से महँगी गाड़ियों के model दिखाती है?"
+       },
+       "options": [
+        "SELECT model FROM cars WHERE price > 900000",
+        "SELECT price FROM cars WHERE model > 900000",
+        "SELECT * FROM model WHERE cars > 900000"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It selects model from cars where the price is above 900000.",
+        "hi": "यह cars से model चुनती है जहाँ price 900000 से ऊपर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That compares the model name with a number and shows prices.",
+         "hi": "यह model के नाम की तुलना संख्या से करती है और कीमतें दिखाती है।"
+        },
+        {
+         "en": "The table name and the column name are swapped.",
+         "hi": "तालिका का नाम और स्तंभ का नाम आपस में बदल गए हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Edit the question in your head: show the models and colours of cars with qty above 3. How would you write the query?",
+      "hi": "सवाल बदलकर सोचो: qty 3 से ऊपर वाली गाड़ियों के model और colour दिखाओ। क्वेरी कैसे लिखोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch09-aggregate",
+   "topic": "9.8",
+   "template": "table",
+   "title": {
+    "en": "Aggregate functions: one answer from many rows",
+    "hi": "समुच्चय फ़ंक्शन: कई पंक्तियों से एक उत्तर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sql",
+    "tables": {
+     "cars": {
+      "columns": [
+       "carid",
+       "model",
+       "colour",
+       "price",
+       "qty"
+      ],
+      "rows": [
+       [
+        1,
+        "Surya",
+        "White",
+        650000,
+        4
+       ],
+       [
+        2,
+        "Tara",
+        "Grey",
+        1100000,
+        2
+       ],
+       [
+        3,
+        "Vayu",
+        "Blue",
+        900000,
+        3
+       ],
+       [
+        4,
+        "Surya",
+        "Red",
+        660000,
+        5
+       ],
+       [
+        5,
+        "Nila",
+        "White",
+        550000,
+        6
+       ],
+       [
+        6,
+        "Tara",
+        "White",
+        1150000,
+        1
+       ],
+       [
+        7,
+        "Vayu",
+        "Red",
+        920000,
+        2
+       ],
+       [
+        8,
+        "Nila",
+        "Blue",
+        560000,
+        4
+       ]
+      ]
+     }
+    },
+    "task": {
+     "en": "How many cars are listed, and what are the highest and lowest prices? Run the query. (Sample data made up for this lab.)",
+     "hi": "कितनी गाड़ियाँ सूचीबद्ध हैं, और सबसे ऊँची व सबसे नीची कीमतें क्या हैं? क्वेरी चलाओ। (इस लैब के लिए बनाया नमूना डेटा।)"
+    },
+    "query": "SELECT COUNT(*), MAX(price), MIN(price) FROM cars"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The query asks for the count of rows, the largest price and the smallest price. How many rows will the answer have?",
+      "hi": "क्वेरी पंक्तियों की गिनती, सबसे बड़ी कीमत और सबसे छोटी कीमत माँगती है। उत्तर में कितनी पंक्तियाँ होंगी?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "1 row",
+       "hi": "1 पंक्ति"
+      },
+      {
+       "id": "eight",
+       "en": "8 rows",
+       "hi": "8 पंक्तियाँ"
+      },
+      {
+       "id": "three",
+       "en": "3 rows",
+       "hi": "3 पंक्तियाँ"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Press Run and read the single answer row.",
+      "hi": "\"चलाओ\" दबाओ और उत्तर की अकेली पंक्ति पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Aggregate functions squeeze many rows into one answer. COUNT counts rows, SUM adds up a column, AVG finds the average, MAX the largest value and MIN the smallest. COUNT(*) counts all the rows. So with 8 cars, the highest price 1150000 and the lowest 550000 come back in one single row.",
+      "hi": "समुच्चय फ़ंक्शन कई पंक्तियों को एक उत्तर में समेट देते हैं। COUNT पंक्तियाँ गिनता है, SUM स्तंभ का जोड़ करता है, AVG औसत निकालता है, MAX सबसे बड़ा और MIN सबसे छोटा मान देता है। COUNT(*) सभी पंक्तियाँ गिनता है। इसलिए 8 गाड़ियों में से सबसे ऊँची कीमत 1150000 और सबसे नीची 550000 एक ही पंक्ति में आ जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which function gives the average of a column?",
+        "hi": "कौन-सा फ़ंक्शन स्तंभ का औसत देता है?"
+       },
+       "options": [
+        "SUM",
+        "AVG",
+        "COUNT"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "AVG finds the average.",
+        "hi": "AVG औसत निकालता है।"
+       },
+       "wrong": [
+        {
+         "en": "SUM only adds the values.",
+         "hi": "SUM केवल मानों का जोड़ करता है।"
+        },
+        "",
+        {
+         "en": "COUNT only counts the rows.",
+         "hi": "COUNT केवल पंक्तियाँ गिनता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "SELECT SUM(qty) FROM cars adds up…",
+        "hi": "SELECT SUM(qty) FROM cars क्या जोड़ता है…"
+       },
+       "options": [
+        "The qty of every row",
+        "The number of rows",
+        "The prices"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "SUM adds the values of the qty column in all rows: 27 cars in stock.",
+        "hi": "SUM सभी पंक्तियों में qty स्तंभ के मान जोड़ता है: कुल 27 गाड़ियाँ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The number of rows would be COUNT(*), which is 8.",
+         "hi": "पंक्तियों की संख्या COUNT(*) होती, जो 8 है।"
+        },
+        {
+         "en": "Prices are in another column.",
+         "hi": "कीमतें दूसरे स्तंभ में हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which query would tell you the total value of stock if every car cost the same? Think about which two columns you would use.",
+      "hi": "अगर हर गाड़ी की कीमत एक होती तो कौन-सी क्वेरी स्टॉक का कुल मूल्य बताती? सोचो कौन-से दो स्तंभ काम आएँगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch09-groupby",
+   "topic": "9.9",
+   "template": "table",
+   "title": {
+    "en": "GROUP BY: one answer for each group",
+    "hi": "GROUP BY: हर समूह का एक उत्तर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "group",
+    "tables": {
+     "cars": {
+      "columns": [
+       "carid",
+       "model",
+       "colour",
+       "price",
+       "qty"
+      ],
+      "rows": [
+       [
+        1,
+        "Surya",
+        "White",
+        650000,
+        4
+       ],
+       [
+        2,
+        "Tara",
+        "Grey",
+        1100000,
+        2
+       ],
+       [
+        3,
+        "Vayu",
+        "Blue",
+        900000,
+        3
+       ],
+       [
+        4,
+        "Surya",
+        "Red",
+        660000,
+        5
+       ],
+       [
+        5,
+        "Nila",
+        "White",
+        550000,
+        6
+       ],
+       [
+        6,
+        "Tara",
+        "White",
+        1150000,
+        1
+       ],
+       [
+        7,
+        "Vayu",
+        "Red",
+        920000,
+        2
+       ],
+       [
+        8,
+        "Nila",
+        "Blue",
+        560000,
+        4
+       ]
+      ]
+     }
+    },
+    "task": {
+     "en": "Group the cars by colour and count how many of each colour there are. Pick the colour column, then Run. (Sample data made up for this lab.)",
+     "hi": "गाड़ियों को रंग के हिसाब से समूहों में बाँटो और हर रंग की गाड़ियाँ गिनो। colour स्तंभ चुनो, फिर चलाओ। (इस लैब के लिए बनाया नमूना डेटा।)"
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "There are 4 colours: White, Grey, Blue and Red. How many groups will GROUP BY colour make?",
+      "hi": "चार रंग हैं: White, Grey, Blue और Red। GROUP BY colour कितने समूह बनाएगा?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "4 groups",
+       "hi": "4 समूह"
+      },
+      {
+       "id": "eight",
+       "en": "8 groups",
+       "hi": "8 समूह"
+      },
+      {
+       "id": "one",
+       "en": "1 group",
+       "hi": "1 समूह"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Choose the colour column as the group, then press Run.",
+      "hi": "colour स्तंभ को समूह चुनो, फिर \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "GROUP BY sorts the rows into groups that share a value, here the same colour, and then an aggregate function gives one answer for each group. White has 3 cars, Blue 2, Red 2 and Grey 1. Without GROUP BY, COUNT(*) would give a single number for the whole table.",
+      "hi": "GROUP BY पंक्तियों को ऐसे समूहों में बाँटता है जिनमें कोई मान एक जैसा हो, यहाँ एक-सा रंग, और फिर समुच्चय फ़ंक्शन हर समूह का एक उत्तर देता है। White की 3 गाड़ियाँ हैं, Blue की 2, Red की 2 और Grey की 1। GROUP BY के बिना COUNT(*) पूरी तालिका की एक ही संख्या देता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "With GROUP BY colour and COUNT(*), how many cars are in the White group?",
+        "hi": "GROUP BY colour और COUNT(*) में White समूह में कितनी गाड़ियाँ हैं?"
+       },
+       "options": [
+        "3",
+        "4",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Three rows (carid 1, 5 and 6) have the colour White.",
+        "hi": "तीन पंक्तियों (carid 1, 5 और 6) का रंग White है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 is the number of different colours.",
+         "hi": "4 अलग रंगों की संख्या है।"
+        },
+        {
+         "en": "1 is the size of the Grey group.",
+         "hi": "1 Grey समूह का आकार है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "GROUP BY is used with…",
+        "hi": "GROUP BY किसके साथ इस्तेमाल होता है…"
+       },
+       "options": [
+        "An aggregate function like COUNT or SUM",
+        "Only DROP TABLE",
+        "Only text columns that are empty"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "GROUP BY forms groups and an aggregate summarises each one.",
+        "hi": "GROUP BY समूह बनाता है और समुच्चय फ़ंक्शन हर एक का सार निकालता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "DROP TABLE has nothing to do with grouping.",
+         "hi": "DROP TABLE का समूह बनाने से कोई संबंध नहीं।"
+        },
+        {
+         "en": "Columns do not need to be empty for grouping.",
+         "hi": "समूह बनाने के लिए स्तंभों का ख़ाली होना ज़रूरी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Group by model instead of colour. Which model has the highest total qty? Try it with SUM.",
+      "hi": "रंग की जगह model से समूह बनाओ। किस model की कुल qty सबसे ज़्यादा है? SUM से आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch09-clauses",
+   "topic": "9.6",
+   "template": "sequence",
+   "title": {
+    "en": "The right order of a SELECT query",
+    "hi": "SELECT क्वेरी का सही क्रम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "select",
+      "text": {
+       "en": "SELECT colour, COUNT(*)",
+       "hi": "SELECT colour, COUNT(*)"
+      }
+     },
+     {
+      "id": "from",
+      "text": {
+       "en": "FROM cars",
+       "hi": "FROM cars"
+      }
+     },
+     {
+      "id": "where",
+      "text": {
+       "en": "WHERE price > 600000",
+       "hi": "WHERE price > 600000"
+      }
+     },
+     {
+      "id": "group",
+      "text": {
+       "en": "GROUP BY colour",
+       "hi": "GROUP BY colour"
+      }
+     },
+     {
+      "id": "having",
+      "text": {
+       "en": "HAVING COUNT(*) > 1",
+       "hi": "HAVING COUNT(*) > 1"
+      }
+     },
+     {
+      "id": "order",
+      "text": {
+       "en": "ORDER BY colour",
+       "hi": "ORDER BY colour"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part of a query always comes first?",
+      "hi": "क्वेरी का कौन-सा हिस्सा हमेशा सबसे पहले आता है?"
+     },
+     "options": [
+      {
+       "id": "select",
+       "en": "SELECT",
+       "hi": "SELECT है"
+      },
+      {
+       "id": "where",
+       "en": "WHERE",
+       "hi": "WHERE है"
+      },
+      {
+       "id": "order",
+       "en": "ORDER BY",
+       "hi": "ORDER BY है"
+      }
+     ],
+     "answer": "select"
+    },
+    {
+     "kind": "do",
+     "target": "item:select",
+     "expect": "placed:select",
+     "say": {
+      "en": "Put SELECT in slot 1.",
+      "hi": "SELECT को स्थान 1 में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:where",
+     "expect": "placed:where",
+     "say": {
+      "en": "Place the WHERE line.",
+      "hi": "WHERE वाली पंक्ति रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the rest and press Check.",
+      "hi": "बाकी को क्रम में लगाओ और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A SELECT query is written in a fixed order: SELECT the columns, FROM the table, WHERE to filter rows, GROUP BY to make groups, HAVING to filter the groups, and ORDER BY to arrange the result. Reading it in this order tells the story: from which table, which rows, grouped how, which groups, and shown in what order.",
+      "hi": "SELECT क्वेरी तय क्रम में लिखी जाती है: SELECT से स्तंभ, FROM से तालिका, WHERE से पंक्तियों की छँटाई, GROUP BY से समूह, HAVING से समूहों की छँटाई और ORDER BY से नतीजे का क्रम। इस क्रम में पढ़ने पर पूरी कहानी बनती है: किस तालिका से, कौन-सी पंक्तियाँ, कैसे बँटी, कौन-से समूह, और किस क्रम में दिखें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which clause filters ROWS before grouping?",
+        "hi": "समूह बनाने से पहले कौन-सा उपवाक्य पंक्तियाँ छानता है?"
+       },
+       "options": [
+        "WHERE",
+        "HAVING",
+        "ORDER BY"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "WHERE works on rows before they are grouped.",
+        "hi": "WHERE पंक्तियों पर, समूह बनने से पहले, काम करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "HAVING filters the groups after grouping.",
+         "hi": "HAVING समूह बनने के बाद समूहों को छानता है।"
+        },
+        {
+         "en": "ORDER BY only arranges the final result.",
+         "hi": "ORDER BY केवल अंतिम नतीजे को क्रम देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where does ORDER BY go?",
+        "hi": "ORDER BY कहाँ आता है?"
+       },
+       "options": [
+        "At the end of the query",
+        "Before SELECT",
+        "Between FROM and WHERE"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ordering is the last step, applied to the finished result.",
+        "hi": "क्रम देना आख़िरी चरण है, जो तैयार नतीजे पर लगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "SELECT always starts the query.",
+         "hi": "SELECT हमेशा क्वेरी की शुरुआत करता है।"
+        },
+        {
+         "en": "That place is for WHERE, or nothing.",
+         "hi": "वह जगह WHERE की है, या ख़ाली।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Leave out the WHERE and HAVING lines. Is the query still correct? Which lines are compulsory and which are optional?",
+      "hi": "WHERE और HAVING वाली पंक्तियाँ हटा दो। क्या क्वेरी अब भी सही है? कौन-सी पंक्तियाँ ज़रूरी हैं और कौन-सी वैकल्पिक?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch09-relops",
+   "topic": "9.10",
+   "template": "match",
+   "title": {
+    "en": "Operations on two relations",
+    "hi": "दो रिलेशनों पर संक्रियाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "union",
+      "left": {
+       "en": "UNION",
+       "hi": "UNION"
+      },
+      "right": {
+       "en": "All rows of both tables, repeats shown once",
+       "hi": "दोनों तालिकाओं की सब पंक्तियाँ, दोहराव एक बार"
+      },
+      "why": {
+       "en": "Like joining two lists of names into one.",
+       "hi": "जैसे दो नामों की सूचियों को एक में मिलाना।"
+      }
+     },
+     {
+      "id": "intersect",
+      "left": {
+       "en": "INTERSECT",
+       "hi": "INTERSECT"
+      },
+      "right": {
+       "en": "Only the rows found in both tables",
+       "hi": "केवल वे पंक्तियाँ जो दोनों तालिकाओं में हैं"
+      },
+      "why": {
+       "en": "Like students who are in both the chess club and the quiz club.",
+       "hi": "जैसे वे विद्यार्थी जो शतरंज क्लब और क्विज़ क्लब, दोनों में हैं।"
+      }
+     },
+     {
+      "id": "minus",
+      "left": {
+       "en": "MINUS",
+       "hi": "MINUS"
+      },
+      "right": {
+       "en": "Rows of the first table that are not in the second",
+       "hi": "पहली तालिका की वे पंक्तियाँ जो दूसरी में नहीं हैं"
+      },
+      "why": {
+       "en": "Like students in the chess club but not in the quiz club.",
+       "hi": "जैसे वे विद्यार्थी जो शतरंज क्लब में हैं पर क्विज़ क्लब में नहीं।"
+      }
+     },
+     {
+      "id": "cartesian",
+      "left": {
+       "en": "CARTESIAN PRODUCT",
+       "hi": "कार्टेशियन गुणनफल"
+      },
+      "right": {
+       "en": "Every row of one table paired with every row of the other",
+       "hi": "एक तालिका की हर पंक्ति दूसरी की हर पंक्ति के साथ जुड़ी"
+      },
+      "why": {
+       "en": "3 rows with 4 rows give 3 × 4 = 12 combined rows.",
+       "hi": "3 पंक्तियाँ और 4 पंक्तियाँ मिलकर 3 × 4 = 12 जुड़ी पंक्तियाँ देती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:union",
+     "expect": "matched:union",
+     "say": {
+      "en": "Match UNION with its meaning.",
+      "hi": "UNION को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One table has 3 rows and another has 4 rows. How many rows does their Cartesian product have?",
+      "hi": "एक तालिका में 3 और दूसरी में 4 पंक्तियाँ हैं। उनके कार्टेशियन गुणनफल में कितनी पंक्तियाँ होंगी?"
+     },
+     "options": [
+      {
+       "id": "twelve",
+       "en": "12",
+       "hi": "12 है"
+      },
+      {
+       "id": "seven",
+       "en": "7",
+       "hi": "7 है"
+      },
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 है"
+      }
+     ],
+     "answer": "twelve"
+    },
+    {
+     "kind": "do",
+     "target": "left:cartesian",
+     "expect": "matched:cartesian",
+     "say": {
+      "en": "Match CARTESIAN PRODUCT.",
+      "hi": "कार्टेशियन गुणनफल को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:minus",
+     "expect": "matched:minus",
+     "say": {
+      "en": "Match MINUS.",
+      "hi": "MINUS को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "These operations treat tables like sets of rows. UNION gives everything from both, INTERSECT only what both share, and MINUS what the first has but the second does not. UNION, INTERSECT and MINUS need the two tables to have the same columns. The Cartesian product pairs each row of one table with each row of the other, so the rows multiply and the columns add up.",
+      "hi": "ये संक्रियाएँ तालिकाओं को पंक्तियों के समुच्चय की तरह लेती हैं। UNION दोनों का सब कुछ देता है, INTERSECT केवल साझा पंक्तियाँ, और MINUS वह जो पहली में है पर दूसरी में नहीं। UNION, INTERSECT और MINUS के लिए दोनों तालिकाओं के स्तंभ एक जैसे होने चाहिए। कार्टेशियन गुणनफल एक तालिका की हर पंक्ति को दूसरी की हर पंक्ति से जोड़ता है, इसलिए पंक्तियाँ गुणा होती हैं और स्तंभ जुड़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Chess club: Asha, Bilal, Chetan. Quiz club: Bilal, Divya. What is the chess club INTERSECT the quiz club?",
+        "hi": "शतरंज क्लब: आशा, बिलाल, चेतन। क्विज़ क्लब: बिलाल, दिव्या। शतरंज क्लब INTERSECT क्विज़ क्लब क्या है?"
+       },
+       "options": [
+        "Bilal",
+        "Asha, Chetan",
+        "Asha, Bilal, Chetan, Divya"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only Bilal is in both clubs.",
+        "hi": "केवल बिलाल दोनों क्लबों में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Asha and Chetan are the MINUS result: in chess but not in quiz.",
+         "hi": "आशा और चेतन MINUS का नतीजा हैं: शतरंज में हैं, क्विज़ में नहीं।"
+        },
+        {
+         "en": "That is the UNION of the two clubs.",
+         "hi": "यह दोनों क्लबों का UNION है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A table with 5 rows and 2 columns is paired with one of 6 rows and 3 columns. The Cartesian product has…",
+        "hi": "5 पंक्तियों और 2 स्तंभों वाली तालिका को 6 पंक्तियों और 3 स्तंभों वाली तालिका से जोड़ा गया। कार्टेशियन गुणनफल में होंगे…"
+       },
+       "options": [
+        "30 rows and 5 columns",
+        "11 rows and 5 columns",
+        "30 rows and 6 columns"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rows multiply: 5 × 6 = 30. Columns add: 2 + 3 = 5.",
+        "hi": "पंक्तियाँ गुणा होती हैं: 5 × 6 = 30। स्तंभ जुड़ते हैं: 2 + 3 = 5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rows are multiplied, not added.",
+         "hi": "पंक्तियाँ गुणा होती हैं, जुड़ती नहीं।"
+        },
+        {
+         "en": "Columns are added, not multiplied.",
+         "hi": "स्तंभ जुड़ते हैं, गुणा नहीं होते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the last pair. Then name two school clubs of your own and say who would be in their UNION, INTERSECT and MINUS.",
+      "hi": "आख़िरी जोड़ी मिलाओ। फिर अपने स्कूल के दो क्लब सोचो और बताओ उनके UNION, INTERSECT और MINUS में कौन होंगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch09-modify",
+   "topic": "9.7",
+   "template": "scenario",
+   "title": {
+    "en": "UPDATE and DELETE need a WHERE",
+    "hi": "UPDATE और DELETE में WHERE ज़रूरी है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "school office",
+    "role": {
+     "en": "Database helper in the school office",
+     "hi": "स्कूल कार्यालय में डेटाबेस सहायक"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Rahul of class 12 changed his phone number. You must update only his row in the students table. Which statement do you run?",
+       "hi": "कक्षा 12 के राहुल का फ़ोन नंबर बदल गया। तुम्हें students तालिका में केवल उसकी पंक्ति अपडेट करनी है। कौन-सा कथन चलाओगे?"
+      },
+      "choices": [
+       {
+        "id": "where",
+        "text": {
+         "en": "UPDATE students SET phone = '99999' WHERE rollno = 7",
+         "hi": "UPDATE students SET phone = '99999' WHERE rollno = 7"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Wise. WHERE rollno = 7 changes only Rahul's row.",
+         "hi": "समझदारी। WHERE rollno = 7 केवल राहुल की पंक्ति बदलता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "nowhere",
+        "text": {
+         "en": "UPDATE students SET phone = '99999'",
+         "hi": "UPDATE students SET phone = '99999'"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Without WHERE, every student's phone number becomes 99999. Always add a WHERE to UPDATE.",
+         "hi": "WHERE के बिना हर विद्यार्थी का फ़ोन नंबर 99999 हो जाएगा। UPDATE में WHERE हमेशा लगाओ।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "A student left the school and his row must be removed. Which statement do you run?",
+       "hi": "एक विद्यार्थी स्कूल छोड़ गया और उसकी पंक्ति हटानी है। कौन-सा कथन चलाओगे?"
+      },
+      "choices": [
+       {
+        "id": "delwhere",
+        "text": {
+         "en": "DELETE FROM students WHERE rollno = 4",
+         "hi": "DELETE FROM students WHERE rollno = 4"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Wise. Only the row of roll number 4 is removed.",
+         "hi": "समझदारी। केवल रोल नंबर 4 की पंक्ति हटती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "delall",
+        "text": {
+         "en": "DELETE FROM students",
+         "hi": "DELETE FROM students"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Without WHERE, every row of the table is deleted. The table stays but is empty.",
+         "hi": "WHERE के बिना तालिका की हर पंक्ति हट जाती है। तालिका बची रहती है पर ख़ाली।"
+        },
+        "good": false
+       },
+       {
+        "id": "drop",
+        "text": {
+         "en": "DROP TABLE students",
+         "hi": "DROP TABLE students"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "DROP TABLE removes the whole table and its structure, much more than one row.",
+         "hi": "DROP TABLE पूरी तालिका और उसका ढाँचा हटा देता है, एक पंक्ति से कहीं ज़्यादा।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you run UPDATE with no WHERE, how many rows does it change?",
+      "hi": "WHERE के बिना UPDATE चलाओ तो वह कितनी पंक्तियाँ बदलता है?"
+     },
+     "options": [
+      {
+       "id": "all",
+       "en": "Every row",
+       "hi": "हर पंक्ति"
+      },
+      {
+       "id": "one",
+       "en": "Only the first row",
+       "hi": "केवल पहली पंक्ति"
+      }
+     ],
+     "answer": "all"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:where",
+     "expect": "chose:where",
+     "say": {
+      "en": "Choose the UPDATE that touches only Rahul's row.",
+      "hi": "वह UPDATE चुनो जो केवल राहुल की पंक्ति को छूए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:s2:delwhere",
+     "expect": "chose:delwhere",
+     "say": {
+      "en": "Choose the DELETE that removes only the right row.",
+      "hi": "वह DELETE चुनो जो केवल सही पंक्ति हटाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "UPDATE and DELETE act on every row unless a WHERE clause limits them. That is why a missing WHERE is one of the most expensive mistakes in SQL: all the phone numbers overwritten, or the whole table emptied. A careful habit is to run a SELECT with the same WHERE first, to see exactly which rows will be touched.",
+      "hi": "UPDATE और DELETE हर पंक्ति पर असर करते हैं, जब तक WHERE उन्हें सीमित न करे। इसीलिए WHERE का छूट जाना SQL की सबसे महँगी गलतियों में है: सारे फ़ोन नंबर बदल जाना, या पूरी तालिका का ख़ाली हो जाना। सावधानी की आदत यह है कि पहले उसी WHERE के साथ SELECT चलाओ, ताकि ठीक पता चले कि कौन-सी पंक्तियाँ छुई जाएँगी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What happens if DELETE FROM students is run without WHERE?",
+        "hi": "WHERE के बिना DELETE FROM students चलाने पर क्या होता है?"
+       },
+       "options": [
+        "All rows are deleted",
+        "One row is deleted",
+        "Nothing happens"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With no condition, every row matches, so all are deleted.",
+        "hi": "शर्त न हो तो हर पंक्ति मेल खाती है, इसलिए सब हट जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only a WHERE with a specific value would limit it to one row.",
+         "hi": "किसी ख़ास मान वाला WHERE ही उसे एक पंक्ति तक सीमित करता।"
+        },
+        {
+         "en": "The statement is valid and does act.",
+         "hi": "कथन वैध है और असर करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Before a risky UPDATE, which good habit helps?",
+        "hi": "जोखिम वाले UPDATE से पहले कौन-सी अच्छी आदत काम आती है?"
+       },
+       "options": [
+        "Run a SELECT with the same WHERE first",
+        "Drop the table and start again",
+        "Remove the WHERE to be faster"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The SELECT shows exactly the rows the UPDATE would change.",
+        "hi": "SELECT ठीक वही पंक्तियाँ दिखाता है जिन्हें UPDATE बदलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dropping the table destroys the data you meant to keep.",
+         "hi": "तालिका हटाने से वह डेटा नष्ट हो जाता है जिसे तुम रखना चाहते थे।"
+        },
+        {
+         "en": "Removing WHERE is exactly what makes it dangerous.",
+         "hi": "WHERE हटाना ही उसे ख़तरनाक बनाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Restart and take the other choices to see each warning. Which mistake would be hardest to repair, and what could a school do to be safe?",
+      "hi": "\"फिर से शुरू\" दबाकर दूसरे विकल्प चुनो और हर चेतावनी पढ़ो। कौन-सी गलती सुधारना सबसे कठिन होगा, और स्कूल सुरक्षित रहने के लिए क्या कर सकता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Asking a question of a database",
+   "shows": "A school clerk at a desk typing at a laptop with a stack of paper registers beside it, seen from the side",
+   "view": "Eye level, 16:9, soft light",
+   "right": "Laptop screen shows only a blurred table",
+   "avoid": "Readable data, visible face"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "9.4",
+   "use": "A table as a blueprint (CREATE TABLE)",
+   "shows": "A paper blueprint sheet of a simple grid with a pencil and a ruler lying on it",
+   "view": "Top-down, light from top left, transparent background",
+   "right": "Grid lines neat, no text",
+   "avoid": "Writing on the sheet"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.6",
+   "use": "A funnel for filtering rows (WHERE)",
+   "shows": "A steel kitchen funnel above a glass jar with a few mixed lentils going through",
+   "view": "Front view, light from top left, transparent background",
+   "right": "Funnel and jar clearly separate",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "9.9",
+   "use": "Sorting objects into group bowls (GROUP BY)",
+   "shows": "Three frames: mixed coloured beads on a tray, beads separated into colour bowls, bowls with beads counted into stacks",
+   "view": "Same camera and light, top-down, 16:9",
+   "right": "Colours also differ in bead shape, not only hue",
+   "avoid": "Hands in the frames"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "9.10",
+   "use": "Two overlapping circles for UNION, INTERSECT and MINUS",
+   "shows": "Two overlapping empty circles with the overlap region a different pattern",
+   "view": "Flat white background, vector, 16:9",
+   "right": "Overlap clearly distinct by pattern, not only colour",
+   "avoid": "Any labels"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "9.8",
+   "use": "Counting and adding in a shop",
+   "shows": "A shopkeeper's hands adding items on a basic calculator at a counter with stacked boxes, no faces",
+   "view": "Close-up top-down, square",
+   "right": "Calculator display blurred",
+   "avoid": "Visible face, brand names"
+  }
+ ]
+}

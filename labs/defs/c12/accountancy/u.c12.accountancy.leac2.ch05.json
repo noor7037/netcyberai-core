@@ -1,0 +1,1767 @@
+{
+  "chapter_key": "u.c12.accountancy.leac2.ch05",
+  "class": 12,
+  "subject_id": "accountancy",
+  "title": "Accounting Ratios",
+  "source": "https://ncert.nic.in/textbook/pdf/leac205.pdf",
+  "topics": [
+    {
+      "n": "5.1",
+      "title": "Introduction",
+      "labs": [],
+      "why_no_lab": "A short reminder that ratios relate two figures; the family sorting lab begins from there."
+    },
+    {
+      "n": "5.2",
+      "title": "Objectives of ratio analysis",
+      "labs": [
+        "c12-accountancy-leac2-ch05-ratio-types"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.5",
+      "title": "Types of ratios",
+      "labs": [
+        "c12-accountancy-leac2-ch05-ratio-types"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.6",
+      "title": "Liquidity ratios: current and quick ratio",
+      "labs": [
+        "c12-accountancy-leac2-ch05-formulas",
+        "c12-accountancy-leac2-ch05-liquidity"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.7",
+      "title": "Solvency ratios",
+      "labs": [
+        "c12-accountancy-leac2-ch05-solvency"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.8",
+      "title": "Activity (turnover) ratios",
+      "labs": [
+        "c12-accountancy-leac2-ch05-activity"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.9",
+      "title": "Profitability ratios",
+      "labs": [
+        "c12-accountancy-leac2-ch05-profit"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.7.5",
+      "title": "Interest coverage ratio",
+      "labs": [
+        "c12-accountancy-leac2-ch05-roce"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.9.5",
+      "title": "Return on capital employed",
+      "labs": [
+        "c12-accountancy-leac2-ch05-roce"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.3",
+      "title": "Advantages of ratio analysis",
+      "labs": [
+        "c12-accountancy-leac2-ch05-uses-limits"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.4",
+      "title": "Limitations of ratio analysis",
+      "labs": [
+        "c12-accountancy-leac2-ch05-uses-limits"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-accountancy-leac2-ch05-ratio-types",
+      "topic": "5.5",
+      "template": "sort",
+      "title": {
+        "en": "The four families of ratios",
+        "hi": "अनुपातों के चार परिवार"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "liq",
+            "label": {
+              "en": "Liquidity",
+              "hi": "तरलता"
+            }
+          },
+          {
+            "id": "sol",
+            "label": {
+              "en": "Solvency",
+              "hi": "शोधन क्षमता"
+            }
+          },
+          {
+            "id": "act",
+            "label": {
+              "en": "Activity (turnover)",
+              "hi": "क्रियाशीलता (आवर्त)"
+            }
+          },
+          {
+            "id": "prof",
+            "label": {
+              "en": "Profitability",
+              "hi": "लाभप्रदता"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "cur",
+            "text": {
+              "en": "Current ratio",
+              "hi": "चालू अनुपात"
+            },
+            "bin": "liq",
+            "why": {
+              "en": "Compares current assets with current liabilities: short-term payment power.",
+              "hi": "चालू परिसंपत्तियों की चालू देयताओं से तुलना: अल्पकालीन भुगतान क्षमता।"
+            }
+          },
+          {
+            "id": "qk",
+            "text": {
+              "en": "Quick ratio",
+              "hi": "तरल अनुपात"
+            },
+            "bin": "liq",
+            "why": {
+              "en": "A stricter liquidity test that leaves out stock.",
+              "hi": "स्टॉक को छोड़कर तरलता की सख़्त जाँच।"
+            }
+          },
+          {
+            "id": "de",
+            "text": {
+              "en": "Debt–equity ratio",
+              "hi": "ऋण-समता अनुपात"
+            },
+            "bin": "sol",
+            "why": {
+              "en": "Borrowed money against owners' money: long-term safety.",
+              "hi": "उधार का पैसा बनाम स्वामियों का पैसा: दीर्घकालीन सुरक्षा।"
+            }
+          },
+          {
+            "id": "pr",
+            "text": {
+              "en": "Proprietary ratio",
+              "hi": "स्वामित्व अनुपात"
+            },
+            "bin": "sol",
+            "why": {
+              "en": "Share of assets paid for by the owners.",
+              "hi": "परिसंपत्तियों का वह भाग जो स्वामियों ने दिया।"
+            }
+          },
+          {
+            "id": "ic",
+            "text": {
+              "en": "Interest coverage ratio",
+              "hi": "ब्याज प्रतिपूर्ति अनुपात"
+            },
+            "bin": "sol",
+            "why": {
+              "en": "How many times profit covers the interest.",
+              "hi": "लाभ ब्याज को कितनी बार ढकता है।"
+            }
+          },
+          {
+            "id": "ta",
+            "text": {
+              "en": "Total assets to debt ratio",
+              "hi": "कुल परिसंपत्ति से ऋण अनुपात"
+            },
+            "bin": "sol",
+            "why": {
+              "en": "How well assets cover long-term debt.",
+              "hi": "परिसंपत्तियाँ दीर्घकालीन ऋण को कितना ढकती हैं।"
+            }
+          },
+          {
+            "id": "it",
+            "text": {
+              "en": "Inventory turnover ratio",
+              "hi": "मालसूची आवर्त अनुपात"
+            },
+            "bin": "act",
+            "why": {
+              "en": "How fast stock is sold and replaced.",
+              "hi": "माल कितनी तेज़ी से बिकता और भरता है।"
+            }
+          },
+          {
+            "id": "rt",
+            "text": {
+              "en": "Trade receivables turnover",
+              "hi": "व्यापारिक प्राप्य आवर्त"
+            },
+            "bin": "act",
+            "why": {
+              "en": "How fast customers pay.",
+              "hi": "ग्राहक कितनी जल्दी चुकाते हैं।"
+            }
+          },
+          {
+            "id": "pt",
+            "text": {
+              "en": "Trade payables turnover",
+              "hi": "व्यापारिक देय आवर्त"
+            },
+            "bin": "act",
+            "why": {
+              "en": "How fast the firm pays its suppliers.",
+              "hi": "फ़र्म आपूर्तिकर्ताओं को कितनी जल्दी चुकाती है।"
+            }
+          },
+          {
+            "id": "gp",
+            "text": {
+              "en": "Gross profit ratio",
+              "hi": "सकल लाभ अनुपात"
+            },
+            "bin": "prof",
+            "why": {
+              "en": "Profit left after the cost of goods sold.",
+              "hi": "बेचे माल की लागत के बाद बचा लाभ।"
+            }
+          },
+          {
+            "id": "op",
+            "text": {
+              "en": "Operating ratio",
+              "hi": "प्रचालन अनुपात"
+            },
+            "bin": "prof",
+            "why": {
+              "en": "Cost of running the business against revenue.",
+              "hi": "व्यापार चलाने की लागत बनाम आगम।"
+            }
+          },
+          {
+            "id": "np",
+            "text": {
+              "en": "Net profit ratio",
+              "hi": "शुद्ध लाभ अनुपात"
+            },
+            "bin": "prof",
+            "why": {
+              "en": "Final profit against revenue.",
+              "hi": "आगम के मुक़ाबले अंतिम लाभ।"
+            }
+          },
+          {
+            "id": "roce",
+            "text": {
+              "en": "Return on capital employed",
+              "hi": "नियोजित पूँजी पर प्रतिफल"
+            },
+            "bin": "prof",
+            "why": {
+              "en": "Profit earned on the money put to work.",
+              "hi": "काम में लगे पैसे पर कमाया लाभ।"
+            }
+          },
+          {
+            "id": "eps",
+            "text": {
+              "en": "Earnings per share",
+              "hi": "प्रति अंश आय"
+            },
+            "bin": "prof",
+            "why": {
+              "en": "Profit earned for each equity share.",
+              "hi": "हर समता अंश पर कमाया लाभ।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A ratio compares the cost of goods sold with the average stock. Which family does it belong to?",
+            "hi": "एक अनुपात बेचे गए माल की लागत की औसत स्टॉक से तुलना करता है। यह किस परिवार का है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Activity (turnover)",
+              "hi": "क्रियाशीलता (आवर्त)"
+            },
+            {
+              "id": "l",
+              "en": "Liquidity",
+              "hi": "तरलता"
+            },
+            {
+              "id": "p",
+              "en": "Profitability",
+              "hi": "लाभप्रदता"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:cur",
+          "expect": "correct:cur",
+          "say": {
+            "en": "Tap the card “Current ratio”, then tap the group it belongs to.",
+            "hi": "कार्ड “चालू अनुपात” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:it",
+          "expect": "correct:it",
+          "say": {
+            "en": "Tap the card “Inventory turnover ratio”, then tap the group it belongs to.",
+            "hi": "कार्ड “मालसूची आवर्त अनुपात” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Ratios fall into four families because they answer four questions. Liquidity: can we pay this year's bills? Solvency: can we pay our long-term debts and interest? Activity: how well do we use our assets, how fast do stock and customers turn into cash? Profitability: how much do we earn?",
+            "hi": "अनुपात चार परिवारों में बँटते हैं क्योंकि वे चार प्रश्नों के उत्तर देते हैं। तरलता: क्या हम इस वर्ष के बिल चुका सकते हैं? शोधन क्षमता: क्या हम दीर्घकालीन ऋण और ब्याज चुका सकते हैं? क्रियाशीलता: हम परिसंपत्तियों का कितना अच्छा उपयोग करते हैं, माल और ग्राहक कितनी जल्दी नकदी बनते हैं? लाभप्रदता: हम कितना कमाते हैं?"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A lender checks whether profit covers the interest several times over. Which family is this?",
+                "hi": "एक ऋणदाता देखता है कि लाभ ब्याज को कई बार ढकता है या नहीं। यह कौन-सा परिवार है?"
+              },
+              "options": [
+                {
+                  "en": "Solvency",
+                  "hi": "शोधन क्षमता"
+                },
+                {
+                  "en": "Liquidity",
+                  "hi": "तरलता"
+                },
+                {
+                  "en": "Activity",
+                  "hi": "क्रियाशीलता"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Ability to meet interest and long-term debt is solvency.",
+                "hi": "ब्याज और दीर्घकालीन ऋण चुकाने की क्षमता शोधन क्षमता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Liquidity is about short-term bills, not long-term interest cover.",
+                  "hi": "तरलता अल्पकालीन बिलों की बात है, दीर्घकालीन ब्याज प्रतिपूर्ति की नहीं।"
+                },
+                {
+                  "en": "Activity ratios measure speed of turnover, not interest cover.",
+                  "hi": "क्रियाशीलता अनुपात आवर्त की गति नापते हैं, ब्याज प्रतिपूर्ति नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Name one decision in your home budget that each family could help with.",
+            "hi": "अपने घर के बजट का एक निर्णय बताओ जिसमें हर परिवार मदद कर सकता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch05-formulas",
+      "topic": "5.6",
+      "template": "match",
+      "title": {
+        "en": "Which formula belongs to which ratio?",
+        "hi": "कौन-सा सूत्र किस अनुपात का है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "cur",
+            "left": {
+              "en": "Current ratio",
+              "hi": "चालू अनुपात"
+            },
+            "right": {
+              "en": "Current assets ÷ current liabilities",
+              "hi": "चालू परिसंपत्तियाँ ÷ चालू देयताएँ"
+            },
+            "why": {
+              "en": "Both figures come from the current part of the balance sheet.",
+              "hi": "दोनों आँकड़े तुलन पत्र के चालू भाग से आते हैं।"
+            }
+          },
+          {
+            "id": "qk",
+            "left": {
+              "en": "Quick ratio",
+              "hi": "तरल अनुपात"
+            },
+            "right": {
+              "en": "(Current assets − inventory − prepaid) ÷ current liabilities",
+              "hi": "(चालू परिसंपत्तियाँ − मालसूची − पूर्वदत्त) ÷ चालू देयताएँ"
+            },
+            "why": {
+              "en": "Stock and prepaid expenses cannot be turned into cash quickly, so they are left out.",
+              "hi": "माल और पूर्वदत्त व्यय जल्दी नकदी नहीं बनते, इसलिए छोड़े जाते हैं।"
+            }
+          },
+          {
+            "id": "de",
+            "left": {
+              "en": "Debt–equity ratio",
+              "hi": "ऋण-समता अनुपात"
+            },
+            "right": {
+              "en": "Long-term debt ÷ shareholders' funds",
+              "hi": "दीर्घकालीन ऋण ÷ अंशधारकों की निधियाँ"
+            },
+            "why": {
+              "en": "Borrowed money against owners' money.",
+              "hi": "उधार का पैसा बनाम स्वामियों का पैसा।"
+            }
+          },
+          {
+            "id": "pr",
+            "left": {
+              "en": "Proprietary ratio",
+              "hi": "स्वामित्व अनुपात"
+            },
+            "right": {
+              "en": "Shareholders' funds ÷ total assets",
+              "hi": "अंशधारकों की निधियाँ ÷ कुल परिसंपत्तियाँ"
+            },
+            "why": {
+              "en": "The owners' share of everything the firm has.",
+              "hi": "फ़र्म के पास जो कुछ है, उसमें स्वामियों का हिस्सा।"
+            }
+          },
+          {
+            "id": "it",
+            "left": {
+              "en": "Inventory turnover",
+              "hi": "मालसूची आवर्त"
+            },
+            "right": {
+              "en": "Cost of revenue ÷ average inventory",
+              "hi": "आगम की लागत ÷ औसत मालसूची"
+            },
+            "why": {
+              "en": "Cost, not sales, is used because stock is valued at cost.",
+              "hi": "लागत ली जाती है, बिक्री नहीं, क्योंकि माल लागत पर आँका जाता है।"
+            }
+          },
+          {
+            "id": "rt",
+            "left": {
+              "en": "Receivables turnover",
+              "hi": "प्राप्य आवर्त"
+            },
+            "right": {
+              "en": "Net credit revenue ÷ average trade receivables",
+              "hi": "शुद्ध उधार आगम ÷ औसत व्यापारिक प्राप्य"
+            },
+            "why": {
+              "en": "Only credit sales create receivables.",
+              "hi": "केवल उधार बिक्री से प्राप्य बनते हैं।"
+            }
+          },
+          {
+            "id": "gp",
+            "left": {
+              "en": "Gross profit ratio",
+              "hi": "सकल लाभ अनुपात"
+            },
+            "right": {
+              "en": "(Revenue − cost of revenue) ÷ revenue × 100",
+              "hi": "(आगम − आगम की लागत) ÷ आगम × 100"
+            },
+            "why": {
+              "en": "Gross profit is revenue less the cost of what was sold.",
+              "hi": "सकल लाभ आगम में से बेचे माल की लागत घटाने पर मिलता है।"
+            }
+          },
+          {
+            "id": "np",
+            "left": {
+              "en": "Net profit ratio",
+              "hi": "शुद्ध लाभ अनुपात"
+            },
+            "right": {
+              "en": "Net profit after tax ÷ revenue × 100",
+              "hi": "कर के बाद शुद्ध लाभ ÷ आगम × 100"
+            },
+            "why": {
+              "en": "The final profit as a percentage of revenue.",
+              "hi": "अंतिम लाभ आगम के प्रतिशत के रूप में।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In the quick ratio, which of these is taken out of current assets?",
+            "hi": "तरल अनुपात में चालू परिसंपत्तियों में से इनमें क्या निकाला जाता है?"
+          },
+          "options": [
+            {
+              "id": "i",
+              "en": "Inventory (stock)",
+              "hi": "मालसूची (स्टॉक)"
+            },
+            {
+              "id": "c",
+              "en": "Cash",
+              "hi": "रोकड़"
+            },
+            {
+              "id": "r",
+              "en": "Trade receivables",
+              "hi": "व्यापारिक प्राप्य"
+            }
+          ],
+          "answer": "i"
+        },
+        {
+          "kind": "do",
+          "target": "left:cur",
+          "expect": "matched:cur",
+          "say": {
+            "en": "Tap “Current ratio”, then tap the meaning that goes with it.",
+            "hi": "“चालू अनुपात” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:qk",
+          "expect": "matched:qk",
+          "say": {
+            "en": "Tap “Quick ratio”, then tap the meaning that goes with it.",
+            "hi": "“तरल अनुपात” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the pairs, then press Check.",
+            "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each ratio is just a fraction with a reason. Current assets over current liabilities tests short-term safety. Remove stock and prepaid items and you get the stricter quick ratio. Debt over equity and owners' funds over total assets look at long-term safety from two sides. Turnover ratios divide a flow, cost or credit sales, by a stock of assets. Profit ratios divide profit by revenue.",
+            "hi": "हर अनुपात एक भिन्न है जिसके पीछे कारण है। चालू परिसंपत्तियाँ भाग चालू देयताएँ अल्पकालीन सुरक्षा जाँचता है। माल और पूर्वदत्त मदें हटा दो तो सख़्त तरल अनुपात बनता है। ऋण भाग समता और निधियाँ भाग कुल परिसंपत्तियाँ दीर्घकालीन सुरक्षा को दो ओर से देखते हैं। आवर्त अनुपात एक प्रवाह, यानी लागत या उधार बिक्री, को परिसंपत्तियों के भंडार से भाग देते हैं। लाभ अनुपात लाभ को आगम से भाग देते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is cost of revenue (not sales) used in the inventory turnover ratio?",
+                "hi": "मालसूची आवर्त अनुपात में बिक्री के बजाय आगम की लागत क्यों ली जाती है?"
+              },
+              "options": [
+                {
+                  "en": "Inventory is valued at cost, so cost is the fair partner",
+                  "hi": "मालसूची लागत पर आँकी जाती है, इसलिए लागत ही उचित जोड़ी है"
+                },
+                {
+                  "en": "Sales are never known",
+                  "hi": "बिक्री कभी पता नहीं होती"
+                },
+                {
+                  "en": "Cost is always larger than sales",
+                  "hi": "लागत हमेशा बिक्री से बड़ी होती है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Like should be compared with like: stock at cost against the cost of goods sold.",
+                "hi": "एक जैसी चीज़ की तुलना होनी चाहिए: लागत पर आँका माल बेचे माल की लागत के साथ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Sales are known from the books; the reason is consistency, not ignorance.",
+                  "hi": "बिक्री बही से पता है; कारण एकरूपता है, अज्ञान नहीं।"
+                },
+                {
+                  "en": "Cost is normally smaller than sales in a profitable firm.",
+                  "hi": "लाभ वाली फ़र्म में लागत सामान्यतः बिक्री से छोटी होती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write each formula in your own words, as a question the ratio answers.",
+            "hi": "हर सूत्र को अपने शब्दों में एक प्रश्न के रूप में लिखो जिसका उत्तर वह अनुपात देता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch05-liquidity",
+      "topic": "5.6",
+      "template": "ledger",
+      "title": {
+        "en": "Liquidity ratios: can the firm pay its bills?",
+        "hi": "तरलता अनुपात: क्या फ़र्म अपने बिल चुका सकती है?"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "ratios",
+        "business": {
+          "en": "Prakash General Stores Ltd",
+          "hi": "प्रकाश जनरल स्टोर्स लिमिटेड"
+        },
+        "transactions": [],
+        "figures": {
+          "currentAssets": 600000,
+          "inventory": 200000,
+          "prepaid": 20000,
+          "currentLiabilities": 300000
+        },
+        "ratios": [
+          "current",
+          "quick"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Current assets ₹6,00,000 and current liabilities ₹3,00,000. Is the current ratio nearer 2 : 1 or 0.5 : 1?",
+            "hi": "चालू परिसंपत्तियाँ ₹6,00,000 और चालू देयताएँ ₹3,00,000। चालू अनुपात 2 : 1 के पास है या 0.5 : 1 के?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "2 : 1",
+              "hi": "2 : 1 के पास"
+            },
+            {
+              "id": "b",
+              "en": "0.5 : 1",
+              "hi": "0.5 : 1 के पास"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "ratio:current",
+          "expect": "selected:current",
+          "say": {
+            "en": "Tap the current ratio and work it out.",
+            "hi": "चालू अनुपात चुनो और उसे निकालो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Work it out and choose the right answer.",
+            "hi": "हल करके सही उत्तर चुनो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "ratio:quick",
+          "expect": "selected:quick",
+          "say": {
+            "en": "Now tap the quick ratio. Remember to leave out stock and prepaid expenses.",
+            "hi": "अब तरल अनुपात चुनो। याद रखो कि माल और पूर्वदत्त व्यय छोड़ने हैं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Work it out and choose the right answer.",
+            "hi": "हल करके सही उत्तर चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Current ratio = current assets ÷ current liabilities = 6,00,000 ÷ 3,00,000 = 2 : 1, the usual comfort level. The quick ratio takes away the stock (₹2,00,000) and prepaid expenses (₹20,000): 3,80,000 ÷ 3,00,000 = about 1.27 : 1, above the 1 : 1 that is usually considered safe. Stock may take time to sell, so the quick ratio is the harder test.",
+            "hi": "चालू अनुपात = चालू परिसंपत्तियाँ ÷ चालू देयताएँ = 6,00,000 ÷ 3,00,000 = 2 : 1, यानी सामान्य आराम-स्तर। तरल अनुपात में माल (₹2,00,000) और पूर्वदत्त व्यय (₹20,000) हटते हैं: 3,80,000 ÷ 3,00,000 = लगभग 1.27 : 1, जो प्रायः सुरक्षित माने जाने वाले 1 : 1 से ऊपर है। माल बिकने में समय लग सकता है, इसलिए तरल अनुपात कठिन परीक्षा है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which action raises the current ratio?",
+                "hi": "कौन-सा काम चालू अनुपात बढ़ाता है?"
+              },
+              "options": [
+                {
+                  "en": "Paying off a short-term loan using long-term funds",
+                  "hi": "अल्पकालीन ऋण को दीर्घकालीन निधियों से चुकाना"
+                },
+                {
+                  "en": "Buying stock on credit",
+                  "hi": "उधार माल ख़रीदना"
+                },
+                {
+                  "en": "Declaring a dividend to be paid soon",
+                  "hi": "जल्द देय लाभांश घोषित करना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Current liabilities fall while current assets stay, so the ratio rises.",
+                "hi": "चालू देयताएँ घटती हैं और चालू परिसंपत्तियाँ वही रहती हैं, इसलिए अनुपात बढ़ता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Buying on credit adds equally to current assets and current liabilities and pushes a ratio above 1 towards 1.",
+                  "hi": "उधार ख़रीद चालू परिसंपत्तियाँ और चालू देयताएँ बराबर बढ़ाती है और 1 से ऊपर के अनुपात को 1 की ओर खींचती है।"
+                },
+                {
+                  "en": "A dividend payable soon is a new current liability, which lowers the ratio.",
+                  "hi": "जल्द देय लाभांश नई चालू देयता है, जो अनुपात घटाती है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A firm has a current ratio of 2.5 : 1 but a quick ratio of 0.6 : 1. What does it suggest?",
+                "hi": "एक फ़र्म का चालू अनुपात 2.5 : 1 पर तरल अनुपात 0.6 : 1 है। इससे क्या संकेत मिलता है?"
+              },
+              "options": [
+                {
+                  "en": "Most of its current assets are stock that is slow to turn into cash",
+                  "hi": "इसकी अधिकांश चालू परिसंपत्तियाँ माल के रूप में हैं जो धीरे नकदी बनता है"
+                },
+                {
+                  "en": "It has a lot of cash",
+                  "hi": "इसके पास बहुत नकदी है"
+                },
+                {
+                  "en": "It owes nothing",
+                  "hi": "इस पर कोई देयता नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The gap between the two ratios is the stock and prepaid items, which are not quickly cash.",
+                "hi": "दोनों अनुपातों का अंतर माल और पूर्वदत्त मदें हैं, जो जल्दी नकदी नहीं होतीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A lot of cash would make the quick ratio high, not low.",
+                  "hi": "बहुत नकदी तरल अनुपात को ऊँचा करती, नीचा नहीं।"
+                },
+                {
+                  "en": "With no liabilities the ratios could not be calculated at all.",
+                  "hi": "देयता न हो तो अनुपात निकल ही नहीं सकते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change nothing, but ask: if the stock were sold for cash tomorrow, what would the quick ratio become?",
+            "hi": "कुछ मत बदलो, बस सोचो: यदि कल माल नकद में बिक जाए तो तरल अनुपात कितना हो जाएगा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch05-solvency",
+      "topic": "5.7",
+      "template": "ledger",
+      "title": {
+        "en": "Solvency ratios: how safe for the lender?",
+        "hi": "शोधन क्षमता अनुपात: ऋणदाता के लिए कितना सुरक्षित?"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "ratios",
+        "business": {
+          "en": "Narmada Steel Works Ltd",
+          "hi": "नर्मदा स्टील वर्क्स लिमिटेड"
+        },
+        "transactions": [],
+        "figures": {
+          "debt": 800000,
+          "equity": 600000,
+          "totalAssets": 1500000
+        },
+        "ratios": [
+          "debt-equity",
+          "proprietary"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Debt is ₹8,00,000 and shareholders' funds ₹6,00,000. Is debt larger or smaller than the owners' money?",
+            "hi": "ऋण ₹8,00,000 और अंशधारकों की निधियाँ ₹6,00,000 हैं। ऋण स्वामियों के पैसे से बड़ा है या छोटा?"
+          },
+          "options": [
+            {
+              "id": "l",
+              "en": "Larger",
+              "hi": "बड़ा"
+            },
+            {
+              "id": "s",
+              "en": "Smaller",
+              "hi": "छोटा"
+            }
+          ],
+          "answer": "l"
+        },
+        {
+          "kind": "do",
+          "target": "ratio:debt-equity",
+          "expect": "selected:debt-equity",
+          "say": {
+            "en": "Tap the debt–equity ratio and work it out.",
+            "hi": "ऋण-समता अनुपात चुनो और निकालो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Work it out and choose the right answer.",
+            "hi": "हल करके सही उत्तर चुनो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "ratio:proprietary",
+          "expect": "selected:proprietary",
+          "say": {
+            "en": "Now the proprietary ratio.",
+            "hi": "अब स्वामित्व अनुपात।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Work it out and choose the right answer.",
+            "hi": "हल करके सही उत्तर चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Debt–equity ratio = long-term debt ÷ shareholders' funds = 8,00,000 ÷ 6,00,000 = about 1.33 : 1. A ratio up to 2 : 1 is generally treated as safe; the lower it is, the safer for the lender. Proprietary ratio = shareholders' funds ÷ total assets = 6,00,000 ÷ 15,00,000 = 0.4, so owners have given 40% of the assets and outsiders the remaining 60%.",
+            "hi": "ऋण-समता अनुपात = दीर्घकालीन ऋण ÷ अंशधारकों की निधियाँ = 8,00,000 ÷ 6,00,000 = लगभग 1.33 : 1। 2 : 1 तक का अनुपात प्रायः सुरक्षित माना जाता है; जितना कम, ऋणदाता के लिए उतना सुरक्षित। स्वामित्व अनुपात = अंशधारकों की निधियाँ ÷ कुल परिसंपत्तियाँ = 6,00,000 ÷ 15,00,000 = 0.4, यानी स्वामियों ने 40% परिसंपत्तियाँ दीं और बाहरी लोगों ने बाक़ी 60%।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "If the firm repays part of its long-term debt using cash, the debt–equity ratio will:",
+                "hi": "यदि फ़र्म नकदी से अपना कुछ दीर्घकालीन ऋण चुकाए तो ऋण-समता अनुपात:"
+              },
+              "options": [
+                {
+                  "en": "Fall",
+                  "hi": "घटेगा"
+                },
+                {
+                  "en": "Rise",
+                  "hi": "बढ़ेगा"
+                },
+                {
+                  "en": "Stay the same",
+                  "hi": "वैसा ही रहेगा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Debt falls while equity stays, so debt ÷ equity falls.",
+                "hi": "ऋण घटता है और समता वही रहती है, इसलिए ऋण ÷ समता घटता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Debt cannot go down and the ratio go up; the numerator is smaller.",
+                  "hi": "ऋण घटे और अनुपात बढ़े, यह नहीं हो सकता; अंश छोटा हुआ।"
+                },
+                {
+                  "en": "The numerator changed, so the ratio must change.",
+                  "hi": "अंश बदला है, इसलिए अनुपात भी बदलेगा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "What happens to the proprietary ratio if the owners put in ₹2,00,000 more capital and the firm keeps it as cash?",
+            "hi": "यदि स्वामी ₹2,00,000 और पूँजी लगाएँ और फ़र्म उसे रोकड़ में रखे तो स्वामित्व अनुपात का क्या होगा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch05-activity",
+      "topic": "5.8",
+      "template": "ledger",
+      "title": {
+        "en": "Activity ratios: how fast do things turn into cash?",
+        "hi": "क्रियाशीलता अनुपात: चीज़ें कितनी तेज़ी से नकदी बनती हैं?"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "ratios",
+        "business": {
+          "en": "Shree Ganesh Hardware Ltd",
+          "hi": "श्री गणेश हार्डवेयर लिमिटेड"
+        },
+        "transactions": [],
+        "figures": {
+          "cogs": 800000,
+          "inventory": 100000,
+          "openingInventory": 140000,
+          "creditRevenue": 900000,
+          "receivables": 150000
+        },
+        "ratios": [
+          "inventory-turnover",
+          "receivables-turnover"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Opening stock ₹1,40,000 and closing stock ₹1,00,000. What is the average stock?",
+            "hi": "प्रारंभिक माल ₹1,40,000 और अंतिम माल ₹1,00,000। औसत माल कितना है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "₹1,20,000",
+              "hi": "1,20,000 रुपये"
+            },
+            {
+              "id": "b",
+              "en": "₹2,40,000",
+              "hi": "2,40,000 रुपये"
+            },
+            {
+              "id": "c",
+              "en": "₹40,000",
+              "hi": "40,000 रुपये"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "ratio:inventory-turnover",
+          "expect": "selected:inventory-turnover",
+          "say": {
+            "en": "Tap the inventory turnover ratio. The average inventory is the mean of opening and closing stock.",
+            "hi": "मालसूची आवर्त अनुपात चुनो। औसत मालसूची प्रारंभिक और अंतिम माल का औसत है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Work it out and choose the right answer.",
+            "hi": "हल करके सही उत्तर चुनो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "ratio:receivables-turnover",
+          "expect": "selected:receivables-turnover",
+          "say": {
+            "en": "Now the trade receivables turnover.",
+            "hi": "अब व्यापारिक प्राप्य आवर्त।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Work it out and choose the right answer.",
+            "hi": "हल करके सही उत्तर चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Average inventory = (1,40,000 + 1,00,000) ÷ 2 = ₹1,20,000. Inventory turnover = cost of revenue ÷ average inventory = 8,00,000 ÷ 1,20,000 = about 6.67 times: the stock is sold and refilled almost seven times a year. Receivables turnover = 9,00,000 ÷ 1,50,000 = 6 times, so customers pay in about 365 ÷ 6 = 61 days. A higher turnover generally means faster collection and sale.",
+            "hi": "औसत मालसूची = (1,40,000 + 1,00,000) ÷ 2 = ₹1,20,000। मालसूची आवर्त = आगम की लागत ÷ औसत मालसूची = 8,00,000 ÷ 1,20,000 = लगभग 6.67 बार: माल साल में लगभग सात बार बिकता और भरता है। प्राप्य आवर्त = 9,00,000 ÷ 1,50,000 = 6 बार, इसलिए ग्राहक लगभग 365 ÷ 6 = 61 दिन में चुकाते हैं। ऊँचा आवर्त सामान्यतः तेज़ वसूली और बिक्री दर्शाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A turnover ratio of 6 times on receivables means customers pay in about:",
+                "hi": "प्राप्य पर 6 बार का आवर्त बताता है कि ग्राहक लगभग कितने दिन में चुकाते हैं:"
+              },
+              "options": [
+                {
+                  "en": "61 days",
+                  "hi": "61 दिन"
+                },
+                {
+                  "en": "6 days",
+                  "hi": "6 दिन"
+                },
+                {
+                  "en": "365 days",
+                  "hi": "365 दिन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "365 ÷ 6 is about 61 days.",
+                "hi": "365 ÷ 6 लगभग 61 दिन है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "6 is the number of times, not the number of days.",
+                  "hi": "6 बारों की संख्या है, दिनों की नहीं।"
+                },
+                {
+                  "en": "365 would mean customers pay once a year.",
+                  "hi": "365 का अर्थ होता कि ग्राहक साल में एक बार चुकाते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "If stock moved faster, so closing stock was only ₹60,000, would turnover rise or fall?",
+            "hi": "यदि माल और तेज़ बिकता और अंतिम माल केवल ₹60,000 रहता तो आवर्त बढ़ता या घटता?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch05-profit",
+      "topic": "5.9",
+      "template": "ledger",
+      "title": {
+        "en": "Profitability ratios: how much is kept from each ₹100?",
+        "hi": "लाभप्रदता अनुपात: हर ₹100 में से कितना बचता है?"
+      },
+      "minutes": 8,
+      "level": "core",
+      "config": {
+        "mode": "ratios",
+        "business": {
+          "en": "Anand Sweets Ltd",
+          "hi": "आनंद स्वीट्स लिमिटेड"
+        },
+        "transactions": [],
+        "figures": {
+          "revenue": 1000000,
+          "cogs": 600000,
+          "operatingExpenses": 250000,
+          "netProfit": 100000
+        },
+        "ratios": [
+          "gross-profit",
+          "operating",
+          "net-profit"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Revenue ₹10,00,000 and cost of revenue ₹6,00,000. Out of every ₹100 of sales, how much is gross profit?",
+            "hi": "आगम ₹10,00,000 और आगम की लागत ₹6,00,000। हर ₹100 की बिक्री में सकल लाभ कितना है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "₹40",
+              "hi": "40 रुपये"
+            },
+            {
+              "id": "b",
+              "en": "₹60",
+              "hi": "60 रुपये"
+            },
+            {
+              "id": "c",
+              "en": "₹4",
+              "hi": "4 रुपये"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "ratio:gross-profit",
+          "expect": "selected:gross-profit",
+          "say": {
+            "en": "Tap the gross profit ratio and work it out.",
+            "hi": "सकल लाभ अनुपात चुनो और निकालो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Work it out and choose the right answer.",
+            "hi": "हल करके सही उत्तर चुनो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "ratio:net-profit",
+          "expect": "selected:net-profit",
+          "say": {
+            "en": "Now the net profit ratio.",
+            "hi": "अब शुद्ध लाभ अनुपात।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Work it out and choose the right answer.",
+            "hi": "हल करके सही उत्तर चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Gross profit = 10,00,000 − 6,00,000 = ₹4,00,000, so the gross profit ratio is 40%. The operating ratio = (cost of revenue + operating expenses) ÷ revenue = (6,00,000 + 2,50,000) ÷ 10,00,000 = 85%: running the business uses ₹85 of each ₹100. Net profit ratio = 1,00,000 ÷ 10,00,000 = 10%. So ₹40 survives the cost of goods, but only ₹10 survives everything.",
+            "hi": "सकल लाभ = 10,00,000 − 6,00,000 = ₹4,00,000, इसलिए सकल लाभ अनुपात 40% है। प्रचालन अनुपात = (आगम की लागत + प्रचालन व्यय) ÷ आगम = (6,00,000 + 2,50,000) ÷ 10,00,000 = 85%: हर ₹100 में से ₹85 व्यापार चलाने में लगते हैं। शुद्ध लाभ अनुपात = 1,00,000 ÷ 10,00,000 = 10%। यानी माल की लागत के बाद ₹40 बचते हैं, पर सब कुछ के बाद केवल ₹10।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The operating ratio is 85%. The operating profit ratio is therefore:",
+                "hi": "प्रचालन अनुपात 85% है। इसलिए प्रचालन लाभ अनुपात है:"
+              },
+              "options": [
+                {
+                  "en": "15%",
+                  "hi": "15 प्रतिशत"
+                },
+                {
+                  "en": "85%",
+                  "hi": "85 प्रतिशत"
+                },
+                {
+                  "en": "100%",
+                  "hi": "100 प्रतिशत"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Operating profit ratio = 100 − operating ratio = 100 − 85 = 15%.",
+                "hi": "प्रचालन लाभ अनुपात = 100 − प्रचालन अनुपात = 100 − 85 = 15%।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "85% is the cost side; what is left of each ₹100 is the profit side.",
+                  "hi": "85% लागत का भाग है; हर ₹100 में जो बचता है वह लाभ का भाग है।"
+                },
+                {
+                  "en": "The ratios would add to 200%.",
+                  "hi": "दोनों अनुपात मिलकर 200% हो जाते।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which ratio is always smaller than or equal to the gross profit ratio?",
+                "hi": "कौन-सा अनुपात सदा सकल लाभ अनुपात से छोटा या बराबर होता है?"
+              },
+              "options": [
+                {
+                  "en": "Net profit ratio",
+                  "hi": "शुद्ध लाभ अनुपात"
+                },
+                {
+                  "en": "Operating ratio",
+                  "hi": "प्रचालन अनुपात"
+                },
+                {
+                  "en": "Current ratio",
+                  "hi": "चालू अनुपात"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Net profit is gross profit minus other expenses (plus other income), so it is normally smaller.",
+                "hi": "शुद्ध लाभ सकल लाभ में से अन्य व्यय घटाने पर मिलता है, इसलिए प्रायः छोटा होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The operating ratio is a cost ratio and can be much larger.",
+                  "hi": "प्रचालन अनुपात लागत का अनुपात है और काफ़ी बड़ा हो सकता है।"
+                },
+                {
+                  "en": "The current ratio is a liquidity measure and not a percentage of sales.",
+                  "hi": "चालू अनुपात तरलता का माप है, बिक्री का प्रतिशत नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Raise the cost of revenue in your mind to ₹7,00,000 and see how all three ratios would change.",
+            "hi": "मन में आगम की लागत ₹7,00,000 कर लो और देखो तीनों अनुपात कैसे बदलेंगे।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch05-roce",
+      "topic": "5.9.5",
+      "template": "table",
+      "title": {
+        "en": "Return on capital employed and interest cover",
+        "hi": "नियोजित पूँजी पर प्रतिफल और ब्याज प्रतिपूर्ति"
+      },
+      "minutes": 8,
+      "level": "stretch",
+      "config": {
+        "mode": "spreadsheet",
+        "tables": {
+          "capital": {
+            "columns": [
+              "Item",
+              "Amount"
+            ],
+            "rows": [
+              [
+                "Share capital",
+                500000
+              ],
+              [
+                "Reserves",
+                200000
+              ],
+              [
+                "Long-term debt",
+                300000
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "Capital employed is shareholders' funds plus long-term debt. Profit before interest and tax is ₹1,50,000 and interest is ₹30,000. Find the capital employed, the return on it in percent, and the interest coverage.",
+          "hi": "नियोजित पूँजी = अंशधारकों की निधियाँ + दीर्घकालीन ऋण। ब्याज और कर से पहले का लाभ ₹1,50,000 और ब्याज ₹30,000 है। नियोजित पूँजी, उस पर प्रतिफल प्रतिशत में और ब्याज प्रतिपूर्ति निकालो।"
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =SUM(B2:B4) to find the capital employed, then calculate.",
+            "hi": "=SUM(B2:B4) लिखकर नियोजित पूँजी निकालो, फिर गणना करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Profit before interest and tax is ₹1,50,000 on capital of ₹10,00,000. Roughly what percent is the return?",
+            "hi": "ब्याज और कर से पहले का लाभ ₹10,00,000 की पूँजी पर ₹1,50,000 है। प्रतिफल लगभग कितने प्रतिशत है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "15%",
+              "hi": "15 प्रतिशत"
+            },
+            {
+              "id": "b",
+              "en": "1.5%",
+              "hi": "1.5 प्रतिशत"
+            },
+            {
+              "id": "c",
+              "en": "150%",
+              "hi": "150 प्रतिशत"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =150000/SUM(B2:B4)*100 and calculate.",
+            "hi": "=150000/SUM(B2:B4)*100 लिखो और गणना करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Now the interest coverage: type =150000/30000.",
+            "hi": "अब ब्याज प्रतिपूर्ति: =150000/30000 लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the sheet.",
+            "hi": "शीट के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Capital employed = 5,00,000 + 2,00,000 + 3,00,000 = ₹10,00,000. Return on capital employed = profit before interest and tax ÷ capital employed × 100 = 15%: every ₹100 put to work earns ₹15 before interest and tax. Interest coverage = profit before interest and tax ÷ interest = 1,50,000 ÷ 30,000 = 5 times: profit covers the interest five times over, which is comfortable for a lender.",
+            "hi": "नियोजित पूँजी = 5,00,000 + 2,00,000 + 3,00,000 = ₹10,00,000। नियोजित पूँजी पर प्रतिफल = ब्याज और कर से पहले का लाभ ÷ नियोजित पूँजी × 100 = 15%: काम में लगे हर ₹100 पर ब्याज और कर से पहले ₹15 की कमाई। ब्याज प्रतिपूर्ति = ब्याज और कर से पहले का लाभ ÷ ब्याज = 1,50,000 ÷ 30,000 = 5 बार: लाभ ब्याज को पाँच बार ढकता है, जो ऋणदाता के लिए सुकून की बात है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "If interest rose to ₹75,000 with the same profit, the interest coverage would be:",
+                "hi": "यदि उसी लाभ पर ब्याज ₹75,000 हो जाए तो ब्याज प्रतिपूर्ति होगी:"
+              },
+              "options": [
+                {
+                  "en": "2 times",
+                  "hi": "2 बार"
+                },
+                {
+                  "en": "5 times",
+                  "hi": "5 बार"
+                },
+                {
+                  "en": "0.5 times",
+                  "hi": "0.5 बार"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "1,50,000 ÷ 75,000 = 2 times: a thinner cushion for the lender.",
+                "hi": "1,50,000 ÷ 75,000 = 2 बार: ऋणदाता के लिए पतली सुरक्षा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "5 times was with interest of ₹30,000, before the rise.",
+                  "hi": "5 बार ₹30,000 ब्याज पर था, वृद्धि से पहले।"
+                },
+                {
+                  "en": "0.5 inverts the fraction; profit is bigger than interest here.",
+                  "hi": "0.5 में भिन्न उलट गई; यहाँ लाभ ब्याज से बड़ा है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Add ₹2,00,000 more long-term debt in the sheet and see what happens to the return on capital employed if profit stays the same.",
+            "hi": "शीट में ₹2,00,000 और दीर्घकालीन ऋण जोड़ो और देखो लाभ वही रहे तो नियोजित पूँजी पर प्रतिफल का क्या होगा।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch05-uses-limits",
+      "topic": "5.3",
+      "template": "sort",
+      "title": {
+        "en": "Advantage or limitation of ratio analysis?",
+        "hi": "अनुपात विश्लेषण का लाभ या सीमा?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "adv",
+            "label": {
+              "en": "Advantage",
+              "hi": "लाभ"
+            }
+          },
+          {
+            "id": "lim",
+            "label": {
+              "en": "Limitation",
+              "hi": "सीमा"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "a1",
+            "text": {
+              "en": "Turns big figures into simple, comparable numbers",
+              "hi": "बड़े आँकड़ों को सरल, तुलनीय संख्याओं में बदलता है"
+            },
+            "bin": "adv",
+            "why": {
+              "en": "A ratio is a single number that is easy to compare.",
+              "hi": "अनुपात एक ही संख्या है जिसकी तुलना आसान है।"
+            }
+          },
+          {
+            "id": "a2",
+            "text": {
+              "en": "Lets us compare years and compare firms",
+              "hi": "वर्षों और फ़र्मों की तुलना संभव बनाता है"
+            },
+            "bin": "adv",
+            "why": {
+              "en": "Ratios remove the effect of size.",
+              "hi": "अनुपात आकार का असर हटा देते हैं।"
+            }
+          },
+          {
+            "id": "a3",
+            "text": {
+              "en": "Warns early of weak liquidity or heavy debt",
+              "hi": "कमज़ोर तरलता या भारी ऋण की पहले से चेतावनी देता है"
+            },
+            "bin": "adv",
+            "why": {
+              "en": "Falling ratios flag problems before a crisis.",
+              "hi": "गिरते अनुपात संकट से पहले समस्या दिखा देते हैं।"
+            }
+          },
+          {
+            "id": "a4",
+            "text": {
+              "en": "Helps managers set targets and control costs",
+              "hi": "प्रबंधकों को लक्ष्य तय करने व लागत नियंत्रण में मदद"
+            },
+            "bin": "adv",
+            "why": {
+              "en": "Targets can be set as ratios.",
+              "hi": "लक्ष्य अनुपातों के रूप में तय हो सकते हैं।"
+            }
+          },
+          {
+            "id": "l1",
+            "text": {
+              "en": "Only as good as the figures behind it",
+              "hi": "सिर्फ़ उतना भरोसेमंद जितने उसके पीछे के आँकड़े"
+            },
+            "bin": "lim",
+            "why": {
+              "en": "Wrong figures give wrong ratios.",
+              "hi": "ग़लत आँकड़े ग़लत अनुपात देते हैं।"
+            }
+          },
+          {
+            "id": "l2",
+            "text": {
+              "en": "Different accounting policies make firms hard to compare",
+              "hi": "अलग लेखांकन नीतियाँ फ़र्मों की तुलना कठिन बनाती हैं"
+            },
+            "bin": "lim",
+            "why": {
+              "en": "Depreciation or stock methods change the figures.",
+              "hi": "मूल्यह्रास या माल की विधियाँ आँकड़े बदल देती हैं।"
+            }
+          },
+          {
+            "id": "l3",
+            "text": {
+              "en": "Ignores price changes and qualitative factors",
+              "hi": "क़ीमतों में बदलाव और गुणात्मक बातों को नज़रअंदाज़ करता है"
+            },
+            "bin": "lim",
+            "why": {
+              "en": "Skills, goodwill and inflation do not show in ratios.",
+              "hi": "कौशल, ख्याति और महँगाई अनुपातों में नहीं दिखते।"
+            }
+          },
+          {
+            "id": "l4",
+            "text": {
+              "en": "Window dressing can make ratios look better",
+              "hi": "खिड़की-सजावट से अनुपात बेहतर दिख सकते हैं"
+            },
+            "bin": "lim",
+            "why": {
+              "en": "A firm may arrange its year-end accounts to look good.",
+              "hi": "फ़र्म वर्षांत के खाते अच्छे दिखाने के लिए सजा सकती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A firm repays a loan just before the year ends and borrows again on the first day of the new year. What does this do to its year-end ratios?",
+            "hi": "एक फ़र्म वर्ष समाप्त होने से ठीक पहले ऋण चुका देती है और नए वर्ष के पहले दिन फिर उधार ले लेती है। इससे उसके वर्षांत के अनुपातों पर क्या असर पड़ता है?"
+          },
+          "options": [
+            {
+              "id": "b",
+              "en": "They look better than the real position",
+              "hi": "वास्तविक स्थिति से बेहतर दिखते हैं"
+            },
+            {
+              "id": "w",
+              "en": "They look worse",
+              "hi": "बदतर दिखते हैं"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "card:a1",
+          "expect": "correct:a1",
+          "say": {
+            "en": "Tap the card “Turns big figures into simple, comparable numbers”, then tap the group it belongs to.",
+            "hi": "कार्ड “बड़े आँकड़ों को सरल, तुलनीय संख्याओं में बदलता है” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:l1",
+          "expect": "correct:l1",
+          "say": {
+            "en": "Tap the card “Only as good as the figures behind it”, then tap the group it belongs to.",
+            "hi": "कार्ड “सिर्फ़ उतना भरोसेमंद जितने उसके पीछे के आँकड़े” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Ratios are useful: they simplify, they allow comparison over time and between firms, and they warn early. But they also have limits: they depend on the accuracy of the figures, they are affected by differing accounting policies and by window dressing, and they ignore price changes and qualitative matters. Use them as pointers, not as final answers.",
+            "hi": "अनुपात उपयोगी हैं: वे सरल बनाते हैं, समय और फ़र्मों के बीच तुलना देते हैं और पहले से चेतावनी देते हैं। पर उनकी सीमाएँ भी हैं: वे आँकड़ों की सटीकता पर निर्भर हैं, अलग लेखांकन नीतियों और खिड़की-सजावट से प्रभावित होते हैं, और क़ीमतों के बदलाव तथा गुणात्मक बातों को छोड़ देते हैं। इन्हें संकेतक मानो, अंतिम उत्तर नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Window dressing means:",
+                "hi": "खिड़की-सजावट का अर्थ है:"
+              },
+              "options": [
+                {
+                  "en": "Arranging year-end accounts so the statements look better than reality",
+                  "hi": "वर्षांत के खाते ऐसे सजाना कि विवरण वास्तविकता से बेहतर दिखें"
+                },
+                {
+                  "en": "Cleaning the shop windows before an audit",
+                  "hi": "ऑडिट से पहले दुकान की खिड़कियाँ साफ़ करना"
+                },
+                {
+                  "en": "Showing the real position honestly",
+                  "hi": "वास्तविक स्थिति ईमानदारी से दिखाना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It is the practice of making the accounts look good at the date of the balance sheet.",
+                "hi": "तुलन पत्र की तिथि पर खातों को अच्छा दिखाने की प्रथा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It is an accounting term, not about real windows.",
+                  "hi": "यह लेखांकन का शब्द है, असली खिड़कियों की बात नहीं।"
+                },
+                {
+                  "en": "Honest presentation is the opposite of window dressing.",
+                  "hi": "ईमानदार प्रस्तुति खिड़की-सजावट का उल्टा है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "How could an outsider spot window dressing? Think of comparing several quarters, not only the year end.",
+            "hi": "बाहर वाला खिड़की-सजावट कैसे पकड़ सकता है? केवल वर्षांत नहीं, कई तिमाहियों की तुलना के बारे में सोचो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "5.6",
+      "use": "Hook: a shopkeeper counts what he can pay",
+      "shows": "A small grocery shop owner at the counter with a notebook, a calculator and a few currency notes laid out, shelves of packets behind",
+      "view": "Eye level, warm light, 16:9",
+      "right": "Realistic Indian kirana shop; notes are shown but amounts are not readable",
+      "avoid": "Faces, readable prices, brand packets"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "5.5",
+      "use": "Ratio family map",
+      "shows": "Four rounded boxes arranged in a square around a small centre circle, each box a different colour, joined to the centre by thin lines",
+      "view": "Flat, 1:1, transparent background",
+      "right": "Boxes equal in size, plenty of space for app labels",
+      "avoid": "Text, icons"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "5.6",
+      "use": "A weighing scale for liquidity",
+      "shows": "A kitchen balance scale with a pile of notes on one pan and a small pile of bill papers on the other",
+      "view": "Front three-quarter view, PNG with transparent background",
+      "right": "The pans clearly different in height",
+      "avoid": "Readable text or amounts on the papers"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "5.8",
+      "use": "Stock moving through a shop",
+      "shows": "Four frames of the same shelf: full, half-empty, being refilled, full again",
+      "view": "Same camera and light, 4:3",
+      "right": "Same shelf and packets every time",
+      "avoid": "Brand names, faces"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "5.9",
+      "use": "Where each ₹100 of sales goes",
+      "shows": "A tall stack of coin-like discs in one column, divided into coloured blocks for goods, running costs, tax and profit, uneven heights",
+      "view": "Front view, flat, transparent background, 3:4",
+      "right": "Blocks end exactly at the top and differ in pattern too",
+      "avoid": "Numbers, text"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "5.9",
+      "use": "Window dressing: tidy front, messy back",
+      "shows": "A shop with a neat, bright window display while behind it boxes are piled in disorder, seen through the glass",
+      "view": "Front view from the street, 16:9, daylight",
+      "right": "Clear contrast between display and back store",
+      "avoid": "Shop names, faces"
+    }
+  ]
+}

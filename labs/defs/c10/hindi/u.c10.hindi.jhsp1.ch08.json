@@ -1,0 +1,692 @@
+{
+ "chapter_key": "u.c10.hindi.jhsp1.ch08",
+ "class": 10,
+ "subject_id": "hindi",
+ "title": "बड़े भाई साहब",
+ "source": "https://ncert.nic.in/textbook.php?jhsp1=0-14",
+ "topics": [
+  {
+   "n": "1",
+   "title": "The two brothers: their natures, strengths and weaknesses",
+   "labs": [
+    "c10-hindi-jhsp1-ch08-brothers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "The events of the story, in order, from the first scolding to the bow",
+   "labs": [
+    "c10-hindi-jhsp1-ch08-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "The elder's lessons: understanding over memorising, pride, experience, balance of work and play",
+   "labs": [
+    "c10-hindi-jhsp1-ch08-lessons"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4",
+   "title": "Premchand's style: first-person telling, gentle humour on rote learning",
+   "labs": [],
+   "why_no_lab": "The humour and the voice are felt best when the teacher reads aloud a few lines and the class talks about them."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-hindi-jhsp1-ch08-brothers",
+   "topic": "1",
+   "template": "reader",
+   "title": {
+    "en": "Two brothers, two natures",
+    "hi": "दो भाई, दो स्वभाव"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "The two brothers",
+      "hi": "दो भाई"
+     },
+     "lines": [
+      "बड़े भाई साहब पूरे दिन किताबें खोलकर बैठे रहते हैं, फिर भी परीक्षा में अटक जाते हैं।",
+      "छोटा भाई खेल-कूद और पतंग में डूबा रहता है, फिर भी कक्षा में पहला आता है।",
+      "बड़े भाई साहब डाँटते हैं कि घमंड मत करो, रावण भी अपने घमंड से हारा था।",
+      "छोटा भाई चुपचाप सुनता है और भाई की बातों की सच्चाई समझने लगता है।"
+     ]
+    },
+    "characters": [
+     {
+      "id": "bade",
+      "name": {
+       "en": "बड़े भाई साहब",
+       "hi": "बड़े भाई साहब"
+      },
+      "traits": [
+       {
+        "en": "Studies all day but still fails",
+        "hi": "दिन भर पढ़ता है, फिर भी फ़ेल हो जाता है"
+       },
+       {
+        "en": "Preaches about pride and experience",
+        "hi": "घमंड और अनुभव पर उपदेश देता है"
+       },
+       {
+        "en": "Acts like a strict guardian",
+        "hi": "सख़्त अभिभावक की तरह व्यवहार करता है"
+       }
+      ]
+     },
+     {
+      "id": "chhota",
+      "name": {
+       "en": "छोटा भाई",
+       "hi": "छोटा भाई"
+      },
+      "traits": [
+       {
+        "en": "Loves kites and games",
+        "hi": "पतंग और खेल का शौक़ीन है"
+       },
+       {
+        "en": "Comes first in class without seeming to study",
+        "hi": "पढ़ता कम दिखता है, फिर भी कक्षा में पहला आता है"
+       },
+       {
+        "en": "Listens, then slowly understands his brother",
+        "hi": "सुनता है और धीरे-धीरे भाई को समझता है"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:bade",
+     "expect": "picked:bade",
+     "say": {
+      "en": "Tap 'बड़े भाई साहब' to see how he is described.",
+      "hi": "'बड़े भाई साहब' को छुओ और देखो कि उसे कैसा बताया गया है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The younger brother plays all day. Who do you think comes first in the exam?",
+      "hi": "छोटा भाई दिन भर खेलता है। तुम्हें क्या लगता है, परीक्षा में पहला कौन आता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The elder brother who studies all day",
+       "hi": "बड़े भाई साहब जो दिन भर पढ़ते हैं"
+      },
+      {
+       "id": "b",
+       "en": "The younger brother, to the elder's surprise",
+       "hi": "छोटा भाई, बड़े भाई की हैरानी के बीच"
+      },
+      {
+       "id": "c",
+       "en": "Neither of them",
+       "hi": "इनमें से कोई नहीं"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "character:chhota",
+     "expect": "picked:chhota",
+     "say": {
+      "en": "Now tap 'छोटा भाई'.",
+      "hi": "अब 'छोटा भाई' को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the clue and pick the brother it describes.",
+      "hi": "संकेत पढ़ो और बताओ कि वह किस भाई के बारे में है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Premchand makes the brothers opposites. The elder works hard but only gets stuck in his books. The younger plays but understands quickly. The story shows that hard work, understanding and experience of life are all needed. Each brother has something to teach the other.",
+      "hi": "प्रेमचंद दोनों भाइयों को एक-दूसरे का उलटा दिखाते हैं। बड़े भाई मेहनत करते हैं, पर किताबों में ही उलझे रहते हैं। छोटा खेलता है, पर बात जल्दी समझता है। कहानी बताती है कि मेहनत, समझ और जीवन का अनुभव, तीनों ज़रूरी हैं। हर भाई के पास दूसरे को सिखाने के लिए कुछ है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the elder brother's biggest weakness in the story?",
+        "hi": "कहानी में बड़े भाई की सबसे बड़ी कमज़ोरी क्या है?"
+       },
+       "options": [
+        {
+         "en": "He studies without understanding and preaches too much",
+         "hi": "वह बिना समझे पढ़ता है और उपदेश बहुत देता है"
+        },
+        {
+         "en": "He is lazy",
+         "hi": "वह आलसी है"
+        },
+        {
+         "en": "He hates his brother",
+         "hi": "वह अपने भाई से नफ़रत करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He works hard, but rote learning does not give him marks, and his lectures hide his own fear of failing.",
+        "hi": "वह मेहनत तो करता है, पर रटने से अंक नहीं मिलते, और उसके भाषण उसके अपने फ़ेल होने के डर को छिपाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "He is not lazy; he sits with his books all day.",
+         "hi": "वह आलसी नहीं है; दिन भर किताबें लिए बैठा रहता है।"
+        },
+        {
+         "en": "He loves his brother; his scolding comes from care.",
+         "hi": "वह भाई से प्यार करता है; उसकी डाँट में परवाह है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the younger brother finally respect the elder?",
+        "hi": "छोटा भाई अंत में बड़े भाई का आदर क्यों करता है?"
+       },
+       "options": [
+        {
+         "en": "He sees that his brother's advice comes from experience and care",
+         "hi": "उसे दिखता है कि भाई की सलाह अनुभव और परवाह से आती है"
+        },
+        {
+         "en": "He is afraid of being beaten",
+         "hi": "उसे पिटने का डर है"
+        },
+        {
+         "en": "He wants to get gifts from him",
+         "hi": "वह उससे उपहार पाना चाहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The elder's words about pride and experience are true, and the younger feels his love beneath the strictness.",
+        "hi": "बड़े भाई की घमंड और अनुभव वाली बातें सच हैं, और छोटा भाई उसकी सख़्ती के नीचे उसका प्यार महसूस करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The elder never beats him; he teaches with words.",
+         "hi": "बड़ा भाई उसे मारता नहीं; वह शब्दों से सिखाता है।"
+        },
+        {
+         "en": "Nothing in the story shows he wants a gift.",
+         "hi": "कहानी में कहीं नहीं दिखता कि उसे कोई उपहार चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Do you know an elder brother or sister like बड़े भाई साहब? Say one thing you learned from them.",
+      "hi": "क्या तुम किसी ऐसे बड़े भाई या बहन को जानते हो जो बड़े भाई साहब जैसे हैं? उनसे सीखी एक बात बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-hindi-jhsp1-ch08-order",
+   "topic": "2",
+   "template": "sequence",
+   "title": {
+    "en": "The story in order",
+    "hi": "कहानी का क्रम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "contrast",
+      "text": {
+       "en": "The elder brother studies all day, while the younger one only wants to play outside",
+       "hi": "बड़े भाई दिन भर पढ़ते हैं और छोटा भाई सिर्फ़ बाहर खेलना चाहता है"
+      }
+     },
+     {
+      "id": "scold",
+      "text": {
+       "en": "The elder scolds him and says that failure is waiting for him",
+       "hi": "बड़े भाई उसे डाँटते हैं और कहते हैं कि फ़ेल होना तय है"
+      }
+     },
+     {
+      "id": "result",
+      "text": {
+       "en": "In the exam the elder fails and the younger comes first in his class",
+       "hi": "परीक्षा में बड़े भाई फ़ेल हो जाते हैं और छोटा भाई कक्षा में पहला आता है"
+      }
+     },
+     {
+      "id": "pride",
+      "text": {
+       "en": "The elder warns him against pride and gives the example of Ravan",
+       "hi": "बड़े भाई उसे घमंड से सावधान करते हैं और रावण का उदाहरण देते हैं"
+      }
+     },
+     {
+      "id": "again",
+      "text": {
+       "en": "The elder fails again, and the two are now only one class apart",
+       "hi": "बड़े भाई फिर फ़ेल होते हैं और अब दोनों में एक ही कक्षा का अंतर रह जाता है"
+      }
+     },
+     {
+      "id": "kite",
+      "text": {
+       "en": "Meeting the younger brother running after a kite, the elder speaks of experience",
+       "hi": "पतंग के पीछे दौड़ते छोटे भाई से मिलकर बड़े भाई अनुभव की बात करते हैं"
+      }
+     },
+     {
+      "id": "bow",
+      "text": {
+       "en": "The younger brother bows to his wisdom and respects him",
+       "hi": "छोटा भाई उनकी समझ के आगे झुकता है और उनका आदर करता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:contrast",
+     "expect": "placed:contrast",
+     "say": {
+      "en": "Tap the card for what happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The younger brother comes first in the exam and feels proud. What will the elder say to him?",
+      "hi": "छोटा भाई परीक्षा में पहला आता है और घमंड करने लगता है। बड़े भाई उससे क्या कहेंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Well done, now you may stop studying",
+       "hi": "शाबाश, अब पढ़ना छोड़ दो"
+      },
+      {
+       "id": "b",
+       "en": "Do not be proud; pride destroys even great people",
+       "hi": "घमंड मत करो; घमंड बड़े-बड़ों को भी मिटा देता है"
+      },
+      {
+       "id": "c",
+       "en": "You must give me your marks",
+       "hi": "तुम अपने अंक मुझे दे दो"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "item:bow",
+     "expect": "placed:bow",
+     "say": {
+      "en": "Now put the LAST card in the last place.",
+      "hi": "अब सबसे आख़िरी कार्ड को आख़िरी स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all 7 places in order, then press Check.",
+      "hi": "सभी 7 स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The story moves in steps. First we see the difference between the two brothers. Then the exam results turn things around. The elder keeps lecturing, and at last the younger sees the love and experience behind his words. This order shows how the younger brother changes.",
+      "hi": "कहानी चरणों में आगे बढ़ती है। पहले दोनों भाइयों का अंतर दिखता है। फिर परीक्षा के नतीजे सब उलट देते हैं। बड़े भाई उपदेश देते रहते हैं और अंत में छोटा भाई उनके शब्दों के पीछे का प्यार और अनुभव पहचान लेता है। इसी क्रम में छोटे भाई का बदलना दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What happened just after the elder brother failed the first time?",
+        "hi": "बड़े भाई के पहली बार फ़ेल होने के तुरंत बाद क्या हुआ?"
+       },
+       "options": [
+        {
+         "en": "The younger one came first, and the elder warned him about pride",
+         "hi": "छोटा भाई पहला आया, और बड़े भाई ने उसे घमंड से सावधान किया"
+        },
+        {
+         "en": "They both left school",
+         "hi": "दोनों ने स्कूल छोड़ दिया"
+        },
+        {
+         "en": "The younger one flew a kite with the elder",
+         "hi": "छोटे भाई ने बड़े भाई के साथ पतंग उड़ाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The results arrived, and the elder, though hurt, used the moment to teach about pride.",
+        "hi": "नतीजा आया और बड़े भाई ने दुखी होते हुए भी उस मौक़े पर घमंड के बारे में सिखाया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They stayed in school; the story goes on year after year.",
+         "hi": "वे स्कूल में ही रहे; कहानी साल-दर-साल चलती है।"
+        },
+        {
+         "en": "The kite scene comes much later, at the end.",
+         "hi": "पतंग वाला दृश्य बहुत बाद में, अंत में आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Retell the story in seven short sentences, one for each card. Which card would you tell most proudly?",
+      "hi": "कहानी सात छोटे वाक्यों में सुनाओ, हर कार्ड पर एक। कौन-सा कार्ड तुम सबसे गर्व से सुनाओगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-hindi-jhsp1-ch08-lessons",
+   "topic": "3",
+   "template": "match",
+   "title": {
+    "en": "What the elder brother teaches",
+    "hi": "बड़े भाई क्या सिखाते हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "marks",
+      "left": {
+       "en": "Marks alone are not learning",
+       "hi": "केवल अंक पढ़ाई नहीं हैं"
+      },
+      "right": {
+       "en": "Real knowledge needs understanding, not only learning by heart",
+       "hi": "सच्चे ज्ञान के लिए रटना नहीं, समझना ज़रूरी है"
+      },
+      "why": {
+       "en": "The elder knows he can mug up his books, yet his marks do not come.",
+       "hi": "बड़े भाई रटते हैं, पर अंक नहीं आते।"
+      }
+     },
+     {
+      "id": "ravan",
+      "left": {
+       "en": "The example of Ravan",
+       "hi": "रावण का उदाहरण"
+      },
+      "right": {
+       "en": "Pride can ruin even a great scholar",
+       "hi": "घमंड बड़े विद्वान को भी बर्बाद कर देता है"
+      },
+      "why": {
+       "en": "Ravan was learned but proud, and was destroyed.",
+       "hi": "रावण विद्वान था पर घमंडी था, इसलिए नष्ट हुआ।"
+      }
+     },
+     {
+      "id": "exp",
+      "left": {
+       "en": "Age and experience",
+       "hi": "उम्र और अनुभव"
+      },
+      "right": {
+       "en": "An elder understands life better because he has seen more of it",
+       "hi": "बड़ा जीवन को बेहतर समझता है क्योंकि उसने अधिक देखा है"
+      },
+      "why": {
+       "en": "The elder says the world teaches what books cannot.",
+       "hi": "बड़े भाई कहते हैं कि दुनिया वह सिखाती है जो किताबें नहीं सिखातीं।"
+      }
+     },
+     {
+      "id": "work",
+      "left": {
+       "en": "Studying all day",
+       "hi": "दिन भर पढ़ना"
+      },
+      "right": {
+       "en": "Hard work is needed, but must go with understanding",
+       "hi": "मेहनत ज़रूरी है, पर समझ के साथ"
+      },
+      "why": {
+       "en": "The elder works hard, yet fails; effort alone does not help.",
+       "hi": "बड़े भाई मेहनत करते हैं फिर भी फ़ेल होते हैं; केवल मेहनत काफ़ी नहीं।"
+      }
+     },
+     {
+      "id": "play",
+      "left": {
+       "en": "Kites and games",
+       "hi": "पतंग और खेल"
+      },
+      "right": {
+       "en": "Play is good but must not push studies away",
+       "hi": "खेल अच्छा है, पर पढ़ाई को पीछे नहीं धकेलना चाहिए"
+      },
+      "why": {
+       "en": "The elder does not hate play; he wants a balance.",
+       "hi": "बड़े भाई खेल से नफ़रत नहीं करते; वे संतुलन चाहते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ravan",
+     "expect": "matched:ravan",
+     "say": {
+      "en": "Tap 'The example of Ravan', then tap what it teaches.",
+      "hi": "'रावण का उदाहरण' छुओ, फिर जो वह सिखाता है उसे छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The elder says age brings experience. What does experience give a person?",
+      "hi": "बड़े भाई कहते हैं कि उम्र अनुभव लाती है। अनुभव से व्यक्ति को क्या मिलता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Only more marks",
+       "hi": "सिर्फ़ ज़्यादा अंक"
+      },
+      {
+       "id": "b",
+       "en": "A better understanding of life",
+       "hi": "जीवन की बेहतर समझ"
+      },
+      {
+       "id": "c",
+       "en": "More free time",
+       "hi": "ज़्यादा खाली समय"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "left:exp",
+     "expect": "matched:exp",
+     "say": {
+      "en": "Now match 'Age and experience'.",
+      "hi": "अब 'उम्र और अनुभव' को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all five, then press Check.",
+      "hi": "पाँचों मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The elder brother is more than a strict person. His lectures carry real lessons: understand, do not only memorise; never be proud; work hard but also play wisely; and respect experience. Premchand gently laughs at rote learning through him, yet shows his love.",
+      "hi": "बड़े भाई केवल सख़्त इंसान नहीं हैं। उनके भाषणों में सच्ची सीख है: समझकर पढ़ो, केवल रटो मत; घमंड मत करो; मेहनत करो पर समझदारी से खेलो भी; और अनुभव का आदर करो। प्रेमचंद उनके ज़रिए रटने की हल्की हँसी भी उड़ाते हैं और उनका प्यार भी दिखाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the elder bring up Ravan?",
+        "hi": "बड़े भाई रावण की बात क्यों करते हैं?"
+       },
+       "options": [
+        {
+         "en": "To show that pride can ruin even a learned person",
+         "hi": "यह दिखाने के लिए कि घमंड विद्वान को भी बर्बाद कर देता है"
+        },
+        {
+         "en": "To praise Ravan's strength",
+         "hi": "रावण की ताक़त की तारीफ़ करने के लिए"
+        },
+        {
+         "en": "To explain the story of a festival",
+         "hi": "किसी त्योहार की कथा समझाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ravan was a great scholar, but his pride led to his fall. The elder warns his brother with this well-known example.",
+        "hi": "रावण महान विद्वान था, पर घमंड ने उसे गिरा दिया। बड़े भाई इसी जानी-पहचानी मिसाल से भाई को चेताते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "He is not praising strength but warning against pride.",
+         "hi": "वह ताक़त की प्रशंसा नहीं, घमंड से चेतावनी दे रहा है।"
+        },
+        {
+         "en": "The example is not about a festival; it is about pride.",
+         "hi": "यह उदाहरण त्योहार का नहीं, घमंड का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a lesson that you learned from experience and not from a book. Share it with a friend.",
+      "hi": "कोई ऐसी सीख सोचो जो तुमने किताब से नहीं, अनुभव से सीखी। किसी मित्र को बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Opens the story",
+   "shows": "A hostel room in an old school: two iron beds, a small table with books, a window with a kite hanging outside; no people",
+   "view": "Wide, eye level, afternoon light",
+   "right": "Wooden table, chipped paint, a paper kite with a thread",
+   "avoid": "Faces, text, modern gadgets"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1",
+   "use": "Props: the books",
+   "shows": "A stack of old school textbooks with a pencil on top, cut-out",
+   "view": "3/4 view, slightly from above",
+   "right": "Worn covers without readable titles",
+   "avoid": "Brand marks, readable text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2",
+   "use": "Props: the kite",
+   "shows": "A colourful paper kite with thread on a wooden reel, cut-out",
+   "view": "Flat front and 3/4",
+   "right": "Bright colours, thin sticks, real manjha look",
+   "avoid": "Branding, plastic kites"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2",
+   "use": "The kite chase",
+   "shows": "A narrow lane with a kite high in the sky and two boys' shadows on a wall; no faces",
+   "view": "Wide, low angle",
+   "right": "Late afternoon light, real lane",
+   "avoid": "Faces, text, unsafe roof edges"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Exam results",
+   "shows": "A school notice board with a paper list pinned on it and two backs of boys looking at it",
+   "view": "Medium, from behind",
+   "right": "Old wooden board, blurred unreadable list",
+   "avoid": "Readable text, faces"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "2",
+   "use": "Order strip",
+   "shows": "A plain timeline strip with seven empty cards, white background",
+   "view": "Flat front",
+   "right": "Equal cards, space for labels",
+   "avoid": "Any words"
+  }
+ ]
+}

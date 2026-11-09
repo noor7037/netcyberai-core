@@ -1,0 +1,1565 @@
+{
+  "chapter_key": "u.c12.biology.lebo1.ch11",
+  "class": 12,
+  "subject_id": "biology",
+  "title": "Organisms and Populations",
+  "source": "https://ncert.nic.in/textbook/pdf/lebo111.pdf",
+  "topics": [
+    {
+      "n": "11.1.1",
+      "title": "Population attributes: density, natality, mortality, migration, age and sex",
+      "labs": [
+        "c12-biology-lebo1-ch11-population-changes",
+        "c12-biology-lebo1-ch11-age-pyramids"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "11.1.2",
+      "title": "Population growth: exponential and logistic",
+      "labs": [
+        "c12-biology-lebo1-ch11-growth-curves"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "11.1.3",
+      "title": "Life history variation",
+      "labs": [
+        "c12-biology-lebo1-ch11-life-history"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "11.1.4",
+      "title": "Population interactions",
+      "labs": [
+        "c12-biology-lebo1-ch11-interactions",
+        "c12-biology-lebo1-ch11-predator-prey"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-biology-lebo1-ch11-population-changes",
+      "topic": "11.1.1",
+      "template": "sort",
+      "title": {
+        "en": "What makes a population grow or shrink?",
+        "hi": "समष्टि को क्या बढ़ाता या घटाता है?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "up",
+            "label": {
+              "en": "Adds to the population",
+              "hi": "समष्टि बढ़ाता है"
+            }
+          },
+          {
+            "id": "down",
+            "label": {
+              "en": "Takes away from it",
+              "hi": "समष्टि घटाता है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "births",
+            "text": {
+              "en": "Natality: births in the population",
+              "hi": "जन्म दर: समष्टि में जन्म"
+            },
+            "bin": "up",
+            "why": {
+              "en": "Natality is the number of births per unit time.",
+              "hi": "जन्म दर प्रति इकाई समय जन्मों की संख्या है।"
+            }
+          },
+          {
+            "id": "immi",
+            "text": {
+              "en": "Immigration: individuals arriving from elsewhere",
+              "hi": "आप्रवासन: बाहर से आने वाले जीव"
+            },
+            "bin": "up",
+            "why": {
+              "en": "Immigrants add to the numbers.",
+              "hi": "आप्रवासी संख्या बढ़ाते हैं।"
+            }
+          },
+          {
+            "id": "hatch",
+            "text": {
+              "en": "Eggs hatching in a nesting colony",
+              "hi": "घोंसला-कॉलोनी में अंडों का फूटना"
+            },
+            "bin": "up",
+            "why": {
+              "en": "Hatching is natality in birds.",
+              "hi": "अंडे फूटना पक्षियों में जन्म दर है।"
+            }
+          },
+          {
+            "id": "deaths",
+            "text": {
+              "en": "Mortality: deaths in the population",
+              "hi": "मृत्यु दर: समष्टि में मृत्यु"
+            },
+            "bin": "down",
+            "why": {
+              "en": "Mortality is the number of deaths per unit time.",
+              "hi": "मृत्यु दर प्रति इकाई समय मृत्युओं की संख्या है।"
+            }
+          },
+          {
+            "id": "emi",
+            "text": {
+              "en": "Emigration: individuals leaving the area",
+              "hi": "उत्प्रवासन: क्षेत्र छोड़ने वाले जीव"
+            },
+            "bin": "down",
+            "why": {
+              "en": "Emigrants reduce the numbers.",
+              "hi": "उत्प्रवासी संख्या घटाते हैं।"
+            }
+          },
+          {
+            "id": "drought",
+            "text": {
+              "en": "Animals dying in a drought",
+              "hi": "सूखे में जंतुओं का मरना"
+            },
+            "bin": "down",
+            "why": {
+              "en": "Deaths from drought raise mortality.",
+              "hi": "सूखे से मृत्यु, मृत्यु दर बढ़ाती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:births",
+          "expect": "correct:births",
+          "say": {
+            "en": "Sort \"Natality: births in the population\".",
+            "hi": "\"जन्म दर: समष्टि में जन्म\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A pond has 100 frogs. During a month 10 are born, 6 die, 4 arrive and 2 leave. Will the population be more or fewer than 100?",
+            "hi": "तालाब में 100 मेंढक हैं। एक महीने में 10 जन्मे, 6 मरे, 4 आए और 2 चले गए। संख्या 100 से अधिक होगी या कम?"
+          },
+          "options": [
+            {
+              "id": "more",
+              "en": "More: 106",
+              "hi": "अधिक: 106"
+            },
+            {
+              "id": "less",
+              "en": "Fewer",
+              "hi": "कम"
+            }
+          ],
+          "answer": "more"
+        },
+        {
+          "kind": "do",
+          "target": "card:immi",
+          "expect": "correct:immi",
+          "say": {
+            "en": "Sort \"Immigration\".",
+            "hi": "\"आप्रवासन\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:emi",
+          "expect": "correct:emi",
+          "say": {
+            "en": "Sort \"Emigration\".",
+            "hi": "\"उत्प्रवासन\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Population density, the number of individuals per unit area, changes in only four ways. Natality (births) and immigration add individuals; mortality (deaths) and emigration take them away. If N is the density now, then the density after a time t is N(t+1) = N(t) + [(B + I) - (D + E)]. In the pond, 100 + [(10 + 4) - (6 + 2)] = 106. Births and deaths mostly decide the numbers. Immigration and emigration matter more over short times and in small areas.",
+            "hi": "समष्टि घनत्व, यानी प्रति इकाई क्षेत्र जीवों की संख्या, केवल चार तरह से बदलता है। जन्म दर और आप्रवासन जीव जोड़ते हैं; मृत्यु दर और उत्प्रवासन घटाते हैं। अभी घनत्व N हो तो समय t बाद N(t+1) = N(t) + [(B + I) - (D + E)]। तालाब में 100 + [(10 + 4) - (6 + 2)] = 106। संख्या अधिकतर जन्म और मृत्यु तय करते हैं। आप्रवासन और उत्प्रवासन छोटे समय और छोटे क्षेत्र में अधिक मायने रखते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In the pond example, what is the population after the month?",
+                "hi": "तालाब के उदाहरण में एक महीने बाद संख्या क्या होगी?"
+              },
+              "options": [
+                {
+                  "en": "106",
+                  "hi": "106 मेंढक"
+                },
+                {
+                  "en": "94",
+                  "hi": "94 मेंढक"
+                },
+                {
+                  "en": "110",
+                  "hi": "110 मेंढक"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Add births and arrivals (14) and subtract deaths and departures (8): 100 + 6 = 106.",
+                "hi": "जन्म और आगमन (14) जोड़ो, मृत्यु और प्रस्थान (8) घटाओ: 100 + 6 = 106।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "94 would come from subtracting 6 instead of adding.",
+                  "hi": "94 तब आता जब 6 जोड़ने की जगह घटाते।"
+                },
+                {
+                  "en": "110 forgets the deaths and the departures.",
+                  "hi": "110 में मृत्यु और प्रस्थान छूट गए हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which two factors add individuals to a population?",
+                "hi": "कौन-से दो कारक समष्टि में जीव जोड़ते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Natality and immigration",
+                  "hi": "जन्म दर और आप्रवासन"
+                },
+                {
+                  "en": "Mortality and emigration",
+                  "hi": "मृत्यु दर और उत्प्रवासन"
+                },
+                {
+                  "en": "Natality and emigration",
+                  "hi": "जन्म दर और उत्प्रवासन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Births and arrivals both increase numbers.",
+                "hi": "जन्म और आगमन दोनों संख्या बढ़ाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "These two reduce numbers.",
+                  "hi": "ये दोनों संख्या घटाते हैं।"
+                },
+                {
+                  "en": "Emigration takes individuals away.",
+                  "hi": "उत्प्रवासन जीव घटाता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Think of your school: which of the four processes change the number of students each year?",
+            "hi": "बाकी कार्ड छाँटो। अपने स्कूल के बारे में सोचो: हर साल विद्यार्थियों की संख्या चारों में से कौन-सी प्रक्रियाएँ बदलती हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch11-age-pyramids",
+      "topic": "11.1.1",
+      "template": "sort",
+      "title": {
+        "en": "Age structure: growing, stable or declining?",
+        "hi": "आयु संरचना: बढ़ती, स्थिर या घटती?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "grow",
+            "label": {
+              "en": "Growing",
+              "hi": "बढ़ती"
+            }
+          },
+          {
+            "id": "stable",
+            "label": {
+              "en": "Stable",
+              "hi": "स्थिर"
+            }
+          },
+          {
+            "id": "decline",
+            "label": {
+              "en": "Declining",
+              "hi": "घटती"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "wide",
+            "text": {
+              "en": "Pyramid with a very wide base of young",
+              "hi": "बहुत चौड़े आधार (अधिक युवा) वाला पिरामिड"
+            },
+            "bin": "grow",
+            "why": {
+              "en": "Many pre-reproductive individuals will soon have young.",
+              "hi": "बहुत से प्रजनन-पूर्व जीव शीघ्र संतान पैदा करेंगे।"
+            }
+          },
+          {
+            "id": "many-young",
+            "text": {
+              "en": "Pre-reproductive group is larger than the reproductive group",
+              "hi": "प्रजनन-पूर्व समूह प्रजनन समूह से बड़ा है"
+            },
+            "bin": "grow",
+            "why": {
+              "en": "More youngsters are coming up than adults.",
+              "hi": "वयस्कों से अधिक किशोर आ रहे हैं।"
+            }
+          },
+          {
+            "id": "bell",
+            "text": {
+              "en": "Bell-shaped pyramid",
+              "hi": "घंटी के आकार का पिरामिड"
+            },
+            "bin": "stable",
+            "why": {
+              "en": "Young and reproductive groups are about equal in number.",
+              "hi": "युवा और प्रजनन समूह लगभग बराबर हैं।"
+            }
+          },
+          {
+            "id": "equal",
+            "text": {
+              "en": "Pre-reproductive and reproductive groups are about equal",
+              "hi": "प्रजनन-पूर्व और प्रजनन समूह लगभग बराबर हैं"
+            },
+            "bin": "stable",
+            "why": {
+              "en": "Births will replace those who die.",
+              "hi": "जन्म मरने वालों की जगह भर देंगे।"
+            }
+          },
+          {
+            "id": "urn",
+            "text": {
+              "en": "Urn-shaped pyramid with a narrow base",
+              "hi": "संकरे आधार वाला कलश आकार का पिरामिड"
+            },
+            "bin": "decline",
+            "why": {
+              "en": "Few young, so fewer parents later.",
+              "hi": "युवा कम, इसलिए बाद में माता-पिता कम।"
+            }
+          },
+          {
+            "id": "few-young",
+            "text": {
+              "en": "Pre-reproductive group is smaller than the older groups",
+              "hi": "प्रजनन-पूर्व समूह बड़े आयु समूहों से छोटा है"
+            },
+            "bin": "decline",
+            "why": {
+              "en": "The population is ageing and shrinking.",
+              "hi": "समष्टि वृद्ध हो रही है और घट रही है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:wide",
+          "expect": "correct:wide",
+          "say": {
+            "en": "Sort \"Pyramid with a very wide base of young\".",
+            "hi": "\"बहुत चौड़े आधार वाला पिरामिड\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A population has few young and many old. In the future, will it grow, stay steady, or shrink?",
+            "hi": "एक समष्टि में युवा कम और वृद्ध अधिक हैं। भविष्य में वह बढ़ेगी, स्थिर रहेगी या घटेगी?"
+          },
+          "options": [
+            {
+              "id": "shrink",
+              "en": "Shrink",
+              "hi": "घटेगी"
+            },
+            {
+              "id": "grow",
+              "en": "Grow",
+              "hi": "बढ़ेगी"
+            },
+            {
+              "id": "steady",
+              "en": "Stay steady",
+              "hi": "स्थिर रहेगी"
+            }
+          ],
+          "answer": "shrink"
+        },
+        {
+          "kind": "do",
+          "target": "card:urn",
+          "expect": "correct:urn",
+          "say": {
+            "en": "Sort \"Urn-shaped pyramid\".",
+            "hi": "\"कलश आकार का पिरामिड\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:bell",
+          "expect": "correct:bell",
+          "say": {
+            "en": "Sort \"Bell-shaped pyramid\".",
+            "hi": "\"घंटी के आकार का पिरामिड\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "An age pyramid shows the share of individuals in three groups: pre-reproductive (young), reproductive and post-reproductive (old). When the young group is large the pyramid is broad at the base and the population will grow. When the young and reproductive groups are similar the pyramid is bell-shaped and the population stays steady. When the young group is small the base is narrow (urn-shaped) and the population will decline. The shape of a pyramid tells us about the future of a population, as well as its present.",
+            "hi": "आयु पिरामिड तीन समूहों में जीवों का अनुपात दिखाता है: प्रजनन-पूर्व (युवा), प्रजनन और प्रजनन-पश्चात (वृद्ध)। युवा समूह बड़ा हो तो आधार चौड़ा होता है और समष्टि बढ़ेगी। युवा और प्रजनन समूह लगभग बराबर हों तो पिरामिड घंटी जैसा होता है और समष्टि स्थिर रहती है। युवा समूह छोटा हो तो आधार संकरा (कलश आकार) होता है और समष्टि घटेगी। पिरामिड का आकार समष्टि के वर्तमान के साथ उसका भविष्य भी बताता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A bell-shaped age pyramid means the population is",
+                "hi": "घंटी आकार का आयु पिरामिड बताता है कि समष्टि"
+              },
+              "options": [
+                {
+                  "en": "Stable",
+                  "hi": "स्थिर है"
+                },
+                {
+                  "en": "Growing fast",
+                  "hi": "तेज़ी से बढ़ रही है"
+                },
+                {
+                  "en": "Dying out",
+                  "hi": "समाप्त हो रही है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Young and reproductive groups are about equal, so births replace deaths.",
+                "hi": "युवा और प्रजनन समूह लगभग बराबर हैं, इसलिए जन्म मृत्यु की भरपाई करते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A growing population has a broad base.",
+                  "hi": "बढ़ती समष्टि का आधार चौड़ा होता है।"
+                },
+                {
+                  "en": "Dying out would show a very narrow base.",
+                  "hi": "समाप्त होने पर आधार बहुत संकरा दिखता।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What will you see in a growing population's pyramid?",
+                "hi": "बढ़ती समष्टि के पिरामिड में क्या दिखेगा?"
+              },
+              "options": [
+                {
+                  "en": "A broad base of young individuals",
+                  "hi": "युवा जीवों का चौड़ा आधार"
+                },
+                {
+                  "en": "A narrow base",
+                  "hi": "संकरा आधार"
+                },
+                {
+                  "en": "Only old individuals",
+                  "hi": "केवल वृद्ध जीव"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Many young will reach reproductive age soon.",
+                "hi": "बहुत से युवा शीघ्र प्रजनन आयु में पहुँचेंगे।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A narrow base belongs to a declining population.",
+                  "hi": "संकरा आधार घटती समष्टि का होता है।"
+                },
+                {
+                  "en": "Every population has young individuals.",
+                  "hi": "हर समष्टि में युवा होते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Which shape do you think the population of your own state has had in the past 30 years, and why?",
+            "hi": "बाकी कार्ड छाँटो। पिछले 30 वर्षों में तुम्हारे राज्य की जनसंख्या का आकार कैसा रहा होगा और क्यों?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch11-growth-curves",
+      "topic": "11.1.2",
+      "template": "sort",
+      "title": {
+        "en": "Exponential or logistic growth?",
+        "hi": "चरघातांकी या लॉजिस्टिक वृद्धि?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "exp",
+            "label": {
+              "en": "Exponential (J-shaped)",
+              "hi": "चरघातांकी (J-आकार)"
+            }
+          },
+          {
+            "id": "log",
+            "label": {
+              "en": "Logistic (S-shaped)",
+              "hi": "लॉजिस्टिक (S-आकार)"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "unlimited",
+            "text": {
+              "en": "Food and space are unlimited",
+              "hi": "भोजन और स्थान असीमित हैं"
+            },
+            "bin": "exp",
+            "why": {
+              "en": "Exponential growth needs unlimited resources.",
+              "hi": "चरघातांकी वृद्धि को असीमित संसाधन चाहिए।"
+            }
+          },
+          {
+            "id": "jcurve",
+            "text": {
+              "en": "Curve rises steeper and steeper like the letter J",
+              "hi": "वक्र अक्षर J की तरह बढ़ता ही तेज़ होता है"
+            },
+            "bin": "exp",
+            "why": {
+              "en": "A constant growth rate gives a J-shaped curve.",
+              "hi": "स्थिर वृद्धि दर J-आकार का वक्र देती है।"
+            }
+          },
+          {
+            "id": "formula",
+            "text": {
+              "en": "dN/dt = rN with a constant r",
+              "hi": "dN/dt = rN, r स्थिर"
+            },
+            "bin": "exp",
+            "why": {
+              "en": "This is the equation of exponential growth.",
+              "hi": "यह चरघातांकी वृद्धि का समीकरण है।"
+            }
+          },
+          {
+            "id": "limit",
+            "text": {
+              "en": "Resources become limiting",
+              "hi": "संसाधन सीमित हो जाते हैं"
+            },
+            "bin": "log",
+            "why": {
+              "en": "Limited resources slow the growth.",
+              "hi": "सीमित संसाधन वृद्धि धीमी करते हैं।"
+            }
+          },
+          {
+            "id": "k",
+            "text": {
+              "en": "Growth levels off at carrying capacity K",
+              "hi": "वृद्धि वहन क्षमता K पर स्थिर हो जाती है"
+            },
+            "bin": "log",
+            "why": {
+              "en": "K is the largest population the environment can support.",
+              "hi": "K वह अधिकतम समष्टि है जिसे पर्यावरण सँभाल सके।"
+            }
+          },
+          {
+            "id": "scurve",
+            "text": {
+              "en": "Lag, rapid rise, then a flat top: an S-curve",
+              "hi": "धीमा आरंभ, तेज़ उछाल, फिर समतल शीर्ष: S-वक्र"
+            },
+            "bin": "log",
+            "why": {
+              "en": "Most natural populations follow this pattern.",
+              "hi": "अधिकतर प्राकृतिक समष्टियाँ यही पैटर्न मानती हैं।"
+            }
+          },
+          {
+            "id": "verhulst",
+            "text": {
+              "en": "Verhulst-Pearl model: dN/dt = rN(K - N)/K",
+              "hi": "वर्हुल्स्ट-पर्ल मॉडल: dN/dt = rN(K - N)/K"
+            },
+            "bin": "log",
+            "why": {
+              "en": "The factor (K - N)/K slows growth as N nears K.",
+              "hi": "N के K के निकट आने पर (K - N)/K गुणक वृद्धि धीमी करता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:unlimited",
+          "expect": "correct:unlimited",
+          "say": {
+            "en": "Sort \"Food and space are unlimited\".",
+            "hi": "\"भोजन और स्थान असीमित हैं\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In nature, can a population grow exponentially for ever?",
+            "hi": "क्या प्रकृति में कोई समष्टि सदा चरघातांकी रूप से बढ़ सकती है?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No: resources run out",
+              "hi": "नहीं: संसाधन खत्म होते हैं"
+            },
+            {
+              "id": "yes",
+              "en": "Yes",
+              "hi": "हाँ"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "card:k",
+          "expect": "correct:k",
+          "say": {
+            "en": "Sort \"Growth levels off at carrying capacity K\".",
+            "hi": "\"वृद्धि वहन क्षमता K पर स्थिर\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:jcurve",
+          "expect": "correct:jcurve",
+          "say": {
+            "en": "Sort \"Curve rises steeper and steeper like the letter J\".",
+            "hi": "\"वक्र अक्षर J की तरह बढ़ता है\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "If food and space are unlimited, a population grows exponentially: dN/dt = rN, where r is the intrinsic rate of natural increase. The graph is a J-shaped curve. But no environment has unlimited resources. As N grows, food and space become short and growth slows until the population levels off near the carrying capacity K, the largest number the environment can support. This gives an S-shaped, logistic curve, with a lag phase, a phase of acceleration, a phase of deceleration and an asymptote. The logistic model is the more realistic one.",
+            "hi": "भोजन और स्थान असीमित हों तो समष्टि चरघातांकी बढ़ती है: dN/dt = rN, जहाँ r प्राकृतिक वृद्धि की सहज दर है। ग्राफ़ J-आकार का वक्र है। पर किसी पर्यावरण में संसाधन असीमित नहीं हैं। N बढ़ने पर भोजन और स्थान कम पड़ते हैं और वृद्धि धीमी होकर वहन क्षमता K के पास स्थिर हो जाती है, जो पर्यावरण द्वारा सँभाली जा सकने वाली अधिकतम संख्या है। इससे S-आकार का लॉजिस्टिक वक्र बनता है, जिसमें धीमा आरंभ, त्वरण चरण, मंदन चरण और स्थिर शीर्ष होते हैं। लॉजिस्टिक मॉडल अधिक यथार्थवादी है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does K stand for in logistic growth?",
+                "hi": "लॉजिस्टिक वृद्धि में K क्या दर्शाता है?"
+              },
+              "options": [
+                {
+                  "en": "Carrying capacity",
+                  "hi": "वहन क्षमता"
+                },
+                {
+                  "en": "Death rate",
+                  "hi": "मृत्यु दर"
+                },
+                {
+                  "en": "Birth rate",
+                  "hi": "जन्म दर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "K is the maximum population the environment can support.",
+                "hi": "K पर्यावरण द्वारा सँभाली जाने वाली अधिकतम समष्टि है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The death rate is a different term.",
+                  "hi": "मृत्यु दर अलग राशि है।"
+                },
+                {
+                  "en": "The birth rate is a different term.",
+                  "hi": "जन्म दर अलग राशि है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why does a population stop growing at K?",
+                "hi": "समष्टि K पर बढ़ना क्यों बंद कर देती है?"
+              },
+              "options": [
+                {
+                  "en": "Resources such as food and space limit it",
+                  "hi": "भोजन और स्थान जैसे संसाधन सीमा लगाते हैं"
+                },
+                {
+                  "en": "The sun stops shining",
+                  "hi": "सूर्य चमकना बंद कर देता है"
+                },
+                {
+                  "en": "All animals migrate",
+                  "hi": "सारे जंतु प्रवास कर जाते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "At K, births are balanced by deaths because resources are used up.",
+                "hi": "K पर संसाधन खप जाने से जन्म और मृत्यु बराबर हो जाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The sun is not the reason.",
+                  "hi": "सूर्य कारण नहीं।"
+                },
+                {
+                  "en": "Migration is not the cause here.",
+                  "hi": "यहाँ कारण प्रवास नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. In which way does the growth of bacteria in a flask of broth look like the S-curve, and why?",
+            "hi": "बाकी कार्ड छाँटो। शोरबे के फ़्लास्क में जीवाणुओं की वृद्धि S-वक्र जैसी किस तरह दिखती है और क्यों?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch11-life-history",
+      "topic": "11.1.3",
+      "template": "sort",
+      "title": {
+        "en": "Many young or few? Life history strategies",
+        "hi": "अधिक संतान या कम? जीवन-इतिहास की रणनीतियाँ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "many",
+            "label": {
+              "en": "Many small offspring",
+              "hi": "अनेक छोटी संतानें"
+            }
+          },
+          {
+            "id": "few",
+            "label": {
+              "en": "Few large offspring",
+              "hi": "कुछ बड़ी संतानें"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "oyster",
+            "text": {
+              "en": "Oysters and pelagic fishes",
+              "hi": "सीप और खुले समुद्र की मछलियाँ"
+            },
+            "bin": "many",
+            "why": {
+              "en": "They release thousands of eggs and give no care.",
+              "hi": "वे हज़ारों अंडे देते हैं और देखभाल नहीं करते।"
+            }
+          },
+          {
+            "id": "insect",
+            "text": {
+              "en": "Most insects and many weeds",
+              "hi": "अधिकांश कीट और कई खरपतवार"
+            },
+            "bin": "many",
+            "why": {
+              "en": "They produce huge numbers of seeds or eggs.",
+              "hi": "वे बहुत अधिक बीज या अंडे बनाते हैं।"
+            }
+          },
+          {
+            "id": "banyan",
+            "text": {
+              "en": "Mango and coconut trees",
+              "hi": "आम और नारियल के पेड़"
+            },
+            "bin": "few",
+            "why": {
+              "en": "Large seeds with food reserves; fewer fruits.",
+              "hi": "भोजन भंडार वाले बड़े बीज; कम फल।"
+            }
+          },
+          {
+            "id": "mammal",
+            "text": {
+              "en": "Elephants and humans",
+              "hi": "हाथी और मनुष्य"
+            },
+            "bin": "few",
+            "why": {
+              "en": "Few young, with long parental care.",
+              "hi": "कम संतान, लंबी देखभाल।"
+            }
+          },
+          {
+            "id": "birds",
+            "text": {
+              "en": "Birds that feed and guard their chicks",
+              "hi": "चूज़ों को खिलाने और बचाने वाले पक्षी"
+            },
+            "bin": "few",
+            "why": {
+              "en": "Care increases the chance each chick survives.",
+              "hi": "देखभाल से हर चूज़े के बचने की संभावना बढ़ती है।"
+            }
+          },
+          {
+            "id": "seed",
+            "text": {
+              "en": "A mustard plant with thousands of tiny seeds",
+              "hi": "हज़ारों नन्हे बीज वाला सरसों का पौधा"
+            },
+            "bin": "many",
+            "why": {
+              "en": "Many small seeds, each with a low chance to survive.",
+              "hi": "अनेक छोटे बीज, हर एक के बचने की संभावना कम।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:oyster",
+          "expect": "correct:oyster",
+          "say": {
+            "en": "Sort \"Oysters and pelagic fishes\".",
+            "hi": "\"सीप और खुले समुद्र की मछलियाँ\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "An animal gives its young a lot of care. Will it need to produce many or few young?",
+            "hi": "एक जंतु अपनी संतान की बहुत देखभाल करता है। उसे अनेक संतानें चाहिए या कम?"
+          },
+          "options": [
+            {
+              "id": "few",
+              "en": "Few",
+              "hi": "कम"
+            },
+            {
+              "id": "many",
+              "en": "Many",
+              "hi": "अनेक"
+            }
+          ],
+          "answer": "few"
+        },
+        {
+          "kind": "do",
+          "target": "card:mammal",
+          "expect": "correct:mammal",
+          "say": {
+            "en": "Sort \"Elephants and humans\".",
+            "hi": "\"हाथी और मनुष्य\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:birds",
+          "expect": "correct:birds",
+          "say": {
+            "en": "Sort \"Birds that feed and guard their chicks\".",
+            "hi": "\"चूज़ों को खिलाने वाले पक्षी\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Populations evolve life histories that fit their habitats. Some organisms breed once in life, producing a vast number of small offspring, like Pacific salmon, bamboo and many insects. Others breed many times and give fewer, larger offspring with good care, like birds and mammals. Each strategy is a trade-off between the number of young and the chance of each surviving. Natural selection favours the pattern that leaves the most surviving offspring in that environment.",
+            "hi": "समष्टियाँ अपने आवासों के अनुकूल जीवन-इतिहास विकसित करती हैं। कुछ जीव जीवन में एक बार प्रजनन करते हैं और बहुत सारी छोटी संतानें देते हैं, जैसे प्रशांत सैल्मन, बाँस और कई कीट। अन्य कई बार प्रजनन करते हैं और कम, बड़ी संतानें अच्छी देखभाल के साथ देते हैं, जैसे पक्षी और स्तनधारी। हर रणनीति संतानों की संख्या और हर एक के बचने की संभावना के बीच समझौता है। प्राकृतिक चयन उस पैटर्न को अनुकूल करता है जो उस पर्यावरण में सर्वाधिक जीवित संतान छोड़े।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why do oysters make thousands of eggs?",
+                "hi": "सीप हज़ारों अंडे क्यों देते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Each egg has only a small chance to survive",
+                  "hi": "हर अंडे के बचने की संभावना बहुत कम होती है"
+                },
+                {
+                  "en": "They want a large family",
+                  "hi": "वे बड़ा परिवार चाहते हैं"
+                },
+                {
+                  "en": "They eat the extra eggs",
+                  "hi": "वे अतिरिक्त अंडे खा जाते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Large numbers make up for the lack of parental care.",
+                "hi": "बड़ी संख्या देखभाल की कमी की भरपाई करती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Evolution has no wish; it is the survival chance that matters.",
+                  "hi": "विकास की इच्छा नहीं होती; बचने की संभावना मायने रखती है।"
+                },
+                {
+                  "en": "Oysters do not eat their eggs.",
+                  "hi": "सीप अपने अंडे नहीं खाते।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which pattern is a trade-off?",
+                "hi": "कौन-सा पैटर्न एक समझौता है?"
+              },
+              "options": [
+                {
+                  "en": "Fewer young, each with more care",
+                  "hi": "कम संतान, हर एक की अधिक देखभाल"
+                },
+                {
+                  "en": "Many young, each with much care",
+                  "hi": "अनेक संतानें, हर एक की बहुत देखभाल"
+                },
+                {
+                  "en": "No young at all",
+                  "hi": "कोई संतान नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Energy is limited, so more care means fewer young.",
+                "hi": "ऊर्जा सीमित है, इसलिए अधिक देखभाल यानी कम संतान।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Both together would need unlimited energy.",
+                  "hi": "दोनों साथ में असीमित ऊर्जा माँगेंगे।"
+                },
+                {
+                  "en": "Without young, the species ends.",
+                  "hi": "संतान न हो तो जाति समाप्त हो जाती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Which kind of life history does a house sparrow have, and which does a housefly have?",
+            "hi": "बाकी कार्ड छाँटो। गौरैया का जीवन-इतिहास कैसा है और घरेलू मक्खी का कैसा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch11-interactions",
+      "topic": "11.1.4",
+      "template": "sort",
+      "title": {
+        "en": "How species interact",
+        "hi": "जातियाँ आपस में कैसे संबंध रखती हैं"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "pred",
+            "label": {
+              "en": "Predation",
+              "hi": "परभक्षण"
+            }
+          },
+          {
+            "id": "comp",
+            "label": {
+              "en": "Competition",
+              "hi": "स्पर्धा"
+            }
+          },
+          {
+            "id": "para",
+            "label": {
+              "en": "Parasitism",
+              "hi": "परजीविता"
+            }
+          },
+          {
+            "id": "comm",
+            "label": {
+              "en": "Commensalism",
+              "hi": "सहभोजिता"
+            }
+          },
+          {
+            "id": "mut",
+            "label": {
+              "en": "Mutualism",
+              "hi": "पारस्परिकता"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "lion",
+            "text": {
+              "en": "Lion hunting a deer",
+              "hi": "शेर का हिरण का शिकार करना"
+            },
+            "bin": "pred",
+            "why": {
+              "en": "One animal (+) feeds on another (-).",
+              "hi": "एक जंतु (+) दूसरे (-) को खाता है।"
+            }
+          },
+          {
+            "id": "prickly",
+            "text": {
+              "en": "Insects feeding on a plant",
+              "hi": "पौधे को खाने वाले कीट"
+            },
+            "bin": "pred",
+            "why": {
+              "en": "Herbivory is also a form of predation.",
+              "hi": "शाकाहार भी परभक्षण का एक रूप है।"
+            }
+          },
+          {
+            "id": "goat",
+            "text": {
+              "en": "Goats and Abingdon tortoises for the same plants",
+              "hi": "एक ही पौधों के लिए बकरियाँ और अबिंग्डन कछुए"
+            },
+            "bin": "comp",
+            "why": {
+              "en": "Both lose when the food is shared; the tortoises became extinct in places.",
+              "hi": "साझा भोजन में दोनों को हानि; कुछ जगह कछुए लुप्त हो गए।"
+            }
+          },
+          {
+            "id": "flamingo",
+            "text": {
+              "en": "Flamingoes and fish feeding on the same zooplankton",
+              "hi": "एक ही प्राणिप्लवक खाने वाले फ़्लेमिंगो और मछलियाँ"
+            },
+            "bin": "comp",
+            "why": {
+              "en": "They compete for a shared food.",
+              "hi": "वे साझा भोजन के लिए स्पर्धा करते हैं।"
+            }
+          },
+          {
+            "id": "tick",
+            "text": {
+              "en": "A tick sucking the blood of a dog",
+              "hi": "कुत्ते का रक्त चूसने वाली किलनी"
+            },
+            "bin": "para",
+            "why": {
+              "en": "The parasite benefits and the host is harmed.",
+              "hi": "परजीवी को लाभ और परपोषी को हानि।"
+            }
+          },
+          {
+            "id": "cuscuta",
+            "text": {
+              "en": "Cuscuta (amarbel) growing on a hedge plant",
+              "hi": "बाड़ के पौधे पर उगती अमरबेल"
+            },
+            "bin": "para",
+            "why": {
+              "en": "It takes food from the host plant.",
+              "hi": "यह परपोषी पौधे से भोजन लेती है।"
+            }
+          },
+          {
+            "id": "orchid",
+            "text": {
+              "en": "An orchid growing on a mango branch",
+              "hi": "आम की डाल पर उगता ऑर्किड"
+            },
+            "bin": "comm",
+            "why": {
+              "en": "The orchid gains support; the mango is not harmed.",
+              "hi": "ऑर्किड को सहारा मिलता है; आम को हानि नहीं।"
+            }
+          },
+          {
+            "id": "egret",
+            "text": {
+              "en": "Cattle egret feeding near grazing cattle",
+              "hi": "चरते पशुओं के पास चारा खाता बगुला"
+            },
+            "bin": "comm",
+            "why": {
+              "en": "The egret eats insects stirred up by cattle; the cattle are unaffected.",
+              "hi": "बगुला पशुओं से उड़े कीट खाता है; पशुओं पर असर नहीं।"
+            }
+          },
+          {
+            "id": "lichen",
+            "text": {
+              "en": "Lichen: an alga living with a fungus",
+              "hi": "शैक: कवक के साथ रहने वाला शैवाल"
+            },
+            "bin": "mut",
+            "why": {
+              "en": "The fungus gets food from the alga; the alga gets shelter and minerals.",
+              "hi": "कवक को शैवाल से भोजन; शैवाल को आश्रय और खनिज मिलते हैं।"
+            }
+          },
+          {
+            "id": "myco",
+            "text": {
+              "en": "Mycorrhiza on the roots of a tree",
+              "hi": "पेड़ की जड़ों पर माइकोराइज़ा"
+            },
+            "bin": "mut",
+            "why": {
+              "en": "The fungus takes sugars, the plant takes phosphorus and water.",
+              "hi": "कवक शर्करा लेता है, पौधा फ़ॉस्फ़ोरस और पानी।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:lion",
+          "expect": "correct:lion",
+          "say": {
+            "en": "Sort \"Lion hunting a deer\".",
+            "hi": "\"शेर का हिरण का शिकार\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A lichen is an alga and a fungus living together. Do both gain, or only one?",
+            "hi": "शैक में शैवाल और कवक साथ रहते हैं। लाभ दोनों को होता है या एक को?"
+          },
+          "options": [
+            {
+              "id": "both",
+              "en": "Both gain",
+              "hi": "दोनों को लाभ"
+            },
+            {
+              "id": "one",
+              "en": "Only one gains",
+              "hi": "केवल एक को लाभ"
+            }
+          ],
+          "answer": "both"
+        },
+        {
+          "kind": "do",
+          "target": "card:lichen",
+          "expect": "correct:lichen",
+          "say": {
+            "en": "Sort \"Lichen\".",
+            "hi": "\"शैक\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:orchid",
+          "expect": "correct:orchid",
+          "say": {
+            "en": "Sort \"An orchid growing on a mango branch\".",
+            "hi": "\"आम की डाल पर ऑर्किड\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Species meet each other in five main ways, and we can write the effect on each as plus (benefit), minus (harm) or zero. Predation: one eats another (+, -). Competition: both lose when they share a limited resource (-, -), or the weaker one is driven away. Parasitism: the parasite gains and the host is harmed (+, -). Commensalism: one gains and the other is not affected (+, 0). Mutualism: both gain (+, +), as in lichens, mycorrhizae and the fig tree with its wasp. Predators also keep prey populations in check and keep species diversity, and parasites have evolved to harm the host only mildly so that they can stay on it.",
+            "hi": "जातियाँ पाँच प्रमुख तरीकों से मिलती हैं, और हर एक पर असर को धन (लाभ), ऋण (हानि) या शून्य लिखा जा सकता है। परभक्षण: एक दूसरे को खाता है (+, -)। स्पर्धा: सीमित संसाधन साझा करने पर दोनों को हानि (-, -), या कमज़ोर हट जाता है। परजीविता: परजीवी को लाभ और परपोषी को हानि (+, -)। सहभोजिता: एक को लाभ और दूसरे पर असर नहीं (+, 0)। पारस्परिकता: दोनों को लाभ (+, +), जैसे शैक, माइकोराइज़ा और अंजीर का पेड़ अपनी ततैया के साथ। परभक्षी शिकार की समष्टियों को नियंत्रित रखते और जाति विविधता बनाए रखते हैं, और परजीवी परपोषी को हल्की हानि पहुँचाने की ओर विकसित हुए हैं ताकि उस पर टिके रहें।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In commensalism, the two species show the effects",
+                "hi": "सहभोजिता में दोनों जातियों पर प्रभाव है"
+              },
+              "options": [
+                {
+                  "en": "+ for one, 0 for the other",
+                  "hi": "एक पर +, दूसरे पर 0"
+                },
+                {
+                  "en": "+ for both",
+                  "hi": "दोनों पर +"
+                },
+                {
+                  "en": "- for both",
+                  "hi": "दोनों पर -"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "One benefits and the other is neither helped nor harmed.",
+                "hi": "एक को लाभ और दूसरे को न लाभ न हानि।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is mutualism.",
+                  "hi": "यह पारस्परिकता है।"
+                },
+                {
+                  "en": "That is competition.",
+                  "hi": "यह स्पर्धा है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Cuscuta on a hedge is an example of",
+                "hi": "बाड़ पर अमरबेल उदाहरण है"
+              },
+              "options": [
+                {
+                  "en": "Parasitism",
+                  "hi": "परजीविता"
+                },
+                {
+                  "en": "Mutualism",
+                  "hi": "पारस्परिकता"
+                },
+                {
+                  "en": "Commensalism",
+                  "hi": "सहभोजिता"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Cuscuta takes food from the host, which is harmed.",
+                "hi": "अमरबेल परपोषी से भोजन लेती है, जिसे हानि होती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Mutualism would help both.",
+                  "hi": "पारस्परिकता दोनों की सहायता करती।"
+                },
+                {
+                  "en": "In commensalism the host is not harmed.",
+                  "hi": "सहभोजिता में परपोषी को हानि नहीं होती।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Is the relationship between a farmer and a cow a plus-plus (mutualism)? Think about who gains what.",
+            "hi": "बाकी कार्ड छाँटो। क्या किसान और गाय का संबंध धन-धन (पारस्परिकता) है? सोचो किसे क्या मिलता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch11-predator-prey",
+      "topic": "11.1.4",
+      "template": "eco",
+      "title": {
+        "en": "Predators, prey and plants",
+        "hi": "परभक्षी, शिकार और पौधे"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "population"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:rabbit",
+          "expect": "picked:rabbit",
+          "say": {
+            "en": "Tap the rabbit to add more rabbits to the field.",
+            "hi": "खेत में और खरगोश जोड़ने के लिए खरगोश को छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "After rabbits increase, what will happen to foxes a little later?",
+            "hi": "खरगोश बढ़ने के बाद थोड़ी देर में लोमड़ियों का क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "up",
+              "en": "They increase because there is more food",
+              "hi": "वे बढ़ेंगी क्योंकि भोजन अधिक है"
+            },
+            {
+              "id": "down",
+              "en": "They decrease",
+              "hi": "वे घटेंगी"
+            },
+            {
+              "id": "same",
+              "en": "No change",
+              "hi": "कोई बदलाव नहीं"
+            }
+          ],
+          "answer": "up"
+        },
+        {
+          "kind": "do",
+          "target": "card:fox",
+          "expect": "picked:fox",
+          "say": {
+            "en": "Tap the fox to add foxes.",
+            "hi": "लोमड़ी जोड़ने के लिए उसे छुओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Plants, plant-eaters and hunters are linked. More rabbits give more food for foxes, so foxes increase a little later; but then more foxes eat more rabbits and the rabbits fall, so the foxes fall too. The numbers rise and fall in cycles instead of running away. Predators therefore keep the prey from eating everything, and the plants are saved. When a predator is removed or a prey species is added carelessly, the balance can break. This is why introducing a new species, like the prickly pear cactus in Australia, was a disaster until a moth that feeds on it was brought in.",
+            "hi": "पौधे, शाकाहारी और शिकारी आपस में जुड़े हैं। खरगोश बढ़ें तो लोमड़ियों को अधिक भोजन मिलता है, इसलिए लोमड़ियाँ थोड़ी देर बाद बढ़ती हैं; पर तब अधिक लोमड़ियाँ अधिक खरगोश खाती हैं और खरगोश घटते हैं, तो लोमड़ियाँ भी घटती हैं। संख्याएँ बेकाबू होने की जगह चक्रों में चढ़ती-उतरती हैं। इस तरह परभक्षी शिकार को सब कुछ खाने से रोकते हैं और पौधे बचे रहते हैं। परभक्षी हटा देने या शिकार जाति लापरवाही से लाने पर संतुलन टूट सकता है। इसीलिए ऑस्ट्रेलिया में नागफनी जैसी नई जाति लाना तब तक विनाशकारी रहा जब तक उसे खाने वाला पतंगा नहीं लाया गया।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why do predator numbers rise and fall after prey numbers?",
+                "hi": "परभक्षी की संख्या शिकार की संख्या के बाद क्यों चढ़ती-उतरती है?"
+              },
+              "options": [
+                {
+                  "en": "Their food supply goes up and down",
+                  "hi": "उनका भोजन घटता-बढ़ता है"
+                },
+                {
+                  "en": "The weather changes every day",
+                  "hi": "मौसम रोज़ बदलता है"
+                },
+                {
+                  "en": "They count the prey",
+                  "hi": "वे शिकार गिनते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "More prey supports more predators, which later reduces prey.",
+                "hi": "अधिक शिकार अधिक परभक्षियों का पोषण करता है, जो बाद में शिकार घटाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The cycles come from the food link, not daily weather.",
+                  "hi": "चक्र भोजन-संबंध से आते हैं, रोज़ के मौसम से नहीं।"
+                },
+                {
+                  "en": "Animals do not count; the food does.",
+                  "hi": "जंतु गिनती नहीं करते; भोजन करता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What does a predator do for the ecosystem?",
+                "hi": "परभक्षी पारितंत्र के लिए क्या करता है?"
+              },
+              "options": [
+                {
+                  "en": "Keeps prey numbers in check",
+                  "hi": "शिकार की संख्या नियंत्रित रखता है"
+                },
+                {
+                  "en": "Destroys all plants",
+                  "hi": "सारे पौधे नष्ट करता है"
+                },
+                {
+                  "en": "Does nothing useful",
+                  "hi": "कुछ उपयोगी नहीं करता"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It prevents prey from overusing the plants.",
+                "hi": "यह शिकार को पौधों का अति-उपयोग करने से रोकता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Plants are protected by predators, not destroyed.",
+                  "hi": "पौधों की रक्षा परभक्षी करते हैं, नाश नहीं।"
+                },
+                {
+                  "en": "Predators play a key role.",
+                  "hi": "परभक्षियों की अहम भूमिका है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press Play and watch the three lines. Try removing all the foxes: what happens to the rabbits and the grass?",
+            "hi": "चलाओ दबाओ और तीनों रेखाएँ देखो। सारी लोमड़ियाँ हटा दो: खरगोशों और घास का क्या होता है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "11.1",
+      "use": "A population in nature",
+      "shows": "A flock of flamingoes on a shallow lake at Sambhar or Chilika, with the shoreline behind",
+      "view": "Wide shot from the shore, morning light",
+      "right": "Many birds in the frame, no people",
+      "avoid": "Zoo setting"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "11.1.1",
+      "use": "Age pyramids",
+      "shows": "Three age pyramids side by side: expanding, stable and declining, with three age groups colour-coded",
+      "view": "Flat vector, symmetric",
+      "right": "Pre-reproductive, reproductive and post-reproductive bands clear",
+      "avoid": "Real country names"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "11.1.2",
+      "use": "Growth curves",
+      "shows": "A J-shaped exponential curve and an S-shaped logistic curve on the same axes, with K marked",
+      "view": "Clean line graph, two colours",
+      "right": "K dashed line and the phases labelled",
+      "avoid": "Cluttered text"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "11.1.4",
+      "use": "Cuscuta on a hedge",
+      "shows": "Yellow thread-like Cuscuta (amarbel) twined over a green hedge plant",
+      "view": "Close-up, daylight",
+      "right": "Yellow stems on the green host",
+      "avoid": "Fertiliser packs"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "11.1.4",
+      "use": "Lichen on a rock",
+      "shows": "A close-up of crusty green and grey lichen on a rock or tree bark",
+      "view": "Macro, soft light",
+      "right": "Texture of the lichen clear",
+      "avoid": "Dry brown patches"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "11.1.4",
+      "use": "Cattle egret and cattle",
+      "shows": "A cattle egret walking close to grazing cattle in a field in India",
+      "view": "Eye-level, golden hour",
+      "right": "Bird and cattle both sharp",
+      "avoid": "Zoo or staged"
+    }
+  ]
+}

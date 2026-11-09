@@ -1,0 +1,831 @@
+{
+ "chapter_key": "u.c06.social_science.fees1.ch01",
+ "class": 6,
+ "subject_id": "social_science",
+ "title": "Locating Places on the Earth",
+ "source": "https://ncert.nic.in/textbook/pdf/fees101.pdf",
+ "topics": [
+  {
+   "n": "0",
+   "title": "Why Social Science? (introduction)",
+   "labs": [],
+   "why_no_lab": "A talk about the five themes of the book; the class discussion and the reader teach it better than a lab."
+  },
+  {
+   "n": "1.1",
+   "title": "Globe, latitudes and longitudes",
+   "labs": [
+    "c06-social_science-fees1-ch01-grid"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Map reading: parts of a map and scale",
+   "labs": [
+    "c06-social_science-fees1-ch01-mapparts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Locating places and directions",
+   "labs": [
+    "c06-social_science-fees1-ch01-directions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Maps of the school playground and the locality",
+   "labs": [
+    "c06-social_science-fees1-ch01-drawmap"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-social_science-fees1-ch01-grid",
+   "topic": "1.1",
+   "template": "globe",
+   "title": {
+    "en": "Lines on the globe",
+    "hi": "ग्लोब पर रेखाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "grid",
+    "place": "greenwich"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:greenwich",
+     "expect": "located",
+     "say": {
+      "en": "Tap Greenwich in the list. The marker lands on a special line that runs from pole to pole.",
+      "hi": "सूची में ग्रीनविच पर टैप करो। मार्कर एक ख़ास रेखा पर पहुँचेगा, जो ध्रुव से ध्रुव तक जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:kanyakumari",
+     "expect": "located",
+     "say": {
+      "en": "Now tap Kanyakumari, the southern tip of India. Read its latitude.",
+      "hi": "अब भारत की दक्षिणी नोक कन्याकुमारी पर टैप करो। उसका अक्षांश पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Quito, in Ecuador, is on a line that circles the middle of the Earth. What do you think its latitude is?",
+      "hi": "इक्वाडोर का क्विटो पृथ्वी के बीच से गुज़रने वाली रेखा पर है। तुम्हें क्या लगता है, उसका अक्षांश क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "zero",
+       "en": "About 0°",
+       "hi": "लगभग 0°"
+      },
+      {
+       "id": "tc",
+       "en": "About 23½° N",
+       "hi": "लगभग 23½° उ."
+      },
+      {
+       "id": "pole",
+       "en": "About 90° N",
+       "hi": "लगभग 90° उ."
+      }
+     ],
+     "answer": "zero"
+    },
+    {
+     "kind": "do",
+     "target": "place:quito",
+     "expect": "located",
+     "say": {
+      "en": "Tap Quito and read its latitude.",
+      "hi": "क्विटो पर टैप करो और उसका अक्षांश पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Latitudes are circles drawn around the Earth, parallel to the Equator. The Equator is 0°. Kanyakumari is a little north of it, and Quito sits almost on it. Longitudes run from the North Pole to the South Pole. The one through Greenwich is the Prime Meridian, 0°. Latitude and longitude together fix any place.",
+      "hi": "अक्षांश पृथ्वी के चारों ओर खिंचे वृत्त हैं, जो भूमध्य रेखा के समानांतर हैं। भूमध्य रेखा 0° है। कन्याकुमारी उससे थोड़ा उत्तर में है और क्विटो लगभग उसी पर है। देशांतर उत्तरी ध्रुव से दक्षिणी ध्रुव तक जाते हैं। ग्रीनविच से गुज़रने वाला देशांतर प्रधान याम्योत्तर है, 0°। अक्षांश और देशांतर मिलकर किसी भी स्थान को पक्का बताते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which line splits the Earth into the Northern and Southern Hemispheres?",
+        "hi": "कौन-सी रेखा पृथ्वी को उत्तरी और दक्षिणी गोलार्ध में बाँटती है?"
+       },
+       "options": [
+        {
+         "en": "The Equator",
+         "hi": "भूमध्य रेखा"
+        },
+        {
+         "en": "The Prime Meridian",
+         "hi": "प्रधान याम्योत्तर"
+        },
+        {
+         "en": "The Tropic of Cancer",
+         "hi": "कर्क रेखा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Equator, 0° latitude, is the middle circle. North of it is the Northern Hemisphere.",
+        "hi": "भूमध्य रेखा, यानी 0° अक्षांश, बीच का वृत्त है। उसके उत्तर में उत्तरी गोलार्ध है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Prime Meridian runs pole to pole. It splits the Earth into East and West, not North and South.",
+         "hi": "प्रधान याम्योत्तर ध्रुव से ध्रुव तक जाता है। वह पृथ्वी को पूर्व और पश्चिम में बाँटता है, उत्तर और दक्षिण में नहीं।"
+        },
+        {
+         "en": "The Tropic of Cancer is at 23½° N. It is north of the middle, so it cannot be the middle.",
+         "hi": "कर्क रेखा 23½° उ. पर है। वह बीच से उत्तर में है, इसलिए बीच की रेखा नहीं हो सकती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Delhi is at about 28° N and 77° E. What does the 'N' tell you?",
+        "hi": "दिल्ली लगभग 28° उ. और 77° पू. पर है। 'उ.' क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "Delhi is north of the Equator",
+         "hi": "दिल्ली भूमध्य रेखा के उत्तर में है"
+        },
+        {
+         "en": "Delhi is north of the Prime Meridian",
+         "hi": "दिल्ली प्रधान याम्योत्तर के उत्तर में है"
+        },
+        {
+         "en": "Delhi is 28 km from the North Pole",
+         "hi": "दिल्ली उत्तरी ध्रुव से 28 किमी दूर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Latitude is measured from the Equator. N means the place is on the northern side.",
+        "hi": "अक्षांश भूमध्य रेखा से नापा जाता है। उ. का मतलब है कि स्थान उत्तर की ओर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Prime Meridian is used for longitude, which is the 'E' or 'W' part, not the latitude.",
+         "hi": "प्रधान याम्योत्तर देशांतर के लिए है, यानी 'पू.' या 'प.' वाला भाग, अक्षांश के लिए नहीं।"
+        },
+        {
+         "en": "The number is an angle, 28 degrees from the Equator, not a distance in kilometres.",
+         "hi": "संख्या एक कोण है, भूमध्य रेखा से 28 अंश, किलोमीटर की दूरी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap other places on the list. Is each north or south of the Equator? East or west of Greenwich?",
+      "hi": "सूची के दूसरे स्थानों पर टैप करो। हर स्थान भूमध्य रेखा के उत्तर में है या दक्षिण में? ग्रीनविच के पूर्व में या पश्चिम में?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch01-mapparts",
+   "topic": "1.2",
+   "template": "match",
+   "title": {
+    "en": "Parts of a map",
+    "hi": "मानचित्र के भाग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "title",
+      "left": {
+       "en": "Title",
+       "hi": "शीर्षक"
+      },
+      "right": {
+       "en": "Tells what the map shows",
+       "hi": "बताता है कि मानचित्र में क्या दिखाया गया है"
+      },
+      "why": {
+       "en": "A title tells you at once whether it is a map of a school, a city or a river.",
+       "hi": "शीर्षक तुरंत बता देता है कि यह स्कूल का, शहर का या नदी का मानचित्र है।"
+      }
+     },
+     {
+      "id": "scale",
+      "left": {
+       "en": "Scale",
+       "hi": "पैमाना"
+      },
+      "right": {
+       "en": "Shows how real distance is shrunk onto paper",
+       "hi": "दिखाता है कि असली दूरी काग़ज़ पर कितनी छोटी की गई है"
+      },
+      "why": {
+       "en": "With the scale you can work out the real distance between two places.",
+       "hi": "पैमाने से तुम दो स्थानों के बीच की असली दूरी निकाल सकते हो।"
+      }
+     },
+     {
+      "id": "direction",
+      "left": {
+       "en": "North arrow",
+       "hi": "उत्तर का तीर"
+      },
+      "right": {
+       "en": "Shows which way is north",
+       "hi": "बताता है कि उत्तर किधर है"
+      },
+      "why": {
+       "en": "Once you know north, you can find east, south and west.",
+       "hi": "उत्तर पता चलने पर पूर्व, दक्षिण और पश्चिम मिल जाते हैं।"
+      }
+     },
+     {
+      "id": "symbol",
+      "left": {
+       "en": "Symbols",
+       "hi": "चिह्न"
+      },
+      "right": {
+       "en": "Small signs for a school, road or river",
+       "hi": "स्कूल, सड़क या नदी के छोटे चिह्न"
+      },
+      "why": {
+       "en": "A map is small, so it uses tiny signs instead of drawing every building.",
+       "hi": "मानचित्र छोटा होता है, इसलिए हर इमारत बनाने के बजाय छोटे चिह्न बनाए जाते हैं।"
+      }
+     },
+     {
+      "id": "key",
+      "left": {
+       "en": "Key (legend)",
+       "hi": "संकेत-सूची"
+      },
+      "right": {
+       "en": "Explains what each symbol means",
+       "hi": "बताती है कि हर चिह्न का क्या अर्थ है"
+      },
+      "why": {
+       "en": "The key is the map's dictionary. Without it, a symbol can be misread.",
+       "hi": "संकेत-सूची मानचित्र का शब्दकोश है। उसके बिना चिह्न का ग़लत अर्थ निकल सकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:title",
+     "expect": "matched:title",
+     "say": {
+      "en": "Tap 'Title' on the left, then tap what it does on the right.",
+      "hi": "बाईं ओर 'शीर्षक' पर टैप करो, फिर दाईं ओर उसका काम चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You want to know how far the school is from the market on a map. Which part helps?",
+      "hi": "तुम्हें मानचित्र पर जानना है कि स्कूल बाज़ार से कितनी दूर है। कौन-सा भाग मदद करेगा?"
+     },
+     "options": [
+      {
+       "id": "scale",
+       "en": "The scale",
+       "hi": "पैमाना"
+      },
+      {
+       "id": "title",
+       "en": "The title",
+       "hi": "शीर्षक"
+      },
+      {
+       "id": "key",
+       "en": "The key",
+       "hi": "संकेत-सूची"
+      }
+     ],
+     "answer": "scale"
+    },
+    {
+     "kind": "do",
+     "target": "left:scale",
+     "expect": "matched:scale",
+     "say": {
+      "en": "Now match the scale with its job.",
+      "hi": "अब पैमाने को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other three and press check.",
+      "hi": "बाक़ी तीन को मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every good map has a title, a scale, a north arrow and a key with its symbols. These parts help you read the map the same way as the person who drew it.",
+      "hi": "हर अच्छे मानचित्र में शीर्षक, पैमाना, उत्तर का तीर और चिह्नों की संकेत-सूची होती है। इनसे तुम मानचित्र को वैसे ही पढ़ पाते हो जैसे बनाने वाले ने बनाया था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A playground is 40 m long. On a map 1 cm stands for 5 m. How long is it on the map?",
+        "hi": "एक मैदान 40 मीटर लंबा है। मानचित्र पर 1 सेमी 5 मीटर को दिखाता है। मानचित्र पर वह कितना लंबा होगा?"
+       },
+       "options": [
+        {
+         "en": "5 cm",
+         "hi": "5 सेमी"
+        },
+        {
+         "en": "8 cm",
+         "hi": "8 सेमी"
+        },
+        {
+         "en": "20 cm",
+         "hi": "20 सेमी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "40 m divided by 5 m is 8, so the playground is 8 cm long on the map.",
+        "hi": "40 मीटर में 5 मीटर का भाग देने पर 8 आता है, इसलिए मानचित्र पर मैदान 8 सेमी लंबा होगा।"
+       },
+       "wrong": [
+        {
+         "en": "5 cm would stand for only 25 m. You may have used 8 instead of 40 in your sum.",
+         "hi": "5 सेमी केवल 25 मीटर को दिखाएगा। शायद तुमने 40 की जगह 8 से हिसाब किया।"
+        },
+        "",
+        {
+         "en": "20 cm would stand for 100 m, which is more than the playground.",
+         "hi": "20 सेमी 100 मीटर को दिखाएगा, जो मैदान से बहुत ज़्यादा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the key of a map explain?",
+        "hi": "मानचित्र की संकेत-सूची क्या समझाती है?"
+       },
+       "options": [
+        {
+         "en": "What the symbols mean",
+         "hi": "चिह्नों का अर्थ"
+        },
+        {
+         "en": "Which way is north",
+         "hi": "उत्तर किधर है"
+        },
+        {
+         "en": "The size of the paper",
+         "hi": "काग़ज़ का आकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The key lists every symbol with its meaning.",
+        "hi": "संकेत-सूची में हर चिह्न उसके अर्थ के साथ लिखा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Direction is shown by the north arrow, not by the key.",
+         "hi": "दिशा उत्तर का तीर बताता है, संकेत-सूची नहीं।"
+        },
+        {
+         "en": "A map's key says nothing about the paper. It explains what the drawn signs stand for.",
+         "hi": "संकेत-सूची का काग़ज़ से कोई संबंध नहीं। वह बनाए गए चिह्नों का अर्थ बताती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a map in your atlas or phone. Can you find its title, scale, north arrow and key?",
+      "hi": "अपने एटलस या फ़ोन में कोई मानचित्र देखो। क्या उसका शीर्षक, पैमाना, उत्तर का तीर और संकेत-सूची मिल गई?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch01-directions",
+   "topic": "1.3",
+   "template": "globe",
+   "title": {
+    "en": "Which way from Delhi?",
+    "hi": "दिल्ली से किधर?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "directions",
+    "place": "delhi"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:thiruvananthapuram",
+     "expect": "located",
+     "say": {
+      "en": "Tap Thiruvananthapuram. You are standing in Delhi. Which way must you travel?",
+      "hi": "तिरुवनंतपुरम पर टैप करो। तुम दिल्ली में खड़े हो। किस दिशा में जाना होगा?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "From Delhi, which direction is Guwahati in Assam?",
+      "hi": "दिल्ली से असम का गुवाहाटी किस दिशा में है?"
+     },
+     "options": [
+      {
+       "id": "west",
+       "en": "West",
+       "hi": "पश्चिम"
+      },
+      {
+       "id": "east",
+       "en": "East",
+       "hi": "पूर्व"
+      },
+      {
+       "id": "north",
+       "en": "North",
+       "hi": "उत्तर"
+      }
+     ],
+     "answer": "east"
+    },
+    {
+     "kind": "do",
+     "target": "place:guwahati",
+     "expect": "located",
+     "say": {
+      "en": "Tap Guwahati and read the direction on the compass.",
+      "hi": "गुवाहाटी पर टैप करो और कंपास पर दिशा पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:kolkata",
+     "expect": "located",
+     "say": {
+      "en": "Tap Kolkata. It lies between two main directions.",
+      "hi": "कोलकाता पर टैप करो। वह दो मुख्य दिशाओं के बीच में है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The four main directions are north, east, south and west. Between them lie north-east, south-east, south-west and north-west. Guwahati is east of Delhi, Thiruvananthapuram is south, and Kolkata is south-east. Always say 'from where' you look, because direction depends on your starting point.",
+      "hi": "चार मुख्य दिशाएँ उत्तर, पूर्व, दक्षिण और पश्चिम हैं। इनके बीच उत्तर-पूर्व, दक्षिण-पूर्व, दक्षिण-पश्चिम और उत्तर-पश्चिम हैं। दिल्ली से गुवाहाटी पूर्व में, तिरुवनंतपुरम दक्षिण में और कोलकाता दक्षिण-पूर्व में है। हमेशा बताओ कि 'कहाँ से' देख रहे हो, क्योंकि दिशा शुरुआती स्थान पर निर्भर करती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "From Delhi, Thiruvananthapuram lies towards the…",
+        "hi": "दिल्ली से तिरुवनंतपुरम किस ओर है…"
+       },
+       "options": [
+        {
+         "en": "south",
+         "hi": "दक्षिण"
+        },
+        {
+         "en": "north",
+         "hi": "उत्तर"
+        },
+        {
+         "en": "east",
+         "hi": "पूर्व"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Thiruvananthapuram is at the far south of India, almost straight below Delhi.",
+        "hi": "तिरुवनंतपुरम भारत के धुर दक्षिण में है, लगभग दिल्ली के सीधे नीचे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "North is where Srinagar and the Himalaya are, not the southern tip.",
+         "hi": "उत्तर में श्रीनगर और हिमालय हैं, दक्षिणी नोक नहीं।"
+        },
+        {
+         "en": "East would take you towards Assam, not down to Kerala.",
+         "hi": "पूर्व में चलने पर असम की ओर जाओगे, केरल की ओर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A map has no north arrow. By default, where is north usually drawn?",
+        "hi": "एक मानचित्र में उत्तर का तीर नहीं है। आम तौर पर उत्तर किस ओर बनाया जाता है?"
+       },
+       "options": [
+        {
+         "en": "At the top",
+         "hi": "ऊपर की ओर"
+        },
+        {
+         "en": "At the bottom",
+         "hi": "नीचे की ओर"
+        },
+        {
+         "en": "On the left",
+         "hi": "बाईं ओर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Maps are usually drawn with north at the top, so east is on the right.",
+        "hi": "मानचित्र आम तौर पर ऐसे बनते हैं कि उत्तर ऊपर होता है, इसलिए पूर्व दाईं ओर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If north were at the bottom, the map would look upside down to most readers.",
+         "hi": "अगर उत्तर नीचे होता तो अधिकतर पाठकों को मानचित्र उलटा लगता।"
+        },
+        {
+         "en": "West is on the left when north is at the top, not north.",
+         "hi": "जब उत्तर ऊपर हो तब बाईं ओर पश्चिम होता है, उत्तर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick another city from the list. First guess the direction, then tap it to check.",
+      "hi": "सूची से कोई और शहर चुनो। पहले दिशा का अनुमान लगाओ, फिर टैप करके जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch01-drawmap",
+   "topic": "1.4",
+   "template": "sequence",
+   "title": {
+    "en": "Draw a playground map",
+    "hi": "मैदान का मानचित्र बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "decide",
+      "text": {
+       "en": "Decide which place you will draw",
+       "hi": "तय करो कि किस स्थान का मानचित्र बनाना है"
+      }
+     },
+     {
+      "id": "measure",
+      "text": {
+       "en": "Measure its real length and width",
+       "hi": "उसकी असली लंबाई और चौड़ाई नापो"
+      }
+     },
+     {
+      "id": "scale",
+      "text": {
+       "en": "Choose a scale, such as 1 cm for 5 m",
+       "hi": "पैमाना चुनो, जैसे 5 मीटर के लिए 1 सेमी"
+      }
+     },
+     {
+      "id": "outline",
+      "text": {
+       "en": "Draw the outline using the scale",
+       "hi": "पैमाने से बाहरी रेखा बनाओ"
+      }
+     },
+     {
+      "id": "north",
+      "text": {
+       "en": "Mark the north with an arrow",
+       "hi": "तीर बनाकर उत्तर दिखाओ"
+      }
+     },
+     {
+      "id": "landmarks",
+      "text": {
+       "en": "Add the swing, the gate and the tree as symbols",
+       "hi": "झूला, फाटक और पेड़ चिह्नों से जोड़ो"
+      }
+     },
+     {
+      "id": "key",
+      "text": {
+       "en": "Write the title and the key",
+       "hi": "शीर्षक और संकेत-सूची लिखो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which step should come first when you draw a map?",
+      "hi": "मानचित्र बनाते समय सबसे पहला क़दम कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "decide",
+       "en": "Decide what to draw",
+       "hi": "तय करना कि क्या बनाना है"
+      },
+      {
+       "id": "key",
+       "en": "Write the key",
+       "hi": "संकेत-सूची लिखना"
+      },
+      {
+       "id": "landmarks",
+       "en": "Add the landmarks",
+       "hi": "स्थल जोड़ना"
+      }
+     ],
+     "answer": "decide"
+    },
+    {
+     "kind": "do",
+     "target": "item:scale",
+     "expect": "placed:scale",
+     "say": {
+      "en": "Tap the card 'Choose a scale' and drop it into a slot where you think it belongs.",
+      "hi": "'पैमाना चुनो' वाले कार्ड पर टैप करो और उसे उस खाने में रखो जहाँ वह तुम्हें सही लगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all seven steps in order and press check.",
+      "hi": "सातों क़दम क्रम में लगाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "You first decide what to draw and measure it. Then you shrink the real size with a scale: 40 m by 30 m becomes 8 cm by 6 cm at 1 cm for 5 m. Only then do you draw the outline, north, symbols, title and key.",
+      "hi": "पहले तय करो कि क्या बनाना है और उसे नापो। फिर पैमाने से असली माप को छोटा करो: 5 मीटर के लिए 1 सेमी पर 40 मी × 30 मी का मैदान 8 सेमी × 6 सेमी बनता है। उसके बाद बाहरी रेखा, उत्तर, चिह्न, शीर्षक और संकेत-सूची बनाओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A playground is 30 m wide. With 1 cm for 5 m, how wide is it on your map?",
+        "hi": "एक मैदान 30 मीटर चौड़ा है। 5 मीटर के लिए 1 सेमी के पैमाने पर नक़्शे में वह कितना चौड़ा होगा?"
+       },
+       "options": [
+        {
+         "en": "6 cm",
+         "hi": "6 सेमी"
+        },
+        {
+         "en": "30 cm",
+         "hi": "30 सेमी"
+        },
+        {
+         "en": "150 cm",
+         "hi": "150 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "30 divided by 5 is 6, so 6 cm.",
+        "hi": "30 में 5 का भाग देने पर 6 आता है, यानी 6 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "30 cm would mean 1 cm stands for 1 m, a different scale.",
+         "hi": "30 सेमी का मतलब 1 सेमी = 1 मीटर होगा, यह दूसरा पैमाना है।"
+        },
+        {
+         "en": "150 cm comes from multiplying by 5. A scale shrinks the size, so you divide.",
+         "hi": "150 सेमी 5 से गुणा करने पर आता है। पैमाना माप को छोटा करता है, इसलिए भाग देते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw your own classroom or playground map on paper. Use a scale and add a north arrow.",
+      "hi": "अपनी कक्षा या मैदान का मानचित्र काग़ज़ पर बनाओ। पैमाना लगाओ और उत्तर का तीर जोड़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "Opens the globe lab and the chapter",
+   "shows": "A tilted desk globe on a wooden stand, Africa and India visible, with no names printed",
+   "view": "Three-quarter view, slight top-left light",
+   "right": "True blue oceans, green and brown land, the tilted axis; blank of any printed labels",
+   "avoid": "Printed place names, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "1.1",
+   "use": "Base for the latitude and longitude lab",
+   "shows": "A plain globe-style grid with the Equator, Prime Meridian and the circles drawn, no numbers",
+   "view": "Front view, white background",
+   "right": "Parallels as circles, meridians meeting at the poles",
+   "avoid": "Numbers or words; anything that looks like a textbook figure"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "1.1",
+   "use": "Turn the globe to see each side",
+   "shows": "The same globe from 5 fixed angles: India, Africa, Americas, North Pole, South Pole",
+   "view": "Same size and centre in each file",
+   "right": "Axis tilt the same in all views",
+   "avoid": "Different globe in each view"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "Opens the playground mapping topic",
+   "shows": "A school playground seen from a rooftop in morning light, with swings, a gate, a tree and children far away",
+   "view": "High angle, 16:9",
+   "right": "Real Indian school ground, rectangular, with clear landmarks",
+   "avoid": "Close-up faces, school names"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "1.4",
+   "use": "Base for the locality map",
+   "shows": "An aerial view of a small Indian neighbourhood with a lane, a temple, a shop and a school, no names",
+   "view": "Straight down, 16:9",
+   "right": "Clear roads and buildings of different sizes",
+   "avoid": "Text, signboards, logos"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "1.3",
+   "use": "Compass for the directions lab",
+   "shows": "A pocket magnetic compass lying open on a white sheet",
+   "view": "Top view, cut-out",
+   "right": "North needle in red, true N, E, S, W marks",
+   "avoid": "Brand names on the dial"
+  }
+ ]
+}

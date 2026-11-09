@@ -1,0 +1,1384 @@
+{
+ "chapter_key": "u.c12.mathematics.lemh2.ch11",
+ "class": 12,
+ "subject_id": "mathematics",
+ "title": "Three Dimensional Geometry",
+ "source": "https://ncert.nic.in/textbook/pdf/lemh205.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Introduction: lines and directions in space",
+   "labs": [],
+   "why_no_lab": "A short opening note; the labs begin with direction cosines in 11.2."
+  },
+  {
+   "n": "11.2",
+   "title": "Direction cosines and direction ratios of a line",
+   "labs": [
+    "c12-mathematics-lemh2-ch11-dc"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2.1",
+   "title": "Direction cosines of a line through two points",
+   "labs": [],
+   "why_no_lab": "Covered by the first pair of the direction cosines lab of 11.2."
+  },
+  {
+   "n": "11.3",
+   "title": "Equation of a line in space",
+   "labs": [
+    "c12-mathematics-lemh2-ch11-two-lines"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3.1",
+   "title": "Line through a given point and parallel to a given vector",
+   "labs": [
+    "c12-mathematics-lemh2-ch11-line-vector"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Angle between two lines",
+   "labs": [
+    "c12-mathematics-lemh2-ch11-relation",
+    "c12-mathematics-lemh2-ch11-angle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5.1",
+   "title": "Distance between two skew lines",
+   "labs": [
+    "c12-mathematics-lemh2-ch11-skew-distance"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5.2",
+   "title": "Distance between parallel lines",
+   "labs": [
+    "c12-mathematics-lemh2-ch11-parallel-distance"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-mathematics-lemh2-ch11-dc",
+   "topic": "11.2",
+   "template": "match",
+   "title": {
+    "en": "Direction ratios and direction cosines",
+    "hi": "दिक्-अनुपात और दिक्-कोज्याएँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "d1",
+      "left": {
+       "en": "Line through (1, 2, 3) and (3, 5, 9)",
+       "hi": "(1, 2, 3) और (3, 5, 9) से जाती रेखा"
+      },
+      "right": {
+       "en": "2/7, 3/7, 6/7",
+       "hi": "2/7, 3/7, 6/7"
+      },
+      "why": {
+       "en": "Direction ratios: (3 − 1, 5 − 2, 9 − 3) = (2, 3, 6). Length √(4 + 9 + 36) = 7.",
+       "hi": "दिक्-अनुपात: (3 − 1, 5 − 2, 9 − 3) = (2, 3, 6)। लंबाई √(4 + 9 + 36) = 7।"
+      }
+     },
+     {
+      "id": "d2",
+      "left": {
+       "en": "Direction ratios 1, 2, 2",
+       "hi": "दिक्-अनुपात 1, 2, 2"
+      },
+      "right": {
+       "en": "1/3, 2/3, 2/3",
+       "hi": "1/3, 2/3, 2/3"
+      },
+      "why": {
+       "en": "Divide by √(1 + 4 + 4) = 3.",
+       "hi": "√(1 + 4 + 4) = 3 से भाग दो।"
+      }
+     },
+     {
+      "id": "d3",
+      "left": {
+       "en": "Direction ratios 3, 4, 0",
+       "hi": "दिक्-अनुपात 3, 4, 0"
+      },
+      "right": {
+       "en": "3/5, 4/5, 0",
+       "hi": "3/5, 4/5, 0"
+      },
+      "why": {
+       "en": "Divide by √(9 + 16 + 0) = 5.",
+       "hi": "√(9 + 16 + 0) = 5 से भाग दो।"
+      }
+     },
+     {
+      "id": "d4",
+      "left": {
+       "en": "Direction ratios 2, −1, −2",
+       "hi": "दिक्-अनुपात 2, −1, −2"
+      },
+      "right": {
+       "en": "2/3, −1/3, −2/3",
+       "hi": "2/3, −1/3, −2/3"
+      },
+      "why": {
+       "en": "Divide by √(4 + 1 + 4) = 3. Signs are kept.",
+       "hi": "√(4 + 1 + 4) = 3 से भाग दो। चिह्न वही रहते हैं।"
+      }
+     },
+     {
+      "id": "d5",
+      "left": {
+       "en": "The z-axis",
+       "hi": "z-अक्ष"
+      },
+      "right": {
+       "en": "0, 0, 1",
+       "hi": "0, 0, 1"
+      },
+      "why": {
+       "en": "It makes 90° with x and y, and 0° with z: cos 90° = 0, cos 0° = 1.",
+       "hi": "यह x और y से 90° और z से 0° बनाती है: cos 90° = 0, cos 0° = 1।"
+      }
+     },
+     {
+      "id": "d6",
+      "left": {
+       "en": "Direction ratios 6, 2, −3",
+       "hi": "दिक्-अनुपात 6, 2, −3"
+      },
+      "right": {
+       "en": "6/7, 2/7, −3/7",
+       "hi": "6/7, 2/7, −3/7"
+      },
+      "why": {
+       "en": "Divide by √(36 + 4 + 9) = 7.",
+       "hi": "√(36 + 4 + 9) = 7 से भाग दो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:d2",
+     "expect": "matched:d2",
+     "say": {
+      "en": "Match direction ratios 1, 2, 2 with their direction cosines.",
+      "hi": "दिक्-अनुपात 1, 2, 2 को उनकी दिक्-कोज्याओं से जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For the direction cosines l, m, n of any line, what is l² + m² + n²?",
+      "hi": "किसी भी रेखा की दिक्-कोज्याओं l, m, n के लिए l² + m² + n² क्या है?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "Always 1",
+       "hi": "सदैव 1"
+      },
+      {
+       "id": "zero",
+       "en": "Always 0",
+       "hi": "सदैव 0"
+      },
+      {
+       "id": "vary",
+       "en": "It depends on the line",
+       "hi": "रेखा पर निर्भर करता है"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all six and tap Check.",
+      "hi": "छहों जोड़ो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Direction cosines l, m, n are the cosines of the angles a line makes with the x, y and z axes, and l² + m² + n² = 1. Direction ratios a, b, c are any three numbers in the same proportion. To get the cosines, divide each ratio by √(a² + b² + c²). For a line through two points, the ratios are the differences of the coordinates.",
+      "hi": "दिक्-कोज्याएँ l, m, n वे कोज्याएँ हैं जो रेखा x, y और z अक्षों से बनाए कोणों की होती हैं, और l² + m² + n² = 1। दिक्-अनुपात a, b, c वे कोई तीन संख्याएँ हैं जो उसी अनुपात में हों। दिक्-कोज्याएँ पाने के लिए हर अनुपात को √(a² + b² + c²) से भाग दो। दो बिंदुओं से जाती रेखा के अनुपात निर्देशांकों के अंतर होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The direction cosines of the x-axis are:",
+        "hi": "x-अक्ष की दिक्-कोज्याएँ हैं:"
+       },
+       "options": [
+        "1, 0, 0",
+        "0, 1, 0",
+        "1, 1, 1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It makes 0° with x and 90° with y and z.",
+        "hi": "यह x से 0° और y, z से 90° बनाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the y-axis.",
+         "hi": "यह y-अक्ष है।"
+        },
+        {
+         "en": "The squares add to 3, not 1, so these cannot be direction cosines.",
+         "hi": "वर्गों का योग 3 है, 1 नहीं, इसलिए ये दिक्-कोज्याएँ नहीं हो सकतीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can 1/2, 1/2, 1/2 be direction cosines of a line?",
+        "hi": "क्या 1/2, 1/2, 1/2 किसी रेखा की दिक्-कोज्याएँ हो सकती हैं?"
+       },
+       "options": [
+        "No, the squares add to 3/4",
+        "Yes, they are all equal",
+        "Yes, they add to 3/2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "l² + m² + n² must equal 1, and 1/4 + 1/4 + 1/4 = 3/4.",
+        "hi": "l² + m² + n² = 1 होना चाहिए, और 1/4 + 1/4 + 1/4 = 3/4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equal values are fine, but the squares must add to 1.",
+         "hi": "बराबर मान ठीक हैं, पर वर्गों का योग 1 होना चाहिए।"
+        },
+        {
+         "en": "It is the sum of squares, not the sum, that must be 1.",
+         "hi": "1 होना चाहिए वर्गों का योग, योग नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "The line in the opposite direction has all signs reversed. What are the direction cosines of the reverse of 2/7, 3/7, 6/7?",
+      "hi": "उलटी दिशा की रेखा के सारे चिह्न उलट जाते हैं। 2/7, 3/7, 6/7 की उलटी दिशा की दिक्-कोज्याएँ क्या होंगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch11-line-vector",
+   "topic": "11.3.1",
+   "template": "matrix",
+   "title": {
+    "en": "A line through a point, along a vector",
+    "hi": "बिंदु से जाती रेखा, सदिश के अनुदिश"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "line-3d",
+    "u": [
+     1,
+     2,
+     3
+    ],
+    "v": [
+     2,
+     1,
+     1
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:lambda",
+     "expect": "computed",
+     "say": {
+      "en": "Slide λ to 2 and watch the point move along the line.",
+      "hi": "λ को 2 पर सरकाओ और बिंदु को रेखा पर चलते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The line is r = (1, 2, 3) + λ(2, 1, 1). What is the point when λ = 2?",
+      "hi": "रेखा r = (1, 2, 3) + λ(2, 1, 1) है। λ = 2 पर बिंदु क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "(5, 4, 5)",
+       "hi": "बिंदु (5, 4, 5)"
+      },
+      {
+       "id": "b",
+       "en": "(3, 3, 4)",
+       "hi": "बिंदु (3, 3, 4)"
+      },
+      {
+       "id": "c",
+       "en": "(4, 2, 2)",
+       "hi": "बिंदु (4, 2, 2)"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "op:lambda",
+     "expect": "computed",
+     "say": {
+      "en": "Slide λ to −1, then to 0. Where does the point sit at λ = 0?",
+      "hi": "λ को −1 पर, फिर 0 पर सरकाओ। λ = 0 पर बिंदु कहाँ है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A line through the point P with position vector a, parallel to the vector b, is r = a + λb. Each value of λ gives one point: λ = 0 gives P itself, positive λ moves along b, negative λ moves the other way. At λ = 2: (1, 2, 3) + 2(2, 1, 1) = (5, 4, 5).",
+      "hi": "स्थिति सदिश a वाले बिंदु P से जाती और सदिश b के समांतर रेखा r = a + λb है। λ के हर मान से एक बिंदु मिलता है: λ = 0 पर P स्वयं, धनात्मक λ पर b की ओर, ऋणात्मक λ पर दूसरी ओर। λ = 2 पर: (1, 2, 3) + 2(2, 1, 1) = (5, 4, 5)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "At λ = −1, the point on r = (1, 2, 3) + λ(2, 1, 1) is:",
+        "hi": "r = (1, 2, 3) + λ(2, 1, 1) पर λ = −1 पर बिंदु है:"
+       },
+       "options": [
+        "(−1, 1, 2)",
+        "(3, 3, 4)",
+        "(2, 1, 1)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(1 − 2, 2 − 1, 3 − 1) = (−1, 1, 2).",
+        "hi": "(1 − 2, 2 − 1, 3 − 1) = (−1, 1, 2)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This is the point at λ = +1.",
+         "hi": "यह λ = +1 पर बिंदु है।"
+        },
+        {
+         "en": "This is the direction b itself, not a point on the line.",
+         "hi": "यह स्वयं दिशा b है, रेखा का कोई बिंदु नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which line passes through the origin along (1, 1, 1)?",
+        "hi": "मूल बिंदु से (1, 1, 1) के अनुदिश कौन-सी रेखा जाती है?"
+       },
+       "options": [
+        "r = λ(1, 1, 1)",
+        "r = (1, 1, 1) + λ(0, 0, 0)",
+        "r = (1, 1, 1)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Put a = 0: the point at λ = 0 is the origin.",
+        "hi": "a = 0 रखो: λ = 0 पर बिंदु मूल बिंदु है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A zero direction gives a single point, not a line.",
+         "hi": "शून्य दिशा से एक ही बिंदु मिलता है, रेखा नहीं।"
+        },
+        {
+         "en": "This is only one point, with no λ.",
+         "hi": "यह केवल एक बिंदु है, इसमें λ नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the tip of the direction b to change the line’s tilt. Does the line still pass through the same point P?",
+      "hi": "दिशा b का सिरा खींचकर रेखा का झुकाव बदलो। क्या रेखा अब भी उसी बिंदु P से गुज़रती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch11-two-lines",
+   "topic": "11.3",
+   "template": "matrix",
+   "title": {
+    "en": "Do two lines meet?",
+    "hi": "क्या दो रेखाएँ मिलती हैं?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "line-3d",
+    "u": [
+     0,
+     0,
+     0
+    ],
+    "v": [
+     1,
+     1,
+     0
+    ],
+    "a": [
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      0,
+      1,
+      1
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:lambda",
+     "expect": "computed",
+     "say": {
+      "en": "Slide λ along the first line and watch the point. Does it ever touch the second line?",
+      "hi": "पहली रेखा पर λ सरकाओ और बिंदु देखो। क्या वह दूसरी रेखा को कभी छूता है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The lines are r = λ(1, 1, 0) and r = (1, 0, 2) + μ(0, 1, 1). They are not parallel. Will they meet?",
+      "hi": "रेखाएँ r = λ(1, 1, 0) और r = (1, 0, 2) + μ(0, 1, 1) हैं। वे समांतर नहीं हैं। क्या वे मिलेंगी?"
+     },
+     "options": [
+      {
+       "id": "meet",
+       "en": "Yes, at one point",
+       "hi": "हाँ, एक बिंदु पर"
+      },
+      {
+       "id": "skew",
+       "en": "No, they pass without touching",
+       "hi": "नहीं, बिना छुए गुज़र जाती हैं"
+      },
+      {
+       "id": "same",
+       "en": "They are the same line",
+       "hi": "वे एक ही रेखा हैं"
+      }
+     ],
+     "answer": "skew"
+    },
+    {
+     "kind": "do",
+     "target": "op:show",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Show answer to see the check.",
+      "hi": "जाँच देखने के लिए उत्तर दिखाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two lines in space can be parallel, can meet at one point, or can be skew: neither parallel nor meeting. Here the z-values would need 0 = 2 + μ, so μ = −2, and the x-values λ = 1. Then y gives λ = μ, which is 1 = −2, which is false. So the lines never meet. They are skew.",
+      "hi": "अंतरिक्ष में दो रेखाएँ समांतर हो सकती हैं, एक बिंदु पर मिल सकती हैं, या विषमतलीय (skew) हो सकती हैं: न समांतर, न मिलने वाली। यहाँ z-मानों के लिए 0 = 2 + μ चाहिए, अतः μ = −2, और x-मानों से λ = 1। तब y से λ = μ, यानी 1 = −2, जो असत्य है। इसलिए रेखाएँ कभी नहीं मिलतीं। वे विषमतलीय हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Skew lines are lines that are:",
+        "hi": "विषमतलीय रेखाएँ वे हैं जो:"
+       },
+       "options": [
+        "neither parallel nor intersecting",
+        "parallel and intersecting",
+        "always in the same plane"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They lie in different planes, like a road and a flyover that crosses over it.",
+        "hi": "वे अलग-अलग तलों में होती हैं, जैसे एक सड़क और उसके ऊपर से गुज़रता फ्लाईओवर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Parallel lines never intersect, and skew lines are not parallel at all.",
+         "hi": "समांतर रेखाएँ कभी नहीं मिलतीं, और विषमतलीय रेखाएँ समांतर होती ही नहीं।"
+        },
+        {
+         "en": "Lines in one plane either meet or are parallel; skew lines need different planes.",
+         "hi": "एक तल की रेखाएँ या तो मिलती हैं या समांतर होती हैं; विषमतलीय रेखाओं को अलग तल चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can two skew lines exist in a flat plane (2D)?",
+        "hi": "क्या दो विषमतलीय रेखाएँ समतल (2D) में हो सकती हैं?"
+       },
+       "options": [
+        "No, in a plane lines meet or are parallel",
+        "Yes, always",
+        "Only if they are perpendicular"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Skew lines exist only in three-dimensional space.",
+        "hi": "विषमतलीय रेखाएँ केवल त्रिविमीय अंतरिक्ष में होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In a plane, two non-parallel lines must cross.",
+         "hi": "समतल में दो असमांतर रेखाएँ अवश्य कटती हैं।"
+        },
+        {
+         "en": "Perpendicular lines in a plane do meet.",
+         "hi": "समतल में लंबवत रेखाएँ मिलती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a road passing under a flyover. Which pair of lines is skew: the road and the flyover, or two lanes of the road?",
+      "hi": "किसी फ्लाईओवर के नीचे से गुज़रती सड़क को देखो। कौन-सी जोड़ी विषमतलीय है: सड़क और फ्लाईओवर, या सड़क की दो लेनें?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch11-relation",
+   "topic": "11.4",
+   "template": "sort",
+   "title": {
+    "en": "Parallel, perpendicular or neither?",
+    "hi": "समांतर, लंबवत या कुछ नहीं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "par",
+      "label": {
+       "en": "Parallel",
+       "hi": "समांतर"
+      }
+     },
+     {
+      "id": "perp",
+      "label": {
+       "en": "Perpendicular",
+       "hi": "लंबवत"
+      }
+     },
+     {
+      "id": "neither",
+      "label": {
+       "en": "Neither",
+       "hi": "दोनों नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "(1, 2, 3) and (2, 4, 6)",
+       "hi": "(1, 2, 3) और (2, 4, 6)"
+      },
+      "bin": "par",
+      "why": {
+       "en": "The second is 2 times the first.",
+       "hi": "दूसरा, पहले का 2 गुना है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "(1, 2, 3) and (−3, −6, −9)",
+       "hi": "(1, 2, 3) और (−3, −6, −9)"
+      },
+      "bin": "par",
+      "why": {
+       "en": "The second is −3 times the first. Opposite direction still counts as parallel.",
+       "hi": "दूसरा, पहले का −3 गुना है। उलटी दिशा भी समांतर मानी जाती है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "(2, −3, 6) and (4, −6, 12)",
+       "hi": "(2, −3, 6) और (4, −6, 12)"
+      },
+      "bin": "par",
+      "why": {
+       "en": "All three parts are in the same ratio, 1 : 2.",
+       "hi": "तीनों भाग एक ही अनुपात 1 : 2 में हैं।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "(1, 2, 2) and (2, 1, −2)",
+       "hi": "(1, 2, 2) और (2, 1, −2)"
+      },
+      "bin": "perp",
+      "why": {
+       "en": "Dot product: 2 + 2 − 4 = 0.",
+       "hi": "अदिश गुणनफल: 2 + 2 − 4 = 0।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "(3, −1, 2) and (1, 1, −1)",
+       "hi": "(3, −1, 2) और (1, 1, −1)"
+      },
+      "bin": "perp",
+      "why": {
+       "en": "Dot product: 3 − 1 − 2 = 0.",
+       "hi": "अदिश गुणनफल: 3 − 1 − 2 = 0।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "(1, 0, 0) and (0, 5, 0)",
+       "hi": "(1, 0, 0) और (0, 5, 0)"
+      },
+      "bin": "perp",
+      "why": {
+       "en": "Dot product: 0 + 0 + 0 = 0. The x-axis and the y-axis.",
+       "hi": "अदिश गुणनफल: 0 + 0 + 0 = 0। x-अक्ष और y-अक्ष।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "(1, 0, 1) and (1, 1, 0)",
+       "hi": "(1, 0, 1) और (1, 1, 0)"
+      },
+      "bin": "neither",
+      "why": {
+       "en": "Not multiples, and the dot product is 1, not 0.",
+       "hi": "गुणज नहीं हैं, और अदिश गुणनफल 1 है, 0 नहीं।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "(2, 1, 3) and (1, 2, 1)",
+       "hi": "(2, 1, 3) और (1, 2, 1)"
+      },
+      "bin": "neither",
+      "why": {
+       "en": "Not multiples, and the dot product is 2 + 2 + 3 = 7.",
+       "hi": "गुणज नहीं हैं, और अदिश गुणनफल 2 + 2 + 3 = 7 है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c4",
+     "expect": "placed:c4",
+     "say": {
+      "en": "Place (1, 2, 2) and (2, 1, −2). Multiply matching numbers and add.",
+      "hi": "(1, 2, 2) और (2, 1, −2) को रखो। संगत संख्याएँ गुणा करके जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two lines have direction ratios a₁, b₁, c₁ and a₂, b₂, c₂. When are the lines perpendicular?",
+      "hi": "दो रेखाओं के दिक्-अनुपात a₁, b₁, c₁ और a₂, b₂, c₂ हैं। रेखाएँ कब लंबवत होंगी?"
+     },
+     "options": [
+      {
+       "id": "dot",
+       "en": "When a₁a₂ + b₁b₂ + c₁c₂ = 0",
+       "hi": "जब a₁a₂ + b₁b₂ + c₁c₂ = 0"
+      },
+      {
+       "id": "ratio",
+       "en": "When a₁/a₂ = b₁/b₂ = c₁/c₂",
+       "hi": "जब a₁/a₂ = b₁/b₂ = c₁/c₂"
+      },
+      {
+       "id": "sum",
+       "en": "When a₁ + a₂ = 0",
+       "hi": "जब a₁ + a₂ = 0"
+      }
+     ],
+     "answer": "dot"
+    },
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Place (1, 2, 3) and (2, 4, 6). Is one a multiple of the other?",
+      "hi": "(1, 2, 3) और (2, 4, 6) को रखो। क्या एक दूसरे का गुणज है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all eight cards and tap Check.",
+      "hi": "आठों कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Lines with direction ratios (a₁, b₁, c₁) and (a₂, b₂, c₂) are parallel when the ratios are in proportion, a₁/a₂ = b₁/b₂ = c₁/c₂. They are perpendicular when a₁a₂ + b₁b₂ + c₁c₂ = 0. If neither test works, the lines make some other angle.",
+      "hi": "दिक्-अनुपात (a₁, b₁, c₁) और (a₂, b₂, c₂) वाली रेखाएँ समांतर हैं जब अनुपात समानुपाती हों, a₁/a₂ = b₁/b₂ = c₁/c₂। वे लंबवत हैं जब a₁a₂ + b₁b₂ + c₁c₂ = 0। यदि कोई भी जाँच सही न हो तो रेखाएँ किसी और कोण पर हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Lines with ratios (1, k, 2) and (3, 6, 6) are parallel when k =",
+        "hi": "अनुपात (1, k, 2) और (3, 6, 6) वाली रेखाएँ समांतर हैं जब k ="
+       },
+       "options": [
+        "2",
+        "3",
+        "6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The first is 1/3 of the second: k = 6 × 1/3.",
+        "hi": "पहला, दूसरे का 1/3 है: k = 6 × 1/3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 would need 3 : 6 to be 1 : 3; it is not in proportion.",
+         "hi": "k = 3 के लिए अनुपात 1 : 3 चाहिए; वह समानुपाती नहीं।"
+        },
+        {
+         "en": "6 copies the second line’s number without scaling.",
+         "hi": "6, दूसरी रेखा की संख्या को बिना घटाए उतार देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For which k are (1, k, 1) and (2, 3, −2) perpendicular?",
+        "hi": "किस k के लिए (1, k, 1) और (2, 3, −2) लंबवत हैं?"
+       },
+       "options": [
+        "0",
+        "1",
+        "2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 + 3k − 2 = 3k = 0, so k = 0.",
+        "hi": "2 + 3k − 2 = 3k = 0, अतः k = 0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "k = 1 gives 2 + 3 − 2 = 3, not 0.",
+         "hi": "k = 1 पर 2 + 3 − 2 = 3 मिलता है, 0 नहीं।"
+        },
+        {
+         "en": "k = 2 gives 2 + 6 − 2 = 6, not 0.",
+         "hi": "k = 2 पर 2 + 6 − 2 = 6 मिलता है, 0 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick two direction-ratio triples of your own that are perpendicular but have no zero in them.",
+      "hi": "अपने दो ऐसे दिक्-अनुपात त्रिक चुनो जो लंबवत हों पर उनमें कोई शून्य न हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch11-angle",
+   "topic": "11.4",
+   "template": "matrix",
+   "title": {
+    "en": "The angle between two lines",
+    "hi": "दो रेखाओं के बीच का कोण"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "dot",
+    "u": [
+     1,
+     2,
+     2
+    ],
+    "v": [
+     2,
+     2,
+     1
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:project",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Show the shadow. u and v are the directions of the two lines.",
+      "hi": "छाया दिखाओ दबाओ। u और v दोनों रेखाओं की दिशाएँ हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Here u · v = 2 + 4 + 2 = 8, and |u| = |v| = 3. What is cos θ?",
+      "hi": "यहाँ u · v = 2 + 4 + 2 = 8, और |u| = |v| = 3 है। cos θ क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "8/9",
+       "hi": "8/9, यानी आठ बटा नौ"
+      },
+      {
+       "id": "b",
+       "en": "8/3",
+       "hi": "8/3, यानी आठ बटा तीन"
+      },
+      {
+       "id": "c",
+       "en": "8",
+       "hi": "सीधे 8"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "op:show",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Show answer to see u · v.",
+      "hi": "u · v देखने के लिए उत्तर दिखाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The angle θ between two lines is the angle between their direction vectors: cos θ = |u · v| / (|u||v|). The bars on top keep θ between 0° and 90°, since a line has two opposite directions. Here cos θ = 8/9, so θ is about 27°.",
+      "hi": "दो रेखाओं के बीच का कोण θ उनके दिशा सदिशों के बीच का कोण है: cos θ = |u · v| / (|u||v|)। ऊपर की मापक रेखाएँ θ को 0° और 90° के बीच रखती हैं, क्योंकि रेखा की दो उलटी दिशाएँ होती हैं। यहाँ cos θ = 8/9, अतः θ लगभग 27° है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The angle between lines with direction ratios (1, 2, 2) and (2, 1, −2) is:",
+        "hi": "दिक्-अनुपात (1, 2, 2) और (2, 1, −2) वाली रेखाओं के बीच का कोण है:"
+       },
+       "options": [
+        "90°",
+        "0°",
+        "45°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The dot product 2 + 2 − 4 = 0, so cos θ = 0.",
+        "hi": "अदिश गुणनफल 2 + 2 − 4 = 0, इसलिए cos θ = 0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0° would need the lines to be parallel.",
+         "hi": "0° के लिए रेखाओं का समांतर होना ज़रूरी है।"
+        },
+        {
+         "en": "cos 45° is about 0.71; here the dot product is 0.",
+         "hi": "cos 45° लगभग 0.71 है; यहाँ अदिश गुणनफल 0 है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we put bars in |u · v|?",
+        "hi": "|u · v| में मापक रेखाएँ क्यों लगाते हैं?"
+       },
+       "options": [
+        "A line has two opposite directions, so we take the acute angle",
+        "To make the answer bigger",
+        "Because u · v can never be negative"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Reversing one direction changes the sign of u · v but not the line.",
+        "hi": "एक दिशा उलटने से u · v का चिह्न बदलता है, पर रेखा नहीं बदलती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The bars do not enlarge anything; they only remove the sign.",
+         "hi": "मापक रेखाएँ कुछ बड़ा नहीं करतीं; वे केवल चिह्न हटाती हैं।"
+        },
+        {
+         "en": "u · v can be negative; the bars are there to handle that.",
+         "hi": "u · v ऋणात्मक हो सकता है; मापक रेखाएँ उसी के लिए हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the tip of v until the lines are perpendicular. What does u · v show?",
+      "hi": "v का सिरा तब तक खींचो जब तक रेखाएँ लंबवत न हो जाएँ। u · v क्या दिखाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch11-skew-distance",
+   "topic": "11.5.1",
+   "template": "matrix",
+   "title": {
+    "en": "Shortest distance between skew lines",
+    "hi": "विषमतलीय रेखाओं के बीच की न्यूनतम दूरी"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "mode": "cross",
+    "u": [
+     1,
+     1,
+     0
+    ],
+    "v": [
+     0,
+     1,
+     1
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:parallelogram",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Shade the area. u and v are the directions of two skew lines.",
+      "hi": "क्षेत्रफल रंगो दबाओ। u और v दो विषमतलीय रेखाओं की दिशाएँ हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The shortest link between two skew lines is perpendicular to both. Which vector is perpendicular to both u and v?",
+      "hi": "दो विषमतलीय रेखाओं के बीच सबसे छोटा जोड़ने वाला खंड दोनों के लंबवत होता है। u और v दोनों के लंबवत कौन-सा सदिश है?"
+     },
+     "options": [
+      {
+       "id": "cross",
+       "en": "u × v",
+       "hi": "सदिश गुणनफल u × v"
+      },
+      {
+       "id": "sum",
+       "en": "u + v",
+       "hi": "योग u + v"
+      },
+      {
+       "id": "dot",
+       "en": "u · v",
+       "hi": "अदिश गुणनफल u · v"
+      }
+     ],
+     "answer": "cross"
+    },
+    {
+     "kind": "do",
+     "target": "op:show",
+     "expect": "resultant",
+     "say": {
+      "en": "Tap Show answer to see u × v.",
+      "hi": "u × v देखने के लिए उत्तर दिखाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For lines r = a₁ + λb₁ and r = a₂ + μb₂, the vector b₁ × b₂ is perpendicular to both. The shortest distance is the part of (a₂ − a₁) along it: d = |(a₂ − a₁) · (b₁ × b₂)| / |b₁ × b₂|. With a₁ = (0, 0, 0), a₂ = (1, 0, 2), b₁ × b₂ = (1, −1, 1): d = |1 + 0 + 2| / √3 = 3/√3 = √3.",
+      "hi": "रेखाओं r = a₁ + λb₁ और r = a₂ + μb₂ के लिए सदिश b₁ × b₂ दोनों के लंबवत है। न्यूनतम दूरी (a₂ − a₁) का उस पर भाग है: d = |(a₂ − a₁) · (b₁ × b₂)| / |b₁ × b₂|। a₁ = (0, 0, 0), a₂ = (1, 0, 2), b₁ × b₂ = (1, −1, 1) के साथ: d = |1 + 0 + 2| / √3 = 3/√3 = √3।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "With b₁ × b₂ = (1, −1, 1) and a₂ − a₁ = (1, 0, 2), the shortest distance is:",
+        "hi": "b₁ × b₂ = (1, −1, 1) और a₂ − a₁ = (1, 0, 2) के साथ न्यूनतम दूरी है:"
+       },
+       "options": [
+        "√3",
+        "3",
+        "3√3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 divided by |b₁ × b₂| = √3 gives √3.",
+        "hi": "3 को |b₁ × b₂| = √3 से भाग देने पर √3 मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 is the dot product alone; the division by the length is missing.",
+         "hi": "3 केवल अदिश गुणनफल है; लंबाई से भाग देना छूट गया।"
+        },
+        {
+         "en": "3√3 multiplies by the length instead of dividing.",
+         "hi": "3√3 में भाग की जगह लंबाई से गुणा कर दिया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If b₁ × b₂ = 0, the lines are:",
+        "hi": "यदि b₁ × b₂ = 0 हो तो रेखाएँ हैं:"
+       },
+       "options": [
+        "parallel",
+        "skew",
+        "perpendicular"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The cross product of parallel vectors is the zero vector.",
+        "hi": "समांतर सदिशों का सदिश गुणनफल शून्य सदिश होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Skew lines are not parallel, so their cross product is not 0.",
+         "hi": "विषमतलीय रेखाएँ समांतर नहीं होतीं, इसलिए उनका सदिश गुणनफल 0 नहीं होता।"
+        },
+        {
+         "en": "Perpendicular directions have a zero dot product, not a zero cross product.",
+         "hi": "लंबवत दिशाओं का अदिश गुणनफल शून्य होता है, सदिश गुणनफल नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make u and v parallel and see what happens to u × v. Why does the formula then fail?",
+      "hi": "u और v को समांतर बनाओ और देखो u × v का क्या होता है। तब सूत्र क्यों विफल हो जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch11-parallel-distance",
+   "topic": "11.5.2",
+   "template": "sequence",
+   "title": {
+    "en": "Distance between parallel lines",
+    "hi": "समांतर रेखाओं के बीच की दूरी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "e1",
+      "text": {
+       "en": "Check the lines run the same way: both along b = (0, 0, 1)",
+       "hi": "जाँचो कि रेखाएँ एक ही ओर जाती हैं: दोनों b = (0, 0, 1) के अनुदिश"
+      }
+     },
+     {
+      "id": "e2",
+      "text": {
+       "en": "Take one point on each line: a₁ = (0, 0, 0) and a₂ = (3, 4, 5)",
+       "hi": "हर रेखा पर एक बिंदु लो: a₁ = (0, 0, 0) और a₂ = (3, 4, 5)"
+      }
+     },
+     {
+      "id": "e3",
+      "text": {
+       "en": "Join the points: a₂ − a₁ = (3, 4, 5)",
+       "hi": "बिंदुओं को जोड़ो: a₂ − a₁ = (3, 4, 5)"
+      }
+     },
+     {
+      "id": "e4",
+      "text": {
+       "en": "Cross with b: b × (a₂ − a₁) = (−4, 3, 0)",
+       "hi": "b से सदिश गुणन: b × (a₂ − a₁) = (−4, 3, 0)"
+      }
+     },
+     {
+      "id": "e5",
+      "text": {
+       "en": "Find its length: |(−4, 3, 0)| = 5",
+       "hi": "उसकी लंबाई निकालो: |(−4, 3, 0)| = 5"
+      }
+     },
+     {
+      "id": "e6",
+      "text": {
+       "en": "Divide by |b| = 1: the distance is 5",
+       "hi": "|b| = 1 से भाग दो: दूरी 5 है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:e4",
+     "expect": "placed:e4",
+     "say": {
+      "en": "Tap the cross product card and put it in place 4.",
+      "hi": "सदिश गुणनफल वाला कार्ड छुओ और उसे स्थान 4 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The points are 5√2 apart (|a₂ − a₁| = √50), but the lines are closer. Why?",
+      "hi": "बिंदु 5√2 दूर हैं (|a₂ − a₁| = √50), पर रेखाएँ उससे पास हैं। क्यों?"
+     },
+     "options": [
+      {
+       "id": "slide",
+       "en": "The joining segment also slides along the lines; only the sideways part counts",
+       "hi": "जोड़ने वाला खंड रेखाओं के अनुदिश भी खिसकता है; केवल बगल की दूरी गिनी जाती है"
+      },
+      {
+       "id": "err",
+       "en": "The points are measured wrongly",
+       "hi": "बिंदु ग़लत नापे गए हैं"
+      },
+      {
+       "id": "same",
+       "en": "It is the same; there is no difference",
+       "hi": "वही है; कोई अंतर नहीं"
+      }
+     ],
+     "answer": "slide"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all six steps in order and tap Check.",
+      "hi": "छहों चरण क्रम में रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For parallel lines r = a₁ + λb and r = a₂ + μb, the shortest distance is d = |b × (a₂ − a₁)| / |b|. The cross product removes the part of a₂ − a₁ that runs along the lines and keeps only the sideways part. Here that is 5, while the full gap between the points is √50, which is about 7.07.",
+      "hi": "समांतर रेखाओं r = a₁ + λb और r = a₂ + μb के लिए न्यूनतम दूरी d = |b × (a₂ − a₁)| / |b| है। सदिश गुणनफल a₂ − a₁ का वह भाग हटा देता है जो रेखाओं के अनुदिश है और केवल बगल वाला भाग रखता है। यहाँ वह 5 है, जबकि बिंदुओं के बीच पूरी दूरी √50, यानी लगभग 7.07 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two parallel rails along (0, 0, 1) pass through (0, 0, 0) and (6, 8, 3). Their distance is:",
+        "hi": "दो समांतर पटरियाँ (0, 0, 1) के अनुदिश हैं और (0, 0, 0) तथा (6, 8, 3) से गुज़रती हैं। उनके बीच की दूरी है:"
+       },
+       "options": [
+        "10",
+        "11",
+        "√109"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "b × (6, 8, 3) = (−8, 6, 0), length 10, and |b| = 1.",
+        "hi": "b × (6, 8, 3) = (−8, 6, 0), लंबाई 10, और |b| = 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "11 adds up 6 + 8 − 3 or similar; it is not a length.",
+         "hi": "11 कुछ-कुछ 6 + 8 − 3 जैसा जोड़ है; यह लंबाई नहीं है।"
+        },
+        {
+         "en": "√109 is the full gap between the two points, including the slide along the rails.",
+         "hi": "√109 दोनों बिंदुओं के बीच की पूरी दूरी है, पटरियों के अनुदिश खिसकाव सहित।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we divide by |b|?",
+        "hi": "हम |b| से भाग क्यों देते हैं?"
+       },
+       "options": [
+        "The cross product has length |b| × (distance), so we remove |b|",
+        "To make the answer an integer",
+        "Because b is a unit vector"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "|b × w| = |b| |w| sin θ, and |w| sin θ is the sideways distance.",
+        "hi": "|b × w| = |b| |w| sin θ, और |w| sin θ बगल की दूरी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The division is needed for any b, not for making an integer.",
+         "hi": "भाग किसी भी b के लिए चाहिए, पूर्णांक बनाने के लिए नहीं।"
+        },
+        {
+         "en": "b need not be a unit vector; the division handles any length.",
+         "hi": "b का इकाई सदिश होना ज़रूरी नहीं; भाग किसी भी लंबाई को सँभाल लेता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take the rails as parallel lines on a map. What is the distance between two parallel lines in a plane, and how is it a special case?",
+      "hi": "पटरियों को मानचित्र पर समांतर रेखाएँ मानो। समतल में दो समांतर रेखाओं के बीच की दूरी क्या होती है, और यह विशेष स्थिति कैसे है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Chapter hook: lines in the sky",
+   "shows": "Two aircraft trails crossing in a clear evening sky, one clearly higher than the other, so they look like they cross but are far apart",
+   "view": "Looking up, wide lens, golden-hour light",
+   "right": "Two separate straight trails at different altitudes",
+   "avoid": "Aircraft markings, birds in front"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "11.5.1",
+   "use": "Skew lines in the city",
+   "shows": "A road passing under a flyover in a metro city, seen so the flyover and the road run in different directions",
+   "view": "High angle from a footbridge, daytime",
+   "right": "Flyover clearly above the road and not parallel to it",
+   "avoid": "Vehicle numbers, advertisement boards"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "11.2",
+   "use": "Direction of a line: guy wires",
+   "shows": "A tall mobile tower held by guy wires running to the ground in three different directions",
+   "view": "Low wide view, clear sky",
+   "right": "Wires straight and taut at different angles",
+   "avoid": "Company names, logos"
+  },
+  {
+   "n": 4,
+   "kind": "3DM",
+   "topic": "11.3",
+   "use": "A line fixed in space",
+   "shows": "A straight bamboo rod stuck at a slant in a heap of sand, shown from front, side, top and three-quarter views",
+   "view": "Same size and centre in each view, plain background",
+   "right": "Rod straight; its slant visible in front and side views",
+   "avoid": "Text, footprints"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "11.4",
+   "use": "Angle between two lines",
+   "shows": "Two roads meeting at a junction in a hill town, seen from above at an angle",
+   "view": "Drone-style top-down view, morning light",
+   "right": "Both roads straight near the junction, angle clear",
+   "avoid": "Vehicles, signboards, people"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "11.5.2",
+   "use": "Parallel lines in life",
+   "shows": "Two parallel railway tracks running to the horizon on an open plain",
+   "view": "Low centred view, soft light",
+   "right": "Rails truly parallel; sleepers evenly spaced",
+   "avoid": "Trains, people, signal boards"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "11.3.1",
+   "use": "Three-axes frame",
+   "shows": "A clean three-axes frame with x, y and z axes meeting at the origin and a light grid on the floor plane, no letters or numbers",
+   "view": "Isometric view on white, thin dark lines",
+   "right": "Axes at right angles in the drawing",
+   "avoid": "Letters, numbers, arrowhead text"
+  }
+ ]
+}

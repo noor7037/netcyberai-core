@@ -1,0 +1,492 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.ch05",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Mithai (मिठाई)",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Story: the donkey who wanted sweets",
+   "labs": [
+    "c01-hindi-ahsr1-ch05-friends-advice",
+    "c01-hindi-ahsr1-ch05-sweet-story"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Picture story of the squirrel, bird and caterpillar",
+   "labs": [],
+   "why_no_lab": "A child makes up the story aloud from pictures; this is a speaking skill the teacher listens to."
+  },
+  {
+   "n": "5.3",
+   "title": "Sweet words: मिठाई, ईख, इमली",
+   "labs": [],
+   "why_no_lab": "Learnt by tasting and saying the words in class; the matra lab for इ/ई is in the next chapter."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-ch05-friends-advice",
+   "topic": "5.1",
+   "template": "match",
+   "title": {
+    "en": "What did each friend say?",
+    "hi": "किस दोस्त ने क्या कहा?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "bhalu",
+      "left": {
+       "en": "Bear",
+       "hi": "भालू"
+      },
+      "right": {
+       "en": "Eat honey",
+       "hi": "शहद खा लो"
+      },
+      "why": {
+       "en": "The bear said: eat honey.",
+       "hi": "भालू ने कहा: शहद खा लो।"
+      }
+     },
+     {
+      "id": "khargosh",
+      "left": {
+       "en": "Rabbit",
+       "hi": "खरगोश"
+      },
+      "right": {
+       "en": "Eat a carrot",
+       "hi": "गाजर खा लो"
+      },
+      "why": {
+       "en": "The rabbit said: eat a carrot.",
+       "hi": "खरगोश ने कहा: गाजर खा लो।"
+      }
+     },
+     {
+      "id": "cheenta",
+      "left": {
+       "en": "Ant",
+       "hi": "चींटा"
+      },
+      "right": {
+       "en": "Eat jaggery",
+       "hi": "गुड़ खा लो"
+      },
+      "why": {
+       "en": "The ant said: eat jaggery.",
+       "hi": "चींटे ने कहा: गुड़ खा लो।"
+      }
+     },
+     {
+      "id": "haathi",
+      "left": {
+       "en": "Elephant",
+       "hi": "हाथी"
+      },
+      "right": {
+       "en": "Eat sugarcane",
+       "hi": "गन्ना खा लो"
+      },
+      "why": {
+       "en": "The elephant said: eat sugarcane.",
+       "hi": "हाथी ने कहा: गन्ना खा लो।"
+      }
+     },
+     {
+      "id": "gilahri",
+      "left": {
+       "en": "Squirrel",
+       "hi": "गिलहरी"
+      },
+      "right": {
+       "en": "Eat a mango",
+       "hi": "आम खा लो"
+      },
+      "why": {
+       "en": "The squirrel said: eat a mango.",
+       "hi": "गिलहरी ने कहा: आम खा लो।"
+      }
+     },
+     {
+      "id": "billi",
+      "left": {
+       "en": "Cat",
+       "hi": "बिल्ली"
+      },
+      "right": {
+       "en": "Go to the sweet shop",
+       "hi": "हलवाई की दुकान चलो"
+      },
+      "why": {
+       "en": "The cat said: let us go to the halwai's shop. The donkey liked this idea.",
+       "hi": "बिल्ली ने कहा: हलवाई की दुकान चलो। गधे को यह बात पसंद आई।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:bhalu",
+     "expect": "matched:bhalu",
+     "say": {
+      "en": "Tap a card on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर का कोई कार्ड छुओ, फिर दाईं ओर उसकी जोड़ी छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which friend gave the idea the donkey finally liked?",
+      "hi": "गधे को आख़िर में किसकी बात पसंद आई?"
+     },
+     "options": [
+      {
+       "id": "cat",
+       "en": "The cat",
+       "hi": "बिल्ली"
+      },
+      {
+       "id": "bear",
+       "en": "The bear",
+       "hi": "भालू"
+      },
+      {
+       "id": "ant",
+       "en": "The ant",
+       "hi": "चींटा"
+      }
+     ],
+     "answer": "cat"
+    },
+    {
+     "kind": "do",
+     "target": "left:billi",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the pairs until all are joined.",
+      "hi": "बाकी जोड़ियाँ तब तक मिलाओ जब तक सब जुड़ न जाएँ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The donkey wanted a sweet thing and all his friends gave an idea. He said no to honey, carrot, jaggery, sugarcane and mango. He liked only the cat's idea of going to the halwai's shop.",
+      "hi": "गधे का मन मिठाई खाने का था और सब दोस्तों ने कोई सुझाव दिया। उसने शहद, गाजर, गुड़, गन्ना और आम सबको मना किया। उसे सिर्फ़ बिल्ली की बात पसंद आई कि हलवाई की दुकान चलें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What did the donkey want?",
+        "hi": "गधा क्या खाना चाहता था?"
+       },
+       "options": [
+        {
+         "en": "A sweet",
+         "hi": "मिठाई"
+        },
+        {
+         "en": "Green grass",
+         "hi": "हरी घास"
+        },
+        {
+         "en": "A roti",
+         "hi": "रोटी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The donkey's heart wished for sweets.",
+        "hi": "गधे का मन मिठाई खाने का था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "He wanted something sweet, not grass.",
+         "hi": "वह कुछ मीठा खाना चाहता था, घास नहीं।"
+        },
+        {
+         "en": "The story does not talk about roti; he wanted sweets.",
+         "hi": "कहानी में रोटी की बात नहीं है; उसे मिठाई चाहिए थी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who gave the idea of jaggery?",
+        "hi": "गुड़ खाने की सलाह किसने दी?"
+       },
+       "options": [
+        {
+         "en": "The ant",
+         "hi": "चींटे ने"
+        },
+        {
+         "en": "The elephant",
+         "hi": "हाथी ने"
+        },
+        {
+         "en": "The rabbit",
+         "hi": "खरगोश ने"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ant said: eat jaggery.",
+        "hi": "चींटे ने कहा: गुड़ खा लो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The elephant suggested sugarcane, not jaggery.",
+         "hi": "हाथी ने गन्ना कहा था, गुड़ नहीं।"
+        },
+        {
+         "en": "The rabbit suggested carrots.",
+         "hi": "खरगोश ने गाजर कहा था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which sweet food do you like best? Tell your friend and ask what he or she likes.",
+      "hi": "तुम्हें कौन-सी मीठी चीज़ सबसे अच्छी लगती है? दोस्त को बताओ और उसकी पसंद पूछो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch05-sweet-story",
+   "topic": "5.1",
+   "template": "sequence",
+   "title": {
+    "en": "Order the friends' ideas",
+    "hi": "दोस्तों के सुझाव क्रम में लगाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "i1",
+      "text": {
+       "en": "The bear says: eat honey",
+       "hi": "भालू कहता है: शहद खा लो"
+      }
+     },
+     {
+      "id": "i2",
+      "text": {
+       "en": "The rabbit says: eat a carrot",
+       "hi": "खरगोश कहता है: गाजर खा लो"
+      }
+     },
+     {
+      "id": "i3",
+      "text": {
+       "en": "The ant says: eat jaggery",
+       "hi": "चींटा कहता है: गुड़ खा लो"
+      }
+     },
+     {
+      "id": "i4",
+      "text": {
+       "en": "The elephant says: eat sugarcane",
+       "hi": "हाथी कहता है: गन्ना खा लो"
+      }
+     },
+     {
+      "id": "i5",
+      "text": {
+       "en": "The squirrel says: eat a mango",
+       "hi": "गिलहरी कहती है: आम खा लो"
+      }
+     },
+     {
+      "id": "i6",
+      "text": {
+       "en": "The cat says: go to the halwai's shop",
+       "hi": "बिल्ली कहती है: हलवाई की दुकान चलो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:i1",
+     "expect": "placed:i1",
+     "say": {
+      "en": "Tap the card that happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Whose idea comes LAST in the story?",
+      "hi": "कहानी में सबसे आख़िर में किसका सुझाव आता है?"
+     },
+     "options": [
+      {
+       "id": "i6",
+       "en": "The cat says: go to the halwai's shop",
+       "hi": "बिल्ली कहती है: हलवाई की दुकान चलो"
+      },
+      {
+       "id": "i1",
+       "en": "The bear says: eat honey",
+       "hi": "भालू कहता है: शहद खा लो"
+      },
+      {
+       "id": "i3",
+       "en": "The ant says: eat jaggery",
+       "hi": "चींटा कहता है: गुड़ खा लो"
+      }
+     ],
+     "answer": "i6"
+    },
+    {
+     "kind": "do",
+     "target": "item:i6",
+     "expect": "placed:i6",
+     "say": {
+      "en": "Now put the LAST card in the last place.",
+      "hi": "अब सबसे आख़िरी कार्ड को आख़िरी स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Stories go in a line. The donkey heard one idea after another and said no each time. The last idea was the one that worked. When we put a story in order we remember it well.",
+      "hi": "कहानियाँ एक कड़ी में चलती हैं। गधे ने एक के बाद एक सुझाव सुने और हर बार मना किया। आख़िरी सुझाव ठीक निकला। कहानी को क्रम में रखने से वह अच्छी तरह याद रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who spoke just before the cat?",
+        "hi": "बिल्ली से ठीक पहले किसने बात कही?"
+       },
+       "options": [
+        {
+         "en": "The squirrel",
+         "hi": "गिलहरी ने"
+        },
+        {
+         "en": "The bear",
+         "hi": "भालू ने"
+        },
+        {
+         "en": "The ant",
+         "hi": "चींटे ने"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Order: bear, rabbit, ant, elephant, squirrel, cat.",
+        "hi": "क्रम: भालू, खरगोश, चींटा, हाथी, गिलहरी, बिल्ली।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The bear spoke first, at the beginning.",
+         "hi": "भालू ने सबसे पहले बात कही थी।"
+        },
+        {
+         "en": "The ant spoke third, in the middle.",
+         "hi": "चींटे ने तीसरे नंबर पर बात कही थी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tell this story to your family. Add one more friend who gives another idea.",
+      "hi": "यह कहानी परिवार को सुनाओ। एक और दोस्त जोड़ो जो नया सुझाव देता है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Opening picture",
+   "shows": "A donkey in a village lane looking longingly towards a sweet shop with six animal friends around him",
+   "view": "Eye level, warm afternoon",
+   "right": "Donkey, bear, rabbit, ant, elephant, squirrel and cat all visible",
+   "avoid": "Text boards on the shop",
+   "n": 1
+  },
+  {
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Sweet foods for the story",
+   "shows": "Six cut-outs: honey jar, carrot, jaggery lump, sugarcane stalk, ripe mango, plate of jalebi",
+   "view": "Three-quarter view each",
+   "right": "True colours: golden honey, orange carrot, brown jaggery",
+   "avoid": "Brand labels",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Animal friends cut-outs",
+   "shows": "Donkey, bear, rabbit, ant, elephant, squirrel, cat as friendly real-looking cut-outs",
+   "view": "Side or three-quarter view",
+   "right": "Real proportions, kind faces",
+   "avoid": "Cartoon humanisation",
+   "n": 3
+  },
+  {
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Halwai's shop",
+   "shows": "A traditional sweet shop with trays of laddoo and jalebi and a halwai frying",
+   "view": "Eye level, steam and warm light",
+   "right": "Real Indian mithai; halwai wearing apron",
+   "avoid": "Readable shop names or prices",
+   "n": 4
+  },
+  {
+   "kind": "SEQ",
+   "topic": "5.2",
+   "use": "Squirrel picture story",
+   "shows": "Four frames: squirrel finds a nut, a bird shares a branch, a caterpillar crawls on the leaf, squirrel eats",
+   "view": "Same tree and camera",
+   "right": "Clear small objects in each frame",
+   "avoid": "Different trees",
+   "n": 5
+  }
+ ]
+}

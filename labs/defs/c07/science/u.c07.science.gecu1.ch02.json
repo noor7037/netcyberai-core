@@ -1,0 +1,1308 @@
+{
+ "chapter_key": "u.c07.science.gecu1.ch02",
+ "class": 7,
+ "subject_id": "science",
+ "title": "Exploring Substances: Acidic, Basic, and Neutral",
+ "source": "https://ncert.nic.in/textbook/pdf/gecu102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Nature as our laboratory: acidic, basic and neutral substances",
+   "labs": [
+    "c07-science-gecu1-ch02-sort-nature"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.1.1",
+   "title": "Litmus as an indicator",
+   "labs": [
+    "c07-science-gecu1-ch02-litmus"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.1.2",
+   "title": "Red rose (and red hibiscus) as an indicator",
+   "labs": [
+    "c07-science-gecu1-ch02-flower-indicator"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.1.3",
+   "title": "Turmeric as an indicator",
+   "labs": [
+    "c07-science-gecu1-ch02-turmeric"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "What happens when acidic and basic substances mix (neutralisation)",
+   "labs": [
+    "c07-science-gecu1-ch02-neutralise"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Neutralisation in daily life",
+   "labs": [
+    "c07-science-gecu1-ch02-daily-life"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Holistic lens: lichens as indicators of clean air",
+   "labs": [],
+   "why_no_lab": "A photo of lichens on bark and the reader explain this best; there is nothing for a child to mix or test here."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-science-gecu1-ch02-sort-nature",
+   "topic": "2.1",
+   "template": "sort",
+   "title": {
+    "en": "Acidic, basic or neutral?",
+    "hi": "अम्लीय, क्षारीय या उदासीन?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "acid",
+      "label": {
+       "en": "Acidic",
+       "hi": "अम्लीय"
+      }
+     },
+     {
+      "id": "base",
+      "label": {
+       "en": "Basic",
+       "hi": "क्षारीय"
+      }
+     },
+     {
+      "id": "neutral",
+      "label": {
+       "en": "Neutral",
+       "hi": "उदासीन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "lemon",
+      "text": {
+       "en": "Lemon juice",
+       "hi": "नींबू का रस"
+      },
+      "bin": "acid",
+      "why": {
+       "en": "Lemon juice turns blue litmus red. It is acidic.",
+       "hi": "नींबू का रस नीले लिटमस को लाल करता है। यह अम्लीय है।"
+      }
+     },
+     {
+      "id": "vinegar",
+      "text": {
+       "en": "Vinegar (sirka)",
+       "hi": "सिरका"
+      },
+      "bin": "acid",
+      "why": {
+       "en": "Vinegar turns blue litmus red. It is acidic.",
+       "hi": "सिरका नीले लिटमस को लाल करता है। यह अम्लीय है।"
+      }
+     },
+     {
+      "id": "amla",
+      "text": {
+       "en": "Amla juice",
+       "hi": "आँवले का रस"
+      },
+      "bin": "acid",
+      "why": {
+       "en": "Amla juice turns blue litmus red, so it is acidic.",
+       "hi": "आँवले का रस नीले लिटमस को लाल करता है, इसलिए यह अम्लीय है।"
+      }
+     },
+     {
+      "id": "curd",
+      "text": {
+       "en": "Curd (dahi)",
+       "hi": "दही"
+      },
+      "bin": "acid",
+      "why": {
+       "en": "Curd turns blue litmus red. It is acidic.",
+       "hi": "दही नीले लिटमस को लाल करता है। यह अम्लीय है।"
+      }
+     },
+     {
+      "id": "imli",
+      "text": {
+       "en": "Tamarind (imli) water",
+       "hi": "इमली का पानी"
+      },
+      "bin": "acid",
+      "why": {
+       "en": "Tamarind water turns blue litmus red. It is acidic.",
+       "hi": "इमली का पानी नीले लिटमस को लाल करता है। यह अम्लीय है।"
+      }
+     },
+     {
+      "id": "soap",
+      "text": {
+       "en": "Soap solution",
+       "hi": "साबुन का घोल"
+      },
+      "bin": "base",
+      "why": {
+       "en": "Soap solution turns red litmus blue. It is basic.",
+       "hi": "साबुन का घोल लाल लिटमस को नीला करता है। यह क्षारीय है।"
+      }
+     },
+     {
+      "id": "soda",
+      "text": {
+       "en": "Baking soda solution",
+       "hi": "खाने के सोडे का घोल"
+      },
+      "bin": "base",
+      "why": {
+       "en": "Baking soda solution turns red litmus blue. It is basic.",
+       "hi": "खाने के सोडे का घोल लाल लिटमस को नीला करता है। यह क्षारीय है।"
+      }
+     },
+     {
+      "id": "lime",
+      "text": {
+       "en": "Lime water (chuna pani)",
+       "hi": "चूने का पानी"
+      },
+      "bin": "base",
+      "why": {
+       "en": "Lime water turns red litmus blue. It is basic.",
+       "hi": "चूने का पानी लाल लिटमस को नीला करता है। यह क्षारीय है।"
+      }
+     },
+     {
+      "id": "wsoda",
+      "text": {
+       "en": "Washing soda solution",
+       "hi": "कपड़े धोने के सोडे का घोल"
+      },
+      "bin": "base",
+      "why": {
+       "en": "Washing soda solution turns red litmus blue. It is basic.",
+       "hi": "कपड़े धोने के सोडे का घोल लाल लिटमस को नीला करता है। यह क्षारीय है।"
+      }
+     },
+     {
+      "id": "salt",
+      "text": {
+       "en": "Salt solution",
+       "hi": "नमक का घोल"
+      },
+      "bin": "neutral",
+      "why": {
+       "en": "Salt solution changes neither red nor blue litmus. It is neutral.",
+       "hi": "नमक का घोल न लाल लिटमस बदलता है, न नीला। यह उदासीन है।"
+      }
+     },
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Sugar solution",
+       "hi": "चीनी का घोल"
+      },
+      "bin": "neutral",
+      "why": {
+       "en": "Sugar solution changes neither litmus. It is neutral.",
+       "hi": "चीनी का घोल किसी भी लिटमस को नहीं बदलता। यह उदासीन है।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Pure (distilled) water",
+       "hi": "शुद्ध (आसुत) जल"
+      },
+      "bin": "neutral",
+      "why": {
+       "en": "Pure water changes neither litmus. It is neutral.",
+       "hi": "शुद्ध जल किसी भी लिटमस को नहीं बदलता। यह उदासीन है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:lemon",
+     "expect": "correct:lemon",
+     "say": {
+      "en": "Tap the lemon juice card, then tap its group.",
+      "hi": "नींबू के रस वाले कार्ड पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:soap",
+     "expect": "correct:soap",
+     "say": {
+      "en": "Now place the soap solution card.",
+      "hi": "अब साबुन के घोल वाला कार्ड सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Salt solution does not change red or blue litmus. Where does it go?",
+      "hi": "नमक का घोल न लाल लिटमस बदलता है, न नीला। यह कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "neutral",
+       "en": "Neutral",
+       "hi": "उदासीन"
+      },
+      {
+       "id": "acid",
+       "en": "Acidic",
+       "hi": "अम्लीय"
+      },
+      {
+       "id": "base",
+       "en": "Basic",
+       "hi": "क्षारीय"
+      }
+     ],
+     "answer": "neutral"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाक़ी सारे कार्ड छाँटो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many sour things around us, like lemon, amla, curd and tamarind, are acidic. Soap, baking soda and lime water are basic; they often feel soapy. Salt water, sugar water and pure water are neutral. We never taste a substance to test it; we use an indicator such as litmus.",
+      "hi": "हमारे आसपास की कई खट्टी चीज़ें, जैसे नींबू, आँवला, दही और इमली, अम्लीय हैं। साबुन, खाने का सोडा और चूने का पानी क्षारीय हैं; छूने में ये अक्सर साबुन जैसे चिकने लगते हैं। नमक का पानी, चीनी का पानी और शुद्ध जल उदासीन हैं। किसी पदार्थ को परखने के लिए हम उसे कभी चखते नहीं; हम लिटमस जैसे सूचक का उपयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A liquid turns red litmus blue. What is it?",
+        "hi": "एक द्रव लाल लिटमस को नीला कर देता है। वह क्या है?"
+       },
+       "options": [
+        {
+         "en": "Acidic",
+         "hi": "अम्लीय"
+        },
+        {
+         "en": "Basic",
+         "hi": "क्षारीय"
+        },
+        {
+         "en": "Neutral",
+         "hi": "उदासीन"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Bases turn red litmus blue.",
+        "hi": "क्षारक लाल लिटमस को नीला करते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Acids do the opposite: they turn blue litmus red.",
+         "hi": "अम्ल इसका उल्टा करते हैं: वे नीले लिटमस को लाल करते हैं।"
+        },
+        "",
+        {
+         "en": "A neutral liquid changes neither litmus colour.",
+         "hi": "उदासीन द्रव लिटमस का कोई रंग नहीं बदलता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why should we not taste substances to find out if they are acidic?",
+        "hi": "यह जानने के लिए कि कोई पदार्थ अम्लीय है या नहीं, हमें उसे क्यों नहीं चखना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Some substances can harm us",
+         "hi": "कुछ पदार्थ हमें नुक़सान पहुँचा सकते हैं"
+        },
+        {
+         "en": "Taste always gives the right answer",
+         "hi": "स्वाद हमेशा सही उत्तर देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Many lab substances are harmful. Indicators let us test safely.",
+        "hi": "प्रयोगशाला के कई पदार्थ हानिकारक होते हैं। सूचकों से हम सुरक्षित जाँच कर सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Taste is not safe and not reliable; many acids and bases are harmful to taste.",
+         "hi": "स्वाद न सुरक्षित है, न भरोसेमंद; कई अम्ल और क्षारक चखने पर हानि करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and sort without mistakes. Which other things from your kitchen would you like to test with litmus?",
+      "hi": "'फिर से शुरू' दबाओ और बिना ग़लती छाँटो। अपनी रसोई की और कौन-सी चीज़ें तुम लिटमस से जाँचना चाहोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch02-litmus",
+   "topic": "2.1.1",
+   "template": "beaker",
+   "title": {
+    "en": "Litmus: the colour test",
+    "hi": "लिटमस: रंग से जाँच"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "lemon",
+     "soapsol",
+     "saltsol",
+     "bluelitmus",
+     "redlitmus"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:lemon",
+     "expect": "pick:lemon",
+     "say": {
+      "en": "Tap the lemon juice to pick it up.",
+      "hi": "नींबू के रस पर टैप करके उसे उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:lemon",
+     "say": {
+      "en": "Tap the beaker to pour it in.",
+      "hi": "बीकर पर टैप करके उसे डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will add blue litmus solution. What colour will the liquid become?",
+      "hi": "अब तुम नीला लिटमस विलयन डालोगे। द्रव का रंग क्या हो जाएगा?"
+     },
+     "options": [
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल"
+      },
+      {
+       "id": "blue",
+       "en": "It stays blue",
+       "hi": "नीला ही रहेगा"
+      },
+      {
+       "id": "green",
+       "en": "Green",
+       "hi": "हरा"
+      }
+     ],
+     "answer": "red"
+    },
+    {
+     "kind": "do",
+     "target": "pick:bluelitmus",
+     "expect": "pick:bluelitmus",
+     "say": {
+      "en": "Pick up the blue litmus solution.",
+      "hi": "नीला लिटमस विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:bluelitmus",
+     "say": {
+      "en": "Pour it into the beaker and watch the colour.",
+      "hi": "इसे बीकर में डालो और रंग देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Blue litmus turned red, so lemon juice is acidic. Litmus is a natural dye from lichens. Acids turn blue litmus red, and bases turn red litmus blue. A neutral liquid changes neither.",
+      "hi": "नीला लिटमस लाल हो गया, इसलिए नींबू का रस अम्लीय है। लिटमस लाइकेन से मिलने वाला एक प्राकृतिक रंजक है। अम्ल नीले लिटमस को लाल करते हैं और क्षारक लाल लिटमस को नीला। उदासीन द्रव कोई रंग नहीं बदलता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You add red litmus to soap solution. What will you see?",
+        "hi": "तुम साबुन के घोल में लाल लिटमस डालते हो। क्या दिखेगा?"
+       },
+       "options": [
+        {
+         "en": "It turns blue",
+         "hi": "वह नीला हो जाएगा"
+        },
+        {
+         "en": "It stays red",
+         "hi": "वह लाल ही रहेगा"
+        },
+        {
+         "en": "It turns yellow",
+         "hi": "वह पीला हो जाएगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Soap solution is basic, and bases turn red litmus blue.",
+        "hi": "साबुन का घोल क्षारीय है, और क्षारक लाल लिटमस को नीला करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Red litmus stays red only in acidic or neutral liquids; soap solution is basic.",
+         "hi": "लाल लिटमस केवल अम्लीय या उदासीन द्रव में लाल रहता है; साबुन का घोल क्षारीय है।"
+        },
+        {
+         "en": "Litmus shows only red or blue; yellow is the colour of turmeric, another indicator.",
+         "hi": "लिटमस केवल लाल या नीला दिखाता है; पीला हल्दी का रंग है, जो दूसरा सूचक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Salt solution changes neither red nor blue litmus. So it is…",
+        "hi": "नमक का घोल न लाल लिटमस बदलता है, न नीला। इसलिए यह…"
+       },
+       "options": [
+        {
+         "en": "acidic",
+         "hi": "अम्लीय है"
+        },
+        {
+         "en": "basic",
+         "hi": "क्षारीय है"
+        },
+        {
+         "en": "neutral",
+         "hi": "उदासीन है"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "A substance that changes neither litmus is neutral.",
+        "hi": "जो पदार्थ किसी भी लिटमस को न बदले, वह उदासीन है।"
+       },
+       "wrong": [
+        {
+         "en": "An acid would have turned blue litmus red.",
+         "hi": "अम्ल नीले लिटमस को लाल कर देता।"
+        },
+        {
+         "en": "A base would have turned red litmus blue.",
+         "hi": "क्षारक लाल लिटमस को नीला कर देता।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker. Test soap solution with red litmus, and salt solution with blue litmus. Which ones change colour?",
+      "hi": "बीकर साफ़ करो। साबुन के घोल को लाल लिटमस से और नमक के घोल को नीले लिटमस से जाँचो। किसका रंग बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch02-flower-indicator",
+   "topic": "2.1.2",
+   "template": "beaker",
+   "title": {
+    "en": "A flower as an indicator",
+    "hi": "फूल से बना सूचक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "soapsol",
+     "vinegar",
+     "chinarose"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:soapsol",
+     "expect": "pick:soapsol",
+     "say": {
+      "en": "Pick up the soap solution.",
+      "hi": "साबुन का घोल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:soapsol",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Red flower extract (from red hibiscus or red rose petals) goes in next. What colour will it show in soap solution?",
+      "hi": "अब लाल फूल का अर्क (गुड़हल या लाल गुलाब की पंखुड़ियों से बना) डाला जाएगा। साबुन के घोल में यह कौन-सा रंग दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "green",
+       "en": "Green",
+       "hi": "हरा"
+      },
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल"
+      },
+      {
+       "id": "same",
+       "en": "No change",
+       "hi": "कोई बदलाव नहीं"
+      }
+     ],
+     "answer": "green"
+    },
+    {
+     "kind": "do",
+     "target": "pick:chinarose",
+     "expect": "pick:chinarose",
+     "say": {
+      "en": "Pick up the red flower extract.",
+      "hi": "लाल फूल का अर्क उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:chinarose",
+     "say": {
+      "en": "Pour it in and watch the colour.",
+      "hi": "इसे डालो और रंग देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The flower extract turned green, because soap solution is basic. In an acid, the same extract turns red or dark pink. Red rose and red hibiscus (gudhal) petals both work this way. You can make it at home from fallen petals and warm water.",
+      "hi": "फूल का अर्क हरा हो गया, क्योंकि साबुन का घोल क्षारीय है। अम्ल में यही अर्क लाल या गहरा गुलाबी हो जाता है। लाल गुलाब और लाल गुड़हल दोनों की पंखुड़ियाँ ऐसे ही काम करती हैं। तुम इसे गिरी हुई पंखुड़ियों और गुनगुने पानी से घर पर बना सकते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Red flower extract turns red in a liquid. The liquid is…",
+        "hi": "लाल फूल का अर्क एक द्रव में लाल हो जाता है। वह द्रव…"
+       },
+       "options": [
+        {
+         "en": "acidic",
+         "hi": "अम्लीय है"
+        },
+        {
+         "en": "basic",
+         "hi": "क्षारीय है"
+        },
+        {
+         "en": "neutral",
+         "hi": "उदासीन है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Red flower extract gives a red colour in acids.",
+        "hi": "लाल फूल का अर्क अम्लों में लाल रंग देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In a base the extract turns green, as you saw with soap.",
+         "hi": "क्षारक में अर्क हरा हो जाता है, जैसा तुमने साबुन के साथ देखा।"
+        },
+        {
+         "en": "A neutral liquid does not change the extract to a new colour.",
+         "hi": "उदासीन द्रव अर्क का रंग नया नहीं बनाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the flower extract called an indicator?",
+        "hi": "फूल के अर्क को सूचक क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It shows different colours in acids and bases",
+         "hi": "यह अम्लों और क्षारकों में अलग-अलग रंग दिखाता है"
+        },
+        {
+         "en": "It makes a liquid acidic",
+         "hi": "यह द्रव को अम्लीय बना देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An indicator tells us the nature of a substance by its colour.",
+        "hi": "सूचक अपने रंग से पदार्थ की प्रकृति बताता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An indicator is used in tiny amounts; it shows the nature, it does not change it.",
+         "hi": "सूचक बहुत थोड़ा डाला जाता है; यह प्रकृति दिखाता है, उसे बदलता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker. Pour vinegar, then add the flower extract. What colour do you get this time?",
+      "hi": "बीकर साफ़ करो। सिरका डालो, फिर फूल का अर्क डालो। इस बार कौन-सा रंग आता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch02-turmeric",
+   "topic": "2.1.3",
+   "template": "beaker",
+   "title": {
+    "en": "Turmeric: the golden indicator",
+    "hi": "हल्दी: सुनहरा सूचक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "soapsol",
+     "lemon",
+     "saltsol",
+     "turmeric"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:soapsol",
+     "expect": "pick:soapsol",
+     "say": {
+      "en": "Pick up the soap solution.",
+      "hi": "साबुन का घोल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:soapsol",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Turmeric (haldi) solution is yellow. What will happen when you add it to soap solution?",
+      "hi": "हल्दी का घोल पीला है। इसे साबुन के घोल में डालने पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "red",
+       "en": "It turns red",
+       "hi": "लाल हो जाएगा"
+      },
+      {
+       "id": "yellow",
+       "en": "It stays yellow",
+       "hi": "पीला ही रहेगा"
+      },
+      {
+       "id": "blue",
+       "en": "It turns blue",
+       "hi": "नीला हो जाएगा"
+      }
+     ],
+     "answer": "red"
+    },
+    {
+     "kind": "do",
+     "target": "pick:turmeric",
+     "expect": "pick:turmeric",
+     "say": {
+      "en": "Pick up the turmeric solution.",
+      "hi": "हल्दी का घोल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:turmeric",
+     "say": {
+      "en": "Pour it in and watch the colour.",
+      "hi": "इसे डालो और रंग देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The yellow turmeric turned red-brown, because soap solution is basic. This is why a haldi stain turns red when you wash it with soap. In acids and in neutral liquids turmeric stays yellow, so turmeric alone cannot tell an acid from a neutral liquid.",
+      "hi": "पीली हल्दी लाल-भूरी हो गई, क्योंकि साबुन का घोल क्षारीय है। इसीलिए हल्दी का दाग़ साबुन से धोने पर लाल हो जाता है। अम्लों और उदासीन द्रवों में हल्दी पीली ही रहती है, इसलिए केवल हल्दी से अम्ल और उदासीन द्रव में अंतर नहीं किया जा सकता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Turmeric paper stays yellow in lemon juice. What can you say?",
+        "hi": "हल्दी का कागज़ नींबू के रस में पीला रहता है। तुम क्या कह सकते हो?"
+       },
+       "options": [
+        {
+         "en": "Lemon juice is not basic",
+         "hi": "नींबू का रस क्षारीय नहीं है"
+        },
+        {
+         "en": "Lemon juice is basic",
+         "hi": "नींबू का रस क्षारीय है"
+        },
+        {
+         "en": "Lemon juice is neutral",
+         "hi": "नींबू का रस उदासीन है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Turmeric turns red only in bases. Yellow means the liquid is acidic or neutral; we need litmus to tell which.",
+        "hi": "हल्दी केवल क्षारकों में लाल होती है। पीला रहने का अर्थ है द्रव अम्लीय या उदासीन है; कौन-सा, यह लिटमस से पता चलेगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A base would have turned the turmeric red.",
+         "hi": "क्षारक हल्दी को लाल कर देता।"
+        },
+        {
+         "en": "Turmeric stays yellow in acids too, so this test alone cannot prove it is neutral. In fact lemon juice is acidic.",
+         "hi": "हल्दी अम्लों में भी पीली रहती है, इसलिए केवल इस जाँच से उदासीन होना साबित नहीं होता। असल में नींबू का रस अम्लीय है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker and test lemon juice and salt solution with turmeric. Do they change its colour?",
+      "hi": "बीकर साफ़ करो और नींबू के रस व नमक के घोल को हल्दी से जाँचो। क्या उनका रंग बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch02-neutralise",
+   "topic": "2.2",
+   "template": "beaker",
+   "title": {
+    "en": "Acid meets base: neutralisation",
+    "hi": "अम्ल और क्षारक का मिलन: उदासीनीकरण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "hcl",
+     "bluelitmus",
+     "naoh"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:hcl",
+     "expect": "pick:hcl",
+     "say": {
+      "en": "Pick up the dilute acid. (In a real lab only an adult handles it.)",
+      "hi": "तनु अम्ल उठाओ। (असली प्रयोगशाला में इसे केवल कोई बड़ा ही छूता है।)"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:hcl",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:bluelitmus",
+     "expect": "pick:bluelitmus",
+     "say": {
+      "en": "Pick up the blue litmus solution.",
+      "hi": "नीला लिटमस विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:bluelitmus",
+     "say": {
+      "en": "Add it. The liquid turns red: it is acidic.",
+      "hi": "इसे डालो। द्रव लाल हो जाता है: यह अम्लीय है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will add a base. What will happen to the red colour?",
+      "hi": "अब तुम एक क्षारक डालोगे। लाल रंग का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "blue",
+       "en": "It turns back to blue",
+       "hi": "वह फिर से नीला हो जाएगा"
+      },
+      {
+       "id": "darker",
+       "en": "It turns darker red",
+       "hi": "और गहरा लाल हो जाएगा"
+      },
+      {
+       "id": "same",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "blue"
+    },
+    {
+     "kind": "do",
+     "target": "pick:naoh",
+     "expect": "pick:naoh",
+     "say": {
+      "en": "Pick up the base (sodium hydroxide solution).",
+      "hi": "क्षारक (सोडियम हाइड्रॉक्साइड विलयन) उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:naoh",
+     "say": {
+      "en": "Pour it in. Watch the colour and the thermometer.",
+      "hi": "इसे डालो। रंग और थर्मामीटर पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The red colour went away and the liquid turned bluish again. The base cancelled the acid: the solution is no longer acidic. This is neutralisation. A salt and water are formed, and heat is given out, so the thermometer rose. Lime water, a base you can make from chuna, neutralises lemon juice in the same way.",
+      "hi": "लाल रंग चला गया और द्रव फिर से नीला-सा हो गया। क्षारक ने अम्ल का असर ख़त्म कर दिया: विलयन अब अम्लीय नहीं रहा। यही उदासीनीकरण है। इसमें लवण और जल बनते हैं और ऊष्मा निकलती है, इसलिए थर्मामीटर चढ़ा। चूने का पानी, जो चूने से बनने वाला एक क्षारक है, नींबू के रस को भी इसी तरह उदासीन करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is formed when an acid neutralises a base?",
+        "hi": "जब अम्ल और क्षारक एक-दूसरे को उदासीन करते हैं, तो क्या बनता है?"
+       },
+       "options": [
+        {
+         "en": "Salt and water, with heat given out",
+         "hi": "लवण और जल, और ऊष्मा निकलती है"
+        },
+        {
+         "en": "Only more acid",
+         "hi": "केवल और अम्ल"
+        },
+        {
+         "en": "Litmus",
+         "hi": "लिटमस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Acid + base gives salt + water + heat.",
+        "hi": "अम्ल + क्षारक से लवण + जल + ऊष्मा मिलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The acid is used up by the base, so there is less acid, not more.",
+         "hi": "क्षारक अम्ल को ख़र्च कर देता है, इसलिए अम्ल घटता है, बढ़ता नहीं।"
+        },
+        {
+         "en": "Litmus is only the indicator we added; it is not made in the reaction.",
+         "hi": "लिटमस तो केवल वह सूचक है जो हमने डाला; यह अभिक्रिया में नहीं बनता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did the thermometer rise?",
+        "hi": "थर्मामीटर क्यों चढ़ा?"
+       },
+       "options": [
+        {
+         "en": "Neutralisation gives out heat",
+         "hi": "उदासीनीकरण में ऊष्मा निकलती है"
+        },
+        {
+         "en": "The litmus was hot",
+         "hi": "लिटमस गर्म था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heat is released when an acid and a base react.",
+        "hi": "अम्ल और क्षारक की अभिक्रिया में ऊष्मा मुक्त होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "All the liquids were at room temperature; the heat came from the reaction.",
+         "hi": "सभी द्रव कमरे के ताप पर थे; ऊष्मा अभिक्रिया से आई।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker and do it again. This time pour the base first, add litmus, then the acid. What colours do you see?",
+      "hi": "बीकर साफ़ करो और फिर से करो। इस बार पहले क्षारक डालो, फिर लिटमस, फिर अम्ल। कौन-से रंग दिखते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch02-daily-life",
+   "topic": "2.3",
+   "template": "match",
+   "title": {
+    "en": "Neutralisation in daily life",
+    "hi": "दैनिक जीवन में उदासीनीकरण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "ant",
+      "left": {
+       "en": "A red ant bite stings",
+       "hi": "लाल चींटी के काटने से जलन"
+      },
+      "right": {
+       "en": "Rub moist baking soda, a base",
+       "hi": "गीला खाने का सोडा (एक क्षारक) मलो"
+      },
+      "why": {
+       "en": "The ant injects an acid (formic acid); the base neutralises it.",
+       "hi": "चींटी एक अम्ल (फ़ॉर्मिक अम्ल) छोड़ती है; क्षारक उसे उदासीन करता है।"
+      }
+     },
+     {
+      "id": "acidsoil",
+      "left": {
+       "en": "Soil turned acidic from too much fertiliser",
+       "hi": "बहुत अधिक उर्वरक से मिट्टी अम्लीय हो गई"
+      },
+      "right": {
+       "en": "Add lime, a base, to the field",
+       "hi": "खेत में चूना (एक क्षारक) मिलाओ"
+      },
+      "why": {
+       "en": "Lime neutralises the acid so plants can grow well.",
+       "hi": "चूना अम्ल को उदासीन करता है, जिससे पौधे अच्छे से बढ़ते हैं।"
+      }
+     },
+     {
+      "id": "basesoil",
+      "left": {
+       "en": "Soil that is too basic",
+       "hi": "बहुत अधिक क्षारीय मिट्टी"
+      },
+      "right": {
+       "en": "Add manure or compost",
+       "hi": "खाद या कम्पोस्ट मिलाओ"
+      },
+      "why": {
+       "en": "Rotting organic matter releases acids that neutralise the base.",
+       "hi": "सड़ते हुए जैविक पदार्थ अम्ल छोड़ते हैं, जो क्षारक को उदासीन करते हैं।"
+      }
+     },
+     {
+      "id": "factory",
+      "left": {
+       "en": "Acidic waste from a factory",
+       "hi": "कारख़ाने का अम्लीय कचरा"
+      },
+      "right": {
+       "en": "Add basic substances before it reaches the lake",
+       "hi": "झील तक पहुँचने से पहले उसमें क्षारीय पदार्थ मिलाओ"
+      },
+      "why": {
+       "en": "Neutralised waste does not harm the fish.",
+       "hi": "उदासीन किया हुआ कचरा मछलियों को हानि नहीं पहुँचाता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ant",
+     "expect": "matched:ant",
+     "say": {
+      "en": "Tap the ant bite card, then its remedy.",
+      "hi": "चींटी के काटने वाले कार्ड पर टैप करो, फिर उसके उपाय पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A farmer's soil has become acidic. What should be added?",
+      "hi": "एक किसान की मिट्टी अम्लीय हो गई है। उसमें क्या मिलाना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "lime",
+       "en": "Lime, a base",
+       "hi": "चूना, एक क्षारक"
+      },
+      {
+       "id": "lemon",
+       "en": "Lemon juice",
+       "hi": "नींबू का रस"
+      },
+      {
+       "id": "vinegar",
+       "en": "Vinegar",
+       "hi": "सिरका"
+      }
+     ],
+     "answer": "lime"
+    },
+    {
+     "kind": "do",
+     "target": "left:acidsoil",
+     "expect": "matched:acidsoil",
+     "say": {
+      "en": "Match the acidic soil card.",
+      "hi": "अम्लीय मिट्टी वाला कार्ड मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the last two pairs, then press Check.",
+      "hi": "बची हुई दो जोड़ियाँ मिलाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In each case a problem is caused by too much acid or too much base. We fix it by adding the opposite kind of substance. An acid is cancelled by a base, and a base by an acid.",
+      "hi": "हर उदाहरण में समस्या बहुत अधिक अम्ल या बहुत अधिक क्षारक से है। हम उल्टे प्रकार का पदार्थ मिलाकर उसे ठीक करते हैं। अम्ल का असर क्षारक से और क्षारक का असर अम्ल से ख़त्म होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does moist baking soda ease an ant bite?",
+        "hi": "गीला खाने का सोडा चींटी के काटने पर आराम क्यों देता है?"
+       },
+       "options": [
+        {
+         "en": "It is a base that neutralises the ant's acid",
+         "hi": "यह क्षारक है जो चींटी के अम्ल को उदासीन करता है"
+        },
+        {
+         "en": "It is an acid",
+         "hi": "यह एक अम्ल है"
+        },
+        {
+         "en": "It is cold",
+         "hi": "यह ठंडा होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Baking soda is basic; it cancels the formic acid.",
+        "hi": "खाने का सोडा क्षारीय है; यह फ़ॉर्मिक अम्ल का असर ख़त्म करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Baking soda turns red litmus blue, so it is a base, not an acid.",
+         "hi": "खाने का सोडा लाल लिटमस को नीला करता है, इसलिए यह क्षारक है, अम्ल नहीं।"
+        },
+        {
+         "en": "Its temperature is not the reason; any cool water would then work as well.",
+         "hi": "इसका ठंडा होना कारण नहीं है; वरना कोई भी ठंडा पानी उतना ही काम करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and match the pairs once more. Ask at home: what do people in your area use for an ant bite?",
+      "hi": "'फिर से शुरू' दबाओ और जोड़ियाँ फिर मिलाओ। घर पर पूछो: तुम्हारे इलाक़े में लोग चींटी के काटने पर क्या लगाते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Hook of the chapter",
+   "shows": "A kitchen shelf in an Indian home with a cut lemon, a bowl of curd, tamarind, amla, a bar of soap and a jar of baking soda",
+   "view": "Eye level, soft window light, all items clearly visible",
+   "right": "Real foods and household items; amla pale green, tamarind brown",
+   "avoid": "Brand names, labels with text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "2.1.1",
+   "use": "Litmus test (reader and lab hook)",
+   "shows": "Frame 1: a blue litmus strip dipped in lemon juice in a steel bowl turning red at the tip; frame 2: a red litmus strip dipped in soap solution turning blue at the tip (unused strips: reuse LIB-CHEM-litmus)",
+   "view": "Same framing, white background, from the side",
+   "right": "Only the wet part changes colour; acid gives red, base gives blue",
+   "avoid": "Strips touching both liquids"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "2.1.2",
+   "use": "Making a flower indicator",
+   "shows": "Frame 1: fallen red rose petals in a steel bowl; frame 2: petals soaked in warm water, the water turned red; frame 3: two test tubes of the extract, one red (with vinegar), one green (with soap solution)",
+   "view": "Same table and light in all frames, from slightly above",
+   "right": "Acid tube red or dark pink; base tube green",
+   "avoid": "Picking fresh flowers from plants"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "2.1.3",
+   "use": "Turmeric paper",
+   "shows": "Frame 1: turmeric paste spread on a strip of filter paper; frame 2: the dry yellow strip; frame 3: a drop of soap solution on the strip leaving a red-brown spot",
+   "view": "From above, white background, same framing",
+   "right": "Strip bright yellow; spot red-brown only where the soap drop is",
+   "avoid": "Ink, labels"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "2.1.3",
+   "use": "Why a haldi stain turns red",
+   "shows": "A white school shirt with a yellow haldi stain; the part touched with soap lather has turned red-brown",
+   "view": "Close-up from above, daylight",
+   "right": "Clear contrast: yellow stain and red-brown patch",
+   "avoid": "Detergent brands"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Neutralising acidic soil",
+   "shows": "A farmer spreading white lime powder by hand over a ploughed field in early morning",
+   "view": "Wide, eye level, field to the horizon",
+   "right": "Powder white, soil brown and ploughed",
+   "avoid": "Face close-ups, brand sacks"
+  },
+  {
+   "n": 7,
+   "kind": "MAC",
+   "topic": "2.3",
+   "use": "Ant bite situation",
+   "shows": "A red weaver ant on the bark of a mango tree",
+   "view": "Macro, side view, natural light",
+   "right": "True ant colour (orange-red), six legs",
+   "avoid": "A biting scene on skin"
+  },
+  {
+   "n": 8,
+   "kind": "MAC",
+   "topic": "2.4",
+   "use": "Holistic lens: lichens",
+   "shows": "Grey-green lichen patches on old tree bark",
+   "view": "Close-up, soft daylight",
+   "right": "Lichen flat and crusty or leafy, not moss",
+   "avoid": "Text, carvings on the bark"
+  }
+ ]
+}

@@ -1,0 +1,790 @@
+{
+ "chapter_key": "u.c01.mathematics.aejm1.ch09",
+ "class": 1,
+ "subject_id": "mathematics",
+ "title": "Utsav (Patterns)",
+ "source": "https://ncert.nic.in/textbook/pdf/aejm109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Harvest festivals and the shapes in them",
+   "labs": [
+    "c01-mathematics-aejm1-ch09-festivals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Patterns of shapes",
+   "labs": [
+    "c01-mathematics-aejm1-ch09-kite-shapes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Patterns of colours",
+   "labs": [
+    "c01-mathematics-aejm1-ch09-colour-beads"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Kolam and rangoli: patterns of three",
+   "labs": [
+    "c01-mathematics-aejm1-ch09-kolam-row"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "Number patterns",
+   "labs": [
+    "c01-mathematics-aejm1-ch09-number-pattern"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.6",
+   "title": "Patterns in nature, in actions and in heritage",
+   "labs": [],
+   "why_no_lab": "The project asks the child to collect real objects, look at leaves and tiles and clap or stamp patterns, which a screen cannot do."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-mathematics-aejm1-ch09-festivals",
+   "topic": "9.1",
+   "template": "match",
+   "title": {
+    "en": "Harvest festivals of India",
+    "hi": "भारत के फ़सल के त्योहार"
+   },
+   "minutes": 4,
+   "level": "stretch",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "Uttarayan, kite festival",
+       "hi": "उत्तरायण, पतंग का त्योहार"
+      },
+      "right": {
+       "en": "Gujarat",
+       "hi": "गुजरात"
+      },
+      "why": {
+       "en": "Uttarayan is celebrated with kites in Gujarat.",
+       "hi": "उत्तरायण गुजरात में पतंगों के साथ मनाया जाता है।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "Pongal",
+       "hi": "पोंगल"
+      },
+      "right": {
+       "en": "Tamil Nadu",
+       "hi": "तमिलनाडु"
+      },
+      "why": {
+       "en": "Pongal is the harvest festival of Tamil Nadu.",
+       "hi": "पोंगल तमिलनाडु का फ़सल का त्योहार है।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "Bihu",
+       "hi": "बिहू"
+      },
+      "right": {
+       "en": "Assam",
+       "hi": "असम"
+      },
+      "why": {
+       "en": "Bihu is a big festival of Assam.",
+       "hi": "बिहू असम का बड़ा त्योहार है।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "Lohri",
+       "hi": "लोहड़ी"
+      },
+      "right": {
+       "en": "Punjab",
+       "hi": "पंजाब"
+      },
+      "why": {
+       "en": "Lohri is celebrated in Punjab in winter.",
+       "hi": "लोहड़ी पंजाब में सर्दियों में मनाई जाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Tap Uttarayan, then tap the place where kites fill the sky.",
+      "hi": "उत्तरायण को छुओ, फिर उस जगह को छुओ जहाँ आसमान पतंगों से भर जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Pongal is a festival of the new harvest. Which state celebrates it?",
+      "hi": "पोंगल नई फ़सल का त्योहार है। कौन-सा राज्य इसे मनाता है?"
+     },
+     "options": [
+      {
+       "id": "tn",
+       "en": "Tamil Nadu",
+       "hi": "तमिलनाडु"
+      },
+      {
+       "id": "pb",
+       "en": "Punjab",
+       "hi": "पंजाब"
+      },
+      {
+       "id": "as",
+       "en": "Assam",
+       "hi": "असम"
+      }
+     ],
+     "answer": "tn"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Match Pongal.",
+      "hi": "पोंगल को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest.",
+      "hi": "बाक़ी को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "These festivals come in January, when the days begin to get sunnier and the harvest is ready. People make kites, kolams and bonfires. If you look closely at the pictures, you will see shapes and patterns repeating again and again. That is what this chapter is about.",
+      "hi": "ये त्योहार जनवरी में आते हैं, जब दिन धूप वाले होने लगते हैं और फ़सल तैयार होती है। लोग पतंगें उड़ाते हैं, कोलम बनाते हैं और अलाव जलाते हैं। तस्वीरों को ध्यान से देखो तो आकृतियाँ और नमूने बार-बार दोहराते दिखते हैं। इसी के बारे में यह अध्याय है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which festival is famous for flying kites?",
+        "hi": "कौन-सा त्योहार पतंग उड़ाने के लिए प्रसिद्ध है?"
+       },
+       "options": [
+        {
+         "en": "Uttarayan",
+         "hi": "उत्तरायण"
+        },
+        {
+         "en": "Lohri",
+         "hi": "लोहड़ी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Uttarayan fills the sky of Gujarat with kites.",
+        "hi": "उत्तरायण पर गुजरात का आसमान पतंगों से भर जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lohri is known for a bonfire and songs.",
+         "hi": "लोहड़ी अलाव और गीतों के लिए जानी जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Ask your family which festivals you celebrate. What shapes and patterns do you see in them?",
+      "hi": "अब ख़ुद आज़माओ। परिवार से पूछो कि तुम कौन-से त्योहार मनाते हो। उनमें तुम्हें कौन-सी आकृतियाँ और नमूने दिखते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch09-kite-shapes",
+   "topic": "9.2",
+   "template": "pattern",
+   "title": {
+    "en": "A pattern of shapes",
+    "hi": "आकृतियों का नमूना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "shapes",
+    "seed": [
+     "circle",
+     "square"
+    ],
+    "show": 6
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The row shows circle, square, circle, square, circle, square. What comes next?",
+      "hi": "कतार में वृत्त, वर्ग, वृत्त, वर्ग, वृत्त, वर्ग हैं। आगे क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "circle",
+       "en": "Circle",
+       "hi": "वृत्त"
+      },
+      {
+       "id": "square",
+       "en": "Square",
+       "hi": "वर्ग"
+      },
+      {
+       "id": "star",
+       "en": "Star",
+       "hi": "तारा"
+      }
+     ],
+     "answer": "circle"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the row of shapes. Choose the shape that comes next.",
+      "hi": "आकृतियों की कतार देखो। अगली आकृति चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the next shape again.",
+      "hi": "फिर अगली आकृति चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Which rule makes this pattern? Tap it.",
+      "hi": "यह नमूना किस नियम से बना है? उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A pattern repeats in the same order again and again. Here the part 'circle, square' repeats. Once you spot the part that repeats, you can say what comes next.",
+      "hi": "नमूना एक ही क्रम में बार-बार दोहराता है। यहाँ 'वृत्त, वर्ग' वाला भाग दोहराता है। जब तुम दोहराने वाला भाग पहचान लेते हो, तो बता सकते हो कि आगे क्या आएगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Circle, square, circle, square, circle, ... What comes next?",
+        "hi": "वृत्त, वर्ग, वृत्त, वर्ग, वृत्त, ... आगे क्या आएगा?"
+       },
+       "options": [
+        {
+         "en": "Square",
+         "hi": "वर्ग"
+        },
+        {
+         "en": "Circle",
+         "hi": "वृत्त"
+        },
+        {
+         "en": "Triangle",
+         "hi": "त्रिभुज"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After each circle comes a square.",
+        "hi": "हर वृत्त के बाद एक वर्ग आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two circles in a row would break the pattern.",
+         "hi": "लगातार दो वृत्त नमूना तोड़ देंगे।"
+        },
+        {
+         "en": "A triangle is not in this pattern.",
+         "hi": "त्रिभुज इस नमूने में है ही नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make a pattern with leaves and flowers, or with coins and buttons.",
+      "hi": "अब ख़ुद आज़माओ। पत्तों और फूलों से, या सिक्कों और बटनों से नमूना बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch09-colour-beads",
+   "topic": "9.3",
+   "template": "pattern",
+   "title": {
+    "en": "Colours that repeat",
+    "hi": "रंग जो दोहराते हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "colours",
+    "seed": [
+     "red",
+     "yellow"
+    ],
+    "rule": "abb",
+    "show": 7
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Munna's row is red, yellow, yellow, red, yellow, yellow, red. What colour comes next?",
+      "hi": "मुन्ना की कतार में लाल, पीला, पीला, लाल, पीला, पीला, लाल है। अगला रंग कौन-सा आएगा?"
+     },
+     "options": [
+      {
+       "id": "yellow",
+       "en": "Yellow",
+       "hi": "पीला"
+      },
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल"
+      }
+     ],
+     "answer": "yellow"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Munna made a pattern with his fingerprints. Choose the colour that comes next.",
+      "hi": "मुन्ना ने अपनी उँगलियों की छाप से नमूना बनाया। अगला रंग चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the colour that comes next.",
+      "hi": "अगला रंग चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Tap the rule.",
+      "hi": "नियम छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The part that repeats is red, yellow, yellow. So after two yellows there is always a red. A pattern can be about colours, not only shapes. Spot the repeating part and you can carry on the pattern.",
+      "hi": "दोहराने वाला भाग है लाल, पीला, पीला। इसलिए दो पीलों के बाद हमेशा लाल आता है। नमूना सिर्फ़ आकृतियों का नहीं, रंगों का भी हो सकता है। दोहराने वाला भाग पहचान लो तो नमूना आगे बढ़ा सकते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Red, yellow, yellow, red, yellow, yellow, red, ... What comes next?",
+        "hi": "लाल, पीला, पीला, लाल, पीला, पीला, लाल, ... आगे क्या आएगा?"
+       },
+       "options": [
+        {
+         "en": "Yellow",
+         "hi": "पीला"
+        },
+        {
+         "en": "Red",
+         "hi": "लाल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The repeating part is red, yellow, yellow, so a yellow follows the red.",
+        "hi": "दोहराने वाला भाग लाल, पीला, पीला है, इसलिए लाल के बाद पीला आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two reds together never happen in this pattern.",
+         "hi": "इस नमूने में दो लाल साथ-साथ कभी नहीं आते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Slice an okra or a potato, dip it in colour and print a pattern with a grown-up.",
+      "hi": "अब ख़ुद आज़माओ। किसी बड़े की मदद से भिंडी या आलू काटो, रंग में डुबोओ और छापकर नमूना बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch09-kolam-row",
+   "topic": "9.4",
+   "template": "pattern",
+   "title": {
+    "en": "A kolam border",
+    "hi": "कोलम की पट्टी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "shapes",
+    "seed": [
+     "triangle",
+     "circle",
+     "square"
+    ],
+    "show": 7
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Vani's border goes triangle, circle, square, triangle, circle, square, triangle. What comes next?",
+      "hi": "वाणी की पट्टी में त्रिभुज, वृत्त, वर्ग, त्रिभुज, वृत्त, वर्ग, त्रिभुज हैं। आगे क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "circle",
+       "en": "Circle",
+       "hi": "वृत्त"
+      },
+      {
+       "id": "square",
+       "en": "Square",
+       "hi": "वर्ग"
+      },
+      {
+       "id": "triangle",
+       "en": "Triangle",
+       "hi": "त्रिभुज"
+      }
+     ],
+     "answer": "circle"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Vani is making a kolam border. Choose the shape that comes next.",
+      "hi": "वाणी कोलम की पट्टी बना रही है। अगली आकृति चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the next shape again.",
+      "hi": "फिर अगली आकृति चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Tap the rule.",
+      "hi": "नियम छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This time three shapes repeat: triangle, circle, square. A pattern may have two, three or more things in the part that repeats. Say the repeating part aloud and tap along.",
+      "hi": "इस बार तीन आकृतियाँ दोहराती हैं: त्रिभुज, वृत्त, वर्ग। दोहराने वाले भाग में दो, तीन या ज़्यादा चीज़ें हो सकती हैं। दोहराने वाला भाग ज़ोर से बोलो और साथ-साथ ताली बजाओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Triangle, circle, square, triangle, circle, ... What comes next?",
+        "hi": "त्रिभुज, वृत्त, वर्ग, त्रिभुज, वृत्त, ... आगे क्या आएगा?"
+       },
+       "options": [
+        {
+         "en": "Square",
+         "hi": "वर्ग"
+        },
+        {
+         "en": "Triangle",
+         "hi": "त्रिभुज"
+        },
+        {
+         "en": "Circle",
+         "hi": "वृत्त"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each time the order is triangle, circle, then square.",
+        "hi": "हर बार क्रम त्रिभुज, वृत्त, फिर वर्ग है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The triangle only comes after a square.",
+         "hi": "त्रिभुज तो वर्ग के बाद आता है।"
+        },
+        {
+         "en": "A circle just came. It would repeat.",
+         "hi": "वृत्त अभी आया है। वह दोहरा जाएगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Draw your own kolam or rangoli border on paper with dots.",
+      "hi": "अब ख़ुद आज़माओ। कागज़ पर बिंदियाँ लगाकर अपना कोलम या रंगोली की पट्टी बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch09-number-pattern",
+   "topic": "9.5",
+   "template": "pattern",
+   "title": {
+    "en": "Number patterns",
+    "hi": "संख्याओं के नमूने"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     2,
+     4,
+     6,
+     8
+    ],
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "The cards show 2, 4, 6, 8. Type the number that comes next.",
+      "hi": "कार्डों पर 2, 4, 6, 8 हैं। अगली संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What number comes after 10?",
+      "hi": "10 के बाद कौन-सी संख्या आएगी?"
+     },
+     "options": [
+      {
+       "id": "eleven",
+       "en": "11",
+       "hi": "11 (ग्यारह)"
+      },
+      {
+       "id": "twelve",
+       "en": "12",
+       "hi": "12 (बारह)"
+      },
+      {
+       "id": "fourteen",
+       "en": "14",
+       "hi": "14 (चौदह)"
+      }
+     ],
+     "answer": "twelve"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next number.",
+      "hi": "अगली संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Which rule makes these cards? Tap it.",
+      "hi": "ये कार्ड किस नियम से बने हैं? उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each number is 2 more than the one before it: 2, 4, 6, 8, 10, 12. Number patterns follow a rule too. Find how much the numbers jump each time and you can fill the missing ones.",
+      "hi": "हर संख्या पिछली से 2 ज़्यादा है: 2, 4, 6, 8, 10, 12। संख्याओं के नमूने भी नियम पर चलते हैं। देखो हर बार संख्या कितनी बढ़ती है, तो छूटी हुई संख्याएँ भर सकते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "2, 4, 6, __, 10. What is missing?",
+        "hi": "2, 4, 6, __, 10। कौन-सी संख्या छूटी है?"
+       },
+       "options": [
+        "7",
+        "8",
+        "9"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The numbers grow by 2: 6 and 2 more is 8.",
+        "hi": "संख्याएँ 2-2 बढ़ती हैं: 6 और 2 मिलकर 8।"
+       },
+       "wrong": [
+        {
+         "en": "7 is only 1 more than 6. The jump here is 2.",
+         "hi": "7, 6 से सिर्फ़ 1 ज़्यादा है। यहाँ कूद 2 की है।"
+        },
+        "",
+        {
+         "en": "9 is 3 more than 6. The jump here is 2.",
+         "hi": "9, 6 से 3 ज़्यादा है। यहाँ कूद 2 की है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Count in twos on your fingers from 2 to 20. Say each number aloud.",
+      "hi": "अब ख़ुद आज़माओ। उँगलियों पर 2 से 20 तक दो-दो करके गिनो। हर संख्या बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Hook of the chapter",
+   "shows": "A rooftop at Uttarayan in Gujarat with colourful kites in the sky and children seen from behind",
+   "view": "Wide, slightly low angle, bright afternoon",
+   "right": "Many kites of different shapes and colours; real sky",
+   "avoid": "Identifiable faces; manjha string close to faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.4",
+   "use": "Pongal kolam",
+   "shows": "A kolam of white rice flour dots and curves drawn on the ground in front of a South Indian house",
+   "view": "Straight down from above, morning light",
+   "right": "A symmetric kolam with a repeating border",
+   "avoid": "Footprints; text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.3",
+   "use": "Vegetable stamps",
+   "shows": "An okra slice and a potato slice stamped in two colours as a repeating row on white paper (print and stamp as separate files)",
+   "view": "Top view, even light",
+   "right": "Row shows a clear repeating colour pattern",
+   "avoid": "Smudges; more than two colours in a row"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "9.3",
+   "use": "Thumb-print pattern",
+   "shows": "A strip of paper with fingerprints in the order pink, green, green, pink, green, green",
+   "view": "Top view, flat light",
+   "right": "Exact colour order; prints evenly spaced",
+   "avoid": "Smudged prints"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "Patterns around us",
+   "shows": "A temple floor or a saree border with a repeating shape pattern",
+   "view": "Straight on, soft light",
+   "right": "Clear repeating unit visible at least three times",
+   "avoid": "People; text"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "9.5",
+   "use": "Number cards",
+   "shows": "Ten cards numbered 0 to 9 on a plain wooden table, face up (each card its own file)",
+   "view": "Top view, even light",
+   "right": "Digits clearly drawn and the same style on every card",
+   "avoid": "Words; hands"
+  }
+ ]
+}

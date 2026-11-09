@@ -1,0 +1,1161 @@
+{
+ "chapter_key": "u.c08.science.hecu1.ch06",
+ "class": 8,
+ "subject_id": "science",
+ "title": "Pressure, Winds, Storms, and Cyclones",
+ "source": "https://ncert.nic.in/textbook/pdf/hecu106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Pressure: force per unit area; pressure of liquids",
+   "labs": [
+    "c08-science-hecu1-ch06-brick",
+    "c08-science-hecu1-ch06-holes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Pressure exerted by air (atmospheric pressure)",
+   "labs": [],
+   "why_no_lab": "The rubber sucker and the paper-plate demonstrations are quick to do for real and are shown as a photo sequence; no template yet simulates air pressing on a sucker."
+  },
+  {
+   "n": "6.3",
+   "title": "Formation of wind: warm air rises, high to low pressure",
+   "labs": [
+    "c08-science-hecu1-ch06-breeze"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "High-speed winds result in lowering of pressure",
+   "labs": [],
+   "why_no_lab": "Blowing between two hanging balloons is a 1-minute real demonstration shown as a photo sequence; the cyclone lab uses the idea of low pressure."
+  },
+  {
+   "n": "6.5",
+   "title": "Storms, thunderstorms and lightning; safety and lightning conductors",
+   "labs": [
+    "c08-science-hecu1-ch06-lightning",
+    "c08-science-hecu1-ch06-safety"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Cyclones: formation, damage, warnings and safety",
+   "labs": [
+    "c08-science-hecu1-ch06-cyclone"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-science-hecu1-ch06-brick",
+   "topic": "6.1",
+   "template": "forces",
+   "title": {
+    "en": "Same brick, different pressure",
+    "hi": "वही ईंट, अलग दाब"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "pressure",
+    "object": "brick-flat"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "object:brick-flat",
+     "expect": "measured",
+     "say": {
+      "en": "Lay the brick flat on the sand.",
+      "hi": "ईंट को रेत पर सपाट लिटाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will stand the same brick on its small end. Will it sink into the sand more or less?",
+      "hi": "अब तुम उसी ईंट को उसके छोटे सिरे पर खड़ा करोगे। क्या यह रेत में ज़्यादा धँसेगी या कम?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More: the same weight on a smaller area",
+       "hi": "ज़्यादा: उतना ही भार, छोटे क्षेत्रफल पर"
+      },
+      {
+       "id": "less",
+       "en": "Less",
+       "hi": "कम"
+      },
+      {
+       "id": "same",
+       "en": "The same, because the weight is the same",
+       "hi": "बराबर, क्योंकि भार वही है"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "object:brick-end",
+     "expect": "measured",
+     "say": {
+      "en": "Stand the brick on its end.",
+      "hi": "ईंट को सिरे पर खड़ा करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:load",
+     "expect": "measured",
+     "say": {
+      "en": "Put extra weight on top with the slider.",
+      "hi": "स्लाइडर से ऊपर अतिरिक्त भार रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Pressure is the force acting on each unit of area: pressure = force ÷ area. Its unit is the pascal (Pa), one newton per square metre. The same weight on a smaller area gives a bigger pressure, so the brick on its end sinks deeper; more weight on the same area also raises the pressure.",
+      "hi": "दाब प्रति इकाई क्षेत्रफल पर लगने वाला बल है: दाब = बल ÷ क्षेत्रफल। इसकी इकाई पास्कल (Pa) है, यानी एक न्यूटन प्रति वर्ग मीटर। उतना ही भार छोटे क्षेत्रफल पर ज़्यादा दाब देता है, इसलिए सिरे पर खड़ी ईंट ज़्यादा धँसती है; उसी क्षेत्रफल पर ज़्यादा भार से भी दाब बढ़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a school bag with wide straps feel lighter on the shoulders?",
+        "hi": "चौड़े पट्टों वाला स्कूल बैग कंधों पर हल्का क्यों लगता है?"
+       },
+       "options": [
+        {
+         "en": "The weight spreads over a bigger area, so less pressure",
+         "hi": "भार बड़े क्षेत्रफल पर फैलता है, इसलिए कम दाब"
+        },
+        {
+         "en": "Wide straps make the bag lighter",
+         "hi": "चौड़े पट्टे बैग को हल्का कर देते हैं"
+        },
+        {
+         "en": "The books weigh less",
+         "hi": "किताबों का भार कम हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The weight is the same, but a bigger area means less pressure on each part of the shoulder.",
+        "hi": "भार वही है, पर बड़े क्षेत्रफल से कंधे के हर भाग पर कम दाब पड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The bag weighs the same; only the area it presses on changes.",
+         "hi": "बैग का भार वही है; केवल दबाने का क्षेत्रफल बदलता है।"
+        },
+        {
+         "en": "Nothing changes the books; the straps only spread the force.",
+         "hi": "किताबें नहीं बदलतीं; पट्टे केवल बल को फैलाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a nail pointed at one end?",
+        "hi": "कील का एक सिरा नुकीला क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "A tiny area gives a huge pressure, so it goes in easily",
+         "hi": "छोटा क्षेत्रफल बहुत दाब देता है, इसलिए यह आसानी से घुसती है"
+        },
+        {
+         "en": "To look sharp",
+         "hi": "सुंदर दिखने के लिए"
+        },
+        {
+         "en": "To make it lighter",
+         "hi": "इसे हल्का करने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The hammer's force acts on a very small area at the tip, giving very high pressure.",
+        "hi": "हथौड़े का बल नोक के बहुत छोटे क्षेत्रफल पर लगता है, जिससे बहुत ज़्यादा दाब बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The point has a job: it makes the pressure large.",
+         "hi": "नोक का काम है: यह दाब को बड़ा करती है।"
+        },
+        {
+         "en": "The point barely changes the weight; it changes the area.",
+         "hi": "नोक से भार लगभग नहीं बदलता; क्षेत्रफल बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the brick on its side, and add weights each time. Which way gives the smallest pressure? Why are the tyres of tractors so wide?",
+      "hi": "ईंट को करवट पर रखकर हर बार भार जोड़ो। किस तरह सबसे कम दाब बनता है? ट्रैक्टर के टायर इतने चौड़े क्यों होते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch06-holes",
+   "topic": "6.1",
+   "template": "forces",
+   "title": {
+    "en": "Water pushes on the walls",
+    "hi": "पानी दीवारों पर दबाता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "pressure",
+    "fluid": "water"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tall bottle of water has three holes at different heights. Which jet will squirt farthest?",
+      "hi": "पानी की एक ऊँची बोतल में अलग-अलग ऊँचाई पर तीन छेद हैं। कौन-सी धार सबसे दूर जाएगी?"
+     },
+     "options": [
+      {
+       "id": "bottom",
+       "en": "The lowest hole",
+       "hi": "सबसे नीचे वाला छेद"
+      },
+      {
+       "id": "top",
+       "en": "The top hole",
+       "hi": "सबसे ऊपर वाला छेद"
+      },
+      {
+       "id": "same",
+       "en": "All the same",
+       "hi": "सब बराबर"
+      }
+     ],
+     "answer": "bottom"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "measured",
+     "say": {
+      "en": "Open the holes and watch the jets.",
+      "hi": "छेद खोलो और धारें देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:depth",
+     "expect": "measured",
+     "say": {
+      "en": "Move the pressure sensor deeper into the water.",
+      "hi": "दाब संवेदक को पानी में और गहरा ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "fluid:salt-water",
+     "expect": "measured",
+     "say": {
+      "en": "Change the liquid to salt water.",
+      "hi": "द्रव बदलकर नमक का पानी करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Liquids press on the walls and base of their container, in every direction. The deeper you go, the more liquid lies above, so the pressure is greater; that is why the lowest jet goes farthest. A denser liquid such as salt water gives more pressure at the same depth.",
+      "hi": "द्रव अपने बर्तन की दीवारों और तली पर हर दिशा में दबाव डालते हैं। जितना गहरे जाओ, ऊपर उतना ज़्यादा द्रव होता है, इसलिए दाब बढ़ता है; इसीलिए सबसे नीचे वाली धार सबसे दूर जाती है। नमक के पानी जैसा सघन द्रव उसी गहराई पर ज़्यादा दाब देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the wall of a dam made thicker at the bottom?",
+        "hi": "बाँध की दीवार नीचे से मोटी क्यों बनाई जाती है?"
+       },
+       "options": [
+        {
+         "en": "Water pressure is greatest at the bottom",
+         "hi": "पानी का दाब तली पर सबसे ज़्यादा होता है"
+        },
+        {
+         "en": "To save cement at the top",
+         "hi": "ऊपर सीमेंट बचाने के लिए"
+        },
+        {
+         "en": "Fish live at the bottom",
+         "hi": "मछलियाँ तली में रहती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pressure grows with depth, so the base must hold back the biggest push.",
+        "hi": "दाब गहराई के साथ बढ़ता है, इसलिए तली को सबसे बड़ा धक्का रोकना होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Saving cement is not the reason; the deep water pushes hardest.",
+         "hi": "सीमेंट बचाना कारण नहीं; गहरा पानी सबसे ज़ोर से धकेलता है।"
+        },
+        {
+         "en": "Fish have nothing to do with it; it is about pressure.",
+         "hi": "मछलियों का इससे लेना-देना नहीं; यह दाब की बात है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the sensor to the top and to the bottom, and try oil. Then think: why do your ears feel a push at the bottom of a swimming pool?",
+      "hi": "संवेदक को ऊपर और नीचे ले जाओ, और तेल आज़माओ। फिर सोचो: तरणताल की तली में कानों पर दबाव क्यों लगता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch06-breeze",
+   "topic": "6.3",
+   "template": "heat",
+   "title": {
+    "en": "Why the sea breeze blows",
+    "hi": "समुद्री हवा क्यों चलती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sea-breeze"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "It is a sunny afternoon at a beach in Chennai. Land and sea get the same sunshine. Which gets hotter?",
+      "hi": "चेन्नई के समुद्र तट पर धूप वाली दोपहर है। ज़मीन और समुद्र को बराबर धूप मिलती है। कौन ज़्यादा गर्म होगा?"
+     },
+     "options": [
+      {
+       "id": "land",
+       "en": "The land",
+       "hi": "ज़मीन"
+      },
+      {
+       "id": "sea",
+       "en": "The sea",
+       "hi": "समुद्र"
+      },
+      {
+       "id": "same",
+       "en": "Both the same",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "land"
+    },
+    {
+     "kind": "do",
+     "target": "slider:time",
+     "expect": "breeze:sea",
+     "say": {
+      "en": "Drag the time of day to the early afternoon, about 2 p.m.",
+      "hi": "दिन का समय दोपहर, लगभग 2 बजे तक खींचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "thermometer",
+     "expect": "reading",
+     "say": {
+      "en": "Read both thermometers.",
+      "hi": "दोनों थर्मामीटर पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:time",
+     "expect": "breeze:land",
+     "say": {
+      "en": "Now drag the time to the night, about 2 a.m.",
+      "hi": "अब समय को रात, लगभग 2 बजे तक खींचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Warm air expands, becomes lighter and rises, leaving a region of low pressure. Cooler air from a high-pressure region rushes in to take its place: this moving air is wind. By day the land is warmer, so air rises over it and a sea breeze blows in. At night the land cools faster, and the breeze blows from land to sea.",
+      "hi": "गर्म हवा फैलकर हल्की होती है और ऊपर उठती है, जिससे कम दाब का क्षेत्र बनता है। ज़्यादा दाब वाले क्षेत्र की ठंडी हवा उसकी जगह लेने दौड़ती है: यही चलती हवा पवन है। दिन में ज़मीन ज़्यादा गर्म होती है, इसलिए उसके ऊपर हवा उठती है और समुद्री पवन आती है। रात में ज़मीन जल्दी ठंडी होती है, और पवन ज़मीन से समुद्र की ओर चलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Wind always blows from ___.",
+        "hi": "पवन हमेशा ___ चलती है।"
+       },
+       "options": [
+        {
+         "en": "high pressure to low pressure",
+         "hi": "ज़्यादा दाब से कम दाब की ओर"
+        },
+        {
+         "en": "low pressure to high pressure",
+         "hi": "कम दाब से ज़्यादा दाब की ओर"
+        },
+        {
+         "en": "the sea, day and night",
+         "hi": "दिन-रात समुद्र से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Air moves from where it is pressed more to where it is pressed less.",
+        "hi": "हवा वहाँ से चलती है जहाँ दाब ज़्यादा है, वहाँ की ओर जहाँ कम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the wrong way round; low pressure is where air rises and leaves room.",
+         "hi": "यह उल्टा है; कम दाब वह जगह है जहाँ हवा उठकर जगह छोड़ती है।"
+        },
+        {
+         "en": "At night the breeze turns round and blows from the land.",
+         "hi": "रात में पवन पलटकर ज़मीन से चलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Run the day and watch a full 24 hours. At what times does the breeze change direction? Watch the land and sea temperatures.",
+      "hi": "दिन चलाओ दबाकर पूरे 24 घंटे देखो। पवन किस समय दिशा बदलती है? ज़मीन और समुद्र का तापमान देखते रहो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch06-lightning",
+   "topic": "6.5",
+   "template": "sequence",
+   "title": {
+    "en": "How lightning happens",
+    "hi": "बिजली कैसे चमकती है"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "rise",
+      "text": {
+       "en": "Warm, moist air rises fast on a hot day",
+       "hi": "गर्म दिन पर गर्म, नम हवा तेज़ी से ऊपर उठती है"
+      }
+     },
+     {
+      "id": "cloud",
+      "text": {
+       "en": "Water vapour cools and forms tall clouds of droplets and ice",
+       "hi": "जलवाष्प ठंडी होकर बूँदों और बर्फ़ के ऊँचे बादल बनाती है"
+      }
+     },
+     {
+      "id": "rub",
+      "text": {
+       "en": "Strong up and down winds rub ice bits against water drops",
+       "hi": "तेज़ ऊपर-नीचे की हवाएँ बर्फ़ के कणों को पानी की बूँदों से रगड़ती हैं"
+      }
+     },
+     {
+      "id": "charge",
+      "text": {
+       "en": "Charges build up: one kind at the top, the other at the bottom",
+       "hi": "आवेश जमा होते हैं: एक तरह के ऊपर, दूसरी तरह के नीचे"
+      }
+     },
+     {
+      "id": "flash",
+      "text": {
+       "en": "Air can no longer hold them apart: a flash of lightning",
+       "hi": "हवा उन्हें अलग नहीं रख पाती: बिजली की चमक"
+      }
+     },
+     {
+      "id": "thunder",
+      "text": {
+       "en": "The heated air expands suddenly: we hear thunder",
+       "hi": "गर्म हुई हवा अचानक फैलती है: हमें गरज सुनाई देती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:rise",
+     "expect": "placed:rise",
+     "say": {
+      "en": "Tap the first step and place it at 1.",
+      "hi": "पहला कदम छुओ और उसे स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What builds up in a storm cloud before lightning?",
+      "hi": "बिजली से पहले तूफ़ानी बादल में क्या जमा होता है?"
+     },
+     "options": [
+      {
+       "id": "charges",
+       "en": "Electric charges",
+       "hi": "विद्युत आवेश"
+      },
+      {
+       "id": "heat",
+       "en": "Only heat",
+       "hi": "केवल ऊष्मा"
+      },
+      {
+       "id": "dust",
+       "en": "Dust",
+       "hi": "धूल"
+      }
+     ],
+     "answer": "charges"
+    },
+    {
+     "kind": "do",
+     "target": "item:charge",
+     "expect": "placed:charge",
+     "say": {
+      "en": "Place the step where charges build up.",
+      "hi": "वह कदम रखो जहाँ आवेश जमा होते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Thunderstorms need moisture and strong rising winds. Rubbing between ice and water drops separates charges in the cloud. When the build-up is too big, air stops insulating and a sudden flow of charge flashes as lightning, within a cloud, between clouds or to the ground. The heated air expands with a boom: thunder.",
+      "hi": "गरज वाले तूफ़ान के लिए नमी और तेज़ उठती हवाएँ चाहिए। बर्फ़ और पानी की बूँदों की रगड़ से बादल में आवेश अलग होते हैं। जब बहुत ज़्यादा आवेश जमा हो जाता है, हवा कुचालक नहीं रहती और आवेश का अचानक बहाव बिजली बनकर चमकता है, बादल के अंदर, बादलों के बीच या ज़मीन तक। गर्म हवा धमाके से फैलती है: गरज।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "We see lightning before we hear thunder. Why?",
+        "hi": "हमें बिजली गरज से पहले दिखती है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Light travels much faster than sound",
+         "hi": "प्रकाश ध्वनि से बहुत तेज़ चलता है"
+        },
+        {
+         "en": "Thunder happens later",
+         "hi": "गरज बाद में होती है"
+        },
+        {
+         "en": "Our ears are slow",
+         "hi": "हमारे कान धीमे हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both happen together, but light reaches us almost at once while sound takes seconds.",
+        "hi": "दोनों साथ होते हैं, पर प्रकाश लगभग तुरंत पहुँचता है जबकि ध्वनि को कुछ सेकंड लगते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The flash and the boom are made at the same moment.",
+         "hi": "चमक और धमाका एक ही पल में बनते हैं।"
+        },
+        {
+         "en": "Our ears hear sound as soon as it arrives; the sound is just slower to travel.",
+         "hi": "कान ध्वनि पहुँचते ही सुनते हैं; ध्वनि बस धीमी चलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and order the steps in one try. Next storm, count the seconds between flash and thunder: a longer gap means the storm is farther away.",
+      "hi": "फिर से शुरू करके एक बार में सही क्रम बनाओ। अगले तूफ़ान में चमक और गरज के बीच सेकंड गिनो: ज़्यादा अंतर यानी तूफ़ान दूर है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch06-safety",
+   "topic": "6.5",
+   "template": "scenario",
+   "title": {
+    "en": "Safe in a thunderstorm",
+    "hi": "आँधी-तूफ़ान में सुरक्षित"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "village field",
+    "role": {
+     "en": "A student caught outside in a storm",
+     "hi": "तूफ़ान में बाहर फँसा विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "field",
+      "text": {
+       "en": "You are walking home across a field when dark clouds roll in and thunder rumbles. What do you do?",
+       "hi": "तुम खेत पार करके घर जा रहे हो, तभी काले बादल घिर आते हैं और गरज होती है। क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "crouch",
+        "text": {
+         "en": "Move to a low open place and crouch down on your feet",
+         "hi": "नीची खुली जगह पर जाकर पंजों के बल उकड़ूँ बैठ जाओ"
+        },
+        "next": "pond",
+        "feedback": {
+         "en": "Safe choice. Crouching low makes you a smaller target and touches the ground as little as possible.",
+         "hi": "सुरक्षित। नीचे उकड़ूँ बैठने से तुम छोटा निशाना बनते हो और ज़मीन को कम से कम छूते हो।"
+        },
+        "good": true
+       },
+       {
+        "id": "tree",
+        "text": {
+         "en": "Run under the tall neem tree",
+         "hi": "ऊँचे नीम के पेड़ के नीचे भागो"
+        },
+        "next": "pond",
+        "feedback": {
+         "en": "Dangerous. Lightning often strikes tall objects such as trees.",
+         "hi": "ख़तरनाक। बिजली अक्सर पेड़ जैसी ऊँची चीज़ों पर गिरती है।"
+        },
+        "good": false
+       },
+       {
+        "id": "lie",
+        "text": {
+         "en": "Lie flat on the ground",
+         "hi": "ज़मीन पर सीधे लेट जाओ"
+        },
+        "next": "pond",
+        "feedback": {
+         "en": "Not safe. Lying flat gives more contact with the ground, where charge can spread.",
+         "hi": "सुरक्षित नहीं। लेटने से ज़मीन से ज़्यादा संपर्क होता है, जहाँ आवेश फैल सकता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "pond",
+      "text": {
+       "en": "Your friends are swimming in the village pond. The storm is close.",
+       "hi": "तुम्हारे दोस्त गाँव के तालाब में तैर रहे हैं। तूफ़ान पास है।"
+      },
+      "choices": [
+       {
+        "id": "out",
+        "text": {
+         "en": "Call them to get out of the water at once",
+         "hi": "उन्हें तुरंत पानी से बाहर आने को कहो"
+        },
+        "next": "umbrella",
+        "feedback": {
+         "en": "Right. Water conducts electricity; being in it during lightning is very dangerous.",
+         "hi": "सही। पानी बिजली का चालक है; बिजली के समय उसमें रहना बहुत ख़तरनाक है।"
+        },
+        "good": true
+       },
+       {
+        "id": "stay",
+        "text": {
+         "en": "Let them finish their swim",
+         "hi": "उन्हें तैरना पूरा करने दो"
+        },
+        "next": "umbrella",
+        "feedback": {
+         "en": "Unsafe. If you are in water during lightning, get out of it.",
+         "hi": "असुरक्षित। बिजली के समय पानी में हो, तो बाहर निकलो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "umbrella",
+      "text": {
+       "en": "You reach the bus stop. A bus with closed windows arrives. You also have an umbrella with a metal rod.",
+       "hi": "तुम बस स्टॉप पहुँचते हो। बंद खिड़कियों वाली बस आती है। तुम्हारे पास धातु की छड़ वाला छाता भी है।"
+      },
+      "choices": [
+       {
+        "id": "bus",
+        "text": {
+         "en": "Get inside the bus",
+         "hi": "बस के अंदर चढ़ जाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Good. Inside a bus or car you are comparatively safe.",
+         "hi": "अच्छा। बस या कार के अंदर तुम तुलनात्मक रूप से सुरक्षित हो।"
+        },
+        "good": true
+       },
+       {
+        "id": "walk",
+        "text": {
+         "en": "Walk on under the metal umbrella",
+         "hi": "धातु वाले छाते के नीचे आगे चलते रहो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Avoid umbrellas with metal rods in lightning; take shelter instead.",
+         "hi": "बिजली में धातु की छड़ वाले छाते से बचो; किसी आश्रय में जाओ।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where is lightning most likely to strike?",
+      "hi": "बिजली के गिरने की संभावना सबसे ज़्यादा कहाँ है?"
+     },
+     "options": [
+      {
+       "id": "tall",
+       "en": "Tall objects like trees and towers",
+       "hi": "पेड़ और मीनार जैसी ऊँची चीज़ें"
+      },
+      {
+       "id": "low",
+       "en": "Low dips in the ground",
+       "hi": "ज़मीन के निचले गड्ढे"
+      },
+      {
+       "id": "cars",
+       "en": "The inside of a car",
+       "hi": "कार के अंदर"
+      }
+     ],
+     "answer": "tall"
+    },
+    {
+     "kind": "do",
+     "target": "choice:field:crouch",
+     "expect": "chose:crouch",
+     "say": {
+      "en": "Choose what to do in the open field.",
+      "hi": "खुले खेत में क्या करोगे, चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:pond:out",
+     "expect": "chose:out",
+     "say": {
+      "en": "Choose what to tell your friends in the pond.",
+      "hi": "तालाब में दोस्तों से क्या कहोगे, चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:umbrella:bus",
+     "expect": "chose:bus",
+     "say": {
+      "en": "Choose how to get home safely.",
+      "hi": "सुरक्षित घर पहुँचने का तरीका चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Lightning can start fires, damage buildings and cause burns or death. Stay away from tall objects, crouch low in an open place without lying flat, get out of water, and avoid metal-rod umbrellas. A bus or car is safer. Buildings are protected by lightning conductors: pointed metal rods that lead the charge safely into the ground.",
+      "hi": "बिजली से आग लग सकती है, इमारतें टूट सकती हैं और जलने या मौत का ख़तरा होता है। ऊँची चीज़ों से दूर रहो, खुली जगह में बिना लेटे नीचे उकड़ूँ बैठो, पानी से बाहर निकलो और धातु की छड़ वाले छाते से बचो। बस या कार ज़्यादा सुरक्षित है। इमारतों को तड़ित चालक बचाते हैं: नुकीली धातु की छड़ें जो आवेश को सुरक्षित ज़मीन में ले जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does a lightning conductor on a building do?",
+        "hi": "इमारत पर लगा तड़ित चालक क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Gives the charge an easy path into the ground",
+         "hi": "आवेश को ज़मीन में जाने का आसान रास्ता देता है"
+        },
+        {
+         "en": "Stops clouds forming",
+         "hi": "बादल बनने से रोकता है"
+        },
+        {
+         "en": "Makes lightning brighter",
+         "hi": "बिजली को और चमकीला बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Its top is above the building and its bottom is buried deep, so charge flows down it, not through the walls.",
+        "hi": "इसका सिरा इमारत से ऊपर और निचला भाग ज़मीन में गहरा होता है, इसलिए आवेश दीवारों से नहीं, इससे नीचे जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It cannot change the weather; it only guides charge safely.",
+         "hi": "यह मौसम नहीं बदल सकता; केवल आवेश को सुरक्षित रास्ता देता है।"
+        },
+        {
+         "en": "It does not change the flash; it protects the building.",
+         "hi": "यह चमक नहीं बदलता; इमारत को बचाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and choose the unsafe options to read why they are unsafe. Then check: does your school building have a lightning conductor?",
+      "hi": "फिर से खेलो और असुरक्षित विकल्प चुनकर पढ़ो कि वे क्यों असुरक्षित हैं। फिर देखो: क्या तुम्हारे स्कूल की इमारत पर तड़ित चालक है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch06-cyclone",
+   "topic": "6.6",
+   "template": "sequence",
+   "title": {
+    "en": "Birth of a cyclone",
+    "hi": "चक्रवात का जन्म"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "warm",
+      "text": {
+       "en": "The Sun heats the ocean; warm, moist air rises",
+       "hi": "सूर्य समुद्र को गर्म करता है; गर्म, नम हवा ऊपर उठती है"
+      }
+     },
+     {
+      "id": "rain",
+      "text": {
+       "en": "Water vapour condenses into raindrops and releases heat",
+       "hi": "जलवाष्प संघनित होकर वर्षा की बूँदें बनाती है और ऊष्मा छोड़ती है"
+      }
+     },
+     {
+      "id": "low",
+      "text": {
+       "en": "The warmed air rises even more, making a very low pressure",
+       "hi": "गर्म हुई हवा और ऊपर उठती है, जिससे बहुत कम दाब बनता है"
+      }
+     },
+     {
+      "id": "rush",
+      "text": {
+       "en": "Air from all around rushes in and also starts to rise",
+       "hi": "चारों ओर से हवा दौड़कर आती है और वह भी उठने लगती है"
+      }
+     },
+     {
+      "id": "spin",
+      "text": {
+       "en": "The Earth's rotation makes the moving air spin",
+       "hi": "पृथ्वी के घूमने से चलती हवा चक्कर खाने लगती है"
+      }
+     },
+     {
+      "id": "land",
+      "text": {
+       "en": "Over land the supply of moist air is cut off and it weakens",
+       "hi": "ज़मीन पर नम हवा की आपूर्ति कट जाती है और यह कमज़ोर पड़ता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:warm",
+     "expect": "placed:warm",
+     "say": {
+      "en": "Tap the step where it all starts, and place it at 1.",
+      "hi": "वह कदम छुओ जहाँ से सब शुरू होता है, और उसे स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why does a cyclone grow weaker after it reaches land?",
+      "hi": "ज़मीन पर पहुँचने के बाद चक्रवात कमज़ोर क्यों पड़ता है?"
+     },
+     "options": [
+      {
+       "id": "moist",
+       "en": "It no longer gets warm, moist air from the sea",
+       "hi": "उसे अब समुद्र की गर्म, नम हवा नहीं मिलती"
+      },
+      {
+       "id": "trees",
+       "en": "Trees block it completely",
+       "hi": "पेड़ उसे पूरी तरह रोक देते हैं"
+      },
+      {
+       "id": "cold",
+       "en": "Land is always frozen",
+       "hi": "ज़मीन हमेशा जमी रहती है"
+      }
+     ],
+     "answer": "moist"
+    },
+    {
+     "kind": "do",
+     "target": "item:spin",
+     "expect": "placed:spin",
+     "say": {
+      "en": "Place the step where the air starts to spin.",
+      "hi": "वह कदम रखो जहाँ हवा चक्कर खाने लगती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cyclones form over warm oceans. Rising moist air condenses and releases heat, which makes the air rise faster and the pressure drop further. Surrounding air rushes in and the Earth's rotation sets it spinning. The calm centre is the eye. Strong winds can push a wall of sea water onto the coast, so we follow IMD warnings and move to cyclone shelters.",
+      "hi": "चक्रवात गर्म समुद्रों पर बनते हैं। उठती नम हवा संघनित होकर ऊष्मा छोड़ती है, जिससे हवा और तेज़ उठती है और दाब और गिरता है। आसपास की हवा दौड़कर आती है और पृथ्वी का घूमना उसे चक्कर में डाल देता है। शांत केंद्र को आँख कहते हैं। तेज़ हवाएँ समुद्री पानी की दीवार तट पर धकेल सकती हैं, इसलिए हम IMD की चेतावनियाँ मानते हैं और चक्रवात आश्रयों में जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where is the pressure lowest in a cyclone?",
+        "hi": "चक्रवात में दाब सबसे कम कहाँ होता है?"
+       },
+       "options": [
+        {
+         "en": "At the eye, in the centre",
+         "hi": "केंद्र की आँख में"
+        },
+        {
+         "en": "At the outer edge",
+         "hi": "बाहरी किनारे पर"
+        },
+        {
+         "en": "Everywhere the same",
+         "hi": "हर जगह बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The eye is the region of lowest pressure, and there the wind is calm.",
+        "hi": "आँख सबसे कम दाब का क्षेत्र है, और वहाँ हवा शांत रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Air rushes inward from the edge because the pressure there is higher.",
+         "hi": "किनारे से हवा अंदर की ओर दौड़ती है क्योंकि वहाँ दाब ज़्यादा है।"
+        },
+        {
+         "en": "Wind blows only because pressure differs from place to place.",
+         "hi": "हवा तभी चलती है जब दाब जगह-जगह अलग हो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A cyclone warning is issued for your coastal town. What is the wise step?",
+        "hi": "तुम्हारे तटीय शहर के लिए चक्रवात की चेतावनी जारी हुई है। समझदारी का कदम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Keep an emergency kit ready and move to a cyclone shelter",
+         "hi": "आपातकालीन किट तैयार रखो और चक्रवात आश्रय में जाओ"
+        },
+        {
+         "en": "Go to the beach to watch the waves",
+         "hi": "लहरें देखने समुद्र तट पर जाओ"
+        },
+        {
+         "en": "Ignore it; warnings are often wrong",
+         "hi": "अनदेखा करो; चेतावनियाँ अक्सर ग़लत होती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "IMD tracks cyclones with satellites; following warnings saves lives.",
+        "hi": "IMD उपग्रहों से चक्रवातों पर नज़र रखता है; चेतावनी मानने से जान बचती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The storm surge can flood the shore suddenly; the beach is the most dangerous place.",
+         "hi": "तूफ़ानी लहर तट को अचानक डुबो सकती है; समुद्र तट सबसे ख़तरनाक जगह है।"
+        },
+        {
+         "en": "Satellite tracking has made warnings reliable; ignoring them risks lives.",
+         "hi": "उपग्रहों से चेतावनियाँ भरोसेमंद हो गई हैं; अनदेखा करना जान जोखिम में डालना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and order the steps in one go. Then list five things you would put in a family emergency kit.",
+      "hi": "फिर से शुरू करके एक बार में सही क्रम बनाओ। फिर परिवार की आपातकालीन किट की पाँच चीज़ें लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.6",
+   "use": "Hook of the chapter",
+   "shows": "A satellite-style view of a cyclone spiralling over the Bay of Bengal towards the Odisha coast, a clear eye at the centre",
+   "view": "Top-down, Earth curvature at the edge, realistic render",
+   "right": "Spiral turning anticlockwise (northern hemisphere); eye clear",
+   "avoid": "Text, borders, logos of agencies"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "6.1",
+   "use": "Brick on sand",
+   "shows": "The same red brick on damp sand three ways: lying flat, on its side, standing on its end, with the dent left behind each time",
+   "view": "Side view low to the sand, then from above to show the dents",
+   "right": "Deepest dent from the brick on its end",
+   "avoid": "Different bricks or sand"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "6.1",
+   "use": "Bottle with holes",
+   "shows": "A tall plastic bottle with holes at three heights, filled with water: frame 1 tape over the holes, frame 2 tape removed, the lowest jet reaching farthest",
+   "view": "Side view against a dark background, water lit from the side",
+   "right": "Lowest jet farthest, top jet shortest",
+   "avoid": "Coloured water that hides the jets"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "6.2",
+   "use": "Sucker on a tile",
+   "shows": "A rubber sucker pressed on a smooth tile and a hand trying to pull it off; then the edge lifted and it comes away easily",
+   "view": "Close side view",
+   "right": "Sucker flattened with no air under it in frame 1",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "6.4",
+   "use": "Blowing between balloons",
+   "shows": "Two balloons hanging 8 cm apart from a stick; a straw blowing air between them; the balloons swing towards each other",
+   "view": "Front view, plain wall behind",
+   "right": "Balloons move closer, not apart",
+   "avoid": "Faces"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.5",
+   "use": "Lightning over fields",
+   "shows": "A cloud-to-ground lightning bolt over green fields in the evening, a tall tree far away and a house with a lightning conductor on its roof",
+   "view": "Wide landscape view, long-exposure look",
+   "right": "Bolt from cloud to ground; conductor rod above the roof",
+   "avoid": "People outdoors near the bolt"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "6.5",
+   "use": "Safe crouching position",
+   "shows": "A child crouched on the balls of the feet, head tucked, hands over ears, in an open low field",
+   "view": "Side view, simple clean render",
+   "right": "Crouched, not lying flat; heels together",
+   "avoid": "Trees or poles nearby"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "6.6",
+   "use": "Cyclone shelter",
+   "shows": "A raised concrete cyclone shelter on a coastal Odisha village with families walking in carrying bags before a storm, dark sky",
+   "view": "Wide view from a distance",
+   "right": "Shelter on pillars; people carrying kits",
+   "avoid": "Identifiable faces, panic"
+  }
+ ]
+}

@@ -1,0 +1,729 @@
+{
+ "chapter_key": "u.c07.sanskrit.gsde1.ch11",
+ "class": 7,
+ "subject_id": "sanskrit",
+ "title": "द्वीपेषु रम्यः द्वीपोऽण्डमानः",
+ "source": "https://ncert.nic.in/textbook.php?gsde1=0-15",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Where the islands are and what they were called",
+   "labs": [
+    "c07-sanskrit-gsde1-ch11-map",
+    "c07-sanskrit-gsde1-ch11-names"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "The Cellular Jail and the people of the islands",
+   "labs": [
+    "c07-sanskrit-gsde1-ch11-facts",
+    "c07-sanskrit-gsde1-ch11-vocab"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Beaches, forests and the beauty of the islands",
+   "labs": [],
+   "why_no_lab": "Beauty is understood by looking; photographs in the reader do this better than a task."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-sanskrit-gsde1-ch11-map",
+   "topic": "11.1",
+   "template": "map",
+   "title": {
+    "en": "Find the Andaman and Nicobar Islands",
+    "hi": "अंडमान और निकोबार द्वीपसमूह ढूँढो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "states"
+    ],
+    "task": "locate",
+    "places": [
+     "andaman-nicobar"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:states",
+     "expect": "layer:states",
+     "say": {
+      "en": "Switch on the States layer.",
+      "hi": "राज्य वाली परत चालू करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Andaman and Nicobar Islands lie in the sea. In which direction from the main land of India?",
+      "hi": "अंडमान और निकोबार द्वीप समुद्र में हैं। भारत की मुख्य भूमि से किस दिशा में?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "East",
+       "hi": "पूर्व"
+      },
+      {
+       "id": "b",
+       "en": "West",
+       "hi": "पश्चिम"
+      },
+      {
+       "id": "c",
+       "en": "North",
+       "hi": "उत्तर"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "located:andaman-nicobar",
+     "say": {
+      "en": "Drop a pin on the Andaman and Nicobar Islands, then press Check.",
+      "hi": "अंडमान और निकोबार द्वीपसमूह पर पिन गिराओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Andaman and Nicobar Islands are an island group in the Bay of Bengal, east of the Indian mainland, and they form one of the Union Territories of India. Their capital today is श्रीविजयपुरम्, which the British called Port Blair.",
+      "hi": "अंडमान और निकोबार बंगाल की खाड़ी में, भारत की मुख्य भूमि के पूर्व में द्वीपों का समूह है, और भारत के केंद्रशासित प्रदेशों में से एक है। इसकी आज की राजधानी श्रीविजयपुरम् है, जिसे अंग्रेज़ पोर्ट ब्लेयर कहते थे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The capital of the islands today is:",
+        "hi": "द्वीपसमूह की आज की राजधानी है:"
+       },
+       "options": [
+        "श्रीविजयपुरम्",
+        "इन्द्रप्रस्थम्",
+        "पाटलीपुत्रम्"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "श्रीविजयपुरम् is the capital, once called Port Blair.",
+        "hi": "श्रीविजयपुरम् राजधानी है, जिसे पहले पोर्ट ब्लेयर कहा जाता था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "इन्द्रप्रस्थम् is an old name of Delhi.",
+         "hi": "इन्द्रप्रस्थम् दिल्ली का पुराना नाम है।"
+        },
+        {
+         "en": "पाटलीपुत्रम् is the old name of Patna.",
+         "hi": "पाटलीपुत्रम् पटना का पुराना नाम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find your own state on the map and compare how far it is from the islands.",
+      "hi": "नक्शे पर अपना राज्य ढूँढो और देखो कि वह द्वीपों से कितनी दूर है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-sanskrit-gsde1-ch11-names",
+   "topic": "11.1",
+   "template": "sequence",
+   "title": {
+    "en": "The island's names through time",
+    "hi": "द्वीप के नाम समय के साथ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "hand",
+      "text": {
+       "en": "हण्डुकमान् — the name in the time of the Ramayana",
+       "hi": "हण्डुकमान् — रामायण काल का नाम"
+      }
+     },
+     {
+      "id": "agad",
+      "text": {
+       "en": "अगादेमन् — the name in the first century",
+       "hi": "अगादेमन् — पहली शताब्दी का नाम"
+      }
+     },
+     {
+      "id": "angad",
+      "text": {
+       "en": "अङ्गादेमन् — the name that followed",
+       "hi": "अङ्गादेमन् — उसके बाद का नाम"
+      }
+     },
+     {
+      "id": "port",
+      "text": {
+       "en": "पोर्ट-ब्लेयर् — the British name of the capital",
+       "hi": "पोर्ट-ब्लेयर् — राजधानी का अंग्रेज़ों का दिया नाम"
+      }
+     },
+     {
+      "id": "sri",
+      "text": {
+       "en": "श्रीविजयपुरम् — the capital's name today",
+       "hi": "श्रीविजयपुरम् — राजधानी का आज का नाम"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:hand",
+     "expect": "placed:hand",
+     "say": {
+      "en": "Put the oldest name first.",
+      "hi": "सबसे पुराना नाम पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which name is the newest?",
+      "hi": "सबसे नया नाम कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "श्रीविजयपुरम्",
+       "hi": "श्रीविजयपुरम्"
+      },
+      {
+       "id": "b",
+       "en": "हण्डुकमान्",
+       "hi": "हण्डुकमान्"
+      },
+      {
+       "id": "c",
+       "en": "अगादेमन्",
+       "hi": "अगादेमन्"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange all five names from oldest to newest, then press Check.",
+      "hi": "पाँचों नाम सबसे पुराने से सबसे नए क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Names of places change as history goes on. One teacher in the lesson says the island was called हण्डुकमान् in the Ramayana times, that it later became अगादेमन् and अङ्गादेमन्, that the British named the capital Port Blair, and that today it is called श्रीविजयपुरम्.",
+      "hi": "इतिहास के साथ स्थानों के नाम बदलते हैं। पाठ में बताया गया है कि रामायण काल में द्वीप को हण्डुकमान् कहते थे, फिर अगादेमन् और अङ्गादेमन् हुआ, अंग्रेज़ों ने राजधानी का नाम पोर्ट ब्लेयर रखा, और आज उसे श्रीविजयपुरम् कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which name did the British give the capital?",
+        "hi": "अंग्रेज़ों ने राजधानी को कौन-सा नाम दिया?"
+       },
+       "options": [
+        "पोर्ट-ब्लेयर्",
+        "श्रीविजयपुरम्",
+        "अगादेमन्"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The British named it Port Blair.",
+        "hi": "अंग्रेज़ों ने इसे पोर्ट ब्लेयर नाम दिया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "श्रीविजयपुरम् is the present Indian name.",
+         "hi": "श्रीविजयपुरम् आज का भारतीय नाम है।"
+        },
+        {
+         "en": "अगादेमन् is an ancient name of the island, not the capital's British name.",
+         "hi": "अगादेमन् द्वीप का प्राचीन नाम है, राजधानी का अंग्रेज़ी नाम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find out the old name of your own town or village and tell the class.",
+      "hi": "अपने नगर या गाँव का पुराना नाम पता करो और कक्षा को बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-sanskrit-gsde1-ch11-facts",
+   "topic": "11.2",
+   "template": "match",
+   "title": {
+    "en": "People and places of the islands",
+    "hi": "द्वीपों के लोग और स्थान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "capital",
+      "left": {
+       "en": "श्रीविजयपुरम्",
+       "hi": "श्रीविजयपुरम्"
+      },
+      "right": {
+       "en": "The capital of the islands today",
+       "hi": "द्वीपों की आज की राजधानी"
+      },
+      "why": {
+       "en": "The capital was renamed श्रीविजयपुरम्.",
+       "hi": "राजधानी का नाम श्रीविजयपुरम् रखा गया।"
+      }
+     },
+     {
+      "id": "port",
+      "left": {
+       "en": "पोर्ट-ब्लेयर्",
+       "hi": "पोर्ट-ब्लेयर्"
+      },
+      "right": {
+       "en": "The British name of the capital",
+       "hi": "राजधानी का अंग्रेज़ों वाला नाम"
+      },
+      "why": {
+       "en": "The British used this name for the capital.",
+       "hi": "अंग्रेज़ राजधानी के लिए यह नाम प्रयोग करते थे।"
+      }
+     },
+     {
+      "id": "kala",
+      "left": {
+       "en": "कालापानी",
+       "hi": "कालापानी"
+      },
+      "right": {
+       "en": "Another name of the Cellular Jail",
+       "hi": "सेल्युलर जेल का दूसरा नाम"
+      },
+      "why": {
+       "en": "The jail was feared as कालापानी.",
+       "hi": "इस जेल को कालापानी कहकर डरते थे।"
+      }
+     },
+     {
+      "id": "jail",
+      "left": {
+       "en": "कारागारम्",
+       "hi": "कारागारम्"
+      },
+      "right": {
+       "en": "A prison",
+       "hi": "जेल"
+      },
+      "why": {
+       "en": "कारागारम् is the Sanskrit word for prison.",
+       "hi": "कारागारम् जेल के लिए संस्कृत शब्द है।"
+      }
+     },
+     {
+      "id": "savarkar",
+      "left": {
+       "en": "सावरकरः",
+       "hi": "सावरकरः"
+      },
+      "right": {
+       "en": "A freedom fighter who suffered there",
+       "hi": "एक स्वतंत्रता सेनानी जिसने वहाँ कष्ट सहे"
+      },
+      "why": {
+       "en": "Savarkar was one of the freedom fighters held in the Cellular Jail.",
+       "hi": "सावरकर सेल्युलर जेल में रखे गए स्वतंत्रता सेनानियों में से एक थे।"
+      }
+     },
+     {
+      "id": "tribes",
+      "left": {
+       "en": "जनजातयः",
+       "hi": "जनजातयः"
+      },
+      "right": {
+       "en": "Tribal communities of the islands",
+       "hi": "द्वीपों के आदिवासी समुदाय"
+      },
+      "why": {
+       "en": "जनजातयः are tribes; the islands have several, such as the Jarawa and the Onge.",
+       "hi": "जनजातयः आदिवासी हैं; द्वीपों में जारवा और ओंगी जैसे कई हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:capital",
+     "expect": "matched:capital",
+     "say": {
+      "en": "Match श्रीविजयपुरम् with its meaning.",
+      "hi": "श्रीविजयपुरम् को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The jail was called कालापानी. What feeling did people have about it?",
+      "hi": "जेल को कालापानी कहते थे। उसके बारे में लोगों का क्या भाव था?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Fear",
+       "hi": "भय"
+      },
+      {
+       "id": "b",
+       "en": "Joy",
+       "hi": "आनंद"
+      },
+      {
+       "id": "c",
+       "en": "Pride in the jailers",
+       "hi": "जेलर पर गर्व"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:tribes",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the pairs.",
+      "hi": "सारी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Cellular Jail, built by the British, held freedom fighters who struggled for India's independence. The islands are also home to tribal communities who have lived there for a very long time. They deserve our respect, and the government protects their way of life and their lands.",
+      "hi": "अंग्रेज़ों द्वारा बनाई गई सेल्युलर जेल में भारत की आज़ादी के लिए लड़ने वाले स्वतंत्रता सेनानी रखे गए थे। द्वीपों में बहुत लंबे समय से रहने वाले आदिवासी समुदाय भी रहते हैं। वे हमारे सम्मान के पात्र हैं, और सरकार उनकी जीवन-शैली और भूमि की रक्षा करती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the Cellular Jail also called?",
+        "hi": "सेल्युलर जेल को और क्या कहते हैं?"
+       },
+       "options": [
+        "कालापानी",
+        "विजयपुरम्",
+        "जनजातिः"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "कालापानी was the dreaded name of the jail.",
+        "hi": "कालापानी जेल का डरावना नाम था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "विजयपुरम् is part of the capital's present name, not the jail.",
+         "hi": "विजयपुरम् राजधानी के आज के नाम का भाग है, जेल का नहीं।"
+        },
+        {
+         "en": "जनजातिः means a tribe.",
+         "hi": "जनजातिः का अर्थ आदिवासी समुदाय है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write one sentence in your own words to thank the freedom fighters who suffered in the islands.",
+      "hi": "द्वीपों में कष्ट सहने वाले स्वतंत्रता सेनानियों के लिए धन्यवाद का एक वाक्य अपने शब्दों में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-sanskrit-gsde1-ch11-vocab",
+   "topic": "11.2",
+   "template": "reader",
+   "title": {
+    "en": "Words of the island story",
+    "hi": "द्वीप की कथा के शब्द"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "sa",
+    "passage": {
+     "title": {
+      "en": "The islands in the sea",
+      "hi": "समुद्र के द्वीप"
+     },
+     "lines": [
+      "अण्डमानद्वीपसमूहः भारतस्य भागः अस्ति ।",
+      "तस्य राजधानी श्रीविजयपुरम् अस्ति ।",
+      "तत्र सेल्युलर इति कारागारम् अस्ति ।",
+      "स्वातन्त्र्यवीराः तत्र घोरं कष्टं सोढवन्तः ।",
+      "द्वीपेषु काश्चन जनजातयः निवसन्ति ।",
+      "वयं तेषां संरक्षणं कुर्मः ।"
+     ]
+    },
+    "words": [
+     {
+      "w": "कारागारम्",
+      "meaning": {
+       "en": "A prison",
+       "hi": "जेल"
+      }
+     },
+     {
+      "w": "स्वातन्त्र्यवीराः",
+      "meaning": {
+       "en": "Brave fighters for freedom",
+       "hi": "स्वतंत्रता के वीर"
+      }
+     },
+     {
+      "w": "घोरं",
+      "meaning": {
+       "en": "Terrible, severe",
+       "hi": "भयंकर, कठोर"
+      }
+     },
+     {
+      "w": "सोढवन्तः",
+      "meaning": {
+       "en": "They bore, they endured",
+       "hi": "उन्होंने सहा"
+      }
+     },
+     {
+      "w": "जनजातयः",
+      "meaning": {
+       "en": "Tribal communities",
+       "hi": "आदिवासी समुदाय"
+      }
+     },
+     {
+      "w": "निवसन्ति",
+      "meaning": {
+       "en": "They live",
+       "hi": "वे रहते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:कारागारम्",
+     "expect": "found:कारागारम्",
+     "say": {
+      "en": "Tap कारागारम्, the word for a prison.",
+      "hi": "कारागारम् छुओ, यानी जेल के लिए शब्द।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "सोढवन्तः is made like पठितवन्तः (they read). So it tells us that many people:",
+      "hi": "सोढवन्तः पठितवन्तः (उन्होंने पढ़ा) की तरह बना है। इसलिए यह बताता है कि कई लोगों ने:"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "bore it in the past",
+       "hi": "बीते समय में सहा"
+      },
+      {
+       "id": "b",
+       "en": "will bear it soon",
+       "hi": "आगे सहेंगे"
+      },
+      {
+       "id": "c",
+       "en": "are bearing it now",
+       "hi": "अभी सह रहे हैं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:सोढवन्तः",
+     "expect": "found:सोढवन्तः",
+     "say": {
+      "en": "Find सोढवन्तः and tap it.",
+      "hi": "सोढवन्तः ढूँढकर छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:जनजातयः",
+     "expect": "found:जनजातयः",
+     "say": {
+      "en": "Now tap जनजातयः, the tribal communities.",
+      "hi": "अब जनजातयः छुओ, यानी आदिवासी समुदाय।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Pick the meaning that fits.",
+      "hi": "सही अर्थ चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This is how the lesson links history and people: freedom fighters bore terrible hardship in the jail, and the islands are also the home of tribal communities. The ending -वन्तः in सोढवन्तः is the same past ending we met in Nagarjuna's story, now for a group of men.",
+      "hi": "इस तरह पाठ इतिहास और लोगों को जोड़ता है: स्वतंत्रता सेनानियों ने जेल में भयंकर कष्ट सहे, और द्वीप आदिवासी समुदायों का घर भी हैं। सोढवन्तः में -वन्तः वही बीते समय का अंत है जो नागार्जुन की कथा में आया था, अब पुरुषों के समूह के लिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does निवसन्ति mean?",
+        "hi": "निवसन्ति का क्या अर्थ है?"
+       },
+       "options": [
+        "They live",
+        "They sleep",
+        "They sing"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "निवसन्ति comes from वस्, to live; -न्ति means many.",
+        "hi": "निवसन्ति वस् (रहना) से बना है; -न्ति का अर्थ कई है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sleeping is स्वपन्ति.",
+         "hi": "सोने के लिए स्वपन्ति आता है।"
+        },
+        {
+         "en": "Singing is गायन्ति.",
+         "hi": "गाने के लिए गायन्ति आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say one respectful sentence about the people who live on the islands.",
+      "hi": "द्वीपों में रहने वाले लोगों के बारे में एक सम्मानजनक वाक्य बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "MAP",
+   "topic": "11.1",
+   "use": "Where the islands are",
+   "shows": "A relief map of the Bay of Bengal with the Andaman and Nicobar chain and the east coast of India, no names",
+   "view": "16:9, islands in the centre",
+   "right": "True positions of the island chain",
+   "avoid": "Names, borders"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "11.3",
+   "use": "A beach on the islands",
+   "shows": "A white sand beach with clear turquoise water and green forest behind",
+   "view": "Wide, low angle",
+   "right": "Real Andaman colours, no resort branding",
+   "avoid": "Crowds"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "11.2",
+   "use": "The Cellular Jail",
+   "shows": "The old red-brick Cellular Jail building with its wings and the sea behind",
+   "view": "Wide, afternoon light",
+   "right": "Real architecture, respectful mood",
+   "avoid": "Text, flags"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "11.2",
+   "use": "Remembering",
+   "shows": "A row of lit lamps in front of a memorial stone at dusk",
+   "view": "Medium, from the front",
+   "right": "Calm light, no faces",
+   "avoid": "Any names or readable words"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "11.3",
+   "use": "The forest of the islands",
+   "shows": "Dense tropical forest with tall trees and a hornbill in flight",
+   "view": "Wide, from the ground",
+   "right": "Real flora of the islands",
+   "avoid": "Camps or clearings"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "11.3",
+   "use": "Sea shell",
+   "shows": "A cone shell on white sand, clean cut-out",
+   "view": "Close-up, transparent background",
+   "right": "True shell colours",
+   "avoid": "Plastic objects"
+  }
+ ]
+}

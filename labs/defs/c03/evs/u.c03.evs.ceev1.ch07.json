@@ -1,0 +1,664 @@
+{
+ "chapter_key": "u.c03.evs.ceev1.ch07",
+ "class": 3,
+ "subject_id": "evs",
+ "title": "Water: A Precious Gift",
+ "source": "https://ncert.nic.in/textbook/pdf/ceev107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Rain: guessing if it will rain and watching rainfall",
+   "labs": [],
+   "why_no_lab": "Watching the sky and rain is best done outdoors; the class discussion and rain songs teach this."
+  },
+  {
+   "n": "7.2",
+   "title": "Where the rainwater goes: soil, streams, ponds and wells",
+   "labs": [
+    "c3-evs-ceev1-ch07-underground"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "How water reaches our homes: tanks, pipes, wells and tankers",
+   "labs": [
+    "c3-evs-ceev1-ch07-journey"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Water in our daily lives and how we store it",
+   "labs": [],
+   "why_no_lab": "Looking at vessels and asking elders is best done as the exhibition activity; it needs real vessels and stories."
+  },
+  {
+   "n": "7.5",
+   "title": "Using less water and reusing water",
+   "labs": [
+    "c3-evs-ceev1-ch07-save"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6",
+   "title": "Every drop counts: free drinking water and a birdbath",
+   "labs": [],
+   "why_no_lab": "Making a birdbath is a hands-on craft that is done at home or school."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-evs-ceev1-ch07-underground",
+   "topic": "7.2",
+   "template": "earth",
+   "title": {
+    "en": "Where does the rain go?",
+    "hi": "बारिश का पानी कहाँ जाता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "groundwater",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When rain falls on the ground, where does some of the water go?",
+      "hi": "जब बारिश ज़मीन पर गिरती है तो उसका कुछ पानी कहाँ जाता है?"
+     },
+     "options": [
+      {
+       "id": "soak",
+       "en": "It soaks into the ground",
+       "hi": "वह ज़मीन में रिस जाता है"
+      },
+      {
+       "id": "vanish",
+       "en": "It disappears completely",
+       "hi": "वह पूरी तरह गायब हो जाता है"
+      },
+      {
+       "id": "sky",
+       "en": "It goes straight back to the clouds",
+       "hi": "वह सीधे बादलों में लौट जाता है"
+      }
+     ],
+     "answer": "soak"
+    },
+    {
+     "kind": "do",
+     "target": "drop",
+     "expect": "rained",
+     "say": {
+      "en": "Press \"Follow a raindrop\" and watch where the rain goes.",
+      "hi": "\"वर्षा की बूँद के साथ चलो\" दबाओ और देखो कि बारिश का पानी कहाँ जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:aquifer",
+     "expect": "revealed:aquifer",
+     "say": {
+      "en": "Tap the layer called aquifer. This is where the water is stored under the ground.",
+      "hi": "अक्विफ़र नाम की परत को छुओ। ज़मीन के नीचे पानी यहीं जमा रहता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:well",
+     "expect": "revealed:well",
+     "say": {
+      "en": "Tap the well. How does it get its water?",
+      "hi": "कुएँ को छुओ। उसे पानी कैसे मिलता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Some rainwater soaks into the soil and fills the spaces between soil and rocks under the ground. This is groundwater. A well is a deep hole that reaches this water. Some rain also flows into streams and rivers or collects in ponds and lakes.",
+      "hi": "बारिश का कुछ पानी मिट्टी में रिसकर ज़मीन के नीचे मिट्टी और चट्टानों के बीच की खाली जगहों में भर जाता है। इसे भूजल यानी ज़मीन के नीचे का पानी कहते हैं। कुआँ एक गहरा गड्ढा होता है जो इस पानी तक पहुँचता है। कुछ बारिश का पानी नदियों-नालों में बहता है या तालाबों और झीलों में जमा हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does the water in a well come from?",
+        "hi": "कुएँ का पानी कहाँ से आता है?"
+       },
+       "options": [
+        {
+         "en": "From the water stored under the ground",
+         "hi": "ज़मीन के नीचे जमा पानी से"
+        },
+        {
+         "en": "From the sun",
+         "hi": "सूरज से"
+        },
+        {
+         "en": "From the wind",
+         "hi": "हवा से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rain soaks into the ground and is stored there. A well reaches this stored water.",
+        "hi": "बारिश का पानी ज़मीन में रिसकर जमा हो जाता है। कुआँ उसी जमा पानी तक पहुँचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sun does not give a well its water. The water comes from rain that soaked into the ground.",
+         "hi": "सूरज कुएँ को पानी नहीं देता। पानी उस बारिश से आता है जो ज़मीन में रिस गई थी।"
+        },
+        {
+         "en": "Wind does not fill wells. Rain soaks into the ground and fills them.",
+         "hi": "हवा कुओं को नहीं भरती। बारिश का पानी ज़मीन में रिसकर उन्हें भरता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What can happen if we take out too much groundwater and little rain falls?",
+        "hi": "अगर हम बहुत ज़्यादा भूजल निकालें और बारिश कम हो तो क्या हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "The well can run dry",
+         "hi": "कुआँ सूख सकता है"
+        },
+        {
+         "en": "The well will fill up faster",
+         "hi": "कुआँ और जल्दी भरेगा"
+        },
+        {
+         "en": "Nothing will change",
+         "hi": "कुछ नहीं बदलेगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When more water goes out than comes in, the water level drops and the well can dry up. That is why we must save water.",
+        "hi": "जब अंदर आने से ज़्यादा पानी बाहर निकलता है तो पानी का स्तर गिरता है और कुआँ सूख सकता है। इसीलिए पानी बचाना ज़रूरी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wells fill only when rain soaks in. Taking out more than we put back empties them.",
+         "hi": "कुएँ तभी भरते हैं जब बारिश का पानी रिसता है। जितना डालते हैं उससे ज़्यादा निकालें तो वे ख़ाली हो जाते हैं।"
+        },
+        {
+         "en": "Water we take out must be replaced by rain. If it is not, the water level falls.",
+         "hi": "जो पानी हम निकालते हैं उसे बारिश को वापस भरना होता है। न भरे तो पानी का स्तर गिर जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the Pumping slider up and the Rain slider down, then let one year pass. What happens to the well? Now turn on rainwater harvesting.",
+      "hi": "पंपिंग वाला स्लाइडर ऊपर और वर्षा वाला स्लाइडर नीचे करो, फिर एक साल बीतने दो। कुएँ का क्या होता है? अब वर्षा जल संचयन चालू करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch07-journey",
+   "topic": "7.3",
+   "template": "sequence",
+   "title": {
+    "en": "The journey of water to our tap",
+    "hi": "पानी का हमारे नल तक सफ़र"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "rain",
+      "text": {
+       "en": "Rain falls from the clouds onto the ground",
+       "hi": "बादलों से बारिश ज़मीन पर गिरती है"
+      }
+     },
+     {
+      "id": "soak",
+      "text": {
+       "en": "Some rain soaks into the soil and some flows into streams",
+       "hi": "कुछ बारिश मिट्टी में रिसती है और कुछ नालों में बहती है"
+      }
+     },
+     {
+      "id": "collect",
+      "text": {
+       "en": "Water collects in rivers, ponds and under the ground",
+       "hi": "पानी नदियों, तालाबों और ज़मीन के नीचे जमा होता है"
+      }
+     },
+     {
+      "id": "tank",
+      "text": {
+       "en": "Water is brought from the river or well to a big tank",
+       "hi": "नदी या कुएँ से पानी एक बड़ी टंकी में लाया जाता है"
+      }
+     },
+     {
+      "id": "pipes",
+      "text": {
+       "en": "Pipes carry the water from the tank to our taps",
+       "hi": "पाइप टंकी से पानी हमारे नलों तक पहुँचाते हैं"
+      }
+     },
+     {
+      "id": "reuse",
+      "text": {
+       "en": "We use the water and reuse the waste water for plants",
+       "hi": "हम पानी इस्तेमाल करते हैं और बेकार पानी को पौधों में डालते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:rain",
+     "expect": "placed:rain",
+     "say": {
+      "en": "Tap the step that happens first, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर जगह 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which step comes just before pipes carry water to our taps?",
+      "hi": "नलों तक पानी ले जाने वाले पाइपों से ठीक पहले कौन-सा चरण आता है?"
+     },
+     "options": [
+      {
+       "id": "tank",
+       "en": "Water is stored in a big tank",
+       "hi": "पानी बड़ी टंकी में जमा होता है"
+      },
+      {
+       "id": "rain",
+       "en": "Rain falls from the clouds",
+       "hi": "बादलों से बारिश गिरती है"
+      },
+      {
+       "id": "reuse",
+       "en": "We reuse the waste water",
+       "hi": "हम बेकार पानी का दोबारा उपयोग करते हैं"
+      }
+     ],
+     "answer": "tank"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order and press Check.",
+      "hi": "सब चरण क्रम में लगाओ और जाँचो पर दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water begins as rain. It soaks into the ground, flows in streams and rivers, and collects in ponds and under the ground. People bring it to a big tank, and pipes carry it to our taps. After we use it, we can reuse the waste water for plants. Many people work hard to bring us this water.",
+      "hi": "पानी की शुरुआत बारिश से होती है। वह ज़मीन में रिसता है, नदी-नालों में बहता है और तालाबों व ज़मीन के नीचे जमा होता है। लोग उसे बड़ी टंकी में लाते हैं और पाइप उसे हमारे नलों तक पहुँचाते हैं। उपयोग के बाद बेकार पानी को हम पौधों में डाल सकते हैं। बहुत से लोग मेहनत करके हमें यह पानी पहुँचाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What carries water from the tank to our home?",
+        "hi": "टंकी से हमारे घर तक पानी कौन ले जाता है?"
+       },
+       "options": [
+        {
+         "en": "Pipes",
+         "hi": "पाइप"
+        },
+        {
+         "en": "Birds",
+         "hi": "पक्षी"
+        },
+        {
+         "en": "Wind",
+         "hi": "हवा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water travels through pipes from the tank to every tap.",
+        "hi": "पानी पाइपों से होकर टंकी से हर नल तक पहुँचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Birds cannot carry water to homes. Pipes do this work.",
+         "hi": "पक्षी घरों तक पानी नहीं पहुँचा सकते। यह काम पाइप करते हैं।"
+        },
+        {
+         "en": "Wind cannot carry water through our house. Pipes carry it.",
+         "hi": "हवा हमारे घर तक पानी नहीं ले जा सकती। पाइप उसे ले जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Follow the pipe from your tap at home or school. Where does it start? Say a big thank you to the people who bring you water.",
+      "hi": "घर या स्कूल के नल से पाइप को देखते हुए चलो। वह कहाँ से शुरू होता है? जो लोग तुम्हारे लिए पानी लाते हैं उन्हें बड़ा-सा धन्यवाद कहो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch07-save",
+   "topic": "7.4",
+   "template": "sort",
+   "title": {
+    "en": "Save water, do not waste it",
+    "hi": "पानी बचाओ, बर्बाद मत करो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "saves",
+      "label": {
+       "en": "Saves water",
+       "hi": "पानी बचाता है"
+      }
+     },
+     {
+      "id": "wastes",
+      "label": {
+       "en": "Wastes water",
+       "hi": "पानी बर्बाद करता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tapoff",
+      "text": {
+       "en": "Close the tap while brushing",
+       "hi": "दाँत साफ़ करते समय नल बंद रखो"
+      },
+      "bin": "saves",
+      "why": {
+       "en": "Water keeps running if the tap is open. Closing it saves many mugs.",
+       "hi": "नल खुला रहे तो पानी बहता रहता है। बंद करने से कई मग पानी बचता है।"
+      }
+     },
+     {
+      "id": "bucket",
+      "text": {
+       "en": "Take a bath with a bucket and mug",
+       "hi": "बाल्टी और मग से नहाओ"
+      },
+      "bin": "saves",
+      "why": {
+       "en": "A bucket bath uses less water than a long shower.",
+       "hi": "बाल्टी से नहाने में लंबे शॉवर से कम पानी लगता है।"
+      }
+     },
+     {
+      "id": "plants",
+      "text": {
+       "en": "Water the plants with used rinsing water",
+       "hi": "पौधों में धोने का पानी डालो"
+      },
+      "bin": "saves",
+      "why": {
+       "en": "Reusing water for plants means less fresh water is used.",
+       "hi": "पौधों में इस्तेमाल किया पानी डालने से कम ताज़ा पानी लगता है।"
+      }
+     },
+     {
+      "id": "glass",
+      "text": {
+       "en": "Take only as much water as you will drink",
+       "hi": "उतना ही पानी लो जितना पीना हो"
+      },
+      "bin": "saves",
+      "why": {
+       "en": "Water left in the glass is thrown away.",
+       "hi": "गिलास में बचा पानी फेंक दिया जाता है।"
+      }
+     },
+     {
+      "id": "fixleak",
+      "text": {
+       "en": "Tell an elder to fix a leaking tap",
+       "hi": "टपकते नल को ठीक कराने के लिए बड़ों को बताओ"
+      },
+      "bin": "saves",
+      "why": {
+       "en": "A dripping tap loses many litres in a day.",
+       "hi": "टपकता नल एक दिन में कई लीटर पानी गँवा देता है।"
+      }
+     },
+     {
+      "id": "tapon",
+      "text": {
+       "en": "Leave the tap running",
+       "hi": "नल खुला छोड़ दो"
+      },
+      "bin": "wastes",
+      "why": {
+       "en": "The water runs away for nothing.",
+       "hi": "पानी बेकार बह जाता है।"
+      }
+     },
+     {
+      "id": "hose",
+      "text": {
+       "en": "Wash the floor with a running pipe",
+       "hi": "बहते पाइप से फ़र्श धोओ"
+      },
+      "bin": "wastes",
+      "why": {
+       "en": "A running pipe uses much more water than a bucket and a mop.",
+       "hi": "बहता पाइप बाल्टी और पोंछे से बहुत ज़्यादा पानी इस्तेमाल करता है।"
+      }
+     },
+     {
+      "id": "spill",
+      "text": {
+       "en": "Throw away half a glass of water",
+       "hi": "आधा गिलास पानी फेंक दो"
+      },
+      "bin": "wastes",
+      "why": {
+       "en": "Clean drinking water is precious. Do not throw it away.",
+       "hi": "साफ़ पीने का पानी क़ीमती है। उसे मत फेंको।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:tapoff",
+     "expect": "placed:tapoff",
+     "say": {
+      "en": "Tap a card, then tap the group it belongs to.",
+      "hi": "एक कार्ड छुओ, फिर वह समूह छुओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which habit saves more water: a bucket bath or a long shower?",
+      "hi": "कौन-सी आदत ज़्यादा पानी बचाती है: बाल्टी से नहाना या देर तक शॉवर लेना?"
+     },
+     "options": [
+      {
+       "id": "bucket",
+       "en": "A bucket bath",
+       "hi": "बाल्टी से नहाना"
+      },
+      {
+       "id": "shower",
+       "en": "A long shower",
+       "hi": "देर तक शॉवर"
+      }
+     ],
+     "answer": "bucket"
+    },
+    {
+     "kind": "do",
+     "target": "card:spill",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the habits.",
+      "hi": "सारी आदतें छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water is a precious gift. After we use it, it becomes dirty, and we cannot drink it. So we should reduce how much we use and reuse water when we can, for example for plants. Every drop counts, especially where people must walk far to get water.",
+      "hi": "पानी एक क़ीमती उपहार है। उपयोग के बाद वह गंदा हो जाता है और उसे पी नहीं सकते। इसलिए हमें कम पानी इस्तेमाल करना चाहिए और जब हो सके उसका दोबारा उपयोग करना चाहिए, जैसे पौधों के लिए। हर बूँद मायने रखती है, ख़ासकर वहाँ जहाँ लोगों को पानी के लिए दूर चलकर जाना पड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What can we do with waste water from rinsing vegetables?",
+        "hi": "सब्ज़ी धोने के बाद बचे पानी का हम क्या कर सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "Use it to water plants",
+         "hi": "उससे पौधों में पानी डाल सकते हैं"
+        },
+        {
+         "en": "Drink it",
+         "hi": "उसे पी सकते हैं"
+        },
+        {
+         "en": "Pour it on the road",
+         "hi": "उसे सड़क पर बहा सकते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Plants can use this water, so it is not wasted.",
+        "hi": "पौधे इस पानी का उपयोग कर सकते हैं, इसलिए यह बर्बाद नहीं होता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Used water is dirty, so we should not drink it.",
+         "hi": "इस्तेमाल किया पानी गंदा होता है, इसलिए उसे नहीं पीना चाहिए।"
+        },
+        {
+         "en": "Pouring it on the road wastes it when a plant could use it.",
+         "hi": "उसे सड़क पर बहाना बेकार है, जबकि कोई पौधा उसका उपयोग कर सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "For one day, count how many mugs of water you use to brush your teeth. Can you use fewer tomorrow?",
+      "hi": "एक दिन गिनो कि दाँत साफ़ करने में तुम कितने मग पानी लगाते हो। क्या कल तुम कम पानी लगा सकते हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Chapter hook: dark clouds before the rain",
+   "shows": "Dark monsoon clouds over a village with palm trees, birds flying low",
+   "view": "Wide, eye level",
+   "right": "True monsoon sky, deep grey and blue clouds",
+   "avoid": "People, text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.2",
+   "use": "Rain on three surfaces",
+   "shows": "Rain falling on soil, on a concrete road and on grass: water soaking in, puddles on the road, a small stream",
+   "view": "Same camera setup in three frames",
+   "right": "Water soaks into soil, collects on concrete, runs off",
+   "avoid": "Text, people"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "7.2",
+   "use": "Underground water",
+   "shows": "A cut-away of the ground showing top soil, a layer of rock, water stored between and a well reaching it",
+   "view": "Straight on side cut, clean",
+   "right": "Clear layers and water colour",
+   "avoid": "Labels, arrows"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "7.3",
+   "use": "Water comes home",
+   "shows": "A big overhead tank on a rooftop, a hand pump in a village and a tanker delivering water, shown as three separate photos",
+   "view": "Eye level for each",
+   "right": "Real Indian settings",
+   "avoid": "Brand names on tanks"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "7.4",
+   "use": "Water vessels",
+   "shows": "Cut-outs of a clay matka, a surahi, a copper pot, a brass pot, a steel pot, an aluminium pot, a plastic bucket and a glass bottle",
+   "view": "Front view, same scale",
+   "right": "True materials and colours",
+   "avoid": "Brand logos"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "7.6",
+   "use": "Free drinking water pot",
+   "shows": "A clay pot of water with a steel glass kept outside a house for passers-by in summer",
+   "view": "Eye level, bright light",
+   "right": "Clay pot with cloth cover, clean steel tumbler",
+   "avoid": "People facing the camera"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "7.6",
+   "use": "Birdbath",
+   "shows": "A shallow clay dish with pebbles filled with water, a bird drinking",
+   "view": "Three-quarter view",
+   "right": "Shallow depth, stones for perching",
+   "avoid": "Hands, text"
+  }
+ ]
+}

@@ -1,0 +1,1305 @@
+{
+ "chapter_key": "u.c07.social_science.gees1.ch01",
+ "class": 7,
+ "subject_id": "social_science",
+ "title": "Geographical Diversity of India",
+ "source": "https://ncert.nic.in/textbook/pdf/gees1ps.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "India's five regions: mountains, plains, desert, plateau and islands",
+   "labs": [
+    "c07-social_science-gees1-ch01-regions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "The Himalayas: how they formed and the three ranges",
+   "labs": [
+    "c07-social_science-gees1-ch01-himalaya-story"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "The cold desert of Ladakh",
+   "labs": [
+    "c07-social_science-gees1-ch01-regions-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "The Gangetic Plains",
+   "labs": [
+    "c07-social_science-gees1-ch01-regions-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "The Thar Desert, the Aravallis and the Peninsular Plateau with its rivers",
+   "labs": [
+    "c07-social_science-gees1-ch01-rivers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "India's coastlines: the west and east coasts",
+   "labs": [
+    "c07-social_science-gees1-ch01-coasts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.7",
+   "title": "Indian islands: Lakshadweep, Andaman and Nicobar",
+   "labs": [
+    "c07-social_science-gees1-ch01-coasts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.8",
+   "title": "The Sundarbans delta and the hills of the Northeast",
+   "labs": [],
+   "why_no_lab": "Best taught by photographs of the mangroves, root bridges and rain on the Meghalaya hills; the regions sort already places the Sundarbans."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-social_science-gees1-ch01-regions",
+   "topic": "1.1",
+   "template": "map",
+   "title": {
+    "en": "Find the big landforms of India",
+    "hi": "भारत के बड़े भू-आकार खोजो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "mountains",
+     "plateaus",
+     "deserts",
+     "latitude"
+    ],
+    "task": "label",
+    "places": [
+     "himalaya",
+     "thar",
+     "aravalli",
+     "deccan",
+     "western-ghats",
+     "eastern-ghats"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "label:himalaya",
+     "expect": "located:himalaya",
+     "say": {
+      "en": "Tap the name Himalaya, then tap its pin on the map. It is the great wall in the north.",
+      "hi": "हिमालय नाम पर टैप करो, फिर मानचित्र पर उसके पिन पर टैप करो। यह उत्तर की विशाल दीवार है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these is the youngest mountain range, still rising a little every year?",
+      "hi": "इनमें से सबसे नई पर्वत-श्रेणी कौन-सी है, जो आज भी हर साल थोड़ी ऊँची हो रही है?"
+     },
+     "options": [
+      {
+       "id": "him",
+       "en": "Himalaya",
+       "hi": "हिमालय"
+      },
+      {
+       "id": "ara",
+       "en": "Aravalli",
+       "hi": "अरावली"
+      },
+      {
+       "id": "wg",
+       "en": "Western Ghats",
+       "hi": "पश्चिमी घाट"
+      }
+     ],
+     "answer": "him"
+    },
+    {
+     "kind": "do",
+     "target": "label:aravalli",
+     "expect": "located:aravalli",
+     "say": {
+      "en": "Now label the Aravalli hills, to the east of the Thar Desert.",
+      "hi": "अब थार मरुस्थल के पूर्व में स्थित अरावली की पहाड़ियों को नाम दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:thar",
+     "expect": "located:thar",
+     "say": {
+      "en": "Label the Thar Desert in the west.",
+      "hi": "पश्चिम में थार मरुस्थल को नाम दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:deccan",
+     "expect": "labelled",
+     "say": {
+      "en": "Label the rest: Deccan Plateau, Western Ghats and Eastern Ghats.",
+      "hi": "बाकी नाम लगाओ: दक्कन का पठार, पश्चिमी घाट और पूर्वी घाट।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has mountains in the north, plains below them, a desert in the west and a big plateau in the middle and south. The Himalayas are young and still rising. The Aravallis are among the oldest mountains in the world. The Western Ghats are taller and run like a wall along the west coast. The Eastern Ghats are lower and broken into smaller hills.",
+      "hi": "भारत में उत्तर में पर्वत हैं, उनके नीचे मैदान, पश्चिम में मरुस्थल और बीच व दक्षिण में बड़ा पठार है। हिमालय नया है और अब भी ऊपर उठ रहा है। अरावली दुनिया के सबसे पुराने पर्वतों में से है। पश्चिमी घाट ऊँचे हैं और पश्चिमी तट पर दीवार की तरह चलते हैं। पूर्वी घाट नीचे हैं और छोटी पहाड़ियों में बँटे हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which range stands between the Thar Desert and the plains to its east?",
+        "hi": "थार मरुस्थल और उसके पूर्व के मैदानों के बीच कौन-सी श्रेणी है?"
+       },
+       "options": [
+        {
+         "en": "Aravalli hills",
+         "hi": "अरावली की पहाड़ियाँ"
+        },
+        {
+         "en": "Eastern Ghats",
+         "hi": "पूर्वी घाट"
+        },
+        {
+         "en": "Himalaya",
+         "hi": "हिमालय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Aravallis act as a natural barrier and stop the Thar from spreading further east.",
+        "hi": "अरावली प्राकृतिक रोक का काम करती है और थार को और पूर्व में फैलने से रोकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Eastern Ghats lie on the east coast of the peninsula, far from the Thar.",
+         "hi": "पूर्वी घाट प्रायद्वीप के पूर्वी तट पर हैं, थार से बहुत दूर।"
+        },
+        {
+         "en": "The Himalaya lie far to the north, not between the Thar and the plains to its east.",
+         "hi": "हिमालय बहुत उत्तर में है; वह थार और उसके पूर्व के मैदानों के बीच नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which range runs close to the west coast like a tall wall?",
+        "hi": "कौन-सी श्रेणी पश्चिमी तट के पास ऊँची दीवार की तरह चलती है?"
+       },
+       "options": [
+        {
+         "en": "Eastern Ghats",
+         "hi": "पूर्वी घाट"
+        },
+        {
+         "en": "Western Ghats",
+         "hi": "पश्चिमी घाट"
+        },
+        {
+         "en": "Aravalli hills",
+         "hi": "अरावली की पहाड़ियाँ"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The Western Ghats are taller than the Eastern Ghats and run along the west coast.",
+        "hi": "पश्चिमी घाट पूर्वी घाट से ऊँचे हैं और पश्चिमी तट के साथ-साथ चलते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The Eastern Ghats are on the other side of the plateau and are lower and broken.",
+         "hi": "पूर्वी घाट पठार के दूसरी ओर हैं और नीचे व टूटे हुए हैं।"
+        },
+        "",
+        {
+         "en": "The Aravallis are in the north-west, not along the coast.",
+         "hi": "अरावली उत्तर-पश्चिम में है, तट के पास नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn on the other layers and trace your finger from the Himalaya down to the Deccan. Which landform do you cross in between?",
+      "hi": "दूसरी परतें चालू करो और उँगली को हिमालय से दक्कन तक चलाओ। बीच में कौन-सा भू-आकार पार करते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch01-regions-sort",
+   "topic": "1.3",
+   "template": "sort",
+   "title": {
+    "en": "Which region is it?",
+    "hi": "यह कौन-सा क्षेत्र है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "him",
+      "label": {
+       "en": "Himalayas",
+       "hi": "हिमालय"
+      }
+     },
+     {
+      "id": "plain",
+      "label": {
+       "en": "Northern plains",
+       "hi": "उत्तरी मैदान"
+      }
+     },
+     {
+      "id": "thar",
+      "label": {
+       "en": "Thar Desert",
+       "hi": "थार मरुस्थल"
+      }
+     },
+     {
+      "id": "plat",
+      "label": {
+       "en": "Peninsular plateau",
+       "hi": "प्रायद्वीपीय पठार"
+      }
+     },
+     {
+      "id": "coast",
+      "label": {
+       "en": "Coasts and islands",
+       "hi": "तट और द्वीप"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "gau",
+      "text": {
+       "en": "Gaumukh glacier feeds the Ganga",
+       "hi": "गौमुख हिमनद गंगा को जल देता है"
+      },
+      "bin": "him",
+      "why": {
+       "en": "Rivers start in the snow and glaciers of the Himalayas, so it is called the Water Tower of Asia.",
+       "hi": "नदियाँ हिमालय की बर्फ़ और हिमनदों से निकलती हैं, इसलिए इसे एशिया की जल-मीनार कहते हैं।"
+      }
+     },
+     {
+      "id": "ranges",
+      "text": {
+       "en": "Shivalik, Himachal and Himadri ranges",
+       "hi": "शिवालिक, हिमाचल और हिमाद्रि श्रेणियाँ"
+      },
+      "bin": "him",
+      "why": {
+       "en": "The Himalayas have three main ranges, from the highest Himadri to the outer Shivalik hills.",
+       "hi": "हिमालय में तीन मुख्य श्रेणियाँ हैं, सबसे ऊँची हिमाद्रि से बाहरी शिवालिक पहाड़ियों तक।"
+      }
+     },
+     {
+      "id": "soil",
+      "text": {
+       "en": "Fertile soil brought by rivers",
+       "hi": "नदियों की लाई उपजाऊ मिट्टी"
+      },
+      "bin": "plain",
+      "why": {
+       "en": "Rivers from the Himalayas bring minerals that make the Gangetic plains good for farming.",
+       "hi": "हिमालय की नदियाँ खनिज लाती हैं, जिससे गंगा के मैदान खेती के लिए अच्छे हैं।"
+      }
+     },
+     {
+      "id": "roads",
+      "text": {
+       "en": "Many roads, railways and crowded cities",
+       "hi": "बहुत सड़कें, रेलें और भीड़ भरे नगर"
+      },
+      "bin": "plain",
+      "why": {
+       "en": "The flat land made it easy to build roads and railways, and many people live here.",
+       "hi": "समतल भूमि पर सड़कें और रेलें बनाना आसान था, और यहाँ बहुत लोग रहते हैं।"
+      }
+     },
+     {
+      "id": "dunes",
+      "text": {
+       "en": "Golden sand dunes shaped by wind",
+       "hi": "हवा से बने सुनहरे रेत के टीले"
+      },
+      "bin": "thar",
+      "why": {
+       "en": "Wind moves the sand into dunes in the Thar Desert.",
+       "hi": "थार मरुस्थल में हवा रेत को टीलों का आकार देती है।"
+      }
+     },
+     {
+      "id": "taanka",
+      "text": {
+       "en": "Taanka tanks store rainwater",
+       "hi": "टाँका वर्षा का जल जमा करता है"
+      },
+      "bin": "thar",
+      "why": {
+       "en": "People of Rajasthan collect rainwater in taankas because water is scarce in the desert.",
+       "hi": "मरुस्थल में पानी कम है, इसलिए राजस्थान के लोग टाँकों में वर्षा का जल जमा करते हैं।"
+      }
+     },
+     {
+      "id": "deccan",
+      "text": {
+       "en": "Deccan Plateau between the two Ghats",
+       "hi": "दो घाटों के बीच दक्कन का पठार"
+      },
+      "bin": "plat",
+      "why": {
+       "en": "The Deccan is a vast area of flat highlands between the Western and Eastern Ghats.",
+       "hi": "दक्कन पश्चिमी और पूर्वी घाट के बीच ऊँची समतल भूमि का बड़ा क्षेत्र है।"
+      }
+     },
+     {
+      "id": "prrivers",
+      "text": {
+       "en": "Godavari, Krishna and Kaveri flow across it",
+       "hi": "गोदावरी, कृष्णा और कावेरी इसे पार करती हैं"
+      },
+      "bin": "plat",
+      "why": {
+       "en": "These big rivers flow from west to east across the plateau and water its farms.",
+       "hi": "ये बड़ी नदियाँ पठार को पश्चिम से पूर्व पार करती हैं और खेतों को पानी देती हैं।"
+      }
+     },
+     {
+      "id": "laksh",
+      "text": {
+       "en": "Coral islands of Lakshadweep",
+       "hi": "लक्षद्वीप के प्रवाल द्वीप"
+      },
+      "bin": "coast",
+      "why": {
+       "en": "Lakshadweep is a group of 36 coral islands in the Arabian Sea.",
+       "hi": "लक्षद्वीप अरब सागर में 36 प्रवाल द्वीपों का समूह है।"
+      }
+     },
+     {
+      "id": "sundar",
+      "text": {
+       "en": "Sundarbans delta with Royal Bengal tigers",
+       "hi": "रॉयल बंगाल टाइगर वाला सुंदरबन डेल्टा"
+      },
+      "bin": "coast",
+      "why": {
+       "en": "The Sundarbans lie in the delta where the Ganga and Brahmaputra meet the sea.",
+       "hi": "सुंदरबन उस डेल्टा में है जहाँ गंगा और ब्रह्मपुत्र समुद्र से मिलती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:gau",
+     "expect": "placed:gau",
+     "say": {
+      "en": "Tap the card about the Gaumukh glacier, then tap the group it belongs to.",
+      "hi": "गौमुख हिमनद वाले कार्ड पर टैप करो, फिर उस समूह पर टैप करो जिसका वह हिस्सा है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which region has the most people living in it?",
+      "hi": "किस क्षेत्र में सबसे ज़्यादा लोग रहते हैं?"
+     },
+     "options": [
+      {
+       "id": "plain",
+       "en": "Northern plains",
+       "hi": "उत्तरी मैदान"
+      },
+      {
+       "id": "him",
+       "en": "Himalayas",
+       "hi": "हिमालय"
+      },
+      {
+       "id": "thar",
+       "en": "Thar Desert",
+       "hi": "थार मरुस्थल"
+      }
+     ],
+     "answer": "plain"
+    },
+    {
+     "kind": "do",
+     "target": "card:soil",
+     "expect": "placed:soil",
+     "say": {
+      "en": "Place the card about fertile soil.",
+      "hi": "उपजाऊ मिट्टी वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each region of India has its own land and its own way of life. The Himalayas give rivers. The plains have fertile soil and many people. The Thar has dunes and careful use of water. The plateau is old and high, with big rivers flowing east. The coasts and islands have beaches, deltas and coral reefs.",
+      "hi": "भारत के हर क्षेत्र की अपनी भूमि और अपना जीवन-ढंग है। हिमालय नदियाँ देता है। मैदानों में उपजाऊ मिट्टी और बहुत लोग हैं। थार में टीले हैं और पानी का सँभलकर उपयोग होता है। पठार पुराना और ऊँचा है और उसकी बड़ी नदियाँ पूर्व की ओर बहती हैं। तटों और द्वीपों पर समुद्र-तट, डेल्टा और प्रवाल भित्तियाँ हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the Gangetic plain good for farming?",
+        "hi": "गंगा का मैदान खेती के लिए अच्छा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Rivers bring minerals that enrich the soil",
+         "hi": "नदियाँ खनिज लाकर मिट्टी को उपजाऊ बनाती हैं"
+        },
+        {
+         "en": "It is covered with sand dunes",
+         "hi": "यह रेत के टीलों से ढका है"
+        },
+        {
+         "en": "It is always under snow",
+         "hi": "यह हमेशा बर्फ़ से ढका रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rivers carry minerals from the mountains and spread them on the flat land.",
+        "hi": "नदियाँ पहाड़ों से खनिज लाकर समतल भूमि पर फैलाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dunes are in the Thar Desert, where farming is hard.",
+         "hi": "टीले थार मरुस्थल में हैं, जहाँ खेती कठिन है।"
+        },
+        {
+         "en": "Snow covers the high Himadri, not the plains.",
+         "hi": "बर्फ़ ऊँचे हिमाद्रि पर है, मैदानों पर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do people in the Thar build taankas?",
+        "hi": "थार के लोग टाँके क्यों बनाते हैं?"
+       },
+       "options": [
+        {
+         "en": "To grow rice in the sand",
+         "hi": "रेत में चावल उगाने के लिए"
+        },
+        {
+         "en": "To store rainwater because water is scarce",
+         "hi": "पानी कम होने से वर्षा का जल जमा करने के लिए"
+        },
+        {
+         "en": "To keep camels cool",
+         "hi": "ऊँटों को ठंडा रखने के लिए"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Rain is rare in the desert, so people store every drop for drinking.",
+        "hi": "मरुस्थल में वर्षा कम होती है, इसलिए लोग पीने के लिए हर बूँद जमा करते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A taanka holds water; rice needs far more water than the desert has.",
+         "hi": "टाँका पानी जमा करता है; चावल को मरुस्थल से कहीं ज़्यादा पानी चाहिए।"
+        },
+        "",
+        {
+         "en": "Taankas are made for water for people, not for cooling camels.",
+         "hi": "टाँके लोगों के लिए पानी जमा करने के लिए बनते हैं, ऊँटों को ठंडा करने के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of the place where you live. Which of these five regions is it closest to? What is the same and what is different?",
+      "hi": "सोचो तुम जहाँ रहते हो वह इन पाँच क्षेत्रों में किसके सबसे पास है? क्या समान है और क्या अलग?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch01-rivers",
+   "topic": "1.5",
+   "template": "sort",
+   "title": {
+    "en": "Where do the rivers end?",
+    "hi": "नदियाँ कहाँ जाकर मिलती हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "bay",
+      "label": {
+       "en": "Flows to the Bay of Bengal",
+       "hi": "बंगाल की खाड़ी में जाती है"
+      }
+     },
+     {
+      "id": "arab",
+      "label": {
+       "en": "Flows to the Arabian Sea",
+       "hi": "अरब सागर में जाती है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "god",
+      "text": {
+       "en": "Godavari",
+       "hi": "गोदावरी"
+      },
+      "bin": "bay",
+      "why": {
+       "en": "The plateau tilts a little to the east, so the Godavari flows east to the Bay of Bengal.",
+       "hi": "पठार थोड़ा पूर्व की ओर झुका है, इसलिए गोदावरी पूर्व में बंगाल की खाड़ी तक बहती है।"
+      }
+     },
+     {
+      "id": "kri",
+      "text": {
+       "en": "Krishna",
+       "hi": "कृष्णा"
+      },
+      "bin": "bay",
+      "why": {
+       "en": "The Krishna starts in the west and flows east, making a delta on the east coast.",
+       "hi": "कृष्णा पश्चिम से निकलकर पूर्व की ओर बहती है और पूर्वी तट पर डेल्टा बनाती है।"
+      }
+     },
+     {
+      "id": "mah",
+      "text": {
+       "en": "Mahanadi",
+       "hi": "महानदी"
+      },
+      "bin": "bay",
+      "why": {
+       "en": "The Mahanadi is an east-flowing river with a big delta.",
+       "hi": "महानदी पूर्व की ओर बहने वाली नदी है जिसका बड़ा डेल्टा है।"
+      }
+     },
+     {
+      "id": "kav",
+      "text": {
+       "en": "Kaveri",
+       "hi": "कावेरी"
+      },
+      "bin": "bay",
+      "why": {
+       "en": "The Kaveri flows across the plateau from west to east and enters the Bay of Bengal.",
+       "hi": "कावेरी पठार को पश्चिम से पूर्व पार करके बंगाल की खाड़ी में मिलती है।"
+      }
+     },
+     {
+      "id": "bra",
+      "text": {
+       "en": "Brahmaputra",
+       "hi": "ब्रह्मपुत्र"
+      },
+      "bin": "bay",
+      "why": {
+       "en": "The Brahmaputra joins the Ganga delta and reaches the Bay of Bengal.",
+       "hi": "ब्रह्मपुत्र गंगा के डेल्टा से मिलकर बंगाल की खाड़ी तक पहुँचती है।"
+      }
+     },
+     {
+      "id": "nar",
+      "text": {
+       "en": "Narmada",
+       "hi": "नर्मदा"
+      },
+      "bin": "arab",
+      "why": {
+       "en": "The Narmada is a west-flowing river with a large estuary on the west coast.",
+       "hi": "नर्मदा पश्चिम की ओर बहने वाली नदी है और पश्चिमी तट पर उसका बड़ा ज्वारनदमुख है।"
+      }
+     },
+     {
+      "id": "tap",
+      "text": {
+       "en": "Tapi",
+       "hi": "तापी"
+      },
+      "bin": "arab",
+      "why": {
+       "en": "The Tapi also flows west and drains into the Arabian Sea.",
+       "hi": "तापी भी पश्चिम की ओर बहती है और अरब सागर में गिरती है।"
+      }
+     },
+     {
+      "id": "ind",
+      "text": {
+       "en": "Indus",
+       "hi": "सिंधु"
+      },
+      "bin": "arab",
+      "why": {
+       "en": "The Indus river system drains into the Arabian Sea.",
+       "hi": "सिंधु नदी-तंत्र अरब सागर में जाकर मिलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:god",
+     "expect": "placed:god",
+     "say": {
+      "en": "Tap the Godavari card, then tap the sea it flows to.",
+      "hi": "गोदावरी कार्ड पर टैप करो, फिर उस समुद्र पर टैप करो जिसमें वह जाती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Most big plateau rivers flow east. What does that tell you about the land?",
+      "hi": "ज़्यादातर बड़ी पठारी नदियाँ पूर्व की ओर बहती हैं। इससे ज़मीन के बारे में क्या पता चलता है?"
+     },
+     "options": [
+      {
+       "id": "east",
+       "en": "The plateau tilts a little towards the east",
+       "hi": "पठार थोड़ा पूर्व की ओर झुका है"
+      },
+      {
+       "id": "west",
+       "en": "The plateau tilts towards the west",
+       "hi": "पठार पश्चिम की ओर झुका है"
+      },
+      {
+       "id": "flat",
+       "en": "The plateau is exactly level",
+       "hi": "पठार बिलकुल समतल है"
+      }
+     ],
+     "answer": "east"
+    },
+    {
+     "kind": "do",
+     "target": "card:nar",
+     "expect": "placed:nar",
+     "say": {
+      "en": "Now place the Narmada. It is one of the rivers that break the pattern.",
+      "hi": "अब नर्मदा को रखो। यह उन नदियों में है जो इस नियम से अलग बहती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the other rivers and press Check.",
+      "hi": "बाकी नदियाँ रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water always flows downhill. Because the peninsular plateau tilts a little to the east, rivers like the Godavari, Krishna, Mahanadi and Kaveri flow east into the Bay of Bengal. The Narmada and Tapi flow west into the Arabian Sea.",
+      "hi": "पानी हमेशा ढलान की ओर बहता है। प्रायद्वीपीय पठार थोड़ा पूर्व की ओर झुका है, इसलिए गोदावरी, कृष्णा, महानदी और कावेरी पूर्व में बंगाल की खाड़ी में जाती हैं। नर्मदा और तापी पश्चिम में अरब सागर में गिरती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these rivers flows west into the Arabian Sea?",
+        "hi": "इनमें से कौन-सी नदी पश्चिम में अरब सागर में गिरती है?"
+       },
+       "options": [
+        {
+         "en": "Kaveri",
+         "hi": "कावेरी"
+        },
+        {
+         "en": "Narmada",
+         "hi": "नर्मदा"
+        },
+        {
+         "en": "Mahanadi",
+         "hi": "महानदी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The Narmada and Tapi are the two main plateau rivers that flow west.",
+        "hi": "नर्मदा और तापी पठार की दो मुख्य नदियाँ हैं जो पश्चिम की ओर बहती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The Kaveri flows east to the Bay of Bengal.",
+         "hi": "कावेरी पूर्व में बंगाल की खाड़ी की ओर बहती है।"
+        },
+        "",
+        {
+         "en": "The Mahanadi flows east to the Bay of Bengal.",
+         "hi": "महानदी पूर्व में बंगाल की खाड़ी की ओर बहती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a map in your atlas. Can you find a river that flows near your home and decide which sea it finally reaches?",
+      "hi": "अपने एटलस का मानचित्र देखो। क्या तुम्हारे घर के पास की कोई नदी ढूँढकर बता सकते हो कि वह अंत में किस समुद्र में पहुँचती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch01-coasts",
+   "topic": "1.6",
+   "template": "sort",
+   "title": {
+    "en": "Two coasts and the islands",
+    "hi": "दो तट और द्वीप"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "west",
+      "label": {
+       "en": "West coast",
+       "hi": "पश्चिमी तट"
+      }
+     },
+     {
+      "id": "east",
+      "label": {
+       "en": "East coast",
+       "hi": "पूर्वी तट"
+      }
+     },
+     {
+      "id": "isl",
+      "label": {
+       "en": "Islands",
+       "hi": "द्वीप"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "wriv",
+      "text": {
+       "en": "Short fast rivers from the Western Ghats",
+       "hi": "पश्चिमी घाट की छोटी तेज़ नदियाँ"
+      },
+      "bin": "west",
+      "why": {
+       "en": "On the west the hills are close to the sea, so rivers are short and swift.",
+       "hi": "पश्चिम में पहाड़ियाँ समुद्र के पास हैं, इसलिए नदियाँ छोटी और तेज़ हैं।"
+      }
+     },
+     {
+      "id": "est",
+      "text": {
+       "en": "Narmada and Tapi estuaries",
+       "hi": "नर्मदा और तापी के ज्वारनदमुख"
+      },
+      "bin": "west",
+      "why": {
+       "en": "The largest estuaries of the west coast are those of the Narmada and Tapi.",
+       "hi": "पश्चिमी तट के सबसे बड़े ज्वारनदमुख नर्मदा और तापी के हैं।"
+      }
+     },
+     {
+      "id": "ports",
+      "text": {
+       "en": "Old trading ports like Mumbai and Kochi",
+       "hi": "मुंबई, कोच्चि जैसे पुराने बंदरगाह"
+      },
+      "bin": "west",
+      "why": {
+       "en": "The west coast has had important ports and trading cities for thousands of years.",
+       "hi": "पश्चिमी तट पर हज़ारों वर्षों से महत्त्वपूर्ण बंदरगाह और व्यापारिक नगर रहे हैं।"
+      }
+     },
+     {
+      "id": "deltas",
+      "text": {
+       "en": "Deltas of the Mahanadi, Godavari, Krishna, Kaveri",
+       "hi": "महानदी, गोदावरी, कृष्णा, कावेरी के डेल्टा"
+      },
+      "bin": "east",
+      "why": {
+       "en": "Big east-flowing rivers drop silt at their mouths and build fertile deltas.",
+       "hi": "पूर्व की बड़ी नदियाँ अपने मुहाने पर गाद जमा करके उपजाऊ डेल्टा बनाती हैं।"
+      }
+     },
+     {
+      "id": "lagoon",
+      "text": {
+       "en": "Chilika Lake and Pulicat Lagoon",
+       "hi": "चिल्का झील और पुलिकट लैगून"
+      },
+      "bin": "east",
+      "why": {
+       "en": "Chilika and Pulicat are found on the wide plains of the east coast.",
+       "hi": "चिल्का और पुलिकट पूर्वी तट के चौड़े मैदानों में हैं।"
+      }
+     },
+     {
+      "id": "wide",
+      "text": {
+       "en": "Wide plain between Eastern Ghats and the sea",
+       "hi": "पूर्वी घाट और समुद्र के बीच चौड़ा मैदान"
+      },
+      "bin": "east",
+      "why": {
+       "en": "The Eastern Ghats are low and broken, leaving a wide plain along the sea.",
+       "hi": "पूर्वी घाट नीचे और टूटे हैं, इसलिए समुद्र के साथ चौड़ा मैदान है।"
+      }
+     },
+     {
+      "id": "coral",
+      "text": {
+       "en": "36 coral islands in the Arabian Sea",
+       "hi": "अरब सागर के 36 प्रवाल द्वीप"
+      },
+      "bin": "isl",
+      "why": {
+       "en": "This island group is Lakshadweep, made of coral.",
+       "hi": "यह द्वीप-समूह लक्षद्वीप है, जो प्रवाल से बना है।"
+      }
+     },
+     {
+      "id": "volc",
+      "text": {
+       "en": "Over 500 volcanic islands in the Bay of Bengal",
+       "hi": "बंगाल की खाड़ी के 500 से अधिक ज्वालामुखी द्वीप"
+      },
+      "bin": "isl",
+      "why": {
+       "en": "These are the Andaman and Nicobar Islands.",
+       "hi": "ये अंडमान और निकोबार द्वीप-समूह हैं।"
+      }
+     },
+     {
+      "id": "barren",
+      "text": {
+       "en": "Barren Island, India's only active volcano",
+       "hi": "बैरन द्वीप, भारत का एकमात्र सक्रिय ज्वालामुखी"
+      },
+      "bin": "isl",
+      "why": {
+       "en": "Barren Island lies in the Andaman group and sometimes erupts.",
+       "hi": "बैरन द्वीप अंडमान समूह में है और कभी-कभी फटता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:wriv",
+     "expect": "placed:wriv",
+     "say": {
+      "en": "Tap the card about short fast rivers, then the coast where the hills are close to the sea.",
+      "hi": "छोटी तेज़ नदियों वाला कार्ड चुनो, फिर उस तट पर रखो जहाँ पहाड़ियाँ समुद्र के पास हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which coast has the wider plains and the big deltas?",
+      "hi": "किस तट पर चौड़े मैदान और बड़े डेल्टा हैं?"
+     },
+     "options": [
+      {
+       "id": "east",
+       "en": "East coast",
+       "hi": "पूर्वी तट"
+      },
+      {
+       "id": "west",
+       "en": "West coast",
+       "hi": "पश्चिमी तट"
+      },
+      {
+       "id": "both",
+       "en": "Both are exactly the same",
+       "hi": "दोनों बिलकुल एक जैसे हैं"
+      }
+     ],
+     "answer": "east"
+    },
+    {
+     "kind": "do",
+     "target": "card:deltas",
+     "expect": "placed:deltas",
+     "say": {
+      "en": "Place the deltas card.",
+      "hi": "डेल्टा वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the remaining cards and press Check.",
+      "hi": "बाकी सारे कार्ड रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On the west coast the Western Ghats come close to the sea, so rivers are short and fast and form estuaries. On the east coast the plain is wide and large rivers build deltas, with lagoons like Chilika and Pulicat. India also has two island groups: Lakshadweep of coral and the Andaman and Nicobar islands of volcanic origin.",
+      "hi": "पश्चिमी तट पर पश्चिमी घाट समुद्र के पास आ जाते हैं, इसलिए नदियाँ छोटी और तेज़ हैं और ज्वारनदमुख बनाती हैं। पूर्वी तट पर मैदान चौड़ा है और बड़ी नदियाँ डेल्टा बनाती हैं, जहाँ चिल्का और पुलिकट जैसे लैगून हैं। भारत के दो द्वीप-समूह भी हैं: प्रवाल का लक्षद्वीप और ज्वालामुखी मूल के अंडमान-निकोबार।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a delta?",
+        "hi": "डेल्टा क्या है?"
+       },
+       "options": [
+        {
+         "en": "A triangular land built where a river meets the sea",
+         "hi": "वह त्रिकोणाकार भूमि जो नदी के समुद्र से मिलने पर बनती है"
+        },
+        {
+         "en": "A group of coral islands",
+         "hi": "प्रवाल द्वीपों का समूह"
+        },
+        {
+         "en": "A mountain pass",
+         "hi": "पर्वत का दर्रा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A river drops the silt it carries at its mouth, and the land slowly grows into a fan or triangle.",
+        "hi": "नदी अपने मुहाने पर गाद छोड़ती है और ज़मीन धीरे-धीरे पंखे या त्रिभुज का आकार ले लेती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Coral island groups are called archipelagos, not deltas.",
+         "hi": "प्रवाल द्वीपों के समूह को द्वीपसमूह कहते हैं, डेल्टा नहीं।"
+        },
+        {
+         "en": "A pass is a gap in the mountains; a delta forms where a river reaches the sea.",
+         "hi": "दर्रा पहाड़ों में रास्ता है; डेल्टा वहाँ बनता है जहाँ नदी समुद्र तक पहुँचती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find Chilika Lake and Lakshadweep on a map. Which one is on the east and which one in the west?",
+      "hi": "मानचित्र पर चिल्का झील और लक्षद्वीप ढूँढो। कौन पूर्व में है और कौन पश्चिम में?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch01-himalaya-story",
+   "topic": "1.2",
+   "template": "sequence",
+   "title": {
+    "en": "How the Himalayas were made",
+    "hi": "हिमालय कैसे बना"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "gond",
+      "text": {
+       "en": "India is part of the giant landmass Gondwana, near Africa.",
+       "hi": "भारत विशाल भूखंड गोंडवाना का भाग है, अफ़्रीका के पास।"
+      }
+     },
+     {
+      "id": "move",
+      "text": {
+       "en": "India breaks away and slowly moves north.",
+       "hi": "भारत अलग होकर धीरे-धीरे उत्तर की ओर खिसकता है।"
+      }
+     },
+     {
+      "id": "hit",
+      "text": {
+       "en": "About 50 million years ago India meets the Eurasian landmass.",
+       "hi": "लगभग 5 करोड़ वर्ष पहले भारत यूरेशिया के भूखंड से टकराता है।"
+      }
+     },
+     {
+      "id": "fold",
+      "text": {
+       "en": "The land between them crumples and folds upward.",
+       "hi": "दोनों के बीच की भूमि सिकुड़कर ऊपर की ओर मुड़ जाती है।"
+      }
+     },
+     {
+      "id": "rise",
+      "text": {
+       "en": "The Himalayas rise and keep growing a few millimetres each year.",
+       "hi": "हिमालय उठता है और हर साल कुछ मिलीमीटर बढ़ता रहता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:gond",
+     "expect": "placed:gond",
+     "say": {
+      "en": "Tap the card that tells where India was long ago, then tap slot 1.",
+      "hi": "वह कार्ड चुनो जो बताता है कि बहुत पहले भारत कहाँ था, फिर खाना 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When you push a carpet from two sides, what happens in the middle?",
+      "hi": "जब तुम किसी कालीन को दोनों ओर से धकेलते हो तो बीच में क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "wrinkle",
+       "en": "It wrinkles and rises up",
+       "hi": "वह सिकुड़कर ऊपर उठ जाता है"
+      },
+      {
+       "id": "flat",
+       "en": "It stays flat",
+       "hi": "वह समतल रहता है"
+      },
+      {
+       "id": "tear",
+       "en": "It disappears",
+       "hi": "वह गायब हो जाता है"
+      }
+     ],
+     "answer": "wrinkle"
+    },
+    {
+     "kind": "do",
+     "target": "item:move",
+     "expect": "placed:move",
+     "say": {
+      "en": "Place the card about India moving north.",
+      "hi": "उत्तर की ओर खिसकने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the remaining cards in order and press Check.",
+      "hi": "बाकी कार्ड क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India once sat near Africa. It moved north and, about 50 million years ago, pushed into Eurasia. The land between the two crumpled upward, like a carpet pushed from the side. That is how the Himalayas were formed. India still pushes north by about 5 cm a year, so the mountains still grow by a few millimetres each year.",
+      "hi": "भारत कभी अफ़्रीका के पास था। वह उत्तर की ओर खिसका और लगभग 5 करोड़ वर्ष पहले यूरेशिया से टकराया। दोनों के बीच की भूमि कालीन की तरह सिकुड़कर ऊपर उठ गई। इसी तरह हिमालय बना। भारत आज भी साल में लगभग 5 सेंटीमीटर उत्तर की ओर बढ़ता है, इसलिए पर्वत हर साल कुछ मिलीमीटर ऊँचे होते रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are the Himalayas still growing?",
+        "hi": "हिमालय आज भी क्यों बढ़ रहा है?"
+       },
+       "options": [
+        {
+         "en": "India is still pushing slowly into Eurasia",
+         "hi": "भारत अब भी यूरेशिया की ओर धीरे-धीरे धकेल रहा है"
+        },
+        {
+         "en": "Snow keeps piling up on the peaks",
+         "hi": "चोटियों पर बर्फ़ जमती जाती है"
+        },
+        {
+         "en": "Rivers carry soil up the mountain",
+         "hi": "नदियाँ मिट्टी को पहाड़ पर ले जाती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The push from India is slow but has never stopped, so the mountains keep rising.",
+        "hi": "भारत का धक्का धीमा है पर रुका नहीं है, इसलिए पर्वत ऊँचे होते रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Snow lies on the surface and melts; it does not raise the rock.",
+         "hi": "बर्फ़ सतह पर जमती और पिघलती है; इससे चट्टान ऊँची नहीं होती।"
+        },
+        {
+         "en": "Rivers flow downhill and carry soil down, not up.",
+         "hi": "नदियाँ ढलान पर बहती हैं और मिट्टी को नीचे ले जाती हैं, ऊपर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a model with a cloth or paper: place it on a desk and push the two ends together. Where does it rise?",
+      "hi": "कपड़े या कागज़ से मॉडल बनाओ: उसे मेज़ पर रखकर दोनों छोर पास धकेलो। वह कहाँ से ऊपर उठता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Opens the chapter",
+   "shows": "India seen from high above on a clear day: Himalaya snow peaks at the top, green plains, a golden desert at the left and green hills below, no text",
+   "view": "Wide aerial, 16:9",
+   "right": "True colours, snow white, desert gold, plains green; real terrain",
+   "avoid": "Borders, labels, political lines"
+  },
+  {
+   "n": 2,
+   "kind": "MAP",
+   "topic": "1.1",
+   "use": "Base map for the regions and rivers labs",
+   "shows": "Relief map of India, mountains shaded, plateau and plains in soft colours, rivers faint, no names and no state borders",
+   "view": "16:9",
+   "right": "Himalaya, Thar, Deccan, Ghats and coasts all in true shape and position",
+   "avoid": "Names, borders, any text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Himalayan peaks and the Gaumukh glacier",
+   "shows": "Snow peaks with the glacier snout of Gaumukh and a trekker far away as a small silhouette",
+   "view": "Wide shot, soft morning light",
+   "right": "Blue-white ice, rocky valley",
+   "avoid": "Faces, brand clothing, text"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "1.2",
+   "use": "Himalaya formation steps",
+   "shows": "Five frames of a clay or cloth model: flat sheet, two sides pushed, sheet crumples, ridge forms, ridge grows; same camera and light",
+   "view": "Top-left light, 5 numbered files",
+   "right": "Simple model on a table, hands only",
+   "avoid": "Faces, words"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "Gangetic plains farming",
+   "shows": "A green paddy field in the plains with farmers' hands transplanting and a canal in the distance",
+   "view": "Wide, golden hour",
+   "right": "Indian setting, real crops",
+   "avoid": "Identifiable faces"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Thar Desert and a taanka",
+   "shows": "Sand dunes at sunset and a stone-lined rainwater tank (taanka) in a Rajasthan hamlet",
+   "view": "Wide, 16:9",
+   "right": "True golden sand and stone, a real taanka",
+   "avoid": "Tourist-brand logos, faces"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "1.6",
+   "use": "East coast delta from above",
+   "shows": "A river delta near the Bay of Bengal seen from the air, green fields and branching channels",
+   "view": "Aerial, 16:9",
+   "right": "Fan shape clearly visible",
+   "avoid": "Text, boundary lines"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "1.7",
+   "use": "Coral island",
+   "shows": "A Lakshadweep-style coral island with turquoise lagoon and white sand",
+   "view": "Aerial, 16:9",
+   "right": "Turquoise lagoon inside a ring of coral, true colours",
+   "avoid": "Resort logos, faces"
+  }
+ ]
+}

@@ -1,0 +1,1122 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch07",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Composition and Structure of Atmosphere",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy207.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Composition of the atmosphere: gases, water vapour, dust",
+   "labs": [
+    "c11-geography-kegy2-ch07-gases",
+    "c11-geography-kegy2-ch07-gas-roles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Structure of the atmosphere: troposphere to exosphere",
+   "labs": [
+    "c11-geography-kegy2-ch07-layers",
+    "c11-geography-kegy2-ch07-layer-facts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Elements of weather and climate",
+   "labs": [
+    "c11-geography-kegy2-ch07-weather-elements"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch07-gases",
+   "topic": "7.1",
+   "template": "data",
+   "title": {
+    "en": "What is air made of?",
+    "hi": "हवा किससे बनी है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "ask": "max",
+    "show": 0,
+    "title": {
+     "en": "Gases in 100 parts of dry air",
+     "hi": "शुष्क हवा के 100 भागों में गैसें"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Nitrogen",
+       "hi": "नाइट्रोजन"
+      },
+      "value": 78
+     },
+     {
+      "label": {
+       "en": "Oxygen",
+       "hi": "ऑक्सीजन"
+      },
+      "value": 21
+     },
+     {
+      "label": {
+       "en": "Argon, carbon dioxide and others",
+       "hi": "आर्गन, कार्बन डाइऑक्साइड और अन्य"
+      },
+      "value": 1
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which gas makes up most of the air we breathe?",
+      "hi": "हम जिस हवा में साँस लेते हैं उसका अधिकांश भाग कौन-सी गैस है?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "Nitrogen",
+       "hi": "नाइट्रोजन"
+      },
+      {
+       "id": "o",
+       "en": "Oxygen",
+       "hi": "ऑक्सीजन"
+      },
+      {
+       "id": "c",
+       "en": "Carbon dioxide",
+       "hi": "कार्बन डाइऑक्साइड"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the first gas to the pie chart.",
+      "hi": "पाई चार्ट में पहली गैस जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the second gas.",
+      "hi": "दूसरी गैस जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the third slice: all the other gases together.",
+      "hi": "तीसरा हिस्सा जोड़ो: बाकी सब गैसें मिलाकर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question under the chart: which gas is the biggest part?",
+      "hi": "चार्ट के नीचे का प्रश्न हल करो: सबसे बड़ा भाग किस गैस का है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Dry air is about 78 parts nitrogen and 21 parts oxygen in every 100. All the other gases, including argon and the carbon dioxide that plants need, together make only about 1 part. Air also holds water vapour and dust in changing amounts, which matter greatly for weather even though they are small.",
+      "hi": "शुष्क हवा के हर 100 भागों में लगभग 78 भाग नाइट्रोजन और 21 भाग ऑक्सीजन है। बाकी सब गैसें, जिनमें आर्गन और पौधों के लिए ज़रूरी कार्बन डाइऑक्साइड भी हैं, मिलाकर केवल लगभग 1 भाग हैं। हवा में जलवाष्प और धूल भी बदलती मात्रा में रहती है, जो छोटी होने पर भी मौसम के लिए बहुत महत्त्वपूर्ण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Oxygen is about what fraction of dry air?",
+        "hi": "ऑक्सीजन शुष्क हवा का लगभग कितना भाग है?"
+       },
+       "options": [
+        {
+         "en": "About one-fifth (21 in 100)",
+         "hi": "लगभग पाँचवाँ हिस्सा (100 में 21)"
+        },
+        {
+         "en": "About half",
+         "hi": "लगभग आधा"
+        },
+        {
+         "en": "Almost all of it",
+         "hi": "लगभग पूरी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Oxygen is 21 parts in 100, which is a little more than one-fifth.",
+        "hi": "ऑक्सीजन 100 में 21 भाग है, यानी पाँचवें हिस्से से थोड़ी अधिक।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Half would be 50 parts, far more than the 21 parts of oxygen.",
+         "hi": "आधा 50 भाग होता, जो 21 भाग की ऑक्सीजन से बहुत ज़्यादा है।"
+        },
+        {
+         "en": "Almost all of the air is nitrogen, not oxygen.",
+         "hi": "हवा का लगभग पूरा हिस्सा नाइट्रोजन है, ऑक्सीजन नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the biggest slice again. If nitrogen is 78 and oxygen 21, how many parts are left for everything else?",
+      "hi": "सबसे बड़े हिस्से को फिर देखो। अगर नाइट्रोजन 78 और ऑक्सीजन 21 है, तो बाकी सबके लिए कितने भाग बचे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch07-gas-roles",
+   "topic": "7.1",
+   "template": "match",
+   "title": {
+    "en": "What each part of the air does",
+    "hi": "हवा का हर भाग क्या करता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "oxygen",
+      "left": {
+       "en": "Oxygen",
+       "hi": "ऑक्सीजन"
+      },
+      "right": {
+       "en": "Breathed in by living things to release energy from food",
+       "hi": "जीव इसे साँस में लेकर भोजन से ऊर्जा पाते हैं"
+      },
+      "why": {
+       "en": "Respiration needs oxygen.",
+       "hi": "श्वसन के लिए ऑक्सीजन चाहिए।"
+      }
+     },
+     {
+      "id": "nitrogen",
+      "left": {
+       "en": "Nitrogen",
+       "hi": "नाइट्रोजन"
+      },
+      "right": {
+       "en": "Makes up most of the air and is needed by plants in the soil",
+       "hi": "अधिकांश हवा बनाती है और पौधों को मिट्टी में चाहिए"
+      },
+      "why": {
+       "en": "Plants build proteins from nitrogen taken from the soil.",
+       "hi": "पौधे मिट्टी से मिली नाइट्रोजन से प्रोटीन बनाते हैं।"
+      }
+     },
+     {
+      "id": "co2",
+      "left": {
+       "en": "Carbon dioxide",
+       "hi": "कार्बन डाइऑक्साइड"
+      },
+      "right": {
+       "en": "Used by plants in photosynthesis and traps heat",
+       "hi": "पौधे प्रकाश-संश्लेषण में इसे लेते हैं और यह ऊष्मा रोकती है"
+      },
+      "why": {
+       "en": "It is a greenhouse gas as well as plant food.",
+       "hi": "यह ग्रीनहाउस गैस भी है और पौधों का भोजन भी।"
+      }
+     },
+     {
+      "id": "vapour",
+      "left": {
+       "en": "Water vapour",
+       "hi": "जलवाष्प"
+      },
+      "right": {
+       "en": "Turns into clouds, rain and snow",
+       "hi": "बादल, वर्षा और हिम में बदलती है"
+      },
+      "why": {
+       "en": "Condensing vapour makes all clouds and precipitation.",
+       "hi": "संघनित जलवाष्प से सब बादल और वर्षण बनते हैं।"
+      }
+     },
+     {
+      "id": "ozone",
+      "left": {
+       "en": "Ozone",
+       "hi": "ओज़ोन"
+      },
+      "right": {
+       "en": "Absorbs harmful ultraviolet rays from the Sun",
+       "hi": "सूर्य की हानिकारक पराबैंगनी किरणें सोख लेती है"
+      },
+      "why": {
+       "en": "The ozone layer shields life from too much ultraviolet.",
+       "hi": "ओज़ोन परत जीवन को अत्यधिक पराबैंगनी से बचाती है।"
+      }
+     },
+     {
+      "id": "dust",
+      "left": {
+       "en": "Dust and salt particles",
+       "hi": "धूल और नमक के कण"
+      },
+      "right": {
+       "en": "Give water vapour a surface to condense on",
+       "hi": "जलवाष्प को संघनित होने के लिए सतह देते हैं"
+      },
+      "why": {
+       "en": "Water drops form around tiny particles, called nuclei.",
+       "hi": "जल की बूँदें छोटे कणों, यानी नाभिकों, के चारों ओर बनती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:oxygen",
+     "expect": "matched:oxygen",
+     "say": {
+      "en": "Match \"Oxygen\" with its meaning.",
+      "hi": "\"ऑक्सीजन\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Ozone\"?",
+      "hi": "\"ओज़ोन\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "oxygen",
+       "en": "Breathed in by living things to release energy from food",
+       "hi": "जीव इसे साँस में लेकर भोजन से ऊर्जा पाते हैं"
+      },
+      {
+       "id": "ozone",
+       "en": "Absorbs harmful ultraviolet rays from the Sun",
+       "hi": "सूर्य की हानिकारक पराबैंगनी किरणें सोख लेती है"
+      },
+      {
+       "id": "nitrogen",
+       "en": "Makes up most of the air and is needed by plants in the soil",
+       "hi": "अधिकांश हवा बनाती है और पौधों को मिट्टी में चाहिए"
+      }
+     ],
+     "answer": "ozone"
+    },
+    {
+     "kind": "do",
+     "target": "left:ozone",
+     "expect": "matched:ozone",
+     "say": {
+      "en": "Now match \"Ozone\".",
+      "hi": "अब \"ओज़ोन\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each part of the air has a job. Oxygen keeps us alive. Nitrogen dilutes oxygen. Carbon dioxide feeds plants and traps heat. Water vapour makes clouds and rain. Ozone shields us from the Sun's ultraviolet rays. Dust gives vapour somewhere to condense. Small amounts of some gases can have big effects.",
+      "hi": "हवा के हर भाग का एक काम है। ऑक्सीजन हमें जीवित रखती है। नाइट्रोजन ऑक्सीजन को तनु करती है। कार्बन डाइऑक्साइड पौधों को भोजन देती है और ऊष्मा रोकती है। जलवाष्प बादल और वर्षा बनाती है। ओज़ोन हमें सूर्य की पराबैंगनी किरणों से बचाती है। धूल वाष्प को संघनित होने की जगह देती है। कुछ गैसों की थोड़ी मात्रा भी बड़ा असर डाल सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a little dust in the air useful for rain?",
+        "hi": "हवा में थोड़ी धूल वर्षा के लिए उपयोगी क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Water vapour condenses around the particles",
+         "hi": "जलवाष्प कणों के चारों ओर संघनित होती है"
+        },
+        {
+         "en": "Dust makes the air hotter",
+         "hi": "धूल हवा को गर्म करती है"
+        },
+        {
+         "en": "Dust is made of water",
+         "hi": "धूल पानी से बनी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Vapour needs a surface to condense on; dust and salt specks provide it.",
+        "hi": "वाष्प को संघनन के लिए सतह चाहिए; धूल और नमक के कण वह देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The point is condensation, not heating.",
+         "hi": "यहाँ बात संघनन की है, गर्म करने की नहीं।"
+        },
+        {
+         "en": "Dust is made of tiny solid particles, not water.",
+         "hi": "धूल छोटे ठोस कणों से बनी है, पानी से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which part of the air would you most want to protect, and why? Name one thing people do that harms it.",
+      "hi": "हवा के किस भाग को तुम सबसे ज़्यादा बचाना चाहोगे, और क्यों? कोई एक काम बताओ जो उसे नुक़सान पहुँचाता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch07-layers",
+   "topic": "7.2",
+   "template": "earth",
+   "title": {
+    "en": "Layers of the atmosphere",
+    "hi": "वायुमंडल की परतें"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "atmosphere-layers"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:troposphere",
+     "expect": "revealed:troposphere",
+     "say": {
+      "en": "Tap the troposphere, the layer closest to the ground, where we live.",
+      "hi": "क्षोभमंडल पर टैप करो, ज़मीन के सबसे पास की परत, जहाँ हम रहते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As you climb up through the troposphere, will the air get hotter or colder?",
+      "hi": "क्षोभमंडल में ऊपर चढ़ने पर हवा गर्म होगी या ठंडी?"
+     },
+     "options": [
+      {
+       "id": "colder",
+       "en": "Colder",
+       "hi": "ठंडी"
+      },
+      {
+       "id": "hotter",
+       "en": "Hotter",
+       "hi": "गर्म"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "वही"
+      }
+     ],
+     "answer": "colder"
+    },
+    {
+     "kind": "do",
+     "target": "layer:stratosphere",
+     "expect": "revealed:stratosphere",
+     "say": {
+      "en": "Tap the stratosphere above it.",
+      "hi": "उसके ऊपर समतापमंडल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:ozone",
+     "expect": "revealed:ozone",
+     "say": {
+      "en": "Tap the ozone layer inside the stratosphere.",
+      "hi": "समतापमंडल के भीतर ओज़ोन परत पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:mesosphere",
+     "expect": "revealed:mesosphere",
+     "say": {
+      "en": "Tap the mesosphere, where most meteors burn up.",
+      "hi": "मध्यमंडल पर टैप करो, जहाँ अधिकतर उल्काएँ जल जाती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:thermosphere",
+     "expect": "revealed:thermosphere",
+     "say": {
+      "en": "Tap the thermosphere, where the air is very thin and very hot.",
+      "hi": "तापमंडल पर टैप करो, जहाँ हवा बहुत विरल और बहुत गर्म है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The air is arranged in layers. The troposphere is thinnest but holds most of the air and all the weather; it gets colder as you rise. The stratosphere holds the ozone layer. Meteors burn in the mesosphere, which is the coldest layer. In the thermosphere the thin air is very hot, and its charged parts, the ionosphere, reflect radio waves. Beyond that the exosphere fades into space.",
+      "hi": "वायुमंडल परतों में बँटा है। क्षोभमंडल सबसे पतला है पर उसमें अधिकांश हवा और सारा मौसम है; ऊपर चढ़ने पर यह ठंडा होता जाता है। समतापमंडल में ओज़ोन परत है। उल्काएँ मध्यमंडल में जलती हैं, जो सबसे ठंडी परत है। तापमंडल में विरल हवा बहुत गर्म है, और उसके आवेशित भाग, आयनमंडल, रेडियो तरंगों को लौटाते हैं। उसके पार बाह्यमंडल अंतरिक्ष में खो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which layer does the weather happen?",
+        "hi": "मौसम किस परत में होता है?"
+       },
+       "options": [
+        {
+         "en": "The troposphere",
+         "hi": "क्षोभमंडल"
+        },
+        {
+         "en": "The stratosphere",
+         "hi": "समतापमंडल"
+        },
+        {
+         "en": "The thermosphere",
+         "hi": "तापमंडल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Clouds, rain and winds all occur in the troposphere, which holds nearly all the water vapour.",
+        "hi": "बादल, वर्षा और पवनें सब क्षोभमंडल में होते हैं, जिसमें लगभग सारी जलवाष्प है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The stratosphere is dry and calm; jet aircraft often fly there to avoid weather.",
+         "hi": "समतापमंडल शुष्क और शांत है; विमान प्रायः मौसम से बचने के लिए वहाँ उड़ते हैं।"
+        },
+        {
+         "en": "The thermosphere is extremely thin; no clouds form there.",
+         "hi": "तापमंडल बहुत विरल है; वहाँ बादल नहीं बनते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the ozone layer do?",
+        "hi": "ओज़ोन परत क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "Absorbs harmful ultraviolet rays",
+         "hi": "हानिकारक पराबैंगनी किरणें सोखती है"
+        },
+        {
+         "en": "Makes rain",
+         "hi": "वर्षा बनाती है"
+        },
+        {
+         "en": "Reflects radio waves",
+         "hi": "रेडियो तरंगें लौटाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ozone absorbs most of the Sun's ultraviolet rays, protecting life on the ground.",
+        "hi": "ओज़ोन सूर्य की अधिकतर पराबैंगनी किरणें सोख लेती है और ज़मीन के जीवन की रक्षा करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rain forms in the troposphere, not in the ozone layer.",
+         "hi": "वर्षा क्षोभमंडल में बनती है, ओज़ोन परत में नहीं।"
+        },
+        {
+         "en": "Radio waves are reflected by the ionosphere, higher up.",
+         "hi": "रेडियो तरंगें ऊपर के आयनमंडल से लौटती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the altitude slider and watch the temperature change at each height. Where is it coldest, and where hottest?",
+      "hi": "ऊँचाई स्लाइडर खिसकाओ और हर ऊँचाई पर तापमान का बदलाव देखो। सबसे ठंडा कहाँ है और सबसे गर्म कहाँ?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch07-layer-facts",
+   "topic": "7.2",
+   "template": "sort",
+   "title": {
+    "en": "Which layer? Clues from the sky",
+    "hi": "कौन-सी परत? आकाश के संकेत"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "tropo",
+      "label": {
+       "en": "Troposphere",
+       "hi": "क्षोभमंडल"
+      }
+     },
+     {
+      "id": "strato",
+      "label": {
+       "en": "Stratosphere",
+       "hi": "समतापमंडल"
+      }
+     },
+     {
+      "id": "meso",
+      "label": {
+       "en": "Mesosphere",
+       "hi": "मध्यमंडल"
+      }
+     },
+     {
+      "id": "thermo",
+      "label": {
+       "en": "Thermosphere",
+       "hi": "तापमंडल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "clouds",
+      "bin": "tropo",
+      "text": {
+       "en": "Clouds and rain",
+       "hi": "बादल और वर्षा"
+      },
+      "why": {
+       "en": "Nearly all water vapour is in the lowest layer, so the weather is there.",
+       "hi": "लगभग सारी जलवाष्प सबसे निचली परत में है, इसलिए मौसम वहीं है।"
+      }
+     },
+     {
+      "id": "hills",
+      "bin": "tropo",
+      "text": {
+       "en": "Mount Everest and all the clouds you see",
+       "hi": "एवरेस्ट और सब दिखने वाले बादल"
+      },
+      "why": {
+       "en": "Even the highest mountain is inside the lowest layer.",
+       "hi": "सबसे ऊँचा पर्वत भी सबसे निचली परत में है।"
+      }
+     },
+     {
+      "id": "ozone",
+      "bin": "strato",
+      "text": {
+       "en": "The ozone layer",
+       "hi": "ओज़ोन परत"
+      },
+      "why": {
+       "en": "Ozone sits in the stratosphere, absorbing ultraviolet rays.",
+       "hi": "ओज़ोन समतापमंडल में है और पराबैंगनी किरणें सोखती है।"
+      }
+     },
+     {
+      "id": "jet",
+      "bin": "strato",
+      "text": {
+       "en": "Jet planes cruise in calm, dry air",
+       "hi": "जेट विमान शांत, शुष्क हवा में उड़ते हैं"
+      },
+      "why": {
+       "en": "The stratosphere has little weather, so flights are smooth.",
+       "hi": "समतापमंडल में मौसम कम है, इसलिए उड़ान सहज रहती है।"
+      }
+     },
+     {
+      "id": "meteor",
+      "bin": "meso",
+      "text": {
+       "en": "Shooting stars burn up",
+       "hi": "टूटते तारे जल उठते हैं"
+      },
+      "why": {
+       "en": "Meteors meet enough air here to glow and burn.",
+       "hi": "उल्काओं को यहाँ इतनी हवा मिलती है कि वे जलकर चमकती हैं।"
+      }
+     },
+     {
+      "id": "cold",
+      "bin": "meso",
+      "text": {
+       "en": "The coldest layer of all",
+       "hi": "सबसे ठंडी परत"
+      },
+      "why": {
+       "en": "The mesosphere is the coldest layer of the atmosphere.",
+       "hi": "मध्यमंडल वायुमंडल की सबसे ठंडी परत है।"
+      }
+     },
+     {
+      "id": "radio",
+      "bin": "thermo",
+      "text": {
+       "en": "The ionosphere reflects radio waves",
+       "hi": "आयनमंडल रेडियो तरंगें लौटाता है"
+      },
+      "why": {
+       "en": "Charged particles in the thermosphere bounce radio signals back to Earth.",
+       "hi": "तापमंडल के आवेशित कण रेडियो संकेत पृथ्वी पर लौटाते हैं।"
+      }
+     },
+     {
+      "id": "iss",
+      "bin": "thermo",
+      "text": {
+       "en": "The International Space Station orbits here",
+       "hi": "अंतर्राष्ट्रीय अंतरिक्ष स्टेशन यहाँ परिक्रमा करता है"
+      },
+      "why": {
+       "en": "The Space Station circles at about 400 km, in the thermosphere.",
+       "hi": "अंतरिक्ष स्टेशन लगभग 400 किमी पर, तापमंडल में, चक्कर लगाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:clouds",
+     "expect": "correct:clouds",
+     "say": {
+      "en": "Tap the card \"Clouds and rain\", then tap the group where it belongs.",
+      "hi": "कार्ड \"बादल और वर्षा\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Shooting stars burn up\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"टूटते तारे जल उठते हैं\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "tropo",
+       "en": "Troposphere",
+       "hi": "क्षोभमंडल"
+      },
+      {
+       "id": "strato",
+       "en": "Stratosphere",
+       "hi": "समतापमंडल"
+      },
+      {
+       "id": "meso",
+       "en": "Mesosphere",
+       "hi": "मध्यमंडल"
+      },
+      {
+       "id": "thermo",
+       "en": "Thermosphere",
+       "hi": "तापमंडल"
+      }
+     ],
+     "answer": "meso"
+    },
+    {
+     "kind": "do",
+     "target": "card:meteor",
+     "expect": "correct:meteor",
+     "say": {
+      "en": "Now sort the card \"Shooting stars burn up\".",
+      "hi": "अब कार्ड \"टूटते तारे जल उठते हैं\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each layer has a clue. Weather, clouds and mountains are in the troposphere. Ozone and calm flying belong to the stratosphere. Falling stars burn in the mesosphere. Radio reflection and satellites belong to the thermosphere. The temperature falls, then rises, then falls, then rises again as we go up.",
+      "hi": "हर परत का अपना संकेत है। मौसम, बादल और पर्वत क्षोभमंडल में हैं। ओज़ोन और शांत उड़ान समतापमंडल की हैं। टूटते तारे मध्यमंडल में जलते हैं। रेडियो-परावर्तन और उपग्रह तापमंडल के हैं। ऊपर जाने पर तापमान घटता है, फिर बढ़ता है, फिर घटता है, फिर बढ़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which layer would a passenger jet use to avoid storms?",
+        "hi": "तूफ़ानों से बचने के लिए यात्री विमान कौन-सी परत का उपयोग करेगा?"
+       },
+       "options": [
+        {
+         "en": "The lower stratosphere",
+         "hi": "निचला समतापमंडल"
+        },
+        {
+         "en": "The mesosphere",
+         "hi": "मध्यमंडल"
+        },
+        {
+         "en": "The thermosphere",
+         "hi": "तापमंडल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Above the weather, the stratosphere is dry and calm, but still has enough air for planes.",
+        "hi": "मौसम के ऊपर समतापमंडल शुष्क और शांत है, पर विमानों के लिए पर्याप्त हवा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The mesosphere is far too high and thin for planes.",
+         "hi": "मध्यमंडल विमानों के लिए बहुत ऊँचा और विरल है।"
+        },
+        {
+         "en": "The thermosphere is where satellites orbit, not planes.",
+         "hi": "तापमंडल में उपग्रह परिक्रमा करते हैं, विमान नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "When do you see a shooting star? In which layer does it begin to glow?",
+      "hi": "टूटता तारा तुम कब देखते हो? वह किस परत में चमकना शुरू करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch07-weather-elements",
+   "topic": "7.3",
+   "template": "match",
+   "title": {
+    "en": "Elements of weather and how we measure them",
+    "hi": "मौसम के तत्त्व और उनका मापन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "temp",
+      "left": {
+       "en": "Temperature",
+       "hi": "तापमान"
+      },
+      "right": {
+       "en": "Thermometer",
+       "hi": "तापमापी (थर्मामीटर)"
+      },
+      "why": {
+       "en": "A thermometer measures how hot or cold the air is.",
+       "hi": "तापमापी हवा की गर्मी-ठंडक मापता है।"
+      }
+     },
+     {
+      "id": "pressure",
+      "left": {
+       "en": "Air pressure",
+       "hi": "वायुदाब"
+      },
+      "right": {
+       "en": "Barometer",
+       "hi": "वायुदाबमापी (बैरोमीटर)"
+      },
+      "why": {
+       "en": "A barometer measures the weight of the air above.",
+       "hi": "बैरोमीटर ऊपर की हवा का भार मापता है।"
+      }
+     },
+     {
+      "id": "rain",
+      "left": {
+       "en": "Rainfall",
+       "hi": "वर्षा"
+      },
+      "right": {
+       "en": "Rain gauge",
+       "hi": "वर्षामापी"
+      },
+      "why": {
+       "en": "A rain gauge collects and measures rain in millimetres.",
+       "hi": "वर्षामापी वर्षा को इकट्ठा करके मिलीमीटर में मापता है।"
+      }
+     },
+     {
+      "id": "wdir",
+      "left": {
+       "en": "Wind direction",
+       "hi": "पवन की दिशा"
+      },
+      "right": {
+       "en": "Wind vane",
+       "hi": "पवन-दिशा सूचक"
+      },
+      "why": {
+       "en": "A vane turns to point to where the wind comes from.",
+       "hi": "सूचक घूमकर बताता है कि हवा किस ओर से आ रही है।"
+      }
+     },
+     {
+      "id": "wspeed",
+      "left": {
+       "en": "Wind speed",
+       "hi": "पवन की गति"
+      },
+      "right": {
+       "en": "Anemometer",
+       "hi": "पवनवेगमापी (एनीमोमीटर)"
+      },
+      "why": {
+       "en": "Cups spin faster in stronger wind, giving the speed.",
+       "hi": "तेज़ हवा में कप तेज़ घूमते हैं, जिससे गति मापी जाती है।"
+      }
+     },
+     {
+      "id": "hum",
+      "left": {
+       "en": "Humidity",
+       "hi": "आर्द्रता"
+      },
+      "right": {
+       "en": "Hygrometer",
+       "hi": "आर्द्रतामापी (हाइग्रोमीटर)"
+      },
+      "why": {
+       "en": "A hygrometer shows how much water vapour is in the air.",
+       "hi": "आर्द्रतामापी बताता है कि हवा में कितनी जलवाष्प है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:temp",
+     "expect": "matched:temp",
+     "say": {
+      "en": "Match \"Temperature\" with its meaning.",
+      "hi": "\"तापमान\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Air pressure\"?",
+      "hi": "\"वायुदाब\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "temp",
+       "en": "Thermometer",
+       "hi": "तापमापी (थर्मामीटर)"
+      },
+      {
+       "id": "pressure",
+       "en": "Barometer",
+       "hi": "वायुदाबमापी (बैरोमीटर)"
+      },
+      {
+       "id": "rain",
+       "en": "Rain gauge",
+       "hi": "वर्षामापी"
+      }
+     ],
+     "answer": "pressure"
+    },
+    {
+     "kind": "do",
+     "target": "left:pressure",
+     "expect": "matched:pressure",
+     "say": {
+      "en": "Now match \"Air pressure\".",
+      "hi": "अब \"वायुदाब\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Weather is the state of the atmosphere at a place and time: its temperature, pressure, wind, humidity, cloudiness and rain. Climate is the average of all this over about thirty years or more. We measure each element with its own instrument, and tracking them day after day builds up the climate record.",
+      "hi": "मौसम किसी स्थान और समय पर वायुमंडल की अवस्था है: उसका तापमान, दाब, पवन, आर्द्रता, बादल और वर्षा। जलवायु इन सबका लगभग तीस वर्ष या अधिक का औसत है। हर तत्त्व को उसके अपने उपकरण से मापते हैं, और रोज़ के आँकड़ों से जलवायु का रिकॉर्ड बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the difference between weather and climate?",
+        "hi": "मौसम और जलवायु में क्या अंतर है?"
+       },
+       "options": [
+        {
+         "en": "Weather is today's conditions; climate is the long-term average",
+         "hi": "मौसम आज की स्थिति है; जलवायु लंबी अवधि का औसत है"
+        },
+        {
+         "en": "They mean exactly the same",
+         "hi": "दोनों का अर्थ बिल्कुल एक है"
+        },
+        {
+         "en": "Climate changes every hour",
+         "hi": "जलवायु हर घंटे बदलती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Weather can change within hours. Climate is the usual pattern over many years.",
+        "hi": "मौसम घंटों में बदल सकता है। जलवायु बहुत वर्षों का सामान्य ढर्रा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They are different: one is short-term, the other long-term.",
+         "hi": "दोनों अलग हैं: एक अल्पकालिक, दूसरी दीर्घकालिक।"
+        },
+        {
+         "en": "Weather changes hourly; climate is a long-term average and changes slowly.",
+         "hi": "मौसम घंटों में बदलता है; जलवायु दीर्घकालिक औसत है और धीरे बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep a weather diary for a week: note temperature, wind and sky. Is it weather or climate that you are recording?",
+      "hi": "एक सप्ताह की मौसम डायरी रखो: तापमान, हवा और आकाश लिखो। तुम मौसम दर्ज कर रहे हो या जलवायु?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Hook of the chapter",
+   "shows": "An Indian sky at sunrise with thin clouds, a hill and a village below",
+   "view": "Wide, 16:9, clear light",
+   "right": "Smooth graded sky colour from deep blue to orange",
+   "avoid": "Planes, birds, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Atmosphere layers",
+   "shows": "The curved edge of the Earth from space showing thin blue atmosphere layers, taken at the horizon",
+   "view": "16:9, dark space above",
+   "right": "Layered blue glow",
+   "avoid": "Satellites with logos, text"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "7.2",
+   "use": "Layers of the atmosphere",
+   "shows": "A tall vertical cut-away of the atmosphere to scale with Everest, a jet, a balloon, shooting star and the space station",
+   "view": "Portrait, 9:16 or 3:4, gradient sky",
+   "right": "True relative heights and colours",
+   "avoid": "Text, labels, brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.3",
+   "use": "Weather instruments",
+   "shows": "A thermometer, a barometer, a rain gauge, a wind vane and an anemometer each as a clean cut-out",
+   "view": "Front view, transparent background, soft shadow",
+   "right": "Realistic instruments in an Indian weather station",
+   "avoid": "Brand names, readable text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "7.3",
+   "use": "Weather station",
+   "shows": "An Indian school or village weather station in a fenced yard with a white Stevenson screen",
+   "view": "Wide, 16:9, bright day",
+   "right": "White louvred box, anemometer on a mast",
+   "avoid": "Children's faces, school name"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "7.1",
+   "use": "Dust as nuclei",
+   "shows": "Dew drops sitting on a spider web at dawn, with dust specks near them",
+   "view": "Macro, square, soft side light",
+   "right": "Round bright drops on thin threads",
+   "avoid": "Insects, hands"
+  }
+ ]
+}

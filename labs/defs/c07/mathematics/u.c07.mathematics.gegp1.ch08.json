@@ -1,0 +1,652 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp1.ch08",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "Working with Fractions",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Multiplication of fractions",
+   "labs": [
+    "c07-mathematics-gegp1-ch08-of-fraction",
+    "c07-mathematics-gegp1-ch08-times-less"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Division of fractions",
+   "labs": [
+    "c07-mathematics-gegp1-ch08-how-many"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Some problems involving fractions",
+   "labs": [
+    "c07-mathematics-gegp1-ch08-which-op"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp1-ch08-of-fraction",
+   "topic": "8.1",
+   "template": "number-line",
+   "title": {
+    "en": "Half of three quarters",
+    "hi": "तीन चौथाई का आधा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "place",
+    "min": 0,
+    "max": 1,
+    "step": "1/8",
+    "ask": "1/2*3/4"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A roti is cut into quarters and 3 quarters are left. Meena eats half of that. Is it more or less than 3/4?",
+      "hi": "एक रोटी के चौथाई टुकड़े किए और 3 चौथाई बचे। मीना उसका आधा खाती है। यह 3/4 से ज़्यादा है या कम?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Less than 3/4",
+       "hi": "3/4 से कम"
+      },
+      {
+       "id": "more",
+       "en": "More than 3/4",
+       "hi": "3/4 से ज़्यादा"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "बराबर"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "marker",
+     "expect": "placed",
+     "say": {
+      "en": "Find 3/4 on the line. Half of it is halfway from 0 to 3/4. Drag the marker there.",
+      "hi": "रेखा पर 3/4 ढूँढो। उसका आधा 0 और 3/4 के ठीक बीच है। निशान वहाँ ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "1/2 × 3/4 means half of 3/4. Cutting each quarter into two gives eighths, and half of 3 quarters is 3 eighths: 3/8. In general, multiply the numerators and the denominators: (1 × 3)/(2 × 4) = 3/8.",
+      "hi": "1/2 × 3/4 का अर्थ है 3/4 का आधा। हर चौथाई को दो में काटने पर आठवें भाग मिलते हैं, और 3 चौथाई का आधा 3 आठवें भाग है: 3/8। सामान्य रूप से अंशों का गुणा और हरों का गुणा करो: (1 × 3)/(2 × 4) = 3/8।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 2/3 × 3/5?",
+        "hi": "2/3 × 3/5 कितना है?"
+       },
+       "options": [
+        "2/5",
+        "6/8",
+        "5/15"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(2 × 3)/(3 × 5) = 6/15 = 2/5.",
+        "hi": "(2 × 3)/(3 × 5) = 6/15 = 2/5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6/8 adds the denominators; in a product we multiply them.",
+         "hi": "6/8 में हरों को जोड़ा; गुणनफल में उनका गुणा करते हैं।"
+        },
+        {
+         "en": "5/15 adds the numerators; multiply them instead.",
+         "hi": "5/15 में अंशों को जोड़ा; उनका गुणा करना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: is 3/4 × 1/2 the same as 1/2 × 3/4? Think of a quarter of a half-full glass.",
+      "hi": "आज़माओ: क्या 3/4 × 1/2, 1/2 × 3/4 के बराबर है? आधे भरे गिलास के चौथाई के बारे में सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch08-times-less",
+   "topic": "8.1",
+   "template": "number-line",
+   "title": {
+    "en": "Multiplying by a fraction less than 1",
+    "hi": "1 से छोटे भिन्न से गुणा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "place",
+    "min": 0,
+    "max": 3,
+    "step": "1/4",
+    "ask": "2*3/4"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ravi walks 3/4 km each day. Will 2 days of walking be more or less than 2 km?",
+      "hi": "रवि हर दिन 3/4 किमी चलता है। 2 दिन में कुल दूरी 2 किमी से ज़्यादा होगी या कम?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Less than 2 km",
+       "hi": "2 किमी से कम"
+      },
+      {
+       "id": "more",
+       "en": "More than 2 km",
+       "hi": "2 किमी से ज़्यादा"
+      },
+      {
+       "id": "same",
+       "en": "Exactly 2 km",
+       "hi": "ठीक 2 किमी"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "marker",
+     "expect": "placed",
+     "say": {
+      "en": "Put the marker at 2 × 3/4: two hops of 3/4 from 0.",
+      "hi": "निशान 2 × 3/4 पर रखो: 0 से 3/4 की दो छलाँगें।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "2 × 3/4 = 6/4 = 1 1/2. That is less than 2, because each day is less than a whole km. Multiplying by a fraction less than 1 gives an answer smaller than the number you started with; it means taking only a part of it.",
+      "hi": "2 × 3/4 = 6/4 = 1 1/2। यह 2 से कम है, क्योंकि हर दिन एक पूरे किमी से कम है। 1 से छोटे भिन्न से गुणा करने पर उत्तर शुरू की संख्या से छोटा आता है; इसका अर्थ उसका केवल एक भाग लेना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Without working it out: is 48 × 5/6 more or less than 48?",
+        "hi": "बिना हल किए: 48 × 5/6, 48 से ज़्यादा है या कम?"
+       },
+       "options": [
+        {
+         "en": "Less",
+         "hi": "कम"
+        },
+        {
+         "en": "More",
+         "hi": "ज़्यादा"
+        },
+        {
+         "en": "Equal",
+         "hi": "बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5/6 is less than 1, so we take only part of 48 (it is 40).",
+        "hi": "5/6, 1 से कम है, इसलिए 48 का केवल एक भाग लेते हैं (यह 40 है)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Multiplying makes bigger only when the multiplier is more than 1.",
+         "hi": "गुणा से संख्या तभी बड़ी होती है जब गुणक 1 से बड़ा हो।"
+        },
+        {
+         "en": "Only multiplying by exactly 1 keeps the number the same.",
+         "hi": "केवल ठीक 1 से गुणा करने पर संख्या वही रहती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: place 2 × 5/4. Is it more or less than 2? Why?",
+      "hi": "आज़माओ: 2 × 5/4 रखो। क्या यह 2 से ज़्यादा है या कम? क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch08-how-many",
+   "topic": "8.2",
+   "template": "number-line",
+   "title": {
+    "en": "How many quarters fit in 3?",
+    "hi": "3 में कितने चौथाई समाते हैं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 3,
+    "step": "1/4",
+    "start": 0,
+    "jumps": [
+     "1/4"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 3 m ribbon is cut into pieces of 1/4 m. How many pieces?",
+      "hi": "3 मी के रिबन को 1/4 मी के टुकड़ों में काटा। कितने टुकड़े होंगे?"
+     },
+     "options": [
+      {
+       "id": "12",
+       "en": "12",
+       "hi": "12 टुकड़े"
+      },
+      {
+       "id": "3",
+       "en": "3",
+       "hi": "3 टुकड़े"
+      },
+      {
+       "id": "4",
+       "en": "4",
+       "hi": "4 टुकड़े"
+      }
+     ],
+     "answer": "12"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:1",
+     "say": {
+      "en": "Hop +1/4 from 0 until you reach 1. Count your hops.",
+      "hi": "0 से +1/4 की छलाँग 1 तक लगाओ। छलाँगें गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:3",
+     "say": {
+      "en": "Keep hopping until you reach 3.",
+      "hi": "3 तक पहुँचने तक छलाँग लगाते रहो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each whole holds 4 quarters, so 3 wholes hold 3 × 4 = 12 quarters. So 3 ÷ 1/4 = 12. Dividing by a fraction asks \"how many of these fit?\" It is the same as multiplying by its reciprocal: 3 ÷ 1/4 = 3 × 4.",
+      "hi": "हर पूरे में 4 चौथाई होते हैं, इसलिए 3 पूरे में 3 × 4 = 12 चौथाई। इसलिए 3 ÷ 1/4 = 12। भिन्न से भाग देना पूछता है \"इनमें से कितने समाते हैं?\" यह उसके व्युत्क्रम से गुणा करने जैसा है: 3 ÷ 1/4 = 3 × 4।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 2 ÷ 1/3?",
+        "hi": "2 ÷ 1/3 कितना है?"
+       },
+       "options": [
+        "6",
+        "2/3",
+        "1/6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each whole holds 3 thirds, so 2 wholes hold 6.",
+        "hi": "हर पूरे में 3 तिहाई, इसलिए 2 पूरे में 6।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2/3 is 2 × 1/3, a multiplication, not a division.",
+         "hi": "2/3 = 2 × 1/3, यह गुणा है, भाग नहीं।"
+        },
+        {
+         "en": "Dividing by a fraction less than 1 gives a bigger answer, not a smaller one.",
+         "hi": "1 से छोटे भिन्न से भाग देने पर उत्तर बड़ा आता है, छोटा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the reciprocal of 3/5?",
+        "hi": "3/5 का व्युत्क्रम क्या है?"
+       },
+       "options": [
+        "5/3",
+        "3/5",
+        "−3/5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Flip the fraction: 3/5 × 5/3 = 1.",
+        "hi": "भिन्न को उलट दो: 3/5 × 5/3 = 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the same fraction; a reciprocal multiplies with it to give 1.",
+         "hi": "यह वही भिन्न है; व्युत्क्रम से गुणा करने पर 1 आता है।"
+        },
+        {
+         "en": "A minus sign gives the opposite number, not the reciprocal.",
+         "hi": "ऋण चिह्न से विपरीत संख्या बनती है, व्युत्क्रम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Reset. How many hops of 1/4 make 1 1/2? So what is 3/2 ÷ 1/4?",
+      "hi": "आज़माओ: रीसेट दबाओ। 1/4 की कितनी छलाँगों से 1 1/2 बनता है? तो 3/2 ÷ 1/4 कितना है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch08-which-op",
+   "topic": "8.3",
+   "template": "sort",
+   "title": {
+    "en": "Multiply or divide?",
+    "hi": "गुणा या भाग?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mul",
+      "label": {
+       "en": "Multiply",
+       "hi": "गुणा करो"
+      }
+     },
+     {
+      "id": "div",
+      "label": {
+       "en": "Divide",
+       "hi": "भाग दो"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "milk",
+      "text": {
+       "en": "Milk for 6 days at 1/2 L a day",
+       "hi": "6 दिन का दूध, रोज़ 1/2 लीटर"
+      },
+      "bin": "mul",
+      "why": {
+       "en": "6 lots of 1/2 L: 6 × 1/2 = 3 L.",
+       "hi": "1/2 लीटर के 6 गुना: 6 × 1/2 = 3 लीटर।"
+      }
+     },
+     {
+      "id": "ribbon",
+      "text": {
+       "en": "Pieces of 1/8 m from 3/4 m of ribbon",
+       "hi": "3/4 मी रिबन से 1/8 मी के टुकड़े"
+      },
+      "bin": "div",
+      "why": {
+       "en": "How many 1/8s fit in 3/4: 3/4 ÷ 1/8 = 6.",
+       "hi": "3/4 में कितने 1/8 समाते हैं: 3/4 ÷ 1/8 = 6।"
+      }
+     },
+     {
+      "id": "land",
+      "text": {
+       "en": "Two-thirds of a 3/4 acre field",
+       "hi": "3/4 एकड़ खेत का दो-तिहाई"
+      },
+      "bin": "mul",
+      "why": {
+       "en": "\"Of\" means multiply: 2/3 × 3/4 = 1/2 acre.",
+       "hi": "\"का\" यानी गुणा: 2/3 × 3/4 = 1/2 एकड़।"
+      }
+     },
+     {
+      "id": "glass",
+      "text": {
+       "en": "Glasses of 1/4 L from a 2 L bottle",
+       "hi": "2 लीटर की बोतल से 1/4 लीटर के गिलास"
+      },
+      "bin": "div",
+      "why": {
+       "en": "2 ÷ 1/4 = 8 glasses.",
+       "hi": "2 ÷ 1/4 = 8 गिलास।"
+      }
+     },
+     {
+      "id": "share",
+      "text": {
+       "en": "Share 3/4 kg of sweets equally among 3",
+       "hi": "3/4 किलो मिठाई 3 में बराबर बाँटो"
+      },
+      "bin": "div",
+      "why": {
+       "en": "3/4 ÷ 3 = 1/4 kg each.",
+       "hi": "3/4 ÷ 3 = 1/4 किलो हर एक को।"
+      }
+     },
+     {
+      "id": "walk",
+      "text": {
+       "en": "Distance in 3 hours at 4 1/2 km an hour",
+       "hi": "4 1/2 किमी प्रति घंटे से 3 घंटे में दूरी"
+      },
+      "bin": "mul",
+      "why": {
+       "en": "3 × 4 1/2 = 13 1/2 km.",
+       "hi": "3 × 4 1/2 = 13 1/2 किमी।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:milk",
+     "expect": "correct:milk",
+     "say": {
+      "en": "Tap the milk card and decide: multiply or divide?",
+      "hi": "दूध वाला कार्ड छुओ और तय करो: गुणा या भाग?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:ribbon",
+     "expect": "correct:ribbon",
+     "say": {
+      "en": "Now the ribbon card.",
+      "hi": "अब रिबन वाला कार्ड।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "\"Two-thirds of a 3/4 acre field\": which operation?",
+      "hi": "\"3/4 एकड़ खेत का दो-तिहाई\": कौन-सी संक्रिया?"
+     },
+     "options": [
+      {
+       "id": "mul",
+       "en": "Multiply",
+       "hi": "गुणा"
+      },
+      {
+       "id": "div",
+       "en": "Divide",
+       "hi": "भाग"
+      }
+     ],
+     "answer": "mul"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Multiply when you have many lots of a fraction, or a fraction of something (\"of\"). Divide when you ask how many pieces of a size fit, or when you share equally. Then check: does the answer make sense in real life?",
+      "hi": "जब किसी भिन्न के कई गुना हों, या किसी चीज़ का भिन्न (\"का\") लेना हो, तब गुणा करो। जब पूछा जाए कि किसी माप के कितने टुकड़े समाते हैं, या बराबर बाँटना हो, तब भाग दो। फिर जाँचो: क्या उत्तर असल ज़िंदगी में ठीक लगता है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 2 L bottle fills glasses of 1/4 L. How many glasses?",
+        "hi": "2 लीटर की बोतल से 1/4 लीटर के गिलास भरते हैं। कितने गिलास?"
+       },
+       "options": [
+        "8",
+        "1/2",
+        "2 1/4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 ÷ 1/4 = 2 × 4 = 8.",
+        "hi": "2 ÷ 1/4 = 2 × 4 = 8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1/2 is 2 × 1/4; that is the milk in 2 glasses, not the number of glasses.",
+         "hi": "1/2 = 2 × 1/4; यह 2 गिलासों का दूध है, गिलासों की संख्या नहीं।"
+        },
+        {
+         "en": "Adding 2 + 1/4 does not count anything here.",
+         "hi": "2 + 1/4 जोड़ने से यहाँ कुछ नहीं गिना जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make up one multiply story and one divide story about food in your kitchen.",
+      "hi": "आज़माओ: अपनी रसोई के खाने पर एक गुणा वाली और एक भाग वाली कहानी बनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Chapter hook: sharing food",
+   "shows": "A plate with a roti torn into four quarters, three left, and a child's hand taking half of them",
+   "view": "From above, a kitchen table, warm light",
+   "right": "Roti real, quarters roughly equal",
+   "avoid": "Faces, brand utensils"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "8.1",
+   "use": "Fraction of a fraction with paper folding",
+   "shows": "A square paper: folded into quarters with 3 shaded, then folded in half the other way showing 3 of 8 small parts double-shaded",
+   "view": "From above, same framing, two frames",
+   "right": "Fold lines straight; parts equal",
+   "avoid": "Uneven folds"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "8.2",
+   "use": "Dividing a ribbon",
+   "shows": "A satin ribbon cut into 12 equal short pieces laid in a row next to an uncut ribbon of the same total length",
+   "view": "From above, white background",
+   "right": "Pieces exactly equal; total length matches",
+   "avoid": "Scissors, frayed ends"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "8.3",
+   "use": "Fractions in a kitchen",
+   "shows": "A 2 L water bottle and eight small glasses of equal size filled from it on a kitchen counter",
+   "view": "Eye level, soft daylight",
+   "right": "Eight glasses, equal water level",
+   "avoid": "Brand labels on the bottle"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.3",
+   "use": "Fractions of land",
+   "shows": "A green field divided into strips by low earthen bunds, part of it freshly sown and part not",
+   "view": "Wide view from a raised bund, morning light",
+   "right": "Clear boundaries between parts",
+   "avoid": "People, signboards"
+  }
+ ]
+}

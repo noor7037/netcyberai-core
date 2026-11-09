@@ -1,0 +1,1186 @@
+{
+ "chapter_key": "u.c12.physics.leph1.ch07",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Alternating Current",
+ "source": "https://ncert.nic.in/textbook/pdf/leph107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "An opening about the mains supply and the AC/DC debate; the photos and the reader set the scene."
+  },
+  {
+   "n": "7.2",
+   "title": "AC voltage applied to a resistor",
+   "labs": [
+    "c12-physics-leph1-ch07-waveform"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Representation of AC current and voltage (rms and phasors)",
+   "labs": [
+    "c12-physics-leph1-ch07-waveform"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "AC voltage applied to an inductor",
+   "labs": [
+    "c12-physics-leph1-ch07-phase",
+    "c12-physics-leph1-ch07-xl",
+    "c12-physics-leph1-ch07-phase-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "AC voltage applied to a capacitor",
+   "labs": [
+    "c12-physics-leph1-ch07-phase",
+    "c12-physics-leph1-ch07-xc",
+    "c12-physics-leph1-ch07-phase-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6",
+   "title": "AC voltage applied to a series LCR circuit, and resonance",
+   "labs": [
+    "c12-physics-leph1-ch07-resonance"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.7",
+   "title": "Power in an AC circuit: the power factor",
+   "labs": [
+    "c12-physics-leph1-ch07-power-factor"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.8",
+   "title": "Transformers",
+   "labs": [
+    "c12-physics-leph1-ch07-transformer"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph1-ch07-waveform",
+   "topic": "7.3",
+   "template": "grapher",
+   "title": {
+    "en": "Peak value and rms value of AC",
+    "hi": "प्रत्यावर्ती धारा का शिखर मान और वर्ग-माध्य-मूल मान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trig",
+    "expr": "a*sin(b*x)",
+    "params": {
+     "a": [
+      1,
+      6,
+      3
+     ],
+     "b": [
+      1,
+      4,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An AC voltage has a peak value of 311 V. The 230 V we call 'mains' is its",
+      "hi": "प्रत्यावर्ती वोल्टता का शिखर मान 311 वोल्ट है। जिसे हम 230 वोल्ट 'मेन्स' कहते हैं वह इसका"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "rms value",
+       "hi": "वर्ग-माध्य-मूल मान है"
+      },
+      {
+       "id": "o1",
+       "en": "peak value",
+       "hi": "शिखर मान है"
+      },
+      {
+       "id": "o2",
+       "en": "average value",
+       "hi": "औसत मान है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a is the peak value V0. Raise it and see the wave grow taller.",
+      "hi": "a शिखर मान V0 है। उसे बढ़ाओ और तरंग को ऊँची होते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "b is the angular frequency ω. Raise it to fit more waves in the screen.",
+      "hi": "b कोणीय आवृत्ति ω है। उसे बढ़ाओ ताकि पर्दे पर अधिक तरंगें समाएँ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Trace a point along the wave. The value goes positive, zero, negative.",
+      "hi": "तरंग पर एक बिंदु चलाओ। मान धनात्मक, शून्य, फिर ऋणात्मक होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An AC voltage is V = V0 sin ωt. Its average over a full cycle is zero, but it still heats a heater. So we use the rms value, V(rms) = V0/√2 ≈ 0.707 V0. This is the equal DC value that would give the same heating. The 230 V of our sockets is rms; the peak is about 325 V. The frequency in India is 50 Hz.",
+      "hi": "प्रत्यावर्ती वोल्टता V = V0 sin ωt होती है। पूरे चक्र में इसका औसत शून्य है, फिर भी यह हीटर को गर्म करती है। इसलिए हम वर्ग-माध्य-मूल मान V(rms) = V0/√2 ≈ 0.707 V0 लेते हैं। यह वही दिष्ट मान है जो उतनी ही गर्मी देगा। हमारे सॉकेट के 230 वोल्ट rms हैं; शिखर लगभग 325 वोल्ट है। भारत में आवृत्ति 50 हर्ट्ज़ है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An AC current has a peak value of 10 A. Its rms value is about",
+        "hi": "एक प्रत्यावर्ती धारा का शिखर मान 10 ऐम्पियर है। उसका वर्ग-माध्य-मूल मान लगभग है"
+       },
+       "options": [
+        {
+         "en": "7.07 A",
+         "hi": "7.07 ऐम्पियर"
+        },
+        {
+         "en": "14.1 A",
+         "hi": "14.1 ऐम्पियर"
+        },
+        {
+         "en": "0 A",
+         "hi": "0 ऐम्पियर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "I(rms) = 10/√2 ≈ 7.07 A.",
+        "hi": "I(rms) = 10/√2 ≈ 7.07 ऐम्पियर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That multiplies by √2. The rms value is smaller than the peak: divide by √2.",
+         "hi": "यह √2 से गुणा है। rms मान शिखर से छोटा होता है: √2 से भाग दो।"
+        },
+        {
+         "en": "The average over a cycle is zero, but the rms value is not, as the current still heats the wire.",
+         "hi": "एक चक्र का औसत शून्य है, पर rms शून्य नहीं, क्योंकि धारा तार को गर्म करती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a to 3. What is the rms value? Check it by hand with 0.707 × a.",
+      "hi": "a को 3 पर रखो। rms मान क्या है? 0.707 × a से हाथ से जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch07-phase",
+   "topic": "7.4",
+   "template": "grapher",
+   "title": {
+    "en": "Phase: when current and voltage fall out of step",
+    "hi": "कला: जब धारा और वोल्टता तालमेल में नहीं रहतीं"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trig",
+    "expr": "sin(x-c)",
+    "params": {
+     "c": [
+      -1.57,
+      1.57,
+      0
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a purely inductive circuit, the current compared with the voltage",
+      "hi": "शुद्ध प्रेरकीय परिपथ में धारा, वोल्टता की तुलना में"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "is in step",
+       "hi": "साथ-साथ रहती है"
+      },
+      {
+       "id": "o0",
+       "en": "lags behind by 90°",
+       "hi": "90° पीछे रहती है"
+      },
+      {
+       "id": "o1",
+       "en": "leads by 90°",
+       "hi": "90° आगे रहती है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:c",
+     "expect": "changed",
+     "say": {
+      "en": "c is the phase shift of the current from the voltage. Slide it to +π/2 (about 1.57): a lag, as in an inductor.",
+      "hi": "c वोल्टता की तुलना में धारा का कला-अंतर है। उसे +π/2 (लगभग 1.57) पर ले जाओ: पीछे रहना, जैसा प्रेरक में होता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:c",
+     "expect": "changed",
+     "say": {
+      "en": "Slide c to −π/2: the current leads, as in a capacitor.",
+      "hi": "c को −π/2 पर ले जाओ: धारा आगे रहती है, जैसा संधारित्र में होता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:c",
+     "expect": "changed",
+     "say": {
+      "en": "Set c to 0: the current is in step, as in a resistor.",
+      "hi": "c को 0 पर रखो: धारा साथ-साथ है, जैसा प्रतिरोधक में होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a resistor, current and voltage rise and fall together (phase 0). In an inductor the current lags the voltage by 90°, because the coil opposes any change in the current. In a capacitor the current leads the voltage by 90°, because current must flow in before the plates charge up. A phasor diagram shows these angles as arrows turning together.",
+      "hi": "प्रतिरोधक में धारा और वोल्टता साथ-साथ बढ़ती-घटती हैं (कला 0)। प्रेरक में धारा, वोल्टता से 90° पीछे रहती है, क्योंकि कुंडली धारा के हर परिवर्तन का विरोध करती है। संधारित्र में धारा, वोल्टता से 90° आगे रहती है, क्योंकि प्लेटें आवेशित होने से पहले धारा बहनी होती है। कला-आरेख इन कोणों को साथ घूमते तीरों से दिखाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a purely capacitive circuit the current",
+        "hi": "शुद्ध संधारित्रीय परिपथ में धारा"
+       },
+       "options": [
+        {
+         "en": "leads the voltage by 90°",
+         "hi": "वोल्टता से 90° आगे रहती है"
+        },
+        {
+         "en": "lags the voltage by 90°",
+         "hi": "वोल्टता से 90° पीछे रहती है"
+        },
+        {
+         "en": "is exactly in step",
+         "hi": "बिलकुल साथ रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "CIVIL: in a Capacitor, I leads V; in an inductor L, V leads I.",
+        "hi": "याद रखो: संधारित्र में I आगे रहती है; प्रेरक में V आगे रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the inductor. In a capacitor the current peaks first.",
+         "hi": "यह प्रेरक का व्यवहार है। संधारित्र में धारा पहले शिखर पर पहुँचती है।"
+        },
+        {
+         "en": "That is the resistor. A capacitor stores charge, which shifts the phase.",
+         "hi": "यह प्रतिरोधक का व्यवहार है। संधारित्र आवेश जमा करता है, जिससे कला बदल जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which phase shift does a mixed circuit with a resistor and a coil give? Try a value between 0 and π/2.",
+      "hi": "प्रतिरोधक और कुंडली वाला मिश्रित परिपथ कौन-सा कला-अंतर देता है? 0 और π/2 के बीच कोई मान आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch07-phase-match",
+   "topic": "7.5",
+   "template": "match",
+   "title": {
+    "en": "Match each element to its current–voltage phase",
+    "hi": "हर अवयव को उसके धारा–वोल्टता कला-संबंध से मिलाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "r",
+      "left": {
+       "en": "Resistor",
+       "hi": "प्रतिरोधक"
+      },
+      "right": {
+       "en": "Current in step with voltage",
+       "hi": "धारा वोल्टता के साथ-साथ"
+      },
+      "why": {
+       "en": "Resistance does not store energy, so there is no shift.",
+       "hi": "प्रतिरोध ऊर्जा जमा नहीं करता, इसलिए कला-अंतर नहीं होता।"
+      }
+     },
+     {
+      "id": "l",
+      "left": {
+       "en": "Inductor",
+       "hi": "प्रेरक"
+      },
+      "right": {
+       "en": "Current lags voltage by 90°",
+       "hi": "धारा वोल्टता से 90° पीछे"
+      },
+      "why": {
+       "en": "The coil opposes changes in current.",
+       "hi": "कुंडली धारा के परिवर्तन का विरोध करती है।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "Capacitor",
+       "hi": "संधारित्र"
+      },
+      "right": {
+       "en": "Current leads voltage by 90°",
+       "hi": "धारा वोल्टता से 90° आगे"
+      },
+      "why": {
+       "en": "Current flows in before the plates are charged.",
+       "hi": "प्लेटें आवेशित होने से पहले धारा बहती है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which element has its current and voltage peaking at exactly the same moment?",
+      "hi": "किस अवयव में धारा और वोल्टता ठीक एक ही क्षण पर शिखर पर पहुँचती हैं?"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "inductor",
+       "hi": "प्रेरक"
+      },
+      {
+       "id": "o2",
+       "en": "capacitor",
+       "hi": "संधारित्र"
+      },
+      {
+       "id": "o0",
+       "en": "resistor",
+       "hi": "प्रतिरोधक"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "left:r",
+     "expect": "matched:r",
+     "say": {
+      "en": "Pick the resistor, then its phase relation.",
+      "hi": "प्रतिरोधक चुनो, फिर उसका कला-संबंध।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:l",
+     "expect": "matched:l",
+     "say": {
+      "en": "Match the inductor.",
+      "hi": "प्रेरक को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the capacitor and press check.",
+      "hi": "संधारित्र को मिलाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Only the resistor keeps current and voltage in step. The inductor and the capacitor store energy in a magnetic or electric field and return it, so their current is a quarter cycle away from the voltage. That is why they use no net power on average even though a current flows.",
+      "hi": "केवल प्रतिरोधक धारा और वोल्टता को साथ रखता है। प्रेरक और संधारित्र ऊर्जा को चुंबकीय या विद्युत क्षेत्र में जमा करके लौटा देते हैं, इसलिए उनकी धारा वोल्टता से चौथाई चक्र दूर रहती है। इसीलिए धारा बहने पर भी वे औसतन कोई शुद्ध शक्ति नहीं लेते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which element converts electrical energy to heat?",
+        "hi": "कौन-सा अवयव विद्युत ऊर्जा को ऊष्मा में बदलता है?"
+       },
+       "options": [
+        {
+         "en": "the resistor",
+         "hi": "प्रतिरोधक"
+        },
+        {
+         "en": "the ideal inductor",
+         "hi": "आदर्श प्रेरक"
+        },
+        {
+         "en": "the ideal capacitor",
+         "hi": "आदर्श संधारित्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only resistance dissipates power as heat.",
+        "hi": "केवल प्रतिरोध ही शक्ति को ऊष्मा के रूप में खपाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An ideal inductor only stores and returns energy; it does not heat the circuit.",
+         "hi": "आदर्श प्रेरक केवल ऊर्जा जमा करके लौटाता है; वह परिपथ को गर्म नहीं करता।"
+        },
+        {
+         "en": "An ideal capacitor also returns the energy it stores.",
+         "hi": "आदर्श संधारित्र भी जमा की गई ऊर्जा लौटा देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw the three current waves on paper against a voltage wave to check your matching.",
+      "hi": "अपने मिलान की जाँच के लिए कागज़ पर वोल्टता तरंग के सामने तीनों धारा तरंगें बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch07-xl",
+   "topic": "7.4",
+   "template": "grapher",
+   "title": {
+    "en": "Inductive reactance grows with frequency",
+    "hi": "प्रेरणिक प्रतिघात आवृत्ति के साथ बढ़ता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "a*x",
+    "params": {
+     "a": [
+      0.5,
+      5,
+      2
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the AC frequency doubles, an inductor lets",
+      "hi": "यदि प्रत्यावर्ती धारा की आवृत्ति दोगुनी हो जाए तो प्रेरक"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "less current",
+       "hi": "कम धारा जाने देता है"
+      },
+      {
+       "id": "o1",
+       "en": "more current",
+       "hi": "अधिक धारा जाने देता है"
+      },
+      {
+       "id": "o2",
+       "en": "the same current",
+       "hi": "उतनी ही धारा जाने देता है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the angular frequency ω. Slide it and read the reactance X_L.",
+      "hi": "x कोणीय आवृत्ति ω है। उसे चलाओ और प्रतिघात X_L पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a is the inductance L. A bigger coil gives a steeper line.",
+      "hi": "a प्रेरकत्व L है। बड़ी कुंडली से रेखा तीखी होती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The opposition of an inductor to AC is the inductive reactance X_L = ωL = 2πfL. It rises with frequency, so a coil passes low frequencies easily and blocks high ones. For DC (f = 0) the reactance is zero. Chokes in tube lights and in electronic equipment use this.",
+      "hi": "प्रेरक का प्रत्यावर्ती धारा के प्रति विरोध प्रेरणिक प्रतिघात X_L = ωL = 2πfL है। यह आवृत्ति के साथ बढ़ता है, इसलिए कुंडली कम आवृत्तियों को आसानी से और ऊँची आवृत्तियों को कठिनाई से जाने देती है। दिष्ट धारा (f = 0) के लिए प्रतिघात शून्य है। ट्यूबलाइट और इलेक्ट्रॉनिक उपकरणों के चोक इसी का उपयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 0.1 H coil at ω = 100 rad/s has X_L equal to",
+        "hi": "0.1 हेनरी की कुंडली का ω = 100 रेडियन/सेकंड पर X_L है"
+       },
+       "options": [
+        {
+         "en": "10 Ω",
+         "hi": "10 ओम"
+        },
+        {
+         "en": "1000 Ω",
+         "hi": "1000 ओम"
+        },
+        {
+         "en": "0.001 Ω",
+         "hi": "0.001 ओम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "X_L = 100 × 0.1 = 10 Ω.",
+        "hi": "X_L = 100 × 0.1 = 10 ओम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That multiplies by 10000. X_L = ωL = 100 × 0.1.",
+         "hi": "यह 10000 से गुणा है। X_L = ωL = 100 × 0.1।"
+        },
+        {
+         "en": "That divides. X_L is ω times L.",
+         "hi": "यह भाग है। X_L = ω गुणा L।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What is X_L at x = 0? How does a coil behave in a DC circuit?",
+      "hi": "x = 0 पर X_L क्या है? दिष्ट धारा परिपथ में कुंडली कैसे व्यवहार करती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch07-xc",
+   "topic": "7.5",
+   "template": "grapher",
+   "title": {
+    "en": "Capacitive reactance falls with frequency",
+    "hi": "धारितीय प्रतिघात आवृत्ति बढ़ने पर घटता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "a/x",
+    "params": {
+     "a": [
+      1,
+      5,
+      2
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the frequency rises, a capacitor lets",
+      "hi": "आवृत्ति बढ़ने पर संधारित्र"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "the same current",
+       "hi": "उतनी ही धारा जाने देता है"
+      },
+      {
+       "id": "o0",
+       "en": "more current",
+       "hi": "अधिक धारा जाने देता है"
+      },
+      {
+       "id": "o1",
+       "en": "less current",
+       "hi": "कम धारा जाने देता है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the angular frequency ω. Slide it up and see the reactance X_C fall.",
+      "hi": "x कोणीय आवृत्ति ω है। उसे बढ़ाओ और प्रतिघात X_C को घटते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a stands for 1/C. A smaller capacitor has a larger a, so more opposition.",
+      "hi": "a का अर्थ 1/C है। छोटा संधारित्र बड़ा a देता है, यानी अधिक विरोध।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The capacitive reactance is X_C = 1/ωC. It is the opposite of the inductor: very large at low frequency and tiny at high frequency. For DC (ω = 0) the capacitor blocks the current completely. So a capacitor passes high frequencies and blocks low ones, which is how a speaker's tweeter circuit works.",
+      "hi": "धारितीय प्रतिघात X_C = 1/ωC है। यह प्रेरक के विपरीत है: कम आवृत्ति पर बहुत बड़ा और ऊँची आवृत्ति पर बहुत छोटा। दिष्ट धारा (ω = 0) को संधारित्र पूरी तरह रोक देता है। इसलिए संधारित्र ऊँची आवृत्तियों को जाने देता और कम को रोकता है; स्पीकर के ट्वीटर परिपथ में यही होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For which kind of current does a capacitor behave like a gap (open circuit)?",
+        "hi": "किस प्रकार की धारा के लिए संधारित्र खुले परिपथ की तरह व्यवहार करता है?"
+       },
+       "options": [
+        {
+         "en": "steady DC",
+         "hi": "स्थिर दिष्ट धारा"
+        },
+        {
+         "en": "very high frequency AC",
+         "hi": "बहुत ऊँची आवृत्ति की AC"
+        },
+        {
+         "en": "any AC",
+         "hi": "कोई भी AC"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "DC has ω = 0, so X_C is infinite.",
+        "hi": "दिष्ट धारा में ω = 0 है, इसलिए X_C अनंत है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At high frequency X_C is tiny, so the capacitor passes the current easily.",
+         "hi": "ऊँची आवृत्ति पर X_C बहुत छोटा होता है, इसलिए संधारित्र धारा को आसानी से जाने देता है।"
+        },
+        {
+         "en": "AC does flow through a capacitor, because the plates keep charging and discharging.",
+         "hi": "AC संधारित्र से बहती है, क्योंकि प्लेटें बार-बार आवेशित और विसर्जित होती रहती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare the curve with the straight line of the inductor. Where do they cross for a = 2?",
+      "hi": "इस वक्र की तुलना प्रेरक की सीधी रेखा से करो। a = 2 के लिए वे कहाँ मिलते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch07-resonance",
+   "topic": "7.6",
+   "template": "grapher",
+   "title": {
+    "en": "Resonance in the LCR circuit",
+    "hi": "LCR परिपथ में अनुनाद"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "derivative",
+    "expr": "1/sqrt(a^2+(x-1/x)^2)",
+    "params": {
+     "a": [
+      0.2,
+      2,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a series LCR circuit, the current is greatest when the driving frequency",
+      "hi": "श्रेणी LCR परिपथ में धारा तब सबसे अधिक होती है जब चालक आवृत्ति"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "is as large as possible",
+       "hi": "जितनी हो सके उतनी अधिक हो"
+      },
+      {
+       "id": "o2",
+       "en": "is zero",
+       "hi": "शून्य हो"
+      },
+      {
+       "id": "o0",
+       "en": "equals the natural frequency 1/√LC",
+       "hi": "स्वाभाविक आवृत्ति 1/√LC के बराबर हो"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the driving frequency in units of the natural frequency. Slide it and find the peak at x = 1.",
+      "hi": "x चालक आवृत्ति है, स्वाभाविक आवृत्ति की इकाई में। उसे चलाओ और x = 1 पर शिखर खोजो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a stands for the resistance R. A larger R flattens the peak.",
+      "hi": "a प्रतिरोध R के लिए है। बड़ा R शिखर को चपटा करता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The circuit's total opposition is Z = √(R² + (X_L − X_C)²). At the resonance frequency ω0 = 1/√(LC), X_L = X_C, they cancel and Z = R, the smallest possible, so the current is largest. A small R gives a sharp, tall peak: good tuning. A radio uses a variable capacitor to set the circuit's resonance to the station you want and reject the others.",
+      "hi": "परिपथ का कुल विरोध Z = √(R² + (X_L − X_C)²) है। अनुनाद आवृत्ति ω0 = 1/√(LC) पर X_L = X_C हो जाते हैं, कट जाते हैं और Z = R सबसे कम होता है, इसलिए धारा सबसे अधिक होती है। छोटा R तीखा और ऊँचा शिखर देता है: अच्छा समस्वरण। रेडियो परिवर्ती संधारित्र से परिपथ का अनुनाद इच्छित स्टेशन पर बैठाता है और अन्य को अस्वीकार करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "At resonance in a series LCR circuit, the impedance is",
+        "hi": "श्रेणी LCR परिपथ में अनुनाद पर प्रतिबाधा है"
+       },
+       "options": [
+        {
+         "en": "R, its minimum",
+         "hi": "R, यानी न्यूनतम"
+        },
+        {
+         "en": "very large",
+         "hi": "बहुत अधिक"
+        },
+        {
+         "en": "zero",
+         "hi": "शून्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "X_L and X_C cancel, leaving only R.",
+        "hi": "X_L और X_C कट जाते हैं, केवल R बचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Far from resonance, not at it, the impedance is large.",
+         "hi": "अनुनाद से दूर प्रतिबाधा बड़ी होती है, अनुनाद पर नहीं।"
+        },
+        {
+         "en": "The resistor still opposes the current, so Z cannot be below R.",
+         "hi": "प्रतिरोधक अब भी धारा का विरोध करता है, इसलिए Z, R से कम नहीं हो सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a very small. What happens to the width and height of the peak?",
+      "hi": "a को बहुत छोटा करो। शिखर की चौड़ाई और ऊँचाई का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch07-power-factor",
+   "topic": "7.7",
+   "template": "grapher",
+   "title": {
+    "en": "The power factor",
+    "hi": "शक्ति गुणांक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trig",
+    "expr": "a*cos(x)",
+    "params": {
+     "a": [
+      1,
+      5,
+      3
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The phase angle between voltage and current is 90°. The average power used is",
+      "hi": "वोल्टता और धारा के बीच कला-कोण 90° है। औसत शक्ति है"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "zero",
+       "hi": "शून्य"
+      },
+      {
+       "id": "o1",
+       "en": "maximum",
+       "hi": "अधिकतम"
+      },
+      {
+       "id": "o2",
+       "en": "half the maximum",
+       "hi": "अधिकतम की आधी"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the phase angle φ. Slide it from 0 to π/2 and watch the power factor cos φ fall.",
+      "hi": "x कला-कोण φ है। उसे 0 से π/2 तक चलाओ और शक्ति गुणांक cos φ को घटते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a stands for V(rms) × I(rms), the apparent power.",
+      "hi": "a का अर्थ V(rms) × I(rms) है, यानी आभासी शक्ति।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The average power in an AC circuit is P = V(rms) I(rms) cos φ. The factor cos φ is the power factor. For a resistor φ = 0 and cos φ = 1: all the power is used. For a pure inductor or capacitor φ = 90°, cos φ = 0, so no net power is used even though a current flows. A low power factor means the supply wire carries a bigger current for the same useful power, so factories try to keep it close to 1.",
+      "hi": "प्रत्यावर्ती परिपथ में औसत शक्ति P = V(rms) I(rms) cos φ होती है। गुणक cos φ शक्ति गुणांक है। प्रतिरोधक के लिए φ = 0 और cos φ = 1: सारी शक्ति काम में आती है। शुद्ध प्रेरक या संधारित्र के लिए φ = 90°, cos φ = 0, इसलिए धारा बहने पर भी कोई शुद्ध शक्ति नहीं लगती। कम शक्ति गुणांक का अर्थ है उतनी ही उपयोगी शक्ति के लिए आपूर्ति के तार में अधिक धारा, इसलिए कारखाने इसे 1 के पास रखने का प्रयास करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A circuit has V(rms) = 200 V, I(rms) = 2 A and power factor 0.5. The average power is",
+        "hi": "एक परिपथ में V(rms) = 200 वोल्ट, I(rms) = 2 ऐम्पियर और शक्ति गुणांक 0.5 है। औसत शक्ति है"
+       },
+       "options": [
+        {
+         "en": "200 W",
+         "hi": "200 वाट"
+        },
+        {
+         "en": "400 W",
+         "hi": "400 वाट"
+        },
+        {
+         "en": "800 W",
+         "hi": "800 वाट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P = 200 × 2 × 0.5 = 200 W.",
+        "hi": "P = 200 × 2 × 0.5 = 200 वाट।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That ignores the power factor. P = VI cos φ = 400 × 0.5.",
+         "hi": "इसमें शक्ति गुणांक छूट गया। P = VI cos φ = 400 × 0.5।"
+        },
+        {
+         "en": "You divided by 0.5. Multiply by it instead.",
+         "hi": "तुमने 0.5 से भाग दिया। भाग की जगह गुणा करो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "At what angle is the power factor exactly 0.5? Slide x to find it.",
+      "hi": "किस कोण पर शक्ति गुणांक ठीक 0.5 होता है? x चलाकर खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch07-transformer",
+   "topic": "7.8",
+   "template": "grapher",
+   "title": {
+    "en": "The transformer changes voltage",
+    "hi": "ट्रांसफ़ॉर्मर वोल्टता बदलता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "a*x",
+    "params": {
+     "a": [
+      0.1,
+      10,
+      2
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A transformer has 100 turns on the primary and 500 turns on the secondary. It",
+      "hi": "एक ट्रांसफ़ॉर्मर के प्राथमिक में 100 फेरे और द्वितीयक में 500 फेरे हैं। वह"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "leaves the voltage unchanged",
+       "hi": "वोल्टता नहीं बदलता"
+      },
+      {
+       "id": "o0",
+       "en": "steps the voltage up",
+       "hi": "वोल्टता बढ़ाता है"
+      },
+      {
+       "id": "o1",
+       "en": "steps the voltage down",
+       "hi": "वोल्टता घटाता है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the primary voltage. Slide it and read the secondary voltage (height).",
+      "hi": "x प्राथमिक वोल्टता है। उसे चलाओ और द्वितीयक वोल्टता (ऊँचाई) पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a is the turns ratio Ns/Np. Above 1 it is a step-up transformer, below 1 a step-down.",
+      "hi": "a फेरों का अनुपात Ns/Np है। 1 से अधिक हो तो उच्चायी, कम हो तो अपचायी ट्रांसफ़ॉर्मर।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A transformer works by mutual induction. The changing current in the primary makes a changing flux in an iron core, which induces an emf in the secondary: Vs/Vp = Ns/Np. Power is nearly conserved (Vp Ip ≈ Vs Is), so when the voltage goes up the current comes down. Power stations step the voltage up to reduce the current and the heat lost in the long transmission lines, and a pole transformer near your house steps it down to 230 V.",
+      "hi": "ट्रांसफ़ॉर्मर अन्योन्य प्रेरण से काम करता है। प्राथमिक में बदलती धारा लोहे की क्रोड में बदलता फ़्लक्स बनाती है, जो द्वितीयक में विद्युत वाहक बल प्रेरित करता है: Vs/Vp = Ns/Np। शक्ति लगभग संरक्षित रहती है (Vp Ip ≈ Vs Is), इसलिए वोल्टता बढ़ने पर धारा घटती है। बिजलीघर वोल्टता को बढ़ाते हैं ताकि लंबी पारेषण लाइनों में धारा और ऊष्मा-हानि कम हो, और तुम्हारे घर के पास का खंभे वाला ट्रांसफ़ॉर्मर उसे 230 वोल्ट तक घटाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A step-down transformer has Np = 1000 and Ns = 50. With 230 V on the primary, the secondary gives",
+        "hi": "एक अपचायी ट्रांसफ़ॉर्मर में Np = 1000 और Ns = 50 है। प्राथमिक पर 230 वोल्ट देने पर द्वितीयक देता है"
+       },
+       "options": [
+        {
+         "en": "11.5 V",
+         "hi": "11.5 वोल्ट"
+        },
+        {
+         "en": "4600 V",
+         "hi": "4600 वोल्ट"
+        },
+        {
+         "en": "230 V",
+         "hi": "230 वोल्ट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Vs = 230 × 50/1000 = 11.5 V.",
+        "hi": "Vs = 230 × 50/1000 = 11.5 वोल्ट।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "You inverted the ratio. Vs = Vp × Ns/Np.",
+         "hi": "तुमने अनुपात उलट दिया। Vs = Vp × Ns/Np।"
+        },
+        {
+         "en": "The turns differ, so the voltage changes.",
+         "hi": "फेरे अलग हैं, इसलिए वोल्टता बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "A transformer cannot work on DC. Why? Think about what must change in the core.",
+      "hi": "ट्रांसफ़ॉर्मर दिष्ट धारा पर काम नहीं करता। क्यों? सोचो क्रोड में क्या बदलना चाहिए।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Chapter hook: a transformer on an electric pole",
+   "shows": "A grey pole-mounted distribution transformer on an Indian street with cables, evening light",
+   "view": "Slightly low angle, full pole visible",
+   "right": "Transformer cylinder and wires clear",
+   "avoid": "Number plates, house numbers, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.8",
+   "use": "A small step-down transformer",
+   "shows": "A phone-charger style transformer with the cover off showing two coils on an iron core, on white",
+   "view": "Overhead, bright light",
+   "right": "Both coils and core visible",
+   "avoid": "Brand names, voltage text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "7.4",
+   "use": "Choke in a tube light",
+   "shows": "A tube light with its starter and a copper choke coil on a bench",
+   "view": "Three-quarter view",
+   "right": "Choke coil clearly different from the tube",
+   "avoid": "Brand text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.5",
+   "use": "A variable tuning capacitor",
+   "shows": "An old radio's gang tuning capacitor with plates interleaved, white background",
+   "view": "Straight overhead",
+   "right": "Plates parallel and gaps even",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "7.3",
+   "use": "An oscilloscope trace of mains",
+   "shows": "A calm oscilloscope screen showing a single clean sine wave with graticule",
+   "view": "Straight front view",
+   "right": "Wave smooth and centred",
+   "avoid": "Brand text on the screen, extra clutter"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "7.6",
+   "use": "Series LCR circuit",
+   "shows": "A neat circuit drawing of a resistor, an inductor and a capacitor in series with an AC source, white background",
+   "view": "Flat, front-on",
+   "right": "Symbols standard and well spaced",
+   "avoid": "Numbers and labels baked in"
+  }
+ ]
+}

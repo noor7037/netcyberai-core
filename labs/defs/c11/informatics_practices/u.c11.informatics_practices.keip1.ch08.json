@@ -1,0 +1,2836 @@
+{
+ "chapter_key": "u.c11.informatics_practices.keip1.ch08",
+ "class": 11,
+ "subject_id": "informatics_practices",
+ "title": "Introduction to Structured Query Language (SQL)",
+ "source": "https://ncert.nic.in/textbook/pdf/keip108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Introduction to SQL and MySQL",
+   "labs": [],
+   "why_no_lab": "This opening explains why we need a query language; the labs below practise it directly."
+  },
+  {
+   "n": "8.2",
+   "title": "Structured Query Language and installing MySQL",
+   "labs": [],
+   "why_no_lab": "Installing MySQL is a setup activity done on a real computer, not an idea to explore in a lab."
+  },
+  {
+   "n": "8.3.1",
+   "title": "Data types in MySQL",
+   "labs": [
+    "c11-informatics_practices-keip1-ch08-datatypes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3.2",
+   "title": "Constraints",
+   "labs": [
+    "c11-informatics_practices-keip1-ch08-constraints"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "SQL for data definition: CREATE, DESCRIBE",
+   "labs": [
+    "c11-informatics_practices-keip1-ch08-sql-kinds",
+    "c11-informatics_practices-keip1-ch08-build-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4.4",
+   "title": "ALTER TABLE and DROP",
+   "labs": [
+    "c11-informatics_practices-keip1-ch08-alter-drop"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5.1",
+   "title": "Inserting records",
+   "labs": [
+    "c11-informatics_practices-keip1-ch08-insert-check"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6.1",
+   "title": "SELECT: columns, aliases, DISTINCT, WHERE, ORDER BY",
+   "labs": [
+    "c11-informatics_practices-keip1-ch08-select-alias",
+    "c11-informatics_practices-keip1-ch08-distinct",
+    "c11-informatics_practices-keip1-ch08-where-and",
+    "c11-informatics_practices-keip1-ch08-where-operators",
+    "c11-informatics_practices-keip1-ch08-null",
+    "c11-informatics_practices-keip1-ch08-order-by"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.7",
+   "title": "Data updation and deletion",
+   "labs": [
+    "c11-informatics_practices-keip1-ch08-update-delete"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-informatics_practices-keip1-ch08-select-alias",
+   "topic": "8.6.1",
+   "template": "table",
+   "title": {
+    "en": "SELECT: choose columns and rename them",
+    "hi": "SELECT: स्तंभ चुनो और उनका नाम बदलो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sql",
+    "tables": {
+     "STAFF": {
+      "columns": [
+       "StaffId",
+       "SName",
+       "Role",
+       "Salary",
+       "DeptId",
+       "Bonus"
+      ],
+      "rows": [
+       [
+        1,
+        "Asha",
+        "Teacher",
+        42000,
+        "D01",
+        2000
+       ],
+       [
+        2,
+        "Bilal",
+        "Clerk",
+        26000,
+        "D02",
+        null
+       ],
+       [
+        3,
+        "Chitra",
+        "Teacher",
+        45000,
+        "D01",
+        3000
+       ],
+       [
+        4,
+        "Dev",
+        "Librarian",
+        30000,
+        "D03",
+        null
+       ],
+       [
+        5,
+        "Esha",
+        "Teacher",
+        38000,
+        "D01",
+        1500
+       ],
+       [
+        6,
+        "Farid",
+        "Clerk",
+        24000,
+        "D02",
+        1000
+       ],
+       [
+        7,
+        "Gita",
+        "Principal",
+        70000,
+        "D04",
+        5000
+       ],
+       [
+        8,
+        "Anil",
+        "Lab Assistant",
+        28000,
+        "D03",
+        null
+       ]
+      ]
+     }
+    },
+    "query": "SELECT SName AS Name, Salary * 12 AS Yearly FROM STAFF",
+    "task": {
+     "en": "Show each staff name as Name and the yearly salary (monthly salary × 12). The table STAFF is made-up sample data. ",
+     "hi": "हर स्टाफ़ का नाम Name के रूप में और सालाना वेतन (मासिक वेतन × 12) दिखाओ। STAFF तालिका बनाया हुआ नमूना डेटा है। "
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The query asks for only two things from each row. How many columns will the result have?",
+      "hi": "क्वेरी हर पंक्ति से सिर्फ़ दो चीज़ें माँगती है। नतीजे में कितने स्तंभ होंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "2",
+       "hi": "उत्तर: 2"
+      },
+      {
+       "id": "b",
+       "en": "6",
+       "hi": "उत्तर: 6"
+      },
+      {
+       "id": "c",
+       "en": "8",
+       "hi": "उत्तर: 8"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Press Run to see the result.",
+      "hi": "नतीजा देखने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "SELECT lists the columns you want, FROM names the table. AS gives a column a new name in the result, and an expression such as Salary * 12 is worked out for every row. Only the chosen columns appear, so the result has 2 columns and still 8 rows. The table itself does not change.",
+      "hi": "SELECT वे स्तंभ बताता है जो तुम चाहते हो, FROM तालिका का नाम देता है। AS नतीजे में स्तंभ को नया नाम देता है, और Salary * 12 जैसा व्यंजक हर पंक्ति के लिए हल होता है। सिर्फ़ चुने हुए स्तंभ दिखते हैं, इसलिए नतीजे में 2 स्तंभ हैं और पंक्तियाँ अब भी 8 हैं। तालिका ख़ुद नहीं बदलती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does AS Yearly do?",
+        "hi": "AS Yearly क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Names the result column Yearly",
+         "hi": "नतीजे के स्तंभ को Yearly नाम देता है"
+        },
+        {
+         "en": "Changes the column name in the table for ever",
+         "hi": "तालिका में स्तंभ का नाम हमेशा के लिए बदल देता है"
+        },
+        {
+         "en": "Multiplies the salary",
+         "hi": "वेतन को गुणा करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An alias is a display name for the result only.",
+        "hi": "एलियास केवल नतीजे में दिखने वाला नाम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "AS renames only in the result. The table keeps its own column names.",
+         "hi": "AS केवल नतीजे में नाम बदलता है। तालिका के स्तंभों के नाम वही रहते हैं।"
+        },
+        {
+         "en": "The multiplication is Salary * 12. AS only gives the name.",
+         "hi": "गुणा Salary * 12 करता है। AS केवल नाम देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many rows does the result have?",
+        "hi": "नतीजे में कितनी पंक्तियाँ हैं?"
+       },
+       "options": [
+        {
+         "en": "8, one for every staff member",
+         "hi": "8, हर स्टाफ़ सदस्य की एक"
+        },
+        {
+         "en": "2, because there are two columns",
+         "hi": "2, क्योंकि दो स्तंभ हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With no WHERE every row is shown.",
+        "hi": "WHERE न हो तो हर पंक्ति दिखती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Columns and rows are different. Every row of STAFF still appears.",
+         "hi": "स्तंभ और पंक्तियाँ अलग हैं। STAFF की हर पंक्ति अब भी दिखती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Edit the query to show Salary / 12 instead. What changes?",
+      "hi": "क्वेरी को बदलकर Salary / 12 दिखाओ। क्या बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch08-distinct",
+   "topic": "8.6.1",
+   "template": "table",
+   "title": {
+    "en": "DISTINCT: no repeats please",
+    "hi": "DISTINCT: दोहराव नहीं चाहिए"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "sql",
+    "tables": {
+     "STAFF": {
+      "columns": [
+       "StaffId",
+       "SName",
+       "Role",
+       "Salary",
+       "DeptId",
+       "Bonus"
+      ],
+      "rows": [
+       [
+        1,
+        "Asha",
+        "Teacher",
+        42000,
+        "D01",
+        2000
+       ],
+       [
+        2,
+        "Bilal",
+        "Clerk",
+        26000,
+        "D02",
+        null
+       ],
+       [
+        3,
+        "Chitra",
+        "Teacher",
+        45000,
+        "D01",
+        3000
+       ],
+       [
+        4,
+        "Dev",
+        "Librarian",
+        30000,
+        "D03",
+        null
+       ],
+       [
+        5,
+        "Esha",
+        "Teacher",
+        38000,
+        "D01",
+        1500
+       ],
+       [
+        6,
+        "Farid",
+        "Clerk",
+        24000,
+        "D02",
+        1000
+       ],
+       [
+        7,
+        "Gita",
+        "Principal",
+        70000,
+        "D04",
+        5000
+       ],
+       [
+        8,
+        "Anil",
+        "Lab Assistant",
+        28000,
+        "D03",
+        null
+       ]
+      ]
+     }
+    },
+    "query": "SELECT DISTINCT Role FROM STAFF",
+    "task": {
+     "en": "List the different jobs found in the school. The table STAFF is made-up sample data. ",
+     "hi": "स्कूल में पाए जाने वाले अलग-अलग काम (Role) बताओ। STAFF तालिका बनाया हुआ नमूना डेटा है। "
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "STAFF has 8 people but some share a job. Will DISTINCT Role give 8 rows?",
+      "hi": "STAFF में 8 लोग हैं पर कुछ का काम एक जैसा है। क्या DISTINCT Role 8 पंक्तियाँ देगा?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, fewer, each job once",
+       "hi": "नहीं, कम, हर काम एक बार"
+      },
+      {
+       "id": "y",
+       "en": "Yes, 8 rows",
+       "hi": "हाँ, 8 पंक्तियाँ"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Press Run to see the different jobs.",
+      "hi": "अलग-अलग काम देखने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "DISTINCT removes repeated values from the result. Teacher appears three times and Clerk twice in the table, but each job is shown only once, so 5 jobs remain. DISTINCT works on the result only; the table still holds all 8 rows.",
+      "hi": "DISTINCT नतीजे से दोहराए हुए मान हटा देता है। तालिका में Teacher तीन बार और Clerk दो बार है, पर हर काम एक ही बार दिखता है, इसलिए 5 काम बचते हैं। DISTINCT केवल नतीजे पर काम करता है; तालिका में अब भी 8 पंक्तियाँ हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many rows does SELECT DISTINCT Role FROM STAFF give?",
+        "hi": "SELECT DISTINCT Role FROM STAFF कितनी पंक्तियाँ देता है?"
+       },
+       "options": [
+        {
+         "en": "5",
+         "hi": "उत्तर: 5"
+        },
+        {
+         "en": "8",
+         "hi": "उत्तर: 8"
+        },
+        {
+         "en": "3",
+         "hi": "उत्तर: 3"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Teacher, Clerk, Librarian, Principal and Lab Assistant: five different jobs.",
+        "hi": "Teacher, Clerk, Librarian, Principal और Lab Assistant: पाँच अलग काम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 is the number of staff. DISTINCT counts each job once.",
+         "hi": "8 स्टाफ़ की संख्या है। DISTINCT हर काम एक बार गिनता है।"
+        },
+        {
+         "en": "Only Teacher appears three times; there are five different jobs in all.",
+         "hi": "सिर्फ़ Teacher तीन बार आता है; कुल पाँच अलग-अलग काम हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the query to DISTINCT DeptId. How many departments are there?",
+      "hi": "क्वेरी को DISTINCT DeptId करो। कितने विभाग हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch08-where-and",
+   "topic": "8.6.1",
+   "template": "table",
+   "title": {
+    "en": "WHERE: choose the rows",
+    "hi": "WHERE: पंक्तियाँ चुनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sql",
+    "tables": {
+     "STAFF": {
+      "columns": [
+       "StaffId",
+       "SName",
+       "Role",
+       "Salary",
+       "DeptId",
+       "Bonus"
+      ],
+      "rows": [
+       [
+        1,
+        "Asha",
+        "Teacher",
+        42000,
+        "D01",
+        2000
+       ],
+       [
+        2,
+        "Bilal",
+        "Clerk",
+        26000,
+        "D02",
+        null
+       ],
+       [
+        3,
+        "Chitra",
+        "Teacher",
+        45000,
+        "D01",
+        3000
+       ],
+       [
+        4,
+        "Dev",
+        "Librarian",
+        30000,
+        "D03",
+        null
+       ],
+       [
+        5,
+        "Esha",
+        "Teacher",
+        38000,
+        "D01",
+        1500
+       ],
+       [
+        6,
+        "Farid",
+        "Clerk",
+        24000,
+        "D02",
+        1000
+       ],
+       [
+        7,
+        "Gita",
+        "Principal",
+        70000,
+        "D04",
+        5000
+       ],
+       [
+        8,
+        "Anil",
+        "Lab Assistant",
+        28000,
+        "D03",
+        null
+       ]
+      ]
+     }
+    },
+    "query": "SELECT * FROM STAFF WHERE Role = 'Teacher' AND Salary >= 40000",
+    "task": {
+     "en": "Find the teachers who earn 40000 or more. The table STAFF is made-up sample data. ",
+     "hi": "वे शिक्षक ढूँढ़ो जिनका वेतन 40000 या अधिक है। STAFF तालिका बनाया हुआ नमूना डेटा है। "
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two conditions are joined with AND. Must a row meet both to be shown?",
+      "hi": "दो शर्तें AND से जुड़ी हैं। क्या पंक्ति दिखने के लिए दोनों पूरी करना ज़रूरी है?"
+     },
+     "options": [
+      {
+       "id": "b",
+       "en": "Yes, both",
+       "hi": "हाँ, दोनों"
+      },
+      {
+       "id": "o",
+       "en": "No, one is enough",
+       "hi": "नहीं, एक काफ़ी है"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Press Run to see the rows that pass the test.",
+      "hi": "जाँच पास करने वाली पंक्तियाँ देखने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "WHERE keeps only the rows that meet a condition. With AND, both conditions must be true. Asha and Chitra are teachers earning 40000 or more, so 2 rows remain. Esha is a teacher but earns 38000; Gita earns enough but is the principal. With OR, a row would pass if either condition held.",
+      "hi": "WHERE केवल उन पंक्तियों को रखता है जो शर्त पूरी करती हैं। AND में दोनों शर्तें सही होनी चाहिए। आशा और चित्रा 40000 या अधिक पाने वाली शिक्षक हैं, इसलिए 2 पंक्तियाँ बचती हैं। ईशा शिक्षक है पर 38000 पाती है; गीता का वेतन काफ़ी है पर वह प्राचार्य है। OR में कोई एक शर्त सही होने पर भी पंक्ति पास होती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is Gita (Principal, 70000) not in the result?",
+        "hi": "गीता (प्राचार्य, 70000) नतीजे में क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "Her Role is not Teacher, so the AND test fails",
+         "hi": "उसका Role Teacher नहीं है, इसलिए AND की जाँच फ़ेल हो जाती है"
+        },
+        {
+         "en": "70000 is too big",
+         "hi": "70000 बहुत बड़ा है"
+        },
+        {
+         "en": "Principals are not stored",
+         "hi": "प्राचार्य रखे ही नहीं गए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both conditions are needed with AND.",
+        "hi": "AND में दोनों शर्तें चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Salary >= 40000 is true for 70000. The Role condition is what fails.",
+         "hi": "Salary >= 40000, 70000 के लिए सही है। Role की शर्त फ़ेल होती है।"
+        },
+        {
+         "en": "Gita is in the table. WHERE decides which rows are shown.",
+         "hi": "गीता तालिका में है। WHERE तय करता है कि कौन-सी पंक्तियाँ दिखें।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If AND were changed to OR, would the result have more rows or fewer?",
+        "hi": "अगर AND को OR कर दें तो नतीजे में पंक्तियाँ ज़्यादा होंगी या कम?"
+       },
+       "options": [
+        {
+         "en": "More, because one true condition is enough",
+         "hi": "ज़्यादा, क्योंकि एक सही शर्त काफ़ी है"
+        },
+        {
+         "en": "Fewer",
+         "hi": "कम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "OR accepts a row if either condition is true.",
+        "hi": "OR पंक्ति को तब मान लेता है जब कोई एक शर्त सही हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "OR is easier to satisfy than AND, so more rows pass.",
+         "hi": "OR को पूरा करना AND से आसान है, इसलिए ज़्यादा पंक्तियाँ पास होती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try Role = 'Clerk' OR Salary > 60000. Whom do you expect?",
+      "hi": "Role = 'Clerk' OR Salary > 60000 आज़माओ। तुम किसकी उम्मीद करते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch08-where-operators",
+   "topic": "8.6.1",
+   "template": "match",
+   "title": {
+    "en": "BETWEEN, IN, LIKE and NULL",
+    "hi": "BETWEEN, IN, LIKE और NULL"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "btw",
+      "left": {
+       "en": "Salary BETWEEN 25000 AND 35000",
+       "hi": "Salary BETWEEN 25000 AND 35000"
+      },
+      "right": {
+       "en": "Salaries from 25000 up to 35000, both ends included",
+       "hi": "25000 से 35000 तक के वेतन, दोनों सिरे शामिल"
+      },
+      "why": {
+       "en": "BETWEEN includes both end values.",
+       "hi": "BETWEEN दोनों सिरे के मान शामिल करता है।"
+      }
+     },
+     {
+      "id": "in",
+      "left": {
+       "en": "Role IN ('Clerk', 'Librarian')",
+       "hi": "Role IN ('Clerk', 'Librarian')"
+      },
+      "right": {
+       "en": "Role is Clerk or Librarian",
+       "hi": "Role Clerk या Librarian है"
+      },
+      "why": {
+       "en": "IN checks a short list of allowed values.",
+       "hi": "IN अनुमत मानों की छोटी सूची जाँचता है।"
+      }
+     },
+     {
+      "id": "like",
+      "left": {
+       "en": "SName LIKE 'A%'",
+       "hi": "SName LIKE 'A%'"
+      },
+      "right": {
+       "en": "Names that begin with A",
+       "hi": "वे नाम जो A से शुरू होते हैं"
+      },
+      "why": {
+       "en": "% stands for any number of characters.",
+       "hi": "% किसी भी संख्या के अक्षरों की जगह है।"
+      }
+     },
+     {
+      "id": "under",
+      "left": {
+       "en": "SName LIKE '_ev'",
+       "hi": "SName LIKE '_ev'"
+      },
+      "right": {
+       "en": "Three-letter names ending in ev",
+       "hi": "ev पर ख़त्म होने वाले तीन अक्षर के नाम"
+      },
+      "why": {
+       "en": "_ stands for exactly one character.",
+       "hi": "_ ठीक एक अक्षर की जगह है।"
+      }
+     },
+     {
+      "id": "null",
+      "left": {
+       "en": "Bonus IS NULL",
+       "hi": "Bonus IS NULL"
+      },
+      "right": {
+       "en": "Rows where the bonus is unknown or missing",
+       "hi": "वे पंक्तियाँ जिनमें बोनस अज्ञात या छूटा है"
+      },
+      "why": {
+       "en": "You must write IS NULL; = NULL does not work.",
+       "hi": "IS NULL ही लिखना पड़ता है; = NULL काम नहीं करता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:btw",
+     "expect": "matched:btw",
+     "say": {
+      "en": "Match BETWEEN with what it selects.",
+      "hi": "BETWEEN को वह मिलाओ जो वह चुनता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does Salary BETWEEN 25000 AND 35000 include a salary of exactly 25000?",
+      "hi": "क्या Salary BETWEEN 25000 AND 35000 में ठीक 25000 का वेतन शामिल है?"
+     },
+     "options": [
+      {
+       "id": "y",
+       "en": "Yes, both ends are included",
+       "hi": "हाँ, दोनों सिरे शामिल हैं"
+      },
+      {
+       "id": "n",
+       "en": "No, only values in between",
+       "hi": "नहीं, केवल बीच के मान"
+      }
+     ],
+     "answer": "y"
+    },
+    {
+     "kind": "do",
+     "target": "left:like",
+     "expect": "matched:like",
+     "say": {
+      "en": "Match LIKE 'A%'.",
+      "hi": "LIKE 'A%' को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "WHERE has handy tests. BETWEEN picks a range with both ends included. IN picks from a list. LIKE matches patterns: % means any number of characters and _ means exactly one. A missing value is NULL, and you test it with IS NULL, not with an equals sign.",
+      "hi": "WHERE में काम के परीक्षण हैं। BETWEEN एक दायरा चुनता है जिसमें दोनों सिरे शामिल हैं। IN सूची में से चुनता है। LIKE पैटर्न मिलाता है: % का मतलब कितने भी अक्षर और _ का मतलब ठीक एक अक्षर। छूटा हुआ मान NULL है, और उसे IS NULL से जाँचते हैं, बराबर के चिह्न से नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which condition finds names that END with a?",
+        "hi": "कौन-सी शर्त उन नामों को ढूँढ़ती है जो a पर ख़त्म होते हैं?"
+       },
+       "options": [
+        {
+         "en": "SName LIKE 'a%'",
+         "hi": "उत्तर: SName LIKE 'a%'"
+        },
+        {
+         "en": "SName LIKE '%a'",
+         "hi": "उत्तर: SName LIKE '%a'"
+        },
+        {
+         "en": "SName LIKE '_a'",
+         "hi": "उत्तर: SName LIKE '_a'"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "% before the letter means anything can come before the final a.",
+        "hi": "अक्षर से पहले % का मतलब है कि अंतिम a से पहले कुछ भी आ सकता है।"
+       },
+       "wrong": [
+        {
+         "en": "This finds names that start with a.",
+         "hi": "यह उन नामों को ढूँढ़ती है जो a से शुरू होते हैं।"
+        },
+        "",
+        {
+         "en": "This finds two-letter names ending in a.",
+         "hi": "यह a पर ख़त्म होने वाले दो अक्षर के नाम ढूँढ़ती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How do you find rows where Bonus is missing?",
+        "hi": "जिन पंक्तियों में Bonus छूटा है उन्हें कैसे ढूँढ़ोगे?"
+       },
+       "options": [
+        {
+         "en": "Bonus = NULL",
+         "hi": "उत्तर: Bonus = NULL"
+        },
+        {
+         "en": "Bonus IS NULL",
+         "hi": "उत्तर: Bonus IS NULL"
+        },
+        {
+         "en": "Bonus = 0",
+         "hi": "उत्तर: Bonus = 0"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "IS NULL is the test for a missing value.",
+        "hi": "IS NULL छूटे मान की जाँच है।"
+       },
+       "wrong": [
+        {
+         "en": "Nothing equals NULL, not even NULL, so this finds no rows.",
+         "hi": "कुछ भी NULL के बराबर नहीं होता, NULL भी नहीं, इसलिए यह कोई पंक्ति नहीं ढूँढ़ता।"
+        },
+        "",
+        {
+         "en": "Zero is a real value; missing means unknown.",
+         "hi": "शून्य असली मान है; छूटे का मतलब अज्ञात।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write a condition for names with \"a\" as the second letter.",
+      "hi": "ऐसी शर्त लिखो जिसमें नाम का दूसरा अक्षर \"a\" हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch08-null",
+   "topic": "8.6.1",
+   "template": "table",
+   "title": {
+    "en": "NULL: when a value is missing",
+    "hi": "NULL: जब मान छूटा हो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "sql",
+    "tables": {
+     "STAFF": {
+      "columns": [
+       "StaffId",
+       "SName",
+       "Role",
+       "Salary",
+       "DeptId",
+       "Bonus"
+      ],
+      "rows": [
+       [
+        1,
+        "Asha",
+        "Teacher",
+        42000,
+        "D01",
+        2000
+       ],
+       [
+        2,
+        "Bilal",
+        "Clerk",
+        26000,
+        "D02",
+        null
+       ],
+       [
+        3,
+        "Chitra",
+        "Teacher",
+        45000,
+        "D01",
+        3000
+       ],
+       [
+        4,
+        "Dev",
+        "Librarian",
+        30000,
+        "D03",
+        null
+       ],
+       [
+        5,
+        "Esha",
+        "Teacher",
+        38000,
+        "D01",
+        1500
+       ],
+       [
+        6,
+        "Farid",
+        "Clerk",
+        24000,
+        "D02",
+        1000
+       ],
+       [
+        7,
+        "Gita",
+        "Principal",
+        70000,
+        "D04",
+        5000
+       ],
+       [
+        8,
+        "Anil",
+        "Lab Assistant",
+        28000,
+        "D03",
+        null
+       ]
+      ]
+     }
+    },
+    "query": "SELECT SName, Bonus FROM STAFF WHERE Bonus IS NULL",
+    "task": {
+     "en": "Find the staff who have no bonus recorded. The table STAFF is made-up sample data. ",
+     "hi": "वे स्टाफ़ ढूँढ़ो जिनका बोनस दर्ज नहीं है। STAFF तालिका बनाया हुआ नमूना डेटा है। "
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Dev, Bilal and Anil have an empty Bonus. Is an empty Bonus the same as 0?",
+      "hi": "Dev, Bilal और Anil का Bonus ख़ाली है। क्या ख़ाली Bonus और 0 एक ही हैं?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, empty means unknown",
+       "hi": "नहीं, ख़ाली का मतलब अज्ञात"
+      },
+      {
+       "id": "y",
+       "en": "Yes, both mean zero",
+       "hi": "हाँ, दोनों का मतलब शून्य"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Press Run to find the rows with NULL.",
+      "hi": "NULL वाली पंक्तियाँ ढूँढ़ने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "NULL means a value is unknown or does not apply. It is not zero and not an empty space. IS NULL finds those rows. Here 3 staff have NULL bonus. Farid has a bonus of 1000, so he is not in the result.",
+      "hi": "NULL का मतलब है कि मान अज्ञात है या लागू नहीं होता। यह शून्य नहीं है और ख़ाली जगह भी नहीं। IS NULL ऐसी पंक्तियाँ ढूँढ़ता है। यहाँ 3 स्टाफ़ का बोनस NULL है। फ़रीद का बोनस 1000 है, इसलिए वह नतीजे में नहीं है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many rows does the query return?",
+        "hi": "क्वेरी कितनी पंक्तियाँ लौटाती है?"
+       },
+       "options": [
+        {
+         "en": "3",
+         "hi": "उत्तर: 3"
+        },
+        {
+         "en": "5",
+         "hi": "उत्तर: 5"
+        },
+        {
+         "en": "8",
+         "hi": "उत्तर: 8"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Bilal, Dev and Anil have no bonus value.",
+        "hi": "बिलाल, देव और अनिल का बोनस मान नहीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 is the number of staff who do have a bonus.",
+         "hi": "5 उन स्टाफ़ की संख्या है जिनका बोनस है।"
+        },
+        {
+         "en": "8 is everyone. WHERE keeps only the NULL ones.",
+         "hi": "8 सब हैं। WHERE केवल NULL वाले रखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change IS NULL to IS NOT NULL. Predict the count first.",
+      "hi": "IS NULL को IS NOT NULL करो। पहले गिनती का अनुमान लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch08-order-by",
+   "topic": "8.6.1",
+   "template": "table",
+   "title": {
+    "en": "ORDER BY: sort the result",
+    "hi": "ORDER BY: नतीजे को क्रम में लगाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "sql",
+    "tables": {
+     "STAFF": {
+      "columns": [
+       "StaffId",
+       "SName",
+       "Role",
+       "Salary",
+       "DeptId",
+       "Bonus"
+      ],
+      "rows": [
+       [
+        1,
+        "Asha",
+        "Teacher",
+        42000,
+        "D01",
+        2000
+       ],
+       [
+        2,
+        "Bilal",
+        "Clerk",
+        26000,
+        "D02",
+        null
+       ],
+       [
+        3,
+        "Chitra",
+        "Teacher",
+        45000,
+        "D01",
+        3000
+       ],
+       [
+        4,
+        "Dev",
+        "Librarian",
+        30000,
+        "D03",
+        null
+       ],
+       [
+        5,
+        "Esha",
+        "Teacher",
+        38000,
+        "D01",
+        1500
+       ],
+       [
+        6,
+        "Farid",
+        "Clerk",
+        24000,
+        "D02",
+        1000
+       ],
+       [
+        7,
+        "Gita",
+        "Principal",
+        70000,
+        "D04",
+        5000
+       ],
+       [
+        8,
+        "Anil",
+        "Lab Assistant",
+        28000,
+        "D03",
+        null
+       ]
+      ]
+     }
+    },
+    "query": "SELECT SName, Salary FROM STAFF ORDER BY Salary DESC",
+    "task": {
+     "en": "Show names and salaries from the highest salary down. The table STAFF is made-up sample data. ",
+     "hi": "नाम और वेतन सबसे ज़्यादा वेतन से नीचे की ओर दिखाओ। STAFF तालिका बनाया हुआ नमूना डेटा है। "
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which name will be at the top when salaries are sorted high to low?",
+      "hi": "वेतन को ज़्यादा से कम क्रम में लगाने पर सबसे ऊपर कौन-सा नाम होगा?"
+     },
+     "options": [
+      {
+       "id": "g",
+       "en": "Gita (70000)",
+       "hi": "गीता (70000)"
+      },
+      {
+       "id": "f",
+       "en": "Farid (24000)",
+       "hi": "फ़रीद (24000)"
+      },
+      {
+       "id": "a",
+       "en": "Asha (42000)",
+       "hi": "आशा (42000)"
+      }
+     ],
+     "answer": "g"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Press Run and see the order.",
+      "hi": "चलाओ दबाओ और क्रम देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "ORDER BY sorts the result by a column. ASC is smallest first (the default) and DESC is largest first. The table itself keeps its own order; only the result is arranged. Gita earns the most, so she is at the top, and Farid earns the least, so he is last.",
+      "hi": "ORDER BY नतीजे को किसी स्तंभ के हिसाब से क्रम में लगाता है। ASC पहले सबसे छोटा (डिफ़ॉल्ट) और DESC पहले सबसे बड़ा है। तालिका का अपना क्रम वही रहता है; केवल नतीजा सजता है। गीता सबसे ज़्यादा पाती है, इसलिए सबसे ऊपर है, और फ़रीद सबसे कम, इसलिए सबसे नीचे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does DESC do?",
+        "hi": "DESC क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Sorts from largest to smallest",
+         "hi": "सबसे बड़े से सबसे छोटे क्रम में लगाता है"
+        },
+        {
+         "en": "Sorts from smallest to largest",
+         "hi": "सबसे छोटे से सबसे बड़े क्रम में लगाता है"
+        },
+        {
+         "en": "Deletes the column",
+         "hi": "स्तंभ हटा देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "DESC means descending: biggest first.",
+        "hi": "DESC यानी अवरोही: सबसे बड़ा पहले।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is ASC, the default.",
+         "hi": "वह ASC है, डिफ़ॉल्ट।"
+        },
+        {
+         "en": "DESC only changes the order of the result.",
+         "hi": "DESC केवल नतीजे का क्रम बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Remove DESC and run again. Who comes first now?",
+      "hi": "DESC हटाकर फिर चलाओ। अब सबसे पहले कौन आता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch08-datatypes",
+   "topic": "8.3.1",
+   "template": "match",
+   "title": {
+    "en": "Pick the right data type",
+    "hi": "सही डेटा प्रकार चुनो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "roll",
+      "left": {
+       "en": "A roll number such as 23",
+       "hi": "रोल नंबर, जैसे 23"
+      },
+      "right": {
+       "en": "INT",
+       "hi": "INT"
+      },
+      "why": {
+       "en": "INT stores whole numbers.",
+       "hi": "INT पूर्ण संख्याएँ रखता है।"
+      }
+     },
+     {
+      "id": "city",
+      "left": {
+       "en": "A city name of up to 30 letters",
+       "hi": "30 अक्षर तक का शहर का नाम"
+      },
+      "right": {
+       "en": "VARCHAR(30)",
+       "hi": "VARCHAR(30)"
+      },
+      "why": {
+       "en": "VARCHAR takes only the space the text needs, up to 30.",
+       "hi": "VARCHAR उतनी जगह लेता है जितनी पाठ को चाहिए, अधिकतम 30।"
+      }
+     },
+     {
+      "id": "gender",
+      "left": {
+       "en": "A one-letter code such as M or F",
+       "hi": "एक अक्षर का कोड, जैसे M या F"
+      },
+      "right": {
+       "en": "CHAR(1)",
+       "hi": "CHAR(1)"
+      },
+      "why": {
+       "en": "CHAR is fixed length, good for codes of the same size.",
+       "hi": "CHAR निश्चित लंबाई का है, समान आकार के कोड के लिए अच्छा।"
+      }
+     },
+     {
+      "id": "marks",
+      "left": {
+       "en": "Marks with a decimal, like 78.5",
+       "hi": "दशमलव वाले अंक, जैसे 78.5"
+      },
+      "right": {
+       "en": "FLOAT",
+       "hi": "FLOAT"
+      },
+      "why": {
+       "en": "FLOAT holds numbers with a decimal point.",
+       "hi": "FLOAT दशमलव वाली संख्याएँ रखता है।"
+      }
+     },
+     {
+      "id": "dob",
+      "left": {
+       "en": "A date of birth",
+       "hi": "जन्म की तारीख़"
+      },
+      "right": {
+       "en": "DATE",
+       "hi": "DATE"
+      },
+      "why": {
+       "en": "DATE stores a date in YYYY-MM-DD form.",
+       "hi": "DATE तारीख़ को YYYY-MM-DD रूप में रखता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:roll",
+     "expect": "matched:roll",
+     "say": {
+      "en": "Match the roll number with its type.",
+      "hi": "रोल नंबर को उसका प्रकार मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A date of birth is stored in YYYY-MM-DD form. Which type is made for dates?",
+      "hi": "जन्म तारीख़ YYYY-MM-DD रूप में रखी जाती है। तारीख़ों के लिए कौन-सा प्रकार बना है?"
+     },
+     "options": [
+      {
+       "id": "d",
+       "en": "DATE",
+       "hi": "उत्तर: DATE"
+      },
+      {
+       "id": "c",
+       "en": "CHAR(1)",
+       "hi": "उत्तर: CHAR(1)"
+      },
+      {
+       "id": "i",
+       "en": "INT",
+       "hi": "उत्तर: INT"
+      }
+     ],
+     "answer": "d"
+    },
+    {
+     "kind": "do",
+     "target": "left:dob",
+     "expect": "matched:dob",
+     "say": {
+      "en": "Match the date of birth.",
+      "hi": "जन्म तारीख़ को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every column has a data type. It decides what the column can store and which operations make sense. INT is for whole numbers, FLOAT for decimals, DATE for dates. CHAR(n) always reserves n characters, while VARCHAR(n) uses only as much as the text needs, up to n.",
+      "hi": "हर स्तंभ का एक डेटा प्रकार होता है। वही तय करता है कि स्तंभ क्या रख सकता है और कौन-सी क्रियाएँ सार्थक हैं। INT पूर्ण संख्याओं के लिए, FLOAT दशमलव के लिए, DATE तारीख़ों के लिए। CHAR(n) हमेशा n अक्षरों की जगह रखता है, जबकि VARCHAR(n) उतनी ही जगह लेता है जितनी पाठ को चाहिए, अधिकतम n।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the difference between CHAR(10) and VARCHAR(10)?",
+        "hi": "CHAR(10) और VARCHAR(10) में क्या अंतर है?"
+       },
+       "options": [
+        {
+         "en": "CHAR(10) is fixed length; VARCHAR(10) varies up to 10",
+         "hi": "CHAR(10) निश्चित लंबाई का है; VARCHAR(10) 10 तक बदलता है"
+        },
+        {
+         "en": "They are exactly the same",
+         "hi": "दोनों बिलकुल एक जैसे हैं"
+        },
+        {
+         "en": "VARCHAR can only store numbers",
+         "hi": "VARCHAR सिर्फ़ संख्याएँ रखता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A short word in CHAR(10) is padded with spaces, but in VARCHAR(10) it is not.",
+        "hi": "CHAR(10) में छोटा शब्द ख़ाली जगह से भरा जाता है, VARCHAR(10) में नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "CHAR reserves all 10 places; VARCHAR uses only what is needed.",
+         "hi": "CHAR सारी 10 जगह रखता है; VARCHAR सिर्फ़ ज़रूरी जगह।"
+        },
+        {
+         "en": "VARCHAR stores text.",
+         "hi": "VARCHAR पाठ रखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a type for the price of a pen, ₹7.50.",
+      "hi": "एक कलम की क़ीमत, ₹7.50, के लिए प्रकार चुनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch08-constraints",
+   "topic": "8.3.2",
+   "template": "match",
+   "title": {
+    "en": "Constraints: rules for a column",
+    "hi": "कंस्ट्रेंट: स्तंभ के नियम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "nn",
+      "left": {
+       "en": "NOT NULL",
+       "hi": "NOT NULL"
+      },
+      "right": {
+       "en": "The column can never be left empty",
+       "hi": "स्तंभ कभी ख़ाली नहीं छोड़ा जा सकता"
+      },
+      "why": {
+       "en": "Use it when every row must have a value, like a name.",
+       "hi": "जब हर पंक्ति में मान ज़रूरी हो, जैसे नाम, तब इसे लगाओ।"
+      }
+     },
+     {
+      "id": "uniq",
+      "left": {
+       "en": "UNIQUE",
+       "hi": "UNIQUE"
+      },
+      "right": {
+       "en": "No two rows may have the same value",
+       "hi": "दो पंक्तियों में एक ही मान नहीं हो सकता"
+      },
+      "why": {
+       "en": "Good for an email or a mobile number.",
+       "hi": "ईमेल या मोबाइल नंबर के लिए अच्छा।"
+      }
+     },
+     {
+      "id": "def",
+      "left": {
+       "en": "DEFAULT",
+       "hi": "DEFAULT"
+      },
+      "right": {
+       "en": "A ready value used when none is given",
+       "hi": "मान न दिया जाए तो इस्तेमाल होने वाला तैयार मान"
+      },
+      "why": {
+       "en": "For example Section is A unless told otherwise.",
+       "hi": "जैसे Section A रहेगा जब तक कुछ और न कहा जाए।"
+      }
+     },
+     {
+      "id": "pk",
+      "left": {
+       "en": "PRIMARY KEY",
+       "hi": "PRIMARY KEY"
+      },
+      "right": {
+       "en": "Identifies each row: unique and never NULL",
+       "hi": "हर पंक्ति की पहचान: अनोखा और कभी NULL नहीं"
+      },
+      "why": {
+       "en": "It combines the ideas of UNIQUE and NOT NULL.",
+       "hi": "यह UNIQUE और NOT NULL के विचारों को मिलाती है।"
+      }
+     },
+     {
+      "id": "fk",
+      "left": {
+       "en": "FOREIGN KEY",
+       "hi": "FOREIGN KEY"
+      },
+      "right": {
+       "en": "Refers to the primary key of another table",
+       "hi": "दूसरी तालिका की प्राइमरी की का हवाला देती है"
+      },
+      "why": {
+       "en": "It links tables so the values must exist in the other table.",
+       "hi": "यह तालिकाओं को जोड़ती है, इसलिए मान दूसरी तालिका में होने चाहिए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:nn",
+     "expect": "matched:nn",
+     "say": {
+      "en": "Match NOT NULL.",
+      "hi": "NOT NULL को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A column is both UNIQUE and NOT NULL. Which key idea is that?",
+      "hi": "एक स्तंभ UNIQUE भी है और NOT NULL भी। यह कौन-सा की विचार है?"
+     },
+     "options": [
+      {
+       "id": "p",
+       "en": "Primary key",
+       "hi": "प्राइमरी की"
+      },
+      {
+       "id": "f",
+       "en": "Foreign key",
+       "hi": "फ़ॉरेन की"
+      },
+      {
+       "id": "d",
+       "en": "Default",
+       "hi": "डिफ़ॉल्ट"
+      }
+     ],
+     "answer": "p"
+    },
+    {
+     "kind": "do",
+     "target": "left:pk",
+     "expect": "matched:pk",
+     "say": {
+      "en": "Match PRIMARY KEY.",
+      "hi": "PRIMARY KEY को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Constraints are rules the database enforces so the data stays accurate. NOT NULL forbids empty values, UNIQUE forbids repeats, DEFAULT supplies a value when none is given, PRIMARY KEY makes a column the unique, never-empty identifier of rows, and FOREIGN KEY ties a column to another table's primary key.",
+      "hi": "कंस्ट्रेंट वे नियम हैं जो डेटाबेस लागू करता है ताकि डेटा सटीक रहे। NOT NULL ख़ाली मान रोकता है, UNIQUE दोहराव रोकता है, DEFAULT मान न देने पर मान देता है, PRIMARY KEY स्तंभ को पंक्तियों की अनोखी, कभी ख़ाली न होने वाली पहचान बनाती है, और FOREIGN KEY स्तंभ को दूसरी तालिका की प्राइमरी की से बाँधती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which constraint stops two students having the same mobile number?",
+        "hi": "कौन-सा कंस्ट्रेंट दो विद्यार्थियों का मोबाइल नंबर एक होने से रोकता है?"
+       },
+       "options": [
+        {
+         "en": "UNIQUE",
+         "hi": "उत्तर: UNIQUE"
+        },
+        {
+         "en": "DEFAULT",
+         "hi": "उत्तर: DEFAULT"
+        },
+        {
+         "en": "NOT NULL",
+         "hi": "उत्तर: NOT NULL"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "UNIQUE refuses a value that already exists in the column.",
+        "hi": "UNIQUE ऐसा मान नहीं मानता जो स्तंभ में पहले से है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "DEFAULT fills a missing value; it does not stop repeats.",
+         "hi": "DEFAULT छूटा मान भरता है; दोहराव नहीं रोकता।"
+        },
+        {
+         "en": "NOT NULL stops empty values, not repeated ones.",
+         "hi": "NOT NULL ख़ाली मान रोकता है, दोहराए हुए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name the constraints you would put on an AdmNo column.",
+      "hi": "AdmNo स्तंभ पर तुम कौन-से कंस्ट्रेंट लगाओगे, नाम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch08-sql-kinds",
+   "topic": "8.4",
+   "template": "sort",
+   "title": {
+    "en": "Define, change or ask?",
+    "hi": "बनाओ, बदलो या पूछो?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ddl",
+      "label": {
+       "en": "Define the structure",
+       "hi": "बनावट तय करो"
+      }
+     },
+     {
+      "id": "dml",
+      "label": {
+       "en": "Change the data",
+       "hi": "डेटा बदलो"
+      }
+     },
+     {
+      "id": "qry",
+      "label": {
+       "en": "Ask a question",
+       "hi": "सवाल पूछो"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "create",
+      "text": {
+       "en": "CREATE TABLE STUDENT (...)",
+       "hi": "CREATE TABLE STUDENT (...)"
+      },
+      "bin": "ddl",
+      "why": {
+       "en": "It makes a new table with its columns and types.",
+       "hi": "यह स्तंभों और प्रकारों के साथ नई तालिका बनाता है।"
+      }
+     },
+     {
+      "id": "alter",
+      "text": {
+       "en": "ALTER TABLE STUDENT ADD ...",
+       "hi": "ALTER TABLE STUDENT ADD ..."
+      },
+      "bin": "ddl",
+      "why": {
+       "en": "It changes the design of a table, not its rows.",
+       "hi": "यह तालिका की बनावट बदलता है, उसकी पंक्तियाँ नहीं।"
+      }
+     },
+     {
+      "id": "drop",
+      "text": {
+       "en": "DROP TABLE STUDENT",
+       "hi": "DROP TABLE STUDENT"
+      },
+      "bin": "ddl",
+      "why": {
+       "en": "It removes the whole table, structure and data.",
+       "hi": "यह पूरी तालिका हटा देता है, बनावट और डेटा दोनों।"
+      }
+     },
+     {
+      "id": "desc",
+      "text": {
+       "en": "DESCRIBE STUDENT",
+       "hi": "DESCRIBE STUDENT"
+      },
+      "bin": "ddl",
+      "why": {
+       "en": "It shows the structure of a table: columns, types and keys.",
+       "hi": "यह तालिका की बनावट दिखाता है: स्तंभ, प्रकार और की।"
+      }
+     },
+     {
+      "id": "insert",
+      "text": {
+       "en": "INSERT INTO STUDENT VALUES (...)",
+       "hi": "INSERT INTO STUDENT VALUES (...)"
+      },
+      "bin": "dml",
+      "why": {
+       "en": "It adds a new row of data.",
+       "hi": "यह डेटा की एक नई पंक्ति जोड़ता है।"
+      }
+     },
+     {
+      "id": "update",
+      "text": {
+       "en": "UPDATE STUDENT SET ...",
+       "hi": "UPDATE STUDENT SET ..."
+      },
+      "bin": "dml",
+      "why": {
+       "en": "It changes values in existing rows.",
+       "hi": "यह मौजूदा पंक्तियों के मान बदलता है।"
+      }
+     },
+     {
+      "id": "delete",
+      "text": {
+       "en": "DELETE FROM STUDENT WHERE ...",
+       "hi": "DELETE FROM STUDENT WHERE ..."
+      },
+      "bin": "dml",
+      "why": {
+       "en": "It removes rows of data, and the table stays.",
+       "hi": "यह डेटा की पंक्तियाँ हटाता है, और तालिका बनी रहती है।"
+      }
+     },
+     {
+      "id": "select",
+      "text": {
+       "en": "SELECT * FROM STUDENT",
+       "hi": "SELECT * FROM STUDENT"
+      },
+      "bin": "qry",
+      "why": {
+       "en": "It reads data without changing it.",
+       "hi": "यह डेटा बदले बिना उसे पढ़ता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:create",
+     "expect": "placed:create",
+     "say": {
+      "en": "Place the CREATE TABLE card.",
+      "hi": "CREATE TABLE वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "INSERT adds a row of data. Does it define the structure or change the data?",
+      "hi": "INSERT डेटा की पंक्ति जोड़ता है। क्या वह बनावट तय करता है या डेटा बदलता है?"
+     },
+     "options": [
+      {
+       "id": "d",
+       "en": "Change the data",
+       "hi": "डेटा बदलता है"
+      },
+      {
+       "id": "s",
+       "en": "Define the structure",
+       "hi": "बनावट तय करता है"
+      }
+     ],
+     "answer": "d"
+    },
+    {
+     "kind": "do",
+     "target": "card:insert",
+     "expect": "placed:insert",
+     "say": {
+      "en": "Place the INSERT card.",
+      "hi": "INSERT वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "SQL statements fall into kinds. Those that define or change the structure of a database (CREATE, ALTER, DROP, DESCRIBE) are data definition. Those that change the rows (INSERT, UPDATE, DELETE) are data manipulation. SELECT asks a question and leaves everything as it is.",
+      "hi": "SQL कथन कई प्रकार के होते हैं। जो डेटाबेस की बनावट तय या बदलते हैं (CREATE, ALTER, DROP, DESCRIBE) वे डेटा परिभाषा हैं। जो पंक्तियाँ बदलते हैं (INSERT, UPDATE, DELETE) वे डेटा हेरफेर हैं। SELECT सवाल पूछता है और सब कुछ वैसा ही छोड़ देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement removes the table itself and all its data?",
+        "hi": "कौन-सा कथन तालिका और उसका सारा डेटा हटाता है?"
+       },
+       "options": [
+        {
+         "en": "DELETE FROM STUDENT",
+         "hi": "उत्तर: DELETE FROM STUDENT"
+        },
+        {
+         "en": "DROP TABLE STUDENT",
+         "hi": "उत्तर: DROP TABLE STUDENT"
+        },
+        {
+         "en": "SELECT * FROM STUDENT",
+         "hi": "उत्तर: SELECT * FROM STUDENT"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "DROP TABLE removes the table, structure and rows together. Use it with great care.",
+        "hi": "DROP TABLE तालिका, बनावट और पंक्तियाँ साथ हटा देता है। इसे बहुत सँभलकर इस्तेमाल करो।"
+       },
+       "wrong": [
+        {
+         "en": "This removes the rows but the empty table stays.",
+         "hi": "यह पंक्तियाँ हटाता है पर ख़ाली तालिका बनी रहती है।"
+        },
+        "",
+        {
+         "en": "SELECT only reads the data.",
+         "hi": "SELECT केवल डेटा पढ़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which group does SELECT belong to?",
+        "hi": "SELECT किस समूह में आता है?"
+       },
+       "options": [
+        {
+         "en": "Ask a question",
+         "hi": "सवाल पूछो"
+        },
+        {
+         "en": "Change the data",
+         "hi": "डेटा बदलो"
+        },
+        {
+         "en": "Define the structure",
+         "hi": "बनावट तय करो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A query reads data.",
+        "hi": "क्वेरी डेटा पढ़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "SELECT never changes any row.",
+         "hi": "SELECT कोई पंक्ति नहीं बदलता।"
+        },
+        {
+         "en": "It does not create or alter tables.",
+         "hi": "यह तालिकाएँ न बनाता है, न बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these would you be most careful with, and why?",
+      "hi": "इनमें से किसे तुम सबसे ज़्यादा सावधानी से इस्तेमाल करोगे, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch08-build-order",
+   "topic": "8.4",
+   "template": "sequence",
+   "title": {
+    "en": "Build a database step by step",
+    "hi": "चरण-दर-चरण डेटाबेस बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "createdb",
+      "text": {
+       "en": "CREATE DATABASE School; makes the database",
+       "hi": "CREATE DATABASE School; डेटाबेस बनाता है"
+      }
+     },
+     {
+      "id": "use",
+      "text": {
+       "en": "USE School; opens it for work",
+       "hi": "USE School; उसे काम के लिए खोलता है"
+      }
+     },
+     {
+      "id": "createtb",
+      "text": {
+       "en": "CREATE TABLE STUDENT (...); makes a table in it",
+       "hi": "CREATE TABLE STUDENT (...); उसमें तालिका बनाता है"
+      }
+     },
+     {
+      "id": "describe",
+      "text": {
+       "en": "DESCRIBE STUDENT; checks the table's structure",
+       "hi": "DESCRIBE STUDENT; तालिका की बनावट जाँचता है"
+      }
+     },
+     {
+      "id": "insert",
+      "text": {
+       "en": "INSERT INTO STUDENT VALUES (...); adds a row",
+       "hi": "INSERT INTO STUDENT VALUES (...); एक पंक्ति जोड़ता है"
+      }
+     },
+     {
+      "id": "select",
+      "text": {
+       "en": "SELECT * FROM STUDENT; reads the rows back",
+       "hi": "SELECT * FROM STUDENT; पंक्तियाँ वापस पढ़ता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:createdb",
+     "expect": "placed:createdb",
+     "say": {
+      "en": "Put the first step in slot 1.",
+      "hi": "पहला चरण खाना 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can you create a table before the database exists?",
+      "hi": "क्या डेटाबेस बनने से पहले तालिका बना सकते हो?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, the database must come first",
+       "hi": "नहीं, डेटाबेस पहले आना चाहिए"
+      },
+      {
+       "id": "y",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order, then press Check.",
+      "hi": "सारे चरण क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A database is built from the outside in. First the database is created and opened. Then a table is created inside it, with columns and types. Only after the table exists can rows be inserted, and only then can SELECT read them back. Skipping a step gives an error.",
+      "hi": "डेटाबेस बाहर से भीतर की ओर बनता है। पहले डेटाबेस बनाकर खोला जाता है। फिर उसके अंदर स्तंभों और प्रकारों के साथ तालिका बनती है। तालिका बनने के बाद ही पंक्तियाँ जोड़ी जा सकती हैं, और तभी SELECT उन्हें वापस पढ़ सकता है। कोई चरण छोड़ने पर त्रुटि आती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does DESCRIBE STUDENT show?",
+        "hi": "DESCRIBE STUDENT क्या दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "The columns, their types and keys",
+         "hi": "स्तंभ, उनके प्रकार और की"
+        },
+        {
+         "en": "All the rows of the table",
+         "hi": "तालिका की सारी पंक्तियाँ"
+        },
+        {
+         "en": "Nothing, it deletes the table",
+         "hi": "कुछ नहीं, यह तालिका हटा देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is the quick way to check what a table looks like.",
+        "hi": "तालिका कैसी दिखती है, यह जाँचने का तेज़ तरीक़ा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is what SELECT * shows. DESCRIBE shows the structure.",
+         "hi": "वह SELECT * दिखाता है। DESCRIBE बनावट दिखाता है।"
+        },
+        {
+         "en": "Deleting is done by DROP, not DESCRIBE.",
+         "hi": "हटाना DROP करता है, DESCRIBE नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why do we use DESCRIBE before inserting data?",
+      "hi": "डेटा जोड़ने से पहले हम DESCRIBE क्यों इस्तेमाल करते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch08-alter-drop",
+   "topic": "8.4.4",
+   "template": "match",
+   "title": {
+    "en": "ALTER and DROP",
+    "hi": "ALTER और DROP"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "add",
+      "left": {
+       "en": "ALTER TABLE ... ADD",
+       "hi": "ALTER TABLE ... ADD"
+      },
+      "right": {
+       "en": "Adds a new column to the table",
+       "hi": "तालिका में नया स्तंभ जोड़ता है"
+      },
+      "why": {
+       "en": "Existing rows get NULL in the new column.",
+       "hi": "मौजूदा पंक्तियों में नए स्तंभ में NULL रहता है।"
+      }
+     },
+     {
+      "id": "mod",
+      "left": {
+       "en": "ALTER TABLE ... MODIFY",
+       "hi": "ALTER TABLE ... MODIFY"
+      },
+      "right": {
+       "en": "Changes the data type or size of a column",
+       "hi": "स्तंभ का डेटा प्रकार या आकार बदलता है"
+      },
+      "why": {
+       "en": "For example, make a name column longer.",
+       "hi": "जैसे नाम वाले स्तंभ को लंबा करना।"
+      }
+     },
+     {
+      "id": "dropcol",
+      "left": {
+       "en": "ALTER TABLE ... DROP column",
+       "hi": "ALTER TABLE ... DROP स्तंभ"
+      },
+      "right": {
+       "en": "Removes one column and its values",
+       "hi": "एक स्तंभ और उसके मान हटाता है"
+      },
+      "why": {
+       "en": "The other columns stay.",
+       "hi": "बाक़ी स्तंभ रहते हैं।"
+      }
+     },
+     {
+      "id": "droptb",
+      "left": {
+       "en": "DROP TABLE",
+       "hi": "DROP TABLE"
+      },
+      "right": {
+       "en": "Deletes the whole table and all its rows for good",
+       "hi": "पूरी तालिका और उसकी सब पंक्तियाँ हमेशा के लिए हटाता है"
+      },
+      "why": {
+       "en": "There is no undo, so be sure first.",
+       "hi": "कोई वापसी नहीं, इसलिए पहले पक्का कर लो।"
+      }
+     },
+     {
+      "id": "dropdb",
+      "left": {
+       "en": "DROP DATABASE",
+       "hi": "DROP DATABASE"
+      },
+      "right": {
+       "en": "Deletes the whole database with every table",
+       "hi": "पूरा डेटाबेस हर तालिका के साथ हटाता है"
+      },
+      "why": {
+       "en": "The most drastic statement of all.",
+       "hi": "सबसे कठोर कथन।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:add",
+     "expect": "matched:add",
+     "say": {
+      "en": "Match ALTER TABLE ... ADD.",
+      "hi": "ALTER TABLE ... ADD को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A new column is added to a table that already has 20 rows. What do the old rows hold in it?",
+      "hi": "20 पंक्तियों वाली तालिका में नया स्तंभ जोड़ा गया। पुरानी पंक्तियों में उसमें क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "NULL",
+       "hi": "उत्तर: NULL"
+      },
+      {
+       "id": "z",
+       "en": "Zero",
+       "hi": "शून्य"
+      },
+      {
+       "id": "c",
+       "en": "A copy of the previous column",
+       "hi": "पिछले स्तंभ की प्रति"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "left:droptb",
+     "expect": "matched:droptb",
+     "say": {
+      "en": "Match DROP TABLE.",
+      "hi": "DROP TABLE को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "ALTER TABLE changes the design of a table that already exists: add a column, modify one, or drop one. DROP TABLE is stronger: it removes the table with all its rows, and it cannot be undone. Always take a backup and double-check the name before running a DROP.",
+      "hi": "ALTER TABLE पहले से बनी तालिका की बनावट बदलता है: स्तंभ जोड़ो, बदलो या हटाओ। DROP TABLE ज़्यादा कठोर है: वह तालिका को सारी पंक्तियों समेत हटा देता है, और इसे वापस नहीं किया जा सकता। DROP चलाने से पहले हमेशा बैकअप लो और नाम दोबारा जाँचो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You want to make the SName column longer. Which statement fits?",
+        "hi": "तुम SName स्तंभ को लंबा करना चाहते हो। कौन-सा कथन ठीक है?"
+       },
+       "options": [
+        {
+         "en": "ALTER TABLE ... MODIFY",
+         "hi": "उत्तर: ALTER TABLE ... MODIFY"
+        },
+        {
+         "en": "DROP TABLE",
+         "hi": "उत्तर: DROP TABLE"
+        },
+        {
+         "en": "INSERT INTO",
+         "hi": "उत्तर: INSERT INTO"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "MODIFY changes the type or size of an existing column.",
+        "hi": "MODIFY मौजूदा स्तंभ का प्रकार या आकार बदलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would destroy the whole table.",
+         "hi": "इससे पूरी तालिका नष्ट हो जाएगी।"
+        },
+        {
+         "en": "INSERT adds rows; it does not change a column's size.",
+         "hi": "INSERT पंक्तियाँ जोड़ता है; स्तंभ का आकार नहीं बदलता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why should you think twice before DROP TABLE?",
+        "hi": "DROP TABLE से पहले दो बार क्यों सोचना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "The table and its data are gone for good",
+         "hi": "तालिका और उसका डेटा हमेशा के लिए चले जाते हैं"
+        },
+        {
+         "en": "It only hides the table for a day",
+         "hi": "यह तालिका को सिर्फ़ एक दिन छिपाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "There is no undo for DROP.",
+        "hi": "DROP की कोई वापसी नहीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It removes the table; it does not just hide it.",
+         "hi": "यह तालिका हटाता है; सिर्फ़ छिपाता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a safe habit before running any DROP statement.",
+      "hi": "DROP कथन चलाने से पहले की कोई सुरक्षित आदत सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch08-insert-check",
+   "topic": "8.5.1",
+   "template": "sort",
+   "title": {
+    "en": "Will this INSERT work?",
+    "hi": "क्या यह INSERT चलेगा?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ok",
+      "label": {
+       "en": "Works",
+       "hi": "चलता है"
+      }
+     },
+     {
+      "id": "bad",
+      "label": {
+       "en": "Fails",
+       "hi": "फ़ेल होता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "i1",
+      "text": {
+       "en": "(1, 'Asha', 11)",
+       "hi": "(1, 'Asha', 11)"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "All three values fit the three columns.",
+       "hi": "तीनों मान तीनों स्तंभों में बैठते हैं।"
+      }
+     },
+     {
+      "id": "i2",
+      "text": {
+       "en": "Columns named: (RollNo, SName) VALUES (4, 'Dev')",
+       "hi": "नाम दिए स्तंभ: (RollNo, SName) VALUES (4, 'Dev')"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "Class is left out and stays NULL, which is allowed.",
+       "hi": "Class छोड़ा गया है और NULL रहता है, जो मान्य है।"
+      }
+     },
+     {
+      "id": "i3",
+      "text": {
+       "en": "RollNo 1 again: (1, 'Bilal', 11)",
+       "hi": "RollNo फिर 1: (1, 'Bilal', 11)"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "RollNo is the primary key and 1 is already taken.",
+       "hi": "RollNo प्राइमरी की है और 1 पहले से लिया जा चुका है।"
+      }
+     },
+     {
+      "id": "i4",
+      "text": {
+       "en": "SName empty: (2, NULL, 11)",
+       "hi": "SName ख़ाली: (2, NULL, 11)"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "SName is NOT NULL, so it cannot be empty.",
+       "hi": "SName NOT NULL है, इसलिए ख़ाली नहीं हो सकता।"
+      }
+     },
+     {
+      "id": "i5",
+      "text": {
+       "en": "Too few values: (3, 'Chitra')",
+       "hi": "बहुत कम मान: (3, 'Chitra')"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Three columns need three values unless the columns are named.",
+       "hi": "स्तंभ न बताए जाएँ तो तीन स्तंभों को तीन मान चाहिए।"
+      }
+     },
+     {
+      "id": "i6",
+      "text": {
+       "en": "Text in a number column: (5, 'Esha', 'eleven')",
+       "hi": "संख्या वाले स्तंभ में पाठ: (5, 'Esha', 'eleven')"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Class is INT, so the word 'eleven' is not accepted.",
+       "hi": "Class INT है, इसलिए शब्द 'eleven' स्वीकार नहीं होता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:i1",
+     "expect": "placed:i1",
+     "say": {
+      "en": "Table STUDENT has RollNo INT PRIMARY KEY, SName VARCHAR(20) NOT NULL, Class INT. Place the first card.",
+      "hi": "तालिका STUDENT में RollNo INT PRIMARY KEY, SName VARCHAR(20) NOT NULL, Class INT है। पहला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "RollNo 1 is already in the table. Can another row use RollNo 1?",
+      "hi": "RollNo 1 तालिका में पहले से है। क्या दूसरी पंक्ति RollNo 1 ले सकती है?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, a primary key must be unique",
+       "hi": "नहीं, प्राइमरी की अनोखी होनी चाहिए"
+      },
+      {
+       "id": "y",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "card:i3",
+     "expect": "placed:i3",
+     "say": {
+      "en": "Place the card with RollNo 1 again.",
+      "hi": "फिर से RollNo 1 वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "INSERT INTO table VALUES (...) must give one value for each column, in order, with the right types. If you name the columns, you may leave some out, and they become NULL or their default. The constraints are checked on every insert: a repeated primary key, a NULL in a NOT NULL column or a wrong type makes the statement fail.",
+      "hi": "INSERT INTO तालिका VALUES (...) में हर स्तंभ के लिए क्रम से एक मान, सही प्रकार के साथ, देना होता है। स्तंभ के नाम दो तो कुछ छोड़ भी सकते हो, और वे NULL या अपना डिफ़ॉल्ट बन जाते हैं। हर INSERT पर कंस्ट्रेंट जाँचे जाते हैं: दोहराई प्राइमरी की, NOT NULL स्तंभ में NULL या ग़लत प्रकार से कथन फ़ेल हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does INSERT (2, NULL, 11) fail?",
+        "hi": "INSERT (2, NULL, 11) फ़ेल क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "SName is NOT NULL",
+         "hi": "SName NOT NULL है"
+        },
+        {
+         "en": "2 is not a valid RollNo",
+         "hi": "2 मान्य RollNo नहीं है"
+        },
+        {
+         "en": "11 is too big for INT",
+         "hi": "11, INT के लिए बहुत बड़ा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The constraint forbids an empty name.",
+        "hi": "कंस्ट्रेंट ख़ाली नाम की अनुमति नहीं देता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 is a fine whole number and is not repeated.",
+         "hi": "2 ठीक पूर्ण संख्या है और दोहराई नहीं गई।"
+        },
+        {
+         "en": "INT easily holds 11.",
+         "hi": "INT में 11 आराम से आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which row could you add that works and also leaves Class empty?",
+      "hi": "कौन-सी पंक्ति जोड़ सकते हो जो चले और Class को ख़ाली भी छोड़े?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch08-update-delete",
+   "topic": "8.7",
+   "template": "match",
+   "title": {
+    "en": "UPDATE and DELETE: always use WHERE",
+    "hi": "UPDATE और DELETE: हमेशा WHERE लगाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "u1",
+      "left": {
+       "en": "UPDATE STAFF SET Salary = 30000 WHERE StaffId = 4",
+       "hi": "UPDATE STAFF SET Salary = 30000 WHERE StaffId = 4"
+      },
+      "right": {
+       "en": "Changes the salary of one person only",
+       "hi": "केवल एक व्यक्ति का वेतन बदलता है"
+      },
+      "why": {
+       "en": "WHERE picks the row, SET gives the new value.",
+       "hi": "WHERE पंक्ति चुनता है, SET नया मान देता है।"
+      }
+     },
+     {
+      "id": "u2",
+      "left": {
+       "en": "UPDATE STAFF SET Salary = 30000",
+       "hi": "UPDATE STAFF SET Salary = 30000"
+      },
+      "right": {
+       "en": "Changes the salary of EVERY row",
+       "hi": "हर पंक्ति का वेतन बदल देता है"
+      },
+      "why": {
+       "en": "With no WHERE it acts on the whole table.",
+       "hi": "WHERE न हो तो वह पूरी तालिका पर चलता है।"
+      }
+     },
+     {
+      "id": "d1",
+      "left": {
+       "en": "DELETE FROM STAFF WHERE StaffId = 8",
+       "hi": "DELETE FROM STAFF WHERE StaffId = 8"
+      },
+      "right": {
+       "en": "Removes one row only",
+       "hi": "केवल एक पंक्ति हटाता है"
+      },
+      "why": {
+       "en": "The rest of the table is untouched.",
+       "hi": "तालिका का बाक़ी हिस्सा जस का तस रहता है।"
+      }
+     },
+     {
+      "id": "d2",
+      "left": {
+       "en": "DELETE FROM STAFF",
+       "hi": "DELETE FROM STAFF"
+      },
+      "right": {
+       "en": "Removes every row, but the empty table stays",
+       "hi": "हर पंक्ति हटाता है, पर ख़ाली तालिका बनी रहती है"
+      },
+      "why": {
+       "en": "Different from DROP TABLE, which removes the table too.",
+       "hi": "DROP TABLE से अलग, जो तालिका भी हटा देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:u1",
+     "expect": "matched:u1",
+     "say": {
+      "en": "Match the UPDATE that has a WHERE.",
+      "hi": "वह UPDATE मिलाओ जिसमें WHERE है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An UPDATE has no WHERE clause. Which rows does it change?",
+      "hi": "एक UPDATE में WHERE नहीं है। वह किन पंक्तियों को बदलता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Every row",
+       "hi": "हर पंक्ति"
+      },
+      {
+       "id": "o",
+       "en": "Only the first row",
+       "hi": "सिर्फ़ पहली पंक्ति"
+      },
+      {
+       "id": "n",
+       "en": "None",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:u2",
+     "expect": "matched:u2",
+     "say": {
+      "en": "Match the UPDATE without WHERE.",
+      "hi": "बिना WHERE वाला UPDATE मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "UPDATE changes values in existing rows and DELETE removes rows. Both act on every row unless a WHERE clause limits them. A forgotten WHERE can overwrite or erase the whole table's data, so write the WHERE first and check it with a SELECT before running the change.",
+      "hi": "UPDATE मौजूदा पंक्तियों के मान बदलता है और DELETE पंक्तियाँ हटाता है। जब तक WHERE उन्हें सीमित न करे, दोनों हर पंक्ति पर चलते हैं। भूला हुआ WHERE पूरी तालिका का डेटा बदल या मिटा सकता है, इसलिए WHERE पहले लिखो और बदलाव चलाने से पहले उसे SELECT से जाँच लो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does DELETE FROM STAFF (no WHERE) leave behind?",
+        "hi": "DELETE FROM STAFF (बिना WHERE) के बाद क्या बचता है?"
+       },
+       "options": [
+        {
+         "en": "An empty table with its structure",
+         "hi": "अपनी बनावट के साथ ख़ाली तालिका"
+        },
+        {
+         "en": "Nothing at all, even the table is gone",
+         "hi": "कुछ भी नहीं, तालिका भी चली गई"
+        },
+        {
+         "en": "All rows are kept",
+         "hi": "सारी पंक्तियाँ रहती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The rows go, but the table remains ready for new rows.",
+        "hi": "पंक्तियाँ जाती हैं, पर तालिका नई पंक्तियों के लिए तैयार रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is DROP TABLE. DELETE leaves the structure.",
+         "hi": "वह DROP TABLE है। DELETE बनावट छोड़ देता है।"
+        },
+        {
+         "en": "DELETE without WHERE removes all of them.",
+         "hi": "बिना WHERE का DELETE सब हटा देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A safe habit before an UPDATE is to...",
+        "hi": "UPDATE से पहले सुरक्षित आदत है..."
+       },
+       "options": [
+        {
+         "en": "Run a SELECT with the same WHERE to see which rows it will hit",
+         "hi": "वही WHERE लगाकर SELECT चलाना, कि कौन-सी पंक्तियाँ प्रभावित होंगी"
+        },
+        {
+         "en": "Skip the WHERE so it runs faster",
+         "hi": "WHERE छोड़ देना ताकि वह तेज़ चले"
+        },
+        {
+         "en": "Close the database first",
+         "hi": "पहले डेटाबेस बंद कर देना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Checking first shows exactly which rows will change.",
+        "hi": "पहले जाँचने से ठीक पता चल जाता है कि कौन-सी पंक्तियाँ बदलेंगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Skipping WHERE is how whole tables get changed by mistake.",
+         "hi": "WHERE छोड़ने से ही पूरी तालिकाएँ भूल से बदल जाती हैं।"
+        },
+        {
+         "en": "The statement cannot run on a closed database.",
+         "hi": "बंद डेटाबेस पर कथन चल ही नहीं सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write an UPDATE that gives every Clerk a bonus of 500.",
+      "hi": "ऐसा UPDATE लिखो जो हर Clerk को 500 का बोनस दे।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Chapter hook: a library catalogue",
+   "shows": "A school library desk with a card-catalogue drawer open on one side and a computer showing a plain search page on the other",
+   "view": "Wide, 16:9, warm light",
+   "right": "Old and new ways of finding a book sit side by side; the screen is blurred",
+   "avoid": "Faces, readable titles or text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.3",
+   "use": "Containers of different sizes for data types",
+   "shows": "A small steel dabba, a big steel tiffin carrier and a thin pencil box as separate cut-outs",
+   "view": "Front three-quarter view, plain backdrop",
+   "right": "Sizes differ clearly so fixed and variable length can be explained",
+   "avoid": "Brand marks, writing"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "8.4",
+   "use": "Table design form",
+   "shows": "A clean empty form with five rows and three columns (name, type, rule) styled like a database design sheet",
+   "view": "Flat front view on white",
+   "right": "Rows and columns equal so the app can fill in column names and types",
+   "avoid": "Any words or numbers"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "8.6",
+   "use": "Filtering a stack of cards",
+   "shows": "Four frames of a hand sorting a stack of coloured index cards: all cards, only the blue cards, those sorted by height of a tab",
+   "view": "Same fixed top view and light",
+   "right": "The stack shrinks in the same way a WHERE filter shrinks rows",
+   "avoid": "Writing on the cards"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "8.6",
+   "use": "Close-up of a printed database table",
+   "shows": "A close-up of a printed table with ruled grid and clearly separated cells; text is made-up and blurred",
+   "view": "Slightly angled close-up, sharp central area",
+   "right": "Grid lines crisp so rows and columns are obvious",
+   "avoid": "Real names, school logos"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "8.7",
+   "use": "Eraser and pencil for update and delete",
+   "shows": "A pencil, a rubber eraser and a pencil sharpener as separate cut-outs",
+   "view": "Front view each, soft shadow",
+   "right": "Objects look new and plain with no branding",
+   "avoid": "Brand names, writing"
+  }
+ ]
+}

@@ -1,0 +1,1253 @@
+{
+  "chapter_key": "u.c08.mathematics.hegp1.ch06",
+  "class": 8,
+  "subject_id": "mathematics",
+  "title": "We Distribute, Yet Things Multiply",
+  "source": "https://ncert.nic.in/textbook/pdf/hegp106.pdf",
+  "topics": [
+    {
+      "n": "6.1",
+      "title": "Some properties of multiplication: how a product changes, (a + b)(c + d) and fast multiplication",
+      "labs": [
+        "c08-mathematics-hegp1-ch06-grow",
+        "c08-mathematics-hegp1-ch06-fast"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.2",
+      "title": "Special cases of the distributive property: (a + b)², (a − b)² and (a + b)(a − b)",
+      "labs": [
+        "c08-mathematics-hegp1-ch06-square",
+        "c08-mathematics-hegp1-ch06-difference",
+        "c08-mathematics-hegp1-ch06-shortcuts"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.3",
+      "title": "Mind the mistake, mend the mistake",
+      "labs": [
+        "c08-mathematics-hegp1-ch06-mistake"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.4",
+      "title": "This way or that way: counting a pattern in different ways gives the same expression",
+      "labs": [
+        "c08-mathematics-hegp1-ch06-border"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c08-mathematics-hegp1-ch06-grow",
+      "topic": "6.1",
+      "template": "algebra",
+      "title": {
+        "en": "Multiply two sums with an area model",
+        "hi": "क्षेत्रफल मॉडल से दो योगों का गुणा"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "expand",
+        "equation": "(x+3)(x+2)"
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A rectangular kitchen garden is (x + 3) m long and (x + 2) m wide. The area model cuts it into four boxes: x by x, x by 2, 3 by x and 3 by 2.",
+            "hi": "एक आयताकार किचन गार्डन (x + 3) मीटर लंबा और (x + 2) मीटर चौड़ा है। क्षेत्रफल मॉडल इसे चार डिब्बों में बाँटता है: x गुणा x, x गुणा 2, 3 गुणा x और 3 गुणा 2।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "How many separate products do you need to find the whole area?",
+            "hi": "पूरा क्षेत्रफल निकालने के लिए कितने अलग-अलग गुणनफल चाहिए?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Four: every part of one sum times every part of the other",
+              "hi": "चार: एक योग का हर भाग दूसरे के हर भाग से"
+            },
+            {
+              "id": "b",
+              "en": "Two: x × x and 3 × 2",
+              "hi": "दो: x × x और 3 × 2"
+            },
+            {
+              "id": "c",
+              "en": "One: add first, then multiply",
+              "hi": "एक: पहले जोड़ो, फिर गुणा"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "expanded",
+          "say": {
+            "en": "Tap each box to see its product, add the like terms and type the full answer.",
+            "hi": "हर डिब्बा छूकर उसका गुणनफल देखो, समान पद जोड़ो और पूरा उत्तर लिखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each part of (x + 3) multiplies each part of (x + 2): x² + 2x + 3x + 6. The two middle boxes are like terms, so the area is x² + 5x + 6. This is the distributive property used twice: (a + b)(c + d) = ac + ad + bc + bd.",
+            "hi": "(x + 3) का हर भाग (x + 2) के हर भाग से गुणा होता है: x² + 2x + 3x + 6। बीच के दो डिब्बे समान पद हैं, इसलिए क्षेत्रफल x² + 5x + 6 है। यह बंटन गुण का दो बार उपयोग है: (a + b)(c + d) = ac + ad + bc + bd।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "If x = 10, the garden is 13 m by 12 m. What does x² + 5x + 6 give?",
+                "hi": "अगर x = 10, तो गार्डन 13 मी × 12 मी है। x² + 5x + 6 से क्या मिलता है?"
+              },
+              "options": [
+                "156",
+                "136",
+                "126"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "100 + 50 + 6 = 156, and 13 × 12 = 156 too.",
+                "hi": "100 + 50 + 6 = 156, और 13 × 12 भी 156 है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "136 = 100 + 30 + 6 uses only one middle box. Both 2x and 3x are needed.",
+                  "hi": "136 = 100 + 30 + 6 में सिर्फ़ एक बीच का डिब्बा है। 2x और 3x दोनों चाहिए।"
+                },
+                {
+                  "en": "126 would be 100 + 20 + 6, again missing a middle box.",
+                  "hi": "126 = 100 + 20 + 6 होगा, फिर एक बीच का डिब्बा छूट गया।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "When one number in a product grows by 1, as in (a + 1) × b, the product grows by …",
+                "hi": "गुणनफल की एक संख्या 1 बढ़े, जैसे (a + 1) × b, तो गुणनफल कितना बढ़ता है?"
+              },
+              "options": [
+                "b",
+                "1",
+                "a"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "(a + 1) × b = ab + b. One extra row of b is added. Example: 13 × 7 = 12 × 7 + 7.",
+                "hi": "(a + 1) × b = ab + b। b की एक पंक्ति और जुड़ती है। जैसे 13 × 7 = 12 × 7 + 7।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Adding 1 to a factor adds a whole row, not just 1: 13 × 7 is 7 more than 12 × 7.",
+                  "hi": "गुणनखंड में 1 जोड़ने से पूरी पंक्ति जुड़ती है, सिर्फ़ 1 नहीं: 13 × 7, 12 × 7 से 7 ज़्यादा है।"
+                },
+                {
+                  "en": "The extra row has the length of the other number, b, not a.",
+                  "hi": "अतिरिक्त पंक्ति की लंबाई दूसरी संख्या b है, a नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Move the slider to test your answer with other values of x. Does the area model still match?",
+            "hi": "स्लाइडर खिसकाकर x के दूसरे मानों से अपना उत्तर परखो। क्या क्षेत्रफल मॉडल अब भी मेल खाता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch06-fast",
+      "topic": "6.1",
+      "template": "match",
+      "title": {
+        "en": "Fast multiplication tricks",
+        "hi": "तेज़ गुणा की तरकीबें"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "a",
+            "left": {
+              "en": "99 × 6",
+              "hi": "99 × 6"
+            },
+            "right": {
+              "en": "600 − 6 = 594",
+              "hi": "600 − 6 = 594"
+            },
+            "why": {
+              "en": "99 = 100 − 1, so 99 × 6 = 100 × 6 − 1 × 6.",
+              "hi": "99 = 100 − 1, इसलिए 99 × 6 = 100 × 6 − 1 × 6।"
+            }
+          },
+          {
+            "id": "b",
+            "left": {
+              "en": "102 × 15",
+              "hi": "102 × 15"
+            },
+            "right": {
+              "en": "1500 + 30 = 1530",
+              "hi": "1500 + 30 = 1530"
+            },
+            "why": {
+              "en": "102 = 100 + 2, so 102 × 15 = 1500 + 30.",
+              "hi": "102 = 100 + 2, इसलिए 102 × 15 = 1500 + 30।"
+            }
+          },
+          {
+            "id": "c",
+            "left": {
+              "en": "25 × 48",
+              "hi": "25 × 48"
+            },
+            "right": {
+              "en": "100 × 12 = 1200",
+              "hi": "100 × 12 = 1200"
+            },
+            "why": {
+              "en": "48 = 4 × 12 and 25 × 4 = 100.",
+              "hi": "48 = 4 × 12 और 25 × 4 = 100।"
+            }
+          },
+          {
+            "id": "d",
+            "left": {
+              "en": "998 × 7",
+              "hi": "998 × 7"
+            },
+            "right": {
+              "en": "7000 − 14 = 6986",
+              "hi": "7000 − 14 = 6986"
+            },
+            "why": {
+              "en": "998 = 1000 − 2, so 998 × 7 = 7000 − 14.",
+              "hi": "998 = 1000 − 2, इसलिए 998 × 7 = 7000 − 14।"
+            }
+          },
+          {
+            "id": "e",
+            "left": {
+              "en": "21 × 19",
+              "hi": "21 × 19"
+            },
+            "right": {
+              "en": "400 − 1 = 399",
+              "hi": "400 − 1 = 399"
+            },
+            "why": {
+              "en": "(20 + 1)(20 − 1) = 20² − 1².",
+              "hi": "(20 + 1)(20 − 1) = 20² − 1²।"
+            }
+          },
+          {
+            "id": "f",
+            "left": {
+              "en": "45 × 11",
+              "hi": "45 × 11"
+            },
+            "right": {
+              "en": "450 + 45 = 495",
+              "hi": "450 + 45 = 495"
+            },
+            "why": {
+              "en": "11 = 10 + 1, so 45 × 11 = 450 + 45.",
+              "hi": "11 = 10 + 1, इसलिए 45 × 11 = 450 + 45।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:a",
+          "expect": "matched:a",
+          "say": {
+            "en": "A shopkeeper sells 6 bags at ₹99 each. Tap 99 × 6 and then its quick way.",
+            "hi": "दुकानदार ₹99 के 6 थैले बेचता है। 99 × 6 छुओ और फिर उसका झटपट तरीक़ा।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "How would you do 998 × 7 in your head?",
+            "hi": "998 × 7 मन में कैसे करोगे?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "7000 minus 2 sevens",
+              "hi": "7000 में से दो सात घटाओ"
+            },
+            {
+              "id": "b",
+              "en": "7000 minus 2",
+              "hi": "7000 में से 2 घटाओ"
+            },
+            {
+              "id": "c",
+              "en": "700 minus 14",
+              "hi": "700 में से 14 घटाओ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:d",
+          "expect": "matched:d",
+          "say": {
+            "en": "Match 998 × 7.",
+            "hi": "998 × 7 मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:e",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the rest.",
+            "hi": "बाक़ी सब मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each trick splits one number into an easy round number plus or minus a little, then uses the distributive property: a × (b + c) = ab + ac. Round numbers like 10, 100 and 1000 are easy to multiply, and the small part is easy to fix.",
+            "hi": "हर तरकीब एक संख्या को आसान पूर्ण संख्या और थोड़ा जोड़ या घटाकर तोड़ती है, फिर बंटन गुण लगाती है: a × (b + c) = ab + ac। 10, 100, 1000 जैसी पूर्ण संख्याओं से गुणा आसान है, और छोटा भाग ठीक करना भी आसान है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": "49 × 8 = ?",
+              "options": [
+                "392",
+                "398",
+                "408"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "49 = 50 − 1, so 400 − 8 = 392.",
+                "hi": "49 = 50 − 1, इसलिए 400 − 8 = 392।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "398 takes away only 2; you must take away 1 × 8 = 8.",
+                  "hi": "398 में सिर्फ़ 2 घटाया; 1 × 8 = 8 घटाना है।"
+                },
+                {
+                  "en": "408 adds 8 instead of taking it away. 49 is less than 50.",
+                  "hi": "408 में 8 घटाने की जगह जोड़ा। 49, 50 से कम है।"
+                }
+              ]
+            },
+            {
+              "q": "101 × 37 = ?",
+              "options": [
+                "3737",
+                "3707",
+                "3837"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "100 × 37 + 1 × 37 = 3700 + 37 = 3737.",
+                "hi": "100 × 37 + 1 × 37 = 3700 + 37 = 3737।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "3707 adds 7, not 37. The 1 multiplies the whole 37.",
+                  "hi": "3707 में 7 जोड़ा, 37 नहीं। 1 पूरी 37 से गुणा होता है।"
+                },
+                {
+                  "en": "3837 is 100 too many: 3700 + 37 is all you need.",
+                  "hi": "3837 में 100 ज़्यादा है: बस 3700 + 37 चाहिए।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find a quick way for 999 × 13 and for 51 × 49. Explain it to someone at home.",
+            "hi": "999 × 13 और 51 × 49 का झटपट तरीक़ा खोजो। घर पर किसी को समझाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch06-square",
+      "topic": "6.2",
+      "template": "algebra",
+      "title": {
+        "en": "Why (a + b)² is not a² + b²",
+        "hi": "(a + b)², a² + b² क्यों नहीं है"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "expand",
+        "equation": "(x+4)(x+4)"
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A square courtyard has side (x + 4) m. Its area is (x + 4) × (x + 4). The area model shows a big x by x square, a small 4 by 4 square and two strips.",
+            "hi": "एक वर्गाकार आँगन की भुजा (x + 4) मीटर है। उसका क्षेत्रफल (x + 4) × (x + 4) है। क्षेत्रफल मॉडल में एक बड़ा x गुणा x वर्ग, एक छोटा 4 गुणा 4 वर्ग और दो पट्टियाँ दिखती हैं।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is the area just x² + 16?",
+            "hi": "क्या क्षेत्रफल सिर्फ़ x² + 16 है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "No, the two strips of 4x are missing",
+              "hi": "नहीं, 4x की दो पट्टियाँ छूट गईं"
+            },
+            {
+              "id": "b",
+              "en": "Yes, square each part",
+              "hi": "हाँ, हर भाग का वर्ग करो"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "expanded",
+          "say": {
+            "en": "Tap the four boxes, add the like terms and type the area.",
+            "hi": "चारों डिब्बे छुओ, समान पद जोड़ो और क्षेत्रफल लिखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "(x + 4)² = x² + 4x + 4x + 16 = x² + 8x + 16. In general (a + b)² = a² + 2ab + b². The 2ab is the two strips that people often forget.",
+            "hi": "(x + 4)² = x² + 4x + 4x + 16 = x² + 8x + 16। सामान्य रूप में (a + b)² = a² + 2ab + b²। 2ab वही दो पट्टियाँ हैं जिन्हें लोग अक्सर भूल जाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Use (a + b)² to find 51².",
+                "hi": "(a + b)² से 51² निकालो।"
+              },
+              "options": [
+                "2601",
+                "2501",
+                "2551"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "(50 + 1)² = 2500 + 2 × 50 × 1 + 1 = 2500 + 100 + 1 = 2601.",
+                "hi": "(50 + 1)² = 2500 + 2 × 50 × 1 + 1 = 2500 + 100 + 1 = 2601।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "2501 is 50² + 1², the mistake of forgetting the 2ab strips.",
+                  "hi": "2501 = 50² + 1², यानी 2ab पट्टियाँ भूल जाने की ग़लती।"
+                },
+                {
+                  "en": "2551 adds only one strip (50). There are two strips: 2 × 50 = 100.",
+                  "hi": "2551 में सिर्फ़ एक पट्टी (50) जोड़ी। पट्टियाँ दो हैं: 2 × 50 = 100।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "(a − b)² equals …",
+                "hi": "(a − b)² बराबर है …"
+              },
+              "options": [
+                "a² − 2ab + b²",
+                "a² − b²",
+                "a² + 2ab − b²"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "(a − b)(a − b) = a² − ab − ab + b². The last term is (−b)(−b) = +b².",
+                "hi": "(a − b)(a − b) = a² − ab − ab + b²। अंतिम पद (−b)(−b) = +b² है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "a² − b² is (a + b)(a − b), a different product.",
+                  "hi": "a² − b² तो (a + b)(a − b) है, एक अलग गुणनफल।"
+                },
+                {
+                  "en": "A negative times a negative is positive, so b² has a + sign.",
+                  "hi": "ऋणात्मक × ऋणात्मक = धनात्मक, इसलिए b² के आगे + है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Use the slider to try x = 6. Check that (6 + 4)² = 100 and that your expression also gives 100.",
+            "hi": "स्लाइडर से x = 6 आज़माओ। जाँचो कि (6 + 4)² = 100 है और तुम्हारा व्यंजक भी 100 देता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch06-difference",
+      "topic": "6.2",
+      "template": "algebra",
+      "title": {
+        "en": "(a + b)(a − b): the middle terms vanish",
+        "hi": "(a + b)(a − b): बीच के पद ग़ायब"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "expand",
+        "equation": "(x+5)(x-5)"
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Now one sum and one difference: (x + 5)(x − 5). The area model has a box of −5x as well as a box of +5x.",
+            "hi": "अब एक योग और एक अंतर: (x + 5)(x − 5)। क्षेत्रफल मॉडल में +5x का एक डिब्बा और −5x का भी एक डिब्बा है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What happens to the two middle boxes?",
+            "hi": "बीच के दोनों डिब्बों का क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "They cancel out",
+              "hi": "वे एक-दूसरे को काट देते हैं"
+            },
+            {
+              "id": "b",
+              "en": "They add to 10x",
+              "hi": "वे जुड़कर 10x बनते हैं"
+            },
+            {
+              "id": "c",
+              "en": "They become 25",
+              "hi": "वे 25 बन जाते हैं"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "expanded",
+          "say": {
+            "en": "Tap the boxes and type the product.",
+            "hi": "डिब्बे छुओ और गुणनफल लिखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "x² − 5x + 5x − 25 = x² − 25. In general (a + b)(a − b) = a² − b². This makes some products very quick, like 52 × 48 = 50² − 2² = 2496.",
+            "hi": "x² − 5x + 5x − 25 = x² − 25। सामान्य रूप में (a + b)(a − b) = a² − b²। इससे कुछ गुणा बहुत जल्दी होते हैं, जैसे 52 × 48 = 50² − 2² = 2496।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": "103 × 97 = ?",
+              "options": [
+                "9991",
+                "10009",
+                "9909"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "(100 + 3)(100 − 3) = 10000 − 9 = 9991.",
+                "hi": "(100 + 3)(100 − 3) = 10000 − 9 = 9991।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The 3² is taken away, not added: 10000 − 9.",
+                  "hi": "3² घटाया जाता है, जोड़ा नहीं: 10000 − 9।"
+                },
+                {
+                  "en": "Only 3² = 9 is taken away, not 3 × 30 = 90.",
+                  "hi": "सिर्फ़ 3² = 9 घटता है, 3 × 30 = 90 नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Use the slider to choose x = 5. Why does the product become 0? Look at the factor (x − 5).",
+            "hi": "स्लाइडर से x = 5 चुनो। गुणनफल 0 क्यों हो जाता है? गुणनखंड (x − 5) को देखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch06-shortcuts",
+      "topic": "6.2",
+      "template": "match",
+      "title": {
+        "en": "Which identity makes it easy?",
+        "hi": "कौन-सी सर्वसमिका इसे आसान बनाती है?"
+      },
+      "minutes": 5,
+      "level": "stretch",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "a",
+            "left": {
+              "en": "61²",
+              "hi": "61²"
+            },
+            "right": {
+              "en": "(60 + 1)² = 3600 + 120 + 1",
+              "hi": "(60 + 1)² = 3600 + 120 + 1"
+            },
+            "why": {
+              "en": "(a + b)² with a = 60, b = 1: 3721.",
+              "hi": "(a + b)² जहाँ a = 60, b = 1: 3721।"
+            }
+          },
+          {
+            "id": "b",
+            "left": {
+              "en": "39²",
+              "hi": "39²"
+            },
+            "right": {
+              "en": "(40 − 1)² = 1600 − 80 + 1",
+              "hi": "(40 − 1)² = 1600 − 80 + 1"
+            },
+            "why": {
+              "en": "(a − b)² with a = 40, b = 1: 1521.",
+              "hi": "(a − b)² जहाँ a = 40, b = 1: 1521।"
+            }
+          },
+          {
+            "id": "c",
+            "left": {
+              "en": "62 × 58",
+              "hi": "62 × 58"
+            },
+            "right": {
+              "en": "60² − 2² = 3600 − 4",
+              "hi": "60² − 2² = 3600 − 4"
+            },
+            "why": {
+              "en": "(a + b)(a − b) with a = 60, b = 2: 3596.",
+              "hi": "(a + b)(a − b) जहाँ a = 60, b = 2: 3596।"
+            }
+          },
+          {
+            "id": "d",
+            "left": {
+              "en": "105²",
+              "hi": "105²"
+            },
+            "right": {
+              "en": "(100 + 5)² = 10000 + 1000 + 25",
+              "hi": "(100 + 5)² = 10000 + 1000 + 25"
+            },
+            "why": {
+              "en": "(a + b)² with a = 100, b = 5: 11025.",
+              "hi": "(a + b)² जहाँ a = 100, b = 5: 11025।"
+            }
+          },
+          {
+            "id": "e",
+            "left": {
+              "en": "98²",
+              "hi": "98²"
+            },
+            "right": {
+              "en": "(100 − 2)² = 10000 − 400 + 4",
+              "hi": "(100 − 2)² = 10000 − 400 + 4"
+            },
+            "why": {
+              "en": "(a − b)² with a = 100, b = 2: 9604.",
+              "hi": "(a − b)² जहाँ a = 100, b = 2: 9604।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:a",
+          "expect": "matched:a",
+          "say": {
+            "en": "Tap 61² and then the identity that makes it easy.",
+            "hi": "61² छुओ और फिर वह सर्वसमिका जो इसे आसान बनाती है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which identity suits 62 × 58?",
+            "hi": "62 × 58 के लिए कौन-सी सर्वसमिका ठीक है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "(a + b)(a − b), with 60 in the middle",
+              "hi": "(a + b)(a − b), बीच में 60"
+            },
+            {
+              "id": "b",
+              "en": "(a + b)² alone",
+              "hi": "सिर्फ़ (a + b)²"
+            },
+            {
+              "id": "c",
+              "en": "None works",
+              "hi": "कोई काम नहीं करती"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:c",
+          "expect": "matched:c",
+          "say": {
+            "en": "Match 62 × 58.",
+            "hi": "62 × 58 मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:e",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest.",
+            "hi": "बाक़ी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Look for a round number close by. If both numbers are the same, use (a + b)² or (a − b)². If the two numbers are equally far on either side of a round number, use (a + b)(a − b).",
+            "hi": "पास की कोई पूर्ण संख्या खोजो। अगर दोनों संख्याएँ एक जैसी हैं तो (a + b)² या (a − b)² लगाओ। अगर दोनों संख्याएँ किसी पूर्ण संख्या के दोनों ओर बराबर दूरी पर हैं तो (a + b)(a − b) लगाओ।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which is the best way to find 47 × 53?",
+                "hi": "47 × 53 निकालने का सबसे अच्छा तरीक़ा कौन-सा है?"
+              },
+              "options": [
+                "50² − 3²",
+                "(47 + 53)²",
+                "47² + 53²"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "47 = 50 − 3 and 53 = 50 + 3, so the product is 2500 − 9 = 2491.",
+                "hi": "47 = 50 − 3 और 53 = 50 + 3, इसलिए गुणनफल 2500 − 9 = 2491।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "(47 + 53)² = 100² is the square of the sum, a much bigger number.",
+                  "hi": "(47 + 53)² = 100², योग का वर्ग, बहुत बड़ी संख्या।"
+                },
+                {
+                  "en": "Adding the squares does not give a product; it is far too big.",
+                  "hi": "वर्गों को जोड़ने से गुणनफल नहीं मिलता; यह बहुत बड़ा है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Square 25, 35 and 45 using (a + b)² with a round tens number. Do you see a pattern in the last two digits?",
+            "hi": "25, 35 और 45 का वर्ग (a + b)² से, दहाई की पूर्ण संख्या लेकर करो। क्या अंतिम दो अंकों में कोई पैटर्न दिखता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch06-mistake",
+      "topic": "6.3",
+      "template": "sort",
+      "title": {
+        "en": "Spot the mistake",
+        "hi": "ग़लती पकड़ो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "ok",
+            "label": {
+              "en": "Correct",
+              "hi": "सही"
+            }
+          },
+          {
+            "id": "bad",
+            "label": {
+              "en": "Mistake",
+              "hi": "ग़लती"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "m1",
+            "text": {
+              "en": "(a + b)² = a² + b²",
+              "hi": "(a + b)² = a² + b²"
+            },
+            "bin": "bad",
+            "why": {
+              "en": "The two strips 2ab are missing. Try a = b = 1: (1 + 1)² = 4, but 1 + 1 = 2.",
+              "hi": "2ab की दो पट्टियाँ छूट गईं। a = b = 1 लो: (1 + 1)² = 4, पर 1 + 1 = 2।"
+            }
+          },
+          {
+            "id": "m2",
+            "text": {
+              "en": "3(x + 4) = 3x + 4",
+              "hi": "3(x + 4) = 3x + 4"
+            },
+            "bin": "bad",
+            "why": {
+              "en": "The 3 must multiply both terms: 3x + 12.",
+              "hi": "3 को दोनों पदों से गुणा करना है: 3x + 12।"
+            }
+          },
+          {
+            "id": "m3",
+            "text": {
+              "en": "(x + 2)(x + 3) = x² + 5x + 6",
+              "hi": "(x + 2)(x + 3) = x² + 5x + 6"
+            },
+            "bin": "ok",
+            "why": {
+              "en": "x² + 3x + 2x + 6 = x² + 5x + 6.",
+              "hi": "x² + 3x + 2x + 6 = x² + 5x + 6।"
+            }
+          },
+          {
+            "id": "m4",
+            "text": {
+              "en": "−(p − q) = −p + q",
+              "hi": "−(p − q) = −p + q"
+            },
+            "bin": "ok",
+            "why": {
+              "en": "The minus sign multiplies each term: −p and −(−q) = +q.",
+              "hi": "ऋण चिह्न हर पद से गुणा होता है: −p और −(−q) = +q।"
+            }
+          },
+          {
+            "id": "m5",
+            "text": {
+              "en": "(a − b)² = a² − b²",
+              "hi": "(a − b)² = a² − b²"
+            },
+            "bin": "bad",
+            "why": {
+              "en": "It should be a² − 2ab + b². Try a = 3, b = 1: 4 is not 8.",
+              "hi": "यह a² − 2ab + b² होना चाहिए। a = 3, b = 1 लो: 4, 8 नहीं है।"
+            }
+          },
+          {
+            "id": "m6",
+            "text": {
+              "en": "2a × 3a = 6a²",
+              "hi": "2a × 3a = 6a²"
+            },
+            "bin": "ok",
+            "why": {
+              "en": "2 × 3 = 6 and a × a = a².",
+              "hi": "2 × 3 = 6 और a × a = a²।"
+            }
+          },
+          {
+            "id": "m7",
+            "text": {
+              "en": "4y + 3y² = 7y³",
+              "hi": "4y + 3y² = 7y³"
+            },
+            "bin": "bad",
+            "why": {
+              "en": "y and y² are unlike terms; they cannot be added into one term.",
+              "hi": "y और y² असमान पद हैं; इन्हें जोड़कर एक पद नहीं बना सकते।"
+            }
+          },
+          {
+            "id": "m8",
+            "text": {
+              "en": "(m + 1)(m − 1) = m² − 1",
+              "hi": "(m + 1)(m − 1) = m² − 1"
+            },
+            "bin": "ok",
+            "why": {
+              "en": "−m and +m cancel, leaving m² − 1.",
+              "hi": "−m और +m कट जाते हैं, m² − 1 बचता है।"
+            }
+          },
+          {
+            "id": "m9",
+            "text": {
+              "en": "5 − 2(x + 1) = 3x + 3",
+              "hi": "5 − 2(x + 1) = 3x + 3"
+            },
+            "bin": "bad",
+            "why": {
+              "en": "First multiply: 5 − 2x − 2 = 3 − 2x. Do not subtract 5 − 2 first.",
+              "hi": "पहले गुणा करो: 5 − 2x − 2 = 3 − 2x। पहले 5 − 2 मत करो।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:m1",
+          "expect": "correct:m1",
+          "say": {
+            "en": "Tap the first card. Test it with a = 1 and b = 1, then choose Correct or Mistake.",
+            "hi": "पहला कार्ड छुओ। a = 1 और b = 1 से जाँचो, फिर “सही” या “ग़लती” चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is 3(x + 4) = 3x + 4 correct?",
+            "hi": "क्या 3(x + 4) = 3x + 4 सही है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "No, the 4 must also be multiplied",
+              "hi": "नहीं, 4 को भी गुणा करना है"
+            },
+            {
+              "id": "b",
+              "en": "Yes",
+              "hi": "हाँ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:m2",
+          "expect": "correct:m2",
+          "say": {
+            "en": "Sort the card 3(x + 4) = 3x + 4.",
+            "hi": "कार्ड 3(x + 4) = 3x + 4 छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:ok",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the rest. Put in a small number to test each one.",
+            "hi": "बाक़ी छाँटो। हर एक को किसी छोटी संख्या से परखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A quick way to catch a mistake is to put in small numbers. If the two sides give different values even once, the statement is wrong. Most mistakes come from multiplying only one term, or forgetting that a minus sign changes every term inside the bracket.",
+            "hi": "ग़लती पकड़ने का आसान तरीक़ा है छोटी संख्याएँ रखना। अगर एक बार भी दोनों ओर अलग मान आएँ, तो कथन ग़लत है। ज़्यादातर ग़लतियाँ सिर्फ़ एक पद को गुणा करने से, या यह भूलने से होती हैं कि ऋण चिह्न कोष्ठक के हर पद को बदलता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Ankit wrote (x + 3)² = x² + 9. Which value of x shows his mistake?",
+                "hi": "अंकित ने लिखा (x + 3)² = x² + 9। x का कौन-सा मान उसकी ग़लती दिखाता है?"
+              },
+              "options": [
+                "x = 1",
+                "x = 0",
+                {
+                  "en": "No value, it is right",
+                  "hi": "कोई नहीं, यह सही है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "x = 1: (1 + 3)² = 16 but 1 + 9 = 10. They differ, so it is wrong.",
+                "hi": "x = 1: (1 + 3)² = 16 पर 1 + 9 = 10। अलग हैं, इसलिए ग़लत।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "At x = 0 both sides give 9, so x = 0 hides the mistake.",
+                  "hi": "x = 0 पर दोनों ओर 9 आता है, इसलिए x = 0 ग़लती छिपा देता है।"
+                },
+                {
+                  "en": "The middle term 6x is missing, so it is not right in general.",
+                  "hi": "बीच का पद 6x छूट गया, इसलिए यह सामान्य रूप से सही नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write one wrong statement of your own that looks almost right. Ask a friend to find a number that breaks it.",
+            "hi": "अपना एक ग़लत कथन लिखो जो लगभग सही लगे। दोस्त से कहो कि उसे तोड़ने वाली संख्या खोजे।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch06-border",
+      "topic": "6.4",
+      "template": "algebra",
+      "title": {
+        "en": "Counting border tiles two ways",
+        "hi": "किनारे की टाइलें दो तरह से गिनो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "pattern",
+        "equation": "4n+4",
+        "unknown": "n"
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A square flower bed of n by n tiles gets a border of coloured tiles all round. For n = 1 the border has 8 tiles, for n = 2 it has 12. The dots show the border tiles for each n.",
+            "hi": "n गुणा n टाइलों की एक वर्गाकार क्यारी के चारों ओर रंगीन टाइलों का किनारा लगता है। n = 1 पर किनारे में 8 टाइलें हैं, n = 2 पर 12। बिंदु हर n के लिए किनारे की टाइलें दिखाते हैं।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "How many border tiles for n = 10?",
+            "hi": "n = 10 पर किनारे की कितनी टाइलें होंगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "44 tiles",
+              "hi": "44 टाइलें"
+            },
+            {
+              "id": "b",
+              "en": "40 tiles",
+              "hi": "40 टाइलें"
+            },
+            {
+              "id": "c",
+              "en": "48 tiles",
+              "hi": "48 टाइलें"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Look at how each term grows, then type the number of dots for the term asked and check.",
+            "hi": "देखो हर पद कैसे बढ़ता है, फिर पूछे गए पद के बिंदुओं की संख्या लिखकर जाँचो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Way 1: four sides of n tiles, plus 4 corner tiles: 4n + 4. Way 2: the whole (n + 2) by (n + 2) square minus the n by n bed: (n + 2)² − n² = n² + 4n + 4 − n² = 4n + 4. Way 3: four strips of n + 1 tiles each: 4(n + 1). All ways give the same expression.",
+            "hi": "तरीक़ा 1: n टाइलों की चार भुजाएँ, और 4 कोने की टाइलें: 4n + 4। तरीक़ा 2: पूरा (n + 2) गुणा (n + 2) वर्ग में से n गुणा n क्यारी घटाओ: (n + 2)² − n² = n² + 4n + 4 − n² = 4n + 4। तरीक़ा 3: n + 1 टाइलों की चार पट्टियाँ: 4(n + 1)। सब तरीक़े एक ही व्यंजक देते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which expression does NOT count the border tiles?",
+                "hi": "कौन-सा व्यंजक किनारे की टाइलें नहीं गिनता?"
+              },
+              "options": [
+                "4n",
+                "4(n + 1)",
+                "(n + 2)² − n²"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "4n forgets the 4 corner tiles.",
+                "hi": "4n में 4 कोने की टाइलें छूट गईं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "4(n + 1) = 4n + 4, four strips of n + 1: this one is right.",
+                  "hi": "4(n + 1) = 4n + 4, n + 1 की चार पट्टियाँ: यह सही है।"
+                },
+                {
+                  "en": "(n + 2)² − n² simplifies to 4n + 4: this one is right.",
+                  "hi": "(n + 2)² − n² सरल करने पर 4n + 4: यह सही है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A border has 64 tiles. What is n?",
+                "hi": "किनारे में 64 टाइलें हैं। n क्या है?"
+              },
+              "options": [
+                "15",
+                "16",
+                "14"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "4n + 4 = 64, so 4n = 60 and n = 15.",
+                "hi": "4n + 4 = 64, इसलिए 4n = 60 और n = 15।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "4 × 16 = 64 forgets the corners; with them n = 16 needs 68 tiles.",
+                  "hi": "4 × 16 = 64 में कोने छूट गए; उनके साथ n = 16 पर 68 टाइलें लगेंगी।"
+                },
+                {
+                  "en": "n = 14 gives 4 × 14 + 4 = 60 tiles, not 64.",
+                  "hi": "n = 14 पर 4 × 14 + 4 = 60 टाइलें, 64 नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Draw a rangoli border of dots around a square on paper. Count it in a new way and write your own expression.",
+            "hi": "काग़ज़ पर एक वर्ग के चारों ओर बिंदुओं का रंगोली किनारा बनाओ। उसे नए तरीक़े से गिनो और अपना व्यंजक लिखो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "6.1",
+      "use": "Chapter hook: a kitchen garden",
+      "shows": "A rectangular kitchen garden behind a house, divided by narrow paths into four unequal plots of spinach, tomato, chilli and coriander",
+      "view": "High angle from a terrace, morning sun",
+      "right": "Four plots clearly rectangular, paths straight",
+      "avoid": "People, labels, signboards"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "6.1",
+      "use": "Area model with tiles",
+      "shows": "Coloured paper rectangles on a table: one big square, two long strips and a small square, arranged into one large rectangle",
+      "view": "Top-down, flat soft light",
+      "right": "Pieces fit edge to edge without gaps",
+      "avoid": "Writing on the pieces, glossy glare"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "6.2",
+      "use": "A square courtyard",
+      "shows": "A square stone courtyard of a home with a smaller square tulsi platform in one corner and two paved strips along the sides",
+      "view": "Drone-like top view, clean shadows",
+      "right": "Square looks truly square; strips equal in width",
+      "avoid": "People, vehicles, text"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "6.1",
+      "use": "Mental maths at a shop",
+      "shows": "A kirana shopkeeper's counter with six identical packets and a steel tray of coins, ready for a quick bill",
+      "view": "Eye level from the customer side, warm shop light",
+      "right": "Six identical packets; coins real Indian design",
+      "avoid": "Brand names, faces, readable prices"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "6.4",
+      "use": "Border of tiles",
+      "shows": "Three frames: a 1 × 1, 2 × 2 and 3 × 3 square of terracotta tiles each with a border of blue tiles",
+      "view": "Top-down, same scale in every frame, files -f1 -f2 -f3",
+      "right": "Border is exactly one tile wide; corners filled",
+      "avoid": "Uneven grout, any numbers"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "6.3",
+      "use": "Coin triangle puzzle",
+      "shows": "Ten one-rupee coins arranged in a triangle of rows 1, 2, 3, 4 on a dark cloth",
+      "view": "Top-down, soft side light",
+      "right": "Equal spacing; real ₹1 coins",
+      "avoid": "Shadows that hide coins, fake coin designs"
+    }
+  ]
+}

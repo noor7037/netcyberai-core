@@ -1,0 +1,1682 @@
+{
+ "chapter_key": "u.c11.psychology.kepy1.ch04",
+ "class": 11,
+ "subject_id": "psychology",
+ "title": "Sensory, Attentional and Perceptual Processes",
+ "source": "https://ncert.nic.in/textbook/pdf/kepy104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Knowing the world: stimuli and the senses",
+   "labs": [
+    "c11-psychology-kepy1-ch04-senses"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Selective attention",
+   "labs": [
+    "c11-psychology-kepy1-ch04-stroop"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Divided attention",
+   "labs": [
+    "c11-psychology-kepy1-ch04-divided"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Sustained attention, span of attention and ADHD",
+   "labs": [],
+   "why_no_lab": "Best discussed and read; the numbers-on-board activity needs a class, not a screen."
+  },
+  {
+   "n": "4.5",
+   "title": "Perceptual processes and the perceiver",
+   "labs": [],
+   "why_no_lab": "Expectancy and set are best shown by the teacher's board demonstration (Activity 4.2) and the reader."
+  },
+  {
+   "n": "4.6",
+   "title": "Principles of perceptual organisation",
+   "labs": [
+    "c11-psychology-kepy1-ch04-gestalt",
+    "c11-psychology-kepy1-ch04-closure"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.7",
+   "title": "Perception of space, depth and distance",
+   "labs": [
+    "c11-psychology-kepy1-ch04-depth"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.8",
+   "title": "Perceptual constancies",
+   "labs": [
+    "c11-psychology-kepy1-ch04-constancy"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.9",
+   "title": "Illusions",
+   "labs": [
+    "c11-psychology-kepy1-ch04-muller-lyer"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.10",
+   "title": "Socio-cultural influences on perception",
+   "labs": [],
+   "why_no_lab": "Best shown with photographs and stories from different regions in the reader."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-psychology-kepy1-ch04-senses",
+   "topic": "4.1",
+   "template": "match",
+   "title": {
+    "en": "Stimulus and the sense that takes it in",
+    "hi": "उद्दीपक और उसे ग्रहण करने वाली इंद्रिय"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "vis",
+      "left": {
+       "en": "The bright colours of a rangoli",
+       "hi": "रंगोली के चटक रंग"
+      },
+      "right": {
+       "en": "Vision (eyes)",
+       "hi": "दृष्टि (आँखें)"
+      },
+      "why": {
+       "en": "Light is the stimulus for the eyes.",
+       "hi": "आँखों के लिए प्रकाश उद्दीपक है।"
+      }
+     },
+     {
+      "id": "hear",
+      "left": {
+       "en": "The sound of a temple bell",
+       "hi": "मंदिर की घंटी की आवाज़"
+      },
+      "right": {
+       "en": "Hearing (ears)",
+       "hi": "श्रवण (कान)"
+      },
+      "why": {
+       "en": "Sound waves are taken in by the ears.",
+       "hi": "ध्वनि-तरंगों को कान ग्रहण करते हैं।"
+      }
+     },
+     {
+      "id": "smell",
+      "left": {
+       "en": "The smell of fresh jalebis",
+       "hi": "ताज़ी जलेबियों की गंध"
+      },
+      "right": {
+       "en": "Smell (nose)",
+       "hi": "घ्राण (नाक)"
+      },
+      "why": {
+       "en": "Tiny particles in the air reach the nose.",
+       "hi": "हवा के सूक्ष्म कण नाक तक पहुँचते हैं।"
+      }
+     },
+     {
+      "id": "taste",
+      "left": {
+       "en": "The sweetness of a ripe mango",
+       "hi": "पके आम की मिठास"
+      },
+      "right": {
+       "en": "Taste (tongue)",
+       "hi": "स्वाद (जीभ)"
+      },
+      "why": {
+       "en": "Taste buds on the tongue sense sweet, sour, salty and bitter.",
+       "hi": "जीभ की स्वाद-कलिकाएँ मीठा, खट्टा, नमकीन और कड़वा पहचानती हैं।"
+      }
+     },
+     {
+      "id": "touch",
+      "left": {
+       "en": "The warmth of a cup of chai",
+       "hi": "चाय के कप की गर्माहट"
+      },
+      "right": {
+       "en": "Touch (skin)",
+       "hi": "स्पर्श (त्वचा)"
+      },
+      "why": {
+       "en": "Skin senses warmth, pressure and pain.",
+       "hi": "त्वचा गर्मी, दबाव और दर्द महसूस करती है।"
+      }
+     },
+     {
+      "id": "body",
+      "left": {
+       "en": "Knowing where your arm is with eyes shut",
+       "hi": "आँखें बंद होने पर भी हाथ की स्थिति जानना"
+      },
+      "right": {
+       "en": "Body sense (muscles and joints)",
+       "hi": "शारीरिक संवेदना (मांसपेशियाँ और जोड़)"
+      },
+      "why": {
+       "en": "Sensors in muscles and joints report the body's position.",
+       "hi": "मांसपेशियों और जोड़ों के संवेदक शरीर की स्थिति बताते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:vis",
+     "expect": "matched:vis",
+     "say": {
+      "en": "Tap \"The bright colours of a rangoli\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"रंगोली के चटक रंग\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which sense do you think tells you where your hand is in the dark?",
+      "hi": "तुम्हारे विचार से अँधेरे में हाथ कहाँ है, यह कौन-सी इंद्रिय बताती है?"
+     },
+     "options": [
+      {
+       "id": "e",
+       "en": "Eyes",
+       "hi": "आँखें"
+      },
+      {
+       "id": "b",
+       "en": "Body sense",
+       "hi": "शारीरिक संवेदना"
+      },
+      {
+       "id": "n",
+       "en": "Nose",
+       "hi": "नाक"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "left:body",
+     "expect": "matched:body",
+     "say": {
+      "en": "Now match \"Knowing where your arm is with eyes shut\".",
+      "hi": "अब \"आँखें बंद होने पर भी हाथ की स्थिति जानना\" को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then press Check.",
+      "hi": "सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each sense organ takes in one kind of stimulus and turns it into signals for the brain. Besides sight, hearing, smell, taste and touch, there is a body sense that tells us how our muscles and joints are placed.",
+      "hi": "हर इंद्रिय एक तरह का उद्दीपक लेकर उसे मस्तिष्क के संकेतों में बदलती है। देखने, सुनने, सूँघने, चखने और छूने के अलावा एक शारीरिक संवेदना भी है जो बताती है कि हमारी मांसपेशियाँ और जोड़ कैसे रखे हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a stimulus?",
+        "hi": "उद्दीपक क्या है?"
+       },
+       "options": [
+        {
+         "en": "Anything that can excite a sense organ",
+         "hi": "कुछ भी जो किसी इंद्रिय को उत्तेजित कर सके"
+        },
+        {
+         "en": "A part of the brain",
+         "hi": "मस्तिष्क का एक भाग"
+        },
+        {
+         "en": "A kind of memory",
+         "hi": "एक तरह की याददाश्त"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Light, sound, smell and pressure are stimuli.",
+        "hi": "प्रकाश, ध्वनि, गंध और दबाव उद्दीपक हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The brain is where signals are processed, not the stimulus.",
+         "hi": "मस्तिष्क में संकेतों का संसाधन होता है, वह उद्दीपक नहीं है।"
+        },
+        {
+         "en": "Memory is stored information, not a stimulus.",
+         "hi": "याददाश्त संचित सूचना है, उद्दीपक नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The warmth of tea is sensed by…",
+        "hi": "चाय की गर्माहट कौन महसूस करता है?"
+       },
+       "options": [
+        {
+         "en": "The tongue's taste buds",
+         "hi": "जीभ की स्वाद-कलिकाएँ"
+        },
+        {
+         "en": "The skin",
+         "hi": "त्वचा"
+        },
+        {
+         "en": "The ears",
+         "hi": "कान"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Skin has receptors for warmth, cold, pressure and pain.",
+        "hi": "त्वचा में गर्मी, ठंड, दबाव और दर्द के ग्राही होते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Taste buds sense flavour, not temperature on your hand.",
+         "hi": "स्वाद-कलिकाएँ स्वाद पहचानती हैं, हाथ की गर्माहट नहीं।"
+        },
+        "",
+        {
+         "en": "Ears take in sound only.",
+         "hi": "कान केवल ध्वनि ग्रहण करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Close your eyes for a minute and list every stimulus you notice around you. Which sense gave you each one?",
+      "hi": "एक मिनट आँखें बंद करो और आसपास के हर उद्दीपक की सूची बनाओ। हर एक को किस इंद्रिय ने दिया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch04-stroop",
+   "topic": "4.2",
+   "template": "mind",
+   "title": {
+    "en": "Selective attention: the Stroop test",
+    "hi": "चयनात्मक ध्यान: स्ट्रूप परीक्षण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "experiment": "stroop",
+    "trials": 6
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "respond",
+     "expect": "trial",
+     "say": {
+      "en": "Press Start. Name the colour of the ink, not the word that is written.",
+      "hi": "\"शुरू करो\" दबाओ। स्याही का रंग बताओ, लिखा हुआ शब्द नहीं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When the word \"RED\" is printed in blue ink, will it be harder to say \"blue\"?",
+      "hi": "जब \"लाल\" शब्द नीली स्याही में छपा हो, तो क्या \"नीला\" कहना कठिन होगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it will slow me down",
+       "hi": "हाँ, मैं धीमा पड़ूँगा"
+      },
+      {
+       "id": "no",
+       "en": "No, no difference",
+       "hi": "नहीं, कोई फ़र्क़ नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "respond",
+     "expect": "result",
+     "say": {
+      "en": "Finish all the rounds to see your result.",
+      "hi": "सब दौर पूरे करो और अपना परिणाम देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Reading is so automatic that the word pulls your attention, even when you only want the colour. Selective attention means choosing one thing and ignoring the rest, and it takes effort. This is a demonstration, not a test of you.",
+      "hi": "पढ़ना इतना स्वचालित है कि शब्द तुम्हारा ध्यान खींच लेता है, जबकि तुम्हें केवल रंग चाहिए। चयनात्मक ध्यान का अर्थ है एक चीज़ चुनना और बाक़ी को छोड़ना, और इसमें मेहनत लगती है। यह प्रदर्शन है, तुम्हारी परीक्षा नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why was the matching word-and-colour round easier?",
+        "hi": "शब्द और रंग मेल खाने वाला दौर आसान क्यों था?"
+       },
+       "options": [
+        {
+         "en": "Both told you the same thing",
+         "hi": "दोनों एक ही बात बता रहे थे"
+        },
+        {
+         "en": "Colours are easier to like",
+         "hi": "रंग पसंद करना आसान होता है"
+        },
+        {
+         "en": "It was shorter",
+         "hi": "वह छोटा था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "There was nothing to ignore, so attention did not have to choose.",
+        "hi": "अनदेखा करने को कुछ नहीं था, इसलिए ध्यान को चुनना नहीं पड़ा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Liking has nothing to do with it.",
+         "hi": "पसंद का इससे कोई संबंध नहीं।"
+        },
+        {
+         "en": "Length is the same in both kinds of rounds.",
+         "hi": "दोनों तरह के दौर बराबर लंबे हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Selective attention means…",
+        "hi": "चयनात्मक ध्यान का अर्थ है…"
+       },
+       "options": [
+        {
+         "en": "Paying attention to everything",
+         "hi": "हर चीज़ पर ध्यान देना"
+        },
+        {
+         "en": "Choosing some stimuli and ignoring others",
+         "hi": "कुछ उद्दीपक चुनना और बाक़ी को छोड़ना"
+        },
+        {
+         "en": "Falling asleep",
+         "hi": "सो जाना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "We cannot take in everything, so attention selects.",
+        "hi": "हम सब कुछ ग्रहण नहीं कर सकते, इसलिए ध्यान चुनता है।"
+       },
+       "wrong": [
+        {
+         "en": "That would overload the mind.",
+         "hi": "इससे मन पर बोझ पड़ जाता है।"
+        },
+        "",
+        {
+         "en": "Sleep is the loss of attention, not a choice of it.",
+         "hi": "नींद ध्यान का खोना है, उसका चुनाव नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try again and notice which rounds feel slower. Does speed improve with practice?",
+      "hi": "फिर से करो और देखो कौन-से दौर धीमे लगते हैं। क्या अभ्यास से गति बढ़ती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch04-divided",
+   "topic": "4.3",
+   "template": "mind",
+   "title": {
+    "en": "Divided attention: two jobs at once",
+    "hi": "विभाजित ध्यान: एक साथ दो काम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "experiment": "attention-split",
+    "trials": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "respond",
+     "expect": "trial",
+     "say": {
+      "en": "Press Start. Tap the lamp that lights up while you also solve the small sum.",
+      "hi": "\"शुरू करो\" दबाओ। जो दीया जले उसे दबाओ और साथ में छोटा जोड़ भी हल करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When you do two tasks at once, will you do each one as well as when you do it alone?",
+      "hi": "जब तुम एक साथ दो काम करते हो, तो क्या हर एक उतना ही अच्छा होगा जितना अकेले करने पर?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "Yes, just as well",
+       "hi": "हाँ, उतना ही अच्छा"
+      },
+      {
+       "id": "less",
+       "en": "Probably a little worse",
+       "hi": "शायद थोड़ा कमज़ोर"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "respond",
+     "expect": "result",
+     "say": {
+      "en": "Finish all the rounds to see your result.",
+      "hi": "सब दौर पूरे करो और अपना परिणाम देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Attention is limited. Doing two things at once is possible when one is very easy or well practised, like walking and chatting. When both need thought, each gets less attention, so mistakes and delays grow. This is a demonstration, not a test of you.",
+      "hi": "ध्यान सीमित है। एक साथ दो काम तब हो पाते हैं जब एक बहुत आसान या ख़ूब अभ्यस्त हो, जैसे चलना और बातें करना। दोनों में सोचना पड़े तो हर एक को कम ध्यान मिलता है, इसलिए ग़लतियाँ और देरी बढ़ती हैं। यह प्रदर्शन है, तुम्हारी परीक्षा नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which two tasks can most easily be done together?",
+        "hi": "कौन-से दो काम सबसे आसानी से साथ हो सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "Walking and chatting",
+         "hi": "चलना और बातें करना"
+        },
+        {
+         "en": "Solving a hard sum and writing an essay",
+         "hi": "कठिन सवाल हल करना और निबंध लिखना"
+        },
+        {
+         "en": "Reading a new story and listening to a lecture",
+         "hi": "नई कहानी पढ़ना और व्याख्यान सुनना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Walking is so practised that it needs little attention.",
+        "hi": "चलना इतना अभ्यस्त है कि उसमें कम ध्यान लगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both need a lot of thinking, so attention is overloaded.",
+         "hi": "दोनों में बहुत सोचना पड़ता है, इसलिए ध्यान पर बोझ पड़ता है।"
+        },
+        {
+         "en": "Both need words, so they compete for the same attention.",
+         "hi": "दोनों में शब्द लगते हैं, इसलिए वे एक ही ध्यान के लिए टकराते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is it risky to use a phone while crossing a road?",
+        "hi": "सड़क पार करते समय फ़ोन चलाना जोखिम भरा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Phones are heavy",
+         "hi": "फ़ोन भारी होते हैं"
+        },
+        {
+         "en": "Attention is shared, so danger may be missed",
+         "hi": "ध्यान बँट जाता है, इसलिए ख़तरा छूट सकता है"
+        },
+        {
+         "en": "Roads are noisy anyway",
+         "hi": "सड़क वैसे भी शोरगुल वाली होती है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Divided attention means less is left for watching traffic.",
+        "hi": "ध्यान बँटने से यातायात देखने के लिए कम बचता है।"
+       },
+       "wrong": [
+        {
+         "en": "Weight is not the problem.",
+         "hi": "वज़न समस्या नहीं है।"
+        },
+        "",
+        {
+         "en": "Noise does not explain why attention is split.",
+         "hi": "शोर से यह नहीं समझ आता कि ध्यान क्यों बँटता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of two tasks you do together daily. Which one is automatic, and which needs your attention?",
+      "hi": "दो ऐसे काम सोचो जो तुम रोज़ साथ करते हो। कौन-सा स्वचालित है और किसमें ध्यान लगता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch04-gestalt",
+   "topic": "4.6",
+   "template": "match",
+   "title": {
+    "en": "How we organise what we see",
+    "hi": "हम जो देखते हैं उसे कैसे संगठित करते हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "prox",
+      "left": {
+       "en": "Proximity",
+       "hi": "निकटता"
+      },
+      "right": {
+       "en": "Dots placed close together look like one group",
+       "hi": "पास-पास रखे बिंदु एक समूह लगते हैं"
+      },
+      "why": {
+       "en": "Things near each other are seen as belonging together.",
+       "hi": "पास-पास की चीज़ें साथ की मानी जाती हैं।"
+      }
+     },
+     {
+      "id": "sim",
+      "left": {
+       "en": "Similarity",
+       "hi": "समानता"
+      },
+      "right": {
+       "en": "Red and blue beads in rows look like red lines and blue lines",
+       "hi": "पंक्तियों में लाल और नीले मनके लाल और नीली रेखाओं जैसे दिखते हैं"
+      },
+      "why": {
+       "en": "Things that look alike are grouped together.",
+       "hi": "एक-से दिखने वाली चीज़ें एक समूह में गिनी जाती हैं।"
+      }
+     },
+     {
+      "id": "clos",
+      "left": {
+       "en": "Closure",
+       "hi": "समापन"
+      },
+      "right": {
+       "en": "A circle with a tiny gap is still seen as a circle",
+       "hi": "थोड़ी खुली हुई गोल आकृति भी वृत्त ही दिखती है"
+      },
+      "why": {
+       "en": "The mind fills small gaps to see a whole.",
+       "hi": "मन छोटे अंतर भरकर पूरा रूप देखता है।"
+      }
+     },
+     {
+      "id": "cont",
+      "left": {
+       "en": "Continuity",
+       "hi": "निरंतरता"
+      },
+      "right": {
+       "en": "Two wavy lines crossing are seen as two smooth lines",
+       "hi": "एक-दूसरे को काटती दो लहरदार रेखाएँ दो चिकनी रेखाओं जैसी दिखती हैं"
+      },
+      "why": {
+       "en": "We follow smooth paths instead of sudden jumps.",
+       "hi": "हम अचानक छलाँगों के बजाय चिकने रास्तों का पीछा करते हैं।"
+      }
+     },
+     {
+      "id": "fig",
+      "left": {
+       "en": "Figure and ground",
+       "hi": "आकृति और पृष्ठभूमि"
+      },
+      "right": {
+       "en": "A white vase between two dark faces",
+       "hi": "दो गहरे चेहरों के बीच एक सफ़ेद फूलदान"
+      },
+      "why": {
+       "en": "We split a scene into an object that stands out and a background.",
+       "hi": "हम दृश्य को उभरी हुई वस्तु और पृष्ठभूमि में बाँट लेते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:clos",
+     "expect": "matched:clos",
+     "say": {
+      "en": "Tap \"Closure\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"समापन\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A drawing of a dog is made only of a few dashes. Will you still see a dog?",
+      "hi": "एक कुत्ते का चित्र केवल कुछ डैश से बना है। क्या तुम फिर भी कुत्ता देखोगे?"
+     },
+     "options": [
+      {
+       "id": "y",
+       "en": "Yes, my mind fills the gaps",
+       "hi": "हाँ, मेरा मन ख़ाली जगहें भर देगा"
+      },
+      {
+       "id": "n",
+       "en": "No, I will see only dashes",
+       "hi": "नहीं, मुझे केवल डैश दिखेंगे"
+      }
+     ],
+     "answer": "y"
+    },
+    {
+     "kind": "do",
+     "target": "left:sim",
+     "expect": "matched:sim",
+     "say": {
+      "en": "Now match \"Similarity\".",
+      "hi": "अब \"समानता\" को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then press Check.",
+      "hi": "सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The mind does not see separate dots and lines. It groups them by nearness, likeness, smooth paths and filled gaps into shapes that mean something. This is what the Gestalt psychologists noticed: we see wholes first.",
+      "hi": "मन अलग-अलग बिंदु और रेखाएँ नहीं देखता। वह उन्हें निकटता, समानता, चिकने रास्तों और भरे हुए अंतरों से अर्थवान आकृतियों में बाँध देता है। यही गेस्टाल्ट मनोवैज्ञानिकों ने देखा: हम पहले पूर्ण रूप देखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Stars in the sky that are close together seem like a pattern. Which principle?",
+        "hi": "आकाश में पास-पास के तारे एक आकृति जैसे दिखते हैं। यह कौन-सा सिद्धांत है?"
+       },
+       "options": [
+        {
+         "en": "Closure",
+         "hi": "समापन"
+        },
+        {
+         "en": "Proximity",
+         "hi": "निकटता"
+        },
+        {
+         "en": "Similarity",
+         "hi": "समानता"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Nearness makes things look grouped.",
+        "hi": "पास-पास होना चीज़ों को समूह जैसा दिखाता है।"
+       },
+       "wrong": [
+        {
+         "en": "Closure fills gaps in a shape.",
+         "hi": "समापन किसी आकृति के अंतर भरता है।"
+        },
+        "",
+        {
+         "en": "Similarity groups things that look alike, not those that are near.",
+         "hi": "समानता एक-सी दिखने वाली चीज़ों को जोड़ती है, पास की को नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we see a whole shape in a broken line drawing?",
+        "hi": "टूटी रेखाओं वाले चित्र में हमें पूरी आकृति क्यों दिखती है?"
+       },
+       "options": [
+        {
+         "en": "The eyes are broken",
+         "hi": "आँखें टूटी हैं"
+        },
+        {
+         "en": "The mind completes the gaps",
+         "hi": "मन अंतर पूरे कर देता है"
+        },
+        {
+         "en": "The drawing is hidden",
+         "hi": "चित्र छिपा है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Closure: the mind prefers complete shapes.",
+        "hi": "समापन: मन पूर्ण आकृति को पसंद करता है।"
+       },
+       "wrong": [
+        {
+         "en": "The eyes are fine; the organising happens in the mind.",
+         "hi": "आँखें ठीक हैं; संगठन मन में होता है।"
+        },
+        "",
+        {
+         "en": "The drawing is plainly visible.",
+         "hi": "चित्र साफ़ दिख रहा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a tiled floor or a window grille at home. Which principle helps you see patterns in it?",
+      "hi": "घर में टाइल वाला फ़र्श या खिड़की की जाली देखो। उसमें आकृतियाँ देखने में कौन-सा सिद्धांत मदद करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch04-closure",
+   "topic": "4.6",
+   "template": "mind",
+   "title": {
+    "en": "Seeing a shape that is not there",
+    "hi": "वह आकृति देखना जो है ही नहीं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "experiment": "illusion:kanizsa",
+    "trials": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "trial",
+     "say": {
+      "en": "Press Start and answer the first question about the picture.",
+      "hi": "\"शुरू करो\" दबाओ और चित्र के बारे में पहले प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In this picture there is no triangle drawn. Will your mind still see one?",
+      "hi": "इस चित्र में कोई त्रिभुज खींचा नहीं गया है। क्या तुम्हारा मन फिर भी एक देखेगा?"
+     },
+     "options": [
+      {
+       "id": "y",
+       "en": "Yes",
+       "hi": "हाँ"
+      },
+      {
+       "id": "n",
+       "en": "No",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "y"
+    },
+    {
+     "kind": "do",
+     "target": "respond",
+     "expect": "result",
+     "say": {
+      "en": "Finish the tasks to see your result.",
+      "hi": "काम पूरे करो और अपना परिणाम देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The picture has only pac-man shapes and open angles, yet your mind sees a bright triangle on top. It completes the missing edges. This is closure at work, a good example of how perception adds to what the eyes receive. This is a demonstration, not a test of you.",
+      "hi": "चित्र में केवल पैक-मैन जैसी आकृतियाँ और खुले कोण हैं, फिर भी तुम्हारा मन ऊपर एक चमकीला त्रिभुज देखता है। वह छूटी हुई किनारियाँ पूरी कर देता है। यह समापन का काम है और दिखाता है कि प्रत्यक्षण आँखों को मिली सूचना में कुछ जोड़ता है। यह प्रदर्शन है, तुम्हारी परीक्षा नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The triangle you saw was…",
+        "hi": "जो त्रिभुज तुमने देखा वह…"
+       },
+       "options": [
+        {
+         "en": "Drawn on the page",
+         "hi": "पन्ने पर बना था"
+        },
+        {
+         "en": "Built by your mind from the clues",
+         "hi": "सुरागों से तुम्हारे मन ने बनाया"
+        },
+        {
+         "en": "A fault in the screen",
+         "hi": "स्क्रीन की ख़राबी था"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "There was no triangle on the page; the mind completed the edges.",
+        "hi": "पन्ने पर त्रिभुज नहीं था; मन ने किनारियाँ पूरी कीं।"
+       },
+       "wrong": [
+        {
+         "en": "No lines of a triangle were drawn.",
+         "hi": "त्रिभुज की रेखाएँ खींची ही नहीं गई थीं।"
+        },
+        "",
+        {
+         "en": "The screen is working as designed.",
+         "hi": "स्क्रीन ठीक काम कर रही है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "This shows that perception is…",
+        "hi": "इससे पता चलता है कि प्रत्यक्षण…"
+       },
+       "options": [
+        {
+         "en": "Only a copy of the world",
+         "hi": "दुनिया की केवल नक़ल है"
+        },
+        {
+         "en": "An active building of meaning",
+         "hi": "अर्थ का सक्रिय निर्माण है"
+        },
+        {
+         "en": "Always correct",
+         "hi": "हमेशा सही होता है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The brain adds and organises information.",
+        "hi": "मस्तिष्क सूचना जोड़ता और संगठित करता है।"
+       },
+       "wrong": [
+        {
+         "en": "If it were only a copy, you would see no triangle.",
+         "hi": "अगर यह केवल नक़ल होती तो त्रिभुज न दिखता।"
+        },
+        "",
+        {
+         "en": "Illusions show perception can be wrong.",
+         "hi": "भ्रम दिखाते हैं कि प्रत्यक्षण ग़लत भी हो सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slowly look at the picture again. Does the triangle look brighter than its background? Why might that be?",
+      "hi": "चित्र को धीरे से फिर देखो। क्या त्रिभुज अपनी पृष्ठभूमि से ज़्यादा चमकीला लगता है? ऐसा क्यों हो सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch04-depth",
+   "topic": "4.7",
+   "template": "sort",
+   "title": {
+    "en": "Judging depth and distance",
+    "hi": "गहराई और दूरी का अनुमान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mono",
+      "label": {
+       "en": "Monocular cue (one eye)",
+       "hi": "एकनेत्री संकेत (एक आँख)"
+      }
+     },
+     {
+      "id": "bino",
+      "label": {
+       "en": "Binocular cue (two eyes)",
+       "hi": "द्विनेत्री संकेत (दो आँखें)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "lin",
+      "text": {
+       "en": "Railway tracks seem to meet far away",
+       "hi": "दूर रेल की पटरियाँ मिलती दिखती हैं"
+      },
+      "bin": "mono",
+      "why": {
+       "en": "Linear perspective works with just one eye.",
+       "hi": "रेखीय परिप्रेक्ष्य एक आँख से भी काम करता है।"
+      }
+     },
+     {
+      "id": "size",
+      "text": {
+       "en": "A far bus looks smaller than a near bus",
+       "hi": "दूर की बस पास की बस से छोटी दिखती है"
+      },
+      "bin": "mono",
+      "why": {
+       "en": "Relative size is a one-eye cue.",
+       "hi": "सापेक्ष आकार एक आँख का संकेत है।"
+      }
+     },
+     {
+      "id": "over",
+      "text": {
+       "en": "A near tree hides part of a far tree",
+       "hi": "पास का पेड़ दूर के पेड़ का हिस्सा ढक देता है"
+      },
+      "bin": "mono",
+      "why": {
+       "en": "Overlap tells which is nearer, with one eye.",
+       "hi": "ढकना बताता है कि कौन पास है, एक आँख से भी।"
+      }
+     },
+     {
+      "id": "tex",
+      "text": {
+       "en": "Pebbles look finer and denser far away",
+       "hi": "दूर कंकड़ बारीक और घने दिखते हैं"
+      },
+      "bin": "mono",
+      "why": {
+       "en": "Texture gradient is a one-eye cue.",
+       "hi": "बनावट की ढलान एक आँख का संकेत है।"
+      }
+     },
+     {
+      "id": "shad",
+      "text": {
+       "en": "Light and shadow on a ball show its roundness",
+       "hi": "गेंद पर प्रकाश और छाया उसकी गोलाई दिखाती है"
+      },
+      "bin": "mono",
+      "why": {
+       "en": "Shading helps one eye judge shape and depth.",
+       "hi": "छायांकन एक आँख को आकार और गहराई समझाता है।"
+      }
+     },
+     {
+      "id": "disp",
+      "text": {
+       "en": "Each eye sees a slightly different picture",
+       "hi": "हर आँख को थोड़ी अलग तस्वीर दिखती है"
+      },
+      "bin": "bino",
+      "why": {
+       "en": "Retinal disparity needs both eyes.",
+       "hi": "दृष्टिपटलीय असमानता के लिए दोनों आँखें चाहिए।"
+      }
+     },
+     {
+      "id": "conv",
+      "text": {
+       "en": "Eyes turn inward to look at a near object",
+       "hi": "पास की वस्तु देखने पर आँखें भीतर की ओर मुड़ती हैं"
+      },
+      "bin": "bino",
+      "why": {
+       "en": "Convergence involves both eyes together.",
+       "hi": "अभिसरण में दोनों आँखें साथ काम करती हैं।"
+      }
+     },
+     {
+      "id": "acc",
+      "text": {
+       "en": "The lens becomes thicker for a near object",
+       "hi": "पास की वस्तु के लिए लेंस मोटा हो जाता है"
+      },
+      "bin": "mono",
+      "why": {
+       "en": "Accommodation happens in each eye alone.",
+       "hi": "समायोजन हर आँख में अलग-अलग होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:lin",
+     "expect": "placed:lin",
+     "say": {
+      "en": "Tap the card \"Railway tracks seem to meet far away\" and then the group where you think it belongs.",
+      "hi": "कार्ड \"दूर रेल की पटरियाँ मिलती दिखती हैं\" दबाओ, फिर वह समूह दबाओ जहाँ तुम्हें लगता है कि यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Close one eye and try to touch the tip of a pencil held by a friend. What happens?",
+      "hi": "एक आँख बंद करके दोस्त के पकड़े पेंसिल के सिरे को छूने की कोशिश करो। क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "h",
+       "en": "It is harder to judge the distance",
+       "hi": "दूरी का अनुमान कठिन हो जाता है"
+      },
+      {
+       "id": "e",
+       "en": "It is just as easy",
+       "hi": "उतना ही आसान रहता है"
+      }
+     ],
+     "answer": "h"
+    },
+    {
+     "kind": "do",
+     "target": "card:disp",
+     "expect": "placed:disp",
+     "say": {
+      "en": "Now place the card \"Each eye sees a slightly different picture\".",
+      "hi": "अब कार्ड \"हर आँख को थोड़ी अलग तस्वीर दिखती है\" रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Depth is judged from many clues. Monocular cues work even with one eye, such as overlap and perspective. Binocular cues need two eyes, because each eye sees from a slightly different place.",
+      "hi": "गहराई का अनुमान कई संकेतों से लगता है। एकनेत्री संकेत एक आँख से भी काम करते हैं, जैसे ढकना और परिप्रेक्ष्य। द्विनेत्री संकेतों के लिए दो आँखें चाहिए, क्योंकि हर आँख थोड़ी अलग जगह से देखती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A photograph gives a feeling of depth. Which kind of cue does it use?",
+        "hi": "एक फ़ोटो गहराई का अहसास देती है। यह किस प्रकार का संकेत उपयोग करती है?"
+       },
+       "options": [
+        {
+         "en": "Monocular cues",
+         "hi": "एकनेत्री संकेत"
+        },
+        {
+         "en": "Binocular cues",
+         "hi": "द्विनेत्री संकेत"
+        },
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A flat picture can show overlap, size and perspective, all one-eye cues.",
+        "hi": "समतल चित्र ढकना, आकार और परिप्रेक्ष्य दिखा सकता है, ये सब एक आँख के संकेत हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two slightly different views come only from real objects seen with two eyes.",
+         "hi": "दो थोड़े अलग दृश्य असली वस्तुओं को दो आँखों से देखने पर ही मिलते हैं।"
+        },
+        {
+         "en": "It does use cues, the monocular ones.",
+         "hi": "यह संकेत उपयोग करती है, एकनेत्री वाले।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Retinal disparity is useful because…",
+        "hi": "दृष्टिपटलीय असमानता उपयोगी है क्योंकि…"
+       },
+       "options": [
+        {
+         "en": "Two eyes get slightly different pictures that the brain compares",
+         "hi": "दो आँखों को थोड़ी अलग तस्वीरें मिलती हैं जिनकी मस्तिष्क तुलना करता है"
+        },
+        {
+         "en": "One eye is stronger",
+         "hi": "एक आँख ज़्यादा मज़बूत होती है"
+        },
+        {
+         "en": "The lens turns thicker",
+         "hi": "लेंस मोटा हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The size of the difference tells the brain how near an object is.",
+        "hi": "अंतर का परिमाण मस्तिष्क को बताता है कि वस्तु कितनी पास है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both eyes are used.",
+         "hi": "दोनों आँखों का उपयोग होता है।"
+        },
+        {
+         "en": "That is accommodation, a monocular cue.",
+         "hi": "वह समायोजन है, एकनेत्री संकेत।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look down a long road or corridor. Name two monocular cues that make it look deep.",
+      "hi": "किसी लंबी सड़क या गलियारे को देखो। दो एकनेत्री संकेत बताओ जो उसे गहरा दिखाते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch04-constancy",
+   "topic": "4.8",
+   "template": "match",
+   "title": {
+    "en": "Why things keep their look",
+    "hi": "चीज़ें अपना रूप क्यों बनाए रखती हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "size",
+      "left": {
+       "en": "Size constancy",
+       "hi": "आकार स्थिरता"
+      },
+      "right": {
+       "en": "A far bus looks small on the retina, yet you know it is a big bus",
+       "hi": "दूर की बस दृष्टिपटल पर छोटी बनती है, फिर भी तुम जानते हो कि वह बड़ी बस है"
+      },
+      "why": {
+       "en": "We keep the real size in mind whatever the distance.",
+       "hi": "दूरी कुछ भी हो, हम असली आकार याद रखते हैं।"
+      }
+     },
+     {
+      "id": "shape",
+      "left": {
+       "en": "Shape constancy",
+       "hi": "आकृति स्थिरता"
+      },
+      "right": {
+       "en": "A door opened at an angle still looks like a rectangle",
+       "hi": "तिरछा खुला दरवाज़ा फिर भी आयताकार लगता है"
+      },
+      "why": {
+       "en": "The retinal shape changes but we see the same shape.",
+       "hi": "दृष्टिपटल पर आकृति बदलती है पर हमें वही आकृति दिखती है।"
+      }
+     },
+     {
+      "id": "bright",
+      "left": {
+       "en": "Brightness and colour constancy",
+       "hi": "चमक और रंग स्थिरता"
+      },
+      "right": {
+       "en": "A white page looks white in both sunlight and shade",
+       "hi": "सफ़ेद पन्ना धूप और छाँव दोनों में सफ़ेद दिखता है"
+      },
+      "why": {
+       "en": "We judge colour by the object, not by the light falling on it.",
+       "hi": "हम रंग वस्तु से आँकते हैं, उस पर पड़ती रोशनी से नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:size",
+     "expect": "matched:size",
+     "say": {
+      "en": "Tap \"Size constancy\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"आकार स्थिरता\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A friend walks away from you. Does she become smaller?",
+      "hi": "एक दोस्त तुमसे दूर चलती जाती है। क्या वह छोटी हो जाती है?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, we see her as the same size",
+       "hi": "नहीं, हमें वह वही आकार की दिखती है"
+      },
+      {
+       "id": "y",
+       "en": "Yes, she really shrinks",
+       "hi": "हाँ, वह सचमुच छोटी हो जाती है"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "left:bright",
+     "expect": "matched:bright",
+     "say": {
+      "en": "Now match \"Brightness and colour constancy\".",
+      "hi": "अब \"चमक और रंग स्थिरता\" को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then press Check.",
+      "hi": "सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Perceptual constancy lets us see objects as steady even when the picture on the retina changes with distance, angle or light. Without it, the world would seem to shrink, bend and flicker all day.",
+      "hi": "प्रत्यक्षण की स्थिरता हमें चीज़ों को स्थिर देखने देती है, भले ही दूरी, कोण या रोशनी से दृष्टिपटल की तस्वीर बदलती रहे। इसके बिना दुनिया दिन भर सिकुड़ती, मुड़ती और टिमटिमाती लगती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A coin seen from the side looks like a thin line, but you still call it round. This is…",
+        "hi": "सिक्का बगल से पतली रेखा जैसा दिखता है, फिर भी तुम उसे गोल कहते हो। यह है…"
+       },
+       "options": [
+        {
+         "en": "Shape constancy",
+         "hi": "आकृति स्थिरता"
+        },
+        {
+         "en": "Size constancy",
+         "hi": "आकार स्थिरता"
+        },
+        {
+         "en": "Closure",
+         "hi": "समापन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We keep the true shape in mind despite a changed view.",
+        "hi": "बदले दृश्य के बावजूद हम असली आकृति याद रखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size is not the issue here, shape is.",
+         "hi": "यहाँ मुद्दा आकार नहीं, आकृति है।"
+        },
+        {
+         "en": "Closure completes gaps in drawings.",
+         "hi": "समापन चित्रों के अंतर भरता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is constancy useful?",
+        "hi": "स्थिरता उपयोगी क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It makes the world steady and easy to understand",
+         "hi": "यह दुनिया को स्थिर और समझने योग्य बनाती है"
+        },
+        {
+         "en": "It makes objects bigger",
+         "hi": "यह चीज़ों को बड़ा बनाती है"
+        },
+        {
+         "en": "It improves hearing",
+         "hi": "यह सुनने को बेहतर करती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We can recognise things whatever the distance, angle or light.",
+        "hi": "हम दूरी, कोण या रोशनी कुछ भी हो, चीज़ें पहचान पाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It does not change real sizes.",
+         "hi": "यह असली आकार नहीं बदलती।"
+        },
+        {
+         "en": "It is about seeing, not hearing.",
+         "hi": "यह देखने की बात है, सुनने की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Hold a book flat, then tilt it. Does its shape seem to change? What does your mind do about that?",
+      "hi": "किताब को सीधा पकड़ो, फिर तिरछा करो। क्या उसकी आकृति बदलती लगती है? इस पर तुम्हारा मन क्या करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch04-muller-lyer",
+   "topic": "4.9",
+   "template": "mind",
+   "title": {
+    "en": "Müller-Lyer illusion",
+    "hi": "म्यूलर-लायर भ्रम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "experiment": "illusion:muller-lyer",
+    "trials": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "trial",
+     "say": {
+      "en": "Press Start. Choose which line looks longer.",
+      "hi": "\"शुरू करो\" दबाओ। चुनो कि कौन-सी रेखा लंबी दिखती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two lines are exactly the same length, but with different arrow ends. Will they look equal?",
+      "hi": "दो रेखाएँ ठीक बराबर लंबाई की हैं, पर तीर के सिरे अलग हैं। क्या वे बराबर दिखेंगी?"
+     },
+     "options": [
+      {
+       "id": "eq",
+       "en": "Yes, equal",
+       "hi": "हाँ, बराबर"
+      },
+      {
+       "id": "ne",
+       "en": "No, one will look longer",
+       "hi": "नहीं, एक लंबी दिखेगी"
+      }
+     ],
+     "answer": "ne"
+    },
+    {
+     "kind": "do",
+     "target": "respond",
+     "expect": "result",
+     "say": {
+      "en": "Adjust the slider until the lines look equal, then finish.",
+      "hi": "स्लाइडर तब तक चलाओ जब तक रेखाएँ बराबर न दिखें, फिर पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The lines are the same length, but the arrow-shaped ends make your mind read them as nearer or farther corners, so you misjudge. Even after you know the truth, the illusion stays. Illusions show that perception is the mind's interpretation, not a camera copy. This is a demonstration, not a test of you.",
+      "hi": "रेखाएँ बराबर लंबी हैं, पर तीर जैसे सिरे तुम्हारे मन को उन्हें पास या दूर के कोने पढ़ने पर मजबूर करते हैं, इसलिए तुम ग़लत आँकते हो। सच जानने के बाद भी भ्रम बना रहता है। भ्रम बताते हैं कि प्रत्यक्षण मन की व्याख्या है, कैमरे की नक़ल नहीं। यह प्रदर्शन है, तुम्हारी परीक्षा नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An illusion is…",
+        "hi": "भ्रम है…"
+       },
+       "options": [
+        {
+         "en": "A wrong perception of something real",
+         "hi": "किसी असली चीज़ का ग़लत प्रत्यक्षण"
+        },
+        {
+         "en": "Seeing something with no object at all",
+         "hi": "बिना किसी वस्तु के कुछ देखना"
+        },
+        {
+         "en": "A fault of the eye",
+         "hi": "आँख की ख़राबी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The object is real, but we interpret it wrongly.",
+        "hi": "वस्तु असली है, पर हम उसकी ग़लत व्याख्या करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Seeing things with no object is a hallucination.",
+         "hi": "बिना वस्तु के देखना विभ्रम (मतिभ्रम) है।"
+        },
+        {
+         "en": "Healthy eyes see illusions too.",
+         "hi": "स्वस्थ आँखें भी भ्रम देखती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the illusion not go away when you measure the lines?",
+        "hi": "रेखाएँ नापने पर भी भ्रम क्यों नहीं जाता?"
+       },
+       "options": [
+        {
+         "en": "Perception works automatically, beyond our will",
+         "hi": "प्रत्यक्षण स्वचालित रूप से चलता है, हमारी इच्छा से परे"
+        },
+        {
+         "en": "The ruler is wrong",
+         "hi": "पटरी ग़लत है"
+        },
+        {
+         "en": "The lines change length",
+         "hi": "रेखाओं की लंबाई बदलती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Knowing the facts does not switch the automatic processing off.",
+        "hi": "तथ्य जानने से स्वचालित संसाधन बंद नहीं होता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The ruler is right; the lines are equal.",
+         "hi": "पटरी सही है; रेखाएँ बराबर हैं।"
+        },
+        {
+         "en": "The lines never change length.",
+         "hi": "रेखाओं की लंबाई कभी नहीं बदलती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw your own version with a pencil and a ruler. Show it to a friend before telling them the secret.",
+      "hi": "पेंसिल और पटरी से अपना संस्करण बनाओ। रहस्य बताने से पहले दोस्त को दिखाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Opens the senses topic",
+   "shows": "An Indian festival street at dusk with rangoli, lamps and a sweet shop, hands reaching for a jalebi",
+   "view": "16:9, evening light, rich colours",
+   "right": "Bright diyas, warm tones, hands only",
+   "avoid": "Faces, shop names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "4.7",
+   "use": "Depth cues",
+   "shows": "A long straight Indian railway track running to the horizon with a bus-sized train far away",
+   "view": "16:9, clear daylight, one-point perspective",
+   "right": "Tracks clearly narrowing toward the horizon",
+   "avoid": "Text, signs"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.7",
+   "use": "Binocular demo",
+   "shows": "A pencil held at arm's length, cut out, plus the same pencil held close",
+   "view": "Two transparent PNG files, side view",
+   "right": "Same pencil, different distance",
+   "avoid": "Hands with identifiable marks"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "4.6",
+   "use": "Gestalt groups",
+   "shows": "Four small dot patterns: dots close together, rows of two colours, a circle with a gap, two crossing wavy lines",
+   "view": "Four 4:3 images, white background",
+   "right": "Clean geometric shapes, even spacing",
+   "avoid": "Words, labels"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "4.9",
+   "use": "Müller-Lyer",
+   "shows": "Two equal horizontal lines, one with outward arrow ends and one with inward arrow ends",
+   "view": "4:3, white background, thick black lines",
+   "right": "Lines truly equal",
+   "avoid": "Any numbers or ruler"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "4.6",
+   "use": "Kanizsa triangle",
+   "shows": "Three black pac-man shapes and three open angles that suggest an illusory white triangle",
+   "view": "Square, white background",
+   "right": "Edges crisp and symmetrical",
+   "avoid": "Any drawn triangle outline"
+  }
+ ]
+}

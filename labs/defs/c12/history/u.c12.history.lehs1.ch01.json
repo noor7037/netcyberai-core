@@ -1,0 +1,465 @@
+{
+  "chapter_key": "u.c12.history.lehs1.ch01",
+  "class": 12,
+  "subject_id": "history",
+  "title": "Bricks, Beads and Bones",
+  "source": "https://ncert.nic.in/textbook/pdf/lehs1ps.pdf",
+  "topics": [
+    { "n": "0.1", "title": "Terminologies, places and time", "labs": ["c12-history-lehs1-ch01-sites"], "why_no_lab": null },
+    { "n": "1", "title": "Beginnings: how the Harappan story is dated", "labs": ["c12-history-lehs1-ch01-timeline"], "why_no_lab": null },
+    { "n": "2", "title": "Subsistence strategies: what people grew and hunted", "labs": ["c12-history-lehs1-ch01-food"], "why_no_lab": null },
+    { "n": "3", "title": "Mohenjodaro: a planned urban centre", "labs": ["c12-history-lehs1-ch01-city"], "why_no_lab": null },
+    { "n": "4", "title": "Tracking social differences through burials", "labs": [], "why_no_lab": "Burial evidence is read through photographs and careful reasoning; a lab would only guess at people's status." },
+    { "n": "5", "title": "Finding out about craft production: beads", "labs": ["c12-history-lehs1-ch01-beads"], "why_no_lab": null },
+    { "n": "6", "title": "Procuring materials from the subcontinent and beyond", "labs": ["c12-history-lehs1-ch01-trade"], "why_no_lab": null },
+    { "n": "7", "title": "Seals, script and weights", "labs": [], "why_no_lab": "The script is still not read, so no lab can teach a reading; seals are best seen as photographs." },
+    { "n": "8", "title": "Ancient authority: palaces and kings", "labs": [], "why_no_lab": "The chapter asks what the evidence can and cannot show about rulers; this is taught by reading and discussion." },
+    { "n": "9", "title": "The end of the civilisation", "labs": ["c12-history-lehs1-ch01-decline"], "why_no_lab": null },
+    { "n": "10", "title": "Discovering the Harappan civilisation", "labs": [], "why_no_lab": "A story of people and digs; the timeline lab already places the 1921 excavation." },
+    { "n": "11", "title": "Problems of piecing the past together", "labs": [], "why_no_lab": "A matter of judgement about evidence, best taught by weighing the chapter's own examples in discussion." }
+  ],
+  "labs": [
+    {
+      "id": "c12-history-lehs1-ch01-sites",
+      "topic": "0.1",
+      "template": "map",
+      "title": { "en": "Find the Harappan towns on the map", "hi": "मानचित्र पर हड़प्पाई नगर खोजो" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["rivers", "historic:harappan"],
+        "show": ["rivers"],
+        "task": "locate",
+        "places": ["lothal", "dholavira", "kalibangan"]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Harappan towns grew near the Indus and other rivers. In which part of India do you think most of the sites lie?", "hi": "हड़प्पाई नगर सिंधु और दूसरी नदियों के पास बसे थे। तुम्हारे हिसाब से भारत के किस हिस्से में सबसे ज़्यादा स्थल हैं?" },
+          "options": [
+            { "id": "west", "en": "The north-west plains and the Gujarat and Rajasthan area", "hi": "उत्तर-पश्चिम के मैदान और गुजरात-राजस्थान का इलाका" },
+            { "id": "south", "en": "The far south, near the tip of the peninsula", "hi": "सुदूर दक्षिण, प्रायद्वीप की नोक के पास" },
+            { "id": "hills", "en": "Only the high Himalayan valleys", "hi": "केवल ऊँची हिमालयी घाटियाँ" }
+          ],
+          "answer": "west"
+        },
+        { "kind": "do", "target": "layer:historic:harappan", "expect": "layer:historic:harappan", "say": { "en": "Tap the layer 'Harappan civilisation' to switch its sites on.", "hi": "'हड़प्पा सभ्यता' परत पर टैप करके उसके स्थल चालू करो।" } },
+        { "kind": "do", "target": "answer", "expect": "located:lothal", "say": { "en": "Find Lothal on the Gujarat coast. Tap the map where you think it is, then press Check.", "hi": "गुजरात के तट पर लोथल खोजो। मानचित्र पर जहाँ लगता है वहाँ टैप करो, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "located:dholavira", "say": { "en": "Now find Dholavira in the Rann of Kutch. Drop a pin and press Check.", "hi": "अब कच्छ के रण में धोलावीरा खोजो। पिन लगाओ और जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "located:kalibangan", "say": { "en": "Last, find Kalibangan on the dry plains of north-west Rajasthan.", "hi": "आख़िर में उत्तर-पश्चिम राजस्थान के सूखे मैदान में कालीबंगा खोजो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Harappan towns spread over a very large area, from the Indus plains in today's Pakistan to Gujarat and Haryana. Lothal sat near the sea, which helped trade. Many of the biggest cities, such as Harappa and Mohenjodaro, now lie in Pakistan, so they are not on an Indian map.", "hi": "हड़प्पाई नगर एक बहुत बड़े इलाके में फैले थे, आज के पाकिस्तान के सिंधु मैदान से लेकर गुजरात और हरियाणा तक। लोथल समुद्र के पास था, जिससे व्यापार आसान हुआ। हड़प्पा और मोहनजोदड़ो जैसे बड़े नगर आज पाकिस्तान में हैं, इसलिए वे भारत के नक्शे पर नहीं आते।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Where is Lothal?", "hi": "लोथल कहाँ है?" },
+              "options": [
+                { "en": "On the Gujarat coast", "hi": "गुजरात के तट पर" },
+                { "en": "In the high Himalayan hills", "hi": "ऊँची हिमालयी पहाड़ियों में" },
+                { "en": "In the north-east, near the hills of Assam", "hi": "उत्तर-पूर्व में, असम की पहाड़ियों के पास" }
+              ],
+              "answer": 0,
+              "why": { "en": "Lothal was a port town on the Gujarat coast, with a dockyard close to the sea.", "hi": "लोथल गुजरात के तट पर एक बंदरगाह नगर था, जिसमें समुद्र के पास गोदीबाड़ा था।" },
+              "wrong": [
+                "",
+                { "en": "Hills are not where a port would be; Lothal needed the sea to trade by boat.", "hi": "बंदरगाह पहाड़ों में नहीं होता; लोथल को नाव से व्यापार के लिए समुद्र चाहिए था।" },
+                { "en": "Assam is far from the Indus and Gujarat sites; the Harappan towns were in the west.", "hi": "असम हड़प्पाई स्थलों से बहुत दूर है; हड़प्पाई नगर पश्चिम में थे।" }
+              ]
+            },
+            {
+              "q": { "en": "Why are Harappa and Mohenjodaro not on a map of today's India?", "hi": "हड़प्पा और मोहनजोदड़ो आज के भारत के नक्शे पर क्यों नहीं हैं?" },
+              "options": [
+                { "en": "They were destroyed by the sea", "hi": "उन्हें समुद्र ने मिटा दिया" },
+                { "en": "They now lie in Pakistan", "hi": "वे अब पाकिस्तान में हैं" },
+                { "en": "They were never found", "hi": "वे कभी मिले ही नहीं" }
+              ],
+              "answer": 1,
+              "why": { "en": "The borders changed in 1947, and these great cities fell in what is now Pakistan.", "hi": "1947 में सीमाएँ बदलीं, और ये बड़े नगर अब पाकिस्तान में आ गए।" },
+              "wrong": [
+                { "en": "The sea did not cover these cities; they are on the Indus plain, far from the coast.", "hi": "इन नगरों को समुद्र ने नहीं ढका; वे सिंधु मैदान में हैं, तट से दूर।" },
+                "",
+                { "en": "They were found in the 1920s by archaeologists; the problem is the border, not the search.", "hi": "इन्हें 1920 के दशक में पुरातत्वविदों ने खोजा था; समस्या सीमा की है, खोज की नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Switch the rivers layer on too. Which sites are closest to the rivers, and why would a town need water?", "hi": "नदियों वाली परत भी चालू करो। कौन-से स्थल नदियों के सबसे पास हैं, और नगर को पानी की ज़रूरत क्यों होती?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch01-timeline",
+      "topic": "1",
+      "template": "timeline",
+      "title": { "en": "Put the Harappan story in order", "hi": "हड़प्पा की कहानी को क्रम में लगाओ" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [-3500, 1950],
+        "task": "order",
+        "title": { "en": "The Harappan story", "hi": "हड़प्पा की कहानी" },
+        "events": [
+          { "id": "farmers", "year": -3300, "label": { "en": "Early farming villages settle in the region", "hi": "इस क्षेत्र में शुरुआती खेतिहर बस्तियाँ बसती हैं" } },
+          { "id": "cities", "year": -2600, "label": { "en": "Planned cities such as Mohenjodaro and Harappa grow", "hi": "मोहनजोदड़ो और हड़प्पा जैसे योजनाबद्ध नगर बढ़ते हैं" } },
+          { "id": "decline", "year": -1900, "label": { "en": "Many towns are slowly abandoned", "hi": "कई नगर धीरे-धीरे छोड़ दिए जाते हैं" } },
+          { "id": "dig", "year": 1921, "label": { "en": "Archaeologists begin digging at Harappa", "hi": "पुरातत्वविद् हड़प्पा में खुदाई शुरू करते हैं" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "You will place four events. Which one do you think came first?", "hi": "तुम चार घटनाएँ लगाओगे। तुम्हारे हिसाब से इनमें से कौन-सी सबसे पहले हुई?" },
+          "options": [
+            { "id": "dig", "en": "Excavations at Harappa in 1921", "hi": "1921 में हड़प्पा की खुदाई" },
+            { "id": "farmers", "en": "Early farming villages", "hi": "शुरुआती खेतिहर गाँव" },
+            { "id": "decline", "en": "Towns being abandoned", "hi": "नगरों का छूटना" }
+          ],
+          "answer": "farmers"
+        },
+        { "kind": "do", "target": "event:farmers", "expect": "placed:farmers", "say": { "en": "Tap the earliest event first: the early farming villages.", "hi": "सबसे पहले वाली घटना पर टैप करो: शुरुआती खेतिहर गाँव।" } },
+        { "kind": "do", "target": "event:cities", "expect": "placed:cities", "say": { "en": "Next, tap the growth of the planned cities.", "hi": "अब नियोजित नगरों के बढ़ने वाली घटना पर टैप करो।" } },
+        { "kind": "do", "target": "event:decline", "expect": "placed:decline", "say": { "en": "Now tap the slow abandonment of the towns.", "hi": "अब नगरों के धीरे-धीरे छूटने वाली घटना पर टैप करो।" } },
+        { "kind": "do", "target": "event:dig", "expect": "placed:dig", "say": { "en": "Finally tap the 1921 digging at Harappa, then press Check.", "hi": "आख़िर में 1921 की हड़प्पा खुदाई पर टैप करो, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to see whether your order is right.", "hi": "जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en":"The Harappan cities came long after the first farming villages, and they were slowly left behind. The digging began only in the 1920s, about 3,500 years after the cities were at their height. The historian must always order the events by their dates, even when the events were found much later.", "hi": "हड़प्पा के नगर पहले के खेतिहर गाँवों के बहुत बाद बने, और बाद में धीरे-धीरे छूट गए। खुदाई 1920 के दशक में शुरू हुई, नगरों के चरम काल के लगभग साढ़े तीन हज़ार साल बाद। इतिहासकार घटनाओं को उनकी तारीख़ों से क्रम में रखता है, भले ही उनकी खोज बहुत बाद में हुई हो।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which two events are the most separated in time?", "hi": "कौन-सी दो घटनाएँ समय में सबसे ज़्यादा दूर हैं?" },
+              "options": [
+                { "en": "The cities and the decline", "hi": "नगर और उनका छूटना" },
+                { "en": "The early villages and the 1921 digging", "hi": "शुरुआती गाँव और 1921 की खुदाई" },
+                { "en": "The decline and the 1921 digging", "hi": "छूटना और 1921 की खुदाई" }
+              ],
+              "answer": 1,
+              "why": { "en": "The first villages date to about 3300 BCE and the digging to 1921 CE, a gap of more than 5,000 years.", "hi": "पहले गाँव लगभग 3300 ई.पू. के हैं और खुदाई 1921 ई. की, यानी 5,000 साल से ज़्यादा का अंतर।" },
+              "wrong": [
+                { "en": "The cities came about 700 years before the decline, which is much less than the total gap.", "hi": "नगर छूटने से लगभग 700 साल पहले बने, जो कुल अंतर से बहुत कम है।" },
+                "",
+                { "en": "The decline came about 2,000 years before the digging, which is shorter than the gap from the first villages.", "hi": "छूटना खुदाई से लगभग 3,000 साल पहले हुआ, जो पहले गाँवों से लेकर खुदाई तक के अंतर से छोटा है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Drag the zoom button and look at the years again. How many years lie between the first villages and the cities?", "hi": "ज़ूम बटन दबाकर सालों को फिर से देखो। पहले गाँवों और नगरों के बीच कितने साल हैं?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch01-food",
+      "topic": "2",
+      "template": "sort",
+      "title": { "en": "Grown, herded or hunted?", "hi": "उगाया गया, पाला गया या शिकार किया गया?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "grown", "label": { "en": "Grown in fields", "hi": "खेतों में उगाया" } },
+          { "id": "herded", "label": { "en": "Herded animals", "hi": "पाले गए जानवर" } },
+          { "id": "hunted", "label": { "en": "Hunted wild animals", "hi": "जंगली जानवरों का शिकार" } }
+        ],
+        "cards": [
+          { "id": "wheat", "text": { "en": "Wheat grains", "hi": "गेहूँ के दाने" }, "bin": "grown", "why": { "en": "Wheat was grown in fields. Its grains were found at Harappan sites, showing that farming was practised.", "hi": "गेहूँ खेतों में उगाया जाता था। हड़प्पाई स्थलों पर इसके दाने मिले, जो खेती का सबूत हैं।" } },
+          { "id": "barley", "text": { "en": "Barley grains", "hi": "जौ के दाने" }, "bin": "grown", "why": { "en": "Barley was another crop grown by the Harappan farmers, along with wheat.", "hi": "हड़प्पाई किसान गेहूँ के साथ जौ भी उगाते थे।" } },
+          { "id": "lentils", "text": { "en": "Lentil seeds", "hi": "मसूर के बीज" }, "bin": "grown", "why": { "en": "Pulses such as lentils were also grown in the fields, adding protein to the diet.", "hi": "मसूर जैसी दालें भी खेतों में उगाई जाती थीं और भोजन में प्रोटीन देती थीं।" } },
+          { "id": "goat", "text": { "en": "Goat and sheep bones", "hi": "बकरी और भेड़ की हड्डियाँ" }, "bin": "herded", "why": { "en": "Bones of sheep and goats show that these animals were kept and herded, not hunted.", "hi": "भेड़ और बकरी की हड्डियाँ बताती हैं कि इन्हें पाला जाता था, शिकार नहीं किया जाता था।" } },
+          { "id": "deer", "text": { "en": "Deer bones", "hi": "हिरण की हड्डियाँ" }, "bin": "hunted", "why": { "en": "Deer were wild animals. Their bones show that people also hunted wild game.", "hi": "हिरण जंगली जानवर थे। उनकी हड्डियाँ बताती हैं कि लोग जंगली शिकार भी करते थे।" } },
+          { "id": "cattle", "text": { "en": "Cattle bones", "hi": "गाय-बैल की हड्डियाँ" }, "bin": "herded", "why": { "en": "Cattle were kept for milk, draught and meat, so their bones are found on settlements.", "hi": "गाय-बैल दूध, खींचने के काम और मांस के लिए पाले जाते थे, इसलिए उनकी हड्डियाँ बस्तियों में मिलती हैं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "The people of the Harappan towns ate more than one kind of food. Do you think all their food was grown on farms?", "hi": "हड़प्पाई नगरों के लोग एक से ज़्यादा तरह का भोजन करते थे। तुम्हें लगता है क्या उनका सारा भोजन खेतों में उगता था?" },
+          "options": [
+            { "id": "all", "en": "Yes, every item was grown", "hi": "हाँ, हर चीज़ उगाई जाती थी" },
+            { "id": "mixed", "en": "No, some food came from animals and hunting", "hi": "नहीं, कुछ भोजन जानवरों और शिकार से आता था" }
+          ],
+          "answer": "mixed"
+        },
+        { "kind": "do", "target": "bin:grown", "expect": "correct:wheat", "say": { "en": "Tap the wheat card to pick it up, then tap the bin 'Grown in fields'.", "hi": "गेहूँ वाला कार्ड उठाओ, फिर 'खेतों में उगाया' वाला खाना टैप करो।" } },
+        { "kind": "do", "target": "bin:herded", "expect": "correct:goat", "say": { "en": "Pick the goat and sheep bones card, then tap the bin 'Herded animals'.", "hi": "बकरी और भेड़ की हड्डियों वाला कार्ड उठाओ, फिर 'पाले गए जानवर' वाला खाना टैप करो।" } },
+        { "kind": "do", "target": "bin:hunted", "expect": "correct:deer", "say": { "en": "Now sort the deer bones into 'Hunted wild animals'.", "hi": "अब हिरण की हड्डियों को 'जंगली जानवरों का शिकार' में रखो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Harappan diet mixed farming and animal keeping, with some hunting. Wheat, barley and lentils came from fields, sheep, goat and cattle were herded, and deer bones show wild game. Archaeologists read this from grains and bones found in the soil.", "hi": "हड़प्पाई भोजन में खेती, पशुपालन और कुछ शिकार तीनों मिले थे। गेहूँ, जौ और मसूर खेतों से आते थे, भेड़-बकरी और गाय-बैल पाले जाते थे, और हिरण की हड्डियाँ जंगली शिकार बताती हैं। पुरातत्वविद् यह मिट्टी में मिले दानों और हड्डियों से पढ़ते हैं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which evidence shows that people kept animals rather than hunting them?", "hi": "कौन-सा सबूत बताता है कि लोग जानवरों को पालते थे, शिकार नहीं करते थे?" },
+              "options": [
+                { "en": "Deer bones", "hi": "हिरण की हड्डियाँ" },
+                { "en": "Sheep and goat bones", "hi": "भेड़-बकरी की हड्डियाँ" },
+                { "en": "Lentil seeds", "hi": "मसूर के बीज" }
+              ],
+              "answer": 1,
+              "why": { "en": "Sheep and goat bones found on settlements show that the animals were herded close to people.", "hi": "बस्तियों में मिली भेड़-बकरी की हड्डियाँ बताती हैं कि ये जानवर लोगों के पास पाले जाते थे।" },
+              "wrong": [
+                { "en": "Deer were wild, so their bones show hunting, not keeping.", "hi": "हिरण जंगली थे, इसलिए उनकी हड्डियाँ शिकार बताती हैं, पालन नहीं।" },
+                "",
+                { "en": "Seeds show farming, which is a different kind of evidence from animal keeping.", "hi": "दाने खेती का सबूत हैं, पशुपालन का नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Try the wrong bin on purpose. Read the hint that appears. What did the hint teach you?", "hi": "जानबूझकर गलत खाने में रखकर देखो। जो संकेत आता है उसे पढ़ो। संकेत ने तुम्हें क्या सिखाया?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch01-city",
+      "topic": "3",
+      "template": "sort",
+      "title": { "en": "Inside a planned city", "hi": "एक योजनाबद्ध नगर के भीतर" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "citadel", "label": { "en": "The raised citadel", "hi": "ऊँचा गढ़ (सिटाडेल)" } },
+          { "id": "lower", "label": { "en": "The lower town", "hi": "निचला नगर" } }
+        ],
+        "cards": [
+          { "id": "bath", "text": { "en": "A large bath with steps and a waterproof lining", "hi": "सीढ़ियों और जलरोधी परत वाला बड़ा स्नानागार" }, "bin": "citadel", "why": { "en": "The Great Bath was in the citadel, on a raised part of the city. Its floor was made watertight with bitumen.", "hi": "विशाल स्नानागार गढ़ में, नगर के ऊँचे हिस्से पर था। उसका फ़र्श बिटुमेन से जलरोधी बनाया गया था।" } },
+          { "id": "granary", "text": { "en": "Large storage buildings for grain", "hi": "अनाज रखने की बड़ी इमारतें" }, "bin": "citadel", "why": { "en": "Granaries stood on the raised ground, where the storage of grain could be controlled.", "hi": "अनाज के भंडार ऊँचे हिस्से पर थे, जहाँ अनाज की देखरेख आसान थी।" } },
+          { "id": "houses", "text": { "en": "Brick houses with courtyards and bathrooms", "hi": "आँगन और स्नानघर वाले ईंटों के मकान" }, "bin": "lower", "why": { "en": "Ordinary people lived in the lower town, in brick houses that opened onto lanes and had their own bathing spaces.", "hi": "आम लोग निचले नगर में ईंटों के मकानों में रहते थे, जिनके दरवाज़े गलियों में खुलते थे और अपने स्नानघर थे।" } },
+          { "id": "drains", "text": { "en": "Covered drains that run beside the streets", "hi": "सड़कों के किनारे चलने वाली ढकी हुई नालियाँ" }, "bin": "lower", "why": { "en": "Drains ran beside the streets of the lower town and carried water away from the houses.", "hi": "निचले नगर की सड़कों के किनारे नालियाँ चलती थीं और घरों का पानी दूर ले जाती थीं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Mohenjodaro had a high part and a low part. Where do you think the important buildings stood?", "hi": "मोहनजोदड़ो में एक ऊँचा हिस्सा और एक नीचा हिस्सा था। तुम्हारे हिसाब से ज़रूरी इमारतें कहाँ रही होंगी?" },
+          "options": [
+            { "id": "high", "en": "On the raised part, the citadel", "hi": "ऊँचे हिस्से, गढ़ पर" },
+            { "id": "low", "en": "Only in the lowest lanes", "hi": "केवल सबसे नीची गलियों में" }
+          ],
+          "answer": "high"
+        },
+        { "kind": "do", "target": "bin:citadel", "expect": "correct:bath", "say": { "en": "Pick the card with the large bath, then tap 'The raised citadel'.", "hi": "बड़े स्नानागार वाला कार्ड उठाओ, फिर 'ऊँचा गढ़' टैप करो।" } },
+        { "kind": "do", "target": "bin:lower", "expect": "correct:houses", "say": { "en": "Pick the brick houses card and tap 'The lower town'.", "hi": "ईंटों के मकानों वाला कार्ड उठाओ और 'निचला नगर' टैप करो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Mohenjodaro was laid out with care. The citadel held public buildings and granaries on a raised platform, while the lower town had houses, workshops and drains along its streets. This planning shows that the people who built the city used rules for layout and water.", "hi": "मोहनजोदड़ो सोच-समझकर बसाया गया था। गढ़ में ऊँचे चबूतरे पर सार्वजनिक इमारतें और अनाज के भंडार थे, जबकि निचले नगर में मकान, कारीगरों के ठिकाने और सड़कों के किनारे नालियाँ थीं। यह योजना बताती है कि नगर बसाने वालों के पास पानी और बनावट के लिए नियम थे।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which feature was in the lower town?", "hi": "निचले नगर में कौन-सी चीज़ थी?" },
+              "options": [
+                { "en": "The Great Bath", "hi": "विशाल स्नानागार" },
+                { "en": "Brick houses along lanes", "hi": "गलियों के किनारे ईंटों के मकान" },
+                { "en": "The granary on the platform", "hi": "चबूतरे पर अनाज का भंडार" }
+              ],
+              "answer": 1,
+              "why": { "en": "Ordinary houses were in the lower town. The bath and granary were on the citadel.", "hi": "आम मकान निचले नगर में थे। स्नानागार और भंडार गढ़ पर थे।" },
+              "wrong": [
+                { "en": "The Great Bath was on the raised citadel, the place of public buildings.", "hi": "विशाल स्नानागार ऊँचे गढ़ पर था, जहाँ सार्वजनिक इमारतें थीं।" },
+                "",
+                { "en": "The granary stood on the raised platform with the public buildings.", "hi": "भंडार सार्वजनिक इमारतों वाले ऊँचे चबूतरे पर था।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Drag a card into the other bin and read the answer. Why do you think the drains ran along the streets?", "hi": "किसी कार्ड को दूसरे खाने में रखकर उत्तर पढ़ो। तुम्हें क्यों लगता है कि नालियाँ सड़कों के किनारे चलती थीं?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch01-beads",
+      "topic": "5",
+      "template": "sequence",
+      "title": { "en": "Making a carnelian bead", "hi": "कार्नीलियन का मनका बनाना" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          { "id": "collect", "text": { "en": "Collect pieces of red carnelian stone", "hi": "लाल कार्नीलियन पत्थर के टुकड़े इकट्ठा करो" } },
+          { "id": "cut", "text": { "en": "Cut the stone into small pieces", "hi": "पत्थर को छोटे टुकड़ों में काटो" } },
+          { "id": "shape", "text": { "en": "Grind the pieces into a rounded shape", "hi": "टुकड़ों को घिसकर गोल आकार दो" } },
+          { "id": "drill", "text": { "en": "Drill a hole through each bead", "hi": "हर मनके में छेद करो" } },
+          { "id": "polish", "text": { "en": "Polish the beads and string them", "hi": "मनकों को चमकाओ और धागे में पिरोओ" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A bead must be finished with a hole so it can be strung. Which step do you think comes last?", "hi": "मनके में धागा डालने के लिए छेद होना चाहिए। तुम्हारे हिसाब से आख़िरी कदम कौन-सा होगा?" },
+          "options": [
+            { "id": "collect", "en": "Collecting the stone", "hi": "पत्थर इकट्ठा करना" },
+            { "id": "polish", "en": "Polishing and stringing", "hi": "चमकाना और पिरोना" },
+            { "id": "cut", "en": "Cutting the stone", "hi": "पत्थर काटना" }
+          ],
+          "answer": "polish"
+        },
+        { "kind": "do", "target": "slot:1", "expect": "placed:collect", "say": { "en": "Pick the first card 'Collect pieces of red carnelian stone', then tap slot 1.", "hi": "पहला कार्ड 'लाल कार्नीलियन के टुकड़े इकट्ठा करो' उठाओ, फिर स्थान 1 टैप करो।" } },
+        { "kind": "do", "target": "slot:2", "expect": "placed:cut", "say": { "en": "Pick the cutting card and place it in slot 2.", "hi": "काटने वाला कार्ड उठाकर स्थान 2 पर रखो।" } },
+        { "kind": "do", "target": "check", "expect": "ordered", "say": { "en": "Place the other three cards in order, then press Check.", "hi": "बाक़ी तीन कार्ड सही क्रम में रखो, फिर जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Bead-making was a chain of work. Each step needed the one before: a stone had to be cut and shaped before it could be drilled and polished. Archaeologists find broken stone pieces, drills and unfinished beads at workshop sites, which show the steps.", "hi": "मनका बनाना काम की एक कड़ी थी। हर कदम पिछले पर टिका था: पत्थर को पहले काटकर आकार देना होता था, तभी उसमें छेद करके चमकाया जा सकता था। पुरातत्वविदों को कार्यशालाओं में टूटे पत्थर, छेद करने के औज़ार और अधूरे मनके मिलते हैं, जो इन कदमों का सबूत हैं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why must a bead be drilled before it is strung?", "hi": "धागे में पिरोने से पहले मनके में छेद क्यों ज़रूरी है?" },
+              "options": [
+                { "en": "A string needs a hole to pass through", "hi": "धागे को गुज़रने के लिए छेद चाहिए" },
+                { "en": "The hole makes the stone heavier", "hi": "छेद से पत्थर भारी हो जाता है" },
+                { "en": "The hole is only for decoration", "hi": "छेद केवल सजावट के लिए होता है" }
+              ],
+              "answer": 0,
+              "why": { "en": "A string can only pass through a hole, so drilling is needed before stringing.", "hi": "धागा केवल छेद से होकर गुज़र सकता है, इसलिए पिरोने से पहले छेद करना ज़रूरी है।" },
+              "wrong": [
+                "",
+                { "en": "A hole usually makes a stone lighter, not heavier, and the weight is not the reason.", "hi": "छेद से पत्थर आम तौर पर हल्का होता है, भारी नहीं, और वज़न इसकी वजह नहीं है।" },
+                { "en": "A hole can be decorative, but a bead without a hole cannot be strung at all.", "hi": "छेद सजावटी भी हो सकता है, पर बिना छेद वाला मनका धागे में पिरोया ही नहीं जा सकता।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Shuffle the cards and try a different order. Which order fails, and why?", "hi": "कार्ड बदलकर दूसरा क्रम आज़माओ। कौन-सा क्रम गलत है, और क्यों?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch01-trade",
+      "topic": "6",
+      "template": "match",
+      "title": { "en": "Where did the materials come from?", "hi": "सामान कहाँ से आता था?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "lapis", "left": { "en": "Lapis lazuli, a deep blue stone", "hi": "लैपिस लाज़ुली, गहरा नीला पत्थर" }, "right": { "en": "Northern Afghanistan", "hi": "उत्तरी अफ़ग़ानिस्तान" }, "why": { "en": "Lapis lazuli came from the mountains of north-east Afghanistan, far from the Harappan towns.", "hi": "लैपिस लाज़ुली उत्तर-पूर्वी अफ़ग़ानिस्तान के पहाड़ों से आता था, जो हड़प्पाई नगरों से बहुत दूर था।" } },
+          { "id": "carnelian", "left": { "en": "Carnelian, a red stone for beads", "hi": "कार्नीलियन, मनके बनाने का लाल पत्थर" }, "right": { "en": "Gujarat", "hi": "गुजरात" }, "why": { "en": "Carnelian was found and worked in Gujarat, which is close to the Harappan towns of Lothal and Dholavira.", "hi": "कार्नीलियन गुजरात में मिलता और तराशा जाता था, जो लोथल और धोलावीरा के पास है।" } },
+          { "id": "copper", "left": { "en": "Copper, for tools and weapons", "hi": "तांबा, औज़ारों और हथियारों के लिए" }, "right": { "en": "Rajasthan", "hi": "राजस्थान" }, "why": { "en": "Copper ores came from the Aravalli region of Rajasthan, and Harappan towns made copper tools.", "hi": "तांबे का अयस्क राजस्थान के अरावली क्षेत्र से आता था, और हड़प्पाई नगरों में तांबे के औज़ार बनते थे।" } },
+          { "id": "shell", "left": { "en": "Shell, for bangles and inlay", "hi": "शंख-सीप, चूड़ियों और जड़ाऊ काम के लिए" }, "right": { "en": "The Gujarat coast", "hi": "गुजरात का तट" }, "why": { "en": "Sea shells came from the coast and were cut into bangles at Harappan workshops.", "hi": "समुद्री शंख तट से आते थे और हड़प्पाई कार्यशालाओं में उनकी चूड़ियाँ बनती थीं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Harappan towns had no mines for every material. What do you think they did to get stone and metal?", "hi": "हड़प्पाई नगरों के पास हर चीज़ की खदान नहीं थी। तुम्हारे हिसाब से पत्थर और धातु पाने के लिए वे क्या करते थे?" },
+          "options": [
+            { "id": "trade", "en": "They traded with distant regions", "hi": "उन्होंने दूर के इलाकों से व्यापार किया" },
+            { "id": "none", "en": "They did without these materials", "hi": "उन्होंने ये चीज़ें बिना रहीं" }
+          ],
+          "answer": "trade"
+        },
+        { "kind": "do", "target": "right:lapis", "expect": "matched:lapis", "say": { "en": "Tap 'Lapis lazuli' on the left, then tap its place on the right.", "hi": "बाईं ओर 'लैपिस लाज़ुली' टैप करो, फिर दाईं ओर उसकी जगह टैप करो।" } },
+        { "kind": "do", "target": "right:carnelian", "expect": "matched:carnelian", "say": { "en": "Now match carnelian to its region.", "hi": "अब कार्नीलियन को उसके क्षेत्र से मिलाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Harappan towns joined a wide network of trade. Materials came from many regions, some from the mountains, some from the coast, and goods flowed back in exchange. The finished beads and tools show the work done in the towns.", "hi": "हड़प्पाई नगर व्यापार के एक बड़े जाल से जुड़े थे। सामान कई इलाकों से आता था, कुछ पहाड़ों से, कुछ तट से, और बदले में माल भेजा जाता था। नगरों में बने मनके और औज़ार वहाँ के काम को दिखाते हैं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which region gave the sea shells used for bangles?", "hi": "चूड़ियों के लिए समुद्री शंख किस इलाके से आते थे?" },
+              "options": [
+                { "en": "The Gujarat coast", "hi": "गुजरात का तट" },
+                { "en": "Northern Afghanistan", "hi": "उत्तरी अफ़ग़ानिस्तान" },
+                { "en": "The Himalayan valleys", "hi": "हिमालयी घाटियाँ" }
+              ],
+              "answer": 0,
+              "why": { "en": "Shells come from the sea, and the coast of Gujarat was near the Harappan towns.", "hi": "शंख समुद्र से आते हैं, और गुजरात का तट हड़प्पाई नगरों के पास था।" },
+              "wrong": [
+                "",
+                { "en": "Northern Afghanistan gave lapis lazuli, a blue stone, not sea shells.", "hi": "उत्तरी अफ़ग़ानिस्तान से नीला लैपिस लाज़ुली आता था, शंख नहीं।" },
+                { "en": "Mountain valleys give stones and metals, not sea shells, so they are not the source.", "hi": "पहाड़ी घाटियाँ पत्थर और धातु देती हैं, समुद्री शंख नहीं, इसलिए वे स्रोत नहीं हैं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Choose any pair you find hard and read its reason. Which region was the farthest from the Harappan towns?", "hi": "जो जोड़ी कठिन लगे उसका कारण पढ़ो। हड़प्पाई नगरों से सबसे दूर कौन-सा इलाका था?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch01-decline",
+      "topic": "9",
+      "template": "scenario",
+      "title": { "en": "Why did the towns fade?", "hi": "नगर क्यों खाली होने लगे?" },
+      "minutes": 7,
+      "level": "stretch",
+      "config": {
+        "setting": "Harappan town",
+        "role": { "en": "A historian studying a town after 1900 BCE", "hi": "1900 ई.पू. के बाद एक नगर का अध्ययन करने वाला इतिहासकार" },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": { "en": "Around 1900 BCE, several Harappan towns look emptier. Fewer seals and fewer goods come from them. Some people say a foreign army destroyed the towns. How will you start your study?", "hi": "1900 ई.पू. के आसपास कई हड़प्पाई नगर सूने दिखने लगते हैं। वहाँ से कम मुहरें और कम सामान मिलता है। कुछ लोग कहते हैं कि किसी विदेशी सेना ने नगर उजाड़े। तुम अपना अध्ययन कैसे शुरू करोगे?" },
+            "choices": [
+              { "id": "c1", "text": { "en": "Look for clear proof of an attack, such as many unburied bodies", "hi": "हमले का साफ़ सबूत ढूँढो, जैसे बहुत सारे बिना दफ़नाए शव" }, "next": "s2", "feedback": { "en": "Proof of a sudden attack is weak at most sites. Keep the attack idea as one clue, and test the other clues too.", "hi": "ज़्यादातर स्थलों पर अचानक हमले का सबूत कमज़ोर है। हमले के विचार को एक सुराग मानो और बाक़ी सुरागों को भी परखो।" } },
+              { "id": "c2", "text": { "en": "Look at changing rivers, rainfall and trade that could have hit every town", "hi": "नदियों, वर्षा और व्यापार में बदलाव देखो जो हर नगर पर असर डाल सकते थे" }, "next": "s2", "good": true, "feedback": { "en": "Good. Historians test many causes together, not one single story.", "hi": "शाबाश। इतिहासकार एक कहानी नहीं, कई कारणों को एक साथ परखते हैं।" } },
+              { "id": "c3", "text": { "en": "Accept the army story at once and close the file", "hi": "सेना वाली कहानी तुरंत मान लो और फ़ाइल बंद कर दो" }, "next": "end", "good": false, "feedback": { "en": "Closing the file too early is a mistake. One story rarely fits the evidence at every site.", "hi": "फ़ाइल जल्दी बंद करना गलती है। एक ही कहानी हर स्थल के सबूतों से मेल नहीं खाती।" } }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": { "en": "You now see that some rivers shifted and rainfall may have fallen. Trade slowed, and some people moved to villages. What is your conclusion?", "hi": "अब तुम देखते हो कि कुछ नदियों ने रास्ता बदला और वर्षा कम हो सकती थी। व्यापार धीमा हुआ और कुछ लोग गाँवों में चले गए। तुम्हारा निष्कर्ष क्या है?" },
+            "choices": [
+              { "id": "c4", "text": { "en": "Several causes worked together, and people changed how they lived", "hi": "कई कारण साथ मिलकर काम कर रहे थे, और लोगों ने अपने रहने का ढंग बदला" }, "next": "end", "good": true, "feedback": { "en": "Yes. The decline was gradual and varied from place to place. Many people moved and lived differently.", "hi": "हाँ। पतन धीरे-धीरे हुआ और हर जगह अलग तरह से हुआ। कई लोग दूसरी जगह गए और अलग ढंग से रहे।" } },
+              { "id": "c5", "text": { "en": "The whole town vanished overnight", "hi": "पूरा नगर एक ही रात में ग़ायब हो गया" }, "next": "end", "good": false, "feedback": { "en": "Most evidence shows slow change, not a single night of ruin.", "hi": "ज़्यादातर सबूत धीरे-धीरे बदलाव दिखाते हैं, किसी एक रात की तबाही नहीं।" } }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Before you choose, think about it. Was the decline likely to have one cause or several?", "hi": "चुनने से पहले सोचो। पतन का कारण एक रहा होगा या कई?" },
+          "options": [
+            { "id": "one", "en": "One sudden cause", "hi": "एक अचानक कारण" },
+            { "id": "many", "en": "Several causes over time", "hi": "समय के साथ कई कारण" }
+          ],
+          "answer": "many"
+        },
+        { "kind": "do", "target": "choice:s1:c2", "expect": "chose:c2", "say": { "en": "Read the first scene, then tap the choice about rivers, rainfall and trade.", "hi": "पहला दृश्य पढ़ो, फिर नदियों, वर्षा और व्यापार वाला विकल्प टैप करो।" } },
+        { "kind": "do", "target": "choice:s2:c4", "expect": "chose:c4", "say": { "en": "Now choose the conclusion that several causes worked together.", "hi": "अब वह निष्कर्ष चुनो कि कई कारण साथ मिलकर काम कर रहे थे।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Harappan towns did not vanish in one night. Rivers changed course, the climate may have become drier, and trade with distant lands weakened. People moved to new places and villages. Historians test each clue before they name a cause.", "hi": "हड़प्पाई नगर एक रात में ग़ायब नहीं हुए। नदियों ने रास्ते बदले, जलवायु शायद सूखी हुई, और दूर के देशों से व्यापार कमज़ोर पड़ा। लोग नई जगहों और गाँवों में चले गए। इतिहासकार किसी कारण का नाम लेने से पहले हर सुराग को परखते हैं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What did the historian decide first, before choosing a cause?", "hi": "किसी कारण को चुनने से पहले इतिहासकार ने पहले क्या तय किया?" },
+              "options": [
+                { "en": "That the army was the only cause", "hi": "कि सेना ही अकेला कारण थी" },
+                { "en": "To test each clue before deciding", "hi": "फ़ैसला करने से पहले हर सुराग को परखना" },
+                { "en": "To close the file at once", "hi": "फ़ाइल तुरंत बंद करना" }
+              ],
+              "answer": 1,
+              "why": { "en": "A careful historian tests every clue and does not rely on one story.", "hi": "सावधान इतिहासकार हर सुराग को परखता है और एक ही कहानी पर नहीं टिकता।" },
+              "wrong": [
+                { "en": "The army story was tested, and not every site shows an attack, so one cause cannot be proved.", "hi": "सेना वाली कहानी को परखा गया, और हर स्थल पर हमले का सबूत नहीं मिलता, इसलिए एक ही कारण साबित नहीं होता।" },
+                "",
+                { "en": "Closing the file early ignores the other clues, which is the mistake the scene warns about.", "hi": "फ़ाइल जल्दी बंद करने से बाक़ी सुराग छूट जाते हैं, यही वह गलती है जिसकी ओर दृश्य इशारा करता है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Play the scenario again and choose the attack path. Which evidence would a historian still need to test that idea?", "hi": "परिदृश्य फिर से खेलो और हमले वाला रास्ता चुनो। इस विचार को परखने के लिए इतिहासकार को और कौन-सा सबूत चाहिए?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "0.1", "use": "Opening picture of the lesson: the land where the towns once stood", "shows": "Wide dry plain of Kutch at sunrise, with a low brick wall and pale stones in the foreground (a Harappan-age site or a photograph taken with permission at Dholavira)", "view": "Eye level, wide 16:9, soft early light from the left, no people", "right": "Flat salt-tinged ground, stone and brick in local colours, a clear sky", "avoid": "Visitor signs, tourists, modern roads, text, boards with site names" },
+    { "n": 2, "kind": "OBJ", "topic": "2", "use": "Food step: the grains that show farming", "shows": "Three small heaps on a plain cloth: wheat grains, barley grains and lentils, each heap separate", "view": "Top-down, cut-out on transparent background, object fills about 80 percent, soft shadow", "right": "Wheat golden and oval, barley with its long husk, lentils small and flat, true colours", "avoid": "Packaged food, brand labels, bowls with logos" },
+    { "n": 3, "kind": "DIA", "topic": "3", "use": "City layout frame for the sort lab", "shows": "A clean plan of a town: a raised rectangle at one end and a grid of lanes in the lower area, with lines for drains, no words or numbers", "view": "Flat top-down plan, white background, dark thin lines, 4:3", "right": "Lanes at right angles, drains as continuous lines alongside streets, citadel as a raised block", "avoid": "Labels, compass letters, scale bars with numbers, modern street names" },
+    { "n": 4, "kind": "OBJ", "topic": "5", "use": "The finished bead and the tools that made it", "shows": "A red carnelian bead with a drilled hole, next to a small piece of rough stone and a thin drill", "view": "Close-up on a neutral cloth, lit from top-left, transparent background for the bead", "right": "Carnelian deep orange-red and translucent, a visible drilled hole, a rough stone with a broken face", "avoid": "Jewellery that is modern, gold plating, a shiny finish that hides the stone" },
+    { "n": 5, "kind": "SEQ", "topic": "5", "use": "Bead-making steps, for the sequence lab", "shows": "Four frames of the same small carnelian piece: raw, cut, ground round, and drilled and polished, same camera and light", "view": "Identical framing, neutral background, numbered files f1 to f4, square crop", "right": "The same piece in each frame, the change visible only in shape and finish", "avoid": "Changing the angle or light between frames, hands that show identity" },
+    { "n": 6, "kind": "MAP", "topic": "6", "use": "The regions that sent materials to the towns", "shows": "Plain relief map of India and Afghanistan with mountains, rivers and the coast shown, no borders, no names", "view": "Top-down, 16:9, soft shading for relief, muted greens and browns", "right": "The Aravalli hills in Rajasthan, the Gujarat coast, the north-west mountains, the Indus and its rivers", "avoid": "State borders, names, capital dots, flags" },
+    { "n": 7, "kind": "OBJ", "topic": "6", "use": "Trade goods on a cloth, the goods that came from far away", "shows": "A blue lapis lazuli stone, a red carnelian piece, a copper flat sheet and a sea shell, laid apart on a cloth", "view": "Top-down, cut-out on transparent background, each object fully in frame", "right": "Lapis deep blue with pale flecks, copper dull orange-brown, shell cream and pearly", "avoid": "Labels, brand logos, modern jewellery" }
+  ]
+}

@@ -1,0 +1,778 @@
+{
+ "chapter_key": "u.c06.social_science.fees1.ch11",
+ "class": 6,
+ "subject_id": "social_science",
+ "title": "Grassroots Democracy — Part 2: Local Government in Rural Areas",
+ "source": "https://ncert.nic.in/textbook/pdf/fees111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Panchayati Raj: Gram Sabha, Gram Panchayat, Panchayat Samiti, Zila Parishad",
+   "labs": [
+    "c06-social_science-fees1-ch11-tiers",
+    "c06-social_science-fees1-ch11-sabha"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "A visit to a village: leadership and fair decisions",
+   "labs": [
+    "c06-social_science-fees1-ch11-sarpanch"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Women and transgender persons in local government",
+   "labs": [],
+   "why_no_lab": "This is about fairness and reservation of seats; it is best discussed in class with the reader's stories."
+  },
+  {
+   "n": "11.4",
+   "title": "Villages working together for water",
+   "labs": [
+    "c06-social_science-fees1-ch11-water"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-social_science-fees1-ch11-tiers",
+   "topic": "11.1",
+   "template": "govern",
+   "title": {
+    "en": "Three tiers of the Panchayat",
+    "hi": "पंचायत के तीन स्तर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "panchayat"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "stage:gram-sabha",
+     "expect": "opened:gram-sabha",
+     "say": {
+      "en": "Tap the Gram Sabha and read who its members are.",
+      "hi": "ग्राम सभा पर टैप करो और पढ़ो कि उसके सदस्य कौन हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who are the members of the Gram Sabha?",
+      "hi": "ग्राम सभा के सदस्य कौन होते हैं?"
+     },
+     "options": [
+      {
+       "id": "all",
+       "en": "All the adult voters of the village",
+       "hi": "गाँव के सभी वयस्क मतदाता"
+      },
+      {
+       "id": "few",
+       "en": "Only the Sarpanch",
+       "hi": "केवल सरपंच"
+      },
+      {
+       "id": "govt",
+       "en": "Officers sent by the State",
+       "hi": "राज्य से भेजे अधिकारी"
+      }
+     ],
+     "answer": "all"
+    },
+    {
+     "kind": "do",
+     "target": "stage:gram-panchayat",
+     "expect": "opened:gram-panchayat",
+     "say": {
+      "en": "Tap the Gram Panchayat. See who runs it.",
+      "hi": "ग्राम पंचायत पर टैप करो। देखो कि उसे कौन चलाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:panchayat-samiti",
+     "expect": "opened:panchayat-samiti",
+     "say": {
+      "en": "Now tap the Panchayat Samiti, the middle tier at block level.",
+      "hi": "अब खंड स्तर की बीच की कड़ी पंचायत समिति पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:zila-parishad",
+     "expect": "opened:zila-parishad",
+     "say": {
+      "en": "Finally tap the Zila Parishad at the top.",
+      "hi": "अंत में सबसे ऊपर की ज़िला परिषद पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Panchayati Raj is government at the village level and above. The Gram Sabha is all the adult voters of a village. The Gram Panchayat is chosen by them, with ward members and a Sarpanch, for five years. The Panchayat Samiti works at the block level and the Zila Parishad at the district level. Together they bring government close to people.",
+      "hi": "पंचायती राज गाँव के स्तर और उससे ऊपर की सरकार है। ग्राम सभा गाँव के सभी वयस्क मतदाताओं की होती है। ग्राम पंचायत उन्हीं द्वारा पाँच साल के लिए चुनी जाती है, जिसमें वार्ड सदस्य और सरपंच होते हैं। पंचायत समिति खंड स्तर पर और ज़िला परिषद ज़िला स्तर पर काम करती है। मिलकर ये सरकार को लोगों के पास लाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which tier works at the district level?",
+        "hi": "कौन-सा स्तर ज़िले के स्तर पर काम करता है?"
+       },
+       "options": [
+        {
+         "en": "Zila Parishad",
+         "hi": "ज़िला परिषद"
+        },
+        {
+         "en": "Gram Panchayat",
+         "hi": "ग्राम पंचायत"
+        },
+        {
+         "en": "Gram Sabha",
+         "hi": "ग्राम सभा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Zila Parishad is the top tier, at the district.",
+        "hi": "ज़िला परिषद सबसे ऊपर की कड़ी है, ज़िले पर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Gram Panchayat works for one village or a few villages.",
+         "hi": "ग्राम पंचायत एक गाँव या कुछ गाँवों के लिए काम करती है।"
+        },
+        {
+         "en": "The Gram Sabha is the village meeting of all adult voters.",
+         "hi": "ग्राम सभा सभी वयस्क मतदाताओं की गाँव की बैठक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For how many years are the members of a Gram Panchayat elected?",
+        "hi": "ग्राम पंचायत के सदस्य कितने साल के लिए चुने जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "5",
+         "hi": "पाँच"
+        },
+        {
+         "en": "2",
+         "hi": "दो"
+        },
+        {
+         "en": "10",
+         "hi": "दस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The term of a Panchayat is five years.",
+        "hi": "पंचायत का कार्यकाल पाँच साल का होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two years is too short for planning village work.",
+         "hi": "दो साल गाँव के काम की योजना के लिए बहुत कम है।"
+        },
+        {
+         "en": "Ten years is too long. People vote again after five years.",
+         "hi": "दस साल बहुत लंबा है। पाँच साल बाद लोग फिर मतदान करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which tier is nearest to your home? Ask an elder whether they have ever spoken at a Gram Sabha.",
+      "hi": "कौन-सा स्तर तुम्हारे घर के सबसे पास है? किसी बड़े से पूछो कि क्या उन्होंने कभी ग्राम सभा में बात रखी है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch11-sabha",
+   "topic": "11.2",
+   "template": "sort",
+   "title": {
+    "en": "Gram Sabha or Gram Panchayat?",
+    "hi": "ग्राम सभा या ग्राम पंचायत?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sabha",
+      "label": {
+       "en": "Gram Sabha",
+       "hi": "ग्राम सभा"
+      }
+     },
+     {
+      "id": "panch",
+      "label": {
+       "en": "Gram Panchayat",
+       "hi": "ग्राम पंचायत"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "all",
+      "text": {
+       "en": "All adult voters are members",
+       "hi": "सभी वयस्क मतदाता सदस्य होते हैं"
+      },
+      "bin": "sabha",
+      "why": {
+       "en": "The Gram Sabha is the meeting of the whole village.",
+       "hi": "ग्राम सभा पूरे गाँव की बैठक है।"
+      }
+     },
+     {
+      "id": "ask",
+      "text": {
+       "en": "Villagers can ask questions about the work done",
+       "hi": "ग्रामीण किए गए काम पर सवाल पूछ सकते हैं"
+      },
+      "bin": "sabha",
+      "why": {
+       "en": "People hold the Panchayat answerable in the Gram Sabha.",
+       "hi": "लोग ग्राम सभा में पंचायत से जवाब माँगते हैं।"
+      }
+     },
+     {
+      "id": "plan",
+      "text": {
+       "en": "Discusses the village budget and plans",
+       "hi": "गाँव के बजट और योजनाओं पर चर्चा करती है"
+      },
+      "bin": "sabha",
+      "why": {
+       "en": "The village plans its work together in the Sabha.",
+       "hi": "गाँव सभा में मिलकर अपने काम की योजना बनाता है।"
+      }
+     },
+     {
+      "id": "elected",
+      "text": {
+       "en": "Has ward members and a Sarpanch elected for five years",
+       "hi": "पाँच साल के लिए चुने वार्ड सदस्य और सरपंच होते हैं"
+      },
+      "bin": "panch",
+      "why": {
+       "en": "The Gram Panchayat is the elected body.",
+       "hi": "ग्राम पंचायत चुनी हुई संस्था है।"
+      }
+     },
+     {
+      "id": "lanes",
+      "text": {
+       "en": "Mends lanes and street lights",
+       "hi": "गलियाँ और बत्तियाँ ठीक करती है"
+      },
+      "bin": "panch",
+      "why": {
+       "en": "Running village services is the work of the Gram Panchayat.",
+       "hi": "गाँव की सेवाएँ चलाना ग्राम पंचायत का काम है।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Looks after drinking water supply",
+       "hi": "पीने के पानी की व्यवस्था देखती है"
+      },
+      "bin": "panch",
+      "why": {
+       "en": "The Panchayat sees that every home gets safe water.",
+       "hi": "पंचायत देखती है कि हर घर को साफ़ पानी मिले।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who elects the Sarpanch?",
+      "hi": "सरपंच को कौन चुनता है?"
+     },
+     "options": [
+      {
+       "id": "villagers",
+       "en": "The villagers",
+       "hi": "गाँव के लोग"
+      },
+      {
+       "id": "minister",
+       "en": "A minister",
+       "hi": "एक मंत्री"
+      }
+     ],
+     "answer": "villagers"
+    },
+    {
+     "kind": "do",
+     "target": "card:all",
+     "expect": "correct:all",
+     "say": {
+      "en": "Place 'All adult voters are members' in its group.",
+      "hi": "'सभी वयस्क मतदाता सदस्य होते हैं' को उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:lanes",
+     "expect": "correct:lanes",
+     "say": {
+      "en": "Now place 'Mends lanes and street lights'.",
+      "hi": "अब 'गलियाँ और बत्तियाँ ठीक करती है' रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press check.",
+      "hi": "बाक़ी छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Gram Sabha is every adult voter of the village. It meets to talk about plans and to question the Panchayat. The Gram Panchayat is the smaller elected body that does the daily work: lanes, water, lights. The Sabha watches and guides the Panchayat, so the village stays in charge.",
+      "hi": "ग्राम सभा गाँव का हर वयस्क मतदाता है। वह योजनाओं पर चर्चा करने और पंचायत से सवाल पूछने के लिए मिलती है। ग्राम पंचायत छोटी, चुनी हुई संस्था है जो रोज़ का काम करती है: गलियाँ, पानी, बत्तियाँ। सभा पंचायत पर नज़र रखती और मार्गदर्शन करती है, इसलिए गाँव ही सबसे ऊपर रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who can ask the Gram Panchayat questions at the Gram Sabha?",
+        "hi": "ग्राम सभा में ग्राम पंचायत से सवाल कौन पूछ सकता है?"
+       },
+       "options": [
+        {
+         "en": "Any adult voter of the village",
+         "hi": "गाँव का कोई भी वयस्क मतदाता"
+        },
+        {
+         "en": "Only the Sarpanch",
+         "hi": "केवल सरपंच"
+        },
+        {
+         "en": "Only people from other villages",
+         "hi": "केवल दूसरे गाँव के लोग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every adult voter is a member and has a right to ask.",
+        "hi": "हर वयस्क मतदाता सदस्य है और उसे पूछने का अधिकार है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Sarpanch answers; he is not the one who asks.",
+         "hi": "सरपंच जवाब देता है; वह पूछने वाला नहीं है।"
+        },
+        {
+         "en": "People of other villages belong to their own Gram Sabha.",
+         "hi": "दूसरे गाँव के लोग अपनी ग्राम सभा के सदस्य हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine your colony had a Sabha. What question would you ask about cleanliness or water?",
+      "hi": "मान लो तुम्हारी कॉलोनी में सभा होती। सफ़ाई या पानी के बारे में तुम क्या सवाल पूछते?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch11-sarpanch",
+   "topic": "11.3",
+   "template": "scenario",
+   "title": {
+    "en": "Be the Sarpanch",
+    "hi": "सरपंच बनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "The Sarpanch of a village",
+     "hi": "एक गाँव के सरपंच"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "The village hand pump has broken and families walk far for water. As Sarpanch, how will you begin?",
+       "hi": "गाँव का हैंडपंप टूट गया है और परिवारों को दूर से पानी लाना पड़ता है। सरपंच के रूप में तुम शुरुआत कैसे करोगे?"
+      },
+      "choices": [
+       {
+        "id": "sabha",
+        "text": {
+         "en": "Call a Gram Sabha so everyone can discuss it",
+         "hi": "ग्राम सभा बुलाओ ताकि सब चर्चा कर सकें"
+        },
+        "next": "funds",
+        "feedback": {
+         "en": "Good. In the Sabha every adult voter can speak, and the plan belongs to the village.",
+         "hi": "बढ़िया। सभा में हर वयस्क मतदाता बोल सकता है और योजना पूरे गाँव की होती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "alone",
+        "text": {
+         "en": "Decide alone and give the work to a relative",
+         "hi": "अकेले तय करो और काम किसी रिश्तेदार को दे दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A Sarpanch holds a public trust. Deciding alone and favouring a relative is not fair.",
+         "hi": "सरपंच पर जनता का भरोसा होता है। अकेले तय करना और रिश्तेदार का पक्ष लेना न्यायसंगत नहीं।"
+        },
+        "good": false
+       },
+       {
+        "id": "wait",
+        "text": {
+         "en": "Wait and hope someone else fixes it",
+         "hi": "इंतज़ार करो कि कोई और ठीक कर देगा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Waiting leaves the families without water. A leader must act.",
+         "hi": "इंतज़ार से परिवार बिना पानी रहते हैं। नेता को क़दम उठाना चाहिए।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "funds",
+      "text": {
+       "en": "The Sabha agrees to repair the pump. Money is needed. What will you do?",
+       "hi": "सभा पंप की मरम्मत पर सहमत है। पैसे की ज़रूरत है। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "open",
+        "text": {
+         "en": "Show the cost to everyone and spend with a record",
+         "hi": "सबको ख़र्च दिखाओ और रिकॉर्ड के साथ ख़र्च करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Open accounts build trust. People can see where each rupee went.",
+         "hi": "खुला हिसाब भरोसा बनाता है। लोग देख सकते हैं कि हर रुपया कहाँ गया।"
+        },
+        "good": true
+       },
+       {
+        "id": "hide",
+        "text": {
+         "en": "Keep the accounts secret",
+         "hi": "हिसाब छिपाकर रखो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Secret accounts invite doubt. The Sabha has a right to know.",
+         "hi": "छिपा हिसाब शक पैदा करता है। सभा को जानने का अधिकार है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:start:sabha",
+     "expect": "chose:sabha",
+     "say": {
+      "en": "Choose how to begin. Think about who should decide.",
+      "hi": "चुनो कि शुरुआत कैसे करोगे। सोचो कि निर्णय किसे लेना चाहिए।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What should a good Sarpanch do with the village's money?",
+      "hi": "गाँव के पैसे का अच्छा सरपंच क्या करे?"
+     },
+     "options": [
+      {
+       "id": "open",
+       "en": "Spend it openly with a record",
+       "hi": "खुलकर और रिकॉर्ड के साथ ख़र्च करे"
+      },
+      {
+       "id": "secret",
+       "en": "Spend it in secret",
+       "hi": "चुपचाप ख़र्च करे"
+      }
+     ],
+     "answer": "open"
+    },
+    {
+     "kind": "do",
+     "target": "choice:funds:open",
+     "expect": "chose:open",
+     "say": {
+      "en": "Now choose how to handle the money.",
+      "hi": "अब पैसे को सँभालने का तरीक़ा चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A Sarpanch leads the Gram Panchayat but does not rule alone. Big decisions are discussed in the Gram Sabha, accounts are kept open, and work serves everyone in the village. Women, men and transgender persons can all stand for election and serve, and seats are reserved so that women have a share in leading.",
+      "hi": "सरपंच ग्राम पंचायत का नेतृत्व करता है, पर अकेले शासन नहीं करता। बड़े निर्णय ग्राम सभा में चर्चा से लिए जाते हैं, हिसाब खुला रखा जाता है और काम पूरे गाँव के लिए होता है। महिलाएँ, पुरुष और ट्रांसजेंडर व्यक्ति सभी चुनाव लड़ और सेवा कर सकते हैं, और महिलाओं के लिए सीटें आरक्षित हैं ताकि नेतृत्व में उनका हिस्सा हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why should a Sarpanch keep open accounts?",
+        "hi": "सरपंच को खुला हिसाब क्यों रखना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "So villagers can trust how money is used",
+         "hi": "ताकि गाँव वाले भरोसा कर सकें कि पैसा कैसे लगा"
+        },
+        {
+         "en": "To hide mistakes",
+         "hi": "ग़लतियाँ छिपाने के लिए"
+        },
+        {
+         "en": "Because accounts are boring",
+         "hi": "क्योंकि हिसाब उबाऊ होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Public money belongs to the village, so the village should see how it is spent.",
+        "hi": "सार्वजनिक पैसा गाँव का है, इसलिए गाँव को देखना चाहिए कि वह कैसे ख़र्च हुआ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Open accounts do the opposite of hiding. They show everything.",
+         "hi": "खुला हिसाब छिपाने का उलटा है। वह सब कुछ दिखाता है।"
+        },
+        {
+         "en": "Accounts matter greatly, as they show honesty.",
+         "hi": "हिसाब बहुत महत्त्वपूर्ण है, क्योंकि उससे ईमानदारी दिखती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and choose the other paths. How do the villagers feel in each ending?",
+      "hi": "फिर खेलो और दूसरे रास्ते चुनो। हर अंत में गाँव वाले कैसा महसूस करते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch11-water",
+   "topic": "11.4",
+   "template": "earth",
+   "title": {
+    "en": "A village saves its water",
+    "hi": "एक गाँव अपना पानी बचाता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "groundwater",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When rain falls on soil, where does some of the water go?",
+      "hi": "जब मिट्टी पर बारिश गिरती है तो कुछ पानी कहाँ जाता है?"
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "It soaks down and fills the ground below",
+       "hi": "वह नीचे रिसकर ज़मीन के भीतर भर जाता है"
+      },
+      {
+       "id": "vanish",
+       "en": "It disappears",
+       "hi": "वह ग़ायब हो जाता है"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "drop",
+     "expect": "revealed:water-table",
+     "say": {
+      "en": "Press the drop button and watch the rain soak down to the water table.",
+      "hi": "बूँद वाला बटन दबाओ और देखो कि बारिश रिसकर भूजल-स्तर तक पहुँचती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rain soaks through soil and fills the water underground. The top of that water is the water table. A village that collects rainwater and does not pump out too much keeps its wells full. The Gram Panchayat and Gram Sabha can plan this together, because water belongs to everyone.",
+      "hi": "बारिश मिट्टी में रिसकर ज़मीन के भीतर के पानी को भरती है। उस पानी की ऊपरी सतह भूजल-स्तर है। जो गाँव वर्षा-जल इकट्ठा करता है और ज़्यादा पानी नहीं निकालता, उसके कुएँ भरे रहते हैं। ग्राम पंचायत और ग्राम सभा मिलकर इसकी योजना बना सकती हैं, क्योंकि पानी सबका है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What can a village do to keep its wells full?",
+        "hi": "कुएँ भरे रखने के लिए गाँव क्या कर सकता है?"
+       },
+       "options": [
+        {
+         "en": "Collect rainwater and not pump out too much",
+         "hi": "वर्षा-जल इकट्ठा करे और बहुत पानी न निकाले"
+        },
+        {
+         "en": "Pave every open space",
+         "hi": "हर खुली जगह पक्की कर दे"
+        },
+        {
+         "en": "Dig more borewells without limit",
+         "hi": "बिना सीमा के और बोरवेल खोदे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rainwater harvesting refills the ground, and careful use stops the water table from falling.",
+        "hi": "वर्षा-जल संचय ज़मीन को फिर भर देता है और सावधानी से उपयोग जल-स्तर को गिरने से रोकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Paving stops rain from soaking into the ground.",
+         "hi": "पक्का करने से बारिश ज़मीन में रिस नहीं पाती।"
+        },
+        {
+         "en": "Unlimited digging lowers the water table and the wells dry up.",
+         "hi": "असीमित खुदाई से जल-स्तर गिरता है और कुएँ सूख जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the harvest and pumping controls. What happens to the dug well when the pumping is high?",
+      "hi": "संचय और पंपिंग वाले नियंत्रण आज़माओ। पंपिंग ज़्यादा होने पर खुदे कुएँ का क्या होता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Opens the chapter",
+   "shows": "A Gram Sabha meeting under a tree, villagers seated on mats, seen from behind",
+   "view": "Wide, 16:9",
+   "right": "Natural village setting, mixed ages, no faces",
+   "avoid": "Faces, banner text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Card: the voter ID of a village (generic)",
+   "shows": "A plain voter card on a table, with no readable name or number",
+   "view": "Top view",
+   "right": "Plain generic design",
+   "avoid": "Real personal details"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "The Panchayat office",
+   "shows": "A small village Panchayat office with a flag and a notice board, no readable text",
+   "view": "Wide",
+   "right": "Whitewashed building, bright sky",
+   "avoid": "Readable names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "11.3",
+   "use": "Women in local leadership",
+   "shows": "Hands of a woman member signing a register at a Panchayat table",
+   "view": "Close-up of hands",
+   "right": "Pen, register, bangles",
+   "avoid": "Face"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "11.4",
+   "use": "Village water",
+   "shows": "A farm pond filled after rain and a hand pump with a bucket nearby",
+   "view": "Wide",
+   "right": "Calm water, green fields",
+   "avoid": "People"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "11.4",
+   "use": "Rainwater harvesting",
+   "shows": "Four frames of a rooftop collecting rain, pipe, filter and a storage tank",
+   "view": "Same camera",
+   "right": "Clear, real equipment",
+   "avoid": "Brand names"
+  }
+ ]
+}

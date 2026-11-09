@@ -1,0 +1,1072 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch08",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Solar Radiation, Heat Balance and Temperature",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy208.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Solar radiation and its variation: the tilt of the axis and the seasons",
+   "labs": [
+    "c11-geography-kegy2-ch08-tilt-seasons"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "The heat budget of the Earth",
+   "labs": [
+    "c11-geography-kegy2-ch08-heat-budget"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Heating and cooling of the atmosphere: radiation, conduction, convection, advection",
+   "labs": [
+    "c11-geography-kegy2-ch08-convection",
+    "c11-geography-kegy2-ch08-heat-transfer"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Temperature and its distribution: height and other factors",
+   "labs": [
+    "c11-geography-kegy2-ch08-lapse-rate",
+    "c11-geography-kegy2-ch08-temp-factors"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch08-tilt-seasons",
+   "topic": "8.1",
+   "template": "sky",
+   "title": {
+    "en": "Tilt, sunlight and the seasons",
+    "hi": "झुकाव, धूप और ऋतुएँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "seasons",
+    "startDay": 80
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Earth's axis stays tilted the same way all year. When the Northern Hemisphere leans towards the Sun, will India get more or less direct sunlight?",
+      "hi": "पृथ्वी का अक्ष सारे साल एक ही तरह झुका रहता है। जब उत्तरी गोलार्ध सूर्य की ओर झुकेगा, तब भारत को अधिक सीधी धूप मिलेगी या कम?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More direct sunlight, and longer days",
+       "hi": "अधिक सीधी धूप और लंबे दिन"
+      },
+      {
+       "id": "less",
+       "en": "Less direct sunlight",
+       "hi": "कम सीधी धूप"
+      },
+      {
+       "id": "same",
+       "en": "The same all year",
+       "hi": "सारे साल वही"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "season:summer",
+     "say": {
+      "en": "Drag the day slider forward until the Earth reaches northern summer.",
+      "hi": "दिन स्लाइडर तब तक आगे खिसकाओ जब तक पृथ्वी उत्तरी ग्रीष्म में न पहुँच जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "season:winter",
+     "say": {
+      "en": "Keep dragging until it becomes northern winter.",
+      "hi": "खिसकाते रहो जब तक उत्तरी शीत ऋतु न आ जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:tilt",
+     "expect": "toggled:tilt",
+     "say": {
+      "en": "Switch the tilt off and see what would change.",
+      "hi": "झुकाव बंद करो और देखो कि क्या बदलेगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Insolation is the Sun's energy that reaches the Earth. It is greatest when the rays fall straight down and the days are long. The axis is tilted by 23.5 degrees, so as the Earth goes round the Sun, first the north and then the south leans towards it. This changes the angle of the rays and the length of the day through the year, and that gives us seasons. Without the tilt there would be no seasons.",
+      "hi": "सूर्यातप सूर्य की वह ऊर्जा है जो पृथ्वी तक पहुँचती है। वह तब सबसे अधिक होती है जब किरणें सीधी पड़ें और दिन लंबे हों। अक्ष 23.5 डिग्री झुका है, इसलिए पृथ्वी के सूर्य का चक्कर लगाते समय पहले उत्तर और फिर दक्षिण सूर्य की ओर झुकता है। इससे साल भर किरणों का कोण और दिन की लंबाई बदलती है, और यही ऋतुएँ देता है। झुकाव न होता तो ऋतुएँ न होतीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What causes the seasons?",
+        "hi": "ऋतुएँ किससे होती हैं?"
+       },
+       "options": [
+        {
+         "en": "The tilt of the Earth's axis while it goes round the Sun",
+         "hi": "सूर्य का चक्कर लगाते समय पृथ्वी के अक्ष का झुकाव"
+        },
+        {
+         "en": "The Earth getting nearer to and farther from the Sun",
+         "hi": "पृथ्वी का सूर्य से पास और दूर होना"
+        },
+        {
+         "en": "The Moon blocking the Sun",
+         "hi": "चाँद का सूर्य को ढकना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The tilt changes how directly sunlight falls and how long the day is, season by season.",
+        "hi": "झुकाव बदलता है कि धूप कितनी सीधी पड़े और दिन कितना लंबा हो, ऋतु-दर-ऋतु।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Earth is actually nearest the Sun in early January, in northern winter, so distance cannot explain the seasons.",
+         "hi": "पृथ्वी जनवरी के शुरू में, उत्तरी शीत में, सूर्य के सबसे पास होती है, इसलिए दूरी ऋतुओं को नहीं समझाती।"
+        },
+        {
+         "en": "The Moon blocks the Sun only in rare eclipses, not for whole seasons.",
+         "hi": "चाँद केवल दुर्लभ ग्रहण में सूर्य को ढकता है, पूरी ऋतु तक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the whole year with the tilt on, then off. Drag the Earth by hand to a solstice. What is different about the angle of the rays?",
+      "hi": "झुकाव के साथ और बिना झुकाव के पूरा साल चलाओ। पृथ्वी को हाथ से खींचकर अयनांत पर ले जाओ। किरणों के कोण में क्या अंतर है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch08-heat-budget",
+   "topic": "8.2",
+   "template": "data",
+   "title": {
+    "en": "Where does the Sun's heat go?",
+    "hi": "सूर्य की ऊष्मा कहाँ जाती है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "ask": "max",
+    "show": 0,
+    "title": {
+     "en": "Out of every 100 units of sunlight reaching the Earth",
+     "hi": "पृथ्वी तक पहुँचने वाली सूर्य-ऊर्जा की हर 100 इकाइयों में"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Reflected back to space",
+       "hi": "अंतरिक्ष में लौटी"
+      },
+      "value": 35
+     },
+     {
+      "label": {
+       "en": "Absorbed by the air and clouds",
+       "hi": "हवा और बादलों ने सोखी"
+      },
+      "value": 14
+     },
+     {
+      "label": {
+       "en": "Absorbed by land and sea",
+       "hi": "भूमि और समुद्र ने सोखी"
+      },
+      "value": 51
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Of all the sunlight that reaches the Earth, which part do you think is the biggest?",
+      "hi": "पृथ्वी तक पहुँचने वाली सारी धूप में सबसे बड़ा भाग कौन-सा होगा?"
+     },
+     "options": [
+      {
+       "id": "surface",
+       "en": "Absorbed by land and sea",
+       "hi": "भूमि और समुद्र द्वारा सोखी गई"
+      },
+      {
+       "id": "air",
+       "en": "Absorbed by the air",
+       "hi": "हवा द्वारा सोखी गई"
+      },
+      {
+       "id": "refl",
+       "en": "Reflected back",
+       "hi": "लौटाई गई"
+      }
+     ],
+     "answer": "surface"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the first part of the pie.",
+      "hi": "पाई का पहला भाग जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the second part.",
+      "hi": "दूसरा भाग जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the third part.",
+      "hi": "तीसरा भाग जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: which part is the largest?",
+      "hi": "उत्तर दो: सबसे बड़ा भाग कौन-सा है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Of 100 units of solar energy that reach the top of the atmosphere, about 35 are reflected back to space by clouds, air and snow and ice. About 14 are absorbed by the air and clouds, and about 51 are absorbed by land and sea. The Earth then gives back all this energy as heat, so over the years it stays in balance. This balance is the heat budget. If it tips, the planet warms or cools.",
+      "hi": "वायुमंडल की ऊपरी सीमा तक पहुँचने वाली सौर ऊर्जा की 100 इकाइयों में से लगभग 35 बादलों, हवा और हिम-बर्फ़ द्वारा अंतरिक्ष में लौट जाती हैं। लगभग 14 हवा और बादल सोखते हैं और लगभग 51 भूमि और समुद्र। पृथ्वी यह सारी ऊर्जा ऊष्मा के रूप में लौटा देती है, इसलिए वर्षों में संतुलन बना रहता है। यही ऊष्मा बजट है। संतुलन बिगड़े तो ग्रह गर्म या ठंडा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do we call the balance between heat received and heat given back?",
+        "hi": "प्राप्त ऊष्मा और लौटाई गई ऊष्मा के संतुलन को क्या कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "The heat budget",
+         "hi": "ऊष्मा बजट"
+        },
+        {
+         "en": "The water cycle",
+         "hi": "जल चक्र"
+        },
+        {
+         "en": "The rock cycle",
+         "hi": "शैल चक्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The heat budget compares incoming sunlight with outgoing heat; when they match, temperature stays steady.",
+        "hi": "ऊष्मा बजट आने वाली धूप की तुलना जाने वाली ऊष्मा से करता है; दोनों बराबर हों तो तापमान स्थिर रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The water cycle is about the movement of water, not heat.",
+         "hi": "जल चक्र पानी की गति के बारे में है, ऊष्मा के नहीं।"
+        },
+        {
+         "en": "The rock cycle is about how rocks change form.",
+         "hi": "शैल चक्र चट्टानों के रूप बदलने के बारे में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "If clouds and ice reflected more sunlight, would the Earth be warmer or cooler? Think of a white shirt in the sun.",
+      "hi": "अगर बादल और बर्फ़ अधिक धूप लौटाते, तो पृथ्वी गर्म होती या ठंडी? धूप में सफ़ेद कमीज़ के बारे में सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch08-convection",
+   "topic": "8.3",
+   "template": "heat",
+   "title": {
+    "en": "Warm air rises: convection",
+    "hi": "गर्म हवा उठती है: संवहन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "convection"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "dye",
+     "expect": "dyed",
+     "say": {
+      "en": "Add the dye so you can see the water move.",
+      "hi": "रंग डालो ताकि पानी की गति दिखे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When the water at the bottom is heated, will the warm water sink, rise or stay put?",
+      "hi": "जब नीचे का पानी गरम होगा, तो गरम पानी डूबेगा, ऊपर उठेगा या वहीं रहेगा?"
+     },
+     "options": [
+      {
+       "id": "rise",
+       "en": "Rise, while cooler water sinks",
+       "hi": "ऊपर उठेगा, ठंडा पानी नीचे आएगा"
+      },
+      {
+       "id": "sink",
+       "en": "Sink",
+       "hi": "डूबेगा"
+      },
+      {
+       "id": "stay",
+       "en": "Stay put",
+       "hi": "वहीं रहेगा"
+      }
+     ],
+     "answer": "rise"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "convected",
+     "say": {
+      "en": "Press Heat and watch the dye circulate.",
+      "hi": "\"गरम करो\" दबाओ और रंग को घूमते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Heated fluid expands and becomes lighter, so it rises. Cooler, heavier fluid sinks to take its place. This round-and-round motion is convection. The air does the same. The ground is warmed by the Sun and warms the air touching it. That air rises, carrying heat upward. This is how the lower atmosphere is mainly heated, and it makes clouds and winds.",
+      "hi": "गरम द्रव फैलता है और हल्का हो जाता है, इसलिए ऊपर उठता है। ठंडा, भारी द्रव उसकी जगह नीचे आता है। यह चक्करदार गति संवहन है। हवा भी ऐसा ही करती है। ज़मीन को सूर्य गर्म करता है और वह अपने संपर्क की हवा को गर्म करती है। वह हवा ऊपर उठकर ऊष्मा ऊपर ले जाती है। इसी तरह निचला वायुमंडल मुख्यतः गर्म होता है, और इससे बादल और पवनें बनती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What heats the lower atmosphere most?",
+        "hi": "निचले वायुमंडल को सबसे अधिक क्या गर्म करता है?"
+       },
+       "options": [
+        {
+         "en": "Heat from the warm ground, carried up by convection",
+         "hi": "गर्म ज़मीन की ऊष्मा, जो संवहन से ऊपर पहुँचती है"
+        },
+        {
+         "en": "Sunlight heating the air directly on the way down",
+         "hi": "नीचे आते समय धूप से सीधे गर्म होती हवा"
+        },
+        {
+         "en": "The Moon",
+         "hi": "चाँद"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sunlight passes through the clear air and warms the ground; the ground then warms the air above it.",
+        "hi": "धूप साफ़ हवा से निकलकर ज़मीन को गर्म करती है; फिर ज़मीन ऊपर की हवा को गर्म करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Most sunlight passes through clear air without warming it much.",
+         "hi": "अधिकतर धूप साफ़ हवा को ज़्यादा गर्म किए बिना निकल जाती है।"
+        },
+        {
+         "en": "The Moon gives almost no heat.",
+         "hi": "चाँद लगभग कोई ऊष्मा नहीं देता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Raise the heat with the slider. Does the dye move faster? Hold your palm above a lit stove or a hot cup, with an adult nearby, to feel warm air rise.",
+      "hi": "ताप स्लाइडर बढ़ाओ। क्या रंग तेज़ घूमता है? किसी बड़े की निगरानी में गरम कप या जलते चूल्हे के ऊपर (दूरी से) हथेली रखकर महसूस करो कि गर्म हवा ऊपर उठती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch08-heat-transfer",
+   "topic": "8.3",
+   "template": "match",
+   "title": {
+    "en": "Four ways the air gets heated and cooled",
+    "hi": "हवा के गर्म और ठंडे होने के चार तरीक़े"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "terrestrial",
+      "left": {
+       "en": "Terrestrial radiation",
+       "hi": "पार्थिव विकिरण"
+      },
+      "right": {
+       "en": "Heat given out by the warm Earth, which warms the air above",
+       "hi": "गर्म पृथ्वी से निकली ऊष्मा, जो ऊपर की हवा को गर्म करती है"
+      },
+      "why": {
+       "en": "The ground gives out heat in long waves, and the air absorbs it.",
+       "hi": "ज़मीन लंबी तरंगों में ऊष्मा देती है और हवा उसे सोखती है।"
+      }
+     },
+     {
+      "id": "conduction",
+      "left": {
+       "en": "Conduction",
+       "hi": "चालन"
+      },
+      "right": {
+       "en": "Heat passing from the warm ground to the air touching it",
+       "hi": "गर्म ज़मीन से संपर्क वाली हवा में ऊष्मा का जाना"
+      },
+      "why": {
+       "en": "Heat flows by touch from warmer to cooler.",
+       "hi": "ऊष्मा स्पर्श से गर्म से ठंडे की ओर जाती है।"
+      }
+     },
+     {
+      "id": "convection",
+      "left": {
+       "en": "Convection",
+       "hi": "संवहन"
+      },
+      "right": {
+       "en": "Warm air rising and cool air sinking in a circle",
+       "hi": "गर्म हवा का उठना और ठंडी का नीचे आना, चक्र में"
+      },
+      "why": {
+       "en": "Rising warm air carries heat up from the surface.",
+       "hi": "उठती गर्म हवा सतह से ऊष्मा ऊपर ले जाती है।"
+      }
+     },
+     {
+      "id": "advection",
+      "left": {
+       "en": "Advection",
+       "hi": "अभिवहन"
+      },
+      "right": {
+       "en": "Heat carried sideways by the wind",
+       "hi": "पवन द्वारा बग़ल में ले जाई गई ऊष्मा"
+      },
+      "why": {
+       "en": "Horizontal movement of air brings warmth or cold from another place.",
+       "hi": "हवा की क्षैतिज गति दूसरी जगह की गर्मी या ठंड लाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:conduction",
+     "expect": "matched:conduction",
+     "say": {
+      "en": "Match \"Conduction\" with its meaning.",
+      "hi": "\"चालन\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Advection\"?",
+      "hi": "\"अभिवहन\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "terrestrial",
+       "en": "Heat given out by the warm Earth, which warms the air above",
+       "hi": "गर्म पृथ्वी से निकली ऊष्मा, जो ऊपर की हवा को गर्म करती है"
+      },
+      {
+       "id": "advection",
+       "en": "Heat carried sideways by the wind",
+       "hi": "पवन द्वारा बग़ल में ले जाई गई ऊष्मा"
+      },
+      {
+       "id": "conduction",
+       "en": "Heat passing from the warm ground to the air touching it",
+       "hi": "गर्म ज़मीन से संपर्क वाली हवा में ऊष्मा का जाना"
+      }
+     ],
+     "answer": "advection"
+    },
+    {
+     "kind": "do",
+     "target": "left:advection",
+     "expect": "matched:advection",
+     "say": {
+      "en": "Now match \"Advection\".",
+      "hi": "अब \"अभिवहन\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The atmosphere is heated mainly from below. The ground absorbs sunlight and then warms the air by terrestrial radiation, conduction and convection. Winds then spread this heat sideways: advection. In north India, the hot, dry wind called the loo is advection of heat from the desert. Most of the weather you feel happens because of this.",
+      "hi": "वायुमंडल मुख्यतः नीचे से गर्म होता है। ज़मीन धूप सोखती है और फिर पार्थिव विकिरण, चालन और संवहन से हवा को गर्म करती है। फिर पवनें इस ऊष्मा को बग़ल में फैलाती हैं: अभिवहन। उत्तर भारत में लू नामक गर्म, शुष्क हवा रेगिस्तान से गर्मी का अभिवहन है। जो मौसम तुम महसूस करते हो वह अधिकतर इसी कारण होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The loo is a hot wind that blows over north India in summer. Which process carries the heat?",
+        "hi": "लू गर्मियों में उत्तर भारत पर चलने वाली गर्म हवा है। ऊष्मा किस प्रक्रिया से पहुँचती है?"
+       },
+       "options": [
+        {
+         "en": "Advection",
+         "hi": "अभिवहन"
+        },
+        {
+         "en": "Conduction",
+         "hi": "चालन"
+        },
+        {
+         "en": "Terrestrial radiation",
+         "hi": "पार्थिव विकिरण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Advection is heat carried sideways by wind, exactly what the loo does.",
+        "hi": "अभिवहन पवन द्वारा बग़ल में ले जाई गई ऊष्मा है, ठीक वही जो लू करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Conduction needs touch between ground and air, not a moving wind.",
+         "hi": "चालन में ज़मीन और हवा का स्पर्श चाहिए, चलती पवन नहीं।"
+        },
+        {
+         "en": "Terrestrial radiation is heat given out by the ground, not wind carrying heat.",
+         "hi": "पार्थिव विकिरण ज़मीन से निकली ऊष्मा है, पवन द्वारा लाई ऊष्मा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of the four do you feel when you stand barefoot on a hot terrace, and which when a warm wind blows?",
+      "hi": "गर्म छत पर नंगे पाँव खड़े होने पर चारों में से कौन-सी प्रक्रिया महसूस होती है, और गर्म हवा चलने पर कौन-सी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch08-lapse-rate",
+   "topic": "8.4",
+   "template": "data",
+   "title": {
+    "en": "Higher is colder: temperature and height",
+    "hi": "जितना ऊँचा, उतना ठंडा: तापमान और ऊँचाई"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "ask": "min",
+    "show": 5,
+    "title": {
+     "en": "Air temperature at different heights (sample, falling 6.5 °C per km)",
+     "hi": "अलग-अलग ऊँचाई पर हवा का तापमान (नमूना, प्रति किमी 6.5 °C घटता)"
+    },
+    "xlabel": {
+     "en": "Height above sea level",
+     "hi": "समुद्र तल से ऊँचाई"
+    },
+    "ylabel": {
+     "en": "°C",
+     "hi": "°C"
+    },
+    "data": [
+     {
+      "label": "0 km",
+      "value": 30
+     },
+     {
+      "label": "1 km",
+      "value": 23.5
+     },
+     {
+      "label": "2 km",
+      "value": 17
+     },
+     {
+      "label": "3 km",
+      "value": 10.5
+     },
+     {
+      "label": "4 km",
+      "value": 4
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The ground at sea level is 30 °C. What will the air be at a height of 4 km?",
+      "hi": "समुद्र तल पर ज़मीन का तापमान 30 °C है। 4 किमी की ऊँचाई पर हवा का तापमान कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "c4",
+       "en": "About 4 °C",
+       "hi": "लगभग 4 °C"
+      },
+      {
+       "id": "c30",
+       "en": "Still 30 °C",
+       "hi": "अब भी 30 °C"
+      },
+      {
+       "id": "c50",
+       "en": "About 50 °C",
+       "hi": "लगभग 50 °C"
+      }
+     ],
+     "answer": "c4"
+    },
+    {
+     "kind": "do",
+     "target": "bar:4",
+     "expect": "selected:4",
+     "say": {
+      "en": "Tap the point at 4 km on the line and read its temperature.",
+      "hi": "रेखा पर 4 किमी वाले बिंदु पर टैप करो और उसका तापमान पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: at which height is the air coldest?",
+      "hi": "उत्तर दो: किस ऊँचाई पर हवा सबसे ठंडी है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the troposphere the air gets colder as you go up, by about 6.5 degrees Celsius for every kilometre. The ground is the heater, so the higher you are from it, the colder the air. This is why Shimla and Ooty are cool even in the tropics, and why the Himalayan peaks keep snow all year.",
+      "hi": "क्षोभमंडल में ऊपर जाने पर हवा ठंडी होती जाती है, हर किलोमीटर पर लगभग 6.5 डिग्री सेल्सियस। ज़मीन ही हीटर है, इसलिए उससे जितना ऊपर, उतनी ठंडी हवा। इसीलिए शिमला और ऊटी उष्ण कटिबंध में भी ठंडे रहते हैं, और हिमालय की चोटियों पर पूरे साल बर्फ़ रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A hill station is 2 km above the plain below, where it is 34 °C. About how cool is it at the hill station?",
+        "hi": "एक हिल स्टेशन नीचे के मैदान से 2 किमी ऊँचा है, जहाँ तापमान 34 °C है। हिल स्टेशन पर लगभग कितनी ठंडक होगी?"
+       },
+       "options": [
+        {
+         "en": "About 21 °C",
+         "hi": "लगभग 21 °C"
+        },
+        {
+         "en": "About 34 °C",
+         "hi": "लगभग 34 °C"
+        },
+        {
+         "en": "About 47 °C",
+         "hi": "लगभग 47 °C"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 km times 6.5 °C is 13 °C. 34 minus 13 is about 21 °C.",
+        "hi": "2 किमी गुणा 6.5 °C = 13 °C। 34 में से 13 घटाने पर लगभग 21 °C।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The temperature falls with height, so it cannot be the same as the plain.",
+         "hi": "ऊँचाई के साथ तापमान घटता है, इसलिए यह मैदान जितना नहीं हो सकता।"
+        },
+        {
+         "en": "The air does not get hotter going up; it gets colder.",
+         "hi": "ऊपर जाने पर हवा गर्म नहीं, ठंडी होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide the temperature values and see how the line changes. What would a flatter line mean?",
+      "hi": "तापमान के मान खिसकाकर देखो कि रेखा कैसे बदलती है। अधिक समतल रेखा का क्या अर्थ होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch08-temp-factors",
+   "topic": "8.4",
+   "template": "sort",
+   "title": {
+    "en": "What makes a place warmer or cooler?",
+    "hi": "कोई जगह गर्म या ठंडी किससे होती है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "warm",
+      "label": {
+       "en": "Raises temperature",
+       "hi": "तापमान बढ़ाता है"
+      }
+     },
+     {
+      "id": "cool",
+      "label": {
+       "en": "Lowers temperature",
+       "hi": "तापमान घटाता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "equator",
+      "bin": "warm",
+      "text": {
+       "en": "Close to the equator",
+       "hi": "भूमध्य रेखा के पास"
+      },
+      "why": {
+       "en": "Rays fall nearly straight down, so more heat per square metre.",
+       "hi": "किरणें लगभग सीधी पड़ती हैं, इसलिए प्रति वर्ग मीटर अधिक ऊष्मा मिलती है।"
+      }
+     },
+     {
+      "id": "poles",
+      "bin": "cool",
+      "text": {
+       "en": "Close to the poles",
+       "hi": "ध्रुवों के पास"
+      },
+      "why": {
+       "en": "Rays arrive slanting and spread over a larger area, so less heat.",
+       "hi": "किरणें तिरछी आकर बड़े क्षेत्र में फैलती हैं, इसलिए ऊष्मा कम मिलती है।"
+      }
+     },
+     {
+      "id": "altitude",
+      "bin": "cool",
+      "text": {
+       "en": "High altitude, like the Himalaya",
+       "hi": "ऊँचाई, जैसे हिमालय"
+      },
+      "why": {
+       "en": "Thin air high up holds less heat; it falls by about 6.5 °C per km.",
+       "hi": "ऊपर की विरल हवा कम ऊष्मा रोकती है; लगभग 6.5 °C प्रति किमी घटती है।"
+      }
+     },
+     {
+      "id": "warmcurrent",
+      "bin": "warm",
+      "text": {
+       "en": "A warm ocean current along the coast",
+       "hi": "तट के साथ बहती गर्म महासागरीय धारा"
+      },
+      "why": {
+       "en": "Warm water warms the air and the nearby coast.",
+       "hi": "गर्म पानी हवा और पास के तट को गर्म करता है।"
+      }
+     },
+     {
+      "id": "coldcurrent",
+      "bin": "cool",
+      "text": {
+       "en": "A cold ocean current along the coast",
+       "hi": "तट के साथ बहती ठंडी महासागरीय धारा"
+      },
+      "why": {
+       "en": "Cold water cools the air above it and the coast.",
+       "hi": "ठंडा पानी ऊपर की हवा और तट को ठंडा करता है।"
+      }
+     },
+     {
+      "id": "desert",
+      "bin": "warm",
+      "text": {
+       "en": "Dry bare sand and rock in daytime",
+       "hi": "दिन में सूखी खुली रेत और चट्टान"
+      },
+      "why": {
+       "en": "Dry land heats up quickly in the sun.",
+       "hi": "सूखी भूमि धूप में जल्दी गर्म होती है।"
+      }
+     },
+     {
+      "id": "forest",
+      "bin": "cool",
+      "text": {
+       "en": "Dense green cover and shade",
+       "hi": "घनी हरियाली और छाया"
+      },
+      "why": {
+       "en": "Shade stops the Sun reaching the ground, and plants release water vapour that cools the air.",
+       "hi": "छाया धूप को ज़मीन तक पहुँचने से रोकती है और पौधे जलवाष्प छोड़कर हवा ठंडी करते हैं।"
+      }
+     },
+     {
+      "id": "snow",
+      "bin": "cool",
+      "text": {
+       "en": "A cover of white snow",
+       "hi": "सफ़ेद बर्फ़ की चादर"
+      },
+      "why": {
+       "en": "Snow reflects most sunlight back to space.",
+       "hi": "बर्फ़ अधिकतर धूप को अंतरिक्ष में लौटा देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:equator",
+     "expect": "correct:equator",
+     "say": {
+      "en": "Tap the card \"Close to the equator\", then tap the group where it belongs.",
+      "hi": "कार्ड \"भूमध्य रेखा के पास\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"High altitude, like the Himalaya\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"ऊँचाई, जैसे हिमालय\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "warm",
+       "en": "Raises temperature",
+       "hi": "तापमान बढ़ाता है"
+      },
+      {
+       "id": "cool",
+       "en": "Lowers temperature",
+       "hi": "तापमान घटाता है"
+      }
+     ],
+     "answer": "cool"
+    },
+    {
+     "kind": "do",
+     "target": "card:altitude",
+     "expect": "correct:altitude",
+     "say": {
+      "en": "Now sort the card \"High altitude, like the Himalaya\".",
+      "hi": "अब कार्ड \"ऊँचाई, जैसे हिमालय\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many things decide how warm a place is. Latitude sets how directly the Sun shines. Altitude, ocean currents, ground cover and nearness to the sea all change it. Together they explain why Chennai is hot, Shimla cool, and why coasts have milder weather than inland places at the same latitude.",
+      "hi": "कई बातें तय करती हैं कि कोई जगह कितनी गर्म है। अक्षांश तय करता है कि सूर्य कितना सीधा चमकता है। ऊँचाई, महासागरीय धाराएँ, भू-आवरण और समुद्र से निकटता इसे बदलते हैं। साथ मिलकर ये समझाते हैं कि चेन्नई गर्म और शिमला ठंडा क्यों है, और समुद्र तट अंदरूनी स्थानों से, उसी अक्षांश पर भी, अधिक सम क्यों रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is Shimla cooler than Delhi even though they are at similar latitudes?",
+        "hi": "शिमला और दिल्ली लगभग एक ही अक्षांश पर हैं, फिर भी शिमला दिल्ली से ठंडा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Shimla is much higher up",
+         "hi": "शिमला बहुत ऊँचाई पर है"
+        },
+        {
+         "en": "Shimla is nearer the equator",
+         "hi": "शिमला भूमध्य रेखा के पास है"
+        },
+        {
+         "en": "Shimla has no sunlight",
+         "hi": "शिमला में धूप नहीं आती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Altitude cools the air by about 6.5 °C per km, so a hill town stays cooler.",
+        "hi": "ऊँचाई से हवा लगभग 6.5 °C प्रति किमी ठंडी होती है, इसलिए पहाड़ी नगर ठंडा रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The two have almost the same latitude, so this is not the reason.",
+         "hi": "दोनों का अक्षांश लगभग समान है, इसलिए यह कारण नहीं है।"
+        },
+        {
+         "en": "Shimla gets plenty of sunlight; the thin high air just holds less heat.",
+         "hi": "शिमला में खूब धूप आती है; ऊँचाई की विरल हवा कम ऊष्मा रोकती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick two places in India with different weather. List which factors make them different.",
+      "hi": "भारत के मौसम में भिन्न दो स्थान चुनो। लिखो कि कौन-से कारक उन्हें अलग बनाते हैं।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Hook of the chapter",
+   "shows": "The Sun low on the horizon over a flat Indian wheat field, long shadows on the ground",
+   "view": "Wide, 16:9, golden hour",
+   "right": "Warm light, long clear shadows",
+   "avoid": "People, vehicles, text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "8.1",
+   "use": "Slant of sunlight",
+   "shows": "Same torch beam on a flat board held straight on, then tilted, showing the bright spot spreading wider and dimmer",
+   "view": "Top view, three frames, same distance, dark room",
+   "right": "Bright small spot when straight, wide dim oval when slanting",
+   "avoid": "Hands with jewellery, brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "8.3",
+   "use": "Convection",
+   "shows": "A rising shimmer of hot air above a tar road in summer, and a kite or bird soaring in the thermal",
+   "view": "Low angle, 16:9, bright noon",
+   "right": "Shimmer clear above the black road",
+   "avoid": "Vehicle numbers, people"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "Altitude and temperature",
+   "shows": "The same Himalayan valley seen at two heights: a green town below and snow peaks above in one frame",
+   "view": "Wide, 16:9, clear day",
+   "right": "Visible change from green to snow with height",
+   "avoid": "Text, signboards"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "8.2",
+   "use": "Albedo",
+   "shows": "Fresh snow, bare soil, green grass and dark asphalt side by side in a square field",
+   "view": "Top view, square, same light",
+   "right": "Four distinct brightness levels",
+   "avoid": "People, shoes"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "Thermometer on a hill",
+   "shows": "A mercury-free glass thermometer in a white wooden weather screen, cut-out",
+   "view": "Front view, transparent background",
+   "right": "Clear scale and red liquid column",
+   "avoid": "Brand marks, readable text"
+  }
+ ]
+}

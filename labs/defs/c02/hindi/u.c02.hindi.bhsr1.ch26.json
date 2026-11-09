@@ -1,0 +1,815 @@
+{
+  "chapter_key": "u.c02.hindi.bhsr1.ch26",
+  "class": 2,
+  "subject_id": "hindi",
+  "title": "बादल",
+  "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+  "topics": [
+    {
+      "n": "26.1",
+      "title": "How rain is made: the poem and the water cycle",
+      "labs": [
+        "c02-hindi-bhsr1-ch26-rain",
+        "c02-hindi-bhsr1-ch26-cycle"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "26.2",
+      "title": "Weather talk and news: before the rain",
+      "labs": [],
+      "why_no_lab": "Reading the weather report with a grown-up and talking about monsoon feelings is better done aloud with a newspaper."
+    },
+    {
+      "n": "26.3",
+      "title": "Words that mean the same",
+      "labs": [
+        "c02-hindi-bhsr1-ch26-synonyms"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "26.4",
+      "title": "Half letters: names of children and things",
+      "labs": [
+        "c02-hindi-bhsr1-ch26-names"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "26.5",
+      "title": "Riddles; draw and colour the clouds",
+      "labs": [],
+      "why_no_lab": "Riddles are for saying aloud and the drawing is for the child's own pencil and colours."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c02-hindi-bhsr1-ch26-rain",
+      "topic": "26.1",
+      "template": "sequence",
+      "title": {
+        "en": "How rain is made",
+        "hi": "बारिश कैसे बनती है"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "sun",
+            "text": {
+              "en": "The Sun's heat warms water in rivers, ponds and seas.",
+              "hi": "सूरज की गरमी से नदी, तालाब और समुद्र का पानी गरम होता है।"
+            }
+          },
+          {
+            "id": "vapour",
+            "text": {
+              "en": "Tiny drops of water turn into vapour and rise up.",
+              "hi": "पानी की नन्ही बूँदें भाप बनकर ऊपर उठती हैं।"
+            }
+          },
+          {
+            "id": "cool",
+            "text": {
+              "en": "High up it is cool, so the vapour turns back into tiny drops.",
+              "hi": "ऊपर ठंडक होती है, इसलिए भाप फिर नन्ही बूँदें बन जाती है।"
+            }
+          },
+          {
+            "id": "cloud",
+            "text": {
+              "en": "The tiny drops gather and make clouds.",
+              "hi": "नन्ही बूँदें इकट्ठी होकर बादल बनाती हैं।"
+            }
+          },
+          {
+            "id": "rain",
+            "text": {
+              "en": "The clouds grow heavy and the rain falls.",
+              "hi": "बादल भारी हो जाते हैं और बारिश बरसती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:sun",
+          "expect": "placed:sun",
+          "say": {
+            "en": "What gives heat to the water first? Tap that card and put it in slot 1.",
+            "hi": "सबसे पहले पानी को गरमी कौन देता है? वह कार्ड दबाकर पहली जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What will come just before the rain?",
+            "hi": "बारिश से ठीक पहले क्या आएगा?"
+          },
+          "options": [
+            {
+              "id": "cloud",
+              "en": "The tiny drops gather and make clouds.",
+              "hi": "नन्ही बूँदें इकट्ठी होकर बादल बनाती हैं।"
+            },
+            {
+              "id": "sun",
+              "en": "The Sun's heat warms water in rivers, ponds and seas.",
+              "hi": "सूरज की गरमी से नदी, तालाब और समुद्र का पानी गरम होता है।"
+            },
+            {
+              "id": "vapour",
+              "en": "Tiny drops of water turn into vapour and rise up.",
+              "hi": "पानी की नन्ही बूँदें भाप बनकर ऊपर उठती हैं।"
+            }
+          ],
+          "answer": "cloud"
+        },
+        {
+          "kind": "do",
+          "target": "item:rain",
+          "expect": "placed:rain",
+          "say": {
+            "en": "Now put the last card in its place.",
+            "hi": "अब आख़िरी कार्ड को उसकी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place all the cards in order, then tap Check.",
+            "hi": "सब कार्ड क्रम से रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Water goes up as vapour, cools, makes clouds, and comes down as rain. Then the rivers fill again. This circle goes on and on.",
+            "hi": "पानी भाप बनकर ऊपर जाता है, ठंडा होकर बादल बनाता है और बारिश बनकर नीचे आता है। फिर नदियाँ भर जाती हैं। यह चक्र चलता रहता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What turns water into vapour?",
+                "hi": "पानी को भाप कौन बनाता है?"
+              },
+              "options": [
+                {
+                  "en": "The Sun's heat",
+                  "hi": "सूरज की गरमी"
+                },
+                {
+                  "en": "The Moon",
+                  "hi": "चाँद"
+                },
+                {
+                  "en": "The wind alone",
+                  "hi": "अकेली हवा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The Sun warms the water and it rises as vapour.",
+                "hi": "सूरज पानी को गरम करता है और वह भाप बनकर ऊपर उठता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The Moon gives no heat.",
+                  "hi": "चाँद गरमी नहीं देता।"
+                },
+                {
+                  "en": "Wind helps clouds move but the heat comes from the Sun.",
+                  "hi": "हवा बादलों को चलाती है, पर गरमी सूरज से आती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Put a wet cloth in the sun and see it dry. Where did the water go?",
+            "hi": "गीला कपड़ा धूप में सुखाओ। पानी कहाँ गया?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch26-cycle",
+      "topic": "26.1",
+      "template": "earth",
+      "title": {
+        "en": "The water cycle",
+        "hi": "जल चक्र"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "water-cycle",
+        "region": "india"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "layer:evaporation",
+          "expect": "revealed:evaporation",
+          "say": {
+            "en": "Tap evaporation to see water rising as vapour.",
+            "hi": "वाष्पन दबाकर देखो कि पानी भाप बनकर कैसे उठता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What will vapour do high up in the cool air?",
+            "hi": "ऊपर ठंडी हवा में भाप क्या करेगी?"
+          },
+          "options": [
+            {
+              "id": "cloud",
+              "en": "Make clouds",
+              "hi": "बादल बनाएगी"
+            },
+            {
+              "id": "burn",
+              "en": "Burn",
+              "hi": "जल जाएगी"
+            },
+            {
+              "id": "vanish",
+              "en": "Vanish for ever",
+              "hi": "हमेशा के लिए ग़ायब हो जाएगी"
+            }
+          ],
+          "answer": "cloud"
+        },
+        {
+          "kind": "do",
+          "target": "layer:condensation",
+          "expect": "revealed:condensation",
+          "say": {
+            "en": "Tap condensation to see clouds form.",
+            "hi": "संघनन दबाकर देखो कि बादल कैसे बनते हैं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "layer:precipitation",
+          "expect": "revealed:precipitation",
+          "say": {
+            "en": "Tap precipitation to see the rain.",
+            "hi": "वर्षण दबाकर बारिश देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The Sun makes water rise as vapour. Up in the cool air it turns into tiny drops and makes clouds. When the clouds are heavy, the drops fall as rain. The rain flows back into the rivers and the sea.",
+            "hi": "सूरज पानी को भाप बनाकर ऊपर उठाता है। ठंडी हवा में वह नन्ही बूँदें बनकर बादल बनाता है। बादल भारी हों तो बूँदें बारिश बनकर गिरती हैं। बारिश नदियों और समुद्र में लौट जाती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What are clouds made of?",
+                "hi": "बादल किससे बने होते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Tiny drops of water",
+                  "hi": "पानी की नन्ही बूँदों से"
+                },
+                {
+                  "en": "Smoke",
+                  "hi": "धुएँ से"
+                },
+                {
+                  "en": "Cotton",
+                  "hi": "रुई से"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Clouds are tiny drops of water floating in the air.",
+                "hi": "बादल हवा में तैरती पानी की नन्ही बूँदें हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Smoke comes from fires; clouds are not smoke.",
+                  "hi": "धुआँ आग से आता है; बादल धुआँ नहीं हैं।"
+                },
+                {
+                  "en": "Clouds look like cotton but are drops of water.",
+                  "hi": "बादल रुई जैसे दिखते हैं, पर पानी की बूँदें हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tap the other parts, such as runoff and infiltration, and see where the rain goes next.",
+            "hi": "बहाव और रिसाव जैसे दूसरे भाग भी दबाओ और देखो कि बारिश का पानी आगे कहाँ जाता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch26-synonyms",
+      "topic": "26.3",
+      "template": "match",
+      "title": {
+        "en": "Same meaning words",
+        "hi": "समान अर्थ वाले शब्द"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "jal",
+            "left": {
+              "en": "जल",
+              "hi": "जल"
+            },
+            "right": {
+              "en": "पानी",
+              "hi": "पानी"
+            },
+            "why": {
+              "en": "जल and पानी both mean water.",
+              "hi": "जल और पानी दोनों का अर्थ water है।"
+            }
+          },
+          {
+            "id": "vriksh",
+            "left": {
+              "en": "वृक्ष",
+              "hi": "वृक्ष"
+            },
+            "right": {
+              "en": "पेड़",
+              "hi": "पेड़"
+            },
+            "why": {
+              "en": "वृक्ष and पेड़ both mean tree.",
+              "hi": "वृक्ष और पेड़ दोनों का अर्थ tree है।"
+            }
+          },
+          {
+            "id": "megh",
+            "left": {
+              "en": "मेघ",
+              "hi": "मेघ"
+            },
+            "right": {
+              "en": "बादल",
+              "hi": "बादल"
+            },
+            "why": {
+              "en": "मेघ and बादल both mean cloud.",
+              "hi": "मेघ और बादल दोनों का अर्थ cloud है।"
+            }
+          },
+          {
+            "id": "prithvi",
+            "left": {
+              "en": "पृथ्वी",
+              "hi": "पृथ्वी"
+            },
+            "right": {
+              "en": "धरती",
+              "hi": "धरती"
+            },
+            "why": {
+              "en": "पृथ्वी and धरती both mean the Earth.",
+              "hi": "पृथ्वी और धरती दोनों का अर्थ Earth है।"
+            }
+          },
+          {
+            "id": "surya",
+            "left": {
+              "en": "सूर्य",
+              "hi": "सूर्य"
+            },
+            "right": {
+              "en": "सूरज",
+              "hi": "सूरज"
+            },
+            "why": {
+              "en": "सूर्य and सूरज both mean the Sun.",
+              "hi": "सूर्य और सूरज दोनों का अर्थ Sun है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:jal",
+          "expect": "matched:jal",
+          "say": {
+            "en": "Tap the word जल on the left.",
+            "hi": "बाईं ओर से जल शब्द दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What goes with मेघ?",
+            "hi": "मेघ के साथ क्या जाएगा?"
+          },
+          "options": [
+            {
+              "id": "megh",
+              "en": "बादल",
+              "hi": "बादल"
+            },
+            {
+              "id": "jal",
+              "en": "पानी",
+              "hi": "पानी"
+            },
+            {
+              "id": "prithvi",
+              "en": "धरती",
+              "hi": "धरती"
+            }
+          ],
+          "answer": "megh"
+        },
+        {
+          "kind": "do",
+          "target": "right:surya",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest of the pairs.",
+            "hi": "बाक़ी जोड़ियाँ मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Many things have two names. In a poem we may use the grand word मेघ, and in talk we say बादल. Both are right. Knowing both makes our Hindi richer.",
+            "hi": "कई चीज़ों के दो नाम होते हैं। कविता में हम मेघ जैसा बड़ा शब्द इस्तेमाल करते हैं और बोलचाल में बादल कहते हैं। दोनों सही हैं। दोनों जानने से हमारी हिंदी समृद्ध होती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which word means the same as पेड़?",
+                "hi": "पेड़ के समान अर्थ वाला शब्द कौन-सा है?"
+              },
+              "options": [
+                {
+                  "en": "वृक्ष",
+                  "hi": "वृक्ष"
+                },
+                {
+                  "en": "जल",
+                  "hi": "जल"
+                },
+                {
+                  "en": "मेघ",
+                  "hi": "मेघ"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "वृक्ष is another word for tree.",
+                "hi": "वृक्ष पेड़ का दूसरा नाम है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "जल means water.",
+                  "hi": "जल का अर्थ पानी है।"
+                },
+                {
+                  "en": "मेघ means cloud.",
+                  "hi": "मेघ का अर्थ बादल है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Ask an elder for another name for चाँद or आसमान.",
+            "hi": "किसी बड़े से चाँद या आसमान का दूसरा नाम पूछो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch26-names",
+      "topic": "26.4",
+      "template": "sort",
+      "title": {
+        "en": "Names of children and things",
+        "hi": "बच्चों और चीज़ों के नाम"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "kids",
+            "label": {
+              "en": "Names of children",
+              "hi": "बच्चों के नाम"
+            }
+          },
+          {
+            "id": "things",
+            "label": {
+              "en": "Names of things",
+              "hi": "चीज़ों के नाम"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "bittu",
+            "text": {
+              "en": "बिट्टू",
+              "hi": "बिट्टू"
+            },
+            "bin": "kids",
+            "why": {
+              "en": "बिट्टू is a child's pet name; it has a doubled ट्.",
+              "hi": "बिट्टू बच्चे का प्यार का नाम है; इसमें ट् दो बार है।"
+            }
+          },
+          {
+            "id": "lalli",
+            "text": {
+              "en": "लल्ली",
+              "hi": "लल्ली"
+            },
+            "bin": "kids",
+            "why": {
+              "en": "लल्ली is a girl's pet name.",
+              "hi": "लल्ली लड़की का प्यार का नाम है।"
+            }
+          },
+          {
+            "id": "pappu",
+            "text": {
+              "en": "पप्पू",
+              "hi": "पप्पू"
+            },
+            "bin": "kids",
+            "why": {
+              "en": "पप्पू is a child's pet name.",
+              "hi": "पप्पू बच्चे का प्यार का नाम है।"
+            }
+          },
+          {
+            "id": "bastaa",
+            "text": {
+              "en": "बस्ता",
+              "hi": "बस्ता"
+            },
+            "bin": "things",
+            "why": {
+              "en": "बस्ता is the school bag; it has a half स्.",
+              "hi": "बस्ता स्कूल का थैला है; इसमें आधा स् है।"
+            }
+          },
+          {
+            "id": "ganna",
+            "text": {
+              "en": "गन्ना",
+              "hi": "गन्ना"
+            },
+            "bin": "things",
+            "why": {
+              "en": "गन्ना is sugarcane; it has a doubled न्.",
+              "hi": "गन्ना एक पौधा है जिससे चीनी बनती है; इसमें न् दो बार है।"
+            }
+          },
+          {
+            "id": "laddu",
+            "text": {
+              "en": "लड्डू",
+              "hi": "लड्डू"
+            },
+            "bin": "things",
+            "why": {
+              "en": "लड्डू is a sweet; it has a doubled ड्.",
+              "hi": "लड्डू एक मिठाई है; इसमें ड् दो बार है।"
+            }
+          },
+          {
+            "id": "haldi",
+            "text": {
+              "en": "हल्दी",
+              "hi": "हल्दी"
+            },
+            "bin": "things",
+            "why": {
+              "en": "हल्दी is a yellow spice; it has a half ल्.",
+              "hi": "हल्दी पीला मसाला है; इसमें आधा ल् है।"
+            }
+          },
+          {
+            "id": "munni",
+            "text": {
+              "en": "मुन्नी",
+              "hi": "मुन्नी"
+            },
+            "bin": "kids",
+            "why": {
+              "en": "मुन्नी is a girl's pet name.",
+              "hi": "मुन्नी लड़की का प्यार का नाम है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:bittu",
+          "expect": "placed:bittu",
+          "say": {
+            "en": "Tap the card बिट्टू.",
+            "hi": "बिट्टू कार्ड दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is लड्डू the name of a child or a thing?",
+            "hi": "क्या लड्डू बच्चे का नाम है या चीज़ का?"
+          },
+          "options": [
+            {
+              "id": "things",
+              "en": "A thing",
+              "hi": "एक चीज़"
+            },
+            {
+              "id": "kids",
+              "en": "A child",
+              "hi": "एक बच्चा"
+            }
+          ],
+          "answer": "things"
+        },
+        {
+          "kind": "do",
+          "target": "bin:kids",
+          "expect": "correct:bittu",
+          "say": {
+            "en": "Now tap the bin where this card belongs.",
+            "hi": "अब उस डिब्बे को दबाओ जिसमें यह कार्ड जाएगा।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort every card, then tap Check.",
+            "hi": "सब कार्ड छाँटो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Every word here has a half letter, like the second ट in बिट्टू or the स् in बस्ता. Half letters join to the letter after them. Names of children and names of things can both have half letters.",
+            "hi": "इन सभी शब्दों में आधा अक्षर है, जैसे बिट्टू में ट् या बस्ता में स्। आधा अक्षर अपने बाद वाले अक्षर से जुड़ता है। बच्चों के नाम और चीज़ों के नाम, दोनों में आधे अक्षर हो सकते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which word has a doubled letter?",
+                "hi": "किस शब्द में अक्षर दो बार आया है?"
+              },
+              "options": [
+                {
+                  "en": "गन्ना",
+                  "hi": "गन्ना"
+                },
+                {
+                  "en": "बादल",
+                  "hi": "बादल"
+                },
+                {
+                  "en": "नदी",
+                  "hi": "नदी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "गन्ना is ग + न्ना: the न is doubled.",
+                "hi": "गन्ना = ग + न्ना: इसमें न दो बार है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "बादल has no doubled letter.",
+                  "hi": "बादल में कोई अक्षर दो बार नहीं है।"
+                },
+                {
+                  "en": "नदी has no doubled letter.",
+                  "hi": "नदी में कोई अक्षर दो बार नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find two more words with a half letter, like चम्मच or बिल्ली.",
+            "hi": "आधे अक्षर वाले दो और शब्द ढूँढो, जैसे चम्मच या बिल्ली।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "26.1",
+      "use": "Opens the poem",
+      "shows": "Dark rain clouds rolling over green paddy fields in the monsoon",
+      "view": "Wide, dramatic light",
+      "right": "Dark grey-blue clouds, a peacock far in the field",
+      "avoid": "Any text"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "26.1",
+      "use": "From sun to rain",
+      "shows": "Five frames: sun on a pond, mist rising, a cloud forming, dark clouds, rain falling on the same pond",
+      "view": "Same pond, same camera",
+      "right": "The same pond, seen across a day or from a time-lapse",
+      "avoid": "Different places"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "26.1",
+      "use": "Cloud shapes",
+      "shows": "Fluffy clouds that look like an elephant, a horse and a sheep",
+      "view": "Wide, blue sky",
+      "right": "Shapes should only suggest an animal, not be drawn on",
+      "avoid": "Edited or painted shapes"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "26.3",
+      "use": "Match-card pictures",
+      "shows": "Water in a glass, a tree, a cloud, the Earth from space and the Sun",
+      "view": "Front, each alone",
+      "right": "True colours; the Earth is the real photo style",
+      "avoid": "Cartoon look"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "26.1",
+      "use": "Paper boat",
+      "shows": "A child's hands floating a paper boat in rain water on a street",
+      "view": "Low angle, close",
+      "right": "The boat is sharp, ripples around it",
+      "avoid": "Face"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "26.1",
+      "use": "Peacock dance",
+      "shows": "A peacock dancing with its feathers spread on a wet green lawn",
+      "view": "Wide, soft grey light",
+      "right": "Real peacock, feathers fully fanned",
+      "avoid": "Captive bird in cage"
+    }
+  ]
+}

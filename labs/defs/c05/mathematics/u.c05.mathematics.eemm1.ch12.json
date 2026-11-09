@@ -1,0 +1,791 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch12",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "Racing Seconds",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Minutes and seconds: timing races",
+   "labs": [
+    "c05-mathematics-eemm1-ch12-seconds-or-minutes",
+    "c05-mathematics-eemm1-ch12-race-finish"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Time elapsed between two times",
+   "labs": [
+    "c05-mathematics-eemm1-ch12-elapsed-minutes",
+    "c05-mathematics-eemm1-ch12-how-long"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "12-hour and 24-hour time",
+   "labs": [
+    "c05-mathematics-eemm1-ch12-twenty-four-hour"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch12-seconds-or-minutes",
+   "topic": "12.1",
+   "template": "sort",
+   "title": {
+    "en": "Seconds or minutes?",
+    "hi": "सेकंड या मिनट?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sec",
+      "label": {
+       "en": "Seconds",
+       "hi": "सेकंड"
+      }
+     },
+     {
+      "id": "min",
+      "label": {
+       "en": "Minutes",
+       "hi": "मिनट"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Blinking your eyes",
+       "hi": "आँख झपकाना"
+      },
+      "bin": "sec",
+      "why": {
+       "en": "A blink takes a fraction of a second.",
+       "hi": "पलक झपकने में एक सेकंड का भी बहुत छोटा हिस्सा लगता है।"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Snapping your fingers",
+       "hi": "चुटकी बजाना"
+      },
+      "bin": "sec",
+      "why": {
+       "en": "A snap is over in a moment: seconds.",
+       "hi": "चुटकी एक पल में हो जाती है: सेकंड।"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Counting from 1 to 20",
+       "hi": "1 से 20 तक गिनना"
+      },
+      "bin": "sec",
+      "why": {
+       "en": "Counting 20 numbers aloud takes about 20 seconds.",
+       "hi": "20 संख्याएँ बोलकर गिनने में लगभग 20 सेकंड लगते हैं।"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Switching a light on",
+       "hi": "बत्ती जलाना"
+      },
+      "bin": "sec",
+      "why": {
+       "en": "It takes about a second.",
+       "hi": "इसमें लगभग एक सेकंड लगता है।"
+      }
+     },
+     {
+      "id": "m1",
+      "text": {
+       "en": "Brushing your teeth",
+       "hi": "दाँत साफ़ करना"
+      },
+      "bin": "min",
+      "why": {
+       "en": "Brushing takes about two minutes.",
+       "hi": "ब्रश करने में लगभग दो मिनट लगते हैं।"
+      }
+     },
+     {
+      "id": "m2",
+      "text": {
+       "en": "Cooking rice",
+       "hi": "चावल पकाना"
+      },
+      "bin": "min",
+      "why": {
+       "en": "Rice takes many minutes to cook.",
+       "hi": "चावल पकने में कई मिनट लगते हैं।"
+      }
+     },
+     {
+      "id": "m3",
+      "text": {
+       "en": "A school assembly",
+       "hi": "स्कूल की सभा"
+      },
+      "bin": "min",
+      "why": {
+       "en": "An assembly lasts many minutes.",
+       "hi": "सभा कई मिनट चलती है।"
+      }
+     },
+     {
+      "id": "m4",
+      "text": {
+       "en": "An ice cube melting in a glass",
+       "hi": "गिलास में बर्फ़ पिघलना"
+      },
+      "bin": "min",
+      "why": {
+       "en": "An ice cube takes several minutes to melt.",
+       "hi": "बर्फ़ को पिघलने में कई मिनट लगते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:s1",
+     "expect": "correct:s1",
+     "say": {
+      "en": "Place 'Blinking your eyes'.",
+      "hi": "'आँख झपकाना' रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "1 minute is 60 seconds. Will brushing your teeth take seconds or minutes?",
+      "hi": "1 मिनट में 60 सेकंड होते हैं। दाँत साफ़ करने में सेकंड लगेंगे या मिनट?"
+     },
+     "options": [
+      {
+       "id": "min",
+       "en": "Minutes",
+       "hi": "मिनट"
+      },
+      {
+       "id": "sec",
+       "en": "Seconds",
+       "hi": "सेकंड"
+      }
+     ],
+     "answer": "min"
+    },
+    {
+     "kind": "do",
+     "target": "card:m1",
+     "expect": "correct:m1",
+     "say": {
+      "en": "Place 'Brushing your teeth'.",
+      "hi": "'दाँत साफ़ करना' रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाकी छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Short events, like a blink or a snap, are measured in seconds. Longer events, like cooking or brushing, are measured in minutes. 60 seconds make 1 minute, and 60 minutes make 1 hour.",
+      "hi": "छोटी घटनाएँ, जैसे पलक झपकना या चुटकी, सेकंड में नापी जाती हैं। लंबी घटनाएँ, जैसे खाना पकाना या ब्रश करना, मिनट में। 60 सेकंड मिलकर 1 मिनट और 60 मिनट मिलकर 1 घंटा बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many seconds are in 2 minutes?",
+        "hi": "2 मिनट में कितने सेकंड होते हैं?"
+       },
+       "options": [
+        "120",
+        "60",
+        "22"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1 minute = 60 seconds, so 2 minutes = 2 × 60 = 120 seconds.",
+        "hi": "1 मिनट = 60 सेकंड, इसलिए 2 मिनट = 2 × 60 = 120 सेकंड।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "60 seconds is only one minute.",
+         "hi": "60 सेकंड केवल एक मिनट होते हैं।"
+        },
+        {
+         "en": "22 is what you get by writing 2 next to 2. Multiply 2 by 60.",
+         "hi": "22 तब मिलता है जब 2 के पास 2 लिख दो। 2 को 60 से गुणा करो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Time yourself: how many seconds does it take you to write your name five times? Use a clock with a seconds hand.",
+      "hi": "अपना समय नापो: अपना नाम पाँच बार लिखने में तुम्हें कितने सेकंड लगते हैं? सेकंड की सुई वाली घड़ी इस्तेमाल करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch12-race-finish",
+   "topic": "12.1",
+   "template": "sequence",
+   "title": {
+    "en": "Who won the school race?",
+    "hi": "स्कूल की दौड़ किसने जीती?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "r1",
+      "text": {
+       "en": "Imran: 1 min 58 s",
+       "hi": "इमरान: 1 मिनट 58 सेकंड"
+      }
+     },
+     {
+      "id": "r2",
+      "text": {
+       "en": "Joseph: 2 min 2 s",
+       "hi": "जोसेफ़: 2 मिनट 2 सेकंड"
+      }
+     },
+     {
+      "id": "r3",
+      "text": {
+       "en": "Riya: 2 min 5 s",
+       "hi": "रिया: 2 मिनट 5 सेकंड"
+      }
+     },
+     {
+      "id": "r4",
+      "text": {
+       "en": "Meena: 2 min 11 s",
+       "hi": "मीना: 2 मिनट 11 सेकंड"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a race, the runner with the smallest time wins. Imran took 1 min 58 s and Joseph 2 min 2 s. Who finished first?",
+      "hi": "दौड़ में सबसे कम समय वाला धावक जीतता है। इमरान को 1 मिनट 58 सेकंड लगे और जोसेफ़ को 2 मिनट 2 सेकंड। पहले कौन पहुँचा?"
+     },
+     "options": [
+      {
+       "id": "imran",
+       "en": "Imran",
+       "hi": "इमरान"
+      },
+      {
+       "id": "joseph",
+       "en": "Joseph",
+       "hi": "जोसेफ़"
+      }
+     ],
+     "answer": "imran"
+    },
+    {
+     "kind": "do",
+     "target": "item:r1",
+     "expect": "placed:r1",
+     "say": {
+      "en": "Put the winner in the first place.",
+      "hi": "विजेता को पहली जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all four runners in order from first to last, then tap Check.",
+      "hi": "चारों धावकों को पहले से आख़िरी के क्रम में लगाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Compare minutes first. 1 minute is less than 2 minutes, so Imran is first. If the minutes are equal, compare the seconds. Joseph (2 min 2 s) beats Riya (2 min 5 s) because 2 seconds is less than 5 seconds. Seconds tell us the small differences.",
+      "hi": "पहले मिनट की तुलना करो। 1 मिनट, 2 मिनट से कम है, इसलिए इमरान पहले आया। मिनट बराबर हों तो सेकंड की तुलना करो। जोसेफ़ (2 मिनट 2 सेकंड) रिया (2 मिनट 5 सेकंड) से आगे है क्योंकि 2 सेकंड, 5 सेकंड से कम हैं। सेकंड हमें छोटे अंतर बताते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Riya took 2 min 5 s and Meena took 2 min 11 s. How many seconds slower was Meena?",
+        "hi": "रिया को 2 मिनट 5 सेकंड लगे और मीना को 2 मिनट 11 सेकंड। मीना कितने सेकंड धीमी रही?"
+       },
+       "options": [
+        {
+         "en": "6 seconds",
+         "hi": "6 सेकंड"
+        },
+        {
+         "en": "11 seconds",
+         "hi": "11 सेकंड"
+        },
+        {
+         "en": "16 seconds",
+         "hi": "16 सेकंड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The minutes are the same, so subtract the seconds: 11 − 5 = 6.",
+        "hi": "मिनट बराबर हैं, इसलिए सेकंड घटाओ: 11 − 5 = 6।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "11 is Meena's seconds only. We want the difference between the two runners.",
+         "hi": "11 केवल मीना के सेकंड हैं। हमें दोनों धावकों का अंतर चाहिए।"
+        },
+        {
+         "en": "16 is 11 + 5. To find how much slower, subtract, do not add.",
+         "hi": "16 तो 11 + 5 है। कितनी धीमी, यह जानने के लिए घटाना है, जोड़ना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Time two friends running 20 steps, using a clock with a seconds hand. Who was faster? By how many seconds?",
+      "hi": "दो दोस्तों को 20 कदम दौड़ाओ और सेकंड की सुई वाली घड़ी से समय नापो। कौन तेज़ था? कितने सेकंड से?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch12-elapsed-minutes",
+   "topic": "12.2",
+   "template": "clock",
+   "title": {
+    "en": "Time passes: yoga class",
+    "hi": "समय बीतता है: योग कक्षा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "elapsed",
+    "time": "09:15",
+    "ask": 135
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A yoga class starts at 9:15 and lasts 2 hours 15 minutes. Will it end before 12 o'clock?",
+      "hi": "योग कक्षा 9:15 पर शुरू होती है और 2 घंटे 15 मिनट चलती है। क्या वह 12 बजे से पहले खत्म होगी?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it ends before 12",
+       "hi": "हाँ, वह 12 से पहले खत्म होगी"
+      },
+      {
+       "id": "no",
+       "en": "No, it ends after 12",
+       "hi": "नहीं, वह 12 के बाद खत्म होगी"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "step:*",
+     "expect": "set:11:30",
+     "say": {
+      "en": "Move the clock forward to the end time: add 2 hours with the hour button and 15 minutes with the 5-minute button.",
+      "hi": "घड़ी को अंतिम समय तक आगे बढ़ाओ: घंटे वाले बटन से 2 घंटे और 5 मिनट वाले बटन से 15 मिनट जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check to see if the clock is right.",
+      "hi": "जाँचो पर टैप करके देखो कि घड़ी सही है या नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "From 9:15, 2 hours later is 11:15. Then 15 more minutes makes 11:30. So the class ends at 11:30, before 12. Add the hours first, then the minutes, to find the end time.",
+      "hi": "9:15 से 2 घंटे बाद 11:15 होता है। फिर 15 मिनट और जोड़ने पर 11:30 होता है। इसलिए कक्षा 11:30 पर खत्म होती है, 12 से पहले। अंतिम समय निकालने के लिए पहले घंटे जोड़ो, फिर मिनट।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A film starts at 4:30 and lasts 1 hour 45 minutes. When does it end?",
+        "hi": "फ़िल्म 4:30 पर शुरू होती है और 1 घंटा 45 मिनट चलती है। वह कब खत्म होगी?"
+       },
+       "options": [
+        "6:15",
+        "5:75",
+        "6:45"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4:30 + 1 hour = 5:30. 5:30 + 45 minutes = 6:15.",
+        "hi": "4:30 + 1 घंटा = 5:30। 5:30 + 45 मिनट = 6:15।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There are only 60 minutes in an hour, so 5:75 is not a time. 75 minutes is 1 hour 15 minutes more.",
+         "hi": "एक घंटे में केवल 60 मिनट होते हैं, इसलिए 5:75 कोई समय नहीं। 75 मिनट यानी 1 घंटा 15 मिनट और।"
+        },
+        {
+         "en": "6:45 adds 2 hours 15 minutes. The film is 1 hour 45 minutes.",
+         "hi": "6:45 में 2 घंटे 15 मिनट जुड़ गए। फ़िल्म 1 घंटा 45 मिनट की है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next for another question. Try going back too: if a bus arrives at 8:20 after a 50 minute journey, when did it start?",
+      "hi": "दूसरे सवाल के लिए अगला दबाओ। पीछे भी जाओ: अगर बस 50 मिनट की यात्रा के बाद 8:20 पर पहुँचती है तो वह कब चली थी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch12-how-long",
+   "topic": "12.2",
+   "template": "clock",
+   "title": {
+    "en": "How long did it take?",
+    "hi": "कितना समय लगा?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "elapsed",
+    "time": "02:10",
+    "ask": "02:45"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A drawing class starts at 2:10 and ends at 2:45. Is that more than half an hour?",
+      "hi": "चित्रकला की कक्षा 2:10 पर शुरू होकर 2:45 पर खत्म होती है। क्या यह आधे घंटे से ज़्यादा है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, more than 30 minutes",
+       "hi": "हाँ, 30 मिनट से ज़्यादा"
+      },
+      {
+       "id": "no",
+       "en": "No, less than 30 minutes",
+       "hi": "नहीं, 30 मिनट से कम"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the two times on the clock and choose how long the class lasted.",
+      "hi": "घड़ी पर दोनों समय देखो और चुनो कि कक्षा कितनी देर चली।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "From 2:10 to 2:45, count the minute hand from 2 to 9: that is 7 big steps of 5 minutes = 35 minutes. Or count from 2:10 to 2:40 (30 minutes) and 5 more minutes: 35 minutes.",
+      "hi": "2:10 से 2:45 तक मिनट की सुई 2 से 9 तक गिनो: 5-5 मिनट के 7 बड़े कदम = 35 मिनट। या 2:10 से 2:40 (30 मिनट) और 5 मिनट और: 35 मिनट।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bus leaves at 3:20 and arrives at 4:05. How long is the journey?",
+        "hi": "एक बस 3:20 पर चलती है और 4:05 पर पहुँचती है। यात्रा कितनी लंबी है?"
+       },
+       "options": [
+        {
+         "en": "45 minutes",
+         "hi": "45 मिनट"
+        },
+        {
+         "en": "1 hour 15 minutes",
+         "hi": "1 घंटा 15 मिनट"
+        },
+        {
+         "en": "85 minutes",
+         "hi": "85 मिनट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3:20 to 4:00 is 40 minutes, then 5 more minutes: 45 minutes.",
+        "hi": "3:20 से 4:00 तक 40 मिनट, फिर 5 मिनट और: 45 मिनट।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 hour 15 minutes is too long: 3:20 plus 1 hour 15 minutes is 4:35. Count to 4:00 first: 40 minutes, then 5 more.",
+         "hi": "1 घंटा 15 मिनट बहुत लंबा है: 3:20 में 1 घंटा 15 मिनट जोड़ने पर 4:35 होता है। पहले 4:00 तक गिनो: 40 मिनट, फिर 5 और।"
+        },
+        {
+         "en": "85 is 4:05 minus 3:20 done as 405 − 320. Times use 60 minutes in an hour.",
+         "hi": "85 तब मिलता है जब 4:05 − 3:20 को 405 − 320 की तरह किया जाए। समय में एक घंटे के 60 मिनट होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to try another pair of times. Use the trick: count up to the next full hour first.",
+      "hi": "समय के दूसरे जोड़े के लिए अगला दबाओ। यह तरकीब आज़माओ: पहले अगले पूरे घंटे तक गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch12-twenty-four-hour",
+   "topic": "12.3",
+   "template": "clock",
+   "title": {
+    "en": "12-hour and 24-hour time",
+    "hi": "12-घंटे और 24-घंटे का समय"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "24h",
+    "time": "08:00",
+    "ask": "14:30"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A train leaves at 14:30 on the railway timetable. Is that in the morning or in the afternoon?",
+      "hi": "रेल की समय-सारणी में एक ट्रेन 14:30 पर चलती है। यह सुबह है या दोपहर के बाद?"
+     },
+     "options": [
+      {
+       "id": "pm",
+       "en": "In the afternoon",
+       "hi": "दोपहर के बाद"
+      },
+      {
+       "id": "am",
+       "en": "In the morning",
+       "hi": "सुबह"
+      }
+     ],
+     "answer": "pm"
+    },
+    {
+     "kind": "do",
+     "target": "step:*",
+     "expect": "set:14:30",
+     "say": {
+      "en": "Set the clock to the time that 14:30 means: use the hour and minute buttons.",
+      "hi": "घड़ी को वह समय लगाओ जो 14:30 का मतलब है: घंटे और मिनट के बटन इस्तेमाल करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A 24-hour clock counts the hours from 0 to 23. After noon it keeps counting: 13, 14, 15... So 14:30 is 14 − 12 = 2, which is 2:30 p.m. Before noon the hours are the same on both clocks: 08:00 is 8:00 a.m.",
+      "hi": "24 घंटे की घड़ी घंटों को 0 से 23 तक गिनती है। दोपहर के बाद गिनती चलती रहती है: 13, 14, 15... इसलिए 14:30 यानी 14 − 12 = 2, यानी दोपहर बाद 2:30। दोपहर से पहले दोनों घड़ियों में घंटे एक-से होते हैं: 08:00 यानी सुबह 8:00।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 5:30 p.m. in 24-hour time?",
+        "hi": "शाम 5:30 बजे का 24-घंटे वाला समय क्या है?"
+       },
+       "options": [
+        "17:30",
+        "05:30",
+        "15:30"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After noon add 12 to the hour: 5 + 12 = 17, so 17:30.",
+        "hi": "दोपहर के बाद घंटे में 12 जोड़ो: 5 + 12 = 17, इसलिए 17:30।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "05:30 is 5:30 in the morning. For p.m. we must add 12 to the hour.",
+         "hi": "05:30 तो सुबह 5:30 है। दोपहर बाद के लिए घंटे में 12 जोड़ना होगा।"
+        },
+        {
+         "en": "15:30 is 3:30 p.m. Add 12 to 5, not to 3.",
+         "hi": "15:30 तो दोपहर बाद 3:30 है। 12 को 5 में जोड़ो, 3 में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A film starts at 21:15. What time is this on a 12-hour clock?",
+        "hi": "फ़िल्म 21:15 पर शुरू होती है। 12-घंटे वाली घड़ी में यह कौन-सा समय है?"
+       },
+       "options": [
+        {
+         "en": "9:15 p.m.",
+         "hi": "रात 9:15"
+        },
+        {
+         "en": "9:15 a.m.",
+         "hi": "सुबह 9:15"
+        },
+        {
+         "en": "2:15 p.m.",
+         "hi": "दोपहर 2:15"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "21 − 12 = 9, so it is 9:15 in the evening.",
+        "hi": "21 − 12 = 9, इसलिए यह शाम का 9:15 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9:15 a.m. would be written 09:15 on a 24-hour clock.",
+         "hi": "सुबह 9:15 को 24-घंटे की घड़ी में 09:15 लिखा जाता है।"
+        },
+        {
+         "en": "2:15 p.m. would be 14:15. Subtract 12 from 21.",
+         "hi": "दोपहर 2:15 तो 14:15 होता है। 21 में से 12 घटाओ।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next for more times. Try to write the time you go to school and the time you go to bed in both ways.",
+      "hi": "और समयों के लिए अगला दबाओ। स्कूल जाने और सोने का समय दोनों तरीकों से लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "School race finish",
+   "shows": "A school running track with a finish line tape just broken and a judge's hand holding a stopwatch, runners as backs and blurred",
+   "view": "Low angle at the finish line, bright sun",
+   "right": "Finish tape and stopwatch clear; runners unrecognisable",
+   "avoid": "Faces, readable time on stopwatch"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "12.1",
+   "use": "Stopwatch and clock with seconds hand",
+   "shows": "A handheld stopwatch and a round wall clock with a sweep seconds hand, each a separate cut-out",
+   "view": "Front view, even light",
+   "right": "Dial marks sharp; seconds hand obvious",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "12.2",
+   "use": "Clock moving through 2 hours 15 minutes",
+   "shows": "A wall clock at 9:15, 10:15, 11:15 and 11:30, 4 frames",
+   "view": "Straight on, same distance and light",
+   "right": "Hands accurate in each frame",
+   "avoid": "Reflections"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "12.3",
+   "use": "Railway timetable board",
+   "shows": "A railway station departure board with times in 24-hour format blurred train names",
+   "view": "Slightly below, daylight",
+   "right": "24-hour times readable, names unreadable",
+   "avoid": "Real train numbers, station names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Yoga class",
+   "shows": "A morning yoga class in a school hall, children seen from behind on mats",
+   "view": "Wide, soft light",
+   "right": "Poses calm, backs only",
+   "avoid": "Faces"
+  }
+ ]
+}

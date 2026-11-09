@@ -1,0 +1,680 @@
+{
+ "chapter_key": "u.c11.hindi.khat1.ch04",
+ "class": 11,
+ "subject_id": "hindi",
+ "title": "गूँगे",
+ "source": "https://ncert.nic.in/textbook/pdf/khat104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "The boy and his feelings (लड़का और उसकी भावनाएँ)",
+   "labs": [
+    "c11-hindi-khat1-ch04-feelings"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Voice and silence (आवाज़ और चुप्पी)",
+   "labs": [
+    "c11-hindi-khat1-ch04-voice"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Words of sympathy (संवेदना के शब्द)",
+   "labs": [
+    "c11-hindi-khat1-ch04-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "The writer: Rangeya Raghav (लेखक परिचय)",
+   "labs": [],
+   "why_no_lab": "A short author note is better read than played."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-hindi-khat1-ch04-feelings",
+   "topic": "4.1",
+   "template": "reader",
+   "title": {
+    "en": "The feelings of a voiceless boy",
+    "hi": "एक बेआवाज़ लड़के की भावनाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "emotion-map",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "A boy who cannot speak",
+      "hi": "जो बोल नहीं सकता"
+     },
+     "lines": [
+      "एक लड़का जो बोल और सुन नहीं सकता, अपनी बात इशारों और आँखों से कहता है।",
+      "लोग उसकी बात पूरी तरह समझ नहीं पाते और वह अकेला पड़ जाता है।",
+      "उसके साथ अन्याय होता है, पर वह चीख़कर शिकायत भी नहीं कर पाता।",
+      "कोई दयालु व्यक्ति उसके दर्द को पहचानने की कोशिश करता है।",
+      "कहानी हमसे पूछती है कि जो बोल सकते हैं, क्या वे दूसरों के लिए बोलते हैं?"
+     ]
+    },
+    "emotions": [
+     "calm",
+     "worry",
+     "sadness",
+     "love",
+     "wonder"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line and think how the boy feels.",
+      "hi": "पहली पंक्ति छुओ और सोचो कि लड़का क्या महसूस करता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A wrong is done to him and he cannot even cry out. Which feeling fits best?",
+      "hi": "उसके साथ अन्याय होता है और वह चीख़ भी नहीं पाता। कौन-सी भावना सबसे ठीक है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Joy",
+       "hi": "ख़ुशी"
+      },
+      {
+       "id": "b",
+       "en": "Sadness",
+       "hi": "उदासी"
+      },
+      {
+       "id": "c",
+       "en": "Pride",
+       "hi": "गर्व"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Pick the feeling that fits the line shown.",
+      "hi": "दिखाई गई पंक्ति के लिए सही भावना चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "map-done",
+     "say": {
+      "en": "Finish the feeling map for all the lines.",
+      "hi": "सभी पंक्तियों का भाव-मानचित्र पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The story moves from quiet to worry to sadness, then to a gentle care, and ends with a question for us. The title गूँगे points at all of us: a voice is a gift, and it is a duty to use it for those who have none.",
+      "hi": "कहानी शांति से चिंता और उदासी तक जाती है, फिर कोमल देखभाल पर आती है और हमसे एक प्रश्न पर रुकती है। शीर्षक 'गूँगे' हम सबकी ओर इशारा करता है: आवाज़ एक वरदान है और जिनके पास नहीं है, उनके लिए उसे उठाना हमारा कर्तव्य है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the boy left alone?",
+        "hi": "लड़का अकेला क्यों पड़ जाता है?"
+       },
+       "options": [
+        {
+         "en": "People cannot easily understand his signs",
+         "hi": "लोग उसके इशारे आसानी से नहीं समझ पाते"
+        },
+        {
+         "en": "He does not like people",
+         "hi": "उसे लोग पसंद नहीं"
+        },
+        {
+         "en": "He is rude",
+         "hi": "वह बदतमीज़ है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without speech, his feelings go unheard.",
+        "hi": "बोल न पाने से उसकी भावनाएँ अनसुनी रह जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing suggests dislike; he wants to be understood.",
+         "hi": "नापसंदगी का कोई संकेत नहीं; वह समझा जाना चाहता है।"
+        },
+        {
+         "en": "He is not rude; he simply has no spoken words.",
+         "hi": "वह बदतमीज़ नहीं है; उसके पास बोले हुए शब्द नहीं हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What question does the story put to us?",
+        "hi": "कहानी हमसे क्या प्रश्न पूछती है?"
+       },
+       "options": [
+        {
+         "en": "Can we run faster than him?",
+         "hi": "क्या हम उससे तेज़ दौड़ सकते हैं?"
+        },
+        {
+         "en": "Do we use our voice for others who cannot?",
+         "hi": "क्या हम अपनी आवाज़ उनके लिए उठाते हैं जो नहीं उठा सकते?"
+        },
+        {
+         "en": "Is speech easy to learn?",
+         "hi": "क्या बोलना सीखना आसान है?"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Speaking up for the voiceless is the story's heart.",
+        "hi": "बेआवाज़ों के लिए बोलना कहानी का हृदय है।"
+       },
+       "wrong": [
+        {
+         "en": "Speed is not the matter here.",
+         "hi": "यहाँ बात गति की नहीं है।"
+        },
+        "",
+        {
+         "en": "The story is not about learning speech but about using it with care.",
+         "hi": "कहानी बोलना सीखने की नहीं, उसे संवेदना से प्रयोग करने की है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of one person in your school or street who often goes unheard. How could you give them a voice?",
+      "hi": "अपने विद्यालय या गली में किसी ऐसे व्यक्ति के बारे में सोचो जिसकी बात अक्सर अनसुनी रह जाती है। उसे आवाज़ कैसे दें?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khat1-ch04-voice",
+   "topic": "4.2",
+   "template": "sort",
+   "title": {
+    "en": "Voice or silence",
+    "hi": "आवाज़ या चुप्पी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "voice",
+      "label": {
+       "en": "Speaking up",
+       "hi": "आवाज़ उठाना"
+      }
+     },
+     {
+      "id": "silence",
+      "label": {
+       "en": "Staying silent",
+       "hi": "चुप रहना"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "help",
+      "text": {
+       "en": "Telling a teacher when a weaker child is bullied",
+       "hi": "कमज़ोर बच्चे को सताए जाने पर शिक्षक को बताना"
+      },
+      "bin": "voice",
+      "why": {
+       "en": "You use your voice for someone who cannot.",
+       "hi": "तुम ऐसे की ओर से बोलते हो जो नहीं बोल सकता।"
+      }
+     },
+     {
+      "id": "sign",
+      "text": {
+       "en": "Learning a few signs to talk with a deaf friend",
+       "hi": "बधिर दोस्त से बात करने के लिए कुछ इशारे सीखना"
+      },
+      "bin": "voice",
+      "why": {
+       "en": "You make his language yours so he is heard.",
+       "hi": "तुम उसकी भाषा सीखकर उसे सुने जाने का मौक़ा देते हो।"
+      }
+     },
+     {
+      "id": "write",
+      "text": {
+       "en": "Writing to the newspaper about an injustice",
+       "hi": "अन्याय के बारे में अख़बार को लिखना"
+      },
+      "bin": "voice",
+      "why": {
+       "en": "A written voice can also reach many people.",
+       "hi": "लिखित आवाज़ भी बहुतों तक पहुँच सकती है।"
+      }
+     },
+     {
+      "id": "look",
+      "text": {
+       "en": "Looking away when someone is treated badly",
+       "hi": "जब किसी से बुरा बर्ताव हो, नज़र फेर लेना"
+      },
+      "bin": "silence",
+      "why": {
+       "en": "Looking away lets the wrong continue.",
+       "hi": "नज़र फेरने से अन्याय चलता रहता है।"
+      }
+     },
+     {
+      "id": "laugh",
+      "text": {
+       "en": "Laughing along when a helpless child is teased",
+       "hi": "बेबस बच्चे को चिढ़ाए जाने पर साथ में हँसना"
+      },
+      "bin": "silence",
+      "why": {
+       "en": "Laughing supports the wrong instead of stopping it.",
+       "hi": "हँसना अन्याय का साथ देना है, उसे रोकना नहीं।"
+      }
+     },
+     {
+      "id": "quiet",
+      "text": {
+       "en": "Saying nothing because it is not my business",
+       "hi": "'मेरा क्या जाता है' सोचकर कुछ न कहना"
+      },
+      "bin": "silence",
+      "why": {
+       "en": "Such silence is exactly what the title गूँगे points at.",
+       "hi": "ऐसी चुप्पी की ओर ही शीर्षक 'गूँगे' इशारा करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:help",
+     "expect": "placed:help",
+     "say": {
+      "en": "Put the first card into the right group.",
+      "hi": "पहला कार्ड सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which choice makes a wrong go on: speaking up or staying silent?",
+      "hi": "कौन-सा चुनाव अन्याय को चलने देता है: आवाज़ उठाना या चुप रहना?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Speaking up",
+       "hi": "आवाज़ उठाना"
+      },
+      {
+       "id": "b",
+       "en": "Staying silent",
+       "hi": "चुप रहना"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:look",
+     "expect": "placed:look",
+     "say": {
+      "en": "Place the card about looking away.",
+      "hi": "नज़र फेरने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Those who can speak are called गूँगे in the story when they say nothing. A voice is a power. Using it for the helpless is what turns pity into kindness.",
+      "hi": "जो बोल सकते हैं पर कुछ नहीं कहते, वही कहानी में 'गूँगे' हैं। आवाज़ एक ताक़त है। उसे बेबस के लिए उठाना ही दया को करुणा बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is 'staying silent' not harmless?",
+        "hi": "'चुप रहना' हानिरहित क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "Because it lets a wrong continue",
+         "hi": "क्योंकि इससे अन्याय चलता रहता है"
+        },
+        {
+         "en": "Because it is noisy",
+         "hi": "क्योंकि यह शोर करता है"
+        },
+        {
+         "en": "Because it costs money",
+         "hi": "क्योंकि इसमें पैसा लगता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A wrong usually ends only when someone speaks.",
+        "hi": "अन्याय तब रुकता है जब कोई बोलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Silence makes no noise; that is the problem.",
+         "hi": "चुप्पी शोर नहीं करती; यही समस्या है।"
+        },
+        {
+         "en": "Speaking or staying silent has nothing to do with money.",
+         "hi": "बोलने या चुप रहने का पैसे से संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write two sentences you could say to stop a friend teasing another child.",
+      "hi": "दो वाक्य लिखो जो तुम किसी दोस्त को दूसरे बच्चे को चिढ़ाने से रोकने के लिए कहोगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khat1-ch04-words",
+   "topic": "4.3",
+   "template": "match",
+   "title": {
+    "en": "Words of care",
+    "hi": "करुणा के शब्द"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "muk",
+      "left": {
+       "en": "मूक",
+       "hi": "मूक"
+      },
+      "right": {
+       "en": "One who cannot speak",
+       "hi": "जो बोल न सके"
+      },
+      "why": {
+       "en": "It describes the boy in the story.",
+       "hi": "यह कहानी के लड़के के लिए प्रयोग होता है।"
+      }
+     },
+     {
+      "id": "sanket",
+      "left": {
+       "en": "संकेत",
+       "hi": "संकेत"
+      },
+      "right": {
+       "en": "A sign or gesture used to tell something",
+       "hi": "कुछ बताने के लिए किया गया इशारा"
+      },
+      "why": {
+       "en": "The boy speaks through signs.",
+       "hi": "लड़का संकेतों से बोलता है।"
+      }
+     },
+     {
+      "id": "karuna",
+      "left": {
+       "en": "करुणा",
+       "hi": "करुणा"
+      },
+      "right": {
+       "en": "Deep kindness for those who suffer",
+       "hi": "दुखी लोगों के लिए गहरी दया"
+      },
+      "why": {
+       "en": "The helper feels it for the boy.",
+       "hi": "सहायक व्यक्ति में यही भाव है।"
+      }
+     },
+     {
+      "id": "anyay",
+      "left": {
+       "en": "अन्याय",
+       "hi": "अन्याय"
+      },
+      "right": {
+       "en": "A wrong done to someone, against fairness",
+       "hi": "किसी के साथ निष्पक्षता के विरुद्ध किया गया बुरा बर्ताव"
+      },
+      "why": {
+       "en": "This is what the boy suffers.",
+       "hi": "लड़का यही सहता है।"
+      }
+     },
+     {
+      "id": "samved",
+      "left": {
+       "en": "संवेदना",
+       "hi": "संवेदना"
+      },
+      "right": {
+       "en": "The power to feel another's pain as one's own",
+       "hi": "दूसरे के दुख को अपने जैसा महसूस करने की शक्ति"
+      },
+      "why": {
+       "en": "The story asks us to grow this feeling.",
+       "hi": "कहानी हमें यही भाव बढ़ाने को कहती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:muk",
+     "expect": "matched:muk",
+     "say": {
+      "en": "Match मूक with its meaning.",
+      "hi": "मूक को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word means feeling another's pain as your own?",
+      "hi": "दूसरे का दर्द अपने जैसा महसूस करने के लिए कौन-सा शब्द है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "संकेत",
+       "hi": "संकेत"
+      },
+      {
+       "id": "b",
+       "en": "संवेदना",
+       "hi": "संवेदना"
+      },
+      {
+       "id": "c",
+       "en": "अन्याय",
+       "hi": "अन्याय"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "left:samved",
+     "expect": "matched:samved",
+     "say": {
+      "en": "Match संवेदना with its meaning.",
+      "hi": "संवेदना को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Finish the pairs and tap Check.",
+      "hi": "जोड़ियाँ पूरी करो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "These words are the vocabulary of kindness. मूक names the boy, संकेत his language, अन्याय his suffering, and संवेदना and करुणा the answer we should give.",
+      "hi": "ये शब्द दया की शब्दावली हैं। मूक लड़के का नाम है, संकेत उसकी भाषा, अन्याय उसका दुख, और संवेदना व करुणा हमारा उत्तर होना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word names a wrong done to someone?",
+        "hi": "किसी के साथ हुए ग़लत बर्ताव को कौन-सा शब्द बताता है?"
+       },
+       "options": [
+        {
+         "en": "करुणा",
+         "hi": "करुणा"
+        },
+        {
+         "en": "अन्याय",
+         "hi": "अन्याय"
+        },
+        {
+         "en": "संकेत",
+         "hi": "संकेत"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "अन्याय is the opposite of न्याय (fairness).",
+        "hi": "अन्याय न्याय का उलटा है।"
+       },
+       "wrong": [
+        {
+         "en": "करुणा is the kind answer, not the wrong.",
+         "hi": "करुणा दयालु उत्तर है, अन्याय नहीं।"
+        },
+        "",
+        {
+         "en": "संकेत is a sign, a way of talking.",
+         "hi": "संकेत इशारा है, बात करने का तरीक़ा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write one sentence using संवेदना.",
+      "hi": "संवेदना शब्द का प्रयोग करके एक वाक्य लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Hook of the chapter",
+   "shows": "A small boy sitting on a doorstep looking at the lane with large, thoughtful eyes (seen from behind or in profile, face not identifiable)",
+   "view": "Low eye level, soft evening light",
+   "right": "Calm, lonely mood; simple clothes",
+   "avoid": "A recognisable face, pity-poster styling"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.3",
+   "use": "Word card: संकेत",
+   "shows": "Two hands in a clear, simple sign gesture on a plain background",
+   "view": "Front view cut-out",
+   "right": "Hands correctly formed; skin tone natural",
+   "avoid": "Faces, any text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Voice or silence",
+   "shows": "A school corridor where one child watches another being teased, and a third child turns away (backs only)",
+   "view": "Wide, slightly high angle",
+   "right": "Backs and body posture only",
+   "avoid": "Faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "A helping hand",
+   "shows": "A child offering a hand to a friend who is sitting alone, close-up of hands only",
+   "view": "Close-up, shallow depth",
+   "right": "Warm light, clear hands",
+   "avoid": "Faces"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "4.1",
+   "use": "Feeling map base",
+   "shows": "A clean strip with five blank circles in a row, ready for the app to label with feelings",
+   "view": "Flat, white background",
+   "right": "Even spacing",
+   "avoid": "Words or icons"
+  }
+ ]
+}

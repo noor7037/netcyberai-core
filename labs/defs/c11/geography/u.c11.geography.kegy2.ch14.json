@@ -1,0 +1,1343 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch14",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Biodiversity and Conservation",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy214.pdf",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "Biodiversity and its three levels: genetic, species and ecosystem",
+   "labs": [
+    "c11-geography-kegy2-ch14-levels"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.2",
+   "title": "Patterns of biodiversity, interdependence of species and the economic role of biodiversity",
+   "labs": [
+    "c11-geography-kegy2-ch14-web",
+    "c11-geography-kegy2-ch14-uses"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.3",
+   "title": "Loss of biodiversity: habitat destruction, over-exploitation, pollution and alien species",
+   "labs": [
+    "c11-geography-kegy2-ch14-loss"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.4",
+   "title": "Conservation of biodiversity: in-situ and ex-situ methods, protected areas",
+   "labs": [
+    "c11-geography-kegy2-ch14-insitu",
+    "c11-geography-kegy2-ch14-parks"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch14-levels",
+   "topic": "14.1",
+   "template": "sort",
+   "title": {
+    "en": "Three levels of biodiversity",
+    "hi": "जैव विविधता के तीन स्तर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "genetic",
+      "label": {
+       "en": "Genetic diversity",
+       "hi": "आनुवंशिक विविधता"
+      }
+     },
+     {
+      "id": "species",
+      "label": {
+       "en": "Species diversity",
+       "hi": "प्रजाति विविधता"
+      }
+     },
+     {
+      "id": "ecosystem",
+      "label": {
+       "en": "Ecosystem diversity",
+       "hi": "पारितंत्र विविधता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "rice",
+      "text": {
+       "en": "Hundreds of kinds of rice grown in India",
+       "hi": "भारत में उगाई जाने वाली चावल की सैकड़ों किस्में"
+      },
+      "bin": "genetic",
+      "why": {
+       "en": "All are one species, rice, but their genes differ: some are tall, some scented, some like deep water.",
+       "hi": "सब एक ही प्रजाति, चावल, की हैं, पर उनके जीन अलग हैं: कोई लंबी, कोई सुगंधित, कोई गहरे पानी वाली।"
+      }
+     },
+     {
+      "id": "mango",
+      "text": {
+       "en": "Alphonso, Langra and Dasheri mangoes",
+       "hi": "अल्फ़ांसो, लंगड़ा और दशहरी आम"
+      },
+      "bin": "genetic",
+      "why": {
+       "en": "They are different varieties inside one species, the mango, so this is variety within a species.",
+       "hi": "ये एक ही प्रजाति, आम, की अलग-अलग किस्में हैं, यानी एक प्रजाति के भीतर की विविधता।"
+      }
+     },
+     {
+      "id": "forestlife",
+      "text": {
+       "en": "Tiger, deer, langur and peacock in one forest",
+       "hi": "एक वन में बाघ, हिरण, लंगूर और मोर"
+      },
+      "bin": "species",
+      "why": {
+       "en": "Many different kinds of living things (species) live in the same place.",
+       "hi": "एक ही जगह कई अलग-अलग तरह के जीव (प्रजातियाँ) रहते हैं।"
+      }
+     },
+     {
+      "id": "birds",
+      "text": {
+       "en": "Many kinds of birds in a wetland",
+       "hi": "एक आर्द्रभूमि में पक्षियों की कई प्रजातियाँ"
+      },
+      "bin": "species",
+      "why": {
+       "en": "Each kind of bird is a different species, so the count of kinds is species diversity.",
+       "hi": "हर तरह का पक्षी अलग प्रजाति है, इसलिए प्रजातियों की गिनती प्रजाति विविधता है।"
+      }
+     },
+     {
+      "id": "habitats",
+      "text": {
+       "en": "Forest, desert, wetland and coral reef in one country",
+       "hi": "एक देश में वन, मरुस्थल, आर्द्रभूमि और प्रवाल भित्ति"
+      },
+      "bin": "ecosystem",
+      "why": {
+       "en": "Each is a different ecosystem, a whole community with its soil, water and climate.",
+       "hi": "हर एक अलग पारितंत्र है, यानी अपनी मिट्टी, पानी और जलवायु वाला पूरा जीव-समुदाय।"
+      }
+     },
+     {
+      "id": "mangrove",
+      "text": {
+       "en": "Mangrove swamp, grassland and snowy mountain",
+       "hi": "मैंग्रोव दलदल, घास का मैदान और बर्फीला पर्वत"
+      },
+      "bin": "ecosystem",
+      "why": {
+       "en": "These are very different habitats with different living communities, so this is ecosystem diversity.",
+       "hi": "ये बहुत अलग आवास हैं जिनमें अलग जीव-समुदाय रहते हैं, इसलिए यह पारितंत्र विविधता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:rice",
+     "expect": "correct:rice",
+     "say": {
+      "en": "Take the card about rice varieties and put it in the group where all the living things are of one species but differ in their genes.",
+      "hi": "चावल की किस्मों वाला कार्ड उस समूह में रखो जहाँ जीव एक ही प्रजाति के हैं पर उनके जीन अलग हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: tiger, deer, langur and peacock in one forest. Which kind of diversity is it?",
+      "hi": "अगला कार्ड: एक वन में बाघ, हिरण, लंगूर और मोर। यह किस तरह की विविधता है?"
+     },
+     "options": [
+      {
+       "id": "gen",
+       "en": "Genetic diversity",
+       "hi": "आनुवंशिक विविधता"
+      },
+      {
+       "id": "sp",
+       "en": "Species diversity",
+       "hi": "प्रजाति विविधता"
+      },
+      {
+       "id": "eco",
+       "en": "Ecosystem diversity",
+       "hi": "पारितंत्र विविधता"
+      }
+     ],
+     "answer": "sp"
+    },
+    {
+     "kind": "do",
+     "target": "card:forestlife",
+     "expect": "correct:forestlife",
+     "say": {
+      "en": "Place the forest animals card.",
+      "hi": "वन के जानवरों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the remaining cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Biodiversity is the variety of life. It has three levels. Genetic diversity is variety inside one species. Species diversity is the number of different kinds of living things in a place. Ecosystem diversity is the variety of habitats such as forests, deserts and wetlands.",
+      "hi": "जैव विविधता जीवन की विविधता है। इसके तीन स्तर हैं। आनुवंशिक विविधता एक ही प्रजाति के भीतर की विविधता है। प्रजाति विविधता किसी स्थान पर अलग-अलग तरह के जीवों की संख्या है। पारितंत्र विविधता वन, मरुस्थल और आर्द्रभूमि जैसे आवासों की विविधता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A farmer keeps seeds of 12 different wheat varieties. Which level of biodiversity is this?",
+        "hi": "एक किसान गेहूँ की 12 अलग किस्मों के बीज रखता है। यह जैव विविधता का कौन-सा स्तर है?"
+       },
+       "options": [
+        {
+         "en": "Genetic diversity",
+         "hi": "आनुवंशिक विविधता"
+        },
+        {
+         "en": "Species diversity",
+         "hi": "प्रजाति विविधता"
+        },
+        {
+         "en": "Ecosystem diversity",
+         "hi": "पारितंत्र विविधता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All twelve are the same species, wheat, so the variety lies in the genes.",
+        "hi": "बारहों गेहूँ ही हैं, यानी एक प्रजाति, इसलिए विविधता जीन में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Species diversity would need different kinds of plants, such as wheat, rice and maize.",
+         "hi": "प्रजाति विविधता के लिए अलग-अलग पौधे चाहिए, जैसे गेहूँ, चावल और मक्का।"
+        },
+        {
+         "en": "An ecosystem is a whole habitat with many species; seeds of one crop are not that.",
+         "hi": "पारितंत्र पूरा आवास है जिसमें कई प्रजातियाँ होती हैं; एक फ़सल के बीज वह नहीं हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A national park has dense forest, a lake and a grassland. This shows richness in…",
+        "hi": "एक राष्ट्रीय उद्यान में घना वन, झील और घास का मैदान है। यह किसकी समृद्धि दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "genes of one species",
+         "hi": "एक प्रजाति के जीन"
+        },
+        {
+         "en": "ecosystems",
+         "hi": "पारितंत्र"
+        },
+        {
+         "en": "only one species",
+         "hi": "केवल एक प्रजाति"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A forest, a lake and a grassland are three different habitats, so the park has ecosystem diversity.",
+        "hi": "वन, झील और घास का मैदान तीन अलग आवास हैं, इसलिए उद्यान में पारितंत्र विविधता है।"
+       },
+       "wrong": [
+        {
+         "en": "Genes are compared inside one species; here the places themselves differ.",
+         "hi": "जीन की तुलना एक प्रजाति के भीतर होती है; यहाँ स्थान ही अलग हैं।"
+        },
+        "",
+        {
+         "en": "Many kinds of living things live in these three habitats, not one.",
+         "hi": "इन तीन आवासों में कई तरह के जीव रहते हैं, एक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: sort the cards again in a new order. Can you think of one more example of each level from your own town or village?",
+      "hi": "आज़माओ: कार्ड नए क्रम में फिर से छाँटो। क्या तुम अपने शहर या गाँव से हर स्तर का एक और उदाहरण सोच सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch14-web",
+   "topic": "14.2",
+   "template": "eco",
+   "title": {
+    "en": "A forest food web",
+    "hi": "वन का आहार जाल"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "web",
+    "habitat": "forest"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:grass",
+     "expect": "picked:grass",
+     "say": {
+      "en": "Tap the grass card.",
+      "hi": "घास के कार्ड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:deer",
+     "expect": "picked:deer",
+     "say": {
+      "en": "Now tap the deer card.",
+      "hi": "अब हिरण के कार्ड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Press Link. The arrow goes from the food to the eater.",
+      "hi": "जोड़ो दबाओ। तीर भोजन से खाने वाले की ओर जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The tiger eats the deer. If many deer were to disappear, what could happen to the tiger?",
+      "hi": "बाघ हिरण को खाता है। अगर बहुत से हिरण ख़त्म हो जाएँ, तो बाघ का क्या हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "It finds less food and may starve or move away",
+       "hi": "उसे कम भोजन मिलेगा और वह भूखा रह सकता है या चला जा सकता है"
+      },
+      {
+       "id": "same",
+       "en": "Nothing changes for the tiger",
+       "hi": "बाघ पर कोई असर नहीं पड़ेगा"
+      },
+      {
+       "id": "more",
+       "en": "The tiger gets more food",
+       "hi": "बाघ को ज़्यादा भोजन मिलेगा"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "sun",
+     "expect": "energy",
+     "say": {
+      "en": "Tap the Sun to see where the energy enters the web.",
+      "hi": "सूर्य पर टैप करो और देखो कि ऊर्जा जाल में कहाँ से आती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a food web, many food chains cross. Plants make food from sunlight, so energy enters through them. Each living thing depends on others. When one species is lost, the animals that feed on it, and the plants it feeds on, are also affected. That is why every species matters.",
+      "hi": "आहार जाल में कई आहार शृंखलाएँ आपस में मिलती हैं। पौधे सूर्य के प्रकाश से भोजन बनाते हैं, इसलिए ऊर्जा उन्हीं से आती है। हर जीव दूसरों पर निर्भर है। एक प्रजाति के लुप्त होने पर उसे खाने वाले जीव और उसके खाए जाने वाले पौधे भी प्रभावित होते हैं। इसीलिए हर प्रजाति महत्त्वपूर्ण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which living things bring the Sun's energy into a food web?",
+        "hi": "आहार जाल में सूर्य की ऊर्जा कौन लाता है?"
+       },
+       "options": [
+        {
+         "en": "Producers, the green plants",
+         "hi": "उत्पादक, यानी हरे पौधे"
+        },
+        {
+         "en": "Tigers",
+         "hi": "बाघ"
+        },
+        {
+         "en": "Eagles",
+         "hi": "बाज़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only green plants can catch sunlight and make food. Animals get the energy by eating.",
+        "hi": "केवल हरे पौधे सूर्य का प्रकाश पकड़कर भोजन बना सकते हैं। जंतु खाकर ऊर्जा पाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The tiger is at the top and only eats other animals; it does not make food from sunlight.",
+         "hi": "बाघ सबसे ऊपर है और केवल दूसरे जंतुओं को खाता है; वह प्रकाश से भोजन नहीं बनाता।"
+        },
+        {
+         "en": "The eagle is a meat eater, so it gets energy from the animals it eats.",
+         "hi": "बाज़ मांसाहारी है, वह खाए हुए जंतुओं से ऊर्जा पाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does losing one species put others in danger?",
+        "hi": "एक प्रजाति के लुप्त होने से दूसरी प्रजातियाँ ख़तरे में क्यों पड़ती हैं?"
+       },
+       "options": [
+        {
+         "en": "Because all species are linked through food and habitat",
+         "hi": "क्योंकि सभी प्रजातियाँ भोजन और आवास से जुड़ी हैं"
+        },
+        {
+         "en": "Because all species look alike",
+         "hi": "क्योंकि सभी प्रजातियाँ एक जैसी दिखती हैं"
+        },
+        {
+         "en": "It does not; each species lives alone",
+         "hi": "ऐसा नहीं होता; हर प्रजाति अकेली रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Species eat, shelter and help each other, so the loss of one breaks links in the web.",
+        "hi": "प्रजातियाँ एक-दूसरे को खाती, आश्रय देती और मदद करती हैं, इसलिए एक के जाने से जाल की कड़ियाँ टूटती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Species look very different; the danger comes from their links.",
+         "hi": "प्रजातियाँ बहुत अलग दिखती हैं; ख़तरा उनके आपसी संबंधों से आता है।"
+        },
+        {
+         "en": "The web you built shows that no species lives alone.",
+         "hi": "जो जाल तुमने बनाया वह दिखाता है कि कोई प्रजाति अकेली नहीं रहती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: link all the feeding pairs to finish the web. Then press What if, tap the deer to take it away, and see which animals lose food.",
+      "hi": "आज़माओ: सभी खाने-खिलाने वाली जोड़ियाँ जोड़कर जाल पूरा करो। फिर अगर ऐसा हो तो दबाओ, हिरण को हटाओ और देखो किन जंतुओं का भोजन कम होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch14-uses",
+   "topic": "14.2",
+   "template": "match",
+   "title": {
+    "en": "What biodiversity gives us",
+    "hi": "जैव विविधता हमें क्या देती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "food",
+      "left": {
+       "en": "Rice, wheat, fruits and fish",
+       "hi": "चावल, गेहूँ, फल और मछली"
+      },
+      "right": {
+       "en": "Food from living things",
+       "hi": "जीवों से मिलने वाला भोजन"
+      },
+      "why": {
+       "en": "Our food comes from plants and animals, which are parts of biodiversity.",
+       "hi": "हमारा भोजन पौधों और जंतुओं से आता है, जो जैव विविधता के भाग हैं।"
+      }
+     },
+     {
+      "id": "medicine",
+      "left": {
+       "en": "Neem, tulsi and the herbs of the Himalaya",
+       "hi": "नीम, तुलसी और हिमालय की जड़ी-बूटियाँ"
+      },
+      "right": {
+       "en": "Medicines",
+       "hi": "औषधियाँ"
+      },
+      "why": {
+       "en": "Many medicines are made from wild plants and their parts.",
+       "hi": "कई औषधियाँ जंगली पौधों और उनके अंगों से बनती हैं।"
+      }
+     },
+     {
+      "id": "timber",
+      "left": {
+       "en": "Teak, sal and bamboo",
+       "hi": "सागौन, साल और बाँस"
+      },
+      "right": {
+       "en": "Wood and building material",
+       "hi": "लकड़ी और निर्माण सामग्री"
+      },
+      "why": {
+       "en": "Forest trees give wood for houses, furniture and paper.",
+       "hi": "वन के पेड़ घर, फ़र्नीचर और काग़ज़ के लिए लकड़ी देते हैं।"
+      }
+     },
+     {
+      "id": "pollen",
+      "left": {
+       "en": "Bees and butterflies visiting flowers",
+       "hi": "फूलों पर आती मधुमक्खियाँ और तितलियाँ"
+      },
+      "right": {
+       "en": "Pollination of crops",
+       "hi": "फ़सलों का परागण"
+      },
+      "why": {
+       "en": "Insects carry pollen from flower to flower, so fruits and seeds can form.",
+       "hi": "कीट परागकण को फूल से फूल तक ले जाते हैं, तब फल और बीज बनते हैं।"
+      }
+     },
+     {
+      "id": "tourism",
+      "left": {
+       "en": "Safaris in national parks",
+       "hi": "राष्ट्रीय उद्यानों में सफ़ारी"
+      },
+      "right": {
+       "en": "Tourism and jobs",
+       "hi": "पर्यटन और रोज़गार"
+      },
+      "why": {
+       "en": "People travel to see wildlife and nature, which gives work to guides and local families.",
+       "hi": "लोग वन्यजीव और प्रकृति देखने जाते हैं, जिससे गाइडों और स्थानीय परिवारों को काम मिलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:food",
+     "expect": "matched:food",
+     "say": {
+      "en": "Match the food items with what they are an example of.",
+      "hi": "भोजन की चीज़ों को उनके सही उदाहरण-शीर्षक से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Neem, tulsi and Himalayan herbs. Which use of biodiversity are they?",
+      "hi": "नीम, तुलसी और हिमालय की जड़ी-बूटियाँ। जैव विविधता का कौन-सा उपयोग है?"
+     },
+     "options": [
+      {
+       "id": "med",
+       "en": "Medicines",
+       "hi": "औषधियाँ"
+      },
+      {
+       "id": "tim",
+       "en": "Wood",
+       "hi": "लकड़ी"
+      },
+      {
+       "id": "tour",
+       "en": "Tourism",
+       "hi": "पर्यटन"
+      }
+     ],
+     "answer": "med"
+    },
+    {
+     "kind": "do",
+     "target": "left:medicine",
+     "expect": "matched:medicine",
+     "say": {
+      "en": "Match the herbs with their use.",
+      "hi": "जड़ी-बूटियों को उनके उपयोग से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the pairs, then press Check.",
+      "hi": "बाक़ी जोड़ियाँ मिलाओ, फिर जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Biodiversity is our living wealth. It gives food, medicines, wood and fibre. It also does free work: bees pollinate crops, forests hold soil and rain, and wild places bring tourists. When species vanish, we lose these gifts, some even before we know them.",
+      "hi": "जैव विविधता हमारी जीवित संपदा है। यह भोजन, औषधि, लकड़ी और रेशे देती है। यह मुफ़्त काम भी करती है: मधुमक्खियाँ फ़सलों का परागण करती हैं, वन मिट्टी और वर्षा को थामते हैं और जंगली स्थान पर्यटकों को बुलाते हैं। प्रजातियाँ लुप्त होने पर हम ये देन खो देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is an example of biodiversity helping farmers directly?",
+        "hi": "जैव विविधता किसानों की सीधी मदद कैसे करती है?"
+       },
+       "options": [
+        {
+         "en": "Bees pollinate the flowers of crops",
+         "hi": "मधुमक्खियाँ फ़सलों के फूलों का परागण करती हैं"
+        },
+        {
+         "en": "Tourists visit tiger reserves",
+         "hi": "पर्यटक बाघ अभयारण्य देखने जाते हैं"
+        },
+        {
+         "en": "Teak is cut for furniture",
+         "hi": "सागौन फ़र्नीचर के लिए काटा जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without pollination many crops would give fewer fruits and seeds, so insects help farmers directly.",
+        "hi": "परागण के बिना कई फ़सलों में फल और बीज कम बनेंगे, इसलिए कीट किसानों की सीधी मदद करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Tourism is useful, but it helps the local economy, not the crop in the field.",
+         "hi": "पर्यटन उपयोगी है, पर वह स्थानीय अर्थव्यवस्था की मदद करता है, खेत की फ़सल की नहीं।"
+        },
+        {
+         "en": "Cutting teak is a use of timber; it does not help the crop.",
+         "hi": "सागौन काटना लकड़ी का उपयोग है; इससे फ़सल को मदद नहीं मिलती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: shuffle and match again. Name one product in your home that comes from a plant or an animal.",
+      "hi": "आज़माओ: फिर से मिलाओ। अपने घर की एक ऐसी चीज़ बताओ जो किसी पौधे या जंतु से आती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch14-loss",
+   "topic": "14.3",
+   "template": "sort",
+   "title": {
+    "en": "Why species disappear",
+    "hi": "प्रजातियाँ क्यों लुप्त होती हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "threat",
+      "label": {
+       "en": "Threat to biodiversity",
+       "hi": "जैव विविधता को ख़तरा"
+      }
+     },
+     {
+      "id": "help",
+      "label": {
+       "en": "Helps conservation",
+       "hi": "संरक्षण में मददगार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "clear",
+      "text": {
+       "en": "Cutting a forest to build a highway",
+       "hi": "राजमार्ग बनाने को वन काटना"
+      },
+      "bin": "threat",
+      "why": {
+       "en": "Habitat is destroyed or broken into pieces, so animals lose food and shelter.",
+       "hi": "आवास नष्ट या टुकड़ों में बँट जाता है, इसलिए जंतुओं का भोजन और आश्रय छिन जाता है।"
+      }
+     },
+     {
+      "id": "poach",
+      "text": {
+       "en": "Killing rhinos for their horns",
+       "hi": "सींगों के लिए गैंडों को मारना"
+      },
+      "bin": "threat",
+      "why": {
+       "en": "Poaching and over-hunting can wipe out a species.",
+       "hi": "अवैध शिकार और अति-शिकार से पूरी प्रजाति समाप्त हो सकती है।"
+      }
+     },
+     {
+      "id": "waste",
+      "text": {
+       "en": "Dumping plastic and chemicals in a lake",
+       "hi": "झील में प्लास्टिक और रसायन फेंकना"
+      },
+      "bin": "threat",
+      "why": {
+       "en": "Pollution poisons water and kills fish, plants and birds.",
+       "hi": "प्रदूषण पानी को विषैला बनाकर मछलियों, पौधों और पक्षियों को मार देता है।"
+      }
+     },
+     {
+      "id": "exotic",
+      "text": {
+       "en": "Letting an alien weed spread over grassland",
+       "hi": "विदेशी खरपतवार को घास के मैदान में फैलने देना"
+      },
+      "bin": "threat",
+      "why": {
+       "en": "Introduced species can crowd out local plants and animals.",
+       "hi": "बाहर से आई प्रजातियाँ स्थानीय पौधों और जंतुओं को हटा सकती हैं।"
+      }
+     },
+     {
+      "id": "plant",
+      "text": {
+       "en": "Planting native trees on bare land",
+       "hi": "खाली ज़मीन पर देशी पेड़ लगाना"
+      },
+      "bin": "help",
+      "why": {
+       "en": "Native trees bring back food and shelter for local wildlife.",
+       "hi": "देशी पेड़ स्थानीय वन्यजीवों के लिए भोजन और आश्रय लौटाते हैं।"
+      }
+     },
+     {
+      "id": "reserve",
+      "text": {
+       "en": "Declaring a forest a national park",
+       "hi": "वन को राष्ट्रीय उद्यान घोषित करना"
+      },
+      "bin": "help",
+      "why": {
+       "en": "A protected area keeps hunting and felling out of the habitat.",
+       "hi": "संरक्षित क्षेत्र में शिकार और कटाई रुक जाती है।"
+      }
+     },
+     {
+      "id": "seeds",
+      "text": {
+       "en": "Saving seeds of old crop varieties",
+       "hi": "पुरानी फ़सलों के बीज बचाकर रखना"
+      },
+      "bin": "help",
+      "why": {
+       "en": "Saved seeds keep genetic diversity safe for the future.",
+       "hi": "बचाए गए बीज आनुवंशिक विविधता को भविष्य के लिए सुरक्षित रखते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:clear",
+     "expect": "correct:clear",
+     "say": {
+      "en": "Put the card about cutting a forest in the right group.",
+      "hi": "वन काटने वाला कार्ड सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Killing rhinos for their horns: is it a threat, or does it help conservation?",
+      "hi": "सींगों के लिए गैंडों को मारना: यह ख़तरा है या संरक्षण में मदद?"
+     },
+     "options": [
+      {
+       "id": "t",
+       "en": "A threat",
+       "hi": "ख़तरा"
+      },
+      {
+       "id": "h",
+       "en": "It helps",
+       "hi": "मदद करता है"
+      }
+     ],
+     "answer": "t"
+    },
+    {
+     "kind": "do",
+     "target": "card:poach",
+     "expect": "correct:poach",
+     "say": {
+      "en": "Place the poaching card.",
+      "hi": "शिकार वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the remaining cards, then press Check.",
+      "hi": "बाक़ी सब कार्ड छाँटो, फिर जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Biodiversity is lost mainly when habitats are destroyed or broken up, when animals are over-hunted, when pollution poisons their homes, and when alien species take over. Because species depend on each other, a loss can spread. The same actions in reverse, such as protecting habitats and saving seeds, conserve biodiversity.",
+      "hi": "जैव विविधता मुख्य रूप से तब घटती है जब आवास नष्ट या टुकड़ों में बँटते हैं, जब जंतुओं का अति-शिकार होता है, जब प्रदूषण उनके घर विषैले करता है और जब बाहरी प्रजातियाँ हावी हो जाती हैं। प्रजातियाँ एक-दूसरे पर निर्भर हैं, इसलिए नुक़सान फैल सकता है। इसके उलटे काम, जैसे आवासों की रक्षा और बीज बचाना, जैव विविधता का संरक्षण करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A road cuts a forest into two parts, and animals cannot cross. What is the problem?",
+        "hi": "एक सड़क वन को दो भागों में बाँट देती है और जंतु पार नहीं कर पाते। समस्या क्या है?"
+       },
+       "options": [
+        {
+         "en": "Habitat fragmentation",
+         "hi": "आवास का विखंडन"
+        },
+        {
+         "en": "Pollination",
+         "hi": "परागण"
+        },
+        {
+         "en": "Conservation",
+         "hi": "संरक्षण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The habitat is broken into small pieces, so animals find less food and mates.",
+        "hi": "आवास छोटे टुकड़ों में बँट जाता है, इसलिए जंतुओं को कम भोजन और साथी मिलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Pollination is bees and insects carrying pollen; it is not harmed by the road itself.",
+         "hi": "परागण में कीट परागकण ले जाते हैं; सड़क से सीधे उसे नुक़सान नहीं होता।"
+        },
+        {
+         "en": "Conservation means protecting; the road is doing the opposite.",
+         "hi": "संरक्षण का अर्थ बचाना है; सड़क उलटा काम कर रही है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: for each threat card, think of one action in your town that could reduce it.",
+      "hi": "आज़माओ: हर ख़तरे वाले कार्ड के लिए सोचो कि तुम्हारे शहर में उसे घटाने के लिए कौन-सा काम हो सकता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch14-insitu",
+   "topic": "14.4",
+   "template": "sort",
+   "title": {
+    "en": "In their home or outside it",
+    "hi": "प्राकृतिक घर में या उसके बाहर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "insitu",
+      "label": {
+       "en": "In-situ: in the natural home",
+       "hi": "स्वस्थाने: प्राकृतिक आवास में"
+      }
+     },
+     {
+      "id": "exsitu",
+      "label": {
+       "en": "Ex-situ: outside the natural home",
+       "hi": "बाह्य स्थाने: प्राकृतिक आवास के बाहर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "park",
+      "text": {
+       "en": "National park",
+       "hi": "राष्ट्रीय उद्यान"
+      },
+      "bin": "insitu",
+      "why": {
+       "en": "Animals and plants are protected where they naturally live.",
+       "hi": "जीव-जंतु वहीं सुरक्षित रहते हैं जहाँ वे प्राकृतिक रूप से रहते हैं।"
+      }
+     },
+     {
+      "id": "sanct",
+      "text": {
+       "en": "Wildlife sanctuary",
+       "hi": "वन्यजीव अभयारण्य"
+      },
+      "bin": "insitu",
+      "why": {
+       "en": "The habitat itself is kept safe, so it is in-situ.",
+       "hi": "आवास को ही सुरक्षित रखा जाता है, इसलिए यह स्वस्थाने संरक्षण है।"
+      }
+     },
+     {
+      "id": "bio",
+      "text": {
+       "en": "Biosphere reserve",
+       "hi": "जीवमंडल आरक्षित क्षेत्र"
+      },
+      "bin": "insitu",
+      "why": {
+       "en": "A large natural area is protected with its people and its habitats.",
+       "hi": "एक बड़ा प्राकृतिक क्षेत्र वहाँ के लोगों और आवासों समेत सुरक्षित किया जाता है।"
+      }
+     },
+     {
+      "id": "grove",
+      "text": {
+       "en": "Sacred grove kept by villagers",
+       "hi": "गाँववालों द्वारा बचाया गया पवित्र उपवन"
+      },
+      "bin": "insitu",
+      "why": {
+       "en": "The trees stay in their own place under local protection.",
+       "hi": "पेड़ अपनी जगह पर ही स्थानीय संरक्षण में रहते हैं।"
+      }
+     },
+     {
+      "id": "zoo",
+      "text": {
+       "en": "Zoological park (zoo)",
+       "hi": "प्राणी उद्यान (चिड़ियाघर)"
+      },
+      "bin": "exsitu",
+      "why": {
+       "en": "Animals are kept and bred away from their natural habitat.",
+       "hi": "जंतुओं को उनके प्राकृतिक आवास से दूर रखा और बढ़ाया जाता है।"
+      }
+     },
+     {
+      "id": "botanic",
+      "text": {
+       "en": "Botanical garden",
+       "hi": "वनस्पति उद्यान"
+      },
+      "bin": "exsitu",
+      "why": {
+       "en": "Plants are grown in a garden, not in the place they come from.",
+       "hi": "पौधे उस जगह नहीं, एक बाग़ में उगाए जाते हैं जहाँ से वे आते हैं।"
+      }
+     },
+     {
+      "id": "seedbank",
+      "text": {
+       "en": "Seed bank or gene bank",
+       "hi": "बीज बैंक या जीन बैंक"
+      },
+      "bin": "exsitu",
+      "why": {
+       "en": "Seeds and genes are stored in cold rooms, away from nature.",
+       "hi": "बीज और जीन प्रकृति से दूर ठंडे कमरों में रखे जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:park",
+     "expect": "correct:park",
+     "say": {
+      "en": "Where is a national park: in the natural home, or outside it? Place the card.",
+      "hi": "राष्ट्रीय उद्यान कहाँ है: प्राकृतिक घर में या उसके बाहर? कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A zoo keeps animals away from their forests. Which group does it belong to?",
+      "hi": "चिड़ियाघर जंतुओं को उनके वनों से दूर रखता है। यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "in",
+       "en": "In-situ",
+       "hi": "स्वस्थाने"
+      },
+      {
+       "id": "ex",
+       "en": "Ex-situ",
+       "hi": "बाह्य स्थाने"
+      }
+     ],
+     "answer": "ex"
+    },
+    {
+     "kind": "do",
+     "target": "card:zoo",
+     "expect": "correct:zoo",
+     "say": {
+      "en": "Place the zoo card.",
+      "hi": "चिड़ियाघर का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards and press Check.",
+      "hi": "बाक़ी कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In-situ conservation protects species in their natural home: national parks, sanctuaries, biosphere reserves and sacred groves. Ex-situ conservation protects them outside: zoos, botanical gardens, seed banks and gene banks. In-situ is usually best, because the whole habitat is saved. Ex-situ is a safety net for species in great danger.",
+      "hi": "स्वस्थाने संरक्षण प्रजातियों को उनके प्राकृतिक घर में बचाता है: राष्ट्रीय उद्यान, अभयारण्य, जीवमंडल आरक्षित क्षेत्र और पवित्र उपवन। बाह्य स्थाने संरक्षण उन्हें बाहर बचाता है: चिड़ियाघर, वनस्पति उद्यान, बीज बैंक और जीन बैंक। स्वस्थाने आमतौर पर बेहतर है क्योंकि पूरा आवास बचता है। बाह्य स्थाने बहुत संकट वाली प्रजातियों के लिए सुरक्षा-जाल है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is in-situ conservation usually better?",
+        "hi": "स्वस्थाने संरक्षण आमतौर पर बेहतर क्यों है?"
+       },
+       "options": [
+        {
+         "en": "The whole habitat and all its species are protected together",
+         "hi": "पूरा आवास और उसकी सभी प्रजातियाँ साथ-साथ सुरक्षित होती हैं"
+        },
+        {
+         "en": "Animals are kept in small cages",
+         "hi": "जंतु छोटे पिंजरों में रखे जाते हैं"
+        },
+        {
+         "en": "Only plants are saved",
+         "hi": "केवल पौधे बचाए जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a natural home, species keep their food, mates and surroundings, and the web of life stays whole.",
+        "hi": "प्राकृतिक घर में प्रजातियों को भोजन, साथी और परिवेश मिलता है, और जीवन का जाल पूरा रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cages are part of ex-situ care and cannot hold a whole habitat.",
+         "hi": "पिंजरे बाह्य स्थाने देखभाल का हिस्सा हैं और पूरा आवास नहीं रख सकते।"
+        },
+        {
+         "en": "In-situ areas protect plants, animals and microbes, not only plants.",
+         "hi": "स्वस्थाने क्षेत्र पौधों, जंतुओं और सूक्ष्मजीवों, सबको बचाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try sorting with your eyes closed to the labels. For a seed bank, which species might it protect that a park cannot?",
+      "hi": "आज़माओ: बिना शीर्षक देखे छाँटने की कोशिश करो। बीज बैंक किन प्रजातियों को बचा सकता है जिन्हें उद्यान नहीं बचा सकता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch14-parks",
+   "topic": "14.4",
+   "template": "map",
+   "title": {
+    "en": "Famous national parks of India",
+    "hi": "भारत के प्रसिद्ध राष्ट्रीय उद्यान"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "national-parks",
+     "states"
+    ],
+    "show": [
+     "national-parks"
+    ],
+    "places": [
+     "kaziranga",
+     "gir",
+     "sundarbans",
+     "periyar"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:kaziranga",
+     "expect": "located:kaziranga",
+     "say": {
+      "en": "Tap Kaziranga on the map. It is in Assam, in the north-east, home of the one-horned rhinoceros.",
+      "hi": "नक्शे पर काज़ीरंगा टैप करो। यह उत्तर-पूर्व में असम में है, एक सींग वाले गैंडे का घर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Asiatic lion lives only in one park in India. Is it in the west, the east or the south?",
+      "hi": "एशियाई शेर भारत के केवल एक उद्यान में रहता है। वह पश्चिम, पूर्व या दक्षिण में है?"
+     },
+     "options": [
+      {
+       "id": "w",
+       "en": "In the west (Gujarat)",
+       "hi": "पश्चिम में (गुजरात)"
+      },
+      {
+       "id": "e",
+       "en": "In the east",
+       "hi": "पूर्व में"
+      },
+      {
+       "id": "s",
+       "en": "In the far south",
+       "hi": "सुदूर दक्षिण में"
+      }
+     ],
+     "answer": "w"
+    },
+    {
+     "kind": "do",
+     "target": "place:gir",
+     "expect": "located:gir",
+     "say": {
+      "en": "Tap Gir National Park and read about it.",
+      "hi": "गिर राष्ट्रीय उद्यान टैप करो और उसके बारे में पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:sundarbans",
+     "expect": "located:sundarbans",
+     "say": {
+      "en": "Tap the Sundarbans, the mangrove delta where tigers swim.",
+      "hi": "सुंदरबन टैप करो, मैंग्रोव डेल्टा जहाँ बाघ तैरते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:periyar",
+     "expect": "located:periyar",
+     "say": {
+      "en": "Tap Periyar in the Western Ghats of Kerala.",
+      "hi": "केरल के पश्चिमी घाट में पेरियार टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:states",
+     "expect": "layer:states",
+     "say": {
+      "en": "Switch on the States layer to see which state each park is in.",
+      "hi": "राज्य परत चालू करो और देखो कि हर उद्यान किस राज्य में है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India protects its wildlife in national parks and reserves in many habitats: Kaziranga for grassland rhinos, Gir for lions in dry forest, the Sundarbans for mangrove tigers, and Periyar for elephants in the Western Ghats hills. Parks in different regions protect different species, so we need them all.",
+      "hi": "भारत अपने वन्यजीवों को कई आवासों में राष्ट्रीय उद्यानों और अभयारण्यों में सुरक्षित रखता है: घास के मैदान के गैंडों के लिए काज़ीरंगा, सूखे वन के शेरों के लिए गिर, मैंग्रोव के बाघों के लिए सुंदरबन और पश्चिमी घाट की पहाड़ियों के हाथियों के लिए पेरियार। अलग क्षेत्रों के उद्यान अलग प्रजातियों को बचाते हैं, इसलिए सभी चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which park protects mangrove forests and tigers?",
+        "hi": "कौन-सा उद्यान मैंग्रोव वन और बाघों को बचाता है?"
+       },
+       "options": [
+        {
+         "en": "Sundarbans",
+         "hi": "सुंदरबन"
+        },
+        {
+         "en": "Gir",
+         "hi": "गिर"
+        },
+        {
+         "en": "Kaziranga",
+         "hi": "काज़ीरंगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Sundarbans in the Ganga-Brahmaputra delta is a mangrove forest with tigers.",
+        "hi": "गंगा-ब्रह्मपुत्र डेल्टा का सुंदरबन मैंग्रोव वन है जहाँ बाघ रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Gir is a dry forest in Gujarat known for lions.",
+         "hi": "गिर गुजरात का सूखा वन है, जो शेरों के लिए प्रसिद्ध है।"
+        },
+        {
+         "en": "Kaziranga is a grassland in Assam known for rhinoceroses.",
+         "hi": "काज़ीरंगा असम का घास का मैदान है, जो गैंडों के लिए प्रसिद्ध है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap the other park dots on the map and read what lives there.",
+      "hi": "आज़माओ: नक्शे पर दूसरे उद्यान टैप करो और पढ़ो कि वहाँ कौन रहता है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Hook of the chapter",
+   "shows": "A dense tropical forest of the Western Ghats in morning mist, many layers of green: tall trees, ferns, vines and orchids",
+   "view": "Eye level from a forest path, soft diffused light",
+   "right": "Many layers and shades of green; mist between the trees",
+   "avoid": "People, signboards, litter"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "14.1",
+   "use": "Genetic diversity: rice varieties",
+   "shows": "Six small bowls of Indian rice varieties: Basmati, red rice, black rice, short-grain, parboiled and brown, on a plain cloth",
+   "view": "From above, bowls evenly spaced, same light on all",
+   "right": "Each bowl a different, true grain colour and length",
+   "avoid": "Brand sacks, text, hands"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "14.2",
+   "use": "Ecosystem diversity: mangrove",
+   "shows": "Mangrove roots rising out of mud and shallow water at low tide in the Sundarbans, with a distant boat",
+   "view": "Low angle at water level, golden morning light",
+   "right": "Stilt roots clearly visible; muddy water, not clear blue",
+   "avoid": "Tourists close up, logos on the boat"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "14.2",
+   "use": "Pollination as a service",
+   "shows": "A bee on a yellow mustard flower in a field in bloom",
+   "view": "Close macro with soft blurred field behind",
+   "right": "Pollen visible on the bee; true yellow flowers",
+   "avoid": "Other insects hiding the bee, any chemical sprayer"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "14.3",
+   "use": "Habitat loss and fragmentation",
+   "shows": "Aerial view of a green forest cut through by a road and a strip of farmland",
+   "view": "Drone view straight down or at 45 degrees, clear daylight",
+   "right": "Sharp edge between forest and cleared land; road visible",
+   "avoid": "Vehicles with number plates, text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "14.3",
+   "use": "Pollution of a water habitat",
+   "shows": "A village pond with floating plastic bags and bottles at one edge and lotus leaves at the other",
+   "view": "Eye level, side light",
+   "right": "Plastic clearly floating; some healthy plants still present",
+   "avoid": "Faces, brand labels on the plastic"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "14.4",
+   "use": "In-situ conservation: a park",
+   "shows": "Open grassland of Kaziranga with a one-horned rhinoceros and a small safari jeep far away",
+   "view": "Long lens, wide landscape, early morning light",
+   "right": "Rhino with a single horn and armour-like skin; tall elephant grass",
+   "avoid": "Close-up people, number plates"
+  },
+  {
+   "n": 8,
+   "kind": "MAP",
+   "topic": "14.4",
+   "use": "Base for the parks map and the chapter review",
+   "shows": "A plain relief map of India showing forests, mountains and coasts in natural colours, with no names or borders drawn",
+   "view": "Top-down, 16:9, soft shading",
+   "right": "Western Ghats, Himalaya and delta clearly visible",
+   "avoid": "Any text, state borders, a political boundary"
+  }
+ ]
+}

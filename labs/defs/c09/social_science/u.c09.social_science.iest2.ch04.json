@@ -1,0 +1,974 @@
+{
+ "chapter_key": "u.c09.social_science.iest2.ch04",
+ "class": 9,
+ "subject_id": "social_science",
+ "title": "Governance and Public Policy",
+ "source": "https://ncert.nic.in/textbook/pdf/iest204.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Government and governance",
+   "labs": [
+    "c09-social_science-iest2-ch04-gov-vs-governance"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Good governance and its challenges",
+   "labs": [
+    "c09-social_science-iest2-ch04-good-governance",
+    "c09-social_science-iest2-ch04-flood-response"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Making of a public policy",
+   "labs": [
+    "c09-social_science-iest2-ch04-policy-cycle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Evolution of governance in India",
+   "labs": [],
+   "why_no_lab": "Best taught by the reader and primary sources such as mottos and the Sengol story; it is about history of ideas, not a process."
+  },
+  {
+   "n": "4.5",
+   "title": "E-governance",
+   "labs": [],
+   "why_no_lab": "Best taught by showing real government websites and apps with the reader; a screen tour fits better than a simulator."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-social_science-iest2-ch04-gov-vs-governance",
+   "topic": "4.1",
+   "template": "sort",
+   "title": {
+    "en": "Government and governance",
+    "hi": "सरकार और शासन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "gov",
+      "label": {
+       "en": "Government (the institutions)",
+       "hi": "सरकार (संस्थाएँ)"
+      }
+     },
+     {
+      "id": "gvn",
+      "label": {
+       "en": "Governance (the process)",
+       "hi": "शासन (प्रक्रिया)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "three",
+      "bin": "gov",
+      "text": {
+       "en": "Legislature, executive and judiciary",
+       "hi": "विधायिका, कार्यपालिका और न्यायपालिका"
+      },
+      "why": {
+       "en": "These are institutions that hold political authority: government.",
+       "hi": "ये राजनीतिक अधिकार वाली संस्थाएँ हैं: सरकार।"
+      }
+     },
+     {
+      "id": "panch",
+      "bin": "gov",
+      "text": {
+       "en": "The panchayat or municipal corporation",
+       "hi": "पंचायत या नगर निगम"
+      },
+      "why": {
+       "en": "A body with authority to provide public services is part of government.",
+       "hi": "सार्वजनिक सेवाएँ देने का अधिकार रखने वाला निकाय सरकार का हिस्सा है।"
+      }
+     },
+     {
+      "id": "who",
+      "bin": "gov",
+      "text": {
+       "en": "Who governs",
+       "hi": "कौन शासन करता है"
+      },
+      "why": {
+       "en": "Government answers 'who governs'.",
+       "hi": "सरकार का प्रश्न है 'कौन शासन करता है'।"
+      }
+     },
+     {
+      "id": "plan",
+      "bin": "gvn",
+      "text": {
+       "en": "Planning, building and maintaining street lights",
+       "hi": "स्ट्रीट लाइटों की योजना, लगाना और रखरखाव"
+      },
+      "why": {
+       "en": "How a service is planned, delivered and kept going is governance.",
+       "hi": "सेवा की योजना, उसे देना और चलाते रहना शासन है।"
+      }
+     },
+     {
+      "id": "report",
+      "bin": "gvn",
+      "text": {
+       "en": "People report lights that do not work",
+       "hi": "लोग बंद पड़ी बत्तियों की सूचना देते हैं"
+      },
+      "why": {
+       "en": "Citizens' feedback is part of the governance process.",
+       "hi": "नागरिकों की प्रतिक्रिया शासन की प्रक्रिया का हिस्सा है।"
+      }
+     },
+     {
+      "id": "how",
+      "bin": "gvn",
+      "text": {
+       "en": "How decisions are made, carried out and checked",
+       "hi": "निर्णय कैसे लिए, लागू और जाँचे जाते हैं"
+      },
+      "why": {
+       "en": "Governance answers 'how governing is done'.",
+       "hi": "शासन का प्रश्न है 'शासन कैसे किया जाता है'।"
+      }
+     },
+     {
+      "id": "media",
+      "bin": "gvn",
+      "text": {
+       "en": "Citizens, media and civil society take part too",
+       "hi": "नागरिक, मीडिया और नागरिक समाज भी भाग लेते हैं"
+      },
+      "why": {
+       "en": "Governance includes many players besides the government.",
+       "hi": "शासन में सरकार के अलावा कई पक्ष शामिल हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:three",
+     "expect": "placed:three",
+     "say": {
+      "en": "Pick the first card and place it under Government or Governance.",
+      "hi": "पहला कार्ड उठाओ और उसे सरकार या शासन में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "People reporting broken street lights and the panchayat repairing them is an example of which?",
+      "hi": "लोगों का ख़राब स्ट्रीट लाइट की सूचना देना और पंचायत का मरम्मत करना किसका उदाहरण है?"
+     },
+     "options": [
+      {
+       "id": "gvn",
+       "en": "Governance, a process of many people",
+       "hi": "शासन, कई लोगों की प्रक्रिया"
+      },
+      {
+       "id": "gov",
+       "en": "Only government",
+       "hi": "केवल सरकार"
+      }
+     ],
+     "answer": "gvn"
+    },
+    {
+     "kind": "do",
+     "target": "card:report",
+     "expect": "placed:report",
+     "say": {
+      "en": "Place the card about reporting broken lights.",
+      "hi": "ख़राब बत्तियों की सूचना वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Government is the set of institutions that hold authority. Governance is the process by which decisions are made, carried out and checked for people's welfare, and it involves citizens, media, civil society and private groups too. Street lights show the difference: the municipality is the government, but planning, repair and feedback together are governance.",
+      "hi": "सरकार वे संस्थाएँ हैं जिनके पास अधिकार है। शासन वह प्रक्रिया है जिसमें जनकल्याण के लिए निर्णय लिए, लागू किए और जाँचे जाते हैं, और इसमें नागरिक, मीडिया, नागरिक समाज और निजी संस्थाएँ भी शामिल हैं। स्ट्रीट लाइट इसे समझाती हैं: नगरपालिका सरकार है, पर योजना, मरम्मत और प्रतिक्रिया मिलकर शासन हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement fits 'governance'?",
+        "hi": "'शासन' (गवर्नेंस) पर कौन-सा कथन फिट बैठता है?"
+       },
+       "options": [
+        {
+         "en": "The process of making, carrying out and monitoring decisions",
+         "hi": "निर्णय लेने, लागू करने और जाँचने की प्रक्रिया"
+        },
+        {
+         "en": "Only the building of Parliament",
+         "hi": "केवल संसद का भवन"
+        },
+        {
+         "en": "Only the police",
+         "hi": "केवल पुलिस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Governance is about how governing is done, with many actors.",
+        "hi": "शासन इस बारे में है कि शासन कैसे किया जाता है, जिसमें कई पक्ष होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A building is part of government, not the process.",
+         "hi": "भवन सरकार का भाग है, प्रक्रिया नहीं।"
+        },
+        {
+         "en": "The police are one institution. Governance is wider.",
+         "hi": "पुलिस एक संस्था है। शासन उससे व्यापक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a service in your area, such as garbage collection. Who is the 'government' and what is the 'governance'?",
+      "hi": "अपने इलाके की कोई सेवा सोचो, जैसे कचरा उठाना। 'सरकार' कौन है और 'शासन' क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch04-good-governance",
+   "topic": "4.2",
+   "template": "match",
+   "title": {
+    "en": "Seven features of good governance",
+    "hi": "सुशासन की सात विशेषताएँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "law",
+      "left": {
+       "en": "Rule of law",
+       "hi": "विधि का शासन"
+      },
+      "right": {
+       "en": "Everyone is equal before the law",
+       "hi": "क़ानून के सामने सब समान हैं"
+      },
+      "why": {
+       "en": "No one is above the law.",
+       "hi": "कोई क़ानून से ऊपर नहीं।"
+      }
+     },
+     {
+      "id": "acc",
+      "left": {
+       "en": "Accountability",
+       "hi": "जवाबदेही"
+      },
+      "right": {
+       "en": "Public officials are responsible for their actions",
+       "hi": "सरकारी अधिकारी अपने कामों के लिए उत्तरदायी हैं"
+      },
+      "why": {
+       "en": "They must explain what they do.",
+       "hi": "उन्हें अपने कार्यों का स्पष्टीकरण देना होता है।"
+      }
+     },
+     {
+      "id": "part",
+      "left": {
+       "en": "Participation",
+       "hi": "भागीदारी"
+      },
+      "right": {
+       "en": "Citizens take part in decisions",
+       "hi": "नागरिक निर्णयों में भाग लेते हैं"
+      },
+      "why": {
+       "en": "People are at the centre of governance.",
+       "hi": "लोग शासन के केंद्र में हैं।"
+      }
+     },
+     {
+      "id": "trans",
+      "left": {
+       "en": "Transparency",
+       "hi": "पारदर्शिता"
+      },
+      "right": {
+       "en": "Government decisions are open and accessible",
+       "hi": "सरकारी निर्णय खुले और सुलभ हैं"
+      },
+      "why": {
+       "en": "The Right to Information helps here.",
+       "hi": "सूचना का अधिकार इसमें सहायक है।"
+      }
+     },
+     {
+      "id": "eff",
+      "left": {
+       "en": "Effectiveness",
+       "hi": "प्रभावशीलता"
+      },
+      "right": {
+       "en": "Public resources are used wisely",
+       "hi": "सार्वजनिक संसाधनों का समझदारी से उपयोग"
+      },
+      "why": {
+       "en": "Money and effort reach the goal.",
+       "hi": "धन और प्रयास लक्ष्य तक पहुँचते हैं।"
+      }
+     },
+     {
+      "id": "resp",
+      "left": {
+       "en": "Responsiveness",
+       "hi": "संवेदनशीलता (जवाबदेह प्रतिक्रिया)"
+      },
+      "right": {
+       "en": "Government addresses people's needs",
+       "hi": "सरकार लोगों की ज़रूरतों पर ध्यान देती है"
+      },
+      "why": {
+       "en": "It listens and acts.",
+       "hi": "वह सुनती है और कार्रवाई करती है।"
+      }
+     },
+     {
+      "id": "incl",
+      "left": {
+       "en": "Inclusiveness",
+       "hi": "समावेशिता"
+      },
+      "right": {
+       "en": "Every citizen has equal opportunities",
+       "hi": "हर नागरिक के पास समान अवसर हैं"
+      },
+      "why": {
+       "en": "No group is left behind.",
+       "hi": "कोई समूह पीछे नहीं छूटता।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A town puts all its budget and contracts on a public website for anyone to read. Which principle is it following?",
+      "hi": "एक शहर अपना बजट और ठेके सबके पढ़ने के लिए सार्वजनिक वेबसाइट पर डालता है। वह किस सिद्धांत का पालन कर रहा है?"
+     },
+     "options": [
+      {
+       "id": "trans",
+       "en": "Transparency",
+       "hi": "पारदर्शिता"
+      },
+      {
+       "id": "incl",
+       "en": "Inclusiveness",
+       "hi": "समावेशिता"
+      },
+      {
+       "id": "eff",
+       "en": "Effectiveness",
+       "hi": "प्रभावशीलता"
+      }
+     ],
+     "answer": "trans"
+    },
+    {
+     "kind": "do",
+     "target": "left:trans",
+     "expect": "matched:trans",
+     "say": {
+      "en": "Tap 'Transparency', then tap its meaning.",
+      "hi": "'पारदर्शिता' छुओ, फिर उसका अर्थ छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:acc",
+     "expect": "matched:acc",
+     "say": {
+      "en": "Now match 'Accountability'.",
+      "hi": "अब 'जवाबदेही' मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other five, then press Check.",
+      "hi": "बाकी पाँच मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Good governance rests on seven features: rule of law, accountability, participation, transparency, effectiveness, responsiveness and inclusiveness. It is a partnership: governments make policy and give services, citizens vote, follow laws and take part, the media informs, and civil society raises concerns.",
+      "hi": "सुशासन सात विशेषताओं पर टिका है: विधि का शासन, जवाबदेही, भागीदारी, पारदर्शिता, प्रभावशीलता, संवेदनशीलता और समावेशिता। यह साझेदारी है: सरकारें नीति बनाती और सेवाएँ देती हैं, नागरिक वोट देते, क़ानून मानते और भाग लेते हैं, मीडिया सूचित करता है और नागरिक समाज चिंताएँ उठाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which law helps citizens get information from government offices?",
+        "hi": "कौन-सा क़ानून नागरिकों को सरकारी कार्यालयों से जानकारी पाने में मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "Right to Information Act, 2005",
+         "hi": "सूचना का अधिकार अधिनियम, 2005"
+        },
+        {
+         "en": "The weather forecast",
+         "hi": "मौसम का पूर्वानुमान"
+        },
+        {
+         "en": "The bus timetable",
+         "hi": "बस की समय-सारणी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The RTI Act supports transparency and accountability.",
+        "hi": "RTI अधिनियम पारदर्शिता और जवाबदेही को बढ़ावा देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A forecast is not a law and does not unlock government records.",
+         "hi": "पूर्वानुमान क़ानून नहीं है और सरकारी रिकॉर्ड नहीं खोलता।"
+        },
+        {
+         "en": "A bus timetable is not a law about information rights.",
+         "hi": "बस की समय-सारणी सूचना-अधिकार का क़ानून नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Unequal access to services leaves some groups behind. Which principle is weak?",
+        "hi": "सेवाओं की असमान पहुँच कुछ समूहों को पीछे छोड़ती है। कौन-सा सिद्धांत कमज़ोर है?"
+       },
+       "options": [
+        {
+         "en": "Inclusiveness",
+         "hi": "समावेशिता"
+        },
+        {
+         "en": "Transparency",
+         "hi": "पारदर्शिता"
+        },
+        {
+         "en": "Accountability",
+         "hi": "जवाबदेही"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Inclusiveness means equal opportunities for every citizen.",
+        "hi": "समावेशिता का अर्थ है हर नागरिक को समान अवसर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Transparency is about open decisions, not about who gets services.",
+         "hi": "पारदर्शिता खुले निर्णयों की बात है, सेवाएँ किसे मिलें इसकी नहीं।"
+        },
+        {
+         "en": "Accountability is about answerability for actions.",
+         "hi": "जवाबदेही कार्यों के उत्तरदायित्व की बात है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at your school. Which of the seven features does it follow well, and which could it improve?",
+      "hi": "अपने स्कूल को देखो। सातों में से वह किसका अच्छी तरह पालन करता है और किसे सुधार सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch04-policy-cycle",
+   "topic": "4.3",
+   "template": "sequence",
+   "title": {
+    "en": "How a public policy is made",
+    "hi": "सार्वजनिक नीति कैसे बनती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "problem",
+      "text": {
+       "en": "A need or problem is noticed and put on the priority list",
+       "hi": "आवश्यकता या समस्या की पहचान और प्राथमिकता तय"
+      }
+     },
+     {
+      "id": "consult",
+      "text": {
+       "en": "Experts and the public are consulted and a draft is made",
+       "hi": "विशेषज्ञों और जनता से परामर्श और मसौदा तैयार"
+      }
+     },
+     {
+      "id": "adopt",
+      "text": {
+       "en": "The policy is approved, with laws and rules",
+       "hi": "नीति को क़ानूनों और नियमों के साथ मंज़ूरी"
+      }
+     },
+     {
+      "id": "implement",
+      "text": {
+       "en": "Schemes and programmes put the policy into action",
+       "hi": "योजनाओं और कार्यक्रमों से नीति लागू होती है"
+      }
+     },
+     {
+      "id": "monitor",
+      "text": {
+       "en": "Progress is measured and shortcomings are noted",
+       "hi": "प्रगति मापी जाती है और कमियाँ पहचानी जाती हैं"
+      }
+     },
+     {
+      "id": "evaluate",
+      "text": {
+       "en": "Results are evaluated and feedback is used to improve",
+       "hi": "परिणामों का मूल्यांकन और सुधार में प्रतिक्रिया का उपयोग"
+      }
+     }
+    ],
+    "cyclic": true
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A hospital in your town is hard for patients in wheelchairs to use. What is the first step towards a new policy?",
+      "hi": "आपके शहर के अस्पताल में व्हीलचेयर वाले मरीज़ों को दिक्कत होती है। नई नीति की ओर पहला कदम क्या है?"
+     },
+     "options": [
+      {
+       "id": "problem",
+       "en": "Notice and prioritise the problem",
+       "hi": "समस्या को पहचानना और प्राथमिकता देना"
+      },
+      {
+       "id": "build",
+       "en": "Start building at once",
+       "hi": "तुरंत निर्माण शुरू करना"
+      },
+      {
+       "id": "judge",
+       "en": "Judge the results",
+       "hi": "परिणामों का मूल्यांकन"
+      }
+     ],
+     "answer": "problem"
+    },
+    {
+     "kind": "do",
+     "target": "item:problem",
+     "expect": "placed:problem",
+     "say": {
+      "en": "Tap the first step of a policy.",
+      "hi": "नीति का पहला चरण छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all six steps in order, then press Check.",
+      "hi": "छहों चरण क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A public policy is made step by step: notice a need, consult people and draft, approve with laws and rules, carry it out, watch progress, and then evaluate and improve. Because feedback leads back to the start, it is a cycle, not a straight line. The National Education Policy 2020 was made with long consultation.",
+      "hi": "सार्वजनिक नीति चरण दर चरण बनती है: आवश्यकता पहचानो, लोगों से परामर्श करके मसौदा बनाओ, क़ानूनों और नियमों के साथ मंज़ूर करो, लागू करो, प्रगति देखो और फिर मूल्यांकन करके सुधारो। प्रतिक्रिया वापस शुरुआत तक ले जाती है, इसलिए यह चक्र है, सीधी रेखा नहीं। राष्ट्रीय शिक्षा नीति 2020 लंबे परामर्श से बनी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is consultation with the public and experts a part of making policy?",
+        "hi": "नीति बनाने में जनता और विशेषज्ञों से परामर्श क्यों शामिल है?"
+       },
+       "options": [
+        {
+         "en": "To understand different views and find workable solutions",
+         "hi": "अलग-अलग विचार समझने और कारगर समाधान खोजने के लिए"
+        },
+        {
+         "en": "To delay the policy forever",
+         "hi": "नीति को हमेशा के लिए टालने के लिए"
+        },
+        {
+         "en": "Because it is a ceremony",
+         "hi": "क्योंकि यह एक रस्म है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Consultation brings in knowledge and the voices of those affected, which makes policy better and fairer.",
+        "hi": "परामर्श ज्ञान और प्रभावित लोगों की आवाज़ लाता है, जिससे नीति बेहतर और न्यायसंगत बनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The aim is a better policy, not delay.",
+         "hi": "उद्देश्य बेहतर नीति है, देरी नहीं।"
+        },
+        {
+         "en": "It has a real purpose: to hear different viewpoints.",
+         "hi": "इसका असली उद्देश्य है अलग-अलग विचार सुनना।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the policy process called a cycle?",
+        "hi": "नीति प्रक्रिया को चक्र क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Feedback after evaluation leads to improvements and a fresh start",
+         "hi": "मूल्यांकन के बाद की प्रतिक्रिया सुधार और नई शुरुआत की ओर ले जाती है"
+        },
+        {
+         "en": "Because policies are round",
+         "hi": "क्योंकि नीतियाँ गोल होती हैं"
+        },
+        {
+         "en": "Because it never ends in anything",
+         "hi": "क्योंकि इसका कोई नतीजा नहीं निकलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Monitoring and evaluation show what to fix, and the policy is improved over time.",
+        "hi": "निगरानी और मूल्यांकन बताते हैं कि क्या सुधारना है, और नीति समय के साथ बेहतर होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The word describes the repeating flow of steps, not a shape.",
+         "hi": "यह शब्द चरणों के दोहराते प्रवाह के लिए है, किसी आकार के लिए नहीं।"
+        },
+        {
+         "en": "Policies do give results. Feedback helps them improve.",
+         "hi": "नीतियाँ परिणाम देती हैं। प्रतिक्रिया उन्हें बेहतर बनाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a problem in your locality, such as a broken footpath. Tell a friend which steps of the cycle it needs.",
+      "hi": "अपने मोहल्ले की कोई समस्या चुनो, जैसे टूटी पटरी। दोस्त को बताओ कि उसे चक्र के कौन-से चरण चाहिए।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch04-flood-response",
+   "topic": "4.2",
+   "template": "scenario",
+   "title": {
+    "en": "A flooded lane: who does what?",
+    "hi": "बाढ़ भरी गली: कौन क्या करे?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "town lane",
+    "role": {
+     "en": "A resident of the town",
+     "hi": "शहर का एक निवासी"
+    },
+    "scenes": [
+     {
+      "id": "rain",
+      "text": {
+       "en": "After several days of heavy rain, your lane is flooded and the drain is blocked. Many neighbours are stuck at home. What is your first step?",
+       "hi": "कई दिन की भारी बारिश के बाद आपकी गली में पानी भर गया है और नाला जाम है। कई पड़ोसी घर में फँसे हैं। आपका पहला कदम क्या है?"
+      },
+      "choices": [
+       {
+        "id": "report",
+        "text": {
+         "en": "Report the blocked drain to the municipal helpline and warn neighbours",
+         "hi": "जाम नाले की सूचना नगर निगम हेल्पलाइन को दें और पड़ोसियों को सावधान करें"
+        },
+        "next": "help",
+        "good": true,
+        "feedback": {
+         "en": "The corporation cleans drains, but it needs to know where. Citizens' reports make governance work.",
+         "hi": "निगम नाले साफ़ करता है, पर उसे जगह पता होनी चाहिए। नागरिकों की सूचना से शासन चलता है।"
+        }
+       },
+       {
+        "id": "nothing",
+        "text": {
+         "en": "Do nothing; it is the government's problem",
+         "hi": "कुछ न करें; यह तो सरकार की समस्या है"
+        },
+        "next": "help",
+        "good": false,
+        "feedback": {
+         "en": "Good governance is a partnership. Waiting without telling anyone can delay help.",
+         "hi": "सुशासन साझेदारी है। किसी को बताए बिना इंतज़ार करने से मदद में देरी हो सकती है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "help",
+      "text": {
+       "en": "A message is going around: 'All hospitals are shut and the dam will burst tonight.' You cannot tell if it is true. Some elders need help getting food. What do you do?",
+       "hi": "एक संदेश घूम रहा है: 'सभी अस्पताल बंद हैं और आज रात बाँध टूटेगा।' आपको पता नहीं यह सच है या नहीं। कुछ बुज़ुर्गों को भोजन पहुँचाने में मदद चाहिए। आप क्या करते हैं?"
+      },
+      "choices": [
+       {
+        "id": "verify",
+        "text": {
+         "en": "Check official alerts, help the elders safely and do not forward the rumour",
+         "hi": "आधिकारिक सूचनाएँ जाँचें, बुज़ुर्गों की सुरक्षित मदद करें और अफ़वाह आगे न भेजें"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Misinformation harms governance. Verifying facts and helping vulnerable neighbours is what a responsible citizen does.",
+         "hi": "ग़लत सूचना शासन को नुकसान पहुँचाती है। तथ्य जाँचना और कमज़ोर पड़ोसियों की मदद करना ज़िम्मेदार नागरिक का काम है।"
+        }
+       },
+       {
+        "id": "forward",
+        "text": {
+         "en": "Forward the message to all your contacts at once",
+         "hi": "संदेश को तुरंत अपने सभी संपर्कों को भेज दें"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Fake news can cause panic and keep people from real help. Check before you share.",
+         "hi": "फ़र्ज़ी ख़बर घबराहट फैलाती है और असली मदद से दूर करती है। भेजने से पहले जाँचो।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Many groups help during a flood: the municipality, police, health workers, volunteers. Why is it important that they work together?",
+      "hi": "बाढ़ में कई समूह मदद करते हैं: नगर निगम, पुलिस, स्वास्थ्यकर्मी, स्वयंसेवक। उनका मिलकर काम करना क्यों ज़रूरी है?"
+     },
+     "options": [
+      {
+       "id": "team",
+       "en": "One group alone cannot solve everything",
+       "hi": "अकेला कोई समूह सब नहीं सुलझा सकता"
+      },
+      {
+       "id": "one",
+       "en": "One office is enough",
+       "hi": "एक कार्यालय काफ़ी है"
+      }
+     ],
+     "answer": "team"
+    },
+    {
+     "kind": "do",
+     "target": "choice:rain:report",
+     "expect": "chose:report",
+     "say": {
+      "en": "Decide your first step.",
+      "hi": "अपना पहला कदम तय करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:help:verify",
+     "expect": "ended:good",
+     "say": {
+      "en": "Decide what to do about the rumour and the elders.",
+      "hi": "अफ़वाह और बुज़ुर्गों के बारे में निर्णय लो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When a crisis hits, different offices, workers and citizens each have a part. The government cleans drains and repairs roads; citizens report problems and help neighbours; the media informs. Misinformation and weak coordination are real challenges to good governance.",
+      "hi": "संकट में अलग-अलग कार्यालयों, कर्मियों और नागरिकों की अपनी भूमिका होती है। सरकार नाले साफ़ करती और सड़कें सुधारती है; नागरिक समस्याएँ बताते और पड़ोसियों की मदद करते हैं; मीडिया सूचित करता है। ग़लत सूचना और कमज़ोर समन्वय सुशासन की असली चुनौतियाँ हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a challenge to good governance named in the chapter?",
+        "hi": "अध्याय में बताई गई सुशासन की एक चुनौती कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "Misinformation and fake news",
+         "hi": "ग़लत सूचना और फ़र्ज़ी ख़बरें"
+        },
+        {
+         "en": "Too many public parks",
+         "hi": "बहुत ज़्यादा पार्क"
+        },
+        {
+         "en": "Clean drains",
+         "hi": "साफ़ नाले"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "False news can mislead people and make it harder for officials and citizens to respond well.",
+        "hi": "झूठी ख़बरें लोगों को भटकाती हैं और अधिकारियों व नागरिकों के लिए सही प्रतिक्रिया कठिन बनाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Parks are public goods, not a challenge.",
+         "hi": "पार्क सार्वजनिक वस्तुएँ हैं, चुनौती नहीं।"
+        },
+        {
+         "en": "Clean drains are a result of good work.",
+         "hi": "साफ़ नाले अच्छे काम का नतीजा हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again with the other choices. Which choice changes how quickly help reaches people?",
+      "hi": "अन्य विकल्पों के साथ फिर खेलो। किस चुनाव से मदद लोगों तक पहुँचने की गति बदलती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Flooded town response",
+   "shows": "A flooded Indian town lane with a municipal worker clearing a drain and volunteers carrying a bag of food, seen from behind in daylight",
+   "view": "Wide, 16:9",
+   "right": "Workers and volunteers clearly visible; calm mood",
+   "avoid": "Faces, uniforms with legible logos"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "4.3",
+   "use": "Making a policy",
+   "shows": "Five frames of the same town hall room: officials examining a problem, a public consultation meeting, a signed paper, a worker starting a project, and a review meeting",
+   "view": "Same camera, 16:9",
+   "right": "Each stage clearly different",
+   "avoid": "Faces, legible documents"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.4",
+   "use": "Sengol and emblem",
+   "shows": "A Sengol (ceremonial sceptre) and the national emblem lion capital as separate cut-outs",
+   "view": "Straight front, PNG with transparency",
+   "right": "True metal gold look; correct number of visible lions",
+   "avoid": "Text beyond the national motto"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.5",
+   "use": "E-governance",
+   "shows": "A villager using a phone at a common service centre counter to apply for a certificate, shot from behind",
+   "view": "Wide, 16:9",
+   "right": "Phone and counter visible",
+   "avoid": "Faces, readable screen text"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "4.3",
+   "use": "Policy cycle ring",
+   "shows": "An empty circular ring of six boxes joined by arrows",
+   "view": "Square, white or transparent",
+   "right": "Even ring with arrows clockwise",
+   "avoid": "Words"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Street lights at dusk",
+   "shows": "A neighbourhood lane at dusk with a few working lights and one broken light",
+   "view": "Wide, 16:9",
+   "right": "The dark patch under a broken light",
+   "avoid": "People, signboards"
+  }
+ ]
+}

@@ -1,0 +1,1150 @@
+{
+  "chapter_key": "u.c06.sanskrit.fsde1.ch04",
+  "class": 6,
+  "subject_id": "sanskrit",
+  "title": "अहं च त्वं च",
+  "source": "https://ncert.nic.in/textbook.php?fsde1=0-16",
+  "topics": [
+    {
+      "n": "4.1",
+      "title": "Self-introduction and jobs for him and her",
+      "labs": [
+        "c06-sanskrit-fsde1-ch04-intro",
+        "c06-sanskrit-fsde1-ch04-jobs"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.2",
+      "title": "Pronouns for I, we, you",
+      "labs": [
+        "c06-sanskrit-fsde1-ch04-pronouns"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.3",
+      "title": "The verb \"to be\" with each pronoun",
+      "labs": [
+        "c06-sanskrit-fsde1-ch04-be"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.4",
+      "title": "Writing म् as ं",
+      "labs": [
+        "c06-sanskrit-fsde1-ch04-anusvara"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.5",
+      "title": "The song अहं पठामि and the chart project",
+      "labs": [],
+      "why_no_lab": "Singing the song and making the chart of pronoun forms are performance and handwork tasks."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c06-sanskrit-fsde1-ch04-intro",
+      "topic": "4.1",
+      "template": "grammar",
+      "title": {
+        "en": "Introduce yourself",
+        "hi": "अपना परिचय दो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "build",
+        "lang": "sa",
+        "items": [
+          {
+            "id": "i1",
+            "words": [
+              "मम",
+              "नाम",
+              "भरतः",
+              "अहं"
+            ],
+            "answer": "मम नाम भरतः",
+            "rule": {
+              "en": "मम नाम means my name.",
+              "hi": "मम नाम का अर्थ मेरा नाम है।"
+            }
+          },
+          {
+            "id": "i2",
+            "words": [
+              "अहं",
+              "छात्रः",
+              "छात्रा"
+            ],
+            "answer": "अहं छात्रः",
+            "rule": {
+              "en": "A boy says छात्रः.",
+              "hi": "लड़का छात्रः कहता है।"
+            }
+          },
+          {
+            "id": "i3",
+            "words": [
+              "अहं",
+              "चिकित्सिका",
+              "चिकित्सकः"
+            ],
+            "answer": "अहं चिकित्सिका",
+            "rule": {
+              "en": "A woman doctor says चिकित्सिका.",
+              "hi": "महिला चिकित्सक चिकित्सिका कहती है।"
+            }
+          },
+          {
+            "id": "i4",
+            "words": [
+              "मम",
+              "नाम",
+              "मेनका",
+              "अहं",
+              "छात्रा"
+            ],
+            "answer": "मम नाम मेनका",
+            "rule": {
+              "en": "Start by telling your name.",
+              "hi": "पहले अपना नाम बताओ।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "word:0",
+          "expect": "built:i1",
+          "say": {
+            "en": "Tap the word tiles one by one to build the first sentence.",
+            "hi": "शब्द-पट्टियाँ एक-एक करके छूकर पहला वाक्य बनाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "How do you say \"my name is Bharat\"?",
+            "hi": "\"मेरा नाम भरत है\" कैसे कहोगे?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "मम नाम भरतः",
+              "hi": "मम नाम भरतः"
+            },
+            {
+              "id": "b",
+              "en": "अहं नाम भरतः",
+              "hi": "अहं नाम भरतः"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "word:0",
+          "expect": "done",
+          "say": {
+            "en": "Build the rest of the sentences.",
+            "hi": "बाकी वाक्य भी बनाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "मम means my and नाम means name. So मम नाम भरतः is \"my name is Bharat\". Then we say what we are: अहं छात्रः (I am a student).",
+            "hi": "मम का अर्थ मेरा और नाम का अर्थ नाम है। इसलिए मम नाम भरतः यानी \"मेरा नाम भरत है\"। फिर बताते हैं कि हम क्या हैं: अहं छात्रः (मैं विद्यार्थी हूँ)।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "मम means:",
+                "hi": "मम का अर्थ है:"
+              },
+              "options": [
+                "my",
+                "you",
+                "we"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "मम means my or mine.",
+                "hi": "मम का अर्थ मेरा है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "You is त्वम्.",
+                  "hi": "तुम त्वम् है।"
+                },
+                {
+                  "en": "We is वयम् or आवाम्.",
+                  "hi": "हम वयम् या आवाम् है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A girl called Radhika, a soldier, says:",
+                "hi": "राधिका नाम की एक सैनिक कहती है:"
+              },
+              "options": [
+                "मम नाम राधिका। अहं सैनिकी।",
+                "मम नाम राधिका। अहं सैनिकः।"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A woman soldier is सैनिकी.",
+                "hi": "महिला सैनिक सैनिकी है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "सैनिकः is for a man.",
+                  "hi": "सैनिकः पुरुष के लिए है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Introduce yourself to a partner using these sentences.",
+            "hi": "इन वाक्यों से साथी को अपना परिचय दो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch04-jobs",
+      "topic": "4.1",
+      "template": "match",
+      "title": {
+        "en": "He and she at work",
+        "hi": "पुरुष और स्त्री के पदनाम"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "gay",
+            "left": {
+              "en": "गायकः",
+              "hi": "गायकः"
+            },
+            "right": {
+              "en": "गायिका",
+              "hi": "गायिका"
+            },
+            "why": {
+              "en": "A male singer and a female singer.",
+              "hi": "गायक और गायिका।"
+            }
+          },
+          {
+            "id": "pac",
+            "left": {
+              "en": "पाचकः",
+              "hi": "पाचकः"
+            },
+            "right": {
+              "en": "पाचिका",
+              "hi": "पाचिका"
+            },
+            "why": {
+              "en": "A male cook and a female cook.",
+              "hi": "रसोइया और रसोइन।"
+            }
+          },
+          {
+            "id": "chi",
+            "left": {
+              "en": "चिकित्सकः",
+              "hi": "चिकित्सकः"
+            },
+            "right": {
+              "en": "चिकित्सिका",
+              "hi": "चिकित्सिका"
+            },
+            "why": {
+              "en": "A male doctor and a female doctor.",
+              "hi": "चिकित्सक और महिला चिकित्सक।"
+            }
+          },
+          {
+            "id": "shi",
+            "left": {
+              "en": "शिक्षकः",
+              "hi": "शिक्षकः"
+            },
+            "right": {
+              "en": "शिक्षिका",
+              "hi": "शिक्षिका"
+            },
+            "why": {
+              "en": "A male teacher and a female teacher.",
+              "hi": "शिक्षक और शिक्षिका।"
+            }
+          },
+          {
+            "id": "cha",
+            "left": {
+              "en": "छात्रः",
+              "hi": "छात्रः"
+            },
+            "right": {
+              "en": "छात्रा",
+              "hi": "छात्रा"
+            },
+            "why": {
+              "en": "A boy student and a girl student.",
+              "hi": "छात्र और छात्रा।"
+            }
+          },
+          {
+            "id": "sai",
+            "left": {
+              "en": "सैनिकः",
+              "hi": "सैनिकः"
+            },
+            "right": {
+              "en": "सैनिकी",
+              "hi": "सैनिकी"
+            },
+            "why": {
+              "en": "A male soldier and a female soldier.",
+              "hi": "सैनिक और महिला सैनिक।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:gay",
+          "expect": "matched:gay",
+          "say": {
+            "en": "Tap गायकः, then tap the card that goes with it.",
+            "hi": "गायकः छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is the feminine of छात्रः?",
+            "hi": "छात्रः का स्त्रीलिङ्ग रूप क्या है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "छात्रा",
+              "hi": "छात्रा"
+            },
+            {
+              "id": "b",
+              "en": "छात्रिका",
+              "hi": "छात्रिका"
+            },
+            {
+              "id": "c",
+              "en": "छात्री",
+              "hi": "छात्री"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:sai",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Jobs have a masculine and a feminine form. Many masculine words ending in -कः change to -िका for women (गायकः, गायिका). Some change to -ा (छात्रः, छात्रा) or -ी (सैनिकः, सैनिकी). We use अहं छात्रः for a boy and अहं छात्रा for a girl.",
+            "hi": "काम बताने वाले शब्दों के पुंलिङ्ग और स्त्रीलिङ्ग रूप होते हैं। -कः वाले कई शब्द स्त्री के लिए -िका हो जाते हैं (गायकः, गायिका)। कुछ -ा (छात्रः, छात्रा) या -ी (सैनिकः, सैनिकी) हो जाते हैं। लड़का अहं छात्रः और लड़की अहं छात्रा कहती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A woman soldier is:",
+                "hi": "महिला सैनिक है:"
+              },
+              "options": [
+                "सैनिकी",
+                "सैनिकः",
+                "सैनिका"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "सैनिकः becomes सैनिकी for a woman.",
+                "hi": "महिला के लिए सैनिकः का रूप सैनिकी हो जाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "सैनिकः is the masculine word.",
+                  "hi": "सैनिकः पुंलिङ्ग शब्द है।"
+                },
+                {
+                  "en": "सैनिका is not the form used in the lesson.",
+                  "hi": "सैनिका पाठ में प्रयुक्त रूप नहीं है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A girl says about herself:",
+                "hi": "लड़की अपने बारे में कहती है:"
+              },
+              "options": [
+                "अहं छात्रा",
+                "अहं छात्रः",
+                "अहं छात्रम्"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A girl is छात्रा.",
+                "hi": "लड़की छात्रा होती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "छात्रः is for a boy.",
+                  "hi": "छात्रः लड़के के लिए है।"
+                },
+                {
+                  "en": "छात्रम् is not a word we use here.",
+                  "hi": "छात्रम् यहाँ प्रयुक्त शब्द नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Say your own name and what you want to be in Sanskrit, like मम नाम ... अहं ...",
+            "hi": "संस्कृत में अपना नाम और बड़े होकर क्या बनोगे, बोलो: मम नाम ... अहं ..."
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch04-pronouns",
+      "topic": "4.2",
+      "template": "match",
+      "title": {
+        "en": "I, we, you",
+        "hi": "मैं, हम, तुम"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "aham",
+            "left": {
+              "en": "अहम्",
+              "hi": "अहम्"
+            },
+            "right": {
+              "en": "I (one person)",
+              "hi": "मैं (एक)"
+            }
+          },
+          {
+            "id": "avam",
+            "left": {
+              "en": "आवाम्",
+              "hi": "आवाम्"
+            },
+            "right": {
+              "en": "We two",
+              "hi": "हम दोनों"
+            }
+          },
+          {
+            "id": "vayam",
+            "left": {
+              "en": "वयम्",
+              "hi": "वयम्"
+            },
+            "right": {
+              "en": "We all",
+              "hi": "हम सब"
+            }
+          },
+          {
+            "id": "tvam",
+            "left": {
+              "en": "त्वम्",
+              "hi": "त्वम्"
+            },
+            "right": {
+              "en": "You (one person)",
+              "hi": "तुम (एक)"
+            }
+          },
+          {
+            "id": "yuvam",
+            "left": {
+              "en": "युवाम्",
+              "hi": "युवाम्"
+            },
+            "right": {
+              "en": "You two",
+              "hi": "तुम दोनों"
+            }
+          },
+          {
+            "id": "yuyam",
+            "left": {
+              "en": "यूयम्",
+              "hi": "यूयम्"
+            },
+            "right": {
+              "en": "You all",
+              "hi": "तुम सब"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:aham",
+          "expect": "matched:aham",
+          "say": {
+            "en": "Tap अहम्, then tap the card that goes with it.",
+            "hi": "अहम् छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which word means \"you two\"?",
+            "hi": "\"तुम दोनों\" के लिए कौन-सा शब्द है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "युवाम्",
+              "hi": "युवाम्"
+            },
+            {
+              "id": "b",
+              "en": "आवाम्",
+              "hi": "आवाम्"
+            },
+            {
+              "id": "c",
+              "en": "वयम्",
+              "hi": "वयम्"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:yuyam",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Speaking about myself we use अहम्, आवाम् and वयम्: one, two, many. Speaking to others we use त्वम्, युवाम् and यूयम्: one, two, many. Remember the pattern: ए-sounds come in ones, twos and manys.",
+            "hi": "अपने बारे में बोलते हुए अहम्, आवाम्, वयम् (एक, दो, अनेक) और दूसरों से बोलते हुए त्वम्, युवाम्, यूयम् (एक, दो, अनेक) काम आते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "You speak to your whole class. Which word do you use?",
+                "hi": "तुम पूरी कक्षा से बोल रहे हो। कौन-सा शब्द प्रयोग करोगे?"
+              },
+              "options": [
+                "यूयम्",
+                "त्वम्",
+                "युवाम्"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "यूयम् means you all.",
+                "hi": "यूयम् का अर्थ तुम सब है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "त्वम् is for one person.",
+                  "hi": "त्वम् एक व्यक्ति के लिए है।"
+                },
+                {
+                  "en": "युवाम् is for two people.",
+                  "hi": "युवाम् दो व्यक्तियों के लिए है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "You and your friend say \"we two\". You say:",
+                "hi": "तुम और तुम्हारा मित्र कहते हो \"हम दोनों\"। कहोगे:"
+              },
+              "options": [
+                "आवाम्",
+                "वयम्",
+                "अहम्"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "आवाम् means we two.",
+                "hi": "आवाम् का अर्थ हम दोनों है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "वयम् is for three or more.",
+                  "hi": "वयम् तीन या अधिक के लिए है।"
+                },
+                {
+                  "en": "अहम् is for one person.",
+                  "hi": "अहम् एक व्यक्ति के लिए है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Point at yourself, then at a friend, then at the class, and say the right word each time.",
+            "hi": "खुद की ओर, फिर मित्र की ओर, फिर कक्षा की ओर इशारा करके हर बार सही शब्द बोलो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch04-be",
+      "topic": "4.3",
+      "template": "grammar",
+      "title": {
+        "en": "I am, you are: build sentences",
+        "hi": "मैं हूँ, तुम हो: वाक्य बनाओ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "build",
+        "lang": "sa",
+        "items": [
+          {
+            "id": "b1",
+            "words": [
+              "अहम्",
+              "आरक्षकः",
+              "अस्मि",
+              "असि"
+            ],
+            "answer": "अहम् आरक्षकः अस्मि",
+            "rule": {
+              "en": "अहम् goes with अस्मि.",
+              "hi": "अहम् के साथ अस्मि आता है।"
+            }
+          },
+          {
+            "id": "b2",
+            "words": [
+              "आवाम्",
+              "आरक्षकौ",
+              "स्वः",
+              "स्मः"
+            ],
+            "answer": "आवाम् आरक्षकौ स्वः",
+            "rule": {
+              "en": "आवाम् goes with स्वः.",
+              "hi": "आवाम् के साथ स्वः आता है।"
+            }
+          },
+          {
+            "id": "b3",
+            "words": [
+              "वयम्",
+              "आरक्षकाः",
+              "स्मः",
+              "स्वः"
+            ],
+            "answer": "वयम् आरक्षकाः स्मः",
+            "rule": {
+              "en": "वयम् goes with स्मः.",
+              "hi": "वयम् के साथ स्मः आता है।"
+            }
+          },
+          {
+            "id": "b4",
+            "words": [
+              "त्वं",
+              "चित्रकारः",
+              "असि",
+              "अस्मि"
+            ],
+            "answer": "त्वं चित्रकारः असि",
+            "rule": {
+              "en": "त्वम् goes with असि.",
+              "hi": "त्वम् के साथ असि आता है।"
+            }
+          },
+          {
+            "id": "b5",
+            "words": [
+              "युवां",
+              "चित्रकारौ",
+              "स्थः",
+              "स्वः"
+            ],
+            "answer": "युवां चित्रकारौ स्थः",
+            "rule": {
+              "en": "युवाम् goes with स्थः.",
+              "hi": "युवाम् के साथ स्थः आता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "word:0",
+          "expect": "built:b1",
+          "say": {
+            "en": "Tap the word tiles one by one to build the first sentence.",
+            "hi": "शब्द-पट्टियाँ एक-एक करके छूकर पहला वाक्य बनाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which word goes with अहम्: अस्मि or असि?",
+            "hi": "अहम् के साथ कौन-सा शब्द आता है: अस्मि या असि?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "अस्मि",
+              "hi": "अस्मि"
+            },
+            {
+              "id": "b",
+              "en": "असि",
+              "hi": "असि"
+            },
+            {
+              "id": "c",
+              "en": "स्थः",
+              "hi": "स्थः"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "word:0",
+          "expect": "done",
+          "say": {
+            "en": "Build the rest of the sentences.",
+            "hi": "बाकी वाक्य भी बनाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The verb \"to be\" changes with who is speaking: अहम् अस्मि, आवाम् स्वः, वयम् स्मः, त्वम् असि, युवाम् स्थः, यूयम् स्थ. Check that the extra tile does not fit the pronoun.",
+            "hi": "\"होना\" क्रिया बोलने वाले के अनुसार बदलती है: अहम् अस्मि, आवाम् स्वः, वयम् स्मः, त्वम् असि, युवाम् स्थः, यूयम् स्थ। देखो कि अतिरिक्त पट्टी सर्वनाम से मेल नहीं खाती।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which is correct?",
+                "hi": "कौन-सा सही है?"
+              },
+              "options": [
+                "वयम् आरक्षकाः स्मः",
+                "वयम् आरक्षकाः असि",
+                "वयम् आरक्षकाः स्थः"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "वयम् goes with स्मः.",
+                "hi": "वयम् के साथ स्मः आता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "असि goes with त्वम्.",
+                  "hi": "असि त्वम् के साथ आता है।"
+                },
+                {
+                  "en": "स्थः goes with युवाम्.",
+                  "hi": "स्थः युवाम् के साथ आता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is it त्वं चित्रकारः and not त्वम् चित्रकारः?",
+                "hi": "त्वं चित्रकारः क्यों है, त्वम् चित्रकारः क्यों नहीं?"
+              },
+              "options": [
+                {
+                  "en": "म् before a consonant is written as ं",
+                  "hi": "व्यञ्जन से पहले म् का अनुस्वार ं लिखते हैं"
+                },
+                {
+                  "en": "It is only a spelling mistake",
+                  "hi": "यह केवल वर्तनी की गलती है"
+                },
+                {
+                  "en": "It changes the meaning",
+                  "hi": "इससे अर्थ बदल जाता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The rule: a word-ending म् becomes ं before a consonant.",
+                "hi": "नियम: शब्द के अन्त का म् व्यञ्जन से पहले ं हो जाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It is a fixed rule, not a mistake.",
+                  "hi": "यह पक्का नियम है, गलती नहीं।"
+                },
+                {
+                  "en": "The meaning stays the same; only the spelling follows the rule.",
+                  "hi": "अर्थ वही रहता है; वर्तनी नियम का पालन करती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Introduce yourself and a friend aloud using अस्मि and स्वः.",
+            "hi": "अस्मि और स्वः का प्रयोग करके अपना और मित्र का परिचय बोलो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch04-anusvara",
+      "topic": "4.4",
+      "template": "sort",
+      "title": {
+        "en": "When म् becomes ं",
+        "hi": "म् कब ं बनता है"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "anu",
+            "label": {
+              "en": "Write ं (anusvara)",
+              "hi": "अनुस्वार ं लिखो"
+            }
+          },
+          {
+            "id": "ma",
+            "label": {
+              "en": "Keep म्",
+              "hi": "म् ही रहने दो"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "c1",
+            "text": {
+              "en": "त्वं कः",
+              "hi": "त्वं कः"
+            },
+            "bin": "anu",
+            "why": {
+              "en": "कः starts with a consonant, so म् becomes ं.",
+              "hi": "कः व्यञ्जन से शुरू होता है, इसलिए म् का ं हो जाता है।"
+            }
+          },
+          {
+            "id": "c2",
+            "text": {
+              "en": "वयं सैनिकाः",
+              "hi": "वयं सैनिकाः"
+            },
+            "bin": "anu",
+            "why": {
+              "en": "सैनिकाः starts with a consonant.",
+              "hi": "सैनिकाः व्यञ्जन से शुरू होता है।"
+            }
+          },
+          {
+            "id": "c3",
+            "text": {
+              "en": "पुस्तकं नास्ति",
+              "hi": "पुस्तकं नास्ति"
+            },
+            "bin": "anu",
+            "why": {
+              "en": "नास्ति starts with a consonant.",
+              "hi": "नास्ति व्यञ्जन से शुरू होता है।"
+            }
+          },
+          {
+            "id": "c4",
+            "text": {
+              "en": "अहं गायकः",
+              "hi": "अहं गायकः"
+            },
+            "bin": "anu",
+            "why": {
+              "en": "गायकः starts with a consonant.",
+              "hi": "गायकः व्यञ्जन से शुरू होता है।"
+            }
+          },
+          {
+            "id": "c5",
+            "text": {
+              "en": "पुस्तकम् अस्ति",
+              "hi": "पुस्तकम् अस्ति"
+            },
+            "bin": "ma",
+            "why": {
+              "en": "अस्ति starts with a vowel, so म् stays.",
+              "hi": "अस्ति स्वर से शुरू होता है, इसलिए म् रहता है।"
+            }
+          },
+          {
+            "id": "c6",
+            "text": {
+              "en": "त्वम् असि",
+              "hi": "त्वम् असि"
+            },
+            "bin": "ma",
+            "why": {
+              "en": "असि starts with a vowel.",
+              "hi": "असि स्वर से शुरू होता है।"
+            }
+          },
+          {
+            "id": "c7",
+            "text": {
+              "en": "वयम् आरक्षकाः",
+              "hi": "वयम् आरक्षकाः"
+            },
+            "bin": "ma",
+            "why": {
+              "en": "आरक्षकाः starts with a vowel.",
+              "hi": "आरक्षकाः स्वर से शुरू होता है।"
+            }
+          },
+          {
+            "id": "c8",
+            "text": {
+              "en": "अहम् अपि",
+              "hi": "अहम् अपि"
+            },
+            "bin": "ma",
+            "why": {
+              "en": "अपि starts with a vowel.",
+              "hi": "अपि स्वर से शुरू होता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:c1",
+          "expect": "placed:c1",
+          "say": {
+            "en": "Tap the card त्वं कः, then tap the group where it belongs.",
+            "hi": "कार्ड त्वं कः छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Before a word that starts with a vowel, the word-ending म् will…",
+            "hi": "स्वर से शुरू होने वाले शब्द से पहले अन्तिम म् …"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "stay म्",
+              "hi": "म् ही रहेगा"
+            },
+            {
+              "id": "b",
+              "en": "become ं",
+              "hi": "ं हो जाएगा"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Put every card in a group, then press Check.",
+            "hi": "सारे कार्ड समूहों में रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Rule: a म् at the end of a word is written as the dot ं (anusvara) if the next word begins with a consonant. If the next word begins with a vowel, it stays म्. Examples: पुस्तकं नास्ति, पुस्तकम् अस्ति.",
+            "hi": "नियम: शब्द के अन्त का म् यदि अगला शब्द व्यञ्जन से शुरू हो तो अनुस्वार ं के रूप में लिखा जाता है। अगला शब्द स्वर से शुरू हो तो म् ही रहता है। जैसे पुस्तकं नास्ति, पुस्तकम् अस्ति।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which is written correctly?",
+                "hi": "कौन-सा सही लिखा है?"
+              },
+              "options": [
+                "पुस्तकं नास्ति",
+                "पुस्तकम् नास्ति"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "नास्ति starts with a consonant, so ं.",
+                "hi": "नास्ति व्यञ्जन से शुरू होता है, इसलिए ं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Before a consonant म् must become ं.",
+                  "hi": "व्यञ्जन से पहले म् को ं होना चाहिए।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which is written correctly?",
+                "hi": "कौन-सा सही लिखा है?"
+              },
+              "options": [
+                "त्वम् असि",
+                "त्वं असि"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "असि starts with a vowel, so म् stays.",
+                "hi": "असि स्वर से शुरू होता है, इसलिए म् रहता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Before a vowel the म् should not change.",
+                  "hi": "स्वर से पहले म् नहीं बदलता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write two sentences of your own and check the last letter of the first word.",
+            "hi": "अपने दो वाक्य लिखो और पहले शब्द का अन्तिम अक्षर जाँचो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "4.1",
+      "use": "Opens the chapter",
+      "shows": "A group of children in school uniform introducing themselves in a circle, seen from behind",
+      "view": "Wide 16:9",
+      "right": "Girls and boys equally",
+      "avoid": "Faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "4.1",
+      "use": "Job match cards",
+      "shows": "Cut-outs of work tools: stethoscope, chef hat, microphone, chalk, camera, pen and note pad",
+      "view": "Front view, one file each",
+      "right": "Real tools, Indian context",
+      "avoid": "Brand marks"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "4.2",
+      "use": "I, you, we",
+      "shows": "One child, two children and a class group each in a separate scene",
+      "view": "Same park background",
+      "right": "Counts are exact: one, two, many",
+      "avoid": "Faces"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "4.3",
+      "use": "Pronoun chart base",
+      "shows": "A blank table frame, six cells, for the app to fill",
+      "view": "Flat, white",
+      "right": "Even grid",
+      "avoid": "Words"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "4.5",
+      "use": "Singing together",
+      "shows": "Children sitting in a circle clapping while singing",
+      "view": "Wide, from behind",
+      "right": "Joyful but calm",
+      "avoid": "Faces"
+    }
+  ]
+}

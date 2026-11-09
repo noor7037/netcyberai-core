@@ -1,0 +1,776 @@
+{
+ "chapter_key": "u.c03.evs.ceev1.ch03",
+ "class": 3,
+ "subject_id": "evs",
+ "title": "Celebrating Festivals",
+ "source": "https://ncert.nic.in/textbook/pdf/ceev103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "A journey to the hills: bus travel and road signs",
+   "labs": [
+    "c3-evs-ceev1-ch03-signs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Flowers of spring and the festivals they bring (tulip, buransh, amaltas)",
+   "labs": [],
+   "why_no_lab": "Flowers and their festivals are best seen in photographs and heard in stories; the photo set and reader do this."
+  },
+  {
+   "n": "3.3",
+   "title": "Festivals through the year: seasons, special foods and dresses",
+   "labs": [
+    "c3-evs-ceev1-ch03-seasons",
+    "c3-evs-ceev1-ch03-food"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-evs-ceev1-ch03-signs",
+   "topic": "3.1",
+   "template": "match",
+   "title": {
+    "en": "Road signs and what they say",
+    "hi": "सड़क के चिह्न और उनके अर्थ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "zebra",
+      "left": {
+       "en": "Zebra crossing",
+       "hi": "ज़ेबरा क्रॉसिंग"
+      },
+      "right": {
+       "en": "A safe place for people to cross the road",
+       "hi": "लोगों के सड़क पार करने की सुरक्षित जगह"
+      },
+      "why": {
+       "en": "Vehicles slow down and stop at a zebra crossing.",
+       "hi": "ज़ेबरा क्रॉसिंग पर गाड़ियाँ धीमी होकर रुकती हैं।"
+      }
+     },
+     {
+      "id": "red",
+      "left": {
+       "en": "Red traffic light",
+       "hi": "लाल बत्ती"
+      },
+      "right": {
+       "en": "Stop and wait",
+       "hi": "रुको और इंतज़ार करो"
+      },
+      "why": {
+       "en": "Red means all vehicles must stop.",
+       "hi": "लाल बत्ती का मतलब है कि सब गाड़ियाँ रुकें।"
+      }
+     },
+     {
+      "id": "hairpin",
+      "left": {
+       "en": "Hairpin bend",
+       "hi": "तीखा मोड़"
+      },
+      "right": {
+       "en": "A sharp turn ahead, go slowly",
+       "hi": "आगे तीखा मोड़ है, धीरे चलो"
+      },
+      "why": {
+       "en": "Hill roads have such turns, as Rishi saw on his bus ride.",
+       "hi": "पहाड़ी सड़कों पर ऐसे मोड़ होते हैं।"
+      }
+     },
+     {
+      "id": "cattle",
+      "left": {
+       "en": "Cattle crossing",
+       "hi": "पशु पार करते हैं"
+      },
+      "right": {
+       "en": "Animals may cross here, drive slowly",
+       "hi": "यहाँ पशु सड़क पार कर सकते हैं, धीरे चलो"
+      },
+      "why": {
+       "en": "Slowing down keeps the animals and us safe.",
+       "hi": "धीरे चलने से पशु और हम दोनों सुरक्षित रहते हैं।"
+      }
+     },
+     {
+      "id": "hospital",
+      "left": {
+       "en": "Hospital ahead",
+       "hi": "आगे अस्पताल है"
+      },
+      "right": {
+       "en": "Do not blow the horn, keep quiet",
+       "hi": "हॉर्न मत बजाओ, शांति रखो"
+      },
+      "why": {
+       "en": "Loud sounds trouble sick people.",
+       "hi": "तेज़ आवाज़ से बीमार लोगों को परेशानी होती है।"
+      }
+     },
+     {
+      "id": "footpath",
+      "left": {
+       "en": "Footpath",
+       "hi": "पैदल पथ"
+      },
+      "right": {
+       "en": "The path meant for walking, not for vehicles",
+       "hi": "पैदल चलने का रास्ता, गाड़ियों का नहीं"
+      },
+      "why": {
+       "en": "Walking on the footpath keeps you away from traffic.",
+       "hi": "पैदल पथ पर चलने से तुम यातायात से दूर रहते हो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:zebra",
+     "expect": "matched:zebra",
+     "say": {
+      "en": "Tap a sign on the left, then tap what it tells you on the right.",
+      "hi": "बाएँ से कोई चिह्न छुओ, फिर दाएँ से उसका अर्थ छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You see a red traffic light. What should every driver do?",
+      "hi": "तुम्हें लाल बत्ती दिखती है। हर चालक को क्या करना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "stop",
+       "en": "Stop and wait",
+       "hi": "रुकना और इंतज़ार करना"
+      },
+      {
+       "id": "go",
+       "en": "Go faster",
+       "hi": "तेज़ चलना"
+      },
+      {
+       "id": "horn",
+       "en": "Blow the horn",
+       "hi": "हॉर्न बजाना"
+      }
+     ],
+     "answer": "stop"
+    },
+    {
+     "kind": "do",
+     "target": "left:footpath",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining signs to their meanings.",
+      "hi": "बाक़ी सब चिह्नों को उनके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Road signs use pictures and colours to give messages without words. They tell drivers and walkers when to stop, go slow, take care or keep quiet. Knowing them keeps everyone safe.",
+      "hi": "सड़क के चिह्न बिना शब्दों के चित्रों और रंगों से संदेश देते हैं। वे चालकों और पैदल चलने वालों को बताते हैं कि कब रुकना है, धीरे चलना है, सावधान रहना है या शांत रहना है। इन्हें जानने से सब सुरक्षित रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where should you walk if there is a footpath?",
+        "hi": "अगर पैदल पथ हो तो तुम्हें कहाँ चलना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "In the middle of the road",
+         "hi": "सड़क के बीच में"
+        },
+        {
+         "en": "On the footpath",
+         "hi": "पैदल पथ पर"
+        },
+        {
+         "en": "Next to the fast vehicles",
+         "hi": "तेज़ गाड़ियों के बिल्कुल पास"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The footpath is made for walkers, so we walk on it and stay away from traffic.",
+        "hi": "पैदल पथ पैदल चलने वालों के लिए बना है, इसलिए उस पर चलते हैं और यातायात से दूर रहते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The middle of the road is where vehicles drive. It is dangerous for walkers.",
+         "hi": "सड़क के बीच में गाड़ियाँ चलती हैं। पैदल चलने वालों के लिए वह ख़तरनाक है।"
+        },
+        "",
+        {
+         "en": "Walking close to fast vehicles can get you hit. The footpath keeps you at a safe distance.",
+         "hi": "तेज़ गाड़ियों के पास चलने पर टक्कर हो सकती है। पैदल पथ तुम्हें सुरक्षित दूरी पर रखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "On your way to school, spot two road signs. Draw them and write what they tell you.",
+      "hi": "स्कूल के रास्ते में दो सड़क चिह्न ढूँढो। उन्हें बनाओ और लिखो कि वे क्या बताते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch03-seasons",
+   "topic": "3.3",
+   "template": "sort",
+   "title": {
+    "en": "Festivals through the year",
+    "hi": "साल भर के त्योहार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "spring",
+      "label": {
+       "en": "Spring (Mar-Apr)",
+       "hi": "वसंत (मार्च-अप्रैल)"
+      }
+     },
+     {
+      "id": "monsoon",
+      "label": {
+       "en": "Rainy time (Aug-Sep)",
+       "hi": "वर्षा का समय (अगस्त-सितंबर)"
+      }
+     },
+     {
+      "id": "winter",
+      "label": {
+       "en": "Winter (Dec-Jan)",
+       "hi": "सर्दी (दिसंबर-जनवरी)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "holi",
+      "text": {
+       "en": "Holi",
+       "hi": "होली"
+      },
+      "bin": "spring",
+      "why": {
+       "en": "Holi, the festival of colours, comes at the start of spring.",
+       "hi": "रंगों का त्योहार होली वसंत की शुरुआत में आता है।"
+      }
+     },
+     {
+      "id": "ugadi",
+      "text": {
+       "en": "Ugadi",
+       "hi": "उगादी"
+      },
+      "bin": "spring",
+      "why": {
+       "en": "Ugadi is the new year of Andhra Pradesh, Telangana and Karnataka, celebrated in spring.",
+       "hi": "उगादी आंध्र प्रदेश, तेलंगाना और कर्नाटक का नया साल है, जो वसंत में मनाया जाता है।"
+      }
+     },
+     {
+      "id": "vishu",
+      "text": {
+       "en": "Vishu",
+       "hi": "विशु"
+      },
+      "bin": "spring",
+      "why": {
+       "en": "Vishu is the Malayali new year in mid-April, when amaltas flowers bloom.",
+       "hi": "विशु मध्य अप्रैल में मलयाली नया साल है, जब अमलतास के फूल खिलते हैं।"
+      }
+     },
+     {
+      "id": "baisakhi",
+      "text": {
+       "en": "Baisakhi",
+       "hi": "बैसाखी"
+      },
+      "bin": "spring",
+      "why": {
+       "en": "Baisakhi comes in April, when the wheat crop is ready.",
+       "hi": "बैसाखी अप्रैल में आती है, जब गेहूँ की फ़सल तैयार होती है।"
+      }
+     },
+     {
+      "id": "onam",
+      "text": {
+       "en": "Onam",
+       "hi": "ओणम"
+      },
+      "bin": "monsoon",
+      "why": {
+       "en": "Onam is celebrated in Kerala in August or September, after the rains.",
+       "hi": "ओणम केरल में अगस्त या सितंबर में बारिश के बाद मनाया जाता है।"
+      }
+     },
+     {
+      "id": "rakhi",
+      "text": {
+       "en": "Raksha Bandhan",
+       "hi": "रक्षा बंधन"
+      },
+      "bin": "monsoon",
+      "why": {
+       "en": "Raksha Bandhan usually falls in August, during the rainy season.",
+       "hi": "रक्षा बंधन आमतौर पर अगस्त में, बरसात के मौसम में आता है।"
+      }
+     },
+     {
+      "id": "janmashtami",
+      "text": {
+       "en": "Janmashtami",
+       "hi": "जन्माष्टमी"
+      },
+      "bin": "monsoon",
+      "why": {
+       "en": "Janmashtami is usually in August or September, in the rainy time.",
+       "hi": "जन्माष्टमी आमतौर पर अगस्त या सितंबर में, बरसात के समय आती है।"
+      }
+     },
+     {
+      "id": "lohri",
+      "text": {
+       "en": "Lohri",
+       "hi": "लोहड़ी"
+      },
+      "bin": "winter",
+      "why": {
+       "en": "Lohri is in mid-January, when the nights are cold and people sit around a bonfire.",
+       "hi": "लोहड़ी जनवरी के मध्य में आती है, जब रातें ठंडी होती हैं और लोग अलाव के पास बैठते हैं।"
+      }
+     },
+     {
+      "id": "pongal",
+      "text": {
+       "en": "Pongal",
+       "hi": "पोंगल"
+      },
+      "bin": "winter",
+      "why": {
+       "en": "Pongal is a harvest festival in mid-January.",
+       "hi": "पोंगल जनवरी के मध्य में मनाया जाने वाला फ़सल का त्योहार है।"
+      }
+     },
+     {
+      "id": "christmas",
+      "text": {
+       "en": "Christmas",
+       "hi": "क्रिसमस"
+      },
+      "bin": "winter",
+      "why": {
+       "en": "Christmas is on 25 December, in the winter season.",
+       "hi": "क्रिसमस 25 दिसंबर को, सर्दी के मौसम में आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:holi",
+     "expect": "placed:holi",
+     "say": {
+      "en": "Tap a festival, then tap the season in which it is celebrated.",
+      "hi": "एक त्योहार छुओ, फिर वह मौसम छुओ जिसमें वह मनाया जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Lohri is celebrated around a bonfire. In which time of the year is it likely to be?",
+      "hi": "लोहड़ी अलाव के पास मनाई जाती है। यह साल के किस समय आने की संभावना है?"
+     },
+     "options": [
+      {
+       "id": "winter",
+       "en": "Winter",
+       "hi": "सर्दी"
+      },
+      {
+       "id": "spring",
+       "en": "Spring",
+       "hi": "वसंत"
+      },
+      {
+       "id": "monsoon",
+       "en": "Rainy time",
+       "hi": "वर्षा का समय"
+      }
+     ],
+     "answer": "winter"
+    },
+    {
+     "kind": "do",
+     "target": "card:christmas",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the festivals into their seasons.",
+      "hi": "सारे त्योहार उनके मौसम में छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "People celebrate different festivals at different times of the year. Many festivals are linked to the weather and to nature: spring flowers, the rains, or a harvest. The exact dates differ from place to place, so ask your elders what is celebrated near you.",
+      "hi": "लोग साल के अलग-अलग समय पर अलग-अलग त्योहार मनाते हैं। बहुत से त्योहार मौसम और प्रकृति से जुड़े हैं: वसंत के फूल, बारिश या फ़सल की कटाई। तारीख़ें जगह-जगह अलग हो सकती हैं, इसलिए बड़ों से पूछो कि तुम्हारे आसपास कौन-सा त्योहार कब मनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is Baisakhi celebrated in April in many places?",
+        "hi": "कई जगह बैसाखी अप्रैल में क्यों मनाई जाती है?"
+       },
+       "options": [
+        {
+         "en": "Because the wheat crop is ready then",
+         "hi": "क्योंकि तब गेहूँ की फ़सल तैयार होती है"
+        },
+        {
+         "en": "Because it snows in April everywhere",
+         "hi": "क्योंकि अप्रैल में हर जगह बर्फ़ गिरती है"
+        },
+        {
+         "en": "Because schools are closed",
+         "hi": "क्योंकि स्कूल बंद होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Farmers cut their ripe wheat in April, so Baisakhi is also a harvest festival.",
+        "hi": "किसान अप्रैल में पकी गेहूँ की फ़सल काटते हैं, इसलिए बैसाखी फ़सल का त्योहार भी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It does not snow everywhere in April. Baisakhi is linked to the harvest, not to snow.",
+         "hi": "अप्रैल में हर जगह बर्फ़ नहीं गिरती। बैसाखी फ़सल से जुड़ी है, बर्फ़ से नहीं।"
+        },
+        {
+         "en": "School holidays do not decide a festival. Baisakhi is linked to the ripening of crops.",
+         "hi": "स्कूल की छुट्टियाँ त्योहार तय नहीं करतीं। बैसाखी फ़सल पकने से जुड़ी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask your family which festival you enjoy most and what time of the year it comes. Which season is it?",
+      "hi": "अपने परिवार से पूछो कि तुम्हें कौन-सा त्योहार सबसे अच्छा लगता है और वह साल के किस समय आता है। वह कौन-सा मौसम है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch03-food",
+   "topic": "3.3",
+   "template": "match",
+   "title": {
+    "en": "Festival foods",
+    "hi": "त्योहार के पकवान"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "pongal",
+      "left": {
+       "en": "Pongal",
+       "hi": "पोंगल"
+      },
+      "right": {
+       "en": "Sweet pongal",
+       "hi": "मीठा पोंगल"
+      },
+      "why": {
+       "en": "Rice, jaggery and moong dal cooked together is made at Pongal.",
+       "hi": "चावल, गुड़ और मूँग दाल साथ पकाकर पोंगल पर बनाया जाता है।"
+      }
+     },
+     {
+      "id": "sankranti",
+      "left": {
+       "en": "Makar Sankranti",
+       "hi": "मकर संक्रांति"
+      },
+      "right": {
+       "en": "Til-gur laddoo",
+       "hi": "तिल-गुड़ के लड्डू"
+      },
+      "why": {
+       "en": "Sesame seeds and jaggery keep the body warm in winter.",
+       "hi": "तिल और गुड़ सर्दी में शरीर को गर्म रखते हैं।"
+      }
+     },
+     {
+      "id": "ganesh",
+      "left": {
+       "en": "Ganesh Chaturthi",
+       "hi": "गणेश चतुर्थी"
+      },
+      "right": {
+       "en": "Modak",
+       "hi": "मोदक"
+      },
+      "why": {
+       "en": "Modak is a sweet dumpling offered to Lord Ganesha.",
+       "hi": "मोदक एक मीठा पकवान है जो भगवान गणेश को चढ़ाया जाता है।"
+      }
+     },
+     {
+      "id": "lohri",
+      "left": {
+       "en": "Lohri",
+       "hi": "लोहड़ी"
+      },
+      "right": {
+       "en": "Peanuts and gajak",
+       "hi": "मूँगफली और गज्जक"
+      },
+      "why": {
+       "en": "Peanuts and sesame sweets are shared around the Lohri fire.",
+       "hi": "लोहड़ी की आग के पास मूँगफली और तिल की मिठाई बाँटी जाती है।"
+      }
+     },
+     {
+      "id": "diwali",
+      "left": {
+       "en": "Diwali",
+       "hi": "दीवाली"
+      },
+      "right": {
+       "en": "Diyas and mithai",
+       "hi": "दीये और मिठाई"
+      },
+      "why": {
+       "en": "Families light diyas and share sweets with neighbours.",
+       "hi": "परिवार दीये जलाते हैं और पड़ोसियों में मिठाई बाँटते हैं।"
+      }
+     },
+     {
+      "id": "janmashtami",
+      "left": {
+       "en": "Janmashtami",
+       "hi": "जन्माष्टमी"
+      },
+      "right": {
+       "en": "Makhan-mishri",
+       "hi": "मक्खन-मिश्री"
+      },
+      "why": {
+       "en": "Makhan-mishri is offered because Lord Krishna loved butter.",
+       "hi": "मक्खन-मिश्री का भोग लगाया जाता है क्योंकि भगवान कृष्ण को माखन प्रिय था।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:pongal",
+     "expect": "matched:pongal",
+     "say": {
+      "en": "Tap a festival on the left, then tap a food or custom of that festival on the right.",
+      "hi": "बाएँ से कोई त्योहार छुओ, फिर दाएँ से उसका पकवान या रीति छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which festival do you think has laddoos made of sesame and jaggery?",
+      "hi": "तुम्हें क्या लगता है कि किस त्योहार में तिल-गुड़ के लड्डू बनते हैं?"
+     },
+     "options": [
+      {
+       "id": "sankranti",
+       "en": "Makar Sankranti",
+       "hi": "मकर संक्रांति"
+      },
+      {
+       "id": "ganesh",
+       "en": "Ganesh Chaturthi",
+       "hi": "गणेश चतुर्थी"
+      },
+      {
+       "id": "diwali",
+       "en": "Diwali",
+       "hi": "दीवाली"
+      }
+     ],
+     "answer": "sankranti"
+    },
+    {
+     "kind": "do",
+     "target": "left:janmashtami",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the festivals.",
+      "hi": "बाक़ी त्योहारों को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many festivals have their own special foods. These foods often use what grows in that season, like sesame and jaggery in winter. People cook them at home and share them with family and neighbours. Sharing food makes a festival joyful.",
+      "hi": "बहुत से त्योहारों के अपने ख़ास पकवान होते हैं। ये पकवान अक्सर उस मौसम की उपज से बनते हैं, जैसे सर्दी में तिल और गुड़। लोग इन्हें घर पर पकाते हैं और परिवार व पड़ोसियों में बाँटते हैं। बाँटने से त्योहार की ख़ुशी बढ़ जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are sesame and jaggery eaten in winter?",
+        "hi": "सर्दी में तिल और गुड़ क्यों खाए जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "They keep the body warm",
+         "hi": "ये शरीर को गर्म रखते हैं"
+        },
+        {
+         "en": "They are cold like ice cream",
+         "hi": "ये आइसक्रीम की तरह ठंडे होते हैं"
+        },
+        {
+         "en": "They grow only in summer",
+         "hi": "ये सिर्फ़ गर्मी में उगते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "These foods give the body warmth, so they are loved in cold weather.",
+        "hi": "ये चीज़ें शरीर को गर्मी देती हैं, इसलिए ठंड के मौसम में पसंद की जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sesame and jaggery give warmth to the body. Ice cream is cold and is eaten more in summer.",
+         "hi": "तिल और गुड़ शरीर को गर्मी देते हैं। आइसक्रीम ठंडी होती है और गर्मियों में ज़्यादा खाई जाती है।"
+        },
+        {
+         "en": "Sesame is harvested around the end of the rains and jaggery comes from sugarcane in winter. They are winter foods.",
+         "hi": "तिल बरसात के अंत में कटते हैं और गुड़ सर्दी में गन्ने से बनता है। ये सर्दी के पकवान हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask your family what special food is made at your favourite festival. Can you help to make it?",
+      "hi": "अपने परिवार से पूछो कि तुम्हारे पसंदीदा त्योहार पर कौन-सा ख़ास पकवान बनता है। क्या तुम उसे बनाने में मदद कर सकते हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Chapter hook: a bus on a hill road",
+   "shows": "A bus on a winding hill road with hairpin bends and slopes covered in wild flowers, distant snow peaks",
+   "view": "Slightly above, from a hairpin bend, clear morning light",
+   "right": "Real Himalayan foothill road, colourful wild flowers, no readable bus text",
+   "avoid": "Text on the bus, faces at the windows"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Road sign lab cut-outs",
+   "shows": "Six Indian road signs as separate cut-outs: zebra crossing, hairpin bend, cattle crossing, hospital ahead, footpath, red traffic light on a pole",
+   "view": "Straight on, flat, evenly lit",
+   "right": "Shapes and colours as used on Indian roads; no words on the signs",
+   "avoid": "Words on the signs, wrong shapes or colours"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Tulip garden in spring",
+   "shows": "A row of red, yellow and pink tulips in a garden in Kashmir in spring, mountains behind",
+   "view": "Low, among the flowers, soft morning light",
+   "right": "True tulip colours and shapes, snow-capped hills behind",
+   "avoid": "People in front, text, fake colours"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Buransh (rhododendron) hillside",
+   "shows": "A hillside covered with red buransh flowers in the Himalayas in spring",
+   "view": "Wide view with a few flowering branches in front",
+   "right": "Deep red flowers, green leaves, misty hills",
+   "avoid": "People, signboards"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Amaltas flowers for Vishu",
+   "shows": "A hanging cluster of yellow amaltas (konna) flowers with a Vishu Kani tray of fruits, vegetables and a small lamp",
+   "view": "Three-quarter view, soft light",
+   "right": "Bright yellow hanging flowers, a tray with cucumber, mango and a lit lamp",
+   "avoid": "Idols, text"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Festival foods cut-outs",
+   "shows": "Cut-outs of til-gur laddoos, modak, gajak, sweet pongal in a bowl, makhan-mishri in a small pot, each a separate file",
+   "view": "Three-quarter view from above, warm light",
+   "right": "Authentic shapes and colours of each sweet",
+   "avoid": "Brand names on boxes, plastic wrappers"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "3.3",
+   "use": "Seasons strip for the sort lab",
+   "shows": "Four frames of the same village lane in spring, rainy time, winter and summer, same camera spot",
+   "view": "Same view in every frame, eye level",
+   "right": "Clear seasonal change: flowers, green rain-soaked trees, foggy winter, dry hot summer",
+   "avoid": "People facing the camera, text"
+  }
+ ]
+}

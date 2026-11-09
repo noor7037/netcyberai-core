@@ -1,0 +1,956 @@
+{
+ "chapter_key": "u.c10.sanskrit.jsab1.ch12",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "अशुद्धिसंशोधनम्",
+ "source": "https://ncert.nic.in/textbook/pdf/jsab1ps.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Errors in the verb and its doer",
+   "labs": [
+    "c10-sanskrit-jsab1-ch12-person"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Errors in gender",
+   "labs": [
+    "c10-sanskrit-jsab1-ch12-gender"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Errors in number",
+   "labs": [
+    "c10-sanskrit-jsab1-ch12-number"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "Errors in case and other errors",
+   "labs": [
+    "c10-sanskrit-jsab1-ch12-other"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jsab1-ch12-person",
+   "topic": "12.1",
+   "template": "grammar",
+   "title": {
+    "en": "Wrong verb for the doer",
+    "hi": "कर्ता के अनुसार गलत क्रिया"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "fix",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "e1",
+      "sentence": "अहं विद्यालयं गच्छति",
+      "words": [
+       "अहं",
+       "विद्यालयं",
+       "गच्छामि",
+       "गच्छति"
+      ],
+      "answer": "अहं विद्यालयं गच्छामि",
+      "rule": {
+       "en": "अहम् (I) needs the first-person ending -मि.",
+       "hi": "अहम् (मैं) के साथ उत्तम पुरुष का अंत -मि चाहिए।"
+      }
+     },
+     {
+      "id": "e2",
+      "sentence": "त्वं पुस्तकं पठामि",
+      "words": [
+       "त्वं",
+       "पुस्तकं",
+       "पठसि",
+       "पठामि"
+      ],
+      "answer": "त्वं पुस्तकं पठसि",
+      "rule": {
+       "en": "त्वम् (you) needs -सि.",
+       "hi": "त्वम् (तुम) के साथ -सि चाहिए।"
+      }
+     },
+     {
+      "id": "e3",
+      "sentence": "वयं क्रीडन्ति",
+      "words": [
+       "वयं",
+       "क्रीडामः",
+       "क्रीडन्ति"
+      ],
+      "answer": "वयं क्रीडामः",
+      "rule": {
+       "en": "वयम् (we) needs -मः.",
+       "hi": "वयम् (हम) के साथ -मः चाहिए।"
+      }
+     },
+     {
+      "id": "e4",
+      "sentence": "ते गच्छसि",
+      "words": [
+       "ते",
+       "गच्छन्ति",
+       "गच्छसि"
+      ],
+      "answer": "ते गच्छन्ति",
+      "rule": {
+       "en": "ते (they) needs -न्ति.",
+       "hi": "ते (वे) के साथ -न्ति चाहिए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'अहं विद्यालयं गच्छति' the doer is 'I'. What is wrong?",
+      "hi": "'अहं विद्यालयं गच्छति' में कर्ता 'मैं' है। क्या गलत है?"
+     },
+     "options": [
+      {
+       "id": "verb",
+       "en": "The verb ending is for 'he', not 'I'",
+       "hi": "क्रिया का अंत 'वह' का है, 'मैं' का नहीं"
+      },
+      {
+       "id": "noun",
+       "en": "The noun is wrong",
+       "hi": "संज्ञा गलत है"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "verb"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap the tiles for the corrected sentence and press the answer button.",
+      "hi": "सही वाक्य के टाइल छुओ और उत्तर बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Correct all four sentences.",
+      "hi": "चारों वाक्य ठीक करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The first error to check is the verb and its doer. The doer decides the verb ending: अहम् takes -मि, त्वम् takes -सि, सः takes -ति, वयम् takes -मः, ते takes -न्ति. When you find a sentence that sounds wrong, look at the doer first and then at the last letters of the verb.",
+      "hi": "सबसे पहले क्रिया और कर्ता का मेल जाँचो। कर्ता क्रिया का अंत तय करता है: अहम् के साथ -मि, त्वम् के साथ -सि, सः के साथ -ति, वयम् के साथ -मः, ते के साथ -न्ति। कोई वाक्य गलत लगे तो पहले कर्ता देखो और फिर क्रिया के अंतिम अक्षर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is correct?",
+        "hi": "कौन-सा वाक्य सही है?"
+       },
+       "options": [
+        {
+         "en": "त्वं गृहं गच्छसि।",
+         "hi": "त्वं गृहं गच्छसि।"
+        },
+        {
+         "en": "त्वं गृहं गच्छति।",
+         "hi": "त्वं गृहं गच्छति।"
+        },
+        {
+         "en": "त्वं गृहं गच्छामि।",
+         "hi": "त्वं गृहं गच्छामि।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "त्वम् and -सि match.",
+        "hi": "त्वम् और -सि का मेल सही है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-ति is for a third-person doer.",
+         "hi": "-ति अन्य पुरुष के कर्ता के लिए है।"
+        },
+        {
+         "en": "-मि is for 'I'.",
+         "hi": "-मि 'मैं' के लिए है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which ending goes with 'ते'?",
+        "hi": "'ते' के साथ कौन-सा अंत आता है?"
+       },
+       "options": [
+        {
+         "en": "-न्ति",
+         "hi": "-न्ति"
+        },
+        {
+         "en": "-सि",
+         "hi": "-सि"
+        },
+        {
+         "en": "-मि",
+         "hi": "-मि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ते is plural third person, which takes -न्ति.",
+        "hi": "ते अन्य पुरुष बहुवचन है, जिसका अंत -न्ति है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-सि is for 'you'.",
+         "hi": "-सि 'तुम' के लिए है।"
+        },
+        {
+         "en": "-मि is for 'I'.",
+         "hi": "-मि 'मैं' के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write two wrong sentences for a friend to correct.",
+      "hi": "मित्र के सुधारने के लिए दो गलत वाक्य लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch12-gender",
+   "topic": "12.2",
+   "template": "grammar",
+   "title": {
+    "en": "Wrong gender",
+    "hi": "गलत लिंग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "fix",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "g1",
+      "sentence": "सा बालकः गच्छति",
+      "words": [
+       "सः",
+       "बालकः",
+       "गच्छति",
+       "सा"
+      ],
+      "answer": "सः बालकः गच्छति",
+      "rule": {
+       "en": "बालकः is masculine, so it needs सः, not सा.",
+       "hi": "बालकः पुल्लिंग है, इसलिए सा नहीं, सः चाहिए।"
+      }
+     },
+     {
+      "id": "g2",
+      "sentence": "सः बालिका गायति",
+      "words": [
+       "सा",
+       "बालिका",
+       "गायति",
+       "सः"
+      ],
+      "answer": "सा बालिका गायति",
+      "rule": {
+       "en": "बालिका is feminine, so it needs सा.",
+       "hi": "बालिका स्त्रीलिंग है, इसलिए सा चाहिए।"
+      }
+     },
+     {
+      "id": "g3",
+      "sentence": "मधुरः फलम् अस्ति",
+      "words": [
+       "मधुरं",
+       "फलम्",
+       "अस्ति",
+       "मधुरः"
+      ],
+      "answer": "मधुरं फलम् अस्ति",
+      "rule": {
+       "en": "फलम् is neuter, so the adjective is मधुरम्.",
+       "hi": "फलम् नपुंसक है, इसलिए विशेषण मधुरम् होगा।"
+      }
+     },
+     {
+      "id": "g4",
+      "sentence": "रम्यः नदी अस्ति",
+      "words": [
+       "रम्या",
+       "नदी",
+       "अस्ति",
+       "रम्यः"
+      ],
+      "answer": "रम्या नदी अस्ति",
+      "rule": {
+       "en": "नदी is feminine, so the adjective is रम्या.",
+       "hi": "नदी स्त्रीलिंग है, इसलिए विशेषण रम्या होगा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'सा बालकः गच्छति' the girl-word सा is used with a boy-word बालकः. Which word should change?",
+      "hi": "'सा बालकः गच्छति' में बालिका-वाचक सा के साथ बालक-वाचक बालकः है। कौन-सा शब्द बदलना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "sa",
+       "en": "सा should become सः",
+       "hi": "सा को सः होना चाहिए"
+      },
+      {
+       "id": "balaka",
+       "en": "बालकः should become बालिका",
+       "hi": "बालकः को बालिका होना चाहिए"
+      },
+      {
+       "id": "gachchhati",
+       "en": "गच्छति should change",
+       "hi": "गच्छति को बदलना चाहिए"
+      }
+     ],
+     "answer": "sa"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap the tiles for the corrected sentence and press the answer button.",
+      "hi": "सही वाक्य के टाइल छुओ और उत्तर बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Correct all four sentences.",
+      "hi": "चारों वाक्य ठीक करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Pronouns and adjectives take the gender of the noun they describe. A masculine noun takes सः and adjectives ending in -ः (सुन्दरः). A feminine noun takes सा and adjectives ending in -आ or -ई (रम्या, सुन्दरी). A neuter noun takes तत् and adjectives ending in -म् (मधुरम्). So the first step in correcting a gender error is to name the gender of the noun.",
+      "hi": "सर्वनाम और विशेषण उस संज्ञा का लिंग लेते हैं जिसका वर्णन करते हैं। पुल्लिंग संज्ञा के साथ सः और -ः वाले विशेषण (सुन्दरः) आते हैं। स्त्रीलिंग संज्ञा के साथ सा और -आ या -ई वाले विशेषण (रम्या, सुन्दरी) आते हैं। नपुंसकलिंग संज्ञा के साथ तत् और -म् वाले विशेषण (मधुरम्) आते हैं। इसलिए लिंग की गलती सुधारने का पहला चरण है संज्ञा का लिंग पहचानना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which phrase is correct?",
+        "hi": "कौन-सा वाक्यांश सही है?"
+       },
+       "options": [
+        {
+         "en": "मधुरं फलम्",
+         "hi": "मधुरं फलम्"
+        },
+        {
+         "en": "मधुरः फलम्",
+         "hi": "मधुरः फलम्"
+        },
+        {
+         "en": "मधुरा फलम्",
+         "hi": "मधुरा फलम्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "फलम् is neuter, and the neuter adjective ends in -म्.",
+        "hi": "फलम् नपुंसक है, और नपुंसक विशेषण -म् पर समाप्त होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-ः is the masculine ending.",
+         "hi": "-ः पुल्लिंग का अंत है।"
+        },
+        {
+         "en": "-आ is the feminine ending.",
+         "hi": "-आ स्त्रीलिंग का अंत है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the gender of 'नदी'?",
+        "hi": "'नदी' का लिंग क्या है?"
+       },
+       "options": [
+        {
+         "en": "Feminine",
+         "hi": "स्त्रीलिंग"
+        },
+        {
+         "en": "Masculine",
+         "hi": "पुल्लिंग"
+        },
+        {
+         "en": "Neuter",
+         "hi": "नपुंसकलिंग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "नदी (river) is a feminine noun.",
+        "hi": "नदी स्त्रीलिंग संज्ञा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Masculine nouns like बालकः take सः.",
+         "hi": "बालकः जैसी पुल्लिंग संज्ञाएँ सः लेती हैं।"
+        },
+        {
+         "en": "Neuter nouns like फलम् take तत्.",
+         "hi": "फलम् जैसी नपुंसक संज्ञाएँ तत् लेती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose five nouns and write their correct adjective for 'beautiful'.",
+      "hi": "पाँच संज्ञाएँ चुनो और उनके लिए 'सुन्दर' का सही रूप लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch12-number",
+   "topic": "12.3",
+   "template": "grammar",
+   "title": {
+    "en": "Wrong number",
+    "hi": "गलत वचन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "fix",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "n1",
+      "sentence": "बालकाः पठति",
+      "words": [
+       "बालकाः",
+       "पठन्ति",
+       "पठति"
+      ],
+      "answer": "बालकाः पठन्ति",
+      "rule": {
+       "en": "बालकाः is plural (many), so the verb is पठन्ति.",
+       "hi": "बालकाः बहुवचन (बहुत) है, इसलिए क्रिया पठन्ति।"
+      }
+     },
+     {
+      "id": "n2",
+      "sentence": "तौ बालकौ खेलन्ति",
+      "words": [
+       "तौ",
+       "बालकौ",
+       "खेलतः",
+       "खेलन्ति"
+      ],
+      "answer": "तौ बालकौ खेलतः",
+      "rule": {
+       "en": "तौ बालकौ is dual (two), so the verb is खेलतः.",
+       "hi": "तौ बालकौ द्विवचन (दो) है, इसलिए क्रिया खेलतः।"
+      }
+     },
+     {
+      "id": "n3",
+      "sentence": "बालकः पठन्ति",
+      "words": [
+       "बालकः",
+       "पठति",
+       "पठन्ति"
+      ],
+      "answer": "बालकः पठति",
+      "rule": {
+       "en": "बालकः is singular (one), so the verb is पठति.",
+       "hi": "बालकः एकवचन (एक) है, इसलिए क्रिया पठति।"
+      }
+     },
+     {
+      "id": "n4",
+      "sentence": "आवां गृहं गच्छामः",
+      "words": [
+       "आवां",
+       "गृहं",
+       "गच्छावः",
+       "गच्छामः"
+      ],
+      "answer": "आवां गृहं गच्छावः",
+      "rule": {
+       "en": "आवाम् (we two) takes -वः.",
+       "hi": "आवाम् (हम दो) के साथ -वः आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "'बालकाः पठति' has many boys with a one-person verb. What is the fix?",
+      "hi": "'बालकाः पठति' में बहुत लड़कों के साथ एक-व्यक्ति की क्रिया है। सुधार क्या है?"
+     },
+     "options": [
+      {
+       "id": "verb",
+       "en": "Make the verb plural: पठन्ति",
+       "hi": "क्रिया बहुवचन करो: पठन्ति"
+      },
+      {
+       "id": "noun",
+       "en": "Make the noun singular",
+       "hi": "संज्ञा एकवचन करो"
+      },
+      {
+       "id": "both",
+       "en": "Change both",
+       "hi": "दोनों बदलो"
+      }
+     ],
+     "answer": "verb"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap the tiles for the corrected sentence and press the answer button.",
+      "hi": "सही वाक्य के टाइल छुओ और उत्तर बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Correct all four sentences.",
+      "hi": "चारों वाक्य ठीक करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sanskrit has three numbers: one (एकवचन), two (द्विवचन) and many (बहुवचन). The doer and the verb must agree in number: बालकः पठति (one), बालकौ पठतः (two), बालकाः पठन्ति (many). The pronouns agree too: सः, तौ, ते and अहम्, आवाम्, वयम्. When correcting, count the doers first, then pick the verb ending: -ति, -तः, -न्ति for third person; -मि, -वः, -मः for first person.",
+      "hi": "संस्कृत में तीन वचन हैं: एक (एकवचन), दो (द्विवचन) और बहुत (बहुवचन)। कर्ता और क्रिया का वचन एक-सा होना चाहिए: बालकः पठति (एक), बालकौ पठतः (दो), बालकाः पठन्ति (बहुत)। सर्वनाम भी मेल खाते हैं: सः, तौ, ते और अहम्, आवाम्, वयम्। सुधारते समय पहले कर्ताओं को गिनो, फिर क्रिया का अंत चुनो: अन्य पुरुष के लिए -ति, -तः, -न्ति; उत्तम पुरुष के लिए -मि, -वः, -मः।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is correct?",
+        "hi": "कौन-सा वाक्य सही है?"
+       },
+       "options": [
+        {
+         "en": "बालकौ पठतः।",
+         "hi": "बालकौ पठतः।"
+        },
+        {
+         "en": "बालकौ पठति।",
+         "hi": "बालकौ पठति।"
+        },
+        {
+         "en": "बालकौ पठन्ति।",
+         "hi": "बालकौ पठन्ति।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two boys take the dual verb -तः.",
+        "hi": "दो लड़कों के साथ द्विवचन क्रिया -तः आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-ति is for one.",
+         "hi": "-ति एक के लिए है।"
+        },
+        {
+         "en": "-न्ति is for many.",
+         "hi": "-न्ति बहुत के लिए है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which ending shows 'we two'?",
+        "hi": "'हम दोनों' का अंत कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "-वः",
+         "hi": "-वः"
+        },
+        {
+         "en": "-मः",
+         "hi": "-मः"
+        },
+        {
+         "en": "-मि",
+         "hi": "-मि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-वः is first person dual.",
+        "hi": "-वः उत्तम पुरुष द्विवचन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-मः is first person plural.",
+         "hi": "-मः उत्तम पुरुष बहुवचन है।"
+        },
+        {
+         "en": "-मि is first person singular.",
+         "hi": "-मि उत्तम पुरुष एकवचन है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Count the people in your family and say 'we' with the right verb: आवां, वयं.",
+      "hi": "अपने परिवार के लोग गिनो और सही क्रिया के साथ 'हम' कहो: आवां, वयं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch12-other",
+   "topic": "12.4",
+   "template": "grammar",
+   "title": {
+    "en": "Wrong case and other errors",
+    "hi": "गलत विभक्ति और अन्य गलतियाँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "fix",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "o1",
+      "sentence": "बालकः विद्यालयः गच्छति",
+      "words": [
+       "बालकः",
+       "विद्यालयं",
+       "गच्छति",
+       "विद्यालयः"
+      ],
+      "answer": "बालकः विद्यालयं गच्छति",
+      "rule": {
+       "en": "The place one goes to is the object, so it takes the second case: विद्यालयम्.",
+       "hi": "जहाँ जाते हैं वह कर्म होता है, इसलिए द्वितीया लगती है: विद्यालयम्।"
+      }
+     },
+     {
+      "id": "o2",
+      "sentence": "सः गुरुं नमः करोति",
+      "words": [
+       "सः",
+       "गुरवे",
+       "नमः",
+       "करोति",
+       "गुरुं"
+      ],
+      "answer": "सः गुरवे नमः करोति",
+      "rule": {
+       "en": "नमः takes the fourth case: गुरवे.",
+       "hi": "नमः के साथ चतुर्थी आती है: गुरवे।"
+      }
+     },
+     {
+      "id": "o3",
+      "sentence": "माता पुत्रः मोदकं ददाति",
+      "words": [
+       "माता",
+       "पुत्राय",
+       "मोदकं",
+       "ददाति",
+       "पुत्रः"
+      ],
+      "answer": "माता पुत्राय मोदकं ददाति",
+      "rule": {
+       "en": "The receiver is in the fourth case: पुत्राय.",
+       "hi": "पाने वाला चतुर्थी में होता है: पुत्राय।"
+      }
+     },
+     {
+      "id": "o4",
+      "sentence": "रामः दण्डः चोरं ताडयति",
+      "words": [
+       "रामः",
+       "दण्डेन",
+       "चोरं",
+       "ताडयति",
+       "दण्डः"
+      ],
+      "answer": "रामः दण्डेन चोरं ताडयति",
+      "rule": {
+       "en": "The tool is in the third case: दण्डेन.",
+       "hi": "साधन तृतीया में होता है: दण्डेन।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "'बालकः विद्यालयः गच्छति' uses the first case for the school. Which case should it be?",
+      "hi": "'बालकः विद्यालयः गच्छति' में विद्यालय प्रथमा में है। वह किस विभक्ति में होना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "second",
+       "en": "Second case: विद्यालयम्",
+       "hi": "द्वितीया: विद्यालयम्"
+      },
+      {
+       "id": "third",
+       "en": "Third case: विद्यालयेन",
+       "hi": "तृतीया: विद्यालयेन"
+      },
+      {
+       "id": "same",
+       "en": "It is right",
+       "hi": "यह सही है"
+      }
+     ],
+     "answer": "second"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap the tiles for the corrected sentence and press the answer button.",
+      "hi": "सही वाक्य के टाइल छुओ और उत्तर बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Correct all four sentences.",
+      "hi": "चारों वाक्य ठीक करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The commonest errors besides person, gender and number are wrong cases. Ask what job the word does. The place we go to: second case (विद्यालयम्). The receiver: fourth case (पुत्राय). The tool: third case (दण्डेन). With नमः: fourth case (गुरवे). Then give the word its correct ending and read the sentence aloud once more.",
+      "hi": "पुरुष, लिंग और वचन के अलावा सबसे आम गलतियाँ विभक्ति की होती हैं। पूछो कि शब्द क्या काम कर रहा है। जहाँ जाते हैं वह स्थान: द्वितीया (विद्यालयम्)। पाने वाला: चतुर्थी (पुत्राय)। साधन: तृतीया (दण्डेन)। नमः के साथ: चतुर्थी (गुरवे)। फिर शब्द को सही अंत दो और वाक्य एक बार फिर ज़ोर से पढ़ो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is correct?",
+        "hi": "कौन-सा वाक्य सही है?"
+       },
+       "options": [
+        {
+         "en": "सः गुरवे नमः करोति।",
+         "hi": "सः गुरवे नमः करोति।"
+        },
+        {
+         "en": "सः गुरुः नमः करोति।",
+         "hi": "सः गुरुः नमः करोति।"
+        },
+        {
+         "en": "सः गुरुणा नमः करोति।",
+         "hi": "सः गुरुणा नमः करोति।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "नमः takes the fourth case, गुरवे.",
+        "hi": "नमः के साथ चतुर्थी गुरवे आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The first case names the doer, not the one saluted.",
+         "hi": "प्रथमा कर्ता को बताती है, जिसे नमस्कार करें उसे नहीं।"
+        },
+        {
+         "en": "The third case means 'by the teacher'.",
+         "hi": "तृतीया का अर्थ 'गुरु के द्वारा' है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which case gives the tool, as in दण्डेन?",
+        "hi": "साधन किस विभक्ति से दिखाया जाता है, जैसे दण्डेन?"
+       },
+       "options": [
+        {
+         "en": "Third",
+         "hi": "तृतीया"
+        },
+        {
+         "en": "Second",
+         "hi": "द्वितीया"
+        },
+        {
+         "en": "Fourth",
+         "hi": "चतुर्थी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The third case means by or with.",
+        "hi": "तृतीया का अर्थ से या के द्वारा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The second case gives the object.",
+         "hi": "द्वितीया कर्म को बताती है।"
+        },
+        {
+         "en": "The fourth case gives the receiver.",
+         "hi": "चतुर्थी पाने वाले को बताती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Read one of your own Sanskrit sentences aloud and check person, gender, number and case.",
+      "hi": "अपना कोई संस्कृत वाक्य ज़ोर से पढ़ो और पुरुष, लिंग, वचन और विभक्ति जाँचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Correcting in class",
+   "shows": "A teacher's hand marking a notebook with a red pen, the writing blurred, desk seen from above",
+   "view": "Close-up from above, warm light",
+   "right": "Red pen on white page, writing not legible",
+   "avoid": "Readable writing, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "12.1",
+   "use": "Red pen",
+   "shows": "A red pen with a cap beside it, cut-out",
+   "view": "Three-quarter view",
+   "right": "Plain pen, no brand",
+   "avoid": "Logos, text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "12.2",
+   "use": "A boy's and a girl's school bag",
+   "shows": "Two school bags in different colours, as two separate files",
+   "view": "Front view, soft light from the top left",
+   "right": "Different colours and straps, plain",
+   "avoid": "Logos, names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "12.3",
+   "use": "Two, then many",
+   "shows": "Two kites in a sky and then a sky full of kites, as two frames of the same view",
+   "view": "Same camera and light in both",
+   "right": "Number clearly two versus many",
+   "avoid": "Strings reaching people, text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "12.3",
+   "use": "Dual: a pair of sandals",
+   "shows": "A pair of simple sandals, cut-out",
+   "view": "From above",
+   "right": "Exactly two, matching",
+   "avoid": "Logos"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "12.4",
+   "use": "Checklist frame",
+   "shows": "A blank card with four empty tick boxes down the left",
+   "view": "Flat front view on white",
+   "right": "Four equal boxes",
+   "avoid": "Text, ticks"
+  }
+ ]
+}

@@ -1,0 +1,863 @@
+{
+ "chapter_key": "u.c09.sanskrit.ihsh1.ch05",
+ "class": 9,
+ "subject_id": "sanskrit",
+ "title": "एषा सा कृतकबुद्धिः मानवबुद्धेः सहकरी",
+ "source": "https://ncert.nic.in/textbook/pdf/ihsh105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "What artificial intelligence is and its three kinds",
+   "labs": [
+    "c09-sanskrit-ihsh1-ch05-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Where AI helps and how it can be misused, including deepfakes",
+   "labs": [
+    "c09-sanskrit-ihsh1-ch05-use"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Words of the lesson built from parts",
+   "labs": [
+    "c09-sanskrit-ihsh1-ch05-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "The teacher-student conversation: fears about AI and jobs",
+   "labs": [],
+   "why_no_lab": "This is a class conversation and opinion, best discussed aloud with the teacher. § यह कक्षा की बातचीत और मत की बात है, शिक्षक के साथ बोलकर चर्चा करना अच्छा है।"
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-sanskrit-ihsh1-ch05-types",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "Three kinds of artificial intelligence",
+    "hi": "कृतकबुद्धि के तीन प्रकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "narrow",
+      "label": {
+       "en": "Narrow AI",
+       "hi": "संकुचित कृतकबुद्धि"
+      }
+     },
+     {
+      "id": "general",
+      "label": {
+       "en": "General AI",
+       "hi": "सामान्य कृतकबुद्धि"
+      }
+     },
+     {
+      "id": "super",
+      "label": {
+       "en": "Super AI",
+       "hi": "अत्युत्कृष्ट कृतकबुद्धि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "Google Maps suggesting a route",
+       "hi": "मार्ग बताने वाला गूगल मानचित्र"
+      },
+      "bin": "narrow",
+      "why": {
+       "en": "It does one job, finding routes. That is narrow AI.",
+       "hi": "यह एक ही काम करता है, मार्ग खोजना। यही संकुचित कृतकबुद्धि है।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "A voice assistant that switches on a lamp",
+       "hi": "दीप जलाने वाला वॉइस असिस्टेंट"
+      },
+      "bin": "narrow",
+      "why": {
+       "en": "It follows a few spoken commands only: narrow AI.",
+       "hi": "यह केवल कुछ बोले आदेश मानता है: संकुचित कृतकबुद्धि।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "A chatbot that answers doubts",
+       "hi": "शंकाएँ सुलझाने वाला चैटबॉट"
+      },
+      "bin": "narrow",
+      "why": {
+       "en": "It answers questions in words but cannot do every human task: narrow AI.",
+       "hi": "यह शब्दों में उत्तर देता है पर मनुष्य के हर काम नहीं कर सकता: संकुचित कृतकबुद्धि।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "A translation app",
+       "hi": "अनुवाद करने वाला ऐप"
+      },
+      "bin": "narrow",
+      "why": {
+       "en": "It does only translation, so it is narrow AI.",
+       "hi": "यह केवल अनुवाद करता है, इसलिए संकुचित कृतकबुद्धि है।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "A machine as clever as a human at every task",
+       "hi": "हर काम में मनुष्य जैसी चतुर मशीन"
+      },
+      "bin": "general",
+      "why": {
+       "en": "Human-like cleverness in every task is general AI; it is not yet built.",
+       "hi": "हर काम में मनुष्य जैसी चतुराई सामान्य कृतकबुद्धि है; वह अभी बनी नहीं है।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "A machine that learns any job like a person",
+       "hi": "किसी भी काम को व्यक्ति जैसे सीखने वाली मशीन"
+      },
+      "bin": "general",
+      "why": {
+       "en": "Learning any job like a person is general AI.",
+       "hi": "किसी भी काम को व्यक्ति की तरह सीख लेना सामान्य कृतकबुद्धि है।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "A machine cleverer than all humans (imagined)",
+       "hi": "सब मनुष्यों से चतुर मशीन (कल्पना)"
+      },
+      "bin": "super",
+      "why": {
+       "en": "Cleverer than humans is super AI, only imagined so far.",
+       "hi": "मनुष्य से अधिक चतुर होना अत्युत्कृष्ट कृतकबुद्धि है, जो अभी केवल कल्पना है।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "A mind far beyond human, as in films",
+       "hi": "फ़िल्मों जैसा मनुष्य से कहीं आगे का मस्तिष्क"
+      },
+      "bin": "super",
+      "why": {
+       "en": "Films show it, but it is only imagination: super AI.",
+       "hi": "फ़िल्मों में दिखता है पर केवल कल्पना है: अत्युत्कृष्ट कृतकबुद्धि।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "placed:a",
+     "say": {
+      "en": "Tap the card \"Google Maps\", then tap the group where it belongs.",
+      "hi": "कार्ड \"गूगल मानचित्र\" छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where will \"a machine cleverer than all humans\" go?",
+      "hi": "\"सब मनुष्यों से चतुर मशीन\" किस समूह में जाएगी?"
+     },
+     "options": [
+      {
+       "id": "super",
+       "en": "Super AI",
+       "hi": "अत्युत्कृष्ट"
+      },
+      {
+       "id": "narrow",
+       "en": "Narrow AI",
+       "hi": "संकुचित"
+      },
+      {
+       "id": "general",
+       "en": "General AI",
+       "hi": "सामान्य"
+      }
+     ],
+     "answer": "super"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Put every card in a group, then press Check.",
+      "hi": "सारे कार्ड समूहों में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Teacher and students split artificial intelligence into three kinds. Narrow AI does one kind of job well, such as maps, voice assistants and translation, and it is the only kind we really use today. General AI would be as clever as a human in every task. Super AI would be cleverer than humans and exists only in imagination.",
+      "hi": "शिक्षक और विद्यार्थी कृतकबुद्धि को तीन प्रकारों में बाँटते हैं। संकुचित कृतकबुद्धि एक प्रकार का काम अच्छे से करती है, जैसे मानचित्र, वॉइस असिस्टेंट और अनुवाद; आज हम वास्तव में केवल इसी का उपयोग करते हैं। सामान्य कृतकबुद्धि हर काम में मनुष्य जितनी चतुर होगी। अत्युत्कृष्ट कृतकबुद्धि मनुष्य से भी अधिक चतुर होगी और अभी केवल कल्पना में है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which kind of AI do we use every day today?",
+        "hi": "आज हम रोज़ किस प्रकार की कृतकबुद्धि का उपयोग करते हैं?"
+       },
+       "options": [
+        {
+         "en": "General AI",
+         "hi": "सामान्य कृतकबुद्धि"
+        },
+        {
+         "en": "Narrow AI",
+         "hi": "संकुचित कृतकबुद्धि"
+        },
+        {
+         "en": "Super AI",
+         "hi": "अत्युत्कृष्ट कृतकबुद्धि"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Maps, voice assistants and translators all do one job each: narrow AI.",
+        "hi": "मानचित्र, वॉइस असिस्टेंट और अनुवादक सब एक-एक काम करते हैं: संकुचित कृतकबुद्धि।"
+       },
+       "wrong": [
+        {
+         "en": "A human-like AI for every task has not yet been built.",
+         "hi": "हर काम में मनुष्य जैसी कृतकबुद्धि अभी बनी नहीं है।"
+        },
+        "",
+        {
+         "en": "Super AI is only imagined, as in films.",
+         "hi": "अत्युत्कृष्ट कृतकबुद्धि केवल कल्पना है, जैसे फ़िल्मों में।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is narrow AI called \"narrow\"?",
+        "hi": "संकुचित कृतकबुद्धि को \"संकुचित\" क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It is very small in size",
+         "hi": "इसका आकार बहुत छोटा है"
+        },
+        {
+         "en": "Students may not use it",
+         "hi": "विद्यार्थी इसे चला नहीं सकते"
+        },
+        {
+         "en": "It does one kind of task well",
+         "hi": "यह एक प्रकार का काम अच्छा करती है"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "\"Narrow\" is about the range of work, which is one task or a small set.",
+        "hi": "\"संकुचित\" काम के दायरे की बात है, जो एक या कुछ ही कामों तक सीमित है।"
+       },
+       "wrong": [
+        {
+         "en": "The word is about range of work, not physical size.",
+         "hi": "यह शब्द काम के दायरे के बारे में है, आकार के बारे में नहीं।"
+        },
+        {
+         "en": "Students use it daily, for example maps and translators.",
+         "hi": "विद्यार्थी इसका रोज़ उपयोग करते हैं, जैसे मानचित्र और अनुवादक।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name two more tools you use that are narrow AI. What single job does each do?",
+      "hi": "दो और ऐसे साधन बताओ जो संकुचित कृतकबुद्धि हैं। हर एक कौन-सा एक काम करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-sanskrit-ihsh1-ch05-use",
+   "topic": "5.2",
+   "template": "sort",
+   "title": {
+    "en": "Use AI wisely",
+    "hi": "कृतकबुद्धि का सदुपयोग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "wise",
+      "label": {
+       "en": "Wise use",
+       "hi": "सदुपयोग"
+      }
+     },
+     {
+      "id": "misuse",
+      "label": {
+       "en": "Misuse",
+       "hi": "दुरुपयोग"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "Checking a doubt with a chatbot, then in the book",
+       "hi": "चैटबॉट से शंका देखकर किताब में जाँचना"
+      },
+      "bin": "wise",
+      "why": {
+       "en": "A tool helps you learn, and you still check the facts yourself.",
+       "hi": "उपकरण सीखने में मदद करता है और तथ्य तुम खुद जाँचते हो।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "Learning from a government study app",
+       "hi": "सरकारी पढ़ाई के ऐप से सीखना"
+      },
+      "bin": "wise",
+      "why": {
+       "en": "Apps like DIKSHA help students learn on their own.",
+       "hi": "दीक्षा जैसे ऐप विद्यार्थियों को स्वयं सीखने में मदद करते हैं।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "Reading a notice with a translation app",
+       "hi": "अनुवाद ऐप से सूचना पढ़ना"
+      },
+      "bin": "wise",
+      "why": {
+       "en": "Translation tools help us read other languages.",
+       "hi": "अनुवाद के साधन दूसरी भाषाएँ पढ़ने में मदद करते हैं।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "A drone showing a farmer where pests are",
+       "hi": "किसान को कीट दिखाने वाला ड्रोन"
+      },
+      "bin": "wise",
+      "why": {
+       "en": "Drones help farmers care for crops.",
+       "hi": "ड्रोन किसानों को फ़सल की देखभाल में मदद करते हैं।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "Making a fake video of a classmate",
+       "hi": "सहपाठी का नकली वीडियो बनाना"
+      },
+      "bin": "misuse",
+      "why": {
+       "en": "A deepfake is a false video made with AI to mock or harm someone.",
+       "hi": "डीपफ़ेक AI से बना झूठा वीडियो है जो किसी का मज़ाक या नुकसान करता है।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "Sending an AI-made fake photo as news",
+       "hi": "AI की नकली फ़ोटो को खबर बताकर भेजना"
+      },
+      "bin": "misuse",
+      "why": {
+       "en": "Sharing a false picture spreads lies.",
+       "hi": "झूठी तस्वीर भेजने से झूठ फैलता है।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "Copying an AI answer without thinking",
+       "hi": "बिना सोचे AI का उत्तर नकल करना"
+      },
+      "bin": "misuse",
+      "why": {
+       "en": "Then you do not learn, and the answer may be wrong.",
+       "hi": "तब तुम सीखते नहीं और उत्तर गलत भी हो सकता है।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "Trusting a chatbot's medicine advice alone",
+       "hi": "केवल चैटबॉट की दवा-सलाह मान लेना"
+      },
+      "bin": "misuse",
+      "why": {
+       "en": "Only a doctor should advise on medicines.",
+       "hi": "दवाओं पर सलाह केवल डॉक्टर को देनी चाहिए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:e",
+     "expect": "placed:e",
+     "say": {
+      "en": "Tap the card \"a fake video of a classmate\", then tap its group.",
+      "hi": "कार्ड \"सहपाठी का नकली वीडियो\" छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is a fake AI video made to tease someone a wise use or a misuse?",
+      "hi": "किसी को चिढ़ाने के लिए AI से बना नकली वीडियो सदुपयोग है या दुरुपयोग?"
+     },
+     "options": [
+      {
+       "id": "misuse",
+       "en": "Misuse",
+       "hi": "दुरुपयोग"
+      },
+      {
+       "id": "wise",
+       "en": "Wise use",
+       "hi": "सदुपयोग"
+      }
+     ],
+     "answer": "misuse"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Put every card in a group, then press Check.",
+      "hi": "सारे कार्ड समूहों में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The teacher says AI is a tool and a friend of the teacher, not a replacement for the human teacher. Teachers also give values like discipline and kindness. AI helps in school, medicine and farming, but it can be misused, as in a deepfake, a false picture, sound or video made with AI. We must check before we trust or share.",
+      "hi": "शिक्षक कहते हैं कि कृतकबुद्धि एक उपकरण और गुरु की मित्र है, मानव शिक्षक का विकल्प नहीं। शिक्षक अनुशासन और करुणा जैसे मूल्य भी सिखाते हैं। कृतकबुद्धि शिक्षा, चिकित्सा और खेती में मदद करती है, पर उसका दुरुपयोग भी हो सकता है, जैसे डीपफ़ेक, यानी AI से बना झूठा चित्र, ध्वनि या वीडियो। भरोसा या साझा करने से पहले हमें जाँचना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a deepfake?",
+        "hi": "डीपफ़ेक क्या है?"
+       },
+       "options": [
+        {
+         "en": "A false picture, video or sound made with AI",
+         "hi": "AI से बना झूठा चित्र, वीडियो या ध्वनि"
+        },
+        {
+         "en": "A very fast computer",
+         "hi": "बहुत तेज़ कंप्यूटर"
+        },
+        {
+         "en": "A school study app",
+         "hi": "पढ़ाई का ऐप"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It shows a face or voice doing something that never happened.",
+        "hi": "इसमें किसी का चेहरा या आवाज़ ऐसा करती दिखती है जो कभी हुआ ही नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A deepfake is about false content, not computer speed.",
+         "hi": "डीपफ़ेक झूठी सामग्री के बारे में है, कंप्यूटर की गति के बारे में नहीं।"
+        },
+        {
+         "en": "A deepfake is not a study app; it is a harmful fake.",
+         "hi": "डीपफ़ेक पढ़ाई का ऐप नहीं, हानिकारक नकल है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How does the teacher describe AI?",
+        "hi": "शिक्षक कृतकबुद्धि को क्या बताते हैं?"
+       },
+       "options": [
+        {
+         "en": "A replacement for all teachers",
+         "hi": "सब शिक्षकों का विकल्प"
+        },
+        {
+         "en": "A tool and friend, not a replacement for the human teacher",
+         "hi": "एक उपकरण और मित्र, मानव शिक्षक का विकल्प नहीं"
+        },
+        {
+         "en": "Something to ban completely",
+         "hi": "पूरी तरह रोकने की चीज़"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "AI helps learning, but values and kindness come from people.",
+        "hi": "कृतकबुद्धि सीखने में मदद करती है, पर मूल्य और करुणा मनुष्यों से आते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The teacher says AI cannot take the human teacher's place.",
+         "hi": "शिक्षक कहते हैं कि कृतकबुद्धि मानव शिक्षक की जगह नहीं ले सकती।"
+        },
+        "",
+        {
+         "en": "The lesson asks for wise use, not for a ban.",
+         "hi": "पाठ समझदारी से उपयोग को कहता है, प्रतिबंध को नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Before you share any picture or news this week, ask: is it true, and who made it?",
+      "hi": "इस सप्ताह कोई भी चित्र या खबर भेजने से पहले पूछो: क्या यह सच है और इसे किसने बनाया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-sanskrit-ihsh1-ch05-words",
+   "topic": "5.3",
+   "template": "match",
+   "title": {
+    "en": "Words of the AI lesson",
+    "hi": "कृतकबुद्धि पाठ के शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "krt",
+      "left": {
+       "en": "कृतकबुद्धिः",
+       "hi": "कृतकबुद्धिः"
+      },
+      "right": {
+       "en": "Artificial intelligence",
+       "hi": "कृत्रिम बुद्धि"
+      },
+      "why": {
+       "en": "कृतक means made or artificial and बुद्धिः is intelligence.",
+       "hi": "कृतक का अर्थ बनाया हुआ और बुद्धिः का अर्थ समझ है।"
+      }
+     },
+     {
+      "id": "sah",
+      "left": {
+       "en": "सहकरी",
+       "hi": "सहकरी"
+      },
+      "right": {
+       "en": "Helper, partner",
+       "hi": "सहायक, साथी"
+      },
+      "why": {
+       "en": "सहकरी is one who works along with someone.",
+       "hi": "सहकरी वह है जो किसी के साथ मिलकर काम करे।"
+      }
+     },
+     {
+      "id": "yan",
+      "left": {
+       "en": "यन्त्रम्",
+       "hi": "यन्त्रम्"
+      },
+      "right": {
+       "en": "Machine",
+       "hi": "मशीन"
+      },
+      "why": {
+       "en": "यन्त्रम् is a machine or device.",
+       "hi": "यन्त्रम् मशीन या उपकरण है।"
+      }
+     },
+     {
+      "id": "upa",
+      "left": {
+       "en": "उपकरणम्",
+       "hi": "उपकरणम्"
+      },
+      "right": {
+       "en": "Tool",
+       "hi": "औज़ार, साधन"
+      },
+      "why": {
+       "en": "उपकरणम् is a tool used to do work.",
+       "hi": "उपकरणम् काम करने का साधन है।"
+      }
+     },
+     {
+      "id": "dur",
+      "left": {
+       "en": "दुरुपयोगः",
+       "hi": "दुरुपयोगः"
+      },
+      "right": {
+       "en": "Misuse",
+       "hi": "गलत उपयोग"
+      },
+      "why": {
+       "en": "दुः means bad and उपयोगः is use, so misuse.",
+       "hi": "दुः का अर्थ बुरा और उपयोगः का अर्थ प्रयोग है, इसलिए गलत प्रयोग।"
+      }
+     },
+     {
+      "id": "mit",
+      "left": {
+       "en": "मिथ्या",
+       "hi": "मिथ्या"
+      },
+      "right": {
+       "en": "False",
+       "hi": "झूठा"
+      },
+      "why": {
+       "en": "मिथ्या means untrue.",
+       "hi": "मिथ्या का अर्थ असत्य है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:krt",
+     "expect": "matched:krt",
+     "say": {
+      "en": "Tap कृतकबुद्धिः, then tap its meaning.",
+      "hi": "कृतकबुद्धिः छुओ, फिर उसका अर्थ छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "दुः means \"bad\". What will दुरुपयोगः mean?",
+      "hi": "दुः का अर्थ \"बुरा\" है। दुरुपयोगः का क्या अर्थ होगा?"
+     },
+     "options": [
+      {
+       "id": "use",
+       "en": "Good use",
+       "hi": "अच्छा उपयोग"
+      },
+      {
+       "id": "tool",
+       "en": "A tool",
+       "hi": "औज़ार"
+      },
+      {
+       "id": "mis",
+       "en": "Misuse",
+       "hi": "गलत उपयोग"
+      }
+     ],
+     "answer": "mis"
+    },
+    {
+     "kind": "do",
+     "target": "left:mit",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining words.",
+      "hi": "बाकी सारे शब्द मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sanskrit builds words from parts. कृतक + बुद्धिः gives \"made intelligence\", that is artificial intelligence. दुः + उपयोगः gives misuse. The same trick helps you guess new words in a lesson.",
+      "hi": "संस्कृत शब्द भागों से बनते हैं। कृतक + बुद्धिः यानी \"बनाई हुई बुद्धि\", अर्थात् कृत्रिम बुद्धि। दुः + उपयोगः यानी गलत उपयोग। यही तरीका पाठ के नए शब्द समझने में मदद करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does सहकरी mean?",
+        "hi": "सहकरी का अर्थ क्या है?"
+       },
+       "options": [
+        {
+         "en": "Machine",
+         "hi": "मशीन"
+        },
+        {
+         "en": "False",
+         "hi": "झूठा"
+        },
+        {
+         "en": "Helper, one who works with another",
+         "hi": "सहायक, साथ मिलकर काम करने वाला"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "सह means with, so a सहकरी works along with someone.",
+        "hi": "सह का अर्थ साथ है, इसलिए सहकरी साथ काम करने वाला है।"
+       },
+       "wrong": [
+        {
+         "en": "Machine is यन्त्रम्, a different word.",
+         "hi": "मशीन यन्त्रम् है, जो अलग शब्द है।"
+        },
+        {
+         "en": "False is मिथ्या.",
+         "hi": "झूठा मिथ्या है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "In कृतकबुद्धिः, what does कृतक mean?",
+        "hi": "कृतकबुद्धिः में कृतक का अर्थ क्या है?"
+       },
+       "options": [
+        {
+         "en": "Made, artificial",
+         "hi": "बनाया हुआ, कृत्रिम"
+        },
+        {
+         "en": "Natural",
+         "hi": "स्वाभाविक"
+        },
+        {
+         "en": "Old",
+         "hi": "पुराना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "कृतक comes from \"made\": it is man-made intelligence.",
+        "hi": "कृतक \"बनाया हुआ\" से बना है: यह मनुष्य की बनाई बुद्धि है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Natural is the opposite of कृतक.",
+         "hi": "स्वाभाविक कृतक का उलटा है।"
+        },
+        {
+         "en": "Nothing in the word means old.",
+         "hi": "शब्द में पुराने का कोई अर्थ नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find one more word in the lesson that starts with दुः or सु and guess its meaning.",
+      "hi": "पाठ में दुः या सु से शुरू होने वाला एक और शब्द ढूँढो और उसका अर्थ अनुमान लगाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Opens the lesson in a classroom",
+   "shows": "An Indian classroom with a large display on the wall showing a plain colourful pattern, students seated and listening",
+   "view": "From the back of the room, faces turned away",
+   "right": "Real classroom, benches, daylight, a teacher standing at the side",
+   "avoid": "Readable text, logos of any AI product"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Shows a voice assistant at home",
+   "shows": "A round fabric-covered smart speaker with a lit ring on a shelf next to a lamp, no logo",
+   "view": "Front view on a cut-out",
+   "right": "Soft fabric texture, a softly lit ring",
+   "avoid": "Brand names, logos"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Shows AI in farming",
+   "shows": "A small farm drone flying over green rows of crops in an Indian field in the morning",
+   "view": "Wide, from the field edge, drone clearly visible",
+   "right": "Real crop rows, soft sunrise haze",
+   "avoid": "People's faces, brand logos"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Shows learning with a device and a book together",
+   "shows": "A student at a table with an open book and a tablet side by side, a hand pointing to the book",
+   "view": "Over the shoulder, the screen shows only a plain pattern",
+   "right": "Natural window light, both book and tablet in sharp focus",
+   "avoid": "Readable screen text, brand logos"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "5.1",
+   "use": "Frame for the three kinds of AI",
+   "shows": "Three nested circles, small inside medium inside large, all empty",
+   "view": "Flat, front-on, white background",
+   "right": "Clean even rings the app can label",
+   "avoid": "Any text"
+  }
+ ]
+}

@@ -1,0 +1,1430 @@
+{
+ "chapter_key": "u.c11.sociology.kesy2.ch01",
+ "class": 11,
+ "subject_id": "sociology",
+ "title": "Social Structure, Stratification and Social Processes in Society",
+ "source": "https://ncert.nic.in/textbook/pdf/kesy201.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Social structure and stratification",
+   "labs": [
+    "c11-sociology-kesy2-ch01-structure"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Two ways of understanding social processes in sociology",
+   "labs": [
+    "c11-sociology-kesy2-ch01-two-views"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Cooperation and division of labour",
+   "labs": [
+    "c11-sociology-kesy2-ch01-division"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Competition as an idea and practice",
+   "labs": [
+    "c11-sociology-kesy2-ch01-processes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Conflict and cooperation",
+   "labs": [
+    "c11-sociology-kesy2-ch01-processes",
+    "c11-sociology-kesy2-ch01-dispute"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-sociology-kesy2-ch01-structure",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "Structure: limits and openings",
+    "hi": "ढाँचा: सीमाएँ और रास्ते"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "limit",
+      "label": {
+       "en": "Limits what we do",
+       "hi": "जो हमें सीमित करता है"
+      }
+     },
+     {
+      "id": "open",
+      "label": {
+       "en": "Opens ways for us",
+       "hi": "जो हमारे लिए रास्ते खोलता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "uniform",
+      "text": {
+       "en": "Everyone must wear the school uniform",
+       "hi": "सबको स्कूल की वर्दी पहननी होती है"
+      },
+      "bin": "limit",
+      "why": {
+       "en": "A rule that fixes what you may wear.",
+       "hi": "एक नियम जो तय करता है कि क्या पहनना है।"
+      }
+     },
+     {
+      "id": "timetable",
+      "text": {
+       "en": "The timetable gives each class a fixed time to learn",
+       "hi": "समय-सारणी हर कक्षा को पढ़ने का तय समय देती है"
+      },
+      "bin": "open",
+      "why": {
+       "en": "It makes learning possible for everyone.",
+       "hi": "यह सबके लिए पढ़ाई संभव बनाती है।"
+      }
+     },
+     {
+      "id": "exam",
+      "text": {
+       "en": "Exam rules stop copying",
+       "hi": "परीक्षा के नियम नक़ल रोकते हैं"
+      },
+      "bin": "limit",
+      "why": {
+       "en": "They set limits on what a student may do.",
+       "hi": "वे छात्र के कर सकने पर सीमा लगाते हैं।"
+      }
+     },
+     {
+      "id": "library",
+      "text": {
+       "en": "A library card lets you borrow books",
+       "hi": "पुस्तकालय कार्ड से किताबें उधार ले सकते हैं"
+      },
+      "bin": "open",
+      "why": {
+       "en": "Membership opens a new resource.",
+       "hi": "सदस्यता एक नया साधन खोलती है।"
+      }
+     },
+     {
+      "id": "language",
+      "text": {
+       "en": "A shared language lets people talk across a region",
+       "hi": "साझी भाषा से पूरे इलाक़े में बात हो पाती है"
+      },
+      "bin": "open",
+      "why": {
+       "en": "A social pattern that makes communication easy.",
+       "hi": "एक सामाजिक ढर्रा जो संवाद आसान करता है।"
+      }
+     },
+     {
+      "id": "income",
+      "text": {
+       "en": "Low family income can close doors to costly coaching",
+       "hi": "कम पारिवारिक आय महँगी कोचिंग के दरवाज़े बंद कर सकती है"
+      },
+      "bin": "limit",
+      "why": {
+       "en": "Where you stand in society can limit your choices.",
+       "hi": "समाज में तुम्हारी जगह तुम्हारे चुनाव सीमित कर सकती है।"
+      }
+     },
+     {
+      "id": "traffic",
+      "text": {
+       "en": "Traffic rules fix which side you may drive",
+       "hi": "यातायात नियम तय करते हैं कि किस ओर चलना है"
+      },
+      "bin": "limit",
+      "why": {
+       "en": "They set boundaries for every driver.",
+       "hi": "वे हर चालक के लिए सीमा तय करते हैं।"
+      }
+     },
+     {
+      "id": "scholar",
+      "text": {
+       "en": "A scholarship opens a path to college",
+       "hi": "छात्रवृत्ति कॉलेज का रास्ता खोलती है"
+      },
+      "bin": "open",
+      "why": {
+       "en": "An institution creates a new chance.",
+       "hi": "एक संस्था नया अवसर बनाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:uniform",
+     "expect": "placed:uniform",
+     "say": {
+      "en": "Tap the card \"Everyone must wear the school uniform\", then tap the group where it belongs.",
+      "hi": "कार्ड \"सबको स्कूल की वर्दी पहननी होती है\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:timetable",
+     "expect": "placed:timetable",
+     "say": {
+      "en": "Tap the card \"The timetable gives each class a fixed time to learn\", then tap the group where it belongs.",
+      "hi": "कार्ड \"समय-सारणी हर कक्षा को पढ़ने का तय समय देती है\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before you place the next card, think: where does \"Low family income can close doors to costly coaching\" belong?",
+      "hi": "अगला कार्ड रखने से पहले सोचो: \"कम पारिवारिक आय महँगी कोचिंग के दरवाज़े बंद कर सकती है\" किस समूह में आता है?"
+     },
+     "options": [
+      {
+       "id": "limit",
+       "en": "Limits what we do",
+       "hi": "जो हमें सीमित करता है"
+      },
+      {
+       "id": "open",
+       "en": "Opens ways for us",
+       "hi": "जो हमारे लिए रास्ते खोलता है"
+      }
+     ],
+     "answer": "limit"
+    },
+    {
+     "kind": "do",
+     "target": "card:income",
+     "expect": "placed:income",
+     "say": {
+      "en": "Now place \"Low family income can close doors to costly coaching\" and see if you were right.",
+      "hi": "अब \"कम पारिवारिक आय महँगी कोचिंग के दरवाज़े बंद कर सकती है\" रखो और देखो तुम सही थे या नहीं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाक़ी सारे कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Social structure is the pattern of regular relations between groups and people. It is like a building: its walls limit where we can go, and its doors open routes. It is outside any one person, yet people also reproduce it and, over time, change it.",
+      "hi": "सामाजिक संरचना समूहों और लोगों के बीच नियमित संबंधों का ढर्रा है। यह इमारत जैसी है: उसकी दीवारें जाने की सीमा बाँधती हैं और दरवाज़े रास्ते खोलते हैं। यह किसी एक व्यक्ति से बाहर है, फिर भी लोग इसे दोहराते हैं और समय के साथ बदलते भी हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why compare social structure to a building?",
+        "hi": "सामाजिक संरचना की तुलना इमारत से क्यों करते हैं?"
+       },
+       "options": [
+        {
+         "en": "It is made of bricks",
+         "hi": "यह ईंटों की बनी है"
+        },
+        {
+         "en": "It has walls that limit us and doors that open routes",
+         "hi": "इसकी दीवारें सीमा बाँधती हैं और दरवाज़े रास्ते खोलते हैं"
+        },
+        {
+         "en": "It can never change",
+         "hi": "यह कभी नहीं बदल सकती"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Structure both constrains and enables.",
+        "hi": "संरचना सीमित भी करती है और सक्षम भी।"
+       },
+       "wrong": [
+        {
+         "en": "The comparison is about limits and routes, not bricks.",
+         "hi": "तुलना सीमाओं और रास्तों की है, ईंटों की नहीं।"
+        },
+        "",
+        {
+         "en": "People do change structures over time.",
+         "hi": "लोग समय के साथ संरचनाएँ बदलते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can individuals change social structure?",
+        "hi": "क्या व्यक्ति सामाजिक संरचना बदल सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "Never",
+         "hi": "कभी नहीं"
+        },
+        {
+         "en": "Yes, people reproduce and, over time, change it",
+         "hi": "हाँ, लोग इसे दोहराते हैं और समय के साथ बदलते हैं"
+        },
+        {
+         "en": "Only one ruler can",
+         "hi": "सिर्फ़ एक शासक बदल सकता है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Marx said people make history, but within the limits and chances of their situation.",
+        "hi": "मार्क्स ने कहा कि लोग इतिहास बनाते हैं, पर अपनी स्थिति की सीमाओं और संभावनाओं के भीतर।"
+       },
+       "wrong": [
+        {
+         "en": "Many social changes began with ordinary people acting together.",
+         "hi": "कई सामाजिक बदलाव आम लोगों के मिलकर काम करने से शुरू हुए।"
+        },
+        "",
+        {
+         "en": "Change is made by many people, not one ruler.",
+         "hi": "बदलाव बहुत से लोग लाते हैं, एक शासक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one rule at home that limits you and one that opens a chance for you. Can you change either?",
+      "hi": "घर का एक नियम बताओ जो तुम्हें सीमित करता है और एक जो अवसर खोलता है। क्या तुम इनमें से किसी को बदल सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy2-ch01-two-views",
+   "topic": "1.2",
+   "template": "sort",
+   "title": {
+    "en": "Two ways of seeing society",
+    "hi": "समाज को देखने के दो ढंग"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "func",
+      "label": {
+       "en": "Functionalist view",
+       "hi": "प्रकार्यवादी दृष्टि"
+      }
+     },
+     {
+      "id": "conf",
+      "label": {
+       "en": "Conflict view",
+       "hi": "संघर्षवादी दृष्टि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "body",
+      "text": {
+       "en": "Society is like a body: each part does a job",
+       "hi": "समाज शरीर जैसा है: हर अंग का एक काम"
+      },
+      "bin": "func",
+      "why": {
+       "en": "The body picture stresses parts that work together.",
+       "hi": "शरीर का चित्र मिलकर काम करते अंगों पर ज़ोर देता है।"
+      }
+     },
+     {
+      "id": "shared",
+      "text": {
+       "en": "Order rests on shared values",
+       "hi": "व्यवस्था साझे मूल्यों पर टिकी है"
+      },
+      "bin": "func",
+      "why": {
+       "en": "Agreement on values holds society together.",
+       "hi": "मूल्यों पर सहमति समाज को जोड़े रखती है।"
+      }
+     },
+     {
+      "id": "interdep",
+      "text": {
+       "en": "Institutions depend on each other",
+       "hi": "संस्थाएँ एक-दूसरे पर निर्भर हैं"
+      },
+      "bin": "func",
+      "why": {
+       "en": "Each institution helps others to do their job.",
+       "hi": "हर संस्था दूसरों के काम में मदद करती है।"
+      }
+     },
+     {
+      "id": "unequal",
+      "text": {
+       "en": "Groups hold unequal power and resources",
+       "hi": "समूहों के पास असमान सत्ता और संसाधन हैं"
+      },
+      "bin": "conf",
+      "why": {
+       "en": "This view looks first at inequality and its struggles.",
+       "hi": "यह दृष्टि पहले असमानता और उसके संघर्षों को देखती है।"
+      }
+     },
+     {
+      "id": "clash",
+      "text": {
+       "en": "Change often comes from clashes of interests",
+       "hi": "बदलाव अक्सर हितों के टकराव से आता है"
+      },
+      "bin": "conf",
+      "why": {
+       "en": "It sees tension between groups as the engine of change.",
+       "hi": "यह समूहों के बीच तनाव को बदलाव का इंजन मानती है।"
+      }
+     },
+     {
+      "id": "rulers",
+      "text": {
+       "en": "The powerful make rules that protect their interests",
+       "hi": "ताक़तवर अपने हित बचाने वाले नियम बनाते हैं"
+      },
+      "bin": "conf",
+      "why": {
+       "en": "It asks who gains and who loses from a rule.",
+       "hi": "यह पूछती है कि नियम से किसे लाभ और किसे हानि।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:body",
+     "expect": "placed:body",
+     "say": {
+      "en": "Tap the card \"Society is like a body: each part does a job\", then tap the group where it belongs.",
+      "hi": "कार्ड \"समाज शरीर जैसा है: हर अंग का एक काम\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:unequal",
+     "expect": "placed:unequal",
+     "say": {
+      "en": "Tap the card \"Groups hold unequal power and resources\", then tap the group where it belongs.",
+      "hi": "कार्ड \"समूहों के पास असमान सत्ता और संसाधन हैं\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before you place the next card, think: where does \"Change often comes from clashes of interests\" belong?",
+      "hi": "अगला कार्ड रखने से पहले सोचो: \"बदलाव अक्सर हितों के टकराव से आता है\" किस समूह में आता है?"
+     },
+     "options": [
+      {
+       "id": "func",
+       "en": "Functionalist view",
+       "hi": "प्रकार्यवादी दृष्टि"
+      },
+      {
+       "id": "conf",
+       "en": "Conflict view",
+       "hi": "संघर्षवादी दृष्टि"
+      }
+     ],
+     "answer": "conf"
+    },
+    {
+     "kind": "do",
+     "target": "card:clash",
+     "expect": "placed:clash",
+     "say": {
+      "en": "Now place \"Change often comes from clashes of interests\" and see if you were right.",
+      "hi": "अब \"बदलाव अक्सर हितों के टकराव से आता है\" रखो और देखो तुम सही थे या नहीं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाक़ी सारे कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The functionalist view sees society as a system of parts that depend on each other and share values, so order is natural. The conflict view sees groups with different power and interests, so tension and struggle drive change. Both help us see something real.",
+      "hi": "प्रकार्यवादी दृष्टि समाज को एक-दूसरे पर निर्भर और साझे मूल्यों वाले अंगों की व्यवस्था मानती है, इसलिए व्यवस्था स्वाभाविक है। संघर्षवादी दृष्टि भिन्न शक्ति और हित वाले समूह देखती है, इसलिए तनाव और संघर्ष बदलाव चलाते हैं। दोनों कुछ सच्चा दिखाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "'Every institution has a job that keeps society running.' Which view is this?",
+        "hi": "'हर संस्था का एक काम है जो समाज को चलाता है।' यह कौन-सी दृष्टि है?"
+       },
+       "options": [
+        {
+         "en": "Functionalist",
+         "hi": "प्रकार्यवादी"
+        },
+        {
+         "en": "Conflict",
+         "hi": "संघर्षवादी"
+        },
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It stresses parts working together.",
+        "hi": "यह मिलकर काम करते अंगों पर ज़ोर देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The conflict view stresses unequal power and struggle.",
+         "hi": "संघर्षवादी दृष्टि असमान शक्ति और संघर्ष पर ज़ोर देती है।"
+        },
+        {
+         "en": "The statement clearly belongs to one of the two views.",
+         "hi": "कथन साफ़ तौर पर इन दोनों में से एक का है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A sociologist asks who gains and who loses from a rule. Which view?",
+        "hi": "एक समाजशास्त्री पूछता है कि नियम से किसे लाभ और किसे हानि है। कौन-सी दृष्टि?"
+       },
+       "options": [
+        {
+         "en": "Functionalist",
+         "hi": "प्रकार्यवादी"
+        },
+        {
+         "en": "Conflict",
+         "hi": "संघर्षवादी"
+        },
+        {
+         "en": "Common sense",
+         "hi": "साधारण समझ"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Asking who benefits looks at power and interest, as the conflict view does.",
+        "hi": "किसे लाभ है, यह पूछना शक्ति और हित को देखना है, जैसा संघर्षवादी दृष्टि करती है।"
+       },
+       "wrong": [
+        {
+         "en": "Functionalists mainly ask what job a rule does for society.",
+         "hi": "प्रकार्यवादी मुख्यतः पूछते हैं कि नियम समाज के लिए क्या काम करता है।"
+        },
+        "",
+        {
+         "en": "Both views are sociological ways, not common sense.",
+         "hi": "दोनों दृष्टियाँ समाजशास्त्रीय हैं, साधारण समझ नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take a school rule, such as the dress code. What would each view say about it?",
+      "hi": "स्कूल का कोई नियम लो, जैसे वर्दी। हर दृष्टि उसके बारे में क्या कहेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy2-ch01-processes",
+   "topic": "1.4",
+   "template": "sort",
+   "title": {
+    "en": "Cooperation, competition, conflict",
+    "hi": "सहयोग, प्रतिस्पर्धा, संघर्ष"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "coop",
+      "label": {
+       "en": "Cooperation",
+       "hi": "सहयोग"
+      }
+     },
+     {
+      "id": "comp",
+      "label": {
+       "en": "Competition",
+       "hi": "प्रतिस्पर्धा"
+      }
+     },
+     {
+      "id": "conf",
+      "label": {
+       "en": "Conflict",
+       "hi": "संघर्ष"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "dam",
+      "text": {
+       "en": "Villagers build a check dam together",
+       "hi": "गाँव वाले मिलकर चेक डैम बनाते हैं"
+      },
+      "bin": "coop",
+      "why": {
+       "en": "People work together toward a shared goal.",
+       "hi": "लोग साझे लक्ष्य के लिए मिलकर काम करते हैं।"
+      }
+     },
+     {
+      "id": "notes",
+      "text": {
+       "en": "Classmates share notes before exams",
+       "hi": "परीक्षा से पहले सहपाठी नोट साझा करते हैं"
+      },
+      "bin": "coop",
+      "why": {
+       "en": "They help each other for a common gain.",
+       "hi": "वे साझे लाभ के लिए एक-दूसरे की मदद करते हैं।"
+      }
+     },
+     {
+      "id": "wedding",
+      "text": {
+       "en": "Neighbours cook together for a wedding",
+       "hi": "पड़ोसी शादी के लिए मिलकर खाना बनाते हैं"
+      },
+      "bin": "coop",
+      "why": {
+       "en": "Many hands share one task.",
+       "hi": "कई हाथ एक काम बाँटते हैं।"
+      }
+     },
+     {
+      "id": "shops",
+      "text": {
+       "en": "Two shops cut prices to win customers",
+       "hi": "दो दुकानें ग्राहक पाने के लिए दाम घटाती हैं"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "They contest for customers within the rules.",
+       "hi": "वे नियमों में रहकर ग्राहकों के लिए होड़ करते हैं।"
+      }
+     },
+     {
+      "id": "rank",
+      "text": {
+       "en": "Students work hard to top the class",
+       "hi": "छात्र कक्षा में अव्वल आने की मेहनत करते हैं"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "They compete for a limited top spot.",
+       "hi": "वे सीमित शीर्ष स्थान के लिए होड़ करते हैं।"
+      }
+     },
+     {
+      "id": "race",
+      "text": {
+       "en": "Runners race for the school medal",
+       "hi": "धावक स्कूल पदक के लिए दौड़ते हैं"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "A contest with rules and a prize.",
+       "hi": "नियमों और इनाम वाली स्पर्धा।"
+      }
+     },
+     {
+      "id": "land",
+      "text": {
+       "en": "Two families fight over a land boundary",
+       "hi": "दो परिवार ज़मीन की सीमा पर लड़ते हैं"
+      },
+      "bin": "conf",
+      "why": {
+       "en": "An open struggle over a scarce resource.",
+       "hi": "दुर्लभ संसाधन पर खुला संघर्ष।"
+      }
+     },
+     {
+      "id": "strike",
+      "text": {
+       "en": "Workers and management clash in a pay strike",
+       "hi": "मज़दूर और प्रबंधन मज़दूरी की हड़ताल में टकराते हैं"
+      },
+      "bin": "conf",
+      "why": {
+       "en": "Groups with opposed interests struggle openly.",
+       "hi": "विरोधी हित वाले समूह खुलकर टकराते हैं।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Two villages quarrel over river water",
+       "hi": "दो गाँव नदी के पानी पर झगड़ते हैं"
+      },
+      "bin": "conf",
+      "why": {
+       "en": "A dispute over a shared resource.",
+       "hi": "साझे संसाधन पर विवाद।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:dam",
+     "expect": "placed:dam",
+     "say": {
+      "en": "Tap the card \"Villagers build a check dam together\", then tap the group where it belongs.",
+      "hi": "कार्ड \"गाँव वाले मिलकर चेक डैम बनाते हैं\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:shops",
+     "expect": "placed:shops",
+     "say": {
+      "en": "Tap the card \"Two shops cut prices to win customers\", then tap the group where it belongs.",
+      "hi": "कार्ड \"दो दुकानें ग्राहक पाने के लिए दाम घटाती हैं\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before you place the next card, think: where does \"Workers and management clash in a pay strike\" belong?",
+      "hi": "अगला कार्ड रखने से पहले सोचो: \"मज़दूर और प्रबंधन मज़दूरी की हड़ताल में टकराते हैं\" किस समूह में आता है?"
+     },
+     "options": [
+      {
+       "id": "coop",
+       "en": "Cooperation",
+       "hi": "सहयोग"
+      },
+      {
+       "id": "comp",
+       "en": "Competition",
+       "hi": "प्रतिस्पर्धा"
+      },
+      {
+       "id": "conf",
+       "en": "Conflict",
+       "hi": "संघर्ष"
+      }
+     ],
+     "answer": "conf"
+    },
+    {
+     "kind": "do",
+     "target": "card:strike",
+     "expect": "placed:strike",
+     "say": {
+      "en": "Now place \"Workers and management clash in a pay strike\" and see if you were right.",
+      "hi": "अब \"मज़दूर और प्रबंधन मज़दूरी की हड़ताल में टकराते हैं\" रखो और देखो तुम सही थे या नहीं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाक़ी सारे कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cooperation is working together for a shared goal. Competition is a contest, within rules, for something limited. Conflict is an open struggle in which sides try to defeat each other, often over land, water or power. Real life mixes all three, and friendly cooperation can hide a deeper conflict.",
+      "hi": "सहयोग साझे लक्ष्य के लिए मिलकर काम करना है। प्रतिस्पर्धा किसी सीमित चीज़ के लिए नियमों के भीतर होड़ है। संघर्ष खुला टकराव है जिसमें पक्ष एक-दूसरे को हराना चाहते हैं, अक्सर ज़मीन, पानी या सत्ता के लिए। असल जीवन में तीनों मिले रहते हैं, और ऊपर से दिखता सहयोग गहरे संघर्ष को छिपा सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two shops cut prices to win customers. This is…",
+        "hi": "दो दुकानें ग्राहक पाने के लिए दाम घटाती हैं। यह है…"
+       },
+       "options": [
+        {
+         "en": "cooperation",
+         "hi": "सहयोग"
+        },
+        {
+         "en": "competition",
+         "hi": "प्रतिस्पर्धा"
+        },
+        {
+         "en": "conflict",
+         "hi": "संघर्ष"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "They contest for customers within the rules of trade.",
+        "hi": "वे व्यापार के नियमों में रहकर ग्राहकों के लिए होड़ करती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "They are not working together.",
+         "hi": "वे मिलकर काम नहीं कर रहीं।"
+        },
+        "",
+        {
+         "en": "There is no open struggle to defeat or remove the other.",
+         "hi": "एक-दूसरे को हराने या हटाने का खुला संघर्ष नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What marks conflict?",
+        "hi": "संघर्ष की पहचान क्या है?"
+       },
+       "options": [
+        {
+         "en": "Open struggle over scarce things like land, water or power",
+         "hi": "ज़मीन, पानी या सत्ता जैसी दुर्लभ चीज़ों पर खुला टकराव"
+        },
+        {
+         "en": "Working together on one task",
+         "hi": "एक काम पर मिलकर काम करना"
+        },
+        {
+         "en": "A friendly race with a prize",
+         "hi": "इनाम वाली दोस्ताना दौड़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Conflict is a struggle between opposed interests.",
+        "hi": "संघर्ष विरोधी हितों का टकराव है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is cooperation.",
+         "hi": "यह सहयोग है।"
+        },
+        {
+         "en": "That is competition.",
+         "hi": "यह प्रतिस्पर्धा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find one example in your life that is both competition and cooperation, such as a team sport.",
+      "hi": "अपने जीवन से ऐसा एक उदाहरण खोजो जिसमें प्रतिस्पर्धा और सहयोग दोनों हों, जैसे टीम का खेल।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy2-ch01-division",
+   "topic": "1.3",
+   "template": "society",
+   "title": {
+    "en": "Division of labour at breakfast",
+    "hi": "नाश्ते में श्रम-विभाजन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "web",
+    "title": {
+     "en": "Who made your breakfast?",
+     "hi": "तुम्हारा नाश्ता किसने बनाया?"
+    },
+    "intro": {
+     "en": "Many people work so that you can eat a roti. Link each worker to the breakfast.",
+     "hi": "तुम्हारी एक रोटी के लिए बहुत से लोग काम करते हैं। हर काम करने वाले को नाश्ते से जोड़ो।"
+    },
+    "nodes": [
+     {
+      "id": "bf",
+      "label": {
+       "en": "Your breakfast",
+       "hi": "तुम्हारा नाश्ता"
+      }
+     },
+     {
+      "id": "farmer",
+      "label": {
+       "en": "Farmer grows the wheat",
+       "hi": "किसान गेहूँ उगाता है"
+      }
+     },
+     {
+      "id": "miller",
+      "label": {
+       "en": "Miller grinds the flour",
+       "hi": "चक्की वाला आटा पीसता है"
+      }
+     },
+     {
+      "id": "driver",
+      "label": {
+       "en": "Truck driver carries the sacks",
+       "hi": "ट्रक चालक बोरे ढोता है"
+      }
+     },
+     {
+      "id": "shop",
+      "label": {
+       "en": "Shopkeeper sells the atta",
+       "hi": "दुकानदार आटा बेचता है"
+      }
+     },
+     {
+      "id": "cook",
+      "label": {
+       "en": "Cook at home makes the roti",
+       "hi": "घर पर रसोइया रोटी बनाता है"
+      }
+     }
+    ],
+    "links": [
+     [
+      "bf",
+      "farmer",
+      {
+       "en": "Without the farmer there is no grain",
+       "hi": "किसान के बिना अनाज नहीं"
+      }
+     ],
+     [
+      "bf",
+      "miller",
+      {
+       "en": "Flour turns grain into something you can cook",
+       "hi": "आटा अनाज को पकाने लायक बनाता है"
+      }
+     ],
+     [
+      "bf",
+      "driver",
+      {
+       "en": "Goods must travel from field to town",
+       "hi": "माल को खेत से शहर तक जाना होता है"
+      }
+     ],
+     [
+      "bf",
+      "shop",
+      {
+       "en": "The shop brings it close to your home",
+       "hi": "दुकान उसे तुम्हारे घर के पास लाती है"
+      }
+     ],
+     [
+      "bf",
+      "cook",
+      {
+       "en": "The last step makes it ready to eat",
+       "hi": "आख़िरी क़दम उसे खाने लायक बनाता है"
+      }
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"Your breakfast\" and \"Farmer grows the wheat\", then press Link.",
+      "hi": "\"तुम्हारा नाश्ता\" और \"किसान गेहूँ उगाता है\" छुओ, फिर जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If truck drivers stopped work for a week, what would happen to food in the city?",
+      "hi": "अगर ट्रक चालक एक हफ़्ते काम बंद कर दें तो शहर के खाने का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "short",
+       "en": "Some foods would run short",
+       "hi": "कुछ खाने की चीज़ें कम पड़ जाएँगी"
+      },
+      {
+       "id": "same",
+       "en": "Nothing would change",
+       "hi": "कुछ नहीं बदलेगा"
+      },
+      {
+       "id": "more",
+       "en": "Food would get cheaper everywhere",
+       "hi": "हर जगह खाना सस्ता हो जाएगा"
+      }
+     ],
+     "answer": "short"
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"Your breakfast\" and \"Truck driver carries the sacks\", then press Link.",
+      "hi": "\"तुम्हारा नाश्ता\" और \"ट्रक चालक बोरे ढोता है\" छुओ, फिर जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "complete",
+     "say": {
+      "en": "Link the other three workers.",
+      "hi": "बाक़ी तीन काम करने वालों को जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Division of labour means work is split into specialised tasks. No one does everything, so people depend on one another. That dependence is a form of cooperation: each task fits the others to produce a result nobody could make alone.",
+      "hi": "श्रम-विभाजन का अर्थ है काम का विशेष कामों में बँट जाना। कोई सब कुछ नहीं करता, इसलिए लोग एक-दूसरे पर निर्भर रहते हैं। यह निर्भरता सहयोग का रूप है: हर काम दूसरों से मिलकर वह नतीजा देता है जो अकेले कोई नहीं बना सकता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Division of labour means…",
+        "hi": "श्रम-विभाजन का अर्थ है…"
+       },
+       "options": [
+        {
+         "en": "one person does all the work",
+         "hi": "एक व्यक्ति सारा काम करता है"
+        },
+        {
+         "en": "work is split into specialised tasks, so people depend on each other",
+         "hi": "काम विशेष कामों में बँटता है, इसलिए लोग एक-दूसरे पर निर्भर रहते हैं"
+        },
+        {
+         "en": "everyone does the same job",
+         "hi": "सब एक ही काम करते हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Specialisation creates interdependence.",
+        "hi": "विशेषज्ञता से परस्पर निर्भरता बनती है।"
+       },
+       "wrong": [
+        {
+         "en": "That would be no division at all.",
+         "hi": "तब कोई विभाजन ही नहीं रहता।"
+        },
+        "",
+        {
+         "en": "If all did the same job, there would be no split.",
+         "hi": "सब एक ही काम करें तो बँटवारा नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is division of labour a kind of cooperation?",
+        "hi": "श्रम-विभाजन सहयोग का रूप क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Everyone competes for the same task",
+         "hi": "सब एक ही काम के लिए होड़ करते हैं"
+        },
+        {
+         "en": "Each task fits the others toward a common result",
+         "hi": "हर काम दूसरों से मिलकर साझे नतीजे तक पहुँचाता है"
+        },
+        {
+         "en": "No one needs anyone",
+         "hi": "किसी को किसी की ज़रूरत नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The tasks are different but they work toward one end.",
+        "hi": "काम अलग हैं पर एक ही अंत की ओर जाते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "In a division of labour people do different tasks, not the same one.",
+         "hi": "श्रम-विभाजन में लोग अलग-अलग काम करते हैं, एक नहीं।"
+        },
+        "",
+        {
+         "en": "The opposite is true: they depend on each other.",
+         "hi": "बात उल्टी है: वे एक-दूसरे पर निर्भर हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Trace your pencil or your school shirt back to where it began. How many workers does the chain have?",
+      "hi": "अपनी पेंसिल या स्कूल की कमीज़ को शुरुआत तक खोजो। श्रृंखला में कितने काम करने वाले हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy2-ch01-dispute",
+   "topic": "1.5",
+   "template": "scenario",
+   "title": {
+    "en": "Settling a dispute over the ground",
+    "hi": "मैदान के विवाद का हल"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "school ground",
+    "role": {
+     "en": "The sports captain",
+     "hi": "खेल कप्तान"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "The cricket team and the kabaddi team both want the school ground after school on Tuesdays. Voices rise and nobody will give way. The principal asks you, the sports captain, to help.",
+       "hi": "क्रिकेट टीम और कबड्डी टीम दोनों मंगलवार को छुट्टी के बाद मैदान चाहती हैं। आवाज़ें ऊँची हो रही हैं और कोई पीछे नहीं हटता। प्रधानाचार्य तुम, खेल कप्तान, से मदद माँगते हैं।"
+      },
+      "choices": [
+       {
+        "id": "bigger",
+        "text": {
+         "en": "Let the bigger team take the ground",
+         "hi": "बड़ी टीम को मैदान लेने दो"
+        },
+        "next": "cheated",
+        "feedback": {
+         "en": "The stronger side wins, but the other feels cheated and the quarrel grows.",
+         "hi": "ताक़तवर पक्ष जीतता है, पर दूसरा ठगा महसूस करता है और झगड़ा बढ़ता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "talk",
+        "text": {
+         "en": "Call both captains and ask each what they need",
+         "hi": "दोनों कप्तानों को बुलाओ और पूछो कि उन्हें क्या चाहिए"
+        },
+        "next": "needs",
+        "feedback": {
+         "en": "Hearing both sides first is the start of settling a conflict.",
+         "hi": "पहले दोनों पक्षों को सुनना संघर्ष सुलझाने की शुरुआत है।"
+        },
+        "good": true
+       },
+       {
+        "id": "principal",
+        "text": {
+         "en": "Tell the principal to decide alone",
+         "hi": "प्रधानाचार्य से अकेले फ़ैसला करने को कहो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A decision from above ends the argument but the teams have no say in it.",
+         "hi": "ऊपर से लिया फ़ैसला बहस ख़त्म करता है पर टीमों की उसमें बात नहीं होती।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "cheated",
+      "text": {
+       "en": "The kabaddi players feel cheated. The quarrel spreads into the classroom the next day.",
+       "hi": "कबड्डी के खिलाड़ी ठगा महसूस करते हैं। अगले दिन झगड़ा कक्षा में फैल जाता है।"
+      },
+      "choices": [
+       {
+        "id": "restart",
+        "text": {
+         "en": "Call both captains now and listen to each",
+         "hi": "अब दोनों कप्तानों को बुलाकर सबकी सुनो"
+        },
+        "next": "needs",
+        "feedback": {
+         "en": "It is not too late to listen, though some trust is already lost.",
+         "hi": "सुनने में देर नहीं हुई, पर कुछ भरोसा पहले ही टूट चुका है।"
+        }
+       },
+       {
+        "id": "ignore",
+        "text": {
+         "en": "Ignore it and hope it passes",
+         "hi": "अनदेखा करो और उम्मीद करो कि बात ख़त्म हो जाएगी"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Ignoring a conflict usually lets it grow.",
+         "hi": "संघर्ष को अनदेखा करने से वह अक्सर बढ़ता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "needs",
+      "text": {
+       "en": "The cricketers need a long pitch. The kabaddi players need only a small mat. You notice a free corner of the ground that is large enough for a mat.",
+       "hi": "क्रिकेट वालों को लंबी पिच चाहिए। कबड्डी वालों को बस छोटी चटाई। तुम देखते हो कि मैदान का एक ख़ाली कोना चटाई के लिए काफ़ी बड़ा है।"
+      },
+      "choices": [
+       {
+        "id": "share",
+        "text": {
+         "en": "Offer cricket on the pitch and kabaddi in the corner at the same time",
+         "hi": "पिच पर क्रिकेट और कोने में कबड्डी एक साथ कराने का सुझाव दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Both sides give a little and get what they need. Cooperation grows out of the conflict.",
+         "hi": "दोनों पक्ष थोड़ा झुकते हैं और अपनी ज़रूरत पाते हैं। संघर्ष से सहयोग निकलता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "strict",
+        "text": {
+         "en": "Give each team fixed alternate days",
+         "hi": "हर टीम को बारी-बारी से तय दिन दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Fair, but each team now loses half its time.",
+         "hi": "निष्पक्ष, पर अब हर टीम का आधा समय चला जाता है।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a dispute over a shared place, what usually helps most?",
+      "hi": "साझी जगह के विवाद में आम तौर पर सबसे ज़्यादा क्या काम आता है?"
+     },
+     "options": [
+      {
+       "id": "listen",
+       "en": "Listening to both sides and looking for a fair share",
+       "hi": "दोनों पक्षों को सुनना और निष्पक्ष बँटवारा खोजना"
+      },
+      {
+       "id": "force",
+       "en": "Letting the stronger side win",
+       "hi": "ताक़तवर पक्ष को जीतने देना"
+      },
+      {
+       "id": "wait",
+       "en": "Waiting for it to go away",
+       "hi": "इंतज़ार करना कि बात अपने-आप ख़त्म हो जाए"
+      }
+     ],
+     "answer": "listen"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:talk",
+     "expect": "chose:talk",
+     "say": {
+      "en": "Choose how to start.",
+      "hi": "चुनो कि शुरुआत कैसे करोगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:needs:share",
+     "expect": "chose:share",
+     "say": {
+      "en": "Choose a plan for the ground.",
+      "hi": "मैदान के लिए योजना चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Conflict is a normal part of social life. What matters is how it is handled. Hearing every side and finding a fair way can turn conflict into cooperation. Ignoring it or letting the strong win often makes it worse.",
+      "hi": "संघर्ष सामाजिक जीवन का सामान्य हिस्सा है। मायने यह रखता है कि उसे कैसे सँभाला जाए। हर पक्ष को सुनना और निष्पक्ष रास्ता खोजना संघर्ष को सहयोग में बदल सकता है। उसे अनदेखा करना या ताक़तवर को जीतने देना अक्सर हालत बिगाड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Conflict in society is…",
+        "hi": "समाज में संघर्ष…"
+       },
+       "options": [
+        {
+         "en": "always violent",
+         "hi": "हमेशा हिंसक होता है"
+        },
+        {
+         "en": "normal, and the question is how it is handled",
+         "hi": "सामान्य है, सवाल यह है कि उसे कैसे सँभाला जाए"
+        },
+        {
+         "en": "never found in schools",
+         "hi": "स्कूलों में कभी नहीं होता"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Different interests meet everywhere, and we can handle the clash well or badly.",
+        "hi": "भिन्न हित हर जगह मिलते हैं, और टकराव को अच्छे या बुरे ढंग से सँभाला जा सकता है।"
+       },
+       "wrong": [
+        {
+         "en": "Many conflicts are settled by talk.",
+         "hi": "कई संघर्ष बातचीत से सुलझते हैं।"
+        },
+        "",
+        {
+         "en": "Schools have conflicts too, such as this ground dispute.",
+         "hi": "स्कूलों में भी संघर्ष होते हैं, जैसे यह मैदान का विवाद।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Replay and pick the other choices. Which ending leaves both teams happiest?",
+      "hi": "फिर खेलो और दूसरे विकल्प चुनो। किस अंत में दोनों टीमें सबसे ख़ुश हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "DIA",
+   "topic": "1.1",
+   "use": "Structure as a building",
+   "shows": "A cross-section of a plain building with walls, three doors and a staircase, flat colours, no text",
+   "view": "Straight on, white background",
+   "right": "Doors of different sizes to show different routes",
+   "avoid": "Words, people"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Cooperation",
+   "shows": "Villagers from behind lifting stones together to build a small check dam in a dry stream bed",
+   "view": "Eye level, wide, golden light",
+   "right": "Many hands on one task; true earth and stone",
+   "avoid": "Faces, readable banners"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "Competition",
+   "shows": "Runners crouched on a start line at a school sports day, seen from the side",
+   "view": "Low angle, side view, bright daylight",
+   "right": "Chalk line, dust, tense posture",
+   "avoid": "Faces, school names, readable bibs"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Conflict",
+   "shows": "Two bullock carts meeting on a narrow bridge, both drivers waving arms, seen from far",
+   "view": "Eye level, wide",
+   "right": "Stuck carts and clear tension without faces",
+   "avoid": "Violence, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "1.3",
+   "use": "Chain of work for a roti",
+   "shows": "Five frames in the same size: wheat field, flour mill, a loaded truck, a shop with sacks of atta, rotis on a griddle",
+   "view": "Each frame eye level, same light style",
+   "right": "The same wheat visible at each stage",
+   "avoid": "Brand names, text on sacks"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Sharing a ground",
+   "shows": "A school ground with cricket stumps on one side and a kabaddi mat in a corner, empty",
+   "view": "Raised, wide, afternoon light",
+   "right": "Clear space for both games and proper markings",
+   "avoid": "Players' faces, school names"
+  }
+ ]
+}

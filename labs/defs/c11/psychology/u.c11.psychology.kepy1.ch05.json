@@ -1,0 +1,1640 @@
+{
+ "chapter_key": "u.c11.psychology.kepy1.ch05",
+ "class": 11,
+ "subject_id": "psychology",
+ "title": "Learning",
+ "source": "https://ncert.nic.in/textbook/pdf/kepy105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Nature of learning",
+   "labs": [],
+   "why_no_lab": "The meaning of learning comes alive through the paradigm labs that follow."
+  },
+  {
+   "n": "5.2",
+   "title": "Classical conditioning and its terms",
+   "labs": [
+    "c11-psychology-kepy1-ch05-classical-order",
+    "c11-psychology-kepy1-ch05-classical-terms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Operant (instrumental) conditioning",
+   "labs": [
+    "c11-psychology-kepy1-ch05-operant"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Classical and operant conditioning compared",
+   "labs": [
+    "c11-psychology-kepy1-ch05-compare"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Learned helplessness",
+   "labs": [],
+   "why_no_lab": "A sensitive idea best told through a story and discussion in the reader."
+  },
+  {
+   "n": "5.6",
+   "title": "Observational learning",
+   "labs": [
+    "c11-psychology-kepy1-ch05-observational"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.7",
+   "title": "Cognitive and verbal learning",
+   "labs": [],
+   "why_no_lab": "Verbal learning uses the serial position lab in chapter 6; insight learning is best told as a story."
+  },
+  {
+   "n": "5.8",
+   "title": "Skill learning",
+   "labs": [
+    "c11-psychology-kepy1-ch05-learning-curve"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.9",
+   "title": "Factors that help learning",
+   "labs": [],
+   "why_no_lab": "Best discussed with the child's own study habits in the reader."
+  },
+  {
+   "n": "5.10",
+   "title": "Learning disabilities",
+   "labs": [
+    "c11-psychology-kepy1-ch05-disabilities"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-psychology-kepy1-ch05-classical-order",
+   "topic": "5.2",
+   "template": "sequence",
+   "title": {
+    "en": "Pavlov's dog: how a bell learned to mean food",
+    "hi": "पावलोव का कुत्ता: घंटी का मतलब भोजन कैसे बना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "food",
+      "text": {
+       "en": "Food makes the dog salivate (natural reflex)",
+       "hi": "भोजन से कुत्ते के मुँह में लार आती है (स्वाभाविक प्रतिवर्त)"
+      }
+     },
+     {
+      "id": "bell",
+      "text": {
+       "en": "A bell alone makes no salivation: it is neutral",
+       "hi": "अकेली घंटी से लार नहीं आती: वह तटस्थ है"
+      }
+     },
+     {
+      "id": "pair",
+      "text": {
+       "en": "The bell is rung just before food, many times",
+       "hi": "भोजन से ठीक पहले घंटी कई बार बजाई जाती है"
+      }
+     },
+     {
+      "id": "link",
+      "text": {
+       "en": "The dog learns that the bell predicts food",
+       "hi": "कुत्ता सीखता है कि घंटी का मतलब भोजन आ रहा है"
+      }
+     },
+     {
+      "id": "cr",
+      "text": {
+       "en": "The bell alone now makes the dog salivate",
+       "hi": "अब अकेली घंटी से कुत्ते के मुँह में लार आती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:pair",
+     "expect": "placed:pair",
+     "say": {
+      "en": "Tap the card \"The bell is rung just before food, many times\" and then the place where it belongs.",
+      "hi": "कार्ड \"भोजन से ठीक पहले घंटी कई बार बजाई जाती है\" दबाओ, फिर वह जगह दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why does the bell have to be rung just before the food, and not long after?",
+      "hi": "घंटी भोजन से ठीक पहले क्यों बजानी पड़ती है, बहुत बाद में क्यों नहीं?"
+     },
+     "options": [
+      {
+       "id": "pred",
+       "en": "So the bell becomes a signal that food is coming",
+       "hi": "ताकि घंटी इस बात का संकेत बने कि भोजन आ रहा है"
+      },
+      {
+       "id": "any",
+       "en": "Timing does not matter",
+       "hi": "समय से कोई फ़र्क़ नहीं पड़ता"
+      }
+     ],
+     "answer": "pred"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the cards in order, then press Check.",
+      "hi": "सब कार्ड क्रम में लगाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Learning by classical conditioning happens when a neutral signal is paired again and again with something that already causes a reflex. In time the signal alone brings the reflex. The first, natural link needs no learning. The second link is learned.",
+      "hi": "चिर-सम्मत अनुबंधन में एक तटस्थ संकेत को बार-बार ऐसी चीज़ के साथ जोड़ा जाता है जो पहले से प्रतिवर्त पैदा करती है। समय के साथ अकेला संकेत ही प्रतिवर्त ला देता है। पहला, स्वाभाविक संबंध सीखना नहीं माँगता। दूसरा संबंध सीखा जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Before the pairing, what does the bell do?",
+        "hi": "जोड़ने से पहले घंटी क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "Nothing special: it is neutral",
+         "hi": "कुछ ख़ास नहीं: वह तटस्थ है"
+        },
+        {
+         "en": "It causes salivation",
+         "hi": "यह लार पैदा करती है"
+        },
+        {
+         "en": "It frightens the dog",
+         "hi": "यह कुत्ते को डराती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At first, the bell has no link with food.",
+        "hi": "शुरू में घंटी का भोजन से कोई संबंध नहीं होता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Salivation only begins after the pairing.",
+         "hi": "लार आना जोड़ने के बाद ही शुरू होता है।"
+        },
+        {
+         "en": "Fear is not part of this experiment.",
+         "hi": "भय इस प्रयोग का हिस्सा नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What did the dog learn?",
+        "hi": "कुत्ते ने क्या सीखा?"
+       },
+       "options": [
+        {
+         "en": "The bell is a sign that food is coming",
+         "hi": "घंटी इस बात का संकेत है कि भोजन आ रहा है"
+        },
+        {
+         "en": "To like bells",
+         "hi": "घंटियाँ पसंद करना"
+        },
+        {
+         "en": "To stop eating",
+         "hi": "खाना बंद करना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A link between two stimuli was learned.",
+        "hi": "दो उद्दीपकों के बीच संबंध सीखा गया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is about prediction, not liking.",
+         "hi": "यह पूर्वानुमान की बात है, पसंद की नहीं।"
+        },
+        {
+         "en": "The dog still eats.",
+         "hi": "कुत्ता अब भी खाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a sound at home, like a pressure cooker whistle, that makes you hungry. Can you trace the steps?",
+      "hi": "घर की कोई आवाज़ सोचो, जैसे कुकर की सीटी, जो तुम्हें भूख जगा देती है। क्या तुम इन चरणों को पहचान सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch05-classical-terms",
+   "topic": "5.2",
+   "template": "match",
+   "title": {
+    "en": "Four words of classical conditioning",
+    "hi": "चिर-सम्मत अनुबंधन के चार शब्द"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "ucs",
+      "left": {
+       "en": "Unconditioned stimulus (UCS)",
+       "hi": "अनानुबंधित उद्दीपक (UCS)"
+      },
+      "right": {
+       "en": "Ice cream in your mouth",
+       "hi": "मुँह में आइसक्रीम"
+      },
+      "why": {
+       "en": "It brings the reaction without any learning.",
+       "hi": "यह बिना सीखे ही प्रतिक्रिया लाता है।"
+      }
+     },
+     {
+      "id": "ucr",
+      "left": {
+       "en": "Unconditioned response (UCR)",
+       "hi": "अनानुबंधित अनुक्रिया (UCR)"
+      },
+      "right": {
+       "en": "Your mouth waters at the ice cream",
+       "hi": "आइसक्रीम पर मुँह में पानी आना"
+      },
+      "why": {
+       "en": "It is the natural, unlearned reaction.",
+       "hi": "यह स्वाभाविक, बिना सीखी प्रतिक्रिया है।"
+      }
+     },
+     {
+      "id": "cs",
+      "left": {
+       "en": "Conditioned stimulus (CS)",
+       "hi": "अनुबंधित उद्दीपक (CS)"
+      },
+      "right": {
+       "en": "The ice-cream van's tune, after it is paired with ice cream",
+       "hi": "आइसक्रीम वाली गाड़ी की धुन, आइसक्रीम से जुड़ने के बाद"
+      },
+      "why": {
+       "en": "A once-neutral signal that now brings the reaction.",
+       "hi": "कभी तटस्थ रहा संकेत जो अब प्रतिक्रिया लाता है।"
+      }
+     },
+     {
+      "id": "cr",
+      "left": {
+       "en": "Conditioned response (CR)",
+       "hi": "अनुबंधित अनुक्रिया (CR)"
+      },
+      "right": {
+       "en": "Your mouth waters at the tune alone",
+       "hi": "केवल धुन सुनकर मुँह में पानी आना"
+      },
+      "why": {
+       "en": "It is the learned reaction to the signal.",
+       "hi": "यह संकेत पर सीखी हुई प्रतिक्रिया है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ucs",
+     "expect": "matched:ucs",
+     "say": {
+      "en": "Tap \"Unconditioned stimulus (UCS)\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"अनानुबंधित उद्दीपक (UCS)\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Once the tune has been paired with ice cream many times, what will happen when you hear the tune without ice cream?",
+      "hi": "जब धुन कई बार आइसक्रीम के साथ जुड़ चुकी हो, तो आइसक्रीम के बिना धुन सुनने पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "w",
+       "en": "Your mouth may water",
+       "hi": "मुँह में पानी आ सकता है"
+      },
+      {
+       "id": "n",
+       "en": "Nothing at all",
+       "hi": "कुछ भी नहीं"
+      }
+     ],
+     "answer": "w"
+    },
+    {
+     "kind": "do",
+     "target": "left:cr",
+     "expect": "matched:cr",
+     "say": {
+      "en": "Now match \"Conditioned response (CR)\".",
+      "hi": "अब \"अनुबंधित अनुक्रिया (CR)\" को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then press Check.",
+      "hi": "सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The ice cream (UCS) naturally makes the mouth water (UCR). The tune is neutral until it is paired with the ice cream. After that, the tune (CS) alone makes the mouth water (CR). The reaction looks the same, but one is natural and the other is learned.",
+      "hi": "आइसक्रीम (UCS) से मुँह में पानी आना (UCR) स्वाभाविक है। धुन तब तक तटस्थ है जब तक वह आइसक्रीम से न जुड़े। उसके बाद अकेली धुन (CS) से मुँह में पानी आता है (CR)। प्रतिक्रिया एक-सी दिखती है, पर एक स्वाभाविक है और दूसरी सीखी हुई।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is learned?",
+        "hi": "इनमें से कौन-सी सीखी हुई है?"
+       },
+       "options": [
+        {
+         "en": "Unconditioned response",
+         "hi": "अनानुबंधित अनुक्रिया"
+        },
+        {
+         "en": "Conditioned response",
+         "hi": "अनुबंधित अनुक्रिया"
+        },
+        {
+         "en": "Unconditioned stimulus",
+         "hi": "अनानुबंधित उद्दीपक"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The conditioned response is the new, learned reaction.",
+        "hi": "अनुबंधित अनुक्रिया नई, सीखी हुई प्रतिक्रिया है।"
+       },
+       "wrong": [
+        {
+         "en": "It is natural and needs no learning.",
+         "hi": "यह स्वाभाविक है और सीखना नहीं माँगती।"
+        },
+        "",
+        {
+         "en": "It is a natural trigger, not something learned.",
+         "hi": "यह स्वाभाविक कारक है, सीखी हुई चीज़ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The school bell makes a hungry child think of lunch. The bell is the…",
+        "hi": "स्कूल की घंटी भूखे बच्चे को खाने की याद दिलाती है। घंटी है…"
+       },
+       "options": [
+        {
+         "en": "Conditioned stimulus",
+         "hi": "अनुबंधित उद्दीपक"
+        },
+        {
+         "en": "Unconditioned stimulus",
+         "hi": "अनानुबंधित उद्दीपक"
+        },
+        {
+         "en": "Unconditioned response",
+         "hi": "अनानुबंधित अनुक्रिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bell became a signal through repeated pairing with lunch.",
+        "hi": "बार-बार भोजन के साथ आने से घंटी संकेत बन गई।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lunch itself is the natural trigger.",
+         "hi": "भोजन स्वयं स्वाभाविक कारक है।"
+        },
+        {
+         "en": "A response is a reaction, not a signal.",
+         "hi": "अनुक्रिया प्रतिक्रिया है, संकेत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find one sound, smell or place that gives you a feeling because of something you linked it with.",
+      "hi": "कोई ऐसी आवाज़, गंध या जगह खोजो जो किसी जुड़ाव के कारण तुम्हें कोई भावना दे देती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch05-operant",
+   "topic": "5.3",
+   "template": "sort",
+   "title": {
+    "en": "Reinforcement and punishment",
+    "hi": "पुनर्बलन और दंड"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pr",
+      "label": {
+       "en": "Positive reinforcement",
+       "hi": "सकारात्मक पुनर्बलन"
+      }
+     },
+     {
+      "id": "nr",
+      "label": {
+       "en": "Negative reinforcement",
+       "hi": "नकारात्मक पुनर्बलन"
+      }
+     },
+     {
+      "id": "pu",
+      "label": {
+       "en": "Punishment",
+       "hi": "दंड"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "praise",
+      "text": {
+       "en": "Praise after finishing homework",
+       "hi": "होमवर्क पूरा करने पर प्रशंसा"
+      },
+      "bin": "pr",
+      "why": {
+       "en": "A pleasant thing is added, so homework is more likely again.",
+       "hi": "कोई सुखद चीज़ जुड़ी, इसलिए होमवर्क फिर होने की संभावना बढ़ती है।"
+      }
+     },
+     {
+      "id": "stars",
+      "text": {
+       "en": "Star chart for brushing teeth",
+       "hi": "दाँत साफ़ करने पर सितारों वाला चार्ट"
+      },
+      "bin": "pr",
+      "why": {
+       "en": "A reward is added after the behaviour.",
+       "hi": "व्यवहार के बाद इनाम जुड़ता है।"
+      }
+     },
+     {
+      "id": "belt",
+      "text": {
+       "en": "Fastening the seat belt to stop the buzzer",
+       "hi": "बज़र रोकने के लिए सीट बेल्ट बाँधना"
+      },
+      "bin": "nr",
+      "why": {
+       "en": "An annoying sound is removed, so belting up becomes more likely.",
+       "hi": "एक चिढ़ाने वाली आवाज़ हटी, इसलिए बेल्ट बाँधना बढ़ता है।"
+      }
+     },
+     {
+      "id": "study",
+      "text": {
+       "en": "Revising to get rid of exam worry",
+       "hi": "परीक्षा की चिंता मिटाने को दोहराना"
+      },
+      "bin": "nr",
+      "why": {
+       "en": "Worry is taken away, so revising is repeated.",
+       "hi": "चिंता हटी, इसलिए दोहराना जारी रहता है।"
+      }
+     },
+     {
+      "id": "medicine",
+      "text": {
+       "en": "Taking medicine so the headache goes",
+       "hi": "सिरदर्द मिटाने के लिए दवा लेना"
+      },
+      "bin": "nr",
+      "why": {
+       "en": "Pain is removed, so taking medicine becomes more likely.",
+       "hi": "दर्द हटा, इसलिए दवा लेना बढ़ता है।"
+      }
+     },
+     {
+      "id": "screen",
+      "text": {
+       "en": "Losing screen time for hitting a sibling",
+       "hi": "भाई-बहन को मारने पर स्क्रीन-समय छिन जाना"
+      },
+      "bin": "pu",
+      "why": {
+       "en": "Something pleasant is taken away to reduce the behaviour.",
+       "hi": "व्यवहार घटाने के लिए कुछ सुखद छीना गया।"
+      }
+     },
+     {
+      "id": "scold",
+      "text": {
+       "en": "A scolding after shouting in class",
+       "hi": "कक्षा में चिल्लाने पर डाँट"
+      },
+      "bin": "pu",
+      "why": {
+       "en": "An unpleasant thing is added to make the behaviour less likely.",
+       "hi": "व्यवहार घटाने के लिए कुछ अप्रिय जोड़ा गया।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:praise",
+     "expect": "placed:praise",
+     "say": {
+      "en": "Tap the card \"Praise after finishing homework\" and then the group where you think it belongs.",
+      "hi": "कार्ड \"होमवर्क पूरा करने पर प्रशंसा\" दबाओ, फिर वह समूह दबाओ जहाँ तुम्हें लगता है कि यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A rat presses a lever and food drops. What will the rat do more often?",
+      "hi": "एक चूहा लीवर दबाता है और भोजन गिरता है। चूहा अब क्या ज़्यादा करेगा?"
+     },
+     "options": [
+      {
+       "id": "m",
+       "en": "Press the lever more",
+       "hi": "लीवर ज़्यादा दबाएगा"
+      },
+      {
+       "id": "l",
+       "en": "Press it less",
+       "hi": "कम दबाएगा"
+      }
+     ],
+     "answer": "m"
+    },
+    {
+     "kind": "do",
+     "target": "card:belt",
+     "expect": "placed:belt",
+     "say": {
+      "en": "Now place the card \"Fastening the seat belt to stop the buzzer\".",
+      "hi": "अब कार्ड \"बज़र रोकने के लिए सीट बेल्ट बाँधना\" रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In operant conditioning, behaviour is shaped by its results. Reinforcement, positive or negative, makes a behaviour more likely. Punishment makes it less likely. Negative does not mean bad: it means something is taken away.",
+      "hi": "क्रियाप्रसूत अनुबंधन में व्यवहार अपने परिणामों से ढलता है। पुनर्बलन, सकारात्मक या नकारात्मक, किसी व्यवहार की संभावना बढ़ाता है। दंड उसे घटाता है। \"नकारात्मक\" का अर्थ बुरा नहीं, बल्कि यह है कि कुछ हटाया गया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Negative reinforcement means…",
+        "hi": "नकारात्मक पुनर्बलन का अर्थ है…"
+       },
+       "options": [
+        {
+         "en": "Punishing a child",
+         "hi": "बच्चे को दंड देना"
+        },
+        {
+         "en": "Removing something unpleasant, so behaviour increases",
+         "hi": "कुछ अप्रिय हटाना, जिससे व्यवहार बढ़ता है"
+        },
+        {
+         "en": "Giving a gift",
+         "hi": "उपहार देना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It strengthens behaviour by taking an unpleasant thing away.",
+        "hi": "यह किसी अप्रिय चीज़ को हटाकर व्यवहार को मज़बूत करता है।"
+       },
+       "wrong": [
+        {
+         "en": "Punishment weakens behaviour.",
+         "hi": "दंड व्यवहार को कमज़ोर करता है।"
+        },
+        "",
+        {
+         "en": "Adding something pleasant is positive reinforcement.",
+         "hi": "कुछ सुखद जोड़ना सकारात्मक पुनर्बलन है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the difference between negative reinforcement and punishment?",
+        "hi": "नकारात्मक पुनर्बलन और दंड में क्या अंतर है?"
+       },
+       "options": [
+        {
+         "en": "Reinforcement raises the behaviour, punishment lowers it",
+         "hi": "पुनर्बलन व्यवहार बढ़ाता है, दंड घटाता है"
+        },
+        {
+         "en": "There is no difference",
+         "hi": "कोई अंतर नहीं"
+        },
+        {
+         "en": "Punishment is always kinder",
+         "hi": "दंड हमेशा नरम होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both are about consequences, but they push behaviour in opposite directions.",
+        "hi": "दोनों परिणामों की बात हैं, पर व्यवहार को विपरीत दिशाओं में धकेलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One increases and the other decreases the behaviour.",
+         "hi": "एक व्यवहार बढ़ाता है और दूसरा घटाता है।"
+        },
+        {
+         "en": "Punishment is not kinder; it simply lowers behaviour.",
+         "hi": "दंड नरम नहीं होता; वह बस व्यवहार घटाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of one habit of yours that is kept alive by a reward, and one that is kept alive by relief from something unpleasant.",
+      "hi": "अपनी एक ऐसी आदत सोचो जो इनाम से चलती है और एक जो किसी अप्रिय बात से राहत मिलने से चलती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch05-compare",
+   "topic": "5.4",
+   "template": "sort",
+   "title": {
+    "en": "Classical or operant?",
+    "hi": "चिर-सम्मत या क्रियाप्रसूत?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cl",
+      "label": {
+       "en": "Classical conditioning",
+       "hi": "चिर-सम्मत अनुबंधन"
+      }
+     },
+     {
+      "id": "op",
+      "label": {
+       "en": "Operant conditioning",
+       "hi": "क्रियाप्रसूत अनुबंधन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "link",
+      "text": {
+       "en": "Links two stimuli, like bell and food",
+       "hi": "दो उद्दीपकों को जोड़ता है, जैसे घंटी और भोजन"
+      },
+      "bin": "cl",
+      "why": {
+       "en": "Learning here is an association between two stimuli.",
+       "hi": "यहाँ सीखना दो उद्दीपकों का संबंध है।"
+      }
+     },
+     {
+      "id": "reflex",
+      "text": {
+       "en": "The response is automatic, like salivating",
+       "hi": "अनुक्रिया स्वचालित है, जैसे लार आना"
+      },
+      "bin": "cl",
+      "why": {
+       "en": "Reflex-like reactions are involuntary.",
+       "hi": "प्रतिवर्त-जैसी प्रतिक्रियाएँ अनैच्छिक होती हैं।"
+      }
+     },
+     {
+      "id": "dog",
+      "text": {
+       "en": "A dog salivates at a bell",
+       "hi": "कुत्ते को घंटी पर लार आना"
+      },
+      "bin": "cl",
+      "why": {
+       "en": "This is Pavlov's classic case.",
+       "hi": "यह पावलोव का जाना-पहचाना उदाहरण है।"
+      }
+     },
+     {
+      "id": "before",
+      "text": {
+       "en": "The signal comes before the natural trigger",
+       "hi": "संकेत स्वाभाविक कारक से पहले आता है"
+      },
+      "bin": "cl",
+      "why": {
+       "en": "The CS is presented ahead of the UCS.",
+       "hi": "CS को UCS से पहले दिया जाता है।"
+      }
+     },
+     {
+      "id": "conseq",
+      "text": {
+       "en": "Behaviour is followed by a consequence",
+       "hi": "व्यवहार के बाद परिणाम आता है"
+      },
+      "bin": "op",
+      "why": {
+       "en": "What happens after the act shapes what follows.",
+       "hi": "काम के बाद जो होता है वह आगे का व्यवहार तय करता है।"
+      }
+     },
+     {
+      "id": "voluntary",
+      "text": {
+       "en": "The response is chosen, like pressing a lever",
+       "hi": "अनुक्रिया चुनी जाती है, जैसे लीवर दबाना"
+      },
+      "bin": "op",
+      "why": {
+       "en": "The organism acts on the environment on its own.",
+       "hi": "जीव अपनी ओर से परिवेश पर काम करता है।"
+      }
+     },
+     {
+      "id": "rat",
+      "text": {
+       "en": "A rat presses a lever to get food",
+       "hi": "चूहा भोजन पाने को लीवर दबाता है"
+      },
+      "bin": "op",
+      "why": {
+       "en": "This is Skinner's classic case.",
+       "hi": "यह स्किनर का जाना-पहचाना उदाहरण है।"
+      }
+     },
+     {
+      "id": "after",
+      "text": {
+       "en": "The reward comes after the response",
+       "hi": "इनाम अनुक्रिया के बाद आता है"
+      },
+      "bin": "op",
+      "why": {
+       "en": "Reinforcement follows the behaviour.",
+       "hi": "पुनर्बलन व्यवहार के बाद आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:dog",
+     "expect": "placed:dog",
+     "say": {
+      "en": "Tap the card \"A dog salivates at a bell\" and then the group where you think it belongs.",
+      "hi": "कार्ड \"कुत्ते को घंटी पर लार आना\" दबाओ, फिर वह समूह दबाओ जहाँ तुम्हें लगता है कि यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A child learns to say \"please\" because she gets what she asks for when she does. Which kind of learning is this?",
+      "hi": "एक बच्ची \"कृपया\" कहना सीखती है क्योंकि कहने पर उसे माँगी चीज़ मिलती है। यह कौन-सा सीखना है?"
+     },
+     "options": [
+      {
+       "id": "o",
+       "en": "Operant conditioning",
+       "hi": "क्रियाप्रसूत अनुबंधन"
+      },
+      {
+       "id": "c",
+       "en": "Classical conditioning",
+       "hi": "चिर-सम्मत अनुबंधन"
+      }
+     ],
+     "answer": "o"
+    },
+    {
+     "kind": "do",
+     "target": "card:rat",
+     "expect": "placed:rat",
+     "say": {
+      "en": "Now place the card \"A rat presses a lever to get food\".",
+      "hi": "अब कार्ड \"चूहा भोजन पाने को लीवर दबाता है\" रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In classical conditioning, a signal comes to predict something and brings an automatic reaction. In operant conditioning, the learner acts and the consequence, a reward or a punishment, decides whether the act happens again.",
+      "hi": "चिर-सम्मत अनुबंधन में एक संकेत किसी बात का पूर्वानुमान बन जाता है और स्वचालित प्रतिक्रिया लाता है। क्रियाप्रसूत अनुबंधन में सीखने वाला कर्म करता है और परिणाम, इनाम या दंड, तय करता है कि वह कर्म दोहराया जाएगा या नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The sound of a mixer makes a cat run to the kitchen because it once heard it before food. This is…",
+        "hi": "मिक्सर की आवाज़ पर बिल्ली रसोई की ओर दौड़ती है क्योंकि उसने इसे भोजन से पहले सुना था। यह है…"
+       },
+       "options": [
+        {
+         "en": "Classical conditioning",
+         "hi": "चिर-सम्मत अनुबंधन"
+        },
+        {
+         "en": "Operant conditioning",
+         "hi": "क्रियाप्रसूत अनुबंधन"
+        },
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A sound became a signal for food.",
+        "hi": "एक आवाज़ भोजन का संकेत बन गई।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The cat is not acting to earn a reward, it is reacting to a signal.",
+         "hi": "बिल्ली इनाम कमाने के लिए नहीं, संकेत पर प्रतिक्रिया कर रही है।"
+        },
+        {
+         "en": "It is a learned link, so it is one of the two.",
+         "hi": "यह सीखा हुआ संबंध है, इसलिए दो में से एक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The main question in operant conditioning is…",
+        "hi": "क्रियाप्रसूत अनुबंधन का मुख्य प्रश्न है…"
+       },
+       "options": [
+        {
+         "en": "What signal came first?",
+         "hi": "पहले कौन-सा संकेत आया?"
+        },
+        {
+         "en": "What happened after the act?",
+         "hi": "काम के बाद क्या हुआ?"
+        },
+        {
+         "en": "What did the child see?",
+         "hi": "बच्चे ने क्या देखा?"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Consequences decide whether behaviour repeats.",
+        "hi": "परिणाम तय करते हैं कि व्यवहार दोहराया जाएगा या नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "That is the question for classical conditioning.",
+         "hi": "यह चिर-सम्मत अनुबंधन का प्रश्न है।"
+        },
+        "",
+        {
+         "en": "That is about observational learning.",
+         "hi": "यह प्रेक्षणात्मक अधिगम की बात है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick two things you learned and decide which kind of conditioning each is.",
+      "hi": "अपनी सीखी दो बातें चुनो और तय करो कि हर एक कौन-सा अनुबंधन है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch05-observational",
+   "topic": "5.6",
+   "template": "scenario",
+   "title": {
+    "en": "Learning by watching",
+    "hi": "देखकर सीखना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "home",
+    "role": {
+     "en": "An older cousin",
+     "hi": "एक बड़ा चचेरा/ममेरा भाई या बहन"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "You are losing a board game and feel angry. Your younger cousin is watching you closely. What do you do?",
+       "hi": "तुम एक खेल हार रहे हो और ग़ुस्से में हो। तुम्हारा छोटा चचेरा भाई तुम्हें ग़ौर से देख रहा है। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "calm",
+        "text": {
+         "en": "Take a breath and say \"good game\" to the winner",
+         "hi": "गहरी साँस लो और विजेता से \"अच्छा खेला\" कहो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The child learns calm behaviour by watching you. Models matter.",
+         "hi": "बच्चा तुम्हें देखकर शांत व्यवहार सीखता है। आदर्श मायने रखते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "throw",
+        "text": {
+         "en": "Throw the dice and shout",
+         "hi": "पासे फेंको और चिल्लाओ"
+        },
+        "next": "copy",
+        "feedback": {
+         "en": "Children copy what they see, especially from older people they admire.",
+         "hi": "बच्चे जो देखते हैं वही दोहराते हैं, खासकर उन बड़ों से जिन्हें वे चाहते हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "copy",
+      "text": {
+       "en": "Next day your cousin throws his toy in the same way when he loses. What do you do?",
+       "hi": "अगले दिन तुम्हारा भाई हारने पर वैसे ही अपना खिलौना फेंकता है। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "model",
+        "text": {
+         "en": "Say sorry for yesterday and show him a calmer way",
+         "hi": "कल के लिए सॉरी कहो और उसे शांत तरीक़ा दिखाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Showing a better way and owning up helps him learn it.",
+         "hi": "बेहतर तरीक़ा दिखाना और अपनी ग़लती मानना उसे सीखने में मदद करता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "ignore",
+        "text": {
+         "en": "Laugh and say it is nothing",
+         "hi": "हँस दो और कहो कोई बात नहीं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This lets the behaviour continue because nothing shows him a better way.",
+         "hi": "इससे व्यवहार चलता रहता है क्योंकि उसे बेहतर तरीक़ा कोई नहीं दिखाता।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:start:calm",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose how you act in front of your cousin.",
+      "hi": "अपने चचेरे भाई के सामने तुम कैसे पेश आओगे, चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who do children copy most easily?",
+      "hi": "बच्चे सबसे आसानी से किसकी नक़ल करते हैं?"
+     },
+     "options": [
+      {
+       "id": "adm",
+       "en": "People they look up to",
+       "hi": "जिन्हें वे आदर्श मानते हैं"
+      },
+      {
+       "id": "none",
+       "en": "Nobody, they learn only by doing",
+       "hi": "कोई नहीं, वे केवल करके सीखते हैं"
+      }
+     ],
+     "answer": "adm"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:throw",
+     "expect": "chose:throw",
+     "say": {
+      "en": "Now go back and choose the other option to see what a child could copy.",
+      "hi": "अब लौटकर दूसरा विकल्प चुनो और देखो बच्चा क्या नक़ल कर सकता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "People can learn by watching others and then copying them, with no reward at all. This is observational learning (Bandura). Children copy models they admire, so our actions teach as much as our words.",
+      "hi": "लोग बिना किसी इनाम के दूसरों को देखकर और उनकी नक़ल करके सीख सकते हैं। यह प्रेक्षणात्मक अधिगम (बंडूरा) है। बच्चे उन आदर्शों की नक़ल करते हैं जिन्हें वे चाहते हैं, इसलिए हमारे काम हमारे शब्दों जितना सिखाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Observational learning is learning…",
+        "hi": "प्रेक्षणात्मक अधिगम है सीखना…"
+       },
+       "options": [
+        {
+         "en": "By watching and copying a model",
+         "hi": "किसी आदर्श को देखकर और उसकी नक़ल करके"
+        },
+        {
+         "en": "Only by being punished",
+         "hi": "केवल दंड पाकर"
+        },
+        {
+         "en": "Only from books",
+         "hi": "केवल किताबों से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A person can learn without doing the act first.",
+        "hi": "व्यक्ति पहले कर्म किए बिना भी सीख सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No punishment is needed.",
+         "hi": "दंड ज़रूरी नहीं।"
+        },
+        {
+         "en": "It happens everywhere, not only in books.",
+         "hi": "यह हर जगह होता है, केवल किताबों में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why should adults be careful about what they do in front of children?",
+        "hi": "बड़ों को बच्चों के सामने अपने कर्मों में सावधान क्यों रहना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Children copy what they see",
+         "hi": "बच्चे जो देखते हैं उसकी नक़ल करते हैं"
+        },
+        {
+         "en": "Children do not notice",
+         "hi": "बच्चे ध्यान नहीं देते"
+        },
+        {
+         "en": "It tires them",
+         "hi": "इससे वे थक जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Models teach through their actions.",
+        "hi": "आदर्श अपने कर्मों से सिखाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Children notice much more than we think.",
+         "hi": "बच्चे हमारे सोचने से कहीं ज़्यादा देखते हैं।"
+        },
+        {
+         "en": "Tiredness is not the reason.",
+         "hi": "थकान इसका कारण नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Recall a habit you picked up by watching someone. Who was your model?",
+      "hi": "याद करो कि कोई आदत तुमने किसी को देखकर अपनाई थी। तुम्हारा आदर्श कौन था?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch05-learning-curve",
+   "topic": "5.8",
+   "template": "mind",
+   "title": {
+    "en": "Skill learning: practice makes a curve",
+    "hi": "कौशल सीखना: अभ्यास से बनता वक्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "experiment": "learning-curve",
+    "trials": 6
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "respond",
+     "expect": "trial",
+     "say": {
+      "en": "Press Start and do the task. Try to do it better each round.",
+      "hi": "\"शुरू करो\" दबाओ और काम करो। हर दौर में पिछली बार से बेहतर करने की कोशिश करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After six rounds, will your times get shorter?",
+      "hi": "छह दौर के बाद, क्या तुम्हारा समय कम होगा?"
+     },
+     "options": [
+      {
+       "id": "y",
+       "en": "Yes, with practice",
+       "hi": "हाँ, अभ्यास से"
+      },
+      {
+       "id": "n",
+       "en": "No, they will stay the same",
+       "hi": "नहीं, वही रहेगा"
+      }
+     ],
+     "answer": "y"
+    },
+    {
+     "kind": "do",
+     "target": "respond",
+     "expect": "result",
+     "say": {
+      "en": "Finish all the rounds to see your learning curve.",
+      "hi": "सब दौर पूरे करो और अपना सीखने का वक्र देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When you practise a skill, you improve fast at first and then more slowly, and sometimes you stay at the same level for a while (a plateau). A line of your scores across rounds is called a learning curve. This is a demonstration, not a test of you.",
+      "hi": "जब तुम कोई कौशल अभ्यास करते हो, शुरू में तेज़ी से सुधरते हो, फिर धीरे, और कभी-कभी कुछ समय एक ही स्तर पर रुक जाते हो (पठार)। दौरों में तुम्हारे नतीजों की रेखा सीखने का वक्र कहलाती है। यह प्रदर्शन है, तुम्हारी परीक्षा नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the curve often flatten?",
+        "hi": "वक्र अक्सर सपाट क्यों हो जाता है?"
+       },
+       "options": [
+        {
+         "en": "The easy gains are already made",
+         "hi": "आसान सुधार हो चुके होते हैं"
+        },
+        {
+         "en": "The learner has forgotten everything",
+         "hi": "सीखने वाला सब भूल गया होता है"
+        },
+        {
+         "en": "Practice stops working",
+         "hi": "अभ्यास बेकार हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Later improvements are smaller and need more effort.",
+        "hi": "बाद के सुधार छोटे होते हैं और ज़्यादा मेहनत माँगते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A plateau is not forgetting.",
+         "hi": "पठार भूलना नहीं है।"
+        },
+        {
+         "en": "Practice still works, only slower.",
+         "hi": "अभ्यास अब भी काम करता है, पर धीरे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the best way to learn a skill like riding a cycle?",
+        "hi": "साइकिल चलाने जैसा कौशल सीखने का सबसे अच्छा तरीक़ा क्या है?"
+       },
+       "options": [
+        {
+         "en": "Read about it once",
+         "hi": "एक बार उसके बारे में पढ़ना"
+        },
+        {
+         "en": "Practise regularly with feedback",
+         "hi": "फ़ीडबैक के साथ नियमित अभ्यास करना"
+        },
+        {
+         "en": "Watch others only",
+         "hi": "केवल दूसरों को देखना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Skills grow through repeated practice and correction.",
+        "hi": "कौशल बार-बार अभ्यास और सुधार से बढ़ते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Reading alone does not train the body.",
+         "hi": "अकेले पढ़ने से शरीर प्रशिक्षित नहीं होता।"
+        },
+        "",
+        {
+         "en": "Watching helps, but you must try too.",
+         "hi": "देखना मदद करता है, पर आज़माना भी पड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick a skill you want to improve and plan three short practice sessions this week.",
+      "hi": "कोई कौशल चुनो जो तुम सुधारना चाहते हो और इस सप्ताह तीन छोटे अभ्यास-सत्र तय करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch05-disabilities",
+   "topic": "5.10",
+   "template": "match",
+   "title": {
+    "en": "Learning difficulties",
+    "hi": "सीखने की कठिनाइयाँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "dysl",
+      "left": {
+       "en": "Dyslexia",
+       "hi": "डिस्लेक्सिया"
+      },
+      "right": {
+       "en": "Trouble reading, such as mixing up b and d",
+       "hi": "पढ़ने में कठिनाई, जैसे b और d में उलझना"
+      },
+      "why": {
+       "en": "Reading is hard even though intelligence is normal.",
+       "hi": "बुद्धि सामान्य होने पर भी पढ़ना कठिन होता है।"
+      }
+     },
+     {
+      "id": "dysg",
+      "left": {
+       "en": "Dysgraphia",
+       "hi": "डिस्ग्राफ़िया"
+      },
+      "right": {
+       "en": "Trouble writing neatly or putting thoughts on paper",
+       "hi": "साफ़ लिखने या विचार कागज़ पर उतारने में कठिनाई"
+      },
+      "why": {
+       "en": "Writing is hard although the ideas are clear.",
+       "hi": "विचार साफ़ होने पर भी लिखना कठिन होता है।"
+      }
+     },
+     {
+      "id": "dysc",
+      "left": {
+       "en": "Dyscalculia",
+       "hi": "डिस्कैल्कुलिया"
+      },
+      "right": {
+       "en": "Trouble with numbers and calculation",
+       "hi": "संख्याओं और गणना में कठिनाई"
+      },
+      "why": {
+       "en": "Maths symbols and operations are hard to grasp.",
+       "hi": "गणित के प्रतीक और संक्रियाएँ समझना कठिन होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:dysl",
+     "expect": "matched:dysl",
+     "say": {
+      "en": "Tap \"Dyslexia\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"डिस्लेक्सिया\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is a child with a learning disability less intelligent?",
+      "hi": "क्या सीखने की कठिनाई वाला बच्चा कम बुद्धिमान होता है?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, intelligence can be normal or high",
+       "hi": "नहीं, बुद्धि सामान्य या ऊँची हो सकती है"
+      },
+      {
+       "id": "y",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "left:dysc",
+     "expect": "matched:dysc",
+     "say": {
+      "en": "Now match \"Dyscalculia\".",
+      "hi": "अब \"डिस्कैल्कुलिया\" को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then press Check.",
+      "hi": "सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A learning disability is a specific difficulty in reading, writing or number work. It is not laziness and it is not low intelligence. With early notice, patient help and the right methods, these children can do very well.",
+      "hi": "सीखने की कठिनाई पढ़ने, लिखने या संख्या के काम में कोई ख़ास अड़चन है। यह आलस्य नहीं है और कम बुद्धि भी नहीं। जल्दी पहचान, धैर्य से मदद और सही तरीक़ों से ऐसे बच्चे बहुत अच्छा कर सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A child reads slowly and mixes up letters but is clever at drawing and talking. What should we do?",
+        "hi": "एक बच्चा धीमा पढ़ता है और अक्षर उलझाता है, पर चित्र बनाने और बोलने में तेज़ है। हमें क्या करना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Call her lazy",
+         "hi": "उसे आलसी कहना"
+        },
+        {
+         "en": "Seek expert help and teach in suitable ways",
+         "hi": "विशेषज्ञ की मदद लेना और उपयुक्त तरीक़ों से पढ़ाना"
+        },
+        {
+         "en": "Ignore it",
+         "hi": "नज़रअंदाज़ करना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Early help can make a big difference.",
+        "hi": "जल्दी मदद बड़ा फ़र्क़ डाल सकती है।"
+       },
+       "wrong": [
+        {
+         "en": "Labels hurt and are not true.",
+         "hi": "लेबल दुख देते हैं और सच नहीं होते।"
+        },
+        "",
+        {
+         "en": "Ignoring it leaves the child struggling.",
+         "hi": "नज़रअंदाज़ करने से बच्चा जूझता रहता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Dyscalculia is a difficulty with…",
+        "hi": "डिस्कैल्कुलिया किसमें कठिनाई है?"
+       },
+       "options": [
+        {
+         "en": "Reading",
+         "hi": "पढ़ने में"
+        },
+        {
+         "en": "Writing",
+         "hi": "लिखने में"
+        },
+        {
+         "en": "Numbers and calculation",
+         "hi": "संख्याओं और गणना में"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "\"Calc\" points to calculation.",
+        "hi": "\"कैल्क\" गणना की ओर इशारा करता है।"
+       },
+       "wrong": [
+        {
+         "en": "That is dyslexia.",
+         "hi": "वह डिस्लेक्सिया है।"
+        },
+        {
+         "en": "That is dysgraphia.",
+         "hi": "वह डिस्ग्राफ़िया है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of how we can help a classmate who finds reading hard. Write down two kind and useful ideas.",
+      "hi": "सोचो कि जिस सहपाठी को पढ़ना कठिन लगता है उसकी हम कैसे मदद कर सकते हैं। दो दयालु और उपयोगी विचार लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Classical conditioning",
+   "shows": "A street ice-cream cart with its bell and a child's hand reaching with coins, evening light",
+   "view": "16:9, warm light",
+   "right": "Hands only, cart without a readable name",
+   "avoid": "Faces, shop names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "5.2",
+   "use": "Pavlov steps",
+   "shows": "Five frames of a dog with a bowl: the bowl, a bell, bell then bowl, dog waiting, dog's mouth open at the bell",
+   "view": "Five 4:3 images, same angle",
+   "right": "A friendly dog, calm room",
+   "avoid": "Real brand of dog food, text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "5.3",
+   "use": "Operant box",
+   "shows": "A small plain transparent box with a lever and a food cup, as a clean cut-out",
+   "view": "Transparent PNG, three-quarter view",
+   "right": "Simple, clearly a teaching model",
+   "avoid": "Any animal, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.6",
+   "use": "Observational learning",
+   "shows": "A girl copying her older brother's hand movements while he plays carrom, backs and hands only",
+   "view": "16:9, indoors",
+   "right": "Shared attention visible",
+   "avoid": "Faces"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "5.9",
+   "use": "Learning curve",
+   "shows": "A blank graph frame with two axes and a smooth upward curve that flattens, no numbers",
+   "view": "16:9, white background",
+   "right": "Smooth curve with a plateau",
+   "avoid": "Numbers and labels"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "5.10",
+   "use": "Learning disabilities",
+   "shows": "A teacher sitting beside a student with a large-print book and a coloured overlay",
+   "view": "16:9, classroom",
+   "right": "Warm, supportive, seen from the side",
+   "avoid": "Faces, readable pages"
+  }
+ ]
+}

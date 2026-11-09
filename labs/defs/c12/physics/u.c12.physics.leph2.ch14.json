@@ -1,0 +1,1197 @@
+{
+ "chapter_key": "u.c12.physics.leph2.ch14",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Semiconductor Electronics: Materials, Devices and Simple Circuits",
+ "source": "https://ncert.nic.in/textbook/pdf/leph214.pdf",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "An opening about electronic devices and the chips in everyday life; photos and the reader set the scene."
+  },
+  {
+   "n": "14.2",
+   "title": "Classification of metals, conductors and semiconductors (band picture)",
+   "labs": [
+    "c12-physics-leph2-ch14-classify"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.3",
+   "title": "Intrinsic semiconductor",
+   "labs": [
+    "c12-physics-leph2-ch14-doping"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.4",
+   "title": "Extrinsic semiconductor (n-type and p-type)",
+   "labs": [
+    "c12-physics-leph2-ch14-doping"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.5",
+   "title": "The p-n junction and the depletion layer",
+   "labs": [
+    "c12-physics-leph2-ch14-pn-junction"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.6",
+   "title": "Semiconductor diode (forward and reverse bias, LED)",
+   "labs": [
+    "c12-physics-leph2-ch14-diode-bias",
+    "c12-physics-leph2-ch14-led"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.7",
+   "title": "Application of a junction diode as a rectifier",
+   "labs": [
+    "c12-physics-leph2-ch14-half-wave",
+    "c12-physics-leph2-ch14-full-wave"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph2-ch14-classify",
+   "topic": "14.2",
+   "template": "sort",
+   "title": {
+    "en": "Conductors, semiconductors and insulators",
+    "hi": "चालक, अर्धचालक और विद्युतरोधी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cond",
+      "label": {
+       "en": "Conductor",
+       "hi": "चालक"
+      }
+     },
+     {
+      "id": "semi",
+      "label": {
+       "en": "Semiconductor",
+       "hi": "अर्धचालक"
+      }
+     },
+     {
+      "id": "ins",
+      "label": {
+       "en": "Insulator",
+       "hi": "विद्युतरोधी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "copper",
+      "text": {
+       "en": "Copper wire",
+       "hi": "ताँबे का तार"
+      },
+      "bin": "cond",
+      "why": {
+       "en": "Its conduction and valence bands overlap, so it conducts at all temperatures.",
+       "hi": "इसके चालन और संयोजी बैंड अतिव्यापित हैं, इसलिए यह हर ताप पर चालन करता है।"
+      }
+     },
+     {
+      "id": "silver",
+      "text": {
+       "en": "Silver",
+       "hi": "चाँदी"
+      },
+      "bin": "cond",
+      "why": {
+       "en": "One of the best conductors, with a huge number of free electrons.",
+       "hi": "सबसे अच्छे चालकों में से एक, जिसमें मुक्त इलेक्ट्रॉन बहुत अधिक हैं।"
+      }
+     },
+     {
+      "id": "silicon",
+      "text": {
+       "en": "Silicon (band gap about 1.1 eV)",
+       "hi": "सिलिकॉन (ऊर्जा अंतराल लगभग 1.1 eV)"
+      },
+      "bin": "semi",
+      "why": {
+       "en": "A small gap lets a few electrons jump across at room temperature.",
+       "hi": "छोटा अंतराल कमरे के ताप पर कुछ इलेक्ट्रॉनों को कूदने देता है।"
+      }
+     },
+     {
+      "id": "germanium",
+      "text": {
+       "en": "Germanium (gap about 0.7 eV)",
+       "hi": "जर्मेनियम (अंतराल लगभग 0.7 eV)"
+      },
+      "bin": "semi",
+      "why": {
+       "en": "Its gap is even smaller than silicon's, so it is a semiconductor.",
+       "hi": "इसका अंतराल सिलिकॉन से भी छोटा है, इसलिए यह अर्धचालक है।"
+      }
+     },
+     {
+      "id": "diamond",
+      "text": {
+       "en": "Diamond (gap about 5.4 eV)",
+       "hi": "हीरा (अंतराल लगभग 5.4 eV)"
+      },
+      "bin": "ins",
+      "why": {
+       "en": "The gap is so wide that no electrons cross it.",
+       "hi": "अंतराल इतना चौड़ा है कि कोई इलेक्ट्रॉन उसे पार नहीं करता।"
+      }
+     },
+     {
+      "id": "glass",
+      "text": {
+       "en": "Glass",
+       "hi": "काँच"
+      },
+      "bin": "ins",
+      "why": {
+       "en": "A very wide gap: it does not carry current.",
+       "hi": "बहुत चौड़ा अंतराल: यह धारा नहीं ले जाता।"
+      }
+     },
+     {
+      "id": "rubber",
+      "text": {
+       "en": "Rubber",
+       "hi": "रबड़"
+      },
+      "bin": "ins",
+      "why": {
+       "en": "An insulator, used to cover electric wires.",
+       "hi": "विद्युतरोधी, जो बिजली के तारों पर चढ़ाया जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why does the resistance of a semiconductor fall as it is heated?",
+      "hi": "गर्म करने पर अर्धचालक का प्रतिरोध क्यों घटता है?"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "more electrons jump across the band gap",
+       "hi": "अधिक इलेक्ट्रॉन ऊर्जा अंतराल पार कर जाते हैं"
+      },
+      {
+       "id": "o1",
+       "en": "its atoms stop moving",
+       "hi": "इसके परमाणु हिलना बंद कर देते हैं"
+      },
+      {
+       "id": "o2",
+       "en": "it becomes a metal",
+       "hi": "वह धातु बन जाता है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "card:silicon",
+     "expect": "placed:silicon",
+     "say": {
+      "en": "Tap the silicon card, then the semiconductor box.",
+      "hi": "सिलिकॉन का कार्ड छुओ, फिर अर्धचालक का बॉक्स।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:diamond",
+     "expect": "placed:diamond",
+     "say": {
+      "en": "Place diamond with the insulators.",
+      "hi": "हीरे को विद्युतरोधियों में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press check.",
+      "hi": "सभी कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a solid the electrons sit in energy bands. The valence band is full and the conduction band above it is where electrons can carry current. The gap between them decides the class. In a metal there is no gap, so it conducts. In an insulator the gap is large (more than about 3 eV) and no electrons cross it. In a semiconductor the gap is small (about 1 eV): at 0 K it is an insulator, but heat lifts some electrons across, so it conducts a little, and more as it warms.",
+      "hi": "ठोस में इलेक्ट्रॉन ऊर्जा बैंडों में रहते हैं। संयोजी बैंड भरा होता है और उसके ऊपर का चालन बैंड वह है जहाँ इलेक्ट्रॉन धारा ले जा सकते हैं। दोनों के बीच का अंतराल वर्ग तय करता है। धातु में अंतराल नहीं होता, इसलिए वह चालन करती है। विद्युतरोधी में अंतराल बड़ा (लगभग 3 eV से अधिक) होता है और कोई इलेक्ट्रॉन उसे पार नहीं करता। अर्धचालक में अंतराल छोटा (लगभग 1 eV) होता है: 0 K पर वह विद्युतरोधी है, पर ऊष्मा कुछ इलेक्ट्रॉनों को पार करा देती है, इसलिए वह थोड़ा चालन करता है, और गर्म होने पर अधिक।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A material has a band gap of 0.8 eV. It is most likely a",
+        "hi": "एक पदार्थ का ऊर्जा अंतराल 0.8 eV है। यह सबसे अधिक संभावना है"
+       },
+       "options": [
+        {
+         "en": "semiconductor",
+         "hi": "अर्धचालक"
+        },
+        {
+         "en": "good insulator",
+         "hi": "अच्छा विद्युतरोधी"
+        },
+        {
+         "en": "metal",
+         "hi": "धातु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A gap of about 1 eV is the sign of a semiconductor.",
+        "hi": "लगभग 1 eV का अंतराल अर्धचालक की पहचान है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Good insulators have gaps above about 3 eV.",
+         "hi": "अच्छे विद्युतरोधियों का अंतराल लगभग 3 eV से अधिक होता है।"
+        },
+        {
+         "en": "A metal has overlapping bands, not a gap.",
+         "hi": "धातु में बैंड अतिव्यापित होते हैं, अंतराल नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these would you use to make a computer chip? Why not copper or glass?",
+      "hi": "इनमें से कंप्यूटर चिप बनाने के लिए तुम किसे लोगे? ताँबा या काँच क्यों नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch14-doping",
+   "topic": "14.4",
+   "template": "match",
+   "title": {
+    "en": "Doping: n-type and p-type",
+    "hi": "अपमिश्रण: n-प्रकार और p-प्रकार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "n",
+      "left": {
+       "en": "n-type semiconductor",
+       "hi": "n-प्रकार का अर्धचालक"
+      },
+      "right": {
+       "en": "Doped with phosphorus: free electrons are the majority carriers",
+       "hi": "फ़ॉस्फ़ोरस से अपमिश्रित: मुक्त इलेक्ट्रॉन बहुसंख्यक वाहक"
+      },
+      "why": {
+       "en": "Phosphorus has 5 valence electrons; 4 bond and 1 is left free.",
+       "hi": "फ़ॉस्फ़ोरस के 5 संयोजी इलेक्ट्रॉन हैं; 4 बंध बनाते हैं और 1 मुक्त बचता है।"
+      }
+     },
+     {
+      "id": "p",
+      "left": {
+       "en": "p-type semiconductor",
+       "hi": "p-प्रकार का अर्धचालक"
+      },
+      "right": {
+       "en": "Doped with boron: holes are the majority carriers",
+       "hi": "बोरॉन से अपमिश्रित: कोटर बहुसंख्यक वाहक"
+      },
+      "why": {
+       "en": "Boron has 3 valence electrons, so a bond is short of one electron: a hole.",
+       "hi": "बोरॉन के 3 संयोजी इलेक्ट्रॉन हैं, इसलिए एक बंध में एक इलेक्ट्रॉन कम रहता है: कोटर।"
+      }
+     },
+     {
+      "id": "i",
+      "left": {
+       "en": "Intrinsic semiconductor",
+       "hi": "नैज अर्धचालक"
+      },
+      "right": {
+       "en": "Pure silicon: equal numbers of electrons and holes",
+       "hi": "शुद्ध सिलिकॉन: इलेक्ट्रॉन और कोटर बराबर संख्या में"
+      },
+      "why": {
+       "en": "Each electron that leaves its bond leaves one hole.",
+       "hi": "बंध छोड़ने वाला हर इलेक्ट्रॉन एक कोटर छोड़ता है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which dopant makes silicon p-type: phosphorus or boron?",
+      "hi": "कौन-सा अपमिश्रक सिलिकॉन को p-प्रकार का बनाता है: फ़ॉस्फ़ोरस या बोरॉन?"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "neither",
+       "hi": "कोई नहीं"
+      },
+      {
+       "id": "o0",
+       "en": "boron, with 3 valence electrons",
+       "hi": "बोरॉन, जिसमें 3 संयोजी इलेक्ट्रॉन हैं"
+      },
+      {
+       "id": "o1",
+       "en": "phosphorus, with 5",
+       "hi": "फ़ॉस्फ़ोरस, जिसमें 5 हैं"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "left:n",
+     "expect": "matched:n",
+     "say": {
+      "en": "Match the n-type semiconductor with how it is made.",
+      "hi": "n-प्रकार के अर्धचालक को उसके बनने के ढंग से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:p",
+     "expect": "matched:p",
+     "say": {
+      "en": "Match the p-type semiconductor.",
+      "hi": "p-प्रकार के अर्धचालक को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the intrinsic one and press check.",
+      "hi": "नैज को मिलाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A pure semiconductor is intrinsic. Adding a tiny amount of impurity (doping) changes its conductivity enormously. A pentavalent impurity such as phosphorus gives extra free electrons: an n-type semiconductor. A trivalent impurity such as boron leaves holes, which behave as positive carriers: a p-type semiconductor. Both types stay electrically neutral overall; the carriers are only a different kind of balanced charge.",
+      "hi": "शुद्ध अर्धचालक नैज होता है। बहुत थोड़ी अशुद्धि (अपमिश्रण) मिलाने से उसकी चालकता बहुत बदल जाती है। फ़ॉस्फ़ोरस जैसी पंचसंयोजी अशुद्धि अतिरिक्त मुक्त इलेक्ट्रॉन देती है: n-प्रकार का अर्धचालक। बोरॉन जैसी त्रिसंयोजी अशुद्धि कोटर छोड़ती है, जो धनात्मक वाहक की तरह व्यवहार करते हैं: p-प्रकार का अर्धचालक। दोनों प्रकार कुल मिलाकर विद्युत उदासीन रहते हैं; वाहक केवल संतुलित आवेश का अलग रूप हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Is an n-type semiconductor negatively charged overall?",
+        "hi": "क्या n-प्रकार का अर्धचालक कुल मिलाकर ऋणावेशित होता है?"
+       },
+       "options": [
+        {
+         "en": "No, it is neutral overall",
+         "hi": "नहीं, वह कुल मिलाकर उदासीन है"
+        },
+        {
+         "en": "Yes, it has extra electrons",
+         "hi": "हाँ, उसमें अतिरिक्त इलेक्ट्रॉन हैं"
+        },
+        {
+         "en": "Yes, it has holes",
+         "hi": "हाँ, उसमें कोटर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Doping adds carriers together with matching fixed ions.",
+        "hi": "अपमिश्रण वाहकों के साथ उतने ही स्थिर आयन जोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The donor atoms left behind carry matching positive charge, so the total is zero.",
+         "hi": "पीछे छूटे दाता परमाणु उतना ही धनावेश रखते हैं, इसलिए कुल आवेश शून्य है।"
+        },
+        {
+         "en": "Holes are the minority carriers in n-type material, and the material is still neutral.",
+         "hi": "n-प्रकार में कोटर अल्पसंख्यक वाहक हैं, और पदार्थ फिर भी उदासीन है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "In which type are holes the minority carriers? Which carrier is in the majority there?",
+      "hi": "किस प्रकार में कोटर अल्पसंख्यक वाहक हैं? वहाँ बहुसंख्यक वाहक कौन है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch14-pn-junction",
+   "topic": "14.5",
+   "template": "sequence",
+   "title": {
+    "en": "How the p-n junction forms",
+    "hi": "p-n संधि कैसे बनती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "A p-type and an n-type piece are joined",
+       "hi": "एक p-प्रकार और एक n-प्रकार का टुकड़ा जोड़ा जाता है"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Electrons diffuse from n to p; holes diffuse from p to n",
+       "hi": "इलेक्ट्रॉन n से p की ओर और कोटर p से n की ओर विसरित होते हैं"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "They leave fixed ions behind near the junction",
+       "hi": "वे संधि के पास स्थिर आयन छोड़ जाते हैं"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "A region without free carriers forms: the depletion layer",
+       "hi": "मुक्त वाहकों से रहित क्षेत्र बनता है: अवक्षय परत"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Its electric field builds a barrier potential",
+       "hi": "इसका विद्युत क्षेत्र रोधिका विभव बनाता है"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "Diffusion stops when the barrier is large enough",
+       "hi": "रोधिका पर्याप्त बड़ी होने पर विसरण रुक जाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What lies in the depletion region of a p-n junction?",
+      "hi": "p-n संधि के अवक्षय क्षेत्र में क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "many free electrons",
+       "hi": "बहुत से मुक्त इलेक्ट्रॉन"
+      },
+      {
+       "id": "o2",
+       "en": "many holes",
+       "hi": "बहुत से कोटर"
+      },
+      {
+       "id": "o0",
+       "en": "only fixed ions, no free carriers",
+       "hi": "केवल स्थिर आयन, कोई मुक्त वाहक नहीं"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Place the first step: join the two pieces.",
+      "hi": "पहला चरण रखो: दोनों टुकड़े जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:s4",
+     "expect": "placed:s4",
+     "say": {
+      "en": "Place the step about the depletion layer.",
+      "hi": "अवक्षय परत वाला चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the rest and press check.",
+      "hi": "बाकी लगाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When p and n regions are joined, electrons diffuse from the n side and holes from the p side. Each carrier that crosses leaves behind a fixed charged ion. Near the junction a layer without free carriers, the depletion region, builds up, with positive ions on the n side and negative ions on the p side. Its electric field points from n to p and opposes further diffusion. At balance there is a barrier potential: about 0.7 V for silicon and 0.3 V for germanium.",
+      "hi": "जब p और n क्षेत्र जोड़े जाते हैं तो n ओर से इलेक्ट्रॉन और p ओर से कोटर विसरित होते हैं। पार जाने वाला हर वाहक एक स्थिर आवेशित आयन पीछे छोड़ता है। संधि के पास मुक्त वाहकों से रहित परत, अवक्षय क्षेत्र, बन जाती है, जिसमें n ओर धनात्मक और p ओर ऋणात्मक आयन होते हैं। इसका विद्युत क्षेत्र n से p की ओर होता है और आगे के विसरण का विरोध करता है। संतुलन पर एक रोधिका विभव होता है: सिलिकॉन के लिए लगभग 0.7 वोल्ट और जर्मेनियम के लिए 0.3 वोल्ट।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The electric field in the depletion region points",
+        "hi": "अवक्षय क्षेत्र का विद्युत क्षेत्र किस ओर होता है"
+       },
+       "options": [
+        {
+         "en": "from the n side to the p side",
+         "hi": "n ओर से p ओर"
+        },
+        {
+         "en": "from the p side to the n side",
+         "hi": "p ओर से n ओर"
+        },
+        {
+         "en": "there is no field",
+         "hi": "कोई क्षेत्र नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Positive ions sit on the n side, negative on the p side, so the field goes n to p.",
+        "hi": "n ओर धनात्मक और p ओर ऋणात्मक आयन हैं, इसलिए क्षेत्र n से p की ओर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would help diffusion. The field opposes it, so it points the other way.",
+         "hi": "इससे विसरण में मदद मिलती। क्षेत्र उसका विरोध करता है, इसलिए वह दूसरी ओर होता है।"
+        },
+        {
+         "en": "The fixed ions on the two sides give a strong field in this thin region.",
+         "hi": "दोनों ओर के स्थिर आयन इस पतले क्षेत्र में प्रबल क्षेत्र बनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Does the barrier potential let you light a bulb by joining a wire across the diode? Why not?",
+      "hi": "क्या रोधिका विभव से डायोड पर तार जोड़कर बल्ब जलाया जा सकता है? क्यों नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch14-diode-bias",
+   "topic": "14.6",
+   "template": "circuit",
+   "title": {
+    "en": "Forward and reverse bias of a p-n diode",
+    "hi": "p-n डायोड का अग्र और उत्क्रम बायस"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "diode",
+    "preset": "germanium"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A diode is joined to a battery in forward bias, with the p side to the positive terminal. Current flows",
+      "hi": "डायोड बैटरी से अग्र बायस में जुड़ा है, p ओर धनात्मक टर्मिनल से। धारा"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "easily once the voltage passes a small knee value",
+       "hi": "एक छोटे घुटने के मान को पार करते ही आसानी से बहती है"
+      },
+      {
+       "id": "o1",
+       "en": "not at all",
+       "hi": "बिलकुल नहीं बहती"
+      },
+      {
+       "id": "o2",
+       "en": "equally in both directions",
+       "hi": "दोनों दिशाओं में बराबर बहती है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "closed",
+     "say": {
+      "en": "Close the switch.",
+      "hi": "स्विच बंद करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:voltage",
+     "expect": "reading:ammeter",
+     "say": {
+      "en": "Raise the forward voltage and watch the ammeter. Little current at first, then a sharp rise.",
+      "hi": "अग्र वोल्टता बढ़ाओ और ऐमीटर देखो। पहले थोड़ी धारा, फिर तीखी वृद्धि।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "plot",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot a few points to draw the characteristic curve.",
+      "hi": "अभिलक्षणिक वक्र खींचने के लिए कुछ बिंदु अंकित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:battery",
+     "expect": "reverse",
+     "say": {
+      "en": "Reverse the battery. The current drops to almost zero.",
+      "hi": "बैटरी उलटो। धारा लगभग शून्य हो जाती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In forward bias the external voltage opposes the barrier, narrows the depletion layer, and when it exceeds the knee voltage (about 0.3 V for germanium, 0.7 V for silicon) the current rises steeply. In reverse bias the voltage adds to the barrier, the depletion layer widens, and only a tiny leakage current of microamperes flows. The diode therefore passes current in one direction only, a one-way valve for electricity.",
+      "hi": "अग्र बायस में बाह्य वोल्टता रोधिका का विरोध करती है, अवक्षय परत को संकरा करती है, और घुटना वोल्टता (जर्मेनियम के लिए लगभग 0.3 वोल्ट, सिलिकॉन के लिए 0.7 वोल्ट) पार होने पर धारा तेज़ी से बढ़ती है। उत्क्रम बायस में वोल्टता रोधिका में जुड़ती है, अवक्षय परत चौड़ी होती है, और केवल माइक्रोऐम्पियर की बहुत छोटी क्षरण धारा बहती है। इस प्रकार डायोड धारा को केवल एक दिशा में जाने देता है, बिजली का एक-तरफ़ा वाल्व।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In reverse bias, the depletion layer of a diode",
+        "hi": "उत्क्रम बायस में डायोड की अवक्षय परत"
+       },
+       "options": [
+        {
+         "en": "becomes wider",
+         "hi": "चौड़ी हो जाती है"
+        },
+        {
+         "en": "becomes narrower",
+         "hi": "संकरी हो जाती है"
+        },
+        {
+         "en": "disappears",
+         "hi": "लुप्त हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The reverse voltage pulls carriers away from the junction.",
+        "hi": "उत्क्रम वोल्टता वाहकों को संधि से दूर खींचती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Narrowing happens in forward bias, when the external voltage opposes the barrier.",
+         "hi": "संकरी होना अग्र बायस में होता है, जब बाह्य वोल्टता रोधिका का विरोध करती है।"
+        },
+        {
+         "en": "The layer does not vanish; it widens and blocks the current.",
+         "hi": "परत लुप्त नहीं होती; वह चौड़ी होकर धारा रोकती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the material to silicon. At what voltage does the current start to rise now?",
+      "hi": "पदार्थ को सिलिकॉन कर दो। अब धारा किस वोल्टता पर बढ़ना शुरू होती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch14-led",
+   "topic": "14.6",
+   "template": "circuit",
+   "title": {
+    "en": "The LED: a diode that glows",
+    "hi": "LED: चमकने वाला डायोड"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "diode",
+    "preset": "led"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An LED is connected the wrong way round (reverse bias). It will",
+      "hi": "LED उल्टी तरह जुड़ी है (उत्क्रम बायस)। वह"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "glow dimly",
+       "hi": "धीमी चमकेगी"
+      },
+      {
+       "id": "o0",
+       "en": "stay dark",
+       "hi": "बुझी रहेगी"
+      },
+      {
+       "id": "o1",
+       "en": "glow brightly",
+       "hi": "तेज़ चमकेगी"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "closed",
+     "say": {
+      "en": "Close the switch.",
+      "hi": "स्विच बंद करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:voltage",
+     "expect": "lit",
+     "say": {
+      "en": "Raise the voltage until the LED lights up.",
+      "hi": "वोल्टता तब तक बढ़ाओ जब तक LED जल न उठे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:battery",
+     "expect": "reverse",
+     "say": {
+      "en": "Flip the battery. The LED goes dark.",
+      "hi": "बैटरी पलटो। LED बुझ जाती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A light-emitting diode is a p-n junction made of a special semiconductor. In forward bias, electrons and holes meet near the junction and recombine, and the extra energy leaves as light whose colour depends on the band gap. The knee voltage of an LED is higher than silicon's (about 1.7 V for red and over 3 V for blue). LEDs use little power and last long, which is why they have replaced filament bulbs.",
+      "hi": "प्रकाश उत्सर्जक डायोड एक विशेष अर्धचालक का p-n संधि है। अग्र बायस में इलेक्ट्रॉन और कोटर संधि के पास मिलकर पुनर्संयोजित होते हैं और अतिरिक्त ऊर्जा प्रकाश के रूप में निकलती है, जिसका रंग ऊर्जा अंतराल पर निर्भर करता है। LED का घुटना वोल्टता सिलिकॉन से अधिक होती है (लाल के लिए लगभग 1.7 वोल्ट और नीले के लिए 3 वोल्ट से अधिक)। LED कम शक्ति लेती है और लंबे समय चलती है, इसीलिए उसने तंतु वाले बल्ब बदल दिए हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does an LED need a series resistor?",
+        "hi": "LED को श्रेणी में प्रतिरोधक की आवश्यकता क्यों होती है?"
+       },
+       "options": [
+        {
+         "en": "to limit the current once it conducts",
+         "hi": "चालन शुरू होने पर धारा सीमित करने के लिए"
+        },
+        {
+         "en": "to make it glow brighter",
+         "hi": "उसे अधिक चमकीला बनाने के लिए"
+        },
+        {
+         "en": "to change the colour",
+         "hi": "रंग बदलने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Above the knee the current rises sharply and could burn the LED.",
+        "hi": "घुटने के ऊपर धारा तेज़ी से बढ़ती है और LED को जला सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A resistor reduces current, so it cannot make the LED brighter.",
+         "hi": "प्रतिरोधक धारा घटाता है, इसलिए वह LED को अधिक चमकीला नहीं बना सकता।"
+        },
+        {
+         "en": "The colour depends on the semiconductor's band gap, not on the resistor.",
+         "hi": "रंग अर्धचालक के ऊर्जा अंतराल पर निर्भर है, प्रतिरोधक पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why does the LED glow only for one direction of the battery?",
+      "hi": "LED बैटरी की केवल एक दिशा में ही क्यों चमकती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch14-half-wave",
+   "topic": "14.7",
+   "template": "grapher",
+   "title": {
+    "en": "Half-wave rectifier",
+    "hi": "अर्ध-तरंग दिष्टकारी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trig",
+    "expr": "a*(sin(x)+abs(sin(x)))/2",
+    "params": {
+     "a": [
+      1,
+      5,
+      3
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A diode is placed in series with an AC source and a load. The load receives",
+      "hi": "डायोड को AC स्रोत और भार के साथ श्रेणी में लगाया गया। भार को मिलता है"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "the full wave",
+       "hi": "पूरी तरंग"
+      },
+      {
+       "id": "o2",
+       "en": "nothing",
+       "hi": "कुछ नहीं"
+      },
+      {
+       "id": "o0",
+       "en": "only the positive half of each cycle",
+       "hi": "प्रत्येक चक्र का केवल धनात्मक आधा भाग"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is time. Slide it along the output wave. The negative half is cut off.",
+      "hi": "x समय है। उसे निर्गत तरंग पर चलाओ। ऋणात्मक आधा भाग कट जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a is the peak of the AC input. A higher input gives a taller output.",
+      "hi": "a AC निवेश का शिखर है। अधिक निवेश से निर्गत ऊँचा होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a half-wave rectifier the diode conducts only when its p side is positive, so only the positive half-cycles reach the load. The output is pulsating DC, with the same direction but a changing size. Its frequency is the same as the input, 50 Hz. A capacitor in parallel with the load smooths the ripples. Mobile chargers and radios use rectifiers to turn the mains AC into DC.",
+      "hi": "अर्ध-तरंग दिष्टकारी में डायोड तभी चालन करता है जब उसका p सिरा धनात्मक हो, इसलिए केवल धनात्मक अर्ध-चक्र भार तक पहुँचते हैं। निर्गत स्पंदित दिष्ट धारा है, जिसकी दिशा एक ही पर माप बदलता रहता है। इसकी आवृत्ति निवेश के बराबर, 50 हर्ट्ज़ है। भार के समांतर संधारित्र लहरियों को चिकना कर देता है। मोबाइल चार्जर और रेडियो मेन्स की AC को DC में बदलने के लिए दिष्टकारी प्रयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The frequency of the output of a half-wave rectifier fed with 50 Hz AC is",
+        "hi": "50 हर्ट्ज़ AC से चलने वाले अर्ध-तरंग दिष्टकारी के निर्गत की आवृत्ति है"
+       },
+       "options": [
+        {
+         "en": "50 Hz",
+         "hi": "50 हर्ट्ज़"
+        },
+        {
+         "en": "100 Hz",
+         "hi": "100 हर्ट्ज़"
+        },
+        {
+         "en": "25 Hz",
+         "hi": "25 हर्ट्ज़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One pulse per input cycle means output frequency = input frequency.",
+        "hi": "निवेश के प्रति चक्र एक स्पंद का अर्थ है निर्गत आवृत्ति = निवेश आवृत्ति।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the full-wave rectifier, which gives a pulse every half cycle.",
+         "hi": "यह पूर्ण-तरंग दिष्टकारी है, जो हर अर्ध-चक्र में एक स्पंद देता है।"
+        },
+        {
+         "en": "The pulses repeat once per input cycle, so the frequency is the same as the input.",
+         "hi": "स्पंद निवेश के हर चक्र में एक बार दोहराते हैं, इसलिए आवृत्ति निवेश के बराबर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the gaps between pulses. What would you add to the circuit to fill them in?",
+      "hi": "स्पंदों के बीच के अंतराल देखो। उन्हें भरने के लिए तुम परिपथ में क्या जोड़ोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch14-full-wave",
+   "topic": "14.7",
+   "template": "grapher",
+   "title": {
+    "en": "Full-wave rectifier",
+    "hi": "पूर्ण-तरंग दिष्टकारी"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "mode": "trig",
+    "expr": "a*abs(sin(x))",
+    "params": {
+     "a": [
+      1,
+      5,
+      3
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Compared with a half-wave rectifier, a full-wave rectifier gives pulses",
+      "hi": "अर्ध-तरंग दिष्टकारी की तुलना में पूर्ण-तरंग दिष्टकारी स्पंद देता है"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "twice as often",
+       "hi": "दोगुनी बार"
+      },
+      {
+       "id": "o1",
+       "en": "half as often",
+       "hi": "आधी बार"
+      },
+      {
+       "id": "o2",
+       "en": "equally often",
+       "hi": "उतनी ही बार"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is time. Slide it along the output and see that no half-cycle is lost; the negative half is turned over.",
+      "hi": "x समय है। उसे निर्गत पर चलाओ और देखो कि कोई अर्ध-चक्र नहीं खोता; ऋणात्मक आधा भाग पलट दिया जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Change the peak a.",
+      "hi": "शिखर a बदलो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A full-wave rectifier uses two diodes (or a bridge of four) so that both half-cycles drive current through the load in the same direction. The output pulses are twice as frequent as the input, 100 Hz for 50 Hz mains, and they are easier to smooth with a capacitor. It also makes better use of the supply, as no half-cycle is wasted.",
+      "hi": "पूर्ण-तरंग दिष्टकारी दो डायोड (या चार का सेतु) प्रयोग करता है ताकि दोनों अर्ध-चक्र भार में एक ही दिशा में धारा चलाएँ। निर्गत स्पंद निवेश से दोगुने बार आते हैं, 50 हर्ट्ज़ की मेन्स के लिए 100 हर्ट्ज़, और उन्हें संधारित्र से चिकना करना आसान है। यह आपूर्ति का बेहतर उपयोग करता है, क्योंकि कोई अर्ध-चक्र व्यर्थ नहीं जाता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a full-wave rectifier output easier to smooth?",
+        "hi": "पूर्ण-तरंग दिष्टकारी का निर्गत चिकना करना आसान क्यों है?"
+       },
+       "options": [
+        {
+         "en": "the gaps between pulses are shorter",
+         "hi": "स्पंदों के बीच के अंतराल छोटे हैं"
+        },
+        {
+         "en": "it has no pulses at all",
+         "hi": "उसमें कोई स्पंद नहीं होते"
+        },
+        {
+         "en": "it is AC",
+         "hi": "वह AC है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Shorter gaps mean the capacitor loses less charge between pulses.",
+        "hi": "छोटे अंतराल का अर्थ है स्पंदों के बीच संधारित्र कम आवेश खोता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It still has pulses, but twice as many and closer together.",
+         "hi": "उसमें अब भी स्पंद होते हैं, पर दोगुने और पास-पास।"
+        },
+        {
+         "en": "The output is DC in direction, only pulsating in size.",
+         "hi": "निर्गत दिशा में दिष्ट है, केवल माप में स्पंदित।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare this graph with the half-wave one. How many peaks appear in the same time?",
+      "hi": "इस ग्राफ़ की तुलना अर्ध-तरंग वाले से करो। उतने ही समय में कितने शिखर आते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Chapter hook: a circuit board and chip",
+   "shows": "A close macro of a green circuit board with a black microchip, resistors and a small LED, softly lit",
+   "view": "Overhead, shallow depth of field",
+   "right": "Chip and components sharp",
+   "avoid": "Brand names, readable text on the chip"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "14.6",
+   "use": "Real diodes and LEDs",
+   "shows": "Three signal diodes, a rectifier diode and three LEDs (red, green, blue) on white",
+   "view": "Straight overhead",
+   "right": "Band mark on the diodes visible",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "14.5",
+   "use": "Inside a p-n junction diode",
+   "shows": "A cutaway 3D drawing of a diode with a p region in red, an n region in blue and a thin grey depletion layer between them",
+   "view": "Side cutaway, dark background",
+   "right": "Depletion layer clearly thin and in the middle",
+   "avoid": "Plus and minus symbols with text"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "14.7",
+   "use": "A rectifier output on an oscilloscope",
+   "shows": "A clear oscilloscope trace of a half-wave rectified signal with the flat gaps between humps",
+   "view": "Straight front view",
+   "right": "Humps equal and gaps flat",
+   "avoid": "Brand text, screen clutter"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "14.7",
+   "use": "A phone charger opened up",
+   "shows": "A phone charger with the case open showing the transformer and a few small diodes and a capacitor",
+   "view": "Overhead on a white bench",
+   "right": "Components distinct",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 6,
+   "kind": "3DM",
+   "topic": "14.4",
+   "use": "Silicon lattice with a dopant",
+   "shows": "A 3D crystal of grey silicon atoms with bonds and one orange phosphorus atom with an extra glowing electron",
+   "view": "Three-quarter view, dark background",
+   "right": "The extra electron clearly visible",
+   "avoid": "Text, equations"
+  }
+ ]
+}

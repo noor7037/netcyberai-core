@@ -1,0 +1,852 @@
+{
+ "chapter_key": "u.c07.science.gecu1.ch08",
+ "class": 7,
+ "subject_id": "science",
+ "title": "Measurement of Time and Motion",
+ "source": "https://ncert.nic.in/textbook/pdf/gecu108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Measurement of time: sundials, water clocks and other devices",
+   "labs": [
+    "c07-science-gecu1-ch08-old-clocks"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.1.1",
+   "title": "A simple pendulum and its time period",
+   "labs": [
+    "c07-science-gecu1-ch08-pendulum"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.1.2",
+   "title": "SI unit of time",
+   "labs": [],
+   "why_no_lab": "A short fact taught in the reader and checked in the pendulum lab."
+  },
+  {
+   "n": "8.2",
+   "title": "Slow or fast",
+   "labs": [
+    "c07-science-gecu1-ch08-race"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Speed",
+   "labs": [
+    "c07-science-gecu1-ch08-speed"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3.1",
+   "title": "Relationship between speed, distance and time",
+   "labs": [],
+   "why_no_lab": "Practised with numbers inside the speed lab (distance = speed × time); a separate lab would repeat it."
+  },
+  {
+   "n": "8.4",
+   "title": "Uniform and non-uniform linear motion",
+   "labs": [
+    "c07-science-gecu1-ch08-uniform"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-science-gecu1-ch08-old-clocks",
+   "topic": "8.1",
+   "template": "match",
+   "title": {
+    "en": "Clocks through the ages",
+    "hi": "युगों-युगों की घड़ियाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "sundial",
+      "left": {
+       "en": "Sundial",
+       "hi": "धूप घड़ी"
+      },
+      "right": {
+       "en": "The shadow of a stick moves as the Sun moves",
+       "hi": "सूर्य के चलने के साथ एक छड़ की छाया खिसकती है"
+      },
+      "why": {
+       "en": "The giant Samrat Yantra in Jaipur is a sundial.",
+       "hi": "जयपुर का विशाल सम्राट यंत्र एक धूप घड़ी है।"
+      }
+     },
+     {
+      "id": "ghatika",
+      "left": {
+       "en": "Ghatika-yantra (water clock)",
+       "hi": "घटिका यंत्र (जल घड़ी)"
+      },
+      "right": {
+       "en": "A bowl with a tiny hole sinks in a fixed time",
+       "hi": "छोटे छेद वाला कटोरा तय समय में डूबता है"
+      },
+      "why": {
+       "en": "Each sinking of the bowl measured one ghatika; a day had 60 ghatis.",
+       "hi": "कटोरे का हर बार डूबना एक घटिका मापता था; एक दिन में 60 घटी होती थीं।"
+      }
+     },
+     {
+      "id": "hourglass",
+      "left": {
+       "en": "Hourglass",
+       "hi": "रेत घड़ी"
+      },
+      "right": {
+       "en": "Sand runs from the top half to the bottom half",
+       "hi": "रेत ऊपर वाले भाग से नीचे वाले भाग में गिरती है"
+      },
+      "why": {
+       "en": "When all the sand has fallen, a fixed time has passed.",
+       "hi": "सारी रेत गिरने पर एक तय समय बीत जाता है।"
+      }
+     },
+     {
+      "id": "pendulum",
+      "left": {
+       "en": "Pendulum clock",
+       "hi": "लोलक घड़ी"
+      },
+      "right": {
+       "en": "A swinging bob takes the same time for every swing",
+       "hi": "झूलता गोलक हर झूले में बराबर समय लेता है"
+      },
+      "why": {
+       "en": "Equal swings let the clock keep steady time.",
+       "hi": "बराबर झूलों से घड़ी समय ठीक रखती है।"
+      }
+     },
+     {
+      "id": "quartz",
+      "left": {
+       "en": "Quartz and atomic clocks",
+       "hi": "क्वार्ट्ज़ और परमाणु घड़ियाँ"
+      },
+      "right": {
+       "en": "Very fast, very regular vibrations keep time",
+       "hi": "बहुत तेज़, बहुत नियमित कंपन समय रखते हैं"
+      },
+      "why": {
+       "en": "Atomic clocks are so exact they lose hardly a second in millions of years.",
+       "hi": "परमाणु घड़ियाँ इतनी सटीक हैं कि लाखों वर्षों में मुश्किल से एक सेकंड का अंतर आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:sundial",
+     "expect": "matched:sundial",
+     "say": {
+      "en": "Tap Sundial, then how it works.",
+      "hi": "'धूप घड़ी' पर टैप करो, फिर उस पर कि वह कैसे काम करती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does every clock need?",
+      "hi": "हर घड़ी को किस चीज़ की ज़रूरत होती है?"
+     },
+     "options": [
+      {
+       "id": "repeat",
+       "en": "Something that repeats in equal times",
+       "hi": "ऐसी चीज़ जो बराबर समय में दोहराई जाए"
+      },
+      {
+       "id": "battery",
+       "en": "A battery",
+       "hi": "एक बैटरी"
+      },
+      {
+       "id": "sun",
+       "en": "Sunlight",
+       "hi": "धूप"
+      }
+     ],
+     "answer": "repeat"
+    },
+    {
+     "kind": "do",
+     "target": "left:ghatika",
+     "expect": "matched:ghatika",
+     "say": {
+      "en": "Match the water clock.",
+      "hi": "जल घड़ी को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "People have always measured time with something that happens again and again in equal times: the Sun's shadow, water filling a bowl, falling sand, a swinging pendulum, a vibrating crystal. The more regular the repeat, the more exact the clock.",
+      "hi": "लोग हमेशा से किसी ऐसी चीज़ से समय मापते आए हैं जो बराबर समय में बार-बार होती है: सूर्य की छाया, कटोरे में भरता पानी, गिरती रेत, झूलता लोलक, कंपन करता क्रिस्टल। जितनी नियमित दोहराई, उतनी सटीक घड़ी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can a sundial not be used at night?",
+        "hi": "धूप घड़ी रात में क्यों काम नहीं आती?"
+       },
+       "options": [
+        {
+         "en": "It needs the Sun to cast a shadow",
+         "hi": "छाया बनने के लिए इसे सूर्य चाहिए"
+        },
+        {
+         "en": "Its stick falls down at night",
+         "hi": "रात को इसकी छड़ गिर जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "No sunlight, no shadow, so there is nothing to read.",
+        "hi": "धूप नहीं, तो छाया नहीं, और पढ़ने को कुछ नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The stick stays in place; it is the shadow that is missing.",
+         "hi": "छड़ अपनी जगह रहती है; छाया ही नहीं बनती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and match once more. At home, make a simple water clock from a plastic bottle with a small hole, with an adult's help.",
+      "hi": "'फिर से शुरू' दबाओ और फिर मिलाओ। घर पर किसी बड़े की मदद से छोटे छेद वाली प्लास्टिक की बोतल से एक सरल जल घड़ी बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch08-pendulum",
+   "topic": "8.1.1",
+   "template": "waves",
+   "title": {
+    "en": "A simple pendulum",
+    "hi": "सरल लोलक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "pendulum"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "period",
+     "say": {
+      "en": "Press Pull and let go, and watch one full swing being timed.",
+      "hi": "'खींचकर छोड़ो' दबाओ और एक पूरे झूले का समय मापते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you make the string shorter, what will happen to the time of one swing?",
+      "hi": "अगर तुम धागा छोटा कर दो, तो एक झूले का समय कैसा होगा?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "It gets shorter",
+       "hi": "कम हो जाएगा"
+      },
+      {
+       "id": "more",
+       "en": "It gets longer",
+       "hi": "बढ़ जाएगा"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "उतना ही रहेगा"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A pendulum swings to and fro, and each full swing (one oscillation) takes the same time. This time is its time period. With a 1 m string it is about 2 seconds. A shorter string swings faster, a longer one slower. The mass of the bob does not change it. Because the swings are so regular, pendulums were used in clocks.",
+      "hi": "लोलक इधर-उधर झूलता है, और हर पूरा झूला (एक दोलन) बराबर समय लेता है। यही उसका आवर्तकाल है। 1 m के धागे के साथ यह लगभग 2 सेकंड होता है। छोटा धागा तेज़ झूलता है, लंबा धीमा। गोलक के द्रव्यमान से यह नहीं बदलता। झूले इतने नियमित होते हैं, इसलिए लोलकों का उपयोग घड़ियों में हुआ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A pendulum takes 2 s for one oscillation. How long will 10 oscillations take?",
+        "hi": "एक लोलक एक दोलन में 2 s लेता है। 10 दोलनों में कितना समय लगेगा?"
+       },
+       "options": [
+        "20 s",
+        "10 s",
+        "2 s"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each oscillation takes 2 s, so 10 take 10 × 2 = 20 s.",
+        "hi": "हर दोलन 2 s लेता है, इसलिए 10 दोलन 10 × 2 = 20 s लेंगे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would be 1 s per oscillation; this pendulum takes 2 s.",
+         "hi": "यह हर दोलन के 1 s के बराबर होता; यह लोलक 2 s लेता है।"
+        },
+        {
+         "en": "2 s is the time for just one oscillation.",
+         "hi": "2 s केवल एक दोलन का समय है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the SI unit of time?",
+        "hi": "समय का SI मात्रक क्या है?"
+       },
+       "options": [
+        {
+         "en": "Second (s)",
+         "hi": "सेकंड (s)"
+        },
+        {
+         "en": "Hour (h)",
+         "hi": "घंटा (h)"
+        },
+        {
+         "en": "Ghati",
+         "hi": "घटी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The second is the standard unit used everywhere in science.",
+        "hi": "सेकंड विज्ञान में हर जगह उपयोग होने वाला मानक मात्रक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hours are used too, but the SI unit is the second; 1 h = 3600 s.",
+         "hi": "घंटे भी उपयोग होते हैं, पर SI मात्रक सेकंड है; 1 h = 3600 s।"
+        },
+        {
+         "en": "The ghati was an old Indian unit; today the standard is the second.",
+         "hi": "घटी एक पुराना भारतीय मात्रक था; आज मानक सेकंड है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the length of the string and time a swing again. Then change the starting angle. Which one changes the time period?",
+      "hi": "धागे की लंबाई बदलो और फिर एक झूले का समय देखो। फिर शुरुआती कोण बदलो। इनमें से कौन आवर्तकाल बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch08-race",
+   "topic": "8.2",
+   "template": "motion",
+   "title": {
+    "en": "Who is faster?",
+    "hi": "कौन ज़्यादा तेज़ है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "relative",
+    "vehicle": "cycle",
+    "vehicle2": "auto",
+    "u": 5,
+    "speed": 10
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:dt",
+     "say": {
+      "en": "A cycle (A) and an auto (B) will start together. Tap the d–t tab to watch both distances.",
+      "hi": "एक साइकिल (A) और एक ऑटो (B) साथ-साथ चलेंगे। दोनों की दूरियाँ देखने के लिए d–t टैब पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "They start at the same line at the same moment. How can you tell which is faster?",
+      "hi": "दोनों एक ही रेखा से एक ही समय पर चलते हैं। कैसे पता चलेगा कि कौन तेज़ है?"
+     },
+     "options": [
+      {
+       "id": "ahead",
+       "en": "The one ahead after the same time",
+       "hi": "जो उतने ही समय बाद आगे हो"
+      },
+      {
+       "id": "bigger",
+       "en": "The bigger one",
+       "hi": "जो बड़ा हो"
+      },
+      {
+       "id": "louder",
+       "en": "The louder one",
+       "hi": "जो ज़्यादा शोर करे"
+      }
+     ],
+     "answer": "ahead"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "stopped",
+     "say": {
+      "en": "Press Play and watch until the run ends.",
+      "hi": "'चलाओ' दबाओ और दौड़ ख़त्म होने तक देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Both started together, and after the same time the auto was ahead: it covered more distance in the same time, so it is faster. Comparing distances covered in the same time tells us who is faster. The distance covered in one unit of time is called speed.",
+      "hi": "दोनों साथ चले, और उतने ही समय बाद ऑटो आगे था: उसने उतने ही समय में ज़्यादा दूरी तय की, इसलिए वह तेज़ है। एक ही समय में तय दूरियों की तुलना से पता चलता है कि कौन तेज़ है। एक इकाई समय में तय दूरी को चाल कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a 100 m race, after 10 s Riya has run 60 m and Sana 50 m. Who is faster?",
+        "hi": "100 m की दौड़ में 10 s बाद रिया 60 m और सना 50 m दौड़ी है। कौन तेज़ है?"
+       },
+       "options": [
+        {
+         "en": "Riya",
+         "hi": "रिया"
+        },
+        {
+         "en": "Sana",
+         "hi": "सना"
+        },
+        {
+         "en": "Both are equally fast",
+         "hi": "दोनों बराबर तेज़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Riya covered more distance in the same time.",
+        "hi": "रिया ने उतने ही समय में ज़्यादा दूरी तय की।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sana covered less distance in the same 10 s, so she is slower.",
+         "hi": "सना ने उन्हीं 10 s में कम दूरी तय की, इसलिए वह धीमी है।"
+        },
+        {
+         "en": "They covered different distances in the same time, so their speeds differ.",
+         "hi": "उन्होंने एक ही समय में अलग-अलग दूरी तय की, इसलिए उनकी चाल अलग है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the speeds of A and B and run again. Can you make the cycle win?",
+      "hi": "A और B की चाल बदलो और फिर चलाओ। क्या तुम साइकिल को जिता सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch08-speed",
+   "topic": "8.3",
+   "template": "motion",
+   "title": {
+    "en": "Speed = distance ÷ time",
+    "hi": "चाल = दूरी ÷ समय"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "1d",
+    "vehicle": "car",
+    "u": 10,
+    "a": 0
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:dt",
+     "say": {
+      "en": "Tap the d–t graph tab so you can watch distance against time.",
+      "hi": "d–t ग्राफ़ टैब पर टैप करो ताकि दूरी और समय साथ दिखें।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The car moves at 10 m/s. The road is 50 m long. How long will it take to reach the end?",
+      "hi": "कार 10 m/s से चलती है। सड़क 50 m लंबी है। अंत तक पहुँचने में कितना समय लगेगा?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5 s",
+       "hi": "5 सेकंड"
+      },
+      {
+       "id": "10",
+       "en": "10 s",
+       "hi": "10 सेकंड"
+      },
+      {
+       "id": "50",
+       "en": "50 s",
+       "hi": "50 सेकंड"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "stopped",
+     "say": {
+      "en": "Press Play and watch the clock and the distance.",
+      "hi": "'चलाओ' दबाओ और घड़ी और दूरी देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The car covered 10 m every second, so 50 m took 5 s. Speed is the distance covered in unit time: speed = distance ÷ time. Its SI unit is metre per second (m/s); on roads we often use kilometre per hour (km/h). If you know any two of speed, distance and time, you can find the third: distance = speed × time.",
+      "hi": "कार हर सेकंड 10 m चली, इसलिए 50 m में 5 s लगे। एक इकाई समय में तय दूरी चाल है: चाल = दूरी ÷ समय। इसका SI मात्रक मीटर प्रति सेकंड (m/s) है; सड़कों पर हम अक्सर किलोमीटर प्रति घंटा (km/h) लेते हैं। चाल, दूरी और समय में से कोई दो पता हों तो तीसरा निकाल सकते हो: दूरी = चाल × समय।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A cyclist goes 400 m in 100 s. What is her speed?",
+        "hi": "एक साइकिल चालक 100 s में 400 m जाती है। उसकी चाल क्या है?"
+       },
+       "options": [
+        "4 m/s",
+        "40 m/s",
+        "500 m/s"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Speed = 400 m ÷ 100 s = 4 m/s.",
+        "hi": "चाल = 400 m ÷ 100 s = 4 m/s।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "400 ÷ 100 is 4, not 40; check the division.",
+         "hi": "400 ÷ 100 = 4 होता है, 40 नहीं; भाग फिर से जाँचो।"
+        },
+        {
+         "en": "Adding distance and time does not give speed; we divide.",
+         "hi": "दूरी और समय जोड़ने से चाल नहीं मिलती; भाग देते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A bus moves at 50 km/h for 2 h. How far does it go?",
+        "hi": "एक बस 2 h तक 50 km/h से चलती है। वह कितनी दूर जाती है?"
+       },
+       "options": [
+        "100 km",
+        "25 km",
+        "52 km"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Distance = speed × time = 50 × 2 = 100 km.",
+        "hi": "दूरी = चाल × समय = 50 × 2 = 100 km।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "25 km comes from dividing; for distance we multiply speed by time.",
+         "hi": "25 km भाग देने से आता है; दूरी के लिए चाल को समय से गुणा करते हैं।"
+        },
+        {
+         "en": "Adding 50 and 2 mixes units; multiply instead.",
+         "hi": "50 और 2 जोड़ने से मात्रक गड़बड़ाते हैं; गुणा करो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the starting speed with the slider and play again. How long does the car take at 5 m/s? At 25 m/s?",
+      "hi": "स्लाइडर से शुरुआती चाल बदलो और फिर चलाओ। 5 m/s पर कार कितना समय लेती है? 25 m/s पर?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch08-uniform",
+   "topic": "8.4",
+   "template": "motion",
+   "title": {
+    "en": "Uniform or non-uniform motion?",
+    "hi": "एकसमान या असमान गति?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "1d",
+    "vehicle": "train",
+    "u": 0,
+    "a": 2
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "stopped",
+     "say": {
+      "en": "Press Play. The train starts from rest at a station.",
+      "hi": "'चलाओ' दबाओ। रेलगाड़ी स्टेशन से रुकी हुई अवस्था से चलती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does the train cover the same distance every second?",
+      "hi": "क्या रेलगाड़ी हर सेकंड बराबर दूरी तय करती है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, more and more each second",
+       "hi": "नहीं, हर सेकंड पहले से ज़्यादा"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, the same each second",
+       "hi": "हाँ, हर सेकंड बराबर"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:vt",
+     "say": {
+      "en": "Tap the v–t tab to see how its speed changed.",
+      "hi": "v–t टैब पर टैप करके देखो कि उसकी चाल कैसे बदली।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The train's speed kept increasing, so it covered unequal distances in equal times: 1 m in the first second, 3 m in the next, then 5 m. That is non-uniform motion. An object moving in a straight line at a constant speed covers equal distances in equal times: uniform motion. A real train is non-uniform when starting and stopping, and nearly uniform in between.",
+      "hi": "रेलगाड़ी की चाल बढ़ती गई, इसलिए उसने बराबर समय में असमान दूरियाँ तय कीं: पहले सेकंड में 1 m, अगले में 3 m, फिर 5 m। यह असमान गति है। सीधी रेखा में स्थिर चाल से चलती वस्तु बराबर समय में बराबर दूरी तय करती है: एकसमान गति। असली रेलगाड़ी चलते और रुकते समय असमान गति में होती है, और बीच में लगभग एकसमान।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A car covers 60 km in the first hour and 70 km in the second hour. Its motion is…",
+        "hi": "एक कार पहले घंटे में 60 km और दूसरे घंटे में 70 km चलती है। उसकी गति…"
+       },
+       "options": [
+        {
+         "en": "non-uniform",
+         "hi": "असमान है"
+        },
+        {
+         "en": "uniform",
+         "hi": "एकसमान है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Unequal distances in equal times mean non-uniform motion.",
+        "hi": "बराबर समय में असमान दूरी का अर्थ है असमान गति।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Uniform motion would need the same distance every hour.",
+         "hi": "एकसमान गति में हर घंटे बराबर दूरी होनी चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is closest to uniform motion?",
+        "hi": "इनमें से कौन एकसमान गति के सबसे क़रीब है?"
+       },
+       "options": [
+        {
+         "en": "A train between two stations at a steady speed",
+         "hi": "दो स्टेशनों के बीच स्थिर चाल से चलती रेलगाड़ी"
+        },
+        {
+         "en": "A bus in city traffic",
+         "hi": "शहर के ट्रैफ़िक में बस"
+        },
+        {
+         "en": "A ball rolling to a stop",
+         "hi": "रुकते-रुकते लुढ़कती गेंद"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At a steady speed in a straight line, equal distances are covered in equal times.",
+        "hi": "सीधी रेखा में स्थिर चाल पर बराबर समय में बराबर दूरी तय होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A bus in traffic keeps speeding up and slowing down.",
+         "hi": "ट्रैफ़िक में बस बार-बार तेज़ और धीमी होती है।"
+        },
+        {
+         "en": "A ball slowing down covers less distance each second.",
+         "hi": "धीमी होती गेंद हर सेकंड कम दूरी तय करती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set the acceleration to 0 and play again. Now look at the d–t graph: is it a straight line?",
+      "hi": "त्वरण 0 करो और फिर चलाओ। अब d–t ग्राफ़ देखो: क्या यह सीधी रेखा है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Hook: India's giant sundial",
+   "shows": "The Samrat Yantra at Jantar Mantar, Jaipur, with its long shadow on the curved scale in the morning",
+   "view": "Wide, low angle, clear sky",
+   "right": "Real stone structure; shadow edge sharp on the quadrant",
+   "avoid": "Tourists, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "Ghatika-yantra",
+   "shows": "A small copper bowl with a tiny hole at the bottom floating in a larger brass vessel of water; second file: the bowl half sunk",
+   "view": "Three-quarter view, transparent background",
+   "right": "Copper bowl, water clear",
+   "avoid": "Text or marks on the vessels"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "Hourglass",
+   "shows": "A wooden-framed glass hourglass with sand halfway through",
+   "view": "Front view, lit from top left, transparent background",
+   "right": "Sand stream thin and continuous",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "8.1.1",
+   "use": "One oscillation of a pendulum",
+   "shows": "A metal bob on a thread hanging from a stand: frames at one extreme, the mean position, the other extreme and back",
+   "view": "Front view, plain background, same framing",
+   "right": "Thread taut and straight, swing angle small",
+   "avoid": "Blurred frames, hands in the picture"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.2",
+   "use": "Slow or fast",
+   "shows": "Children running a race on a school track seen from the side, some ahead of others",
+   "view": "Wide, side view, from far away",
+   "right": "Clear gaps between runners",
+   "avoid": "Identifiable faces, school names"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "Linear motion of a train",
+   "shows": "A passenger train on a long straight track between two small stations in open country",
+   "view": "High view along the track",
+   "right": "Track straight; two station platforms visible at the ends",
+   "avoid": "Station name boards, logos"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "8.4",
+   "use": "Base for the uniform-motion strip",
+   "shows": "A straight track drawn as a long strip with five evenly spaced blank markers",
+   "view": "Flat, white background",
+   "right": "Markers exactly equal distances apart",
+   "avoid": "Numbers or labels drawn in"
+  }
+ ]
+}

@@ -1,0 +1,2117 @@
+{
+ "chapter_key": "u.c12.economics.leec1.ch02",
+ "class": 12,
+ "subject_id": "economics",
+ "title": "National Income Accounting",
+ "source": "https://ncert.nic.in/textbook/pdf/leec102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Some basic concepts: consumption and capital goods, final and intermediate goods, stocks and flows, depreciation",
+   "labs": [
+    "c12-economics-leec1-ch02-goods",
+    "c12-economics-leec1-ch02-stockflow"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Circular flow of income and methods of calculation",
+   "labs": [
+    "c12-economics-leec1-ch02-circular",
+    "c12-economics-leec1-ch02-methods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2.1",
+   "title": "Product or value added method",
+   "labs": [
+    "c12-economics-leec1-ch02-valueadded"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2.2",
+   "title": "Expenditure method",
+   "labs": [
+    "c12-economics-leec1-ch02-expenditure"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2.3",
+   "title": "Income method",
+   "labs": [
+    "c12-economics-leec1-ch02-methods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2.4",
+   "title": "Factor cost, basic prices and market prices",
+   "labs": [
+    "c12-economics-leec1-ch02-prices"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Some macroeconomic identities",
+   "labs": [
+    "c12-economics-leec1-ch02-identities"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Nominal and real GDP",
+   "labs": [
+    "c12-economics-leec1-ch02-real"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "GDP and welfare",
+   "labs": [
+    "c12-economics-leec1-ch02-welfare"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-economics-leec1-ch02-goods",
+   "topic": "2.1",
+   "template": "sort",
+   "title": {
+    "en": "Final or intermediate?",
+    "hi": "अंतिम या मध्यवर्ती?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cons",
+      "label": {
+       "en": "Final consumption good",
+       "hi": "अंतिम उपभोग वस्तु"
+      }
+     },
+     {
+      "id": "cap",
+      "label": {
+       "en": "Capital good",
+       "hi": "पूँजीगत वस्तु"
+      }
+     },
+     {
+      "id": "inter",
+      "label": {
+       "en": "Intermediate good",
+       "hi": "मध्यवर्ती वस्तु"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "g1",
+      "text": {
+       "en": "Bread bought by a family to eat",
+       "hi": "परिवार का खाने के लिए ख़रीदा ब्रेड"
+      },
+      "bin": "cons",
+      "why": {
+       "en": "It is used directly by the final user.",
+       "hi": "अंतिम उपयोगकर्ता इसे सीधे इस्तेमाल करता है।"
+      }
+     },
+     {
+      "id": "g2",
+      "text": {
+       "en": "Flour bought by a bakery to make bread",
+       "hi": "बेकरी का ब्रेड बनाने के लिए ख़रीदा आटा"
+      },
+      "bin": "inter",
+      "why": {
+       "en": "It is used up to make another good.",
+       "hi": "यह दूसरी वस्तु बनाने में खप जाता है।"
+      }
+     },
+     {
+      "id": "g3",
+      "text": {
+       "en": "A tractor bought by a farmer",
+       "hi": "किसान का ख़रीदा ट्रैक्टर"
+      },
+      "bin": "cap",
+      "why": {
+       "en": "It is used for many years to produce; it is a final good, not used up in one year.",
+       "hi": "यह कई साल उत्पादन में काम आता है; यह अंतिम वस्तु है, एक साल में खपती नहीं।"
+      }
+     },
+     {
+      "id": "g4",
+      "text": {
+       "en": "Sugar bought by a sweet shop for laddoos",
+       "hi": "मिठाई की दुकान का लड्डू के लिए ख़रीदा चीनी"
+      },
+      "bin": "inter",
+      "why": {
+       "en": "The sugar goes into the laddoo.",
+       "hi": "चीनी लड्डू में चली जाती है।"
+      }
+     },
+     {
+      "id": "g5",
+      "text": {
+       "en": "Laddoos bought by a customer",
+       "hi": "ग्राहक के ख़रीदे लड्डू"
+      },
+      "bin": "cons",
+      "why": {
+       "en": "The customer eats them: final consumption.",
+       "hi": "ग्राहक उन्हें खाता है: अंतिम उपभोग।"
+      }
+     },
+     {
+      "id": "g6",
+      "text": {
+       "en": "A weaving machine bought by a factory",
+       "hi": "कारख़ाने की ख़रीदी बुनाई मशीन"
+      },
+      "bin": "cap",
+      "why": {
+       "en": "Machines last for years and add to productive capacity.",
+       "hi": "मशीनें सालों चलती हैं और उत्पादन क्षमता बढ़ाती हैं।"
+      }
+     },
+     {
+      "id": "g7",
+      "text": {
+       "en": "Cotton bought by a cloth mill",
+       "hi": "कपड़ा मिल की ख़रीदी कपास"
+      },
+      "bin": "inter",
+      "why": {
+       "en": "It becomes part of the cloth.",
+       "hi": "यह कपड़े का हिस्सा बन जाती है।"
+      }
+     },
+     {
+      "id": "g8",
+      "text": {
+       "en": "A shirt a customer buys to wear",
+       "hi": "ग्राहक की पहनने के लिए ख़रीदी कमीज़"
+      },
+      "bin": "cons",
+      "why": {
+       "en": "The customer uses it: a final consumption good.",
+       "hi": "ग्राहक इसे इस्तेमाल करता है: अंतिम उपभोग वस्तु।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Wheat bought by a flour mill to make flour is a...",
+      "hi": "आटा चक्की का आटा बनाने के लिए ख़रीदा गेहूँ है एक..."
+     },
+     "options": [
+      {
+       "id": "inter",
+       "en": "intermediate good",
+       "hi": "मध्यवर्ती वस्तु"
+      },
+      {
+       "id": "cons",
+       "en": "final consumption good",
+       "hi": "अंतिम उपभोग वस्तु"
+      },
+      {
+       "id": "cap",
+       "en": "capital good",
+       "hi": "पूँजीगत वस्तु"
+      }
+     ],
+     "answer": "inter"
+    },
+    {
+     "kind": "do",
+     "target": "card:g1",
+     "expect": "placed:g1",
+     "say": {
+      "en": "Tap the first card, then tap its group.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Final goods are used by their last buyer: consumption goods for consuming, capital goods like machines and tractors for producing over many years. Intermediate goods, like flour for a bakery, are used up to make other goods. GDP counts final goods only, because the value of intermediate goods is already inside them.",
+      "hi": "अंतिम वस्तुएँ अपने आख़िरी ख़रीदार के काम आती हैं: उपभोग वस्तुएँ खाने-पहनने के लिए, पूँजीगत वस्तुएँ जैसे मशीन और ट्रैक्टर कई साल उत्पादन के लिए। मध्यवर्ती वस्तुएँ, जैसे बेकरी का आटा, दूसरी वस्तुएँ बनाने में खप जाती हैं। GDP में केवल अंतिम वस्तुएँ गिनी जाती हैं, क्योंकि मध्यवर्ती वस्तुओं का मूल्य उनमें पहले से है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are intermediate goods left out when we calculate GDP?",
+        "hi": "GDP निकालते समय मध्यवर्ती वस्तुएँ क्यों छोड़ दी जाती हैं?"
+       },
+       "options": [
+        {
+         "en": "Their value is already inside the final goods",
+         "hi": "उनका मूल्य अंतिम वस्तुओं में पहले से शामिल है"
+        },
+        {
+         "en": "They have no value",
+         "hi": "उनका कोई मूल्य नहीं"
+        },
+        {
+         "en": "They are always imported",
+         "hi": "वे हमेशा आयातित होती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Counting them again would count the same value twice.",
+        "hi": "उन्हें फिर गिनने से वही मूल्य दो बार गिना जाएगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Intermediate goods do have value, which is why it is in the final price.",
+         "hi": "मध्यवर्ती वस्तुओं का मूल्य होता है, इसीलिए वह अंतिम कीमत में है।"
+        },
+        {
+         "en": "Many are made at home; they are not always imported.",
+         "hi": "कई घरेलू होती हैं; वे हमेशा आयातित नहीं होतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Is a motorbike bought by a courier company a consumption good or a capital good? Why?",
+      "hi": "कूरियर कंपनी की ख़रीदी मोटरसाइकिल उपभोग वस्तु है या पूँजीगत? क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch02-stockflow",
+   "topic": "2.1",
+   "template": "sort",
+   "title": {
+    "en": "Stock or flow?",
+    "hi": "स्टॉक या प्रवाह?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "stock",
+      "label": {
+       "en": "Stock (at a moment)",
+       "hi": "स्टॉक (एक क्षण पर)"
+      }
+     },
+     {
+      "id": "flow",
+      "label": {
+       "en": "Flow (per time)",
+       "hi": "प्रवाह (प्रति समय)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Water in a tank right now",
+       "hi": "अभी टंकी में भरा पानी"
+      },
+      "bin": "stock",
+      "why": {
+       "en": "It is measured at one point in time.",
+       "hi": "इसे एक क्षण पर मापा जाता है।"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Water running from a tap each minute",
+       "hi": "नल से हर मिनट बहता पानी"
+      },
+      "bin": "flow",
+      "why": {
+       "en": "It is measured over a period of time.",
+       "hi": "इसे एक अवधि में मापा जाता है।"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Money in your bank account today",
+       "hi": "आज आपके बैंक खाते में जमा पैसा"
+      },
+      "bin": "stock",
+      "why": {
+       "en": "A balance on a date is a stock.",
+       "hi": "किसी तारीख़ का बैलेंस स्टॉक है।"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Salary earned each month",
+       "hi": "हर महीने कमाया वेतन"
+      },
+      "bin": "flow",
+      "why": {
+       "en": "Income is a flow, per month.",
+       "hi": "आय प्रवाह है, प्रति माह।"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Number of machines in a factory today",
+       "hi": "आज कारख़ाने में मशीनों की संख्या"
+      },
+      "bin": "stock",
+      "why": {
+       "en": "The capital stock at a moment.",
+       "hi": "एक क्षण पर पूँजी स्टॉक।"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "New machines bought this year",
+       "hi": "इस साल ख़रीदी गई नई मशीनें"
+      },
+      "bin": "flow",
+      "why": {
+       "en": "Investment is a flow over a year.",
+       "hi": "निवेश एक साल का प्रवाह है।"
+      }
+     },
+     {
+      "id": "s7",
+      "text": {
+       "en": "A country's population today",
+       "hi": "आज देश की जनसंख्या"
+      },
+      "bin": "stock",
+      "why": {
+       "en": "Counted on a date.",
+       "hi": "एक तारीख़ पर गिनी जाती है।"
+      }
+     },
+     {
+      "id": "s8",
+      "text": {
+       "en": "Births in a country in one year",
+       "hi": "एक साल में देश में जन्म"
+      },
+      "bin": "flow",
+      "why": {
+       "en": "Births are counted over a period.",
+       "hi": "जन्म एक अवधि में गिने जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "GDP is measured for a year. So GDP is a...",
+      "hi": "GDP एक साल के लिए मापी जाती है। इसलिए GDP है एक..."
+     },
+     "options": [
+      {
+       "id": "flow",
+       "en": "flow",
+       "hi": "प्रवाह"
+      },
+      {
+       "id": "stock",
+       "en": "stock",
+       "hi": "स्टॉक"
+      }
+     ],
+     "answer": "flow"
+    },
+    {
+     "kind": "do",
+     "target": "card:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Tap the first card, then its group.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A stock is measured at a point of time, like the capital in a factory. A flow is measured over a period, like the investment made in a year. Depreciation wears down the capital stock, and net investment is gross investment less depreciation.",
+      "hi": "स्टॉक एक क्षण पर मापा जाता है, जैसे कारख़ाने की पूँजी। प्रवाह एक अवधि में मापा जाता है, जैसे साल भर का निवेश। मूल्यह्रास पूँजी स्टॉक को घिसाता है, और निवल निवेश = सकल निवेश − मूल्यह्रास।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Wealth and income: which one is a stock?",
+        "hi": "संपत्ति और आय में स्टॉक कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Wealth",
+         "hi": "संपत्ति"
+        },
+        {
+         "en": "Income",
+         "hi": "आय"
+        },
+        {
+         "en": "Both",
+         "hi": "दोनों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Wealth is what you have at a moment; income arrives over time.",
+        "hi": "संपत्ति एक क्षण पर आपके पास जो है; आय समय के साथ आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Income is a flow, earned per month or per year.",
+         "hi": "आय प्रवाह है, प्रति माह या प्रति वर्ष कमाई जाती है।"
+        },
+        {
+         "en": "Only one of them is a stock.",
+         "hi": "उनमें से केवल एक स्टॉक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one stock and one flow in your pocket money.",
+      "hi": "अपने जेब ख़र्च में से एक स्टॉक और एक प्रवाह का नाम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch02-circular",
+   "topic": "2.2",
+   "template": "economy",
+   "title": {
+    "en": "Round and round goes the money",
+    "hi": "पैसा घूमता है गोल-गोल"
+   },
+   "minutes": 9,
+   "level": "core",
+   "config": {
+    "mode": "circular-flow",
+    "params": {
+     "financial": 0,
+     "government": 0,
+     "abroad": 0
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In an economy with only households and firms, where households spend all their income, income in each round will...",
+      "hi": "केवल परिवारों और फ़र्मों वाली अर्थव्यवस्था में, जहाँ परिवार पूरी आय ख़र्च करते हैं, हर दौर में आय..."
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "stay the same",
+       "hi": "वही रहेगी"
+      },
+      {
+       "id": "up",
+       "en": "keep rising",
+       "hi": "बढ़ती जाएगी"
+      },
+      {
+       "id": "down",
+       "en": "keep falling",
+       "hi": "घटती जाएगी"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "computed",
+     "say": {
+      "en": "Press \"Run the flow round by round\" and watch income go round.",
+      "hi": "\"प्रवाह को दौर-दर-दौर चलाओ\" दबाओ और आय को घूमते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:financial",
+     "expect": "computed",
+     "say": {
+      "en": "Add the banks: households now save 10% and firms invest ₹100 crore.",
+      "hi": "बैंक जोड़ो: अब परिवार 10% बचाते हैं और फ़र्में ₹100 करोड़ निवेश करती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:government",
+     "expect": "computed",
+     "say": {
+      "en": "Add the government: taxes of 10% and spending of ₹100 crore.",
+      "hi": "सरकार जोड़ो: 10% कर और ₹100 करोड़ व्यय।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:abroad",
+     "expect": "computed",
+     "say": {
+      "en": "Add the rest of the world: imports of 10% and exports of ₹50 crore.",
+      "hi": "शेष विश्व जोड़ो: 10% आयात और ₹50 करोड़ निर्यात।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "computed",
+     "say": {
+      "en": "Run the flow again. Where does income settle?",
+      "hi": "प्रवाह फिर चलाओ। आय कहाँ टिकती है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "With only two sectors, money goes round unchanged. Saving, taxes and imports leak out of the flow. Investment, government spending and exports flow in. With everything on, leakages are 30% of income but injections are ₹250 crore, so income falls until 30% of income equals ₹250 crore: about ₹833 crore. Income settles where leakages equal injections. The numbers are an example.",
+      "hi": "केवल दो क्षेत्र हों तो पैसा बिना बदले घूमता है। बचत, कर और आयात प्रवाह से रिस जाते हैं। निवेश, सरकारी व्यय और निर्यात प्रवाह में आते हैं। सब चालू होने पर रिसाव आय का 30% है पर अंतःक्षेपण ₹250 करोड़ हैं, इसलिए आय तब तक घटती है जब तक आय का 30% ₹250 करोड़ के बराबर न हो जाए: लगभग ₹833 करोड़। आय वहाँ टिकती है जहाँ रिसाव = अंतःक्षेपण। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a leakage from the circular flow?",
+        "hi": "इनमें से कौन परिपथ प्रवाह का रिसाव है?"
+       },
+       "options": [
+        {
+         "en": "Saving",
+         "hi": "बचत"
+        },
+        {
+         "en": "Investment",
+         "hi": "निवेश"
+        },
+        {
+         "en": "Exports",
+         "hi": "निर्यात"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Saved money is not spent on firms' goods in that round.",
+        "hi": "बचाया पैसा उस दौर में फ़र्मों की वस्तुओं पर ख़र्च नहीं होता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Investment adds spending to the flow: an injection.",
+         "hi": "निवेश प्रवाह में ख़र्च जोड़ता है: अंतःक्षेपण।"
+        },
+        {
+         "en": "Exports bring money in: an injection.",
+         "hi": "निर्यात पैसा अंदर लाता है: अंतःक्षेपण।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Income stays steady when...",
+        "hi": "आय स्थिर रहती है जब..."
+       },
+       "options": [
+        {
+         "en": "leakages equal injections",
+         "hi": "रिसाव = अंतःक्षेपण"
+        },
+        {
+         "en": "saving is zero",
+         "hi": "बचत शून्य हो"
+        },
+        {
+         "en": "taxes are high",
+         "hi": "कर ऊँचे हों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "What leaves the flow equals what enters.",
+        "hi": "जो प्रवाह से निकलता है वह उसके बराबर है जो उसमें आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Saving can be zero while income still changes, if other leakages and injections differ.",
+         "hi": "बचत शून्य होने पर भी आय बदल सकती है यदि दूसरे रिसाव और अंतःक्षेपण अलग हों।"
+        },
+        {
+         "en": "High taxes are a leakage; they do not keep income steady by themselves.",
+         "hi": "ऊँचे कर रिसाव हैं; वे अकेले आय को स्थिर नहीं रखते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make exports ₹150 crore and run it again. Where does income settle now?",
+      "hi": "निर्यात ₹150 करोड़ करो और फिर चलाओ। अब आय कहाँ टिकती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch02-valueadded",
+   "topic": "2.2.1",
+   "template": "economy",
+   "title": {
+    "en": "Wheat to flour to bread",
+    "hi": "गेहूँ से आटा और ब्रेड"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "national-income",
+    "params": {
+     "valueadded": 1
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A farmer sells wheat for ₹100 to a miller. The miller sells flour for ₹150 to a baker. The baker sells bread for ₹220. The bread's contribution to GDP is...",
+      "hi": "किसान गेहूँ ₹100 में चक्की वाले को बेचता है। चक्की वाला आटा ₹150 में बेकर को बेचता है। बेकर ब्रेड ₹220 में बेचता है। GDP में योगदान है..."
+     },
+     "options": [
+      {
+       "id": "220",
+       "en": "₹220, the final value",
+       "hi": "₹220, अंतिम मूल्य"
+      },
+      {
+       "id": "470",
+       "en": "₹470, all the sales",
+       "hi": "₹470, सारी बिक्री"
+      },
+      {
+       "id": "100",
+       "en": "₹100, the first sale",
+       "hi": "₹100, पहली बिक्री"
+      }
+     ],
+     "answer": "220"
+    },
+    {
+     "kind": "do",
+     "target": "slider:bread",
+     "expect": "computed",
+     "say": {
+      "en": "Raise the price of bread. Watch the baker's value added grow.",
+      "hi": "ब्रेड की कीमत बढ़ाओ। बेकर का मूल्यवर्धन बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:flour",
+     "expect": "computed",
+     "say": {
+      "en": "Now change the flour price. Which stage's value added changes?",
+      "hi": "अब आटे की कीमत बदलो। किस चरण का मूल्यवर्धन बदलता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Value added = value of output − value of intermediate goods used. At the start, the farmer adds ₹100, the miller ₹50 (150 − 100) and the baker ₹70 (220 − 150). The three add up to ₹220, exactly the price of the bread. If we added all the sales (100 + 150 + 220 = 470), the wheat and flour would be counted again and again: that is double counting.",
+      "hi": "मूल्यवर्धन = उत्पादन का मूल्य − प्रयुक्त मध्यवर्ती वस्तुओं का मूल्य। शुरू में किसान ₹100 जोड़ता है, चक्की वाला ₹50 (150 − 100) और बेकर ₹70 (220 − 150)। तीनों मिलकर ₹220 होते हैं, ठीक ब्रेड की कीमत। सारी बिक्री जोड़ें (100 + 150 + 220 = 470) तो गेहूँ और आटा बार-बार गिने जाएँगे: यही दोहरी गिनती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The miller buys wheat for ₹100 and sells flour for ₹150. Value added is...",
+        "hi": "चक्की वाला गेहूँ ₹100 में ख़रीदकर आटा ₹150 में बेचता है। मूल्यवर्धन है..."
+       },
+       "options": [
+        {
+         "en": "₹50",
+         "hi": "₹50 रुपये"
+        },
+        {
+         "en": "₹150",
+         "hi": "₹150 रुपये"
+        },
+        {
+         "en": "₹250",
+         "hi": "₹250 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "150 − 100 = 50 rupees.",
+        "hi": "150 − 100 = 50 रुपये।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹150 is the miller's total sale, not what the miller added.",
+         "hi": "₹150 चक्की वाले की कुल बिक्री है, उसने जो जोड़ा वह नहीं।"
+        },
+        {
+         "en": "Adding the two prices gives a meaningless number.",
+         "hi": "दोनों कीमतें जोड़ने से अर्थहीन संख्या मिलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Adding up all sales along the chain would lead to...",
+        "hi": "पूरी कड़ी की सारी बिक्री जोड़ने से होगी..."
+       },
+       "options": [
+        {
+         "en": "double counting",
+         "hi": "दोहरी गिनती"
+        },
+        {
+         "en": "a correct GDP",
+         "hi": "सही GDP"
+        },
+        {
+         "en": "a lower GDP",
+         "hi": "कम GDP"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The same wheat would be counted in the flour and the bread too.",
+        "hi": "वही गेहूँ आटे और ब्रेड में भी गिना जाएगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It gives a figure that is too big, not correct.",
+         "hi": "इससे बहुत बड़ा अंक मिलता है, सही नहीं।"
+        },
+        {
+         "en": "It makes the total higher, not lower.",
+         "hi": "इससे कुल ज़्यादा होता है, कम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch off \"Value added\" and see the GDP view. How is the bread chain different from the whole economy?",
+      "hi": "\"मूल्यवर्धन\" बंद करो और GDP का दृश्य देखो। ब्रेड की कड़ी पूरी अर्थव्यवस्था से कैसे अलग है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch02-methods",
+   "topic": "2.2",
+   "template": "match",
+   "title": {
+    "en": "Three roads to the same GDP",
+    "hi": "एक ही GDP के तीन रास्ते"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "vadd",
+      "left": {
+       "en": "Value added method",
+       "hi": "मूल्यवर्धन विधि"
+      },
+      "right": {
+       "en": "Add value added: ₹80 + ₹170 = ₹250",
+       "hi": "मूल्यवर्धन जोड़ो: ₹80 + ₹170 = ₹250"
+      },
+      "why": {
+       "en": "Cotton farm adds ₹80; the mill adds 250 − 80 = ₹170.",
+       "hi": "कपास फ़ार्म ₹80 जोड़ता है; मिल 250 − 80 = ₹170 जोड़ती है।"
+      }
+     },
+     {
+      "id": "expend",
+      "left": {
+       "en": "Expenditure method",
+       "hi": "व्यय विधि"
+      },
+      "right": {
+       "en": "Final spending on cloth: ₹250",
+       "hi": "कपड़े पर अंतिम व्यय: ₹250"
+      },
+      "why": {
+       "en": "Only the final buyers' spending is counted.",
+       "hi": "केवल अंतिम ख़रीदारों का व्यय गिना जाता है।"
+      }
+     },
+     {
+      "id": "income",
+      "left": {
+       "en": "Income method",
+       "hi": "आय विधि"
+      },
+      "right": {
+       "en": "Wages ₹100 + profits ₹150 = ₹250",
+       "hi": "मज़दूरी ₹100 + लाभ ₹150 = ₹250"
+      },
+      "why": {
+       "en": "Everything earned by the factors adds to ₹250.",
+       "hi": "साधनों की सारी कमाई जुड़कर ₹250 होती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A cotton farm sells cotton for ₹80 to a mill (wages ₹30, profit ₹50). The mill sells cloth for ₹250 to consumers (wages ₹70, profit ₹100). GDP by any method is...",
+      "hi": "एक कपास फ़ार्म ₹80 की कपास मिल को बेचता है (मज़दूरी ₹30, लाभ ₹50)। मिल ₹250 का कपड़ा उपभोक्ताओं को बेचती है (मज़दूरी ₹70, लाभ ₹100)। किसी भी विधि से GDP है..."
+     },
+     "options": [
+      {
+       "id": "250",
+       "en": "₹250",
+       "hi": "₹250 रुपये"
+      },
+      {
+       "id": "330",
+       "en": "₹330",
+       "hi": "₹330 रुपये"
+      },
+      {
+       "id": "170",
+       "en": "₹170",
+       "hi": "₹170 रुपये"
+      }
+     ],
+     "answer": "250"
+    },
+    {
+     "kind": "do",
+     "target": "left:vadd",
+     "expect": "matched:vadd",
+     "say": {
+      "en": "Tap \"Value added method\", then the calculation that matches.",
+      "hi": "\"मूल्यवर्धन विधि\" दबाओ, फिर उससे मेल खाती गणना दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all three methods and press Check.",
+      "hi": "तीनों विधियाँ मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The same production can be counted in three phases: as it is produced (value added), as it is bought (final expenditure) and as it is shared out (factor incomes). All three give the same GDP, ₹250 here. The ₹80 cotton is not counted again because it is an intermediate good.",
+      "hi": "एक ही उत्पादन को तीन चरणों में गिना जा सकता है: बनते समय (मूल्यवर्धन), ख़रीदते समय (अंतिम व्यय) और बँटते समय (साधन आय)। तीनों से एक ही GDP मिलती है, यहाँ ₹250। ₹80 की कपास दोबारा नहीं गिनी जाती क्योंकि वह मध्यवर्ती वस्तु है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the expenditure method gives ₹250, the income method gives...",
+        "hi": "व्यय विधि से ₹250 मिले तो आय विधि से..."
+       },
+       "options": [
+        {
+         "en": "₹250",
+         "hi": "₹250 के बराबर"
+        },
+        {
+         "en": "less than ₹250",
+         "hi": "₹250 से कम"
+        },
+        {
+         "en": "more than ₹250",
+         "hi": "₹250 से ज़्यादा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "What is spent is earned by someone, so the totals match.",
+        "hi": "जो ख़र्च होता है वह किसी की कमाई होती है, इसलिए कुल बराबर होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The three methods must agree.",
+         "hi": "तीनों विधियों के नतीजे बराबर होने चाहिए।"
+        },
+        {
+         "en": "Income cannot exceed spending in this identity.",
+         "hi": "इस सर्वसमिका में आय व्यय से ज़्यादा नहीं हो सकती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change one number, say the mill's profit, and rework all three totals. Do they still agree?",
+      "hi": "एक संख्या बदलो, जैसे मिल का लाभ, और तीनों कुल फिर निकालो। क्या वे अब भी बराबर हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch02-expenditure",
+   "topic": "2.2.2",
+   "template": "economy",
+   "title": {
+    "en": "Adding up what is spent",
+    "hi": "ख़र्च को जोड़ना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "national-income",
+    "params": {}
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "GDP by the expenditure method is C + I + G + (X − M). Why is M, imports, subtracted?",
+      "hi": "व्यय विधि से GDP = C + I + G + (X − M)। आयात M क्यों घटाया जाता है?"
+     },
+     "options": [
+      {
+       "id": "home",
+       "en": "Part of C, I and G buys foreign goods that were not made here",
+       "hi": "C, I और G का एक हिस्सा विदेशी माल पर जाता है जो यहाँ नहीं बना"
+      },
+      {
+       "id": "bad",
+       "en": "Imports are bad for a country",
+       "hi": "आयात देश के लिए बुरे हैं"
+      },
+      {
+       "id": "tax",
+       "en": "Imports are always taxed",
+       "hi": "आयात पर हमेशा कर लगता है"
+      }
+     ],
+     "answer": "home"
+    },
+    {
+     "kind": "do",
+     "target": "slider:C",
+     "expect": "computed",
+     "say": {
+      "en": "Raise household consumption C. Watch GDP rise by the same amount.",
+      "hi": "परिवारों का उपभोग C बढ़ाओ। GDP को उतना ही बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:M",
+     "expect": "computed",
+     "say": {
+      "en": "Raise imports M. What happens to GDP?",
+      "hi": "आयात M बढ़ाओ। GDP का क्या होता है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:X",
+     "expect": "computed",
+     "say": {
+      "en": "Raise exports X. What happens to GDP?",
+      "hi": "निर्यात X बढ़ाओ। GDP का क्या होता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Expenditure on GDP is C + I + G + (X − M), where C is household consumption, I is investment, G is government spending, X is exports and M is imports. At the start, in ₹ crore, 600 + 200 + 150 + (100 − 130) = 920. Part of C, I and G is spent on imported goods, which were not produced inside the country, so imports are taken off. Exports are added because foreigners buy goods made here.",
+      "hi": "GDP पर व्यय = C + I + G + (X − M), जहाँ C परिवारों का उपभोग है, I निवेश, G सरकारी व्यय, X निर्यात और M आयात। शुरू में, ₹ करोड़ में, 600 + 200 + 150 + (100 − 130) = 920। C, I और G का एक हिस्सा आयातित माल पर जाता है जो देश में नहीं बना, इसलिए आयात घटाए जाते हैं। निर्यात जोड़े जाते हैं क्योंकि विदेशी यहाँ बना माल ख़रीदते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "C = 600, I = 200, G = 150, X = 100, M = 130. GDP is...",
+        "hi": "C = 600, I = 200, G = 150, X = 100, M = 130। GDP है..."
+       },
+       "options": [
+        {
+         "en": "920",
+         "hi": "920 करोड़ रुपये"
+        },
+        {
+         "en": "1,180",
+         "hi": "1,180 करोड़ रुपये"
+        },
+        {
+         "en": "950",
+         "hi": "950 करोड़ रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "600 + 200 + 150 + 100 − 130 = 920 crore.",
+        "hi": "600 + 200 + 150 + 100 − 130 = 920 करोड़।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1,180 adds M instead of subtracting it.",
+         "hi": "1,180 में M घटाने की जगह जोड़ दिया गया है।"
+        },
+        {
+         "en": "950 leaves out exports and imports (600 + 200 + 150).",
+         "hi": "950 में निर्यात-आयात छोड़ दिए गए हैं (600 + 200 + 150)।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Net exports are...",
+        "hi": "निवल निर्यात हैं..."
+       },
+       "options": [
+        {
+         "en": "X − M",
+         "hi": "X − M (निर्यात घटा आयात)"
+        },
+        {
+         "en": "X + M",
+         "hi": "X + M (निर्यात जमा आयात)"
+        },
+        {
+         "en": "M − X",
+         "hi": "M − X (आयात घटा निर्यात)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Net means what remains after subtracting imports.",
+        "hi": "निवल का अर्थ है आयात घटाने के बाद जो बचे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "X + M would add imports, which is wrong.",
+         "hi": "X + M में आयात जुड़ जाता है, जो ग़लत है।"
+        },
+        {
+         "en": "M − X reverses the sign.",
+         "hi": "M − X से चिह्न उलट जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make imports bigger than exports. Can net exports be negative? What does that do to GDP?",
+      "hi": "आयात को निर्यात से बड़ा करो। क्या निवल निर्यात ऋणात्मक हो सकता है? इसका GDP पर क्या असर है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch02-identities",
+   "topic": "2.3",
+   "template": "economy",
+   "title": {
+    "en": "From GDP to national income",
+    "hi": "GDP से राष्ट्रीय आय तक"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "national-income",
+    "params": {
+     "C": 700,
+     "I": 250,
+     "G": 200,
+     "X": 120,
+     "M": 150,
+     "dep": 70,
+     "nfia": 30,
+     "nit": 90
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "GDP counts what is produced inside the country. To get GNP, we add...",
+      "hi": "GDP देश के भीतर हुआ उत्पादन गिनती है। GNP पाने के लिए जोड़ते हैं..."
+     },
+     "options": [
+      {
+       "id": "nfia",
+       "en": "net factor income from abroad",
+       "hi": "विदेशों से निवल कारक आय"
+      },
+      {
+       "id": "dep",
+       "en": "depreciation",
+       "hi": "मूल्यह्रास"
+      },
+      {
+       "id": "tax",
+       "en": "net indirect taxes",
+       "hi": "निवल अप्रत्यक्ष कर"
+      }
+     ],
+     "answer": "nfia"
+    },
+    {
+     "kind": "do",
+     "target": "slider:nfia",
+     "expect": "computed",
+     "say": {
+      "en": "Make net factor income from abroad negative (say −40). What happens to GNP compared with GDP?",
+      "hi": "विदेशों से निवल कारक आय ऋणात्मक करो (जैसे −40)। GDP की तुलना में GNP का क्या होता है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:dep",
+     "expect": "computed",
+     "say": {
+      "en": "Raise depreciation. Which measure falls?",
+      "hi": "मूल्यह्रास बढ़ाओ। कौन-सा माप घटता है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:nit",
+     "expect": "computed",
+     "say": {
+      "en": "Raise net indirect taxes. Watch national income (NNP at factor cost).",
+      "hi": "निवल अप्रत्यक्ष कर बढ़ाओ। राष्ट्रीय आय (साधन लागत पर NNP) को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Start from GDP at market prices (₹1,120 crore here). GNP = GDP + net factor income from abroad. NDP = GDP − depreciation (1,120 − 70 = 1,050). NNP at market prices = GNP − depreciation (1,080). Taxes on goods are not income of the factors, so National income = NNP at factor cost = NNP at market prices − net indirect taxes = 1,080 − 90 = 990. The numbers are an example.",
+      "hi": "GDP (बाज़ार कीमत पर) से शुरू करो (यहाँ ₹1,120 करोड़)। GNP = GDP + विदेशों से निवल कारक आय। NDP = GDP − मूल्यह्रास (1,120 − 70 = 1,050)। बाज़ार कीमत पर NNP = GNP − मूल्यह्रास (1,080)। वस्तुओं पर कर साधनों की आय नहीं होते, इसलिए राष्ट्रीय आय = साधन लागत पर NNP = बाज़ार कीमत पर NNP − निवल अप्रत्यक्ष कर = 1,080 − 90 = 990। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How do we get national income from NNP at market prices?",
+        "hi": "बाज़ार कीमत पर NNP से राष्ट्रीय आय कैसे मिलती है?"
+       },
+       "options": [
+        {
+         "en": "subtract net indirect taxes",
+         "hi": "निवल अप्रत्यक्ष कर घटाओ"
+        },
+        {
+         "en": "add net indirect taxes",
+         "hi": "निवल अप्रत्यक्ष कर जोड़ो"
+        },
+        {
+         "en": "subtract depreciation again",
+         "hi": "फिर मूल्यह्रास घटाओ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Indirect taxes go to the government, not to the factors of production.",
+        "hi": "अप्रत्यक्ष कर सरकार को जाते हैं, उत्पादन के साधनों को नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding them would count tax money as factor income.",
+         "hi": "जोड़ने से कर का पैसा साधन आय मान लिया जाएगा।"
+        },
+        {
+         "en": "Depreciation was already deducted in getting NNP.",
+         "hi": "NNP पाने में मूल्यह्रास पहले ही घटाया जा चुका है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If depreciation is ₹70 crore and GDP is ₹1,120 crore, NDP is...",
+        "hi": "मूल्यह्रास ₹70 करोड़ और GDP ₹1,120 करोड़ हो तो NDP..."
+       },
+       "options": [
+        {
+         "en": "₹1,050 crore",
+         "hi": "₹1,050 करोड़"
+        },
+        {
+         "en": "₹1,190 crore",
+         "hi": "₹1,190 करोड़"
+        },
+        {
+         "en": "₹70 crore",
+         "hi": "₹70 करोड़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "NDP = GDP − depreciation = 1,120 − 70.",
+        "hi": "NDP = GDP − मूल्यह्रास = 1,120 − 70."
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding depreciation is the wrong direction.",
+         "hi": "मूल्यह्रास जोड़ना उलटी दिशा है।"
+        },
+        {
+         "en": "₹70 crore is only the depreciation.",
+         "hi": "₹70 करोड़ केवल मूल्यह्रास है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make net factor income from abroad zero. Does GNP now equal GDP?",
+      "hi": "विदेशों से निवल कारक आय शून्य करो। क्या अब GNP = GDP है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch02-prices",
+   "topic": "2.2.4",
+   "template": "match",
+   "title": {
+    "en": "Factor cost, basic and market prices",
+    "hi": "साधन लागत, मूल और बाज़ार कीमतें"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "basic",
+      "left": {
+       "en": "GVA at factor cost + net production taxes",
+       "hi": "साधन लागत पर GVA + निवल उत्पादन कर"
+      },
+      "right": {
+       "en": "GVA at basic prices",
+       "hi": "मूल कीमतों पर GVA"
+      },
+      "why": {
+       "en": "Basic prices include production taxes less subsidies.",
+       "hi": "मूल कीमतों में उत्पादन कर घटा सब्सिडी शामिल होते हैं।"
+      }
+     },
+     {
+      "id": "market",
+      "left": {
+       "en": "GVA at basic prices + net product taxes",
+       "hi": "मूल कीमतों पर GVA + निवल उत्पाद कर"
+      },
+      "right": {
+       "en": "GVA at market prices",
+       "hi": "बाज़ार कीमतों पर GVA"
+      },
+      "why": {
+       "en": "Market prices add taxes on products, less product subsidies.",
+       "hi": "बाज़ार कीमतों में उत्पादों पर कर घटा उत्पाद सब्सिडी जुड़ते हैं।"
+      }
+     },
+     {
+      "id": "factor",
+      "left": {
+       "en": "GDP at market prices − net indirect taxes",
+       "hi": "बाज़ार कीमतों पर GDP − निवल अप्रत्यक्ष कर"
+      },
+      "right": {
+       "en": "GDP at factor cost",
+       "hi": "साधन लागत पर GDP"
+      },
+      "why": {
+       "en": "Take away the taxes and what remains is the payment to factors.",
+       "hi": "करों को हटाओ तो बचा हुआ साधनों को भुगतान है।"
+      }
+     },
+     {
+      "id": "meaning",
+      "left": {
+       "en": "Includes only payments to factors of production, no taxes",
+       "hi": "केवल उत्पादन के साधनों को भुगतान शामिल, कर नहीं"
+      },
+      "right": {
+       "en": "Factor cost",
+       "hi": "साधन लागत"
+      },
+      "why": {
+       "en": "Wages, rent, interest and profit only.",
+       "hi": "केवल मज़दूरी, लगान, ब्याज और लाभ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which price is the one a buyer actually pays, with taxes and subsidies on products included?",
+      "hi": "ख़रीदार वास्तव में कौन-सी कीमत देता है, जिसमें उत्पादों पर कर और सब्सिडी शामिल होती है?"
+     },
+     "options": [
+      {
+       "id": "market",
+       "en": "market price",
+       "hi": "बाज़ार कीमत"
+      },
+      {
+       "id": "factor",
+       "en": "factor cost",
+       "hi": "साधन लागत"
+      },
+      {
+       "id": "basic",
+       "en": "basic price",
+       "hi": "मूल कीमत"
+      }
+     ],
+     "answer": "market"
+    },
+    {
+     "kind": "do",
+     "target": "left:basic",
+     "expect": "matched:basic",
+     "say": {
+      "en": "Tap the first row on the left, then its match.",
+      "hi": "बाईं ओर की पहली पंक्ति दबाओ, फिर उसका मेल दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all four and press Check.",
+      "hi": "चारों मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Factor cost pays only the factors. Basic prices are factor cost plus net production taxes. Market prices are basic prices plus net product taxes: the price the buyer sees. So market price − net indirect taxes gets us back to factor cost. India now reports GDP at market prices and GVA at basic prices.",
+      "hi": "साधन लागत केवल साधनों को भुगतान है। मूल कीमतें साधन लागत और निवल उत्पादन करों का जोड़ हैं। बाज़ार कीमतें मूल कीमतों और निवल उत्पाद करों का जोड़ हैं: जो कीमत ख़रीदार देखता है। इसलिए बाज़ार कीमत − निवल अप्रत्यक्ष कर से साधन लागत मिलती है। भारत अब बाज़ार कीमतों पर GDP और मूल कीमतों पर GVA बताता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these comes in between factor cost and market prices?",
+        "hi": "साधन लागत और बाज़ार कीमतों के बीच कौन आती है?"
+       },
+       "options": [
+        {
+         "en": "basic prices",
+         "hi": "मूल कीमतें"
+        },
+        {
+         "en": "real prices",
+         "hi": "वास्तविक कीमतें"
+        },
+        {
+         "en": "base year prices",
+         "hi": "आधार वर्ष की कीमतें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Basic prices include production taxes but not product taxes.",
+        "hi": "मूल कीमतों में उत्पादन कर होते हैं पर उत्पाद कर नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Real prices relate to inflation, not taxes.",
+         "hi": "वास्तविक कीमतें महँगाई से जुड़ी हैं, करों से नहीं।"
+        },
+        {
+         "en": "Base year prices are used for real GDP.",
+         "hi": "आधार वर्ष की कीमतें वास्तविक GDP के लिए हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say the chain aloud: factor cost, plus production taxes, plus product taxes.",
+      "hi": "कड़ी ज़ोर से बोलो: साधन लागत, फिर उत्पादन कर, फिर उत्पाद कर।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch02-real",
+   "topic": "2.4",
+   "template": "scenario",
+   "title": {
+    "en": "Nominal and real GDP in a rice economy",
+    "hi": "चावल अर्थव्यवस्था में नाममात्र और वास्तविक GDP"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "setting": "economy",
+    "role": {
+     "en": "Statistician of a tiny rice economy",
+     "hi": "छोटी चावल अर्थव्यवस्था की सांख्यिकीविद"
+    },
+    "scenes": [
+     {
+      "id": "r1",
+      "text": {
+       "en": "Only rice is produced. Year 1 (the base year): 100 quintals at ₹20 each. Year 2: 110 quintals at ₹24 each. What is the nominal GDP of year 2?",
+       "hi": "केवल चावल उगता है। वर्ष 1 (आधार वर्ष): 100 क्विंटल, ₹20 प्रति क्विंटल। वर्ष 2: 110 क्विंटल, ₹24 प्रति क्विंटल। वर्ष 2 की नाममात्र GDP क्या है?"
+      },
+      "choices": [
+       {
+        "id": "r1-a",
+        "text": {
+         "en": "₹2,640: 110 × ₹24",
+         "hi": "₹2,640: 110 × ₹24"
+        },
+        "next": "r2",
+        "good": true,
+        "feedback": {
+         "en": "Right. Nominal GDP uses current prices.",
+         "hi": "सही। नाममात्र GDP चालू कीमतों पर निकलती है।"
+        }
+       },
+       {
+        "id": "r1-b",
+        "text": {
+         "en": "₹2,200: 110 × ₹20",
+         "hi": "₹2,200: 110 × ₹20"
+        },
+        "next": "r2",
+        "good": false,
+        "feedback": {
+         "en": "That uses the base-year price: it is the real GDP, not the nominal.",
+         "hi": "यह आधार वर्ष की कीमत है: यह वास्तविक GDP है, नाममात्र नहीं।"
+        }
+       },
+       {
+        "id": "r1-c",
+        "text": {
+         "en": "₹2,000: 100 × ₹20",
+         "hi": "₹2,000: 100 × ₹20"
+        },
+        "next": "r2",
+        "good": false,
+        "feedback": {
+         "en": "That is year 1's GDP.",
+         "hi": "यह वर्ष 1 की GDP है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "r2",
+      "text": {
+       "en": "Real GDP of year 2 uses the base-year price of ₹20. What is it?",
+       "hi": "वर्ष 2 की वास्तविक GDP आधार वर्ष की कीमत ₹20 पर निकलती है। वह क्या है?"
+      },
+      "choices": [
+       {
+        "id": "r2-a",
+        "text": {
+         "en": "₹2,200",
+         "hi": "₹2,200"
+        },
+        "next": "r3",
+        "good": true,
+        "feedback": {
+         "en": "Right: 110 quintals × ₹20 = ₹2,200.",
+         "hi": "सही: 110 क्विंटल × ₹20 = ₹2,200।"
+        }
+       },
+       {
+        "id": "r2-b",
+        "text": {
+         "en": "₹2,640",
+         "hi": "₹2,640"
+        },
+        "next": "r3",
+        "good": false,
+        "feedback": {
+         "en": "That uses year-2 prices, so it is nominal.",
+         "hi": "यह वर्ष 2 की कीमतों पर है, इसलिए नाममात्र है।"
+        }
+       },
+       {
+        "id": "r2-c",
+        "text": {
+         "en": "₹2,400",
+         "hi": "₹2,400"
+        },
+        "next": "r3",
+        "good": false,
+        "feedback": {
+         "en": "No: 100 × ₹24 mixes year-1 output with year-2 price.",
+         "hi": "नहीं: 100 × ₹24 में वर्ष 1 का उत्पादन और वर्ष 2 की कीमत मिल गई है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "r3",
+      "text": {
+       "en": "Nominal GDP rose from ₹2,000 to ₹2,640, up 32%. Real GDP rose from ₹2,000 to ₹2,200. Which figure tells us how much more rice was actually grown?",
+       "hi": "नाममात्र GDP ₹2,000 से ₹2,640 हुई, 32% की बढ़त। वास्तविक GDP ₹2,000 से ₹2,200 हुई। कौन-सा आँकड़ा बताता है कि असल में कितना ज़्यादा चावल उगा?"
+      },
+      "choices": [
+       {
+        "id": "r3-a",
+        "text": {
+         "en": "Real GDP: up 10%",
+         "hi": "वास्तविक GDP: 10% की बढ़त"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Yes. Real GDP removes the effect of price changes, so it shows the change in output. The ratio 2,640 ÷ 2,200 × 100 = 120 is the GDP deflator.",
+         "hi": "हाँ। वास्तविक GDP कीमतों के बदलाव का असर हटा देती है, इसलिए उत्पादन का बदलाव दिखाती है। अनुपात 2,640 ÷ 2,200 × 100 = 120 GDP अपस्फीतिकारक है।"
+        }
+       },
+       {
+        "id": "r3-b",
+        "text": {
+         "en": "Nominal GDP: up 32%",
+         "hi": "नाममात्र GDP: 32% की बढ़त"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Nominal GDP also includes the price rise, so it overstates the growth in output.",
+         "hi": "नाममात्र GDP में कीमत की बढ़त भी है, इसलिए उत्पादन की बढ़त बढ़ा-चढ़ाकर दिखती है।"
+        }
+       },
+       {
+        "id": "r3-c",
+        "text": {
+         "en": "Neither tells us anything",
+         "hi": "दोनों से कुछ पता नहीं चलता"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Real GDP clearly shows the output change.",
+         "hi": "वास्तविक GDP उत्पादन का बदलाव साफ़ दिखाती है।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Prices rise but output stays the same. Nominal GDP will...",
+      "hi": "कीमतें बढ़ती हैं पर उत्पादन वही रहता है। नाममात्र GDP..."
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "rise",
+       "hi": "बढ़ेगी"
+      },
+      {
+       "id": "same",
+       "en": "stay the same",
+       "hi": "वही रहेगी"
+      },
+      {
+       "id": "down",
+       "en": "fall",
+       "hi": "घटेगी"
+      }
+     ],
+     "answer": "up"
+    },
+    {
+     "kind": "do",
+     "target": "choice:r1:r1-a",
+     "expect": "chose:r1-a",
+     "say": {
+      "en": "Work out the nominal GDP of year 2 and tap the right answer.",
+      "hi": "वर्ष 2 की नाममात्र GDP निकालो और सही उत्तर दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Nominal GDP values output at the prices of the current year. Real GDP values it at the prices of a fixed base year, so a change in real GDP is a change in output only. The ratio of nominal to real GDP, times 100, is the GDP deflator, a measure of how prices moved since the base year.",
+      "hi": "नाममात्र GDP उत्पादन का मूल्य चालू वर्ष की कीमतों पर आँकती है। वास्तविक GDP उसे एक तय आधार वर्ष की कीमतों पर आँकती है, इसलिए वास्तविक GDP का बदलाव केवल उत्पादन का बदलाव है। नाममात्र और वास्तविक GDP के अनुपात को 100 से गुणा करने पर GDP अपस्फीतिकारक मिलता है, जो आधार वर्ष से कीमतों का बदलाव दिखाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Real GDP is calculated using...",
+        "hi": "वास्तविक GDP निकाली जाती है..."
+       },
+       "options": [
+        {
+         "en": "base-year prices",
+         "hi": "आधार वर्ष की कीमतों से"
+        },
+        {
+         "en": "current prices",
+         "hi": "चालू कीमतों से"
+        },
+        {
+         "en": "tax rates",
+         "hi": "कर दरों से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fixed prices remove the effect of inflation.",
+        "hi": "स्थिर कीमतें महँगाई का असर हटा देती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Current prices give nominal GDP.",
+         "hi": "चालू कीमतों से नाममात्र GDP मिलती है।"
+        },
+        {
+         "en": "Tax rates have no part in this.",
+         "hi": "इसमें कर दरों की कोई भूमिका नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "GDP deflator = ...",
+        "hi": "GDP अपस्फीतिकारक = ..."
+       },
+       "options": [
+        {
+         "en": "nominal GDP ÷ real GDP × 100",
+         "hi": "नाममात्र GDP ÷ वास्तविक GDP × 100"
+        },
+        {
+         "en": "real GDP ÷ nominal GDP × 100",
+         "hi": "वास्तविक GDP ÷ नाममात्र GDP × 100"
+        },
+        {
+         "en": "nominal GDP − real GDP",
+         "hi": "नाममात्र GDP − वास्तविक GDP"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ratio shows how much of the rise is due to price.",
+        "hi": "अनुपात दिखाता है कि बढ़त का कितना भाग कीमत के कारण है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the inverse ratio and gives the wrong direction.",
+         "hi": "यह उलटा अनुपात है और दिशा ग़लत देता है।"
+        },
+        {
+         "en": "A difference is in rupees, not a price index.",
+         "hi": "अंतर रुपयों में होता है, कीमत सूचकांक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and choose each wrong answer once. Which mistakes confuse nominal with real?",
+      "hi": "फिर से खेलो और हर ग़लत उत्तर एक बार चुनो। कौन-सी ग़लतियाँ नाममात्र और वास्तविक को उलझाती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch02-welfare",
+   "topic": "2.5",
+   "template": "sort",
+   "title": {
+    "en": "Counted in GDP or not?",
+    "hi": "GDP में गिना जाता है या नहीं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Counted in GDP",
+       "hi": "GDP में गिना जाता है"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Not counted in GDP",
+       "hi": "GDP में नहीं गिना जाता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "w1",
+      "text": {
+       "en": "A hired cook's wages in a hotel",
+       "hi": "होटल में रसोइये की मज़दूरी"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Paid work in the market is counted.",
+       "hi": "बाज़ार में किया वेतन वाला काम गिना जाता है।"
+      }
+     },
+     {
+      "id": "w2",
+      "text": {
+       "en": "A mother's unpaid cooking at home",
+       "hi": "माँ का घर में बिना वेतन का खाना बनाना"
+      },
+      "bin": "no",
+      "why": {
+       "en": "No market sale, so it is left out, though it adds to welfare.",
+       "hi": "कोई बाज़ार बिक्री नहीं, इसलिए छूटता है, चाहे वह कल्याण बढ़ाता हो।"
+      }
+     },
+     {
+      "id": "w3",
+      "text": {
+       "en": "A new road built by the government",
+       "hi": "सरकार की बनाई नई सड़क"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Government spending on goods and services is counted.",
+       "hi": "वस्तुओं और सेवाओं पर सरकारी व्यय गिना जाता है।"
+      }
+     },
+     {
+      "id": "w4",
+      "text": {
+       "en": "Harm from smoke of a factory",
+       "hi": "कारख़ाने के धुएँ से हुआ नुक़सान"
+      },
+      "bin": "no",
+      "why": {
+       "en": "GDP does not subtract such harm, so GDP can overstate welfare.",
+       "hi": "GDP ऐसे नुक़सान को घटाती नहीं, इसलिए कल्याण को ज़्यादा दिखा सकती है।"
+      }
+     },
+     {
+      "id": "w5",
+      "text": {
+       "en": "A doctor's fee for treating a patient",
+       "hi": "मरीज़ के इलाज की डॉक्टर की फ़ीस"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "A paid service sold in the market.",
+       "hi": "बाज़ार में बिकने वाली भुगतान की गई सेवा।"
+      }
+     },
+     {
+      "id": "w6",
+      "text": {
+       "en": "Time spent with family and friends",
+       "hi": "परिवार और दोस्तों के साथ बिताया समय"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Leisure has no price, so it is not counted.",
+       "hi": "फ़ुरसत की कोई कीमत नहीं, इसलिए वह गिनी नहीं जाती।"
+      }
+     },
+     {
+      "id": "w7",
+      "text": {
+       "en": "Taxi fare paid for a ride",
+       "hi": "सवारी के लिए दिया टैक्सी भाड़ा"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "A transport service bought in the market.",
+       "hi": "बाज़ार में ख़रीदी परिवहन सेवा।"
+      }
+     },
+     {
+      "id": "w8",
+      "text": {
+       "en": "Clean air in a hill town",
+       "hi": "पहाड़ी कस्बे की साफ़ हवा"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Clean air is not sold, so it is not counted.",
+       "hi": "साफ़ हवा बिकती नहीं, इसलिए गिनी नहीं जाती।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can a country's GDP rise while people's welfare does not?",
+      "hi": "क्या देश की GDP बढ़े और लोगों का कल्याण न बढ़े?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it can",
+       "hi": "हाँ, ऐसा हो सकता है"
+      },
+      {
+       "id": "no",
+       "en": "No, never",
+       "hi": "नहीं, कभी नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:w1",
+     "expect": "placed:w1",
+     "say": {
+      "en": "Tap the first card, then its group.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "GDP counts what is produced and sold. It leaves out unpaid household work and leisure, ignores harm like pollution, and says nothing on how income is shared. So a rising GDP does not by itself mean rising welfare.",
+      "hi": "GDP वह गिनती है जो बनता और बिकता है। वह घर का बिना वेतन का काम और फ़ुरसत छोड़ देती है, प्रदूषण जैसे नुक़सान को अनदेखा करती है और यह नहीं बताती कि आय कैसे बँटी है। इसलिए बढ़ती GDP का अपने आप में मतलब बढ़ता कल्याण नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is GDP an imperfect measure of welfare?",
+        "hi": "GDP कल्याण का अधूरा माप क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It leaves out unpaid work, leisure and harm like pollution",
+         "hi": "वह बिना वेतन का काम, फ़ुरसत और प्रदूषण जैसे नुक़सान छोड़ देती है"
+        },
+        {
+         "en": "It counts too few goods",
+         "hi": "वह बहुत कम वस्तुएँ गिनती है"
+        },
+        {
+         "en": "It is always falling",
+         "hi": "वह हमेशा घटती रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Welfare depends on things the market does not price.",
+        "hi": "कल्याण उन चीज़ों पर भी निर्भर है जिनकी बाज़ार कीमत नहीं लगाता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "GDP counts all final goods and services that are sold.",
+         "hi": "GDP बिकने वाली सारी अंतिम वस्तुएँ और सेवाएँ गिनती है।"
+        },
+        {
+         "en": "GDP usually grows over time, so it is not always falling.",
+         "hi": "GDP समय के साथ प्रायः बढ़ती है, हमेशा घटती नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add one more thing that makes life better but is not in GDP.",
+      "hi": "एक और चीज़ जोड़ो जो जीवन बेहतर बनाती है पर GDP में नहीं है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "2.2.1",
+   "use": "Value chain: wheat, flour, bread",
+   "shows": "Four frames: wheat standing in a field, a sack of wheat going into a flour mill, a bag of flour, and a loaf of bread on a table",
+   "view": "Same style and light for all frames, separate files of the same size",
+   "right": "Real wheat ears, a small chakki mill, white flour, a golden loaf",
+   "avoid": "Brand names, text on bags"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Households and firms: the flow of income",
+   "shows": "A family at home counting a month's wages next to a small workshop where the same family members work, in one split frame",
+   "view": "Eye level, daylight, 16:9",
+   "right": "Clearly connected homes and workplace; rupee notes visible",
+   "avoid": "Faces, readable signs"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Capital good: a tractor in a field",
+   "shows": "One tractor cut out, side view, with a plough attachment",
+   "view": "Straight side view, soft top-left light, transparent background",
+   "right": "True shape of an Indian farm tractor, no logos",
+   "avoid": "Brand marks, driver"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Consumption good: a loaf of bread and a shirt",
+   "shows": "A loaf of bread and a folded shirt, each a separate cut-out",
+   "view": "Front view, soft top-left light, transparent background",
+   "right": "Real textures, no labels",
+   "avoid": "Tags, logos"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Base for the circular flow diagram",
+   "shows": "Two rounded boxes (households and firms) joined by two loops of arrows, plus three small side boxes, all empty",
+   "view": "Flat vector style, white or transparent, 4:3",
+   "right": "Clear arrow heads, equal spacing",
+   "avoid": "Words, numbers or icons inside"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.5",
+   "use": "What GDP leaves out: unpaid work at home",
+   "shows": "A mother cooking dal at a home stove while a child does homework nearby, warm light",
+   "view": "Eye level from behind, 16:9",
+   "right": "Real kitchen, steel vessels, hands and backs only",
+   "avoid": "Faces, readable text"
+  }
+ ]
+}

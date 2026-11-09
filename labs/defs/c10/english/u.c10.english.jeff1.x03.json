@@ -1,0 +1,344 @@
+{
+ "chapter_key": "u.c10.english.jeff1.x03",
+ "class": 10,
+ "subject_id": "english",
+ "title": "Fire and Ice",
+ "source": "https://ncert.nic.in/textbook/pdf/jeff101.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "The poem: will the world end in fire or in ice?",
+   "labs": [
+    "c10-english-jeff1-x03-fireice"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Rhyme and form of the poem",
+   "labs": [],
+   "why_no_lab": "The rhyme pattern is heard best when the poem is read aloud in class."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-english-jeff1-x03-fireice",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "Fire or ice? Sort the feelings",
+    "hi": "आग या बर्फ़? भावनाएँ छाँटो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fire",
+      "label": {
+       "en": "Fire: desire",
+       "hi": "आग: चाह"
+      }
+     },
+     {
+      "id": "ice",
+      "label": {
+       "en": "Ice: hate",
+       "hi": "बर्फ़: नफ़रत"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "toy",
+      "text": {
+       "en": "Longing for a toy so much you cannot sleep",
+       "hi": "खिलौने की ऐसी चाह कि नींद न आए"
+      },
+      "bin": "fire",
+      "why": {
+       "en": "A strong wanting burns inside you like a flame. The poet links fire with desire.",
+       "hi": "तेज़ चाह भीतर आग की तरह जलती है। कवि आग को इच्छा से जोड़ता है।"
+      }
+     },
+     {
+      "id": "greed",
+      "text": {
+       "en": "Greed that always says, 'I want more'",
+       "hi": "लालच, जो कहता है 'और चाहिए'"
+      },
+      "bin": "fire",
+      "why": {
+       "en": "Greed is a hot, hungry wanting. Like fire it eats and spreads.",
+       "hi": "लालच गर्म, भूखी चाह है। आग की तरह वह खाता और फैलता है।"
+      }
+     },
+     {
+      "id": "crave",
+      "text": {
+       "en": "A burning wish to win at any cost",
+       "hi": "हर क़ीमत पर जीतने की जलती चाह"
+      },
+      "bin": "fire",
+      "why": {
+       "en": "A burning wish is desire; the poet's fire.",
+       "hi": "जलती चाह इच्छा है; कवि की आग।"
+      }
+     },
+     {
+      "id": "sweets",
+      "text": {
+       "en": "Craving for sweets all day long",
+       "hi": "दिन भर मिठाई की ललक"
+      },
+      "bin": "fire",
+      "why": {
+       "en": "Craving is a kind of desire, so it belongs with fire.",
+       "hi": "ललक भी एक तरह की चाह है, इसलिए यह आग के साथ है।"
+      }
+     },
+     {
+      "id": "silent",
+      "text": {
+       "en": "Not speaking to a cousin for years",
+       "hi": "सालों तक किसी भाई-बहन से न बोलना"
+      },
+      "bin": "ice",
+      "why": {
+       "en": "A cold silence kept for years is hate that has frozen hard.",
+       "hi": "सालों की ठंडी चुप्पी नफ़रत है जो जम गई है।"
+      }
+     },
+     {
+      "id": "grudge",
+      "text": {
+       "en": "A cold grudge that never melts",
+       "hi": "ठंडी रंजिश, जो कभी नहीं पिघलती"
+      },
+      "bin": "ice",
+      "why": {
+       "en": "A grudge held for ever is cold hate, like ice that does not thaw.",
+       "hi": "हमेशा पाली गई रंजिश ठंडी नफ़रत है, उस बर्फ़ जैसी जो नहीं पिघलती।"
+      }
+     },
+     {
+      "id": "revenge",
+      "text": {
+       "en": "Planning coldly to hurt someone back",
+       "hi": "सोच-समझकर किसी से बदला लेने की योजना"
+      },
+      "bin": "ice",
+      "why": {
+       "en": "Cold, patient hate plans to harm. The poet calls such hate ice.",
+       "hi": "ठंडी, धैर्य वाली नफ़रत नुकसान की योजना बनाती है। कवि इसे बर्फ़ कहता है।"
+      }
+     },
+     {
+      "id": "avoid",
+      "text": {
+       "en": "Turning away from someone you dislike",
+       "hi": "जिससे नफ़रत हो उससे मुँह फेर लेना"
+      },
+      "bin": "ice",
+      "why": {
+       "en": "Turning away with dislike is the cold side of hate.",
+       "hi": "नफ़रत में मुँह फेर लेना उसका ठंडा रूप है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the poem, which feeling is linked with fire: desire or hate?",
+      "hi": "कविता में आग किस भावना से जुड़ी है: चाह या नफ़रत?"
+     },
+     "options": [
+      {
+       "id": "desire",
+       "en": "Desire (wanting)",
+       "hi": "चाह (इच्छा)"
+      },
+      {
+       "id": "hate",
+       "en": "Hate",
+       "hi": "नफ़रत"
+      }
+     ],
+     "answer": "desire"
+    },
+    {
+     "kind": "do",
+     "target": "card:greed",
+     "expect": "correct:greed",
+     "say": {
+      "en": "Tap the 'greed' card, then tap the bin where it belongs.",
+      "hi": "'लालच' कार्ड पर टैप करो, फिर उस डिब्बे पर जहाँ वह होना चाहिए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:grudge",
+     "expect": "correct:grudge",
+     "say": {
+      "en": "Now place the cold grudge card.",
+      "hi": "अब ठंडी रंजिश वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The poet asks whether the world will end in fire or in ice. He answers with feelings, not weather. Desire is hot and wants more, so it is fire. Hate is cold and shuts people out, so it is ice. He says both are strong enough to destroy the world, and warns us to keep our desire and our hate in check.",
+      "hi": "कवि पूछता है कि दुनिया आग में ख़त्म होगी या बर्फ़ में। उसका उत्तर मौसम से नहीं, भावनाओं से है। चाह गर्म है और और चाहती है, इसलिए आग है। नफ़रत ठंडी है और लोगों को दूर कर देती है, इसलिए बर्फ़ है। वह कहता है कि दोनों दुनिया को नष्ट करने के लिए काफ़ी हैं, और चेताता है कि हम चाह और नफ़रत को क़ाबू में रखें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which feeling does ice stand for in the poem?",
+        "hi": "कविता में बर्फ़ किस भावना को दर्शाती है?"
+       },
+       "options": [
+        {
+         "en": "Hate",
+         "hi": "नफ़रत"
+        },
+        {
+         "en": "Desire",
+         "hi": "चाह"
+        },
+        {
+         "en": "Joy",
+         "hi": "ख़ुशी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Hate is cold and hard, so the poet compares it to ice.",
+        "hi": "नफ़रत ठंडी और कठोर है, इसलिए कवि उसकी तुलना बर्फ़ से करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Desire is the fire in the poem, not the ice.",
+         "hi": "चाह कविता में आग है, बर्फ़ नहीं।"
+        },
+        {
+         "en": "Joy is not one of the two forces the poet fears.",
+         "hi": "ख़ुशी उन दो ताक़तों में नहीं जिनसे कवि डरता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the poet's warning to us?",
+        "hi": "कवि हमें क्या चेतावनी देता है?"
+       },
+       "options": [
+        {
+         "en": "Uncontrolled desire and hate can destroy the world",
+         "hi": "बेक़ाबू चाह और नफ़रत दुनिया को नष्ट कर सकती हैं"
+        },
+        {
+         "en": "Winter is more dangerous than summer",
+         "hi": "गर्मी से सर्दी ज़्यादा ख़तरनाक है"
+        },
+        {
+         "en": "We should never feel any wish at all",
+         "hi": "हमें कभी कोई इच्छा नहीं रखनी चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The poem is about feelings that grow wild. Both can ruin the world if they are not checked.",
+        "hi": "कविता उन भावनाओं की है जो बेक़ाबू हो जाती हैं। रोकी न जाएँ तो दोनों दुनिया बिगाड़ सकती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The fire and ice are pictures for feelings, not seasons.",
+         "hi": "आग और बर्फ़ भावनाओं के चित्र हैं, मौसम नहीं।"
+        },
+        {
+         "en": "The poet does not say wishes are wrong, only that they must not run wild.",
+         "hi": "कवि इच्छाओं को ग़लत नहीं कहता, बस यह कि वे बेक़ाबू न हों।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a time when wanting something too much, or a long anger, spoiled a day. How could it have been cooled or warmed?",
+      "hi": "सोचो, कब बहुत ज़्यादा चाह या लंबे ग़ुस्से ने तुम्हारा दिन बिगाड़ा था। उसे कैसे ठंडा या गर्म किया जा सकता था?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Poem image: fire",
+   "shows": "A dry grass field on fire at dusk with orange flames, seen from a safe distance",
+   "view": "Wide, from behind a fence line, no people",
+   "right": "Orange flames, dark smoke; a controlled-looking view",
+   "avoid": "People, animals, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Poem image: ice",
+   "shows": "A frozen lake in the Himalayas at dawn, cracked white ice, mist",
+   "view": "Wide, high angle",
+   "right": "Blue-white ice, cold light",
+   "avoid": "People, text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "3.1",
+   "use": "Fire and ice side by side",
+   "shows": "Four frames: a candle flame burning, a flame growing, an ice block, an ice block cracked",
+   "view": "Same table, same background",
+   "right": "Flame and ice clearly different in colour: warm vs cool",
+   "avoid": "Text, fire hazards in unsafe settings"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Cards",
+   "shows": "A single burning matchstick and an ice cube, two cut-outs",
+   "view": "Side view on transparent backgrounds",
+   "right": "One lit match, one clear ice cube",
+   "avoid": "Hands holding fire"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Desire and hate",
+   "shows": "Two children's hands: one reaching for a sweet on a high shelf; two backs turned away from each other",
+   "view": "Two separate shots",
+   "right": "Reaching hand, turned backs; the mood is clear",
+   "avoid": "Faces, text"
+  }
+ ]
+}

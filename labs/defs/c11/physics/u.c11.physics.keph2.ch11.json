@@ -1,0 +1,732 @@
+{
+ "chapter_key": "u.c11.physics.keph2.ch11",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "Thermodynamics",
+ "source": "https://ncert.nic.in/textbook/pdf/keph204.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "An overview of heat and work as two ways to change a system's energy; the reader's photos of a pressure cooker and a car engine set the scene."
+  },
+  {
+   "n": "11.2",
+   "title": "Thermal equilibrium",
+   "labs": [],
+   "why_no_lab": "Two bodies reaching one temperature was already done hands-on in the calorimetry lab of Chapter 10; the reader names it here."
+  },
+  {
+   "n": "11.3",
+   "title": "Zeroth law of thermodynamics",
+   "labs": [],
+   "why_no_lab": "A logical law (if A and B each match C, they match each other) best stated with the reader's thermometer example."
+  },
+  {
+   "n": "11.4",
+   "title": "Heat, internal energy and work",
+   "labs": [],
+   "why_no_lab": "The three ideas are defined with the reader's picture of a gas in a cylinder, which the gas labs below then use."
+  },
+  {
+   "n": "11.5",
+   "title": "First law of thermodynamics",
+   "labs": [
+    "c11-physics-keph2-ch11-first-law"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.6",
+   "title": "Specific heat capacity",
+   "labs": [],
+   "why_no_lab": "The heat capacities of solids, water and gases are facts and formulas for the reader's table; Chapter 10's specific-heat lab is the hands-on part."
+  },
+  {
+   "n": "11.7",
+   "title": "Thermodynamic state variables and equation of state",
+   "labs": [
+    "c11-physics-keph2-ch11-state-equation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.8",
+   "title": "Thermodynamic processes: quasi-static, isothermal, adiabatic, isochoric, isobaric and cyclic",
+   "labs": [
+    "c11-physics-keph2-ch11-isochoric"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.9",
+   "title": "Second law of thermodynamics",
+   "labs": [],
+   "why_no_lab": "The Kelvin-Planck and Clausius statements are laws to read and discuss; the Carnot lab of 11.11 shows why no engine is perfect."
+  },
+  {
+   "n": "11.10",
+   "title": "Reversible and irreversible processes",
+   "labs": [],
+   "why_no_lab": "The reader's examples of a stirred cup cooling and a dropped egg explain irreversibility better than a simulation."
+  },
+  {
+   "n": "11.11",
+   "title": "Carnot engine",
+   "labs": [
+    "c11-physics-keph2-ch11-carnot"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph2-ch11-first-law",
+   "topic": "11.5",
+   "template": "particles",
+   "title": {
+    "en": "The first law: heat goes into energy and work",
+    "hi": "पहला नियम: ऊष्मा ऊर्जा और कार्य में जाती है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "gaslaw",
+    "hold": "pressure"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A gas under a free piston (pressure fixed) is heated, and the piston rises. Where does the heat supplied go?",
+      "hi": "एक मुक्त पिस्टन के नीचे (दाब स्थिर) रखी गैस गर्म की जाती है, और पिस्टन ऊपर उठता है। दी गई ऊष्मा कहाँ जाती है?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Partly into the gas's internal energy, partly into work lifting the piston",
+       "hi": "कुछ गैस की आंतरिक ऊर्जा में, कुछ पिस्टन उठाने के कार्य में"
+      },
+      {
+       "id": "energy",
+       "en": "All into internal energy",
+       "hi": "सारी आंतरिक ऊर्जा में"
+      },
+      {
+       "id": "work",
+       "en": "All into work",
+       "hi": "सारी कार्य में"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "changed:temp",
+     "say": {
+      "en": "Press Heat +25 K and watch the temperature and the piston.",
+      "hi": "\"गर्म करो +25 K\" दबाओ और तापमान तथा पिस्टन देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The first law of thermodynamics is energy conservation: ΔQ = ΔU + ΔW. The gas got hotter, so its molecules move faster and its internal energy U rose. It also expanded against the fixed pressure, doing work ΔW = P ΔV on the piston. So, at constant pressure, more heat is needed for each degree than at constant volume: Cp is bigger than Cv.",
+      "hi": "ऊष्मागतिकी का पहला नियम ऊर्जा संरक्षण है: ΔQ = ΔU + ΔW। गैस गर्म हुई, इसलिए उसके अणु तेज़ चलते हैं और उसकी आंतरिक ऊर्जा U बढ़ी। वह स्थिर दाब के विरुद्ध फैली भी, जिससे उसने पिस्टन पर ΔW = P ΔV कार्य किया। इसलिए स्थिर दाब पर हर डिग्री के लिए स्थिर आयतन से ज़्यादा ऊष्मा लगती है: Cp, Cv से बड़ा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A gas takes in 500 J of heat and does 200 J of work. Its internal energy changes by:",
+        "hi": "एक गैस 500 J ऊष्मा लेती है और 200 J कार्य करती है। उसकी आंतरिक ऊर्जा में बदलाव है:"
+       },
+       "options": [
+        {
+         "en": "+300 J",
+         "hi": "+300 J (जूल)"
+        },
+        {
+         "en": "+700 J",
+         "hi": "+700 J (जूल)"
+        },
+        {
+         "en": "−300 J",
+         "hi": "−300 J (जूल)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ΔU = ΔQ − ΔW = 500 − 200 = 300 J.",
+        "hi": "ΔU = ΔQ − ΔW = 500 − 200 = 300 J।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Work done by the gas takes energy out; it is subtracted, not added.",
+         "hi": "गैस द्वारा किया गया कार्य ऊर्जा बाहर ले जाता है; इसे घटाया जाता है, जोड़ा नहीं।"
+        },
+        {
+         "en": "The gas took in more heat than the work it did, so U goes up.",
+         "hi": "गैस ने जितना कार्य किया उससे ज़्यादा ऊष्मा ली, इसलिए U बढ़ती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was \"all into work\" wrong?",
+        "hi": "\"सारी कार्य में\" गलत क्यों था?"
+       },
+       "options": [
+        {
+         "en": "The temperature rose, so some heat went into internal energy",
+         "hi": "तापमान बढ़ा, इसलिए कुछ ऊष्मा आंतरिक ऊर्जा में गई"
+        },
+        {
+         "en": "Gases cannot do work",
+         "hi": "गैसें कार्य नहीं कर सकतीं"
+        },
+        {
+         "en": "The piston did not move",
+         "hi": "पिस्टन नहीं हिला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "For an ideal gas U depends on T; a rise in T means ΔU > 0.",
+        "hi": "आदर्श गैस के लिए U, T पर निर्भर है; T बढ़ने का अर्थ है ΔU > 0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The rising piston shows the gas doing work.",
+         "hi": "उठता पिस्टन दिखाता है कि गैस कार्य कर रही है।"
+        },
+        {
+         "en": "The piston rose as the gas expanded.",
+         "hi": "गैस के फैलने पर पिस्टन ऊपर उठा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Heat and cool the gas a few times. Check that V ÷ T stays the same, and notice that the piston rises every time you heat.",
+      "hi": "गैस को कुछ बार गर्म और ठंडा करो। जाँचो कि V ÷ T वही रहता है, और देखो कि हर बार गर्म करने पर पिस्टन उठता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch11-state-equation",
+   "topic": "11.7",
+   "template": "particles",
+   "title": {
+    "en": "The equation of state: P V / T stays the same",
+    "hi": "अवस्था समीकरण: P V / T एक-सा रहता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "gaslaw",
+    "hold": "none"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One mole of gas is at 101.3 kPa, 300 K and about 24.6 L. If you heat it and also press harder on the piston, which number stays the same?",
+      "hi": "एक मोल गैस 101.3 kPa, 300 K और लगभग 24.6 L पर है। अगर तुम इसे गर्म भी करो और पिस्टन पर ज़्यादा दाब भी डालो, तो कौन-सी संख्या वही रहेगी?"
+     },
+     "options": [
+      {
+       "id": "pvt",
+       "en": "P × V ÷ T",
+       "hi": "P × V ÷ T (दाब × आयतन ÷ तापमान)"
+      },
+      {
+       "id": "v",
+       "en": "The volume V",
+       "hi": "आयतन V"
+      },
+      {
+       "id": "pv",
+       "en": "P × V",
+       "hi": "P × V (दाब × आयतन)"
+      }
+     ],
+     "answer": "pvt"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "changed:temp",
+     "say": {
+      "en": "Press Heat +25 K and read P, V and T.",
+      "hi": "\"गर्म करो +25 K\" दबाओ और P, V और T पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:pressure",
+     "expect": "changed:pressure",
+     "say": {
+      "en": "Now raise the pressure on the piston with its slider and read the values again.",
+      "hi": "अब स्लाइडर से पिस्टन पर दाब बढ़ाओ और मान फिर पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Pressure, volume and temperature are state variables: they describe the gas now, whatever happened before. For an ideal gas they are tied by the equation of state P V = μ R T, so P V ÷ T = μ R stays fixed (8.31 J/K for one mole). Change any two and the third follows.",
+      "hi": "दाब, आयतन और तापमान अवस्था चर हैं: ये गैस की अभी की हालत बताते हैं, पहले चाहे जो हुआ हो। आदर्श गैस के लिए ये अवस्था समीकरण P V = μ R T से जुड़े हैं, इसलिए P V ÷ T = μ R स्थिर रहता है (एक मोल के लिए 8.31 J/K)। किन्हीं दो को बदलो, तीसरा अपने आप तय हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why was \"P × V stays the same\" not enough here?",
+        "hi": "यहाँ \"P × V वही रहता है\" क्यों पर्याप्त नहीं था?"
+       },
+       "options": [
+        {
+         "en": "That is Boyle's law, true only when the temperature is fixed",
+         "hi": "वह बॉयल का नियम है, जो केवल स्थिर तापमान पर सही है"
+        },
+        {
+         "en": "P × V is never constant",
+         "hi": "P × V कभी स्थिर नहीं होता"
+        },
+        {
+         "en": "P × V is a state variable",
+         "hi": "P × V एक अवस्था चर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "You also heated the gas, so P V grew in step with T.",
+        "hi": "तुमने गैस गर्म भी की, इसलिए P V, T के साथ बढ़ा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At fixed temperature P × V is constant; here the temperature changed.",
+         "hi": "स्थिर तापमान पर P × V स्थिर होता है; यहाँ तापमान बदला।"
+        },
+        {
+         "en": "The point is what stays fixed; P × V ÷ T does, P × V does not.",
+         "hi": "बात यह है कि क्या स्थिर रहता है; P × V ÷ T रहता है, P × V नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is NOT a state variable?",
+        "hi": "इनमें से कौन अवस्था चर नहीं है?"
+       },
+       "options": [
+        {
+         "en": "The heat given to the gas",
+         "hi": "गैस को दी गई ऊष्मा"
+        },
+        {
+         "en": "Pressure",
+         "hi": "दाब"
+        },
+        {
+         "en": "Temperature",
+         "hi": "तापमान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heat (and work) depend on the path taken between states, so they are not properties of one state.",
+        "hi": "ऊष्मा (और कार्य) अवस्थाओं के बीच लिए गए रास्ते पर निर्भर करते हैं, इसलिए वे किसी एक अवस्था के गुण नहीं हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Pressure is measured at a moment and describes the state.",
+         "hi": "दाब एक पल में मापा जाता है और अवस्था बताता है।"
+        },
+        {
+         "en": "Temperature describes the state of the gas right now.",
+         "hi": "तापमान गैस की अभी की अवस्था बताता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Cool the gas and lower the pressure in different orders. Check the line P V ÷ T each time.",
+      "hi": "गैस को ठंडा करो और दाब अलग-अलग क्रम में घटाओ। हर बार P V ÷ T वाली पंक्ति जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch11-isochoric",
+   "topic": "11.8",
+   "template": "particles",
+   "title": {
+    "en": "Heating a gas in a rigid container",
+    "hi": "कड़े बर्तन में गैस गर्म करना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "gaslaw",
+    "hold": "volume"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A gas is heated inside a rigid steel container whose volume cannot change. How much work does the gas do?",
+      "hi": "एक गैस को स्टील के कड़े बर्तन में गर्म किया जाता है जिसका आयतन बदल नहीं सकता। गैस कितना कार्य करती है?"
+     },
+     "options": [
+      {
+       "id": "zero",
+       "en": "None: all the heat raises its internal energy",
+       "hi": "कोई नहीं: सारी ऊष्मा उसकी आंतरिक ऊर्जा बढ़ाती है"
+      },
+      {
+       "id": "some",
+       "en": "Some, because its pressure rises",
+       "hi": "कुछ, क्योंकि उसका दाब बढ़ता है"
+      },
+      {
+       "id": "all",
+       "en": "All the heat becomes work",
+       "hi": "सारी ऊष्मा कार्य बन जाती है"
+      }
+     ],
+     "answer": "zero"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "changed:pressure",
+     "say": {
+      "en": "Press Heat +25 K and watch the pressure reading.",
+      "hi": "\"गर्म करो +25 K\" दबाओ और दाब की रीडिंग देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Work by a gas is P × ΔV; in an isochoric (constant-volume) process ΔV = 0, so ΔW = 0. The first law ΔQ = ΔU + ΔW then gives ΔQ = ΔU: all the heat speeds up the molecules. Faster molecules hit the walls harder and more often, so the pressure rises in proportion to T.",
+      "hi": "गैस द्वारा कार्य P × ΔV है; समआयतनिक (स्थिर आयतन) प्रक्रम में ΔV = 0, इसलिए ΔW = 0। ऊष्मागतिकी का पहला नियम ΔQ = ΔU + ΔW तब ΔQ = ΔU देता है: सारी ऊष्मा अणुओं को तेज़ करती है। तेज़ अणु दीवारों से ज़्यादा ज़ोर से और ज़्यादा बार टकराते हैं, इसलिए दाब T के अनुपात में बढ़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A pressure cooker on the stove (before the whistle) is close to which process?",
+        "hi": "चूल्हे पर रखा प्रेशर कुकर (सीटी से पहले) किस प्रक्रम के पास है?"
+       },
+       "options": [
+        {
+         "en": "Isochoric: fixed volume, rising pressure",
+         "hi": "समआयतनिक: स्थिर आयतन, बढ़ता दाब"
+        },
+        {
+         "en": "Isobaric: fixed pressure",
+         "hi": "समदाबी: स्थिर दाब"
+        },
+        {
+         "en": "Isothermal: fixed temperature",
+         "hi": "समतापी: स्थिर तापमान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The sealed lid keeps the volume fixed, so heating raises the pressure.",
+        "hi": "बंद ढक्कन आयतन को स्थिर रखता है, इसलिए गर्म करने से दाब बढ़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The pressure inside clearly rises until the whistle blows.",
+         "hi": "भीतर का दाब सीटी बजने तक साफ़ बढ़ता है।"
+        },
+        {
+         "en": "Its temperature rises above 100 °C; it is not fixed.",
+         "hi": "इसका तापमान 100 °C से ऊपर जाता है; वह स्थिर नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was \"some, because its pressure rises\" wrong?",
+        "hi": "\"कुछ, क्योंकि उसका दाब बढ़ता है\" गलत क्यों था?"
+       },
+       "options": [
+        {
+         "en": "Work needs the volume to change; pressure rising alone does no work",
+         "hi": "कार्य के लिए आयतन बदलना ज़रूरी है; केवल दाब बढ़ने से कार्य नहीं होता"
+        },
+        {
+         "en": "Pressure does not rise in a rigid container",
+         "hi": "कड़े बर्तन में दाब नहीं बढ़ता"
+        },
+        {
+         "en": "Gases never do work",
+         "hi": "गैसें कभी कार्य नहीं करतीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "W = P ΔV; with ΔV = 0 no piston moves and no work is done.",
+        "hi": "W = P ΔV; ΔV = 0 होने पर कोई पिस्टन नहीं हिलता और कोई कार्य नहीं होता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The pressure did rise in the lab; that is not the error.",
+         "hi": "लैब में दाब बढ़ा; गलती वह नहीं है।"
+        },
+        {
+         "en": "An expanding gas pushing a piston does work, as in an engine.",
+         "hi": "फैलती गैस पिस्टन धकेलकर कार्य करती है, जैसे इंजन में।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Cool the gas step by step and check that P ÷ T stays the same. Where would the pressure become zero?",
+      "hi": "गैस को क़दम-दर-क़दम ठंडा करो और जाँचो कि P ÷ T वही रहता है। दाब कहाँ शून्य होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch11-carnot",
+   "topic": "11.11",
+   "template": "heat",
+   "title": {
+    "en": "The Carnot engine: why no engine is perfect",
+    "hi": "कार्नो इंजन: कोई इंजन पूर्ण क्यों नहीं"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "mode": "cycle"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stage:1",
+     "say": {
+      "en": "Press Next step to finish the first stage (isothermal expansion at the hot reservoir).",
+      "hi": "\"अगला चरण\" दबाकर पहला चरण पूरा करो (गर्म भंडार पर समतापी प्रसार)।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The hot reservoir is at 600 K and the cold one at 300 K. What fraction of the heat taken in can this ideal engine turn into work?",
+      "hi": "गर्म भंडार 600 K पर है और ठंडा 300 K पर। यह आदर्श इंजन ली गई ऊष्मा का कितना भाग कार्य में बदल सकता है?"
+     },
+     "options": [
+      {
+       "id": "50",
+       "en": "50 %",
+       "hi": "50 % (प्रतिशत)"
+      },
+      {
+       "id": "100",
+       "en": "100 %",
+       "hi": "100 % (प्रतिशत)"
+      },
+      {
+       "id": "none",
+       "en": "Nothing: it only moves heat",
+       "hi": "कुछ नहीं: यह केवल ऊष्मा खिसकाता है"
+      }
+     ],
+     "answer": "50"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "cycle-done",
+     "say": {
+      "en": "Press Run the engine and let it finish the cycle.",
+      "hi": "\"इंजन चलाओ\" दबाओ और चक्र पूरा होने दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A Carnot cycle has two isothermal and two adiabatic stages. It takes heat Q₁ from the hot reservoir, gives Q₂ to the cold one, and the work is W = Q₁ − Q₂. Its efficiency is η = 1 − T₂/T₁ = 1 − 300/600 = 50 %. The second law says some heat must always go to the cold reservoir, so no engine between these temperatures can beat this.",
+      "hi": "कार्नो चक्र में दो समतापी और दो रुद्धोष्म चरण होते हैं। यह गर्म भंडार से ऊष्मा Q₁ लेता है, ठंडे को Q₂ देता है, और कार्य W = Q₁ − Q₂ होता है। इसकी दक्षता η = 1 − T₂/T₁ = 1 − 300/600 = 50 % है। दूसरा नियम कहता है कि कुछ ऊष्मा हमेशा ठंडे भंडार में जानी ही चाहिए, इसलिए इन तापमानों के बीच कोई इंजन इससे आगे नहीं जा सकता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the hot reservoir is raised to 900 K (cold still 300 K), the Carnot efficiency becomes:",
+        "hi": "अगर गर्म भंडार 900 K कर दिया जाए (ठंडा अब भी 300 K), तो कार्नो दक्षता होगी:"
+       },
+       "options": [
+        {
+         "en": "About 67 %",
+         "hi": "लगभग 67 %"
+        },
+        {
+         "en": "100 %",
+         "hi": "100 % (पूरी)"
+        },
+        {
+         "en": "About 33 %",
+         "hi": "लगभग 33 %"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "η = 1 − 300/900 = 1 − ⅓ ≈ 67 %.",
+        "hi": "η = 1 − 300/900 = 1 − ⅓ ≈ 67 %।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "100 % would need a cold reservoir at 0 K, which cannot be reached.",
+         "hi": "100 % के लिए ठंडा भंडार 0 K पर चाहिए, जो पहुँचा नहीं जा सकता।"
+        },
+        {
+         "en": "33 % is T₂/T₁, the fraction wasted, not the efficiency.",
+         "hi": "33 % तो T₂/T₁ है, बेकार गया भाग, दक्षता नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can no heat engine be 100 % efficient?",
+        "hi": "कोई ऊष्मा इंजन 100 % दक्ष क्यों नहीं हो सकता?"
+       },
+       "options": [
+        {
+         "en": "Some heat must always be given to a colder body (second law)",
+         "hi": "कुछ ऊष्मा हमेशा किसी ठंडी वस्तु को देनी ही पड़ती है (दूसरा नियम)"
+        },
+        {
+         "en": "Energy is destroyed inside the engine",
+         "hi": "इंजन के अंदर ऊर्जा नष्ट हो जाती है"
+        },
+        {
+         "en": "Engines are badly built",
+         "hi": "इंजन ठीक से नहीं बने होते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Even a perfect, frictionless Carnot engine rejects Q₂ to the cold reservoir.",
+        "hi": "एक पूर्ण, बिना घर्षण वाला कार्नो इंजन भी ठंडे भंडार को Q₂ देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Energy is conserved (first law); the limit comes from the second law.",
+         "hi": "ऊर्जा संरक्षित रहती है (पहला नियम); सीमा दूसरे नियम से आती है।"
+        },
+        {
+         "en": "Better building cuts friction, but cannot beat 1 − T₂/T₁.",
+         "hi": "बेहतर बनावट घर्षण घटाती है, पर 1 − T₂/T₁ से आगे नहीं जा सकती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the hot and cold temperatures with the sliders and run the cycle again. When is the engine most efficient?",
+      "hi": "स्लाइडरों से गर्म और ठंडे तापमान बदलकर चक्र फिर चलाओ। इंजन सबसे दक्ष कब होता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Chapter hook: heat and work",
+   "shows": "A pressure cooker on a gas stove with its whistle lifting and a puff of steam",
+   "view": "Side view at stove height, warm kitchen light",
+   "right": "Steam jet coming from the whistle",
+   "avoid": "Brand names, open flames near hands"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "11.4",
+   "use": "Heat, work and internal energy",
+   "shows": "A gas in a cylinder with a movable piston: arrows for heat ΔQ going in at the bottom, the piston rising (work ΔW), and the gas molecules drawn faster",
+   "view": "Flat cutaway diagram, two colours for heat and work",
+   "right": "ΔQ = ΔU + ΔW written beside it",
+   "avoid": "Too many molecules to see"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "11.8",
+   "use": "Four processes on a P-V diagram",
+   "shows": "One P-V graph with an isothermal curve, an adiabatic (steeper) curve, a vertical isochoric line and a horizontal isobaric line from the same start point",
+   "view": "Flat graph, one colour per process, legend",
+   "right": "The adiabatic curve steeper than the isothermal",
+   "avoid": "Curves crossing wrongly"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "11.11",
+   "use": "A real heat engine",
+   "shows": "Cutaway of a motorcycle engine cylinder showing the piston, the spark plug, the valves and the crankshaft",
+   "view": "Side cutaway, labelled parts",
+   "right": "Hot burnt gas pushing the piston down",
+   "avoid": "Brand logos"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "11.11",
+   "use": "Carnot cycle",
+   "shows": "The Carnot cycle on a P-V diagram: A to B isothermal expansion at T₁, B to C adiabatic, C to D isothermal at T₂, D to A adiabatic, with Q₁ in and Q₂ out arrows",
+   "view": "Flat graph, the enclosed area shaded as work",
+   "right": "Four corners labelled A, B, C, D in order",
+   "avoid": "An area that is not closed"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "11.10",
+   "use": "Irreversible change",
+   "shows": "A dropped egg broken on a kitchen floor, and a spoon of sugar dissolving in water, as two photos",
+   "view": "Close, from above",
+   "right": "Clear before-and-after feel",
+   "avoid": "Mess that hides the subject"
+  }
+ ]
+}

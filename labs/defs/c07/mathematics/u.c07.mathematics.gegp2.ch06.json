@@ -1,0 +1,1250 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp2.ch06",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "Constructions and Tilings",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp206.pdf",
+ "topics": [
+  {
+   "n": "6.1.1",
+   "title": "Constructions: the perpendicular bisector and the midpoint of a segment",
+   "labs": [
+    "c07-mathematics-gegp2-ch06-perp-bisector"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.1.2",
+   "title": "Perpendicular at a point; the rope method of the Śulba-Sūtras",
+   "labs": [],
+   "why_no_lab": "It repeats the compass steps of the perpendicular bisector lab, and the rope method is best seen in a short photo sequence."
+  },
+  {
+   "n": "6.1.3",
+   "title": "Bisecting an angle (and 30° and 45° from it)",
+   "labs": [
+    "c07-mathematics-gegp2-ch06-angle-bisector"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.1.4",
+   "title": "Why constructions work: copying angles, parallel lines and arches",
+   "labs": [
+    "c07-mathematics-gegp2-ch06-why-it-works"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.1.5",
+   "title": "Regular hexagon, 60° and 120°: angles around a point",
+   "labs": [
+    "c07-mathematics-gegp2-ch06-around-a-point"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2.1",
+   "title": "Tiling: tangram pieces",
+   "labs": [
+    "c07-mathematics-gegp2-ch06-tangram"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2.2",
+   "title": "Tiling grids with 2 × 1 tiles",
+   "labs": [
+    "c07-mathematics-gegp2-ch06-domino-tiling"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp2-ch06-perp-bisector",
+   "topic": "6.1.1",
+   "template": "sequence",
+   "title": {
+    "en": "Steps of the perpendicular bisector",
+    "hi": "लंब समद्विभाजक के चरण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Draw the line segment XY that you want to cut in half.",
+       "hi": "वह रेखाखंड XY खींचो जिसे आधा करना है।"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Open the compass to more than half of XY.",
+       "hi": "परकार को XY के आधे से ज़्यादा खोलो।"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Put the point on X and draw arcs above and below XY.",
+       "hi": "नोक X पर रखो और XY के ऊपर और नीचे चाप खींचो।"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Same opening: from Y, draw arcs that cut the first two.",
+       "hi": "उसी खुलाव से: Y से चाप खींचो जो पहले दो चापों को काटें।"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Name the crossing points A above and B below.",
+       "hi": "कटान बिंदुओं को ऊपर A और नीचे B नाम दो।"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "Join A and B with the ruler. AB is the perpendicular bisector.",
+       "hi": "रूलर से A और B को मिलाओ। AB लंब समद्विभाजक है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Tap the first step, \"Draw the line segment XY\", then tap place 1.",
+      "hi": "पहला चरण, \"रेखाखंड XY खींचो\", छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why must the compass be opened to more than half of XY?",
+      "hi": "परकार को XY के आधे से ज़्यादा क्यों खोलना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "meet",
+       "en": "Otherwise the arcs from X and Y will not meet",
+       "hi": "वरना X और Y के चाप आपस में नहीं मिलेंगे"
+      },
+      {
+       "id": "neat",
+       "en": "So the drawing looks neat",
+       "hi": "ताकि चित्र सुंदर दिखे"
+      },
+      {
+       "id": "any",
+       "en": "It does not matter",
+       "hi": "इससे कोई फ़र्क़ नहीं पड़ता"
+      }
+     ],
+     "answer": "meet"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other steps in order, then tap Check.",
+      "hi": "बाकी चरणों को क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A is the same distance from X and from Y, because both arcs had the same radius. So is B. Every point that is equally far from X and Y lies on one straight line, and that line is AB. It cuts XY into two equal halves at a right angle: this is the perpendicular bisector.",
+      "hi": "A, X और Y दोनों से बराबर दूरी पर है, क्योंकि दोनों चापों की त्रिज्या एक थी। B भी ऐसा ही है। X और Y से बराबर दूरी वाले सारे बिंदु एक सीधी रेखा पर होते हैं, और वह रेखा AB है। यह XY को समकोण पर दो बराबर हिस्सों में काटती है: यही लंब समद्विभाजक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "AB meets XY at O. What is true about O?",
+        "hi": "AB, XY को O पर मिलती है। O के बारे में क्या सही है?"
+       },
+       "options": [
+        {
+         "en": "XO = OY and the angle at O is 90°",
+         "hi": "XO = OY और O पर कोण 90° है"
+        },
+        {
+         "en": "XO is longer than OY",
+         "hi": "XO, OY से लंबा है"
+        },
+        {
+         "en": "The angle at O is 60°",
+         "hi": "O पर कोण 60° है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Triangles AXB and AYB have three equal sides, so AB splits XY into equal halves at right angles.",
+        "hi": "त्रिभुज AXB और AYB की तीनों भुजाएँ बराबर हैं, इसलिए AB, XY को समकोण पर बराबर हिस्सों में बाँटती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both arcs used the same opening, so neither side can be longer.",
+         "hi": "दोनों चापों का खुलाव एक था, इसलिए कोई भी हिस्सा लंबा नहीं हो सकता।"
+        },
+        {
+         "en": "The two angles at O are equal and together make a straight angle of 180°, so each is 90°.",
+         "hi": "O पर दोनों कोण बराबर हैं और मिलकर 180° का सरल कोण बनाते हैं, इसलिए हर एक 90° है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You used a different opening from Y than from X. What goes wrong?",
+        "hi": "तुमने Y से X वाले से अलग खुलाव लिया। क्या गड़बड़ होगी?"
+       },
+       "options": [
+        {
+         "en": "A and B are no longer equally far from X and Y",
+         "hi": "A और B अब X और Y से बराबर दूरी पर नहीं रहेंगे"
+        },
+        {
+         "en": "Nothing, any opening works",
+         "hi": "कुछ नहीं, कोई भी खुलाव चलेगा"
+        },
+        {
+         "en": "The arcs become straight lines",
+         "hi": "चाप सीधी रेखा बन जाएँगे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The method works only because AX = AY and BX = BY; unequal openings break this.",
+        "hi": "यह विधि तभी चलती है जब AX = AY और BX = BY हो; अलग खुलाव से यह टूट जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "With unequal radii the line AB will miss the midpoint.",
+         "hi": "अलग त्रिज्याओं से रेखा AB मध्य बिंदु से चूक जाएगी।"
+        },
+        {
+         "en": "A compass always draws arcs of circles, never straight lines.",
+         "hi": "परकार हमेशा वृत्त के चाप बनाता है, कभी सीधी रेखा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: on paper, draw a 9 cm line and construct its perpendicular bisector. Check with a ruler that each half is 4.5 cm.",
+      "hi": "आज़माओ: काग़ज़ पर 9 सेमी की रेखा खींचो और उसका लंब समद्विभाजक बनाओ। रूलर से जाँचो कि हर आधा 4.5 सेमी है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch06-angle-bisector",
+   "topic": "6.1.3",
+   "template": "sequence",
+   "title": {
+    "en": "Steps to bisect an angle",
+    "hi": "कोण समद्विभाजित करने के चरण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "a1",
+      "text": {
+       "en": "Draw the angle with its vertex at O.",
+       "hi": "O शीर्ष वाला कोण खींचो।"
+      }
+     },
+     {
+      "id": "a2",
+      "text": {
+       "en": "With centre O, draw an arc that cuts both arms at A and B.",
+       "hi": "O को केंद्र लेकर चाप खींचो जो दोनों भुजाओं को A और B पर काटे।"
+      }
+     },
+     {
+      "id": "a3",
+      "text": {
+       "en": "From A, draw an arc inside the angle.",
+       "hi": "A से कोण के भीतर एक चाप खींचो।"
+      }
+     },
+     {
+      "id": "a4",
+      "text": {
+       "en": "Same opening: from B, draw an arc that cuts it at C.",
+       "hi": "उसी खुलाव से: B से चाप खींचो जो उसे C पर काटे।"
+      }
+     },
+     {
+      "id": "a5",
+      "text": {
+       "en": "Join O to C. OC cuts the angle into two equal parts.",
+       "hi": "O को C से मिलाओ। OC कोण को दो बराबर भागों में बाँटती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:a1",
+     "expect": "placed:a1",
+     "say": {
+      "en": "Tap \"Draw the angle\", then tap place 1.",
+      "hi": "\"कोण खींचो\" छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A rangoli design needs a 70° angle cut exactly in half. What will each half be?",
+      "hi": "एक रंगोली में 70° के कोण को ठीक आधा करना है। हर आधा कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "35",
+       "en": "35°",
+       "hi": "35 डिग्री"
+      },
+      {
+       "id": "70",
+       "en": "70°",
+       "hi": "70 डिग्री"
+      },
+      {
+       "id": "140",
+       "en": "140°",
+       "hi": "140 डिग्री"
+      }
+     ],
+     "answer": "35"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the remaining steps in order and tap Check.",
+      "hi": "बाकी चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "OA = OB because they come from one arc, and AC = BC because the two small arcs had the same opening. OC is common. So triangles OAC and OBC have three equal sides and are congruent. Their angles at O are equal: OC bisects the angle, with no protractor needed.",
+      "hi": "OA = OB क्योंकि ये एक ही चाप से बने हैं, और AC = BC क्योंकि दोनों छोटे चापों का खुलाव एक था। OC दोनों में साझा है। इसलिए त्रिभुज OAC और OBC की तीनों भुजाएँ बराबर हैं और वे सर्वांगसम हैं। O पर उनके कोण बराबर हैं: OC कोण को समद्विभाजित करती है, चाँदे के बिना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which rule makes triangles OAC and OBC congruent here?",
+        "hi": "यहाँ कौन-सा नियम त्रिभुज OAC और OBC को सर्वांगसम बनाता है?"
+       },
+       "options": [
+        "SSS",
+        "AAA",
+        "RHS"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "OA = OB, AC = BC and OC is shared: three pairs of equal sides.",
+        "hi": "OA = OB, AC = BC और OC साझा है: बराबर भुजाओं की तीन जोड़ियाँ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equal angles alone do not prove congruence, and we did not know the angles.",
+         "hi": "सिर्फ़ बराबर कोण सर्वांगसमता साबित नहीं करते, और हमें कोण पता भी नहीं थे।"
+        },
+        {
+         "en": "RHS needs a right angle, and there is none here.",
+         "hi": "RHS के लिए समकोण चाहिए, और यहाँ कोई समकोण नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How can you get a 45° angle with only ruler and compass?",
+        "hi": "सिर्फ़ रूलर और परकार से 45° का कोण कैसे बनाओगे?"
+       },
+       "options": [
+        {
+         "en": "Make 90° and bisect it",
+         "hi": "90° बनाकर उसे समद्विभाजित करो"
+        },
+        {
+         "en": "Bisect 60°",
+         "hi": "60° को समद्विभाजित करो"
+        },
+        {
+         "en": "Bisect 180° once",
+         "hi": "180° को एक बार समद्विभाजित करो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Half of 90° is 45°.",
+        "hi": "90° का आधा 45° है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Half of 60° is 30°, not 45°.",
+         "hi": "60° का आधा 30° है, 45° नहीं।"
+        },
+        {
+         "en": "Half of 180° is 90°; you must bisect once more to reach 45°.",
+         "hi": "180° का आधा 90° है; 45° के लिए एक बार और समद्विभाजित करना होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: draw any angle on paper, bisect it, then bisect each half. Measure the four small angles with a protractor.",
+      "hi": "आज़माओ: काग़ज़ पर कोई भी कोण खींचो, उसे समद्विभाजित करो, फिर हर आधे को भी। चाँदे से चारों छोटे कोण मापो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch06-why-it-works",
+   "topic": "6.1.4",
+   "template": "match",
+   "title": {
+    "en": "Why each construction works",
+    "hi": "हर रचना क्यों काम करती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "perp",
+      "left": {
+       "en": "Perpendicular bisector of XY",
+       "hi": "XY का लंब समद्विभाजक"
+      },
+      "right": {
+       "en": "Each point on it is equally far from X and Y",
+       "hi": "इसका हर बिंदु X और Y से बराबर दूरी पर है"
+      },
+      "why": {
+       "en": "Arcs of the same radius from X and Y meet only at such points.",
+       "hi": "X और Y से बराबर त्रिज्या के चाप सिर्फ़ ऐसे बिंदुओं पर मिलते हैं।"
+      }
+     },
+     {
+      "id": "bis",
+      "left": {
+       "en": "Angle bisector",
+       "hi": "कोण समद्विभाजक"
+      },
+      "right": {
+       "en": "Two triangles with three equal sides (SSS)",
+       "hi": "तीनों भुजाएँ बराबर वाले दो त्रिभुज (SSS)"
+      },
+      "why": {
+       "en": "OA = OB, AC = BC and OC is common.",
+       "hi": "OA = OB, AC = BC और OC साझा है।"
+      }
+     },
+     {
+      "id": "sixty",
+      "left": {
+       "en": "A 60° angle",
+       "hi": "60° का कोण"
+      },
+      "right": {
+       "en": "The same radius three times makes an equilateral triangle",
+       "hi": "एक ही त्रिज्या तीन बार से समबाहु त्रिभुज बनता है"
+      },
+      "why": {
+       "en": "All sides equal means all angles are 60°.",
+       "hi": "सब भुजाएँ बराबर, तो सब कोण 60°।"
+      }
+     },
+     {
+      "id": "par",
+      "left": {
+       "en": "A line parallel to l through P",
+       "hi": "P से l के समांतर रेखा"
+      },
+      "right": {
+       "en": "Copy the same corresponding angle at P",
+       "hi": "P पर वही संगत कोण बनाओ"
+      },
+      "why": {
+       "en": "Equal corresponding angles make the lines parallel.",
+       "hi": "बराबर संगत कोण रेखाओं को समांतर बनाते हैं।"
+      }
+     },
+     {
+      "id": "ninety",
+      "left": {
+       "en": "90° at a point on a line",
+       "hi": "रेखा के बिंदु पर 90°"
+      },
+      "right": {
+       "en": "Bisect the straight angle of 180°",
+       "hi": "180° के सरल कोण को समद्विभाजित करो"
+      },
+      "why": {
+       "en": "Half of 180° is 90°.",
+       "hi": "180° का आधा 90° है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:perp",
+     "expect": "matched:perp",
+     "say": {
+      "en": "Tap \"Perpendicular bisector of XY\", then tap the reason it works.",
+      "hi": "\"XY का लंब समद्विभाजक\" छुओ, फिर वह कारण छुओ जिससे यह काम करता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:par",
+     "expect": "matched:par",
+     "say": {
+      "en": "Now match \"A line parallel to l through P\".",
+      "hi": "अब \"P से l के समांतर रेखा\" की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Arches of old forts and gateways are drawn with two arcs of equal radius. Why equal?",
+      "hi": "पुराने क़िलों और दरवाज़ों के मेहराब बराबर त्रिज्या के दो चापों से बनते हैं। बराबर क्यों?"
+     },
+     "options": [
+      {
+       "id": "sym",
+       "en": "So both halves are mirror images",
+       "hi": "ताकि दोनों आधे एक-दूसरे के दर्पण प्रतिबिंब हों"
+      },
+      {
+       "id": "easy",
+       "en": "Only because it is easier",
+       "hi": "सिर्फ़ इसलिए कि यह आसान है"
+      },
+      {
+       "id": "tall",
+       "en": "So the arch is taller",
+       "hi": "ताकि मेहराब ऊँचा हो"
+      }
+     ],
+     "answer": "sym"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then tap Check.",
+      "hi": "बाकी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every compass construction rests on one fact: a compass keeps a distance fixed. Equal distances give congruent triangles, and congruent triangles give equal angles and equal parts. That is why we can bisect, copy angles and draw parallels without measuring.",
+      "hi": "परकार की हर रचना एक ही बात पर टिकी है: परकार दूरी को एक-सा रखता है। बराबर दूरियों से सर्वांगसम त्रिभुज बनते हैं, और सर्वांगसम त्रिभुजों से बराबर कोण और बराबर भाग मिलते हैं। इसीलिए हम बिना मापे समद्विभाजन कर सकते हैं, कोण की नक़ल कर सकते हैं और समांतर रेखाएँ खींच सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "To copy an angle at a new point, what must stay the same?",
+        "hi": "किसी कोण की नए बिंदु पर नक़ल करने के लिए क्या एक-सा रहना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Both compass openings: the arc and the chord",
+         "hi": "परकार के दोनों खुलाव: चाप और जीवा"
+        },
+        {
+         "en": "The length of the arms",
+         "hi": "भुजाओं की लंबाई"
+        },
+        {
+         "en": "The colour of the pencil",
+         "hi": "पेंसिल का रंग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Same arc radius and same chord give a congruent triangle, so the angle is copied exactly.",
+        "hi": "वही चाप-त्रिज्या और वही जीवा सर्वांगसम त्रिभुज देते हैं, इसलिए कोण की हू-ब-हू नक़ल होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An angle's size does not depend on how long its arms are drawn.",
+         "hi": "कोण का माप इस पर निर्भर नहीं करता कि भुजाएँ कितनी लंबी खींची गईं।"
+        },
+        {
+         "en": "Colour changes nothing about the size of an angle.",
+         "hi": "रंग से कोण के माप पर कोई फ़र्क़ नहीं पड़ता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap any matched pair to read its reason again. Then try drawing a pointed arch on paper with two equal arcs.",
+      "hi": "आज़माओ: किसी मिली जोड़ी को छूकर उसका कारण फिर पढ़ो। फिर काग़ज़ पर दो बराबर चापों से नुकीला मेहराब बनाकर देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch06-around-a-point",
+   "topic": "6.1.5",
+   "template": "sort",
+   "title": {
+    "en": "Which regular shapes fit around a point?",
+    "hi": "कौन-सी सम आकृतियाँ एक बिंदु के चारों ओर फ़िट होती हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fit",
+      "label": {
+       "en": "Fit exactly: angles make 360°",
+       "hi": "ठीक फ़िट: कोण 360° बनाते हैं"
+      }
+     },
+     {
+      "id": "gap",
+      "label": {
+       "en": "Leave a gap or overlap",
+       "hi": "जगह छूटती है या चढ़ती है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tri",
+      "text": {
+       "en": "Equilateral triangle, each angle 60°",
+       "hi": "समबाहु त्रिभुज, हर कोण 60°"
+      },
+      "bin": "fit",
+      "why": {
+       "en": "6 × 60° = 360°, so six meet at a point.",
+       "hi": "6 × 60° = 360°, इसलिए छह एक बिंदु पर मिलते हैं।"
+      }
+     },
+     {
+      "id": "sq",
+      "text": {
+       "en": "Square, each angle 90°",
+       "hi": "वर्ग, हर कोण 90°"
+      },
+      "bin": "fit",
+      "why": {
+       "en": "4 × 90° = 360°, like floor tiles.",
+       "hi": "4 × 90° = 360°, फ़र्श की टाइलों जैसा।"
+      }
+     },
+     {
+      "id": "hex",
+      "text": {
+       "en": "Regular hexagon, each angle 120°",
+       "hi": "सम षट्भुज, हर कोण 120°"
+      },
+      "bin": "fit",
+      "why": {
+       "en": "3 × 120° = 360°, like a honeycomb.",
+       "hi": "3 × 120° = 360°, मधुमक्खी के छत्ते जैसा।"
+      }
+     },
+     {
+      "id": "pent",
+      "text": {
+       "en": "Regular pentagon, each angle 108°",
+       "hi": "सम पंचभुज, हर कोण 108°"
+      },
+      "bin": "gap",
+      "why": {
+       "en": "3 × 108° = 324° leaves a gap; 4 × 108° = 432° overlaps.",
+       "hi": "3 × 108° = 324° से जगह छूटती है; 4 × 108° = 432° चढ़ जाता है।"
+      }
+     },
+     {
+      "id": "oct",
+      "text": {
+       "en": "Regular octagon, each angle 135°",
+       "hi": "सम अष्टभुज, हर कोण 135°"
+      },
+      "bin": "gap",
+      "why": {
+       "en": "2 × 135° = 270° and 3 × 135° = 405°; neither is 360°.",
+       "hi": "2 × 135° = 270° और 3 × 135° = 405°; कोई भी 360° नहीं।"
+      }
+     },
+     {
+      "id": "dec",
+      "text": {
+       "en": "Regular decagon, each angle 144°",
+       "hi": "सम दसभुज, हर कोण 144°"
+      },
+      "bin": "gap",
+      "why": {
+       "en": "2 × 144° = 288° and 3 × 144° = 432°; 360° is missed.",
+       "hi": "2 × 144° = 288° और 3 × 144° = 432°; 360° नहीं बनता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:hex",
+     "expect": "correct:hex",
+     "say": {
+      "en": "Tap the hexagon card, then tap the group it belongs to.",
+      "hi": "षट्भुज वाला कार्ड छुओ, फिर उसका सही समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A regular pentagon has angles of 108°. Can copies of it meet around a point with no gap?",
+      "hi": "सम पंचभुज के कोण 108° के हैं। क्या उसकी प्रतियाँ बिना जगह छोड़े एक बिंदु के चारों ओर मिल सकती हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No: 360 is not a multiple of 108",
+       "hi": "नहीं: 360, 108 का गुणज नहीं है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, with 4 of them",
+       "hi": "हाँ, 4 से"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other shapes, then tap Check.",
+      "hi": "बाकी आकृतियाँ छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The angles that meet at one point must add up to a full turn, 360°. Copies of a regular shape fit only when 360 divided by its angle is a whole number: 60°, 90° and 120° work. A regular hexagon is six equilateral triangles joined at the centre, which is why its angles are 60° + 60° = 120°.",
+      "hi": "एक बिंदु पर मिलने वाले कोणों का जोड़ पूरा चक्कर, 360° होना चाहिए। किसी सम आकृति की प्रतियाँ तभी फ़िट होती हैं जब 360 को उसके कोण से भाग देने पर पूर्ण संख्या मिले: 60°, 90° और 120° चलते हैं। सम षट्भुज केंद्र पर जुड़े छह समबाहु त्रिभुजों से बनता है, इसलिए उसका कोण 60° + 60° = 120° है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many regular hexagons meet at each corner of a honeycomb?",
+        "hi": "मधुमक्खी के छत्ते के हर कोने पर कितने सम षट्भुज मिलते हैं?"
+       },
+       "options": [
+        "3",
+        "4",
+        "6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "360° ÷ 120° = 3.",
+        "hi": "360° ÷ 120° = 3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 × 120° = 480°, more than a full turn.",
+         "hi": "4 × 120° = 480°, पूरे चक्कर से ज़्यादा।"
+        },
+        {
+         "en": "Six is the count of equilateral triangles at a point, not hexagons.",
+         "hi": "छह, एक बिंदु पर समबाहु त्रिभुजों की गिनती है, षट्भुजों की नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Angles of 40°, 60°, 50°, 30°, 40° and 90° meet at a point. What is the gap?",
+        "hi": "40°, 60°, 50°, 30°, 40° और 90° के कोण एक बिंदु पर मिलते हैं। बची जगह कितनी है?"
+       },
+       "options": [
+        "50°",
+        "310°",
+        "0°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They add to 310°, and a full turn is 360°, so the gap is 50°.",
+        "hi": "इनका जोड़ 310° है, और पूरा चक्कर 360° है, इसलिए 50° बचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "310° is the sum of the angles, not the gap left.",
+         "hi": "310° कोणों का जोड़ है, बची जगह नहीं।"
+        },
+        {
+         "en": "The angles add to 310°, not 360°, so some gap remains.",
+         "hi": "कोणों का जोड़ 310° है, 360° नहीं, इसलिए कुछ जगह बचती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: look at tiled floors, jaalis and footpaths near you. Which shapes meet at each corner, and do their angles add to 360°?",
+      "hi": "आज़माओ: अपने आसपास के फ़र्श, जाली और फ़ुटपाथ देखो। हर कोने पर कौन-सी आकृतियाँ मिलती हैं, और क्या उनके कोण 360° बनाते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch06-tangram",
+   "topic": "6.2.1",
+   "template": "shapes",
+   "title": {
+    "en": "Tangram: seven pieces, one square",
+    "hi": "टैनग्राम: सात टुकड़े, एक वर्ग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "tangram",
+    "task": "square"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "piece:*",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag one big triangle into the square outline.",
+      "hi": "एक बड़े त्रिभुज को वर्ग की रूपरेखा में खींचो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The two big triangles together cover how much of the whole square?",
+      "hi": "दोनों बड़े त्रिभुज मिलकर पूरे वर्ग का कितना भाग ढकते हैं?"
+     },
+     "options": [
+      {
+       "id": "half",
+       "en": "Half",
+       "hi": "आधा"
+      },
+      {
+       "id": "quarter",
+       "en": "A quarter",
+       "hi": "एक चौथाई"
+      },
+      {
+       "id": "third",
+       "en": "A third",
+       "hi": "एक तिहाई"
+      }
+     ],
+     "answer": "half"
+    },
+    {
+     "kind": "do",
+     "target": "piece:*",
+     "expect": "constructed",
+     "say": {
+      "en": "Fit all seven pieces into the square. Tap a piece to turn it.",
+      "hi": "सातों टुकड़ों को वर्ग में फ़िट करो। घुमाने के लिए टुकड़े को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The seven pieces cover the square with no gaps and no overlaps: that is a tiling of the square. Each big triangle is a quarter of it, so the two together are half. Two small triangles make the small square, and also the parallelogram, so these three pieces have equal area.",
+      "hi": "सात टुकड़े वर्ग को बिना जगह छोड़े और बिना चढ़े ढकते हैं: यह वर्ग की टाइलिंग है। हर बड़ा त्रिभुज उसका एक चौथाई है, इसलिए दोनों मिलकर आधा। दो छोटे त्रिभुज मिलकर छोटा वर्ग बनाते हैं, और समांतर चतुर्भुज भी, इसलिए इन तीन टुकड़ों का क्षेत्रफल बराबर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The whole square is 16 small triangles in area. How many small triangles is the medium triangle?",
+        "hi": "पूरा वर्ग क्षेत्रफल में 16 छोटे त्रिभुजों के बराबर है। मँझला त्रिभुज कितने छोटे त्रिभुजों के बराबर है?"
+       },
+       "options": [
+        "2",
+        "4",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The medium triangle is made of two small triangles, like the small square.",
+        "hi": "मँझला त्रिभुज दो छोटे त्रिभुजों से बनता है, छोटे वर्ग की तरह।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 small triangles make one big triangle, not the medium one.",
+         "hi": "4 छोटे त्रिभुज एक बड़ा त्रिभुज बनाते हैं, मँझला नहीं।"
+        },
+        {
+         "en": "The medium triangle is clearly bigger than a small one: it is two of them.",
+         "hi": "मँझला त्रिभुज छोटे वाले से साफ़ बड़ा है: वह दो के बराबर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap \"Next outline\" and make a triangle and a rectangle with the same seven pieces. Is the area the same each time?",
+      "hi": "आज़माओ: \"अगली रूपरेखा\" दबाओ और उन्हीं सात टुकड़ों से त्रिभुज और आयत बनाओ। क्या हर बार क्षेत्रफल बराबर है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch06-domino-tiling",
+   "topic": "6.2.2",
+   "template": "sort",
+   "title": {
+    "en": "Can 2 × 1 tiles cover this grid?",
+    "hi": "क्या 2 × 1 की टाइलें यह ग्रिड ढक सकती हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Can be tiled",
+       "hi": "टाइल हो सकता है"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Cannot be tiled",
+       "hi": "टाइल नहीं हो सकता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "g46",
+      "text": {
+       "en": "A 4 × 6 grid",
+       "hi": "4 × 6 का ग्रिड"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "24 squares; lay 3 tiles along each row of 6.",
+       "hi": "24 खाने; 6 की हर पंक्ति में 3 टाइलें रखो।"
+      }
+     },
+     {
+      "id": "g57",
+      "text": {
+       "en": "A 5 × 7 grid",
+       "hi": "5 × 7 का ग्रिड"
+      },
+      "bin": "no",
+      "why": {
+       "en": "35 squares is odd, but each tile covers 2.",
+       "hi": "35 खाने विषम हैं, पर हर टाइल 2 ढकती है।"
+      }
+     },
+     {
+      "id": "g29",
+      "text": {
+       "en": "A 2 × 9 grid",
+       "hi": "2 × 9 का ग्रिड"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Stand 9 tiles upright, one in each column of 2.",
+       "hi": "2 के हर स्तंभ में एक, ऐसे 9 टाइलें खड़ी रखो।"
+      }
+     },
+     {
+      "id": "g33",
+      "text": {
+       "en": "A 3 × 3 grid",
+       "hi": "3 × 3 का ग्रिड"
+      },
+      "bin": "no",
+      "why": {
+       "en": "9 squares is odd; one square is always left.",
+       "hi": "9 खाने विषम हैं; एक खाना हमेशा बचेगा।"
+      }
+     },
+     {
+      "id": "g47",
+      "text": {
+       "en": "A 4 × 7 grid",
+       "hi": "4 × 7 का ग्रिड"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "28 squares; each column of 4 takes 2 upright tiles.",
+       "hi": "28 खाने; 4 के हर स्तंभ में 2 खड़ी टाइलें।"
+      }
+     },
+     {
+      "id": "g35",
+      "text": {
+       "en": "A 3 × 5 grid",
+       "hi": "3 × 5 का ग्रिड"
+      },
+      "bin": "no",
+      "why": {
+       "en": "15 squares is odd, so tiles of 2 cannot cover it.",
+       "hi": "15 खाने विषम हैं, इसलिए 2 वाली टाइलें नहीं ढक सकतीं।"
+      }
+     },
+     {
+      "id": "g66",
+      "text": {
+       "en": "A 6 × 6 grid",
+       "hi": "6 × 6 का ग्रिड"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "36 squares; 3 tiles fill each row of 6.",
+       "hi": "36 खाने; 6 की हर पंक्ति में 3 टाइलें।"
+      }
+     },
+     {
+      "id": "g81",
+      "text": {
+       "en": "A 1 × 8 strip",
+       "hi": "1 × 8 की पट्टी"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Lay 4 tiles end to end.",
+       "hi": "4 टाइलें एक के बाद एक रखो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:g57",
+     "expect": "correct:g57",
+     "say": {
+      "en": "Tap the 5 × 7 card, then tap the right group.",
+      "hi": "5 × 7 वाला कार्ड छुओ, फिर सही समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A grid has one even side, like 4 × 7. Can 2 × 1 tiles always cover it?",
+      "hi": "किसी ग्रिड की एक भुजा सम है, जैसे 4 × 7। क्या 2 × 1 टाइलें उसे हमेशा ढक सकती हैं?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes: line the tiles up along the even side",
+       "hi": "हाँ: टाइलें सम भुजा के साथ लगाओ"
+      },
+      {
+       "id": "no",
+       "en": "No: 7 is odd",
+       "hi": "नहीं: 7 विषम है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other grids, then tap Check.",
+      "hi": "बाकी ग्रिड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each tile covers exactly 2 squares, so the number of squares must be even. If one side is even, tiles can be placed in pairs along that side to fill every row or column. If both sides are odd, the total is odd, and one square is always left over: such a grid can never be tiled.",
+      "hi": "हर टाइल ठीक 2 खाने ढकती है, इसलिए खानों की संख्या सम होनी चाहिए। अगर एक भुजा सम है, तो उस भुजा के साथ जोड़ियों में टाइलें रखकर हर पंक्ति या स्तंभ भरा जा सकता है। अगर दोनों भुजाएँ विषम हैं, तो कुल विषम है, और एक खाना हमेशा बचेगा: ऐसा ग्रिड कभी टाइल नहीं हो सकता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An 8 × 8 chessboard has two opposite corner squares cut off. 62 squares remain. Can 31 tiles cover it?",
+        "hi": "8 × 8 की शतरंज की बिसात के दो आमने-सामने के कोने वाले खाने काट दिए गए। 62 खाने बचे। क्या 31 टाइलें इसे ढक सकती हैं?"
+       },
+       "options": [
+        {
+         "en": "No: the cut corners are the same colour",
+         "hi": "नहीं: कटे कोने एक ही रंग के हैं"
+        },
+        {
+         "en": "Yes: 62 is even",
+         "hi": "हाँ: 62 सम है"
+        },
+        {
+         "en": "Yes, if the tiles are turned",
+         "hi": "हाँ, अगर टाइलें घुमाई जाएँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every tile covers one black and one white square. Opposite corners share a colour, so 32 of one colour and 30 of the other remain; 31 tiles cannot match that.",
+        "hi": "हर टाइल एक काला और एक सफ़ेद खाना ढकती है। आमने-सामने के कोने एक ही रंग के होते हैं, इसलिए एक रंग के 32 और दूसरे के 30 बचते हैं; 31 टाइलें इससे मेल नहीं खा सकतीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An even count is needed but not enough; the colours must also balance.",
+         "hi": "सम गिनती ज़रूरी है पर काफ़ी नहीं; रंग भी बराबर होने चाहिए।"
+        },
+        {
+         "en": "Turning a tile still covers one black and one white square, so the colour problem stays.",
+         "hi": "टाइल घुमाने पर भी वह एक काला और एक सफ़ेद खाना ही ढकती है, इसलिए रंग की दिक़्क़त बनी रहती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: draw a 3 × 4 grid on squared paper. Find two different ways to tile it with 2 × 1 tiles.",
+      "hi": "आज़माओ: चौख़ाने वाले काग़ज़ पर 3 × 4 का ग्रिड बनाओ। उसे 2 × 1 टाइलों से ढकने के दो अलग तरीक़े खोजो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1.4",
+   "use": "Chapter hook: arches",
+   "shows": "A row of pointed stone arches in an old Indian fort or mosque courtyard, light falling through them",
+   "view": "Eye level, the arches in a row, one centred and symmetric",
+   "right": "Arches pointed and left-right symmetric",
+   "avoid": "People, signboards, modern fittings"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.1.1",
+   "use": "Geometry box for the construction labs",
+   "shows": "An open school geometry box: compass with pencil, 15 cm ruler, protractor and two set squares on a white sheet",
+   "view": "From above, flat lay, even light",
+   "right": "Ruler marked in cm and mm; compass pencil sharp",
+   "avoid": "Brand names, scratched tools"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "6.1.1",
+   "use": "Perpendicular bisector, step by step",
+   "shows": "A line segment XY on paper: arcs from X, then arcs from Y crossing at A and B, then the line AB drawn",
+   "view": "From above, the same framing in 3 frames, a child's hand with the compass in frame 2",
+   "right": "Same compass opening for all four arcs; AB meets XY at its middle at 90°",
+   "avoid": "Wrong crossing points, extra arcs"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "6.1.2",
+   "use": "The rope method (Śulba-Sūtra)",
+   "shows": "Two pegs in the ground with a rope; the rope's middle pulled out on each side to mark a perpendicular line with chalk",
+   "view": "From slightly above, outdoor school ground, 3 frames",
+   "right": "Both halves of the rope stretched tight and equal",
+   "avoid": "Children's faces, a sharp peg pointing up"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.1.5",
+   "use": "Regular shapes around a point",
+   "shows": "A honeycomb close-up next to a floor of square tiles and a jaali with equilateral-triangle pattern",
+   "view": "Three panels side by side, each from straight above",
+   "right": "Hexagons meet three at a corner; squares four at a corner",
+   "avoid": "Bees crowding the cells, cracked tiles"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "6.2.1",
+   "use": "Tangram set for the tangram lab",
+   "shows": "The seven tangram pieces cut from coloured card, first arranged as a square, then scattered",
+   "view": "From above, white background, two frames",
+   "right": "Two big, one medium, two small triangles, one square, one parallelogram; areas in the right ratio",
+   "avoid": "Gaps in the square, extra pieces"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "6.2.2",
+   "use": "Domino tiling and the chessboard puzzle",
+   "shows": "A 4 × 7 grid tiled with 2 × 1 tiles beside an 8 × 8 chessboard with two opposite corners crossed out",
+   "view": "Flat vector, white background",
+   "right": "Every tile covers exactly two squares; the crossed corners are the same colour",
+   "avoid": "Tiles overlapping or hanging off the grid"
+  }
+ ]
+}

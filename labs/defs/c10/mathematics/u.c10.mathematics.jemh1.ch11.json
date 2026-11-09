@@ -1,0 +1,457 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch11",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Areas Related to Circles",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Areas of sector and segment of a circle",
+   "labs": [
+    "c10-mathematics-jemh1-ch11-circle-to-rectangle",
+    "c10-mathematics-jemh1-ch11-sector-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch11-circle-to-rectangle",
+   "topic": "11.1",
+   "template": "shapes",
+   "title": {
+    "en": "From circle to rectangle: why the area is πr²",
+    "hi": "वृत्त से आयत: क्षेत्रफल πr² क्यों है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "circle",
+    "task": "area",
+    "given": {
+     "lengths": [
+      3.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:sectors",
+     "expect": "drawn",
+     "say": {
+      "en": "Move the sectors slider to cut the circle into more and thinner slices.",
+      "hi": "सेक्टर स्लाइडर खिसकाओ ताकि वृत्त ज़्यादा और पतले टुकड़ों में कटे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you lay the thin slices top-to-tail in a row, what shape do they nearly make?",
+      "hi": "यदि पतले टुकड़ों को उल्टा-सीधा करके एक पंक्ति में रखो, तो वे लगभग कौन-सी आकृति बनाएँगे?"
+     },
+     "options": [
+      {
+       "id": "rect",
+       "en": "A rectangle",
+       "hi": "एक आयत"
+      },
+      {
+       "id": "tri",
+       "en": "A triangle",
+       "hi": "एक त्रिभुज"
+      },
+      {
+       "id": "circle",
+       "en": "A bigger circle",
+       "hi": "एक बड़ा वृत्त"
+      }
+     ],
+     "answer": "rect"
+    },
+    {
+     "kind": "do",
+     "target": "rearrange",
+     "expect": "proved",
+     "say": {
+      "en": "Press Rearrange and watch the slices line up.",
+      "hi": "फिर से जमाओ दबाओ और टुकड़ों को पंक्ति में लगते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The slices make a near-rectangle: its height is the radius r and its length is half the circumference, πr. So the area is πr × r = πr². A sector with angle θ is θ/360 of the circle, so its area is (θ/360) × πr² and its arc is (θ/360) × 2πr. A segment is a sector minus the triangle inside it.",
+      "hi": "टुकड़े लगभग एक आयत बनाते हैं: उसकी ऊँचाई त्रिज्या r और लंबाई आधी परिधि πr है। इसलिए क्षेत्रफल πr × r = πr² है। θ कोण वाला त्रिज्यखंड वृत्त का θ/360 भाग है, इसलिए उसका क्षेत्रफल (θ/360) × πr² और चाप (θ/360) × 2πr है। वृत्तखंड, त्रिज्यखंड में से अंदर का त्रिभुज घटाकर मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A clock's minute hand is 21 cm long. What area does it sweep in 10 minutes? (π = 22/7)",
+        "hi": "घड़ी की मिनट की सुई 21 सेमी लंबी है। 10 मिनट में वह कितना क्षेत्रफल पार करती है? (π = 22/7)"
+       },
+       "options": [
+        {
+         "en": "231 cm²",
+         "hi": "231 सेमी²"
+        },
+        {
+         "en": "1386 cm²",
+         "hi": "1386 सेमी²"
+        },
+        {
+         "en": "22 cm²",
+         "hi": "22 सेमी²"
+        },
+        {
+         "en": "462 cm²",
+         "hi": "462 सेमी²"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10 minutes is 60°, one sixth of a turn: 1/6 × 22/7 × 21 × 21 = 231 cm².",
+        "hi": "10 मिनट यानी 60°, एक चक्कर का छठा भाग: 1/6 × 22/7 × 21 × 21 = 231 सेमी²।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1386 cm² is the whole circle; the hand turns only 60° in 10 minutes.",
+         "hi": "1386 सेमी² पूरा वृत्त है; 10 मिनट में सुई केवल 60° घूमती है।"
+        },
+        {
+         "en": "22 cm is the arc length, a length, not an area.",
+         "hi": "22 सेमी चाप की लंबाई है, क्षेत्रफल नहीं।"
+        },
+        {
+         "en": "462 cm² is 120°, the area for 20 minutes.",
+         "hi": "462 सेमी² 120° का, यानी 20 मिनट का क्षेत्रफल है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A circle has radius 14 cm. What is the area of the minor segment cut off by a 90° angle at the centre? (π = 22/7)",
+        "hi": "14 सेमी त्रिज्या वाले वृत्त में केंद्र पर 90° कोण से बने लघु वृत्तखंड का क्षेत्रफल क्या है? (π = 22/7)"
+       },
+       "options": [
+        {
+         "en": "56 cm²",
+         "hi": "56 सेमी²"
+        },
+        {
+         "en": "154 cm²",
+         "hi": "154 सेमी²"
+        },
+        {
+         "en": "98 cm²",
+         "hi": "98 सेमी²"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sector = 1/4 × 22/7 × 196 = 154. Triangle = 1/2 × 14 × 14 = 98. Segment = 154 − 98 = 56 cm².",
+        "hi": "त्रिज्यखंड = 1/4 × 22/7 × 196 = 154। त्रिभुज = 1/2 × 14 × 14 = 98। वृत्तखंड = 154 − 98 = 56 सेमी²।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "154 cm² is the whole sector; the triangle must be taken away.",
+         "hi": "154 सेमी² पूरा त्रिज्यखंड है; त्रिभुज घटाना होगा।"
+        },
+        {
+         "en": "98 cm² is the triangle, not the curved piece left over.",
+         "hi": "98 सेमी² त्रिभुज है, बचा हुआ घुमावदार भाग नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the number of sectors. With very few slices the shape is bumpy; with many it is almost a perfect rectangle. Why does that make πr² exact?",
+      "hi": "आज़माओ: सेक्टरों की संख्या बदलो। कम टुकड़ों में आकृति ऊबड़-खाबड़ है; ज़्यादा में लगभग पूरा आयत। इससे πr² सटीक क्यों बनता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch11-sector-match",
+   "topic": "11.1",
+   "template": "match",
+   "title": {
+    "en": "Match each sector to its area",
+    "hi": "हर त्रिज्यखंड को उसके क्षेत्रफल से मिलाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "90° sector, r = 14 cm",
+       "hi": "90° त्रिज्यखंड, r = 14 सेमी"
+      },
+      "right": {
+       "en": "154 cm²",
+       "hi": "154 सेमी²"
+      },
+      "why": {
+       "en": "A quarter circle: 1/4 × 22/7 × 14 × 14 = 154.",
+       "hi": "चौथाई वृत्त: 1/4 × 22/7 × 14 × 14 = 154।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "45° sector, r = 14 cm",
+       "hi": "45° त्रिज्यखंड, r = 14 सेमी"
+      },
+      "right": {
+       "en": "77 cm²",
+       "hi": "77 सेमी²"
+      },
+      "why": {
+       "en": "45° is 1/8 of a turn: half of 154.",
+       "hi": "45° एक चक्कर का 1/8 है: 154 का आधा।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "Semicircle, r = 14 cm",
+       "hi": "अर्धवृत्त, r = 14 सेमी"
+      },
+      "right": {
+       "en": "308 cm²",
+       "hi": "308 सेमी²"
+      },
+      "why": {
+       "en": "Half of the circle: 1/2 × 616 = 308.",
+       "hi": "वृत्त का आधा: 1/2 × 616 = 308।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "60° sector, r = 21 cm",
+       "hi": "60° त्रिज्यखंड, r = 21 सेमी"
+      },
+      "right": {
+       "en": "231 cm²",
+       "hi": "231 सेमी²"
+      },
+      "why": {
+       "en": "1/6 × 22/7 × 21 × 21 = 231.",
+       "hi": "1/6 × 22/7 × 21 × 21 = 231।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "120° sector, r = 21 cm",
+       "hi": "120° त्रिज्यखंड, r = 21 सेमी"
+      },
+      "right": {
+       "en": "462 cm²",
+       "hi": "462 सेमी²"
+      },
+      "why": {
+       "en": "120° is twice 60°, so twice 231.",
+       "hi": "120° का कोण 60° का दोगुना है, इसलिए 231 का दोगुना।"
+      }
+     },
+     {
+      "id": "f",
+      "left": {
+       "en": "Arc of a 90° sector, r = 14 cm",
+       "hi": "90° त्रिज्यखंड का चाप, r = 14 सेमी"
+      },
+      "right": {
+       "en": "22 cm (a length)",
+       "hi": "22 सेमी (एक लंबाई)"
+      },
+      "why": {
+       "en": "1/4 × 2 × 22/7 × 14 = 22 cm. An arc is a length, not an area.",
+       "hi": "1/4 × 2 × 22/7 × 14 = 22 सेमी। चाप लंबाई है, क्षेत्रफल नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 90° sector of a circle with radius 14 cm: what fraction of the whole circle is it?",
+      "hi": "14 सेमी त्रिज्या वाले वृत्त का 90° त्रिज्यखंड पूरे वृत्त का कौन-सा भाग है?"
+     },
+     "options": [
+      {
+       "id": "q",
+       "en": "One quarter",
+       "hi": "एक चौथाई"
+      },
+      {
+       "id": "h",
+       "en": "One half",
+       "hi": "आधा"
+      },
+      {
+       "id": "n",
+       "en": "One ninth",
+       "hi": "नौवाँ भाग"
+      }
+     ],
+     "answer": "q"
+    },
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Tap the 90° sector card, then the area that matches it.",
+      "hi": "90° त्रिज्यखंड वाले कार्ड पर टैप करो, फिर उससे मेल खाते क्षेत्रफल पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Now the 45° sector. It is half of the 90° one.",
+      "hi": "अब 45° त्रिज्यखंड। यह 90° वाले का आधा है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:f",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest. Careful: one card is an arc, a length.",
+      "hi": "बाकी मिलाओ। ध्यान दो: एक कार्ड चाप है, जो लंबाई है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A sector of angle θ is the fraction θ/360 of its circle. Its area is (θ/360) × πr² and its arc length is (θ/360) × 2πr. Doubling the angle doubles the area; doubling the radius makes the area four times bigger.",
+      "hi": "θ कोण वाला त्रिज्यखंड अपने वृत्त का θ/360 भाग है। उसका क्षेत्रफल (θ/360) × πr² और चाप की लंबाई (θ/360) × 2πr है। कोण दोगुना करने से क्षेत्रफल दोगुना होता है; त्रिज्या दोगुनी करने से क्षेत्रफल चार गुना हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 60° sector of a circle with radius 7 cm has area (π = 22/7)",
+        "hi": "7 सेमी त्रिज्या वाले वृत्त के 60° त्रिज्यखंड का क्षेत्रफल है (π = 22/7)"
+       },
+       "options": [
+        {
+         "en": "77/3 ≈ 25.7 cm²",
+         "hi": "77/3 ≈ 25.7 सेमी²"
+        },
+        {
+         "en": "154 cm²",
+         "hi": "154 सेमी²"
+        },
+        {
+         "en": "7.3 cm²",
+         "hi": "7.3 सेमी²"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1/6 × 22/7 × 7 × 7 = 154/6 = 77/3 ≈ 25.7 cm².",
+        "hi": "1/6 × 22/7 × 7 × 7 = 154/6 = 77/3 ≈ 25.7 सेमी²।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "154 cm² is the whole circle of radius 7.",
+         "hi": "154 सेमी² त्रिज्या 7 वाला पूरा वृत्त है।"
+        },
+        {
+         "en": "7.3 cm is close to the arc length (22/3 cm), which is a length.",
+         "hi": "7.3 सेमी चाप की लंबाई (22/3 सेमी) के पास है, जो लंबाई है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make your own card pair. A pizza of radius 14 cm is cut into 8 equal slices: what is the area of one slice?",
+      "hi": "आज़माओ: अपनी एक कार्ड-जोड़ी बनाओ। 14 सेमी त्रिज्या वाला पिज़्ज़ा 8 बराबर टुकड़ों में कटा है: एक टुकड़े का क्षेत्रफल कितना है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Chapter hook: a round cake cut into slices",
+   "shows": "A round homemade cake on a steel plate, cut into 8 equal slices with one slice slightly pulled out",
+   "view": "From above at a slight angle, warm kitchen light",
+   "right": "Slices equal; the pulled slice is a clean sector",
+   "avoid": "Brand names, candles with numbers"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "A sector swept by a wiper",
+   "shows": "A car windscreen with a single wiper that has cleared a fan-shaped area on a dusty glass",
+   "view": "From the front, outside the car",
+   "right": "Cleared area is a sector (or the part between two arcs)",
+   "avoid": "Number plates, driver's face"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "A hand fan as a sector",
+   "shows": "An open folding hand fan made of paper, spread to about 120°",
+   "view": "Straight on, transparent background",
+   "right": "Fan opens from one pivot; edges are radii",
+   "avoid": "Printed text or logos"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Segment: a semicircular window above a door",
+   "shows": "A heritage Indian doorway with a semicircular glass window above it, split by a straight bar",
+   "view": "Straight on, daylight",
+   "right": "The arch is a true half circle",
+   "avoid": "People, signboards"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Clock face for the minute-hand question",
+   "shows": "A plain wall clock with hands but no numbers, the minute hand at the 12 and another position 10 minutes later shown faintly",
+   "view": "Straight on, transparent background",
+   "right": "Exactly 60° between the two minute-hand positions",
+   "avoid": "Brand names, printed numerals"
+  }
+ ]
+}

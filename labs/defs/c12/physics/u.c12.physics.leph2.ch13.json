@@ -1,0 +1,1166 @@
+{
+ "chapter_key": "u.c12.physics.leph2.ch13",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Nuclei",
+ "source": "https://ncert.nic.in/textbook/pdf/leph213.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "An opening about the nucleus and the energy it holds; photos and the reader set the scene."
+  },
+  {
+   "n": "13.2",
+   "title": "Atomic masses and composition of the nucleus (isotopes)",
+   "labs": [
+    "c12-physics-leph2-ch13-isotopes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3",
+   "title": "Size of the nucleus",
+   "labs": [
+    "c12-physics-leph2-ch13-nuclear-size"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4",
+   "title": "Mass-energy and nuclear binding energy",
+   "labs": [
+    "c12-physics-leph2-ch13-mass-energy"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.5",
+   "title": "Nuclear force",
+   "labs": [],
+   "why_no_lab": "The shape of the nuclear force and potential energy curve is a graph reading task better taught by the reader and a figure."
+  },
+  {
+   "n": "13.6",
+   "title": "Radioactivity (alpha, beta, gamma; law of decay and half-life)",
+   "labs": [
+    "c12-physics-leph2-ch13-half-life",
+    "c12-physics-leph2-ch13-decay-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.7",
+   "title": "Nuclear energy: fission, fusion and controlled thermonuclear fusion",
+   "labs": [
+    "c12-physics-leph2-ch13-fission-steps",
+    "c12-physics-leph2-ch13-fission-fusion"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph2-ch13-isotopes",
+   "topic": "13.2",
+   "template": "atom",
+   "title": {
+    "en": "Isotopes: same protons, different neutrons",
+    "hi": "समस्थानिक: समान प्रोटॉन, भिन्न न्यूट्रॉन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "isotopes",
+    "target": "C"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Carbon-12 and carbon-14 differ in the number of its",
+      "hi": "कार्बन-12 और कार्बन-14 में अंतर है इनकी संख्या में"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "neutrons",
+       "hi": "न्यूट्रॉन"
+      },
+      {
+       "id": "o1",
+       "en": "protons",
+       "hi": "प्रोटॉन"
+      },
+      {
+       "id": "o2",
+       "en": "electrons only",
+       "hi": "केवल इलेक्ट्रॉन"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "add:neutron",
+     "expect": "isotope:C-13",
+     "say": {
+      "en": "Add a neutron to carbon-12. Its atomic number stays 6, the mass number rises to 13.",
+      "hi": "कार्बन-12 में एक न्यूट्रॉन जोड़ो। परमाणु क्रमांक 6 ही रहता है, द्रव्यमान संख्या 13 हो जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:neutron",
+     "expect": "isotope:C-14",
+     "say": {
+      "en": "Add one more. Carbon-14 is radioactive.",
+      "hi": "एक और जोड़ो। कार्बन-14 रेडियोधर्मी है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A nucleus is made of protons and neutrons, together called nucleons. The atomic number Z is the number of protons and the mass number A = Z + N is the number of nucleons. Isotopes have the same Z but different A, so they are the same element with the same chemistry. Carbon-14 is unstable and its slow decay is used to date old wood and bones. The atomic mass unit is 1 u = 1/12 of the mass of a carbon-12 atom.",
+      "hi": "नाभिक प्रोटॉनों और न्यूट्रॉनों से बना है, जिन्हें मिलाकर न्यूक्लिऑन कहते हैं। परमाणु क्रमांक Z प्रोटॉनों की संख्या है और द्रव्यमान संख्या A = Z + N न्यूक्लिऑनों की संख्या। समस्थानिकों का Z समान पर A भिन्न होता है, इसलिए वे वही तत्व हैं और उनके रासायनिक गुण समान हैं। कार्बन-14 अस्थिर है और उसका धीमा क्षय पुरानी लकड़ी और हड्डियों की आयु निकालने में काम आता है। परमाणु द्रव्यमान इकाई 1 u, कार्बन-12 परमाणु के द्रव्यमान का 1/12 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many neutrons does carbon-14 (Z = 6) have?",
+        "hi": "कार्बन-14 (Z = 6) में कितने न्यूट्रॉन हैं?"
+       },
+       "options": [
+        {
+         "en": "8",
+         "hi": "8 न्यूट्रॉन"
+        },
+        {
+         "en": "6",
+         "hi": "6 न्यूट्रॉन"
+        },
+        {
+         "en": "14",
+         "hi": "14 न्यूट्रॉन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "N = A − Z = 14 − 6 = 8.",
+        "hi": "N = A − Z = 14 − 6 = 8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 is the number of protons. Neutrons = A − Z.",
+         "hi": "6 प्रोटॉनों की संख्या है। न्यूट्रॉन = A − Z।"
+        },
+        {
+         "en": "14 is the mass number, protons plus neutrons together.",
+         "hi": "14 द्रव्यमान संख्या है, प्रोटॉन और न्यूट्रॉन मिलाकर।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the other isotope families in your mind: how many neutrons does uranium-235 have? (Z = 92)",
+      "hi": "अन्य समस्थानिकों के बारे में सोचो: यूरेनियम-235 में कितने न्यूट्रॉन हैं? (Z = 92)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch13-nuclear-size",
+   "topic": "13.3",
+   "template": "grapher",
+   "title": {
+    "en": "The nucleus: size grows as the cube root of A",
+    "hi": "नाभिक: आकार A के घनमूल के अनुसार बढ़ता है"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "derivative",
+    "expr": "1.2*(10*x)^(1/3)"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the number of nucleons is increased 8 times, the radius of the nucleus becomes",
+      "hi": "यदि न्यूक्लिऑनों की संख्या 8 गुना हो जाए तो नाभिक की त्रिज्या हो जाती है"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "4 times",
+       "hi": "4 गुनी"
+      },
+      {
+       "id": "o0",
+       "en": "2 times",
+       "hi": "2 गुनी"
+      },
+      {
+       "id": "o1",
+       "en": "8 times",
+       "hi": "8 गुनी"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is A in tens. Slide it from 1 (A = 10) to 8 (A = 80) and read the radius R in femtometres.",
+      "hi": "x, A को दहाई में बताता है। उसे 1 (A = 10) से 8 (A = 80) तक चलाओ और त्रिज्या R फ़ेम्टोमीटर में पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tangent",
+     "expect": "plotted",
+     "say": {
+      "en": "Switch on the tangent. The slope falls: the radius grows slower and slower.",
+      "hi": "स्पर्श रेखा चालू करो। ढलान घटती है: त्रिज्या धीरे-से-धीरे बढ़ती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The radius of a nucleus is R = R₀ A^(1/3), with R₀ = 1.2 fm (1 fm = 10⁻¹⁵ m). Since volume goes as R³, the volume is proportional to A, so every nucleus has nearly the same density, about 2.3 × 10¹⁷ kg/m³. A spoonful of nuclear matter would weigh hundreds of millions of tonnes. The nucleus is about 10⁵ times smaller than the atom, yet it holds almost all of its mass.",
+      "hi": "नाभिक की त्रिज्या R = R₀ A^(1/3) है, जहाँ R₀ = 1.2 fm (1 fm = 10⁻¹⁵ मीटर)। आयतन R³ के अनुसार चलता है, इसलिए आयतन A के समानुपाती है, अतः सभी नाभिकों का घनत्व लगभग समान, करीब 2.3 × 10¹⁷ किग्रा/मी³ है। नाभिकीय पदार्थ का एक चम्मच करोड़ों टन भारी होगा। नाभिक परमाणु से लगभग 10⁵ गुना छोटा है, फिर भी उसमें लगभग सारा द्रव्यमान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do all nuclei have almost the same density?",
+        "hi": "सभी नाभिकों का घनत्व लगभग समान क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "volume is proportional to the number of nucleons",
+         "hi": "आयतन न्यूक्लिऑनों की संख्या के समानुपाती है"
+        },
+        {
+         "en": "all nuclei have the same radius",
+         "hi": "सभी नाभिकों की त्रिज्या समान है"
+        },
+        {
+         "en": "nuclei have no mass",
+         "hi": "नाभिकों में द्रव्यमान नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mass ∝ A and volume ∝ A, so mass/volume is constant.",
+        "hi": "द्रव्यमान ∝ A और आयतन ∝ A, इसलिए द्रव्यमान/आयतन स्थिर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Radii differ: R grows as A^(1/3).",
+         "hi": "त्रिज्याएँ भिन्न हैं: R, A^(1/3) के अनुसार बढ़ती है।"
+        },
+        {
+         "en": "Nuclei hold almost all the mass of an atom.",
+         "hi": "नाभिकों में परमाणु का लगभग पूरा द्रव्यमान होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Estimate R for A = 8 × 27 = 216 compared with A = 27. By what factor does R grow?",
+      "hi": "A = 8 × 27 = 216 और A = 27 के लिए R की तुलना करो। R कितने गुना बढ़ती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch13-mass-energy",
+   "topic": "13.4",
+   "template": "grapher",
+   "title": {
+    "en": "Mass defect and binding energy: E = mc²",
+    "hi": "द्रव्यमान क्षति और बंधन ऊर्जा: E = mc²"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "931.5*x"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The mass of a helium nucleus is slightly less than the sum of the masses of its 2 protons and 2 neutrons. The missing mass",
+      "hi": "हीलियम नाभिक का द्रव्यमान उसके 2 प्रोटॉनों और 2 न्यूट्रॉनों के द्रव्यमानों के योग से थोड़ा कम है। लुप्त द्रव्यमान"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "was lost for ever",
+       "hi": "सदा के लिए खो गया"
+      },
+      {
+       "id": "o2",
+       "en": "went into the electrons",
+       "hi": "इलेक्ट्रॉनों में चला गया"
+      },
+      {
+       "id": "o0",
+       "en": "became the binding energy",
+       "hi": "बंधन ऊर्जा बन गया"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the mass defect Δm in u. Slide it and read the energy E in MeV (the height).",
+      "hi": "x द्रव्यमान क्षति Δm है, u में। उसे चलाओ और ऊर्जा E को MeV में पढ़ो (ऊँचाई)।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "zoom",
+     "expect": "changed",
+     "say": {
+      "en": "Zoom into the small values of x, where real nuclei lie (Δm is about 0.03 u for helium).",
+      "hi": "x के छोटे मानों पर ज़ूम करो, जहाँ असली नाभिक आते हैं (हीलियम के लिए Δm लगभग 0.03 u है)।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Einstein showed mass and energy are equivalent, E = mc². Each 1 u of mass is equal to 931.5 MeV of energy. A bound nucleus has less mass than its separate nucleons, and the difference Δm is the mass defect; Δm × 931.5 MeV is the binding energy, the work needed to pull the nucleus completely apart. Helium has Δm ≈ 0.0304 u, so its binding energy is about 28.3 MeV, or 7.1 MeV per nucleon. Iron lies near the peak of the binding energy curve, so it is the most stable.",
+      "hi": "आइंस्टाइन ने दिखाया कि द्रव्यमान और ऊर्जा तुल्य हैं, E = mc²। 1 u द्रव्यमान 931.5 MeV ऊर्जा के बराबर है। बद्ध नाभिक का द्रव्यमान उसके अलग-अलग न्यूक्लिऑनों से कम होता है, और यह अंतर Δm द्रव्यमान क्षति है; Δm × 931.5 MeV बंधन ऊर्जा है, यानी नाभिक को पूरी तरह तोड़ने में लगा कार्य। हीलियम में Δm ≈ 0.0304 u है, इसलिए उसकी बंधन ऊर्जा लगभग 28.3 MeV, यानी 7.1 MeV प्रति न्यूक्लिऑन है। लोहा बंधन ऊर्जा वक्र के शिखर के पास है, इसलिए वह सबसे स्थिर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A nucleus has a mass defect of 0.1 u. Its binding energy is about",
+        "hi": "एक नाभिक की द्रव्यमान क्षति 0.1 u है। उसकी बंधन ऊर्जा लगभग है"
+       },
+       "options": [
+        {
+         "en": "93 MeV",
+         "hi": "93 मेगा-इलेक्ट्रॉन-वोल्ट"
+        },
+        {
+         "en": "9.3 MeV",
+         "hi": "9.3 मेगा-इलेक्ट्रॉन-वोल्ट"
+        },
+        {
+         "en": "931.5 MeV",
+         "hi": "931.5 मेगा-इलेक्ट्रॉन-वोल्ट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "E = 0.1 × 931.5 ≈ 93 MeV.",
+        "hi": "E = 0.1 × 931.5 ≈ 93 MeV।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Multiply 0.1 by 931.5 and you get 93.15, not 9.3.",
+         "hi": "0.1 को 931.5 से गुणा करो तो 93.15 आता है, 9.3 नहीं।"
+        },
+        {
+         "en": "That is the energy of a whole 1 u, ten times too large.",
+         "hi": "यह पूरे 1 u की ऊर्जा है, दस गुना अधिक।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take Δm = 0.0304. Read the energy. Do you get about 28 MeV for helium?",
+      "hi": "Δm = 0.0304 लो। ऊर्जा पढ़ो। क्या हीलियम के लिए लगभग 28 MeV मिलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch13-half-life",
+   "topic": "13.6",
+   "template": "grapher",
+   "title": {
+    "en": "Radioactive decay and half-life",
+    "hi": "रेडियोधर्मी क्षय और अर्धायु"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "exp-log",
+    "expr": "100*(0.5)^(x/a)",
+    "params": {
+     "a": [
+      1,
+      5,
+      2
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A sample has a half-life of 2 days. After 4 days, what fraction of the nuclei is left?",
+      "hi": "एक नमूने की अर्धायु 2 दिन है। 4 दिन बाद कितना अंश बचा है?"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "one quarter",
+       "hi": "एक-चौथाई"
+      },
+      {
+       "id": "o1",
+       "en": "none",
+       "hi": "कुछ नहीं"
+      },
+      {
+       "id": "o2",
+       "en": "one half",
+       "hi": "आधा"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is time. Slide it and read the percentage of undecayed nuclei (the height).",
+      "hi": "x समय है। उसे चलाओ और अक्षयित नाभिकों का प्रतिशत (ऊँचाई) पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a is the half-life T½. Make it longer and see the curve fall more slowly.",
+      "hi": "a अर्धायु T½ है। उसे बढ़ाओ और वक्र को धीरे गिरते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Radioactive decay is random for each nucleus, but a big sample follows N = N₀ e^(−λt). The half-life T½ = 0.693/λ is the time in which half of the nuclei decay. After every further half-life half of what remains goes: 100, 50, 25, 12.5 and so on. The activity R = λN falls in the same way. Half-lives range from fractions of a second to billions of years. Carbon-14 (5730 years) is used to date ancient remains.",
+      "hi": "प्रत्येक नाभिक के लिए रेडियोधर्मी क्षय यादृच्छिक है, पर बड़ा नमूना N = N₀ e^(−λt) का पालन करता है। अर्धायु T½ = 0.693/λ वह समय है जिसमें आधे नाभिक क्षयित हो जाते हैं। हर अगली अर्धायु में बचे हुए का आधा चला जाता है: 100, 50, 25, 12.5 और इसी तरह। सक्रियता R = λN भी इसी तरह घटती है। अर्धायु सेकंड के अंश से अरबों वर्षों तक हो सकती है। कार्बन-14 (5730 वर्ष) प्राचीन अवशेषों की आयु निकालने में काम आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A radioactive sample of 80 g has a half-life of 10 days. How much is left after 30 days?",
+        "hi": "80 ग्राम के रेडियोधर्मी नमूने की अर्धायु 10 दिन है। 30 दिन बाद कितना बचता है?"
+       },
+       "options": [
+        {
+         "en": "10 g",
+         "hi": "10 ग्राम"
+        },
+        {
+         "en": "40 g",
+         "hi": "40 ग्राम"
+        },
+        {
+         "en": "0 g",
+         "hi": "0 ग्राम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "80 → 40 → 20 → 10 g after three half-lives.",
+        "hi": "तीन अर्धायु बाद 80 → 40 → 20 → 10 ग्राम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is after only one half-life. Three half-lives pass in 30 days.",
+         "hi": "यह केवल एक अर्धायु के बाद का है। 30 दिनों में तीन अर्धायु बीतती हैं।"
+        },
+        {
+         "en": "The sample halves each time but never reaches exactly zero in this way.",
+         "hi": "नमूना हर बार आधा होता है पर इस तरह ठीक शून्य नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a to 1 and slide x. After how many units of time is less than 1 per cent left?",
+      "hi": "a को 1 पर रखो और x चलाओ। कितने समय बाद 1 प्रतिशत से कम बचता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch13-decay-types",
+   "topic": "13.6",
+   "template": "match",
+   "title": {
+    "en": "Alpha, beta and gamma decay",
+    "hi": "ऐल्फ़ा, बीटा और गामा क्षय"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "alpha",
+      "left": {
+       "en": "Alpha decay",
+       "hi": "ऐल्फ़ा क्षय"
+      },
+      "right": {
+       "en": "Emits a helium nucleus; A falls by 4, Z by 2",
+       "hi": "हीलियम नाभिक निकलता है; A में 4 और Z में 2 की कमी"
+      },
+      "why": {
+       "en": "An alpha particle is 2 protons and 2 neutrons.",
+       "hi": "ऐल्फ़ा कण 2 प्रोटॉन और 2 न्यूट्रॉन है।"
+      }
+     },
+     {
+      "id": "beta",
+      "left": {
+       "en": "Beta-minus decay",
+       "hi": "बीटा-ऋण क्षय"
+      },
+      "right": {
+       "en": "A neutron becomes a proton; Z rises by 1, A same",
+       "hi": "न्यूट्रॉन प्रोटॉन बनता है; Z में 1 की वृद्धि, A वही"
+      },
+      "why": {
+       "en": "An electron and an antineutrino leave the nucleus.",
+       "hi": "नाभिक से इलेक्ट्रॉन और प्रतिन्यूट्रिनो निकलते हैं।"
+      }
+     },
+     {
+      "id": "gamma",
+      "left": {
+       "en": "Gamma decay",
+       "hi": "गामा क्षय"
+      },
+      "right": {
+       "en": "Emits a photon; Z and A do not change",
+       "hi": "फ़ोटॉन निकलता है; Z और A नहीं बदलते"
+      },
+      "why": {
+       "en": "The nucleus only drops from an excited state to a lower one.",
+       "hi": "नाभिक केवल उत्तेजित अवस्था से निचली अवस्था में आता है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In which decay does the element stay the same element?",
+      "hi": "किस क्षय में तत्व वही का वही रहता है?"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "beta decay",
+       "hi": "बीटा क्षय"
+      },
+      {
+       "id": "o0",
+       "en": "gamma decay",
+       "hi": "गामा क्षय"
+      },
+      {
+       "id": "o1",
+       "en": "alpha decay",
+       "hi": "ऐल्फ़ा क्षय"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "left:alpha",
+     "expect": "matched:alpha",
+     "say": {
+      "en": "Match alpha decay with what happens to A and Z.",
+      "hi": "ऐल्फ़ा क्षय को A और Z में होने वाले परिवर्तन से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:gamma",
+     "expect": "matched:gamma",
+     "say": {
+      "en": "Match gamma decay.",
+      "hi": "गामा क्षय को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match beta decay and press check.",
+      "hi": "बीटा क्षय को मिलाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In alpha decay the nucleus loses 2 protons and 2 neutrons: for example uranium-238 becomes thorium-234 (Z from 92 to 90). In beta-minus decay a neutron changes to a proton and the nucleus emits an electron and an antineutrino, so Z rises by 1 while A stays. In gamma decay an excited nucleus releases a photon of very high energy and keeps its Z and A. In every decay the total charge, the number of nucleons, energy and momentum are conserved.",
+      "hi": "ऐल्फ़ा क्षय में नाभिक 2 प्रोटॉन और 2 न्यूट्रॉन खो देता है: जैसे यूरेनियम-238 थोरियम-234 बन जाता है (Z, 92 से 90)। बीटा-ऋण क्षय में एक न्यूट्रॉन प्रोटॉन में बदलता है और नाभिक इलेक्ट्रॉन तथा प्रतिन्यूट्रिनो छोड़ता है, इसलिए Z में 1 की वृद्धि होती है और A वही रहता है। गामा क्षय में उत्तेजित नाभिक बहुत उच्च ऊर्जा का फ़ोटॉन छोड़ता है और उसके Z और A वही रहते हैं। हर क्षय में कुल आवेश, न्यूक्लिऑनों की संख्या, ऊर्जा और संवेग संरक्षित रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Uranium-238 (Z = 92) emits an alpha particle. The new nucleus has",
+        "hi": "यूरेनियम-238 (Z = 92) एक ऐल्फ़ा कण छोड़ता है। नया नाभिक है"
+       },
+       "options": [
+        {
+         "en": "Z = 90, A = 234",
+         "hi": "Z = 90 और A = 234"
+        },
+        {
+         "en": "Z = 93, A = 238",
+         "hi": "Z = 93 और A = 238"
+        },
+        {
+         "en": "Z = 92, A = 234",
+         "hi": "Z = 92 और A = 234"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Subtract 2 from Z and 4 from A.",
+        "hi": "Z में से 2 और A में से 4 घटाओ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is beta-minus decay: Z rises by 1 and A stays.",
+         "hi": "यह बीटा-ऋण क्षय है: Z में 1 की वृद्धि और A वही।"
+        },
+        {
+         "en": "Alpha decay lowers Z by 2 as well as A by 4.",
+         "hi": "ऐल्फ़ा क्षय में A में 4 के साथ Z में भी 2 की कमी होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of the three is the most penetrating? Which can be stopped by a sheet of paper?",
+      "hi": "तीनों में से कौन सबसे भेदक है? किसे कागज़ की चादर रोक सकती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch13-fission-steps",
+   "topic": "13.7",
+   "template": "sequence",
+   "title": {
+    "en": "The chain reaction in nuclear fission",
+    "hi": "नाभिकीय विखंडन में शृंखला अभिक्रिया"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "A slow neutron hits a uranium-235 nucleus",
+       "hi": "एक धीमा न्यूट्रॉन यूरेनियम-235 नाभिक से टकराता है"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "The nucleus becomes unstable and splits in two",
+       "hi": "नाभिक अस्थिर होकर दो भागों में टूट जाता है"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Two or three new neutrons and about 200 MeV are released",
+       "hi": "दो-तीन नए न्यूट्रॉन और लगभग 200 MeV निकलते हैं"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "A moderator slows the new neutrons down",
+       "hi": "मंदक नए न्यूट्रॉनों को धीमा करता है"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Slow neutrons split more nuclei: a chain reaction",
+       "hi": "धीमे न्यूट्रॉन और नाभिक तोड़ते हैं: शृंखला अभिक्रिया"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "Control rods absorb extra neutrons to keep it steady",
+       "hi": "नियंत्रक छड़ें अतिरिक्त न्यूट्रॉन सोखकर इसे स्थिर रखती हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What slows the fast neutrons so that they can split more uranium-235?",
+      "hi": "तेज़ न्यूट्रॉनों को कौन धीमा करता है ताकि वे और यूरेनियम-235 तोड़ सकें?"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "a control rod",
+       "hi": "नियंत्रक छड़"
+      },
+      {
+       "id": "o2",
+       "en": "the coolant pipe",
+       "hi": "शीतलक नली"
+      },
+      {
+       "id": "o0",
+       "en": "a moderator such as heavy water",
+       "hi": "भारी जल जैसा मंदक"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Place the first step: the neutron hits the nucleus.",
+      "hi": "पहला चरण रखो: न्यूट्रॉन नाभिक से टकराता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:s6",
+     "expect": "placed:s6",
+     "say": {
+      "en": "Place the safety step last.",
+      "hi": "सुरक्षा वाला चरण अंत में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the rest and press check.",
+      "hi": "बाकी लगाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In fission a heavy nucleus such as uranium-235 absorbs a slow neutron and splits into two medium-sized nuclei, releasing about 200 MeV and 2 or 3 more neutrons. If each new neutron splits another nucleus, the number of fissions multiplies: a chain reaction. A moderator (heavy water or graphite) slows the neutrons, control rods (cadmium or boron) absorb extra ones, and a coolant carries the heat away to make steam for the turbine. Without control, the same chain reaction is an atom bomb.",
+      "hi": "विखंडन में यूरेनियम-235 जैसा भारी नाभिक धीमा न्यूट्रॉन सोखकर दो मध्यम आकार के नाभिकों में टूटता है, जिससे लगभग 200 MeV और 2 या 3 और न्यूट्रॉन निकलते हैं। यदि हर नया न्यूट्रॉन किसी और नाभिक को तोड़े तो विखंडनों की संख्या गुणित होती है: शृंखला अभिक्रिया। मंदक (भारी जल या ग्रेफ़ाइट) न्यूट्रॉनों को धीमा करता है, नियंत्रक छड़ें (कैडमियम या बोरॉन) अतिरिक्त न्यूट्रॉन सोखती हैं, और शीतलक ऊष्मा ले जाकर टरबाइन के लिए भाप बनाता है। नियंत्रण के बिना यही शृंखला अभिक्रिया परमाणु बम है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the job of control rods in a reactor?",
+        "hi": "रिएक्टर में नियंत्रक छड़ों का क्या काम है?"
+       },
+       "options": [
+        {
+         "en": "to absorb neutrons and control the rate",
+         "hi": "न्यूट्रॉन सोखकर दर को नियंत्रित करना"
+        },
+        {
+         "en": "to slow neutrons down",
+         "hi": "न्यूट्रॉनों को धीमा करना"
+        },
+        {
+         "en": "to carry the heat to the turbine",
+         "hi": "ऊष्मा को टरबाइन तक ले जाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pushing the rods in absorbs more neutrons and slows the reaction.",
+        "hi": "छड़ें भीतर डालने से अधिक न्यूट्रॉन सोखे जाते हैं और अभिक्रिया धीमी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the moderator's job. Control rods absorb neutrons.",
+         "hi": "यह मंदक का काम है। नियंत्रक छड़ें न्यूट्रॉन सोखती हैं।"
+        },
+        {
+         "en": "That is done by the coolant.",
+         "hi": "यह काम शीतलक करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why must a power reactor never allow the chain reaction to grow without limit?",
+      "hi": "बिजली के रिएक्टर में शृंखला अभिक्रिया को बिना सीमा बढ़ने क्यों नहीं दिया जाता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch13-fission-fusion",
+   "topic": "13.7",
+   "template": "sort",
+   "title": {
+    "en": "Fission or fusion?",
+    "hi": "विखंडन या संलयन?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fis",
+      "label": {
+       "en": "Fission",
+       "hi": "विखंडन"
+      }
+     },
+     {
+      "id": "fus",
+      "label": {
+       "en": "Fusion",
+       "hi": "संलयन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "split",
+      "text": {
+       "en": "A heavy nucleus splits",
+       "hi": "भारी नाभिक टूटता है"
+      },
+      "bin": "fis",
+      "why": {
+       "en": "Splitting is what fission means.",
+       "hi": "टूटना ही विखंडन का अर्थ है।"
+      }
+     },
+     {
+      "id": "join",
+      "text": {
+       "en": "Light nuclei join together",
+       "hi": "हल्के नाभिक आपस में जुड़ते हैं"
+      },
+      "bin": "fus",
+      "why": {
+       "en": "Joining is fusion.",
+       "hi": "जुड़ना संलयन है।"
+      }
+     },
+     {
+      "id": "reactor",
+      "text": {
+       "en": "Used in today's power plants",
+       "hi": "आज के बिजलीघरों में प्रयोग"
+      },
+      "bin": "fis",
+      "why": {
+       "en": "All working nuclear power plants use fission.",
+       "hi": "सभी चालू नाभिकीय बिजलीघर विखंडन प्रयोग करते हैं।"
+      }
+     },
+     {
+      "id": "sun",
+      "text": {
+       "en": "Powers the Sun and the stars",
+       "hi": "सूर्य और तारों को ऊर्जा देता है"
+      },
+      "bin": "fus",
+      "why": {
+       "en": "Hydrogen nuclei fuse into helium in the Sun's core.",
+       "hi": "सूर्य के क्रोड में हाइड्रोजन नाभिक हीलियम में संलयित होते हैं।"
+      }
+     },
+     {
+      "id": "temp",
+      "text": {
+       "en": "Needs millions of kelvin",
+       "hi": "लाखों केल्विन ताप चाहिए"
+      },
+      "bin": "fus",
+      "why": {
+       "en": "Nuclei must get past their repulsion, which takes extreme heat.",
+       "hi": "नाभिकों को अपना प्रतिकर्षण पार करना पड़ता है, जिसके लिए अत्यधिक ताप चाहिए।"
+      }
+     },
+     {
+      "id": "u235",
+      "text": {
+       "en": "Uses uranium-235",
+       "hi": "यूरेनियम-235 प्रयोग करता है"
+      },
+      "bin": "fis",
+      "why": {
+       "en": "Uranium-235 is the common fission fuel.",
+       "hi": "यूरेनियम-235 सामान्य विखंडन ईंधन है।"
+      }
+     },
+     {
+      "id": "rods",
+      "text": {
+       "en": "Controlled with rods and a moderator",
+       "hi": "छड़ों और मंदक से नियंत्रित"
+      },
+      "bin": "fis",
+      "why": {
+       "en": "These belong to a fission reactor.",
+       "hi": "ये विखंडन रिएक्टर के अंग हैं।"
+      }
+     },
+     {
+      "id": "he",
+      "text": {
+       "en": "Makes helium from hydrogen",
+       "hi": "हाइड्रोजन से हीलियम बनाता है"
+      },
+      "bin": "fus",
+      "why": {
+       "en": "Fusion builds a heavier nucleus from lighter ones.",
+       "hi": "संलयन हल्के नाभिकों से भारी नाभिक बनाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which process is the source of the Sun's energy?",
+      "hi": "सूर्य की ऊर्जा का स्रोत कौन-सी प्रक्रिया है?"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "fusion",
+       "hi": "संलयन"
+      },
+      {
+       "id": "o1",
+       "en": "fission",
+       "hi": "विखंडन"
+      },
+      {
+       "id": "o2",
+       "en": "burning coal",
+       "hi": "कोयला जलना"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "card:sun",
+     "expect": "placed:sun",
+     "say": {
+      "en": "Tap the card about the Sun, then its box.",
+      "hi": "सूर्य वाला कार्ड छुओ, फिर उसका बॉक्स।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:reactor",
+     "expect": "placed:reactor",
+     "say": {
+      "en": "Place the card about power plants.",
+      "hi": "बिजलीघर वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press check.",
+      "hi": "सभी कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Both fission and fusion move nuclei towards the peak of the binding energy curve, near iron, so the extra binding energy is released. Heavy nuclei gain by splitting (fission). Very light nuclei gain by joining (fusion). Fusion of hydrogen into helium gives about 26 MeV per helium nucleus and powers the stars, but it needs a temperature of millions of kelvin. Controlled fusion on Earth, as in the ITER project, is still being developed.",
+      "hi": "विखंडन और संलयन दोनों नाभिकों को बंधन ऊर्जा वक्र के शिखर की ओर, लोहे के पास, ले जाते हैं, इसलिए अतिरिक्त बंधन ऊर्जा निकलती है। भारी नाभिक टूटकर (विखंडन) और बहुत हल्के नाभिक जुड़कर (संलयन) लाभ पाते हैं। हाइड्रोजन का हीलियम में संलयन प्रति हीलियम नाभिक लगभग 26 MeV देता है और तारों को ऊर्जा देता है, पर इसके लिए लाखों केल्विन ताप चाहिए। पृथ्वी पर नियंत्रित संलयन, जैसे ITER परियोजना में, अभी विकसित किया जा रहा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does fusion need such a high temperature?",
+        "hi": "संलयन के लिए इतना उच्च ताप क्यों चाहिए?"
+       },
+       "options": [
+        {
+         "en": "to overcome the repulsion between positive nuclei",
+         "hi": "धनात्मक नाभिकों के बीच प्रतिकर्षण पार करने के लिए"
+        },
+        {
+         "en": "to melt the nuclei",
+         "hi": "नाभिकों को पिघलाने के लिए"
+        },
+        {
+         "en": "to make neutrons",
+         "hi": "न्यूट्रॉन बनाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Nuclei must come within about 10⁻¹⁵ m, where the strong force wins.",
+        "hi": "नाभिकों को लगभग 10⁻¹⁵ मीटर के भीतर आना पड़ता है, जहाँ प्रबल बल जीतता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nuclei do not melt; the heat gives them speed to get close.",
+         "hi": "नाभिक पिघलते नहीं; ताप उन्हें पास आने की चाल देता है।"
+        },
+        {
+         "en": "Fusion does not need heat to make neutrons.",
+         "hi": "संलयन में न्यूट्रॉन बनाने के लिए ताप नहीं चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why is fusion cleaner than fission, in the waste it leaves? Discuss it.",
+      "hi": "संलयन, बचे हुए अपशिष्ट के मामले में विखंडन से अधिक स्वच्छ क्यों है? चर्चा करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.7",
+   "use": "Chapter hook: a nuclear power plant",
+   "shows": "A power plant with a dome-shaped reactor building and cooling tower beside a river in sunlight (illustration)",
+   "view": "Wide view from the front, safe distance",
+   "right": "Dome and tower clear",
+   "avoid": "People, number plates, signs with readable names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "13.6",
+   "use": "A Geiger-Müller counter",
+   "shows": "A school Geiger counter with its tube and a display, beside a small harmless sample holder",
+   "view": "Three-quarter view on a bench",
+   "right": "Counter display neutral and unreadable",
+   "avoid": "Brand names, hazard symbols made unreal"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "13.4",
+   "use": "Binding energy per nucleon curve",
+   "shows": "A clean smooth curve rising steeply, peaking near iron and falling slowly, with two arrows drawn for fission and fusion; white background",
+   "view": "Flat front-on",
+   "right": "Peak clear and curve smooth",
+   "avoid": "Numbers and text baked in"
+  },
+  {
+   "n": 4,
+   "kind": "3DM",
+   "topic": "13.2",
+   "use": "A nucleus of protons and neutrons",
+   "shows": "A glossy 3D cluster of red protons and grey neutrons packed in a ball, with a soft glow",
+   "view": "Three-quarter view, dark background",
+   "right": "Two clearly different colours",
+   "avoid": "Text, signs"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "13.7",
+   "use": "Chain reaction",
+   "shows": "Three frames of coloured circles representing neutrons striking nuclei: one hit, three splits, nine splits",
+   "view": "Same top view and layout in every frame",
+   "right": "Growth clear from frame to frame",
+   "avoid": "Text labels"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "13.7",
+   "use": "The Sun",
+   "shows": "The Sun as seen through a solar telescope filter, showing a glowing surface with small dark spots",
+   "view": "Straight front view, dark background",
+   "right": "Surface texture visible",
+   "avoid": "Added text or logos"
+  }
+ ]
+}

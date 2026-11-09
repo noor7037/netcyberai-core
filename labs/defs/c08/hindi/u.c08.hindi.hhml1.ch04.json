@@ -1,0 +1,546 @@
+{
+  "chapter_key": "u.c08.hindi.hhml1.ch04",
+  "class": 8,
+  "subject_id": "hindi",
+  "title": "हरिद्वार (पत्र)",
+  "source": "https://ncert.nic.in/textbook.php?hhml1=0-10",
+  "topics": [
+    {
+      "n": "1",
+      "title": "The travel letter and the sights of Haridwar",
+      "labs": [
+        "c08-hindi-hhml1-ch04-letter",
+        "c08-hindi-hhml1-ch04-sights"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Word meanings and old-style Hindi",
+      "labs": [],
+      "why_no_lab": "The old words and their modern forms are best learnt from the lesson's glossary and the teacher's reading."
+    },
+    {
+      "n": "3",
+      "title": "Imagined dialogue and a journal of a trip",
+      "labs": [],
+      "why_no_lab": "Writing an imagined dialogue is a creative task for the child's own notebook."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c08-hindi-hhml1-ch04-letter",
+      "topic": "1",
+      "template": "writing",
+      "title": {
+        "en": "A letter about a journey",
+        "hi": "यात्रा के बारे में पत्र"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "kind": "informal-letter",
+        "lang": "hi",
+        "task": {
+          "en": "Aman has returned from Haridwar. Put the parts of his letter to his friend in the right places.",
+          "hi": "अमन हरिद्वार से लौटा है। उसके मित्र को लिखे पत्र के भाग सही जगह पर रखो।"
+        },
+        "parts": [
+          {
+            "id": "p1",
+            "slot": "sender",
+            "text": {
+              "en": "House 12, Station Road, Kanpur",
+              "hi": "मकान संख्या १२, स्टेशन रोड, कानपुर"
+            }
+          },
+          {
+            "id": "p2",
+            "slot": "date",
+            "text": {
+              "en": "20 October 2026",
+              "hi": "२० अक्तूबर, २०२६"
+            }
+          },
+          {
+            "id": "p3",
+            "slot": "salutation",
+            "text": {
+              "en": "Dear friend Rohan,",
+              "hi": "प्रिय मित्र रोहन,"
+            }
+          },
+          {
+            "id": "p4",
+            "slot": "body",
+            "text": {
+              "en": "Namaste! I hope you are well. I have just come back from Haridwar and I want to tell you all about it.",
+              "hi": "नमस्ते! आशा है तुम स्वस्थ होगे। मैं अभी हरिद्वार से लौटा हूँ और तुम्हें उसके बारे में सब बताना चाहता हूँ।"
+            }
+          },
+          {
+            "id": "p5",
+            "slot": "body",
+            "text": {
+              "en": "Hills surround the town on three sides and the Ganga flows with a gentle sound. In the evening, the lamps floating on the water looked beautiful.",
+              "hi": "तीन ओर से पहाड़ियाँ शहर को घेरे हुए हैं और गंगा मधुर आवाज़ के साथ बहती है। शाम को पानी पर तैरते दीपक बहुत सुंदर लगे।"
+            }
+          },
+          {
+            "id": "p6",
+            "slot": "body",
+            "text": {
+              "en": "Please come with me next time. We shall bathe at the ghats and buy sweets from the shops.",
+              "hi": "अगली बार तुम भी मेरे साथ चलना। हम घाट पर नहाएँगे और दुकानों से मिठाई खरीदेंगे।"
+            }
+          },
+          {
+            "id": "p7",
+            "slot": "close",
+            "text": {
+              "en": "Your friend,",
+              "hi": "तुम्हारा मित्र,"
+            }
+          },
+          {
+            "id": "p8",
+            "slot": "signature",
+            "text": {
+              "en": "Aman",
+              "hi": "अमन"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "part:p3",
+          "expect": "placed:p3",
+          "say": {
+            "en": "Tap 'Dear friend Rohan' and put it in the greeting place.",
+            "hi": "'प्रिय मित्र रोहन' को छुओ और संबोधन वाली जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Where does the writer's own address go in a letter to a friend?",
+            "hi": "मित्र को लिखे पत्र में लिखने वाले का अपना पता कहाँ आता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "At the top, on the right or left",
+              "hi": "सबसे ऊपर, दाईं या बाईं ओर"
+            },
+            {
+              "id": "b",
+              "en": "At the very end",
+              "hi": "बिल्कुल अंत में"
+            },
+            {
+              "id": "c",
+              "en": "In the middle",
+              "hi": "बीच में"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "part:p1",
+          "expect": "placed:p1",
+          "say": {
+            "en": "Put the sender's address in its place.",
+            "hi": "भेजने वाले का पता उसकी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "complete",
+          "say": {
+            "en": "Fill every place, then press Check.",
+            "hi": "सारी जगहें भरो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A letter to a friend has a fixed order: your address, the date, the greeting, the message in a few paragraphs, a closing and your name. Bharatendu Harishchandra also wrote about his trip as a letter, in the language of his time.",
+            "hi": "मित्र को लिखे पत्र का एक तय क्रम होता है: अपना पता, दिनांक, संबोधन, कुछ अनुच्छेदों में संदेश, समापन और तुम्हारा नाम। भारतेंदु हरिश्चंद्र ने भी अपनी यात्रा के बारे में पत्र लिखा था, अपने समय की भाषा में।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What comes just before the writer's name?",
+                "hi": "लेखक के नाम से ठीक पहले क्या आता है?"
+              },
+              "options": [
+                {
+                  "en": "The closing words, such as 'Your friend'",
+                  "hi": "समापन के शब्द, जैसे 'तुम्हारा मित्र'"
+                },
+                {
+                  "en": "The date",
+                  "hi": "दिनांक"
+                },
+                {
+                  "en": "The greeting",
+                  "hi": "संबोधन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The closing words come after the message and before the name.",
+                "hi": "समापन के शब्द संदेश के बाद और नाम से पहले आते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The date is at the top of the letter.",
+                  "hi": "दिनांक पत्र के ऊपर लिखी जाती है।"
+                },
+                {
+                  "en": "The greeting is at the start, before the message.",
+                  "hi": "संबोधन आरंभ में, संदेश से पहले आता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is a greeting like 'प्रिय मित्र' used?",
+                "hi": "'प्रिय मित्र' जैसा संबोधन क्यों लिखा जाता है?"
+              },
+              "options": [
+                {
+                  "en": "To start the letter politely and warmly",
+                  "hi": "पत्र को शिष्टता और अपनेपन से शुरू करने के लिए"
+                },
+                {
+                  "en": "To give the date",
+                  "hi": "दिनांक बताने के लिए"
+                },
+                {
+                  "en": "To end the letter",
+                  "hi": "पत्र समाप्त करने के लिए"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A greeting shows how we regard the reader and opens the letter kindly.",
+                "hi": "संबोधन से पता चलता है कि हम पढ़ने वाले को कैसे मानते हैं, और वह पत्र को स्नेह से खोलता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The date has its own place and does not need a greeting.",
+                  "hi": "दिनांक की अपनी जगह है, उसके लिए संबोधन नहीं चाहिए।"
+                },
+                {
+                  "en": "Endings use closing words, not a greeting.",
+                  "hi": "अंत में समापन के शब्द होते हैं, संबोधन नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write a letter to a friend about a place you have visited. Use all six parts in the right order.",
+            "hi": "अपने देखे किसी स्थान के बारे में मित्र को पत्र लिखो। छहों भाग सही क्रम में रखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-hindi-hhml1-ch04-sights",
+      "topic": "1",
+      "template": "sort",
+      "title": {
+        "en": "What a traveller sees",
+        "hi": "यात्री क्या देखता है"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "nature",
+            "label": {
+              "en": "Made by nature",
+              "hi": "प्रकृति की देन"
+            }
+          },
+          {
+            "id": "made",
+            "label": {
+              "en": "Made by people",
+              "hi": "मनुष्य का बनाया"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "hill",
+            "text": {
+              "en": "Green hills",
+              "hi": "हरी-भरी पहाड़ियाँ"
+            },
+            "bin": "nature",
+            "why": {
+              "en": "Hills are made by nature.",
+              "hi": "पहाड़ियाँ प्रकृति बनाती है।"
+            }
+          },
+          {
+            "id": "ganga",
+            "text": {
+              "en": "The flowing Ganga",
+              "hi": "कलकल बहती गंगा"
+            },
+            "bin": "nature",
+            "why": {
+              "en": "A river is a natural water body.",
+              "hi": "नदी प्राकृतिक जलधारा है।"
+            }
+          },
+          {
+            "id": "tree",
+            "text": {
+              "en": "Tall trees",
+              "hi": "ऊँचे वृक्ष"
+            },
+            "bin": "nature",
+            "why": {
+              "en": "Trees grow on their own in nature.",
+              "hi": "वृक्ष प्रकृति में अपने आप उगते हैं।"
+            }
+          },
+          {
+            "id": "bird",
+            "text": {
+              "en": "Birds on the branches",
+              "hi": "डालियों पर पक्षी"
+            },
+            "bin": "nature",
+            "why": {
+              "en": "Birds are living creatures of nature.",
+              "hi": "पक्षी प्रकृति के जीव हैं।"
+            }
+          },
+          {
+            "id": "ghat",
+            "text": {
+              "en": "Steps at the river bank (ghat)",
+              "hi": "नदी किनारे के घाट"
+            },
+            "bin": "made",
+            "why": {
+              "en": "Ghats are built by people for bathing and prayer.",
+              "hi": "घाट लोगों ने नहाने और पूजा के लिए बनाए हैं।"
+            }
+          },
+          {
+            "id": "shop",
+            "text": {
+              "en": "Shops along the bank",
+              "hi": "किनारे की दुकानें"
+            },
+            "bin": "made",
+            "why": {
+              "en": "Shops are built by people for trade.",
+              "hi": "दुकानें लोगों ने व्यापार के लिए बनाई हैं।"
+            }
+          },
+          {
+            "id": "rail",
+            "text": {
+              "en": "The railway to the town",
+              "hi": "शहर तक जाती रेलवे लाइन"
+            },
+            "bin": "made",
+            "why": {
+              "en": "A railway is built by people.",
+              "hi": "रेलवे लाइन लोगों की बनाई होती है।"
+            }
+          },
+          {
+            "id": "bridge",
+            "text": {
+              "en": "A bridge over the stream",
+              "hi": "धारा पर बना पुल"
+            },
+            "bin": "made",
+            "why": {
+              "en": "A bridge is made by people.",
+              "hi": "पुल मनुष्य का बनाया हुआ होता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:hill",
+          "expect": "placed:hill",
+          "say": {
+            "en": "Tap a card, then tap the group where it belongs.",
+            "hi": "कोई कार्ड छुओ, फिर वह समूह छुओ जिसमें वह आता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Where will the ghats go?",
+            "hi": "घाट किस समूह में जाएँगे?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Made by nature",
+              "hi": "प्रकृति की देन"
+            },
+            {
+              "id": "b",
+              "en": "Made by people",
+              "hi": "मनुष्य का बनाया"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "card:bridge",
+          "expect": "sorted",
+          "say": {
+            "en": "Put every card in a group, then press Check.",
+            "hi": "सारे कार्ड किसी समूह में रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A travel letter describes both what nature gives (hills, river, trees, birds) and what people have built (ghats, shops). Bharatendu Harishchandra loved travel and wrote about both in his letter on Haridwar.",
+            "hi": "यात्रा का पत्र प्रकृति की देन (पहाड़, नदी, पेड़, पक्षी) और मनुष्य के बनाए (घाट, दुकानें) दोनों का वर्णन करता है। भारतेंदु हरिश्चंद्र को यात्रा पसंद थी और उन्होंने हरिद्वार पर अपने पत्र में दोनों के बारे में लिखा।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these is made by people?",
+                "hi": "इनमें से कौन-सा मनुष्य का बनाया है?"
+              },
+              "options": [
+                {
+                  "en": "Ghat",
+                  "hi": "घाट"
+                },
+                {
+                  "en": "Hill",
+                  "hi": "पहाड़ी"
+                },
+                {
+                  "en": "Bird",
+                  "hi": "पक्षी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "People built ghats along the river for bathing and prayer.",
+                "hi": "लोगों ने नदी किनारे नहाने और पूजा के लिए घाट बनाए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Hills form without people.",
+                  "hi": "पहाड़ियाँ बिना मनुष्य के बनती हैं।"
+                },
+                {
+                  "en": "Birds are living beings, not built.",
+                  "hi": "पक्षी जीव हैं, बनाए नहीं जाते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look around your own town. List three things made by nature and three made by people.",
+            "hi": "अपने शहर के आसपास देखो। तीन चीज़ें प्रकृति की देन और तीन मनुष्य की बनाई लिखो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the letter",
+      "shows": "Ganga flowing past ghat steps with hills behind, morning mist; a few distant silhouettes",
+      "view": "Wide, from the opposite bank",
+      "right": "Steps, river, hills and temple spires correct for Haridwar region",
+      "avoid": "Visible faces, signboards"
+    },
+    {
+      "n": 2,
+      "kind": "MAP",
+      "topic": "1",
+      "use": "Where is Haridwar?",
+      "shows": "A terrain base of Uttarakhand foothills with the Ganga leaving the mountains, no names or borders",
+      "view": "Top-down, 16:9",
+      "right": "Real river path and foothill relief",
+      "avoid": "Place names, borders"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Letter parts",
+      "shows": "A sheet of plain letter paper with an inkpot and a fountain pen, cut-out",
+      "view": "Slight angle",
+      "right": "Blank paper, real pen",
+      "avoid": "Any writing"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Sort: ghat",
+      "shows": "Stone steps (ghat) going down to the river with diyas on the last step",
+      "view": "Low, side on",
+      "right": "Real ghat steps with moss, floating diyas",
+      "avoid": "Text, crowds"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "1",
+      "use": "Evening on the Ganga",
+      "shows": "Three frames of the same ghat: afternoon, sunset, lamps lit on the water",
+      "view": "Same camera, tripod",
+      "right": "Same framing across frames",
+      "avoid": "Different spots between frames"
+    },
+    {
+      "n": 6,
+      "kind": "MAC",
+      "topic": "1",
+      "use": "Words of old Hindi",
+      "shows": "A page of a hand-printed 19th-century journal showing columns of Devanagari print (public domain scan)",
+      "view": "Flat, square",
+      "right": "Authentic old print, legible texture",
+      "avoid": "Modern fonts"
+    }
+  ]
+}

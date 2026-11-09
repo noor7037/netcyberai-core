@@ -1,0 +1,774 @@
+{
+ "chapter_key": "u.c03.mathematics.cemm1.ch10",
+ "class": 3,
+ "subject_id": "mathematics",
+ "title": "Fun at Class Party!",
+ "source": "https://ncert.nic.in/textbook/pdf/cemm110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Measuring with hand-spans and footsteps: different hands give different counts",
+   "labs": [
+    "c3-mathematics-cemm1-ch10-hand-spans"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Comparing lengths with paper strings: shortest and longest",
+   "labs": [
+    "c3-mathematics-cemm1-ch10-shortest-longest"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "A standard unit: the metre and the centimetre (measuring a door)",
+   "labs": [
+    "c3-mathematics-cemm1-ch10-door-tape"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Half a metre and a quarter of a metre",
+   "labs": [
+    "c3-mathematics-cemm1-ch10-metre-rope"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Can the table go through the door? Measuring indirectly with a thread",
+   "labs": [],
+   "why_no_lab": "Pushing a real table or a model table at a door and using a thread to compare widths is a hands-on puzzle; the photo and the reader set it up better than a screen."
+  },
+  {
+   "n": "10.6",
+   "title": "Body measures, making a metre rope and measuring heights",
+   "labs": [],
+   "why_no_lab": "Children measure their own body and a metre rope with friends in class; the photo and the reader guide this activity."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-mathematics-cemm1-ch10-hand-spans",
+   "topic": "10.1",
+   "template": "measure",
+   "title": {
+    "en": "Measuring a desk with hand-spans",
+    "hi": "बित्तों से डेस्क नापना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "instrument": "hand-span",
+    "object": "desk",
+    "units": "cm"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Leena and Adi measure the same table with their own hand-spans. Will they both get the same number of spans?",
+      "hi": "लीना और आदि अपने-अपने बित्तों से एक ही मेज़ नापते हैं। क्या दोनों को बित्तों की गिनती एक-सी मिलेगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, the counts will differ",
+       "hi": "नहीं, गिनती अलग होगी"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, the same",
+       "hi": "हाँ, एक-सी"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "object:desk",
+     "expect": "placed",
+     "say": {
+      "en": "Choose the Desk to measure.",
+      "hi": "नापने के लिए डेस्क चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "instrument",
+     "expect": "aligned",
+     "say": {
+      "en": "Tap \"Lay the next hand\" again and again until the whole desk is covered. Leave no gap and no overlap.",
+      "hi": "\"अगला हाथ रखो\" बार-बार दबाओ जब तक पूरा डेस्क ढक न जाए। न कोई ख़ाली जगह छोड़ो, न हाथ एक-दूसरे पर चढ़ाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Press Read to look at the end of the desk.",
+      "hi": "डेस्क का आख़िरी सिरा देखने के लिए पढ़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type how many hand-spans long the desk is and tap Check.",
+      "hi": "डेस्क कितने बित्ते लंबा है, यह लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "With your own hand the desk is 8 hand-spans long. A smaller hand needs more spans and a bigger hand needs fewer spans for the same desk. So hand-spans differ from person to person. That is why we need a standard unit that is the same for everyone.",
+      "hi": "अपने हाथ से डेस्क 8 बित्ते लंबा निकला। छोटे हाथ से ज़्यादा बित्ते लगते हैं और बड़े हाथ से कम बित्ते, जबकि डेस्क वही है। इसलिए बित्ते हर किसी के अलग-अलग होते हैं। इसीलिए हमें ऐसी मानक इकाई चाहिए जो सबके लिए एक-सी हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A small child and her father measure the same table with their hand-spans. Who gets more spans?",
+        "hi": "एक छोटी बच्ची और उसके पिता अपने बित्तों से एक ही मेज़ नापते हैं। किसे ज़्यादा बित्ते मिलेंगे?"
+       },
+       "options": [
+        {
+         "en": "The child",
+         "hi": "बच्ची को"
+        },
+        {
+         "en": "The father",
+         "hi": "पिता को"
+        },
+        {
+         "en": "Both get the same",
+         "hi": "दोनों को बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The child's hand is smaller, so more hand-spans are needed.",
+        "hi": "बच्ची का हाथ छोटा है, इसलिए ज़्यादा बित्ते लगेंगे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The father's bigger hand covers more table in each span, so he needs fewer spans.",
+         "hi": "पिता का बड़ा हाथ हर बार ज़्यादा मेज़ ढकता है, इसलिए उसे कम बित्ते लगते हैं।"
+        },
+        {
+         "en": "Different hands give different counts for the same table.",
+         "hi": "अलग हाथों से एक ही मेज़ की गिनती अलग आती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we need a standard unit like the metre?",
+        "hi": "हमें मीटर जैसी मानक इकाई की ज़रूरत क्यों है?"
+       },
+       "options": [
+        {
+         "en": "So everyone gets the same measure",
+         "hi": "ताकि सबको एक-सी माप मिले"
+        },
+        {
+         "en": "To make measuring slower",
+         "hi": "ताकि नापना धीमा हो"
+        },
+        {
+         "en": "Because hands are too big",
+         "hi": "क्योंकि हाथ बहुत बड़े हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A standard unit is the same for everybody, so measures can be shared and compared.",
+        "hi": "मानक इकाई सबके लिए एक-सी होती है, इसलिए माप बताई और मिलाई जा सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A standard unit does not slow things down.",
+         "hi": "मानक इकाई से नापना धीमा नहीं होता।"
+        },
+        {
+         "en": "Size of hands is not the reason; the differences between hands are.",
+         "hi": "हाथों का बड़ा होना कारण नहीं है; कारण हाथों का अलग-अलग होना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Move the \"Whose hand?\" slider to a little sister's hand and then to Papa's hand. Measure the same desk again. How do the counts change?",
+      "hi": "अब ख़ुद आज़माओ। \"किसका हाथ?\" स्लाइडर को छोटी बहन के हाथ पर और फिर पापा के हाथ पर ले जाओ। वही डेस्क फिर से नापो। गिनती कैसे बदलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch10-shortest-longest",
+   "topic": "10.2",
+   "template": "sequence",
+   "title": {
+    "en": "Shortest to longest strings",
+    "hi": "सबसे छोटी से सबसे लंबी डोरी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "red",
+      "text": {
+       "en": "Red string, 8 cm",
+       "hi": "लाल डोरी, 8 सेमी"
+      }
+     },
+     {
+      "id": "blue",
+      "text": {
+       "en": "Blue string, 15 cm",
+       "hi": "नीली डोरी, 15 सेमी"
+      }
+     },
+     {
+      "id": "yellow",
+      "text": {
+       "en": "Yellow string, 22 cm",
+       "hi": "पीली डोरी, 22 सेमी"
+      }
+     },
+     {
+      "id": "green",
+      "text": {
+       "en": "Green string, 30 cm",
+       "hi": "हरी डोरी, 30 सेमी"
+      }
+     },
+     {
+      "id": "pink",
+      "text": {
+       "en": "Pink string, 41 cm",
+       "hi": "गुलाबी डोरी, 41 सेमी"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Shelly and Adi are decorating the board with paper strings. To pick the longest string, what should they do?",
+      "hi": "शेली और आदि पट्टियों से बोर्ड सजा रहे हैं। सबसे लंबी डोरी चुनने के लिए उन्हें क्या करना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "compare",
+       "en": "Put the strings side by side with one end together",
+       "hi": "डोरियों को एक सिरा मिलाकर साथ-साथ रखें"
+      },
+      {
+       "id": "colour",
+       "en": "Pick the brightest colour",
+       "hi": "सबसे चमकीला रंग चुनें"
+      }
+     ],
+     "answer": "compare"
+    },
+    {
+     "kind": "do",
+     "target": "item:red",
+     "expect": "placed:red",
+     "say": {
+      "en": "Tap the shortest string first, then tap the first empty place.",
+      "hi": "पहले सबसे छोटी डोरी पर टैप करो, फिर पहली ख़ाली जगह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the other strings in order from shortest to longest. Tap Check.",
+      "hi": "बाकी डोरियाँ सबसे छोटी से सबसे लंबी के क्रम में रखो। जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To compare lengths, put the strings next to each other so that one end of each starts at the same line. The one that sticks out farthest is the longest. The shortest one is the first in the row. 8 cm is shorter than 15 cm, and 15 cm is shorter than 22 cm.",
+      "hi": "लंबाइयाँ मिलाने के लिए डोरियाँ साथ-साथ ऐसे रखो कि सबका एक सिरा एक ही रेखा से शुरू हो। जो सबसे ज़्यादा बाहर निकले वह सबसे लंबी है। सबसे छोटी कतार में सबसे पहली होती है। 8 सेमी, 15 सेमी से छोटी है और 15 सेमी, 22 सेमी से छोटी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which string is the longest?",
+        "hi": "कौन-सी डोरी सबसे लंबी है?"
+       },
+       "options": [
+        {
+         "en": "Red, 8 cm",
+         "hi": "लाल, 8 सेमी"
+        },
+        {
+         "en": "Green, 30 cm",
+         "hi": "हरी, 30 सेमी"
+        },
+        {
+         "en": "Pink, 41 cm",
+         "hi": "गुलाबी, 41 सेमी"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "41 cm is more than 30 cm and 8 cm.",
+        "hi": "41 सेमी, 30 सेमी और 8 सेमी से ज़्यादा है।"
+       },
+       "wrong": [
+        {
+         "en": "Red is the shortest, not the longest.",
+         "hi": "लाल सबसे छोटी है, सबसे लंबी नहीं।"
+        },
+        {
+         "en": "Green is long, but pink is longer.",
+         "hi": "हरी लंबी है, पर गुलाबी उससे ज़्यादा लंबी है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "A string is longer than the blue one (15 cm) but shorter than the green one (30 cm). Which could it be?",
+        "hi": "एक डोरी नीली (15 सेमी) से लंबी है पर हरी (30 सेमी) से छोटी है। वह कौन-सी हो सकती है?"
+       },
+       "options": [
+        {
+         "en": "The yellow one, 22 cm",
+         "hi": "पीली, 22 सेमी"
+        },
+        {
+         "en": "The red one, 8 cm",
+         "hi": "लाल, 8 सेमी"
+        },
+        {
+         "en": "The pink one, 41 cm",
+         "hi": "गुलाबी, 41 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "22 cm is between 15 cm and 30 cm.",
+        "hi": "22 सेमी, 15 सेमी और 30 सेमी के बीच है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 cm is shorter than the blue one.",
+         "hi": "8 सेमी तो नीली से भी छोटी है।"
+        },
+        {
+         "en": "41 cm is longer than the green one.",
+         "hi": "41 सेमी तो हरी से भी लंबी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Cut three strings at home, one short, one middle and one long. Put them in order from shortest to longest.",
+      "hi": "अब ख़ुद आज़माओ। घर पर तीन डोरियाँ काटो: एक छोटी, एक बीच की और एक लंबी। उन्हें सबसे छोटी से सबसे लंबी के क्रम में रखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch10-door-tape",
+   "topic": "10.3",
+   "template": "measure",
+   "title": {
+    "en": "How wide is the door?",
+    "hi": "दरवाज़ा कितना चौड़ा है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "instrument": "tape",
+    "object": "door",
+    "units": "cm"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is the door of the class room wider than one metre (100 cm) or narrower?",
+      "hi": "क्या कक्षा का दरवाज़ा एक मीटर (100 सेमी) से चौड़ा है या कम चौड़ा?"
+     },
+     "options": [
+      {
+       "id": "narrower",
+       "en": "Narrower than 1 metre",
+       "hi": "1 मीटर से कम चौड़ा"
+      },
+      {
+       "id": "wider",
+       "en": "Wider than 1 metre",
+       "hi": "1 मीटर से ज़्यादा चौड़ा"
+      }
+     ],
+     "answer": "narrower"
+    },
+    {
+     "kind": "do",
+     "target": "object:door",
+     "expect": "placed",
+     "say": {
+      "en": "Choose the Door (width) to measure.",
+      "hi": "नापने के लिए दरवाज़ा (चौड़ाई) चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:tight",
+     "expect": "aligned",
+     "say": {
+      "en": "Pull the tape out past the end of the door, then pull it tight until it says tight and straight.",
+      "hi": "फ़ीते को दरवाज़े के सिरे से आगे तक खींचो, फिर उसे इतना कसो कि वह कसा और सीधा दिखे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Press Read and find the mark at the end of the door.",
+      "hi": "पढ़ो दबाओ और दरवाज़े के सिरे का निशान ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the width in cm and tap Check.",
+      "hi": "चौड़ाई सेमी में लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The door is 90 cm wide. 100 cm make 1 metre, so 90 cm is a little less than 1 metre. A metre is a standard length. Everyone who measures this door with a tape gets 90 cm, unlike hand-spans.",
+      "hi": "दरवाज़ा 90 सेमी चौड़ा है। 100 सेमी का 1 मीटर होता है, इसलिए 90 सेमी, 1 मीटर से थोड़ा कम है। मीटर एक मानक लंबाई है। इस दरवाज़े को फ़ीते से नापने पर हर किसी को 90 सेमी ही मिलता है, बित्तों की तरह अलग-अलग नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many centimetres make 1 metre?",
+        "hi": "कितने सेंटीमीटर मिलकर 1 मीटर बनाते हैं?"
+       },
+       "options": [
+        "10",
+        "100",
+        "1000"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "1 metre is 100 cm.",
+        "hi": "1 मीटर 100 सेमी का होता है।"
+       },
+       "wrong": [
+        {
+         "en": "10 cm is much shorter than a metre.",
+         "hi": "10 सेमी तो मीटर से बहुत छोटा है।"
+        },
+        "",
+        {
+         "en": "1000 cm is ten metres.",
+         "hi": "1000 सेमी तो दस मीटर होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The door is 90 cm wide. A table is 120 cm long. Which is longer?",
+        "hi": "दरवाज़ा 90 सेमी चौड़ा है। एक मेज़ 120 सेमी लंबी है। कौन ज़्यादा लंबा है?"
+       },
+       "options": [
+        {
+         "en": "The table",
+         "hi": "मेज़"
+        },
+        {
+         "en": "The door",
+         "hi": "दरवाज़ा"
+        },
+        {
+         "en": "They are equal",
+         "hi": "दोनों बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "120 cm is more than 90 cm, so the table is longer than the door is wide.",
+        "hi": "120 सेमी, 90 सेमी से ज़्यादा है, इसलिए मेज़ दरवाज़े की चौड़ाई से लंबी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "90 is less than 120.",
+         "hi": "90, 120 से कम है।"
+        },
+        {
+         "en": "90 and 120 are not equal.",
+         "hi": "90 और 120 बराबर नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Choose the Desk and the Bench and measure them with the tape. Which is longer than 1 metre?",
+      "hi": "अब ख़ुद आज़माओ। डेस्क और बेंच चुनो और उन्हें फ़ीते से नापो। कौन-सी चीज़ 1 मीटर से लंबी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch10-metre-rope",
+   "topic": "10.4",
+   "template": "fractions",
+   "title": {
+    "en": "Half and quarter of a metre",
+    "hi": "आधा मीटर और चौथाई मीटर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "object": "bar",
+    "bars": [
+     {
+      "n": 1
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A rope is 1 metre long. You fold it in half. How long is each half?",
+      "hi": "एक रस्सी 1 मीटर लंबी है। तुम उसे बीच से मोड़ते हो। हर आधा कितना लंबा है?"
+     },
+     "options": [
+      {
+       "id": "half",
+       "en": "Half a metre",
+       "hi": "आधा मीटर"
+      },
+      {
+       "id": "quarter",
+       "en": "A quarter of a metre",
+       "hi": "चौथाई मीटर"
+      },
+      {
+       "id": "metre",
+       "en": "One metre",
+       "hi": "एक मीटर"
+      }
+     ],
+     "answer": "half"
+    },
+    {
+     "kind": "do",
+     "target": "cut:0",
+     "expect": "cut:0:2",
+     "say": {
+      "en": "Tap + once to fold the metre rope into 2 equal parts.",
+      "hi": "मीटर वाली रस्सी को 2 बराबर भागों में मोड़ने के लिए एक बार + दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "cut:0",
+     "expect": "cut:0:4",
+     "say": {
+      "en": "Tap + twice more to fold it into 4 equal parts.",
+      "hi": "उसे 4 बराबर भागों में मोड़ने के लिए दो बार और + दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "piece:0",
+     "expect": "shade:0:1/4",
+     "say": {
+      "en": "Tap one part to colour it. That part is a quarter of a metre.",
+      "hi": "एक भाग पर टैप करके रंगो। वह भाग चौथाई मीटर है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One metre folded in half gives 2 parts of half a metre each (50 cm). Folded in half again, it gives 4 parts of a quarter metre each (25 cm). Two quarters make a half, and four quarters make 1 metre.",
+      "hi": "एक मीटर को आधा मोड़ने पर आधे मीटर (50 सेमी) के 2 भाग मिलते हैं। उसे फिर आधा मोड़ने पर चौथाई मीटर (25 सेमी) के 4 भाग मिलते हैं। दो चौथाई मिलकर आधा बनते हैं और चार चौथाई मिलकर 1 मीटर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many centimetres is half a metre?",
+        "hi": "आधा मीटर कितने सेंटीमीटर का होता है?"
+       },
+       "options": [
+        "25",
+        "50",
+        "75"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Half of 100 cm is 50 cm.",
+        "hi": "100 सेमी का आधा 50 सेमी है।"
+       },
+       "wrong": [
+        {
+         "en": "25 cm is a quarter of a metre.",
+         "hi": "25 सेमी चौथाई मीटर है।"
+        },
+        "",
+        {
+         "en": "75 cm is three quarters of a metre.",
+         "hi": "75 सेमी तीन चौथाई मीटर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A ribbon is 25 cm long. What part of a metre is it?",
+        "hi": "एक रिबन 25 सेमी लंबा है। यह मीटर का कितना भाग है?"
+       },
+       "options": [
+        {
+         "en": "A quarter",
+         "hi": "चौथाई"
+        },
+        {
+         "en": "A half",
+         "hi": "आधा"
+        },
+        {
+         "en": "The whole",
+         "hi": "पूरा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 pieces of 25 cm make 100 cm, so 25 cm is a quarter of a metre.",
+        "hi": "25 सेमी के 4 टुकड़े मिलकर 100 सेमी बनते हैं, इसलिए 25 सेमी चौथाई मीटर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A half of a metre is 50 cm.",
+         "hi": "आधा मीटर 50 सेमी होता है।"
+        },
+        {
+         "en": "The whole metre is 100 cm.",
+         "hi": "पूरा मीटर 100 सेमी होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Fold a thread of 1 metre in half and in half again. Cut it on the folds. How many cuts did you make to get 4 equal pieces?",
+      "hi": "अब ख़ुद आज़माओ। 1 मीटर का धागा लेकर उसे आधा और फिर आधा मोड़ो। मोड़ों पर काटो। 4 बराबर टुकड़े पाने के लिए तुमने कितने कट लगाए?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Chapter hook",
+   "shows": "A classroom decorated for a class party: paper chains, a board with coloured paper strings, children's hands measuring a table with hand-spans",
+   "view": "Wide classroom view, eye level",
+   "right": "Hands only, hand-spans laid one after another along a wooden table, string and paper chains visible",
+   "avoid": "Faces of children, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "10.1",
+   "use": "Hand-spans along a desk",
+   "shows": "Four frames of a small hand then a bigger hand laid thumb to little finger along the same desk",
+   "view": "Top-down, same camera in each frame",
+   "right": "No gaps or overlaps between spans; the two hands clearly different in size",
+   "avoid": "Different desks"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "10.2",
+   "use": "Paper strings",
+   "shows": "Five paper strings in red, blue, yellow, green and pink, lengths 8, 15, 22, 30 and 41 cm laid out with one end on a line",
+   "view": "Top-down on a white mat",
+   "right": "Lengths in true proportion, ends aligned on the left",
+   "avoid": "Rulers or marks that give the length away"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "10.3",
+   "use": "Measuring tape and a classroom door",
+   "shows": "A school door 90 cm wide with a yellow measuring tape pulled across it",
+   "view": "Straight on, door fully visible",
+   "right": "Tape tight and straight, numbers on the tape readable",
+   "avoid": "Visible brand names on the tape"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "10.4",
+   "use": "Folding a metre rope",
+   "shows": "A one-metre rope shown straight, folded in half, and folded in half again, with a wooden metre scale next to each",
+   "view": "Top-down, same camera each frame",
+   "right": "Folds neat; ends meet exactly",
+   "avoid": "Frayed ends"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "10.5",
+   "use": "Table at the door",
+   "shows": "A school table being carried at a classroom door, turned on its side to fit through, with a thread stretched across the door width",
+   "view": "Eye level, door filling the frame",
+   "right": "Door and table in true proportion, thread visible",
+   "avoid": "Faces of children"
+  }
+ ]
+}

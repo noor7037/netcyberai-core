@@ -1,0 +1,940 @@
+{
+ "chapter_key": "u.c12.physics.leph2.ch12",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Atoms",
+ "source": "https://ncert.nic.in/textbook/pdf/leph212.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "A short opening about the atom's history; photos and the reader set the scene."
+  },
+  {
+   "n": "12.2",
+   "title": "Alpha-particle scattering and Rutherford's nuclear model of the atom",
+   "labs": [
+    "c12-physics-leph2-ch12-rutherford",
+    "c12-physics-leph2-ch12-models"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Atomic spectra",
+   "labs": [
+    "c12-physics-leph2-ch12-series"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "Bohr model of the hydrogen atom and its energy levels",
+   "labs": [
+    "c12-physics-leph2-ch12-bohr-levels",
+    "c12-physics-leph2-ch12-energy-levels",
+    "c12-physics-leph2-ch12-models"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.5",
+   "title": "The line spectra of the hydrogen atom",
+   "labs": [
+    "c12-physics-leph2-ch12-series",
+    "c12-physics-leph2-ch12-bohr-levels"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.6",
+   "title": "De Broglie's explanation of Bohr's second postulate of quantisation",
+   "labs": [
+    "c12-physics-leph2-ch12-orbit-waves"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph2-ch12-rutherford",
+   "topic": "12.2",
+   "template": "atom",
+   "title": {
+    "en": "Rutherford's gold-foil experiment",
+    "hi": "रदरफ़ोर्ड का सोने की पन्नी वाला प्रयोग"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "models"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Alpha particles are fired at a thin gold foil. What did Rutherford find?",
+      "hi": "पतली सोने की पन्नी पर ऐल्फ़ा कण दागे गए। रदरफ़ोर्ड ने क्या पाया?"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "most went straight through, a few bounced back",
+       "hi": "अधिकांश सीधे निकल गए, कुछ वापस लौटे"
+      },
+      {
+       "id": "o1",
+       "en": "all bounced back",
+       "hi": "सभी वापस लौटे"
+      },
+      {
+       "id": "o2",
+       "en": "all went straight through",
+       "hi": "सभी सीधे निकल गए"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "model:rutherford",
+     "expect": "model:rutherford",
+     "say": {
+      "en": "Choose the Rutherford model.",
+      "hi": "रदरफ़ोर्ड मॉडल चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "gold-foil",
+     "expect": "deflected",
+     "say": {
+      "en": "Fire the alpha particles at the gold foil and watch where they go.",
+      "hi": "सोने की पन्नी पर ऐल्फ़ा कण दागो और देखो वे कहाँ जाते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Most alpha particles went straight through, so most of an atom is empty space. A very few were deflected by large angles, and about one in 8000 bounced almost straight back. A particle can only bounce back from something heavy and positively charged. So Rutherford said all the positive charge and nearly all the mass sit in a tiny nucleus, about 10⁻¹⁵ m across, with the electrons circling around it far away.",
+      "hi": "अधिकांश ऐल्फ़ा कण सीधे निकल गए, इसलिए परमाणु का अधिकतर भाग खाली स्थान है। बहुत थोड़े बड़े कोणों पर विचलित हुए, और लगभग 8000 में से एक लगभग सीधा वापस लौटा। कण केवल किसी भारी और धनावेशित वस्तु से टकराकर वापस लौट सकता है। इसलिए रदरफ़ोर्ड ने कहा कि सारा धनावेश और लगभग सारा द्रव्यमान एक छोटे नाभिक में है, जिसका आकार लगभग 10⁻¹⁵ मीटर है, और इलेक्ट्रॉन उसके चारों ओर बहुत दूर घूमते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did a few alpha particles bounce back?",
+        "hi": "कुछ ऐल्फ़ा कण वापस क्यों लौटे?"
+       },
+       "options": [
+        {
+         "en": "they hit the tiny, heavy, positive nucleus",
+         "hi": "वे छोटे, भारी, धनावेशित नाभिक से टकराए"
+        },
+        {
+         "en": "they hit electrons",
+         "hi": "वे इलेक्ट्रॉनों से टकराए"
+        },
+        {
+         "en": "the foil was solid all through",
+         "hi": "पन्नी पूरी तरह ठोस थी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A rare head-on hit with the nucleus sends the particle back.",
+        "hi": "नाभिक से कभी-कभार सीधी टक्कर कण को वापस भेज देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Electrons are very light; an alpha particle brushes them aside without bouncing.",
+         "hi": "इलेक्ट्रॉन बहुत हल्के हैं; ऐल्फ़ा कण उन्हें बिना लौटे एक ओर कर देता है।"
+        },
+        {
+         "en": "Most particles went through, so the atom is mostly empty.",
+         "hi": "अधिकांश कण निकल गए, इसलिए परमाणु अधिकतर खाली है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Fire again and count the paths. Which direction gets the fewest particles?",
+      "hi": "फिर से दागो और पथ गिनो। किस दिशा में सबसे कम कण जाते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch12-models",
+   "topic": "12.2",
+   "template": "atom",
+   "title": {
+    "en": "Three models of the atom",
+    "hi": "परमाणु के तीन मॉडल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "models"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In Thomson's 'plum pudding' model, the positive charge is",
+      "hi": "थॉमसन के 'प्लम पुडिंग' मॉडल में धनावेश"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "on the outside",
+       "hi": "बाहर की ओर है"
+      },
+      {
+       "id": "o0",
+       "en": "spread all through the atom",
+       "hi": "पूरे परमाणु में फैला है"
+      },
+      {
+       "id": "o1",
+       "en": "in a tiny nucleus",
+       "hi": "एक छोटे नाभिक में है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "model:thomson",
+     "expect": "model:thomson",
+     "say": {
+      "en": "Look at Thomson's model first.",
+      "hi": "पहले थॉमसन का मॉडल देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "model:rutherford",
+     "expect": "model:rutherford",
+     "say": {
+      "en": "Now switch to Rutherford's model with a tiny nucleus.",
+      "hi": "अब छोटे नाभिक वाले रदरफ़ोर्ड मॉडल पर जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "model:bohr",
+     "expect": "model:bohr",
+     "say": {
+      "en": "Finally look at Bohr's model, with electrons in fixed orbits.",
+      "hi": "अंत में बोर का मॉडल देखो, जिसमें इलेक्ट्रॉन निश्चित कक्षाओं में हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Thomson imagined a ball of positive charge with electrons stuck in it. Rutherford's scattering showed a tiny nucleus with electrons around it, but a circling electron should radiate energy and spiral into the nucleus in a fraction of a second, and it could not explain the line spectra. Bohr added rules: electrons move only in certain allowed orbits without radiating, and light is emitted or absorbed only when an electron jumps between them.",
+      "hi": "थॉमसन ने धनावेश की एक गेंद की कल्पना की जिसमें इलेक्ट्रॉन धँसे हैं। रदरफ़ोर्ड के प्रकीर्णन ने छोटा नाभिक और उसके चारों ओर इलेक्ट्रॉन दिखाए, पर घूमता इलेक्ट्रॉन ऊर्जा विकिरित करके एक सेकंड के अंश में नाभिक में गिर जाना चाहिए, और वह रेखा स्पेक्ट्रम नहीं समझा सका। बोर ने नियम जोड़े: इलेक्ट्रॉन केवल कुछ अनुमत कक्षाओं में बिना विकिरण के घूमते हैं, और प्रकाश तभी उत्सर्जित या अवशोषित होता है जब इलेक्ट्रॉन उनके बीच कूदता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which problem of Rutherford's model did Bohr's model solve?",
+        "hi": "बोर के मॉडल ने रदरफ़ोर्ड के मॉडल की कौन-सी समस्या हल की?"
+       },
+       "options": [
+        {
+         "en": "stability of the atom and line spectra",
+         "hi": "परमाणु की स्थिरता और रेखा स्पेक्ट्रम"
+        },
+        {
+         "en": "existence of the nucleus",
+         "hi": "नाभिक का अस्तित्व"
+        },
+        {
+         "en": "charge of the electron",
+         "hi": "इलेक्ट्रॉन का आवेश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fixed orbits stop the spiral-in, and jumps give single colours.",
+        "hi": "निश्चित कक्षाएँ भीतर गिरना रोकती हैं, और कूदें एकल रंग देती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The nucleus was Rutherford's own discovery.",
+         "hi": "नाभिक रदरफ़ोर्ड की अपनी खोज थी।"
+        },
+        {
+         "en": "The electron's charge was already known by other experiments.",
+         "hi": "इलेक्ट्रॉन का आवेश अन्य प्रयोगों से पहले ही ज्ञात था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of the three models can explain the gold-foil result? Which one can explain the lines in the spectrum?",
+      "hi": "तीनों में से कौन-सा मॉडल सोने की पन्नी का परिणाम समझा सकता है? कौन-सा स्पेक्ट्रम की रेखाएँ?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch12-bohr-levels",
+   "topic": "12.4",
+   "template": "atom",
+   "title": {
+    "en": "Electron jumps in the hydrogen atom",
+    "hi": "हाइड्रोजन परमाणु में इलेक्ट्रॉन की कूदें"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "models"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An electron falls from the 3rd orbit to the 2nd orbit of hydrogen. It",
+      "hi": "हाइड्रोजन में एक इलेक्ट्रॉन तीसरी कक्षा से दूसरी कक्षा में गिरता है। वह"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "absorbs a photon",
+       "hi": "फ़ोटॉन अवशोषित करता है"
+      },
+      {
+       "id": "o2",
+       "en": "gives out nothing",
+       "hi": "कुछ भी उत्सर्जित नहीं करता"
+      },
+      {
+       "id": "o0",
+       "en": "gives out a photon of visible light",
+       "hi": "दृश्य प्रकाश का फ़ोटॉन उत्सर्जित करता है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "model:bohr",
+     "expect": "model:bohr",
+     "say": {
+      "en": "Choose the Bohr model.",
+      "hi": "बोर मॉडल चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "level:3",
+     "expect": "level:3",
+     "say": {
+      "en": "Lift the electron up to n = 3. It needs energy for that.",
+      "hi": "इलेक्ट्रॉन को n = 3 तक ऊपर उठाओ। इसके लिए ऊर्जा चाहिए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "level:2",
+     "expect": "photon:visible",
+     "say": {
+      "en": "Let it fall to n = 2 and see red light come out.",
+      "hi": "इसे n = 2 पर गिरने दो और लाल प्रकाश निकलते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "level:1",
+     "expect": "photon:uv",
+     "say": {
+      "en": "Drop it to n = 1. The light is ultraviolet, invisible to us.",
+      "hi": "इसे n = 1 पर गिराओ। प्रकाश पराबैंगनी है, जो हमें दिखता नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the Bohr model the energy of the nth level of hydrogen is E_n = −13.6/n² eV. Falling from a higher level to a lower one gives out a photon of energy equal to the difference, hν = E_i − E_f. Jumps to n = 1 give ultraviolet (Lyman), to n = 2 give visible light (Balmer), to n = 3 give infrared (Paschen). Going up needs a photon of exactly that energy. This is why each element has its own fingerprint of coloured lines.",
+      "hi": "बोर मॉडल में हाइड्रोजन के nवें स्तर की ऊर्जा E_n = −13.6/n² eV है। ऊँचे स्तर से नीचे गिरने पर ऊर्जा-अंतर के बराबर फ़ोटॉन निकलता है, hν = E_i − E_f। n = 1 पर कूद पराबैंगनी (लाइमन), n = 2 पर कूद दृश्य प्रकाश (बामर) और n = 3 पर कूद अवरक्त (पाशन) देती है। ऊपर चढ़ने के लिए ठीक उतनी ऊर्जा का फ़ोटॉन चाहिए। इसीलिए हर तत्व की रंगीन रेखाओं की अपनी अलग पहचान होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The energy of the n = 2 level of hydrogen is",
+        "hi": "हाइड्रोजन के n = 2 स्तर की ऊर्जा है"
+       },
+       "options": [
+        {
+         "en": "−3.4 eV",
+         "hi": "−3.4 इलेक्ट्रॉन-वोल्ट"
+        },
+        {
+         "en": "−13.6 eV",
+         "hi": "−13.6 इलेक्ट्रॉन-वोल्ट"
+        },
+        {
+         "en": "+3.4 eV",
+         "hi": "+3.4 इलेक्ट्रॉन-वोल्ट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "E₂ = −13.6/4 = −3.4 eV.",
+        "hi": "E₂ = −13.6/4 = −3.4 eV।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the ground state, n = 1.",
+         "hi": "यह मूल अवस्था n = 1 की ऊर्जा है।"
+        },
+        {
+         "en": "Bound electrons have negative energy; zero means free.",
+         "hi": "बद्ध इलेक्ट्रॉनों की ऊर्जा ऋणात्मक होती है; शून्य का अर्थ मुक्त है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try n = 4 to n = 3. What kind of light comes out?",
+      "hi": "n = 4 से n = 3 पर गिराकर देखो। कैसा प्रकाश निकलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch12-energy-levels",
+   "topic": "12.4",
+   "template": "grapher",
+   "title": {
+    "en": "Energy levels crowd together",
+    "hi": "ऊर्जा स्तर पास-पास आते जाते हैं"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "derivative",
+    "expr": "-13.6/x^2"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As n gets larger, the energy levels of hydrogen become",
+      "hi": "जैसे-जैसे n बड़ा होता है, हाइड्रोजन के ऊर्जा स्तर हो जाते हैं"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "closer together, approaching zero",
+       "hi": "पास-पास, शून्य के निकट"
+      },
+      {
+       "id": "o1",
+       "en": "farther apart",
+       "hi": "दूर-दूर"
+      },
+      {
+       "id": "o2",
+       "en": "equally spaced",
+       "hi": "समान दूरी पर"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is n. Slide it from 1 to 5 and read the energy E (height).",
+      "hi": "x, n है। उसे 1 से 5 तक चलाओ और ऊर्जा E (ऊँचाई) पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tangent",
+     "expect": "plotted",
+     "say": {
+      "en": "Switch on the tangent. A flat slope at large n shows the levels crowding.",
+      "hi": "स्पर्श रेखा चालू करो। बड़े n पर सपाट ढलान दिखाती है कि स्तर पास-पास आ गए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The curve E = −13.6/n² rises steeply at first and flattens towards zero. The gap between n = 1 and 2 is 10.2 eV, but between 4 and 5 it is only 0.3 eV. That is why the jump to the ground level gives high-energy ultraviolet and jumps among higher levels give low-energy infrared. At E = 0 the electron is free: 13.6 eV is the ionisation energy of hydrogen.",
+      "hi": "वक्र E = −13.6/n² पहले तीखा चढ़ता है और शून्य की ओर सपाट हो जाता है। n = 1 और 2 के बीच अंतर 10.2 eV है, पर 4 और 5 के बीच केवल 0.3 eV। इसीलिए मूल स्तर पर कूद उच्च ऊर्जा की पराबैंगनी देती है और ऊँचे स्तरों के बीच कूदें कम ऊर्जा की अवरक्त देती हैं। E = 0 पर इलेक्ट्रॉन मुक्त है: 13.6 eV हाइड्रोजन की आयनन ऊर्जा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How much energy is needed to free an electron from the ground state of hydrogen?",
+        "hi": "हाइड्रोजन की मूल अवस्था से इलेक्ट्रॉन को मुक्त करने के लिए कितनी ऊर्जा चाहिए?"
+       },
+       "options": [
+        {
+         "en": "13.6 eV",
+         "hi": "13.6 इलेक्ट्रॉन-वोल्ट"
+        },
+        {
+         "en": "3.4 eV",
+         "hi": "3.4 इलेक्ट्रॉन-वोल्ट"
+        },
+        {
+         "en": "0 eV",
+         "hi": "0 इलेक्ट्रॉन-वोल्ट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It must reach E = 0 from −13.6 eV.",
+        "hi": "उसे −13.6 eV से E = 0 तक पहुँचना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That frees an electron from n = 2, not from the ground state.",
+         "hi": "इससे इलेक्ट्रॉन n = 2 से मुक्त होता है, मूल अवस्था से नहीं।"
+        },
+        {
+         "en": "Zero energy cannot free a bound electron.",
+         "hi": "शून्य ऊर्जा बद्ध इलेक्ट्रॉन को मुक्त नहीं कर सकती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Read the energy at n = 2, 3, 4. The differences give the visible Balmer photons: can you spot them?",
+      "hi": "n = 2, 3, 4 पर ऊर्जा पढ़ो। अंतर दृश्य बामर फ़ोटॉन देते हैं: क्या तुम पहचान सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch12-series",
+   "topic": "12.5",
+   "template": "sort",
+   "title": {
+    "en": "Spectral series of hydrogen",
+    "hi": "हाइड्रोजन की स्पेक्ट्रमी श्रेणियाँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "uv",
+      "label": {
+       "en": "Lyman, ultraviolet",
+       "hi": "लाइमन, पराबैंगनी"
+      }
+     },
+     {
+      "id": "vis",
+      "label": {
+       "en": "Balmer, visible",
+       "hi": "बामर, दृश्य"
+      }
+     },
+     {
+      "id": "ir",
+      "label": {
+       "en": "Paschen, infrared",
+       "hi": "पाशन, अवरक्त"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "21",
+      "text": {
+       "en": "Jump from n = 2 to n = 1",
+       "hi": "n = 2 से n = 1 पर कूद"
+      },
+      "bin": "uv",
+      "why": {
+       "en": "Landing on n = 1 releases 10.2 eV or more: ultraviolet.",
+       "hi": "n = 1 पर आने से 10.2 eV या अधिक निकलता है: पराबैंगनी।"
+      }
+     },
+     {
+      "id": "31",
+      "text": {
+       "en": "Jump from n = 3 to n = 1",
+       "hi": "n = 3 से n = 1 पर कूद"
+      },
+      "bin": "uv",
+      "why": {
+       "en": "Also ends on n = 1, so it belongs to the Lyman series.",
+       "hi": "यह भी n = 1 पर समाप्त होती है, इसलिए लाइमन श्रेणी में है।"
+      }
+     },
+     {
+      "id": "32",
+      "text": {
+       "en": "Jump from n = 3 to n = 2",
+       "hi": "n = 3 से n = 2 पर कूद"
+      },
+      "bin": "vis",
+      "why": {
+       "en": "1.89 eV: the red line of the Balmer series.",
+       "hi": "1.89 eV: बामर श्रेणी की लाल रेखा।"
+      }
+     },
+     {
+      "id": "42",
+      "text": {
+       "en": "Jump from n = 4 to n = 2",
+       "hi": "n = 4 से n = 2 पर कूद"
+      },
+      "bin": "vis",
+      "why": {
+       "en": "2.55 eV: the blue-green line of the Balmer series.",
+       "hi": "2.55 eV: बामर श्रेणी की नीली-हरी रेखा।"
+      }
+     },
+     {
+      "id": "43",
+      "text": {
+       "en": "Jump from n = 4 to n = 3",
+       "hi": "n = 4 से n = 3 पर कूद"
+      },
+      "bin": "ir",
+      "why": {
+       "en": "Only 0.66 eV: infrared, in the Paschen series.",
+       "hi": "केवल 0.66 eV: पाशन श्रेणी की अवरक्त।"
+      }
+     },
+     {
+      "id": "53",
+      "text": {
+       "en": "Jump from n = 5 to n = 3",
+       "hi": "n = 5 से n = 3 पर कूद"
+      },
+      "bin": "ir",
+      "why": {
+       "en": "Ends on n = 3, the Paschen series, also infrared.",
+       "hi": "n = 3 पर समाप्त, पाशन श्रेणी, यह भी अवरक्त।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which series of hydrogen lines can our eyes see?",
+      "hi": "हाइड्रोजन की कौन-सी श्रेणी की रेखाएँ हमारी आँखें देख सकती हैं?"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "Paschen",
+       "hi": "पाशन"
+      },
+      {
+       "id": "o0",
+       "en": "Balmer",
+       "hi": "बामर"
+      },
+      {
+       "id": "o1",
+       "en": "Lyman",
+       "hi": "लाइमन"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "card:21",
+     "expect": "placed:21",
+     "say": {
+      "en": "Tap the jump n = 2 to n = 1, then its series box.",
+      "hi": "n = 2 से n = 1 की कूद छुओ, फिर उसकी श्रेणी का बॉक्स।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:32",
+     "expect": "placed:32",
+     "say": {
+      "en": "Place the jump n = 3 to n = 2.",
+      "hi": "n = 3 से n = 2 की कूद रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press check.",
+      "hi": "सभी कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each series ends on one lower level: Lyman on n = 1 (ultraviolet), Balmer on n = 2 (visible), Paschen on n = 3 (infrared), and there are more at lower energies. The wavelengths follow 1/λ = R(1/n_f² − 1/n_i²) with the Rydberg constant R = 1.097 × 10⁷ m⁻¹. Bohr's model reproduced this formula exactly, which was a big success for it.",
+      "hi": "हर श्रेणी किसी एक निचले स्तर पर समाप्त होती है: लाइमन n = 1 पर (पराबैंगनी), बामर n = 2 पर (दृश्य), पाशन n = 3 पर (अवरक्त), और कम ऊर्जा पर और श्रेणियाँ हैं। तरंगदैर्घ्य 1/λ = R(1/n_f² − 1/n_i²) का पालन करते हैं, जहाँ रिडबर्ग नियतांक R = 1.097 × 10⁷ मीटर⁻¹ है। बोर का मॉडल यह सूत्र ठीक-ठीक देता है, जो उसकी बड़ी सफलता थी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which series is made of jumps that end on n = 2?",
+        "hi": "कौन-सी श्रेणी n = 2 पर समाप्त होने वाली कूदों से बनी है?"
+       },
+       "options": [
+        {
+         "en": "Balmer",
+         "hi": "बामर"
+        },
+        {
+         "en": "Lyman",
+         "hi": "लाइमन"
+        },
+        {
+         "en": "Paschen",
+         "hi": "पाशन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Balmer: final level n = 2.",
+        "hi": "बामर: अंतिम स्तर n = 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lyman jumps end on n = 1.",
+         "hi": "लाइमन की कूदें n = 1 पर समाप्त होती हैं।"
+        },
+        {
+         "en": "Paschen jumps end on n = 3.",
+         "hi": "पाशन की कूदें n = 3 पर समाप्त होती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why do the Lyman lines carry more energy than the Balmer lines?",
+      "hi": "लाइमन रेखाओं में बामर रेखाओं से अधिक ऊर्जा क्यों होती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch12-orbit-waves",
+   "topic": "12.6",
+   "template": "waves",
+   "title": {
+    "en": "Why only some orbits are allowed",
+    "hi": "केवल कुछ कक्षाएँ ही क्यों अनुमत हैं"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "string"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A wave on a string fixed at both ends can last only if",
+      "hi": "दोनों सिरों पर बँधी डोरी पर तरंग तभी टिकती है जब"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "any length of wave fits",
+       "hi": "किसी भी लंबाई की तरंग समाए"
+      },
+      {
+       "id": "o2",
+       "en": "the string is loose",
+       "hi": "डोरी ढीली हो"
+      },
+      {
+       "id": "o0",
+       "en": "a whole number of half-waves fit in it",
+       "hi": "उसमें पूर्ण संख्या में अर्ध-तरंगें समाएँ"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "vibrating",
+     "say": {
+      "en": "Switch on the driver and watch the string.",
+      "hi": "चालक चालू करो और डोरी को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "resonance",
+     "say": {
+      "en": "Turn the frequency slowly and stop at a place where the string shows a clear standing wave.",
+      "hi": "आवृत्ति धीरे-धीरे घुमाओ और वहाँ रुको जहाँ डोरी स्पष्ट अप्रगामी तरंग दिखाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This is the picture de Broglie used for Bohr's orbits. An electron is a wave, and a wave going round a circle must meet itself exactly or it destroys itself. So the circumference must hold a whole number of wavelengths: 2πr = nλ with λ = h/mv. That gives Bohr's rule that the angular momentum is mvr = nh/2π, and only some orbits are allowed. A string works the same way: only certain frequencies make a standing wave.",
+      "hi": "दे ब्रॉग्ली ने बोर की कक्षाओं के लिए यही चित्र लिया। इलेक्ट्रॉन एक तरंग है, और वृत्त में घूमती तरंग को ठीक अपने से मिलना चाहिए, नहीं तो वह स्वयं नष्ट हो जाती है। इसलिए परिधि में तरंगदैर्घ्यों की पूर्ण संख्या होनी चाहिए: 2πr = nλ, जहाँ λ = h/mv। इससे बोर का नियम मिलता है कि कोणीय संवेग mvr = nh/2π है, और केवल कुछ कक्षाएँ अनुमत हैं। डोरी भी ऐसे ही काम करती है: केवल कुछ आवृत्तियाँ अप्रगामी तरंग बनाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "According to de Broglie, an allowed orbit has a circumference equal to",
+        "hi": "दे ब्रॉग्ली के अनुसार अनुमत कक्षा की परिधि बराबर होती है"
+       },
+       "options": [
+        {
+         "en": "a whole number of wavelengths",
+         "hi": "तरंगदैर्घ्यों की पूर्ण संख्या के"
+        },
+        {
+         "en": "exactly one half-wave",
+         "hi": "ठीक आधी तरंग के"
+        },
+        {
+         "en": "any number of wavelengths",
+         "hi": "तरंगदैर्घ्यों की किसी भी संख्या के"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2πr = nλ gives the quantised orbits.",
+        "hi": "2πr = nλ से क्वांटीकृत कक्षाएँ मिलती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The condition is a whole number of full wavelengths around the circle.",
+         "hi": "शर्त वृत्त में पूर्ण तरंगदैर्घ्यों की पूर्ण संख्या है।"
+        },
+        {
+         "en": "If any number were allowed, every orbit would work. The whole-number rule is what picks only some.",
+         "hi": "यदि कोई भी संख्या चलती तो हर कक्षा चलती। पूर्ण संख्या का नियम ही कुछ कक्षाएँ चुनता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find two different frequencies where a standing wave forms. How are they related?",
+      "hi": "दो अलग आवृत्तियाँ खोजो जिन पर अप्रगामी तरंग बनती है। उनका आपस में क्या संबंध है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Chapter hook: neon signs at night",
+   "shows": "A glowing neon tube sign in an Indian market lane at night, tubes in red, blue and green (no readable shop name)",
+   "view": "Low angle, night",
+   "right": "Gas glow vivid, background dark",
+   "avoid": "Readable shop names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "12.3",
+   "use": "Line spectra of gases",
+   "shows": "Three strips of black background showing the coloured emission lines of hydrogen, helium and sodium side by side",
+   "view": "Straight front view, equal widths",
+   "right": "Lines sharp and in correct colours",
+   "avoid": "Labels, numbers"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "12.2",
+   "use": "Gold-foil experiment",
+   "shows": "A clean diagram of a source, a narrow beam, a thin gold foil and a screen with a few deflected tracks, white background",
+   "view": "Flat top view",
+   "right": "Most tracks straight, few bent, one bounced",
+   "avoid": "Text labels"
+  },
+  {
+   "n": 4,
+   "kind": "3DM",
+   "topic": "12.4",
+   "use": "Bohr model of hydrogen",
+   "shows": "A glossy 3D model of one nucleus with a glowing electron on the second circular orbit and a light-coloured photon leaving",
+   "view": "Three-quarter view, dark background",
+   "right": "Orbits circular and concentric",
+   "avoid": "Equations, text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "12.3",
+   "use": "A spectroscope",
+   "shows": "A hand-held diffraction spectroscope or a student spectrometer on a table beside a gas discharge tube",
+   "view": "Three-quarter view, bright lab",
+   "right": "Instrument clear",
+   "avoid": "Brand marks, student faces"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "12.6",
+   "use": "Standing waves on a string",
+   "shows": "A long thin rope vibrating in three loops between two fixed points, motion-blurred slightly",
+   "view": "Side view, plain background",
+   "right": "Nodes sharp and loops clear",
+   "avoid": "People, clutter"
+  }
+ ]
+}

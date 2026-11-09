@@ -1,0 +1,705 @@
+{
+ "chapter_key": "u.c07.sanskrit.gsde1.ch10",
+ "class": 7,
+ "subject_id": "sanskrit",
+ "title": "दशमः कः ?",
+ "source": "https://ncert.nic.in/textbook.php?gsde1=0-15",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Who came which place: numbers and place words",
+   "labs": [
+    "c07-sanskrit-gsde1-ch10-ordinals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "The story of the ten boys and the river",
+   "labs": [
+    "c07-sanskrit-gsde1-ch10-story",
+    "c07-sanskrit-gsde1-ch10-count"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "The class talk about the Sanskrit competition",
+   "labs": [],
+   "why_no_lab": "The competition talk is read aloud with partners; it has no task a screen can do better."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-sanskrit-gsde1-ch10-story",
+   "topic": "10.2",
+   "template": "sequence",
+   "title": {
+    "en": "The ten boys and the river",
+    "hi": "दस बालक और नदी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "go",
+      "text": {
+       "en": "दश बालकाः नदीम् अगच्छन् — ten boys go to the river to bathe",
+       "hi": "दश बालकाः नदीम् अगच्छन् — दस बालक नदी में नहाने जाते हैं"
+      }
+     },
+     {
+      "id": "cross",
+      "text": {
+       "en": "ते पारं गताः — they swim and reach the other bank",
+       "hi": "ते पारं गताः — वे तैरकर दूसरे किनारे पहुँचते हैं"
+      }
+     },
+     {
+      "id": "ask",
+      "text": {
+       "en": "नायकः अपृच्छत् — the leader asks if all have crossed",
+       "hi": "नायकः अपृच्छत् — नायक पूछता है कि क्या सब पार आ गए"
+      }
+     },
+     {
+      "id": "nine",
+      "text": {
+       "en": "नव एव स्मः — a boy counts nine, forgetting himself",
+       "hi": "नव एव स्मः — एक बालक नौ गिनता है, अपने को भूल जाता है"
+      }
+     },
+     {
+      "id": "sad",
+      "text": {
+       "en": "ते विषण्णाः तिष्ठन्ति — they think one has drowned and sit sad",
+       "hi": "ते विषण्णाः तिष्ठन्ति — वे सोचते हैं कि एक डूब गया और उदास बैठ जाते हैं"
+      }
+     },
+     {
+      "id": "trav",
+      "text": {
+       "en": "पथिकः आगच्छति — a traveller comes and asks why they are sad",
+       "hi": "पथिकः आगच्छति — एक यात्री आता है और उदासी का कारण पूछता है"
+      }
+     },
+     {
+      "id": "tenth",
+      "text": {
+       "en": "दशमः त्वम् असि — he tells the leader, you are the tenth",
+       "hi": "दशमः त्वम् असि — वह नायक से कहता है, तुम दसवें हो"
+      }
+     },
+     {
+      "id": "happy",
+      "text": {
+       "en": "ते प्रहृष्टाः — all are happy and go home",
+       "hi": "ते प्रहृष्टाः — सब प्रसन्न होकर घर जाते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:go",
+     "expect": "placed:go",
+     "say": {
+      "en": "Put the first part of the story in place.",
+      "hi": "कहानी का पहला भाग रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The leader counted the others carefully. Why did he get only nine?",
+      "hi": "नायक ने ध्यान से दूसरों को गिना। उसे केवल नौ क्यों मिले?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "He forgot to count himself",
+       "hi": "वह स्वयं को गिनना भूल गया"
+      },
+      {
+       "id": "b",
+       "en": "One boy really drowned",
+       "hi": "सचमुच एक बालक डूब गया"
+      },
+      {
+       "id": "c",
+       "en": "He counted twice",
+       "hi": "उसने दो बार गिना"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the whole story, then press Check.",
+      "hi": "पूरी कहानी क्रम से लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The ten boys were all safe. Each time the counter left himself out, so the count was nine. The traveller counted all ten and then told the leader that he himself was the tenth. The story reminds us to count ourselves too and not to worry before we check.",
+      "hi": "दसों बालक सुरक्षित थे। गिनने वाला हर बार स्वयं को छोड़ देता था, इसलिए संख्या नौ आती थी। यात्री ने सबको गिना और नायक से कहा कि वही दसवाँ है। कहानी सिखाती है कि स्वयं को भी गिनो और जाँचे बिना चिंता मत करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why were the boys sad?",
+        "hi": "बालक उदास क्यों थे?"
+       },
+       "options": [
+        {
+         "en": "They counted wrongly",
+         "hi": "उन्होंने गलत गिना"
+        },
+        {
+         "en": "A boy had really drowned",
+         "hi": "सचमुच एक बालक डूब गया था"
+        },
+        {
+         "en": "It started to rain",
+         "hi": "बारिश होने लगी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They left out the counter himself, so they got nine.",
+        "hi": "उन्होंने गिनने वाले को छोड़ दिया, इसलिए नौ आए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "All ten boys were present at the end.",
+         "hi": "अंत में दसों बालक मौजूद थे।"
+        },
+        {
+         "en": "The story does not mention any rain.",
+         "hi": "कहानी में बारिश का कोई उल्लेख नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Count a group of friends in your class, including yourself, and say the number in Sanskrit.",
+      "hi": "कक्षा में मित्रों के एक समूह को स्वयं सहित गिनो और संख्या संस्कृत में बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-sanskrit-gsde1-ch10-ordinals",
+   "topic": "10.1",
+   "template": "match",
+   "title": {
+    "en": "Numbers and their places: one, first",
+    "hi": "संख्या और उनके स्थान: एक, पहला"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "one",
+      "left": {
+       "en": "एकम्",
+       "hi": "एकम्"
+      },
+      "right": {
+       "en": "first (प्रथमः)",
+       "hi": "पहला (प्रथमः)"
+      },
+      "why": {
+       "en": "The number एकम् (one) becomes प्रथमः for the place.",
+       "hi": "संख्या एकम् (एक) स्थान बताते समय प्रथमः बन जाती है।"
+      }
+     },
+     {
+      "id": "two",
+      "left": {
+       "en": "द्वे",
+       "hi": "द्वे"
+      },
+      "right": {
+       "en": "second (द्वितीयः)",
+       "hi": "दूसरा (द्वितीयः)"
+      },
+      "why": {
+       "en": "The number द्वे (two) becomes द्वितीयः for the place.",
+       "hi": "संख्या द्वे (दो) स्थान बताते समय द्वितीयः बन जाती है।"
+      }
+     },
+     {
+      "id": "three",
+      "left": {
+       "en": "त्रीणि",
+       "hi": "त्रीणि"
+      },
+      "right": {
+       "en": "third (तृतीयः)",
+       "hi": "तीसरा (तृतीयः)"
+      },
+      "why": {
+       "en": "The number त्रीणि (three) becomes तृतीयः for the place.",
+       "hi": "संख्या त्रीणि (तीन) स्थान बताते समय तृतीयः बन जाती है।"
+      }
+     },
+     {
+      "id": "four",
+      "left": {
+       "en": "चत्वारि",
+       "hi": "चत्वारि"
+      },
+      "right": {
+       "en": "fourth (चतुर्थः)",
+       "hi": "चौथा (चतुर्थः)"
+      },
+      "why": {
+       "en": "The number चत्वारि (four) becomes चतुर्थः for the place.",
+       "hi": "संख्या चत्वारि (चार) स्थान बताते समय चतुर्थः बन जाती है।"
+      }
+     },
+     {
+      "id": "five",
+      "left": {
+       "en": "पञ्च",
+       "hi": "पञ्च"
+      },
+      "right": {
+       "en": "fifth (पञ्चमः)",
+       "hi": "पाँचवाँ (पञ्चमः)"
+      },
+      "why": {
+       "en": "The number पञ्च (five) becomes पञ्चमः for the place.",
+       "hi": "संख्या पञ्च (पाँच) स्थान बताते समय पञ्चमः बन जाती है।"
+      }
+     },
+     {
+      "id": "six",
+      "left": {
+       "en": "षट्",
+       "hi": "षट्"
+      },
+      "right": {
+       "en": "sixth (षष्ठः)",
+       "hi": "छठा (षष्ठः)"
+      },
+      "why": {
+       "en": "The number षट् (six) becomes षष्ठः for the place.",
+       "hi": "संख्या षट् (छह) स्थान बताते समय षष्ठः बन जाती है।"
+      }
+     },
+     {
+      "id": "seven",
+      "left": {
+       "en": "सप्त",
+       "hi": "सप्त"
+      },
+      "right": {
+       "en": "seventh (सप्तमः)",
+       "hi": "सातवाँ (सप्तमः)"
+      },
+      "why": {
+       "en": "The number सप्त (seven) becomes सप्तमः for the place.",
+       "hi": "संख्या सप्त (सात) स्थान बताते समय सप्तमः बन जाती है।"
+      }
+     },
+     {
+      "id": "eight",
+      "left": {
+       "en": "अष्ट",
+       "hi": "अष्ट"
+      },
+      "right": {
+       "en": "eighth (अष्टमः)",
+       "hi": "आठवाँ (अष्टमः)"
+      },
+      "why": {
+       "en": "The number अष्ट (eight) becomes अष्टमः for the place.",
+       "hi": "संख्या अष्ट (आठ) स्थान बताते समय अष्टमः बन जाती है।"
+      }
+     },
+     {
+      "id": "nine",
+      "left": {
+       "en": "नव",
+       "hi": "नव"
+      },
+      "right": {
+       "en": "ninth (नवमः)",
+       "hi": "नौवाँ (नवमः)"
+      },
+      "why": {
+       "en": "The number नव (nine) becomes नवमः for the place.",
+       "hi": "संख्या नव (नौ) स्थान बताते समय नवमः बन जाती है।"
+      }
+     },
+     {
+      "id": "ten",
+      "left": {
+       "en": "दश",
+       "hi": "दश"
+      },
+      "right": {
+       "en": "tenth (दशमः)",
+       "hi": "दसवाँ (दशमः)"
+      },
+      "why": {
+       "en": "The number दश (ten) becomes दशमः for the place.",
+       "hi": "संख्या दश (दस) स्थान बताते समय दशमः बन जाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:one",
+     "expect": "matched:one",
+     "say": {
+      "en": "Match एकम् with its place word.",
+      "hi": "एकम् को उसके स्थान वाले शब्द से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a race, the winner comes प्रथमः. Who comes दशमः?",
+      "hi": "दौड़ में जीतने वाला प्रथमः आता है। दशमः कौन आता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The tenth",
+       "hi": "दसवाँ"
+      },
+      {
+       "id": "b",
+       "en": "The second",
+       "hi": "दूसरा"
+      },
+      {
+       "id": "c",
+       "en": "The first",
+       "hi": "पहला"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:ten",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all ten numbers.",
+      "hi": "दसों संख्याएँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A number tells us how many (दश, ten). A place word tells us which one in the line (दशमः, tenth). Many of these end in -मः: पञ्चमः, सप्तमः, अष्टमः, नवमः, दशमः. For the first four, the words are different: प्रथमः, द्वितीयः, तृतीयः, चतुर्थः.",
+      "hi": "संख्या बताती है कि कितने (दश, दस)। स्थान वाला शब्द बताता है कि पंक्ति में कौन-सा (दशमः, दसवाँ)। इनमें से कई -मः पर समाप्त होते हैं: पञ्चमः, सप्तमः, अष्टमः, नवमः, दशमः। पहले चार के शब्द अलग हैं: प्रथमः, द्वितीयः, तृतीयः, चतुर्थः।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word means seventh?",
+        "hi": "कौन-सा शब्द सातवाँ का अर्थ देता है?"
+       },
+       "options": [
+        "सप्तमः",
+        "षष्ठः",
+        "अष्टमः"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "सप्त is seven and the place word is सप्तमः.",
+        "hi": "सप्त सात है और उसका स्थान वाला शब्द सप्तमः है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "षष्ठः is sixth.",
+         "hi": "षष्ठः छठा है।"
+        },
+        {
+         "en": "अष्टमः is eighth.",
+         "hi": "अष्टमः आठवाँ है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Line up with friends and call out each friend's place in Sanskrit: प्रथमः, द्वितीयः and so on.",
+      "hi": "मित्रों के साथ कतार में खड़े होकर हर मित्र का स्थान संस्कृत में बोलो: प्रथमः, द्वितीयः आदि।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-sanskrit-gsde1-ch10-count",
+   "topic": "10.2",
+   "template": "scenario",
+   "title": {
+    "en": "You are the leader: count the group",
+    "hi": "तुम नायक हो: समूह को गिनो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "river",
+    "role": {
+     "en": "The leader of ten boys",
+     "hi": "दस बालकों का नायक"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "You and your friends have swum across the river. You count the others and get nine. What do you do?",
+       "hi": "तुम और तुम्हारे मित्र नदी पार कर चुके हो। तुम दूसरों को गिनते हो और नौ आते हैं। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "c1",
+        "text": {
+         "en": "Cry out that one boy has drowned",
+         "hi": "चिल्लाओ कि एक बालक डूब गया"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Think again: nobody saw anyone drown, and you may have missed counting someone.",
+         "hi": "फिर सोचो: किसी ने किसी को डूबते नहीं देखा, और हो सकता है तुमने किसी को गिना ही नहीं।"
+        },
+        "good": false
+       },
+       {
+        "id": "c2",
+        "text": {
+         "en": "Count again, and count yourself too",
+         "hi": "फिर से गिनो, और स्वयं को भी गिनो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Wise! You and nine others make ten.",
+         "hi": "समझदारी! तुम और नौ दूसरे मिलकर दस होते हो।"
+        },
+        "good": true
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Everyone is sad. A traveller comes and asks what is wrong. What do you do?",
+       "hi": "सब उदास हैं। एक यात्री आता है और पूछता है कि क्या हुआ। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "c3",
+        "text": {
+         "en": "Tell him the story and ask him to count us",
+         "hi": "उसे पूरी बात बताओ और कहो कि हमें गिन दे"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A fresh pair of eyes found the mistake: ten boys, all safe.",
+         "hi": "नई नज़र ने गलती पकड़ ली: दस बालक, सब सुरक्षित।"
+        },
+        "good": true
+       },
+       {
+        "id": "c4",
+        "text": {
+         "en": "Say nothing and stay sad",
+         "hi": "कुछ मत कहो और उदास बैठे रहो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Staying silent keeps the problem alive. Asking for help would solve it.",
+         "hi": "चुप रहने से समस्या बनी रहती है। मदद माँगने से हल निकलता।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:s1:c1",
+     "expect": "chose:c1",
+     "say": {
+      "en": "Try the first choice, even if you think it is wrong, and read the feedback.",
+      "hi": "पहला विकल्प चुनकर देखो, चाहे तुम्हें गलत लगे, और जवाब पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do you think the traveller will say when he counts the boys?",
+      "hi": "तुम्हें क्या लगता है यात्री बालकों को गिनकर क्या कहेगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "There are ten boys",
+       "hi": "दस बालक हैं"
+      },
+      {
+       "id": "b",
+       "en": "There are nine boys",
+       "hi": "नौ बालक हैं"
+      },
+      {
+       "id": "c",
+       "en": "There are eleven boys",
+       "hi": "ग्यारह बालक हैं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s2:c3",
+     "expect": "chose:c3",
+     "say": {
+      "en": "Now choose how to answer the traveller.",
+      "hi": "अब यात्री को क्या जवाब दोगे, चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The error here was not in the river but in the counting. When the counter forgets to count himself, nine always seems to be the total. In Sanskrit the story is told with numbers: एकम्, द्वे, त्रीणि... नव, and the last one दशमः. It also teaches us to ask for help when we are stuck.",
+      "hi": "गलती नदी में नहीं, गिनती में थी। जब गिनने वाला स्वयं को नहीं गिनता, तो कुल हमेशा नौ ही आता है। संस्कृत में कहानी संख्याओं से कही गई है: एकम्, द्वे, त्रीणि... नव, और अंतिम दशमः। यह भी सिखाती है कि अटक जाएँ तो मदद माँगो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who was the tenth boy?",
+        "hi": "दसवाँ बालक कौन था?"
+       },
+       "options": [
+        "The leader himself",
+        "The traveller",
+        "Nobody"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The leader forgot to count himself, so he was the tenth.",
+        "hi": "नायक स्वयं को गिनना भूल गया था, इसलिए वही दसवाँ था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The traveller was a stranger, not one of the ten.",
+         "hi": "यात्री अजनबी था, दस में शामिल नहीं।"
+        },
+        {
+         "en": "All ten boys were there, so someone was the tenth.",
+         "hi": "दसों बालक थे, इसलिए कोई दसवाँ था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the game again and choose the other options to see how the story changes.",
+      "hi": "खेल दोबारा खेलो और दूसरे विकल्प चुनकर देखो कि कहानी कैसे बदलती है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Opens the story",
+   "shows": "Ten boys in shorts standing at a river bank at morning, towels on shoulders, seen from behind",
+   "view": "Wide, from behind",
+   "right": "Village river, soft light",
+   "avoid": "Faces, brand towels"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "10.2",
+   "use": "Crossing the river",
+   "shows": "Four frames of boys swimming, wading, reaching the bank, standing on the bank",
+   "view": "Same camera, same light",
+   "right": "Safe depth, adults visible on far bank",
+   "avoid": "Danger, deep water"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "The traveller",
+   "shows": "An old traveller with a stick and a cloth bundle walking along a dusty riverside path",
+   "view": "Medium, side view",
+   "right": "Rural India, warm light",
+   "avoid": "Costume props"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "The race podium",
+   "shows": "A school prize podium with three steps and medals, students clapping behind",
+   "view": "Medium, slightly low angle",
+   "right": "Real sports day",
+   "avoid": "Readable names"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "Medals",
+   "shows": "Gold, silver and bronze medals on ribbons",
+   "view": "Top-down, transparent background",
+   "right": "True metal colours",
+   "avoid": "Text on medals"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Counting together",
+   "shows": "A teacher counting children in a line before a school trip",
+   "view": "Wide, from behind",
+   "right": "Real school, bus in the background",
+   "avoid": "Faces"
+  }
+ ]
+}

@@ -1,0 +1,1393 @@
+{
+ "chapter_key": "u.c10.sanskrit.jhva1.ch05",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "धातुरूप सामान्य परिचय",
+ "source": "https://ncert.nic.in/textbook.php?jhva1=0-12",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Person and number: the nine forms of the present tense",
+   "labs": [
+    "c10-sanskrit-jhva1-ch05-person",
+    "c10-sanskrit-jhva1-ch05-agree"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "The ten lakaras",
+   "labs": [
+    "c10-sanskrit-jhva1-ch05-lakaras"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Ten classes of roots and the three padas",
+   "labs": [
+    "c10-sanskrit-jhva1-ch05-ganas",
+    "c10-sanskrit-jhva1-ch05-pada"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jhva1-ch05-person",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "Whom is the verb about? He, you or I?",
+    "hi": "क्रिया किसके बारे में है? वह, तुम या मैं?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "p",
+      "label": {
+       "en": "प्रथम पुरुष: he, she, they",
+       "hi": "प्रथम पुरुष: वह, वे"
+      }
+     },
+     {
+      "id": "m",
+      "label": {
+       "en": "मध्यम पुरुष: you",
+       "hi": "मध्यम पुरुष: तुम"
+      }
+     },
+     {
+      "id": "u",
+      "label": {
+       "en": "उत्तम पुरुष: I, we",
+       "hi": "उत्तम पुरुष: मैं, हम"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "u1",
+      "text": {
+       "en": "पठति (he or she reads)",
+       "hi": "पठति (वह पढ़ता है)"
+      },
+      "bin": "p",
+      "why": {
+       "en": "The one spoken about: प्रथम पुरुष.",
+       "hi": "जिसके बारे में बात हो: प्रथम पुरुष।"
+      }
+     },
+     {
+      "id": "u2",
+      "text": {
+       "en": "पठतः (they two read)",
+       "hi": "पठतः (वे दोनों पढ़ते हैं)"
+      },
+      "bin": "p",
+      "why": {
+       "en": "The one spoken about: प्रथम पुरुष.",
+       "hi": "जिसके बारे में बात हो: प्रथम पुरुष।"
+      }
+     },
+     {
+      "id": "u3",
+      "text": {
+       "en": "पठन्ति (they read)",
+       "hi": "पठन्ति (वे सब पढ़ते हैं)"
+      },
+      "bin": "p",
+      "why": {
+       "en": "The one spoken about: प्रथम पुरुष.",
+       "hi": "जिसके बारे में बात हो: प्रथम पुरुष।"
+      }
+     },
+     {
+      "id": "u4",
+      "text": {
+       "en": "पठसि (you read)",
+       "hi": "पठसि (तुम पढ़ते हो)"
+      },
+      "bin": "m",
+      "why": {
+       "en": "The one spoken to: मध्यम पुरुष.",
+       "hi": "जिससे बात की जाए: मध्यम पुरुष।"
+      }
+     },
+     {
+      "id": "u5",
+      "text": {
+       "en": "पठथः (you two read)",
+       "hi": "पठथः (तुम दोनों पढ़ते हो)"
+      },
+      "bin": "m",
+      "why": {
+       "en": "The one spoken to: मध्यम पुरुष.",
+       "hi": "जिससे बात की जाए: मध्यम पुरुष।"
+      }
+     },
+     {
+      "id": "u6",
+      "text": {
+       "en": "पठथ (you all read)",
+       "hi": "पठथ (तुम सब पढ़ते हो)"
+      },
+      "bin": "m",
+      "why": {
+       "en": "The one spoken to: मध्यम पुरुष.",
+       "hi": "जिससे बात की जाए: मध्यम पुरुष।"
+      }
+     },
+     {
+      "id": "u7",
+      "text": {
+       "en": "पठामि (I read)",
+       "hi": "पठामि (मैं पढ़ता हूँ)"
+      },
+      "bin": "u",
+      "why": {
+       "en": "The speaker: उत्तम पुरुष.",
+       "hi": "बोलने वाला: उत्तम पुरुष।"
+      }
+     },
+     {
+      "id": "u8",
+      "text": {
+       "en": "पठावः (we two read)",
+       "hi": "पठावः (हम दोनों पढ़ते हैं)"
+      },
+      "bin": "u",
+      "why": {
+       "en": "The speaker: उत्तम पुरुष.",
+       "hi": "बोलने वाला: उत्तम पुरुष।"
+      }
+     },
+     {
+      "id": "u9",
+      "text": {
+       "en": "पठामः (we all read)",
+       "hi": "पठामः (हम सब पढ़ते हैं)"
+      },
+      "bin": "u",
+      "why": {
+       "en": "The speaker: उत्तम पुरुष.",
+       "hi": "बोलने वाला: उत्तम पुरुष।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:u1",
+     "expect": "placed:u1",
+     "say": {
+      "en": "Tap the first card, then tap the bin where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर उसके सही डिब्बे को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "पठामि ends in -मि. Who is speaking?",
+      "hi": "पठामि -मि पर समाप्त होता है। कौन बोल रहा है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "I, the speaker",
+       "hi": "मैं, बोलने वाला"
+      },
+      {
+       "id": "b",
+       "en": "You",
+       "hi": "तुम"
+      },
+      {
+       "id": "c",
+       "en": "He",
+       "hi": "वह"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then tap Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A verb form has three persons and three numbers: nine forms in all for one tense. The present tense (लट्) of the root पठ् is: पठति, पठतः, पठन्ति (he, they two, they), पठसि, पठथः, पठथ (you), पठामि, पठावः, पठामः (I, we two, we). The ending tells you the person and the number, so Sanskrit often leaves out the pronoun.",
+      "hi": "क्रिया के रूप में तीन पुरुष और तीन वचन होते हैं: एक काल के कुल नौ रूप। धातु पठ् के लट् (वर्तमान काल) के रूप हैं: पठति, पठतः, पठन्ति (वह, वे दोनों, वे), पठसि, पठथः, पठथ (तुम), पठामि, पठावः, पठामः (मैं, हम दोनों, हम)। अंत से पुरुष और वचन पता चल जाते हैं, इसलिए संस्कृत में सर्वनाम अक्सर छोड़ दिया जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which form means 'you two read'?",
+        "hi": "कौन-सा रूप 'तुम दोनों पढ़ते हो' का अर्थ देता है?"
+       },
+       "options": [
+        {
+         "en": "पठथः",
+         "hi": "पठथः"
+        },
+        {
+         "en": "पठतः",
+         "hi": "पठतः"
+        },
+        {
+         "en": "पठावः",
+         "hi": "पठावः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "पठथः is the second person dual.",
+        "hi": "पठथः मध्यम पुरुष का द्विवचन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "पठतः means 'they two read'.",
+         "hi": "पठतः का अर्थ 'वे दोनों पढ़ते हैं' है।"
+        },
+        {
+         "en": "पठावः means 'we two read'.",
+         "hi": "पठावः का अर्थ 'हम दोनों पढ़ते हैं' है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many forms does one root have in one tense?",
+        "hi": "एक धातु के एक काल में कितने रूप होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Nine",
+         "hi": "नौ"
+        },
+        {
+         "en": "Three",
+         "hi": "तीन"
+        },
+        {
+         "en": "Twenty-one",
+         "hi": "इक्कीस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Three persons times three numbers make nine.",
+        "hi": "तीन पुरुष गुणा तीन वचन, नौ होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Three counts only the persons.",
+         "hi": "तीन केवल पुरुषों की संख्या है।"
+        },
+        {
+         "en": "Twenty-one is for nouns, seven cases times three numbers.",
+         "hi": "इक्कीस संज्ञा के हैं, सात विभक्ति गुणा तीन वचन।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make the nine forms for the root गम् (गच्छ-) and say them aloud with the correct pronouns.",
+      "hi": "धातु गम् (गच्छ-) के नौ रूप बनाओ और सही सर्वनामों के साथ ज़ोर से बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch05-lakaras",
+   "topic": "5.2",
+   "template": "match",
+   "title": {
+    "en": "The ten lakaras: tenses and moods",
+    "hi": "लकार: काल और भाव"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "l1",
+      "left": {
+       "en": "लट्",
+       "hi": "लट्"
+      },
+      "right": {
+       "en": "Present: रामः पठति, Rama reads",
+       "hi": "वर्तमान: रामः पठति, राम पढ़ता है"
+      },
+      "why": {
+       "en": "लट् is the ordinary present tense.",
+       "hi": "लट् सामान्य वर्तमान काल है।"
+      }
+     },
+     {
+      "id": "l2",
+      "left": {
+       "en": "लिट्",
+       "hi": "लिट्"
+      },
+      "right": {
+       "en": "Past not seen by the speaker: रामः पपाठ",
+       "hi": "जो भूतकाल वक्ता ने नहीं देखा: रामः पपाठ"
+      },
+      "why": {
+       "en": "लिट् tells an old event that the speaker did not see.",
+       "hi": "लिट् ऐसी पुरानी घटना बताता है जो वक्ता ने नहीं देखी।"
+      }
+     },
+     {
+      "id": "l3",
+      "left": {
+       "en": "लुट्",
+       "hi": "लुट्"
+      },
+      "right": {
+       "en": "Future, not today: रामः पठिता",
+       "hi": "आज के बाद का भविष्य: रामः पठिता"
+      },
+      "why": {
+       "en": "लुट् is the far future.",
+       "hi": "लुट् दूर का भविष्य है।"
+      }
+     },
+     {
+      "id": "l4",
+      "left": {
+       "en": "लृट्",
+       "hi": "लृट्"
+      },
+      "right": {
+       "en": "Future: रामः पठिष्यति, Rama will read",
+       "hi": "भविष्य: रामः पठिष्यति, राम पढ़ेगा"
+      },
+      "why": {
+       "en": "लृट् is the ordinary future tense.",
+       "hi": "लृट् सामान्य भविष्यत् काल है।"
+      }
+     },
+     {
+      "id": "l5",
+      "left": {
+       "en": "लोट्",
+       "hi": "लोट्"
+      },
+      "right": {
+       "en": "Command or request: रामः पठतु, let Rama read",
+       "hi": "आज्ञा या प्रार्थना: रामः पठतु, राम पढ़े"
+      },
+      "why": {
+       "en": "लोट् gives commands and wishes.",
+       "hi": "लोट् आज्ञा और इच्छा बताता है।"
+      }
+     },
+     {
+      "id": "l6",
+      "left": {
+       "en": "लङ्",
+       "hi": "लङ्"
+      },
+      "right": {
+       "en": "Past: रामः अपठत्, Rama read",
+       "hi": "भूतकाल: रामः अपठत्, राम ने पढ़ा"
+      },
+      "why": {
+       "en": "लङ् is the ordinary past tense, with अ in front.",
+       "hi": "लङ् सामान्य भूतकाल है, जिसमें आगे अ लगता है।"
+      }
+     },
+     {
+      "id": "l7",
+      "left": {
+       "en": "विधिलिङ्",
+       "hi": "विधिलिङ्"
+      },
+      "right": {
+       "en": "Should or may: रामः पठेत्, Rama should read",
+       "hi": "चाहिए या सम्भावना: रामः पठेत्, राम को पढ़ना चाहिए"
+      },
+      "why": {
+       "en": "विधिलिङ् gives advice and possibility.",
+       "hi": "विधिलिङ् सलाह और सम्भावना बताता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:l1",
+     "expect": "matched:l1",
+     "say": {
+      "en": "Tap the first term on the left, then tap its match.",
+      "hi": "बाईं ओर का पहला शब्द छुओ, फिर उसका जोड़ा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If someone says 'let him read', which lakara will they use?",
+      "hi": "यदि कोई कहे 'वह पढ़े', तो कौन-सा लकार लगेगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "लोट्",
+       "hi": "लोट्"
+      },
+      {
+       "id": "b",
+       "en": "लट्",
+       "hi": "लट्"
+      },
+      {
+       "id": "c",
+       "en": "लृट्",
+       "hi": "लृट्"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:l2",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the remaining pairs.",
+      "hi": "अब बाकी सभी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sanskrit has ten lakaras, named after their first letters ल. Six of them are used most: लट् (present), लङ् (past), लृट् (future), लोट् (command), विधिलिङ् (should) and लिट् (unseen past). Each lakara changes the verb ending, so a single word tells time and mood. Practice with पठ् first: पठति, अपठत्, पठिष्यति, पठतु, पठेत्.",
+      "hi": "संस्कृत में दस लकार हैं, जिनके नाम ल से शुरू होते हैं। सबसे अधिक छह प्रयोग में आते हैं: लट् (वर्तमान), लङ् (भूत), लृट् (भविष्य), लोट् (आज्ञा), विधिलिङ् (चाहिए) और लिट् (अदेखा भूत)। हर लकार क्रिया का अंत बदलता है, इसलिए एक ही शब्द काल और भाव बता देता है। पहले पठ् से अभ्यास करो: पठति, अपठत्, पठिष्यति, पठतु, पठेत्।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which lakara is the ordinary future?",
+        "hi": "सामान्य भविष्यत् काल कौन-सा लकार है?"
+       },
+       "options": [
+        {
+         "en": "लृट्",
+         "hi": "लृट्"
+        },
+        {
+         "en": "लङ्",
+         "hi": "लङ्"
+        },
+        {
+         "en": "लट्",
+         "hi": "लट्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "पठिष्यति, 'will read', is लृट्.",
+        "hi": "पठिष्यति, 'पढ़ेगा', लृट् है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "लङ् is the past.",
+         "hi": "लङ् भूतकाल है।"
+        },
+        {
+         "en": "लट् is the present.",
+         "hi": "लट् वर्तमान है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does 'अपठत्' show?",
+        "hi": "'अपठत्' क्या दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "Past, with अ in front",
+         "hi": "भूतकाल, आगे अ के साथ"
+        },
+        {
+         "en": "Future",
+         "hi": "भविष्य"
+        },
+        {
+         "en": "A command",
+         "hi": "आज्ञा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The अ added before the root shows the past tense (लङ्).",
+        "hi": "धातु के आगे जुड़ा अ भूतकाल (लङ्) दिखाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Future forms have -ष्य-, as in पठिष्यति.",
+         "hi": "भविष्य के रूपों में -ष्य- होता है, जैसे पठिष्यति में।"
+        },
+        {
+         "en": "A command would be पठतु.",
+         "hi": "आज्ञा पठतु होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the root लिख् and make one sentence each in the present, past and future.",
+      "hi": "धातु लिख् से वर्तमान, भूत और भविष्य में एक-एक वाक्य बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch05-ganas",
+   "topic": "5.3",
+   "template": "match",
+   "title": {
+    "en": "Ten classes of roots, named after the first root",
+    "hi": "धातुओं के दस गण, पहली धातु के नाम पर"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "g1",
+      "left": {
+       "en": "भ्वादिगणः",
+       "hi": "भ्वादिगणः"
+      },
+      "right": {
+       "en": "भू (to be)",
+       "hi": "भू (होना)"
+      },
+      "why": {
+       "en": "The first class is named after its first root भू.",
+       "hi": "पहला गण अपनी पहली धातु भू के नाम पर है।"
+      }
+     },
+     {
+      "id": "g2",
+      "left": {
+       "en": "अदादिगणः",
+       "hi": "अदादिगणः"
+      },
+      "right": {
+       "en": "अद् (to eat)",
+       "hi": "अद् (खाना)"
+      },
+      "why": {
+       "en": "अद् is the first root of the second class.",
+       "hi": "अद् दूसरे गण की पहली धातु है।"
+      }
+     },
+     {
+      "id": "g3",
+      "left": {
+       "en": "दिवादिगणः",
+       "hi": "दिवादिगणः"
+      },
+      "right": {
+       "en": "दिव् (to shine, to play)",
+       "hi": "दिव् (चमकना, खेलना)"
+      },
+      "why": {
+       "en": "दिव् is the first root of the fourth class.",
+       "hi": "दिव् चौथे गण की पहली धातु है।"
+      }
+     },
+     {
+      "id": "g4",
+      "left": {
+       "en": "स्वादिगणः",
+       "hi": "स्वादिगणः"
+      },
+      "right": {
+       "en": "सु (to press out)",
+       "hi": "सु (निचोड़ना)"
+      },
+      "why": {
+       "en": "सु is the first root of the fifth class.",
+       "hi": "सु पाँचवें गण की पहली धातु है।"
+      }
+     },
+     {
+      "id": "g5",
+      "left": {
+       "en": "तुदादिगणः",
+       "hi": "तुदादिगणः"
+      },
+      "right": {
+       "en": "तुद् (to prick, to pain)",
+       "hi": "तुद् (चुभाना, कष्ट देना)"
+      },
+      "why": {
+       "en": "तुद् is the first root of its class.",
+       "hi": "तुद् अपने गण की पहली धातु है।"
+      }
+     },
+     {
+      "id": "g6",
+      "left": {
+       "en": "तनादिगणः",
+       "hi": "तनादिगणः"
+      },
+      "right": {
+       "en": "तन् (to spread)",
+       "hi": "तन् (फैलाना)"
+      },
+      "why": {
+       "en": "तन् is the first root of its class.",
+       "hi": "तन् अपने गण की पहली धातु है।"
+      }
+     },
+     {
+      "id": "g7",
+      "left": {
+       "en": "क्र्यादिगणः",
+       "hi": "क्र्यादिगणः"
+      },
+      "right": {
+       "en": "क्री (to buy)",
+       "hi": "क्री (खरीदना)"
+      },
+      "why": {
+       "en": "क्री is the first root of its class.",
+       "hi": "क्री अपने गण की पहली धातु है।"
+      }
+     },
+     {
+      "id": "g8",
+      "left": {
+       "en": "चुरादिगणः",
+       "hi": "चुरादिगणः"
+      },
+      "right": {
+       "en": "चुर् (to steal)",
+       "hi": "चुर् (चुराना)"
+      },
+      "why": {
+       "en": "चुर् is the first root of the last class.",
+       "hi": "चुर् अंतिम गण की पहली धातु है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:g1",
+     "expect": "matched:g1",
+     "say": {
+      "en": "Tap the first term on the left, then tap its match.",
+      "hi": "बाईं ओर का पहला शब्द छुओ, फिर उसका जोड़ा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "भ्वादिगणः is named after its first root. What is that root?",
+      "hi": "भ्वादिगणः का नाम उसकी पहली धातु पर है। वह धातु कौन-सी है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "भू",
+       "hi": "भू"
+      },
+      {
+       "id": "b",
+       "en": "अद्",
+       "hi": "अद्"
+      },
+      {
+       "id": "c",
+       "en": "चुर्",
+       "hi": "चुर्"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:g2",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the remaining pairs.",
+      "hi": "अब बाकी सभी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Roots are grouped into ten classes (गण), and each class is named after its first root plus आदि, 'and so on'. भू + आदि gives भ्वादि, चुर् + आदि gives चुरादि. The class decides which small syllable (the विकरण) sits between the root and the ending: in भवति the अ between भू and ति comes from the first class. That is why a root's class matters for making its forms.",
+      "hi": "धातुएँ दस गणों में बँटी हैं और हर गण का नाम उसकी पहली धातु में आदि जोड़कर बनता है, यानी 'इत्यादि'। भू + आदि से भ्वादि, चुर् + आदि से चुरादि। गण तय करता है कि धातु और प्रत्यय के बीच कौन-सा छोटा अंश (विकरण) बैठेगा: भवति में भू और ति के बीच का अ पहले गण से आता है। इसीलिए धातु के रूप बनाने में उसका गण महत्त्वपूर्ण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which class is named after the root चुर्?",
+        "hi": "कौन-सा गण धातु चुर् के नाम पर है?"
+       },
+       "options": [
+        {
+         "en": "चुरादिगणः",
+         "hi": "चुरादिगणः"
+        },
+        {
+         "en": "भ्वादिगणः",
+         "hi": "भ्वादिगणः"
+        },
+        {
+         "en": "तनादिगणः",
+         "hi": "तनादिगणः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "चुर् + आदि = चुरादि.",
+        "hi": "चुर् + आदि = चुरादि।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "भ्वादि is from भू.",
+         "hi": "भ्वादि भू से है।"
+        },
+        {
+         "en": "तनादि is from तन्.",
+         "hi": "तनादि तन् से है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many classes of roots are there?",
+        "hi": "धातुओं के कितने गण हैं?"
+       },
+       "options": [
+        {
+         "en": "Ten",
+         "hi": "दस"
+        },
+        {
+         "en": "Five",
+         "hi": "पाँच"
+        },
+        {
+         "en": "Twenty",
+         "hi": "बीस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "There are ten classes, from भ्वादि to चुरादि.",
+        "hi": "भ्वादि से चुरादि तक दस गण हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Five is half of them.",
+         "hi": "पाँच उनका आधा है।"
+        },
+        {
+         "en": "Twenty is double.",
+         "hi": "बीस उनसे दुगुना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "The word भवति comes from भू. Say it aloud and tell which part is the root, the syllable and the ending.",
+      "hi": "भवति शब्द भू से बना है। उसे बोलो और बताओ कि धातु, अंश और प्रत्यय कौन-से हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch05-pada",
+   "topic": "5.3",
+   "template": "sort",
+   "title": {
+    "en": "Parasmaipada, atmanepada or both?",
+    "hi": "परस्मैपदी, आत्मनेपदी या उभयपदी?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "par",
+      "label": {
+       "en": "परस्मैपदी: -ति, -तः, -न्ति",
+       "hi": "परस्मैपदी: -ति, -तः, -न्ति"
+      }
+     },
+     {
+      "id": "atm",
+      "label": {
+       "en": "आत्मनेपदी: -ते, -एते, -न्ते",
+       "hi": "आत्मनेपदी: -ते, -एते, -न्ते"
+      }
+     },
+     {
+      "id": "ubh",
+      "label": {
+       "en": "उभयपदी: both",
+       "hi": "उभयपदी: दोनों"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "d1",
+      "text": {
+       "en": "पठ् (to read)",
+       "hi": "पठ् (पढ़ना)"
+      },
+      "bin": "par",
+      "why": {
+       "en": "It takes -ति, -तः, -न्ति in the present: परस्मैपदी.",
+       "hi": "वर्तमान में यह -ति, -तः, -न्ति लेती है: परस्मैपदी।"
+      }
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "गम् (to go)",
+       "hi": "गम् (जाना)"
+      },
+      "bin": "par",
+      "why": {
+       "en": "It takes -ति, -तः, -न्ति in the present: परस्मैपदी.",
+       "hi": "वर्तमान में यह -ति, -तः, -न्ति लेती है: परस्मैपदी।"
+      }
+     },
+     {
+      "id": "d3",
+      "text": {
+       "en": "लिख् (to write)",
+       "hi": "लिख् (लिखना)"
+      },
+      "bin": "par",
+      "why": {
+       "en": "It takes -ति, -तः, -न्ति in the present: परस्मैपदी.",
+       "hi": "वर्तमान में यह -ति, -तः, -न्ति लेती है: परस्मैपदी।"
+      }
+     },
+     {
+      "id": "d4",
+      "text": {
+       "en": "भू (to be)",
+       "hi": "भू (होना)"
+      },
+      "bin": "par",
+      "why": {
+       "en": "It takes -ति, -तः, -न्ति in the present: परस्मैपदी.",
+       "hi": "वर्तमान में यह -ति, -तः, -न्ति लेती है: परस्मैपदी।"
+      }
+     },
+     {
+      "id": "d5",
+      "text": {
+       "en": "सेव् (to serve)",
+       "hi": "सेव् (सेवा करना)"
+      },
+      "bin": "atm",
+      "why": {
+       "en": "It takes -ते, -एते, -न्ते in the present: आत्मनेपदी.",
+       "hi": "वर्तमान में यह -ते, -एते, -न्ते लेती है: आत्मनेपदी।"
+      }
+     },
+     {
+      "id": "d6",
+      "text": {
+       "en": "मुद् (to be glad)",
+       "hi": "मुद् (प्रसन्न होना)"
+      },
+      "bin": "atm",
+      "why": {
+       "en": "It takes -ते, -एते, -न्ते in the present: आत्मनेपदी.",
+       "hi": "वर्तमान में यह -ते, -एते, -न्ते लेती है: आत्मनेपदी।"
+      }
+     },
+     {
+      "id": "d7",
+      "text": {
+       "en": "लभ् (to get)",
+       "hi": "लभ् (पाना)"
+      },
+      "bin": "atm",
+      "why": {
+       "en": "It takes -ते, -एते, -न्ते in the present: आत्मनेपदी.",
+       "hi": "वर्तमान में यह -ते, -एते, -न्ते लेती है: आत्मनेपदी।"
+      }
+     },
+     {
+      "id": "d8",
+      "text": {
+       "en": "कृ (to do)",
+       "hi": "कृ (करना)"
+      },
+      "bin": "ubh",
+      "why": {
+       "en": "It takes both sets of endings: उभयपदी.",
+       "hi": "यह दोनों प्रकार के अंत लेती है: उभयपदी।"
+      }
+     },
+     {
+      "id": "d9",
+      "text": {
+       "en": "ब्रू (to speak)",
+       "hi": "ब्रू (बोलना)"
+      },
+      "bin": "ubh",
+      "why": {
+       "en": "It takes both sets of endings: उभयपदी.",
+       "hi": "यह दोनों प्रकार के अंत लेती है: उभयपदी।"
+      }
+     },
+     {
+      "id": "d10",
+      "text": {
+       "en": "पच् (to cook)",
+       "hi": "पच् (पकाना)"
+      },
+      "bin": "ubh",
+      "why": {
+       "en": "It takes both sets of endings: उभयपदी.",
+       "hi": "यह दोनों प्रकार के अंत लेती है: उभयपदी।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:d1",
+     "expect": "placed:d1",
+     "say": {
+      "en": "Tap the first card, then tap the bin where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर उसके सही डिब्बे को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "पठ् gives पठति in the present. Which kind of root is it?",
+      "hi": "पठ् वर्तमान में पठति देता है। यह कैसी धातु है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "परस्मैपदी",
+       "hi": "परस्मैपदी"
+      },
+      {
+       "id": "b",
+       "en": "आत्मनेपदी",
+       "hi": "आत्मनेपदी"
+      },
+      {
+       "id": "c",
+       "en": "उभयपदी",
+       "hi": "उभयपदी"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then tap Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every root belongs to one of three groups. परस्मैपदी roots take endings like -ति (पठति, गच्छति). आत्मनेपदी roots take -ते (सेवते, लभते). उभयपदी roots take both, with a slight change in meaning: कृ gives करोति when the result goes to another and कुरुते when it goes to the doer. You must learn which group a root belongs to when you learn the root.",
+      "hi": "हर धातु तीन वर्गों में से किसी एक की होती है। परस्मैपदी धातुएँ -ति जैसे अंत लेती हैं (पठति, गच्छति)। आत्मनेपदी धातुएँ -ते लेती हैं (सेवते, लभते)। उभयपदी धातुएँ दोनों लेती हैं, अर्थ में हल्के अंतर के साथ: कृ से करोति तब बनता है जब फल दूसरे को मिले और कुरुते तब जब कर्ता को मिले। धातु सीखते समय उसका वर्ग भी सीखना होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is an आत्मनेपदी root?",
+        "hi": "कौन-सी आत्मनेपदी धातु है?"
+       },
+       "options": [
+        {
+         "en": "सेव्",
+         "hi": "सेव्"
+        },
+        {
+         "en": "गम्",
+         "hi": "गम्"
+        },
+        {
+         "en": "कृ",
+         "hi": "कृ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "सेव् gives सेवते, with the ending -ते.",
+        "hi": "सेव् से सेवते बनता है, अंत -ते के साथ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "गम् gives गच्छति, a परस्मैपदी.",
+         "hi": "गम् से गच्छति बनता है, परस्मैपदी।"
+        },
+        {
+         "en": "कृ is उभयपदी.",
+         "hi": "कृ उभयपदी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does उभयपदी mean?",
+        "hi": "उभयपदी का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "A root that takes both sets of endings",
+         "hi": "दोनों प्रकार के अंत लेने वाली धातु"
+        },
+        {
+         "en": "A root with no endings",
+         "hi": "बिना अंत वाली धातु"
+        },
+        {
+         "en": "A noun",
+         "hi": "एक संज्ञा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "उभय means both. Examples: कृ, ब्रू, पच्.",
+        "hi": "उभय का अर्थ दोनों है। उदाहरण: कृ, ब्रू, पच्।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Every root takes endings.",
+         "hi": "हर धातु अंत लेती है।"
+        },
+        {
+         "en": "A root is not a noun.",
+         "hi": "धातु संज्ञा नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say कृ in both forms, करोति and कुरुते, and tell the difference in meaning to a friend.",
+      "hi": "कृ को दोनों रूपों में बोलो, करोति और कुरुते, और अर्थ का अंतर मित्र को बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch05-agree",
+   "topic": "5.1",
+   "template": "grammar",
+   "title": {
+    "en": "Match the verb with the person",
+    "hi": "क्रिया को पुरुष से मिलाओ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "b1",
+      "task": {
+       "en": "I go.",
+       "hi": "मैं जाता हूँ।"
+      },
+      "words": [
+       "अहं",
+       "गच्छामि",
+       "गच्छति",
+       "गच्छसि"
+      ],
+      "answer": "अहं गच्छामि",
+      "rule": {
+       "en": "अहं (I) needs the verb ending -मि: गच्छामि.",
+       "hi": "अहं (मैं) के साथ क्रिया का अंत -मि चाहिए: गच्छामि।"
+      }
+     },
+     {
+      "id": "b2",
+      "task": {
+       "en": "You go.",
+       "hi": "तुम जाते हो।"
+      },
+      "words": [
+       "त्वं",
+       "गच्छसि",
+       "गच्छामि",
+       "गच्छति"
+      ],
+      "answer": "त्वं गच्छसि",
+      "rule": {
+       "en": "त्वं (you) needs the ending -सि: गच्छसि.",
+       "hi": "त्वं (तुम) के साथ अंत -सि चाहिए: गच्छसि।"
+      }
+     },
+     {
+      "id": "b3",
+      "task": {
+       "en": "He goes.",
+       "hi": "वह जाता है।"
+      },
+      "words": [
+       "सः",
+       "गच्छति",
+       "गच्छसि",
+       "गच्छन्ति"
+      ],
+      "answer": "सः गच्छति",
+      "rule": {
+       "en": "सः (he) needs the ending -ति: गच्छति. गच्छन्ति is for many.",
+       "hi": "सः (वह) के साथ अंत -ति चाहिए: गच्छति। गच्छन्ति बहुतों के लिए है।"
+      }
+     },
+     {
+      "id": "b4",
+      "task": {
+       "en": "We all go.",
+       "hi": "हम सब जाते हैं।"
+      },
+      "words": [
+       "वयं",
+       "गच्छामः",
+       "गच्छामि",
+       "गच्छन्ति"
+      ],
+      "answer": "वयं गच्छामः",
+      "rule": {
+       "en": "वयं (we all) needs the ending -मः: गच्छामः.",
+       "hi": "वयं (हम सब) के साथ अंत -मः चाहिए: गच्छामः।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:b1",
+     "say": {
+      "en": "Tap the word tiles in the right order to build the first sentence.",
+      "hi": "शब्द-टाइलों को सही क्रम में छूकर पहला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the doer is 'वयं' (we all), which ending fits: -मि or -मः?",
+      "hi": "यदि करने वाला 'वयं' (हम सब) है, तो कौन-सा अंत लगेगा: -मि या -मः?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "-मः",
+       "hi": "-मः"
+      },
+      {
+       "id": "b",
+       "en": "-मि",
+       "hi": "-मि"
+      },
+      {
+       "id": "c",
+       "en": "-ति",
+       "hi": "-ति"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Build the remaining sentences.",
+      "hi": "बाकी वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The verb must agree with its doer in person and number. अहं takes -मि, त्वं takes -सि, सः takes -ति, and वयं takes -मः. When the pronoun is written, the verb ending must match it. If it is left out, the ending alone says who is acting.",
+      "hi": "क्रिया को अपने कर्ता के साथ पुरुष और वचन में मेल खाना चाहिए। अहं के साथ -मि, त्वं के साथ -सि, सः के साथ -ति और वयं के साथ -मः आता है। सर्वनाम लिखा हो तो क्रिया का अंत उसके अनुसार हो; छोड़ा गया हो तो अंत अकेला बता देता है कि कौन कर रहा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is right?",
+        "hi": "कौन-सा वाक्य सही है?"
+       },
+       "options": [
+        {
+         "en": "त्वं गच्छसि",
+         "hi": "त्वं गच्छसि"
+        },
+        {
+         "en": "त्वं गच्छति",
+         "hi": "त्वं गच्छति"
+        },
+        {
+         "en": "त्वं गच्छामि",
+         "hi": "त्वं गच्छामि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "त्वं (you) takes -सि.",
+        "hi": "त्वं (तुम) के साथ -सि आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-ति is for he or she, not for you.",
+         "hi": "-ति वह या वह स्त्री के लिए है, तुम के लिए नहीं।"
+        },
+        {
+         "en": "-मि is for I, not for you.",
+         "hi": "-मि मैं के लिए है, तुम के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say the four sentences aloud, then change गच्छ- to the root पठ्- and say them again.",
+      "hi": "चारों वाक्य ज़ोर से बोलो, फिर गच्छ- की जगह धातु पठ्- लेकर फिर बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "A child reading: the verb पठति",
+   "shows": "A girl reading a book on a veranda step, seen from behind, evening light",
+   "view": "Over the shoulder",
+   "right": "Natural reading posture, plain book",
+   "avoid": "Face, brand marks"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Two children reading together: the dual",
+   "shows": "Two children seen from behind, sharing one book on a mat",
+   "view": "Over the shoulders",
+   "right": "Two clear figures, one book",
+   "avoid": "Faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "A group reading: the plural",
+   "shows": "Five children seen from behind, sitting in a circle with books in a school yard",
+   "view": "Slightly above",
+   "right": "Five figures, books visible",
+   "avoid": "Faces"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "5.2",
+   "use": "Tomorrow, today, yesterday: the tenses",
+   "shows": "Three frames of the same bunch of flowers: buds, in bloom, wilting",
+   "view": "Same vase, same camera",
+   "right": "Only the flowers change",
+   "avoid": "Hands"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "5.1",
+   "use": "The 3 x 3 person-and-number grid",
+   "shows": "A blank 3 x 3 grid with row icons for one person (he), the person spoken to (you) and the speaker (I) and column icons for one, two and many figures",
+   "view": "Flat, white",
+   "right": "Nine equal cells, simple figure icons",
+   "avoid": "Letters"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "5.3",
+   "use": "The ten-classes ladder",
+   "shows": "A ladder with ten empty rungs",
+   "view": "Flat, white",
+   "right": "Ten equal rungs",
+   "avoid": "Letters"
+  }
+ ]
+}

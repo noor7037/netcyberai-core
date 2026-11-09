@@ -1,0 +1,664 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch06",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Triangles",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Introduction: congruent and similar figures",
+   "labs": [],
+   "why_no_lab": "A short opening that recalls congruence; the first lab starts at 6.2."
+  },
+  {
+   "n": "6.2",
+   "title": "Similar figures: same shape, sides in one ratio",
+   "labs": [
+    "c10-mathematics-jemh1-ch06-scale"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Similarity of triangles and the basic proportionality theorem",
+   "labs": [
+    "c10-mathematics-jemh1-ch06-bpt"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Criteria for similarity of triangles: AAA (AA), SSS and SAS",
+   "labs": [
+    "c10-mathematics-jemh1-ch06-aa",
+    "c10-mathematics-jemh1-ch06-shadow"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch06-scale",
+   "topic": "6.2",
+   "template": "shapes",
+   "title": {
+    "en": "Enlarge a triangle: what stays the same?",
+    "hi": "त्रिभुज बड़ा करो: क्या वैसा ही रहता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "similarity",
+    "task": "scale"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you make the triangle 2 times bigger, what happens to its angles?",
+      "hi": "यदि त्रिभुज को 2 गुना बड़ा करो, तो उसके कोणों का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "They stay the same",
+       "hi": "वे वैसे ही रहेंगे"
+      },
+      {
+       "id": "double",
+       "en": "They double",
+       "hi": "वे दोगुने हो जाएँगे"
+      },
+      {
+       "id": "half",
+       "en": "They become half",
+       "hi": "वे आधे हो जाएँगे"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "slider:scale",
+     "expect": "similar",
+     "say": {
+      "en": "Move the scale factor slider to 2.",
+      "hi": "पैमाना गुणक स्लाइडर को 2 पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every side was multiplied by the same number, and every angle stayed the same. Two figures like this are similar: same shape, maybe a different size. For polygons, similar means equal corresponding angles and sides in the same ratio.",
+      "hi": "हर भुजा को एक ही संख्या से गुणा किया गया, और हर कोण वैसा ही रहा। ऐसी दो आकृतियाँ समरूप होती हैं: आकार (शक्ल) एक, नाप शायद अलग। बहुभुजों में समरूप का अर्थ है संगत कोण बराबर और भुजाएँ एक ही अनुपात में।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Are any two squares similar?",
+        "hi": "क्या कोई भी दो वर्ग समरूप होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes, always",
+         "hi": "हाँ, हमेशा"
+        },
+        {
+         "en": "Only if they are the same size",
+         "hi": "तभी, जब वे एक नाप के हों"
+        },
+        {
+         "en": "Never",
+         "hi": "कभी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All angles are 90° and all sides of one square are the same multiple of the other's.",
+        "hi": "सारे कोण 90° हैं, और एक वर्ग की सारी भुजाएँ दूसरे की भुजाओं की एक ही गुणज होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Same size makes them congruent; similar figures may differ in size.",
+         "hi": "एक नाप होने से वे सर्वांगसम होते हैं; समरूप आकृतियों का नाप अलग हो सकता है।"
+        },
+        {
+         "en": "Their angles always match and their sides are always in one ratio.",
+         "hi": "उनके कोण हमेशा मिलते हैं और भुजाएँ हमेशा एक अनुपात में होती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A 4 cm × 6 cm photo is enlarged to 10 cm × 15 cm. Is the enlargement similar to the photo?",
+        "hi": "4 सेमी × 6 सेमी का फ़ोटो 10 सेमी × 15 सेमी में बड़ा किया गया। क्या बड़ा फ़ोटो मूल के समरूप है?"
+       },
+       "options": [
+        {
+         "en": "Yes, both sides × 2.5",
+         "hi": "हाँ, दोनों भुजाएँ × 2.5"
+        },
+        {
+         "en": "No, the sides grew by different amounts",
+         "hi": "नहीं, भुजाएँ अलग-अलग मात्रा में बढ़ीं"
+        },
+        {
+         "en": "No, rectangles are never similar",
+         "hi": "नहीं, आयत कभी समरूप नहीं होते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10 ÷ 4 = 2.5 and 15 ÷ 6 = 2.5: the same ratio, and all angles are 90°.",
+        "hi": "10 ÷ 4 = 2.5 और 15 ÷ 6 = 2.5: एक ही अनुपात, और सारे कोण 90° हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They grew by 6 cm and 9 cm, but similarity needs the same ratio, not the same increase, and the ratio is 2.5 both times.",
+         "hi": "वे 6 सेमी और 9 सेमी बढ़ीं, पर समरूपता के लिए एक जैसा अनुपात चाहिए, एक जैसी बढ़त नहीं, और अनुपात दोनों बार 2.5 है।"
+        },
+        {
+         "en": "Rectangles are similar when their sides are in the same ratio, as here.",
+         "hi": "आयत तब समरूप होते हैं जब उनकी भुजाएँ एक अनुपात में हों, जैसे यहाँ।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try a scale factor below 1, like 0.5. Is the small triangle still similar? Read the side ratios.",
+      "hi": "आज़माओ: 1 से कम पैमाना गुणक, जैसे 0.5, लो। क्या छोटा त्रिभुज भी समरूप है? भुजाओं के अनुपात पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch06-bpt",
+   "topic": "6.3",
+   "template": "shapes",
+   "title": {
+    "en": "The basic proportionality theorem",
+    "hi": "आधारभूत समानुपातिकता प्रमेय"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "similarity",
+    "task": "bpt"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "DE is kept parallel to BC. As you slide D along AB, how will AD ÷ DB compare with AE ÷ EC?",
+      "hi": "DE को BC के समांतर रखा गया है। D को AB पर खिसकाने पर AD ÷ DB और AE ÷ EC की तुलना कैसी रहेगी?"
+     },
+     "options": [
+      {
+       "id": "equal",
+       "en": "They stay equal",
+       "hi": "वे बराबर रहेंगे"
+      },
+      {
+       "id": "apart",
+       "en": "They move apart",
+       "hi": "वे अलग होते जाएँगे"
+      },
+      {
+       "id": "only",
+       "en": "Equal only at the middle",
+       "hi": "केवल बीच में बराबर"
+      }
+     ],
+     "answer": "equal"
+    },
+    {
+     "kind": "do",
+     "target": "drag:D",
+     "expect": "proved",
+     "say": {
+      "en": "Drag point D along AB and read the two ratios.",
+      "hi": "बिंदु D को AB पर खींचो और दोनों अनुपात पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A line parallel to one side of a triangle cuts the other two sides in the same ratio: AD/DB = AE/EC. This is the Basic Proportionality Theorem. The converse is also true: if a line cuts two sides in the same ratio, it is parallel to the third side.",
+      "hi": "त्रिभुज की एक भुजा के समांतर रेखा बाकी दो भुजाओं को एक ही अनुपात में काटती है: AD/DB = AE/EC। यही आधारभूत समानुपातिकता प्रमेय है। इसका विलोम भी सही है: यदि कोई रेखा दो भुजाओं को एक ही अनुपात में काटे, तो वह तीसरी भुजा के समांतर होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In △ABC, DE ∥ BC with AD = 3 cm, DB = 2 cm and AE = 6 cm. What is EC?",
+        "hi": "△ABC में DE ∥ BC, AD = 3 सेमी, DB = 2 सेमी और AE = 6 सेमी है। EC कितना है?"
+       },
+       "options": [
+        {
+         "en": "4 cm",
+         "hi": "4 सेमी"
+        },
+        {
+         "en": "9 cm",
+         "hi": "9 सेमी"
+        },
+        {
+         "en": "5 cm",
+         "hi": "5 सेमी"
+        },
+        {
+         "en": "3 cm",
+         "hi": "3 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3/2 = 6/EC, so EC = 6 × 2 ÷ 3 = 4 cm.",
+        "hi": "3/2 = 6/EC, इसलिए EC = 6 × 2 ÷ 3 = 4 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That turns the ratio upside down: 3/2 = 6/EC, not 2/3.",
+         "hi": "इसमें अनुपात उल्टा कर दिया: 3/2 = 6/EC है, 2/3 नहीं।"
+        },
+        {
+         "en": "That adds the differences (6 − 3 + 2); the rule is about equal ratios.",
+         "hi": "इसमें अंतर जोड़ दिए (6 − 3 + 2); नियम बराबर अनुपात का है।"
+        },
+        {
+         "en": "That copies AD; the parts of AC are twice the parts of AB here.",
+         "hi": "इसमें AD की नकल कर दी; यहाँ AC के भाग AB के भागों के दोगुने हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag A to change the triangle's shape, then move D again. Does the rule still hold for every triangle?",
+      "hi": "आज़माओ: A को खींचकर त्रिभुज की शक्ल बदलो, फिर D को फिर खिसकाओ। क्या नियम हर त्रिभुज के लिए सही रहता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch06-aa",
+   "topic": "6.4",
+   "template": "shapes",
+   "title": {
+    "en": "Test two triangles for similarity",
+    "hi": "दो त्रिभुजों की समरूपता जाँचो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "similarity",
+    "task": "aa"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:protractor",
+     "expect": "measured:*",
+     "say": {
+      "en": "Pick the protractor to measure the angles of both triangles.",
+      "hi": "दोनों त्रिभुजों के कोण मापने के लिए चाँदा चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two angles of △ABC equal two angles of △PQR. Are the triangles similar?",
+      "hi": "△ABC के दो कोण △PQR के दो कोणों के बराबर हैं। क्या त्रिभुज समरूप हैं?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      },
+      {
+       "id": "no",
+       "en": "No, the sides differ",
+       "hi": "नहीं, भुजाएँ अलग हैं"
+      },
+      {
+       "id": "maybe",
+       "en": "Only if one side is equal",
+       "hi": "तभी, जब एक भुजा बराबर हो"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Now pick the ruler and compare the sides.",
+      "hi": "अब रूलर चुनो और भुजाओं की तुलना करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: are △ABC and △PQR similar?",
+      "hi": "उत्तर दो: क्या △ABC और △PQR समरूप हैं?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "If two angles match, the third must match too, because each triangle's angles add up to 180°. Then all sides are in the same ratio. So AA is enough for similarity. Two more tests: all three sides in the same ratio (SSS), or two sides in the same ratio with the angle between them equal (SAS).",
+      "hi": "यदि दो कोण मिलते हैं, तो तीसरा भी मिलेगा, क्योंकि हर त्रिभुज के कोणों का योग 180° है। फिर सारी भुजाएँ एक ही अनुपात में होती हैं। इसलिए समरूपता के लिए AA काफ़ी है। दो और कसौटियाँ: तीनों भुजाएँ एक अनुपात में (SSS), या दो भुजाएँ एक अनुपात में और उनके बीच का कोण बराबर (SAS)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "One triangle has sides 3, 4, 5 cm and another 6, 8, 10 cm. Are they similar?",
+        "hi": "एक त्रिभुज की भुजाएँ 3, 4, 5 सेमी और दूसरे की 6, 8, 10 सेमी हैं। क्या वे समरूप हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes, by SSS",
+         "hi": "हाँ, SSS से"
+        },
+        {
+         "en": "No, the sides are not equal",
+         "hi": "नहीं, भुजाएँ बराबर नहीं हैं"
+        },
+        {
+         "en": "We need the angles first",
+         "hi": "पहले कोण चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6/3 = 8/4 = 10/5 = 2: all three sides are in the same ratio.",
+        "hi": "6/3 = 8/4 = 10/5 = 2: तीनों भुजाएँ एक ही अनुपात में हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equal sides would make them congruent; similar needs only the same ratio.",
+         "hi": "बराबर भुजाएँ उन्हें सर्वांगसम बनातीं; समरूप के लिए केवल एक अनुपात चाहिए।"
+        },
+        {
+         "en": "SSS works from the sides alone; the angles then match by themselves.",
+         "hi": "SSS केवल भुजाओं से काम करता है; कोण अपने आप मिल जाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In △ABC, ∠A = 50° and ∠B = 60°. In △PQR, ∠P = 50° and ∠R = 70°. Similar?",
+        "hi": "△ABC में ∠A = 50° और ∠B = 60° है। △PQR में ∠P = 50° और ∠R = 70° है। क्या समरूप हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes: ∠C = 70° and ∠Q = 60°",
+         "hi": "हाँ: ∠C = 70° और ∠Q = 60°"
+        },
+        {
+         "en": "No: ∠B and ∠R differ",
+         "hi": "नहीं: ∠B और ∠R अलग हैं"
+        },
+        {
+         "en": "Cannot tell without sides",
+         "hi": "भुजाओं के बिना नहीं कह सकते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The third angles are 180 − 110 = 70° and 180 − 120 = 60°, so the angles are 50, 60, 70 in both: AA.",
+        "hi": "तीसरे कोण 180 − 110 = 70° और 180 − 120 = 60° हैं, इसलिए दोनों में कोण 50, 60, 70 हैं: AA।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Match angles by size, not by letter: 60° in △ABC matches ∠Q, not ∠R.",
+         "hi": "कोणों को नाप से मिलाओ, अक्षर से नहीं: △ABC का 60° कोण ∠Q से मिलता है, ∠R से नहीं।"
+        },
+        {
+         "en": "Two equal angles are enough; find the third angle from 180°.",
+         "hi": "दो बराबर कोण काफ़ी हैं; तीसरा कोण 180° से निकालो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: switch both tools on together. Check that every side of △PQR is the same multiple of the matching side of △ABC.",
+      "hi": "आज़माओ: दोनों औज़ार एक साथ चालू करो। जाँचो कि △PQR की हर भुजा △ABC की संगत भुजा की एक ही गुणज है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch06-shadow",
+   "topic": "6.4",
+   "template": "shapes",
+   "title": {
+    "en": "Find a tree's height from shadows",
+    "hi": "परछाइयों से पेड़ की ऊँचाई निकालो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "similarity",
+    "task": "shadow",
+    "given": {
+     "lengths": [
+      1.5,
+      9
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:sun",
+     "expect": "drawn",
+     "say": {
+      "en": "Move the sun slider and watch both shadows change together.",
+      "hi": "सूरज वाला स्लाइडर खिसकाओ और दोनों परछाइयों को साथ बदलते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When the sun is lower, both shadows grow. Does height ÷ shadow stay the same for the stick and the tree?",
+      "hi": "सूरज नीचे होने पर दोनों परछाइयाँ बढ़ती हैं। क्या डंडे और पेड़ के लिए ऊँचाई ÷ परछाई बराबर रहता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it is the same for both",
+       "hi": "हाँ, दोनों के लिए एक जैसा"
+      },
+      {
+       "id": "no",
+       "en": "No, the tree's changes faster",
+       "hi": "नहीं, पेड़ का तेज़ी से बदलता है"
+      },
+      {
+       "id": "zero",
+       "en": "It becomes 0",
+       "hi": "वह 0 हो जाता है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Pick the ruler to measure both shadows.",
+      "hi": "दोनों परछाइयाँ मापने के लिए रूलर चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Use the stick's height and the two shadows to answer: how tall is the tree?",
+      "hi": "डंडे की ऊँचाई और दोनों परछाइयों से उत्तर दो: पेड़ कितना ऊँचा है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sun's rays are parallel, so they meet the stick and the tree at the same angle. Both make a right angle with the ground. So the two triangles are similar (AA), and height ÷ shadow is the same: tree = stick × tree's shadow ÷ stick's shadow.",
+      "hi": "सूरज की किरणें समांतर होती हैं, इसलिए वे डंडे और पेड़ से एक ही कोण बनाती हैं। दोनों ज़मीन से समकोण बनाते हैं। इसलिए दोनों त्रिभुज समरूप हैं (AA), और ऊँचाई ÷ परछाई बराबर है: पेड़ = डंडा × पेड़ की परछाई ÷ डंडे की परछाई।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 2 m pole casts a 3 m shadow. At the same time a building casts a 24 m shadow. How tall is the building?",
+        "hi": "2 मी का खंभा 3 मी की परछाई बनाता है। उसी समय एक इमारत की परछाई 24 मी है। इमारत कितनी ऊँची है?"
+       },
+       "options": [
+        {
+         "en": "16 m",
+         "hi": "16 मी"
+        },
+        {
+         "en": "36 m",
+         "hi": "36 मी"
+        },
+        {
+         "en": "23 m",
+         "hi": "23 मी"
+        },
+        {
+         "en": "12 m",
+         "hi": "12 मी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2/3 = h/24, so h = 24 × 2 ÷ 3 = 16 m.",
+        "hi": "2/3 = h/24, इसलिए h = 24 × 2 ÷ 3 = 16 मी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That uses 3/2 instead of 2/3: the building is shorter than its shadow, like the pole.",
+         "hi": "इसमें 2/3 की जगह 3/2 लिया: खंभे की तरह इमारत भी अपनी परछाई से छोटी है।"
+        },
+        {
+         "en": "Taking away 1 m (3 − 2) is not a ratio; similar triangles keep the ratio.",
+         "hi": "1 मी (3 − 2) घटाना अनुपात नहीं है; समरूप त्रिभुज अनुपात बनाए रखते हैं।"
+        },
+        {
+         "en": "Halving the shadow assumes height ÷ shadow = 1/2, but it is 2/3.",
+         "hi": "परछाई का आधा लेना मानता है कि ऊँचाई ÷ परछाई = 1/2 है, पर यह 2/3 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: move the sun to another height and measure again. Does the tree's height you work out stay 9 m?",
+      "hi": "आज़माओ: सूरज को दूसरी ऊँचाई पर ले जाओ और फिर मापो। क्या निकाली गई पेड़ की ऊँचाई 9 मी ही रहती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Chapter hook: measuring a tall thing with a shadow",
+   "shows": "A tall neem tree and a 1.5 m bamboo stick standing upright in an open school ground in the late afternoon, both casting long sharp shadows in the same direction",
+   "view": "Side-on, low sun behind the camera's left, both shadows fully visible",
+   "right": "Shadows point the same way and are in proportion to the heights",
+   "avoid": "People, buildings in the way"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Similar figures: nested objects",
+   "shows": "A set of three steel katoris (bowls) of the same shape in three sizes, nested one inside another",
+   "view": "Three-quarter view, transparent background",
+   "right": "Same shape, clearly different sizes",
+   "avoid": "Brand stamps, dents"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Maps and photos as scaled copies",
+   "shows": "A printed photograph of a temple gate lying next to an enlarged print of the same photograph on a wooden table",
+   "view": "From above, soft light",
+   "right": "The enlargement keeps the same proportions; nothing stretched",
+   "avoid": "Readable text, real-brand prints"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "6.3",
+   "use": "Base for the BPT lab",
+   "shows": "A clean drawing of a large triangle on a white sheet with a ruler laid across it parallel to its base",
+   "view": "From above, even light",
+   "right": "Ruler truly parallel to the base",
+   "avoid": "Letters or numbers (the app adds them)"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "6.4",
+   "use": "Set squares for similarity",
+   "shows": "Two transparent plastic set squares of the same shape but different sizes, one on top of the other",
+   "view": "From above, transparent background",
+   "right": "Same angles, different sizes",
+   "avoid": "Printed scales with brand marks"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Not every pair is similar",
+   "shows": "Two rectangular windows of an old Indian house, one tall and narrow and one short and wide",
+   "view": "Straight-on view of the wall, morning light",
+   "right": "Clearly different length-to-width ratios",
+   "avoid": "People, signboards"
+  }
+ ]
+}

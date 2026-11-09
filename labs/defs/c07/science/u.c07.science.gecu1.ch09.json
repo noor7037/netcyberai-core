@@ -1,0 +1,1152 @@
+{
+ "chapter_key": "u.c07.science.gecu1.ch09",
+ "class": 7,
+ "subject_id": "science",
+ "title": "Life Processes in Animals",
+ "source": "https://ncert.nic.in/textbook/pdf/gecu109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Nutrition in animals: the steps from food to energy",
+   "labs": [
+    "c07-science-gecu1-ch09-food-steps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.1.1",
+   "title": "Digestion in human beings",
+   "labs": [
+    "c07-science-gecu1-ch09-food-journey",
+    "c07-science-gecu1-ch09-saliva-starch"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.1.2",
+   "title": "Do all animals digest food the same way? Ruminants and birds",
+   "labs": [
+    "c07-science-gecu1-ch09-other-animals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Respiration in animals: getting energy from food",
+   "labs": [],
+   "why_no_lab": "The idea is taught in the reader and used in the breathing lab of 9.2.1."
+  },
+  {
+   "n": "9.2.1",
+   "title": "Respiration in humans: breathing in and out",
+   "labs": [
+    "c07-science-gecu1-ch09-breathing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2.2",
+   "title": "Do other animals breathe the same way?",
+   "labs": [
+    "c07-science-gecu1-ch09-how-animals-breathe"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-science-gecu1-ch09-food-steps",
+   "topic": "9.1",
+   "template": "sequence",
+   "title": {
+    "en": "From food to energy: the steps",
+    "hi": "भोजन से ऊर्जा तक: चरण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "ingest",
+      "text": {
+       "en": "Food is taken in through the mouth (ingestion)",
+       "hi": "भोजन मुँह से अंदर लिया जाता है (अंतर्ग्रहण)"
+      }
+     },
+     {
+      "id": "mouth",
+      "text": {
+       "en": "Teeth chew it and saliva starts digesting starch",
+       "hi": "दाँत उसे चबाते हैं और लार मंड को पचाना शुरू करती है"
+      }
+     },
+     {
+      "id": "stomach",
+      "text": {
+       "en": "The stomach churns it with acid and juices",
+       "hi": "आमाशय उसे अम्ल और रसों के साथ मथता है"
+      }
+     },
+     {
+      "id": "small",
+      "text": {
+       "en": "The small intestine finishes digestion and absorbs nutrients",
+       "hi": "छोटी आँत पाचन पूरा करती है और पोषक तत्व सोखती है"
+      }
+     },
+     {
+      "id": "large",
+      "text": {
+       "en": "The large intestine takes back water",
+       "hi": "बड़ी आँत पानी वापस सोखती है"
+      }
+     },
+     {
+      "id": "egest",
+      "text": {
+       "en": "Undigested waste leaves through the anus (egestion)",
+       "hi": "न पचा अपशिष्ट गुदा से बाहर निकलता है (मल-त्याग)"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:ingest",
+     "expect": "placed:ingest",
+     "say": {
+      "en": "Tap the first step, then tap place 1.",
+      "hi": "पहले चरण पर टैप करो, फिर स्थान 1 पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After the stomach, where does food go next?",
+      "hi": "आमाशय के बाद भोजन आगे कहाँ जाता है?"
+     },
+     "options": [
+      {
+       "id": "small",
+       "en": "Small intestine",
+       "hi": "छोटी आँत"
+      },
+      {
+       "id": "large",
+       "en": "Large intestine",
+       "hi": "बड़ी आँत"
+      },
+      {
+       "id": "mouth",
+       "en": "Back to the mouth",
+       "hi": "वापस मुँह में"
+      }
+     ],
+     "answer": "small"
+    },
+    {
+     "kind": "do",
+     "target": "item:small",
+     "expect": "placed:small",
+     "say": {
+      "en": "Place the small intestine step.",
+      "hi": "छोटी आँत वाला चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order, then press Check.",
+      "hi": "सारे चरण क्रम में रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Nutrition in animals has steps: taking food in, breaking it down into simple forms (digestion), absorbing the nutrients into the blood, using them in the body, and removing the waste. In humans digestion starts in the mouth and is completed in the small intestine.",
+      "hi": "जंतुओं में पोषण के चरण होते हैं: भोजन अंदर लेना, उसे सरल रूपों में तोड़ना (पाचन), पोषक तत्वों को रक्त में सोखना, शरीर में उनका उपयोग करना, और अपशिष्ट बाहर निकालना। मनुष्य में पाचन मुँह से शुरू होकर छोटी आँत में पूरा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where are digested nutrients absorbed into the blood?",
+        "hi": "पचे हुए पोषक तत्व रक्त में कहाँ सोखे जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Small intestine",
+         "hi": "छोटी आँत"
+        },
+        {
+         "en": "Large intestine",
+         "hi": "बड़ी आँत"
+        },
+        {
+         "en": "Food pipe",
+         "hi": "भोजन नली"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The small intestine has many finger-like villi that pass nutrients into the blood.",
+        "hi": "छोटी आँत में उँगली जैसे बहुत-से रसांकुर होते हैं जो पोषक तत्व रक्त में पहुँचाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The large intestine mainly takes back water, not nutrients.",
+         "hi": "बड़ी आँत मुख्यतः पानी सोखती है, पोषक तत्व नहीं।"
+        },
+        {
+         "en": "The food pipe only pushes food down to the stomach.",
+         "hi": "भोजन नली केवल भोजन को आमाशय तक धकेलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and order the steps without help. Which step happens in the mouth?",
+      "hi": "'फिर से शुरू' दबाओ और बिना मदद के चरण क्रम में रखो। कौन-सा चरण मुँह में होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch09-food-journey",
+   "topic": "9.1.1",
+   "template": "body",
+   "title": {
+    "en": "The journey of food",
+    "hi": "भोजन की यात्रा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "system": "digestive",
+    "flow": "food",
+    "task": "trace"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:mouth",
+     "expect": "answered:right",
+     "say": {
+      "en": "Where does food enter the body? Tap the mouth.",
+      "hi": "भोजन शरीर में कहाँ से जाता है? मुँह पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After swallowing, which part carries food to the stomach?",
+      "hi": "निगलने के बाद कौन-सा भाग भोजन को आमाशय तक ले जाता है?"
+     },
+     "options": [
+      {
+       "id": "oesophagus",
+       "en": "The food pipe (oesophagus)",
+       "hi": "भोजन नली (ग्रासनली)"
+      },
+      {
+       "id": "trachea",
+       "en": "The windpipe",
+       "hi": "श्वास नली"
+      },
+      {
+       "id": "liver",
+       "en": "The liver",
+       "hi": "यकृत"
+      }
+     ],
+     "answer": "oesophagus"
+    },
+    {
+     "kind": "do",
+     "target": "part:oesophagus",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap the food pipe.",
+      "hi": "भोजन नली पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:*",
+     "expect": "traced",
+     "say": {
+      "en": "Keep tapping the parts in order until the food leaves the body.",
+      "hi": "भागों पर क्रम से टैप करते रहो, जब तक भोजन शरीर से बाहर न निकल जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Food goes from the mouth down the food pipe to the stomach, then to the small intestine, the large intestine, and out through the anus. The liver makes bile, which helps digest fats and neutralises acid from the stomach. The pancreas adds its juice. Nutrients pass into the blood in the small intestine.",
+      "hi": "भोजन मुँह से भोजन नली होते हुए आमाशय में, फिर छोटी आँत, बड़ी आँत में जाता है, और गुदा से बाहर निकलता है। यकृत पित्त बनाता है, जो वसा पचाने में मदद करता है और आमाशय से आए अम्ल को उदासीन करता है। अग्न्याशय अपना रस मिलाता है। छोटी आँत में पोषक तत्व रक्त में पहुँचते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Bile from the liver neutralises the acid coming from the stomach. So bile is…",
+        "hi": "यकृत का पित्त आमाशय से आने वाले अम्ल को उदासीन करता है। इसलिए पित्त…"
+       },
+       "options": [
+        {
+         "en": "basic",
+         "hi": "क्षारीय है"
+        },
+        {
+         "en": "acidic",
+         "hi": "अम्लीय है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only a base can neutralise an acid.",
+        "hi": "केवल क्षारक ही अम्ल को उदासीन कर सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An acid would add to the stomach acid, not cancel it.",
+         "hi": "अम्ल तो आमाशय के अम्ल को बढ़ाता, उसे ख़त्म नहीं करता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Food does not pass through the liver. What does the liver do for digestion?",
+        "hi": "भोजन यकृत से होकर नहीं गुज़रता। फिर पाचन में यकृत क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "It makes bile that flows into the small intestine",
+         "hi": "यह पित्त बनाता है जो छोटी आँत में जाता है"
+        },
+        {
+         "en": "It chews the food",
+         "hi": "यह भोजन चबाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Glands like the liver and pancreas pour juices into the canal.",
+        "hi": "यकृत और अग्न्याशय जैसी ग्रंथियाँ नली में रस डालती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chewing happens in the mouth, with the teeth.",
+         "hi": "चबाना मुँह में दाँतों से होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap any part to read what it does. Switch on the glands layer to see the liver and pancreas.",
+      "hi": "किसी भी भाग पर टैप करके पढ़ो कि वह क्या करता है। यकृत और अग्न्याशय देखने के लिए ग्रंथियों की परत चालू करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch09-saliva-starch",
+   "topic": "9.1.1",
+   "template": "beaker",
+   "title": {
+    "en": "Iodine shows starch",
+    "hi": "आयोडीन मंड को दिखाता है"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "items": [
+     "starchsol",
+     "iodine",
+     "water"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:starchsol",
+     "expect": "pick:starchsol",
+     "say": {
+      "en": "Pick up the starch solution. It is like boiled rice mashed in water.",
+      "hi": "मंड का घोल उठाओ। यह पानी में मसले उबले चावल जैसा है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:starchsol",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A few drops of iodine go in next. What colour do you expect?",
+      "hi": "अब आयोडीन की कुछ बूँदें डाली जाएँगी। कौन-सा रंग आएगा?"
+     },
+     "options": [
+      {
+       "id": "blueblack",
+       "en": "Blue-black",
+       "hi": "नीला-काला"
+      },
+      {
+       "id": "brown",
+       "en": "It stays brown",
+       "hi": "भूरा ही रहेगा"
+      },
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल"
+      }
+     ],
+     "answer": "blueblack"
+    },
+    {
+     "kind": "do",
+     "target": "pick:iodine",
+     "expect": "pick:iodine",
+     "say": {
+      "en": "Pick up the iodine solution.",
+      "hi": "आयोडीन का घोल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:iodine",
+     "say": {
+      "en": "Add it and watch the colour.",
+      "hi": "इसे डालो और रंग देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The blue-black colour shows that starch is present. In the book's test, boiled rice turns blue-black with iodine, but rice chewed for a few minutes shows little or no colour. Saliva has broken the starch down into simple sugars. So digestion starts in the mouth.",
+      "hi": "नीला-काला रंग दिखाता है कि मंड मौजूद है। किताब के परीक्षण में उबले चावल आयोडीन से नीले-काले हो जाते हैं, पर कुछ मिनट चबाए गए चावल में रंग बहुत कम या बिल्कुल नहीं आता। लार ने मंड को सरल शर्करा में तोड़ दिया। इसलिए पाचन मुँह से शुरू होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Chewed rice gives almost no blue-black colour with iodine. Why?",
+        "hi": "चबाए चावल आयोडीन से लगभग नीले-काले नहीं होते। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Saliva changed the starch into sugars",
+         "hi": "लार ने मंड को शर्करा में बदल दिया"
+        },
+        {
+         "en": "Chewing removes iodine",
+         "hi": "चबाने से आयोडीन हट जाती है"
+        },
+        {
+         "en": "Rice has no starch",
+         "hi": "चावल में मंड नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Saliva digests starch, so less starch is left to react with iodine.",
+        "hi": "लार मंड को पचाती है, इसलिए आयोडीन से अभिक्रिया के लिए कम मंड बचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The iodine is added after chewing, so chewing cannot remove it.",
+         "hi": "आयोडीन चबाने के बाद डाली जाती है, इसलिए चबाने से वह नहीं हट सकती।"
+        },
+        {
+         "en": "Boiled rice turned blue-black, so rice does have starch.",
+         "hi": "उबले चावल नीले-काले हुए, इसलिए चावल में मंड होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker and test plain water with iodine. Does it turn blue-black? Why not?",
+      "hi": "बीकर साफ़ करो और सादे पानी को आयोडीन से जाँचो। क्या वह नीला-काला होता है? क्यों नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch09-other-animals",
+   "topic": "9.1.2",
+   "template": "match",
+   "title": {
+    "en": "Do all animals digest food the same way?",
+    "hi": "क्या सभी जंतु भोजन एक ही तरह पचाते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "cow",
+      "left": {
+       "en": "Cow and buffalo",
+       "hi": "गाय और भैंस"
+      },
+      "right": {
+       "en": "Bring swallowed grass back to the mouth to chew again",
+       "hi": "निगली घास को फिर से चबाने के लिए मुँह में वापस लाती हैं"
+      },
+      "why": {
+       "en": "This is rumination; such animals are ruminants. A cow chews for about 8 hours a day.",
+       "hi": "इसे जुगाली कहते हैं; ऐसे जंतु रोमंथी हैं। गाय दिन में लगभग 8 घंटे जुगाली करती है।"
+      }
+     },
+     {
+      "id": "rumen",
+      "left": {
+       "en": "Rumen",
+       "hi": "रूमेन (प्रथम आमाशय)"
+      },
+      "right": {
+       "en": "Stomach chamber where grass is partly digested",
+       "hi": "आमाशय का वह भाग जहाँ घास आंशिक रूप से पचती है"
+      },
+      "why": {
+       "en": "The partly digested food from the rumen returns to the mouth.",
+       "hi": "रूमेन से आंशिक पचा भोजन मुँह में लौटता है।"
+      }
+     },
+     {
+      "id": "bird",
+      "left": {
+       "en": "Birds (no teeth)",
+       "hi": "पक्षी (दाँत नहीं)"
+      },
+      "right": {
+       "en": "A muscular gizzard grinds food, often with grit",
+       "hi": "एक पेशीय पेषणी (गिज़र्ड) भोजन पीसती है, अक्सर कंकड़ों के साथ"
+      },
+      "why": {
+       "en": "Birds swallow small stones that help the gizzard crush food.",
+       "hi": "पक्षी छोटे कंकड़ निगलते हैं जो पेषणी को भोजन कुचलने में मदद करते हैं।"
+      }
+     },
+     {
+      "id": "human",
+      "left": {
+       "en": "Humans",
+       "hi": "मनुष्य"
+      },
+      "right": {
+       "en": "Teeth chew and saliva starts digestion",
+       "hi": "दाँत चबाते हैं और लार पाचन शुरू करती है"
+      },
+      "why": {
+       "en": "Our digestion begins in the mouth.",
+       "hi": "हमारा पाचन मुँह से शुरू होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:cow",
+     "expect": "matched:cow",
+     "say": {
+      "en": "Tap Cow and buffalo, then what they do.",
+      "hi": "'गाय और भैंस' पर टैप करो, फिर उस पर जो वे करती हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Birds have no teeth. How is their food broken down?",
+      "hi": "पक्षियों के दाँत नहीं होते। उनका भोजन कैसे टूटता है?"
+     },
+     "options": [
+      {
+       "id": "gizzard",
+       "en": "A muscular gizzard grinds it",
+       "hi": "पेशीय पेषणी उसे पीसती है"
+      },
+      {
+       "id": "swallow",
+       "en": "It is never broken down",
+       "hi": "वह कभी नहीं टूटता"
+      },
+      {
+       "id": "beak",
+       "en": "The beak chews it",
+       "hi": "चोंच उसे चबाती है"
+      }
+     ],
+     "answer": "gizzard"
+    },
+    {
+     "kind": "do",
+     "target": "left:bird",
+     "expect": "matched:bird",
+     "say": {
+      "en": "Match the birds.",
+      "hi": "पक्षियों को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Different animals have different digestive systems, suited to their food. Grass-eaters like cows chew the cud. Birds grind food in a gizzard. Humans chew with teeth. The structure fits the job.",
+      "hi": "अलग-अलग जंतुओं के पाचन तंत्र उनके भोजन के अनुसार अलग होते हैं। गाय जैसे घास खाने वाले जुगाली करते हैं। पक्षी पेषणी में भोजन पीसते हैं। मनुष्य दाँतों से चबाते हैं। बनावट काम के अनुसार होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a cow keep chewing even when it is not eating?",
+        "hi": "गाय खाना न खाते समय भी चबाती क्यों रहती है?"
+       },
+       "options": [
+        {
+         "en": "It is chewing partly digested food brought back from the rumen",
+         "hi": "वह रूमेन से लौटा आंशिक पचा भोजन चबा रही है"
+        },
+        {
+         "en": "It is chewing stones",
+         "hi": "वह पत्थर चबा रही है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This rumination lets the cow digest tough grass well.",
+        "hi": "जुगाली से गाय कठोर घास को अच्छी तरह पचा पाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Swallowing grit is what birds do for their gizzard, not cows.",
+         "hi": "कंकड़ निगलना पक्षी अपनी पेषणी के लिए करते हैं, गाय नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and match once more. Watch a cow or a goat resting: can you see it chewing the cud?",
+      "hi": "'फिर से शुरू' दबाओ और फिर मिलाओ। आराम करती गाय या बकरी को देखो: क्या वह जुगाली करती दिखती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch09-breathing",
+   "topic": "9.2.1",
+   "template": "body",
+   "title": {
+    "en": "How we breathe",
+    "hi": "हम साँस कैसे लेते हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "system": "respiratory",
+    "flow": "air",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:nose",
+     "expect": "picked:nose",
+     "say": {
+      "en": "Tap the nose, where air comes in.",
+      "hi": "नाक पर टैप करो, जहाँ से हवा अंदर आती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:diaphragm",
+     "expect": "picked:diaphragm",
+     "say": {
+      "en": "Now tap the diaphragm, the dome-shaped muscle below the lungs.",
+      "hi": "अब डायाफ्राम पर टैप करो, फेफड़ों के नीचे की गुंबद जैसी पेशी।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When you breathe in, what does the diaphragm do?",
+      "hi": "साँस अंदर लेते समय डायाफ्राम क्या करता है?"
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "It moves down, making more room in the chest",
+       "hi": "नीचे जाता है, छाती में जगह बढ़ती है"
+      },
+      {
+       "id": "up",
+       "en": "It moves up",
+       "hi": "ऊपर जाता है"
+      },
+      {
+       "id": "still",
+       "en": "It stays still",
+       "hi": "स्थिर रहता है"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "traced",
+     "say": {
+      "en": "Press play and follow the air into the lungs.",
+      "hi": "प्ले दबाओ और हवा के साथ फेफड़ों तक जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Air goes in through the nostrils, down the windpipe and into the lungs, ending in tiny air sacs called alveoli. There, oxygen passes into the blood and carbon dioxide comes out. Breathing in: the diaphragm moves down and the ribs move up and out. Breathing out: they move back. Breathed-out air turns lime water milky, so it has more carbon dioxide.",
+      "hi": "हवा नथुनों से अंदर जाकर श्वास नली से फेफड़ों में पहुँचती है, जो वायुकोष्ठिका नाम की नन्ही थैलियों में ख़त्म होते हैं। वहाँ ऑक्सीजन रक्त में जाती है और कार्बन डाइऑक्साइड बाहर आती है। साँस अंदर लेने पर डायाफ्राम नीचे और पसलियाँ ऊपर व बाहर जाती हैं। साँस छोड़ने पर वे वापस आती हैं। छोड़ी गई हवा चूने के पानी को दूधिया करती है, इसलिए उसमें ज़्यादा कार्बन डाइऑक्साइड होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does oxygen pass into the blood?",
+        "hi": "ऑक्सीजन रक्त में कहाँ जाती है?"
+       },
+       "options": [
+        {
+         "en": "In the alveoli of the lungs",
+         "hi": "फेफड़ों की वायुकोष्ठिकाओं में"
+        },
+        {
+         "en": "In the nose",
+         "hi": "नाक में"
+        },
+        {
+         "en": "In the stomach",
+         "hi": "आमाशय में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The alveoli have thin walls with blood vessels all around.",
+        "hi": "वायुकोष्ठिकाओं की दीवारें पतली होती हैं और चारों ओर रक्त वाहिकाएँ होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The nose cleans and warms the air but does not exchange gases.",
+         "hi": "नाक हवा को साफ़ और गर्म करती है पर गैसों का आदान-प्रदान नहीं करती।"
+        },
+        {
+         "en": "The stomach digests food; it is not part of breathing.",
+         "hi": "आमाशय भोजन पचाता है; यह साँस का भाग नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does lime water turn milky with breathed-out air but not with room air?",
+        "hi": "चूने का पानी छोड़ी गई हवा से दूधिया होता है, कमरे की हवा से नहीं। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Breathed-out air has more carbon dioxide",
+         "hi": "छोड़ी गई हवा में ज़्यादा कार्बन डाइऑक्साइड होती है"
+        },
+        {
+         "en": "Breathed-out air has more oxygen",
+         "hi": "छोड़ी गई हवा में ज़्यादा ऑक्सीजन होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The body uses oxygen to get energy from food and gives out carbon dioxide.",
+        "hi": "शरीर भोजन से ऊर्जा पाने के लिए ऑक्सीजन लेता है और कार्बन डाइऑक्साइड छोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "We use up oxygen, so breathed-out air has less, not more.",
+         "hi": "हम ऑक्सीजन ख़र्च करते हैं, इसलिए छोड़ी गई हवा में कम होती है, ज़्यादा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the ribs, the windpipe and the alveoli to read about them. Switch on the alveoli layer to look closer.",
+      "hi": "पसलियों, श्वास नली और वायुकोष्ठिकाओं पर टैप करके उनके बारे में पढ़ो। पास से देखने के लिए वायुकोष्ठिका की परत चालू करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch09-how-animals-breathe",
+   "topic": "9.2.2",
+   "template": "sort",
+   "title": {
+    "en": "How do other animals breathe?",
+    "hi": "दूसरे जंतु साँस कैसे लेते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "lungs",
+      "label": {
+       "en": "Lungs",
+       "hi": "फेफड़े"
+      }
+     },
+     {
+      "id": "gills",
+      "label": {
+       "en": "Gills",
+       "hi": "गलफड़े (क्लोम)"
+      }
+     },
+     {
+      "id": "skin",
+      "label": {
+       "en": "Moist skin",
+       "hi": "नम त्वचा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cow",
+      "text": {
+       "en": "Cow",
+       "hi": "गाय"
+      },
+      "bin": "lungs",
+      "why": {
+       "en": "Cows, like us, breathe air with lungs.",
+       "hi": "गाय हमारी तरह फेफड़ों से हवा में साँस लेती है।"
+      }
+     },
+     {
+      "id": "elephant",
+      "text": {
+       "en": "Elephant",
+       "hi": "हाथी"
+      },
+      "bin": "lungs",
+      "why": {
+       "en": "Elephants breathe through lungs.",
+       "hi": "हाथी फेफड़ों से साँस लेता है।"
+      }
+     },
+     {
+      "id": "lizard",
+      "text": {
+       "en": "Lizard",
+       "hi": "छिपकली"
+      },
+      "bin": "lungs",
+      "why": {
+       "en": "Lizards and snakes have lungs.",
+       "hi": "छिपकली और साँप के फेफड़े होते हैं।"
+      }
+     },
+     {
+      "id": "sparrow",
+      "text": {
+       "en": "Sparrow",
+       "hi": "गौरैया"
+      },
+      "bin": "lungs",
+      "why": {
+       "en": "Birds have lungs of a special structure.",
+       "hi": "पक्षियों के फेफड़े ख़ास बनावट के होते हैं।"
+      }
+     },
+     {
+      "id": "rohu",
+      "text": {
+       "en": "Rohu fish",
+       "hi": "रोहू मछली"
+      },
+      "bin": "gills",
+      "why": {
+       "en": "Fish take oxygen dissolved in water through gills.",
+       "hi": "मछलियाँ गलफड़ों से पानी में घुली ऑक्सीजन लेती हैं।"
+      }
+     },
+     {
+      "id": "tadpole",
+      "text": {
+       "en": "Tadpole",
+       "hi": "टैडपोल (मेंढक का बच्चा)"
+      },
+      "bin": "gills",
+      "why": {
+       "en": "Tadpoles live in water and breathe with gills.",
+       "hi": "टैडपोल पानी में रहते हैं और गलफड़ों से साँस लेते हैं।"
+      }
+     },
+     {
+      "id": "earthworm",
+      "text": {
+       "en": "Earthworm",
+       "hi": "केंचुआ"
+      },
+      "bin": "skin",
+      "why": {
+       "en": "Earthworms exchange gases through their moist skin.",
+       "hi": "केंचुआ अपनी नम त्वचा से गैसों का आदान-प्रदान करता है।"
+      }
+     },
+     {
+      "id": "frogwater",
+      "text": {
+       "en": "Adult frog under water",
+       "hi": "पानी के अंदर वयस्क मेंढक"
+      },
+      "bin": "skin",
+      "why": {
+       "en": "In water an adult frog uses its skin; on land it uses its lungs.",
+       "hi": "पानी में वयस्क मेंढक त्वचा का उपयोग करता है; ज़मीन पर फेफड़ों का।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:rohu",
+     "expect": "correct:rohu",
+     "say": {
+      "en": "Tap the rohu fish card, then its group.",
+      "hi": "रोहू मछली वाले कार्ड पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An earthworm has no lungs or gills. How does it breathe?",
+      "hi": "केंचुए के न फेफड़े हैं, न गलफड़े। वह साँस कैसे लेता है?"
+     },
+     "options": [
+      {
+       "id": "skin",
+       "en": "Through its moist skin",
+       "hi": "अपनी नम त्वचा से"
+      },
+      {
+       "id": "mouth",
+       "en": "Only through its mouth",
+       "hi": "केवल मुँह से"
+      },
+      {
+       "id": "none",
+       "en": "It does not need oxygen",
+       "hi": "उसे ऑक्सीजन नहीं चाहिए"
+      }
+     ],
+     "answer": "skin"
+    },
+    {
+     "kind": "do",
+     "target": "card:earthworm",
+     "expect": "correct:earthworm",
+     "say": {
+      "en": "Place the earthworm card.",
+      "hi": "केंचुए वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All animals need oxygen and give out carbon dioxide, but they do it in different ways that suit where they live. Land animals use lungs, fish use gills, and earthworms use moist skin. A frog changes: gills as a tadpole, lungs and skin as an adult.",
+      "hi": "सभी जंतुओं को ऑक्सीजन चाहिए और वे कार्बन डाइऑक्साइड छोड़ते हैं, पर अपने रहने की जगह के अनुसार अलग-अलग तरीक़ों से। ज़मीन के जंतु फेफड़ों से, मछलियाँ गलफड़ों से और केंचुए नम त्वचा से साँस लेते हैं। मेंढक बदलता है: टैडपोल में गलफड़े, वयस्क में फेफड़े और त्वचा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do earthworms come up out of the soil after heavy rain?",
+        "hi": "भारी बारिश के बाद केंचुए मिट्टी से बाहर क्यों आ जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Water fills the soil spaces and they cannot get air",
+         "hi": "मिट्टी की जगहें पानी से भर जाती हैं और उन्हें हवा नहीं मिलती"
+        },
+        {
+         "en": "They want to drink the rain",
+         "hi": "वे बारिश का पानी पीना चाहते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They breathe through their skin from air in the soil; waterlogged soil has little air.",
+        "hi": "वे मिट्टी की हवा से त्वचा द्वारा साँस लेते हैं; पानी भरी मिट्टी में हवा कम होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Their skin is already moist; they come up for air, not water.",
+         "hi": "उनकी त्वचा पहले से नम होती है; वे पानी नहीं, हवा के लिए ऊपर आते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and sort once more. Can you add one more animal to each group?",
+      "hi": "'फिर से शुरू' दबाओ और फिर छाँटो। क्या तुम हर समूह में एक और जंतु जोड़ सकते हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "CUT",
+   "topic": "9.1.1",
+   "use": "The human digestive system (body lab and reader)",
+   "shows": "A realistic 3D render of the alimentary canal from mouth to anus with the liver, gall bladder and pancreas, inside a faint body outline",
+   "view": "Front view, clean neutral background",
+   "right": "True positions: liver on the body's right (viewer's left), stomach on the left, coiled small intestine framed by the large intestine",
+   "avoid": "Labels, arrows"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "9.1.1",
+   "use": "Saliva and starch",
+   "shows": "Two test tubes in a stand: A with boiled rice and iodine turned blue-black, B with chewed rice and iodine showing almost no colour (tubes: reuse LIB-LAB-test-tube, LIB-LAB-test-tube-stand)",
+   "view": "Front view, white background",
+   "right": "A deep blue-black, B pale",
+   "avoid": "Labels A and B baked in"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "9.1.2",
+   "use": "A ruminant",
+   "shows": "A cow resting in a village courtyard, chewing the cud",
+   "view": "Side view, eye level, soft morning light",
+   "right": "Jaw visibly chewing, relaxed cow",
+   "avoid": "People, tags with numbers"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "9.1.2",
+   "use": "Inside a bird",
+   "shows": "Cut-away of a hen's digestive system showing the oesophagus, stomach and muscular gizzard with grit inside",
+   "view": "Side cut-away, neutral background",
+   "right": "Gizzard thick and muscular with small stones",
+   "avoid": "Labels"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "9.2.1",
+   "use": "Model of breathing",
+   "shows": "A bottle-and-balloon model: a cut plastic bottle with a Y-tube, two balloons inside and a rubber sheet at the bottom; frame 1 sheet pushed up (balloons small), frame 2 sheet pulled down (balloons fuller)",
+   "view": "Front view, white background, same framing",
+   "right": "Balloons inflate only when the sheet is pulled down",
+   "avoid": "Brand on the bottle"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "9.2.1",
+   "use": "Chest and lungs",
+   "shows": "A realistic render of the chest showing the windpipe, two lungs, ribs and the dome-shaped diaphragm",
+   "view": "Front view, neutral background",
+   "right": "Diaphragm below the lungs, dome-shaped",
+   "avoid": "Labels, arrows"
+  },
+  {
+   "n": 7,
+   "kind": "MAC",
+   "topic": "9.2.2",
+   "use": "Fish gills",
+   "shows": "The red feathery gills of a rohu fish seen under the lifted gill cover",
+   "view": "Macro, side view, wet surface",
+   "right": "Gills bright red, comb-like",
+   "avoid": "Blood, cutting tools"
+  },
+  {
+   "n": 8,
+   "kind": "MAC",
+   "topic": "9.2.2",
+   "use": "Breathing through skin",
+   "shows": "An earthworm on moist dark soil after rain",
+   "view": "Macro, low angle, natural light",
+   "right": "Skin moist and shiny, ringed body",
+   "avoid": "Hands holding it"
+  }
+ ]
+}

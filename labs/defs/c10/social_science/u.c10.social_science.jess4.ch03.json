@@ -1,0 +1,1473 @@
+{
+ "chapter_key": "u.c10.social_science.jess4.ch03",
+ "class": 10,
+ "subject_id": "social_science",
+ "title": "Gender, Religion and Caste",
+ "source": "https://ncert.nic.in/textbook/pdf/jess403.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Gender and politics: division of labour, women's representation",
+   "labs": [
+    "c10-social_science-jess4-ch03-reserved-seat",
+    "c10-social_science-jess4-ch03-gender-areas"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "Religion, communalism and politics; the secular state",
+   "labs": [
+    "c10-social_science-jess4-ch03-communal-secular"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "Social and religious diversity of India; caste inequality and caste in politics",
+   "labs": [
+    "c10-social_science-jess4-ch03-religions-pie",
+    "c10-social_science-jess4-ch03-caste-myths",
+    "c10-social_science-jess4-ch03-rights"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-social_science-jess4-ch03-reserved-seat",
+   "topic": "1",
+   "template": "scenario",
+   "title": {
+    "en": "A reserved seat in the Gram Panchayat",
+    "hi": "ग्राम पंचायत की आरक्षित सीट"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "A woman newly elected to the Gram Panchayat",
+     "hi": "ग्राम पंचायत की नवनिर्वाचित महिला सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Your ward seat is reserved for women and you have won. A relative says: \"Let your husband go to the meetings. You just sign.\" What do you do?",
+       "hi": "तुम्हारे वार्ड की सीट महिलाओं के लिए आरक्षित थी और तुम जीत गई हो। एक रिश्तेदार कहता है: \"बैठकों में पति को जाने दो। तुम बस दस्तख़त करना।\" तुम क्या करोगी?"
+      },
+      "choices": [
+       {
+        "id": "attend",
+        "text": {
+         "en": "Attend the meetings yourself and learn the work",
+         "hi": "बैठकों में ख़ुद जाओ और काम सीखो"
+        },
+        "next": "meeting",
+        "feedback": {
+         "en": "Good. The seat belongs to you; the voters chose you.",
+         "hi": "बढ़िया। सीट तुम्हारी है; मतदाताओं ने तुम्हें चुना है।"
+        },
+        "good": true
+       },
+       {
+        "id": "sign",
+        "text": {
+         "en": "Sign whatever your husband brings",
+         "hi": "पति जो लाए उस पर दस्तख़त कर दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Then the village loses its elected voice, and the seat meant for women is wasted.",
+         "hi": "तब गाँव अपना चुना हुआ प्रतिनिधि खो देता है और महिलाओं के लिए बनी सीट बेकार जाती है।"
+        },
+        "good": false
+       },
+       {
+        "id": "quit",
+        "text": {
+         "en": "Resign, to avoid a quarrel",
+         "hi": "झगड़े से बचने के लिए इस्तीफ़ा दे दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Giving up means your ward has no woman's voice.",
+         "hi": "इस्तीफ़ा देने का मतलब वार्ड में महिला की आवाज़ नहीं रहती।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "meeting",
+      "text": {
+       "en": "At the meeting, you notice the lane near the girls' school has no light and the girls fear walking home. What do you do?",
+       "hi": "बैठक में तुम देखती हो कि लड़कियों के स्कूल के पास की गली में बत्ती नहीं है और लड़कियाँ घर जाने से डरती हैं। तुम क्या करोगी?"
+      },
+      "choices": [
+       {
+        "id": "speak",
+        "text": {
+         "en": "Raise the issue, ask for street lights and get other members' support",
+         "hi": "मुद्दा उठाओ, बत्ती लगवाने की माँग करो और दूसरे सदस्यों का साथ लो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Excellent. Women in office bring up issues that were often ignored.",
+         "hi": "बहुत बढ़िया। पद पर बैठी महिलाएँ वे मुद्दे उठाती हैं जो अक्सर अनदेखे रहते थे।"
+        },
+        "good": true
+       },
+       {
+        "id": "silent",
+        "text": {
+         "en": "Stay silent; you are new",
+         "hi": "चुप रहो; तुम नई हो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A silent member cannot help the girls.",
+         "hi": "चुप सदस्य लड़कियों की मदद नहीं कर सकती।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A woman wins a reserved seat. Who should attend the council meetings?",
+      "hi": "एक महिला आरक्षित सीट जीतती है। परिषद की बैठकों में कौन जाए?"
+     },
+     "options": [
+      {
+       "id": "she",
+       "en": "The woman who was elected",
+       "hi": "जिस महिला को चुना गया"
+      },
+      {
+       "id": "he",
+       "en": "Her husband",
+       "hi": "उसका पति"
+      }
+     ],
+     "answer": "she"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:attend",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose what you think is the wisest thing to do, and keep going until the story ends well.",
+      "hi": "जो सबसे समझदारी का काम लगे उसे चुनो, और तब तक चलो जब तक कहानी अच्छे अंत पर न पहुँचे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India reserved at least one-third of the seats in village and town bodies for women. This was meant to give women a real voice in public life, because they are a large part of the population but few were in politics. A seat works only if the woman who is elected uses it herself.",
+      "hi": "भारत ने गाँव और नगर की संस्थाओं में कम से कम एक-तिहाई सीटें महिलाओं के लिए आरक्षित कीं। उद्देश्य था कि सार्वजनिक जीवन में महिलाओं की असली आवाज़ हो, क्योंकि वे आबादी का बड़ा हिस्सा हैं पर राजनीति में कम थीं। सीट तभी काम करती है जब चुनी गई महिला ख़ुद उसका उपयोग करे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the seat reserved for women in local bodies?",
+        "hi": "स्थानीय निकायों में महिलाओं के लिए सीट आरक्षित क्यों है?"
+       },
+       "options": [
+        {
+         "en": "To give women a real voice in public life",
+         "hi": "सार्वजनिक जीवन में महिलाओं को असली आवाज़ देने के लिए"
+        },
+        {
+         "en": "To keep men out forever",
+         "hi": "पुरुषों को हमेशा बाहर रखने के लिए"
+        },
+        {
+         "en": "To make meetings shorter",
+         "hi": "बैठकें छोटी करने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Women are about half the population but were few in politics, so seats were reserved.",
+        "hi": "महिलाएँ लगभग आधी आबादी हैं पर राजनीति में कम थीं, इसलिए सीटें आरक्षित हुईं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Men can still contest other seats.",
+         "hi": "पुरुष दूसरी सीटों पर लड़ सकते हैं।"
+        },
+        {
+         "en": "The aim is a voice, not shorter meetings.",
+         "hi": "उद्देश्य आवाज़ है, छोटी बैठकें नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What share of local-body seats is reserved for women?",
+        "hi": "स्थानीय निकायों की कितनी सीटें महिलाओं के लिए आरक्षित हैं?"
+       },
+       "options": [
+        {
+         "en": "At least one-third",
+         "hi": "कम से कम एक-तिहाई"
+        },
+        {
+         "en": "One-tenth",
+         "hi": "दसवाँ हिस्सा"
+        },
+        {
+         "en": "Half of the seats only in cities",
+         "hi": "केवल शहरों में आधी सीटें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The 1992 amendments reserved at least one-third of seats and posts.",
+        "hi": "1992 के संशोधनों ने कम से कम एक-तिहाई सीटें और पद आरक्षित किए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The reservation is larger than one-tenth.",
+         "hi": "आरक्षण दसवें हिस्से से अधिक है।"
+        },
+        {
+         "en": "It covers villages and towns, not only cities.",
+         "hi": "यह गाँवों और नगरों दोनों पर लागू है, केवल शहरों पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine you are the Sarpanch. Name one problem of girls or women in your area that you would raise first.",
+      "hi": "सोचो तुम सरपंच हो। अपने इलाक़े में लड़कियों या महिलाओं की एक समस्या बताओ जो तुम पहले उठाओगी।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess4-ch03-gender-areas",
+   "topic": "1",
+   "template": "match",
+   "title": {
+    "en": "Gender and fairness in daily life",
+    "hi": "रोज़ के जीवन में लिंग और निष्पक्षता"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "vote",
+      "left": {
+       "en": "Voting",
+       "hi": "मतदान"
+      },
+      "right": {
+       "en": "Women's movements first demanded the right to vote",
+       "hi": "महिला आंदोलनों ने सबसे पहले वोट के अधिकार की माँग की"
+      },
+      "why": {
+       "en": "Political equality was the first demand.",
+       "hi": "राजनीतिक समानता पहली माँग थी।"
+      }
+     },
+     {
+      "id": "work",
+      "left": {
+       "en": "Wages",
+       "hi": "मज़दूरी"
+      },
+      "right": {
+       "en": "The Equal Wages Act says equal work must get equal pay",
+       "hi": "समान मज़दूरी क़ानून कहता है कि समान काम का समान वेतन मिले"
+      },
+      "why": {
+       "en": "Yet in practice women often still earn less.",
+       "hi": "फिर भी व्यवहार में महिलाओं को अक्सर कम मिलता है।"
+      }
+     },
+     {
+      "id": "school",
+      "left": {
+       "en": "Education",
+       "hi": "शिक्षा"
+      },
+      "right": {
+       "en": "Girls must get the same chances to study and choose a career",
+       "hi": "लड़कियों को पढ़ने और करियर चुनने के बराबर मौक़े मिलें"
+      },
+      "why": {
+       "en": "Literacy among women still lags behind men's.",
+       "hi": "महिलाओं की साक्षरता अब भी पुरुषों से पीछे है।"
+      }
+     },
+     {
+      "id": "public",
+      "left": {
+       "en": "Public life",
+       "hi": "सार्वजनिक जीवन"
+      },
+      "right": {
+       "en": "One-third of seats in local bodies are reserved for women",
+       "hi": "स्थानीय निकायों में एक-तिहाई सीटें महिलाओं के लिए आरक्षित"
+      },
+      "why": {
+       "en": "This gives women a place in decision making.",
+       "hi": "इससे महिलाओं को फ़ैसलों में जगह मिलती है।"
+      }
+     },
+     {
+      "id": "home",
+      "left": {
+       "en": "Household work",
+       "hi": "घर का काम"
+      },
+      "right": {
+       "en": "Housework should be shared, not left only to women",
+       "hi": "घर का काम बँटना चाहिए, केवल महिलाओं पर नहीं छोड़ना चाहिए"
+      },
+      "why": {
+       "en": "Most unpaid housework is still done by women.",
+       "hi": "अधिकतर अवैतनिक घरेलू काम आज भी महिलाएँ करती हैं।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:vote",
+     "expect": "matched:vote",
+     "say": {
+      "en": "Tap \"Voting\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"मतदान\" पर टैप करो, फिर दाईं ओर उसकी जोड़ी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "\"Equal pay for equal work\" belongs to which area?",
+      "hi": "\"समान काम का समान वेतन\" किस क्षेत्र का है?"
+     },
+     "options": [
+      {
+       "id": "work",
+       "en": "Wages",
+       "hi": "मज़दूरी"
+      },
+      {
+       "id": "vote",
+       "en": "Voting",
+       "hi": "मतदान"
+      },
+      {
+       "id": "home",
+       "en": "Household work",
+       "hi": "घर का काम"
+      }
+     ],
+     "answer": "work"
+    },
+    {
+     "kind": "do",
+     "target": "left:public",
+     "expect": "matched:public",
+     "say": {
+      "en": "Tap \"Public life\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"सार्वजनिक जीवन\" पर टैप करो, फिर दाईं ओर उसकी जोड़ी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the pairs, then press Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Gender equality is about fairness in everyday life: voting, pay, school, public life and the home. Laws like the Equal Wages Act and the reservation for women in local bodies try to correct old patterns. But habits change slowly, so equality needs both rules and a change in what we expect of girls and boys.",
+      "hi": "लिंग-समानता रोज़ के जीवन की निष्पक्षता है: मतदान, वेतन, शिक्षा, सार्वजनिक जीवन और घर। समान मज़दूरी क़ानून और स्थानीय निकायों में महिला आरक्षण जैसे क़ानून पुराने चलन सुधारने की कोशिश हैं। पर आदतें धीरे बदलती हैं, इसलिए समानता के लिए नियम भी चाहिए और लड़कियों-लड़कों से हमारी अपेक्षाओं में बदलाव भी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do laws alone not end unfairness?",
+        "hi": "केवल क़ानून से अन्याय ख़त्म क्यों नहीं होता?"
+       },
+       "options": [
+        {
+         "en": "Habits and beliefs change slowly",
+         "hi": "आदतें और मान्यताएँ धीरे बदलती हैं"
+        },
+        {
+         "en": "Laws never work",
+         "hi": "क़ानून कभी काम नहीं करते"
+        },
+        {
+         "en": "Nobody needs laws",
+         "hi": "किसी को क़ानून की ज़रूरत नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Laws set the rule, but people must also change their thinking and actions.",
+        "hi": "क़ानून नियम बनाते हैं, पर लोगों को सोच और काम भी बदलना होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Laws help a great deal; they are just not enough alone.",
+         "hi": "क़ानून बहुत मदद करते हैं; बस अकेले काफ़ी नहीं।"
+        },
+        {
+         "en": "Laws are needed to protect rights.",
+         "hi": "अधिकारों की रक्षा के लिए क़ानून ज़रूरी हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which statement about housework is true?",
+        "hi": "घर के काम के बारे में कौन-सा कथन सही है?"
+       },
+       "options": [
+        {
+         "en": "Most unpaid housework is still done by women",
+         "hi": "अधिकतर अवैतनिक घरेलू काम अब भी महिलाएँ करती हैं"
+        },
+        {
+         "en": "Only men do housework",
+         "hi": "घर का काम केवल पुरुष करते हैं"
+        },
+        {
+         "en": "Housework is paid like a job",
+         "hi": "घर का काम नौकरी की तरह वेतन वाला है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Women usually carry the unpaid work of the home, which is one reason for inequality.",
+        "hi": "घर का अवैतनिक काम प्रायः महिलाओं पर होता है, जो असमानता का एक कारण है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Men do some, but women do most.",
+         "hi": "पुरुष कुछ करते हैं, पर अधिकतर महिलाएँ।"
+        },
+        {
+         "en": "Housework is typically unpaid.",
+         "hi": "घर का काम प्रायः बिना वेतन का होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Count who does which household jobs at home. Could the jobs be shared more evenly?",
+      "hi": "घर में कौन-सा काम कौन करता है, गिनो। क्या काम और बराबर बँट सकते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess4-ch03-communal-secular",
+   "topic": "2",
+   "template": "sort",
+   "title": {
+    "en": "Communal thinking or secular practice?",
+    "hi": "साम्प्रदायिक सोच या धर्मनिरपेक्ष व्यवहार?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "comm",
+      "label": {
+       "en": "Communal thinking",
+       "hi": "साम्प्रदायिक सोच"
+      }
+     },
+     {
+      "id": "sec",
+      "label": {
+       "en": "Secular practice",
+       "hi": "धर्मनिरपेक्ष व्यवहार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "better",
+      "text": {
+       "en": "Saying one religion is better than all others",
+       "hi": "कहना कि एक धर्म सबसे अच्छा है"
+      },
+      "bin": "comm",
+      "why": {
+       "en": "Communalism treats one religion as superior and others as lesser.",
+       "hi": "साम्प्रदायिकता एक धर्म को ऊँचा और दूसरों को नीचा मानती है।"
+      }
+     },
+     {
+      "id": "votes",
+      "text": {
+       "en": "Asking for votes in the name of religion",
+       "hi": "धर्म के नाम पर वोट माँगना"
+      },
+      "bin": "comm",
+      "why": {
+       "en": "This uses religion for power, which divides the people.",
+       "hi": "यह सत्ता के लिए धर्म का उपयोग है, जो लोगों को बाँटता है।"
+      }
+     },
+     {
+      "id": "nolive",
+      "text": {
+       "en": "Believing people of different faiths cannot live together",
+       "hi": "मानना कि अलग धर्मों के लोग साथ नहीं रह सकते"
+      },
+      "bin": "comm",
+      "why": {
+       "en": "This is false: people of one religion do not all share the same interests.",
+       "hi": "यह ग़लत है: एक धर्म के सभी लोगों के हित एक जैसे नहीं होते।"
+      }
+     },
+     {
+      "id": "riot",
+      "text": {
+       "en": "Spreading hatred or violence against a religious group",
+       "hi": "किसी धार्मिक समूह के विरुद्ध नफ़रत या हिंसा फैलाना"
+      },
+      "bin": "comm",
+      "why": {
+       "en": "Communal violence is its ugliest form.",
+       "hi": "साम्प्रदायिक हिंसा इसका सबसे बुरा रूप है।"
+      }
+     },
+     {
+      "id": "noreligion",
+      "text": {
+       "en": "The State has no official religion",
+       "hi": "राज्य का कोई सरकारी धर्म नहीं"
+      },
+      "bin": "sec",
+      "why": {
+       "en": "India does not make any religion the state religion.",
+       "hi": "भारत किसी धर्म को राज्य-धर्म नहीं बनाता।"
+      }
+     },
+     {
+      "id": "free",
+      "text": {
+       "en": "Everyone is free to follow or not follow a religion",
+       "hi": "हर कोई कोई धर्म मान सकता है या न मान सकता है"
+      },
+      "bin": "sec",
+      "why": {
+       "en": "The Constitution gives freedom of religion to all.",
+       "hi": "संविधान सबको धर्म की स्वतंत्रता देता है।"
+      }
+     },
+     {
+      "id": "nodisc",
+      "text": {
+       "en": "Law bans discrimination on grounds of religion",
+       "hi": "क़ानून धर्म के आधार पर भेदभाव को मना करता है"
+      },
+      "bin": "sec",
+      "why": {
+       "en": "No one can be treated unequally because of faith.",
+       "hi": "आस्था के कारण किसी से असमान व्यवहार नहीं हो सकता।"
+      }
+     },
+     {
+      "id": "festival",
+      "text": {
+       "en": "Neighbours of different faiths share each other's festivals",
+       "hi": "अलग धर्मों के पड़ोसी एक-दूसरे के त्योहार साझा करते हैं"
+      },
+      "bin": "sec",
+      "why": {
+       "en": "Everyday friendship is secularism in action.",
+       "hi": "रोज़ की दोस्ती धर्मनिरपेक्षता का व्यवहार है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:better",
+     "expect": "placed:better",
+     "say": {
+      "en": "Tap the card \"Saying one religion is better than all others\", then tap the group where it belongs.",
+      "hi": "कार्ड \"कहना कि एक धर्म सबसे अच्छा है\" पर टैप करो, फिर उस समूह पर टैप करो जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "\"The government has no official religion.\" Which group is this in?",
+      "hi": "\"सरकार का कोई सरकारी धर्म नहीं है।\" यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "sec",
+       "en": "Secular practice",
+       "hi": "धर्मनिरपेक्ष व्यवहार"
+      },
+      {
+       "id": "comm",
+       "en": "Communal thinking",
+       "hi": "साम्प्रदायिक सोच"
+      }
+     ],
+     "answer": "sec"
+    },
+    {
+     "kind": "do",
+     "target": "card:noreligion",
+     "expect": "placed:noreligion",
+     "say": {
+      "en": "Tap the card \"The State has no official religion\", then tap the group where it belongs.",
+      "hi": "कार्ड \"राज्य का कोई सरकारी धर्म नहीं\" पर टैप करो, फिर उस समूह पर टैप करो जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest of the cards, then press Check.",
+      "hi": "बाक़ी कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Communalism is the belief that religion is the main basis of community, and that people of different religions cannot live as equals. India's Constitution chose a secular state: no state religion, freedom to follow any faith, and no discrimination on grounds of religion. Secularism is not only a rule but a way of life.",
+      "hi": "साम्प्रदायिकता यह मान्यता है कि धर्म ही समुदाय का मुख्य आधार है और अलग धर्मों के लोग बराबरी से नहीं रह सकते। भारत के संविधान ने धर्मनिरपेक्ष राज्य चुना: कोई सरकारी धर्म नहीं, किसी भी धर्म को मानने की स्वतंत्रता और धर्म के आधार पर कोई भेदभाव नहीं। धर्मनिरपेक्षता केवल नियम नहीं, जीवन का तरीक़ा भी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does it mean that India is a secular state?",
+        "hi": "भारत के धर्मनिरपेक्ष राज्य होने का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "No religion is the official religion, and all are treated equally",
+         "hi": "कोई धर्म सरकारी धर्म नहीं है और सबके साथ समान व्यवहार है"
+        },
+        {
+         "en": "Only one religion is allowed",
+         "hi": "केवल एक धर्म की अनुमति है"
+        },
+        {
+         "en": "Religion is banned",
+         "hi": "धर्म पर रोक है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A secular state keeps equal distance from all religions and protects freedom of faith.",
+        "hi": "धर्मनिरपेक्ष राज्य सभी धर्मों से समान दूरी रखता है और आस्था की स्वतंत्रता की रक्षा करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would go against freedom of religion.",
+         "hi": "यह धर्म की स्वतंत्रता के विरुद्ध होगा।"
+        },
+        {
+         "en": "India does not ban religion; it protects the freedom to practise it.",
+         "hi": "भारत धर्म पर रोक नहीं लगाता; उसे मानने की स्वतंत्रता की रक्षा करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is \"people of different faiths cannot live together\" a flawed belief?",
+        "hi": "\"अलग आस्था के लोग साथ नहीं रह सकते\" ग़लत विश्वास क्यों है?"
+       },
+       "options": [
+        {
+         "en": "People of one faith do not all share the same interests, and many live peacefully together",
+         "hi": "एक आस्था के लोगों के सभी हित एक-से नहीं होते और बहुत लोग शांति से साथ रहते हैं"
+        },
+        {
+         "en": "Because everyone follows the same religion",
+         "hi": "क्योंकि सब एक ही धर्म मानते हैं"
+        },
+        {
+         "en": "Because religion is unimportant to everyone",
+         "hi": "क्योंकि धर्म किसी के लिए ज़रूरी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Life shows that neighbours of different faiths cooperate, and each community has different interests inside it.",
+        "hi": "जीवन दिखाता है कि अलग आस्था के पड़ोसी सहयोग करते हैं और हर समुदाय के भीतर अलग-अलग हित होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "India has many religions.",
+         "hi": "भारत में कई धर्म हैं।"
+        },
+        {
+         "en": "Many people find religion very important.",
+         "hi": "बहुत लोगों के लिए धर्म बहुत महत्त्वपूर्ण है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a festival you share with neighbours. What makes it a good example of living together?",
+      "hi": "किसी ऐसे त्योहार के बारे में सोचो जो पड़ोसियों के साथ मनाते हो। वह साथ रहने का अच्छा उदाहरण क्यों है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess4-ch03-religions-pie",
+   "topic": "3",
+   "template": "data",
+   "title": {
+    "en": "India's many faiths",
+    "hi": "भारत की कई आस्थाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "ask": "max",
+    "title": {
+     "en": "People of India by religion, Census 2011 (per cent)",
+     "hi": "भारत के लोग धर्म के अनुसार, जनगणना 2011 (प्रतिशत)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Hindu",
+       "hi": "हिंदू"
+      },
+      "value": 79.8
+     },
+     {
+      "label": {
+       "en": "Muslim",
+       "hi": "मुस्लिम"
+      },
+      "value": 14.2
+     },
+     {
+      "label": {
+       "en": "Christian",
+       "hi": "ईसाई"
+      },
+      "value": 2.3
+     },
+     {
+      "label": {
+       "en": "Sikh",
+       "hi": "सिख"
+      },
+      "value": 1.7
+     },
+     {
+      "label": {
+       "en": "Others",
+       "hi": "अन्य"
+      },
+      "value": 2
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Do you think the share of any one religion in India is changing very fast?",
+      "hi": "क्या तुम्हें लगता है कि भारत में किसी एक धर्म का हिस्सा बहुत तेज़ी से बदल रहा है?"
+     },
+     "options": [
+      {
+       "id": "slow",
+       "en": "No, the shares change only slowly",
+       "hi": "नहीं, हिस्से बहुत धीरे बदलते हैं"
+      },
+      {
+       "id": "fast",
+       "en": "Yes, very fast",
+       "hi": "हाँ, बहुत तेज़ी से"
+      }
+     ],
+     "answer": "slow"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the biggest slice to read its share.",
+      "hi": "सबसे बड़े टुकड़े को छुओ और उसका हिस्सा पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now answer: which group is the largest?",
+      "hi": "अब उत्तर दो: सबसे बड़ा समूह कौन-सा है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has people of many faiths. Since independence, the total number in each community has grown, but each community's share of the population has changed very little. Experts estimated that the Muslim share might go up only by about 3 to 4 per cent in 50 years, so the idea that one group will overtake the rest is a mistaken one.",
+      "hi": "भारत में अनेक आस्थाओं के लोग हैं। आज़ादी के बाद हर समुदाय की कुल संख्या बढ़ी है, पर आबादी में उसका हिस्सा बहुत कम बदला है। विशेषज्ञों के अनुमान के अनुसार 50 वर्षों में मुस्लिम हिस्सा केवल 3 से 4 प्रतिशत बढ़ सकता है, इसलिए यह धारणा ग़लत है कि कोई एक समूह बाक़ियों से आगे निकल जाएगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the change in religious shares since independence show?",
+        "hi": "आज़ादी के बाद धार्मिक हिस्सों में बदलाव क्या दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "The shares have changed only a little",
+         "hi": "हिस्से बहुत थोड़े बदले हैं"
+        },
+        {
+         "en": "One religion has taken over",
+         "hi": "एक धर्म हावी हो गया है"
+        },
+        {
+         "en": "Some religions have disappeared",
+         "hi": "कुछ धर्म ग़ायब हो गए हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Population balance among religions has stayed fairly steady.",
+        "hi": "धर्मों के बीच जनसंख्या का संतुलन काफ़ी स्थिर रहा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The shares show no takeover.",
+         "hi": "हिस्सों में कोई क़ब्ज़ा नहीं दिखता।"
+        },
+        {
+         "en": "All six major communities are still counted.",
+         "hi": "छहों प्रमुख समुदाय अब भी गिने जाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where does this data come from?",
+        "hi": "ये आँकड़े कहाँ से आते हैं?"
+       },
+       "options": [
+        {
+         "en": "The Census of India",
+         "hi": "भारत की जनगणना"
+        },
+        {
+         "en": "A guess by a neighbour",
+         "hi": "पड़ोसी का अंदाज़ा"
+        },
+        {
+         "en": "A film",
+         "hi": "एक फ़िल्म"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Census counts and records each person's religion every ten years.",
+        "hi": "जनगणना हर दस साल में हर व्यक्ति का धर्म गिनती और दर्ज करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Guesses are not reliable data.",
+         "hi": "अंदाज़े भरोसेमंद आँकड़े नहीं होते।"
+        },
+        {
+         "en": "A film is a story, not a count.",
+         "hi": "फ़िल्म कहानी है, गिनती नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the other slices and read each share. Why is it unfair to say \"all members of one religion think alike\"?",
+      "hi": "दूसरे टुकड़े छुओ और उनके हिस्से पढ़ो। यह कहना क्यों ग़लत है कि \"एक धर्म के सभी लोग एक-सा सोचते हैं\"?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess4-ch03-caste-myths",
+   "topic": "3",
+   "template": "sort",
+   "title": {
+    "en": "Caste and politics: true or myth?",
+    "hi": "जाति और राजनीति: सच या भ्रम?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "true",
+      "label": {
+       "en": "True",
+       "hi": "सच"
+      }
+     },
+     {
+      "id": "myth",
+      "label": {
+       "en": "Myth",
+       "hi": "भ्रम"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "candidates",
+      "text": {
+       "en": "Parties think of caste when choosing candidates",
+       "hi": "दल उम्मीदवार चुनते समय जाति का ध्यान रखते हैं"
+      },
+      "bin": "true",
+      "why": {
+       "en": "Parties look at the caste mix of the voters in a constituency.",
+       "hi": "दल निर्वाचन क्षेत्र के मतदाताओं की जातियों का ध्यान रखते हैं।"
+      }
+     },
+     {
+      "id": "appeal",
+      "text": {
+       "en": "Some leaders appeal to caste feelings to win votes",
+       "hi": "कुछ नेता वोट पाने को जाति की भावना जगाते हैं"
+      },
+      "bin": "true",
+      "why": {
+       "en": "Yes, this happens in many elections.",
+       "hi": "हाँ, कई चुनावों में ऐसा होता है।"
+      }
+     },
+     {
+      "id": "mixed",
+      "text": {
+       "en": "No constituency has just one caste in majority",
+       "hi": "किसी क्षेत्र में केवल एक जाति का बहुमत नहीं होता"
+      },
+      "bin": "true",
+      "why": {
+       "en": "Every party needs support from more than one caste group.",
+       "hi": "हर दल को एक से अधिक जाति-समूह का समर्थन चाहिए।"
+      }
+     },
+     {
+      "id": "loses",
+      "text": {
+       "en": "Ruling parties and sitting MPs often lose elections",
+       "hi": "सत्तारूढ़ दल और मौजूदा सांसद अक्सर हार जाते हैं"
+      },
+      "bin": "true",
+      "why": {
+       "en": "Voters judge performance, not just caste.",
+       "hi": "मतदाता काम का आकलन करते हैं, केवल जाति नहीं।"
+      }
+     },
+     {
+      "id": "econ",
+      "text": {
+       "en": "Caste is still linked to economic status",
+       "hi": "जाति अब भी आर्थिक स्थिति से जुड़ी है"
+      },
+      "bin": "true",
+      "why": {
+       "en": "Past caste inequality still shows in who is better off.",
+       "hi": "पुरानी जाति-असमानता आज भी दिखती है कि कौन ज़्यादा सम्पन्न है।"
+      }
+     },
+     {
+      "id": "only",
+      "text": {
+       "en": "Caste decides every vote",
+       "hi": "जाति हर वोट तय करती है"
+      },
+      "bin": "myth",
+      "why": {
+       "en": "Voters also think about candidates, parties and performance.",
+       "hi": "मतदाता उम्मीदवार, दल और कामकाज के बारे में भी सोचते हैं।"
+      }
+     },
+     {
+      "id": "alone",
+      "text": {
+       "en": "A candidate can win on caste alone",
+       "hi": "उम्मीदवार केवल जाति के बल पर जीत सकता है"
+      },
+      "bin": "myth",
+      "why": {
+       "en": "No caste group is large enough to win alone.",
+       "hi": "कोई जाति-समूह अकेले जिताने लायक़ बड़ा नहीं है।"
+      }
+     },
+     {
+      "id": "ended",
+      "text": {
+       "en": "Caste inequality has completely ended",
+       "hi": "जाति-असमानता पूरी तरह ख़त्म हो गई है"
+      },
+      "bin": "myth",
+      "why": {
+       "en": "The Constitution bans it, but inequality has not fully ended.",
+       "hi": "संविधान इसे मना करता है, पर असमानता पूरी तरह नहीं मिटी।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:candidates",
+     "expect": "placed:candidates",
+     "say": {
+      "en": "Tap the card \"Parties think of caste when choosing candidates\", then tap the group where it belongs.",
+      "hi": "कार्ड \"दल उम्मीदवार चुनते समय जाति का ध्यान रखते हैं\" पर टैप करो, फिर उस समूह पर टैप करो जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "\"Caste decides every vote in India.\" Is this true or a myth?",
+      "hi": "\"भारत में जाति हर वोट तय करती है।\" यह सच है या भ्रम?"
+     },
+     "options": [
+      {
+       "id": "myth",
+       "en": "Myth",
+       "hi": "भ्रम"
+      },
+      {
+       "id": "true",
+       "en": "True",
+       "hi": "सच"
+      }
+     ],
+     "answer": "myth"
+    },
+    {
+     "kind": "do",
+     "target": "card:only",
+     "expect": "placed:only",
+     "say": {
+      "en": "Tap the card \"Caste decides every vote\", then tap the group where it belongs.",
+      "hi": "कार्ड \"जाति हर वोट तय करती है\" पर टैप करो, फिर उस समूह पर टैप करो जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest of the cards, then press Check.",
+      "hi": "बाक़ी कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Caste is a part of politics, but not the whole of it. Parties think of caste, but they also need votes from many groups. Voters weigh performance, and ruling parties often lose. The Constitution bans caste discrimination, yet caste and economic status are still linked, which is why work for equality continues.",
+      "hi": "जाति राजनीति का एक हिस्सा है, पूरी राजनीति नहीं। दल जाति का ध्यान रखते हैं, पर उन्हें कई समूहों के वोट चाहिए। मतदाता कामकाज देखते हैं और सत्तारूढ़ दल अक्सर हारते हैं। संविधान जाति-भेद को मना करता है, फिर भी जाति और आर्थिक स्थिति अब भी जुड़ी हैं, इसीलिए समानता का काम जारी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can no party win only by appealing to one caste?",
+        "hi": "कोई दल केवल एक जाति से अपील करके क्यों नहीं जीत सकता?"
+       },
+       "options": [
+        {
+         "en": "No single caste is a clear majority everywhere",
+         "hi": "कोई एक जाति हर जगह स्पष्ट बहुमत में नहीं है"
+        },
+        {
+         "en": "Because castes do not vote",
+         "hi": "क्योंकि जातियाँ वोट नहीं देतीं"
+        },
+        {
+         "en": "Because the Constitution bans voting",
+         "hi": "क्योंकि संविधान ने मतदान पर रोक लगाई है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every constituency has several groups, so parties must win broad support.",
+        "hi": "हर निर्वाचन क्षेत्र में कई समूह हैं, इसलिए दलों को व्यापक समर्थन चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "People do vote; they just do not vote by caste alone.",
+         "hi": "लोग वोट देते हैं; वे केवल जाति के आधार पर वोट नहीं देते।"
+        },
+        {
+         "en": "The Constitution protects voting.",
+         "hi": "संविधान मतदान की रक्षा करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the Constitution say about caste discrimination?",
+        "hi": "जाति-भेद के बारे में संविधान क्या कहता है?"
+       },
+       "options": [
+        {
+         "en": "It prohibits it",
+         "hi": "यह उसे मना करता है"
+        },
+        {
+         "en": "It encourages it",
+         "hi": "यह उसे बढ़ावा देता है"
+        },
+        {
+         "en": "It says nothing",
+         "hi": "यह कुछ नहीं कहता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Constitution forbids discrimination on the basis of caste and lays the base of policies to reverse past injustice.",
+        "hi": "संविधान जाति के आधार पर भेदभाव मना करता है और अतीत के अन्याय को सुधारने वाली नीतियों की नींव रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It does not encourage discrimination.",
+         "hi": "यह भेदभाव को बढ़ावा नहीं देता।"
+        },
+        {
+         "en": "It speaks clearly against it.",
+         "hi": "यह स्पष्ट रूप से उसके विरुद्ध कहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a news story about elections. Did voters decide by caste, performance or other reasons? Share your thinking.",
+      "hi": "चुनाव की किसी ख़बर के बारे में सोचो। मतदाताओं ने जाति, कामकाज या अन्य कारणों में से क्या देखा? अपनी सोच बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess4-ch03-rights",
+   "topic": "3",
+   "template": "govern",
+   "title": {
+    "en": "Rights that guard equality and faith",
+    "hi": "समानता और आस्था की रक्षा करने वाले अधिकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "rights",
+    "options": {
+     "cards": [
+      "r-merit",
+      "r-well",
+      "r-festival",
+      "r-tax",
+      "r-script",
+      "r-court"
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A village well is used by all, whatever their caste. Which right guards this?",
+      "hi": "गाँव का कुआँ जाति कुछ भी हो, सब इस्तेमाल करते हैं। यह कौन-सा अधिकार बचाता है?"
+     },
+     "options": [
+      {
+       "id": "eq",
+       "en": "Right to Equality",
+       "hi": "समता का अधिकार"
+      },
+      {
+       "id": "rel",
+       "en": "Freedom of Religion",
+       "hi": "धार्मिक स्वतंत्रता का अधिकार"
+      }
+     ],
+     "answer": "eq"
+    },
+    {
+     "kind": "do",
+     "target": "card:r-well",
+     "expect": "picked:r-well",
+     "say": {
+      "en": "Pick the card \"Everyone draws water from the village well, whatever their caste\".",
+      "hi": "कार्ड \"जाति कुछ भी हो, सब गाँव के कुएँ से पानी भरते हैं\" चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:equality",
+     "expect": "placed",
+     "say": {
+      "en": "Now tap \"Right to Equality\" to place it.",
+      "hi": "अब उसे रखने के लिए \"समता का अधिकार\" को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:r-festival",
+     "expect": "picked:r-festival",
+     "say": {
+      "en": "Pick the card \"Families celebrate Diwali, Eid and Christmas freely\".",
+      "hi": "कार्ड \"परिवार दीवाली, ईद और क्रिसमस खुलकर मनाते हैं\" चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:religion",
+     "expect": "placed",
+     "say": {
+      "en": "Now tap \"Freedom of Religion\" to place it.",
+      "hi": "अब उसे रखने के लिए \"धार्मिक स्वतंत्रता का अधिकार\" को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:r-court",
+     "expect": "picked:r-court",
+     "say": {
+      "en": "Pick the card \"A citizen goes to the Supreme Court because a right was denied\".",
+      "hi": "कार्ड \"किसी अधिकार के छिनने पर नागरिक सर्वोच्च न्यायालय जाता है\" चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:remedies",
+     "expect": "placed",
+     "say": {
+      "en": "Now tap \"Constitutional Remedies\" to place it.",
+      "hi": "अब उसे रखने के लिए \"संवैधानिक उपचारों का अधिकार\" को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Fundamental Rights protect people from caste and religious discrimination. The Right to Equality ends untouchability and bans discrimination. Freedom of religion lets everyone follow their faith, and no one is forced to pay taxes for a religion. If a right is denied, the Right to Constitutional Remedies lets the person go to court.",
+      "hi": "मौलिक अधिकार लोगों को जाति और धर्म के भेदभाव से बचाते हैं। समता का अधिकार छुआछूत ख़त्म करता है और भेदभाव मना करता है। धर्म की स्वतंत्रता हर किसी को अपनी आस्था मानने देती है, और किसी को किसी धर्म के लिए कर देने पर मजबूर नहीं किया जाता। अधिकार छिने तो संवैधानिक उपचारों का अधिकार व्यक्ति को अदालत जाने देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which right ends untouchability?",
+        "hi": "कौन-सा अधिकार छुआछूत ख़त्म करता है?"
+       },
+       "options": [
+        {
+         "en": "Right to Equality",
+         "hi": "समता का अधिकार"
+        },
+        {
+         "en": "Right to Religion",
+         "hi": "धर्म का अधिकार"
+        },
+        {
+         "en": "Cultural rights",
+         "hi": "सांस्कृतिक अधिकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Article 17 under the Right to Equality abolishes untouchability.",
+        "hi": "समता के अधिकार का अनुच्छेद 17 छुआछूत समाप्त करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Religious freedom protects faith, not equality of castes.",
+         "hi": "धार्मिक स्वतंत्रता आस्था की रक्षा करती है, जातियों की समानता की नहीं।"
+        },
+        {
+         "en": "Cultural rights protect language and schools of communities.",
+         "hi": "सांस्कृतिक अधिकार समुदायों की भाषा और स्कूलों की रक्षा करते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What can a citizen do if a fundamental right is denied?",
+        "hi": "यदि मौलिक अधिकार छिन जाए तो नागरिक क्या कर सकता है?"
+       },
+       "options": [
+        {
+         "en": "Go to the Supreme Court or a High Court",
+         "hi": "सर्वोच्च न्यायालय या उच्च न्यायालय जाए"
+        },
+        {
+         "en": "Do nothing",
+         "hi": "कुछ न करे"
+        },
+        {
+         "en": "Write to a shopkeeper",
+         "hi": "दुकानदार को पत्र लिखे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Right to Constitutional Remedies lets a person approach the courts to protect other rights.",
+        "hi": "संवैधानिक उपचारों का अधिकार व्यक्ति को अन्य अधिकारों की रक्षा के लिए अदालत जाने देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A right that you cannot enforce is weak.",
+         "hi": "जो अधिकार लागू न कराया जा सके वह कमज़ोर है।"
+        },
+        {
+         "en": "A shopkeeper cannot restore fundamental rights.",
+         "hi": "दुकानदार मौलिक अधिकार वापस नहीं दिला सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these rights has helped someone you know? Tell their story in two lines.",
+      "hi": "इनमें से किस अधिकार ने तुम्हारे जानने वाले किसी की मदद की? उनकी कहानी दो पंक्तियों में बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Reserved seat lab",
+   "shows": "A village panchayat meeting room with a long bench, a ceiling fan, files and a blackboard, no people",
+   "view": "Eye level, wide",
+   "right": "Realistic Indian rural room",
+   "avoid": "People, faces, signs"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2",
+   "use": "Secular practice lab",
+   "shows": "Neighbours' hands sharing sweets over a courtyard wall at a festival, hands only",
+   "view": "Close-up, shallow depth",
+   "right": "Diverse bangles, sleeves; warm light",
+   "avoid": "Faces, religious text, logos"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Caste and equality lab",
+   "shows": "A village well with people of different clothes waiting their turn, backs to camera",
+   "view": "Wide, evening light",
+   "right": "Calm, orderly queue",
+   "avoid": "Faces, caste markers"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "3",
+   "use": "Religions pie lab",
+   "shows": "A blank pie-chart frame with five equal-sized outlined slices",
+   "view": "Flat on white",
+   "right": "Five equal outlines",
+   "avoid": "Words, colours by religion"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Gender areas lab",
+   "shows": "A school with girls' and boys' hands raised together in class, hands only",
+   "view": "Close-up",
+   "right": "Hands in school uniform sleeves, same height",
+   "avoid": "Faces, school names"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "2",
+   "use": "Hook of the chapter",
+   "shows": "A relief map of India with States unlabelled, light shading only",
+   "view": "Top-down 4:3",
+   "right": "Peninsula and Himalaya right",
+   "avoid": "Names, religious symbols"
+  }
+ ]
+}

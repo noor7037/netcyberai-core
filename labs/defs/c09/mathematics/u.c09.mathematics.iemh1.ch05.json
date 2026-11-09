@@ -1,0 +1,1186 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh1.ch05",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "I’m Up and Down, and Round and Round",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Definitions: centre, radius, chord, diameter, arc",
+   "labs": [
+    "c09-mathematics-iemh1-ch05-parts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Symmetries of a circle",
+   "labs": [],
+   "why_no_lab": "Folding a real paper circle along many diameters, as the chapter's activity does, shows its endless lines of symmetry better than a screen."
+  },
+  {
+   "n": "5.3",
+   "title": "How many circles pass through given points?",
+   "labs": [
+    "c09-mathematics-iemh1-ch05-how-many"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Chords and the angles they subtend at the centre",
+   "labs": [
+    "c09-mathematics-iemh1-ch05-chord-angle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Midpoints and perpendicular bisectors of chords",
+   "labs": [
+    "c09-mathematics-iemh1-ch05-chord-bisect"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "Distance of chords from the centre",
+   "labs": [
+    "c09-mathematics-iemh1-ch05-chord-distance"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.7",
+   "title": "Angles subtended by an arc; the angle in a semicircle",
+   "labs": [
+    "c09-mathematics-iemh1-ch05-centre-double",
+    "c09-mathematics-iemh1-ch05-semicircle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.8",
+   "title": "Concyclicity of points; cyclic quadrilaterals",
+   "labs": [
+    "c09-mathematics-iemh1-ch05-cyclic"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh1-ch05-parts",
+   "topic": "5.1",
+   "template": "shapes",
+   "title": {
+    "en": "Name the parts of a circle",
+    "hi": "वृत्त के भागों के नाम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "circle",
+    "task": "parts"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:radius",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag the radius slider and watch the whole circle grow.",
+      "hi": "त्रिज्या स्लाइडर खींचो और देखो पूरा वृत्त कैसे बढ़ता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A chord that passes through the centre has a special name. What is it?",
+      "hi": "केंद्र से होकर जाने वाली जीवा का एक ख़ास नाम है। वह क्या है?"
+     },
+     "options": [
+      {
+       "id": "d",
+       "en": "A diameter",
+       "hi": "व्यास"
+      },
+      {
+       "id": "r",
+       "en": "A radius",
+       "hi": "त्रिज्या"
+      },
+      {
+       "id": "a",
+       "en": "An arc",
+       "hi": "चाप"
+      }
+     ],
+     "answer": "d"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the pink part and choose its name.",
+      "hi": "गुलाबी भाग देखो और उसका नाम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A circle is every point at the same distance, the radius, from the centre. A chord joins two points of the circle; the longest chord goes through the centre and is the diameter, twice the radius. A piece of the circle between two points is an arc.",
+      "hi": "वृत्त वे सभी बिंदु हैं जो केंद्र से एक ही दूरी, यानी त्रिज्या, पर हैं। जीवा वृत्त के दो बिंदुओं को जोड़ती है; सबसे लंबी जीवा केंद्र से गुज़रती है और व्यास कहलाती है, जो त्रिज्या की दुगुनी है। दो बिंदुओं के बीच वृत्त का टुकड़ा चाप है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bangle has a diameter of 6 cm. What is its radius?",
+        "hi": "एक चूड़ी का व्यास 6 सेमी है। उसकी त्रिज्या क्या है?"
+       },
+       "options": [
+        {
+         "en": "3 cm",
+         "hi": "3 सेमी"
+        },
+        {
+         "en": "12 cm",
+         "hi": "12 सेमी"
+        },
+        {
+         "en": "6 cm",
+         "hi": "6 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The radius is half the diameter.",
+        "hi": "त्रिज्या व्यास की आधी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That doubles it; the diameter is the longer one.",
+         "hi": "यह दुगुना कर दिया; व्यास ही लंबा होता है।"
+        },
+        {
+         "en": "The radius goes only from the centre to the edge, half way across.",
+         "hi": "त्रिज्या केवल केंद्र से किनारे तक जाती है, आधे रास्ते तक।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to see other parts. Find a chord, a segment and a sector on a cut roti or a pizza.",
+      "hi": "दूसरे भाग देखने के लिए अगला दबाओ। कटी रोटी या पिज़्ज़ा पर जीवा, खंड और त्रिज्यखंड ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch05-how-many",
+   "topic": "5.3",
+   "template": "match",
+   "title": {
+    "en": "How many circles pass through the points?",
+    "hi": "बिंदुओं से होकर कितने वृत्त जाते हैं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "one",
+      "left": {
+       "en": "Circles through one given point",
+       "hi": "एक दिए गए बिंदु से होकर वृत्त"
+      },
+      "right": {
+       "en": "Infinitely many",
+       "hi": "अनगिनत"
+      },
+      "why": {
+       "en": "Any centre and the matching radius work.",
+       "hi": "कोई भी केंद्र और उसके अनुसार त्रिज्या चल जाती है।"
+      }
+     },
+     {
+      "id": "two",
+      "left": {
+       "en": "Circles through two given points",
+       "hi": "दो दिए गए बिंदुओं से होकर वृत्त"
+      },
+      "right": {
+       "en": "Infinitely many, centres on one line",
+       "hi": "अनगिनत, केंद्र एक रेखा पर"
+      },
+      "why": {
+       "en": "The centre must be equally far from both points, so it lies on their perpendicular bisector.",
+       "hi": "केंद्र दोनों बिंदुओं से बराबर दूर होना चाहिए, इसलिए वह उनके लंब समद्विभाजक पर है।"
+      }
+     },
+     {
+      "id": "three",
+      "left": {
+       "en": "Circles through three points not on a line",
+       "hi": "एक रेखा पर न होने वाले तीन बिंदुओं से होकर वृत्त"
+      },
+      "right": {
+       "en": "Exactly one",
+       "hi": "ठीक एक"
+      },
+      "why": {
+       "en": "Two perpendicular bisectors meet at just one point, the only possible centre.",
+       "hi": "दो लंब समद्विभाजक केवल एक बिंदु पर मिलते हैं, जो इकलौता संभव केंद्र है।"
+      }
+     },
+     {
+      "id": "line",
+      "left": {
+       "en": "Circles through three points on one line",
+       "hi": "एक ही रेखा पर तीन बिंदुओं से होकर वृत्त"
+      },
+      "right": {
+       "en": "None",
+       "hi": "एक भी नहीं"
+      },
+      "why": {
+       "en": "The perpendicular bisectors are parallel and never meet, so there is no centre.",
+       "hi": "लंब समद्विभाजक समांतर हैं और कभी नहीं मिलते, इसलिए कोई केंद्र नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:one",
+     "expect": "matched:one",
+     "say": {
+      "en": "Tap 'Circles through one given point', then its answer.",
+      "hi": "'एक दिए गए बिंदु से होकर वृत्त' छुओ, फिर उसका उत्तर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Three villages are not on one straight road. How many circles pass through all three?",
+      "hi": "तीन गाँव एक सीधी सड़क पर नहीं हैं। तीनों से होकर कितने वृत्त गुज़रते हैं?"
+     },
+     "options": [
+      {
+       "id": "1",
+       "en": "Exactly one",
+       "hi": "ठीक एक"
+      },
+      {
+       "id": "inf",
+       "en": "Infinitely many",
+       "hi": "अनगिनत"
+      },
+      {
+       "id": "0",
+       "en": "None",
+       "hi": "एक भी नहीं"
+      }
+     ],
+     "answer": "1"
+    },
+    {
+     "kind": "do",
+     "target": "left:three",
+     "expect": "matched:three",
+     "say": {
+      "en": "Match the three-points card.",
+      "hi": "तीन बिंदुओं वाला कार्ड मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The centre of a circle through two points is equally far from them, so it lies on their perpendicular bisector. With three points not on a line, two bisectors cross at one point: one centre, one circle. On a line, the bisectors are parallel: no circle.",
+      "hi": "दो बिंदुओं से होकर जाने वाले वृत्त का केंद्र दोनों से बराबर दूर होता है, इसलिए वह उनके लंब समद्विभाजक पर है। एक रेखा पर न हों ऐसे तीन बिंदुओं में दो समद्विभाजक एक बिंदु पर काटते हैं: एक केंद्र, एक वृत्त। एक रेखा पर हों तो समद्विभाजक समांतर होते हैं: कोई वृत्त नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Three friends stand at A, B, C (not in a line) and want a well equally far from all. How many places work?",
+        "hi": "तीन दोस्त A, B, C पर खड़े हैं (एक रेखा में नहीं) और सबसे बराबर दूर कुआँ चाहते हैं। कितनी जगहें सही हैं?"
+       },
+       "options": [
+        {
+         "en": "Exactly one",
+         "hi": "ठीक एक"
+        },
+        {
+         "en": "Two",
+         "hi": "दो"
+        },
+        {
+         "en": "Any place",
+         "hi": "कोई भी जगह"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The well must be the centre of the circle through A, B and C, and there is only one.",
+        "hi": "कुआँ A, B और C से होकर जाने वाले वृत्त का केंद्र होना चाहिए, और वह केवल एक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two bisectors meet only once, so a second place is impossible.",
+         "hi": "दो समद्विभाजक केवल एक बार मिलते हैं, इसलिए दूसरी जगह असंभव है।"
+        },
+        {
+         "en": "A random place is usually nearer to one friend than another.",
+         "hi": "कोई भी जगह आमतौर पर किसी एक दोस्त के ज़्यादा पास होगी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Mark three dots on paper. Fold to find the perpendicular bisectors of two pairs, and draw the circle through all three.",
+      "hi": "काग़ज़ पर तीन बिंदु बनाओ। मोड़कर दो जोड़ों के लंब समद्विभाजक बनाओ, और तीनों से होकर वृत्त खींचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch05-chord-angle",
+   "topic": "5.4",
+   "template": "match",
+   "title": {
+    "en": "Chords and the angles they make at the centre",
+    "hi": "जीवाएँ और केंद्र पर उनके कोण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "dia",
+      "left": {
+       "en": "A diameter",
+       "hi": "एक व्यास"
+      },
+      "right": {
+       "en": "Angle at the centre 180°",
+       "hi": "केंद्र पर कोण 180°"
+      },
+      "why": {
+       "en": "Its two ends and the centre are on one straight line.",
+       "hi": "इसके दोनों सिरे और केंद्र एक सीधी रेखा पर हैं।"
+      }
+     },
+     {
+      "id": "rad",
+      "left": {
+       "en": "A chord as long as the radius",
+       "hi": "त्रिज्या के बराबर लंबी जीवा"
+      },
+      "right": {
+       "en": "Angle at the centre 60°",
+       "hi": "केंद्र पर कोण 60°"
+      },
+      "why": {
+       "en": "The two radii and the chord make an equilateral triangle.",
+       "hi": "दो त्रिज्याएँ और जीवा एक समबाहु त्रिभुज बनाती हैं।"
+      }
+     },
+     {
+      "id": "eq",
+      "left": {
+       "en": "Two equal chords",
+       "hi": "दो बराबर जीवाएँ"
+      },
+      "right": {
+       "en": "Equal angles at the centre",
+       "hi": "केंद्र पर बराबर कोण"
+      },
+      "why": {
+       "en": "The two triangles with the centre are congruent by SSS.",
+       "hi": "केंद्र के साथ बने दोनों त्रिभुज SSS से सर्वांगसम हैं।"
+      }
+     },
+     {
+      "id": "long",
+      "left": {
+       "en": "A longer chord",
+       "hi": "एक लंबी जीवा"
+      },
+      "right": {
+       "en": "A bigger angle at the centre",
+       "hi": "केंद्र पर बड़ा कोण"
+      },
+      "why": {
+       "en": "Opening the angle wider pushes the ends further apart.",
+       "hi": "कोण को ज़्यादा खोलने पर सिरे और दूर हो जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two chords of a circle are equal. What can you say about the angles they make at the centre?",
+      "hi": "किसी वृत्त की दो जीवाएँ बराबर हैं। केंद्र पर उनके कोणों के बारे में क्या कह सकते हो?"
+     },
+     "options": [
+      {
+       "id": "eq",
+       "en": "They are equal",
+       "hi": "वे बराबर हैं"
+      },
+      {
+       "id": "half",
+       "en": "One is half the other",
+       "hi": "एक, दूसरे का आधा है"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "eq"
+    },
+    {
+     "kind": "do",
+     "target": "left:eq",
+     "expect": "matched:eq",
+     "say": {
+      "en": "Tap 'Two equal chords', then what follows from it.",
+      "hi": "'दो बराबर जीवाएँ' छुओ, फिर उससे क्या निकलता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other cards and tap Check.",
+      "hi": "बाक़ी कार्ड मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Join the ends of a chord to the centre. The two radii are equal, so each chord gives an isosceles triangle. Equal chords give congruent triangles (SSS), so their angles at the centre are equal. The converse is also true: equal angles at the centre cut off equal chords.",
+      "hi": "जीवा के सिरों को केंद्र से मिलाओ। दोनों त्रिज्याएँ बराबर हैं, इसलिए हर जीवा एक समद्विबाहु त्रिभुज देती है। बराबर जीवाओं से सर्वांगसम त्रिभुज (SSS) बनते हैं, इसलिए केंद्र पर उनके कोण बराबर हैं। इसका विलोम भी सत्य है: केंद्र पर बराबर कोण बराबर जीवाएँ काटते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A chord makes 90° at the centre of a circle of radius 5 cm. Another chord makes 90° too. How do they compare?",
+        "hi": "5 सेमी त्रिज्या वाले वृत्त में एक जीवा केंद्र पर 90° बनाती है। दूसरी भी 90° बनाती है। दोनों की तुलना?"
+       },
+       "options": [
+        {
+         "en": "They are equal",
+         "hi": "वे बराबर हैं"
+        },
+        {
+         "en": "The second is longer",
+         "hi": "दूसरी लंबी है"
+        },
+        {
+         "en": "We cannot tell",
+         "hi": "नहीं बता सकते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal angles at the centre of the same circle give equal chords.",
+        "hi": "एक ही वृत्त के केंद्र पर बराबर कोण बराबर जीवाएँ देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both triangles have the same two sides (radii) and the same angle, so the third side is the same.",
+         "hi": "दोनों त्रिभुजों की दो भुजाएँ (त्रिज्याएँ) और कोण एक जैसे हैं, इसलिए तीसरी भुजा भी एक जैसी है।"
+        },
+        {
+         "en": "SAS fixes the triangle, so we can tell.",
+         "hi": "SAS त्रिभुज को तय कर देता है, इसलिए बता सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw a circle and mark six chords each equal to the radius, end to end. What shape do you get?",
+      "hi": "एक वृत्त बनाओ और त्रिज्या के बराबर छह जीवाएँ एक के बाद एक लगाओ। कौन-सी आकृति बनती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch05-chord-bisect",
+   "topic": "5.5",
+   "template": "shapes",
+   "title": {
+    "en": "The perpendicular from the centre halves a chord",
+    "hi": "केंद्र से डाला गया लंब जीवा को आधा करता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "circle",
+    "task": "chord"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Drop a perpendicular from the centre O to a chord AB. Where does it meet the chord?",
+      "hi": "केंद्र O से जीवा AB पर लंब डालो। वह जीवा से कहाँ मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "mid",
+       "en": "Exactly at its midpoint",
+       "hi": "ठीक मध्य-बिंदु पर"
+      },
+      {
+       "id": "nearA",
+       "en": "Nearer to A",
+       "hi": "A के ज़्यादा पास"
+      },
+      {
+       "id": "any",
+       "en": "It depends on the chord",
+       "hi": "जीवा पर निर्भर करता है"
+      }
+     ],
+     "answer": "mid"
+    },
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "proved",
+     "say": {
+      "en": "Drag A along the circle. Watch AM and MB.",
+      "hi": "A को वृत्त पर खिसकाओ। AM और MB पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "proved",
+     "say": {
+      "en": "Now drag B to make a very different chord.",
+      "hi": "अब B को खिसकाकर बिलकुल अलग जीवा बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "OA = OB because both are radii, so triangle OAB is isosceles. The perpendicular OM gives two right triangles OMA and OMB with the same hypotenuse and the same side OM, so they are congruent (RHS) and AM = MB. The converse also holds: the line from O to the midpoint is perpendicular to the chord.",
+      "hi": "OA = OB क्योंकि दोनों त्रिज्याएँ हैं, इसलिए त्रिभुज OAB समद्विबाहु है। लंब OM से दो समकोण त्रिभुज OMA और OMB बनते हैं जिनका कर्ण और भुजा OM एक जैसे हैं, इसलिए वे सर्वांगसम हैं (RHS) और AM = MB। विलोम भी सत्य है: O से मध्य-बिंदु तक की रेखा जीवा पर लंब होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A chord of a circle of radius 5 cm is 8 cm long. How far is it from the centre?",
+        "hi": "5 सेमी त्रिज्या वाले वृत्त में जीवा 8 सेमी लंबी है। वह केंद्र से कितनी दूर है?"
+       },
+       "options": [
+        {
+         "en": "3 cm",
+         "hi": "3 सेमी"
+        },
+        {
+         "en": "4 cm",
+         "hi": "4 सेमी"
+        },
+        {
+         "en": "1 cm",
+         "hi": "1 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Half the chord is 4. In the right triangle, 5² = 4² + d², so d = 3.",
+        "hi": "जीवा का आधा 4 है। समकोण त्रिभुज में 5² = 4² + d², इसलिए d = 3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 cm is half the chord, not the distance to O.",
+         "hi": "4 सेमी जीवा का आधा है, O तक की दूरी नहीं।"
+        },
+        {
+         "en": "5 − 4 = 1 subtracts lengths; the sides of a right triangle follow squares.",
+         "hi": "5 − 4 = 1 लंबाइयाँ घटाता है; समकोण त्रिभुज की भुजाएँ वर्गों का नियम मानती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the centre of a round plate: draw two chords on a paper copy and their perpendicular bisectors. Where do they meet?",
+      "hi": "गोल थाली का केंद्र ढूँढो: उसकी काग़ज़ी नक़ल पर दो जीवाएँ और उनके लंब समद्विभाजक बनाओ। वे कहाँ मिलते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch05-chord-distance",
+   "topic": "5.6",
+   "template": "shapes",
+   "title": {
+    "en": "Longer chords lie closer to the centre",
+    "hi": "लंबी जीवाएँ केंद्र के पास होती हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "circle",
+    "task": "chord"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As a chord gets longer, what happens to its distance OM from the centre?",
+      "hi": "जैसे-जैसे जीवा लंबी होती है, केंद्र से उसकी दूरी OM का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "It gets smaller",
+       "hi": "वह घटती है"
+      },
+      {
+       "id": "more",
+       "en": "It gets bigger",
+       "hi": "वह बढ़ती है"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वैसी ही रहती है"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag A away from B to make the chord longer. Read OM.",
+      "hi": "A को B से दूर खिसकाकर जीवा लंबी करो। OM पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "measured:*",
+     "say": {
+      "en": "Now drag B close to A to make a short chord. Read OM again.",
+      "hi": "अब B को A के पास लाकर छोटी जीवा बनाओ। फिर OM पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the right triangle OMA, OA² = OM² + AM², and OA is always the radius. If half the chord AM grows, OM must shrink. So longer chords are nearer the centre, the diameter is at distance 0, and equal chords are equally far from the centre.",
+      "hi": "समकोण त्रिभुज OMA में OA² = OM² + AM², और OA हमेशा त्रिज्या है। अगर जीवा का आधा AM बढ़े, तो OM को घटना होगा। इसलिए लंबी जीवाएँ केंद्र के पास होती हैं, व्यास की दूरी 0 है, और बराबर जीवाएँ केंद्र से बराबर दूर होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two chords of a circle are both 3 cm from the centre. What do you know?",
+        "hi": "किसी वृत्त की दो जीवाएँ केंद्र से 3-3 सेमी दूर हैं। तुम क्या जानते हो?"
+       },
+       "options": [
+        {
+         "en": "They are equal in length",
+         "hi": "उनकी लंबाई बराबर है"
+        },
+        {
+         "en": "They are parallel",
+         "hi": "वे समांतर हैं"
+        },
+        {
+         "en": "They cross",
+         "hi": "वे एक-दूसरे को काटती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Same radius and same OM give the same half-chord, so the chords are equal.",
+        "hi": "एक ही त्रिज्या और एक ही OM से आधी जीवा एक जैसी आती है, इसलिए जीवाएँ बराबर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They can point in any direction around the circle.",
+         "hi": "वे वृत्त के चारों ओर किसी भी दिशा में हो सकती हैं।"
+        },
+        {
+         "en": "They may or may not cross; distance from O says nothing about that.",
+         "hi": "वे काट भी सकती हैं, नहीं भी; O से दूरी इस बारे में कुछ नहीं कहती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make the chord pass through O. What is OM now, and what is the chord called?",
+      "hi": "जीवा को O से गुज़ारो। अब OM कितना है, और जीवा को क्या कहते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch05-centre-double",
+   "topic": "5.7",
+   "template": "shapes",
+   "title": {
+    "en": "The angle at the centre is double",
+    "hi": "केंद्र पर कोण दुगुना होता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "circle",
+    "task": "angle-centre"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Arc AB makes ∠AOB at the centre and ∠APB at a point P on the circle. How do they compare?",
+      "hi": "चाप AB केंद्र पर ∠AOB और वृत्त के बिंदु P पर ∠APB बनाता है। दोनों की तुलना?"
+     },
+     "options": [
+      {
+       "id": "double",
+       "en": "∠AOB = 2 × ∠APB",
+       "hi": "∠AOB, ∠APB का दुगुना"
+      },
+      {
+       "id": "equal",
+       "en": "They are equal",
+       "hi": "दोनों बराबर हैं"
+      },
+      {
+       "id": "half",
+       "en": "∠AOB is half",
+       "hi": "∠AOB आधा है"
+      }
+     ],
+     "answer": "double"
+    },
+    {
+     "kind": "do",
+     "target": "drag:P",
+     "expect": "proved",
+     "say": {
+      "en": "Drag P along the circle. Watch both angles.",
+      "hi": "P को वृत्त पर खिसकाओ। दोनों कोणों पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "measured:*",
+     "say": {
+      "en": "Now drag A to change the arc, and read ∠AOB.",
+      "hi": "अब A को खिसकाकर चाप बदलो, और ∠AOB पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Join P to O and extend it. Each of the two triangles with O is isosceles (two radii), so its outside angle at O is twice the angle at P. Adding the two parts gives ∠AOB = 2∠APB. So all angles at P on the same arc are equal.",
+      "hi": "P को O से मिलाकर आगे बढ़ाओ। O वाले दोनों त्रिभुज समद्विबाहु हैं (दो त्रिज्याएँ), इसलिए O पर उनका बाहरी कोण P वाले कोण का दुगुना है। दोनों भाग जोड़ने पर ∠AOB = 2∠APB। इसलिए एक ही चाप पर P के सभी कोण बराबर हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "∠AOB = 100°. What is ∠APB for P on the major arc?",
+        "hi": "∠AOB = 100° है। दीर्घ चाप पर P के लिए ∠APB कितना है?"
+       },
+       "options": [
+        "50°",
+        "100°",
+        "200°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The angle on the circle is half the angle at the centre.",
+        "hi": "वृत्त पर बना कोण केंद्र वाले कोण का आधा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equal would be true only for the centre itself.",
+         "hi": "बराबर तो केवल केंद्र पर ही होगा।"
+        },
+        {
+         "en": "That doubles it the wrong way round.",
+         "hi": "यह उल्टी ओर दुगुना कर दिया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move P to the other side of AB, onto the minor arc. What happens to ∠APB now?",
+      "hi": "P को AB की दूसरी ओर, लघु चाप पर ले जाओ। अब ∠APB का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch05-semicircle",
+   "topic": "5.7",
+   "template": "shapes",
+   "title": {
+    "en": "The angle in a semicircle",
+    "hi": "अर्धवृत्त में बना कोण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "circle",
+    "task": "semicircle"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "AB is a diameter. P is any point on the circle. What is ∠APB?",
+      "hi": "AB एक व्यास है। P वृत्त पर कोई भी बिंदु है। ∠APB कितना है?"
+     },
+     "options": [
+      {
+       "id": "90",
+       "en": "Always 90°",
+       "hi": "हमेशा 90°"
+      },
+      {
+       "id": "60",
+       "en": "Always 60°",
+       "hi": "हमेशा 60°"
+      },
+      {
+       "id": "varies",
+       "en": "It changes with P",
+       "hi": "P के साथ बदलता है"
+      }
+     ],
+     "answer": "90"
+    },
+    {
+     "kind": "do",
+     "target": "drag:P",
+     "expect": "proved",
+     "say": {
+      "en": "Drag P all around the circle and read ∠APB.",
+      "hi": "P को पूरे वृत्त पर घुमाओ और ∠APB पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The diameter makes a straight angle, 180°, at the centre. The angle on the circle is half of that, so ∠APB = 90° wherever P is. A carpenter uses this to check that a semicircular cut is true.",
+      "hi": "व्यास केंद्र पर सरल कोण, 180°, बनाता है। वृत्त पर बना कोण उसका आधा होता है, इसलिए P कहीं भी हो, ∠APB = 90°। बढ़ई अर्धवृत्ताकार कटाई जाँचने में इसका उपयोग करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A right-angled set square is placed with its corner on a circle. Its two edges cut the circle at X and Y. What is XY?",
+        "hi": "समकोण सेट-स्क्वेयर का कोना वृत्त पर रखा है। उसकी दोनों भुजाएँ वृत्त को X और Y पर काटती हैं। XY क्या है?"
+       },
+       "options": [
+        {
+         "en": "A diameter",
+         "hi": "एक व्यास"
+        },
+        {
+         "en": "A radius",
+         "hi": "एक त्रिज्या"
+        },
+        {
+         "en": "A tangent",
+         "hi": "एक स्पर्श रेखा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This is the converse: a right angle on the circle stands on a diameter. Two such diameters meet at the centre.",
+        "hi": "यह विलोम है: वृत्त पर समकोण किसी व्यास पर बनता है। ऐसे दो व्यास केंद्र पर मिलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A radius has only one end on the circle; XY has both.",
+         "hi": "त्रिज्या का केवल एक सिरा वृत्त पर होता है; XY के दोनों हैं।"
+        },
+        {
+         "en": "A tangent touches the circle at one point only.",
+         "hi": "स्पर्श रेखा वृत्त को केवल एक बिंदु पर छूती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the set-square trick twice on a round lid traced on paper to find its centre.",
+      "hi": "काग़ज़ पर बने गोल ढक्कन के घेरे पर सेट-स्क्वेयर वाली तरकीब दो बार लगाकर उसका केंद्र ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch05-cyclic",
+   "topic": "5.8",
+   "template": "shapes",
+   "title": {
+    "en": "Cyclic quadrilaterals: opposite angles",
+    "hi": "चक्रीय चतुर्भुज: सम्मुख कोण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "circle",
+    "task": "cyclic"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "All four corners of ABCD are on a circle. What is ∠A + ∠C?",
+      "hi": "ABCD के चारों कोने एक वृत्त पर हैं। ∠A + ∠C कितना है?"
+     },
+     "options": [
+      {
+       "id": "180",
+       "en": "180°",
+       "hi": "180° (सरल कोण)"
+      },
+      {
+       "id": "360",
+       "en": "360°",
+       "hi": "360° (पूरा चक्कर)"
+      },
+      {
+       "id": "90",
+       "en": "90°",
+       "hi": "90° (समकोण)"
+      }
+     ],
+     "answer": "180"
+    },
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "proved",
+     "say": {
+      "en": "Drag A along the circle and add the opposite angles.",
+      "hi": "A को वृत्त पर खिसकाओ और सम्मुख कोण जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:C",
+     "expect": "proved",
+     "say": {
+      "en": "Drag C too. Does the sum change?",
+      "hi": "C को भी खिसकाओ। क्या योग बदलता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "∠A stands on arc BCD and ∠C on arc BAD. These two arcs make the whole circle, 360° at the centre, and each angle is half its arc's angle. So ∠A + ∠C = 180°. Points that lie on one circle are called concyclic.",
+      "hi": "∠A चाप BCD पर और ∠C चाप BAD पर बनता है। ये दोनों चाप मिलकर पूरा वृत्त हैं, केंद्र पर 360°, और हर कोण अपने चाप के कोण का आधा है। इसलिए ∠A + ∠C = 180°। जो बिंदु एक ही वृत्त पर हों, उन्हें चक्रीय (समवृत्तीय) कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a cyclic quadrilateral ∠B = 75°. What is ∠D?",
+        "hi": "किसी चक्रीय चतुर्भुज में ∠B = 75° है। ∠D कितना है?"
+       },
+       "options": [
+        "105°",
+        "75°",
+        "285°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Opposite angles add to 180°: 180 − 75 = 105.",
+        "hi": "सम्मुख कोणों का योग 180° है: 180 − 75 = 105।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Opposite angles of a cyclic quadrilateral add to 180°; they are equal only if both are 90°.",
+         "hi": "चक्रीय चतुर्भुज के सम्मुख कोण 180° बनाते हैं; बराबर तभी होते हैं जब दोनों 90° हों।"
+        },
+        {
+         "en": "That uses 360°, the sum of all four angles, not of two opposite ones.",
+         "hi": "इसमें 360° लिया, जो चारों कोणों का योग है, दो सम्मुख कोणों का नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can a parallelogram that is not a rectangle be cyclic?",
+        "hi": "क्या आयत न होने वाला समांतर चतुर्भुज चक्रीय हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "No",
+         "hi": "नहीं"
+        },
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Its opposite angles are equal; to add to 180° each must be 90°, which makes it a rectangle.",
+        "hi": "इसके सम्मुख कोण बराबर हैं; 180° होने के लिए हर एक 90° होना चाहिए, जिससे वह आयत बन जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equal opposite angles add to 180° only when both are 90°.",
+         "hi": "बराबर सम्मुख कोण 180° तभी बनाते हैं जब दोनों 90° हों।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag B so that ABCD becomes a rectangle. Where are its diagonals now?",
+      "hi": "B को खिसकाकर ABCD को आयत बनाओ। अब इसके विकर्ण कहाँ हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Chapter hook: circles everywhere",
+   "shows": "A potter's wheel in an Indian village with a round clay pot being shaped, the wheel spinning",
+   "view": "Three-quarter view from above, warm daylight",
+   "right": "Wheel and pot rim clearly circular",
+   "avoid": "Faces; blurred hands that hide the rim"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Paper circle folded for symmetry",
+   "shows": "A white paper circle folded and opened several times, showing creases that all cross at the centre",
+   "view": "Straight from above, soft side light",
+   "right": "Every crease passes through the same centre point",
+   "avoid": "Pencil labels"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Parts of a circle on a roti",
+   "shows": "A round roti on a steel plate, cut once through the middle and once off-centre",
+   "view": "Straight from above",
+   "right": "One cut through the centre (diameter), one not (chord)",
+   "avoid": "Burnt patches that hide the cuts"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "5.5",
+   "use": "Finding the centre of a plate",
+   "shows": "A paper tracing of a round plate with two chords and their perpendicular bisectors drawn in pencil, in three frames",
+   "view": "Straight from above",
+   "right": "Bisectors meet exactly at the centre",
+   "avoid": "Printed letters"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "5.7",
+   "use": "Set square in a semicircle",
+   "shows": "A plastic set square with its right-angle corner touching the inside of a semicircle drawn on paper, both edges touching the ends of the diameter",
+   "view": "Straight from above",
+   "right": "Edges meet the diameter's ends exactly",
+   "avoid": "Brand names on the set square"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "5.8",
+   "use": "Concyclic points in real life",
+   "shows": "Four lamps placed on a circular stepwell rim or a round fountain edge, seen from above",
+   "view": "High angle, evening light",
+   "right": "All four lamps clearly on the same circle",
+   "avoid": "People, signboards"
+  }
+ ]
+}

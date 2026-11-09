@@ -1,0 +1,524 @@
+{
+ "chapter_key": "u.c07.hindi.ghml1.ch03",
+ "class": 7,
+ "subject_id": "hindi",
+ "title": "Phool aur Kaanta (फूल और काँटा)",
+ "source": "https://ncert.nic.in/textbook.php?ghml1=0-10",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Flower and thorn: one plant, different ways",
+   "labs": [
+    "c07-hindi-ghml1-ch03-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Rhythm and rhyme (तुक) in the poem",
+   "labs": [
+    "c07-hindi-ghml1-ch03-rhythm"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Greatness of family and of character: talk",
+   "labs": [],
+   "why_no_lab": "This idea of real greatness grows best through a class talk with examples from children's own lives."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-hindi-ghml1-ch03-sort",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "Flower or thorn?",
+    "hi": "फूल या काँटा?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "phool",
+      "label": {
+       "en": "Flower",
+       "hi": "फूल"
+      }
+     },
+     {
+      "id": "kaanta",
+      "label": {
+       "en": "Thorn",
+       "hi": "काँटा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "prick",
+      "text": {
+       "en": "Pricks the fingers of anyone who touches it",
+       "hi": "छूने वाले की उँगलियाँ छेद देता है"
+      },
+      "bin": "kaanta",
+      "why": {
+       "en": "The thorn pierces the finger that touches it.",
+       "hi": "काँटा छूने वाले की उँगली में चुभ जाता है।"
+      }
+     },
+     {
+      "id": "lap",
+      "text": {
+       "en": "Takes the butterfly lovingly into its lap",
+       "hi": "तितली को प्यार से अपनी गोद में ले लेता है"
+      },
+      "bin": "phool",
+      "why": {
+       "en": "The flower welcomes the butterfly into its lap.",
+       "hi": "फूल तितली को अपनी गोद में बैठा लेता है।"
+      }
+     },
+     {
+      "id": "tear",
+      "text": {
+       "en": "Tears someone's clothes",
+       "hi": "किसी के कपड़े फाड़ देता है"
+      },
+      "bin": "kaanta",
+      "why": {
+       "en": "A thorn catches on cloth and tears it.",
+       "hi": "काँटा कपड़े में अटककर उसे फाड़ देता है।"
+      }
+     },
+     {
+      "id": "juice",
+      "text": {
+       "en": "Gives the bee its special sweet juice",
+       "hi": "भौंरे को अपना अनोखा रस पिलाता है"
+      },
+      "bin": "phool",
+      "why": {
+       "en": "The flower gives the bee its sweet juice.",
+       "hi": "फूल भौंरे को अपना मीठा रस पिलाता है।"
+      }
+     },
+     {
+      "id": "wing",
+      "text": {
+       "en": "Clips the wings of loving butterflies",
+       "hi": "प्यार में डूबी तितलियों के पंख कतर देता है"
+      },
+      "bin": "kaanta",
+      "why": {
+       "en": "The thorn can cut a butterfly's wings.",
+       "hi": "काँटा तितलियों के पर कतर सकता है।"
+      }
+     },
+     {
+      "id": "bud",
+      "text": {
+       "en": "Helps the bud open with its colour and scent",
+       "hi": "अपनी सुगंध और रंग से कली को खिला देता है"
+      },
+      "bin": "phool",
+      "why": {
+       "en": "The flower's colour and scent make the bud bloom.",
+       "hi": "फूल के रंग और सुगंध से कली खिल उठती है।"
+      }
+     },
+     {
+      "id": "bee",
+      "text": {
+       "en": "Pierces the dark body of a bee",
+       "hi": "भौंरे का काला शरीर बेध देता है"
+      },
+      "bin": "kaanta",
+      "why": {
+       "en": "A thorn can pierce a bee's body.",
+       "hi": "काँटा भौंरे के शरीर को बेध सकता है।"
+      }
+     },
+     {
+      "id": "head",
+      "text": {
+       "en": "Is placed with respect on the head of a god",
+       "hi": "देवता के सिर पर आदर से सजता है"
+      },
+      "bin": "phool",
+      "why": {
+       "en": "The flower is offered to gods and looks beautiful on them.",
+       "hi": "फूल देवता को चढ़ाया जाता है और वहाँ सुंदर लगता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:prick",
+     "expect": "placed:prick",
+     "say": {
+      "en": "Tap a card, then tap the bin where it belongs.",
+      "hi": "कोई कार्ड छुओ, फिर उस डिब्बे को छुओ जहाँ वह सही है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Flower and thorn grow on one plant and get the same moon, rain and wind. Will they behave the same way?",
+      "hi": "फूल और काँटा एक ही पौधे पर उगते हैं और एक-सी चाँदनी, बारिश और हवा पाते हैं। क्या उनका व्यवहार एक-सा होगा?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "Yes, the same",
+       "hi": "हाँ, एक-सा"
+      },
+      {
+       "id": "diff",
+       "en": "No, very different",
+       "hi": "नहीं, बिल्कुल अलग"
+      },
+      {
+       "id": "none",
+       "en": "Neither does anything",
+       "hi": "दोनों कुछ नहीं करते"
+      }
+     ],
+     "answer": "diff"
+    },
+    {
+     "kind": "do",
+     "target": "card:head",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards. Press Check at the end.",
+      "hi": "सारे कार्ड छाँटो। अंत में जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The poet shows that a flower and a thorn are born in the same place, grow on one plant and get the same care. Still their ways differ: the thorn hurts and the flower gives joy. What we do decides who we are, not only where we come from.",
+      "hi": "कवि दिखाते हैं कि फूल और काँटा एक ही जगह जन्म लेते हैं, एक ही पौधे पर पलते हैं और एक-सी देखभाल पाते हैं। फिर भी उनके ढंग अलग हैं: काँटा चुभता है और फूल सुख देता है। हम क्या करते हैं, यही तय करता है कि हम कैसे हैं, केवल यह नहीं कि हम कहाँ से आए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do the flower and the thorn have in common?",
+        "hi": "फूल और काँटे में क्या समानता है?"
+       },
+       "options": [
+        {
+         "en": "They grow on the same plant and get the same rain and moonlight",
+         "hi": "वे एक ही पौधे पर उगते हैं और एक-सी बारिश-चाँदनी पाते हैं"
+        },
+        {
+         "en": "They both give honey to bees",
+         "hi": "दोनों भौंरों को रस देते हैं"
+        },
+        {
+         "en": "They both look lovely on a god's head",
+         "hi": "दोनों देवता के सिर पर सुंदर लगते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They have the same home, the same care and the same weather, yet different ways.",
+        "hi": "उनका घर, देखभाल और मौसम एक-सा है, फिर भी ढंग अलग हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only the flower gives juice to the bee. The thorn pierces it.",
+         "hi": "भौंरे को रस केवल फूल देता है। काँटा तो उसे बेधता है।"
+        },
+        {
+         "en": "The flower is offered to gods. The thorn is not.",
+         "hi": "फूल देवता को चढ़ाया जाता है, काँटा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the poet's main message?",
+        "hi": "कवि का मुख्य संदेश क्या है?"
+       },
+       "options": [
+        {
+         "en": "Family name alone does not make a person great; good deeds do",
+         "hi": "केवल कुल के नाम से कोई बड़ा नहीं होता; अच्छे काम से होता है"
+        },
+        {
+         "en": "Flowers are always weak",
+         "hi": "फूल हमेशा कमज़ोर होते हैं"
+        },
+        {
+         "en": "Thorns should be cut from every plant",
+         "hi": "हर पौधे से काँटे काट देने चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The poet says that greatness of family does not help when a person lacks real goodness.",
+        "hi": "कवि कहते हैं कि कुल की बड़ाई तब काम नहीं आती जब किसी में सच्ची अच्छाई न हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The poem praises the flower's gentle kindness; it is not called weak.",
+         "hi": "कविता फूल की कोमल दयालुता की प्रशंसा करती है; उसे कमज़ोर नहीं कहा गया।"
+        },
+        {
+         "en": "The poem is about behaviour and not about cutting plants.",
+         "hi": "कविता व्यवहार के बारे में है, पौधों की कटाई के बारे में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of two children in one family who behave differently. Without naming anyone, what makes them different? Talk with a friend.",
+      "hi": "एक ही परिवार के दो बच्चों के बारे में सोचो जिनका व्यवहार अलग है। किसी का नाम लिए बिना बताओ कि क्या अंतर है। दोस्त से बात करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-hindi-ghml1-ch03-rhythm",
+   "topic": "3.2",
+   "template": "reader",
+   "title": {
+    "en": "Feel the rhythm",
+    "hi": "कविता की लय महसूस करो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "rhythm",
+    "lang": "hi",
+    "bpm": 84,
+    "passage": {
+     "title": {
+      "en": "Same plant, different ways",
+      "hi": "एक पौधा, अलग ढंग"
+     },
+     "lines": [
+      "एक ही पौधे पर दोनों उगते हैं,",
+      "एक-सी बारिश में दोनों भीगते हैं।",
+      "फूल सुगंध और रस लुटाता है,",
+      "काँटा चुभकर पीड़ा दे जाता है।"
+     ]
+    },
+    "question": {
+     "q": {
+      "en": "What do these four lines say?",
+      "hi": "इन चार पंक्तियों में क्या कहा गया है?"
+     },
+     "options": [
+      {
+       "en": "Same place and care, but different ways",
+       "hi": "एक जगह और देखभाल, पर अलग ढंग"
+      },
+      {
+       "en": "Thorns are bigger than flowers",
+       "hi": "काँटे फूलों से बड़े होते हैं"
+      },
+      {
+       "en": "Only flowers need rain",
+       "hi": "बारिश केवल फूलों को चाहिए"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "Both grow and get wet on one plant, yet one gives scent and the other pain.",
+      "hi": "दोनों एक पौधे पर उगते और भीगते हैं, फिर भी एक सुगंध देता है और दूसरा दर्द।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line to hear it.",
+      "hi": "पहली पंक्ति छुओ और उसे सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at the ends of lines 1 and 2: उगते हैं and भीगते हैं. Do they sound alike?",
+      "hi": "पंक्ति 1 और 2 के अंत देखो: उगते हैं और भीगते हैं। क्या ये एक-से सुनाई देते हैं?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, they sound alike",
+       "hi": "हाँ, एक-से सुनाई देते हैं"
+      },
+      {
+       "id": "no",
+       "en": "No, they sound different",
+       "hi": "नहीं, अलग सुनाई देते हैं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play to hear the whole poem.",
+      "hi": "पूरी कविता सुनने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beat",
+     "expect": "beat-ok",
+     "say": {
+      "en": "Tap the big beat button each time the part of a word lights up.",
+      "hi": "शब्द का कोई भाग चमके तो बड़ा बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the lines.",
+      "hi": "पंक्तियों के बारे में प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A poem has a beat, like a drum or a heartbeat. Lines that end with the same sound, such as उगते हैं and भीगते हैं, make the poem easy to remember. Tapping the beat helps you feel it.",
+      "hi": "कविता में ताल होती है, जैसे ढोल या धड़कन की। जिन पंक्तियों का अंत एक-सी ध्वनि पर होता है, जैसे उगते हैं और भीगते हैं, वे कविता को याद रखना आसान बनाती हैं। ताल पर ताली देने से लय महसूस होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which pair of words ends with a similar sound?",
+        "hi": "कौन-सी जोड़ी एक-सी ध्वनि पर ख़त्म होती है?"
+       },
+       "options": [
+        {
+         "en": "उगते हैं - भीगते हैं",
+         "hi": "उगते हैं - भीगते हैं"
+        },
+        {
+         "en": "फूल - काँटा",
+         "hi": "फूल - काँटा"
+        },
+        {
+         "en": "पौधा - बारिश",
+         "hi": "पौधा - बारिश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both end with ते हैं, which gives the lines a matching sound (तुक).",
+        "hi": "दोनों का अंत ते हैं पर होता है, इसी से पंक्तियों में तुक बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "These two sound quite different at the end.",
+         "hi": "इन दोनों का अंत अलग-अलग सुनाई देता है।"
+        },
+        {
+         "en": "They do not rhyme at all.",
+         "hi": "इनका तुक बिल्कुल नहीं मिलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write two lines about a lamp and a candle that rhyme. Clap the beat as you say them.",
+      "hi": "दीपक और मोमबत्ती के बारे में दो तुकबंदी वाली पंक्तियाँ लिखो। बोलते हुए ताली से ताल दो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Rose with thorns",
+   "shows": "A single red rose stem with a flower, leaves and sharp thorns, cut-out",
+   "view": "Side view, three-quarter",
+   "right": "Thorns clearly visible, petals fresh, natural green",
+   "avoid": "Pesticide look, wilting",
+   "n": 1
+  },
+  {
+   "kind": "MAC",
+   "topic": "3.1",
+   "use": "Thorn close-up",
+   "shows": "A close-up of a thorn on a rose stem and a fingertip near it (not touching)",
+   "view": "Macro, square",
+   "right": "Sharp point sharply focused, soft background",
+   "avoid": "Blood, wounds",
+   "n": 2
+  },
+  {
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Butterfly on flower",
+   "shows": "A butterfly resting on a flower while a bee also visits, in a garden",
+   "view": "Eye-level macro, 16:9",
+   "right": "Wings clearly spread, pollen dust visible",
+   "avoid": "Posed insects, plastic look",
+   "n": 3
+  },
+  {
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Moonlit plant",
+   "shows": "A flowering plant at night with a full moon, dew on petals, thorns visible on the stem",
+   "view": "Wide, low angle",
+   "right": "Silver light, calm mood",
+   "avoid": "Over-bright, artificial glow",
+   "n": 4
+  },
+  {
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Flowers offered",
+   "shows": "A brass plate with marigolds and roses offered in a small temple, cut-out",
+   "view": "Top view",
+   "right": "Fresh flowers, steel or brass thali",
+   "avoid": "Any idol face or religion-specific symbols for another faith",
+   "n": 5
+  },
+  {
+   "kind": "DIA",
+   "topic": "3.2",
+   "use": "Beat strip",
+   "shows": "A plain blank strip of equal boxes the app uses to show beats",
+   "view": "Top view",
+   "right": "Clean, equal spacing, white",
+   "avoid": "Printed words or numbers",
+   "n": 6
+  }
+ ]
+}

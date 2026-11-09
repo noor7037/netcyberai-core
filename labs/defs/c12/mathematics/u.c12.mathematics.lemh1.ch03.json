@@ -1,0 +1,1317 @@
+{
+ "chapter_key": "u.c12.mathematics.lemh1.ch03",
+ "class": 12,
+ "subject_id": "mathematics",
+ "title": "Matrices",
+ "source": "https://ncert.nic.in/textbook/pdf/lemh103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Introduction: matrices as a compact way to store and work with data",
+   "labs": [],
+   "why_no_lab": "An opening note; every lab of this chapter starts from a real table of data."
+  },
+  {
+   "n": "3.2",
+   "title": "Matrix and the order of a matrix",
+   "labs": [
+    "c12-mathematics-lemh1-ch03-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Types of matrices and equality of matrices",
+   "labs": [
+    "c12-mathematics-lemh1-ch03-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Operations on matrices: addition, scalar multiplication, multiplication and their properties",
+   "labs": [
+    "c12-mathematics-lemh1-ch03-add",
+    "c12-mathematics-lemh1-ch03-multiply"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Transpose of a matrix and its properties",
+   "labs": [
+    "c12-mathematics-lemh1-ch03-transpose"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Symmetric and skew symmetric matrices",
+   "labs": [
+    "c12-mathematics-lemh1-ch03-symmetric"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.7",
+   "title": "Invertible matrices",
+   "labs": [
+    "c12-mathematics-lemh1-ch03-inverse-check"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-mathematics-lemh1-ch03-types",
+   "topic": "3.3",
+   "template": "sort",
+   "title": {
+    "en": "Name the matrix",
+    "hi": "आव्यूह को पहचानो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "row",
+      "label": {
+       "en": "Row matrix",
+       "hi": "पंक्ति आव्यूह"
+      }
+     },
+     {
+      "id": "col",
+      "label": {
+       "en": "Column matrix",
+       "hi": "स्तंभ आव्यूह"
+      }
+     },
+     {
+      "id": "diag",
+      "label": {
+       "en": "Diagonal, not scalar",
+       "hi": "विकर्ण, अदिश नहीं"
+      }
+     },
+     {
+      "id": "scal",
+      "label": {
+       "en": "Scalar, not identity",
+       "hi": "अदिश, तत्समक नहीं"
+      }
+     },
+     {
+      "id": "iden",
+      "label": {
+       "en": "Identity",
+       "hi": "तत्समक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "r1",
+      "text": {
+       "en": "[2  −1  5]  (order 1 × 3)",
+       "hi": "[2  −1  5]  (कोटि 1 × 3)"
+      },
+      "bin": "row",
+      "why": {
+       "en": "One row and three columns: a row matrix.",
+       "hi": "एक पंक्ति और तीन स्तंभ: पंक्ति आव्यूह।"
+      }
+     },
+     {
+      "id": "c1",
+      "text": {
+       "en": "[4; 0; 7]  (order 3 × 1)",
+       "hi": "[4; 0; 7]  (कोटि 3 × 1)"
+      },
+      "bin": "col",
+      "why": {
+       "en": "Three rows and one column: a column matrix.",
+       "hi": "तीन पंक्तियाँ और एक स्तंभ: स्तंभ आव्यूह।"
+      }
+     },
+     {
+      "id": "d1",
+      "text": {
+       "en": "[3  0; 0  7]",
+       "hi": "[3  0; 0  7]"
+      },
+      "bin": "diag",
+      "why": {
+       "en": "All entries off the diagonal are 0, but the diagonal entries 3 and 7 differ, so it is not scalar.",
+       "hi": "विकर्ण के बाहर सब 0 हैं, पर विकर्ण के 3 और 7 अलग हैं, इसलिए अदिश नहीं।"
+      }
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "[1  0  0; 0  0  0; 0  0  4]",
+       "hi": "[1  0  0; 0  0  0; 0  0  4]"
+      },
+      "bin": "diag",
+      "why": {
+       "en": "Only the diagonal may be non-zero, and its entries 1, 0, 4 are not all equal.",
+       "hi": "केवल विकर्ण शून्येतर हो सकता है, और उसके 1, 0, 4 सब बराबर नहीं।"
+      }
+     },
+     {
+      "id": "s1",
+      "text": {
+       "en": "[5  0; 0  5]",
+       "hi": "[5  0; 0  5]"
+      },
+      "bin": "scal",
+      "why": {
+       "en": "A diagonal matrix with every diagonal entry equal (5): scalar. It is 5 times the identity.",
+       "hi": "विकर्ण आव्यूह जिसके सभी विकर्ण अवयव बराबर (5): अदिश। यह तत्समक का 5 गुना है।"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "[−2  0  0; 0  −2  0; 0  0  −2]",
+       "hi": "[−2  0  0; 0  −2  0; 0  0  −2]"
+      },
+      "bin": "scal",
+      "why": {
+       "en": "Equal diagonal entries, −2, and zeros elsewhere.",
+       "hi": "विकर्ण अवयव बराबर, −2, और बाक़ी शून्य।"
+      }
+     },
+     {
+      "id": "i2",
+      "text": {
+       "en": "[1  0; 0  1]",
+       "hi": "[1  0; 0  1]"
+      },
+      "bin": "iden",
+      "why": {
+       "en": "1s on the diagonal and 0s elsewhere: the identity I of order 2.",
+       "hi": "विकर्ण पर 1 और बाक़ी 0: कोटि 2 का तत्समक I।"
+      }
+     },
+     {
+      "id": "i3",
+      "text": {
+       "en": "[1  0  0; 0  1  0; 0  0  1]",
+       "hi": "[1  0  0; 0  1  0; 0  0  1]"
+      },
+      "bin": "iden",
+      "why": {
+       "en": "The identity of order 3. Every identity is also scalar and diagonal; we pick its most special name.",
+       "hi": "कोटि 3 का तत्समक। हर तत्समक अदिश और विकर्ण भी है; हम उसका सबसे विशेष नाम चुनते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "In these cards a semicolon starts a new row. Tap [4; 0; 7] and place it.",
+      "hi": "इन कार्डों में अर्धविराम (;) नई पंक्ति शुरू करता है। [4; 0; 7] पर टैप करो और रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "[5 0; 0 5] has equal diagonal entries. Is it also a diagonal matrix?",
+      "hi": "[5 0; 0 5] के विकर्ण अवयव बराबर हैं। क्या यह विकर्ण आव्यूह भी है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, every scalar matrix is diagonal",
+       "hi": "हाँ, हर अदिश आव्यूह विकर्ण है"
+      },
+      {
+       "id": "no",
+       "en": "No, it is only scalar",
+       "hi": "नहीं, यह केवल अदिश है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Place [5 0; 0 5] in its most special group.",
+      "hi": "[5 0; 0 5] को उसके सबसे विशेष समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The order m × n says m rows and n columns. Square matrices can be special: diagonal (zeros off the diagonal), scalar (diagonal with equal entries) and identity (scalar with 1s). Each is a special case of the one before, like squares inside rectangles.",
+      "hi": "कोटि m × n का अर्थ m पंक्तियाँ और n स्तंभ। वर्ग आव्यूह विशेष हो सकते हैं: विकर्ण (विकर्ण के बाहर शून्य), अदिश (बराबर अवयवों वाला विकर्ण) और तत्समक (1 वाला अदिश)। हर एक पिछले का विशेष रूप है, जैसे आयतों में वर्ग।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A matrix has 12 entries. Which order is impossible?",
+        "hi": "एक आव्यूह में 12 अवयव हैं। कौन-सी कोटि असंभव है?"
+       },
+       "options": [
+        "5 × 2",
+        "3 × 4",
+        "1 × 12"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 × 2 holds only 10 entries.",
+        "hi": "5 × 2 में केवल 10 अवयव आते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 × 4 = 12, so it is possible.",
+         "hi": "3 × 4 = 12, इसलिए संभव है।"
+        },
+        {
+         "en": "1 × 12 = 12: a row matrix.",
+         "hi": "1 × 12 = 12: एक पंक्ति आव्यूह।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In A = [aᵢⱼ], what does a₂₃ mean?",
+        "hi": "A = [aᵢⱼ] में a₂₃ का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Row 2, column 3",
+         "hi": "पंक्ति 2, स्तंभ 3"
+        },
+        {
+         "en": "Row 3, column 2",
+         "hi": "पंक्ति 3, स्तंभ 2"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The first index is always the row, the second the column.",
+        "hi": "पहला सूचकांक हमेशा पंक्ति, दूसरा स्तंभ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a₃₂; the row number comes first.",
+         "hi": "वह a₃₂ है; पंक्ति संख्या पहले आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write a 3 × 3 matrix whose entries are aᵢⱼ = i + j. Is it diagonal? Is it equal to its own mirror across the diagonal?",
+      "hi": "aᵢⱼ = i + j वाला 3 × 3 आव्यूह लिखो। क्या यह विकर्ण है? क्या यह विकर्ण के पार अपने दर्पण के बराबर है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch03-add",
+   "topic": "3.4",
+   "template": "matrix",
+   "title": {
+    "en": "Adding sales of two weeks",
+    "hi": "दो सप्ताहों की बिक्री जोड़ो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "matrix-add",
+    "a": [
+     [
+      12,
+      8
+     ],
+     [
+      5,
+      9
+     ]
+    ],
+    "b": [
+     [
+      10,
+      6
+     ],
+     [
+      7,
+      4
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cell:1-1",
+     "expect": "computed",
+     "say": {
+      "en": "A is week 1 and B is week 2: rows are two shops, columns are kurtas and sarees sold. Tap the top-left box of the answer.",
+      "hi": "A पहला सप्ताह और B दूसरा: पंक्तियाँ दो दुकानें, स्तंभ बिके कुर्ते और साड़ियाँ। उत्तर का ऊपर-बाएँ खाना दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Shop 2 sold 9 sarees in week 1 and 4 in week 2. What is the bottom-right entry of A + B?",
+      "hi": "दुकान 2 ने पहले सप्ताह 9 और दूसरे सप्ताह 4 साड़ियाँ बेचीं। A + B का नीचे-दाएँ अवयव क्या है?"
+     },
+     "options": [
+      {
+       "id": "13",
+       "en": "Thirteen",
+       "hi": "तेरह"
+      },
+      {
+       "id": "36",
+       "en": "Thirty-six",
+       "hi": "छत्तीस"
+      },
+      {
+       "id": "5",
+       "en": "Five",
+       "hi": "पाँच"
+      }
+     ],
+     "answer": "13"
+    },
+    {
+     "kind": "do",
+     "target": "op:show",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Show to see the whole sum.",
+      "hi": "पूरा योग देखने के लिए दिखाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:subtract",
+     "expect": "computed",
+     "say": {
+      "en": "Now tap Subtract to see how sales changed from week 2 to week 1.",
+      "hi": "अब घटाओ दबाकर देखो कि बिक्री में कितना अंतर रहा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Matrices of the same order add entry by entry: the entry in row i, column j of A + B is aᵢⱼ + bᵢⱼ. So the total for each shop and each item lands in the same place. Subtraction works the same way, and A + B = B + A because each entry is an ordinary sum.",
+      "hi": "एक ही कोटि के आव्यूह अवयव-दर-अवयव जुड़ते हैं: A + B की पंक्ति i, स्तंभ j का अवयव aᵢⱼ + bᵢⱼ है। इसलिए हर दुकान और हर वस्तु का कुल उसी जगह आता है। घटाना भी ऐसे ही होता है, और A + B = B + A क्योंकि हर अवयव साधारण योग है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Can a 2 × 3 matrix be added to a 3 × 2 matrix?",
+        "hi": "क्या 2 × 3 आव्यूह को 3 × 2 आव्यूह में जोड़ सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "No",
+         "hi": "नहीं"
+        },
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Addition needs the same order, so every entry has a partner.",
+        "hi": "जोड़ने के लिए समान कोटि चाहिए, ताकि हर अवयव का जोड़ीदार हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both have 6 entries, but their places do not line up.",
+         "hi": "दोनों में 6 अवयव हैं, पर उनकी जगहें मेल नहीं खातीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A shopkeeper doubles every price in a price matrix P. The new matrix is:",
+        "hi": "दुकानदार मूल्य आव्यूह P का हर मूल्य दुगुना करता है। नया आव्यूह है:"
+       },
+       "options": [
+        "2P",
+        "P + 2",
+        "P²"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Multiplying a matrix by the scalar 2 doubles each entry.",
+        "hi": "आव्यूह को अदिश 2 से गुणा करने पर हर अवयव दुगुना होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding a number to a matrix is not defined; and it would add, not double.",
+         "hi": "आव्यूह में संख्या जोड़ना परिभाषित नहीं; और वह जोड़ता, दुगुना नहीं करता।"
+        },
+        {
+         "en": "P² is P times P, a matrix product, not doubling.",
+         "hi": "P², P गुणा P है, आव्यूह गुणन, दुगुना करना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap New for another pair. Check that A + B and B + A give the same answer, but A − B and B − A do not.",
+      "hi": "नया जोड़ा लेने के लिए नया दबाओ। जाँचो कि A + B और B + A बराबर हैं, पर A − B और B − A नहीं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch03-multiply",
+   "topic": "3.4",
+   "template": "matrix",
+   "title": {
+    "en": "Row times column: AB is not BA",
+    "hi": "पंक्ति गुणा स्तंभ: AB, BA नहीं है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "matrix-multiply",
+    "a": [
+     [
+      2,
+      3
+     ],
+     [
+      1,
+      4
+     ]
+    ],
+    "b": [
+     [
+      5,
+      1
+     ],
+     [
+      2,
+      6
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cell:1-1",
+     "expect": "computed",
+     "say": {
+      "en": "Tap the top-left box of AB. Watch row 1 of A meet column 1 of B.",
+      "hi": "AB का ऊपर-बाएँ खाना दबाओ। देखो A की पंक्ति 1, B के स्तंभ 1 से कैसे मिलती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:step",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Step to make the next entry.",
+      "hi": "अगला अवयव बनाने के लिए चरण दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will swap A and B and work out BA. Will it equal AB?",
+      "hi": "अब तुम A और B बदलकर BA निकालोगे। क्या यह AB के बराबर होगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it will be different",
+       "hi": "नहीं, अलग होगा"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, the same",
+       "hi": "हाँ, बराबर"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "op:swap",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Swap to compute BA.",
+      "hi": "BA निकालने के लिए बदलो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each entry of a product is a row of the first matrix times a column of the second: multiply in pairs and add. AB = [16 20; 13 25] but BA = [11 19; 10 30]. Swapping changes which rows meet which columns, so matrix multiplication is not commutative.",
+      "hi": "गुणनफल का हर अवयव पहले आव्यूह की पंक्ति गुणा दूसरे का स्तंभ है: जोड़ियों में गुणा करो और जोड़ो। AB = [16 20; 13 25] पर BA = [11 19; 10 30]। बदलने से कौन-सी पंक्ति किस स्तंभ से मिलती है, यह बदल जाता है, इसलिए आव्यूह गुणन क्रमविनिमेय नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A is 2 × 3 and B is 3 × 4. What is the order of AB?",
+        "hi": "A, 2 × 3 और B, 3 × 4 है। AB की कोटि क्या है?"
+       },
+       "options": [
+        "2 × 4",
+        "3 × 3",
+        {
+         "en": "It is not defined",
+         "hi": "परिभाषित नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The inner numbers (3 and 3) match; the outer numbers give the order 2 × 4.",
+        "hi": "अंदर की संख्याएँ (3 और 3) मेल खाती हैं; बाहर की संख्याएँ कोटि 2 × 4 देती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The matching inner numbers disappear; the order comes from the outer ones.",
+         "hi": "मेल खाने वाली अंदर की संख्याएँ हट जाती हैं; कोटि बाहर की संख्याओं से बनती है।"
+        },
+        {
+         "en": "A has 3 columns and B has 3 rows, so AB is defined.",
+         "hi": "A के 3 स्तंभ और B की 3 पंक्तियाँ हैं, इसलिए AB परिभाषित है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Pens cost ₹10 and notebooks ₹40. Riya buys 3 pens and 2 notebooks. Which product gives her bill?",
+        "hi": "पेन ₹10 और कॉपी ₹40 की है। रिया 3 पेन और 2 कॉपियाँ लेती है। कौन-सा गुणन बिल देता है?"
+       },
+       "options": [
+        "[3 2] × [10; 40]",
+        "[10 40] × [3 2]"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A 1 × 2 row times a 2 × 1 column gives 3 × 10 + 2 × 40 = ₹110.",
+        "hi": "1 × 2 पंक्ति गुणा 2 × 1 स्तंभ = 3 × 10 + 2 × 40 = ₹110।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A 1 × 2 row times another 1 × 2 row is not defined: the inner sizes 2 and 1 do not match.",
+         "hi": "1 × 2 पंक्ति गुणा 1 × 2 पंक्ति परिभाषित नहीं: अंदर के आकार 2 और 1 मेल नहीं खाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap New for fresh matrices. Try to find a pair where AB happens to equal BA.",
+      "hi": "नए आव्यूहों के लिए नया दबाओ। ऐसी जोड़ी ढूँढने की कोशिश करो जिसमें AB और BA बराबर हों।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch03-transpose",
+   "topic": "3.5",
+   "template": "match",
+   "title": {
+    "en": "Transpose: rows become columns",
+    "hi": "परिवर्त: पंक्तियाँ स्तंभ बनती हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "t1",
+      "left": {
+       "en": "[1  2  3; 4  5  6]",
+       "hi": "A = [1  2  3; 4  5  6]"
+      },
+      "right": {
+       "en": "[1  4; 2  5; 3  6]",
+       "hi": "A′ = [1  4; 2  5; 3  6]"
+      },
+      "why": {
+       "en": "Row 1 (1 2 3) becomes column 1; row 2 becomes column 2. A 2 × 3 matrix turns into 3 × 2.",
+       "hi": "पंक्ति 1 (1 2 3) स्तंभ 1 बनती है; पंक्ति 2 स्तंभ 2। 2 × 3 आव्यूह 3 × 2 बन जाता है।"
+      }
+     },
+     {
+      "id": "t2",
+      "left": {
+       "en": "[7  −1]",
+       "hi": "A = [7  −1]"
+      },
+      "right": {
+       "en": "[7; −1]",
+       "hi": "A′ = [7; −1]"
+      },
+      "why": {
+       "en": "A row matrix becomes a column matrix.",
+       "hi": "पंक्ति आव्यूह स्तंभ आव्यूह बन जाता है।"
+      }
+     },
+     {
+      "id": "t3",
+      "left": {
+       "en": "[2  9; 0  4]",
+       "hi": "A = [2  9; 0  4]"
+      },
+      "right": {
+       "en": "[2  0; 9  4]",
+       "hi": "A′ = [2  0; 9  4]"
+      },
+      "why": {
+       "en": "The diagonal 2, 4 stays; 9 and 0 swap places across it.",
+       "hi": "विकर्ण 2, 4 वहीं रहता है; 9 और 0 उसके पार जगह बदलते हैं।"
+      }
+     },
+     {
+      "id": "t4",
+      "left": {
+       "en": "[3  5; 5  1]",
+       "hi": "A = [3  5; 5  1]"
+      },
+      "right": {
+       "en": "[3  5; 5  1], the same",
+       "hi": "A′ = [3  5; 5  1], वही"
+      },
+      "why": {
+       "en": "The entries across the diagonal are already equal, so A′ = A: symmetric.",
+       "hi": "विकर्ण के पार के अवयव पहले से बराबर हैं, इसलिए A′ = A: सममित।"
+      }
+     },
+     {
+      "id": "t5",
+      "left": {
+       "en": "(AB)′",
+       "hi": "(AB)′"
+      },
+      "right": {
+       "en": "B′A′",
+       "hi": "B′A′"
+      },
+      "why": {
+       "en": "The transpose of a product reverses the order.",
+       "hi": "गुणनफल का परिवर्त क्रम उलट देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:t1",
+     "expect": "matched:t1",
+     "say": {
+      "en": "A semicolon starts a new row. Tap [1 2 3; 4 5 6] and then its transpose.",
+      "hi": "अर्धविराम नई पंक्ति शुरू करता है। [1 2 3; 4 5 6] पर टैप करो, फिर उसके परिवर्त पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What happens to the diagonal entries when you take a transpose?",
+      "hi": "परिवर्त लेने पर विकर्ण अवयवों का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "stay",
+       "en": "They stay where they are",
+       "hi": "वे वहीं रहते हैं"
+      },
+      {
+       "id": "move",
+       "en": "They move to the corners",
+       "hi": "वे कोनों में चले जाते हैं"
+      },
+      {
+       "id": "neg",
+       "en": "They change sign",
+       "hi": "उनका चिह्न बदलता है"
+      }
+     ],
+     "answer": "stay"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the rest.",
+      "hi": "बाक़ी सब मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The transpose A′ swaps rows and columns: the entry aᵢⱼ moves to place (j, i). Entries on the diagonal have i = j, so they stay put. Taking the transpose twice gives back A, and (AB)′ = B′A′.",
+      "hi": "परिवर्त A′ पंक्तियाँ और स्तंभ बदल देता है: अवयव aᵢⱼ जगह (j, i) पर जाता है। विकर्ण पर i = j है, इसलिए वे वहीं रहते हैं। दो बार परिवर्त लेने पर A वापस मिलता है, और (AB)′ = B′A′।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A is 4 × 2. What is the order of A′?",
+        "hi": "A, 4 × 2 है। A′ की कोटि क्या है?"
+       },
+       "options": [
+        "2 × 4",
+        "4 × 2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rows and columns swap, so 4 rows become 4 columns.",
+        "hi": "पंक्तियाँ और स्तंभ बदलते हैं, इसलिए 4 पंक्तियाँ 4 स्तंभ बनती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only a square matrix keeps its order under transpose.",
+         "hi": "परिवर्त में केवल वर्ग आव्यूह की कोटि वही रहती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "(A′)′ equals:",
+        "hi": "(A′)′ बराबर है:"
+       },
+       "options": [
+        "A",
+        "A′",
+        "−A"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Swapping rows and columns twice puts every entry back.",
+        "hi": "पंक्ति-स्तंभ दो बार बदलने पर हर अवयव अपनी जगह लौट आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A second swap undoes the first, so it is not still A′.",
+         "hi": "दूसरा बदलाव पहले को उलट देता है, इसलिए यह A′ नहीं रहता।"
+        },
+        {
+         "en": "Transposing never changes signs.",
+         "hi": "परिवर्त कभी चिह्न नहीं बदलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write a 3 × 3 marks table for three friends in three subjects. Take its transpose. What do its rows now stand for?",
+      "hi": "तीन दोस्तों के तीन विषयों के अंकों की 3 × 3 तालिका लिखो। उसका परिवर्त लो। अब उसकी पंक्तियाँ किसे दिखाती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch03-symmetric",
+   "topic": "3.6",
+   "template": "sort",
+   "title": {
+    "en": "Symmetric, skew symmetric or neither?",
+    "hi": "सममित, विषम सममित या कोई नहीं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sym",
+      "label": {
+       "en": "Symmetric (A′ = A)",
+       "hi": "सममित (A′ = A)"
+      }
+     },
+     {
+      "id": "skew",
+      "label": {
+       "en": "Skew symmetric (A′ = −A)",
+       "hi": "विषम सममित (A′ = −A)"
+      }
+     },
+     {
+      "id": "nei",
+      "label": {
+       "en": "Neither",
+       "hi": "कोई नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "[1  4; 4  3]",
+       "hi": "[1  4; 4  3]"
+      },
+      "bin": "sym",
+      "why": {
+       "en": "The two entries across the diagonal are both 4.",
+       "hi": "विकर्ण के पार के दोनों अवयव 4 हैं।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "[2  −1  0; −1  5  6; 0  6  9]",
+       "hi": "[2  −1  0; −1  5  6; 0  6  9]"
+      },
+      "bin": "sym",
+      "why": {
+       "en": "Every pair across the diagonal matches: −1 and −1, 0 and 0, 6 and 6.",
+       "hi": "विकर्ण के पार हर जोड़ी बराबर: −1 और −1, 0 और 0, 6 और 6।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "[0  3; −3  0]",
+       "hi": "[0  3; −3  0]"
+      },
+      "bin": "skew",
+      "why": {
+       "en": "Across the diagonal the entries are opposites, and the diagonal is 0.",
+       "hi": "विकर्ण के पार अवयव विपरीत हैं, और विकर्ण 0 है।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "[0  −2  5; 2  0  1; −5  −1  0]",
+       "hi": "[0  −2  5; 2  0  1; −5  −1  0]"
+      },
+      "bin": "skew",
+      "why": {
+       "en": "Each aⱼᵢ = −aᵢⱼ, and all diagonal entries are 0.",
+       "hi": "हर aⱼᵢ = −aᵢⱼ, और सारे विकर्ण अवयव 0।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "[1  2; −2  1]",
+       "hi": "[1  2; −2  1]"
+      },
+      "bin": "nei",
+      "why": {
+       "en": "Opposites across the diagonal, but the diagonal is 1, not 0, so it is not skew.",
+       "hi": "विकर्ण के पार विपरीत हैं, पर विकर्ण 1 है, 0 नहीं, इसलिए विषम सममित नहीं।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "[3  5; 2  3]",
+       "hi": "[3  5; 2  3]"
+      },
+      "bin": "nei",
+      "why": {
+       "en": "5 and 2 are neither equal nor opposites.",
+       "hi": "5 और 2 न बराबर हैं न विपरीत।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c",
+     "expect": "placed:c",
+     "say": {
+      "en": "Tap [0 3; −3 0] and place it.",
+      "hi": "[0 3; −3 0] पर टैप करो और रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a skew symmetric matrix, what must the diagonal entries be?",
+      "hi": "विषम सममित आव्यूह में विकर्ण अवयव क्या होने चाहिए?"
+     },
+     "options": [
+      {
+       "id": "zero",
+       "en": "All zero",
+       "hi": "सब शून्य"
+      },
+      {
+       "id": "one",
+       "en": "All one",
+       "hi": "सब एक"
+      },
+      {
+       "id": "any",
+       "en": "Anything",
+       "hi": "कुछ भी"
+      }
+     ],
+     "answer": "zero"
+    },
+    {
+     "kind": "do",
+     "target": "card:e",
+     "expect": "placed:e",
+     "say": {
+      "en": "Now place [1 2; −2 1]. Look at its diagonal.",
+      "hi": "अब [1 2; −2 1] रखो। उसका विकर्ण देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Symmetric means a mirror across the diagonal shows the same number: aⱼᵢ = aᵢⱼ. Skew symmetric means the mirror shows the opposite: aⱼᵢ = −aᵢⱼ. On the diagonal i = j, so aᵢᵢ = −aᵢᵢ, which forces every diagonal entry to be 0.",
+      "hi": "सममित का अर्थ है विकर्ण के पार दर्पण में वही संख्या: aⱼᵢ = aᵢⱼ। विषम सममित का अर्थ है दर्पण में विपरीत संख्या: aⱼᵢ = −aᵢⱼ। विकर्ण पर i = j है, इसलिए aᵢᵢ = −aᵢᵢ, यानी हर विकर्ण अवयव 0 होना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For any square matrix A, what kind of matrix is A + A′?",
+        "hi": "किसी भी वर्ग आव्यूह A के लिए A + A′ किस प्रकार का है?"
+       },
+       "options": [
+        {
+         "en": "Symmetric",
+         "hi": "सममित"
+        },
+        {
+         "en": "Skew symmetric",
+         "hi": "विषम सममित"
+        },
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(A + A′)′ = A′ + A, which is the same matrix.",
+        "hi": "(A + A′)′ = A′ + A, जो वही आव्यूह है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A − A′ is the skew symmetric one: its transpose is A′ − A.",
+         "hi": "विषम सममित A − A′ है: उसका परिवर्त A′ − A है।"
+        },
+        {
+         "en": "It is always symmetric, because its transpose gives it back.",
+         "hi": "यह हमेशा सममित है, क्योंकि उसका परिवर्त वही देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Every square matrix can be written as:",
+        "hi": "हर वर्ग आव्यूह को लिखा जा सकता है:"
+       },
+       "options": [
+        "½(A + A′) + ½(A − A′)",
+        "A′ + A"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Adding these two parts gives A: a symmetric part plus a skew symmetric part.",
+        "hi": "ये दोनों भाग जोड़ने पर A मिलता है: एक सममित भाग और एक विषम सममित भाग।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A′ + A equals 2A only when A is symmetric, so it is not A in general.",
+         "hi": "A′ + A तभी 2A है जब A सममित हो, इसलिए सामान्यतः A नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Split [3 5; 2 3] into ½(A + A′) and ½(A − A′). Check that one part is symmetric and the other skew symmetric.",
+      "hi": "[3 5; 2 3] को ½(A + A′) और ½(A − A′) में बाँटो। जाँचो कि एक भाग सममित है और दूसरा विषम सममित।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch03-inverse-check",
+   "topic": "3.7",
+   "template": "matrix",
+   "title": {
+    "en": "Is B the inverse of A?",
+    "hi": "क्या B, A का प्रतिलोम है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "matrix-multiply",
+    "a": [
+     [
+      2,
+      1
+     ],
+     [
+      5,
+      3
+     ]
+    ],
+    "b": [
+     [
+      3,
+      -1
+     ],
+     [
+      -5,
+      2
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cell:1-1",
+     "expect": "computed",
+     "say": {
+      "en": "Tap the top-left box of AB: 2 × 3 + 1 × (−5).",
+      "hi": "AB का ऊपर-बाएँ खाना दबाओ: 2 × 3 + 1 × (−5)।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do you expect the whole product AB to be?",
+      "hi": "पूरा गुणनफल AB तुम्हें क्या लगता है?"
+     },
+     "options": [
+      {
+       "id": "I",
+       "en": "The identity [1 0; 0 1]",
+       "hi": "तत्समक [1 0; 0 1]"
+      },
+      {
+       "id": "Z",
+       "en": "The zero matrix",
+       "hi": "शून्य आव्यूह"
+      },
+      {
+       "id": "A",
+       "en": "A again",
+       "hi": "फिर से A"
+      }
+     ],
+     "answer": "I"
+    },
+    {
+     "kind": "do",
+     "target": "op:show",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Show to see all of AB.",
+      "hi": "पूरा AB देखने के लिए दिखाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:swap",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Swap to work out BA as well.",
+      "hi": "BA भी निकालने के लिए बदलो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "AB = I and BA = I, so B is the inverse of A, written A⁻¹. The identity plays the part of 1 for matrices: multiplying by it changes nothing. An inverse is unique, and only square matrices can have one.",
+      "hi": "AB = I और BA = I, इसलिए B, A का प्रतिलोम है, जिसे A⁻¹ लिखते हैं। आव्यूहों में तत्समक 1 का काम करता है: उससे गुणा करने पर कुछ नहीं बदलता। प्रतिलोम अद्वितीय होता है, और केवल वर्ग आव्यूहों का हो सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If AB = I, what is (AB)⁻¹ in terms of A⁻¹ and B⁻¹ in general?",
+        "hi": "सामान्य रूप में (AB)⁻¹ को A⁻¹ और B⁻¹ में कैसे लिखेंगे?"
+       },
+       "options": [
+        "B⁻¹A⁻¹",
+        "A⁻¹B⁻¹"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(AB)(B⁻¹A⁻¹) = A(BB⁻¹)A⁻¹ = AA⁻¹ = I: undo the last step first.",
+        "hi": "(AB)(B⁻¹A⁻¹) = A(BB⁻¹)A⁻¹ = AA⁻¹ = I: आख़िरी चरण पहले उलटो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A⁻¹B⁻¹ puts the inverses in the wrong order; matrix products do not swap freely.",
+         "hi": "A⁻¹B⁻¹ में प्रतिलोम ग़लत क्रम में हैं; आव्यूह गुणन मनमाने ढंग से नहीं बदलता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can a 2 × 3 matrix have an inverse?",
+        "hi": "क्या 2 × 3 आव्यूह का प्रतिलोम हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "No",
+         "hi": "नहीं"
+        },
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "AB and BA would have different orders, so both cannot be the same identity.",
+        "hi": "AB और BA की कोटियाँ अलग होंगी, इसलिए दोनों एक ही तत्समक नहीं हो सकते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Inverses are defined only for square matrices.",
+         "hi": "प्रतिलोम केवल वर्ग आव्यूहों के लिए परिभाषित है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap New for other pairs. Is the product ever the identity by chance? Think about why that is rare.",
+      "hi": "दूसरी जोड़ियों के लिए नया दबाओ। क्या संयोग से कभी गुणनफल तत्समक बनता है? सोचो यह दुर्लभ क्यों है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Chapter hook: data in rows and columns",
+   "shows": "A shopkeeper's stock register open on a counter in an Indian cloth shop, a neat grid of hand-ruled rows and columns, stacks of folded kurtas and sarees behind",
+   "view": "From above at a slight angle, warm shop light",
+   "right": "A clear rectangular grid of cells",
+   "avoid": "Readable writing, shop name, faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Rows and columns you can see",
+   "shows": "A school assembly ground from above with students standing in a neat grid of 4 rows and 6 columns",
+   "view": "Straight down from a high window, morning light",
+   "right": "Rows and columns straight and countable",
+   "avoid": "Faces, school name"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.4",
+   "use": "Matrix add lab: what the numbers count",
+   "shows": "Two folded kurtas and two folded sarees, each a separate cut-out",
+   "view": "Front view, white background, soft shadow",
+   "right": "Clothes clearly kurta and saree, in different colours",
+   "avoid": "Brand labels"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "3.4",
+   "use": "Row-times-column guide",
+   "shows": "An empty 2 × 2 grid beside another empty 2 × 2 grid, with a soft highlight band across one row of the first and down one column of the second",
+   "view": "Flat, front view, transparent background",
+   "right": "Highlights line up row with column",
+   "avoid": "Any numbers or letters"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.5",
+   "use": "Transpose: turning a table",
+   "shows": "A wooden tray of cups in 2 rows of 3 photographed, then the same tray turned a quarter turn so it shows 3 rows of 2",
+   "view": "Two frames, same camera above, same light",
+   "right": "Same cups in the same relative places after turning",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "3.6",
+   "use": "Symmetry across a diagonal",
+   "shows": "A square rangoli tile pattern made of coloured powder that is mirror-symmetric across one diagonal",
+   "view": "Straight from above, even light",
+   "right": "Pattern truly mirrors across the diagonal",
+   "avoid": "Any text, footprints"
+  }
+ ]
+}

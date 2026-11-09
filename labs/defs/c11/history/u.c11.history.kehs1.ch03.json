@@ -1,0 +1,1481 @@
+{
+ "chapter_key": "u.c11.history.kehs1.ch03",
+ "class": 11,
+ "subject_id": "history",
+ "title": "Nomadic Empires",
+ "source": "https://ncert.nic.in/textbook/pdf/kehs1ps.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Nomadic empires: sources and how to read them",
+   "labs": [],
+   "why_no_lab": "Best taught by reading the historians' accounts and class discussion on sources (Juwaini, Marco Polo); there is nothing to do with the hands."
+  },
+  {
+   "n": "3.2",
+   "title": "Genghis Khan: rise, conquests and the lands of the steppe",
+   "labs": [
+    "c11-history-kehs1-ch03-timeline",
+    "c11-history-kehs1-ch03-steppe"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Organising an empire: army, law, courier system and passes",
+   "labs": [
+    "c11-history-kehs1-ch03-army",
+    "c11-history-kehs1-ch03-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Effects of the conquests, and nomads and settled people",
+   "labs": [
+    "c11-history-kehs1-ch03-peasants",
+    "c11-history-kehs1-ch03-effects"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-history-kehs1-ch03-timeline",
+   "topic": "3.2",
+   "template": "timeline",
+   "title": {
+    "en": "The life and conquests of Genghis Khan",
+    "hi": "चंगेज़ ख़ान का जीवन और विजयें"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "range": [
+     1150,
+     1290
+    ],
+    "task": "order",
+    "title": {
+     "en": "Genghis Khan and the Mongols",
+     "hi": "चंगेज़ ख़ान और मंगोल"
+    },
+    "events": [
+     {
+      "id": "born",
+      "year": 1162,
+      "label": {
+       "en": "Temujin is born near the Onon river",
+       "hi": "तेमुजिन का जन्म ओनोन नदी के पास"
+      },
+      "detail": {
+       "en": "The boy who became Genghis Khan was born around this year.",
+       "hi": "जो बालक आगे चंगेज़ ख़ान बना, उसका जन्म लगभग इसी वर्ष हुआ।"
+      }
+     },
+     {
+      "id": "khan",
+      "year": 1206,
+      "label": {
+       "en": "Temujin is proclaimed Genghis Khan",
+       "hi": "तेमुजिन \"चंगेज़ ख़ान\" घोषित हुआ"
+      },
+      "detail": {
+       "en": "A quriltai recognised him as the Universal Ruler of the Mongols.",
+       "hi": "एक कुरिल्ताई सभा ने उसे मंगोलों का विश्व-शासक माना।"
+      }
+     },
+     {
+      "id": "wall",
+      "year": 1213,
+      "label": {
+       "en": "The Great Wall of China is breached",
+       "hi": "चीन की महान दीवार लाँघी गई"
+      },
+      "detail": {
+       "en": "The Mongols attacked the Chin dynasty in north China.",
+       "hi": "मंगोलों ने उत्तरी चीन के छिन वंश पर आक्रमण किया।"
+      }
+     },
+     {
+      "id": "bukhara",
+      "year": 1220,
+      "label": {
+       "en": "Bukhara is captured",
+       "hi": "बुख़ारा पर क़ब्ज़ा"
+      },
+      "detail": {
+       "en": "In the campaigns of 1219-21 the great cities of Central Asia fell.",
+       "hi": "1219-21 के अभियानों में मध्य एशिया के बड़े नगर गिर गए।"
+      }
+     },
+     {
+      "id": "death",
+      "year": 1227,
+      "label": {
+       "en": "Genghis Khan dies",
+       "hi": "चंगेज़ ख़ान की मृत्यु"
+      },
+      "detail": {
+       "en": "He spent most of his life fighting to build his empire.",
+       "hi": "उसने अपना अधिकांश जीवन साम्राज्य बनाने के युद्धों में बिताया।"
+      }
+     },
+     {
+      "id": "baghdad",
+      "year": 1258,
+      "label": {
+       "en": "Baghdad is captured",
+       "hi": "बग़दाद पर क़ब्ज़ा"
+      },
+      "detail": {
+       "en": "The Abbasid caliphate came to an end.",
+       "hi": "अब्बासी ख़िलाफ़त का अंत हो गया।"
+      }
+     },
+     {
+      "id": "qubilai",
+      "year": 1260,
+      "label": {
+       "en": "Qubilai becomes Great Khan",
+       "hi": "क़ुबलाई महान ख़ान बना"
+      },
+      "detail": {
+       "en": "Genghis Khan's grandson was installed as Grand Khan in Peking.",
+       "hi": "चंगेज़ ख़ान का पोता पेकिंग में महान ख़ान बनाया गया।"
+      }
+     },
+     {
+      "id": "china",
+      "year": 1279,
+      "label": {
+       "en": "All of China is conquered",
+       "hi": "पूरा चीन जीत लिया गया"
+      },
+      "detail": {
+       "en": "The Sung dynasty was defeated and south China came under the Mongols.",
+       "hi": "सुंग वंश हार गया और दक्षिणी चीन मंगोलों के अधीन आ गया।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "event:khan",
+     "expect": "placed:khan",
+     "say": {
+      "en": "Tap \"Temujin is proclaimed Genghis Khan\" and place it on the time line.",
+      "hi": "\"तेमुजिन \"चंगेज़ ख़ान\" घोषित हुआ\" छुओ और उसे समय-रेखा पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Did Genghis Khan live to see Baghdad fall in 1258?",
+      "hi": "क्या चंगेज़ ख़ान 1258 में बग़दाद का पतन देखने के लिए जीवित था?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, he died in 1227",
+       "hi": "नहीं, उसकी मृत्यु 1227 में हो गई थी"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "event:death",
+     "expect": "placed:death",
+     "say": {
+      "en": "Place \"Genghis Khan dies\".",
+      "hi": "\"चंगेज़ ख़ान की मृत्यु\" को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:china",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the remaining events. The last one completes the line.",
+      "hi": "बाकी घटनाएँ रखो। आख़िरी घटना रेखा पूरी करेगी।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Genghis Khan united the Mongol tribes and in 1206 was recognised as their Universal Ruler. He attacked north China and Central Asia, and he died in 1227. His sons and grandsons went further: Baghdad fell in 1258 and the whole of China by 1279. The Mongols created the largest empire the world had yet seen.",
+      "hi": "चंगेज़ ख़ान ने मंगोल कबीलों को एक किया और 1206 में उन्हें उनका विश्व-शासक माना गया। उसने उत्तरी चीन और मध्य एशिया पर आक्रमण किए और 1227 में उसकी मृत्यु हो गई। उसके पुत्र-पौत्र और आगे बढ़े: 1258 में बग़दाद गिरा और 1279 तक पूरा चीन। मंगोलों ने तब तक का सबसे बड़ा साम्राज्य बनाया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which year was Temujin proclaimed Genghis Khan?",
+        "hi": "तेमुजिन \"चंगेज़ ख़ान\" किस वर्ष घोषित हुआ?"
+       },
+       "options": [
+        {
+         "en": "1206",
+         "hi": "सन् 1206"
+        },
+        {
+         "en": "1162",
+         "hi": "सन् 1162"
+        },
+        {
+         "en": "1260",
+         "hi": "सन् 1260"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An assembly of Mongol chieftains, a quriltai, recognised him in 1206.",
+        "hi": "1206 में मंगोल सरदारों की सभा, कुरिल्ताई, ने उसे मान्यता दी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1162 is about the year he was born.",
+         "hi": "1162 लगभग उसके जन्म का वर्ष है।"
+        },
+        {
+         "en": "1260 is when his grandson Qubilai became Great Khan.",
+         "hi": "1260 में उसका पोता क़ुबलाई महान ख़ान बना।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which fell later: Baghdad or the whole of China?",
+        "hi": "कौन बाद में गिरा: बग़दाद या पूरा चीन?"
+       },
+       "options": [
+        {
+         "en": "The whole of China, in 1279",
+         "hi": "पूरा चीन, 1279 में"
+        },
+        {
+         "en": "Baghdad, in 1258",
+         "hi": "बग़दाद, 1258 में"
+        },
+        {
+         "en": "Both in the same year",
+         "hi": "दोनों एक ही वर्ष में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Baghdad fell in 1258, and the conquest of all China was finished by 1279.",
+        "hi": "बग़दाद 1258 में गिरा और पूरे चीन की विजय 1279 तक पूरी हुई।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Baghdad came first, in 1258.",
+         "hi": "बग़दाद पहले, 1258 में गिरा।"
+        },
+        {
+         "en": "The two dates are 21 years apart.",
+         "hi": "दोनों तिथियों में 21 वर्ष का अंतर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which date on the line surprises you most? Say why in one sentence.",
+      "hi": "रेखा की कौन-सी तिथि तुम्हें सबसे ज़्यादा चौंकाती है? एक वाक्य में कारण बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch03-steppe",
+   "topic": "3.2",
+   "template": "map",
+   "title": {
+    "en": "The steppe, the desert and the Silk Route",
+    "hi": "स्तेपी, मरुस्थल और रेशम मार्ग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "asia",
+    "layers": [
+     "mountains",
+     "deserts"
+    ],
+    "task": "label",
+    "places": [
+     "gobi",
+     "tian-shan",
+     "taklamakan",
+     "beijing"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "label:gobi",
+     "expect": "located:gobi",
+     "say": {
+      "en": "Tap the name Gobi, then tap the desert on the map.",
+      "hi": "\"गोबी\" नाम छुओ, फिर मानचित्र पर वह मरुस्थल छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Mongols lived on grassy plains and grazed animals. Why could they still cross mountains and deserts to reach other lands?",
+      "hi": "मंगोल घास के मैदानों में पशु चराते थे। फिर भी पहाड़ और मरुस्थल पार करके दूसरे देशों तक पहुँचना उनके लिए कैसे संभव था?"
+     },
+     "options": [
+      {
+       "id": "horse",
+       "en": "They were pastoral nomads, skilled riders used to moving with their herds",
+       "hi": "वे चरवाहा खानाबदोश थे, कुशल घुड़सवार और अपने पशुओं के साथ चलने के आदी"
+      },
+      {
+       "id": "boat",
+       "en": "They used large ships",
+       "hi": "वे बड़े जहाज़ों का उपयोग करते थे"
+      },
+      {
+       "id": "train",
+       "en": "They used railways",
+       "hi": "वे रेलगाड़ियाँ इस्तेमाल करते थे"
+      }
+     ],
+     "answer": "horse"
+    },
+    {
+     "kind": "do",
+     "target": "label:tian-shan",
+     "expect": "located:tian-shan",
+     "say": {
+      "en": "Place the name Tian Shan on the mountains of Central Asia.",
+      "hi": "\"तिएन शान\" नाम मध्य एशिया के पहाड़ों पर लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:taklamakan",
+     "expect": "located:taklamakan",
+     "say": {
+      "en": "Place the name Taklamakan on the desert the Silk Route went round.",
+      "hi": "\"तकलामकान\" नाम उस मरुस्थल पर लगाओ जिसके किनारे से रेशम मार्ग गुज़रता था।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:beijing",
+     "expect": "labelled",
+     "say": {
+      "en": "Last, place the name Beijing (Peking), the Grand Khan's capital under Qubilai.",
+      "hi": "आख़िर में \"बीजिंग\" (पेकिंग) नाम लगाओ, जो क़ुबलाई के समय महान ख़ान की राजधानी थी।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Mongols came from the steppes of Central Asia, grasslands with little farming. Cattle, sheep and horses were their wealth, so they moved often and rode superbly. From there Genghis Khan and his descendants reached north China, Central Asia, Iran, Russia and Hungary. The Silk Route ran through the lands they ruled.",
+      "hi": "मंगोल मध्य एशिया के स्तेपी, यानी घास के मैदानों, से आए थे जहाँ खेती कम होती थी। उनकी संपदा गाय, भेड़ और घोड़े थे, इसलिए वे बार-बार स्थान बदलते थे और शानदार घुड़सवार थे। वहाँ से चंगेज़ ख़ान और उसके वंशज उत्तरी चीन, मध्य एशिया, ईरान, रूस और हंगरी तक पहुँचे। रेशम मार्ग उनके शासित प्रदेशों से होकर जाता था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where did the Mongols come from?",
+        "hi": "मंगोल कहाँ से आए थे?"
+       },
+       "options": [
+        {
+         "en": "The steppes of Central Asia",
+         "hi": "मध्य एशिया के स्तेपी"
+        },
+        {
+         "en": "The Nile valley",
+         "hi": "नील की घाटी"
+        },
+        {
+         "en": "The coast of the Mediterranean",
+         "hi": "भूमध्य सागर का तट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Mongols were pastoral people of the Central Asian steppes who united under Genghis Khan.",
+        "hi": "मंगोल मध्य एशिया के स्तेपी के चरवाहा लोग थे जो चंगेज़ ख़ान के नेतृत्व में एक हुए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Nile valley is in Egypt, far from Mongolia.",
+         "hi": "नील की घाटी मिस्र में है, मंगोलिया से बहुत दूर।"
+        },
+        {
+         "en": "The Mediterranean coast was the heart of Rome's empire, not of the Mongols.",
+         "hi": "भूमध्य सागर का तट रोम के साम्राज्य का केंद्र था, मंगोलों का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the mountains and deserts layers on and off. What natural barriers lay between the steppe and China?",
+      "hi": "पहाड़ों और मरुस्थलों की परतें चालू-बंद करो। स्तेपी और चीन के बीच कौन-सी प्राकृतिक बाधाएँ थीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch03-army",
+   "topic": "3.3",
+   "template": "sort",
+   "title": {
+    "en": "The old steppe army and Genghis Khan's army",
+    "hi": "पुरानी स्तेपी सेना और चंगेज़ ख़ान की सेना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "old",
+      "label": {
+       "en": "The old steppe way",
+       "hi": "पुराना स्तेपी तरीका"
+      }
+     },
+     {
+      "id": "new",
+      "label": {
+       "en": "Genghis Khan's way",
+       "hi": "चंगेज़ ख़ान का तरीका"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "clans",
+      "text": {
+       "en": "Clans and tribes stayed together in units",
+       "hi": "कुल और कबीले इकाइयों में साथ रहते थे"
+      },
+      "bin": "old",
+      "why": {
+       "en": "In the old system the clan and the tribe coexisted within the decimal units.",
+       "hi": "पुरानी व्यवस्था में दशमलव इकाइयों के भीतर कुल और कबीले साथ-साथ रहते थे।"
+      }
+     },
+     {
+      "id": "chiefs",
+      "text": {
+       "en": "Old clan chiefs kept their rights",
+       "hi": "पुराने कुल-सरदारों के अधिकार बने रहते थे"
+      },
+      "bin": "old",
+      "why": {
+       "en": "Under the new order the old clan chieftains' rights were not kept.",
+       "hi": "नई व्यवस्था में पुराने कुल-सरदारों के अधिकार बने नहीं रहे।"
+      }
+     },
+     {
+      "id": "mix",
+      "text": {
+       "en": "Tribes were broken up and mixed together",
+       "hi": "कबीले तोड़कर आपस में मिला दिए गए"
+      },
+      "bin": "new",
+      "why": {
+       "en": "He divided the old groupings and spread their members through new military units.",
+       "hi": "उसने पुराने समूह बाँटे और उनके सदस्यों को नई सैन्य इकाइयों में बिखेर दिया।"
+      }
+     },
+     {
+      "id": "permit",
+      "text": {
+       "en": "Moving to another unit without leave was punished",
+       "hi": "बिना अनुमति इकाई बदलने पर सज़ा थी"
+      },
+      "bin": "new",
+      "why": {
+       "en": "Anyone who tried to leave his allotted group without permission was punished harshly.",
+       "hi": "जो बिना अनुमति अपने निर्धारित समूह से हटता, उसे कड़ी सज़ा मिलती थी।"
+      }
+     },
+     {
+      "id": "tuman",
+      "text": {
+       "en": "Units of about 10,000, the tuman, mixed many tribes",
+       "hi": "लगभग 10,000 की इकाई तुमन में कई कबीले"
+      },
+      "bin": "new",
+      "why": {
+       "en": "The largest unit, the tuman, included people from many different tribes and clans.",
+       "hi": "सबसे बड़ी इकाई तुमन में कई अलग कबीलों और कुलों के लोग थे।"
+      }
+     },
+     {
+      "id": "anda",
+      "text": {
+       "en": "Loyal followers honoured as blood-brothers (anda)",
+       "hi": "वफ़ादार साथी \"अंदा\" यानी रक्त-भाई कहलाए"
+      },
+      "bin": "new",
+      "why": {
+       "en": "Genghis Khan honoured some loyal followers publicly as his anda.",
+       "hi": "चंगेज़ ख़ान ने कुछ वफ़ादार साथियों को सार्वजनिक रूप से अपना अंदा माना।"
+      }
+     },
+     {
+      "id": "sons",
+      "text": {
+       "en": "Four sons governed the conquered peoples",
+       "hi": "चार पुत्र जीते हुए लोगों पर शासन करते थे"
+      },
+      "bin": "new",
+      "why": {
+       "en": "He gave his four sons the responsibility of governing, in the four ulus.",
+       "hi": "उसने अपने चार पुत्रों को शासन का दायित्व दिया, चार उलुसों में।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:clans",
+     "expect": "placed:clans",
+     "say": {
+      "en": "Tap the card about clans and tribes staying together and choose its group.",
+      "hi": "कुल-कबीलों के साथ रहने वाला कार्ड छुओ और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why would Genghis Khan want to mix up tribes in each unit?",
+      "hi": "चंगेज़ ख़ान हर इकाई में कबीलों को क्यों मिलाना चाहता होगा?"
+     },
+     "options": [
+      {
+       "id": "loyal",
+       "en": "So soldiers would be loyal to him, not to their old tribe",
+       "hi": "ताकि सैनिक अपने पुराने कबीले की नहीं, उसकी वफ़ादारी करें"
+      },
+      {
+       "id": "fun",
+       "en": "To make the army smaller",
+       "hi": "सेना छोटी करने के लिए"
+      },
+      {
+       "id": "rain",
+       "en": "To protect them from rain",
+       "hi": "उन्हें वर्षा से बचाने के लिए"
+      }
+     ],
+     "answer": "loyal"
+    },
+    {
+     "kind": "do",
+     "target": "card:mix",
+     "expect": "placed:mix",
+     "say": {
+      "en": "Place the card about mixing tribes together.",
+      "hi": "कबीलों को मिलाने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाकी छाँटो और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Genghis Khan took the old steppe system of units of 10s, 100s, 1,000s and 10,000 men, but he broke the tribal groups apart and mixed them in new units. A soldier's new identity came from Genghis Khan and not from his clan. He rewarded the loyal with ranks and gave his four sons the governing of the people he conquered. The old clan chiefs lost their special rights.",
+      "hi": "चंगेज़ ख़ान ने 10, 100, 1,000 और 10,000 आदमियों की पुरानी स्तेपी इकाइयाँ रखीं, पर कबीलों के समूह तोड़कर नई इकाइयों में मिला दिए। सैनिक की नई पहचान उसके कुल से नहीं, चंगेज़ ख़ान से बनी। उसने वफ़ादारों को पद दिए और जीते हुए लोगों के शासन का दायित्व अपने चार पुत्रों को सौंपा। पुराने कुल-सरदारों के विशेष अधिकार चले गए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What was a tuman?",
+        "hi": "तुमन क्या था?"
+       },
+       "options": [
+        {
+         "en": "A unit of about 10,000 soldiers",
+         "hi": "लगभग 10,000 सैनिकों की इकाई"
+        },
+        {
+         "en": "A tax on traders",
+         "hi": "व्यापारियों पर कर"
+        },
+        {
+         "en": "A pass for safe travel",
+         "hi": "सुरक्षित यात्रा का पास"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The largest military unit, the tuman, approximated 10,000 soldiers.",
+        "hi": "सबसे बड़ी सैन्य इकाई तुमन में लगभग 10,000 सैनिक होते थे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The tax on traders was the baj.",
+         "hi": "व्यापारियों पर कर बाज कहलाता था।"
+        },
+        {
+         "en": "The pass for safe travel was the paiza.",
+         "hi": "सुरक्षित यात्रा का पास पैज़ा कहलाता था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What did mixing tribes do to the old social order?",
+        "hi": "कबीलों को मिलाने से पुरानी सामाजिक व्यवस्था का क्या हुआ?"
+       },
+       "options": [
+        {
+         "en": "It weakened old tribal identities and tied people to the Khan",
+         "hi": "इससे पुरानी कबीलाई पहचान कमज़ोर हुई और लोग ख़ान से जुड़ गए"
+        },
+        {
+         "en": "It made each tribe stronger",
+         "hi": "इससे हर कबीला और मज़बूत हुआ"
+        },
+        {
+         "en": "It had no effect",
+         "hi": "इसका कोई असर नहीं हुआ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "People got a new identity from their leader, Genghis Khan, in place of their clan.",
+        "hi": "लोगों को कुल की जगह अपने नेता चंगेज़ ख़ान से नई पहचान मिली।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The tribes were split up, not strengthened.",
+         "hi": "कबीलों को तोड़ा गया था, मज़बूत नहीं किया गया।"
+        },
+        {
+         "en": "It changed the old steppe social order a great deal.",
+         "hi": "इसने पुरानी स्तेपी सामाजिक व्यवस्था को बहुत बदला।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare a school class with a school house system. Which is more like Genghis Khan's mixed units?",
+      "hi": "स्कूल की कक्षा की तुलना हाउस-व्यवस्था से करो। कौन चंगेज़ ख़ान की मिली-जुली इकाइयों जैसी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch03-words",
+   "topic": "3.3",
+   "template": "match",
+   "title": {
+    "en": "Mongol words and meanings",
+    "hi": "मंगोल शब्द और उनके अर्थ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "quriltai",
+      "left": {
+       "en": "Quriltai",
+       "hi": "कुरिल्ताई"
+      },
+      "right": {
+       "en": "An assembly of Mongol chieftains that took family and state decisions",
+       "hi": "मंगोल सरदारों की सभा जो परिवार और राज्य के फ़ैसले करती थी"
+      },
+      "why": {
+       "en": "Campaigns, pastures, plunder and succession were decided together.",
+       "hi": "अभियान, चरागाह, लूट और उत्तराधिकार सब साथ मिलकर तय होते थे।"
+      }
+     },
+     {
+      "id": "yasa",
+      "left": {
+       "en": "Yasa",
+       "hi": "यासा"
+      },
+      "right": {
+       "en": "The code of law attributed to Genghis Khan",
+       "hi": "चंगेज़ ख़ान की ओर से माना गया क़ानून-संहिता"
+      },
+      "why": {
+       "en": "The Mongols claimed it was a sacred law given by their ancestor.",
+       "hi": "मंगोल इसे अपने पूर्वज से मिला पवित्र क़ानून मानते थे।"
+      }
+     },
+     {
+      "id": "paiza",
+      "left": {
+       "en": "Paiza",
+       "hi": "पैज़ा"
+      },
+      "right": {
+       "en": "A pass giving travellers safe conduct",
+       "hi": "यात्रियों को सुरक्षित मार्ग देने वाला पास"
+      },
+      "why": {
+       "en": "Travellers were given a pass, in Mongolian called gerege.",
+       "hi": "यात्रियों को पास दिया जाता था, जिसे मंगोल भाषा में गेरेगे कहते थे।"
+      }
+     },
+     {
+      "id": "baj",
+      "left": {
+       "en": "Baj",
+       "hi": "बाज"
+      },
+      "right": {
+       "en": "A tax paid by traders for safe passage",
+       "hi": "सुरक्षित मार्ग के लिए व्यापारियों का दिया कर"
+      },
+      "why": {
+       "en": "Traders paid the baj tax, acknowledging the Khan's authority.",
+       "hi": "व्यापारी बाज कर देते थे, जिससे वे ख़ान का अधिकार मानते थे।"
+      }
+     },
+     {
+      "id": "yam",
+      "left": {
+       "en": "Yam",
+       "hi": "याम"
+      },
+      "right": {
+       "en": "A fast courier system with fresh horses at outposts",
+       "hi": "चौकियों पर ताज़ा घोड़ों वाली तेज़ संदेशवाहक व्यवस्था"
+      },
+      "why": {
+       "en": "Nomads gave a tenth of their herds to keep the courier posts supplied.",
+       "hi": "खानाबदोश चौकियों की आपूर्ति के लिए अपने पशुओं का दसवाँ भाग देते थे।"
+      }
+     },
+     {
+      "id": "anda",
+      "left": {
+       "en": "Anda",
+       "hi": "अंदा"
+      },
+      "right": {
+       "en": "A sworn blood-brother",
+       "hi": "रक्त-भाई, यानी शपथबद्ध साथी"
+      },
+      "why": {
+       "en": "Genghis Khan honoured some loyal followers as his anda.",
+       "hi": "चंगेज़ ख़ान ने कुछ वफ़ादार साथियों को अंदा का सम्मान दिया।"
+      }
+     },
+     {
+      "id": "ulus",
+      "left": {
+       "en": "Ulus",
+       "hi": "उलुस"
+      },
+      "right": {
+       "en": "The lands and people given to a son to govern",
+       "hi": "पुत्र को शासन के लिए दिए गए भूभाग और लोग"
+      },
+      "why": {
+       "en": "At first an ulus was not a fixed territory but a ruled people.",
+       "hi": "आरंभ में उलुस निश्चित भूभाग नहीं, शासित लोग था।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:quriltai",
+     "expect": "matched:quriltai",
+     "say": {
+      "en": "Tap \"Quriltai\", then tap its meaning.",
+      "hi": "\"कुरिल्ताई\" छुओ, फिर उसका अर्थ छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A pass to travel safely across Mongol lands: was it called the paiza or the baj?",
+      "hi": "मंगोल प्रदेशों में सुरक्षित यात्रा का पास कौन-सा था: पैज़ा या बाज?"
+     },
+     "options": [
+      {
+       "id": "paiza",
+       "en": "Paiza",
+       "hi": "पैज़ा"
+      },
+      {
+       "id": "baj",
+       "en": "Baj",
+       "hi": "बाज"
+      }
+     ],
+     "answer": "paiza"
+    },
+    {
+     "kind": "do",
+     "target": "left:paiza",
+     "expect": "matched:paiza",
+     "say": {
+      "en": "Match the paiza with its meaning.",
+      "hi": "पैज़ा को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाकी मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mongol words survive in Persian and other languages, and historians must work like philologists to understand them. The yasa gave the Mongols a shared body of law. The yam courier system let the Great Khans keep a check on distant lands, and the paiza and baj tax tied the traders and travellers to the Khan's authority. Together these made a huge empire hang together.",
+      "hi": "मंगोल शब्द फ़ारसी और अन्य भाषाओं में बचे हैं और इतिहासकारों को उन्हें समझने के लिए भाषा-विज्ञानी की तरह काम करना पड़ता है। यासा ने मंगोलों को साझा क़ानून दिया। याम संदेशवाहक व्यवस्था से महान ख़ान दूर के प्रदेशों पर नज़र रख पाते थे, और पैज़ा तथा बाज कर यात्रियों व व्यापारियों को ख़ान के अधिकार से जोड़ते थे। इन सबने मिलकर विशाल साम्राज्य को जोड़े रखा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How did the yam help the Great Khans?",
+        "hi": "याम ने महान ख़ानों की कैसे मदद की?"
+       },
+       "options": [
+        {
+         "en": "They could learn quickly what happened in far-off lands",
+         "hi": "वे दूर के प्रदेशों की ख़बर जल्दी पा लेते थे"
+        },
+        {
+         "en": "It collected taxes from traders",
+         "hi": "उससे व्यापारियों से कर मिलता था"
+        },
+        {
+         "en": "It gave soldiers new weapons",
+         "hi": "उससे सैनिकों को नए हथियार मिलते थे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fresh mounts and despatch riders at spaced outposts kept the Khan in touch with the farthest end of the regime.",
+        "hi": "दूरी-दूरी पर चौकियों के ताज़ा घोड़े और संदेशवाहक ख़ान को साम्राज्य के सुदूर छोर से जोड़े रखते थे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The tax on traders was the baj, not the yam.",
+         "hi": "व्यापारियों का कर बाज था, याम नहीं।"
+        },
+        {
+         "en": "The yam was a courier system, not a weapons workshop.",
+         "hi": "याम संदेशवाहक व्यवस्था थी, हथियार बनाने की जगह नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which Mongol word would be the most useful for a modern traveller? Why?",
+      "hi": "आज के यात्री के लिए कौन-सा मंगोल शब्द सबसे उपयोगी होगा? क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch03-peasants",
+   "topic": "3.4",
+   "template": "scenario",
+   "title": {
+    "en": "Protect or pillage? A minister's advice",
+    "hi": "बचाओ या लूटो? मंत्री की सलाह"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "setting": "town",
+    "role": {
+     "en": "A minister (wazir) of a Mongol ruler after a conquest",
+     "hi": "जीत के बाद एक मंगोल शासक का मंत्री (वज़ीर)"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Your ruler has taken a rich farming land. Some nomad commanders say: pillage the peasants and turn their fields into pasture. You know the fields give grain and tax. What do you advise?",
+       "hi": "तुम्हारे शासक ने एक उपजाऊ खेतिहर प्रदेश जीत लिया है। कुछ खानाबदोश सेनापति कहते हैं: किसानों को लूटो और खेतों को चरागाह बना दो। तुम जानते हो कि खेत अनाज और कर देते हैं। तुम क्या सलाह दोगे?"
+      },
+      "choices": [
+       {
+        "id": "pillage",
+        "text": {
+         "en": "Let them rob the peasants",
+         "hi": "उन्हें किसानों को लूटने दो"
+        },
+        "next": "ruin",
+        "feedback": {
+         "en": "Taking oxen and seed and trampling crops leaves nothing to harvest next year.",
+         "hi": "बैल और बीज छीनने और फ़सलें रौंदने से अगले साल काटने को कुछ नहीं बचता।"
+        },
+        "good": false
+       },
+       {
+        "id": "protect",
+        "text": {
+         "en": "Advise the ruler to protect the peasants and collect regular tax",
+         "hi": "शासक को किसानों की रक्षा करने और नियमित कर लेने की सलाह दो"
+        },
+        "next": "rebels",
+        "feedback": {
+         "en": "Protecting the peasants keeps the grain flowing. A realm that robs its farmers does not stay prosperous.",
+         "hi": "किसानों की रक्षा से अनाज आता रहता है। जो राज्य अपने किसानों को लूटे, वह समृद्ध नहीं रहता।"
+        },
+        "good": true
+       }
+      ]
+     },
+     {
+      "id": "ruin",
+      "text": {
+       "en": "The next year the farmers have fled and the granaries are empty. The commanders ask what to do now.",
+       "hi": "अगले साल किसान भाग गए हैं और अन्न-भंडार ख़ाली हैं। सेनापति पूछते हैं कि अब क्या करें।"
+      },
+      "choices": [
+       {
+        "id": "change",
+        "text": {
+         "en": "Stop the robbing and call the farmers back",
+         "hi": "लूटना बंद करो और किसानों को वापस बुलाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Late, but right: without peasants there is no grain for anyone's table.",
+         "hi": "देर से सही, पर ठीक: किसानों के बिना किसी की थाली के लिए अनाज नहीं।"
+        },
+        "good": true
+       },
+       {
+        "id": "more",
+        "text": {
+         "en": "Rob the next village instead",
+         "hi": "अगले गाँव को लूट लो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The same loss repeats in the next village, and the realm grows weaker.",
+         "hi": "अगले गाँव में वही नुकसान दोहराया जाता है और राज्य कमज़ोर होता जाता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "rebels",
+      "text": {
+       "en": "Some villages rise against the tax-collectors, while others stay peaceful and obedient. How should the ruler deal with them?",
+       "hi": "कुछ गाँव कर-वसूलने वालों के विरुद्ध उठ खड़े हुए हैं, जबकि अन्य शांत और आज्ञाकारी हैं। शासक को उनसे कैसे निपटना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "alike",
+        "text": {
+         "en": "Punish every village alike",
+         "hi": "हर गाँव को एक-सी सज़ा दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Punishing the obedient as well as the rebels drives everyone away.",
+         "hi": "आज्ञाकारियों को भी विद्रोहियों जितनी सज़ा देने से सब दूर हो जाते हैं।"
+        },
+        "good": false
+       },
+       {
+        "id": "tell",
+        "text": {
+         "en": "Tell obedient peasants apart from rebels, and be firm only with the rebels",
+         "hi": "आज्ञाकारी किसानों और विद्रोहियों में भेद करो, और कठोर केवल विद्रोहियों से रहो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This is how Ghazan Khan's speech put it: the obedient peasantry must be distinguished from the rebels.",
+         "hi": "ग़ाज़ान ख़ान के भाषण में यही कहा गया: आज्ञाकारी किसानों को विद्रोहियों से अलग देखना चाहिए।"
+        },
+        "good": true
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Should nomad rulers rob the peasants they conquered, or protect them?",
+      "hi": "क्या खानाबदोश शासकों को जीते हुए किसानों को लूटना चाहिए, या उनकी रक्षा करनी चाहिए?"
+     },
+     "options": [
+      {
+       "id": "protect",
+       "en": "Protect them and collect regular tax",
+       "hi": "रक्षा करें और नियमित कर लें"
+      },
+      {
+       "id": "rob",
+       "en": "Rob them all",
+       "hi": "सबको लूट लें"
+      }
+     ],
+     "answer": "protect"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:protect",
+     "expect": "chose:protect",
+     "say": {
+      "en": "Choose to advise protecting the peasants.",
+      "hi": "किसानों की रक्षा की सलाह देना चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:rebels:tell",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose to tell obedient peasants apart from rebels.",
+      "hi": "आज्ञाकारी किसानों और विद्रोहियों में भेद करना चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Genghis Khan's army lived on pasture and raids, and early Mongol campaigns destroyed many farms and cities. But as the empire grew, rulers learnt that they needed the peasants. Qubilai Khan appeared as protector of the peasants and cities of China. In the 1290s Ghazan Khan, who ruled Iran, warned his commanders not to pillage the peasantry, in a speech written by his minister Rashiduddin. Ministers like Yeh-lu Ch'u-ts'ai, a Chinese, had earlier softened Ogodei's harsher instincts.",
+      "hi": "चंगेज़ ख़ान की सेना चरागाहों और धावों पर जीती थी, और शुरू के मंगोल अभियानों ने कई खेत और नगर उजाड़ दिए। पर जैसे-जैसे साम्राज्य बढ़ा, शासकों ने सीखा कि उन्हें किसानों की ज़रूरत है। क़ुबलाई ख़ान चीन के किसानों और नगरों के रक्षक के रूप में उभरा। 1290 के दशक में ईरान के शासक ग़ाज़ान ख़ान ने, अपने मंत्री रशीदुद्दीन के लिखे भाषण में, सेनापतियों को किसानों को न लूटने की चेतावनी दी। चीनी मंत्री येह-लू छू-त्साई जैसे लोगों ने पहले ओगोदेई की कठोर प्रवृत्तियों को नरम किया था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did later Mongol rulers want to protect the peasants?",
+        "hi": "बाद के मंगोल शासक किसानों की रक्षा क्यों चाहते थे?"
+       },
+       "options": [
+        {
+         "en": "A stable, prosperous realm needs peasants who grow grain",
+         "hi": "स्थिर, समृद्ध राज्य को अनाज उगाने वाले किसान चाहिए"
+        },
+        {
+         "en": "They had become farmers themselves",
+         "hi": "वे स्वयं किसान बन गए थे"
+        },
+        {
+         "en": "They had no horses left",
+         "hi": "उनके पास घोड़े नहीं बचे थे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ghazan Khan said that pillaging would not lead to a stable, prosperous realm.",
+        "hi": "ग़ाज़ान ख़ान ने कहा कि लूटपाट से स्थिर, समृद्ध राज्य नहीं बनता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The speech says nothing about the rulers becoming farmers.",
+         "hi": "भाषण में शासकों के किसान बनने की कोई बात नहीं है।"
+        },
+        {
+         "en": "Horses are not mentioned as running out. The point was future grain and taxes.",
+         "hi": "घोड़े ख़त्म होने की कोई बात नहीं है। मुद्दा भावी अनाज और कर का था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who often softened the harsher instincts of Mongol Khans?",
+        "hi": "मंगोल ख़ानों की कठोर प्रवृत्तियों को प्रायः कौन नरम करता था?"
+       },
+       "options": [
+        {
+         "en": "Administrators from the conquered lands",
+         "hi": "जीते हुए प्रदेशों के प्रशासक"
+        },
+        {
+         "en": "Their own horses",
+         "hi": "उनके अपने घोड़े"
+        },
+        {
+         "en": "Foreign soldiers hired from Europe",
+         "hi": "यूरोप से भाड़े पर आए विदेशी सैनिक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Mongols recruited civil administrators such as the Chinese Yeh-lu Ch'u-ts'ai and the Persian Juwaini family.",
+        "hi": "मंगोलों ने येह-लू छू-त्साई जैसे चीनी और जुवैनी परिवार जैसे फ़ारसी प्रशासक नियुक्त किए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This is not a serious answer: horses cannot advise rulers.",
+         "hi": "यह गंभीर उत्तर नहीं है: घोड़े शासकों को सलाह नहीं दे सकते।"
+        },
+        {
+         "en": "The chapter names local ministers and not hired European soldiers.",
+         "hi": "अध्याय स्थानीय मंत्रियों का नाम लेता है, भाड़े के यूरोपीय सैनिकों का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and take the pillage path. What does the empire lose each time?",
+      "hi": "फिर खेलो और लूट वाला रास्ता लो। हर बार साम्राज्य क्या खोता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch03-effects",
+   "topic": "3.4",
+   "template": "sort",
+   "title": {
+    "en": "Destruction and connection",
+    "hi": "विनाश और जुड़ाव"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "harm",
+      "label": {
+       "en": "Damage caused",
+       "hi": "हुआ नुकसान"
+      }
+     },
+     {
+      "id": "link",
+      "label": {
+       "en": "New links made",
+       "hi": "बने नए संबंध"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "killed",
+      "text": {
+       "en": "Tens of thousands killed, more enslaved",
+       "hi": "हज़ारों मारे गए, और भी अधिक दास बने"
+      },
+      "bin": "harm",
+      "why": {
+       "en": "Cities that resisted suffered terribly, though the exact figures are lost in exaggerated accounts.",
+       "hi": "जिन नगरों ने विरोध किया, उन्हें भारी कष्ट हुआ, यद्यपि अतिरंजित विवरणों में सही आँकड़े खो गए हैं।"
+      }
+     },
+     {
+      "id": "qanats",
+      "text": {
+       "en": "Underground canals (qanats) fell into disrepair",
+       "hi": "भूमिगत नहरें (क़नात) ख़राब हो गईं"
+      },
+      "bin": "harm",
+      "why": {
+       "en": "Without upkeep the desert crept in, and parts of Khurasan never recovered.",
+       "hi": "देखभाल के बिना मरुस्थल बढ़ता गया और ख़ुरासान के कुछ भाग कभी नहीं सँभले।"
+      }
+     },
+     {
+      "id": "output",
+      "text": {
+       "en": "Farming and crafts were disrupted",
+       "hi": "खेती और दस्तकारी रुक गईं"
+      },
+      "bin": "harm",
+      "why": {
+       "en": "Production was disrupted in the lands that were attacked.",
+       "hi": "जिन प्रदेशों पर हमले हुए, वहाँ उत्पादन ठप हो गया।"
+      }
+     },
+     {
+      "id": "linked",
+      "text": {
+       "en": "Europe and China became linked by land",
+       "hi": "यूरोप और चीन ज़मीन से जुड़ गए"
+      },
+      "bin": "link",
+      "why": {
+       "en": "Once the dust settled, Europe and China were territorially linked.",
+       "hi": "जब धूल बैठी तो यूरोप और चीन भौगोलिक रूप से जुड़ चुके थे।"
+      }
+     },
+     {
+      "id": "silk",
+      "text": {
+       "en": "Silk Route trade reached its peak",
+       "hi": "रेशम मार्ग का व्यापार चरम पर पहुँचा"
+      },
+      "bin": "link",
+      "why": {
+       "en": "Under the Mongols, commerce and travel along the Silk Route peaked.",
+       "hi": "मंगोलों के अधीन रेशम मार्ग पर व्यापार और यात्रा चरम पर पहुँचे।"
+      }
+     },
+     {
+      "id": "passes",
+      "text": {
+       "en": "Travellers got passes (paiza) for safe conduct",
+       "hi": "यात्रियों को सुरक्षित मार्ग के लिए पैज़ा मिलता था"
+      },
+      "bin": "link",
+      "why": {
+       "en": "Passes and the baj tax let travellers and traders cross the empire.",
+       "hi": "पैज़ा और बाज कर से यात्री और व्यापारी साम्राज्य पार कर पाते थे।"
+      }
+     },
+     {
+      "id": "yam",
+      "text": {
+       "en": "The courier system joined far-off lands",
+       "hi": "संदेशवाहक व्यवस्था ने दूर के प्रदेश जोड़े"
+      },
+      "bin": "link",
+      "why": {
+       "en": "Its speed and reliability surprised travellers.",
+       "hi": "इसकी गति और भरोसेमंदी ने यात्रियों को चकित कर दिया।"
+      }
+     },
+     {
+      "id": "admin",
+      "text": {
+       "en": "Chinese and Persian administrators moved across lands",
+       "hi": "चीनी और फ़ारसी प्रशासक एक-दूसरे के देशों में गए"
+      },
+      "bin": "link",
+      "why": {
+       "en": "Chinese secretaries worked in Iran and Persians in China.",
+       "hi": "चीनी मुंशी ईरान में और फ़ारसी चीन में काम करते थे।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:killed",
+     "expect": "placed:killed",
+     "say": {
+      "en": "Tap the card about people killed and enslaved, and place it.",
+      "hi": "मारे और दास बनाए गए लोगों वाला कार्ड छुओ और रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Did the Mongol conquests only destroy, or also connect distant lands?",
+      "hi": "क्या मंगोल विजयों ने केवल विनाश किया, या दूर के प्रदेशों को जोड़ा भी?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Both destroyed and connected",
+       "hi": "दोनों: विनाश भी, जुड़ाव भी"
+      },
+      {
+       "id": "only",
+       "en": "Only destroyed",
+       "hi": "केवल विनाश"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "card:silk",
+     "expect": "placed:silk",
+     "say": {
+      "en": "Place the card about the Silk Route.",
+      "hi": "रेशम मार्ग वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards and press Check.",
+      "hi": "बाकी कार्ड छाँटो और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mongol campaigns were terribly destructive. Many cities were destroyed, farms and irrigation canals were ruined, and many people were killed or enslaved. But once the conquests ended, peace (called the Pax Mongolica) let trade and travel flourish. Europe and China were joined by land, and the Silk Route did not stop in China but ran on to the Mongol capital, Karakorum.",
+      "hi": "मंगोल अभियान बेहद विनाशकारी थे। कई नगर नष्ट हुए, खेत और सिंचाई की नहरें उजड़ गईं और बहुत लोग मारे या दास बनाए गए। पर विजय समाप्त होने पर शांति (पैक्स मंगोलिका) में व्यापार और यात्रा फली-फूली। यूरोप और चीन ज़मीन से जुड़ गए और रेशम मार्ग चीन पर नहीं रुका, बल्कि मंगोल राजधानी कराकोरम तक चला।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What was the Pax Mongolica?",
+        "hi": "पैक्स मंगोलिका क्या था?"
+       },
+       "options": [
+        {
+         "en": "A period of peace under Mongol rule that helped trade",
+         "hi": "मंगोल शासन की वह शांति जिसने व्यापार को बढ़ाया"
+        },
+        {
+         "en": "A great battle against the Sung",
+         "hi": "सुंग वंश के विरुद्ध बड़ी लड़ाई"
+        },
+        {
+         "en": "A kind of tax",
+         "hi": "एक प्रकार का कर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After the conquests, Mongol peace let trade connections mature along the Silk Route.",
+        "hi": "विजयों के बाद मंगोल शांति में रेशम मार्ग पर व्यापारिक संबंध परिपक्व हुए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It means peace, not a battle.",
+         "hi": "इसका अर्थ शांति है, लड़ाई नहीं।"
+        },
+        {
+         "en": "The taxes were called baj and qubcur; Pax Mongolica was not one.",
+         "hi": "कर बाज और क़ुबचुर कहलाते थे; पैक्स मंगोलिका कर नहीं था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which card is hardest to put in one group only? Explain your thinking in one sentence.",
+      "hi": "कौन-सा कार्ड केवल एक समूह में रखना सबसे कठिन है? एक वाक्य में अपनी सोच बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "MAP",
+   "topic": "3.2",
+   "use": "Opening of the chapter and the steppe lab",
+   "shows": "Relief base of Central and East Asia: the grassland steppe of Mongolia, the Gobi desert, the Tian Shan mountains, the Taklamakan desert and the plains of northern China",
+   "view": "Top-down relief, 16:9, soft shading, rivers as thin blue lines",
+   "right": "Steppe drawn in pale green-gold, deserts in tan, snow on the high mountains; the Silk Route left open for the app to draw",
+   "avoid": "Names, borders, modern roads, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Hook of the chapter",
+   "shows": "A group of mounted riders in the distance crossing a wide grass steppe under a huge sky, small herds of sheep and horses nearby",
+   "view": "Wide, low camera, 16:9, early morning light",
+   "right": "Horses are small and sturdy; clothing is long padded robes and felt hats; riders are far away and faceless",
+   "avoid": "Close-up faces, modern objects, weapons held aloft"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Words match lab (paiza) and sources reader",
+   "shows": "A rectangular metal pass plate with a hole at one end for a cord, as a Mongol messenger might carry, with only abstract engraved patterns (an original design)",
+   "view": "Straight-on, transparent background, lit from top left",
+   "right": "Heavy-looking tablet with a rounded top and a hole for a cord; patterns are decorative lines, not letters",
+   "avoid": "Readable script, museum labels, copying a museum photograph"
+  },
+  {
+   "n": 4,
+   "kind": "3DM",
+   "topic": "3.1",
+   "use": "Reader on nomadic life",
+   "shows": "A round felt tent (ger) with a wooden door and a smoke hole, shown front, side, top, three-quarter and cut through",
+   "view": "Five fixed views, same size and centre, transparent background",
+   "right": "Round walls with a conical roof, white felt with ropes, small door painted with simple designs, circular smoke opening",
+   "avoid": "People, wires, modern materials"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "3.3",
+   "use": "Army sort lab",
+   "shows": "A clean diagram frame of a tree of military units: 10 soldiers, 100, 1,000 and 10,000, drawn as blocks with room for the app to colour them by tribe",
+   "view": "White or transparent background, vector, 16:9",
+   "right": "Each level has ten branches below it; blocks left empty so the app can mix tribes inside them",
+   "avoid": "Words, numbers, flags"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "3.3",
+   "use": "Courier system (yam) reader",
+   "shows": "Four frames of a relay: a rider arrives at a post, hands over a message pouch, a fresh horse is saddled, the next rider gallops off",
+   "view": "Same post and same camera in all frames, 4:3",
+   "right": "Tired horse in frame 1, fresh horse in frame 3; steppe landscape behind",
+   "avoid": "Faces, readable script, modern clothes"
+  }
+ ]
+}

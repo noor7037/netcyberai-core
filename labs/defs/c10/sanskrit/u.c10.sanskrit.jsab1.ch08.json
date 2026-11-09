@@ -1,0 +1,1140 @@
+{
+ "chapter_key": "u.c10.sanskrit.jsab1.ch08",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "प्रत्यया:",
+ "source": "https://ncert.nic.in/textbook/pdf/jsab1ps.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Ktva: having done",
+   "labs": [
+    "c10-sanskrit-jsab1-ch08-ktva"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Tumun: in order to do",
+   "labs": [
+    "c10-sanskrit-jsab1-ch08-tumun"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Ktavatu and shatri, and telling suffixes apart",
+   "labs": [
+    "c10-sanskrit-jsab1-ch08-forms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Using suffixes in sentences",
+   "labs": [
+    "c10-sanskrit-jsab1-ch08-sentences"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jsab1-ch08-ktva",
+   "topic": "8.1",
+   "template": "match",
+   "title": {
+    "en": "क्त्वा: having done",
+    "hi": "क्त्वा: करके"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "gam",
+      "left": {
+       "en": "गम् + क्त्वा",
+       "hi": "गम् + क्त्वा"
+      },
+      "right": {
+       "en": "गत्वा",
+       "hi": "गत्वा"
+      },
+      "why": {
+       "en": "Having gone, then the next action.",
+       "hi": "जाकर, फिर अगला काम।"
+      }
+     },
+     {
+      "id": "path",
+      "left": {
+       "en": "पठ् + क्त्वा",
+       "hi": "पठ् + क्त्वा"
+      },
+      "right": {
+       "en": "पठित्वा",
+       "hi": "पठित्वा"
+      },
+      "why": {
+       "en": "Having read.",
+       "hi": "पढ़कर।"
+      }
+     },
+     {
+      "id": "drish",
+      "left": {
+       "en": "दृश् + क्त्वा",
+       "hi": "दृश् + क्त्वा"
+      },
+      "right": {
+       "en": "दृष्ट्वा",
+       "hi": "दृष्ट्वा"
+      },
+      "why": {
+       "en": "Having seen.",
+       "hi": "देखकर।"
+      }
+     },
+     {
+      "id": "kri",
+      "left": {
+       "en": "कृ + क्त्वा",
+       "hi": "कृ + क्त्वा"
+      },
+      "right": {
+       "en": "कृत्वा",
+       "hi": "कृत्वा"
+      },
+      "why": {
+       "en": "Having done.",
+       "hi": "करके।"
+      }
+     },
+     {
+      "id": "khad",
+      "left": {
+       "en": "खाद् + क्त्वा",
+       "hi": "खाद् + क्त्वा"
+      },
+      "right": {
+       "en": "खादित्वा",
+       "hi": "खादित्वा"
+      },
+      "why": {
+       "en": "Having eaten.",
+       "hi": "खाकर।"
+      }
+     },
+     {
+      "id": "bhu",
+      "left": {
+       "en": "भू + क्त्वा",
+       "hi": "भू + क्त्वा"
+      },
+      "right": {
+       "en": "भूत्वा",
+       "hi": "भूत्वा"
+      },
+      "why": {
+       "en": "Having become.",
+       "hi": "होकर।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:gam",
+     "expect": "matched:gam",
+     "say": {
+      "en": "Match गम् + क्त्वा with its form.",
+      "hi": "गम् + क्त्वा को उसके रूप से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "'Having read, he plays.' Two actions happen, one after the other. Which action gets the क्त्वा form?",
+      "hi": "'पढ़कर वह खेलता है।' दो काम एक के बाद एक होते हैं। क्त्वा रूप किस काम को मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "first",
+       "en": "The earlier action, reading",
+       "hi": "पहले वाला काम, पढ़ना"
+      },
+      {
+       "id": "second",
+       "en": "The later action, playing",
+       "hi": "बाद वाला काम, खेलना"
+      },
+      {
+       "id": "both",
+       "en": "Both",
+       "hi": "दोनों"
+      }
+     ],
+     "answer": "first"
+    },
+    {
+     "kind": "do",
+     "target": "left:bhu",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the forms.",
+      "hi": "सब रूप मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The suffix क्त्वा (tvā) joins a verb root to say that an action was completed before another one: 'having done'. It never changes for person, number or gender, so it is an avyaya. The two actions must be done by the same person. बालकः पठित्वा क्रीडति: the boy, having read, plays. Many roots take the connecting vowel इ (पठित्वा, खादित्वा); some change (गत्वा, दृष्ट्वा, कृत्वा).",
+      "hi": "क्त्वा प्रत्यय किसी धातु से जुड़कर बताता है कि एक काम दूसरे काम से पहले पूरा हुआ: 'करके'। वह पुरुष, वचन या लिंग से नहीं बदलता, इसलिए अव्यय है। दोनों काम एक ही व्यक्ति के होने चाहिए। बालकः पठित्वा क्रीडति: बालक पढ़कर खेलता है। बहुत-सी धातुओं में जोड़ने वाला इ आता है (पठित्वा, खादित्वा); कुछ बदल जाती हैं (गत्वा, दृष्ट्वा, कृत्वा)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'दृष्ट्वा' mean?",
+        "hi": "'दृष्ट्वा' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Having seen",
+         "hi": "देखकर"
+        },
+        {
+         "en": "To see",
+         "hi": "देखने के लिए"
+        },
+        {
+         "en": "Seeing (now)",
+         "hi": "देखता हुआ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "क्त्वा shows an earlier completed action.",
+        "hi": "क्त्वा पहले पूरा हुआ काम बताता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'To see' is द्रष्टुम्, with the suffix तुमुन्.",
+         "hi": "'देखने के लिए' द्रष्टुम् है, तुमुन् प्रत्यय से।"
+        },
+        {
+         "en": "'Seeing' while doing another thing uses शतृ: पश्यन्.",
+         "hi": "साथ-साथ 'देखता हुआ' शतृ से बनता है: पश्यन्।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Does the क्त्वा form change with the doer?",
+        "hi": "क्या क्त्वा रूप कर्ता के साथ बदलता है?"
+       },
+       "options": [
+        {
+         "en": "No, it stays the same",
+         "hi": "नहीं, वह एक-सा रहता है"
+        },
+        {
+         "en": "Yes, with gender",
+         "hi": "हाँ, लिंग के साथ"
+        },
+        {
+         "en": "Yes, with number",
+         "hi": "हाँ, वचन के साथ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is an avyaya, so it never changes.",
+        "hi": "वह अव्यय है, इसलिए कभी नहीं बदलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Avyayas do not change with gender.",
+         "hi": "अव्यय लिंग से नहीं बदलते।"
+        },
+        {
+         "en": "Avyayas do not change with number.",
+         "hi": "अव्यय वचन से नहीं बदलते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Join two of your daily actions with a क्त्वा form, e.g. 'having bathed, I eat'.",
+      "hi": "अपने दो दैनिक कामों को क्त्वा रूप से जोड़ो, जैसे 'स्नान करके मैं खाता हूँ'।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch08-tumun",
+   "topic": "8.2",
+   "template": "match",
+   "title": {
+    "en": "तुमुन्: in order to",
+    "hi": "तुमुन्: के लिए"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "gam",
+      "left": {
+       "en": "गम् + तुमुन्",
+       "hi": "गम् + तुमुन्"
+      },
+      "right": {
+       "en": "गन्तुम्",
+       "hi": "गन्तुम्"
+      },
+      "why": {
+       "en": "In order to go.",
+       "hi": "जाने के लिए।"
+      }
+     },
+     {
+      "id": "path",
+      "left": {
+       "en": "पठ् + तुमुन्",
+       "hi": "पठ् + तुमुन्"
+      },
+      "right": {
+       "en": "पठितुम्",
+       "hi": "पठितुम्"
+      },
+      "why": {
+       "en": "In order to read.",
+       "hi": "पढ़ने के लिए।"
+      }
+     },
+     {
+      "id": "drish",
+      "left": {
+       "en": "दृश् + तुमुन्",
+       "hi": "दृश् + तुमुन्"
+      },
+      "right": {
+       "en": "द्रष्टुम्",
+       "hi": "द्रष्टुम्"
+      },
+      "why": {
+       "en": "In order to see.",
+       "hi": "देखने के लिए।"
+      }
+     },
+     {
+      "id": "kri",
+      "left": {
+       "en": "कृ + तुमुन्",
+       "hi": "कृ + तुमुन्"
+      },
+      "right": {
+       "en": "कर्तुम्",
+       "hi": "कर्तुम्"
+      },
+      "why": {
+       "en": "In order to do.",
+       "hi": "करने के लिए।"
+      }
+     },
+     {
+      "id": "khad",
+      "left": {
+       "en": "खाद् + तुमुन्",
+       "hi": "खाद् + तुमुन्"
+      },
+      "right": {
+       "en": "खादितुम्",
+       "hi": "खादितुम्"
+      },
+      "why": {
+       "en": "In order to eat.",
+       "hi": "खाने के लिए।"
+      }
+     },
+     {
+      "id": "pa",
+      "left": {
+       "en": "पा + तुमुन्",
+       "hi": "पा + तुमुन्"
+      },
+      "right": {
+       "en": "पातुम्",
+       "hi": "पातुम्"
+      },
+      "why": {
+       "en": "In order to drink.",
+       "hi": "पीने के लिए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:gam",
+     "expect": "matched:gam",
+     "say": {
+      "en": "Match गम् + तुमुन् with its form.",
+      "hi": "गम् + तुमुन् को उसके रूप से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "'I go to school to read.' Which action gets the तुमुन् form: going or reading?",
+      "hi": "'मैं पढ़ने के लिए विद्यालय जाता हूँ।' तुमुन् रूप किस काम को मिलेगा: जाना या पढ़ना?"
+     },
+     "options": [
+      {
+       "id": "read",
+       "en": "Reading, the purpose",
+       "hi": "पढ़ना, यानी उद्देश्य"
+      },
+      {
+       "id": "go",
+       "en": "Going",
+       "hi": "जाना"
+      },
+      {
+       "id": "school",
+       "en": "School",
+       "hi": "विद्यालय"
+      }
+     ],
+     "answer": "read"
+    },
+    {
+     "kind": "do",
+     "target": "left:pa",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the forms.",
+      "hi": "सब रूप मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The suffix तुमुन् (tum) makes a verb mean 'in order to do something'. The form ends in -तुम् and, like क्त्वा, is an avyaya that never changes. अहं पठितुं विद्यालयं गच्छामि: I go to school to read. The action with तुमुन् is the purpose; the main verb is what is done to reach that purpose. The root changes in the same way as with क्त्वा (गत्वा, गन्तुम्; दृष्ट्वा, द्रष्टुम्).",
+      "hi": "तुमुन् प्रत्यय क्रिया को 'किसी काम के लिए' का अर्थ देता है। रूप -तुम् पर समाप्त होता है और क्त्वा की तरह अव्यय है, कभी नहीं बदलता। अहं पठितुं विद्यालयं गच्छामि: मैं पढ़ने के लिए विद्यालय जाता हूँ। तुमुन् वाला काम उद्देश्य है; मुख्य क्रिया वह है जो उस उद्देश्य तक पहुँचने के लिए की जाती है। धातु उसी प्रकार बदलती है जैसे क्त्वा में (गत्वा, गन्तुम्; दृष्ट्वा, द्रष्टुम्)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence uses a purpose with तुमुन्?",
+        "hi": "किस वाक्य में तुमुन् से उद्देश्य बताया गया है?"
+       },
+       "options": [
+        {
+         "en": "बालकः खादितुं गृहं गच्छति।",
+         "hi": "बालकः खादितुं गृहं गच्छति।"
+        },
+        {
+         "en": "बालकः खादित्वा गृहं गच्छति।",
+         "hi": "बालकः खादित्वा गृहं गच्छति।"
+        },
+        {
+         "en": "बालकः खादन् गृहं गच्छति।",
+         "hi": "बालकः खादन् गृहं गच्छति।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The boy goes home in order to eat.",
+        "hi": "बालक खाने के लिए घर जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "खादित्वा means having eaten, an earlier action.",
+         "hi": "खादित्वा का अर्थ खाकर है, यानी पहले का काम।"
+        },
+        {
+         "en": "खादन् means while eating, at the same time.",
+         "hi": "खादन् का अर्थ खाते हुए है, यानी साथ-साथ।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is कर्तुम्?",
+        "hi": "कर्तुम् क्या है?"
+       },
+       "options": [
+        {
+         "en": "तुमुन् form of कृ: to do",
+         "hi": "कृ का तुमुन् रूप: करने के लिए"
+        },
+        {
+         "en": "क्त्वा form of कृ: having done",
+         "hi": "कृ का क्त्वा रूप: करके"
+        },
+        {
+         "en": "A noun meaning doer",
+         "hi": "संज्ञा, अर्थ करने वाला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-तुम् is the sign of तुमुन्.",
+        "hi": "-तुम् तुमुन् का चिह्न है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The क्त्वा form is कृत्वा.",
+         "hi": "क्त्वा रूप कृत्वा है।"
+        },
+        {
+         "en": "The doer is कर्ता.",
+         "hi": "करने वाला कर्ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say why you go to school, to the market and to the playground, using तुमुन् forms.",
+      "hi": "तुमुन् रूपों से बताओ कि तुम विद्यालय, बाज़ार और खेल के मैदान क्यों जाते हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch08-forms",
+   "topic": "8.3",
+   "template": "sort",
+   "title": {
+    "en": "Four suffixes, four meanings",
+    "hi": "चार प्रत्यय, चार अर्थ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "kt",
+      "label": {
+       "en": "Ktva (having done)",
+       "hi": "क्त्वा (करके)"
+      }
+     },
+     {
+      "id": "tu",
+      "label": {
+       "en": "Tumun (in order to)",
+       "hi": "तुमुन् (के लिए)"
+      }
+     },
+     {
+      "id": "ka",
+      "label": {
+       "en": "Ktavatu (did, past)",
+       "hi": "क्तवतु (भूतकाल)"
+      }
+     },
+     {
+      "id": "sh",
+      "label": {
+       "en": "Shatri (while doing)",
+       "hi": "शतृ (करता हुआ)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "gatva",
+      "text": {
+       "en": "गत्वा",
+       "hi": "गत्वा"
+      },
+      "bin": "kt",
+      "why": {
+       "en": "गम् + क्त्वा: having gone.",
+       "hi": "गम् + क्त्वा: जाकर।"
+      }
+     },
+     {
+      "id": "pathitva",
+      "text": {
+       "en": "पठित्वा",
+       "hi": "पठित्वा"
+      },
+      "bin": "kt",
+      "why": {
+       "en": "पठ् + क्त्वा: having read.",
+       "hi": "पठ् + क्त्वा: पढ़कर।"
+      }
+     },
+     {
+      "id": "kritva",
+      "text": {
+       "en": "कृत्वा",
+       "hi": "कृत्वा"
+      },
+      "bin": "kt",
+      "why": {
+       "en": "कृ + क्त्वा: having done.",
+       "hi": "कृ + क्त्वा: करके।"
+      }
+     },
+     {
+      "id": "gantum",
+      "text": {
+       "en": "गन्तुम्",
+       "hi": "गन्तुम्"
+      },
+      "bin": "tu",
+      "why": {
+       "en": "गम् + तुमुन्: in order to go.",
+       "hi": "गम् + तुमुन्: जाने के लिए।"
+      }
+     },
+     {
+      "id": "pathitum",
+      "text": {
+       "en": "पठितुम्",
+       "hi": "पठितुम्"
+      },
+      "bin": "tu",
+      "why": {
+       "en": "पठ् + तुमुन्: in order to read.",
+       "hi": "पठ् + तुमुन्: पढ़ने के लिए।"
+      }
+     },
+     {
+      "id": "drashtum",
+      "text": {
+       "en": "द्रष्टुम्",
+       "hi": "द्रष्टुम्"
+      },
+      "bin": "tu",
+      "why": {
+       "en": "दृश् + तुमुन्: in order to see.",
+       "hi": "दृश् + तुमुन्: देखने के लिए।"
+      }
+     },
+     {
+      "id": "gatavan",
+      "text": {
+       "en": "गतवान्",
+       "hi": "गतवान्"
+      },
+      "bin": "ka",
+      "why": {
+       "en": "गम् + क्तवतु: he went.",
+       "hi": "गम् + क्तवतु: वह गया।"
+      }
+     },
+     {
+      "id": "pathitavan",
+      "text": {
+       "en": "पठितवान्",
+       "hi": "पठितवान्"
+      },
+      "bin": "ka",
+      "why": {
+       "en": "पठ् + क्तवतु: he read.",
+       "hi": "पठ् + क्तवतु: उसने पढ़ा।"
+      }
+     },
+     {
+      "id": "kritavan",
+      "text": {
+       "en": "कृतवान्",
+       "hi": "कृतवान्"
+      },
+      "bin": "ka",
+      "why": {
+       "en": "कृ + क्तवतु: he did.",
+       "hi": "कृ + क्तवतु: उसने किया।"
+      }
+     },
+     {
+      "id": "gachchhan",
+      "text": {
+       "en": "गच्छन्",
+       "hi": "गच्छन्"
+      },
+      "bin": "sh",
+      "why": {
+       "en": "गम् + शतृ: going, while going.",
+       "hi": "गम् + शतृ: जाता हुआ।"
+      }
+     },
+     {
+      "id": "pathan",
+      "text": {
+       "en": "पठन्",
+       "hi": "पठन्"
+      },
+      "bin": "sh",
+      "why": {
+       "en": "पठ् + शतृ: reading, while reading.",
+       "hi": "पठ् + शतृ: पढ़ता हुआ।"
+      }
+     },
+     {
+      "id": "pashyan",
+      "text": {
+       "en": "पश्यन्",
+       "hi": "पश्यन्"
+      },
+      "bin": "sh",
+      "why": {
+       "en": "दृश् + शतृ: seeing, while seeing.",
+       "hi": "दृश् + शतृ: देखता हुआ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:gatva",
+     "expect": "placed:gatva",
+     "say": {
+      "en": "Tap गत्वा and choose its suffix.",
+      "hi": "गत्वा छुओ और उसका प्रत्यय चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A form ends in -तुम्. Which suffix made it?",
+      "hi": "एक रूप -तुम् पर समाप्त होता है। उसे किस प्रत्यय ने बनाया?"
+     },
+     "options": [
+      {
+       "id": "tumun",
+       "en": "तुमुन्",
+       "hi": "तुमुन्"
+      },
+      {
+       "id": "ktva",
+       "en": "क्त्वा",
+       "hi": "क्त्वा"
+      },
+      {
+       "id": "shatri",
+       "en": "शतृ",
+       "hi": "शतृ"
+      }
+     ],
+     "answer": "tumun"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all twelve forms, then press Check.",
+      "hi": "सभी बारह रूप रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Four useful suffixes. क्त्वा: -त्वा / -य, 'having done', an avyaya. तुमुन्: -तुम्, 'in order to', an avyaya. क्तवतु: -तवान्, 'he did', the past tense of an active sentence, which changes with gender and number (गतवान्, गतवती, गतवन्तः). शतृ: -अन् / -न्, 'doing at that very time', which also changes with gender and number (गच्छन्, गच्छन्ती). Find the ending and you find the meaning.",
+      "hi": "चार उपयोगी प्रत्यय। क्त्वा: -त्वा / -य, 'करके', अव्यय। तुमुन्: -तुम्, 'के लिए', अव्यय। क्तवतु: -तवान्, 'उसने किया', सक्रिय वाक्य का भूतकाल, जो लिंग और वचन के साथ बदलता है (गतवान्, गतवती, गतवन्तः)। शतृ: -अन् / -न्, 'उसी समय करता हुआ', वह भी लिंग और वचन के साथ बदलता है (गच्छन्, गच्छन्ती)। अंत पहचान लो तो अर्थ पहचान लोगे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which form tells the past of the doer, 'he read'?",
+        "hi": "कर्ता के भूतकाल 'उसने पढ़ा' को कौन-सा रूप बताता है?"
+       },
+       "options": [
+        {
+         "en": "पठितवान्",
+         "hi": "पठितवान्"
+        },
+        {
+         "en": "पठितुम्",
+         "hi": "पठितुम्"
+        },
+        {
+         "en": "पठन्",
+         "hi": "पठन्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-तवान् is क्तवतु, the past of the doer.",
+        "hi": "-तवान् क्तवतु है, यानी कर्ता का भूतकाल।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "पठितुम् means in order to read.",
+         "hi": "पठितुम् का अर्थ पढ़ने के लिए है।"
+        },
+        {
+         "en": "पठन् means reading, at that time.",
+         "hi": "पठन् का अर्थ पढ़ता हुआ है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these changes with gender?",
+        "hi": "इनमें कौन लिंग के साथ बदलता है?"
+       },
+       "options": [
+        {
+         "en": "गतवान् (गतवती)",
+         "hi": "गतवान् (गतवती)"
+        },
+        {
+         "en": "गत्वा",
+         "hi": "गत्वा"
+        },
+        {
+         "en": "गन्तुम्",
+         "hi": "गन्तुम्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "क्तवतु forms have masculine, feminine and neuter forms.",
+        "hi": "क्तवतु के पुल्लिंग, स्त्रीलिंग और नपुंसकलिंग रूप होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "गत्वा is an avyaya and does not change.",
+         "hi": "गत्वा अव्यय है और नहीं बदलता।"
+        },
+        {
+         "en": "गन्तुम् is an avyaya and does not change.",
+         "hi": "गन्तुम् अव्यय है और नहीं बदलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take the root लिख् (to write) and make its क्त्वा, तुमुन् and क्तवतु forms.",
+      "hi": "धातु लिख् (लिखना) लो और उसके क्त्वा, तुमुन् और क्तवतु रूप बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch08-sentences",
+   "topic": "8.3",
+   "template": "grammar",
+   "title": {
+    "en": "Suffixes in sentences",
+    "hi": "वाक्यों में प्रत्यय"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "s1",
+      "words": [
+       "रामः",
+       "फलं",
+       "खादित्वा",
+       "जलं",
+       "पिबति",
+       "खादितुम्"
+      ],
+      "answer": "रामः फलं खादित्वा जलं पिबति",
+      "rule": {
+       "en": "Having eaten (earlier), he drinks (later): क्त्वा.",
+       "hi": "पहले खाकर, बाद में पीता है: क्त्वा।"
+      }
+     },
+     {
+      "id": "s2",
+      "words": [
+       "अहं",
+       "पठितुं",
+       "विद्यालयं",
+       "गच्छामि",
+       "पठित्वा"
+      ],
+      "answer": [
+       "अहं पठितुं विद्यालयं गच्छामि",
+       "अहं विद्यालयं पठितुं गच्छामि"
+      ],
+      "rule": {
+       "en": "Going is done for the purpose of reading: तुमुन्.",
+       "hi": "जाना पढ़ने के उद्देश्य से किया जाता है: तुमुन्।"
+      }
+     },
+     {
+      "id": "s3",
+      "words": [
+       "सः",
+       "गृहं",
+       "गत्वा",
+       "भोजनं",
+       "करोति",
+       "गन्तुम्"
+      ],
+      "answer": "सः गृहं गत्वा भोजनं करोति",
+      "rule": {
+       "en": "Having gone home, he eats: क्त्वा.",
+       "hi": "घर जाकर वह भोजन करता है: क्त्वा।"
+      }
+     },
+     {
+      "id": "s4",
+      "words": [
+       "बालकः",
+       "हसन्",
+       "गच्छति",
+       "हसित्वा"
+      ],
+      "answer": "बालकः हसन् गच्छति",
+      "rule": {
+       "en": "Laughing while going, both at once: शतृ.",
+       "hi": "जाते हुए हँसता है, दोनों साथ-साथ: शतृ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:s1",
+     "say": {
+      "en": "Build the first sentence from the tiles.",
+      "hi": "टाइलों से पहला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'बालकः ___ गच्छति' two actions happen at the same time, laughing and going. Which form fits?",
+      "hi": "'बालकः ___ गच्छति' में हँसना और जाना साथ-साथ होते हैं। कौन-सा रूप ठीक है?"
+     },
+     "options": [
+      {
+       "id": "hasan",
+       "en": "हसन् (while laughing)",
+       "hi": "हसन् (हँसता हुआ)"
+      },
+      {
+       "id": "hasitva",
+       "en": "हसित्वा (having laughed)",
+       "hi": "हसित्वा (हँसकर)"
+      },
+      {
+       "id": "hasitum",
+       "en": "हसितुम् (to laugh)",
+       "hi": "हसितुम् (हँसने के लिए)"
+      }
+     ],
+     "answer": "hasan"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:s4",
+     "say": {
+      "en": "Build the sentence with शतृ.",
+      "hi": "शतृ वाला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Finish all the sentences.",
+      "hi": "सारे वाक्य पूरे करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Choose the suffix by asking when the action happens. Earlier and finished: क्त्वा (खादित्वा). For a purpose: तुमुन् (पठितुम्). At the same time as the main action: शतृ (हसन्). The suffix word sits next to its object, and the main verb usually comes last. Using these forms joins two short sentences into one smooth sentence.",
+      "hi": "प्रत्यय चुनने के लिए पूछो कि काम कब होता है। पहले और पूरा: क्त्वा (खादित्वा)। उद्देश्य के लिए: तुमुन् (पठितुम्)। मुख्य काम के साथ-साथ: शतृ (हसन्)। प्रत्यय वाला शब्द अपने कर्म के पास रहता है और मुख्य क्रिया प्रायः अंत में। इन रूपों से दो छोटे वाक्य एक सरल वाक्य में जुड़ जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence means 'I go to the market to buy fruits'?",
+        "hi": "कौन-सा वाक्य 'मैं फल खरीदने बाज़ार जाता हूँ' का अर्थ देता है?"
+       },
+       "options": [
+        {
+         "en": "अहं फलानि क्रेतुम् आपणं गच्छामि।",
+         "hi": "अहं फलानि क्रेतुम् आपणं गच्छामि।"
+        },
+        {
+         "en": "अहं फलानि क्रीत्वा आपणं गच्छामि।",
+         "hi": "अहं फलानि क्रीत्वा आपणं गच्छामि।"
+        },
+        {
+         "en": "अहं फलानि क्रीणन् आपणं गच्छामि।",
+         "hi": "अहं फलानि क्रीणन् आपणं गच्छामि।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "क्रेतुम् is the तुमुन् form: in order to buy.",
+        "hi": "क्रेतुम् तुमुन् रूप है: खरीदने के लिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "क्रीत्वा means having bought, which comes before going.",
+         "hi": "क्रीत्वा का अर्थ खरीदकर है, यानी जाने से पहले।"
+        },
+        {
+         "en": "क्रीणन् means buying while going.",
+         "hi": "क्रीणन् का अर्थ जाते हुए खरीदना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which suffix joins an earlier action to the main action?",
+        "hi": "कौन-सा प्रत्यय पहले के काम को मुख्य काम से जोड़ता है?"
+       },
+       "options": [
+        {
+         "en": "क्त्वा",
+         "hi": "क्त्वा"
+        },
+        {
+         "en": "तुमुन्",
+         "hi": "तुमुन्"
+        },
+        {
+         "en": "शतृ",
+         "hi": "शतृ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "क्त्वा means having done, an earlier action.",
+        "hi": "क्त्वा का अर्थ करके है, यानी पहले का काम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "तुमुन् gives a purpose.",
+         "hi": "तुमुन् उद्देश्य देता है।"
+        },
+        {
+         "en": "शतृ gives an action happening at the same time.",
+         "hi": "शतृ साथ-साथ होने वाला काम देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Join two of your own short sentences using any of the three suffixes.",
+      "hi": "अपने दो छोटे वाक्यों को इन तीन प्रत्ययों में से किसी एक से जोड़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "8.1",
+   "use": "Having eaten, then drinking",
+   "shows": "Two frames of the same table: a boy's hand picking up a banana, then the hand lifting a glass of water",
+   "view": "Same camera, same table and light",
+   "right": "Same table and plate in both frames",
+   "avoid": "Faces, brand glasses"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "8.2",
+   "use": "Going to school to read",
+   "shows": "A boy with a school bag walking on a village lane towards the school, seen from behind",
+   "view": "Wide shot, morning light",
+   "right": "School visible ahead",
+   "avoid": "Faces, signs, school name"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "8.3",
+   "use": "Laughing while going",
+   "shows": "Two friends walking on a path laughing, seen from far behind",
+   "view": "Wide shot, daylight",
+   "right": "Natural walking and laughing posture",
+   "avoid": "Faces, brand logos"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "8.2",
+   "use": "Fruits to buy",
+   "shows": "A basket of mangoes, bananas and guavas, cut-out",
+   "view": "Three-quarter view, soft light",
+   "right": "Real colours, fruits not touching the edge",
+   "avoid": "Price tags, writing"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "8.3",
+   "use": "Four suffix cards",
+   "shows": "Four blank cards in four logo colours in a row, each with a different small shape on top",
+   "view": "Flat front view on white",
+   "right": "Four cards, four different shapes and colours",
+   "avoid": "Text, numbers"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Bathing and then eating",
+   "shows": "A bucket, a mug and a towel on a bathroom stool, no people",
+   "view": "Eye level, morning light",
+   "right": "Water droplets on the bucket, towel folded",
+   "avoid": "Brand marks, faces"
+  }
+ ]
+}

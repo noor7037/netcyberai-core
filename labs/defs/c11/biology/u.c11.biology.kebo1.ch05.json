@@ -1,0 +1,1664 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch05",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Morphology of Flowering Plants",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "The root: tap, fibrous and adventitious roots; regions of the root",
+   "labs": [
+    "c11-biology-kebo1-ch05-root-types",
+    "c11-biology-kebo1-ch05-root-regions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "The stem: nodes, internodes, buds",
+   "labs": [],
+   "why_no_lab": "A real twig with nodes, internodes and buds, photographed, teaches this better than a simulation."
+  },
+  {
+   "n": "5.3",
+   "title": "The leaf: venation, simple and compound leaves, phyllotaxy",
+   "labs": [
+    "c11-biology-kebo1-ch05-leaf-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "The inflorescence: racemose and cymose",
+   "labs": [
+    "c11-biology-kebo1-ch05-inflorescence"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "The flower: parts, symmetry, position of the ovary, aestivation, androecium, gynoecium",
+   "labs": [
+    "c11-biology-kebo1-ch05-flower-parts",
+    "c11-biology-kebo1-ch05-ovary-position"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "The fruit: pericarp, drupes like mango and coconut",
+   "labs": [],
+   "why_no_lab": "A cut mango and a cut coconut, photographed side by side, show the three fruit layers best."
+  },
+  {
+   "n": "5.7",
+   "title": "The seed: dicotyledonous and monocotyledonous seeds",
+   "labs": [
+    "c11-biology-kebo1-ch05-monocot-seed"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.8",
+   "title": "Semi-technical description of a flowering plant: floral formula and diagram",
+   "labs": [
+    "c11-biology-kebo1-ch05-floral-formula"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.9",
+   "title": "Family Solanaceae",
+   "labs": [],
+   "why_no_lab": "Its floral formula is read in the floral-formula lab; photos of brinjal, potato and chilli flowers do the rest."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch05-root-types",
+   "topic": "5.1",
+   "template": "plant",
+   "title": {
+    "en": "Tap roots and fibrous roots",
+    "hi": "मूसला जड़ और झकड़ा जड़"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "root-types"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pot:1",
+     "expect": "picked:1",
+     "say": {
+      "en": "Choose the bean plant.",
+      "hi": "सेम का पौधा चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:main-root",
+     "expect": "identified:main-root",
+     "say": {
+      "en": "Tap the main root.",
+      "hi": "मुख्य जड़ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Maize is a monocot, like wheat and grass. What do you think its roots look like?",
+      "hi": "मक्का गेहूँ और घास की तरह एकबीजपत्री है। तुम्हें क्या लगता है, इसकी जड़ें कैसी दिखती हैं?"
+     },
+     "options": [
+      {
+       "id": "fibrous",
+       "en": "Many thin roots of the same size from the stem base",
+       "hi": "तने के आधार से बराबर की बहुत सी पतली जड़ें"
+      },
+      {
+       "id": "tap",
+       "en": "One thick main root going deep",
+       "hi": "गहराई तक जाती एक मोटी मुख्य जड़"
+      }
+     ],
+     "answer": "fibrous"
+    },
+    {
+     "kind": "do",
+     "target": "pot:3",
+     "expect": "picked:3",
+     "say": {
+      "en": "Now choose the maize plant.",
+      "hi": "अब मक्के का पौधा चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:main-root",
+     "expect": "identified:main-root",
+     "say": {
+      "en": "Tap where the main root should be. What do you find?",
+      "hi": "जहाँ मुख्य जड़ होनी चाहिए वहाँ टैप करो। क्या मिलता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In dicots such as bean and mustard the radicle grows into one main root with branches: a tap root system. In monocots such as maize and wheat the first root is short-lived and many roots grow from the base of the stem: a fibrous root system. Roots that grow from parts other than the radicle, like the hanging roots of the banyan, are adventitious roots.",
+      "hi": "सेम और सरसों जैसे द्विबीजपत्रियों में मूलांकुर से एक मुख्य जड़ शाखाओं के साथ बनती है: मूसला जड़ तंत्र। मक्का और गेहूँ जैसे एकबीजपत्रियों में पहली जड़ जल्दी नष्ट हो जाती है और तने के आधार से बहुत सी जड़ें निकलती हैं: झकड़ा जड़ तंत्र। मूलांकुर के अलावा दूसरे भागों से निकलने वाली जड़ें, जैसे बरगद की लटकती जड़ें, अपस्थानिक जड़ें हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The roots of a banyan hang down from its branches. What kind of roots are they?",
+        "hi": "बरगद की जड़ें उसकी शाखाओं से नीचे लटकती हैं। ये किस तरह की जड़ें हैं?"
+       },
+       "options": [
+        {
+         "en": "Adventitious roots",
+         "hi": "अपस्थानिक जड़ें"
+        },
+        {
+         "en": "Tap roots",
+         "hi": "मूसला जड़ें"
+        },
+        {
+         "en": "Root hairs",
+         "hi": "मूलरोम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They grow from a branch, not from the radicle, so they are adventitious.",
+        "hi": "ये मूलांकुर से नहीं, शाखा से निकलती हैं, इसलिए अपस्थानिक हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A tap root grows from the radicle into the soil, not from a branch.",
+         "hi": "मूसला जड़ मूलांकुर से मिट्टी में बढ़ती है, शाखा से नहीं।"
+        },
+        {
+         "en": "Root hairs are tiny outgrowths near the root tip that take in water.",
+         "hi": "मूलरोम जड़ के सिरे के पास नन्हे उभार हैं जो पानी सोखते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which job is NOT done by roots?",
+        "hi": "कौन-सा काम जड़ें नहीं करतीं?"
+       },
+       "options": [
+        {
+         "en": "Making food by photosynthesis",
+         "hi": "प्रकाश-संश्लेषण से भोजन बनाना"
+        },
+        {
+         "en": "Absorbing water and minerals",
+         "hi": "पानी और खनिज सोखना"
+        },
+        {
+         "en": "Holding the plant firmly",
+         "hi": "पौधे को मज़बूती से थामना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Roots are underground and have no chlorophyll; leaves make food.",
+        "hi": "जड़ें ज़मीन के नीचे होती हैं और उनमें पर्णहरित नहीं होता; पत्तियाँ भोजन बनाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Absorbing water and minerals is the main job of roots.",
+         "hi": "पानी और खनिज सोखना जड़ों का मुख्य काम है।"
+        },
+        {
+         "en": "Anchorage is one of the root's main jobs.",
+         "hi": "पौधे को थामना जड़ का एक मुख्य काम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose gram and find the root nodules. Press play to watch water move in through the root hairs.",
+      "hi": "चना चुनकर मूल ग्रंथियाँ ढूँढो। प्ले दबाकर देखो कि मूलरोमों से पानी कैसे भीतर जाता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch05-root-regions",
+   "topic": "5.1",
+   "template": "sequence",
+   "title": {
+    "en": "Regions of a root, from the tip up",
+    "hi": "जड़ के क्षेत्र, सिरे से ऊपर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "cap",
+      "text": {
+       "en": "Root cap: a thimble-like cover that protects the tip",
+       "hi": "मूल गोप: अंगुश्ताने जैसा आवरण जो सिरे की रक्षा करता है"
+      }
+     },
+     {
+      "id": "meristem",
+      "text": {
+       "en": "Region of meristematic activity: small cells that keep dividing",
+       "hi": "विभज्योतकी क्षेत्र: छोटी कोशिकाएँ जो लगातार बँटती हैं"
+      }
+     },
+     {
+      "id": "elongation",
+      "text": {
+       "en": "Region of elongation: cells grow longer and push the root down",
+       "hi": "दीर्घीकरण क्षेत्र: कोशिकाएँ लंबी होकर जड़ को नीचे धकेलती हैं"
+      }
+     },
+     {
+      "id": "maturation",
+      "text": {
+       "en": "Region of maturation: cells mature and root hairs form",
+       "hi": "परिपक्वन क्षेत्र: कोशिकाएँ परिपक्व होती हैं और मूलरोम बनते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:cap",
+     "expect": "placed:cap",
+     "say": {
+      "en": "Tap the root cap card, then tap place 1. Place 1 is the very tip.",
+      "hi": "मूल गोप वाले कार्ड पर टैप करो, फिर स्थान 1 पर। स्थान 1 बिल्कुल सिरा है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Just above the cap, the cells are tiny and busy. What do you think they are doing?",
+      "hi": "गोप के ठीक ऊपर कोशिकाएँ नन्ही और व्यस्त हैं। तुम्हें क्या लगता है, वे क्या कर रही हैं?"
+     },
+     "options": [
+      {
+       "id": "divide",
+       "en": "Dividing again and again",
+       "hi": "बार-बार बँट रही हैं"
+      },
+      {
+       "id": "hairs",
+       "en": "Growing root hairs",
+       "hi": "मूलरोम उगा रही हैं"
+      },
+      {
+       "id": "food",
+       "en": "Making food",
+       "hi": "भोजन बना रही हैं"
+      }
+     ],
+     "answer": "divide"
+    },
+    {
+     "kind": "do",
+     "target": "item:meristem",
+     "expect": "placed:meristem",
+     "say": {
+      "en": "Put the meristematic region in place 2.",
+      "hi": "विभज्योतकी क्षेत्र को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:elongation",
+     "expect": "placed:elongation",
+     "say": {
+      "en": "Put the region of elongation in place 3.",
+      "hi": "दीर्घीकरण क्षेत्र को स्थान 3 पर रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A root grows only near its tip. The cap shields the tip as it pushes through soil. Cells made in the meristematic region grow longer just above it, and further up they become mature cells. The root hairs of the maturation region absorb water and minerals.",
+      "hi": "जड़ केवल अपने सिरे के पास बढ़ती है। गोप मिट्टी में धँसते सिरे को बचाता है। विभज्योतकी क्षेत्र में बनी कोशिकाएँ उसके ठीक ऊपर लंबी होती हैं, और और ऊपर जाकर परिपक्व कोशिकाएँ बन जाती हैं। परिपक्वन क्षेत्र के मूलरोम पानी और खनिज सोखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You see fine white hairs on a seedling root a little above the tip. Which region is that?",
+        "hi": "अंकुर की जड़ पर सिरे से थोड़ा ऊपर बारीक सफ़ेद रोम दिखते हैं। यह कौन-सा क्षेत्र है?"
+       },
+       "options": [
+        {
+         "en": "Region of maturation",
+         "hi": "परिपक्वन क्षेत्र"
+        },
+        {
+         "en": "Root cap",
+         "hi": "मूल गोप"
+        },
+        {
+         "en": "Region of elongation",
+         "hi": "दीर्घीकरण क्षेत्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Root hairs grow from the epidermis in the maturation region.",
+        "hi": "मूलरोम परिपक्वन क्षेत्र की बाह्यत्वचा से निकलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The cap is at the very tip and has no hairs.",
+         "hi": "गोप बिल्कुल सिरे पर है और उसमें रोम नहीं होते।"
+        },
+        {
+         "en": "Cells in the elongation region are still lengthening; hairs come just after.",
+         "hi": "दीर्घीकरण क्षेत्र की कोशिकाएँ अभी लंबी हो रही हैं; रोम उसके बाद आते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the order. Then soak a few moong seeds for two days and look at a root tip with a hand lens.",
+      "hi": "क्रम पूरा करो। फिर कुछ मूँग के बीज दो दिन भिगोकर हैंड लेंस से जड़ का सिरा देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch05-leaf-types",
+   "topic": "5.3",
+   "template": "plant",
+   "title": {
+    "en": "Venation and compound leaves",
+    "hi": "शिराविन्यास और संयुक्त पत्तियाँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "leaf-types"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pot:7",
+     "expect": "picked:7",
+     "say": {
+      "en": "Choose the mango leaf.",
+      "hi": "आम की पत्ती चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:veins",
+     "expect": "identified:veins",
+     "say": {
+      "en": "Tap the veins. See how they spread.",
+      "hi": "शिराओं पर टैप करो। देखो वे कैसे फैली हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A maize leaf is long and narrow, like grass. How do you think its veins run?",
+      "hi": "मक्के की पत्ती घास जैसी लंबी और पतली है। तुम्हें क्या लगता है, इसकी शिराएँ कैसे चलती हैं?"
+     },
+     "options": [
+      {
+       "id": "parallel",
+       "en": "Side by side, along the length",
+       "hi": "लंबाई में साथ-साथ"
+      },
+      {
+       "id": "net",
+       "en": "In a net",
+       "hi": "जाल की तरह"
+      }
+     ],
+     "answer": "parallel"
+    },
+    {
+     "kind": "do",
+     "target": "pot:3",
+     "expect": "picked:3",
+     "say": {
+      "en": "Now choose the maize leaf.",
+      "hi": "अब मक्के की पत्ती चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:veins",
+     "expect": "identified:veins",
+     "say": {
+      "en": "Tap its veins.",
+      "hi": "इसकी शिराओं पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pot:2",
+     "expect": "picked:2",
+     "say": {
+      "en": "Choose gram. Look at its leaf closely.",
+      "hi": "चना चुनो। इसकी पत्ती को ध्यान से देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Dicot leaves like mango have reticulate venation: veins form a net. Monocot leaves like maize have parallel venation. A simple leaf has one blade; a compound leaf, like gram or neem, has its blade cut into leaflets on one axis. A bud is found in the axil of the petiole, not of each leaflet.",
+      "hi": "आम जैसी द्विबीजपत्री पत्तियों में जालिकावत शिराविन्यास होता है: शिराएँ जाल बनाती हैं। मक्के जैसी एकबीजपत्री पत्तियों में समानांतर शिराविन्यास होता है। सरल पत्ती में एक फलक होता है; संयुक्त पत्ती, जैसे चना या नीम, का फलक एक अक्ष पर पत्रकों में बँटा होता है। कली पर्णवृंत के कक्ष में होती है, हर पत्रक के कक्ष में नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How can you tell a compound leaf from a small twig with leaves?",
+        "hi": "संयुक्त पत्ती को पत्तियों वाली छोटी टहनी से कैसे अलग पहचानोगे?"
+       },
+       "options": [
+        {
+         "en": "A bud is in the axil of the whole leaf, but not of each leaflet",
+         "hi": "कली पूरी पत्ती के कक्ष में होती है, हर पत्रक के नहीं"
+        },
+        {
+         "en": "A compound leaf is always bigger",
+         "hi": "संयुक्त पत्ती हमेशा बड़ी होती है"
+        },
+        {
+         "en": "A twig has no green parts",
+         "hi": "टहनी में कोई हरा भाग नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Buds sit in leaf axils. A twig has a bud at the base of each leaf; a compound leaf has buds only at the base of its petiole.",
+        "hi": "कलियाँ पत्ती के कक्ष में होती हैं। टहनी में हर पत्ती के आधार पर कली होती है; संयुक्त पत्ती में केवल पर्णवृंत के आधार पर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size does not decide it; many simple leaves are bigger than compound ones.",
+         "hi": "आकार से तय नहीं होता; कई सरल पत्तियाँ संयुक्त पत्तियों से बड़ी होती हैं।"
+        },
+        {
+         "en": "Young twigs are often green too.",
+         "hi": "नई टहनियाँ भी अक्सर हरी होती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Calotropis has two leaves at each node, facing each other. What is this phyllotaxy?",
+        "hi": "आक (कैलोट्रोपिस) में हर गाँठ पर दो पत्तियाँ आमने-सामने होती हैं। यह कौन-सा पर्णविन्यास है?"
+       },
+       "options": [
+        {
+         "en": "Opposite",
+         "hi": "सम्मुख"
+        },
+        {
+         "en": "Alternate",
+         "hi": "एकांतर"
+        },
+        {
+         "en": "Whorled",
+         "hi": "चक्रिक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two leaves at a node facing each other is opposite phyllotaxy; guava has it too.",
+        "hi": "एक गाँठ पर आमने-सामने दो पत्तियाँ सम्मुख पर्णविन्यास है; अमरूद में भी यही है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Alternate means one leaf per node, as in china rose and mustard.",
+         "hi": "एकांतर का अर्थ है हर गाँठ पर एक पत्ती, जैसे गुड़हल और सरसों में।"
+        },
+        {
+         "en": "Whorled means more than two leaves at a node, as in Alstonia.",
+         "hi": "चक्रिक का अर्थ है एक गाँठ पर दो से ज़्यादा पत्तियाँ, जैसे एल्स्टोनिया में।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose tulsi and balsam. Compare their margins and how the leaves sit on the stem.",
+      "hi": "तुलसी और गुलमेहंदी चुनो। इनके किनारों की और तने पर पत्तियों के लगने की तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch05-inflorescence",
+   "topic": "5.4",
+   "template": "sort",
+   "title": {
+    "en": "Racemose or cymose?",
+    "hi": "असीमाक्षी या ससीमाक्षी?"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "racemose",
+      "label": {
+       "en": "Racemose",
+       "hi": "असीमाक्षी"
+      }
+     },
+     {
+      "id": "cymose",
+      "label": {
+       "en": "Cymose",
+       "hi": "ससीमाक्षी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "axis-grows",
+      "text": {
+       "en": "The main axis keeps on growing",
+       "hi": "मुख्य अक्ष बढ़ता ही रहता है"
+      },
+      "bin": "racemose",
+      "why": {
+       "en": "In racemose types the tip of the axis does not end in a flower.",
+       "hi": "असीमाक्षी में अक्ष का सिरा फूल पर ख़त्म नहीं होता।"
+      }
+     },
+     {
+      "id": "acropetal",
+      "text": {
+       "en": "Older flowers at the base, young at the top",
+       "hi": "पुराने फूल नीचे, नए ऊपर"
+      },
+      "bin": "racemose",
+      "why": {
+       "en": "Flowers open from the base upwards: acropetal order.",
+       "hi": "फूल नीचे से ऊपर की ओर खिलते हैं: अग्राभिसारी क्रम।"
+      }
+     },
+     {
+      "id": "mustard",
+      "text": {
+       "en": "Mustard flower spike",
+       "hi": "सरसों की पुष्प-मंजरी"
+      },
+      "bin": "racemose",
+      "why": {
+       "en": "New buds keep forming at the tip while lower flowers turn into pods.",
+       "hi": "ऊपर नई कलियाँ बनती रहती हैं, नीचे के फूल फलियों में बदलते हैं।"
+      }
+     },
+     {
+      "id": "axis-ends",
+      "text": {
+       "en": "The main axis ends in a flower",
+       "hi": "मुख्य अक्ष एक फूल पर ख़त्म होता है"
+      },
+      "bin": "cymose",
+      "why": {
+       "en": "In cymose types growth of the axis is limited by a terminal flower.",
+       "hi": "ससीमाक्षी में अंतस्थ फूल अक्ष की बढ़त रोक देता है।"
+      }
+     },
+     {
+      "id": "basipetal",
+      "text": {
+       "en": "Oldest flower at the top, younger ones below",
+       "hi": "सबसे पुराना फूल ऊपर, नए नीचे"
+      },
+      "bin": "cymose",
+      "why": {
+       "en": "Flowers open from the top downwards: basipetal order.",
+       "hi": "फूल ऊपर से नीचे खिलते हैं: तलाभिसारी क्रम।"
+      }
+     },
+     {
+      "id": "jasmine",
+      "text": {
+       "en": "Jasmine cluster with a central first flower",
+       "hi": "बीच में पहले खिले फूल वाला चमेली का गुच्छा"
+      },
+      "bin": "cymose",
+      "why": {
+       "en": "The central flower opens first and side flowers follow.",
+       "hi": "बीच का फूल पहले खिलता है और बगल के बाद में।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:axis-grows",
+     "expect": "correct:axis-grows",
+     "say": {
+      "en": "Tap \"The main axis keeps on growing\", then tap its type.",
+      "hi": "\"मुख्य अक्ष बढ़ता ही रहता है\" पर टैप करो, फिर उसके प्रकार पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the main axis ends in a flower, where will the oldest flower be?",
+      "hi": "अगर मुख्य अक्ष एक फूल पर ख़त्म होता है, तो सबसे पुराना फूल कहाँ होगा?"
+     },
+     "options": [
+      {
+       "id": "top",
+       "en": "At the top of the axis",
+       "hi": "अक्ष के ऊपर"
+      },
+      {
+       "id": "base",
+       "en": "At the base",
+       "hi": "आधार पर"
+      }
+     ],
+     "answer": "top"
+    },
+    {
+     "kind": "do",
+     "target": "card:axis-ends",
+     "expect": "correct:axis-ends",
+     "say": {
+      "en": "Tap \"The main axis ends in a flower\" and sort it.",
+      "hi": "\"मुख्य अक्ष एक फूल पर ख़त्म होता है\" पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:basipetal",
+     "expect": "correct:basipetal",
+     "say": {
+      "en": "Now sort the card about the oldest flower at the top.",
+      "hi": "अब ऊपर सबसे पुराने फूल वाले कार्ड को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An inflorescence is the way flowers are arranged on the floral axis. In racemose types the axis goes on growing and flowers form one after another along it, oldest at the base. In cymose types the axis ends in a flower, so it stops growing, and flowers open from the top down.",
+      "hi": "पुष्पक्रम पुष्प-अक्ष पर फूलों के लगने का ढंग है। असीमाक्षी में अक्ष बढ़ता रहता है और फूल एक के बाद एक बनते हैं, सबसे पुराना आधार पर। ससीमाक्षी में अक्ष एक फूल पर ख़त्म होता है, इसलिए बढ़ना रुक जाता है, और फूल ऊपर से नीचे खिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a tall flower spike, fresh buds are at the top and seed pods at the bottom. What type is it?",
+        "hi": "एक लंबी मंजरी में ऊपर ताज़ी कलियाँ हैं और नीचे बीज की फलियाँ। यह किस प्रकार का है?"
+       },
+       "options": [
+        {
+         "en": "Racemose",
+         "hi": "असीमाक्षी"
+        },
+        {
+         "en": "Cymose",
+         "hi": "ससीमाक्षी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Young flowers at the top and old ones at the base show acropetal order: racemose.",
+        "hi": "ऊपर नए और नीचे पुराने फूल अग्राभिसारी क्रम दिखाते हैं: असीमाक्षी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In cymose types the oldest flower is at the top, the opposite of this spike.",
+         "hi": "ससीमाक्षी में सबसे पुराना फूल ऊपर होता है, इस मंजरी के उलट।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then look at a tulsi, mustard or jasmine plant near you and decide which type it shows.",
+      "hi": "बाक़ी कार्ड छाँटो। फिर पास के तुलसी, सरसों या चमेली के पौधे को देखकर तय करो कि वह कौन-सा प्रकार है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch05-flower-parts",
+   "topic": "5.5",
+   "template": "plant",
+   "title": {
+    "en": "The four whorls of a flower",
+    "hi": "फूल के चार चक्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flower",
+    "plant": "hibiscus"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:sepal",
+     "expect": "identified:sepal",
+     "say": {
+      "en": "Tap a sepal, the green outer whorl.",
+      "hi": "हरे बाहरी चक्र के एक बाह्यदल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:petal",
+     "expect": "identified:petal",
+     "say": {
+      "en": "Tap a petal.",
+      "hi": "एक पंखुड़ी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Stamens make pollen. Which whorl do you think they form?",
+      "hi": "पुंकेसर पराग बनाते हैं। तुम्हें क्या लगता है, वे कौन-सा चक्र बनाते हैं?"
+     },
+     "options": [
+      {
+       "id": "andro",
+       "en": "Androecium, the male whorl",
+       "hi": "पुमंग, नर चक्र"
+      },
+      {
+       "id": "gyno",
+       "en": "Gynoecium, the female whorl",
+       "hi": "जायांग, मादा चक्र"
+      },
+      {
+       "id": "calyx",
+       "en": "Calyx",
+       "hi": "बाह्यदलपुंज"
+      }
+     ],
+     "answer": "andro"
+    },
+    {
+     "kind": "do",
+     "target": "part:anther",
+     "expect": "identified:anther",
+     "say": {
+      "en": "Tap an anther at the top of a stamen.",
+      "hi": "पुंकेसर के ऊपर के परागकोश पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:stigma",
+     "expect": "identified:stigma",
+     "say": {
+      "en": "Tap the stigma, where pollen lands.",
+      "hi": "वर्तिकाग्र पर टैप करो, जहाँ पराग गिरता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A typical flower has four whorls on the thalamus: calyx (sepals), corolla (petals), androecium (stamens) and gynoecium (carpels with stigma, style and ovary). Calyx and corolla are accessory organs; stamens and carpels are the reproductive organs. In china rose the stamens are joined into one bundle around the style: monoadelphous.",
+      "hi": "एक प्रारूपिक फूल में पुष्पासन पर चार चक्र होते हैं: बाह्यदलपुंज (बाह्यदल), दलपुंज (पंखुड़ियाँ), पुमंग (पुंकेसर) और जायांग (वर्तिकाग्र, वर्तिका और अंडाशय वाले अंडप)। बाह्यदलपुंज और दलपुंज सहायक अंग हैं; पुंकेसर और अंडप जनन अंग हैं। गुड़हल में पुंकेसर वर्तिका के चारों ओर एक गुच्छे में जुड़े होते हैं: एकसंघी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In china rose the petals overlap so that each one covers the next, all in one direction. Which aestivation is that?",
+        "hi": "गुड़हल में पंखुड़ियाँ इस तरह एक-दूसरे पर चढ़ती हैं कि हर एक अगली को ढकती है, सब एक दिशा में। यह कौन-सा पुष्पदलविन्यास है?"
+       },
+       "options": [
+        {
+         "en": "Twisted",
+         "hi": "व्यावर्तित"
+        },
+        {
+         "en": "Valvate",
+         "hi": "कोरस्पर्शी"
+        },
+        {
+         "en": "Vexillary",
+         "hi": "ध्वजीय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Twisted aestivation is seen in china rose, lady's finger and cotton.",
+        "hi": "व्यावर्तित विन्यास गुड़हल, भिंडी और कपास में दिखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In valvate aestivation the petals only touch at the edges, as in Calotropis.",
+         "hi": "कोरस्पर्शी में पंखुड़ियाँ केवल किनारों पर छूती हैं, जैसे आक में।"
+        },
+        {
+         "en": "Vexillary is the pea and bean type, with a large standard petal.",
+         "hi": "ध्वजीय मटर और सेम का प्रकार है, जिसमें एक बड़ी ध्वज पंखुड़ी होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A flower can be cut into two equal halves along any line through its centre, like mustard or chilli. What is it called?",
+        "hi": "एक फूल केंद्र से किसी भी रेखा पर दो बराबर हिस्सों में कट सकता है, जैसे सरसों या मिर्च। इसे क्या कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Actinomorphic",
+         "hi": "त्रिज्यसममित"
+        },
+        {
+         "en": "Zygomorphic",
+         "hi": "एकव्याससममित"
+        },
+        {
+         "en": "Asymmetric",
+         "hi": "असममित"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Radially symmetrical flowers are actinomorphic.",
+        "hi": "अरीय सममित फूल त्रिज्यसममित कहलाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zygomorphic flowers, like pea and gulmohur, divide equally along only one line.",
+         "hi": "एकव्याससममित फूल, जैसे मटर और गुलमोहर, केवल एक रेखा पर बराबर बँटते हैं।"
+        },
+        {
+         "en": "Asymmetric flowers, like canna, cannot be cut into equal halves at all.",
+         "hi": "असममित फूल, जैसे कैना, बराबर हिस्सों में कट ही नहीं सकते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the filament, style, ovary and ovule. Then press play to see what happens after pollination.",
+      "hi": "पुतंतु, वर्तिका, अंडाशय और बीजांड पर टैप करो। फिर प्ले दबाकर देखो कि परागण के बाद क्या होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch05-ovary-position",
+   "topic": "5.5",
+   "template": "sort",
+   "title": {
+    "en": "Where is the ovary?",
+    "hi": "अंडाशय कहाँ है?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "hypo",
+      "label": {
+       "en": "Hypogynous (ovary superior)",
+       "hi": "अधोजायांगी (ऊर्ध्ववर्ती अंडाशय)"
+      }
+     },
+     {
+      "id": "peri",
+      "label": {
+       "en": "Perigynous (half-inferior)",
+       "hi": "परिजायांगी (अर्ध-अधोवर्ती)"
+      }
+     },
+     {
+      "id": "epi",
+      "label": {
+       "en": "Epigynous (ovary inferior)",
+       "hi": "अधिजायांगी (अधोवर्ती अंडाशय)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "mustard",
+      "text": {
+       "en": "Mustard",
+       "hi": "सरसों"
+      },
+      "bin": "hypo",
+      "why": {
+       "en": "The ovary sits on top of the thalamus; other parts arise below it.",
+       "hi": "अंडाशय पुष्पासन के ऊपर बैठा है; बाक़ी भाग उसके नीचे से निकलते हैं।"
+      }
+     },
+     {
+      "id": "chinarose",
+      "text": {
+       "en": "China rose",
+       "hi": "गुड़हल"
+      },
+      "bin": "hypo",
+      "why": {
+       "en": "Sepals, petals and stamens arise below the ovary: superior ovary.",
+       "hi": "बाह्यदल, पंखुड़ियाँ और पुंकेसर अंडाशय के नीचे से निकलते हैं: ऊर्ध्ववर्ती अंडाशय।"
+      }
+     },
+     {
+      "id": "brinjal",
+      "text": {
+       "en": "Brinjal",
+       "hi": "बैंगन"
+      },
+      "bin": "hypo",
+      "why": {
+       "en": "Solanaceae flowers like brinjal have a superior ovary.",
+       "hi": "बैंगन जैसे सोलेनेसी के फूलों में ऊर्ध्ववर्ती अंडाशय होता है।"
+      }
+     },
+     {
+      "id": "plum",
+      "text": {
+       "en": "Plum",
+       "hi": "आलूबुख़ारा"
+      },
+      "bin": "peri",
+      "why": {
+       "en": "The other parts arise from the rim of a cup-like thalamus, at about the level of the ovary.",
+       "hi": "बाक़ी भाग प्याले जैसे पुष्पासन के किनारे से, लगभग अंडाशय की ऊँचाई पर निकलते हैं।"
+      }
+     },
+     {
+      "id": "rose",
+      "text": {
+       "en": "Rose",
+       "hi": "गुलाब"
+      },
+      "bin": "peri",
+      "why": {
+       "en": "Rose has a cup-shaped thalamus: perigynous.",
+       "hi": "गुलाब में प्याले जैसा पुष्पासन होता है: परिजायांगी।"
+      }
+     },
+     {
+      "id": "guava",
+      "text": {
+       "en": "Guava",
+       "hi": "अमरूद"
+      },
+      "bin": "epi",
+      "why": {
+       "en": "The thalamus grows up around the ovary and fuses with it; other parts arise above it.",
+       "hi": "पुष्पासन अंडाशय के चारों ओर बढ़कर उससे जुड़ जाता है; बाक़ी भाग उसके ऊपर से निकलते हैं।"
+      }
+     },
+     {
+      "id": "cucumber",
+      "text": {
+       "en": "Cucumber",
+       "hi": "खीरा"
+      },
+      "bin": "epi",
+      "why": {
+       "en": "The tiny cucumber below the petals is the inferior ovary.",
+       "hi": "पंखुड़ियों के नीचे का नन्हा खीरा ही अधोवर्ती अंडाशय है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:mustard",
+     "expect": "correct:mustard",
+     "say": {
+      "en": "Tap the mustard card, then tap where its ovary is.",
+      "hi": "सरसों कार्ड पर टैप करो, फिर उसके अंडाशय की जगह वाले समूह पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A cucumber flower already has a tiny cucumber below its petals. Where is its ovary?",
+      "hi": "खीरे के फूल में पंखुड़ियों के नीचे पहले से एक नन्हा खीरा होता है। इसका अंडाशय कहाँ है?"
+     },
+     "options": [
+      {
+       "id": "epi",
+       "en": "Below the other parts: inferior",
+       "hi": "बाक़ी भागों के नीचे: अधोवर्ती"
+      },
+      {
+       "id": "hypo",
+       "en": "Above the other parts: superior",
+       "hi": "बाक़ी भागों के ऊपर: ऊर्ध्ववर्ती"
+      }
+     ],
+     "answer": "epi"
+    },
+    {
+     "kind": "do",
+     "target": "card:cucumber",
+     "expect": "correct:cucumber",
+     "say": {
+      "en": "Tap the cucumber and sort it.",
+      "hi": "खीरे पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:rose",
+     "expect": "correct:rose",
+     "say": {
+      "en": "Now sort the rose.",
+      "hi": "अब गुलाब को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The position of the ovary is read against the other floral parts on the thalamus. Hypogynous: the ovary is highest and superior. Perigynous: the parts arise from a cup rim at the ovary's level, so the ovary is half-inferior. Epigynous: the thalamus covers the ovary and the parts arise above it, so the ovary is inferior.",
+      "hi": "अंडाशय की स्थिति पुष्पासन पर बाक़ी पुष्प-भागों की तुलना में देखी जाती है। अधोजायांगी: अंडाशय सबसे ऊपर और ऊर्ध्ववर्ती है। परिजायांगी: भाग अंडाशय की ऊँचाई पर प्याले के किनारे से निकलते हैं, इसलिए अंडाशय अर्ध-अधोवर्ती है। अधिजायांगी: पुष्पासन अंडाशय को ढक लेता है और भाग उसके ऊपर से निकलते हैं, इसलिए अंडाशय अधोवर्ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a guava fruit you can see the dried sepals on top. What does that tell you about its flower?",
+        "hi": "अमरूद के फल के ऊपर सूखे बाह्यदल दिखते हैं। इससे उसके फूल के बारे में क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "The ovary was inferior: the other parts grew above it",
+         "hi": "अंडाशय अधोवर्ती था: बाक़ी भाग उसके ऊपर लगे थे"
+        },
+        {
+         "en": "The ovary was superior",
+         "hi": "अंडाशय ऊर्ध्ववर्ती था"
+        },
+        {
+         "en": "The flower had no sepals",
+         "hi": "फूल में बाह्यदल नहीं थे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sepals on top of the fruit mean they arose above the ovary: an epigynous flower.",
+        "hi": "फल के ऊपर बाह्यदल का अर्थ है कि वे अंडाशय के ऊपर से निकले थे: अधिजायांगी फूल।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "With a superior ovary the sepals would sit at the base of the fruit, as in brinjal.",
+         "hi": "ऊर्ध्ववर्ती अंडाशय होता तो बाह्यदल फल के आधार पर होते, जैसे बैंगन में।"
+        },
+        {
+         "en": "You can see the sepals, so the flower did have them.",
+         "hi": "बाह्यदल दिख रहे हैं, यानी फूल में वे थे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then compare a brinjal and a guava at home: where are the sepals on each fruit?",
+      "hi": "बाक़ी कार्ड छाँटो। फिर घर पर बैंगन और अमरूद की तुलना करो: हर फल पर बाह्यदल कहाँ हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch05-monocot-seed",
+   "topic": "5.7",
+   "template": "plant",
+   "title": {
+    "en": "Inside a maize grain",
+    "hi": "मक्के के दाने के भीतर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "germination",
+    "plant": "maize",
+    "pots": 1
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:endosperm",
+     "expect": "identified:endosperm",
+     "say": {
+      "en": "Tap the endosperm, the big food store.",
+      "hi": "भ्रूणपोष पर टैप करो, बड़ा भोजन भंडार।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:cotyledon",
+     "expect": "identified:cotyledon",
+     "say": {
+      "en": "Tap the cotyledon. In maize it is called the scutellum.",
+      "hi": "बीजपत्र पर टैप करो। मक्के में इसे स्कुटेलम कहते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When the grain sprouts, which part do you think comes out first?",
+      "hi": "जब दाना अंकुरित होगा, तुम्हें क्या लगता है, सबसे पहले कौन-सा भाग निकलेगा?"
+     },
+     "options": [
+      {
+       "id": "radicle",
+       "en": "The radicle, the baby root",
+       "hi": "मूलांकुर, नन्ही जड़"
+      },
+      {
+       "id": "plumule",
+       "en": "The plumule, the baby shoot",
+       "hi": "प्रांकुर, नन्हा प्ररोह"
+      },
+      {
+       "id": "endosperm",
+       "en": "The endosperm",
+       "hi": "भ्रूणपोष"
+      }
+     ],
+     "answer": "radicle"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "germinated",
+     "say": {
+      "en": "Press play and watch the grain for 8 days.",
+      "hi": "प्ले दबाओ और 8 दिन तक दाने को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A maize grain is a monocot seed. Its embryo has one large shield-shaped cotyledon, the scutellum, and an axis with a plumule and a radicle. The plumule is wrapped in a sheath called the coleoptile and the radicle in the coleorhiza. The bulky endosperm stores food, and a protein layer, the aleurone, separates it from the embryo.",
+      "hi": "मक्के का दाना एकबीजपत्री बीज है। इसके भ्रूण में एक बड़ा ढाल जैसा बीजपत्र, स्कुटेलम, और प्रांकुर व मूलांकुर वाला अक्ष होता है। प्रांकुर प्रांकुरचोल नाम के आवरण में और मूलांकुर मूलांकुरचोल में लिपटा होता है। भारी भ्रूणपोष भोजन जमा करता है, और प्रोटीन की एक परत, एल्यूरोन, उसे भ्रूण से अलग करती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where is the food stored in a gram or bean seed?",
+        "hi": "चने या सेम के बीज में भोजन कहाँ जमा रहता है?"
+       },
+       "options": [
+        {
+         "en": "In the two fleshy cotyledons",
+         "hi": "दो मांसल बीजपत्रों में"
+        },
+        {
+         "en": "In a large endosperm",
+         "hi": "बड़े भ्रूणपोष में"
+        },
+        {
+         "en": "In the seed coat",
+         "hi": "बीजावरण में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In dicot seeds like gram and pea, the cotyledons are full of reserve food.",
+        "hi": "चना और मटर जैसे द्विबीजपत्री बीजों में बीजपत्र संचित भोजन से भरे होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A big endosperm is typical of monocot grains like maize and wheat.",
+         "hi": "बड़ा भ्रूणपोष मक्का और गेहूँ जैसे एकबीजपत्री दानों की पहचान है।"
+        },
+        {
+         "en": "The seed coat protects the seed; it does not store food.",
+         "hi": "बीजावरण बीज की रक्षा करता है; भोजन जमा नहीं करता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the coleoptile?",
+        "hi": "प्रांकुरचोल क्या है?"
+       },
+       "options": [
+        {
+         "en": "A sheath that covers the plumule",
+         "hi": "प्रांकुर को ढकने वाला आवरण"
+        },
+        {
+         "en": "A sheath that covers the radicle",
+         "hi": "मूलांकुर को ढकने वाला आवरण"
+        },
+        {
+         "en": "The food layer of the seed",
+         "hi": "बीज की भोजन परत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The coleoptile protects the young shoot as it pushes up through the soil.",
+        "hi": "प्रांकुरचोल नन्हे प्ररोह की रक्षा करता है जब वह मिट्टी से ऊपर निकलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The radicle sheath is the coleorhiza.",
+         "hi": "मूलांकुर का आवरण मूलांकुरचोल है।"
+        },
+        {
+         "en": "The food layer is the endosperm, with the aleurone layer around it.",
+         "hi": "भोजन परत भ्रूणपोष है, जिसके चारों ओर एल्यूरोन परत होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the plumule, radicle and seed coat. Then soak a maize grain and a gram seed overnight and open both to compare.",
+      "hi": "प्रांकुर, मूलांकुर और बीजावरण पर टैप करो। फिर मक्के का एक दाना और चने का एक बीज रात भर भिगोकर दोनों खोलकर तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch05-floral-formula",
+   "topic": "5.8",
+   "template": "match",
+   "title": {
+    "en": "Reading a floral formula",
+    "hi": "पुष्प सूत्र पढ़ना"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "pairs": [
+     {
+      "id": "br",
+      "left": {
+       "en": "Br",
+       "hi": "Br"
+      },
+      "right": {
+       "en": "Bracteate: a small leaf (bract) at the flower base",
+       "hi": "सहपत्री: फूल के आधार पर एक छोटी पत्ती (सहपत्र)"
+      },
+      "why": {
+       "en": "Br stands for a bract at the base of the pedicel.",
+       "hi": "Br पुष्पवृंत के आधार पर सहपत्र का संकेत है।"
+      }
+     },
+     {
+      "id": "act",
+      "left": {
+       "en": "⊕",
+       "hi": "⊕"
+      },
+      "right": {
+       "en": "Actinomorphic flower",
+       "hi": "त्रिज्यसममित फूल"
+      },
+      "why": {
+       "en": "The circle with a cross means radial symmetry.",
+       "hi": "क्रॉस वाला वृत्त अरीय सममिति दिखाता है।"
+      }
+     },
+     {
+      "id": "bis",
+      "left": {
+       "en": "⚥",
+       "hi": "⚥"
+      },
+      "right": {
+       "en": "Bisexual flower",
+       "hi": "उभयलिंगी फूल"
+      },
+      "why": {
+       "en": "The joined male and female sign means both stamens and carpels are present.",
+       "hi": "जुड़ा नर-मादा चिह्न बताता है कि पुंकेसर और अंडप दोनों हैं।"
+      }
+     },
+     {
+      "id": "k5",
+      "left": {
+       "en": "K(5)",
+       "hi": "K(5)"
+      },
+      "right": {
+       "en": "Five sepals, joined",
+       "hi": "पाँच बाह्यदल, जुड़े हुए"
+      },
+      "why": {
+       "en": "K is the calyx; brackets mean the parts are fused.",
+       "hi": "K बाह्यदलपुंज है; कोष्ठक का अर्थ है भाग जुड़े हैं।"
+      }
+     },
+     {
+      "id": "c5",
+      "left": {
+       "en": "C(5)",
+       "hi": "C(5)"
+      },
+      "right": {
+       "en": "Five petals, joined",
+       "hi": "पाँच पंखुड़ियाँ, जुड़ी हुई"
+      },
+      "why": {
+       "en": "C is the corolla.",
+       "hi": "C दलपुंज है।"
+      }
+     },
+     {
+      "id": "a5",
+      "left": {
+       "en": "A5",
+       "hi": "A5"
+      },
+      "right": {
+       "en": "Five free stamens",
+       "hi": "पाँच स्वतंत्र पुंकेसर"
+      },
+      "why": {
+       "en": "A is the androecium; no brackets, so the stamens are free.",
+       "hi": "A पुमंग है; कोष्ठक नहीं, इसलिए पुंकेसर स्वतंत्र हैं।"
+      }
+     },
+     {
+      "id": "g2",
+      "left": {
+       "en": "G(2) with a line under G",
+       "hi": "G(2), G के नीचे रेखा"
+      },
+      "right": {
+       "en": "Two fused carpels, superior ovary",
+       "hi": "दो जुड़े अंडप, ऊर्ध्ववर्ती अंडाशय"
+      },
+      "why": {
+       "en": "A line below G means the ovary is superior; a line above means inferior.",
+       "hi": "G के नीचे रेखा का अर्थ ऊर्ध्ववर्ती अंडाशय; ऊपर रेखा का अर्थ अधोवर्ती।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:act",
+     "expect": "matched:act",
+     "say": {
+      "en": "Tap the symbol ⊕ on the left, then its meaning on the right.",
+      "hi": "बाईं ओर ⊕ चिह्न पर टैप करो, फिर दाईं ओर उसका अर्थ चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:k5",
+     "expect": "matched:k5",
+     "say": {
+      "en": "Now match K(5).",
+      "hi": "अब K(5) की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The G has a line under it. Where do you think the ovary is?",
+      "hi": "G के नीचे एक रेखा है। तुम्हें क्या लगता है, अंडाशय कहाँ है?"
+     },
+     "options": [
+      {
+       "id": "sup",
+       "en": "Superior: above the other parts",
+       "hi": "ऊर्ध्ववर्ती: बाक़ी भागों के ऊपर"
+      },
+      {
+       "id": "inf",
+       "en": "Inferior: below the other parts",
+       "hi": "अधोवर्ती: बाक़ी भागों के नीचे"
+      }
+     ],
+     "answer": "sup"
+    },
+    {
+     "kind": "do",
+     "target": "left:g2",
+     "expect": "matched:g2",
+     "say": {
+      "en": "Match the G with a line under it.",
+      "hi": "नीचे रेखा वाले G की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A floral formula is a short code for a flower. K is calyx, C corolla, P perianth, A androecium and G gynoecium. A number gives the count, brackets show fusion, and a line under or over G shows a superior or inferior ovary. Put together, ⊕ ⚥ K(5) C(5) A5 G(2) is the formula of Solanaceae, the potato and brinjal family.",
+      "hi": "पुष्प सूत्र फूल का छोटा कोड है। K बाह्यदलपुंज, C दलपुंज, P परिदलपुंज, A पुमंग और G जायांग है। संख्या गिनती बताती है, कोष्ठक जुड़ाव दिखाता है, और G के नीचे या ऊपर रेखा ऊर्ध्ववर्ती या अधोवर्ती अंडाशय दिखाती है। सब मिलाकर ⊕ ⚥ K(5) C(5) A5 G(2) सोलेनेसी, यानी आलू और बैंगन के कुल, का सूत्र है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does P stand for in a floral formula, as in lily?",
+        "hi": "पुष्प सूत्र में P का अर्थ क्या है, जैसे लिली में?"
+       },
+       "options": [
+        {
+         "en": "Perianth: sepals and petals look alike",
+         "hi": "परिदलपुंज: बाह्यदल और पंखुड़ियाँ एक जैसी दिखती हैं"
+        },
+        {
+         "en": "Petal",
+         "hi": "पंखुड़ी"
+        },
+        {
+         "en": "Pollen",
+         "hi": "पराग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When calyx and corolla cannot be told apart, they are written together as P, the perianth.",
+        "hi": "जब बाह्यदलपुंज और दलपुंज अलग न पहचाने जा सकें, तो उन्हें साथ में P, परिदलपुंज, लिखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Petals are written under C, the corolla.",
+         "hi": "पंखुड़ियाँ C, दलपुंज, के नीचे लिखी जाती हैं।"
+        },
+        {
+         "en": "Pollen is not part of the formula; stamens are written as A.",
+         "hi": "पराग सूत्र में नहीं आता; पुंकेसर A से लिखे जाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In the formula, A5 has no brackets. What does that tell you?",
+        "hi": "सूत्र में A5 के साथ कोष्ठक नहीं है। इससे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "The five stamens are free from each other",
+         "hi": "पाँचों पुंकेसर एक-दूसरे से स्वतंत्र हैं"
+        },
+        {
+         "en": "There are no stamens",
+         "hi": "पुंकेसर नहीं हैं"
+        },
+        {
+         "en": "The stamens are inside the ovary",
+         "hi": "पुंकेसर अंडाशय के भीतर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only brackets show fusion; a plain number means the parts are separate.",
+        "hi": "केवल कोष्ठक जुड़ाव दिखाता है; सादी संख्या का अर्थ है भाग अलग-अलग हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The 5 is the number of stamens present.",
+         "hi": "5 मौजूद पुंकेसरों की संख्या है।"
+        },
+        {
+         "en": "Stamens never sit inside the ovary; the formula lists them as a separate whorl.",
+         "hi": "पुंकेसर कभी अंडाशय के भीतर नहीं होते; सूत्र उन्हें अलग चक्र के रूप में लिखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Then pick a brinjal or potato flower and check: does it really have five joined petals and five stamens?",
+      "hi": "बाक़ी जोड़ियाँ मिलाओ। फिर बैंगन या आलू का फूल लेकर जाँचो: क्या उसमें सचमुच पाँच जुड़ी पंखुड़ियाँ और पाँच पुंकेसर हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Chapter hook: a kitchen garden",
+   "shows": "An Indian kitchen garden with a mustard row in flower, a brinjal plant with fruit, a maize patch and a guava tree",
+   "view": "Eye level, wide, morning light",
+   "right": "Every plant real and in season; flowers and fruits visible",
+   "avoid": "People, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Root systems side by side",
+   "shows": "Washed-out roots of a mustard seedling (tap root) and a wheat seedling (fibrous roots), laid side by side",
+   "view": "Flat-lay, top-down, dark slate background",
+   "right": "Clean roots with no soil; main root clear in mustard",
+   "avoid": "Broken roots, dirt clumps"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "A twig: nodes and buds",
+   "shows": "A china rose twig with leaves, showing nodes, internodes, an axillary bud and a terminal bud",
+   "view": "Side view, plain background",
+   "right": "Buds sharp and visible in the leaf axils",
+   "avoid": "Flowers covering the nodes"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "5.3",
+   "use": "Leaf types cards",
+   "shows": "Cut-outs of a peepal leaf (net veins), a banana leaf piece (parallel veins), a neem compound leaf and a silk cotton palmate leaf",
+   "view": "Flat-lay, backlit to show veins",
+   "right": "Veins clearly visible; true greens",
+   "avoid": "Damaged or dusty leaves"
+  },
+  {
+   "n": 5,
+   "kind": "CUT",
+   "topic": "5.5",
+   "use": "Flower sections for ovary position",
+   "shows": "Three vertical half-sections: mustard (hypogynous), rose (perigynous), guava (epigynous), same colour code for thalamus and ovary",
+   "view": "Flat diagram-like photograph on white",
+   "right": "Ovary position obvious in each",
+   "avoid": "Labels, text"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "5.6",
+   "use": "Fruit layers",
+   "shows": "A mango cut in half lengthwise and a coconut cut across, side by side, showing epicarp, mesocarp and endocarp",
+   "view": "Three-quarter top view, soft light",
+   "right": "Mango stone and coconut fibres clear",
+   "avoid": "Knives, hands, stickers"
+  },
+  {
+   "n": 7,
+   "kind": "CUT",
+   "topic": "5.7",
+   "use": "Seeds opened",
+   "shows": "A soaked gram seed split open to show two cotyledons and the embryo axis, beside a maize grain cut lengthwise showing endosperm and scutellum",
+   "view": "Macro, top-down",
+   "right": "Plumule and radicle visible in both",
+   "avoid": "Dry unsoaked seeds"
+  },
+  {
+   "n": 8,
+   "kind": "OBJ",
+   "topic": "5.9",
+   "use": "Solanaceae family",
+   "shows": "A brinjal flower, a potato flower and a chilli flower beside their vegetables",
+   "view": "Flat-lay, white background",
+   "right": "Five joined petals and yellow anthers visible on each flower",
+   "avoid": "Brand stickers, packaging"
+  }
+ ]
+}

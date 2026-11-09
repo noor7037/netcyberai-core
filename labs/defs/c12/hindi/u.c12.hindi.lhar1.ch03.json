@@ -1,0 +1,666 @@
+{
+ "chapter_key": "u.c12.hindi.lhar1.ch03",
+ "class": 12,
+ "subject_id": "hindi",
+ "title": "कविता के बहाने / बात सीधी थी पर",
+ "source": "https://ncert.nic.in/textbook/pdf/lhar103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "कविता के बहाने: कविता की उड़ान, खिलना और खेल",
+   "labs": [
+    "c12-hindi-lhar1-ch03-udaan"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "बात सीधी थी पर: भाषा की सहजता",
+   "labs": [
+    "c12-hindi-lhar1-ch03-pench",
+    "c12-hindi-lhar1-ch03-bhasha"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-hindi-lhar1-ch03-udaan",
+   "topic": "3.1",
+   "template": "match",
+   "title": {
+    "en": "Poetry beats the bird, the flower and the game",
+    "hi": "कविता चिड़िया, फूल और खेल से आगे"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "bird",
+      "left": {
+       "en": "A bird's flight",
+       "hi": "चिड़िया की उड़ान"
+      },
+      "right": {
+       "en": "It ends at the sky's edge; poetry's flight has no edge",
+       "hi": "आकाश की हद पर रुकती है; कविता की उड़ान की कोई हद नहीं"
+      },
+      "why": {
+       "en": "A bird must land, but a poem flies on in every reader's mind.",
+       "hi": "चिड़िया को उतरना पड़ता है, पर कविता हर पाठक के मन में उड़ती रहती है।"
+      }
+     },
+     {
+      "id": "flower",
+      "left": {
+       "en": "A flower's bloom",
+       "hi": "फूल का खिलना"
+      },
+      "right": {
+       "en": "It wilts by evening; a poem blooms without wilting",
+       "hi": "शाम तक मुरझा जाता है; कविता बिना मुरझाए खिलती रहती है"
+      },
+      "why": {
+       "en": "A flower lasts a day, a good poem is fresh each time it is read.",
+       "hi": "फूल एक दिन का होता है, अच्छी कविता हर बार पढ़ने पर ताज़ा लगती है।"
+      }
+     },
+     {
+      "id": "game",
+      "left": {
+       "en": "Children's play",
+       "hi": "बच्चों का खेल"
+      },
+      "right": {
+       "en": "It stays in the courtyard; poetry's play is in every home",
+       "hi": "आँगन तक रहता है; कविता का खेल हर घर में होता है"
+      },
+      "why": {
+       "en": "A poem plays with words and feelings and reaches every home.",
+       "hi": "कविता शब्दों और भावों से खेलती है और हर घर पहुँचती है।"
+      }
+     },
+     {
+      "id": "word",
+      "left": {
+       "en": "The poet's tool",
+       "hi": "कवि का साधन"
+      },
+      "right": {
+       "en": "Words, joined with imagination",
+       "hi": "शब्द, कल्पना के साथ जुड़े हुए"
+      },
+      "why": {
+       "en": "The poem is made only of words, yet imagination makes it limitless.",
+       "hi": "कविता केवल शब्दों से बनती है, पर कल्पना उसे असीम बना देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:bird",
+     "expect": "matched:bird",
+     "say": {
+      "en": "Match the bird's flight with its partner card.",
+      "hi": "चिड़िया की उड़ान का जोड़ीदार कार्ड मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A flower fades by evening. What do you think the poet says about a poem?",
+      "hi": "फूल शाम तक मुरझा जाता है। तुम्हें क्या लगता है कवि कविता के बारे में क्या कहता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "It also fades quickly",
+       "hi": "वह भी जल्दी मुरझा जाती है"
+      },
+      {
+       "id": "b",
+       "en": "It blooms without wilting",
+       "hi": "वह बिना मुरझाए खिलती है"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "left:flower",
+     "expect": "matched:flower",
+     "say": {
+      "en": "Match the flower's bloom.",
+      "hi": "फूल के खिलने का जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:game",
+     "expect": "matched:game",
+     "say": {
+      "en": "Match children's play.",
+      "hi": "बच्चों के खेल का जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Finish all the pairs and tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Kunwar Narayan sets poetry beside a bird, a flower and a child's game. Each of them has a limit: the sky, the evening, the courtyard. Poetry has none, because it lives in words and imagination, so the poet says it is bigger than all three.",
+      "hi": "कुँवर नारायण कविता को चिड़िया, फूल और बच्चे के खेल के पास रखते हैं। इन तीनों की एक सीमा है: आकाश, शाम, आँगन। कविता की कोई सीमा नहीं, क्योंकि वह शब्दों और कल्पना में रहती है। इसीलिए कवि उसे इन तीनों से बड़ा मानता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the poet compare poetry with a flower?",
+        "hi": "कवि कविता की तुलना फूल से क्यों करता है?"
+       },
+       "options": [
+        {
+         "en": "To show that a poem too must wilt",
+         "hi": "यह दिखाने के लिए कि कविता भी मुरझाएगी"
+        },
+        {
+         "en": "To show a poem blooms without wilting",
+         "hi": "यह दिखाने के लिए कि कविता बिना मुरझाए खिलती है"
+        },
+        {
+         "en": "To say flowers are better than poems",
+         "hi": "यह कहने के लिए कि फूल कविता से अच्छे हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A flower fades, but a poem keeps blooming; that is its strength.",
+        "hi": "फूल मुरझा जाता है, पर कविता खिलती रहती है; यही उसकी ताक़त है।"
+       },
+       "wrong": [
+        {
+         "en": "The comparison shows a difference, not a likeness in fading.",
+         "hi": "तुलना अंतर दिखाने के लिए है, मुरझाने में समानता के लिए नहीं।"
+        },
+        "",
+        {
+         "en": "The poet praises poetry, he does not rank flowers above it.",
+         "hi": "कवि कविता की प्रशंसा करता है, फूल को उससे ऊपर नहीं रखता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word best names the quality of poetry in this poem?",
+        "hi": "इस कविता में कविता की कौन-सी विशेषता है?"
+       },
+       "options": [
+        {
+         "en": "Limitless reach",
+         "hi": "असीम पहुँच"
+        },
+        {
+         "en": "A fixed place",
+         "hi": "एक तय जगह"
+        },
+        {
+         "en": "A short life",
+         "hi": "छोटी उम्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Bird, flower and game all have limits; poetry has none.",
+        "hi": "चिड़िया, फूल और खेल की सीमा है; कविता की नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A fixed place is what the courtyard game has, not poetry.",
+         "hi": "तय जगह आँगन के खेल की होती है, कविता की नहीं।"
+        },
+        {
+         "en": "A short life belongs to the flower, which the poem rises above.",
+         "hi": "छोटी उम्र फूल की होती है, कविता उससे ऊपर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a poem or song you love. Which of the three comparisons fits it best?",
+      "hi": "अपनी पसंद की कोई कविता या गीत सोचो। इन तीन तुलनाओं में कौन उस पर सबसे ठीक बैठती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhar1-ch03-pench",
+   "topic": "3.2",
+   "template": "sequence",
+   "title": {
+    "en": "The screw that would not turn",
+    "hi": "वह पेंच जो घूमा ही नहीं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "simple",
+      "text": {
+       "en": "The idea was simple and straight",
+       "hi": "बात सीधी-सादी और सरल थी"
+      }
+     },
+     {
+      "id": "fancy",
+      "text": {
+       "en": "The poet tried to dress it in fancy, tricky language",
+       "hi": "कवि ने उसे चमत्कारी, उलझी भाषा में ढालना चाहा"
+      }
+     },
+     {
+      "id": "tangle",
+      "text": {
+       "en": "The more he twisted the words, the more the idea got tangled",
+       "hi": "जितना भाषा को घुमाया, बात उतनी ही उलझती गई"
+      }
+     },
+     {
+      "id": "force",
+      "text": {
+       "en": "At last he hammered it like a screw with no grip left",
+       "hi": "अंत में उसे ऐसे ठोंका जैसे चूड़ी घिस चुके पेंच को"
+      }
+     },
+     {
+      "id": "mock",
+      "text": {
+       "en": "The idea itself asked why he had not learnt to use words simply",
+       "hi": "बात ने ही पूछ लिया कि क्या तुम्हें भाषा को सहज बरतना नहीं आया"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:simple",
+     "expect": "placed:simple",
+     "say": {
+      "en": "Place how the idea began.",
+      "hi": "बात की शुरुआत वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do you think happens to a simple idea when it is forced into showy words?",
+      "hi": "तुम्हें क्या लगता है सीधी बात को दिखावटी शब्दों में ठूँसने पर क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "It becomes clearer",
+       "hi": "वह और साफ़ हो जाती है"
+      },
+      {
+       "id": "b",
+       "en": "It gets lost and tangled",
+       "hi": "वह खो जाती और उलझ जाती है"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "item:mock",
+     "expect": "placed:mock",
+     "say": {
+      "en": "Place the last card.",
+      "hi": "अंतिम कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange all the cards and tap Check.",
+      "hi": "सारे कार्ड क्रम में लगाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Kunwar Narayan uses the image of a screw whose grooves wear out when it is hammered instead of turned. Language is the same: a clear idea needs clear words, and force or decoration only spoils the meaning.",
+      "hi": "कुँवर नारायण पेंच का चित्र लेते हैं, जिसकी चूड़ी घुमाने की जगह ठोंकने से घिस जाती है। भाषा भी ऐसी ही है: साफ़ बात को साफ़ शब्द चाहिए, ज़ोर या सजावट से अर्थ बिगड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the screw stand for in the poem?",
+        "hi": "कविता में पेंच किसका प्रतीक है?"
+       },
+       "options": [
+        {
+         "en": "The idea forced into unsuitable language",
+         "hi": "अनुपयुक्त भाषा में ठूँसी गई बात"
+        },
+        {
+         "en": "A tool of the poet's trade",
+         "hi": "कवि का औज़ार"
+        },
+        {
+         "en": "A machine in a factory",
+         "hi": "कारखाने की मशीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A screw that is hammered loses its grip, just as an idea loses meaning when forced into showy words.",
+        "hi": "ठोंका गया पेंच पकड़ खो देता है, वैसे ही दिखावटी शब्दों में बात अपना अर्थ खो देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The screw is an image, not the poet's real tool.",
+         "hi": "पेंच एक उपमान है, कवि का असली औज़ार नहीं।"
+        },
+        {
+         "en": "The poem is about words, not factory work.",
+         "hi": "कविता शब्दों के बारे में है, कारखाने के काम के बारे में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take one thing you want to say and say it in the simplest words you can. Is it clearer?",
+      "hi": "कोई एक बात लो और उसे सबसे सरल शब्दों में कहो। क्या वह ज़्यादा साफ़ हुई?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhar1-ch03-bhasha",
+   "topic": "3.2",
+   "template": "sort",
+   "title": {
+    "en": "Plain words or showy words",
+    "hi": "सरल भाषा या दिखावटी भाषा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "plain",
+      "label": {
+       "en": "Plain and clear",
+       "hi": "सरल और साफ़"
+      }
+     },
+     {
+      "id": "showy",
+      "label": {
+       "en": "Showy and tangled",
+       "hi": "दिखावटी और उलझी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "Say it as the thought came",
+       "hi": "जैसा विचार आया वैसा कहना"
+      },
+      "bin": "plain",
+      "why": {
+       "en": "The meaning reaches the reader at once.",
+       "hi": "अर्थ सीधे पाठक तक पहुँचता है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Add big words only to impress",
+       "hi": "सिर्फ़ प्रभाव डालने के लिए भारी शब्द जोड़ना"
+      },
+      "bin": "showy",
+      "why": {
+       "en": "Show-off words hide the idea.",
+       "hi": "दिखावे वाले शब्द बात को ढक देते हैं।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "Choose the word that fits the idea",
+       "hi": "बात के अनुरूप शब्द चुनना"
+      },
+      "bin": "plain",
+      "why": {
+       "en": "A fitting word grips the idea like a screw that turns.",
+       "hi": "उचित शब्द बात को वैसे थामता है जैसे घूमता पेंच।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "Twist the sentence to look clever",
+       "hi": "चतुर दिखने के लिए वाक्य को घुमाना"
+      },
+      "bin": "showy",
+      "why": {
+       "en": "Twisting loses the grip on meaning.",
+       "hi": "घुमाने से अर्थ पर पकड़ छूट जाती है।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "Hammer in the meaning with force",
+       "hi": "अर्थ को ज़ोर से ठोंकना"
+      },
+      "bin": "showy",
+      "why": {
+       "en": "Force does not turn a worn screw.",
+       "hi": "ज़ोर से घिसा हुआ पेंच नहीं घूमता।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "Keep the sentence short and true",
+       "hi": "वाक्य को छोटा और सच्चा रखना"
+      },
+      "bin": "plain",
+      "why": {
+       "en": "Short and true sentences are easy to follow.",
+       "hi": "छोटे और सच्चे वाक्य आसानी से समझ आते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Place the first card.",
+      "hi": "पहला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which group will 'twisting the sentence to look clever' go to?",
+      "hi": "'चतुर दिखने के लिए वाक्य घुमाना' किस समूह में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Plain and clear",
+       "hi": "सरल और साफ़"
+      },
+      {
+       "id": "b",
+       "en": "Showy and tangled",
+       "hi": "दिखावटी और उलझी"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:c4",
+     "expect": "placed:c4",
+     "say": {
+      "en": "Place the 'twisting' card.",
+      "hi": "'घुमाने' वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort every card and tap Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The poem's lesson is about honest language: choose the word the idea needs. Showy or forced words may look clever, but the reader loses the meaning, just as a worn screw loses its grip.",
+      "hi": "कविता का सबक सच्ची भाषा का है: बात जिस शब्द की माँग करे वही चुनो। दिखावटी या ज़बरदस्ती के शब्द चतुर लगते हैं, पर पाठक अर्थ खो देता है, जैसे घिसा पेंच पकड़ खो देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which lesson does the poem give about writing?",
+        "hi": "कविता लिखने के बारे में कौन-सा सबक देती है?"
+       },
+       "options": [
+        {
+         "en": "Use words that fit the idea simply",
+         "hi": "बात के अनुरूप सहज शब्द बरतो"
+        },
+        {
+         "en": "Use the hardest words you know",
+         "hi": "सबसे कठिन शब्द इस्तेमाल करो"
+        },
+        {
+         "en": "Write as long as you can",
+         "hi": "जितना हो सके लंबा लिखो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Simple words that fit the thought keep its meaning.",
+        "hi": "विचार से मेल खाते सरल शब्द अर्थ को बचाए रखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hard words are the trap the poem warns about.",
+         "hi": "कठिन शब्द वही जाल हैं जिनसे कविता सावधान करती है।"
+        },
+        {
+         "en": "Length does not help; a clear short line often works better.",
+         "hi": "लंबाई से कुछ नहीं होता; साफ़ छोटी पंक्ति अक्सर बेहतर होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Rewrite one long sentence from your notebook in half the words.",
+      "hi": "अपनी कॉपी का कोई लंबा वाक्य आधे शब्दों में फिर से लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook for poem 1",
+   "shows": "A child's hand letting a paper kite go high over a rooftop at golden hour, flowers on the parapet",
+   "view": "Low angle, wide",
+   "right": "Real kite string, warm sky",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Word card: चिड़िया",
+   "shows": "A sparrow in flight, cut-out",
+   "view": "Side view, wings open",
+   "right": "True sparrow colours",
+   "avoid": "Cage, text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Word card: पेंच",
+   "shows": "A worn brass wood screw beside a screwdriver, cut-out",
+   "view": "Three-quarter view, close",
+   "right": "Visibly worn thread",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "3.2",
+   "use": "Worn screw grooves",
+   "shows": "Macro of a screw thread with stripped grooves",
+   "view": "Square close-up",
+   "right": "Metal texture, clear grooves",
+   "avoid": "Text"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "3.2",
+   "use": "Idea to word",
+   "shows": "A clean strip showing a straight line becoming a tangled knot, blank, for the app to label",
+   "view": "Flat, white",
+   "right": "One line only",
+   "avoid": "Words"
+  }
+ ]
+}

@@ -1,0 +1,1035 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch04",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Complex Numbers and Quadratic Equations",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Introduction: equations like x² + 1 = 0 that have no real solution",
+   "labs": [
+    "c11-mathematics-kemh1-ch04-no-real-root"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Complex numbers: z = a + ib, real part and imaginary part",
+   "labs": [],
+   "why_no_lab": "A definition with notation; the Argand-plane labs in 4.3 to 4.5 let the child see and use a + ib."
+  },
+  {
+   "n": "4.3",
+   "title": "Algebra of complex numbers: sum, difference, product, quotient, powers of i",
+   "labs": [
+    "c11-mathematics-kemh1-ch04-add-as-arrows",
+    "c11-mathematics-kemh1-ch04-powers-of-i",
+    "c11-mathematics-kemh1-ch04-multiply"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "The modulus and the conjugate of a complex number",
+   "labs": [
+    "c11-mathematics-kemh1-ch04-conjugate-modulus"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Argand plane and polar representation",
+   "labs": [
+    "c11-mathematics-kemh1-ch04-polar-form"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch04-no-real-root",
+   "topic": "4.1",
+   "template": "grapher",
+   "title": {
+    "en": "When a parabola misses the x-axis",
+    "hi": "जब परवलय x-अक्ष को नहीं छूता"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadratic",
+    "expr": "x^2 + c",
+    "params": {
+     "c": [
+      -4,
+      4,
+      -4,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The graph is y = x² + c, starting with c = −4. Where it meets the x-axis, y = 0, so those x are the real solutions of x² + c = 0. Now it meets the axis at x = −2 and x = 2.",
+      "hi": "ग्राफ़ y = x² + c है, शुरू में c = −4। जहाँ यह x-अक्ष से मिलता है वहाँ y = 0, इसलिए वे x, x² + c = 0 के वास्तविक हल हैं। अभी यह अक्ष से x = −2 और x = 2 पर मिलता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:c",
+     "expect": "changed",
+     "say": {
+      "en": "Move the slider c up to 0 and watch the two meeting points.",
+      "hi": "स्लाइडर c को 0 तक ऊपर ले जाओ और दोनों मिलन बिंदु देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next c becomes 1, so the equation is x² + 1 = 0. How many real solutions will it have?",
+      "hi": "अब c = 1 होगा, यानी समीकरण x² + 1 = 0। इसके कितने वास्तविक हल होंगे?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "Two",
+       "hi": "दो"
+      },
+      {
+       "id": "one",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "none",
+       "en": "None",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "none"
+    },
+    {
+     "kind": "do",
+     "target": "slider:c",
+     "expect": "changed",
+     "say": {
+      "en": "Move c up to 1.",
+      "hi": "c को 1 तक ऊपर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "x² is never negative, so x² + 1 is always at least 1 and the curve floats above the axis. No real number squares to −1. Mathematicians gave a name to a number whose square is −1: i, so i² = −1 and x² + 1 = 0 has the solutions x = i and x = −i.",
+      "hi": "x² कभी ऋणात्मक नहीं होता, इसलिए x² + 1 हमेशा कम से कम 1 है और वक्र अक्ष के ऊपर तैरता है। किसी वास्तविक संख्या का वर्ग −1 नहीं होता। गणितज्ञों ने उस संख्या को नाम दिया जिसका वर्ग −1 है: i, यानी i² = −1, और x² + 1 = 0 के हल x = i और x = −i हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: how many times does the graph meet the x-axis now?",
+      "hi": "लैब के प्रश्न का उत्तर दो: अब ग्राफ़ x-अक्ष से कितनी बार मिलता है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What are the solutions of x² + 9 = 0?",
+        "hi": "x² + 9 = 0 के हल क्या हैं?"
+       },
+       "options": [
+        {
+         "en": "x = 3 and x = −3",
+         "hi": "x = 3 और x = −3"
+        },
+        {
+         "en": "x = 3i and x = −3i",
+         "hi": "x = 3i और x = −3i"
+        },
+        {
+         "en": "There are no solutions of any kind",
+         "hi": "किसी भी प्रकार का हल नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "x² = −9 = 9i², so x = ±3i. Check: (3i)² = 9i² = −9.",
+        "hi": "x² = −9 = 9i², इसलिए x = ±3i। जाँचो: (3i)² = 9i² = −9।"
+       },
+       "wrong": [
+        {
+         "en": "3² = 9 and (−3)² = 9, so these solve x² − 9 = 0, not x² + 9 = 0.",
+         "hi": "3² = 9 और (−3)² = 9, इसलिए ये x² − 9 = 0 के हल हैं, x² + 9 = 0 के नहीं।"
+        },
+        "",
+        {
+         "en": "There are no real solutions, but complex ones exist: ±3i.",
+         "hi": "वास्तविक हल नहीं हैं, पर सम्मिश्र हल हैं: ±3i।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For y = x² + c, when does the graph miss the x-axis?",
+        "hi": "y = x² + c का ग्राफ़ x-अक्ष को कब नहीं छूता?"
+       },
+       "options": [
+        {
+         "en": "When c > 0",
+         "hi": "जब c > 0"
+        },
+        {
+         "en": "When c < 0",
+         "hi": "जब c < 0"
+        },
+        {
+         "en": "When c = 0",
+         "hi": "जब c = 0"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The lowest point is (0, c). If c > 0 the whole curve is above the axis, so the solutions are not real.",
+        "hi": "सबसे नीचे का बिंदु (0, c) है। यदि c > 0, तो पूरा वक्र अक्ष के ऊपर है, इसलिए हल वास्तविक नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "For c < 0 the lowest point is below the axis, so the curve crosses it twice.",
+         "hi": "c < 0 पर सबसे नीचे का बिंदु अक्ष के नीचे है, इसलिए वक्र उसे दो बार काटता है।"
+        },
+        {
+         "en": "At c = 0 the curve just touches the axis at x = 0: one real solution.",
+         "hi": "c = 0 पर वक्र अक्ष को x = 0 पर बस छूता है: एक वास्तविक हल।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try c = 4. The solutions of x² + 4 = 0 are ±2i. Move c and say the two solutions each time, real or complex.",
+      "hi": "c = 4 करो। x² + 4 = 0 के हल ±2i हैं। c बदलते जाओ और हर बार दोनों हल बोलो, वास्तविक या सम्मिश्र।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch04-add-as-arrows",
+   "topic": "4.3",
+   "template": "matrix",
+   "title": {
+    "en": "Adding complex numbers as arrows",
+    "hi": "सम्मिश्र संख्याओं को तीरों की तरह जोड़ो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "vector-add",
+    "u": [
+     3,
+     2,
+     0
+    ],
+    "v": [
+     1,
+     4,
+     0
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Read each arrow as a complex number: u is z₁ = 3 + 2i (3 along, 2 up) and v is z₂ = 1 + 4i. The horizontal axis is the real axis, the vertical axis the imaginary axis.",
+      "hi": "हर तीर को सम्मिश्र संख्या की तरह पढ़ो: u है z₁ = 3 + 2i (3 आगे, 2 ऊपर) और v है z₂ = 1 + 4i। क्षैतिज अक्ष वास्तविक अक्ष है, ऊर्ध्वाधर अक्ष काल्पनिक अक्ष।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will z₁ + z₂ be?",
+      "hi": "z₁ + z₂ क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "46",
+       "en": "It is 4 + 6i",
+       "hi": "यह 4 + 6i है"
+      },
+      {
+       "id": "10",
+       "en": "It is 10i",
+       "hi": "यह 10i है"
+      },
+      {
+       "id": "3812",
+       "en": "It is 3 + 8i",
+       "hi": "यह 3 + 8i है"
+      }
+     ],
+     "answer": "46"
+    },
+    {
+     "kind": "do",
+     "target": "op:triangle",
+     "expect": "resultant",
+     "say": {
+      "en": "Tap the triangle button to put v at the tip of u.",
+      "hi": "त्रिभुज वाला बटन दबाओ ताकि v, u की नोक पर लगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the x and y parts of u + v and check.",
+      "hi": "u + v के x और y भाग लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Real parts add: 3 + 1 = 4. Imaginary parts add: 2 + 4 = 6. So z₁ + z₂ = 4 + 6i, the tip of the joined arrows. Adding complex numbers works just like adding arrows on the Argand plane, and the order does not matter: z₁ + z₂ = z₂ + z₁.",
+      "hi": "वास्तविक भाग जुड़ते हैं: 3 + 1 = 4। काल्पनिक भाग जुड़ते हैं: 2 + 4 = 6। यानी z₁ + z₂ = 4 + 6i, जुड़े तीरों की नोक। सम्मिश्र संख्याओं का योग आर्गंड तल पर तीरों के योग जैसा ही है, और क्रम से फ़र्क़ नहीं पड़ता: z₁ + z₂ = z₂ + z₁।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:subtract",
+     "expect": "resultant",
+     "say": {
+      "en": "Now tap the subtract button to see u − v.",
+      "hi": "अब u − v देखने के लिए घटाने वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is (3 + 2i) − (1 + 4i)?",
+        "hi": "(3 + 2i) − (1 + 4i) क्या है?"
+       },
+       "options": [
+        "2 − 2i",
+        "2 + 6i",
+        "4 + 6i"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Subtract part by part: 3 − 1 = 2 and 2 − 4 = −2, so the answer is 2 − 2i.",
+        "hi": "भाग-भाग घटाओ: 3 − 1 = 2 और 2 − 4 = −2, इसलिए उत्तर 2 − 2i है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This subtracts the real parts but adds the imaginary parts; both parts must be subtracted.",
+         "hi": "इसमें वास्तविक भाग घटाए पर काल्पनिक भाग जोड़ दिए; दोनों भाग घटाने हैं।"
+        },
+        {
+         "en": "That is the sum, not the difference.",
+         "hi": "यह योग है, अंतर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which number added to z leaves it unchanged?",
+        "hi": "किस संख्या को z में जोड़ने पर z नहीं बदलता?"
+       },
+       "options": [
+        "1 + i",
+        "0 + 0i",
+        "i"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "0 + 0i is the additive identity: it is an arrow of length zero.",
+        "hi": "0 + 0i योज्य तत्समक है: यह शून्य लंबाई का तीर है।"
+       },
+       "wrong": [
+        {
+         "en": "Adding 1 + i moves z one step right and one step up.",
+         "hi": "1 + i जोड़ने से z एक क़दम दाएँ और एक क़दम ऊपर खिसकता है।"
+        },
+        "",
+        {
+         "en": "Adding i moves z one step up the imaginary axis.",
+         "hi": "i जोड़ने से z काल्पनिक अक्ष पर एक क़दम ऊपर खिसकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag v to −3 − 2i, the negative of u. Where does u + v land? That is why −z is called the additive inverse.",
+      "hi": "v को −3 − 2i पर खींचो, जो u का ऋणात्मक है। u + v कहाँ पहुँचता है? इसी कारण −z को योज्य प्रतिलोम कहते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch04-powers-of-i",
+   "topic": "4.3",
+   "template": "code",
+   "title": {
+    "en": "Powers of i go round in fours",
+    "hi": "i की घातें चार-चार में घूमती हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "z = [0, 1]",
+     "n = 1",
+     "while n <= 8:",
+     "    a = z[0]",
+     "    b = z[1]",
+     "    if b == 1:",
+     "        print('i^' + str(n) + ' = i')",
+     "    elif b == -1:",
+     "        print('i^' + str(n) + ' = -i')",
+     "    else:",
+     "        print('i^' + str(n) + ' = ' + str(a))",
+     "    z = [-b, a]",
+     "    n = n + 1"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The program keeps z as a pair [real part, imaginary part], starting with z = i = [0, 1]. Multiplying a + ib by i gives −b + ia, so each round turns [a, b] into [−b, a].",
+      "hi": "प्रोग्राम z को जोड़ी [वास्तविक भाग, काल्पनिक भाग] के रूप में रखता है, शुरू में z = i = [0, 1]। a + ib को i से गुणा करने पर −b + ia मिलता है, इसलिए हर चक्कर में [a, b] बनता है [−b, a]।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step a few times until i^1 = i is printed.",
+      "hi": "कुछ बार Step दबाओ जब तक i^1 = i न छपे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "i² = −1. What do you expect i⁴ to be?",
+      "hi": "i² = −1। तुम्हें क्या लगता है, i⁴ क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "1",
+       "en": "It is 1",
+       "hi": "यह 1 है"
+      },
+      {
+       "id": "-1",
+       "en": "It is −1",
+       "hi": "यह −1 है"
+      },
+      {
+       "id": "i",
+       "en": "It is i again",
+       "hi": "यह फिर से i है"
+      }
+     ],
+     "answer": "1"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to print up to i⁸.",
+      "hi": "i⁸ तक छापने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The list goes i, −1, −i, 1 and then repeats: i⁵ = i, i⁶ = −1 and so on. Because i⁴ = 1, any power of i depends only on the remainder when the power is divided by 4. On the Argand plane each multiplication by i is a quarter turn.",
+      "hi": "सूची i, −1, −i, 1 चलती है और फिर दोहराती है: i⁵ = i, i⁶ = −1 आदि। क्योंकि i⁴ = 1, i की कोई भी घात केवल इस पर निर्भर है कि घात को 4 से भाग देने पर शेष क्या बचता है। आर्गंड तल पर i से हर गुणा एक चौथाई चक्कर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is i³⁵?",
+        "hi": "i³⁵ क्या है?"
+       },
+       "options": [
+        "i",
+        "−1",
+        "−i",
+        "1"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "35 = 4 × 8 + 3, so i³⁵ = (i⁴)⁸ × i³ = 1 × (−i) = −i.",
+        "hi": "35 = 4 × 8 + 3, इसलिए i³⁵ = (i⁴)⁸ × i³ = 1 × (−i) = −i।"
+       },
+       "wrong": [
+        {
+         "en": "That is i¹, for a remainder of 1; 35 leaves a remainder of 3.",
+         "hi": "यह शेष 1 वाला i¹ है; 35 को 4 से भाग देने पर शेष 3 बचता है।"
+        },
+        {
+         "en": "That is i², for a remainder of 2.",
+         "hi": "यह शेष 2 वाला i² है।"
+        },
+        "",
+        {
+         "en": "1 is for powers that are multiples of 4, like 32 or 36.",
+         "hi": "1 तो 4 के गुणज वाली घातों के लिए है, जैसे 32 या 36।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is i⁻¹, that is 1/i?",
+        "hi": "i⁻¹ यानी 1/i क्या है?"
+       },
+       "options": [
+        "i",
+        "−i"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "1/i = i/i² = i/(−1) = −i. Check: i × (−i) = −i² = 1.",
+        "hi": "1/i = i/i² = i/(−1) = −i। जाँचो: i × (−i) = −i² = 1।"
+       },
+       "wrong": [
+        {
+         "en": "i × i = −1, not 1, so i is not its own reciprocal.",
+         "hi": "i × i = −1 है, 1 नहीं, इसलिए i अपना ही व्युत्क्रम नहीं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Reset and Step slowly. Say each next power before it is printed. Then find i¹⁰⁰ in your head.",
+      "hi": "Reset दबाओ और धीरे-धीरे Step करो। हर अगली घात छपने से पहले बोलो। फिर मन में i¹⁰⁰ निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch04-multiply",
+   "topic": "4.3",
+   "template": "code",
+   "title": {
+    "en": "Multiplying complex numbers",
+    "hi": "सम्मिश्र संख्याओं का गुणा"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "def mul(z, w):",
+     "    return [z[0] * w[0] - z[1] * w[1], z[0] * w[1] + z[1] * w[0]]",
+     "z = [2, 3]",
+     "w = [4, -1]",
+     "p = mul(z, w)",
+     "print('(2 + 3i)(4 - i) =', p[0], '+', p[1], 'i')",
+     "zbar = [2, -3]",
+     "q = mul(z, zbar)",
+     "print('(2 + 3i)(2 - 3i) =', q[0], '+', q[1], 'i')"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To multiply a + ib by c + id, open the brackets like algebra and use i² = −1: (a + ib)(c + id) = (ac − bd) + i(ad + bc). The function mul does exactly this on pairs [real, imaginary].",
+      "hi": "a + ib को c + id से गुणा करने के लिए कोष्ठक बीजगणित की तरह खोलो और i² = −1 रखो: (a + ib)(c + id) = (ac − bd) + i(ad + bc)। फ़ंक्शन mul जोड़ियों [वास्तविक, काल्पनिक] पर ठीक यही करता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Work out (2 + 3i)(4 − i) before the program does. What do you get?",
+      "hi": "प्रोग्राम से पहले (2 + 3i)(4 − i) निकालो। क्या मिलता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "It is 11 + 10i",
+       "hi": "यह 11 + 10i है"
+      },
+      {
+       "id": "b",
+       "en": "It is 5 + 10i",
+       "hi": "यह 5 + 10i है"
+      },
+      {
+       "id": "c",
+       "en": "It is 8 − 3i",
+       "hi": "यह 8 − 3i है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to see the function mul being defined.",
+      "hi": "फ़ंक्शन mul को परिभाषित होते देखने के लिए Step दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to see both products.",
+      "hi": "दोनों गुणनफल देखने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "(2 + 3i)(4 − i) = 8 − 2i + 12i − 3i² = 8 + 3 + 10i = 11 + 10i. The second line multiplies 2 + 3i by its conjugate 2 − 3i and gets 13, a real number: z × z̄ = a² + b². This trick is used to divide: multiply top and bottom by the conjugate of the bottom.",
+      "hi": "(2 + 3i)(4 − i) = 8 − 2i + 12i − 3i² = 8 + 3 + 10i = 11 + 10i। दूसरी पंक्ति 2 + 3i को उसके संयुग्मी 2 − 3i से गुणा करती है और 13 मिलता है, एक वास्तविक संख्या: z × z̄ = a² + b²। भाग देने में यही तरकीब काम आती है: अंश और हर दोनों को हर के संयुग्मी से गुणा करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is (1 + i)²?",
+        "hi": "(1 + i)² क्या है?"
+       },
+       "options": [
+        "2i",
+        "2",
+        "1 + i²"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(1 + i)² = 1 + 2i + i² = 1 + 2i − 1 = 2i.",
+        "hi": "(1 + i)² = 1 + 2i + i² = 1 + 2i − 1 = 2i।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The middle term 2i is lost here, and i² = −1 cancels the 1, not the 2i.",
+         "hi": "यहाँ बीच का पद 2i छूट गया, और i² = −1 तो 1 को काटता है, 2i को नहीं।"
+        },
+        {
+         "en": "Squaring a sum gives three terms; the 2i in the middle is missing, and i² still has to become −1.",
+         "hi": "योग का वर्ग करने पर तीन पद आते हैं; बीच का 2i छूट गया, और i² को −1 भी बनाना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "To find (3 + 4i)/(1 − 2i), what do we multiply the top and bottom by?",
+        "hi": "(3 + 4i)/(1 − 2i) निकालने के लिए अंश और हर को किससे गुणा करते हैं?"
+       },
+       "options": [
+        "1 + 2i",
+        "3 − 4i",
+        "i"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1 + 2i is the conjugate of the bottom; (1 − 2i)(1 + 2i) = 1 + 4 = 5, a real number.",
+        "hi": "1 + 2i हर का संयुग्मी है; (1 − 2i)(1 + 2i) = 1 + 4 = 5, एक वास्तविक संख्या।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the conjugate of the top; it leaves an i in the bottom.",
+         "hi": "यह अंश का संयुग्मी है; इससे हर में i बचा रहता है।"
+        },
+        {
+         "en": "Multiplying by i turns 1 − 2i into 2 + i, still not real.",
+         "hi": "i से गुणा करने पर 1 − 2i बनता है 2 + i, जो अब भी वास्तविक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the rule in your head: what is (3 + 4i)(3 − 4i)? Does it equal 3² + 4²?",
+      "hi": "नियम से मन में निकालो: (3 + 4i)(3 − 4i) क्या है? क्या यह 3² + 4² के बराबर है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch04-conjugate-modulus",
+   "topic": "4.4",
+   "template": "grapher",
+   "title": {
+    "en": "Conjugate as a mirror, modulus as a distance",
+    "hi": "संयुग्मी एक दर्पण, मापांक एक दूरी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "points",
+    "points": [
+     [
+      3,
+      4
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The point (3, 4) stands for z = 3 + 4i: 3 along the real axis and 4 up the imaginary axis.",
+      "hi": "बिंदु (3, 4), z = 3 + 4i को दर्शाता है: वास्तविक अक्ष पर 3 और काल्पनिक अक्ष पर 4 ऊपर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The conjugate z̄ = 3 − 4i keeps the real part and changes the sign of the imaginary part. Where will it be?",
+      "hi": "संयुग्मी z̄ = 3 − 4i वास्तविक भाग रखता है और काल्पनिक भाग का चिह्न बदलता है। यह कहाँ होगा?"
+     },
+     "options": [
+      {
+       "id": "mirror",
+       "en": "The mirror image in the real axis",
+       "hi": "वास्तविक अक्ष में दर्पण प्रतिबिंब"
+      },
+      {
+       "id": "left",
+       "en": "The mirror image in the imaginary axis",
+       "hi": "काल्पनिक अक्ष में दर्पण प्रतिबिंब"
+      },
+      {
+       "id": "same",
+       "en": "At the same point",
+       "hi": "उसी बिंदु पर"
+      }
+     ],
+     "answer": "mirror"
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap the grid at (3, −4) to plot z̄.",
+      "hi": "z̄ बनाने के लिए ग्रिड पर (3, −4) पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "z and z̄ are reflections of each other in the real (x) axis. Both are 5 units from the origin, because √(3² + 4²) = √25 = 5. This distance is the modulus: |z| = |z̄| = 5, and z × z̄ = 3² + 4² = 25 = |z|².",
+      "hi": "z और z̄ वास्तविक (x) अक्ष में एक-दूसरे के प्रतिबिंब हैं। दोनों मूलबिंदु से 5 इकाई दूर हैं, क्योंकि √(3² + 4²) = √25 = 5। यही दूरी मापांक है: |z| = |z̄| = 5, और z × z̄ = 3² + 4² = 25 = |z|²।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Now plot −z = −3 − 4i at (−3, −4).",
+      "hi": "अब −z = −3 − 4i को (−3, −4) पर बनाओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is |−5 + 12i|?",
+        "hi": "|−5 + 12i| क्या है?"
+       },
+       "options": [
+        "7",
+        "13",
+        "17"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "|z| = √((−5)² + 12²) = √(25 + 144) = √169 = 13.",
+        "hi": "|z| = √((−5)² + 12²) = √(25 + 144) = √169 = 13।"
+       },
+       "wrong": [
+        {
+         "en": "7 is −5 + 12; the modulus squares the parts before adding.",
+         "hi": "7 तो −5 + 12 है; मापांक में भागों का वर्ग करके जोड़ते हैं।"
+        },
+        "",
+        {
+         "en": "17 adds the sizes 5 + 12; the distance uses Pythagoras, not plain adding.",
+         "hi": "17 तो 5 + 12 है; दूरी पाइथागोरस से निकलती है, सीधे जोड़कर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the conjugate of −2 + 7i?",
+        "hi": "−2 + 7i का संयुग्मी क्या है?"
+       },
+       "options": [
+        "2 − 7i",
+        "−2 − 7i",
+        "2 + 7i"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Keep the real part −2 and change the sign of the imaginary part: −2 − 7i.",
+        "hi": "वास्तविक भाग −2 रखो और काल्पनिक भाग का चिह्न बदलो: −2 − 7i।"
+       },
+       "wrong": [
+        {
+         "en": "This changes both signs; that is −z, the reflection through the origin.",
+         "hi": "यह दोनों चिह्न बदलता है; यह −z है, मूलबिंदु से होकर प्रतिबिंब।"
+        },
+        "",
+        {
+         "en": "This changes the real part instead; that is the reflection in the imaginary axis.",
+         "hi": "यह वास्तविक भाग का चिह्न बदलता है; यह काल्पनिक अक्ष में प्रतिबिंब है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Plot 4 + 3i and 5 + 0i. Do all three points 3 + 4i, 4 + 3i and 5 lie on one circle round the origin? What is its radius?",
+      "hi": "4 + 3i और 5 + 0i बनाओ। क्या तीनों बिंदु 3 + 4i, 4 + 3i और 5 मूलबिंदु के चारों ओर एक वृत्त पर हैं? उसकी त्रिज्या क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch04-polar-form",
+   "topic": "4.5",
+   "template": "trig",
+   "title": {
+    "en": "Polar form: a length and an angle",
+    "hi": "ध्रुवीय रूप: एक लंबाई और एक कोण"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "unit-circle",
+    "angle": 30
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Think of the circle as the Argand plane. The point at angle θ is the complex number z = cos θ + i sin θ. Its modulus is 1 and its argument is θ.",
+      "hi": "वृत्त को आर्गंड तल समझो। कोण θ वाला बिंदु सम्मिश्र संख्या z = cos θ + i sin θ है। इसका मापांक 1 है और कोणांक θ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the angle to 90°. Which complex number is this point?",
+      "hi": "कोण को 90° तक खींचो। यह बिंदु कौन-सी सम्मिश्र संख्या है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will go to 120°. What will z = cos 120° + i sin 120° be?",
+      "hi": "अब तुम 120° पर जाओगे। z = cos 120° + i sin 120° क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "−1/2 + (√3/2)i, up and to the left",
+       "hi": "−1/2 + (√3/2)i, ऊपर और बाईं ओर"
+      },
+      {
+       "id": "b",
+       "en": "1/2 + (√3/2)i, up and to the right",
+       "hi": "1/2 + (√3/2)i, ऊपर और दाईं ओर"
+      },
+      {
+       "id": "c",
+       "en": "−1/2 − (√3/2)i, down and to the left",
+       "hi": "−1/2 − (√3/2)i, नीचे और बाईं ओर"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the angle to 120° and read cos and sin.",
+      "hi": "कोण को 120° तक खींचो और cos और sin पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At 90° the point is (0, 1), which is i. At 120° it is (−1/2, √3/2), so z = −1/2 + (√3/2)i. Any complex number can be written as z = r(cos θ + i sin θ), where r = |z| is its length from the origin and θ is its argument. The principal argument is chosen between −π and π.",
+      "hi": "90° पर बिंदु (0, 1) है, जो i है। 120° पर यह (−1/2, √3/2) है, यानी z = −1/2 + (√3/2)i। हर सम्मिश्र संख्या को z = r(cos θ + i sin θ) लिखा जा सकता है, जहाँ r = |z| मूलबिंदु से उसकी लंबाई है और θ उसका कोणांक। मुख्य कोणांक −π और π के बीच चुना जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the polar form of z = 2i?",
+        "hi": "z = 2i का ध्रुवीय रूप क्या है?"
+       },
+       "options": [
+        "2(cos 0 + i sin 0)",
+        "2(cos π/2 + i sin π/2)",
+        "1(cos π/2 + i sin π/2)"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "2i is 2 units straight up the imaginary axis: r = 2 and θ = π/2.",
+        "hi": "2i काल्पनिक अक्ष पर सीधे 2 इकाई ऊपर है: r = 2 और θ = π/2।"
+       },
+       "wrong": [
+        {
+         "en": "Angle 0 points along the real axis; that is the number 2, not 2i.",
+         "hi": "कोण 0 वास्तविक अक्ष की ओर है; यह संख्या 2 है, 2i नहीं।"
+        },
+        "",
+        {
+         "en": "The angle is right but the length of 2i is 2, not 1.",
+         "hi": "कोण सही है पर 2i की लंबाई 2 है, 1 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the principal argument of z = −1?",
+        "hi": "z = −1 का मुख्य कोणांक क्या है?"
+       },
+       "options": [
+        "0",
+        "π",
+        "−π/2"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "−1 lies on the negative real axis, a half turn from the positive real axis: θ = π.",
+        "hi": "−1 ऋणात्मक वास्तविक अक्ष पर है, धनात्मक वास्तविक अक्ष से आधा चक्कर दूर: θ = π।"
+       },
+       "wrong": [
+        {
+         "en": "Argument 0 is the positive real axis, where +1 lies.",
+         "hi": "कोणांक 0 धनात्मक वास्तविक अक्ष है, जहाँ +1 है।"
+        },
+        "",
+        {
+         "en": "−π/2 points straight down, at −i.",
+         "hi": "−π/2 सीधे नीचे की ओर है, −i पर।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the angles that give z = −1, z = −i and z = 1. Write each in the form cos θ + i sin θ.",
+      "hi": "वे कोण खोजो जिनसे z = −1, z = −i और z = 1 मिलें। हर एक को cos θ + i sin θ के रूप में लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Chapter hook: a question with no real answer",
+   "shows": "A blackboard in an Indian classroom with a clean empty square drawn in chalk and a single piece of chalk resting on the ledge below",
+   "view": "Straight on, soft window light",
+   "right": "Board clean apart from the empty square, inviting a number that does not exist yet",
+   "avoid": "Any writing, equations or faces"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "4.2",
+   "use": "Argand plane base",
+   "shows": "A clean coordinate plane with a horizontal axis and a vertical axis crossing at the centre, unit tick marks, no labels",
+   "view": "Flat, centred, white background",
+   "right": "Equal unit spacing on both axes so 3 + 4i can be placed exactly",
+   "avoid": "Letters such as Re, Im, x, y or numbers"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.3",
+   "use": "Turning by a quarter: multiplication by i",
+   "shows": "A wooden arrow-shaped cut-out lying on a white board, photographed four times turned by a quarter turn each time, combined as four separate files",
+   "view": "Top view, same position of the pivot in every file",
+   "right": "Exactly 90° between frames, pivot at the tail of the arrow",
+   "avoid": "Shadows that hide the arrow tip, any markings"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "4.4",
+   "use": "Conjugate as a reflection",
+   "shows": "Frame 1: a kite flying over a still village pond; frame 2: the same kite and its clear reflection in the water",
+   "view": "Low side view across the water, calm morning, same camera in both frames",
+   "right": "The reflection directly below the kite, same distance from the water line",
+   "avoid": "Faces, brand marks on the kite"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "4.5",
+   "use": "Polar form in real life: distance and direction",
+   "shows": "A lighthouse on the Kerala coast at dusk with its beam pointing out to sea at an angle",
+   "view": "Wide view from the shore, the beam clearly visible",
+   "right": "One clear beam with a definite direction from the tower",
+   "avoid": "Boats with names, people, logos"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "4.5",
+   "use": "Base for polar form",
+   "shows": "A circle centred at the origin of a clean coordinate plane with one radius drawn to a point on the circle and a small arc near the centre between the radius and the positive horizontal axis",
+   "view": "Flat, white background, thin dark lines",
+   "right": "The radius ends exactly on the circle; the arc clearly marks the angle",
+   "avoid": "Letters, numbers, degree signs"
+  }
+ ]
+}

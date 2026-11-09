@@ -1,0 +1,890 @@
+{
+ "chapter_key": "u.c08.english.hepr1.ch11",
+ "class": 8,
+ "subject_id": "english",
+ "title": "Harvest Hymn",
+ "source": "https://ncert.nic.in/textbook.php?hepr1=0-5",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Whom the hymn thanks",
+   "labs": [
+    "c08-english-hepr1-ch11-thanks"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Farm tools",
+   "labs": [
+    "c08-english-hepr1-ch11-tools"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Archaic words: thou, thee, thine",
+   "labs": [
+    "c08-english-hepr1-ch11-old-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Reading the hymn in pictures",
+   "labs": [
+    "c08-english-hepr1-ch11-panels"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5",
+   "title": "Synonyms from the hymn and creative slogans (Let us write)",
+   "labs": [],
+   "why_no_lab": "Slogan writing is the child's own creative task; the tutor gives feedback."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-english-hepr1-ch11-thanks",
+   "topic": "11.1",
+   "template": "match",
+   "title": {
+    "en": "Who is thanked, and for what?",
+    "hi": "किसे धन्यवाद, किस बात का?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "sun",
+      "left": {
+       "en": "Surya, the Sun",
+       "hi": "सूर्य"
+      },
+      "right": {
+       "en": "The golden light that ripens the crops",
+       "hi": "सुनहरा प्रकाश जो फ़सल को पकाता है"
+      },
+      "why": {
+       "en": "The hymn thanks each one for a different gift that makes a harvest possible.",
+       "hi": "भजन हर एक को अलग उपहार के लिए धन्यवाद देता है जिससे फ़सल संभव होती है।"
+      }
+     },
+     {
+      "id": "varuna",
+      "left": {
+       "en": "Varuna, lord of waters",
+       "hi": "वरुण, जल के देवता"
+      },
+      "right": {
+       "en": "The rain and dew that feed the furrows",
+       "hi": "वर्षा और ओस जो खेत की नालियों को सींचती हैं"
+      },
+      "why": {
+       "en": "The hymn thanks each one for a different gift that makes a harvest possible.",
+       "hi": "भजन हर एक को अलग उपहार के लिए धन्यवाद देता है जिससे फ़सल संभव होती है।"
+      }
+     },
+     {
+      "id": "earth",
+      "left": {
+       "en": "Prithvi, Mother Earth",
+       "hi": "पृथ्वी माता"
+      },
+      "right": {
+       "en": "The soil that gives the grain its birth",
+       "hi": "मिट्टी जो अनाज को जन्म देती है"
+      },
+      "why": {
+       "en": "The hymn thanks each one for a different gift that makes a harvest possible.",
+       "hi": "भजन हर एक को अलग उपहार के लिए धन्यवाद देता है जिससे फ़सल संभव होती है।"
+      }
+     },
+     {
+      "id": "hands",
+      "left": {
+       "en": "The farmers themselves",
+       "hi": "स्वयं किसान"
+      },
+      "right": {
+       "en": "Ploughing, sowing and reaping that bring the harvest home",
+       "hi": "जुताई, बुवाई और कटाई जो फ़सल घर लाती है"
+      },
+      "why": {
+       "en": "The hymn thanks each one for a different gift that makes a harvest possible.",
+       "hi": "भजन हर एक को अलग उपहार के लिए धन्यवाद देता है जिससे फ़सल संभव होती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:sun",
+     "expect": "matched:sun",
+     "say": {
+      "en": "Match the Sun with its gift.",
+      "hi": "सूर्य को उसके उपहार से जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who gives the rain and dew that help the crops grow in the hymn?",
+      "hi": "भजन में फ़सलों के लिए वर्षा और ओस कौन देता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Varuna, lord of the waters",
+       "hi": "वरुण, जल के देवता"
+      },
+      {
+       "id": "b",
+       "en": "Surya, the Sun",
+       "hi": "सूर्य"
+      },
+      {
+       "id": "c",
+       "en": "The farmers",
+       "hi": "किसान"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:varuna",
+     "expect": "matched:varuna",
+     "say": {
+      "en": "Match Varuna.",
+      "hi": "वरुण को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाकी जोड़कर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A harvest needs sunshine, water, soil and human effort. The hymn thanks each one in turn, and then everyone joins in thanks. The poet shows that a good harvest is a gift to be shared with gratitude.",
+      "hi": "अच्छी फ़सल के लिए धूप, पानी, मिट्टी और मनुष्य का परिश्रम चाहिए। भजन बारी-बारी से सबको धन्यवाद देता है, और फिर सब मिलकर आभार प्रकट करते हैं। कवयित्री दिखाती हैं कि अच्छी फ़सल आभार के साथ बाँटा जाने वाला उपहार है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which element is thanked in the women's verse?",
+        "hi": "महिलाओं के पद में किसे धन्यवाद दिया गया है?"
+       },
+       "options": [
+        {
+         "en": "The Earth",
+         "hi": "पृथ्वी"
+        },
+        {
+         "en": "The Sun",
+         "hi": "सूर्य"
+        },
+        {
+         "en": "The ocean",
+         "hi": "समुद्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The women's verse is for Mother Earth, who feeds everyone.",
+        "hi": "महिलाओं का पद पृथ्वी माता के लिए है, जो सबको अन्न देती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Sun is thanked in the men's first verse.",
+         "hi": "सूर्य को पुरुषों के पहले पद में धन्यवाद दिया गया है।"
+        },
+        {
+         "en": "The sea (main) and rain are thanked in the men's second verse, not by the women.",
+         "hi": "समुद्र और वर्षा को पुरुषों के दूसरे पद में धन्यवाद दिया गया है, महिलाओं ने नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What would you thank for your food today? List five things or people.",
+      "hi": "आज के भोजन के लिए तुम किसे धन्यवाद दोगे? पाँच चीज़ें या लोग लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-english-hepr1-ch11-tools",
+   "topic": "11.2",
+   "template": "sort",
+   "title": {
+    "en": "Farm tools and their jobs",
+    "hi": "खेत के औज़ार और उनके काम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cut",
+      "label": {
+       "en": "Cutting",
+       "hi": "काटना"
+      }
+     },
+     {
+      "id": "dig",
+      "label": {
+       "en": "Digging or turning soil",
+       "hi": "खोदना या मिट्टी पलटना"
+      }
+     },
+     {
+      "id": "gather",
+      "label": {
+       "en": "Gathering",
+       "hi": "बटोरना"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "f1",
+      "text": {
+       "en": "Sickle",
+       "hi": "दराँती"
+      },
+      "bin": "cut",
+      "why": {
+       "en": "A curved blade for cutting crops.",
+       "hi": "फ़सल काटने की मुड़ी हुई धार।"
+      }
+     },
+     {
+      "id": "f2",
+      "text": {
+       "en": "Scythe",
+       "hi": "बड़ी दराँती"
+      },
+      "bin": "cut",
+      "why": {
+       "en": "A long curved blade for tall grass.",
+       "hi": "लंबी घास के लिए लंबी मुड़ी धार।"
+      }
+     },
+     {
+      "id": "f3",
+      "text": {
+       "en": "Spade",
+       "hi": "फावड़ा"
+      },
+      "bin": "dig",
+      "why": {
+       "en": "A flat blade for digging the soil.",
+       "hi": "मिट्टी खोदने के लिए चौड़ा फलक।"
+      }
+     },
+     {
+      "id": "f4",
+      "text": {
+       "en": "Plough",
+       "hi": "हल"
+      },
+      "bin": "dig",
+      "why": {
+       "en": "Pulled by oxen to turn over the soil.",
+       "hi": "बैल खींचते हैं; यह मिट्टी पलटता है।"
+      }
+     },
+     {
+      "id": "f5",
+      "text": {
+       "en": "Hoe",
+       "hi": "कुदाल"
+      },
+      "bin": "dig",
+      "why": {
+       "en": "Used to loosen soil and remove weeds.",
+       "hi": "मिट्टी ढीली करने और खरपतवार हटाने के लिए।"
+      }
+     },
+     {
+      "id": "f6",
+      "text": {
+       "en": "Rake",
+       "hi": "रेक (कुदाली)"
+      },
+      "bin": "gather",
+      "why": {
+       "en": "Collects leaves and hay in a heap.",
+       "hi": "पत्ते और घास इकट्ठी करता है।"
+      }
+     },
+     {
+      "id": "f7",
+      "text": {
+       "en": "Pitchfork",
+       "hi": "काँटा (पिचफ़ोर्क)"
+      },
+      "bin": "gather",
+      "why": {
+       "en": "Lifts and moves hay or straw.",
+       "hi": "घास या भूसे को उठाता और ले जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:f1",
+     "expect": "placed:f1",
+     "say": {
+      "en": "Place the sickle.",
+      "hi": "दराँती रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which tool is pulled by oxen to turn the soil?",
+      "hi": "मिट्टी पलटने के लिए बैल कौन-सा औज़ार खींचते हैं?"
+     },
+     "options": [
+      {
+       "id": "plough",
+       "en": "Plough",
+       "hi": "हल"
+      },
+      {
+       "id": "rake",
+       "en": "Rake",
+       "hi": "रेक"
+      },
+      {
+       "id": "sickle",
+       "en": "Sickle",
+       "hi": "दराँती"
+      }
+     ],
+     "answer": "plough"
+    },
+    {
+     "kind": "do",
+     "target": "card:f4",
+     "expect": "placed:f4",
+     "say": {
+      "en": "Place the plough.",
+      "hi": "हल रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other tools and press Check.",
+      "hi": "बाकी औज़ार छाँटकर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each farm tool does one job well. Cutting tools have a curved blade (sickle, scythe), digging tools turn or loosen soil (spade, plough, hoe), and gathering tools collect what is cut (rake, pitchfork). The farmers' hymn thanks the hands that use these tools.",
+      "hi": "हर औज़ार एक काम अच्छे से करता है। काटने वाले औज़ारों की धार मुड़ी होती है (दराँती, बड़ी दराँती), खोदने वाले मिट्टी पलटते या ढीली करते हैं (फावड़ा, हल, कुदाल), और बटोरने वाले कटी चीज़ें इकट्ठा करते हैं (रेक, काँटा)। किसानों का भजन इन औज़ारों को चलाने वाले हाथों को धन्यवाद देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which tool would you use to cut ripe wheat?",
+        "hi": "पकी गेहूँ की फ़सल काटने के लिए कौन-सा औज़ार प्रयोग करोगे?"
+       },
+       "options": [
+        {
+         "en": "A sickle",
+         "hi": "दराँती (sickle)"
+        },
+        {
+         "en": "A spade",
+         "hi": "फावड़ा (spade)"
+        },
+        {
+         "en": "A rake",
+         "hi": "रेक (rake)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A sickle has a curved blade made for cutting crops.",
+        "hi": "दराँती की मुड़ी धार फ़सल काटने के लिए बनी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A spade is for digging, not cutting stalks.",
+         "hi": "फावड़ा खोदने के लिए है, बालियाँ काटने के लिए नहीं।"
+        },
+        {
+         "en": "A rake gathers what is already cut.",
+         "hi": "रेक पहले से कटी चीज़ें इकट्ठा करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask a farmer or look up in a book how each tool is made.",
+      "hi": "किसी किसान से पूछो या पुस्तक में देखो कि हर औज़ार कैसे बनता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-english-hepr1-ch11-old-words",
+   "topic": "11.3",
+   "template": "match",
+   "title": {
+    "en": "Old words in the hymn",
+    "hi": "भजन के पुराने शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "thou",
+      "left": {
+       "en": "thou",
+       "hi": "thou (तू)"
+      },
+      "right": {
+       "en": "you (when you do the action)",
+       "hi": "you (जब 'तुम' काम करते हैं)"
+      },
+      "why": {
+       "en": "Old English words like these still appear in poems and prayers.",
+       "hi": "इस तरह के पुराने अंग्रेज़ी शब्द आज भी कविताओं और प्रार्थनाओं में मिलते हैं।"
+      }
+     },
+     {
+      "id": "thee",
+      "left": {
+       "en": "thee",
+       "hi": "thee (तुझे)"
+      },
+      "right": {
+       "en": "you (when you receive the action)",
+       "hi": "you (जब 'तुम' पर काम होता है)"
+      },
+      "why": {
+       "en": "Old English words like these still appear in poems and prayers.",
+       "hi": "इस तरह के पुराने अंग्रेज़ी शब्द आज भी कविताओं और प्रार्थनाओं में मिलते हैं।"
+      }
+     },
+     {
+      "id": "thine",
+      "left": {
+       "en": "thine",
+       "hi": "thine (तेरा)"
+      },
+      "right": {
+       "en": "yours",
+       "hi": "तुम्हारा"
+      },
+      "why": {
+       "en": "Old English words like these still appear in poems and prayers.",
+       "hi": "इस तरह के पुराने अंग्रेज़ी शब्द आज भी कविताओं और प्रार्थनाओं में मिलते हैं।"
+      }
+     },
+     {
+      "id": "art",
+      "left": {
+       "en": "art",
+       "hi": "art (है)"
+      },
+      "right": {
+       "en": "are",
+       "hi": "हो / हैं"
+      },
+      "why": {
+       "en": "Old English words like these still appear in poems and prayers.",
+       "hi": "इस तरह के पुराने अंग्रेज़ी शब्द आज भी कविताओं और प्रार्थनाओं में मिलते हैं।"
+      }
+     },
+     {
+      "id": "hail",
+      "left": {
+       "en": "hail",
+       "hi": "hail (अभिनंदन करना)"
+      },
+      "right": {
+       "en": "greet with respect",
+       "hi": "आदर से स्वागत करना"
+      },
+      "why": {
+       "en": "Old English words like these still appear in poems and prayers.",
+       "hi": "इस तरह के पुराने अंग्रेज़ी शब्द आज भी कविताओं और प्रार्थनाओं में मिलते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:thou",
+     "expect": "matched:thou",
+     "say": {
+      "en": "Match 'thou' with today's word.",
+      "hi": "'thou' को आज के शब्द से जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the hymn, 'Thine is the bounty' means…",
+      "hi": "भजन में 'Thine is the bounty' का अर्थ है…"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Yours is the generous gift",
+       "hi": "तुम्हारा है यह उदार उपहार"
+      },
+      {
+       "id": "b",
+       "en": "Mine is the gift",
+       "hi": "मेरा है यह उपहार"
+      },
+      {
+       "id": "c",
+       "en": "Theirs is the gift",
+       "hi": "उनका है यह उपहार"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:thine",
+     "expect": "matched:thine",
+     "say": {
+      "en": "Match 'thine'.",
+      "hi": "'thine' जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाकी जोड़कर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Archaic words are old words that are rarely used now. Thou, thee and thine were the old forms of you and yours. Poets use them to give a prayer-like, solemn sound. We can read them as today's words when we meet them.",
+      "hi": "प्राचीन शब्द वे पुराने शब्द हैं जो अब कम प्रयोग होते हैं। Thou, thee और thine आज के you और yours के पुराने रूप थे। कवि इन्हें प्रार्थना जैसी गंभीर ध्वनि के लिए प्रयोग करते हैं। इन्हें पढ़ते समय हम इन्हें आज के शब्दों में समझ सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "'Thou art kind' means…",
+        "hi": "'Thou art kind' का अर्थ है…"
+       },
+       "options": [
+        {
+         "en": "You are kind",
+         "hi": "तुम दयालु हो (You are kind)"
+        },
+        {
+         "en": "I am kind",
+         "hi": "मैं दयालु हूँ (I am kind)"
+        },
+        {
+         "en": "They were kind",
+         "hi": "वे दयालु थे (They were kind)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Thou is 'you' and art is 'are'.",
+        "hi": "Thou का अर्थ 'you' और art का अर्थ 'are' है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'I' is not thou; thou means 'you'.",
+         "hi": "'I' thou नहीं है; thou का अर्थ 'you' है।"
+        },
+        {
+         "en": "'They were' is plural and past, but 'thou art' is singular and present.",
+         "hi": "'They were' बहुवचन और भूतकाल है, पर 'thou art' एकवचन और वर्तमान है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say a line from the hymn in your own simple words.",
+      "hi": "भजन की कोई पंक्ति अपने सरल शब्दों में कहो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-english-hepr1-ch11-panels",
+   "topic": "11.4",
+   "template": "reader",
+   "title": {
+    "en": "The harvest song in pictures",
+    "hi": "चित्रों में फ़सल का गीत"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "panels",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "A harvest song: a retelling",
+      "hi": "फ़सल का गीत: एक पुनर्कथन"
+     },
+     "lines": [
+      "At harvest time, the villagers sing a song of thanks.",
+      "The men thank the Sun for the golden light that ripens the crops.",
+      "They thank the rain and the waters that fed the furrows.",
+      "The women thank Mother Earth, whose soil gives them their grain.",
+      "Then everyone sings together, offering their work as a gift.",
+      "They bring garlands and songs, and the fields shine golden with ripe grain."
+     ]
+    },
+    "question": {
+     "q": {
+      "en": "Whom do the women thank in the hymn?",
+      "hi": "भजन में महिलाएँ किसे धन्यवाद देती हैं?"
+     },
+     "options": [
+      {
+       "en": "Mother Earth",
+       "hi": "पृथ्वी माता"
+      },
+      {
+       "en": "The Sun",
+       "hi": "सूर्य"
+      },
+      {
+       "en": "The rain",
+       "hi": "वर्षा"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "The women's verse is addressed to Earth, the giver of grain.",
+      "hi": "महिलाओं का पद पृथ्वी को समर्पित है, जो अनाज देती है।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:1",
+     "expect": "line:1",
+     "say": {
+      "en": "Tap the panel where the men thank the Sun.",
+      "hi": "वह पैनल टैप करो जहाँ पुरुष सूर्य को धन्यवाद देते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which one thanks the rain and the waters?",
+      "hi": "कौन वर्षा और जल को धन्यवाद देता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The men's second verse",
+       "hi": "पुरुषों का दूसरा पद"
+      },
+      {
+       "id": "b",
+       "en": "The women's verse",
+       "hi": "महिलाओं का पद"
+      },
+      {
+       "id": "c",
+       "en": "The last verse of all",
+       "hi": "सबका अंतिम पद"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "line:3",
+     "expect": "line:3",
+     "say": {
+      "en": "Tap the panel where the women sing.",
+      "hi": "वह पैनल टैप करो जहाँ महिलाएँ गाती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play to see all panels in order.",
+      "hi": "सभी पैनल क्रम से देखने के लिए Play दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This is a song of gratitude. Different voices (men, women, all together) thank the Sun, rain, Earth and the Lord of all. The repeated lines about bringing garlands and gifts are called a refrain.",
+      "hi": "यह कृतज्ञता का गीत है। अलग-अलग स्वर (पुरुष, महिलाएँ, सब मिलकर) सूर्य, वर्षा, पृथ्वी और सबके स्वामी को धन्यवाद देते हैं। माला और उपहार लाने की बार-बार आने वाली पंक्तियाँ टेक कहलाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do the villagers bring as tribute?",
+        "hi": "गाँव वाले श्रद्धा-भेंट के रूप में क्या लाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Songs and garlands",
+         "hi": "गीत और मालाएँ"
+        },
+        {
+         "en": "Swords",
+         "hi": "तलवारें"
+        },
+        {
+         "en": "Toys",
+         "hi": "खिलौने"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They bring songs, garlands, grain and the work of their hands.",
+        "hi": "वे गीत, मालाएँ, अनाज और अपने हाथों का परिश्रम लाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is no battle in this song; it is a song of thanks.",
+         "hi": "इस गीत में कोई युद्ध नहीं है; यह धन्यवाद का गीत है।"
+        },
+        {
+         "en": "Toys are not mentioned. The gifts come from the fields and the people's work.",
+         "hi": "खिलौनों का ज़िक्र नहीं है। भेंट खेतों और लोगों के परिश्रम की है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compose a two-line thank-you song for your teachers.",
+      "hi": "अपने शिक्षकों के लिए दो पंक्तियों का धन्यवाद-गीत बनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Opens the hymn",
+   "shows": "A golden wheat field at sunrise with a farmer's silhouette and sickle in the distance; no face",
+   "view": "Wide, low",
+   "right": "Golden crops in warm rising sun",
+   "avoid": "Faces, brand marks"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "11.2",
+   "use": "Farm tools",
+   "shows": "A sickle, a spade, a hoe and a rake leaning together, cut-out as one set",
+   "view": "Three-quarter view",
+   "right": "Real worn wooden handles and steel blades",
+   "avoid": "Brand marks, text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Harvest scene",
+   "shows": "Women in colourful saris bundling harvested paddy in a field; backs only",
+   "view": "Wide, from behind",
+   "right": "Natural colours, straw bundles",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "11.4",
+   "use": "Garland and lamp",
+   "shows": "A marigold garland and a brass lamp on a banana leaf, cut-out",
+   "view": "Top-down",
+   "right": "Real marigolds, steady flame",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "11.1",
+   "use": "From seed to grain",
+   "shows": "Four frames of paddy: sowing, green shoots, golden ripe, harvested grain, same field",
+   "view": "Same fixed viewpoint",
+   "right": "True growth stages in one field",
+   "avoid": "Different locations"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "11.2",
+   "use": "Tool sort board",
+   "shows": "A blank three-column board in earth tones for sorting tools, no words",
+   "view": "Straight front",
+   "right": "Three distinct columns by colour and pattern",
+   "avoid": "Any text"
+  }
+ ]
+}

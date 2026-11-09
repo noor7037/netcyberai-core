@@ -1,0 +1,909 @@
+{
+ "chapter_key": "u.c12.computer_science.lecs1.ch06",
+ "class": 12,
+ "subject_id": "computer_science",
+ "title": "Searching",
+ "source": "https://ncert.nic.in/textbook/pdf/lecs106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Introduction: why searching",
+   "labs": [],
+   "why_no_lab": "Looking for an item in a list is an everyday idea for the reader."
+  },
+  {
+   "n": "6.2",
+   "title": "Linear search",
+   "labs": [
+    "c12-computer_science-lecs1-ch06-linear",
+    "c12-computer_science-lecs1-ch06-choose"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Binary search and its applications",
+   "labs": [
+    "c12-computer_science-lecs1-ch06-binary",
+    "c12-computer_science-lecs1-ch06-choose"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Search by hashing and collisions",
+   "labs": [
+    "c12-computer_science-lecs1-ch06-hash",
+    "c12-computer_science-lecs1-ch06-collision"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-computer_science-lecs1-ch06-linear",
+   "topic": "6.2",
+   "template": "code",
+   "title": {
+    "en": "Linear search: look at every box in turn",
+    "hi": "लीनियर खोज: हर डिब्बा बारी-बारी देखो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "search",
+    "algorithm": "linear",
+    "data": [
+     14,
+     7,
+     22,
+     9,
+     31,
+     18
+    ],
+    "target": 9
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "We look for 9 in the list 14, 7, 22, 9, 31, 18. Linear search starts at the left and checks one box after another. How many boxes will it look at before it finds 9?",
+      "hi": "हम सूची 14, 7, 22, 9, 31, 18 में 9 ढूँढ़ते हैं। लीनियर खोज बाईं ओर से शुरू करके एक के बाद एक डिब्बा देखती है। 9 मिलने तक वह कितने डिब्बे देखेगी?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 है"
+      },
+      {
+       "id": "six",
+       "en": "6",
+       "hi": "6 है"
+      },
+      {
+       "id": "one",
+       "en": "1",
+       "hi": "1 है"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step. Watch the search look at the first box, compare it with 9, and move on.",
+      "hi": "\"एक क़दम\" दबाओ। देखो खोज पहला डिब्बा देखती है, 9 से तुलना करती है और आगे बढ़ती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Keep pressing Step until the search stops.",
+      "hi": "खोज रुकने तक \"एक क़दम\" दबाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Reset, then Run to watch the whole search again.",
+      "hi": "\"फिर से\" दबाओ, फिर पूरी खोज दोबारा देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Linear search checks the elements one by one from the start, comparing each with the key. It stops as soon as it finds the key, and reports its position. If it reaches the end without a match, the key is not in the list. It needs no order in the list, so it works on any list. But for a long list it may have to look at every element.",
+      "hi": "लीनियर खोज शुरू से तत्वों को एक-एक करके जाँचती है और हर एक की तुलना key से करती है। key मिलते ही रुक जाती है और उसकी स्थिति बताती है। बिना मिले अंत तक पहुँच जाए तो key सूची में नहीं है। इसे सूची के किसी क्रम की ज़रूरत नहीं, इसलिए यह किसी भी सूची पर चलती है। पर लंबी सूची में उसे हर तत्व देखना पड़ सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the best case, how many elements does linear search look at?",
+        "hi": "सबसे अच्छी स्थिति में लीनियर खोज कितने तत्व देखती है?"
+       },
+       "options": [
+        "1, if the key is the first element",
+        "Always all of them",
+        "0"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If the key sits in the first box, the search ends after one look.",
+        "hi": "key पहले डिब्बे में हो तो खोज एक नज़र में ख़त्म हो जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It stops early when it finds the key, so not always all.",
+         "hi": "वह key मिलते ही रुक जाती है, इसलिए हमेशा सब नहीं।"
+        },
+        {
+         "en": "At least the first element must be checked.",
+         "hi": "कम से कम पहला तत्व तो जाँचना ही पड़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When is linear search the only choice?",
+        "hi": "लीनियर खोज कब एकमात्र विकल्प होती है?"
+       },
+       "options": [
+        "When the list is not sorted",
+        "When the list is very short",
+        "When the key is a big number"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Binary search needs sorted data. If the list is not in order, linear search is the way.",
+        "hi": "बाइनरी खोज को क्रम में लगा डेटा चाहिए। सूची क्रम में न हो तो लीनियर खोज ही रास्ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A short list can be searched either way.",
+         "hi": "छोटी सूची में दोनों तरीके चल जाते हैं।"
+        },
+        {
+         "en": "The size of the key does not matter.",
+         "hi": "key कितनी बड़ी है, इससे फ़र्क नहीं पड़ता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the idea: what would happen if the key were 50, which is not in the list? How many boxes would be looked at then?",
+      "hi": "सोचो: अगर key 50 होती, जो सूची में नहीं है, तो क्या होता? तब कितने डिब्बे देखे जाते?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch06-binary",
+   "topic": "6.3",
+   "template": "code",
+   "title": {
+    "en": "Binary search: halve the list each time",
+    "hi": "बाइनरी खोज: हर बार सूची आधी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "search",
+    "algorithm": "binary",
+    "data": [
+     3,
+     8,
+     12,
+     17,
+     23,
+     31,
+     40,
+     52
+    ],
+    "target": 31
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The list is sorted: 3, 8, 12, 17, 23, 31, 40, 52. We look for 31. Binary search looks at the middle first. Will it need more or fewer looks than linear search?",
+      "hi": "सूची क्रम में है: 3, 8, 12, 17, 23, 31, 40, 52। हम 31 ढूँढ़ते हैं। बाइनरी खोज पहले बीच वाला देखती है। उसे लीनियर खोज से ज़्यादा नज़र चाहिए या कम?"
+     },
+     "options": [
+      {
+       "id": "fewer",
+       "en": "Fewer looks",
+       "hi": "कम नज़रें"
+      },
+      {
+       "id": "more",
+       "en": "More looks",
+       "hi": "ज़्यादा नज़रें"
+      }
+     ],
+     "answer": "fewer"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step. See the middle box checked, and half of the list thrown away.",
+      "hi": "\"एक क़दम\" दबाओ। देखो बीच का डिब्बा जाँचा जाता है और आधी सूची हट जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step until the search ends.",
+      "hi": "खोज ख़त्म होने तक \"एक क़दम\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to watch it once more.",
+      "hi": "एक बार और देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Binary search needs the list to be sorted. It compares the key with the middle element. If they are equal, the search ends. If the key is smaller, the right half cannot hold it, so only the left half stays; if it is bigger, only the right half stays. Each look throws away half of what is left, so even a list of a lakh numbers needs at most about 17 looks.",
+      "hi": "बाइनरी खोज के लिए सूची का क्रम में होना ज़रूरी है। वह key की तुलना बीच के तत्व से करती है। बराबर हों तो खोज ख़त्म। key छोटी हो तो दाएँ आधे में वह हो ही नहीं सकती, इसलिए केवल बायाँ आधा रखा जाता है; बड़ी हो तो केवल दायाँ आधा। हर नज़र बचे हुए का आधा हटा देती है, इसलिए एक लाख संख्याओं की सूची में भी लगभग 17 नज़रें ही चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What must be true about the list before binary search?",
+        "hi": "बाइनरी खोज से पहले सूची के बारे में क्या सच होना चाहिए?"
+       },
+       "options": [
+        "It is sorted",
+        "It has only even numbers",
+        "It has fewer than 10 items"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Discarding half is safe only if the list is in order.",
+        "hi": "आधा हटाना तभी सुरक्षित है जब सूची क्रम में हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Any numbers are fine as long as they are in order.",
+         "hi": "क्रम में हों तो कोई भी संख्याएँ चलती हैं।"
+        },
+        {
+         "en": "Binary search is best for long lists.",
+         "hi": "बाइनरी खोज लंबी सूचियों के लिए सबसे अच्छी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The middle element is 23 and the key is 40. Which part of the list stays?",
+        "hi": "बीच का तत्व 23 है और key 40 है। सूची का कौन-सा भाग रहता है?"
+       },
+       "options": [
+        "The left half",
+        "The right half",
+        "Both halves"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "40 is bigger than 23, and the list is sorted, so 40 can only be on the right.",
+        "hi": "40, 23 से बड़ी है और सूची क्रम में है, इसलिए 40 केवल दाईं ओर हो सकती है।"
+       },
+       "wrong": [
+        {
+         "en": "The left half holds only numbers smaller than 23.",
+         "hi": "बाएँ भाग में केवल 23 से छोटी संख्याएँ हैं।"
+        },
+        "",
+        {
+         "en": "Keeping both would defeat the idea of halving.",
+         "hi": "दोनों रखने से आधा करने का विचार ही बेकार हो जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset. Think of a key that is not in the list, such as 25. Where would binary search end up, and how would it know to stop?",
+      "hi": "\"फिर से\" दबाओ। सूची में न होने वाली key सोचो, जैसे 25। बाइनरी खोज कहाँ पहुँचेगी और उसे रुकना कैसे पता चलेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch06-choose",
+   "topic": "6.3",
+   "template": "sort",
+   "title": {
+    "en": "Linear or binary search?",
+    "hi": "लीनियर या बाइनरी खोज?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "linear",
+      "label": {
+       "en": "Linear search",
+       "hi": "लीनियर खोज"
+      }
+     },
+     {
+      "id": "binary",
+      "label": {
+       "en": "Binary search",
+       "hi": "बाइनरी खोज"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "loose",
+      "text": {
+       "en": "Marks written in the order students handed in",
+       "hi": "अंक, जिस क्रम में विद्यार्थियों ने जमा किए"
+      },
+      "bin": "linear",
+      "why": {
+       "en": "The list is not sorted, so only linear search is possible.",
+       "hi": "सूची क्रम में नहीं है, इसलिए केवल लीनियर खोज संभव है।"
+      }
+     },
+     {
+      "id": "few",
+      "text": {
+       "en": "Finding a name in a list of 5 friends",
+       "hi": "5 दोस्तों की सूची में नाम ढूँढ़ना"
+      },
+      "bin": "linear",
+      "why": {
+       "en": "For a tiny list, looking at every name is quick enough.",
+       "hi": "छोटी सूची में हर नाम देखना काफ़ी तेज़ है।"
+      }
+     },
+     {
+      "id": "random",
+      "text": {
+       "en": "Looking for a number in unsorted sensor readings",
+       "hi": "बिना क्रम वाले सेंसर रीडिंग में संख्या ढूँढ़ना"
+      },
+      "bin": "linear",
+      "why": {
+       "en": "Unsorted data means linear search.",
+       "hi": "बिना क्रम का डेटा मतलब लीनियर खोज।"
+      }
+     },
+     {
+      "id": "roll",
+      "text": {
+       "en": "Roll number in a sorted list of 1000 students",
+       "hi": "1000 विद्यार्थियों की क्रमबद्ध सूची में रोल नंबर"
+      },
+      "bin": "binary",
+      "why": {
+       "en": "Sorted and long: binary search needs only about 10 looks.",
+       "hi": "क्रमबद्ध और लंबी: बाइनरी खोज को केवल लगभग 10 नज़रें चाहिए।"
+      }
+     },
+     {
+      "id": "dict",
+      "text": {
+       "en": "A word in a dictionary arranged A to Z",
+       "hi": "A से Z क्रम वाले शब्दकोश में कोई शब्द"
+      },
+      "bin": "binary",
+      "why": {
+       "en": "Open in the middle, then keep halving: that is binary search.",
+       "hi": "बीच में खोलो, फिर आधा करते जाओ: यही बाइनरी खोज है।"
+      }
+     },
+     {
+      "id": "phone",
+      "text": {
+       "en": "A name in a phone contacts list sorted by name",
+       "hi": "नाम के क्रम में लगी फ़ोन-संपर्क सूची में नाम"
+      },
+      "bin": "binary",
+      "why": {
+       "en": "A sorted list lets us discard half at every step.",
+       "hi": "क्रमबद्ध सूची में हर क़दम पर आधा हटाया जा सकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:loose",
+     "expect": "correct:loose",
+     "say": {
+      "en": "Place the card about marks in handing-in order.",
+      "hi": "जमा करने के क्रम वाले अंकों का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next: a roll number in a sorted list of 1000 students. Which search is faster?",
+      "hi": "अगला: 1000 विद्यार्थियों की क्रमबद्ध सूची में रोल नंबर। कौन-सी खोज तेज़ है?"
+     },
+     "options": [
+      {
+       "id": "bin",
+       "en": "Binary search",
+       "hi": "बाइनरी खोज"
+      },
+      {
+       "id": "lin",
+       "en": "Linear search",
+       "hi": "लीनियर खोज"
+      }
+     ],
+     "answer": "bin"
+    },
+    {
+     "kind": "do",
+     "target": "card:roll",
+     "expect": "correct:roll",
+     "say": {
+      "en": "Place the roll number card.",
+      "hi": "रोल नंबर वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:dict",
+     "expect": "correct:dict",
+     "say": {
+      "en": "Place the dictionary card.",
+      "hi": "शब्दकोश वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Linear search is simple and works on any list, sorted or not, so it suits short or unsorted lists. Binary search is far faster on long lists, but it needs the data to be sorted first. In 1000 sorted items binary search needs about 10 looks, while linear search might need up to 1000.",
+      "hi": "लीनियर खोज सरल है और क्रम में हो या न हो, किसी भी सूची पर चलती है, इसलिए छोटी या बिना क्रम वाली सूचियों के लिए ठीक है। बाइनरी खोज लंबी सूचियों पर बहुत तेज़ है, पर डेटा पहले से क्रम में चाहिए। 1000 क्रमबद्ध चीज़ों में बाइनरी खोज को लगभग 10 नज़रें चाहिए, जबकि लीनियर खोज को 1000 तक लग सकती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which search should be used on a list that is not in order?",
+        "hi": "क्रम में न लगी सूची पर कौन-सी खोज चलेगी?"
+       },
+       "options": [
+        "Binary search",
+        "Linear search",
+        "Neither"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Linear search needs no order.",
+        "hi": "लीनियर खोज को किसी क्रम की ज़रूरत नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "Binary search would wrongly throw away halves of an unordered list.",
+         "hi": "बाइनरी खोज बिना क्रम की सूची के आधे हिस्से ग़लती से हटा देती।"
+        },
+        "",
+        {
+         "en": "Linear search works fine, so there is a choice.",
+         "hi": "लीनियर खोज ठीक चलती है, इसलिए विकल्प है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "About how many looks does binary search need for 1000 sorted items?",
+        "hi": "1000 क्रमबद्ध चीज़ों के लिए बाइनरी खोज को लगभग कितनी नज़रें चाहिए?"
+       },
+       "options": [
+        "10",
+        "500",
+        "1000"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Halving 1000 again and again reaches 1 after about 10 halvings.",
+        "hi": "1000 को बार-बार आधा करने पर लगभग 10 बार में 1 बचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "500 would be the average for linear search.",
+         "hi": "500 लीनियर खोज का औसत होता।"
+        },
+        {
+         "en": "1000 is the worst case for linear search.",
+         "hi": "1000 लीनियर खोज की सबसे बुरी स्थिति है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the cards. Give one reason why we might sort a list first and then use binary search many times.",
+      "hi": "कार्ड पूरे करो। एक कारण दो कि सूची पहले क्रम में लगाकर फिर कई बार बाइनरी खोज क्यों कर सकते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch06-hash",
+   "topic": "6.4",
+   "template": "code",
+   "title": {
+    "en": "Hashing: the key tells where to look",
+    "hi": "हैशिंग: key खुद बताती है कहाँ देखना है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "size = 10",
+     "table = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]",
+     "for e in [34, 16, 2, 93, 80, 77, 51]:",
+     "    h = e % size",
+     "    table[h] = e",
+     "print(table)",
+     "print(table[93 % size])"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The hash function is h = element % 10, the remainder on division by 10. For 34, which position of the hash table will hold it?",
+      "hi": "हैश फ़ंक्शन h = element % 10 है, यानी 10 से भाग देने का शेषफल। 34 को हैश तालिका की कौन-सी जगह मिलेगी?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "Position 4",
+       "hi": "जगह 4"
+      },
+      {
+       "id": "three",
+       "en": "Position 3",
+       "hi": "जगह 3"
+      },
+      {
+       "id": "thirty",
+       "en": "Position 34",
+       "hi": "जगह 34"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch each element go straight to the position its remainder shows.",
+      "hi": "\"एक क़दम\" दबाओ और देखो हर तत्व सीधे उस जगह जाता है जो उसका शेषफल बताता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run, then read the last print: finding 93 took one step.",
+      "hi": "\"चलाओ\" दबाओ, फिर आख़िरी print पढ़ो: 93 को ढूँढ़ने में एक ही क़दम लगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Hashing finds an element without searching. A hash function turns the element into a position: here the remainder on division by 10, so 34 goes to position 4 and 93 to position 3. To find 93 later, we compute 93 % 10 = 3 and look only at position 3. That takes one step, however long the table is.",
+      "hi": "हैशिंग बिना खोजे तत्व तक पहुँचा देती है। हैश फ़ंक्शन तत्व को एक जगह में बदलता है: यहाँ 10 से भाग का शेषफल, इसलिए 34 जगह 4 पर और 93 जगह 3 पर जाता है। बाद में 93 ढूँढ़ने के लिए हम 93 % 10 = 3 निकालते हैं और केवल जगह 3 देखते हैं। तालिका कितनी भी लंबी हो, इसमें एक ही क़दम लगता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does 77 go with the hash function element % 10?",
+        "hi": "हैश फ़ंक्शन element % 10 में 77 कहाँ जाएगा?"
+       },
+       "options": [
+        "Position 7",
+        "Position 77",
+        "Position 0"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "77 % 10 = 7, the remainder, so it goes to position 7.",
+        "hi": "77 % 10 = 7, यानी शेषफल, इसलिए वह जगह 7 पर जाएगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The table has only 10 positions, 0 to 9.",
+         "hi": "तालिका में केवल 10 जगहें हैं, 0 से 9।"
+        },
+        {
+         "en": "Position 0 is for numbers like 80, which leave remainder 0.",
+         "hi": "जगह 0 उन संख्याओं के लिए है जैसे 80, जिनका शेषफल 0 है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a hash search so fast?",
+        "hi": "हैश खोज इतनी तेज़ क्यों है?"
+       },
+       "options": [
+        "It goes straight to one position",
+        "It sorts the list first",
+        "It checks every element"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The hash function gives the position directly, so there is no scanning.",
+        "hi": "हैश फ़ंक्शन सीधे जगह बता देता है, इसलिए पूरी सूची नहीं देखनी पड़ती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hashing does not need a sorted list.",
+         "hi": "हैशिंग को क्रम में लगी सूची नहीं चाहिए।"
+        },
+        {
+         "en": "Checking every element is what linear search does.",
+         "hi": "हर तत्व जाँचना लीनियर खोज का काम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Where would 58 go? Where would 22? Work out both before you read anything. What happens if two elements have the same remainder?",
+      "hi": "58 कहाँ जाएगा? 22 कहाँ? कुछ पढ़ने से पहले दोनों निकालो। अगर दो तत्वों का शेषफल एक ही हो तो क्या होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch06-collision",
+   "topic": "6.4",
+   "template": "code",
+   "title": {
+    "en": "Collision: two keys, one place",
+    "hi": "टकराव: दो key, एक जगह"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "size = 10",
+     "table = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]",
+     "for e in [23, 15, 33, 47]:",
+     "    h = e % size",
+     "    if table[h] != 0:",
+     "        print(e, \"collides at\", h)",
+     "    else:",
+     "        table[h] = e",
+     "print(table)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "We insert 23, 15, 33 and 47 with h = element % 10. 23 goes to position 3. What will happen when 33 comes?",
+      "hi": "हम h = element % 10 से 23, 15, 33 और 47 डालते हैं। 23 जगह 3 पर गया। 33 आने पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "clash",
+       "en": "It wants position 3 too: a collision",
+       "hi": "33 भी जगह 3 चाहता है: टकराव"
+      },
+      {
+       "id": "fine",
+       "en": "It goes to its own empty place",
+       "hi": "वह अपनी ख़ाली जगह जाएगा"
+      }
+     ],
+     "answer": "clash"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step until the program reports the collision.",
+      "hi": "जब तक प्रोग्राम टकराव न बताए, \"एक क़दम\" दबाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and look at the final table.",
+      "hi": "\"चलाओ\" दबाओ और अंतिम तालिका देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A collision happens when the hash function gives the same position to two different elements. Here 23 and 33 both give 3. One table position can hold only one item, so something must be done: for example, store the new element in the next free position. Collisions are why a good hash function spreads elements as evenly as it can.",
+      "hi": "टकराव तब होता है जब हैश फ़ंक्शन दो अलग तत्वों को एक ही जगह देता है। यहाँ 23 और 33 दोनों जगह 3 देते हैं। तालिका की एक जगह में एक ही चीज़ रह सकती है, इसलिए कुछ करना पड़ता है: जैसे नए तत्व को अगली ख़ाली जगह में रखना। टकराव के कारण ही अच्छा हैश फ़ंक्शन तत्वों को जितना हो सके बराबर फैलाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a collision in hashing?",
+        "hi": "हैशिंग में टकराव क्या है?"
+       },
+       "options": [
+        "Two elements get the same position",
+        "The table is full",
+        "An element is not found"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A collision means the hash function sends two different elements to one place.",
+        "hi": "टकराव का मतलब है कि हैश फ़ंक्शन दो अलग तत्वों को एक जगह भेजता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A full table is a separate problem.",
+         "hi": "भरी तालिका अलग समस्या है।"
+        },
+        {
+         "en": "A missing element is not a collision.",
+         "hi": "तत्व का न मिलना टकराव नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which element in the list collides with 23?",
+        "hi": "सूची का कौन-सा तत्व 23 से टकराता है?"
+       },
+       "options": [
+        "15",
+        "33",
+        "47"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "33 % 10 = 3, the same as 23 % 10.",
+        "hi": "33 % 10 = 3, जो 23 % 10 के बराबर है।"
+       },
+       "wrong": [
+        {
+         "en": "15 % 10 = 5, which is a different place.",
+         "hi": "15 % 10 = 5, जो अलग जगह है।"
+        },
+        "",
+        {
+         "en": "47 % 10 = 7, a different place.",
+         "hi": "47 % 10 = 7, अलग जगह।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which other pairs in 14, 24, 35, 45, 56 would collide with h = element % 10? Find them on paper.",
+      "hi": "h = element % 10 में 14, 24, 35, 45, 56 की कौन-सी और जोड़ियाँ टकराएँगी? काग़ज़ पर खोजो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Searching for one book on a shelf",
+   "shows": "A student scanning a library shelf with a finger tracing along the spines, seen from behind",
+   "view": "Over the shoulder, 16:9, soft light",
+   "right": "Spines unreadable plain colours",
+   "avoid": "Readable titles, visible face"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Row of closed numbered boxes for linear search",
+   "shows": "Six identical closed matchbox-sized wooden boxes in a row",
+   "view": "Top-down, light from top left, transparent background",
+   "right": "Boxes same size, unmarked, so the app can number them",
+   "avoid": "Printed numbers or brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.3",
+   "use": "Opening a dictionary in the middle",
+   "shows": "Two hands opening a thick paper dictionary near its middle on a wooden desk",
+   "view": "Three-quarter view, 16:9, warm light",
+   "right": "Pages show only blurred text",
+   "avoid": "Readable words, publisher marks"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "6.3",
+   "use": "Halving a stack of papers",
+   "shows": "Four frames of a tall stack of sheets, then half taken away, then half of what is left, then a single sheet",
+   "view": "Same camera and light, 16:9",
+   "right": "Each frame about half the height of the one before",
+   "avoid": "People in the frames"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "6.4",
+   "use": "A pigeonhole shelf for hashing",
+   "shows": "A wooden pigeonhole rack with ten empty square compartments in two rows of five",
+   "view": "Front view, light from top left, transparent background",
+   "right": "Exactly ten equal compartments",
+   "avoid": "Numbers or labels on the shelf"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Two letters for one post box (collision idea)",
+   "shows": "A single apartment post box slot with two envelopes trying to enter, envelopes blank",
+   "view": "Close-up side view, 16:9",
+   "right": "Both envelopes clearly at the one slot",
+   "avoid": "Readable addresses or logos"
+  }
+ ]
+}

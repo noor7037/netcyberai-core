@@ -1,0 +1,729 @@
+{
+ "chapter_key": "u.c10.hindi.jhsp1.ch07",
+ "class": 10,
+ "subject_id": "hindi",
+ "title": "आत्मत्राण",
+ "source": "https://ncert.nic.in/textbook.php?jhsp1=0-14",
+ "topics": [
+  {
+   "n": "1",
+   "title": "The prayer for strength: what Tagore asks God for and what he does not",
+   "labs": [
+    "c10-hindi-jhsp1-ch07-asks"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "Words of the poem: विपदा, त्राण, सहायक, निर्भय, संशय, वंचना and the compounds with आत्म",
+   "labs": [
+    "c10-hindi-jhsp1-ch07-words",
+    "c10-hindi-jhsp1-ch07-aatm"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "Translation and the poet: a Bengali prayer in Hindi",
+   "labs": [],
+   "why_no_lab": "Knowing that this is Hazari Prasad Dwivedi's Hindi version of a Bengali poem is better told in a few lines by the reader."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-hindi-jhsp1-ch07-asks",
+   "topic": "1",
+   "template": "sort",
+   "title": {
+    "en": "What the poet asks for, and what he does not",
+    "hi": "कवि क्या माँगता है और क्या नहीं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ask",
+      "label": {
+       "en": "The poet asks for",
+       "hi": "कवि माँगता है"
+      }
+     },
+     {
+      "id": "not",
+      "label": {
+       "en": "The poet does not ask for",
+       "hi": "कवि नहीं माँगता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "fear",
+      "text": {
+       "en": "Not to feel fear when danger comes",
+       "hi": "संकट आने पर डर न लगे"
+      },
+      "bin": "ask",
+      "why": {
+       "en": "He asks for courage, not for the danger to go away.",
+       "hi": "वह हिम्मत माँगता है, संकट का दूर होना नहीं।"
+      }
+     },
+     {
+      "id": "win",
+      "text": {
+       "en": "Strength to win over his own sorrow",
+       "hi": "अपने दुख को जीत सकने की शक्ति"
+      },
+      "bin": "ask",
+      "why": {
+       "en": "He wants to conquer sorrow himself, not be rescued from it.",
+       "hi": "वह ख़ुद दुख को जीतना चाहता है, उससे बचाया जाना नहीं।"
+      }
+     },
+     {
+      "id": "strong",
+      "text": {
+       "en": "His own strength should not weaken if no helper comes",
+       "hi": "कोई सहायक न मिले तो भी उसका अपना बल कम न हो"
+      },
+      "bin": "ask",
+      "why": {
+       "en": "He wants to stand on his own feet even when alone.",
+       "hi": "वह अकेले होने पर भी अपने पैरों पर खड़ा रहना चाहता है।"
+      }
+     },
+     {
+      "id": "trust",
+      "text": {
+       "en": "Faith in God even when the whole world cheats him",
+       "hi": "सारी दुनिया धोखा दे तब भी ईश्वर पर भरोसा बना रहे"
+      },
+      "bin": "ask",
+      "why": {
+       "en": "In his darkest night he asks only that his trust does not break.",
+       "hi": "अपनी सबसे अँधेरी रात में वह बस इतना माँगता है कि भरोसा न टूटे।"
+      }
+     },
+     {
+      "id": "nodanger",
+      "text": {
+       "en": "That danger should never come near him",
+       "hi": "कि संकट कभी उसके पास न आए"
+      },
+      "bin": "not",
+      "why": {
+       "en": "He says plainly: do not save me from dangers.",
+       "hi": "वह साफ़ कहता है: मुझे संकटों से मत बचाओ।"
+      }
+     },
+     {
+      "id": "comfort",
+      "text": {
+       "en": "That someone should comfort him and end his pain",
+       "hi": "कि कोई सांत्वना देकर उसका दुख मिटा दे"
+      },
+      "bin": "not",
+      "why": {
+       "en": "Comfort is welcome, but it is not what he asks for; he wants strength.",
+       "hi": "सांत्वना अच्छी है, पर वह उसे नहीं माँगता; वह शक्ति माँगता है।"
+      }
+     },
+     {
+      "id": "carry",
+      "text": {
+       "en": "That God should lift and carry his load",
+       "hi": "कि ईश्वर उसका बोझ उठा ले"
+      },
+      "bin": "not",
+      "why": {
+       "en": "He does not want the burden lightened; he wants to be able to carry it.",
+       "hi": "वह बोझ हल्का नहीं करवाना चाहता; वह उसे उठा सकना चाहता है।"
+      }
+     },
+     {
+      "id": "noloss",
+      "text": {
+       "en": "That he should never suffer any loss in life",
+       "hi": "कि जीवन में उसे कभी हानि न हो"
+      },
+      "bin": "not",
+      "why": {
+       "en": "Even in loss he asks that his mind should not think itself defeated.",
+       "hi": "हानि होने पर भी वह चाहता है कि उसका मन अपने को हारा हुआ न माने।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:fear",
+     "expect": "placed:fear",
+     "say": {
+      "en": "Tap the card 'Not to feel fear when danger comes', then tap the group it belongs to.",
+      "hi": "'संकट आने पर डर न लगे' वाला कार्ड छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Most people pray to be saved from every trouble. What does this poet pray for?",
+      "hi": "ज़्यादातर लोग हर मुसीबत से बचने की प्रार्थना करते हैं। यह कवि किसके लिए प्रार्थना करता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "To be saved from all troubles",
+       "hi": "सब मुसीबतों से बचने के लिए"
+      },
+      {
+       "id": "b",
+       "en": "To have the strength to face trouble",
+       "hi": "मुसीबत का सामना करने की शक्ति के लिए"
+      },
+      {
+       "id": "c",
+       "en": "To get a lot of money",
+       "hi": "बहुत-सा धन पाने के लिए"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:nodanger",
+     "expect": "placed:nodanger",
+     "say": {
+      "en": "Now place the card 'That danger should never come near him'.",
+      "hi": "अब 'कि संकट कभी उसके पास न आए' कार्ड को सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all eight cards, then press Check.",
+      "hi": "आठों कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Tagore's prayer is unusual. The poet does not ask God to remove dangers, to end his pain or to carry his burden. He asks for courage, inner strength and steady faith. A prayer for strength to help oneself is what the title आत्मत्राण means: protecting oneself with one's own power.",
+      "hi": "टैगोर की प्रार्थना अनोखी है। कवि ईश्वर से संकट हटाने, दुख मिटाने या बोझ उठाने को नहीं कहता। वह हिम्मत, भीतर की शक्ति और अटल विश्वास माँगता है। अपनी ही शक्ति से स्वयं की रक्षा की प्रार्थना ही आत्मत्राण का अर्थ है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the main idea of the poet's prayer?",
+        "hi": "कवि की प्रार्थना का मुख्य भाव क्या है?"
+       },
+       "options": [
+        {
+         "en": "Give me the strength to face trouble, not freedom from it",
+         "hi": "मुझे मुसीबत झेलने की शक्ति दो, उससे छुटकारा नहीं"
+        },
+        {
+         "en": "Keep every difficulty far from me",
+         "hi": "हर कठिनाई को मुझसे दूर रखो"
+        },
+        {
+         "en": "Let others do my hard work",
+         "hi": "मेरा कठिन काम दूसरों से करवा दो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The poet wants to grow strong by facing life, not hide from it.",
+        "hi": "कवि जीवन का सामना करके मज़बूत बनना चाहता है, उससे छिपना नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This is the opposite of what he says: he says, do not save me from troubles.",
+         "hi": "यह उसके कहे से उलटा है: वह तो कहता है कि मुझे मुसीबतों से मत बचाओ।"
+        },
+        {
+         "en": "He wants to carry his own load; he does not hand his work to others.",
+         "hi": "वह अपना बोझ ख़ुद उठाना चाहता है; काम दूसरों को नहीं सौंपता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of an exam or a difficult day. Would you wish it to vanish, or ask for the strength to face it? Say which and why.",
+      "hi": "किसी परीक्षा या कठिन दिन के बारे में सोचो। तुम उसके ग़ायब होने की इच्छा करोगे या उसका सामना करने की शक्ति माँगोगे? क्या और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-hindi-jhsp1-ch07-words",
+   "topic": "2",
+   "template": "match",
+   "title": {
+    "en": "Hard words of the prayer",
+    "hi": "प्रार्थना के कठिन शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "vipada",
+      "left": {
+       "en": "विपदा",
+       "hi": "विपदा"
+      },
+      "right": {
+       "en": "Trouble, a great difficulty",
+       "hi": "मुसीबत, बड़ी कठिनाई"
+      },
+      "why": {
+       "en": "Tagore says: do not save me from विपदा, help me face it.",
+       "hi": "टैगोर कहते हैं: मुझे विपदा से मत बचाओ, उसका सामना करने की शक्ति दो।"
+      }
+     },
+     {
+      "id": "traan",
+      "left": {
+       "en": "त्राण",
+       "hi": "त्राण"
+      },
+      "right": {
+       "en": "Protection, rescue",
+       "hi": "बचाव, रक्षा"
+      },
+      "why": {
+       "en": "आत्मत्राण is protecting oneself.",
+       "hi": "आत्मत्राण का अर्थ है स्वयं की रक्षा।"
+      }
+     },
+     {
+      "id": "sahayak",
+      "left": {
+       "en": "सहायक",
+       "hi": "सहायक"
+      },
+      "right": {
+       "en": "A helper",
+       "hi": "मदद करने वाला"
+      },
+      "why": {
+       "en": "If no सहायक comes, he still wants his strength to stay.",
+       "hi": "यदि कोई सहायक न मिले, तब भी वह अपना बल बनाए रखना चाहता है।"
+      }
+     },
+     {
+      "id": "nirbhay",
+      "left": {
+       "en": "निर्भय",
+       "hi": "निर्भय"
+      },
+      "right": {
+       "en": "Without fear",
+       "hi": "जिसे डर न हो"
+      },
+      "why": {
+       "en": "निर्भय means बिना भय का; the poet asks for a fearless heart.",
+       "hi": "निर्भय यानी बिना भय का; कवि निडर मन माँगता है।"
+      }
+     },
+     {
+      "id": "sanshay",
+      "left": {
+       "en": "संशय",
+       "hi": "संशय"
+      },
+      "right": {
+       "en": "Doubt",
+       "hi": "शक, अविश्वास"
+      },
+      "why": {
+       "en": "He asks that doubt may not rise even in the hardest hour.",
+       "hi": "वह माँगता है कि सबसे कठिन घड़ी में भी मन में शक न आए।"
+      }
+     },
+     {
+      "id": "vanchana",
+      "left": {
+       "en": "वंचना",
+       "hi": "वंचना"
+      },
+      "right": {
+       "en": "Cheating, deceit",
+       "hi": "धोखा, छल"
+      },
+      "why": {
+       "en": "He says even if the world deceives me, my trust in God should not break.",
+       "hi": "वह कहता है कि दुनिया छल करे तो भी मेरा विश्वास न टूटे।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:vipada",
+     "expect": "matched:vipada",
+     "say": {
+      "en": "Tap the word विपदा and then its meaning.",
+      "hi": "शब्द विपदा छुओ और फिर उसका अर्थ छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "आत्मत्राण joins आत्म (self) and त्राण. What do you think it means?",
+      "hi": "आत्मत्राण में आत्म (स्वयं) और त्राण जुड़े हैं। तुम्हारे विचार से इसका क्या अर्थ है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Protection of oneself",
+       "hi": "स्वयं की रक्षा"
+      },
+      {
+       "id": "b",
+       "en": "Protection by others",
+       "hi": "दूसरों द्वारा रक्षा"
+      },
+      {
+       "id": "c",
+       "en": "Loss of oneself",
+       "hi": "स्वयं की हानि"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:traan",
+     "expect": "matched:traan",
+     "say": {
+      "en": "Match त्राण with its meaning.",
+      "hi": "त्राण को उसके अर्थ से जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all six, then press Check.",
+      "hi": "छहों शब्द मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "These six words carry the whole poem: a विपदा comes, there may be no सहायक, the world may try वंचना, yet the poet wants to stay निर्भय and free of संशय. Knowing them lets you read each line with its full meaning.",
+      "hi": "ये छह शब्द पूरी कविता को थामे हैं: विपदा आती है, कोई सहायक नहीं मिलता, दुनिया वंचना कर सकती है, फिर भी कवि निर्भय रहना और संशय से मुक्त होना चाहता है। इन्हें जानकर हर पंक्ति पूरे अर्थ के साथ पढ़ी जा सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word means the opposite of निर्भय?",
+        "hi": "निर्भय का विलोम कौन-सा शब्द है?"
+       },
+       "options": [
+        {
+         "en": "भयभीत (afraid)",
+         "hi": "भयभीत"
+        },
+        {
+         "en": "सहायक (helper)",
+         "hi": "सहायक"
+        },
+        {
+         "en": "त्राण (rescue)",
+         "hi": "त्राण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "निर्भय means without fear, so its opposite is भयभीत, full of fear.",
+        "hi": "निर्भय यानी भय के बिना, इसलिए उसका उलटा भयभीत है, यानी जो डरा हुआ हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "सहायक is a helper; it has nothing to do with fear.",
+         "hi": "सहायक मदद करने वाला है; उसका डर से संबंध नहीं।"
+        },
+        {
+         "en": "त्राण is protection, not a feeling of fear.",
+         "hi": "त्राण रक्षा है, डर की भावना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use संशय and विपदा in one sentence each about something that happened to you or a character in a story.",
+      "hi": "संशय और विपदा से अपने साथ हुई या किसी कहानी के पात्र की किसी बात पर एक-एक वाक्य बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-hindi-jhsp1-ch07-aatm",
+   "topic": "2",
+   "template": "words",
+   "title": {
+    "en": "Words made with आत्म",
+    "hi": "आत्म से बने शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "compound",
+    "lang": "hi",
+    "parts": [
+     "स्नेह",
+     "विद्या"
+    ],
+    "words": [
+     {
+      "w": "आत्मत्राण",
+      "parts": [
+       "आत्म",
+       "त्राण"
+      ],
+      "meaning": {
+       "en": "Protecting oneself by one's own strength",
+       "hi": "अपनी ही शक्ति से अपनी रक्षा"
+      }
+     },
+     {
+      "w": "आत्मविश्वास",
+      "parts": [
+       "आत्म",
+       "विश्वास"
+      ],
+      "meaning": {
+       "en": "Trust in oneself",
+       "hi": "स्वयं पर भरोसा"
+      }
+     },
+     {
+      "w": "आत्मनिर्भर",
+      "parts": [
+       "आत्म",
+       "निर्भर"
+      ],
+      "meaning": {
+       "en": "Standing on one's own feet",
+       "hi": "जो अपने पैरों पर खड़ा हो"
+      }
+     },
+     {
+      "w": "आत्मसम्मान",
+      "parts": [
+       "आत्म",
+       "सम्मान"
+      ],
+      "meaning": {
+       "en": "Respect for oneself",
+       "hi": "अपना सम्मान"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:आत्म",
+     "expect": "part:आत्म",
+     "say": {
+      "en": "Tap 'आत्म' to start the first word.",
+      "hi": "पहला शब्द बनाने के लिए 'आत्म' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:त्राण",
+     "expect": "joined:आत्मत्राण",
+     "say": {
+      "en": "Now tap 'त्राण' and watch the two parts join.",
+      "hi": "अब 'त्राण' छुओ और दोनों भागों को जुड़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "next",
+     "say": {
+      "en": "Tap Next for the next word.",
+      "hi": "अगले शब्द के लिए आगे दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "आत्म (self) + विश्वास (trust). What will they make?",
+      "hi": "आत्म (स्वयं) + विश्वास (भरोसा)। इनसे क्या बनेगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Trust in oneself",
+       "hi": "स्वयं पर भरोसा"
+      },
+      {
+       "id": "b",
+       "en": "Trust in others",
+       "hi": "दूसरों पर भरोसा"
+      },
+      {
+       "id": "c",
+       "en": "Fear of oneself",
+       "hi": "स्वयं से डर"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "part:आत्म",
+     "expect": "part:आत्म",
+     "say": {
+      "en": "Tap 'आत्म' first.",
+      "hi": "पहले 'आत्म' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:विश्वास",
+     "expect": "joined:आत्मविश्वास",
+     "say": {
+      "en": "Tap 'विश्वास' to finish the word.",
+      "hi": "शब्द पूरा करने के लिए 'विश्वास' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "आत्म means self. When it joins another word it makes a compound (समास): आत्मत्राण, आत्मविश्वास, आत्मनिर्भर, आत्मसम्मान. All of them are about the self. The poet's whole prayer is a call to this inner strength.",
+      "hi": "आत्म का अर्थ है स्वयं। जब वह किसी और शब्द से जुड़ता है तो समास बनता है: आत्मत्राण, आत्मविश्वास, आत्मनिर्भर, आत्मसम्मान। ये सब अपने भीतर की बात करते हैं। कवि की पूरी प्रार्थना इसी भीतरी शक्ति की पुकार है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does आत्मनिर्भर mean?",
+        "hi": "आत्मनिर्भर का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "One who depends on himself",
+         "hi": "जो अपने ऊपर निर्भर हो"
+        },
+        {
+         "en": "One who depends on others",
+         "hi": "जो दूसरों पर निर्भर हो"
+        },
+        {
+         "en": "One who has no work",
+         "hi": "जिसके पास कोई काम नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "आत्म (self) + निर्भर (dependent) = one who depends on himself, standing on his own feet.",
+        "hi": "आत्म (स्वयं) + निर्भर = जो अपने ऊपर निर्भर हो, अपने पैरों पर खड़ा हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would be परनिर्भर; आत्म points to oneself.",
+         "hi": "वह परनिर्भर होगा; आत्म अपने आप की ओर संकेत करता है।"
+        },
+        {
+         "en": "The word is about depending on oneself, not about work.",
+         "hi": "शब्द अपने ऊपर निर्भर होने का है, काम का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make one more word with आत्म, such as आत्मकथा. Tell a friend what it means.",
+      "hi": "आत्म से एक और शब्द बनाओ, जैसे आत्मकथा। किसी मित्र को उसका अर्थ बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Opens the poem",
+   "shows": "A lone figure's back, walking on a steep hill path in monsoon wind at dusk; no face",
+   "view": "Wide, from behind",
+   "right": "Wet rocks, strong clouds, warm light on the path",
+   "avoid": "Faces, religious figures, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Facing trouble",
+   "shows": "A farmer's hands holding a rope tight against a strong river current, close",
+   "view": "Close, side view",
+   "right": "Visible effort in the arms, muddy water",
+   "avoid": "Faces, danger to children"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2",
+   "use": "Vocab: सहायक",
+   "shows": "One hand reaching out to another, cut-out",
+   "view": "Side view",
+   "right": "Clear grip, natural skin tones",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "2",
+   "use": "Compound words",
+   "shows": "A plain strip with two empty boxes joined by a plus sign and an equals sign, white background",
+   "view": "Flat front",
+   "right": "Even boxes",
+   "avoid": "Any words"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "The dark night",
+   "shows": "A village house with one lit lamp on a dark night, stars visible",
+   "view": "Wide, eye level",
+   "right": "Warm lamp, deep blue sky",
+   "avoid": "People, text"
+  }
+ ]
+}

@@ -1,0 +1,998 @@
+{
+ "chapter_key": "u.c11.accountancy.keac1.ch06",
+ "class": 11,
+ "subject_id": "accountancy",
+ "title": "Trial Balance and Rectification of Errors",
+ "source": "https://ncert.nic.in/textbook/pdf/keac106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Meaning of the trial balance",
+   "labs": [
+    "c11-accountancy-keac1-ch06-agree"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Objectives: arithmetical accuracy, locating errors, help in preparing financial statements",
+   "labs": [],
+   "why_no_lab": "The three purposes are seen at work in the trial balance labs (6.1 and 6.3); stating them is a reading task."
+  },
+  {
+   "n": "6.3",
+   "title": "Preparing the trial balance: totals, balances and totals-cum-balances methods",
+   "labs": [
+    "c11-accountancy-keac1-ch06-balances"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4.1",
+   "title": "Classification of errors",
+   "labs": [],
+   "why_no_lab": "Naming the kinds of error is a reading and sorting task; each kind is met inside the two rectification labs and their questions."
+  },
+  {
+   "n": "6.4.2",
+   "title": "Errors of commission",
+   "labs": [
+    "c11-accountancy-keac1-ch06-commission"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4.3",
+   "title": "Errors of omission",
+   "labs": [],
+   "why_no_lab": "An entry left out completely leaves nothing to move; the reader shows how it is found and simply recorded."
+  },
+  {
+   "n": "6.4.4",
+   "title": "Errors of principle",
+   "labs": [
+    "c11-accountancy-keac1-ch06-principle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4.5",
+   "title": "Compensating errors",
+   "labs": [],
+   "why_no_lab": "Two errors that cancel need a worked example on paper in the reader; they never show in any total the child could watch."
+  },
+  {
+   "n": "6.5",
+   "title": "Searching of errors",
+   "labs": [],
+   "why_no_lab": "The checklist for finding errors is a procedure best followed in the reader with a worked trial balance."
+  },
+  {
+   "n": "6.6",
+   "title": "Rectification of errors: not affecting the trial balance, affecting it (suspense account), and in the next year",
+   "labs": [],
+   "why_no_lab": "Rectifying entries are practised in the commission and principle labs (6.4.2 and 6.4.4); one-sided errors need a suspense account, which the accounts book does not offer yet."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-accountancy-keac1-ch06-agree",
+   "topic": "6.1",
+   "template": "ledger",
+   "title": {
+    "en": "Does the trial balance agree?",
+    "hi": "क्या तलपट मिलता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "trial-balance",
+    "business": {
+     "en": "Kiran Book Depot",
+     "hi": "किरण बुक डिपो"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-03-01",
+      "text": {
+       "en": "Started business with cash",
+       "hi": "नकद से व्यापार शुरू किया"
+      },
+      "amount": 50000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2025-03-05",
+      "text": {
+       "en": "Bought books for cash",
+       "hi": "नकद में किताबें ख़रीदीं"
+      },
+      "amount": 20000,
+      "debit": "purchases",
+      "credit": "cash"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "account:cash",
+     "expect": "chose:cash",
+     "say": {
+      "en": "Tap the Cash account in the list.",
+      "hi": "सूची में रोकड़ खाते पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Cash: debit total ₹50,000, credit total ₹20,000. Which column does its balance go in?",
+      "hi": "रोकड़: नाम योग ₹50,000, जमा योग ₹20,000। इसका शेष किस कॉलम में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "dr",
+       "en": "Debit column",
+       "hi": "नाम कॉलम"
+      },
+      {
+       "id": "cr",
+       "en": "Credit column",
+       "hi": "जमा कॉलम"
+      }
+     ],
+     "answer": "dr"
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap “Debit column”.",
+      "hi": "“नाम कॉलम” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:capital",
+     "expect": "chose:capital",
+     "say": {
+      "en": "Now tap the Capital account.",
+      "hi": "अब पूँजी खाते पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Capital has only a credit side: tap “Credit column”.",
+      "hi": "पूँजी में केवल जमा पक्ष है: “जमा कॉलम” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:purchases",
+     "say": {
+      "en": "Tap “Show me” for the last account.",
+      "hi": "आख़िरी खाते के लिए “मुझे दिखाओ” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "tallied",
+     "say": {
+      "en": "Tap “Add up the columns”.",
+      "hi": "“कॉलम जोड़ो” दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A trial balance lists the balance of every ledger account on one date. Debit balances go in the debit column and credit balances in the credit column. Because every debit in the books had an equal credit, the two columns total the same, ₹50,000 each. That shows the arithmetic of the ledger is right.",
+      "hi": "तलपट एक तिथि पर हर खाते का शेष दिखाता है। नाम शेष नाम कॉलम में और जमा शेष जमा कॉलम में जाते हैं। क्योंकि पुस्तकों में हर नाम के बराबर जमा था, दोनों कॉलमों का योग बराबर है, ₹50,000-₹50,000। इससे पता चलता है कि खातों का हिसाब गणित में सही है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The trial balance agrees. Does that prove there are no errors?",
+        "hi": "तलपट मिल गया। क्या इससे सिद्ध होता है कि कोई त्रुटि नहीं है?"
+       },
+       "options": [
+        {
+         "en": "No, some errors do not upset the totals",
+         "hi": "नहीं, कुछ त्रुटियाँ योग नहीं बिगाड़तीं"
+        },
+        {
+         "en": "Yes, the books are perfect",
+         "hi": "हाँ, पुस्तकें बिल्कुल सही हैं"
+        },
+        {
+         "en": "Only if the totals are large",
+         "hi": "केवल अगर योग बड़े हों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An entry left out completely, or posted to a wrong account on the correct side, keeps both totals equal.",
+        "hi": "पूरी तरह छूटी प्रविष्टि, या सही पक्ष में ग़लत खाते में की गई खतौनी, दोनों योगों को बराबर ही रखती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An agreed trial balance only proves the arithmetic; errors of omission, commission or principle can still hide.",
+         "hi": "मिला हुआ तलपट केवल गणित सिद्ध करता है; छूट, लेखन या सिद्धांत की त्रुटियाँ फिर भी छिप सकती हैं।"
+        },
+        {
+         "en": "The size of the totals says nothing about errors.",
+         "hi": "योग का आकार त्रुटियों के बारे में कुछ नहीं बताता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these normally has a credit balance?",
+        "hi": "इनमें से किसका सामान्यतः जमा शेष होता है?"
+       },
+       "options": [
+        {
+         "en": "Capital",
+         "hi": "पूँजी"
+        },
+        {
+         "en": "Purchases",
+         "hi": "क्रय"
+        },
+        {
+         "en": "Cash",
+         "hi": "रोकड़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Capital is the owner’s claim, like a liability, so it has a credit balance.",
+        "hi": "पूँजी स्वामी का दावा है, देयता जैसा, इसलिए इसका जमा शेष होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Purchases is an expense; expenses have debit balances.",
+         "hi": "क्रय एक व्यय है; व्ययों के नाम शेष होते हैं।"
+        },
+        {
+         "en": "Cash is an asset and can never be negative, so it always has a debit balance.",
+         "hi": "रोकड़ परिसंपत्ति है और कभी ऋणात्मक नहीं होती, इसलिए हमेशा नाम शेष होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question below the trial balance. Then tap each account card and compare its two totals with its balance.",
+      "hi": "तलपट के नीचे के प्रश्न का उत्तर दो। फिर हर खाते के कार्ड पर टैप करके उसके दोनों योगों की तुलना उसके शेष से करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch06-balances",
+   "topic": "6.3",
+   "template": "ledger",
+   "title": {
+    "en": "Which column for each balance?",
+    "hi": "हर शेष किस कॉलम में?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "trial-balance",
+    "business": {
+     "en": "Kiran Book Depot",
+     "hi": "किरण बुक डिपो"
+    },
+    "accounts": [
+     {
+      "id": "gupta",
+      "name": {
+       "en": "Gupta Traders",
+       "hi": "गुप्ता ट्रेडर्स"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-03-01",
+      "text": {
+       "en": "Started business with cash",
+       "hi": "नकद से व्यापार शुरू किया"
+      },
+      "amount": 60000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2025-03-04",
+      "text": {
+       "en": "Bought books on credit from Gupta Traders",
+       "hi": "गुप्ता ट्रेडर्स से उधार किताबें ख़रीदीं"
+      },
+      "amount": 25000,
+      "debit": "purchases",
+      "credit": "gupta"
+     },
+     {
+      "id": "t3",
+      "date": "2025-03-10",
+      "text": {
+       "en": "Sold books for cash",
+       "hi": "नकद में किताबें बेचीं"
+      },
+      "amount": 18000,
+      "debit": "cash",
+      "credit": "sales"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "account:gupta",
+     "expect": "chose:gupta",
+     "say": {
+      "en": "Tap the Gupta Traders account.",
+      "hi": "गुप्ता ट्रेडर्स खाते पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Gupta Traders gave the shop books on credit and has not been paid. Which column does its balance go in?",
+      "hi": "गुप्ता ट्रेडर्स ने दुकान को उधार किताबें दीं और भुगतान नहीं हुआ। इसका शेष किस कॉलम में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "cr",
+       "en": "Credit column",
+       "hi": "जमा कॉलम"
+      },
+      {
+       "id": "dr",
+       "en": "Debit column",
+       "hi": "नाम कॉलम"
+      }
+     ],
+     "answer": "cr"
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap “Credit column”.",
+      "hi": "“जमा कॉलम” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:sales",
+     "expect": "chose:sales",
+     "say": {
+      "en": "Now tap the Sales account.",
+      "hi": "अब विक्रय खाते पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Sales is an income: tap the column where incomes go.",
+      "hi": "विक्रय एक आय है: उस कॉलम पर टैप करो जहाँ आय जाती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the balances method each account appears once, with its balance. Creditors, capital and incomes such as sales have credit balances; assets, expenses and drawings have debit balances. The totals method lists both totals of every account instead, and the totals-cum-balances method shows both. All three agree if the ledger is arithmetically correct.",
+      "hi": "शेष विधि में हर खाता एक बार, अपने शेष के साथ आता है। लेनदार, पूँजी और विक्रय जैसी आय के जमा शेष होते हैं; परिसंपत्तियों, व्ययों और आहरण के नाम शेष। योग विधि में हर खाते के दोनों योग लिखते हैं, और योग-सह-शेष विधि में दोनों। खाते गणित में सही हों तो तीनों विधियों में तलपट मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the totals method, what is written for each account?",
+        "hi": "योग विधि में हर खाते के लिए क्या लिखा जाता है?"
+       },
+       "options": [
+        {
+         "en": "Both its debit total and its credit total",
+         "hi": "उसका नाम योग और जमा योग दोनों"
+        },
+        {
+         "en": "Only its balance",
+         "hi": "केवल उसका शेष"
+        },
+        {
+         "en": "Only the bigger total",
+         "hi": "केवल बड़ा योग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both totals are written, so the grand totals equal the total of all the journal entries.",
+        "hi": "दोनों योग लिखे जाते हैं, इसलिए कुल योग सभी रोज़नामचा प्रविष्टियों के योग के बराबर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Writing only the balance is the balances method, the one in this lab.",
+         "hi": "केवल शेष लिखना शेष विधि है, जो इस प्रयोगशाला में है।"
+        },
+        {
+         "en": "Leaving out the smaller total would make the columns disagree.",
+         "hi": "छोटा योग छोड़ने से कॉलम नहीं मिलेंगे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these has a debit balance in the trial balance?",
+        "hi": "तलपट में इनमें से किसका नाम शेष होता है?"
+       },
+       "options": [
+        {
+         "en": "Drawings",
+         "hi": "आहरण"
+        },
+        {
+         "en": "Sales",
+         "hi": "विक्रय"
+        },
+        {
+         "en": "Bank loan",
+         "hi": "बैंक ऋण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Drawings lower the capital, so, like assets and expenses, they have a debit balance.",
+        "hi": "आहरण पूँजी घटाता है, इसलिए परिसंपत्तियों और व्ययों की तरह इसका नाम शेष होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sales is an income; incomes have credit balances.",
+         "hi": "विक्रय एक आय है; आय के जमा शेष होते हैं।"
+        },
+        {
+         "en": "A loan is a liability; liabilities have credit balances.",
+         "hi": "ऋण एक देयता है; देयताओं के जमा शेष होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the other balances with Debit, Credit or Show me, then add up the columns. Do they agree at ₹1,03,000?",
+      "hi": "बाक़ी शेषों को नाम, जमा या मुझे दिखाओ से रखो, फिर कॉलम जोड़ो। क्या दोनों ₹1,03,000 पर मिलते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch06-commission",
+   "topic": "6.4.2",
+   "template": "ledger",
+   "title": {
+    "en": "Fix a posting to the wrong person",
+    "hi": "ग़लत व्यक्ति के खाते की खतौनी सुधारो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Kiran Book Depot",
+     "hi": "किरण बुक डिपो"
+    },
+    "accounts": [
+     {
+      "id": "ravi",
+      "name": {
+       "en": "Ravi",
+       "hi": "रवि"
+      },
+      "kind": "debtor"
+     },
+     {
+      "id": "rahul",
+      "name": {
+       "en": "Rahul",
+       "hi": "राहुल"
+      },
+      "kind": "debtor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-03-20",
+      "text": {
+       "en": "Rectify: books sold on credit to Ravi were posted to Rahul’s account",
+       "hi": "सुधार: रवि को उधार बेची किताबें राहुल के खाते में चढ़ा दी गईं"
+      },
+      "amount": 5000,
+      "debit": "ravi",
+      "credit": "rahul"
+     },
+     {
+      "id": "t2",
+      "date": "2025-03-22",
+      "text": {
+       "en": "Rectify: cash received from Ravi was credited to Rahul’s account",
+       "hi": "सुधार: रवि से मिला नकद राहुल के खाते में जमा कर दिया गया"
+      },
+      "amount": 2000,
+      "debit": "rahul",
+      "credit": "ravi"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the transaction “Rectify: books sold on credit to Ravi were posted to Rahul’s account”.",
+      "hi": "लेन-देन “सुधार: रवि को उधार बेची किताबें राहुल के खाते में चढ़ा दी गईं” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rahul was debited by mistake; Ravi should have been. To correct it, which account do we debit now?",
+      "hi": "ग़लती से राहुल नाम हुआ; रवि को होना था। सुधारने के लिए अब किस खाते को नाम करेंगे?"
+     },
+     "options": [
+      {
+       "id": "ravi",
+       "en": "Ravi",
+       "hi": "रवि"
+      },
+      {
+       "id": "rahul",
+       "en": "Rahul",
+       "hi": "राहुल"
+      },
+      {
+       "id": "sales",
+       "en": "Sales",
+       "hi": "विक्रय"
+      }
+     ],
+     "answer": "ravi"
+    },
+    {
+     "kind": "do",
+     "target": "account:ravi",
+     "expect": "chose:ravi",
+     "say": {
+      "en": "Tap the Ravi account chip.",
+      "hi": "रवि खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Ravi on the debit side.",
+      "hi": "रवि को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:rahul",
+     "expect": "chose:rahul",
+     "say": {
+      "en": "Now tap the Rahul account chip.",
+      "hi": "अब राहुल खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Rahul on the credit side.",
+      "hi": "राहुल को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Posting an amount to the wrong person’s account, on the correct side, is an error of commission. The trial balance still agrees, because a debit is still a debit. To rectify, debit the account that should have been debited (Ravi) and credit the one wrongly debited (Rahul). The sale itself was right, so Sales is not touched.",
+      "hi": "राशि को सही पक्ष में पर ग़लत व्यक्ति के खाते में चढ़ाना लेखन (कमीशन) की त्रुटि है। तलपट फिर भी मिलता है, क्योंकि नाम तो नाम ही रहा। सुधार के लिए उस खाते को नाम करो जिसे होना था (रवि) और ग़लती से नाम हुए खाते को जमा करो (राहुल)। बिक्री सही थी, इसलिए विक्रय नहीं छुआ जाता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does this error not show up in the trial balance?",
+        "hi": "यह त्रुटि तलपट में क्यों नहीं दिखती?"
+       },
+       "options": [
+        {
+         "en": "The amount went to a wrong account but on the correct side",
+         "hi": "राशि ग़लत खाते में गई पर सही पक्ष में"
+        },
+        {
+         "en": "Ravi and Rahul are both creditors",
+         "hi": "रवि और राहुल दोनों लेनदार हैं"
+        },
+        {
+         "en": "The amount is too small",
+         "hi": "राशि बहुत छोटी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Total debits still equal total credits, so the trial balance cannot catch it.",
+        "hi": "कुल नाम अब भी कुल जमा के बराबर है, इसलिए तलपट इसे पकड़ नहीं सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both are debtors here. What matters is that the side was right.",
+         "hi": "यहाँ दोनों देनदार हैं। असल बात यह है कि पक्ष सही था।"
+        },
+        {
+         "en": "Size never hides an error; equal debits and credits do.",
+         "hi": "राशि का आकार त्रुटि नहीं छिपाता; बराबर नाम और जमा छिपाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is an error of omission?",
+        "hi": "इनमें से कौन छूट (ओमिशन) की त्रुटि है?"
+       },
+       "options": [
+        {
+         "en": "A credit purchase was not recorded at all",
+         "hi": "एक उधार ख़रीद बिल्कुल दर्ज नहीं हुई"
+        },
+        {
+         "en": "₹900 was posted instead of ₹9,000 in a debtor’s account",
+         "hi": "एक देनदार के खाते में ₹9,000 की जगह ₹900 चढ़ाए गए"
+        },
+        {
+         "en": "Furniture bought was debited to Purchases",
+         "hi": "ख़रीदा फ़र्नीचर क्रय खाते में नाम हुआ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Omission means leaving a transaction out of the books, fully or partly.",
+        "hi": "छूट का अर्थ है किसी लेन-देन को पूरी या आंशिक रूप से पुस्तकों से छोड़ देना।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A wrong amount is an error of commission: the entry was made, but wrongly.",
+         "hi": "ग़लत राशि लेखन की त्रुटि है: प्रविष्टि हुई, पर ग़लत।"
+        },
+        {
+         "en": "Treating an asset as goods for sale breaks an accounting principle: an error of principle.",
+         "hi": "परिसंपत्ति को बेचने का माल मानना लेखांकन सिद्धांत तोड़ता है: सिद्धांत की त्रुटि।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Rectify the second error too: cash received from Ravi was credited to Rahul. Which account is debited now, and which credited?",
+      "hi": "दूसरी त्रुटि भी सुधारो: रवि से मिला नकद राहुल के खाते में जमा हुआ। अब कौन-सा खाता नाम होगा और कौन-सा जमा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch06-principle",
+   "topic": "6.4.4",
+   "template": "ledger",
+   "title": {
+    "en": "An asset recorded as goods",
+    "hi": "माल की तरह दर्ज की गई परिसंपत्ति"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Kiran Book Depot",
+     "hi": "किरण बुक डिपो"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-03-25",
+      "text": {
+       "en": "Rectify: a bookshelf bought for the shop was debited to Purchases",
+       "hi": "सुधार: दुकान के लिए ख़रीदी बुकशेल्फ़ क्रय खाते में नाम कर दी गई"
+      },
+      "amount": 8000,
+      "debit": "furniture",
+      "credit": "purchases"
+     },
+     {
+      "id": "t2",
+      "date": "2025-03-28",
+      "text": {
+       "en": "Rectify: repairs to the shop’s computer were debited to the Computers account",
+       "hi": "सुधार: दुकान के कंप्यूटर की मरम्मत कंप्यूटर खाते में नाम कर दी गई"
+      },
+      "amount": 1200,
+      "debit": "repairs",
+      "credit": "computer"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the transaction “Rectify: a bookshelf bought for the shop was debited to Purchases”.",
+      "hi": "लेन-देन “सुधार: दुकान के लिए ख़रीदी बुकशेल्फ़ क्रय खाते में नाम कर दी गई” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bookshelf for the shop’s own use was wrongly treated as goods for sale. Which account must now be debited?",
+      "hi": "दुकान के अपने उपयोग की बुकशेल्फ़ को ग़लती से बेचने का माल मान लिया गया। अब किस खाते को नाम करना होगा?"
+     },
+     "options": [
+      {
+       "id": "furniture",
+       "en": "Furniture",
+       "hi": "फ़र्नीचर"
+      },
+      {
+       "id": "purchases",
+       "en": "Purchases",
+       "hi": "क्रय"
+      },
+      {
+       "id": "repairs",
+       "en": "Repairs",
+       "hi": "मरम्मत"
+      }
+     ],
+     "answer": "furniture"
+    },
+    {
+     "kind": "do",
+     "target": "account:furniture",
+     "expect": "chose:furniture",
+     "say": {
+      "en": "Tap the Furniture account chip.",
+      "hi": "फ़र्नीचर खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Furniture on the debit side.",
+      "hi": "फ़र्नीचर को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:purchases",
+     "expect": "chose:purchases",
+     "say": {
+      "en": "Now tap the Purchases account chip.",
+      "hi": "अब क्रय खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Purchases on the credit side.",
+      "hi": "क्रय को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Treating an asset as an expense, or an expense as an asset, breaks an accounting principle: an error of principle. The trial balance still agrees, but the profit is wrong: the shelf was counted as goods bought, so profit looked ₹8,000 lower. To rectify, debit Furniture, the right account, and credit Purchases to take the wrong amount out.",
+      "hi": "परिसंपत्ति को व्यय मानना, या व्यय को परिसंपत्ति, लेखांकन सिद्धांत तोड़ता है: सिद्धांत की त्रुटि। तलपट फिर भी मिलता है, पर लाभ ग़लत होता है: शेल्फ़ को ख़रीदा माल गिना गया, इसलिए लाभ ₹8,000 कम दिखा। सुधार के लिए सही खाते फ़र्नीचर को नाम करो और ग़लत राशि हटाने के लिए क्रय को जमा करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Before the correction, how was the year’s profit affected?",
+        "hi": "सुधार से पहले वर्ष के लाभ पर क्या असर था?"
+       },
+       "options": [
+        {
+         "en": "It was ₹8,000 too low",
+         "hi": "यह ₹8,000 कम था"
+        },
+        {
+         "en": "It was ₹8,000 too high",
+         "hi": "यह ₹8,000 ज़्यादा था"
+        },
+        {
+         "en": "Not at all",
+         "hi": "कोई असर नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Purchases were ₹8,000 too big, and bigger costs mean a smaller profit.",
+        "hi": "क्रय ₹8,000 ज़्यादा था, और ज़्यादा लागत का अर्थ कम लाभ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Extra purchases are extra costs. Costs lower profit; they never raise it.",
+         "hi": "अतिरिक्त क्रय अतिरिक्त लागत है। लागत लाभ घटाती है, बढ़ाती नहीं।"
+        },
+        {
+         "en": "Purchases go to the trading account, so an extra ₹8,000 there changes the gross profit.",
+         "hi": "क्रय व्यापार खाते में जाता है, इसलिए वहाँ ₹8,000 ज़्यादा होने से सकल लाभ बदलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Repairs to the computer were debited to the Computers account. This is …",
+        "hi": "कंप्यूटर की मरम्मत कंप्यूटर खाते में नाम कर दी गई। यह है …"
+       },
+       "options": [
+        {
+         "en": "an error of principle",
+         "hi": "सिद्धांत की त्रुटि"
+        },
+        {
+         "en": "an error of omission",
+         "hi": "छूट की त्रुटि"
+        },
+        {
+         "en": "a compensating error",
+         "hi": "क्षतिपूरक त्रुटि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An expense (repairs) was treated as an asset (computers), which breaks the principle.",
+        "hi": "एक व्यय (मरम्मत) को परिसंपत्ति (कंप्यूटर) माना गया, जिससे सिद्धांत टूटा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It was recorded; nothing was left out of the books.",
+         "hi": "यह दर्ज हुआ था; पुस्तकों से कुछ छूटा नहीं।"
+        },
+        {
+         "en": "A compensating error needs two errors that cancel each other out.",
+         "hi": "क्षतिपूरक त्रुटि में दो त्रुटियाँ होती हैं जो एक-दूसरे को निष्प्रभावी कर दें।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Rectify the computer repairs too. Which account is debited, and how does the profit change after the correction?",
+      "hi": "कंप्यूटर मरम्मत भी सुधारो। कौन-सा खाता नाम होता है, और सुधार के बाद लाभ कैसे बदलता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Hook: closing the books",
+   "shows": "An accountant’s desk on the last day of the month: an open ledger, a printing calculator with a long paper roll, a pencil and an eraser",
+   "view": "Top-down, soft daylight, 16:9",
+   "right": "Figures on the paper roll are blurred and unreadable",
+   "avoid": "Readable numbers, brand names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "6.3",
+   "use": "Trial balance base",
+   "shows": "A blank trial balance form: serial number, account name, folio, debit and credit columns, with a totals row at the bottom",
+   "view": "Flat, front-on, A4 proportion",
+   "right": "Debit and credit columns equal in width, totals row double-ruled",
+   "avoid": "Any words or numbers (the app adds them)"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.4.2",
+   "use": "An error of commission",
+   "shows": "Two customer account cards side by side on a desk, with similar-looking blank headings; a hand with a pen is about to write on the wrong card",
+   "view": "Top-down, close, 4:3",
+   "right": "The two cards look almost the same, which is why the mistake happens",
+   "avoid": "Readable names, faces"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "6.4.4",
+   "use": "Asset or goods?",
+   "shows": "Separate cut-outs: a wooden bookshelf for a shop, and a sealed carton of new books ready for sale",
+   "view": "Front three-quarter view, lit from top left, transparent background",
+   "right": "The shelf looks like shop furniture; the carton clearly holds stock for sale",
+   "avoid": "Book titles, publisher logos, brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "6.5",
+   "use": "Searching for an error",
+   "shows": "Three frames: a finger running down a column of a ledger page; a magnifying glass over one entry; a pencil tick beside it",
+   "view": "Same page, camera and light in every frame; 4:3",
+   "right": "Entries are blurred; only the actions are clear",
+   "avoid": "Readable figures or names"
+  }
+ ]
+}

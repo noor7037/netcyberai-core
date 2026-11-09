@@ -1,0 +1,1323 @@
+{
+ "chapter_key": "u.c10.science.jesc1.ch01",
+ "class": 10,
+ "subject_id": "science",
+ "title": "Chemical Reactions and Equations",
+ "source": "https://ncert.nic.in/textbook/pdf/jesc101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Chemical equations: recognising a reaction, writing and balancing equations",
+   "labs": [
+    "c10-science-jesc1-ch01-signs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Types of chemical reactions",
+   "labs": [
+    "c10-science-jesc1-ch01-displacement",
+    "c10-science-jesc1-ch01-heat-decompose",
+    "c10-science-jesc1-ch01-electrolysis",
+    "c10-science-jesc1-ch01-combination",
+    "c10-science-jesc1-ch01-double-displacement",
+    "c10-science-jesc1-ch01-oxidation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Effects of oxidation in everyday life: corrosion and rancidity",
+   "labs": [],
+   "why_no_lab": "Taught best by the rusting photo sequence and the reader; a beaker cannot show weeks of rusting."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-science-jesc1-ch01-signs",
+   "topic": "1.1",
+   "template": "beaker",
+   "title": {
+    "en": "Signs of a chemical reaction",
+    "hi": "रासायनिक अभिक्रिया के लक्षण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "zinc",
+     "hcl",
+     "pbno3",
+     "ki"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:zinc",
+     "expect": "pick:zinc",
+     "say": {
+      "en": "Tap the zinc granules to pick them up.",
+      "hi": "जस्ते के दानों पर टैप करके उन्हें उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:zinc",
+     "say": {
+      "en": "Now tap the beaker to drop the zinc in.",
+      "hi": "अब बीकर पर टैप करके जस्ता उसमें डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next you will pour dilute hydrochloric acid on the zinc. What do you think you will see?",
+      "hi": "अब तुम जस्ते पर तनु हाइड्रोक्लोरिक अम्ल डालोगे। तुम्हें क्या लगता है, क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "gas",
+       "en": "Bubbles of gas",
+       "hi": "गैस के बुलबुले"
+      },
+      {
+       "id": "ppt",
+       "en": "A yellow solid",
+       "hi": "एक पीला ठोस"
+      },
+      {
+       "id": "none",
+       "en": "Nothing at all",
+       "hi": "कुछ भी नहीं"
+      }
+     ],
+     "answer": "gas"
+    },
+    {
+     "kind": "do",
+     "target": "pick:hcl",
+     "expect": "pick:hcl",
+     "say": {
+      "en": "Pick up the bottle of dilute hydrochloric acid.",
+      "hi": "तनु हाइड्रोक्लोरिक अम्ल की बोतल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour it into the beaker. Watch the bubbles and the thermometer.",
+      "hi": "इसे बीकर में डालो। बुलबुलों और थर्मामीटर पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The bubbles are hydrogen gas. The thermometer rose, so heat was given out. A new substance, zinc chloride, is now dissolved in the liquid. Gas and a change in temperature are two signs of a chemical reaction.",
+      "hi": "बुलबुले हाइड्रोजन गैस के हैं। थर्मामीटर ऊपर चढ़ा, यानी ऊष्मा निकली। अब द्रव में एक नया पदार्थ, ज़िंक क्लोराइड, घुला है। गैस निकलना और तापमान बदलना रासायनिक अभिक्रिया के दो लक्षण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which two signs did you see?",
+        "hi": "तुमने कौन-से दो लक्षण देखे?"
+       },
+       "options": [
+        {
+         "en": "Gas and a change in temperature",
+         "hi": "गैस और तापमान में बदलाव"
+        },
+        {
+         "en": "Colour change and a precipitate",
+         "hi": "रंग में बदलाव और अवक्षेप"
+        },
+        {
+         "en": "Light and a new smell",
+         "hi": "प्रकाश और नई गंध"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bubbles were hydrogen gas, and the thermometer rose because heat was given out.",
+        "hi": "बुलबुले हाइड्रोजन गैस के थे, और ऊष्मा निकलने से थर्मामीटर चढ़ा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The liquid stayed colourless and no solid formed.",
+         "hi": "द्रव रंगहीन ही रहा और कोई ठोस नहीं बना।"
+        },
+        {
+         "en": "There was no flame and no new smell.",
+         "hi": "न कोई लौ थी, न कोई नई गंध।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the gas in the bubbles?",
+        "hi": "बुलबुलों में कौन-सी गैस है?"
+       },
+       "options": [
+        {
+         "en": "Oxygen",
+         "hi": "ऑक्सीजन"
+        },
+        {
+         "en": "Hydrogen",
+         "hi": "हाइड्रोजन"
+        },
+        {
+         "en": "Steam",
+         "hi": "भाप"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Zinc takes the place of hydrogen in the acid, so hydrogen gas is set free: Zn + 2HCl gives ZnCl2 + H2.",
+        "hi": "जस्ता अम्ल में हाइड्रोजन की जगह ले लेता है, इसलिए हाइड्रोजन गैस निकलती है।"
+       },
+       "wrong": [
+        {
+         "en": "There is no free oxygen to give off here; the gas comes from the acid, which contains hydrogen.",
+         "hi": "यहाँ ऑक्सीजन नहीं निकलती; गैस अम्ल से आती है, जिसमें हाइड्रोजन है।"
+        },
+        "",
+        {
+         "en": "The beaker only gets warm, not boiling, so the bubbles are not steam.",
+         "hi": "बीकर केवल गर्म होता है, उबलता नहीं, इसलिए बुलबुले भाप के नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Clean the beaker, then mix lead nitrate with potassium iodide. Which sign do you see this time?",
+      "hi": "अब ख़ुद आज़माओ। बीकर साफ़ करो, फिर लेड नाइट्रेट में पोटैशियम आयोडाइड मिलाओ। इस बार कौन-सा लक्षण दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch01-displacement",
+   "topic": "1.2",
+   "template": "beaker",
+   "title": {
+    "en": "Iron and copper sulphate: displacement",
+    "hi": "लोहा और कॉपर सल्फेट: विस्थापन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "cuso4",
+     "nail",
+     "feso4",
+     "copperwire"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:cuso4",
+     "expect": "pick:cuso4",
+     "say": {
+      "en": "Pick up the blue copper sulphate solution.",
+      "hi": "नीला कॉपर सल्फेट विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:cuso4",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will drop an iron nail into it. What do you think will happen?",
+      "hi": "तुम इसमें लोहे की कील डालोगे। तुम्हें क्या लगता है, क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "coat",
+       "en": "The nail turns brown and the blue fades",
+       "hi": "कील भूरी होगी और नीला रंग फीका पड़ेगा"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      },
+      {
+       "id": "gas",
+       "en": "It fizzes",
+       "hi": "झाग बनेगा"
+      }
+     ],
+     "answer": "coat"
+    },
+    {
+     "kind": "do",
+     "target": "pick:nail",
+     "expect": "pick:nail",
+     "say": {
+      "en": "Pick up the iron nail.",
+      "hi": "लोहे की कील उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Drop it into the beaker. Watch the nail and the colour of the solution.",
+      "hi": "इसे बीकर में डालो। कील और विलयन के रंग पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Iron is more reactive than copper, so it pushes copper out of copper sulphate. The copper coats the nail, reddish-brown. The solution becomes pale green iron sulphate. This is a displacement reaction.",
+      "hi": "लोहा ताँबे से अधिक अभिक्रियाशील है, इसलिए वह कॉपर सल्फेट से ताँबे को हटा देता है। ताँबा कील पर लाल-भूरी परत बनकर चढ़ जाता है। विलयन हल्का हरा आयरन सल्फेट बन जाता है। यह विस्थापन अभिक्रिया है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A copper wire is put in iron sulphate solution. What happens?",
+        "hi": "आयरन सल्फेट विलयन में ताँबे का तार डाला जाता है। क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "Iron coats the wire",
+         "hi": "तार पर लोहा चढ़ जाएगा"
+        },
+        {
+         "en": "Nothing happens",
+         "hi": "कुछ नहीं होगा"
+        },
+        {
+         "en": "The solution turns blue at once",
+         "hi": "विलयन तुरंत नीला हो जाएगा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Copper is less reactive than iron, so it cannot push iron out. Try it in Explore.",
+        "hi": "ताँबा लोहे से कम अभिक्रियाशील है, इसलिए लोहे को नहीं हटा सकता। एक्सप्लोर में आज़माकर देखो।"
+       },
+       "wrong": [
+        {
+         "en": "That would need copper to be more reactive than iron; it is not.",
+         "hi": "इसके लिए ताँबे को लोहे से अधिक अभिक्रियाशील होना चाहिए; ऐसा नहीं है।"
+        },
+        "",
+        {
+         "en": "Blue copper sulphate forms only if copper reacts, and it does not.",
+         "hi": "नीला कॉपर सल्फेट तभी बनेगा जब ताँबा अभिक्रिया करे, और ऐसा नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, pour iron sulphate, and drop in the copper wire. Does anything happen?",
+      "hi": "आज़माओ: बीकर साफ़ करो, आयरन सल्फेट डालो और ताँबे का तार डालो। क्या कुछ होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch01-heat-decompose",
+   "topic": "1.2",
+   "template": "beaker",
+   "title": {
+    "en": "Breaking down by heat: ferrous sulphate",
+    "hi": "ऊष्मा से अपघटन: फ़ेरस सल्फ़ेट"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "feso4c",
+     "pbno3s",
+     "copperwire"
+    ],
+    "tools": [
+     "lamp"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:feso4c",
+     "expect": "pick:feso4c",
+     "say": {
+      "en": "Tap the green ferrous sulphate crystals to pick them up.",
+      "hi": "हरे फ़ेरस सल्फ़ेट के क्रिस्टलों पर टैप करके उन्हें उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:feso4c",
+     "say": {
+      "en": "Tap the beaker to put the crystals in.",
+      "hi": "क्रिस्टल डालने के लिए बीकर पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will heat the crystals with the spirit lamp. What do you think will happen?",
+      "hi": "तुम स्पिरिट लैंप से क्रिस्टलों को गर्म करोगे। तुम्हें क्या लगता है, क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "brown",
+       "en": "They turn reddish-brown and give a smell",
+       "hi": "वे लाल-भूरे हो जाएँगे और गंध आएगी"
+      },
+      {
+       "id": "melt",
+       "en": "They only melt into a green liquid",
+       "hi": "वे केवल पिघलकर हरा द्रव बनेंगे"
+      },
+      {
+       "id": "none",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "brown"
+    },
+    {
+     "kind": "do",
+     "target": "tool:lamp",
+     "expect": "reacted",
+     "say": {
+      "en": "Tap the spirit lamp to heat the beaker. Watch the colour.",
+      "hi": "बीकर गर्म करने के लिए स्पिरिट लैंप पर टैप करो। रंग पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "First a few drops of water appear: the crystals lose their water. Then the green solid turns reddish-brown and a smell of burning sulphur comes out. One substance broke into three: ferric oxide, sulphur dioxide and sulphur trioxide. Breaking down by heat is thermal decomposition.",
+      "hi": "पहले पानी की कुछ बूँदें दिखती हैं: क्रिस्टल अपना जल खो देते हैं। फिर हरा ठोस लाल-भूरा हो जाता है और जलती गंधक जैसी गंध आती है। एक पदार्थ टूटकर तीन बन गया: फ़ेरिक ऑक्साइड, सल्फ़र डाइऑक्साइड और सल्फ़र ट्राइऑक्साइड। ऊष्मा से टूटना ऊष्मीय अपघटन कहलाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What type of reaction is this?",
+        "hi": "यह किस प्रकार की अभिक्रिया है?"
+       },
+       "options": [
+        {
+         "en": "Decomposition",
+         "hi": "अपघटन"
+        },
+        {
+         "en": "Combination",
+         "hi": "संयोजन"
+        },
+        {
+         "en": "Displacement",
+         "hi": "विस्थापन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One reactant broke down into simpler products.",
+        "hi": "एक अभिकारक टूटकर सरल उत्पाद बना।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Combination joins two or more substances into one. Here one substance broke apart.",
+         "hi": "संयोजन में दो या अधिक पदार्थ जुड़कर एक बनते हैं। यहाँ एक पदार्थ टूटा।"
+        },
+        {
+         "en": "Displacement needs a more reactive element to push another out. Only one substance was heated here.",
+         "hi": "विस्थापन में एक अधिक अभिक्रियाशील तत्व दूसरे को हटाता है। यहाँ केवल एक पदार्थ गर्म किया गया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What gave the energy to break the ferrous sulphate?",
+        "hi": "फ़ेरस सल्फ़ेट को तोड़ने की ऊर्जा किससे मिली?"
+       },
+       "options": [
+        {
+         "en": "Heat",
+         "hi": "ऊष्मा"
+        },
+        {
+         "en": "Sunlight",
+         "hi": "सूर्य का प्रकाश"
+        },
+        {
+         "en": "Electricity",
+         "hi": "विद्युत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The spirit lamp gave heat, so this is thermal decomposition.",
+        "hi": "स्पिरिट लैंप ने ऊष्मा दी, इसलिए यह ऊष्मीय अपघटन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sunlight breaks silver chloride, but here a flame was used.",
+         "hi": "सूर्य का प्रकाश सिल्वर क्लोराइड को तोड़ता है, पर यहाँ लौ का उपयोग हुआ।"
+        },
+        {
+         "en": "No current was passed through the beaker.",
+         "hi": "बीकर में कोई विद्युत धारा नहीं भेजी गई।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker and heat lead nitrate powder. Brown fumes rise: another thermal decomposition. (It is poisonous, so only a teacher does it, in a fume cupboard.)",
+      "hi": "आज़माओ: बीकर साफ़ करो और लेड नाइट्रेट चूर्ण गर्म करो। भूरा धुआँ उठता है: यह भी ऊष्मीय अपघटन है। (यह विषैला है, इसलिए असल में केवल शिक्षक इसे धुआँ-कक्ष में करते हैं।)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch01-electrolysis",
+   "topic": "1.2",
+   "template": "beaker",
+   "title": {
+    "en": "Breaking water with electricity",
+    "hi": "विद्युत से जल का अपघटन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "water",
+     "h2so4"
+    ],
+    "tools": [
+     "electrolysis",
+     "splint"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:water",
+     "expect": "pick:water",
+     "say": {
+      "en": "Pick up the water.",
+      "hi": "पानी उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:water",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:h2so4",
+     "expect": "pick:h2so4",
+     "say": {
+      "en": "Pick up the dilute sulphuric acid. A few drops help water carry current.",
+      "hi": "तनु सल्फ़्यूरिक अम्ल उठाओ। इसकी कुछ बूँदें पानी में धारा बहने में मदद करती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:h2so4",
+     "say": {
+      "en": "Add it to the water.",
+      "hi": "इसे पानी में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Current will pass through the water and gas will collect over each electrode. How will the two amounts of gas compare?",
+      "hi": "पानी में धारा बहेगी और हर इलेक्ट्रोड के ऊपर गैस जमा होगी। दोनों गैसों की मात्रा में क्या अंतर होगा?"
+     },
+     "options": [
+      {
+       "id": "twice",
+       "en": "One tube gets twice as much gas",
+       "hi": "एक नली में दुगुनी गैस होगी"
+      },
+      {
+       "id": "equal",
+       "en": "Both tubes get the same",
+       "hi": "दोनों नलियों में बराबर गैस होगी"
+      },
+      {
+       "id": "none",
+       "en": "No gas forms",
+       "hi": "कोई गैस नहीं बनेगी"
+      }
+     ],
+     "answer": "twice"
+    },
+    {
+     "kind": "do",
+     "target": "tool:electrolysis",
+     "expect": "reacted",
+     "say": {
+      "en": "Tap the electrolysis cell to pass the current.",
+      "hi": "धारा बहाने के लिए विद्युत-अपघटन सेल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tool:splint",
+     "expect": "tested:splint",
+     "say": {
+      "en": "Now test both gases with the splint.",
+      "hi": "अब दोनों गैसों की जाँच तीली से करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Electricity broke water into hydrogen and oxygen. Hydrogen collects at the negative electrode and oxygen at the positive one, and there is twice as much hydrogen, because water is H2O. Hydrogen burns with a pop; oxygen relights a glowing splint. This is decomposition by electricity.",
+      "hi": "विद्युत ने पानी को हाइड्रोजन और ऑक्सीजन में तोड़ दिया। हाइड्रोजन ऋण इलेक्ट्रोड पर और ऑक्सीजन धन इलेक्ट्रोड पर जमा होती है, और हाइड्रोजन दुगुनी होती है, क्योंकि पानी H2O है। हाइड्रोजन पॉप की आवाज़ से जलती है; ऑक्सीजन सुलगती तीली को फिर जला देती है। यह विद्युत द्वारा अपघटन है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which gas filled the tube with more gas?",
+        "hi": "जिस नली में ज़्यादा गैस थी, उसमें कौन-सी गैस थी?"
+       },
+       "options": [
+        {
+         "en": "Hydrogen",
+         "hi": "हाइड्रोजन"
+        },
+        {
+         "en": "Oxygen",
+         "hi": "ऑक्सीजन"
+        },
+        {
+         "en": "Carbon dioxide",
+         "hi": "कार्बन डाइऑक्साइड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each water molecule has two hydrogen atoms for one oxygen atom, so hydrogen is double.",
+        "hi": "पानी के हर अणु में एक ऑक्सीजन परमाणु के साथ दो हाइड्रोजन परमाणु होते हैं, इसलिए हाइड्रोजन दुगुनी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Oxygen is in the smaller tube: water has only one oxygen atom for two hydrogen atoms.",
+         "hi": "ऑक्सीजन छोटी नली में है: पानी में दो हाइड्रोजन परमाणुओं के साथ केवल एक ऑक्सीजन परमाणु है।"
+        },
+        {
+         "en": "Water has no carbon, so it cannot give carbon dioxide.",
+         "hi": "पानी में कार्बन नहीं है, इसलिए उससे कार्बन डाइऑक्साइड नहीं बन सकती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did we add a little sulphuric acid?",
+        "hi": "हमने थोड़ा सल्फ़्यूरिक अम्ल क्यों डाला?"
+       },
+       "options": [
+        {
+         "en": "So the water conducts electricity",
+         "hi": "ताकि पानी में विद्युत बहे"
+        },
+        {
+         "en": "To make more oxygen",
+         "hi": "ज़्यादा ऑक्सीजन बनाने के लिए"
+        },
+        {
+         "en": "To colour the water",
+         "hi": "पानी को रंगने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pure water hardly conducts. The acid gives ions that carry the current.",
+        "hi": "शुद्ध पानी में विद्युत बहुत कम बहती है। अम्ल आयन देता है जो धारा ले जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The acid does not change the 2 : 1 ratio; both gases come from water.",
+         "hi": "अम्ल 2 : 1 का अनुपात नहीं बदलता; दोनों गैसें पानी से आती हैं।"
+        },
+        {
+         "en": "The liquid stayed colourless.",
+         "hi": "द्रव रंगहीन ही रहा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, pour only water and pass the current. Does the bulb glow this time?",
+      "hi": "आज़माओ: बीकर साफ़ करो, केवल पानी डालो और धारा बहाओ। क्या इस बार बल्ब जलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch01-combination",
+   "topic": "1.2",
+   "template": "beaker",
+   "title": {
+    "en": "Quicklime and water: combination",
+    "hi": "बिना बुझा चूना और पानी: संयोजन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "cao",
+     "water",
+     "mg"
+    ],
+    "tools": [
+     "lamp"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:cao",
+     "expect": "pick:cao",
+     "say": {
+      "en": "Pick up the quicklime (calcium oxide).",
+      "hi": "बिना बुझा चूना (कैल्शियम ऑक्साइड) उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:cao",
+     "say": {
+      "en": "Put it in the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will add water to the quicklime. What will happen?",
+      "hi": "तुम बिना बुझे चूने में पानी डालोगे। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "hot",
+       "en": "It hisses and gets very hot",
+       "hi": "सनसनाहट होगी और यह बहुत गर्म होगा"
+      },
+      {
+       "id": "cold",
+       "en": "It gets cold",
+       "hi": "यह ठंडा हो जाएगा"
+      },
+      {
+       "id": "wet",
+       "en": "Nothing; it just gets wet",
+       "hi": "कुछ नहीं; बस गीला होगा"
+      }
+     ],
+     "answer": "hot"
+    },
+    {
+     "kind": "do",
+     "target": "pick:water",
+     "expect": "pick:water",
+     "say": {
+      "en": "Pick up the water.",
+      "hi": "पानी उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour the water in. Watch the thermometer.",
+      "hi": "पानी डालो। थर्मामीटर पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Quicklime and water joined to make one new substance, slaked lime (calcium hydroxide). Two or more reactants making a single product is a combination reaction. A lot of heat came out, so it is also exothermic. Slaked lime is used to whitewash walls.",
+      "hi": "बिना बुझा चूना और पानी मिलकर एक नया पदार्थ, बुझा चूना (कैल्शियम हाइड्रॉक्साइड), बनाते हैं। जब दो या अधिक अभिकारक मिलकर एक ही उत्पाद बनाएँ, तो वह संयोजन अभिक्रिया है। बहुत ऊष्मा निकली, इसलिए यह ऊष्माक्षेपी भी है। बुझे चूने से दीवारों की पुताई होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is this a combination reaction?",
+        "hi": "यह संयोजन अभिक्रिया क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Two substances join to form one",
+         "hi": "दो पदार्थ जुड़कर एक बनाते हैं"
+        },
+        {
+         "en": "One substance breaks into two",
+         "hi": "एक पदार्थ टूटकर दो बनता है"
+        },
+        {
+         "en": "A metal pushes out another metal",
+         "hi": "एक धातु दूसरी धातु को हटाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "CaO + H2O gives only Ca(OH)2: many reactants, one product.",
+        "hi": "CaO + H2O से केवल Ca(OH)2 बनता है: कई अभिकारक, एक उत्पाद।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is decomposition, the opposite of what happened.",
+         "hi": "यह अपघटन है, जो हुआ उसका उलटा।"
+        },
+        {
+         "en": "No free metal was added; quicklime and water are compounds.",
+         "hi": "कोई मुक्त धातु नहीं डाली गई; चूना और पानी दोनों यौगिक हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The beaker got hot. A reaction that gives out heat is called…",
+        "hi": "बीकर गर्म हो गया। ऊष्मा देने वाली अभिक्रिया कहलाती है…"
+       },
+       "options": [
+        {
+         "en": "Exothermic",
+         "hi": "ऊष्माक्षेपी"
+        },
+        {
+         "en": "Endothermic",
+         "hi": "ऊष्माशोषी"
+        },
+        {
+         "en": "Precipitation",
+         "hi": "अवक्षेपण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Exo means out: heat goes out to the surroundings.",
+        "hi": "ऊष्माक्षेपी यानी ऊष्मा बाहर निकलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An endothermic reaction takes in heat, so the thermometer would fall.",
+         "hi": "ऊष्माशोषी अभिक्रिया ऊष्मा लेती है, तब थर्मामीटर नीचे जाता।"
+        },
+        {
+         "en": "Precipitation means an insoluble solid forms; that is not about heat.",
+         "hi": "अवक्षेपण में अघुलनशील ठोस बनता है; इसका ऊष्मा से संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, put in the magnesium ribbon and heat it. It burns with a dazzling flame into white magnesium oxide: another combination. (For real, only a teacher does this, with tongs.)",
+      "hi": "आज़माओ: बीकर साफ़ करो, मैग्नीशियम रिबन डालो और गर्म करो। यह चमकीली लौ के साथ जलकर सफ़ेद मैग्नीशियम ऑक्साइड बनता है: यह भी संयोजन है। (असल में केवल शिक्षक चिमटे से ऐसा करते हैं।)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch01-double-displacement",
+   "topic": "1.2",
+   "template": "beaker",
+   "title": {
+    "en": "Swapping partners: a white precipitate",
+    "hi": "साथी बदलना: सफ़ेद अवक्षेप"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "na2so4",
+     "bacl2",
+     "pbno3",
+     "ki"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:na2so4",
+     "expect": "pick:na2so4",
+     "say": {
+      "en": "Pick up the sodium sulphate solution.",
+      "hi": "सोडियम सल्फ़ेट विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:na2so4",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next you will add barium chloride solution. Both liquids are clear. What will you see?",
+      "hi": "अब तुम बेरियम क्लोराइड विलयन डालोगे। दोनों द्रव साफ़ हैं। क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "ppt",
+       "en": "A white solid forms",
+       "hi": "एक सफ़ेद ठोस बनेगा"
+      },
+      {
+       "id": "gas",
+       "en": "It fizzes",
+       "hi": "बुलबुले उठेंगे"
+      },
+      {
+       "id": "clear",
+       "en": "It stays clear",
+       "hi": "यह साफ़ ही रहेगा"
+      }
+     ],
+     "answer": "ppt"
+    },
+    {
+     "kind": "do",
+     "target": "pick:bacl2",
+     "expect": "pick:bacl2",
+     "say": {
+      "en": "Pick up the barium chloride solution.",
+      "hi": "बेरियम क्लोराइड विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour it in and watch.",
+      "hi": "इसे डालो और देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A white solid, barium sulphate, formed and settled. The two compounds swapped partners: barium joined sulphate, and sodium joined chloride. A reaction where partners swap is a double displacement reaction. An insoluble solid that forms is a precipitate.",
+      "hi": "एक सफ़ेद ठोस, बेरियम सल्फ़ेट, बना और नीचे बैठ गया। दोनों यौगिकों ने साथी बदले: बेरियम सल्फ़ेट से और सोडियम क्लोराइड से जुड़ गया। जिस अभिक्रिया में साथी बदलते हैं, वह द्वि-विस्थापन अभिक्रिया है। बनने वाला अघुलनशील ठोस अवक्षेप कहलाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In BaCl2 + Na2SO4 → BaSO4 + 2NaCl, what happened?",
+        "hi": "BaCl2 + Na2SO4 → BaSO4 + 2NaCl में क्या हुआ?"
+       },
+       "options": [
+        {
+         "en": "The ions swapped partners",
+         "hi": "आयनों ने साथी बदले"
+        },
+        {
+         "en": "A free metal pushed out another metal",
+         "hi": "एक मुक्त धातु ने दूसरी धातु को हटाया"
+        },
+        {
+         "en": "A compound broke into elements",
+         "hi": "एक यौगिक टूटकर तत्व बना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both reactants are compounds and they exchange parts: double displacement.",
+        "hi": "दोनों अभिकारक यौगिक हैं और भाग बदलते हैं: द्वि-विस्थापन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In single displacement a free metal is added. Here no free metal was used.",
+         "hi": "एकल विस्थापन में मुक्त धातु डाली जाती है। यहाँ कोई मुक्त धातु नहीं थी।"
+        },
+        {
+         "en": "No element was set free; both products are compounds.",
+         "hi": "कोई तत्व मुक्त नहीं हुआ; दोनों उत्पाद यौगिक हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the white solid called?",
+        "hi": "सफ़ेद ठोस को क्या कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "A precipitate",
+         "hi": "अवक्षेप"
+        },
+        {
+         "en": "A solution",
+         "hi": "विलयन"
+        },
+        {
+         "en": "An indicator",
+         "hi": "सूचक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A solid that forms in a liquid and does not dissolve is a precipitate.",
+        "hi": "जो ठोस द्रव में बने और न घुले, वह अवक्षेप है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A solution is clear; the solid did not dissolve.",
+         "hi": "विलयन साफ़ होता है; यह ठोस घुला नहीं।"
+        },
+        {
+         "en": "An indicator only changes colour to show acid or base.",
+         "hi": "सूचक केवल रंग बदलकर अम्ल या क्षारक बताता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker and mix lead nitrate with potassium iodide. What colour is this precipitate? (Lead is poisonous; for real only a teacher does this.)",
+      "hi": "आज़माओ: बीकर साफ़ करो और लेड नाइट्रेट में पोटैशियम आयोडाइड मिलाओ। इस अवक्षेप का रंग क्या है? (लेड विषैला है; असल में केवल शिक्षक ऐसा करते हैं।)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch01-oxidation",
+   "topic": "1.2",
+   "template": "beaker",
+   "title": {
+    "en": "Copper in a flame: oxidation and reduction",
+    "hi": "लौ में ताँबा: ऑक्सीकरण और अपचयन"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "items": [
+     "copperwire",
+     "cuo",
+     "hcl"
+    ],
+    "tools": [
+     "lamp"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:copperwire",
+     "expect": "pick:copperwire",
+     "say": {
+      "en": "Pick up the shiny brown copper wire.",
+      "hi": "चमकीला भूरा ताँबे का तार उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:copperwire",
+     "say": {
+      "en": "Put it in the beaker.",
+      "hi": "इसे बीकर में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will heat the copper in air. What will you see?",
+      "hi": "तुम ताँबे को हवा में गर्म करोगे। क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "black",
+       "en": "A black coat forms on it",
+       "hi": "उस पर काली परत बनेगी"
+      },
+      {
+       "id": "melt",
+       "en": "The wire melts",
+       "hi": "तार पिघल जाएगा"
+      },
+      {
+       "id": "none",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "black"
+    },
+    {
+     "kind": "do",
+     "target": "tool:lamp",
+     "expect": "reacted",
+     "say": {
+      "en": "Tap the spirit lamp to heat the wire.",
+      "hi": "तार गर्म करने के लिए स्पिरिट लैंप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Copper joined with oxygen from the air and made black copper oxide. Gaining oxygen is oxidation. If hot hydrogen is passed over this black powder, it loses its oxygen and turns brown copper again: losing oxygen is reduction. When one substance is oxidised and another reduced together, it is a redox reaction.",
+      "hi": "ताँबे ने हवा की ऑक्सीजन से जुड़कर काला कॉपर ऑक्साइड बनाया। ऑक्सीजन का जुड़ना ऑक्सीकरण है। अगर इस काले चूर्ण पर गर्म हाइड्रोजन गुज़ारी जाए, तो यह ऑक्सीजन खोकर फिर भूरा ताँबा बन जाता है: ऑक्सीजन का हटना अपचयन है। जब एक पदार्थ का ऑक्सीकरण और दूसरे का अपचयन साथ हो, तो वह रेडॉक्स अभिक्रिया है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In 2Cu + O2 → 2CuO, what happens to copper?",
+        "hi": "2Cu + O2 → 2CuO में ताँबे का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It is oxidised",
+         "hi": "उसका ऑक्सीकरण होता है"
+        },
+        {
+         "en": "It is reduced",
+         "hi": "उसका अपचयन होता है"
+        },
+        {
+         "en": "Nothing; it only gets hot",
+         "hi": "कुछ नहीं; वह केवल गर्म होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Copper gains oxygen, so it is oxidised.",
+        "hi": "ताँबा ऑक्सीजन लेता है, इसलिए उसका ऑक्सीकरण होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Reduction is losing oxygen; copper gained it.",
+         "hi": "अपचयन में ऑक्सीजन हटती है; ताँबे ने ऑक्सीजन ली।"
+        },
+        {
+         "en": "A new black substance formed, so a reaction happened.",
+         "hi": "एक नया काला पदार्थ बना, यानी अभिक्रिया हुई।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In CuO + H2 → Cu + H2O, which substance is oxidised?",
+        "hi": "CuO + H2 → Cu + H2O में किसका ऑक्सीकरण होता है?"
+       },
+       "options": [
+        {
+         "en": "Hydrogen",
+         "hi": "हाइड्रोजन"
+        },
+        {
+         "en": "Copper oxide",
+         "hi": "कॉपर ऑक्साइड"
+        },
+        {
+         "en": "Copper",
+         "hi": "ताँबा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Hydrogen gains oxygen and becomes water.",
+        "hi": "हाइड्रोजन ऑक्सीजन लेकर पानी बनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Copper oxide loses its oxygen, so it is reduced.",
+         "hi": "कॉपर ऑक्साइड ऑक्सीजन खोता है, इसलिए उसका अपचयन होता है।"
+        },
+        {
+         "en": "Copper is the product left after reduction; it gains no oxygen.",
+         "hi": "ताँबा अपचयन के बाद बचा उत्पाद है; वह ऑक्सीजन नहीं लेता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, put in copper oxide powder and pour dilute hydrochloric acid. The black powder dissolves into a blue-green liquid. You will meet this in the next chapter.",
+      "hi": "आज़माओ: बीकर साफ़ करो, कॉपर ऑक्साइड चूर्ण डालो और तनु हाइड्रोक्लोरिक अम्ल डालो। काला चूर्ण घुलकर नीला-हरा द्रव बनता है। यह तुम अगले अध्याय में पढ़ोगे।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Hook of the chapter",
+   "shows": "An old iron gate of an Indian house after the monsoon, its paint peeling and the iron rusted reddish-brown",
+   "view": "Eye level, gate fills the frame, wet ground, soft overcast light",
+   "right": "Rust reddish-brown and flaky, not black; painted parts unrusted",
+   "avoid": "People, house numbers, signs"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "1.3.1",
+   "use": "Corrosion step and the 7-day review",
+   "shows": "The same iron nail on a damp cloth on day 1, day 3, day 7 and day 14, rust spreading",
+   "view": "Identical framing and light in all four, nail on a white cloth, from above",
+   "right": "Rust starts as orange-brown spots and spreads; never black",
+   "avoid": "Changing the nail or the angle between frames"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "1.1",
+   "use": "Recognising a reaction: magnesium burning",
+   "shows": "Magnesium ribbon held in tongs: before, burning with a dazzling white flame over a watch glass, and the white powder left",
+   "view": "Side view, dark plain background, an adult's gloved hand with tongs",
+   "right": "Flame brilliant white; ash white powder; tongs, not fingers",
+   "avoid": "A child holding it; looking straight at the flame"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.2.1",
+   "use": "Combination reaction: whitewash",
+   "shows": "A painter whitewashing a wall of an Indian house before Diwali, a bucket of slaked lime beside him",
+   "view": "Wide view, the bucket and the fresh white wall both visible",
+   "right": "Bucket of milky white lime; adult painter",
+   "avoid": "Brand names on buckets"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "1.2.2",
+   "use": "Thermal decomposition: ferrous sulphate",
+   "shows": "A boiling tube held in a holder over a spirit lamp: pale green crystals, then whitish, then a reddish-brown solid",
+   "view": "Side view, same framing in three frames",
+   "right": "Crystals pale green; residue reddish-brown (ferric oxide)",
+   "avoid": "Open flame near a face"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "1.2.2",
+   "use": "Photolytic decomposition: silver chloride",
+   "shows": "White silver chloride on a watch glass in sunlight, turning grey over time",
+   "view": "From above, sunlight on the glass, three frames",
+   "right": "White to grey (not black, not brown)",
+   "avoid": "Coloured backgrounds that change the grey"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "1.2.3",
+   "use": "Displacement: iron nail in copper sulphate",
+   "shows": "A test tube of blue copper sulphate with a clean grey iron nail; after 20 minutes the nail is coated reddish-brown and the blue has faded towards pale green",
+   "view": "Front view, test tube in a stand, white background, two frames",
+   "right": "Coating reddish-brown copper; solution paler and greenish, not dark",
+   "avoid": "Rust colours on the nail"
+  },
+  {
+   "n": 8,
+   "kind": "MAC",
+   "topic": "1.2.4",
+   "use": "Precipitation: lead iodide",
+   "shows": "A test tube in which a bright yellow precipitate of lead iodide is forming and settling in a clear liquid",
+   "view": "Close-up, front view, white background",
+   "right": "Bright yellow solid, clear liquid above as it settles",
+   "avoid": "Hands without gloves (lead is poisonous)"
+  },
+  {
+   "n": 9,
+   "kind": "SCN",
+   "topic": "1.3.2",
+   "use": "Rancidity",
+   "shows": "A sealed puffed-up chips packet next to an open plate of stale, darkened oily namkeen",
+   "view": "Table top, from slightly above, kitchen setting",
+   "right": "Packet visibly puffed with gas; no brand",
+   "avoid": "Logos, printed text"
+  },
+  {
+   "n": 10,
+   "kind": "DIA",
+   "topic": "1.2.2",
+   "use": "Electrolysis of water (base for the lab)",
+   "shows": "A plastic mug of water with two carbon electrodes through the bottom, two inverted test tubes over them and wires to a battery",
+   "view": "Front view, clean white background, realistic render",
+   "right": "Two separate tubes, one over each electrode; no gas drawn (the app animates it)",
+   "avoid": "Labels, plus and minus signs"
+  }
+ ]
+}

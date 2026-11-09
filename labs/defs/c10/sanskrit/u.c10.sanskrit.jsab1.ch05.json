@@ -1,0 +1,865 @@
+{
+ "chapter_key": "u.c10.sanskrit.jsab1.ch05",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "रचनानुवाद: (वाक्यरचनाकौशलम्)",
+ "source": "https://ncert.nic.in/textbook/pdf/jsab1ps.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Questions and answers on a short story",
+   "labs": [
+    "c10-sanskrit-jsab1-ch05-qa"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Verb endings for person and number",
+   "labs": [
+    "c10-sanskrit-jsab1-ch05-persons"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Translating simple sentences into Sanskrit",
+   "labs": [
+    "c10-sanskrit-jsab1-ch05-translate"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jsab1-ch05-qa",
+   "topic": "5.1",
+   "template": "match",
+   "title": {
+    "en": "Questions and their answers",
+    "hi": "प्रश्न और उनके उत्तर"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "q1",
+      "left": {
+       "en": "कः विद्यालयं गच्छति?",
+       "hi": "कः विद्यालयं गच्छति?"
+      },
+      "right": {
+       "en": "रमा",
+       "hi": "रमा"
+      },
+      "why": {
+       "en": "कः asks 'who'; the story says Rama goes.",
+       "hi": "कः 'कौन' पूछता है; कथा में रमा जाती है।"
+      }
+     },
+     {
+      "id": "q2",
+      "left": {
+       "en": "रमा किं पठति?",
+       "hi": "रमा किं पठति?"
+      },
+      "right": {
+       "en": "पुस्तकम्",
+       "hi": "पुस्तकम्"
+      },
+      "why": {
+       "en": "किम् asks 'what'; she reads a book.",
+       "hi": "किम् 'क्या' पूछता है; वह पुस्तक पढ़ती है।"
+      }
+     },
+     {
+      "id": "q3",
+      "left": {
+       "en": "रमा कुत्र गच्छति?",
+       "hi": "रमा कुत्र गच्छति?"
+      },
+      "right": {
+       "en": "विद्यालयम्",
+       "hi": "विद्यालयम्"
+      },
+      "why": {
+       "en": "कुत्र asks 'where'; she goes to school.",
+       "hi": "कुत्र 'कहाँ' पूछता है; वह विद्यालय जाती है।"
+      }
+     },
+     {
+      "id": "q4",
+      "left": {
+       "en": "रमा कदा गृहं गच्छति?",
+       "hi": "रमा कदा गृहं गच्छति?"
+      },
+      "right": {
+       "en": "सायम्",
+       "hi": "सायम्"
+      },
+      "why": {
+       "en": "कदा asks 'when'; she goes home in the evening.",
+       "hi": "कदा 'कब' पूछता है; वह शाम को घर जाती है।"
+      }
+     },
+     {
+      "id": "q5",
+      "left": {
+       "en": "रमा केन विद्यालयं गच्छति?",
+       "hi": "रमा केन विद्यालयं गच्छति?"
+      },
+      "right": {
+       "en": "बसयानेन",
+       "hi": "बसयानेन"
+      },
+      "why": {
+       "en": "केन asks 'by what'; she goes by bus.",
+       "hi": "केन 'किससे' पूछता है; वह बस से जाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:q1",
+     "expect": "matched:q1",
+     "say": {
+      "en": "Match the first question with its answer.",
+      "hi": "पहले प्रश्न को उसके उत्तर से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The answer is 'सायम्' (in the evening). Which question word asked for it?",
+      "hi": "उत्तर 'सायम्' (शाम को) है। यह किस प्रश्नवाचक शब्द से पूछा गया?"
+     },
+     "options": [
+      {
+       "id": "kada",
+       "en": "कदा (when)",
+       "hi": "कदा (कब)"
+      },
+      {
+       "id": "kutra",
+       "en": "कुत्र (where)",
+       "hi": "कुत्र (कहाँ)"
+      },
+      {
+       "id": "ka",
+       "en": "कः (who)",
+       "hi": "कः (कौन)"
+      }
+     ],
+     "answer": "kada"
+    },
+    {
+     "kind": "do",
+     "target": "left:q5",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the questions.",
+      "hi": "सब प्रश्न मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A story is a mine of sentences. After reading it, ask questions with कः, किम्, कुत्र, कदा and केन and answer in a single word or a full sentence. The question word tells you what to look for. A full-sentence answer repeats the question's words: रमा विद्यालयं गच्छति. Note that the answer word takes the case the question needs: विद्यालयम् for कुत्र (going to), बसयानेन for केन.",
+      "hi": "कथा वाक्यों की खान है। उसे पढ़कर कः, किम्, कुत्र, कदा और केन से प्रश्न बनाओ और एक शब्द या पूरे वाक्य में उत्तर दो। प्रश्नवाचक शब्द बताता है कि क्या ढूँढना है। पूर्ण वाक्य का उत्तर प्रश्न के शब्द दोहराता है: रमा विद्यालयं गच्छति। उत्तर का शब्द वह विभक्ति लेता है जो प्रश्न माँगता है: कुत्र (जाना) के लिए विद्यालयम्, केन के लिए बसयानेन।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "'रमा किं पठति?' is answered by:",
+        "hi": "'रमा किं पठति?' का उत्तर है:"
+       },
+       "options": [
+        {
+         "en": "पुस्तकम्",
+         "hi": "पुस्तकम्"
+        },
+        {
+         "en": "रमा",
+         "hi": "रमा"
+        },
+        {
+         "en": "सायम्",
+         "hi": "सायम्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "किम् asks for the thing read.",
+        "hi": "किम् पढ़ी जाने वाली वस्तु पूछता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "रमा is the answer to 'who'.",
+         "hi": "रमा 'कौन' का उत्तर है।"
+        },
+        {
+         "en": "सायम् is the answer to 'when'.",
+         "hi": "सायम् 'कब' का उत्तर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which question word asks about the means of going?",
+        "hi": "जाने का साधन किस प्रश्नवाचक शब्द से पूछते हैं?"
+       },
+       "options": [
+        {
+         "en": "केन",
+         "hi": "केन"
+        },
+        {
+         "en": "कति",
+         "hi": "कति"
+        },
+        {
+         "en": "कः",
+         "hi": "कः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "केन asks 'by what', and the answer takes the third case.",
+        "hi": "केन 'किससे' पूछता है और उत्तर तृतीया में आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "कति asks 'how many'.",
+         "hi": "कति 'कितने' पूछता है।"
+        },
+        {
+         "en": "कः asks 'who'.",
+         "hi": "कः 'कौन' पूछता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Read any short story and write three questions with different question words.",
+      "hi": "कोई छोटी कथा पढ़ो और अलग-अलग प्रश्नवाचक शब्दों से तीन प्रश्न बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch05-persons",
+   "topic": "5.2",
+   "template": "sort",
+   "title": {
+    "en": "Who is doing it? The nine verb forms",
+    "hi": "कौन कर रहा है? क्रिया के नौ रूप"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "p1",
+      "label": {
+       "en": "Third person (he, they)",
+       "hi": "प्रथम पुरुष (वह, वे)"
+      }
+     },
+     {
+      "id": "p2",
+      "label": {
+       "en": "Second person (you)",
+       "hi": "मध्यम पुरुष (तुम)"
+      }
+     },
+     {
+      "id": "p3",
+      "label": {
+       "en": "First person (I, we)",
+       "hi": "उत्तम पुरुष (मैं, हम)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "g1",
+      "text": {
+       "en": "गच्छति",
+       "hi": "गच्छति"
+      },
+      "bin": "p1",
+      "why": {
+       "en": "One doer, he or she goes: सः गच्छति.",
+       "hi": "एक कर्ता, वह जाता है: सः गच्छति।"
+      }
+     },
+     {
+      "id": "g2",
+      "text": {
+       "en": "गच्छतः",
+       "hi": "गच्छतः"
+      },
+      "bin": "p1",
+      "why": {
+       "en": "Two doers: तौ गच्छतः.",
+       "hi": "दो कर्ता: तौ गच्छतः।"
+      }
+     },
+     {
+      "id": "g3",
+      "text": {
+       "en": "गच्छन्ति",
+       "hi": "गच्छन्ति"
+      },
+      "bin": "p1",
+      "why": {
+       "en": "Many doers: ते गच्छन्ति.",
+       "hi": "बहुत कर्ता: ते गच्छन्ति।"
+      }
+     },
+     {
+      "id": "g4",
+      "text": {
+       "en": "गच्छसि",
+       "hi": "गच्छसि"
+      },
+      "bin": "p2",
+      "why": {
+       "en": "You (one) go: त्वं गच्छसि.",
+       "hi": "तुम (एक) जाते हो: त्वं गच्छसि।"
+      }
+     },
+     {
+      "id": "g5",
+      "text": {
+       "en": "गच्छथः",
+       "hi": "गच्छथः"
+      },
+      "bin": "p2",
+      "why": {
+       "en": "You (two) go: युवां गच्छथः.",
+       "hi": "तुम (दो) जाते हो: युवां गच्छथः।"
+      }
+     },
+     {
+      "id": "g6",
+      "text": {
+       "en": "गच्छथ",
+       "hi": "गच्छथ"
+      },
+      "bin": "p2",
+      "why": {
+       "en": "You (many) go: यूयं गच्छथ.",
+       "hi": "तुम (बहुत) जाते हो: यूयं गच्छथ।"
+      }
+     },
+     {
+      "id": "g7",
+      "text": {
+       "en": "गच्छामि",
+       "hi": "गच्छामि"
+      },
+      "bin": "p3",
+      "why": {
+       "en": "I go: अहं गच्छामि.",
+       "hi": "मैं जाता हूँ: अहं गच्छामि।"
+      }
+     },
+     {
+      "id": "g8",
+      "text": {
+       "en": "गच्छावः",
+       "hi": "गच्छावः"
+      },
+      "bin": "p3",
+      "why": {
+       "en": "We two go: आवां गच्छावः.",
+       "hi": "हम दो जाते हैं: आवां गच्छावः।"
+      }
+     },
+     {
+      "id": "g9",
+      "text": {
+       "en": "गच्छामः",
+       "hi": "गच्छामः"
+      },
+      "bin": "p3",
+      "why": {
+       "en": "We (many) go: वयं गच्छामः.",
+       "hi": "हम (बहुत) जाते हैं: वयं गच्छामः।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:g1",
+     "expect": "placed:g1",
+     "say": {
+      "en": "Tap गच्छति and choose the person.",
+      "hi": "गच्छति छुओ और पुरुष चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which doer takes गच्छामि: अहम्, त्वम् or सः?",
+      "hi": "गच्छामि किस कर्ता के साथ आता है: अहम्, त्वम् या सः?"
+     },
+     "options": [
+      {
+       "id": "aham",
+       "en": "अहम् (I)",
+       "hi": "अहम् (मैं)"
+      },
+      {
+       "id": "tvam",
+       "en": "त्वम् (you)",
+       "hi": "त्वम् (तुम)"
+      },
+      {
+       "id": "sah",
+       "en": "सः (he)",
+       "hi": "सः (वह)"
+      }
+     ],
+     "answer": "aham"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all nine forms, then press Check.",
+      "hi": "सभी नौ रूप रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The present-tense verb has nine forms: three persons times three numbers. Third person (he, they): -ति, -तः, -न्ति. Second person (you): -सि, -थः, -थ. First person (I, we): -मि, -वः, -मः. If your sentence has a doer of one person and number, the verb must have the matching ending. This agreement is the first rule of translating into Sanskrit.",
+      "hi": "वर्तमान काल की क्रिया के नौ रूप होते हैं: तीन पुरुष और तीन वचन। प्रथम पुरुष (वह, वे): -ति, -तः, -न्ति। मध्यम पुरुष (तुम): -सि, -थः, -थ। उत्तम पुरुष (मैं, हम): -मि, -वः, -मः। जिस पुरुष और वचन का कर्ता हो, क्रिया में वही अंत लगना चाहिए। संस्कृत में अनुवाद का यह पहला नियम है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which verb goes with यूयम् (you, many)?",
+        "hi": "यूयम् (तुम सब) के साथ कौन-सी क्रिया आती है?"
+       },
+       "options": [
+        {
+         "en": "गच्छथ",
+         "hi": "गच्छथ"
+        },
+        {
+         "en": "गच्छसि",
+         "hi": "गच्छसि"
+        },
+        {
+         "en": "गच्छामः",
+         "hi": "गच्छामः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-थ is the ending for 'you' in the plural.",
+        "hi": "-थ बहुवचन 'तुम' का अंत है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "गच्छसि is for one 'you', त्वम्.",
+         "hi": "गच्छसि एक 'तुम' त्वम् के लिए है।"
+        },
+        {
+         "en": "गच्छामः is for 'we', वयम्.",
+         "hi": "गच्छामः 'हम' वयम् के लिए है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which ending shows 'we two'?",
+        "hi": "'हम दोनों' का अंत कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "-वः",
+         "hi": "-वः"
+        },
+        {
+         "en": "-मः",
+         "hi": "-मः"
+        },
+        {
+         "en": "-तः",
+         "hi": "-तः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "आवां गच्छावः: the dual of first person ends in -वः.",
+        "hi": "आवां गच्छावः: उत्तम पुरुष द्विवचन -वः पर समाप्त होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-मः is 'we' (many).",
+         "hi": "-मः 'हम' (बहुत) है।"
+        },
+        {
+         "en": "-तः is 'they two'.",
+         "hi": "-तः 'वे दो' है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Do the same with पठति, the forms of 'to read'. Say all nine aloud.",
+      "hi": "पठति के साथ भी यही करो: 'पढ़ना' के नौ रूप बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch05-translate",
+   "topic": "5.3",
+   "template": "grammar",
+   "title": {
+    "en": "Say it in Sanskrit",
+    "hi": "संस्कृत में कहो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "r1",
+      "words": [
+       "अहं",
+       "विद्यालयं",
+       "गच्छामि",
+       "गच्छति",
+       "सः"
+      ],
+      "answer": [
+       "अहं विद्यालयं गच्छामि",
+       "विद्यालयं गच्छामि"
+      ],
+      "task": {
+       "en": "Say in Sanskrit: I go to school.",
+       "hi": "संस्कृत में कहो: मैं विद्यालय जाता हूँ।"
+      },
+      "rule": {
+       "en": "अहम् takes गच्छामि. The pronoun may be left out because -मि already means 'I'.",
+       "hi": "अहम् के साथ गच्छामि आता है। सर्वनाम छोड़ा जा सकता है क्योंकि -मि का अर्थ ही 'मैं' है।"
+      }
+     },
+     {
+      "id": "r2",
+      "words": [
+       "वयं",
+       "पुस्तकं",
+       "पठामः",
+       "पठन्ति",
+       "अहम्"
+      ],
+      "answer": "वयं पुस्तकं पठामः",
+      "task": {
+       "en": "Say in Sanskrit: We read a book.",
+       "hi": "संस्कृत में कहो: हम पुस्तक पढ़ते हैं।"
+      },
+      "rule": {
+       "en": "वयम् (we, many) takes -मः: पठामः.",
+       "hi": "वयम् (हम, बहुत) के साथ -मः आता है: पठामः।"
+      }
+     },
+     {
+      "id": "r3",
+      "words": [
+       "त्वं",
+       "पत्रं",
+       "लिखसि",
+       "लिखति",
+       "यूयम्"
+      ],
+      "answer": "त्वं पत्रं लिखसि",
+      "task": {
+       "en": "Say in Sanskrit: You write a letter.",
+       "hi": "संस्कृत में कहो: तुम पत्र लिखते हो।"
+      },
+      "rule": {
+       "en": "त्वम् (you, one) takes -सि: लिखसि.",
+       "hi": "त्वम् (तुम, एक) के साथ -सि आता है: लिखसि।"
+      }
+     },
+     {
+      "id": "r4",
+      "words": [
+       "ते",
+       "फलानि",
+       "खादन्ति",
+       "खादति",
+       "सः"
+      ],
+      "answer": "ते फलानि खादन्ति",
+      "task": {
+       "en": "Say in Sanskrit: They eat fruits.",
+       "hi": "संस्कृत में कहो: वे फल खाते हैं।"
+      },
+      "rule": {
+       "en": "ते (they, many) takes -न्ति: खादन्ति.",
+       "hi": "ते (वे, बहुत) के साथ -न्ति आता है: खादन्ति।"
+      }
+     },
+     {
+      "id": "r5",
+      "words": [
+       "बालकौ",
+       "क्रीडतः",
+       "क्रीडन्ति",
+       "बालकः"
+      ],
+      "answer": "बालकौ क्रीडतः",
+      "task": {
+       "en": "Say in Sanskrit: Two boys play.",
+       "hi": "संस्कृत में कहो: दो लड़के खेलते हैं।"
+      },
+      "rule": {
+       "en": "बालकौ is dual (two boys), so the verb is क्रीडतः.",
+       "hi": "बालकौ द्विवचन (दो लड़के) है, इसलिए क्रिया क्रीडतः।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:r1",
+     "say": {
+      "en": "Build the first sentence from the tiles.",
+      "hi": "टाइलों से पहला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To say 'Two boys play', which verb ending do you need: -ति, -तः or -न्ति?",
+      "hi": "'दो लड़के खेलते हैं' के लिए कौन-सा अंत चाहिए: -ति, -तः या -न्ति?"
+     },
+     "options": [
+      {
+       "id": "tah",
+       "en": "-तः (two)",
+       "hi": "-तः (दो)"
+      },
+      {
+       "id": "ti",
+       "en": "-ति (one)",
+       "hi": "-ति (एक)"
+      },
+      {
+       "id": "nti",
+       "en": "-न्ति (many)",
+       "hi": "-न्ति (बहुत)"
+      }
+     ],
+     "answer": "tah"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:r5",
+     "say": {
+      "en": "Build the sentence about two boys.",
+      "hi": "दो लड़कों वाला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Finish all the sentences.",
+      "hi": "सारे वाक्य पूरे करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To translate into Sanskrit, find the doer and its person and number, find the object, then choose the verb form with the matching ending. A common order is doer, object, verb. You need not write the pronoun when the verb ending already shows it, but keeping it is never wrong.",
+      "hi": "संस्कृत में अनुवाद करने के लिए कर्ता और उसका पुरुष-वचन ढूँढो, फिर कर्म, फिर वैसे अंत वाली क्रिया चुनो। सामान्य क्रम है: कर्ता, कर्म, क्रिया। जब क्रिया का अंत ही सर्वनाम बता दे तो उसे लिखना ज़रूरी नहीं, पर लिखना गलत भी नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Translate: 'You write a letter.'",
+        "hi": "अनुवाद करो: 'तुम पत्र लिखते हो।'"
+       },
+       "options": [
+        {
+         "en": "त्वं पत्रं लिखसि",
+         "hi": "त्वं पत्रं लिखसि"
+        },
+        {
+         "en": "त्वं पत्रं लिखति",
+         "hi": "त्वं पत्रं लिखति"
+        },
+        {
+         "en": "अहं पत्रं लिखसि",
+         "hi": "अहं पत्रं लिखसि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "त्वम् matches -सि.",
+        "hi": "त्वम् के साथ -सि मेल खाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "लिखति is for 'he' or 'she', not for 'you'.",
+         "hi": "लिखति 'वह' के लिए है, 'तुम' के लिए नहीं।"
+        },
+        {
+         "en": "अहम् ('I') needs लिखामि, not लिखसि.",
+         "hi": "अहम् ('मैं') के साथ लिखामि आता है, लिखसि नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Translate: 'They eat fruits.'",
+        "hi": "अनुवाद करो: 'वे फल खाते हैं।'"
+       },
+       "options": [
+        {
+         "en": "ते फलानि खादन्ति",
+         "hi": "ते फलानि खादन्ति"
+        },
+        {
+         "en": "सः फलानि खादति",
+         "hi": "सः फलानि खादति"
+        },
+        {
+         "en": "ते फलानि खादामः",
+         "hi": "ते फलानि खादामः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ते and खादन्ति are both third person plural.",
+        "hi": "ते और खादन्ति दोनों प्रथम पुरुष बहुवचन हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "सः is one person, so the number is lost.",
+         "hi": "सः एक व्यक्ति है, इसलिए वचन बदल गया।"
+        },
+        {
+         "en": "खादामः is 'we eat'.",
+         "hi": "खादामः 'हम खाते हैं' है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Translate your own five sentences about your day and check each verb ending.",
+      "hi": "अपने दिन के बारे में पाँच वाक्यों का अनुवाद करो और हर क्रिया का अंत जाँचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "The story setting: a village school",
+   "shows": "A small village school building with a few children walking towards it, seen from far away",
+   "view": "Wide shot, soft morning light",
+   "right": "Simple building, children small in the frame",
+   "avoid": "Faces, school name, flags with writing"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Book and school bag",
+   "shows": "A school bag and an open book on a transparent background, as two separate files",
+   "view": "Three-quarter view, light from the top left",
+   "right": "Blank pages, plain cover",
+   "avoid": "Any writing or logos"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Going to school by bus",
+   "shows": "A yellow school bus at a stop with its door open, no people in front",
+   "view": "Eye level, daylight",
+   "right": "Bus clearly yellow, door open",
+   "avoid": "Writing on the bus, plates, faces"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "5.1",
+   "use": "Morning and evening",
+   "shows": "The same school gate at morning (low sun), noon, and evening (golden light)",
+   "view": "Same camera and framing in all three",
+   "right": "Only the light and shadow change",
+   "avoid": "People, signs"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "5.2",
+   "use": "Nine forms grid",
+   "shows": "An empty three by three grid, rows in three logo colours, columns marked by one, two and many dots",
+   "view": "Flat front view on white",
+   "right": "Rows and columns are clear, each column marked by dots (1, 2, 3 or more)",
+   "avoid": "Text, numbers"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "Two boys playing",
+   "shows": "Two boys playing with a ball on a ground, seen from behind",
+   "view": "Wide shot, daylight",
+   "right": "Exactly two boys",
+   "avoid": "Faces, brand logos on clothes"
+  }
+ ]
+}

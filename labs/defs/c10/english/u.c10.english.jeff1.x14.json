@@ -1,0 +1,272 @@
+{
+ "chapter_key": "u.c10.english.jeff1.x14",
+ "class": 10,
+ "subject_id": "english",
+ "title": "Fog",
+ "source": "https://ncert.nic.in/textbook/pdf/jeff106.pdf",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "The poem: fog as a cat, a metaphor",
+   "labs": [
+    "c10-english-jeff1-x14-cat"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.2",
+   "title": "Rhythm and imagery of the short poem",
+   "labs": [],
+   "why_no_lab": "A very short poem; the picture in the metaphor is the whole lesson."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-english-jeff1-x14-cat",
+   "topic": "14.1",
+   "template": "match",
+   "title": {
+    "en": "Fog is like a cat",
+    "hi": "कोहरा बिल्ली जैसा है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "paws",
+      "left": {
+       "en": "A cat's soft paws",
+       "hi": "बिल्ली के नरम पंजे"
+      },
+      "right": {
+       "en": "Fog arrives without a sound",
+       "hi": "कोहरा बिना आवाज़ आता है"
+      },
+      "why": {
+       "en": "A cat's step is silent, and so is fog.",
+       "hi": "बिल्ली की चाल चुपचाप होती है, कोहरे की भी।"
+      }
+     },
+     {
+      "id": "sit",
+      "left": {
+       "en": "A cat sitting on its haunches",
+       "hi": "बिल्ली का पिछले पैरों पर बैठना"
+      },
+      "right": {
+       "en": "Fog settles and rests over the place",
+       "hi": "कोहरा जगह पर ठहरकर छा जाता है"
+      },
+      "why": {
+       "en": "A cat that sits stays still, as fog does.",
+       "hi": "बैठी बिल्ली स्थिर रहती है, कोहरे जैसी।"
+      }
+     },
+     {
+      "id": "look",
+      "left": {
+       "en": "A cat looking over its surroundings",
+       "hi": "अपने आसपास को देखती बिल्ली"
+      },
+      "right": {
+       "en": "Fog hangs over the harbour and the city",
+       "hi": "कोहरा बंदरगाह और शहर पर छाया रहता है"
+      },
+      "why": {
+       "en": "The fog covers the whole view like a watchful cat.",
+       "hi": "कोहरा पूरे दृश्य पर चौकन्नी बिल्ली-सा छाया रहता है।"
+      }
+     },
+     {
+      "id": "move",
+      "left": {
+       "en": "The cat moves on",
+       "hi": "बिल्ली आगे चल देती है"
+      },
+      "right": {
+       "en": "Fog drifts away after a while",
+       "hi": "थोड़ी देर बाद कोहरा छँट जाता है"
+      },
+      "why": {
+       "en": "Both stay briefly and leave.",
+       "hi": "दोनों कुछ देर ठहरते और चले जाते हैं।"
+      }
+     },
+     {
+      "id": "metaphor",
+      "left": {
+       "en": "A metaphor",
+       "hi": "रूपक"
+      },
+      "right": {
+       "en": "Saying one thing is another, without 'like' or 'as'",
+       "hi": "एक वस्तु को दूसरी कह देना, 'जैसे' के बिना"
+      },
+      "why": {
+       "en": "The poem calls fog a cat directly.",
+       "hi": "कविता कोहरे को सीधे बिल्ली कह देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does the poet say 'fog is LIKE a cat' or 'fog IS a cat'?",
+      "hi": "कवि कहता है 'कोहरा बिल्ली जैसा है' या 'कोहरा बिल्ली है'?"
+     },
+     "options": [
+      {
+       "id": "is",
+       "en": "Fog IS a cat (a metaphor)",
+       "hi": "कोहरा बिल्ली है (रूपक)"
+      },
+      {
+       "id": "like",
+       "en": "Fog is LIKE a cat (a simile)",
+       "hi": "कोहरा बिल्ली जैसा है (उपमा)"
+      }
+     ],
+     "answer": "is"
+    },
+    {
+     "kind": "do",
+     "target": "left:paws",
+     "expect": "matched:paws",
+     "say": {
+      "en": "Tap 'a cat's soft paws', then tap what it means for fog.",
+      "hi": "'बिल्ली के नरम पंजे' पर टैप करो, फिर चुनो कि कोहरे के लिए इसका क्या मतलब है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:metaphor",
+     "expect": "matched:metaphor",
+     "say": {
+      "en": "Now match 'a metaphor' with its meaning.",
+      "hi": "अब 'रूपक' को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the pairs and press Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A metaphor says one thing is another. By calling fog a cat, the poet lets us see fog with a cat's softness, silence and stillness. A simile would say 'like a cat'. In a metaphor there is no 'like' or 'as', so the picture comes alive at once.",
+      "hi": "रूपक में एक चीज़ को दूसरी कह दिया जाता है। कोहरे को बिल्ली कहकर कवि हमें कोहरे में बिल्ली की नरमी, ख़ामोशी और ठहराव दिखा देता है। उपमा में 'जैसे' कहा जाता है। रूपक में 'जैसे' या 'की तरह' नहीं होता, इसलिए चित्र तुरंत जीवित हो उठता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a metaphor?",
+        "hi": "कौन-सा रूपक है?"
+       },
+       "options": [
+        {
+         "en": "The fog is a silent cat.",
+         "hi": "The fog is a silent cat. (कोहरा चुप बिल्ली है)"
+        },
+        {
+         "en": "The fog is like a silent cat.",
+         "hi": "The fog is like a silent cat. (कोहरा चुप बिल्ली जैसा है)"
+        },
+        {
+         "en": "The fog is thick.",
+         "hi": "The fog is thick. (कोहरा घना है)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It says one thing is another, with no 'like' or 'as'.",
+        "hi": "इसमें एक चीज़ को दूसरी कहा गया है, 'जैसे' या 'की तरह' के बिना।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This uses 'like', so it is a simile.",
+         "hi": "इसमें 'like' है, इसलिए यह उपमा है।"
+        },
+        {
+         "en": "This is a plain description, with no comparison.",
+         "hi": "यह सीधा वर्णन है, इसमें तुलना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write one metaphor of your own for the rain or the night.",
+      "hi": "बारिश या रात के लिए अपना एक रूपक लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Fog on the harbour",
+   "shows": "A harbour in thick morning fog with boats dimly visible",
+   "view": "Wide, soft light",
+   "right": "Boats and masts fading into the white",
+   "avoid": "People, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Fog on the city",
+   "shows": "A city skyline with low fog around the tall buildings",
+   "view": "Wide, dawn",
+   "right": "Tops of buildings above the fog",
+   "avoid": "Text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "14.1",
+   "use": "Cat",
+   "shows": "A grey cat sitting on its haunches, looking out",
+   "view": "Transparent, side",
+   "right": "Alert posture",
+   "avoid": "Text"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "14.1",
+   "use": "Fog moves on",
+   "shows": "Four frames: fog thick, fog thinning, fog drifting, clear view of the same place",
+   "view": "Same camera",
+   "right": "Each frame clearer",
+   "avoid": "Text"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "14.1",
+   "use": "Water drops",
+   "shows": "Fine droplets on a spider web",
+   "view": "Macro, square",
+   "right": "Round beads on thread",
+   "avoid": "Text"
+  }
+ ]
+}

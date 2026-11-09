@@ -1,0 +1,872 @@
+{
+ "chapter_key": "u.c03.mathematics.cemm1.ch01",
+ "class": 3,
+ "subject_id": "mathematics",
+ "title": "What’s in a Name?",
+ "source": "https://ncert.nic.in/textbook/pdf/cemm101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Keeping count with marks (one mark for each cow, bundles of 5)",
+   "labs": [
+    "c3-mathematics-cemm1-ch01-tally-cows"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Longest and shortest names: counting letters",
+   "labs": [
+    "c3-mathematics-cemm1-ch01-longest-name"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Number names and how many letters they have",
+   "labs": [
+    "c3-mathematics-cemm1-ch01-number-names"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Grouping things in different ways (eat food or not, need electricity or not)",
+   "labs": [],
+   "why_no_lab": "Best done with the book’s picture cards and real objects; the sort template cannot yet run a guided step (selecting a card emits no event), so a guided grouping lab waits for that fix."
+  },
+  {
+   "n": "1.5",
+   "title": "Collecting data: hair styles in our class",
+   "labs": [
+    "c3-mathematics-cemm1-ch01-hairstyles"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-mathematics-cemm1-ch01-tally-cows",
+   "topic": "1.1",
+   "template": "data",
+   "title": {
+    "en": "Keep count with tally marks",
+    "hi": "मिलान चिह्नों से गिनती रखो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "tally",
+    "title": {
+     "en": "Deba's animals going out to graze",
+     "hi": "चरने जाते देबा के जानवर"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Cows",
+       "hi": "गायें"
+      },
+      "value": 12
+     },
+     {
+      "label": {
+       "en": "Goats",
+       "hi": "बकरियाँ"
+      },
+      "value": 7
+     },
+     {
+      "label": {
+       "en": "Buffaloes",
+       "hi": "भैंसें"
+      },
+      "value": 5
+     }
+    ],
+    "ask": "max",
+    "show": 0
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row. Watch one mark appear for each cow.",
+      "hi": "पंक्ति जोड़ो पर टैप करो। देखो, हर गाय के लिए एक निशान बनता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row again for the goats.",
+      "hi": "बकरियों के लिए फिर से पंक्ति जोड़ो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "There are 5 buffaloes. Will their row of marks be longer or shorter than the goats’ row?",
+      "hi": "भैंसें 5 हैं। उनके निशानों की पंक्ति बकरियों की पंक्ति से लंबी होगी या छोटी?"
+     },
+     "options": [
+      {
+       "id": "short",
+       "en": "Shorter",
+       "hi": "छोटी"
+      },
+      {
+       "id": "long",
+       "en": "Longer",
+       "hi": "लंबी"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "बराबर"
+      }
+     ],
+     "answer": "short"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row for the buffaloes.",
+      "hi": "भैंसों के लिए पंक्ति जोड़ो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which animal has the most marks? Tap its name.",
+      "hi": "सवाल का जवाब दो: किस जानवर के सबसे ज़्यादा निशान हैं? उसके नाम पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One mark stands for one animal. Marks are tied in bundles of 5: four lines and one line across. 12 cows are two bundles and 2 more marks. You do not need to know big numbers to keep count this way.",
+      "hi": "एक निशान एक जानवर के लिए है। निशान 5-5 के गट्ठर में बँधे हैं: चार खड़ी रेखाएँ और एक आड़ी रेखा। 12 गायें यानी दो गट्ठर और 2 निशान और। इस तरह गिनती रखने के लिए बड़ी संख्याएँ जानना ज़रूरी नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many marks show 7 goats?",
+        "hi": "7 बकरियों के लिए कितने निशान होंगे?"
+       },
+       "options": [
+        {
+         "en": "7 marks: one bundle of 5 and 2 more",
+         "hi": "7 निशान: 5 का एक गट्ठर और 2 और"
+        },
+        {
+         "en": "5 marks",
+         "hi": "5 निशान"
+        },
+        {
+         "en": "2 marks",
+         "hi": "2 निशान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One mark for each goat, so 7 marks. Five of them make one bundle.",
+        "hi": "हर बकरी के लिए एक निशान, इसलिए 7 निशान। उनमें से पाँच मिलकर एक गट्ठर बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 is only the bundle. Two goats would have no mark.",
+         "hi": "5 तो सिर्फ़ गट्ठर है। दो बकरियों का कोई निशान नहीं होगा।"
+        },
+        {
+         "en": "2 is only the loose marks. The bundle of 5 is missing.",
+         "hi": "2 तो सिर्फ़ खुले निशान हैं। 5 का गट्ठर छूट गया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In the evening Deba strikes out one mark for each cow that comes home. Two marks are left. What does it tell him?",
+        "hi": "शाम को हर लौटी गाय के लिए देबा एक निशान काटता है। दो निशान बचे रह गए। इससे उसे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "Two cows have not come home",
+         "hi": "दो गायें घर नहीं लौटीं"
+        },
+        {
+         "en": "Two extra cows came home",
+         "hi": "दो गायें ज़्यादा लौट आईं"
+        },
+        {
+         "en": "All the cows are home",
+         "hi": "सारी गायें घर पर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every cow that came home took away one mark. A mark that is left belongs to a cow that is still outside.",
+        "hi": "हर लौटी गाय ने एक निशान कटवाया। जो निशान बचा, वह उस गाय का है जो अभी बाहर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An extra cow would need a mark that was never made. Marks are left over, not missing.",
+         "hi": "ज़्यादा गाय के लिए तो निशान बना ही नहीं था। यहाँ निशान बचे हैं, कम नहीं पड़े।"
+        },
+        {
+         "en": "If all the cows were home, every mark would be struck out.",
+         "hi": "अगर सारी गायें घर होतीं, तो हर निशान कट चुका होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the numbers with the sliders. Make the goats and the buffaloes equal. How do their rows of marks look now?",
+      "hi": "स्लाइडर से संख्याएँ बदलो। बकरियों और भैंसों को बराबर करो। अब उनके निशानों की पंक्तियाँ कैसी दिखती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch01-longest-name",
+   "topic": "1.2",
+   "template": "data",
+   "title": {
+    "en": "Who has the longest name?",
+    "hi": "किसका नाम सबसे लंबा है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "title": {
+     "en": "Letters in each English animal name",
+     "hi": "हर जानवर के अंग्रेज़ी नाम में अक्षर"
+    },
+    "ylabel": {
+     "en": "Number of letters",
+     "hi": "अक्षरों की संख्या"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "tiger",
+       "hi": "tiger (बाघ)"
+      },
+      "value": 5
+     },
+     {
+      "label": {
+       "en": "ox",
+       "hi": "ox (बैल)"
+      },
+      "value": 2
+     },
+     {
+      "label": {
+       "en": "deer",
+       "hi": "deer (हिरन)"
+      },
+      "value": 4
+     },
+     {
+      "label": {
+       "en": "monkey",
+       "hi": "monkey (बंदर)"
+      },
+      "value": 6
+     },
+     {
+      "label": {
+       "en": "elephant",
+       "hi": "elephant (हाथी)"
+      },
+      "value": 8
+     }
+    ],
+    "ask": "max",
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "The animals want a captain with the longest name. Tap Add row to bring in monkey.",
+      "hi": "जानवरों को सबसे लंबे नाम वाला कप्तान चाहिए। monkey (बंदर) को लाने के लिए पंक्ति जोड़ो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The next name is \"elephant\". Will its bar be taller than the bar for \"monkey\"?",
+      "hi": "अगला नाम \"elephant\" है। क्या उसका डंडा \"monkey\" के डंडे से ऊँचा होगा?"
+     },
+     "options": [
+      {
+       "id": "taller",
+       "en": "Taller",
+       "hi": "ऊँचा"
+      },
+      {
+       "id": "shorter",
+       "en": "Shorter",
+       "hi": "नीचा"
+      },
+      {
+       "id": "same",
+       "en": "The same height",
+       "hi": "बराबर ऊँचा"
+      }
+     ],
+     "answer": "taller"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to bring in elephant.",
+      "hi": "elephant (हाथी) को लाने के लिए पंक्ति जोड़ो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which animal has the most letters? Tap its name to make it captain.",
+      "hi": "किस जानवर के नाम में सबसे ज़्यादा अक्षर हैं? उसे कप्तान बनाने के लिए उसके नाम पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "e-l-e-p-h-a-n-t has 8 letters, more than any other name, so its bar is the tallest. A taller bar means more letters. A big animal does not always have a long name: \"ox\" is big but has only 2 letters.",
+      "hi": "e-l-e-p-h-a-n-t में 8 अक्षर हैं, किसी भी और नाम से ज़्यादा, इसलिए उसका डंडा सबसे ऊँचा है। ऊँचा डंडा यानी ज़्यादा अक्षर। बड़े जानवर का नाम हमेशा लंबा नहीं होता: \"ox\" (बैल) बड़ा है पर उसमें सिर्फ़ 2 अक्षर हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The second team’s captain has the shortest name. Who is it?",
+        "hi": "दूसरी टीम का कप्तान सबसे छोटे नाम वाला है। वह कौन है?"
+       },
+       "options": [
+        {
+         "en": "ox",
+         "hi": "ox (बैल)"
+        },
+        {
+         "en": "deer",
+         "hi": "deer (हिरन)"
+        },
+        {
+         "en": "tiger",
+         "hi": "tiger (बाघ)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "\"ox\" has only 2 letters, the shortest bar on the graph.",
+        "hi": "\"ox\" में सिर्फ़ 2 अक्षर हैं, ग्राफ़ पर सबसे छोटा डंडा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "\"deer\" has 4 letters, which is more than 2.",
+         "hi": "\"deer\" में 4 अक्षर हैं, जो 2 से ज़्यादा है।"
+        },
+        {
+         "en": "\"tiger\" has 5 letters. A strong animal can still have a short or long name.",
+         "hi": "\"tiger\" में 5 अक्षर हैं। ताक़तवर जानवर का नाम छोटा या लंबा, कुछ भी हो सकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Mahesh and Kartik compare names. Who has the longer name?",
+        "hi": "महेश (Mahesh) और कार्तिक (Kartik) अपने नाम मिलाते हैं। किसका नाम लंबा है?"
+       },
+       "options": [
+        {
+         "en": "Both are the same: 6 letters each",
+         "hi": "दोनों बराबर: हर एक में 6 अक्षर"
+        },
+        {
+         "en": "Mahesh",
+         "hi": "महेश"
+        },
+        {
+         "en": "Kartik",
+         "hi": "कार्तिक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "M-a-h-e-s-h has 6 letters and K-a-r-t-i-k has 6 letters. Count them one by one.",
+        "hi": "M-a-h-e-s-h में 6 और K-a-r-t-i-k में भी 6 अक्षर हैं। एक-एक करके गिनो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Count again: Mahesh has 6 letters, and so does Kartik.",
+         "hi": "फिर से गिनो: Mahesh में 6 अक्षर हैं, और Kartik में भी।"
+        },
+        {
+         "en": "Kartik may sound longer, but it also has 6 letters.",
+         "hi": "Kartik सुनने में लंबा लग सकता है, पर उसमें भी 6 ही अक्षर हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Sort to line up the names from shortest to longest. Then drag a bar to show your own name’s letters.",
+      "hi": "नामों को छोटे से लंबे क्रम में लगाने के लिए Sort दबाओ। फिर एक डंडा खींचकर अपने नाम के अक्षर दिखाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch01-number-names",
+   "topic": "1.3",
+   "template": "data",
+   "title": {
+    "en": "Letters in number names",
+    "hi": "संख्याओं के नामों में अक्षर"
+   },
+   "minutes": 4,
+   "level": "stretch",
+   "config": {
+    "chart": "bar",
+    "title": {
+     "en": "Letters in English number names",
+     "hi": "अंग्रेज़ी में संख्याओं के नामों के अक्षर"
+    },
+    "ylabel": {
+     "en": "Number of letters",
+     "hi": "अक्षरों की संख्या"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "ten (10)",
+       "hi": "ten (दस, 10)"
+      },
+      "value": 3
+     },
+     {
+      "label": {
+       "en": "seventeen (17)",
+       "hi": "seventeen (सत्रह, 17)"
+      },
+      "value": 9
+     },
+     {
+      "label": {
+       "en": "forty-three (43)",
+       "hi": "forty-three (तैंतालीस, 43)"
+      },
+      "value": 10
+     },
+     {
+      "label": {
+       "en": "fifty-six (56)",
+       "hi": "fifty-six (छप्पन, 56)"
+      },
+      "value": 8
+     },
+     {
+      "label": {
+       "en": "seventy-seven (77)",
+       "hi": "seventy-seven (सतहत्तर, 77)"
+      },
+      "value": 12
+     }
+    ],
+    "ask": "max"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:2",
+     "expect": "selected:2",
+     "say": {
+      "en": "Teji’s roll number is 43. Tap its bar to see how many letters \"forty-three\" has.",
+      "hi": "तेजी का रोल नंबर 43 है। उसके डंडे पर टैप करके देखो कि \"forty-three\" में कितने अक्षर हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which number name do you think has the most letters?",
+      "hi": "तुम्हें क्या लगता है, किस संख्या के नाम में सबसे ज़्यादा अक्षर हैं?"
+     },
+     "options": [
+      {
+       "id": "77",
+       "en": "seventy-seven (77)",
+       "hi": "seventy-seven (सतहत्तर, 77)"
+      },
+      {
+       "id": "43",
+       "en": "forty-three (43)",
+       "hi": "forty-three (तैंतालीस, 43)"
+      },
+      {
+       "id": "10",
+       "en": "ten (10)",
+       "hi": "ten (दस, 10)"
+      }
+     ],
+     "answer": "77"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap the number whose name has the most letters.",
+      "hi": "उस संख्या पर टैप करो जिसके नाम में सबसे ज़्यादा अक्षर हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We count only the letters, not the dash. \"seventy-seven\" has 7 + 5 = 12 letters. A bigger number does not always have a longer name: 17 has 9 letters but 56 has only 8.",
+      "hi": "हम सिर्फ़ अक्षर गिनते हैं, बीच की रेखा (-) नहीं। \"seventy-seven\" में 7 + 5 = 12 अक्षर हैं। बड़ी संख्या का नाम हमेशा लंबा नहीं होता: 17 में 9 अक्षर हैं पर 56 में सिर्फ़ 8।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "\"fifty-six\" has 8 letters. Which of these also has 8 letters?",
+        "hi": "\"fifty-six\" में 8 अक्षर हैं। इनमें से किसमें भी 8 अक्षर हैं?"
+       },
+       "options": [
+        {
+         "en": "forty-two",
+         "hi": "forty-two (बयालीस)"
+        },
+        {
+         "en": "ten",
+         "hi": "ten (दस)"
+        },
+        {
+         "en": "seventeen",
+         "hi": "seventeen (सत्रह)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "f-o-r-t-y has 5 letters and t-w-o has 3: 5 + 3 = 8.",
+        "hi": "f-o-r-t-y में 5 और t-w-o में 3 अक्षर: 5 + 3 = 8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "\"ten\" has only 3 letters.",
+         "hi": "\"ten\" में सिर्फ़ 3 अक्षर हैं।"
+        },
+        {
+         "en": "\"seventeen\" has 9 letters, one more than 8.",
+         "hi": "\"seventeen\" में 9 अक्षर हैं, 8 से एक ज़्यादा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the bars to try other numbers. Can you find a number name with only 3 letters other than \"ten\"?",
+      "hi": "डंडे खींचकर दूसरी संख्याएँ आज़माओ। क्या \"ten\" के अलावा कोई और 3 अक्षर वाला संख्या-नाम ढूँढ सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch01-hairstyles",
+   "topic": "1.5",
+   "template": "data",
+   "title": {
+    "en": "Hair styles in our class",
+    "hi": "हमारी कक्षा में बालों के स्टाइल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "tally",
+    "views": [
+     "tally",
+     "pictograph"
+    ],
+    "title": {
+     "en": "How children in Class 3 wear their hair",
+     "hi": "कक्षा 3 के बच्चे बाल कैसे बनाते हैं"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "One plait",
+       "hi": "एक चोटी"
+      },
+      "value": 4
+     },
+     {
+      "label": {
+       "en": "Two ponytails",
+       "hi": "दो पोनीटेल"
+      },
+      "value": 6
+     },
+     {
+      "label": {
+       "en": "Short hair",
+       "hi": "छोटे बाल"
+      },
+      "value": 9
+     },
+     {
+      "label": {
+       "en": "Bun",
+       "hi": "जूड़ा"
+      },
+      "value": 3
+     }
+    ],
+    "ask": "max"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:1",
+     "expect": "selected:1",
+     "say": {
+      "en": "Mala has two ponytails. Tap the two-ponytails row to see how many children wear their hair like her.",
+      "hi": "माला की दो पोनीटेल हैं। दो पोनीटेल वाली पंक्ति पर टैप करके देखो कि कितने बच्चे उसकी तरह बाल बनाते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will show the same data as a picture graph. Which row will have the most pictures?",
+      "hi": "अब तुम यही आँकड़े चित्रालेख में दिखाओगे। किस पंक्ति में सबसे ज़्यादा चित्र होंगे?"
+     },
+     "options": [
+      {
+       "id": "short",
+       "en": "Short hair",
+       "hi": "छोटे बाल"
+      },
+      {
+       "id": "pony",
+       "en": "Two ponytails",
+       "hi": "दो पोनीटेल"
+      },
+      {
+       "id": "bun",
+       "en": "Bun",
+       "hi": "जूड़ा"
+      }
+     ],
+     "answer": "short"
+    },
+    {
+     "kind": "do",
+     "target": "chart:pictograph",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Pictograph to turn the tally marks into pictures.",
+      "hi": "मिलान चिह्नों को चित्रों में बदलने के लिए चित्रालेख पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which hair style do the most children have? Tap it.",
+      "hi": "सबसे ज़्यादा बच्चों के बाल किस स्टाइल के हैं? उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each tally mark became one picture, so the numbers did not change. 9 children have short hair, the most of all. A tally is quick to make while counting; a picture graph is quick to read.",
+      "hi": "हर मिलान चिह्न एक चित्र बन गया, इसलिए संख्याएँ नहीं बदलीं। 9 बच्चों के बाल छोटे हैं, सबसे ज़्यादा। गिनते समय मिलान चिह्न जल्दी बनते हैं; चित्रालेख जल्दी पढ़ा जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many more children have short hair than a bun?",
+        "hi": "छोटे बाल वाले बच्चे जूड़े वालों से कितने ज़्यादा हैं?"
+       },
+       "options": [
+        {
+         "en": "6",
+         "hi": "6 बच्चे"
+        },
+        {
+         "en": "9",
+         "hi": "9 बच्चे"
+        },
+        {
+         "en": "12",
+         "hi": "12 बच्चे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "9 children have short hair and 3 have a bun. 9 − 3 = 6.",
+        "hi": "9 बच्चों के छोटे बाल हैं और 3 का जूड़ा। 9 − 3 = 6।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9 is how many have short hair. The question asks how many more than the bun row.",
+         "hi": "9 तो छोटे बाल वालों की संख्या है। सवाल पूछता है कि जूड़े वालों से कितने ज़्यादा।"
+        },
+        {
+         "en": "12 comes from adding 9 and 3. To find \"how many more\", take away.",
+         "hi": "12 तो 9 और 3 जोड़ने से आता है। \"कितने ज़्यादा\" के लिए घटाओ।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many children were counted in all?",
+        "hi": "कुल कितने बच्चे गिने गए?"
+       },
+       "options": [
+        {
+         "en": "22",
+         "hi": "22 बच्चे"
+        },
+        {
+         "en": "9",
+         "hi": "9 बच्चे"
+        },
+        {
+         "en": "4",
+         "hi": "4 बच्चे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 + 6 + 9 + 3 = 22. Add every row.",
+        "hi": "4 + 6 + 9 + 3 = 22। हर पंक्ति जोड़ो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9 is only the biggest row, not all the children.",
+         "hi": "9 तो सिर्फ़ सबसे बड़ी पंक्ति है, सारे बच्चे नहीं।"
+        },
+        {
+         "en": "4 is the number of hair styles, not the number of children.",
+         "hi": "4 तो स्टाइलों की संख्या है, बच्चों की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Count the hair styles in your own class or family. Change the numbers with the sliders to show your data, then switch between tally and pictograph.",
+      "hi": "अपनी कक्षा या परिवार में बालों के स्टाइल गिनो। स्लाइडर से अपनी संख्याएँ दिखाओ, फिर मिलान चिह्न और चित्रालेख के बीच बदलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Chapter hook and the tally lab intro",
+   "shows": "Evening in a village in Tamil Nadu: cows walking home through a wooden gate, a whitewashed mud wall beside the gate",
+   "view": "Eye level from inside the courtyard, gate in the centre, warm evening light",
+   "right": "Cows of Indian breeds, real village gate and wall; no people facing the camera",
+   "avoid": "Text, numbers or tally marks painted on the wall (the app adds them)"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "1.1",
+   "use": "Tally lab: what one bundle of marks looks like",
+   "shows": "Chalk marks on a whitewashed wall: three bundles of four vertical lines crossed by a fifth, and two loose lines",
+   "view": "Straight on, close, soft side light showing the chalk texture",
+   "right": "Each bundle exactly four lines plus one across; marks hand-made, slightly uneven",
+   "avoid": "Numbers or words near the marks"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Name-length lab cards",
+   "shows": "Small painted wooden toy animals, each a separate file: tiger, elephant, ox, monkey, deer, goat, rat, snake",
+   "view": "Three-quarter front view, transparent background, same scale feel for all",
+   "right": "Animals recognisable at a glance; Indian toy-craft look (like Channapatna)",
+   "avoid": "Brand marks, text, cartoon faces with human expressions"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.4",
+   "use": "Grouping topic: things that need electricity and things that do not",
+   "shows": "Each a separate cut-out: a table fan, a table lamp, a wall clock, a television, a chair, a bed pillow, a folded blanket, a wooden bed",
+   "view": "Front or three-quarter view, transparent background, top-left light",
+   "right": "Real Indian household objects; plugs and wires visible on the electric ones",
+   "avoid": "Logos and brand names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Hair-style data lab hook",
+   "shows": "Class 3 children seen from behind sitting in a classroom row: two ponytails, one plait, short hair, a bun, a patka",
+   "view": "From behind at child height, faces not visible, daylight from windows",
+   "right": "Girls and boys of different regions; school uniforms plain",
+   "avoid": "Identifiable faces, school names or logos"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "Grouping topic: same cards grouped two ways",
+   "shows": "A child’s hands arranging picture cards of animals and objects into two piles on a mat",
+   "view": "Top-down, hands only, soft daylight",
+   "right": "Cards blank on the back; piles clearly separate",
+   "avoid": "Words or numbers on the cards"
+  }
+ ]
+}

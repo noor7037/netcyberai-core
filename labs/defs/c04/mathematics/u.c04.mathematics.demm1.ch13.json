@@ -1,0 +1,804 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch13",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "The Transport Museum",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "13.1",
+      "title": "Mystery matrix: multiplication facts",
+      "labs": [
+        "c04-mathematics-demm1-ch13-mystery-products"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "13.2",
+      "title": "Times-10: multiplying by 10",
+      "labs": [
+        "c04-mathematics-demm1-ch13-times-ten"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "13.3",
+      "title": "Constructing tables: the table of 6",
+      "labs": [
+        "c04-mathematics-demm1-ch13-table-of-six"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "13.4",
+      "title": "Splitting an arrangement into 10 and a few more",
+      "labs": [
+        "c04-mathematics-demm1-ch13-split-the-tens"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "13.5",
+      "title": "People in tempo travellers",
+      "labs": [],
+      "why_no_lab": "This is a word problem set in a museum story; the splitting idea is practised in the split-the-tens lab and the rest is solved on paper."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch13-mystery-products",
+      "topic": "13.1",
+      "template": "match",
+      "title": {
+        "en": "Which two digits make the product?",
+        "hi": "कौन-से दो अंक गुणनफल बनाते हैं?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "p32",
+            "left": {
+              "en": "The product is 32",
+              "hi": "गुणनफल 32 है"
+            },
+            "right": {
+              "en": "4 × 8",
+              "hi": "4 × 8"
+            },
+            "why": {
+              "en": "4 groups of 8 make 32.",
+              "hi": "8 के 4 समूह मिलकर 32 बनते हैं।"
+            }
+          },
+          {
+            "id": "p42",
+            "left": {
+              "en": "The product is 42",
+              "hi": "गुणनफल 42 है"
+            },
+            "right": {
+              "en": "6 × 7",
+              "hi": "6 × 7"
+            },
+            "why": {
+              "en": "6 groups of 7 make 42.",
+              "hi": "7 के 6 समूह मिलकर 42 बनते हैं।"
+            }
+          },
+          {
+            "id": "p45",
+            "left": {
+              "en": "The product is 45",
+              "hi": "गुणनफल 45 है"
+            },
+            "right": {
+              "en": "5 × 9",
+              "hi": "5 × 9"
+            },
+            "why": {
+              "en": "5 groups of 9 make 45.",
+              "hi": "9 के 5 समूह मिलकर 45 बनते हैं।"
+            }
+          },
+          {
+            "id": "p56",
+            "left": {
+              "en": "The product is 56",
+              "hi": "गुणनफल 56 है"
+            },
+            "right": {
+              "en": "7 × 8",
+              "hi": "7 × 8"
+            },
+            "why": {
+              "en": "7 groups of 8 make 56.",
+              "hi": "8 के 7 समूह मिलकर 56 बनते हैं।"
+            }
+          },
+          {
+            "id": "p63",
+            "left": {
+              "en": "The product is 63",
+              "hi": "गुणनफल 63 है"
+            },
+            "right": {
+              "en": "7 × 9",
+              "hi": "7 × 9"
+            },
+            "why": {
+              "en": "7 groups of 9 make 63.",
+              "hi": "9 के 7 समूह मिलकर 63 बनते हैं।"
+            }
+          },
+          {
+            "id": "p35",
+            "left": {
+              "en": "The product is 35",
+              "hi": "गुणनफल 35 है"
+            },
+            "right": {
+              "en": "5 × 7",
+              "hi": "5 × 7"
+            },
+            "why": {
+              "en": "5 groups of 7 make 35.",
+              "hi": "7 के 5 समूह मिलकर 35 बनते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The product 42 can be made by multiplying two one-digit numbers. Is it 6 × 7 or 5 × 8?",
+            "hi": "गुणनफल 42 दो एक अंक वाली संख्याओं को गुणा करके बनता है। क्या यह 6 × 7 है या 5 × 8?"
+          },
+          "options": [
+            {
+              "id": "67",
+              "en": "The pair 6 × 7",
+              "hi": "जोड़ी 6 × 7"
+            },
+            {
+              "id": "58",
+              "en": "The pair 5 × 8",
+              "hi": "जोड़ी 5 × 8"
+            }
+          ],
+          "answer": "67"
+        },
+        {
+          "kind": "do",
+          "target": "left:p42",
+          "expect": "matched:p42",
+          "say": {
+            "en": "Tap the product 42, then tap the pair of numbers that make it.",
+            "hi": "गुणनफल 42 चुनो, फिर वह जोड़ी चुनो जो उसे बनाती है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:p35",
+          "expect": "matched:p35",
+          "say": {
+            "en": "Match the product 35.",
+            "hi": "गुणनफल 35 मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest, then press Check.",
+            "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A product is the answer to a multiplication. To find which two numbers make it, think of the tables you know: 6 × 7 = 42, 5 × 7 = 35, 4 × 8 = 32. Multiplying 6 by 7 gives the same product as 7 by 6, so the order does not matter.",
+            "hi": "गुणनफल गुणा का उत्तर होता है। कौन-से दो अंक उसे बनाते हैं, यह जानने के लिए अपने पहाड़े याद करो: 6 × 7 = 42, 5 × 7 = 35, 4 × 8 = 32। 6 को 7 से गुणा करने पर वही गुणनफल मिलता है जो 7 को 6 से गुणा करने पर, इसलिए क्रम से फ़र्क़ नहीं पड़ता।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is 6 × 7?",
+                "hi": "6 × 7 कितना होता है?"
+              },
+              "options": [
+                "42",
+                "36",
+                "49"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "6 groups of 7: 7, 14, 21, 28, 35, 42.",
+                "hi": "7 के 6 समूह: 7, 14, 21, 28, 35, 42।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "36 is 6 × 6. Here the groups have 7, not 6.",
+                  "hi": "36, 6 × 6 है। यहाँ समूहों में 7 हैं, 6 नहीं।"
+                },
+                {
+                  "en": "49 is 7 × 7. Here there are only 6 groups of 7.",
+                  "hi": "49, 7 × 7 है। यहाँ 7 के केवल 6 समूह हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Is 7 × 6 the same as 6 × 7?",
+                "hi": "क्या 7 × 6 और 6 × 7 बराबर हैं?"
+              },
+              "options": [
+                {
+                  "en": "Yes, both are 42",
+                  "hi": "हाँ, दोनों 42 हैं"
+                },
+                {
+                  "en": "No, 7 × 6 is more",
+                  "hi": "नहीं, 7 × 6 ज़्यादा है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "6 rows of 7 and 7 rows of 6 hold the same number of things: 42.",
+                "hi": "7 की 6 पंक्तियों और 6 की 7 पंक्तियों में चीज़ें बराबर होती हैं: 42।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Turn a 6 by 7 arrangement sideways and it becomes 7 by 6. The number of things stays the same.",
+                  "hi": "6 गुणा 7 की सजावट को आड़ा करो तो वह 7 गुणा 6 की हो जाती है। चीज़ों की संख्या वही रहती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Pick your own pair of one-digit numbers and multiply. Give the product to a friend. Can they find the pair?",
+            "hi": "एक अंक वाली अपनी कोई जोड़ी चुनकर गुणा करो। गुणनफल दोस्त को बताओ। क्या वह जोड़ी ढूँढ पाता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch13-times-ten",
+      "topic": "13.2",
+      "template": "place-value",
+      "title": {
+        "en": "Times-10 means tens",
+        "hi": "10 से गुणा यानी दहाइयाँ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "build",
+        "target": 50,
+        "places": 3
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "5 × 10 means 5 groups of 10. Will the answer be a number with 5 ones, or 5 tens?",
+            "hi": "5 × 10 का मतलब है 10 के 5 समूह। उत्तर में 5 इकाइयाँ होंगी या 5 दहाइयाँ?"
+          },
+          "options": [
+            {
+              "id": "tens",
+              "en": "5 tens",
+              "hi": "5 दहाइयाँ"
+            },
+            {
+              "id": "ones",
+              "en": "5 ones",
+              "hi": "5 इकाइयाँ"
+            }
+          ],
+          "answer": "tens"
+        },
+        {
+          "kind": "do",
+          "target": "add:tens",
+          "expect": "built:10",
+          "say": {
+            "en": "Tap + under Tens once for one bundle of 10.",
+            "hi": "दहाई के नीचे एक बार + दबाकर 10 का एक बंडल रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add:tens",
+          "expect": "built:50",
+          "say": {
+            "en": "Keep adding bundles until you have 5 bundles of 10.",
+            "hi": "10 के 5 बंडल होने तक बंडल जोड़ते रहो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "5 × 10 is 5 tens, which is 50. Multiplying by 10 turns ones into tens, so the digit moves one place to the left and a 0 holds the ones place. So 2 × 10 = 20, 8 × 10 = 80, and 10 tens make 100.",
+            "hi": "5 × 10 मतलब 5 दहाइयाँ, यानी 50। 10 से गुणा करने पर इकाइयाँ दहाइयाँ बन जाती हैं, इसलिए अंक एक स्थान बाईं ओर खिसक जाता है और 0 इकाई के स्थान को सँभालता है। इसलिए 2 × 10 = 20, 8 × 10 = 80, और 10 दहाइयाँ 100 बनाती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is 8 × 10?",
+                "hi": "8 × 10 कितना होता है?"
+              },
+              "options": [
+                "80",
+                "18",
+                "800"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "8 tens make 80.",
+                "hi": "8 दहाइयाँ मिलकर 80 बनती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "18 is 8 + 10. Multiplying 8 by 10 means 8 groups of 10.",
+                  "hi": "18 मतलब 8 + 10। 8 को 10 से गुणा करने का मतलब 10 के 8 समूह है।"
+                },
+                {
+                  "en": "800 is 8 hundreds. 8 tens is only 80.",
+                  "hi": "800 मतलब 8 सैकड़े। 8 दहाइयाँ केवल 80 हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many tens are there in 60?",
+                "hi": "60 में कितनी दहाइयाँ हैं?"
+              },
+              "options": [
+                "6",
+                "60",
+                "10"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "6 tens make 60, because 6 × 10 = 60.",
+                "hi": "6 दहाइयाँ मिलकर 60 बनती हैं, क्योंकि 6 × 10 = 60।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "60 is the number itself, not the count of tens in it.",
+                  "hi": "60 स्वयं संख्या है, उसमें दहाइयों की गिनती नहीं।"
+                },
+                {
+                  "en": "10 would make 100. 60 has only 6 tens.",
+                  "hi": "10 दहाइयों से 100 बनता। 60 में केवल 6 दहाइयाँ हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press Clear and make 90 with tens. Then tap + once more. What number do you get and why?",
+            "hi": "साफ़ करो दबाकर दहाइयों से 90 बनाओ। फिर एक बार और + दबाओ। कौन-सी संख्या मिलती है और क्यों?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch13-table-of-six",
+      "topic": "13.3",
+      "template": "pattern",
+      "title": {
+        "en": "Build the table of 6",
+        "hi": "6 का पहाड़ा बनाओ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "kind": "numbers",
+        "seed": [
+          6,
+          12,
+          18,
+          24
+        ],
+        "rule": "+6",
+        "show": 4
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The table of 6 goes 6, 12, 18, 24. The next number is 6 more. What is 5 × 6?",
+            "hi": "6 का पहाड़ा 6, 12, 18, 24 चलता है। अगली संख्या 6 और ज़्यादा है। 5 × 6 कितना होता है?"
+          },
+          "options": [
+            {
+              "id": "thirty",
+              "en": "The number 30",
+              "hi": "संख्या 30"
+            },
+            {
+              "id": "twenty-eight",
+              "en": "The number 28",
+              "hi": "संख्या 28"
+            },
+            {
+              "id": "thirty-six",
+              "en": "The number 36",
+              "hi": "संख्या 36"
+            }
+          ],
+          "answer": "thirty"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Type the next number in the table of 6.",
+            "hi": "6 के पहाड़े की अगली संख्या लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Type the number after that.",
+            "hi": "उसके बाद की संख्या लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "rule",
+          "expect": "rule-found",
+          "say": {
+            "en": "Which rule makes the table of 6? Tap it.",
+            "hi": "6 का पहाड़ा किस नियम से बनता है? उसे चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In the table of 6, every number is 6 more than the one before: 6, 12, 18, 24, 30, 36. The first number is 1 × 6, the second is 2 × 6, and so on. So 6 × 6 is 36. You can build any table by adding the same number again and again.",
+            "hi": "6 के पहाड़े में हर संख्या पिछली से 6 ज़्यादा है: 6, 12, 18, 24, 30, 36। पहली संख्या 1 × 6 है, दूसरी 2 × 6, और आगे ऐसे ही। इसलिए 6 × 6 = 36। एक ही संख्या को बार-बार जोड़कर तुम कोई भी पहाड़ा बना सकते हो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is 7 × 6?",
+                "hi": "7 × 6 कितना होता है?"
+              },
+              "options": [
+                "42",
+                "36",
+                "48"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "After 36 (6 × 6) comes 36 + 6 = 42.",
+                "hi": "36 (6 × 6) के बाद 36 + 6 = 42।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "36 is 6 × 6, one step before.",
+                  "hi": "36, 6 × 6 है, एक क़दम पहले की।"
+                },
+                {
+                  "en": "48 is 8 × 6, one step after 42.",
+                  "hi": "48, 8 × 6 है, 42 से एक क़दम आगे की।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which number is in the table of 6?",
+                "hi": "कौन-सी संख्या 6 के पहाड़े में है?"
+              },
+              "options": [
+                "54",
+                "56",
+                "55"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "6, 12, 18, 24, 30, 36, 42, 48, 54. So 54 = 9 × 6.",
+                "hi": "6, 12, 18, 24, 30, 36, 42, 48, 54। इसलिए 54 = 9 × 6।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "56 is 2 more than 54. The table jumps from 54 to 60.",
+                  "hi": "56, 54 से 2 ज़्यादा है। पहाड़ा 54 से सीधे 60 पर जाता है।"
+                },
+                {
+                  "en": "55 is 1 more than 54. The table skips it.",
+                  "hi": "55, 54 से 1 ज़्यादा है। पहाड़ा उसे छोड़ देता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Build the table of 7 in the same way, starting from 7. Is 6 × 7 the same as 7 × 6?",
+            "hi": "इसी तरह 7 से शुरू करके 7 का पहाड़ा बनाओ। क्या 6 × 7 और 7 × 6 बराबर हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch13-split-the-tens",
+      "topic": "13.4",
+      "template": "match",
+      "title": {
+        "en": "Split to multiply: 10 and a few more",
+        "hi": "गुणा के लिए तोड़ो: 10 और कुछ और"
+      },
+      "minutes": 5,
+      "level": "stretch",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "s15",
+            "left": {
+              "en": "5 × 15",
+              "hi": "5 × 15"
+            },
+            "right": {
+              "en": "5 × 10 + 5 × 5 = 75",
+              "hi": "5 × 10 + 5 × 5 = 75"
+            },
+            "why": {
+              "en": "Split 15 into 10 and 5: 50 + 25 = 75.",
+              "hi": "15 को 10 और 5 में तोड़ो: 50 + 25 = 75।"
+            }
+          },
+          {
+            "id": "s12",
+            "left": {
+              "en": "3 × 12",
+              "hi": "3 × 12"
+            },
+            "right": {
+              "en": "3 × 10 + 3 × 2 = 36",
+              "hi": "3 × 10 + 3 × 2 = 36"
+            },
+            "why": {
+              "en": "Split 12 into 10 and 2: 30 + 6 = 36.",
+              "hi": "12 को 10 और 2 में तोड़ो: 30 + 6 = 36।"
+            }
+          },
+          {
+            "id": "s14",
+            "left": {
+              "en": "4 × 14",
+              "hi": "4 × 14"
+            },
+            "right": {
+              "en": "4 × 10 + 4 × 4 = 56",
+              "hi": "4 × 10 + 4 × 4 = 56"
+            },
+            "why": {
+              "en": "Split 14 into 10 and 4: 40 + 16 = 56.",
+              "hi": "14 को 10 और 4 में तोड़ो: 40 + 16 = 56।"
+            }
+          },
+          {
+            "id": "s13",
+            "left": {
+              "en": "6 × 13",
+              "hi": "6 × 13"
+            },
+            "right": {
+              "en": "6 × 10 + 6 × 3 = 78",
+              "hi": "6 × 10 + 6 × 3 = 78"
+            },
+            "why": {
+              "en": "Split 13 into 10 and 3: 60 + 18 = 78.",
+              "hi": "13 को 10 और 3 में तोड़ो: 60 + 18 = 78।"
+            }
+          },
+          {
+            "id": "s16",
+            "left": {
+              "en": "2 × 16",
+              "hi": "2 × 16"
+            },
+            "right": {
+              "en": "2 × 10 + 2 × 6 = 32",
+              "hi": "2 × 10 + 2 × 6 = 32"
+            },
+            "why": {
+              "en": "Split 16 into 10 and 6: 20 + 12 = 32.",
+              "hi": "16 को 10 और 6 में तोड़ो: 20 + 12 = 32।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Gundappa's 5 rows of 15 pebbles are hard to count at once. If you split each row into 10 and 5, will it be easier?",
+            "hi": "गुंडप्पा की 15 कंकड़ों की 5 पंक्तियाँ एक साथ गिनना कठिन है। अगर हर पंक्ति को 10 और 5 में बाँट दें तो क्या आसान होगा?"
+          },
+          "options": [
+            {
+              "id": "yes",
+              "en": "Yes, easier",
+              "hi": "हाँ, आसान होगा"
+            },
+            {
+              "id": "no",
+              "en": "No, harder",
+              "hi": "नहीं, कठिन होगा"
+            }
+          ],
+          "answer": "yes"
+        },
+        {
+          "kind": "do",
+          "target": "left:s15",
+          "expect": "matched:s15",
+          "say": {
+            "en": "Match 5 × 15 with its split.",
+            "hi": "5 × 15 को उसके तोड़े हुए रूप से मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:s12",
+          "expect": "matched:s12",
+          "say": {
+            "en": "Match 3 × 12 with its split.",
+            "hi": "3 × 12 को उसके तोड़े हुए रूप से मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest, then press Check.",
+            "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "To multiply by a number like 15, split it into 10 and 5. Multiply by 10, which is easy, then multiply by 5, and add the two answers: 5 × 15 = 5 × 10 + 5 × 5 = 50 + 25 = 75. Splitting makes a big multiplication into two small ones.",
+            "hi": "15 जैसी संख्या से गुणा करने के लिए उसे 10 और 5 में तोड़ो। 10 से गुणा करो, जो आसान है, फिर 5 से गुणा करो, और दोनों उत्तर जोड़ो: 5 × 15 = 5 × 10 + 5 × 5 = 50 + 25 = 75। तोड़ने से बड़ा गुणा दो छोटे गुणों में बदल जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How can you split 4 × 13 into easy parts?",
+                "hi": "4 × 13 को आसान हिस्सों में कैसे तोड़ोगे?"
+              },
+              "options": [
+                "4 × 10 + 4 × 3",
+                "4 × 1 + 4 × 3",
+                "4 + 13"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "13 is 10 and 3: 40 + 12 = 52.",
+                "hi": "13 = 10 और 3: 40 + 12 = 52।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "4 × 1 is only 4. The first part of 13 is 10, not 1.",
+                  "hi": "4 × 1 केवल 4 है। 13 का पहला भाग 10 है, 1 नहीं।"
+                },
+                {
+                  "en": "4 + 13 adds instead of multiplying. We need 4 groups of 13.",
+                  "hi": "4 + 13 गुणा करने की जगह जोड़ता है। हमें 13 के 4 समूह चाहिए।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Use the split to work out 7 × 12 and 5 × 18. Check one by adding the parts again.",
+            "hi": "तोड़ने की तरकीब से 7 × 12 और 5 × 18 निकालो। एक को हिस्से फिर जोड़कर जाँचो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "13.1",
+      "use": "Chapter hook: the transport museum",
+      "shows": "A museum hall with an old bullock cart, a tonga, a vintage car and a cycle rickshaw on display under soft light",
+      "view": "Wide, eye level, even gallery light",
+      "right": "Four different vehicles easy to tell apart; no visitors",
+      "avoid": "Museum names, labels with readable text"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "13.4",
+      "use": "Tempo traveller",
+      "shows": "A white tempo traveller van, side view, cut-out on transparent background",
+      "view": "Straight side view, even light",
+      "right": "Rows of seat windows visible so people can be imagined",
+      "avoid": "Number plate, advertising"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "13.4",
+      "use": "Pebbles in rows",
+      "shows": "Round river pebbles arranged in 5 rows of 15 on a plain mat, a pencil line dividing columns 10 and 5",
+      "view": "Flat lay from above",
+      "right": "Rows and columns countable; division clear",
+      "avoid": "Hands, written numbers"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "13.1",
+      "use": "Multiplication grid frame",
+      "shows": "An empty grid with coloured boxes for factors and white boxes for products, no numbers",
+      "view": "Flat, white background",
+      "right": "Boxes aligned; yellow boxes distinct from white",
+      "avoid": "Digits"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "13.2",
+      "use": "Ten rods",
+      "shows": "A bundle of ten pencils tied together, five bundles in a row",
+      "view": "Flat lay from above, even light",
+      "right": "Each bundle exactly ten pencils",
+      "avoid": "Brand marks on the pencils"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "13.3",
+      "use": "Counting tyres",
+      "shows": "A parked row of three-wheeled autos with their wheels clearly visible, a tyre repair stall behind",
+      "view": "Eye level, daylight",
+      "right": "Every auto showing 3 wheels",
+      "avoid": "Number plates, shop signs"
+    }
+  ]
+}

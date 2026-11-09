@@ -1,0 +1,637 @@
+{
+ "chapter_key": "u.c12.hindi.lhat1.ch05.s1",
+ "class": 12,
+ "subject_id": "hindi",
+ "title": "(क) वसंत आया / (ख) तोड़ो",
+ "source": "https://ncert.nic.in/textbook/pdf/lhat1ps.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "वसंत आया: प्रकृति से दूरी",
+   "labs": [
+    "c12-hindi-lhat1-ch05-basant-feel",
+    "c12-hindi-lhat1-ch05-basant-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "तोड़ो: सृजन के लिए रुकावटें हटाना",
+   "labs": [
+    "c12-hindi-lhat1-ch05-todo-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "कवि परिचय: रघुवीर सहाय",
+   "labs": [],
+   "why_no_lab": "एक छोटा परिचय पढ़ना काफ़ी है।"
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-hindi-lhat1-ch05-basant-feel",
+   "topic": "5.1",
+   "template": "reader",
+   "title": {
+    "en": "The man who missed spring",
+    "hi": "जिसने वसंत को अनदेखा किया"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "emotion-map",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "An office-goer and spring",
+      "hi": "दफ़्तर जाने वाला और वसंत"
+     },
+     "lines": [
+      "सुबह दफ़्तर जाते हुए वह आदमी सड़क की भीड़ में खोया रहता है।",
+      "पेड़ों पर नई पत्तियाँ और फूल खिल रहे हैं, पर उसकी नज़र उन पर नहीं जाती।",
+      "कैलेंडर देखकर उसे अचानक पता चलता है कि वसंत आ गया है।",
+      "वह सोचता है कि मैं प्रकृति से कितना दूर हो गया हूँ।",
+      "फिर कोयल की कूक सुनकर उसके मन में हल्की-सी ख़ुशी जाग उठती है।"
+     ]
+    },
+    "emotions": [
+     "worry",
+     "sadness",
+     "surprise",
+     "sadness",
+     "joy"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line to see the man's morning.",
+      "hi": "पहली पंक्ति पर टैप करके उस आदमी की सुबह देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How does he find out that spring has come?",
+      "hi": "उसे कैसे पता चलता है कि वसंत आ गया है?"
+     },
+     "options": [
+      {
+       "id": "cal",
+       "en": "From the calendar",
+       "hi": "कैलेंडर से"
+      },
+      {
+       "id": "tree",
+       "en": "By watching the trees",
+       "hi": "पेड़ों को देखकर"
+      }
+     ],
+     "answer": "cal"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Give the first line a feeling.",
+      "hi": "पहली पंक्ति को एक भाव दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "map-done",
+     "say": {
+      "en": "Finish the feelings for all five lines.",
+      "hi": "पाँचों पंक्तियों के भाव पूरे करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Spring is all around, yet the man learns about it from a calendar. The poem says that busy modern life can cut us off from nature. Only when he hears the koel does a little joy return.",
+      "hi": "वसंत चारों ओर है, फिर भी आदमी को इसका पता कैलेंडर से चलता है। कविता कहती है कि व्यस्त आधुनिक जीवन हमें प्रकृति से काट सकता है। जब कोयल की कूक सुनता है तभी थोड़ी ख़ुशी लौटती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the poem's point about modern life?",
+        "hi": "आधुनिक जीवन के बारे में कविता की बात क्या है?"
+       },
+       "options": [
+        {
+         "en": "It can cut us off from nature",
+         "hi": "वह हमें प्रकृति से काट सकता है"
+        },
+        {
+         "en": "It makes us love nature more",
+         "hi": "वह हमें प्रकृति से और प्रेम करना सिखाता है"
+        },
+        {
+         "en": "It has nothing to do with spring",
+         "hi": "उसका वसंत से कोई संबंध नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He misses spring because he is lost in routine.",
+        "hi": "वह रोज़ की दौड़-भाग में खोया है, इसलिए वसंत चूक जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The man in the poem has to be told by a calendar.",
+         "hi": "कविता का आदमी कैलेंडर से जान पाता है।"
+        },
+        {
+         "en": "The poem is about exactly this link.",
+         "hi": "कविता इसी संबंध के बारे में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Spend two minutes outside today. Note three things of nature you had not noticed before.",
+      "hi": "आज दो मिनट बाहर बिताओ। प्रकृति की तीन ऐसी चीज़ें लिखो जिन पर पहले ध्यान नहीं गया था।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhat1-ch05-basant-sort",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "How do we know it is spring?",
+    "hi": "हमें वसंत का पता कैसे चलता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "nature",
+      "label": {
+       "en": "Through nature itself",
+       "hi": "प्रकृति को देखकर-सुनकर"
+      }
+     },
+     {
+      "id": "paper",
+      "label": {
+       "en": "Through calendar and news",
+       "hi": "कैलेंडर और ख़बर से"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "koel",
+      "text": {
+       "en": "Hearing the koel sing",
+       "hi": "कोयल की कूक सुनना"
+      },
+      "bin": "nature",
+      "why": {
+       "en": "The koel's call is one of nature's own signs of spring.",
+       "hi": "कोयल की कूक वसंत का प्रकृति का अपना संकेत है।"
+      }
+     },
+     {
+      "id": "buds",
+      "text": {
+       "en": "Seeing new buds on a tree",
+       "hi": "पेड़ पर नई कोंपलें देखना"
+      },
+      "bin": "nature",
+      "why": {
+       "en": "You learn it by looking at the tree itself.",
+       "hi": "पेड़ को देखकर ही पता चलता है।"
+      }
+     },
+     {
+      "id": "smell",
+      "text": {
+       "en": "Smelling flowers in the breeze",
+       "hi": "हवा में फूलों की गंध पाना"
+      },
+      "bin": "nature",
+      "why": {
+       "en": "The breeze tells you directly.",
+       "hi": "हवा सीधे बता देती है।"
+      }
+     },
+     {
+      "id": "cal",
+      "text": {
+       "en": "Reading the date on a calendar",
+       "hi": "कैलेंडर में तारीख़ पढ़ना"
+      },
+      "bin": "paper",
+      "why": {
+       "en": "This is how the man in the poem finds out.",
+       "hi": "कविता का आदमी इसी तरह जानता है।"
+      }
+     },
+     {
+      "id": "news",
+      "text": {
+       "en": "Reading a newspaper holiday notice",
+       "hi": "अख़बार में छुट्टी की सूचना पढ़ना"
+      },
+      "bin": "paper",
+      "why": {
+       "en": "Someone else tells you; you did not see it.",
+       "hi": "आपको कोई और बताता है; आपने ख़ुद नहीं देखा।"
+      }
+     },
+     {
+      "id": "office",
+      "text": {
+       "en": "Hearing it from a colleague at the office",
+       "hi": "दफ़्तर में सहकर्मी से सुनना"
+      },
+      "bin": "paper",
+      "why": {
+       "en": "Secondhand news is not the same as seeing spring.",
+       "hi": "सुनी हुई ख़बर वसंत को देखने जैसी नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which way is closer to nature?",
+      "hi": "कौन-सा तरीक़ा प्रकृति के ज़्यादा क़रीब है?"
+     },
+     "options": [
+      {
+       "id": "see",
+       "en": "Seeing the tree yourself",
+       "hi": "पेड़ को ख़ुद देखना"
+      },
+      {
+       "id": "cal",
+       "en": "Reading the calendar",
+       "hi": "कैलेंडर पढ़ना"
+      }
+     ],
+     "answer": "see"
+    },
+    {
+     "kind": "do",
+     "target": "card:koel",
+     "expect": "placed:koel",
+     "say": {
+      "en": "Place the koel card.",
+      "hi": "कोयल वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:cal",
+     "expect": "placed:cal",
+     "say": {
+      "en": "Place the calendar card.",
+      "hi": "कैलेंडर वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाकी कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When we feel spring ourselves, we are part of it. When we only read about it, spring is just a word. The poem asks us to notice the world first-hand before the calendar tells us.",
+      "hi": "जब हम वसंत को ख़ुद महसूस करते हैं तो हम उसका हिस्सा होते हैं। जब केवल पढ़ते हैं तो वह बस एक शब्द रह जाता है। कविता हमसे कहती है कि कैलेंडर के बताने से पहले दुनिया को अपनी आँख से देखो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is a first-hand sign of spring?",
+        "hi": "इनमें वसंत का अपनी आँख से देखा संकेत कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "New leaves on a tree",
+         "hi": "पेड़ पर नई पत्तियाँ"
+        },
+        {
+         "en": "A date printed in red",
+         "hi": "लाल रंग में छपी तारीख़"
+        },
+        {
+         "en": "A school notice",
+         "hi": "स्कूल की सूचना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the leaves are a sign you see for yourself.",
+        "hi": "केवल पत्तियाँ ऐसा संकेत हैं जिन्हें तुम ख़ुद देखते हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A printed date is information, not experience.",
+         "hi": "छपी तारीख़ जानकारी है, अनुभव नहीं।"
+        },
+        {
+         "en": "A notice tells you; you do not see spring in it.",
+         "hi": "सूचना बताती है; उसमें वसंत दिखता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep a one-week nature diary: one line each day about a new thing you noticed.",
+      "hi": "एक हफ़्ते की प्रकृति-डायरी रखो: रोज़ एक पंक्ति कि तुमने कौन-सी नई बात देखी।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhat1-ch05-todo-match",
+   "topic": "5.2",
+   "template": "match",
+   "title": {
+    "en": "Break to create",
+    "hi": "तोड़ो ताकि कुछ बने"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "stone",
+      "left": {
+       "en": "Stones and rocks",
+       "hi": "पत्थर और चट्टानें"
+      },
+      "right": {
+       "en": "Obstacles that block our way",
+       "hi": "रास्ते में रुकावट बनी बाधाएँ"
+      },
+      "why": {
+       "en": "They stand for the hard things that stop us.",
+       "hi": "वे उन कठोर चीज़ों के प्रतीक हैं जो हमें रोकती हैं।"
+      }
+     },
+     {
+      "id": "barren",
+      "left": {
+       "en": "Barren land",
+       "hi": "बंजर ज़मीन"
+      },
+      "right": {
+       "en": "A mind or place where nothing new grows yet",
+       "hi": "मन या जगह जहाँ अभी कुछ नया नहीं उगा"
+      },
+      "why": {
+       "en": "It is ready to be made fertile.",
+       "hi": "इसे उपजाऊ बनाया जा सकता है।"
+      }
+     },
+     {
+      "id": "break",
+      "left": {
+       "en": "Breaking",
+       "hi": "तोड़ना"
+      },
+      "right": {
+       "en": "Clearing old hard things to make room",
+       "hi": "पुरानी कठोर चीज़ें हटाकर जगह बनाना"
+      },
+      "why": {
+       "en": "In the poem, breaking is for the sake of making.",
+       "hi": "कविता में तोड़ना बनाने के लिए है।"
+      }
+     },
+     {
+      "id": "ennui",
+      "left": {
+       "en": "Boredom of the mind",
+       "hi": "मन की ऊब"
+      },
+      "right": {
+       "en": "A dull mood that also must be broken",
+       "hi": "एक सुस्त मनोदशा जिसे भी तोड़ना है"
+      },
+      "why": {
+       "en": "The poet wants to break dullness inside as well.",
+       "hi": "कवि भीतर की सुस्ती को भी तोड़ना चाहता है।"
+      }
+     },
+     {
+      "id": "seed",
+      "left": {
+       "en": "Seed in the soil",
+       "hi": "मिट्टी में बीज"
+      },
+      "right": {
+       "en": "Creation, something new beginning",
+       "hi": "सृजन, यानी कुछ नया शुरू होना"
+      },
+      "why": {
+       "en": "Once the soil is open, the seed can grow.",
+       "hi": "मिट्टी खुलते ही बीज उग सकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In this poem, is breaking good or bad?",
+      "hi": "इस कविता में तोड़ना अच्छा है या बुरा?"
+     },
+     "options": [
+      {
+       "id": "good",
+       "en": "Good, when it makes room to create",
+       "hi": "अच्छा, जब वह बनाने के लिए जगह दे"
+      },
+      {
+       "id": "bad",
+       "en": "Bad, always",
+       "hi": "बुरा, हमेशा"
+      }
+     ],
+     "answer": "good"
+    },
+    {
+     "kind": "do",
+     "target": "left:stone",
+     "expect": "matched:stone",
+     "say": {
+      "en": "Match the stones with what they stand for.",
+      "hi": "पत्थरों को उनके प्रतीकार्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:break",
+     "expect": "matched:break",
+     "say": {
+      "en": "Match 'breaking' with its meaning.",
+      "hi": "'तोड़ना' को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाकी जोड़ियाँ मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Here breaking is not harm. A farmer must break hard ground before a seed can grow. In the same way the poet asks us to break the rocks in our way and the dullness in our minds, so that something new can be made.",
+      "hi": "यहाँ तोड़ना नुक़सान नहीं है। किसान को बीज उगाने से पहले कठोर ज़मीन तोड़नी पड़ती है। उसी तरह कवि कहता है कि रास्ते की चट्टानों और मन की सुस्ती को तोड़ो, ताकि कुछ नया बन सके।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the poet say 'break'?",
+        "hi": "कवि 'तोड़ो' क्यों कहता है?"
+       },
+       "options": [
+        {
+         "en": "So that new creation can begin",
+         "hi": "ताकि नया सृजन शुरू हो सके"
+        },
+        {
+         "en": "Because he likes destruction",
+         "hi": "क्योंकि उसे विनाश पसंद है"
+        },
+        {
+         "en": "To scare people",
+         "hi": "लोगों को डराने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Breaking prepares the ground for new things.",
+        "hi": "तोड़ना नए के लिए ज़मीन तैयार करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The poem breaks only to build.",
+         "hi": "कविता तोड़ती है केवल बनाने के लिए।"
+        },
+        {
+         "en": "There is no wish to frighten; the tone is hopeful.",
+         "hi": "डराने की मंशा नहीं; स्वर आशा भरा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one habit or fear you would like to 'break' to make room for something new.",
+      "hi": "अपनी कोई आदत या डर बताओ जिसे तोड़कर तुम कुछ नया बनाना चाहोगे।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Hook: an office-goer on a busy road",
+   "shows": "A morning traffic scene with scooters and buses, a flowering tree on the roadside that no one looks at",
+   "view": "Wide, street level",
+   "right": "Full bloom on the tree, hurried crowd",
+   "avoid": "Faces, brand banners"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Word card: कैलेंडर",
+   "shows": "A paper wall calendar with a spring festival date circled in red, cut-out",
+   "view": "Straight on",
+   "right": "Real calendar grid, no readable year",
+   "avoid": "Brand name"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "5.1",
+   "use": "A tree through the season",
+   "shows": "Four frames of one neem tree from bare branches to full leaf",
+   "view": "Same camera, four weeks",
+   "right": "Clear growth in leaves",
+   "avoid": "Different trees"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Hook: breaking hard ground",
+   "shows": "Farmers' hands using a pickaxe to break dry cracked soil before sowing",
+   "view": "Close, low angle",
+   "right": "Cracked earth, honest work, golden light",
+   "avoid": "Faces, plastic tools"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "5.2",
+   "use": "From barren to green",
+   "shows": "Three frames of one patch: barren, ploughed, green shoots",
+   "view": "Same camera, three stages",
+   "right": "Same corner of the field",
+   "avoid": "Different fields"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "5.2",
+   "use": "A seed sprouting through soil",
+   "shows": "A bean sprout pushing through cracked soil, macro",
+   "view": "Close",
+   "right": "Soil crumbs, pale shoot",
+   "avoid": "Plastic pots"
+  }
+ ]
+}

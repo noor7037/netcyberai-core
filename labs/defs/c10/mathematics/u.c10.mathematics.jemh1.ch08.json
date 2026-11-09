@@ -1,0 +1,511 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch08",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Introduction to Trigonometry",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Introduction: angles and heights in daily life",
+   "labs": [],
+   "why_no_lab": "A short opening with examples; the ratios are built in the 8.2 lab."
+  },
+  {
+   "n": "8.2",
+   "title": "Trigonometric ratios: sin, cos, tan and their reciprocals",
+   "labs": [
+    "c10-mathematics-jemh1-ch08-ratios"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Trigonometric ratios of some specific angles: 0°, 30°, 45°, 60°, 90°",
+   "labs": [
+    "c10-mathematics-jemh1-ch08-special-angles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Trigonometric identities",
+   "labs": [
+    "c10-mathematics-jemh1-ch08-identities"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch08-ratios",
+   "topic": "8.2",
+   "template": "trig",
+   "title": {
+    "en": "Sides and ratios of a right triangle",
+    "hi": "समकोण त्रिभुज की भुजाएँ और अनुपात"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "ratios",
+    "angle": 30
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As the angle A grows from 30° to 60°, what happens to sin A?",
+      "hi": "जब कोण A 30° से 60° तक बढ़ता है, तो sin A का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "It gets bigger",
+       "hi": "वह बढ़ता है"
+      },
+      {
+       "id": "down",
+       "en": "It gets smaller",
+       "hi": "वह घटता है"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वह वैसा ही रहता है"
+      }
+     ],
+     "answer": "up"
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the angle slider from 30° up to 60° and watch the opposite side grow.",
+      "hi": "कोण स्लाइडर को 30° से 60° तक खींचो और सम्मुख भुजा को बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:cot",
+     "expect": "changed",
+     "say": {
+      "en": "Switch on cot to see one of the reciprocal ratios.",
+      "hi": "एक व्युत्क्रम अनुपात देखने के लिए cot चालू करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For an acute angle A in a right triangle: sin A = opposite ÷ hypotenuse, cos A = adjacent ÷ hypotenuse, tan A = opposite ÷ adjacent. cosec, sec and cot are their reciprocals. The ratios depend only on the angle, not on how big the triangle is.",
+      "hi": "समकोण त्रिभुज के न्यून कोण A के लिए: sin A = सम्मुख ÷ कर्ण, cos A = आसन्न ÷ कर्ण, tan A = सम्मुख ÷ आसन्न। cosec, sec और cot इनके व्युत्क्रम हैं। ये अनुपात केवल कोण पर निर्भर करते हैं, त्रिभुज कितना बड़ा है इस पर नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In △ABC, right-angled at B, AB = 5 cm and BC = 12 cm. What is sin A?",
+        "hi": "△ABC में B पर समकोण है, AB = 5 सेमी और BC = 12 सेमी। sin A क्या है?"
+       },
+       "options": [
+        "12/13",
+        "5/13",
+        "12/5",
+        "13/12"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "AC = √(25 + 144) = 13. The side opposite A is BC = 12, so sin A = 12/13.",
+        "hi": "AC = √(25 + 144) = 13। A की सम्मुख भुजा BC = 12 है, इसलिए sin A = 12/13।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5/13 is adjacent ÷ hypotenuse, which is cos A.",
+         "hi": "5/13 आसन्न ÷ कर्ण है, यानी cos A।"
+        },
+        {
+         "en": "12/5 is opposite ÷ adjacent, which is tan A.",
+         "hi": "12/5 सम्मुख ÷ आसन्न है, यानी tan A।"
+        },
+        {
+         "en": "13/12 is hypotenuse ÷ opposite, which is cosec A.",
+         "hi": "13/12 कर्ण ÷ सम्मुख है, यानी cosec A।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If tan A = 3/4, what is cos A?",
+        "hi": "यदि tan A = 3/4 है, तो cos A क्या है?"
+       },
+       "options": [
+        "4/5",
+        "3/5",
+        "4/3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Take opposite 3 and adjacent 4; the hypotenuse is 5, so cos A = 4/5.",
+        "hi": "सम्मुख 3 और आसन्न 4 लो; कर्ण 5 होगा, इसलिए cos A = 4/5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3/5 is opposite ÷ hypotenuse, which is sin A.",
+         "hi": "3/5 सम्मुख ÷ कर्ण है, यानी sin A।"
+        },
+        {
+         "en": "4/3 is cot A, the reciprocal of tan A.",
+         "hi": "4/3, cot A है, यानी tan A का व्युत्क्रम।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag the angle close to 0° and then close to 90°. What happens to sin, cos and tan near each end?",
+      "hi": "आज़माओ: कोण को 0° के पास और फिर 90° के पास ले जाओ। दोनों सिरों के पास sin, cos और tan का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch08-special-angles",
+   "topic": "8.3",
+   "template": "trig",
+   "title": {
+    "en": "Ratios of 30°, 45° and 60°",
+    "hi": "30°, 45° और 60° के अनुपात"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "ratios",
+    "angle": 30
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At 45° the two shorter sides of the right triangle are equal. What is tan 45°?",
+      "hi": "45° पर समकोण त्रिभुज की दोनों छोटी भुजाएँ बराबर होती हैं। tan 45° क्या है?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "Exactly 1",
+       "hi": "ठीक 1"
+      },
+      {
+       "id": "half",
+       "en": "One half",
+       "hi": "आधा"
+      },
+      {
+       "id": "root",
+       "en": "Square root of 3",
+       "hi": "3 का वर्गमूल"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the angle slider to 45° and read the exact values.",
+      "hi": "कोण स्लाइडर को 45° पर ले जाओ और सटीक मान पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Now drag it to 60°. Compare sin 60° with cos 30°.",
+      "hi": "अब इसे 60° पर ले जाओ। sin 60° की तुलना cos 30° से करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At 45° the triangle is half a square, so opposite = adjacent and tan 45° = 1, sin 45° = cos 45° = 1/√2. Half of an equilateral triangle gives sin 30° = 1/2, cos 30° = √3/2, tan 30° = 1/√3, and the same numbers swap for 60°. sin 0° = 0 and sin 90° = 1.",
+      "hi": "45° पर त्रिभुज आधा वर्ग होता है, इसलिए सम्मुख = आसन्न और tan 45° = 1, sin 45° = cos 45° = 1/√2। समबाहु त्रिभुज का आधा भाग sin 30° = 1/2, cos 30° = √3/2, tan 30° = 1/√3 देता है, और 60° के लिए यही संख्याएँ अदला-बदली हो जाती हैं। sin 0° = 0 और sin 90° = 1।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the value of 2 sin 30° + tan 45°?",
+        "hi": "2 sin 30° + tan 45° का मान क्या है?"
+       },
+       "options": [
+        "2",
+        "1",
+        "1 + √3",
+        "3/2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 × 1/2 + 1 = 1 + 1 = 2.",
+        "hi": "2 × 1/2 + 1 = 1 + 1 = 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That forgets tan 45° = 1, or takes sin 30° as 0.",
+         "hi": "इसमें tan 45° = 1 छूट गया, या sin 30° को 0 मान लिया।"
+        },
+        {
+         "en": "√3 belongs to tan 60°, not tan 45°.",
+         "hi": "√3, tan 60° का मान है, tan 45° का नहीं।"
+        },
+        {
+         "en": "That forgets the 2 in front of sin 30°.",
+         "hi": "इसमें sin 30° के आगे वाला 2 छूट गया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which angle has cos equal to 1/2?",
+        "hi": "किस कोण का cos 1/2 के बराबर है?"
+       },
+       "options": [
+        "60°",
+        "30°",
+        "45°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "cos 60° = 1/2, the same as sin 30°.",
+        "hi": "cos 60° = 1/2, जो sin 30° के बराबर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "cos 30° = √3/2; it is sin 30° that equals 1/2.",
+         "hi": "cos 30° = √3/2 है; 1/2 तो sin 30° है।"
+        },
+        {
+         "en": "cos 45° = 1/√2, which is about 0.71.",
+         "hi": "cos 45° = 1/√2, जो लगभग 0.71 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: switch on sec and cosec. Check that sec 60° = 2 and cosec 30° = 2. Why are they equal?",
+      "hi": "आज़माओ: sec और cosec चालू करो। जाँचो कि sec 60° = 2 और cosec 30° = 2 है। ये बराबर क्यों हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch08-identities",
+   "topic": "8.4",
+   "template": "trig",
+   "title": {
+    "en": "Identities that are true at every angle",
+    "hi": "हर कोण पर सही सर्वसमिकाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "identities",
+    "angle": 30
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Move the angle anywhere. Will sin²θ + cos²θ change?",
+      "hi": "कोण को कहीं भी ले जाओ। क्या sin²θ + cos²θ बदलेगा?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "No, it stays 1",
+       "hi": "नहीं, वह 1 ही रहेगा"
+      },
+      {
+       "id": "grows",
+       "en": "Yes, it grows with the angle",
+       "hi": "हाँ, कोण के साथ बढ़ेगा"
+      },
+      {
+       "id": "zero",
+       "en": "It becomes 0 at 45°",
+       "hi": "45° पर वह 0 हो जाएगा"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the angle slider slowly and watch both sides of each identity.",
+      "hi": "कोण स्लाइडर को धीरे-धीरे खींचो और हर सर्वसमिका के दोनों पक्ष देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:sec",
+     "expect": "changed",
+     "say": {
+      "en": "Switch on sec to unlock another identity.",
+      "hi": "एक और सर्वसमिका खोलने के लिए sec चालू करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a right triangle, opposite² + adjacent² = hypotenuse². Divide by hypotenuse² to get sin²θ + cos²θ = 1. Divide by adjacent² for 1 + tan²θ = sec²θ, and by opposite² for 1 + cot²θ = cosec²θ. They hold for every angle where both sides are defined.",
+      "hi": "समकोण त्रिभुज में सम्मुख² + आसन्न² = कर्ण²। कर्ण² से भाग देने पर sin²θ + cos²θ = 1 मिलता है। आसन्न² से भाग देने पर 1 + tan²θ = sec²θ, और सम्मुख² से भाग देने पर 1 + cot²θ = cosec²θ। ये उन सभी कोणों पर सही हैं जहाँ दोनों पक्ष परिभाषित हों।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If sin θ = 3/5 for an acute angle θ, what is cos θ?",
+        "hi": "यदि किसी न्यून कोण θ के लिए sin θ = 3/5 है, तो cos θ क्या है?"
+       },
+       "options": [
+        "4/5",
+        "2/5",
+        "5/3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "cos²θ = 1 − 9/25 = 16/25, so cos θ = 4/5.",
+        "hi": "cos²θ = 1 − 9/25 = 16/25, इसलिए cos θ = 4/5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 − 3/5 = 2/5 forgets the squares: the identity is about sin² and cos².",
+         "hi": "1 − 3/5 = 2/5 में वर्ग छूट गए: सर्वसमिका sin² और cos² की है।"
+        },
+        {
+         "en": "5/3 is cosec θ, the reciprocal of sin θ.",
+         "hi": "5/3, cosec θ है, यानी sin θ का व्युत्क्रम।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is sec²θ − tan²θ?",
+        "hi": "sec²θ − tan²θ क्या है?"
+       },
+       "options": [
+        "1",
+        "0",
+        {
+         "en": "It depends on θ",
+         "hi": "यह θ पर निर्भर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "From 1 + tan²θ = sec²θ, the difference is always 1.",
+        "hi": "1 + tan²θ = sec²θ से अंतर हमेशा 1 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "sec θ is always bigger than tan θ for acute angles, so the difference is not 0.",
+         "hi": "न्यून कोणों में sec θ हमेशा tan θ से बड़ा होता है, इसलिए अंतर 0 नहीं।"
+        },
+        {
+         "en": "An identity is true for every allowed θ, so the answer is the same each time.",
+         "hi": "सर्वसमिका हर मान्य θ के लिए सही होती है, इसलिए उत्तर हर बार एक ही है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: switch on cot and cosec too. At which angle does each identity stop showing a value, and why?",
+      "hi": "आज़माओ: cot और cosec भी चालू करो। किस कोण पर कोई सर्वसमिका मान दिखाना बंद करती है, और क्यों?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Chapter hook: a ladder against a wall",
+   "shows": "An aluminium ladder leaning against the white wall of an Indian house, its foot on the ground some distance from the wall",
+   "view": "Side-on view so the wall, ground and ladder form a clear right triangle",
+   "right": "Wall vertical, ground level, ladder straight",
+   "avoid": "People on the ladder, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.3",
+   "use": "Set squares for 30-60-90 and 45-45-90",
+   "shows": "A 30°-60°-90° and a 45°-45°-90° transparent set square lying side by side",
+   "view": "From above, transparent background",
+   "right": "Angles true; the 45° square has two equal sides",
+   "avoid": "Printed scale numbers or brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "8.2",
+   "use": "A ramp at a railway station",
+   "shows": "A wheelchair ramp beside the steps of an Indian railway station platform",
+   "view": "Side view, clear daylight",
+   "right": "Ramp a straight slope, rise and run easy to see",
+   "avoid": "People's faces, station name boards"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "8.2",
+   "use": "Right-triangle base for the ratios lab",
+   "shows": "A clean right triangle cut from coloured card lying on squared paper, its right angle in the corner",
+   "view": "From above, even light",
+   "right": "The right angle exactly 90°",
+   "avoid": "Letters, numbers, arrows"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "A sundial",
+   "shows": "A stone sundial in an Indian garden or observatory, its pointer casting a sharp shadow",
+   "view": "Three-quarter view, bright sun",
+   "right": "Shadow crisp and straight",
+   "avoid": "Tourists, text plaques"
+  }
+ ]
+}

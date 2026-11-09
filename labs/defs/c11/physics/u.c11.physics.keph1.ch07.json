@@ -1,0 +1,724 @@
+{
+ "chapter_key": "u.c11.physics.keph1.ch07",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "Gravitation",
+ "source": "https://ncert.nic.in/textbook/pdf/keph107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "A short history from falling bodies to planets; the reader's story and night-sky photo set the scene."
+  },
+  {
+   "n": "7.2",
+   "title": "Kepler's laws",
+   "labs": [
+    "c11-physics-keph1-ch07-kepler-halley",
+    "c11-physics-keph1-ch07-kepler-third"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Universal law of gravitation",
+   "labs": [],
+   "why_no_lab": "F = G m₁m₂/r² is applied through the reader's worked numbers; the g and orbit labs show what it does."
+  },
+  {
+   "n": "7.4",
+   "title": "The gravitational constant",
+   "labs": [],
+   "why_no_lab": "Cavendish's torsion-balance experiment is history told best by the reader's labelled diagram."
+  },
+  {
+   "n": "7.5",
+   "title": "Acceleration due to gravity of the earth",
+   "labs": [
+    "c11-physics-keph1-ch07-g-moon"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6",
+   "title": "Acceleration due to gravity below and above the surface of the earth",
+   "labs": [],
+   "why_no_lab": "The depth slider in the gravity lab of 7.5 already shows g falling towards the centre; the change with height is worked with the reader's formula."
+  },
+  {
+   "n": "7.7",
+   "title": "Gravitational potential energy",
+   "labs": [],
+   "why_no_lab": "The −GMm/r formula and its graph are worked on paper in the reader; there is nothing to experiment with."
+  },
+  {
+   "n": "7.8",
+   "title": "Escape speed",
+   "labs": [],
+   "why_no_lab": "No template launches a body hard enough to leave the Earth; the reader's numbers for the Earth and the Moon teach it."
+  },
+  {
+   "n": "7.9",
+   "title": "Earth satellites",
+   "labs": [
+    "c11-physics-keph1-ch07-satellites"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.10",
+   "title": "Energy of an orbiting satellite",
+   "labs": [],
+   "why_no_lab": "The kinetic, potential and total energy of a satellite are worked on paper from 7.7 and 7.9 in the reader."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph1-ch07-kepler-halley",
+   "topic": "7.2",
+   "template": "sky",
+   "title": {
+    "en": "Halley's comet: Kepler's first and second laws",
+    "hi": "हैली धूमकेतु: केप्लर का पहला और दूसरा नियम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "orbits"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Halley's comet goes round the Sun on a long, stretched path. Where does it move fastest?",
+      "hi": "हैली धूमकेतु सूरज के चारों ओर एक लंबे, खिंचे रास्ते पर घूमता है। यह सबसे तेज़ कहाँ चलता है?"
+     },
+     "options": [
+      {
+       "id": "near",
+       "en": "Closest to the Sun",
+       "hi": "सूरज के सबसे पास"
+      },
+      {
+       "id": "far",
+       "en": "Farthest from the Sun",
+       "hi": "सूरज से सबसे दूर"
+      },
+      {
+       "id": "same",
+       "en": "Everywhere at the same speed",
+       "hi": "हर जगह एक-सी चाल से"
+      }
+     ],
+     "answer": "near"
+    },
+    {
+     "kind": "do",
+     "target": "planet:halley",
+     "expect": "picked:halley",
+     "say": {
+      "en": "Press Halley's comet and watch it go round.",
+      "hi": "\"हैली धूमकेतु\" दबाओ और इसे घूमते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Kepler's first law: every planet or comet moves on an ellipse with the Sun at one focus, not at the centre. Second law: the line from the Sun to the body sweeps equal areas in equal times; the coloured slices all have the same area. Near the Sun the slices are short and wide, so the comet must race along; far away they are long and thin, so it crawls. This is angular momentum being conserved.",
+      "hi": "केप्लर का पहला नियम: हर ग्रह या धूमकेतु दीर्घवृत्त पर चलता है और सूरज उसकी एक नाभि पर होता है, केंद्र पर नहीं। दूसरा नियम: सूरज से पिंड तक की रेखा बराबर समय में बराबर क्षेत्रफल घेरती है; सभी रंगीन टुकड़ों का क्षेत्रफल बराबर है। सूरज के पास टुकड़े छोटे और चौड़े हैं, इसलिए धूमकेतु को तेज़ भागना पड़ता है; दूर वे लंबे और पतले हैं, इसलिए वह धीरे सरकता है। यही कोणीय संवेग का संरक्षण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where is the Sun on a planet's elliptical orbit?",
+        "hi": "ग्रह की दीर्घवृत्तीय कक्षा में सूरज कहाँ होता है?"
+       },
+       "options": [
+        {
+         "en": "At one focus",
+         "hi": "एक नाभि पर"
+        },
+        {
+         "en": "At the centre of the ellipse",
+         "hi": "दीर्घवृत्त के केंद्र पर"
+        },
+        {
+         "en": "On the orbit itself",
+         "hi": "कक्षा के ऊपर ही"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Kepler found the Sun at one focus; that is why the distance to the Sun changes during the year.",
+        "hi": "केप्लर ने पाया कि सूरज एक नाभि पर है; इसीलिए साल भर सूरज की दूरी बदलती रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If the Sun were at the centre, the nearest and farthest points would be equally far, and they are not.",
+         "hi": "अगर सूरज केंद्र पर होता, तो सबसे पास और सबसे दूर के बिंदु बराबर दूर होते, जबकि ऐसा नहीं है।"
+        },
+        {
+         "en": "The body never touches the Sun; the Sun is inside the ellipse.",
+         "hi": "पिंड सूरज को कभी नहीं छूता; सूरज दीर्घवृत्त के अंदर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The Earth is closest to the Sun in early January. At that time the Earth moves:",
+        "hi": "पृथ्वी जनवरी की शुरुआत में सूरज के सबसे पास होती है। उस समय पृथ्वी चलती है:"
+       },
+       "options": [
+        {
+         "en": "A little faster than in July",
+         "hi": "जुलाई से थोड़ी तेज़"
+        },
+        {
+         "en": "A little slower than in July",
+         "hi": "जुलाई से थोड़ी धीमी"
+        },
+        {
+         "en": "At exactly the same speed as in July",
+         "hi": "जुलाई जितनी ही चाल से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal areas in equal times means the speed is highest at the closest point.",
+        "hi": "बराबर समय में बराबर क्षेत्रफल का अर्थ है कि सबसे पास वाले बिंदु पर चाल सबसे अधिक होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Slower near the Sun would sweep too little area there.",
+         "hi": "सूरज के पास धीमी चाल से वहाँ बहुत कम क्षेत्रफल घिरता।"
+        },
+        {
+         "en": "The Earth's orbit is nearly a circle, but not exactly, so the speed changes a little.",
+         "hi": "पृथ्वी की कक्षा लगभग वृत्त है, पर पूरी तरह नहीं, इसलिए चाल थोड़ी बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick the Earth and Mercury and compare their shapes. Drag the shape slider to make your own very stretched orbit.",
+      "hi": "पृथ्वी और बुध चुनकर उनके आकार की तुलना करो। आकार वाला स्लाइडर खिसकाकर अपनी बहुत खिंची कक्षा बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch07-kepler-third",
+   "topic": "7.2",
+   "template": "sky",
+   "title": {
+    "en": "Kepler's third law: bigger orbit, longer year",
+    "hi": "केप्लर का तीसरा नियम: बड़ी कक्षा, लंबा वर्ष"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "orbits"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "planet:jupiter",
+     "expect": "picked:jupiter",
+     "say": {
+      "en": "Press Jupiter and read its distance and its year.",
+      "hi": "\"बृहस्पति\" दबाओ और इसकी दूरी और इसका वर्ष पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A planet's average distance from the Sun is 4 AU (4 times the Earth's). How long is its year?",
+      "hi": "किसी ग्रह की सूरज से औसत दूरी 4 AU है (पृथ्वी की 4 गुनी)। उसका वर्ष कितना लंबा होगा?"
+     },
+     "options": [
+      {
+       "id": "8",
+       "en": "8 Earth years",
+       "hi": "पृथ्वी के 8 वर्ष"
+      },
+      {
+       "id": "4",
+       "en": "4 Earth years",
+       "hi": "पृथ्वी के 4 वर्ष"
+      },
+      {
+       "id": "16",
+       "en": "16 Earth years",
+       "hi": "पृथ्वी के 16 वर्ष"
+      }
+     ],
+     "answer": "8"
+    },
+    {
+     "kind": "do",
+     "target": "slider:size",
+     "expect": "moved",
+     "say": {
+      "en": "Drag the Size slider until the distance reads about 4 AU, and read the year.",
+      "hi": "\"माप\" स्लाइडर तब तक खिसकाओ जब तक दूरी लगभग 4 AU न दिखे, और वर्ष पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Kepler's third law: the square of the period is proportional to the cube of the average distance, T² ∝ a³. In Earth years and AU, T = a × √a. For a = 4, T = 4 × 2 = 8 years. Newton later showed this follows from a gravity that weakens as 1/r².",
+      "hi": "केप्लर का तीसरा नियम: आवर्तकाल का वर्ग औसत दूरी के घन के समानुपाती होता है, T² ∝ a³। पृथ्वी-वर्ष और AU में T = a × √a। a = 4 के लिए T = 4 × 2 = 8 वर्ष। बाद में न्यूटन ने दिखाया कि यह 1/r² से घटने वाले गुरुत्व से निकलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Jupiter is about 5.2 AU from the Sun. Its year is closest to:",
+        "hi": "बृहस्पति सूरज से लगभग 5.2 AU दूर है। उसका वर्ष सबसे पास है:"
+       },
+       "options": [
+        {
+         "en": "12 Earth years",
+         "hi": "पृथ्वी के 12 वर्ष"
+        },
+        {
+         "en": "5 Earth years",
+         "hi": "पृथ्वी के 5 वर्ष"
+        },
+        {
+         "en": "27 Earth years",
+         "hi": "पृथ्वी के 27 वर्ष"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "T = 5.2 × √5.2 ≈ 5.2 × 2.28 ≈ 11.9 years.",
+        "hi": "T = 5.2 × √5.2 ≈ 5.2 × 2.28 ≈ 11.9 वर्ष।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That assumes T grows like a; it grows faster, like a to the power 1.5.",
+         "hi": "इसमें माना गया कि T, a की तरह बढ़ता है; यह उससे तेज़, a की घात 1.5 जैसा बढ़ता है।"
+        },
+        {
+         "en": "27 is about 5.2²; the law takes the square root of a³, not a².",
+         "hi": "27 लगभग 5.2² है; नियम a³ का वर्गमूल लेता है, a² नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was 16 years wrong for a = 4 AU?",
+        "hi": "a = 4 AU के लिए 16 वर्ष गलत क्यों था?"
+       },
+       "options": [
+        {
+         "en": "It used T ∝ a², but the law is T² ∝ a³",
+         "hi": "इसमें T ∝ a² लिया गया, जबकि नियम T² ∝ a³ है"
+        },
+        {
+         "en": "Planets farther out have shorter years",
+         "hi": "दूर के ग्रहों का वर्ष छोटा होता है"
+        },
+        {
+         "en": "The period does not depend on distance",
+         "hi": "आवर्तकाल दूरी पर निर्भर नहीं करता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "T² = a³ = 64, so T = 8; 16 would need T = a².",
+        "hi": "T² = a³ = 64, तो T = 8; 16 के लिए T = a² होना पड़ता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Farther planets move more slowly on a longer path, so their years are longer.",
+         "hi": "दूर के ग्रह लंबे रास्ते पर धीमे चलते हैं, इसलिए उनका वर्ष लंबा होता है।"
+        },
+        {
+         "en": "The slider shows the year growing as the orbit grows.",
+         "hi": "स्लाइडर दिखाता है कि कक्षा बढ़ने पर वर्ष बढ़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick each planet in turn and check that year² ÷ distance³ comes out close to 1 every time.",
+      "hi": "हर ग्रह बारी-बारी चुनो और जाँचो कि वर्ष² ÷ दूरी³ हर बार लगभग 1 आता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch07-g-moon",
+   "topic": "7.5",
+   "template": "forces",
+   "title": {
+    "en": "Dropping a ball on the Moon",
+    "hi": "चंद्रमा पर गेंद गिराना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "gravity",
+    "object": "moon",
+    "mass": 10
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On the Earth a ball falls 20 m in about 2 s. On the Moon, where g is about one-sixth of the Earth's, it takes about:",
+      "hi": "पृथ्वी पर एक गेंद 20 m लगभग 2 s में गिरती है। चंद्रमा पर, जहाँ g पृथ्वी का लगभग छठा भाग है, इसमें लगेंगे लगभग:"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5 s",
+       "hi": "5 सेकंड"
+      },
+      {
+       "id": "12",
+       "en": "12 s (six times as long)",
+       "hi": "12 सेकंड (छह गुना)"
+      },
+      {
+       "id": "2",
+       "en": "2 s, the same",
+       "hi": "2 सेकंड, उतने ही"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "moved",
+     "say": {
+      "en": "Press Drop the ball and watch it fall on the Moon.",
+      "hi": "\"गेंद गिराओ\" दबाओ और चंद्रमा पर इसे गिरते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At a planet's surface g = GM/R². The Moon has much less mass, so g there is only 1.62 m/s². The fall time is t = √(2h/g) = √(40/1.62) ≈ 5 s. The same 10 kg mass weighs 98 N on the Earth but only about 16 N on the Moon: mass stays, weight changes.",
+      "hi": "किसी ग्रह की सतह पर g = GM/R²। चंद्रमा का द्रव्यमान बहुत कम है, इसलिए वहाँ g केवल 1.62 m/s² है। गिरने का समय t = √(2h/g) = √(40/1.62) ≈ 5 s। वही 10 kg द्रव्यमान पृथ्वी पर 98 N भारी है पर चंद्रमा पर केवल लगभग 16 N: द्रव्यमान वही रहता है, भार बदलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why was 12 s wrong?",
+        "hi": "12 s गलत क्यों था?"
+       },
+       "options": [
+        {
+         "en": "Fall time grows as 1/√g, not 1/g, so one-sixth of g gives about √6 ≈ 2.5 times longer",
+         "hi": "गिरने का समय 1/√g की तरह बढ़ता है, 1/g की तरह नहीं, इसलिए छठे भाग का g लगभग √6 ≈ 2.5 गुना समय देता है"
+        },
+        {
+         "en": "The Moon has no gravity at all",
+         "hi": "चंद्रमा पर गुरुत्व होता ही नहीं"
+        },
+        {
+         "en": "Heavier balls fall faster on the Moon",
+         "hi": "चंद्रमा पर भारी गेंदें तेज़ गिरती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "h = ½ g t² gives t = √(2h/g); dividing g by 6 multiplies t by √6.",
+        "hi": "h = ½ g t² से t = √(2h/g); g को 6 से भाग देने पर t, √6 से गुणा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The ball does fall on the Moon, just more slowly; g is 1.62 m/s².",
+         "hi": "चंद्रमा पर गेंद गिरती है, बस धीरे; g 1.62 m/s² है।"
+        },
+        {
+         "en": "With no air, every mass falls the same way on the Moon too.",
+         "hi": "हवा न होने पर चंद्रमा पर भी हर द्रव्यमान एक जैसा गिरता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "An astronaut's mass is 60 kg on the Earth. On the Moon her mass is:",
+        "hi": "एक अंतरिक्ष यात्री का द्रव्यमान पृथ्वी पर 60 kg है। चंद्रमा पर उसका द्रव्यमान है:"
+       },
+       "options": [
+        {
+         "en": "60 kg",
+         "hi": "60 kg (किलोग्राम)"
+        },
+        {
+         "en": "10 kg",
+         "hi": "10 kg (किलोग्राम)"
+        },
+        {
+         "en": "0 kg",
+         "hi": "0 kg (किलोग्राम)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mass is the amount of matter and does not change; her weight falls to about 97 N.",
+        "hi": "द्रव्यमान पदार्थ की मात्रा है और नहीं बदलता; उसका भार घटकर लगभग 97 N हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One-sixth applies to her weight, not her mass.",
+         "hi": "छठा भाग उसके भार पर लागू होता है, द्रव्यमान पर नहीं।"
+        },
+        {
+         "en": "She still has all her matter on the Moon.",
+         "hi": "चंद्रमा पर भी उसका सारा पदार्थ उसके साथ है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try Jupiter and Mars. Then go back to the Earth and move the depth slider: see g fall as you go towards the centre.",
+      "hi": "बृहस्पति और मंगल आज़माओ। फिर पृथ्वी पर लौटकर गहराई का स्लाइडर खिसकाओ: केंद्र की ओर जाते हुए g घटता देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch07-satellites",
+   "topic": "7.9",
+   "template": "sky",
+   "title": {
+    "en": "Satellites: low and fast, high and slow",
+    "hi": "उपग्रह: नीचे तेज़, ऊपर धीमे"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "satellite"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The space station flies about 420 km up; a TV satellite is about 36,000 km up. Which goes round the Earth faster?",
+      "hi": "अंतरिक्ष स्टेशन लगभग 420 km ऊपर उड़ता है; टीवी उपग्रह लगभग 36,000 km ऊपर है। पृथ्वी का चक्कर कौन तेज़ लगाता है?"
+     },
+     "options": [
+      {
+       "id": "low",
+       "en": "The space station, lower down",
+       "hi": "अंतरिक्ष स्टेशन, जो नीचे है"
+      },
+      {
+       "id": "high",
+       "en": "The TV satellite, higher up",
+       "hi": "टीवी उपग्रह, जो ऊपर है"
+      },
+      {
+       "id": "same",
+       "en": "Both at the same speed",
+       "hi": "दोनों एक-सी चाल से"
+      }
+     ],
+     "answer": "low"
+    },
+    {
+     "kind": "do",
+     "target": "sat:iss",
+     "expect": "picked:iss",
+     "say": {
+      "en": "Press Space station (ISS) and read its speed and period.",
+      "hi": "\"अंतरिक्ष स्टेशन (ISS)\" दबाओ और इसकी चाल और आवर्तकाल पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "sat:geo",
+     "expect": "picked:geo",
+     "say": {
+      "en": "Now press the Weather and TV satellite and compare.",
+      "hi": "अब \"मौसम और टीवी उपग्रह\" दबाओ और तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Gravity provides the centripetal force: GMm/r² = mv²/r, so v = √(GM/r). Closer to the Earth gravity is stronger, so the satellite must move faster: the ISS goes at about 7.7 km/s and circles the Earth in about 92 minutes. At 36,000 km the speed is about 3.1 km/s and one orbit takes 23 h 56 min, exactly one turn of the Earth, so it stays over India.",
+      "hi": "गुरुत्व ही अभिकेंद्र बल देता है: GMm/r² = mv²/r, इसलिए v = √(GM/r)। पृथ्वी के पास गुरुत्व ज़्यादा है, इसलिए उपग्रह को तेज़ चलना पड़ता है: ISS लगभग 7.7 km/s से चलता है और लगभग 92 मिनट में पृथ्वी का चक्कर लगाता है। 36,000 km पर चाल लगभग 3.1 km/s है और एक चक्कर 23 घंटे 56 मिनट में होता है, ठीक पृथ्वी के एक घूर्णन जितना, इसलिए यह भारत के ऊपर टिका रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a dish antenna for TV point at one fixed spot in the sky?",
+        "hi": "टीवी की डिश एंटीना आकाश में एक ही जगह की ओर क्यों रहती है?"
+       },
+       "options": [
+        {
+         "en": "Its satellite turns with the Earth once a day, so it seems to stay still",
+         "hi": "उसका उपग्रह पृथ्वी के साथ दिन में एक बार घूमता है, इसलिए स्थिर लगता है"
+        },
+        {
+         "en": "The satellite is not moving at all",
+         "hi": "उपग्रह बिल्कुल नहीं चलता"
+        },
+        {
+         "en": "The satellite is so far that its motion cannot be seen",
+         "hi": "उपग्रह इतना दूर है कि उसकी गति दिखती नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A geostationary satellite has a period of one sidereal day and moves eastward above the equator, keeping pace with the ground.",
+        "hi": "भूस्थिर उपग्रह का आवर्तकाल एक नाक्षत्र दिन है और यह विषुवत के ऊपर पूर्व की ओर चलता है, ज़मीन के साथ क़दम मिलाकर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It moves at about 3 km/s; without motion it would fall.",
+         "hi": "यह लगभग 3 km/s से चलता है; बिना गति के यह गिर जाता।"
+        },
+        {
+         "en": "Distance does not hide motion; its period simply matches the Earth's spin.",
+         "hi": "दूरी गति को नहीं छिपाती; बस इसका आवर्तकाल पृथ्वी के घूर्णन से मेल खाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If a satellite is moved to a higher circular orbit, its speed:",
+        "hi": "अगर किसी उपग्रह को ऊँची वृत्ताकार कक्षा में ले जाएँ, तो उसकी चाल:"
+       },
+       "options": [
+        {
+         "en": "Decreases",
+         "hi": "घटती है"
+        },
+        {
+         "en": "Increases",
+         "hi": "बढ़ती है"
+        },
+        {
+         "en": "Stays the same",
+         "hi": "वही रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "v = √(GM/r): a bigger r gives a smaller v.",
+        "hi": "v = √(GM/r): बड़ा r छोटा v देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Higher up gravity is weaker, so less speed is needed to stay in orbit.",
+         "hi": "ऊपर गुरुत्व कमज़ोर है, इसलिए कक्षा में रहने के लिए कम चाल चाहिए।"
+        },
+        {
+         "en": "The speed depends on r, so changing the orbit changes it.",
+         "hi": "चाल r पर निर्भर है, इसलिए कक्षा बदलने से वह बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the navigation (GPS) satellite, then drag the height slider and watch the speed and period change together.",
+      "hi": "नेविगेशन (GPS) उपग्रह आज़माओ, फिर ऊँचाई का स्लाइडर खिसकाकर चाल और आवर्तकाल को साथ-साथ बदलते देखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Chapter hook: gravity holds the Moon",
+   "shows": "A full Moon rising over an Indian city skyline at dusk",
+   "view": "Long lens from a rooftop, Moon large near the horizon",
+   "right": "Real Moon features sharp; buildings as dark shapes",
+   "avoid": "Fake composite Moon, readable signboards"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "7.2",
+   "use": "Kepler's laws",
+   "shows": "An ellipse with the Sun at one focus, the empty focus marked, and two shaded equal-area slices: one short and wide near the Sun, one long and thin far away",
+   "view": "Flat diagram, dark-blue background, yellow Sun",
+   "right": "The Sun clearly off-centre; both slices of equal area",
+   "avoid": "An orbit drawn as a perfect circle"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "7.5",
+   "use": "Gravity on different worlds",
+   "shows": "Rendered Earth, Moon and Mars side by side with their g values, and the same 10 kg box on a spring scale under each",
+   "view": "Front view, true relative sizes of the three bodies",
+   "right": "Scale readings 98 N, 16 N and 37 N",
+   "avoid": "Cartoon faces on planets"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "7.5",
+   "use": "Weightlessness and weight",
+   "shows": "An astronaut floating inside a space station module, a pen floating beside her (illustration)",
+   "view": "Wide view of the module interior",
+   "right": "Nothing resting on the floor; the pen and the person fall together",
+   "avoid": "Real agency logos or a real person's name"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "7.9",
+   "use": "Satellite orbits to scale",
+   "shows": "The Earth with three orbits drawn to scale: the space station hugging the surface, GPS at about 20,000 km, a geostationary ring at about 36,000 km",
+   "view": "Above the North Pole, all orbits as circles",
+   "right": "The geostationary ring about 6.6 Earth radii from the centre",
+   "avoid": "Orbits not to scale, satellites drawn larger than the Earth"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "7.9",
+   "use": "Everyday satellite link",
+   "shows": "A rooftop DTH dish antenna pointing up at a fixed angle",
+   "view": "Side view against the sky, the feed arm visible",
+   "right": "Dish pointing south-ish and upward, as seen from India",
+   "avoid": "Brand names on the dish"
+  }
+ ]
+}

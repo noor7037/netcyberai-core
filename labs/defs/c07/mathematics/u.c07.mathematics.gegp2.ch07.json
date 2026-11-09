@@ -1,0 +1,1044 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp2.ch07",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "Finding the Unknown",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp207.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Find the unknowns: weighing-scale puzzles, matchstick patterns and forming equations",
+   "labs": [
+    "c07-mathematics-gegp2-ch07-scale-puzzle",
+    "c07-mathematics-gegp2-ch07-matchsticks",
+    "c07-mathematics-gegp2-ch07-frame-equations"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Solving equations systematically: trial and error, then the same operation on both sides",
+   "labs": [
+    "c07-mathematics-gegp2-ch07-trial-and-error",
+    "c07-mathematics-gegp2-ch07-both-sides"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Mind the mistake, mend the mistake",
+   "labs": [
+    "c07-mathematics-gegp2-ch07-mind-the-mistake"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "A pinch of history: bīja-gaṇita and Brahmagupta",
+   "labs": [],
+   "why_no_lab": "It is a story of ideas and people, best told by the reader with pictures of old manuscripts."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp2-ch07-scale-puzzle",
+   "topic": "7.1",
+   "template": "algebra",
+   "title": {
+    "en": "The weighing-scale puzzle",
+    "hi": "तराज़ू की पहेली"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "balance",
+    "equation": "3x+3=x+11"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Three bags of x and 3 blocks balance one bag and 11 blocks. If you take 3 blocks off both pans, will it stay level?",
+      "hi": "x के तीन थैले और 3 गुटके, एक थैले और 11 गुटकों के बराबर हैं। अगर दोनों पलड़ों से 3 गुटके हटाओ, तो क्या तराज़ू बराबर रहेगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, the same was taken from both sides",
+       "hi": "हाँ, दोनों ओर से बराबर हटाया"
+      },
+      {
+       "id": "no",
+       "en": "No, it will tip",
+       "hi": "नहीं, झुक जाएगा"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "op:-",
+     "expect": "balanced",
+     "say": {
+      "en": "The number is set to 3. Tap − to take 3 blocks off both pans.",
+      "hi": "संख्या 3 पर है। दोनों पलड़ों से 3 गुटके हटाने के लिए − दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:-",
+     "expect": "balanced",
+     "say": {
+      "en": "Now tap the x button, set the number to 1 and tap − to take one bag off both pans.",
+      "hi": "अब x बटन दबाओ, संख्या 1 करो और दोनों पलड़ों से एक थैला हटाने के लिए − दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:÷",
+     "expect": "solved:4",
+     "say": {
+      "en": "Tap the number button, set it to 2 and tap ÷ to share both pans into 2 equal parts.",
+      "hi": "संख्या बटन दबाओ, उसे 2 करो और दोनों पलड़ों को 2 बराबर भागों में बाँटने के लिए ÷ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Taking away the same weight from both pans keeps the scale level. After removing 3 blocks and one bag, 2 bags balance 8 blocks, so one bag is 4. Check: 3 × 4 + 3 = 15 and 4 + 11 = 15. Both sides are equal.",
+      "hi": "दोनों पलड़ों से बराबर वज़न हटाने पर तराज़ू बराबर रहता है। 3 गुटके और एक थैला हटाने के बाद 2 थैले 8 गुटकों के बराबर हैं, इसलिए एक थैला 4 का है। जाँचो: 3 × 4 + 3 = 15 और 4 + 11 = 15। दोनों ओर बराबर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What would happen if you took 3 blocks off the left pan only?",
+        "hi": "अगर सिर्फ़ बाएँ पलड़े से 3 गुटके हटाते तो क्या होता?"
+       },
+       "options": [
+        {
+         "en": "The scale would tip; the sides are no longer equal",
+         "hi": "तराज़ू झुक जाता; दोनों ओर अब बराबर नहीं"
+        },
+        {
+         "en": "Nothing changes",
+         "hi": "कुछ नहीं बदलता"
+        },
+        {
+         "en": "x would become 3",
+         "hi": "x, 3 हो जाता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An equation is a balanced scale: whatever you do must be done to both sides.",
+        "hi": "समीकरण एक बराबर तराज़ू है: जो भी करो, दोनों ओर करना होगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The left pan becomes lighter, so it rises; the balance is lost.",
+         "hi": "बायाँ पलड़ा हल्का होकर ऊपर उठ जाता; संतुलन बिगड़ जाता।"
+        },
+        {
+         "en": "The bag's weight does not change by moving blocks; only the balance is spoiled.",
+         "hi": "गुटके हटाने से थैले का वज़न नहीं बदलता; सिर्फ़ संतुलन बिगड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap Reset and solve it in a different order: remove the bag first, then the blocks. Do you get the same answer?",
+      "hi": "आज़माओ: फिर से शुरू करो और अलग क्रम में हल करो: पहले थैला हटाओ, फिर गुटके। क्या वही उत्तर मिलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch07-matchsticks",
+   "topic": "7.1",
+   "template": "algebra",
+   "title": {
+    "en": "Matchstick triangles: find the rule",
+    "hi": "माचिस की तीली वाले त्रिभुज: नियम खोजो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "pattern",
+    "equation": "2n+1",
+    "unknown": "n"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Triangles in a row share sides: 1 triangle uses 3 sticks, 2 use 5, 3 use 7. Each dot is one stick. How many sticks for 13 triangles?",
+      "hi": "एक पंक्ति के त्रिभुज भुजाएँ साझा करते हैं: 1 त्रिभुज में 3 तीलियाँ, 2 में 5, 3 में 7। हर बिंदु एक तीली है। 13 त्रिभुजों में कितनी तीलियाँ?"
+     },
+     "options": [
+      {
+       "id": "27",
+       "en": "27 sticks",
+       "hi": "27 तीलियाँ"
+      },
+      {
+       "id": "39",
+       "en": "39 sticks",
+       "hi": "39 तीलियाँ"
+      },
+      {
+       "id": "26",
+       "en": "26 sticks",
+       "hi": "26 तीलियाँ"
+      }
+     ],
+     "answer": "27"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Use the table to find the sticks in term 13, type it and tap Check.",
+      "hi": "तालिका से पद 13 की तीलियाँ निकालो, लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The first triangle needs 3 sticks, and each new triangle adds only 2, because it shares one side. So position n uses 2n + 1 sticks. For 13 triangles: 2 × 13 + 1 = 27. Making 13 separate triangles would need 39.",
+      "hi": "पहले त्रिभुज को 3 तीलियाँ चाहिए, और हर नया त्रिभुज सिर्फ़ 2 जोड़ता है, क्योंकि वह एक भुजा साझा करता है। इसलिए स्थान n पर 2n + 1 तीलियाँ। 13 त्रिभुजों के लिए: 2 × 13 + 1 = 27। 13 अलग-अलग त्रिभुज बनाते तो 39 लगतीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which position uses exactly 41 sticks?",
+        "hi": "कौन-से स्थान पर ठीक 41 तीलियाँ लगती हैं?"
+       },
+       "options": [
+        "20",
+        "21",
+        "41"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Solve 2n + 1 = 41: 2n = 40, so n = 20.",
+        "hi": "2n + 1 = 41 हल करो: 2n = 40, इसलिए n = 20।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Position 21 uses 2 × 21 + 1 = 43 sticks.",
+         "hi": "स्थान 21 पर 2 × 21 + 1 = 43 तीलियाँ लगती हैं।"
+        },
+        {
+         "en": "41 is the number of sticks, not the position.",
+         "hi": "41 तीलियों की संख्या है, स्थान नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can any position use exactly 100 sticks?",
+        "hi": "क्या किसी स्थान पर ठीक 100 तीलियाँ लग सकती हैं?"
+       },
+       "options": [
+        {
+         "en": "No: 2n + 1 is always odd",
+         "hi": "नहीं: 2n + 1 हमेशा विषम होता है"
+        },
+        {
+         "en": "Yes, position 50",
+         "hi": "हाँ, स्थान 50"
+        },
+        {
+         "en": "Yes, position 49.5",
+         "hi": "हाँ, स्थान 49.5"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2n is even, and even + 1 is odd, so 100 sticks never fits the pattern.",
+        "hi": "2n सम है, और सम + 1 विषम होता है, इसलिए 100 तीलियाँ कभी नहीं बनतीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Position 50 uses 2 × 50 + 1 = 101 sticks.",
+         "hi": "स्थान 50 पर 2 × 50 + 1 = 101 तीलियाँ लगती हैं।"
+        },
+        {
+         "en": "Positions are counting numbers; there is no position 49.5.",
+         "hi": "स्थान गिनती की संख्याएँ हैं; 49.5वाँ स्थान नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: move the term slider and check the rule 2n + 1 for terms 5, 8 and 10.",
+      "hi": "आज़माओ: पद वाला स्लाइडर खिसकाओ और पद 5, 8 और 10 के लिए नियम 2n + 1 जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch07-frame-equations",
+   "topic": "7.1",
+   "template": "match",
+   "title": {
+    "en": "From a story to an equation",
+    "hi": "कहानी से समीकरण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "plates",
+      "left": {
+       "en": "Delivery ₹40 plus ₹30 per plate; the bill is ₹400",
+       "hi": "डिलीवरी ₹40 और हर प्लेट ₹30; बिल ₹400 है"
+      },
+      "right": {
+       "en": "30p + 40 = 400",
+       "hi": "30p + 40 = 400"
+      },
+      "why": {
+       "en": "p plates cost 30p, plus the fixed ₹40.",
+       "hi": "p प्लेटों का दाम 30p, और तय ₹40।"
+      }
+     },
+     {
+      "id": "save",
+      "left": {
+       "en": "Riya has ₹200 and saves ₹50 a week; now she has ₹600",
+       "hi": "रिया के पास ₹200 हैं और वह हर हफ़्ते ₹50 बचाती है; अब उसके पास ₹600 हैं"
+      },
+      "right": {
+       "en": "200 + 50w = 600",
+       "hi": "200 + 50w = 600"
+      },
+      "why": {
+       "en": "After w weeks she has saved 50w more than ₹200.",
+       "hi": "w हफ़्तों में उसने ₹200 के ऊपर 50w बचाए।"
+      }
+     },
+     {
+      "id": "mango",
+      "left": {
+       "en": "Two baskets hold 50 mangoes; one has 10 more than the other",
+       "hi": "दो टोकरियों में 50 आम हैं; एक में दूसरी से 10 ज़्यादा"
+      },
+      "right": {
+       "en": "m + (m + 10) = 50",
+       "hi": "m + (m + 10) = 50"
+      },
+      "why": {
+       "en": "One basket has m, the other m + 10, and together 50.",
+       "hi": "एक टोकरी में m, दूसरी में m + 10, कुल 50।"
+      }
+     },
+     {
+      "id": "think",
+      "left": {
+       "en": "I think of a number, multiply by 4 and subtract 5; I get 31",
+       "hi": "मैंने एक संख्या सोची, 4 से गुणा किया और 5 घटाया; 31 मिला"
+      },
+      "right": {
+       "en": "4n − 5 = 31",
+       "hi": "4n − 5 = 31"
+      },
+      "why": {
+       "en": "Multiply first, then subtract: 4n − 5.",
+       "hi": "पहले गुणा, फिर घटाना: 4n − 5।"
+      }
+     },
+     {
+      "id": "tri",
+      "left": {
+       "en": "A row of matchstick triangles uses 41 sticks",
+       "hi": "माचिस के त्रिभुजों की एक पंक्ति में 41 तीलियाँ लगीं"
+      },
+      "right": {
+       "en": "2n + 1 = 41",
+       "hi": "2n + 1 = 41"
+      },
+      "why": {
+       "en": "Position n uses 2n + 1 sticks.",
+       "hi": "स्थान n पर 2n + 1 तीलियाँ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:plates",
+     "expect": "matched:plates",
+     "say": {
+      "en": "Tap the story about plates, then tap its equation.",
+      "hi": "प्लेटों वाली कहानी छुओ, फिर उसका समीकरण छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "\"I think of a number, multiply by 4 and subtract 5; I get 31.\" Which is right?",
+      "hi": "\"मैंने एक संख्या सोची, 4 से गुणा किया और 5 घटाया; 31 मिला।\" कौन-सा सही है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "4n − 5 = 31: multiply, then subtract",
+       "hi": "4n − 5 = 31: पहले गुणा, फिर घटाना"
+      },
+      {
+       "id": "b",
+       "en": "4(n − 5) = 31: subtract, then multiply",
+       "hi": "4(n − 5) = 31: पहले घटाना, फिर गुणा"
+      },
+      {
+       "id": "c",
+       "en": "n − 5 × 4 = 31: only 5 is multiplied",
+       "hi": "n − 5 × 4 = 31: सिर्फ़ 5 का गुणा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other stories, then tap Check.",
+      "hi": "बाकी कहानियाँ मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To form an equation, call the unknown by a letter, write each part of the story as an expression, and put = where the story says the two amounts are equal. Solving 30p + 40 = 400 gives 30p = 360, so p = 12 plates.",
+      "hi": "समीकरण बनाने के लिए अज्ञात को एक अक्षर से बुलाओ, कहानी के हर हिस्से को व्यंजक में लिखो, और जहाँ कहानी कहे कि दो राशियाँ बराबर हैं, वहाँ = लगाओ। 30p + 40 = 400 हल करने पर 30p = 360, इसलिए p = 12 प्लेटें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Solve m + (m + 10) = 50. How many mangoes are in the bigger basket?",
+        "hi": "m + (m + 10) = 50 हल करो। बड़ी टोकरी में कितने आम हैं?"
+       },
+       "options": [
+        "30",
+        "20",
+        "25"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2m + 10 = 50, so 2m = 40 and m = 20. The bigger basket has m + 10 = 30.",
+        "hi": "2m + 10 = 50, तो 2m = 40 और m = 20। बड़ी टोकरी में m + 10 = 30।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20 is m, the smaller basket; the question asks for the bigger one.",
+         "hi": "20, m है, यानी छोटी टोकरी; प्रश्न बड़ी टोकरी का है।"
+        },
+        {
+         "en": "25 would mean both baskets are equal, but one has 10 more.",
+         "hi": "25 का मतलब दोनों बराबर हैं, पर एक में 10 ज़्यादा हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make up your own story for 5x + 20 = 70 using things from your home, then solve it.",
+      "hi": "आज़माओ: अपने घर की चीज़ों से 5x + 20 = 70 के लिए अपनी कहानी बनाओ, फिर उसे हल करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch07-trial-and-error",
+   "topic": "7.2",
+   "template": "algebra",
+   "title": {
+    "en": "Guess, check and improve",
+    "hi": "अनुमान लगाओ, जाँचो, सुधारो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "balance",
+    "equation": "3n+1=28",
+    "unknown": "n"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Try n = 5 in 3n + 1: the left side is 16, but the right is 28. Should the next guess be bigger or smaller?",
+      "hi": "3n + 1 में n = 5 रखो: बायाँ 16 है, पर दायाँ 28। अगला अनुमान बड़ा हो या छोटा?"
+     },
+     "options": [
+      {
+       "id": "big",
+       "en": "Bigger",
+       "hi": "बड़ा"
+      },
+      {
+       "id": "small",
+       "en": "Smaller",
+       "hi": "छोटा"
+      }
+     ],
+     "answer": "big"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "balanced",
+     "say": {
+      "en": "Move the n slider and watch Left and Right. Stop when they are equal.",
+      "hi": "n का स्लाइडर खिसकाओ और बायाँ व दायाँ देखो। जब दोनों बराबर हों, रुक जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:-",
+     "expect": "balanced",
+     "say": {
+      "en": "Now solve it the fast way. Set the number to 1 and tap − to take 1 off both sides.",
+      "hi": "अब तेज़ तरीक़े से हल करो। संख्या 1 करो और दोनों ओर से 1 घटाने के लिए − दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:÷",
+     "expect": "solved:9",
+     "say": {
+      "en": "Set the number to 3 and tap ÷ to divide both sides by 3.",
+      "hi": "संख्या 3 करो और दोनों ओर 3 से भाग देने के लिए ÷ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At n = 9 the left side is 3 × 9 + 1 = 28, equal to the right. That is trial and error: guess, check, and use \"too small\" or \"too big\" to guess better. It works, but for big numbers it is slow. Doing the same operation to both sides is faster: 3n + 1 − 1 = 28 − 1 gives 3n = 27, and dividing by 3 gives n = 9 again.",
+      "hi": "n = 9 पर बायाँ 3 × 9 + 1 = 28 है, दाएँ के बराबर। यही प्रयत्न और त्रुटि विधि है: अनुमान लगाओ, जाँचो, और \"बहुत छोटा\" या \"बहुत बड़ा\" से बेहतर अनुमान लगाओ। यह काम करती है, पर बड़ी संख्याओं में धीमी है। दोनों ओर एक-सी क्रिया करना तेज़ है: दोनों ओर से 1 घटाने पर 3n = 27, और 3 से भाग देने पर फिर n = 9।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For 2n + 1 = 99 you try n = 50 and get 101. What next?",
+        "hi": "2n + 1 = 99 के लिए तुमने n = 50 आज़माया और 101 मिला। आगे क्या?"
+       },
+       "options": [
+        {
+         "en": "Try a slightly smaller n, like 49",
+         "hi": "थोड़ा छोटा n आज़माओ, जैसे 49"
+        },
+        {
+         "en": "Try a bigger n, like 60",
+         "hi": "बड़ा n आज़माओ, जैसे 60"
+        },
+        {
+         "en": "Give up: there is no answer",
+         "hi": "छोड़ दो: कोई उत्तर नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "101 is just above 99, so n must be a little less: 2 × 49 + 1 = 99.",
+        "hi": "101, 99 से थोड़ा ऊपर है, इसलिए n थोड़ा कम होगा: 2 × 49 + 1 = 99।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A bigger n makes 2n + 1 even bigger, moving away from 99.",
+         "hi": "बड़ा n लेने से 2n + 1 और बड़ा होगा, 99 से दूर।"
+        },
+        {
+         "en": "Being close means the answer is near; n = 49 works.",
+         "hi": "पास होना मतलब उत्तर पास ही है; n = 49 सही बैठता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Reset and use the slider again. For which values of n is the left side bigger than the right?",
+      "hi": "आज़माओ: फिर से शुरू करो और स्लाइडर फिर चलाओ। n के किन मानों पर बायाँ, दाएँ से बड़ा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch07-both-sides",
+   "topic": "7.2",
+   "template": "algebra",
+   "title": {
+    "en": "Solve step by step: unknowns on both sides",
+    "hi": "चरण-दर-चरण हल करो: दोनों ओर अज्ञात"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "balance",
+    "equation": "4m-5=2m+9",
+    "unknown": "m"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To solve 4m − 5 = 2m + 9, what could be a good first step?",
+      "hi": "4m − 5 = 2m + 9 हल करने के लिए अच्छा पहला क़दम क्या हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "add5",
+       "en": "Add 5 to both sides",
+       "hi": "दोनों ओर 5 जोड़ो"
+      },
+      {
+       "id": "sub5",
+       "en": "Subtract 5 from the left only",
+       "hi": "सिर्फ़ बाईं ओर से 5 घटाओ"
+      },
+      {
+       "id": "div4",
+       "en": "Divide the left side by 4",
+       "hi": "बाईं ओर को 4 से भाग दो"
+      }
+     ],
+     "answer": "add5"
+    },
+    {
+     "kind": "do",
+     "target": "op:+",
+     "expect": "balanced",
+     "say": {
+      "en": "Set the number to 5 and tap + to add 5 to both sides. The −5 balloons disappear.",
+      "hi": "संख्या 5 करो और दोनों ओर 5 जोड़ने के लिए + दबाओ। −5 वाले गुब्बारे ग़ायब हो जाएँगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:-",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap the m button, set the number to 2 and tap − to take 2m off both sides.",
+      "hi": "m बटन दबाओ, संख्या 2 करो और दोनों ओर से 2m हटाने के लिए − दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:÷",
+     "expect": "solved:7",
+     "say": {
+      "en": "Tap the number button, set it to 2 and tap ÷.",
+      "hi": "संख्या बटन दबाओ, उसे 2 करो और ÷ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Adding 5 to both sides gives 4m = 2m + 14. Taking 2m from both sides gives 2m = 14. Dividing both sides by 2 gives m = 7. Check: 4 × 7 − 5 = 23 and 2 × 7 + 9 = 23. Each step keeps the two sides equal, so the answer is right.",
+      "hi": "दोनों ओर 5 जोड़ने पर 4m = 2m + 14। दोनों ओर से 2m घटाने पर 2m = 14। दोनों ओर 2 से भाग देने पर m = 7। जाँचो: 4 × 7 − 5 = 23 और 2 × 7 + 9 = 23। हर क़दम दोनों ओर बराबर रखता है, इसलिए उत्तर सही है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Going from 2y + 7 = 21 to 2y = 21 − 7, what happened to + 7?",
+        "hi": "2y + 7 = 21 से 2y = 21 − 7 पर जाते हुए + 7 का क्या हुआ?"
+       },
+       "options": [
+        {
+         "en": "7 was subtracted from both sides",
+         "hi": "दोनों ओर से 7 घटाया गया"
+        },
+        {
+         "en": "7 was added to both sides",
+         "hi": "दोनों ओर 7 जोड़ा गया"
+        },
+        {
+         "en": "The 7 just disappeared",
+         "hi": "7 बस ग़ायब हो गया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Subtracting 7 from both sides removes + 7 on the left and shows − 7 on the right.",
+        "hi": "दोनों ओर से 7 घटाने पर बाईं ओर का + 7 हट जाता है और दाईं ओर − 7 दिखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding 7 would give 2y + 14 = 28, not 2y = 21 − 7.",
+         "hi": "7 जोड़ने पर 2y + 14 = 28 बनता, 2y = 21 − 7 नहीं।"
+        },
+        {
+         "en": "Nothing disappears in algebra; the same operation was done on both sides.",
+         "hi": "बीजगणित में कुछ ग़ायब नहीं होता; दोनों ओर एक-सी क्रिया की गई।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Solve 3(x + 2) = 21.",
+        "hi": "3(x + 2) = 21 हल करो।"
+       },
+       "options": [
+        "x = 5",
+        "x = 7",
+        "x = 19"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Divide both sides by 3: x + 2 = 7, so x = 5.",
+        "hi": "दोनों ओर 3 से भाग दो: x + 2 = 7, इसलिए x = 5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7 is the value of x + 2; subtract 2 more.",
+         "hi": "7, x + 2 का मान है; 2 और घटाओ।"
+        },
+        {
+         "en": "That comes from 21 − 2 without dividing by 3 first.",
+         "hi": "यह 3 से भाग दिए बिना सीधे 21 − 2 करने से आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap Reset and try a one-sided step, like + 5 on the left only. Watch the scale tip, then tap Undo.",
+      "hi": "आज़माओ: फिर से शुरू करो और एक तरफ़ा क़दम आज़माओ, जैसे सिर्फ़ बाईं ओर + 5। तराज़ू झुकते देखो, फिर पीछे दबाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch07-mind-the-mistake",
+   "topic": "7.3",
+   "template": "sort",
+   "title": {
+    "en": "Mind the mistake, mend the mistake",
+    "hi": "ग़लती पकड़ो, ग़लती सुधारो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ok",
+      "label": {
+       "en": "Correct step",
+       "hi": "सही क़दम"
+      }
+     },
+     {
+      "id": "bad",
+      "label": {
+       "en": "Mistake",
+       "hi": "ग़लती"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "m1",
+      "text": {
+       "en": "x + 9 = 15, so x = 15 + 9",
+       "hi": "x + 9 = 15, तो x = 15 + 9"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Remove + 9 by subtracting 9 from both sides: x = 6.",
+       "hi": "+ 9 हटाने के लिए दोनों ओर से 9 घटाओ: x = 6।"
+      }
+     },
+     {
+      "id": "m2",
+      "text": {
+       "en": "x + 9 = 15, so x = 15 − 9",
+       "hi": "x + 9 = 15, तो x = 15 − 9"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "9 was subtracted from both sides.",
+       "hi": "दोनों ओर से 9 घटाया गया।"
+      }
+     },
+     {
+      "id": "m3",
+      "text": {
+       "en": "4x = 20, so x = 20 − 4",
+       "hi": "4x = 20, तो x = 20 − 4"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "4x means 4 times x, so divide by 4: x = 5.",
+       "hi": "4x यानी 4 गुना x, इसलिए 4 से भाग दो: x = 5।"
+      }
+     },
+     {
+      "id": "m4",
+      "text": {
+       "en": "4x = 20, so x = 20 ÷ 4",
+       "hi": "4x = 20, तो x = 20 ÷ 4"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "Both sides were divided by 4.",
+       "hi": "दोनों ओर 4 से भाग दिया गया।"
+      }
+     },
+     {
+      "id": "m5",
+      "text": {
+       "en": "2(x + 3) = 14, so 2x + 3 = 14",
+       "hi": "2(x + 3) = 14, तो 2x + 3 = 14"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "The 2 multiplies both x and 3: 2x + 6 = 14.",
+       "hi": "2, x और 3 दोनों से गुणा होता है: 2x + 6 = 14।"
+      }
+     },
+     {
+      "id": "m6",
+      "text": {
+       "en": "2(x + 3) = 14, so x + 3 = 7",
+       "hi": "2(x + 3) = 14, तो x + 3 = 7"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "Both sides were divided by 2.",
+       "hi": "दोनों ओर 2 से भाग दिया गया।"
+      }
+     },
+     {
+      "id": "m7",
+      "text": {
+       "en": "5y − 2 = 3y + 6, so 2y = 8",
+       "hi": "5y − 2 = 3y + 6, तो 2y = 8"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "Take 3y off and add 2 on both sides: 2y = 8.",
+       "hi": "दोनों ओर से 3y हटाओ और 2 जोड़ो: 2y = 8।"
+      }
+     },
+     {
+      "id": "m8",
+      "text": {
+       "en": "7 − x = 4, so x = 11",
+       "hi": "7 − x = 4, तो x = 11"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Check: 7 − 11 is not 4. The answer is x = 3.",
+       "hi": "जाँचो: 7 − 11, 4 नहीं है। उत्तर x = 3 है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:m1",
+     "expect": "correct:m1",
+     "say": {
+      "en": "Tap the first card, x + 9 = 15, and put it in a group.",
+      "hi": "पहला कार्ड, x + 9 = 15, छुओ और उसे एक समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "\"2(x + 3) = 14, so 2x + 3 = 14.\" Is this step correct?",
+      "hi": "\"2(x + 3) = 14, तो 2x + 3 = 14।\" क्या यह क़दम सही है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No: the 2 must multiply the 3 as well",
+       "hi": "नहीं: 2 को 3 से भी गुणा करना होगा"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it is correct",
+       "hi": "हाँ, यह सही है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other steps, then tap Check.",
+      "hi": "बाकी क़दम छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each correct step does the same thing to both sides. Common mistakes are adding when you should subtract, subtracting when you should divide, and forgetting that a number outside a bracket multiplies every term inside. The best way to catch a mistake: put your answer back into the first equation.",
+      "hi": "हर सही क़दम दोनों ओर एक-सा करता है। आम ग़लतियाँ हैं: घटाने की जगह जोड़ना, भाग देने की जगह घटाना, और भूल जाना कि कोष्ठक के बाहर की संख्या अंदर के हर पद से गुणा होती है। ग़लती पकड़ने का सबसे अच्छा तरीक़ा: अपना उत्तर पहले समीकरण में रखकर देखो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Neha solved 6 − x = 2 and got x = 8. How can she check?",
+        "hi": "नेहा ने 6 − x = 2 हल करके x = 8 पाया। वह कैसे जाँचे?"
+       },
+       "options": [
+        {
+         "en": "Put 8 in place of x: 6 − 8 is −2, not 2, so it is wrong",
+         "hi": "x की जगह 8 रखो: 6 − 8 = −2, 2 नहीं, इसलिए ग़लत"
+        },
+        {
+         "en": "Ask a friend if 8 looks right",
+         "hi": "किसी दोस्त से पूछो कि 8 सही लगता है या नहीं"
+        },
+        {
+         "en": "It must be right, since 6 + 2 = 8",
+         "hi": "यह सही ही होगा, क्योंकि 6 + 2 = 8"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Substituting shows the mistake; the right answer is x = 4, since 6 − 4 = 2.",
+        "hi": "रखकर देखने से ग़लती दिखती है; सही उत्तर x = 4 है, क्योंकि 6 − 4 = 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A friend's opinion is not proof; substituting the value is.",
+         "hi": "दोस्त की राय सबूत नहीं है; मान रखकर देखना सबूत है।"
+        },
+        {
+         "en": "6 + 2 = 8 is true, but it does not solve 6 − x = 2.",
+         "hi": "6 + 2 = 8 सही है, पर इससे 6 − x = 2 हल नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap any sorted mistake to read how to mend it. Then solve each mistaken equation correctly in your notebook.",
+      "hi": "आज़माओ: किसी भी छँटी ग़लती को छूकर पढ़ो कि उसे कैसे सुधारें। फिर हर ग़लत समीकरण को अपनी कॉपी में सही हल करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Chapter hook and base for the balance labs",
+   "shows": "An old two-pan brass weighing scale (taraazu) from a kirana shop, balanced, with small cloth bags on one pan and iron weights on the other",
+   "view": "Front view, plain warm background, soft light",
+   "right": "Beam exactly level; pans at the same height",
+   "avoid": "Brand marks, a tipped beam"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Matchstick triangles in a row",
+   "shows": "Matchsticks on a dark cloth forming 1, 2, 3 and 4 triangles in a row, sharing sides",
+   "view": "From straight above, same framing in 4 frames",
+   "right": "3, 5, 7 and 9 sticks; shared sides used once",
+   "avoid": "Burnt heads, loose sticks lying around"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Forming equations from a story",
+   "shows": "A chaat stall with plates of pani-puri on a counter and a hand-written bill on a small notepad",
+   "view": "Eye level, three-quarter view, evening light",
+   "right": "Plates identical; bill shows a delivery line and a per-plate line",
+   "avoid": "Readable shop name, faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Trial and error",
+   "shows": "A child's notebook page with a table of guesses for n, the left side and the right side, with arrows saying too small and too big",
+   "view": "From above, pencil and eraser beside it",
+   "right": "Guesses move towards the answer; final row equal",
+   "avoid": "Messy crossings that hide the numbers"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "7.2",
+   "use": "Same step on both sides",
+   "shows": "A balance diagram: 4m − 5 on the left, 2m + 9 on the right, then the same scale after each step with the step written on both pans",
+   "view": "Flat vector, white background, 4 small frames in a row",
+   "right": "Scale stays level in every frame; final frame m = 7",
+   "avoid": "Steps done to one pan only"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "7.3",
+   "use": "Mind the mistake",
+   "shows": "A worked equation in a notebook with one wrong line circled in red and the corrected line written beside it",
+   "view": "From above, natural light",
+   "right": "The circled line is a real slip (like forgetting to multiply inside a bracket)",
+   "avoid": "Teacher's name, school name"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "7.4",
+   "use": "A pinch of history",
+   "shows": "An illustrated palm-leaf manuscript page with numerals and short words in Devanagari-like script, beside a modern notebook with the same equation in symbols",
+   "view": "From above, warm museum light",
+   "right": "Manuscript looks old and handmade, the notebook modern",
+   "avoid": "Claims that it is a real named manuscript; readable fake text"
+  }
+ ]
+}

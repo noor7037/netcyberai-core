@@ -1,0 +1,427 @@
+{
+ "chapter_key": "u.c02.hindi.bhsr1.ch11",
+ "class": 2,
+ "subject_id": "hindi",
+ "title": "Purple Jojo (बैंगनी जोजो)",
+ "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "The story: asking friends who gave the spots",
+   "labs": [
+    "c02-hindi-bhsr1-ch11-jojo-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Each friend's colour",
+   "labs": [
+    "c02-hindi-bhsr1-ch11-jojo-colours"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c02-hindi-bhsr1-ch11-jojo-order",
+   "topic": "11.1",
+   "template": "sequence",
+   "title": {
+    "en": "Who gave Jojo the purple spots?",
+    "hi": "जोजो को बैंगनी धब्बे किसने दिए?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "cloud",
+      "text": {
+       "en": "Jojo asks the cloud.",
+       "hi": "जोजो बादल से पूछता है।"
+      }
+     },
+     {
+      "id": "sun",
+      "text": {
+       "en": "Jojo asks the sun.",
+       "hi": "जोजो सूरज से पूछता है।"
+      }
+     },
+     {
+      "id": "crow",
+      "text": {
+       "en": "Jojo asks the crow.",
+       "hi": "जोजो कौए से पूछता है।"
+      }
+     },
+     {
+      "id": "balloon",
+      "text": {
+       "en": "Jojo asks the balloon.",
+       "hi": "जोजो गुब्बारे से पूछता है।"
+      }
+     },
+     {
+      "id": "grass",
+      "text": {
+       "en": "Jojo asks the grass.",
+       "hi": "जोजो घास से पूछता है।"
+      }
+     },
+     {
+      "id": "tree",
+      "text": {
+       "en": "Purple drops fall from the jamun tree.",
+       "hi": "जामुन के पेड़ से बैंगनी बूँदें टपकती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:cloud",
+     "expect": "placed:cloud",
+     "say": {
+      "en": "Place the card about the first one Jojo asks.",
+      "hi": "जोजो जिससे सबसे पहले पूछता है, उसका कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who do you think gave Jojo the purple spots?",
+      "hi": "तुम्हारे विचार से जोजो को बैंगनी धब्बे किसने दिए?"
+     },
+     "options": [
+      {
+       "id": "j",
+       "en": "The jamun tree",
+       "hi": "जामुन का पेड़"
+      },
+      {
+       "id": "c",
+       "en": "The cloud",
+       "hi": "बादल"
+      },
+      {
+       "id": "g",
+       "en": "The grass",
+       "hi": "घास"
+      }
+     ],
+     "answer": "j"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all six cards in order and press Check.",
+      "hi": "छहों कार्ड क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Jojo asks many friends but each says its own colour. At the end, juicy jamuns drop on him. So the jamun tree gave him purple spots. A good detective listens and looks before deciding.",
+      "hi": "जोजो कई दोस्तों से पूछता है, पर हर दोस्त अपना रंग बताता है। अंत में रसीले जामुन उस पर टपकते हैं। यानी जामुन के पेड़ ने उसे बैंगनी धब्बे दिए। अच्छा जासूस सुनकर और देखकर फ़ैसला करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who is asked second?",
+        "hi": "दूसरे नंबर पर किससे पूछा जाता है?"
+       },
+       "options": [
+        {
+         "en": "सूरज",
+         "hi": "सूरज"
+        },
+        {
+         "en": "गुब्बारा",
+         "hi": "गुब्बारा"
+        },
+        {
+         "en": "घास",
+         "hi": "घास"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After the cloud, Jojo asks the sun.",
+        "hi": "बादल के बाद जोजो सूरज से पूछता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The balloon is asked later.",
+         "hi": "गुब्बारे से बाद में पूछा जाता है।"
+        },
+        {
+         "en": "The grass is asked near the end.",
+         "hi": "घास से अंत के पास पूछा जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tell the story to a friend using the repeat: \"Cloud, cloud, did you give me the spots?\"",
+      "hi": "दोहराव के साथ कहानी सुनाओ: \"बादल, बादल, क्या तुमने मुझे धब्बे दिए?\""
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-hindi-bhsr1-ch11-jojo-colours",
+   "topic": "11.2",
+   "template": "match",
+   "title": {
+    "en": "What colour am I?",
+    "hi": "मैं किस रंग का हूँ?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "cloud",
+      "left": {
+       "en": "Cloud",
+       "hi": "बादल"
+      },
+      "right": {
+       "en": "White",
+       "hi": "सफ़ेद"
+      },
+      "why": {
+       "en": "The cloud says: I am white.",
+       "hi": "बादल कहता है: मैं तो सफ़ेद हूँ।"
+      }
+     },
+     {
+      "id": "sun",
+      "left": {
+       "en": "Sun",
+       "hi": "सूरज"
+      },
+      "right": {
+       "en": "Yellow",
+       "hi": "पीला"
+      },
+      "why": {
+       "en": "The sun says: I am yellow.",
+       "hi": "सूरज कहता है: मैं तो पीला हूँ।"
+      }
+     },
+     {
+      "id": "crow",
+      "left": {
+       "en": "Crow",
+       "hi": "कौआ"
+      },
+      "right": {
+       "en": "Black",
+       "hi": "काला"
+      },
+      "why": {
+       "en": "The crow says: I am black.",
+       "hi": "कौआ कहता है: मैं तो काला हूँ।"
+      }
+     },
+     {
+      "id": "balloon",
+      "left": {
+       "en": "Balloon",
+       "hi": "गुब्बारा"
+      },
+      "right": {
+       "en": "Red",
+       "hi": "लाल"
+      },
+      "why": {
+       "en": "The balloon says: I am red.",
+       "hi": "गुब्बारा कहता है: मैं तो लाल हूँ।"
+      }
+     },
+     {
+      "id": "grass",
+      "left": {
+       "en": "Grass",
+       "hi": "घास"
+      },
+      "right": {
+       "en": "Green",
+       "hi": "हरी"
+      },
+      "why": {
+       "en": "The grass says: I am green.",
+       "hi": "घास कहती है: मैं तो हरी हूँ।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:cloud",
+     "expect": "matched:cloud",
+     "say": {
+      "en": "Tap 'बादल' and then its colour.",
+      "hi": "'बादल' छुओ, फिर उसका रंग छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What colour is the crow?",
+      "hi": "कौआ किस रंग का है?"
+     },
+     "options": [
+      {
+       "id": "b",
+       "en": "काला",
+       "hi": "काला"
+      },
+      {
+       "id": "w",
+       "en": "सफ़ेद",
+       "hi": "सफ़ेद"
+      },
+      {
+       "id": "r",
+       "en": "लाल",
+       "hi": "लाल"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all five and press Check.",
+      "hi": "पाँचों जोड़ियाँ मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each friend answers 'No, I am a different colour'. The question and the answer repeat. Repeating a pattern makes a story fun to read aloud.",
+      "hi": "हर दोस्त कहता है, 'नहीं, मैं तो दूसरे रंग का हूँ।' प्रश्न और उत्तर दोहराए जाते हैं। इस दोहराव से कहानी ज़ोर से पढ़ने में मज़ा आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is NOT a colour friend of Jojo's?",
+        "hi": "इनमें से कौन जोजो का दोस्त नहीं है?"
+       },
+       "options": [
+        {
+         "en": "जामुन का पेड़",
+         "hi": "जामुन का पेड़"
+        },
+        {
+         "en": "बादल",
+         "hi": "बादल"
+        },
+        {
+         "en": "गुब्बारा",
+         "hi": "गुब्बारा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The jamun tree is not asked; it is the one who really dropped the purple.",
+        "hi": "जामुन के पेड़ से पूछा नहीं जाता; बैंगनी रंग उसी का है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Jojo asks the cloud.",
+         "hi": "जोजो बादल से पूछता है।"
+        },
+        {
+         "en": "Jojo asks the balloon too.",
+         "hi": "जोजो गुब्बारे से भी पूछता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the colours around you. Which one could leave spots, like the jamun?",
+      "hi": "अपने आस-पास के रंगों को देखो। कौन-सा जामुन की तरह दाग़ छोड़ सकता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "White dog under a tree",
+   "shows": "A white dog asleep under a leafy tree",
+   "view": "Eye level",
+   "right": "Clear white fur, no purple yet",
+   "avoid": "Dog in distress"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Jamun",
+   "shows": "A small bunch of ripe purple jamun on a leaf, cut-out",
+   "view": "Front view",
+   "right": "Deep glossy purple",
+   "avoid": "Stains on hands"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "11.1",
+   "use": "Dog with spots",
+   "shows": "Three frames of the dog: sleeping, awake with purple spots, looking up",
+   "view": "Same angle",
+   "right": "Soft purple spots as painted marks",
+   "avoid": "Realistic wounds"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Friends Jojo asks",
+   "shows": "Cut-outs: white cloud, yellow sun, black crow, red balloon, green grass",
+   "view": "Front view each",
+   "right": "Plain colours",
+   "avoid": "Faces on the sun/cloud"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Jamun tree",
+   "shows": "A jamun tree in fruiting season, fruits dropping",
+   "view": "Wide",
+   "right": "Purple fruits on the ground",
+   "avoid": "Bats or insects close"
+  }
+ ]
+}

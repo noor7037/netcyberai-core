@@ -1,0 +1,532 @@
+{
+ "chapter_key": "u.c07.hindi.ghml1.ch05",
+ "class": 7,
+ "subject_id": "hindi",
+ "title": "Nahin Hona Beemar (नहीं होना बीमार)",
+ "source": "https://ncert.nic.in/textbook.php?ghml1=0-10",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Imagining and finding out: being ill is not fun",
+   "labs": [
+    "c07-hindi-ghml1-ch05-expect"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Writing a diary entry",
+   "labs": [
+    "c07-hindi-ghml1-ch05-diary"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Speaking: tell about a time you were ill (बोलो)",
+   "labs": [],
+   "why_no_lab": "A speaking prompt is for the child to talk with a partner; the app cannot judge speech."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-hindi-ghml1-ch05-expect",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "What he expected and what happened",
+    "hi": "जो सोचा था और जो हुआ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "imagined",
+      "label": {
+       "en": "What he imagined",
+       "hi": "जो उसने सोचा था"
+      }
+     },
+     {
+      "id": "real",
+      "label": {
+       "en": "What really happened",
+       "hi": "जो सच में हुआ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "clean",
+      "text": {
+       "en": "Clean white bed, green curtains and a quiet room",
+       "hi": "साफ़ सफ़ेद बिस्तर, हरे परदे और शांत कमरा"
+      },
+      "bin": "imagined",
+      "why": {
+       "en": "He imagined the hospital ward as peaceful and comfortable.",
+       "hi": "उसने सोचा था कि अस्पताल का कमरा शांत और आरामदेह होता है।"
+      }
+     },
+     {
+      "id": "kheer",
+      "text": {
+       "en": "Sago kheer fed with a spoon",
+       "hi": "चम्मच से साबूदाने की खीर खिलाई जाती है"
+      },
+      "bin": "imagined",
+      "why": {
+       "en": "He saw Kaka enjoying sago kheer and wished for the same.",
+       "hi": "उसने काका को खीर खाते देखा और सोचा कि उसे भी मिलेगी।"
+      }
+     },
+     {
+      "id": "noschool",
+      "text": {
+       "en": "No school and no homework",
+       "hi": "न स्कूल, न होमवर्क"
+      },
+      "bin": "imagined",
+      "why": {
+       "en": "His reason for pretending to be ill was to avoid school and homework.",
+       "hi": "बीमार बनने का उसका कारण स्कूल और होमवर्क से बचना था।"
+      }
+     },
+     {
+      "id": "kadha",
+      "text": {
+       "en": "A bitter powder and kadha-like tea",
+       "hi": "कड़वी पुड़िया और काढ़े जैसी चाय"
+      },
+      "bin": "real",
+      "why": {
+       "en": "Nanaji gave him a bitter puriya and a strong tea.",
+       "hi": "नानाजी ने उसे कड़वी पुड़िया और काढ़े जैसी चाय दी।"
+      }
+     },
+     {
+      "id": "hungry",
+      "text": {
+       "en": "Nothing to eat the whole day",
+       "hi": "पूरे दिन खाने को कुछ नहीं"
+      },
+      "bin": "real",
+      "why": {
+       "en": "Nanaji said an ill person should not eat today.",
+       "hi": "नानाजी ने कहा कि बीमार को आज कुछ खाने को नहीं देना।"
+      }
+     },
+     {
+      "id": "bored",
+      "text": {
+       "en": "Lying alone in an empty house, bored",
+       "hi": "ख़ाली घर में अकेले पड़े-पड़े ऊबना"
+      },
+      "bin": "real",
+      "why": {
+       "en": "Everyone had gone out, and he was left alone in bed.",
+       "hi": "सब चले गए थे और वह अकेले बिस्तर पर रह गया।"
+      }
+     },
+     {
+      "id": "dream",
+      "text": {
+       "en": "Dreaming of kachori, burfi and golgappe",
+       "hi": "कचौड़ी, बर्फ़ी और गोलगप्पे के सपने आना"
+      },
+      "bin": "real",
+      "why": {
+       "en": "His hunger made him dream of tasty food he could not have.",
+       "hi": "भूख के कारण उसे उन स्वादिष्ट चीज़ों के सपने आए जो नहीं मिल सकती थीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:clean",
+     "expect": "placed:clean",
+     "say": {
+      "en": "Tap a card, then tap the bin where it belongs.",
+      "hi": "कोई कार्ड छुओ, फिर उस डिब्बे को छुओ जहाँ वह सही है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The boy hopes being ill will be fun. Do you think his day will be fun?",
+      "hi": "बच्चा सोचता है कि बीमार होना मज़ेदार होगा। क्या तुम्हें लगता है उसका दिन मज़ेदार होगा?"
+     },
+     "options": [
+      {
+       "id": "fun",
+       "en": "Yes, very fun",
+       "hi": "हाँ, बहुत मज़ेदार"
+      },
+      {
+       "id": "no",
+       "en": "No, quite boring and hungry",
+       "hi": "नहीं, काफ़ी उबाऊ और भूखा"
+      },
+      {
+       "id": "both",
+       "en": "Fun all day",
+       "hi": "पूरे दिन मज़ा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:dream",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards, then press Check.",
+      "hi": "सारे कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The boy saw only the nice side of being ill when he visited Kaka. But Kaka was really unwell and had a doctor's care. When the boy pretended, he got bitter medicine, no food and a long dull day. Pretending to be ill is not worth it, and telling the truth is better.",
+      "hi": "काका से मिलने गए बच्चे ने बीमारी का केवल अच्छा पहलू देखा। पर काका सच में बीमार थे और उन्हें इलाज मिल रहा था। जब बच्चे ने बहाना बनाया तो उसे कड़वी दवा, भूखा रहना और लंबा उबाऊ दिन मिला। बीमारी का बहाना बनाना ठीक नहीं है; सच बोलना बेहतर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did the boy pretend to be ill?",
+        "hi": "बच्चे ने बीमार होने का बहाना क्यों बनाया?"
+       },
+       "options": [
+        {
+         "en": "He did not want to go to school and had not done homework",
+         "hi": "वह स्कूल नहीं जाना चाहता था और होमवर्क नहीं किया था"
+        },
+        {
+         "en": "He had a real fever",
+         "hi": "उसे सचमुच बुखार था"
+        },
+        {
+         "en": "He wanted to visit Kaka again",
+         "hi": "वह फिर काका से मिलना चाहता था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He thought a day in bed would save him from punishment for his unfinished homework.",
+        "hi": "उसे लगा कि एक दिन बिस्तर पर रहने से अधूरे होमवर्क की सज़ा से बच जाएगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nanaji checked and found no fever. The boy was only pretending.",
+         "hi": "नानाजी ने जाँचा तो बुखार नहीं था। बच्चा केवल बहाना बना रहा था।"
+        },
+        {
+         "en": "He decided to be ill because of school and homework, not for visiting.",
+         "hi": "उसने स्कूल और होमवर्क के कारण बीमार बनने की सोची, मिलने के लिए नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What did he do after that day?",
+        "hi": "उस दिन के बाद उसने क्या किया?"
+       },
+       "options": [
+        {
+         "en": "He never made a false excuse of illness to skip school",
+         "hi": "स्कूल से छुट्टी के लिए बीमारी का झूठा बहाना फिर कभी नहीं बनाया"
+        },
+        {
+         "en": "He pretended to be ill again every week",
+         "hi": "हर हफ़्ते फिर बीमार होने का बहाना बनाया"
+        },
+        {
+         "en": "He asked for more sago kheer",
+         "hi": "उसने और साबूदाने की खीर माँगी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The hungry, dull day taught him that a false excuse brings its own punishment.",
+        "hi": "भूखे और उबाऊ दिन ने उसे सिखाया कि झूठा बहाना अपनी सज़ा खुद ले आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The story ends saying he never pretended to be ill again.",
+         "hi": "कहानी के अंत में कहा गया है कि उसने फिर कभी बहाना नहीं बनाया।"
+        },
+        {
+         "en": "He got no kheer at all that day; he stayed hungry.",
+         "hi": "उस दिन उसे खीर बिल्कुल नहीं मिली; वह भूखा रहा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Has a small excuse ever got you into more trouble? Tell a friend what you learnt, without naming anyone.",
+      "hi": "क्या कभी किसी छोटे बहाने से तुम और मुसीबत में पड़े? बिना किसी का नाम लिए दोस्त को बताओ कि तुमने क्या सीखा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-hindi-ghml1-ch05-diary",
+   "topic": "5.2",
+   "template": "writing",
+   "title": {
+    "en": "The boy's diary",
+    "hi": "बच्चे की डायरी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "diary",
+    "lang": "hi",
+    "task": {
+     "en": "Build the diary page the boy might write at night. Put each part in the right place.",
+     "hi": "वह बच्चा रात को जो डायरी लिखता, उसका पन्ना बनाओ। हर भाग को सही जगह रखो।"
+    },
+    "parts": [
+     {
+      "id": "date",
+      "slot": "date",
+      "text": {
+       "en": "7 November 2026, Saturday",
+       "hi": "7 नवंबर 2026, शनिवार"
+      }
+     },
+     {
+      "id": "hello",
+      "slot": "greeting",
+      "text": {
+       "en": "Dear Diary,",
+       "hi": "प्रिय डायरी,"
+      }
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": {
+       "en": "Today I told Nani that I was ill, only because I had not done my homework.",
+       "hi": "आज मैंने नानी से कहा कि मैं बीमार हूँ, केवल इसलिए कि मैंने होमवर्क नहीं किया था।"
+      }
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": {
+       "en": "Nanaji gave me a bitter powder and said I should not eat anything the whole day.",
+       "hi": "नानाजी ने मुझे कड़वी पुड़िया दी और कहा कि मुझे पूरे दिन कुछ नहीं खाना है।"
+      }
+     },
+     {
+      "id": "b3",
+      "slot": "body",
+      "text": {
+       "en": "I lay alone and hungry and dreamt of kachori and golgappe. I felt angry and bored.",
+       "hi": "मैं अकेला और भूखा पड़ा रहा और कचौड़ी-गोलगप्पे के सपने देखता रहा। मुझे ग़ुस्सा और ऊब महसूस हुई।"
+      }
+     },
+     {
+      "id": "b4",
+      "slot": "body",
+      "text": {
+       "en": "I have learnt my lesson. I will never make a false excuse again.",
+       "hi": "मैंने सबक़ सीख लिया है। मैं अब कभी झूठा बहाना नहीं बनाऊँगा।"
+      }
+     },
+     {
+      "id": "name",
+      "slot": "signoff",
+      "text": {
+       "en": "Your friend, Sanju",
+       "hi": "तुम्हारा मित्र, संजू"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:date",
+     "expect": "placed:date",
+     "say": {
+      "en": "Tap the part that belongs at the very top, then tap its place.",
+      "hi": "जो भाग सबसे ऊपर आता है उसे छुओ, फिर उसकी जगह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part of a diary comes right after the date?",
+      "hi": "डायरी में तारीख़ के ठीक बाद क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "hello",
+       "en": "The greeting: Dear Diary",
+       "hi": "संबोधन: प्रिय डायरी"
+      },
+      {
+       "id": "name",
+       "en": "The writer's name",
+       "hi": "लिखने वाले का नाम"
+      },
+      {
+       "id": "story",
+       "en": "The last thought",
+       "hi": "आख़िरी विचार"
+      }
+     ],
+     "answer": "hello"
+    },
+    {
+     "kind": "do",
+     "target": "part:hello",
+     "expect": "placed:hello",
+     "say": {
+      "en": "Now place the greeting.",
+      "hi": "अब संबोधन को सही जगह रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Place all the parts, then press Check.",
+      "hi": "सारे भाग रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A diary page has the date and day at the top, then a greeting to the diary, then what happened and how you felt, in the order it happened, and your name at the end. We write 'I' and put in our feelings.",
+      "hi": "डायरी के पन्ने पर सबसे ऊपर तारीख़ और दिन, फिर डायरी को संबोधन, फिर जो हुआ और तुमने कैसा महसूस किया, जिस क्रम में हुआ, और अंत में तुम्हारा नाम। हम 'मैं' लिखते हैं और अपनी भावनाएँ भी लिखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does the date go in a diary entry?",
+        "hi": "डायरी में तारीख़ कहाँ लिखी जाती है?"
+       },
+       "options": [
+        {
+         "en": "At the top",
+         "hi": "सबसे ऊपर"
+        },
+        {
+         "en": "At the end, after the name",
+         "hi": "अंत में, नाम के बाद"
+        },
+        {
+         "en": "In the middle of the story",
+         "hi": "कहानी के बीच में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A diary entry starts with the date and day so that you can find it later.",
+        "hi": "डायरी की प्रविष्टि तारीख़ और दिन से शुरू होती है ताकि बाद में आसानी से मिल जाए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The name closes the entry; the date opens it.",
+         "hi": "नाम से प्रविष्टि समाप्त होती है; तारीख़ से शुरू।"
+        },
+        {
+         "en": "The date stays apart at the top so the reader knows when it happened.",
+         "hi": "तारीख़ ऊपर अलग रहती है ताकि पता चले यह कब हुआ।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write your own diary page about today in four short lines. Begin with the date and 'प्रिय डायरी'.",
+      "hi": "आज के बारे में अपनी डायरी का पन्ना चार छोटी पंक्तियों में लिखो। तारीख़ और 'प्रिय डायरी' से शुरू करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Hospital ward",
+   "shows": "A clean Indian hospital ward with white beds, red blankets, green curtains and sunlit windows with trees, empty of patients",
+   "view": "Wide from the door, 16:9",
+   "right": "Quiet and tidy, polished floor",
+   "avoid": "Patients, branded hospital names",
+   "n": 1
+  },
+  {
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Bowl of sabudana kheer",
+   "shows": "A steel bowl of creamy sago kheer with a spoon, cut-out",
+   "view": "Three-quarter view",
+   "right": "White pearls clear and soft, dry fruit on top",
+   "avoid": "Plastic cups, logos",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Medicine puriya",
+   "shows": "A folded paper packet (puriya) with a pinch of brown powder beside a steel glass of dark tea",
+   "view": "Top view",
+   "right": "Hand-folded paper, plain glass",
+   "avoid": "Medicine brand names",
+   "n": 3
+  },
+  {
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Boy under the quilt",
+   "shows": "A child's feet and a quilt-covered shape on a bed in a quiet room, morning light",
+   "view": "Eye level from the bed foot",
+   "right": "Cosy quilt, window light, no face",
+   "avoid": "Faces of identifiable children",
+   "n": 4
+  },
+  {
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Street snacks",
+   "shows": "Kachori, a burfi slice and a plate of golgappe, three cut-outs",
+   "view": "Top view",
+   "right": "Golden crispy kachori, bright burfi, green water in golgappe",
+   "avoid": "Branded packaging",
+   "n": 5
+  },
+  {
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Diary and pen",
+   "shows": "An open school diary with a pen, blank lined pages, cut-out",
+   "view": "Top view",
+   "right": "Neat lined pages, no writing",
+   "avoid": "Printed text",
+   "n": 6
+  }
+ ]
+}

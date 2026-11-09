@@ -1,0 +1,1431 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch16",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Excretory Products and their Elimination",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo116.pdf",
+ "topics": [
+  {
+   "n": "16",
+   "title": "Opening: ammonia, urea and uric acid as nitrogenous wastes",
+   "labs": [
+    "c11-biology-kebo1-ch16-n-waste"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "16.1",
+   "title": "Human excretory system",
+   "labs": [
+    "c11-biology-kebo1-ch16-urinary"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "16.2",
+   "title": "Urine formation",
+   "labs": [
+    "c11-biology-kebo1-ch16-urine-path"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "16.3",
+   "title": "Function of the tubules",
+   "labs": [
+    "c11-biology-kebo1-ch16-tubule-jobs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "16.4",
+   "title": "Mechanism of concentration of the filtrate",
+   "labs": [],
+   "why_no_lab": "The counter-current flow is best seen as an animated nephron diagram in the reader; the tubule lab of 16.3 already sorts what each limb lets out."
+  },
+  {
+   "n": "16.5",
+   "title": "Regulation of kidney function",
+   "labs": [
+    "c11-biology-kebo1-ch16-kidney-hormones"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "16.6",
+   "title": "Micturition",
+   "labs": [],
+   "why_no_lab": "A short reflex best explained in plain reading; there is nothing a child should operate."
+  },
+  {
+   "n": "16.7",
+   "title": "Role of other organs in excretion",
+   "labs": [
+    "c11-biology-kebo1-ch16-other-organs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "16.8",
+   "title": "Disorders of the excretory system",
+   "labs": [],
+   "why_no_lab": "Uremia, haemodialysis, kidney stones and glomerulonephritis are taught best with a dialysis-machine photo and the reader's short notes."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch16-n-waste",
+   "topic": "16",
+   "template": "sort",
+   "title": {
+    "en": "Ammonia, urea or uric acid?",
+    "hi": "अमोनिया, यूरिया या यूरिक अम्ल?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "amm",
+      "label": {
+       "en": "Ammonia (ammonotelic)",
+       "hi": "अमोनिया (अमोनोटेलिक)"
+      }
+     },
+     {
+      "id": "urea",
+      "label": {
+       "en": "Urea (ureotelic)",
+       "hi": "यूरिया (यूरियोटेलिक)"
+      }
+     },
+     {
+      "id": "uric",
+      "label": {
+       "en": "Uric acid (uricotelic)",
+       "hi": "यूरिक अम्ल (यूरिकोटेलिक)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "rohu",
+      "text": {
+       "en": "Rohu, a bony fish of rivers",
+       "hi": "रोहू, नदियों की अस्थिल मछली"
+      },
+      "bin": "amm",
+      "why": {
+       "en": "Ammonia is very soluble; fish lose it easily through the gills into the water around them.",
+       "hi": "अमोनिया बहुत घुलनशील है; मछलियाँ इसे गलफड़ों से आसपास के पानी में आसानी से छोड़ देती हैं।"
+      }
+     },
+     {
+      "id": "waterbug",
+      "text": {
+       "en": "An aquatic insect in a pond",
+       "hi": "तालाब का एक जलीय कीट"
+      },
+      "bin": "amm",
+      "why": {
+       "en": "Living in water, aquatic insects can get rid of toxic ammonia directly.",
+       "hi": "पानी में रहने से जलीय कीट ज़हरीली अमोनिया सीधे निकाल सकते हैं।"
+      }
+     },
+     {
+      "id": "human",
+      "text": {
+       "en": "Human being",
+       "hi": "मनुष्य"
+      },
+      "bin": "urea",
+      "why": {
+       "en": "Our liver turns ammonia into less toxic urea, which the kidneys remove in urine.",
+       "hi": "हमारा यकृत अमोनिया को कम ज़हरीले यूरिया में बदलता है, जिसे वृक्क मूत्र में निकालते हैं।"
+      }
+     },
+     {
+      "id": "cow",
+      "text": {
+       "en": "Cow",
+       "hi": "गाय"
+      },
+      "bin": "urea",
+      "why": {
+       "en": "Like all mammals, the cow excretes mainly urea.",
+       "hi": "सभी स्तनधारियों की तरह गाय मुख्यतः यूरिया निकालती है।"
+      }
+     },
+     {
+      "id": "shark",
+      "text": {
+       "en": "A shark, a marine fish",
+       "hi": "शार्क, एक समुद्री मछली"
+      },
+      "bin": "urea",
+      "why": {
+       "en": "Marine fishes mainly excrete urea, which also helps them hold water in salty seas.",
+       "hi": "समुद्री मछलियाँ मुख्यतः यूरिया निकालती हैं, जो खारे समुद्र में पानी रोकने में भी मदद करता है।"
+      }
+     },
+     {
+      "id": "pigeon",
+      "text": {
+       "en": "Pigeon",
+       "hi": "कबूतर"
+      },
+      "bin": "uric",
+      "why": {
+       "en": "Birds excrete uric acid as a white paste, losing very little water.",
+       "hi": "पक्षी यूरिक अम्ल सफ़ेद लेप के रूप में निकालते हैं और बहुत कम पानी खोते हैं।"
+      }
+     },
+     {
+      "id": "lizard",
+      "text": {
+       "en": "Garden lizard",
+       "hi": "बगीचे की छिपकली"
+      },
+      "bin": "uric",
+      "why": {
+       "en": "Reptiles save water by excreting uric acid as pellets.",
+       "hi": "सरीसृप यूरिक अम्ल गोलियों के रूप में निकालकर पानी बचाते हैं।"
+      }
+     },
+     {
+      "id": "snail",
+      "text": {
+       "en": "Land snail",
+       "hi": "स्थलीय घोंघा"
+      },
+      "bin": "uric",
+      "why": {
+       "en": "Land snails, living away from water, also excrete uric acid.",
+       "hi": "पानी से दूर रहने वाले स्थलीय घोंघे भी यूरिक अम्ल निकालते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:rohu",
+     "expect": "correct:rohu",
+     "say": {
+      "en": "Tap the rohu fish and sort it.",
+      "hi": "रोहू मछली पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:human",
+     "expect": "correct:human",
+     "say": {
+      "en": "Now sort the human being.",
+      "hi": "अब मनुष्य को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A pigeon has to fly light and save water. Which waste suits it best?",
+      "hi": "कबूतर को हल्का उड़ना और पानी बचाना होता है। उसके लिए कौन-सा अपशिष्ट सबसे ठीक है?"
+     },
+     "options": [
+      {
+       "id": "uric",
+       "en": "Uric acid, nearly dry",
+       "hi": "यूरिक अम्ल, लगभग सूखा"
+      },
+      {
+       "id": "amm",
+       "en": "Ammonia, needing lots of water",
+       "hi": "अमोनिया, जिसमें बहुत पानी लगता है"
+      },
+      {
+       "id": "urea",
+       "en": "Urea in a lot of urine",
+       "hi": "बहुत मूत्र में यूरिया"
+      }
+     ],
+     "answer": "uric"
+    },
+    {
+     "kind": "do",
+     "target": "card:pigeon",
+     "expect": "correct:pigeon",
+     "say": {
+      "en": "Sort the pigeon.",
+      "hi": "कबूतर को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ammonia is the most toxic and needs a lot of water to remove, so animals living in fresh water excrete it. Urea is less toxic and suits mammals and marine fishes. Uric acid is the least toxic and can be removed with very little water, so birds, reptiles, land snails and insects use it.",
+      "hi": "अमोनिया सबसे ज़हरीली है और उसे निकालने में बहुत पानी लगता है, इसलिए मीठे पानी के जंतु उसे निकालते हैं। यूरिया कम ज़हरीला है और स्तनधारियों व समुद्री मछलियों के लिए ठीक है। यूरिक अम्ल सबसे कम ज़हरीला है और बहुत कम पानी में निकल जाता है, इसलिए पक्षी, सरीसृप, स्थलीय घोंघे और कीट इसे अपनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which waste needs the least water to remove?",
+        "hi": "किस अपशिष्ट को निकालने में सबसे कम पानी लगता है?"
+       },
+       "options": [
+        {
+         "en": "Ammonia",
+         "hi": "अमोनिया"
+        },
+        {
+         "en": "Urea",
+         "hi": "यूरिया"
+        },
+        {
+         "en": "Uric acid",
+         "hi": "यूरिक अम्ल"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Uric acid is nearly insoluble, so it leaves as a paste or pellet with little water.",
+        "hi": "यूरिक अम्ल लगभग अघुलनशील है, इसलिए कम पानी के साथ लेप या गोली के रूप में निकलता है।"
+       },
+       "wrong": [
+        {
+         "en": "Ammonia is toxic and must be diluted with a lot of water.",
+         "hi": "अमोनिया ज़हरीली है और उसे बहुत पानी में घोलना पड़ता है।"
+        },
+        {
+         "en": "Urea is less toxic but still leaves dissolved in urine.",
+         "hi": "यूरिया कम ज़हरीला है, फिर भी मूत्र में घुलकर निकलता है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the rest. Can you see a link between where an animal lives and the waste it makes?",
+      "hi": "ख़ुद आज़माओ। बाकी छाँटो। क्या तुम्हें जंतु के रहने की जगह और उसके अपशिष्ट में कोई संबंध दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch16-urinary",
+   "topic": "16.1",
+   "template": "body",
+   "title": {
+    "en": "The human excretory system",
+    "hi": "मानव उत्सर्जन तंत्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "system": "excretory",
+    "flow": "urine",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:kidney",
+     "expect": "picked:kidney",
+     "say": {
+      "en": "Tap a kidney.",
+      "hi": "एक वृक्क पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:renalartery",
+     "expect": "picked:renalartery",
+     "say": {
+      "en": "Tap the renal artery that brings blood in.",
+      "hi": "रक्त लाने वाली वृक्क धमनी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Urine is made in the kidneys. Where is it stored until we pass it?",
+      "hi": "मूत्र वृक्कों में बनता है। बाहर निकलने तक वह कहाँ जमा रहता है?"
+     },
+     "options": [
+      {
+       "id": "bladder",
+       "en": "Urinary bladder",
+       "hi": "मूत्राशय"
+      },
+      {
+       "id": "ureter",
+       "en": "Ureters",
+       "hi": "मूत्रवाहिनियाँ"
+      },
+      {
+       "id": "kidney",
+       "en": "In the kidneys",
+       "hi": "वृक्कों में"
+      }
+     ],
+     "answer": "bladder"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "traced",
+     "say": {
+      "en": "Press play and follow the journey from blood to urine.",
+      "hi": "प्ले दबाओ और रक्त से मूत्र तक का सफ़र देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A pair of bean-shaped kidneys sits high at the back of the belly, between the last thoracic and third lumbar vertebrae. Each holds about a million nephrons. Blood enters by the renal artery, cleaned blood leaves by the renal vein, urine runs down the ureters to the bladder and leaves through the urethra.",
+      "hi": "सेम के आकार के दो वृक्क पेट के पीछे ऊपर की ओर, अंतिम वक्षीय और तीसरी कटि कशेरुका के बीच रहते हैं। हर वृक्क में लगभग दस लाख नेफ़्रॉन होते हैं। रक्त वृक्क धमनी से आता है, साफ़ रक्त वृक्क शिरा से जाता है, मूत्र मूत्रवाहिनियों से मूत्राशय में आता है और मूत्रमार्ग से बाहर निकलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the working unit of the kidney?",
+        "hi": "वृक्क की कार्यात्मक इकाई क्या है?"
+       },
+       "options": [
+        {
+         "en": "Nephron",
+         "hi": "नेफ़्रॉन (वृक्काणु)"
+        },
+        {
+         "en": "Neuron",
+         "hi": "न्यूरॉन"
+        },
+        {
+         "en": "Alveolus",
+         "hi": "वायु कूपिका"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each kidney has nearly one million nephrons, each a tiny filter and tubule.",
+        "hi": "हर वृक्क में लगभग दस लाख नेफ़्रॉन हैं, हर एक छोटा फ़िल्टर और नलिका।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A neuron is the unit of the nervous system, not the kidney.",
+         "hi": "न्यूरॉन तंत्रिका तंत्र की इकाई है, वृक्क की नहीं।"
+        },
+        {
+         "en": "Alveoli are the air sacs of the lungs.",
+         "hi": "वायु कूपिकाएँ फेफड़ों की थैलियाँ हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which vessel carries cleaned blood away from the kidney?",
+        "hi": "कौन-सी वाहिका साफ़ रक्त को वृक्क से दूर ले जाती है?"
+       },
+       "options": [
+        {
+         "en": "Renal artery",
+         "hi": "वृक्क धमनी"
+        },
+        {
+         "en": "Renal vein",
+         "hi": "वृक्क शिरा"
+        },
+        {
+         "en": "Ureter",
+         "hi": "मूत्रवाहिनी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The renal vein returns filtered blood towards the heart.",
+        "hi": "वृक्क शिरा छनकर साफ़ हुए रक्त को हृदय की ओर लौटाती है।"
+       },
+       "wrong": [
+        {
+         "en": "The renal artery brings blood with wastes into the kidney.",
+         "hi": "वृक्क धमनी अपशिष्ट वाला रक्त वृक्क में लाती है।"
+        },
+        "",
+        {
+         "en": "The ureter carries urine, not blood.",
+         "hi": "मूत्रवाहिनी मूत्र ले जाती है, रक्त नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Turn on the nephron zoom layer and tap its parts. Which part does the filtering?",
+      "hi": "ख़ुद आज़माओ। नेफ़्रॉन ज़ूम परत चालू करो और उसके भागों पर टैप करो। छानने का काम कौन-सा भाग करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch16-urine-path",
+   "topic": "16.2",
+   "template": "sequence",
+   "title": {
+    "en": "From blood to urine",
+    "hi": "रक्त से मूत्र तक"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "aff",
+      "text": {
+       "en": "Blood enters the glomerulus through the afferent arteriole",
+       "hi": "रक्त अभिवाही धमनिका से केशिकागुच्छ में आता है"
+      }
+     },
+     {
+      "id": "filt",
+      "text": {
+       "en": "Pressure filters water and small solutes into Bowman's capsule",
+       "hi": "दाब से पानी और छोटे विलेय बोमन संपुट में छनते हैं"
+      }
+     },
+     {
+      "id": "pct",
+      "text": {
+       "en": "In the PCT, glucose, amino acids and most water go back to blood",
+       "hi": "PCT में ग्लूकोज़, अमीनो अम्ल और अधिकतर पानी रक्त में लौटते हैं"
+      }
+     },
+     {
+      "id": "hen",
+      "text": {
+       "en": "The filtrate runs down and up Henle's loop in the medulla",
+       "hi": "निस्यंद मध्यांश में हेनले लूप में नीचे और ऊपर बहता है"
+      }
+     },
+     {
+      "id": "dct",
+      "text": {
+       "en": "In the DCT, sodium, water, H+ and K+ are fine-tuned",
+       "hi": "DCT में सोडियम, पानी, H+ और K+ का संतुलन होता है"
+      }
+     },
+     {
+      "id": "cd",
+      "text": {
+       "en": "The collecting duct takes back more water; urine is formed",
+       "hi": "संग्राहक वाहिनी और पानी वापस लेती है; मूत्र बनता है"
+      }
+     },
+     {
+      "id": "pel",
+      "text": {
+       "en": "Urine drains into the renal pelvis and then the ureter",
+       "hi": "मूत्र वृक्क श्रोणि और फिर मूत्रवाहिनी में जाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:aff",
+     "expect": "placed:aff",
+     "say": {
+      "en": "Start where blood arrives: put that card in place 1.",
+      "hi": "जहाँ रक्त पहुँचता है वहाँ से शुरू करो: वह कार्ड स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:filt",
+     "expect": "placed:filt",
+     "say": {
+      "en": "Place the filtering step.",
+      "hi": "छानने वाला चरण रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The kidneys make about 180 litres of filtrate a day, yet we pass only 1 to 1.5 litres of urine. What happens to the rest?",
+      "hi": "वृक्क हर दिन लगभग 180 लीटर निस्यंद बनाते हैं, फिर भी हम केवल 1 से 1.5 लीटर मूत्र निकालते हैं। बाकी का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "reab",
+       "en": "About 99% is reabsorbed into the blood",
+       "hi": "लगभग 99% रक्त में वापस सोख लिया जाता है"
+      },
+      {
+       "id": "sweat",
+       "en": "It leaves as sweat",
+       "hi": "पसीने से निकल जाता है"
+      },
+      {
+       "id": "store",
+       "en": "It is stored in the bladder",
+       "hi": "मूत्राशय में जमा रहता है"
+      }
+     ],
+     "answer": "reab"
+    },
+    {
+     "kind": "do",
+     "target": "item:pct",
+     "expect": "placed:pct",
+     "say": {
+      "en": "Place the card where most reabsorption happens.",
+      "hi": "वह कार्ड रखो जहाँ सबसे अधिक पुनरवशोषण होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Urine forms in three processes: glomerular filtration, reabsorption and secretion. The glomerulus filters about 125 mL a minute, which is 180 litres a day. As the filtrate moves along the tubule, almost all of it, about 99 per cent, is reabsorbed, while H+, K+ and ammonia are secreted into it. What reaches the pelvis is concentrated urine.",
+      "hi": "मूत्र तीन प्रक्रियाओं से बनता है: केशिकागुच्छ निस्यंदन, पुनरवशोषण और स्रवण। केशिकागुच्छ मिनट में लगभग 125 मिली, यानी दिन में 180 लीटर छानता है। नलिका में आगे बढ़ते हुए इसका लगभग 99 प्रतिशत वापस सोख लिया जाता है, जबकि H+, K+ और अमोनिया इसमें स्रावित होते हैं। जो श्रोणि तक पहुँचता है, वह गाढ़ा मूत्र है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the glomerular filtration rate (GFR) of a healthy person?",
+        "hi": "स्वस्थ व्यक्ति की केशिकागुच्छ निस्यंदन दर (GFR) कितनी है?"
+       },
+       "options": [
+        {
+         "en": "About 125 mL a minute",
+         "hi": "लगभग 125 मिली प्रति मिनट"
+        },
+        {
+         "en": "About 1.5 litres a minute",
+         "hi": "लगभग 1.5 लीटर प्रति मिनट"
+        },
+        {
+         "en": "About 5 mL a minute",
+         "hi": "लगभग 5 मिली प्रति मिनट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "125 mL a minute adds up to about 180 litres a day.",
+        "hi": "125 मिली प्रति मिनट से दिन में लगभग 180 लीटर बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1.5 litres is the daily urine output, not the filtration per minute.",
+         "hi": "1.5 लीटर दिनभर का मूत्र है, प्रति मिनट निस्यंदन नहीं।"
+        },
+        {
+         "en": "5 mL a minute would give only about 7 litres a day, far too little.",
+         "hi": "5 मिली प्रति मिनट से दिन में केवल लगभग 7 लीटर बनेगा, जो बहुत कम है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is normally absent from urine?",
+        "hi": "इनमें से सामान्यतः मूत्र में क्या नहीं होता?"
+       },
+       "options": [
+        {
+         "en": "Urea",
+         "hi": "यूरिया"
+        },
+        {
+         "en": "Glucose",
+         "hi": "ग्लूकोज़"
+        },
+        {
+         "en": "Water",
+         "hi": "पानी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Glucose is filtered but fully reabsorbed in the PCT; glucose in urine is a sign of diabetes.",
+        "hi": "ग्लूकोज़ छनता है पर PCT में पूरा वापस सोख लिया जाता है; मूत्र में ग्लूकोज़ मधुमेह का संकेत है।"
+       },
+       "wrong": [
+        {
+         "en": "Urea is the main waste in urine, about 25 to 30 g a day.",
+         "hi": "यूरिया मूत्र का मुख्य अपशिष्ट है, लगभग 25 से 30 ग्राम प्रतिदिन।"
+        },
+        "",
+        {
+         "en": "Urine is mostly water.",
+         "hi": "मूत्र अधिकतर पानी ही है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Finish the order and check it. Then mark which steps are filtration, reabsorption and secretion.",
+      "hi": "ख़ुद आज़माओ। क्रम पूरा करके जाँचो। फिर पहचानो कि कौन-से चरण निस्यंदन, पुनरवशोषण और स्रवण हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch16-tubule-jobs",
+   "topic": "16.3",
+   "template": "sort",
+   "title": {
+    "en": "What each part of the tubule does",
+    "hi": "नलिका का हर भाग क्या करता है"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "pct",
+      "label": {
+       "en": "Proximal convoluted tubule",
+       "hi": "समीपस्थ संवलित नलिका (PCT)"
+      }
+     },
+     {
+      "id": "dhl",
+      "label": {
+       "en": "Descending limb of Henle's loop",
+       "hi": "हेनले लूप की अवरोही भुजा"
+      }
+     },
+     {
+      "id": "ahl",
+      "label": {
+       "en": "Ascending limb of Henle's loop",
+       "hi": "हेनले लूप की आरोही भुजा"
+      }
+     },
+     {
+      "id": "dct",
+      "label": {
+       "en": "Distal convoluted tubule",
+       "hi": "दूरस्थ संवलित नलिका (DCT)"
+      }
+     },
+     {
+      "id": "cd",
+      "label": {
+       "en": "Collecting duct",
+       "hi": "संग्राहक वाहिनी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "glu",
+      "text": {
+       "en": "Takes back nearly all glucose and amino acids",
+       "hi": "लगभग सारा ग्लूकोज़ और अमीनो अम्ल वापस लेती है"
+      },
+      "bin": "pct",
+      "why": {
+       "en": "The PCT reabsorbs nearly all essential nutrients.",
+       "hi": "PCT लगभग सारे ज़रूरी पोषक तत्व वापस सोखती है।"
+      }
+     },
+     {
+      "id": "bulk",
+      "text": {
+       "en": "Reabsorbs 70 to 80% of water and salts",
+       "hi": "70 से 80% पानी और लवण वापस लेती है"
+      },
+      "bin": "pct",
+      "why": {
+       "en": "Most bulk reabsorption happens here.",
+       "hi": "अधिकांश पुनरवशोषण यहीं होता है।"
+      }
+     },
+     {
+      "id": "brush",
+      "text": {
+       "en": "Lined by cells with a brush border",
+       "hi": "ब्रश बॉर्डर वाली कोशिकाओं से ढकी"
+      },
+      "bin": "pct",
+      "why": {
+       "en": "The brush border of microvilli gives a large surface for reabsorption.",
+       "hi": "सूक्ष्मांकुरों का ब्रश बॉर्डर पुनरवशोषण के लिए बड़ी सतह देता है।"
+      }
+     },
+     {
+      "id": "waterout",
+      "text": {
+       "en": "Lets water out but hardly any salt",
+       "hi": "पानी बाहर जाने देती है, लवण लगभग नहीं"
+      },
+      "bin": "dhl",
+      "why": {
+       "en": "As water leaves, the filtrate gets more concentrated going down.",
+       "hi": "पानी निकलने से नीचे जाते हुए निस्यंद अधिक गाढ़ा होता है।"
+      }
+     },
+     {
+      "id": "saltout",
+      "text": {
+       "en": "Lets salt out but not water",
+       "hi": "लवण बाहर जाने देती है, पानी नहीं"
+      },
+      "bin": "ahl",
+      "why": {
+       "en": "Salts leave but water cannot, so the filtrate gets dilute going up.",
+       "hi": "लवण निकलते हैं पर पानी नहीं, इसलिए ऊपर जाते हुए निस्यंद पतला होता है।"
+      }
+     },
+     {
+      "id": "cond",
+      "text": {
+       "en": "Takes back Na+ and water only as needed",
+       "hi": "Na+ और पानी केवल ज़रूरत पर वापस लेती है"
+      },
+      "bin": "dct",
+      "why": {
+       "en": "The DCT does conditional reabsorption of sodium and water.",
+       "hi": "DCT सोडियम और पानी का सशर्त पुनरवशोषण करती है।"
+      }
+     },
+     {
+      "id": "ph",
+      "text": {
+       "en": "Secretes H+, K+ and NH3 to keep blood pH",
+       "hi": "रक्त का pH रखने को H+, K+ और NH3 स्रावित करती है"
+      },
+      "bin": "dct",
+      "why": {
+       "en": "Selective secretion here keeps the pH and sodium-potassium balance of blood.",
+       "hi": "यहाँ का चयनात्मक स्रवण रक्त का pH और सोडियम-पोटैशियम संतुलन बनाए रखता है।"
+      }
+     },
+     {
+      "id": "conc",
+      "text": {
+       "en": "Takes back much water to make urine concentrated",
+       "hi": "बहुत पानी वापस लेकर मूत्र गाढ़ा करती है"
+      },
+      "bin": "cd",
+      "why": {
+       "en": "Large amounts of water can be reabsorbed here as the duct passes through the salty medulla.",
+       "hi": "नमकीन मध्यांश से गुज़रते हुए यहाँ बहुत पानी वापस सोखा जा सकता है।"
+      }
+     },
+     {
+      "id": "urea",
+      "text": {
+       "en": "Lets a little urea into the medulla",
+       "hi": "थोड़ा यूरिया मध्यांश में जाने देती है"
+      },
+      "bin": "cd",
+      "why": {
+       "en": "This urea helps keep the medulla's interstitium concentrated.",
+       "hi": "यह यूरिया मध्यांश के अंतराल को गाढ़ा रखने में मदद करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:glu",
+     "expect": "correct:glu",
+     "say": {
+      "en": "Tap the glucose card and sort it.",
+      "hi": "ग्लूकोज़ वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:waterout",
+     "expect": "correct:waterout",
+     "say": {
+      "en": "Now sort the card 'Lets water out but hardly any salt'.",
+      "hi": "अब 'पानी बाहर जाने देती है, लवण लगभग नहीं' वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The ascending limb does the opposite of the descending limb. What does it let out?",
+      "hi": "आरोही भुजा अवरोही भुजा का उल्टा करती है। वह क्या बाहर जाने देती है?"
+     },
+     "options": [
+      {
+       "id": "salt",
+       "en": "Salt, but not water",
+       "hi": "लवण, पर पानी नहीं"
+      },
+      {
+       "id": "water",
+       "en": "Water, but not salt",
+       "hi": "पानी, पर लवण नहीं"
+      },
+      {
+       "id": "both",
+       "en": "Both freely",
+       "hi": "दोनों आसानी से"
+      }
+     ],
+     "answer": "salt"
+    },
+    {
+     "kind": "do",
+     "target": "card:saltout",
+     "expect": "correct:saltout",
+     "say": {
+      "en": "Sort the card for the ascending limb.",
+      "hi": "आरोही भुजा वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each part of the tubule has its own job. The PCT does the bulk reabsorption of nutrients, salts and water. The descending limb lets water out and the ascending limb lets salts out, which builds a salty medulla. The DCT fine-tunes sodium, water and pH. The collecting duct takes back water to make concentrated urine.",
+      "hi": "नलिका के हर भाग का अपना काम है। PCT पोषक तत्वों, लवणों और पानी का ज़्यादातर पुनरवशोषण करती है। अवरोही भुजा पानी बाहर जाने देती है और आरोही भुजा लवण, जिससे मध्यांश नमकीन बनता है। DCT सोडियम, पानी और pH का बारीक संतुलन करती है। संग्राहक वाहिनी पानी वापस लेकर गाढ़ा मूत्र बनाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the filtrate get more concentrated as it moves down the descending limb?",
+        "hi": "अवरोही भुजा में नीचे जाते हुए निस्यंद अधिक गाढ़ा क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "Water leaves but salts stay",
+         "hi": "पानी निकलता है पर लवण रहते हैं"
+        },
+        {
+         "en": "Salts are added from blood",
+         "hi": "रक्त से लवण जुड़ते हैं"
+        },
+        {
+         "en": "Glucose is added",
+         "hi": "ग्लूकोज़ जुड़ता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The descending limb is permeable to water but almost not to electrolytes.",
+        "hi": "अवरोही भुजा पानी के लिए पारगम्य है पर लवणों के लिए लगभग नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No salts are pumped in here; the change comes from water leaving.",
+         "hi": "यहाँ लवण अंदर नहीं डाले जाते; बदलाव पानी निकलने से आता है।"
+        },
+        {
+         "en": "Glucose has already been taken back in the PCT.",
+         "hi": "ग्लूकोज़ पहले ही PCT में वापस ले लिया गया है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort all the cards. Which two parts work as a pair to build the salty medulla?",
+      "hi": "ख़ुद आज़माओ। सारे कार्ड छाँटो। कौन-से दो भाग मिलकर नमकीन मध्यांश बनाते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch16-kidney-hormones",
+   "topic": "16.5",
+   "template": "match",
+   "title": {
+    "en": "Hormones that tune the kidney",
+    "hi": "वृक्क को नियंत्रित करने वाले हार्मोन"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "adh",
+      "left": {
+       "en": "ADH (vasopressin)",
+       "hi": "ADH (वैसोप्रेसिन)"
+      },
+      "right": {
+       "en": "Released when the body is short of water; more water is reabsorbed",
+       "hi": "शरीर में पानी कम होने पर निकलता है; अधिक पानी वापस सोखा जाता है"
+      },
+      "why": {
+       "en": "Osmoreceptors in the hypothalamus sense water loss and trigger ADH from the neurohypophysis.",
+       "hi": "हाइपोथैलेमस के परासरणग्राही पानी की कमी पहचानकर तंत्रिका पिट्यूटरी से ADH निकलवाते हैं।"
+      }
+     },
+     {
+      "id": "renin",
+      "left": {
+       "en": "Renin",
+       "hi": "रेनिन"
+      },
+      "right": {
+       "en": "Released by JG cells when GFR falls",
+       "hi": "GFR घटने पर JG कोशिकाओं से निकलता है"
+      },
+      "why": {
+       "en": "Renin converts angiotensinogen in blood to angiotensin I, which becomes angiotensin II.",
+       "hi": "रेनिन रक्त के ऐंजियोटेन्सिनोजन को ऐंजियोटेन्सिन I बनाता है, जो ऐंजियोटेन्सिन II बनता है।"
+      }
+     },
+     {
+      "id": "ang",
+      "left": {
+       "en": "Angiotensin II",
+       "hi": "ऐंजियोटेन्सिन II"
+      },
+      "right": {
+       "en": "Narrows blood vessels, raises GFR and calls up aldosterone",
+       "hi": "रक्त वाहिकाएँ संकरी कर GFR बढ़ाता है और ऐल्डोस्टेरॉन बुलाता है"
+      },
+      "why": {
+       "en": "It is a powerful vasoconstrictor that raises blood pressure and GFR.",
+       "hi": "यह शक्तिशाली वाहिका संकीर्णक है जो रक्तचाप और GFR बढ़ाता है।"
+      }
+     },
+     {
+      "id": "ald",
+      "left": {
+       "en": "Aldosterone",
+       "hi": "ऐल्डोस्टेरॉन"
+      },
+      "right": {
+       "en": "Makes the later tubule take back Na+ and water",
+       "hi": "बाद की नलिका से Na+ और पानी वापस सोखवाता है"
+      },
+      "why": {
+       "en": "From the adrenal cortex; more Na+ and water reabsorbed also raises blood pressure.",
+       "hi": "अधिवृक्क वल्कुट से; अधिक Na+ और पानी वापस आने से रक्तचाप भी बढ़ता है।"
+      }
+     },
+     {
+      "id": "anf",
+      "left": {
+       "en": "Atrial natriuretic factor (ANF)",
+       "hi": "आलिंद नैट्रियूरेटिक कारक (ANF)"
+      },
+      "right": {
+       "en": "From the heart: widens vessels and checks the renin system",
+       "hi": "हृदय से: वाहिकाएँ चौड़ी करता है और रेनिन तंत्र पर रोक लगाता है"
+      },
+      "why": {
+       "en": "When blood pressure rises, the atria release ANF, which lowers it.",
+       "hi": "रक्तचाप बढ़ने पर अलिंद ANF छोड़ते हैं, जो उसे घटाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:adh",
+     "expect": "matched:adh",
+     "say": {
+      "en": "Tap ADH and match it.",
+      "hi": "ADH पर टैप करो और मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:renin",
+     "expect": "matched:renin",
+     "say": {
+      "en": "Now match renin.",
+      "hi": "अब रेनिन मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "ANF is released when blood pressure is too high. What will it do to the renin system?",
+      "hi": "रक्तचाप बहुत अधिक होने पर ANF निकलता है। वह रेनिन तंत्र के साथ क्या करेगा?"
+     },
+     "options": [
+      {
+       "id": "check",
+       "en": "Check (oppose) it",
+       "hi": "उस पर रोक लगाएगा"
+      },
+      {
+       "id": "boost",
+       "en": "Boost it",
+       "hi": "उसे बढ़ाएगा"
+      },
+      {
+       "id": "same",
+       "en": "Have no effect",
+       "hi": "कोई असर नहीं"
+      }
+     ],
+     "answer": "check"
+    },
+    {
+     "kind": "do",
+     "target": "left:anf",
+     "expect": "matched:anf",
+     "say": {
+      "en": "Match ANF.",
+      "hi": "ANF मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Three systems keep the kidney's work balanced. ADH saves water when we are dehydrated. A fall in GFR starts the renin-angiotensin-aldosterone system, which narrows vessels and saves salt and water, raising blood pressure. ANF from the heart does the opposite, widening vessels and checking that system.",
+      "hi": "तीन तंत्र वृक्क का काम संतुलित रखते हैं। निर्जलीकरण में ADH पानी बचाता है। GFR घटने पर रेनिन-ऐंजियोटेन्सिन-ऐल्डोस्टेरॉन तंत्र शुरू होता है, जो वाहिकाएँ संकरी करके लवण और पानी बचाता है और रक्तचाप बढ़ाता है। हृदय का ANF इसका उल्टा करता है, वाहिकाएँ चौड़ी करता है और उस तंत्र पर रोक लगाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After a long, hot cricket match with little water, what happens to ADH and urine?",
+        "hi": "कम पानी के साथ लंबे, गर्म क्रिकेट मैच के बाद ADH और मूत्र का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "ADH rises; urine becomes less and darker",
+         "hi": "ADH बढ़ता है; मूत्र कम और गहरा होता है"
+        },
+        {
+         "en": "ADH falls; urine becomes more",
+         "hi": "ADH घटता है; मूत्र बढ़ता है"
+        },
+        {
+         "en": "Nothing changes",
+         "hi": "कुछ नहीं बदलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dehydration triggers ADH, which saves water by reabsorbing it in the tubule.",
+        "hi": "निर्जलीकरण से ADH निकलता है, जो नलिका में पानी वापस सोखकर बचाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "ADH falls when we drink a lot; then more, paler urine is passed.",
+         "hi": "बहुत पानी पीने पर ADH घटता है; तब अधिक और हल्का मूत्र निकलता है।"
+        },
+        {
+         "en": "The body actively adjusts; urine volume changes with water balance.",
+         "hi": "शरीर सक्रिय रूप से संतुलन करता है; मूत्र की मात्रा पानी के संतुलन के साथ बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match the rest. Then draw arrows in your notebook from 'GFR falls' to 'blood pressure rises'.",
+      "hi": "ख़ुद आज़माओ। बाकी मिलाओ। फिर अपनी कॉपी में 'GFR घटता है' से 'रक्तचाप बढ़ता है' तक तीर बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch16-other-organs",
+   "topic": "16.7",
+   "template": "match",
+   "title": {
+    "en": "Other organs that excrete",
+    "hi": "उत्सर्जन करने वाले दूसरे अंग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "lungs",
+      "left": {
+       "en": "Lungs",
+       "hi": "फेफड़े"
+      },
+      "right": {
+       "en": "About 200 mL of CO2 a minute, and water",
+       "hi": "मिनट में लगभग 200 मिली CO2, और पानी"
+      },
+      "why": {
+       "en": "Large amounts of CO2 and some water vapour leave with every breath out.",
+       "hi": "हर निःश्वास के साथ बहुत CO2 और कुछ जलवाष्प निकलती है।"
+      }
+     },
+     {
+      "id": "liver",
+      "left": {
+       "en": "Liver",
+       "hi": "यकृत"
+      },
+      "right": {
+       "en": "Bilirubin, biliverdin, cholesterol and used steroid hormones into bile",
+       "hi": "बिलिरुबिन, बिलिवर्डिन, कोलेस्टेरॉल और प्रयुक्त स्टेरॉइड हार्मोन पित्त में"
+      },
+      "why": {
+       "en": "These pass with bile into the gut and leave with the faeces.",
+       "hi": "ये पित्त के साथ आंत में जाकर मल के साथ निकलते हैं।"
+      }
+     },
+     {
+      "id": "sweat",
+      "left": {
+       "en": "Sweat glands",
+       "hi": "स्वेद ग्रंथियाँ"
+      },
+      "right": {
+       "en": "Water with NaCl, a little urea and lactic acid",
+       "hi": "NaCl, थोड़ा यूरिया और लैक्टिक अम्ल वाला पानी"
+      },
+      "why": {
+       "en": "Sweat mainly cools the body, but it also removes some wastes.",
+       "hi": "पसीना मुख्यतः शरीर ठंडा करता है, पर कुछ अपशिष्ट भी निकालता है।"
+      }
+     },
+     {
+      "id": "sebum",
+      "left": {
+       "en": "Sebaceous glands",
+       "hi": "तैल ग्रंथियाँ"
+      },
+      "right": {
+       "en": "Sterols, hydrocarbons and waxes in sebum",
+       "hi": "सीबम में स्टेरॉल, हाइड्रोकार्बन और मोम"
+      },
+      "why": {
+       "en": "Sebum also gives the skin a protective oily covering.",
+       "hi": "सीबम त्वचा को एक सुरक्षात्मक तैलीय परत भी देता है।"
+      }
+     },
+     {
+      "id": "saliva",
+      "left": {
+       "en": "Saliva",
+       "hi": "लार"
+      },
+      "right": {
+       "en": "Small amounts of nitrogenous waste",
+       "hi": "थोड़ा नाइट्रोजनी अपशिष्ट"
+      },
+      "why": {
+       "en": "A little nitrogenous waste can leave the body in saliva.",
+       "hi": "थोड़ा नाइट्रोजनी अपशिष्ट लार से भी शरीर से निकल सकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:lungs",
+     "expect": "matched:lungs",
+     "say": {
+      "en": "Tap the lungs and match what they remove.",
+      "hi": "फेफड़ों पर टैप करो और वे जो निकालते हैं उससे मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The liver's waste pigments give bile its colour. Where do they leave the body?",
+      "hi": "यकृत के अपशिष्ट वर्णक पित्त को रंग देते हैं। वे शरीर से कहाँ निकलते हैं?"
+     },
+     "options": [
+      {
+       "id": "faeces",
+       "en": "With the faeces",
+       "hi": "मल के साथ"
+      },
+      {
+       "id": "breath",
+       "en": "In the breath",
+       "hi": "साँस में"
+      },
+      {
+       "id": "tears",
+       "en": "In tears",
+       "hi": "आँसुओं में"
+      }
+     ],
+     "answer": "faeces"
+    },
+    {
+     "kind": "do",
+     "target": "left:liver",
+     "expect": "matched:liver",
+     "say": {
+      "en": "Match the liver.",
+      "hi": "यकृत मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:sweat",
+     "expect": "matched:sweat",
+     "say": {
+      "en": "Match the sweat glands.",
+      "hi": "स्वेद ग्रंथियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The kidneys are the main excretory organs, but not the only ones. The lungs remove carbon dioxide, the liver sends pigments and used hormones out with bile, the skin removes some salts and urea in sweat and oily substances in sebum, and saliva carries a little nitrogenous waste.",
+      "hi": "वृक्क मुख्य उत्सर्जी अंग हैं, पर अकेले नहीं। फेफड़े कार्बन डाइऑक्साइड निकालते हैं, यकृत वर्णकों और प्रयुक्त हार्मोनों को पित्त के साथ बाहर भेजता है, त्वचा पसीने में कुछ लवण और यूरिया और सीबम में तैलीय पदार्थ निकालती है, और लार थोड़ा नाइट्रोजनी अपशिष्ट ले जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the main job of sweat?",
+        "hi": "पसीने का मुख्य काम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Cooling the body",
+         "hi": "शरीर को ठंडा करना"
+        },
+        {
+         "en": "Removing all urea",
+         "hi": "सारा यूरिया निकालना"
+        },
+        {
+         "en": "Making the skin oily",
+         "hi": "त्वचा को तैलीय बनाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Evaporating sweat cools us; it removes only small amounts of waste.",
+        "hi": "पसीने का वाष्पन हमें ठंडा करता है; यह केवल थोड़ा अपशिष्ट निकालता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Most urea leaves in urine; sweat carries only a little.",
+         "hi": "अधिकतर यूरिया मूत्र से निकलता है; पसीना थोड़ा ही ले जाता है।"
+        },
+        {
+         "en": "Oil on the skin comes from sebum, not sweat.",
+         "hi": "त्वचा का तेल सीबम से आता है, पसीने से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match the last two pairs. On a hot day, which of these organs works harder?",
+      "hi": "ख़ुद आज़माओ। आख़िरी दो जोड़ियाँ मिलाओ। गर्म दिन में इनमें से कौन-सा अंग ज़्यादा काम करता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "CUT",
+   "topic": "16.1",
+   "use": "Inside a real kidney",
+   "shows": "A goat kidney from a butcher, cut lengthwise on a white tray: outer cortex, darker cone-shaped medullary pyramids, the pale renal pelvis and the cut ureter",
+   "view": "Straight top view of the cut face, soft even light, 4:3",
+   "right": "Cortex and pyramids clearly different in shade; bean shape with hilum",
+   "avoid": "Blood pooling, knives, hands"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "16.1",
+   "use": "Excretory system for the body lab",
+   "shows": "A model of two kidneys with renal arteries and veins joined to the aorta and vena cava, two ureters and the urinary bladder",
+   "view": "Front, back, side and three-quarter views, same size and centre, transparent background",
+   "right": "Right kidney slightly lower than the left; ureters entering the bladder from behind",
+   "avoid": "Labels, other organs"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "16.2",
+   "use": "Base for the nephron labs",
+   "shows": "A clean drawing of one nephron: glomerulus in Bowman's capsule, PCT, U-shaped Henle's loop, DCT and collecting duct, with its blood vessels, on a band showing cortex above and medulla below",
+   "view": "Flat vector on white, portrait 3:4",
+   "right": "Henle's loop dips into the medulla; afferent arteriole wider than efferent",
+   "avoid": "Words, numbers or arrows baked in"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "16",
+   "use": "Animals for the nitrogenous-waste sort",
+   "shows": "Five cut-outs: a rohu fish, a cow, a pigeon, a garden lizard and a land snail",
+   "view": "Each side view, transparent background, lit from top left",
+   "right": "True Indian species and colours",
+   "avoid": "Backgrounds, people, cages"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "16.8",
+   "use": "Haemodialysis",
+   "shows": "A haemodialysis machine beside a hospital bed, tubing running to a covered arm on the bed, a nurse's gloved hand checking a dial",
+   "view": "Three-quarter view, calm daylight, 16:9",
+   "right": "Tubes and filter cartridge visible; arm covered, no needle shown",
+   "avoid": "Faces, hospital names, screens with data"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "16.8",
+   "use": "Kidney stones",
+   "shows": "A few small, rough, yellow-brown kidney stones (renal calculi) on a steel dish beside a coin-sized circle for scale",
+   "view": "Macro, top view, transparent or white background",
+   "right": "Stones irregular and crystalline, 2 to 8 mm",
+   "avoid": "Brand names, real coins with legible text"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "16.5",
+   "use": "ADH in daily life",
+   "shows": "A girl's hands holding a steel tumbler of water under a neem tree on a hot afternoon, a cricket bat leaning nearby",
+   "view": "Close, side view, bright sun with soft shade, 16:9",
+   "right": "Water clear; scene hot and dry",
+   "avoid": "Faces, brand names on bats or bottles"
+  }
+ ]
+}

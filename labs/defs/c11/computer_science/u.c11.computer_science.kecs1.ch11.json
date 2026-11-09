@@ -1,0 +1,2869 @@
+{
+ "chapter_key": "u.c11.computer_science.kecs1.ch11",
+ "class": 11,
+ "subject_id": "computer_science",
+ "title": "Societal Impact",
+ "source": "https://ncert.nic.in/textbook/pdf/kecs111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Introduction to the societal impact of technology",
+   "labs": [],
+   "why_no_lab": "The idea that technology brings both benefits and risks is explained in the reader; each lab below takes one risk or responsibility."
+  },
+  {
+   "n": "11.2",
+   "title": "Digital footprints",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-footprint"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Digital society and netizen",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-etiquette"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3.1",
+   "title": "Net etiquettes",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-etiquette"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3.2",
+   "title": "Communication etiquettes",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-etiquette"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3.3",
+   "title": "Social media etiquettes",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-social"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Data protection",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-ipr"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4.1",
+   "title": "Intellectual property right (IPR)",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-ipr"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4.2",
+   "title": "Violation of IPR: plagiarism, copyright and trademark infringement",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-violation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4.3",
+   "title": "Public access and open source software",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-foss"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5",
+   "title": "Cyber crime",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-crimes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5.1",
+   "title": "Hacking",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-crimes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5.2",
+   "title": "Phishing and fraud emails",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-phish"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5.3",
+   "title": "Ransomware",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-crimes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5.4",
+   "title": "Combatting and preventing cyber crime",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-password",
+    "c11-computer_science-kecs1-ch11-report"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.6",
+   "title": "Indian Information Technology Act (IT Act)",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-itact"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.7",
+   "title": "Impact on health",
+   "labs": [
+    "c11-computer_science-kecs1-ch11-health"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-computer_science-kecs1-ch11-footprint",
+   "topic": "11.2",
+   "template": "sort",
+   "title": {
+    "en": "Digital footprints: active or passive?",
+    "hi": "डिजिटल पदचिह्न: सक्रिय या निष्क्रिय?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "active",
+      "label": {
+       "en": "Active footprint",
+       "hi": "सक्रिय पदचिह्न"
+      }
+     },
+     {
+      "id": "passive",
+      "label": {
+       "en": "Passive footprint",
+       "hi": "निष्क्रिय पदचिह्न"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "email",
+      "text": {
+       "en": "Sending an email to a friend",
+       "hi": "दोस्त को ईमेल भेजना"
+      },
+      "bin": "active",
+      "why": {
+       "en": "You wrote and sent it on purpose, so you chose to leave this data.",
+       "hi": "तुमने इसे जानबूझकर लिखा और भेजा, यानी यह डेटा तुमने ख़ुद छोड़ा।"
+      }
+     },
+     {
+      "id": "photo",
+      "text": {
+       "en": "Posting a photo on social media",
+       "hi": "सोशल मीडिया पर फ़ोटो डालना"
+      },
+      "bin": "active",
+      "why": {
+       "en": "You submitted the photo yourself.",
+       "hi": "फ़ोटो तुमने ख़ुद डाली।"
+      }
+     },
+     {
+      "id": "form",
+      "text": {
+       "en": "Filling in an online admission form",
+       "hi": "ऑनलाइन दाख़िला फ़ॉर्म भरना"
+      },
+      "bin": "active",
+      "why": {
+       "en": "You typed every detail on purpose.",
+       "hi": "हर जानकारी तुमने जानबूझकर टाइप की।"
+      }
+     },
+     {
+      "id": "comment",
+      "text": {
+       "en": "Writing a comment under a video",
+       "hi": "वीडियो के नीचे टिप्पणी लिखना"
+      },
+      "bin": "active",
+      "why": {
+       "en": "A comment is data you knowingly put online.",
+       "hi": "टिप्पणी वह डेटा है जो तुमने जानकर ऑनलाइन डाला।"
+      }
+     },
+     {
+      "id": "ip",
+      "text": {
+       "en": "A website noting your IP address",
+       "hi": "वेबसाइट का तुम्हारा IP पता दर्ज करना"
+      },
+      "bin": "passive",
+      "why": {
+       "en": "It happens automatically when you visit; you did not enter it.",
+       "hi": "यह साइट खोलते ही अपने आप होता है; तुमने इसे डाला नहीं।"
+      }
+     },
+     {
+      "id": "gps",
+      "text": {
+       "en": "An app recording where you are",
+       "hi": "ऐप का तुम्हारी जगह दर्ज करना"
+      },
+      "bin": "passive",
+      "why": {
+       "en": "Location is collected in the background, often without you noticing.",
+       "hi": "जगह की जानकारी पृष्ठभूमि में जमा होती है, अक्सर तुम्हें पता भी नहीं चलता।"
+      }
+     },
+     {
+      "id": "history",
+      "text": {
+       "en": "Your browser saving the sites you visited",
+       "hi": "ब्राउज़र का देखी गई साइटें सहेजना"
+      },
+      "bin": "passive",
+      "why": {
+       "en": "Browsing history and cookies are saved automatically.",
+       "hi": "ब्राउज़िंग इतिहास और कुकीज़ अपने आप सहेजे जाते हैं।"
+      }
+     },
+     {
+      "id": "ads",
+      "text": {
+       "en": "Ads that follow what you searched for",
+       "hi": "तुम्हारी खोज के पीछे चलते विज्ञापन"
+      },
+      "bin": "passive",
+      "why": {
+       "en": "Your search trail was collected and used without a separate request.",
+       "hi": "तुम्हारी खोज का निशान अलग से पूछे बिना जमा हुआ और इस्तेमाल हुआ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:email",
+     "expect": "correct:email",
+     "say": {
+      "en": "Tap \"Sending an email to a friend\", then the group it belongs to.",
+      "hi": "\"दोस्त को ईमेल भेजना\" दबाओ, फिर वह समूह दबाओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You search for a school bag online and later see bag ads everywhere. Did you leave that trail on purpose?",
+      "hi": "तुम स्कूल बैग ऑनलाइन खोजते हो और बाद में हर जगह बैग के विज्ञापन दिखते हैं। क्या वह निशान तुमने जानबूझकर छोड़ा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it was collected passively",
+       "hi": "नहीं, यह निष्क्रिय रूप से जमा हुआ"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it was an active footprint",
+       "hi": "हाँ, यह सक्रिय पदचिह्न था"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाक़ी सभी कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every time you use the Internet you leave a trail of data: your digital footprint. An active footprint is data you give on purpose, like emails, posts and forms. A passive footprint is collected without you doing anything, like your IP address, location and browsing history. Footprints can stay for years, can be used for advertising, and can be misused, so think before you post, and check your browser and app settings.",
+      "hi": "इंटरनेट इस्तेमाल करते हर बार तुम डेटा का निशान छोड़ते हो: तुम्हारा डिजिटल पदचिह्न। सक्रिय पदचिह्न वह डेटा है जो तुम जानबूझकर देते हो, जैसे ईमेल, पोस्ट और फ़ॉर्म। निष्क्रिय पदचिह्न तुम्हारे कुछ किए बिना जमा होता है, जैसे IP पता, जगह और ब्राउज़िंग इतिहास। पदचिह्न सालों तक रह सकते हैं, विज्ञापन में काम आ सकते हैं और उनका दुरुपयोग भी हो सकता है, इसलिए पोस्ट करने से पहले सोचो और ब्राउज़र व ऐप की सेटिंग देखो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which action leaves an ACTIVE footprint?",
+        "hi": "कौन-सा काम सक्रिय पदचिह्न छोड़ता है?"
+       },
+       "options": [
+        {
+         "en": "Uploading a photo to a class group",
+         "hi": "कक्षा के ग्रुप में फ़ोटो डालना"
+        },
+        {
+         "en": "A website recording your IP address",
+         "hi": "वेबसाइट का तुम्हारा IP पता दर्ज करना"
+        },
+        {
+         "en": "A browser saving cookies",
+         "hi": "ब्राउज़र का कुकीज़ सहेजना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "You chose to upload it, so it is data you gave on purpose.",
+        "hi": "तुमने इसे डालना चुना, यानी यह वह डेटा है जो तुमने जानबूझकर दिया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This is collected automatically, so it is passive.",
+         "hi": "यह अपने आप जमा होता है, इसलिए निष्क्रिय है।"
+        },
+        {
+         "en": "Cookies are saved by the browser without you typing anything: passive.",
+         "hi": "कुकीज़ तुम्हारे कुछ टाइप किए बिना ब्राउज़र सहेजता है: निष्क्रिय।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and try again. Then list two things you did online today and say whether each left an active or a passive footprint.",
+      "hi": "रीसेट दबाओ और फिर कोशिश करो। फिर आज ऑनलाइन किए दो काम बताओ और कहो कि हर एक ने सक्रिय पदचिह्न छोड़ा या निष्क्रिय।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch11-etiquette",
+   "topic": "11.3.1",
+   "template": "sort",
+   "title": {
+    "en": "Net etiquette: be a good netizen",
+    "hi": "नेट शिष्टाचार: अच्छे नेटिज़न बनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "good",
+      "label": {
+       "en": "Good netizen",
+       "hi": "अच्छा नेटिज़न"
+      }
+     },
+     {
+      "id": "avoid",
+      "label": {
+       "en": "Avoid this",
+       "hi": "यह मत करो"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cite",
+      "text": {
+       "en": "Name the source of a picture you use",
+       "hi": "इस्तेमाल की गई तस्वीर का स्रोत बताना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Giving credit respects the creator and avoids copyright trouble.",
+       "hi": "श्रेय देना रचनाकार का सम्मान है और कॉपीराइट की परेशानी से बचाता है।"
+      }
+     },
+     {
+      "id": "polite",
+      "text": {
+       "en": "Disagree politely and give reasons",
+       "hi": "विनम्रता से असहमत होना और कारण बताना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Respectful disagreement keeps a discussion useful.",
+       "hi": "सम्मान से असहमति बातचीत को उपयोगी बनाए रखती है।"
+      }
+     },
+     {
+      "id": "ask",
+      "text": {
+       "en": "Ask before sharing someone's photo",
+       "hi": "किसी की फ़ोटो साझा करने से पहले पूछना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Photos of others are their private data; permission comes first.",
+       "hi": "दूसरों की फ़ोटो उनका निजी डेटा है; पहले अनुमति लो।"
+      }
+     },
+     {
+      "id": "check",
+      "text": {
+       "en": "Check a news item before forwarding it",
+       "hi": "ख़बर आगे भेजने से पहले जाँचना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Checking stops false news from spreading.",
+       "hi": "जाँचने से झूठी ख़बर फैलने से रुकती है।"
+      }
+     },
+     {
+      "id": "rumour",
+      "text": {
+       "en": "Forward a rumour without checking",
+       "hi": "बिना जाँचे अफ़वाह आगे भेजना"
+      },
+      "bin": "avoid",
+      "why": {
+       "en": "Rumours can hurt people and cannot be called back once they spread.",
+       "hi": "अफ़वाहें लोगों को चोट पहुँचा सकती हैं और फैलने के बाद वापस नहीं बुलाई जा सकतीं।"
+      }
+     },
+     {
+      "id": "caps",
+      "text": {
+       "en": "Typing in ALL CAPITALS to shout",
+       "hi": "चिल्लाने के लिए सारे बड़े अक्षर लिखना"
+      },
+      "bin": "avoid",
+      "why": {
+       "en": "It reads as shouting and is rude in messages.",
+       "hi": "यह चिल्लाने जैसा पढ़ा जाता है और संदेशों में असभ्य है।"
+      }
+     },
+     {
+      "id": "mock",
+      "text": {
+       "en": "Making fun of someone's photo",
+       "hi": "किसी की फ़ोटो का मज़ाक उड़ाना"
+      },
+      "bin": "avoid",
+      "why": {
+       "en": "This is cyber bullying: it insults and hurts the person.",
+       "hi": "यह साइबर बुलिंग है: इससे व्यक्ति का अपमान होता है और उसे चोट पहुँचती है।"
+      }
+     },
+     {
+      "id": "private",
+      "text": {
+       "en": "Sharing a friend's private chat",
+       "hi": "दोस्त की निजी चैट साझा करना"
+      },
+      "bin": "avoid",
+      "why": {
+       "en": "A private chat shared without permission breaks trust and privacy.",
+       "hi": "अनुमति के बिना साझा की गई निजी चैट भरोसा और निजता तोड़ती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:cite",
+     "expect": "correct:cite",
+     "say": {
+      "en": "Tap \"Name the source of a picture you use\", then its group.",
+      "hi": "\"इस्तेमाल की गई तस्वीर का स्रोत बताना\" दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A friend sends a shocking news message and says \"forward to ten people now!\" What should a good netizen do first?",
+      "hi": "दोस्त एक चौंकाने वाली ख़बर भेजता है और कहता है \"अभी दस लोगों को भेजो!\" अच्छा नेटिज़न सबसे पहले क्या करेगा?"
+     },
+     "options": [
+      {
+       "id": "check",
+       "en": "Check whether it is true",
+       "hi": "जाँचेगा कि यह सच है या नहीं"
+      },
+      {
+       "id": "send",
+       "en": "Forward it at once",
+       "hi": "तुरंत आगे भेज देगा"
+      }
+     ],
+     "answer": "check"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाक़ी सभी कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A netizen is a citizen of the Internet. Good net etiquette means behaving online as you would in a classroom: be respectful and polite, give credit for what you use, do not share other people's private data or photos, avoid cyber bullying, and think before you forward. Communication etiquette adds being clear and precise in messages, and social media etiquette adds keeping your privacy settings safe.",
+      "hi": "नेटिज़न इंटरनेट का नागरिक है। अच्छे नेट शिष्टाचार का मतलब है ऑनलाइन वैसा व्यवहार जैसा कक्षा में करते हो: सम्मानपूर्ण और विनम्र रहो, जो इस्तेमाल करो उसका श्रेय दो, दूसरों का निजी डेटा या फ़ोटो साझा मत करो, साइबर बुलिंग से बचो और आगे भेजने से पहले सोचो। संचार शिष्टाचार में संदेश स्पष्ट और सटीक रखना जुड़ता है, और सोशल मीडिया शिष्टाचार में अपनी निजता सेटिंग सुरक्षित रखना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is cyber bullying?",
+        "hi": "साइबर बुलिंग क्या है?"
+       },
+       "options": [
+        {
+         "en": "Using the Internet to insult or hurt someone",
+         "hi": "इंटरनेट से किसी का अपमान करना या उसे चोट पहुँचाना"
+        },
+        {
+         "en": "Playing an online game with friends",
+         "hi": "दोस्तों के साथ ऑनलाइन खेल खेलना"
+        },
+        {
+         "en": "Writing a long email",
+         "hi": "लंबा ईमेल लिखना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Insulting, degrading or threatening someone online is cyber bullying.",
+        "hi": "ऑनलाइन किसी को अपमानित करना, नीचा दिखाना या धमकाना साइबर बुलिंग है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A game among friends is normal fun.",
+         "hi": "दोस्तों के बीच खेल सामान्य मनोरंजन है।"
+        },
+        {
+         "en": "Length has nothing to do with it; the harm to a person does.",
+         "hi": "लंबाई से कोई संबंध नहीं; संबंध व्यक्ति को पहुँची हानि से है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and try again. Then think of one rule for how your own class group chat should behave.",
+      "hi": "रीसेट दबाओ और फिर कोशिश करो। फिर सोचो कि तुम्हारे कक्षा के ग्रुप चैट के लिए एक नियम क्या होना चाहिए।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch11-social",
+   "topic": "11.3.3",
+   "template": "scenario",
+   "title": {
+    "en": "Social media role play: the embarrassing photo",
+    "hi": "सोशल मीडिया भूमिका: शर्मिंदा करने वाली फ़ोटो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "class group chat",
+    "role": {
+     "en": "A member of the class group chat",
+     "hi": "कक्षा के ग्रुप चैट का सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Someone posts an embarrassing photo of your classmate Rohan in the class group chat. Many people are laughing and sending emojis. What do you do?",
+       "hi": "कोई कक्षा के ग्रुप चैट में तुम्हारे सहपाठी रोहन की शर्मिंदा करने वाली फ़ोटो डाल देता है। बहुत लोग हँस रहे हैं और इमोजी भेज रहे हैं। तुम क्या करते हो?"
+      },
+      "choices": [
+       {
+        "id": "ask",
+        "text": {
+         "en": "Ask the sender to delete it and do not forward it",
+         "hi": "भेजने वाले से इसे हटाने को कहो और आगे मत भेजो"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Right. Stopping the spread early protects Rohan. A photo shared without permission can hurt a person badly.",
+         "hi": "सही। जल्दी फैलना रोकने से रोहन की रक्षा होती है। अनुमति के बिना साझा की गई फ़ोटो किसी को बहुत चोट पहुँचा सकती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "forward",
+        "text": {
+         "en": "Forward it to a friend; everyone else is doing it",
+         "hi": "एक दोस्त को आगे भेज दो; बाक़ी सब भी यही कर रहे हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This is cyber bullying. \"Everyone is doing it\" does not make it right, and every forward spreads the hurt further.",
+         "hi": "यह साइबर बुलिंग है। \"सब कर रहे हैं\" से यह सही नहीं हो जाता, और हर बार आगे भेजने से चोट और फैलती है।"
+        },
+        "good": false
+       },
+       {
+        "id": "mute",
+        "text": {
+         "en": "Say nothing and mute the chat",
+         "hi": "कुछ मत कहो और चैट म्यूट कर दो"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Not joining is better than forwarding, but the photo stays and Rohan is still hurt. Speaking up is kinder.",
+         "hi": "शामिल न होना आगे भेजने से बेहतर है, पर फ़ोटो वहीं रहती है और रोहन को चोट लगी रहती है। बोलना ज़्यादा दयालु है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Later Rohan messages you privately. He feels upset and embarrassed. What next?",
+       "hi": "बाद में रोहन तुम्हें निजी संदेश भेजता है। वह दुखी और शर्मिंदा है। आगे क्या?"
+      },
+      "choices": [
+       {
+        "id": "support",
+        "text": {
+         "en": "Be kind, save screenshots as evidence and tell a teacher or parent",
+         "hi": "दयालु रहो, सबूत के लिए स्क्रीनशॉट रखो और शिक्षक या माता-पिता को बताओ"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Good. Support, evidence and a trusted adult are the right steps against cyber bullying.",
+         "hi": "अच्छा। साइबर बुलिंग के ख़िलाफ़ सहारा, सबूत और भरोसेमंद बड़े सही क़दम हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "joke",
+        "text": {
+         "en": "Tell him it was only a joke and he should relax",
+         "hi": "उससे कहो कि यह बस मज़ाक था और वह चिंता न करे"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Calling hurt a joke makes it worse. The person who is hurt decides how it feels.",
+         "hi": "चोट को मज़ाक कहने से बात बिगड़ती है। चोट किसे लगी, इसका एहसास उसी का होता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "The teacher asks the class how the group chat can be used safely. Which idea is best?",
+       "hi": "शिक्षक कक्षा से पूछते हैं कि ग्रुप चैट सुरक्षित रूप से कैसे इस्तेमाल हो। कौन-सा विचार सबसे अच्छा है?"
+      },
+      "choices": [
+       {
+        "id": "rules",
+        "text": {
+         "en": "Agree on rules: ask before sharing anyone's photo and be respectful",
+         "hi": "नियम तय करो: किसी की फ़ोटो साझा करने से पहले पूछो और सम्मान रखो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Clear rules keep the group useful and safe. This is good social media etiquette.",
+         "hi": "साफ़ नियम समूह को उपयोगी और सुरक्षित रखते हैं। यही अच्छा सोशल मीडिया शिष्टाचार है।"
+        },
+        "good": true
+       },
+       {
+        "id": "drop",
+        "text": {
+         "en": "Delete the group so nothing can ever be shared",
+         "hi": "ग्रुप हटा दो ताकि कभी कुछ साझा न हो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This throws away a useful tool. Rules and respect solve the real problem.",
+         "hi": "इससे एक काम का साधन चला जाता है। नियम और सम्मान असली समस्या सुलझाते हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The photo is already in the chat. Which first move is the kindest for Rohan?",
+      "hi": "फ़ोटो चैट में आ चुकी है। रोहन के लिए सबसे दयालु पहला क़दम कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "stop",
+       "en": "Ask for it to be deleted and not forward it",
+       "hi": "उसे हटाने को कहना और आगे न भेजना"
+      },
+      {
+       "id": "forward",
+       "en": "Forward it to keep the fun going",
+       "hi": "मज़ा चलाने के लिए आगे भेजना"
+      }
+     ],
+     "answer": "stop"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:ask",
+     "expect": "chose:ask",
+     "say": {
+      "en": "Tap the choice that asks for the photo to be deleted.",
+      "hi": "वह विकल्प दबाओ जो फ़ोटो हटाने को कहता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Social media makes sharing instant, so a careless post spreads fast and stays for a long time. Good etiquette means asking permission before sharing a photo of anyone, not joining in on mocking, supporting the person who is hurt, keeping evidence, and telling a trusted adult. Clear group rules prevent the problem before it starts.",
+      "hi": "सोशल मीडिया साझा करना तुरंत कर देता है, इसलिए लापरवाही से डाली पोस्ट तेज़ी से फैलती है और लंबे समय तक रहती है। अच्छे शिष्टाचार का मतलब है किसी की भी फ़ोटो साझा करने से पहले अनुमति लेना, मज़ाक उड़ाने में शामिल न होना, चोट खाए व्यक्ति का साथ देना, सबूत रखना और भरोसेमंद बड़े को बताना। साफ़ समूह-नियम समस्या शुरू होने से पहले ही रोक देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why keep screenshots when someone is bullied online?",
+        "hi": "ऑनलाइन बुलिंग होने पर स्क्रीनशॉट क्यों रखते हैं?"
+       },
+       "options": [
+        {
+         "en": "They are evidence that helps adults and the police act",
+         "hi": "वे सबूत हैं जो बड़ों और पुलिस को कार्रवाई में मदद करते हैं"
+        },
+        {
+         "en": "To post them again for fun",
+         "hi": "मज़े के लिए फिर पोस्ट करने के लिए"
+        },
+        {
+         "en": "To delete the other person's account",
+         "hi": "दूसरे व्यक्ति का खाता हटाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without evidence it is hard to show what happened.",
+        "hi": "सबूत के बिना यह दिखाना मुश्किल है कि क्या हुआ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Posting them again would spread the bullying.",
+         "hi": "उन्हें फिर पोस्ट करने से बुलिंग और फैलती।"
+        },
+        {
+         "en": "Screenshots cannot delete anyone's account.",
+         "hi": "स्क्रीनशॉट से किसी का खाता नहीं हटता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the story again and take the other choices to see what happens. Which ending is the best for everyone?",
+      "hi": "कहानी फिर खेलो और दूसरे विकल्प चुनकर देखो कि क्या होता है। सबके लिए सबसे अच्छा अंत कौन-सा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch11-ipr",
+   "topic": "11.4.1",
+   "template": "sort",
+   "title": {
+    "en": "Intellectual property: copyright, patent or trademark?",
+    "hi": "बौद्धिक संपदा: कॉपीराइट, पेटेंट या ट्रेडमार्क?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "copyright",
+      "label": {
+       "en": "Copyright",
+       "hi": "कॉपीराइट"
+      }
+     },
+     {
+      "id": "patent",
+      "label": {
+       "en": "Patent",
+       "hi": "पेटेंट"
+      }
+     },
+     {
+      "id": "trademark",
+      "label": {
+       "en": "Trademark",
+       "hi": "ट्रेडमार्क"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "novel",
+      "text": {
+       "en": "A novel written by an author",
+       "hi": "लेखक का लिखा उपन्यास"
+      },
+      "bin": "copyright",
+      "why": {
+       "en": "Original writing is protected by copyright, and it is granted automatically.",
+       "hi": "मौलिक लेखन कॉपीराइट से सुरक्षित है, और वह अपने आप मिलता है।"
+      }
+     },
+     {
+      "id": "song",
+      "text": {
+       "en": "A song composed by a musician",
+       "hi": "संगीतकार का रचा गीत"
+      },
+      "bin": "copyright",
+      "why": {
+       "en": "Music is a creative work, so copyright protects it.",
+       "hi": "संगीत रचनात्मक कृति है, इसलिए कॉपीराइट उसकी रक्षा करता है।"
+      }
+     },
+     {
+      "id": "painting",
+      "text": {
+       "en": "A painting made by an artist",
+       "hi": "कलाकार की बनाई पेंटिंग"
+      },
+      "bin": "copyright",
+      "why": {
+       "en": "Art is covered by copyright.",
+       "hi": "कला कॉपीराइट के अंतर्गत आती है।"
+      }
+     },
+     {
+      "id": "tap",
+      "text": {
+       "en": "A new water-saving tap mechanism",
+       "hi": "पानी बचाने वाले नल की नई कार्यप्रणाली"
+      },
+      "bin": "patent",
+      "why": {
+       "en": "A new invention can be protected by a patent, which the inventor must apply for.",
+       "hi": "नए आविष्कार को पेटेंट से सुरक्षा मिल सकती है, जिसके लिए आविष्कारक को आवेदन करना होता है।"
+      }
+     },
+     {
+      "id": "solar",
+      "text": {
+       "en": "A new cheaper way to make solar panels",
+       "hi": "सोलर पैनल सस्ते बनाने का नया तरीक़ा"
+      },
+      "bin": "patent",
+      "why": {
+       "en": "A new method is an invention, so it is patentable.",
+       "hi": "नया तरीक़ा आविष्कार है, इसलिए उसका पेटेंट हो सकता है।"
+      }
+     },
+     {
+      "id": "medicine",
+      "text": {
+       "en": "A new medicine formula invented in a lab",
+       "hi": "प्रयोगशाला में खोजा नया दवा-सूत्र"
+      },
+      "bin": "patent",
+      "why": {
+       "en": "Inventions in medicine are protected by patents.",
+       "hi": "दवा के आविष्कारों को पेटेंट से सुरक्षा मिलती है।"
+      }
+     },
+     {
+      "id": "logo",
+      "text": {
+       "en": "The name and logo of a famous shoe brand",
+       "hi": "प्रसिद्ध जूता ब्रांड का नाम और लोगो"
+      },
+      "bin": "trademark",
+      "why": {
+       "en": "Names and logos that identify a brand are protected as trademarks.",
+       "hi": "ब्रांड की पहचान बताने वाले नाम और लोगो ट्रेडमार्क से सुरक्षित होते हैं।"
+      }
+     },
+     {
+      "id": "symbol",
+      "text": {
+       "en": "A unique symbol a company puts on its products",
+       "hi": "कंपनी का अपने उत्पादों पर लगाया अनूठा चिह्न"
+      },
+      "bin": "trademark",
+      "why": {
+       "en": "A symbol that tells buyers who made the product is a trademark.",
+       "hi": "जो चिह्न ख़रीदारों को बताए कि उत्पाद किसने बनाया वह ट्रेडमार्क है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:novel",
+     "expect": "correct:novel",
+     "say": {
+      "en": "Tap \"A novel written by an author\", then the kind of protection it gets.",
+      "hi": "\"लेखक का लिखा उपन्यास\" दबाओ, फिर वह सुरक्षा दबाओ जो उसे मिलती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A writer finishes a story. Does the writer have to apply to an office to get copyright?",
+      "hi": "एक लेखक कहानी पूरी करता है। क्या कॉपीराइट पाने के लिए उसे किसी दफ़्तर में आवेदन करना पड़ता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, copyright begins automatically when the work is made",
+       "hi": "नहीं, रचना बनते ही कॉपीराइट अपने आप शुरू हो जाता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, every writer must apply",
+       "hi": "हाँ, हर लेखक को आवेदन करना होगा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाक़ी सभी कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Intellectual property is work of the mind that the law protects, so creators and inventors get credit and reward. Copyright protects original creative work like books, music, art and software, and starts automatically. A patent protects an invention, but the inventor must apply and, once granted, others cannot make or sell it without permission for a fixed period. A trademark protects the name, word, symbol or logo that identifies a brand.",
+      "hi": "बौद्धिक संपदा दिमाग़ की वह रचना है जिसे क़ानून सुरक्षा देता है, ताकि रचनाकारों और आविष्कारकों को श्रेय और लाभ मिले। कॉपीराइट पुस्तकों, संगीत, कला और सॉफ़्टवेयर जैसी मौलिक रचनाओं की रक्षा करता है और अपने आप शुरू होता है। पेटेंट आविष्कार की रक्षा करता है, पर आविष्कारक को आवेदन करना होता है और मिलने पर तय समय तक दूसरे अनुमति के बिना उसे बना या बेच नहीं सकते। ट्रेडमार्क उस नाम, शब्द, चिह्न या लोगो की रक्षा करता है जो ब्रांड की पहचान बताता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one must be applied for?",
+        "hi": "किसके लिए आवेदन करना पड़ता है?"
+       },
+       "options": [
+        {
+         "en": "A patent",
+         "hi": "पेटेंट"
+        },
+        {
+         "en": "Copyright on a poem",
+         "hi": "कविता का कॉपीराइट"
+        },
+        {
+         "en": "Copyright on a drawing",
+         "hi": "चित्र का कॉपीराइट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A patent is granted only after the inventor applies.",
+        "hi": "पेटेंट आविष्कारक के आवेदन करने के बाद ही मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Copyright on a poem begins automatically.",
+         "hi": "कविता का कॉपीराइट अपने आप शुरू हो जाता है।"
+        },
+        {
+         "en": "Copyright on a drawing also begins automatically.",
+         "hi": "चित्र का कॉपीराइट भी अपने आप शुरू हो जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A company's logo is protected by which right?",
+        "hi": "कंपनी का लोगो किस अधिकार से सुरक्षित होता है?"
+       },
+       "options": [
+        {
+         "en": "Trademark",
+         "hi": "ट्रेडमार्क"
+        },
+        {
+         "en": "Patent",
+         "hi": "पेटेंट"
+        },
+        {
+         "en": "None",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A logo identifies a brand, which is what a trademark protects.",
+        "hi": "लोगो ब्रांड की पहचान बताता है, और ट्रेडमार्क यही सुरक्षित करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A patent is for inventions, not for logos.",
+         "hi": "पेटेंट आविष्कारों के लिए है, लोगो के लिए नहीं।"
+        },
+        {
+         "en": "Logos are protected, and that protection is a trademark.",
+         "hi": "लोगो सुरक्षित होते हैं, और वह सुरक्षा ट्रेडमार्क है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and try again. Then name one product from your home and say which of the three rights protects its name and logo.",
+      "hi": "रीसेट दबाओ और फिर कोशिश करो। फिर अपने घर का कोई उत्पाद बताओ और कहो कि उसके नाम और लोगो को तीनों में से कौन-सा अधिकार बचाता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch11-violation",
+   "topic": "11.4.2",
+   "template": "sort",
+   "title": {
+    "en": "Violation of IPR: what is wrong and what is fine?",
+    "hi": "IPR का उल्लंघन: क्या ग़लत है और क्या ठीक?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "plagiarism",
+      "label": {
+       "en": "Plagiarism",
+       "hi": "साहित्यिक चोरी"
+      }
+     },
+     {
+      "id": "copyright",
+      "label": {
+       "en": "Copyright infringement",
+       "hi": "कॉपीराइट उल्लंघन"
+      }
+     },
+     {
+      "id": "trademark",
+      "label": {
+       "en": "Trademark infringement",
+       "hi": "ट्रेडमार्क उल्लंघन"
+      }
+     },
+     {
+      "id": "fine",
+      "label": {
+       "en": "Allowed",
+       "hi": "अनुमत"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "paste",
+      "text": {
+       "en": "Pasting paragraphs from a site into your report, no credit",
+       "hi": "साइट के अनुच्छेद बिना श्रेय अपनी रिपोर्ट में चिपकाना"
+      },
+      "bin": "plagiarism",
+      "why": {
+       "en": "Presenting someone else's words as your own is plagiarism.",
+       "hi": "किसी और के शब्द अपने बताकर देना साहित्यिक चोरी है।"
+      }
+     },
+     {
+      "id": "essay",
+      "text": {
+       "en": "Handing in a friend's essay as your own",
+       "hi": "दोस्त का निबंध अपना बताकर जमा करना"
+      },
+      "bin": "plagiarism",
+      "why": {
+       "en": "Claiming another person's work as yours is plagiarism.",
+       "hi": "किसी और का काम अपना बताना साहित्यिक चोरी है।"
+      }
+     },
+     {
+      "id": "photo",
+      "text": {
+       "en": "Using a photographer's picture in a magazine without asking",
+       "hi": "फ़ोटोग्राफ़र की तस्वीर बिना पूछे पत्रिका में लगाना"
+      },
+      "bin": "copyright",
+      "why": {
+       "en": "Using protected work without permission infringes the copyright, even if it is on the Internet.",
+       "hi": "सुरक्षित रचना को अनुमति के बिना इस्तेमाल करना कॉपीराइट का उल्लंघन है, चाहे वह इंटरनेट पर हो।"
+      }
+     },
+     {
+      "id": "pirated",
+      "text": {
+       "en": "Using a pirated copy of paid software",
+       "hi": "पैसे वाले सॉफ़्टवेयर की पाइरेटेड प्रति चलाना"
+      },
+      "bin": "copyright",
+      "why": {
+       "en": "Copying software without the owner's permission infringes copyright.",
+       "hi": "मालिक की अनुमति के बिना सॉफ़्टवेयर की नक़ल कॉपीराइट का उल्लंघन है।"
+      }
+     },
+     {
+      "id": "fakebag",
+      "text": {
+       "en": "Selling bags that carry a copy of a famous brand's logo",
+       "hi": "किसी मशहूर ब्रांड के लोगो की नक़ल वाले बैग बेचना"
+      },
+      "bin": "trademark",
+      "why": {
+       "en": "Using another company's trademark without permission is trademark infringement.",
+       "hi": "दूसरी कंपनी का ट्रेडमार्क अनुमति के बिना इस्तेमाल करना ट्रेडमार्क उल्लंघन है।"
+      }
+     },
+     {
+      "id": "cc",
+      "text": {
+       "en": "Using a picture with a free licence and crediting the maker",
+       "hi": "मुफ़्त लाइसेंस वाली तस्वीर लेना और बनाने वाले को श्रेय देना"
+      },
+      "bin": "fine",
+      "why": {
+       "en": "The licence allows use, and giving credit follows its rules.",
+       "hi": "लाइसेंस उपयोग की अनुमति देता है, और श्रेय देना उसके नियम मानना है।"
+      }
+     },
+     {
+      "id": "summary",
+      "text": {
+       "en": "Writing a summary in your own words and naming the source",
+       "hi": "अपने शब्दों में सार लिखना और स्रोत का नाम देना"
+      },
+      "bin": "fine",
+      "why": {
+       "en": "Your own words with a cited source are honest and allowed.",
+       "hi": "अपने शब्द और बताया हुआ स्रोत ईमानदार और अनुमत है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:paste",
+     "expect": "correct:paste",
+     "say": {
+      "en": "Tap the card about pasting paragraphs from a site, then its group.",
+      "hi": "साइट के अनुच्छेद चिपकाने वाला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A picture is easy to download from the Internet. Does that mean you may use it in your school magazine without asking?",
+      "hi": "तस्वीर इंटरनेट से आसानी से उतर जाती है। क्या इसका मतलब है कि तुम उसे बिना पूछे स्कूल पत्रिका में लगा सकते हो?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it may still be protected by copyright",
+       "hi": "नहीं, वह अब भी कॉपीराइट से सुरक्षित हो सकती है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, anything online is free",
+       "hi": "हाँ, ऑनलाइन सब कुछ मुफ़्त है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाक़ी सभी कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Plagiarism means passing off another person's words or ideas as your own, and the fix is to cite the source. Copyright infringement is using protected work, such as a picture, a song or software, without the owner's permission; pirated software is a clear example. Trademark infringement is using another business's name or logo without permission. Being on the Internet does not make something free to use: check the licence first.",
+      "hi": "साहित्यिक चोरी का मतलब है किसी और के शब्द या विचार अपने बताकर देना, और उसका हल है स्रोत बताना। कॉपीराइट उल्लंघन है सुरक्षित रचना, जैसे तस्वीर, गीत या सॉफ़्टवेयर, मालिक की अनुमति के बिना इस्तेमाल करना; पाइरेटेड सॉफ़्टवेयर इसका साफ़ उदाहरण है। ट्रेडमार्क उल्लंघन है किसी और के व्यवसाय का नाम या लोगो अनुमति के बिना इस्तेमाल करना। इंटरनेट पर होने से कुछ मुफ़्त नहीं हो जाता: पहले लाइसेंस देखो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How can you avoid plagiarism in a project?",
+        "hi": "प्रोजेक्ट में साहित्यिक चोरी से कैसे बचा जा सकता है?"
+       },
+       "options": [
+        {
+         "en": "Write in your own words and cite the source",
+         "hi": "अपने शब्दों में लिखो और स्रोत बताओ"
+        },
+        {
+         "en": "Copy it but change the font",
+         "hi": "नक़ल करो पर फ़ॉन्ट बदल दो"
+        },
+        {
+         "en": "Copy only from the Internet",
+         "hi": "केवल इंटरनेट से नक़ल करो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Your own words plus a named source show honest use of ideas.",
+        "hi": "अपने शब्द और बताया हुआ स्रोत विचारों के ईमानदार उपयोग को दिखाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Changing the font does not change who wrote the words.",
+         "hi": "फ़ॉन्ट बदलने से यह नहीं बदलता कि शब्द किसने लिखे।"
+        },
+        {
+         "en": "Copying from the Internet is still copying.",
+         "hi": "इंटरनेट से नक़ल करना भी नक़ल ही है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and try again. Then rewrite one sentence from your textbook in your own words and say where you would write the source.",
+      "hi": "रीसेट दबाओ और फिर कोशिश करो। फिर अपनी पाठ्यपुस्तक का एक वाक्य अपने शब्दों में लिखो और बताओ कि स्रोत कहाँ लिखोगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch11-foss",
+   "topic": "11.4.3",
+   "template": "match",
+   "title": {
+    "en": "Open source and public licences",
+    "hi": "ओपन सोर्स और सार्वजनिक लाइसेंस"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "open",
+      "left": {
+       "en": "Open source software",
+       "hi": "ओपन सोर्स सॉफ़्टवेयर"
+      },
+      "right": {
+       "en": "Its source code is open for anyone to read, use and improve",
+       "hi": "इसका सोर्स कोड कोई भी पढ़, चला और सुधार सकता है"
+      },
+      "why": {
+       "en": "Many people can check and improve open code, which also makes it trustworthy.",
+       "hi": "कई लोग खुले कोड को जाँच और सुधार सकते हैं, इससे भरोसा भी बढ़ता है।"
+      }
+     },
+     {
+      "id": "gpl",
+      "left": {
+       "en": "GNU GPL",
+       "hi": "GNU GPL"
+      },
+      "right": {
+       "en": "A free software licence: run, study, share and change the software",
+       "hi": "मुफ़्त सॉफ़्टवेयर का लाइसेंस: चलाओ, पढ़ो, बाँटो और बदलो"
+      },
+      "why": {
+       "en": "The GPL protects these freedoms for every user of the software.",
+       "hi": "GPL सॉफ़्टवेयर के हर उपयोगकर्ता की इन आज़ादियों की रक्षा करता है।"
+      }
+     },
+     {
+      "id": "cc",
+      "left": {
+       "en": "Creative Commons (CC)",
+       "hi": "क्रिएटिव कॉमन्स (CC)"
+      },
+      "right": {
+       "en": "Licences that let creators share pictures, music and writing under clear rules",
+       "hi": "लाइसेंस जो रचनाकारों को तस्वीरें, संगीत और लेखन साफ़ नियमों से साझा करने देते हैं"
+      },
+      "why": {
+       "en": "CC suits all kinds of creative work, not only software.",
+       "hi": "CC हर तरह की रचनात्मक कृति के लिए है, केवल सॉफ़्टवेयर के लिए नहीं।"
+      }
+     },
+     {
+      "id": "freeware",
+      "left": {
+       "en": "Freeware",
+       "hi": "फ़्रीवेयर"
+      },
+      "right": {
+       "en": "Free to use, but the code stays closed and cannot be changed",
+       "hi": "इस्तेमाल मुफ़्त, पर कोड बंद रहता है और बदला नहीं जा सकता"
+      },
+      "why": {
+       "en": "Free of cost is not the same as open source.",
+       "hi": "मुफ़्त होना ओपन सोर्स होने जैसा नहीं है।"
+      }
+     },
+     {
+      "id": "proprietary",
+      "left": {
+       "en": "Proprietary software",
+       "hi": "मालिकाना सॉफ़्टवेयर"
+      },
+      "right": {
+       "en": "Owned by a company, which controls copying and changing",
+       "hi": "किसी कंपनी का, जो नक़ल और बदलाव पर नियंत्रण रखती है"
+      },
+      "why": {
+       "en": "You buy a licence to use it, not the right to copy it.",
+       "hi": "तुम इसे चलाने का लाइसेंस ख़रीदते हो, नक़ल का अधिकार नहीं।"
+      }
+     },
+     {
+      "id": "pirated",
+      "left": {
+       "en": "Pirated software",
+       "hi": "पाइरेटेड सॉफ़्टवेयर"
+      },
+      "right": {
+       "en": "An illegal copy made without the owner's permission",
+       "hi": "मालिक की अनुमति के बिना बनाई गई ग़ैरक़ानूनी प्रति"
+      },
+      "why": {
+       "en": "Using it is a copyright violation, and it can carry viruses.",
+       "hi": "इसे इस्तेमाल करना कॉपीराइट उल्लंघन है, और इसमें वायरस भी हो सकते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:open",
+     "expect": "matched:open",
+     "say": {
+      "en": "Tap \"Open source software\", then what it means.",
+      "hi": "\"ओपन सोर्स सॉफ़्टवेयर\" दबाओ, फिर उसका अर्थ दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A game is free to download, but nobody can see or change its code. Is it open source?",
+      "hi": "एक खेल मुफ़्त डाउनलोड होता है, पर उसका कोड कोई देख या बदल नहीं सकता। क्या वह ओपन सोर्स है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is freeware: free of cost but closed",
+       "hi": "नहीं, यह फ़्रीवेयर है: मुफ़्त पर बंद"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, because it is free",
+       "hi": "हाँ, क्योंकि यह मुफ़्त है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "left:freeware",
+     "expect": "matched:freeware",
+     "say": {
+      "en": "Match Freeware with its meaning. Is free to use the same as open source?",
+      "hi": "फ़्रीवेयर को उसके अर्थ से मिलाओ। क्या इस्तेमाल मुफ़्त होना ओपन सोर्स जैसा है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:pirated",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest.",
+      "hi": "बाक़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Public licences let a creator share work while keeping some rights. Open source software shares its code so that anyone can use, study, change and share it; GNU GPL is a well-known licence for this. Creative Commons does a similar job for pictures, music and writing. Freeware costs nothing but its code is closed, and proprietary software is controlled by its owner. Pirated copies are illegal, and they are risky because the code may have been tampered with.",
+      "hi": "सार्वजनिक लाइसेंस रचनाकार को कुछ अधिकार रखते हुए अपनी रचना साझा करने देते हैं। ओपन सोर्स सॉफ़्टवेयर अपना कोड बाँटता है ताकि कोई भी उसे चला, पढ़, बदल और साझा कर सके; GNU GPL इसका जाना-माना लाइसेंस है। क्रिएटिव कॉमन्स तस्वीरों, संगीत और लेखन के लिए ऐसा ही काम करता है। फ़्रीवेयर में पैसे नहीं लगते पर कोड बंद रहता है, और मालिकाना सॉफ़्टवेयर पर उसके मालिक का नियंत्रण रहता है। पाइरेटेड प्रतियाँ ग़ैरक़ानूनी हैं, और जोखिम भरी भी, क्योंकि उनके कोड से छेड़छाड़ हुई हो सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do Creative Commons licences do?",
+        "hi": "क्रिएटिव कॉमन्स लाइसेंस क्या करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Let creators share work under clear rules",
+         "hi": "रचनाकारों को साफ़ नियमों से रचना साझा करने देते हैं"
+        },
+        {
+         "en": "Stop everyone from using any picture",
+         "hi": "हर किसी को कोई भी तस्वीर इस्तेमाल करने से रोकते हैं"
+        },
+        {
+         "en": "Sell software to schools",
+         "hi": "स्कूलों को सॉफ़्टवेयर बेचते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A CC licence says how others may use the work, for example with credit.",
+        "hi": "CC लाइसेंस बताता है कि दूसरे रचना को कैसे इस्तेमाल कर सकते हैं, जैसे श्रेय देकर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The aim is to allow sharing, not to block it.",
+         "hi": "उद्देश्य साझा करने की अनुमति देना है, रोकना नहीं।"
+        },
+        {
+         "en": "CC is about sharing creative work, not selling software.",
+         "hi": "CC रचनात्मक कृति साझा करने के बारे में है, सॉफ़्टवेयर बेचने के बारे में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and try again. Then name one free tool your school computers could use because its code is open.",
+      "hi": "रीसेट दबाओ और फिर कोशिश करो। फिर कोई एक ऐसा मुफ़्त औज़ार बताओ जिसे तुम्हारे स्कूल के कंप्यूटर इस्तेमाल कर सकें क्योंकि उसका कोड खुला है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch11-crimes",
+   "topic": "11.5",
+   "template": "match",
+   "title": {
+    "en": "Cyber crimes and who is who",
+    "hi": "साइबर अपराध और कौन क्या है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "hacking",
+      "left": {
+       "en": "Hacking",
+       "hi": "हैकिंग"
+      },
+      "right": {
+       "en": "Getting into a computer or network without permission",
+       "hi": "अनुमति के बिना कंप्यूटर या नेटवर्क में घुसना"
+      },
+      "why": {
+       "en": "Unauthorised access is what makes it hacking.",
+       "hi": "अनधिकृत पहुँच ही इसे हैकिंग बनाती है।"
+      }
+     },
+     {
+      "id": "white",
+      "left": {
+       "en": "White hat (ethical) hacker",
+       "hi": "व्हाइट हैट (नैतिक) हैकर"
+      },
+      "right": {
+       "en": "Finds weak spots with permission and reports them to fix them",
+       "hi": "अनुमति से कमज़ोरियाँ ढूँढता है और सुधार के लिए बताता है"
+      },
+      "why": {
+       "en": "White hats help make software safer.",
+       "hi": "व्हाइट हैट सॉफ़्टवेयर को ज़्यादा सुरक्षित बनाने में मदद करते हैं।"
+      }
+     },
+     {
+      "id": "black",
+      "left": {
+       "en": "Black hat hacker (cracker)",
+       "hi": "ब्लैक हैट हैकर (क्रैकर)"
+      },
+      "right": {
+       "en": "Breaks in to steal data or cause damage",
+       "hi": "डेटा चुराने या नुक़सान पहुँचाने के लिए घुसता है"
+      },
+      "why": {
+       "en": "Black hats use their skill for illegal or harmful purposes.",
+       "hi": "ब्लैक हैट अपने हुनर का ग़ैरक़ानूनी या हानिकारक उपयोग करते हैं।"
+      }
+     },
+     {
+      "id": "phishing",
+      "left": {
+       "en": "Phishing",
+       "hi": "फ़िशिंग"
+      },
+      "right": {
+       "en": "Fake emails, messages or sites that trick you into giving personal details",
+       "hi": "नक़ली ईमेल, संदेश या साइटें जो तुमसे निजी जानकारी निकलवाती हैं"
+      },
+      "why": {
+       "en": "They look like the real bank or school, but the address is fake.",
+       "hi": "वे असली बैंक या स्कूल जैसी दिखती हैं, पर पता नक़ली होता है।"
+      }
+     },
+     {
+      "id": "identity",
+      "left": {
+       "en": "Identity theft",
+       "hi": "पहचान की चोरी"
+      },
+      "right": {
+       "en": "Using someone else's personal data to commit fraud",
+       "hi": "किसी और के निजी डेटा से धोखाधड़ी करना"
+      },
+      "why": {
+       "en": "Aadhaar, PAN or bank details in the wrong hands can be misused.",
+       "hi": "आधार, PAN या बैंक की जानकारी ग़लत हाथों में पड़े तो दुरुपयोग हो सकता है।"
+      }
+     },
+     {
+      "id": "ransom",
+      "left": {
+       "en": "Ransomware",
+       "hi": "रैनसमवेयर"
+      },
+      "right": {
+       "en": "Locks your files and demands money to open them",
+       "hi": "तुम्हारी फ़ाइलें बंद कर देता है और खोलने के लिए पैसे माँगता है"
+      },
+      "why": {
+       "en": "The attacker usually encrypts the data and then blackmails the user.",
+       "hi": "हमलावर आम तौर पर डेटा एन्क्रिप्ट कर देता है और फिर उपयोगकर्ता को ब्लैकमेल करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:hacking",
+     "expect": "matched:hacking",
+     "say": {
+      "en": "Tap \"Hacking\", then what it means.",
+      "hi": "\"हैकिंग\" दबाओ, फिर उसका अर्थ दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An \"ethical hacker\" tests a website with the owner's permission and reports the weak spots. Is that a crime?",
+      "hi": "एक \"नैतिक हैकर\" मालिक की अनुमति से वेबसाइट जाँचता है और कमज़ोरियाँ बताता है। क्या यह अपराध है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, permission and a helpful purpose make it ethical",
+       "hi": "नहीं, अनुमति और मददगार उद्देश्य इसे नैतिक बनाते हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, all hacking is a crime",
+       "hi": "हाँ, सारी हैकिंग अपराध है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "left:phishing",
+     "expect": "matched:phishing",
+     "say": {
+      "en": "Match Phishing with its meaning. What do the fake messages try to get from you?",
+      "hi": "फ़िशिंग को उसके अर्थ से मिलाओ। नक़ली संदेश तुमसे क्या पाना चाहते हैं?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:ransom",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other crimes and the two kinds of hackers.",
+      "hi": "बाक़ी अपराध और दोनों तरह के हैकर मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cyber crime is crime done with a computer or against one. Hacking is unauthorised access; white hat hackers do it with permission to improve security, while black hat hackers do it to steal or harm. Phishing uses fake messages and sites to steal passwords and bank details, and the stolen data can lead to identity theft. Ransomware locks your data and demands money. Knowing the names helps you spot the trick.",
+      "hi": "साइबर अपराध वह अपराध है जो कंप्यूटर से या कंप्यूटर के विरुद्ध किया जाए। हैकिंग अनधिकृत पहुँच है; व्हाइट हैट हैकर सुरक्षा सुधारने के लिए अनुमति से करते हैं, जबकि ब्लैक हैट चोरी या नुक़सान के लिए। फ़िशिंग नक़ली संदेशों और साइटों से पासवर्ड और बैंक की जानकारी चुराती है, और चुराया डेटा पहचान की चोरी तक ले जा सकता है। रैनसमवेयर तुम्हारा डेटा बंद करके पैसे माँगता है। नाम जानने से चाल पहचानना आसान होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which action is phishing?",
+        "hi": "कौन-सा काम फ़िशिंग है?"
+       },
+       "options": [
+        {
+         "en": "A fake bank email asking for your PIN",
+         "hi": "नक़ली बैंक ईमेल जो तुम्हारा PIN माँगे"
+        },
+        {
+         "en": "A real bank sending a monthly statement",
+         "hi": "असली बैंक का हर महीने का विवरण भेजना"
+        },
+        {
+         "en": "A friend sending a birthday card",
+         "hi": "दोस्त का जन्मदिन कार्ड भेजना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fake messages that collect secret details are phishing. A bank never asks for your PIN.",
+        "hi": "गुप्त जानकारी जमा करने वाले नक़ली संदेश फ़िशिंग हैं। बैंक कभी तुम्हारा PIN नहीं माँगता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A statement from your own bank is normal and does not ask for secrets.",
+         "hi": "अपने बैंक का विवरण सामान्य है और गुप्त जानकारी नहीं माँगता।"
+        },
+        {
+         "en": "A greeting card is harmless.",
+         "hi": "शुभकामना कार्ड हानिरहित है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and try again. Then say in your own words how a phishing message is different from a real message from a school.",
+      "hi": "रीसेट दबाओ और फिर कोशिश करो। फिर अपने शब्दों में बताओ कि फ़िशिंग संदेश स्कूल के असली संदेश से कैसे अलग होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch11-phish",
+   "topic": "11.5.2",
+   "template": "scenario",
+   "title": {
+    "en": "Role play: the SMS from \"your bank\"",
+    "hi": "भूमिका: \"आपके बैंक\" का SMS"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "phone",
+    "role": {
+     "en": "A student who gets a suspicious message",
+     "hi": "एक विद्यार्थी जिसे संदिग्ध संदेश मिला"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "An SMS from an unknown number says: \"Your bank account will be blocked today. Click this link and enter your card number and PIN to keep it active.\" What do you do?",
+       "hi": "अनजान नंबर से एक SMS आता है: \"आपका बैंक खाता आज बंद हो जाएगा। इसे चालू रखने के लिए इस लिंक पर क्लिक करके अपना कार्ड नंबर और PIN डालें।\" तुम क्या करते हो?"
+      },
+      "choices": [
+       {
+        "id": "link",
+        "text": {
+         "en": "Click the link and enter the details quickly",
+         "hi": "जल्दी से लिंक पर क्लिक करके जानकारी डालो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This is phishing. The fake site would steal your card number and PIN. A real bank never asks for your PIN through a link.",
+         "hi": "यह फ़िशिंग है। नक़ली साइट तुम्हारा कार्ड नंबर और PIN चुरा लेती। असली बैंक कभी लिंक से PIN नहीं माँगता।"
+        },
+        "good": false
+       },
+       {
+        "id": "call",
+        "text": {
+         "en": "Do not click. Call the bank on the number printed on the card or passbook",
+         "hi": "क्लिक मत करो। कार्ड या पासबुक पर छपे नंबर पर बैंक को फ़ोन करो"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Right. Check with the real bank using a number you already trust, never the number in the message.",
+         "hi": "सही। असली बैंक से उस नंबर पर पूछो जिस पर तुम्हें पहले से भरोसा है, संदेश के नंबर पर कभी नहीं।"
+        },
+        "good": true
+       },
+       {
+        "id": "reply",
+        "text": {
+         "en": "Reply and ask who is sending this",
+         "hi": "जवाब दो और पूछो कि कौन भेज रहा है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Replying tells the scammer that your number is active and invites more tricks. Do not reply to such messages.",
+         "hi": "जवाब देने से ठग को पता चलता है कि तुम्हारा नंबर चालू है और वह और चालें चलता है। ऐसे संदेशों का जवाब मत दो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "The bank tells you it never sent that message. Your friend wants to forward the SMS to the whole class \"to warn everyone\". What is best?",
+       "hi": "बैंक बताता है कि उसने वह संदेश कभी नहीं भेजा। तुम्हारा दोस्त SMS पूरी कक्षा को \"सबको चेताने के लिए\" आगे भेजना चाहता है। सबसे अच्छा क्या है?"
+      },
+      "choices": [
+       {
+        "id": "warn",
+        "text": {
+         "en": "Warn friends in your own words: it is a scam, do not click or reply",
+         "hi": "दोस्तों को अपने शब्दों में चेताओ: यह ठगी है, क्लिक या जवाब मत दो"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Good. A warning without the link is safe. Forwarding the link itself could make someone click it.",
+         "hi": "अच्छा। लिंक के बिना चेतावनी सुरक्षित है। लिंक ही आगे भेजने से कोई उस पर क्लिक कर सकता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "forward",
+        "text": {
+         "en": "Forward the message as it is so everybody sees it",
+         "hi": "संदेश जैसा है वैसा ही आगे भेजो ताकि सब देखें"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The link may be clicked by someone in a hurry. Describe the scam instead of passing the link along.",
+         "hi": "कोई जल्दबाज़ी में लिंक दबा सकता है। लिंक आगे भेजने के बजाय ठगी का वर्णन करो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "The same number keeps sending more messages. How do you finish?",
+       "hi": "वही नंबर और संदेश भेजता रहता है। तुम इसे कैसे ख़त्म करते हो?"
+      },
+      "choices": [
+       {
+        "id": "report",
+        "text": {
+         "en": "Block the number and report it, with a screenshot, to a trusted adult and the cyber crime portal",
+         "hi": "नंबर ब्लॉक करो और स्क्रीनशॉट के साथ किसी भरोसेमंद बड़े और साइबर क्राइम पोर्टल को बताओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Blocking stops the messages, and reporting helps stop the scammer. In India you can report on the National Cyber Crime Reporting Portal, and fraud can be reported on the helpline 1930.",
+         "hi": "ब्लॉक करने से संदेश रुकते हैं, और रिपोर्ट करने से ठग को रोकने में मदद मिलती है। भारत में राष्ट्रीय साइबर अपराध रिपोर्टिंग पोर्टल पर रिपोर्ट कर सकते हैं, और धोखाधड़ी की सूचना हेल्पलाइन 1930 पर दी जा सकती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "argue",
+        "text": {
+         "en": "Reply with angry messages",
+         "hi": "ग़ुस्से भरे संदेश भेजकर जवाब दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Arguing only keeps the scammer interested. Block and report instead.",
+         "hi": "बहस करने से ठग की रुचि बनी रहती है। इसके बजाय ब्लॉक और रिपोर्ट करो।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The SMS says your account will be blocked \"today\" unless you click. Why do scammers add such pressure?",
+      "hi": "SMS कहता है कि क्लिक न किया तो खाता \"आज\" बंद हो जाएगा। ठग ऐसा दबाव क्यों बनाते हैं?"
+     },
+     "options": [
+      {
+       "id": "hurry",
+       "en": "To make you act in a hurry without thinking",
+       "hi": "ताकि तुम बिना सोचे जल्दबाज़ी में काम करो"
+      },
+      {
+       "id": "true",
+       "en": "Because it is usually true",
+       "hi": "क्योंकि यह आम तौर पर सच होता है"
+      }
+     ],
+     "answer": "hurry"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:call",
+     "expect": "chose:call",
+     "say": {
+      "en": "Tap the choice that calls the bank on a trusted number.",
+      "hi": "वह विकल्प दबाओ जो भरोसेमंद नंबर पर बैंक को फ़ोन करता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Phishing messages play on fear and hurry: \"your account will be blocked\", \"you won a prize\". They carry a link to a fake site that looks real and collects your details. Stay safe: do not click links in unexpected messages, never share your PIN or OTP, check with the real organisation on a number you already trust, warn others without forwarding the link, and block and report the sender.",
+      "hi": "फ़िशिंग संदेश डर और जल्दबाज़ी का फ़ायदा उठाते हैं: \"आपका खाता बंद हो जाएगा\", \"आपने इनाम जीता है\"। उनमें नक़ली साइट का लिंक होता है जो असली जैसी दिखती है और तुम्हारी जानकारी जमा करती है। सुरक्षित रहने के लिए: अनचाहे संदेशों के लिंक मत दबाओ, अपना PIN या OTP कभी किसी को मत बताओ, असली संस्था से उस नंबर पर पूछो जिस पर तुम्हें पहले से भरोसा है, लिंक आगे भेजे बिना दूसरों को चेताओ, और भेजने वाले को ब्लॉक करके रिपोर्ट करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who may ask you for your bank PIN or OTP?",
+        "hi": "तुमसे बैंक का PIN या OTP कौन माँग सकता है?"
+       },
+       "options": [
+        {
+         "en": "Nobody; keep it secret even from the bank staff",
+         "hi": "कोई नहीं; बैंक कर्मचारियों से भी इसे गुप्त रखो"
+        },
+        {
+         "en": "Anyone who says they are from the bank",
+         "hi": "जो भी ख़ुद को बैंक का बताए"
+        },
+        {
+         "en": "Anyone with a polite voice",
+         "hi": "कोई भी विनम्र आवाज़ वाला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A PIN or OTP is for you alone. Genuine banks never ask for it.",
+        "hi": "PIN या OTP केवल तुम्हारे लिए है। असली बैंक इसे कभी नहीं माँगते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Scammers also say they are from the bank; saying so proves nothing.",
+         "hi": "ठग भी ख़ुद को बैंक का बताते हैं; कहने भर से कुछ साबित नहीं होता।"
+        },
+        {
+         "en": "A polite voice is a common trick, not a proof.",
+         "hi": "विनम्र आवाज़ एक आम चाल है, प्रमाण नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the story again with the other choices and see how each one ends. Why is the first choice the most dangerous?",
+      "hi": "कहानी दूसरे विकल्पों के साथ फिर खेलो और देखो हर एक का अंत कैसा होता है। पहला विकल्प सबसे ख़तरनाक क्यों है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch11-password",
+   "topic": "11.5.4",
+   "template": "sort",
+   "title": {
+    "en": "Weak or strong password?",
+    "hi": "कमज़ोर या मज़बूत पासवर्ड?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "weak",
+      "label": {
+       "en": "Weak password",
+       "hi": "कमज़ोर पासवर्ड"
+      }
+     },
+     {
+      "id": "strong",
+      "label": {
+       "en": "Strong password",
+       "hi": "मज़बूत पासवर्ड"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "plain",
+      "text": {
+       "en": "password",
+       "hi": "password"
+      },
+      "bin": "weak",
+      "why": {
+       "en": "A very common word, one of the first things a guesser tries.",
+       "hi": "बहुत आम शब्द, जिसे अंदाज़ा लगाने वाला सबसे पहले आज़माता है।"
+      }
+     },
+     {
+      "id": "digits",
+      "text": {
+       "en": "12345678",
+       "hi": "12345678"
+      },
+      "bin": "weak",
+      "why": {
+       "en": "A simple run of digits is guessed in seconds.",
+       "hi": "अंकों की सीधी क़तार सेकंडों में अंदाज़े से मिल जाती है।"
+      }
+     },
+     {
+      "id": "name",
+      "text": {
+       "en": "riya2010",
+       "hi": "riya2010"
+      },
+      "bin": "weak",
+      "why": {
+       "en": "It uses a name and a birth year, which friends or strangers can find out.",
+       "hi": "इसमें नाम और जन्म-वर्ष है, जो दोस्त या अजनबी पता कर सकते हैं।"
+      }
+     },
+     {
+      "id": "same",
+      "text": {
+       "en": "The same password on every site",
+       "hi": "हर साइट पर एक ही पासवर्ड"
+      },
+      "bin": "weak",
+      "why": {
+       "en": "If one site leaks it, all your accounts are open.",
+       "hi": "एक साइट से लीक हो जाए तो तुम्हारे सारे खाते खुल जाते हैं।"
+      }
+     },
+     {
+      "id": "mixed",
+      "text": {
+       "en": "T7#kp!9Lw2",
+       "hi": "T7#kp!9Lw2"
+      },
+      "bin": "strong",
+      "why": {
+       "en": "It mixes capitals, small letters, digits and symbols, and means nothing.",
+       "hi": "इसमें बड़े-छोटे अक्षर, अंक और चिह्न मिले हैं, और इसका कोई मतलब नहीं बनता।"
+      }
+     },
+     {
+      "id": "phrase",
+      "text": {
+       "en": "Rain-Mango-Train-42!",
+       "hi": "Rain-Mango-Train-42!"
+      },
+      "bin": "strong",
+      "why": {
+       "en": "A long mixed phrase is easy to remember and very hard to guess.",
+       "hi": "लंबा मिश्रित वाक्यांश याद रखना आसान है और अंदाज़ा लगाना बहुत कठिन।"
+      }
+     },
+     {
+      "id": "unique",
+      "text": {
+       "en": "A different password for each site",
+       "hi": "हर साइट का अलग पासवर्ड"
+      },
+      "bin": "strong",
+      "why": {
+       "en": "One leak then opens only one account.",
+       "hi": "एक लीक से केवल एक खाता खुलता है।"
+      }
+     },
+     {
+      "id": "change",
+      "text": {
+       "en": "Changing your passwords every few months",
+       "hi": "पासवर्ड कुछ महीनों में बदलते रहना"
+      },
+      "bin": "strong",
+      "why": {
+       "en": "Regular changes limit the damage if a password has leaked unnoticed.",
+       "hi": "नियमित बदलाव से अनजाने में लीक हुए पासवर्ड का नुक़सान सीमित रहता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:plain",
+     "expect": "correct:plain",
+     "say": {
+      "en": "Tap the card \"password\", then the group it belongs to.",
+      "hi": "कार्ड \"password\" दबाओ, फिर वह समूह दबाओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is harder to guess: a short word with a birth year, or a long phrase mixing letters, digits and symbols?",
+      "hi": "अंदाज़ा लगाना किसका ज़्यादा कठिन है: जन्म-वर्ष वाले छोटे शब्द का या अक्षर, अंक और चिह्न मिले लंबे वाक्यांश का?"
+     },
+     "options": [
+      {
+       "id": "long",
+       "en": "The long mixed phrase",
+       "hi": "लंबा मिश्रित वाक्यांश"
+      },
+      {
+       "id": "short",
+       "en": "The short word with a year",
+       "hi": "वर्ष वाला छोटा शब्द"
+      }
+     ],
+     "answer": "long"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाक़ी सभी कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A strong password is long, mixes capital and small letters, digits and symbols, and has no names, birthdays or common words. A different password for each important account means one leak cannot open them all. Never share a password, and a good habit is to change them from time to time. Other safety habits: keep antivirus and software updated, back up important data, download only from trusted HTTPS sites, and avoid pirated software.",
+      "hi": "मज़बूत पासवर्ड लंबा होता है, बड़े-छोटे अक्षर, अंक और चिह्न मिलाता है, और उसमें नाम, जन्मदिन या आम शब्द नहीं होते। हर ज़रूरी खाते का अलग पासवर्ड हो तो एक लीक सबको नहीं खोल सकती। पासवर्ड किसी को मत बताओ, और समय-समय पर बदलना अच्छी आदत है। सुरक्षा की और आदतें: एंटीवायरस और सॉफ़्टवेयर अपडेट रखो, ज़रूरी डेटा का बैकअप लो, केवल भरोसेमंद HTTPS साइटों से डाउनलोड करो और पाइरेटेड सॉफ़्टवेयर से बचो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is using one password for every site risky?",
+        "hi": "हर साइट पर एक ही पासवर्ड रखना जोखिम भरा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "One leak opens all your accounts",
+         "hi": "एक लीक से तुम्हारे सारे खाते खुल जाते हैं"
+        },
+        {
+         "en": "Sites cannot store it",
+         "hi": "साइटें उसे रख नहीं सकतीं"
+        },
+        {
+         "en": "It becomes longer each time",
+         "hi": "वह हर बार लंबा होता जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A thief who gets it from one site tries it on all the others.",
+        "hi": "जिसे वह एक साइट से मिले, वह उसे बाक़ी सब पर आज़माता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sites store passwords without trouble; the risk is the leak.",
+         "hi": "साइटें पासवर्ड आराम से रखती हैं; जोखिम लीक का है।"
+        },
+        {
+         "en": "A password does not change length by itself.",
+         "hi": "पासवर्ड अपने आप लंबा नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and try again. Then make up a strong pass-phrase from four unrelated words and a symbol, but do not share it with anyone.",
+      "hi": "रीसेट दबाओ और फिर कोशिश करो। फिर चार असंबंधित शब्दों और एक चिह्न से मज़बूत पास-वाक्यांश बनाओ, पर उसे किसी को मत बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch11-report",
+   "topic": "11.5.4",
+   "template": "sequence",
+   "title": {
+    "en": "If you face cyber bullying or fraud: what to do, in order",
+    "hi": "साइबर बुलिंग या धोखाधड़ी हो तो क्या करें, क्रम से"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "stop",
+      "text": {
+       "en": "Stop: do not reply, pay or click again",
+       "hi": "रुको: न जवाब दो, न पैसे दो, न दोबारा क्लिक करो"
+      }
+     },
+     {
+      "id": "save",
+      "text": {
+       "en": "Save the evidence: screenshots, links and times",
+       "hi": "सबूत सँभालो: स्क्रीनशॉट, लिंक और समय"
+      }
+     },
+     {
+      "id": "tell",
+      "text": {
+       "en": "Tell a trusted adult: parent or teacher",
+       "hi": "भरोसेमंद बड़े को बताओ: माता-पिता या शिक्षक"
+      }
+     },
+     {
+      "id": "report",
+      "text": {
+       "en": "Report it: to the platform and the cyber crime portal or cyber cell",
+       "hi": "रिपोर्ट करो: प्लेटफ़ॉर्म और साइबर क्राइम पोर्टल या साइबर सेल को"
+      }
+     },
+     {
+      "id": "secure",
+      "text": {
+       "en": "Secure your accounts: change passwords and log out of devices",
+       "hi": "खाते सुरक्षित करो: पासवर्ड बदलो और उपकरणों से लॉग आउट करो"
+      }
+     },
+     {
+      "id": "follow",
+      "text": {
+       "en": "Follow up and support others who were affected",
+       "hi": "फ़ॉलो-अप करो और प्रभावित दूसरों का साथ दो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:stop",
+     "expect": "placed:stop",
+     "say": {
+      "en": "Find the step you do first, the moment something feels wrong, and put it first.",
+      "hi": "वह क़दम ढूँढो जो कुछ ग़लत लगते ही सबसे पहले करते हैं, और उसे पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A scammer has taken money from your parent's account through a fake call. Should you delete the messages and calls right away?",
+      "hi": "एक ठग ने नक़ली फ़ोन कॉल से तुम्हारे माता-पिता के खाते से पैसे निकाल लिए। क्या तुम संदेश और कॉल तुरंत मिटा दोगे?"
+     },
+     "options": [
+      {
+       "id": "keep",
+       "en": "No, keep them as evidence",
+       "hi": "नहीं, उन्हें सबूत के रूप में रखो"
+      },
+      {
+       "id": "delete",
+       "en": "Yes, to forget it",
+       "hi": "हाँ, भूलने के लिए"
+      }
+     ],
+     "answer": "keep"
+    },
+    {
+     "kind": "do",
+     "target": "item:report",
+     "expect": "placed:report",
+     "say": {
+      "en": "Place the step that tells the authorities.",
+      "hi": "वह क़दम रखो जो अधिकारियों को बताता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other steps in order. Then tap Check.",
+      "hi": "बाक़ी क़दम क्रम में लगाओ। फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When something goes wrong online, the order matters. First stop, so the harm does not grow. Then save the evidence, because police and platforms need it. Tell a trusted adult early, because you should not carry this alone. Then report: to the platform and, in India, to the cyber cell or the National Cyber Crime Reporting Portal; for money fraud the helpline 1930 is for quick help. After that, secure your accounts and follow up. Reporting helps others too.",
+      "hi": "ऑनलाइन कुछ ग़लत हो तो क्रम मायने रखता है। पहले रुको, ताकि नुक़सान न बढ़े। फिर सबूत सँभालो, क्योंकि पुलिस और प्लेटफ़ॉर्म को उसकी ज़रूरत पड़ती है। जल्दी भरोसेमंद बड़े को बताओ, क्योंकि इसका बोझ अकेले नहीं उठाना चाहिए। फिर रिपोर्ट करो: प्लेटफ़ॉर्म को और भारत में साइबर सेल या राष्ट्रीय साइबर अपराध रिपोर्टिंग पोर्टल को; पैसों की धोखाधड़ी में तुरंत मदद के लिए हेल्पलाइन 1930 है। उसके बाद अपने खाते सुरक्षित करो और फ़ॉलो-अप करो। रिपोर्ट करने से दूसरों को भी मदद मिलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why should you save screenshots before deleting anything?",
+        "hi": "कुछ भी मिटाने से पहले स्क्रीनशॉट क्यों सँभालने चाहिए?"
+       },
+       "options": [
+        {
+         "en": "They are proof of what happened",
+         "hi": "वे इस बात का प्रमाण हैं कि क्या हुआ"
+        },
+        {
+         "en": "They make the phone faster",
+         "hi": "वे फ़ोन को तेज़ करते हैं"
+        },
+        {
+         "en": "They stop the scammer at once",
+         "hi": "वे ठग को तुरंत रोक देते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Evidence lets the police and the platform act on a report.",
+        "hi": "सबूत से पुलिस और प्लेटफ़ॉर्म रिपोर्ट पर कार्रवाई कर पाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Screenshots do not change phone speed.",
+         "hi": "स्क्रीनशॉट से फ़ोन की गति नहीं बदलती।"
+        },
+        {
+         "en": "They do not stop anyone on their own; they support the report.",
+         "hi": "वे अपने आप किसी को नहीं रोकते; वे रिपोर्ट का समर्थन करते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which place can you report an online crime to in India?",
+        "hi": "भारत में ऑनलाइन अपराध की रिपोर्ट कहाँ कर सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "The cyber cell or the national cyber crime portal",
+         "hi": "साइबर सेल या राष्ट्रीय साइबर क्राइम पोर्टल"
+        },
+        {
+         "en": "Only your friends",
+         "hi": "केवल अपने दोस्तों को"
+        },
+        {
+         "en": "Nowhere, it cannot be reported",
+         "hi": "कहीं नहीं, रिपोर्ट नहीं हो सकती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The IT Act gives a legal framework, and police cyber cells take such reports.",
+        "hi": "आईटी एक्ट क़ानूनी ढाँचा देता है, और पुलिस की साइबर सेल ऐसी रिपोर्टें लेती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Friends can support you, but they cannot act as the law.",
+         "hi": "दोस्त साथ दे सकते हैं, पर क़ानूनी कार्रवाई नहीं कर सकते।"
+        },
+        {
+         "en": "Online crimes can be reported, and reporting is encouraged.",
+         "hi": "ऑनलाइन अपराधों की रिपोर्ट हो सकती है, और रिपोर्ट करना प्रोत्साहित किया जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and arrange the steps again. Then discuss with a friend which step is the hardest and who could help you do it.",
+      "hi": "रीसेट दबाओ और क़दम फिर क्रम में लगाओ। फिर दोस्त से चर्चा करो कि कौन-सा क़दम सबसे कठिन है और उसमें कौन मदद कर सकता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch11-itact",
+   "topic": "11.6",
+   "template": "match",
+   "title": {
+    "en": "The Indian IT Act: who does what",
+    "hi": "भारतीय आईटी एक्ट: कौन क्या करता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "act",
+      "left": {
+       "en": "Information Technology Act, 2000",
+       "hi": "सूचना प्रौद्योगिकी अधिनियम, 2000"
+      },
+      "right": {
+       "en": "India's law for electronic records, digital signatures and cyber crime",
+       "hi": "भारत का क़ानून: इलेक्ट्रॉनिक रिकॉर्ड, डिजिटल हस्ताक्षर और साइबर अपराध"
+      },
+      "why": {
+       "en": "It is also called the IT Act, and it was amended in 2008.",
+       "hi": "इसे आईटी एक्ट भी कहते हैं, और इसमें 2008 में संशोधन हुआ।"
+      }
+     },
+     {
+      "id": "sign",
+      "left": {
+       "en": "Digital signature",
+       "hi": "डिजिटल हस्ताक्षर"
+      },
+      "right": {
+       "en": "The digital equivalent of a signature that proves who sent a document",
+       "hi": "हस्ताक्षर का डिजिटल रूप जो साबित करता है कि दस्तावेज़ किसने भेजा"
+      },
+      "why": {
+       "en": "It works with a unique digital ID issued by a Certifying Authority.",
+       "hi": "यह प्रमाणन प्राधिकरण द्वारा दी गई अनूठी डिजिटल पहचान से चलता है।"
+      }
+     },
+     {
+      "id": "cell",
+      "left": {
+       "en": "Cyber cell",
+       "hi": "साइबर सेल"
+      },
+      "right": {
+       "en": "A police unit where cyber crimes can be reported",
+       "hi": "पुलिस की इकाई जहाँ साइबर अपराध की रिपोर्ट की जाती है"
+      },
+      "why": {
+       "en": "Many police stations have cyber cells.",
+       "hi": "कई पुलिस थानों में साइबर सेल होती है।"
+      }
+     },
+     {
+      "id": "tribunal",
+      "left": {
+       "en": "Cyber Appellate Tribunal",
+       "hi": "साइबर अपीलीय न्यायाधिकरण"
+      },
+      "right": {
+       "en": "Settles disputes arising from cyber crimes under the Act",
+       "hi": "एक्ट के अंतर्गत साइबर अपराधों से उठे विवाद सुलझाता है"
+      },
+      "why": {
+       "en": "It hears disputes such as hacking or misuse of another person's password.",
+       "hi": "यह हैकिंग या किसी और का पासवर्ड इस्तेमाल करने जैसे विवाद सुनता है।"
+      }
+     },
+     {
+      "id": "egov",
+      "left": {
+       "en": "Recognition of electronic records",
+       "hi": "इलेक्ट्रॉनिक रिकॉर्ड की मान्यता"
+      },
+      "right": {
+       "en": "Lets offices accept and store official documents in digital form",
+       "hi": "दफ़्तरों को आधिकारिक दस्तावेज़ डिजिटल रूप में लेने और रखने देती है"
+      },
+      "why": {
+       "en": "This supports electronic governance.",
+       "hi": "यह इलेक्ट्रॉनिक शासन में सहायक है।"
+      }
+     },
+     {
+      "id": "privacy",
+      "left": {
+       "en": "Protection of sensitive personal data",
+       "hi": "संवेदनशील निजी डेटा की सुरक्षा"
+      },
+      "right": {
+       "en": "Rules on how such data may be handled, stored and sent",
+       "hi": "ऐसे डेटा को सँभालने, रखने और भेजने के नियम"
+      },
+      "why": {
+       "en": "The Act gives guidelines on processing, storage and transmission of sensitive information.",
+       "hi": "एक्ट संवेदनशील जानकारी की प्रोसेसिंग, भंडारण और प्रसारण के दिशानिर्देश देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:act",
+     "expect": "matched:act",
+     "say": {
+      "en": "Tap \"Information Technology Act, 2000\", then what it is.",
+      "hi": "\"सूचना प्रौद्योगिकी अधिनियम, 2000\" दबाओ, फिर वह क्या है उसे दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Cyber crimes change all the time. What does a country need to deal with them fairly?",
+      "hi": "साइबर अपराध हर समय बदलते रहते हैं। उनसे न्यायपूर्ण ढंग से निपटने के लिए देश को क्या चाहिए?"
+     },
+     "options": [
+      {
+       "id": "law",
+       "en": "A clear law that sets crimes and penalties",
+       "hi": "एक साफ़ क़ानून जो अपराध और दंड तय करे"
+      },
+      {
+       "id": "none",
+       "en": "No rules; everyone settles it alone",
+       "hi": "कोई नियम नहीं; सब अकेले निपटें"
+      }
+     ],
+     "answer": "law"
+    },
+    {
+     "kind": "do",
+     "target": "left:sign",
+     "expect": "matched:sign",
+     "say": {
+      "en": "Match Digital signature with its meaning.",
+      "hi": "डिजिटल हस्ताक्षर को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:privacy",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the remaining items.",
+      "hi": "बाक़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "With the growth of the Internet, frauds, attacks and cyber bullying also grew, so the Government of India passed the Information Technology Act, 2000, amended in 2008. It recognises electronic records and digital signatures, protects sensitive personal data, lists cyber crimes and their penalties, and lets people use online transactions with less fear of misuse. Police cyber cells take reports, and disputes can be taken to the tribunal the Act provides for.",
+      "hi": "इंटरनेट के बढ़ने के साथ धोखाधड़ी, हमले और साइबर बुलिंग भी बढ़े, इसलिए भारत सरकार ने सूचना प्रौद्योगिकी अधिनियम, 2000 बनाया, जिसमें 2008 में संशोधन हुआ। यह इलेक्ट्रॉनिक रिकॉर्ड और डिजिटल हस्ताक्षर को मान्यता देता है, संवेदनशील निजी डेटा की रक्षा करता है, साइबर अपराध और उनके दंड बताता है, और लोगों को दुरुपयोग के कम डर के साथ ऑनलाइन लेन-देन करने देता है। पुलिस की साइबर सेल रिपोर्ट लेती है, और विवाद एक्ट द्वारा बताए गए न्यायाधिकरण में ले जाए जा सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does a digital signature do?",
+        "hi": "डिजिटल हस्ताक्षर क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Proves the identity of the person who signed",
+         "hi": "हस्ताक्षर करने वाले की पहचान साबित करता है"
+        },
+        {
+         "en": "Makes a document longer",
+         "hi": "दस्तावेज़ को लंबा करता है"
+        },
+        {
+         "en": "Hides the document from everyone",
+         "hi": "दस्तावेज़ को सबसे छिपा देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It attaches the signer's verified identity to the document.",
+        "hi": "यह दस्तावेज़ से हस्ताक्षरकर्ता की सत्यापित पहचान जोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Length is not affected by a signature.",
+         "hi": "हस्ताक्षर से लंबाई पर असर नहीं पड़ता।"
+        },
+        {
+         "en": "A signature proves who signed; it does not hide anything.",
+         "hi": "हस्ताक्षर साबित करता है कि किसने किया; वह कुछ छिपाता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and try again. Then think why a signed digital document can be trusted more than a plain one.",
+      "hi": "रीसेट दबाओ और फिर कोशिश करो। फिर सोचो कि हस्ताक्षर वाला डिजिटल दस्तावेज़ सादे दस्तावेज़ से ज़्यादा भरोसेमंद क्यों है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch11-health",
+   "topic": "11.7",
+   "template": "sort",
+   "title": {
+    "en": "Using screens: healthy habit or harmful habit?",
+    "hi": "स्क्रीन का उपयोग: स्वस्थ आदत या हानिकारक आदत?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "healthy",
+      "label": {
+       "en": "Healthy habit",
+       "hi": "स्वस्थ आदत"
+      }
+     },
+     {
+      "id": "harmful",
+      "label": {
+       "en": "Harmful habit",
+       "hi": "हानिकारक आदत"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "breaks",
+      "text": {
+       "en": "A short screen break every 20 minutes",
+       "hi": "हर 20 मिनट में स्क्रीन से छोटा विराम"
+      },
+      "bin": "healthy",
+      "why": {
+       "en": "Breaks rest the eyes and reduce strain.",
+       "hi": "विराम आँखों को आराम देते हैं और तनाव घटाते हैं।"
+      }
+     },
+     {
+      "id": "posture",
+      "text": {
+       "en": "Sitting with the back straight and feet on the floor",
+       "hi": "पीठ सीधी और पैर ज़मीन पर रखकर बैठना"
+      },
+      "bin": "healthy",
+      "why": {
+       "en": "Good posture lowers back and neck pain.",
+       "hi": "सही बैठने का ढंग पीठ और गर्दन का दर्द घटाता है।"
+      }
+     },
+     {
+      "id": "eye",
+      "text": {
+       "en": "Keeping the screen at eye level, an arm's length away",
+       "hi": "स्क्रीन आँखों की सीध में, हाथ भर दूरी पर रखना"
+      },
+      "bin": "healthy",
+      "why": {
+       "en": "The right height and distance reduce neck and eye strain.",
+       "hi": "सही ऊँचाई और दूरी गर्दन और आँखों का तनाव घटाती है।"
+      }
+     },
+     {
+      "id": "clean",
+      "text": {
+       "en": "Wiping the screen with a soft microfibre cloth",
+       "hi": "स्क्रीन को मुलायम माइक्रोफ़ाइबर कपड़े से पोंछना"
+      },
+      "bin": "healthy",
+      "why": {
+       "en": "A clean screen is easier on the eyes, and the device stays in good health.",
+       "hi": "साफ़ स्क्रीन आँखों के लिए आसान है, और उपकरण भी ठीक रहता है।"
+      }
+     },
+     {
+      "id": "slouch",
+      "text": {
+       "en": "Slouching on a bed with a laptop on your knees",
+       "hi": "बिस्तर पर लैपटॉप घुटनों पर रखकर झुककर बैठना"
+      },
+      "bin": "harmful",
+      "why": {
+       "en": "A bent back and neck cause pain over time.",
+       "hi": "झुकी पीठ और गर्दन से समय के साथ दर्द होता है।"
+      }
+     },
+     {
+      "id": "close",
+      "text": {
+       "en": "Holding a phone very close to your face",
+       "hi": "फ़ोन को चेहरे के बहुत पास रखना"
+      },
+      "bin": "harmful",
+      "why": {
+       "en": "Small screens held close tire the eyes.",
+       "hi": "चेहरे के पास रखी छोटी स्क्रीन आँखों को थकाती है।"
+      }
+     },
+     {
+      "id": "night",
+      "text": {
+       "en": "Gaming for hours late into the night",
+       "hi": "देर रात तक घंटों गेम खेलना"
+      },
+      "bin": "harmful",
+      "why": {
+       "en": "It harms sleep and can become addictive.",
+       "hi": "इससे नींद बिगड़ती है और यह लत बन सकती है।"
+      }
+     },
+     {
+      "id": "food",
+      "text": {
+       "en": "Eating and drinking over the keyboard",
+       "hi": "कीबोर्ड के ऊपर खाना-पीना"
+      },
+      "bin": "harmful",
+      "why": {
+       "en": "Crumbs and spills can damage the device.",
+       "hi": "टुकड़े और गिरा हुआ पानी उपकरण ख़राब कर सकते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:breaks",
+     "expect": "correct:breaks",
+     "say": {
+      "en": "Tap the card about screen breaks, then its group.",
+      "hi": "स्क्रीन विराम वाला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After an hour of reading on a screen your eyes feel tired and dry. What helps most?",
+      "hi": "स्क्रीन पर एक घंटा पढ़ने के बाद तुम्हारी आँखें थकी और सूखी लगती हैं। सबसे ज़्यादा क्या मदद करता है?"
+     },
+     "options": [
+      {
+       "id": "break",
+       "en": "Look away at something far for a while",
+       "hi": "कुछ देर दूर की किसी चीज़ को देखना"
+      },
+      {
+       "id": "more",
+       "en": "Keep looking at the screen without a break",
+       "hi": "बिना विराम स्क्रीन देखते रहना"
+      }
+     ],
+     "answer": "break"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाक़ी सभी कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Too much time with screens, or the wrong posture, can cause eye strain, back and neck pain, poor sleep and even addiction. Ergonomics is the science of arranging devices, furniture and posture so that using them is comfortable and safe. Take regular breaks, sit upright, keep the screen at eye level, and keep your device clean and away from food and heat. Healthy habits protect both you and your computer.",
+      "hi": "स्क्रीन पर ज़्यादा समय बिताने या ग़लत ढंग से बैठने से आँखों में तनाव, पीठ और गर्दन का दर्द, नींद की कमी और यहाँ तक कि लत भी हो सकती है। एर्गोनॉमिक्स उपकरण, फ़र्नीचर और बैठने के ढंग को इस तरह सजाने का विज्ञान है कि उनका उपयोग आरामदायक और सुरक्षित हो। नियमित विराम लो, सीधे बैठो, स्क्रीन आँखों की सीध में रखो, और उपकरण को साफ़ तथा खाने और गर्मी से दूर रखो। स्वस्थ आदतें तुम्हारी और तुम्हारे कंप्यूटर, दोनों की रक्षा करती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is ergonomics?",
+        "hi": "एर्गोनॉमिक्स क्या है?"
+       },
+       "options": [
+        {
+         "en": "Arranging devices, furniture and posture to be comfortable and safe",
+         "hi": "उपकरण, फ़र्नीचर और बैठने के ढंग को आरामदायक और सुरक्षित बनाना"
+        },
+        {
+         "en": "A kind of computer virus",
+         "hi": "एक तरह का कंप्यूटर वायरस"
+        },
+        {
+         "en": "A way to speed up the Internet",
+         "hi": "इंटरनेट तेज़ करने का तरीक़ा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ergonomics reduces strain and injury from long use of devices.",
+        "hi": "एर्गोनॉमिक्स उपकरणों के लंबे उपयोग से होने वाला तनाव और चोट घटाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A virus is harmful software; ergonomics protects people.",
+         "hi": "वायरस हानिकारक सॉफ़्टवेयर है; एर्गोनॉमिक्स लोगों की रक्षा करता है।"
+        },
+        {
+         "en": "It has nothing to do with Internet speed.",
+         "hi": "इसका इंटरनेट की गति से कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and try again. Then check how you are sitting right now and fix one thing.",
+      "hi": "रीसेट दबाओ और फिर कोशिश करो। फिर देखो कि तुम अभी कैसे बैठे हो और एक चीज़ सुधार लो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.2",
+   "use": "Hook: the trail you leave online",
+   "shows": "A student's hands on a phone at a desk in an Indian home, with a soft glowing trail of small light dots leaving the phone and fading into the dark room behind",
+   "view": "Over-the-shoulder, evening light, faces not shown",
+   "right": "Trail looks like light dots; no readable screen content",
+   "avoid": "Readable screens, logos, faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "11.3.3",
+   "use": "Class group chat: pause before you post",
+   "shows": "A group of students in school uniform seen from behind, gathered around one phone, one student's thumb hovering over a send button",
+   "view": "Eye level, corridor light, no faces",
+   "right": "Hovering thumb is the focus",
+   "avoid": "Faces, readable chats, app logos"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "11.4.1",
+   "use": "Copyright, patent, trademark: three stamps",
+   "shows": "Three plain rubber stamps on a table in a row, each with a different-shaped wooden handle (round, square, hexagonal) and blank bases",
+   "view": "Three-quarter view, lit from the top left, transparent background",
+   "right": "Three clearly different handles so the app can name each right",
+   "avoid": "Any symbols or text on the stamps"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "11.5.2",
+   "use": "Phishing: a message that looks real",
+   "shows": "A phone held in a hand showing a plain bank-style message layout made only of grey bars, a blue button shape and a small padlock icon shape, on a desk",
+   "view": "Slightly angled close-up, soft light",
+   "right": "Layout looks believable but contains no real words or brand",
+   "avoid": "Real brand names, readable text, faces"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "11.5.4",
+   "use": "A strong lock vs a weak lock",
+   "shows": "Two padlocks side by side on a plain background, one a large heavy steel padlock and one a small flimsy brass one",
+   "view": "Front view, lit from the top left, transparent background",
+   "right": "Difference in strength is obvious",
+   "avoid": "Brand names, engraved numbers"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "11.5.4",
+   "use": "Steps after a cyber incident: path base",
+   "shows": "Six empty rounded circles joined by a gently curving path from the top left to the bottom right, the first circle slightly larger",
+   "view": "Flat, white background",
+   "right": "Clear direction and equal spacing",
+   "avoid": "Any words or numbers"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "11.7",
+   "use": "Healthy posture at a study desk",
+   "shows": "A side view of a student at a desk in an Indian home with back straight, feet flat, the laptop screen at eye level and a water bottle beside it",
+   "view": "Side view, faces turned away, even light",
+   "right": "Back straight, wrists straight, feet flat",
+   "avoid": "Faces, slouching posture, brand names"
+  }
+ ]
+}

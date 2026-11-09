@@ -1,0 +1,179 @@
+{
+  "chapter_key": "u.c12.geography.legy2.ch09",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "Geographical Perspective on Selected Issues and Problems",
+  "source": "https://ncert.nic.in/textbook/pdf/legy2ps.pdf",
+  "topics": [
+    { "n": "9.1", "title": "Water pollution: sources and polluted stretches of the Ganga and Yamuna", "labs": ["c12-geography-legy2-ch09-ganga-route"], "why_no_lab": null },
+    { "n": "9.2", "title": "Air, land and noise pollution", "labs": ["c12-geography-legy2-ch09-pollution-types"], "why_no_lab": null },
+    { "n": "9.3", "title": "Urban issues: slums and city planning choices", "labs": ["c12-geography-legy2-ch09-city-council"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy2-ch09-ganga-route",
+      "topic": "9.1",
+      "template": "map",
+      "title": { "en": "Follow the Ganga and its towns", "hi": "गंगा और उसके शहरों के साथ चलो" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["rivers", "states"],
+        "task": "route",
+        "places": ["haridwar", "prayagraj", "varanasi", "patna", "kolkata"]
+      },
+      "steps": [
+        { "kind": "do", "target": "layer:rivers", "expect": "layer:rivers", "say": { "en": "Switch on the Rivers layer so you can follow the Ganga.", "hi": "गंगा को साथ-साथ देखने के लिए 'नदियाँ' परत चालू करो।" } },
+        { "kind": "predict", "say": { "en": "Most water pollution in the Ganga comes from which source?", "hi": "गंगा में जल प्रदूषण मुख्यतः किस स्रोत से आता है?" }, "options": [ { "id": "snow", "en": "Melting snow from the Himalaya", "hi": "हिमालय की पिघलती बर्फ़" }, { "id": "sewage", "en": "Sewage and factory waste from towns on its banks", "hi": "तटों के शहरों से सीवेज और कारख़ानों का कचरा" } ], "answer": "sewage" },
+        { "kind": "do", "target": "place:haridwar", "expect": "located:haridwar", "say": { "en": "Start at Haridwar, where the Ganga leaves the hills.", "hi": "हरिद्वार से शुरू करो, जहाँ गंगा पहाड़ों से उतरती है।" } },
+        { "kind": "do", "target": "place:prayagraj", "expect": "located:prayagraj", "say": { "en": "Next stop: Prayagraj, where the Yamuna joins the Ganga.", "hi": "अगला पड़ाव: प्रयागराज, जहाँ यमुना गंगा से मिलती है।" } },
+        { "kind": "do", "target": "place:varanasi", "expect": "located:varanasi", "say": { "en": "Go on to Varanasi on the river.", "hi": "नदी किनारे वाराणसी जाओ।" } },
+        { "kind": "do", "target": "place:patna", "expect": "located:patna", "say": { "en": "Next, Patna on the Ganga.", "hi": "अगला, गंगा पर पटना।" } },
+        { "kind": "do", "target": "place:kolkata", "expect": "answered:right", "say": { "en": "Finish at Kolkata, near the delta, to complete the route.", "hi": "मार्ग पूरा करने के लिए डेल्टा के पास कोलकाता पर समाप्त करो।" } },
+        { "kind": "explain", "say": { "en": "The Ganga and its tributary, the Yamuna, carry waste from many towns along their banks. Untreated sewage, factory effluent and garbage reach the river and lower its water quality. Pollution at one town flows downstream to the next, so cleaning has to be done along the whole river.", "hi": "गंगा और उसकी सहायक नदी यमुना अपने किनारों के कई शहरों का कचरा ढोती हैं। बिना शोधित सीवेज, कारख़ानों का गंदा पानी और कूड़ा नदी तक पहुँचते हैं और उसकी गुणवत्ता घटाते हैं। एक शहर का प्रदूषण नीचे की ओर अगले शहर तक बहता है, इसलिए सफ़ाई पूरी नदी के साथ करनी होती है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why do towns along the Ganga cause much of its water pollution?", "hi": "गंगा के किनारे के शहर उसके जल प्रदूषण का बड़ा हिस्सा क्यों पैदा करते हैं?" },
+              "options": [
+                { "en": "They release untreated sewage and factory waste into the river", "hi": "वे बिना शोधित सीवेज और कारख़ाने का कचरा नदी में छोड़ते हैं" },
+                { "en": "The river has no water inside the towns", "hi": "शहरों के भीतर नदी में पानी ही नहीं होता" },
+                { "en": "Towns are built only on hills, far from the river", "hi": "शहर केवल पहाड़ियों पर बने हैं, नदी से दूर" }
+              ],
+              "answer": 0,
+              "why": { "en": "Waste that is not treated before it enters the river pollutes it directly.", "hi": "नदी में जाने से पहले बिना शोधित कचरा सीधे उसे प्रदूषित करता है।" },
+              "wrong": [
+                "",
+                { "en": "The river flows through the towns with plenty of water. The problem is what goes into it.", "hi": "नदी शहरों से भरपूर पानी के साथ बहती है। समस्या यह है कि उसमें क्या डाला जाता है।" },
+                { "en": "Many towns sit right beside the river, not on hills far away.", "hi": "कई शहर नदी के ठीक किनारे बसे हैं, दूर पहाड़ियों पर नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick one town on the route. Think of what its drains and factories might add to the river, and say why.", "hi": "मार्ग के एक शहर को चुनो। सोचो कि उसकी नालियाँ और कारख़ाने नदी में क्या मिला सकते हैं, और क्यों।" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch09-pollution-types",
+      "topic": "9.2",
+      "template": "sort",
+      "title": { "en": "Which pollution is it?", "hi": "यह कौन-सा प्रदूषण है?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "water", "label": { "en": "Water pollution", "hi": "जल प्रदूषण" } },
+          { "id": "air", "label": { "en": "Air pollution", "hi": "वायु प्रदूषण" } },
+          { "id": "land", "label": { "en": "Land pollution", "hi": "भूमि प्रदूषण" } },
+          { "id": "noise", "label": { "en": "Noise pollution", "hi": "ध्वनि प्रदूषण" } }
+        ],
+        "cards": [
+          { "id": "exhaust", "text": { "en": "Vehicle exhaust and factory chimney smoke", "hi": "वाहनों का धुआँ और कारख़ाने की चिमनी का धुआँ" }, "bin": "air", "why": { "en": "Gases and smoke rise into the air and harm breathing.", "hi": "गैसें और धुआँ हवा में जाकर साँस को नुकसान पहुँचाते हैं।" } },
+          { "id": "plastic", "text": { "en": "Plastic waste dumped in open fields", "hi": "खुले मैदानों में फेंका गया प्लास्टिक कचरा" }, "bin": "land", "why": { "en": "Waste left on land stays for years and spoils the soil.", "hi": "ज़मीन पर पड़ा कचरा सालों रहता है और मिट्टी बिगाड़ता है।" } },
+          { "id": "sewage", "text": { "en": "Sewage flowing into the Yamuna", "hi": "यमुना में बहता सीवेज" }, "bin": "water", "why": { "en": "Untreated sewage lowers the quality of river water.", "hi": "बिना शोधित सीवेज नदी के पानी की गुणवत्ता घटाता है।" } },
+          { "id": "horns", "text": { "en": "Loud horns and loudspeakers near a hospital", "hi": "अस्पताल के पास तेज़ हॉर्न और लाउडस्पीकर" }, "bin": "noise", "why": { "en": "Sound above safe levels disturbs rest and health.", "hi": "सुरक्षित स्तर से तेज़ आवाज़ आराम और सेहत पर असर डालती है।" } },
+          { "id": "dust", "text": { "en": "Dust from construction sites settling on homes", "hi": "निर्माण स्थलों की धूल घरों पर जमती हुई" }, "bin": "air", "why": { "en": "Fine dust in the air is breathed in and can cause illness.", "hi": "हवा की बारीक धूल साँस के साथ अंदर जाती है और बीमारी ला सकती है।" } },
+          { "id": "effluent", "text": { "en": "Factory effluent that kills fish in a pond", "hi": "तालाब में मछलियाँ मारता कारख़ाने का गंदा पानी" }, "bin": "water", "why": { "en": "Poisonous waste in water harms the animals that live in it.", "hi": "पानी में ज़हरीला कचरा उसमें रहने वाले जीवों को नुकसान पहुँचाता है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "card:exhaust", "expect": "correct:exhaust", "say": { "en": "Tap the exhaust card, then tap its bin.", "hi": "धुएँ वाला कार्ड छुओ, फिर उसका खाना छुओ।" } },
+        { "kind": "predict", "say": { "en": "Plastic dumped in an open field is which kind of pollution?", "hi": "खुले मैदान में फेंका प्लास्टिक किस तरह का प्रदूषण है?" }, "options": [ { "id": "water", "en": "Water pollution", "hi": "जल प्रदूषण" }, { "id": "land", "en": "Land pollution", "hi": "भूमि प्रदूषण" } ], "answer": "land" },
+        { "kind": "do", "target": "card:sewage", "expect": "correct:sewage", "say": { "en": "Place the sewage card in its bin.", "hi": "सीवेज वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:horns", "expect": "correct:horns", "say": { "en": "Place the horns card in its bin.", "hi": "हॉर्न वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:plastic", "expect": "correct:plastic", "say": { "en": "Place the plastic card in its bin.", "hi": "प्लास्टिक वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Sort the rest and tap Check.", "hi": "बाकी छाँटो और जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Pollution is a harmful change in air, water or land, caused by people's wastes and activities. Smoke and dust pollute the air. Sewage and effluent pollute water. Plastic and garbage pollute land. Loud horns and loudspeakers cause noise pollution. Each kind harms health and the environment.", "hi": "प्रदूषण हवा, पानी या ज़मीन में होने वाला हानिकारक बदलाव है, जो लोगों के कचरे और गतिविधियों से होता है। धुआँ और धूल हवा को प्रदूषित करते हैं। सीवेज और गंदा पानी पानी को। प्लास्टिक और कूड़ा ज़मीन को। तेज़ हॉर्न और लाउडस्पीकर ध्वनि प्रदूषण करते हैं। हर प्रकार सेहत और पर्यावरण को नुकसान पहुँचाता है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "A child coughs near a busy road full of diesel vehicles. Which type of pollution is most likely the cause?", "hi": "भीड़-भाड़ वाली सड़क पर, जहाँ डीज़ल वाहन बहुत हैं, एक बच्चा खाँस रहा है। कौन-सा प्रदूषण इसका सबसे संभावित कारण है?" },
+              "options": [
+                { "en": "Air pollution", "hi": "वायु प्रदूषण" },
+                { "en": "Noise pollution", "hi": "ध्वनि प्रदूषण" },
+                { "en": "Water pollution", "hi": "जल प्रदूषण" }
+              ],
+              "answer": 0,
+              "why": { "en": "Exhaust from diesel vehicles is polluted air, and a child breathes it in.", "hi": "डीज़ल वाहनों का धुआँ प्रदूषित हवा है, जिसे बच्चा साँस के साथ लेता है।" },
+              "wrong": [
+                "",
+                { "en": "Noise can be irritating, but a cough comes from breathing polluted air.", "hi": "शोर परेशान कर सकता है, पर खाँसी प्रदूषित हवा साँस में लेने से आती है।" },
+                { "en": "Water pollution does not reach the child's lungs through the air of a road.", "hi": "जल प्रदूषण सड़क की हवा के रास्ते बच्चे के फेफड़ों तक नहीं पहुँचता।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Walk around your street. Find one example of each kind of pollution, or note a place where you think one is present.", "hi": "अपनी गली में घूमो। हर प्रकार के प्रदूषण का एक उदाहरण खोजो, या ऐसी जगह बताओ जहाँ तुम्हें लगता है कि प्रदूषण है।" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch09-city-council",
+      "topic": "9.3",
+      "template": "scenario",
+      "title": { "en": "The city council's first project", "hi": "नगर परिषद् की पहली परियोजना" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "setting": "A city of about ten lakh people has a polluted river, smoky roads and a slum with no drains. The council has money for one first project.",
+        "role": { "en": "City council planner", "hi": "नगर परिषद् के योजनाकार" },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": { "en": "The river near the city is dark with sewage, and smoke hangs over the main road. Which project should the council fund first?", "hi": "शहर के पास की नदी सीवेज से काली है, और मुख्य सड़क पर धुआँ छाया है। परिषद् को पहले कौन-सी परियोजना चुननी चाहिए?" },
+            "choices": [
+              { "id": "sewage", "text": { "en": "Build a sewage treatment plant before the river", "hi": "नदी से पहले सीवेज शोधन संयंत्र बनाना" }, "next": "s2", "feedback": { "en": "Treated sewage protects the river and the people downstream. A sound first step.", "hi": "शोधित सीवेज नदी और नीचे के लोगों की रक्षा करता है। यह एक सही पहला कदम है।" } },
+              { "id": "billboards", "text": { "en": "Put up billboards that show a clean city", "hi": "एक साफ़ शहर दिखाने वाले होर्डिंग लगाना" }, "next": "s2", "feedback": { "en": "Pictures do not clean the water. The river stays polluted.", "hi": "तस्वीरें पानी साफ़ नहीं करतीं। नदी प्रदूषित ही रहती है।" } },
+              { "id": "roads", "text": { "en": "Widen the main road so traffic moves faster", "hi": "यातायात तेज़ चले, इसलिए मुख्य सड़क चौड़ी करना" }, "next": "s2", "feedback": { "en": "Faster traffic can mean more smoke and noise on the same road.", "hi": "तेज़ यातायात का मतलब उसी सड़क पर अधिक धुआँ और शोर भी हो सकता है।" } }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": { "en": "The slum beside the river has no drains, so waste water stands in the lanes. What do you do next?", "hi": "नदी किनारे की बस्ती में नालियाँ नहीं हैं, इसलिए गंदा पानी गलियों में रुकता है। अब आप क्या करेंगे?" },
+            "choices": [
+              { "id": "drains", "text": { "en": "Lay drains and toilets, built with the families' help", "hi": "परिवारों की मदद से नालियाँ और शौचालय बनाना" }, "next": "end", "good": true, "feedback": { "en": "Drains and toilets protect health. Families help keep them clean, so the work lasts.", "hi": "नालियाँ और शौचालय सेहत की रक्षा करते हैं। परिवार उन्हें साफ़ रखने में मदद करते हैं, इसलिए काम टिकता है।" } },
+              { "id": "ignore", "text": { "en": "Leave the slum for later, since it is not the main problem", "hi": "बस्ती को बाद के लिए छोड़ देना, क्योंकि वह मुख्य समस्या नहीं" }, "next": "end", "good": false, "feedback": { "en": "Waste water in the lanes spreads disease. Delay makes the problem worse.", "hi": "गलियों में गंदा पानी बीमारी फैलाता है। देर से समस्या और बिगड़ती है।" } }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        { "kind": "predict", "say": { "en": "What should the council fund first?", "hi": "परिषद् को पहले किस पर पैसा लगाना चाहिए?" }, "options": [ { "id": "sew", "en": "A sewage treatment plant", "hi": "सीवेज शोधन संयंत्र" }, { "id": "bill", "en": "Billboards about a clean city", "hi": "साफ़ शहर के होर्डिंग" }, { "id": "road", "en": "A wider main road", "hi": "चौड़ी मुख्य सड़क" } ], "answer": "sew" },
+        { "kind": "do", "target": "choice:s1:sewage", "expect": "chose:sewage", "say": { "en": "Choose the first project: tap the sewage plant choice.", "hi": "पहली परियोजना चुनो: सीवेज संयंत्र वाला विकल्प छुओ।" } },
+        { "kind": "do", "target": "choice:s2:drains", "expect": "chose:drains", "say": { "en": "Now choose what to do about the slum's waste water.", "hi": "अब बस्ती के गंदे पानी के बारे में चुनो कि क्या करना है।" } },
+        { "kind": "explain", "say": { "en": "Cities face many problems at once. A good planner picks the project that removes the cause, not only the sign of it. A sewage plant protects the river, and drains protect the health of people in crowded lanes. Choices that help people and the environment together last longest.", "hi": "शहरों के सामने एक साथ कई समस्याएँ होती हैं। अच्छा योजनाकार वह परियोजना चुनता है जो कारण हटाए, केवल लक्षण नहीं। सीवेज संयंत्र नदी की रक्षा करता है, और नालियाँ भीड़ भरी गलियों में लोगों की सेहत बचाती हैं। जो फ़ैसले लोगों और पर्यावरण दोनों की मदद करते हैं, वे सबसे अधिक टिकते हैं।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why is a sewage plant a better first choice than billboards?", "hi": "होर्डिंग की तुलना में सीवेज संयंत्र पहली पसंद क्यों बेहतर है?" },
+              "options": [
+                { "en": "It removes the cause of river pollution, while billboards only hide the problem", "hi": "वह नदी प्रदूषण का कारण हटाता है, जबकि होर्डिंग केवल समस्या छिपाते हैं" },
+                { "en": "Billboards are too expensive to build", "hi": "होर्डिंग बनाने में बहुत महँगे होते हैं" },
+                { "en": "Sewage plants add more noise to the city", "hi": "सीवेज संयंत्र शहर में अधिक शोर जोड़ते हैं" }
+              ],
+              "answer": 0,
+              "why": { "en": "A treatment plant reduces the pollution at its source, so the river gets cleaner.", "hi": "शोधन संयंत्र स्रोत पर प्रदूषण घटाता है, इसलिए नदी साफ़ होती है।" },
+              "wrong": [
+                "",
+                { "en": "Cost is not the reason. Billboards may be cheap, but they do not clean the water.", "hi": "कारण लागत नहीं है। होर्डिंग सस्ते हो सकते हैं, पर वे पानी साफ़ नहीं करते।" },
+                { "en": "A sewage plant treats waste. It is not a source of noise pollution.", "hi": "सीवेज संयंत्र कचरे का शोधन करता है। वह ध्वनि प्रदूषण का स्रोत नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Imagine you are the planner. Name one project that would help both the river and the people. Explain in two sentences.", "hi": "मान लो तुम योजनाकार हो। एक ऐसी परियोजना बताओ जो नदी और लोग दोनों की मदद करे। दो वाक्यों में समझाओ।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "9.1", "use": "A riverbank polluted by waste", "shows": "The steps of a city riverbank with plastic bottles and waste floating near the edge, and dirty water in the foreground", "view": "16:9, daylight, river in the mid-ground", "right": "Visible floating waste and dull water near the edge", "avoid": "Religious scenes or people bathing in close view; readable signs" },
+    { "n": 2, "kind": "SCN", "topic": "9.2", "use": "Smoky city traffic junction", "shows": "A busy city junction with heavy traffic and a haze of smoke rising from vehicles and a distant chimney", "view": "16:9, hazy morning light", "right": "Dense traffic and a visible smoky haze", "avoid": "Readable number plates, brand logos, faces" },
+    { "n": 3, "kind": "SCN", "topic": "9.2", "use": "Plastic waste on open land", "shows": "The edge of an open field with plastic bags and bottles scattered on the dry earth", "view": "16:9, flat light, close enough to see waste clearly", "right": "Plastic bags and bottles on dry earth", "avoid": "Brand logos on packets, people" },
+    { "n": 4, "kind": "MAP", "topic": "9.1", "use": "River base map for the Ganga route", "shows": "A relief map of northern India with the main river lines drawn as blue shapes and the Himalaya in the north, no names", "view": "16:9, soft relief shading", "right": "River courses that flow from the Himalaya across the plains", "avoid": "River names, city names, state borders" },
+    { "n": 5, "kind": "SCN", "topic": "9.3", "use": "A slum lane with an open drain", "shows": "A narrow lane in a crowded settlement with an open drain and waste water standing beside it, no identifiable people", "view": "16:9, daylight, lane receding into the distance", "right": "Narrow lane, open drain with standing water", "avoid": "Identifiable faces, names on houses" },
+    { "n": 6, "kind": "DIA", "topic": "9.2", "use": "Four-panel pollution base", "shows": "Four plain square panels in soft colours, one each for air, water, land and noise, with a simple outline of a city in each", "view": "White background, 1:1 layout, flat style", "right": "Four distinct panels with clear, simple shapes", "avoid": "Words or icons with text" }
+  ]
+}

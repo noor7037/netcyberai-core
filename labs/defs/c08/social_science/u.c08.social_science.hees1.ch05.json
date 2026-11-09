@@ -1,0 +1,1169 @@
+{
+ "chapter_key": "u.c08.social_science.hees1.ch05",
+ "class": 8,
+ "subject_id": "social_science",
+ "title": "Universal Franchise and India’s Electoral System",
+ "source": "https://ncert.nic.in/textbook/pdf/hees105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Universal adult franchise",
+   "labs": [
+    "c08-social_science-hees1-ch05-whovote"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "The role of the Election Commission of India",
+   "labs": [
+    "c08-social_science-hees1-ch05-eci"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Understanding elections: a class election",
+   "labs": [
+    "c08-social_science-hees1-ch05-classvote"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Election to the Lok Sabha and State Assemblies",
+   "labs": [
+    "c08-social_science-hees1-ch05-evm",
+    "c08-social_science-hees1-ch05-classvote"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Election to the Rajya Sabha and of the President",
+   "labs": [
+    "c08-social_science-hees1-ch05-direct"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-social_science-hees1-ch05-whovote",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "Who can vote?",
+    "hi": "कौन वोट दे सकता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "May vote",
+       "hi": "वोट दे सकता है"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "May not vote",
+       "hi": "वोट नहीं दे सकता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "student",
+      "text": {
+       "en": "A 19-year-old college student",
+       "hi": "19 साल का कॉलेज विद्यार्थी"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Every citizen aged 18 or more can vote.",
+       "hi": "18 वर्ष या उससे अधिक आयु का हर नागरिक वोट दे सकता है।"
+      }
+     },
+     {
+      "id": "unlettered",
+      "text": {
+       "en": "A 45-year-old who never went to school",
+       "hi": "45 साल का व्यक्ति जो कभी स्कूल नहीं गया"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Education is not a condition for voting.",
+       "hi": "वोट देने के लिए पढ़ा-लिखा होना शर्त नहीं है।"
+      }
+     },
+     {
+      "id": "vendor",
+      "text": {
+       "en": "A woman who sells vegetables in the market",
+       "hi": "बाज़ार में सब्ज़ी बेचने वाली महिला"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Men and women have the same right to vote.",
+       "hi": "स्त्री और पुरुष को वोट देने का समान अधिकार है।"
+      }
+     },
+     {
+      "id": "poor",
+      "text": {
+       "en": "A poor daily-wage worker",
+       "hi": "दिहाड़ी पर काम करने वाला ग़रीब मज़दूर"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Income does not matter; one person has one vote.",
+       "hi": "आमदनी मायने नहीं रखती; एक व्यक्ति, एक वोट।"
+      }
+     },
+     {
+      "id": "teen",
+      "text": {
+       "en": "A 16-year-old school student",
+       "hi": "16 साल का स्कूल विद्यार्थी"
+      },
+      "bin": "no",
+      "why": {
+       "en": "The voting age is 18, so a 16-year-old must wait.",
+       "hi": "वोट देने की आयु 18 वर्ष है, इसलिए 16 वर्ष के किशोर को इंतज़ार करना होगा।"
+      }
+     },
+     {
+      "id": "seventeen",
+      "text": {
+       "en": "A 17-year-old who loves politics",
+       "hi": "17 साल का किशोर जिसे राजनीति पसंद है"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Interest is not enough; the person must be 18.",
+       "hi": "रुचि काफ़ी नहीं; आयु 18 वर्ष होनी चाहिए।"
+      }
+     },
+     {
+      "id": "barred",
+      "text": {
+       "en": "A person found guilty of certain serious crimes",
+       "hi": "कुछ गंभीर अपराधों में दोषी ठहराया गया व्यक्ति"
+      },
+      "bin": "no",
+      "why": {
+       "en": "A person guilty of certain serious crimes can be barred from voting.",
+       "hi": "कुछ गंभीर अपराधों के दोषी व्यक्ति को वोट देने से रोका जा सकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:student",
+     "expect": "placed:student",
+     "say": {
+      "en": "Tap the card about the 19-year-old, then choose a group.",
+      "hi": "19 साल वाले का कार्ड चुनो, फिर समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does a person need to be rich or educated to vote in India?",
+      "hi": "क्या भारत में वोट देने के लिए अमीर या पढ़ा-लिखा होना ज़रूरी है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, every citizen of 18 or more can vote",
+       "hi": "नहीं, 18 वर्ष या अधिक आयु का हर नागरिक वोट दे सकता है"
+      },
+      {
+       "id": "rich",
+       "en": "Yes, only the rich",
+       "hi": "हाँ, केवल अमीर"
+      },
+      {
+       "id": "edu",
+       "en": "Yes, only the educated",
+       "hi": "हाँ, केवल पढ़े-लिखे"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:teen",
+     "expect": "placed:teen",
+     "say": {
+      "en": "Place the card about the 16-year-old.",
+      "hi": "16 साल वाले का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards and press check.",
+      "hi": "बाक़ी सब कार्ड रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In India every citizen aged 18 or more has the right to vote, whatever their caste, religion, gender, education or income. This is called universal adult franchise. Before independence only about 13 per cent of Indians could vote. The voting age was 21 until 1988, when it was lowered to 18. Only certain serious crimes can bar a person from voting.",
+      "hi": "भारत में 18 वर्ष या उससे अधिक आयु के हर नागरिक को वोट देने का अधिकार है, चाहे जाति, धर्म, लिंग, शिक्षा या आमदनी कुछ भी हो। इसे सार्वभौमिक वयस्क मताधिकार कहते हैं। आज़ादी से पहले केवल लगभग 13 प्रतिशत भारतीय वोट दे सकते थे। 1988 तक मतदान की आयु 21 वर्ष थी, फिर उसे घटाकर 18 कर दिया गया। केवल कुछ गंभीर अपराध ही किसी को वोट देने से रोक सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the minimum voting age in India?",
+        "hi": "भारत में वोट देने की न्यूनतम आयु क्या है?"
+       },
+       "options": [
+        {
+         "en": "16 years",
+         "hi": "16 वर्ष"
+        },
+        {
+         "en": "18 years",
+         "hi": "18 वर्ष"
+        },
+        {
+         "en": "21 years",
+         "hi": "21 वर्ष"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It was lowered from 21 to 18 in 1988.",
+        "hi": "इसे 1988 में 21 से घटाकर 18 किया गया।"
+       },
+       "wrong": [
+        {
+         "en": "16 is below the voting age.",
+         "hi": "16 वर्ष वोट देने की आयु से कम है।"
+        },
+        "",
+        {
+         "en": "21 was the age before 1988.",
+         "hi": "21 वर्ष 1988 से पहले की आयु थी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does 'universal adult franchise' mean?",
+        "hi": "'सार्वभौमिक वयस्क मताधिकार' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Only property owners may vote",
+         "hi": "केवल संपत्ति वाले वोट दे सकते हैं"
+        },
+        {
+         "en": "Every adult citizen may vote, equally",
+         "hi": "हर वयस्क नागरिक समान रूप से वोट दे सकता है"
+        },
+        {
+         "en": "Only men may vote",
+         "hi": "केवल पुरुष वोट दे सकते हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The word 'universal' means everyone, with no difference of caste, creed, gender, education or income.",
+        "hi": "'सार्वभौमिक' का अर्थ है सभी, बिना जाति, धर्म, लिंग, शिक्षा या आमदनी के भेद के।"
+       },
+       "wrong": [
+        {
+         "en": "That was the old, limited system before independence.",
+         "hi": "यह आज़ादी से पहले की सीमित व्यवस्था थी।"
+        },
+        "",
+        {
+         "en": "Women have the same right as men.",
+         "hi": "महिलाओं को पुरुषों जैसा ही अधिकार है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask an elder if they remember their first vote. How was it for them? Why is every vote equal?",
+      "hi": "किसी बड़े से पूछो कि उन्हें अपना पहला वोट याद है? कैसा अनुभव था? हर वोट बराबर क्यों है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees1-ch05-eci",
+   "topic": "5.2",
+   "template": "match",
+   "title": {
+    "en": "What the Election Commission does",
+    "hi": "निर्वाचन आयोग क्या करता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "dates",
+      "left": {
+       "en": "Setting election dates",
+       "hi": "चुनाव की तारीख़ें तय करना"
+      },
+      "right": {
+       "en": "Announces when each round of voting will happen",
+       "hi": "घोषणा करता है कि मतदान के दौर कब होंगे"
+      }
+     },
+     {
+      "id": "parties",
+      "left": {
+       "en": "Registering political parties",
+       "hi": "राजनीतिक दलों का पंजीकरण"
+      },
+      "right": {
+       "en": "Keeps the list of parties that may contest elections",
+       "hi": "चुनाव लड़ने वाले दलों की सूची रखता है"
+      }
+     },
+     {
+      "id": "code",
+      "left": {
+       "en": "Enforcing the Model Code of Conduct",
+       "hi": "आदर्श आचार संहिता लागू करना"
+      },
+      "right": {
+       "en": "Makes parties and candidates follow fair campaign rules",
+       "hi": "दलों और उम्मीदवारों से प्रचार के निष्पक्ष नियम मनवाता है"
+      }
+     },
+     {
+      "id": "oversee",
+      "left": {
+       "en": "Overseeing the whole process",
+       "hi": "पूरी प्रक्रिया की देखरेख"
+      },
+      "right": {
+       "en": "Watches over every step from lists to counting",
+       "hi": "मतदाता सूची से गिनती तक हर चरण पर नज़र रखता है"
+      }
+     },
+     {
+      "id": "complaints",
+      "left": {
+       "en": "Handling complaints",
+       "hi": "शिकायतों का निपटारा"
+      },
+      "right": {
+       "en": "Looks into issues such as cash found with a candidate",
+       "hi": "उम्मीदवार के पास नक़द मिलने जैसी बातों की जाँच करता है"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:dates",
+     "expect": "matched:dates",
+     "say": {
+      "en": "Tap 'Setting election dates', then tap what it means.",
+      "hi": "'चुनाव की तारीख़ें तय करना' चुनो, फिर उसका अर्थ चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "With nearly one million polling stations, who should run elections: the ruling party or an independent body?",
+      "hi": "लगभग दस लाख मतदान केंद्रों वाले चुनाव कौन चलाए: सत्ताधारी दल या स्वतंत्र संस्था?"
+     },
+     "options": [
+      {
+       "id": "ind",
+       "en": "An independent body",
+       "hi": "स्वतंत्र संस्था"
+      },
+      {
+       "id": "party",
+       "en": "The ruling party",
+       "hi": "सत्ताधारी दल"
+      }
+     ],
+     "answer": "ind"
+    },
+    {
+     "kind": "do",
+     "target": "left:code",
+     "expect": "matched:code",
+     "say": {
+      "en": "Match the Model Code of Conduct.",
+      "hi": "आदर्श आचार संहिता को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Election Commission of India (ECI) is the independent body that manages elections in the country. It fixes dates, registers parties, enforces the Model Code of Conduct and oversees the whole process so that elections are free and fair. India's elections are huge: over 968 million voters and about a million polling stations.",
+      "hi": "भारत का निर्वाचन आयोग (ECI) वह स्वतंत्र संस्था है जो देश के चुनाव संचालित करती है। वह तारीख़ें तय करता है, दलों का पंजीकरण करता है, आदर्श आचार संहिता लागू करता है और पूरी प्रक्रिया की देखरेख करता है ताकि चुनाव स्वतंत्र और निष्पक्ष हों। भारत के चुनाव बहुत विशाल हैं: 96.8 करोड़ से अधिक मतदाता और लगभग दस लाख मतदान केंद्र।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which body manages elections in India?",
+        "hi": "भारत में चुनावों का संचालन कौन करता है?"
+       },
+       "options": [
+        {
+         "en": "The Election Commission of India",
+         "hi": "भारत का निर्वाचन आयोग"
+        },
+        {
+         "en": "The Supreme Court",
+         "hi": "सर्वोच्च न्यायालय"
+        },
+        {
+         "en": "The Reserve Bank",
+         "hi": "रिज़र्व बैंक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ECI oversees all elections, including those of the President and Vice President.",
+        "hi": "ECI राष्ट्रपति और उपराष्ट्रपति सहित सभी चुनावों की देखरेख करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Supreme Court decides cases, it does not run elections.",
+         "hi": "सर्वोच्च न्यायालय मुक़दमे तय करता है, चुनाव नहीं कराता।"
+        },
+        {
+         "en": "The Reserve Bank looks after money and banking.",
+         "hi": "रिज़र्व बैंक मुद्रा और बैंकिंग देखता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the Model Code of Conduct do?",
+        "hi": "आदर्श आचार संहिता क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "Sets fair rules for parties and candidates",
+         "hi": "दलों और उम्मीदवारों के लिए निष्पक्ष नियम तय करती है"
+        },
+        {
+         "en": "Decides who wins",
+         "hi": "तय करती है कि कौन जीतेगा"
+        },
+        {
+         "en": "Prints the ballots",
+         "hi": "मतपत्र छापती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It keeps campaigning fair, for example by stopping the ruling party from misusing government resources.",
+        "hi": "यह प्रचार को निष्पक्ष रखती है, जैसे सत्ताधारी दल को सरकारी साधनों के दुरुपयोग से रोककर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The voters decide who wins.",
+         "hi": "कौन जीतेगा, यह मतदाता तय करते हैं।"
+        },
+        {
+         "en": "The code is about behaviour, not printing.",
+         "hi": "संहिता व्यवहार के बारे में है, छपाई के बारे में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why is it important that the people running elections do not belong to any party? Discuss with a friend.",
+      "hi": "चुनाव चलाने वाले लोग किसी दल के क्यों न हों? अपने साथी से चर्चा करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees1-ch05-classvote",
+   "topic": "5.3",
+   "template": "data",
+   "title": {
+    "en": "A class monitor election",
+    "hi": "कक्षा मॉनिटर का चुनाव"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "max",
+    "title": {
+     "en": "Votes in a class monitor election (example numbers)",
+     "hi": "कक्षा मॉनिटर के चुनाव में वोट (उदाहरण के अंक)"
+    },
+    "ylabel": {
+     "en": "Votes",
+     "hi": "वोट"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Meera",
+       "hi": "मीरा"
+      },
+      "value": 9
+     },
+     {
+      "label": {
+       "en": "Tarun",
+       "hi": "तरुण"
+      },
+      "value": 12
+     },
+     {
+      "label": {
+       "en": "Salma",
+       "hi": "सलमा"
+      },
+      "value": 10
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap Meera's bar to read her votes.",
+      "hi": "मीरा के दंड पर छुओ और उसके वोट पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "31 students voted. Tarun got 12. Will he have more than half of all the votes?",
+      "hi": "31 विद्यार्थियों ने वोट दिया। तरुण को 12 मिले। क्या उसे कुल वोटों के आधे से अधिक मिले हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, 12 is less than half of 31",
+       "hi": "नहीं, 12 का आँकड़ा 31 के आधे से कम है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: tap the candidate who wins.",
+      "hi": "प्रश्न का उत्तर दो: जीतने वाले उम्मीदवार को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The candidate with the most votes wins, even if that is not more than half of all the votes. Tarun got 12 of 31 votes, about 39 per cent, and still wins. This is the First-Past-the-Post system used for the Lok Sabha and State Assembly elections.",
+      "hi": "सबसे अधिक वोट पाने वाला उम्मीदवार जीतता है, भले ही उसे कुल वोटों के आधे से कम मिले हों। तरुण को 31 में से 12 वोट, यानी लगभग 39 प्रतिशत, मिले और फिर भी वह जीतता है। लोक सभा और विधान सभा के चुनावों में यही 'सबसे आगे वाला जीतता है' प्रणाली चलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In First-Past-the-Post, who wins?",
+        "hi": "'सबसे आगे वाला जीतता है' प्रणाली में कौन जीतता है?"
+       },
+       "options": [
+        {
+         "en": "The one with the most votes",
+         "hi": "जिसे सबसे अधिक वोट मिलें"
+        },
+        {
+         "en": "Only one with over half the votes",
+         "hi": "केवल वह जिसे आधे से अधिक वोट मिलें"
+        },
+        {
+         "en": "The oldest candidate",
+         "hi": "सबसे बड़ी आयु वाला उम्मीदवार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The highest number of votes in the constituency wins.",
+        "hi": "क्षेत्र में सबसे अधिक वोट पाने वाला जीतता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A winner does not need over half the votes.",
+         "hi": "विजेता को आधे से अधिक वोट चाहिए ही नहीं।"
+        },
+        {
+         "en": "Age has nothing to do with it.",
+         "hi": "आयु का इससे कोई संबंध नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Out of 31 votes, what share did Tarun get, roughly?",
+        "hi": "31 वोटों में से तरुण को लगभग कितना हिस्सा मिला?"
+       },
+       "options": [
+        {
+         "en": "About 39 per cent",
+         "hi": "लगभग 39 प्रतिशत"
+        },
+        {
+         "en": "About 60 per cent",
+         "hi": "लगभग 60 प्रतिशत"
+        },
+        {
+         "en": "About 90 per cent",
+         "hi": "लगभग 90 प्रतिशत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "12 divided by 31 is about 0.39.",
+        "hi": "12 को 31 से भाग देने पर लगभग 0.39 आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "60 per cent would be nearly 19 votes.",
+         "hi": "60 प्रतिशत यानी लगभग 19 वोट होते।"
+        },
+        {
+         "en": "90 per cent would be about 28 votes.",
+         "hi": "90 प्रतिशत यानी लगभग 28 वोट होते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Hold a mock vote in your class for a class decision. Count the votes and find the winner's share in per cent.",
+      "hi": "अपनी कक्षा में किसी निर्णय के लिए नकली मतदान कराओ। वोट गिनो और विजेता का हिस्सा प्रतिशत में निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees1-ch05-evm",
+   "topic": "5.4",
+   "template": "govern",
+   "title": {
+    "en": "Vote and count",
+    "hi": "वोट दो और गिनती करो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "election",
+    "options": {
+     "candidates": [
+      "asha",
+      "imran",
+      "gurpreet",
+      "ravi"
+     ],
+     "shares": {
+      "asha": 34,
+      "imran": 30,
+      "gurpreet": 20,
+      "ravi": 16
+     },
+     "voters": 1200,
+     "turnout": 65,
+     "system": "fptp"
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "vote:asha",
+     "expect": "voted:asha",
+     "say": {
+      "en": "Cast your vote for any candidate. These people and parties are made up.",
+      "hi": "किसी भी उम्मीदवार को वोट दो। ये लोग और दल काल्पनिक हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The count is about to start. Will the winner have more than half of all the votes?",
+      "hi": "गिनती शुरू होने वाली है। क्या विजेता को कुल वोटों के आधे से अधिक मिलेंगे?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "Probably not, four candidates share the votes",
+       "hi": "शायद नहीं, चार उम्मीदवारों में वोट बँटे हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "counted",
+     "say": {
+      "en": "Press the button to count the votes.",
+      "hi": "वोट गिनने का बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a constituency the voters elect one candidate. The votes are counted and the candidate with the most votes wins, even with less than half. That is First-Past-the-Post. The winner of a Lok Sabha seat becomes a Member of Parliament (MP). The winner of an Assembly seat becomes a Member of the Legislative Assembly (MLA).",
+      "hi": "एक चुनाव क्षेत्र में मतदाता एक उम्मीदवार चुनते हैं। वोट गिने जाते हैं और सबसे अधिक वोट वाला जीतता है, चाहे उसे आधे से कम मिले हों। यही 'सबसे आगे वाला जीतता है' प्रणाली है। लोक सभा सीट का विजेता संसद सदस्य (सांसद) बनता है और विधान सभा सीट का विजेता विधान सभा सदस्य (विधायक)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A candidate who wins a Lok Sabha seat is called…",
+        "hi": "लोक सभा सीट जीतने वाला कहलाता है…"
+       },
+       "options": [
+        {
+         "en": "MLA",
+         "hi": "विधायक"
+        },
+        {
+         "en": "MP",
+         "hi": "सांसद"
+        },
+        {
+         "en": "Governor",
+         "hi": "राज्यपाल"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A Member of Parliament, or MP.",
+        "hi": "संसद सदस्य यानी सांसद।"
+       },
+       "wrong": [
+        {
+         "en": "An MLA wins a State Assembly seat.",
+         "hi": "विधायक विधान सभा की सीट जीतता है।"
+        },
+        "",
+        {
+         "en": "A Governor is appointed, not elected by voters in a constituency.",
+         "hi": "राज्यपाल नियुक्त होता है, चुनाव क्षेत्र से चुना नहीं जाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can a candidate win with less than 50 per cent of the votes?",
+        "hi": "क्या कोई उम्मीदवार 50 प्रतिशत से कम वोट पाकर जीत सकता है?"
+       },
+       "options": [
+        {
+         "en": "No, never",
+         "hi": "नहीं, कभी नहीं"
+        },
+        {
+         "en": "Yes, if others get even fewer",
+         "hi": "हाँ, यदि बाकी को उससे भी कम मिलें"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The one with the highest count wins, even if votes are split among many.",
+        "hi": "सबसे अधिक वोट वाला जीतता है, भले ही वोट कई में बँटे हों।"
+       },
+       "wrong": [
+        {
+         "en": "In First-Past-the-Post it can and does happen.",
+         "hi": "'सबसे आगे वाला जीतता है' प्रणाली में ऐसा हो सकता है और होता है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and vote for a different candidate. Does the winner change? What does NOTA mean?",
+      "hi": "रीसेट करके किसी और उम्मीदवार को वोट दो। क्या विजेता बदला? नोटा का क्या अर्थ है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees1-ch05-direct",
+   "topic": "5.5",
+   "template": "sort",
+   "title": {
+    "en": "Direct or indirect election?",
+    "hi": "प्रत्यक्ष या अप्रत्यक्ष चुनाव?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "dir",
+      "label": {
+       "en": "Elected directly by voters",
+       "hi": "मतदाता सीधे चुनते हैं"
+      }
+     },
+     {
+      "id": "ind",
+      "label": {
+       "en": "Elected indirectly",
+       "hi": "अप्रत्यक्ष रूप से चुने जाते हैं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ls",
+      "text": {
+       "en": "Member of the Lok Sabha (MP)",
+       "hi": "लोक सभा सदस्य (सांसद)"
+      },
+      "bin": "dir",
+      "why": {
+       "en": "Voters in each of the 543 constituencies elect their MP.",
+       "hi": "543 चुनाव क्षेत्रों में से हर एक के मतदाता अपना सांसद चुनते हैं।"
+      }
+     },
+     {
+      "id": "mla",
+      "text": {
+       "en": "Member of a State Assembly (MLA)",
+       "hi": "विधान सभा सदस्य (विधायक)"
+      },
+      "bin": "dir",
+      "why": {
+       "en": "People vote directly for the MLA of their constituency.",
+       "hi": "लोग अपने क्षेत्र के विधायक को सीधे वोट देते हैं।"
+      }
+     },
+     {
+      "id": "panch",
+      "text": {
+       "en": "Member of a village panchayat",
+       "hi": "ग्राम पंचायत का सदस्य"
+      },
+      "bin": "dir",
+      "why": {
+       "en": "Local elections, too, are based on universal adult franchise.",
+       "hi": "स्थानीय चुनाव भी सार्वभौमिक वयस्क मताधिकार पर आधारित हैं।"
+      }
+     },
+     {
+      "id": "rs",
+      "text": {
+       "en": "Member of the Rajya Sabha",
+       "hi": "राज्य सभा सदस्य"
+      },
+      "bin": "ind",
+      "why": {
+       "en": "Most are elected by the MLAs of the State Assemblies.",
+       "hi": "अधिकांश सदस्य राज्यों की विधान सभाओं के विधायक चुनते हैं।"
+      }
+     },
+     {
+      "id": "pres",
+      "text": {
+       "en": "President of India",
+       "hi": "भारत के राष्ट्रपति"
+      },
+      "bin": "ind",
+      "why": {
+       "en": "An electoral college of elected representatives chooses the President.",
+       "hi": "निर्वाचित प्रतिनिधियों का निर्वाचक मंडल राष्ट्रपति को चुनता है।"
+      }
+     },
+     {
+      "id": "vp",
+      "text": {
+       "en": "Vice President of India",
+       "hi": "भारत के उपराष्ट्रपति"
+      },
+      "bin": "ind",
+      "why": {
+       "en": "Members of both Houses of Parliament elect the Vice President.",
+       "hi": "संसद के दोनों सदनों के सदस्य उपराष्ट्रपति को चुनते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ls",
+     "expect": "placed:ls",
+     "say": {
+      "en": "Tap the card for the Lok Sabha member and choose its group.",
+      "hi": "लोक सभा सदस्य का कार्ड चुनो और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Do ordinary voters directly elect the President of India?",
+      "hi": "क्या आम मतदाता भारत के राष्ट्रपति को सीधे चुनते हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, an electoral college does",
+       "hi": "नहीं, निर्वाचक मंडल चुनता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, every voter",
+       "hi": "हाँ, हर मतदाता"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:pres",
+     "expect": "placed:pres",
+     "say": {
+      "en": "Place the President's card.",
+      "hi": "राष्ट्रपति का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and press check.",
+      "hi": "बाक़ी रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a direct election the voters choose the person themselves, as for the Lok Sabha and State Assemblies. In an indirect election, elected representatives choose. The Rajya Sabha is chosen by MLAs. The President and Vice President are elected by electoral colleges. Like a class where the class representatives choose a council, it is a step removed from the people.",
+      "hi": "प्रत्यक्ष चुनाव में मतदाता स्वयं व्यक्ति को चुनते हैं, जैसे लोक सभा और विधान सभाओं में। अप्रत्यक्ष चुनाव में निर्वाचित प्रतिनिधि चुनते हैं। राज्य सभा को विधायक चुनते हैं। राष्ट्रपति और उपराष्ट्रपति निर्वाचक मंडलों से चुने जाते हैं। यह वैसा है जैसे कक्षा के प्रतिनिधि मिलकर परिषद चुनें: जनता से एक क़दम दूर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who elects most members of the Rajya Sabha?",
+        "hi": "राज्य सभा के अधिकांश सदस्यों को कौन चुनता है?"
+       },
+       "options": [
+        {
+         "en": "All voters in the country",
+         "hi": "देश के सभी मतदाता"
+        },
+        {
+         "en": "MLAs of the State Assemblies",
+         "hi": "राज्य विधान सभाओं के विधायक"
+        },
+        {
+         "en": "The Prime Minister",
+         "hi": "प्रधानमंत्री"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It is an indirect election by the MLAs; the President also nominates 12 members.",
+        "hi": "यह विधायकों द्वारा अप्रत्यक्ष चुनाव है; राष्ट्रपति 12 सदस्यों को मनोनीत भी करते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "That would be a direct election, which it is not.",
+         "hi": "वह प्रत्यक्ष चुनाव होता, जो यह नहीं है।"
+        },
+        "",
+        {
+         "en": "The Prime Minister does not pick Rajya Sabha members.",
+         "hi": "प्रधानमंत्री राज्य सभा सदस्यों को नहीं चुनते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How often does one-third of the Rajya Sabha retire?",
+        "hi": "राज्य सभा के एक-तिहाई सदस्य कितने समय में सेवानिवृत्त होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Every two years",
+         "hi": "हर दो साल में"
+        },
+        {
+         "en": "Every five years, all together",
+         "hi": "हर पाँच साल में, सब साथ"
+        },
+        {
+         "en": "Never",
+         "hi": "कभी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Rajya Sabha is a permanent body; one-third of its members retire every two years and new ones are elected.",
+        "hi": "राज्य सभा स्थायी सदन है; हर दो साल में एक-तिहाई सदस्य सेवानिवृत्त होते हैं और नए चुने जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is not dissolved all at once like the Lok Sabha.",
+         "hi": "वह लोक सभा की तरह एक साथ भंग नहीं होती।"
+        },
+        {
+         "en": "Members do retire, one-third at a time.",
+         "hi": "सदस्य सेवानिवृत्त होते हैं, एक-तिहाई एक बार में।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why might the makers of the Constitution want the President to be chosen by elected representatives rather than directly? Discuss.",
+      "hi": "संविधान निर्माता क्यों चाहते होंगे कि राष्ट्रपति को जनता सीधे नहीं बल्कि निर्वाचित प्रतिनिधि चुनें? चर्चा करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Opens the chapter",
+   "shows": "A queue of voters of all ages outside a village polling booth, seen from behind, in morning light",
+   "view": "Wide, 16:9",
+   "right": "Elderly, women, young adults in the queue; Indian setting",
+   "avoid": "Faces, party flags or symbols"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.4",
+   "use": "Voting machines",
+   "shows": "A demonstration EVM with its ballot unit and a VVPAT unit beside it, cut-out",
+   "view": "Front, three-quarter, 2 files, PNG",
+   "right": "Buttons, ballot unit, paper slip window",
+   "avoid": "Party symbols, names"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "5.4",
+   "use": "Indelible ink",
+   "shows": "A forefinger with a violet-black ink mark across the nail, macro",
+   "view": "Close, square",
+   "right": "Ink line on the nail and skin",
+   "avoid": "Faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "A class election",
+   "shows": "A classroom election: a ballot box on a desk, slips being folded, children seen from behind",
+   "view": "Wide, 16:9",
+   "right": "Simple box, paper slips, school desks",
+   "avoid": "Faces, names on the board"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "5.5",
+   "use": "Parliament",
+   "shows": "Exterior of the Parliament building in clear daylight with the lawn in front",
+   "view": "Wide, 16:9",
+   "right": "Whole building and sky",
+   "avoid": "Crowds, banners, text"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "5.5",
+   "use": "Direct and indirect",
+   "shows": "An empty two-branch tree diagram with boxes for voters, representatives and offices",
+   "view": "PNG, transparent",
+   "right": "Equal boxes, arrows left blank",
+   "avoid": "Any text"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Election staff",
+   "shows": "Polling officers at a rural booth checking a register and arranging machines before voting day",
+   "view": "Wide, 16:9",
+   "right": "Table, register, machine, tarpaulin",
+   "avoid": "Faces, signboards"
+  }
+ ]
+}

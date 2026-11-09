@@ -1,0 +1,1526 @@
+{
+ "chapter_key": "u.c08.mathematics.hegp1.ch04",
+ "class": 8,
+ "subject_id": "mathematics",
+ "title": "Quadrilaterals",
+ "source": "https://ncert.nic.in/textbook/pdf/hegp104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Rectangles and squares: sides, angles and diagonals",
+   "labs": [
+    "c08-mathematics-hegp1-ch04-rectangle",
+    "c08-mathematics-hegp1-ch04-square"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Angles in a quadrilateral: the sum is 360°",
+   "labs": [
+    "c08-mathematics-hegp1-ch04-angle-sum"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "More quadrilaterals with parallel opposite sides: parallelograms",
+   "labs": [
+    "c08-mathematics-hegp1-ch04-parallelogram",
+    "c08-mathematics-hegp1-ch04-family"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Quadrilaterals with equal sidelengths: rhombus and square",
+   "labs": [
+    "c08-mathematics-hegp1-ch04-rhombus"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Playing with quadrilaterals: geoboard diagonals and joining triangles",
+   "labs": [
+    "c08-mathematics-hegp1-ch04-diagonals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Kite and trapezium",
+   "labs": [
+    "c08-mathematics-hegp1-ch04-kite",
+    "c08-mathematics-hegp1-ch04-trapezium"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-mathematics-hegp1-ch04-rectangle",
+   "topic": "4.1",
+   "template": "shapes",
+   "title": {
+    "en": "Rectangle: what do the diagonals do?",
+    "hi": "आयत: विकर्ण क्या करते हैं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "rectangle"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler to see the length of every side.",
+      "hi": "हर भुजा की लंबाई देखने के लिए रूलर पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "show:diagonals",
+     "expect": "drawn",
+     "say": {
+      "en": "Tap \"Diagonals\" to draw both diagonals.",
+      "hi": "दोनों विकर्ण खींचने के लिए \"विकर्ण\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you make the rectangle long and thin, will its two diagonals stay equal?",
+      "hi": "अगर आयत को लंबा और पतला कर दो, तो क्या उसके दोनों विकर्ण बराबर रहेंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Yes, always equal",
+       "hi": "हाँ, हमेशा बराबर"
+      },
+      {
+       "id": "b",
+       "en": "No, one gets longer",
+       "hi": "नहीं, एक लंबा हो जाता है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "drag:C",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag corner C to a new place. Watch the ticks and the list.",
+      "hi": "कोना C को नई जगह खिसकाओ। निशान और सूची पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which property is true every time?",
+      "hi": "प्रश्न का उत्तर दो: कौन-सा गुण हर बार सही है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "However you drag it, a rectangle keeps four 90° angles and equal opposite sides. Its diagonals are always equal and they cut each other in half. They meet at 90° only when the rectangle is a square.",
+      "hi": "तुम इसे कैसे भी खिसकाओ, आयत के चारों कोण 90° और आमने-सामने की भुजाएँ बराबर रहती हैं। इसके विकर्ण हमेशा बराबर होते हैं और एक-दूसरे को आधा-आधा काटते हैं। वे 90° पर तभी मिलते हैं जब आयत वर्ग हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A carpenter checks a door frame: both diagonals measure 2.4 m. What does this tell him?",
+        "hi": "एक बढ़ई दरवाज़े की चौखट जाँचता है: दोनों विकर्ण 2.4 मी हैं। इससे उसे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "With equal opposite sides, the frame is a true rectangle",
+         "hi": "आमने-सामने की भुजाएँ बराबर हों तो चौखट सही आयत है"
+        },
+        {
+         "en": "The frame is a square",
+         "hi": "चौखट वर्ग है"
+        },
+        {
+         "en": "Nothing useful",
+         "hi": "कुछ काम का नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A parallelogram with equal diagonals has all angles 90°, so the corners are square.",
+        "hi": "जिस समांतर चतुर्भुज के विकर्ण बराबर हों, उसके सारे कोण 90° होते हैं, यानी कोने सही बने हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equal diagonals do not need equal sides: every rectangle has them. A door is rarely a square.",
+         "hi": "बराबर विकर्णों के लिए भुजाएँ बराबर होना ज़रूरी नहीं: हर आयत में ये होते हैं। दरवाज़ा शायद ही वर्ग होता है।"
+        },
+        {
+         "en": "It is very useful: if the frame were slanted, one diagonal would be longer.",
+         "hi": "यह बहुत काम का है: चौखट तिरछी होती तो एक विकर्ण लंबा होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag until the diagonals meet at 90°. What shape do you have now?",
+      "hi": "तब तक खिसकाओ जब तक विकर्ण 90° पर न मिलें। अब कौन-सी आकृति बनी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch04-square",
+   "topic": "4.1",
+   "template": "shapes",
+   "title": {
+    "en": "Square: the special rectangle",
+    "hi": "वर्ग: एक ख़ास आयत"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "square"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler: check that all four sides are equal.",
+      "hi": "रूलर पर टैप करो: जाँचो कि चारों भुजाएँ बराबर हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "show:diagonals",
+     "expect": "drawn",
+     "say": {
+      "en": "Tap \"Diagonals\" to draw both diagonals.",
+      "hi": "दोनों विकर्ण खींचने के लिए \"विकर्ण\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A square is a rectangle with equal sides. At what angle do its diagonals meet?",
+      "hi": "वर्ग बराबर भुजाओं वाला आयत है। इसके विकर्ण किस कोण पर मिलते हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "90°",
+       "hi": "90° (समकोण)"
+      },
+      {
+       "id": "b",
+       "en": "60°",
+       "hi": "60° (साठ अंश)"
+      },
+      {
+       "id": "c",
+       "en": "It changes when you drag",
+       "hi": "खिसकाने पर बदलता है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag corner B to a new place. Watch the ticks and the list.",
+      "hi": "कोना B को नई जगह खिसकाओ। निशान और सूची पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which property is true every time?",
+      "hi": "प्रश्न का उत्तर दो: कौन-सा गुण हर बार सही है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A square is a rectangle (four 90° angles) and a rhombus (four equal sides) at the same time. So its diagonals are equal, cut each other in half, meet at 90°, and each makes 45° with the sides.",
+      "hi": "वर्ग एक साथ आयत (चारों कोण 90°) भी है और समचतुर्भुज (चारों भुजाएँ बराबर) भी। इसलिए इसके विकर्ण बराबर हैं, एक-दूसरे को आधा काटते हैं, 90° पर मिलते हैं, और हर विकर्ण भुजाओं से 45° बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement is true?",
+        "hi": "कौन-सा कथन सही है?"
+       },
+       "options": [
+        {
+         "en": "Every square is a rectangle",
+         "hi": "हर वर्ग एक आयत है"
+        },
+        {
+         "en": "Every rectangle is a square",
+         "hi": "हर आयत एक वर्ग है"
+        },
+        {
+         "en": "A square is never a rhombus",
+         "hi": "वर्ग कभी समचतुर्भुज नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A square has four 90° angles, which is all a rectangle needs.",
+        "hi": "वर्ग के चारों कोण 90° हैं, आयत के लिए बस इतना ही चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A rectangle 6 cm × 3 cm has 90° angles but unequal sides, so it is not a square.",
+         "hi": "6 सेमी × 3 सेमी के आयत के कोण 90° हैं पर भुजाएँ बराबर नहीं, इसलिए यह वर्ग नहीं है।"
+        },
+        {
+         "en": "A square has four equal sides, so it is a rhombus too.",
+         "hi": "वर्ग की चारों भुजाएँ बराबर हैं, इसलिए यह समचतुर्भुज भी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn the square by dragging corner B. Does it ever stop being a square? Which numbers in the list never change?",
+      "hi": "कोना B खिसकाकर वर्ग को घुमाओ। क्या यह कभी वर्ग नहीं रहता? सूची के कौन-से मान कभी नहीं बदलते?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch04-angle-sum",
+   "topic": "4.2",
+   "template": "shapes",
+   "title": {
+    "en": "The angles of a quadrilateral add to 360°",
+    "hi": "चतुर्भुज के कोणों का योग 360° है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "angle-sum"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:protractor",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the protractor to measure all four angles.",
+      "hi": "चारों कोण मापने के लिए चाँदे पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will drag a corner far away. What happens to the sum of the four angles?",
+      "hi": "अब तुम एक कोने को दूर खिसकाओगे। चारों कोणों के योग का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "It stays 360°",
+       "hi": "यह 360° ही रहता है"
+      },
+      {
+       "id": "b",
+       "en": "It gets bigger",
+       "hi": "यह बढ़ जाता है"
+      },
+      {
+       "id": "c",
+       "en": "It becomes 180°",
+       "hi": "यह 180° हो जाता है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag corner B anywhere. Read the four angles and their sum.",
+      "hi": "कोना B को कहीं भी खिसकाओ। चारों कोण और उनका योग पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "prove",
+     "expect": "proved",
+     "say": {
+      "en": "Tap \"Show why\" to cut the shape along a diagonal.",
+      "hi": "आकृति को विकर्ण से काटने के लिए \"कारण दिखाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the angle sum.",
+      "hi": "कोणों के योग वाले प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A diagonal cuts any quadrilateral into two triangles. The angles of each triangle add up to 180°, and together they make up exactly the four angles of the quadrilateral. So the sum is 180° + 180° = 360°, whatever the shape.",
+      "hi": "एक विकर्ण किसी भी चतुर्भुज को दो त्रिभुजों में बाँट देता है। हर त्रिभुज के कोणों का योग 180° है, और दोनों के कोण मिलकर ठीक चतुर्भुज के चारों कोण बनाते हैं। इसलिए योग 180° + 180° = 360° है, आकृति चाहे जैसी हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Three angles of a quadrilateral are 80°, 95° and 110°. What is the fourth?",
+        "hi": "एक चतुर्भुज के तीन कोण 80°, 95° और 110° हैं। चौथा कोण कितना है?"
+       },
+       "options": [
+        "75°",
+        "105°",
+        "85°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "80 + 95 + 110 = 285, and 360 − 285 = 75°.",
+        "hi": "80 + 95 + 110 = 285, और 360 − 285 = 75°।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "105° would need the sum to be 390°. Add the three again: they make 285°.",
+         "hi": "105° के लिए योग 390° होना चाहिए। तीनों फिर जोड़ो: योग 285° है।"
+        },
+        {
+         "en": "85° comes from a slip in adding. 80 + 95 + 110 is 285, not 275.",
+         "hi": "85° जोड़ की ग़लती से आता है। 80 + 95 + 110 = 285 है, 275 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag a corner inwards to make a dent (a concave quadrilateral). Is the sum still 360°? Where is the big angle now?",
+      "hi": "एक कोने को अंदर की ओर खिसकाकर गड्ढा बनाओ (अवतल चतुर्भुज)। क्या योग अब भी 360° है? अब बड़ा कोण कहाँ है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch04-parallelogram",
+   "topic": "4.3",
+   "template": "shapes",
+   "title": {
+    "en": "Parallelogram: opposite sides parallel",
+    "hi": "समांतर चतुर्भुज: आमने-सामने की भुजाएँ समांतर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "parallelogram"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler. Compare the opposite sides.",
+      "hi": "रूलर पर टैप करो। आमने-सामने की भुजाओं की तुलना करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "show:diagonals",
+     "expect": "drawn",
+     "say": {
+      "en": "Tap \"Diagonals\" to draw both diagonals.",
+      "hi": "दोनों विकर्ण खींचने के लिए \"विकर्ण\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where do the diagonals of a parallelogram cross?",
+      "hi": "समांतर चतुर्भुज के विकर्ण कहाँ काटते हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "At the middle of each diagonal",
+       "hi": "हर विकर्ण के बीच में"
+      },
+      {
+       "id": "b",
+       "en": "Nearer one corner",
+       "hi": "किसी एक कोने के पास"
+      },
+      {
+       "id": "c",
+       "en": "They do not cross",
+       "hi": "वे नहीं काटते"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "drag:C",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag corner C to a new place. Watch the ticks and the list.",
+      "hi": "कोना C को नई जगह खिसकाओ। निशान और सूची पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which property is true every time?",
+      "hi": "प्रश्न का उत्तर दो: कौन-सा गुण हर बार सही है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a parallelogram both pairs of opposite sides are parallel. Then the opposite sides are equal, the opposite angles are equal, the angles next to each other add to 180°, and the diagonals cut each other in half. The diagonals are usually not equal and not at 90°.",
+      "hi": "समांतर चतुर्भुज में आमने-सामने की भुजाओं के दोनों युग्म समांतर होते हैं। तब आमने-सामने की भुजाएँ बराबर, आमने-सामने के कोण बराबर, पास-पास के कोणों का योग 180° होता है, और विकर्ण एक-दूसरे को आधा काटते हैं। विकर्ण आमतौर पर न बराबर होते हैं न 90° पर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In parallelogram PQRS, angle P = 70°. What is angle Q?",
+        "hi": "समांतर चतुर्भुज PQRS में कोण P = 70° है। कोण Q कितना है?"
+       },
+       "options": [
+        "110°",
+        "70°",
+        "290°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P and Q are next to each other, so P + Q = 180°: Q = 110°.",
+        "hi": "P और Q पास-पास हैं, इसलिए P + Q = 180°: Q = 110°।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "70° is angle R, the one opposite P. Q is next to P.",
+         "hi": "70° तो कोण R है, जो P के सामने है। Q, P के बगल में है।"
+        },
+        {
+         "en": "290° is 360 − 70. All four angles share 360°, not just two.",
+         "hi": "290° = 360 − 70 है। 360° चारों कोणों में बँटता है, सिर्फ़ दो में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the corners to make the parallelogram a rectangle. Which properties appear that were not there before?",
+      "hi": "कोने खिसकाकर समांतर चतुर्भुज को आयत बनाओ। कौन-से नए गुण आ जाते हैं जो पहले नहीं थे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch04-family",
+   "topic": "4.3",
+   "template": "sort",
+   "title": {
+    "en": "Always, sometimes or never?",
+    "hi": "हमेशा, कभी-कभी या कभी नहीं?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "always",
+      "label": {
+       "en": "Always true",
+       "hi": "हमेशा सही"
+      }
+     },
+     {
+      "id": "sometimes",
+      "label": {
+       "en": "Sometimes true",
+       "hi": "कभी-कभी सही"
+      }
+     },
+     {
+      "id": "never",
+      "label": {
+       "en": "Never true",
+       "hi": "कभी सही नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "A square is a rectangle",
+       "hi": "वर्ग एक आयत है"
+      },
+      "bin": "always",
+      "why": {
+       "en": "A square has four 90° angles.",
+       "hi": "वर्ग के चारों कोण 90° हैं।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "A rectangle is a square",
+       "hi": "आयत एक वर्ग है"
+      },
+      "bin": "sometimes",
+      "why": {
+       "en": "Only when its sides are all equal.",
+       "hi": "केवल तब जब उसकी सारी भुजाएँ बराबर हों।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "A rhombus is a parallelogram",
+       "hi": "समचतुर्भुज एक समांतर चतुर्भुज है"
+      },
+      "bin": "always",
+      "why": {
+       "en": "Equal opposite sides make both pairs parallel.",
+       "hi": "आमने-सामने की बराबर भुजाएँ दोनों युग्मों को समांतर बना देती हैं।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "A parallelogram is a rhombus",
+       "hi": "समांतर चतुर्भुज एक समचतुर्भुज है"
+      },
+      "bin": "sometimes",
+      "why": {
+       "en": "Only when all four sides are equal.",
+       "hi": "केवल तब जब चारों भुजाएँ बराबर हों।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "A parallelogram is a trapezium",
+       "hi": "समांतर चतुर्भुज एक समलंब है"
+      },
+      "bin": "always",
+      "why": {
+       "en": "A trapezium needs at least one pair of parallel sides; a parallelogram has two.",
+       "hi": "समलंब के लिए कम से कम एक समांतर युग्म चाहिए; समांतर चतुर्भुज में दो हैं।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "A kite is a rhombus",
+       "hi": "पतंग एक समचतुर्भुज है"
+      },
+      "bin": "sometimes",
+      "why": {
+       "en": "Only when the two pairs of equal sides are also equal to each other.",
+       "hi": "केवल तब जब बराबर भुजाओं के दोनों युग्म आपस में भी बराबर हों।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "A rectangle has a 100° angle",
+       "hi": "आयत का एक कोण 100° है"
+      },
+      "bin": "never",
+      "why": {
+       "en": "Every angle of a rectangle is 90°.",
+       "hi": "आयत का हर कोण 90° है।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "A trapezium has angles adding to 400°",
+       "hi": "समलंब के कोणों का योग 400° है"
+      },
+      "bin": "never",
+      "why": {
+       "en": "Every quadrilateral has an angle sum of 360°.",
+       "hi": "हर चतुर्भुज के कोणों का योग 360° होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap \"A square is a rectangle\" and choose its group.",
+      "hi": "\"वर्ग एक आयत है\" छुओ और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c2",
+     "expect": "correct:c2",
+     "say": {
+      "en": "Now sort \"A rectangle is a square\".",
+      "hi": "अब \"आयत एक वर्ग है\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is \"A parallelogram is a trapezium\" always, sometimes or never true?",
+      "hi": "\"समांतर चतुर्भुज एक समलंब है\" हमेशा, कभी-कभी या कभी सही नहीं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Always",
+       "hi": "हमेशा"
+      },
+      {
+       "id": "b",
+       "en": "Sometimes",
+       "hi": "कभी-कभी"
+      },
+      {
+       "id": "c",
+       "en": "Never",
+       "hi": "कभी नहीं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "bin:always",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards.",
+      "hi": "बाक़ी सभी कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Quadrilaterals form a family. A special one keeps every property of the more general one and adds more. A square is a rectangle and a rhombus; both are parallelograms; and every parallelogram is a trapezium, because a trapezium needs at least one pair of parallel sides.",
+      "hi": "चतुर्भुज एक परिवार हैं। ख़ास चतुर्भुज में सामान्य वाले के सारे गुण होते हैं और कुछ और भी। वर्ग एक आयत भी है और समचतुर्भुज भी; दोनों समांतर चतुर्भुज हैं; और हर समांतर चतुर्भुज समलंब है, क्योंकि समलंब के लिए कम से कम एक समांतर युग्म चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which shape has every property of a rhombus AND every property of a rectangle?",
+        "hi": "किस आकृति में समचतुर्भुज के सारे गुण और आयत के भी सारे गुण हैं?"
+       },
+       "options": [
+        {
+         "en": "Square",
+         "hi": "वर्ग"
+        },
+        {
+         "en": "Kite",
+         "hi": "पतंग"
+        },
+        {
+         "en": "Trapezium",
+         "hi": "समलंब"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A square has equal sides like a rhombus and 90° angles like a rectangle.",
+        "hi": "वर्ग में समचतुर्भुज जैसी बराबर भुजाएँ और आयत जैसे 90° कोण हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A kite has two pairs of equal neighbouring sides, but its angles need not be 90°.",
+         "hi": "पतंग में पास-पास की भुजाओं के दो बराबर युग्म हैं, पर उसके कोण 90° होना ज़रूरी नहीं।"
+        },
+        {
+         "en": "A trapezium needs only one pair of parallel sides; it lacks equal sides and right angles.",
+         "hi": "समलंब में केवल एक समांतर युग्म चाहिए; उसमें बराबर भुजाएँ और समकोण नहीं होते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up a card of your own about a kite and a parallelogram. Is it always, sometimes or never true?",
+      "hi": "पतंग और समांतर चतुर्भुज के बारे में अपना एक कार्ड बनाओ। वह हमेशा, कभी-कभी या कभी सही नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch04-rhombus",
+   "topic": "4.4",
+   "template": "shapes",
+   "title": {
+    "en": "Rhombus: four equal sides",
+    "hi": "समचतुर्भुज: चारों भुजाएँ बराबर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "rhombus"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler: all four sides are the same length.",
+      "hi": "रूलर पर टैप करो: चारों भुजाएँ एक ही लंबाई की हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "show:diagonals",
+     "expect": "drawn",
+     "say": {
+      "en": "Tap \"Diagonals\" to draw both diagonals.",
+      "hi": "दोनों विकर्ण खींचने के लिए \"विकर्ण\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Squash the rhombus flatter. At what angle do the diagonals meet?",
+      "hi": "समचतुर्भुज को और चपटा करो। विकर्ण किस कोण पर मिलेंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Always 90°",
+       "hi": "हमेशा 90°"
+      },
+      {
+       "id": "b",
+       "en": "Less than 90°",
+       "hi": "90° से कम"
+      },
+      {
+       "id": "c",
+       "en": "More than 90°",
+       "hi": "90° से ज़्यादा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "drag:D",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag corner D to a new place. Watch the ticks and the list.",
+      "hi": "कोना D को नई जगह खिसकाओ। निशान और सूची पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which property is true every time?",
+      "hi": "प्रश्न का उत्तर दो: कौन-सा गुण हर बार सही है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A rhombus has four equal sides, so it is a parallelogram. Its diagonals cut each other in half at 90°, and each diagonal splits two corner angles into equal halves. Its diagonals are equal only when it is a square.",
+      "hi": "समचतुर्भुज की चारों भुजाएँ बराबर हैं, इसलिए यह समांतर चतुर्भुज है। इसके विकर्ण एक-दूसरे को 90° पर आधा काटते हैं, और हर विकर्ण दो कोनों के कोणों को बराबर आधों में बाँटता है। इसके विकर्ण तभी बराबर होते हैं जब यह वर्ग हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The diagonals of a rhombus are 6 cm and 8 cm. How long is each side?",
+        "hi": "एक समचतुर्भुज के विकर्ण 6 सेमी और 8 सेमी हैं। हर भुजा कितनी लंबी है?"
+       },
+       "options": [
+        {
+         "en": "5 cm",
+         "hi": "5 सेमी"
+        },
+        {
+         "en": "7 cm",
+         "hi": "7 सेमी"
+        },
+        {
+         "en": "14 cm",
+         "hi": "14 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The diagonals bisect each other at 90°, making right triangles with legs 3 cm and 4 cm. So each side is 5 cm (3² + 4² = 5²).",
+        "hi": "विकर्ण एक-दूसरे को 90° पर आधा काटते हैं, जिससे 3 सेमी और 4 सेमी भुजाओं वाले समकोण त्रिभुज बनते हैं। इसलिए हर भुजा 5 सेमी है (3² + 4² = 5²)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7 cm is the average of 6 and 8. The side is the long side of a right triangle with legs 3 and 4.",
+         "hi": "7 सेमी, 6 और 8 का औसत है। भुजा तो 3 और 4 भुजाओं वाले समकोण त्रिभुज का कर्ण है।"
+        },
+        {
+         "en": "14 cm is 6 + 8. A side cannot be longer than the two half-diagonals put together.",
+         "hi": "14 सेमी = 6 + 8 है। भुजा, दोनों आधे विकर्णों के जोड़ से लंबी नहीं हो सकती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make the rhombus into a square by dragging. Which property in the list turns from ✗ to ✓?",
+      "hi": "खिसकाकर समचतुर्भुज को वर्ग बनाओ। सूची में कौन-सा गुण ✗ से ✓ बन जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch04-diagonals",
+   "topic": "4.5",
+   "template": "sort",
+   "title": {
+    "en": "Name the shape from its diagonals",
+    "hi": "विकर्णों से आकृति का नाम बताओ"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "sq",
+      "label": {
+       "en": "Square",
+       "hi": "वर्ग"
+      }
+     },
+     {
+      "id": "rect",
+      "label": {
+       "en": "Rectangle (not square)",
+       "hi": "आयत (वर्ग नहीं)"
+      }
+     },
+     {
+      "id": "rh",
+      "label": {
+       "en": "Rhombus (not square)",
+       "hi": "समचतुर्भुज (वर्ग नहीं)"
+      }
+     },
+     {
+      "id": "kite",
+      "label": {
+       "en": "Kite (not rhombus)",
+       "hi": "पतंग (समचतुर्भुज नहीं)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "Equal, bisect each other, at 90°",
+       "hi": "बराबर, एक-दूसरे को आधा करते, 90° पर"
+      },
+      "bin": "sq",
+      "why": {
+       "en": "All three diagonal properties together make a square.",
+       "hi": "तीनों गुण एक साथ हों तो वर्ग बनता है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Equal, bisect each other, not at 90°",
+       "hi": "बराबर, एक-दूसरे को आधा करते, 90° पर नहीं"
+      },
+      "bin": "rect",
+      "why": {
+       "en": "Bisecting gives a parallelogram; equal diagonals make it a rectangle.",
+       "hi": "आधा करने से समांतर चतुर्भुज बनता है; बराबर विकर्ण उसे आयत बनाते हैं।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "Not equal, bisect each other at 90°",
+       "hi": "बराबर नहीं, एक-दूसरे को 90° पर आधा करते"
+      },
+      "bin": "rh",
+      "why": {
+       "en": "Bisecting at 90° makes all four sides equal: a rhombus.",
+       "hi": "90° पर आधा करने से चारों भुजाएँ बराबर बनती हैं: समचतुर्भुज।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "Only one is cut in half, at 90°",
+       "hi": "केवल एक आधा कटता है, 90° पर"
+      },
+      "bin": "kite",
+      "why": {
+       "en": "Only one diagonal is a line of symmetry: a kite.",
+       "hi": "केवल एक विकर्ण सममिति रेखा है: पतंग।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "Bands 6 cm and 6 cm, crossing at the middles at 90°",
+       "hi": "बैंड 6 और 6 सेमी, बीच में 90° पर मिलते"
+      },
+      "bin": "sq",
+      "why": {
+       "en": "Equal, bisecting and perpendicular: a square.",
+       "hi": "बराबर, आधा करते और लंब: वर्ग।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "Bands 6 cm and 10 cm, crossing at the middles at 90°",
+       "hi": "बैंड 6 और 10 सेमी, बीच में 90° पर मिलते"
+      },
+      "bin": "rh",
+      "why": {
+       "en": "Perpendicular bisectors of unequal length: a rhombus.",
+       "hi": "असमान लंबाई के लंब समद्विभाजक: समचतुर्भुज।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "Bands 8 cm and 8 cm, crossing at the middles at 60°",
+       "hi": "बैंड 8 और 8 सेमी, बीच में 60° पर मिलते"
+      },
+      "bin": "rect",
+      "why": {
+       "en": "Equal and bisecting, but not at 90°: a rectangle.",
+       "hi": "बराबर और आधा करते, पर 90° पर नहीं: आयत।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "Bands 6 and 8 cm at 90°: only the 6 cm one halved",
+       "hi": "बैंड 6 और 8 सेमी, 90° पर: केवल 6 सेमी वाला आधा"
+      },
+      "bin": "kite",
+      "why": {
+       "en": "The 6 cm band is halved but the 8 cm band is not: a kite.",
+       "hi": "6 सेमी का बैंड आधा होता है पर 8 सेमी का नहीं: पतंग।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap the first card and choose the shape it makes.",
+      "hi": "पहला कार्ड छुओ और वह आकृति चुनो जो इससे बनती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two equal rubber bands cross at their middles, but not at 90°. What shape do their ends make?",
+      "hi": "दो बराबर रबर बैंड बीच में मिलते हैं, पर 90° पर नहीं। उनके सिरे कौन-सी आकृति बनाएँगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Rectangle",
+       "hi": "आयत"
+      },
+      {
+       "id": "b",
+       "en": "Rhombus",
+       "hi": "समचतुर्भुज"
+      },
+      {
+       "id": "c",
+       "en": "Kite",
+       "hi": "पतंग"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "card:c2",
+     "expect": "correct:c2",
+     "say": {
+      "en": "Sort the second card.",
+      "hi": "दूसरा कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:sq",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the others.",
+      "hi": "बाक़ी सब छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The diagonals decide the shape. If they bisect each other, the shape is a parallelogram. Equal as well: a rectangle. At 90° as well: a rhombus. Both: a square. If only one diagonal is cut in half at 90°, it is a kite.",
+      "hi": "विकर्ण ही आकृति तय करते हैं। अगर वे एक-दूसरे को आधा करें तो आकृति समांतर चतुर्भुज है। साथ में बराबर हों: आयत। साथ में 90° पर: समचतुर्भुज। दोनों: वर्ग। अगर केवल एक विकर्ण 90° पर आधा हो, तो पतंग।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On a geoboard you make equal perpendicular diagonals that bisect each other, then stretch one by 2 cm at each end. What shape now?",
+        "hi": "जियोबोर्ड पर तुम बराबर, लंब और एक-दूसरे को आधा करते विकर्ण बनाते हो, फिर एक को दोनों सिरों पर 2 सेमी बढ़ाते हो। अब कौन-सी आकृति?"
+       },
+       "options": [
+        {
+         "en": "Rhombus",
+         "hi": "समचतुर्भुज"
+        },
+        {
+         "en": "Square",
+         "hi": "वर्ग"
+        },
+        {
+         "en": "Rectangle",
+         "hi": "आयत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Stretching both ends equally keeps them bisecting at 90°, but now they are unequal: a rhombus.",
+        "hi": "दोनों सिरे बराबर बढ़ाने से वे अब भी 90° पर आधा करते हैं, पर बराबर नहीं रहते: समचतुर्भुज।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A square needs equal diagonals; one is now 4 cm longer.",
+         "hi": "वर्ग के लिए बराबर विकर्ण चाहिए; अब एक 4 सेमी लंबा है।"
+        },
+        {
+         "en": "A rectangle needs equal diagonals, and its diagonals are usually not at 90°.",
+         "hi": "आयत के लिए बराबर विकर्ण चाहिए, और उसके विकर्ण आमतौर पर 90° पर नहीं होते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "With two pencils as diagonals, how would you make a trapezium? Try it on your desk.",
+      "hi": "दो पेंसिलों को विकर्ण बनाकर समलंब कैसे बनाओगे? अपनी मेज़ पर आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch04-kite",
+   "topic": "4.6",
+   "template": "shapes",
+   "title": {
+    "en": "Kite: two pairs of equal neighbours",
+    "hi": "पतंग: पास-पास की बराबर भुजाओं के दो युग्म"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "kite"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler: find the two pairs of equal sides that meet.",
+      "hi": "रूलर पर टैप करो: मिलने वाली बराबर भुजाओं के दो युग्म ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "show:diagonals",
+     "expect": "drawn",
+     "say": {
+      "en": "Tap \"Diagonals\" to draw both diagonals.",
+      "hi": "दोनों विकर्ण खींचने के लिए \"विकर्ण\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which diagonal of the kite is a mirror line?",
+      "hi": "पतंग का कौन-सा विकर्ण दर्पण रेखा है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The one through the corners where equal sides meet",
+       "hi": "वह जो उन कोनों से जाता है जहाँ बराबर भुजाएँ मिलती हैं"
+      },
+      {
+       "id": "b",
+       "en": "Both diagonals",
+       "hi": "दोनों विकर्ण"
+      },
+      {
+       "id": "c",
+       "en": "Neither",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "drag:D",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag corner D to a new place. Watch the ticks and the list.",
+      "hi": "कोना D को नई जगह खिसकाओ। निशान और सूची पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which property is true every time?",
+      "hi": "प्रश्न का उत्तर दो: कौन-सा गुण हर बार सही है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A kite has two pairs of equal sides that meet. The diagonal through the two corners where equal sides meet is a line of symmetry: it cuts the other diagonal in half at 90°, and it splits those two corner angles into equal halves. The other diagonal is not cut in half.",
+      "hi": "पतंग में बराबर भुजाओं के दो युग्म होते हैं जो आपस में मिलते हैं। जिन दो कोनों पर बराबर भुजाएँ मिलती हैं, उनसे होकर जाने वाला विकर्ण सममिति रेखा है: यह दूसरे विकर्ण को 90° पर आधा काटता है, और उन दोनों कोनों के कोणों को बराबर आधों में बाँटता है। दूसरा विकर्ण आधा नहीं कटता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The symmetry diagonal cuts a kite into two triangles. Why are they congruent?",
+        "hi": "सममिति वाला विकर्ण पतंग को दो त्रिभुजों में बाँटता है। वे सर्वांगसम क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "Two pairs of equal sides and a shared side (SSS)",
+         "hi": "भुजाओं के दो बराबर युग्म और एक साझा भुजा (SSS)"
+        },
+        {
+         "en": "All their angles are 90°",
+         "hi": "उनके सारे कोण 90° हैं"
+        },
+        {
+         "en": "They have the same area only",
+         "hi": "केवल उनका क्षेत्रफल बराबर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Three pairs of equal sides make the triangles congruent, so BD is a mirror line.",
+        "hi": "भुजाओं के तीन बराबर युग्म त्रिभुजों को सर्वांगसम बनाते हैं, इसलिए BD दर्पण रेखा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A triangle can have at most one 90° angle. The reason is the three equal sides.",
+         "hi": "त्रिभुज में अधिक से अधिक एक कोण 90° का हो सकता है। कारण तीन बराबर भुजाएँ हैं।"
+        },
+        {
+         "en": "Equal area alone does not make shapes congruent; they must match side for side.",
+         "hi": "केवल बराबर क्षेत्रफल से आकृतियाँ सर्वांगसम नहीं होतीं; भुजाएँ भी मेल खानी चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag corner D until the kite becomes a rhombus. What did you have to make equal?",
+      "hi": "कोना D तब तक खिसकाओ जब तक पतंग समचतुर्भुज न बन जाए। तुम्हें क्या बराबर करना पड़ा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch04-trapezium",
+   "topic": "4.6",
+   "template": "shapes",
+   "title": {
+    "en": "Trapezium: at least one pair of parallel sides",
+    "hi": "समलंब: कम से कम एक समांतर युग्म"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "trapezium"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler to see the side lengths.",
+      "hi": "भुजाओं की लंबाई देखने के लिए रूलर पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "show:diagonals",
+     "expect": "drawn",
+     "say": {
+      "en": "Tap \"Diagonals\" to draw both diagonals.",
+      "hi": "दोनों विकर्ण खींचने के लिए \"विकर्ण\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In trapezium PQRS with PQ ∥ SR, what do angle S and angle P add up to?",
+      "hi": "समलंब PQRS में PQ ∥ SR है। कोण S और कोण P का योग कितना है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "180°",
+       "hi": "180° (एक सौ अस्सी अंश)"
+      },
+      {
+       "id": "b",
+       "en": "90°",
+       "hi": "90° (नब्बे अंश)"
+      },
+      {
+       "id": "c",
+       "en": "360°",
+       "hi": "360° (तीन सौ साठ अंश)"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "drag:C",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag corner C to a new place. Watch the ticks and the list.",
+      "hi": "कोना C को नई जगह खिसकाओ। निशान और सूची पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which property is true every time?",
+      "hi": "प्रश्न का उत्तर दो: कौन-सा गुण हर बार सही है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A trapezium has at least one pair of parallel opposite sides. Between those parallel sides, the two angles on the same slanting side add up to 180°. If the slanting sides are equal, it is an isosceles trapezium and its diagonals are equal.",
+      "hi": "समलंब में आमने-सामने की भुजाओं का कम से कम एक युग्म समांतर होता है। उन समांतर भुजाओं के बीच, एक ही तिरछी भुजा पर बने दोनों कोणों का योग 180° होता है। अगर तिरछी भुजाएँ बराबर हों, तो यह समद्विबाहु समलंब है और इसके विकर्ण बराबर होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a trapezium with AB ∥ DC, angle A = 65°. What is angle D?",
+        "hi": "समलंब में AB ∥ DC है और कोण A = 65° है। कोण D कितना है?"
+       },
+       "options": [
+        "115°",
+        "65°",
+        "25°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A and D are on the same slanting side between the parallel lines, so A + D = 180°: D = 115°.",
+        "hi": "A और D समांतर रेखाओं के बीच एक ही तिरछी भुजा पर हैं, इसलिए A + D = 180°: D = 115°।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equal angles would be true for opposite angles of a parallelogram, not here.",
+         "hi": "बराबर कोण समांतर चतुर्भुज के आमने-सामने के कोणों में होते हैं, यहाँ नहीं।"
+        },
+        {
+         "en": "25° is 90 − 65. The pair adds to 180°, not 90°.",
+         "hi": "25° = 90 − 65 है। यह युग्म 180° बनाता है, 90° नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the top corners until the slanting sides are equal. Check the diagonals: are they equal now?",
+      "hi": "ऊपर के कोने तब तक खिसकाओ जब तक तिरछी भुजाएँ बराबर न हों। विकर्ण जाँचो: क्या अब वे बराबर हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Chapter hook: the carpenter's problem",
+   "shows": "A carpenter in a workshop measuring both diagonals of a wooden window frame with a measuring tape",
+   "view": "Three-quarter view, workshop light, sawdust on the bench",
+   "right": "Tape stretched corner to corner; frame clearly rectangular",
+   "avoid": "Face, brand names on tools"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.5",
+   "use": "Geoboard",
+   "shows": "A wooden geoboard with a 5 × 5 grid of nails and two coloured rubber bands crossing as diagonals",
+   "view": "Straight from above, transparent background",
+   "right": "Nails evenly spaced; bands cross at the centre",
+   "avoid": "Bent nails"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Parallelograms around us",
+   "shows": "A folding scissor gate of a shop, its metal strips forming rows of parallelograms",
+   "view": "Front view, daylight",
+   "right": "Strips cross evenly, parallelograms clear",
+   "avoid": "Shop signs, people"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "4.6",
+   "use": "A real kite",
+   "shows": "A paper kite (patang) with its cross-sticks visible, for Makar Sankranti",
+   "view": "Front view, transparent background",
+   "right": "Sticks lie along the diagonals; one stick is cut in half by the other at 90°",
+   "avoid": "Brand prints"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "4.6",
+   "use": "Trapezium in architecture",
+   "shows": "The sloping side of a traditional hut roof seen end-on, forming a trapezium outline",
+   "view": "Straight-on, soft light",
+   "right": "Top and bottom edges parallel",
+   "avoid": "People, signboards"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "4.4",
+   "use": "Rhombus tiles",
+   "shows": "Six rhombus-shaped ceramic tiles of one size fitted together in a star",
+   "view": "Top-down, transparent background",
+   "right": "All tile sides equal; tiles fit without gaps",
+   "avoid": "Logos on tiles"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "4.2",
+   "use": "Angle-sum base",
+   "shows": "A clean outline of a general quadrilateral with one diagonal dashed, for the app to colour the two triangles",
+   "view": "Flat, white background",
+   "right": "No two sides parallel; diagonal from corner to corner",
+   "avoid": "Letters or numbers drawn in"
+  }
+ ]
+}

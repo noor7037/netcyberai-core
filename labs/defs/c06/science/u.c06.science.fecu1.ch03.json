@@ -1,0 +1,918 @@
+{
+ "chapter_key": "u.c06.science.fecu1.ch03",
+ "class": 6,
+ "subject_id": "science",
+ "title": "Mindful Eating: A Path to a Healthy Body",
+ "source": "https://ncert.nic.in/textbook/pdf/fecu103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "What do we eat: food in different regions, how cooking has changed",
+   "labs": [],
+   "why_no_lab": "Best taught by a photo set of regional Indian meals and a family interview, not a single experiment."
+  },
+  {
+   "n": "3.2",
+   "title": "Components of food: nutrients, fibre, water; deficiency diseases",
+   "labs": [
+    "c06-science-fecu1-ch03-nutrients"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Testing food for starch, fats and proteins",
+   "labs": [
+    "c06-science-fecu1-ch03-starch",
+    "c06-science-fecu1-ch03-protein"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Balanced diet and mindful eating",
+   "labs": [
+    "c06-science-fecu1-ch03-thali"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Millets: nutrition-rich cereals",
+   "labs": [],
+   "why_no_lab": "Learnt by seeing and tasting real millets; the photo set of jowar, bajra and ragi with dishes does this better than a lab."
+  },
+  {
+   "n": "3.6",
+   "title": "Food miles: from farm to our plate",
+   "labs": [],
+   "why_no_lab": "An idea about distance and local food best shown by a photo journey of one vegetable and talk at home."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-science-fecu1-ch03-nutrients",
+   "topic": "3.2",
+   "template": "sort",
+   "title": {
+    "en": "What does this food mostly give us?",
+    "hi": "यह भोजन हमें मुख्य रूप से क्या देता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "carb",
+      "label": {
+       "en": "Carbohydrates (energy)",
+       "hi": "कार्बोहाइड्रेट (ऊर्जा)"
+      }
+     },
+     {
+      "id": "protein",
+      "label": {
+       "en": "Proteins (growth)",
+       "hi": "प्रोटीन (वृद्धि)"
+      }
+     },
+     {
+      "id": "fat",
+      "label": {
+       "en": "Fats (energy)",
+       "hi": "वसा (ऊर्जा)"
+      }
+     },
+     {
+      "id": "vit",
+      "label": {
+       "en": "Vitamins and minerals",
+       "hi": "विटामिन और खनिज"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "rice",
+      "text": {
+       "en": "Rice",
+       "hi": "चावल"
+      },
+      "bin": "carb",
+      "why": {
+       "en": "Rice is rich in starch, a carbohydrate that gives energy.",
+       "hi": "चावल में स्टार्च भरपूर है, जो ऊर्जा देने वाला कार्बोहाइड्रेट है।"
+      }
+     },
+     {
+      "id": "ragi",
+      "text": {
+       "en": "Ragi (finger millet)",
+       "hi": "रागी"
+      },
+      "bin": "carb",
+      "why": {
+       "en": "Ragi is a millet: mostly carbohydrate, with calcium and fibre too.",
+       "hi": "रागी एक मोटा अनाज है: ज़्यादातर कार्बोहाइड्रेट, साथ में कैल्शियम और रेशा भी।"
+      }
+     },
+     {
+      "id": "potato",
+      "text": {
+       "en": "Potato",
+       "hi": "आलू"
+      },
+      "bin": "carb",
+      "why": {
+       "en": "Potato is rich in starch.",
+       "hi": "आलू में स्टार्च भरपूर है।"
+      }
+     },
+     {
+      "id": "dal",
+      "text": {
+       "en": "Moong dal",
+       "hi": "मूँग दाल"
+      },
+      "bin": "protein",
+      "why": {
+       "en": "Pulses like moong are a rich source of protein.",
+       "hi": "मूँग जैसी दालें प्रोटीन का अच्छा स्रोत हैं।"
+      }
+     },
+     {
+      "id": "paneer",
+      "text": {
+       "en": "Paneer",
+       "hi": "पनीर"
+      },
+      "bin": "protein",
+      "why": {
+       "en": "Paneer is made from milk protein.",
+       "hi": "पनीर दूध के प्रोटीन से बनता है।"
+      }
+     },
+     {
+      "id": "egg",
+      "text": {
+       "en": "Boiled egg",
+       "hi": "उबला अंडा"
+      },
+      "bin": "protein",
+      "why": {
+       "en": "Egg is rich in protein.",
+       "hi": "अंडे में प्रोटीन भरपूर है।"
+      }
+     },
+     {
+      "id": "ghee",
+      "text": {
+       "en": "Ghee",
+       "hi": "घी"
+      },
+      "bin": "fat",
+      "why": {
+       "en": "Ghee is almost all fat.",
+       "hi": "घी लगभग पूरा वसा है।"
+      }
+     },
+     {
+      "id": "groundnut",
+      "text": {
+       "en": "Groundnuts",
+       "hi": "मूँगफली"
+      },
+      "bin": "fat",
+      "why": {
+       "en": "Groundnuts are rich in fat (oil) and also give protein.",
+       "hi": "मूँगफली में वसा (तेल) भरपूर है, और प्रोटीन भी।"
+      }
+     },
+     {
+      "id": "amla",
+      "text": {
+       "en": "Amla",
+       "hi": "आँवला"
+      },
+      "bin": "vit",
+      "why": {
+       "en": "Amla is very rich in vitamin C.",
+       "hi": "आँवले में विटामिन C बहुत अधिक है।"
+      }
+     },
+     {
+      "id": "spinach",
+      "text": {
+       "en": "Spinach (palak)",
+       "hi": "पालक"
+      },
+      "bin": "vit",
+      "why": {
+       "en": "Spinach gives iron and vitamins.",
+       "hi": "पालक से आयरन और विटामिन मिलते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which nutrient do rice and potato give us the most?",
+      "hi": "चावल और आलू हमें सबसे अधिक कौन-सा पोषक देते हैं?"
+     },
+     "options": [
+      {
+       "id": "carb",
+       "en": "Carbohydrates",
+       "hi": "कार्बोहाइड्रेट"
+      },
+      {
+       "id": "protein",
+       "en": "Proteins",
+       "hi": "प्रोटीन"
+      },
+      {
+       "id": "vit",
+       "en": "Vitamins",
+       "hi": "विटामिन"
+      }
+     ],
+     "answer": "carb"
+    },
+    {
+     "kind": "do",
+     "target": "card:rice",
+     "expect": "correct:rice",
+     "say": {
+      "en": "Tap the Rice card, then its group.",
+      "hi": "चावल का कार्ड छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:dal",
+     "expect": "correct:dal",
+     "say": {
+      "en": "Now sort the Moong dal.",
+      "hi": "अब मूँग दाल को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:ghee",
+     "expect": "correct:ghee",
+     "say": {
+      "en": "Now sort the Ghee.",
+      "hi": "अब घी को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी को छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Food has nutrients. Carbohydrates and fats give energy. Proteins help us grow and repair the body. Vitamins and minerals protect us from diseases. Most foods have more than one nutrient; we sort by the main one.",
+      "hi": "भोजन में पोषक तत्व होते हैं। कार्बोहाइड्रेट और वसा ऊर्जा देते हैं। प्रोटीन शरीर को बढ़ने और मरम्मत में मदद करते हैं। विटामिन और खनिज रोगों से बचाते हैं। ज़्यादातर भोजन में एक से अधिक पोषक होते हैं; हम मुख्य पोषक से छाँटते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Swelling of the neck (goitre) is linked to too little of which mineral?",
+        "hi": "गले की सूजन (घेंघा) किस खनिज की कमी से जुड़ी है?"
+       },
+       "options": [
+        {
+         "en": "Iodine",
+         "hi": "आयोडीन"
+        },
+        {
+         "en": "Calcium",
+         "hi": "कैल्शियम"
+        },
+        {
+         "en": "Iron",
+         "hi": "आयरन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Too little iodine causes goitre. That is why common salt has iodine added to it.",
+        "hi": "आयोडीन की कमी से घेंघा होता है। इसीलिए साधारण नमक में आयोडीन मिलाया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Too little calcium weakens bones and teeth; it does not cause goitre.",
+         "hi": "कैल्शियम की कमी से हड्डियाँ और दाँत कमज़ोर होते हैं; घेंघा नहीं होता।"
+        },
+        {
+         "en": "Too little iron causes anaemia, with tiredness, not a swollen neck.",
+         "hi": "आयरन की कमी से एनीमिया होता है, जिसमें थकान होती है, गले की सूजन नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which nutrient helps a child grow and heal a cut?",
+        "hi": "कौन-सा पोषक बच्चे को बढ़ने और घाव भरने में मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "Fats",
+         "hi": "वसा"
+        },
+        {
+         "en": "Proteins",
+         "hi": "प्रोटीन"
+        },
+        {
+         "en": "Water only",
+         "hi": "केवल पानी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Proteins are body-building food: they help growth and repair.",
+        "hi": "प्रोटीन शरीर बनाने वाले भोजन हैं: ये वृद्धि और मरम्मत में मदद करते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Fats mostly give energy and keep us warm.",
+         "hi": "वसा मुख्य रूप से ऊर्जा देते हैं और गर्म रखते हैं।"
+        },
+        "",
+        {
+         "en": "Water is needed, but it does not build the body. Proteins do.",
+         "hi": "पानी ज़रूरी है, पर शरीर नहीं बनाता। यह काम प्रोटीन करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Then write down your lunch today. Which groups did it cover, and which one was missing?",
+      "hi": "\"फिर से शुरू\" दबाओ। फिर आज का अपना दोपहर का भोजन लिखो। उसमें कौन-से समूह थे, और कौन-सा छूट गया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch03-starch",
+   "topic": "3.3",
+   "template": "beaker",
+   "title": {
+    "en": "Test for starch with iodine",
+    "hi": "आयोडीन से स्टार्च की जाँच"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "potato",
+     "iodine",
+     "starchsol",
+     "sugarsol"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:potato",
+     "expect": "pick:potato",
+     "say": {
+      "en": "Pick up the slice of potato.",
+      "hi": "आलू का टुकड़ा उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:potato",
+     "say": {
+      "en": "Put it in the beaker.",
+      "hi": "उसे बीकर में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will put a few drops of dilute iodine on the potato. What colour will it turn?",
+      "hi": "तुम आलू पर तनु आयोडीन की कुछ बूँदें डालोगे। वह किस रंग का होगा?"
+     },
+     "options": [
+      {
+       "id": "blue",
+       "en": "Blue-black",
+       "hi": "नीला-काला"
+      },
+      {
+       "id": "brown",
+       "en": "It stays brown like iodine",
+       "hi": "आयोडीन की तरह भूरा ही रहेगा"
+      },
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल"
+      }
+     ],
+     "answer": "blue"
+    },
+    {
+     "kind": "do",
+     "target": "pick:iodine",
+     "expect": "pick:iodine",
+     "say": {
+      "en": "Pick up the iodine solution.",
+      "hi": "आयोडीन का घोल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Add a few drops to the potato. Watch the colour.",
+      "hi": "आलू पर कुछ बूँदें डालो। रंग देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The potato turned blue-black where the iodine touched it. A blue-black colour with iodine shows that starch is present. Potato, rice and wheat are rich in starch, a carbohydrate.",
+      "hi": "जहाँ आयोडीन लगा, आलू नीला-काला हो गया। आयोडीन से नीला-काला रंग बताता है कि स्टार्च मौजूद है। आलू, चावल और गेहूँ में स्टार्च भरपूर है, जो एक कार्बोहाइड्रेट है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You add iodine to sugar solution and it stays brown. What does this tell you?",
+        "hi": "तुम चीनी के घोल में आयोडीन डालते हो और वह भूरा ही रहता है। इससे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "There is no starch in it",
+         "hi": "इसमें स्टार्च नहीं है"
+        },
+        {
+         "en": "It has a lot of starch",
+         "hi": "इसमें बहुत स्टार्च है"
+        },
+        {
+         "en": "The iodine is broken",
+         "hi": "आयोडीन ख़राब है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "No blue-black colour means no starch. Sugar is a carbohydrate, but it is not starch.",
+        "hi": "नीला-काला रंग नहीं, तो स्टार्च नहीं। चीनी कार्बोहाइड्रेट है, पर स्टार्च नहीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Starch would turn it blue-black at once; it stayed brown.",
+         "hi": "स्टार्च होता तो तुरंत नीला-काला हो जाता; यह भूरा ही रहा।"
+        },
+        {
+         "en": "The same iodine turned the potato blue-black, so it works.",
+         "hi": "उसी आयोडीन ने आलू को नीला-काला किया, इसलिए वह ठीक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker. Test the starch solution and the sugar solution with iodine. Which one turns blue-black? (Iodine is not for tasting: adults only handle the bottle.)",
+      "hi": "बीकर साफ़ करो। स्टार्च के घोल और चीनी के घोल को आयोडीन से जाँचो। कौन-सा नीला-काला होता है? (आयोडीन चखने की चीज़ नहीं है: बोतल केवल बड़े ही सँभालें।)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch03-protein",
+   "topic": "3.3",
+   "template": "beaker",
+   "title": {
+    "en": "Test for protein",
+    "hi": "प्रोटीन की जाँच"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "eggwhite",
+     "cuso4",
+     "naoh",
+     "milk"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:eggwhite",
+     "expect": "pick:eggwhite",
+     "say": {
+      "en": "Pick up the egg white (or use milk later).",
+      "hi": "अंडे की सफ़ेदी उठाओ (बाद में दूध भी आज़मा सकते हो)।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:eggwhite",
+     "say": {
+      "en": "Pour a little into the beaker.",
+      "hi": "इसमें से थोड़ा बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:cuso4",
+     "expect": "pick:cuso4",
+     "say": {
+      "en": "Pick up the copper sulphate solution.",
+      "hi": "कॉपर सल्फेट का घोल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:cuso4",
+     "say": {
+      "en": "Add two drops.",
+      "hi": "दो बूँदें डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will add a few drops of caustic soda (sodium hydroxide). What colour change do you expect?",
+      "hi": "अब तुम कॉस्टिक सोडा (सोडियम हाइड्रॉक्साइड) की कुछ बूँदें डालोगे। रंग में क्या बदलाव होगा?"
+     },
+     "options": [
+      {
+       "id": "violet",
+       "en": "It turns violet",
+       "hi": "बैंगनी हो जाएगा"
+      },
+      {
+       "id": "blueblack",
+       "en": "It turns blue-black",
+       "hi": "नीला-काला हो जाएगा"
+      },
+      {
+       "id": "none",
+       "en": "No change",
+       "hi": "कोई बदलाव नहीं"
+      }
+     ],
+     "answer": "violet"
+    },
+    {
+     "kind": "do",
+     "target": "pick:naoh",
+     "expect": "pick:naoh",
+     "say": {
+      "en": "Pick up the caustic soda solution.",
+      "hi": "कॉस्टिक सोडा का घोल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Add a few drops and shake gently.",
+      "hi": "कुछ बूँदें डालकर धीरे से हिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The liquid turned violet. Copper sulphate and caustic soda together give a violet colour when protein is present. Egg, milk, paneer and pulses are rich in protein.",
+      "hi": "द्रव बैंगनी हो गया। प्रोटीन मौजूद हो तो कॉपर सल्फेट और कॉस्टिक सोडा मिलकर बैंगनी रंग देते हैं। अंडा, दूध, पनीर और दालें प्रोटीन से भरपूर हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which test shows protein in a food?",
+        "hi": "कौन-सी जाँच भोजन में प्रोटीन बताती है?"
+       },
+       "options": [
+        {
+         "en": "Iodine turns it blue-black",
+         "hi": "आयोडीन से नीला-काला"
+        },
+        {
+         "en": "Copper sulphate and caustic soda turn it violet",
+         "hi": "कॉपर सल्फेट और कॉस्टिक सोडा से बैंगनी"
+        },
+        {
+         "en": "It leaves an oily patch on paper",
+         "hi": "काग़ज़ पर तेल का धब्बा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Violet with copper sulphate and caustic soda is the protein test.",
+        "hi": "कॉपर सल्फेट और कॉस्टिक सोडा से बैंगनी रंग प्रोटीन की जाँच है।"
+       },
+       "wrong": [
+        {
+         "en": "Blue-black with iodine is the test for starch.",
+         "hi": "आयोडीन से नीला-काला स्टार्च की जाँच है।"
+        },
+        "",
+        {
+         "en": "An oily patch on paper is the test for fat.",
+         "hi": "काग़ज़ पर तेल का धब्बा वसा की जाँच है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker and test milk the same way. Is there protein in milk? (Caustic soda burns skin: in real life only an adult adds it, with gloves.)",
+      "hi": "बीकर साफ़ करो और इसी तरह दूध की जाँच करो। क्या दूध में प्रोटीन है? (कॉस्टिक सोडा त्वचा जलाता है: असल में इसे केवल बड़े, दस्ताने पहनकर डालें।)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch03-thali",
+   "topic": "3.4",
+   "template": "scenario",
+   "title": {
+    "en": "Plan a balanced tiffin",
+    "hi": "संतुलित टिफ़िन बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "school",
+    "role": {
+     "en": "Packing your own tiffin",
+     "hi": "अपना टिफ़िन ख़ुद पैक करने वाले"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "You have a long school day with games after lunch. What will you pack as the main food?",
+       "hi": "आज स्कूल का लंबा दिन है और भोजन के बाद खेल भी है। मुख्य भोजन में क्या रखोगे?"
+      },
+      "choices": [
+       {
+        "id": "roti",
+        "text": {
+         "en": "Two rotis with dal and a vegetable",
+         "hi": "दाल और सब्ज़ी के साथ दो रोटियाँ"
+        },
+        "next": "extra",
+        "good": true,
+        "feedback": {
+         "en": "Roti gives energy, dal gives protein and the vegetable gives vitamins and fibre. A good start.",
+         "hi": "रोटी से ऊर्जा, दाल से प्रोटीन और सब्ज़ी से विटामिन और रेशा मिलता है। अच्छी शुरुआत।"
+        }
+       },
+       {
+        "id": "chips",
+        "text": {
+         "en": "A big packet of chips",
+         "hi": "चिप्स का बड़ा पैकेट"
+        },
+        "next": "extra",
+        "good": false,
+        "feedback": {
+         "en": "Chips have a lot of fat and salt but very little protein, vitamins or fibre.",
+         "hi": "चिप्स में वसा और नमक बहुत है, पर प्रोटीन, विटामिन या रेशा बहुत कम।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "extra",
+      "text": {
+       "en": "What will you add on the side?",
+       "hi": "साथ में क्या रखोगे?"
+      },
+      "choices": [
+       {
+        "id": "fruit",
+        "text": {
+         "en": "A guava and a bottle of water",
+         "hi": "एक अमरूद और पानी की बोतल"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "The guava gives vitamin C and fibre, and water keeps you well. Your tiffin is balanced.",
+         "hi": "अमरूद से विटामिन C और रेशा मिलता है, और पानी तुम्हें ठीक रखता है। तुम्हारा टिफ़िन संतुलित है।"
+        }
+       },
+       {
+        "id": "cola",
+        "text": {
+         "en": "A bottle of sweet cold drink",
+         "hi": "मीठे ठंडे पेय की बोतल"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "A cold drink has lots of sugar and no useful nutrients. Water or buttermilk is better.",
+         "hi": "ठंडे पेय में चीनी बहुत है और काम के पोषक नहीं। पानी या छाछ बेहतर है।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A balanced meal has…",
+      "hi": "संतुलित भोजन में होता है…"
+     },
+     "options": [
+      {
+       "id": "all",
+       "en": "All the nutrients in the right amounts, plus fibre and water",
+       "hi": "सभी पोषक सही मात्रा में, साथ में रेशा और पानी"
+      },
+      {
+       "id": "lots",
+       "en": "As much food as you can eat",
+       "hi": "जितना खा सको उतना भोजन"
+      },
+      {
+       "id": "one",
+       "en": "Only the food you like best",
+       "hi": "केवल सबसे पसंदीदा भोजन"
+      }
+     ],
+     "answer": "all"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:roti",
+     "expect": "chose:roti",
+     "say": {
+      "en": "Choose rotis with dal and a vegetable.",
+      "hi": "दाल और सब्ज़ी के साथ रोटियाँ चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A balanced diet gives carbohydrates, proteins, fats, vitamins and minerals in the right amounts, with fibre and water. Roti, dal and sabzi together cover most of them. Eat mindfully: not too much, not too little.",
+      "hi": "संतुलित आहार में कार्बोहाइड्रेट, प्रोटीन, वसा, विटामिन और खनिज सही मात्रा में होते हैं, साथ में रेशा और पानी भी। रोटी, दाल और सब्ज़ी मिलकर इनमें से ज़्यादातर दे देते हैं। ध्यान से खाओ: न बहुत ज़्यादा, न बहुत कम।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is fibre (roughage) needed even though it gives no nutrients?",
+        "hi": "रेशा (रूक्षांश) कोई पोषक नहीं देता, फिर भी क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "It helps food move and helps us get rid of waste",
+         "hi": "यह भोजन को आगे बढ़ाने और मल त्यागने में मदद करता है"
+        },
+        {
+         "en": "It gives the most energy",
+         "hi": "यह सबसे अधिक ऊर्जा देता है"
+        },
+        {
+         "en": "It builds muscles",
+         "hi": "यह मांसपेशियाँ बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fibre from vegetables, fruits and whole grains keeps digestion healthy.",
+        "hi": "सब्ज़ियों, फलों और साबुत अनाज का रेशा पाचन को स्वस्थ रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Carbohydrates and fats give energy; fibre does not.",
+         "hi": "ऊर्जा कार्बोहाइड्रेट और वसा देते हैं; रेशा नहीं।"
+        },
+        {
+         "en": "Proteins build the body; fibre does not.",
+         "hi": "शरीर प्रोटीन बनाते हैं; रेशा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Next and finish your tiffin. Then play again and try the chips and the cold drink. What does the app say?",
+      "hi": "\"आगे\" दबाओ और टिफ़िन पूरा करो। फिर से खेलो और चिप्स और ठंडा पेय चुनकर देखो। ऐप क्या कहता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Food in different regions",
+   "shows": "Four separate top-down photos of everyday meals: a Punjabi thali (roti, dal, sarson saag), a Tamil meal on a banana leaf, a Bengali rice-fish meal, a Gujarati thali",
+   "view": "Top-down, 16:9, daylight",
+   "right": "Real home-style food, true portions",
+   "avoid": "Restaurant logos, hands with rings"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Cards for the nutrients sort",
+   "shows": "Each a separate cut-out: rice, ragi grains, a potato, moong dal, paneer cubes, a boiled egg cut in half, ghee in a small bowl, groundnuts, amla, a bunch of spinach",
+   "view": "From slightly above, soft shadow",
+   "right": "True colours; quantities that look like one serving",
+   "avoid": "Packaging, brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "3.3",
+   "use": "Starch test",
+   "shows": "Two frames: a cut potato slice on a white tile; the same slice after a drop of dilute iodine, blue-black where it touched",
+   "view": "From above, same framing",
+   "right": "Blue-black only where the iodine is; rest stays cream",
+   "avoid": "Brown spots mistaken for colour change"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "3.3",
+   "use": "Fat test",
+   "shows": "Two frames: a crushed groundnut rubbed on white paper; the paper held up to light showing a translucent oily patch",
+   "view": "Same paper, backlit in frame 2",
+   "right": "Patch lets light through; no tearing",
+   "avoid": "Text on the paper"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "3.3",
+   "use": "Protein test",
+   "shows": "Three test tubes in a stand: milk with water; after two drops of copper sulphate; after caustic soda, violet",
+   "view": "Front view, white background, adult gloved hand in frame 3",
+   "right": "Violet, not blue or pink; goggles on adult",
+   "avoid": "A child handling caustic soda"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.4",
+   "use": "A balanced tiffin",
+   "shows": "An open steel tiffin box: two rotis, dal, a vegetable, a guava cut in quarters and a water bottle beside it",
+   "view": "Top-down on a school desk",
+   "right": "Steel box, no plastic wrappers",
+   "avoid": "Brands, logos"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "3.5",
+   "use": "Millets",
+   "shows": "Small heaps of jowar, bajra, ragi and kodo millet grains on a wooden plate, each heap also as a separate cut-out",
+   "view": "From above, soft light",
+   "right": "True grain colours and sizes",
+   "avoid": "Labels, packets"
+  }
+ ]
+}

@@ -1,0 +1,464 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.ch18",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Kitni Pyari Hai Ye Duniya (कितनी प्यारी है ये दुनिया)",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "18.1",
+   "title": "Things we love: nature and made by people",
+   "labs": [
+    "c01-hindi-ahsr1-ch18-nature"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "18.2",
+   "title": "Sentences: मुझे ... अच्छा लगता है",
+   "labs": [
+    "c01-hindi-ahsr1-ch18-i-like"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "18.3",
+   "title": "Letter sounds य, व, ष from pictures",
+   "labs": [],
+   "why_no_lab": "Hearing letter sounds from pictures is a listening activity done with the teacher."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-ch18-nature",
+   "topic": "18.1",
+   "template": "sort",
+   "title": {
+    "en": "Nature or made by people?",
+    "hi": "प्रकृति या इंसानों की बनाई?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "nature",
+      "label": {
+       "en": "Nature gives us",
+       "hi": "प्रकृति देती है"
+      }
+     },
+     {
+      "id": "made",
+      "label": {
+       "en": "Made by people",
+       "hi": "इंसान बनाते हैं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "hawa",
+      "text": {
+       "en": "Hawa (air)",
+       "hi": "हवा"
+      },
+      "bin": "nature",
+      "why": {
+       "en": "Air is all around us; nobody made it.",
+       "hi": "हवा हमारे चारों ओर है; उसे किसी ने नहीं बनाया।"
+      }
+     },
+     {
+      "id": "suraj",
+      "text": {
+       "en": "Suraj (sun)",
+       "hi": "सूरज"
+      },
+      "bin": "nature",
+      "why": {
+       "en": "The sun gives us light and warmth.",
+       "hi": "सूरज हमें रोशनी और गर्मी देता है।"
+      }
+     },
+     {
+      "id": "baarish",
+      "text": {
+       "en": "Baarish (rain)",
+       "hi": "बारिश"
+      },
+      "bin": "nature",
+      "why": {
+       "en": "Rain falls from the clouds.",
+       "hi": "बारिश बादलों से गिरती है।"
+      }
+     },
+     {
+      "id": "phool",
+      "text": {
+       "en": "Phool (flower)",
+       "hi": "फूल"
+      },
+      "bin": "nature",
+      "why": {
+       "en": "Flowers grow on plants.",
+       "hi": "फूल पौधों पर खिलते हैं।"
+      }
+     },
+     {
+      "id": "kitab",
+      "text": {
+       "en": "Kitab (book)",
+       "hi": "किताब"
+      },
+      "bin": "made",
+      "why": {
+       "en": "People make books from paper.",
+       "hi": "लोग काग़ज़ से किताबें बनाते हैं।"
+      }
+     },
+     {
+      "id": "kapde",
+      "text": {
+       "en": "Kapde (clothes)",
+       "hi": "कपड़े"
+      },
+      "bin": "made",
+      "why": {
+       "en": "People make clothes from thread.",
+       "hi": "लोग धागे से कपड़े बनाते हैं।"
+      }
+     },
+     {
+      "id": "khilone",
+      "text": {
+       "en": "Khilone (toys)",
+       "hi": "खिलौने"
+      },
+      "bin": "made",
+      "why": {
+       "en": "People make toys.",
+       "hi": "खिलौने इंसान बनाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:hawa",
+     "expect": "placed:hawa",
+     "say": {
+      "en": "Tap a card, then tap the group where it belongs.",
+      "hi": "कोई कार्ड छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is the rain made by people or by nature?",
+      "hi": "बारिश इंसान बनाते हैं या प्रकृति?"
+     },
+     "options": [
+      {
+       "id": "nature",
+       "en": "By nature",
+       "hi": "प्रकृति"
+      },
+      {
+       "id": "people",
+       "en": "By people",
+       "hi": "इंसान"
+      }
+     ],
+     "answer": "nature"
+    },
+    {
+     "kind": "do",
+     "target": "card:khilone",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards until every one is in a group.",
+      "hi": "सारे कार्ड तब तक छाँटो जब तक हर कार्ड किसी समूह में न चला जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Air, sun, rain and flowers come from nature. Books, clothes and toys are made by people. The poem teaches us to love both our world and the things we have.",
+      "hi": "हवा, सूरज, बारिश और फूल प्रकृति से मिलते हैं। किताबें, कपड़े और खिलौने इंसान बनाते हैं। कविता हमें अपनी दुनिया और अपनी चीज़ों दोनों से प्यार करना सिखाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these comes from nature?",
+        "hi": "इनमें से कौन-सी चीज़ प्रकृति से मिलती है?"
+       },
+       "options": [
+        {
+         "en": "खिलौने",
+         "hi": "खिलौने"
+        },
+        {
+         "en": "बारिश",
+         "hi": "बारिश"
+        },
+        {
+         "en": "किताब",
+         "hi": "किताब"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Rain comes from the clouds, so it is from nature.",
+        "hi": "बारिश बादलों से आती है, इसलिए यह प्रकृति से है।"
+       },
+       "wrong": [
+        {
+         "en": "Toys are made by people.",
+         "hi": "खिलौने इंसान बनाते हैं।"
+        },
+        "",
+        {
+         "en": "A book is made by people.",
+         "hi": "किताब इंसान बनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What do you love about the world? Say three things. They can be from nature or things you have.",
+      "hi": "तुम्हें दुनिया में क्या प्यारा लगता है? तीन चीज़ें बताओ। वे प्रकृति की हों या तुम्हारी अपनी चीज़ें।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch18-i-like",
+   "topic": "18.2",
+   "template": "grammar",
+   "title": {
+    "en": "I like... sentences",
+    "hi": "'मुझे ... अच्छा लगता है' वाक्य"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "hi",
+    "items": [
+     {
+      "id": "s1",
+      "words": [
+       "मुझे",
+       "हवा",
+       "अच्छी",
+       "लगती",
+       "है",
+       "।"
+      ],
+      "answer": "मुझे हवा अच्छी लगती है।",
+      "rule": {
+       "en": "हवा is feminine, so we say 'अच्छी लगती है'.",
+       "hi": "'हवा' स्त्रीलिंग है, इसलिए 'अच्छी लगती है' कहते हैं।"
+      }
+     },
+     {
+      "id": "s2",
+      "words": [
+       "मुझे",
+       "फूल",
+       "अच्छे",
+       "लगते",
+       "हैं",
+       "।"
+      ],
+      "answer": "मुझे फूल अच्छे लगते हैं।",
+      "rule": {
+       "en": "फूल are many, so we say 'अच्छे लगते हैं'.",
+       "hi": "'फूल' बहुत सारे हैं, इसलिए 'अच्छे लगते हैं' कहते हैं।"
+      }
+     },
+     {
+      "id": "s3",
+      "words": [
+       "मुझे",
+       "किताबें",
+       "अच्छी",
+       "लगती",
+       "हैं",
+       "।"
+      ],
+      "answer": "मुझे किताबें अच्छी लगती हैं।",
+      "rule": {
+       "en": "किताबें are many and feminine, so 'अच्छी लगती हैं'.",
+       "hi": "'किताबें' बहुत सारी हैं और स्त्रीलिंग हैं, इसलिए 'अच्छी लगती हैं'।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "built:s1",
+     "say": {
+      "en": "Build the sentence 'I like the air' from the word tiles, then press Check.",
+      "hi": "शब्द-कार्डों से 'मुझे हवा अच्छी लगती है' वाक्य बनाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For many flowers, which ending fits: 'लगती है' or 'लगते हैं'?",
+      "hi": "बहुत-से फूलों के लिए कौन-सा अंत सही है: 'लगती है' या 'लगते हैं'?"
+     },
+     "options": [
+      {
+       "id": "lagte",
+       "en": "लगते हैं",
+       "hi": "लगते हैं"
+      },
+      {
+       "id": "lagti",
+       "en": "लगती है",
+       "hi": "लगती है"
+      }
+     ],
+     "answer": "lagte"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "built:s2",
+     "say": {
+      "en": "Now build the sentence about flowers.",
+      "hi": "अब फूलों वाला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Finish the last sentence about books.",
+      "hi": "किताबों वाला आख़िरी वाक्य पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We say 'मुझे ... अच्छा लगता है' to tell what we love. The ending changes with the thing: हवा अच्छी लगती है, फूल अच्छे लगते हैं, किताबें अच्छी लगती हैं.",
+      "hi": "जो हमें प्यारा लगता है उसे बताने के लिए 'मुझे ... अच्छा लगता है' कहते हैं। अंत चीज़ के अनुसार बदलता है: हवा अच्छी लगती है, फूल अच्छे लगते हैं, किताबें अच्छी लगती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is right?",
+        "hi": "कौन-सा वाक्य सही है?"
+       },
+       "options": [
+        {
+         "en": "मुझे सूरज अच्छा लगता है।",
+         "hi": "मुझे सूरज अच्छा लगता है।"
+        },
+        {
+         "en": "मुझे सूरज अच्छी लगता है।",
+         "hi": "मुझे सूरज अच्छी लगता है।"
+        },
+        {
+         "en": "मुझे सूरज अच्छे लगती है।",
+         "hi": "मुझे सूरज अच्छे लगती है।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "सूरज is one masculine thing: अच्छा लगता है.",
+        "hi": "सूरज एक पुल्लिंग चीज़ है: अच्छा लगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'सूरज' is masculine, so we say 'अच्छा', not 'अच्छी'.",
+         "hi": "'सूरज' पुल्लिंग है, इसलिए 'अच्छा' कहते हैं, 'अच्छी' नहीं।"
+        },
+        {
+         "en": "The endings do not agree with each other.",
+         "hi": "शब्दों के अंत आपस में मेल नहीं खाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Complete the sentence about yourself: मुझे ... अच्छा लगता है. What do you love?",
+      "hi": "अपने बारे में वाक्य पूरा करो: मुझे ... अच्छा लगता है। तुम्हें क्या प्यारा लगता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "18.1",
+   "use": "Opening picture",
+   "shows": "A bright green landscape with the sun, rain clouds, a river, birds, flowers and a child's silhouette on a hill",
+   "view": "Wide, high angle",
+   "right": "Many nature elements together",
+   "avoid": "Pollution",
+   "n": 1
+  },
+  {
+   "kind": "OBJ",
+   "topic": "18.1",
+   "use": "Nature cut-outs",
+   "shows": "Sun, rain cloud, flower, bird, fish, air shown as moving leaves",
+   "view": "Front view",
+   "right": "True colours, simple shapes",
+   "avoid": "Cartoon faces",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "18.1",
+   "use": "Things made by people",
+   "shows": "Book, clothes, toy car, school bag",
+   "view": "Front view",
+   "right": "Ordinary Indian school items",
+   "avoid": "Brand names",
+   "n": 3
+  },
+  {
+   "kind": "SCN",
+   "topic": "18.2",
+   "use": "Child with things she loves",
+   "shows": "A girl in a garden with a book, a kite and flowers (back view)",
+   "view": "Slight low angle",
+   "right": "Her loved things are all in the frame",
+   "avoid": "Face",
+   "n": 4
+  },
+  {
+   "kind": "SEQ",
+   "topic": "18.1",
+   "use": "From seed to flower",
+   "shows": "Four frames: seed, sprout, bud, bloom",
+   "view": "Same pot",
+   "right": "Natural growth",
+   "avoid": "Different pots",
+   "n": 5
+  }
+ ]
+}

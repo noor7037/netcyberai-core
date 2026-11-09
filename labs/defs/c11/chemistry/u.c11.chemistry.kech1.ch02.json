@@ -1,0 +1,1442 @@
+{
+ "chapter_key": "u.c11.chemistry.kech1.ch02",
+ "class": 11,
+ "subject_id": "chemistry",
+ "title": "Structure of Atom",
+ "source": "https://ncert.nic.in/textbook/pdf/kech102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Discovery of sub-atomic particles: electron, proton, neutron",
+   "labs": [
+    "c11-chemistry-kech1-ch02-subatomic"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Atomic models: Thomson, Rutherford; atomic number, mass number, isotopes and isobars",
+   "labs": [
+    "c11-chemistry-kech1-ch02-gold-foil",
+    "c11-chemistry-kech1-ch02-hydrogen-isotopes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Developments leading to Bohr's model: wave and particle nature of light, line spectra",
+   "labs": [
+    "c11-chemistry-kech1-ch02-em-spectrum"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Bohr's model for the hydrogen atom and its limitations",
+   "labs": [
+    "c11-chemistry-kech1-ch02-bohr-spectrum"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Towards the quantum mechanical model: de Broglie and Heisenberg",
+   "labs": [],
+   "why_no_lab": "The dual nature of matter and the uncertainty principle are ideas with worked numbers; the reader explains them better than anything a child can move on screen."
+  },
+  {
+   "n": "2.6",
+   "title": "Quantum mechanical model: orbitals, quantum numbers, filling order and electronic configuration",
+   "labs": [
+    "c11-chemistry-kech1-ch02-orbitals-exist",
+    "c11-chemistry-kech1-ch02-aufbau-order",
+    "c11-chemistry-kech1-ch02-configurations"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-chemistry-kech1-ch02-subatomic",
+   "topic": "2.1",
+   "template": "match",
+   "title": {
+    "en": "Clues to the particles inside",
+    "hi": "अंदर के कणों के सुराग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "cathode",
+      "left": {
+       "en": "Cathode rays in a discharge tube",
+       "hi": "विसर्जन नलिका में कैथोड किरणें"
+      },
+      "right": {
+       "en": "A stream of negative electrons",
+       "hi": "ऋणावेशित इलेक्ट्रॉनों की धारा"
+      },
+      "why": {
+       "en": "They bend towards the positive plate and are the same for every gas and every metal.",
+       "hi": "ये धन प्लेट की ओर मुड़ती हैं और हर गैस व हर धातु के लिए एक जैसी होती हैं।"
+      }
+     },
+     {
+      "id": "canal",
+      "left": {
+       "en": "Canal rays behind a holed cathode",
+       "hi": "छेद वाले कैथोड के पीछे कैनाल किरणें"
+      },
+      "right": {
+       "en": "Positive ions of the gas",
+       "hi": "गैस के धन आयन"
+      },
+      "why": {
+       "en": "Their mass depends on the gas, so they are what is left after electrons leave.",
+       "hi": "इनका द्रव्यमान गैस पर निर्भर करता है, यानी ये इलेक्ट्रॉन निकलने के बाद बचे भाग हैं।"
+      }
+     },
+     {
+      "id": "em",
+      "left": {
+       "en": "J. J. Thomson's bending experiment",
+       "hi": "जे. जे. टॉमसन का मोड़ने वाला प्रयोग"
+      },
+      "right": {
+       "en": "Charge-to-mass ratio of the electron",
+       "hi": "इलेक्ट्रॉन का आवेश-द्रव्यमान अनुपात"
+      },
+      "why": {
+       "en": "How far the beam bends in electric and magnetic fields gives e/m.",
+       "hi": "विद्युत और चुंबकीय क्षेत्र में किरण कितनी मुड़ती है, इससे e/m मिलता है।"
+      }
+     },
+     {
+      "id": "oil",
+      "left": {
+       "en": "Millikan's oil-drop experiment",
+       "hi": "मिलिकन का तेल-बूँद प्रयोग"
+      },
+      "right": {
+       "en": "Charge on one electron",
+       "hi": "एक इलेक्ट्रॉन का आवेश"
+      },
+      "why": {
+       "en": "Drop charges were always whole multiples of 1.6 × 10⁻¹⁹ C.",
+       "hi": "बूँदों के आवेश हमेशा 1.6 × 10⁻¹⁹ C के पूर्ण गुणज थे।"
+      }
+     },
+     {
+      "id": "neutron",
+      "left": {
+       "en": "Chadwick, beryllium hit by alpha particles",
+       "hi": "चैडविक, ऐल्फ़ा कणों से टकराया बेरिलियम"
+      },
+      "right": {
+       "en": "The neutral neutron",
+       "hi": "उदासीन न्यूट्रॉन"
+      },
+      "why": {
+       "en": "Uncharged particles slightly heavier than protons came out.",
+       "hi": "प्रोटॉन से थोड़े भारी, बिना आवेश के कण निकले।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:cathode",
+     "expect": "matched:cathode",
+     "say": {
+      "en": "Tap Cathode rays, then tap what they really are.",
+      "hi": "'कैथोड किरणें' छुओ, फिर छुओ कि वे असल में क्या हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Canal rays made from hydrogen gas are the lightest. What are they?",
+      "hi": "हाइड्रोजन गैस से बनी कैनाल किरणें सबसे हल्की होती हैं। वे क्या हैं?"
+     },
+     "options": [
+      {
+       "id": "proton",
+       "en": "Protons",
+       "hi": "प्रोटॉन"
+      },
+      {
+       "id": "electron",
+       "en": "Electrons",
+       "hi": "इलेक्ट्रॉन"
+      },
+      {
+       "id": "neutron",
+       "en": "Neutrons",
+       "hi": "न्यूट्रॉन"
+      }
+     ],
+     "answer": "proton"
+    },
+    {
+     "kind": "do",
+     "target": "left:canal",
+     "expect": "matched:canal",
+     "say": {
+      "en": "Match Canal rays.",
+      "hi": "'कैनाल किरणें' मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then tap Check.",
+      "hi": "बाकी मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The electron has charge −1.6 × 10⁻¹⁹ C and is about 1840 times lighter than a proton. The proton has the same charge but positive. The neutron has no charge and about the mass of a proton. A hydrogen ion H⁺ is just a proton, which is why hydrogen canal rays are protons.",
+      "hi": "इलेक्ट्रॉन का आवेश −1.6 × 10⁻¹⁹ C है और यह प्रोटॉन से लगभग 1840 गुना हल्का है। प्रोटॉन का आवेश उतना ही है पर धन। न्यूट्रॉन पर कोई आवेश नहीं होता और इसका द्रव्यमान लगभग प्रोटॉन जितना है। हाइड्रोजन आयन H⁺ केवल एक प्रोटॉन है, इसीलिए हाइड्रोजन की कैनाल किरणें प्रोटॉन हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Cathode rays are the same whatever gas or metal is used. This tells us…",
+        "hi": "कैथोड किरणें हर गैस और हर धातु के लिए एक जैसी हैं। इससे पता चलता है कि…"
+       },
+       "options": [
+        {
+         "en": "electrons are present in all atoms",
+         "hi": "इलेक्ट्रॉन सभी परमाणुओं में होते हैं"
+        },
+        {
+         "en": "only metals have electrons",
+         "hi": "केवल धातुओं में इलेक्ट्रॉन होते हैं"
+        },
+        {
+         "en": "the rays come from the glass",
+         "hi": "किरणें काँच से आती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If every material gives the same particle, that particle must be part of every atom.",
+        "hi": "अगर हर पदार्थ से एक ही कण निकले, तो वह कण हर परमाणु का भाग होना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Gases such as hydrogen and neon give the same rays, so it is not only metals.",
+         "hi": "हाइड्रोजन और नियॉन जैसी गैसें भी यही किरणें देती हैं, इसलिए केवल धातुएँ नहीं।"
+        },
+        {
+         "en": "The rays start at the cathode and travel through the gas; the glass only glows where they hit.",
+         "hi": "किरणें कैथोड से शुरू होकर गैस में चलती हैं; काँच केवल वहाँ चमकता है जहाँ वे टकराती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap any matched line to read its clue again. Which experiment gave the charge, and which gave the ratio e/m? Together they give the mass of the electron.",
+      "hi": "किसी भी मिली रेखा को छूकर सुराग फिर पढ़ो। किस प्रयोग से आवेश मिला और किससे e/m? दोनों मिलकर इलेक्ट्रॉन का द्रव्यमान देते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch02-gold-foil",
+   "topic": "2.2",
+   "template": "atom",
+   "title": {
+    "en": "From plum pudding to nucleus",
+    "hi": "प्लम पुडिंग से नाभिक तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "models"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "model:thomson",
+     "expect": "model:thomson",
+     "say": {
+      "en": "Tap Thomson to see his model: positive charge spread out with electrons in it.",
+      "hi": "'टॉमसन' छुओ और उनका मॉडल देखो: फैला हुआ धनावेश, उसमें धँसे इलेक्ट्रॉन।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If Thomson were right, what would fast alpha particles do when fired at thin gold foil?",
+      "hi": "अगर टॉमसन सही होते, तो पतली सोने की पन्नी पर दागे गए तेज़ ऐल्फ़ा कण क्या करते?"
+     },
+     "options": [
+      {
+       "id": "through",
+       "en": "Nearly all pass straight through",
+       "hi": "लगभग सब सीधे निकल जाते"
+      },
+      {
+       "id": "back",
+       "en": "Many bounce straight back",
+       "hi": "बहुत से सीधे लौट आते"
+      },
+      {
+       "id": "stop",
+       "en": "All stop inside the foil",
+       "hi": "सब पन्नी में रुक जाते"
+      }
+     ],
+     "answer": "through"
+    },
+    {
+     "kind": "do",
+     "target": "gold-foil",
+     "expect": "deflected",
+     "say": {
+      "en": "Run the gold-foil experiment and watch the screen.",
+      "hi": "सोने की पन्नी का प्रयोग चलाओ और पर्दे को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "model:rutherford",
+     "expect": "model:rutherford",
+     "say": {
+      "en": "Now tap Rutherford to see the model that fits.",
+      "hi": "अब 'रदरफ़ोर्ड' छुओ और वह मॉडल देखो जो इससे मेल खाता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Most alpha particles went straight through, so the atom is mostly empty space. A few turned at large angles and about 1 in 20,000 bounced back, so the positive charge and almost all the mass sit in a tiny, heavy nucleus. Electrons move around it. Thomson's spread-out charge could never turn a fast alpha particle back.",
+      "hi": "अधिकांश ऐल्फ़ा कण सीधे निकल गए, इसलिए परमाणु में ज़्यादातर ख़ाली जगह है। कुछ बड़े कोण पर मुड़े और लगभग 20,000 में से 1 लौट आया, इसलिए धनावेश और लगभग सारा द्रव्यमान एक बहुत छोटे, भारी नाभिक में है। इलेक्ट्रॉन इसके चारों ओर घूमते हैं। टॉमसन का फैला हुआ आवेश तेज़ ऐल्फ़ा कण को कभी वापस नहीं मोड़ सकता था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What was the main weakness of Rutherford's model?",
+        "hi": "रदरफ़ोर्ड के मॉडल की मुख्य कमी क्या थी?"
+       },
+       "options": [
+        {
+         "en": "A circling electron should lose energy and fall into the nucleus",
+         "hi": "घूमता इलेक्ट्रॉन ऊर्जा खोकर नाभिक में गिर जाना चाहिए"
+        },
+        {
+         "en": "It had no nucleus",
+         "hi": "इसमें नाभिक नहीं था"
+        },
+        {
+         "en": "It put electrons inside the nucleus",
+         "hi": "इसमें इलेक्ट्रॉन नाभिक के अंदर थे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "By classical physics an accelerating charge radiates energy, so the atom would collapse; it also could not explain line spectra.",
+        "hi": "पुरानी भौतिकी के अनुसार त्वरित आवेश ऊर्जा छोड़ता है, तो परमाणु ढह जाता; यह रेखा स्पेक्ट्रम भी नहीं समझा सका।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The nucleus was Rutherford's great discovery.",
+         "hi": "नाभिक तो रदरफ़ोर्ड की बड़ी खोज थी।"
+        },
+        {
+         "en": "Rutherford placed electrons outside the nucleus, moving around it.",
+         "hi": "रदरफ़ोर्ड ने इलेक्ट्रॉनों को नाभिक के बाहर, उसके चारों ओर घूमता रखा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Run the experiment a few more times. Count how many particles bounce back out of the many fired. Then open Bohr's model.",
+      "hi": "प्रयोग कुछ और बार चलाओ। गिनो कि बहुत से दागे गए कणों में से कितने लौटते हैं। फिर बोर का मॉडल खोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch02-hydrogen-isotopes",
+   "topic": "2.2",
+   "template": "atom",
+   "title": {
+    "en": "Protium, deuterium, tritium",
+    "hi": "प्रोटियम, ड्यूटेरियम, ट्रिटियम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "isotopes",
+    "target": "H",
+    "show": [
+     "mass",
+     "charge"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This is ordinary hydrogen: 1 proton, 0 neutrons. Add a neutron. What changes?",
+      "hi": "यह साधारण हाइड्रोजन है: 1 प्रोटॉन, 0 न्यूट्रॉन। एक न्यूट्रॉन जोड़ो। क्या बदलेगा?"
+     },
+     "options": [
+      {
+       "id": "mass",
+       "en": "Only the mass number, to 2",
+       "hi": "केवल द्रव्यमान संख्या, 2 हो जाएगी"
+      },
+      {
+       "id": "element",
+       "en": "It becomes helium",
+       "hi": "यह हीलियम बन जाएगा"
+      },
+      {
+       "id": "charge",
+       "en": "It becomes negative",
+       "hi": "यह ऋणावेशित हो जाएगा"
+      }
+     ],
+     "answer": "mass"
+    },
+    {
+     "kind": "do",
+     "target": "add:neutron",
+     "expect": "isotope:H-2",
+     "say": {
+      "en": "Tap + under Neutrons.",
+      "hi": "'न्यूट्रॉन' के नीचे + दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:neutron",
+     "expect": "isotope:H-3",
+     "say": {
+      "en": "Add one more neutron.",
+      "hi": "एक और न्यूट्रॉन जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All three have atomic number Z = 1, so all are hydrogen. Mass number A = protons + neutrons: 1, 2 and 3. Same Z, different A means isotopes; they react alike because the electrons are the same. Tritium is radioactive. Atoms with the same A but different Z, like carbon-14 and nitrogen-14, are isobars.",
+      "hi": "तीनों की परमाणु संख्या Z = 1 है, इसलिए तीनों हाइड्रोजन हैं। द्रव्यमान संख्या A = प्रोटॉन + न्यूट्रॉन: 1, 2 और 3। Z समान, A अलग, यानी समस्थानिक; इलेक्ट्रॉन समान होने से इनकी अभिक्रियाएँ एक जैसी हैं। ट्रिटियम रेडियोधर्मी है। जिन परमाणुओं का A समान पर Z अलग हो, जैसे कार्बन-14 और नाइट्रोजन-14, वे समभारिक हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many neutrons are in ³⁵₁₇Cl?",
+        "hi": "³⁵₁₇Cl में कितने न्यूट्रॉन हैं?"
+       },
+       "options": [
+        "18",
+        "17",
+        "35",
+        "52"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Neutrons = A − Z = 35 − 17 = 18.",
+        "hi": "न्यूट्रॉन = A − Z = 35 − 17 = 18।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "17 is the number of protons (and electrons), not neutrons.",
+         "hi": "17 प्रोटॉन (और इलेक्ट्रॉन) की संख्या है, न्यूट्रॉन की नहीं।"
+        },
+        {
+         "en": "35 is protons plus neutrons together.",
+         "hi": "35 प्रोटॉन और न्यूट्रॉन का योग है।"
+        },
+        {
+         "en": "52 adds A and Z; neutrons come from subtracting.",
+         "hi": "52 तो A और Z का योग है; न्यूट्रॉन घटाकर मिलते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which pair are isobars?",
+        "hi": "कौन-सी जोड़ी समभारिक है?"
+       },
+       "options": [
+        {
+         "en": "¹⁴C and ¹⁴N",
+         "hi": "¹⁴C और ¹⁴N"
+        },
+        {
+         "en": "¹²C and ¹⁴C",
+         "hi": "¹²C और ¹⁴C"
+        },
+        {
+         "en": "¹H and ²H",
+         "hi": "¹H और ²H"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both have mass number 14 but they are different elements.",
+        "hi": "दोनों की द्रव्यमान संख्या 14 है पर तत्व अलग हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Same element, different mass: these are isotopes.",
+         "hi": "एक ही तत्व, अलग द्रव्यमान: ये समस्थानिक हैं।"
+        },
+        {
+         "en": "These are isotopes of hydrogen, the ones you just built.",
+         "hi": "ये हाइड्रोजन के समस्थानिक हैं, जो तुमने अभी बनाए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try a third neutron. Why does the app say it is not a real nucleus? Then remove neutrons back to protium.",
+      "hi": "तीसरा न्यूट्रॉन जोड़कर देखो। ऐप इसे असली नाभिक क्यों नहीं मानता? फिर न्यूट्रॉन हटाकर प्रोटियम पर लौटो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch02-em-spectrum",
+   "topic": "2.3",
+   "template": "waves",
+   "title": {
+    "en": "Light as a wave: the spectrum",
+    "hi": "तरंग के रूप में प्रकाश: स्पेक्ट्रम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "spectrum"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You are in visible light. Slide the frequency up. Which band comes next?",
+      "hi": "तुम दृश्य प्रकाश में हो। आवृत्ति ऊपर खिसकाओ। अगली पट्टी कौन-सी होगी?"
+     },
+     "options": [
+      {
+       "id": "uv",
+       "en": "Ultraviolet",
+       "hi": "पराबैंगनी"
+      },
+      {
+       "id": "ir",
+       "en": "Infrared",
+       "hi": "अवरक्त"
+      },
+      {
+       "id": "radio",
+       "en": "Radio waves",
+       "hi": "रेडियो तरंगें"
+      }
+     ],
+     "answer": "uv"
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "band:uv",
+     "say": {
+      "en": "Slide the frequency up until you reach ultraviolet.",
+      "hi": "आवृत्ति को ऊपर खिसकाओ, जब तक पराबैंगनी न आ जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "band:ir",
+     "say": {
+      "en": "Now slide it down, past visible light, into infrared.",
+      "hi": "अब इसे नीचे खिसकाओ, दृश्य प्रकाश के पार, अवरक्त तक।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All these are the same kind of wave, moving at c = 3.0 × 10⁸ m s⁻¹ in vacuum. Since c = νλ, a higher frequency means a shorter wavelength. Planck said light comes in packets, quanta, of energy E = hν, so ultraviolet photons carry more energy than infrared ones. That is why UV can burn skin and knock electrons out of metals.",
+      "hi": "ये सब एक ही प्रकार की तरंगें हैं, जो निर्वात में c = 3.0 × 10⁸ m s⁻¹ से चलती हैं। c = νλ होने से अधिक आवृत्ति का अर्थ है छोटी तरंगदैर्ध्य। प्लांक ने कहा कि प्रकाश ऊर्जा के पैकेटों, क्वांटा, में आता है, E = hν, इसलिए पराबैंगनी फ़ोटॉन में अवरक्त से अधिक ऊर्जा होती है। इसीलिए UV त्वचा जला सकती है और धातुओं से इलेक्ट्रॉन निकाल सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A photon of red light and a photon of violet light: which has more energy?",
+        "hi": "लाल प्रकाश का एक फ़ोटॉन और बैंगनी प्रकाश का एक फ़ोटॉन: किसमें अधिक ऊर्जा है?"
+       },
+       "options": [
+        {
+         "en": "Violet",
+         "hi": "बैंगनी"
+        },
+        {
+         "en": "Red",
+         "hi": "लाल"
+        },
+        {
+         "en": "Both the same",
+         "hi": "दोनों बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Violet has the higher frequency, and E = hν.",
+        "hi": "बैंगनी की आवृत्ति अधिक है, और E = hν।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Red has the longer wavelength, so the lower frequency and lower energy.",
+         "hi": "लाल की तरंगदैर्ध्य लंबी है, इसलिए आवृत्ति और ऊर्जा कम है।"
+        },
+        {
+         "en": "They have the same speed, but not the same frequency, so not the same energy.",
+         "hi": "इनकी चाल समान है, आवृत्ति नहीं, इसलिए ऊर्जा भी समान नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In the photoelectric effect, bright red light gives no electrons from a metal but dim UV does. Why?",
+        "hi": "प्रकाश-विद्युत प्रभाव में तेज़ लाल प्रकाश से धातु से इलेक्ट्रॉन नहीं निकलते, पर हल्की UV से निकलते हैं। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Each red photon has too little energy, however many there are",
+         "hi": "लाल का हर फ़ोटॉन बहुत कम ऊर्जा वाला है, चाहे कितने भी हों"
+        },
+        {
+         "en": "Red light is too bright",
+         "hi": "लाल प्रकाश बहुत तेज़ है"
+        },
+        {
+         "en": "UV light travels faster",
+         "hi": "UV तेज़ चलती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One photon frees one electron, and only if hν is more than the metal's work function.",
+        "hi": "एक फ़ोटॉन एक इलेक्ट्रॉन निकालता है, और तभी जब hν धातु के कार्य फलन से अधिक हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Brightness means more photons, not more energy per photon.",
+         "hi": "तेज़ी का अर्थ अधिक फ़ोटॉन है, हर फ़ोटॉन की अधिक ऊर्जा नहीं।"
+        },
+        {
+         "en": "All electromagnetic waves move at the same speed in vacuum.",
+         "hi": "निर्वात में सभी विद्युत-चुंबकीय तरंगें एक ही चाल से चलती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide through every band from radio to gamma. Name one use of each in India: FM radio, microwave oven, TV remote, sunlight, UV water purifier, X-ray clinic.",
+      "hi": "रेडियो से गामा तक हर पट्टी पर खिसकाओ। भारत में हर एक का एक उपयोग बताओ: FM रेडियो, माइक्रोवेव ओवन, टीवी रिमोट, धूप, UV जल शोधक, एक्स-रे क्लिनिक।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch02-bohr-spectrum",
+   "topic": "2.4",
+   "template": "atom",
+   "title": {
+    "en": "Why hydrogen glows in lines",
+    "hi": "हाइड्रोजन रेखाओं में क्यों चमकती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "models"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "model:bohr",
+     "expect": "model:bohr",
+     "say": {
+      "en": "Tap Bohr to open his model of the hydrogen atom.",
+      "hi": "हाइड्रोजन परमाणु का बोर मॉडल खोलने के लिए 'बोर' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "level:3",
+     "expect": "level:3",
+     "say": {
+      "en": "Tap n = 3 to lift the electron to the third orbit.",
+      "hi": "इलेक्ट्रॉन को तीसरी कक्षा पर ले जाने के लिए n = 3 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now the electron falls from n = 3 to n = 2. What will come out?",
+      "hi": "अब इलेक्ट्रॉन n = 3 से n = 2 पर गिरेगा। क्या निकलेगा?"
+     },
+     "options": [
+      {
+       "id": "red",
+       "en": "Red visible light",
+       "hi": "लाल दृश्य प्रकाश"
+      },
+      {
+       "id": "uv",
+       "en": "Ultraviolet light",
+       "hi": "पराबैंगनी प्रकाश"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "red"
+    },
+    {
+     "kind": "do",
+     "target": "level:2",
+     "expect": "photon:visible",
+     "say": {
+      "en": "Tap n = 2 and watch the light given out.",
+      "hi": "n = 2 छुओ और निकलता प्रकाश देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "level:1",
+     "expect": "photon:uv",
+     "say": {
+      "en": "Now drop it to n = 1.",
+      "hi": "अब इसे n = 1 पर गिराओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In Bohr's model the electron can sit only in fixed orbits with energy Eₙ = −13.6/n² eV. Jumping down gives out one photon of exactly the energy difference. 3 → 2 gives 1.89 eV, red light of 656 nm, a Balmer line. Any fall to n = 1 is a much bigger drop, so it gives ultraviolet: the Lyman series. Only certain jumps exist, so hydrogen gives lines, not a rainbow.",
+      "hi": "बोर मॉडल में इलेक्ट्रॉन केवल निश्चित कक्षाओं में रह सकता है जिनकी ऊर्जा Eₙ = −13.6/n² eV है। नीचे कूदने पर ठीक ऊर्जा-अंतर जितना एक फ़ोटॉन निकलता है। 3 → 2 से 1.89 eV, 656 nm का लाल प्रकाश, एक बामर रेखा। n = 1 पर कोई भी गिरावट बहुत बड़ी होती है, इसलिए पराबैंगनी निकलती है: लाइमन श्रेणी। केवल कुछ छलाँगें संभव हैं, इसलिए हाइड्रोजन रेखाएँ देती है, इंद्रधनुष नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which jump gives out the most energy?",
+        "hi": "किस छलाँग में सबसे अधिक ऊर्जा निकलती है?"
+       },
+       "options": [
+        "n = 2 → 1",
+        "n = 4 → 3",
+        "n = 3 → 2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Energy levels crowd together higher up; the gap between n = 1 and n = 2 is the biggest: 10.2 eV.",
+        "hi": "ऊपर ऊर्जा स्तर पास-पास होते हैं; n = 1 और n = 2 के बीच का अंतर सबसे बड़ा है: 10.2 eV।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "High orbits are close in energy, so 4 → 3 is a small drop, giving infrared.",
+         "hi": "ऊँची कक्षाओं की ऊर्जा पास-पास है, इसलिए 4 → 3 छोटी गिरावट है, जिससे अवरक्त निकलता है।"
+        },
+        {
+         "en": "3 → 2 gives visible red light, less energy than ultraviolet.",
+         "hi": "3 → 2 से लाल दृश्य प्रकाश निकलता है, जो पराबैंगनी से कम ऊर्जा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why could Bohr's model not explain atoms like helium or lithium?",
+        "hi": "बोर का मॉडल हीलियम या लीथियम जैसे परमाणुओं को क्यों नहीं समझा सका?"
+       },
+       "options": [
+        {
+         "en": "It works only for one-electron species",
+         "hi": "यह केवल एक इलेक्ट्रॉन वाली स्पीशीज़ के लिए काम करता है"
+        },
+        {
+         "en": "Those atoms have no nucleus",
+         "hi": "उन परमाणुओं में नाभिक नहीं होता"
+        },
+        {
+         "en": "Those atoms give no light",
+         "hi": "वे परमाणु प्रकाश नहीं देते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With two or more electrons, the electrons push on each other and the simple orbit picture fails; it also ignores the wave nature of the electron.",
+        "hi": "दो या अधिक इलेक्ट्रॉनों में वे एक-दूसरे को धकेलते हैं और सरल कक्षा का चित्र टूट जाता है; यह इलेक्ट्रॉन की तरंग प्रकृति को भी नहीं मानता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Every atom has a nucleus.",
+         "hi": "हर परमाणु में नाभिक होता है।"
+        },
+        {
+         "en": "Helium and lithium give bright line spectra too.",
+         "hi": "हीलियम और लीथियम भी चमकीले रेखा स्पेक्ट्रम देते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Lift the electron to n = 5 and let it fall step by step: 5 → 4 → 3 → 2 → 1. Which falls give visible light, which infrared, which ultraviolet?",
+      "hi": "इलेक्ट्रॉन को n = 5 पर ले जाओ और एक-एक कदम गिराओ: 5 → 4 → 3 → 2 → 1। किन गिरावटों से दृश्य प्रकाश, किनसे अवरक्त और किनसे पराबैंगनी निकलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch02-orbitals-exist",
+   "topic": "2.6",
+   "template": "sort",
+   "title": {
+    "en": "Which orbitals can exist?",
+    "hi": "कौन-से कक्षक हो सकते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Can exist",
+       "hi": "हो सकता है"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Cannot exist",
+       "hi": "नहीं हो सकता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "1s",
+       "hi": "1s"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "n = 1 allows only l = 0, which is s.",
+       "hi": "n = 1 में केवल l = 0 होता है, यानी s।"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "2p",
+       "hi": "2p"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "n = 2 allows l = 0 and 1, so 2s and 2p.",
+       "hi": "n = 2 में l = 0 और 1 होते हैं, इसलिए 2s और 2p।"
+      }
+     },
+     {
+      "id": "d3",
+      "text": {
+       "en": "3d",
+       "hi": "3d"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "n = 3 allows l up to 2, which is d.",
+       "hi": "n = 3 में l अधिकतम 2 हो सकता है, यानी d।"
+      }
+     },
+     {
+      "id": "f4",
+      "text": {
+       "en": "4f",
+       "hi": "4f"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "n = 4 allows l up to 3, which is f.",
+       "hi": "n = 4 में l अधिकतम 3 हो सकता है, यानी f।"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "5s",
+       "hi": "5s"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Every shell has an s subshell.",
+       "hi": "हर कोश में एक s उपकोश होता है।"
+      }
+     },
+     {
+      "id": "p1",
+      "text": {
+       "en": "1p",
+       "hi": "1p"
+      },
+      "bin": "no",
+      "why": {
+       "en": "p needs l = 1, but l must be less than n = 1.",
+       "hi": "p के लिए l = 1 चाहिए, पर l का मान n = 1 से कम होना चाहिए।"
+      }
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "2d",
+       "hi": "2d"
+      },
+      "bin": "no",
+      "why": {
+       "en": "d needs l = 2, but n = 2 allows only l = 0 or 1.",
+       "hi": "d के लिए l = 2 चाहिए, पर n = 2 में केवल l = 0 या 1।"
+      }
+     },
+     {
+      "id": "f3",
+      "text": {
+       "en": "3f",
+       "hi": "3f"
+      },
+      "bin": "no",
+      "why": {
+       "en": "f needs l = 3, so n must be at least 4.",
+       "hi": "f के लिए l = 3 चाहिए, इसलिए n कम से कम 4 हो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:p2",
+     "expect": "correct:p2",
+     "say": {
+      "en": "Tap the 2p card, then decide: can it exist?",
+      "hi": "2p कार्ड छुओ, फिर तय करो: क्या यह हो सकता है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The rule is: l can be 0, 1, … up to n − 1. Can a 2d orbital exist?",
+      "hi": "नियम है: l का मान 0, 1, … से n − 1 तक हो सकता है। क्या 2d कक्षक हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:d2",
+     "expect": "correct:d2",
+     "say": {
+      "en": "Sort the 2d card.",
+      "hi": "2d कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then tap Check.",
+      "hi": "बाकी छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Three quantum numbers name an orbital. The principal number n is the shell. The azimuthal number l sets the shape: 0 = s, 1 = p, 2 = d, 3 = f, and l runs only from 0 to n − 1. The magnetic number mₗ runs from −l to +l, so there is 1 s, 3 p, 5 d and 7 f orbitals in a subshell. Each orbital holds at most two electrons of opposite spin.",
+      "hi": "तीन क्वांटम संख्याएँ एक कक्षक का नाम बताती हैं। मुख्य संख्या n कोश है। दिगंशी संख्या l आकार तय करती है: 0 = s, 1 = p, 2 = d, 3 = f, और l केवल 0 से n − 1 तक जाती है। चुंबकीय संख्या mₗ, −l से +l तक होती है, इसलिए उपकोश में 1 s, 3 p, 5 d और 7 f कक्षक होते हैं। हर कक्षक में अधिकतम दो विपरीत चक्रण वाले इलेक्ट्रॉन रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many electrons can the n = 3 shell hold in all?",
+        "hi": "n = 3 कोश में कुल कितने इलेक्ट्रॉन आ सकते हैं?"
+       },
+       "options": [
+        "18",
+        "8",
+        "9"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It has 3s, 3p and 3d: 1 + 3 + 5 = 9 orbitals, and 2n² = 18 electrons.",
+        "hi": "इसमें 3s, 3p और 3d हैं: 1 + 3 + 5 = 9 कक्षक, और 2n² = 18 इलेक्ट्रॉन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 is the outer-shell octet, not the full capacity of n = 3.",
+         "hi": "8 बाहरी कोश का अष्टक है, n = 3 की पूरी क्षमता नहीं।"
+        },
+        {
+         "en": "9 is the number of orbitals; each holds two electrons.",
+         "hi": "9 कक्षकों की संख्या है; हर एक में दो इलेक्ट्रॉन आते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own test: is 4d possible? 5g? Use the rule l ≤ n − 1 (g means l = 4).",
+      "hi": "ख़ुद जाँचो: क्या 4d हो सकता है? 5g? नियम l ≤ n − 1 लगाओ (g का अर्थ l = 4)।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch02-aufbau-order",
+   "topic": "2.6",
+   "template": "sequence",
+   "title": {
+    "en": "The order electrons fill in",
+    "hi": "इलेक्ट्रॉन किस क्रम में भरते हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "1s",
+       "hi": "1s"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "2s",
+       "hi": "2s"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "2p",
+       "hi": "2p"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "3s",
+       "hi": "3s"
+      }
+     },
+     {
+      "id": "p3",
+      "text": {
+       "en": "3p",
+       "hi": "3p"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "4s",
+       "hi": "4s"
+      }
+     },
+     {
+      "id": "d3",
+      "text": {
+       "en": "3d",
+       "hi": "3d"
+      }
+     },
+     {
+      "id": "p4",
+      "text": {
+       "en": "4p",
+       "hi": "4p"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "5s",
+       "hi": "5s"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Tap 1s, the lowest energy orbital, and put it in place 1.",
+      "hi": "सबसे कम ऊर्जा वाला कक्षक 1s छुओ और उसे स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After 3p, which fills next: 3d or 4s?",
+      "hi": "3p के बाद अगला कौन भरता है: 3d या 4s?"
+     },
+     "options": [
+      {
+       "id": "s4",
+       "en": "4s",
+       "hi": "4s पहले"
+      },
+      {
+       "id": "d3",
+       "en": "3d",
+       "hi": "3d पहले"
+      }
+     ],
+     "answer": "s4"
+    },
+    {
+     "kind": "do",
+     "target": "item:s4",
+     "expect": "placed:s4",
+     "say": {
+      "en": "Place 4s where you think it belongs.",
+      "hi": "4s को वहाँ रखो जहाँ तुम्हें सही लगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the rest, then tap Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Electrons fill the lowest energy orbitals first (the Aufbau principle). Use the n + l rule: the smaller n + l fills first, and for a tie the smaller n goes first. 4s has n + l = 4 and 3d has 5, so 4s fills before 3d. Pauli: two electrons per orbital, opposite spins. Hund: in p or d orbitals, electrons spread out singly before pairing.",
+      "hi": "इलेक्ट्रॉन पहले सबसे कम ऊर्जा वाले कक्षक भरते हैं (आफ़बाउ सिद्धांत)। n + l नियम लगाओ: जिसका n + l कम हो वह पहले भरता है, बराबर होने पर कम n वाला पहले। 4s का n + l = 4 और 3d का 5 है, इसलिए 4s, 3d से पहले भरता है। पाउली: एक कक्षक में दो इलेक्ट्रॉन, विपरीत चक्रण। हुंड: p या d कक्षकों में इलेक्ट्रॉन जोड़ी बनाने से पहले अकेले-अकेले फैलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the configuration of potassium, Z = 19?",
+        "hi": "पोटैशियम, Z = 19, का विन्यास कौन-सा है?"
+       },
+       "options": [
+        "1s² 2s² 2p⁶ 3s² 3p⁶ 4s¹",
+        "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹",
+        "1s² 2s² 2p⁶ 3s² 3p⁵ 4s²"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After argon's 18 electrons, the 19th goes to 4s, which is lower than 3d.",
+        "hi": "आर्गन के 18 इलेक्ट्रॉनों के बाद 19वाँ 4s में जाता है, जो 3d से नीचे है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3d is higher in energy than 4s for potassium, so it stays empty.",
+         "hi": "पोटैशियम के लिए 3d, 4s से ऊँचा है, इसलिए खाली रहता है।"
+        },
+        {
+         "en": "3p must be full before 4s starts filling.",
+         "hi": "4s भरने से पहले 3p पूरा भरना चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Work out the n + l value for 4f and 5d. Which of the two should fill first?",
+      "hi": "4f और 5d के लिए n + l निकालो। दोनों में से कौन पहले भरना चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch02-configurations",
+   "topic": "2.6",
+   "template": "atom",
+   "title": {
+    "en": "Configurations and two surprises",
+    "hi": "विन्यास और दो अचरज"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "table"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "element:N",
+     "expect": "picked:N",
+     "say": {
+      "en": "Tap nitrogen (N) and read its electronic configuration.",
+      "hi": "नाइट्रोजन (N) छुओ और उसका इलेक्ट्रॉनिक विन्यास पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:Fe",
+     "expect": "picked:Fe",
+     "say": {
+      "en": "Now tap iron (Fe).",
+      "hi": "अब आयरन (Fe) छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chromium, Z = 24, comes just before manganese. By the filling order you would expect 3d⁴ 4s². What does it really have?",
+      "hi": "क्रोमियम, Z = 24, मैंगनीज़ से ठीक पहले आता है। भरने के क्रम से 3d⁴ 4s² होना चाहिए। असल में क्या है?"
+     },
+     "options": [
+      {
+       "id": "d5s1",
+       "en": "3d⁵ 4s¹",
+       "hi": "3d⁵ 4s¹ (एक 4s इलेक्ट्रॉन 3d में)"
+      },
+      {
+       "id": "d4s2",
+       "en": "3d⁴ 4s²",
+       "hi": "3d⁴ 4s² ही"
+      },
+      {
+       "id": "d6",
+       "en": "3d⁶",
+       "hi": "केवल 3d⁶"
+      }
+     ],
+     "answer": "d5s1"
+    },
+    {
+     "kind": "do",
+     "target": "element:Cr",
+     "expect": "picked:Cr",
+     "say": {
+      "en": "Tap chromium (Cr) and see.",
+      "hi": "क्रोमियम (Cr) छुओ और देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:Cu",
+     "expect": "picked:Cu",
+     "say": {
+      "en": "Now tap copper (Cu).",
+      "hi": "अब कॉपर (Cu) छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Chromium is [Ar] 3d⁵ 4s¹ and copper is [Ar] 3d¹⁰ 4s¹. A half-filled (d⁵) or completely filled (d¹⁰) subshell is extra stable: its electrons are spread out evenly and gain exchange energy. So one 4s electron moves into 3d. Nitrogen's 2p³ is half-filled too, which makes nitrogen harder to ionise than oxygen.",
+      "hi": "क्रोमियम [Ar] 3d⁵ 4s¹ है और कॉपर [Ar] 3d¹⁰ 4s¹। आधा भरा (d⁵) या पूरा भरा (d¹⁰) उपकोश अधिक स्थायी होता है: इसके इलेक्ट्रॉन बराबर फैले रहते हैं और विनिमय ऊर्जा पाते हैं। इसलिए 4s का एक इलेक्ट्रॉन 3d में चला जाता है। नाइट्रोजन का 2p³ भी आधा भरा है, इसलिए नाइट्रोजन को आयनित करना ऑक्सीजन से कठिन है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is copper 3d¹⁰ 4s¹ and not 3d⁹ 4s²?",
+        "hi": "कॉपर 3d¹⁰ 4s¹ क्यों है, 3d⁹ 4s² क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "A completely filled d subshell is extra stable",
+         "hi": "पूरा भरा d उपकोश अधिक स्थायी होता है"
+        },
+        {
+         "en": "4s can hold only one electron",
+         "hi": "4s में केवल एक इलेक्ट्रॉन आ सकता है"
+        },
+        {
+         "en": "Copper has 28 electrons",
+         "hi": "कॉपर में 28 इलेक्ट्रॉन हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Full and half-full subshells have symmetric arrangements and high exchange energy, so the atom is lower in energy that way.",
+        "hi": "पूरे और आधे भरे उपकोश सममित होते हैं और उनकी विनिमय ऊर्जा अधिक होती है, इसलिए परमाणु की ऊर्जा कम रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4s holds two electrons, as in zinc 3d¹⁰ 4s².",
+         "hi": "4s में दो इलेक्ट्रॉन आते हैं, जैसे ज़िंक 3d¹⁰ 4s² में।"
+        },
+        {
+         "en": "Copper has Z = 29, so 29 electrons.",
+         "hi": "कॉपर का Z = 29 है, इसलिए 29 इलेक्ट्रॉन।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the elements from scandium to zinc one by one and watch 3d fill. Find the one other element in that row with a surprise.",
+      "hi": "स्कैंडियम से ज़िंक तक एक-एक तत्व छुओ और 3d भरता देखो। उस पंक्ति में अचरज वाला दूसरा तत्व ढूँढो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "CUT",
+   "topic": "2.1",
+   "use": "Cathode ray tube for the particles lab",
+   "shows": "A glass discharge tube with a cathode and an anode, the gas at low pressure glowing faintly and a green glow on the glass opposite the cathode",
+   "view": "Side view, realistic render, dark background",
+   "right": "Glow on the glass behind the anode, beam in a straight line",
+   "avoid": "Labels, charge signs, wires drawn wrongly"
+  },
+  {
+   "n": 2,
+   "kind": "CUT",
+   "topic": "2.2",
+   "use": "Gold-foil experiment for the reader",
+   "shows": "A lead box with a radioactive source, a thin gold foil and a round zinc sulphide screen around it with tiny flashes",
+   "view": "Top view, realistic render",
+   "right": "Most flashes straight behind the foil, a very few at wide angles and one in front",
+   "avoid": "Labels and arrows"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Hook: spectra around us",
+   "shows": "Sunlight through a glass prism on a school window sill making a continuous rainbow band on a white wall",
+   "view": "Eye level, warm morning light",
+   "right": "Colours in the true order red to violet, no gaps",
+   "avoid": "Rainbow drawn with gaps or wrong order"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "2.4",
+   "use": "Line spectrum of hydrogen",
+   "shows": "A glowing hydrogen discharge tube (pink-red), and beside it the view through a handheld spectroscope showing separate thin coloured lines on black",
+   "view": "Two frames, close-up",
+   "right": "Lines red, blue-green and violet with dark gaps; no continuous band",
+   "avoid": "Neon or sodium colours"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Every element has its own colours",
+   "shows": "Indian festival fireworks over a city at night, red, green and golden bursts",
+   "view": "Wide, long exposure",
+   "right": "Distinct colours from different metal salts",
+   "avoid": "People's faces, brand banners"
+  },
+  {
+   "n": 6,
+   "kind": "3DM",
+   "topic": "2.6",
+   "use": "Shapes of orbitals the app can turn",
+   "shows": "Separate 3D renders of a 1s sphere, the three 2p dumb-bells on x, y, z axes and the five 3d orbitals",
+   "view": "Front, side, top and three-quarter views, same scale and centre",
+   "right": "p lobes with a node at the nucleus; dz² with its ring",
+   "avoid": "Electrons drawn as dots on orbits"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "2.6",
+   "use": "Base for the filling-order diagram",
+   "shows": "An empty diagonal-arrow grid of subshell boxes 1s to 7p arranged in rows by n",
+   "view": "Straight on, white background, no letters printed",
+   "right": "Rows and columns evenly spaced for the app to label",
+   "avoid": "Any text"
+  }
+ ]
+}

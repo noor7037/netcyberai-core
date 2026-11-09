@@ -1,0 +1,2368 @@
+{
+ "chapter_key": "u.c11.computer_science.kecs1.ch01",
+ "class": 11,
+ "subject_id": "computer_science",
+ "title": "Computer System",
+ "source": "https://ncert.nic.in/textbook/pdf/kecs101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Introduction to computer system: CPU, input devices and output devices",
+   "labs": [
+    "c11-computer_science-kecs1-ch01-ipo"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Evolution of computer",
+   "labs": [
+    "c11-computer_science-kecs1-ch01-history"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Computer memory: units and types",
+   "labs": [
+    "c11-computer_science-kecs1-ch01-units",
+    "c11-computer_science-kecs1-ch01-memory"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Data transfer between memory and CPU (buses)",
+   "labs": [
+    "c11-computer_science-kecs1-ch01-memory"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Microprocessors and microcontrollers",
+   "labs": [
+    "c11-computer_science-kecs1-ch01-chip"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Data and information: types, capture, storage, deletion and recovery",
+   "labs": [
+    "c11-computer_science-kecs1-ch01-data"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.7",
+   "title": "Software: system, programming tools, application; proprietary and open source",
+   "labs": [
+    "c11-computer_science-kecs1-ch01-software"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.8",
+   "title": "Operating system: user interface and functions",
+   "labs": [
+    "c11-computer_science-kecs1-ch01-os"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-computer_science-kecs1-ch01-ipo",
+   "topic": "1.1",
+   "template": "scenario",
+   "title": {
+    "en": "Input, process, output at a ticket counter",
+    "hi": "टिकट काउंटर पर इनपुट, प्रोसेस, आउटपुट"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "railway counter",
+    "role": {
+     "en": "Computer helper at a railway counter",
+     "hi": "रेलवे काउंटर पर कंप्यूटर सहायक"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Priya wants a train ticket from Patna to Delhi. The clerk types the station names and the date on the keyboard. What job is the keyboard doing?",
+       "hi": "प्रिया को पटना से दिल्ली की ट्रेन का टिकट चाहिए। क्लर्क कीबोर्ड पर स्टेशनों के नाम और तारीख़ टाइप करता है। कीबोर्ड कौन-सा काम कर रहा है?"
+      },
+      "choices": [
+       {
+        "id": "in",
+        "text": {
+         "en": "It is an input device: it sends data into the computer",
+         "hi": "यह इनपुट डिवाइस है: यह डेटा कंप्यूटर के अंदर भेजता है"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Right. Input devices turn what we type, say or show into data the computer can work on.",
+         "hi": "सही। इनपुट डिवाइस हमारे टाइप किए, बोले या दिखाए को ऐसे डेटा में बदलते हैं जिस पर कंप्यूटर काम कर सके।"
+        },
+        "good": true
+       },
+       {
+        "id": "out",
+        "text": {
+         "en": "It is an output device: it shows results",
+         "hi": "यह आउटपुट डिवाइस है: यह परिणाम दिखाता है"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Not quite. The keyboard shows nothing; it only sends key presses into the computer, so it is an input device.",
+         "hi": "पूरी तरह नहीं। कीबोर्ड कुछ नहीं दिखाता; यह केवल बटन दबाने की सूचना अंदर भेजता है, इसलिए यह इनपुट डिवाइस है।"
+        },
+        "good": false
+       },
+       {
+        "id": "cpu",
+        "text": {
+         "en": "It is the processor: it works out the fare",
+         "hi": "यह प्रोसेसर है: यह किराया निकालता है"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "No. The fare is worked out inside the CPU. The keyboard only carries the data in.",
+         "hi": "नहीं। किराया सीपीयू के अंदर निकाला जाता है। कीबोर्ड केवल डेटा अंदर पहुँचाता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Inside the computer, the fare for 1,000 km is calculated and checked against the seats left. Which part of the CPU does the adding and comparing?",
+       "hi": "कंप्यूटर के अंदर 1,000 किलोमीटर का किराया निकाला जाता है और बची सीटों से मिलाया जाता है। सीपीयू का कौन-सा भाग जोड़ने और तुलना करने का काम करता है?"
+      },
+      "choices": [
+       {
+        "id": "alu",
+        "text": {
+         "en": "The ALU (Arithmetic Logic Unit)",
+         "hi": "ALU (अंकगणितीय तर्क इकाई)"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Yes. The ALU does arithmetic like adding and logic like \"is 3 seats more than 0?\".",
+         "hi": "हाँ। ALU जोड़ने जैसे गणित के काम और \"क्या 3 सीटें 0 से ज़्यादा हैं?\" जैसे तर्क के काम करता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "cu",
+        "text": {
+         "en": "The Control Unit",
+         "hi": "नियंत्रण इकाई (कंट्रोल यूनिट)"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "The Control Unit directs the work: it fetches instructions and tells the other parts what to do. The sums are done by the ALU.",
+         "hi": "कंट्रोल यूनिट काम का निर्देशन करती है: निर्देश लाती है और बाकी भागों को बताती है कि क्या करना है। हिसाब ALU करता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "mon",
+        "text": {
+         "en": "The monitor",
+         "hi": "मॉनिटर"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "The monitor is outside the CPU and only shows results. It cannot calculate.",
+         "hi": "मॉनिटर सीपीयू के बाहर है और केवल परिणाम दिखाता है। यह हिसाब नहीं लगा सकता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "The printer gives Priya her ticket and the screen shows \"Seat 34, Coach S5\". What are the printer and the screen?",
+       "hi": "प्रिंटर प्रिया को टिकट देता है और स्क्रीन पर \"सीट 34, कोच S5\" दिखता है। प्रिंटर और स्क्रीन क्या हैं?"
+      },
+      "choices": [
+       {
+        "id": "outd",
+        "text": {
+         "en": "Output devices: they give results to us",
+         "hi": "आउटपुट डिवाइस: ये परिणाम हमें देते हैं"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "Correct. Output devices turn the computer's results into a form we can see, hear or hold.",
+         "hi": "सही। आउटपुट डिवाइस कंप्यूटर के परिणाम को ऐसे रूप में बदलते हैं जिसे हम देख, सुन या पकड़ सकें।"
+        },
+        "good": true
+       },
+       {
+        "id": "ind",
+        "text": {
+         "en": "Input devices",
+         "hi": "इनपुट डिवाइस"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "No. Nothing goes into the computer from them; they bring results out.",
+         "hi": "नहीं। इनसे कुछ भी कंप्यूटर के अंदर नहीं जाता; ये परिणाम बाहर लाते हैं।"
+        },
+        "good": false
+       },
+       {
+        "id": "mem",
+        "text": {
+         "en": "Memory",
+         "hi": "मेमोरी"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "Memory stores data inside the computer. The printer and the screen show the result outside.",
+         "hi": "मेमोरी डेटा को कंप्यूटर के अंदर रखती है। प्रिंटर और स्क्रीन परिणाम बाहर दिखाते हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Rahul, who cannot see, also books a ticket. Which pair helps him most?",
+       "hi": "राहुल, जो देख नहीं सकता, वह भी टिकट बुक करता है। कौन-सी जोड़ी उसकी सबसे ज़्यादा मदद करेगी?"
+      },
+      "choices": [
+       {
+        "id": "acc",
+        "text": {
+         "en": "A microphone to speak (input) and a speaker that reads the screen aloud (output)",
+         "hi": "बोलने के लिए माइक्रोफ़ोन (इनपुट) और स्क्रीन पढ़कर सुनाने वाला स्पीकर (आउटपुट)"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Voice input and audio output (or a braille keyboard and braille display) make computers usable by everyone.",
+         "hi": "हाँ। आवाज़ से इनपुट और सुनकर आउटपुट (या ब्रेल कीबोर्ड और ब्रेल डिस्प्ले) से कंप्यूटर सबके काम आता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "mouse",
+        "text": {
+         "en": "A mouse and a bigger monitor",
+         "hi": "माउस और बड़ा मॉनिटर"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Both need eyes to use. Rahul needs input and output that work with sound or touch.",
+         "hi": "दोनों के लिए आँखें चाहिए। राहुल को ऐसे इनपुट और आउटपुट चाहिए जो आवाज़ या स्पर्श से चलें।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The clerk types the station names on the keyboard. What kind of device is the keyboard?",
+      "hi": "क्लर्क कीबोर्ड पर स्टेशनों के नाम टाइप करता है। कीबोर्ड किस तरह का डिवाइस है?"
+     },
+     "options": [
+      {
+       "id": "in",
+       "en": "Input device",
+       "hi": "इनपुट डिवाइस"
+      },
+      {
+       "id": "out",
+       "en": "Output device",
+       "hi": "आउटपुट डिवाइस"
+      },
+      {
+       "id": "cpu",
+       "en": "Processing device",
+       "hi": "प्रोसेसिंग डिवाइस"
+      }
+     ],
+     "answer": "in"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:in",
+     "expect": "chose:in",
+     "say": {
+      "en": "Tap the choice that says the keyboard is an input device, and read the feedback.",
+      "hi": "वह विकल्प टैप करो जो कहता है कि कीबोर्ड इनपुट डिवाइस है, और जवाब पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every computer job has three parts: input, process and output. The keyboard sends data in, the CPU (its ALU and Control Unit) works on it, and the printer and screen give the result. Memory holds the data while the work goes on.",
+      "hi": "कंप्यूटर के हर काम के तीन भाग होते हैं: इनपुट, प्रोसेस और आउटपुट। कीबोर्ड डेटा अंदर भेजता है, सीपीयू (उसका ALU और कंट्रोल यूनिट) उस पर काम करता है, और प्रिंटर व स्क्रीन परिणाम देते हैं। काम के दौरान डेटा मेमोरी में रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A barcode scanner at a shop reads the price code of a packet. It is:",
+        "hi": "दुकान पर बारकोड स्कैनर पैकेट का कोड पढ़ता है। यह है:"
+       },
+       "options": [
+        {
+         "en": "An input device",
+         "hi": "इनपुट डिवाइस"
+        },
+        {
+         "en": "An output device",
+         "hi": "आउटपुट डिवाइस"
+        },
+        {
+         "en": "Part of the ALU",
+         "hi": "ALU का भाग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It reads the code and sends it into the computer, so it is input.",
+        "hi": "यह कोड पढ़कर कंप्यूटर में भेजता है, इसलिए यह इनपुट है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It shows nothing to the shopkeeper; the bill printer is the output device.",
+         "hi": "यह दुकानदार को कुछ नहीं दिखाता; बिल छापने वाला प्रिंटर आउटपुट डिवाइस है।"
+        },
+        {
+         "en": "The ALU is inside the CPU chip. The scanner is a separate device outside it.",
+         "hi": "ALU सीपीयू चिप के अंदर है। स्कैनर उससे बाहर एक अलग डिवाइस है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which part of the CPU fetches each instruction and tells the other parts what to do?",
+        "hi": "सीपीयू का कौन-सा भाग हर निर्देश लाता है और बाकी भागों को बताता है कि क्या करना है?"
+       },
+       "options": [
+        "ALU",
+        {
+         "en": "Control Unit",
+         "hi": "कंट्रोल यूनिट"
+        },
+        {
+         "en": "Printer",
+         "hi": "प्रिंटर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The Control Unit is the manager of the CPU: it controls the order in which work is done.",
+        "hi": "कंट्रोल यूनिट सीपीयू की प्रबंधक है: यह तय करती है कि काम किस क्रम में हो।"
+       },
+       "wrong": [
+        {
+         "en": "The ALU does the sums and comparisons, but it does not decide what happens next.",
+         "hi": "ALU हिसाब और तुलना करता है, पर यह तय नहीं करता कि आगे क्या होगा।"
+        },
+        "",
+        {
+         "en": "A printer is an output device outside the CPU.",
+         "hi": "प्रिंटर सीपीयू के बाहर एक आउटपुट डिवाइस है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Go through all four situations. Then name one input and one output device in your own home, like a phone's touch screen, which is both.",
+      "hi": "चारों स्थितियाँ पूरी करो। फिर अपने घर का एक इनपुट और एक आउटपुट डिवाइस बताओ, जैसे फ़ोन की टच स्क्रीन, जो दोनों है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch01-history",
+   "topic": "1.2",
+   "template": "timeline",
+   "title": {
+    "en": "From gears to chips: order the inventions",
+    "hi": "गियर से चिप तक: आविष्कारों को क्रम में लगाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "range": [
+     1600,
+     2000
+    ],
+    "task": "order",
+    "events": [
+     {
+      "id": "pascaline",
+      "year": 1642,
+      "label": {
+       "en": "Pascaline: a gear calculator that adds and subtracts",
+       "hi": "पास्कलाइन: गियर वाला कैलकुलेटर जो जोड़-घटा सकता था"
+      }
+     },
+     {
+      "id": "analytical",
+      "year": 1834,
+      "label": {
+       "en": "Analytical Engine designed by Charles Babbage",
+       "hi": "चार्ल्स बैबेज का एनालिटिकल इंजन (डिज़ाइन)"
+      }
+     },
+     {
+      "id": "eniac",
+      "year": 1946,
+      "label": {
+       "en": "ENIAC: an early electronic computer with vacuum tubes",
+       "hi": "ENIAC: वैक्यूम ट्यूब वाला शुरुआती इलेक्ट्रॉनिक कंप्यूटर"
+      }
+     },
+     {
+      "id": "ic",
+      "year": 1958,
+      "label": {
+       "en": "Integrated circuit (IC): many transistors on one chip",
+       "hi": "इंटीग्रेटेड सर्किट (IC): एक चिप पर कई ट्रांज़िस्टर"
+      }
+     },
+     {
+      "id": "micro",
+      "year": 1971,
+      "label": {
+       "en": "First microprocessor: a whole CPU on one chip",
+       "hi": "पहला माइक्रोप्रोसेसर: एक चिप पर पूरा सीपीयू"
+      }
+     }
+    ],
+    "prompt": {
+     "en": "Tap the inventions from the oldest to the newest.",
+     "hi": "आविष्कारों को सबसे पुराने से सबसे नए के क्रम में टैप करो।"
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which came first: the integrated circuit or the electronic computer ENIAC?",
+      "hi": "पहले क्या आया: इंटीग्रेटेड सर्किट या इलेक्ट्रॉनिक कंप्यूटर ENIAC?"
+     },
+     "options": [
+      {
+       "id": "eniac",
+       "en": "ENIAC came first",
+       "hi": "ENIAC पहले आया"
+      },
+      {
+       "id": "ic",
+       "en": "The integrated circuit came first",
+       "hi": "इंटीग्रेटेड सर्किट पहले आया"
+      },
+      {
+       "id": "same",
+       "en": "They came in the same year",
+       "hi": "दोनों एक ही साल में आए"
+      }
+     ],
+     "answer": "eniac"
+    },
+    {
+     "kind": "do",
+     "target": "event:pascaline",
+     "expect": "placed:pascaline",
+     "say": {
+      "en": "The oldest is a machine that only used gears to add. Tap the Pascaline.",
+      "hi": "सबसे पुरानी मशीन केवल गियर से जोड़ती थी। पास्कलाइन पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:analytical",
+     "expect": "placed:analytical",
+     "say": {
+      "en": "Next came a design for a machine that could be given a program. Tap the Analytical Engine.",
+      "hi": "उसके बाद एक ऐसी मशीन का डिज़ाइन आया जिसे प्रोग्राम दिया जा सकता था। एनालिटिकल इंजन पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:eniac",
+     "expect": "placed:eniac",
+     "say": {
+      "en": "Then electronics arrived, with thousands of vacuum tubes. Tap ENIAC.",
+      "hi": "फिर हज़ारों वैक्यूम ट्यूब वाले इलेक्ट्रॉनिक्स आए। ENIAC पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:ic",
+     "expect": "placed:ic",
+     "say": {
+      "en": "Tap the integrated circuit, which put many transistors on one chip.",
+      "hi": "इंटीग्रेटेड सर्किट पर टैप करो, जिसने एक चिप पर कई ट्रांज़िस्टर रख दिए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:micro",
+     "expect": "placed:micro",
+     "say": {
+      "en": "Last, tap the microprocessor: a whole CPU on one chip.",
+      "hi": "आख़िर में माइक्रोप्रोसेसर पर टैप करो: एक चिप पर पूरा सीपीयू।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "ordered",
+     "say": {
+      "en": "Press Check to see if your timeline is right.",
+      "hi": "\"जाँचो\" दबाकर देखो कि तुम्हारी समयरेखा सही है या नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Computers grew from gears (mechanical) to vacuum tubes (electronic), then to transistors and integrated circuits, and finally to the microprocessor. Each step made computers smaller, faster, cheaper and less power hungry, which is why a phone today is far stronger than ENIAC, which filled a big room.",
+      "hi": "कंप्यूटर गियर (यांत्रिक) से वैक्यूम ट्यूब (इलेक्ट्रॉनिक), फिर ट्रांज़िस्टर और इंटीग्रेटेड सर्किट, और आख़िर में माइक्रोप्रोसेसर तक बढ़े। हर क़दम ने कंप्यूटर को छोटा, तेज़, सस्ता और कम बिजली खाने वाला बनाया। इसीलिए आज का फ़ोन ENIAC से कहीं ज़्यादा ताक़तवर है, जो एक बड़े कमरे जितना था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What did the microprocessor put on a single chip?",
+        "hi": "माइक्रोप्रोसेसर ने एक चिप पर क्या रख दिया?"
+       },
+       "options": [
+        {
+         "en": "The whole CPU",
+         "hi": "पूरा सीपीयू"
+        },
+        {
+         "en": "Only the memory",
+         "hi": "केवल मेमोरी"
+        },
+        {
+         "en": "The keyboard",
+         "hi": "कीबोर्ड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A microprocessor is a complete CPU (ALU, control unit and registers) on one chip.",
+        "hi": "माइक्रोप्रोसेसर एक चिप पर पूरा सीपीयू (ALU, कंट्रोल यूनिट और रजिस्टर) है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Memory chips are separate; the microprocessor is the processing part.",
+         "hi": "मेमोरी की चिप अलग होती हैं; माइक्रोप्रोसेसर प्रोसेस करने वाला भाग है।"
+        },
+        {
+         "en": "A keyboard is an input device, not a chip part.",
+         "hi": "कीबोर्ड इनपुट डिवाइस है, चिप का भाग नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did computers become smaller over time?",
+        "hi": "समय के साथ कंप्यूटर छोटे क्यों होते गए?"
+       },
+       "options": [
+        {
+         "en": "Tubes were replaced by transistors and then by chips",
+         "hi": "ट्यूब की जगह ट्रांज़िस्टर और फिर चिप आ गईं"
+        },
+        {
+         "en": "People wanted less work done",
+         "hi": "लोग कम काम करवाना चाहते थे"
+        },
+        {
+         "en": "Gears became smaller",
+         "hi": "गियर छोटे हो गए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Transistors are tiny switches, and an IC packs many of them together, so the same work needs far less space.",
+        "hi": "ट्रांज़िस्टर बहुत छोटे स्विच हैं, और IC उनमें से कई को साथ रखती है, इसलिए वही काम बहुत कम जगह में होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Computers today do much more work, not less.",
+         "hi": "आज कंप्यूटर कम नहीं, बहुत ज़्यादा काम करते हैं।"
+        },
+        {
+         "en": "Modern computers do not use gears at all; they use electronic switches.",
+         "hi": "आधुनिक कंप्यूटर गियर का उपयोग ही नहीं करते; वे इलेक्ट्रॉनिक स्विच का उपयोग करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and order the five inventions again on your own, without the hints. Tap the zoom button to see how far apart they are.",
+      "hi": "\"फिर से\" दबाओ और पाँचों आविष्कारों को बिना संकेत के ख़ुद क्रम में लगाओ। ज़ूम बटन दबाकर देखो कि वे एक-दूसरे से कितने साल दूर हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch01-units",
+   "topic": "1.3",
+   "template": "logic",
+   "title": {
+    "en": "The byte ladder: KB, MB, GB, TB",
+    "hi": "बाइट की सीढ़ी: KB, MB, GB, TB"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "encoding"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tab:size",
+     "expect": "converted",
+     "say": {
+      "en": "Open the Size tab to see the units of memory.",
+      "hi": "मेमोरी की इकाइयाँ देखने के लिए \"आकार\" टैब खोलो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A kilobyte is 1024 bytes. How many bytes is one megabyte?",
+      "hi": "एक किलोबाइट 1024 बाइट है। एक मेगाबाइट में कितने बाइट होते हैं?"
+     },
+     "options": [
+      {
+       "id": "m",
+       "en": "1024 × 1024 = 1,048,576 bytes",
+       "hi": "1024 × 1024 = 10,48,576 बाइट"
+      },
+      {
+       "id": "k",
+       "en": "1024 bytes",
+       "hi": "1024 बाइट"
+      },
+      {
+       "id": "t",
+       "en": "1,000 bytes",
+       "hi": "1,000 बाइट"
+      }
+     ],
+     "answer": "m"
+    },
+    {
+     "kind": "do",
+     "target": "unit:MB",
+     "expect": "converted",
+     "say": {
+      "en": "Tap MB on the ladder.",
+      "hi": "सीढ़ी पर MB पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "unit:GB",
+     "expect": "converted",
+     "say": {
+      "en": "Now tap GB and compare the number of bytes.",
+      "hi": "अब GB पर टैप करो और बाइट की संख्या की तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A bit is a single 0 or 1, and 8 bits make a byte. Each step up the ladder is 1024 times bigger: 1 KB = 1024 bytes, 1 MB = 1024 KB, 1 GB = 1024 MB and 1 TB = 1024 GB. 1024 is used because it is a power of 2 (2 to the power 10), which suits binary.",
+      "hi": "बिट एक अकेला 0 या 1 है, और 8 बिट से एक बाइट बनता है। सीढ़ी का हर अगला डंडा 1024 गुना बड़ा है: 1 KB = 1024 बाइट, 1 MB = 1024 KB, 1 GB = 1024 MB और 1 TB = 1024 GB। 1024 इसलिए क्योंकि यह 2 की घात (2 की घात 10) है, जो बाइनरी के लिए ठीक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A pen drive holds 32 GB. How many MB is that?",
+        "hi": "एक पेन ड्राइव में 32 GB आता है। यह कितने MB है?"
+       },
+       "options": [
+        "32 × 1024 = 32,768 MB",
+        "32,000 MB",
+        "3,200 MB"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each GB is 1024 MB, so 32 GB is 32 × 1024 MB.",
+        "hi": "हर GB में 1024 MB है, इसलिए 32 GB = 32 × 1024 MB।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That uses 1000 for each step. Memory units here use 1024.",
+         "hi": "इसमें हर क़दम पर 1000 लिया है। यहाँ मेमोरी की इकाइयों में 1024 लेते हैं।"
+        },
+        {
+         "en": "That multiplies by 100, which is not a step on the byte ladder.",
+         "hi": "इसमें 100 से गुणा किया है, जो बाइट की सीढ़ी का कोई क़दम नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many bits are in one byte?",
+        "hi": "एक बाइट में कितने बिट होते हैं?"
+       },
+       "options": [
+        "4",
+        "8",
+        "1024"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "One byte is a group of 8 bits, enough for one English letter in ASCII.",
+        "hi": "एक बाइट 8 बिट का समूह है, ASCII में एक अंग्रेज़ी अक्षर के लिए काफ़ी।"
+       },
+       "wrong": [
+        {
+         "en": "4 bits is a nibble, half a byte.",
+         "hi": "4 बिट को निबल कहते हैं, यह आधा बाइट है।"
+        },
+        "",
+        {
+         "en": "1024 is the number of bytes in a kilobyte, not bits in a byte.",
+         "hi": "1024 एक किलोबाइट में बाइट की संख्या है, बाइट में बिट की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap every step of the ladder. Then guess: your phone has 128 GB. Roughly how many photos of 4 MB each can it hold?",
+      "hi": "सीढ़ी के हर डंडे पर टैप करो। फिर अंदाज़ा लगाओ: तुम्हारे फ़ोन में 128 GB है। उसमें 4 MB की लगभग कितनी फ़ोटो आएँगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch01-memory",
+   "topic": "1.3",
+   "template": "scenario",
+   "title": {
+    "en": "Where does the data live? Types of memory",
+    "hi": "डेटा कहाँ रहता है? मेमोरी के प्रकार"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "school lab",
+    "role": {
+     "en": "Detective of computer memory",
+     "hi": "कंप्यूटर मेमोरी का जासूस"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Meena is typing an essay. Suddenly the power goes off before she saves it. When the power comes back, the essay is gone. Which memory was holding it?",
+       "hi": "मीना एक निबंध टाइप कर रही है। सेव करने से पहले अचानक बिजली चली जाती है। बिजली आने पर निबंध गायब है। उसे कौन-सी मेमोरी पकड़े हुए थी?"
+      },
+      "choices": [
+       {
+        "id": "ram",
+        "text": {
+         "en": "RAM: it forgets everything when the power goes",
+         "hi": "RAM: बिजली जाते ही यह सब भूल जाती है"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Yes. RAM is volatile: it keeps data only while there is power. Saving copies the essay to secondary storage.",
+         "hi": "हाँ। RAM अस्थायी (volatile) है: यह डेटा तभी तक रखती है जब तक बिजली है। सेव करने से निबंध सेकेंडरी स्टोरेज में चला जाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "rom",
+        "text": {
+         "en": "ROM",
+         "hi": "ROM"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "ROM keeps its data even without power, and we cannot type into it. The essay was in RAM.",
+         "hi": "ROM बिना बिजली के भी डेटा रखती है, और हम इसमें टाइप नहीं कर सकते। निबंध RAM में था।"
+        },
+        "good": false
+       },
+       {
+        "id": "hdd",
+        "text": {
+         "en": "The hard disk",
+         "hi": "हार्ड डिस्क"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "If it were on the disk, it would still be there. Unsaved work lives only in RAM.",
+         "hi": "अगर यह डिस्क पर होता, तो अब भी होता। बिना सेव किया काम केवल RAM में रहता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "When the computer is switched on, it must start itself before anything is loaded. Where are these start-up instructions kept?",
+       "hi": "कंप्यूटर चालू होते ही, कुछ भी लोड होने से पहले, उसे ख़ुद को शुरू करना होता है। ये शुरुआती निर्देश कहाँ रखे होते हैं?"
+      },
+      "choices": [
+       {
+        "id": "rom2",
+        "text": {
+         "en": "In ROM, which keeps them without power",
+         "hi": "ROM में, जो बिना बिजली के भी इन्हें रखती है"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Correct. ROM is non-volatile and holds the start-up program that runs first.",
+         "hi": "सही। ROM स्थायी (non-volatile) है और उस शुरुआती प्रोग्राम को रखती है जो सबसे पहले चलता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "ram2",
+        "text": {
+         "en": "In RAM",
+         "hi": "RAM में"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "RAM is empty when the power is off, so it cannot hold the very first instructions.",
+         "hi": "बिजली बंद होने पर RAM ख़ाली होती है, इसलिए यह सबसे पहले वाले निर्देश नहीं रख सकती।"
+        },
+        "good": false
+       },
+       {
+        "id": "cache2",
+        "text": {
+         "en": "In the cache",
+         "hi": "कैश में"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Cache is fast but also volatile, like RAM. It loses its contents when switched off.",
+         "hi": "कैश तेज़ है पर RAM की तरह अस्थायी भी है। बंद होने पर इसका सामान मिट जाता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "The CPU keeps using the same few numbers again and again in a loop. To save time, a small, very fast memory between the CPU and RAM keeps copies of them. What is it?",
+       "hi": "सीपीयू एक लूप में बार-बार वही कुछ संख्याएँ उपयोग करता है। समय बचाने के लिए सीपीयू और RAM के बीच एक छोटी, बहुत तेज़ मेमोरी उनकी कॉपी रखती है। यह क्या है?"
+      },
+      "choices": [
+       {
+        "id": "cache3",
+        "text": {
+         "en": "Cache memory",
+         "hi": "कैश मेमोरी"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "Yes. Cache is faster than RAM but smaller and costlier. Registers inside the CPU are faster still.",
+         "hi": "हाँ। कैश RAM से तेज़ है पर छोटी और महँगी है। सीपीयू के अंदर के रजिस्टर इससे भी तेज़ हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "pen3",
+        "text": {
+         "en": "A pen drive",
+         "hi": "पेन ड्राइव"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "A pen drive is secondary storage, far slower than RAM. It would slow the CPU down.",
+         "hi": "पेन ड्राइव सेकेंडरी स्टोरेज है, RAM से बहुत धीमी। इससे सीपीयू धीमा हो जाएगा।"
+        },
+        "good": false
+       },
+       {
+        "id": "rom3",
+        "text": {
+         "en": "ROM",
+         "hi": "ROM"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "ROM cannot be written during normal work, so it cannot keep changing copies.",
+         "hi": "सामान्य काम के दौरान ROM में लिखा नहीं जा सकता, इसलिए यह बदलती कॉपियाँ नहीं रख सकती।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "The CPU wants the number stored at memory location 2050. Data travels on wires called buses. Which bus carries the location number 2050?",
+       "hi": "सीपीयू को मेमोरी के स्थान 2050 पर रखी संख्या चाहिए। डेटा बस नाम के तारों पर चलता है। कौन-सी बस स्थान संख्या 2050 ले जाती है?"
+      },
+      "choices": [
+       {
+        "id": "addr",
+        "text": {
+         "en": "The address bus",
+         "hi": "एड्रेस बस"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. The address bus carries where to look, the data bus carries the data itself, and the control bus carries signals like read or write.",
+         "hi": "सही। एड्रेस बस बताती है कहाँ देखना है, डेटा बस ख़ुद डेटा ले जाती है, और कंट्रोल बस पढ़ो या लिखो जैसे संकेत ले जाती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "data4",
+        "text": {
+         "en": "The data bus",
+         "hi": "डेटा बस"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The data bus brings back the number stored there, not the location number.",
+         "hi": "डेटा बस वहाँ रखी संख्या वापस लाती है, स्थान संख्या नहीं।"
+        },
+        "good": false
+       },
+       {
+        "id": "ctrl4",
+        "text": {
+         "en": "The control bus",
+         "hi": "कंट्रोल बस"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The control bus says \"read\" or \"write\". The location goes on the address bus.",
+         "hi": "कंट्रोल बस \"पढ़ो\" या \"लिखो\" बताती है। स्थान एड्रेस बस पर जाता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The power goes off and Meena's unsaved essay disappears. Which memory was it in?",
+      "hi": "बिजली जाती है और मीना का बिना सेव किया निबंध गायब हो जाता है। वह किस मेमोरी में था?"
+     },
+     "options": [
+      {
+       "id": "ram",
+       "en": "RAM",
+       "hi": "RAM (रैम)"
+      },
+      {
+       "id": "rom",
+       "en": "ROM",
+       "hi": "ROM (रोम)"
+      },
+      {
+       "id": "hdd",
+       "en": "Hard disk",
+       "hi": "हार्ड डिस्क"
+      }
+     ],
+     "answer": "ram"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:ram",
+     "expect": "chose:ram",
+     "say": {
+      "en": "Tap the RAM choice and read why the essay was lost.",
+      "hi": "RAM वाले विकल्प पर टैप करो और पढ़ो कि निबंध क्यों खोया।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Memory is arranged by speed. Registers inside the CPU are the fastest and smallest, then cache, then primary memory (RAM and ROM), then secondary storage like hard disks, SSDs and pen drives, which are slow but large and keep data without power. RAM and cache are volatile; ROM and secondary storage are not. Buses carry addresses, data and control signals between the CPU and memory.",
+      "hi": "मेमोरी गति के क्रम में होती है। सीपीयू के अंदर के रजिस्टर सबसे तेज़ और सबसे छोटे हैं, फिर कैश, फिर प्राइमरी मेमोरी (RAM और ROM), फिर हार्ड डिस्क, SSD और पेन ड्राइव जैसी सेकेंडरी स्टोरेज, जो धीमी पर बड़ी हैं और बिना बिजली के डेटा रखती हैं। RAM और कैश अस्थायी हैं; ROM और सेकेंडरी स्टोरेज नहीं। बसें सीपीयू और मेमोरी के बीच पता, डेटा और नियंत्रण संकेत ले जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which list goes from fastest to slowest?",
+        "hi": "कौन-सी सूची सबसे तेज़ से सबसे धीमे के क्रम में है?"
+       },
+       "options": [
+        {
+         "en": "Registers, cache, RAM, hard disk",
+         "hi": "रजिस्टर, कैश, RAM, हार्ड डिस्क"
+        },
+        {
+         "en": "RAM, registers, cache, hard disk",
+         "hi": "RAM, रजिस्टर, कैश, हार्ड डिस्क"
+        },
+        {
+         "en": "Hard disk, RAM, cache, registers",
+         "hi": "हार्ड डिस्क, RAM, कैश, रजिस्टर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Registers sit inside the CPU, cache is next to it, RAM is on the board, and the hard disk is the slowest.",
+        "hi": "रजिस्टर सीपीयू के अंदर हैं, कैश उसके पास, RAM बोर्ड पर, और हार्ड डिस्क सबसे धीमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "RAM is slower than both registers and cache.",
+         "hi": "RAM, रजिस्टर और कैश दोनों से धीमी है।"
+        },
+        {
+         "en": "This is the order from slowest to fastest, the other way round.",
+         "hi": "यह सबसे धीमे से सबसे तेज़ का क्रम है, उल्टा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we save a file before switching off?",
+        "hi": "बंद करने से पहले हम फ़ाइल सेव क्यों करते हैं?"
+       },
+       "options": [
+        {
+         "en": "To copy it from RAM to secondary storage, which keeps it without power",
+         "hi": "उसे RAM से सेकेंडरी स्टोरेज में कॉपी करने के लिए, जो बिना बिजली के भी रखती है"
+        },
+        {
+         "en": "To make the file smaller",
+         "hi": "फ़ाइल छोटी करने के लिए"
+        },
+        {
+         "en": "To move it into ROM",
+         "hi": "उसे ROM में डालने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Work in RAM is lost when the power goes. Saving writes it to disk or flash storage.",
+        "hi": "बिजली जाने पर RAM का काम खो जाता है। सेव करने से वह डिस्क या फ़्लैश स्टोरेज में लिख जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Saving does not shrink a file; it only stores it safely.",
+         "hi": "सेव करने से फ़ाइल छोटी नहीं होती; वह केवल सुरक्षित रखी जाती है।"
+        },
+        {
+         "en": "We cannot write our files into ROM; it holds fixed start-up instructions.",
+         "hi": "हम अपनी फ़ाइलें ROM में नहीं लिख सकते; उसमें तय शुरुआती निर्देश होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play all four situations. Then try choosing a wrong answer on purpose and read the feedback: it tells you exactly why it fails.",
+      "hi": "चारों स्थितियाँ खेलो। फिर जान-बूझकर कोई ग़लत उत्तर चुनो और जवाब पढ़ो: वह ठीक-ठीक बताता है कि वह क्यों ग़लत है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch01-chip",
+   "topic": "1.5",
+   "template": "scenario",
+   "title": {
+    "en": "Pick the right chip: microprocessor or microcontroller",
+    "hi": "सही चिप चुनो: माइक्रोप्रोसेसर या माइक्रोकंट्रोलर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "electronics shop",
+    "role": {
+     "en": "Advisor at an electronics shop",
+     "hi": "इलेक्ट्रॉनिक्स दुकान पर सलाहकार"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Arjun edits long videos for his school's YouTube club. Two laptops cost the same. Laptop A: 4 cores at 3.2 GHz. Laptop B: 2 cores at 2.0 GHz. Which suits him?",
+       "hi": "अर्जुन अपने स्कूल क्लब के लिए लंबे वीडियो एडिट करता है। दो लैपटॉप एक ही दाम के हैं। लैपटॉप A: 4 कोर, 3.2 GHz। लैपटॉप B: 2 कोर, 2.0 GHz। उसके लिए कौन-सा ठीक है?"
+      },
+      "choices": [
+       {
+        "id": "a",
+        "text": {
+         "en": "Laptop A: more cores and a higher clock speed",
+         "hi": "लैपटॉप A: ज़्यादा कोर और ज़्यादा क्लॉक स्पीड"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Yes. Clock speed is how many cycles the processor runs each second; more cores can work on parts of the video at the same time.",
+         "hi": "हाँ। क्लॉक स्पीड बताती है प्रोसेसर हर सेकंड कितने चक्र चलाता है; ज़्यादा कोर वीडियो के अलग-अलग भागों पर एक साथ काम कर सकते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "b",
+        "text": {
+         "en": "Laptop B",
+         "hi": "लैपटॉप B"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Laptop B has fewer cores and a slower clock, so video work would take longer.",
+         "hi": "लैपटॉप B में कम कोर और धीमी क्लॉक है, इसलिए वीडियो का काम ज़्यादा समय लेगा।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "The shopkeeper says one processor is \"64-bit\" and an old one is \"32-bit\". What does this number tell you?",
+       "hi": "दुकानदार कहता है कि एक प्रोसेसर \"64-बिट\" है और एक पुराना \"32-बिट\"। यह संख्या क्या बताती है?"
+      },
+      "choices": [
+       {
+        "id": "word",
+        "text": {
+         "en": "The word length: how many bits it can handle at one time",
+         "hi": "वर्ड लेंथ: यह एक बार में कितने बिट संभाल सकता है"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Correct. A 64-bit processor works on 64 bits in one go, so it handles larger numbers and more memory.",
+         "hi": "सही। 64-बिट प्रोसेसर एक बार में 64 बिट पर काम करता है, इसलिए वह बड़ी संख्याएँ और ज़्यादा मेमोरी संभालता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "speed",
+        "text": {
+         "en": "Its speed in GHz",
+         "hi": "GHz में इसकी गति"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Speed is the clock speed, written in GHz. The bit number is the word length.",
+         "hi": "गति क्लॉक स्पीड है, जो GHz में लिखी जाती है। बिट वाली संख्या वर्ड लेंथ है।"
+        },
+        "good": false
+       },
+       {
+        "id": "cores",
+        "text": {
+         "en": "The number of cores",
+         "hi": "कोर की संख्या"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Cores are counted separately, like \"quad-core\". 64-bit is about the word length.",
+         "hi": "कोर अलग गिने जाते हैं, जैसे \"क्वाड-कोर\"। 64-बिट वर्ड लेंथ के बारे में है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "A company is building a washing machine that only has to read a few buttons, run a timer and control a motor. Which chip should it use?",
+       "hi": "एक कंपनी ऐसी वॉशिंग मशीन बना रही है जिसे केवल कुछ बटन पढ़ने, टाइमर चलाने और मोटर चलाने हैं। उसे कौन-सी चिप लगानी चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "mc",
+        "text": {
+         "en": "A microcontroller: a small CPU with memory and input/output on one chip",
+         "hi": "माइक्रोकंट्रोलर: एक चिप पर छोटा सीपीयू, मेमोरी और इनपुट/आउटपुट"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. A microcontroller is cheap, uses little power and does one fixed job, like in microwaves, remote controls and washing machines.",
+         "hi": "सही। माइक्रोकंट्रोलर सस्ता है, कम बिजली लेता है और एक तय काम करता है, जैसे माइक्रोवेव, रिमोट और वॉशिंग मशीन में।"
+        },
+        "good": true
+       },
+       {
+        "id": "mp",
+        "text": {
+         "en": "A powerful laptop microprocessor",
+         "hi": "लैपटॉप का शक्तिशाली माइक्रोप्रोसेसर"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "It would work, but it needs separate memory chips, costs more and uses more power than this simple job needs.",
+         "hi": "यह चल तो जाएगा, पर इसे अलग मेमोरी चिप चाहिए, यह महँगा है और इस सरल काम की ज़रूरत से ज़्यादा बिजली लेता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Arjun edits long videos. Should he pick 4 cores at 3.2 GHz or 2 cores at 2.0 GHz?",
+      "hi": "अर्जुन लंबे वीडियो एडिट करता है। उसे 4 कोर 3.2 GHz चुनना चाहिए या 2 कोर 2.0 GHz?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "4 cores at 3.2 GHz",
+       "hi": "4 कोर, 3.2 GHz"
+      },
+      {
+       "id": "b",
+       "en": "2 cores at 2.0 GHz",
+       "hi": "2 कोर, 2.0 GHz"
+      },
+      {
+       "id": "same",
+       "en": "It makes no difference",
+       "hi": "कोई फ़र्क़ नहीं पड़ता"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:a",
+     "expect": "chose:a",
+     "say": {
+      "en": "Tap Laptop A and read what clock speed and cores mean.",
+      "hi": "लैपटॉप A पर टैप करो और पढ़ो कि क्लॉक स्पीड और कोर का क्या मतलब है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A microprocessor is judged by its clock speed (GHz), its number of cores, its word length (32 or 64 bit) and its cache size. A microcontroller is a tiny computer on one chip: a simple processor with its own memory and input/output, made for one fixed job inside a machine.",
+      "hi": "माइक्रोप्रोसेसर को उसकी क्लॉक स्पीड (GHz), कोर की संख्या, वर्ड लेंथ (32 या 64 बिट) और कैश के आकार से परखते हैं। माइक्रोकंट्रोलर एक चिप पर छोटा कंप्यूटर है: सरल प्रोसेसर, उसकी अपनी मेमोरी और इनपुट/आउटपुट, किसी मशीन के अंदर एक तय काम के लिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A clock speed of 3 GHz means about:",
+        "hi": "3 GHz क्लॉक स्पीड का मतलब है लगभग:"
+       },
+       "options": [
+        {
+         "en": "3 billion cycles every second",
+         "hi": "हर सेकंड 3 अरब चक्र"
+        },
+        {
+         "en": "3 thousand cycles every second",
+         "hi": "हर सेकंड 3 हज़ार चक्र"
+        },
+        {
+         "en": "3 programs at a time",
+         "hi": "एक बार में 3 प्रोग्राम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Giga means a billion, and hertz means cycles per second.",
+        "hi": "गीगा का मतलब अरब है, और हर्ट्ज़ का मतलब प्रति सेकंड चक्र।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Kilo means a thousand. Giga is a million times bigger than kilo.",
+         "hi": "किलो का मतलब हज़ार है। गीगा, किलो से दस लाख गुना बड़ा है।"
+        },
+        {
+         "en": "GHz measures the speed of the clock, not how many programs run.",
+         "hi": "GHz घड़ी की गति मापता है, यह नहीं कि कितने प्रोग्राम चलते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which device most likely has a microcontroller rather than a laptop-style microprocessor?",
+        "hi": "किस डिवाइस में लैपटॉप जैसे माइक्रोप्रोसेसर के बजाय माइक्रोकंट्रोलर होने की संभावना सबसे ज़्यादा है?"
+       },
+       "options": [
+        {
+         "en": "A TV remote control",
+         "hi": "टीवी का रिमोट"
+        },
+        {
+         "en": "A gaming desktop",
+         "hi": "गेमिंग डेस्कटॉप"
+        },
+        {
+         "en": "A web server",
+         "hi": "वेब सर्वर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A remote only reads buttons and sends a signal: a perfect fixed job for a microcontroller.",
+        "hi": "रिमोट केवल बटन पढ़ता है और संकेत भेजता है: माइक्रोकंट्रोलर के लिए एकदम सही तय काम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A gaming desktop runs many heavy programs and needs a powerful microprocessor.",
+         "hi": "गेमिंग डेस्कटॉप कई भारी प्रोग्राम चलाता है और उसे शक्तिशाली माइक्रोप्रोसेसर चाहिए।"
+        },
+        {
+         "en": "A web server serves many users at once and needs strong microprocessors.",
+         "hi": "वेब सर्वर एक साथ कई लोगों को सेवा देता है और उसे मज़बूत माइक्रोप्रोसेसर चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the three situations. Then find your family phone's processor details in its settings: how many cores, and what clock speed?",
+      "hi": "तीनों स्थितियाँ पूरी करो। फिर घर के फ़ोन की सेटिंग में उसके प्रोसेसर की जानकारी ढूँढो: कितने कोर, और कितनी क्लॉक स्पीड?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch01-data",
+   "topic": "1.6",
+   "template": "scenario",
+   "title": {
+    "en": "Data detective: structured data and lost files",
+    "hi": "डेटा जासूस: व्यवस्थित डेटा और खोई फ़ाइलें"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "school office",
+    "role": {
+     "en": "Helper in the school office",
+     "hi": "स्कूल कार्यालय में सहायक"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "The school keeps a marks register: every row is a student, and the columns are roll number, name and marks in each subject. What kind of data is this?",
+       "hi": "स्कूल एक अंक रजिस्टर रखता है: हर पंक्ति एक विद्यार्थी है, और कॉलम हैं अनुक्रमांक, नाम और हर विषय के अंक। यह किस तरह का डेटा है?"
+      },
+      "choices": [
+       {
+        "id": "str",
+        "text": {
+         "en": "Structured data: it fits neatly in rows and columns",
+         "hi": "व्यवस्थित (structured) डेटा: यह पंक्तियों और कॉलमों में ठीक से बैठता है"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Yes. Structured data follows a fixed format, so it is easy to sort, search and add up.",
+         "hi": "हाँ। व्यवस्थित डेटा एक तय ढाँचे में होता है, इसलिए उसे छाँटना, खोजना और जोड़ना आसान है।"
+        },
+        "good": true
+       },
+       {
+        "id": "uns",
+        "text": {
+         "en": "Unstructured data",
+         "hi": "अव्यवस्थित (unstructured) डेटा"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Unstructured data has no fixed format, like a video. This register has fixed columns.",
+         "hi": "अव्यवस्थित डेटा का कोई तय ढाँचा नहीं होता, जैसे वीडियो। इस रजिस्टर में तय कॉलम हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Parents send voice notes and photos of sick-leave letters on the school phone. What kind of data are these?",
+       "hi": "माता-पिता स्कूल के फ़ोन पर छुट्टी के आवेदन की फ़ोटो और वॉइस नोट भेजते हैं। यह किस तरह का डेटा है?"
+      },
+      "choices": [
+       {
+        "id": "uns2",
+        "text": {
+         "en": "Unstructured: no fixed rows or columns",
+         "hi": "अव्यवस्थित: कोई तय पंक्ति या कॉलम नहीं"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Right. Photos, audio and video are unstructured; a person or a clever program must look inside to understand them.",
+         "hi": "सही। फ़ोटो, ऑडियो और वीडियो अव्यवस्थित हैं; उन्हें समझने के लिए किसी व्यक्ति या समझदार प्रोग्राम को अंदर देखना पड़ता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "str2",
+        "text": {
+         "en": "Structured",
+         "hi": "व्यवस्थित"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "You cannot sort voice notes by a column; they have no fixed format.",
+         "hi": "वॉइस नोट को किसी कॉलम से नहीं छाँट सकते; उनका कोई तय ढाँचा नहीं है।"
+        },
+        "good": false
+       },
+       {
+        "id": "semi2",
+        "text": {
+         "en": "Semi-structured, like an email",
+         "hi": "अर्ध-व्यवस्थित, ईमेल की तरह"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "An email has some labelled parts (To, Subject, Date) plus free text. A photo has no such parts to read.",
+         "hi": "ईमेल में कुछ नाम वाले भाग (To, Subject, Date) और खुला पाठ होता है। फ़ोटो में ऐसे भाग नहीं होते।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "The clerk deletes a fee file by mistake on the office computer. What should she try first?",
+       "hi": "क्लर्क गलती से कार्यालय के कंप्यूटर पर फ़ीस की एक फ़ाइल मिटा देती है। उसे पहले क्या करना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "bin",
+        "text": {
+         "en": "Open the Recycle Bin and restore it",
+         "hi": "रीसायकल बिन खोलकर उसे वापस लाना"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "Yes. A normal delete only moves the file to the Recycle Bin (or Trash), so it can be restored.",
+         "hi": "हाँ। सामान्य रूप से मिटाने पर फ़ाइल केवल रीसायकल बिन (या ट्रैश) में जाती है, इसलिए वापस लाई जा सकती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "lost",
+        "text": {
+         "en": "Accept that it is lost forever",
+         "hi": "मान लेना कि वह हमेशा के लिए गई"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "Too soon to give up. Deleted files usually wait in the Recycle Bin.",
+         "hi": "हार मानना जल्दी है। मिटाई फ़ाइलें आमतौर पर रीसायकल बिन में रहती हैं।"
+        },
+        "good": false
+       },
+       {
+        "id": "copy",
+        "text": {
+         "en": "Copy many new files onto the disk",
+         "hi": "डिस्क पर बहुत-सी नई फ़ाइलें कॉपी करना"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "That is the worst idea: new files can overwrite the space where the old file still lies, making recovery impossible.",
+         "hi": "यह सबसे बुरा विचार है: नई फ़ाइलें उस जगह पर लिख सकती हैं जहाँ पुरानी फ़ाइल अब भी पड़ी है, और फिर उसे वापस लाना असंभव हो जाता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "The school is giving away an old computer. Even after emptying the Recycle Bin, someone could recover marks and phone numbers from it. What is the safe step?",
+       "hi": "स्कूल एक पुराना कंप्यूटर दे रहा है। रीसायकल बिन ख़ाली करने के बाद भी कोई उससे अंक और फ़ोन नंबर वापस निकाल सकता है। सुरक्षित क़दम क्या है?"
+      },
+      "choices": [
+       {
+        "id": "wipe",
+        "text": {
+         "en": "Use a tool that overwrites the whole disk (secure erase) before giving it",
+         "hi": "देने से पहले ऐसा टूल चलाना जो पूरी डिस्क पर दोबारा लिख दे (सिक्योर इरेज़)"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Deleting only marks the space as free; the data stays until it is overwritten. Secure erasing overwrites it.",
+         "hi": "सही। मिटाने से जगह केवल ख़ाली मान ली जाती है; डेटा तब तक रहता है जब तक उस पर दोबारा न लिखा जाए। सिक्योर इरेज़ उस पर लिख देता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "del",
+        "text": {
+         "en": "Just delete the folders",
+         "hi": "बस फ़ोल्डर मिटा देना"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Deleted data can still be recovered with recovery tools until it is overwritten.",
+         "hi": "मिटाया डेटा रिकवरी टूल से तब तक वापस निकाला जा सकता है जब तक उस पर दोबारा न लिखा जाए।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A marks register has a row for each student and fixed columns. Is it structured or unstructured data?",
+      "hi": "अंक रजिस्टर में हर विद्यार्थी की एक पंक्ति और तय कॉलम हैं। यह व्यवस्थित डेटा है या अव्यवस्थित?"
+     },
+     "options": [
+      {
+       "id": "str",
+       "en": "Structured",
+       "hi": "व्यवस्थित"
+      },
+      {
+       "id": "uns",
+       "en": "Unstructured",
+       "hi": "अव्यवस्थित"
+      }
+     ],
+     "answer": "str"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:str",
+     "expect": "chose:str",
+     "say": {
+      "en": "Tap the structured data choice and read the feedback.",
+      "hi": "व्यवस्थित डेटा वाले विकल्प पर टैप करो और जवाब पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Data comes in three kinds: structured (fixed rows and columns, like a register), semi-structured (some labels plus free text, like an email) and unstructured (photos, audio, video). When a file is deleted, its space is only marked free, so it can often be recovered until new data overwrites it. That helps us recover mistakes, but it also means old devices must be wiped properly.",
+      "hi": "डेटा तीन तरह का होता है: व्यवस्थित (तय पंक्तियाँ और कॉलम, जैसे रजिस्टर), अर्ध-व्यवस्थित (कुछ नाम और खुला पाठ, जैसे ईमेल) और अव्यवस्थित (फ़ोटो, ऑडियो, वीडियो)। फ़ाइल मिटाने पर उसकी जगह केवल ख़ाली मान ली जाती है, इसलिए जब तक नया डेटा उस पर न लिखे, उसे अक्सर वापस लाया जा सकता है। इससे गलती सुधारने में मदद मिलती है, पर इसका मतलब यह भी है कि पुराने डिवाइस को ठीक से साफ़ करना ज़रूरी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An email with To, From, Subject and a message body is:",
+        "hi": "To, From, Subject और संदेश वाला ईमेल है:"
+       },
+       "options": [
+        {
+         "en": "Semi-structured data",
+         "hi": "अर्ध-व्यवस्थित डेटा"
+        },
+        {
+         "en": "Structured data",
+         "hi": "व्यवस्थित डेटा"
+        },
+        {
+         "en": "Not data at all",
+         "hi": "डेटा ही नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Its labelled parts give some structure, but the message itself is free text.",
+        "hi": "इसके नाम वाले भाग कुछ ढाँचा देते हैं, पर संदेश ख़ुद खुला पाठ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The message body has no fixed columns, so it is not fully structured.",
+         "hi": "संदेश में कोई तय कॉलम नहीं, इसलिए यह पूरी तरह व्यवस्थित नहीं है।"
+        },
+        {
+         "en": "Anything a computer stores and processes is data.",
+         "hi": "कंप्यूटर जो कुछ भी रखता और प्रोसेस करता है, वह डेटा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can a deleted file often be recovered?",
+        "hi": "मिटाई गई फ़ाइल अक्सर वापस क्यों लाई जा सकती है?"
+       },
+       "options": [
+        {
+         "en": "Its bits stay on the disk until new data overwrites them",
+         "hi": "नया डेटा लिखे जाने तक उसके बिट डिस्क पर रहते हैं"
+        },
+        {
+         "en": "The computer keeps a backup of every file forever",
+         "hi": "कंप्यूटर हर फ़ाइल का हमेशा के लिए बैकअप रखता है"
+        },
+        {
+         "en": "ROM remembers it",
+         "hi": "ROM उसे याद रखती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Delete removes the file's entry and marks the space free; the data itself is still there for a while.",
+        "hi": "मिटाना फ़ाइल की सूची से उसका नाम हटाकर जगह ख़ाली मान लेता है; डेटा ख़ुद कुछ समय तक वहीं रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Computers do not back up files by themselves unless we set it up.",
+         "hi": "जब तक हम व्यवस्था न करें, कंप्यूटर अपने आप फ़ाइलों का बैकअप नहीं रखता।"
+        },
+        {
+         "en": "ROM holds fixed start-up instructions, not our files.",
+         "hi": "ROM में तय शुरुआती निर्देश होते हैं, हमारी फ़ाइलें नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play all four situations. Then, with an adult, make a test file on a computer, delete it and restore it from the Recycle Bin.",
+      "hi": "चारों स्थितियाँ खेलो। फिर किसी बड़े के साथ कंप्यूटर पर एक जाँच फ़ाइल बनाओ, उसे मिटाओ और रीसायकल बिन से वापस लाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch01-software",
+   "topic": "1.7",
+   "template": "scenario",
+   "title": {
+    "en": "Set up the school computer lab: kinds of software",
+    "hi": "स्कूल की कंप्यूटर लैब तैयार करो: सॉफ़्टवेयर के प्रकार"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "computer lab",
+    "role": {
+     "en": "In-charge of the new computer lab",
+     "hi": "नई कंप्यूटर लैब के प्रभारी"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Twenty new computers arrive with nothing on them. Which software must go on first so that every other program can run?",
+       "hi": "बीस नए कंप्यूटर आते हैं, उन पर कुछ भी नहीं है। कौन-सा सॉफ़्टवेयर सबसे पहले डालना होगा ताकि बाकी हर प्रोग्राम चल सके?"
+      },
+      "choices": [
+       {
+        "id": "os",
+        "text": {
+         "en": "An operating system (system software)",
+         "hi": "ऑपरेटिंग सिस्टम (सिस्टम सॉफ़्टवेयर)"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Yes. The operating system manages the hardware and lets application programs run on it.",
+         "hi": "हाँ। ऑपरेटिंग सिस्टम हार्डवेयर को संभालता है और एप्लिकेशन प्रोग्रामों को उस पर चलने देता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "game",
+        "text": {
+         "en": "A typing game",
+         "hi": "टाइपिंग वाला गेम"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "A game is application software. It cannot run until an operating system is there.",
+         "hi": "गेम एप्लिकेशन सॉफ़्टवेयर है। ऑपरेटिंग सिस्टम के बिना यह चल नहीं सकता।"
+        },
+        "good": false
+       },
+       {
+        "id": "word",
+        "text": {
+         "en": "A word processor",
+         "hi": "वर्ड प्रोसेसर"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "A word processor is also an application. It needs the operating system underneath.",
+         "hi": "वर्ड प्रोसेसर भी एप्लिकेशन है। इसके नीचे ऑपरेटिंग सिस्टम चाहिए।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "A new printer is connected, but the computer does not know how to talk to it. What is missing?",
+       "hi": "नया प्रिंटर लगाया गया है, पर कंप्यूटर नहीं जानता कि उससे बात कैसे करे। क्या कमी है?"
+      },
+      "choices": [
+       {
+        "id": "drv",
+        "text": {
+         "en": "A device driver for the printer",
+         "hi": "प्रिंटर का डिवाइस ड्राइवर"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Correct. A device driver is system software that lets the operating system control a particular device.",
+         "hi": "सही। डिवाइस ड्राइवर सिस्टम सॉफ़्टवेयर है जो ऑपरेटिंग सिस्टम को किसी ख़ास डिवाइस को चलाने देता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "anti",
+        "text": {
+         "en": "An antivirus",
+         "hi": "एंटीवायरस"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "An antivirus is a utility that protects the computer. It does not teach it to use a printer.",
+         "hi": "एंटीवायरस एक यूटिलिटी है जो कंप्यूटर की रक्षा करता है। यह प्रिंटर चलाना नहीं सिखाता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Students will write Python programs. The computer only understands machine code (0s and 1s). What turns Python into something the computer can run?",
+       "hi": "विद्यार्थी पायथन प्रोग्राम लिखेंगे। कंप्यूटर केवल मशीन कोड (0 और 1) समझता है। पायथन को कंप्यूटर के चलाने लायक़ कौन बनाता है?"
+      },
+      "choices": [
+       {
+        "id": "interp",
+        "text": {
+         "en": "A language translator: the Python interpreter",
+         "hi": "भाषा अनुवादक: पायथन इंटरप्रेटर"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "Right. Translators (compilers, interpreters and assemblers) are programming tools that turn code into machine language.",
+         "hi": "सही। अनुवादक (कंपाइलर, इंटरप्रेटर और असेंबलर) प्रोग्रामिंग टूल हैं जो कोड को मशीन भाषा में बदलते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "dc",
+        "text": {
+         "en": "A disk cleaner",
+         "hi": "डिस्क क्लीनर"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "A disk cleaner frees space on the disk. It cannot translate a program.",
+         "hi": "डिस्क क्लीनर डिस्क पर जगह ख़ाली करता है। यह प्रोग्राम का अनुवाद नहीं कर सकता।"
+        },
+        "good": false
+       },
+       {
+        "id": "mon",
+        "text": {
+         "en": "The monitor",
+         "hi": "मॉनिटर"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "The monitor is hardware that shows output. Translation is done by software.",
+         "hi": "मॉनिटर हार्डवेयर है जो आउटपुट दिखाता है। अनुवाद सॉफ़्टवेयर करता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "The school has a small budget and wants an office suite it can use, copy to all 20 computers and even change. Which kind fits best?",
+       "hi": "स्कूल का बजट कम है और उसे ऐसा ऑफ़िस सॉफ़्टवेयर चाहिए जिसे वह उपयोग कर सके, सभी 20 कंप्यूटरों पर कॉपी कर सके और बदल भी सके। कौन-सा प्रकार सबसे अच्छा है?"
+      },
+      "choices": [
+       {
+        "id": "foss",
+        "text": {
+         "en": "Free and open source software (FOSS)",
+         "hi": "मुफ़्त और ओपन सोर्स सॉफ़्टवेयर (FOSS)"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. FOSS can be used, shared and changed freely because its source code is open, like LibreOffice or Python itself.",
+         "hi": "हाँ। FOSS को खुलकर उपयोग, साझा और बदला जा सकता है क्योंकि इसका सोर्स कोड खुला है, जैसे LibreOffice या ख़ुद पायथन।"
+        },
+        "good": true
+       },
+       {
+        "id": "prop",
+        "text": {
+         "en": "Proprietary software with one licence, copied to all 20",
+         "hi": "एक लाइसेंस वाला प्रोप्राइटरी सॉफ़्टवेयर, सभी 20 पर कॉपी"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Copying one paid licence to 20 computers breaks the licence. Proprietary code also cannot be changed.",
+         "hi": "एक पैसे वाला लाइसेंस 20 कंप्यूटरों पर कॉपी करना लाइसेंस तोड़ना है। प्रोप्राइटरी कोड बदला भी नहीं जा सकता।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "New computers have nothing on them. What must be installed first?",
+      "hi": "नए कंप्यूटरों पर कुछ भी नहीं है। सबसे पहले क्या डालना होगा?"
+     },
+     "options": [
+      {
+       "id": "os",
+       "en": "An operating system",
+       "hi": "ऑपरेटिंग सिस्टम"
+      },
+      {
+       "id": "game",
+       "en": "A game",
+       "hi": "एक गेम"
+      },
+      {
+       "id": "word",
+       "en": "A word processor",
+       "hi": "वर्ड प्रोसेसर"
+      }
+     ],
+     "answer": "os"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:os",
+     "expect": "chose:os",
+     "say": {
+      "en": "Tap the operating system choice and read why it comes first.",
+      "hi": "ऑपरेटिंग सिस्टम वाले विकल्प पर टैप करो और पढ़ो कि यह पहले क्यों आता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Software is of three kinds. System software runs the computer: the operating system, device drivers and utilities like antivirus. Programming tools help us make software: translators such as interpreters and compilers. Application software does our jobs: word processors, games, school apps. Software can be proprietary (owned, paid, closed code) or free and open source (code open to read, share and change).",
+      "hi": "सॉफ़्टवेयर तीन तरह के होते हैं। सिस्टम सॉफ़्टवेयर कंप्यूटर चलाता है: ऑपरेटिंग सिस्टम, डिवाइस ड्राइवर और एंटीवायरस जैसी यूटिलिटी। प्रोग्रामिंग टूल सॉफ़्टवेयर बनाने में मदद करते हैं: इंटरप्रेटर और कंपाइलर जैसे अनुवादक। एप्लिकेशन सॉफ़्टवेयर हमारे काम करता है: वर्ड प्रोसेसर, गेम, स्कूल ऐप। सॉफ़्टवेयर प्रोप्राइटरी (किसी का स्वामित्व, पैसे वाला, बंद कोड) या मुफ़्त और ओपन सोर्स (कोड पढ़ने, बाँटने और बदलने के लिए खुला) हो सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An antivirus program is:",
+        "hi": "एंटीवायरस प्रोग्राम है:"
+       },
+       "options": [
+        {
+         "en": "System software (a utility)",
+         "hi": "सिस्टम सॉफ़्टवेयर (एक यूटिलिटी)"
+        },
+        {
+         "en": "A programming tool",
+         "hi": "प्रोग्रामिंग टूल"
+        },
+        {
+         "en": "A language translator",
+         "hi": "भाषा अनुवादक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Utilities look after the computer itself: protection, cleaning, backup.",
+        "hi": "यूटिलिटी ख़ुद कंप्यूटर की देखभाल करती हैं: सुरक्षा, सफ़ाई, बैकअप।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Programming tools help write programs; an antivirus protects the system.",
+         "hi": "प्रोग्रामिंग टूल प्रोग्राम लिखने में मदद करते हैं; एंटीवायरस सिस्टम की रक्षा करता है।"
+        },
+        {
+         "en": "A translator turns code into machine language; an antivirus does not.",
+         "hi": "अनुवादक कोड को मशीन भाषा में बदलता है; एंटीवायरस ऐसा नहीं करता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What makes software \"open source\"?",
+        "hi": "किसी सॉफ़्टवेयर को \"ओपन सोर्स\" क्या बनाता है?"
+       },
+       "options": [
+        {
+         "en": "Its source code is available to read, change and share",
+         "hi": "उसका सोर्स कोड पढ़ने, बदलने और बाँटने के लिए उपलब्ध है"
+        },
+        {
+         "en": "It is always given away on a CD",
+         "hi": "वह हमेशा सीडी पर मुफ़्त मिलता है"
+        },
+        {
+         "en": "It has no bugs",
+         "hi": "उसमें कोई गड़बड़ी नहीं होती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Open source is about the code being open, with a licence that allows changes and sharing.",
+        "hi": "ओपन सोर्स का मतलब है कोड खुला है, और लाइसेंस बदलने व बाँटने की अनुमति देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "How software is delivered does not decide whether it is open source.",
+         "hi": "सॉफ़्टवेयर कैसे मिलता है, इससे तय नहीं होता कि वह ओपन सोर्स है।"
+        },
+        {
+         "en": "Any software can have bugs; open code just lets more people find and fix them.",
+         "hi": "किसी भी सॉफ़्टवेयर में गड़बड़ी हो सकती है; खुला कोड बस ज़्यादा लोगों को उन्हें ढूँढने और ठीक करने देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play all four situations. Then list three programs on a computer or phone you use, and say whether each is system software, a programming tool or an application.",
+      "hi": "चारों स्थितियाँ खेलो। फिर अपने उपयोग के कंप्यूटर या फ़ोन के तीन प्रोग्राम लिखो, और बताओ कि हर एक सिस्टम सॉफ़्टवेयर है, प्रोग्रामिंग टूल है या एप्लिकेशन।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch01-os",
+   "topic": "1.8",
+   "template": "scenario",
+   "title": {
+    "en": "A day in the life of an operating system",
+    "hi": "ऑपरेटिंग सिस्टम का एक दिन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "home computer",
+    "role": {
+     "en": "The operating system of a home computer",
+     "hi": "घर के कंप्यूटर का ऑपरेटिंग सिस्टम"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Dadi does not know English commands. She wants to open the photo of the family wedding by tapping a picture on the screen. Which kind of user interface helps her?",
+       "hi": "दादी अंग्रेज़ी कमांड नहीं जानतीं। वे स्क्रीन पर किसी चित्र को छूकर शादी की फ़ोटो खोलना चाहती हैं। कौन-सा यूज़र इंटरफ़ेस उनकी मदद करेगा?"
+      },
+      "choices": [
+       {
+        "id": "gui",
+        "text": {
+         "en": "A graphical or touch interface with icons",
+         "hi": "आइकन वाला ग्राफ़िकल या टच इंटरफ़ेस"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Yes. A GUI or touch interface lets people use icons and gestures instead of typed commands. Voice interfaces also help.",
+         "hi": "हाँ। GUI या टच इंटरफ़ेस से लोग टाइप की गई कमांड की जगह आइकन और इशारों का उपयोग कर सकते हैं। आवाज़ वाला इंटरफ़ेस भी मदद करता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "cmd",
+        "text": {
+         "en": "A command-based interface",
+         "hi": "कमांड वाला इंटरफ़ेस"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "In a command interface you must type exact commands. That is hard for Dadi.",
+         "hi": "कमांड इंटरफ़ेस में सटीक कमांड टाइप करनी पड़ती हैं। दादी के लिए यह कठिन है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Ravi plays music while a big file downloads and he types a letter. The single CPU shares its time among all three. Which OS job is this?",
+       "hi": "रवि गाना सुन रहा है, एक बड़ी फ़ाइल डाउनलोड हो रही है और वह एक पत्र टाइप कर रहा है। अकेला सीपीयू अपना समय तीनों में बाँटता है। यह ऑपरेटिंग सिस्टम का कौन-सा काम है?"
+      },
+      "choices": [
+       {
+        "id": "proc",
+        "text": {
+         "en": "Process management",
+         "hi": "प्रोसेस मैनेजमेंट"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Right. The OS decides which running program (process) gets the CPU and for how long.",
+         "hi": "सही। ऑपरेटिंग सिस्टम तय करता है कि कौन-सा चलता प्रोग्राम (प्रोसेस) सीपीयू कब और कितनी देर लेगा।"
+        },
+        "good": true
+       },
+       {
+        "id": "file",
+        "text": {
+         "en": "File management",
+         "hi": "फ़ाइल मैनेजमेंट"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "File management is about saving, naming and organising files in folders.",
+         "hi": "फ़ाइल मैनेजमेंट फ़ाइलों को सेव करने, नाम देने और फ़ोल्डरों में रखने के बारे में है।"
+        },
+        "good": false
+       },
+       {
+        "id": "dev",
+        "text": {
+         "en": "Device management",
+         "hi": "डिवाइस मैनेजमेंट"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Device management controls devices like printers. Sharing the CPU is process management.",
+         "hi": "डिवाइस मैनेजमेंट प्रिंटर जैसे डिवाइस चलाता है। सीपीयू बाँटना प्रोसेस मैनेजमेंट है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Each of the three programs needs space in RAM, and they must not write over each other. Which OS job handles this?",
+       "hi": "तीनों प्रोग्रामों को RAM में जगह चाहिए, और वे एक-दूसरे पर न लिखें। ऑपरेटिंग सिस्टम का कौन-सा काम यह संभालता है?"
+      },
+      "choices": [
+       {
+        "id": "mem",
+        "text": {
+         "en": "Memory management",
+         "hi": "मेमोरी मैनेजमेंट"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "Yes. The OS gives each program its own part of memory and takes it back when the program closes.",
+         "hi": "हाँ। ऑपरेटिंग सिस्टम हर प्रोग्राम को मेमोरी का अपना भाग देता है और प्रोग्राम बंद होने पर वापस ले लेता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "ui",
+        "text": {
+         "en": "The user interface",
+         "hi": "यूज़र इंटरफ़ेस"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "The user interface is how we talk to the computer, not how memory is shared.",
+         "hi": "यूज़र इंटरफ़ेस वह तरीक़ा है जिससे हम कंप्यूटर से बात करते हैं, मेमोरी बाँटने का नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Ravi saves his letter as \"leave.docx\" inside a folder called \"School\". Which OS job keeps track of where it is stored on the disk?",
+       "hi": "रवि अपना पत्र \"School\" नाम के फ़ोल्डर में \"leave.docx\" नाम से सेव करता है। डिस्क पर यह कहाँ रखा है, इसका हिसाब ऑपरेटिंग सिस्टम का कौन-सा काम रखता है?"
+      },
+      "choices": [
+       {
+        "id": "fm",
+        "text": {
+         "en": "File management",
+         "hi": "फ़ाइल मैनेजमेंट"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. The OS creates, names, finds, moves and deletes files and folders for us.",
+         "hi": "सही। ऑपरेटिंग सिस्टम हमारे लिए फ़ाइलें और फ़ोल्डर बनाता, नाम देता, ढूँढता, खिसकाता और मिटाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "pm",
+        "text": {
+         "en": "Process management",
+         "hi": "प्रोसेस मैनेजमेंट"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Process management shares the CPU among programs. Folders and files are file management.",
+         "hi": "प्रोसेस मैनेजमेंट सीपीयू को प्रोग्रामों में बाँटता है। फ़ोल्डर और फ़ाइलें फ़ाइल मैनेजमेंट हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Dadi wants to open a photo by touching a picture on the screen, without typing commands. Which interface suits her?",
+      "hi": "दादी बिना कमांड टाइप किए, स्क्रीन पर चित्र छूकर फ़ोटो खोलना चाहती हैं। कौन-सा इंटरफ़ेस उनके लिए ठीक है?"
+     },
+     "options": [
+      {
+       "id": "gui",
+       "en": "Graphical or touch interface",
+       "hi": "ग्राफ़िकल या टच इंटरफ़ेस"
+      },
+      {
+       "id": "cmd",
+       "en": "Command-based interface",
+       "hi": "कमांड वाला इंटरफ़ेस"
+      }
+     ],
+     "answer": "gui"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:gui",
+     "expect": "chose:gui",
+     "say": {
+      "en": "Tap the graphical or touch interface choice and read the feedback.",
+      "hi": "ग्राफ़िकल या टच इंटरफ़ेस वाले विकल्प पर टैप करो और जवाब पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The operating system sits between us and the hardware. It gives us a user interface (command, graphical, touch, voice or gesture) and does four big jobs: process management (sharing the CPU), memory management (sharing RAM), file management (files and folders) and device management (printers, keyboards, cameras through drivers).",
+      "hi": "ऑपरेटिंग सिस्टम हमारे और हार्डवेयर के बीच रहता है। यह हमें यूज़र इंटरफ़ेस (कमांड, ग्राफ़िकल, टच, आवाज़ या इशारा) देता है और चार बड़े काम करता है: प्रोसेस मैनेजमेंट (सीपीयू बाँटना), मेमोरी मैनेजमेंट (RAM बाँटना), फ़ाइल मैनेजमेंट (फ़ाइलें और फ़ोल्डर) और डिवाइस मैनेजमेंट (ड्राइवरों के ज़रिए प्रिंटर, कीबोर्ड, कैमरे)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Saying \"Call Maa\" to a phone uses which kind of interface?",
+        "hi": "फ़ोन से \"माँ को कॉल करो\" कहना किस तरह का इंटरफ़ेस है?"
+       },
+       "options": [
+        {
+         "en": "Voice-based",
+         "hi": "आवाज़ आधारित"
+        },
+        {
+         "en": "Command-based typing",
+         "hi": "टाइप की गई कमांड"
+        },
+        {
+         "en": "Gesture-based",
+         "hi": "इशारा आधारित"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Speaking a request is a voice interface: the OS turns speech into a command.",
+        "hi": "बोलकर कहना आवाज़ वाला इंटरफ़ेस है: ऑपरेटिंग सिस्टम आवाज़ को कमांड में बदलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing is typed here; the request is spoken.",
+         "hi": "यहाँ कुछ टाइप नहीं हुआ; बात बोली गई है।"
+        },
+        {
+         "en": "A gesture is a hand movement like a swipe, not speech.",
+         "hi": "इशारा हाथ की हरकत है, जैसे स्वाइप, बोलना नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The OS uses a driver to send a page to the printer. This is:",
+        "hi": "ऑपरेटिंग सिस्टम प्रिंटर तक पन्ना भेजने के लिए ड्राइवर का उपयोग करता है। यह है:"
+       },
+       "options": [
+        {
+         "en": "Device management",
+         "hi": "डिवाइस मैनेजमेंट"
+        },
+        {
+         "en": "Memory management",
+         "hi": "मेमोरी मैनेजमेंट"
+        },
+        {
+         "en": "File management",
+         "hi": "फ़ाइल मैनेजमेंट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Controlling hardware such as printers through drivers is device management.",
+        "hi": "ड्राइवरों से प्रिंटर जैसे हार्डवेयर को चलाना डिवाइस मैनेजमेंट है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Memory management shares RAM; it does not run the printer.",
+         "hi": "मेमोरी मैनेजमेंट RAM बाँटता है; प्रिंटर नहीं चलाता।"
+        },
+        {
+         "en": "File management organises files; printing is handled by device management.",
+         "hi": "फ़ाइल मैनेजमेंट फ़ाइलें व्यवस्थित करता है; छपाई डिवाइस मैनेजमेंट संभालता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play all four situations. Then open the task manager or the phone's running apps list (with an adult) and see process and memory management in action.",
+      "hi": "चारों स्थितियाँ खेलो। फिर (किसी बड़े के साथ) टास्क मैनेजर या फ़ोन में चल रहे ऐप की सूची खोलो और प्रोसेस व मेमोरी मैनेजमेंट को काम करते देखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook of the chapter and the input-process-output lab",
+   "shows": "An Indian student's study table with a desktop computer, keyboard, mouse, a small printer printing a page and a webcam",
+   "view": "Three-quarter view at desk height, warm daylight from a window, devices clearly separate",
+   "right": "Every device complete and plugged in; the page coming out of the printer is blank",
+   "avoid": "Brand logos, readable screen text, a child's face"
+  },
+  {
+   "n": 2,
+   "kind": "CUT",
+   "topic": "1.1",
+   "use": "Inside the computer, for the CPU, memory and bus steps",
+   "shows": "An open desktop cabinet showing the motherboard, the processor under its cooler, two RAM sticks, an SSD and the wires and tracks between them",
+   "view": "From the open side, straight on, even studio light",
+   "right": "RAM sticks in their slots next to the processor; tracks on the board visible as fine lines",
+   "avoid": "Dust, brand names on parts, glowing gaming lights"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "1.3",
+   "use": "Memory types lab: drag-and-compare storage devices",
+   "shows": "Separate cut-outs of a RAM stick, an SSD, a 3.5-inch hard disk (one view with its cover off showing the platter and arm), a pen drive and a memory card",
+   "view": "Front, side and three-quarter views, same scale, lit from the top left",
+   "right": "Relative sizes true; the hard disk platter shiny and round with the read arm over it",
+   "avoid": "Labels, capacity numbers or brand marks printed on the parts"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "1.5",
+   "use": "Microprocessor step: what a chip looks like close up",
+   "shows": "A close-up of a processor chip from below showing its grid of gold contact pads, and a second file of a bare silicon die with its fine pattern",
+   "view": "Square, macro lens, soft light at an angle so the pads shine",
+   "right": "Hundreds of tiny regular pads; the die pattern sharp and regular",
+   "avoid": "Fingers, brand engraving, model numbers"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Microcontroller situation: a machine with one fixed job",
+   "shows": "The control panel of a front-loading washing machine in an Indian home, with its dial and buttons, and a second file of a small microcontroller board with its chip",
+   "view": "Panel straight on at eye level; the board from above on a plain mat",
+   "right": "The panel has a few buttons and a dial only; the board has one main chip and pin headers",
+   "avoid": "Readable brand or text on the panel, clutter in the room"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "1.2",
+   "use": "Timeline lab: from gears to chips",
+   "shows": "Five frames on the same plain background: a brass gear calculator (museum-style replica), a row of glowing vacuum tubes, a single transistor, an integrated circuit chip, and a modern microprocessor",
+   "view": "Each object centred, same camera height and light, objects shown at a similar size",
+   "right": "Vacuum tubes glass with a warm glow; transistor small with three legs; chip packages true to type",
+   "avoid": "Museum labels, people, copies of book photographs"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "1.3",
+   "use": "Memory hierarchy base for the memory lab",
+   "shows": "A clean pyramid in five bands from a narrow top to a wide base (for registers, cache, RAM, secondary storage and backup), with soft colour bands and no words",
+   "view": "Flat, front on, white background",
+   "right": "Narrow at the top (fast, small, costly), wide at the base (slow, large, cheap)",
+   "avoid": "Any text or numbers; the app adds the labels"
+  }
+ ]
+}

@@ -1,0 +1,991 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch05",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "Far and Near",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Units of length: centimetre, metre and kilometre",
+   "labs": [
+    "c05-mathematics-eemm1-ch05-pick-the-unit"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Different units but the same measure",
+   "labs": [
+    "c05-mathematics-eemm1-ch05-tape-desk",
+    "c05-mathematics-eemm1-ch05-same-length"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Measuring long distances and the 3-kilometre race",
+   "labs": [
+    "c05-mathematics-eemm1-ch05-race-stations"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "The longest train journey: reading a distance table",
+   "labs": [],
+   "why_no_lab": "Reading a table of stations and comparing distances is best done in the reader with the printed route; the number-line lab already trains kilometres and metres."
+  },
+  {
+   "n": "5.5",
+   "title": "The world of small things: measuring with a centimetre scale",
+   "labs": [
+    "c05-mathematics-eemm1-ch05-small-things"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch05-pick-the-unit",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "Which unit fits?",
+    "hi": "कौन-सी इकाई ठीक है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cm",
+      "label": {
+       "en": "Centimetre (cm)",
+       "hi": "सेंटीमीटर (सेमी)"
+      }
+     },
+     {
+      "id": "m",
+      "label": {
+       "en": "Metre (m)",
+       "hi": "मीटर (मी)"
+      }
+     },
+     {
+      "id": "km",
+      "label": {
+       "en": "Kilometre (km)",
+       "hi": "किलोमीटर (किमी)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "u1",
+      "text": {
+       "en": "Length of a pencil",
+       "hi": "पेंसिल की लंबाई"
+      },
+      "bin": "cm",
+      "why": {
+       "en": "A pencil is a few centimetres to about 20 centimetres long.",
+       "hi": "पेंसिल कुछ सेंटीमीटर से लगभग 20 सेंटीमीटर तक लंबी होती है।"
+      }
+     },
+     {
+      "id": "u2",
+      "text": {
+       "en": "Length of a mobile phone",
+       "hi": "मोबाइल फ़ोन की लंबाई"
+      },
+      "bin": "cm",
+      "why": {
+       "en": "A phone fits in your hand: centimetres.",
+       "hi": "फ़ोन हाथ में आता है: सेंटीमीटर।"
+      }
+     },
+     {
+      "id": "u3",
+      "text": {
+       "en": "Width of a handkerchief",
+       "hi": "रूमाल की चौड़ाई"
+      },
+      "bin": "cm",
+      "why": {
+       "en": "A handkerchief is a small cloth, measured in centimetres.",
+       "hi": "रूमाल छोटा कपड़ा है, उसे सेंटीमीटर में नापते हैं।"
+      }
+     },
+     {
+      "id": "u4",
+      "text": {
+       "en": "Height of a classroom door",
+       "hi": "कक्षा के दरवाज़े की ऊँचाई"
+      },
+      "bin": "m",
+      "why": {
+       "en": "A door is about two metres tall.",
+       "hi": "दरवाज़ा लगभग दो मीटर ऊँचा होता है।"
+      }
+     },
+     {
+      "id": "u5",
+      "text": {
+       "en": "Length of a classroom",
+       "hi": "कक्षा की लंबाई"
+      },
+      "bin": "m",
+      "why": {
+       "en": "Rooms are measured in metres.",
+       "hi": "कमरों को मीटर में नापते हैं।"
+      }
+     },
+     {
+      "id": "u6",
+      "text": {
+       "en": "Depth of a well",
+       "hi": "कुएँ की गहराई"
+      },
+      "bin": "m",
+      "why": {
+       "en": "A well is deep but not kilometres deep: metres.",
+       "hi": "कुआँ गहरा होता है पर किलोमीटर नहीं: मीटर।"
+      }
+     },
+     {
+      "id": "u7",
+      "text": {
+       "en": "Distance between two cities by road",
+       "hi": "दो शहरों के बीच सड़क की दूरी"
+      },
+      "bin": "km",
+      "why": {
+       "en": "Long distances between places are measured in kilometres.",
+       "hi": "जगहों के बीच की लंबी दूरी किलोमीटर में नापते हैं।"
+      }
+     },
+     {
+      "id": "u8",
+      "text": {
+       "en": "Length of a long train journey",
+       "hi": "लंबी रेल यात्रा की दूरी"
+      },
+      "bin": "km",
+      "why": {
+       "en": "A long journey covers hundreds or thousands of kilometres.",
+       "hi": "लंबी यात्रा में सैकड़ों या हज़ारों किलोमीटर तय होते हैं।"
+      }
+     },
+     {
+      "id": "u9",
+      "text": {
+       "en": "Length of a river",
+       "hi": "नदी की लंबाई"
+      },
+      "bin": "km",
+      "why": {
+       "en": "A river flows for many kilometres.",
+       "hi": "नदी कई किलोमीटर बहती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:u1",
+     "expect": "correct:u1",
+     "say": {
+      "en": "Tap 'Length of a pencil' and place it in its box.",
+      "hi": "'पेंसिल की लंबाई' पर टैप करो और उसे उसके डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which unit would you use for the distance between two cities?",
+      "hi": "दो शहरों के बीच की दूरी के लिए तुम कौन-सी इकाई चुनोगे?"
+     },
+     "options": [
+      {
+       "id": "cm",
+       "en": "Centimetre",
+       "hi": "सेंटीमीटर"
+      },
+      {
+       "id": "m",
+       "en": "Metre",
+       "hi": "मीटर"
+      },
+      {
+       "id": "km",
+       "en": "Kilometre",
+       "hi": "किलोमीटर"
+      }
+     ],
+     "answer": "km"
+    },
+    {
+     "kind": "do",
+     "target": "card:u7",
+     "expect": "correct:u7",
+     "say": {
+      "en": "Now place 'Distance between two cities by road'.",
+      "hi": "अब 'दो शहरों के बीच सड़क की दूरी' को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards and tap Check.",
+      "hi": "बाकी सभी कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We pick the unit that matches the size. Small things use centimetres. Rooms, doors and wells use metres. Long distances between places use kilometres. 1 metre = 100 centimetres, and 1 kilometre = 1,000 metres.",
+      "hi": "हम चीज़ के आकार के हिसाब से इकाई चुनते हैं। छोटी चीज़ों के लिए सेंटीमीटर। कमरे, दरवाज़े और कुएँ मीटर में। जगहों के बीच की लंबी दूरी किलोमीटर में। 1 मीटर = 100 सेंटीमीटर और 1 किलोमीटर = 1,000 मीटर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which unit is best for the length of a football ground?",
+        "hi": "फ़ुटबॉल के मैदान की लंबाई के लिए कौन-सी इकाई सबसे अच्छी है?"
+       },
+       "options": [
+        {
+         "en": "Metre",
+         "hi": "मीटर"
+        },
+        {
+         "en": "Centimetre",
+         "hi": "सेंटीमीटर"
+        },
+        {
+         "en": "Kilometre",
+         "hi": "किलोमीटर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A ground is about a hundred metres long. Metres are the sensible unit.",
+        "hi": "मैदान लगभग सौ मीटर लंबा होता है। मीटर समझदारी वाली इकाई है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In centimetres the number would be very large (about 10,000) and hard to use.",
+         "hi": "सेंटीमीटर में संख्या बहुत बड़ी (लगभग 10,000) हो जाएगी और उपयोग में कठिन होगी।"
+        },
+        {
+         "en": "A ground is far shorter than a kilometre; the number would be a small fraction.",
+         "hi": "मैदान एक किलोमीटर से बहुत छोटा होता है; संख्या छोटी-सी भिन्न बनेगी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find three things at home. Guess the unit for each, then measure one of them.",
+      "hi": "घर पर तीन चीज़ें खोजो। हर एक के लिए इकाई का अनुमान लगाओ, फिर एक को नापो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch05-tape-desk",
+   "topic": "5.2",
+   "template": "measure",
+   "title": {
+    "en": "Measure the desk with a tape",
+    "hi": "फ़ीते से डेस्क नापो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "instrument": "tape",
+    "object": "desk",
+    "units": "cm"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tape is 1 metre long when it shows 100 cm. Is the desk longer or shorter than 1 metre?",
+      "hi": "फ़ीते पर 100 सेमी का मतलब 1 मीटर है। डेस्क 1 मीटर से लंबा है या छोटा?"
+     },
+     "options": [
+      {
+       "id": "long",
+       "en": "Longer than 1 metre",
+       "hi": "1 मीटर से लंबा"
+      },
+      {
+       "id": "short",
+       "en": "Shorter than 1 metre",
+       "hi": "1 मीटर से छोटा"
+      }
+     ],
+     "answer": "long"
+    },
+    {
+     "kind": "do",
+     "target": "object:desk",
+     "expect": "placed",
+     "say": {
+      "en": "Tap the desk to choose it.",
+      "hi": "डेस्क पर टैप करके उसे चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:tight",
+     "expect": "aligned",
+     "say": {
+      "en": "Pull the tape to the far end of the desk, then pull it tight so it does not sag.",
+      "hi": "फ़ीते को डेस्क के दूसरे सिरे तक खींचो, फिर उसे तान दो ताकि वह लटके नहीं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Tap Read and find the number at the far end.",
+      "hi": "पढ़ो पर टैप करो और दूसरे सिरे पर संख्या देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the length of the desk in centimetres.",
+      "hi": "डेस्क की लंबाई सेंटीमीटर में लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The desk is 120 cm long. 100 cm make 1 metre, so 120 cm = 1 metre and 20 centimetres. The same length has two names: 120 cm and 1 m 20 cm.",
+      "hi": "डेस्क 120 सेमी लंबा है। 100 सेमी मिलकर 1 मीटर बनते हैं, इसलिए 120 सेमी = 1 मीटर और 20 सेंटीमीटर। एक ही लंबाई के दो नाम हैं: 120 सेमी और 1 मी 20 सेमी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The blackboard is 240 cm long. How many metres and centimetres is that?",
+        "hi": "श्यामपट 240 सेमी लंबा है। यह कितने मीटर और सेंटीमीटर है?"
+       },
+       "options": [
+        {
+         "en": "2 m 40 cm",
+         "hi": "2 मी 40 सेमी"
+        },
+        {
+         "en": "24 m 0 cm",
+         "hi": "24 मी 0 सेमी"
+        },
+        {
+         "en": "2 m 4 cm",
+         "hi": "2 मी 4 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "240 = 200 + 40. 200 cm is 2 m, so 240 cm = 2 m 40 cm.",
+        "hi": "240 = 200 + 40। 200 सेमी, 2 मी है, इसलिए 240 सेमी = 2 मी 40 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "24 m is far longer than a blackboard. Only the hundreds turn into metres.",
+         "hi": "24 मी श्यामपट से बहुत लंबा है। केवल सैकड़े मीटर में बदलते हैं।"
+        },
+        {
+         "en": "The 40 stays 40 centimetres. 2 m 4 cm would be only 204 cm.",
+         "hi": "40 सेंटीमीटर ही रहता है। 2 मी 4 सेमी केवल 204 सेमी होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose the bench and the blackboard and measure them too. Write each length in cm and in m and cm.",
+      "hi": "बेंच और श्यामपट को भी नापो। हर लंबाई सेमी में और मी-सेमी में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch05-same-length",
+   "topic": "5.2",
+   "template": "match",
+   "title": {
+    "en": "Different units, same length",
+    "hi": "अलग इकाइयाँ, एक ही लंबाई"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "m2",
+      "left": {
+       "en": "2 m",
+       "hi": "2 मी"
+      },
+      "right": {
+       "en": "200 cm",
+       "hi": "200 सेमी"
+      },
+      "why": {
+       "en": "1 m = 100 cm, so 2 m = 2 × 100 = 200 cm.",
+       "hi": "1 मी = 100 सेमी, इसलिए 2 मी = 2 × 100 = 200 सेमी।"
+      }
+     },
+     {
+      "id": "m5",
+      "left": {
+       "en": "5 m 40 cm",
+       "hi": "5 मी 40 सेमी"
+      },
+      "right": {
+       "en": "540 cm",
+       "hi": "540 सेमी"
+      },
+      "why": {
+       "en": "5 m = 500 cm, and 500 + 40 = 540 cm.",
+       "hi": "5 मी = 500 सेमी और 500 + 40 = 540 सेमी।"
+      }
+     },
+     {
+      "id": "c250",
+      "left": {
+       "en": "250 cm",
+       "hi": "250 सेमी"
+      },
+      "right": {
+       "en": "2 m 50 cm",
+       "hi": "2 मी 50 सेमी"
+      },
+      "why": {
+       "en": "250 cm = 200 cm + 50 cm = 2 m 50 cm.",
+       "hi": "250 सेमी = 200 सेमी + 50 सेमी = 2 मी 50 सेमी।"
+      }
+     },
+     {
+      "id": "k3",
+      "left": {
+       "en": "3 km",
+       "hi": "3 किमी"
+      },
+      "right": {
+       "en": "3,000 m",
+       "hi": "3,000 मी"
+      },
+      "why": {
+       "en": "1 km = 1,000 m, so 3 km = 3,000 m.",
+       "hi": "1 किमी = 1,000 मी, इसलिए 3 किमी = 3,000 मी।"
+      }
+     },
+     {
+      "id": "k15",
+      "left": {
+       "en": "1 km 500 m",
+       "hi": "1 किमी 500 मी"
+      },
+      "right": {
+       "en": "1,500 m",
+       "hi": "1,500 मी"
+      },
+      "why": {
+       "en": "1 km = 1,000 m, and 1,000 + 500 = 1,500 m.",
+       "hi": "1 किमी = 1,000 मी और 1,000 + 500 = 1,500 मी।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:m2",
+     "expect": "matched:m2",
+     "say": {
+      "en": "Match 2 m with the same length in centimetres.",
+      "hi": "2 मी को सेंटीमीटर में उसी लंबाई से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The sari is 5 m 40 cm long. Is it 504 cm or 540 cm?",
+      "hi": "साड़ी 5 मी 40 सेमी लंबी है। वह 504 सेमी है या 540 सेमी?"
+     },
+     "options": [
+      {
+       "id": "540",
+       "en": "540 cm",
+       "hi": "540 सेमी"
+      },
+      {
+       "id": "504",
+       "en": "504 cm",
+       "hi": "504 सेमी"
+      }
+     ],
+     "answer": "540"
+    },
+    {
+     "kind": "do",
+     "target": "left:m5",
+     "expect": "matched:m5",
+     "say": {
+      "en": "Match 5 m 40 cm.",
+      "hi": "5 मी 40 सेमी को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then tap Check.",
+      "hi": "बाकी मिलाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To change metres to centimetres, multiply by 100. To change kilometres to metres, multiply by 1,000. The extra centimetres or metres are added on. 5 m 40 cm = 500 + 40 = 540 cm.",
+      "hi": "मीटर को सेंटीमीटर बनाने के लिए 100 से गुणा करो। किलोमीटर को मीटर बनाने के लिए 1,000 से गुणा करो। ऊपर के सेंटीमीटर या मीटर जोड़ दो। 5 मी 40 सेमी = 500 + 40 = 540 सेमी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the same as 6 m 5 cm?",
+        "hi": "6 मी 5 सेमी के बराबर कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "605 cm",
+         "hi": "605 सेमी"
+        },
+        {
+         "en": "650 cm",
+         "hi": "650 सेमी"
+        },
+        {
+         "en": "65 cm",
+         "hi": "65 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6 m = 600 cm. Add 5 cm: 605 cm. The 5 is only five centimetres, not fifty.",
+        "hi": "6 मी = 600 सेमी। 5 सेमी जोड़ो: 605 सेमी। 5, केवल पाँच सेंटीमीटर है, पचास नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "650 cm would be 6 m 50 cm. The 5 here is 5 cm, not 50 cm.",
+         "hi": "650 सेमी तो 6 मी 50 सेमी होता है। यहाँ 5, 5 सेमी है, 50 सेमी नहीं।"
+        },
+        {
+         "en": "65 cm is less than 1 metre. We have 6 whole metres.",
+         "hi": "65 सेमी 1 मीटर से कम है। हमारे पास 6 पूरे मीटर हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is longer: 456 cm or 5 m?",
+        "hi": "कौन-सा लंबा है: 456 सेमी या 5 मी?"
+       },
+       "options": [
+        {
+         "en": "5 m",
+         "hi": "5 मी"
+        },
+        {
+         "en": "456 cm",
+         "hi": "456 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 m = 500 cm, which is more than 456 cm.",
+        "hi": "5 मी = 500 सेमी, जो 456 सेमी से ज़्यादा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "456 looks big, but it is in centimetres. 5 m is 500 cm.",
+         "hi": "456 बड़ा दिखता है, पर वह सेंटीमीटर में है। 5 मी, 500 सेमी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write the heights of two family members in metres and centimetres. Then write them in centimetres only.",
+      "hi": "परिवार के दो सदस्यों की ऊँचाई मीटर और सेंटीमीटर में लिखो। फिर केवल सेंटीमीटर में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch05-race-stations",
+   "topic": "5.4",
+   "template": "number-line",
+   "title": {
+    "en": "A 3-kilometre race",
+    "hi": "3 किलोमीटर की दौड़"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 3000,
+    "step": 500,
+    "start": 0,
+    "jumps": [
+     500
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 3 km race has a water station after every 500 m. 3 km is 3,000 m. How many 500 m hops reach the finish?",
+      "hi": "3 किमी की दौड़ में हर 500 मीटर पर पानी की जगह है। 3 किमी यानी 3,000 मी। फिनिश तक 500 मी की कितनी छलाँगें लगेंगी?"
+     },
+     "options": [
+      {
+       "id": "six",
+       "en": "6 hops",
+       "hi": "6 छलाँगें"
+      },
+      {
+       "id": "five",
+       "en": "5 hops",
+       "hi": "5 छलाँगें"
+      },
+      {
+       "id": "three",
+       "en": "3 hops",
+       "hi": "3 छलाँगें"
+      }
+     ],
+     "answer": "six"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:1500",
+     "say": {
+      "en": "Hop forward in 500 m steps until you reach 1,500 m. That is the middle of the race.",
+      "hi": "500 मी के कदमों में आगे बढ़ो जब तक 1,500 मी तक न पहुँचो। यह दौड़ का बीच है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:3000",
+     "say": {
+      "en": "Keep hopping to the finish line at 3,000 m.",
+      "hi": "छलाँग लगाते रहो जब तक 3,000 मी की फिनिश लाइन न आए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each hop is 500 m, which is half a kilometre. Two hops make 1 km. Six hops make 3,000 m = 3 km. The water stations are at 500 m, 1,000 m, 1,500 m, 2,000 m and 2,500 m, and the finish line is at 3,000 m.",
+      "hi": "हर छलाँग 500 मी है, यानी आधा किलोमीटर। दो छलाँगें 1 किमी बनाती हैं। छह छलाँगें 3,000 मी = 3 किमी हैं। पानी की जगहें 500 मी, 1,000 मी, 1,500 मी, 2,000 मी और 2,500 मी पर हैं, और फिनिश लाइन 3,000 मी पर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A runner is at 2,000 m. How many kilometres has she run?",
+        "hi": "एक धावक 2,000 मी पर है। उसने कितने किलोमीटर दौड़ लिए?"
+       },
+       "options": [
+        {
+         "en": "2 km",
+         "hi": "2 किमी"
+        },
+        {
+         "en": "20 km",
+         "hi": "20 किमी"
+        },
+        {
+         "en": "200 km",
+         "hi": "200 किमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1,000 m = 1 km, so 2,000 m = 2 km.",
+        "hi": "1,000 मी = 1 किमी, इसलिए 2,000 मी = 2 किमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20 km would be 20,000 m. Divide 2,000 by 1,000, not by 100.",
+         "hi": "20 किमी तो 20,000 मी होता। 2,000 को 1,000 से भाग दो, 100 से नहीं।"
+        },
+        {
+         "en": "200 km is far longer than a race. Kilo means thousand: 2,000 m = 2 km.",
+         "hi": "200 किमी दौड़ से बहुत लंबा है। किलो का मतलब हज़ार है: 2,000 मी = 2 किमी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Flags are placed every 50 m. How many flags are there in the first 500 m, counting the one at 500 m?",
+        "hi": "हर 50 मी पर झंडा लगता है। पहले 500 मी में, 500 मी वाले को मिलाकर, कितने झंडे होंगे?"
+       },
+       "options": [
+        "10",
+        "5",
+        "50"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "500 ÷ 50 = 10, so there are 10 flags.",
+        "hi": "500 ÷ 50 = 10, इसलिए 10 झंडे हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 flags would be 250 m. Each hop of 50 needs its own flag; 10 hops of 50 make 500.",
+         "hi": "5 झंडे 250 मी तक ही पहुँचते। 50 की हर छलाँग पर एक झंडा चाहिए; 50 की 10 छलाँगें 500 बनाती हैं।"
+        },
+        {
+         "en": "50 is the size of one step, not the number of flags.",
+         "hi": "50 एक कदम का आकार है, झंडों की संख्या नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset. Hop back from 3,000 m to 0. What do you notice about the numbers you pass? Which are whole kilometres?",
+      "hi": "रीसेट दबाओ। 3,000 मी से 0 तक वापस छलाँग लगाओ। जिन संख्याओं से गुज़रते हो उनमें क्या देखा? कौन-सी पूरे किलोमीटर हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch05-small-things",
+   "topic": "5.5",
+   "template": "measure",
+   "title": {
+    "en": "Measure small things with a scale",
+    "hi": "छोटी चीज़ें पैमाने से नापो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "instrument": "scale",
+    "object": "eraser",
+    "units": "cm"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The eraser is about as long as your thumb. About how long is it?",
+      "hi": "रबर लगभग तुम्हारे अँगूठे जितनी लंबी है। वह कितनी लंबी होगी?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "About 4 cm",
+       "hi": "लगभग 4 सेमी"
+      },
+      {
+       "id": "forty",
+       "en": "About 40 cm",
+       "hi": "लगभग 40 सेमी"
+      },
+      {
+       "id": "four-hundred",
+       "en": "About 4 m",
+       "hi": "लगभग 4 मी"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "object:eraser",
+     "expect": "placed",
+     "say": {
+      "en": "Tap the eraser to put it next to the scale.",
+      "hi": "रबर पर टैप करके उसे पैमाने के पास रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:eye",
+     "expect": "aligned",
+     "say": {
+      "en": "Look straight down at the end of the eraser by using the Eye slider, so that the reading is not tilted.",
+      "hi": "आँख का स्लाइडर चलाकर सीधे रबर के सिरे को ऊपर से देखो ताकि पढ़ाई तिरछी न हो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Tap Read and find the mark at the end of the eraser.",
+      "hi": "पढ़ो पर टैप करो और रबर के सिरे का निशान देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the length of the eraser in centimetres.",
+      "hi": "रबर की लंबाई सेंटीमीटर में लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The end of the eraser is between 4 and 5 on the scale, a little after 4. It is 4.2 cm, which is 4 cm and 2 mm. Each small mark between the numbers is 1 mm, so 10 marks make 1 cm.",
+      "hi": "रबर का सिरा पैमाने पर 4 और 5 के बीच, 4 के थोड़ा बाद है। वह 4.2 सेमी है, यानी 4 सेमी और 2 मिमी। अंकों के बीच हर छोटा निशान 1 मिमी है, इसलिए 10 निशान मिलकर 1 सेमी बनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The paper clip is 3.2 cm long. How many millimetres is that?",
+        "hi": "पेपर क्लिप 3.2 सेमी लंबी है। यह कितने मिलीमीटर है?"
+       },
+       "options": [
+        {
+         "en": "32 mm",
+         "hi": "32 मिमी"
+        },
+        {
+         "en": "3.2 mm",
+         "hi": "3.2 मिमी"
+        },
+        {
+         "en": "320 mm",
+         "hi": "320 मिमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1 cm = 10 mm, so 3.2 cm = 32 mm.",
+        "hi": "1 सेमी = 10 मिमी, इसलिए 3.2 सेमी = 32 मिमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3.2 mm would be a tiny speck. A centimetre is 10 times a millimetre, so the number gets bigger.",
+         "hi": "3.2 मिमी तो एक कण जितना होता। सेंटीमीटर मिलीमीटर का 10 गुना है, इसलिए संख्या बड़ी होती है।"
+        },
+        {
+         "en": "320 mm would be 32 cm. Multiply by 10, not 100.",
+         "hi": "320 मिमी तो 32 सेमी होता। 10 से गुणा करो, 100 से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose another object, such as the key or the neem leaf, and measure it. Write the length in cm and in mm.",
+      "hi": "कोई दूसरी वस्तु चुनो, जैसे चाबी या नीम की पत्ती, और उसे नापो। लंबाई सेमी और मिमी में लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Chapter hook: near and far",
+   "shows": "A long straight village road with a milestone at the roadside and a child's cycle in the foreground, hills far away",
+   "view": "Eye level, wide, morning light",
+   "right": "Milestone readable only as shape; deep perspective that shows far and near",
+   "avoid": "Readable place names, number plates"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Tape and scale for the measure labs",
+   "shows": "A yellow tailor's measuring tape pulled out 120 cm, and a clear 15 cm school ruler with millimetre marks, each a separate cut-out",
+   "view": "Top-down, even light",
+   "right": "Marks sharp and true to scale; tape pulled flat",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "Playground race track",
+   "shows": "A school playground with a long chalk-marked track, a start flag and cones every few steps, seen from the start",
+   "view": "Low wide angle, afternoon light",
+   "right": "Track straight and clearly marked; cones evenly spaced",
+   "avoid": "Children's faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.4",
+   "use": "Long train journey",
+   "shows": "A long passenger train crossing a bridge over a wide river in the evening, from far",
+   "view": "Wide, golden-hour light",
+   "right": "Train long and continuous, river wide",
+   "avoid": "Station names, logos"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "5.5",
+   "use": "Small things on a scale",
+   "shows": "A paper clip, a pencil stub and a leaf lying along a millimetre ruler",
+   "view": "Top-down, square crop, sharp focus",
+   "right": "Ends of objects clearly aligned to ruler marks",
+   "avoid": "Shadows hiding marks"
+  }
+ ]
+}

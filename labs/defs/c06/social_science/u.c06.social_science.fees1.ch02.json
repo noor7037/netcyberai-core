@@ -1,0 +1,852 @@
+{
+ "chapter_key": "u.c06.social_science.fees1.ch02",
+ "class": 6,
+ "subject_id": "social_science",
+ "title": "Oceans and Continents",
+ "source": "https://ncert.nic.in/textbook/pdf/fees102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Land and water on the Earth: the oceans",
+   "labs": [
+    "c06-social_science-fees1-ch02-oceans",
+    "c06-social_science-fees1-ch02-oceanfacts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Continents",
+   "labs": [
+    "c06-social_science-fees1-ch02-continents"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Water: salty and fresh, and the water crisis",
+   "labs": [
+    "c06-social_science-fees1-ch02-saltfresh"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Life in the oceans",
+   "labs": [],
+   "why_no_lab": "Colourful sea life is best seen through the photographs and the reader; a lab would add nothing to them."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-social_science-fees1-ch02-oceans",
+   "topic": "2.1",
+   "template": "map",
+   "title": {
+    "en": "Name the five oceans",
+    "hi": "पाँच महासागरों के नाम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "world",
+    "layers": [
+     "latitude"
+    ],
+    "task": "label",
+    "places": [
+     "pacific-ocean",
+     "atlantic-ocean",
+     "indian-ocean",
+     "arctic-ocean",
+     "southern-ocean"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "label:indian-ocean",
+     "expect": "located:indian-ocean",
+     "say": {
+      "en": "Tap the name 'Indian Ocean', then tap the pin that sits in the ocean south of India.",
+      "hi": "'हिंद महासागर' नाम पर टैप करो, फिर भारत के दक्षिण के महासागर वाले पिन पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which ocean do you think is the biggest?",
+      "hi": "तुम्हें क्या लगता है, सबसे बड़ा महासागर कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "pacific",
+       "en": "Pacific Ocean",
+       "hi": "प्रशांत महासागर"
+      },
+      {
+       "id": "atlantic",
+       "en": "Atlantic Ocean",
+       "hi": "अटलांटिक महासागर"
+      },
+      {
+       "id": "arctic",
+       "en": "Arctic Ocean",
+       "hi": "आर्कटिक महासागर"
+      }
+     ],
+     "answer": "pacific"
+    },
+    {
+     "kind": "do",
+     "target": "label:pacific-ocean",
+     "expect": "located:pacific-ocean",
+     "say": {
+      "en": "Now label the Pacific Ocean. Compare how much of the map it fills.",
+      "hi": "अब प्रशांत महासागर का नाम लगाओ। देखो वह मानचित्र का कितना भाग घेरता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:southern-ocean",
+     "expect": "labelled",
+     "say": {
+      "en": "Label the rest: Atlantic, Arctic and Southern Oceans.",
+      "hi": "बाक़ी नाम लगाओ: अटलांटिक, आर्कटिक और दक्षिणी महासागर।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Earth has five oceans: Pacific, Atlantic, Indian, Southern and Arctic. The Pacific is the largest. The Arctic lies around the North Pole and the Southern Ocean around Antarctica. The lines between oceans are only a convention. Sea water flows from one ocean into the next, so all oceans are really one connected body of water.",
+      "hi": "पृथ्वी पर पाँच महासागर हैं: प्रशांत, अटलांटिक, हिंद, दक्षिणी और आर्कटिक। प्रशांत सबसे बड़ा है। आर्कटिक उत्तरी ध्रुव के चारों ओर और दक्षिणी महासागर अंटार्कटिका के चारों ओर है। महासागरों के बीच की रेखाएँ केवल मान ली गई हैं। समुद्र का पानी एक महासागर से दूसरे में बहता रहता है, इसलिए सारे महासागर असल में जुड़ा हुआ एक ही जलराशि हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the largest ocean?",
+        "hi": "सबसे बड़ा महासागर कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Pacific Ocean",
+         "hi": "प्रशांत महासागर"
+        },
+        {
+         "en": "Indian Ocean",
+         "hi": "हिंद महासागर"
+        },
+        {
+         "en": "Arctic Ocean",
+         "hi": "आर्कटिक महासागर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Pacific Ocean is the biggest. It is larger than all the land of the Earth put together.",
+        "hi": "प्रशांत महासागर सबसे बड़ा है। वह पृथ्वी की सारी भूमि को मिलाकर भी उससे बड़ा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Indian Ocean is big, but it is much smaller than the Pacific.",
+         "hi": "हिंद महासागर बड़ा है, पर प्रशांत से बहुत छोटा है।"
+        },
+        {
+         "en": "The Arctic is the smallest ocean, round the North Pole.",
+         "hi": "आर्कटिक सबसे छोटा महासागर है, उत्तरी ध्रुव के चारों ओर।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which ocean lies south of India?",
+        "hi": "भारत के दक्षिण में कौन-सा महासागर है?"
+       },
+       "options": [
+        {
+         "en": "Atlantic Ocean",
+         "hi": "अटलांटिक महासागर"
+        },
+        {
+         "en": "Indian Ocean",
+         "hi": "हिंद महासागर"
+        },
+        {
+         "en": "Arctic Ocean",
+         "hi": "आर्कटिक महासागर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The Indian Ocean touches India's south. The Arabian Sea and the Bay of Bengal are its parts.",
+        "hi": "हिंद महासागर भारत के दक्षिण में है। अरब सागर और बंगाल की खाड़ी उसी के भाग हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The Atlantic lies far to the west, between the Americas and Europe and Africa.",
+         "hi": "अटलांटिक बहुत पश्चिम में है, अमेरिका और यूरोप-अफ़्रीका के बीच।"
+        },
+        "",
+        {
+         "en": "The Arctic is near the North Pole, far above India.",
+         "hi": "आर्कटिक उत्तरी ध्रुव के पास है, भारत से बहुत ऊपर।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch on the latitude layer. Which oceans reach the Equator and which stay near the poles?",
+      "hi": "अक्षांश की परत चालू करो। कौन-से महासागर भूमध्य रेखा तक पहुँचते हैं और कौन-से ध्रुवों के पास रहते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch02-continents",
+   "topic": "2.2",
+   "template": "map",
+   "title": {
+    "en": "Name the seven continents",
+    "hi": "सात महाद्वीपों के नाम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "world",
+    "layers": [
+     "latitude"
+    ],
+    "task": "label",
+    "places": [
+     "asia",
+     "europe",
+     "africa",
+     "north-america",
+     "south-america",
+     "australia"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "label:asia",
+     "expect": "located:asia",
+     "say": {
+      "en": "Tap the name 'Asia', then tap the pin on the continent where India is.",
+      "hi": "'एशिया' नाम पर टैप करो, फिर उस महाद्वीप के पिन पर टैप करो जिसमें भारत है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which continent is covered with ice all year and has no permanent homes?",
+      "hi": "कौन-सा महाद्वीप साल भर बर्फ़ से ढका रहता है और वहाँ स्थायी बस्तियाँ नहीं हैं?"
+     },
+     "options": [
+      {
+       "id": "antarctica",
+       "en": "Antarctica",
+       "hi": "अंटार्कटिका"
+      },
+      {
+       "id": "africa",
+       "en": "Africa",
+       "hi": "अफ़्रीका"
+      },
+      {
+       "id": "australia",
+       "en": "Australia",
+       "hi": "ऑस्ट्रेलिया"
+      }
+     ],
+     "answer": "antarctica"
+    },
+    {
+     "kind": "do",
+     "target": "label:africa",
+     "expect": "located:africa",
+     "say": {
+      "en": "Label Africa, the continent west of the Indian Ocean.",
+      "hi": "अफ़्रीका का नाम लगाओ, जो हिंद महासागर के पश्चिम में है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:australia",
+     "expect": "labelled",
+     "say": {
+      "en": "Label the remaining continents. Antarctica is too far south to fit on this map.",
+      "hi": "बाक़ी महाद्वीपों के नाम लगाओ। अंटार्कटिका इस मानचित्र में आने से बहुत दक्षिण में है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A continent is a very large, continuous piece of land. There are seven: Asia, Africa, North America, South America, Antarctica, Europe and Australia. Asia is the biggest and India lies in it. Antarctica is covered with ice and only visiting scientists stay there.",
+      "hi": "महाद्वीप भूमि का बहुत बड़ा, लगातार फैला टुकड़ा है। सात महाद्वीप हैं: एशिया, अफ़्रीका, उत्तर अमेरिका, दक्षिण अमेरिका, अंटार्कटिका, यूरोप और ऑस्ट्रेलिया। एशिया सबसे बड़ा है और भारत उसी में है। अंटार्कटिका बर्फ़ से ढका है और वहाँ केवल अस्थायी रूप से वैज्ञानिक रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many continents are there?",
+        "hi": "कुल कितने महाद्वीप हैं?"
+       },
+       "options": [
+        {
+         "en": "5",
+         "hi": "पाँच"
+        },
+        {
+         "en": "7",
+         "hi": "सात"
+        },
+        {
+         "en": "9",
+         "hi": "नौ"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "There are seven continents.",
+        "hi": "सात महाद्वीप हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Five is the number of oceans, not continents.",
+         "hi": "पाँच महासागरों की संख्या है, महाद्वीपों की नहीं।"
+        },
+        "",
+        {
+         "en": "Nine is too many. Count Asia, Africa, two Americas, Antarctica, Europe and Australia.",
+         "hi": "नौ बहुत ज़्यादा है। गिनो: एशिया, अफ़्रीका, दो अमेरिका, अंटार्कटिका, यूरोप और ऑस्ट्रेलिया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In which continent is India?",
+        "hi": "भारत किस महाद्वीप में है?"
+       },
+       "options": [
+        {
+         "en": "Africa",
+         "hi": "अफ़्रीका"
+        },
+        {
+         "en": "Europe",
+         "hi": "यूरोप"
+        },
+        {
+         "en": "Asia",
+         "hi": "एशिया"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "India is in the south of Asia, the largest continent.",
+        "hi": "भारत सबसे बड़े महाद्वीप एशिया के दक्षिणी भाग में है।"
+       },
+       "wrong": [
+        {
+         "en": "Africa lies to the west across the Arabian Sea.",
+         "hi": "अफ़्रीका अरब सागर के पार पश्चिम में है।"
+        },
+        {
+         "en": "Europe is to the north-west of Asia, far from India.",
+         "hi": "यूरोप एशिया के उत्तर-पश्चिम में है, भारत से दूर।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which continents does the Equator cross? Switch on the latitude layer and look.",
+      "hi": "भूमध्य रेखा किन महाद्वीपों से गुज़रती है? अक्षांश की परत चालू करके देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch02-oceanfacts",
+   "topic": "2.3",
+   "template": "match",
+   "title": {
+    "en": "Ocean facts",
+    "hi": "महासागरों की बातें"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "pacific",
+      "left": {
+       "en": "Pacific Ocean",
+       "hi": "प्रशांत महासागर"
+      },
+      "right": {
+       "en": "The largest and deepest ocean",
+       "hi": "सबसे बड़ा और सबसे गहरा महासागर"
+      },
+      "why": {
+       "en": "It covers more area than any other ocean and holds the deepest trench.",
+       "hi": "यह किसी भी महासागर से ज़्यादा क्षेत्र घेरता है और सबसे गहरी खाई यहीं है।"
+      }
+     },
+     {
+      "id": "indian",
+      "left": {
+       "en": "Indian Ocean",
+       "hi": "हिंद महासागर"
+      },
+      "right": {
+       "en": "The ocean south of India, named after our country",
+       "hi": "भारत के दक्षिण का महासागर, जिसका नाम हमारे देश पर है"
+      },
+      "why": {
+       "en": "It is the only ocean named after a country.",
+       "hi": "यह एकमात्र महासागर है जिसका नाम किसी देश के नाम पर है।"
+      }
+     },
+     {
+      "id": "atlantic",
+      "left": {
+       "en": "Atlantic Ocean",
+       "hi": "अटलांटिक महासागर"
+      },
+      "right": {
+       "en": "Lies between the Americas and Europe and Africa",
+       "hi": "अमेरिका और यूरोप-अफ़्रीका के बीच है"
+      },
+      "why": {
+       "en": "Ships have crossed it for centuries to link the two sides.",
+       "hi": "जहाज़ सदियों से इसे पार करके दोनों ओर को जोड़ते रहे हैं।"
+      }
+     },
+     {
+      "id": "arctic",
+      "left": {
+       "en": "Arctic Ocean",
+       "hi": "आर्कटिक महासागर"
+      },
+      "right": {
+       "en": "Around the North Pole, often frozen",
+       "hi": "उत्तरी ध्रुव के चारों ओर, अक्सर जमा हुआ"
+      },
+      "why": {
+       "en": "It is the smallest ocean, covered with floating ice for much of the year.",
+       "hi": "यह सबसे छोटा महासागर है और साल के बड़े भाग में तैरती बर्फ़ से ढका रहता है।"
+      }
+     },
+     {
+      "id": "southern",
+      "left": {
+       "en": "Southern Ocean",
+       "hi": "दक्षिणी महासागर"
+      },
+      "right": {
+       "en": "Surrounds Antarctica",
+       "hi": "अंटार्कटिका को घेरे हुए है"
+      },
+      "why": {
+       "en": "It circles the icy continent at the bottom of the world.",
+       "hi": "यह दुनिया के निचले छोर के बर्फ़ीले महाद्वीप को घेरता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which ocean has the same name as our country?",
+      "hi": "किस महासागर का नाम हमारे देश के नाम जैसा है?"
+     },
+     "options": [
+      {
+       "id": "indian",
+       "en": "Indian Ocean",
+       "hi": "हिंद महासागर"
+      },
+      {
+       "id": "pacific",
+       "en": "Pacific Ocean",
+       "hi": "प्रशांत महासागर"
+      },
+      {
+       "id": "arctic",
+       "en": "Arctic Ocean",
+       "hi": "आर्कटिक महासागर"
+      }
+     ],
+     "answer": "indian"
+    },
+    {
+     "kind": "do",
+     "target": "left:indian",
+     "expect": "matched:indian",
+     "say": {
+      "en": "Match the Indian Ocean with its fact.",
+      "hi": "हिंद महासागर को उसकी बात से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:pacific",
+     "expect": "matched:pacific",
+     "say": {
+      "en": "Match the Pacific Ocean.",
+      "hi": "प्रशांत महासागर को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other three and press check.",
+      "hi": "बाक़ी तीन मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each ocean has its own character. The Pacific is largest and deepest. The Indian Ocean touches India. The Atlantic joins the Americas to Europe and Africa. The Arctic and the Southern oceans lie in the icy poles.",
+      "hi": "हर महासागर की अपनी पहचान है। प्रशांत सबसे बड़ा और गहरा है। हिंद महासागर भारत को छूता है। अटलांटिक अमेरिका को यूरोप और अफ़्रीका से जोड़ता है। आर्कटिक और दक्षिणी महासागर बर्फ़ीले ध्रुवों में हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which ocean surrounds Antarctica?",
+        "hi": "अंटार्कटिका को कौन-सा महासागर घेरे हुए है?"
+       },
+       "options": [
+        {
+         "en": "Southern Ocean",
+         "hi": "दक्षिणी महासागर"
+        },
+        {
+         "en": "Arctic Ocean",
+         "hi": "आर्कटिक महासागर"
+        },
+        {
+         "en": "Indian Ocean",
+         "hi": "हिंद महासागर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Southern Ocean circles Antarctica.",
+        "hi": "दक्षिणी महासागर अंटार्कटिका को घेरता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Arctic is at the opposite end of the Earth, at the North Pole.",
+         "hi": "आर्कटिक पृथ्वी के विपरीत छोर, उत्तरी ध्रुव पर है।"
+        },
+        {
+         "en": "The Indian Ocean is in the middle, near India, not at the pole.",
+         "hi": "हिंद महासागर बीच में, भारत के पास है, ध्रुव पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up a short rhyme to remember the five oceans, and share it with a friend.",
+      "hi": "पाँच महासागरों को याद रखने के लिए एक छोटी तुकबंदी बनाओ और दोस्त को सुनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch02-saltfresh",
+   "topic": "2.4",
+   "template": "sort",
+   "title": {
+    "en": "Salty or fresh water?",
+    "hi": "खारा या मीठा पानी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "salty",
+      "label": {
+       "en": "Salty water",
+       "hi": "खारा पानी"
+      }
+     },
+     {
+      "id": "fresh",
+      "label": {
+       "en": "Fresh water",
+       "hi": "मीठा पानी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ocean",
+      "text": {
+       "en": "The Pacific Ocean",
+       "hi": "प्रशांत महासागर"
+      },
+      "bin": "salty",
+      "why": {
+       "en": "Ocean water is salty. Most land animals cannot drink it.",
+       "hi": "महासागर का पानी खारा होता है। ज़्यादातर स्थलीय जीव इसे पी नहीं सकते।"
+      }
+     },
+     {
+      "id": "sea",
+      "text": {
+       "en": "The Arabian Sea",
+       "hi": "अरब सागर"
+      },
+      "bin": "salty",
+      "why": {
+       "en": "Seas are parts of the oceans, so their water is salty too.",
+       "hi": "सागर महासागरों के भाग हैं, इसलिए उनका पानी भी खारा है।"
+      }
+     },
+     {
+      "id": "glacier",
+      "text": {
+       "en": "A glacier in the Himalaya",
+       "hi": "हिमालय का हिमनद"
+      },
+      "bin": "fresh",
+      "why": {
+       "en": "Glaciers are frozen fresh water. When they melt they feed rivers.",
+       "hi": "हिमनद जमा हुआ मीठा पानी हैं। पिघलने पर वे नदियों को पानी देते हैं।"
+      }
+     },
+     {
+      "id": "river",
+      "text": {
+       "en": "The River Ganga",
+       "hi": "गंगा नदी"
+      },
+      "bin": "fresh",
+      "why": {
+       "en": "River water is fresh until it meets the sea.",
+       "hi": "नदी का पानी समुद्र में मिलने तक मीठा रहता है।"
+      }
+     },
+     {
+      "id": "lake",
+      "text": {
+       "en": "A village pond",
+       "hi": "गाँव का तालाब"
+      },
+      "bin": "fresh",
+      "why": {
+       "en": "Rain fills ponds and lakes with fresh water.",
+       "hi": "बारिश तालाबों और झीलों को मीठे पानी से भरती है।"
+      }
+     },
+     {
+      "id": "well",
+      "text": {
+       "en": "Water in a hand pump",
+       "hi": "हैंडपंप का पानी"
+      },
+      "bin": "fresh",
+      "why": {
+       "en": "Groundwater under the soil is fresh water and many families use it.",
+       "hi": "मिट्टी के नीचे का भूजल मीठा पानी है और कई परिवार इसे इस्तेमाल करते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Most of the Earth's water is…",
+      "hi": "पृथ्वी का ज़्यादातर पानी है…"
+     },
+     "options": [
+      {
+       "id": "salty",
+       "en": "salty, in the oceans",
+       "hi": "खारा, महासागरों में"
+      },
+      {
+       "id": "fresh",
+       "en": "fresh, in rivers",
+       "hi": "मीठा, नदियों में"
+      }
+     ],
+     "answer": "salty"
+    },
+    {
+     "kind": "do",
+     "target": "card:ocean",
+     "expect": "correct:ocean",
+     "say": {
+      "en": "Pick up the card 'The Pacific Ocean' and drop it into the right group.",
+      "hi": "'प्रशांत महासागर' कार्ड उठाओ और सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:glacier",
+     "expect": "correct:glacier",
+     "say": {
+      "en": "Now place the glacier card.",
+      "hi": "अब हिमनद वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Oceans hold most of the Earth's water, but it is salty. Only a small share is fresh, in glaciers, rivers, lakes and under the ground. That is why we speak of water scarcity even on a watery planet. Saving water at home and school matters.",
+      "hi": "महासागरों में पृथ्वी का ज़्यादातर पानी है, पर वह खारा है। मीठा पानी बहुत थोड़ा है, जो हिमनदों, नदियों, झीलों और ज़मीन के नीचे है। इसीलिए पानी से भरी पृथ्वी पर भी पानी की कमी की बात होती है। घर और स्कूल में पानी बचाना ज़रूरी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is there talk of water scarcity when the Earth is full of water?",
+        "hi": "जब पृथ्वी पानी से भरी है तो पानी की कमी की बात क्यों होती है?"
+       },
+       "options": [
+        {
+         "en": "Most water is salty and only a little is fresh and usable",
+         "hi": "ज़्यादातर पानी खारा है और मीठा, उपयोगी पानी थोड़ा है"
+        },
+        {
+         "en": "Oceans are drying up",
+         "hi": "महासागर सूख रहे हैं"
+        },
+        {
+         "en": "Rivers carry only salt",
+         "hi": "नदियाँ केवल नमक ढोती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We need fresh water for drinking and farming, and that is a small part of all water.",
+        "hi": "पीने और खेती के लिए हमें मीठा पानी चाहिए, और वह कुल पानी का छोटा भाग है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Oceans are not drying up. They are huge, but their water is salty.",
+         "hi": "महासागर सूख नहीं रहे। वे विशाल हैं, पर उनका पानी खारा है।"
+        },
+        {
+         "en": "River water is fresh. It is the sea water that is salty.",
+         "hi": "नदी का पानी मीठा होता है। खारा तो समुद्र का पानी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of two ways your family saves water. Which one can you start today?",
+      "hi": "सोचो, तुम्हारा परिवार पानी बचाने के कौन-से दो तरीक़े अपनाता है। आज कौन-सा शुरू कर सकते हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Opens the chapter",
+   "shows": "The blue Earth seen from space centred on the Indian Ocean with clouds, no text",
+   "view": "Square crop, 16:9 version too",
+   "right": "True blue oceans, white clouds, brown-green land",
+   "avoid": "Texts, borders, satellite logos"
+  },
+  {
+   "n": 2,
+   "kind": "MAP",
+   "topic": "2.1",
+   "use": "Base for the oceans and continents labs",
+   "shows": "A world map, flat, relief shading, oceans in blue, no names, no borders",
+   "view": "16:9",
+   "right": "Land and sea in true shape; Antarctica at the bottom",
+   "avoid": "Country borders, names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Shows ocean life",
+   "shows": "A coral reef with colourful fish and a sea turtle in clear water",
+   "view": "Underwater wide shot",
+   "right": "Real Indian Ocean species, true colours",
+   "avoid": "Divers' faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Shows a polar ocean",
+   "shows": "Emperor penguins on sea ice near open water, soft light",
+   "view": "Wide shot",
+   "right": "Real colours, ice and water together",
+   "avoid": "Cartoon look, text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Sort card: a glacier",
+   "shows": "A snowy glacier tongue in a Himalayan valley, cut as a card picture",
+   "view": "Wide, 4:3",
+   "right": "Blue-white ice, rocky sides",
+   "avoid": "Skiers, buildings"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Sort card: a village hand pump",
+   "shows": "A girl's hands pumping water from a hand pump into a steel pot in a village",
+   "view": "Close-up, side view",
+   "right": "Water flowing clearly, Indian setting",
+   "avoid": "Face of the child"
+  }
+ ]
+}

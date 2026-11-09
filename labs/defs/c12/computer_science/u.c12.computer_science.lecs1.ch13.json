@@ -1,0 +1,1053 @@
+{
+ "chapter_key": "u.c12.computer_science.lecs1.ch13",
+ "class": 12,
+ "subject_id": "computer_science",
+ "title": "Project Based Learning",
+ "source": "https://ncert.nic.in/textbook/pdf/lecs113.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Steps in project based learning",
+   "labs": [
+    "c12-computer_science-lecs1-ch13-steps",
+    "c12-computer_science-lecs1-ch13-toolbox"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2",
+   "title": "Team work and collaboration",
+   "labs": [
+    "c12-computer_science-lecs1-ch13-team"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3",
+   "title": "Project 1: Automation of order processing in a restaurant",
+   "labs": [
+    "c12-computer_science-lecs1-ch13-bill",
+    "c12-computer_science-lecs1-ch13-toolbox"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4",
+   "title": "Project 2: Development of a puzzle",
+   "labs": [
+    "c12-computer_science-lecs1-ch13-guess",
+    "c12-computer_science-lecs1-ch13-toolbox"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.5",
+   "title": "Project 3: Development of an educational game",
+   "labs": [
+    "c12-computer_science-lecs1-ch13-guess"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-computer_science-lecs1-ch13-steps",
+   "topic": "13.1",
+   "template": "sequence",
+   "title": {
+    "en": "The steps of a project",
+    "hi": "प्रोजेक्ट के चरण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "identify",
+      "text": {
+       "en": "Identify the problem and the goal of the project",
+       "hi": "समस्या और प्रोजेक्ट का लक्ष्य पहचानो"
+      }
+     },
+     {
+      "id": "plan",
+      "text": {
+       "en": "Define a plan: tasks, tools and who does what",
+       "hi": "योजना बनाओ: काम, साधन और किसका क्या काम"
+      }
+     },
+     {
+      "id": "time",
+      "text": {
+       "en": "Fix a time frame with small milestones",
+       "hi": "छोटे पड़ावों के साथ समय-सीमा तय करो"
+      }
+     },
+     {
+      "id": "build",
+      "text": {
+       "en": "Build the project step by step",
+       "hi": "प्रोजेक्ट को क़दम-दर-क़दम बनाओ"
+      }
+     },
+     {
+      "id": "feedback",
+      "text": {
+       "en": "Show it to the teacher and users and take feedback",
+       "hi": "अध्यापक और उपयोगकर्ताओं को दिखाओ और सुझाव लो"
+      }
+     },
+     {
+      "id": "improve",
+      "text": {
+       "en": "Improve it and present the final result",
+       "hi": "सुधारो और अंतिम नतीजा प्रस्तुत करो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A team is excited and starts writing code at once, without deciding what the project must do. Is that a good start?",
+      "hi": "एक टीम उत्साह में बिना तय किए कि प्रोजेक्ट क्या करेगा, तुरंत कोड लिखना शुरू कर देती है। क्या यह अच्छी शुरुआत है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, the goal must be clear first",
+       "hi": "नहीं, पहले लक्ष्य साफ़ होना चाहिए"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, coding early saves time",
+       "hi": "हाँ, जल्दी कोडिंग से समय बचता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "item:identify",
+     "expect": "placed:identify",
+     "say": {
+      "en": "Put the first step in slot 1.",
+      "hi": "पहला चरण स्थान 1 में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:feedback",
+     "expect": "placed:feedback",
+     "say": {
+      "en": "Place the step where users and the teacher give feedback.",
+      "hi": "वह चरण रखो जहाँ उपयोगकर्ता और अध्यापक सुझाव देते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the rest and press Check.",
+      "hi": "बाकी को क्रम में लगाओ और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A good project follows a path. First identify the problem and the goal, so everyone knows what success looks like. Then plan the tasks and the people, and fix a time frame with small milestones so you can see progress. Build step by step, and ask for guidance and feedback along the way rather than only at the end. Finally, improve and present. Planning early saves much more time than it costs.",
+      "hi": "अच्छा प्रोजेक्ट एक रास्ते पर चलता है। पहले समस्या और लक्ष्य पहचानो, ताकि सबको पता हो कि सफलता कैसी दिखेगी। फिर काम और लोगों की योजना बनाओ और छोटे पड़ावों के साथ समय-सीमा तय करो ताकि प्रगति दिखे। क़दम-दर-क़दम बनाओ, और मार्गदर्शन व सुझाव केवल अंत में नहीं, रास्ते में भी लो। आख़िर में सुधारो और प्रस्तुत करो। जल्दी की गई योजना लागत से कहीं ज़्यादा समय बचाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why fix milestones in a time frame?",
+        "hi": "समय-सीमा में पड़ाव क्यों तय करते हैं?"
+       },
+       "options": [
+        "To check progress at small steps",
+        "To finish the project in one night",
+        "So that no feedback is needed"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Milestones show whether the project is on track, early enough to fix problems.",
+        "hi": "पड़ाव दिखाते हैं कि प्रोजेक्ट सही चल रहा है या नहीं, ताकि समस्या जल्दी सुधारी जा सके।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rushing in one night is the opposite of planning.",
+         "hi": "एक रात में निपटाना योजना का उलटा है।"
+        },
+        {
+         "en": "Feedback is still important at every stage.",
+         "hi": "हर चरण पर सुझाव फिर भी ज़रूरी हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When should you ask for feedback?",
+        "hi": "सुझाव कब माँगना चाहिए?"
+       },
+       "options": [
+        "Along the way, not only at the end",
+        "Never",
+        "Only after the project is submitted"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Early feedback lets you correct mistakes while they are still cheap to fix.",
+        "hi": "जल्दी का सुझाव गलतियाँ तब सुधारने देता है जब सुधार सस्ता हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Skipping feedback means repeating mistakes.",
+         "hi": "सुझाव छोड़ने का मतलब गलतियाँ दोहराना है।"
+        },
+        {
+         "en": "After submission it is too late to change.",
+         "hi": "जमा करने के बाद बदलाव के लिए देर हो चुकी होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a small project for your class, like a quiz app for the school fair. Write one line for each of the six steps.",
+      "hi": "अपनी कक्षा के लिए छोटा प्रोजेक्ट चुनो, जैसे स्कूल मेले के लिए क्विज़ ऐप। छह चरणों में से हर एक के लिए एक पंक्ति लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch13-team",
+   "topic": "13.2",
+   "template": "sort",
+   "title": {
+    "en": "Good teamwork or poor teamwork?",
+    "hi": "अच्छा टीमवर्क या कमज़ोर टीमवर्क?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "good",
+      "label": {
+       "en": "Good teamwork",
+       "hi": "अच्छा टीमवर्क"
+      }
+     },
+     {
+      "id": "poor",
+      "label": {
+       "en": "Poor teamwork",
+       "hi": "कमज़ोर टीमवर्क"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "strength",
+      "text": {
+       "en": "Giving tasks by each member's strength",
+       "hi": "हर सदस्य की ताक़त के हिसाब से काम देना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "People do better work on what they are good at, and learn from one another.",
+       "hi": "लोग अपनी ताक़त वाले काम में बेहतर होते हैं और एक-दूसरे से सीखते हैं।"
+      }
+     },
+     {
+      "id": "listen",
+      "text": {
+       "en": "Listening to every idea before deciding",
+       "hi": "फ़ैसले से पहले हर विचार सुनना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "The best idea may come from anyone.",
+       "hi": "सबसे अच्छा विचार किसी से भी आ सकता है।"
+      }
+     },
+     {
+      "id": "meet",
+      "text": {
+       "en": "Short regular meetings to share progress",
+       "hi": "प्रगति बाँटने के लिए छोटी नियमित बैठकें"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Everyone knows what is done and what is next.",
+       "hi": "सबको पता रहता है कि क्या हो चुका और आगे क्या है।"
+      }
+     },
+     {
+      "id": "share",
+      "text": {
+       "en": "Keeping all files in one shared folder",
+       "hi": "सारी फ़ाइलें एक साझा फ़ोल्डर में रखना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "One shared place avoids confusion over which version is latest.",
+       "hi": "एक साझा जगह से यह उलझन नहीं रहती कि नवीनतम संस्करण कौन-सा है।"
+      }
+     },
+     {
+      "id": "alone",
+      "text": {
+       "en": "One person does all the work",
+       "hi": "एक ही व्यक्ति सारा काम करता है"
+      },
+      "bin": "poor",
+      "why": {
+       "en": "The load is unfair and the others learn nothing.",
+       "hi": "बोझ अनुचित है और बाकी कुछ नहीं सीखते।"
+      }
+     },
+     {
+      "id": "blame",
+      "text": {
+       "en": "Blaming one member for every bug",
+       "hi": "हर गड़बड़ी के लिए एक सदस्य को दोष देना"
+      },
+      "bin": "poor",
+      "why": {
+       "en": "Blame destroys trust; a team should fix problems together.",
+       "hi": "दोष देने से भरोसा टूटता है; टीम को समस्याएँ मिलकर सुलझानी चाहिए।"
+      }
+     },
+     {
+      "id": "silent",
+      "text": {
+       "en": "Nobody tells the others what they changed",
+       "hi": "किसी ने दूसरों को नहीं बताया कि उसने क्या बदला"
+      },
+      "bin": "poor",
+      "why": {
+       "en": "Unshared changes cause clashes and wasted effort.",
+       "hi": "न बताए गए बदलाव टकराव और बेकार मेहनत की वजह बनते हैं।"
+      }
+     },
+     {
+      "id": "last",
+      "text": {
+       "en": "Starting to join the parts on the last day",
+       "hi": "आख़िरी दिन हिस्से जोड़ना शुरू करना"
+      },
+      "bin": "poor",
+      "why": {
+       "en": "Joining parts early shows problems while there is time to solve them.",
+       "hi": "हिस्से जल्दी जोड़ने से समस्याएँ तब दिखती हैं जब सुलझाने का समय हो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:strength",
+     "expect": "correct:strength",
+     "say": {
+      "en": "Place the card about giving tasks by strength.",
+      "hi": "ताक़त के हिसाब से काम देने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One member writes all the code while the others watch. Is this good teamwork?",
+      "hi": "एक सदस्य सारा कोड लिखता है जबकि बाकी देखते हैं। क्या यह अच्छा टीमवर्क है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, the work is not shared",
+       "hi": "नहीं, काम बँटा नहीं है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it is quick",
+       "hi": "हाँ, यह तेज़ है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:alone",
+     "expect": "correct:alone",
+     "say": {
+      "en": "Place the card about one person doing everything.",
+      "hi": "एक व्यक्ति के सब कुछ करने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:blame",
+     "expect": "correct:blame",
+     "say": {
+      "en": "Place the blame card.",
+      "hi": "दोष देने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A team is more than a group of people. Good teams divide the work by strengths, listen to every idea, meet briefly and often, and keep their files in one shared place. Poor teams leave the load on one person, blame instead of solving, stay silent about changes and join the parts at the last minute. Teamwork is a skill, and in software projects it matters as much as coding.",
+      "hi": "टीम लोगों के झुंड से बढ़कर है। अच्छी टीमें काम ताक़त के हिसाब से बाँटती हैं, हर विचार सुनती हैं, छोटी और बार-बार बैठकें करती हैं और फ़ाइलें एक साझा जगह रखती हैं। कमज़ोर टीमें बोझ एक व्यक्ति पर छोड़ती हैं, सुलझाने के बजाय दोष देती हैं, बदलावों पर चुप रहती हैं और हिस्से आख़िरी क्षण में जोड़ती हैं। टीमवर्क एक हुनर है, और सॉफ़्टवेयर प्रोजेक्ट में वह कोडिंग जितना ही मायने रखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which habit helps a team most when the project is large?",
+        "hi": "प्रोजेक्ट बड़ा हो तो टीम की कौन-सी आदत सबसे ज़्यादा काम आती है?"
+       },
+       "options": [
+        "Regular short meetings to share progress",
+        "Working in secret",
+        "Doing everything on the last day"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Regular updates keep all the members in step.",
+        "hi": "नियमित जानकारी सब सदस्यों को साथ रखती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Secrecy leads to clashes and repeated work.",
+         "hi": "गोपनीयता से टकराव और दोहराया काम होता है।"
+        },
+        {
+         "en": "The last day is too late to find problems.",
+         "hi": "समस्याएँ खोजने के लिए आख़िरी दिन बहुत देर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why keep all project files in one shared place?",
+        "hi": "प्रोजेक्ट की सारी फ़ाइलें एक साझा जगह क्यों रखें?"
+       },
+       "options": [
+        "So everyone uses the latest version",
+        "So nobody can see them",
+        "To make the files bigger"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A shared folder or repository avoids confusion between old and new copies.",
+        "hi": "साझा फ़ोल्डर या रिपॉज़िटरी पुरानी और नई प्रतियों की उलझन से बचाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The aim is to share, not to hide.",
+         "hi": "उद्देश्य बाँटना है, छिपाना नहीं।"
+        },
+        {
+         "en": "Size is not the purpose.",
+         "hi": "आकार उद्देश्य नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest. Think of a group task at school where teamwork went well. Which of the good habits did you use?",
+      "hi": "बाकी रखो। स्कूल में किसी समूह-कार्य को याद करो जहाँ टीमवर्क अच्छा रहा। तुमने इनमें से कौन-सी अच्छी आदतें अपनाईं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch13-bill",
+   "topic": "13.3",
+   "template": "code",
+   "title": {
+    "en": "Restaurant project: totalling the bill",
+    "hi": "रेस्तराँ प्रोजेक्ट: बिल का जोड़"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "prices = [60, 40, 90]",
+     "qty = [2, 1, 3]",
+     "total = 0",
+     "for i in range(len(prices)):",
+     "    total = total + prices[i] * qty[i]",
+     "print(\"Bill in rupees:\", total)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A table orders 2 items at 60 rupees, 1 item at 40 rupees and 3 items at 90 rupees. Will the bill be more than 400 rupees?",
+      "hi": "एक मेज़ ने 60 रुपये वाली 2 चीज़ें, 40 रुपये वाली 1 चीज़ और 90 रुपये वाली 3 चीज़ें मँगाईं। क्या बिल 400 रुपये से ज़्यादा होगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it is 430",
+       "hi": "हाँ, वह 430 है"
+      },
+      {
+       "id": "no",
+       "en": "No, it is less",
+       "hi": "नहीं, वह कम है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch total grow with each item: price times quantity.",
+      "hi": "\"एक क़दम\" दबाओ और देखो हर चीज़ के साथ total कैसे बढ़ता है: कीमत गुणा मात्रा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the final bill.",
+      "hi": "अंतिम बिल देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The restaurant project turns a real job into a small program. The menu prices and the quantities are kept in two lists, with the same position for the same dish. A loop goes through every position, multiplies price by quantity and adds it to the total: 2 × 60 + 1 × 40 + 3 × 90 = 120 + 40 + 270 = 430. In the full project the menu would live in a database, the orders would wait in a queue for the kitchen, and each bill would be saved in a file.",
+      "hi": "रेस्तराँ प्रोजेक्ट असली काम को छोटे प्रोग्राम में बदलता है। मेन्यू की कीमतें और मात्राएँ दो सूचियों में रखी हैं, जिनमें एक ही व्यंजन की जगह एक ही है। लूप हर जगह पर जाकर कीमत को मात्रा से गुणा करता है और total में जोड़ता है: 2 × 60 + 1 × 40 + 3 × 90 = 120 + 40 + 270 = 430। पूरे प्रोजेक्ट में मेन्यू डेटाबेस में रहेगा, ऑर्डर रसोई के लिए क्यू में इंतज़ार करेंगे और हर बिल फ़ाइल में सहेजा जाएगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are prices and quantities kept at the same position in two lists?",
+        "hi": "कीमतें और मात्राएँ दो सूचियों में एक ही स्थान पर क्यों रखी गई हैं?"
+       },
+       "options": [
+        "So prices[i] and qty[i] belong to the same dish",
+        "To make the program slower",
+        "Because lists must have equal numbers"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Position i links the price and the quantity of one dish.",
+        "hi": "स्थान i एक व्यंजन की कीमत और मात्रा को जोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Speed is not the reason.",
+         "hi": "गति कारण नहीं है।"
+        },
+        {
+         "en": "Equal length is a result of the pairing, not the reason.",
+         "hi": "बराबर लंबाई जोड़ी बनाने का नतीजा है, कारण नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What would the bill be if the quantities were 1, 1 and 1?",
+        "hi": "मात्राएँ 1, 1 और 1 होतीं तो बिल क्या होता?"
+       },
+       "options": [
+        "190",
+        "430",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "60 + 40 + 90 = 190.",
+        "hi": "60 + 40 + 90 = 190।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "430 is the bill for the original quantities.",
+         "hi": "430 मूल मात्राओं का बिल है।"
+        },
+        {
+         "en": "3 is the number of dishes, not rupees.",
+         "hi": "3 व्यंजनों की संख्या है, रुपये नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which chapter of this book would help you store the menu? Which would help you keep the orders in sequence for the kitchen?",
+      "hi": "इस पुस्तक का कौन-सा अध्याय मेन्यू रखने में मदद करेगा? कौन-सा रसोई के लिए ऑर्डर क्रम में रखने में?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch13-guess",
+   "topic": "13.4",
+   "template": "code",
+   "title": {
+    "en": "Puzzle and game project: guess the number",
+    "hi": "पहेली और गेम प्रोजेक्ट: संख्या का अंदाज़ा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "secret = 7",
+     "guesses = [3, 9, 7]",
+     "tries = 0",
+     "for g in guesses:",
+     "    tries = tries + 1",
+     "    if g < secret:",
+     "        print(g, \"is too low\")",
+     "    elif g > secret:",
+     "        print(g, \"is too high\")",
+     "    else:",
+     "        print(\"Correct in\", tries, \"tries\")",
+     "        break"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The secret number is 7. The player guesses 3, then 9, then 7. How many tries will it take?",
+      "hi": "गुप्त संख्या 7 है। खिलाड़ी 3, फिर 9, फिर 7 का अंदाज़ा लगाता है। कितनी कोशिशें लगेंगी?"
+     },
+     "options": [
+      {
+       "id": "three",
+       "en": "3 tries",
+       "hi": "3 कोशिशें"
+      },
+      {
+       "id": "one",
+       "en": "1 try",
+       "hi": "1 कोशिश"
+      },
+      {
+       "id": "two",
+       "en": "2 tries",
+       "hi": "2 कोशिशें"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and follow how each guess is compared with the secret.",
+      "hi": "\"एक क़दम\" दबाओ और देखो हर अंदाज़े की तुलना गुप्त संख्या से कैसे होती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish the game.",
+      "hi": "गेम पूरा करने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A game is made of small ideas that you already know: a variable for the secret number, a list of guesses, a loop to go through them, if, elif and else to compare each guess, a counter for the tries and break to stop when the player wins. Giving hints like \"too low\" and \"too high\" is what makes the game fun and helps the player learn. Building a game or a puzzle is therefore a way of practising everything in this book.",
+      "hi": "गेम उन छोटे विचारों से बनता है जिन्हें तुम पहले से जानते हो: गुप्त संख्या के लिए वेरिएबल, अंदाज़ों की सूची, उन पर चलने के लिए लूप, हर अंदाज़े की तुलना के लिए if, elif और else, कोशिशों की गिनती के लिए काउंटर और खिलाड़ी जीते तो रुकने के लिए break। \"बहुत कम\" और \"बहुत ज़्यादा\" जैसे संकेत गेम को मज़ेदार बनाते हैं और खिलाड़ी को सीखने में मदद करते हैं। इसलिए गेम या पहेली बनाना इस पुस्तक की हर बात को अभ्यास में लाने का तरीका है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does break do in this program?",
+        "hi": "इस प्रोग्राम में break क्या करता है?"
+       },
+       "options": [
+        "Stops the loop when the guess is correct",
+        "Breaks the computer",
+        "Skips the first guess"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "break leaves the loop at once, so no more guesses are read.",
+        "hi": "break तुरंत लूप से निकल जाता है, इसलिए और अंदाज़े नहीं पढ़े जाते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It only stops the loop; nothing breaks.",
+         "hi": "वह केवल लूप रोकता है; कुछ टूटता नहीं।"
+        },
+        {
+         "en": "It does not skip anything before it.",
+         "hi": "वह अपने पहले का कुछ नहीं छोड़ता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The player guesses 9 and the secret is 7. What hint is shown?",
+        "hi": "खिलाड़ी 9 बताता है और गुप्त संख्या 7 है। कौन-सा संकेत दिखेगा?"
+       },
+       "options": [
+        "9 is too high",
+        "9 is too low",
+        "Correct"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "9 is bigger than 7, so the hint says too high.",
+        "hi": "9, 7 से बड़ा है, इसलिए संकेत \"बहुत ज़्यादा\" कहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Too low would be for numbers below 7.",
+         "hi": "\"बहुत कम\" 7 से छोटी संख्याओं के लिए होता।"
+        },
+        {
+         "en": "Correct is only for 7.",
+         "hi": "\"सही\" केवल 7 के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "How could you make the game harder or kinder? Think of one change: a limit on tries, a bigger range or a score.",
+      "hi": "तुम गेम को कठिन या दयालु कैसे बना सकते हो? एक बदलाव सोचो: कोशिशों की सीमा, बड़ी रेंज या अंक।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch13-toolbox",
+   "topic": "13.1",
+   "template": "match",
+   "title": {
+    "en": "Which tool from the book fits which job?",
+    "hi": "पुस्तक का कौन-सा साधन किस काम के लिए?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "menu",
+      "left": {
+       "en": "Storing the restaurant menu and prices",
+       "hi": "रेस्तराँ का मेन्यू और कीमतें रखना"
+      },
+      "right": {
+       "en": "A database table with SQL",
+       "hi": "SQL वाली डेटाबेस तालिका"
+      },
+      "why": {
+       "en": "A table with a primary key per dish can be searched and updated with SQL.",
+       "hi": "हर व्यंजन की प्राथमिक कुंजी वाली तालिका को SQL से खोजा और बदला जा सकता है।"
+      }
+     },
+     {
+      "id": "bills",
+      "left": {
+       "en": "Saving each day's bills for later",
+       "hi": "हर दिन के बिल बाद के लिए सहेजना"
+      },
+      "right": {
+       "en": "A file",
+       "hi": "एक फ़ाइल"
+      },
+      "why": {
+       "en": "A text or binary file keeps data after the program ends.",
+       "hi": "टेक्स्ट या बाइनरी फ़ाइल प्रोग्राम ख़त्म होने के बाद भी डेटा रखती है।"
+      }
+     },
+     {
+      "id": "kitchen",
+      "left": {
+       "en": "Orders waiting for the kitchen in arrival order",
+       "hi": "रसोई के लिए आने के क्रम में इंतज़ार करते ऑर्डर"
+      },
+      "right": {
+       "en": "A queue",
+       "hi": "एक क्यू"
+      },
+      "why": {
+       "en": "First in, first out keeps the service fair.",
+       "hi": "पहले आया, पहले गया सेवा को निष्पक्ष रखता है।"
+      }
+     },
+     {
+      "id": "undo",
+      "left": {
+       "en": "Undoing the last move in a puzzle",
+       "hi": "पहेली में आख़िरी चाल पलटना"
+      },
+      "right": {
+       "en": "A stack",
+       "hi": "एक स्टैक"
+      },
+      "why": {
+       "en": "The latest move is the first to be undone.",
+       "hi": "सबसे ताज़ा चाल सबसे पहले पलटती है।"
+      }
+     },
+     {
+      "id": "board",
+      "left": {
+       "en": "Ranking the scores of a game",
+       "hi": "गेम के अंकों की रैंकिंग"
+      },
+      "right": {
+       "en": "A sorting algorithm",
+       "hi": "एक छँटाई एल्गोरिद्म"
+      },
+      "why": {
+       "en": "Sorted scores make a leaderboard.",
+       "hi": "छँटे हुए अंक लीडरबोर्ड बनाते हैं।"
+      }
+     },
+     {
+      "id": "find",
+      "left": {
+       "en": "Finding a question by its number among thousands",
+       "hi": "हज़ारों में से संख्या से प्रश्न खोजना"
+      },
+      "right": {
+       "en": "Binary search",
+       "hi": "बाइनरी खोज"
+      },
+      "why": {
+       "en": "With sorted question numbers, binary search needs very few looks.",
+       "hi": "क्रमबद्ध प्रश्न-संख्याओं में बाइनरी खोज को बहुत कम नज़रें चाहिए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:menu",
+     "expect": "matched:menu",
+     "say": {
+      "en": "Match the menu with the right tool.",
+      "hi": "मेन्यू को सही साधन से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Orders must be cooked in the order they arrive. Which structure fits?",
+      "hi": "ऑर्डर आने के क्रम में पकाए जाने चाहिए। कौन-सी संरचना ठीक है?"
+     },
+     "options": [
+      {
+       "id": "queue",
+       "en": "A queue",
+       "hi": "क्यू"
+      },
+      {
+       "id": "stack",
+       "en": "A stack",
+       "hi": "स्टैक"
+      }
+     ],
+     "answer": "queue"
+    },
+    {
+     "kind": "do",
+     "target": "left:kitchen",
+     "expect": "matched:kitchen",
+     "say": {
+      "en": "Match the kitchen orders.",
+      "hi": "रसोई के ऑर्डर मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:undo",
+     "expect": "matched:undo",
+     "say": {
+      "en": "Match the puzzle undo.",
+      "hi": "पहेली के undo को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A real project is a meeting point for many ideas. A database holds the data you must search and update, files keep results after the program ends, a queue keeps things fair, a stack takes moves back, sorting ranks results and binary search finds items quickly. Part of the skill of a project is choosing the right tool for each job.",
+      "hi": "असली प्रोजेक्ट कई विचारों का संगम होता है। डेटाबेस वह डेटा रखता है जिसे खोजना और बदलना है, फ़ाइलें प्रोग्राम ख़त्म होने के बाद नतीजे रखती हैं, क्यू चीज़ों को निष्पक्ष रखती है, स्टैक चालें वापस लेता है, छँटाई नतीजों को क्रम देती है और बाइनरी खोज चीज़ें जल्दी ढूँढ़ती है। प्रोजेक्ट के हुनर का एक हिस्सा है हर काम के लिए सही साधन चुनना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which tool would store customer names and phone numbers that you need to search by name?",
+        "hi": "ग्राहकों के नाम और फ़ोन नंबर, जिन्हें नाम से खोजना है, किस साधन में रखोगे?"
+       },
+       "options": [
+        "A database table",
+        "A stack",
+        "A queue"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A table is made for records that must be searched, filtered and updated.",
+        "hi": "तालिका उन रिकॉर्डों के लिए बनी है जिन्हें खोजना, छानना और बदलना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A stack gives only its top item.",
+         "hi": "स्टैक केवल अपनी ऊपर वाली चीज़ देता है।"
+        },
+        {
+         "en": "A queue gives only its front item.",
+         "hi": "क्यू केवल अपनी आगे वाली चीज़ देती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A game leaderboard shows the best score first. Which operation prepares the data?",
+        "hi": "गेम का लीडरबोर्ड सबसे अच्छा अंक पहले दिखाता है। कौन-सी क्रिया डेटा तैयार करती है?"
+       },
+       "options": [
+        "Sorting",
+        "Hashing the screen",
+        "Switching packets"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sorting the scores from high to low gives the leaderboard order.",
+        "hi": "अंकों को ऊँचे से नीचे छाँटने से लीडरबोर्ड का क्रम बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hashing is for quick lookup, not ranking.",
+         "hi": "हैशिंग तेज़ खोज के लिए है, रैंकिंग के लिए नहीं।"
+        },
+        {
+         "en": "Packet switching is about moving data over networks.",
+         "hi": "पैकेट स्विचिंग नेटवर्क पर डेटा भेजने की बात है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the last two. Pick one of the three projects in this chapter and list which three tools from the book you would use.",
+      "hi": "आख़िरी दो मिलाओ। इस अध्याय के तीन प्रोजेक्टों में से एक चुनो और बताओ पुस्तक के कौन-से तीन साधन तुम इस्तेमाल करोगे।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "A student team planning on a whiteboard",
+   "shows": "Four students seen from behind around a whiteboard with a plain grid of sticky notes, no readable writing",
+   "view": "Eye level, 16:9, bright classroom light",
+   "right": "Sticky notes in clear columns but unreadable",
+   "avoid": "Visible faces, readable text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "13.3",
+   "use": "A small restaurant counter with order slips",
+   "shows": "A restaurant counter with a few paper order slips on a spike and a laptop, kitchen window behind, no people",
+   "view": "Eye level, 16:9, warm light",
+   "right": "Spike with slips and laptop clearly visible",
+   "avoid": "Readable menu or bills, brand names"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "13.4",
+   "use": "A simple wooden sliding puzzle",
+   "shows": "A wooden sliding-tile puzzle partly scrambled with one empty square, tiles blank",
+   "view": "Top-down, light from top left, transparent background",
+   "right": "Empty square clearly visible",
+   "avoid": "Numbers or pictures on tiles"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "13.5",
+   "use": "Dice and cards for an educational game",
+   "shows": "Two six-sided dice and a few blank game cards fanned out",
+   "view": "Top-down, light from top left, transparent background",
+   "right": "Dice pips clear, cards blank",
+   "avoid": "Printed text on cards"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "13.1",
+   "use": "Blank project timeline with milestones",
+   "shows": "A horizontal strip with five empty flag markers on it",
+   "view": "Flat white background, vector, 16:9",
+   "right": "Flags equally spaced for the app to label",
+   "avoid": "Any text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "13.2",
+   "use": "Pair working at one laptop",
+   "shows": "Two students sharing one laptop, one pointing at the screen, seen from behind",
+   "view": "Over the shoulder, 16:9, daylight",
+   "right": "Both clearly engaged",
+   "avoid": "Visible faces, readable screen"
+  }
+ ]
+}

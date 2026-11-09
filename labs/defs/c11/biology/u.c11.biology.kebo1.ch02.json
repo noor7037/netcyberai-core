@@ -1,0 +1,1621 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch02",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Biological Classification",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo102.pdf",
+ "topics": [
+  {
+   "n": "2.0",
+   "title": "Five-kingdom classification and its criteria",
+   "labs": [
+    "c11-biology-kebo1-ch02-five-kingdoms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.1",
+   "title": "Kingdom Monera: archaebacteria and eubacteria",
+   "labs": [
+    "c11-biology-kebo1-ch02-bacteria-shapes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Kingdom Protista: chrysophytes, dinoflagellates, euglenoids, slime moulds, protozoans",
+   "labs": [
+    "c11-biology-kebo1-ch02-protists"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Kingdom Fungi: phycomycetes, ascomycetes, basidiomycetes, deuteromycetes",
+   "labs": [
+    "c11-biology-kebo1-ch02-fungi",
+    "c11-biology-kebo1-ch02-bread-mould"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Kingdom Plantae",
+   "labs": [],
+   "why_no_lab": "A short overview here; Chapter 3 (Plant Kingdom) has the plant labs."
+  },
+  {
+   "n": "2.5",
+   "title": "Kingdom Animalia",
+   "labs": [],
+   "why_no_lab": "A short overview here; Chapter 4 (Animal Kingdom) has the animal labs."
+  },
+  {
+   "n": "2.6",
+   "title": "Viruses, viroids, prions and lichens",
+   "labs": [
+    "c11-biology-kebo1-ch02-virus-lichen"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch02-five-kingdoms",
+   "topic": "2.0",
+   "template": "sort",
+   "title": {
+    "en": "Five kingdoms: which kingdom?",
+    "hi": "पाँच जगत: कौन-सा जगत?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "monera",
+      "label": {
+       "en": "Monera",
+       "hi": "मोनेरा"
+      }
+     },
+     {
+      "id": "protista",
+      "label": {
+       "en": "Protista",
+       "hi": "प्रोटिस्टा"
+      }
+     },
+     {
+      "id": "fungi",
+      "label": {
+       "en": "Fungi",
+       "hi": "कवक (फंजाई)"
+      }
+     },
+     {
+      "id": "plantae",
+      "label": {
+       "en": "Plantae",
+       "hi": "पादप (प्लांटी)"
+      }
+     },
+     {
+      "id": "animalia",
+      "label": {
+       "en": "Animalia",
+       "hi": "जंतु (एनिमेलिया)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "curd",
+      "text": {
+       "en": "Lactobacillus that sets curd",
+       "hi": "दही जमाने वाला लैक्टोबैसिलस"
+      },
+      "bin": "monera",
+      "why": {
+       "en": "A bacterium: one cell with no nucleus (prokaryote).",
+       "hi": "एक जीवाणु: एक कोशिका, केंद्रक नहीं (प्रोकैरियोट)।"
+      }
+     },
+     {
+      "id": "nostoc",
+      "text": {
+       "en": "Nostoc, a blue-green alga in paddy fields",
+       "hi": "नॉस्टॉक, धान के खेत का नील-हरित शैवाल"
+      },
+      "bin": "monera",
+      "why": {
+       "en": "Cyanobacteria are bacteria that photosynthesise. They have no true nucleus.",
+       "hi": "साइनोबैक्टीरिया प्रकाश-संश्लेषण करने वाले जीवाणु हैं। इनमें असली केंद्रक नहीं होता।"
+      }
+     },
+     {
+      "id": "amoeba",
+      "text": {
+       "en": "Amoeba in pond water",
+       "hi": "तालाब के पानी में अमीबा"
+      },
+      "bin": "protista",
+      "why": {
+       "en": "One cell, but with a true nucleus: a single-celled eukaryote.",
+       "hi": "एक ही कोशिका, पर असली केंद्रक के साथ: एककोशिकीय यूकैरियोट।"
+      }
+     },
+     {
+      "id": "euglena",
+      "text": {
+       "en": "Euglena, green and with a flagellum",
+       "hi": "यूग्लीना, हरा और कशाभ वाला"
+      },
+      "bin": "protista",
+      "why": {
+       "en": "Single-celled eukaryote; it makes food in light and eats in the dark.",
+       "hi": "एककोशिकीय यूकैरियोट; प्रकाश में भोजन बनाता है, अँधेरे में खाता है।"
+      }
+     },
+     {
+      "id": "mushroom",
+      "text": {
+       "en": "Mushroom (khumbi)",
+       "hi": "मशरूम (खुंभी)"
+      },
+      "bin": "fungi",
+      "why": {
+       "en": "Body of threads (hyphae), cell wall of chitin, feeds by absorbing food.",
+       "hi": "शरीर धागों (कवकतंतुओं) का, कोशिका भित्ति काइटिन की, भोजन सोखकर लेता है।"
+      }
+     },
+     {
+      "id": "yeast",
+      "text": {
+       "en": "Yeast that makes idli batter rise",
+       "hi": "इडली का घोल फुलाने वाला यीस्ट"
+      },
+      "bin": "fungi",
+      "why": {
+       "en": "Yeast is a single-celled fungus. It has a cell wall but no chlorophyll.",
+       "hi": "यीस्ट एककोशिकीय कवक है। इसमें कोशिका भित्ति है पर पर्णहरित नहीं।"
+      }
+     },
+     {
+      "id": "neem",
+      "text": {
+       "en": "Neem tree",
+       "hi": "नीम का पेड़"
+      },
+      "bin": "plantae",
+      "why": {
+       "en": "Many cells with cellulose walls and chlorophyll: it makes its own food.",
+       "hi": "सेलुलोस भित्ति और पर्णहरित वाली अनेक कोशिकाएँ: अपना भोजन ख़ुद बनाता है।"
+      }
+     },
+     {
+      "id": "moss",
+      "text": {
+       "en": "Moss on a wet wall",
+       "hi": "गीली दीवार पर मॉस"
+      },
+      "bin": "plantae",
+      "why": {
+       "en": "A small green land plant with many cells and chlorophyll.",
+       "hi": "अनेक कोशिकाओं और पर्णहरित वाला छोटा हरा थलीय पौधा।"
+      }
+     },
+     {
+      "id": "cow",
+      "text": {
+       "en": "Cow",
+       "hi": "गाय"
+      },
+      "bin": "animalia",
+      "why": {
+       "en": "Many cells with no cell wall; it eats food and digests it inside.",
+       "hi": "बिना कोशिका भित्ति की अनेक कोशिकाएँ; भोजन खाकर भीतर पचाती है।"
+      }
+     },
+     {
+      "id": "earthworm",
+      "text": {
+       "en": "Earthworm",
+       "hi": "केंचुआ"
+      },
+      "bin": "animalia",
+      "why": {
+       "en": "A many-celled animal that takes in food: holozoic nutrition.",
+       "hi": "भोजन निगलने वाला बहुकोशिकीय जंतु: प्राणिसम पोषण।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:curd",
+     "expect": "correct:curd",
+     "say": {
+      "en": "Tap the card \"Lactobacillus that sets curd\", then tap its kingdom.",
+      "hi": "\"दही जमाने वाला लैक्टोबैसिलस\" कार्ड पर टैप करो, फिर उसके जगत पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:mushroom",
+     "expect": "correct:mushroom",
+     "say": {
+      "en": "Now sort the mushroom.",
+      "hi": "अब मशरूम को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Amoeba is one cell, like a bacterium. Which kingdom does it belong to?",
+      "hi": "अमीबा जीवाणु की तरह एक कोशिका है। यह किस जगत में आता है?"
+     },
+     "options": [
+      {
+       "id": "protista",
+       "en": "Protista: it has a true nucleus",
+       "hi": "प्रोटिस्टा: इसमें असली केंद्रक है"
+      },
+      {
+       "id": "monera",
+       "en": "Monera: it is one cell",
+       "hi": "मोनेरा: यह एक कोशिका है"
+      },
+      {
+       "id": "animalia",
+       "en": "Animalia: it moves and eats",
+       "hi": "एनिमेलिया: यह चलता और खाता है"
+      }
+     ],
+     "answer": "protista"
+    },
+    {
+     "kind": "do",
+     "target": "card:amoeba",
+     "expect": "correct:amoeba",
+     "say": {
+      "en": "Tap the Amoeba card and sort it.",
+      "hi": "अमीबा कार्ड पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Whittaker used a few questions to make five kingdoms: Is there a true nucleus? One cell or many? Is there a cell wall? How does it get food? Monera have no nuclear membrane. Protista are one-celled eukaryotes. Fungi absorb food and have chitin walls. Plants make food. Animals eat food and have no cell wall.",
+      "hi": "व्हिटेकर ने कुछ प्रश्नों से पाँच जगत बनाए: क्या असली केंद्रक है? एक कोशिका या अनेक? क्या कोशिका भित्ति है? भोजन कैसे मिलता है? मोनेरा में केंद्रक झिल्ली नहीं होती। प्रोटिस्टा एककोशिकीय यूकैरियोट हैं। कवक भोजन सोखते हैं और उनकी भित्ति काइटिन की होती है। पौधे भोजन बनाते हैं। जंतु भोजन खाते हैं और उनमें कोशिका भित्ति नहीं होती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Yeast is one cell. Why is it not in Protista?",
+        "hi": "यीस्ट एक कोशिका है। यह प्रोटिस्टा में क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "It has a chitin cell wall and absorbs food like other fungi",
+         "hi": "इसकी भित्ति काइटिन की है और यह दूसरे कवकों की तरह भोजन सोखता है"
+        },
+        {
+         "en": "It has no nucleus",
+         "hi": "इसमें केंद्रक नहीं है"
+        },
+        {
+         "en": "It makes its own food",
+         "hi": "यह अपना भोजन ख़ुद बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cell count alone does not decide the kingdom. Yeast shares its wall and way of feeding with fungi.",
+        "hi": "केवल कोशिकाओं की संख्या से जगत तय नहीं होता। यीस्ट की भित्ति और पोषण कवकों जैसे हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Yeast does have a nucleus; it is a eukaryote. Only Monera lack one.",
+         "hi": "यीस्ट में केंद्रक है; यह यूकैरियोट है। केवल मोनेरा में नहीं होता।"
+        },
+        {
+         "en": "Yeast has no chlorophyll, so it cannot make food.",
+         "hi": "यीस्ट में पर्णहरित नहीं है, इसलिए यह भोजन नहीं बना सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which question first separates Monera from all other kingdoms?",
+        "hi": "कौन-सा प्रश्न मोनेरा को बाक़ी सब जगतों से सबसे पहले अलग करता है?"
+       },
+       "options": [
+        {
+         "en": "Does it move?",
+         "hi": "क्या यह चलता है?"
+        },
+        {
+         "en": "Does the cell have a true nucleus?",
+         "hi": "क्या कोशिका में असली केंद्रक है?"
+        },
+        {
+         "en": "Is it green?",
+         "hi": "क्या यह हरा है?"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Monera are prokaryotes: their DNA is not inside a nuclear membrane. The other four kingdoms are eukaryotes.",
+        "hi": "मोनेरा प्रोकैरियोट हैं: इनका डीएनए केंद्रक झिल्ली के भीतर नहीं होता। बाक़ी चार जगत यूकैरियोट हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Many protists and animals also move, so moving cannot separate Monera.",
+         "hi": "कई प्रोटिस्ट और जंतु भी चलते हैं, इसलिए चलना मोनेरा को अलग नहीं करता।"
+        },
+        "",
+        {
+         "en": "Cyanobacteria are green, and so are plants and Euglena, so colour does not help.",
+         "hi": "साइनोबैक्टीरिया हरे हैं, पौधे और यूग्लीना भी, इसलिए रंग से मदद नहीं मिलती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort all the other cards. Then pick three living things from your home or school and name their kingdom.",
+      "hi": "बाक़ी सब कार्ड छाँटो। फिर अपने घर या स्कूल के तीन सजीव चुनकर उनका जगत बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch02-bacteria-shapes",
+   "topic": "2.1",
+   "template": "scope",
+   "title": {
+    "en": "Shapes of bacteria",
+    "hi": "जीवाणुओं के आकार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "bacteria"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Choose the 10x lens.",
+      "hi": "10x लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse focus knob until the picture is sharp.",
+      "hi": "मोटे फ़ोकस नॉब को तब तक घुमाओ जब तक चित्र साफ़ न हो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Bacteria are named by their shape. What do you think a rod-shaped bacterium is called?",
+      "hi": "जीवाणुओं के नाम उनके आकार से रखे जाते हैं। तुम्हें क्या लगता है, छड़ जैसे जीवाणु को क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "bacillus",
+       "en": "Bacillus",
+       "hi": "बैसिलस"
+      },
+      {
+       "id": "coccus",
+       "en": "Coccus",
+       "hi": "कोकस"
+      },
+      {
+       "id": "spirillum",
+       "en": "Spirillum",
+       "hi": "स्पाइरिलम"
+      }
+     ],
+     "answer": "bacillus"
+    },
+    {
+     "kind": "do",
+     "target": "part:bacillus",
+     "expect": "identified:bacillus",
+     "say": {
+      "en": "Find a rod-shaped bacterium: tap \"bacillus\".",
+      "hi": "छड़ जैसा जीवाणु ढूँढो: \"बैसिलस\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:coccus",
+     "expect": "identified:coccus",
+     "say": {
+      "en": "Now find a round one: tap \"coccus\".",
+      "hi": "अब गोल जीवाणु ढूँढो: \"कोकस\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:spirillum",
+     "expect": "identified:spirillum",
+     "say": {
+      "en": "Last, find the spiral one: tap \"spirillum\".",
+      "hi": "आख़िर में सर्पिल जीवाणु ढूँढो: \"स्पाइरिलम\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bacteria come in four main shapes: rods (bacillus), spheres (coccus), commas (vibrium) and spirals (spirillum). They are prokaryotes: no nuclear membrane. Most are heterotrophs, like those in curd, but some, like cyanobacteria, make their own food.",
+      "hi": "जीवाणु चार मुख्य आकार के होते हैं: छड़ (बैसिलस), गोल (कोकस), कॉमा (विब्रियम) और सर्पिल (स्पाइरिलम)। ये प्रोकैरियोट हैं: केंद्रक झिल्ली नहीं होती। अधिकतर परपोषी हैं, जैसे दही वाले, पर कुछ, जैसे साइनोबैक्टीरिया, अपना भोजन बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Bacteria that live in hot sulphur springs and in cow dung making biogas belong to which group?",
+        "hi": "गर्म गंधक के झरनों में और गोबर में बायोगैस बनाने वाले जीवाणु किस समूह के हैं?"
+       },
+       "options": [
+        {
+         "en": "Archaebacteria",
+         "hi": "आर्कीबैक्टीरिया"
+        },
+        {
+         "en": "Cyanobacteria",
+         "hi": "साइनोबैक्टीरिया"
+        },
+        {
+         "en": "Mycoplasma",
+         "hi": "माइकोप्लाज़्मा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Archaebacteria (halophiles, thermoacidophiles, methanogens) live in harsh places. Their special cell wall helps them survive.",
+        "hi": "आर्कीबैक्टीरिया (हैलोफ़ाइल, थर्मोएसिडोफ़ाइल, मेथेनोजेन) कठोर जगहों पर रहते हैं। उनकी ख़ास कोशिका भित्ति उन्हें बचाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cyanobacteria are green photosynthetic bacteria of ponds and fields, not of hot springs or dung.",
+         "hi": "साइनोबैक्टीरिया तालाबों और खेतों के हरे प्रकाश-संश्लेषी जीवाणु हैं, गर्म झरनों या गोबर के नहीं।"
+        },
+        {
+         "en": "Mycoplasma have no cell wall and are known as the smallest living cells, many causing disease.",
+         "hi": "माइकोप्लाज़्मा में कोशिका भित्ति नहीं होती; ये सबसे छोटी जीवित कोशिकाएँ हैं, कई रोग फैलाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we need the 10x or 40x lens to see bacteria?",
+        "hi": "जीवाणु देखने के लिए 10x या 40x लेंस क्यों चाहिए?"
+       },
+       "options": [
+        {
+         "en": "They are only a few micrometres long",
+         "hi": "वे केवल कुछ माइक्रोमीटर लंबे होते हैं"
+        },
+        {
+         "en": "They hide under the slide",
+         "hi": "वे स्लाइड के नीचे छिपते हैं"
+        },
+        {
+         "en": "They are transparent only at 4x",
+         "hi": "वे केवल 4x पर पारदर्शी होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A bacterium is about a thousandth of a millimetre long, so it must be magnified many times.",
+        "hi": "एक जीवाणु लगभग एक मिलीमीटर के हज़ारवें भाग जितना लंबा होता है, इसलिए उसे कई गुना बड़ा करना पड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The bacteria sit on top of the slide in the stained smear; size is the problem.",
+         "hi": "जीवाणु रंगे लेप में स्लाइड के ऊपर ही होते हैं; समस्या उनका आकार है।"
+        },
+        {
+         "en": "Lens power changes size, not how clear the cell is.",
+         "hi": "लेंस की क्षमता आकार बदलती है, कोशिका की पारदर्शिता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the arrows to move around the slide. Which shape do you find most often? Switch to 40x and focus with the fine knob.",
+      "hi": "तीरों से स्लाइड पर घूमो। कौन-सा आकार सबसे ज़्यादा दिखता है? 40x पर जाकर बारीक नॉब से फ़ोकस करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch02-protists",
+   "topic": "2.2",
+   "template": "sort",
+   "title": {
+    "en": "Sorting the protists",
+    "hi": "प्रोटिस्टों को छाँटो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "chryso",
+      "label": {
+       "en": "Chrysophytes",
+       "hi": "क्राइसोफ़ाइट"
+      }
+     },
+     {
+      "id": "dino",
+      "label": {
+       "en": "Dinoflagellates",
+       "hi": "डाइनोफ़्लैजेलेट"
+      }
+     },
+     {
+      "id": "eugleno",
+      "label": {
+       "en": "Euglenoids",
+       "hi": "यूग्लीनॉइड"
+      }
+     },
+     {
+      "id": "slime",
+      "label": {
+       "en": "Slime moulds",
+       "hi": "अवपंक कवक"
+      }
+     },
+     {
+      "id": "proto",
+      "label": {
+       "en": "Protozoans",
+       "hi": "प्रोटोज़ोआ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "diatom",
+      "text": {
+       "en": "Diatoms with glass-like silica shells",
+       "hi": "काँच जैसे सिलिका खोल वाले डायटम"
+      },
+      "bin": "chryso",
+      "why": {
+       "en": "Diatoms have walls of silica that fit like a soap box. Their deposits form diatomaceous earth.",
+       "hi": "डायटम की भित्ति सिलिका की होती है जो साबुनदानी की तरह जुड़ती है। इनके जमाव से डायटमी मृदा बनती है।"
+      }
+     },
+     {
+      "id": "desmid",
+      "text": {
+       "en": "Desmids, golden algae of fresh water",
+       "hi": "डेस्मिड, मीठे पानी के सुनहरे शैवाल"
+      },
+      "bin": "chryso",
+      "why": {
+       "en": "Desmids are chrysophytes too: tiny photosynthetic plankton.",
+       "hi": "डेस्मिड भी क्राइसोफ़ाइट हैं: नन्हे प्रकाश-संश्लेषी प्लवक।"
+      }
+     },
+     {
+      "id": "gonyaulax",
+      "text": {
+       "en": "Gonyaulax that makes the sea red",
+       "hi": "समुद्र को लाल करने वाला गोन्यालैक्स"
+      },
+      "bin": "dino",
+      "why": {
+       "en": "Dinoflagellates have two flagella and stiff cellulose plates. Red tides can poison fish.",
+       "hi": "डाइनोफ़्लैजेलेट में दो कशाभ और कठोर सेलुलोस पट्टियाँ होती हैं। लाल ज्वार मछलियों को ज़हरीला कर सकता है।"
+      }
+     },
+     {
+      "id": "euglena",
+      "text": {
+       "en": "Euglena with a flexible pellicle",
+       "hi": "लचीली पेलिकल वाला यूग्लीना"
+      },
+      "bin": "eugleno",
+      "why": {
+       "en": "No cell wall but a protein pellicle; it photosynthesises in light and eats small organisms in the dark.",
+       "hi": "कोशिका भित्ति नहीं, प्रोटीन की पेलिकल; प्रकाश में प्रकाश-संश्लेषण, अँधेरे में छोटे जीव खाता है।"
+      }
+     },
+     {
+      "id": "plasmodium",
+      "text": {
+       "en": "A slimy mass that spreads over rotting leaves",
+       "hi": "सड़ती पत्तियों पर फैलता चिपचिपा पिंड"
+      },
+      "bin": "slime",
+      "why": {
+       "en": "Slime moulds join into a plasmodium that can grow over many feet; in bad times they make tough spores.",
+       "hi": "अवपंक कवक मिलकर प्लाज़्मोडियम बनाते हैं जो कई फ़ुट तक फैल सकता है; बुरे समय में मज़बूत बीजाणु बनाते हैं।"
+      }
+     },
+     {
+      "id": "amoeba",
+      "text": {
+       "en": "Amoeba moving with pseudopodia",
+       "hi": "कूटपादों से चलता अमीबा"
+      },
+      "bin": "proto",
+      "why": {
+       "en": "Amoeboid protozoans catch food with false feet (pseudopodia).",
+       "hi": "अमीबीय प्रोटोज़ोआ कूटपादों से भोजन पकड़ते हैं।"
+      }
+     },
+     {
+      "id": "trypano",
+      "text": {
+       "en": "Trypanosoma that causes sleeping sickness",
+       "hi": "निद्रा रोग फैलाने वाला ट्रिपैनोसोमा"
+      },
+      "bin": "proto",
+      "why": {
+       "en": "A flagellated protozoan; it is a parasite.",
+       "hi": "कशाभी प्रोटोज़ोआ; यह परजीवी है।"
+      }
+     },
+     {
+      "id": "paramecium",
+      "text": {
+       "en": "Paramecium covered with cilia",
+       "hi": "पक्ष्माभों से ढका पैरामीशियम"
+      },
+      "bin": "proto",
+      "why": {
+       "en": "A ciliated protozoan; beating cilia push food into its gullet.",
+       "hi": "पक्ष्माभी प्रोटोज़ोआ; पक्ष्माभ भोजन को इसकी ग्रसिका में धकेलते हैं।"
+      }
+     },
+     {
+      "id": "malaria",
+      "text": {
+       "en": "Plasmodium that causes malaria",
+       "hi": "मलेरिया फैलाने वाला प्लाज़्मोडियम"
+      },
+      "bin": "proto",
+      "why": {
+       "en": "A sporozoan: it has a spore-forming stage in its life.",
+       "hi": "एक स्पोरोज़ोआ: इसके जीवन में बीजाणु बनाने की अवस्था होती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:diatom",
+     "expect": "correct:diatom",
+     "say": {
+      "en": "Tap the diatoms card, then tap its group.",
+      "hi": "डायटम कार्ड पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:gonyaulax",
+     "expect": "correct:gonyaulax",
+     "say": {
+      "en": "Now sort Gonyaulax.",
+      "hi": "अब गोन्यालैक्स को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Plasmodium causes malaria. A slime mould is also called a plasmodium. Which group is the malaria parasite in?",
+      "hi": "प्लाज़्मोडियम मलेरिया फैलाता है। अवपंक कवक के पिंड को भी प्लाज़्मोडियम कहते हैं। मलेरिया परजीवी किस समूह में है?"
+     },
+     "options": [
+      {
+       "id": "proto",
+       "en": "Protozoans (sporozoans)",
+       "hi": "प्रोटोज़ोआ (स्पोरोज़ोआ)"
+      },
+      {
+       "id": "slime",
+       "en": "Slime moulds",
+       "hi": "अवपंक कवक"
+      }
+     ],
+     "answer": "proto"
+    },
+    {
+     "kind": "do",
+     "target": "card:malaria",
+     "expect": "correct:malaria",
+     "say": {
+      "en": "Tap the malaria card and sort it.",
+      "hi": "मलेरिया वाले कार्ड पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All protists are one-celled eukaryotes, so they have a nucleus and organelles. The groups differ in how they feed and move: chrysophytes and dinoflagellates make food, euglenoids can do both, slime moulds feed on decaying matter, and protozoans hunt or live as parasites.",
+      "hi": "सभी प्रोटिस्ट एककोशिकीय यूकैरियोट हैं, इसलिए उनमें केंद्रक और कोशिकांग होते हैं। समूह इस बात में अलग हैं कि वे कैसे खाते और चलते हैं: क्राइसोफ़ाइट और डाइनोफ़्लैजेलेट भोजन बनाते हैं, यूग्लीनॉइड दोनों कर सकते हैं, अवपंक कवक सड़ते पदार्थ पर पलते हैं और प्रोटोज़ोआ शिकार करते हैं या परजीवी होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is Euglena called a link between plants and animals?",
+        "hi": "यूग्लीना को पौधों और जंतुओं के बीच की कड़ी क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It photosynthesises in light and feeds like an animal in the dark",
+         "hi": "यह प्रकाश में प्रकाश-संश्लेषण करता है और अँधेरे में जंतु की तरह खाता है"
+        },
+        {
+         "en": "It has a cellulose wall and legs",
+         "hi": "इसमें सेलुलोस भित्ति और टाँगें हैं"
+        },
+        {
+         "en": "It has no nucleus",
+         "hi": "इसमें केंद्रक नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Its pigments are like those of plants, yet without light it behaves as a heterotroph.",
+        "hi": "इसके वर्णक पौधों जैसे हैं, फिर भी प्रकाश न हो तो यह परपोषी जैसा व्यवहार करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Euglena has no cell wall at all; it has a protein pellicle and a flagellum, not legs.",
+         "hi": "यूग्लीना में कोशिका भित्ति है ही नहीं; इसमें प्रोटीन पेलिकल और कशाभ है, टाँगें नहीं।"
+        },
+        {
+         "en": "Euglena is a eukaryote and has a nucleus.",
+         "hi": "यूग्लीना यूकैरियोट है और इसमें केंद्रक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Diatoms help make which useful material?",
+        "hi": "डायटम से कौन-सा उपयोगी पदार्थ बनता है?"
+       },
+       "options": [
+        {
+         "en": "Diatomaceous earth, used in polishing and filtering",
+         "hi": "डायटमी मृदा, जो पॉलिश करने और छानने में काम आती है"
+        },
+        {
+         "en": "Agar for jelly",
+         "hi": "जेली के लिए अगर"
+        },
+        {
+         "en": "Penicillin",
+         "hi": "पेनिसिलिन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Their silica walls do not decay, so huge deposits build up over millions of years.",
+        "hi": "इनकी सिलिका भित्ति सड़ती नहीं, इसलिए लाखों वर्षों में बड़े जमाव बन जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Agar comes from red algae such as Gelidium and Gracilaria, not diatoms.",
+         "hi": "अगर लाल शैवालों जैसे जेलिडियम और ग्रेसिलेरिया से मिलता है, डायटम से नहीं।"
+        },
+        {
+         "en": "Penicillin comes from the fungus Penicillium.",
+         "hi": "पेनिसिलिन कवक पेनिसिलियम से मिलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then think about each card: how does it move?",
+      "hi": "बाक़ी कार्ड छाँटो। फिर हर कार्ड के बारे में सोचो: यह कैसे चलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch02-fungi",
+   "topic": "2.3",
+   "template": "sort",
+   "title": {
+    "en": "Four classes of fungi",
+    "hi": "कवक के चार वर्ग"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "phyco",
+      "label": {
+       "en": "Phycomycetes",
+       "hi": "फ़ाइकोमाइसिटीज़"
+      }
+     },
+     {
+      "id": "asco",
+      "label": {
+       "en": "Ascomycetes (sac fungi)",
+       "hi": "ऐस्कोमाइसिटीज़ (थैली कवक)"
+      }
+     },
+     {
+      "id": "basidio",
+      "label": {
+       "en": "Basidiomycetes",
+       "hi": "बेसिडियोमाइसिटीज़"
+      }
+     },
+     {
+      "id": "deutero",
+      "label": {
+       "en": "Deuteromycetes",
+       "hi": "ड्यूटेरोमाइसिटीज़"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "rhizopus",
+      "text": {
+       "en": "Rhizopus, black bread mould",
+       "hi": "राइज़ोपस, रोटी का काला फफूँद"
+      },
+      "bin": "phyco",
+      "why": {
+       "en": "Hyphae with no cross walls (coenocytic); spores form inside a sporangium.",
+       "hi": "कवकतंतुओं में पट नहीं (बहुकेंद्रकी); बीजाणु बीजाणुधानी के भीतर बनते हैं।"
+      }
+     },
+     {
+      "id": "albugo",
+      "text": {
+       "en": "Albugo, white rust of mustard",
+       "hi": "ऐल्बूगो, सरसों का सफ़ेद किट्ट"
+      },
+      "bin": "phyco",
+      "why": {
+       "en": "A parasitic phycomycete; it lives in moist places and on plants.",
+       "hi": "एक परजीवी फ़ाइकोमाइसिटीज़; नम जगहों और पौधों पर रहता है।"
+      }
+     },
+     {
+      "id": "yeast",
+      "text": {
+       "en": "Yeast (Saccharomyces)",
+       "hi": "यीस्ट (सैकेरोमाइसीज़)"
+      },
+      "bin": "asco",
+      "why": {
+       "en": "A one-celled sac fungus; its sexual spores (ascospores) form in a sac called an ascus.",
+       "hi": "एककोशिकीय थैली कवक; इसके लैंगिक बीजाणु (ऐस्कोबीजाणु) ऐस्कस नामक थैली में बनते हैं।"
+      }
+     },
+     {
+      "id": "penicillium",
+      "text": {
+       "en": "Penicillium, source of penicillin",
+       "hi": "पेनिसिलियम, पेनिसिलिन का स्रोत"
+      },
+      "bin": "asco",
+      "why": {
+       "en": "A many-celled sac fungus with branched, septate hyphae and conidia.",
+       "hi": "शाखित, पटयुक्त कवकतंतुओं और कोनिडिया वाला बहुकोशिकीय थैली कवक।"
+      }
+     },
+     {
+      "id": "neurospora",
+      "text": {
+       "en": "Neurospora, used in genetics research",
+       "hi": "न्यूरोस्पोरा, आनुवंशिकी शोध में उपयोगी"
+      },
+      "bin": "asco",
+      "why": {
+       "en": "Neurospora is a sac fungus used widely in biochemical and genetic work.",
+       "hi": "न्यूरोस्पोरा एक थैली कवक है जो जैव-रासायनिक और आनुवंशिक शोध में बहुत काम आता है।"
+      }
+     },
+     {
+      "id": "agaricus",
+      "text": {
+       "en": "Agaricus, the button mushroom",
+       "hi": "ऐगेरिकस, बटन मशरूम"
+      },
+      "bin": "basidio",
+      "why": {
+       "en": "Spores (basidiospores) form on club-shaped basidia under the cap.",
+       "hi": "टोपी के नीचे गदा जैसे बेसिडियम पर बीजाणु (बेसिडियोबीजाणु) बनते हैं।"
+      }
+     },
+     {
+      "id": "ustilago",
+      "text": {
+       "en": "Ustilago, smut of wheat",
+       "hi": "अस्टिलैगो, गेहूँ का कंड"
+      },
+      "bin": "basidio",
+      "why": {
+       "en": "Smut and rust (Puccinia) fungi are basidiomycetes that harm crops.",
+       "hi": "कंड और किट्ट (पक्सीनिया) कवक बेसिडियोमाइसिटीज़ हैं जो फ़सलों को नुक़सान पहुँचाते हैं।"
+      }
+     },
+     {
+      "id": "alternaria",
+      "text": {
+       "en": "Alternaria, leaf spot of plants",
+       "hi": "आल्टरनेरिया, पत्तियों पर धब्बे"
+      },
+      "bin": "deutero",
+      "why": {
+       "en": "Only the asexual stage is known, so it is put among the imperfect fungi.",
+       "hi": "केवल अलैंगिक अवस्था ज्ञात है, इसलिए इसे अपूर्ण कवकों में रखा जाता है।"
+      }
+     },
+     {
+      "id": "trichoderma",
+      "text": {
+       "en": "Trichoderma, a soil helper",
+       "hi": "ट्राइकोडर्मा, मिट्टी का सहायक"
+      },
+      "bin": "deutero",
+      "why": {
+       "en": "A deuteromycete that breaks down litter and helps recycle minerals.",
+       "hi": "एक ड्यूटेरोमाइसिटीज़ जो पत्ती-कचरा तोड़कर खनिजों के पुनर्चक्रण में मदद करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:rhizopus",
+     "expect": "correct:rhizopus",
+     "say": {
+      "en": "Tap the bread mould card, then tap its class.",
+      "hi": "रोटी के फफूँद वाले कार्ड पर टैप करो, फिर उसके वर्ग पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:agaricus",
+     "expect": "correct:agaricus",
+     "say": {
+      "en": "Now sort the button mushroom.",
+      "hi": "अब बटन मशरूम को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Yeast is one cell and has no threads at all. Where do you think it goes?",
+      "hi": "यीस्ट एक कोशिका है, उसमें धागे होते ही नहीं। तुम्हें क्या लगता है, यह कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "asco",
+       "en": "Ascomycetes: its sexual spores form in a sac",
+       "hi": "ऐस्कोमाइसिटीज़: इसके लैंगिक बीजाणु थैली में बनते हैं"
+      },
+      {
+       "id": "deutero",
+       "en": "Deuteromycetes: it is different from the rest",
+       "hi": "ड्यूटेरोमाइसिटीज़: यह बाक़ियों से अलग है"
+      },
+      {
+       "id": "phyco",
+       "en": "Phycomycetes: it lives in moist places",
+       "hi": "फ़ाइकोमाइसिटीज़: यह नम जगहों पर रहता है"
+      }
+     ],
+     "answer": "asco"
+    },
+    {
+     "kind": "do",
+     "target": "card:yeast",
+     "expect": "correct:yeast",
+     "say": {
+      "en": "Tap the yeast card and sort it.",
+      "hi": "यीस्ट कार्ड पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Fungi are grouped by their hyphae and by where their sexual spores form. Phycomycetes have hyphae without walls between cells. Ascomycetes make spores in a sac (ascus). Basidiomycetes make them on a club (basidium). Deuteromycetes are fungi whose sexual stage is not known.",
+      "hi": "कवकों को उनके कवकतंतुओं और लैंगिक बीजाणु बनने की जगह से बाँटा जाता है। फ़ाइकोमाइसिटीज़ के कवकतंतुओं में कोशिकाओं के बीच पट नहीं होते। ऐस्कोमाइसिटीज़ बीजाणु थैली (ऐस्कस) में बनाते हैं। बेसिडियोमाइसिटीज़ उन्हें गदा (बेसिडियम) पर बनाते हैं। ड्यूटेरोमाइसिटीज़ वे कवक हैं जिनकी लैंगिक अवस्था ज्ञात नहीं है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If scientists later find the sexual stage of a deuteromycete, what happens?",
+        "hi": "अगर वैज्ञानिक बाद में किसी ड्यूटेरोमाइसिटीज़ की लैंगिक अवस्था खोज लें, तो क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It is moved to Ascomycetes or Basidiomycetes",
+         "hi": "उसे ऐस्कोमाइसिटीज़ या बेसिडियोमाइसिटीज़ में डाल दिया जाता है"
+        },
+        {
+         "en": "It becomes a plant",
+         "hi": "वह पौधा बन जाता है"
+        },
+        {
+         "en": "It stays in Deuteromycetes for ever",
+         "hi": "वह हमेशा ड्यूटेरोमाइसिटीज़ में ही रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Deuteromycetes is a waiting room: once the perfect stage is known, the fungus joins its true class.",
+        "hi": "ड्यूटेरोमाइसिटीज़ एक प्रतीक्षा-कक्ष है: पूर्ण अवस्था पता चलते ही कवक अपने असली वर्ग में चला जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A fungus stays a fungus; finding a stage of its life does not change its kingdom.",
+         "hi": "कवक कवक ही रहता है; उसकी किसी अवस्था की खोज से जगत नहीं बदलता।"
+        },
+        {
+         "en": "They are placed here only because the sexual stage is unknown, so the reason disappears once it is found.",
+         "hi": "उन्हें यहाँ केवल इसलिए रखा गया क्योंकि लैंगिक अवस्था अज्ञात थी; वह मिलते ही कारण ख़त्म हो जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the cell wall of fungi made of?",
+        "hi": "कवकों की कोशिका भित्ति किससे बनी होती है?"
+       },
+       "options": [
+        {
+         "en": "Cellulose",
+         "hi": "सेलुलोस"
+        },
+        {
+         "en": "Chitin and polysaccharides",
+         "hi": "काइटिन और पॉलीसैकेराइड"
+        },
+        {
+         "en": "Silica",
+         "hi": "सिलिका"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Fungal walls have chitin, the same tough material found in insect bodies.",
+        "hi": "कवकों की भित्ति में काइटिन होता है, वही कठोर पदार्थ जो कीटों के शरीर में मिलता है।"
+       },
+       "wrong": [
+        {
+         "en": "Cellulose walls belong to plants and some protists, not to fungi.",
+         "hi": "सेलुलोस भित्ति पौधों और कुछ प्रोटिस्टों की होती है, कवकों की नहीं।"
+        },
+        "",
+        {
+         "en": "Silica walls are found in diatoms.",
+         "hi": "सिलिका भित्ति डायटम में होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then look at a piece of stale bread or a mushroom at the market: which class does each belong to?",
+      "hi": "बाक़ी कार्ड छाँटो। फिर बासी रोटी के टुकड़े या बाज़ार के मशरूम को देखो: हर एक किस वर्ग का है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch02-bread-mould",
+   "topic": "2.3",
+   "template": "scope",
+   "title": {
+    "en": "Rhizopus under the microscope",
+    "hi": "सूक्ष्मदर्शी में राइज़ोपस"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "slide": "bread-mould"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Choose the 10x lens.",
+      "hi": "10x लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob until the threads look sharp.",
+      "hi": "मोटा नॉब घुमाओ जब तक धागे साफ़ न दिखें।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The black dots on stale bread are round heads on stalks. What do you think is inside them?",
+      "hi": "बासी रोटी पर काले बिंदु डंठलों पर गोल सिर हैं। तुम्हें क्या लगता है, उनके भीतर क्या है?"
+     },
+     "options": [
+      {
+       "id": "spores",
+       "en": "Thousands of spores",
+       "hi": "हज़ारों बीजाणु"
+      },
+      {
+       "id": "seeds",
+       "en": "Tiny seeds",
+       "hi": "नन्हे बीज"
+      },
+      {
+       "id": "water",
+       "en": "Drops of water",
+       "hi": "पानी की बूँदें"
+      }
+     ],
+     "answer": "spores"
+    },
+    {
+     "kind": "do",
+     "target": "part:sporangium",
+     "expect": "identified:sporangium",
+     "say": {
+      "en": "Tap \"sporangium\", the round black head.",
+      "hi": "गोल काले सिर \"बीजाणुधानी\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:hypha",
+     "expect": "identified:hypha",
+     "say": {
+      "en": "Now tap a \"hypha\", one of the threads.",
+      "hi": "अब किसी धागे \"कवकतंतु\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rhizopus grows as a web of threads called hyphae; together they make the mycelium. Upright stalks carry sporangia full of spores. Spores blown by air start new moulds on any moist food. Rhizopus is a saprophyte: it feeds on dead matter.",
+      "hi": "राइज़ोपस कवकतंतु नाम के धागों के जाल की तरह उगता है; ये मिलकर कवकजाल बनाते हैं। सीधे डंठल बीजाणुओं से भरी बीजाणुधानियाँ उठाते हैं। हवा से उड़े बीजाणु किसी भी नम भोजन पर नया फफूँद शुरू कर देते हैं। राइज़ोपस मृतोपजीवी है: यह मृत पदार्थ पर पलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does bread kept in a closed, warm, damp box grow mould fast?",
+        "hi": "बंद, गर्म, नम डिब्बे में रखी रोटी पर फफूँद जल्दी क्यों उगता है?"
+       },
+       "options": [
+        {
+         "en": "Spores from the air find moisture and food there",
+         "hi": "हवा के बीजाणुओं को वहाँ नमी और भोजन मिल जाता है"
+        },
+        {
+         "en": "Bread turns into fungus by itself",
+         "hi": "रोटी अपने-आप कवक बन जाती है"
+        },
+        {
+         "en": "The box makes sunlight",
+         "hi": "डिब्बा धूप बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fungi need moisture, warmth and organic food; spores are almost everywhere in air.",
+        "hi": "कवकों को नमी, गर्मी और कार्बनिक भोजन चाहिए; बीजाणु हवा में लगभग हर जगह होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Life comes from life: the mould grows from spores that landed on the bread.",
+         "hi": "जीवन जीवन से ही आता है: फफूँद रोटी पर गिरे बीजाणुओं से उगता है।"
+        },
+        {
+         "en": "Fungi do not need light; they cannot photosynthesise.",
+         "hi": "कवकों को प्रकाश नहीं चाहिए; वे प्रकाश-संश्लेषण नहीं कर सकते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch to 40x, sharpen with the fine knob, and find the spores. How many can you count in one view?",
+      "hi": "40x पर जाओ, बारीक नॉब से साफ़ करो और बीजाणु ढूँढो। एक दृश्य में कितने गिन पाते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch02-virus-lichen",
+   "topic": "2.6",
+   "template": "match",
+   "title": {
+    "en": "Viruses, viroids, prions and lichens",
+    "hi": "विषाणु, वाइरॉइड, प्रिऑन और लाइकेन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "virus",
+      "left": {
+       "en": "Virus",
+       "hi": "विषाणु"
+      },
+      "right": {
+       "en": "Protein coat around RNA or DNA; lives only inside a host cell",
+       "hi": "आरएनए या डीएनए के चारों ओर प्रोटीन का खोल; केवल पोषी कोशिका में जीवित"
+      },
+      "why": {
+       "en": "Outside a cell a virus is like a crystal; inside, it takes over the cell to make copies.",
+       "hi": "कोशिका के बाहर विषाणु क्रिस्टल जैसा है; भीतर जाकर यह कोशिका से अपनी प्रतियाँ बनवाता है।"
+      }
+     },
+     {
+      "id": "phage",
+      "left": {
+       "en": "Bacteriophage",
+       "hi": "जीवाणुभोजी"
+      },
+      "right": {
+       "en": "A virus that infects bacteria, usually with double-stranded DNA",
+       "hi": "जीवाणुओं को संक्रमित करने वाला विषाणु, आम तौर पर दोहरे सूत्र वाले डीएनए के साथ"
+      },
+      "why": {
+       "en": "Phages attack bacteria; most plant viruses instead have RNA.",
+       "hi": "फ़ेज जीवाणुओं पर हमला करते हैं; अधिकतर पादप विषाणुओं में इसके बजाय आरएनए होता है।"
+      }
+     },
+     {
+      "id": "viroid",
+      "left": {
+       "en": "Viroid",
+       "hi": "वाइरॉइड"
+      },
+      "right": {
+       "en": "Free RNA with no protein coat; causes potato spindle tuber",
+       "hi": "बिना प्रोटीन खोल का मुक्त आरएनए; आलू का तर्कु कंद रोग"
+      },
+      "why": {
+       "en": "T.O. Diener found it in 1971; its RNA is very small.",
+       "hi": "टी.ओ. डाइनर ने 1971 में इसे खोजा; इसका आरएनए बहुत छोटा है।"
+      }
+     },
+     {
+      "id": "prion",
+      "left": {
+       "en": "Prion",
+       "hi": "प्रिऑन"
+      },
+      "right": {
+       "en": "A wrongly folded protein that causes mad cow disease",
+       "hi": "ग़लत मुड़ा प्रोटीन जो पागल गाय रोग करता है"
+      },
+      "why": {
+       "en": "Prions have no nucleic acid at all; they are infectious proteins.",
+       "hi": "प्रिऑन में न्यूक्लिक अम्ल होता ही नहीं; ये संक्रामक प्रोटीन हैं।"
+      }
+     },
+     {
+      "id": "lichen",
+      "left": {
+       "en": "Lichen",
+       "hi": "लाइकेन"
+      },
+      "right": {
+       "en": "An alga and a fungus living together; does not grow in polluted air",
+       "hi": "शैवाल और कवक साथ रहते हैं; प्रदूषित हवा में नहीं उगता"
+      },
+      "why": {
+       "en": "The alga makes food, the fungus gives shelter and water. Lichens are good pollution indicators.",
+       "hi": "शैवाल भोजन बनाता है, कवक आश्रय और पानी देता है। लाइकेन प्रदूषण के अच्छे सूचक हैं।"
+      }
+     },
+     {
+      "id": "tmv",
+      "left": {
+       "en": "Tobacco mosaic virus",
+       "hi": "तंबाकू मोज़ेक विषाणु"
+      },
+      "right": {
+       "en": "Makes mosaic patches and leaf curling in plants",
+       "hi": "पौधों में चितकबरे धब्बे और पत्ती का मुड़ना"
+      },
+      "why": {
+       "en": "Ivanowsky found it in 1892; Stanley later crystallised it.",
+       "hi": "इवानोवस्की ने 1892 में इसे खोजा; बाद में स्टैनली ने इसे क्रिस्टल रूप में पाया।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:virus",
+     "expect": "matched:virus",
+     "say": {
+      "en": "Tap \"Virus\" on the left, then tap what it is on the right.",
+      "hi": "बाईं ओर \"विषाणु\" पर टैप करो, फिर दाईं ओर उसका वर्णन चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A viroid is even simpler than a virus. What do you think it lacks?",
+      "hi": "वाइरॉइड विषाणु से भी सरल है। तुम्हें क्या लगता है, इसमें क्या नहीं होता?"
+     },
+     "options": [
+      {
+       "id": "coat",
+       "en": "The protein coat",
+       "hi": "प्रोटीन का खोल"
+      },
+      {
+       "id": "rna",
+       "en": "The RNA",
+       "hi": "आरएनए"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing; it is the same",
+       "hi": "कुछ नहीं; यह वैसा ही है"
+      }
+     ],
+     "answer": "coat"
+    },
+    {
+     "kind": "do",
+     "target": "left:viroid",
+     "expect": "matched:viroid",
+     "say": {
+      "en": "Now match \"Viroid\".",
+      "hi": "अब \"वाइरॉइड\" की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:prion",
+     "expect": "matched:prion",
+     "say": {
+      "en": "Match \"Prion\".",
+      "hi": "\"प्रिऑन\" की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Viruses, viroids and prions are not in Whittaker's five kingdoms, because they are not cells. A virus is nucleic acid in a protein coat. A viroid is bare RNA. A prion is only a misfolded protein. A lichen is two real organisms living together.",
+      "hi": "विषाणु, वाइरॉइड और प्रिऑन व्हिटेकर के पाँच जगतों में नहीं हैं, क्योंकि ये कोशिकाएँ नहीं हैं। विषाणु प्रोटीन खोल में न्यूक्लिक अम्ल है। वाइरॉइड केवल नंगा आरएनए है। प्रिऑन केवल ग़लत मुड़ा प्रोटीन है। लाइकेन दो असली जीवों का साथ रहना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You see many lichens on the trees of a village but none in a busy city. What does that tell you?",
+        "hi": "गाँव के पेड़ों पर बहुत लाइकेन दिखते हैं, पर भीड़ वाले शहर में एक भी नहीं। इससे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "The city air is more polluted",
+         "hi": "शहर की हवा ज़्यादा प्रदूषित है"
+        },
+        {
+         "en": "City trees are too old",
+         "hi": "शहर के पेड़ बहुत पुराने हैं"
+        },
+        {
+         "en": "Lichens need more sunlight than a city gets",
+         "hi": "लाइकेन को शहर से ज़्यादा धूप चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Lichens are very sensitive to sulphur dioxide and other pollutants, so they vanish from dirty air.",
+        "hi": "लाइकेन सल्फ़र डाइऑक्साइड और दूसरे प्रदूषकों के प्रति बहुत संवेदनशील हैं, इसलिए गंदी हवा से ग़ायब हो जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lichens grow on old bark happily; tree age is not the cause.",
+         "hi": "लाइकेन पुरानी छाल पर ख़ूब उगते हैं; पेड़ की उम्र कारण नहीं है।"
+        },
+        {
+         "en": "Lichens grow even in shade on rocks and bark; sunlight is not the missing factor.",
+         "hi": "लाइकेन चट्टानों और छाल पर छाँव में भी उगते हैं; धूप कमी नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a virus not counted as a living cell?",
+        "hi": "विषाणु को जीवित कोशिका क्यों नहीं माना जाता?"
+       },
+       "options": [
+        {
+         "en": "It cannot grow or copy itself outside a host cell",
+         "hi": "यह पोषी कोशिका के बाहर न बढ़ सकता है, न अपनी प्रति बना सकता है"
+        },
+        {
+         "en": "It is too large",
+         "hi": "यह बहुत बड़ा है"
+        },
+        {
+         "en": "It has a nucleus",
+         "hi": "इसमें केंद्रक है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A virus has no cell machinery of its own. It copies itself only by using a living cell.",
+        "hi": "विषाणु के पास अपनी कोशिकीय मशीनरी नहीं होती। यह केवल जीवित कोशिका का उपयोग करके अपनी प्रति बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Viruses are much smaller than bacteria.",
+         "hi": "विषाणु जीवाणुओं से बहुत छोटे होते हैं।"
+        },
+        {
+         "en": "A virus has no nucleus or any organelle, only nucleic acid and protein.",
+         "hi": "विषाणु में केंद्रक या कोई कोशिकांग नहीं होता, केवल न्यूक्लिक अम्ल और प्रोटीन।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Then name two virus diseases of people that you have heard of, such as the common cold or chickenpox.",
+      "hi": "बाक़ी जोड़ियाँ मिलाओ। फिर लोगों के दो विषाणु रोगों के नाम सोचो, जैसे सर्दी-ज़ुकाम या चेचक।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.0",
+   "use": "Chapter hook: life in one Indian pond",
+   "shows": "A village pond edge with green scum, floating duckweed, a frog on a stone, mushrooms on a fallen log and lichen on a tree trunk",
+   "view": "Eye level, wide, soft morning light",
+   "right": "At least four kingdoms visible in one frame; natural colours",
+   "avoid": "People, plastic waste, text"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "2.1",
+   "use": "Bacteria shapes card art",
+   "shows": "A stained smear of rod, round and spiral bacteria at 1000x, violet on a pale background (microscope: reuse LIB-BIO-microscope)",
+   "view": "Square micrograph, even light",
+   "right": "Three shapes clearly told apart; scale bar space left blank",
+   "avoid": "Labels, invented colours"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Curd: useful bacteria at home",
+   "shows": "A clay pot of freshly set dahi with a steel spoon lifting a firm scoop",
+   "view": "Three-quarter view, top-left light",
+   "right": "Thick, glossy curd; real matka texture",
+   "avoid": "Brand names, stickers"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "2.2",
+   "use": "Protist cards",
+   "shows": "Separate micrographs of a diatom, Euglena, Paramecium and Amoeba, each centred on a pale field",
+   "view": "Square micrographs, same scale feel",
+   "right": "Diatom silica shell pattern sharp; Euglena green with an eyespot",
+   "avoid": "Labels, artificial neon colours"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Bread mould and mushrooms",
+   "shows": "A slice of stale bread with grey-black Rhizopus fuzz beside fresh button mushrooms and a bracket fungus on a bark piece",
+   "view": "Top-down, plain light background",
+   "right": "Black sporangia visible as dots on the mould",
+   "avoid": "Rotting mess, flies, packaging"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "2.3",
+   "use": "Yeast budding",
+   "shows": "Yeast cells at 400x with several small buds (microscope: reuse LIB-BIO-microscope and LIB-BIO-slide-coverslip)",
+   "view": "Square micrograph",
+   "right": "Oval cells, buds attached at one end",
+   "avoid": "Labels"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "2.6",
+   "use": "What a virus is made of",
+   "shows": "A clean cut-away of a bacteriophage and a tobacco mosaic virus: protein coat and the nucleic acid inside, in two soft colours",
+   "view": "Side view, white background",
+   "right": "Phage head, tail and tail fibres; TMV a hollow rod with a spiral RNA",
+   "avoid": "Any words (the app adds labels)"
+  },
+  {
+   "n": 8,
+   "kind": "OBJ",
+   "topic": "2.6",
+   "use": "Lichen as a pollution indicator",
+   "shows": "Grey-green crusty and leafy lichens on a tree bark close-up",
+   "view": "Close-up, side light to show texture",
+   "right": "Two lichen forms on real bark",
+   "avoid": "Moss mistaken for lichen, text"
+  }
+ ]
+}

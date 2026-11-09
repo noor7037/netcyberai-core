@@ -1,0 +1,531 @@
+{
+ "chapter_key": "u.c03.hindi.chve1.ch11",
+ "class": 3,
+ "subject_id": "hindi",
+ "title": "A Magic Box (एक जादुई पिटारा)",
+ "source": "https://ncert.nic.in/textbook.php?chve1=0-18",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Poem: what comes out of the magic box, link by link",
+   "labs": [
+    "c03-hindi-chve1-ch11-magic-chain"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Finding the numbers in the poem",
+   "labs": [],
+   "why_no_lab": "Finding and noting the number words (nine hundred, twelve hundred) is a pencil task on the book page."
+  },
+  {
+   "n": "11.3",
+   "title": "Rhyming words from the poem",
+   "labs": [],
+   "why_no_lab": "Rhymes in this poem are covered by the earlier rhyme lab; here the child hunts them in the printed poem."
+  },
+  {
+   "n": "11.4",
+   "title": "One and many (singular and plural)",
+   "labs": [
+    "c03-hindi-chve1-ch11-magic-many"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5",
+   "title": "What helps the farmer plough the field?",
+   "labs": [],
+   "why_no_lab": "A short general-knowledge talk about bullocks and tractors, best with a photo."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-hindi-chve1-ch11-magic-chain",
+   "topic": "11.1",
+   "template": "sequence",
+   "title": {
+    "en": "The magic box, one thing after another",
+    "hi": "जादुई पिटारा, एक के बाद एक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "ball",
+      "text": {
+       "en": "A round ball comes out of the opened box",
+       "hi": "खुले पिटारे से एक गोल गेंद निकलती है"
+      }
+     },
+     {
+      "id": "puppet",
+      "text": {
+       "en": "A string is tied on it and a puppet dances",
+       "hi": "उस पर डोरी बाँधते ही कठपुतली नाचने लगती है"
+      }
+     },
+     {
+      "id": "camel",
+      "text": {
+       "en": "The puppet fixes pegs and camels come out",
+       "hi": "कठपुतली खूँटे गाड़ती है तो ऊँट निकल आते हैं"
+      }
+     },
+     {
+      "id": "supari",
+      "text": {
+       "en": "On the camel ride, a betel nut is found",
+       "hi": "ऊँट की सवारी में एक सुपारी मिलती है"
+      }
+     },
+     {
+      "id": "flour",
+      "text": {
+       "en": "Cutting the betel nut gives a heap of flour",
+       "hi": "सुपारी काटने पर आटा निकलता है"
+      }
+     },
+     {
+      "id": "horse",
+      "text": {
+       "en": "Breaking a coconut brings out a horse",
+       "hi": "नारियल फोड़ने पर घोड़ा निकल पड़ता है"
+      }
+     },
+     {
+      "id": "sky",
+      "text": {
+       "en": "The horse flies to the sky and finds a balloon",
+       "hi": "घोड़ा आसमान में पहुँचकर गुब्बारा पाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:ball",
+     "expect": "placed:ball",
+     "say": {
+      "en": "Tap the card that happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes out of the box first?",
+      "hi": "पिटारे से सबसे पहले क्या निकलता है?"
+     },
+     "options": [
+      {
+       "id": "ball",
+       "en": "A round ball",
+       "hi": "एक गोल गेंद"
+      },
+      {
+       "id": "horse",
+       "en": "A horse",
+       "hi": "एक घोड़ा"
+      },
+      {
+       "id": "camel",
+       "en": "A camel",
+       "hi": "एक ऊँट"
+      }
+     ],
+     "answer": "ball"
+    },
+    {
+     "kind": "do",
+     "target": "item:sky",
+     "expect": "placed:sky",
+     "say": {
+      "en": "Put the LAST card in the last place.",
+      "hi": "सबसे आख़िरी कार्ड को आख़िरी स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This poem is like a chain: each thing comes out of the one before it. It is full of funny, impossible surprises, which makes it fun to sing. Putting the chain in order helps us remember the poem.",
+      "hi": "यह कविता एक ज़ंजीर की तरह है: हर चीज़ पिछली चीज़ में से निकलती है। इसमें हँसाने वाली, नामुमकिन हैरानियाँ हैं, जिससे गाने में मज़ा आता है। ज़ंजीर को क्रम में लगाने से कविता याद रखना आसान होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What comes out of the coconut?",
+        "hi": "नारियल में से क्या निकलता है?"
+       },
+       "options": [
+        {
+         "en": "A horse",
+         "hi": "एक घोड़ा"
+        },
+        {
+         "en": "A camel",
+         "hi": "एक ऊँट"
+        },
+        {
+         "en": "A balloon",
+         "hi": "एक गुब्बारा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When the coconut is broken, a horse comes out.",
+        "hi": "नारियल फोड़ने पर घोड़ा निकल पड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The camels come from the pegs.",
+         "hi": "ऊँट तो खूँटों में से निकलते हैं।"
+        },
+        {
+         "en": "The balloon is found up in the sky.",
+         "hi": "गुब्बारा आसमान में मिलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is this poem about real things?",
+        "hi": "क्या यह कविता असली बातों के बारे में है?"
+       },
+       "options": [
+        {
+         "en": "No, it is a funny make-believe poem",
+         "hi": "नहीं, यह कल्पना की मज़ेदार कविता है"
+        },
+        {
+         "en": "Yes, all of it really happened",
+         "hi": "हाँ, यह सब सचमुच हुआ था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Nothing real comes out of a betel nut or a coconut like this; it is for fun.",
+        "hi": "सुपारी या नारियल में से ऐसा कुछ सचमुच नहीं निकलता; यह मज़े के लिए है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "These things cannot happen in real life.",
+         "hi": "ये बातें असली ज़िंदगी में नहीं हो सकतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add one more link to the chain, such as 'the balloon burst and out came ...'. What comes out?",
+      "hi": "ज़ंजीर में एक कड़ी और जोड़ो, जैसे 'गुब्बारा फटा तो उसमें से निकला ...'। क्या निकला?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-hindi-chve1-ch11-magic-many",
+   "topic": "11.4",
+   "template": "match",
+   "title": {
+    "en": "One and many",
+    "hi": "एक और अनेक"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "pitara",
+      "left": {
+       "en": "Pitara (one basket)",
+       "hi": "पिटारा"
+      },
+      "right": {
+       "en": "Pitare (many baskets)",
+       "hi": "पिटारे"
+      },
+      "why": {
+       "en": "This is how the word changes when there is more than one.",
+       "hi": "एक से ज़्यादा होने पर शब्द इस तरह बदल जाता है।"
+      }
+     },
+     {
+      "id": "gola",
+      "left": {
+       "en": "Gola (one ball)",
+       "hi": "गोला"
+      },
+      "right": {
+       "en": "Gole (many balls)",
+       "hi": "गोले"
+      },
+      "why": {
+       "en": "This is how the word changes when there is more than one.",
+       "hi": "एक से ज़्यादा होने पर शब्द इस तरह बदल जाता है।"
+      }
+     },
+     {
+      "id": "ghoda",
+      "left": {
+       "en": "Ghoda (one horse)",
+       "hi": "घोड़ा"
+      },
+      "right": {
+       "en": "Ghode (many horses)",
+       "hi": "घोड़े"
+      },
+      "why": {
+       "en": "This is how the word changes when there is more than one.",
+       "hi": "एक से ज़्यादा होने पर शब्द इस तरह बदल जाता है।"
+      }
+     },
+     {
+      "id": "gubbara",
+      "left": {
+       "en": "Gubbara (one balloon)",
+       "hi": "गुब्बारा"
+      },
+      "right": {
+       "en": "Gubbare (many balloons)",
+       "hi": "गुब्बारे"
+      },
+      "why": {
+       "en": "This is how the word changes when there is more than one.",
+       "hi": "एक से ज़्यादा होने पर शब्द इस तरह बदल जाता है।"
+      }
+     },
+     {
+      "id": "kathputli",
+      "left": {
+       "en": "Kathputli (one puppet)",
+       "hi": "कठपुतली"
+      },
+      "right": {
+       "en": "Kathputliyan (many puppets)",
+       "hi": "कठपुतलियाँ"
+      },
+      "why": {
+       "en": "This is how the word changes when there is more than one.",
+       "hi": "एक से ज़्यादा होने पर शब्द इस तरह बदल जाता है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:gola",
+     "expect": "matched:gola",
+     "say": {
+      "en": "Tap 'गोला' and then tap its 'many' form.",
+      "hi": "'गोला' छुओ, फिर उसका अनेक रूप छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the 'many' form of 'घोड़ा'?",
+      "hi": "'घोड़ा' का अनेक रूप क्या है?"
+     },
+     "options": [
+      {
+       "id": "ghode",
+       "en": "घोड़े",
+       "hi": "घोड़े"
+      },
+      {
+       "id": "ghodi",
+       "en": "घोड़ी",
+       "hi": "घोड़ी"
+      }
+     ],
+     "answer": "ghode"
+    },
+    {
+     "kind": "do",
+     "target": "left:ghoda",
+     "expect": "matched:ghoda",
+     "say": {
+      "en": "Match 'घोड़ा' with its many form.",
+      "hi": "'घोड़ा' को उसके अनेक रूप से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:kathputli",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs.",
+      "hi": "बाकी सारी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Words ending in 'आ' usually change to 'ए' for many: गोला becomes गोले, घोड़ा becomes घोड़े. Words ending in 'ई', like कठपुतली, take 'याँ': कठपुतलियाँ.",
+      "hi": "'आ' पर खत्म होने वाले शब्द अनेक होने पर 'ए' हो जाते हैं: गोला से गोले, घोड़ा से घोड़े। 'ई' पर खत्म होने वाले शब्द, जैसे कठपुतली, 'याँ' लेते हैं: कठपुतलियाँ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the 'many' form of 'गुब्बारा'?",
+        "hi": "'गुब्बारा' का अनेक रूप क्या है?"
+       },
+       "options": [
+        {
+         "en": "गुब्बारे",
+         "hi": "गुब्बारे"
+        },
+        {
+         "en": "गुब्बारियाँ",
+         "hi": "गुब्बारियाँ"
+        },
+        {
+         "en": "गुब्बारी",
+         "hi": "गुब्बारी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "गुब्बारा ends in 'आ', so for many it becomes गुब्बारे.",
+        "hi": "गुब्बारा 'आ' पर खत्म होता है, इसलिए अनेक में गुब्बारे बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-इयाँ is used for words ending in ई, not आ.",
+         "hi": "-इयाँ ई पर खत्म होने वाले शब्दों के लिए है, आ वाले के लिए नहीं।"
+        },
+        {
+         "en": "गुब्बारी is not the many form.",
+         "hi": "गुब्बारी अनेक रूप नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which one is the many form of 'कठपुतली'?",
+        "hi": "'कठपुतली' का अनेक रूप कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "कठपुतले",
+         "hi": "कठपुतले"
+        },
+        {
+         "en": "कठपुतलियाँ",
+         "hi": "कठपुतलियाँ"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Words ending in ई take 'याँ' for many.",
+        "hi": "ई पर खत्म होने वाले शब्द अनेक में 'याँ' लेते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "-ए is for words ending in आ, not ई.",
+         "hi": "-ए आ वाले शब्दों के लिए है, ई वाले के लिए नहीं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write the many form of तितली, कमरा and दीपक.",
+      "hi": "तितली, कमरा और दीपक के अनेक रूप लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Opens the poem",
+   "shows": "A wicker basket (pitara) half open on a rug, a soft glow inside, in a child's room",
+   "view": "Slightly above, close",
+   "right": "Magic, warm light, woven texture",
+   "avoid": "Snake, any person"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Chain card: puppet",
+   "shows": "A Rajasthani wooden string puppet (kathputli) in colourful dress on transparent background",
+   "view": "Front",
+   "right": "Strings visible, bright colours",
+   "avoid": "Brand tags"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Chain card: camel",
+   "shows": "A decorated camel standing, side view, on transparent background",
+   "view": "Side view",
+   "right": "One hump, ornamented saddle cloth",
+   "avoid": "Rider"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Chain card: coconut",
+   "shows": "A whole green coconut and a broken coconut half on transparent background",
+   "view": "Front, slightly above",
+   "right": "White flesh and water visible",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "11.4",
+   "use": "Plural card: balloon",
+   "shows": "Three coloured balloons tied with strings on transparent background",
+   "view": "Front",
+   "right": "Three clear balloons, glossy",
+   "avoid": "Brand prints"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "11.5",
+   "use": "Ploughing the field",
+   "shows": "A pair of bullocks ploughing a field with the farmer seen from behind at sunrise",
+   "view": "Wide, back view",
+   "right": "Soil turned in furrows, warm light",
+   "avoid": "Faces"
+  }
+ ]
+}

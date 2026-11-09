@@ -1,0 +1,1002 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh2.ch13",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "Two Variables, One Line",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh205.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Linear equations in two variables and their standard form",
+   "labs": [
+    "c09-mathematics-iemh2-ch13-equations"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2",
+   "title": "Solutions: algebraic meaning and geometric picture",
+   "labs": [
+    "c09-mathematics-iemh2-ch13-solutions",
+    "c09-mathematics-iemh2-ch13-solution-line"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3.1",
+   "title": "Understanding slope",
+   "labs": [
+    "c09-mathematics-iemh2-ch13-slope"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3.2",
+   "title": "Slope-intercept form",
+   "labs": [
+    "c09-mathematics-iemh2-ch13-intercept"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4",
+   "title": "A pair of linear equations in two variables",
+   "labs": [
+    "c09-mathematics-iemh2-ch13-pair"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh2-ch13-equations",
+   "topic": "13.1",
+   "template": "match",
+   "title": {
+    "en": "Write a situation as a linear equation in two variables",
+    "hi": "स्थिति को दो चरों वाले रैखिक समीकरण में लिखो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "pens",
+      "left": {
+       "en": "Pens cost ₹5 and pencils ₹2; x pens and y pencils cost ₹30",
+       "hi": "पेन ₹5 और पेंसिल ₹2; x पेन और y पेंसिल ₹30 के"
+      },
+      "right": {
+       "en": "5x + 2y = 30",
+       "hi": "5x + 2y = 30"
+      },
+      "why": {
+       "en": "Each pen adds 5, each pencil adds 2, total 30.",
+       "hi": "हर पेन 5 जोड़ता है, हर पेंसिल 2, कुल 30।"
+      }
+     },
+     {
+      "id": "sum",
+      "left": {
+       "en": "Two numbers x and y add up to 12",
+       "hi": "दो संख्याओं x और y का योग 12 है"
+      },
+      "right": {
+       "en": "x + y = 12",
+       "hi": "x + y = 12"
+      },
+      "why": {
+       "en": "Just the sum of the two unknowns.",
+       "hi": "बस दोनों अज्ञात राशियों का योग।"
+      }
+     },
+     {
+      "id": "age",
+      "left": {
+       "en": "Rahul (x years) is 3 years older than Sita (y years)",
+       "hi": "राहुल (x साल) सीता (y साल) से 3 साल बड़ा है"
+      },
+      "right": {
+       "en": "x − y = 3",
+       "hi": "x − y = 3"
+      },
+      "why": {
+       "en": "The difference of their ages is 3.",
+       "hi": "उनकी उम्रों का अंतर 3 है।"
+      }
+     },
+     {
+      "id": "rect",
+      "left": {
+       "en": "A rectangle of length l and breadth b has perimeter 40 cm",
+       "hi": "लंबाई l और चौड़ाई b वाले आयत का परिमाप 40 सेमी है"
+      },
+      "right": {
+       "en": "2l + 2b = 40",
+       "hi": "2l + 2b = 40"
+      },
+      "why": {
+       "en": "Perimeter = 2 × length + 2 × breadth.",
+       "hi": "परिमाप = 2 × लंबाई + 2 × चौड़ाई।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:sum",
+     "expect": "matched:sum",
+     "say": {
+      "en": "Tap 'Two numbers add up to 12', then its equation.",
+      "hi": "'दो संख्याओं का योग 12 है' छुओ, फिर उसका समीकरण।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Pens cost ₹5 and pencils ₹2. x pens and y pencils cost ₹30. Which equation fits?",
+      "hi": "पेन ₹5 और पेंसिल ₹2 की है। x पेन और y पेंसिल ₹30 की हैं। कौन-सा समीकरण सही है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "5x + 2y = 30",
+       "hi": "5x + 2y = 30 (दाम × संख्या)"
+      },
+      {
+       "id": "b",
+       "en": "2x + 5y = 30",
+       "hi": "2x + 5y = 30 (दाम उलटे)"
+      },
+      {
+       "id": "c",
+       "en": "x + y = 30",
+       "hi": "x + y = 30 (केवल गिनती)"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:pens",
+     "expect": "matched:pens",
+     "say": {
+      "en": "Match the pens card.",
+      "hi": "पेन वाला कार्ड मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A linear equation in two variables can be written as ax + by + c = 0, where a and b are not both 0. For example, 5x + 2y = 30 is 5x + 2y − 30 = 0, with a = 5, b = 2, c = −30.",
+      "hi": "दो चरों वाला रैखिक समीकरण ax + by + c = 0 के रूप में लिखा जा सकता है, जहाँ a और b दोनों शून्य नहीं। जैसे 5x + 2y = 30 को 5x + 2y − 30 = 0 लिखते हैं, जिसमें a = 5, b = 2, c = −30।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Write y = 3x − 4 in the form ax + by + c = 0.",
+        "hi": "y = 3x − 4 को ax + by + c = 0 के रूप में लिखो।"
+       },
+       "options": [
+        "3x − y − 4 = 0",
+        "3x + y − 4 = 0",
+        "3x − y + 4 = 0"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Take y to the other side: 0 = 3x − y − 4.",
+        "hi": "y को दूसरी ओर ले जाओ: 0 = 3x − y − 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Moving y across changes its sign to −y.",
+         "hi": "y को दूसरी ओर ले जाने पर चिह्न −y हो जाता है।"
+        },
+        {
+         "en": "The −4 stays −4; only y moved.",
+         "hi": "−4, −4 ही रहता है; केवल y हटा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write an equation for buying samosas at ₹15 and jalebis at ₹10 with ₹100.",
+      "hi": "₹100 में ₹15 के समोसे और ₹10 की जलेबियाँ ख़रीदने का समीकरण लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch13-solutions",
+   "topic": "13.2",
+   "template": "sort",
+   "title": {
+    "en": "Which pairs solve x + 2y = 8?",
+    "hi": "कौन-से जोड़े x + 2y = 8 के हल हैं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "y",
+      "label": {
+       "en": "A solution",
+       "hi": "हल है"
+      }
+     },
+     {
+      "id": "n",
+      "label": {
+       "en": "Not a solution",
+       "hi": "हल नहीं है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "(0, 4)",
+       "hi": "(0, 4)"
+      },
+      "bin": "y",
+      "why": {
+       "en": "0 + 2 × 4 = 8.",
+       "hi": "0 + 2 × 4 = 8।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "(8, 0)",
+       "hi": "(8, 0)"
+      },
+      "bin": "y",
+      "why": {
+       "en": "8 + 2 × 0 = 8.",
+       "hi": "8 + 2 × 0 = 8।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "(2, 3)",
+       "hi": "(2, 3)"
+      },
+      "bin": "y",
+      "why": {
+       "en": "2 + 2 × 3 = 8.",
+       "hi": "2 + 2 × 3 = 8।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "(4, 2)",
+       "hi": "(4, 2)"
+      },
+      "bin": "y",
+      "why": {
+       "en": "4 + 2 × 2 = 8.",
+       "hi": "4 + 2 × 2 = 8।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "(6, 1)",
+       "hi": "(6, 1)"
+      },
+      "bin": "y",
+      "why": {
+       "en": "6 + 2 × 1 = 8.",
+       "hi": "6 + 2 × 1 = 8।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "(1, 4)",
+       "hi": "(1, 4)"
+      },
+      "bin": "n",
+      "why": {
+       "en": "1 + 2 × 4 = 9, not 8.",
+       "hi": "1 + 2 × 4 = 9, 8 नहीं।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "(3, 3)",
+       "hi": "(3, 3)"
+      },
+      "bin": "n",
+      "why": {
+       "en": "3 + 2 × 3 = 9, not 8.",
+       "hi": "3 + 2 × 3 = 9, 8 नहीं।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "(2, 2)",
+       "hi": "(2, 2)"
+      },
+      "bin": "n",
+      "why": {
+       "en": "2 + 2 × 2 = 6, not 8.",
+       "hi": "2 + 2 × 2 = 6, 8 नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c",
+     "expect": "correct:c",
+     "say": {
+      "en": "Put x = 2 and y = 3 into x + 2y. Is it 8? Place the card (2, 3).",
+      "hi": "x + 2y में x = 2 और y = 3 रखो। क्या यह 8 है? कार्ड (2, 3) रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is (3, 3) a solution of x + 2y = 8?",
+      "hi": "क्या (3, 3), x + 2y = 8 का हल है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:g",
+     "expect": "correct:g",
+     "say": {
+      "en": "Place the card (3, 3).",
+      "hi": "कार्ड (3, 3) रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A solution is a pair (x, y) that makes both sides equal. A linear equation in two variables has many solutions: choose any x, then work out y = (8 − x) ÷ 2. Plotted, all the solutions lie on one straight line.",
+      "hi": "हल ऐसा जोड़ा (x, y) है जो दोनों पक्षों को बराबर कर दे। दो चरों वाले रैखिक समीकरण के बहुत से हल होते हैं: कोई भी x चुनो, फिर y = (8 − x) ÷ 2 निकालो। अंकित करने पर सभी हल एक सीधी रेखा पर आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many solutions does x + 2y = 8 have?",
+        "hi": "x + 2y = 8 के कितने हल हैं?"
+       },
+       "options": [
+        {
+         "en": "Infinitely many",
+         "hi": "अनगिनत"
+        },
+        {
+         "en": "Exactly one",
+         "hi": "ठीक एक"
+        },
+        {
+         "en": "Exactly five",
+         "hi": "ठीक पाँच"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every x gives its own y, including fractions like x = 1, y = 3.5.",
+        "hi": "हर x से अपना y मिलता है, भिन्न वाले भी, जैसे x = 1, y = 3.5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One equation with two unknowns cannot fix both of them.",
+         "hi": "दो अज्ञात वाला एक समीकरण दोनों को तय नहीं कर सकता।"
+        },
+        {
+         "en": "Five whole-number pairs were shown, but fractions and negatives work too.",
+         "hi": "पाँच पूर्ण संख्या वाले जोड़े दिखे, पर भिन्न और ऋणात्मक भी चलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a solution of x + 2y = 8 with x negative.",
+      "hi": "x + 2y = 8 का ऐसा हल ढूँढो जिसमें x ऋणात्मक हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch13-solution-line",
+   "topic": "13.2",
+   "template": "grapher",
+   "title": {
+    "en": "All the solutions make a line",
+    "hi": "सभी हल मिलकर एक रेखा बनाते हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "x + y = 5"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "x + y = 5. If x = 2, what is y?",
+      "hi": "x + y = 5। अगर x = 2, तो y क्या है?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "y = 3",
+       "hi": "y = 3 (क्योंकि 2 + 3 = 5)"
+      },
+      {
+       "id": "5",
+       "en": "y = 5",
+       "hi": "y = 5 (वही संख्या)"
+      },
+      {
+       "id": "7",
+       "en": "y = 7",
+       "hi": "y = 7 (यानी 2 + 5)"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Slide x along the line and read the point (x, y) each time.",
+      "hi": "रेखा पर x खिसकाओ और हर बार बिंदु (x, y) पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the line.",
+      "hi": "रेखा के प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every point on the line is a solution of x + y = 5, and every solution is a point on the line. When x goes up by 1, y goes down by 1, so the slope is −1.",
+      "hi": "रेखा का हर बिंदु x + y = 5 का हल है, और हर हल रेखा का एक बिंदु है। जब x, 1 बढ़ता है, y, 1 घटता है, इसलिए ढलान −1 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does x + y = 5 cut the x-axis?",
+        "hi": "x + y = 5, x-अक्ष को कहाँ काटती है?"
+       },
+       "options": [
+        "(5, 0)",
+        "(0, 5)",
+        "(1, 1)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "On the x-axis y = 0, so x = 5.",
+        "hi": "x-अक्ष पर y = 0, इसलिए x = 5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "(0, 5) is where it cuts the y-axis.",
+         "hi": "(0, 5) पर यह y-अक्ष को काटती है।"
+        },
+        {
+         "en": "1 + 1 = 2, not 5; this point is not on the line.",
+         "hi": "1 + 1 = 2, 5 नहीं; यह बिंदु रेखा पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Zoom out. Is (−2, 7) on the line? Check it in the equation.",
+      "hi": "ज़ूम आउट करो। क्या (−2, 7) रेखा पर है? समीकरण में रखकर जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch13-slope",
+   "topic": "13.3.1",
+   "template": "grapher",
+   "title": {
+    "en": "Understanding slope",
+    "hi": "ढलान को समझो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "a*x + 1",
+    "params": {
+     "a": [
+      -3,
+      3,
+      1,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Move x by 1 step and see how much y changes.",
+      "hi": "x को 1 क़दम खिसकाओ और देखो y कितना बदलता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you make a = 2, how much will y rise for each step of 1 in x?",
+      "hi": "अगर a = 2 करो, तो x में हर 1 क़दम पर y कितना बढ़ेगा?"
+     },
+     "options": [
+      {
+       "id": "2",
+       "en": "2",
+       "hi": "2 इकाई"
+      },
+      {
+       "id": "1",
+       "en": "1",
+       "hi": "1 इकाई"
+      },
+      {
+       "id": "half",
+       "en": "½",
+       "hi": "आधी इकाई"
+      }
+     ],
+     "answer": "2"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Set a to 2.",
+      "hi": "a को 2 करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: what is the slope of this line?",
+      "hi": "उत्तर दो: इस रेखा की ढलान क्या है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Slope = rise ÷ run = change in y ÷ change in x. It is the same between any two points of a straight line. A bigger slope is steeper; a negative slope goes down from left to right; slope 0 is flat.",
+      "hi": "ढलान = ऊँचाई में बदलाव ÷ आड़ी दूरी = y में बदलाव ÷ x में बदलाव। सीधी रेखा के किन्हीं दो बिंदुओं के बीच यह एक जैसी रहती है। बड़ी ढलान ज़्यादा खड़ी होती है; ऋणात्मक ढलान बाएँ से दाएँ नीचे जाती है; ढलान 0 सपाट होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A ramp rises 1 m over a run of 12 m. What is its slope?",
+        "hi": "एक रैंप 12 मी की आड़ी दूरी पर 1 मी ऊपर उठता है। उसकी ढलान क्या है?"
+       },
+       "options": [
+        "1/12",
+        "12",
+        "13"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rise ÷ run = 1 ÷ 12.",
+        "hi": "ऊँचाई ÷ आड़ी दूरी = 1 ÷ 12।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is run ÷ rise, upside down.",
+         "hi": "यह आड़ी दूरी ÷ ऊँचाई है, उल्टा।"
+        },
+        {
+         "en": "Adding the two lengths does not measure steepness.",
+         "hi": "दोनों लंबाइयाँ जोड़ने से ढलान नहीं मापी जाती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the a that makes the line flat. Then find two values of a that give lines at the same steepness but leaning opposite ways.",
+      "hi": "वह a ढूँढो जिससे रेखा सपाट हो। फिर a के दो ऐसे मान ढूँढो जिनसे बराबर खड़ी पर उलटी ओर झुकी रेखाएँ बनें।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch13-intercept",
+   "topic": "13.3.2",
+   "template": "grapher",
+   "title": {
+    "en": "Slope-intercept form: y = mx + c",
+    "hi": "ढलान-अंतःखंड रूप: y = mx + c"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "a*x + b",
+    "params": {
+     "a": [
+      -3,
+      3,
+      2,
+      0.5
+     ],
+     "b": [
+      -5,
+      5,
+      -1,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "y = 2x − 1. Where does the line cross the y-axis?",
+      "hi": "y = 2x − 1। रेखा y-अक्ष को कहाँ काटती है?"
+     },
+     "options": [
+      {
+       "id": "m1",
+       "en": "At (0, −1)",
+       "hi": "(0, −1) पर"
+      },
+      {
+       "id": "2",
+       "en": "At (0, 2)",
+       "hi": "(0, 2) पर"
+      },
+      {
+       "id": "half",
+       "en": "At (½, 0)",
+       "hi": "(½, 0) पर"
+      }
+     ],
+     "answer": "m1"
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Change b. What moves, and what stays the same?",
+      "hi": "b बदलो। क्या खिसकता है, और क्या वैसा ही रहता है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Now change a and watch the line turn.",
+      "hi": "अब a बदलो और रेखा को घूमते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the line.",
+      "hi": "रेखा के प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In y = mx + c, m is the slope and c is the y-intercept, where the line crosses the y-axis (x = 0). Changing c slides the line up or down without turning it; changing m turns it around the point (0, c). Lines with the same m are parallel.",
+      "hi": "y = mx + c में m ढलान है और c, y-अंतःखंड है, जहाँ रेखा y-अक्ष को काटती है (x = 0)। c बदलने से रेखा बिना घूमे ऊपर-नीचे खिसकती है; m बदलने से वह बिंदु (0, c) के चारों ओर घूमती है। एक जैसे m वाली रेखाएँ समांतर होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A taxi fare is ₹40 plus ₹12 per km: y = 12x + 40. What do 12 and 40 mean on the graph?",
+        "hi": "टैक्सी किराया ₹40 और ₹12 प्रति किमी है: y = 12x + 40। ग्राफ़ पर 12 और 40 का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "12 is the slope, 40 is where it starts on the y-axis",
+         "hi": "12 ढलान है, 40 वह जगह जहाँ यह y-अक्ष पर शुरू होती है"
+        },
+        {
+         "en": "12 is where it starts, 40 is the slope",
+         "hi": "12 शुरुआत है, 40 ढलान है"
+        },
+        {
+         "en": "Both are slopes",
+         "hi": "दोनों ढलान हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each km adds ₹12 (the steepness), and at 0 km you already pay ₹40 (the intercept).",
+        "hi": "हर किमी ₹12 जोड़ता है (ढलान), और 0 किमी पर भी ₹40 देने हैं (अंतःखंड)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The number multiplying x is the slope, not the start.",
+         "hi": "x को गुणा करने वाली संख्या ढलान है, शुरुआत नहीं।"
+        },
+        {
+         "en": "A line has only one slope; 40 is the fixed part.",
+         "hi": "रेखा की केवल एक ढलान होती है; 40 तय भाग है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write 3x + y = 6 as y = mx + c. Then set a and b to match it.",
+      "hi": "3x + y = 6 को y = mx + c के रूप में लिखो। फिर a और b को उसके अनुसार करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch13-pair",
+   "topic": "13.4",
+   "template": "grapher",
+   "title": {
+    "en": "Two lines, one meeting point",
+    "hi": "दो रेखाएँ, एक मिलन बिंदु"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "pair",
+    "expr": "x + y = 10; x - y = 2"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two numbers add to 10 and differ by 2. What are they?",
+      "hi": "दो संख्याओं का योग 10 और अंतर 2 है। वे क्या हैं?"
+     },
+     "options": [
+      {
+       "id": "64",
+       "en": "6 and 4",
+       "hi": "6 और 4"
+      },
+      {
+       "id": "82",
+       "en": "8 and 2",
+       "hi": "8 और 2"
+      },
+      {
+       "id": "55",
+       "en": "5 and 5",
+       "hi": "5 और 5"
+      }
+     ],
+     "answer": "64"
+    },
+    {
+     "kind": "do",
+     "target": "intersect",
+     "expect": "intersect",
+     "say": {
+      "en": "Tap Find the meeting point.",
+      "hi": "मिलन बिंदु ढूँढो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: how many solutions does this pair have?",
+      "hi": "उत्तर दो: इस जोड़े के कितने हल हैं?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each equation has a whole line of solutions. A pair (x, y) that fits both must lie on both lines, so it is where they cross: (6, 4). Two lines that are not parallel cross at exactly one point; parallel lines never meet, so then there is no common solution.",
+      "hi": "हर समीकरण के हलों की पूरी रेखा होती है। जो जोड़ा (x, y) दोनों में सही बैठे, वह दोनों रेखाओं पर होगा, यानी जहाँ वे काटती हैं: (6, 4)। समांतर न हों ऐसी दो रेखाएँ ठीक एक बिंदु पर काटती हैं; समांतर रेखाएँ कभी नहीं मिलतीं, तब कोई साझा हल नहीं होता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "x + y = 10 and x + y = 6. How many common solutions?",
+        "hi": "x + y = 10 और x + y = 6। कितने साझा हल हैं?"
+       },
+       "options": [
+        {
+         "en": "None",
+         "hi": "कोई नहीं"
+        },
+        {
+         "en": "One",
+         "hi": "एक"
+        },
+        {
+         "en": "Infinitely many",
+         "hi": "अनगिनत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two numbers cannot add to 10 and 6 at once; the lines are parallel.",
+        "hi": "दो संख्याओं का योग एक साथ 10 और 6 नहीं हो सकता; रेखाएँ समांतर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A single crossing needs different slopes; both lines have slope −1.",
+         "hi": "एक कटान के लिए अलग ढलान चाहिए; दोनों की ढलान −1 है।"
+        },
+        {
+         "en": "Infinitely many would need the same line, but 10 ≠ 6.",
+         "hi": "अनगिनत के लिए एक ही रेखा चाहिए, पर 10 ≠ 6।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write a pair for: 'a pen and a notebook cost ₹50; the notebook costs ₹20 more than the pen'. Solve it by drawing the two lines.",
+      "hi": "इसका जोड़ा लिखो: 'एक पेन और एक कॉपी ₹50 की; कॉपी, पेन से ₹20 महँगी'। दोनों रेखाएँ खींचकर हल करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "Chapter hook: two unknowns in a shop",
+   "shows": "A stationery shop counter with a pile of pens and a pile of pencils and a few rupee notes",
+   "view": "Three-quarter view, eye level",
+   "right": "Pens and pencils clearly two kinds",
+   "avoid": "Brand names, readable prices, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "13.2",
+   "use": "Solutions on graph paper",
+   "shows": "A sheet of squared paper with five coloured pins standing exactly in a straight line",
+   "view": "Straight from above",
+   "right": "Pins at whole grid points, perfectly in line",
+   "avoid": "Printed numbers"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "13.3.1",
+   "use": "Slope in real life: a ramp",
+   "shows": "A wheelchair ramp beside the steps of an Indian public building",
+   "view": "Side view to show rise and run",
+   "right": "Gentle straight slope with a handrail",
+   "avoid": "Faces, signboards"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "13.3.1",
+   "use": "Steep and gentle roads",
+   "shows": "A hill road in the Himalayas with one gentle stretch and one steep stretch visible",
+   "view": "Wide view from the side",
+   "right": "Two clearly different steepnesses",
+   "avoid": "Vehicles with number plates"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "13.3.2",
+   "use": "Parallel lines with different intercepts",
+   "shows": "Three parallel straight lines in three colours on squared paper, each crossing the vertical axis at a different height",
+   "view": "Flat, straight on",
+   "right": "Exactly parallel",
+   "avoid": "Labels"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "13.4",
+   "use": "Two lines crossing",
+   "shows": "Two straight lines in orange and violet crossing at one grid point marked by a small bead",
+   "view": "Flat, straight on",
+   "right": "Crossing point exactly on a grid point",
+   "avoid": "Numbers baked in"
+  }
+ ]
+}

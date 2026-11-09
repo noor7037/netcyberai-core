@@ -1,0 +1,1723 @@
+{
+  "chapter_key": "u.c12.accountancy.leac2.ch06",
+  "class": 12,
+  "subject_id": "accountancy",
+  "title": "Cash Flow Statement",
+  "source": "https://ncert.nic.in/textbook/pdf/leac206.pdf",
+  "topics": [
+    {
+      "n": "6.1",
+      "title": "Objectives of cash flow statement",
+      "labs": [
+        "c12-accountancy-leac2-ch06-profit-not-cash"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.2",
+      "title": "Benefits of cash flow statement",
+      "labs": [
+        "c12-accountancy-leac2-ch06-profit-not-cash"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.3",
+      "title": "Cash and cash equivalents",
+      "labs": [
+        "c12-accountancy-leac2-ch06-cash-equivalents"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.4",
+      "title": "Cash flows",
+      "labs": [
+        "c12-accountancy-leac2-ch06-activities"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.5",
+      "title": "Classification of activities for the cash flow statement",
+      "labs": [
+        "c12-accountancy-leac2-ch06-activities"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.5.1",
+      "title": "Cash from operating activities",
+      "labs": [
+        "c12-accountancy-leac2-ch06-activities"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.5.2",
+      "title": "Cash from investing activities",
+      "labs": [
+        "c12-accountancy-leac2-ch06-activities"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.5.3",
+      "title": "Cash from financing activities",
+      "labs": [
+        "c12-accountancy-leac2-ch06-activities"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.8",
+      "title": "Preparation of cash flow statement",
+      "labs": [
+        "c12-accountancy-leac2-ch06-classify"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.6",
+      "title": "Ascertaining cash flow from operating activities",
+      "labs": [
+        "c12-accountancy-leac2-ch06-indirect"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.6.1",
+      "title": "Indirect method",
+      "labs": [
+        "c12-accountancy-leac2-ch06-indirect"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.5.4",
+      "title": "Treatment of some peculiar items",
+      "labs": [
+        "c12-accountancy-leac2-ch06-non-cash"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.7",
+      "title": "Ascertainment of cash flow from investing and financing activities",
+      "labs": [
+        "c12-accountancy-leac2-ch06-activities",
+        "c12-accountancy-leac2-ch06-classify"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.8.1",
+      "title": "Order of the steps",
+      "labs": [
+        "c12-accountancy-leac2-ch06-prepare-steps"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-accountancy-leac2-ch06-profit-not-cash",
+      "topic": "6.1",
+      "template": "scenario",
+      "title": {
+        "en": "Profit is not the same as cash",
+        "hi": "लाभ और नकदी एक चीज़ नहीं"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "setting": "workshop",
+        "role": {
+          "en": "Owner of Raj Furniture Works",
+          "hi": "राज फ़र्नीचर वर्क्स के मालिक"
+        },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": {
+              "en": "Your accounts show a profit of ₹2,00,000 this year, yet today you cannot pay the workers' wages. Where could the profit have gone?",
+              "hi": "आपके खाते इस वर्ष ₹2,00,000 का लाभ दिखाते हैं, फिर भी आज आप मज़दूरों की मज़दूरी नहीं दे सकते। लाभ कहाँ चला गया होगा?"
+            },
+            "choices": [
+              {
+                "id": "lost",
+                "text": {
+                  "en": "The profit figure is wrong; profit and cash are always equal",
+                  "hi": "लाभ का आँकड़ा ग़लत है; लाभ और नकदी हमेशा बराबर होते हैं"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "No. Profit and cash differ all the time, and that is exactly why a cash flow statement exists.",
+                  "hi": "नहीं। लाभ और नकदी अक्सर अलग होते हैं, और इसीलिए रोकड़ प्रवाह विवरण बनता है।"
+                },
+                "good": false
+              },
+              {
+                "id": "tied",
+                "text": {
+                  "en": "Cash is tied up in unsold furniture, customers' unpaid bills and new machines",
+                  "hi": "नकदी बिना बिके फ़र्नीचर, ग्राहकों के बकाया बिलों और नई मशीनों में फँसी है"
+                },
+                "next": "s2",
+                "feedback": {
+                  "en": "Right. Sales on credit, stock and assets bought with cash use up money without reducing profit.",
+                  "hi": "सही। उधार बिक्री, माल और नकद ख़रीदी परिसंपत्तियाँ लाभ घटाए बिना पैसा खा जाती हैं।"
+                },
+                "good": true
+              }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "You want to know where cash actually came from and went to during the year. What is the best document?",
+              "hi": "आप जानना चाहते हैं कि वर्ष में नकदी सचमुच कहाँ से आई और कहाँ गई। सबसे अच्छा दस्तावेज़ कौन-सा है?"
+            },
+            "choices": [
+              {
+                "id": "cfs",
+                "text": {
+                  "en": "A cash flow statement: operating, investing and financing",
+                  "hi": "रोकड़ प्रवाह विवरण: प्रचालन, निवेश और वित्तीयन"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Right. It follows the cash itself, not the profit, and groups it by activity.",
+                  "hi": "सही। यह लाभ को नहीं, नकदी को ही चलता है और उसे गतिविधि के अनुसार बाँटता है।"
+                },
+                "good": true
+              },
+              {
+                "id": "pl",
+                "text": {
+                  "en": "Only the statement of profit and loss",
+                  "hi": "केवल लाभ-हानि विवरण"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "It shows profit by accounting rules and cannot show when cash moved.",
+                  "hi": "यह लेखांकन नियमों से लाभ बताता है और यह नहीं बता सकता कि नकदी कब चली।"
+                },
+                "good": false
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A firm sells goods worth ₹5 lakh on three months' credit. Does its cash rise by ₹5 lakh today?",
+            "hi": "एक फ़र्म ₹5 लाख का माल तीन महीने के उधार पर बेचती है। क्या आज उसकी नकदी ₹5 लाख बढ़ती है?"
+          },
+          "options": [
+            {
+              "id": "n",
+              "en": "No: profit rises now, cash comes later",
+              "hi": "नहीं: लाभ अभी बढ़ता है, नकदी बाद में आती है"
+            },
+            {
+              "id": "y",
+              "en": "Yes, at once",
+              "hi": "हाँ, तुरंत"
+            }
+          ],
+          "answer": "n"
+        },
+        {
+          "kind": "do",
+          "target": "choice:s1:tied",
+          "expect": "chose:tied",
+          "say": {
+            "en": "Choose where the profit may have gone.",
+            "hi": "चुनो कि लाभ कहाँ गया होगा।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Profit is worked out on the accrual basis: a credit sale counts as income the day it is made. Cash moves only when money is actually received or paid. A cash flow statement reports the cash and cash equivalents that came in and went out, split into operating, investing and financing activities, so that owners, lenders and managers can see how the firm generated and used its cash.",
+            "hi": "लाभ उपचय आधार पर निकलता है: उधार बिक्री उसी दिन आय गिनी जाती है। नकदी तब चलती है जब पैसा सचमुच मिलता या दिया जाता है। रोकड़ प्रवाह विवरण आई और गई रोकड़ तथा रोकड़ समतुल्य को प्रचालन, निवेश और वित्तीयन गतिविधियों में बाँटकर बताता है, ताकि स्वामी, ऋणदाता और प्रबंधक देख सकें कि फ़र्म ने नकदी कैसे बनाई और कैसे लगाई।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these can make profit high while cash is low?",
+                "hi": "इनमें से क्या लाभ को ऊँचा और नकदी को कम रख सकता है?"
+              },
+              "options": [
+                {
+                  "en": "Large credit sales not yet collected",
+                  "hi": "बड़ी उधार बिक्री जो अभी वसूल नहीं हुई"
+                },
+                {
+                  "en": "Selling everything for cash",
+                  "hi": "सब कुछ नकद में बेचना"
+                },
+                {
+                  "en": "Receiving capital from the owner",
+                  "hi": "स्वामी से पूँजी मिलना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Credit sales add to profit, but the cash arrives only when customers pay.",
+                "hi": "उधार बिक्री लाभ बढ़ाती है, पर नकदी तब आती है जब ग्राहक चुकाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Cash sales bring cash at once, so cash would be high too.",
+                  "hi": "नकद बिक्री से नकदी तुरंत आती है, इसलिए नकदी भी ऊँची होती।"
+                },
+                {
+                  "en": "Capital from the owner raises cash and is not profit at all.",
+                  "hi": "स्वामी की पूँजी नकदी बढ़ाती है और लाभ बिल्कुल नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Replay and choose the first wrong answer to read why profit and cash are not twins.",
+            "hi": "फिर खेलो और पहला ग़लत उत्तर चुनकर पढ़ो कि लाभ और नकदी जुड़वाँ क्यों नहीं हैं।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch06-cash-equivalents",
+      "topic": "6.3",
+      "template": "sort",
+      "title": {
+        "en": "Cash, cash equivalent, or neither?",
+        "hi": "रोकड़, रोकड़ समतुल्य या कुछ नहीं?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "cash",
+            "label": {
+              "en": "Cash",
+              "hi": "रोकड़"
+            }
+          },
+          {
+            "id": "eq",
+            "label": {
+              "en": "Cash equivalent",
+              "hi": "रोकड़ समतुल्य"
+            }
+          },
+          {
+            "id": "no",
+            "label": {
+              "en": "Neither",
+              "hi": "इनमें से कोई नहीं"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "hand",
+            "text": {
+              "en": "Cash in the till",
+              "hi": "गल्ले में रखी रोकड़"
+            },
+            "bin": "cash",
+            "why": {
+              "en": "Cash in hand is cash.",
+              "hi": "हाथ की रोकड़ रोकड़ ही है।"
+            }
+          },
+          {
+            "id": "bank",
+            "text": {
+              "en": "Balance in a current account",
+              "hi": "चालू खाते का शेष"
+            },
+            "bin": "cash",
+            "why": {
+              "en": "Demand deposits with banks count as cash.",
+              "hi": "बैंकों में माँग-जमा रोकड़ में गिने जाते हैं।"
+            }
+          },
+          {
+            "id": "tb",
+            "text": {
+              "en": "Treasury bill maturing in 2 months",
+              "hi": "2 महीने में परिपक्व होने वाला ट्रेज़री बिल"
+            },
+            "bin": "eq",
+            "why": {
+              "en": "A short-term, safe, easily convertible investment of three months or less.",
+              "hi": "तीन महीने या कम का अल्पकालीन, सुरक्षित, आसानी से बदलने योग्य निवेश।"
+            }
+          },
+          {
+            "id": "fd3",
+            "text": {
+              "en": "A 3-month fixed deposit",
+              "hi": "3 महीने की सावधि जमा"
+            },
+            "bin": "eq",
+            "why": {
+              "en": "Maturity of three months or less makes it a cash equivalent.",
+              "hi": "तीन महीने या कम की परिपक्वता इसे रोकड़ समतुल्य बनाती है।"
+            }
+          },
+          {
+            "id": "mf",
+            "text": {
+              "en": "Money market fund redeemable in a few days",
+              "hi": "कुछ दिन में भुनाया जा सकने वाला मनी मार्केट फ़ंड"
+            },
+            "bin": "eq",
+            "why": {
+              "en": "Highly liquid with insignificant risk of change in value.",
+              "hi": "बहुत तरल और मूल्य बदलने का नगण्य जोखिम।"
+            }
+          },
+          {
+            "id": "fd5",
+            "text": {
+              "en": "A 5-year fixed deposit",
+              "hi": "5 साल की सावधि जमा"
+            },
+            "bin": "no",
+            "why": {
+              "en": "Long maturity: it is an investment, not a cash equivalent.",
+              "hi": "लंबी परिपक्वता: यह निवेश है, रोकड़ समतुल्य नहीं।"
+            }
+          },
+          {
+            "id": "shares",
+            "text": {
+              "en": "Shares of another company",
+              "hi": "किसी और कंपनी के शेयर"
+            },
+            "bin": "no",
+            "why": {
+              "en": "Their value can change a lot, so they are not cash equivalents.",
+              "hi": "उनका मूल्य बहुत बदल सकता है, इसलिए वे रोकड़ समतुल्य नहीं।"
+            }
+          },
+          {
+            "id": "stock",
+            "text": {
+              "en": "Stock of finished goods",
+              "hi": "तैयार माल का स्टॉक"
+            },
+            "bin": "no",
+            "why": {
+              "en": "Goods are not money until sold.",
+              "hi": "माल बिकने तक पैसा नहीं होता।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A firm puts money in a 2-month deposit. Is it cash, a cash equivalent or an investment?",
+            "hi": "एक फ़र्म दो महीने की जमा में पैसा रखती है। यह रोकड़ है, रोकड़ समतुल्य या निवेश?"
+          },
+          "options": [
+            {
+              "id": "e",
+              "en": "A cash equivalent",
+              "hi": "रोकड़ समतुल्य"
+            },
+            {
+              "id": "i",
+              "en": "A long-term investment",
+              "hi": "दीर्घकालीन निवेश"
+            },
+            {
+              "id": "c",
+              "en": "Cash",
+              "hi": "रोकड़"
+            }
+          ],
+          "answer": "e"
+        },
+        {
+          "kind": "do",
+          "target": "card:hand",
+          "expect": "correct:hand",
+          "say": {
+            "en": "Tap the card “Cash in the till”, then tap the group it belongs to.",
+            "hi": "कार्ड “गल्ले में रखी रोकड़” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:tb",
+          "expect": "correct:tb",
+          "say": {
+            "en": "Tap the card “Treasury bill maturing in 2 months”, then tap the group it belongs to.",
+            "hi": "कार्ड “2 महीने में परिपक्व होने वाला ट्रेज़री बिल” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The cash flow statement follows cash and cash equivalents together. Cash means cash in hand and demand deposits with banks. A cash equivalent is a short-term, highly liquid investment that can be turned into a known amount of cash with little risk, usually with a maturity of three months or less. Moving money between cash and a cash equivalent is not a cash flow.",
+            "hi": "रोकड़ प्रवाह विवरण रोकड़ और रोकड़ समतुल्य को साथ-साथ देखता है। रोकड़ का अर्थ हाथ की रोकड़ और बैंकों में माँग-जमा है। रोकड़ समतुल्य अल्पकालीन, अत्यधिक तरल निवेश है जो कम जोखिम पर निश्चित राशि की रोकड़ में बदला जा सके, प्रायः तीन महीने या कम की परिपक्वता वाला। रोकड़ और रोकड़ समतुल्य के बीच पैसा हटाना रोकड़ प्रवाह नहीं है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Moving ₹50,000 from the till to a bank current account is:",
+                "hi": "गल्ले से ₹50,000 बैंक के चालू खाते में डालना है:"
+              },
+              "options": [
+                {
+                  "en": "Not a cash flow, because both are cash",
+                  "hi": "रोकड़ प्रवाह नहीं, क्योंकि दोनों रोकड़ हैं"
+                },
+                {
+                  "en": "An operating inflow",
+                  "hi": "प्रचालन अंतर्वाह"
+                },
+                {
+                  "en": "A financing outflow",
+                  "hi": "वित्तीयन बहिर्वाह"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Cash stays cash; nothing enters or leaves the firm.",
+                "hi": "रोकड़ रोकड़ ही रहती है; फ़र्म में कुछ आता-जाता नहीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "No customer paid, so there is no operating inflow.",
+                  "hi": "किसी ग्राहक ने नहीं चुकाया, इसलिए कोई प्रचालन अंतर्वाह नहीं।"
+                },
+                {
+                  "en": "No owner or lender is involved, so it is not financing.",
+                  "hi": "कोई स्वामी या ऋणदाता शामिल नहीं, इसलिए यह वित्तीयन नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Why would a 5-year deposit be left out of cash equivalents even though a bank is safe?",
+            "hi": "बैंक सुरक्षित होने पर भी 5 साल की जमा रोकड़ समतुल्य में क्यों नहीं गिनी जाती?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch06-activities",
+      "topic": "6.5",
+      "template": "sort",
+      "title": {
+        "en": "Operating, investing or financing?",
+        "hi": "प्रचालन, निवेश या वित्तीयन?"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "op",
+            "label": {
+              "en": "Operating",
+              "hi": "प्रचालन"
+            }
+          },
+          {
+            "id": "inv",
+            "label": {
+              "en": "Investing",
+              "hi": "निवेश"
+            }
+          },
+          {
+            "id": "fin",
+            "label": {
+              "en": "Financing",
+              "hi": "वित्तीयन"
+            }
+          },
+          {
+            "id": "no",
+            "label": {
+              "en": "No cash flow",
+              "hi": "कोई रोकड़ प्रवाह नहीं"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "sales",
+            "text": {
+              "en": "Cash received from customers",
+              "hi": "ग्राहकों से प्राप्त रोकड़"
+            },
+            "bin": "op",
+            "why": {
+              "en": "Day-to-day trade is an operating activity.",
+              "hi": "रोज़ का व्यापार प्रचालन गतिविधि है।"
+            }
+          },
+          {
+            "id": "sal",
+            "text": {
+              "en": "Salaries and wages paid",
+              "hi": "वेतन और मज़दूरी का भुगतान"
+            },
+            "bin": "op",
+            "why": {
+              "en": "Running expenses are operating outflows.",
+              "hi": "चालू ख़र्च प्रचालन बहिर्वाह हैं।"
+            }
+          },
+          {
+            "id": "mach",
+            "text": {
+              "en": "Machinery bought for cash",
+              "hi": "नकद में मशीनरी ख़रीदी"
+            },
+            "bin": "inv",
+            "why": {
+              "en": "Buying a long-term asset is investing.",
+              "hi": "दीर्घकालीन परिसंपत्ति ख़रीदना निवेश है।"
+            }
+          },
+          {
+            "id": "veh",
+            "text": {
+              "en": "Old vehicle sold for cash",
+              "hi": "पुराना वाहन नकद बेचा"
+            },
+            "bin": "inv",
+            "why": {
+              "en": "Selling a long-term asset is an investing inflow.",
+              "hi": "दीर्घकालीन परिसंपत्ति बेचना निवेश अंतर्वाह है।"
+            }
+          },
+          {
+            "id": "intr",
+            "text": {
+              "en": "Interest received on investments",
+              "hi": "निवेशों पर प्राप्त ब्याज"
+            },
+            "bin": "inv",
+            "why": {
+              "en": "Returns on investments are investing inflows.",
+              "hi": "निवेशों से प्रतिफल निवेश अंतर्वाह हैं।"
+            }
+          },
+          {
+            "id": "shr",
+            "text": {
+              "en": "Equity shares issued for cash",
+              "hi": "नकद में समता अंश जारी"
+            },
+            "bin": "fin",
+            "why": {
+              "en": "Money from owners is financing.",
+              "hi": "स्वामियों से पैसा वित्तीयन है।"
+            }
+          },
+          {
+            "id": "loan",
+            "text": {
+              "en": "Bank loan taken",
+              "hi": "बैंक ऋण लिया"
+            },
+            "bin": "fin",
+            "why": {
+              "en": "Money from lenders is financing.",
+              "hi": "ऋणदाताओं से पैसा वित्तीयन है।"
+            }
+          },
+          {
+            "id": "div",
+            "text": {
+              "en": "Dividend paid to shareholders",
+              "hi": "अंशधारकों को लाभांश चुकाया"
+            },
+            "bin": "fin",
+            "why": {
+              "en": "Returns to owners are financing outflows.",
+              "hi": "स्वामियों को प्रतिफल वित्तीयन बहिर्वाह है।"
+            }
+          },
+          {
+            "id": "intp",
+            "text": {
+              "en": "Interest paid on a long-term loan",
+              "hi": "दीर्घकालीन ऋण पर ब्याज चुकाया"
+            },
+            "bin": "fin",
+            "why": {
+              "en": "The cost of borrowed money is financing.",
+              "hi": "उधार के पैसे की लागत वित्तीयन है।"
+            }
+          },
+          {
+            "id": "dep",
+            "text": {
+              "en": "Cash banked from the till",
+              "hi": "गल्ले से बैंक में रोकड़ जमा"
+            },
+            "bin": "no",
+            "why": {
+              "en": "Cash moves between cash and bank; no flow in or out.",
+              "hi": "रोकड़ रोकड़ और बैंक के बीच घूमती है; कोई प्रवाह नहीं।"
+            }
+          },
+          {
+            "id": "credit",
+            "text": {
+              "en": "Goods bought on credit",
+              "hi": "माल उधार ख़रीदा"
+            },
+            "bin": "no",
+            "why": {
+              "en": "No cash moves till the supplier is paid.",
+              "hi": "आपूर्तिकर्ता को चुकाने तक कोई नकदी नहीं चलती।"
+            }
+          },
+          {
+            "id": "pay",
+            "text": {
+              "en": "Cash paid to suppliers",
+              "hi": "आपूर्तिकर्ताओं को भुगतान"
+            },
+            "bin": "op",
+            "why": {
+              "en": "Paying for goods is an operating outflow.",
+              "hi": "माल का भुगतान प्रचालन बहिर्वाह है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A firm sells an old truck for ₹1,50,000 cash. Which activity does the cash belong to?",
+            "hi": "एक फ़र्म पुराना ट्रक ₹1,50,000 नकद में बेचती है। यह नकदी किस गतिविधि की है?"
+          },
+          "options": [
+            {
+              "id": "i",
+              "en": "Investing",
+              "hi": "निवेश"
+            },
+            {
+              "id": "o",
+              "en": "Operating",
+              "hi": "प्रचालन"
+            },
+            {
+              "id": "f",
+              "en": "Financing",
+              "hi": "वित्तीयन"
+            }
+          ],
+          "answer": "i"
+        },
+        {
+          "kind": "do",
+          "target": "card:mach",
+          "expect": "correct:mach",
+          "say": {
+            "en": "Tap the card “Machinery bought for cash”, then tap the group it belongs to.",
+            "hi": "कार्ड “नकद में मशीनरी ख़रीदी” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:shr",
+          "expect": "correct:shr",
+          "say": {
+            "en": "Tap the card “Equity shares issued for cash”, then tap the group it belongs to.",
+            "hi": "कार्ड “नकद में समता अंश जारी” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Cash flows are sorted by purpose. Operating: the firm's main trade and its running costs. Investing: buying and selling long-term assets and investments, with the interest and dividends received on them. Financing: money from or back to owners and lenders, including interest paid and dividend paid. If no cash enters or leaves the firm, nothing is shown at all.",
+            "hi": "रोकड़ प्रवाह उद्देश्य के अनुसार छाँटे जाते हैं। प्रचालन: फ़र्म का मुख्य व्यापार और चालू ख़र्च। निवेश: दीर्घकालीन परिसंपत्तियों और निवेशों की ख़रीद-बिक्री, उन पर मिले ब्याज और लाभांश सहित। वित्तीयन: स्वामियों और ऋणदाताओं से आया या उन्हें गया पैसा, दिया ब्याज और चुकाया लाभांश सहित। यदि फ़र्म में कोई नकदी आती-जाती नहीं तो कुछ दिखाया ही नहीं जाता।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Interest paid on debentures is shown under:",
+                "hi": "ऋणपत्रों पर चुकाया ब्याज किसके अंतर्गत दिखता है:"
+              },
+              "options": [
+                {
+                  "en": "Financing activities",
+                  "hi": "वित्तीयन गतिविधियाँ"
+                },
+                {
+                  "en": "Operating activities",
+                  "hi": "प्रचालन गतिविधियाँ"
+                },
+                {
+                  "en": "Investing activities",
+                  "hi": "निवेश गतिविधियाँ"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It is the cost of the money raised from lenders, so it is financing.",
+                "hi": "यह ऋणदाताओं से जुटाए पैसे की लागत है, इसलिए वित्तीयन है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Operating covers trade and running costs, not the cost of borrowed capital.",
+                  "hi": "प्रचालन में व्यापार और चालू ख़र्च आते हैं, उधार की पूँजी की लागत नहीं।"
+                },
+                {
+                  "en": "Investing covers long-term assets; interest received would be here, not interest paid.",
+                  "hi": "निवेश में दीर्घकालीन परिसंपत्तियाँ आती हैं; प्राप्त ब्याज यहाँ आता, दिया हुआ नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Pick any three things your family spends money on and decide: operating, investing or financing?",
+            "hi": "अपने घर के तीन ख़र्च चुनो और तय करो: प्रचालन, निवेश या वित्तीयन?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch06-classify",
+      "topic": "6.8",
+      "template": "ledger",
+      "title": {
+        "en": "Build a cash flow statement",
+        "hi": "रोकड़ प्रवाह विवरण बनाओ"
+      },
+      "minutes": 9,
+      "level": "core",
+      "config": {
+        "mode": "cash-flow",
+        "business": {
+          "en": "Maya Fabrics",
+          "hi": "माया फ़ैब्रिक्स"
+        },
+        "opening": 50000,
+        "transactions": [
+          {
+            "id": "t1",
+            "date": "2025-04-02",
+            "text": {
+              "en": "Sold cloth for cash",
+              "hi": "नकद में कपड़ा बेचा"
+            },
+            "amount": 60000,
+            "debit": "cash",
+            "credit": "sales"
+          },
+          {
+            "id": "t2",
+            "date": "2025-04-05",
+            "text": {
+              "en": "Bought a weaving machine for cash",
+              "hi": "नकद में बुनाई की मशीन ख़रीदी"
+            },
+            "amount": 80000,
+            "debit": "machinery",
+            "credit": "cash"
+          },
+          {
+            "id": "t3",
+            "date": "2025-04-10",
+            "text": {
+              "en": "The owner brought new capital in cash",
+              "hi": "स्वामी ने नकद में नई पूँजी लगाई"
+            },
+            "amount": 100000,
+            "debit": "cash",
+            "credit": "capital"
+          },
+          {
+            "id": "t4",
+            "date": "2025-04-15",
+            "text": {
+              "en": "Paid wages in cash",
+              "hi": "नकद में मज़दूरी दी"
+            },
+            "amount": 15000,
+            "debit": "wages",
+            "credit": "cash"
+          },
+          {
+            "id": "t5",
+            "date": "2025-04-20",
+            "text": {
+              "en": "Took a bank loan, credited to the bank account",
+              "hi": "बैंक ऋण लिया, बैंक खाते में जमा"
+            },
+            "amount": 50000,
+            "debit": "bank",
+            "credit": "loan"
+          },
+          {
+            "id": "t6",
+            "date": "2025-04-25",
+            "text": {
+              "en": "Received interest on investments in the bank",
+              "hi": "निवेशों पर ब्याज बैंक में मिला"
+            },
+            "amount": 4000,
+            "debit": "bank",
+            "credit": "interest-received"
+          },
+          {
+            "id": "t7",
+            "date": "2025-04-28",
+            "text": {
+              "en": "Paid interest on the loan from the bank",
+              "hi": "ऋण का ब्याज बैंक से चुकाया"
+            },
+            "amount": 3000,
+            "debit": "interest-paid",
+            "credit": "bank"
+          },
+          {
+            "id": "t8",
+            "date": "2025-04-30",
+            "text": {
+              "en": "Deposited cash from the till into the bank",
+              "hi": "गल्ले की रोकड़ बैंक में जमा की"
+            },
+            "amount": 20000,
+            "debit": "bank",
+            "credit": "cash"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Cash sales bring money from customers. Which activity is this?",
+            "hi": "नकद बिक्री से ग्राहकों का पैसा आता है। यह कौन-सी गतिविधि है?"
+          },
+          "options": [
+            {
+              "id": "o",
+              "en": "Operating",
+              "hi": "प्रचालन"
+            },
+            {
+              "id": "i",
+              "en": "Investing",
+              "hi": "निवेश"
+            },
+            {
+              "id": "f",
+              "en": "Financing",
+              "hi": "वित्तीयन"
+            }
+          ],
+          "answer": "o"
+        },
+        {
+          "kind": "do",
+          "target": "txn:t1",
+          "expect": "selected:t1",
+          "say": {
+            "en": "Tap the first transaction: cash sales.",
+            "hi": "पहला लेन-देन चुनो: नकद बिक्री।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Choose its activity.",
+            "hi": "इसकी गतिविधि चुनो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "txn:t2",
+          "expect": "selected:t2",
+          "say": {
+            "en": "Tap the machine purchase.",
+            "hi": "मशीन की ख़रीद चुनो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Choose its activity.",
+            "hi": "इसकी गतिविधि चुनो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "balance",
+          "expect": "tallied",
+          "say": {
+            "en": "Classify the other six yourself (or tap Show me), then press Find the closing cash.",
+            "hi": "बाक़ी छह ख़ुद वर्गीकृत करो (या मुझे दिखाओ दबाओ), फिर अंतिम रोकड़ निकालो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Opening cash ₹50,000 plus the net flow of all three activities gives the closing cash. Operating: +60,000 − 15,000 = +45,000. Investing: −80,000 (machine) + 4,000 (interest received) = −76,000. Financing: +1,00,000 (capital) + 50,000 (loan) − 3,000 (interest paid) = +1,47,000. Net change = +1,16,000, so closing cash and bank = ₹1,66,000. Depositing cash in the bank changes nothing: both are cash.",
+            "hi": "प्रारंभिक रोकड़ ₹50,000 में तीनों गतिविधियों का शुद्ध प्रवाह जोड़ने पर अंतिम रोकड़ मिलती है। प्रचालन: +60,000 − 15,000 = +45,000। निवेश: −80,000 (मशीन) + 4,000 (प्राप्त ब्याज) = −76,000। वित्तीयन: +1,00,000 (पूँजी) + 50,000 (ऋण) − 3,000 (दिया ब्याज) = +1,47,000। शुद्ध परिवर्तन = +1,16,000, इसलिए अंतिम रोकड़ और बैंक = ₹1,66,000। रोकड़ को बैंक में जमा करने से कुछ नहीं बदलता: दोनों रोकड़ हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The owner brings new capital in cash. Net cash from which activity rises?",
+                "hi": "स्वामी नकद में नई पूँजी लाता है। किस गतिविधि की शुद्ध रोकड़ बढ़ती है?"
+              },
+              "options": [
+                {
+                  "en": "Financing",
+                  "hi": "वित्तीयन"
+                },
+                {
+                  "en": "Operating",
+                  "hi": "प्रचालन"
+                },
+                {
+                  "en": "Investing",
+                  "hi": "निवेश"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Money from the owners is financing.",
+                "hi": "स्वामियों से पैसा वित्तीयन है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The capital is not earned by trading, so it is not operating.",
+                  "hi": "पूँजी व्यापार से नहीं कमाई गई, इसलिए प्रचालन नहीं।"
+                },
+                {
+                  "en": "It is not the buying or selling of an asset, so it is not investing.",
+                  "hi": "यह किसी परिसंपत्ति की ख़रीद या बिक्री नहीं, इसलिए निवेश नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Opening cash 50,000, net inflow 1,16,000. Closing cash and bank is:",
+                "hi": "प्रारंभिक रोकड़ 50,000, शुद्ध अंतर्वाह 1,16,000। अंतिम रोकड़ और बैंक है:"
+              },
+              "options": [
+                {
+                  "en": "₹1,66,000",
+                  "hi": "1,66,000 रुपये"
+                },
+                {
+                  "en": "₹66,000",
+                  "hi": "66,000 रुपये"
+                },
+                {
+                  "en": "₹1,16,000",
+                  "hi": "1,16,000 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Closing = opening + net change = 50,000 + 1,16,000 = ₹1,66,000.",
+                "hi": "अंतिम = प्रारंभिक + शुद्ध परिवर्तन = 50,000 + 1,16,000 = ₹1,66,000।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹66,000 subtracts the net flow instead of adding it.",
+                  "hi": "₹66,000 में शुद्ध प्रवाह जोड़ने की जगह घटाया गया।"
+                },
+                {
+                  "en": "₹1,16,000 forgets the opening cash.",
+                  "hi": "₹1,16,000 में प्रारंभिक रोकड़ भूल गए।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Add up each activity yourself and check that the three nets and the opening cash give the closing balance.",
+            "hi": "हर गतिविधि ख़ुद जोड़ो और जाँचो कि तीनों शुद्ध राशियाँ तथा प्रारंभिक रोकड़ अंतिम शेष देती हैं।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch06-indirect",
+      "topic": "6.6",
+      "template": "table",
+      "title": {
+        "en": "Cash from operations by the indirect method",
+        "hi": "अप्रत्यक्ष विधि से प्रचालन से रोकड़"
+      },
+      "minutes": 9,
+      "level": "stretch",
+      "config": {
+        "mode": "spreadsheet",
+        "tables": {
+          "adjust": {
+            "columns": [
+              "Item",
+              "Amount"
+            ],
+            "rows": [
+              [
+                "Net profit before tax",
+                100000
+              ],
+              [
+                "Add depreciation",
+                20000
+              ],
+              [
+                "Add interest on loan",
+                8000
+              ],
+              [
+                "Add loss on sale of machinery",
+                5000
+              ],
+              [
+                "Less profit on sale of investments",
+                -10000
+              ],
+              [
+                "Less interest received",
+                -4000
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "Start from the net profit and undo the items that are not operating cash. Then adjust for changes in working capital: debtors rose by ₹15,000, stock fell by ₹10,000 and creditors rose by ₹5,000. Tax paid was ₹20,000.",
+          "hi": "शुद्ध लाभ से शुरू करो और वे मदें हटाओ जो प्रचालन रोकड़ नहीं हैं। फिर कार्यशील पूँजी के परिवर्तनों का समायोजन करो: देनदार ₹15,000 बढ़े, माल ₹10,000 घटा और लेनदार ₹5,000 बढ़े। चुकाया गया कर ₹20,000 था।"
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =SUM(B2:B7) to get the operating profit before working capital changes, then calculate.",
+            "hi": "=SUM(B2:B7) लिखकर कार्यशील पूँजी के परिवर्तन से पहले का प्रचालन लाभ निकालो, फिर गणना करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Debtors rose by ₹15,000. Did the firm collect more cash, or less cash than the sales suggest?",
+            "hi": "देनदार ₹15,000 बढ़े। फ़र्म ने बिक्री से जितना लगता है उससे ज़्यादा नकदी वसूली या कम?"
+          },
+          "options": [
+            {
+              "id": "l",
+              "en": "Less cash: so subtract ₹15,000",
+              "hi": "कम नकदी: इसलिए ₹15,000 घटाओ"
+            },
+            {
+              "id": "m",
+              "en": "More cash: so add ₹15,000",
+              "hi": "ज़्यादा नकदी: इसलिए ₹15,000 जोड़ो"
+            }
+          ],
+          "answer": "l"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =SUM(B2:B7)-15000+10000+5000 and calculate.",
+            "hi": "=SUM(B2:B7)-15000+10000+5000 लिखो और गणना करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Now take away the tax paid: type =SUM(B2:B7)-15000+10000+5000-20000.",
+            "hi": "अब चुकाया कर घटाओ: =SUM(B2:B7)-15000+10000+5000-20000 लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the sheet.",
+            "hi": "शीट के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The indirect method starts from net profit and corrects it. Depreciation and the loss on sale are charged to profit but no cash left, so they are added back. Interest on loan is a financing item, so it is added back. Profit on sale of investments and interest received are investing items, so they are subtracted. That gives operating profit before working capital changes: ₹1,19,000. A rise in debtors ties up cash (subtract), a fall in stock releases cash (add), a rise in creditors keeps cash in the firm (add). After tax paid the cash from operations is ₹99,000.",
+            "hi": "अप्रत्यक्ष विधि शुद्ध लाभ से शुरू करके उसे सुधारती है। मूल्यह्रास और बिक्री पर हानि लाभ में लगे हैं पर रोकड़ नहीं गई, इसलिए वापस जोड़ी जाती हैं। ऋण का ब्याज वित्तीयन मद है, इसलिए वापस जोड़ा जाता है। निवेश बिक्री पर लाभ और प्राप्त ब्याज निवेश मदें हैं, इसलिए घटाई जाती हैं। इससे कार्यशील पूँजी परिवर्तन से पहले का प्रचालन लाभ मिलता है: ₹1,19,000। देनदारों में वृद्धि रोकड़ फँसाती है (घटाओ), माल में कमी रोकड़ छोड़ती है (जोड़ो), लेनदारों में वृद्धि रोकड़ फ़र्म में रोके रखती है (जोड़ो)। चुकाए कर के बाद प्रचालन से रोकड़ ₹99,000 है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Stock rose by ₹30,000 instead of falling. The adjustment is:",
+                "hi": "माल ₹30,000 घटने की जगह बढ़ा। समायोजन है:"
+              },
+              "options": [
+                {
+                  "en": "Subtract ₹30,000",
+                  "hi": "₹30,000 घटाओ"
+                },
+                {
+                  "en": "Add ₹30,000",
+                  "hi": "₹30,000 जोड़ो"
+                },
+                {
+                  "en": "No adjustment",
+                  "hi": "कोई समायोजन नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "More stock means cash was spent on goods that are still unsold, so cash from operations is lower.",
+                "hi": "अधिक माल का अर्थ है कि नकदी ऐसे माल में लगी जो अभी बिका नहीं, इसलिए प्रचालन से रोकड़ कम है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Adding would be right for a fall in stock, not for a rise.",
+                  "hi": "जोड़ना माल घटने पर सही होता, बढ़ने पर नहीं।"
+                },
+                {
+                  "en": "Changes in stock always affect cash.",
+                  "hi": "माल में परिवर्तन हमेशा नकदी को प्रभावित करते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the loss on sale to a profit of ₹5,000 in the sheet. Should it be added or subtracted?",
+            "hi": "शीट में बिक्री पर हानि को ₹5,000 के लाभ में बदलो। इसे जोड़ना चाहिए या घटाना?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch06-non-cash",
+      "topic": "6.5.4",
+      "template": "sort",
+      "title": {
+        "en": "Does it appear in the cash flow statement?",
+        "hi": "क्या यह रोकड़ प्रवाह विवरण में आता है?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "yes",
+            "label": {
+              "en": "Cash flows in or out",
+              "hi": "रोकड़ आती या जाती है"
+            }
+          },
+          {
+            "id": "no",
+            "label": {
+              "en": "No cash moves",
+              "hi": "कोई रोकड़ नहीं चलती"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "a",
+            "text": {
+              "en": "Cash sales",
+              "hi": "नकद बिक्री"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "Cash comes in.",
+              "hi": "रोकड़ आती है।"
+            }
+          },
+          {
+            "id": "b",
+            "text": {
+              "en": "Wages paid in cash",
+              "hi": "नकद मज़दूरी का भुगतान"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "Cash goes out.",
+              "hi": "रोकड़ जाती है।"
+            }
+          },
+          {
+            "id": "c",
+            "text": {
+              "en": "Depreciation charged for the year",
+              "hi": "वर्ष का मूल्यह्रास"
+            },
+            "bin": "no",
+            "why": {
+              "en": "It reduces profit, but no cash leaves the firm.",
+              "hi": "यह लाभ घटाता है, पर फ़र्म से कोई रोकड़ नहीं जाती।"
+            }
+          },
+          {
+            "id": "d",
+            "text": {
+              "en": "Bonus shares issued to shareholders",
+              "hi": "अंशधारकों को बोनस अंश जारी"
+            },
+            "bin": "no",
+            "why": {
+              "en": "Reserves become capital: only an entry, no cash.",
+              "hi": "संचिति पूँजी बनती है: केवल प्रविष्टि, रोकड़ नहीं।"
+            }
+          },
+          {
+            "id": "e",
+            "text": {
+              "en": "Building bought by issuing shares to the seller",
+              "hi": "विक्रेता को अंश देकर भवन ख़रीदा"
+            },
+            "bin": "no",
+            "why": {
+              "en": "No cash is paid, so the statement does not show it.",
+              "hi": "कोई रोकड़ नहीं दी गई, इसलिए विवरण में नहीं दिखता।"
+            }
+          },
+          {
+            "id": "f",
+            "text": {
+              "en": "Goods sold on credit",
+              "hi": "माल उधार बेचा"
+            },
+            "bin": "no",
+            "why": {
+              "en": "Cash comes only when the customer pays.",
+              "hi": "रोकड़ तब आती है जब ग्राहक चुकाता है।"
+            }
+          },
+          {
+            "id": "g",
+            "text": {
+              "en": "Loan repaid from the bank account",
+              "hi": "बैंक खाते से ऋण चुकाया"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "Cash leaves the firm.",
+              "hi": "फ़र्म से रोकड़ जाती है।"
+            }
+          },
+          {
+            "id": "h",
+            "text": {
+              "en": "Provision for tax made in the books",
+              "hi": "बही में कर का प्रावधान"
+            },
+            "bin": "no",
+            "why": {
+              "en": "It is an estimate; cash leaves only when tax is paid.",
+              "hi": "यह अनुमान है; रोकड़ तभी जाती है जब कर चुकाया जाए।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Depreciation of ₹20,000 is charged. Did ₹20,000 of cash leave the business?",
+            "hi": "₹20,000 का मूल्यह्रास लगाया गया। क्या व्यवसाय से ₹20,000 की रोकड़ गई?"
+          },
+          "options": [
+            {
+              "id": "n",
+              "en": "No: it is only an accounting charge",
+              "hi": "नहीं: यह केवल लेखांकन प्रभार है"
+            },
+            {
+              "id": "y",
+              "en": "Yes",
+              "hi": "हाँ"
+            }
+          ],
+          "answer": "n"
+        },
+        {
+          "kind": "do",
+          "target": "card:c",
+          "expect": "correct:c",
+          "say": {
+            "en": "Tap the card “Depreciation charged for the year”, then tap the group it belongs to.",
+            "hi": "कार्ड “वर्ष का मूल्यह्रास” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:d",
+          "expect": "correct:d",
+          "say": {
+            "en": "Tap the card “Bonus shares issued to shareholders”, then tap the group it belongs to.",
+            "hi": "कार्ड “अंशधारकों को बोनस अंश जारी” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Only real movements of cash and cash equivalents go into the statement. Depreciation, provisions, bonus shares and assets bought by issuing shares change the books but move no cash. Credit sales and credit purchases move cash later, when settled. This is why the indirect method adds back non-cash charges.",
+            "hi": "विवरण में केवल रोकड़ और रोकड़ समतुल्य की वास्तविक गतियाँ आती हैं। मूल्यह्रास, प्रावधान, बोनस अंश और अंश देकर ख़रीदी परिसंपत्तियाँ बही बदलती हैं पर रोकड़ नहीं चलातीं। उधार बिक्री और उधार ख़रीद की रोकड़ बाद में, निपटान के समय चलती है। इसीलिए अप्रत्यक्ष विधि में अरोकड़ प्रभार वापस जोड़े जाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these is a non-cash transaction?",
+                "hi": "इनमें से अरोकड़ लेन-देन कौन-सा है?"
+              },
+              "options": [
+                {
+                  "en": "Machinery bought in exchange for shares",
+                  "hi": "शेयर देकर बदले में मशीनरी ख़रीदी"
+                },
+                {
+                  "en": "Machinery bought for cash",
+                  "hi": "नकद में मशीनरी ख़रीदी"
+                },
+                {
+                  "en": "Machinery sold for cash",
+                  "hi": "नकद में मशीनरी बेची"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "No cash changes hands when shares are given instead of money.",
+                "hi": "पैसे की जगह शेयर दिए जाएँ तो कोई रोकड़ हाथ नहीं बदलती।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Buying for cash sends cash out: it is an investing outflow.",
+                  "hi": "नकद ख़रीद में रोकड़ बाहर जाती है: यह निवेश बहिर्वाह है।"
+                },
+                {
+                  "en": "Selling for cash brings cash in: an investing inflow.",
+                  "hi": "नकद बिक्री में रोकड़ आती है: निवेश अंतर्वाह।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find one transaction at home that looks big but moves no cash at all.",
+            "hi": "घर में ऐसा कोई लेन-देन सोचो जो बड़ा लगता है पर कोई रोकड़ नहीं चलाता।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch06-prepare-steps",
+      "topic": "6.8",
+      "template": "sequence",
+      "title": {
+        "en": "Steps to prepare the statement",
+        "hi": "विवरण बनाने के चरण"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "op",
+            "text": {
+              "en": "Work out net cash from operating activities",
+              "hi": "प्रचालन गतिविधियों से शुद्ध रोकड़ निकालो"
+            }
+          },
+          {
+            "id": "inv",
+            "text": {
+              "en": "Work out net cash from investing activities",
+              "hi": "निवेश गतिविधियों से शुद्ध रोकड़ निकालो"
+            }
+          },
+          {
+            "id": "fin",
+            "text": {
+              "en": "Work out net cash from financing activities",
+              "hi": "वित्तीयन गतिविधियों से शुद्ध रोकड़ निकालो"
+            }
+          },
+          {
+            "id": "net",
+            "text": {
+              "en": "Add the three nets: net increase or decrease in cash",
+              "hi": "तीनों शुद्ध राशियाँ जोड़ो: रोकड़ में शुद्ध वृद्धि या कमी"
+            }
+          },
+          {
+            "id": "open",
+            "text": {
+              "en": "Add the opening cash and cash equivalents",
+              "hi": "प्रारंभिक रोकड़ और रोकड़ समतुल्य जोड़ो"
+            }
+          },
+          {
+            "id": "match",
+            "text": {
+              "en": "Check the result against the closing cash and bank balance",
+              "hi": "परिणाम को अंतिम रोकड़ और बैंक शेष से मिलाओ"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The three net amounts are +45,000, −76,000 and +1,47,000. What do you do with them first?",
+            "hi": "तीन शुद्ध राशियाँ +45,000, −76,000 और +1,47,000 हैं। इनके साथ सबसे पहले क्या करते हो?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Add them to get the net change",
+              "hi": "जोड़कर शुद्ध परिवर्तन निकालते हैं"
+            },
+            {
+              "id": "b",
+              "en": "Subtract the opening cash",
+              "hi": "प्रारंभिक रोकड़ घटाते हैं"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:net",
+          "expect": "placed:net",
+          "say": {
+            "en": "Tap the card “Add the three nets: net increase or decrease in cash”, then tap the numbered place where it belongs.",
+            "hi": "कार्ड “तीनों शुद्ध राशियाँ जोड़ो: रोकड़ में शुद्ध वृद्धि या कमी” पर टैप करो, फिर उस क्रमांक वाली जगह पर टैप करो जहाँ यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Put all the cards in order, then press Check.",
+            "hi": "सारे कार्ड क्रम में लगाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The statement is built in a fixed order: three nets, then their total (the net change in cash), then the opening balance added on, and finally a check that the answer equals the closing cash and bank balance in the balance sheet. If the check fails, something has been missed or misplaced.",
+            "hi": "विवरण एक तय क्रम में बनता है: तीन शुद्ध राशियाँ, फिर उनका जोड़ (रोकड़ में शुद्ध परिवर्तन), फिर प्रारंभिक शेष जोड़ना, और अंत में जाँच कि उत्तर तुलन पत्र की अंतिम रोकड़ और बैंक शेष के बराबर है। जाँच न मिले तो कुछ छूट गया है या ग़लत जगह गया है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The net change in cash is −20,000 and the opening cash is 1,00,000. The closing cash should be:",
+                "hi": "रोकड़ में शुद्ध परिवर्तन −20,000 और प्रारंभिक रोकड़ 1,00,000 है। अंतिम रोकड़ होनी चाहिए:"
+              },
+              "options": [
+                {
+                  "en": "₹80,000",
+                  "hi": "80,000 रुपये"
+                },
+                {
+                  "en": "₹1,20,000",
+                  "hi": "1,20,000 रुपये"
+                },
+                {
+                  "en": "₹20,000",
+                  "hi": "20,000 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "1,00,000 + (−20,000) = ₹80,000.",
+                "hi": "1,00,000 + (−20,000) = ₹80,000।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹1,20,000 adds the decrease instead of subtracting it.",
+                  "hi": "₹1,20,000 में कमी घटाने की जगह जोड़ दी गई।"
+                },
+                {
+                  "en": "₹20,000 is only the size of the change, not the closing balance.",
+                  "hi": "₹20,000 केवल परिवर्तन का आकार है, अंतिम शेष नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Why must the last step always agree with the balance sheet? Discuss with an adult.",
+            "hi": "अंतिम चरण तुलन पत्र से हमेशा क्यों मिलना चाहिए? किसी बड़े से चर्चा करो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "6.1",
+      "use": "Hook: money in, money out",
+      "shows": "A busy small textile shop counter: a customer paying with notes, a cash drawer open, a stack of unpaid-bill slips on the side",
+      "view": "Eye level, warm shop light, 16:9",
+      "right": "Cash drawer and slips both clearly visible",
+      "avoid": "Faces, readable amounts, brand names"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "6.5",
+      "use": "Three rivers into one pond",
+      "shows": "A simple picture of three streams of different colours flowing into one round pond, the pond holding a small pile of coins",
+      "view": "Top-three-quarter view, flat illustration style, 16:9, transparent background",
+      "right": "Three streams of different colours and widths; arrows only as flow direction",
+      "avoid": "Words, numbers"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "6.3",
+      "use": "Cash and a short deposit receipt",
+      "shows": "A bundle of Indian notes beside a blank bank deposit receipt with ruled lines and a rubber stamp",
+      "view": "Top-three-quarter, PNG with transparent background",
+      "right": "Notes look real but amounts are not readable",
+      "avoid": "Readable numbers, bank names"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "6.6",
+      "use": "Profit turning into cash",
+      "shows": "Four frames of the same desk: a ledger showing profit, a pile of unpaid bills, the bills being paid, and a full cash box",
+      "view": "Same camera and light, top-down, 4:3",
+      "right": "Same desk, pen and mug in each frame",
+      "avoid": "Readable numbers, faces"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "6.8",
+      "use": "The cash flow statement frame",
+      "shows": "A blank vertical form with three bands for operating, investing and financing, a total box, an opening-balance box and a closing-balance box",
+      "view": "Flat, portrait 3:4, white background",
+      "right": "Boxes aligned so the app can write amounts",
+      "avoid": "Any text or numbers"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "6.5.4",
+      "use": "A deal with no cash",
+      "shows": "Two business owners shaking hands over a table with a small model building between them and a share certificate, with no money visible",
+      "view": "Eye level, 16:9, soft indoor light",
+      "right": "Handshake clear; the certificate shows only grey bars",
+      "avoid": "Faces, readable text"
+    }
+  ]
+}

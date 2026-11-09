@@ -1,0 +1,731 @@
+{
+ "chapter_key": "u.c03.mathematics.cemm1.ch02",
+ "class": 3,
+ "subject_id": "mathematics",
+ "title": "Toy Joy",
+ "source": "https://ncert.nic.in/textbook/pdf/cemm102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Solid shapes in toys and things around us: cube, cuboid, cylinder, cone, sphere",
+   "labs": [
+    "c3-mathematics-cemm1-ch02-name-solids",
+    "c3-mathematics-cemm1-ch02-cylinder-turn"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Flat faces, curved faces, edges and corners",
+   "labs": [
+    "c3-mathematics-cemm1-ch02-cube-edges",
+    "c3-mathematics-cemm1-ch02-cone-turn"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Building models from boxes and tins and describing them (on, under, between)",
+   "labs": [],
+   "why_no_lab": "Building a rocket or a house from real boxes and tins, and telling a friend how to copy it, is a hands-on craft; the photo of a built toy and the reader teach it better than a screen."
+  },
+  {
+   "n": "2.4",
+   "title": "A die: numbers on opposite faces",
+   "labs": [],
+   "why_no_lab": "Turning a real die in the hand shows the opposite faces best; no template models the dots of a die."
+  },
+  {
+   "n": "2.5",
+   "title": "Joining cubes to make new shapes",
+   "labs": [],
+   "why_no_lab": "Joining 3 or 6 real cubes or dice on a table is quicker and clearer than any screen; the photo sequence shows the ways."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-mathematics-cemm1-ch02-name-solids",
+   "topic": "2.1",
+   "template": "shapes",
+   "title": {
+    "en": "Name the solid shape",
+    "hi": "ठोस आकार को पहचानो"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "identify",
+    "task": "3d"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at the shape on the screen. It has 6 flat faces, all squares of the same size, like a dice. What is it called?",
+      "hi": "स्क्रीन पर आकार देखो। इसके 6 समतल फलक हैं, सब एक जैसे वर्ग, पासे की तरह। इसे क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "cube",
+       "en": "Cube",
+       "hi": "घन"
+      },
+      {
+       "id": "cuboid",
+       "en": "Cuboid",
+       "hi": "घनाभ"
+      },
+      {
+       "id": "cyl",
+       "en": "Cylinder",
+       "hi": "बेलन"
+      }
+     ],
+     "answer": "cube"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the name of the shape from the buttons.",
+      "hi": "बटनों में से इस आकार का नाम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "It is a cube. All its 6 faces are squares of the same size, and all its edges are straight. A dice and a sugar cube are cubes. A cube is a special kind of cuboid: a cuboid can have rectangles for faces.",
+      "hi": "यह घन है। इसके सभी 6 फलक एक जैसे वर्ग हैं, और सारे किनारे सीधे हैं। पासा और चीनी का क्यूब घन होते हैं। घन एक ख़ास तरह का घनाभ है: घनाभ के फलक आयत भी हो सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Jaya puts a pointed top on her rocket. Which shape is it?",
+        "hi": "जया अपने रॉकेट पर नुकीली टोपी लगाती है। वह कौन-सा आकार है?"
+       },
+       "options": [
+        {
+         "en": "Cone",
+         "hi": "शंकु"
+        },
+        {
+         "en": "Cube",
+         "hi": "घन"
+        },
+        {
+         "en": "Cylinder",
+         "hi": "बेलन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A cone has one curved face that ends in a point, like an ice-cream cone or a party cap.",
+        "hi": "शंकु का एक वक्र फलक होता है जो एक नोक पर ख़त्म होता है, जैसे आइसक्रीम कोन या जन्मदिन की टोपी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cube has flat square faces and no point on top.",
+         "hi": "घन के समतल वर्गाकार फलक होते हैं, ऊपर कोई नोक नहीं।"
+        },
+        {
+         "en": "A cylinder has a flat circle on top, not a point.",
+         "hi": "बेलन के ऊपर समतल वृत्त होता है, नोक नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is shaped like a cuboid?",
+        "hi": "इनमें से किसका आकार घनाभ जैसा है?"
+       },
+       "options": [
+        {
+         "en": "A brick",
+         "hi": "एक ईंट"
+        },
+        {
+         "en": "A ball",
+         "hi": "एक गेंद"
+        },
+        {
+         "en": "A candle",
+         "hi": "एक मोमबत्ती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A brick has 6 flat faces that are rectangles. That is a cuboid.",
+        "hi": "ईंट के 6 समतल फलक आयत होते हैं। यही घनाभ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A ball has no flat face at all. It is a sphere.",
+         "hi": "गेंद का कोई समतल फलक नहीं होता। वह गोला है।"
+        },
+        {
+         "en": "A candle has a curved side and round ends. It is a cylinder.",
+         "hi": "मोमबत्ती का किनारा वक्र और सिरे गोल होते हैं। वह बेलन है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to see more solids. Turn each one with the slider, then name it. Which one can roll and also stand still?",
+      "hi": "और ठोस देखने के लिए अगला दबाओ। हर एक को स्लाइडर से घुमाओ, फिर उसका नाम बताओ। कौन-सा लुढ़क भी सकता है और खड़ा भी रह सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch02-cylinder-turn",
+   "topic": "2.1",
+   "template": "solids",
+   "title": {
+    "en": "Turn a cylinder",
+    "hi": "बेलन को घुमाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "solid": "cylinder",
+    "mode": "turn"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "rotate",
+     "expect": "rotated",
+     "say": {
+      "en": "Drag the shape to turn it round and look at all its sides.",
+      "hi": "आकार को खींचकर घुमाओ और उसकी सारी तरफ़ देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Soon you will look at it from straight above. What shape will you see?",
+      "hi": "अब तुम इसे ठीक ऊपर से देखोगे। तुम्हें कौन-सा आकार दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "circle",
+       "en": "A circle",
+       "hi": "एक वृत्त"
+      },
+      {
+       "id": "square",
+       "en": "A square",
+       "hi": "एक वर्ग"
+      },
+      {
+       "id": "triangle",
+       "en": "A triangle",
+       "hi": "एक त्रिभुज"
+      }
+     ],
+     "answer": "circle"
+    },
+    {
+     "kind": "do",
+     "target": "view:top",
+     "expect": "viewed:top",
+     "say": {
+      "en": "Tap the Top view button.",
+      "hi": "ऊपर का दृश्य वाले बटन पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:front",
+     "expect": "viewed:front",
+     "say": {
+      "en": "Now tap the Front view button.",
+      "hi": "अब सामने का दृश्य वाले बटन पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which thing has the same shape? Choose it.",
+      "hi": "किस चीज़ का आकार ऐसा ही है? उसे चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cylinder has 2 flat faces that are circles, and 1 curved face around the side. From the top you see a circle. From the front you see a rectangle. It rolls on its curved face and stands on a flat face, like a bottle or a steel tin.",
+      "hi": "बेलन के 2 समतल फलक वृत्त होते हैं, और चारों ओर 1 वक्र फलक होता है। ऊपर से वृत्त दिखता है। सामने से आयत दिखता है। यह अपने वक्र फलक पर लुढ़कता है और समतल फलक पर खड़ा रहता है, जैसे बोतल या स्टील का डिब्बा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can a bottle roll on the floor?",
+        "hi": "बोतल फ़र्श पर क्यों लुढ़क सकती है?"
+       },
+       "options": [
+        {
+         "en": "It has a curved face",
+         "hi": "उसका एक वक्र फलक है"
+        },
+        {
+         "en": "It has many corners",
+         "hi": "उसके कई कोने हैं"
+        },
+        {
+         "en": "It is heavy",
+         "hi": "वह भारी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A curved face has no edge to stop it, so it can roll.",
+        "hi": "वक्र फलक में रुकने के लिए कोई किनारा नहीं होता, इसलिए वह लुढ़कता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cylinder has no corners. Corners would stop a shape from rolling.",
+         "hi": "बेलन के कोई कोने नहीं होते। कोने तो आकार को लुढ़कने से रोकते हैं।"
+        },
+        {
+         "en": "Heavy or light does not matter. A heavy brick does not roll; it has only flat faces.",
+         "hi": "भारी या हल्का होने से फ़र्क नहीं पड़ता। भारी ईंट नहीं लुढ़कती; उसके सिर्फ़ समतल फलक हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many flat faces does a cylinder have?",
+        "hi": "बेलन के कितने समतल फलक होते हैं?"
+       },
+       "options": [
+        {
+         "en": "2",
+         "hi": "2 फलक"
+        },
+        {
+         "en": "1",
+         "hi": "1 फलक"
+        },
+        {
+         "en": "6",
+         "hi": "6 फलक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One circle at the top and one at the bottom: 2 flat faces.",
+        "hi": "एक वृत्त ऊपर और एक नीचे: 2 समतल फलक।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Turn it over: there is a flat circle at both ends.",
+         "hi": "इसे पलटकर देखो: दोनों सिरों पर एक-एक समतल वृत्त है।"
+        },
+        {
+         "en": "6 flat faces belong to a cube or a cuboid, not a cylinder.",
+         "hi": "6 समतल फलक घन या घनाभ के होते हैं, बेलन के नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Side view and keep turning the cylinder. Find a pipe, a candle or a glass at home and look at it from the top and from the side.",
+      "hi": "बगल का दृश्य दबाओ और बेलन को घुमाते रहो। घर में पाइप, मोमबत्ती या गिलास ढूँढो और उसे ऊपर से और बगल से देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch02-cone-turn",
+   "topic": "2.2",
+   "template": "solids",
+   "title": {
+    "en": "Flat and curved faces of a cone",
+    "hi": "शंकु के समतल और वक्र फलक"
+   },
+   "minutes": 4,
+   "level": "stretch",
+   "config": {
+    "solid": "cone",
+    "mode": "turn"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "rotate",
+     "expect": "rotated",
+     "say": {
+      "en": "Drag the cone to turn it. Find its pointed top and its flat bottom.",
+      "hi": "शंकु को खींचकर घुमाओ। उसकी नुकीली चोटी और समतल तली ढूँढो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What shape is the flat bottom of a cone?",
+      "hi": "शंकु की समतल तली किस आकार की होती है?"
+     },
+     "options": [
+      {
+       "id": "circle",
+       "en": "A circle",
+       "hi": "एक वृत्त"
+      },
+      {
+       "id": "square",
+       "en": "A square",
+       "hi": "एक वर्ग"
+      },
+      {
+       "id": "none",
+       "en": "It has no flat face",
+       "hi": "उसका कोई समतल फलक नहीं"
+      }
+     ],
+     "answer": "circle"
+    },
+    {
+     "kind": "do",
+     "target": "view:top",
+     "expect": "viewed:top",
+     "say": {
+      "en": "Tap the Top view button to look down on the cone.",
+      "hi": "शंकु को ऊपर से देखने के लिए ऊपर का दृश्य बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which thing has the same shape as this cone? Choose it.",
+      "hi": "किस चीज़ का आकार इस शंकु जैसा है? उसे चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cone has 1 flat face, a circle at the bottom, and 1 curved face that rises to a point. It has 1 curved edge where the two faces meet. It stands on its circle and rolls round and round on its curved face.",
+      "hi": "शंकु का 1 समतल फलक होता है, तली में एक वृत्त, और 1 वक्र फलक जो ऊपर एक नोक तक जाता है। जहाँ दोनों फलक मिलते हैं वहाँ 1 वक्र किनारा होता है। यह अपने वृत्त पर खड़ा रहता है और वक्र फलक पर गोल-गोल लुढ़कता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which shape has both a flat face and a curved face?",
+        "hi": "किस आकार में समतल फलक और वक्र फलक दोनों होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Cone",
+         "hi": "शंकु"
+        },
+        {
+         "en": "Sphere",
+         "hi": "गोला"
+        },
+        {
+         "en": "Cube",
+         "hi": "घन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A cone has a flat circle and a curved face. A cylinder has both kinds too.",
+        "hi": "शंकु में एक समतल वृत्त और एक वक्र फलक होता है। बेलन में भी दोनों तरह के फलक होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A sphere, like a ball, has only a curved face.",
+         "hi": "गोले में, जैसे गेंद में, सिर्फ़ वक्र फलक होता है।"
+        },
+        {
+         "en": "A cube has only flat faces.",
+         "hi": "घन में सिर्फ़ समतल फलक होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which shape has no edges at all?",
+        "hi": "किस आकार का कोई किनारा नहीं होता?"
+       },
+       "options": [
+        {
+         "en": "Sphere",
+         "hi": "गोला"
+        },
+        {
+         "en": "Cone",
+         "hi": "शंकु"
+        },
+        {
+         "en": "Cuboid",
+         "hi": "घनाभ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A sphere is one smooth curved face, so there is nowhere for two faces to meet.",
+        "hi": "गोला एक चिकना वक्र फलक है, इसलिए कहीं दो फलक मिलते ही नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cone has one curved edge around its bottom circle.",
+         "hi": "शंकु की तली के वृत्त के चारों ओर एक वक्र किनारा होता है।"
+        },
+        {
+         "en": "A cuboid has 12 straight edges.",
+         "hi": "घनाभ के 12 सीधे किनारे होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Front view and Side view. Why do they look like a triangle? Look at a mehndi cone or a party cap at home in the same way.",
+      "hi": "सामने का दृश्य और बगल का दृश्य दबाओ। ये त्रिभुज जैसे क्यों दिखते हैं? घर पर मेहँदी कोन या जन्मदिन की टोपी को भी ऐसे ही देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch02-cube-edges",
+   "topic": "2.2",
+   "template": "solids",
+   "title": {
+    "en": "Faces, edges and corners of a cube",
+    "hi": "घन के फलक, किनारे और कोने"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "solid": "cube",
+    "mode": "count"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "rotate",
+     "expect": "rotated",
+     "say": {
+      "en": "Drag the cube to turn it. Some faces hide at the back.",
+      "hi": "घन को खींचकर घुमाओ। कुछ फलक पीछे छिपे हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An edge is the line where two faces meet. How many edges does a cube have?",
+      "hi": "किनारा वह रेखा है जहाँ दो फलक मिलते हैं। घन के कितने किनारे होते हैं?"
+     },
+     "options": [
+      {
+       "id": "12",
+       "en": "12",
+       "hi": "12 किनारे"
+      },
+      {
+       "id": "6",
+       "en": "6",
+       "hi": "6 किनारे"
+      },
+      {
+       "id": "8",
+       "en": "8",
+       "hi": "8 किनारे"
+      }
+     ],
+     "answer": "12"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Count the edges as you turn the cube. Then choose your answer.",
+      "hi": "घन घुमाते हुए किनारे गिनो। फिर अपना उत्तर चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cube has 6 faces, 12 edges and 8 corners. There are 4 edges on the top face, 4 on the bottom face and 4 standing up between them: 4 + 4 + 4 = 12. Each corner is where 3 edges meet.",
+      "hi": "घन के 6 फलक, 12 किनारे और 8 कोने होते हैं। ऊपर के फलक पर 4 किनारे, नीचे के फलक पर 4 और उनके बीच 4 खड़े किनारे: 4 + 4 + 4 = 12। हर कोने पर 3 किनारे मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many corners does a dice have?",
+        "hi": "पासे के कितने कोने होते हैं?"
+       },
+       "options": [
+        {
+         "en": "8",
+         "hi": "8 कोने"
+        },
+        {
+         "en": "6",
+         "hi": "6 कोने"
+        },
+        {
+         "en": "12",
+         "hi": "12 कोने"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 corners on the top face and 4 on the bottom: 8 corners.",
+        "hi": "ऊपर के फलक पर 4 कोने और नीचे 4: कुल 8 कोने।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 is the number of faces.",
+         "hi": "6 तो फलकों की संख्या है।"
+        },
+        {
+         "en": "12 is the number of edges.",
+         "hi": "12 तो किनारों की संख्या है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which shape has only flat faces?",
+        "hi": "किस आकार में सिर्फ़ समतल फलक होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Cuboid",
+         "hi": "घनाभ"
+        },
+        {
+         "en": "Cylinder",
+         "hi": "बेलन"
+        },
+        {
+         "en": "Cone",
+         "hi": "शंकु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A cuboid, like a matchbox, has 6 flat faces and no curved face.",
+        "hi": "घनाभ, जैसे माचिस की डिब्बी, के 6 समतल फलक होते हैं और कोई वक्र फलक नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cylinder has a curved face around its side.",
+         "hi": "बेलन के चारों ओर एक वक्र फलक होता है।"
+        },
+        {
+         "en": "A cone has a curved face that ends in a point.",
+         "hi": "शंकु का एक वक्र फलक नोक पर ख़त्म होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap each face once to count all 6 faces. Turn the cube to find the hidden ones. Then hold a real dice and count again.",
+      "hi": "सभी 6 फलक गिनने के लिए हर फलक पर एक बार टैप करो। छिपे फलक ढूँढने के लिए घन घुमाओ। फिर असली पासा हाथ में लेकर फिर से गिनो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Chapter hook",
+   "shows": "Children’s hands drawing animal and bird faces on old cardboard boxes, a tin can, a paper cone and a ball on a classroom floor",
+   "view": "Top-down three-quarter view, hands only, bright daylight",
+   "right": "Real recycled boxes and cans; cube, cuboid, cylinder, cone and sphere all clearly present",
+   "avoid": "Brand names on the boxes or cans, faces of children"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "2.1",
+   "use": "Solids lab photo and the shape cards",
+   "shows": "Everyday Indian objects for each solid, each a separate set: a dice (cube), a matchbox and a brick (cuboid), a steel tin and a candle (cylinder), an ice-cream cone and a mehndi cone (cone), a cricket ball and a laddoo (sphere)",
+   "view": "Each object front, side, top and three-quarter, transparent background, same light",
+   "right": "Shapes true: the tin has flat circular ends, the cone a sharp point, the brick rectangular faces",
+   "avoid": "Logos, labels and text on any object"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Building topic: a toy rocket made of shapes",
+   "shows": "A toy rocket built on a table from a cylinder tin, two cuboid boxes, a cube block and a paper cone on top, painted in bright colours",
+   "view": "Front view at table height, plain wall behind",
+   "right": "Each shape stacked clearly; the cone on top, a cuboid between the cube and the tin",
+   "avoid": "Glue mess, text on the parts"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "2.2",
+   "use": "Edges and corners close-up",
+   "shows": "A wooden cube block close up, one corner pointing at the camera so three faces and three edges meet",
+   "view": "Macro, three-quarter view, soft top-left light",
+   "right": "Sharp straight edges and one clear corner where three edges meet",
+   "avoid": "Chipped wood, printed letters on the block"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "2.5",
+   "use": "Joining cubes topic",
+   "shows": "Three identical wooden cubes joined in different ways: in a straight row, in an L, and stacked in a tower",
+   "view": "Same camera and light for all frames, three-quarter view from above, plain mat",
+   "right": "Cubes the same size and colour, touching face to face",
+   "avoid": "Gaps between cubes, extra objects"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "2.4",
+   "use": "Die topic",
+   "shows": "A white Indian ludo die with black and red dots, shown with faces 1, 2 and 3 towards the camera; second file with 6, 5 and 4 towards the camera",
+   "view": "Three-quarter view from above, transparent background",
+   "right": "Opposite faces add to 7: 1 opposite 6, 2 opposite 5, 3 opposite 4",
+   "avoid": "A die with wrong dot layouts"
+  }
+ ]
+}

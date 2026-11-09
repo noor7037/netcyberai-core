@@ -1,0 +1,452 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.ch17",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Hawa (हवा)",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "17.1",
+   "title": "Poem: the wind and what it does",
+   "labs": [
+    "c01-hindi-ahsr1-ch17-wind-rhythm"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "17.2",
+   "title": "What the wind moves",
+   "labs": [
+    "c01-hindi-ahsr1-ch17-moved-by-wind"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "17.3",
+   "title": "Drawing with balloons; left, right, front and back in a picture",
+   "labs": [],
+   "why_no_lab": "Drawing and describing positions in a picture is done on paper and aloud; left and right need the child's own body."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-ch17-wind-rhythm",
+   "topic": "17.1",
+   "template": "reader",
+   "title": {
+    "en": "Wind poem rhythm",
+    "hi": "हवा की कविता की ताल"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "rhythm",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Wind comes",
+      "hi": "हवा आई"
+     },
+     "lines": [
+      "हवा चली सर-सर-सर।",
+      "पत्ते नाचे डाली पर।",
+      "पतंग उड़ी आसमान में।",
+      "गुड्डी हँसी खेल में।"
+     ]
+    },
+    "bpm": 80,
+    "question": {
+     "q": {
+      "en": "What flew in the sky when the wind came?",
+      "hi": "हवा चलने पर आसमान में क्या उड़ा?"
+     },
+     "options": [
+      {
+       "en": "A kite",
+       "hi": "पतंग"
+      },
+      {
+       "en": "A stone",
+       "hi": "पत्थर"
+      },
+      {
+       "en": "A table",
+       "hi": "मेज़"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "The third line says the kite flew in the sky.",
+      "hi": "तीसरी पंक्ति में पतंग का आसमान में उड़ना बताया है।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line and listen to the wind.",
+      "hi": "पहली पंक्ति छूकर हवा की आवाज़ सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which two words end with the same sound?",
+      "hi": "किन दो शब्दों का अंत एक जैसा सुनाई देता है?"
+     },
+     "options": [
+      {
+       "id": "sar",
+       "en": "सर-सर-सर and डाली पर",
+       "hi": "सर-सर-सर और डाली पर"
+      },
+      {
+       "id": "none",
+       "en": "None of them",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "sar"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play and sway like the wind.",
+      "hi": "चलाओ दबाओ और हवा की तरह झूमो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beat",
+     "expect": "beat-ok",
+     "say": {
+      "en": "Tap the drum with the glowing parts.",
+      "hi": "चमकते भागों पर ढोल बजाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We cannot see the wind but we see what it does: leaves dance, kites fly. The words सर-सर-सर and पर rhyme and give the poem its music.",
+      "hi": "हम हवा को देख नहीं सकते, पर उसका असर देखते हैं: पत्ते नाचते हैं, पतंगें उड़ती हैं। सर-सर-सर और पर तुक मिलाते हैं और कविता को संगीत देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How do we know the wind is blowing?",
+        "hi": "हमें कैसे पता चलता है कि हवा चल रही है?"
+       },
+       "options": [
+        {
+         "en": "Leaves move and kites fly",
+         "hi": "पत्ते हिलते और पतंगें उड़ती हैं"
+        },
+        {
+         "en": "The sky turns green",
+         "hi": "आसमान हरा हो जाता है"
+        },
+        {
+         "en": "Stones start singing",
+         "hi": "पत्थर गाने लगते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We feel the wind and see things move because of it.",
+        "hi": "हम हवा को महसूस करते हैं और उसके कारण चीज़ों को हिलते देखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sky does not change colour because of wind.",
+         "hi": "हवा से आसमान का रंग नहीं बदलता।"
+        },
+        {
+         "en": "Stones do not sing; this is not a sign of wind.",
+         "hi": "पत्थर नहीं गाते; यह हवा की निशानी नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Blow on a paper strip. Does it move? Now stand outside; which things around you are moving in the wind?",
+      "hi": "काग़ज़ की पट्टी पर फूँक मारो। क्या वह हिलती है? बाहर खड़े होकर देखो, आसपास कौन-सी चीज़ें हवा में हिल रही हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch17-moved-by-wind",
+   "topic": "17.2",
+   "template": "sort",
+   "title": {
+    "en": "What does the wind move?",
+    "hi": "हवा किसे हिलाती है?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "moves",
+      "label": {
+       "en": "Moves in the wind",
+       "hi": "हवा में हिलता है"
+      }
+     },
+     {
+      "id": "stays",
+      "label": {
+       "en": "Stays where it is",
+       "hi": "अपनी जगह रहता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "patte",
+      "text": {
+       "en": "Patte (leaves)",
+       "hi": "पत्ते"
+      },
+      "bin": "moves",
+      "why": {
+       "en": "Light leaves swing in the breeze.",
+       "hi": "हल्के पत्ते हवा में हिलते हैं।"
+      }
+     },
+     {
+      "id": "patang",
+      "text": {
+       "en": "Patang (kite)",
+       "hi": "पतंग"
+      },
+      "bin": "moves",
+      "why": {
+       "en": "A kite flies when the wind lifts it.",
+       "hi": "हवा उठाती है तो पतंग उड़ती है।"
+      }
+     },
+     {
+      "id": "jhanda",
+      "text": {
+       "en": "Jhanda (flag)",
+       "hi": "झंडा"
+      },
+      "bin": "moves",
+      "why": {
+       "en": "A flag flutters in the wind.",
+       "hi": "झंडा हवा में फहराता है।"
+      }
+     },
+     {
+      "id": "kapde",
+      "text": {
+       "en": "Kapde (clothes on a line)",
+       "hi": "रस्सी पर सूखते कपड़े"
+      },
+      "bin": "moves",
+      "why": {
+       "en": "Clothes on a line sway in the wind.",
+       "hi": "रस्सी पर सूखते कपड़े हवा में हिलते हैं।"
+      }
+     },
+     {
+      "id": "patthar",
+      "text": {
+       "en": "Patthar (stone)",
+       "hi": "पत्थर"
+      },
+      "bin": "stays",
+      "why": {
+       "en": "A stone is heavy and does not move in a gentle wind.",
+       "hi": "पत्थर भारी होता है, हल्की हवा में नहीं हिलता।"
+      }
+     },
+     {
+      "id": "mez",
+      "text": {
+       "en": "Mez (table)",
+       "hi": "मेज़"
+      },
+      "bin": "stays",
+      "why": {
+       "en": "A table is heavy and stays in its place.",
+       "hi": "मेज़ भारी होती है और अपनी जगह रहती है।"
+      }
+     },
+     {
+      "id": "pahad",
+      "text": {
+       "en": "Pahad (mountain)",
+       "hi": "पहाड़"
+      },
+      "bin": "stays",
+      "why": {
+       "en": "A mountain is huge and does not move at all.",
+       "hi": "पहाड़ बहुत विशाल होता है, बिलकुल नहीं हिलता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:patte",
+     "expect": "placed:patte",
+     "say": {
+      "en": "Tap a card, then tap the group where it belongs.",
+      "hi": "कोई कार्ड छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which will move more in a gentle wind: a leaf or a stone?",
+      "hi": "हल्की हवा में कौन ज़्यादा हिलेगा: पत्ता या पत्थर?"
+     },
+     "options": [
+      {
+       "id": "leaf",
+       "en": "The leaf",
+       "hi": "पत्ता"
+      },
+      {
+       "id": "stone",
+       "en": "The stone",
+       "hi": "पत्थर"
+      }
+     ],
+     "answer": "leaf"
+    },
+    {
+     "kind": "do",
+     "target": "card:pahad",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards until every one is in a group.",
+      "hi": "सारे कार्ड तब तक छाँटो जब तक हर कार्ड किसी समूह में न चला जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Light things like leaves, kites and flags move easily in the wind. Heavy things like stones, tables and mountains do not. That is why a kite needs wind to fly.",
+      "hi": "पत्ते, पतंग और झंडे जैसी हल्की चीज़ें हवा में आसानी से हिलती हैं। पत्थर, मेज़ और पहाड़ जैसी भारी चीज़ें नहीं हिलतीं। इसीलिए पतंग उड़ाने के लिए हवा चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one will the wind move easily?",
+        "hi": "हवा किसे आसानी से हिला देगी?"
+       },
+       "options": [
+        {
+         "en": "पतंग",
+         "hi": "पतंग"
+        },
+        {
+         "en": "पहाड़",
+         "hi": "पहाड़"
+        },
+        {
+         "en": "मेज़",
+         "hi": "मेज़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A kite is light and the wind lifts it.",
+        "hi": "पतंग हल्की होती है और हवा उसे उठा लेती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A mountain is far too big and heavy.",
+         "hi": "पहाड़ बहुत बड़ा और भारी होता है।"
+        },
+        {
+         "en": "A table is heavy and stays still.",
+         "hi": "मेज़ भारी होती है और स्थिर रहती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a paper windmill or a paper boat. Does it move when you blow on it?",
+      "hi": "काग़ज़ की चरखी या नाव बनाओ। फूँक मारने पर क्या वह चलती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "17.1",
+   "use": "Opening picture",
+   "shows": "A windy field with kites flying, leaves rustling and clothes swaying on a line, child silhouette running",
+   "view": "Wide, low angle",
+   "right": "Obvious wind effects: bent grass, taut kite strings",
+   "avoid": "Faces",
+   "n": 1
+  },
+  {
+   "kind": "SEQ",
+   "topic": "17.1",
+   "use": "Leaf in the wind",
+   "shows": "Four frames of a tree branch swaying with strengthening wind",
+   "view": "Fixed camera",
+   "right": "Leaves lean more in each frame",
+   "avoid": "Storm damage",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "17.2",
+   "use": "Movable objects",
+   "shows": "Cut-outs: kite, flag, leaves, clothes on a line",
+   "view": "Front view",
+   "right": "Bright kite with a tail",
+   "avoid": "Brand names",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "17.2",
+   "use": "Heavy objects",
+   "shows": "Cut-outs: a stone, a wooden table, a small mountain model",
+   "view": "Front view",
+   "right": "Clearly heavy and solid",
+   "avoid": "Brand names",
+   "n": 4
+  },
+  {
+   "kind": "OBJ",
+   "topic": "17.3",
+   "use": "Balloons",
+   "shows": "A bunch of coloured balloons held by a string (hand only)",
+   "view": "Slightly low angle",
+   "right": "Balloons inflated, strings taut",
+   "avoid": "Faces",
+   "n": 5
+  }
+ ]
+}

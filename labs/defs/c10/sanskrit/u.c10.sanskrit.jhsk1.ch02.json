@@ -1,0 +1,814 @@
+{
+ "chapter_key": "u.c10.sanskrit.jhsk1.ch02",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "बुद्धिर्बलवती सदा",
+ "source": "https://ncert.nic.in/textbook.php?jhsk1=0-10",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "The journey, the tiger and the quick trick: how the story unfolds",
+   "labs": [
+    "c10-sanskrit-jhsk1-ch02-story-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "The characters: Buddhimati, the tiger, the jackal and the two sons",
+   "labs": [
+    "c10-sanskrit-jhsk1-ch02-who-is-who"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Key words of the story and their meanings",
+   "labs": [
+    "c10-sanskrit-jhsk1-ch02-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "The closing verse: wisdom is always stronger than strength",
+   "labs": [],
+   "why_no_lab": "The moral is best discussed aloud and compared with the students' own experiences after the story is understood."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jhsk1-ch02-story-order",
+   "topic": "2.1",
+   "template": "sequence",
+   "title": {
+    "en": "Put the story in order",
+    "hi": "कहानी को क्रम में लगाओ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "v1",
+      "text": {
+       "en": "Buddhimati sets out with her two small sons to her father's house, through a deep forest",
+       "hi": "बुद्धिमती अपने दो छोटे पुत्रों के साथ घने वन से होकर पिता के घर चल पड़ती है"
+      }
+     },
+     {
+      "id": "v2",
+      "text": {
+       "en": "On the way she sees a tiger coming towards them",
+       "hi": "रास्ते में वह एक बाघ को अपनी ओर आते देखती है"
+      }
+     },
+     {
+      "id": "v3",
+      "text": {
+       "en": "She scolds her sons loudly: do not fight, share this one tiger and we will find another",
+       "hi": "वह ज़ोर से बेटों को डाँटती है: झगड़ो मत, इस एक बाघ को बाँट लो, दूसरा बाद में ढूँढेंगे"
+      }
+     },
+     {
+      "id": "v4",
+      "text": {
+       "en": "The tiger thinks she is a tiger-killer and runs away in fear",
+       "hi": "बाघ समझता है कि वह बाघ को मारने वाली है और डरकर भाग जाता है"
+      }
+     },
+     {
+      "id": "v5",
+      "text": {
+       "en": "A cunning jackal laughs at the tiger for fearing a human",
+       "hi": "एक धूर्त सियार बाघ के मनुष्य से डरने पर हँसता है"
+      }
+     },
+     {
+      "id": "v6",
+      "text": {
+       "en": "The tiger ties the jackal to his neck and goes back with him",
+       "hi": "बाघ सियार को अपने गले से बाँधकर उसके साथ लौटता है"
+      }
+     },
+     {
+      "id": "v7",
+      "text": {
+       "en": "Buddhimati shouts at the jackal: you promised three tigers, why only one?",
+       "hi": "बुद्धिमती सियार पर चिल्लाती है: तुमने तीन बाघ देने को कहा था, एक ही क्यों?"
+      }
+     },
+     {
+      "id": "v8",
+      "text": {
+       "en": "The tiger flees again, dragging the jackal, and the family is safe",
+       "hi": "बाघ फिर भागता है, सियार को घसीटता हुआ, और परिवार सुरक्षित रहता है"
+      }
+     }
+    ],
+    "cyclic": false
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:v1",
+     "expect": "placed:v1",
+     "say": {
+      "en": "Tap the first event of the story, then tap its place in the line.",
+      "hi": "कहानी की पहली घटना छुओ, फिर उसे पंक्ति में उसकी जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Buddhimati has no weapon. What does she use to save her family?",
+      "hi": "बुद्धिमती के पास कोई हथियार नहीं है। वह परिवार को बचाने के लिए क्या काम में लेती है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Her quick thinking",
+       "hi": "उसकी तुरंत सोच"
+      },
+      {
+       "id": "b",
+       "en": "A big stick",
+       "hi": "एक बड़ी लाठी"
+      },
+      {
+       "id": "c",
+       "en": "A loud drum",
+       "hi": "एक ज़ोर का ढोल"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange all the events, then tap Check.",
+      "hi": "सारी घटनाएँ क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The title says बुद्धिः बलवती सदा: intelligence is always stronger than strength. The tiger is big and strong, but he believes what he hears. Buddhimati speaks calmly, at the right time, and a frightened tiger runs away twice. The name बुद्धिमती itself means a woman of wisdom.",
+      "hi": "शीर्षक कहता है बुद्धिः बलवती सदा: बुद्धि सदा बल से बड़ी है। बाघ बड़ा और ताकतवर है, पर जो सुनता है उस पर विश्वास कर लेता है। बुद्धिमती शांति से, सही समय पर बोलती है और डरा हुआ बाघ दो बार भाग जाता है। बुद्धिमती नाम का अर्थ ही है बुद्धि वाली स्त्री।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did the tiger run away the first time?",
+        "hi": "बाघ पहली बार क्यों भागा?"
+       },
+       "options": [
+        {
+         "en": "He thought the woman was a tiger-killer",
+         "hi": "उसे लगा कि स्त्री बाघ को मारने वाली है"
+        },
+        {
+         "en": "The sons chased him with sticks",
+         "hi": "बेटों ने उसे लाठी लेकर दौड़ाया"
+        },
+        {
+         "en": "A hunter shot at him",
+         "hi": "एक शिकारी ने उस पर गोली चलाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Her words made the tiger believe that she hunted tigers, so fear made him run.",
+        "hi": "उसकी बातों से बाघ को लगा कि वह बाघों को मारती है, इसलिए डरकर भाग गया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sons did not chase him. They only stood with their mother.",
+         "hi": "बेटों ने उसे नहीं दौड़ाया। वे बस माँ के साथ खड़े थे।"
+        },
+        {
+         "en": "No hunter appears in the story. Only words scared the tiger.",
+         "hi": "कहानी में कोई शिकारी नहीं आता। केवल शब्दों ने बाघ को डराया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the story teach?",
+        "hi": "कहानी क्या सिखाती है?"
+       },
+       "options": [
+        {
+         "en": "Wisdom is stronger than strength",
+         "hi": "बुद्धि बल से बड़ी है"
+        },
+        {
+         "en": "Tigers are friendly",
+         "hi": "बाघ मित्र होते हैं"
+        },
+        {
+         "en": "Never travel through a forest",
+         "hi": "कभी वन से मत जाओ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The weak woman beats a strong tiger by thinking clearly. That is the message of the title.",
+        "hi": "कमज़ोर स्त्री साफ़ सोचकर ताकतवर बाघ को हरा देती है। यही शीर्षक का संदेश है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The tiger in the story is afraid, not friendly.",
+         "hi": "कहानी का बाघ डरा हुआ है, मित्र नहीं।"
+        },
+        {
+         "en": "The story does not tell us to avoid forests. It tells us to stay calm and think.",
+         "hi": "कहानी वन से बचने को नहीं कहती। वह शांत रहकर सोचने को कहती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a time when thinking calmly helped you more than being strong. Tell it to a friend in two sentences.",
+      "hi": "कोई ऐसा समय सोचो जब शांत होकर सोचना ताकत से ज़्यादा काम आया। दो वाक्यों में मित्र को बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhsk1-ch02-who-is-who",
+   "topic": "2.2",
+   "template": "reader",
+   "title": {
+    "en": "Who is who in the forest?",
+    "hi": "वन में कौन कौन है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "sa",
+    "passage": {
+     "title": {
+      "en": "The clever mother and the tiger",
+      "hi": "चतुर माँ और बाघ"
+     },
+     "lines": [
+      "बुद्धिमती पुत्रौ गृहीत्वा वने गच्छति ।",
+      "मार्गे सा व्याघ्रं पश्यति ।",
+      "सा उच्चैः वदति — एकः व्याघ्रः युवयोः पर्याप्तः ।",
+      "भीतः व्याघ्रः वनात् धावति ।",
+      "धूर्तः शृगालः हसति, मानुषात् कथं बिभेषि इति ।",
+      "व्याघ्रः शृगालं गले बद्ध्वा पुनः आगच्छति ।",
+      "बुद्धिमती उच्चैः वदति — त्वया एकः एव किमर्थम् आनीतः ।",
+      "व्याघ्रः पुनः धावति, शृगालः च तेन सह गच्छति ।"
+     ]
+    },
+    "characters": [
+     {
+      "id": "budd",
+      "name": {
+       "en": "बुद्धिमती",
+       "hi": "बुद्धिमती"
+      },
+      "traits": [
+       {
+        "en": "Stays calm when danger comes",
+        "hi": "खतरा आने पर शांत रहती है"
+       },
+       {
+        "en": "Frightens the tiger only with words",
+        "hi": "केवल शब्दों से बाघ को डराती है"
+       }
+      ]
+     },
+     {
+      "id": "vyaghra",
+      "name": {
+       "en": "व्याघ्रः",
+       "hi": "व्याघ्रः"
+      },
+      "traits": [
+       {
+        "en": "Strong, but easily frightened",
+        "hi": "ताकतवर, पर आसानी से डर जाता है"
+       },
+       {
+        "en": "Believes whatever he hears",
+        "hi": "जो सुनता है उस पर विश्वास कर लेता है"
+       }
+      ]
+     },
+     {
+      "id": "shrigal",
+      "name": {
+       "en": "शृगालः",
+       "hi": "शृगालः"
+      },
+      "traits": [
+       {
+        "en": "Cunning, laughs at the tiger's fear",
+        "hi": "चालाक है, बाघ के डर पर हँसता है"
+       },
+       {
+        "en": "Ends up tied to the tiger and dragged away",
+        "hi": "अंत में बाघ से बँधा घसीटा जाता है"
+       }
+      ]
+     },
+     {
+      "id": "putrau",
+      "name": {
+       "en": "पुत्रौ",
+       "hi": "पुत्रौ"
+      },
+      "traits": [
+       {
+        "en": "Two small boys who walk with their mother",
+        "hi": "दो छोटे बालक जो माँ के साथ चलते हैं"
+       },
+       {
+        "en": "Join in their mother's acting without fear",
+        "hi": "माँ के अभिनय में बिना डर साथ देते हैं"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:budd",
+     "expect": "picked:budd",
+     "say": {
+      "en": "Choose the character who stays calm and frightens the tiger with words.",
+      "hi": "उस पात्र को चुनो जो शांत रहता है और शब्दों से बाघ को डराता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who is dragged along at the end, tied to the tiger?",
+      "hi": "अंत में बाघ से बँधा हुआ कौन घसीटा जाता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "शृगालः",
+       "hi": "शृगालः"
+      },
+      {
+       "id": "b",
+       "en": "बुद्धिमती",
+       "hi": "बुद्धिमती"
+      },
+      {
+       "id": "c",
+       "en": "पुत्रौ",
+       "hi": "पुत्रौ"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "character:shrigal",
+     "expect": "picked:shrigal",
+     "say": {
+      "en": "Choose the character who laughs at the tiger for fearing a human.",
+      "hi": "उस पात्र को चुनो जो मनुष्य से डरने पर बाघ पर हँसता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Match each clue with the right character.",
+      "hi": "हर संकेत को सही पात्र से मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Read the short Sanskrit lines again. व्याघ्रः is the tiger and शृगालः is the jackal. पुत्रौ means 'two sons' (two of them, so the ending is -औ). बुद्धिमती is the clever mother. The jackal first looks wise, but in the end he is the one who is tied up and dragged, because he trusted the tiger's strength more than the woman's quick thinking.",
+      "hi": "संस्कृत की छोटी पंक्तियाँ फिर पढ़ो। व्याघ्रः बाघ है और शृगालः सियार। पुत्रौ का अर्थ है 'दो पुत्र' (दो हैं, इसलिए अंत में -औ)। बुद्धिमती चतुर माँ है। सियार पहले समझदार लगता है, पर अंत में वही बँधकर घसीटा जाता है, क्योंकि उसने बाघ के बल पर भरोसा किया और स्त्री की तुरंत सूझ को कम आँका।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the lines, what does पुत्रौ mean?",
+        "hi": "इन पंक्तियों में पुत्रौ का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Two sons",
+         "hi": "दो पुत्र"
+        },
+        {
+         "en": "One son",
+         "hi": "एक पुत्र"
+        },
+        {
+         "en": "Many sons",
+         "hi": "बहुत पुत्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ending -औ shows two. पुत्र is one son, पुत्रौ two, पुत्राः many.",
+        "hi": "अंत में -औ दो को दिखाता है। पुत्रः एक, पुत्रौ दो, पुत्राः बहुत।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One son is पुत्रः. The -औ ending is for two.",
+         "hi": "एक पुत्र पुत्रः होता है। -औ दो के लिए है।"
+        },
+        {
+         "en": "Many sons is पुत्राः. For two we use पुत्रौ.",
+         "hi": "बहुत पुत्र पुत्राः होते हैं। दो के लिए पुत्रौ आता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who is शृगालः?",
+        "hi": "शृगालः कौन है?"
+       },
+       "options": [
+        {
+         "en": "The jackal",
+         "hi": "सियार"
+        },
+        {
+         "en": "The tiger",
+         "hi": "बाघ"
+        },
+        {
+         "en": "The husband",
+         "hi": "पति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "शृगालः is the jackal, the cunning animal who goes back with the tiger.",
+        "hi": "शृगालः सियार है, वह चालाक जानवर जो बाघ के साथ लौटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The tiger is व्याघ्रः, a different word.",
+         "hi": "बाघ को व्याघ्रः कहते हैं, यह दूसरा शब्द है।"
+        },
+        {
+         "en": "The husband does not appear in these lines at all.",
+         "hi": "पति इन पंक्तियों में आता ही नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Retell the story to someone at home in your own words. Use the words व्याघ्रः and शृगालः at least once.",
+      "hi": "घर में किसी को कहानी अपने शब्दों में सुनाओ। व्याघ्रः और शृगालः शब्द कम से कम एक बार बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhsk1-ch02-words",
+   "topic": "2.3",
+   "template": "match",
+   "title": {
+    "en": "Words from the forest story",
+    "hi": "वन की कहानी के शब्द"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "p1",
+      "left": {
+       "en": "व्याघ्रः",
+       "hi": "व्याघ्रः"
+      },
+      "right": {
+       "en": "Tiger",
+       "hi": "बाघ"
+      },
+      "why": {
+       "en": "व्याघ्रः is the tiger who frightens everyone, and then gets frightened himself.",
+       "hi": "व्याघ्रः वह बाघ है जो सबको डराता है, पर खुद डर जाता है।"
+      }
+     },
+     {
+      "id": "p2",
+      "left": {
+       "en": "शृगालः",
+       "hi": "शृगालः"
+      },
+      "right": {
+       "en": "Jackal",
+       "hi": "सियार"
+      },
+      "why": {
+       "en": "शृगालः is also called जम्बुकः. He is known for being cunning.",
+       "hi": "शृगालः को जम्बुकः भी कहते हैं। वह चालाकी के लिए जाना जाता है।"
+      }
+     },
+     {
+      "id": "p3",
+      "left": {
+       "en": "भार्या",
+       "hi": "भार्या"
+      },
+      "right": {
+       "en": "Wife",
+       "hi": "पत्नी"
+      },
+      "why": {
+       "en": "Buddhimati is the भार्या of Rajasimha.",
+       "hi": "बुद्धिमती राजसिंह की भार्या है।"
+      }
+     },
+     {
+      "id": "p4",
+      "left": {
+       "en": "पुत्रौ",
+       "hi": "पुत्रौ"
+      },
+      "right": {
+       "en": "Two sons",
+       "hi": "दो पुत्र"
+      },
+      "why": {
+       "en": "The -औ ending tells us there are two.",
+       "hi": "-औ अंत बताता है कि दो हैं।"
+      }
+     },
+     {
+      "id": "p5",
+      "left": {
+       "en": "काननम्",
+       "hi": "काननम्"
+      },
+      "right": {
+       "en": "Forest",
+       "hi": "वन"
+      },
+      "why": {
+       "en": "काननम् is a thick forest. The family walks through a गहनम् काननम्.",
+       "hi": "काननम् घना वन है। परिवार गहन काननम् से जाता है।"
+      }
+     },
+     {
+      "id": "p6",
+      "left": {
+       "en": "भयम्",
+       "hi": "भयम्"
+      },
+      "right": {
+       "en": "Fear",
+       "hi": "डर"
+      },
+      "why": {
+       "en": "Fear makes the tiger run. भीतः means frightened.",
+       "hi": "भय बाघ को भगा देता है। भीतः का अर्थ डरा हुआ है।"
+      }
+     },
+     {
+      "id": "p7",
+      "left": {
+       "en": "धूर्तः",
+       "hi": "धूर्तः"
+      },
+      "right": {
+       "en": "Cunning, a trickster",
+       "hi": "चालाक, धोखेबाज़"
+      },
+      "why": {
+       "en": "धूर्तः is the word used for the jackal who tries to be clever.",
+       "hi": "धूर्तः वह शब्द है जो चालाक बनने की कोशिश करने वाले सियार के लिए आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p1",
+     "expect": "matched:p1",
+     "say": {
+      "en": "Tap व्याघ्रः, then tap its meaning.",
+      "hi": "व्याघ्रः को छुओ, फिर उसका अर्थ छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The word पुत्रौ ends in -औ. What does that tell us?",
+      "hi": "पुत्रौ शब्द -औ पर समाप्त होता है। यह क्या बताता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "There are two sons",
+       "hi": "दो पुत्र हैं"
+      },
+      {
+       "id": "b",
+       "en": "There is one son",
+       "hi": "एक पुत्र है"
+      },
+      {
+       "id": "c",
+       "en": "There are many sons",
+       "hi": "बहुत पुत्र हैं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:p2",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the other words.",
+      "hi": "बाकी सभी शब्द मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "These seven words carry the whole story: the family (भार्या, पुत्रौ), the place (काननम्), the animals (व्याघ्रः, शृगालः) and the feelings (भयम्, धूर्तः). A story in Sanskrit is easy to follow once you know these key words.",
+      "hi": "ये सात शब्द पूरी कहानी को सँभालते हैं: परिवार (भार्या, पुत्रौ), स्थान (काननम्), जानवर (व्याघ्रः, शृगालः) और भाव (भयम्, धूर्तः)। इन मुख्य शब्दों को जान लेने पर संस्कृत कहानी समझना आसान हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word means 'fear'?",
+        "hi": "कौन-सा शब्द 'डर' का अर्थ रखता है?"
+       },
+       "options": [
+        {
+         "en": "भयम्",
+         "hi": "भयम्"
+        },
+        {
+         "en": "काननम्",
+         "hi": "काननम्"
+        },
+        {
+         "en": "भार्या",
+         "hi": "भार्या"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "भयम् is fear. From the same word we get भीतः, afraid.",
+        "hi": "भयम् का अर्थ डर है। इसी से भीतः यानी डरा हुआ बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "काननम् is a forest, not a feeling.",
+         "hi": "काननम् वन है, कोई भाव नहीं।"
+        },
+        {
+         "en": "भार्या is a wife, a person.",
+         "hi": "भार्या पत्नी है, एक व्यक्ति।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who is धूर्तः in the story?",
+        "hi": "कहानी में धूर्तः कौन है?"
+       },
+       "options": [
+        {
+         "en": "The jackal",
+         "hi": "सियार"
+        },
+        {
+         "en": "The mother",
+         "hi": "माँ"
+        },
+        {
+         "en": "The two sons",
+         "hi": "दोनों पुत्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The jackal is cunning, but his own trick fails.",
+        "hi": "सियार चालाक है, पर उसकी अपनी चाल असफल हो जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The mother is called बुद्धिमती, wise, not धूर्तः.",
+         "hi": "माँ को बुद्धिमती कहा गया है, धूर्तः नहीं।"
+        },
+        {
+         "en": "The sons are small children, not tricksters.",
+         "hi": "पुत्र छोटे बच्चे हैं, धोखेबाज़ नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say the seven words aloud twice. Then close the lab and try to write three of them from memory.",
+      "hi": "सातों शब्द दो बार ज़ोर से बोलो। फिर प्रयोग बंद करके उनमें से तीन याद से लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Opens the story on the forest road",
+   "shows": "A narrow dirt track through a thick Indian sal or teak forest in dappled light, no people",
+   "view": "Eye level looking down the path, leaves overhead",
+   "right": "Real forest light, tall trees, leaf litter, a bend in the path",
+   "avoid": "Animals, houses, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "The tiger on the path, for the moment of danger",
+   "shows": "A tiger standing still in a forest clearing looking at the camera, grass around it",
+   "view": "Eye level, 20 m away, a calm but alert animal",
+   "right": "Real stripes and amber eyes, natural clearing",
+   "avoid": "Cages, zoo fences, people"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "The jackal in the story",
+   "shows": "A golden jackal at the edge of a village field at dusk looking over its shoulder",
+   "view": "Low angle from the ground, soft golden light",
+   "right": "Real jackal colours and size (smaller than a dog), alert eyes",
+   "avoid": "Dogs, people, lettering"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "A mother's calm hand, for the lesson of calm thinking",
+   "shows": "Two clay lamps (diyas) lit side by side on a cut-out, steady flames",
+   "view": "Front view, top-left light, soft shadow",
+   "right": "Real clay, small steady flames, not smoky",
+   "avoid": "Brand labels, decoration with text"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "2.1",
+   "use": "The route of the journey from the village to the father's house",
+   "shows": "A simple map base of a village, a forest patch and a second village, no names",
+   "view": "From above, 16:9, plain colours",
+   "right": "Forest shown in green between two village clusters, a path running through",
+   "avoid": "Names, borders, compass symbols"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "2.1",
+   "use": "The story arc strip",
+   "shows": "A blank horizontal strip with eight empty boxes for the story events",
+   "view": "Flat, white background, even spacing",
+   "right": "Eight boxes of equal size, light line weight",
+   "avoid": "Any text or numbers"
+  }
+ ]
+}

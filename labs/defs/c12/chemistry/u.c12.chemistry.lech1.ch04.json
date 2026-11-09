@@ -1,0 +1,2953 @@
+{
+ "chapter_key": "u.c12.chemistry.lech1.ch04",
+ "class": 12,
+ "subject_id": "chemistry",
+ "title": "The d- and f-Block Elements",
+ "source": "https://ncert.nic.in/textbook/pdf/lech104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Position in the periodic table",
+   "labs": [
+    "c12-chemistry-lech1-ch04-blocks"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Electronic configurations of the d-block elements",
+   "labs": [
+    "c12-chemistry-lech1-ch04-configurations"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "General properties: radii, oxidation states, electrode potentials, colour, magnetism",
+   "labs": [
+    "c12-chemistry-lech1-ch04-max-oxidation-state",
+    "c12-chemistry-lech1-ch04-atomic-radii",
+    "c12-chemistry-lech1-ch04-electrode-potentials",
+    "c12-chemistry-lech1-ch04-coloured-ions",
+    "c12-chemistry-lech1-ch04-magnetic-moment"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Some important compounds: potassium dichromate and potassium permanganate",
+   "labs": [
+    "c12-chemistry-lech1-ch04-permanganate-medium",
+    "c12-chemistry-lech1-ch04-kmno4-preparation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "The lanthanoids and the lanthanoid contraction",
+   "labs": [
+    "c12-chemistry-lech1-ch04-lanthanoid-contraction"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "The actinoids",
+   "labs": [
+    "c12-chemistry-lech1-ch04-lanthanoids-actinoids"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.7",
+   "title": "Applications of d- and f-block elements",
+   "labs": [
+    "c12-chemistry-lech1-ch04-catalysts-uses"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-chemistry-lech1-ch04-blocks",
+   "topic": "4.1",
+   "template": "periodic",
+   "title": {
+    "en": "Where the d-block sits",
+    "hi": "d-ब्लॉक कहाँ स्थित है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "focus": [
+     "Sc",
+     "Fe",
+     "Cu",
+     "Zn"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "highlight:blocks",
+     "expect": "highlight:blocks",
+     "say": {
+      "en": "Tap the blocks view to colour the s, p, d and f blocks.",
+      "hi": "ब्लॉक दृश्य छुओ ताकि s, p, d और f ब्लॉक रंगीन हो जाएँ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Looking at the middle of the table, between group 2 and group 13: which block fills the middle columns?",
+      "hi": "सारणी के बीच में, समूह 2 और समूह 13 के बीच: बीच के स्तंभ किस ब्लॉक के हैं?"
+     },
+     "options": [
+      {
+       "id": "d",
+       "en": "The d-block (groups 3 to 12)",
+       "hi": "d-ब्लॉक (समूह 3 से 12)"
+      },
+      {
+       "id": "p",
+       "en": "The p-block",
+       "hi": "p-ब्लॉक"
+      },
+      {
+       "id": "s",
+       "en": "The s-block",
+       "hi": "s-ब्लॉक"
+      }
+     ],
+     "answer": "d"
+    },
+    {
+     "kind": "do",
+     "target": "element:Fe",
+     "expect": "picked:Fe",
+     "say": {
+      "en": "Tap iron (Fe) to see where it sits.",
+      "hi": "लोहा (Fe) छुओ और देखो वह कहाँ है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:Zn",
+     "expect": "picked:Zn",
+     "say": {
+      "en": "Now tap zinc (Zn), at the end of the first row of the d-block.",
+      "hi": "अब जिंक (Zn) छुओ, जो d-ब्लॉक की पहली पंक्ति के अंत में है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The d-block is the large middle part of the periodic table, groups 3 to 12, where the last electron enters a d subshell. The first row (Sc to Zn) fills 3d, the second (Y to Cd) fills 4d and the third fills 5d. These are the transition elements. Zn, Cd and Hg have a full d¹⁰ shell even as atoms and ions, so they are not counted as true transition elements, but they are studied with the d-block.",
+      "hi": "d-ब्लॉक आवर्त सारणी का बीच का बड़ा भाग है, समूह 3 से 12, जहाँ अंतिम इलेक्ट्रॉन d उपकोश में जाता है। पहली पंक्ति (Sc से Zn) में 3d भरता है, दूसरी (Y से Cd) में 4d और तीसरी में 5d। ये संक्रमण तत्व हैं। Zn, Cd और Hg में परमाणु और आयन दोनों में पूरा d¹⁰ कोश होता है, इसलिए इन्हें वास्तविक संक्रमण तत्व नहीं गिना जाता, पर इनका अध्ययन d-ब्लॉक के साथ होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which groups make up the d-block?",
+        "hi": "d-ब्लॉक में कौन-से समूह आते हैं?"
+       },
+       "options": [
+        {
+         "en": "Groups 3 to 12",
+         "hi": "समूह 3 से 12"
+        },
+        {
+         "en": "Groups 1 and 2",
+         "hi": "समूह 1 और 2"
+        },
+        {
+         "en": "Groups 13 to 18",
+         "hi": "समूह 13 से 18"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "These ten columns are where the 3d, 4d and 5d subshells fill up.",
+        "hi": "इन दस स्तंभों में 3d, 4d और 5d उपकोश भरते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Groups 1 and 2 are the s-block.",
+         "hi": "समूह 1 और 2 s-ब्लॉक हैं।"
+        },
+        {
+         "en": "Groups 13 to 18 are the p-block.",
+         "hi": "समूह 13 से 18 p-ब्लॉक हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is zinc usually not called a true transition element?",
+        "hi": "ज़िंक को सामान्यतः वास्तविक संक्रमण तत्व क्यों नहीं कहा जाता?"
+       },
+       "options": [
+        {
+         "en": "Its d subshell is full in the atom and in its common ion",
+         "hi": "इसका d उपकोश परमाणु और सामान्य आयन दोनों में पूरा भरा है"
+        },
+        {
+         "en": "It is not a metal",
+         "hi": "यह धातु नहीं है"
+        },
+        {
+         "en": "It has no electrons in the d subshell",
+         "hi": "इसके d उपकोश में कोई इलेक्ट्रॉन नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A transition element has an incompletely filled d subshell in at least one common oxidation state. Zn²⁺ is 3d¹⁰.",
+        "hi": "संक्रमण तत्व की कम से कम एक सामान्य ऑक्सीकरण अवस्था में d उपकोश अपूर्ण भरा होता है। Zn²⁺ 3d¹⁰ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zinc is a metal, a typical one.",
+         "hi": "ज़िंक एक धातु है, बिल्कुल सामान्य।"
+        },
+        {
+         "en": "Zinc has ten d electrons, not none.",
+         "hi": "ज़िंक में दस d इलेक्ट्रॉन हैं, शून्य नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the highlight views for groups, periods and metals. Is every d-block element a metal?",
+      "hi": "समूह, आवर्त और धातु वाले दृश्य छुओ। क्या d-ब्लॉक का हर तत्व धातु है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch04-configurations",
+   "topic": "4.2",
+   "template": "match",
+   "title": {
+    "en": "Electronic configurations of the first row",
+    "hi": "पहली पंक्ति के इलेक्ट्रॉनिक विन्यास"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "sc",
+      "left": {
+       "en": "Scandium, Sc (Z = 21)",
+       "hi": "स्कैंडियम, Sc (Z = 21)"
+      },
+      "right": {
+       "en": "[Ar] 3d¹ 4s²",
+       "hi": "[Ar] 3d¹ 4s²"
+      },
+      "why": {
+       "en": "The first d electron enters 3d.",
+       "hi": "पहला d इलेक्ट्रॉन 3d में जाता है।"
+      }
+     },
+     {
+      "id": "v",
+      "left": {
+       "en": "Vanadium, V (Z = 23)",
+       "hi": "वैनेडियम, V (Z = 23)"
+      },
+      "right": {
+       "en": "[Ar] 3d³ 4s²",
+       "hi": "[Ar] 3d³ 4s²"
+      },
+      "why": {
+       "en": "Three electrons in 3d and two in 4s.",
+       "hi": "3d में तीन और 4s में दो इलेक्ट्रॉन।"
+      }
+     },
+     {
+      "id": "cr",
+      "left": {
+       "en": "Chromium, Cr (Z = 24)",
+       "hi": "क्रोमियम, Cr (Z = 24)"
+      },
+      "right": {
+       "en": "[Ar] 3d⁵ 4s¹",
+       "hi": "[Ar] 3d⁵ 4s¹"
+      },
+      "why": {
+       "en": "An exception: a half-filled 3d⁵ is extra stable, so one 4s electron moves to 3d.",
+       "hi": "अपवाद: अर्ध-पूर्ण 3d⁵ अतिरिक्त स्थायी है, इसलिए एक 4s इलेक्ट्रॉन 3d में चला जाता है।"
+      }
+     },
+     {
+      "id": "mn",
+      "left": {
+       "en": "Manganese, Mn (Z = 25)",
+       "hi": "मैंगनीज़, Mn (Z = 25)"
+      },
+      "right": {
+       "en": "[Ar] 3d⁵ 4s²",
+       "hi": "[Ar] 3d⁵ 4s²"
+      },
+      "why": {
+       "en": "Half-filled 3d⁵ with 4s² intact.",
+       "hi": "4s² सुरक्षित रहते हुए अर्ध-पूर्ण 3d⁵।"
+      }
+     },
+     {
+      "id": "fe",
+      "left": {
+       "en": "Iron, Fe (Z = 26)",
+       "hi": "लोहा, Fe (Z = 26)"
+      },
+      "right": {
+       "en": "[Ar] 3d⁶ 4s²",
+       "hi": "[Ar] 3d⁶ 4s²"
+      },
+      "why": {
+       "en": "One electron added to the half-filled 3d⁵.",
+       "hi": "अर्ध-पूर्ण 3d⁵ में एक इलेक्ट्रॉन और जुड़ा।"
+      }
+     },
+     {
+      "id": "ni",
+      "left": {
+       "en": "Nickel, Ni (Z = 28)",
+       "hi": "निकेल, Ni (Z = 28)"
+      },
+      "right": {
+       "en": "[Ar] 3d⁸ 4s²",
+       "hi": "[Ar] 3d⁸ 4s²"
+      },
+      "why": {
+       "en": "Eight 3d electrons and two 4s electrons.",
+       "hi": "आठ 3d और दो 4s इलेक्ट्रॉन।"
+      }
+     },
+     {
+      "id": "cu",
+      "left": {
+       "en": "Copper, Cu (Z = 29)",
+       "hi": "ताँबा, Cu (Z = 29)"
+      },
+      "right": {
+       "en": "[Ar] 3d¹⁰ 4s¹",
+       "hi": "[Ar] 3d¹⁰ 4s¹"
+      },
+      "why": {
+       "en": "An exception: a completely filled 3d¹⁰ is extra stable.",
+       "hi": "अपवाद: पूर्ण भरा 3d¹⁰ अतिरिक्त स्थायी है।"
+      }
+     },
+     {
+      "id": "zn",
+      "left": {
+       "en": "Zinc, Zn (Z = 30)",
+       "hi": "ज़िंक, Zn (Z = 30)"
+      },
+      "right": {
+       "en": "[Ar] 3d¹⁰ 4s²",
+       "hi": "[Ar] 3d¹⁰ 4s²"
+      },
+      "why": {
+       "en": "The 3d subshell is full and 4s² is intact.",
+       "hi": "3d उपकोश पूरा भरा है और 4s² सुरक्षित है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:mn",
+     "expect": "matched:mn",
+     "say": {
+      "en": "Tap “Manganese, Mn (Z = 25)” on the left, then tap its partner on the right.",
+      "hi": "“मैंगनीज़, Mn (Z = 25)” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chromium (Z = 24) would be expected to be 3d⁴ 4s². But one electron moves from 4s to 3d. Which configuration does it really have?",
+      "hi": "क्रोमियम (Z = 24) से 3d⁴ 4s² की अपेक्षा होती है। पर एक इलेक्ट्रॉन 4s से 3d में चला जाता है। उसका असली विन्यास क्या है?"
+     },
+     "options": [
+      {
+       "id": "d5s1",
+       "en": "3d⁵ 4s¹",
+       "hi": "विन्यास 3d⁵ 4s¹"
+      },
+      {
+       "id": "d4s2",
+       "en": "3d⁴ 4s²",
+       "hi": "विन्यास 3d⁴ 4s²"
+      },
+      {
+       "id": "d6s0",
+       "en": "3d⁶ 4s⁰",
+       "hi": "विन्यास 3d⁶ 4s⁰"
+      }
+     ],
+     "answer": "d5s1"
+    },
+    {
+     "kind": "do",
+     "target": "left:cr",
+     "expect": "matched:cr",
+     "say": {
+      "en": "Now match “Chromium, Cr (Z = 24)”.",
+      "hi": "अब “क्रोमियम, Cr (Z = 24)” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The general configuration of the first row is [Ar] 3d¹⁻¹⁰ 4s¹⁻². The 4s and 3d orbitals are close in energy, and half-filled (d⁵) and completely filled (d¹⁰) subshells are specially stable because the electrons are spread evenly and exchange energy is large. That is why Cr is 3d⁵4s¹ and Cu is 3d¹⁰4s¹. In making ions, 4s electrons are removed first.",
+      "hi": "पहली पंक्ति का सामान्य विन्यास [Ar] 3d¹⁻¹⁰ 4s¹⁻² है। 4s और 3d कक्षकों की ऊर्जा पास-पास है और अर्ध-पूर्ण (d⁵) तथा पूर्ण भरे (d¹⁰) उपकोश विशेष रूप से स्थायी होते हैं क्योंकि इलेक्ट्रॉन समान रूप से फैले होते हैं और विनिमय ऊर्जा अधिक होती है। इसीलिए Cr का विन्यास 3d⁵4s¹ और Cu का 3d¹⁰4s¹ है। आयन बनाते समय पहले 4s इलेक्ट्रॉन निकलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does copper have 3d¹⁰ 4s¹ and not 3d⁹ 4s²?",
+        "hi": "ताँबे का विन्यास 3d⁹ 4s² की जगह 3d¹⁰ 4s¹ क्यों है?"
+       },
+       "options": [
+        {
+         "en": "A completely filled 3d subshell is extra stable",
+         "hi": "पूर्ण भरा 3d उपकोश अतिरिक्त स्थायी होता है"
+        },
+        {
+         "en": "4s cannot hold two electrons",
+         "hi": "4s में दो इलेक्ट्रॉन नहीं रह सकते"
+        },
+        {
+         "en": "Copper has one proton less",
+         "hi": "ताँबे में एक प्रोटॉन कम है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Moving one 4s electron into 3d gives the stable d¹⁰.",
+        "hi": "एक 4s इलेक्ट्रॉन 3d में जाने से स्थायी d¹⁰ मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4s can hold two electrons, as in Zn.",
+         "hi": "4s में दो इलेक्ट्रॉन रह सकते हैं, जैसे Zn में।"
+        },
+        {
+         "en": "The proton count is fixed by Z = 29.",
+         "hi": "प्रोटॉन की संख्या Z = 29 से तय है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When iron forms Fe²⁺, which electrons are lost?",
+        "hi": "लोहे से Fe²⁺ बनने पर कौन-से इलेक्ट्रॉन निकलते हैं?"
+       },
+       "options": [
+        {
+         "en": "The two 4s electrons",
+         "hi": "दो 4s इलेक्ट्रॉन"
+        },
+        {
+         "en": "Two 3d electrons",
+         "hi": "दो 3d इलेक्ट्रॉन"
+        },
+        {
+         "en": "One 4s and one 3d",
+         "hi": "एक 4s और एक 3d"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4s electrons are removed first, leaving Fe²⁺ as 3d⁶.",
+        "hi": "पहले 4s इलेक्ट्रॉन निकलते हैं, जिससे Fe²⁺ 3d⁶ रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3d electrons stay in the ion; they are the inner subshell now.",
+         "hi": "3d इलेक्ट्रॉन आयन में बने रहते हैं; अब वे भीतरी उपकोश हैं।"
+        },
+        {
+         "en": "Both lost electrons come from 4s, not one of each.",
+         "hi": "दोनों निकले इलेक्ट्रॉन 4s से आते हैं, एक-एक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the remaining elements. Which is the only element of the row with the same 4s² outer pair AND a full 3d?",
+      "hi": "बाकी तत्व मिलाओ। पूरी पंक्ति में वह कौन-सा तत्व है जिसमें 4s² भी है और 3d भी पूर्ण है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch04-max-oxidation-state",
+   "topic": "4.3",
+   "template": "data",
+   "title": {
+    "en": "Highest oxidation states in the first row",
+    "hi": "पहली पंक्ति में उच्चतम ऑक्सीकरण अवस्थाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 2,
+    "ask": "max",
+    "title": {
+     "en": "Highest oxidation state shown by the element",
+     "hi": "तत्व द्वारा दर्शाई गई उच्चतम ऑक्सीकरण अवस्था"
+    },
+    "xlabel": {
+     "en": "Element",
+     "hi": "तत्व"
+    },
+    "ylabel": {
+     "en": "Highest oxidation state",
+     "hi": "उच्चतम ऑक्सीकरण अवस्था"
+    },
+    "data": [
+     {
+      "label": "Sc",
+      "value": 3
+     },
+     {
+      "label": "Ti",
+      "value": 4
+     },
+     {
+      "label": "V",
+      "value": 5
+     },
+     {
+      "label": "Cr",
+      "value": 6
+     },
+     {
+      "label": "Mn",
+      "value": 7
+     },
+     {
+      "label": "Zn",
+      "value": 2
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show vanadium.",
+      "hi": "वैनेडियम दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The bars Sc, Ti are 3, 4. What will happen to the next bars (V, Cr, Mn)?",
+      "hi": "Sc, Ti के बार 3, 4 हैं। अगले बार (V, Cr, Mn) का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "rise",
+       "en": "They keep rising by one each",
+       "hi": "हर बार एक-एक बढ़ेंगे"
+      },
+      {
+       "id": "same",
+       "en": "They stay at 4",
+       "hi": "4 पर ही रहेंगे"
+      },
+      {
+       "id": "fall",
+       "en": "They fall",
+       "hi": "घटेंगे"
+      }
+     ],
+     "answer": "rise"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add chromium.",
+      "hi": "क्रोमियम जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add manganese.",
+      "hi": "मैंगनीज़ जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add zinc.",
+      "hi": "ज़िंक जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "From Sc to Mn the highest oxidation state equals the total number of 3d and 4s electrons: +3, +4, +5, +6, +7. After Mn it falls because the d electrons are tightly held. Transition elements show many oxidation states because the 3d and 4s energies are close, so d electrons can take part in bonding. Zn shows only +2 since its 3d¹⁰ shell is stable and only 4s electrons are lost.",
+      "hi": "Sc से Mn तक उच्चतम ऑक्सीकरण अवस्था 3d और 4s इलेक्ट्रॉनों की कुल संख्या के बराबर है: +3, +4, +5, +6, +7। Mn के बाद यह घट जाती है क्योंकि d इलेक्ट्रॉन कसकर बँधे होते हैं। संक्रमण तत्व कई ऑक्सीकरण अवस्थाएँ दिखाते हैं क्योंकि 3d और 4s की ऊर्जाएँ पास-पास हैं, इसलिए d इलेक्ट्रॉन आबंधन में भाग ले सकते हैं। Zn केवल +2 दिखाता है क्योंकि उसका 3d¹⁰ कोश स्थायी है और केवल 4s इलेक्ट्रॉन निकलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which element reaches +7, as in KMnO₄?",
+        "hi": "कौन-सा तत्व +7 तक पहुँचता है, जैसे KMnO₄ में?"
+       },
+       "options": [
+        {
+         "en": "Manganese",
+         "hi": "मैंगनीज़"
+        },
+        {
+         "en": "Chromium",
+         "hi": "क्रोमियम"
+        },
+        {
+         "en": "Zinc",
+         "hi": "ज़िंक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mn has seven valence electrons (3d⁵ 4s²), and all can be used.",
+        "hi": "Mn में सात संयोजी इलेक्ट्रॉन (3d⁵ 4s²) हैं और सभी का उपयोग हो सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chromium reaches +6, as in K₂Cr₂O₇.",
+         "hi": "क्रोमियम +6 तक पहुँचता है, जैसे K₂Cr₂O₇ में।"
+        },
+        {
+         "en": "Zinc stops at +2.",
+         "hi": "ज़िंक +2 पर रुक जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does zinc show only the +2 oxidation state?",
+        "hi": "ज़िंक केवल +2 ऑक्सीकरण अवस्था क्यों दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "Its 3d¹⁰ subshell is full and stable, so only 4s electrons are lost",
+         "hi": "इसका 3d¹⁰ उपकोश पूर्ण और स्थायी है, इसलिए केवल 4s इलेक्ट्रॉन निकलते हैं"
+        },
+        {
+         "en": "Zinc has only two electrons",
+         "hi": "ज़िंक में केवल दो इलेक्ट्रॉन हैं"
+        },
+        {
+         "en": "Zinc is a gas",
+         "hi": "ज़िंक गैस है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Taking electrons from a full 3d¹⁰ needs too much energy.",
+        "hi": "पूर्ण 3d¹⁰ से इलेक्ट्रॉन निकालने में बहुत अधिक ऊर्जा लगती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zinc has 30 electrons, not two.",
+         "hi": "ज़िंक में 30 इलेक्ट्रॉन हैं, दो नहीं।"
+        },
+        {
+         "en": "Zinc is a solid metal at room temperature.",
+         "hi": "ज़िंक कमरे के ताप पर ठोस धातु है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the Cr bar down to 4. Which common compound of chromium (orange crystals, used in labs) would then be impossible?",
+      "hi": "Cr का बार नीचे 4 तक खींचो। क्रोमियम का कौन-सा आम यौगिक (नारंगी क्रिस्टल, प्रयोगशाला में प्रयुक्त) तब असंभव हो जाएगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch04-atomic-radii",
+   "topic": "4.3",
+   "template": "data",
+   "title": {
+    "en": "Sizes across the first row",
+    "hi": "पहली पंक्ति में परमाणु आकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 6,
+    "ask": "min",
+    "title": {
+     "en": "Metallic radius of the first-row d-block elements (pm)",
+     "hi": "पहली पंक्ति के d-ब्लॉक तत्वों की धात्विक त्रिज्या (pm)"
+    },
+    "xlabel": {
+     "en": "Element",
+     "hi": "तत्व"
+    },
+    "ylabel": {
+     "en": "Radius (pm)",
+     "hi": "त्रिज्या (pm)"
+    },
+    "data": [
+     {
+      "label": "Sc",
+      "value": 144
+     },
+     {
+      "label": "Ti",
+      "value": 132
+     },
+     {
+      "label": "V",
+      "value": 122
+     },
+     {
+      "label": "Cr",
+      "value": 117
+     },
+     {
+      "label": "Mn",
+      "value": 117
+     },
+     {
+      "label": "Fe",
+      "value": 117
+     },
+     {
+      "label": "Co",
+      "value": 116
+     },
+     {
+      "label": "Ni",
+      "value": 115
+     },
+     {
+      "label": "Cu",
+      "value": 117
+     },
+     {
+      "label": "Zn",
+      "value": 125
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show cobalt.",
+      "hi": "कोबाल्ट दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Along a normal period the atomic radius shrinks steadily. For the d-block row, will the radius keep falling steeply from Cr to Cu?",
+      "hi": "सामान्य आवर्त में परमाणु त्रिज्या लगातार घटती है। d-ब्लॉक की पंक्ति में क्या Cr से Cu तक त्रिज्या तेज़ी से घटती रहेगी?"
+     },
+     "options": [
+      {
+       "id": "flat",
+       "en": "No, it levels out and then rises a little",
+       "hi": "नहीं, यह लगभग समान रहेगी और फिर थोड़ी बढ़ेगी"
+      },
+      {
+       "id": "steep",
+       "en": "Yes, steeply",
+       "hi": "हाँ, तेज़ी से"
+      },
+      {
+       "id": "up",
+       "en": "It rises steeply",
+       "hi": "तेज़ी से बढ़ेगी"
+      }
+     ],
+     "answer": "flat"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add nickel.",
+      "hi": "निकेल जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add copper.",
+      "hi": "ताँबा जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add zinc.",
+      "hi": "ज़िंक जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Radius falls from Sc to about Cr, then stays almost constant from Cr to Cu, and rises a little at Zn. New electrons enter the inner 3d subshell and shield the outer 4s electrons from the growing nuclear charge, so the pull on the outside hardly changes. At the end, the full 3d¹⁰ repels the 4s electrons a little, so Zn is slightly bigger.",
+      "hi": "Sc से लगभग Cr तक त्रिज्या घटती है, फिर Cr से Cu तक लगभग समान रहती है और Zn पर थोड़ी बढ़ जाती है। नए इलेक्ट्रॉन भीतरी 3d उपकोश में जाते हैं और बाहरी 4s इलेक्ट्रॉनों को बढ़ते नाभिकीय आवेश से बचाते हैं, इसलिए बाहरी भाग पर खिंचाव मुश्किल से बदलता है। अंत में पूरा 3d¹⁰ 4s इलेक्ट्रॉनों को थोड़ा प्रतिकर्षित करता है, इसलिए Zn कुछ बड़ा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the radius almost constant from Cr to Cu?",
+        "hi": "Cr से Cu तक त्रिज्या लगभग समान क्यों रहती है?"
+       },
+       "options": [
+        {
+         "en": "Added d electrons shield the outer electrons, cancelling the extra nuclear charge",
+         "hi": "जुड़ते d इलेक्ट्रॉन बाहरी इलेक्ट्रॉनों को ढकते हैं, जिससे बढ़ा नाभिकीय आवेश निष्प्रभावी रहता है"
+        },
+        {
+         "en": "The nucleus stops getting bigger",
+         "hi": "नाभिक का बढ़ना रुक जाता है"
+        },
+        {
+         "en": "Electrons are added to the 4s shell",
+         "hi": "इलेक्ट्रॉन 4s कोश में जुड़ते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each new electron goes to the inner 3d shell and partly cancels each added proton.",
+        "hi": "हर नया इलेक्ट्रॉन भीतरी 3d कोश में जाकर जुड़े प्रोटॉन के असर को कुछ घटाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The nucleus gains one proton per element; it does not stop.",
+         "hi": "हर तत्व में नाभिक में एक प्रोटॉन बढ़ता है; वह रुकता नहीं।"
+        },
+        {
+         "en": "Electrons go to 3d, not 4s, across this row.",
+         "hi": "इस पंक्ति में इलेक्ट्रॉन 4s में नहीं, 3d में जाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which element in this row has the smallest radius?",
+        "hi": "इस पंक्ति में किस तत्व की त्रिज्या सबसे कम है?"
+       },
+       "options": [
+        {
+         "en": "Nickel",
+         "hi": "निकेल"
+        },
+        {
+         "en": "Scandium",
+         "hi": "स्कैंडियम"
+        },
+        {
+         "en": "Zinc",
+         "hi": "ज़िंक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ni at 115 pm is just below Co at 116 pm.",
+        "hi": "115 pm के साथ Ni, 116 pm वाले Co से थोड़ा कम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Scandium, at 144 pm, is the largest of the row.",
+         "hi": "144 pm के साथ स्कैंडियम इस पंक्ति में सबसे बड़ा है।"
+        },
+        {
+         "en": "Zinc, at 125 pm, is larger than Ni.",
+         "hi": "125 pm वाला ज़िंक Ni से बड़ा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the Zn bar down to 110. What would that say about the nuclear pull on its outer electrons?",
+      "hi": "Zn का बार 110 तक नीचे खींचो। इसका बाहरी इलेक्ट्रॉनों पर नाभिकीय खिंचाव के बारे में क्या अर्थ होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch04-electrode-potentials",
+   "topic": "4.3",
+   "template": "data",
+   "title": {
+    "en": "Electrode potentials of the first row",
+    "hi": "पहली पंक्ति के इलेक्ट्रोड विभव"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "show": 3,
+    "title": {
+     "en": "E° (M²⁺/M) of first-row d-block metals (volts)",
+     "hi": "पहली पंक्ति की d-ब्लॉक धातुओं का E° (M²⁺/M) (वोल्ट)"
+    },
+    "xlabel": {
+     "en": "Atomic number (22 Ti to 30 Zn)",
+     "hi": "परमाणु क्रमांक (22 Ti से 30 Zn)"
+    },
+    "ylabel": {
+     "en": "E° (V)",
+     "hi": "E° (V)"
+    },
+    "data": {
+     "rows": [
+      [
+       22,
+       -1.63
+      ],
+      [
+       23,
+       -1.18
+      ],
+      [
+       24,
+       -0.9
+      ],
+      [
+       25,
+       -1.18
+      ],
+      [
+       26,
+       -0.44
+      ],
+      [
+       27,
+       -0.28
+      ],
+      [
+       28,
+       -0.25
+      ],
+      [
+       29,
+       0.34
+      ],
+      [
+       30,
+       -0.76
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to plot manganese (25).",
+      "hi": "मैंगनीज़ (25) का बिंदु दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "E° (M²⁺/M) generally rises (becomes less negative) from Ti to Ni. At copper, what sign do you expect?",
+      "hi": "Ti से Ni तक E° (M²⁺/M) सामान्यतः बढ़ता है (कम ऋणात्मक होता है)। ताँबे पर कौन-सा चिह्न अपेक्षित है?"
+     },
+     "options": [
+      {
+       "id": "pos",
+       "en": "Positive",
+       "hi": "धनात्मक"
+      },
+      {
+       "id": "neg",
+       "en": "Negative",
+       "hi": "ऋणात्मक"
+      },
+      {
+       "id": "zero",
+       "en": "Exactly zero",
+       "hi": "ठीक शून्य"
+      }
+     ],
+     "answer": "pos"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add iron (26).",
+      "hi": "लोहा (26) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add cobalt (27).",
+      "hi": "कोबाल्ट (27) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add nickel (28).",
+      "hi": "निकेल (28) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add copper (29).",
+      "hi": "ताँबा (29) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add zinc (30).",
+      "hi": "ज़िंक (30) जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "E° is mostly negative, so these metals can reduce H⁺ to hydrogen, but copper (+0.34 V) cannot, because its high enthalpy of atomisation is not repaid by its hydration enthalpy. Mn (−1.18 V) and Zn (−0.76 V) are more negative than the trend suggests, since Mn²⁺ (3d⁵) and Zn²⁺ (3d¹⁰) are especially stable, so these metals lose electrons more readily.",
+      "hi": "E° अधिकतर ऋणात्मक है, इसलिए ये धातुएँ H⁺ को हाइड्रोजन में अपचयित कर सकती हैं, पर ताँबा (+0.34 V) नहीं कर सकता, क्योंकि उसकी उच्च परमाणुकरण एन्थैल्पी की भरपाई जलयोजन एन्थैल्पी से नहीं होती। Mn (−1.18 V) और Zn (−0.76 V) प्रवृत्ति से अधिक ऋणात्मक हैं, क्योंकि Mn²⁺ (3d⁵) और Zn²⁺ (3d¹⁰) विशेष रूप से स्थायी हैं, इसलिए ये धातुएँ इलेक्ट्रॉन अधिक आसानी से खोती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which metal in the row has a positive E° (M²⁺/M)?",
+        "hi": "पंक्ति की किस धातु का E° (M²⁺/M) धनात्मक है?"
+       },
+       "options": [
+        {
+         "en": "Copper",
+         "hi": "ताँबा"
+        },
+        {
+         "en": "Iron",
+         "hi": "लोहा"
+        },
+        {
+         "en": "Zinc",
+         "hi": "ज़िंक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cu²⁺/Cu is +0.34 V, so copper does not dissolve in dilute HCl.",
+        "hi": "Cu²⁺/Cu +0.34 V है, इसलिए ताँबा तनु HCl में नहीं घुलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Iron is −0.44 V, negative, and dissolves in acid.",
+         "hi": "लोहे का −0.44 V ऋणात्मक है और वह अम्ल में घुलता है।"
+        },
+        {
+         "en": "Zinc is −0.76 V, also negative.",
+         "hi": "ज़िंक का −0.76 V भी ऋणात्मक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are Mn and Zn less positive than the trend predicts?",
+        "hi": "Mn और Zn की मान प्रवृत्ति से कम धनात्मक (अधिक ऋणात्मक) क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "Mn²⁺ (d⁵) and Zn²⁺ (d¹⁰) are extra stable ions",
+         "hi": "Mn²⁺ (d⁵) और Zn²⁺ (d¹⁰) अतिरिक्त स्थायी आयन हैं"
+        },
+        {
+         "en": "They are not metals",
+         "hi": "वे धातु नहीं हैं"
+        },
+        {
+         "en": "Their atoms are larger than Sc",
+         "hi": "उनके परमाणु Sc से बड़े हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A half-filled or full d subshell makes the ion stable, so the metal loses electrons more readily.",
+        "hi": "अर्ध-पूर्ण या पूर्ण d उपकोश आयन को स्थायी बनाता है, इसलिए धातु इलेक्ट्रॉन आसानी से खोती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both are metals.",
+         "hi": "दोनों धातुएँ हैं।"
+        },
+        {
+         "en": "Their atoms are not larger than Sc; Sc is the biggest in the row.",
+         "hi": "उनके परमाणु Sc से बड़े नहीं हैं; पंक्ति में Sc सबसे बड़ा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the copper point down to −0.3 V. What would copper then do with dilute acids?",
+      "hi": "ताँबे के बिंदु को −0.3 V तक नीचे खींचो। तब ताँबा तनु अम्लों के साथ क्या करता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch04-coloured-ions",
+   "topic": "4.3",
+   "template": "sort",
+   "title": {
+    "en": "Coloured or colourless ions?",
+    "hi": "रंगीन या रंगहीन आयन?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "col",
+      "label": {
+       "en": "Coloured: has unpaired d electrons",
+       "hi": "रंगीन: अयुग्मित d इलेक्ट्रॉन हैं"
+      }
+     },
+     {
+      "id": "none",
+      "label": {
+       "en": "Colourless: d⁰ or d¹⁰",
+       "hi": "रंगहीन: d⁰ या d¹⁰"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sc",
+      "text": {
+       "en": "Sc³⁺ (3d⁰)",
+       "hi": "Sc³⁺ (3d⁰)"
+      },
+      "bin": "none",
+      "why": {
+       "en": "No d electron, so no d–d jump is possible.",
+       "hi": "कोई d इलेक्ट्रॉन नहीं, इसलिए d–d संक्रमण संभव नहीं।"
+      }
+     },
+     {
+      "id": "ti4",
+      "text": {
+       "en": "Ti⁴⁺ (3d⁰)",
+       "hi": "Ti⁴⁺ (3d⁰)"
+      },
+      "bin": "none",
+      "why": {
+       "en": "The d subshell is empty: colourless.",
+       "hi": "d उपकोश खाली है: रंगहीन।"
+      }
+     },
+     {
+      "id": "zn",
+      "text": {
+       "en": "Zn²⁺ (3d¹⁰)",
+       "hi": "Zn²⁺ (3d¹⁰)"
+      },
+      "bin": "none",
+      "why": {
+       "en": "The d subshell is full, so no electron can jump to a d level.",
+       "hi": "d उपकोश भरा है, इसलिए कोई इलेक्ट्रॉन d स्तर में नहीं कूद सकता।"
+      }
+     },
+     {
+      "id": "cu1",
+      "text": {
+       "en": "Cu⁺ (3d¹⁰)",
+       "hi": "Cu⁺ (3d¹⁰)"
+      },
+      "bin": "none",
+      "why": {
+       "en": "Full d¹⁰: colourless, like Zn²⁺.",
+       "hi": "पूर्ण d¹⁰: Zn²⁺ की तरह रंगहीन।"
+      }
+     },
+     {
+      "id": "ti3",
+      "text": {
+       "en": "Ti³⁺ (3d¹)",
+       "hi": "Ti³⁺ (3d¹)"
+      },
+      "bin": "col",
+      "why": {
+       "en": "One d electron can jump between d levels: purple.",
+       "hi": "एक d इलेक्ट्रॉन d स्तरों के बीच कूद सकता है: बैंगनी।"
+      }
+     },
+     {
+      "id": "mn2",
+      "text": {
+       "en": "Mn²⁺ (3d⁵)",
+       "hi": "Mn²⁺ (3d⁵)"
+      },
+      "bin": "col",
+      "why": {
+       "en": "Five unpaired d electrons: pale pink.",
+       "hi": "पाँच अयुग्मित d इलेक्ट्रॉन: हल्का गुलाबी।"
+      }
+     },
+     {
+      "id": "fe3",
+      "text": {
+       "en": "Fe³⁺ (3d⁵)",
+       "hi": "Fe³⁺ (3d⁵)"
+      },
+      "bin": "col",
+      "why": {
+       "en": "Unpaired d electrons: yellow-brown in solution.",
+       "hi": "अयुग्मित d इलेक्ट्रॉन: विलयन में पीला-भूरा।"
+      }
+     },
+     {
+      "id": "co2",
+      "text": {
+       "en": "Co²⁺ (3d⁷)",
+       "hi": "Co²⁺ (3d⁷)"
+      },
+      "bin": "col",
+      "why": {
+       "en": "Unpaired d electrons: pink.",
+       "hi": "अयुग्मित d इलेक्ट्रॉन: गुलाबी।"
+      }
+     },
+     {
+      "id": "ni2",
+      "text": {
+       "en": "Ni²⁺ (3d⁸)",
+       "hi": "Ni²⁺ (3d⁸)"
+      },
+      "bin": "col",
+      "why": {
+       "en": "Two unpaired d electrons: green.",
+       "hi": "दो अयुग्मित d इलेक्ट्रॉन: हरा।"
+      }
+     },
+     {
+      "id": "cu2",
+      "text": {
+       "en": "Cu²⁺ (3d⁹)",
+       "hi": "Cu²⁺ (3d⁹)"
+      },
+      "bin": "col",
+      "why": {
+       "en": "One unpaired d electron: blue, as in copper sulphate.",
+       "hi": "एक अयुग्मित d इलेक्ट्रॉन: नीला, जैसे कॉपर सल्फेट में।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:sc",
+     "expect": "correct:sc",
+     "say": {
+      "en": "Tap the card “Sc³⁺ (3d⁰)”, then tap the group it belongs to.",
+      "hi": "कार्ड “Sc³⁺ (3d⁰)” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Cu²⁺ is 3d⁹ and Zn²⁺ is 3d¹⁰. Which of the two ions will be coloured?",
+      "hi": "Cu²⁺ 3d⁹ है और Zn²⁺ 3d¹⁰। इन दोनों में कौन-सा आयन रंगीन होगा?"
+     },
+     "options": [
+      {
+       "id": "cu",
+       "en": "Cu²⁺",
+       "hi": "Cu²⁺ आयन"
+      },
+      {
+       "id": "zn",
+       "en": "Zn²⁺",
+       "hi": "Zn²⁺ आयन"
+      },
+      {
+       "id": "both",
+       "en": "Both",
+       "hi": "दोनों"
+      }
+     ],
+     "answer": "cu"
+    },
+    {
+     "kind": "do",
+     "target": "card:cu2",
+     "expect": "correct:cu2",
+     "say": {
+      "en": "Now sort “Cu²⁺ (3d⁹)”.",
+      "hi": "अब “Cu²⁺ (3d⁹)” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:zn",
+     "expect": "correct:zn",
+     "say": {
+      "en": "Now sort “Zn²⁺ (3d¹⁰)”.",
+      "hi": "अब “Zn²⁺ (3d¹⁰)” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a complex ion, the d orbitals split into two groups of slightly different energy. An electron can jump from the lower group to the higher group by absorbing a colour of visible light, and we see the colour that is left. This d–d jump needs a d electron and a place to jump to. So d⁰ and d¹⁰ ions, with an empty or a full d subshell, are colourless.",
+      "hi": "संकुल आयन में d कक्षक थोड़ी भिन्न ऊर्जा वाले दो समूहों में बँट जाते हैं। इलेक्ट्रॉन दृश्य प्रकाश का एक रंग सोखकर निचले समूह से ऊपरी समूह में कूद सकता है, और हमें बचा हुआ रंग दिखता है। इस d–d संक्रमण के लिए d इलेक्ट्रॉन और कूदने की जगह चाहिए। इसलिए खाली या भरे d उपकोश वाले d⁰ और d¹⁰ आयन रंगहीन होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a solution of zinc sulphate colourless but copper sulphate blue?",
+        "hi": "ज़िंक सल्फेट का विलयन रंगहीन पर कॉपर सल्फेट नीला क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "Cu²⁺ has an unpaired d electron to jump; Zn²⁺ has a full d subshell",
+         "hi": "Cu²⁺ में कूदने को अयुग्मित d इलेक्ट्रॉन है; Zn²⁺ का d उपकोश पूर्ण है"
+        },
+        {
+         "en": "Copper is heavier than zinc",
+         "hi": "ताँबा ज़िंक से भारी है"
+        },
+        {
+         "en": "Sulphate is blue only with copper",
+         "hi": "सल्फेट केवल ताँबे के साथ नीला होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The colour comes from the metal ion's d–d transition, not from sulphate.",
+        "hi": "रंग धातु आयन के d–d संक्रमण से आता है, सल्फेट से नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mass does not give colour.",
+         "hi": "द्रव्यमान से रंग नहीं आता।"
+        },
+        {
+         "en": "Sulphate is colourless in both salts; the metal ion decides the colour.",
+         "hi": "सल्फेट दोनों लवणों में रंगहीन है; रंग धातु आयन से तय होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What do we see when an ion absorbs red light?",
+        "hi": "जब कोई आयन लाल प्रकाश सोखता है तो हमें क्या दिखता है?"
+       },
+       "options": [
+        {
+         "en": "The leftover colours, such as blue-green",
+         "hi": "बचे हुए रंग, जैसे नीला-हरा"
+        },
+        {
+         "en": "Red",
+         "hi": "लाल"
+        },
+        {
+         "en": "Black",
+         "hi": "काला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The colour we see is the complement of the colour absorbed.",
+        "hi": "हमें दिखने वाला रंग सोखे गए रंग का पूरक होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Red is the colour that was taken away.",
+         "hi": "लाल तो वही रंग है जो सोख लिया गया।"
+        },
+        {
+         "en": "Black would mean all colours are absorbed.",
+         "hi": "काले का अर्थ होता कि सभी रंग सोखे गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Which colourless ion on the list could turn coloured if it lost one more electron?",
+      "hi": "बाकी छाँटो। सूची का कौन-सा रंगहीन आयन एक और इलेक्ट्रॉन खोने पर रंगीन हो सकता था?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch04-magnetic-moment",
+   "topic": "4.3",
+   "template": "data",
+   "title": {
+    "en": "Counting unpaired electrons: magnetic moment",
+    "hi": "अयुग्मित इलेक्ट्रॉनों की गिनती: चुंबकीय आघूर्ण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 3,
+    "ask": "max",
+    "title": {
+     "en": "Spin-only magnetic moment, μ = √[n(n+2)] (Bohr magnetons)",
+     "hi": "केवल-चक्रण चुंबकीय आघूर्ण, μ = √[n(n+2)] (बोर मैग्नेटॉन)"
+    },
+    "xlabel": {
+     "en": "Ion",
+     "hi": "आयन"
+    },
+    "ylabel": {
+     "en": "μ (BM)",
+     "hi": "μ (BM)"
+    },
+    "data": [
+     {
+      "label": "Zn²⁺",
+      "value": 0
+     },
+     {
+      "label": "Ti³⁺",
+      "value": 1.73
+     },
+     {
+      "label": "Cu²⁺",
+      "value": 1.73
+     },
+     {
+      "label": "V³⁺",
+      "value": 2.83
+     },
+     {
+      "label": "Cr³⁺",
+      "value": 3.87
+     },
+     {
+      "label": "Fe²⁺",
+      "value": 4.9
+     },
+     {
+      "label": "Mn²⁺",
+      "value": 5.92
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show Cr³⁺, with three unpaired electrons.",
+      "hi": "तीन अयुग्मित इलेक्ट्रॉन वाला Cr³⁺ दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The more unpaired electrons, the larger the magnetic moment. Which ion has the most unpaired electrons?",
+      "hi": "अयुग्मित इलेक्ट्रॉन जितने अधिक, चुंबकीय आघूर्ण उतना बड़ा। किस आयन में सबसे अधिक अयुग्मित इलेक्ट्रॉन हैं?"
+     },
+     "options": [
+      {
+       "id": "mn",
+       "en": "Mn²⁺ (3d⁵)",
+       "hi": "Mn²⁺ आयन (3d⁵)"
+      },
+      {
+       "id": "fe",
+       "en": "Fe²⁺ (3d⁶)",
+       "hi": "Fe²⁺ आयन (3d⁶)"
+      },
+      {
+       "id": "cu",
+       "en": "Cu²⁺ (3d⁹)",
+       "hi": "Cu²⁺ आयन (3d⁹)"
+      }
+     ],
+     "answer": "mn"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add Fe²⁺ (four unpaired).",
+      "hi": "Fe²⁺ (चार अयुग्मित) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add Mn²⁺ (five unpaired).",
+      "hi": "Mn²⁺ (पाँच अयुग्मित) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add Zn²⁺ last.",
+      "hi": "अंत में Zn²⁺ जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each unpaired electron acts like a tiny magnet. The spin-only magnetic moment is μ = √[n(n+2)] BM, where n is the number of unpaired electrons: 1 gives 1.73, 2 gives 2.83, 3 gives 3.87, 4 gives 4.90 and 5 gives 5.92. Mn²⁺ with five unpaired electrons has the largest value here. Ions with no unpaired electrons, like Zn²⁺, are diamagnetic and are pushed away by a magnet.",
+      "hi": "हर अयुग्मित इलेक्ट्रॉन एक छोटे चुंबक की तरह काम करता है। केवल-चक्रण चुंबकीय आघूर्ण μ = √[n(n+2)] BM है, जहाँ n अयुग्मित इलेक्ट्रॉनों की संख्या है: 1 पर 1.73, 2 पर 2.83, 3 पर 3.87, 4 पर 4.90 और 5 पर 5.92। पाँच अयुग्मित इलेक्ट्रॉनों वाले Mn²⁺ का मान यहाँ सबसे अधिक है। Zn²⁺ जैसे आयन, जिनमें कोई अयुग्मित इलेक्ट्रॉन नहीं है, प्रतिचुंबकीय हैं और चुंबक उन्हें दूर धकेलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Fe²⁺ (3d⁶) has four unpaired electrons. What is its spin-only magnetic moment?",
+        "hi": "Fe²⁺ (3d⁶) में चार अयुग्मित इलेक्ट्रॉन हैं। उसका केवल-चक्रण चुंबकीय आघूर्ण क्या है?"
+       },
+       "options": [
+        "4.90 BM",
+        "2.83 BM",
+        "6.93 BM"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "μ = √[4 × 6] = √24 = 4.90 BM.",
+        "hi": "μ = √[4 × 6] = √24 = 4.90 BM।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2.83 BM is for two unpaired electrons.",
+         "hi": "2.83 BM दो अयुग्मित इलेक्ट्रॉनों के लिए है।"
+        },
+        {
+         "en": "6.93 BM is for six unpaired electrons, which d⁶ cannot have.",
+         "hi": "6.93 BM छह अयुग्मित इलेक्ट्रॉनों के लिए है, जो d⁶ में संभव नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A substance with no unpaired electrons is…",
+        "hi": "जिस पदार्थ में कोई अयुग्मित इलेक्ट्रॉन न हो वह…"
+       },
+       "options": [
+        {
+         "en": "Diamagnetic",
+         "hi": "प्रतिचुंबकीय होता है"
+        },
+        {
+         "en": "Paramagnetic",
+         "hi": "अनुचुंबकीय होता है"
+        },
+        {
+         "en": "Ferromagnetic",
+         "hi": "लौहचुंबकीय होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With every electron paired, the tiny magnets cancel and the magnet slightly repels the substance.",
+        "hi": "हर इलेक्ट्रॉन युग्मित हो तो छोटे चुंबक कट जाते हैं और चुंबक पदार्थ को हल्का दूर धकेलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Paramagnetic substances have unpaired electrons.",
+         "hi": "अनुचुंबकीय पदार्थों में अयुग्मित इलेक्ट्रॉन होते हैं।"
+        },
+        {
+         "en": "Ferromagnetic substances, like iron, have strongly aligned unpaired electrons.",
+         "hi": "लौहचुंबकीय पदार्थों, जैसे लोहा, में अयुग्मित इलेक्ट्रॉन प्रबलता से संरेखित होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the Zn²⁺ bar up to 1.73. What would that say about its electrons? Is that possible for 3d¹⁰?",
+      "hi": "Zn²⁺ के बार को 1.73 तक ऊपर खींचो। यह इसके इलेक्ट्रॉनों के बारे में क्या कहेगा? क्या 3d¹⁰ के लिए यह संभव है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch04-lanthanoid-contraction",
+   "topic": "4.5",
+   "template": "data",
+   "title": {
+    "en": "Lanthanoid contraction",
+    "hi": "लैन्थेनॉयड संकुचन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "show": 2,
+    "title": {
+     "en": "Radius of Ln³⁺ ions from lanthanum to lutetium (pm)",
+     "hi": "लैंथेनम से ल्यूटीशियम तक Ln³⁺ आयनों की त्रिज्या (pm)"
+    },
+    "xlabel": {
+     "en": "Atomic number (57 La to 71 Lu)",
+     "hi": "परमाणु क्रमांक (57 La से 71 Lu)"
+    },
+    "ylabel": {
+     "en": "Ionic radius (pm)",
+     "hi": "आयनिक त्रिज्या (pm)"
+    },
+    "data": {
+     "rows": [
+      [
+       57,
+       106
+      ],
+      [
+       60,
+       99
+      ],
+      [
+       62,
+       96
+      ],
+      [
+       64,
+       94
+      ],
+      [
+       66,
+       91
+      ],
+      [
+       68,
+       88
+      ],
+      [
+       71,
+       85
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to add samarium (62).",
+      "hi": "समैरियम (62) जोड़ने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each step adds a proton and an electron. Will the ions get larger or smaller from La³⁺ to Lu³⁺?",
+      "hi": "हर कदम पर एक प्रोटॉन और एक इलेक्ट्रॉन जुड़ता है। La³⁺ से Lu³⁺ तक आयन बड़े होंगे या छोटे?"
+     },
+     "options": [
+      {
+       "id": "smaller",
+       "en": "Smaller, slowly and steadily",
+       "hi": "छोटे, धीरे-धीरे और लगातार"
+      },
+      {
+       "id": "larger",
+       "en": "Larger",
+       "hi": "बड़े"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "समान"
+      }
+     ],
+     "answer": "smaller"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add gadolinium (64).",
+      "hi": "गैडोलिनियम (64) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add dysprosium (66).",
+      "hi": "डिस्प्रोसियम (66) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add erbium (68).",
+      "hi": "अर्बियम (68) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add lutetium (71).",
+      "hi": "ल्यूटीशियम (71) जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The ion radius falls steadily from 106 pm to 85 pm. This is the lanthanoid contraction. Electrons are added to the inner 4f subshell, whose shielding is poor because of its diffuse shape, so the growing nuclear charge pulls the outer shells inward. As a result, the 4d and 5d elements that follow (like Zr and Hf) end up with almost the same size and similar properties, so they are very hard to separate.",
+      "hi": "आयन की त्रिज्या 106 pm से 85 pm तक लगातार घटती है। यह लैन्थेनॉयड संकुचन है। इलेक्ट्रॉन भीतरी 4f उपकोश में जुड़ते हैं, जिसका आकार फैला होने के कारण परिरक्षण कमज़ोर है, इसलिए बढ़ता नाभिकीय आवेश बाहरी कोशों को भीतर खींचता है। परिणामस्वरूप आगे के 4d और 5d तत्वों (जैसे Zr और Hf) का आकार लगभग बराबर और गुण लगभग समान हो जाते हैं, इसलिए उन्हें अलग करना बहुत कठिन होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What causes the lanthanoid contraction?",
+        "hi": "लैन्थेनॉयड संकुचन का कारण क्या है?"
+       },
+       "options": [
+        {
+         "en": "Poor shielding by 4f electrons while nuclear charge increases",
+         "hi": "नाभिकीय आवेश बढ़ने के साथ 4f इलेक्ट्रॉनों का कमज़ोर परिरक्षण"
+        },
+        {
+         "en": "Loss of electrons from 4f",
+         "hi": "4f से इलेक्ट्रॉनों का निकलना"
+        },
+        {
+         "en": "Heating of the metals",
+         "hi": "धातुओं का गर्म होना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The extra nuclear charge is not balanced by the 4f electrons, so everything shrinks.",
+        "hi": "अतिरिक्त नाभिकीय आवेश 4f इलेक्ट्रॉनों से संतुलित नहीं होता, इसलिए सब कुछ सिकुड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Electrons are added, not lost, from La to Lu.",
+         "hi": "La से Lu तक इलेक्ट्रॉन जुड़ते हैं, निकलते नहीं।"
+        },
+        {
+         "en": "Temperature plays no part in this trend.",
+         "hi": "इस प्रवृत्ति में ताप की कोई भूमिका नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "One consequence of the contraction is that…",
+        "hi": "इस संकुचन का एक परिणाम यह है कि…"
+       },
+       "options": [
+        {
+         "en": "Zr and Hf have almost equal sizes and are hard to separate",
+         "hi": "Zr और Hf के आकार लगभग बराबर हैं और उन्हें अलग करना कठिन है"
+        },
+        {
+         "en": "Lanthanum is the smallest lanthanoid",
+         "hi": "लैंथेनम सबसे छोटा लैन्थेनॉयड है"
+        },
+        {
+         "en": "Lutetium is the largest",
+         "hi": "ल्यूटीशियम सबसे बड़ा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After the 4f shrinking, the third-row d-block elements are about as small as the second-row ones.",
+        "hi": "4f के सिकुड़ने के बाद तीसरी पंक्ति के d-ब्लॉक तत्व दूसरी पंक्ति के तत्वों जितने ही छोटे हो जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lanthanum is the largest, not the smallest.",
+         "hi": "लैंथेनम सबसे बड़ा है, सबसे छोटा नहीं।"
+        },
+        {
+         "en": "Lutetium is the smallest, not the largest.",
+         "hi": "ल्यूटीशियम सबसे छोटा है, सबसे बड़ा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the Lu point up to 106. What would then be missing from the series, and why would Zr and Hf be easy to separate?",
+      "hi": "Lu के बिंदु को 106 तक ऊपर खींचो। तब श्रेणी में क्या अनुपस्थित होता, और Zr तथा Hf को अलग करना आसान क्यों हो जाता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch04-lanthanoids-actinoids",
+   "topic": "4.6",
+   "template": "sort",
+   "title": {
+    "en": "Lanthanoids and actinoids",
+    "hi": "लैन्थेनॉयड और ऐक्टिनॉयड"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ln",
+      "label": {
+       "en": "Lanthanoids (4f)",
+       "hi": "लैन्थेनॉयड (4f)"
+      }
+     },
+     {
+      "id": "an",
+      "label": {
+       "en": "Actinoids (5f)",
+       "hi": "ऐक्टिनॉयड (5f)"
+      }
+     },
+     {
+      "id": "both",
+      "label": {
+       "en": "Both series",
+       "hi": "दोनों श्रेणियाँ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "f4",
+      "text": {
+       "en": "Electrons fill the 4f subshell",
+       "hi": "4f उपकोश में इलेक्ट्रॉन भरते हैं"
+      },
+      "bin": "ln",
+      "why": {
+       "en": "Elements from Ce (58) to Lu (71) fill 4f.",
+       "hi": "Ce (58) से Lu (71) तक 4f भरता है।"
+      }
+     },
+     {
+      "id": "f5",
+      "text": {
+       "en": "Electrons fill the 5f subshell",
+       "hi": "5f उपकोश में इलेक्ट्रॉन भरते हैं"
+      },
+      "bin": "an",
+      "why": {
+       "en": "Elements from Th (90) to Lr (103) fill 5f.",
+       "hi": "Th (90) से Lr (103) तक 5f भरता है।"
+      }
+     },
+     {
+      "id": "plus3",
+      "text": {
+       "en": "+3 is the common oxidation state, with few others",
+       "hi": "+3 सामान्य ऑक्सीकरण अवस्था है, अन्य कम"
+      },
+      "bin": "ln",
+      "why": {
+       "en": "Lanthanoids mostly form Ln³⁺; +2 and +4 are minor.",
+       "hi": "लैन्थेनॉयड अधिकतर Ln³⁺ बनाते हैं; +2 और +4 गौण हैं।"
+      }
+     },
+     {
+      "id": "range",
+      "text": {
+       "en": "Show a wide range of oxidation states, +3 to +7",
+       "hi": "ऑक्सीकरण अवस्थाओं की विस्तृत श्रेणी, +3 से +7"
+      },
+      "bin": "an",
+      "why": {
+       "en": "5f electrons are less tightly held, so more of them can take part.",
+       "hi": "5f इलेक्ट्रॉन कम कसकर बँधे हैं, इसलिए अधिक इलेक्ट्रॉन भाग ले सकते हैं।"
+      }
+     },
+     {
+      "id": "radio",
+      "text": {
+       "en": "All the elements are radioactive",
+       "hi": "सभी तत्व रेडियोधर्मी हैं"
+      },
+      "bin": "an",
+      "why": {
+       "en": "Every actinoid is radioactive, and many are made artificially.",
+       "hi": "सभी ऐक्टिनॉयड रेडियोधर्मी हैं और कई कृत्रिम रूप से बनाए जाते हैं।"
+      }
+     },
+     {
+      "id": "pm",
+      "text": {
+       "en": "Only promethium is radioactive",
+       "hi": "केवल प्रोमीथियम रेडियोधर्मी है"
+      },
+      "bin": "ln",
+      "why": {
+       "en": "Pm (61) is the only radioactive lanthanoid.",
+       "hi": "Pm (61) एकमात्र रेडियोधर्मी लैन्थेनॉयड है।"
+      }
+     },
+     {
+      "id": "contract",
+      "text": {
+       "en": "Size shrinks steadily along the series",
+       "hi": "श्रेणी में आकार लगातार घटता है"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Lanthanoid contraction and a similar actinoid contraction.",
+       "hi": "लैन्थेनॉयड संकुचन और वैसा ही ऐक्टिनॉयड संकुचन।"
+      }
+     },
+     {
+      "id": "metal",
+      "text": {
+       "en": "Silvery, reactive metals",
+       "hi": "चाँदी जैसी चमकदार, क्रियाशील धातुएँ"
+      },
+      "bin": "both",
+      "why": {
+       "en": "All f-block elements are metals of this kind.",
+       "hi": "सभी f-ब्लॉक तत्व इसी तरह की धातुएँ हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:f4",
+     "expect": "correct:f4",
+     "say": {
+      "en": "Tap the card “Electrons fill the 4f subshell”, then tap the group it belongs to.",
+      "hi": "कार्ड “4f उपकोश में इलेक्ट्रॉन भरते हैं” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which series shows the wider range of oxidation states: lanthanoids (4f) or actinoids (5f)?",
+      "hi": "कौन-सी श्रेणी ऑक्सीकरण अवस्थाओं की अधिक विस्तृत श्रेणी दिखाती है: लैन्थेनॉयड (4f) या ऐक्टिनॉयड (5f)?"
+     },
+     "options": [
+      {
+       "id": "an",
+       "en": "Actinoids",
+       "hi": "ऐक्टिनॉयड"
+      },
+      {
+       "id": "ln",
+       "en": "Lanthanoids",
+       "hi": "लैन्थेनॉयड"
+      }
+     ],
+     "answer": "an"
+    },
+    {
+     "kind": "do",
+     "target": "card:f5",
+     "expect": "correct:f5",
+     "say": {
+      "en": "Now sort “Electrons fill the 5f subshell”.",
+      "hi": "अब “5f उपकोश में इलेक्ट्रॉन भरते हैं” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:range",
+     "expect": "correct:range",
+     "say": {
+      "en": "Now sort “Show a wide range of oxidation states, +3 to +7”.",
+      "hi": "अब “ऑक्सीकरण अवस्थाओं की विस्तृत श्रेणी, +3 से +7” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The 4f electrons of lanthanoids lie deep inside and take little part in bonding, so +3 dominates. The 5f, 6d and 7s energies of actinoids are close and 5f electrons extend farther, so actinoids show many oxidation states, from +3 up to +7. All actinoids are radioactive, while among lanthanoids only promethium is. Both series show a steady decrease in size.",
+      "hi": "लैन्थेनॉयड के 4f इलेक्ट्रॉन भीतर गहराई में होते हैं और आबंधन में कम भाग लेते हैं, इसलिए +3 प्रमुख है। ऐक्टिनॉयड में 5f, 6d और 7s की ऊर्जाएँ पास-पास हैं और 5f इलेक्ट्रॉन अधिक दूर तक फैले हैं, इसलिए ऐक्टिनॉयड +3 से +7 तक कई ऑक्सीकरण अवस्थाएँ दिखाते हैं। सभी ऐक्टिनॉयड रेडियोधर्मी हैं, जबकि लैन्थेनॉयड में केवल प्रोमीथियम है। दोनों श्रेणियों में आकार लगातार घटता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement is true?",
+        "hi": "कौन-सा कथन सही है?"
+       },
+       "options": [
+        {
+         "en": "All actinoids are radioactive",
+         "hi": "सभी ऐक्टिनॉयड रेडियोधर्मी हैं"
+        },
+        {
+         "en": "All lanthanoids are radioactive",
+         "hi": "सभी लैन्थेनॉयड रेडियोधर्मी हैं"
+        },
+        {
+         "en": "Neither series is radioactive",
+         "hi": "किसी श्रेणी में रेडियोधर्मिता नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every element from thorium to lawrencium is radioactive.",
+        "hi": "थोरियम से लॉरेंशियम तक हर तत्व रेडियोधर्मी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only promethium among lanthanoids is radioactive.",
+         "hi": "लैन्थेनॉयड में केवल प्रोमीथियम रेडियोधर्मी है।"
+        },
+        {
+         "en": "The actinoids certainly are radioactive.",
+         "hi": "ऐक्टिनॉयड निश्चित रूप से रेडियोधर्मी हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do actinoids show more oxidation states?",
+        "hi": "ऐक्टिनॉयड अधिक ऑक्सीकरण अवस्थाएँ क्यों दिखाते हैं?"
+       },
+       "options": [
+        {
+         "en": "5f, 6d and 7s energies are close, and 5f electrons are less tightly held",
+         "hi": "5f, 6d और 7s की ऊर्जाएँ पास हैं और 5f इलेक्ट्रॉन कम कसकर बँधे हैं"
+        },
+        {
+         "en": "They have more protons than lanthanoids, so they lose all electrons",
+         "hi": "उनमें लैन्थेनॉयड से अधिक प्रोटॉन हैं, इसलिए वे सभी इलेक्ट्रॉन खो देते हैं"
+        },
+        {
+         "en": "They are always found in solution",
+         "hi": "वे हमेशा विलयन में मिलते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Close energy levels let several electrons take part in bonding.",
+        "hi": "पास-पास ऊर्जा स्तरों के कारण कई इलेक्ट्रॉन आबंधन में भाग ले सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More protons alone do not mean losing all the electrons.",
+         "hi": "अधिक प्रोटॉन का अर्थ सभी इलेक्ट्रॉन खोना नहीं है।"
+        },
+        {
+         "en": "Where they are found has nothing to do with oxidation states.",
+         "hi": "वे कहाँ मिलते हैं, इसका ऑक्सीकरण अवस्थाओं से संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the other cards. Which series would you expect to need special handling in a nuclear laboratory, and why?",
+      "hi": "बाकी कार्ड छाँटो। परमाणु प्रयोगशाला में किस श्रेणी को विशेष सावधानी से संभालना पड़ेगा, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch04-permanganate-medium",
+   "topic": "4.4",
+   "template": "match",
+   "title": {
+    "en": "KMnO₄ and K₂Cr₂O₇ in different media",
+    "hi": "विभिन्न माध्यमों में KMnO₄ और K₂Cr₂O₇"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "acid",
+      "left": {
+       "en": "MnO₄⁻ in acidic solution",
+       "hi": "अम्लीय विलयन में MnO₄⁻"
+      },
+      "right": {
+       "en": "Mn²⁺, almost colourless (pale pink)",
+       "hi": "Mn²⁺, लगभग रंगहीन (हल्का गुलाबी)"
+      },
+      "why": {
+       "en": "Five electrons are gained, so Mn goes from +7 to +2 and the purple colour disappears.",
+       "hi": "पाँच इलेक्ट्रॉन मिलते हैं, इसलिए Mn +7 से +2 होता है और बैंगनी रंग गायब हो जाता है।"
+      }
+     },
+     {
+      "id": "neutral",
+      "left": {
+       "en": "MnO₄⁻ in neutral or faintly alkaline solution",
+       "hi": "उदासीन या हल्के क्षारीय विलयन में MnO₄⁻"
+      },
+      "right": {
+       "en": "MnO₂, a brown solid",
+       "hi": "MnO₂, भूरा ठोस"
+      },
+      "why": {
+       "en": "Three electrons are gained, giving Mn(+4) as brown MnO₂.",
+       "hi": "तीन इलेक्ट्रॉन मिलते हैं, जिससे Mn(+4) भूरे MnO₂ के रूप में बनता है।"
+      }
+     },
+     {
+      "id": "alk",
+      "left": {
+       "en": "MnO₄⁻ in strongly alkaline solution",
+       "hi": "प्रबल क्षारीय विलयन में MnO₄⁻"
+      },
+      "right": {
+       "en": "MnO₄²⁻, green",
+       "hi": "MnO₄²⁻, हरा"
+      },
+      "why": {
+       "en": "Only one electron is gained: Mn(+7) goes to Mn(+6), green manganate.",
+       "hi": "केवल एक इलेक्ट्रॉन मिलता है: Mn(+7) से Mn(+6), हरा मैंगनेट।"
+      }
+     },
+     {
+      "id": "dichr",
+      "left": {
+       "en": "Cr₂O₇²⁻ (orange) with alkali (OH⁻)",
+       "hi": "Cr₂O₇²⁻ (नारंगी) में क्षार (OH⁻) डालने पर"
+      },
+      "right": {
+       "en": "CrO₄²⁻, yellow",
+       "hi": "CrO₄²⁻, पीला"
+      },
+      "why": {
+       "en": "The orange dichromate changes to yellow chromate in alkaline solution.",
+       "hi": "क्षारीय विलयन में नारंगी डाइक्रोमेट पीले क्रोमेट में बदल जाता है।"
+      }
+     },
+     {
+      "id": "chr",
+      "left": {
+       "en": "CrO₄²⁻ (yellow) with acid (H⁺)",
+       "hi": "CrO₄²⁻ (पीला) में अम्ल (H⁺) डालने पर"
+      },
+      "right": {
+       "en": "Cr₂O₇²⁻, orange",
+       "hi": "Cr₂O₇²⁻, नारंगी"
+      },
+      "why": {
+       "en": "In acid, the yellow chromate changes back to orange dichromate.",
+       "hi": "अम्ल में पीला क्रोमेट फिर नारंगी डाइक्रोमेट बन जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:acid",
+     "expect": "matched:acid",
+     "say": {
+      "en": "Tap “MnO₄⁻ in acidic solution” on the left, then tap its partner on the right.",
+      "hi": "“अम्लीय विलयन में MnO₄⁻” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Purple KMnO₄ is added drop by drop to an acidified solution of Fe²⁺. The purple colour disappears at first. What does the colour vanishing show?",
+      "hi": "बैंगनी KMnO₄ को अम्लीकृत Fe²⁺ विलयन में बूँद-बूँद डाला जाता है। शुरू में बैंगनी रंग गायब हो जाता है। रंग गायब होने का क्या अर्थ है?"
+     },
+     "options": [
+      {
+       "id": "reduced",
+       "en": "MnO₄⁻ is being reduced to nearly colourless Mn²⁺",
+       "hi": "MnO₄⁻ का अपचयन लगभग रंगहीन Mn²⁺ में हो रहा है"
+      },
+      {
+       "id": "added",
+       "en": "Nothing is happening",
+       "hi": "कुछ नहीं हो रहा"
+      },
+      {
+       "id": "more",
+       "en": "MnO₄⁻ is being produced",
+       "hi": "MnO₄⁻ बन रहा है"
+      }
+     ],
+     "answer": "reduced"
+    },
+    {
+     "kind": "do",
+     "target": "left:alk",
+     "expect": "matched:alk",
+     "say": {
+      "en": "Now match “MnO₄⁻ in strongly alkaline solution”.",
+      "hi": "अब “प्रबल क्षारीय विलयन में MnO₄⁻” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The product of reduction of permanganate depends on the medium: acidic gives Mn²⁺, neutral gives MnO₂ and strongly alkaline gives green MnO₄²⁻. This is why KMnO₄ is used in titrations with acid: when all Fe²⁺ has reacted, one extra drop leaves a lasting pink colour. Dichromate and chromate interchange with pH: orange in acid, yellow in alkali.",
+      "hi": "परमैंगनेट के अपचयन का उत्पाद माध्यम पर निर्भर करता है: अम्लीय में Mn²⁺, उदासीन में MnO₂ और प्रबल क्षारीय में हरा MnO₄²⁻। इसीलिए KMnO₄ का अम्ल के साथ अनुमापन में उपयोग होता है: सारा Fe²⁺ अभिक्रिया कर चुके तो एक अतिरिक्त बूँद स्थायी गुलाबी रंग छोड़ देती है। डाइक्रोमेट और क्रोमेट pH के साथ एक-दूसरे में बदलते हैं: अम्ल में नारंगी, क्षार में पीला।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What colour change shows the end point when KMnO₄ is run into acidified Fe²⁺?",
+        "hi": "अम्लीकृत Fe²⁺ में KMnO₄ डालने पर अंतिम बिंदु कौन-सा रंग बदलाव दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "A permanent faint pink appears",
+         "hi": "स्थायी हल्का गुलाबी रंग आ जाता है"
+        },
+        {
+         "en": "The solution turns green",
+         "hi": "विलयन हरा हो जाता है"
+        },
+        {
+         "en": "The solution turns black",
+         "hi": "विलयन काला हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When no Fe²⁺ is left, the extra drop of MnO₄⁻ stays purple-pink.",
+        "hi": "जब Fe²⁺ नहीं बचता तो अतिरिक्त MnO₄⁻ की बूँद बैंगनी-गुलाबी बनी रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Green MnO₄²⁻ forms only in strongly alkaline solution.",
+         "hi": "हरा MnO₄²⁻ केवल प्रबल क्षारीय विलयन में बनता है।"
+        },
+        {
+         "en": "Black is not formed; brown MnO₂ appears only in neutral solution.",
+         "hi": "काला नहीं बनता; भूरा MnO₂ केवल उदासीन विलयन में बनता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Adding acid to yellow chromate solution turns it…",
+        "hi": "पीले क्रोमेट विलयन में अम्ल डालने पर वह…"
+       },
+       "options": [
+        {
+         "en": "Orange, as dichromate forms",
+         "hi": "नारंगी हो जाता है, क्योंकि डाइक्रोमेट बनता है"
+        },
+        {
+         "en": "Green",
+         "hi": "हरा हो जाता है"
+        },
+        {
+         "en": "Colourless",
+         "hi": "रंगहीन हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2CrO₄²⁻ + 2H⁺ ⇌ Cr₂O₇²⁻ + H₂O, and dichromate is orange.",
+        "hi": "2CrO₄²⁻ + 2H⁺ ⇌ Cr₂O₇²⁻ + H₂O और डाइक्रोमेट नारंगी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Green would be Cr³⁺, which needs a reducing agent.",
+         "hi": "हरा Cr³⁺ होता, जिसके लिए अपचायक चाहिए।"
+        },
+        {
+         "en": "Both ions are strongly coloured, not colourless.",
+         "hi": "दोनों आयन गहरे रंग के हैं, रंगहीन नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Predict the colour if you add alkali to orange dichromate, then check with the pair on the screen.",
+      "hi": "बाकी जोड़ियाँ मिलाओ। नारंगी डाइक्रोमेट में क्षार डालने पर रंग का अनुमान लगाओ, फिर स्क्रीन की जोड़ी से जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch04-kmno4-preparation",
+   "topic": "4.4",
+   "template": "sequence",
+   "title": {
+    "en": "Making potassium permanganate",
+    "hi": "पोटैशियम परमैंगनेट बनाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "fuse",
+      "text": {
+       "en": "Pyrolusite MnO₂ is fused with KOH in air",
+       "hi": "पाइरोलुसाइट MnO₂ को हवा में KOH के साथ गलाते हैं"
+      }
+     },
+     {
+      "id": "green",
+      "text": {
+       "en": "Green potassium manganate, K₂MnO₄, forms",
+       "hi": "हरा पोटैशियम मैंगनेट, K₂MnO₄, बनता है"
+      }
+     },
+     {
+      "id": "oxid",
+      "text": {
+       "en": "The manganate is oxidised in alkaline solution",
+       "hi": "मैंगनेट का क्षारीय विलयन में ऑक्सीकरण किया जाता है"
+      }
+     },
+     {
+      "id": "purple",
+      "text": {
+       "en": "Purple permanganate, MnO₄⁻, forms",
+       "hi": "बैंगनी परमैंगनेट, MnO₄⁻, बनता है"
+      }
+     },
+     {
+      "id": "crystal",
+      "text": {
+       "en": "Dark purple crystals of KMnO₄ are separated",
+       "hi": "KMnO₄ के गहरे बैंगनी क्रिस्टल अलग किए जाते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:fuse",
+     "expect": "placed:fuse",
+     "say": {
+      "en": "Tap the step “Pyrolusite MnO₂ is fused with KOH in air” and put it in the slot where you think it belongs.",
+      "hi": "चरण “पाइरोलुसाइट MnO₂ को हवा में KOH के साथ गलाते हैं” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The first product of fusing MnO₂ with KOH in air is green. Is it the final purple compound, or an intermediate?",
+      "hi": "हवा में MnO₂ को KOH के साथ गलाने पर पहला उत्पाद हरा है। क्या यह अंतिम बैंगनी यौगिक है या मध्यवर्ती?"
+     },
+     "options": [
+      {
+       "id": "mid",
+       "en": "An intermediate, K₂MnO₄",
+       "hi": "मध्यवर्ती, K₂MnO₄"
+      },
+      {
+       "id": "final",
+       "en": "The final KMnO₄",
+       "hi": "अंतिम KMnO₄"
+      }
+     ],
+     "answer": "mid"
+    },
+    {
+     "kind": "do",
+     "target": "item:crystal",
+     "expect": "placed:crystal",
+     "say": {
+      "en": "Now place “Dark purple crystals of KMnO₄ are separated”.",
+      "hi": "अब “KMnO₄ के गहरे बैंगनी क्रिस्टल अलग किए जाते हैं” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Manganese in MnO₂ is +4. Fusing with KOH in air gives K₂MnO₄ (Mn +6, green). Oxidising this in alkaline solution, by electrolysis or by chlorine or ozone, raises manganese to +7 and gives purple MnO₄⁻. In acid solution the manganate instead disproportionates into MnO₄⁻ and MnO₂. The product is separated as dark purple crystals.",
+      "hi": "MnO₂ में मैंगनीज़ +4 है। हवा में KOH के साथ गलाने पर K₂MnO₄ (Mn +6, हरा) बनता है। इसका क्षारीय विलयन में, विद्युत-अपघटन या क्लोरीन अथवा ओज़ोन से, ऑक्सीकरण करने पर मैंगनीज़ +7 हो जाता है और बैंगनी MnO₄⁻ बनता है। अम्लीय विलयन में मैंगनेट विषमानुपातित होकर MnO₄⁻ और MnO₂ देता है। उत्पाद गहरे बैंगनी क्रिस्टलों के रूप में अलग किया जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the oxidation state of Mn in green K₂MnO₄?",
+        "hi": "हरे K₂MnO₄ में Mn की ऑक्सीकरण अवस्था क्या है?"
+       },
+       "options": [
+        "+6",
+        "+7",
+        "+4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2(+1) + x + 4(−2) = 0 gives x = +6.",
+        "hi": "2(+1) + x + 4(−2) = 0 से x = +6।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "+7 is the state in KMnO₄.",
+         "hi": "+7 अवस्था KMnO₄ की है।"
+        },
+        {
+         "en": "+4 is the state in the starting MnO₂.",
+         "hi": "+4 अवस्था शुरुआती MnO₂ की है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is KMnO₄ stored in dark bottles?",
+        "hi": "KMnO₄ को गहरे रंग की बोतलों में क्यों रखा जाता है?"
+       },
+       "options": [
+        {
+         "en": "Light slowly decomposes it",
+         "hi": "प्रकाश इसे धीरे-धीरे विघटित करता है"
+        },
+        {
+         "en": "It glows in the dark",
+         "hi": "यह अँधेरे में चमकता है"
+        },
+        {
+         "en": "Dark glass makes it purple",
+         "hi": "गहरा काँच इसे बैंगनी बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Permanganate is a strong oxidiser that decomposes slowly in light, so it is kept away from light.",
+        "hi": "परमैंगनेट प्रबल ऑक्सीकारक है जो प्रकाश में धीरे-धीरे विघटित होता है, इसलिए इसे प्रकाश से दूर रखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "KMnO₄ does not glow; it is a dull-looking crystal.",
+         "hi": "KMnO₄ चमकता नहीं; यह फीके दिखने वाले क्रिस्टल हैं।"
+        },
+        {
+         "en": "The colour of the glass does not colour the chemical.",
+         "hi": "काँच का रंग रसायन को रंग नहीं देता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which step raises the oxidation state of manganese from +6 to +7? Try the steps in a different order and see what the checker says.",
+      "hi": "कौन-सा चरण मैंगनीज़ की ऑक्सीकरण अवस्था +6 से +7 करता है? चरणों को अलग क्रम में रखकर देखो कि जाँच क्या कहती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch04-catalysts-uses",
+   "topic": "4.7",
+   "template": "match",
+   "title": {
+    "en": "Transition metals as catalysts and in industry",
+    "hi": "उत्प्रेरक और उद्योग में संक्रमण धातुएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "v2o5",
+      "left": {
+       "en": "Vanadium(V) oxide, V₂O₅",
+       "hi": "वैनेडियम(V) ऑक्साइड, V₂O₅"
+      },
+      "right": {
+       "en": "Sulphuric acid by the Contact process",
+       "hi": "संपर्क प्रक्रम से सल्फ्यूरिक अम्ल"
+      },
+      "why": {
+       "en": "V₂O₅ helps SO₂ turn into SO₃.",
+       "hi": "V₂O₅ SO₂ को SO₃ में बदलने में सहायता करता है।"
+      }
+     },
+     {
+      "id": "fe",
+      "left": {
+       "en": "Finely divided iron",
+       "hi": "बारीक पिसा लोहा"
+      },
+      "right": {
+       "en": "Ammonia by the Haber process",
+       "hi": "हैबर प्रक्रम से अमोनिया"
+      },
+      "why": {
+       "en": "Iron speeds up N₂ + 3H₂ → 2NH₃, used for fertiliser.",
+       "hi": "लोहा N₂ + 3H₂ → 2NH₃ को तेज़ करता है, जो उर्वरक के काम आता है।"
+      }
+     },
+     {
+      "id": "ni",
+      "left": {
+       "en": "Nickel powder",
+       "hi": "निकेल चूर्ण"
+      },
+      "right": {
+       "en": "Hydrogenation of vegetable oils",
+       "hi": "वनस्पति तेलों का हाइड्रोजनीकरण"
+      },
+      "why": {
+       "en": "Nickel adds hydrogen to the double bonds in oils.",
+       "hi": "निकेल तेलों के द्विआबंधों में हाइड्रोजन जोड़ता है।"
+      }
+     },
+     {
+      "id": "mno2",
+      "left": {
+       "en": "Manganese(IV) oxide, MnO₂",
+       "hi": "मैंगनीज़(IV) ऑक्साइड, MnO₂"
+      },
+      "right": {
+       "en": "Breakdown of KClO₃ to give oxygen",
+       "hi": "KClO₃ के विघटन से ऑक्सीजन"
+      },
+      "why": {
+       "en": "MnO₂ lowers the temperature needed to give off O₂.",
+       "hi": "MnO₂ O₂ निकलने के लिए आवश्यक ताप घटाता है।"
+      }
+     },
+     {
+      "id": "zn",
+      "left": {
+       "en": "TiCl₄ with Al(C₂H₅)₃",
+       "hi": "TiCl₄ और Al(C₂H₅)₃"
+      },
+      "right": {
+       "en": "Making polythene (Ziegler–Natta catalyst)",
+       "hi": "पॉलिथीन बनाना (ज़ीगलर–नाटा उत्प्रेरक)"
+      },
+      "why": {
+       "en": "This catalyst joins ethene molecules into long chains.",
+       "hi": "यह उत्प्रेरक एथीन अणुओं को लंबी श्रृंखलाओं में जोड़ता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:v2o5",
+     "expect": "matched:v2o5",
+     "say": {
+      "en": "Tap “Vanadium(V) oxide, V₂O₅” on the left, then tap its partner on the right.",
+      "hi": "“वैनेडियम(V) ऑक्साइड, V₂O₅” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which metal do you think helps make ammonia for fertilisers on Indian farms?",
+      "hi": "तुम्हारे अनुसार भारतीय खेतों के उर्वरक के लिए अमोनिया बनाने में कौन-सी धातु मदद करती है?"
+     },
+     "options": [
+      {
+       "id": "fe",
+       "en": "Iron",
+       "hi": "लोहा"
+      },
+      {
+       "id": "na",
+       "en": "Sodium",
+       "hi": "सोडियम"
+      },
+      {
+       "id": "au",
+       "en": "Gold",
+       "hi": "सोना"
+      }
+     ],
+     "answer": "fe"
+    },
+    {
+     "kind": "do",
+     "target": "left:fe",
+     "expect": "matched:fe",
+     "say": {
+      "en": "Now match “Finely divided iron”.",
+      "hi": "अब “बारीक पिसा लोहा” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Transition metals are good catalysts for two reasons. They can change their oxidation state easily, so they can pass electrons to and from the reacting molecules. And their surfaces can hold reactant molecules in place, bringing them close and weakening their bonds. Their compounds therefore catalyse many industrial reactions, in fertiliser, acids, fats and plastics.",
+      "hi": "संक्रमण धातुएँ दो कारणों से अच्छे उत्प्रेरक हैं। वे अपनी ऑक्सीकरण अवस्था आसानी से बदल सकती हैं, इसलिए अभिक्रिया करने वाले अणुओं को इलेक्ट्रॉन दे और ले सकती हैं। और उनकी सतह अभिकारक अणुओं को थामकर पास ला सकती है और उनके आबंध कमज़ोर कर सकती है। इसलिए उनके यौगिक उर्वरक, अम्ल, वसा और प्लास्टिक के कई औद्योगिक अभिक्रियाओं को उत्प्रेरित करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are transition metals often good catalysts?",
+        "hi": "संक्रमण धातुएँ अक्सर अच्छे उत्प्रेरक क्यों होती हैं?"
+       },
+       "options": [
+        {
+         "en": "They have variable oxidation states and active surfaces",
+         "hi": "उनकी ऑक्सीकरण अवस्थाएँ परिवर्ती हैं और सतह सक्रिय होती है"
+        },
+        {
+         "en": "They are very light",
+         "hi": "वे बहुत हल्की होती हैं"
+        },
+        {
+         "en": "They are all liquids",
+         "hi": "वे सभी द्रव होती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Changing oxidation state and holding reactants on the surface both lower the activation energy.",
+        "hi": "ऑक्सीकरण अवस्था बदलना और अभिकारकों को सतह पर थामना दोनों सक्रियण ऊर्जा घटाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Most transition metals are dense, not light.",
+         "hi": "अधिकतर संक्रमण धातुएँ घनी हैं, हल्की नहीं।"
+        },
+        {
+         "en": "Nearly all are solids at room temperature.",
+         "hi": "लगभग सभी कमरे के ताप पर ठोस हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which catalyst is used to hydrogenate vegetable oil into vanaspati-type fat?",
+        "hi": "वनस्पति तेल को वनस्पति घी जैसी वसा में हाइड्रोजनित करने के लिए कौन-सा उत्प्रेरक काम आता है?"
+       },
+       "options": [
+        {
+         "en": "Nickel",
+         "hi": "निकेल"
+        },
+        {
+         "en": "Vanadium(V) oxide",
+         "hi": "वैनेडियम(V) ऑक्साइड"
+        },
+        {
+         "en": "Manganese(IV) oxide",
+         "hi": "मैंगनीज़(IV) ऑक्साइड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Finely divided nickel adds H₂ across the C=C bonds.",
+        "hi": "बारीक निकेल C=C आबंधों पर H₂ जोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "V₂O₅ is for the Contact process.",
+         "hi": "V₂O₅ संपर्क प्रक्रम के लिए है।"
+        },
+        {
+         "en": "MnO₂ is used for breaking down KClO₃.",
+         "hi": "MnO₂ KClO₃ को विघटित करने में प्रयुक्त होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Which of these catalysts is also found in a car's exhaust converter along with platinum?",
+      "hi": "बाकी जोड़ियाँ मिलाओ। इनमें से कौन-सा उत्प्रेरक कार के निकास कन्वर्टर में प्लैटिनम के साथ भी मिलता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Hook of the chapter",
+   "shows": "A Kolkata or Delhi metro station: stainless-steel handrails, copper-wired lamp fittings and an iron girder bridge overhead",
+   "view": "Wide shot, eye level, daylight",
+   "right": "Metals visibly different in colour: silver steel, reddish copper, grey iron",
+   "avoid": "Faces, advertising text, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.3",
+   "use": "Coloured transition metal ions in solution",
+   "shows": "Seven clear test tubes in a rack: CuSO₄ (blue), NiSO₄ (green), CoCl₂ (pink), FeCl₃ (yellow-brown), KMnO₄ (purple), K₂Cr₂O₇ (orange) and ZnSO₄ (colourless)",
+   "view": "Straight front view, white background, soft top light",
+   "right": "Colours true to life and equal liquid levels; ZnSO₄ truly colourless",
+   "avoid": "Labels on tubes, coloured light casting tints"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "4.4",
+   "use": "Permanganate in different media",
+   "shows": "Three test tubes of purple KMnO₄ after adding sodium sulphite in acid (colourless), neutral (brown solid) and strong alkali (green)",
+   "view": "Same viewpoint for the three tubes, white background",
+   "right": "Colourless, brown precipitate and green: each clearly distinct",
+   "avoid": "Spills, bare hands, labels on the glass"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "4.4",
+   "use": "Chromate and dichromate",
+   "shows": "Two beakers: yellow chromate solution turning orange on adding acid, and orange dichromate turning yellow on adding alkali, shown in three frames each",
+   "view": "Fixed camera, same light",
+   "right": "Orange and yellow clearly different; same volume in each frame",
+   "avoid": "Brand names, unsafe handling"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "4.5",
+   "use": "Lanthanoid compounds",
+   "shows": "Small vials of coloured lanthanoid salts: pink neodymium oxide, pale green praseodymium oxide and white lanthanum oxide",
+   "view": "Top-down close-up on a dark cloth, soft light",
+   "right": "Colours true; powders in matching small watch glasses",
+   "avoid": "Labels, hand-written names"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "4.7",
+   "use": "Iron to steel",
+   "shows": "Cut-away of a blast furnace showing layers of ore, coke and limestone, hot air blast at the bottom, molten iron and slag at the base",
+   "view": "Side cut view, studio render, 4:3",
+   "right": "Charge enters at the top, molten iron tapped at the bottom; slag layer floats above iron",
+   "avoid": "Text, workers, brand names"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "4.7",
+   "use": "Iron and steel in India",
+   "shows": "A steel rolling mill: glowing steel bar passing through rollers, with workers at a distance in hard hats and safety gear",
+   "view": "Wide shot, industrial light, safe distance",
+   "right": "Glow is orange-white; workers wear full PPE",
+   "avoid": "Faces, company names on helmets"
+  }
+ ]
+}

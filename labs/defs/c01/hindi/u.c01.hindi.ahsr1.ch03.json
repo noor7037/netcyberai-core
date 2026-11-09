@@ -1,0 +1,463 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.ch03",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Reena's Day (रीना का दिन)",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Story: the order of Reena's day",
+   "labs": [
+    "c01-hindi-ahsr1-ch03-day"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Greeting words for different times and people",
+   "labs": [
+    "c01-hindi-ahsr1-ch03-greetings"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Playing house with clay objects",
+   "labs": [],
+   "why_no_lab": "This is a hands-on classroom activity with real clay and role play; it cannot be done on screen."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-ch03-day",
+   "topic": "3.1",
+   "template": "sequence",
+   "title": {
+    "en": "Reena's day",
+    "hi": "रीना का दिन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "wake",
+      "text": {
+       "en": "Reena wakes up early and makes her bed",
+       "hi": "रीना जल्दी उठकर बिस्तर ठीक करती है"
+      }
+     },
+     {
+      "id": "brush",
+      "text": {
+       "en": "She brushes her teeth and takes a bath",
+       "hi": "वह दाँत साफ़ करती है और नहाती है"
+      }
+     },
+     {
+      "id": "eat",
+      "text": {
+       "en": "She eats paratha made by Mother",
+       "hi": "वह माँ के बनाए पराठे खाती है"
+      }
+     },
+     {
+      "id": "school",
+      "text": {
+       "en": "She greets her friend and goes to school",
+       "hi": "वह सहेली से मिलकर स्कूल जाती है"
+      }
+     },
+     {
+      "id": "play",
+      "text": {
+       "en": "At home she plays with her little brother",
+       "hi": "घर आकर वह छोटे भाई के साथ खेलती है"
+      }
+     },
+     {
+      "id": "sleep",
+      "text": {
+       "en": "Dadi says good night and Reena sleeps",
+       "hi": "दादी शुभ रात्रि कहती हैं और रीना सो जाती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:wake",
+     "expect": "placed:wake",
+     "say": {
+      "en": "Tap the card that happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does Reena do LAST in the day?",
+      "hi": "रीना दिन में सबसे आख़िर में क्या करती है?"
+     },
+     "options": [
+      {
+       "id": "sleep",
+       "en": "Dadi says good night and Reena sleeps",
+       "hi": "दादी शुभ रात्रि कहती हैं और रीना सो जाती है"
+      },
+      {
+       "id": "wake",
+       "en": "Reena wakes up early and makes her bed",
+       "hi": "रीना जल्दी उठकर बिस्तर ठीक करती है"
+      },
+      {
+       "id": "eat",
+       "en": "She eats paratha made by Mother",
+       "hi": "वह माँ के बनाए पराठे खाती है"
+      }
+     ],
+     "answer": "sleep"
+    },
+    {
+     "kind": "do",
+     "target": "item:sleep",
+     "expect": "placed:sleep",
+     "say": {
+      "en": "Now put the LAST card in the last place.",
+      "hi": "अब सबसे आख़िरी कार्ड को आख़िरी स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A day has a time order: morning work first, then school, then play, then sleep. Putting events in order is like telling a story from the first part to the last.",
+      "hi": "दिन का एक क्रम होता है: पहले सुबह के काम, फिर स्कूल, फिर खेल, फिर नींद। घटनाओं को क्रम में रखना कहानी को पहले से आख़िर तक सुनाने जैसा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does Reena do before going to school?",
+        "hi": "स्कूल जाने से पहले रीना क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "Plays with her brother",
+         "hi": "छोटे भाई के साथ खेलती है"
+        },
+        {
+         "en": "Eats breakfast",
+         "hi": "नाश्ता करती है"
+        },
+        {
+         "en": "Sleeps",
+         "hi": "सो जाती है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "She eats the paratha Mother made, hugs her, and then leaves for school.",
+        "hi": "वह माँ के बनाए पराठे खाती है, माँ के गले लगती है और फिर स्कूल जाती है।"
+       },
+       "wrong": [
+        {
+         "en": "She plays with her brother after coming home from school.",
+         "hi": "वह भाई के साथ स्कूल से घर आने के बाद खेलती है।"
+        },
+        "",
+        {
+         "en": "She sleeps at night, after the whole day is over.",
+         "hi": "वह रात को, पूरा दिन बीतने के बाद सोती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who tells Reena good night?",
+        "hi": "रीना को शुभ रात्रि कौन कहता है?"
+       },
+       "options": [
+        {
+         "en": "Dadi",
+         "hi": "दादी"
+        },
+        {
+         "en": "The teacher",
+         "hi": "अध्यापिका"
+        },
+        {
+         "en": "Her friend Deepa",
+         "hi": "सहेली दीपा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dadi says good night lovingly and puts Reena to sleep.",
+        "hi": "दादी प्यार से शुभ रात्रि कहकर रीना को सुला देती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The teacher meets Reena in school, not at bedtime.",
+         "hi": "अध्यापिका रीना को स्कूल में मिलती हैं, सोते समय नहीं।"
+        },
+        {
+         "en": "Deepa meets Reena on the way to school in the morning.",
+         "hi": "दीपा सुबह स्कूल के रास्ते में मिलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Now put YOUR day in order. What do you do first in the morning?",
+      "hi": "अब अपने दिन को क्रम में बताओ। सुबह उठकर तुम सबसे पहले क्या करते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch03-greetings",
+   "topic": "3.2",
+   "template": "match",
+   "title": {
+    "en": "Say the right greeting",
+    "hi": "सही अभिवादन बोलो"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "morning",
+      "left": {
+       "en": "Meeting a friend in the morning",
+       "hi": "सुबह दोस्त से मिलने पर"
+      },
+      "right": {
+       "en": "सुप्रभात",
+       "hi": "सुप्रभात"
+      },
+      "why": {
+       "en": "Su-prabhat means good morning.",
+       "hi": "सुप्रभात का मतलब है शुभ सुबह।"
+      }
+     },
+     {
+      "id": "night",
+      "left": {
+       "en": "Before going to bed",
+       "hi": "सोने से पहले"
+      },
+      "right": {
+       "en": "शुभ रात्रि",
+       "hi": "शुभ रात्रि"
+      },
+      "why": {
+       "en": "Shubh Ratri means good night.",
+       "hi": "शुभ रात्रि का मतलब है अच्छी रात।"
+      }
+     },
+     {
+      "id": "teacher",
+      "left": {
+       "en": "When the teacher enters the class",
+       "hi": "कक्षा में अध्यापिका के आने पर"
+      },
+      "right": {
+       "en": "नमस्ते",
+       "hi": "नमस्ते"
+      },
+      "why": {
+       "en": "Namaste is a polite greeting for elders and teachers.",
+       "hi": "नमस्ते बड़ों और अध्यापकों को किया जाने वाला आदर भरा अभिवादन है।"
+      }
+     },
+     {
+      "id": "guest",
+      "left": {
+       "en": "When a guest comes home",
+       "hi": "घर में मेहमान आने पर"
+      },
+      "right": {
+       "en": "स्वागत है",
+       "hi": "स्वागत है"
+      },
+      "why": {
+       "en": "We say 'Swagat hai' to welcome a guest.",
+       "hi": "मेहमान का स्वागत 'स्वागत है' कहकर करते हैं।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:morning",
+     "expect": "matched:morning",
+     "say": {
+      "en": "Tap a card on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर का कोई कार्ड छुओ, फिर दाईं ओर उसकी जोड़ी छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do we say to the teacher when she walks in?",
+      "hi": "अध्यापिका के कक्षा में आने पर हम क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "namaste",
+       "en": "Namaste",
+       "hi": "नमस्ते"
+      },
+      {
+       "id": "night",
+       "en": "Shubh Ratri",
+       "hi": "शुभ रात्रि"
+      },
+      {
+       "id": "welcome",
+       "en": "Swagat hai",
+       "hi": "स्वागत है"
+      }
+     ],
+     "answer": "namaste"
+    },
+    {
+     "kind": "do",
+     "target": "left:guest",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the pairs until all are joined.",
+      "hi": "बाकी जोड़ियाँ तब तक मिलाओ जब तक सब जुड़ न जाएँ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Good children greet with kind words at the right time. We say Namaste to elders, Su-prabhat in the morning, Shubh Ratri at night and Swagat hai to guests.",
+      "hi": "अच्छे बच्चे सही समय पर मीठे शब्दों से अभिवादन करते हैं। बड़ों को नमस्ते, सुबह को सुप्रभात, रात को शुभ रात्रि और मेहमान को स्वागत है कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "It is night and you are going to sleep. What do you say?",
+        "hi": "रात है और तुम सोने जा रहे हो। तुम क्या कहोगे?"
+       },
+       "options": [
+        {
+         "en": "सुप्रभात",
+         "hi": "सुप्रभात"
+        },
+        {
+         "en": "शुभ रात्रि",
+         "hi": "शुभ रात्रि"
+        },
+        {
+         "en": "स्वागत है",
+         "hi": "स्वागत है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Shubh Ratri is said at bedtime.",
+        "hi": "शुभ रात्रि सोते समय कहा जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "Su-prabhat is for the morning, not night.",
+         "hi": "सुप्रभात सुबह के लिए है, रात के लिए नहीं।"
+        },
+        "",
+        {
+         "en": "That is for welcoming someone who has come to your home.",
+         "hi": "यह उसके लिए है जो तुम्हारे घर आया हो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "How do your friends' families greet each other? Ask three friends and tell the class.",
+      "hi": "तुम्हारे दोस्तों के घर लोग एक-दूसरे का अभिवादन कैसे करते हैं? तीन दोस्तों से पूछकर कक्षा को बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SEQ",
+   "topic": "3.1",
+   "use": "Order of the day",
+   "shows": "Six frames of a girl's day: waking, bathing, eating paratha, walking to school, playing at home, sleeping",
+   "view": "Same house and girl, different times of day, light changes",
+   "right": "Morning light in the first frames, lamp light at the end; same school uniform in the school frames",
+   "avoid": "Showing the girl's face clearly",
+   "n": 1
+  },
+  {
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Neem datun",
+   "shows": "A neem twig used as a datun (tooth cleaner), cut-out",
+   "view": "Top view",
+   "right": "Fresh green neem twig with a frayed chewing end",
+   "avoid": "Toothpaste brands",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Paratha plate",
+   "shows": "A steel plate with two parathas and a small serving of sabzi",
+   "view": "Three-quarter view",
+   "right": "Golden parathas with ghee shine, real Indian sabzi",
+   "avoid": "Brand logos",
+   "n": 3
+  },
+  {
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Greeting at school",
+   "shows": "Children standing in a classroom and joining hands to greet a teacher who is smiling",
+   "view": "Eye level, back view of children",
+   "right": "Palms joined in namaste, teacher in saree or salwar",
+   "avoid": "Faces of identifiable children",
+   "n": 4
+  },
+  {
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Clay toys",
+   "shows": "Small clay household items made by a child: pot, plate, roti, bed",
+   "view": "Top view on a wooden table",
+   "right": "Hand-made look, earthy colour",
+   "avoid": "Plastic toys",
+   "n": 5
+  }
+ ]
+}

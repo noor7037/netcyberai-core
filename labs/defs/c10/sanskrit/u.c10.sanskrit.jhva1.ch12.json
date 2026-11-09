@@ -1,0 +1,1178 @@
+{
+ "chapter_key": "u.c10.sanskrit.jhva1.ch12",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "रचना प्रयोग",
+ "source": "https://ncert.nic.in/textbook/pdf/jhva1ps.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Patram: a formal letter",
+   "labs": [
+    "c10-sanskrit-jhva1-ch12-letter"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Doorabhashavarta: a telephone conversation",
+   "labs": [
+    "c10-sanskrit-jhva1-ch12-phone"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Apathita gadyamsha: an unseen passage",
+   "labs": [
+    "c10-sanskrit-jhva1-ch12-unseen"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "Anuchchhedalekhanam: a paragraph",
+   "labs": [
+    "c10-sanskrit-jhva1-ch12-paragraph"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.5",
+   "title": "Nibandhavali: essays",
+   "labs": [
+    "c10-sanskrit-jhva1-ch12-essay"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jhva1-ch12-letter",
+   "topic": "12.1",
+   "template": "writing",
+   "title": {
+    "en": "A leave letter in Sanskrit",
+    "hi": "संस्कृत में अवकाश पत्र"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "kind": "formal-letter",
+    "lang": "hi",
+    "task": {
+     "en": "You are ill. Write to your Principal in Sanskrit and ask for two days' leave.",
+     "hi": "तुम बीमार हो। प्रधानाचार्य को संस्कृत में दो दिन की छुट्टी का पत्र लिखो।"
+    },
+    "parts": [
+     {
+      "id": "sender",
+      "slot": "sender",
+      "text": "गृहसंख्या ७, गान्धिमार्गः\nजयपुरम्"
+     },
+     {
+      "id": "date",
+      "slot": "date",
+      "text": "दिनाङ्कः – १०.०८.२०२६"
+     },
+     {
+      "id": "receiver",
+      "slot": "receiver",
+      "text": "सेवायाम्\nश्रीमान् प्रधानाचार्यः\nराजकीय उच्चतर माध्यमिक विद्यालयः\nजयपुरम्"
+     },
+     {
+      "id": "subject",
+      "slot": "subject",
+      "text": "विषयः – अवकाशार्थं प्रार्थनापत्रम्"
+     },
+     {
+      "id": "hello",
+      "slot": "salutation",
+      "text": "माननीय महोदय!"
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": "सविनयं निवेदनम् अस्ति यत् अहं ज्वरेण पीडितः अस्मि।"
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": "अतः अद्य विद्यालयम् आगन्तुं न शक्नोमि।"
+     },
+     {
+      "id": "b3",
+      "slot": "body",
+      "text": "कृपया मह्यं दिनद्वयस्य अवकाशं ददातु।"
+     },
+     {
+      "id": "close",
+      "slot": "close",
+      "text": "भवतः आज्ञाकारी शिष्यः"
+     },
+     {
+      "id": "name",
+      "slot": "signature",
+      "text": "रमेशः\nदशमी कक्षा"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:subject",
+     "expect": "placed:subject",
+     "say": {
+      "en": "Place the subject line: it names the purpose of the letter.",
+      "hi": "विषय पंक्ति रखो: वह पत्र का उद्देश्य बताती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A formal Sanskrit letter to the Principal begins the receiver block with which word?",
+      "hi": "प्रधानाचार्य को लिखे औपचारिक संस्कृत पत्र में पाने वाले का भाग किस शब्द से शुरू होता है?"
+     },
+     "options": [
+      {
+       "id": "seva",
+       "en": "सेवायाम् (to the esteemed)",
+       "hi": "सेवायाम् (सेवा में)"
+      },
+      {
+       "id": "priya",
+       "en": "प्रिय (dear)",
+       "hi": "प्रिय"
+      },
+      {
+       "id": "dhanya",
+       "en": "धन्यवादः (thanks)",
+       "hi": "धन्यवादः"
+      }
+     ],
+     "answer": "seva"
+    },
+    {
+     "kind": "do",
+     "target": "part:b1",
+     "expect": "placed:b1",
+     "say": {
+      "en": "Place the first line of the body.",
+      "hi": "मुख्य भाग की पहली पंक्ति रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Place every part, then press Check.",
+      "hi": "सब भाग रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A formal letter has fixed parts in a fixed order: your address, the date, the receiver (सेवायाम्), the subject (विषयः), the greeting (माननीय महोदय!), the body, the closing (भवतः आज्ञाकारी शिष्यः) and your name. The body is short: why you write, the details, and the request. Use polite words like सविनयं and कृपया.",
+      "hi": "औपचारिक पत्र के भाग तय क्रम में होते हैं: अपना पता, दिनाङ्क, पाने वाला (सेवायाम्), विषय (विषयः), संबोधन (माननीय महोदय!), मुख्य भाग, समापन (भवतः आज्ञाकारी शिष्यः) और अपना नाम। मुख्य भाग छोटा होता है: क्यों लिख रहे हो, ब्योरा, और निवेदन। सविनयं और कृपया जैसे विनम्र शब्द प्रयोग करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which line is the request in the body?",
+        "hi": "मुख्य भाग में निवेदन वाली पंक्ति कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "कृपया मह्यं दिनद्वयस्य अवकाशं ददातु।",
+         "hi": "कृपया मह्यं दिनद्वयस्य अवकाशं ददातु।"
+        },
+        {
+         "en": "अहं ज्वरेण पीडितः अस्मि।",
+         "hi": "अहं ज्वरेण पीडितः अस्मि।"
+        },
+        {
+         "en": "माननीय महोदय!",
+         "hi": "माननीय महोदय!"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It asks, politely, for what the writer wants: two days of leave.",
+        "hi": "यह विनम्रता से वही माँगती है जो लेखक चाहता है: दो दिन का अवकाश।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This line only gives the reason (fever).",
+         "hi": "यह पंक्ति केवल कारण बताती है (बुखार)।"
+        },
+        {
+         "en": "That is the greeting, not part of the body.",
+         "hi": "यह संबोधन है, मुख्य भाग नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where does the subject line (विषयः) come?",
+        "hi": "विषय पंक्ति (विषयः) कहाँ आती है?"
+       },
+       "options": [
+        {
+         "en": "After the receiver and before the greeting",
+         "hi": "पाने वाले के बाद और संबोधन से पहले"
+        },
+        {
+         "en": "At the very end, after the name",
+         "hi": "सबसे अंत में, नाम के बाद"
+        },
+        {
+         "en": "Before the date",
+         "hi": "दिनाङ्क से पहले"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The reader sees the receiver, then the subject, then is greeted.",
+        "hi": "पढ़ने वाला पहले पाने वाले को, फिर विषय को देखता है, फिर संबोधन पढ़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The name is the last thing in a letter.",
+         "hi": "नाम पत्र में सबसे अंत में आता है।"
+        },
+        {
+         "en": "Your address and the date come first.",
+         "hi": "पहले अपना पता और दिनाङ्क आते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the reason: write for leave to attend a family function.",
+      "hi": "कारण बदलो: परिवार के किसी समारोह में जाने के लिए अवकाश का पत्र सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch12-phone",
+   "topic": "12.2",
+   "template": "sequence",
+   "title": {
+    "en": "A phone call in Sanskrit",
+    "hi": "संस्कृत में फोन वार्ता"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "रमेशः – नमस्ते! अहं रमेशः वदामि। (Ramesh: Hello, this is Ramesh)",
+       "hi": "रमेशः – नमस्ते! अहं रमेशः वदामि। (रमेश: नमस्ते, मैं रमेश बोल रहा हूँ)"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "सुरेशः – नमस्ते रमेश! कथय, किं कार्यम्? (Suresh: Hello! Tell me, what is it?)",
+       "hi": "सुरेशः – नमस्ते रमेश! कथय, किं कार्यम्? (सुरेश: नमस्ते! बोलो, क्या काम है?)"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "रमेशः – श्वः स्पर्धा अस्ति। आगमिष्यसि वा? (Ramesh: A contest tomorrow. Coming?)",
+       "hi": "रमेशः – श्वः स्पर्धा अस्ति। आगमिष्यसि वा? (रमेश: कल प्रतियोगिता है। आओगे?)"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "सुरेशः – आम्, आगमिष्यामि। कदा आरम्भः? (Suresh: Yes. When does it start?)",
+       "hi": "सुरेशः – आम्, आगमिष्यामि। कदा आरम्भः? (सुरेश: हाँ। कब शुरू होगी?)"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "रमेशः – प्रातः नववादने आरम्भः। (Ramesh: At nine in the morning)",
+       "hi": "रमेशः – प्रातः नववादने आरम्भः। (रमेश: सुबह नौ बजे शुरू होगी)"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "सुरेशः – धन्यवादः। श्वः मिलावः। (Suresh: Thanks. See you tomorrow)",
+       "hi": "सुरेशः – धन्यवादः। श्वः मिलावः। (सुरेश: धन्यवाद। कल मिलेंगे)"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Tap the line that begins the call, then place 1.",
+      "hi": "जो पंक्ति बातचीत शुरू करती है उसे छुओ, फिर स्थान 1।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A phone call has a pattern. What comes right after the greeting and the caller's name?",
+      "hi": "फोन वार्ता का एक ढाँचा होता है। संबोधन और अपना नाम बताने के बाद क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "reason",
+       "en": "The reason for calling, after a polite question",
+       "hi": "विनम्र प्रश्न के बाद फोन करने का कारण"
+      },
+      {
+       "id": "bye",
+       "en": "The goodbye",
+       "hi": "विदा लेना"
+      },
+      {
+       "id": "thanks",
+       "en": "The thanks",
+       "hi": "धन्यवाद"
+      }
+     ],
+     "answer": "reason"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all six lines in order, then press Check.",
+      "hi": "सभी छह पंक्तियाँ क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A phone talk opens with a greeting and the caller says who is speaking: अहं रमेशः वदामि. The other person asks the reason: किं कार्यम्? Then the caller gives the message, the listener replies and asks any details (कदा? कुत्र?), and the call ends with thanks and a farewell like धन्यवादः and श्वः मिलावः. Keep each sentence short, with the verb at the end.",
+      "hi": "फोन वार्ता नमस्ते से शुरू होती है और बोलने वाला अपना नाम बताता है: अहं रमेशः वदामि। दूसरा कारण पूछता है: किं कार्यम्? फिर बुलाने वाला बात बताता है, सुनने वाला उत्तर देता है और ब्योरा पूछता है (कदा? कुत्र?), और बातचीत धन्यवादः और श्वः मिलावः जैसे विदा-शब्दों से समाप्त होती है। हर वाक्य छोटा रखो, क्रिया अंत में।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'अहं रमेशः वदामि' tell the listener?",
+        "hi": "'अहं रमेशः वदामि' सुनने वाले को क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "Who is speaking",
+         "hi": "कौन बोल रहा है"
+        },
+        {
+         "en": "Where Ramesh lives",
+         "hi": "रमेश कहाँ रहता है"
+        },
+        {
+         "en": "When the call will end",
+         "hi": "बातचीत कब समाप्त होगी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is the usual way to say 'Ramesh speaking'.",
+        "hi": "यह 'रमेश बोल रहा हूँ' कहने का सामान्य तरीका है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The line has no address in it.",
+         "hi": "इस पंक्ति में पता नहीं है।"
+        },
+        {
+         "en": "The line says nothing about time.",
+         "hi": "इस पंक्ति में समय की बात नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word asks 'when'?",
+        "hi": "कौन-सा शब्द 'कब' पूछता है?"
+       },
+       "options": [
+        {
+         "en": "कदा",
+         "hi": "कदा"
+        },
+        {
+         "en": "कुत्र",
+         "hi": "कुत्र"
+        },
+        {
+         "en": "कः",
+         "hi": "कः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "कदा means when; सुरेशः asks कदा आरम्भः?",
+        "hi": "कदा का अर्थ कब है; सुरेश पूछता है कदा आरम्भः?"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "कुत्र means where.",
+         "hi": "कुत्र का अर्थ कहाँ है।"
+        },
+        {
+         "en": "कः means who.",
+         "hi": "कः का अर्थ कौन है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Act the call out with a friend. Then change the event to a school picnic.",
+      "hi": "किसी मित्र के साथ यह वार्ता बोलकर देखो। फिर कार्यक्रम बदलकर विद्यालय की सैर रखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch12-unseen",
+   "topic": "12.3",
+   "template": "reader",
+   "title": {
+    "en": "Reading an unseen passage",
+    "hi": "अपठित गद्यांश पढ़ना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "sa",
+    "passage": {
+     "title": {
+      "en": "Water is life",
+      "hi": "जल ही जीवन है"
+     },
+     "lines": [
+      "जलं विना जीवनं न भवति।",
+      "नद्यः तडागाः कूपाः च जलं यच्छन्ति।",
+      "वयं जलं व्यर्थं न नयामः।",
+      "जलस्य रक्षणं सर्वेषां कर्तव्यम्।"
+     ]
+    },
+    "words": [
+     {
+      "w": "तडागाः",
+      "meaning": {
+       "en": "ponds",
+       "hi": "तालाब"
+      }
+     },
+     {
+      "w": "व्यर्थं",
+      "meaning": {
+       "en": "in vain, wasted",
+       "hi": "व्यर्थ, बेकार"
+      }
+     },
+     {
+      "w": "रक्षणं",
+      "meaning": {
+       "en": "protection",
+       "hi": "रक्षा"
+      }
+     },
+     {
+      "w": "कर्तव्यम्",
+      "meaning": {
+       "en": "duty",
+       "hi": "कर्तव्य"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press play and listen to the whole passage once.",
+      "hi": "चलाओ दबाओ और पूरा गद्यांश एक बार सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before you look at the words: the passage says जलं विना जीवनं न भवति. What is it about?",
+      "hi": "शब्द देखने से पहले: गद्यांश कहता है जलं विना जीवनं न भवति। यह किस बारे में है?"
+     },
+     "options": [
+      {
+       "id": "water",
+       "en": "Life cannot be without water",
+       "hi": "जल के बिना जीवन नहीं होता"
+      },
+      {
+       "id": "food",
+       "en": "Food is life",
+       "hi": "भोजन ही जीवन है"
+      },
+      {
+       "id": "air",
+       "en": "Air is everywhere",
+       "hi": "वायु सर्वत्र है"
+      }
+     ],
+     "answer": "water"
+    },
+    {
+     "kind": "do",
+     "target": "word:तडागाः",
+     "expect": "found:तडागाः",
+     "say": {
+      "en": "Find तडागाः in the passage.",
+      "hi": "गद्यांश में तडागाः ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:कर्तव्यम्",
+     "expect": "found:कर्तव्यम्",
+     "say": {
+      "en": "Find कर्तव्यम्.",
+      "hi": "कर्तव्यम् ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To answer an unseen passage: read it twice, first for the whole idea, then line by line. Underline hard words and guess from their parts: जल-स्य रक्षणं means protecting of water. विना means without, so जलं विना is 'without water'. Answer in a full Sanskrit sentence and only from the passage, never from memory.",
+      "hi": "अपठित गद्यांश का उत्तर देने के लिए उसे दो बार पढ़ो, पहले पूरा भाव समझने के लिए, फिर पंक्ति-पंक्ति करके। कठिन शब्दों को रेखांकित करो और उनके अंशों से अर्थ का अनुमान लगाओ: जलस्य रक्षणं यानी जल की रक्षा। विना का अर्थ बिना है, इसलिए जलं विना यानी जल के बिना। उत्तर पूर्ण संस्कृत वाक्य में दो और केवल गद्यांश के आधार पर, स्मृति के आधार पर नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the passage say about water?",
+        "hi": "गद्यांश जल के बारे में क्या कहता है?"
+       },
+       "options": [
+        {
+         "en": "We must not waste it and must protect it",
+         "hi": "हमें उसे व्यर्थ नहीं करना चाहिए और उसकी रक्षा करनी चाहिए"
+        },
+        {
+         "en": "Water is found only in wells",
+         "hi": "जल केवल कुओं में मिलता है"
+        },
+        {
+         "en": "Water is not needed for life",
+         "hi": "जीवन के लिए जल ज़रूरी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The lines वयं जलं व्यर्थं न नयामः and जलस्य रक्षणं कर्तव्यम् say it.",
+        "hi": "पंक्तियाँ वयं जलं व्यर्थं न नयामः और जलस्य रक्षणं कर्तव्यम् यही कहती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The passage names rivers, ponds and wells all as sources.",
+         "hi": "गद्यांश नदियों, तालाबों और कुओं, तीनों को स्रोत बताता है।"
+        },
+        {
+         "en": "The very first line says there is no life without water.",
+         "hi": "पहली ही पंक्ति कहती है कि जल के बिना जीवन नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does 'व्यर्थं न नयामः' mean?",
+        "hi": "'व्यर्थं न नयामः' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "We do not waste it",
+         "hi": "हम उसे व्यर्थ नहीं करते"
+        },
+        {
+         "en": "We keep it far away",
+         "hi": "हम उसे दूर रखते हैं"
+        },
+        {
+         "en": "We sell it",
+         "hi": "हम उसे बेचते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "न means not and व्यर्थम् means wasted.",
+        "hi": "न का अर्थ नहीं और व्यर्थम् का अर्थ बेकार है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing is said about distance.",
+         "hi": "दूरी की बात नहीं कही गई।"
+        },
+        {
+         "en": "Selling is not in the passage.",
+         "hi": "बेचने की बात गद्यांश में नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask yourself a question on each line with कः, किम्, कुत्र or कदा and answer it.",
+      "hi": "हर पंक्ति पर कः, किम्, कुत्र या कदा से प्रश्न बनाओ और उत्तर दो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch12-paragraph",
+   "topic": "12.4",
+   "template": "writing",
+   "title": {
+    "en": "A paragraph on tree planting",
+    "hi": "वृक्षारोपण पर अनुच्छेद"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "essay",
+    "lang": "hi",
+    "task": {
+     "en": "Write a short paragraph in Sanskrit on tree planting.",
+     "hi": "वृक्षारोपण पर संस्कृत में एक छोटा अनुच्छेद लिखो।"
+    },
+    "parts": [
+     {
+      "id": "title",
+      "slot": "title",
+      "text": "वृक्षारोपणम्"
+     },
+     {
+      "id": "intro",
+      "slot": "introduction",
+      "text": "वृक्षाः मानवानां मित्राणि सन्ति।"
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": "ते फलानि पुष्पाणि छायां च यच्छन्ति।"
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": "ते वायुं शुद्धं कुर्वन्ति, वर्षायाः कारणं च भवन्ति।"
+     },
+     {
+      "id": "b3",
+      "slot": "body",
+      "text": "प्रतिवर्षं वयं वृक्षान् रोपयामः।"
+     },
+     {
+      "id": "end",
+      "slot": "conclusion",
+      "text": "वृक्षाणां रक्षणम् अस्माकं कर्तव्यम्।"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:title",
+     "expect": "placed:title",
+     "say": {
+      "en": "Place the title first.",
+      "hi": "पहले शीर्षक रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which sentence is best as the introduction: one that opens the topic, or one that gives a fact from the middle?",
+      "hi": "भूमिका के लिए कौन-सा वाक्य ठीक है: जो विषय खोले, या जो बीच की कोई बात बताए?"
+     },
+     "options": [
+      {
+       "id": "open",
+       "en": "One that opens the topic",
+       "hi": "जो विषय खोले"
+      },
+      {
+       "id": "middle",
+       "en": "One from the middle",
+       "hi": "जो बीच की बात बताए"
+      },
+      {
+       "id": "last",
+       "en": "One that ends the topic",
+       "hi": "जो विषय समाप्त करे"
+      }
+     ],
+     "answer": "open"
+    },
+    {
+     "kind": "do",
+     "target": "part:intro",
+     "expect": "placed:intro",
+     "say": {
+      "en": "Place the introduction.",
+      "hi": "भूमिका रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Place every part, then press Check.",
+      "hi": "सब भाग रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A paragraph (अनुच्छेद) has a beginning, a middle and an end. The first line introduces the subject, the middle lines each give one fact, and the last line closes with a thought or a duty. Use simple present-tense verbs such as यच्छन्ति, कुर्वन्ति, रोपयामः, and keep each sentence short.",
+      "hi": "अनुच्छेद का आरंभ, मध्य और अंत होता है। पहली पंक्ति विषय का परिचय देती है, बीच की पंक्तियाँ एक-एक तथ्य बताती हैं, और अंतिम पंक्ति किसी विचार या कर्तव्य के साथ समाप्त होती है। यच्छन्ति, कुर्वन्ति, रोपयामः जैसी वर्तमान काल की सरल क्रियाएँ प्रयोग करो और वाक्य छोटे रखो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which line is the conclusion?",
+        "hi": "अंतिम पंक्ति (उपसंहार) कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "वृक्षाणां रक्षणम् अस्माकं कर्तव्यम्।",
+         "hi": "वृक्षाणां रक्षणम् अस्माकं कर्तव्यम्।"
+        },
+        {
+         "en": "वृक्षाः मानवानां मित्राणि सन्ति।",
+         "hi": "वृक्षाः मानवानां मित्राणि सन्ति।"
+        },
+        {
+         "en": "ते फलानि पुष्पाणि छायां च यच्छन्ति।",
+         "hi": "ते फलानि पुष्पाणि छायां च यच्छन्ति।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It closes with a duty, which is how a paragraph ends.",
+        "hi": "यह कर्तव्य के साथ समाप्त होती है, अनुच्छेद ऐसे ही पूरा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This line opens the topic, so it is the introduction.",
+         "hi": "यह पंक्ति विषय खोलती है, इसलिए भूमिका है।"
+        },
+        {
+         "en": "This line gives a fact, so it belongs in the middle.",
+         "hi": "यह पंक्ति तथ्य बताती है, इसलिए मध्य में आती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many ideas should each middle sentence carry?",
+        "hi": "बीच के हर वाक्य में कितने विचार होने चाहिए?"
+       },
+       "options": [
+        {
+         "en": "One",
+         "hi": "एक"
+        },
+        {
+         "en": "As many as possible",
+         "hi": "जितने हो सकें"
+        },
+        {
+         "en": "None; only the title matters",
+         "hi": "कोई नहीं; केवल शीर्षक चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One idea per sentence keeps the paragraph clear.",
+        "hi": "एक वाक्य में एक विचार रखने से अनुच्छेद स्पष्ट रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Many ideas in a sentence confuse the reader.",
+         "hi": "एक वाक्य में कई विचार पाठक को उलझाते हैं।"
+        },
+        {
+         "en": "A paragraph needs content under the title.",
+         "hi": "अनुच्छेद में शीर्षक के नीचे सामग्री चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add a fourth middle sentence of your own about trees.",
+      "hi": "वृक्षों के बारे में बीच में अपना एक चौथा वाक्य जोड़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch12-essay",
+   "topic": "12.5",
+   "template": "sort",
+   "title": {
+    "en": "Parts of an essay: the Ganga",
+    "hi": "निबंध के भाग: गङ्गा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "in",
+      "label": {
+       "en": "Introduction",
+       "hi": "भूमिका"
+      }
+     },
+     {
+      "id": "bo",
+      "label": {
+       "en": "Body",
+       "hi": "मुख्य भाग"
+      }
+     },
+     {
+      "id": "co",
+      "label": {
+       "en": "Conclusion",
+       "hi": "उपसंहार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "i1",
+      "text": {
+       "en": "गङ्गा भारतस्य पवित्रा नदी अस्ति।",
+       "hi": "गङ्गा भारतस्य पवित्रा नदी अस्ति।"
+      },
+      "bin": "in",
+      "why": {
+       "en": "It names the topic: the Ganga is India's holy river.",
+       "hi": "यह विषय बताता है: गंगा भारत की पवित्र नदी है।"
+      }
+     },
+     {
+      "id": "i2",
+      "text": {
+       "en": "गङ्गा भारतभूमेः जीवनरेखा।",
+       "hi": "गङ्गा भारतभूमेः जीवनरेखा।"
+      },
+      "bin": "in",
+      "why": {
+       "en": "A short opening thought that draws the reader in: the Ganga is the lifeline of India.",
+       "hi": "पाठक को खींचने वाला छोटा आरंभिक विचार: गंगा भारत की जीवन-रेखा है।"
+      }
+     },
+     {
+      "id": "b1",
+      "text": {
+       "en": "सा हिमालयात् निर्गच्छति।",
+       "hi": "सा हिमालयात् निर्गच्छति।"
+      },
+      "bin": "bo",
+      "why": {
+       "en": "A fact about where it starts: from the Himalaya.",
+       "hi": "एक तथ्य कि वह कहाँ से निकलती है: हिमालय से।"
+      }
+     },
+     {
+      "id": "b2",
+      "text": {
+       "en": "तस्याः जलं कृषिं पोषयति।",
+       "hi": "तस्याः जलं कृषिं पोषयति।"
+      },
+      "bin": "bo",
+      "why": {
+       "en": "A fact about its use: its water nourishes farming.",
+       "hi": "एक तथ्य कि उसका उपयोग क्या है: उसका जल खेती को पोषण देता है।"
+      }
+     },
+     {
+      "id": "b3",
+      "text": {
+       "en": "तस्याः तटे बहूनि तीर्थानि सन्ति।",
+       "hi": "तस्याः तटे बहूनि तीर्थानि सन्ति।"
+      },
+      "bin": "bo",
+      "why": {
+       "en": "A fact about its banks: many holy places stand there.",
+       "hi": "एक तथ्य कि उसके तट पर क्या है: बहुत-से तीर्थ हैं।"
+      }
+     },
+     {
+      "id": "c1",
+      "text": {
+       "en": "अतः गङ्गा रक्षणीया।",
+       "hi": "अतः गङ्गा रक्षणीया।"
+      },
+      "bin": "co",
+      "why": {
+       "en": "'Therefore' closes with a duty: the Ganga must be protected.",
+       "hi": "'अतः' कर्तव्य के साथ समाप्त करता है: गंगा की रक्षा करनी चाहिए।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "वयं गङ्गाजलं स्वच्छं रक्षामः।",
+       "hi": "वयं गङ्गाजलं स्वच्छं रक्षामः।"
+      },
+      "bin": "co",
+      "why": {
+       "en": "A promise to keep the water clean ends the essay.",
+       "hi": "जल को स्वच्छ रखने का संकल्प निबंध को समाप्त करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:i1",
+     "expect": "placed:i1",
+     "say": {
+      "en": "Tap the first card and decide: where does it belong?",
+      "hi": "पहला कार्ड छुओ और तय करो: यह कहाँ आएगा?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A good conclusion often begins with which small word meaning 'therefore'?",
+      "hi": "अच्छा उपसंहार प्रायः किस छोटे शब्द से शुरू होता है जिसका अर्थ 'इसलिए' है?"
+     },
+     "options": [
+      {
+       "id": "atah",
+       "en": "अतः",
+       "hi": "अतः"
+      },
+      {
+       "id": "kada",
+       "en": "कदा",
+       "hi": "कदा"
+      },
+      {
+       "id": "kutra",
+       "en": "कुत्र",
+       "hi": "कुत्र"
+      }
+     ],
+     "answer": "atah"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the sentences, then press Check.",
+      "hi": "सब वाक्य रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An essay (निबन्ध) has three parts. The introduction (भूमिका) names the topic. The body (मुख्य भाग) gives facts, each in its own sentence. The conclusion (उपसंहार) closes with a lesson or a promise, and often starts with अतः. Planning the parts first makes writing in Sanskrit much easier, because you only need one simple sentence for each part.",
+      "hi": "निबंध के तीन भाग होते हैं। भूमिका विषय का नाम बताती है। मुख्य भाग में तथ्य होते हैं, हर तथ्य अपने वाक्य में। उपसंहार शिक्षा या संकल्प के साथ समाप्त करता है और प्रायः अतः से शुरू होता है। पहले भाग योजना बना लेने से संस्कृत में लिखना बहुत आसान हो जाता है, क्योंकि हर भाग के लिए बस एक सरल वाक्य चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is in the body?",
+        "hi": "इनमें से कौन-सा वाक्य मुख्य भाग में है?"
+       },
+       "options": [
+        {
+         "en": "सा हिमालयात् निर्गच्छति।",
+         "hi": "सा हिमालयात् निर्गच्छति।"
+        },
+        {
+         "en": "अतः गङ्गा रक्षणीया।",
+         "hi": "अतः गङ्गा रक्षणीया।"
+        },
+        {
+         "en": "गङ्गा भारतस्य पवित्रा नदी अस्ति।",
+         "hi": "गङ्गा भारतस्य पवित्रा नदी अस्ति।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It gives a fact: where the river starts.",
+        "hi": "यह एक तथ्य देता है: नदी कहाँ से शुरू होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "अतः opens the conclusion.",
+         "hi": "अतः उपसंहार शुरू करता है।"
+        },
+        {
+         "en": "This one names the topic, so it opens the essay.",
+         "hi": "यह विषय का नाम बताता है, इसलिए निबंध खोलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does 'रक्षणीया' mean?",
+        "hi": "'रक्षणीया' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Should be protected",
+         "hi": "रक्षा की जानी चाहिए"
+        },
+        {
+         "en": "Has protected",
+         "hi": "रक्षा कर चुकी है"
+        },
+        {
+         "en": "Is angry",
+         "hi": "क्रोधित है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ending -अनीय shows what ought to be done.",
+        "hi": "-अनीय अंत बताता है कि क्या करना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The suffix looks forward ('ought to'), not back.",
+         "hi": "प्रत्यय आगे की ओर देखता है ('चाहिए'), पीछे की ओर नहीं।"
+        },
+        {
+         "en": "It comes from रक्ष् (protect), not from anger.",
+         "hi": "यह रक्ष् (रक्षा करना) से बना है, क्रोध से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose another river or mountain and plan three sentences: introduction, body, conclusion.",
+      "hi": "कोई और नदी या पर्वत चुनो और तीन वाक्यों की योजना बनाओ: भूमिका, मुख्य भाग, उपसंहार।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "12.1",
+   "use": "Letter-writing materials",
+   "shows": "A blank ruled letter sheet, a plain envelope and a pen laid out neatly",
+   "view": "From above, white background, soft light from the top left",
+   "right": "Sheet is fully blank, envelope closed without a stamp or address",
+   "avoid": "Any writing, stamps, logos"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "12.2",
+   "use": "A phone conversation",
+   "shows": "A hand holding a mobile phone to the ear, a school bag on a desk behind",
+   "view": "Side close-up, face out of frame, shallow depth",
+   "right": "Screen not visible, phone held naturally",
+   "avoid": "Faces, readable screens, brand logos"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "12.3",
+   "use": "Water, the unseen passage topic",
+   "shows": "A village pond at sunrise with a hand pump on its bank and steps going down to the water",
+   "view": "Wide shot at eye level, soft golden light",
+   "right": "Clear water, steps and pump all visible",
+   "avoid": "People's faces, signs, litter"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "12.4",
+   "use": "Tree planting",
+   "shows": "Two hands pressing soil around a young sapling in a newly dug hole",
+   "view": "Close-up from the side, bright daylight",
+   "right": "Real sapling with a few leaves, dark moist soil",
+   "avoid": "Faces, gloves with logos, tools with brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "12.5",
+   "use": "The Ganga at dawn",
+   "shows": "A ghat on the river Ganga at sunrise, steps down to the water and a few small lamps floating",
+   "view": "Wide shot from across the water, mist and golden light",
+   "right": "River wide and calm, steps clear, lamps small and few",
+   "avoid": "People's faces, boats with writing, litter"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "12.1",
+   "use": "Formal letter page frame",
+   "shows": "A blank A4 page with faint boxes marking the places for address, date, receiver, subject, greeting, body, closing and name",
+   "view": "Flat front view on white, boxes in pale logo colours",
+   "right": "Eight zones in the right order from top to bottom",
+   "avoid": "Text, numbers, arrows"
+  }
+ ]
+}

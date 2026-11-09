@@ -1,0 +1,1894 @@
+{
+ "chapter_key": "u.c11.chemistry.kech2.ch08",
+ "class": 11,
+ "subject_id": "chemistry",
+ "title": "Organic Chemistry – Some Basic Principles and Techniques",
+ "source": "https://ncert.nic.in/textbook/pdf/kech202.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "General introduction to organic chemistry",
+   "labs": [],
+   "why_no_lab": "This is the short story of how organic chemistry grew from Wöhler's urea; the reader tells it, and the labs that follow do the hands-on work."
+  },
+  {
+   "n": "8.2",
+   "title": "Tetravalence of carbon: shapes of organic compounds",
+   "labs": [
+    "c11-chemistry-kech2-ch08-carbon-hybrid"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Structural representations: complete, condensed and bond-line formulas",
+   "labs": [
+    "c11-chemistry-kech2-ch08-representations"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Classification of organic compounds: functional groups and homologous series",
+   "labs": [
+    "c11-chemistry-kech2-ch08-functional-group",
+    "c11-chemistry-kech2-ch08-homologous"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Nomenclature: the IUPAC system",
+   "labs": [
+    "c11-chemistry-kech2-ch08-iupac-chain"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Isomerism: structural and stereoisomerism",
+   "labs": [
+    "c11-chemistry-kech2-ch08-isomers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.7",
+   "title": "Fundamental concepts in reaction mechanism: fission, nucleophiles and electrophiles, electron displacement effects",
+   "labs": [
+    "c11-chemistry-kech2-ch08-nucleophiles",
+    "c11-chemistry-kech2-ch08-carbocation-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.8",
+   "title": "Methods of purification: sublimation, crystallisation, distillation, extraction, chromatography",
+   "labs": [
+    "c11-chemistry-kech2-ch08-sublimation",
+    "c11-chemistry-kech2-ch08-chromatography"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.9",
+   "title": "Qualitative analysis: detection of carbon, hydrogen, nitrogen, sulphur, halogens and phosphorus",
+   "labs": [
+    "c11-chemistry-kech2-ch08-lassaigne"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.10",
+   "title": "Quantitative analysis: estimation of carbon, hydrogen, nitrogen, halogens, sulphur, phosphorus and oxygen",
+   "labs": [],
+   "why_no_lab": "These are calculations from masses measured in Dumas, Kjeldahl and Carius methods; the reader's worked examples and the apparatus photos teach them better than a moving lab."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-chemistry-kech2-ch08-carbon-hybrid",
+   "topic": "8.2",
+   "template": "molecule",
+   "title": {
+    "en": "Single, double, triple: carbon's shapes",
+    "hi": "एकल, द्वि, त्रि: कार्बन के आकार"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "carbon",
+    "atoms": [
+     "C",
+     "H",
+     "O"
+    ],
+    "target": "ethyne"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "added:C",
+     "say": {
+      "en": "Tap C to place a carbon atom.",
+      "hi": "एक कार्बन परमाणु रखने के लिए C छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:ethane",
+     "say": {
+      "en": "Tap C again to join a second carbon. Hydrogens fill in by themselves.",
+      "hi": "दूसरा कार्बन जोड़ने के लिए फिर C छुओ। हाइड्रोजन अपने-आप भर जाते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the two carbons share two pairs instead of one, how many hydrogens can each carbon still hold?",
+      "hi": "अगर दोनों कार्बन एक की जगह दो युग्म साझा करें, तो हर कार्बन अब कितने हाइड्रोजन रख सकता है?"
+     },
+     "options": [
+      {
+       "id": "2",
+       "en": "Two",
+       "hi": "दो"
+      },
+      {
+       "id": "3",
+       "en": "Three",
+       "hi": "तीन"
+      },
+      {
+       "id": "1",
+       "en": "One",
+       "hi": "एक"
+      }
+     ],
+     "answer": "2"
+    },
+    {
+     "kind": "do",
+     "target": "bond:double",
+     "expect": "named:ethene",
+     "say": {
+      "en": "Tap Double to make a C=C bond.",
+      "hi": "C=C आबंध बनाने के लिए 'द्वि' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bond:triple",
+     "expect": "named:ethyne",
+     "say": {
+      "en": "Tap Triple to make a C≡C bond.",
+      "hi": "C≡C आबंध बनाने के लिए 'त्रि' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:3d",
+     "expect": "view:3d",
+     "say": {
+      "en": "Tap 3D model and turn the molecule.",
+      "hi": "'3D मॉडल' छुओ और अणु को घुमाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Carbon always makes four bonds: it is tetravalent. In ethane each carbon is sp³ with four single bonds pointing to the corners of a tetrahedron. In ethene each carbon is sp², flat with 120° angles, and one pi bond. In ethyne each carbon is sp, in a straight line, with two pi bonds. More s-character makes carbon hold electrons more tightly.",
+      "hi": "कार्बन हमेशा चार आबंध बनाता है: यह चतुःसंयोजी है। एथेन में हर कार्बन sp³ है, जिसके चार एकल आबंध चतुष्फलक के कोनों की ओर हैं। एथीन में हर कार्बन sp² है, समतल 120° कोणों के साथ, और एक पाई आबंध। एथाइन में हर कार्बन sp है, एक सीधी रेखा में, दो पाई आबंधों के साथ। ज़्यादा s-गुण कार्बन को इलेक्ट्रॉन कसकर पकड़ने देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the shape around each carbon in ethyne?",
+        "hi": "एथाइन में हर कार्बन के चारों ओर आकार क्या है?"
+       },
+       "options": [
+        {
+         "en": "Linear, 180°",
+         "hi": "रैखिक, 180°"
+        },
+        {
+         "en": "Trigonal planar, 120°",
+         "hi": "त्रिकोणीय समतलीय, 120°"
+        },
+        {
+         "en": "Tetrahedral, 109.5°",
+         "hi": "चतुष्फलकीय, 109.5°"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each sp carbon has two sigma bonds pointing opposite ways, so H–C≡C–H lies in a straight line.",
+        "hi": "हर sp कार्बन के दो सिग्मा आबंध उलटी दिशा में हैं, इसलिए H–C≡C–H एक सीधी रेखा में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "120° belongs to sp² carbons, as in ethene.",
+         "hi": "120° sp² कार्बनों का है, जैसे एथीन में।"
+        },
+        {
+         "en": "109.5° belongs to sp³ carbons, as in ethane.",
+         "hi": "109.5° sp³ कार्बनों का है, जैसे एथेन में।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Single again and add a third carbon. Then try putting a double bond in different places.",
+      "hi": "फिर से 'एकल' छुओ और तीसरा कार्बन जोड़ो। फिर द्वि आबंध को अलग-अलग जगह लगाकर देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch08-representations",
+   "topic": "8.3",
+   "template": "match",
+   "title": {
+    "en": "Condensed formula to bond-line",
+    "hi": "संघनित सूत्र से आबंध-रेखा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "butane",
+      "left": {
+       "en": "CH₃CH₂CH₂CH₃",
+       "hi": "CH₃CH₂CH₂CH₃"
+      },
+      "right": {
+       "en": "A zig-zag of three lines",
+       "hi": "तीन रेखाओं का टेढ़ा-मेढ़ा क्रम"
+      },
+      "why": {
+       "en": "Each end and corner is a carbon; hydrogens are not drawn.",
+       "hi": "हर सिरा और कोना एक कार्बन है; हाइड्रोजन नहीं बनाए जाते।"
+      }
+     },
+     {
+      "id": "iso",
+      "left": {
+       "en": "(CH₃)₂CHCH₃",
+       "hi": "(CH₃)₂CHCH₃"
+      },
+      "right": {
+       "en": "Three lines meeting at one point, like a Y",
+       "hi": "एक बिंदु पर मिलती तीन रेखाएँ, Y जैसी"
+      },
+      "why": {
+       "en": "The middle carbon has three carbons attached.",
+       "hi": "बीच वाले कार्बन से तीन कार्बन जुड़े हैं।"
+      }
+     },
+     {
+      "id": "propene",
+      "left": {
+       "en": "CH₂=CHCH₃",
+       "hi": "CH₂=CHCH₃"
+      },
+      "right": {
+       "en": "Two lines, one of them doubled",
+       "hi": "दो रेखाएँ, एक दोहरी"
+      },
+      "why": {
+       "en": "A double line shows the C=C bond.",
+       "hi": "दोहरी रेखा C=C आबंध दिखाती है।"
+      }
+     },
+     {
+      "id": "ethanol",
+      "left": {
+       "en": "CH₃CH₂OH",
+       "hi": "CH₃CH₂OH"
+      },
+      "right": {
+       "en": "One line with OH written at one end",
+       "hi": "एक रेखा जिसके एक सिरे पर OH लिखा है"
+      },
+      "why": {
+       "en": "Atoms other than C and H are always written.",
+       "hi": "C और H के अलावा परमाणु हमेशा लिखे जाते हैं।"
+      }
+     },
+     {
+      "id": "cyclo",
+      "left": {
+       "en": "C₆H₁₂, a ring of six CH₂",
+       "hi": "C₆H₁₂, छह CH₂ का वलय"
+      },
+      "right": {
+       "en": "A hexagon",
+       "hi": "एक षट्भुज"
+      },
+      "why": {
+       "en": "Each corner of the ring is a CH₂ group.",
+       "hi": "वलय का हर कोना एक CH₂ समूह है।"
+      }
+     },
+     {
+      "id": "benzene",
+      "left": {
+       "en": "C₆H₆, benzene",
+       "hi": "C₆H₆, बेंज़ीन"
+      },
+      "right": {
+       "en": "A hexagon with three alternate double lines",
+       "hi": "तीन एकांतर दोहरी रेखाओं वाला षट्भुज"
+      },
+      "why": {
+       "en": "Benzene's ring has alternating double bonds, often shown as a circle inside.",
+       "hi": "बेंज़ीन के वलय में एकांतर द्वि आबंध हैं, अक्सर अंदर एक वृत्त से दिखाए जाते हैं।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a bond-line drawing, what does each corner or end of a line stand for?",
+      "hi": "आबंध-रेखा चित्र में हर कोना या रेखा का सिरा किसे दर्शाता है?"
+     },
+     "options": [
+      {
+       "id": "c",
+       "en": "A carbon atom with enough hydrogens",
+       "hi": "पर्याप्त हाइड्रोजन वाला एक कार्बन परमाणु"
+      },
+      {
+       "id": "h",
+       "en": "A hydrogen atom",
+       "hi": "एक हाइड्रोजन परमाणु"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing, it is just a turn",
+       "hi": "कुछ नहीं, बस एक मोड़"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "left:butane",
+     "expect": "matched:butane",
+     "say": {
+      "en": "Match butane with its bond-line picture.",
+      "hi": "ब्यूटेन को उसके आबंध-रेखा चित्र से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:ethanol",
+     "expect": "matched:ethanol",
+     "say": {
+      "en": "Match ethanol.",
+      "hi": "एथेनॉल मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाकी मिलाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A complete formula shows every bond. A condensed formula groups atoms, like CH₃CH₂OH. A bond-line formula is the quickest: lines are C–C bonds in a zig-zag, each end and corner is a carbon with enough hydrogens to make four bonds, and only other atoms like O, N or Cl are written. Chemists use bond-line drawings for big molecules.",
+      "hi": "पूर्ण सूत्र हर आबंध दिखाता है। संघनित सूत्र परमाणुओं को समूहों में लिखता है, जैसे CH₃CH₂OH। आबंध-रेखा सूत्र सबसे तेज़ है: रेखाएँ टेढ़े-मेढ़े क्रम में C–C आबंध हैं, हर सिरा और कोना एक कार्बन है जिस पर चार आबंध पूरे करने लायक़ हाइड्रोजन हैं, और केवल O, N या Cl जैसे दूसरे परमाणु लिखे जाते हैं। रसायनज्ञ बड़े अणुओं के लिए आबंध-रेखा चित्र इस्तेमाल करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bond-line zig-zag has five corners and ends in all. Which alkane is it?",
+        "hi": "एक आबंध-रेखा के टेढ़े-मेढ़े क्रम में कुल पाँच कोने और सिरे हैं। यह कौन-सा ऐल्केन है?"
+       },
+       "options": [
+        {
+         "en": "Pentane, C₅H₁₂",
+         "hi": "पेन्टेन, C₅H₁₂"
+        },
+        {
+         "en": "Butane, C₄H₁₀",
+         "hi": "ब्यूटेन, C₄H₁₀"
+        },
+        {
+         "en": "Hexane, C₆H₁₄",
+         "hi": "हेक्सेन, C₆H₁₄"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each corner and end is one carbon, so five carbons in a chain is pentane.",
+        "hi": "हर कोना और सिरा एक कार्बन है, इसलिए श्रृंखला में पाँच कार्बन पेन्टेन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Butane has four carbons: four points, three lines.",
+         "hi": "ब्यूटेन में चार कार्बन हैं: चार बिंदु, तीन रेखाएँ।"
+        },
+        {
+         "en": "Hexane needs six points.",
+         "hi": "हेक्सेन के लिए छह बिंदु चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and match again. Then draw the bond-line picture of CH₃CH₂CH₂OH on paper.",
+      "hi": "फिर से शुरू करो और दोबारा मिलाओ। फिर काग़ज़ पर CH₃CH₂CH₂OH का आबंध-रेखा चित्र बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch08-functional-group",
+   "topic": "8.4",
+   "template": "molecule",
+   "title": {
+    "en": "Add a functional group",
+    "hi": "एक क्रियात्मक समूह जोड़ो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "carbon",
+    "atoms": [
+     "C",
+     "H",
+     "O",
+     "Cl"
+    ],
+    "target": "ethanol"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "added:C",
+     "say": {
+      "en": "Tap C to start a carbon chain.",
+      "hi": "कार्बन श्रृंखला शुरू करने के लिए C छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:ethane",
+     "say": {
+      "en": "Tap C again to make a two-carbon chain.",
+      "hi": "दो कार्बन की श्रृंखला बनाने के लिए फिर C छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If one hydrogen of ethane is replaced by –OH, what will the compound be called?",
+      "hi": "अगर एथेन का एक हाइड्रोजन –OH से बदल दिया जाए, तो यौगिक का नाम क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "ethanol",
+       "en": "Ethanol",
+       "hi": "एथेनॉल"
+      },
+      {
+       "id": "ethanal",
+       "en": "Ethanal",
+       "hi": "एथेनैल"
+      },
+      {
+       "id": "ethanoic",
+       "en": "Ethanoic acid",
+       "hi": "एथेनॉइक अम्ल"
+      }
+     ],
+     "answer": "ethanol"
+    },
+    {
+     "kind": "do",
+     "target": "group:alcohol",
+     "expect": "named:ethanol",
+     "say": {
+      "en": "Tap the –OH group to add it.",
+      "hi": "–OH समूह जोड़ने के लिए उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A functional group is an atom or group of atoms that gives a family its chemistry: –OH for alcohols, –CHO for aldehydes, >C=O for ketones, –COOH for carboxylic acids, –Cl for chloroalkanes. The carbon chain decides the root of the name (eth- for two carbons), and the group adds the ending: ethan-ol. Ethanol is the alcohol in hand sanitiser.",
+      "hi": "क्रियात्मक समूह वह परमाणु या परमाणुओं का समूह है जो एक परिवार को उसका रसायन देता है: ऐल्कोहॉल के लिए –OH, ऐल्डिहाइड के लिए –CHO, कीटोन के लिए >C=O, कार्बोक्सिलिक अम्ल के लिए –COOH, क्लोरोऐल्केन के लिए –Cl। कार्बन श्रृंखला नाम का मूल तय करती है (दो कार्बन के लिए एथ-), और समूह अंत जोड़ता है: एथेन-ऑल। एथेनॉल हैंड सैनिटाइज़र वाला ऐल्कोहॉल है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which compound has the functional group –COOH?",
+        "hi": "किस यौगिक में –COOH क्रियात्मक समूह है?"
+       },
+       "options": [
+        {
+         "en": "Ethanoic acid, in vinegar",
+         "hi": "एथेनॉइक अम्ल, सिरके में"
+        },
+        {
+         "en": "Propanone, in nail-polish remover",
+         "hi": "प्रोपेनोन, नेल-पॉलिश रिमूवर में"
+        },
+        {
+         "en": "Methanal",
+         "hi": "मेथेनैल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Carboxylic acids end in -oic acid and carry –COOH; vinegar is about 5% ethanoic acid.",
+        "hi": "कार्बोक्सिलिक अम्ल -ओइक अम्ल पर ख़त्म होते हैं और इनमें –COOH होता है; सिरका लगभग 5% एथेनॉइक अम्ल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Propanone is a ketone, with C=O between two carbons.",
+         "hi": "प्रोपेनोन कीटोन है, जिसमें C=O दो कार्बनों के बीच है।"
+        },
+        {
+         "en": "Methanal is an aldehyde, –CHO.",
+         "hi": "मेथेनैल ऐल्डिहाइड है, –CHO।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and try the other groups on a three-carbon chain. Read each name and its ending.",
+      "hi": "'फिर से' दबाओ और तीन कार्बन की श्रृंखला पर दूसरे समूह आज़माओ। हर नाम और उसका अंत पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch08-homologous",
+   "topic": "8.4",
+   "template": "data",
+   "title": {
+    "en": "A homologous series",
+    "hi": "समजातीय श्रेणी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 3,
+    "title": {
+     "en": "Boiling points of straight-chain alkanes",
+     "hi": "सीधी श्रृंखला वाले ऐल्केनों के क्वथनांक"
+    },
+    "xlabel": {
+     "en": "Alkane",
+     "hi": "ऐल्केन"
+    },
+    "ylabel": {
+     "en": "Boiling point (K)",
+     "hi": "क्वथनांक (K)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Methane CH₄",
+       "hi": "मेथेन CH₄"
+      },
+      "value": 112
+     },
+     {
+      "label": {
+       "en": "Ethane C₂H₆",
+       "hi": "एथेन C₂H₆"
+      },
+      "value": 185
+     },
+     {
+      "label": {
+       "en": "Propane C₃H₈",
+       "hi": "प्रोपेन C₃H₈"
+      },
+      "value": 231
+     },
+     {
+      "label": {
+       "en": "Butane C₄H₁₀",
+       "hi": "ब्यूटेन C₄H₁₀"
+      },
+      "value": 273
+     },
+     {
+      "label": {
+       "en": "Pentane C₅H₁₂",
+       "hi": "पेन्टेन C₅H₁₂"
+      },
+      "value": 309
+     },
+     {
+      "label": {
+       "en": "Hexane C₆H₁₄",
+       "hi": "हेक्सेन C₆H₁₄"
+      },
+      "value": 342
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each next alkane has one more CH₂ unit. What will happen to the boiling point?",
+      "hi": "हर अगले ऐल्केन में एक CH₂ इकाई ज़्यादा है। क्वथनांक का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "It keeps rising, step by step",
+       "hi": "यह क़दम-दर-क़दम बढ़ता रहेगा"
+      },
+      {
+       "id": "down",
+       "en": "It falls",
+       "hi": "यह घटेगा"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "यह वही रहेगा"
+      }
+     ],
+     "answer": "up"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add to plot butane.",
+      "hi": "ब्यूटेन का बार बनाने के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add for pentane.",
+      "hi": "पेन्टेन के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add for hexane.",
+      "hi": "हेक्सेन के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A homologous series is a family with the same functional group and general formula, here CₙH₂ₙ₊₂, where each member differs from the next by CH₂. Their chemistry is alike, but physical properties change steadily: bigger molecules attract each other more, so the boiling point rises. Butane boils near 273 K, which is why it is a gas in an LPG cylinder only under pressure.",
+      "hi": "समजातीय श्रेणी एक ही क्रियात्मक समूह और सामान्य सूत्र वाला परिवार है, यहाँ CₙH₂ₙ₊₂, जिसमें हर सदस्य अगले से CH₂ से अलग है। इनका रसायन मिलता-जुलता है, पर भौतिक गुण धीरे-धीरे बदलते हैं: बड़े अणु एक-दूसरे को ज़्यादा खींचते हैं, इसलिए क्वथनांक बढ़ता है। ब्यूटेन लगभग 273 K पर उबलती है, इसीलिए LPG सिलिंडर में वह दबाव में ही द्रव रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "By how much does the molar mass change from one member to the next?",
+        "hi": "एक सदस्य से अगले तक मोलर द्रव्यमान कितना बदलता है?"
+       },
+       "options": [
+        {
+         "en": "14 g/mol, one CH₂",
+         "hi": "14 g/mol, एक CH₂"
+        },
+        {
+         "en": "2 g/mol, one H₂",
+         "hi": "2 g/mol, एक H₂"
+        },
+        {
+         "en": "12 g/mol, one C",
+         "hi": "12 g/mol, एक C"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "CH₂ = 12 + 2 × 1 = 14 g/mol.",
+        "hi": "CH₂ = 12 + 2 × 1 = 14 g/mol।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Members differ by a whole CH₂ group, not only hydrogen.",
+         "hi": "सदस्य पूरे CH₂ समूह से अलग होते हैं, केवल हाइड्रोजन से नहीं।"
+        },
+        {
+         "en": "The carbon comes with two hydrogens, so the step is 14.",
+         "hi": "कार्बन के साथ दो हाइड्रोजन आते हैं, इसलिए अंतर 14 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the bars and see that the order matches the number of carbons. Which alkanes are gases at room temperature (about 298 K)?",
+      "hi": "बार छाँटो और देखो कि क्रम कार्बनों की संख्या से मेल खाता है। कमरे के ताप (लगभग 298 K) पर कौन-से ऐल्केन गैस हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch08-iupac-chain",
+   "topic": "8.5",
+   "template": "molecule",
+   "title": {
+    "en": "Number the chain: a branched alkane",
+    "hi": "श्रृंखला पर क्रमांक: एक शाखित ऐल्केन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "carbon",
+    "atoms": [
+     "C",
+     "H",
+     "Cl",
+     "Br"
+    ],
+    "target": "2-methylpropane"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "added:C",
+     "say": {
+      "en": "Tap C to start the chain.",
+      "hi": "श्रृंखला शुरू करने के लिए C छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:ethane",
+     "say": {
+      "en": "Add a second carbon.",
+      "hi": "दूसरा कार्बन जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:propane",
+     "say": {
+      "en": "Add a third.",
+      "hi": "तीसरा जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The fourth carbon joins the middle carbon of propane. What is the name?",
+      "hi": "चौथा कार्बन प्रोपेन के बीच वाले कार्बन से जुड़ता है। नाम क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "m2",
+       "en": "2-Methylpropane",
+       "hi": "2-मेथिलप्रोपेन"
+      },
+      {
+       "id": "b",
+       "en": "Butane",
+       "hi": "ब्यूटेन"
+      },
+      {
+       "id": "m1",
+       "en": "1-Methylpropane",
+       "hi": "1-मेथिलप्रोपेन"
+      }
+     ],
+     "answer": "m2"
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:2-methylpropane",
+     "say": {
+      "en": "Add a fourth carbon and read the name.",
+      "hi": "चौथा कार्बन जोड़ो और नाम पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bond:double",
+     "expect": "named:2-methylpropene",
+     "say": {
+      "en": "Tap Double to make a C=C bond and read the new name.",
+      "hi": "C=C आबंध बनाने के लिए 'द्वि' छुओ और नया नाम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An IUPAC name has a root for the longest chain, a suffix for the kind of bonds (-ane, -ene, -yne), and prefixes with numbers for branches. Here the longest chain has three carbons (prop-) and a methyl branch sits on carbon 2. The chain is numbered from the end that gives branches and double bonds the lowest numbers.",
+      "hi": "IUPAC नाम में सबसे लंबी श्रृंखला का मूल, आबंधों के प्रकार का प्रत्यय (-ऐन, -ईन, -आइन), और शाखाओं के लिए अंकों वाले उपसर्ग होते हैं। यहाँ सबसे लंबी श्रृंखला में तीन कार्बन (प्रोप-) हैं और कार्बन 2 पर एक मेथिल शाखा है। श्रृंखला पर क्रमांक उस सिरे से लगते हैं जिससे शाखाओं और द्वि आबंधों को सबसे छोटे अंक मिलें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is CH₃–CH=CH–CH₂–CH₃ called?",
+        "hi": "CH₃–CH=CH–CH₂–CH₃ को क्या कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Pent-2-ene",
+         "hi": "पेन्ट-2-ईन"
+        },
+        {
+         "en": "Pent-3-ene",
+         "hi": "पेन्ट-3-ईन"
+        },
+        {
+         "en": "Pentane",
+         "hi": "पेन्टेन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Five carbons give pent-; numbering from the left puts the double bond at carbon 2, the lowest number.",
+        "hi": "पाँच कार्बन से पेन्ट- बनता है; बाएँ से गिनने पर द्वि आबंध कार्बन 2 पर आता है, जो सबसे छोटा अंक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 comes from numbering the wrong end; the double bond must get the lowest number.",
+         "hi": "3 उलटे सिरे से गिनने पर आता है; द्वि आबंध को सबसे छोटा अंक मिलना चाहिए।"
+        },
+        {
+         "en": "Pentane has only single bonds; this one has a C=C, so it ends in -ene.",
+         "hi": "पेन्टेन में केवल एकल आबंध होते हैं; इसमें C=C है, इसलिए नाम -ईन पर खत्म होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Tap the end carbon in the picture before adding the next one, to grow a straight chain. Build butane, then but-1-ene, and read each name.",
+      "hi": "'फिर से' दबाओ। अगला कार्बन जोड़ने से पहले चित्र में सिरे वाले कार्बन को छुओ, ताकि सीधी श्रृंखला बने। ब्यूटेन, फिर ब्यूट-1-ईन बनाओ और हर नाम पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch08-isomers",
+   "topic": "8.6",
+   "template": "molecule",
+   "title": {
+    "en": "Three pentanes from one formula",
+    "hi": "एक सूत्र से तीन पेन्टेन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "isomers",
+    "target": "C5H12"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "C₅H₁₂ has five carbons and twelve hydrogens. How many different structures can it have?",
+      "hi": "C₅H₁₂ में पाँच कार्बन और बारह हाइड्रोजन हैं। इसकी कितनी अलग संरचनाएँ हो सकती हैं?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "Three",
+       "hi": "तीन"
+      },
+      {
+       "id": "1",
+       "en": "Only one",
+       "hi": "केवल एक"
+      },
+      {
+       "id": "5",
+       "en": "Five",
+       "hi": "पाँच"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "added:C",
+     "say": {
+      "en": "Tap C to start.",
+      "hi": "शुरू करने के लिए C छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "added:C",
+     "say": {
+      "en": "Add a second carbon.",
+      "hi": "दूसरा कार्बन जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "added:C",
+     "say": {
+      "en": "Add a third.",
+      "hi": "तीसरा जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "added:C",
+     "say": {
+      "en": "Add a fourth.",
+      "hi": "चौथा जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "built:C5H12",
+     "say": {
+      "en": "Add a fifth carbon. Read the name: is it a straight chain or a branched one?",
+      "hi": "पाँचवाँ कार्बन जोड़ो। नाम पढ़ो: यह सीधी श्रृंखला है या शाखित?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Compounds with the same molecular formula but different structures are isomers. C₅H₁₂ has three: pentane, the straight chain; 2-methylbutane, with one branch; and 2,2-dimethylpropane, with two branches on the middle carbon. These are chain isomers: same formula, different skeletons, so different boiling points.",
+      "hi": "एक ही आण्विक सूत्र पर अलग संरचना वाले यौगिक समावयवी हैं। C₅H₁₂ के तीन हैं: पेन्टेन, सीधी श्रृंखला; 2-मेथिलब्यूटेन, एक शाखा के साथ; और 2,2-डाइमेथिलप्रोपेन, बीच वाले कार्बन पर दो शाखाओं के साथ। ये श्रृंखला समावयवी हैं: सूत्र वही, ढाँचा अलग, इसलिए क्वथनांक अलग।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Propan-1-ol and propan-2-ol differ only in where –OH is. What isomerism is this?",
+        "hi": "प्रोपेन-1-ऑल और प्रोपेन-2-ऑल केवल –OH की जगह में अलग हैं। यह कौन-सी समावयवता है?"
+       },
+       "options": [
+        {
+         "en": "Position isomerism",
+         "hi": "स्थिति समावयवता"
+        },
+        {
+         "en": "Chain isomerism",
+         "hi": "श्रृंखला समावयवता"
+        },
+        {
+         "en": "Functional group isomerism",
+         "hi": "क्रियात्मक समूह समावयवता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The chain and the group are the same; only the position of the group changes.",
+        "hi": "श्रृंखला और समूह वही हैं; केवल समूह की स्थिति बदलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both have the same straight three-carbon chain.",
+         "hi": "दोनों में तीन कार्बन की वही सीधी श्रृंखला है।"
+        },
+        {
+         "en": "Both are alcohols; functional isomers would be, say, an alcohol and an ether.",
+         "hi": "दोनों ऐल्कोहॉल हैं; क्रियात्मक समावयवी जैसे एक ऐल्कोहॉल और एक ईथर होते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Before each new carbon, tap the carbon in the picture where it should join. Find all three isomers.",
+      "hi": "'फिर से' दबाओ। हर नए कार्बन से पहले चित्र में वह कार्बन छुओ जहाँ उसे जुड़ना है। तीनों समावयवी खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch08-nucleophiles",
+   "topic": "8.7",
+   "template": "sort",
+   "title": {
+    "en": "Nucleophile or electrophile?",
+    "hi": "नाभिकस्नेही या इलेक्ट्रॉनस्नेही?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "nu",
+      "label": {
+       "en": "Nucleophile: brings a pair",
+       "hi": "नाभिकस्नेही: युग्म लाता है"
+      }
+     },
+     {
+      "id": "el",
+      "label": {
+       "en": "Electrophile: wants a pair",
+       "hi": "इलेक्ट्रॉनस्नेही: युग्म चाहता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "oh",
+      "text": {
+       "en": "OH⁻",
+       "hi": "OH⁻"
+      },
+      "bin": "nu",
+      "why": {
+       "en": "A negative ion with lone pairs, attracted to positive centres.",
+       "hi": "एकाकी युग्मों वाला ऋण आयन, धन केंद्रों की ओर खिंचता है।"
+      }
+     },
+     {
+      "id": "cn",
+      "text": {
+       "en": "CN⁻",
+       "hi": "CN⁻"
+      },
+      "bin": "nu",
+      "why": {
+       "en": "Cyanide gives its carbon lone pair.",
+       "hi": "सायनाइड अपने कार्बन का एकाकी युग्म देता है।"
+      }
+     },
+     {
+      "id": "nh3",
+      "text": {
+       "en": "NH₃",
+       "hi": "NH₃"
+      },
+      "bin": "nu",
+      "why": {
+       "en": "A neutral molecule with a lone pair on nitrogen.",
+       "hi": "नाइट्रोजन पर एकाकी युग्म वाला उदासीन अणु।"
+      }
+     },
+     {
+      "id": "h2o",
+      "text": {
+       "en": "H₂O",
+       "hi": "H₂O"
+      },
+      "bin": "nu",
+      "why": {
+       "en": "Oxygen's lone pairs make water a weak nucleophile.",
+       "hi": "ऑक्सीजन के एकाकी युग्म पानी को दुर्बल नाभिकस्नेही बनाते हैं।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "H⁺",
+       "hi": "H⁺"
+      },
+      "bin": "el",
+      "why": {
+       "en": "A bare proton needs a pair of electrons.",
+       "hi": "नंगे प्रोटॉन को इलेक्ट्रॉन युग्म चाहिए।"
+      }
+     },
+     {
+      "id": "no2",
+      "text": {
+       "en": "NO₂⁺ (nitronium ion)",
+       "hi": "NO₂⁺ (नाइट्रोनियम आयन)"
+      },
+      "bin": "el",
+      "why": {
+       "en": "The attacking species in nitration of benzene.",
+       "hi": "बेंज़ीन के नाइट्रीकरण में आक्रमण करने वाला कण।"
+      }
+     },
+     {
+      "id": "cat",
+      "text": {
+       "en": "CH₃⁺ (a carbocation)",
+       "hi": "CH₃⁺ (एक कार्बधनायन)"
+      },
+      "bin": "el",
+      "why": {
+       "en": "Its carbon has only six electrons.",
+       "hi": "इसके कार्बन पर केवल छह इलेक्ट्रॉन हैं।"
+      }
+     },
+     {
+      "id": "bf3",
+      "text": {
+       "en": "BF₃",
+       "hi": "BF₃"
+      },
+      "bin": "el",
+      "why": {
+       "en": "Boron has an empty orbital to fill.",
+       "hi": "बोरॉन का एक कक्षक भरने को ख़ाली है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A nucleophile means 'nucleus-loving'. What does it bring to a reaction?",
+      "hi": "नाभिकस्नेही का अर्थ है 'नाभिक-प्रेमी'। यह अभिक्रिया में क्या लाता है?"
+     },
+     "options": [
+      {
+       "id": "pair",
+       "en": "A pair of electrons",
+       "hi": "इलेक्ट्रॉनों का एक युग्म"
+      },
+      {
+       "id": "proton",
+       "en": "A proton",
+       "hi": "एक प्रोटॉन"
+      },
+      {
+       "id": "nothing",
+       "en": "An empty orbital",
+       "hi": "एक ख़ाली कक्षक"
+      }
+     ],
+     "answer": "pair"
+    },
+    {
+     "kind": "do",
+     "target": "card:oh",
+     "expect": "correct:oh",
+     "say": {
+      "en": "Tap OH⁻, then its bin.",
+      "hi": "OH⁻ छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:cat",
+     "expect": "correct:cat",
+     "say": {
+      "en": "Now place the carbocation.",
+      "hi": "अब कार्बधनायन रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When a covalent bond breaks evenly, each atom keeps one electron and free radicals form (homolytic fission). When it breaks unevenly, one atom takes both electrons and ions form (heterolytic fission). Reagents then attack: a nucleophile brings an electron pair to an electron-poor centre, and an electrophile takes a pair from an electron-rich centre.",
+      "hi": "जब सहसंयोजी आबंध बराबर टूटता है, तो हर परमाणु एक इलेक्ट्रॉन रखता है और मुक्त मूलक बनते हैं (समांश विखंडन)। जब यह असमान टूटता है, तो एक परमाणु दोनों इलेक्ट्रॉन ले लेता है और आयन बनते हैं (विषमांश विखंडन)। फिर अभिकर्मक आक्रमण करते हैं: नाभिकस्नेही इलेक्ट्रॉन-न्यून केंद्र को इलेक्ट्रॉन युग्म देता है, और इलेक्ट्रॉनस्नेही इलेक्ट्रॉन-धनी केंद्र से युग्म लेता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When Cl–Cl breaks in sunlight into two Cl• atoms, what kind of fission is it?",
+        "hi": "जब सूर्य के प्रकाश में Cl–Cl टूटकर दो Cl• परमाणु बनाता है, तो यह कौन-सा विखंडन है?"
+       },
+       "options": [
+        {
+         "en": "Homolytic",
+         "hi": "समांश"
+        },
+        {
+         "en": "Heterolytic",
+         "hi": "विषमांश"
+        },
+        {
+         "en": "No fission",
+         "hi": "कोई विखंडन नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each chlorine keeps one electron of the shared pair, giving free radicals.",
+        "hi": "हर क्लोरीन साझे युग्म का एक इलेक्ट्रॉन रखती है, जिससे मुक्त मूलक बनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Heterolytic fission would give Cl⁺ and Cl⁻ ions.",
+         "hi": "विषमांश विखंडन से Cl⁺ और Cl⁻ आयन बनते।"
+        },
+        {
+         "en": "The bond does break; the two atoms come apart.",
+         "hi": "आबंध टूटता है; दोनों परमाणु अलग होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. For each electrophile, say where it lacks electrons.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर इलेक्ट्रॉनस्नेही के लिए बताओ कि उसमें इलेक्ट्रॉन कहाँ कम हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch08-carbocation-order",
+   "topic": "8.7",
+   "template": "sequence",
+   "title": {
+    "en": "Which carbocation is most stable?",
+    "hi": "कौन-सा कार्बधनायन सबसे स्थायी है?"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "items": [
+     {
+      "id": "methyl",
+      "text": {
+       "en": "Methyl, CH₃⁺ (least stable)",
+       "hi": "मेथिल, CH₃⁺ (सबसे कम स्थायी)"
+      }
+     },
+     {
+      "id": "primary",
+      "text": {
+       "en": "Primary, CH₃CH₂⁺",
+       "hi": "प्राथमिक, CH₃CH₂⁺"
+      }
+     },
+     {
+      "id": "secondary",
+      "text": {
+       "en": "Secondary, (CH₃)₂CH⁺",
+       "hi": "द्वितीयक, (CH₃)₂CH⁺"
+      }
+     },
+     {
+      "id": "tertiary",
+      "text": {
+       "en": "Tertiary, (CH₃)₃C⁺ (most stable)",
+       "hi": "तृतीयक, (CH₃)₃C⁺ (सबसे स्थायी)"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Alkyl groups push electrons towards a positive carbon. Which carbocation will be most stable?",
+      "hi": "ऐल्किल समूह धन कार्बन की ओर इलेक्ट्रॉन धकेलते हैं। कौन-सा कार्बधनायन सबसे स्थायी होगा?"
+     },
+     "options": [
+      {
+       "id": "t",
+       "en": "The one with three alkyl groups",
+       "hi": "जिस पर तीन ऐल्किल समूह हों"
+      },
+      {
+       "id": "m",
+       "en": "The one with none",
+       "hi": "जिस पर एक भी न हो"
+      }
+     ],
+     "answer": "t"
+    },
+    {
+     "kind": "do",
+     "target": "item:methyl",
+     "expect": "placed:methyl",
+     "say": {
+      "en": "Put the least stable one in place 1.",
+      "hi": "सबसे कम स्थायी को स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the rest, then press Check.",
+      "hi": "बाकी को क्रम में लगाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A carbocation's carbon has only six electrons and a positive charge. Each alkyl group attached to it spreads the charge, by the inductive effect and by hyperconjugation with its C–H bonds. More alkyl groups mean more spreading and more stability: methyl < primary < secondary < tertiary.",
+      "hi": "कार्बधनायन के कार्बन पर केवल छह इलेक्ट्रॉन और धन आवेश होता है। उससे जुड़ा हर ऐल्किल समूह आवेश को फैलाता है, प्रेरणिक प्रभाव से और अपने C–H आबंधों के अतिसंयुग्मन से। ज़्यादा ऐल्किल समूह, ज़्यादा फैलाव और ज़्यादा स्थायित्व: मेथिल < प्राथमिक < द्वितीयक < तृतीयक।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is hyperconjugation?",
+        "hi": "अतिसंयुग्मन क्या है?"
+       },
+       "options": [
+        {
+         "en": "Sharing of C–H sigma electrons with a next-door empty p orbital",
+         "hi": "C–H सिग्मा इलेक्ट्रॉनों का पास के ख़ाली p कक्षक से साझा होना"
+        },
+        {
+         "en": "A double bond moving around a ring",
+         "hi": "वलय में द्वि आबंध का घूमना"
+        },
+        {
+         "en": "Breaking of a C–H bond",
+         "hi": "C–H आबंध का टूटना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The C–H bonding electrons next to the positive carbon spread into its empty p orbital, steadying it.",
+        "hi": "धन कार्बन के पास के C–H आबंधी इलेक्ट्रॉन उसके ख़ाली p कक्षक में फैलकर उसे स्थिर करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That describes resonance in a ring like benzene.",
+         "hi": "यह बेंज़ीन जैसे वलय में अनुनाद का वर्णन है।"
+        },
+        {
+         "en": "No bond breaks in hyperconjugation; electrons are only shared.",
+         "hi": "अतिसंयुग्मन में कोई आबंध नहीं टूटता; इलेक्ट्रॉन केवल साझा होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and order them again. Then think: would carbanions follow the same order or the reverse?",
+      "hi": "फिर से शुरू करो और दोबारा क्रम लगाओ। फिर सोचो: कार्बऋणायन वही क्रम मानेंगे या उलटा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch08-sublimation",
+   "topic": "8.8",
+   "template": "particles",
+   "title": {
+    "en": "Purify by sublimation",
+    "hi": "ऊर्ध्वपातन से शोधन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "camphor-salt",
+    "method": "sublimation"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Camphor turns straight from solid to vapour on warming; salt does not. How can we get pure camphor from a mixture with salt?",
+      "hi": "कपूर गर्म करने पर सीधे ठोस से वाष्प बनता है; नमक नहीं। नमक के मिश्रण से शुद्ध कपूर कैसे निकालें?"
+     },
+     "options": [
+      {
+       "id": "sub",
+       "en": "Warm it under a cool funnel and collect the solid that forms on it",
+       "hi": "ठंडी कीप के नीचे गर्म करो और उस पर जमा ठोस इकट्ठा करो"
+      },
+      {
+       "id": "filter",
+       "en": "Filter it",
+       "hi": "छानो"
+      },
+      {
+       "id": "magnet",
+       "en": "Use a magnet",
+       "hi": "चुंबक लगाओ"
+      }
+     ],
+     "answer": "sub"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Tap Run to warm the dish under the funnel.",
+      "hi": "कीप के नीचे प्याली गर्म करने के लिए 'चलाओ' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In sublimation a solid turns straight into vapour on heating, and the vapour turns back into solid on a cool surface. Camphor, naphthalene and ammonium chloride sublime; salt does not. So the camphor collects as pure crystals on the funnel and the salt stays in the dish. Organic chemists use this to purify sublimable solids.",
+      "hi": "ऊर्ध्वपातन में ठोस गर्म करने पर सीधे वाष्प बनता है, और वाष्प ठंडी सतह पर फिर ठोस बन जाती है। कपूर, नैफ़्थलीन और अमोनियम क्लोराइड ऊर्ध्वपातित होते हैं; नमक नहीं। इसलिए कपूर कीप पर शुद्ध क्रिस्टल बनकर इकट्ठा होता है और नमक प्याली में रहता है। कार्बनिक रसायनज्ञ ऊर्ध्वपातित होने वाले ठोसों को शुद्ध करने के लिए इसका उपयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which method would purify a liquid that boils at 80 °C from a solid dissolved in it?",
+        "hi": "80 °C पर उबलने वाले द्रव को उसमें घुले ठोस से शुद्ध करने का कौन-सा तरीक़ा होगा?"
+       },
+       "options": [
+        {
+         "en": "Distillation",
+         "hi": "आसवन"
+        },
+        {
+         "en": "Sublimation",
+         "hi": "ऊर्ध्वपातन"
+        },
+        {
+         "en": "Filtration",
+         "hi": "छानना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Boiling the liquid and condensing its vapour leaves the dissolved solid behind.",
+        "hi": "द्रव उबालकर उसकी वाष्प संघनित करने पर घुला ठोस पीछे रह जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sublimation is for solids that go straight to vapour, not for liquids.",
+         "hi": "ऊर्ध्वपातन उन ठोसों के लिए है जो सीधे वाष्प बनते हैं, द्रवों के लिए नहीं।"
+        },
+        {
+         "en": "A dissolved solid passes through filter paper with the liquid.",
+         "hi": "घुला ठोस द्रव के साथ फ़िल्टर पेपर से निकल जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch to Explore and run it again slowly. Watch where the camphor vapour turns solid.",
+      "hi": "'खोजो' पर जाओ और इसे फिर धीरे चलाओ। देखो कि कपूर की वाष्प कहाँ ठोस बनती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch08-chromatography",
+   "topic": "8.8",
+   "template": "particles",
+   "title": {
+    "en": "Separate inks by chromatography",
+    "hi": "क्रोमैटोग्राफ़ी से स्याहियाँ अलग करो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "black-ink",
+    "method": "chromatography"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A spot of black sketch-pen ink is put near the bottom of a paper strip dipped in water. What will you see?",
+      "hi": "काले स्केच पेन की स्याही का एक बिंदु पानी में डूबी काग़ज़ की पट्टी के नीचे के पास लगाया जाता है। क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "bands",
+       "en": "Coloured bands at different heights",
+       "hi": "अलग-अलग ऊँचाई पर रंगीन पट्टियाँ"
+      },
+      {
+       "id": "black",
+       "en": "One black spot that moves up",
+       "hi": "एक काला बिंदु जो ऊपर जाता है"
+      },
+      {
+       "id": "none",
+       "en": "Nothing moves",
+       "hi": "कुछ नहीं हिलता"
+      }
+     ],
+     "answer": "bands"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Tap Run and watch the water climb the paper.",
+      "hi": "'चलाओ' छुओ और पानी को काग़ज़ पर चढ़ता देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In paper chromatography the water (mobile phase) moves up the paper (stationary phase). Each dye in the ink sticks to the paper to a different extent: a dye that sticks less travels farther. So the black ink splits into its colours. The ratio of the distance a dye travels to the distance the water travels is its Rf value, which helps identify it.",
+      "hi": "काग़ज़ क्रोमैटोग्राफ़ी में पानी (चल प्रावस्था) काग़ज़ (स्थिर प्रावस्था) पर ऊपर चढ़ता है। स्याही की हर डाई काग़ज़ से अलग-अलग मात्रा में चिपकती है: जो डाई कम चिपकती है वह ज़्यादा दूर जाती है। इसलिए काली स्याही अपने रंगों में बँट जाती है। डाई द्वारा तय दूरी और पानी द्वारा तय दूरी का अनुपात उसका Rf मान है, जो उसे पहचानने में मदद करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A dye moves 3 cm while the water front moves 6 cm. What is its Rf value?",
+        "hi": "एक डाई 3 cm चलती है जबकि पानी का अग्र भाग 6 cm चलता है। उसका Rf मान क्या है?"
+       },
+       "options": [
+        "0.5",
+        "2",
+        "9"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rf = 3 ÷ 6 = 0.5. Rf is always less than 1, since no dye moves faster than the water.",
+        "hi": "Rf = 3 ÷ 6 = 0.5। Rf हमेशा 1 से कम होता है, क्योंकि कोई डाई पानी से तेज़ नहीं चलती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 divides the water distance by the dye's; Rf is dye ÷ water.",
+         "hi": "2 में पानी की दूरी को डाई की दूरी से भाग दिया गया; Rf = डाई ÷ पानी।"
+        },
+        {
+         "en": "Distances are divided, not added.",
+         "hi": "दूरियों को भाग दिया जाता है, जोड़ा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch to Explore and run it again. Which colour travels farthest? Which sticks to the paper most?",
+      "hi": "'खोजो' पर जाओ और फिर चलाओ। कौन-सा रंग सबसे दूर जाता है? कौन काग़ज़ से सबसे ज़्यादा चिपकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch08-lassaigne",
+   "topic": "8.9",
+   "template": "match",
+   "title": {
+    "en": "Lassaigne's test: what each colour means",
+    "hi": "लैसें परीक्षण: हर रंग का अर्थ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "n",
+      "left": {
+       "en": "Nitrogen",
+       "hi": "नाइट्रोजन"
+      },
+      "right": {
+       "en": "Prussian blue colour with iron(II) sulphate and acid",
+       "hi": "आयरन(II) सल्फ़ेट और अम्ल से प्रशियन नीला रंग"
+      }
+     },
+     {
+      "id": "s",
+      "left": {
+       "en": "Sulphur",
+       "hi": "सल्फ़र"
+      },
+      "right": {
+       "en": "Violet colour with sodium nitroprusside",
+       "hi": "सोडियम नाइट्रोप्रुसाइड से बैंगनी रंग"
+      }
+     },
+     {
+      "id": "cl",
+      "left": {
+       "en": "Chlorine",
+       "hi": "क्लोरीन"
+      },
+      "right": {
+       "en": "White precipitate with silver nitrate, soluble in ammonia",
+       "hi": "सिल्वर नाइट्रेट से सफ़ेद अवक्षेप, अमोनिया में घुलनशील"
+      }
+     },
+     {
+      "id": "br",
+      "left": {
+       "en": "Bromine",
+       "hi": "ब्रोमीन"
+      },
+      "right": {
+       "en": "Pale yellow precipitate with silver nitrate",
+       "hi": "सिल्वर नाइट्रेट से हल्का पीला अवक्षेप"
+      }
+     },
+     {
+      "id": "i",
+      "left": {
+       "en": "Iodine",
+       "hi": "आयोडीन"
+      },
+      "right": {
+       "en": "Yellow precipitate with silver nitrate, insoluble in ammonia",
+       "hi": "सिल्वर नाइट्रेट से पीला अवक्षेप, अमोनिया में अघुलनशील"
+      }
+     },
+     {
+      "id": "p",
+      "left": {
+       "en": "Phosphorus",
+       "hi": "फॉस्फोरस"
+      },
+      "right": {
+       "en": "Yellow precipitate with ammonium molybdate",
+       "hi": "अमोनियम मॉलिब्डेट से पीला अवक्षेप"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why is the organic compound first fused with sodium metal?",
+      "hi": "कार्बनिक यौगिक को पहले सोडियम धातु के साथ क्यों गलाया जाता है?"
+     },
+     "options": [
+      {
+       "id": "ions",
+       "en": "To turn N, S and halogens into ions that can be tested in water",
+       "hi": "ताकि N, S और हैलोजन पानी में जाँचे जा सकने वाले आयन बन जाएँ"
+      },
+      {
+       "id": "burn",
+       "en": "To burn away all the carbon",
+       "hi": "ताकि सारा कार्बन जल जाए"
+      },
+      {
+       "id": "colour",
+       "en": "To give the compound a colour",
+       "hi": "ताकि यौगिक को रंग मिले"
+      }
+     ],
+     "answer": "ions"
+    },
+    {
+     "kind": "do",
+     "target": "left:n",
+     "expect": "matched:n",
+     "say": {
+      "en": "Match nitrogen with its test.",
+      "hi": "नाइट्रोजन को उसके परीक्षण से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:cl",
+     "expect": "matched:cl",
+     "say": {
+      "en": "Match chlorine.",
+      "hi": "क्लोरीन मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाकी मिलाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In Lassaigne's test the compound is fused with sodium, which turns covalently bound nitrogen, sulphur and halogens into NaCN, Na₂S and NaX. Boiling with water gives the sodium fusion extract, and each element then shows a known colour or precipitate. Phosphorus is found by oxidising the compound to phosphate. This test is done only by a teacher in a fume cupboard, because molten sodium is dangerous.",
+      "hi": "लैसें परीक्षण में यौगिक को सोडियम के साथ गलाया जाता है, जिससे सहसंयोजी रूप से बँधे नाइट्रोजन, सल्फ़र और हैलोजन NaCN, Na₂S और NaX बन जाते हैं। पानी के साथ उबालने से सोडियम संगलन निष्कर्ष मिलता है, और फिर हर तत्व एक ज्ञात रंग या अवक्षेप दिखाता है। फॉस्फोरस यौगिक को फॉस्फ़ेट में उपचयित करके पहचाना जाता है। यह परीक्षण केवल शिक्षक धूम-कक्ष में करते हैं, क्योंकि पिघला सोडियम ख़तरनाक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Before testing for halogens with silver nitrate, the extract is boiled with nitric acid. Why?",
+        "hi": "सिल्वर नाइट्रेट से हैलोजन जाँचने से पहले निष्कर्ष को नाइट्रिक अम्ल के साथ उबाला जाता है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "To remove cyanide and sulphide, which would also give precipitates",
+         "hi": "सायनाइड और सल्फ़ाइड हटाने के लिए, जो भी अवक्षेप देते"
+        },
+        {
+         "en": "To add more chlorine",
+         "hi": "और क्लोरीन मिलाने के लिए"
+        },
+        {
+         "en": "To make the solution basic",
+         "hi": "विलयन को क्षारीय बनाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "CN⁻ and S²⁻ would form silver precipitates and give a false result, so they are boiled off first.",
+        "hi": "CN⁻ और S²⁻ सिल्वर के अवक्षेप बनाकर ग़लत परिणाम देते, इसलिए उन्हें पहले उबालकर हटाया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nitric acid adds no chlorine; adding it would spoil the test.",
+         "hi": "नाइट्रिक अम्ल कोई क्लोरीन नहीं जोड़ता; ऐसा करना परीक्षण बिगाड़ देता।"
+        },
+        {
+         "en": "Nitric acid makes the solution acidic, not basic.",
+         "hi": "नाइट्रिक अम्ल विलयन को अम्लीय बनाता है, क्षारीय नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and match again. Then say which two elements give yellow precipitates and how you would tell them apart.",
+      "hi": "फिर से शुरू करो और दोबारा मिलाओ। फिर बताओ कि कौन-से दो तत्व पीले अवक्षेप देते हैं और उन्हें कैसे अलग पहचानोगे।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Hook of the chapter",
+   "shows": "Organic compounds at home: a bottle of hand sanitiser, a small bowl of vinegar, a lit camphor tablet on a puja thali, a candle, and a plate of sugar",
+   "view": "Eye level, warm light, objects grouped on a wooden table",
+   "right": "Camphor flame small and steady; sanitiser bottle without a label",
+   "avoid": "Brand names, faces, a child near the flame"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "8.2",
+   "use": "Carbon's three shapes",
+   "shows": "Ball-and-stick models of ethane, ethene and ethyne, black carbons and white hydrogens, each a separate set",
+   "view": "Front, side, top and three-quarter views, same centre and scale",
+   "right": "Ethane tetrahedral at each carbon, ethene flat, ethyne straight",
+   "avoid": "Labels; equal bond lengths for single and triple bonds"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "8.6",
+   "use": "The three pentanes",
+   "shows": "Ball-and-stick models of pentane, 2-methylbutane and 2,2-dimethylpropane",
+   "view": "Three-quarter view, same scale, each a separate file",
+   "right": "Five carbons and twelve hydrogens in each; neopentane nearly spherical",
+   "avoid": "Labels; missing hydrogens"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "8.8",
+   "use": "Paper chromatography of black ink",
+   "shows": "Four frames of a paper strip in a glass of water with a black ink spot: start, water at a quarter, at half, near the top with blue, yellow and purple bands",
+   "view": "Same camera and light, straight on",
+   "right": "Water front visible; bands separate cleanly; spot starts above the water line",
+   "avoid": "Ink spot under the water; labels"
+  },
+  {
+   "n": 5,
+   "kind": "CUT",
+   "topic": "8.8",
+   "use": "Sublimation set-up",
+   "shows": "A china dish of camphor and salt on a tripod and gauze, covered by an inverted glass funnel with a cotton plug in its stem and a cotton pad wet with cold water on top",
+   "view": "Side view, realistic render",
+   "right": "White camphor crystals on the inside of the funnel; salt left in the dish",
+   "avoid": "Labels; flame without a stand"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "8.9",
+   "use": "Lassaigne's test colours",
+   "shows": "Separate macro photos of test tubes: Prussian blue colour, a violet solution, a white precipitate, a pale yellow precipitate, a yellow precipitate",
+   "view": "Macro, white background, same tube and light",
+   "right": "Colours true: deep Prussian blue, violet, white, pale yellow, yellow",
+   "avoid": "Labels on tubes; hands without gloves"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "8.8",
+   "use": "Library apparatus reused",
+   "shows": "Library images LIB-LAB-china-dish, LIB-LAB-tripod-gauze, LIB-LAB-spirit-lamp and LIB-LAB-test-tube-stand (shared cut-outs; do not make again)",
+   "view": "As in the library",
+   "right": "As in the library",
+   "avoid": "Making new copies"
+  }
+ ]
+}

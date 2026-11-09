@@ -1,0 +1,679 @@
+{
+ "chapter_key": "u.c06.social_science.fees1.ch13",
+ "class": 6,
+ "subject_id": "social_science",
+ "title": "The Value of Work",
+ "source": "https://ncert.nic.in/textbook/pdf/fees113.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Types of work; economic and non-economic activities",
+   "labs": [
+    "c06-social_science-fees1-ch13-economic"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2",
+   "title": "Payment in cash, in kind, and voluntary work",
+   "labs": [
+    "c06-social_science-fees1-ch13-payment"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3",
+   "title": "Dignity of work",
+   "labs": [
+    "c06-social_science-fees1-ch13-dignity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4",
+   "title": "Anu and Kabir's story",
+   "labs": [],
+   "why_no_lab": "A story with a table is read and discussed; the sorting lab already uses its ideas."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-social_science-fees1-ch13-economic",
+   "topic": "13.1",
+   "template": "sort",
+   "title": {
+    "en": "Economic or non-economic?",
+    "hi": "आर्थिक या अनार्थिक?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "eco",
+      "label": {
+       "en": "Economic activity (for pay)",
+       "hi": "आर्थिक गतिविधि (कमाई के लिए)"
+      }
+     },
+     {
+      "id": "non",
+      "label": {
+       "en": "Non-economic (out of love or duty)",
+       "hi": "अनार्थिक (प्रेम या कर्तव्य से)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "farmer",
+      "text": {
+       "en": "A farmer sells wheat in the mandi",
+       "hi": "किसान मंडी में गेहूँ बेचता है"
+      },
+      "bin": "eco",
+      "why": {
+       "en": "Work done to earn money is an economic activity.",
+       "hi": "पैसा कमाने के लिए किया काम आर्थिक गतिविधि है।"
+      }
+     },
+     {
+      "id": "teacher",
+      "text": {
+       "en": "A teacher works for a salary",
+       "hi": "शिक्षक वेतन के लिए पढ़ाता है"
+      },
+      "bin": "eco",
+      "why": {
+       "en": "A salary is payment, so this is economic.",
+       "hi": "वेतन भुगतान है, इसलिए यह आर्थिक है।"
+      }
+     },
+     {
+      "id": "shop",
+      "text": {
+       "en": "A shopkeeper sells groceries",
+       "hi": "दुकानदार राशन बेचता है"
+      },
+      "bin": "eco",
+      "why": {
+       "en": "Selling goods for a profit is economic.",
+       "hi": "लाभ के लिए सामान बेचना आर्थिक है।"
+      }
+     },
+     {
+      "id": "cook",
+      "text": {
+       "en": "A mother cooks for her family at home",
+       "hi": "माँ घर पर परिवार के लिए खाना बनाती है"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Done out of love and care, not for pay. It is still valuable work.",
+       "hi": "प्रेम और देखभाल से किया, वेतन के लिए नहीं। फिर भी यह मूल्यवान काम है।"
+      }
+     },
+     {
+      "id": "help",
+      "text": {
+       "en": "A child helps an elderly neighbour",
+       "hi": "बच्चा बुज़ुर्ग पड़ोसी की मदद करता है"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Helping without payment is non-economic.",
+       "hi": "बिना भुगतान की मदद अनार्थिक है।"
+      }
+     },
+     {
+      "id": "river",
+      "text": {
+       "en": "Volunteers clean a river bank",
+       "hi": "स्वयंसेवक नदी का किनारा साफ़ करते हैं"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Voluntary service is not done for pay.",
+       "hi": "स्वैच्छिक सेवा कमाई के लिए नहीं होती।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is cooking at home economic or non-economic?",
+      "hi": "क्या घर में खाना बनाना आर्थिक है या अनार्थिक?"
+     },
+     "options": [
+      {
+       "id": "non",
+       "en": "Non-economic, but still valuable",
+       "hi": "अनार्थिक, पर फिर भी मूल्यवान"
+      },
+      {
+       "id": "eco",
+       "en": "Economic",
+       "hi": "आर्थिक"
+      }
+     ],
+     "answer": "non"
+    },
+    {
+     "kind": "do",
+     "target": "card:farmer",
+     "expect": "correct:farmer",
+     "say": {
+      "en": "Place the farmer card in its group.",
+      "hi": "किसान वाला कार्ड उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:cook",
+     "expect": "correct:cook",
+     "say": {
+      "en": "Now place the card about cooking at home.",
+      "hi": "अब घर पर खाना बनाने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press check.",
+      "hi": "बाक़ी छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Economic activities are done to earn a living, like farming, teaching and selling. Non-economic activities are done out of love, duty or kindness, like caring for family or helping a neighbour. Both matter: our homes and societies would not work without unpaid care.",
+      "hi": "आर्थिक गतिविधियाँ आजीविका कमाने के लिए होती हैं, जैसे खेती, पढ़ाना और बेचना। अनार्थिक गतिविधियाँ प्रेम, कर्तव्य या दया से होती हैं, जैसे परिवार की देखभाल या पड़ोसी की मदद। दोनों ज़रूरी हैं: बिना वेतन की देखभाल के हमारे घर और समाज नहीं चलेंगे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is an economic activity?",
+        "hi": "इनमें से कौन आर्थिक गतिविधि है?"
+       },
+       "options": [
+        {
+         "en": "A tailor stitches clothes for customers",
+         "hi": "दर्ज़ी ग्राहकों के कपड़े सिलता है"
+        },
+        {
+         "en": "A girl waters plants at home for fun",
+         "hi": "लड़की शौक़ से घर के पौधों में पानी देती है"
+        },
+        {
+         "en": "A family sits together for dinner",
+         "hi": "परिवार साथ बैठकर खाना खाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The tailor is paid for the work.",
+        "hi": "दर्ज़ी को काम के बदले भुगतान मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Watering plants for fun is not done to earn.",
+         "hi": "शौक़ से पौधों को पानी देना कमाई के लिए नहीं है।"
+        },
+        {
+         "en": "A family dinner is not done for pay.",
+         "hi": "परिवार का भोजन कमाई के लिए नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "On your way from home to school, note five activities you see. Which are economic?",
+      "hi": "घर से स्कूल के रास्ते में पाँच गतिविधियाँ देखो। कौन-सी आर्थिक हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch13-payment",
+   "topic": "13.2",
+   "template": "match",
+   "title": {
+    "en": "Ways of being paid",
+    "hi": "भुगतान के तरीक़े"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "cash",
+      "left": {
+       "en": "Payment in cash",
+       "hi": "नकद भुगतान"
+      },
+      "right": {
+       "en": "Paid in rupees",
+       "hi": "रुपयों में पैसा मिलना"
+      },
+      "why": {
+       "en": "Money is given for the work.",
+       "hi": "काम के बदले पैसा दिया जाता है।"
+      }
+     },
+     {
+      "id": "kind",
+      "left": {
+       "en": "Payment in kind",
+       "hi": "वस्तु के रूप में भुगतान"
+      },
+      "right": {
+       "en": "Paid in goods such as grain",
+       "hi": "अनाज जैसी वस्तुओं में पैसा मिलना"
+      },
+      "why": {
+       "en": "A farm helper may get a share of the harvest.",
+       "hi": "खेत में मदद करने वाले को फ़सल का हिस्सा मिल सकता है।"
+      }
+     },
+     {
+      "id": "vol",
+      "left": {
+       "en": "Voluntary work",
+       "hi": "स्वैच्छिक काम"
+      },
+      "right": {
+       "en": "Helping others without any payment",
+       "hi": "बिना भुगतान दूसरों की मदद करना"
+      },
+      "why": {
+       "en": "It is done by choice, to serve others.",
+       "hi": "यह अपनी मर्ज़ी से, दूसरों की सेवा के लिए होता है।"
+      }
+     },
+     {
+      "id": "barter",
+      "left": {
+       "en": "Barter",
+       "hi": "वस्तु-विनिमय"
+      },
+      "right": {
+       "en": "Exchanging goods for goods",
+       "hi": "सामान के बदले सामान लेना"
+      },
+      "why": {
+       "en": "Before money was common, people traded things directly.",
+       "hi": "पैसे के चलन से पहले लोग सीधे चीज़ें बदलते थे।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A farm helper gets a bag of rice for a week's work. What is this called?",
+      "hi": "खेत में मदद करने वाले को हफ़्ते भर के काम के बदले चावल की बोरी मिलती है। इसे क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "kind",
+       "en": "Payment in kind",
+       "hi": "वस्तु के रूप में भुगतान"
+      },
+      {
+       "id": "cash",
+       "en": "Payment in cash",
+       "hi": "नकद भुगतान"
+      }
+     ],
+     "answer": "kind"
+    },
+    {
+     "kind": "do",
+     "target": "left:kind",
+     "expect": "matched:kind",
+     "say": {
+      "en": "Match 'Payment in kind' with its meaning.",
+      "hi": "'वस्तु के रूप में भुगतान' को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press check.",
+      "hi": "बाक़ी मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Work can be paid in cash, in goods (payment in kind) or not at all, as with voluntary work. Many communities have long traditions of helping without payment, such as shramdaan. Money is a convenient way to pay, but kindness and service are valuable too.",
+      "hi": "काम का भुगतान नकद, वस्तु के रूप में, या बिल्कुल नहीं भी हो सकता है, जैसे स्वैच्छिक काम में। कई समुदायों में बिना भुगतान मदद की पुरानी परंपरा है, जैसे श्रमदान। पैसे से भुगतान सुविधाजनक है, पर दया और सेवा भी मूल्यवान हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is voluntary work?",
+        "hi": "स्वैच्छिक काम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Work done by choice without pay",
+         "hi": "अपनी मर्ज़ी से बिना भुगतान किया काम"
+        },
+        {
+         "en": "Work forced on someone",
+         "hi": "किसी पर थोपा गया काम"
+        },
+        {
+         "en": "Work paid in cash",
+         "hi": "नकद भुगतान वाला काम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Voluntary means by free choice.",
+        "hi": "स्वैच्छिक का अर्थ है अपनी मर्ज़ी से।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Forced work is not voluntary.",
+         "hi": "ज़बरदस्ती का काम स्वैच्छिक नहीं है।"
+        },
+        {
+         "en": "If it is paid, it is not voluntary work.",
+         "hi": "भुगतान हो तो वह स्वैच्छिक काम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask an elder about a time the village helped build something together without pay.",
+      "hi": "किसी बुज़ुर्ग से पूछो कि कब गाँव ने मिलकर बिना भुगतान कुछ बनाया था।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch13-dignity",
+   "topic": "13.3",
+   "template": "scenario",
+   "title": {
+    "en": "Respect for all work",
+    "hi": "हर काम का सम्मान"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "school",
+    "role": {
+     "en": "A student",
+     "hi": "एक विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "A classmate laughs at another student whose father is a sanitation worker. What do you do?",
+       "hi": "एक सहपाठी उस विद्यार्थी पर हँसता है जिसके पिता सफ़ाई कर्मचारी हैं। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "stand",
+        "text": {
+         "en": "Say kindly that every honest job is important",
+         "hi": "विनम्रता से कहो कि हर ईमानदार काम महत्त्वपूर्ण है"
+        },
+        "next": "thank",
+        "feedback": {
+         "en": "Every honest job serves society, and every worker deserves respect.",
+         "hi": "हर ईमानदार काम समाज की सेवा है और हर कामगार सम्मान का हक़दार है।"
+        },
+        "good": true
+       },
+       {
+        "id": "laugh",
+        "text": {
+         "en": "Join in the laughing",
+         "hi": "तुम भी हँसने लगो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This hurts a friend and ignores how much the work matters.",
+         "hi": "इससे दोस्त को चोट लगती है और उस काम का महत्त्व अनदेखा होता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "silent",
+        "text": {
+         "en": "Stay silent",
+         "hi": "चुप रहो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Silence lets the unkind joke continue. Speaking up helps.",
+         "hi": "चुप रहने से अपमान चलता रहता है। बोलना मदद करता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "thank",
+      "text": {
+       "en": "Later, how can the class show respect for the people who keep the school and streets clean?",
+       "hi": "बाद में कक्षा स्कूल और गलियाँ साफ़ रखने वालों के प्रति सम्मान कैसे दिखा सकती है?"
+      },
+      "choices": [
+       {
+        "id": "thanks",
+        "text": {
+         "en": "Greet them, say thank you and keep the school tidy",
+         "hi": "उन्हें नमस्कार करें, धन्यवाद कहें और स्कूल साफ़ रखें"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Thanks and care show we value their work.",
+         "hi": "धन्यवाद और सावधानी बताती है कि हम उनके काम की क़द्र करते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "mess",
+        "text": {
+         "en": "Leave litter, as cleaners will pick it up",
+         "hi": "कचरा छोड़ दें, सफ़ाई वाले उठा लेंगे"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This makes their work harder and is disrespectful.",
+         "hi": "इससे उनका काम कठिन होता है और यह अनादर है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:start:stand",
+     "expect": "chose:stand",
+     "say": {
+      "en": "Choose how to respond to the unkind laughter.",
+      "hi": "अपमानजनक हँसी पर कैसे प्रतिक्रिया दोगे, चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which job is less important: a doctor's or a sanitation worker's?",
+      "hi": "कौन-सा काम कम ज़रूरी है: डॉक्टर का या सफ़ाई कर्मचारी का?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Neither; both matter",
+       "hi": "कोई नहीं; दोनों ज़रूरी हैं"
+      },
+      {
+       "id": "san",
+       "en": "The sanitation worker's",
+       "hi": "सफ़ाई कर्मचारी का"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "choice:thank:thanks",
+     "expect": "chose:thanks",
+     "say": {
+      "en": "Now choose how to show respect.",
+      "hi": "अब सम्मान दिखाने का तरीक़ा चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All honest work is valuable, whether it is paid or not and whether it is done with the head or the hands. Society depends on farmers, teachers, drivers, cleaners and many others. Treating every worker with dignity is part of being a good citizen.",
+      "hi": "सभी ईमानदार काम मूल्यवान हैं, चाहे भुगतान वाले हों या नहीं, चाहे सिर से हों या हाथों से। समाज किसानों, शिक्षकों, चालकों, सफ़ाई कर्मचारियों और कई अन्य पर निर्भर है। हर कामगार को सम्मान देना अच्छे नागरिक का गुण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why should we respect all workers?",
+        "hi": "हमें सभी कामगारों का सम्मान क्यों करना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Society needs every honest job",
+         "hi": "समाज को हर ईमानदार काम की ज़रूरत है"
+        },
+        {
+         "en": "Only rich people deserve respect",
+         "hi": "केवल अमीरों को सम्मान मिलना चाहिए"
+        },
+        {
+         "en": "Only office jobs matter",
+         "hi": "केवल दफ़्तर के काम मायने रखते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Everyone depends on the work of many people.",
+        "hi": "हर कोई कई लोगों के काम पर निर्भर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Respect is for every person, whatever they earn.",
+         "hi": "सम्मान हर व्यक्ति का हक़ है, उसकी कमाई कुछ भी हो।"
+        },
+        {
+         "en": "Farms, roads and kitchens run by hand work too.",
+         "hi": "खेत, सड़कें और रसोई हाथ के काम से भी चलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write a thank-you note to someone whose work you rely on every day.",
+      "hi": "जिसके काम पर तुम रोज़ निर्भर हो, उसके लिए धन्यवाद-पत्र लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "Opens the chapter",
+   "shows": "A morning market with a vegetable seller, a cobbler and a flower seller, from a distance",
+   "view": "Wide, 16:9",
+   "right": "Real Indian market",
+   "avoid": "Faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "Non-economic work",
+   "shows": "A grandmother and child shelling peas together at home",
+   "view": "Back and hands",
+   "right": "Warm light",
+   "avoid": "Faces"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "13.2",
+   "use": "Card: rupee notes and coins",
+   "shows": "₹10, ₹20, ₹50, ₹100 notes and ₹1, ₹5 coins",
+   "view": "Top view",
+   "right": "Current Indian currency",
+   "avoid": "Fake or defaced notes"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "13.2",
+   "use": "Card: a sack of grain",
+   "shows": "A jute sack of rice",
+   "view": "Three-quarter",
+   "right": "True jute and grain",
+   "avoid": "Logos"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "13.3",
+   "use": "Sanitation worker",
+   "shows": "A sanitation worker with a broom at dawn in a clean lane, seen from behind",
+   "view": "Wide",
+   "right": "Dignified, bright colours",
+   "avoid": "Face"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "13.3",
+   "use": "Shramdaan",
+   "shows": "Villagers building a small bund together",
+   "view": "Wide, from behind",
+   "right": "Real work, many hands",
+   "avoid": "Faces"
+  }
+ ]
+}

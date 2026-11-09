@@ -1,0 +1,1569 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch08",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Cell : The Unit of Life",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "What is a cell?",
+   "labs": [
+    "c11-biology-kebo1-ch08-onion-cell"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Cell theory",
+   "labs": [],
+   "why_no_lab": "The story of Schleiden, Schwann and Virchow reads best as a short history in the reader; the onion lab ends with the theory."
+  },
+  {
+   "n": "8.3",
+   "title": "An overview of the cell: prokaryotic and eukaryotic cells",
+   "labs": [
+    "c11-biology-kebo1-ch08-pro-eu"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Prokaryotic cells: cell envelope, mesosomes, ribosomes and inclusion bodies",
+   "labs": [
+    "c11-biology-kebo1-ch08-pro-eu"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Eukaryotic cells: plant and animal cells",
+   "labs": [
+    "c11-biology-kebo1-ch08-plant-animal"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5.1-8.5.2",
+   "title": "Cell membrane and cell wall",
+   "labs": [
+    "c11-biology-kebo1-ch08-organelles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5.3",
+   "title": "Endomembrane system: ER, Golgi, lysosomes, vacuoles",
+   "labs": [
+    "c11-biology-kebo1-ch08-secretion"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5.4-8.5.9",
+   "title": "Mitochondria, plastids, ribosomes, cytoskeleton, cilia and flagella, centrosome",
+   "labs": [
+    "c11-biology-kebo1-ch08-organelles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5.10",
+   "title": "Nucleus and chromosomes",
+   "labs": [
+    "c11-biology-kebo1-ch08-centromere"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5.11",
+   "title": "Microbodies",
+   "labs": [
+    "c11-biology-kebo1-ch08-organelles"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch08-onion-cell",
+   "topic": "8.1",
+   "template": "scope",
+   "title": {
+    "en": "Onion peel: plant cells",
+    "hi": "प्याज़ की झिल्ली: पादप कोशिकाएँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "slide": "onion-peel"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Choose the 10x lens.",
+      "hi": "10x लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob until the cells are sharp.",
+      "hi": "मोटा नॉब घुमाओ जब तक कोशिकाएँ साफ़ न दिखें।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The nucleus is hard to see in a plain peel. What do you think a stain will do?",
+      "hi": "सादी झिल्ली में केंद्रक मुश्किल से दिखता है। तुम्हें क्या लगता है, रंग डालने से क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "dark",
+       "en": "The nucleus takes up more stain and shows dark",
+       "hi": "केंद्रक ज़्यादा रंग लेकर गहरा दिखेगा"
+      },
+      {
+       "id": "vanish",
+       "en": "The cells will disappear",
+       "hi": "कोशिकाएँ ग़ायब हो जाएँगी"
+      },
+      {
+       "id": "same",
+       "en": "Nothing will change",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "dark"
+    },
+    {
+     "kind": "do",
+     "target": "stain:iodine",
+     "expect": "stained",
+     "say": {
+      "en": "Add a drop of iodine stain.",
+      "hi": "आयोडीन रंग की एक बूँद डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "lens:40x",
+     "expect": "zoomed:40x",
+     "say": {
+      "en": "Choose the 40x lens.",
+      "hi": "40x लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:fine",
+     "expect": "focused",
+     "say": {
+      "en": "Sharpen with the fine knob.",
+      "hi": "बारीक नॉब से साफ़ करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:nucleus",
+     "expect": "identified:nucleus",
+     "say": {
+      "en": "Tap a nucleus.",
+      "hi": "एक केंद्रक पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each box is one cell with a cell wall outside, a cell membrane just inside it, cytoplasm, a large central vacuole and a nucleus pushed to one side. All living things are made of cells, and every cell comes from a cell that existed before. That is the cell theory.",
+      "hi": "हर खाना एक कोशिका है, बाहर कोशिका भित्ति, उसके ठीक भीतर कोशिका झिल्ली, कोशिकाद्रव्य, बड़ी केंद्रीय रिक्तिका और एक ओर धकेला गया केंद्रक। सभी सजीव कोशिकाओं से बने हैं, और हर कोशिका पहले से मौजूद कोशिका से बनती है। यही कोशिका सिद्धांत है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the nucleus of an onion cell pushed to the side?",
+        "hi": "प्याज़ की कोशिका का केंद्रक किनारे पर क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "A large central vacuole fills most of the cell",
+         "hi": "बड़ी केंद्रीय रिक्तिका कोशिका का ज़्यादातर भाग भर देती है"
+        },
+        {
+         "en": "The wall pulls it",
+         "hi": "भित्ति उसे खींचती है"
+        },
+        {
+         "en": "The stain moved it",
+         "hi": "रंग ने उसे खिसका दिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In plant cells the vacuole can take up to 90 per cent of the space.",
+        "hi": "पादप कोशिकाओं में रिक्तिका 90 प्रतिशत तक जगह घेर सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The wall is outside the membrane and does not move the nucleus.",
+         "hi": "भित्ति झिल्ली के बाहर है और केंद्रक को नहीं खिसकाती।"
+        },
+        {
+         "en": "Stains only colour the parts; it was at the side before you stained.",
+         "hi": "रंग केवल भागों को रंगते हैं; रंग से पहले भी यह किनारे पर था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who added that new cells come only from pre-existing cells (omnis cellula e cellula)?",
+        "hi": "किसने जोड़ा कि नई कोशिकाएँ केवल पहले से मौजूद कोशिकाओं से बनती हैं (ओम्निस सेलुला ई सेलुला)?"
+       },
+       "options": [
+        {
+         "en": "Rudolf Virchow",
+         "hi": "रूडोल्फ़ विर्चो"
+        },
+        {
+         "en": "Robert Brown",
+         "hi": "रॉबर्ट ब्राउन"
+        },
+        {
+         "en": "Matthias Schleiden",
+         "hi": "मैथियास श्लाइडेन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Virchow (1855) completed the cell theory of Schleiden and Schwann.",
+        "hi": "विर्चो (1855) ने श्लाइडेन और श्वान के कोशिका सिद्धांत को पूरा किया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Robert Brown discovered the nucleus.",
+         "hi": "रॉबर्ट ब्राउन ने केंद्रक खोजा।"
+        },
+        {
+         "en": "Schleiden said plants are made of cells, but did not explain where new cells come from.",
+         "hi": "श्लाइडेन ने कहा कि पौधे कोशिकाओं से बने हैं, पर नई कोशिकाएँ कहाँ से आती हैं, यह नहीं बताया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the cell wall, cytoplasm and vacuole. Then try the cheek-cell idea in your head: which parts would be missing in an animal cell?",
+      "hi": "कोशिका भित्ति, कोशिकाद्रव्य और रिक्तिका ढूँढो। फिर मन में गाल की कोशिका सोचो: जंतु कोशिका में कौन-से भाग नहीं होंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch08-pro-eu",
+   "topic": "8.3",
+   "template": "sort",
+   "title": {
+    "en": "Prokaryotic or eukaryotic?",
+    "hi": "प्रोकैरियोटी या यूकैरियोटी?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pro",
+      "label": {
+       "en": "Prokaryotic cell",
+       "hi": "प्रोकैरियोटी कोशिका"
+      }
+     },
+     {
+      "id": "eu",
+      "label": {
+       "en": "Eukaryotic cell",
+       "hi": "यूकैरियोटी कोशिका"
+      }
+     },
+     {
+      "id": "both",
+      "label": {
+       "en": "Both",
+       "hi": "दोनों में"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "nonuc",
+      "text": {
+       "en": "DNA not inside a nuclear membrane",
+       "hi": "डीएनए केंद्रक झिल्ली के भीतर नहीं"
+      },
+      "bin": "pro",
+      "why": {
+       "en": "Prokaryotes have no well-defined nucleus.",
+       "hi": "प्रोकैरियोट में सुस्पष्ट केंद्रक नहीं होता।"
+      }
+     },
+     {
+      "id": "plasmid",
+      "text": {
+       "en": "Small circular DNA called plasmids",
+       "hi": "प्लाज़्मिड नाम का छोटा वृत्ताकार डीएनए"
+      },
+      "bin": "pro",
+      "why": {
+       "en": "Plasmids give bacteria traits such as antibiotic resistance.",
+       "hi": "प्लाज़्मिड जीवाणुओं को एंटीबायोटिक प्रतिरोध जैसे गुण देते हैं।"
+      }
+     },
+     {
+      "id": "mesosome",
+      "text": {
+       "en": "Mesosome, an infolding of the membrane",
+       "hi": "मीसोसोम, झिल्ली का भीतरी मोड़"
+      },
+      "bin": "pro",
+      "why": {
+       "en": "Mesosomes help in wall formation, DNA copying and respiration.",
+       "hi": "मीसोसोम भित्ति बनाने, डीएनए प्रतिकृति और श्वसन में मदद करते हैं।"
+      }
+     },
+     {
+      "id": "r70",
+      "text": {
+       "en": "70S ribosomes only",
+       "hi": "केवल 70S राइबोसोम"
+      },
+      "bin": "pro",
+      "why": {
+       "en": "Prokaryotic ribosomes are 70S, made of 50S and 30S units.",
+       "hi": "प्रोकैरियोटी राइबोसोम 70S होते हैं, 50S और 30S इकाइयों से बने।"
+      }
+     },
+     {
+      "id": "nucleus",
+      "text": {
+       "en": "Nucleus with a nuclear envelope",
+       "hi": "केंद्रक आवरण वाला केंद्रक"
+      },
+      "bin": "eu",
+      "why": {
+       "en": "Eukaryotes keep their DNA in a true nucleus.",
+       "hi": "यूकैरियोट अपना डीएनए असली केंद्रक में रखते हैं।"
+      }
+     },
+     {
+      "id": "mito",
+      "text": {
+       "en": "Mitochondria and other membrane-bound organelles",
+       "hi": "माइटोकॉन्ड्रिया और दूसरे झिल्लीबद्ध कोशिकांग"
+      },
+      "bin": "eu",
+      "why": {
+       "en": "Membrane-bound organelles are found only in eukaryotes.",
+       "hi": "झिल्लीबद्ध कोशिकांग केवल यूकैरियोट में होते हैं।"
+      }
+     },
+     {
+      "id": "r80",
+      "text": {
+       "en": "80S ribosomes in the cytoplasm",
+       "hi": "कोशिकाद्रव्य में 80S राइबोसोम"
+      },
+      "bin": "eu",
+      "why": {
+       "en": "Eukaryotic cytoplasmic ribosomes are 80S (60S + 40S).",
+       "hi": "यूकैरियोटी कोशिकाद्रव्यी राइबोसोम 80S (60S + 40S) होते हैं।"
+      }
+     },
+     {
+      "id": "membrane",
+      "text": {
+       "en": "Cell membrane",
+       "hi": "कोशिका झिल्ली"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Every cell has a cell membrane.",
+       "hi": "हर कोशिका में कोशिका झिल्ली होती है।"
+      }
+     },
+     {
+      "id": "cytoplasm",
+      "text": {
+       "en": "Cytoplasm with ribosomes",
+       "hi": "राइबोसोम वाला कोशिकाद्रव्य"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Both kinds of cells make proteins on ribosomes.",
+       "hi": "दोनों तरह की कोशिकाएँ राइबोसोम पर प्रोटीन बनाती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:nonuc",
+     "expect": "correct:nonuc",
+     "say": {
+      "en": "Tap \"DNA not inside a nuclear membrane\", then tap its group.",
+      "hi": "\"डीएनए केंद्रक झिल्ली के भीतर नहीं\" पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:mito",
+     "expect": "correct:mito",
+     "say": {
+      "en": "Now sort the mitochondria card.",
+      "hi": "अब माइटोकॉन्ड्रिया वाले कार्ड को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Do you think a bacterium has ribosomes?",
+      "hi": "तुम्हें क्या लगता है, क्या जीवाणु में राइबोसोम होते हैं?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes: every cell needs ribosomes to make proteins",
+       "hi": "हाँ: प्रोटीन बनाने के लिए हर कोशिका को राइबोसोम चाहिए"
+      },
+      {
+       "id": "no",
+       "en": "No: it has no organelles at all",
+       "hi": "नहीं: इसमें कोई कोशिकांग नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:cytoplasm",
+     "expect": "correct:cytoplasm",
+     "say": {
+      "en": "Tap \"Cytoplasm with ribosomes\" and sort it.",
+      "hi": "\"राइबोसोम वाला कोशिकाद्रव्य\" पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bacteria, blue-green algae, mycoplasma and PPLO are prokaryotes: their DNA lies free, they may have plasmids and mesosomes, and they have 70S ribosomes but no membrane-bound organelles. Protists, fungi, plants and animals are eukaryotes, with a nucleus and organelles such as mitochondria and Golgi. Both have a cell membrane, cytoplasm and ribosomes.",
+      "hi": "जीवाणु, नील-हरित शैवाल, माइकोप्लाज़्मा और PPLO प्रोकैरियोट हैं: इनका डीएनए खुला रहता है, इनमें प्लाज़्मिड और मीसोसोम हो सकते हैं, और 70S राइबोसोम होते हैं पर झिल्लीबद्ध कोशिकांग नहीं। प्रोटिस्ट, कवक, पौधे और जंतु यूकैरियोट हैं, जिनमें केंद्रक और माइटोकॉन्ड्रिया व गॉल्जी जैसे कोशिकांग होते हैं। दोनों में कोशिका झिल्ली, कोशिकाद्रव्य और राइबोसोम होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bacterium stains purple with Gram stain. What does that tell you?",
+        "hi": "एक जीवाणु ग्राम रंग से बैंगनी रंगता है। इससे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "It is Gram positive, a difference in its cell envelope",
+         "hi": "यह ग्राम धनात्मक है, इसके कोशिका आवरण में अंतर के कारण"
+        },
+        {
+         "en": "It has a nucleus",
+         "hi": "इसमें केंद्रक है"
+        },
+        {
+         "en": "It is a virus",
+         "hi": "यह विषाणु है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gram staining sorts bacteria by their envelope: those that take up the stain are Gram positive, the rest Gram negative.",
+        "hi": "ग्राम रंजन जीवाणुओं को उनके आवरण से बाँटता है: जो रंग लेते हैं वे ग्राम धनात्मक, बाक़ी ग्राम ऋणात्मक।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No bacterium has a nucleus, whatever its stain colour.",
+         "hi": "किसी जीवाणु में केंद्रक नहीं होता, रंग चाहे जो हो।"
+        },
+        {
+         "en": "Viruses are not cells and are far too small for this stain test.",
+         "hi": "विषाणु कोशिकाएँ नहीं हैं और इस रंग परीक्षण के लिए बहुत छोटे हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Several ribosomes attached to one mRNA are called what?",
+        "hi": "एक mRNA से जुड़े कई राइबोसोम क्या कहलाते हैं?"
+       },
+       "options": [
+        {
+         "en": "A polysome",
+         "hi": "पॉलीसोम"
+        },
+        {
+         "en": "A mesosome",
+         "hi": "मीसोसोम"
+        },
+        {
+         "en": "A plasmid",
+         "hi": "प्लाज़्मिड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Polysomes translate one mRNA into many copies of a protein at once.",
+        "hi": "पॉलीसोम एक mRNA से एक साथ प्रोटीन की कई प्रतियाँ बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A mesosome is a fold of the cell membrane.",
+         "hi": "मीसोसोम कोशिका झिल्ली का मोड़ है।"
+        },
+        {
+         "en": "A plasmid is a small ring of DNA.",
+         "hi": "प्लाज़्मिड डीएनए का छोटा छल्ला है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then think: why are curd bacteria so much smaller than your own cells?",
+      "hi": "बाक़ी कार्ड छाँटो। फिर सोचो: दही के जीवाणु तुम्हारी कोशिकाओं से इतने छोटे क्यों हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch08-plant-animal",
+   "topic": "8.5",
+   "template": "sort",
+   "title": {
+    "en": "Plant cell or animal cell?",
+    "hi": "पादप कोशिका या जंतु कोशिका?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "plant",
+      "label": {
+       "en": "Only plant cells",
+       "hi": "केवल पादप कोशिका"
+      }
+     },
+     {
+      "id": "animal",
+      "label": {
+       "en": "Only animal cells",
+       "hi": "केवल जंतु कोशिका"
+      }
+     },
+     {
+      "id": "both",
+      "label": {
+       "en": "Both",
+       "hi": "दोनों में"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "wall",
+      "text": {
+       "en": "Cell wall of cellulose",
+       "hi": "सेलुलोस की कोशिका भित्ति"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "Animal cells have no cell wall.",
+       "hi": "जंतु कोशिकाओं में कोशिका भित्ति नहीं होती।"
+      }
+     },
+     {
+      "id": "plastid",
+      "text": {
+       "en": "Plastids such as chloroplasts",
+       "hi": "हरितलवक जैसे लवक"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "Plastids are found in plant cells and euglenoids.",
+       "hi": "लवक पादप कोशिकाओं और यूग्लीनॉइड में होते हैं।"
+      }
+     },
+     {
+      "id": "bigvac",
+      "text": {
+       "en": "One large central vacuole",
+       "hi": "एक बड़ी केंद्रीय रिक्तिका"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "Animal cells have small vacuoles, if any.",
+       "hi": "जंतु कोशिकाओं में छोटी रिक्तिकाएँ होती हैं, अगर हों।"
+      }
+     },
+     {
+      "id": "centriole",
+      "text": {
+       "en": "Centrioles",
+       "hi": "तारककेंद्र"
+      },
+      "bin": "animal",
+      "why": {
+       "en": "Centrioles are absent in almost all plant cells.",
+       "hi": "लगभग सभी पादप कोशिकाओं में तारककेंद्र नहीं होते।"
+      }
+     },
+     {
+      "id": "mito",
+      "text": {
+       "en": "Mitochondria",
+       "hi": "माइटोकॉन्ड्रिया"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Both plants and animals respire in mitochondria.",
+       "hi": "पौधे और जंतु दोनों माइटोकॉन्ड्रिया में श्वसन करते हैं।"
+      }
+     },
+     {
+      "id": "golgi",
+      "text": {
+       "en": "Golgi apparatus",
+       "hi": "गॉल्जी उपकरण"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Both kinds of cells package materials in the Golgi.",
+       "hi": "दोनों तरह की कोशिकाएँ गॉल्जी में पदार्थ पैक करती हैं।"
+      }
+     },
+     {
+      "id": "nucleus",
+      "text": {
+       "en": "Nucleus",
+       "hi": "केंद्रक"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Both are eukaryotic cells with a nucleus.",
+       "hi": "दोनों केंद्रक वाली यूकैरियोटी कोशिकाएँ हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:wall",
+     "expect": "correct:wall",
+     "say": {
+      "en": "Tap the cell wall card, then tap its group.",
+      "hi": "कोशिका भित्ति कार्ड पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:centriole",
+     "expect": "correct:centriole",
+     "say": {
+      "en": "Now sort centrioles.",
+      "hi": "अब तारककेंद्र को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Plant cells make food with chloroplasts. Do you think they also need mitochondria?",
+      "hi": "पादप कोशिकाएँ हरितलवक से भोजन बनाती हैं। तुम्हें क्या लगता है, क्या उन्हें माइटोकॉन्ड्रिया भी चाहिए?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes: they must break down food for energy",
+       "hi": "हाँ: ऊर्जा के लिए उन्हें भोजन तोड़ना पड़ता है"
+      },
+      {
+       "id": "no",
+       "en": "No: chloroplasts are enough",
+       "hi": "नहीं: हरितलवक काफ़ी हैं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:mito",
+     "expect": "correct:mito",
+     "say": {
+      "en": "Tap mitochondria and sort it.",
+      "hi": "माइटोकॉन्ड्रिया पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Plant and animal cells are both eukaryotic, with a nucleus, mitochondria, Golgi, ER and ribosomes. Plant cells also have a cell wall, plastids and a large central vacuole. Animal cells have centrioles, which almost all plant cells lack.",
+      "hi": "पादप और जंतु कोशिकाएँ दोनों यूकैरियोटी हैं, जिनमें केंद्रक, माइटोकॉन्ड्रिया, गॉल्जी, ER और राइबोसोम होते हैं। पादप कोशिकाओं में कोशिका भित्ति, लवक और बड़ी केंद्रीय रिक्तिका भी होती है। जंतु कोशिकाओं में तारककेंद्र होते हैं, जो लगभग सभी पादप कोशिकाओं में नहीं होते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A colourless plastid in a potato stores starch. What is it called?",
+        "hi": "आलू में स्टार्च जमा करने वाला रंगहीन लवक क्या कहलाता है?"
+       },
+       "options": [
+        {
+         "en": "Amyloplast",
+         "hi": "मंडलवक (एमाइलोप्लास्ट)"
+        },
+        {
+         "en": "Chromoplast",
+         "hi": "वर्णीलवक"
+        },
+        {
+         "en": "Chloroplast",
+         "hi": "हरितलवक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Amyloplasts are leucoplasts that store starch; elaioplasts store oil and aleuroplasts store protein.",
+        "hi": "मंडलवक अवर्णीलवक हैं जो स्टार्च जमा करते हैं; तेललवक तेल और प्रोटीनलवक प्रोटीन जमा करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chromoplasts hold coloured pigments like carotene, as in carrots and tomatoes.",
+         "hi": "वर्णीलवक कैरोटीन जैसे रंगीन वर्णक रखते हैं, जैसे गाजर और टमाटर में।"
+        },
+        {
+         "en": "Chloroplasts are green and found in leaves, not in the inner potato.",
+         "hi": "हरितलवक हरे होते हैं और पत्तियों में होते हैं, आलू के भीतर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then look at a tomato skin and a spinach leaf: which kind of plastid makes each colour?",
+      "hi": "बाक़ी कार्ड छाँटो। फिर टमाटर का छिलका और पालक की पत्ती देखो: हर रंग कौन-सा लवक बनाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch08-organelles",
+   "topic": "8.5.4-8.5.9",
+   "template": "match",
+   "title": {
+    "en": "Organelles and their jobs",
+    "hi": "कोशिकांग और उनके काम"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "membrane",
+      "left": {
+       "en": "Cell membrane",
+       "hi": "कोशिका झिल्ली"
+      },
+      "right": {
+       "en": "Lipid bilayer with proteins; lets only some molecules through",
+       "hi": "प्रोटीन सहित लिपिड द्विपरत; केवल कुछ अणुओं को जाने देती है"
+      },
+      "why": {
+       "en": "The fluid mosaic model (Singer and Nicolson) describes its moving lipids and proteins.",
+       "hi": "तरल मोज़ेक मॉडल (सिंगर और निकोल्सन) इसके चलते लिपिड और प्रोटीन बताता है।"
+      }
+     },
+     {
+      "id": "wall",
+      "left": {
+       "en": "Cell wall",
+       "hi": "कोशिका भित्ति"
+      },
+      "right": {
+       "en": "Gives shape and protection; cells joined by middle lamella",
+       "hi": "आकार और रक्षा देती है; कोशिकाएँ मध्य पटलिका से जुड़ी"
+      },
+      "why": {
+       "en": "Middle lamella is mainly calcium pectate; plasmodesmata cross it.",
+       "hi": "मध्य पटलिका मुख्य रूप से कैल्शियम पेक्टेट है; जीवद्रव्य तंतु इसे पार करते हैं।"
+      }
+     },
+     {
+      "id": "mito",
+      "left": {
+       "en": "Mitochondrion",
+       "hi": "माइटोकॉन्ड्रिया"
+      },
+      "right": {
+       "en": "Aerobic respiration makes ATP; has cristae and its own DNA",
+       "hi": "वायवीय श्वसन से ATP बनाता है; इसमें क्रिस्टी और अपना डीएनए"
+      },
+      "why": {
+       "en": "It is called the powerhouse of the cell.",
+       "hi": "इसे कोशिका का बिजलीघर कहते हैं।"
+      }
+     },
+     {
+      "id": "chloro",
+      "left": {
+       "en": "Chloroplast",
+       "hi": "हरितलवक"
+      },
+      "right": {
+       "en": "Traps light; grana of thylakoids in a stroma",
+       "hi": "प्रकाश पकड़ता है; पीठिका में थाइलेकॉइड के ग्रेना"
+      },
+      "why": {
+       "en": "Its stroma has enzymes, DNA and 70S ribosomes.",
+       "hi": "इसकी पीठिका में एंज़ाइम, डीएनए और 70S राइबोसोम होते हैं।"
+      }
+     },
+     {
+      "id": "ribo",
+      "left": {
+       "en": "Ribosome",
+       "hi": "राइबोसोम"
+      },
+      "right": {
+       "en": "Makes proteins; no membrane around it",
+       "hi": "प्रोटीन बनाता है; इसके चारों ओर झिल्ली नहीं"
+      },
+      "why": {
+       "en": "Ribosomes are made of RNA and protein; Palade first saw them.",
+       "hi": "राइबोसोम आरएनए और प्रोटीन से बने हैं; पलाडे ने इन्हें पहले देखा।"
+      }
+     },
+     {
+      "id": "cyto",
+      "left": {
+       "en": "Cytoskeleton",
+       "hi": "कोशिका कंकाल"
+      },
+      "right": {
+       "en": "Network of protein fibres for support and movement",
+       "hi": "सहारा और गति के लिए प्रोटीन तंतुओं का जाल"
+      },
+      "why": {
+       "en": "Microtubules, microfilaments and intermediate filaments make it.",
+       "hi": "सूक्ष्मनलिकाएँ, सूक्ष्मतंतु और मध्यवर्ती तंतु इसे बनाते हैं।"
+      }
+     },
+     {
+      "id": "cilia",
+      "left": {
+       "en": "Cilia and flagella",
+       "hi": "पक्ष्माभ और कशाभ"
+      },
+      "right": {
+       "en": "Hair-like outgrowths with a 9 + 2 pattern of microtubules",
+       "hi": "सूक्ष्मनलिकाओं के 9 + 2 ढाँचे वाले बाल जैसे उभार"
+      },
+      "why": {
+       "en": "They grow from basal bodies and move the cell or the fluid around it.",
+       "hi": "ये आधारकाय से निकलते हैं और कोशिका या उसके आसपास के द्रव को चलाते हैं।"
+      }
+     },
+     {
+      "id": "centro",
+      "left": {
+       "en": "Centrosome",
+       "hi": "तारककाय"
+      },
+      "right": {
+       "en": "Two centrioles that form the spindle in animal cells",
+       "hi": "दो तारककेंद्र जो जंतु कोशिकाओं में तर्कु बनाते हैं"
+      },
+      "why": {
+       "en": "Each centriole has nine triplets of microtubules in a cartwheel.",
+       "hi": "हर तारककेंद्र में गाड़ी के पहिये जैसी सूक्ष्मनलिकाओं की नौ त्रिक होती हैं।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:mito",
+     "expect": "matched:mito",
+     "say": {
+      "en": "Tap \"Mitochondrion\" on the left, then its job on the right.",
+      "hi": "बाईं ओर \"माइटोकॉन्ड्रिया\" पर टैप करो, फिर दाईं ओर उसका काम।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:chloro",
+     "expect": "matched:chloro",
+     "say": {
+      "en": "Now match \"Chloroplast\".",
+      "hi": "अब \"हरितलवक\" की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Mitochondria and chloroplasts both have something that most organelles do not. What do you think it is?",
+      "hi": "माइटोकॉन्ड्रिया और हरितलवक दोनों में कुछ ऐसा है जो ज़्यादातर कोशिकांगों में नहीं। तुम्हें क्या लगता है, वह क्या है?"
+     },
+     "options": [
+      {
+       "id": "dna",
+       "en": "Their own DNA and ribosomes",
+       "hi": "अपना डीएनए और राइबोसोम"
+      },
+      {
+       "id": "wall",
+       "en": "A cell wall",
+       "hi": "कोशिका भित्ति"
+      },
+      {
+       "id": "nucleus",
+       "en": "A nucleus inside",
+       "hi": "भीतर एक केंद्रक"
+      }
+     ],
+     "answer": "dna"
+    },
+    {
+     "kind": "do",
+     "target": "left:ribo",
+     "expect": "matched:ribo",
+     "say": {
+      "en": "Match \"Ribosome\".",
+      "hi": "\"राइबोसोम\" की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:membrane",
+     "expect": "matched:membrane",
+     "say": {
+      "en": "Match \"Cell membrane\".",
+      "hi": "\"कोशिका झिल्ली\" की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each organelle has a job. The membrane controls what enters. Mitochondria release energy as ATP; chloroplasts trap light. Both have two membranes, their own circular DNA and 70S ribosomes, so they are called semi-autonomous. Ribosomes make proteins. The cytoskeleton, cilia, flagella and centrioles give support and movement.",
+      "hi": "हर कोशिकांग का एक काम है। झिल्ली नियंत्रित करती है कि क्या भीतर आए। माइटोकॉन्ड्रिया ATP के रूप में ऊर्जा देते हैं; हरितलवक प्रकाश पकड़ते हैं। दोनों में दो झिल्लियाँ, अपना वृत्ताकार डीएनए और 70S राइबोसोम होते हैं, इसलिए ये अर्ध-स्वायत्त कहलाते हैं। राइबोसोम प्रोटीन बनाते हैं। कोशिका कंकाल, पक्ष्माभ, कशाभ और तारककेंद्र सहारा और गति देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Peroxisomes and glyoxysomes are small vesicles with enzymes. What are they called?",
+        "hi": "पेरॉक्सीसोम और ग्लाइऑक्सीसोम एंज़ाइमों वाली छोटी पुटिकाएँ हैं। इन्हें क्या कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Microbodies",
+         "hi": "सूक्ष्मकाय"
+        },
+        {
+         "en": "Ribosomes",
+         "hi": "राइबोसोम"
+        },
+        {
+         "en": "Centrioles",
+         "hi": "तारककेंद्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Microbodies are membrane-bound vesicles found in both plant and animal cells.",
+        "hi": "सूक्ष्मकाय झिल्लीबद्ध पुटिकाएँ हैं जो पादप और जंतु दोनों कोशिकाओं में होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ribosomes have no membrane and do not hold enzymes in a vesicle.",
+         "hi": "राइबोसोम में झिल्ली नहीं होती और ये पुटिका में एंज़ाइम नहीं रखते।"
+        },
+        {
+         "en": "Centrioles are microtubule cylinders, not vesicles.",
+         "hi": "तारककेंद्र सूक्ष्मनलिकाओं के बेलन हैं, पुटिकाएँ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which organelle forms the basal bodies of cilia?",
+        "hi": "कौन-सा कोशिकांग पक्ष्माभों के आधारकाय बनाता है?"
+       },
+       "options": [
+        {
+         "en": "Centrioles",
+         "hi": "तारककेंद्र"
+        },
+        {
+         "en": "Mitochondria",
+         "hi": "माइटोकॉन्ड्रिया"
+        },
+        {
+         "en": "Golgi",
+         "hi": "गॉल्जी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Centrioles form the basal bodies of cilia and flagella and the spindle in animal cells.",
+        "hi": "तारककेंद्र पक्ष्माभों और कशाभों के आधारकाय और जंतु कोशिकाओं में तर्कु बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mitochondria supply energy for beating but do not form the base.",
+         "hi": "माइटोकॉन्ड्रिया हिलने की ऊर्जा देते हैं पर आधार नहीं बनाते।"
+        },
+        {
+         "en": "The Golgi packages materials; it has nothing to do with cilia bases.",
+         "hi": "गॉल्जी पदार्थ पैक करता है; पक्ष्माभ के आधार से इसका संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Then think: why would muscle cells have many more mitochondria than skin cells?",
+      "hi": "बाक़ी जोड़ियाँ मिलाओ। फिर सोचो: पेशी कोशिकाओं में त्वचा कोशिकाओं से बहुत ज़्यादा माइटोकॉन्ड्रिया क्यों होंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch08-secretion",
+   "topic": "8.5.3",
+   "template": "sequence",
+   "title": {
+    "en": "How a cell sends out a protein",
+    "hi": "कोशिका प्रोटीन कैसे बाहर भेजती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "rer",
+      "text": {
+       "en": "Ribosomes on the rough ER make the protein",
+       "hi": "खुरदरे ER पर राइबोसोम प्रोटीन बनाते हैं"
+      }
+     },
+     {
+      "id": "lumen",
+      "text": {
+       "en": "The protein enters the ER lumen",
+       "hi": "प्रोटीन ER की गुहिका में जाता है"
+      }
+     },
+     {
+      "id": "vesicle1",
+      "text": {
+       "en": "A vesicle buds off and carries it to the cis face of the Golgi",
+       "hi": "एक पुटिका निकलकर इसे गॉल्जी के सिस फलक तक ले जाती है"
+      }
+     },
+     {
+      "id": "golgi",
+      "text": {
+       "en": "Golgi cisternae modify it, for example into a glycoprotein",
+       "hi": "गॉल्जी कुंड इसे बदलते हैं, जैसे ग्लाइकोप्रोटीन में"
+      }
+     },
+     {
+      "id": "trans",
+      "text": {
+       "en": "It leaves the trans face packed in a new vesicle",
+       "hi": "यह नई पुटिका में पैक होकर ट्रांस फलक से निकलता है"
+      }
+     },
+     {
+      "id": "out",
+      "text": {
+       "en": "The vesicle joins the cell membrane and releases it outside",
+       "hi": "पुटिका कोशिका झिल्ली से मिलकर इसे बाहर छोड़ती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:rer",
+     "expect": "placed:rer",
+     "say": {
+      "en": "Tap the rough ER card, then tap place 1.",
+      "hi": "खुरदरे ER वाले कार्ड पर टैप करो, फिर स्थान 1 पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:lumen",
+     "expect": "placed:lumen",
+     "say": {
+      "en": "Put the ER lumen card in place 2.",
+      "hi": "ER गुहिका वाले कार्ड को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Golgi has a receiving face and a sending face. Which face does the protein enter first?",
+      "hi": "गॉल्जी का एक लेने वाला और एक भेजने वाला फलक है। प्रोटीन पहले किस फलक में जाता है?"
+     },
+     "options": [
+      {
+       "id": "cis",
+       "en": "The cis (forming) face",
+       "hi": "सिस (निर्माणकारी) फलक"
+      },
+      {
+       "id": "trans",
+       "en": "The trans (maturing) face",
+       "hi": "ट्रांस (परिपक्व) फलक"
+      }
+     ],
+     "answer": "cis"
+    },
+    {
+     "kind": "do",
+     "target": "item:vesicle1",
+     "expect": "placed:vesicle1",
+     "say": {
+      "en": "Put the first vesicle card in place 3.",
+      "hi": "पहली पुटिका वाले कार्ड को स्थान 3 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:golgi",
+     "expect": "placed:golgi",
+     "say": {
+      "en": "Put the Golgi card in place 4.",
+      "hi": "गॉल्जी वाले कार्ड को स्थान 4 पर रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "ER, Golgi, lysosomes and vacuoles work together as the endomembrane system. Rough ER makes and passes proteins to the Golgi in vesicles. The Golgi modifies them, for example adding sugars to make glycoproteins, and sends them from its trans face to the membrane, or into lysosomes. Smooth ER makes lipids such as steroids.",
+      "hi": "ER, गॉल्जी, लयनकाय और रिक्तिकाएँ मिलकर अंतःझिल्ली तंत्र के रूप में काम करते हैं। खुरदरा ER प्रोटीन बनाकर पुटिकाओं में गॉल्जी तक भेजता है। गॉल्जी उन्हें बदलता है, जैसे शर्करा जोड़कर ग्लाइकोप्रोटीन बनाना, और अपने ट्रांस फलक से झिल्ली तक या लयनकायों में भेजता है। चिकना ER स्टेरॉयड जैसे लिपिड बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Cells that make hormones like steroids have a lot of which organelle?",
+        "hi": "स्टेरॉयड जैसे हॉर्मोन बनाने वाली कोशिकाओं में कौन-सा कोशिकांग बहुत होता है?"
+       },
+       "options": [
+        {
+         "en": "Smooth ER",
+         "hi": "चिकना ER"
+        },
+        {
+         "en": "Rough ER",
+         "hi": "खुरदरा ER"
+        },
+        {
+         "en": "Lysosomes",
+         "hi": "लयनकाय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Smooth ER is the main site of lipid synthesis, and steroid hormones are lipids.",
+        "hi": "चिकना ER लिपिड संश्लेषण का मुख्य स्थल है, और स्टेरॉयड हॉर्मोन लिपिड हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rough ER, with ribosomes, makes proteins, not steroids.",
+         "hi": "राइबोसोम वाला खुरदरा ER प्रोटीन बनाता है, स्टेरॉयड नहीं।"
+        },
+        {
+         "en": "Lysosomes break things down with digestive enzymes.",
+         "hi": "लयनकाय पाचक एंज़ाइमों से पदार्थ तोड़ते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where do lysosomes come from?",
+        "hi": "लयनकाय कहाँ से बनते हैं?"
+       },
+       "options": [
+        {
+         "en": "They bud off from the Golgi",
+         "hi": "ये गॉल्जी से निकलते हैं"
+        },
+        {
+         "en": "From mitochondria",
+         "hi": "माइटोकॉन्ड्रिया से"
+        },
+        {
+         "en": "From the nucleolus",
+         "hi": "केंद्रिका से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Lysosomes are vesicles packed by the Golgi, full of hydrolytic enzymes that work at acidic pH.",
+        "hi": "लयनकाय गॉल्जी द्वारा पैक की गई पुटिकाएँ हैं, अम्लीय pH पर काम करने वाले जल-अपघटनी एंज़ाइमों से भरी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mitochondria make ATP; they do not make lysosomes.",
+         "hi": "माइटोकॉन्ड्रिया ATP बनाते हैं; लयनकाय नहीं।"
+        },
+        {
+         "en": "The nucleolus makes ribosomal RNA.",
+         "hi": "केंद्रिका राइबोसोमी आरएनए बनाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the order. Then think: in which of your cells, gut lining or bone, would you expect more Golgi?",
+      "hi": "क्रम पूरा करो। फिर सोचो: तुम्हारी किन कोशिकाओं में, आंत के अस्तर में या हड्डी में, ज़्यादा गॉल्जी होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch08-centromere",
+   "topic": "8.5.10",
+   "template": "sort",
+   "title": {
+    "en": "Where is the centromere?",
+    "hi": "गुणसूत्रबिंदु कहाँ है?"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "meta",
+      "label": {
+       "en": "Metacentric",
+       "hi": "मध्यकेंद्री"
+      }
+     },
+     {
+      "id": "submeta",
+      "label": {
+       "en": "Sub-metacentric",
+       "hi": "उपमध्यकेंद्री"
+      }
+     },
+     {
+      "id": "acro",
+      "label": {
+       "en": "Acrocentric",
+       "hi": "अग्रबिंदु"
+      }
+     },
+     {
+      "id": "telo",
+      "label": {
+       "en": "Telocentric",
+       "hi": "अंतकेंद्री"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "middle",
+      "text": {
+       "en": "Centromere in the middle; two equal arms",
+       "hi": "गुणसूत्रबिंदु बीच में; दो बराबर भुजाएँ"
+      },
+      "bin": "meta",
+      "why": {
+       "en": "A metacentric chromosome has its centromere at the centre.",
+       "hi": "मध्यकेंद्री गुणसूत्र का गुणसूत्रबिंदु बीच में होता है।"
+      }
+     },
+     {
+      "id": "slight",
+      "text": {
+       "en": "Centromere a little away from the middle",
+       "hi": "गुणसूत्रबिंदु बीच से थोड़ा हटकर"
+      },
+      "bin": "submeta",
+      "why": {
+       "en": "One arm is a little shorter than the other.",
+       "hi": "एक भुजा दूसरी से थोड़ी छोटी होती है।"
+      }
+     },
+     {
+      "id": "near-end",
+      "text": {
+       "en": "Centromere close to one end; one tiny arm",
+       "hi": "गुणसूत्रबिंदु एक सिरे के पास; एक नन्ही भुजा"
+      },
+      "bin": "acro",
+      "why": {
+       "en": "One arm is extremely short and the other very long.",
+       "hi": "एक भुजा बहुत छोटी और दूसरी बहुत लंबी होती है।"
+      }
+     },
+     {
+      "id": "at-end",
+      "text": {
+       "en": "Centromere right at the tip",
+       "hi": "गुणसूत्रबिंदु ठीक सिरे पर"
+      },
+      "bin": "telo",
+      "why": {
+       "en": "A telocentric chromosome has a terminal centromere.",
+       "hi": "अंतकेंद्री गुणसूत्र का गुणसूत्रबिंदु अंतिम सिरे पर होता है।"
+      }
+     },
+     {
+      "id": "v-shape",
+      "text": {
+       "en": "Looks like a V when pulled by its middle",
+       "hi": "बीच से खिंचने पर V जैसा दिखता है"
+      },
+      "bin": "meta",
+      "why": {
+       "en": "Equal arms make a V shape during anaphase.",
+       "hi": "बराबर भुजाएँ पश्चावस्था में V आकार बनाती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:middle",
+     "expect": "correct:middle",
+     "say": {
+      "en": "Tap \"Centromere in the middle\", then tap its type.",
+      "hi": "\"गुणसूत्रबिंदु बीच में\" पर टैप करो, फिर उसके प्रकार पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the centromere is close to one end, with one very short arm, which type is it?",
+      "hi": "अगर गुणसूत्रबिंदु एक सिरे के पास हो और एक भुजा बहुत छोटी हो, तो यह कौन-सा प्रकार है?"
+     },
+     "options": [
+      {
+       "id": "acro",
+       "en": "Acrocentric",
+       "hi": "अग्रबिंदु"
+      },
+      {
+       "id": "telo",
+       "en": "Telocentric",
+       "hi": "अंतकेंद्री"
+      },
+      {
+       "id": "meta",
+       "en": "Metacentric",
+       "hi": "मध्यकेंद्री"
+      }
+     ],
+     "answer": "acro"
+    },
+    {
+     "kind": "do",
+     "target": "card:near-end",
+     "expect": "correct:near-end",
+     "say": {
+      "en": "Tap the card about one tiny arm and sort it.",
+      "hi": "नन्ही भुजा वाले कार्ड पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:at-end",
+     "expect": "correct:at-end",
+     "say": {
+      "en": "Now sort the card with the centromere at the tip.",
+      "hi": "अब सिरे पर गुणसूत्रबिंदु वाले कार्ड को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Chromosomes are made of chromatin, DNA wound with histone proteins. Each has a primary constriction, the centromere, with disc-like kinetochores on its sides. The position of the centromere gives four types: metacentric, sub-metacentric, acrocentric and telocentric. A human cell has 46 chromosomes.",
+      "hi": "गुणसूत्र क्रोमैटिन से बने हैं, यानी हिस्टोन प्रोटीन पर लिपटा डीएनए। हर एक में एक प्राथमिक संकीर्णन, गुणसूत्रबिंदु, होता है, जिसके दोनों ओर तश्तरी जैसे काइनेटोकोर होते हैं। गुणसूत्रबिंदु की स्थिति से चार प्रकार बनते हैं: मध्यकेंद्री, उपमध्यकेंद्री, अग्रबिंदु और अंतकेंद्री। मानव कोशिका में 46 गुणसूत्र होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do the kinetochores on a centromere do?",
+        "hi": "गुणसूत्रबिंदु पर काइनेटोकोर क्या करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Give a place for spindle fibres to attach",
+         "hi": "तर्कु तंतुओं को जुड़ने की जगह देते हैं"
+        },
+        {
+         "en": "Make ribosomes",
+         "hi": "राइबोसोम बनाते हैं"
+        },
+        {
+         "en": "Store starch",
+         "hi": "स्टार्च जमा करते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Spindle fibres grip the kinetochores to pull chromatids apart during division.",
+        "hi": "विभाजन में क्रोमैटिडों को अलग खींचने के लिए तर्कु तंतु काइनेटोकोर पकड़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ribosomal RNA is made in the nucleolus.",
+         "hi": "राइबोसोमी आरएनए केंद्रिका में बनता है।"
+        },
+        {
+         "en": "Starch is stored in plastids, not on chromosomes.",
+         "hi": "स्टार्च लवकों में जमा होता है, गुणसूत्रों पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the last card. Then draw the four types in your notebook and mark the short arm and the long arm.",
+      "hi": "आख़िरी कार्ड छाँटो। फिर चारों प्रकार अपनी कॉपी में बनाकर छोटी और लंबी भुजा पर निशान लगाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Chapter hook: cells of many shapes",
+   "shows": "A grid of six real micrographs: human red blood cells, a nerve cell, onion peel cells, a Paramecium, a bacterium smear and a long plant fibre cell",
+   "view": "Same square tiles, even light (microscope: reuse LIB-BIO-microscope)",
+   "right": "Shapes very different; true stain colours",
+   "avoid": "Labels, invented colours"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "8.1",
+   "use": "Onion peel stained",
+   "shows": "Onion epidermal cells stained with iodine at 400x, nucleus and wall clear (slides: reuse LIB-BIO-slide-coverslip)",
+   "view": "Square micrograph",
+   "right": "Brick-like cells, one nucleus each",
+   "avoid": "Air bubbles, labels"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "8.5",
+   "use": "Plant and animal cell models",
+   "shows": "Two cut-away 3D cell models side by side: a plant cell with wall, chloroplasts and big vacuole, an animal cell with centrioles",
+   "view": "Three-quarter cut-away view",
+   "right": "Organelles in true relative sizes; colour code shared across both",
+   "avoid": "Words or arrows (the app adds them)"
+  },
+  {
+   "n": 4,
+   "kind": "3DM",
+   "topic": "8.5.4-8.5.9",
+   "use": "Mitochondrion and chloroplast",
+   "shows": "Two cut-away 3D models: a mitochondrion showing cristae and matrix, a chloroplast showing grana stacks and stroma",
+   "view": "Cut-away, soft studio light",
+   "right": "Double membranes visible on both",
+   "avoid": "Text"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "8.5.3",
+   "use": "Endomembrane flow",
+   "shows": "A clean diagram of rough ER, vesicles, a Golgi stack with cis and trans faces, and the cell membrane, in soft gradients",
+   "view": "Side view, white background",
+   "right": "Cisternae curved, vesicles budding at both faces",
+   "avoid": "Words (the app adds them)"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "8.5.10",
+   "use": "Four chromosome types",
+   "shows": "Four chromosomes side by side with centromeres at middle, off-middle, near the end and at the end",
+   "view": "Front view, white background",
+   "right": "Arms drawn as paired chromatids; same colour code",
+   "avoid": "Any words"
+  },
+  {
+   "n": 7,
+   "kind": "MAC",
+   "topic": "8.4",
+   "use": "A bacterium inside",
+   "shows": "A transmission-electron-style illustration of a rod bacterium cut open: wall, membrane, nucleoid, plasmids, ribosomes, flagellum",
+   "view": "Cut-away, white background",
+   "right": "No nucleus; plasmids as small rings",
+   "avoid": "Labels"
+  }
+ ]
+}

@@ -1,0 +1,2002 @@
+{
+ "chapter_key": "u.c12.chemistry.lech1.ch01",
+ "class": 12,
+ "subject_id": "chemistry",
+ "title": "Solutions",
+ "source": "https://ncert.nic.in/textbook/pdf/lech101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Types of solutions",
+   "labs": [
+    "c12-chemistry-lech1-ch01-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Expressing concentration of solutions",
+   "labs": [
+    "c12-chemistry-lech1-ch01-concentration"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Solubility of solids and gases in liquids",
+   "labs": [
+    "c12-chemistry-lech1-ch01-oxygen-temperature"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Vapour pressure of liquid solutions and Raoult's law",
+   "labs": [
+    "c12-chemistry-lech1-ch01-raoult-line"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Ideal and non-ideal solutions",
+   "labs": [
+    "c12-chemistry-lech1-ch01-deviations"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Colligative properties: vapour pressure, boiling point, freezing point, osmosis, reverse osmosis",
+   "labs": [
+    "c12-chemistry-lech1-ch01-freezing-point",
+    "c12-chemistry-lech1-ch01-osmosis-cells"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.7",
+   "title": "Abnormal molar masses and the van't Hoff factor",
+   "labs": [
+    "c12-chemistry-lech1-ch01-vant-hoff"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-chemistry-lech1-ch01-types",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "Types of solutions",
+    "hi": "विलयनों के प्रकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "gas",
+      "label": {
+       "en": "Gaseous solution",
+       "hi": "गैसीय विलयन"
+      }
+     },
+     {
+      "id": "liq",
+      "label": {
+       "en": "Liquid solution",
+       "hi": "द्रव विलयन"
+      }
+     },
+     {
+      "id": "sol",
+      "label": {
+       "en": "Solid solution",
+       "hi": "ठोस विलयन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "air",
+      "text": {
+       "en": "Air (nitrogen, oxygen and other gases)",
+       "hi": "हवा (नाइट्रोजन, ऑक्सीजन व अन्य गैसें)"
+      },
+      "bin": "gas",
+      "why": {
+       "en": "Every part is a gas, and the main gas (nitrogen) is the solvent.",
+       "hi": "हर भाग गैस है और मुख्य गैस (नाइट्रोजन) विलायक है।"
+      }
+     },
+     {
+      "id": "camphor",
+      "text": {
+       "en": "Camphor vapour in nitrogen gas",
+       "hi": "नाइट्रोजन गैस में कपूर की वाष्प"
+      },
+      "bin": "gas",
+      "why": {
+       "en": "The solvent, nitrogen, is a gas, so the whole mixture is a gaseous solution.",
+       "hi": "विलायक नाइट्रोजन गैस है, इसलिए पूरा मिश्रण गैसीय विलयन है।"
+      }
+     },
+     {
+      "id": "soda",
+      "text": {
+       "en": "Soda water (CO2 in water)",
+       "hi": "सोडा वाटर (पानी में CO2)"
+      },
+      "bin": "liq",
+      "why": {
+       "en": "Water, a liquid, is the solvent, so it is a liquid solution even though the solute is a gas.",
+       "hi": "विलायक पानी द्रव है, इसलिए विलेय गैस होने पर भी यह द्रव विलयन है।"
+      }
+     },
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Sugar dissolved in water",
+       "hi": "पानी में घुली चीनी"
+      },
+      "bin": "liq",
+      "why": {
+       "en": "Solid sugar in liquid water: the solvent is a liquid.",
+       "hi": "ठोस चीनी द्रव पानी में है: विलायक द्रव है।"
+      }
+     },
+     {
+      "id": "spirit",
+      "text": {
+       "en": "Ethanol mixed with water",
+       "hi": "पानी में मिला एथेनॉल"
+      },
+      "bin": "liq",
+      "why": {
+       "en": "Both are liquids; water is the solvent, so it is a liquid solution.",
+       "hi": "दोनों द्रव हैं; पानी विलायक है, इसलिए यह द्रव विलयन है।"
+      }
+     },
+     {
+      "id": "brass",
+      "text": {
+       "en": "Brass (zinc in copper)",
+       "hi": "पीतल (ताँबे में जस्ता)"
+      },
+      "bin": "sol",
+      "why": {
+       "en": "Copper is the solvent and it is a solid, so brass is a solid solution.",
+       "hi": "ताँबा विलायक है और वह ठोस है, इसलिए पीतल ठोस विलयन है।"
+      }
+     },
+     {
+      "id": "amalgam",
+      "text": {
+       "en": "Amalgam of mercury with sodium",
+       "hi": "सोडियम के साथ पारे का अमलगम"
+      },
+      "bin": "sol",
+      "why": {
+       "en": "Sodium, a solid, is the solvent here, so the amalgam is a solid solution.",
+       "hi": "यहाँ ठोस सोडियम विलायक है, इसलिए अमलगम ठोस विलयन है।"
+      }
+     },
+     {
+      "id": "pd",
+      "text": {
+       "en": "Hydrogen gas absorbed in palladium",
+       "hi": "पैलेडियम में अवशोषित हाइड्रोजन गैस"
+      },
+      "bin": "sol",
+      "why": {
+       "en": "Palladium metal is the solvent and it is a solid.",
+       "hi": "पैलेडियम धातु विलायक है और वह ठोस है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:air",
+     "expect": "correct:air",
+     "say": {
+      "en": "Tap the card “Air (nitrogen, oxygen and other gases)”, then tap the group it belongs to.",
+      "hi": "कार्ड “हवा (नाइट्रोजन, ऑक्सीजन व अन्य गैसें)” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Soda water has carbon dioxide gas dissolved in water. Which group will it go to?",
+      "hi": "सोडा वाटर में पानी में कार्बन डाइऑक्साइड गैस घुली है। यह किस समूह में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "gas",
+       "en": "Gaseous solution",
+       "hi": "गैसीय विलयन"
+      },
+      {
+       "id": "liq",
+       "en": "Liquid solution",
+       "hi": "द्रव विलयन"
+      },
+      {
+       "id": "sol",
+       "en": "Solid solution",
+       "hi": "ठोस विलयन"
+      }
+     ],
+     "answer": "liq"
+    },
+    {
+     "kind": "do",
+     "target": "card:soda",
+     "expect": "correct:soda",
+     "say": {
+      "en": "Now sort “Soda water (CO2 in water)”.",
+      "hi": "अब “सोडा वाटर (पानी में CO2)” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:brass",
+     "expect": "correct:brass",
+     "say": {
+      "en": "Now sort “Brass (zinc in copper)”.",
+      "hi": "अब “पीतल (ताँबे में जस्ता)” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The type of a solution is the physical state of its solvent, the substance present in the larger amount. Soda water, sugar syrup and spirit are liquid solutions. Brass and amalgams are solid solutions. Air is a gaseous solution. The solute can be a gas, liquid or solid in any of them.",
+      "hi": "विलयन का प्रकार उसके विलायक की भौतिक अवस्था से तय होता है, यानी जो पदार्थ अधिक मात्रा में हो। सोडा वाटर, चीनी की चाशनी और स्पिरिट द्रव विलयन हैं। पीतल और अमलगम ठोस विलयन हैं। हवा गैसीय विलयन है। विलेय किसी भी विलयन में गैस, द्रव या ठोस हो सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What decides whether a solution is called gaseous, liquid or solid?",
+        "hi": "कोई विलयन गैसीय, द्रव या ठोस कहलाएगा, यह किससे तय होता है?"
+       },
+       "options": [
+        {
+         "en": "The state of the solvent",
+         "hi": "विलायक की अवस्था"
+        },
+        {
+         "en": "The state of the solute",
+         "hi": "विलेय की अवस्था"
+        },
+        {
+         "en": "The colour of the mixture",
+         "hi": "मिश्रण का रंग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The solvent is the main substance, and the solution keeps its state.",
+        "hi": "विलायक मुख्य पदार्थ है और विलयन उसी की अवस्था में रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A gas can be the solute in a liquid solution, as in soda water, so the solute does not decide.",
+         "hi": "सोडा वाटर की तरह द्रव विलयन में विलेय गैस भी हो सकता है, इसलिए विलेय तय नहीं करता।"
+        },
+        {
+         "en": "Colour has nothing to do with the type of a solution.",
+         "hi": "रंग का विलयन के प्रकार से कोई संबंध नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is a solid solution?",
+        "hi": "इनमें से कौन ठोस विलयन है?"
+       },
+       "options": [
+        {
+         "en": "Brass",
+         "hi": "पीतल"
+        },
+        {
+         "en": "Soda water",
+         "hi": "सोडा वाटर"
+        },
+        {
+         "en": "Air",
+         "hi": "हवा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Zinc is mixed evenly in solid copper, so the solvent is a solid.",
+        "hi": "जस्ता ठोस ताँबे में समान रूप से मिला है, इसलिए विलायक ठोस है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Soda water is a gas in a liquid, so it is a liquid solution.",
+         "hi": "सोडा वाटर द्रव में गैस है, इसलिए यह द्रव विलयन है।"
+        },
+        {
+         "en": "Air is a mixture of gases, a gaseous solution.",
+         "hi": "हवा गैसों का मिश्रण है, यानी गैसीय विलयन।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the remaining cards. Then think of the gold in a jewellery piece (gold with copper). Which type is it?",
+      "hi": "बाकी कार्ड छाँटो। फिर गहने के सोने (सोने और ताँबे के मिश्रण) के बारे में सोचो। यह किस प्रकार का विलयन है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch01-concentration",
+   "topic": "1.2",
+   "template": "match",
+   "title": {
+    "en": "Ways to express concentration",
+    "hi": "सांद्रता व्यक्त करने के तरीके"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "mass",
+      "left": {
+       "en": "Mass percent",
+       "hi": "द्रव्यमान प्रतिशत"
+      },
+      "right": {
+       "en": "Grams of solute in 100 g of solution",
+       "hi": "100 g विलयन में विलेय के ग्राम"
+      },
+      "why": {
+       "en": "A 10% sugar solution has 10 g sugar in 100 g of solution.",
+       "hi": "10% चीनी विलयन के 100 g में 10 g चीनी होती है।"
+      }
+     },
+     {
+      "id": "ppm",
+      "left": {
+       "en": "Parts per million (ppm)",
+       "hi": "पार्ट्स पर मिलियन (ppm)"
+      },
+      "right": {
+       "en": "Parts of solute in 10⁶ parts of solution",
+       "hi": "10⁶ भाग विलयन में विलेय के भाग"
+      },
+      "why": {
+       "en": "Used for very small amounts, such as fluoride in drinking water.",
+       "hi": "बहुत कम मात्रा के लिए, जैसे पीने के पानी में फ्लुओराइड।"
+      }
+     },
+     {
+      "id": "molefrac",
+      "left": {
+       "en": "Mole fraction",
+       "hi": "मोल अंश"
+      },
+      "right": {
+       "en": "Moles of one component ÷ total moles of all components",
+       "hi": "एक घटक के मोल ÷ सभी घटकों के कुल मोल"
+      },
+      "why": {
+       "en": "It has no unit, and the mole fractions of all components add up to 1.",
+       "hi": "इसकी कोई इकाई नहीं होती और सभी घटकों के मोल अंशों का योग 1 होता है।"
+      }
+     },
+     {
+      "id": "molarity",
+      "left": {
+       "en": "Molarity (M)",
+       "hi": "मोलरता (M)"
+      },
+      "right": {
+       "en": "Moles of solute in 1 litre of solution",
+       "hi": "1 लीटर विलयन में विलेय के मोल"
+      },
+      "why": {
+       "en": "A 1 M solution has 1 mole of solute in every litre of solution.",
+       "hi": "1 M विलयन के हर लीटर में 1 मोल विलेय होता है।"
+      }
+     },
+     {
+      "id": "molality",
+      "left": {
+       "en": "Molality (m)",
+       "hi": "मोललता (m)"
+      },
+      "right": {
+       "en": "Moles of solute in 1 kg of solvent",
+       "hi": "1 kg विलायक में विलेय के मोल"
+      },
+      "why": {
+       "en": "It uses the mass of the solvent, so it does not change with temperature.",
+       "hi": "इसमें विलायक का द्रव्यमान लेते हैं, इसलिए यह ताप से नहीं बदलती।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:molarity",
+     "expect": "matched:molarity",
+     "say": {
+      "en": "Tap “Molarity (M)” on the left, then tap its partner on the right.",
+      "hi": "“मोलरता (M)” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When a solution is heated, its volume grows a little but the masses stay the same. Which of these changes with temperature?",
+      "hi": "विलयन को गर्म करने पर उसका आयतन थोड़ा बढ़ता है पर द्रव्यमान वही रहता है। इनमें से कौन ताप के साथ बदलता है?"
+     },
+     "options": [
+      {
+       "id": "molarity",
+       "en": "Molarity",
+       "hi": "मोलरता"
+      },
+      {
+       "id": "molality",
+       "en": "Molality",
+       "hi": "मोललता"
+      },
+      {
+       "id": "molefrac",
+       "en": "Mole fraction",
+       "hi": "मोल अंश"
+      }
+     ],
+     "answer": "molarity"
+    },
+    {
+     "kind": "do",
+     "target": "left:molality",
+     "expect": "matched:molality",
+     "say": {
+      "en": "Now match “Molality (m)”.",
+      "hi": "अब “मोललता (m)” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Molarity divides by the volume of the solution, and volume changes with temperature. Molality, mole fraction and mass percent use only masses or moles, so they stay the same when the temperature changes. That is why molality is preferred when temperature varies.",
+      "hi": "मोलरता में विलयन के आयतन से भाग देते हैं और आयतन ताप के साथ बदलता है। मोललता, मोल अंश और द्रव्यमान प्रतिशत में केवल द्रव्यमान या मोल लगते हैं, इसलिए ताप बदलने पर ये नहीं बदलते। इसीलिए जहाँ ताप बदलता है वहाँ मोललता को चुना जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "5.85 g of NaCl (molar mass 58.5 g/mol) is dissolved in water and made up to 1 litre of solution. What is the molarity?",
+        "hi": "5.85 g NaCl (मोलर द्रव्यमान 58.5 g/mol) पानी में घोलकर कुल 1 लीटर विलयन बनाया गया। मोलरता क्या है?"
+       },
+       "options": [
+        "0.1 M",
+        "1 M",
+        "0.01 M"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Moles = 5.85 ÷ 58.5 = 0.1, and the volume is 1 litre, so the molarity is 0.1 M.",
+        "hi": "मोल = 5.85 ÷ 58.5 = 0.1 और आयतन 1 लीटर है, इसलिए मोलरता 0.1 M है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would need 58.5 g, ten times more NaCl.",
+         "hi": "इसके लिए 58.5 g चाहिए, यानी दस गुना अधिक NaCl।"
+        },
+        {
+         "en": "That would need only 0.585 g, ten times less NaCl.",
+         "hi": "इसके लिए केवल 0.585 g चाहिए, यानी दस गुना कम NaCl।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the sum of the mole fractions of all the components in a solution?",
+        "hi": "किसी विलयन के सभी घटकों के मोल अंशों का योग कितना होता है?"
+       },
+       "options": [
+        "1",
+        "100",
+        {
+         "en": "It depends on the solution",
+         "hi": "यह विलयन पर निर्भर करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each mole fraction is a part of the whole, so the parts always add up to 1.",
+        "hi": "हर मोल अंश पूरे का एक भाग है, इसलिए सब भागों का योग हमेशा 1 होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "100 is the total for percentages, not for mole fractions.",
+         "hi": "100 प्रतिशतों का योग होता है, मोल अंशों का नहीं।"
+        },
+        {
+         "en": "The total does not depend on the solution; it is always 1.",
+         "hi": "योग विलयन पर निर्भर नहीं करता; यह हमेशा 1 होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match all five. Then work out the mole fraction of water in a solution made of 1 mole of sugar and 9 moles of water.",
+      "hi": "पाँचों मिलाओ। फिर 1 मोल चीनी और 9 मोल पानी के विलयन में पानी का मोल अंश निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch01-oxygen-temperature",
+   "topic": "1.3",
+   "template": "data",
+   "title": {
+    "en": "Gases dissolve less in warm water",
+    "hi": "गर्म पानी में गैसें कम घुलती हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "show": 1,
+    "title": {
+     "en": "Oxygen dissolved in water that is in balance with air",
+     "hi": "हवा के साथ संतुलन में पानी में घुली ऑक्सीजन"
+    },
+    "xlabel": {
+     "en": "Water temperature (°C)",
+     "hi": "पानी का ताप (°C)"
+    },
+    "ylabel": {
+     "en": "Dissolved oxygen (mg per litre)",
+     "hi": "घुली ऑक्सीजन (mg प्रति लीटर)"
+    },
+    "data": {
+     "rows": [
+      [
+       0,
+       14.6
+      ],
+      [
+       10,
+       11.3
+      ],
+      [
+       20,
+       9.1
+      ],
+      [
+       30,
+       7.6
+      ],
+      [
+       40,
+       6.5
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to plot the value at 10 °C.",
+      "hi": "10 °C का मान दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The water gets warmer. What will happen to the amount of oxygen dissolved in it?",
+      "hi": "पानी गर्म होता जाता है। उसमें घुली ऑक्सीजन की मात्रा का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "It goes down",
+       "hi": "घटेगी"
+      },
+      {
+       "id": "up",
+       "en": "It goes up",
+       "hi": "बढ़ेगी"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वही रहेगी"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the point for 20 °C.",
+      "hi": "20 °C का बिंदु जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 30 °C.",
+      "hi": "30 °C जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 40 °C.",
+      "hi": "40 °C जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Dissolved oxygen falls from about 14.6 mg per litre at 0 °C to 6.5 at 40 °C. Dissolving a gas gives out heat, so heating the water pushes the gas back out: solubility of gases in liquids falls as temperature rises. Pressure works the other way: Henry's law says more pressure means more gas dissolved.",
+      "hi": "घुली ऑक्सीजन 0 °C पर लगभग 14.6 mg प्रति लीटर से घटकर 40 °C पर 6.5 रह जाती है। गैस घुलने पर ऊष्मा निकलती है, इसलिए पानी गर्म करने से गैस बाहर निकल जाती है: ताप बढ़ने पर द्रवों में गैसों की विलेयता घटती है। दाब इसका उलटा करता है: हेनरी के नियम के अनुसार दाब बढ़ाने पर अधिक गैस घुलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a hot Indian summer, fish in a small pond sometimes come to the surface and gasp. Why?",
+        "hi": "भीषण गर्मी में छोटे तालाब की मछलियाँ कभी-कभी सतह पर आकर हाँफती हैं। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Warm water holds less dissolved oxygen",
+         "hi": "गर्म पानी में घुली ऑक्सीजन कम होती है"
+        },
+        {
+         "en": "Warm water holds more dissolved oxygen",
+         "hi": "गर्म पानी में घुली ऑक्सीजन अधिक होती है"
+        },
+        {
+         "en": "Oxygen turns into hydrogen in warm water",
+         "hi": "गर्म पानी में ऑक्सीजन हाइड्रोजन बन जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Solubility of oxygen falls as the water warms, so fish get less of it.",
+        "hi": "पानी गर्म होने पर ऑक्सीजन की विलेयता घटती है, इसलिए मछलियों को कम ऑक्सीजन मिलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The graph shows the opposite: the amount falls with temperature.",
+         "hi": "ग्राफ़ इसका उलटा दिखाता है: ताप बढ़ने पर मात्रा घटती है।"
+        },
+        {
+         "en": "Oxygen does not change into another element in water.",
+         "hi": "पानी में ऑक्सीजन किसी दूसरे तत्व में नहीं बदलती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A soda bottle is sealed under high pressure. According to Henry's law, why?",
+        "hi": "सोडा की बोतल ऊँचे दाब पर बंद की जाती है। हेनरी के नियम के अनुसार क्यों?"
+       },
+       "options": [
+        {
+         "en": "More CO2 dissolves at higher pressure",
+         "hi": "अधिक दाब पर अधिक CO2 घुलती है"
+        },
+        {
+         "en": "Pressure makes the soda sweeter",
+         "hi": "दाब से सोडा मीठा हो जाता है"
+        },
+        {
+         "en": "Pressure makes CO2 less soluble",
+         "hi": "दाब से CO2 कम घुलनशील हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The solubility of a gas in a liquid is proportional to the pressure of the gas over it.",
+        "hi": "किसी द्रव में गैस की विलेयता उसके ऊपर गैस के दाब के समानुपाती होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sweetness comes from sugar, not from pressure.",
+         "hi": "मिठास चीनी से आती है, दाब से नहीं।"
+        },
+        {
+         "en": "It is the other way round: more pressure, more gas dissolved.",
+         "hi": "उलटा है: दाब बढ़ाने पर अधिक गैस घुलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag a point to a higher value. Would the water then hold more oxygen than the curve allows? Why do divers breathe special gas mixtures at depth, where pressure is high?",
+      "hi": "कोई बिंदु ऊपर खींचो। क्या पानी तब वक्र से अधिक ऑक्सीजन रखेगा? गहराई पर जहाँ दाब अधिक होता है, गोताखोर विशेष गैस मिश्रण क्यों लेते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch01-raoult-line",
+   "topic": "1.4",
+   "template": "data",
+   "title": {
+    "en": "Raoult's law for two liquids",
+    "hi": "दो द्रवों के लिए राउल्ट का नियम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "show": 2,
+    "title": {
+     "en": "Vapour pressure of an ideal mixture of A and B (sample)",
+     "hi": "A और B के आदर्श मिश्रण का वाष्प दाब (नमूना)"
+    },
+    "xlabel": {
+     "en": "Mole fraction of A",
+     "hi": "A का मोल अंश"
+    },
+    "ylabel": {
+     "en": "Total vapour pressure (kPa)",
+     "hi": "कुल वाष्प दाब (kPa)"
+    },
+    "data": {
+     "rows": [
+      [
+       0,
+       40
+      ],
+      [
+       0.25,
+       50
+      ],
+      [
+       0.5,
+       60
+      ],
+      [
+       0.75,
+       70
+      ],
+      [
+       1,
+       80
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the point for a mixture that is half A and half B (0.5).",
+      "hi": "ऐसे मिश्रण का बिंदु जोड़ो जिसमें आधा A और आधा B है (0.5)।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Pure B has a vapour pressure of 40 kPa and pure A has 80 kPa. For a half-and-half mixture, where will the total fall?",
+      "hi": "शुद्ध B का वाष्प दाब 40 kPa और शुद्ध A का 80 kPa है। आधे-आधे मिश्रण का कुल दाब कहाँ होगा?"
+     },
+     "options": [
+      {
+       "id": "mid",
+       "en": "Exactly in the middle, 60 kPa",
+       "hi": "ठीक बीच में, 60 kPa"
+      },
+      {
+       "id": "low",
+       "en": "Below 40 kPa",
+       "hi": "40 kPa से कम"
+      },
+      {
+       "id": "high",
+       "en": "Above 80 kPa",
+       "hi": "80 kPa से अधिक"
+      }
+     ],
+     "answer": "mid"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 0.75.",
+      "hi": "0.75 जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the last point: pure A.",
+      "hi": "अंतिम बिंदु जोड़ो: शुद्ध A।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Raoult's law: the vapour pressure of each liquid in the mixture is its pure vapour pressure multiplied by its mole fraction. Add the two and the total becomes a straight line from 40 to 80 kPa. A mixture that follows this line exactly is an ideal solution. If a non-volatile solute replaces liquid B, only A's part remains, so the vapour pressure is lowered.",
+      "hi": "राउल्ट का नियम: मिश्रण में हर द्रव का वाष्प दाब उसके शुद्ध वाष्प दाब और उसके मोल अंश का गुणनफल होता है। दोनों जोड़ने पर कुल दाब 40 से 80 kPa तक एक सीधी रेखा बनता है। जो मिश्रण ठीक इस रेखा पर चले वह आदर्श विलयन है। यदि द्रव B की जगह अवाष्पशील विलेय हो, तो केवल A का भाग बचता है, इसलिए वाष्प दाब घट जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "From the line, what is the total vapour pressure when the mole fraction of A is 0.25?",
+        "hi": "रेखा से देखो, A का मोल अंश 0.25 होने पर कुल वाष्प दाब कितना है?"
+       },
+       "options": [
+        "50 kPa",
+        "25 kPa",
+        "70 kPa"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The total is 40 + 40 × 0.25 = 50 kPa.",
+        "hi": "कुल दाब = 40 + 40 × 0.25 = 50 kPa।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "25 kPa is the mole fraction mistaken for a pressure; the line starts at 40 kPa.",
+         "hi": "यहाँ मोल अंश को दाब समझ लिया गया; रेखा 40 kPa से शुरू होती है।"
+        },
+        {
+         "en": "70 kPa belongs to the 0.75 point, where there is more of A.",
+         "hi": "70 kPa 0.75 वाले बिंदु का मान है, जहाँ A अधिक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Raoult's law says the vapour pressure of a component in a solution is proportional to…",
+        "hi": "राउल्ट के नियम के अनुसार विलयन में किसी घटक का वाष्प दाब किसके समानुपाती होता है?"
+       },
+       "options": [
+        {
+         "en": "Its mole fraction in the solution",
+         "hi": "विलयन में उसके मोल अंश के"
+        },
+        {
+         "en": "Its colour",
+         "hi": "उसके रंग के"
+        },
+        {
+         "en": "Its molar mass only",
+         "hi": "केवल उसके मोलर द्रव्यमान के"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More molecules of a liquid at the surface means more of them escape as vapour.",
+        "hi": "सतह पर किसी द्रव के अणु अधिक हों तो वाष्प बनकर निकलने वाले अणु भी अधिक होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Colour has no link with vapour pressure.",
+         "hi": "रंग का वाष्प दाब से कोई संबंध नहीं है।"
+        },
+        {
+         "en": "Molar mass alone does not decide it; the mole fraction does.",
+         "hi": "केवल मोलर द्रव्यमान इसे तय नहीं करता; मोल अंश करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the last point down to 70 kPa. The line would no longer be straight. What kind of solution would that show?",
+      "hi": "अंतिम बिंदु को 70 kPa तक नीचे खींचो। तब रेखा सीधी नहीं रहेगी। यह किस प्रकार का विलयन दिखाएगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch01-deviations",
+   "topic": "1.5",
+   "template": "sort",
+   "title": {
+    "en": "Ideal and non-ideal solutions",
+    "hi": "आदर्श और अनादर्श विलयन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ideal",
+      "label": {
+       "en": "Ideal (follows Raoult)",
+       "hi": "आदर्श (राउल्ट का पालन)"
+      }
+     },
+     {
+      "id": "pos",
+      "label": {
+       "en": "Positive deviation",
+       "hi": "धनात्मक विचलन"
+      }
+     },
+     {
+      "id": "neg",
+      "label": {
+       "en": "Negative deviation",
+       "hi": "ऋणात्मक विचलन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "hexhep",
+      "text": {
+       "en": "n-Hexane + n-heptane",
+       "hi": "n-हेक्सेन + n-हेप्टेन"
+      },
+      "bin": "ideal",
+      "why": {
+       "en": "Very similar molecules, so A–B attraction equals A–A and B–B.",
+       "hi": "अणु बहुत मिलते-जुलते हैं, इसलिए A–B आकर्षण A–A और B–B के बराबर है।"
+      }
+     },
+     {
+      "id": "bentol",
+      "text": {
+       "en": "Benzene + toluene",
+       "hi": "बेन्ज़ीन + टॉलूईन"
+      },
+      "bin": "ideal",
+      "why": {
+       "en": "Similar, non-polar molecules mix with no heat change.",
+       "hi": "मिलते-जुलते अध्रुवीय अणु बिना ऊष्मा बदले मिलते हैं।"
+      }
+     },
+     {
+      "id": "etoh",
+      "text": {
+       "en": "Ethanol + water",
+       "hi": "एथेनॉल + पानी"
+      },
+      "bin": "pos",
+      "why": {
+       "en": "Ethanol breaks some hydrogen bonds of water, so A–B pull is weaker and more vapour escapes.",
+       "hi": "एथेनॉल पानी के कुछ हाइड्रोजन आबंध तोड़ता है, इसलिए A–B खिंचाव कम है और अधिक वाष्प निकलती है।"
+      }
+     },
+     {
+      "id": "etac",
+      "text": {
+       "en": "Ethanol + acetone",
+       "hi": "एथेनॉल + ऐसीटोन"
+      },
+      "bin": "pos",
+      "why": {
+       "en": "Acetone breaks the hydrogen bonds of ethanol, so the mixture has more vapour than Raoult predicts.",
+       "hi": "ऐसीटोन एथेनॉल के हाइड्रोजन आबंध तोड़ती है, इसलिए वाष्प राउल्ट के अनुमान से अधिक होती है।"
+      }
+     },
+     {
+      "id": "cs2",
+      "text": {
+       "en": "Carbon disulphide + acetone",
+       "hi": "कार्बन डाइसल्फ़ाइड + ऐसीटोन"
+      },
+      "bin": "pos",
+      "why": {
+       "en": "The unlike molecules attract each other less than their own kind.",
+       "hi": "भिन्न अणु एक-दूसरे को अपनी ही जाति के अणुओं से कम आकर्षित करते हैं।"
+      }
+     },
+     {
+      "id": "chac",
+      "text": {
+       "en": "Chloroform + acetone",
+       "hi": "क्लोरोफ़ॉर्म + ऐसीटोन"
+      },
+      "bin": "neg",
+      "why": {
+       "en": "They form a hydrogen bond with each other, so A–B pull is stronger and less vapour escapes.",
+       "hi": "ये आपस में हाइड्रोजन आबंध बनाते हैं, इसलिए A–B खिंचाव अधिक है और वाष्प कम निकलती है।"
+      }
+     },
+     {
+      "id": "hno3",
+      "text": {
+       "en": "Nitric acid + water",
+       "hi": "नाइट्रिक अम्ल + पानी"
+      },
+      "bin": "neg",
+      "why": {
+       "en": "Strong attraction between the two unlike molecules lowers the vapour pressure.",
+       "hi": "दोनों भिन्न अणुओं के बीच प्रबल आकर्षण वाष्प दाब घटाता है।"
+      }
+     },
+     {
+      "id": "hcl",
+      "text": {
+       "en": "Hydrochloric acid + water",
+       "hi": "हाइड्रोक्लोरिक अम्ल + पानी"
+      },
+      "bin": "neg",
+      "why": {
+       "en": "The acid and water attract each other strongly, so the vapour pressure is lower than expected.",
+       "hi": "अम्ल और पानी एक-दूसरे को प्रबल रूप से आकर्षित करते हैं, इसलिए वाष्प दाब अपेक्षा से कम है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:hexhep",
+     "expect": "correct:hexhep",
+     "say": {
+      "en": "Tap the card “n-Hexane + n-heptane”, then tap the group it belongs to.",
+      "hi": "कार्ड “n-हेक्सेन + n-हेप्टेन” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chloroform and acetone make a hydrogen bond with each other. Compared with chloroform–chloroform and acetone–acetone, is the A–B attraction weaker or stronger?",
+      "hi": "क्लोरोफ़ॉर्म और ऐसीटोन आपस में हाइड्रोजन आबंध बनाते हैं। क्लोरोफ़ॉर्म–क्लोरोफ़ॉर्म और ऐसीटोन–ऐसीटोन की तुलना में A–B आकर्षण कम है या अधिक?"
+     },
+     "options": [
+      {
+       "id": "stronger",
+       "en": "Stronger",
+       "hi": "अधिक"
+      },
+      {
+       "id": "weaker",
+       "en": "Weaker",
+       "hi": "कम"
+      },
+      {
+       "id": "equal",
+       "en": "Equal",
+       "hi": "बराबर"
+      }
+     ],
+     "answer": "stronger"
+    },
+    {
+     "kind": "do",
+     "target": "card:etoh",
+     "expect": "correct:etoh",
+     "say": {
+      "en": "Now sort “Ethanol + water”.",
+      "hi": "अब “एथेनॉल + पानी” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:chac",
+     "expect": "correct:chac",
+     "say": {
+      "en": "Now sort “Chloroform + acetone”.",
+      "hi": "अब “क्लोरोफ़ॉर्म + ऐसीटोन” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "If A–B attraction is weaker than A–A and B–B, molecules escape more easily and the vapour pressure is higher than Raoult's law predicts: positive deviation. If A–B attraction is stronger, fewer molecules escape: negative deviation. When all three attractions are equal, the solution is ideal and mixing gives out or takes in no heat.",
+      "hi": "यदि A–B आकर्षण A–A और B–B से कम है, तो अणु आसानी से निकलते हैं और वाष्प दाब राउल्ट के अनुमान से अधिक होता है: धनात्मक विचलन। यदि A–B आकर्षण अधिक है तो कम अणु निकलते हैं: ऋणात्मक विचलन। जब तीनों आकर्षण बराबर हों तो विलयन आदर्श होता है और मिलाने पर न ऊष्मा निकलती है न सोखी जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A solution shows positive deviation. How does its vapour pressure compare with Raoult's law?",
+        "hi": "किसी विलयन में धनात्मक विचलन है। उसका वाष्प दाब राउल्ट के नियम से कैसा है?"
+       },
+       "options": [
+        {
+         "en": "Higher than predicted",
+         "hi": "अनुमान से अधिक"
+        },
+        {
+         "en": "Lower than predicted",
+         "hi": "अनुमान से कम"
+        },
+        {
+         "en": "Exactly as predicted",
+         "hi": "ठीक अनुमान के बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Weaker A–B attraction lets more molecules escape into the vapour.",
+        "hi": "कमज़ोर A–B आकर्षण से अधिक अणु वाष्प में निकल जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lower than predicted is negative deviation.",
+         "hi": "अनुमान से कम वाष्प दाब ऋणात्मक विचलन है।"
+        },
+        {
+         "en": "Exactly as predicted is an ideal solution.",
+         "hi": "ठीक अनुमान के बराबर होना आदर्श विलयन है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What happens to heat when an ideal solution is made by mixing its two liquids?",
+        "hi": "दो द्रवों को मिलाकर आदर्श विलयन बनाने पर ऊष्मा का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "No heat is given out or taken in",
+         "hi": "न ऊष्मा निकलती है न सोखी जाती है"
+        },
+        {
+         "en": "A lot of heat is given out",
+         "hi": "बहुत ऊष्मा निकलती है"
+        },
+        {
+         "en": "A lot of heat is taken in",
+         "hi": "बहुत ऊष्मा सोखी जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All attractions are equal, so the enthalpy of mixing is zero.",
+        "hi": "सभी आकर्षण बराबर हैं, इसलिए मिश्रण की एन्थैल्पी शून्य होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Heat is given out when the A–B attraction is stronger, not in an ideal solution.",
+         "hi": "ऊष्मा तब निकलती है जब A–B आकर्षण अधिक हो, आदर्श विलयन में नहीं।"
+        },
+        {
+         "en": "Heat is taken in when the A–B attraction is weaker, not in an ideal solution.",
+         "hi": "ऊष्मा तब सोखी जाती है जब A–B आकर्षण कम हो, आदर्श विलयन में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the other cards. Which pair would you expect to feel warm when mixed: positive or negative deviation?",
+      "hi": "बाकी कार्ड छाँटो। मिलाने पर कौन-सी जोड़ी गर्म लगेगी: धनात्मक या ऋणात्मक विचलन वाली?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch01-freezing-point",
+   "topic": "1.6",
+   "template": "data",
+   "title": {
+    "en": "Salt on ice: freezing point goes down",
+    "hi": "बर्फ़ पर नमक: हिमांक घटता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "show": 1,
+    "title": {
+     "en": "Fall in freezing point of water (Kf = 1.86 °C per molal)",
+     "hi": "पानी के हिमांक में कमी (Kf = 1.86 °C प्रति मोलल)"
+    },
+    "xlabel": {
+     "en": "Molality of non-volatile solute (m)",
+     "hi": "अवाष्पशील विलेय की मोललता (m)"
+    },
+    "ylabel": {
+     "en": "Fall in freezing point (°C)",
+     "hi": "हिमांक में कमी (°C)"
+    },
+    "data": {
+     "rows": [
+      [
+       0,
+       0
+      ],
+      [
+       0.5,
+       0.93
+      ],
+      [
+       1,
+       1.86
+      ],
+      [
+       1.5,
+       2.79
+      ],
+      [
+       2,
+       3.72
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the point for 0.5 molal.",
+      "hi": "0.5 मोलल का बिंदु जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If we double the molality of the solute, what happens to the fall in freezing point?",
+      "hi": "यदि विलेय की मोललता दोगुनी कर दें तो हिमांक में कमी का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "double",
+       "en": "It doubles",
+       "hi": "दोगुनी हो जाएगी"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वही रहेगी"
+      },
+      {
+       "id": "half",
+       "en": "It halves",
+       "hi": "आधी हो जाएगी"
+      }
+     ],
+     "answer": "double"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 1 molal.",
+      "hi": "1 मोलल जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 1.5 molal.",
+      "hi": "1.5 मोलल जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 2 molal.",
+      "hi": "2 मोलल जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The points lie on a straight line: ΔTf = Kf × m. Doubling the molality doubles the fall. The size of the fall depends only on the number of dissolved particles, not on what they are. Such properties are called colligative properties. The others are the lowering of vapour pressure, the rise in boiling point and osmotic pressure.",
+      "hi": "बिंदु एक सीधी रेखा पर हैं: ΔTf = Kf × m। मोललता दोगुनी करने पर कमी भी दोगुनी हो जाती है। कमी केवल घुले कणों की संख्या पर निर्भर करती है, इस पर नहीं कि वे कौन-से कण हैं। ऐसे गुणों को अणुसंख्य गुणधर्म कहते हैं। बाकी हैं वाष्प दाब का अवनमन, क्वथनांक का उन्नयन और परासरण दाब।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "By how much does the freezing point of water fall in a 1 molal solution of a non-volatile solute?",
+        "hi": "अवाष्पशील विलेय के 1 मोलल विलयन में पानी का हिमांक कितना घटता है?"
+       },
+       "options": [
+        "1.86 °C",
+        "0.93 °C",
+        "3.72 °C"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ΔTf = Kf × m = 1.86 × 1 = 1.86 °C, so the solution freezes at −1.86 °C.",
+        "hi": "ΔTf = Kf × m = 1.86 × 1 = 1.86 °C, इसलिए विलयन −1.86 °C पर जमता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0.93 °C is the fall for 0.5 molal, half as concentrated.",
+         "hi": "0.93 °C आधी सांद्रता यानी 0.5 मोलल की कमी है।"
+        },
+        {
+         "en": "3.72 °C is the fall for 2 molal, twice as concentrated.",
+         "hi": "3.72 °C दोगुनी सांद्रता यानी 2 मोलल की कमी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Kulfi sellers pack crushed ice with salt around the matka. Why add salt?",
+        "hi": "कुल्फ़ी वाले मटके के चारों ओर कुटी बर्फ़ में नमक मिलाते हैं। नमक क्यों?"
+       },
+       "options": [
+        {
+         "en": "Salt lowers the freezing point, so the ice mixture gets colder than 0 °C",
+         "hi": "नमक हिमांक घटाता है, इसलिए बर्फ़ का मिश्रण 0 °C से भी ठंडा हो जाता है"
+        },
+        {
+         "en": "Salt makes ice melt without taking any heat",
+         "hi": "नमक बिना ऊष्मा लिए बर्फ़ पिघला देता है"
+        },
+        {
+         "en": "Salt gives the kulfi its taste through the matka",
+         "hi": "नमक मटके से होकर कुल्फ़ी को स्वाद देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The salty ice-water mixture stays liquid below 0 °C, so it can cool the kulfi mix far enough to freeze it.",
+        "hi": "नमकीन बर्फ़-पानी मिश्रण 0 °C से नीचे भी द्रव रहता है, इसलिए वह कुल्फ़ी के मिश्रण को जमने लायक ठंडा कर सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Melting always takes heat from the surroundings; that is what cools the mix.",
+         "hi": "पिघलने में आसपास से ऊष्मा लेनी ही पड़ती है; यही मिश्रण को ठंडा करती है।"
+        },
+        {
+         "en": "The salt stays outside the matka and cannot flavour the kulfi.",
+         "hi": "नमक मटके के बाहर रहता है और कुल्फ़ी में स्वाद नहीं डाल सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the 2 molal point down. What would that say about the solute: more particles or fewer?",
+      "hi": "2 मोलल वाले बिंदु को नीचे खींचो। विलेय के बारे में यह क्या कहेगा: अधिक कण या कम कण?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch01-osmosis-cells",
+   "topic": "1.6",
+   "template": "sort",
+   "title": {
+    "en": "Osmosis in cells",
+    "hi": "कोशिकाओं में परासरण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "swell",
+      "label": {
+       "en": "Cell swells",
+       "hi": "कोशिका फूलती है"
+      }
+     },
+     {
+      "id": "shrink",
+      "label": {
+       "en": "Cell shrinks",
+       "hi": "कोशिका सिकुड़ती है"
+      }
+     },
+     {
+      "id": "same",
+      "label": {
+       "en": "No change",
+       "hi": "कोई बदलाव नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "raisin",
+      "text": {
+       "en": "Dry raisin soaked in plain water",
+       "hi": "सादे पानी में भिगोई सूखी किशमिश"
+      },
+      "bin": "swell",
+      "why": {
+       "en": "Water moves in through the skin, from pure water to the sugary inside.",
+       "hi": "पानी त्वचा से होकर शुद्ध पानी से भीतर के मीठे रस की ओर जाता है।"
+      }
+     },
+     {
+      "id": "rbcwater",
+      "text": {
+       "en": "Red blood cell in distilled water",
+       "hi": "आसुत जल में लाल रक्त कोशिका"
+      },
+      "bin": "swell",
+      "why": {
+       "en": "Water rushes into the cell, which swells and can burst.",
+       "hi": "पानी कोशिका में घुसता है, जो फूलती है और फट भी सकती है।"
+      }
+     },
+     {
+      "id": "spinach",
+      "text": {
+       "en": "Limp spinach leaves in plain water",
+       "hi": "सादे पानी में रखे मुरझाए पालक के पत्ते"
+      },
+      "bin": "swell",
+      "why": {
+       "en": "Water enters the leaf cells and the leaves become crisp again.",
+       "hi": "पानी पत्ते की कोशिकाओं में जाता है और पत्ते फिर कुरकुरे हो जाते हैं।"
+      }
+     },
+     {
+      "id": "cucumber",
+      "text": {
+       "en": "Cucumber slices sprinkled with salt",
+       "hi": "नमक छिड़के खीरे के टुकड़े"
+      },
+      "bin": "shrink",
+      "why": {
+       "en": "Water leaves the cells towards the salty outside, so the slices go limp and wet.",
+       "hi": "पानी कोशिकाओं से बाहर नमकीन ओर जाता है, इसलिए टुकड़े ढीले और गीले हो जाते हैं।"
+      }
+     },
+     {
+      "id": "pickle",
+      "text": {
+       "en": "Raw mango pieces in thick salt (pickle)",
+       "hi": "गाढ़े नमक में कच्चे आम के टुकड़े (अचार)"
+      },
+      "bin": "shrink",
+      "why": {
+       "en": "Strong salt outside pulls water out of the mango cells.",
+       "hi": "बाहर का तेज़ नमक आम की कोशिकाओं से पानी खींच लेता है।"
+      }
+     },
+     {
+      "id": "rbc5",
+      "text": {
+       "en": "Red blood cell in 5% salt solution",
+       "hi": "5% नमक विलयन में लाल रक्त कोशिका"
+      },
+      "bin": "shrink",
+      "why": {
+       "en": "The outside is more concentrated than 0.9%, so water leaves and the cell shrinks.",
+       "hi": "बाहर की सांद्रता 0.9% से अधिक है, इसलिए पानी निकलता है और कोशिका सिकुड़ती है।"
+      }
+     },
+     {
+      "id": "saline",
+      "text": {
+       "en": "Red blood cell in 0.9% salt solution (saline drip)",
+       "hi": "0.9% नमक विलयन (सेलाइन) में लाल रक्त कोशिका"
+      },
+      "bin": "same",
+      "why": {
+       "en": "This solution is isotonic with blood: water goes in and out equally.",
+       "hi": "यह विलयन रक्त के साथ समपरासरी है: पानी बराबर मात्रा में भीतर-बाहर जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:raisin",
+     "expect": "correct:raisin",
+     "say": {
+      "en": "Tap the card “Dry raisin soaked in plain water”, then tap the group it belongs to.",
+      "hi": "कार्ड “सादे पानी में भिगोई सूखी किशमिश” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A red blood cell is dropped into pure water. In which direction does water move?",
+      "hi": "लाल रक्त कोशिका को शुद्ध पानी में डाला जाता है। पानी किस दिशा में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "in",
+       "en": "Into the cell",
+       "hi": "कोशिका के भीतर"
+      },
+      {
+       "id": "out",
+       "en": "Out of the cell",
+       "hi": "कोशिका के बाहर"
+      },
+      {
+       "id": "none",
+       "en": "It does not move",
+       "hi": "नहीं चलेगा"
+      }
+     ],
+     "answer": "in"
+    },
+    {
+     "kind": "do",
+     "target": "card:cucumber",
+     "expect": "correct:cucumber",
+     "say": {
+      "en": "Now sort “Cucumber slices sprinkled with salt”.",
+      "hi": "अब “नमक छिड़के खीरे के टुकड़े” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:saline",
+     "expect": "correct:saline",
+     "say": {
+      "en": "Now sort “Red blood cell in 0.9% salt solution (saline drip)”.",
+      "hi": "अब “0.9% नमक विलयन (सेलाइन) में लाल रक्त कोशिका” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Osmosis is the flow of solvent through a semipermeable membrane from the less concentrated side to the more concentrated side. Cell membranes behave like such membranes. A solution with the same concentration as the cell (0.9% salt for blood) is isotonic. In reverse osmosis, a pressure larger than the osmotic pressure pushes pure water out of salty water, as in a water purifier.",
+      "hi": "परासरण में विलायक अर्धपारगम्य झिल्ली से होकर कम सांद्र ओर से अधिक सांद्र ओर जाता है। कोशिका की झिल्ली ऐसी ही झिल्ली की तरह काम करती है। जिस विलयन की सांद्रता कोशिका जितनी हो (रक्त के लिए 0.9% नमक) वह समपरासरी होता है। विपरीत परासरण में परासरण दाब से अधिक दाब लगाकर नमकीन पानी से शुद्ध पानी बाहर धकेला जाता है, जैसे वॉटर प्यूरीफ़ायर में।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a saline drip made with 0.9% salt and not plain water?",
+        "hi": "सेलाइन ड्रिप 0.9% नमक से क्यों बनती है, सादे पानी से क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "Plain water would make red blood cells swell and burst",
+         "hi": "सादा पानी लाल रक्त कोशिकाओं को फुलाकर फोड़ देगा"
+        },
+        {
+         "en": "Plain water is too expensive",
+         "hi": "सादा पानी बहुत महँगा है"
+        },
+        {
+         "en": "Salt makes the drip flow faster",
+         "hi": "नमक से ड्रिप तेज़ बहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "0.9% salt is isotonic with blood, so the cells are neither swollen nor shrunk.",
+        "hi": "0.9% नमक रक्त के समपरासरी है, इसलिए कोशिकाएँ न फूलती हैं न सिकुड़ती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cost is not the reason; the reason is osmosis.",
+         "hi": "कारण कीमत नहीं, परासरण है।"
+        },
+        {
+         "en": "The flow rate has nothing to do with salt content.",
+         "hi": "बहाव की गति का नमक की मात्रा से संबंध नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For reverse osmosis in a water purifier, the pressure applied on the salty water must be…",
+        "hi": "वॉटर प्यूरीफ़ायर में विपरीत परासरण के लिए नमकीन पानी पर लगाया दाब कैसा होना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Larger than the osmotic pressure",
+         "hi": "परासरण दाब से अधिक"
+        },
+        {
+         "en": "Smaller than the osmotic pressure",
+         "hi": "परासरण दाब से कम"
+        },
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only a pressure above the osmotic pressure reverses the natural flow and squeezes pure water out.",
+        "hi": "परासरण दाब से अधिक दाब ही प्राकृतिक बहाव को उलटकर शुद्ध पानी बाहर निकालता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A smaller pressure lets osmosis win, and the pure water flows into the salty side.",
+         "hi": "कम दाब में परासरण जीत जाता है और शुद्ध पानी नमकीन ओर चला जाता है।"
+        },
+        {
+         "en": "With no pressure, water simply flows by normal osmosis, towards the salty side.",
+         "hi": "बिना दाब के पानी सामान्य परासरण से नमकीन ओर ही बहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Why do people put salt on pickles and fish to keep them from spoiling? Think about what happens to the water in bacteria.",
+      "hi": "बाकी छाँटो। अचार और मछली को बचाए रखने के लिए उन पर नमक क्यों डालते हैं? सोचो कि जीवाणुओं के पानी का क्या होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch01-vant-hoff",
+   "topic": "1.7",
+   "template": "data",
+   "title": {
+    "en": "Counting particles: van't Hoff factor",
+    "hi": "कणों की गिनती: वान्ट हॉफ गुणांक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 2,
+    "ask": "max",
+    "title": {
+     "en": "Particles in solution from one formula unit (i, if it splits completely)",
+     "hi": "एक सूत्र इकाई से विलयन में कण (i, यदि पूरा विघटन हो)"
+    },
+    "xlabel": {
+     "en": "Solute",
+     "hi": "विलेय"
+    },
+    "ylabel": {
+     "en": "Number of particles (i)",
+     "hi": "कणों की संख्या (i)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Glucose",
+       "hi": "ग्लूकोज़"
+      },
+      "value": 1
+     },
+     {
+      "label": "NaCl",
+      "value": 2
+     },
+     {
+      "label": "CaCl₂",
+      "value": 3
+     },
+     {
+      "label": "AlCl₃",
+      "value": 4
+     },
+     {
+      "label": "Al₂(SO₄)₃",
+      "value": 5
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show CaCl₂.",
+      "hi": "CaCl₂ दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "NaCl splits into Na⁺ and Cl⁻ in water. A 0.1 molal NaCl solution lowers the freezing point of water how much compared with 0.1 molal glucose?",
+      "hi": "NaCl पानी में Na⁺ और Cl⁻ में टूटता है। 0.1 मोलल NaCl विलयन पानी का हिमांक 0.1 मोलल ग्लूकोज़ की तुलना में कितना घटाएगा?"
+     },
+     "options": [
+      {
+       "id": "twice",
+       "en": "About twice as much",
+       "hi": "लगभग दोगुना"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "उतना ही"
+      },
+      {
+       "id": "half",
+       "en": "Half as much",
+       "hi": "आधा"
+      }
+     ],
+     "answer": "twice"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add AlCl₃.",
+      "hi": "AlCl₃ जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add Al₂(SO₄)₃.",
+      "hi": "Al₂(SO₄)₃ जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Colligative properties depend on the number of particles. Glucose stays whole (i = 1). NaCl gives 2 particles, CaCl₂ gives 3, AlCl₃ gives 4 and Al₂(SO₄)₃ gives 5. The van't Hoff factor i is the ratio of the particles actually present to the particles expected without dissociation. Dimers form in benzene for ethanoic acid, so there i is below 1 and the molar mass found is too high.",
+      "hi": "अणुसंख्य गुणधर्म कणों की संख्या पर निर्भर करते हैं। ग्लूकोज़ साबुत रहता है (i = 1)। NaCl से 2 कण, CaCl₂ से 3, AlCl₃ से 4 और Al₂(SO₄)₃ से 5 कण बनते हैं। वान्ट हॉफ गुणांक i = वास्तव में उपस्थित कणों और विघटन के बिना अपेक्षित कणों का अनुपात है। बेन्ज़ीन में एथेनॉइक अम्ल द्विलक बनाता है, इसलिए वहाँ i < 1 होता है और पता चला मोलर द्रव्यमान अधिक आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which 0.1 molal solution has the largest fall in freezing point?",
+        "hi": "कौन-सा 0.1 मोलल विलयन हिमांक सबसे अधिक घटाएगा?"
+       },
+       "options": [
+        "Al₂(SO₄)₃",
+        {
+         "en": "Glucose",
+         "hi": "ग्लूकोज़"
+        },
+        "NaCl"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It gives the most particles, five for every formula unit, so ΔTf is the largest.",
+        "hi": "यह सबसे अधिक कण देता है, प्रति सूत्र इकाई पाँच, इसलिए ΔTf सबसे अधिक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Glucose gives only one particle, the fewest.",
+         "hi": "ग्लूकोज़ केवल एक कण देता है, सबसे कम।"
+        },
+        {
+         "en": "NaCl gives two particles; Al₂(SO₄)₃ gives more.",
+         "hi": "NaCl दो कण देता है; Al₂(SO₄)₃ इससे अधिक देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When ethanoic acid molecules pair up (associate) in benzene, the van't Hoff factor i becomes…",
+        "hi": "बेन्ज़ीन में एथेनॉइक अम्ल के अणु जोड़ी बनाएँ (संगुणन) तो वान्ट हॉफ गुणांक i हो जाता है…"
+       },
+       "options": [
+        {
+         "en": "Less than 1",
+         "hi": "1 से कम"
+        },
+        {
+         "en": "More than 1",
+         "hi": "1 से अधिक"
+        },
+        {
+         "en": "Exactly 2",
+         "hi": "ठीक 2"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pairing reduces the number of particles, so i is less than 1.",
+        "hi": "जोड़ी बनने से कणों की संख्या घटती है, इसलिए i < 1 होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More than 1 happens when a solute splits into ions, not when it pairs up.",
+         "hi": "i > 1 तब होता है जब विलेय आयनों में टूटे, जोड़ी बनाने पर नहीं।"
+        },
+        {
+         "en": "Exactly 2 would mean every molecule splits in two, the opposite of pairing.",
+         "hi": "ठीक 2 का अर्थ है हर अणु दो में टूटा, जो जोड़ी बनने का उलटा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the NaCl bar down to 1. What would that say about NaCl in water? (Real solutions of strong electrolytes at higher concentration also fall a little short of 2.)",
+      "hi": "NaCl के बार को नीचे 1 तक खींचो। पानी में NaCl के बारे में यह क्या कहेगा? (अधिक सांद्रता पर प्रबल विद्युत अपघट्य के वास्तविक विलयनों में भी i थोड़ा 2 से कम रहता है।)"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook of the chapter",
+   "shows": "An Indian kitchen counter: a steel tumbler of nimbu pani with sugar settled at the bottom, a cup of chai, and a sealed glass bottle of soda",
+   "view": "Eye level, soft window light from the left",
+   "right": "Sugar crystals visible at the bottom of one glass; the soda bottle capped with fine bubbles inside",
+   "avoid": "Brand names on the bottle, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Preparing a solution of known molarity",
+   "shows": "A 250 mL volumetric flask filled exactly to its ring mark with clear liquid, a small glass funnel beside it and a watch glass with white salt",
+   "view": "Straight front view at eye level, cut-out on transparent background",
+   "right": "Bottom of the liquid curve touches the ring mark; flask has a long thin neck and flat base",
+   "avoid": "Printed numbers or labels on the glass"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "1.3",
+   "use": "Gas leaves solution when pressure falls",
+   "shows": "Four frames of the same glass bottle of soda water: sealed, cap just loosened, cap off with fizzing, and the same water after two hours looking flat",
+   "view": "Fixed camera, same light and background in all four frames",
+   "right": "Bubbles rising only in frames 2 and 3; frame 4 has no bubbles",
+   "avoid": "Spilled liquid, brand names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.6",
+   "use": "Freezing point goes down",
+   "shows": "A traditional matka-kulfi seller's steel tub packed with crushed ice and coarse salt, with the clay matkas pushed into it, on an Indian street",
+   "view": "Slightly high angle, evening light",
+   "right": "Coarse salt grains visibly mixed with the crushed ice; frost on the outside of the tub",
+   "avoid": "Faces of customers, brand names, any child touching the ice-salt mix"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "1.6",
+   "use": "Osmosis in a raisin",
+   "shows": "Five dried raisins in separate small glasses of plain water, photographed at the start, after 1 h, 3 h, 6 h and 12 h",
+   "view": "Fixed camera from the side, same light, a ruler visible beside the glass",
+   "right": "The raisins visibly plumper at each stage; water stays clear",
+   "avoid": "Unlabelled timing; different raisins at each stage"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "1.6",
+   "use": "Osmosis apparatus",
+   "shows": "Cut-away of a thistle funnel closed with a membrane, sugar solution inside, dipped in a beaker of water, with the liquid level in the stem higher than the beaker level",
+   "view": "Side view, light background, 4:3",
+   "right": "Liquid in the stem clearly above the water level outside; membrane drawn as a thin skin across the wide mouth",
+   "avoid": "Labels, arrows or numbers on the glass"
+  },
+  {
+   "n": 7,
+   "kind": "CUT",
+   "topic": "1.6",
+   "use": "Reverse osmosis in a home purifier",
+   "shows": "A household RO water purifier opened to show the pre-filter, the spiral RO membrane cartridge, the pump, the storage tank and two outlet pipes (clean water and rejected water)",
+   "view": "Three-quarter view, bright studio light, 4:3",
+   "right": "Spiral-wound membrane layers visible; two separate outlets",
+   "avoid": "Brand names, logos, product model numbers"
+  }
+ ]
+}

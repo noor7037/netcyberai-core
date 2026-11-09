@@ -1,0 +1,108 @@
+{
+  "chapter_key": "u.c12.hindi.lhat1.ch07.s1",
+  "class": 12,
+  "subject_id": "hindi",
+  "title": "बारहमासा",
+  "source": "https://ncert.nic.in/textbook.php?lhat1=0-21",
+  "topics": [
+    {
+      "n": "7.1",
+      "title": "बारहमासा का ढाँचा: महीनों के साथ बदलती विरह-वेदना",
+      "labs": ["c12-hindi-lhat1-ch07-barahmasa-months"],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.2",
+      "title": "नागमती की पुकार: प्रकृति के दृश्य और मन की पीड़ा",
+      "labs": ["c12-hindi-lhat1-ch07-nagmati-feel"],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.3",
+      "title": "अवधी भाषा और दोहा-चौपाई की लय",
+      "labs": [],
+      "why_no_lab": "The sound of the lines is best learned by reading the chapter aloud with the teacher; a lab cannot teach the music of Awadhi."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-hindi-lhat1-ch07-barahmasa-months",
+      "topic": "7.1",
+      "template": "sequence",
+      "title": { "en": "Twelve months of waiting", "hi": "इंतज़ार के बारह महीने" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          { "id": "asadh", "text": { "en": "Ashadh: dark clouds gather and thunder, and her heart grows heavy", "hi": "आषाढ़: काले बादल घिरते और गरजते हैं, और उसका मन भारी हो जाता है" } },
+          { "id": "sawan", "text": { "en": "Shravan: steady rain makes the nights long and sleepless", "hi": "श्रावण: लगातार वर्षा से रातें लंबी और बिना नींद की हो जाती हैं" } },
+          { "id": "bhadon", "text": { "en": "Bhadon: in the dark nights lightning flashes, and the ache grows", "hi": "भादों: अँधेरी रातों में बिजली चमकती है और पीड़ा और बढ़ जाती है" } },
+          { "id": "kartik", "text": { "en": "Kartik: cool autumn nights, and she keeps waiting alone", "hi": "कार्तिक: शरद की ठंडी रातें, और वह अकेली प्रतीक्षा करती रहती है" } },
+          { "id": "magh", "text": { "en": "Magh: cold and mist, and she still watches the road for her husband", "hi": "माघ: ठंड और कोहरा, फिर भी वह पति की राह देखती रहती है" } },
+          { "id": "chait", "text": { "en": "Chait: spring blooms come, but they only remind her of the separation", "hi": "चैत्र: वसंत में फूल खिलते हैं, पर वे उसे बिछोह की याद दिलाते हैं" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "item:asadh", "expect": "placed:asadh", "say": { "en": "Tap the Ashadh card, then tap the first place. Ashadh begins the year of waiting.", "hi": "आषाढ़ वाला कार्ड छुओ, फिर पहली जगह छुओ। आषाढ़ से इंतज़ार का साल शुरू होता है।" } },
+        { "kind": "predict", "say": { "en": "When the monsoon clouds thunder, how does Nagmati feel?", "hi": "जब मानसून के बादल गरजते हैं, तो नागमती कैसा महसूस करती है?" }, "options": [ { "id": "pain", "en": "Restless, full of longing for her husband", "hi": "बेचैन, पति की याद से भरी हुई" }, { "id": "joy", "en": "Very happy and calm", "hi": "बहुत ख़ुश और शांत" }, { "id": "sleep", "en": "Sleepy and bored", "hi": "नींद से भरी और ऊबी हुई" } ], "answer": "pain" },
+        { "kind": "do", "target": "item:kartik", "expect": "placed:kartik", "say": { "en": "Place the Kartik card in the fourth place.", "hi": "कार्तिक वाला कार्ड चौथी जगह पर रखो।" } },
+        { "kind": "do", "target": "item:chait", "expect": "placed:chait", "say": { "en": "Place the Chait card in the last place.", "hi": "चैत्र वाला कार्ड आख़िरी जगह पर रखो।" } },
+        { "kind": "do", "target": "check", "expect": "ordered", "say": { "en": "Press Check to see if the months run in order.", "hi": "जाँचो दबाओ और देखो महीने सही क्रम में हैं या नहीं।" } },
+        { "kind": "explain", "say": { "en": "The Barahmasa goes through the twelve months, starting with the monsoon of Ashadh. In each month the rain, the cold, or the spring brings a new kind of pain to the queen who waits. The months change, but her longing does not end. That is why the form is called a Barahmasa.", "hi": "बारहमासा में बारहों महीने एक-एक करके आते हैं, और आषाढ़ की वर्षा से शुरू होते हैं। हर महीने वर्षा, ठंड या वसंत रानी के मन में एक नई पीड़ा लाता है, जो पति की राह देखती है। महीने बदलते हैं, पर उसकी तड़प नहीं मिटती। इसी से इस रूप को बारहमासा कहते हैं।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which month comes just after Shravan in this poem?", "hi": "इस कविता में श्रावण के ठीक बाद कौन-सा महीना आता है?" },
+            "options": [ { "en": "Bhadon", "hi": "भादों" }, { "en": "Ashadh", "hi": "आषाढ़" }, { "en": "Chait", "hi": "चैत्र" } ],
+            "answer": 0,
+            "why": { "en": "The months move forward in order: Ashadh, Shravan, Bhadon, and so on.", "hi": "महीने क्रम से आगे बढ़ते हैं: आषाढ़, श्रावण, भादों, और आगे।" },
+            "wrong": [ "", { "en": "Ashadh comes before Shravan, so it cannot come after it.", "hi": "आषाढ़ श्रावण से पहले आता है, इसलिए बाद में नहीं आ सकता।" }, { "en": "Chait is the last of the cycle here, not the next month after Shravan.", "hi": "यहाँ चैत्र चक्र का आख़िरी भाग है, श्रावण के ठीक बाद का महीना नहीं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Read the six cards aloud. Which month makes the pain feel the strongest to you? Say why.", "hi": "छहों कार्ड ज़ोर से पढ़ो। तुम्हें कौन-सा महीना सबसे ज़्यादा पीड़ा भरा लगता है? कारण बताओ।" } }
+      ]
+    },
+    {
+      "id": "c12-hindi-lhat1-ch07-nagmati-feel",
+      "topic": "7.2",
+      "template": "reader",
+      "title": { "en": "Nagmati's cry, line by line", "hi": "नागमती की पुकार, पंक्ति-दर-पंक्ति" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "emotion-map",
+        "lang": "hi",
+        "passage": {
+          "title": { "en": "The queen who waits", "hi": "प्रतीक्षा करती रानी" },
+          "lines": [
+            "आषाढ़ में बादल गरजते हैं, और नागमती का मन काँप उठता है।",
+            "श्रावण की झड़ी में रातें लंबी हो जाती हैं, और नींद नहीं आती।",
+            "भादों की अँधेरी रात में बिजली चमकती है, पर उसके जीवन में कोई रोशनी नहीं।",
+            "हर पक्षी को उसका साथी मिला है, यह देखकर उसका दुख और गहरा हो जाता है।",
+            "फिर भी वह पति के लौटने की आशा नहीं छोड़ती, और हर दिन उसकी राह देखती है।"
+          ]
+        },
+        "emotions": ["worry", "sadness", "fear", "sadness", "love"]
+      },
+      "steps": [
+        { "kind": "do", "target": "line:0", "expect": "line:0", "say": { "en": "Tap the first line to hear the first month, Ashadh.", "hi": "पहली पंक्ति पर टैप करो और आषाढ़ का पहला भाव देखो।" } },
+        { "kind": "predict", "say": { "en": "Which feeling fits the first line best?", "hi": "पहली पंक्ति में कौन-सा भाव सबसे ठीक बैठता है?" }, "options": [ { "id": "worry", "en": "Worry", "hi": "चिंता" }, { "id": "joy", "en": "Joy", "hi": "ख़ुशी" }, { "id": "pride", "en": "Pride", "hi": "गर्व" } ], "answer": "worry" },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Give the first line its feeling and press Answer.", "hi": "पहली पंक्ति का भाव चुनो और उत्तर दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "map-done", "say": { "en": "Finish the feelings for all five lines.", "hi": "पाँचों पंक्तियों के भाव पूरे करो।" } },
+        { "kind": "explain", "say": { "en": "The pain starts with worry at the first thunder. It grows into loneliness in the long nights, and into fear in the dark lightning. The sight of happy birds deepens her sadness. Yet the last line brings love. She still waits, and that waiting is the strongest feeling of all.", "hi": "पीड़ा पहली गर्जना के साथ चिंता से शुरू होती है। लंबी रातों में अकेलेपन में बदलती है, और अँधेरी बिजली में डर बन जाती है। सुखी पक्षियों को देखकर उसकी उदासी और गहरी होती है। फिर भी आख़िरी पंक्ति में प्रेम है। वह अब भी राह देखती है, और यही इंतज़ार सबसे गहरा भाव है।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "What is Nagmati's strongest feeling in the last line?", "hi": "आख़िरी पंक्ति में नागमती का सबसे गहरा भाव कौन-सा है?" },
+            "options": [ { "en": "Hope of her husband's return", "hi": "पति के लौटने की आशा" }, { "en": "Anger at the household", "hi": "घरवालों पर ग़ुस्सा" }, { "en": "Fear of the lightning", "hi": "बिजली का डर" } ],
+            "answer": 0,
+            "why": { "en": "Even in pain she keeps waiting for him each day.", "hi": "दर्द के बीच भी वह हर दिन उसकी राह देखती है।" },
+            "wrong": [ "", { "en": "The poem speaks of longing and waiting, not anger at the household.", "hi": "कविता में विरह और इंतज़ार है, घरवालों पर ग़ुस्सा नहीं।" }, { "en": "The lightning brings fear for one night; the last line is about waiting.", "hi": "बिजली से एक रात का डर है; आख़िरी पंक्ति इंतज़ार की है।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Read the five lines once in a sad voice and once in a patient voice. Which voice suits the last line?", "hi": "पाँचों पंक्तियाँ एक बार उदास स्वर में और एक बार धीरज भरे स्वर में पढ़ो। आख़िरी पंक्ति के लिए कौन-सा स्वर ठीक है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "7.1", "use": "Hook: the monsoon clouds over a village", "shows": "Dark monsoon clouds over a dry field, a lone bullock cart on the bund, distant lightning", "view": "Wide, 16:9", "right": "Heavy cloud, parched cracked soil, a village roof far away", "avoid": "Faces, modern vehicles, text" },
+    { "n": 2, "kind": "SEQ", "topic": "7.1", "use": "Twelve months as a wheel, six shown", "shows": "Six panels in a ring, one for each month from Ashadh to Chait, each with a small sign of the season: cloud, rain, cold, spring", "view": "Circular strip, flat", "right": "Same woman figure in every panel, seasons clearly different", "avoid": "Festival-specific decorations, text inside panels" },
+    { "n": 3, "kind": "SCN", "topic": "7.2", "use": "Nagmati alone in a lit room at night", "shows": "A woman seen from behind sits near a small oil lamp in an empty room, a window open to the night", "view": "Medium, low lamp light", "right": "Simple cotton sari, clay lamp, bare room", "avoid": "Face in full view, modern furniture, text" },
+    { "n": 4, "kind": "OBJ", "topic": "7.2", "use": "The clay lamp that burns through the night", "shows": "A small clay oil lamp (diya) with a steady flame, cut-out", "view": "Three-quarter view, soft top-left light", "right": "Real flame, cotton wick, unglazed clay", "avoid": "Electric bulb, brand marks" },
+    { "n": 5, "kind": "DIA", "topic": "7.2", "use": "Feeling curve of the five lines", "shows": "A simple line graph: five points from worry to sadness to fear and back to love at the end", "view": "Flat, five points, labelled in Devanagari", "right": "Clear labels, soft colours for each feeling", "avoid": "More than five points, jargon" }
+  ]
+}

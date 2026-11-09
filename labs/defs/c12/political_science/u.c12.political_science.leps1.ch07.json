@@ -1,0 +1,208 @@
+{
+  "chapter_key": "u.c12.political_science.leps1.ch07",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "Globalisation",
+  "source": "https://ncert.nic.in/textbook/pdf/leps107.pdf",
+  "topics": [
+    { "n": "7.1", "title": "Causes of globalisation: trade, transport and technology", "labs": ["c12-political_science-leps1-ch07-chain-sequence"], "why_no_lab": null },
+    { "n": "7.2", "title": "Economic, political and cultural effects of globalisation", "labs": ["c12-political_science-leps1-ch07-effects-sort"], "why_no_lab": null },
+    { "n": "7.3", "title": "Resistance to globalisation and the World Social Forum", "labs": ["c12-political_science-leps1-ch07-resistance-timeline"], "why_no_lab": null },
+    { "n": "7.4", "title": "Does globalisation weaken the state?", "labs": [], "why_no_lab": "A question for debate with evidence on both sides; no lab can settle it." }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps1-ch07-chain-sequence",
+      "topic": "7.1",
+      "template": "sequence",
+      "title": { "en": "Follow one shirt around the world", "hi": "एक कमीज़ की दुनिया भर की यात्रा देखो" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          { "id": "order", "text": { "en": "A company places an order online with factories abroad", "hi": "एक कंपनी विदेश की फ़ैक्टरियों को ऑनलाइन ऑर्डर देती है" } },
+          { "id": "cotton", "text": { "en": "Cotton is grown in one country and sold to a spinning mill in another", "hi": "एक देश में कपास उगाई जाती है और दूसरे देश की सूत मिल को बेची जाती है" } },
+          { "id": "stitch", "text": { "en": "A garment factory in a third country stitches the cloth into shirts", "hi": "तीसरे देश की एक कपड़ा फ़ैक्टरी कपड़े को कमीज़ों में सिलती है" } },
+          { "id": "ship", "text": { "en": "A container ship carries the shirts across the ocean", "hi": "एक कंटेनर जहाज़ कमीज़ों को समुद्र पार ले जाता है" } },
+          { "id": "shop", "text": { "en": "The shirts reach a shop in an Indian city", "hi": "कमीज़ें भारत के किसी शहर की दुकान तक पहुँचती हैं" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which step do you think comes first in the journey of the shirt?", "hi": "तुम्हारे हिसाब से कमीज़ की यात्रा में सबसे पहले कौन-सा कदम आता है?" },
+          "options": [
+            { "id": "order", "en": "A company places an order abroad", "hi": "एक कंपनी विदेश में ऑर्डर देती है" },
+            { "id": "shop", "en": "The shirts reach a shop", "hi": "कमीज़ें दुकान तक पहुँचती हैं" },
+            { "id": "ship", "en": "A ship carries the shirts", "hi": "जहाज़ कमीज़ें ले जाता है" }
+          ],
+          "answer": "order"
+        },
+        { "kind": "do", "target": "slot:1", "expect": "placed:order", "say": { "en": "Tap the order card, then box 1.", "hi": "ऑर्डर वाला कार्ड छुओ, फिर खाना 1 पर टैप करो।" } },
+        { "kind": "do", "target": "slot:2", "expect": "placed:cotton", "say": { "en": "Tap the cotton card, then box 2.", "hi": "कपास वाला कार्ड छुओ, फिर खाना 2 पर टैप करो।" } },
+        { "kind": "do", "target": "slot:3", "expect": "placed:stitch", "say": { "en": "Tap the stitching card, then box 3.", "hi": "सिलाई वाला कार्ड छुओ, फिर खाना 3 पर टैप करो।" } },
+        { "kind": "do", "target": "slot:4", "expect": "placed:ship", "say": { "en": "Tap the ship card, then box 4.", "hi": "जहाज़ वाला कार्ड छुओ, फिर खाना 4 पर टैप करो।" } },
+        { "kind": "do", "target": "slot:5", "expect": "placed:shop", "say": { "en": "Tap the shop card, then box 5.", "hi": "दुकान वाला कार्ड छुओ, फिर खाना 5 पर टैप करो।" } },
+        { "kind": "do", "target": "check", "expect": "ordered", "say": { "en": "Press Check to test the journey.", "hi": "यात्रा जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Globalisation means production is spread across many countries. One shirt can use cotton from one place, a factory in another and a ship to carry it. Cheaper transport, faster communication and fewer trade barriers make this chain possible.", "hi": "वैश्वीकरण का अर्थ है कि उत्पादन कई देशों में फैल जाता है। एक कमीज़ में एक जगह की कपास, दूसरे देश की फ़ैक्टरी और उसे ढोने वाला जहाज़ हो सकता है। सस्ता परिवहन, तेज़ संचार और कम व्यापार-बाधाएँ इस श्रृंखला को संभव बनाती हैं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "In this chain, where is the shirt sewn?", "hi": "इस श्रृंखला में कमीज़ कहाँ सिली जाती है?" },
+              "options": [
+                { "en": "In the country where the cotton is grown", "hi": "उस देश में जहाँ कपास उगाई जाती है" },
+                { "en": "In a garment factory in a third country", "hi": "तीसरे देश की एक कपड़ा फ़ैक्टरी में" },
+                { "en": "In the shop in an Indian city", "hi": "भारतीय शहर की दुकान में" }
+              ],
+              "answer": 1,
+              "why": { "en": "The stitching happens in a garment factory, which may be far from where the cotton grew.", "hi": "सिलाई कपड़ा फ़ैक्टरी में होती है, जो कपास उगने की जगह से दूर हो सकती है।" },
+              "wrong": [
+                { "en": "The cotton is grown there, but it is stitched in a factory elsewhere.", "hi": "कपास वहाँ उगती है, पर उसकी सिलाई कहीं और की फ़ैक्टरी में होती है।" },
+                "",
+                { "en": "The shop only sells the shirts. It does not sew them.", "hi": "दुकान केवल कमीज़ें बेचती है। वह उन्हें सिलती नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Think of one product in your home. List three countries that may have helped to make it.", "hi": "घर की एक चीज़ सोचो। तीन ऐसे देश लिखो जिन्होंने उसे बनाने में मदद की हो सकती है।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch07-effects-sort",
+      "topic": "7.2",
+      "template": "sort",
+      "title": { "en": "Economic, political or cultural effect?", "hi": "आर्थिक, राजनीतिक या सांस्कृतिक असर?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "econ", "label": { "en": "Economic effects", "hi": "आर्थिक असर" } },
+          { "id": "pol", "label": { "en": "Political effects", "hi": "राजनीतिक असर" } },
+          { "id": "cult", "label": { "en": "Cultural effects", "hi": "सांस्कृतिक असर" } }
+        ],
+        "cards": [
+          { "id": "fdi", "text": { "en": "Foreign money builds factories and creates jobs", "hi": "विदेशी पैसा फ़ैक्टरियाँ बनाता है और रोज़गार पैदा करता है" }, "bin": "econ", "why": { "en": "Investment from abroad adds capital and jobs, but it can also bring competition.", "hi": "विदेशी निवेश पूँजी और रोज़गार लाता है, पर प्रतिस्पर्धा भी लाता है।" } },
+          { "id": "local", "text": { "en": "Foreign brands compete with small local shops", "hi": "विदेशी ब्रांड छोटी स्थानीय दुकानों से मुकाबला करते हैं" }, "bin": "econ", "why": { "en": "Competition can help buyers, but it can squeeze small producers.", "hi": "प्रतिस्पर्धा ग्राहकों के लिए अच्छी हो सकती है, पर छोटे उत्पादकों पर दबाव डालती है।" } },
+          { "id": "laws", "text": { "en": "Governments adjust laws to follow global trade rules", "hi": "सरकारें वैश्विक व्यापार नियमों के अनुसार क़ानून बदलती हैं" }, "bin": "pol", "why": { "en": "Trade agreements can limit what a government may do in its own policies.", "hi": "व्यापार समझौते किसी सरकार की अपनी नीतियों की सीमा तय कर सकते हैं।" } },
+          { "id": "music", "text": { "en": "Music, films and food from abroad reach local homes", "hi": "विदेश का संगीत, फ़िल्में और खाना स्थानीय घरों तक पहुँचते हैं" }, "bin": "cult", "why": { "en": "Cultural exchange brings new tastes and also worries about losing traditions.", "hi": "सांस्कृतिक आदान-प्रदान नए स्वाद लाता है, और परंपराएँ खोने की चिंता भी।" } },
+          { "id": "lang", "text": { "en": "Global media spread through screens very fast", "hi": "स्क्रीन के ज़रिए वैश्विक मीडिया तेज़ी से फैलता है" }, "bin": "cult", "why": { "en": "Shared media can bring cultures closer, and can also push local languages aside.", "hi": "साझा मीडिया संस्कृतियों को करीब ला सकता है, और स्थानीय भाषाओं को पीछे भी धकेल सकता है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these is an effect of globalisation?", "hi": "इनमें से कौन-सा वैश्वीकरण का असर है?" },
+          "options": [
+            { "id": "econ", "en": "Foreign investment creates jobs", "hi": "विदेशी निवेश से रोज़गार बनते हैं" },
+            { "id": "none", "en": "Nothing changes for any family", "hi": "किसी भी परिवार के लिए कुछ नहीं बदलता" },
+            { "id": "stop", "en": "Trade stops completely", "hi": "व्यापार पूरी तरह रुक जाता है" }
+          ],
+          "answer": "econ"
+        },
+        { "kind": "do", "target": "bin:econ", "expect": "placed:fdi", "say": { "en": "Tap the foreign money card, then the Economic effects box.", "hi": "विदेशी पैसे वाला कार्ड छुओ, फिर आर्थिक असर वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:econ", "expect": "placed:local", "say": { "en": "Tap the foreign brands card, then the Economic effects box.", "hi": "विदेशी ब्रांड वाला कार्ड छुओ, फिर आर्थिक असर वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:pol", "expect": "placed:laws", "say": { "en": "Tap the laws card, then the Political effects box.", "hi": "क़ानून वाला कार्ड छुओ, फिर राजनीतिक असर वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:cult", "expect": "placed:music", "say": { "en": "Tap the music and films card, then the Cultural effects box.", "hi": "संगीत और फ़िल्मों वाला कार्ड छुओ, फिर सांस्कृतिक असर वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:cult", "expect": "placed:lang", "say": { "en": "Tap the global media card, then the Cultural effects box.", "hi": "वैश्विक मीडिया वाला कार्ड छुओ, फिर सांस्कृतिक असर वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Press Check to see the sorting.", "hi": "छँटाई देखने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Globalisation changes money and jobs, the rules governments follow, and the music, food and words families share. Each change has gains and losses, so the same process can be welcomed by some and questioned by others.", "hi": "वैश्वीकरण पैसे और रोज़गार, सरकारों के नियमों, और परिवारों के संगीत, खाने और शब्दों को बदलता है। हर बदलाव में फ़ायदे और नुकसान दोनों होते हैं, इसलिए एक ही प्रक्रिया को कुछ लोग स्वागत योग्य मानते हैं और कुछ सवाल उठाते हैं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which is a political effect of globalisation?", "hi": "वैश्वीकरण का राजनीतिक असर कौन-सा है?" },
+              "options": [
+                { "en": "Music from many countries reaches homes", "hi": "कई देशों का संगीत घरों तक पहुँचता है" },
+                { "en": "Governments adjust policy to global trade rules", "hi": "सरकारें वैश्विक व्यापार नियमों के अनुसार नीति बदलती हैं" },
+                { "en": "Foreign money builds a factory", "hi": "विदेशी पैसा फ़ैक्टरी बनाता है" }
+              ],
+              "answer": 1,
+              "why": { "en": "When governments change policy to fit global rules, politics is affected.", "hi": "जब सरकारें वैश्विक नियमों के अनुसार नीति बदलती हैं, तो राजनीति प्रभावित होती है।" },
+              "wrong": [
+                { "en": "Music from other countries is a cultural effect.", "hi": "दूसरे देशों का संगीत सांस्कृतिक असर है।" },
+                "",
+                { "en": "A foreign factory is an economic effect.", "hi": "विदेशी फ़ैक्टरी आर्थिक असर है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Move one card to another box and press Check. Could the same change belong in two boxes?", "hi": "एक कार्ड दूसरे बक्से में ले जाकर जाँचो दबाओ। क्या एक ही बदलाव दो बक्सों में आ सकता है?" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch07-resistance-timeline",
+      "topic": "7.3",
+      "template": "timeline",
+      "title": { "en": "From reforms to protests: the story of resistance", "hi": "सुधारों से विरोध तक: प्रतिरोध की कहानी" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1985, 2005],
+        "task": "order",
+        "title": { "en": "Globalisation and its critics", "hi": "वैश्वीकरण और उसके आलोचक" },
+        "events": [
+          { "id": "liber", "year": 1991, "label": { "en": "India opens its economy with reforms in July 1991", "hi": "जुलाई 1991 में सुधारों के साथ भारत अपनी अर्थव्यवस्था खोलता है" } },
+          { "id": "wto", "year": 1995, "label": { "en": "The World Trade Organization is set up to make trade rules", "hi": "विश्व व्यापार संगठन व्यापार के नियम बनाने के लिए बनता है" } },
+          { "id": "seattle", "year": 1999, "label": { "en": "Large protests in Seattle against a WTO meeting", "hi": "सिएटल में WTO बैठक के विरोध में बड़े प्रदर्शन होते हैं" } },
+          { "id": "wsf", "year": 2001, "label": { "en": "The first World Social Forum meets in Porto Alegre, Brazil", "hi": "पहला विश्व सामाजिक मंच ब्राज़ील के पोर्तो एलेग्रे में मिलता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these came first?", "hi": "इनमें से सबसे पहले कौन-सी घटना हुई?" },
+          "options": [
+            { "id": "liber", "en": "India's economic opening, 1991", "hi": "भारत का आर्थिक खुलना, 1991" },
+            { "id": "seattle", "en": "Seattle protests, 1999", "hi": "सिएटल विरोध, 1999" },
+            { "id": "wsf", "en": "World Social Forum, 2001", "hi": "विश्व सामाजिक मंच, 2001" }
+          ],
+          "answer": "liber"
+        },
+        { "kind": "do", "target": "event:liber", "expect": "placed:liber", "say": { "en": "Tap India's economic opening of 1991.", "hi": "1991 में भारत के आर्थिक खुलने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "event:wto", "expect": "placed:wto", "say": { "en": "Tap the setting up of the WTO in 1995.", "hi": "1995 में WTO बनने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "event:seattle", "expect": "placed:seattle", "say": { "en": "Tap the Seattle protests of 1999.", "hi": "1999 के सिएटल विरोध छुओ।" } },
+        { "kind": "do", "target": "event:wsf", "expect": "placed:wsf", "say": { "en": "Tap the first World Social Forum of 2001.", "hi": "2001 का पहला विश्व सामाजिक मंच छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to test the order.", "hi": "क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "India opened its economy in 1991, and the WTO began to set world trade rules in 1995. Protests in Seattle in 1999 showed that many people felt left out of those rules. The World Social Forum from 2001 gave critics a space to share alternative ideas.", "hi": "भारत ने 1991 में अपनी अर्थव्यवस्था खोली, और WTO ने 1995 में विश्व व्यापार के नियम बनाने शुरू किए। 1999 के सिएटल विरोध ने दिखाया कि बहुत लोग उन नियमों से बाहर महसूस करते थे। 2001 से विश्व सामाजिक मंच ने आलोचकों को वैकल्पिक विचार बाँटने की जगह दी।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which forum gave critics of globalisation a space to meet?", "hi": "किस मंच ने वैश्वीकरण के आलोचकों को मिलने की जगह दी?" },
+              "options": [
+                { "en": "The World Social Forum", "hi": "विश्व सामाजिक मंच" },
+                { "en": "The Montreal Protocol", "hi": "मॉन्ट्रियल प्रोटोकॉल" },
+                { "en": "The Stockholm conference", "hi": "स्टॉकहोम सम्मेलन" }
+              ],
+              "answer": 0,
+              "why": { "en": "The World Social Forum was started in 2001 as an open space for critics of globalisation.", "hi": "विश्व सामाजिक मंच 2001 में वैश्वीकरण के आलोचकों के लिए खुले मंच के रूप में शुरू हुआ।" },
+              "wrong": [
+                "",
+                { "en": "Montreal dealt with ozone-damaging gases, not with critics of trade.", "hi": "मॉन्ट्रियल ओज़ोन को नुकसान पहुँचाने वाली गैसों पर था, व्यापार के आलोचकों पर नहीं।" },
+                { "en": "Stockholm was an environment conference, not a forum on globalisation.", "hi": "स्टॉकहोम पर्यावरण सम्मेलन था, वैश्वीकरण का मंच नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Write one argument in favour of globalisation and one argument against it. Which do you find stronger, and why?", "hi": "वैश्वीकरण के पक्ष में और विरोध में एक-एक तर्क लिखो। तुम्हें कौन-सा मज़बूत लगता है, और क्यों?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "7.1", "use": "Opening picture of a world connected by trade", "shows": "A container port at dusk with tall cranes and stacked containers, no readable logos", "view": "Eye level, wide 16:9, warm evening light", "right": "Real cranes and containers, true sea and sky", "avoid": "Readable logos, company names, people in close-up" },
+    { "n": 2, "kind": "SEQ", "topic": "7.1", "use": "One shirt's journey, frame by frame", "shows": "Four frames of one shirt's journey: raw cotton bales, yarn spools, a stitched shirt, a folded shirt on a shelf, same plain background and light", "view": "Same frame size, daylight, numbered files", "right": "Real cotton and yarn textures, true fabric colours", "avoid": "Brand tags, readable labels" },
+    { "n": 3, "kind": "SCN", "topic": "7.2", "use": "Picture of goods from many countries in an Indian market", "shows": "A busy Indian market with imported goods on display, no readable brand names", "view": "Eye level, wide 16:9, bright daylight", "right": "Real market stalls and colours, true produce", "avoid": "Readable brands, faces in close-up" },
+    { "n": 4, "kind": "MAP", "topic": "7.1", "use": "The world where trade routes cross", "shows": "Plain world map with oceans and continents shaded, no borders, no names, no route lines", "view": "Top-down, 16:9, centred on the Indian Ocean", "right": "Soft earth colours, pale oceans, true relief", "avoid": "Country names, borders, routes" },
+    { "n": 5, "kind": "SCN", "topic": "7.3", "use": "Picture of a protest that voiced concern about globalisation", "shows": "A street protest at dusk seen from behind, a crowd with blank placards, no faces in focus", "view": "Eye level from behind the crowd, wide 16:9", "right": "Real street and evening light, true crowd shapes", "avoid": "Readable slogans, faces, police in close-up" }
+  ]
+}

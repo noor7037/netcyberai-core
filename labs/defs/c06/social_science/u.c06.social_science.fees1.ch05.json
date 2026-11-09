@@ -1,0 +1,730 @@
+{
+ "chapter_key": "u.c06.social_science.fees1.ch05",
+ "class": 6,
+ "subject_id": "social_science",
+ "title": "India, That Is Bharat",
+ "source": "https://ncert.nic.in/textbook/pdf/fees105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "The Indian subcontinent and its natural boundaries",
+   "labs": [
+    "c06-social_science-fees1-ch05-boundaries"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Rivers of India",
+   "labs": [
+    "c06-social_science-fees1-ch05-rivers",
+    "c06-social_science-fees1-ch05-longer"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "How the land was named: India and Bharat",
+   "labs": [
+    "c06-social_science-fees1-ch05-names"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Regions of the map",
+   "labs": [],
+   "why_no_lab": "The regional names are met best by exploring the map with the teacher; the map labelling labs above already cover the place names."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-social_science-fees1-ch05-boundaries",
+   "topic": "5.1",
+   "template": "map",
+   "title": {
+    "en": "India's natural boundaries",
+    "hi": "भारत की प्राकृतिक सीमाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "mountains",
+     "rivers"
+    ],
+    "task": "label",
+    "places": [
+     "himalaya",
+     "arabian-sea",
+     "bay-of-bengal",
+     "indian-ocean"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "India's north is guarded by high mountains. What are they called?",
+      "hi": "भारत के उत्तर में ऊँचे पर्वतों की दीवार है। उसका नाम क्या है?"
+     },
+     "options": [
+      {
+       "id": "himalaya",
+       "en": "The Himalaya",
+       "hi": "हिमालय"
+      },
+      {
+       "id": "ghats",
+       "en": "The Western Ghats",
+       "hi": "पश्चिमी घाट"
+      },
+      {
+       "id": "aravalli",
+       "en": "The Aravalli",
+       "hi": "अरावली"
+      }
+     ],
+     "answer": "himalaya"
+    },
+    {
+     "kind": "do",
+     "target": "label:himalaya",
+     "expect": "located:himalaya",
+     "say": {
+      "en": "Tap the name 'Himalaya', then tap the pin on the mountains in the north.",
+      "hi": "'हिमालय' नाम पर टैप करो, फिर उत्तर के पर्वतों वाले पिन पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:arabian-sea",
+     "expect": "located:arabian-sea",
+     "say": {
+      "en": "Label the sea on the west side of the peninsula.",
+      "hi": "प्रायद्वीप के पश्चिम के सागर का नाम लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:indian-ocean",
+     "expect": "labelled",
+     "say": {
+      "en": "Label the Bay of Bengal and the Indian Ocean too.",
+      "hi": "बंगाल की खाड़ी और हिंद महासागर के नाम भी लगाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India is part of a large landmass called the Indian subcontinent. Nature has marked its edges. The Himalaya stand in the north like a wall. To the west is the Arabian Sea, to the east the Bay of Bengal, and to the south the Indian Ocean. These boundaries shaped how people and ideas travelled into and out of India.",
+      "hi": "भारत एक बड़े भूभाग भारतीय उपमहाद्वीप का हिस्सा है। प्रकृति ने उसके किनारे तय कर दिए हैं। उत्तर में हिमालय दीवार की तरह खड़ा है। पश्चिम में अरब सागर, पूर्व में बंगाल की खाड़ी और दक्षिण में हिंद महासागर है। इन सीमाओं ने तय किया कि लोग और विचार भारत में कैसे आए और बाहर कैसे गए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which water body lies on the east side of the Indian peninsula?",
+        "hi": "भारतीय प्रायद्वीप के पूर्वी तट पर कौन-सा जलराशि है?"
+       },
+       "options": [
+        {
+         "en": "Bay of Bengal",
+         "hi": "बंगाल की खाड़ी"
+        },
+        {
+         "en": "Arabian Sea",
+         "hi": "अरब सागर"
+        },
+        {
+         "en": "Arctic Ocean",
+         "hi": "आर्कटिक महासागर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Bay of Bengal is on the east coast. The Arabian Sea is on the west.",
+        "hi": "बंगाल की खाड़ी पूर्वी तट पर है। अरब सागर पश्चिम में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Arabian Sea is on the west coast.",
+         "hi": "अरब सागर पश्चिमी तट पर है।"
+        },
+        {
+         "en": "The Arctic Ocean is near the North Pole, far from India.",
+         "hi": "आर्कटिक महासागर उत्तरी ध्रुव के पास है, भारत से बहुत दूर।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which natural boundary stands in the north of India?",
+        "hi": "भारत के उत्तर में कौन-सी प्राकृतिक सीमा है?"
+       },
+       "options": [
+        {
+         "en": "The Indian Ocean",
+         "hi": "हिंद महासागर"
+        },
+        {
+         "en": "The Himalaya",
+         "hi": "हिमालय"
+        },
+        {
+         "en": "The Bay of Bengal",
+         "hi": "बंगाल की खाड़ी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The Himalaya form the high northern wall.",
+        "hi": "हिमालय उत्तर की ऊँची दीवार बनाता है।"
+       },
+       "wrong": [
+        {
+         "en": "The Indian Ocean is in the south.",
+         "hi": "हिंद महासागर दक्षिण में है।"
+        },
+        "",
+        {
+         "en": "The Bay of Bengal is in the east.",
+         "hi": "बंगाल की खाड़ी पूर्व में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch on the rivers layer. Which rivers start in the Himalaya and flow down to the sea?",
+      "hi": "नदियों की परत चालू करो। कौन-सी नदियाँ हिमालय से शुरू होकर समुद्र तक जाती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch05-rivers",
+   "topic": "5.2",
+   "template": "map",
+   "title": {
+    "en": "Name the rivers of India",
+    "hi": "भारत की नदियों के नाम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "rivers"
+    ],
+    "task": "label",
+    "places": [
+     "ganga",
+     "brahmaputra",
+     "indus",
+     "godavari",
+     "krishna",
+     "kaveri",
+     "narmada",
+     "mahanadi"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "label:ganga",
+     "expect": "located:ganga",
+     "say": {
+      "en": "Tap the name 'Ganga', then tap the pin on the river that flows across the northern plains.",
+      "hi": "'गंगा' नाम पर टैप करो, फिर उत्तरी मैदान में बहने वाली नदी के पिन पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which rivers flow from the north into the plains: the ones fed by Himalayan snow, or the ones of the south?",
+      "hi": "उत्तर से मैदानों में कौन-सी नदियाँ बहती हैं: हिमालय की बर्फ़ से पोषित या दक्षिण की?"
+     },
+     "options": [
+      {
+       "id": "north",
+       "en": "The northern ones fed by Himalayan snow",
+       "hi": "हिमालय की बर्फ़ से पोषित उत्तरी नदियाँ"
+      },
+      {
+       "id": "south",
+       "en": "The southern ones",
+       "hi": "दक्षिण की नदियाँ"
+      }
+     ],
+     "answer": "north"
+    },
+    {
+     "kind": "do",
+     "target": "label:godavari",
+     "expect": "located:godavari",
+     "say": {
+      "en": "Label the Godavari, a long river of the peninsula.",
+      "hi": "प्रायद्वीप की लंबी नदी गोदावरी का नाम लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:kaveri",
+     "expect": "labelled",
+     "say": {
+      "en": "Label all the other rivers.",
+      "hi": "बाक़ी सभी नदियों के नाम लगाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has many rivers. The Ganga, Brahmaputra and Indus begin in the Himalaya and are fed by melting snow, so they carry water all year. The Godavari, Krishna, Kaveri, Narmada and Mahanadi flow across the peninsula, mostly fed by rain. Rivers gave early people water, fertile soil and routes to travel.",
+      "hi": "भारत में बहुत-सी नदियाँ हैं। गंगा, ब्रह्मपुत्र और सिंधु हिमालय से शुरू होती हैं और पिघलती बर्फ़ से पोषित होती हैं, इसलिए उनमें साल भर पानी रहता है। गोदावरी, कृष्णा, कावेरी, नर्मदा और महानदी प्रायद्वीप में बहती हैं और ज़्यादातर बारिश से पोषित हैं। नदियों ने शुरुआती लोगों को पानी, उपजाऊ मिट्टी और आने-जाने के रास्ते दिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these rivers begins in the Himalaya?",
+        "hi": "इनमें से कौन-सी नदी हिमालय से शुरू होती है?"
+       },
+       "options": [
+        {
+         "en": "Brahmaputra",
+         "hi": "ब्रह्मपुत्र"
+        },
+        {
+         "en": "Kaveri",
+         "hi": "कावेरी"
+        },
+        {
+         "en": "Krishna",
+         "hi": "कृष्णा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Brahmaputra begins in the Himalayan region and flows through Assam.",
+        "hi": "ब्रह्मपुत्र हिमालयी क्षेत्र से शुरू होकर असम से बहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Kaveri is a peninsular river in the south.",
+         "hi": "कावेरी दक्षिण की प्रायद्वीपीय नदी है।"
+        },
+        {
+         "en": "The Krishna flows across the peninsula, rising in the Western Ghats.",
+         "hi": "कृष्णा प्रायद्वीप में बहती है और पश्चिमी घाट से निकलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the river nearest to your home. Which sea or ocean does it finally reach?",
+      "hi": "अपने घर के सबसे पास की नदी ढूँढ़ो। अंत में वह किस समुद्र या महासागर में मिलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch05-names",
+   "topic": "5.3",
+   "template": "match",
+   "title": {
+    "en": "Words and names for India",
+    "hi": "भारत से जुड़े शब्द और नाम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "indus",
+      "left": {
+       "en": "Indus (Sindhu)",
+       "hi": "सिंधु"
+      },
+      "right": {
+       "en": "The river whose name gave us the word 'India'",
+       "hi": "वह नदी जिसके नाम से 'इंडिया' शब्द बना"
+      },
+      "why": {
+       "en": "Outsiders named the land after the river Sindhu, which they pronounced differently.",
+       "hi": "बाहर के लोगों ने इस भूमि का नाम सिंधु नदी के नाम से रखा, जिसे वे अलग ढंग से बोलते थे।"
+      }
+     },
+     {
+      "id": "bharat",
+      "left": {
+       "en": "Bharat",
+       "hi": "भारत"
+      },
+      "right": {
+       "en": "The name used in the Constitution beside India",
+       "hi": "संविधान में 'इंडिया' के साथ आने वाला नाम"
+      },
+      "why": {
+       "en": "The Constitution says: India, that is Bharat.",
+       "hi": "संविधान कहता है: इंडिया, अर्थात् भारत।"
+      }
+     },
+     {
+      "id": "sub",
+      "left": {
+       "en": "Subcontinent",
+       "hi": "उपमहाद्वीप"
+      },
+      "right": {
+       "en": "A large landmass set apart by mountains and seas",
+       "hi": "पर्वतों और समुद्रों से अलग किया हुआ बड़ा भूभाग"
+      },
+      "why": {
+       "en": "India, with its neighbours, forms the Indian subcontinent.",
+       "hi": "भारत अपने पड़ोसियों के साथ भारतीय उपमहाद्वीप बनाता है।"
+      }
+     },
+     {
+      "id": "him",
+      "left": {
+       "en": "Himalaya",
+       "hi": "हिमालय"
+      },
+      "right": {
+       "en": "The northern wall of mountains",
+       "hi": "पर्वतों की उत्तरी दीवार"
+      },
+      "why": {
+       "en": "It is the great mountain range across the north of the subcontinent.",
+       "hi": "यह उपमहाद्वीप के उत्तर में फैली महान पर्वत-श्रृंखला है।"
+      }
+     },
+     {
+      "id": "pen",
+      "left": {
+       "en": "Peninsula",
+       "hi": "प्रायद्वीप"
+      },
+      "right": {
+       "en": "Land with water on three sides",
+       "hi": "तीन ओर पानी से घिरी भूमि"
+      },
+      "why": {
+       "en": "South India has the Arabian Sea, the Indian Ocean and the Bay of Bengal around it.",
+       "hi": "दक्षिण भारत के तीन ओर अरब सागर, हिंद महासागर और बंगाल की खाड़ी हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which river gave India its name?",
+      "hi": "किस नदी ने भारत को उसका नाम 'इंडिया' दिया?"
+     },
+     "options": [
+      {
+       "id": "sindhu",
+       "en": "The Indus (Sindhu)",
+       "hi": "सिंधु"
+      },
+      {
+       "id": "ganga",
+       "en": "The Ganga",
+       "hi": "गंगा"
+      },
+      {
+       "id": "kaveri",
+       "en": "The Kaveri",
+       "hi": "कावेरी"
+      }
+     ],
+     "answer": "sindhu"
+    },
+    {
+     "kind": "do",
+     "target": "left:indus",
+     "expect": "matched:indus",
+     "say": {
+      "en": "Match the Indus with its meaning.",
+      "hi": "सिंधु को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:bharat",
+     "expect": "matched:bharat",
+     "say": {
+      "en": "Now match Bharat.",
+      "hi": "अब भारत को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press check.",
+      "hi": "बाक़ी मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Our country has more than one name. Outsiders called the land after the river Sindhu, which became 'India'. Our own old texts call it Bharata, and the Constitution says 'India, that is Bharat'. A name often carries a story about how people saw their land.",
+      "hi": "हमारे देश के एक से ज़्यादा नाम हैं। बाहर के लोगों ने सिंधु नदी के नाम पर इस भूमि को पुकारा, जो 'इंडिया' बना। हमारे अपने प्राचीन ग्रंथ इसे भारत कहते हैं और संविधान कहता है 'इंडिया, अर्थात् भारत'। नाम में अक्सर इस बात की कहानी होती है कि लोगों ने अपनी भूमि को कैसे देखा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which land is a peninsula?",
+        "hi": "कौन-सी भूमि प्रायद्वीप है?"
+       },
+       "options": [
+        {
+         "en": "Land with water on three sides",
+         "hi": "तीन ओर पानी से घिरी भूमि"
+        },
+        {
+         "en": "Land with water on all four sides",
+         "hi": "चारों ओर पानी से घिरी भूमि"
+        },
+        {
+         "en": "Land with mountains on one side",
+         "hi": "एक ओर पर्वत वाली भूमि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A peninsula is land with sea on three sides, like South India.",
+        "hi": "प्रायद्वीप वह भूमि है जिसके तीन ओर समुद्र हो, जैसे दक्षिण भारत।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Land fully surrounded by water is an island.",
+         "hi": "जो भूमि पूरी तरह पानी से घिरी हो वह द्वीप कहलाती है।"
+        },
+        {
+         "en": "Mountains on one side do not make a peninsula. A peninsula is about water.",
+         "hi": "एक ओर पर्वत होने से प्रायद्वीप नहीं बनता। प्रायद्वीप का संबंध पानी से है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask an elder what name they use for our country in their mother tongue.",
+      "hi": "किसी बुज़ुर्ग से पूछो कि उनकी मातृभाषा में हमारे देश को क्या कहते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch05-longer",
+   "topic": "5.2",
+   "template": "map",
+   "title": {
+    "en": "Which river is longer?",
+    "hi": "कौन-सी नदी लंबी है?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "rivers"
+    ],
+    "task": "compare",
+    "ask": "longer",
+    "places": [
+     "ganga",
+     "godavari",
+     "narmada"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:rivers",
+     "expect": "layer:rivers",
+     "say": {
+      "en": "Switch on the rivers layer and look at the three rivers.",
+      "hi": "नदियों की परत चालू करो और तीनों नदियों को देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of the Ganga, Godavari and Narmada is the longest?",
+      "hi": "गंगा, गोदावरी और नर्मदा में सबसे लंबी कौन-सी है?"
+     },
+     "options": [
+      {
+       "id": "ganga",
+       "en": "The Ganga",
+       "hi": "गंगा"
+      },
+      {
+       "id": "godavari",
+       "en": "The Godavari",
+       "hi": "गोदावरी"
+      },
+      {
+       "id": "narmada",
+       "en": "The Narmada",
+       "hi": "नर्मदा"
+      }
+     ],
+     "answer": "ganga"
+    },
+    {
+     "kind": "do",
+     "target": "place:ganga",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap the longest river.",
+      "hi": "सबसे लंबी नदी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Ganga is about 2,500 km long, the Godavari about 1,465 km and the Narmada about 1,312 km. Rivers that start high in the Himalaya and cross the wide northern plains have a very long journey.",
+      "hi": "गंगा लगभग 2,500 किमी लंबी है, गोदावरी लगभग 1,465 किमी और नर्मदा लगभग 1,312 किमी। जो नदियाँ ऊँचे हिमालय से शुरू होकर चौड़े उत्तरी मैदानों को पार करती हैं, उनका सफ़र बहुत लंबा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which river flows through the northern plains?",
+        "hi": "उत्तरी मैदानों से कौन-सी नदी बहती है?"
+       },
+       "options": [
+        {
+         "en": "Ganga",
+         "hi": "गंगा"
+        },
+        {
+         "en": "Kaveri",
+         "hi": "कावेरी"
+        },
+        {
+         "en": "Mahanadi",
+         "hi": "महानदी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Ganga flows across the northern plains to the Bay of Bengal.",
+        "hi": "गंगा उत्तरी मैदानों से बहकर बंगाल की खाड़ी में गिरती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Kaveri is in the south.",
+         "hi": "कावेरी दक्षिण में है।"
+        },
+        {
+         "en": "The Mahanadi is in the east-central region, in Odisha and Chhattisgarh.",
+         "hi": "महानदी पूर्वी-मध्य क्षेत्र में, ओडिशा और छत्तीसगढ़ में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the places in your mind: which would be longer, the Brahmaputra or the Krishna?",
+      "hi": "अपने मन में बदलकर सोचो: ब्रह्मपुत्र और कृष्णा में कौन-सी लंबी होगी?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "MAP",
+   "topic": "5.1",
+   "use": "Base for the natural boundaries lab",
+   "shows": "Relief map of the Indian subcontinent with the Himalaya, plains, plateau and coasts, no names",
+   "view": "16:9, straight down",
+   "right": "Mountains in brown, plains in green, seas in blue",
+   "avoid": "Borders, names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Shows the Himalayan wall",
+   "shows": "The Himalaya seen from a Himachal valley at sunrise with snow peaks over green hills",
+   "view": "Wide shot, 16:9",
+   "right": "True snow and rock colours",
+   "avoid": "People's faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Shows a great river",
+   "shows": "The Brahmaputra in Assam with a wide river and a boat at sunset",
+   "view": "Wide, low angle",
+   "right": "Very wide muddy-brown river with flat banks",
+   "avoid": "Faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Shows a southern river",
+   "shows": "The Kaveri flowing between rocks near Hogenakkal with a round coracle",
+   "view": "Wide shot",
+   "right": "Clear rocky riverbed and round boat",
+   "avoid": "Faces"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "5.3",
+   "use": "Name story strip",
+   "shows": "A plain horizontal strip with three empty frames for 'Sindhu', 'Hind' and 'India' to be placed in",
+   "view": "Wide, white",
+   "right": "Equal frames, clear arrows",
+   "avoid": "Printed words"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "5.3",
+   "use": "Match card: the Constitution",
+   "shows": "A copy of the Constitution of India closed on a table, cut out",
+   "view": "Three-quarter view",
+   "right": "Plain cover, no official seal text readable",
+   "avoid": "Brand names"
+  }
+ ]
+}

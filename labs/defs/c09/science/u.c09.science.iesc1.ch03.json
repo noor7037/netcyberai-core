@@ -1,0 +1,1389 @@
+{
+ "chapter_key": "u.c09.science.iesc1.ch03",
+ "class": 9,
+ "subject_id": "science",
+ "title": "Tissues in Action",
+ "source": "https://ncert.nic.in/textbook/pdf/iesc103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Why plant and animal tissues are different",
+   "labs": [],
+   "why_no_lab": "This is a comparison of how plants and animals live; the reader with side-by-side photos explains it better than a lab."
+  },
+  {
+   "n": "3.2.1",
+   "title": "Apical meristem: how plants grow in length",
+   "labs": [
+    "c09-science-iesc1-ch03-tips"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2.2",
+   "title": "Lateral meristem: how plants grow in girth",
+   "labs": [],
+   "why_no_lab": "Growth in girth takes years; a photo of a cut log showing annual rings teaches it best."
+  },
+  {
+   "n": "3.2.3",
+   "title": "Intercalary meristem: regrowth after cutting",
+   "labs": [],
+   "why_no_lab": "Best shown by a photo sequence of mown grass growing back; the tips lab explains the idea of meristems."
+  },
+  {
+   "n": "3.2.4",
+   "title": "Permanent tissues: xylem, phloem and others",
+   "labs": [
+    "c09-science-iesc1-ch03-xylem"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3.1",
+   "title": "Epithelial tissues: structure and function",
+   "labs": [],
+   "why_no_lab": "The cheek-cell lab of Chapter 2 already shows a flat epithelium; the reader's photos show the other shapes."
+  },
+  {
+   "n": "3.3.2",
+   "title": "Connective tissues: blood, bone, cartilage, tendons and ligaments",
+   "labs": [
+    "c09-science-iesc1-ch03-blood"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3.3",
+   "title": "Muscular tissue: voluntary and involuntary movement",
+   "labs": [
+    "c09-science-iesc1-ch03-muscle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3.4",
+   "title": "Nervous tissue: sensing and communicating",
+   "labs": [
+    "c09-science-iesc1-ch03-nerve"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4.1",
+   "title": "The musculoskeletal system in action",
+   "labs": [
+    "c09-science-iesc1-ch03-musclepair"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Types of joints: ball and socket, hinge, pivot and fixed",
+   "labs": [
+    "c09-science-iesc1-ch03-joints"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Skeletal system",
+   "labs": [
+    "c09-science-iesc1-ch03-skeleton"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-science-iesc1-ch03-tips",
+   "topic": "3.2.1",
+   "template": "plant",
+   "title": {
+    "en": "Where does a young plant grow?",
+    "hi": "नन्हा पौधा कहाँ से बढ़ता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "germination",
+    "plant": "bean"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bean seed starts to grow. Where do you think the root and shoot get longer?",
+      "hi": "सेम का बीज उगना शुरू करता है। तुम्हें क्या लगता है, जड़ और प्ररोह कहाँ से लंबे होते हैं?"
+     },
+     "options": [
+      {
+       "id": "tips",
+       "en": "At their tips",
+       "hi": "अपने सिरों पर"
+      },
+      {
+       "id": "middle",
+       "en": "Evenly along their whole length",
+       "hi": "पूरी लंबाई में बराबर"
+      },
+      {
+       "id": "seed",
+       "en": "Only inside the seed",
+       "hi": "केवल बीज के अंदर"
+      }
+     ],
+     "answer": "tips"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "germinated",
+     "say": {
+      "en": "Press play and watch the seeds sprout.",
+      "hi": "प्ले दबाओ और बीजों को अंकुरित होते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:radicle",
+     "expect": "identified:radicle",
+     "say": {
+      "en": "Tap \"radicle\", the young root.",
+      "hi": "नन्ही जड़ \"मूलांकुर\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:plumule",
+     "expect": "identified:plumule",
+     "say": {
+      "en": "Tap \"plumule\", the young shoot.",
+      "hi": "नन्हे प्ररोह \"प्रांकुर\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Plants grow only in special regions called meristems, where cells keep dividing. Apical meristems at the tips of roots and shoots make the plant longer. Lateral meristems make stems thicker, and intercalary meristems near the nodes help grass grow back after it is cut.",
+      "hi": "पौधे केवल विभज्योतक नाम के ख़ास भागों में बढ़ते हैं, जहाँ कोशिकाएँ लगातार विभाजित होती रहती हैं। जड़ और प्ररोह के सिरों पर शीर्षस्थ विभज्योतक पौधे को लंबा करते हैं। पार्श्व विभज्योतक तने को मोटा करते हैं, और गाँठों के पास के अंतर्वेशी विभज्योतक घास को कटने के बाद फिर बढ़ने में मदद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A gardener cuts the grass in a park. Why does it grow back?",
+        "hi": "माली पार्क की घास काटता है। वह फिर क्यों उग आती है?"
+       },
+       "options": [
+        {
+         "en": "Intercalary meristem at the base of the leaves keeps dividing",
+         "hi": "पत्तियों के आधार पर अंतर्वेशी विभज्योतक विभाजित होता रहता है"
+        },
+        {
+         "en": "New seeds fall every day",
+         "hi": "हर दिन नए बीज गिरते हैं"
+        },
+        {
+         "en": "Cut leaves join back",
+         "hi": "कटी पत्तियाँ फिर जुड़ जाती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Grass has dividing tissue low down, near the nodes, which a mower does not remove.",
+        "hi": "घास में नीचे, गाँठों के पास, विभाजित होने वाला ऊतक है, जिसे घास काटने की मशीन नहीं हटाती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Regrowth after mowing comes from the same plants, not from new seeds.",
+         "hi": "कटाई के बाद फिर उगना उन्हीं पौधों से होता है, नए बीजों से नहीं।"
+        },
+        {
+         "en": "Cut pieces cannot join back; new cells grow from the base.",
+         "hi": "कटे टुकड़े नहीं जुड़ते; आधार से नई कोशिकाएँ बढ़ती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which meristem makes a tree trunk thicker each year?",
+        "hi": "कौन-सा विभज्योतक पेड़ के तने को हर साल मोटा करता है?"
+       },
+       "options": [
+        {
+         "en": "Apical",
+         "hi": "शीर्षस्थ"
+        },
+        {
+         "en": "Lateral",
+         "hi": "पार्श्व"
+        },
+        {
+         "en": "Intercalary",
+         "hi": "अंतर्वेशी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Lateral meristem lies in a ring along the stem and adds girth; it also leaves the annual rings.",
+        "hi": "पार्श्व विभज्योतक तने में एक छल्ले के रूप में होता है और मोटाई बढ़ाता है; इसी से वार्षिक वलय बनते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Apical meristems make the plant longer, not thicker.",
+         "hi": "शीर्षस्थ विभज्योतक पौधे को लंबा करते हैं, मोटा नहीं।"
+        },
+        "",
+        {
+         "en": "Intercalary meristem is near the nodes and helps regrowth in length.",
+         "hi": "अंतर्वेशी विभज्योतक गाँठों के पास होता है और लंबाई में फिर बढ़ने में मदद करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the water or the temperature of a pot and see whether the seed still sprouts. Find the cotyledon too.",
+      "hi": "आज़माओ: किसी गमले का पानी या तापमान बदलो और देखो कि बीज फिर भी उगता है या नहीं। बीजपत्र भी ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch03-xylem",
+   "topic": "3.2.4",
+   "template": "scope",
+   "title": {
+    "en": "Xylem: the pipes that carry water",
+    "hi": "जाइलम: पानी ले जाने वाली नलियाँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "slide": "xylem"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Tap the 10× lens.",
+      "hi": "10× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Focus with the coarse knob until the long tubes are sharp.",
+      "hi": "मोटे नॉब से फ़ोकस करो जब तक लंबी नलियाँ साफ़ न दिखें।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Safranin is a red stain. Which part of xylem do you think it will colour bright red?",
+      "hi": "सैफ़्रेनिन लाल रंग है। तुम्हें क्या लगता है, यह जाइलम के किस भाग को चटक लाल करेगा?"
+     },
+     "options": [
+      {
+       "id": "lignin",
+       "en": "The hard, thick bands on the vessel walls",
+       "hi": "वाहिका की दीवारों पर कठोर, मोटी पट्टियाँ"
+      },
+      {
+       "id": "water",
+       "en": "The water inside",
+       "hi": "अंदर का पानी"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "lignin"
+    },
+    {
+     "kind": "do",
+     "target": "stain:safranin",
+     "expect": "stained",
+     "say": {
+      "en": "Add the safranin stain.",
+      "hi": "सैफ़्रेनिन रंग डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "lens:40x",
+     "expect": "zoomed:40x",
+     "say": {
+      "en": "Tap the 40× lens.",
+      "hi": "40× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:fine",
+     "expect": "focused",
+     "say": {
+      "en": "Sharpen the picture with the fine knob.",
+      "hi": "बारीक नॉब से चित्र साफ़ करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:lignin",
+     "expect": "identified:lignin",
+     "say": {
+      "en": "Tap \"lignin\" to find the hard spiral bands.",
+      "hi": "कठोर सर्पिल पट्टियाँ ढूँढने के लिए \"लिग्निन\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Xylem is a permanent tissue. Its vessels are long, dead, hollow tubes joined end to end, with walls thickened by lignin, so they stay open like pipes and carry water and minerals up from the roots. Phloem, another permanent tissue, carries food made in the leaves to other parts.",
+      "hi": "जाइलम एक स्थायी ऊतक है। इसकी वाहिकाएँ लंबी, मृत, खोखली नलियाँ हैं जो सिरे से सिरे जुड़ी हैं, और जिनकी दीवारें लिग्निन से मोटी हैं, इसलिए वे पाइप की तरह खुली रहती हैं और जड़ों से पानी व खनिज ऊपर ले जाती हैं। फ्लोएम, एक और स्थायी ऊतक, पत्तियों में बना भोजन दूसरे भागों तक ले जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can xylem vessels be dead and still do their job?",
+        "hi": "जाइलम वाहिकाएँ मृत होकर भी अपना काम कैसे कर पाती हैं?"
+       },
+       "options": [
+        {
+         "en": "They only need to be strong open tubes for water to flow through",
+         "hi": "उन्हें बस मज़बूत खुली नलियाँ होना है ताकि पानी बह सके"
+        },
+        {
+         "en": "They come back to life at night",
+         "hi": "वे रात को फिर जीवित हो जाती हैं"
+        },
+        {
+         "en": "They make the water themselves",
+         "hi": "वे पानी ख़ुद बनाती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A hollow pipe with lignin walls carries water without needing living contents.",
+        "hi": "लिग्निन की दीवारों वाली खोखली नली बिना जीवित भीतरी भाग के पानी ले जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dead cells cannot come back to life.",
+         "hi": "मृत कोशिकाएँ फिर जीवित नहीं होतीं।"
+        },
+        {
+         "en": "Water comes from the soil through the roots; vessels only carry it.",
+         "hi": "पानी जड़ों से मिट्टी से आता है; वाहिकाएँ उसे केवल ले जाती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which tissue carries food from the leaves to the roots?",
+        "hi": "कौन-सा ऊतक पत्तियों से जड़ों तक भोजन ले जाता है?"
+       },
+       "options": [
+        {
+         "en": "Xylem",
+         "hi": "जाइलम"
+        },
+        {
+         "en": "Meristem",
+         "hi": "विभज्योतक"
+        },
+        {
+         "en": "Phloem",
+         "hi": "फ्लोएम"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Phloem moves food made in the leaves to every part of the plant.",
+        "hi": "फ्लोएम पत्तियों में बना भोजन पौधे के हर भाग तक पहुँचाता है।"
+       },
+       "wrong": [
+        {
+         "en": "Xylem carries water and minerals upward.",
+         "hi": "जाइलम पानी और खनिज ऊपर ले जाता है।"
+        },
+        {
+         "en": "Meristem divides to make new cells; it does not transport food.",
+         "hi": "विभज्योतक नई कोशिकाएँ बनाने के लिए विभाजित होता है; भोजन नहीं ले जाता।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find the living parenchyma cells and their nuclei. Why do the vessels have no nucleus?",
+      "hi": "आज़माओ: जीवित मृदूतक कोशिकाएँ और उनके केंद्रक ढूँढो। वाहिकाओं में केंद्रक क्यों नहीं है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch03-blood",
+   "topic": "3.3.2",
+   "template": "scope",
+   "title": {
+    "en": "Blood: a connective tissue that flows",
+    "hi": "रक्त: बहने वाला संयोजी ऊतक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "blood-smear"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Tap the 10× lens.",
+      "hi": "10× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Focus with the coarse knob.",
+      "hi": "मोटे नॉब से फ़ोकस करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:rbc",
+     "expect": "identified:rbc",
+     "say": {
+      "en": "Tap \"red blood cell\". These are the most common cells.",
+      "hi": "\"लाल रक्त कणिका\" पर टैप करो। ये सबसे अधिक संख्या में हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Red blood cells have no nucleus. What do you think about white blood cells?",
+      "hi": "लाल रक्त कणिकाओं में केंद्रक नहीं होता। श्वेत रक्त कणिकाओं के बारे में तुम्हारा क्या विचार है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "They have a big, dark nucleus",
+       "hi": "उनमें बड़ा, गहरा केंद्रक होता है"
+      },
+      {
+       "id": "no",
+       "en": "They have no nucleus either",
+       "hi": "उनमें भी केंद्रक नहीं होता"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "part:wbc",
+     "expect": "identified:wbc",
+     "say": {
+      "en": "Tap \"white blood cell\" and look at its nucleus.",
+      "hi": "\"श्वेत रक्त कणिका\" पर टैप करो और उसका केंद्रक देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Blood is a connective tissue: its cells float in a liquid called plasma. Red cells carry oxygen, white cells fight germs and platelets help blood clot. Other connective tissues, like bone, cartilage, tendons and ligaments, join and support the parts of the body.",
+      "hi": "रक्त एक संयोजी ऊतक है: इसकी कोशिकाएँ प्लाज़्मा नाम के द्रव में तैरती हैं। लाल कणिकाएँ ऑक्सीजन ले जाती हैं, श्वेत कणिकाएँ कीटाणुओं से लड़ती हैं और प्लेटलेट्स रक्त जमाने में मदद करते हैं। दूसरे संयोजी ऊतक, जैसे हड्डी, उपास्थि, कंडरा और स्नायुबंधन, शरीर के भागों को जोड़ते और सहारा देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What connects a muscle to a bone?",
+        "hi": "पेशी को हड्डी से क्या जोड़ता है?"
+       },
+       "options": [
+        {
+         "en": "Ligament",
+         "hi": "स्नायुबंधन"
+        },
+        {
+         "en": "Tendon",
+         "hi": "कंडरा"
+        },
+        {
+         "en": "Plasma",
+         "hi": "प्लाज़्मा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A tendon is a tough band that passes the pull of a muscle to the bone.",
+        "hi": "कंडरा एक मज़बूत पट्टी है जो पेशी का खिंचाव हड्डी तक पहुँचाती है।"
+       },
+       "wrong": [
+        {
+         "en": "Ligaments join bone to bone at joints.",
+         "hi": "स्नायुबंधन जोड़ों पर हड्डी को हड्डी से जोड़ते हैं।"
+        },
+        "",
+        {
+         "en": "Plasma is the liquid part of blood.",
+         "hi": "प्लाज़्मा रक्त का द्रव भाग है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which blood cells fight germs?",
+        "hi": "कौन-सी रक्त कणिकाएँ कीटाणुओं से लड़ती हैं?"
+       },
+       "options": [
+        {
+         "en": "White blood cells",
+         "hi": "श्वेत रक्त कणिकाएँ"
+        },
+        {
+         "en": "Red blood cells",
+         "hi": "लाल रक्त कणिकाएँ"
+        },
+        {
+         "en": "Platelets",
+         "hi": "प्लेटलेट्स"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "White blood cells defend the body against infection.",
+        "hi": "श्वेत रक्त कणिकाएँ संक्रमण से शरीर की रक्षा करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Red cells carry oxygen.",
+         "hi": "लाल कणिकाएँ ऑक्सीजन ले जाती हैं।"
+        },
+        {
+         "en": "Platelets help blood to clot at a cut.",
+         "hi": "प्लेटलेट्स कटने पर रक्त जमाने में मदद करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: zoom to 40×, refocus and find the tiny platelets. Count how many red cells there are for each white cell you see.",
+      "hi": "आज़माओ: 40× पर ज़ूम करो, फिर फ़ोकस करो और छोटे प्लेटलेट्स ढूँढो। गिनो कि हर एक श्वेत कणिका पर कितनी लाल कणिकाएँ हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch03-muscle",
+   "topic": "3.3.3",
+   "template": "scope",
+   "title": {
+    "en": "Three kinds of muscle",
+    "hi": "तीन प्रकार की पेशियाँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "muscle"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Tap the 10× lens.",
+      "hi": "10× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Focus with the coarse knob.",
+      "hi": "मोटे नॉब से फ़ोकस करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:skeletal-fibre",
+     "expect": "identified:skeletal-fibre",
+     "say": {
+      "en": "Tap \"skeletal muscle fibre\", the long striped fibre.",
+      "hi": "लंबे धारीदार तंतु \"कंकाल पेशी तंतु\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:smooth-fibre",
+     "expect": "identified:smooth-fibre",
+     "say": {
+      "en": "Tap \"smooth muscle cell\", the spindle-shaped cell.",
+      "hi": "तर्कु के आकार वाली कोशिका \"चिकनी पेशी कोशिका\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Your heart beats all day without you thinking about it. Its muscle is…",
+      "hi": "तुम्हारा हृदय बिना सोचे दिन भर धड़कता है। इसकी पेशी है…"
+     },
+     "options": [
+      {
+       "id": "cardiac",
+       "en": "Cardiac muscle, striped and branched",
+       "hi": "हृदय पेशी, धारीदार और शाखाओं वाली"
+      },
+      {
+       "id": "skeletal",
+       "en": "Skeletal muscle, like the arm",
+       "hi": "कंकाल पेशी, बाँह जैसी"
+      },
+      {
+       "id": "none",
+       "en": "Not a muscle at all",
+       "hi": "कोई पेशी नहीं"
+      }
+     ],
+     "answer": "cardiac"
+    },
+    {
+     "kind": "do",
+     "target": "part:cardiac-fibre",
+     "expect": "identified:cardiac-fibre",
+     "say": {
+      "en": "Tap \"cardiac muscle fibre\".",
+      "hi": "\"हृदय पेशी तंतु\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Muscle tissue moves the body. Skeletal muscles are striped and voluntary: you control them to walk or lift. Smooth muscles, in the stomach and blood vessels, are involuntary. Cardiac muscle is striped like skeletal muscle but works on its own, beating all your life without tiring.",
+      "hi": "पेशी ऊतक शरीर को गति देता है। कंकाल पेशियाँ धारीदार और ऐच्छिक हैं: चलने या उठाने के लिए तुम इन्हें नियंत्रित करते हो। आमाशय और रक्त नलियों की चिकनी पेशियाँ अनैच्छिक हैं। हृदय पेशी कंकाल पेशी की तरह धारीदार है पर अपने-आप काम करती है, जीवन भर बिना थके धड़कती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Food is pushed along your food pipe without you thinking. Which muscle does it?",
+        "hi": "बिना सोचे भोजन ग्रासनली में आगे धकेला जाता है। यह कौन-सी पेशी करती है?"
+       },
+       "options": [
+        {
+         "en": "Skeletal muscle",
+         "hi": "कंकाल पेशी"
+        },
+        {
+         "en": "Smooth muscle",
+         "hi": "चिकनी पेशी"
+        },
+        {
+         "en": "Cardiac muscle",
+         "hi": "हृदय पेशी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Smooth, involuntary muscle lines the food pipe and pushes food in waves.",
+        "hi": "चिकनी, अनैच्छिक पेशी ग्रासनली की परत में है और भोजन को लहरों में धकेलती है।"
+       },
+       "wrong": [
+        {
+         "en": "Skeletal muscles move bones when you decide to move.",
+         "hi": "कंकाल पेशियाँ तब हड्डियाँ हिलाती हैं जब तुम चलने का निश्चय करते हो।"
+        },
+        "",
+        {
+         "en": "Cardiac muscle is found only in the heart.",
+         "hi": "हृदय पेशी केवल हृदय में होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: zoom to 40×, refocus and find the stripes (striations) and the discs between heart cells.",
+      "hi": "आज़माओ: 40× पर ज़ूम करो, फिर फ़ोकस करो और धारियाँ तथा हृदय कोशिकाओं के बीच की डिस्क ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch03-nerve",
+   "topic": "3.3.4",
+   "template": "scope",
+   "title": {
+    "en": "A nerve cell, built to carry messages",
+    "hi": "तंत्रिका कोशिका, संदेश ले जाने के लिए बनी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "nerve"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Tap the 10× lens.",
+      "hi": "10× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Focus with the coarse knob.",
+      "hi": "मोटे नॉब से फ़ोकस करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A nerve cell carries a message from your toe to your spine. What shape suits that job?",
+      "hi": "तंत्रिका कोशिका पैर के अंगूठे से रीढ़ तक संदेश ले जाती है। इस काम के लिए कौन-सा आकार ठीक है?"
+     },
+     "options": [
+      {
+       "id": "long",
+       "en": "Very long and thin, with branches",
+       "hi": "बहुत लंबी और पतली, शाखाओं वाली"
+      },
+      {
+       "id": "round",
+       "en": "Small and round",
+       "hi": "छोटी और गोल"
+      },
+      {
+       "id": "flat",
+       "en": "Flat like a tile",
+       "hi": "टाइल जैसी चपटी"
+      }
+     ],
+     "answer": "long"
+    },
+    {
+     "kind": "do",
+     "target": "part:cell-body",
+     "expect": "identified:cell-body",
+     "say": {
+      "en": "Tap \"cell body\", where the nucleus is.",
+      "hi": "\"कोशिका काय\" पर टैप करो, जहाँ केंद्रक है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:dendrite",
+     "expect": "identified:dendrite",
+     "say": {
+      "en": "Tap \"dendrite\", the short branches that receive messages.",
+      "hi": "संदेश लेने वाली छोटी शाखाओं \"द्रुमिका\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:axon",
+     "expect": "identified:axon",
+     "say": {
+      "en": "Tap \"axon\", the long fibre that sends the message on.",
+      "hi": "संदेश आगे भेजने वाले लंबे तंतु \"तंत्रिकाक्ष\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Nervous tissue senses and communicates. A neuron has a cell body with a nucleus, branched dendrites that pick up signals, and a long axon that carries the signal as an electrical impulse, sometimes over a metre. Nerves link the brain and spinal cord to every muscle and sense organ.",
+      "hi": "तंत्रिका ऊतक महसूस करता है और संदेश पहुँचाता है। न्यूरॉन में केंद्रक वाली कोशिका काय, संकेत पकड़ने वाली शाखित द्रुमिकाएँ और एक लंबा तंत्रिकाक्ष होता है जो संकेत को विद्युत आवेग के रूप में ले जाता है, कभी-कभी एक मीटर से भी अधिक। तंत्रिकाएँ मस्तिष्क और मेरुरज्जु को हर पेशी और संवेदी अंग से जोड़ती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part carries the signal away from the cell body?",
+        "hi": "कौन-सा भाग संकेत को कोशिका काय से दूर ले जाता है?"
+       },
+       "options": [
+        {
+         "en": "Dendrite",
+         "hi": "द्रुमिका"
+        },
+        {
+         "en": "Axon",
+         "hi": "तंत्रिकाक्ष"
+        },
+        {
+         "en": "Nucleus",
+         "hi": "केंद्रक"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The axon is the long output fibre of a neuron.",
+        "hi": "तंत्रिकाक्ष न्यूरॉन का लंबा निकास तंतु है।"
+       },
+       "wrong": [
+        {
+         "en": "Dendrites bring signals in towards the cell body.",
+         "hi": "द्रुमिकाएँ संकेत कोशिका काय की ओर लाती हैं।"
+        },
+        "",
+        {
+         "en": "The nucleus controls the cell; it does not carry signals.",
+         "hi": "केंद्रक कोशिका को नियंत्रित करता है; संकेत नहीं ले जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: zoom to 40× and find the myelin sheath and the gaps (nodes) along the axon.",
+      "hi": "आज़माओ: 40× पर ज़ूम करो और तंत्रिकाक्ष पर माइलिन आवरण और उसके बीच के अंतराल (नोड) ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch03-musclepair",
+   "topic": "3.4.1",
+   "template": "body",
+   "title": {
+    "en": "Muscles work in pairs",
+    "hi": "पेशियाँ जोड़ी में काम करती हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "system": "muscles",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When you bend your arm at the elbow, which muscle gets shorter and fatter?",
+      "hi": "जब तुम कोहनी पर बाँह मोड़ते हो, कौन-सी पेशी छोटी और मोटी होती है?"
+     },
+     "options": [
+      {
+       "id": "biceps",
+       "en": "The biceps, in front of the upper arm",
+       "hi": "बाइसेप्स, ऊपरी बाँह के सामने"
+      },
+      {
+       "id": "triceps",
+       "en": "The triceps, at the back",
+       "hi": "ट्राइसेप्स, पीछे"
+      },
+      {
+       "id": "both",
+       "en": "Both at once",
+       "hi": "दोनों एक साथ"
+      }
+     ],
+     "answer": "biceps"
+    },
+    {
+     "kind": "do",
+     "target": "part:biceps",
+     "expect": "picked:biceps",
+     "say": {
+      "en": "Tap the biceps on the upper arm.",
+      "hi": "ऊपरी बाँह पर बाइसेप्स पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:triceps",
+     "expect": "picked:triceps",
+     "say": {
+      "en": "Now tap the triceps at the back of the arm.",
+      "hi": "अब बाँह के पीछे ट्राइसेप्स पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A muscle can only pull, never push. So muscles work in pairs. The biceps contracts to bend the elbow while the triceps relaxes; the triceps contracts to straighten it while the biceps relaxes. Tendons carry each pull to the bone.",
+      "hi": "पेशी केवल खींच सकती है, कभी धकेल नहीं सकती। इसलिए पेशियाँ जोड़ी में काम करती हैं। कोहनी मोड़ने के लिए बाइसेप्स सिकुड़ती है और ट्राइसेप्स ढीली होती है; सीधा करने के लिए ट्राइसेप्स सिकुड़ती है और बाइसेप्स ढीली होती है। कंडराएँ हर खिंचाव को हड्डी तक पहुँचाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do muscles have to work in pairs?",
+        "hi": "पेशियों को जोड़ी में काम क्यों करना पड़ता है?"
+       },
+       "options": [
+        {
+         "en": "A muscle can pull but cannot push",
+         "hi": "पेशी खींच सकती है पर धकेल नहीं सकती"
+        },
+        {
+         "en": "One muscle is always tired",
+         "hi": "एक पेशी हमेशा थकी रहती है"
+        },
+        {
+         "en": "Bones push the muscles back",
+         "hi": "हड्डियाँ पेशियों को वापस धकेलती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each movement needs one muscle to pull one way and its partner to pull back.",
+        "hi": "हर गति में एक पेशी एक ओर खींचती है और उसकी साथी वापस खींचती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Muscles take turns because of how they pull, not because one is tired.",
+         "hi": "पेशियाँ अपने खिंचाव के तरीक़े से बारी-बारी काम करती हैं, थकान के कारण नहीं।"
+        },
+        {
+         "en": "Bones are moved by muscles; they do not push muscles.",
+         "hi": "हड्डियाँ पेशियों से हिलती हैं; वे पेशियों को नहीं धकेलतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press play to see the arm bend and straighten. Find the pair of muscles in the thigh: quads and hamstrings.",
+      "hi": "आज़माओ: बाँह को मुड़ते और सीधा होते देखने के लिए प्ले दबाओ। जाँघ की पेशियों की जोड़ी ढूँढो: क्वाड्स और हैमस्ट्रिंग।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch03-joints",
+   "topic": "3.5",
+   "template": "body",
+   "title": {
+    "en": "Joints: how bones move",
+    "hi": "जोड़: हड्डियाँ कैसे हिलती हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "system": "skeleton",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Your shoulder lets your arm swing in a full circle, but your knee only bends one way. Why?",
+      "hi": "कंधा बाँह को पूरे गोले में घूमने देता है, पर घुटना केवल एक ओर मुड़ता है। क्यों?"
+     },
+     "options": [
+      {
+       "id": "shape",
+       "en": "The joints have different shapes",
+       "hi": "जोड़ों के आकार अलग हैं"
+      },
+      {
+       "id": "size",
+       "en": "The knee bones are bigger",
+       "hi": "घुटने की हड्डियाँ बड़ी हैं"
+      },
+      {
+       "id": "use",
+       "en": "We use the shoulder more",
+       "hi": "हम कंधे का उपयोग अधिक करते हैं"
+      }
+     ],
+     "answer": "shape"
+    },
+    {
+     "kind": "do",
+     "target": "part:ball",
+     "expect": "picked:ball",
+     "say": {
+      "en": "Tap the ball and socket joint at the shoulder.",
+      "hi": "कंधे पर कंदुक-खल्लिका जोड़ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:hinge",
+     "expect": "picked:hinge",
+     "say": {
+      "en": "Tap the hinge joint at the knee or elbow.",
+      "hi": "घुटने या कोहनी पर कब्ज़ा जोड़ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:pivot",
+     "expect": "picked:pivot",
+     "say": {
+      "en": "Tap the pivot joint in the neck.",
+      "hi": "गर्दन में धुराग्र जोड़ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:fixed",
+     "expect": "picked:fixed",
+     "say": {
+      "en": "Tap the fixed joints of the skull.",
+      "hi": "खोपड़ी के अचल जोड़ों पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A joint is where two bones meet. A ball and socket joint (shoulder, hip) moves in all directions. A hinge joint (elbow, knee) moves back and forth in one plane, like a door. A pivot joint lets the head turn left and right. Fixed joints, as in the skull, do not move at all and protect the brain.",
+      "hi": "जोड़ वह जगह है जहाँ दो हड्डियाँ मिलती हैं। कंदुक-खल्लिका जोड़ (कंधा, कूल्हा) हर दिशा में घूमता है। कब्ज़ा जोड़ (कोहनी, घुटना) दरवाज़े की तरह एक ही तल में आगे-पीछे चलता है। धुराग्र जोड़ सिर को दाएँ-बाएँ घुमाने देता है। अचल जोड़, जैसे खोपड़ी में, बिल्कुल नहीं हिलते और मस्तिष्क की रक्षा करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which joint lets your leg swing forward, backward and in a circle at the hip?",
+        "hi": "कूल्हे पर पैर को आगे, पीछे और गोले में घूमने कौन-सा जोड़ देता है?"
+       },
+       "options": [
+        {
+         "en": "Hinge joint",
+         "hi": "कब्ज़ा जोड़"
+        },
+        {
+         "en": "Ball and socket joint",
+         "hi": "कंदुक-खल्लिका जोड़"
+        },
+        {
+         "en": "Fixed joint",
+         "hi": "अचल जोड़"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The round head of the thigh bone turns in a cup in the hip bone.",
+        "hi": "जाँघ की हड्डी का गोल सिरा कूल्हे की हड्डी के प्याले में घूमता है।"
+       },
+       "wrong": [
+        {
+         "en": "A hinge moves only in one plane, like a door.",
+         "hi": "कब्ज़ा केवल एक तल में चलता है, दरवाज़े की तरह।"
+        },
+        "",
+        {
+         "en": "Fixed joints do not move at all.",
+         "hi": "अचल जोड़ बिल्कुल नहीं हिलते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What joins bone to bone at a joint and stops it from slipping out?",
+        "hi": "जोड़ पर हड्डी को हड्डी से क्या जोड़ता है और उसे खिसकने से रोकता है?"
+       },
+       "options": [
+        {
+         "en": "Ligament",
+         "hi": "स्नायुबंधन"
+        },
+        {
+         "en": "Tendon",
+         "hi": "कंडरा"
+        },
+        {
+         "en": "Skin",
+         "hi": "त्वचा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ligaments are strong bands that hold the bones of a joint in place.",
+        "hi": "स्नायुबंधन मज़बूत पट्टियाँ हैं जो जोड़ की हड्डियों को अपनी जगह रखती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A tendon joins muscle to bone.",
+         "hi": "कंडरा पेशी को हड्डी से जोड़ती है।"
+        },
+        {
+         "en": "Skin covers the body; it does not hold bones together.",
+         "hi": "त्वचा शरीर को ढकती है; हड्डियों को नहीं जोड़ती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: turn the skeleton round and find the gliding joints in the wrist and the cartilage between the vertebrae.",
+      "hi": "आज़माओ: कंकाल को घुमाओ और कलाई के सरकने वाले जोड़ तथा कशेरुकाओं के बीच की उपास्थि ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch03-skeleton",
+   "topic": "3.6",
+   "template": "body",
+   "title": {
+    "en": "Your skeleton: frame, shield and lever",
+    "hi": "तुम्हारा कंकाल: ढाँचा, ढाल और उत्तोलक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "system": "skeleton",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which bones do you think protect your heart and lungs?",
+      "hi": "तुम्हें क्या लगता है, कौन-सी हड्डियाँ तुम्हारे हृदय और फेफड़ों की रक्षा करती हैं?"
+     },
+     "options": [
+      {
+       "id": "ribs",
+       "en": "The rib cage",
+       "hi": "पसलियों का पिंजरा"
+      },
+      {
+       "id": "skull",
+       "en": "The skull",
+       "hi": "खोपड़ी"
+      },
+      {
+       "id": "femur",
+       "en": "The thigh bone",
+       "hi": "जाँघ की हड्डी"
+      }
+     ],
+     "answer": "ribs"
+    },
+    {
+     "kind": "do",
+     "target": "part:ribs",
+     "expect": "picked:ribs",
+     "say": {
+      "en": "Tap the ribs.",
+      "hi": "पसलियों पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:skull",
+     "expect": "picked:skull",
+     "say": {
+      "en": "Tap the skull.",
+      "hi": "खोपड़ी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:spine",
+     "expect": "picked:spine",
+     "say": {
+      "en": "Tap the backbone (spine).",
+      "hi": "रीढ़ की हड्डी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:femur",
+     "expect": "picked:femur",
+     "say": {
+      "en": "Tap the thigh bone (femur), the longest bone.",
+      "hi": "जाँघ की हड्डी (फ़ीमर) पर टैप करो, सबसे लंबी हड्डी।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The skeleton gives the body its shape and support, protects soft organs and works with muscles to move us. The skull guards the brain, the rib cage guards the heart and lungs, and the backbone is a column of small bones (vertebrae) with cartilage discs between them that cushion it and let it bend.",
+      "hi": "कंकाल शरीर को आकार और सहारा देता है, कोमल अंगों की रक्षा करता है और पेशियों के साथ मिलकर हमें चलाता है। खोपड़ी मस्तिष्क की, पसलियों का पिंजरा हृदय और फेफड़ों की रक्षा करता है, और रीढ़ छोटी हड्डियों (कशेरुकाओं) का स्तंभ है जिनके बीच उपास्थि की डिस्क होती हैं जो धक्का सहती हैं और उसे मुड़ने देती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the backbone made of many small bones instead of one long bone?",
+        "hi": "रीढ़ एक लंबी हड्डी की जगह कई छोटी हड्डियों से क्यों बनी है?"
+       },
+       "options": [
+        {
+         "en": "So it can bend and twist",
+         "hi": "ताकि वह मुड़ और घूम सके"
+        },
+        {
+         "en": "Because one long bone would be too light",
+         "hi": "क्योंकि एक लंबी हड्डी बहुत हल्की होती"
+        },
+        {
+         "en": "So that it can grow faster",
+         "hi": "ताकि वह जल्दी बढ़ सके"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Many vertebrae joined by cartilage let us bend forward, sideways and twist.",
+        "hi": "उपास्थि से जुड़ी अनेक कशेरुकाएँ हमें आगे, बगल में मुड़ने और घूमने देती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Weight is not the reason; flexibility is.",
+         "hi": "कारण वज़न नहीं, लचीलापन है।"
+        },
+        {
+         "en": "Its many joints are for movement, not for growth speed.",
+         "hi": "इसके कई जोड़ गति के लिए हैं, बढ़ने की चाल के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: switch on the labels and find the collarbone, the shoulder blade and the kneecap. What does each one do?",
+      "hi": "आज़माओ: नाम चालू करो और हँसली, कंधे की हड्डी और घुटने की टोपी ढूँढो। हर एक क्या करती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook of the chapter",
+   "shows": "A girl doing a cartwheel on a school field beside a tall neem tree swaying in the wind",
+   "view": "Wide view, both the child (small, from the side) and the whole tree in frame",
+   "right": "Tree trunk thick and woody; child in sports clothes",
+   "avoid": "Identifiable face"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "3.2.1",
+   "use": "Root growth over glass jars of water (Activity 3.1)",
+   "shows": "A sprouted gram seed held on a wet cotton pad over a jar: day 1, day 3, day 5, a pen mark 1 cm behind the root tip in every frame",
+   "view": "Side view, same framing, plain background",
+   "right": "The mark stays in place while the tip moves on: growth happens at the tip",
+   "avoid": "Mould, brand labels"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "3.2.2",
+   "use": "Annual rings in a cut log",
+   "shows": "The cut end of a log of a felled tree showing clear light and dark annual rings and the bark",
+   "view": "Straight on, sharp, even light",
+   "right": "Rings concentric; bark at the outside",
+   "avoid": "Text, fresh cutting of a living tree"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "3.2.4",
+   "use": "Xylem vessels stained with safranin",
+   "shows": "Longitudinal view of xylem vessels with red spiral and ring thickenings at about 400×",
+   "view": "Circular field, sharp, square crop",
+   "right": "Lignin bands red; vessels long and hollow",
+   "avoid": "Labels"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "3.3.3",
+   "use": "Three muscle tissues side by side",
+   "shows": "Three microscope views: striped skeletal fibres, spindle-shaped smooth muscle cells, branched cardiac fibres with discs",
+   "view": "Three circles in a row, same magnification",
+   "right": "Skeletal fibres with many nuclei at the edge; cardiac with discs",
+   "avoid": "Labels"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "3.4.1",
+   "use": "Biceps and triceps on the arm bones",
+   "shows": "A cut-away of an arm showing the humerus, radius, ulna, the biceps and triceps and their tendons, elbow bent",
+   "view": "Side view, realistic 3D render, clean background",
+   "right": "Biceps short and bulging when the elbow is bent; tendons white",
+   "avoid": "Labels"
+  },
+  {
+   "n": 7,
+   "kind": "3DM",
+   "topic": "3.5",
+   "use": "Four joints as 3D models",
+   "shows": "Models of a ball and socket joint (hip), a hinge joint (knee), a pivot joint (neck) and a skull suture, each a separate file",
+   "view": "Front, side and three-quarter views of each, transparent background",
+   "right": "Ball sits deep in its socket; hinge moves in one plane",
+   "avoid": "Labels"
+  },
+  {
+   "n": 8,
+   "kind": "OBJ",
+   "topic": "3.6",
+   "use": "A school model skeleton",
+   "shows": "A full human skeleton model on a stand, as found in a school lab",
+   "view": "Front view, standing straight, transparent background",
+   "right": "206-bone adult model; rib cage, spine and pelvis correct",
+   "avoid": "Brand tags"
+  }
+ ]
+}

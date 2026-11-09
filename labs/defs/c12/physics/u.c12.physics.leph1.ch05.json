@@ -1,0 +1,868 @@
+{
+ "chapter_key": "u.c12.physics.leph1.ch05",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Magnetism and Matter",
+ "source": "https://ncert.nic.in/textbook/pdf/leph105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "A short opening about magnets and the compass; photos and the reader set the scene."
+  },
+  {
+   "n": "5.2",
+   "title": "The bar magnet and its field lines",
+   "labs": [
+    "c12-physics-leph1-ch05-bar-magnet-lines",
+    "c12-physics-leph1-ch05-two-magnets",
+    "c12-physics-leph1-ch05-earth-field"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2.3",
+   "title": "The dipole in a uniform magnetic field",
+   "labs": [],
+   "why_no_lab": "The torque and energy of a dipole are formula work taught by the reader; the motor lab in the last chapter shows the turning effect."
+  },
+  {
+   "n": "5.3",
+   "title": "Magnetism and Gauss's law",
+   "labs": [
+    "c12-physics-leph1-ch05-no-monopole"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Magnetisation and magnetic intensity",
+   "labs": [],
+   "why_no_lab": "The quantities M, H and B and their relations are definitions and formulas better taught by the reader and worked examples."
+  },
+  {
+   "n": "5.5",
+   "title": "Magnetic properties of materials: dia-, para- and ferromagnetism",
+   "labs": [
+    "c12-physics-leph1-ch05-magnetic-materials"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph1-ch05-bar-magnet-lines",
+   "topic": "5.2",
+   "template": "field",
+   "title": {
+    "en": "Field lines of a bar magnet",
+    "hi": "दंड चुंबक की क्षेत्र रेखाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "source": "bar-magnet",
+    "show": "filings"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Iron filings sprinkled around a bar magnet will arrange themselves",
+      "hi": "दंड चुंबक के चारों ओर छिड़के लोहे के बुरादे स्वयं को इस प्रकार सजाएँगे"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "in curves from one pole to the other",
+       "hi": "एक ध्रुव से दूसरे तक वक्रों में"
+      },
+      {
+       "id": "o1",
+       "en": "in straight lines out from the middle",
+       "hi": "बीच से सीधी रेखाओं में बाहर की ओर"
+      },
+      {
+       "id": "o2",
+       "en": "in a random heap",
+       "hi": "बेतरतीब ढेर में"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "sprinkle",
+     "expect": "lines",
+     "say": {
+      "en": "Sprinkle the iron filings and watch the pattern appear.",
+      "hi": "लोहे का बुरादा छिड़को और पैटर्न बनते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:lines",
+     "expect": "lines",
+     "say": {
+      "en": "Switch to the field-line view to see the smooth curves.",
+      "hi": "चिकने वक्र देखने के लिए क्षेत्र रेखा वाला दृश्य चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "rotated",
+     "say": {
+      "en": "Turn the magnet and watch the whole pattern turn with it.",
+      "hi": "चुंबक को घुमाओ और पूरा पैटर्न उसके साथ घूमते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A bar magnet behaves like a magnetic dipole. Its field lines come out of the north pole, loop round and enter the south pole, and inside the magnet they continue from south to north. So the lines are closed loops and never start or stop anywhere. Where the lines are crowded, as near the poles, the field is strong.",
+      "hi": "दंड चुंबक चुंबकीय द्विध्रुव की तरह व्यवहार करता है। उसकी क्षेत्र रेखाएँ उत्तरी ध्रुव से निकलती हैं, घूमकर दक्षिणी ध्रुव में प्रवेश करती हैं और चुंबक के भीतर दक्षिण से उत्तर की ओर चलती रहती हैं। इसलिए रेखाएँ बंद लूप हैं और कहीं शुरू या समाप्त नहीं होतीं। जहाँ रेखाएँ घनी हैं, जैसे ध्रुवों के पास, वहाँ क्षेत्र प्रबल है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where is a bar magnet's field strongest?",
+        "hi": "दंड चुंबक का क्षेत्र कहाँ सबसे प्रबल है?"
+       },
+       "options": [
+        {
+         "en": "near the poles",
+         "hi": "ध्रुवों के पास"
+        },
+        {
+         "en": "at the exact middle outside",
+         "hi": "बाहर ठीक बीच में"
+        },
+        {
+         "en": "far away from the magnet",
+         "hi": "चुंबक से बहुत दूर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Crowded lines at the poles mean a strong field.",
+        "hi": "ध्रुवों पर घनी रेखाओं का अर्थ प्रबल क्षेत्र है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The lines are far apart there, which shows a weaker field.",
+         "hi": "वहाँ रेखाएँ दूर-दूर हैं, जो कमज़ोर क्षेत्र दिखाता है।"
+        },
+        {
+         "en": "The field falls with distance, so far away it is weak.",
+         "hi": "क्षेत्र दूरी के साथ घटता है, इसलिए बहुत दूर वह कमज़ोर होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Break the pattern by moving the compass around. Can you find a point where the needle points the same way as the field line through it?",
+      "hi": "कंपास को चारों ओर घुमाओ। क्या कोई ऐसा बिंदु मिलता है जहाँ सुई वहाँ से गुज़रती क्षेत्र रेखा की दिशा में रहती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch05-no-monopole",
+   "topic": "5.3",
+   "template": "field",
+   "title": {
+    "en": "Cut a magnet: the lines always close",
+    "hi": "चुंबक को काटो: रेखाएँ हमेशा बंद रहती हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "source": "bar-magnet",
+    "show": "lines"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you could cut a bar magnet in half, you would get",
+      "hi": "यदि तुम दंड चुंबक को बीच से काट सको तो तुम्हें मिलेगा"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "two pieces with no magnetism",
+       "hi": "चुंबकत्व रहित दो टुकड़े"
+      },
+      {
+       "id": "o0",
+       "en": "two smaller magnets, each with N and S",
+       "hi": "दो छोटे चुंबक, हर एक में N और S"
+      },
+      {
+       "id": "o1",
+       "en": "one north-only piece and one south-only piece",
+       "hi": "एक केवल उत्तरी टुकड़ा और एक केवल दक्षिणी टुकड़ा"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "view:lines",
+     "expect": "lines",
+     "say": {
+      "en": "Look at the field lines of the whole magnet.",
+      "hi": "पूरे चुंबक की क्षेत्र रेखाएँ देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "compass",
+     "expect": "deflected",
+     "say": {
+      "en": "Move the compass to the middle and watch that the needle still has a direction there.",
+      "hi": "कंपास को बीच में ले जाओ और देखो कि सुई की वहाँ भी एक दिशा है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "rotated",
+     "say": {
+      "en": "Turn the magnet and compare the lines with those of two charges in the electricity chapters.",
+      "hi": "चुंबक को घुमाओ और रेखाओं की तुलना विद्युत वाले अध्यायों के दो आवेशों से करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cut a magnet and each half becomes a full magnet with its own north and south pole. No one has ever found a single magnetic pole (a monopole). The magnetic field lines are always closed loops, so the total flux through any closed surface is zero: Gauss's law for magnetism. This is the main difference from an electric charge, whose lines begin and end on charges.",
+      "hi": "चुंबक को काटो तो हर आधा भाग अपने उत्तरी और दक्षिणी ध्रुव सहित पूरा चुंबक बन जाता है। आज तक एकल चुंबकीय ध्रुव (एकध्रुव) नहीं मिला। चुंबकीय क्षेत्र रेखाएँ हमेशा बंद लूप होती हैं, इसलिए किसी बंद पृष्ठ से कुल फ़्लक्स शून्य होता है: चुंबकत्व के लिए गाउस का नियम। विद्युत आवेश से यही मुख्य अंतर है, जिसकी रेखाएँ आवेशों पर शुरू और समाप्त होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The net magnetic flux through a closed surface around a magnet is",
+        "hi": "चुंबक के चारों ओर बंद पृष्ठ से कुल चुंबकीय फ़्लक्स है"
+       },
+       "options": [
+        {
+         "en": "zero",
+         "hi": "शून्य"
+        },
+        {
+         "en": "positive",
+         "hi": "धनात्मक"
+        },
+        {
+         "en": "equal to the pole strength",
+         "hi": "ध्रुव-प्राबल्य के बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every line that leaves also re-enters, so the net flux is zero.",
+        "hi": "जो भी रेखा बाहर निकलती है वह फिर भीतर आती है, इसलिए कुल फ़्लक्स शून्य है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lines that go out through the surface also come back in, so they cancel.",
+         "hi": "जो रेखाएँ पृष्ठ से बाहर जाती हैं वे वापस भीतर भी आती हैं, इसलिए कट जाती हैं।"
+        },
+        {
+         "en": "That would be true for an isolated pole, which does not exist.",
+         "hi": "यह एकल ध्रुव के लिए होता, जो अस्तित्व में नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why can an electric charge be alone while a magnetic pole cannot? Discuss it with a friend.",
+      "hi": "एक विद्युत आवेश अकेला क्यों हो सकता है पर चुंबकीय ध्रुव नहीं? किसी मित्र से चर्चा करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch05-two-magnets",
+   "topic": "5.2",
+   "template": "field",
+   "title": {
+    "en": "Two magnets: attract or repel",
+    "hi": "दो चुंबक: आकर्षण या प्रतिकर्षण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "source": "two-magnets",
+    "show": "lines"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the north poles of two magnets face each other, they will",
+      "hi": "यदि दो चुंबकों के उत्तरी ध्रुव आमने-सामने हों तो वे"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "attract",
+       "hi": "एक-दूसरे को खींचेंगे"
+      },
+      {
+       "id": "o2",
+       "en": "do nothing",
+       "hi": "कुछ नहीं करेंगे"
+      },
+      {
+       "id": "o0",
+       "en": "repel",
+       "hi": "एक-दूसरे को दूर धकेलेंगे"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "repel",
+     "say": {
+      "en": "Move the magnets so that like poles face each other.",
+      "hi": "चुंबकों को ऐसे रखो कि समान ध्रुव आमने-सामने हों।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "reverse",
+     "expect": "reversed",
+     "say": {
+      "en": "Reverse one magnet.",
+      "hi": "एक चुंबक को उलट दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "attract",
+     "say": {
+      "en": "Move them together again. Unlike poles attract.",
+      "hi": "उन्हें फिर पास लाओ। असमान ध्रुव आकर्षित करते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Like poles repel and unlike poles attract, just as for electric charges. The field lines between unlike poles join up and the magnets are pulled together. Between like poles the lines squeeze apart and push the magnets away. Poles always come in pairs.",
+      "hi": "समान ध्रुव प्रतिकर्षित करते हैं और असमान आकर्षित करते हैं, जैसा विद्युत आवेशों में होता है। असमान ध्रुवों के बीच क्षेत्र रेखाएँ जुड़ जाती हैं और चुंबक खिंच जाते हैं। समान ध्रुवों के बीच रेखाएँ एक-दूसरे को दबाती हैं और चुंबकों को दूर धकेलती हैं। ध्रुव हमेशा जोड़े में ही आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A compass needle's north end is attracted to",
+        "hi": "कंपास की सुई का उत्तरी सिरा आकर्षित होता है"
+       },
+       "options": [
+        {
+         "en": "a magnetic south pole",
+         "hi": "चुंबकीय दक्षिणी ध्रुव की ओर"
+        },
+        {
+         "en": "a magnetic north pole",
+         "hi": "चुंबकीय उत्तरी ध्रुव की ओर"
+        },
+        {
+         "en": "any iron",
+         "hi": "किसी भी लोहे की ओर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Unlike poles attract: needle's N goes to a magnet's S pole.",
+        "hi": "असमान ध्रुव आकर्षित करते हैं: सुई का N चुंबक के S ध्रुव की ओर जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Like poles repel, so a needle's north end is pushed away from a north pole.",
+         "hi": "समान ध्रुव प्रतिकर्षित करते हैं, इसलिए सुई का उत्तरी सिरा उत्तरी ध्रुव से दूर धकेला जाता है।"
+        },
+        {
+         "en": "A needle is attracted differently to poles; it does not simply go to any iron.",
+         "hi": "सुई ध्रुवों के प्रति अलग-अलग प्रतिक्रिया करती है; वह केवल लोहे की ओर नहीं जाती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try pushing the magnets together with unlike poles and then with like poles. How do the field lines between them look in each case?",
+      "hi": "असमान ध्रुवों से और फिर समान ध्रुवों से चुंबकों को पास लाओ। दोनों में बीच की क्षेत्र रेखाएँ कैसी दिखती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch05-earth-field",
+   "topic": "5.2",
+   "template": "field",
+   "title": {
+    "en": "The Earth is a giant magnet",
+    "hi": "पृथ्वी एक विशाल चुंबक है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "source": "earth",
+    "show": "compass"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A compass needle at the north geographic pole of the Earth would point",
+      "hi": "पृथ्वी के उत्तरी भौगोलिक ध्रुव पर कंपास की सुई संकेत करेगी"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "almost straight down",
+       "hi": "लगभग सीधी नीचे की ओर"
+      },
+      {
+       "id": "o1",
+       "en": "horizontally north",
+       "hi": "क्षैतिज उत्तर की ओर"
+      },
+      {
+       "id": "o2",
+       "en": "straight up",
+       "hi": "सीधी ऊपर की ओर"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "compass",
+     "expect": "moved",
+     "say": {
+      "en": "Move the compass to different places on the Earth.",
+      "hi": "कंपास को पृथ्वी के अलग-अलग स्थानों पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:lines",
+     "expect": "lines",
+     "say": {
+      "en": "Show the Earth's field lines. They leave near one pole and enter near the other.",
+      "hi": "पृथ्वी की क्षेत्र रेखाएँ दिखाओ। वे एक ध्रुव के पास से निकलकर दूसरे के पास प्रवेश करती हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Earth's field is like that of a bar magnet inside it, whose south pole lies near the geographic north. That is why a compass north points roughly north. At the equator the lines run horizontally, and at the poles they go almost straight into the ground. The angle with the horizontal is the dip, and the angle between magnetic and geographic north is the declination. Sailors and birds use this field to find direction.",
+      "hi": "पृथ्वी का क्षेत्र उसके भीतर रखे दंड चुंबक जैसा है जिसका दक्षिणी ध्रुव भौगोलिक उत्तर के पास है। इसीलिए कंपास का उत्तरी सिरा लगभग उत्तर की ओर रहता है। भूमध्य रेखा पर रेखाएँ क्षैतिज और ध्रुवों पर लगभग सीधी भूमि में जाती हैं। क्षैतिज से बने कोण को नति और चुंबकीय तथा भौगोलिक उत्तर के बीच के कोण को दिक्पात कहते हैं। नाविक और पक्षी इसी क्षेत्र से दिशा पहचानते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "At the magnetic equator, a freely suspended magnetic needle rests",
+        "hi": "चुंबकीय विषुवत रेखा पर स्वतंत्र लटकी चुंबकीय सुई रहती है"
+       },
+       "options": [
+        {
+         "en": "horizontal",
+         "hi": "क्षैतिज"
+        },
+        {
+         "en": "vertical",
+         "hi": "ऊर्ध्वाधर"
+        },
+        {
+         "en": "at 45 degrees",
+         "hi": "45 डिग्री पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The dip angle is zero at the magnetic equator.",
+        "hi": "चुंबकीय विषुवत रेखा पर नति कोण शून्य होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The lines are vertical only near the poles, not at the equator.",
+         "hi": "रेखाएँ केवल ध्रुवों के पास ऊर्ध्वाधर होती हैं, विषुवत रेखा पर नहीं।"
+        },
+        {
+         "en": "45 degrees is only at one middle latitude, not the equator.",
+         "hi": "45 डिग्री बीच के एक अक्षांश पर होता है, विषुवत रेखा पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Walk the compass from the equator to a pole. At which latitude does the needle begin to tilt strongly?",
+      "hi": "कंपास को विषुवत रेखा से ध्रुव तक ले जाओ। किस अक्षांश से सुई बहुत झुकने लगती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch05-magnetic-materials",
+   "topic": "5.5",
+   "template": "sort",
+   "title": {
+    "en": "Sort materials by their magnetism",
+    "hi": "पदार्थों को उनके चुंबकत्व से छाँटो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "dia",
+      "label": {
+       "en": "Diamagnetic",
+       "hi": "प्रतिचुंबकीय"
+      }
+     },
+     {
+      "id": "para",
+      "label": {
+       "en": "Paramagnetic",
+       "hi": "अनुचुंबकीय"
+      }
+     },
+     {
+      "id": "ferro",
+      "label": {
+       "en": "Ferromagnetic",
+       "hi": "लौहचुंबकीय"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "iron",
+      "text": {
+       "en": "Iron",
+       "hi": "लोहा"
+      },
+      "bin": "ferro",
+      "why": {
+       "en": "Iron strongly aligns with a field and stays magnetised.",
+       "hi": "लोहा क्षेत्र में तेज़ी से संरेखित होता है और चुंबकित रहता है।"
+      }
+     },
+     {
+      "id": "nickel",
+      "text": {
+       "en": "Nickel",
+       "hi": "निकल"
+      },
+      "bin": "ferro",
+      "why": {
+       "en": "Nickel is one of the three common ferromagnetic metals.",
+       "hi": "निकल तीन आम लौहचुंबकीय धातुओं में से एक है।"
+      }
+     },
+     {
+      "id": "cobalt",
+      "text": {
+       "en": "Cobalt",
+       "hi": "कोबाल्ट"
+      },
+      "bin": "ferro",
+      "why": {
+       "en": "Cobalt forms domains like iron and nickel.",
+       "hi": "कोबाल्ट में लोहे और निकल जैसे डोमेन बनते हैं।"
+      }
+     },
+     {
+      "id": "aluminium",
+      "text": {
+       "en": "Aluminium",
+       "hi": "ऐलुमिनियम"
+      },
+      "bin": "para",
+      "why": {
+       "en": "Weakly pulled into a field because of unpaired electrons.",
+       "hi": "अयुग्मित इलेक्ट्रॉनों के कारण क्षेत्र की ओर हल्का खिंचता है।"
+      }
+     },
+     {
+      "id": "oxygen",
+      "text": {
+       "en": "Oxygen gas",
+       "hi": "ऑक्सीजन गैस"
+      },
+      "bin": "para",
+      "why": {
+       "en": "Liquid oxygen even sticks to a strong magnet; it is paramagnetic.",
+       "hi": "द्रव ऑक्सीजन प्रबल चुंबक से चिपक जाती है; वह अनुचुंबकीय है।"
+      }
+     },
+     {
+      "id": "sodium",
+      "text": {
+       "en": "Sodium",
+       "hi": "सोडियम"
+      },
+      "bin": "para",
+      "why": {
+       "en": "Has an unpaired electron, so it is weakly attracted.",
+       "hi": "इसमें अयुग्मित इलेक्ट्रॉन है, इसलिए हल्का आकर्षित होता है।"
+      }
+     },
+     {
+      "id": "copper",
+      "text": {
+       "en": "Copper",
+       "hi": "ताँबा"
+      },
+      "bin": "dia",
+      "why": {
+       "en": "Weakly pushed out of a field.",
+       "hi": "क्षेत्र से हल्का दूर धकेला जाता है।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Water",
+       "hi": "जल"
+      },
+      "bin": "dia",
+      "why": {
+       "en": "A tiny repulsion from magnetic fields; it is diamagnetic.",
+       "hi": "चुंबकीय क्षेत्रों से बहुत थोड़ा प्रतिकर्षण; जल प्रतिचुंबकीय है।"
+      }
+     },
+     {
+      "id": "gold",
+      "text": {
+       "en": "Gold",
+       "hi": "सोना"
+      },
+      "bin": "dia",
+      "why": {
+       "en": "All its electrons are paired, so it is weakly repelled.",
+       "hi": "इसके सभी इलेक्ट्रॉन युग्मित हैं, इसलिए हल्का प्रतिकर्षित होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which kind of material is strongly attracted by a magnet and can become a permanent magnet?",
+      "hi": "किस प्रकार का पदार्थ चुंबक से प्रबल आकर्षित होता है और स्थायी चुंबक बन सकता है?"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "diamagnetic",
+       "hi": "प्रतिचुंबकीय"
+      },
+      {
+       "id": "o0",
+       "en": "ferromagnetic",
+       "hi": "लौहचुंबकीय"
+      },
+      {
+       "id": "o1",
+       "en": "paramagnetic",
+       "hi": "अनुचुंबकीय"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "card:iron",
+     "expect": "placed:iron",
+     "say": {
+      "en": "Tap the iron card and then the ferromagnetic box.",
+      "hi": "लोहे का कार्ड छुओ और फिर लौहचुंबकीय बॉक्स छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:copper",
+     "expect": "placed:copper",
+     "say": {
+      "en": "Place copper where a weak push away belongs.",
+      "hi": "ताँबे को वहाँ रखो जहाँ हल्का प्रतिकर्षण होता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:aluminium",
+     "expect": "placed:aluminium",
+     "say": {
+      "en": "Place aluminium, which is weakly pulled in.",
+      "hi": "ऐलुमिनियम को रखो, जो हल्का खिंचता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press check.",
+      "hi": "सभी कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Diamagnetic materials are weakly repelled by a magnet; all of their electrons are paired. Paramagnetic materials are weakly attracted, because their atoms have unpaired electrons that line up a little with a field. Ferromagnetic materials (iron, cobalt, nickel) form small domains that line up together and give strong attraction and permanent magnets.",
+      "hi": "प्रतिचुंबकीय पदार्थ चुंबक से हल्का प्रतिकर्षित होते हैं; उनके सभी इलेक्ट्रॉन युग्मित होते हैं। अनुचुंबकीय पदार्थ हल्का आकर्षित होते हैं, क्योंकि उनके परमाणुओं में अयुग्मित इलेक्ट्रॉन होते हैं जो क्षेत्र के साथ थोड़ा संरेखित होते हैं। लौहचुंबकीय पदार्थ (लोहा, कोबाल्ट, निकल) में छोटे डोमेन बनते हैं जो साथ संरेखित होकर प्रबल आकर्षण और स्थायी चुंबक देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which material loses its ferromagnetism above its Curie temperature?",
+        "hi": "कौन-सा पदार्थ क्यूरी ताप के ऊपर अपना लौहचुंबकत्व खो देता है?"
+       },
+       "options": [
+        {
+         "en": "iron",
+         "hi": "लोहा"
+        },
+        {
+         "en": "water",
+         "hi": "जल"
+        },
+        {
+         "en": "gold",
+         "hi": "सोना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Above the Curie temperature the domains lose order and iron becomes paramagnetic.",
+        "hi": "क्यूरी ताप के ऊपर डोमेन का क्रम टूट जाता है और लोहा अनुचुंबकीय हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water is diamagnetic at all temperatures; it never had ferromagnetism to lose.",
+         "hi": "जल हर ताप पर प्रतिचुंबकीय है; उसमें खोने को लौहचुंबकत्व था ही नहीं।"
+        },
+        {
+         "en": "Gold is diamagnetic. Curie temperature applies to ferromagnets.",
+         "hi": "सोना प्रतिचुंबकीय है। क्यूरी ताप लौहचुंबकों पर लागू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these might you find in your home to test with a magnet? Which result will surprise you?",
+      "hi": "इनमें से घर में कौन-सी चीज़ें चुंबक से परखी जा सकती हैं? किसका परिणाम तुम्हें चौंकाएगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Chapter hook: a compass on a hill",
+   "shows": "A hiker's hands holding an open compass with a clear needle on a rocky hillside, mountains behind",
+   "view": "Close top view of the compass, shallow focus on hills",
+   "right": "Needle sharp and pointing along the north mark",
+   "avoid": "Faces, brand names on the compass"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "5.2",
+   "use": "Iron filings around a bar magnet",
+   "shows": "Iron filings arranged in curved lines around a bar magnet on white paper",
+   "view": "Straight down from above, even light",
+   "right": "Filings form clean closed curves between the poles",
+   "avoid": "Hands, shadows across the paper"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Magnets of different shapes",
+   "shows": "Bar magnet, horseshoe magnet, ring magnet and a small disc magnet on a white background, pole colours red and blue",
+   "view": "Overhead, equal sizes shown",
+   "right": "Each magnet clearly different in shape",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "5.2",
+   "use": "The Earth's magnetic field",
+   "shows": "A tilted globe with a bar magnet drawn through it and smooth field lines looping round, north at the top",
+   "view": "Flat, front-on, dark background",
+   "right": "Magnet's south end near the geographic north",
+   "avoid": "Text labels"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "5.5",
+   "use": "Magnetic materials near a magnet",
+   "shows": "Three frames: an iron nail lifted by a strong magnet, an aluminium strip hanging slightly towards it, a thin bismuth or graphite piece pushed away",
+   "view": "Same side view and plain background",
+   "right": "Clear difference in the three behaviours",
+   "avoid": "Changing the magnet between frames"
+  },
+  {
+   "n": 6,
+   "kind": "3DM",
+   "topic": "5.5",
+   "use": "Magnetic domains",
+   "shows": "A glossy 3D drawing of tiny arrows (domains) in a metal piece: jumbled in the first frame, aligned in the second",
+   "view": "Top view, white background",
+   "right": "Arrows clearly random then aligned",
+   "avoid": "Text, equations"
+  }
+ ]
+}

@@ -1,0 +1,1120 @@
+{
+ "chapter_key": "u.c02.mathematics.bejm1.ch09",
+ "class": 2,
+ "subject_id": "mathematics",
+ "title": "Which Season is it? (Measurement of Time)",
+ "source": "https://ncert.nic.in/textbook/pdf/bejm109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Seasons: the poem, spring, summer, rainy season, autumn, winter",
+   "labs": [
+    "c2-mathematics-bejm1-ch09-season-circle",
+    "c2-mathematics-bejm1-ch09-season-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Match the seasons with their names and festivals",
+   "labs": [],
+   "why_no_lab": "Festivals vary by place and family. Talk about local festivals with the teacher and the class."
+  },
+  {
+   "n": "9.3",
+   "title": "Calendar fun: days, weeks and months",
+   "labs": [
+    "c2-mathematics-bejm1-ch09-days-in-months",
+    "c2-mathematics-bejm1-ch09-calendar-days"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Trip to Manglagiri hills: reading time",
+   "labs": [],
+   "why_no_lab": "A reading story; the clock labs below cover telling time."
+  },
+  {
+   "n": "9.5",
+   "title": "Gargi's day: reading and drawing clock hands",
+   "labs": [
+    "c2-mathematics-bejm1-ch09-read-the-clock",
+    "c2-mathematics-bejm1-ch09-set-the-clock"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.6",
+   "title": "Facing the rising sun: finding directions",
+   "labs": [],
+   "why_no_lab": "Stand in the playground facing the rising sun with the teacher to feel east, west, north and south."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c2-mathematics-bejm1-ch09-season-circle",
+   "topic": "9.1",
+   "template": "sequence",
+   "title": {
+    "en": "The circle of seasons",
+    "hi": "ऋतुओं का चक्र"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "cyclic": true,
+    "items": [
+     {
+      "id": "spring",
+      "text": {
+       "en": "Spring: flowers bloom and birds sing",
+       "hi": "वसंत: फूल खिलते हैं और चिड़ियाँ गाती हैं"
+      }
+     },
+     {
+      "id": "summer",
+      "text": {
+       "en": "Summer: the shining sun and long days",
+       "hi": "गर्मी: चमकता सूरज और लंबे दिन"
+      }
+     },
+     {
+      "id": "rainy",
+      "text": {
+       "en": "Rainy season: water drops, peacocks dance",
+       "hi": "वर्षा: पानी की बूँदें, मोर नाचते हैं"
+      }
+     },
+     {
+      "id": "autumn",
+      "text": {
+       "en": "Autumn: leaves fall and winds are pleasant",
+       "hi": "शरद: पत्ते झरते हैं और हवा सुहानी होती है"
+      }
+     },
+     {
+      "id": "winter",
+      "text": {
+       "en": "Winter: cold days, snow on the hills",
+       "hi": "सर्दी: ठंडे दिन, पहाड़ों पर बर्फ़"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:spring",
+     "expect": "placed:spring",
+     "say": {
+      "en": "Tap Spring, then tap place 1.",
+      "hi": "वसंत दबाओ, फिर स्थान 1 दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After the cold winter, which season comes next in the circle?",
+      "hi": "ठंडी सर्दी के बाद चक्र में कौन-सी ऋतु आती है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Spring",
+       "hi": "वसंत"
+      },
+      {
+       "id": "b",
+       "en": "Rainy season",
+       "hi": "वर्षा"
+      },
+      {
+       "id": "c",
+       "en": "Autumn",
+       "hi": "शरद"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "item:summer",
+     "expect": "placed:summer",
+     "say": {
+      "en": "Put Summer in place 2.",
+      "hi": "गर्मी को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all five seasons in order, then press Check.",
+      "hi": "पाँचों ऋतुएँ क्रम में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The seasons come one after another in the same order: spring, summer, rainy season, autumn and winter. After winter, spring comes again. A circle has no end, so the seasons come round and round every year.",
+      "hi": "ऋतुएँ एक के बाद एक उसी क्रम में आती हैं: वसंत, गर्मी, वर्षा, शरद और सर्दी। सर्दी के बाद फिर वसंत आता है। वृत्त का कोई अंत नहीं होता, इसलिए ऋतुएँ हर साल घूम-घूमकर आती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which season comes just before autumn in our poem?",
+        "hi": "हमारी कविता में शरद से ठीक पहले कौन-सी ऋतु आती है?"
+       },
+       "options": [
+        {
+         "en": "Spring",
+         "hi": "वसंत"
+        },
+        {
+         "en": "Rainy season",
+         "hi": "वर्षा"
+        },
+        {
+         "en": "Winter",
+         "hi": "सर्दी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The order is spring, summer, rainy season, autumn. So the rainy season comes just before autumn.",
+        "hi": "क्रम है वसंत, गर्मी, वर्षा, शरद। इसलिए शरद से ठीक पहले वर्षा आती है।"
+       },
+       "wrong": [
+        {
+         "en": "Spring is the first season, far before autumn.",
+         "hi": "वसंत पहली ऋतु है, शरद से बहुत पहले।"
+        },
+        "",
+        {
+         "en": "Winter comes after autumn, not before.",
+         "hi": "सर्दी शरद के बाद आती है, पहले नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which season is it now? Which one is your favourite? Move that card to the top.",
+      "hi": "अभी कौन-सी ऋतु है? तुम्हें कौन-सी पसंद है? उसका कार्ड सबसे ऊपर ले जाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch09-season-match",
+   "topic": "9.1",
+   "template": "match",
+   "title": {
+    "en": "What happens in each season?",
+    "hi": "हर ऋतु में क्या होता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "spring",
+      "left": {
+       "en": "Spring",
+       "hi": "वसंत"
+      },
+      "right": {
+       "en": "Flowers bloom and birds sing",
+       "hi": "फूल खिलते हैं और चिड़ियाँ गाती हैं"
+      },
+      "why": {
+       "en": "In spring the weather turns pleasant and flowers bloom.",
+       "hi": "वसंत में मौसम सुहावना हो जाता है और फूल खिलते हैं।"
+      }
+     },
+     {
+      "id": "summer",
+      "left": {
+       "en": "Summer",
+       "hi": "गर्मी"
+      },
+      "right": {
+       "en": "Hot sun and long days",
+       "hi": "तेज़ धूप और लंबे दिन"
+      },
+      "why": {
+       "en": "Summer days are hot and the days are long.",
+       "hi": "गर्मी के दिन गरम और लंबे होते हैं।"
+      }
+     },
+     {
+      "id": "rainy",
+      "left": {
+       "en": "Rainy season",
+       "hi": "वर्षा ऋतु"
+      },
+      "right": {
+       "en": "Rain, peacocks dance, frogs hop",
+       "hi": "बारिश, मोर नाचते और मेंढक कूदते हैं"
+      },
+      "why": {
+       "en": "Rain brings peacocks to dance and frogs to hop.",
+       "hi": "बारिश में मोर नाचते हैं और मेंढक कूदते हैं।"
+      }
+     },
+     {
+      "id": "autumn",
+      "left": {
+       "en": "Autumn",
+       "hi": "शरद ऋतु"
+      },
+      "right": {
+       "en": "Leaves fall, winds are pleasant",
+       "hi": "पत्ते झरते हैं, हवा सुहानी होती है"
+      },
+      "why": {
+       "en": "Dry leaves fall on the ground in autumn.",
+       "hi": "शरद में सूखे पत्ते ज़मीन पर गिरते हैं।"
+      }
+     },
+     {
+      "id": "winter",
+      "left": {
+       "en": "Winter",
+       "hi": "सर्दी"
+      },
+      "right": {
+       "en": "Cold weather, woollen clothes",
+       "hi": "ठंडा मौसम, ऊनी कपड़े"
+      },
+      "why": {
+       "en": "In winter we feel cold and wear woollens.",
+       "hi": "सर्दी में ठंड लगती है और हम ऊनी कपड़े पहनते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:spring",
+     "expect": "matched:spring",
+     "say": {
+      "en": "Tap Spring, then tap what happens in spring.",
+      "hi": "वसंत दबाओ, फिर दबाओ कि वसंत में क्या होता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In which season do peacocks dance and frogs hop?",
+      "hi": "किस ऋतु में मोर नाचते और मेंढक कूदते हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Summer",
+       "hi": "गर्मी"
+      },
+      {
+       "id": "b",
+       "en": "Rainy season",
+       "hi": "वर्षा ऋतु"
+      },
+      {
+       "id": "c",
+       "en": "Winter",
+       "hi": "सर्दी"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "left:rainy",
+     "expect": "matched:rainy",
+     "say": {
+      "en": "Match the rainy season.",
+      "hi": "वर्षा ऋतु को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:winter",
+     "expect": "matched:winter",
+     "say": {
+      "en": "Match winter.",
+      "hi": "सर्दी को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:autumn",
+     "expect": "matched:autumn",
+     "say": {
+      "en": "Match autumn.",
+      "hi": "शरद को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:summer",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the last one: summer.",
+      "hi": "आख़िरी को मिलाओ: गर्मी।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each season has its own weather and its own signs in nature. Spring has flowers, summer has the hot sun, the rainy season has rain, autumn has falling leaves and winter has cold. Places in India can have different weather in the same season.",
+      "hi": "हर ऋतु का अपना मौसम और प्रकृति में अपने संकेत होते हैं। वसंत में फूल, गर्मी में तेज़ धूप, वर्षा में बारिश, शरद में झरते पत्ते और सर्दी में ठंड होती है। भारत में अलग-अलग जगह एक ही ऋतु में मौसम अलग हो सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which season do we wear woollen clothes?",
+        "hi": "किस ऋतु में हम ऊनी कपड़े पहनते हैं?"
+       },
+       "options": [
+        {
+         "en": "Summer",
+         "hi": "गर्मी"
+        },
+        {
+         "en": "Winter",
+         "hi": "सर्दी"
+        },
+        {
+         "en": "Spring",
+         "hi": "वसंत"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Winter is cold, so we wear woollens.",
+        "hi": "सर्दी में ठंड होती है, इसलिए हम ऊनी कपड़े पहनते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Summer is hot. Woollens would feel too warm.",
+         "hi": "गर्मी में गरमी होती है। ऊनी कपड़े बहुत गरम लगेंगे।"
+        },
+        "",
+        {
+         "en": "Spring is pleasant, not very cold.",
+         "hi": "वसंत सुहावना होता है, ज़्यादा ठंडा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tell a friend what you do in your favourite season: food, clothes and games.",
+      "hi": "अपने दोस्त को बताओ कि अपनी पसंद की ऋतु में तुम क्या करते हो: खाना, कपड़े और खेल।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch09-days-in-months",
+   "topic": "9.3",
+   "template": "sort",
+   "title": {
+    "en": "How many days in each month?",
+    "hi": "हर महीने में कितने दिन?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "d31",
+      "label": {
+       "en": "31 days",
+       "hi": "31 दिन"
+      }
+     },
+     {
+      "id": "d30",
+      "label": {
+       "en": "30 days",
+       "hi": "30 दिन"
+      }
+     },
+     {
+      "id": "d28",
+      "label": {
+       "en": "28 or 29 days",
+       "hi": "28 या 29 दिन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "jan",
+      "text": {
+       "en": "January",
+       "hi": "जनवरी"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "January has 31 days.",
+       "hi": "जनवरी में 31 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "feb",
+      "text": {
+       "en": "February",
+       "hi": "फ़रवरी"
+      },
+      "bin": "d28",
+      "why": {
+       "en": "February has 28 days, and 29 in a leap year.",
+       "hi": "फ़रवरी में 28 दिन होते हैं, और लीप वर्ष में 29।"
+      }
+     },
+     {
+      "id": "mar",
+      "text": {
+       "en": "March",
+       "hi": "मार्च"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "March has 31 days.",
+       "hi": "मार्च में 31 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "apr",
+      "text": {
+       "en": "April",
+       "hi": "अप्रैल"
+      },
+      "bin": "d30",
+      "why": {
+       "en": "April has 30 days.",
+       "hi": "अप्रैल में 30 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "may",
+      "text": {
+       "en": "May",
+       "hi": "मई"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "May has 31 days.",
+       "hi": "मई में 31 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "jun",
+      "text": {
+       "en": "June",
+       "hi": "जून"
+      },
+      "bin": "d30",
+      "why": {
+       "en": "June has 30 days.",
+       "hi": "जून में 30 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "jul",
+      "text": {
+       "en": "July",
+       "hi": "जुलाई"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "July has 31 days.",
+       "hi": "जुलाई में 31 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "aug",
+      "text": {
+       "en": "August",
+       "hi": "अगस्त"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "August has 31 days.",
+       "hi": "अगस्त में 31 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "sep",
+      "text": {
+       "en": "September",
+       "hi": "सितंबर"
+      },
+      "bin": "d30",
+      "why": {
+       "en": "September has 30 days.",
+       "hi": "सितंबर में 30 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "oct",
+      "text": {
+       "en": "October",
+       "hi": "अक्तूबर"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "October has 31 days.",
+       "hi": "अक्तूबर में 31 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "nov",
+      "text": {
+       "en": "November",
+       "hi": "नवंबर"
+      },
+      "bin": "d30",
+      "why": {
+       "en": "November has 30 days.",
+       "hi": "नवंबर में 30 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "dec",
+      "text": {
+       "en": "December",
+       "hi": "दिसंबर"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "December has 31 days.",
+       "hi": "दिसंबर में 31 दिन होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:feb",
+     "expect": "correct:feb",
+     "say": {
+      "en": "Tap February, the shortest month, then tap its group.",
+      "hi": "सबसे छोटा महीना फ़रवरी दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "There are 12 months in a year. How many of them have 30 days?",
+      "hi": "साल में 12 महीने होते हैं। उनमें से कितनों में 30 दिन होते हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "4 months",
+       "hi": "4 महीने"
+      },
+      {
+       "id": "b",
+       "en": "7 months",
+       "hi": "7 महीने"
+      },
+      {
+       "id": "c",
+       "en": "12 months",
+       "hi": "12 महीने"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "card:apr",
+     "expect": "correct:apr",
+     "say": {
+      "en": "Now sort April.",
+      "hi": "अब अप्रैल को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other months, then press Check.",
+      "hi": "बाक़ी महीने छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Seven months have 31 days: January, March, May, July, August, October and December. Four months have 30 days: April, June, September and November. February is the shortest, with 28 days, or 29 in a leap year. In all, there are 365 days in most years.",
+      "hi": "सात महीनों में 31 दिन होते हैं: जनवरी, मार्च, मई, जुलाई, अगस्त, अक्तूबर और दिसंबर। चार महीनों में 30 दिन होते हैं: अप्रैल, जून, सितंबर और नवंबर। फ़रवरी सबसे छोटा है, उसमें 28 दिन होते हैं, या लीप वर्ष में 29। ज़्यादातर सालों में कुल 365 दिन होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which month has the fewest days?",
+        "hi": "किस महीने में सबसे कम दिन होते हैं?"
+       },
+       "options": [
+        {
+         "en": "April",
+         "hi": "अप्रैल"
+        },
+        {
+         "en": "February",
+         "hi": "फ़रवरी"
+        },
+        {
+         "en": "June",
+         "hi": "जून"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "February has only 28 days (29 in a leap year).",
+        "hi": "फ़रवरी में केवल 28 दिन होते हैं (लीप वर्ष में 29)।"
+       },
+       "wrong": [
+        {
+         "en": "April has 30 days, which is more than February.",
+         "hi": "अप्रैल में 30 दिन होते हैं, जो फ़रवरी से ज़्यादा हैं।"
+        },
+        "",
+        {
+         "en": "June has 30 days, which is more than February.",
+         "hi": "जून में 30 दिन होते हैं, जो फ़रवरी से ज़्यादा हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the month of your birthday. How many days does it have?",
+      "hi": "अपने जन्मदिन का महीना ढूँढो। उसमें कितने दिन हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch09-calendar-days",
+   "topic": "9.3",
+   "template": "clock",
+   "title": {
+    "en": "Read the calendar",
+    "hi": "कैलेंडर पढ़ो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "calendar",
+    "month": 10,
+    "year": 2026,
+    "ask": 15
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A week has 7 days. If today is Monday, which day is it 7 days later?",
+      "hi": "एक सप्ताह में 7 दिन होते हैं। आज सोमवार है तो 7 दिन बाद कौन-सा दिन होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Sunday",
+       "hi": "रविवार"
+      },
+      {
+       "id": "b",
+       "en": "Monday",
+       "hi": "सोमवार"
+      },
+      {
+       "id": "c",
+       "en": "Tuesday",
+       "hi": "मंगलवार"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "day:15",
+     "expect": "day:15",
+     "say": {
+      "en": "Tap the date 15 on the calendar.",
+      "hi": "कैलेंडर में तारीख़ 15 दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which day of the week is the 15th? Look at the top of its column and choose the day.",
+      "hi": "15 तारीख़ सप्ताह का कौन-सा दिन है? उसके स्तंभ के ऊपर देखकर दिन चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every column of the calendar is one day of the week. Dates in the same column are 7 days apart, so they fall on the same weekday. A calendar helps us know the day of the week and plan our days.",
+      "hi": "कैलेंडर का हर स्तंभ सप्ताह का एक दिन है। एक स्तंभ की तारीख़ों में 7 का अंतर होता है, इसलिए वे एक ही वार पर पड़ती हैं। कैलेंडर से हमें वार पता चलता है और हम अपने दिन तय कर पाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the 8th of a month is a Sunday, which date is the next Sunday?",
+        "hi": "अगर किसी महीने की 8 तारीख़ रविवार है, तो अगला रविवार कौन-सी तारीख़ को होगा?"
+       },
+       "options": [
+        {
+         "en": "The 9th",
+         "hi": "9 तारीख़ को"
+        },
+        {
+         "en": "The 15th",
+         "hi": "15 तारीख़ को"
+        },
+        {
+         "en": "The 18th",
+         "hi": "18 तारीख़ को"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A week later is 7 days later: 8 + 7 = 15.",
+        "hi": "एक सप्ताह बाद यानी 7 दिन बाद: 8 + 7 = 15।"
+       },
+       "wrong": [
+        {
+         "en": "The 9th is only one day later, a Monday.",
+         "hi": "9 तारीख़ केवल एक दिन बाद है, यानी सोमवार।"
+        },
+        "",
+        {
+         "en": "The 18th is 10 days later, not 7.",
+         "hi": "18 तारीख़ 10 दिन बाद है, 7 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at other months with the month buttons. Do they all start on the same weekday?",
+      "hi": "महीने वाले बटन से दूसरे महीने देखो। क्या सब एक ही वार से शुरू होते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch09-read-the-clock",
+   "topic": "9.5",
+   "template": "clock",
+   "title": {
+    "en": "What time is it?",
+    "hi": "क्या समय हुआ है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "read",
+    "time": "07:30"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At half past seven the long hand points to 6. Which hand is the long one?",
+      "hi": "साढ़े सात बजे लंबी सुई 6 पर होती है। लंबी सुई कौन-सी है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The minute hand",
+       "hi": "मिनट की सुई"
+      },
+      {
+       "id": "b",
+       "en": "The hour hand",
+       "hi": "घंटे की सुई"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the short hand and the long hand. Choose the right time below.",
+      "hi": "छोटी और लंबी सुई को देखो। नीचे से सही समय चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The short hand shows the hour and the long hand shows the minutes. When the long hand points to 6, it is half past the hour. The short hand is between 7 and 8, so the time is half past seven, or 7:30.",
+      "hi": "छोटी सुई घंटा और लंबी सुई मिनट बताती है। लंबी सुई 6 पर हो तो आधा घंटा बीत चुका होता है। छोटी सुई 7 और 8 के बीच है, इसलिए साढ़े सात बजे हैं, यानी 7:30।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The long hand points to 12 and the short hand to 3. What time is it?",
+        "hi": "लंबी सुई 12 पर और छोटी सुई 3 पर है। कितने बजे हैं?"
+       },
+       "options": [
+        {
+         "en": "3 o'clock",
+         "hi": "तीन बजे"
+        },
+        {
+         "en": "12 o'clock",
+         "hi": "बारह बजे"
+        },
+        {
+         "en": "Half past 3",
+         "hi": "साढ़े तीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The long hand on 12 means exactly o'clock. The short hand on 3 gives 3 o'clock.",
+        "hi": "लंबी सुई 12 पर हो तो पूरे बजे होते हैं। छोटी सुई 3 पर है, इसलिए तीन बजे हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 is where the long hand points. The hour is told by the short hand.",
+         "hi": "12 पर लंबी सुई है। घंटा छोटी सुई बताती है।"
+        },
+        {
+         "en": "Half past needs the long hand on 6, not on 12.",
+         "hi": "साढ़े के लिए लंबी सुई 6 पर होनी चाहिए, 12 पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press the next button to see more clocks. Read each time before you choose.",
+      "hi": "अगला बटन दबाकर और घड़ियाँ देखो। चुनने से पहले हर समय पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch09-set-the-clock",
+   "topic": "9.5",
+   "template": "clock",
+   "title": {
+    "en": "Set the clock to 3 o'clock",
+    "hi": "घड़ी में तीन बजाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "set",
+    "ask": "03:00"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At 3 o'clock, where does the long hand point?",
+      "hi": "तीन बजे लंबी सुई कहाँ होती है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "On the 3",
+       "hi": "3 पर"
+      },
+      {
+       "id": "b",
+       "en": "On the 12",
+       "hi": "12 पर"
+      },
+      {
+       "id": "c",
+       "en": "On the 6",
+       "hi": "6 पर"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "step:hour+1",
+     "expect": "set:03:00",
+     "say": {
+      "en": "Tap + 1 hour three times to move the short hand to 3.",
+      "hi": "+ 1 घंटा तीन बार दबाओ ताकि छोटी सुई 3 पर पहुँचे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press Check to see if the clock shows 3 o'clock.",
+      "hi": "जाँचो दबाओ और देखो कि घड़ी में तीन बजे हैं या नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At 3 o'clock the long hand (minutes) points to 12 and the short hand (hours) points to 3. Each hour is a jump of 1 number for the short hand. The long hand has not moved because no minutes have passed.",
+      "hi": "तीन बजे लंबी सुई (मिनट) 12 पर और छोटी सुई (घंटे) 3 पर होती है। हर घंटे पर छोटी सुई एक संख्या आगे बढ़ती है। लंबी सुई नहीं हिली क्योंकि कोई मिनट नहीं बीता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Gargi goes to school at 8 o'clock. Where does the short hand point?",
+        "hi": "गार्गी 8 बजे स्कूल जाती है। छोटी सुई कहाँ होती है?"
+       },
+       "options": [
+        {
+         "en": "On the 8",
+         "hi": "8 पर"
+        },
+        {
+         "en": "On the 12",
+         "hi": "12 पर"
+        },
+        {
+         "en": "On the 3",
+         "hi": "3 पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At 8 o'clock the short hand is on the 8 and the long hand is on the 12.",
+        "hi": "8 बजे छोटी सुई 8 पर और लंबी सुई 12 पर होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The long hand is on 12 at o'clock. The short hand tells the hour.",
+         "hi": "पूरे बजे लंबी सुई 12 पर होती है। घंटा छोटी सुई बताती है।"
+        },
+        {
+         "en": "3 would be 3 o'clock.",
+         "hi": "3 पर तीन बजे होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the long hand round once. How does the short hand move?",
+      "hi": "लंबी सुई को एक पूरा चक्कर घुमाओ। छोटी सुई कैसे चलती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "9.1",
+   "use": "Five seasons",
+   "shows": "The same mango tree in a village yard in spring flowers, summer with fruit, rainy season with rain, autumn with falling leaves, winter morning mist",
+   "view": "Same camera position and angle in all five frames",
+   "right": "The tree and house stay the same; only the season changes",
+   "avoid": "Snow where it would not fall; faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Rainy season",
+   "shows": "A peacock dancing at the edge of a green field in light rain, frogs near a puddle",
+   "view": "Low side view, soft cloudy light",
+   "right": "Peacock feathers fanned; frog hopping",
+   "avoid": "Faces; harm to animals"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "9.3",
+   "use": "Blank calendar page",
+   "shows": "A clean monthly calendar grid with seven columns and no numbers, ready for the app to fill",
+   "view": "Flat on, white background",
+   "right": "Seven equal columns and up to six rows",
+   "avoid": "Printed numbers or holidays"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "9.5",
+   "use": "Analogue wall clock",
+   "shows": "A plain round wall clock with 12 clear numbers and two hands, shown at 3, half past 7 and 8 o'clock",
+   "view": "Straight front view, transparent background, one file for each time",
+   "right": "Short hour hand and long minute hand clearly different",
+   "avoid": "Brand names; second hand; digits missing"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "9.5",
+   "use": "Gargi's day",
+   "shows": "Five small scenes of a girl's day seen from behind: waking up, going to school, lunch, playing, sleeping",
+   "view": "Wide, soft light, no faces",
+   "right": "Each scene fits the time of day",
+   "avoid": "Faces; text; clocks showing wrong times"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "9.6",
+   "use": "Facing the sunrise",
+   "shows": "Children standing in a row in a playground at sunrise, seen from behind, arms stretched to the sides",
+   "view": "Low angle behind the children, orange morning sky",
+   "right": "The sun low on the horizon in front",
+   "avoid": "Faces; looking straight at the sun"
+  }
+ ]
+}

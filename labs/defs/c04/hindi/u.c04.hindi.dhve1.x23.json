@@ -1,0 +1,548 @@
+{
+  "chapter_key": "u.c04.hindi.dhve1.x23",
+  "class": 4,
+  "subject_id": "hindi",
+  "title": "We are all flowers of one garden (हम सब सुमन एक उपवन के)",
+  "source": "https://ncert.nic.in/textbook.php?dhve1=0-13",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Poem: what we share and how we differ",
+      "labs": [
+        "c04-hindi-dhve1-x23-same"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Poem: the garden as our country",
+      "labs": [
+        "c04-hindi-dhve1-x23-garden"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-hindi-dhve1-x23-same",
+      "topic": "1",
+      "template": "sort",
+      "title": {
+        "en": "One for all, different for each",
+        "hi": "सबका एक, सबमें अलग"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "one",
+            "label": {
+              "en": "Same for all of us",
+              "hi": "हम सबके लिए एक"
+            }
+          },
+          {
+            "id": "diff",
+            "label": {
+              "en": "Different in each of us",
+              "hi": "हर एक में अलग"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "earth",
+            "text": {
+              "en": "The earth we live on",
+              "hi": "वह धरती जिस पर हम रहते हैं"
+            },
+            "bin": "one",
+            "why": {
+              "en": "We are all born on the same earth.",
+              "hi": "हम सब एक ही धरती पर जन्मे हैं।"
+            }
+          },
+          {
+            "id": "sun",
+            "text": {
+              "en": "The sun that warms us",
+              "hi": "वह सूरज जो हमें गरमी देता है"
+            },
+            "bin": "one",
+            "why": {
+              "en": "One sun gives light to everyone.",
+              "hi": "एक ही सूरज सबको रोशनी देता है।"
+            }
+          },
+          {
+            "id": "moon",
+            "text": {
+              "en": "The moon and the moonlight",
+              "hi": "चाँद और चाँदनी"
+            },
+            "bin": "one",
+            "why": {
+              "en": "The same moonlight falls on all.",
+              "hi": "वही चाँदनी सब पर पड़ती है।"
+            }
+          },
+          {
+            "id": "sky",
+            "text": {
+              "en": "The sky above us",
+              "hi": "हमारे ऊपर का आसमान"
+            },
+            "bin": "one",
+            "why": {
+              "en": "We all live under one sky.",
+              "hi": "हम सब एक ही आसमान के नीचे रहते हैं।"
+            }
+          },
+          {
+            "id": "colours",
+            "text": {
+              "en": "Colours and looks",
+              "hi": "रंग-रंग के रूप"
+            },
+            "bin": "diff",
+            "why": {
+              "en": "Flowers and people look different, each with their own colour.",
+              "hi": "फूल और लोग अलग-अलग रंग-रूप के होते हैं।"
+            }
+          },
+          {
+            "id": "beds",
+            "text": {
+              "en": "Different flower beds",
+              "hi": "अलग-अलग क्यारियाँ"
+            },
+            "bin": "diff",
+            "why": {
+              "en": "Every flower grows in its own bed.",
+              "hi": "हर फूल अपनी क्यारी में खिलता है।"
+            }
+          },
+          {
+            "id": "languages",
+            "text": {
+              "en": "Languages we speak",
+              "hi": "हमारी भाषाएँ"
+            },
+            "bin": "diff",
+            "why": {
+              "en": "People of our country speak many languages.",
+              "hi": "हमारे देश के लोग कई भाषाएँ बोलते हैं।"
+            }
+          },
+          {
+            "id": "food",
+            "text": {
+              "en": "Food we like",
+              "hi": "हमारे पसंदीदा खाने"
+            },
+            "bin": "diff",
+            "why": {
+              "en": "Each place has its own special dishes.",
+              "hi": "हर जगह के अपने खास पकवान होते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:earth",
+          "expect": "placed:earth",
+          "say": {
+            "en": "Tap the card 'The earth we live on', then tap the group where it belongs.",
+            "hi": "'वह धरती जिस पर हम रहते हैं' का कार्ड छुओ, फिर उस समूह को छुओ जिसमें वह आता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which group will 'Colours and looks' go into?",
+            "hi": "अनुमान लगाओ: 'रंग-रंग के रूप' किस समूह में जाएगा?"
+          },
+          "options": [
+            {
+              "id": "one",
+              "en": "Same for all of us",
+              "hi": "हम सबके लिए एक"
+            },
+            {
+              "id": "diff",
+              "en": "Different in each of us",
+              "hi": "हर एक में अलग"
+            }
+          ],
+          "answer": "diff"
+        },
+        {
+          "kind": "do",
+          "target": "card:food",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the remaining cards until every card is in a group.",
+            "hi": "बाकी सारे कार्ड तब तक छाँटो जब तक हर कार्ड किसी समूह में न चला जाए।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The poem says we are all flowers of one garden. We share the earth, the sun, the moon and the sky, but we are different in colour, shape and place, and that makes the garden beautiful.",
+            "hi": "कविता कहती है कि हम सब एक ही उपवन के फूल हैं। हम धरती, सूरज, चाँद और आसमान साझा करते हैं पर रंग, रूप और जगह में अलग हैं, और यही उपवन को सुंदर बनाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where does 'The earth we live on' belong?",
+                "hi": "'वह धरती जिस पर हम रहते हैं' किस समूह में आता है?"
+              },
+              "options": [
+                {
+                  "en": "Same for all of us",
+                  "hi": "हम सबके लिए एक"
+                },
+                {
+                  "en": "Different in each of us",
+                  "hi": "हर एक में अलग"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "We are all born on the same earth.",
+                "hi": "हम सब एक ही धरती पर जन्मे हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It does not belong to 'Different in each of us'. We are all born on the same earth.",
+                  "hi": "यह 'हर एक में अलग' में नहीं आता। हम सब एक ही धरती पर जन्मे हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Where does 'Colours and looks' belong?",
+                "hi": "'रंग-रंग के रूप' किस समूह में आता है?"
+              },
+              "options": [
+                {
+                  "en": "Same for all of us",
+                  "hi": "हम सबके लिए एक"
+                },
+                {
+                  "en": "Different in each of us",
+                  "hi": "हर एक में अलग"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Flowers and people look different, each with their own colour.",
+                "hi": "फूल और लोग अलग-अलग रंग-रूप के होते हैं।"
+              },
+              "wrong": [
+                {
+                  "en": "It does not belong to 'Same for all of us'. Flowers and people look different, each with their own colour.",
+                  "hi": "यह 'हम सबके लिए एक' में नहीं आता। फूल और लोग अलग-अलग रंग-रूप के होते हैं।"
+                },
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Name one thing in which you and your best friend are different, and one in which you are the same.",
+            "hi": "एक ऐसी बात बताओ जिसमें तुम और तुम्हारा दोस्त अलग हो और एक जिसमें समान।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-hindi-dhve1-x23-garden",
+      "topic": "2",
+      "template": "match",
+      "title": {
+        "en": "The garden of all of us",
+        "hi": "हम सबका उपवन"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "flower",
+            "left": {
+              "en": "Flowers (suman)",
+              "hi": "सुमन (फूल)"
+            },
+            "right": {
+              "en": "We, the people",
+              "hi": "हम सब लोग"
+            },
+            "why": {
+              "en": "The poet calls all of us flowers of one garden.",
+              "hi": "कवि हम सबको एक ही उपवन के फूल कहते हैं।"
+            }
+          },
+          {
+            "id": "garden",
+            "left": {
+              "en": "The garden (upvan)",
+              "hi": "उपवन"
+            },
+            "right": {
+              "en": "Our country where all live together",
+              "hi": "हमारा देश जहाँ सब साथ रहते हैं"
+            },
+            "why": {
+              "en": "Just as many flowers make a garden, many people make a country.",
+              "hi": "जैसे कई फूल मिलकर उपवन बनाते हैं, वैसे ही कई लोग मिलकर देश बनाते हैं।"
+            }
+          },
+          {
+            "id": "thorns",
+            "left": {
+              "en": "Thorns",
+              "hi": "काँटे"
+            },
+            "right": {
+              "en": "Difficulties of life",
+              "hi": "जीवन की कठिनाइयाँ"
+            },
+            "why": {
+              "en": "The flowers learned to smile even among thorns, as we should in hard times.",
+              "hi": "फूलों ने काँटों में भी हँसना सीखा, हमें भी कठिनाई में हँसना चाहिए।"
+            }
+          },
+          {
+            "id": "garland",
+            "left": {
+              "en": "A garland (haar)",
+              "hi": "माला (हार)"
+            },
+            "right": {
+              "en": "We are beautiful when joined in one thread",
+              "hi": "एक सूत्र में बँधकर हम सुंदर बनते हैं"
+            },
+            "why": {
+              "en": "Flowers joined by one thread make a garland; people joined by unity become strong.",
+              "hi": "एक धागे में बँधे फूल माला बनते हैं; एकता में बँधे लोग मज़बूत बनते हैं।"
+            }
+          },
+          {
+            "id": "fragrance",
+            "left": {
+              "en": "Fragrance",
+              "hi": "सुगंध"
+            },
+            "right": {
+              "en": "For everyone, rich or poor",
+              "hi": "सबके लिए, अमीर हो या गरीब"
+            },
+            "why": {
+              "en": "A flower's scent does not ask who is rich or poor.",
+              "hi": "फूल की सुगंध यह नहीं देखती कि कौन अमीर है और कौन गरीब।"
+            }
+          }
+        ],
+        "style": "cards"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:flower",
+          "expect": "matched:flower",
+          "say": {
+            "en": "Tap the card 'Flowers (suman)', then tap its partner.",
+            "hi": "'सुमन (फूल)' का कार्ड छुओ, फिर उसकी जोड़ी छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which partner goes with 'The garden (upvan)'?",
+            "hi": "अनुमान लगाओ: 'उपवन' की जोड़ी कौन-सी होगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Our country where all live together",
+              "hi": "हमारा देश जहाँ सब साथ रहते हैं"
+            },
+            {
+              "id": "b",
+              "en": "We, the people",
+              "hi": "हम सब लोग"
+            },
+            {
+              "id": "c",
+              "en": "Difficulties of life",
+              "hi": "जीवन की कठिनाइयाँ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:fragrance",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the remaining cards until every pair is joined.",
+            "hi": "बाकी सारे कार्ड तब तक मिलाओ जब तक सब जोड़ियाँ बन जाएँ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The poem uses a garden as a picture of our country. Different flowers, different beds, one sun, one sky: we live together and give joy to all.",
+            "hi": "कविता उपवन के माध्यम से हमारा देश दिखाती है। अलग फूल, अलग क्यारियाँ, एक सूरज, एक आसमान: हम साथ रहते हैं और सबको खुशी देते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which partner belongs to 'Flowers (suman)'?",
+                "hi": "'सुमन (फूल)' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "Our country where all live together",
+                  "hi": "हमारा देश जहाँ सब साथ रहते हैं"
+                },
+                {
+                  "en": "Difficulties of life",
+                  "hi": "जीवन की कठिनाइयाँ"
+                },
+                {
+                  "en": "We, the people",
+                  "hi": "हम सब लोग"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "The poet calls all of us flowers of one garden.",
+                "hi": "कवि हम सबको एक ही उपवन के फूल कहते हैं।"
+              },
+              "wrong": [
+                {
+                  "en": "That goes with 'The garden (upvan)'. Just as many flowers make a garden, many people make a country.",
+                  "hi": "यह तो 'उपवन' की जोड़ी है। जैसे कई फूल मिलकर उपवन बनाते हैं, वैसे ही कई लोग मिलकर देश बनाते हैं।"
+                },
+                {
+                  "en": "That goes with 'Thorns'. The flowers learned to smile even among thorns, as we should in hard times.",
+                  "hi": "यह तो 'काँटे' की जोड़ी है। फूलों ने काँटों में भी हँसना सीखा, हमें भी कठिनाई में हँसना चाहिए।"
+                },
+                ""
+              ]
+            },
+            {
+              "q": {
+                "en": "Which partner belongs to 'Thorns'?",
+                "hi": "'काँटे' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "Difficulties of life",
+                  "hi": "जीवन की कठिनाइयाँ"
+                },
+                {
+                  "en": "We, the people",
+                  "hi": "हम सब लोग"
+                },
+                {
+                  "en": "Our country where all live together",
+                  "hi": "हमारा देश जहाँ सब साथ रहते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The flowers learned to smile even among thorns, as we should in hard times.",
+                "hi": "फूलों ने काँटों में भी हँसना सीखा, हमें भी कठिनाई में हँसना चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That goes with 'Flowers (suman)'. The poet calls all of us flowers of one garden.",
+                  "hi": "यह तो 'सुमन (फूल)' की जोड़ी है। कवि हम सबको एक ही उपवन के फूल कहते हैं।"
+                },
+                {
+                  "en": "That goes with 'The garden (upvan)'. Just as many flowers make a garden, many people make a country.",
+                  "hi": "यह तो 'उपवन' की जोड़ी है। जैसे कई फूल मिलकर उपवन बनाते हैं, वैसे ही कई लोग मिलकर देश बनाते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make a paper garland with different coloured flowers. What does it teach about togetherness?",
+            "hi": "अलग-अलग रंग के फूलों की कागज़ की माला बनाओ। यह एकता के बारे में क्या सिखाती है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the poem",
+      "shows": "A large garden with many kinds of flowers in different coloured beds under one bright sun, a gardener far away",
+      "view": "Wide, high angle",
+      "right": "Many colours and shapes, healthy flowers",
+      "avoid": "Faces, text"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: garland",
+      "shows": "A fresh marigold and jasmine garland (mala), on transparent background",
+      "view": "Top view",
+      "right": "True flowers and thread",
+      "avoid": "Plastic flowers"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Match card: moonlight",
+      "shows": "Moonlight falling on a village courtyard with mango tree and flowering shrubs",
+      "view": "Wide, slightly low",
+      "right": "Real silver light, soft shadows",
+      "avoid": "Over-bright moon"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Sort card: colours",
+      "shows": "A group of flowers of five colours growing side by side in separate beds",
+      "view": "Eye level, wide",
+      "right": "Clear colour variety",
+      "avoid": "Plastic"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: thorns",
+      "shows": "A rose branch with thorns and one flower in bloom, on transparent background",
+      "view": "Close, side view",
+      "right": "True thorns and red flower",
+      "avoid": "Cut hand"
+    }
+  ]
+}

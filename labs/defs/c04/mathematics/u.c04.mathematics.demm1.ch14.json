@@ -1,0 +1,655 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch14",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "Data Handling",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "14.1",
+      "title": "Which subject do we like the most? Asking a good question",
+      "labs": [],
+      "why_no_lab": "Choosing a good survey question is a talk with your class and your teacher; it is done by asking real friends, not on a screen."
+    },
+    {
+      "n": "14.2",
+      "title": "Recording answers: from a list of letters to tally marks and a graph",
+      "labs": [
+        "c04-mathematics-demm1-ch14-tally-to-graph"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "14.3",
+      "title": "Reading a bar graph: Anjali and the golas",
+      "labs": [
+        "c04-mathematics-demm1-ch14-bar-golas"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "14.4",
+      "title": "Pictographs: chess and cricket",
+      "labs": [
+        "c04-mathematics-demm1-ch14-pictograph-games"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch14-tally-to-graph",
+      "topic": "14.2",
+      "template": "data",
+      "title": {
+        "en": "From tally marks to a bar graph",
+        "hi": "तालियों के निशान से दंड आलेख तक"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "chart": "tally",
+        "views": [
+          "tally",
+          "pictograph",
+          "bar"
+        ],
+        "show": 2,
+        "ask": "max",
+        "title": {
+          "en": "Favourite subject of 30 children in a story class",
+          "hi": "कहानी वाली कक्षा के 30 बच्चों का पसंदीदा विषय"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Mathematics",
+              "hi": "गणित"
+            },
+            "value": 8
+          },
+          {
+            "label": {
+              "en": "Languages",
+              "hi": "भाषाएँ"
+            },
+            "value": 6
+          },
+          {
+            "label": {
+              "en": "Arts",
+              "hi": "कला"
+            },
+            "value": 5
+          },
+          {
+            "label": {
+              "en": "Games",
+              "hi": "खेल"
+            },
+            "value": 11
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Two subjects are already recorded with tally marks. Tap Add to record the third subject.",
+            "hi": "दो विषय तालियों के निशानों से पहले ही दर्ज हैं। तीसरा विषय दर्ज करने के लिए जोड़ो दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Tap Add once more to record the last subject.",
+            "hi": "आख़िरी विषय दर्ज करने के लिए एक बार और जोड़ो दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A tally mark is one stroke for each child, and every fifth mark crosses the four. Which will be easier to read: a long list of letters or the tally marks?",
+            "hi": "तालियों का हर निशान एक बच्चे के लिए एक लकीर है, और हर पाँचवाँ निशान चार को काटता है। पढ़ने में आसान क्या होगा: अक्षरों की लंबी सूची या तालियों के निशान?"
+          },
+          "options": [
+            {
+              "id": "tally",
+              "en": "The tally marks",
+              "hi": "तालियों के निशान"
+            },
+            {
+              "id": "letters",
+              "en": "The long list of letters",
+              "hi": "अक्षरों की लंबी सूची"
+            }
+          ],
+          "answer": "tally"
+        },
+        {
+          "kind": "do",
+          "target": "chart:pictograph",
+          "expect": "plotted",
+          "say": {
+            "en": "Tap Pictograph to turn each tally mark into a picture.",
+            "hi": "हर निशान को चित्र में बदलने के लिए चित्रालेख दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "chart:bar",
+          "expect": "plotted",
+          "say": {
+            "en": "Tap Bar graph to see the same data as bars.",
+            "hi": "वही आँकड़े दंडों में देखने के लिए दंड आलेख दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Which subject do the most children like? Tap its bar.",
+            "hi": "सबसे ज़्यादा बच्चों को कौन-सा विषय पसंद है? उसके दंड पर टैप करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Tally marks, pictures and bars all show the same numbers: 8, 6, 5 and 11. A tally is quick to make while counting. A bar graph is quick to read, because the tallest bar is the favourite. Here Games has the tallest bar, with 11 children.",
+            "hi": "तालियों के निशान, चित्र और दंड सब वही संख्याएँ दिखाते हैं: 8, 6, 5 और 11। गिनते समय तालियाँ बनाना तेज़ है। दंड आलेख पढ़ना तेज़ है, क्योंकि सबसे ऊँचा दंड सबसे पसंदीदा है। यहाँ खेल का दंड सबसे ऊँचा है, 11 बच्चों के साथ।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In the graph, how many children like Arts?",
+                "hi": "आलेख में कितने बच्चों को कला पसंद है?"
+              },
+              "options": [
+                "5",
+                "6",
+                "11"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The Arts bar is 5 high: 5 children like Arts.",
+                "hi": "कला का दंड 5 ऊँचा है: 5 बच्चों को कला पसंद है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "6 is the number for Languages.",
+                  "hi": "6 भाषाओं की संख्या है।"
+                },
+                {
+                  "en": "11 is the number for Games, the tallest bar.",
+                  "hi": "11 खेल की संख्या है, जो सबसे ऊँचा दंड है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many more children like Games than Mathematics?",
+                "hi": "गणित से कितने ज़्यादा बच्चों को खेल पसंद है?"
+              },
+              "options": [
+                "3",
+                "8",
+                "19"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Games 11 and Mathematics 8: 11 minus 8 is 3.",
+                "hi": "खेल 11 और गणित 8: 11 घटा 8 बराबर 3।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "8 is the number for Mathematics, not the difference.",
+                  "hi": "8 गणित की संख्या है, अंतर नहीं।"
+                },
+                {
+                  "en": "19 adds the two numbers. The difference is found by subtracting.",
+                  "hi": "19 दोनों संख्याओं का जोड़ है। अंतर घटाने से मिलता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Ask 10 friends their favourite subject, make tally marks on paper and draw the bars. Is your top subject the same as this class's?",
+            "hi": "10 दोस्तों से उनका पसंदीदा विषय पूछो, काग़ज़ पर तालियाँ बनाओ और दंड खींचो। क्या तुम्हारा सबसे ऊपर का विषय इस कक्षा जैसा ही है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch14-bar-golas",
+      "topic": "14.3",
+      "template": "data",
+      "title": {
+        "en": "Golas sold in a week",
+        "hi": "एक हफ़्ते में बिके गोले"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "chart": "bar",
+        "ask": "max",
+        "title": {
+          "en": "Golas Anjali sold in one week (a story)",
+          "hi": "अंजलि ने एक हफ़्ते में कितने गोले बेचे (एक कहानी)"
+        },
+        "xlabel": {
+          "en": "Day",
+          "hi": "दिन"
+        },
+        "ylabel": {
+          "en": "Number of golas",
+          "hi": "गोलों की संख्या"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Mon",
+              "hi": "सोम"
+            },
+            "value": 12
+          },
+          {
+            "label": {
+              "en": "Tue",
+              "hi": "मंगल"
+            },
+            "value": 8
+          },
+          {
+            "label": {
+              "en": "Wed",
+              "hi": "बुध"
+            },
+            "value": 15
+          },
+          {
+            "label": {
+              "en": "Thu",
+              "hi": "गुरु"
+            },
+            "value": 10
+          },
+          {
+            "label": {
+              "en": "Fri",
+              "hi": "शुक्र"
+            },
+            "value": 20
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Anjali sells golas on 5 days. On which day do you think she sold the most: a hot Friday or a cool Tuesday?",
+            "hi": "अंजलि 5 दिन गोले बेचती है। तुम्हें क्या लगता है उसने सबसे ज़्यादा किस दिन बेचे: गर्म शुक्रवार को या ठंडे मंगलवार को?"
+          },
+          "options": [
+            {
+              "id": "fri",
+              "en": "On a hot Friday",
+              "hi": "गर्म शुक्रवार को"
+            },
+            {
+              "id": "tue",
+              "en": "On a cool Tuesday",
+              "hi": "ठंडे मंगलवार को"
+            }
+          ],
+          "answer": "fri"
+        },
+        {
+          "kind": "do",
+          "target": "bar:4",
+          "expect": "selected:4",
+          "say": {
+            "en": "Tap the bar for Friday to see how many golas were sold.",
+            "hi": "शुक्रवार के दंड पर टैप करो और देखो कि कितने गोले बिके।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Look at all the bars. Tap the day when the most golas were sold.",
+            "hi": "सारे दंड देखो। उस दिन पर टैप करो जब सबसे ज़्यादा गोले बिके।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The tallest bar is for the biggest number. Friday's bar is the tallest, 20 golas, and Tuesday's is the shortest, 8 golas. In a bar graph the height of each bar tells how many. To compare, look at which bar is taller and by how much.",
+            "hi": "सबसे ऊँचा दंड सबसे बड़ी संख्या का होता है। शुक्रवार का दंड सबसे ऊँचा है, 20 गोले, और मंगलवार का सबसे छोटा, 8 गोले। दंड आलेख में हर दंड की ऊँचाई बताती है कि कितने हैं। तुलना के लिए देखो कि कौन-सा दंड ऊँचा है और कितना ऊँचा।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many golas were sold on Wednesday?",
+                "hi": "बुधवार को कितने गोले बिके?"
+              },
+              "options": [
+                "15",
+                "12",
+                "10"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The Wednesday bar reaches 15.",
+                "hi": "बुधवार का दंड 15 तक पहुँचता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "12 is Monday's bar.",
+                  "hi": "12 सोमवार का दंड है।"
+                },
+                {
+                  "en": "10 is Thursday's bar.",
+                  "hi": "10 गुरुवार का दंड है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many more golas were sold on Friday than on Tuesday?",
+                "hi": "मंगलवार की तुलना में शुक्रवार को कितने गोले ज़्यादा बिके?"
+              },
+              "options": [
+                "12",
+                "20",
+                "28"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Friday 20 and Tuesday 8: 20 minus 8 is 12.",
+                "hi": "शुक्रवार 20 और मंगलवार 8: 20 घटा 8 बराबर 12।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "20 is Friday's total, not the difference.",
+                  "hi": "20 शुक्रवार की कुल संख्या है, अंतर नहीं।"
+                },
+                {
+                  "en": "28 adds the two days. The difference is found by subtracting.",
+                  "hi": "28 दोनों दिनों का जोड़ है। अंतर घटाने से मिलता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag a bar up or down to change the sales. Which day is the shortest bar now?",
+            "hi": "बिक्री बदलने के लिए किसी दंड को ऊपर-नीचे खींचो। अब सबसे छोटा दंड किस दिन का है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch14-pictograph-games",
+      "topic": "14.4",
+      "template": "data",
+      "title": {
+        "en": "Chess, cricket and kabaddi: a picture graph",
+        "hi": "शतरंज, क्रिकेट और कबड्डी: चित्रालेख"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "chart": "pictograph",
+        "icon": "smile",
+        "show": 0,
+        "ask": "min",
+        "title": {
+          "en": "Children who play each game (a story class)",
+          "hi": "हर खेल खेलने वाले बच्चे (एक कहानी वाली कक्षा)"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Chess",
+              "hi": "शतरंज"
+            },
+            "value": 4
+          },
+          {
+            "label": {
+              "en": "Cricket",
+              "hi": "क्रिकेट"
+            },
+            "value": 9
+          },
+          {
+            "label": {
+              "en": "Kabaddi",
+              "hi": "कबड्डी"
+            },
+            "value": 7
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Tap Add to show the children who play chess.",
+            "hi": "शतरंज खेलने वाले बच्चे दिखाने के लिए जोड़ो दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Tap Add again for cricket.",
+            "hi": "क्रिकेट के लिए फिर जोड़ो दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "One more row is coming: kabaddi. Which game will have the fewest children so far: chess, cricket or kabaddi?",
+            "hi": "एक और पंक्ति आ रही है: कबड्डी। अब तक सबसे कम बच्चे किस खेल में हैं: शतरंज, क्रिकेट या कबड्डी?"
+          },
+          "options": [
+            {
+              "id": "chess",
+              "en": "Chess",
+              "hi": "शतरंज"
+            },
+            {
+              "id": "cricket",
+              "en": "Cricket",
+              "hi": "क्रिकेट"
+            },
+            {
+              "id": "kabaddi",
+              "en": "Kabaddi",
+              "hi": "कबड्डी"
+            }
+          ],
+          "answer": "chess"
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Tap Add to show kabaddi.",
+            "hi": "कबड्डी दिखाने के लिए जोड़ो दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Count the pictures in each row. Tap the game with the fewest children.",
+            "hi": "हर पंक्ति के चित्र गिनो। सबसे कम बच्चों वाले खेल पर टैप करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In a pictograph, each picture stands for one child. Chess has 4 pictures, cricket has 9 and kabaddi has 7. The shortest row is the smallest number, so chess has the fewest. You can count the pictures or compare the length of the rows.",
+            "hi": "चित्रालेख में हर चित्र एक बच्चे को दिखाता है। शतरंज में 4 चित्र हैं, क्रिकेट में 9 और कबड्डी में 7। सबसे छोटी पंक्ति सबसे कम संख्या है, इसलिए शतरंज में सबसे कम बच्चे हैं। तुम चित्र गिन सकते हो या पंक्तियों की लंबाई की तुलना कर सकते हो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many children play kabaddi?",
+                "hi": "कितने बच्चे कबड्डी खेलते हैं?"
+              },
+              "options": [
+                "7",
+                "9",
+                "4"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The kabaddi row has 7 pictures.",
+                "hi": "कबड्डी की पंक्ति में 7 चित्र हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "9 is the number for cricket.",
+                  "hi": "9 क्रिकेट की संख्या है।"
+                },
+                {
+                  "en": "4 is the number for chess.",
+                  "hi": "4 शतरंज की संख्या है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many children play chess and cricket together?",
+                "hi": "शतरंज और क्रिकेट मिलाकर कितने बच्चे खेलते हैं?"
+              },
+              "options": [
+                "13",
+                "5",
+                "16"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "4 + 9 = 13 children.",
+                "hi": "4 + 9 = 13 बच्चे।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "5 is the difference, 9 minus 4. Together means add.",
+                  "hi": "5 अंतर है, 9 घटा 4। साथ में का मतलब है जोड़ना।"
+                },
+                {
+                  "en": "16 adds kabaddi's 7 as well. The question asks only chess and cricket.",
+                  "hi": "16 में कबड्डी के 7 भी जोड़ दिए गए। प्रश्न में केवल शतरंज और क्रिकेट हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Count how many children in your class play chess or cricket. Draw your own picture graph on paper.",
+            "hi": "गिनो कि तुम्हारी कक्षा में कितने बच्चे शतरंज या क्रिकेट खेलते हैं। काग़ज़ पर अपना चित्रालेख बनाओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "14.1",
+      "use": "Chapter hook: asking the class",
+      "shows": "Children's hands raised in a classroom, a teacher's hand pointing to a blackboard with five empty rows, seen from the back of the class",
+      "view": "From behind, eye level, daylight",
+      "right": "Many raised hands, easy to count in groups; no faces",
+      "avoid": "Faces, text on the board"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "14.2",
+      "use": "Subject books",
+      "shows": "Five books of different colours, one each for mathematics, languages, arts, games and the world around us, with no titles, as cut-outs",
+      "view": "Slightly above, soft light",
+      "right": "Spines and covers distinct in colour",
+      "avoid": "Titles, publisher marks"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "14.2",
+      "use": "Tally marks",
+      "shows": "Five groups of chalk tally marks on a slate, four straight lines crossed by a fifth",
+      "view": "Straight on, high contrast",
+      "right": "Marks neat, groups of five clear",
+      "avoid": "Written numbers"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "14.3",
+      "use": "Gola stall",
+      "shows": "A roadside gola stall in summer with an ice block, coloured syrup bottles and a child's hands holding a cup of gola",
+      "view": "Eye level, bright sun",
+      "right": "Syrups colourful; cup of gola clearly shaped",
+      "avoid": "Price boards, faces"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "14.3",
+      "use": "Bar graph frame",
+      "shows": "An empty bar graph frame with a vertical axis marked in equal steps and five empty slots on the horizontal axis, no numbers or labels",
+      "view": "Flat, white background",
+      "right": "Axis steps equal; grid lines faint",
+      "avoid": "Numbers, words"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "14.4",
+      "use": "Chess, cricket and kabaddi",
+      "shows": "A chessboard with pieces, a cricket bat and ball, and a kabaddi court mat corner as separate cut-outs",
+      "view": "Three-quarter view, soft light",
+      "right": "Each game's object clear at a glance",
+      "avoid": "Brand names"
+    }
+  ]
+}

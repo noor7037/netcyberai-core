@@ -1,0 +1,475 @@
+{
+ "chapter_key": "u.c11.english.kehb1.ch04.s2",
+ "class": 11,
+ "subject_id": "english",
+ "title": "Essay-writing",
+ "source": "https://ncert.nic.in/textbook/pdf/kehb114.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "The parts of an essay",
+   "labs": [
+    "c11-english-kehb1-ch04-essay-parts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Planning an essay",
+   "labs": [
+    "c11-english-kehb1-ch04-essay-plan"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Essay topics to practise",
+   "labs": [],
+   "why_no_lab": "Writing a full essay on paper is the practice itself."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-english-kehb1-ch04-essay-parts",
+   "topic": "4.1",
+   "template": "writing",
+   "title": {
+    "en": "Build an essay: My hobby, gardening",
+    "hi": "निबंध बनाओ: मेरा शौक, बागवानी"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "kind": "essay",
+    "lang": "en",
+    "task": {
+     "en": "Write a short essay on a hobby you enjoy. Put the parts in the right places.",
+     "hi": "अपने किसी शौक पर छोटा निबंध लिखो। भागों को सही जगह रखो।"
+    },
+    "parts": [
+     {
+      "id": "title",
+      "slot": "title",
+      "text": {
+       "en": "My Hobby: Gardening",
+       "hi": "मेरा शौक: बागवानी"
+      }
+     },
+     {
+      "id": "intro",
+      "slot": "introduction",
+      "text": {
+       "en": "A hobby is something we do in our free time because we love it. My hobby is gardening, and it has given me many happy hours.",
+       "hi": "शौक वह है जो हम खाली समय में प्रेम से करते हैं। मेरा शौक बागवानी है और उसने मुझे कई सुखद घंटे दिए हैं।"
+      }
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": {
+       "en": "Every evening I water the plants on our balcony and pull out the dry leaves. It is quiet work that refreshes my mind after school.",
+       "hi": "हर शाम मैं बालकनी के पौधों को पानी देता हूँ और सूखे पत्ते निकालता हूँ। यह शांत काम स्कूल के बाद मेरा मन तरोताज़ा करता है।"
+      }
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": {
+       "en": "Gardening has also taught me patience. A seed takes days to sprout, and I have learnt to wait and to care.",
+       "hi": "बागवानी ने मुझे धैर्य भी सिखाया है। बीज को अंकुरित होने में दिन लगते हैं और मैंने इंतज़ार और देखभाल करना सीखा है।"
+      }
+     },
+     {
+      "id": "b3",
+      "slot": "body",
+      "text": {
+       "en": "I share tomatoes and flowers with my neighbours, and we have become friends through our common interest.",
+       "hi": "मैं पड़ोसियों के साथ टमाटर और फूल बाँटता हूँ और साझा रुचि से हम दोस्त बन गए हैं।"
+      }
+     },
+     {
+      "id": "concl",
+      "slot": "conclusion",
+      "text": {
+       "en": "In short, a hobby brings joy, teaches us new things and connects us to others. I hope to keep gardening all my life.",
+       "hi": "संक्षेप में, शौक आनंद देता है, नई बातें सिखाता है और हमें दूसरों से जोड़ता है। मैं आशा करता हूँ कि जीवन भर बागवानी करता रहूँगा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does the title of an essay go?",
+      "hi": "निबंध का शीर्षक कहाँ आता है?"
+     },
+     "options": [
+      {
+       "id": "top",
+       "en": "At the top, before everything else",
+       "hi": "सबसे ऊपर, सबसे पहले"
+      },
+      {
+       "id": "end",
+       "en": "At the very end",
+       "hi": "सबसे अंत में"
+      }
+     ],
+     "answer": "top"
+    },
+    {
+     "kind": "do",
+     "target": "part:title",
+     "expect": "placed:title",
+     "say": {
+      "en": "Tap the title piece, then tap its place on the page.",
+      "hi": "शीर्षक वाला टुकड़ा टैप करो, फिर पन्ने पर उसकी जगह टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:intro",
+     "expect": "placed:intro",
+     "say": {
+      "en": "Now place the introduction.",
+      "hi": "अब परिचय को उसकी जगह रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Place all the pieces and press Check.",
+      "hi": "सारे टुकड़े रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An essay has a title, an introduction, a body and a conclusion. The introduction says what the topic is. The body develops it in several paragraphs, one idea in each. The conclusion rounds it off. Planning these parts first, perhaps by brainstorming, makes writing much easier.",
+      "hi": "निबंध में शीर्षक, परिचय, मुख्य भाग और निष्कर्ष होते हैं। परिचय बताता है कि विषय क्या है। मुख्य भाग कई अनुच्छेदों में उसे बढ़ाता है, हर एक में एक विचार। निष्कर्ष उसे समेटता है। पहले इन भागों की योजना बनाना, शायद विचार-मंथन से, लिखना बहुत आसान कर देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the introduction of an essay do?",
+        "hi": "निबंध का परिचय क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Tells what the topic is",
+         "hi": "बताता है कि विषय क्या है"
+        },
+        {
+         "en": "Ends the essay",
+         "hi": "निबंध समाप्त करता है"
+        },
+        {
+         "en": "Lists the spellings",
+         "hi": "वर्तनी की सूची देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It opens the topic and draws the reader in.",
+        "hi": "यह विषय खोलता है और पाठक को खींचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The conclusion ends the essay, not the introduction.",
+         "hi": "निबंध को निष्कर्ष समाप्त करता है, परिचय नहीं।"
+        },
+        {
+         "en": "An essay does not carry spelling lists.",
+         "hi": "निबंध में वर्तनी की सूची नहीं होती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many ideas should each body paragraph carry?",
+        "hi": "मुख्य भाग के हर अनुच्छेद में कितने विचार हों?"
+       },
+       "options": [
+        {
+         "en": "One main idea",
+         "hi": "एक मुख्य विचार"
+        },
+        {
+         "en": "As many as possible",
+         "hi": "जितने हो सकें उतने"
+        },
+        {
+         "en": "None",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One idea per paragraph keeps the essay clear.",
+        "hi": "हर अनुच्छेद में एक विचार निबंध को साफ़ रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Too many ideas in one paragraph confuse the reader.",
+         "hi": "एक अनुच्छेद में बहुत विचार पाठक को उलझाते हैं।"
+        },
+        {
+         "en": "A paragraph with no idea has no purpose.",
+         "hi": "बिना विचार का अनुच्छेद बेकार है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose your own hobby. Write a one-line introduction and a one-line conclusion for it.",
+      "hi": "अपना कोई शौक चुनो। उसके लिए एक पंक्ति का परिचय और एक पंक्ति का निष्कर्ष लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-english-kehb1-ch04-essay-plan",
+   "topic": "4.2",
+   "template": "sequence",
+   "title": {
+    "en": "Planning an essay",
+    "hi": "निबंध की योजना बनाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "e1",
+      "text": {
+       "en": "Think about the topic and jot down ideas as they come.",
+       "hi": "विषय पर सोचो और जो विचार आएँ उन्हें लिख लो।"
+      }
+     },
+     {
+      "id": "e2",
+      "text": {
+       "en": "Select the best ideas and put them in a good order.",
+       "hi": "सबसे अच्छे विचार चुनो और उन्हें अच्छे क्रम में रखो।"
+      }
+     },
+     {
+      "id": "e3",
+      "text": {
+       "en": "Begin with a definition or a short description of the topic.",
+       "hi": "विषय की परिभाषा या छोटे वर्णन से शुरू करो।"
+      }
+     },
+     {
+      "id": "e4",
+      "text": {
+       "en": "Expand each idea into a paragraph with a little proof.",
+       "hi": "हर विचार को थोड़े प्रमाण के साथ अनुच्छेद में बढ़ाओ।"
+      }
+     },
+     {
+      "id": "e5",
+      "text": {
+       "en": "Finish with a short conclusion and read it through.",
+       "hi": "छोटे निष्कर्ष से समाप्त करो और पूरा पढ़ो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Do we write the best sentence first, or think and list ideas first?",
+      "hi": "क्या हम सबसे अच्छा वाक्य पहले लिखते हैं, या पहले सोचकर विचार लिखते हैं?"
+     },
+     "options": [
+      {
+       "id": "think",
+       "en": "Think and list ideas first",
+       "hi": "पहले सोचकर विचार लिखते हैं"
+      },
+      {
+       "id": "sent",
+       "en": "Write the best sentence first",
+       "hi": "सबसे अच्छा वाक्य पहले लिखते हैं"
+      }
+     ],
+     "answer": "think"
+    },
+    {
+     "kind": "do",
+     "target": "item:e1",
+     "expect": "placed:e1",
+     "say": {
+      "en": "Put the first step in its place.",
+      "hi": "पहला चरण उसकी जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange all the steps and press Check.",
+      "hi": "सारे चरण लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Most of us find it hard to begin. Brainstorming helps: write every idea that comes, then choose the best and arrange them. An essay usually begins with a short definition, develops each idea in a paragraph and ends with a conclusion. Planning first saves time and keeps the essay clear.",
+      "hi": "हममें से अधिकतर को शुरू करना कठिन लगता है। विचार-मंथन मदद करता है: जो भी विचार आए लिख लो, फिर सबसे अच्छे चुनकर क्रम में रखो। निबंध प्रायः छोटी परिभाषा से शुरू होता है, हर विचार को एक अनुच्छेद में बढ़ाता है और निष्कर्ष पर खत्म होता है। पहले योजना बनाने से समय बचता है और निबंध साफ़ रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is brainstorming?",
+        "hi": "विचार-मंथन क्या है?"
+       },
+       "options": [
+        {
+         "en": "Writing down ideas freely as they come",
+         "hi": "जो विचार आएँ उन्हें खुलकर लिख लेना"
+        },
+        {
+         "en": "Copying from a book",
+         "hi": "किताब से नकल करना"
+        },
+        {
+         "en": "Correcting spelling",
+         "hi": "वर्तनी सुधारना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "You collect many ideas first and choose later.",
+        "hi": "पहले बहुत विचार इकट्ठे करते हो और बाद में चुनते हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Brainstorming is about your own ideas, not copying.",
+         "hi": "विचार-मंथन तुम्हारे अपने विचारों के बारे में है, नकल के बारे में नहीं।"
+        },
+        {
+         "en": "Spelling is checked at the end, not at this stage.",
+         "hi": "वर्तनी अंत में जाँची जाती है, इस चरण में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the conclusion do?",
+        "hi": "निष्कर्ष क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Starts a new topic",
+         "hi": "नया विषय शुरू करता है"
+        },
+        {
+         "en": "Rounds off the essay",
+         "hi": "निबंध को समेटता है"
+        },
+        {
+         "en": "Repeats the whole essay",
+         "hi": "पूरे निबंध को दोहराता है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It closes the essay with a short thought.",
+        "hi": "यह एक छोटे विचार के साथ निबंध समाप्त करता है।"
+       },
+       "wrong": [
+        {
+         "en": "A new topic belongs in a different essay.",
+         "hi": "नया विषय दूसरे निबंध का होता है।"
+        },
+        "",
+        {
+         "en": "Repeating all would be too long.",
+         "hi": "सब दोहराना बहुत लंबा होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Brainstorm for two minutes on 'My school library'. Which three ideas would you keep?",
+      "hi": "दो मिनट 'मेरे स्कूल का पुस्तकालय' पर विचार-मंथन करो। कौन-से तीन विचार रखोगे?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Essay page",
+   "shows": "A ruled page with a title line, four neat paragraphs shown as blurred lines",
+   "view": "Top-down, transparent background",
+   "right": "Clear title and paragraph spacing",
+   "avoid": "Readable words"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "4.2",
+   "use": "Mind map",
+   "shows": "A centre circle with eight branches ending in empty bubbles",
+   "view": "Flat, white",
+   "right": "Even branches",
+   "avoid": "Words"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "A hobby corner",
+   "shows": "A small balcony garden with pots of tomatoes, marigolds and a watering can",
+   "view": "Eye level",
+   "right": "Real plants, soft light",
+   "avoid": "Faces, brands"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "4.2",
+   "use": "From idea to essay",
+   "shows": "Four frames: scribbled ideas, circled ideas, outline, finished paragraphs",
+   "view": "Same camera",
+   "right": "Progress only",
+   "avoid": "Readable text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Writing tools",
+   "shows": "A pen, a notebook and a small clock on a desk",
+   "view": "Three-quarter, transparent background",
+   "right": "Simple tools",
+   "avoid": "Brand marks"
+  }
+ ]
+}

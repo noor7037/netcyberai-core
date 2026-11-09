@@ -1,0 +1,268 @@
+{
+  "chapter_key": "u.c12.english.lefl1.ch02.s1",
+  "class": 12,
+  "subject_id": "english",
+  "title": "Lost Spring",
+  "source": "https://ncert.nic.in/textbook/pdf/lefl1ps.pdf",
+  "topics": [
+    {
+      "n": "2.1",
+      "title": "About the author",
+      "labs": [],
+      "why_no_lab": "The author note is read once and the text carries the idea."
+    },
+    {
+      "n": "2.2",
+      "title": "The story: children who work",
+      "labs": [
+        "c12-english-lefl1-ch02-childhood"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.3",
+      "title": "Notice these expressions",
+      "labs": [],
+      "why_no_lab": "Meanings come from the context and a dictionary; the lab does not add to them."
+    },
+    {
+      "n": "2.4",
+      "title": "Talking about the text",
+      "labs": [],
+      "why_no_lab": "Discussion of poverty and dreams is best led by the teacher in class."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-english-lefl1-ch02-childhood",
+      "topic": "2.2",
+      "template": "sort",
+      "minutes": 6,
+      "level": "core",
+      "title": {
+        "en": "Which childhood is lost?",
+        "hi": "कौन-सा बचपन खो गया?"
+      },
+      "config": {
+        "bins": [
+          {
+            "id": "lost",
+            "label": {
+              "en": "Childhood lost",
+              "hi": "बचपन खो गया"
+            }
+          },
+          {
+            "id": "kept",
+            "label": {
+              "en": "Childhood kept",
+              "hi": "बचपन बचा रहा"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "c1",
+            "text": {
+              "en": "Saheb picks through garbage to find things to sell",
+              "hi": "साहब बेचने लायक चीज़ों के लिए कूड़े में ढूँढता है"
+            },
+            "bin": "lost",
+            "why": {
+              "en": "He searches the dumps each morning to earn money, so he has no time to learn or play.",
+              "hi": "वह कमाई के लिए हर सुबह कूड़े में ढूँढता है, इसलिए पढ़ने या खेलने का समय नहीं है।"
+            }
+          },
+          {
+            "id": "c2",
+            "text": {
+              "en": "Children make glass bangles in hot, dusty rooms",
+              "hi": "बच्चे गरम और धूल भरे कमरों में काँच की चूड़ियाँ बनाते हैं"
+            },
+            "bin": "lost",
+            "why": {
+              "en": "Work in such heat takes away time for school, play and rest, which children need.",
+              "hi": "ऐसी गर्मी में काम करने से स्कूल, खेल और आराम का समय छिन जाता है, जो बच्चों को चाहिए।"
+            }
+          },
+          {
+            "id": "c3",
+            "text": {
+              "en": "A boy walks to school in a grey uniform and shoes",
+              "hi": "एक लड़का भूरी वर्दी और जूते पहनकर स्कूल जाता है"
+            },
+            "bin": "kept",
+            "why": {
+              "en": "School, a uniform and shoes give him a day for learning and a childhood that is still his.",
+              "hi": "स्कूल, वर्दी और जूते उसे पढ़ाई का दिन देते हैं, और उसका बचपन अब भी उसका है।"
+            }
+          },
+          {
+            "id": "c4",
+            "text": {
+              "en": "Saheb says he will go to school when one is built nearby",
+              "hi": "साहब कहता है कि पास में स्कूल बनने पर वह जाएगा"
+            },
+            "bin": "lost",
+            "why": {
+              "en": "With no school near his home, he cannot learn, so his childhood goes to work.",
+              "hi": "घर के पास स्कूल न होने से वह पढ़ नहीं पाता, इसलिए उसका बचपन काम में चला जाता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Saheb wants to go to school. What stops him?",
+            "hi": "साहब स्कूल जाना चाहता है। उसे क्या रोकता है?"
+          },
+          "options": [
+            {
+              "id": "dislike",
+              "en": "He does not like school",
+              "hi": "उसे स्कूल पसंद नहीं"
+            },
+            {
+              "id": "noschool",
+              "en": "There is no school in his neighbourhood",
+              "hi": "उसकी बस्ती में कोई स्कूल नहीं है"
+            },
+            {
+              "id": "strict",
+              "en": "His teacher is too strict",
+              "hi": "उसका अध्यापक बहुत सख़्त है"
+            }
+          ],
+          "answer": "noschool"
+        },
+        {
+          "kind": "do",
+          "target": "bin:lost",
+          "expect": "placed:c1",
+          "say": {
+            "en": "Tap the card about Saheb and the garbage, then tap the bin \"Childhood lost\".",
+            "hi": "साहब और कूड़े वाला कार्ड छुओ, फिर \"बचपन खो गया\" वाला डिब्बा छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:kept",
+          "expect": "placed:c3",
+          "say": {
+            "en": "Tap the boy in the grey uniform, then the bin \"Childhood kept\".",
+            "hi": "ग्रे वर्दी वाले लड़के का कार्ड छुओ, फिर \"बचपन बचा रहा\" वाला डिब्बा छुओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Childhood is for learning, play and rest. Work that takes a child away from school and from a safe home takes this time. Many children in the story work long hours because families need money and there is no school nearby.",
+            "hi": "बचपन सीखने, खेलने और आराम करने का समय है। ऐसा काम जो बच्चे को स्कूल और सुरक्षित घर से दूर ले जाए, वह यह समय छीन लेता है। कहानी के कई बच्चे लंबे घंटे काम करते हैं, क्योंकि घर को पैसों की ज़रूरत है और पास में स्कूल नहीं है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why does the lab call work in a bangle factory a \"lost\" childhood?",
+                "hi": "चूड़ी के कारख़ाने में काम को \"खोया हुआ\" बचपन क्यों कहा गया है?"
+              },
+              "options": [
+                {
+                  "en": "It takes away time for school, play and rest",
+                  "hi": "इससे स्कूल, खेल और आराम का समय छिन जाता है"
+                },
+                {
+                  "en": "Bangles are ugly to look at",
+                  "hi": "चूड़ियाँ देखने में भद्दी होती हैं"
+                },
+                {
+                  "en": "The factory is near a river",
+                  "hi": "कारख़ाना एक नदी के पास है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The key point is the time a child loses. Heat and long hours take away learning and play.",
+                "hi": "मुख्य बात वह समय है जो बच्चा खो देता है। गर्मी और लंबे घंटे पढ़ाई और खेल छीन लेते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The lab is about children's time, not how bangles look.",
+                  "hi": "यह बच्चों के समय के बारे में है, चूड़ियाँ कैसी दिखती हैं, इसके बारे में नहीं।"
+                },
+                {
+                  "en": "Where a factory stands does not decide whether childhood is lost. Work and missing school do.",
+                  "hi": "कारख़ाना कहाँ है, इससे बचपन खोया या नहीं, यह तय नहीं होता। काम और स्कूल छूटना तय करते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "List three things every child needs for a happy childhood. Compare the list with your own day.",
+            "hi": "तीन चीज़ों की सूची बनाओ जो हर बच्चे को ख़ुशहाल बचपन के लिए चाहिए। उसकी तुलना अपने दिन से करो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "2.2",
+      "use": "A garbage dump at the edge of a city",
+      "shows": "A low dump at dawn with a child carrying a sack, a few thin trees and a city haze behind",
+      "view": "Wide, dawn light",
+      "right": "Real and dignified; the child is not made a spectacle",
+      "avoid": "Staged poverty, identifiable faces without consent (blur if needed)"
+    },
+    {
+      "n": 2,
+      "kind": "SCN",
+      "topic": "2.2",
+      "use": "A bangle workshop at dusk",
+      "shows": "A dim room with a small furnace glow and newly made glass bangles drying on a rack",
+      "view": "Medium, warm furnace light, shallow depth",
+      "right": "Heat and dust felt in the image; no unsafe play with fire",
+      "avoid": "Children near open flame, real names on signs"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "2.2",
+      "use": "What school gives a child",
+      "shows": "A grey school uniform, a pair of black shoes and a school bag, neatly folded on a bench",
+      "view": "Close, soft morning light",
+      "right": "Ordered and cared for",
+      "avoid": "Readable school names or logos"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "2.2",
+      "use": "The school that is not yet built",
+      "shows": "A bare patch of land beside houses, with dry grass and a low fence waiting for a building",
+      "view": "Wide, morning",
+      "right": "Empty promise, quiet hope",
+      "avoid": "Any readable sign"
+    },
+    {
+      "n": 5,
+      "kind": "MAP",
+      "topic": "2.2",
+      "use": "Where the children live",
+      "shows": "A simple map sketch: Delhi's outer edge with Seemapuri marked, and Firozabad in the east",
+      "view": "Top-down, clean lines, no place-name clutter",
+      "right": "Clear locations, two regions",
+      "avoid": "Real street-level detail that identifies people"
+    }
+  ]
+}

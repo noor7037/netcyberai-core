@@ -1,0 +1,1637 @@
+{
+ "chapter_key": "u.c08.science.hecu1.ch13",
+ "class": 8,
+ "subject_id": "science",
+ "title": "Our Home: Earth, a Unique Life Sustaining Planet",
+ "source": "https://ncert.nic.in/textbook/pdf/hecu113.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Why is Earth a unique planet?",
+   "labs": [],
+   "why_no_lab": "An opening list of the Earth's special features, best met through photographs; the labs that follow test each feature."
+  },
+  {
+   "n": "13.2",
+   "title": "What do the planets of our solar system tell us?",
+   "labs": [
+    "c08-science-hecu1-ch13-planets"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3",
+   "title": "What makes the Earth suitable for life?",
+   "labs": [],
+   "why_no_lab": "An overview; its parts 13.3.1 to 13.3.3 each have a lab."
+  },
+  {
+   "n": "13.3.1",
+   "title": "Position of the Earth: the habitable zone and a nearly circular orbit",
+   "labs": [
+    "c08-science-hecu1-ch13-orbit"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3.2",
+   "title": "Size of the Earth: gravity that holds the atmosphere",
+   "labs": [
+    "c08-science-hecu1-ch13-gravity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3.3",
+   "title": "Magnetic field of the Earth",
+   "labs": [
+    "c08-science-hecu1-ch13-shield"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4",
+   "title": "What allows life to be sustained? The four spheres working together",
+   "labs": [
+    "c08-science-hecu1-ch13-spheres"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4.1",
+   "title": "Air, water and sunlight; the ozone layer",
+   "labs": [
+    "c08-science-hecu1-ch13-ozone"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4.2",
+   "title": "Soil, rocks and minerals",
+   "labs": [],
+   "why_no_lab": "Sorted with the other spheres in the 13.4 lab; soil profiles are best shown as a cut-away photo."
+  },
+  {
+   "n": "13.4.3",
+   "title": "Plants, animals and microorganisms",
+   "labs": [],
+   "why_no_lab": "Their roles were done in the food chain and decomposer labs of Chapter 12 and the spheres lab here."
+  },
+  {
+   "n": "13.4.4",
+   "title": "The importance of balance",
+   "labs": [],
+   "why_no_lab": "The balance idea is played out in the pond population lab of Chapter 12 (12.7) and summed up in the spheres lab."
+  },
+  {
+   "n": "13.5",
+   "title": "What keeps life from disappearing? Reproduction",
+   "labs": [
+    "c08-science-hecu1-ch13-reproduce"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.5.1",
+   "title": "Asexual reproduction",
+   "labs": [],
+   "why_no_lab": "Cuttings, potato eyes and ginger are grown for real in Activity 13.3; the sorting lab of 13.5 and the yeast lab of Chapter 2 cover the idea."
+  },
+  {
+   "n": "13.5.2",
+   "title": "Sexual reproduction: pollination, fertilisation, development inside or outside the body",
+   "labs": [
+    "c08-science-hecu1-ch13-flower"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.6",
+   "title": "What are the threats to life on Earth? The triple planetary crisis",
+   "labs": [
+    "c08-science-hecu1-ch13-threats"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-science-hecu1-ch13-planets",
+   "topic": "13.2",
+   "template": "sky",
+   "title": {
+    "en": "Our neighbours in space",
+    "hi": "अंतरिक्ष में हमारे पड़ोसी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "solar-system"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "planet:venus",
+     "expect": "picked:venus",
+     "say": {
+      "en": "Tap Venus, the planet just inside Earth's orbit.",
+      "hi": "शुक्र छुओ, जो पृथ्वी की कक्षा के ठीक अंदर है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "planet:mars",
+     "expect": "picked:mars",
+     "say": {
+      "en": "Now tap Mars, just outside Earth's orbit.",
+      "hi": "अब मंगल छुओ, जो पृथ्वी की कक्षा के ठीक बाहर है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Venus is closer to the Sun and Mars is farther. Can either of them have oceans of liquid water today?",
+      "hi": "शुक्र सूरज के ज़्यादा पास है और मंगल दूर। क्या आज इनमें से किसी पर तरल पानी के महासागर हो सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "neither",
+       "en": "Neither: Venus is far too hot and Mars too cold",
+       "hi": "किसी पर नहीं: शुक्र बहुत गर्म और मंगल बहुत ठंडा है"
+      },
+      {
+       "id": "venus",
+       "en": "Venus, it is warm",
+       "hi": "शुक्र पर, वह गर्म है"
+      },
+      {
+       "id": "mars",
+       "en": "Mars, it is red",
+       "hi": "मंगल पर, वह लाल है"
+      }
+     ],
+     "answer": "neither"
+    },
+    {
+     "kind": "do",
+     "target": "planet:earth",
+     "expect": "picked:earth",
+     "say": {
+      "en": "Tap the Earth.",
+      "hi": "पृथ्वी को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Of all the planets, only the Earth is known to support life. Venus has a thick carbon dioxide atmosphere that traps heat, making it hotter than Mercury. Mars has a very thin atmosphere and is cold. The giant planets are made mostly of gas. The Earth has liquid water, air with oxygen and a comfortable temperature.",
+      "hi": "सभी ग्रहों में केवल पृथ्वी पर जीवन ज्ञात है। शुक्र का कार्बन डाइऑक्साइड वाला घना वायुमंडल ऊष्मा रोकता है, जिससे वह बुध से भी गर्म है। मंगल का वायुमंडल बहुत पतला है और वह ठंडा है। बड़े ग्रह ज़्यादातर गैस से बने हैं। पृथ्वी पर तरल पानी, ऑक्सीजन वाली हवा और आरामदायक तापमान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is Venus hotter than Mercury, though Mercury is closer to the Sun?",
+        "hi": "बुध सूरज के ज़्यादा पास है, फिर भी शुक्र उससे गर्म क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Its thick atmosphere traps heat",
+         "hi": "इसका घना वायुमंडल ऊष्मा रोक लेता है"
+        },
+        {
+         "en": "It is bigger than the Sun",
+         "hi": "यह सूरज से बड़ा है"
+        },
+        {
+         "en": "It has many moons",
+         "hi": "इसके कई चंद्रमा हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A thick blanket of carbon dioxide keeps the heat in.",
+        "hi": "कार्बन डाइऑक्साइड की घनी चादर ऊष्मा को अंदर रखती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No planet is bigger than the Sun.",
+         "hi": "कोई ग्रह सूरज से बड़ा नहीं है।"
+        },
+        {
+         "en": "Venus has no moon at all.",
+         "hi": "शुक्र का कोई चंद्रमा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap each planet and read about its size and temperature. Turn on the scale view: how small is the Earth next to Jupiter?",
+      "hi": "हर ग्रह छूकर उसके आकार और तापमान के बारे में पढ़ो। पैमाना दृश्य चालू करो: बृहस्पति के आगे पृथ्वी कितनी छोटी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch13-orbit",
+   "topic": "13.3.1",
+   "template": "sky",
+   "title": {
+    "en": "Not too hot, not too cold",
+    "hi": "न बहुत गर्म, न बहुत ठंडा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "orbits"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "planet:earth",
+     "expect": "picked:earth",
+     "say": {
+      "en": "Pick the Earth's orbit.",
+      "hi": "पृथ्वी की कक्षा चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "orbit",
+     "say": {
+      "en": "Press Play and watch the Earth go once round the Sun.",
+      "hi": "चलाओ दबाओ और पृथ्वी को सूरज का एक चक्कर लगाते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Halley's comet has a long, stretched orbit. What happens to its distance from the Sun?",
+      "hi": "हैली धूमकेतु की कक्षा लंबी और खिंची हुई है। सूरज से उसकी दूरी का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "changes",
+       "en": "It changes a lot: very close, then very far",
+       "hi": "बहुत बदलती है: बहुत पास, फिर बहुत दूर"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वैसी ही रहती है"
+      }
+     ],
+     "answer": "changes"
+    },
+    {
+     "kind": "do",
+     "target": "planet:halley",
+     "expect": "picked:halley",
+     "say": {
+      "en": "Pick Halley's comet and compare.",
+      "hi": "हैली धूमकेतु चुनो और तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Earth orbits the Sun at a distance where it is neither too hot nor too cold, so water stays liquid. This region is the habitable or Goldilocks zone. Its orbit is nearly a circle, so its distance from the Sun hardly changes and no part of the year becomes deadly hot or cold. A stretched orbit like a comet's would swing between scorching and freezing.",
+      "hi": "पृथ्वी सूरज से ऐसी दूरी पर घूमती है जहाँ न बहुत गर्मी है न बहुत ठंड, इसलिए पानी तरल रहता है। इस क्षेत्र को रहने योग्य या गोल्डीलॉक्स क्षेत्र कहते हैं। इसकी कक्षा लगभग गोल है, इसलिए सूरज से दूरी लगभग नहीं बदलती और साल का कोई भाग जानलेवा गर्म या ठंडा नहीं होता। धूमकेतु जैसी खिंची कक्षा झुलसाती गर्मी और जमाती ठंड के बीच झूलती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the habitable zone?",
+        "hi": "रहने योग्य क्षेत्र क्या है?"
+       },
+       "options": [
+        {
+         "en": "The distance from a star where water can stay liquid",
+         "hi": "तारे से वह दूरी जहाँ पानी तरल रह सके"
+        },
+        {
+         "en": "The hottest part of the Sun",
+         "hi": "सूरज का सबसे गर्म भाग"
+        },
+        {
+         "en": "Any place with rocks",
+         "hi": "चट्टानों वाली कोई भी जगह"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Too close, water boils away; too far, it freezes.",
+        "hi": "बहुत पास, पानी उबलकर उड़ जाता है; बहुत दूर, जम जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing can live in the Sun.",
+         "hi": "सूरज में कुछ नहीं जी सकता।"
+        },
+        {
+         "en": "Mars has rocks but is too cold for liquid water today.",
+         "hi": "मंगल पर चट्टानें हैं पर आज तरल पानी के लिए वह बहुत ठंडा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick Mercury, Venus and Mars and watch their orbits. Which one has the most stretched orbit after the comet?",
+      "hi": "बुध, शुक्र और मंगल चुनकर उनकी कक्षाएँ देखो। धूमकेतु के बाद किसकी कक्षा सबसे ज़्यादा खिंची है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch13-gravity",
+   "topic": "13.3.2",
+   "template": "forces",
+   "title": {
+    "en": "Gravity holds our air",
+    "hi": "गुरुत्व हमारी हवा थामे रखता है"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "gravity",
+    "object": "moon"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You drop a ball from 20 m on the Moon. Compared with the Earth, it falls ___.",
+      "hi": "तुम चंद्रमा पर 20 m से गेंद गिराते हो। पृथ्वी की तुलना में यह ___ गिरेगी।"
+     },
+     "options": [
+      {
+       "id": "slower",
+       "en": "more slowly: the Moon's pull is weaker",
+       "hi": "धीरे: चंद्रमा का खिंचाव कमज़ोर है"
+      },
+      {
+       "id": "faster",
+       "en": "faster",
+       "hi": "तेज़"
+      },
+      {
+       "id": "same",
+       "en": "at the same speed",
+       "hi": "उसी गति से"
+      }
+     ],
+     "answer": "slower"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "stopped",
+     "say": {
+      "en": "Drop the ball on the Moon and watch it land.",
+      "hi": "चंद्रमा पर गेंद गिराओ और उसे गिरते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Moon's gravity is only about one-sixth of the Earth's, so the ball falls slowly. Such weak gravity cannot hold on to air, so the Moon has no atmosphere. The Earth's size gives it just enough gravity to keep its atmosphere, but not so much that living things would be crushed by their own weight.",
+      "hi": "चंद्रमा का गुरुत्व पृथ्वी का केवल लगभग छठा भाग है, इसलिए गेंद धीरे गिरती है। इतना कमज़ोर गुरुत्व हवा को नहीं थाम सकता, इसलिए चंद्रमा पर वायुमंडल नहीं है। पृथ्वी के आकार से उसे इतना गुरुत्व मिलता है कि वायुमंडल बना रहे, पर इतना नहीं कि जीव अपने ही भार से कुचल जाएँ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why has the Moon no air?",
+        "hi": "चंद्रमा पर हवा क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "Its gravity is too weak to hold gases",
+         "hi": "उसका गुरुत्व गैसों को थामने के लिए बहुत कमज़ोर है"
+        },
+        {
+         "en": "It is too close to the Sun",
+         "hi": "वह सूरज के बहुत पास है"
+        },
+        {
+         "en": "Plants used it all up",
+         "hi": "पौधों ने सारी हवा ख़त्म कर दी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gas particles move fast and escape a small body with weak gravity.",
+        "hi": "गैस के कण तेज़ चलते हैं और कमज़ोर गुरुत्व वाले छोटे पिंड से निकल भागते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Moon is the same distance from the Sun as the Earth.",
+         "hi": "चंद्रमा सूरज से लगभग उतनी ही दूर है जितनी पृथ्वी।"
+        },
+        {
+         "en": "There are no plants on the Moon.",
+         "hi": "चंद्रमा पर कोई पौधे नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose the Earth and Jupiter and drop the ball again. Which world pulls hardest? Compare the fall times.",
+      "hi": "पृथ्वी और बृहस्पति चुनकर फिर गेंद गिराओ। कौन-सी दुनिया सबसे ज़्यादा खींचती है? गिरने के समय की तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch13-shield",
+   "topic": "13.3.3",
+   "template": "field",
+   "title": {
+    "en": "The Earth is a giant magnet",
+    "hi": "पृथ्वी एक विशाल चुंबक है"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "source": "earth",
+    "show": "compass"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why does a compass needle point north almost everywhere on Earth?",
+      "hi": "पृथ्वी पर लगभग हर जगह कंपास की सुई उत्तर की ओर क्यों रहती है?"
+     },
+     "options": [
+      {
+       "id": "field",
+       "en": "The Earth has a magnetic field",
+       "hi": "पृथ्वी का चुंबकीय क्षेत्र है"
+      },
+      {
+       "id": "wind",
+       "en": "The wind blows it",
+       "hi": "हवा उसे घुमाती है"
+      },
+      {
+       "id": "sun",
+       "en": "It points to the Sun",
+       "hi": "वह सूरज की ओर इशारा करती है"
+      }
+     ],
+     "answer": "field"
+    },
+    {
+     "kind": "do",
+     "target": "sprinkle",
+     "expect": "lines",
+     "say": {
+      "en": "Sprinkle iron filings to see the Earth's magnetic field.",
+      "hi": "पृथ्वी का चुंबकीय क्षेत्र देखने के लिए लोहे का बुरादा छिड़को।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "compass",
+     "expect": "moved",
+     "say": {
+      "en": "Drag the compass to another place around the Earth.",
+      "hi": "कंपास को पृथ्वी के चारों ओर किसी दूसरी जगह खींचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Earth behaves like a huge magnet, with a magnetic field around it, so a compass lines up with it. This field also acts like a shield: it turns away streams of high-energy particles from the Sun that would otherwise hit the Earth and harm life. Near the poles these particles make the glowing auroras.",
+      "hi": "पृथ्वी एक विशाल चुंबक की तरह व्यवहार करती है, जिसके चारों ओर चुंबकीय क्षेत्र है, इसलिए कंपास उसके साथ सीधा हो जाता है। यह क्षेत्र एक ढाल की तरह भी है: यह सूरज से आने वाले उच्च ऊर्जा कणों की धाराओं को मोड़ देता है जो वरना पृथ्वी से टकराकर जीवन को हानि पहुँचाते। ध्रुवों के पास ये कण चमकते ध्रुवीय प्रकाश बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How does the Earth's magnetic field protect life?",
+        "hi": "पृथ्वी का चुंबकीय क्षेत्र जीवन की रक्षा कैसे करता है?"
+       },
+       "options": [
+        {
+         "en": "It turns away high-energy particles from space",
+         "hi": "यह अंतरिक्ष से आने वाले उच्च ऊर्जा कणों को मोड़ देता है"
+        },
+        {
+         "en": "It makes rain",
+         "hi": "यह बारिश करता है"
+        },
+        {
+         "en": "It gives us oxygen",
+         "hi": "यह हमें ऑक्सीजन देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The field deflects charged particles before they reach the surface.",
+        "hi": "क्षेत्र आवेशित कणों को सतह तक पहुँचने से पहले मोड़ देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rain comes from the water cycle, not magnetism.",
+         "hi": "बारिश जल चक्र से होती है, चुंबकत्व से नहीं।"
+        },
+        {
+         "en": "Oxygen comes from plants and algae.",
+         "hi": "ऑक्सीजन पौधों और शैवालों से आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch to the field-lines view and drag the compass near each pole. Where are the lines closest together?",
+      "hi": "क्षेत्र-रेखाओं वाला दृश्य चुनो और कंपास को हर ध्रुव के पास खींचो। रेखाएँ कहाँ सबसे पास-पास हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch13-spheres",
+   "topic": "13.4",
+   "template": "sort",
+   "title": {
+    "en": "Air, water, rock and life",
+    "hi": "हवा, पानी, चट्टान और जीवन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "atmo",
+      "label": {
+       "en": "Atmosphere: air",
+       "hi": "वायुमंडल: हवा"
+      }
+     },
+     {
+      "id": "hydro",
+      "label": {
+       "en": "Hydrosphere: water",
+       "hi": "जलमंडल: पानी"
+      }
+     },
+     {
+      "id": "geo",
+      "label": {
+       "en": "Geosphere: solid Earth",
+       "hi": "भूमंडल: ठोस पृथ्वी"
+      }
+     },
+     {
+      "id": "bio",
+      "label": {
+       "en": "Biosphere: life",
+       "hi": "जीवमंडल: जीवन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ozone",
+      "text": {
+       "en": "Ozone layer",
+       "hi": "ओज़ोन परत"
+      },
+      "bin": "atmo",
+      "why": {
+       "en": "Ozone high in the air blocks harmful ultraviolet rays.",
+       "hi": "ऊँचाई पर हवा में ओज़ोन हानिकारक पराबैंगनी किरणें रोकती है।"
+      }
+     },
+     {
+      "id": "oxygen",
+      "text": {
+       "en": "Oxygen we breathe",
+       "hi": "जो ऑक्सीजन हम साँस में लेते हैं"
+      },
+      "bin": "atmo",
+      "why": {
+       "en": "Oxygen is a gas in the air.",
+       "hi": "ऑक्सीजन हवा की एक गैस है।"
+      }
+     },
+     {
+      "id": "ganga",
+      "text": {
+       "en": "The Ganga river",
+       "hi": "गंगा नदी"
+      },
+      "bin": "hydro",
+      "why": {
+       "en": "Rivers are part of the Earth's water.",
+       "hi": "नदियाँ पृथ्वी के पानी का हिस्सा हैं।"
+      }
+     },
+     {
+      "id": "glacier",
+      "text": {
+       "en": "Himalayan glaciers",
+       "hi": "हिमालय के हिमनद"
+      },
+      "bin": "hydro",
+      "why": {
+       "en": "Ice is frozen water, part of the hydrosphere.",
+       "hi": "बर्फ़ जमा हुआ पानी है, जलमंडल का हिस्सा।"
+      }
+     },
+     {
+      "id": "soil",
+      "text": {
+       "en": "Soil in a field",
+       "hi": "खेत की मिट्टी"
+      },
+      "bin": "geo",
+      "why": {
+       "en": "Soil forms from rocks broken down over time.",
+       "hi": "मिट्टी समय के साथ टूटी चट्टानों से बनती है।"
+      }
+     },
+     {
+      "id": "minerals",
+      "text": {
+       "en": "Rocks and minerals",
+       "hi": "चट्टानें और खनिज"
+      },
+      "bin": "geo",
+      "why": {
+       "en": "They make up the solid part of the Earth.",
+       "hi": "ये पृथ्वी का ठोस भाग बनाते हैं।"
+      }
+     },
+     {
+      "id": "forest",
+      "text": {
+       "en": "A forest with its animals",
+       "hi": "अपने जंतुओं समेत एक वन"
+      },
+      "bin": "bio",
+      "why": {
+       "en": "All living things together form the biosphere.",
+       "hi": "सभी जीव मिलकर जीवमंडल बनाते हैं।"
+      }
+     },
+     {
+      "id": "microbes",
+      "text": {
+       "en": "Microbes in the soil",
+       "hi": "मिट्टी के सूक्ष्मजीव"
+      },
+      "bin": "bio",
+      "why": {
+       "en": "Microbes are living, so they belong to the biosphere.",
+       "hi": "सूक्ष्मजीव सजीव हैं, इसलिए जीवमंडल में आते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ozone",
+     "expect": "correct:ozone",
+     "say": {
+      "en": "Tap the ozone layer, then its sphere.",
+      "hi": "ओज़ोन परत छुओ, फिर उसका मंडल।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:ganga",
+     "expect": "correct:ganga",
+     "say": {
+      "en": "Now place the Ganga river.",
+      "hi": "अब गंगा नदी रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Microbes live in the soil. Do they belong to the geosphere or the biosphere?",
+      "hi": "सूक्ष्मजीव मिट्टी में रहते हैं। वे भूमंडल में आते हैं या जीवमंडल में?"
+     },
+     "options": [
+      {
+       "id": "bio",
+       "en": "Biosphere: they are alive",
+       "hi": "जीवमंडल: वे सजीव हैं"
+      },
+      {
+       "id": "geo",
+       "en": "Geosphere: they are in soil",
+       "hi": "भूमंडल: वे मिट्टी में हैं"
+      }
+     ],
+     "answer": "bio"
+    },
+    {
+     "kind": "do",
+     "target": "card:microbes",
+     "expect": "correct:microbes",
+     "say": {
+      "en": "Place the soil microbes.",
+      "hi": "मिट्टी के सूक्ष्मजीव रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Life on Earth is sustained by four parts working together: the atmosphere (air, with oxygen and an ozone layer that blocks ultraviolet rays), the hydrosphere (oceans, rivers, ice), the geosphere (rocks, soil and minerals) and the biosphere (all life). Plants, animals and microbes link them: plants give oxygen, microbes recycle nutrients. Keeping this balance keeps life going.",
+      "hi": "पृथ्वी पर जीवन चार भागों के साथ काम करने से चलता है: वायुमंडल (हवा, ऑक्सीजन और पराबैंगनी किरणें रोकने वाली ओज़ोन परत), जलमंडल (महासागर, नदियाँ, बर्फ़), भूमंडल (चट्टानें, मिट्टी और खनिज) और जीवमंडल (सारा जीवन)। पौधे, जंतु और सूक्ष्मजीव इन्हें जोड़ते हैं: पौधे ऑक्सीजन देते हैं, सूक्ष्मजीव पोषक तत्वों का पुनर्चक्रण करते हैं। यह संतुलन बनाए रखने से जीवन चलता रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the ozone layer do for life?",
+        "hi": "ओज़ोन परत जीवन के लिए क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "Blocks harmful ultraviolet rays from the Sun",
+         "hi": "सूरज की हानिकारक पराबैंगनी किरणें रोकती है"
+        },
+        {
+         "en": "Makes rain",
+         "hi": "बारिश करती है"
+        },
+        {
+         "en": "Gives food to plants",
+         "hi": "पौधों को भोजन देती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ozone absorbs most UV rays, which can damage skin, eyes and living cells.",
+        "hi": "ओज़ोन ज़्यादातर पराबैंगनी किरणें सोख लेती है, जो त्वचा, आँखों और कोशिकाओं को नुक़सान पहुँचा सकती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rain comes from clouds lower down, in the water cycle.",
+         "hi": "बारिश नीचे के बादलों से, जल चक्र में होती है।"
+        },
+        {
+         "en": "Plants make their own food from sunlight, water and carbon dioxide.",
+         "hi": "पौधे धूप, पानी और कार्बन डाइऑक्साइड से अपना भोजन ख़ुद बनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again. Then pick one card and name how it links to another sphere, for example glaciers feed the Ganga, which waters the fields.",
+      "hi": "फिर से छाँटो। फिर कोई एक कार्ड चुनकर बताओ कि वह दूसरे मंडल से कैसे जुड़ता है, जैसे हिमनद गंगा को पानी देते हैं, जो खेतों को सींचती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch13-ozone",
+   "topic": "13.4.1",
+   "template": "earth",
+   "title": {
+    "en": "The blanket of air",
+    "hi": "हवा की चादर"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "atmosphere-layers"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:troposphere",
+     "expect": "revealed:troposphere",
+     "say": {
+      "en": "Tap the lowest layer of air, where we live.",
+      "hi": "हवा की सबसे निचली परत छुओ, जहाँ हम रहते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Higher up there is a layer rich in ozone. What does it do?",
+      "hi": "ऊपर ओज़ोन से भरपूर एक परत है। यह क्या करती है?"
+     },
+     "options": [
+      {
+       "id": "uv",
+       "en": "Absorbs harmful ultraviolet rays",
+       "hi": "हानिकारक पराबैंगनी किरणें सोखती है"
+      },
+      {
+       "id": "rain",
+       "en": "Makes all the rain",
+       "hi": "सारी बारिश करती है"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing important",
+       "hi": "कुछ ख़ास नहीं"
+      }
+     ],
+     "answer": "uv"
+    },
+    {
+     "kind": "do",
+     "target": "layer:ozone",
+     "expect": "revealed:ozone",
+     "say": {
+      "en": "Tap the ozone layer.",
+      "hi": "ओज़ोन परत छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:stratosphere",
+     "expect": "revealed:stratosphere",
+     "say": {
+      "en": "Tap the layer that holds the ozone.",
+      "hi": "वह परत छुओ जिसमें ओज़ोन है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The atmosphere is a blanket of air around the Earth. The lowest layer, the troposphere, has the air we breathe and all our weather. Above it, the stratosphere holds the ozone layer, which absorbs most of the Sun's ultraviolet rays. Air also keeps the Earth warm at night, and, with water and sunlight, makes life possible.",
+      "hi": "वायुमंडल पृथ्वी के चारों ओर हवा की चादर है। सबसे निचली परत, क्षोभमंडल, में वह हवा है जिसमें हम साँस लेते हैं और सारा मौसम होता है। उसके ऊपर समतापमंडल में ओज़ोन परत है, जो सूरज की ज़्यादातर पराबैंगनी किरणें सोख लेती है। हवा रात में पृथ्वी को गर्म भी रखती है, और पानी व धूप के साथ जीवन संभव बनाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does all our weather happen?",
+        "hi": "हमारा सारा मौसम कहाँ होता है?"
+       },
+       "options": [
+        {
+         "en": "In the troposphere, the lowest layer",
+         "hi": "क्षोभमंडल में, सबसे निचली परत"
+        },
+        {
+         "en": "In the ozone layer",
+         "hi": "ओज़ोन परत में"
+        },
+        {
+         "en": "In outer space",
+         "hi": "बाहरी अंतरिक्ष में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Clouds, rain and storms form in the lowest layer.",
+        "hi": "बादल, बारिश और तूफ़ान सबसे निचली परत में बनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The ozone layer is higher up, above the weather.",
+         "hi": "ओज़ोन परत ऊपर है, मौसम के ऊपर।"
+        },
+        {
+         "en": "Space has no air, so no weather.",
+         "hi": "अंतरिक्ष में हवा नहीं, इसलिए मौसम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the altitude slider up and read the temperature and air at each height. Where do planes fly?",
+      "hi": "ऊँचाई वाला स्लाइडर ऊपर खींचो और हर ऊँचाई का तापमान और हवा पढ़ो। विमान कहाँ उड़ते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch13-reproduce",
+   "topic": "13.5",
+   "template": "sort",
+   "title": {
+    "en": "One parent or two?",
+    "hi": "एक जनक या दो?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "asex",
+      "label": {
+       "en": "Asexual: one parent",
+       "hi": "अलैंगिक: एक जनक"
+      }
+     },
+     {
+      "id": "sex",
+      "label": {
+       "en": "Sexual: two parents",
+       "hi": "लैंगिक: दो जनक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "money",
+      "text": {
+       "en": "Money plant from a stem cutting",
+       "hi": "तने की कटिंग से मनी प्लांट"
+      },
+      "bin": "asex",
+      "why": {
+       "en": "A piece of one plant grows into a new plant, an exact copy.",
+       "hi": "एक पौधे का टुकड़ा नया पौधा बनता है, बिल्कुल वैसा ही।"
+      }
+     },
+     {
+      "id": "potato",
+      "text": {
+       "en": "Potato from the \"eyes\"",
+       "hi": "आलू की \"आँखों\" से आलू"
+      },
+      "bin": "asex",
+      "why": {
+       "en": "Buds on the potato sprout into new plants.",
+       "hi": "आलू की कलिकाएँ फूटकर नए पौधे बनती हैं।"
+      }
+     },
+     {
+      "id": "ginger",
+      "text": {
+       "en": "Ginger from a piece of rhizome",
+       "hi": "प्रकंद के टुकड़े से अदरक"
+      },
+      "bin": "asex",
+      "why": {
+       "en": "A piece of the underground stem grows a new plant.",
+       "hi": "भूमिगत तने का टुकड़ा नया पौधा उगाता है।"
+      }
+     },
+     {
+      "id": "yeastbud",
+      "text": {
+       "en": "Yeast budding",
+       "hi": "यीस्ट में मुकुलन"
+      },
+      "bin": "asex",
+      "why": {
+       "en": "A bud grows out of one cell and separates.",
+       "hi": "एक कोशिका से कलिका निकलकर अलग हो जाती है।"
+      }
+     },
+     {
+      "id": "mango",
+      "text": {
+       "en": "Mango tree from a seed",
+       "hi": "बीज से आम का पेड़"
+      },
+      "bin": "sex",
+      "why": {
+       "en": "A seed forms after pollination and fertilisation in a flower.",
+       "hi": "फूल में परागण और निषेचन के बाद बीज बनता है।"
+      }
+     },
+     {
+      "id": "frog",
+      "text": {
+       "en": "Frog from eggs laid in water",
+       "hi": "पानी में दिए अंडों से मेंढक"
+      },
+      "bin": "sex",
+      "why": {
+       "en": "Eggs and sperm join outside the body, in water.",
+       "hi": "अंडाणु और शुक्राणु शरीर के बाहर, पानी में मिलते हैं।"
+      }
+     },
+     {
+      "id": "hen",
+      "text": {
+       "en": "Chick from a hen's egg",
+       "hi": "मुर्गी के अंडे से चूज़ा"
+      },
+      "bin": "sex",
+      "why": {
+       "en": "Fertilisation happens inside the hen's body.",
+       "hi": "निषेचन मुर्गी के शरीर के अंदर होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:money",
+     "expect": "correct:money",
+     "say": {
+      "en": "Tap the money plant cutting, then its group.",
+      "hi": "मनी प्लांट की कटिंग छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:mango",
+     "expect": "correct:mango",
+     "say": {
+      "en": "Now place the mango tree from a seed.",
+      "hi": "अब बीज से आम का पेड़ रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A plant grown from a cutting is compared with its parent. How alike will they be?",
+      "hi": "कटिंग से उगे पौधे की तुलना उसके जनक से की जाती है। वे कितने एक जैसे होंगे?"
+     },
+     "options": [
+      {
+       "id": "copy",
+       "en": "An exact copy",
+       "hi": "बिल्कुल एक जैसे"
+      },
+      {
+       "id": "mix",
+       "en": "A mix of two parents",
+       "hi": "दो जनकों का मेल"
+      },
+      {
+       "id": "different",
+       "en": "Completely different",
+       "hi": "पूरी तरह अलग"
+      }
+     ],
+     "answer": "copy"
+    },
+    {
+     "kind": "do",
+     "target": "card:potato",
+     "expect": "correct:potato",
+     "say": {
+      "en": "Place the potato.",
+      "hi": "आलू रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Reproduction keeps life going. In asexual reproduction a single parent produces new individuals that are exact copies, by budding, cuttings, potato eyes or rhizomes. In sexual reproduction two parents are involved, so the young get a mix of features and new features can appear. Fertilisation happens outside the body in frogs and fish, and inside in hens and humans.",
+      "hi": "प्रजनन से जीवन चलता रहता है। अलैंगिक प्रजनन में एक ही जनक बिल्कुल अपने जैसे नए जीव बनाता है, मुकुलन, कटिंग, आलू की आँखों या प्रकंद से। लैंगिक प्रजनन में दो जनक होते हैं, इसलिए संतान में गुणों का मेल होता है और नए गुण आ सकते हैं। मेंढक और मछली में निषेचन शरीर के बाहर होता है, और मुर्गी और मनुष्य में अंदर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can sexual reproduction help a species survive changes over time?",
+        "hi": "लैंगिक प्रजनन समय के साथ बदलावों में जाति को बचाए रखने में कैसे मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "It brings new combinations of features",
+         "hi": "इससे गुणों के नए मेल आते हैं"
+        },
+        {
+         "en": "It makes exact copies",
+         "hi": "यह बिल्कुल प्रतियाँ बनाता है"
+        },
+        {
+         "en": "It needs no parents",
+         "hi": "इसमें जनक की ज़रूरत नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mixing features from two parents gives variety; some may suit new conditions.",
+        "hi": "दो जनकों के गुण मिलने से विविधता आती है; कुछ नई परिस्थितियों के अनुकूल हो सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Exact copies come from asexual reproduction.",
+         "hi": "बिल्कुल प्रतियाँ अलैंगिक प्रजनन से बनती हैं।"
+        },
+        {
+         "en": "Sexual reproduction needs two parents.",
+         "hi": "लैंगिक प्रजनन में दो जनक चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again. Then with an adult, plant a money plant cutting in water and a potato eye in soil. Note the days until roots or shoots appear.",
+      "hi": "फिर से छाँटो। फिर किसी बड़े के साथ पानी में मनी प्लांट की कटिंग और मिट्टी में आलू की आँख लगाओ। जड़ या अंकुर आने तक के दिन लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch13-flower",
+   "topic": "13.5.2",
+   "template": "plant",
+   "title": {
+    "en": "From flower to seed",
+    "hi": "फूल से बीज तक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "flower",
+    "plant": "hibiscus"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:anther",
+     "expect": "identified:anther",
+     "say": {
+      "en": "Tap the anther, where pollen is made.",
+      "hi": "परागकोश छुओ, जहाँ पराग बनता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:stigma",
+     "expect": "identified:stigma",
+     "say": {
+      "en": "Tap the stigma, the sticky tip that catches pollen.",
+      "hi": "वर्तिकाग्र छुओ, वह चिपचिपा सिरा जो पराग पकड़ता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bee carries pollen from the anther to the stigma. What will grow inside the ovary?",
+      "hi": "मधुमक्खी पराग को परागकोश से वर्तिकाग्र तक ले जाती है। अंडाशय के अंदर क्या बनेगा?"
+     },
+     "options": [
+      {
+       "id": "seeds",
+       "en": "Seeds, after fertilisation",
+       "hi": "निषेचन के बाद बीज"
+      },
+      {
+       "id": "leaves",
+       "en": "New leaves",
+       "hi": "नई पत्तियाँ"
+      },
+      {
+       "id": "roots",
+       "en": "Roots",
+       "hi": "जड़ें"
+      }
+     ],
+     "answer": "seeds"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "pollinated",
+     "say": {
+      "en": "Press Play to watch pollination.",
+      "hi": "परागण देखने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In sexual reproduction in plants, pollen from the anther reaches the stigma; this is pollination, often done by bees and wind. A pollen tube grows down to the ovule, and the male and female cells join: fertilisation. The ovule becomes a seed and the ovary a fruit. A seed carries features from both parents.",
+      "hi": "पौधों में लैंगिक प्रजनन में परागकोश का पराग वर्तिकाग्र तक पहुँचता है; यह परागण है, जो अक्सर मधुमक्खियाँ और हवा करती हैं। एक पराग नली बीजांड तक बढ़ती है, और नर और मादा कोशिकाएँ मिलती हैं: निषेचन। बीजांड बीज बनता है और अंडाशय फल। बीज में दोनों जनकों के गुण होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part of the flower becomes the fruit?",
+        "hi": "फूल का कौन-सा भाग फल बनता है?"
+       },
+       "options": [
+        {
+         "en": "Ovary",
+         "hi": "अंडाशय"
+        },
+        {
+         "en": "Petal",
+         "hi": "पंखुड़ी"
+        },
+        {
+         "en": "Anther",
+         "hi": "परागकोश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After fertilisation the ovary swells into the fruit, with seeds inside.",
+        "hi": "निषेचन के बाद अंडाशय फूलकर फल बनता है, जिसके अंदर बीज होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Petals attract insects and usually fall off.",
+         "hi": "पंखुड़ियाँ कीटों को आकर्षित करती हैं और आमतौर पर गिर जाती हैं।"
+        },
+        {
+         "en": "The anther makes pollen and later dries up.",
+         "hi": "परागकोश पराग बनाता है और बाद में सूख जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap every part and read its job. Then press Play again to follow the pollen tube to the ovule.",
+      "hi": "हर भाग छूकर उसका काम पढ़ो। फिर से चलाओ दबाकर पराग नली को बीजांड तक जाते देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch13-threats",
+   "topic": "13.6",
+   "template": "sort",
+   "title": {
+    "en": "The triple planetary crisis",
+    "hi": "तिहरा ग्रहीय संकट"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "climate",
+      "label": {
+       "en": "Climate change",
+       "hi": "जलवायु परिवर्तन"
+      }
+     },
+     {
+      "id": "bio",
+      "label": {
+       "en": "Biodiversity loss",
+       "hi": "जैव विविधता की हानि"
+      }
+     },
+     {
+      "id": "pollution",
+      "label": {
+       "en": "Pollution",
+       "hi": "प्रदूषण"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "heat",
+      "text": {
+       "en": "Hotter summers and heat waves",
+       "hi": "ज़्यादा गर्म गर्मियाँ और लू"
+      },
+      "bin": "climate",
+      "why": {
+       "en": "Extra greenhouse gases trap more heat.",
+       "hi": "अतिरिक्त ग्रीनहाउस गैसें ज़्यादा ऊष्मा रोकती हैं।"
+      }
+     },
+     {
+      "id": "melt",
+      "text": {
+       "en": "Melting glaciers",
+       "hi": "पिघलते हिमनद"
+      },
+      "bin": "climate",
+      "why": {
+       "en": "A warmer Earth melts ice faster.",
+       "hi": "गर्म पृथ्वी बर्फ़ को तेज़ी से पिघलाती है।"
+      }
+     },
+     {
+      "id": "cut",
+      "text": {
+       "en": "Forests cut for new roads",
+       "hi": "नई सड़कों के लिए कटते वन"
+      },
+      "bin": "bio",
+      "why": {
+       "en": "Animals and plants lose their habitats.",
+       "hi": "जंतु और पौधे अपने आवास खो देते हैं।"
+      }
+     },
+     {
+      "id": "sparrow",
+      "text": {
+       "en": "Fewer sparrows and bees",
+       "hi": "कम होती गौरैया और मधुमक्खियाँ"
+      },
+      "bin": "bio",
+      "why": {
+       "en": "Losing species weakens food webs and pollination.",
+       "hi": "जातियाँ घटने से आहार जाल और परागण कमज़ोर होते हैं।"
+      }
+     },
+     {
+      "id": "smog",
+      "text": {
+       "en": "Smog over cities in winter",
+       "hi": "सर्दियों में शहरों पर धुंध"
+      },
+      "bin": "pollution",
+      "why": {
+       "en": "Smoke and dust make the air unsafe to breathe.",
+       "hi": "धुआँ और धूल हवा को साँस के लिए असुरक्षित बनाते हैं।"
+      }
+     },
+     {
+      "id": "plastic",
+      "text": {
+       "en": "Plastic in rivers and seas",
+       "hi": "नदियों और समुद्रों में प्लास्टिक"
+      },
+      "bin": "pollution",
+      "why": {
+       "en": "Plastic harms water life and does not rot.",
+       "hi": "प्लास्टिक जलीय जीवों को हानि पहुँचाता है और सड़ता नहीं।"
+      }
+     },
+     {
+      "id": "sewage",
+      "text": {
+       "en": "Sewage in a lake",
+       "hi": "झील में गंदा पानी"
+      },
+      "bin": "pollution",
+      "why": {
+       "en": "Dirty water spreads disease and kills fish.",
+       "hi": "गंदा पानी रोग फैलाता और मछलियाँ मारता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:heat",
+     "expect": "correct:heat",
+     "say": {
+      "en": "Tap hotter summers, then its group.",
+      "hi": "ज़्यादा गर्म गर्मियाँ छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:plastic",
+     "expect": "correct:plastic",
+     "say": {
+      "en": "Now place plastic in rivers.",
+      "hi": "अब नदियों में प्लास्टिक रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sparrows are becoming rare in many towns. Which crisis does that show?",
+      "hi": "कई शहरों में गौरैया कम होती जा रही है। यह किस संकट को दिखाता है?"
+     },
+     "options": [
+      {
+       "id": "bio",
+       "en": "Biodiversity loss",
+       "hi": "जैव विविधता की हानि"
+      },
+      {
+       "id": "climate",
+       "en": "Only climate change",
+       "hi": "केवल जलवायु परिवर्तन"
+      },
+      {
+       "id": "none",
+       "en": "No crisis",
+       "hi": "कोई संकट नहीं"
+      }
+     ],
+     "answer": "bio"
+    },
+    {
+     "kind": "do",
+     "target": "card:sparrow",
+     "expect": "correct:sparrow",
+     "say": {
+      "en": "Place the sparrows card.",
+      "hi": "गौरैया वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Climate change, biodiversity loss and pollution together are called the triple planetary crisis. They feed each other: cutting forests releases carbon dioxide and destroys habitats; a warmer climate stresses plants and animals; pollution harms living things and people. Human activities cause them, so human choices can also reduce them.",
+      "hi": "जलवायु परिवर्तन, जैव विविधता की हानि और प्रदूषण को मिलाकर तिहरा ग्रहीय संकट कहते हैं। ये एक-दूसरे को बढ़ाते हैं: वन काटने से कार्बन डाइऑक्साइड निकलती है और आवास नष्ट होते हैं; गर्म जलवायु पौधों और जंतुओं पर दबाव डालती है; प्रदूषण जीवों और लोगों को हानि पहुँचाता है। ये मनुष्य के कामों से होते हैं, इसलिए मनुष्य के फ़ैसले इन्हें घटा भी सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which action helps with all three crises at once?",
+        "hi": "कौन-सा काम तीनों संकटों में एक साथ मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "Planting and protecting native trees",
+         "hi": "देशी पेड़ लगाना और बचाना"
+        },
+        {
+         "en": "Burning garbage",
+         "hi": "कचरा जलाना"
+        },
+        {
+         "en": "Using more plastic bags",
+         "hi": "ज़्यादा प्लास्टिक थैलियाँ इस्तेमाल करना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Trees take in carbon dioxide, give homes to wildlife and clean the air.",
+        "hi": "पेड़ कार्बन डाइऑक्साइड लेते हैं, वन्यजीवों को घर देते हैं और हवा साफ़ करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Burning garbage adds smoke and greenhouse gases.",
+         "hi": "कचरा जलाने से धुआँ और ग्रीनहाउस गैसें बढ़ती हैं।"
+        },
+        {
+         "en": "More plastic adds to pollution and harms wildlife.",
+         "hi": "ज़्यादा प्लास्टिक प्रदूषण बढ़ाता और वन्यजीवों को हानि पहुँचाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again. Then make a list of five things your family can do this month to help, and tick them off as you do them.",
+      "hi": "फिर से छाँटो। फिर पाँच काम लिखो जो तुम्हारा परिवार इस महीने मदद के लिए कर सकता है, और करते-करते उन पर निशान लगाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "Hook of the chapter",
+   "shows": "The Earth seen from space with blue oceans, white clouds, the Indian subcontinent visible, and the thin glowing line of the atmosphere at the edge",
+   "view": "Realistic space render, sunlit half",
+   "right": "Atmosphere a thin blue band; India's outline as officially depicted",
+   "avoid": "Wrong borders, text"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "13.3.1",
+   "use": "The habitable zone",
+   "shows": "The Sun with planets Mercury to Mars on their orbits and a soft green band marking the habitable zone where the Earth lies",
+   "view": "Top-down, clean render, not to scale (stated in the caption)",
+   "right": "Earth inside the green band; Venus inside, Mars at the outer edge",
+   "avoid": "Labels inside the image"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "13.3.2",
+   "use": "Moon and Earth skies",
+   "shows": "Frame 1 an astronaut's boot print on the grey Moon under a black sky; frame 2 a green Indian field under a blue sky with clouds",
+   "view": "Ground-level views, same framing",
+   "right": "Moon sky black even in daylight; Earth sky blue",
+   "avoid": "Real astronaut faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "13.3.3",
+   "use": "Aurora",
+   "shows": "Green aurora curtains over snowy mountains at night",
+   "view": "Wide night landscape",
+   "right": "Aurora green with some purple, stars behind",
+   "avoid": "Over-saturated rainbow colours"
+  },
+  {
+   "n": 5,
+   "kind": "CUT",
+   "topic": "13.4.2",
+   "use": "Soil profile",
+   "shows": "A cut bank of soil showing dark topsoil with roots, lighter subsoil and broken rock below",
+   "view": "Straight-on, a 1 m scale stick beside it",
+   "right": "Layers clearly different in colour and texture",
+   "avoid": "Litter"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "13.5.1",
+   "use": "Growing without seeds",
+   "shows": "A money plant cutting in a glass of water with new roots, a potato with sprouting eyes, and a ginger piece with a green shoot, each on day 1 and day 14",
+   "view": "Side views on a windowsill, same framing per pair",
+   "right": "Roots and shoots visible only on day 14",
+   "avoid": "Brand-name containers"
+  },
+  {
+   "n": 7,
+   "kind": "MAC",
+   "topic": "13.5.2",
+   "use": "Pollination",
+   "shows": "A bee on a hibiscus flower with yellow pollen on its body, the stigma and anthers in focus",
+   "view": "Macro side view, natural light",
+   "right": "Pollen grains visible on the bee and anthers",
+   "avoid": "Blurred subject"
+  },
+  {
+   "n": 8,
+   "kind": "SEQ",
+   "topic": "13.6",
+   "use": "Three crises",
+   "shows": "Three frames: a cracked dry lake bed in a heat wave; a cut forest patch beside a new road; plastic waste floating at a river bank",
+   "view": "Each a wide documentary-style view",
+   "right": "Real Indian landscapes",
+   "avoid": "People's faces, brand names on the plastic"
+  }
+ ]
+}

@@ -1,0 +1,631 @@
+{
+ "chapter_key": "u.c04.english.desa1.ch08",
+ "class": 4,
+ "subject_id": "english",
+ "title": "The Lagori Champions",
+ "source": "https://ncert.nic.in/textbook/pdf/desa108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Play: the Lagori match",
+   "labs": [
+    "c04-english-desa1-ch08-match-day",
+    "c04-english-desa1-ch08-team-players"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "New words of the game",
+   "labs": [
+    "c04-english-desa1-ch08-game-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Traditional games and the playground",
+   "labs": [],
+   "why_no_lab": "A class discussion about local games works best face to face."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c04-english-desa1-ch08-match-day",
+   "topic": "8.1",
+   "template": "sequence",
+   "title": {
+    "en": "The Lagori match in order",
+    "hi": "लगोरी मैच क्रम में"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "l1",
+      "text": {
+       "en": "Ravi brings his cousin Prakash to meet his friends.",
+       "hi": "रवि अपने चचेरे भाई प्रकाश को दोस्तों से मिलाता है।"
+      }
+     },
+     {
+      "id": "l2",
+      "text": {
+       "en": "The friends explain the game of seven stones to Prakash.",
+       "hi": "दोस्त प्रकाश को सात पत्थरों का खेल समझाते हैं।"
+      }
+     },
+     {
+      "id": "l3",
+      "text": {
+       "en": "Next day the referee blows the whistle.",
+       "hi": "अगले दिन रेफ़री सीटी बजाता है।"
+      }
+     },
+     {
+      "id": "l4",
+      "text": {
+       "en": "Deepa hits the stack, and the stones scatter.",
+       "hi": "दीपा ढेर पर गेंद मारती है और पत्थर बिखर जाते हैं।"
+      }
+     },
+     {
+      "id": "l5",
+      "text": {
+       "en": "The Tigers rebuild the stack while dodging the ball.",
+       "hi": "टाइगर्स गेंद से बचते हुए ढेर फिर से बनाते हैं।"
+      }
+     },
+     {
+      "id": "l6",
+      "text": {
+       "en": "Prakash sets the seventh stone on top.",
+       "hi": "प्रकाश सातवाँ पत्थर सबसे ऊपर रखता है।"
+      }
+     },
+     {
+      "id": "l7",
+      "text": {
+       "en": "Both teams shake hands, and the villagers cheer.",
+       "hi": "दोनों टीमें हाथ मिलाती हैं और गाँववाले तालियाँ बजाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:l1",
+     "expect": "placed:l1",
+     "say": {
+      "en": "Tap the card that tells what happened first. Then tap place 1.",
+      "hi": "वह कार्ड दबाओ जो पहले हुआ। फिर जगह 1 दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:l2",
+     "expect": "placed:l2",
+     "say": {
+      "en": "Put the next card in place 2.",
+      "hi": "अगला कार्ड जगह 2 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Deepa has hit the stack and the stones have scattered. What does her team do next?",
+      "hi": "दीपा ने ढेर गिरा दिया। अब उसकी टीम क्या करती है?"
+     },
+     "options": [
+      {
+       "id": "rebuild",
+       "en": "Rebuild the stack",
+       "hi": "ढेर फिर से बनाती है"
+      },
+      {
+       "id": "leave",
+       "en": "Leave the game",
+       "hi": "खेल छोड़ देती है"
+      }
+     ],
+     "answer": "rebuild"
+    },
+    {
+     "kind": "do",
+     "target": "item:l5",
+     "expect": "placed:l5",
+     "say": {
+      "en": "Put the rebuilding card in place 5.",
+      "hi": "ढेर फिर बनाने वाला कार्ड जगह 5 में रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Lagori is a game of seven flat stones. One team knocks the stack down with a ball. The other team tries to build it again without being hit. The Tigers won by working as a team.",
+      "hi": "लगोरी सात चपटे पत्थरों का खेल है। एक टीम गेंद से ढेर गिराती है। दूसरी टीम गेंद से बचते हुए उसे फिर बनाती है। टाइगर्स टीम भावना से जीते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many stones are in a Lagori stack?",
+        "hi": "लगोरी के ढेर में कितने पत्थर होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Seven",
+         "hi": "सात"
+        },
+        {
+         "en": "Five",
+         "hi": "पाँच"
+        },
+        {
+         "en": "Ten",
+         "hi": "दस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Lagori means seven stones.",
+        "hi": "लगोरी सात पत्थरों का खेल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The stack has seven stones.",
+         "hi": "ढेर में सात पत्थर होते हैं।"
+        },
+        {
+         "en": "The stack has seven stones.",
+         "hi": "ढेर में सात पत्थर होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest and press Check. Then ask an elder which game they played as a child.",
+      "hi": "बाकी कार्ड लगाकर Check दबाओ। फिर किसी बड़े से पूछो कि बचपन में वे कौन-सा खेल खेलते थे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c04-english-desa1-ch08-team-players",
+   "topic": "8.1",
+   "template": "reader",
+   "title": {
+    "en": "Meet the Lagori players",
+    "hi": "लगोरी के खिलाड़ियों से मिलो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "The Sundarpur Tigers",
+      "hi": "सुंदरपुर टाइगर्स"
+     },
+     "lines": [
+      "Deepa is the captain of the Sundarpur Tigers and runs very fast.",
+      "Imran is a champion who explains the rules to the new boy.",
+      "Prakash is Ravi's cousin from Rajasthan. He calls the game Satoliya.",
+      "Ravi places the sixth stone with sweat on his face.",
+      "Prakash sets the seventh stone and the Tigers win.",
+      "Both teams shake hands at the end."
+     ]
+    },
+    "characters": [
+     {
+      "id": "deepa",
+      "name": "Deepa",
+      "traits": [
+       {
+        "en": "Leads the team as captain",
+        "hi": "कप्तान बनकर टीम को आगे ले जाती है"
+       }
+      ]
+     },
+     {
+      "id": "imran",
+      "name": "Imran",
+      "traits": [
+       {
+        "en": "A champion who explains the rules",
+        "hi": "नियम समझाने वाला चैंपियन"
+       }
+      ]
+     },
+     {
+      "id": "prakash",
+      "name": "Prakash",
+      "traits": [
+       {
+        "en": "A fast runner who knows the game as Satoliya",
+        "hi": "तेज़ दौड़ने वाला, जो खेल को सतोलिया कहता है"
+       }
+      ]
+     },
+     {
+      "id": "ravi",
+      "name": "Ravi",
+      "traits": [
+       {
+        "en": "Brings his cousin and places the sixth stone",
+        "hi": "अपने भाई को लाता है और छठा पत्थर रखता है"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:deepa",
+     "expect": "picked:deepa",
+     "say": {
+      "en": "Tap Deepa to read about her.",
+      "hi": "दीपा को दबाकर उसके बारे में पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which player names the game Satoliya?",
+      "hi": "कौन-सा खिलाड़ी खेल को सतोलिया कहता है?"
+     },
+     "options": [
+      {
+       "id": "prakash",
+       "en": "Prakash",
+       "hi": "प्रकाश"
+      },
+      {
+       "id": "imran",
+       "en": "Imran",
+       "hi": "इमरान"
+      },
+      {
+       "id": "ravi",
+       "en": "Ravi",
+       "hi": "रवि"
+      }
+     ],
+     "answer": "prakash"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the clue and tap the player it belongs to.",
+      "hi": "संकेत पढ़ो और वह खिलाड़ी दबाओ जिसके बारे में है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The same game can have different names in different places. In Sundarpur it is Lagori, and in Rajasthan it is Satoliya. Each player has a special job, and teamwork wins the match.",
+      "hi": "एक ही खेल के अलग जगहों पर अलग नाम हो सकते हैं। सुंदरपुर में यह लगोरी है और राजस्थान में सतोलिया। हर खिलाड़ी का अपना काम है और टीम भावना से मैच जीता जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who is the captain of the Tigers?",
+        "hi": "टाइगर्स की कप्तान कौन है?"
+       },
+       "options": [
+        {
+         "en": "Deepa",
+         "hi": "दीपा"
+        },
+        {
+         "en": "Imran",
+         "hi": "इमरान"
+        },
+        {
+         "en": "Ravi",
+         "hi": "रवि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Deepa leads the Tigers.",
+        "hi": "दीपा टाइगर्स की कप्तान है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Imran explains the rules; he is not the captain.",
+         "hi": "इमरान नियम समझाता है; वह कप्तान नहीं है।"
+        },
+        {
+         "en": "Ravi brings his cousin to the team.",
+         "hi": "रवि अपने भाई को टीम में लाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Read all the clues. Which player's job would you like to do?",
+      "hi": "सभी संकेत पढ़ो। तुम किस खिलाड़ी का काम करना चाहोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c04-english-desa1-ch08-game-words",
+   "topic": "8.2",
+   "template": "match",
+   "title": {
+    "en": "Game words and their meanings",
+    "hi": "खेल के शब्द और उनके अर्थ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "stack",
+      "left": {
+       "en": "stacked",
+       "hi": "ढेर लगाया"
+      },
+      "right": {
+       "en": "put one on top of another",
+       "hi": "एक के ऊपर एक रखना"
+      },
+      "why": {
+       "en": "Stones are stacked one above the other.",
+       "hi": "पत्थर एक के ऊपर एक रखे जाते हैं।"
+      }
+     },
+     {
+      "id": "opp",
+      "left": {
+       "en": "opponent",
+       "hi": "विरोधी खिलाड़ी"
+      },
+      "right": {
+       "en": "a player on the other team",
+       "hi": "दूसरी टीम का खिलाड़ी"
+      },
+      "why": {
+       "en": "The Green Warriors are the opponents.",
+       "hi": "ग्रीन वॉरियर्स विरोधी टीम है।"
+      }
+     },
+     {
+      "id": "bound",
+      "left": {
+       "en": "boundary",
+       "hi": "सीमा"
+      },
+      "right": {
+       "en": "a line players must not cross",
+       "hi": "वह रेखा जिसे खिलाड़ी पार नहीं करते"
+      },
+      "why": {
+       "en": "Players stay inside the boundary.",
+       "hi": "खिलाड़ी सीमा के अंदर रहते हैं।"
+      }
+     },
+     {
+      "id": "ref",
+      "left": {
+       "en": "referee",
+       "hi": "रेफ़री"
+      },
+      "right": {
+       "en": "the person who blows the whistle and judges",
+       "hi": "जो सीटी बजाता है और निर्णय देता है"
+      },
+      "why": {
+       "en": "The referee starts and ends the match.",
+       "hi": "रेफ़री मैच शुरू और ख़त्म करता है।"
+      }
+     },
+     {
+      "id": "dodge",
+      "left": {
+       "en": "dodged",
+       "hi": "बचकर निकली"
+      },
+      "right": {
+       "en": "moved aside quickly to avoid something",
+       "hi": "किसी चीज़ से बचने के लिए तेज़ी से हटना"
+      },
+      "why": {
+       "en": "Deepa dodged the ball.",
+       "hi": "दीपा गेंद से बच गई।"
+      }
+     },
+     {
+      "id": "team",
+      "left": {
+       "en": "teamwork",
+       "hi": "टीम भावना"
+      },
+      "right": {
+       "en": "working well together",
+       "hi": "मिलकर अच्छे से काम करना"
+      },
+      "why": {
+       "en": "Teamwork helped the Tigers win.",
+       "hi": "टीम भावना से टाइगर्स जीते।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:stack",
+     "expect": "matched:stack",
+     "say": {
+      "en": "Tap 'stacked', then tap its meaning.",
+      "hi": "'stacked' दबाओ, फिर उसका अर्थ दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word means 'moved aside quickly to avoid the ball'?",
+      "hi": "कौन-सा शब्द 'गेंद से बचने के लिए तेज़ी से हटना' का अर्थ रखता है?"
+     },
+     "options": [
+      {
+       "id": "dodged",
+       "en": "dodged",
+       "hi": "dodged (बच निकला)"
+      },
+      {
+       "id": "stacked",
+       "en": "stacked",
+       "hi": "stacked (ढेर लगाया)"
+      },
+      {
+       "id": "boundary",
+       "en": "boundary",
+       "hi": "boundary (सीमा)"
+      }
+     ],
+     "answer": "dodged"
+    },
+    {
+     "kind": "do",
+     "target": "left:dodge",
+     "expect": "matched:dodge",
+     "say": {
+      "en": "Now match 'dodged'.",
+      "hi": "अब 'dodged' का अर्थ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Knowing the right word helps us talk about a game. The referee judges, the boundary shows where to play, and an opponent is on the other team. Teamwork is what brings a village together.",
+      "hi": "सही शब्द पता हों तो खेल के बारे में बात करना आसान होता है। रेफ़री निर्णय देता है, सीमा बताती है कहाँ खेलना है और opponent दूसरी टीम का होता है। टीम भावना गाँव को जोड़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who blows the whistle in a match?",
+        "hi": "मैच में सीटी कौन बजाता है?"
+       },
+       "options": [
+        {
+         "en": "The referee",
+         "hi": "रेफ़री"
+        },
+        {
+         "en": "The opponent",
+         "hi": "विरोधी खिलाड़ी"
+        },
+        {
+         "en": "The cousin",
+         "hi": "चचेरा भाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The referee starts and stops the match.",
+        "hi": "रेफ़री मैच शुरू और बंद करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An opponent plays on the other team.",
+         "hi": "विरोधी दूसरी टीम में खेलता है।"
+        },
+        {
+         "en": "A cousin is a relative.",
+         "hi": "चचेरा भाई एक रिश्तेदार है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Then use 'boundary' in a sentence about your playground.",
+      "hi": "बाकी भी मिलाओ। फिर अपने खेल के मैदान के बारे में 'boundary' का वाक्य बनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "Game",
+   "shows": "Seven flat round stones stacked in a small tower on dusty ground",
+   "view": "Low front view, daylight",
+   "right": "Different sizes from big to small, real stones",
+   "avoid": "People, text",
+   "n": 1
+  },
+  {
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "Game",
+   "shows": "A small rubber ball resting next to the fallen flat stones",
+   "view": "Top-down view",
+   "right": "Stones scattered, one red-brown ball",
+   "avoid": "Brand",
+   "n": 2
+  },
+  {
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Opening",
+   "shows": "Village children playing in a dusty ground, the stone tower in the middle, seen from far",
+   "view": "Wide view, evening light",
+   "right": "Active play, mixed clothes",
+   "avoid": "Faces, text",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "8.2",
+   "use": "Words",
+   "shows": "A hand holding a metal whistle, players blurred in the background",
+   "view": "Close view",
+   "right": "Metal whistle clear",
+   "avoid": "Face, logos",
+   "n": 4
+  },
+  {
+   "kind": "MAP",
+   "topic": "8.2",
+   "use": "Boundary",
+   "shows": "A rough circle drawn on the ground with chalk lines",
+   "view": "Top-down view",
+   "right": "Clear white boundary",
+   "avoid": "Footprints, text",
+   "n": 5
+  }
+ ]
+}

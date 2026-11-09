@@ -1,0 +1,470 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.ch10",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Jhoolam-Jhoolee (झूलम-झूली)",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Vowel signs ु and ू",
+   "labs": [
+    "c01-hindi-ahsr1-ch10-matra-u-oo"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "First sounds झ, छ, ख",
+   "labs": [
+    "c01-hindi-ahsr1-ch10-first-sound"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Playing the games of the poem and drawing a game",
+   "labs": [],
+   "why_no_lab": "These are outdoor games and drawing on paper with classmates; they cannot be done on screen."
+  },
+  {
+   "n": "10.4",
+   "title": "My village picture talk",
+   "labs": [],
+   "why_no_lab": "Speaking about the village poster is done aloud with the teacher."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-ch10-matra-u-oo",
+   "topic": "10.1",
+   "template": "words",
+   "title": {
+    "en": "Short उ and long ऊ",
+    "hi": "छोटी उ और बड़ी ऊ की मात्रा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "matra",
+    "lang": "hi",
+    "consonants": [
+     "फ",
+     "प",
+     "स",
+     "म",
+     "ल"
+    ],
+    "matras": [
+     "ु",
+     "ू"
+    ],
+    "examples": {
+     "फू": "फूल",
+     "पु": "पुल",
+     "सू": "सूरज",
+     "मू": "मूली",
+     "लू": "लूडो"
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:फ",
+     "expect": "pick:फ",
+     "say": {
+      "en": "Pick the letter फ.",
+      "hi": "अक्षर फ चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which sign do we put under फ to make the word 'फूल' (flower)?",
+      "hi": "'फूल' शब्द बनाने के लिए फ के नीचे कौन-सी मात्रा लगेगी?"
+     },
+     "options": [
+      {
+       "id": "short",
+       "en": "Short ु",
+       "hi": "छोटी ु"
+      },
+      {
+       "id": "long",
+       "en": "Long ू",
+       "hi": "बड़ी ू"
+      },
+      {
+       "id": "none",
+       "en": "No sign",
+       "hi": "कोई मात्रा नहीं"
+      }
+     ],
+     "answer": "long"
+    },
+    {
+     "kind": "do",
+     "target": "matra:ू",
+     "expect": "make:फू",
+     "say": {
+      "en": "Now add the vowel sign ू to it.",
+      "hi": "अब इसमें मात्रा ू लगाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The signs ु and ू both go under the letter. ु is short, like in पुल. ू is long, like in फूल and सूरज. A small change in the sign makes a new word.",
+      "hi": "ु और ू दोनों मात्राएँ अक्षर के नीचे लगती हैं। ु छोटी है, जैसे पुल में। ू बड़ी है, जैसे फूल और सूरज में। मात्रा बदलने से नया शब्द बन जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word has the long sign ू?",
+        "hi": "किस शब्द में बड़ी ऊ की मात्रा ू है?"
+       },
+       "options": [
+        {
+         "en": "पुल",
+         "hi": "पुल"
+        },
+        {
+         "en": "सूरज",
+         "hi": "सूरज"
+        },
+        {
+         "en": "फल",
+         "hi": "फल"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "सूरज has ू in 'सू'.",
+        "hi": "सूरज के 'सू' में ू है।"
+       },
+       "wrong": [
+        {
+         "en": "पुल has the short sign ु.",
+         "hi": "पुल में छोटी ु की मात्रा है।"
+        },
+        "",
+        {
+         "en": "फल has no vowel sign under फ.",
+         "hi": "फल में फ के नीचे कोई मात्रा नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What happens when we change ु to ू in 'पुल'?",
+        "hi": "'पुल' में ु को ू करने से क्या बनेगा?"
+       },
+       "options": [
+        {
+         "en": "A new sound पूल (pool)",
+         "hi": "नई ध्वनि पूल"
+        },
+        {
+         "en": "Nothing changes",
+         "hi": "कुछ नहीं बदलता"
+        },
+        {
+         "en": "The letter disappears",
+         "hi": "अक्षर ग़ायब हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The long sign changes the sound from 'pu' to 'poo'.",
+        "hi": "बड़ी मात्रा से 'पु' की ध्वनि 'पू' हो जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The long sign is said longer, so the sound changes.",
+         "hi": "बड़ी मात्रा देर तक बोली जाती है, इसलिए ध्वनि बदलती है।"
+        },
+        {
+         "en": "The letter stays; only the sign under it changes.",
+         "hi": "अक्षर वहीं रहता है; केवल उसके नीचे की मात्रा बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add ु or ू to other letters like प, ल, म. Which new words can you read?",
+      "hi": "प, ल, म जैसे और अक्षरों में ु या ू लगाओ। कौन-से नए शब्द पढ़ सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch10-first-sound",
+   "topic": "10.2",
+   "template": "sort",
+   "title": {
+    "en": "First sounds: झ, छ, ख",
+    "hi": "पहली ध्वनि: झ, छ, ख"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "jha",
+      "label": {
+       "en": "Starts with झ",
+       "hi": "झ से शुरू"
+      }
+     },
+     {
+      "id": "chha",
+      "label": {
+       "en": "Starts with छ",
+       "hi": "छ से शुरू"
+      }
+     },
+     {
+      "id": "kha",
+      "label": {
+       "en": "Starts with ख",
+       "hi": "ख से शुरू"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "jhoola",
+      "text": {
+       "en": "Jhoola (swing)",
+       "hi": "झूला"
+      },
+      "bin": "jha",
+      "why": {
+       "en": "झूला starts with झ.",
+       "hi": "झूला झ से शुरू होता है।"
+      }
+     },
+     {
+      "id": "jhanda",
+      "text": {
+       "en": "Jhanda (flag)",
+       "hi": "झंडा"
+      },
+      "bin": "jha",
+      "why": {
+       "en": "झंडा starts with झ.",
+       "hi": "झंडा झ से शुरू होता है।"
+      }
+     },
+     {
+      "id": "chhatri",
+      "text": {
+       "en": "Chhatri (umbrella)",
+       "hi": "छतरी"
+      },
+      "bin": "chha",
+      "why": {
+       "en": "छतरी starts with छ.",
+       "hi": "छतरी छ से शुरू होती है।"
+      }
+     },
+     {
+      "id": "chhuppam",
+      "text": {
+       "en": "Chhuppam (hide)",
+       "hi": "छुप्पम"
+      },
+      "bin": "chha",
+      "why": {
+       "en": "छुप्पम starts with छ.",
+       "hi": "छुप्पम छ से शुरू होता है।"
+      }
+     },
+     {
+      "id": "khel",
+      "text": {
+       "en": "Khel (game)",
+       "hi": "खेल"
+      },
+      "bin": "kha",
+      "why": {
+       "en": "खेल starts with ख.",
+       "hi": "खेल ख से शुरू होता है।"
+      }
+     },
+     {
+      "id": "khet",
+      "text": {
+       "en": "Khet (field)",
+       "hi": "खेत"
+      },
+      "bin": "kha",
+      "why": {
+       "en": "खेत starts with ख.",
+       "hi": "खेत ख से शुरू होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:jhoola",
+     "expect": "placed:jhoola",
+     "say": {
+      "en": "Tap a card, then tap the group where it belongs.",
+      "hi": "कोई कार्ड छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which letter does 'खेल' start with?",
+      "hi": "'खेल' किस अक्षर से शुरू होता है?"
+     },
+     "options": [
+      {
+       "id": "jh",
+       "en": "झ",
+       "hi": "झ"
+      },
+      {
+       "id": "chh",
+       "en": "छ",
+       "hi": "छ"
+      },
+      {
+       "id": "kh",
+       "en": "ख",
+       "hi": "ख"
+      }
+     ],
+     "answer": "kh"
+    },
+    {
+     "kind": "do",
+     "target": "card:khet",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards until every one is in a group.",
+      "hi": "सारे कार्ड तब तक छाँटो जब तक हर कार्ड किसी समूह में न चला जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The three sounds झ, छ and ख look and sound different. Listen to the first sound of each word and find its letter. Games like झूला and छुप्पम are full of them.",
+      "hi": "झ, छ और ख की ध्वनियाँ और आकृतियाँ अलग हैं। हर शब्द की पहली ध्वनि सुनो और उसका अक्षर पहचानो। झूला और छुप्पम जैसे खेलों के नाम इन्हीं ध्वनियों से भरे हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word starts with झ?",
+        "hi": "कौन-सा शब्द झ से शुरू होता है?"
+       },
+       "options": [
+        {
+         "en": "झंडा",
+         "hi": "झंडा"
+        },
+        {
+         "en": "छतरी",
+         "hi": "छतरी"
+        },
+        {
+         "en": "खेत",
+         "hi": "खेत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "झंडा starts with झ.",
+        "hi": "झंडा झ से शुरू होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "छतरी starts with छ.",
+         "hi": "छतरी छ से शुरू होती है।"
+        },
+        {
+         "en": "खेत starts with ख.",
+         "hi": "खेत ख से शुरू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play छुप्पम-छुप्पी with friends and say the name of the game loudly each time you hide.",
+      "hi": "दोस्तों के साथ छुप्पम-छुप्पी खेलो और हर बार छिपते समय खेल का नाम ज़ोर से बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Opening picture",
+   "shows": "Village children playing on a mud ground: swing, hide-and-seek, sowing seeds in soil",
+   "view": "Wide shot, afternoon",
+   "right": "Many separate games visible at once",
+   "avoid": "Faces of identifiable children",
+   "n": 1
+  },
+  {
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "Matra words",
+   "shows": "Cut-outs: a flower, a small bridge, a sunrise sun, a radish",
+   "view": "Front view",
+   "right": "Real flower, real radish with leaves",
+   "avoid": "Brand names",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "10.2",
+   "use": "First-sound words",
+   "shows": "Cut-outs: swing, flag, umbrella, hiding child silhouette, play field, paddy field",
+   "view": "Front or side view",
+   "right": "Umbrella colourful; swing rope visible",
+   "avoid": "Text on flag",
+   "n": 3
+  },
+  {
+   "kind": "SEQ",
+   "topic": "10.1",
+   "use": "Seeds to plant",
+   "shows": "Four frames: soil, seed placed, covered, sprout",
+   "view": "Same pot, top view",
+   "right": "Seed to sprout over days",
+   "avoid": "Different soil",
+   "n": 4
+  },
+  {
+   "kind": "MAP",
+   "topic": "10.4",
+   "use": "My village",
+   "shows": "An aerial-style illustrated-photo of a village with fields, a pond, a school and houses",
+   "view": "High angle",
+   "right": "Fields green, pond blue, mud houses",
+   "avoid": "Place names",
+   "n": 5
+  }
+ ]
+}

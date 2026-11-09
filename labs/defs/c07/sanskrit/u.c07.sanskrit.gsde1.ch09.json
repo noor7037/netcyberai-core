@@ -1,0 +1,800 @@
+{
+ "chapter_key": "u.c07.sanskrit.gsde1.ch09",
+ "class": 7,
+ "subject_id": "sanskrit",
+ "title": "अन्नाद् भवन्ति भूतानि",
+ "source": "https://ncert.nic.in/textbook.php?gsde1=0-15",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Sanskrit and culture: the two pride-marks of India",
+   "labs": [],
+   "why_no_lab": "This is a talk about our culture; the reader and class discussion teach it better than a task."
+  },
+  {
+   "n": "9.2",
+   "title": "The order in which the world arose",
+   "labs": [
+    "c07-sanskrit-gsde1-ch09-order",
+    "c07-sanskrit-gsde1-ch09-vocab"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Words that say \"from\", and the gender of \"born\"",
+   "labs": [
+    "c07-sanskrit-gsde1-ch09-from",
+    "c07-sanskrit-gsde1-ch09-born"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Food keeps all beings alive",
+   "labs": [],
+   "why_no_lab": "The link between food and life is best seen in photographs of crops and meals."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-sanskrit-gsde1-ch09-order",
+   "topic": "9.2",
+   "template": "sequence",
+   "title": {
+    "en": "How the world came to be: the order",
+    "hi": "सृष्टि का क्रम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "brahma",
+      "text": {
+       "en": "ब्रह्म — the universal energy present everywhere",
+       "hi": "ब्रह्म — हर जगह फैली हुई चेतन शक्ति"
+      }
+     },
+     {
+      "id": "akash",
+      "text": {
+       "en": "आकाशः — space",
+       "hi": "आकाशः — आकाश"
+      }
+     },
+     {
+      "id": "vayu",
+      "text": {
+       "en": "वायुः — air",
+       "hi": "वायुः — हवा"
+      }
+     },
+     {
+      "id": "agni",
+      "text": {
+       "en": "अग्निः — fire",
+       "hi": "अग्निः — अग्नि"
+      }
+     },
+     {
+      "id": "jala",
+      "text": {
+       "en": "जलम् — water",
+       "hi": "जलम् — जल"
+      }
+     },
+     {
+      "id": "prithvi",
+      "text": {
+       "en": "पृथिवी — earth",
+       "hi": "पृथिवी — पृथ्वी"
+      }
+     },
+     {
+      "id": "prani",
+      "text": {
+       "en": "प्राणिनः मनुष्याः च — living beings and humans",
+       "hi": "प्राणिनः मनुष्याः च — प्राणी और मनुष्य"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:brahma",
+     "expect": "placed:brahma",
+     "say": {
+      "en": "Put the very first thing in its place.",
+      "hi": "सबसे पहली चीज़ को उसकी जगह रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the mother's story, what comes from space (आकाशः)?",
+      "hi": "माता की कथा में आकाश से क्या उत्पन्न होता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Air (वायुः)",
+       "hi": "हवा (वायुः)"
+      },
+      {
+       "id": "b",
+       "en": "Water",
+       "hi": "जल"
+      },
+      {
+       "id": "c",
+       "en": "Earth",
+       "hi": "पृथ्वी"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the whole order of creation, then press Check.",
+      "hi": "सृष्टि का पूरा क्रम लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The old story says everything began from the universal energy (ब्रह्म). From it came space, from space air, from air fire, from fire water, and from water the earth. On the earth living beings and humans arose. The title adds that beings are kept alive by food (अन्नम्).",
+      "hi": "पुरानी कथा के अनुसार सब कुछ ब्रह्म यानी सर्वव्यापी शक्ति से शुरू हुआ। उससे आकाश, आकाश से वायु, वायु से अग्नि, अग्नि से जल और जल से पृथ्वी बनी। पृथ्वी पर प्राणी और मनुष्य हुए। शीर्षक यह भी जोड़ता है कि प्राणियों का पोषण अन्न से होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What comes right after fire (अग्निः) in the order?",
+        "hi": "क्रम में अग्नि के ठीक बाद क्या आता है?"
+       },
+       "options": [
+        "जलम्",
+        "वायुः",
+        "पृथिवी"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "From fire, water came, and from water the earth.",
+        "hi": "अग्नि से जल आया, और जल से पृथ्वी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Air comes before fire, not after it.",
+         "hi": "वायु अग्नि से पहले आती है, बाद में नहीं।"
+        },
+        {
+         "en": "Earth comes after water.",
+         "hi": "पृथ्वी जल के बाद आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tell a friend, in your own words, how the world began according to this story.",
+      "hi": "इस कथा के अनुसार संसार कैसे बना, यह मित्र को अपने शब्दों में सुनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-sanskrit-gsde1-ch09-from",
+   "topic": "9.3",
+   "template": "match",
+   "title": {
+    "en": "\"From\" words: आकाशात्, वायोः, अग्नेः...",
+    "hi": "\"से\" वाले शब्द: आकाशात्, वायोः, अग्नेः..."
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "akash",
+      "left": {
+       "en": "आकाशात्",
+       "hi": "आकाशात्"
+      },
+      "right": {
+       "en": "From space",
+       "hi": "आकाश से"
+      },
+      "why": {
+       "en": "आकाशात् is the \"from\" form of आकाशः.",
+       "hi": "आकाशात् आकाशः का \"से\" वाला रूप है।"
+      }
+     },
+     {
+      "id": "vayu",
+      "left": {
+       "en": "वायोः",
+       "hi": "वायोः"
+      },
+      "right": {
+       "en": "From air",
+       "hi": "वायु से"
+      },
+      "why": {
+       "en": "वायोः is the \"from\" form of वायुः.",
+       "hi": "वायोः वायुः का \"से\" वाला रूप है।"
+      }
+     },
+     {
+      "id": "agni",
+      "left": {
+       "en": "अग्नेः",
+       "hi": "अग्नेः"
+      },
+      "right": {
+       "en": "From fire",
+       "hi": "अग्नि से"
+      },
+      "why": {
+       "en": "अग्नेः is the \"from\" form of अग्निः.",
+       "hi": "अग्नेः अग्निः का \"से\" वाला रूप है।"
+      }
+     },
+     {
+      "id": "jala",
+      "left": {
+       "en": "जलात्",
+       "hi": "जलात्"
+      },
+      "right": {
+       "en": "From water",
+       "hi": "जल से"
+      },
+      "why": {
+       "en": "जलात् is the \"from\" form of जलम्.",
+       "hi": "जलात् जलम् का \"से\" वाला रूप है।"
+      }
+     },
+     {
+      "id": "prithvi",
+      "left": {
+       "en": "पृथिव्याः",
+       "hi": "पृथिव्याः"
+      },
+      "right": {
+       "en": "From the earth",
+       "hi": "पृथ्वी से"
+      },
+      "why": {
+       "en": "पृथिव्याः is the \"from\" form of पृथिवी.",
+       "hi": "पृथिव्याः पृथिवी का \"से\" वाला रूप है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:akash",
+     "expect": "matched:akash",
+     "say": {
+      "en": "Match आकाशात् with its meaning.",
+      "hi": "आकाशात् को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In वायोः अग्निः उत्पन्नः, the word वायोः tells us fire came:",
+      "hi": "वायोः अग्निः उत्पन्नः में वायोः बताता है कि अग्नि:"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "from air",
+       "hi": "वायु से आई"
+      },
+      {
+       "id": "b",
+       "en": "to air",
+       "hi": "वायु तक गई"
+      },
+      {
+       "id": "c",
+       "en": "with air",
+       "hi": "वायु के साथ आई"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:prithvi",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the \"from\" forms.",
+      "hi": "सारे \"से\" वाले रूप मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When we say what something came from, Sanskrit uses the fifth case (पञ्चमी), the case of from. The word changes its ending: आकाशः becomes आकाशात्, वायुः becomes वायोः, अग्निः becomes अग्नेः, जलम् becomes जलात्, पृथिवी becomes पृथिव्याः. Each ending is different, so we learn them with their word.",
+      "hi": "जब हम बताते हैं कि कोई चीज़ किससे आई, तो संस्कृत में पञ्चमी विभक्ति आती है, यानी से वाली विभक्ति। शब्द का अंत बदलता है: आकाशः से आकाशात्, वायुः से वायोः, अग्निः से अग्नेः, जलम् से जलात्, पृथिवी से पृथिव्याः। हर शब्द का अंत अलग होता है, इसलिए इन्हें शब्द के साथ याद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word means from fire?",
+        "hi": "कौन-सा शब्द अग्नि से का अर्थ देता है?"
+       },
+       "options": [
+        "अग्नेः",
+        "अग्निः",
+        "आकाशात्"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "अग्नेः is the \"from\" form of अग्निः.",
+        "hi": "अग्नेः अग्निः का \"से\" वाला रूप है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "अग्निः is plain fire, the doer, not \"from\".",
+         "hi": "अग्निः केवल अग्नि है, करने वाला है, \"से\" नहीं।"
+        },
+        {
+         "en": "आकाशात् means from space.",
+         "hi": "आकाशात् का अर्थ आकाश से है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say where your food, water and air come from using the \"from\" words you have learnt.",
+      "hi": "तुम्हारा भोजन, पानी और हवा कहाँ से आते हैं, यह सीखे हुए \"से\" वाले शब्दों से बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-sanskrit-gsde1-ch09-born",
+   "topic": "9.3",
+   "template": "grammar",
+   "title": {
+    "en": "\"उत्पन्न\" changes with what was born",
+    "hi": "उत्पन्न बदलता है, जो उत्पन्न हुआ उसके अनुसार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "u1",
+      "words": [
+       "आकाशात्",
+       "वायुः",
+       "उत्पन्नः",
+       "उत्पन्नम्"
+      ],
+      "answer": [
+       "आकाशात् वायुः उत्पन्नः",
+       "वायुः आकाशात् उत्पन्नः"
+      ],
+      "rule": {
+       "en": "वायुः is male in Sanskrit grammar, so the word for born is उत्पन्नः.",
+       "hi": "वायुः संस्कृत व्याकरण में पुल्लिंग है, इसलिए जन्म वाला शब्द उत्पन्नः आता है।"
+      }
+     },
+     {
+      "id": "u2",
+      "words": [
+       "वायोः",
+       "अग्निः",
+       "उत्पन्नः",
+       "उत्पन्ना"
+      ],
+      "answer": [
+       "वायोः अग्निः उत्पन्नः",
+       "अग्निः वायोः उत्पन्नः"
+      ],
+      "rule": {
+       "en": "अग्निः is male too, so उत्पन्नः.",
+       "hi": "अग्निः भी पुल्लिंग है, इसलिए उत्पन्नः।"
+      }
+     },
+     {
+      "id": "u3",
+      "words": [
+       "अग्नेः",
+       "जलम्",
+       "उत्पन्नम्",
+       "उत्पन्नः"
+      ],
+      "answer": [
+       "अग्नेः जलम् उत्पन्नम्",
+       "जलम् अग्नेः उत्पन्नम्"
+      ],
+      "rule": {
+       "en": "जलम् is neuter, so the word for born is उत्पन्नम्.",
+       "hi": "जलम् नपुंसकलिंग है, इसलिए उत्पन्नम् आता है।"
+      }
+     },
+     {
+      "id": "u4",
+      "words": [
+       "जलात्",
+       "पृथिवी",
+       "उत्पन्ना",
+       "उत्पन्नः"
+      ],
+      "answer": [
+       "जलात् पृथिवी उत्पन्ना",
+       "पृथिवी जलात् उत्पन्ना"
+      ],
+      "rule": {
+       "en": "पृथिवी is female, so the word for born is उत्पन्ना.",
+       "hi": "पृथिवी स्त्रीलिंग है, इसलिए उत्पन्ना आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:u1",
+     "say": {
+      "en": "Build: air was born from space.",
+      "hi": "वाक्य बनाओ: आकाश से वायु उत्पन्न हुई।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The earth (पृथिवी) is a female word in Sanskrit. Which ending will the word for born take?",
+      "hi": "संस्कृत में पृथिवी स्त्रीलिंग शब्द है। उत्पन्न शब्द किस अंत वाला होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "उत्पन्ना",
+       "hi": "उत्पन्ना"
+      },
+      {
+       "id": "b",
+       "en": "उत्पन्नः",
+       "hi": "उत्पन्नः"
+      },
+      {
+       "id": "c",
+       "en": "उत्पन्नम्",
+       "hi": "उत्पन्नम्"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:u3",
+     "say": {
+      "en": "Build the sentence for water.",
+      "hi": "जल वाला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Build the rest of the sentences.",
+      "hi": "बाकी वाक्य भी बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The word उत्पन्न (born) is a describing word and it takes the gender of what it describes: उत्पन्नः for male words like वायुः and अग्निः, उत्पन्नम् for neuter words like जलम्, and उत्पन्ना for female words like पृथिवी.",
+      "hi": "उत्पन्न (उत्पन्न हुआ) विशेषण जैसा शब्द है और जिसका वर्णन करता है उसी का लिंग लेता है: वायुः और अग्निः जैसे पुल्लिंग शब्दों के साथ उत्पन्नः, जलम् जैसे नपुंसकलिंग के साथ उत्पन्नम् और पृथिवी जैसे स्त्रीलिंग के साथ उत्पन्ना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is right?",
+        "hi": "कौन-सा वाक्य सही है?"
+       },
+       "options": [
+        "जलात् पृथिवी उत्पन्ना",
+        "जलात् पृथिवी उत्पन्नः",
+        "जलात् पृथिवी उत्पन्नम्"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "पृथिवी is female, so उत्पन्ना.",
+        "hi": "पृथिवी स्त्रीलिंग है, इसलिए उत्पन्ना।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "उत्पन्नः is for male words.",
+         "hi": "उत्पन्नः पुल्लिंग शब्दों के लिए है।"
+        },
+        {
+         "en": "उत्पन्नम् is for neuter words like जलम्.",
+         "hi": "उत्पन्नम् जलम् जैसे नपुंसकलिंग शब्दों के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a sentence in Sanskrit about something you know that is male, female and neuter, and notice the endings.",
+      "hi": "संस्कृत में पुल्लिंग, स्त्रीलिंग और नपुंसकलिंग शब्द लेकर वाक्य बनाओ और अंतों को देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-sanskrit-gsde1-ch09-vocab",
+   "topic": "9.2",
+   "template": "reader",
+   "title": {
+    "en": "A daughter asks, a mother tells",
+    "hi": "पुत्री पूछती है, माता बताती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "sa",
+    "passage": {
+     "title": {
+      "en": "The first lesson of the world",
+      "hi": "सृष्टि का पहला पाठ"
+     },
+     "lines": [
+      "पुत्री मातरं सृष्टेः उत्पत्तिं पृच्छति ।",
+      "पुत्र्याः जिज्ञासा अस्ति ।",
+      "माता वदति — प्रथमं ब्रह्मणः आकाशः उत्पन्नः ।",
+      "तस्मात् वायुः, ततः अग्निः, ततः जलम् इति क्रमः ।",
+      "जलात् पृथिवी उत्पन्ना ।",
+      "पृथिव्याः प्राणिनः मनुष्याः च उत्पन्नाः ।"
+     ]
+    },
+    "words": [
+     {
+      "w": "उत्पत्तिं",
+      "meaning": {
+       "en": "Origin, birth",
+       "hi": "जन्म, उत्पत्ति"
+      }
+     },
+     {
+      "w": "जिज्ञासा",
+      "meaning": {
+       "en": "Wish to know, curiosity",
+       "hi": "जानने की इच्छा"
+      }
+     },
+     {
+      "w": "ब्रह्मणः",
+      "meaning": {
+       "en": "Of Brahman, the universal energy",
+       "hi": "ब्रह्म की, सर्वव्यापी शक्ति की"
+      }
+     },
+     {
+      "w": "क्रमः",
+      "meaning": {
+       "en": "Order, sequence",
+       "hi": "क्रम"
+      }
+     },
+     {
+      "w": "प्राणिनः",
+      "meaning": {
+       "en": "Living beings",
+       "hi": "प्राणी"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:जिज्ञासा",
+     "expect": "found:जिज्ञासा",
+     "say": {
+      "en": "Tap जिज्ञासा, the wish to know.",
+      "hi": "जिज्ञासा छुओ, यानी जानने की इच्छा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why does the daughter ask her mother about the origin of the world?",
+      "hi": "पुत्री अपनी माता से संसार की उत्पत्ति क्यों पूछती है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "She is curious",
+       "hi": "वह जिज्ञासु है"
+      },
+      {
+       "id": "b",
+       "en": "She is angry",
+       "hi": "वह क्रोधित है"
+      },
+      {
+       "id": "c",
+       "en": "She is sleepy",
+       "hi": "उसे नींद आ रही है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:क्रमः",
+     "expect": "found:क्रमः",
+     "say": {
+      "en": "Find क्रमः, the order, and tap it.",
+      "hi": "क्रमः ढूँढकर छुओ, यानी क्रम।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:प्राणिनः",
+     "expect": "found:प्राणिनः",
+     "say": {
+      "en": "Now find प्राणिनः, the living beings.",
+      "hi": "अब प्राणिनः ढूँढो, यानी जीव-जंतु।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Pick the meaning that fits.",
+      "hi": "सही अर्थ चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Curiosity, जिज्ञासा, is the beginning of every lesson. The daughter's questions lead her mother to tell the order of creation. Notice that the daughter's words end in -ं when she asks about something (उत्पत्तिं): that is the object form.",
+      "hi": "जिज्ञासा हर पाठ की शुरुआत है। पुत्री के प्रश्न माता को सृष्टि का क्रम बताने की ओर ले जाते हैं। ध्यान दो कि जब पुत्री किसी चीज़ के बारे में पूछती है तो शब्द -ं पर समाप्त होता है (उत्पत्तिं): यह कर्म वाला रूप है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does जिज्ञासा mean?",
+        "hi": "जिज्ञासा का क्या अर्थ है?"
+       },
+       "options": [
+        "The wish to know",
+        "The wish to sleep",
+        "The wish to play"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "जिज्ञासा comes from ज्ञातुम् इच्छा, the wish to know.",
+        "hi": "जिज्ञासा ज्ञातुम् इच्छा से बना है, यानी जानने की इच्छा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sleep is निद्रा.",
+         "hi": "नींद को निद्रा कहते हैं।"
+        },
+        {
+         "en": "Play is क्रीडा.",
+         "hi": "खेल को क्रीडा कहते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask an elder a question beginning with कथम् (how) about nature.",
+      "hi": "किसी बड़े से प्रकृति के बारे में कथम् (कैसे) से शुरू होने वाला प्रश्न पूछो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "The night sky",
+   "shows": "The Milky Way over a quiet Indian village at night, a rooftop in the foreground",
+   "view": "Wide, low angle",
+   "right": "Real stars, dark sky, no light pollution",
+   "avoid": "Added planets or text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "Fire and water",
+   "shows": "A kitchen fire under a pot of boiling water in a village courtyard",
+   "view": "Medium, from the side",
+   "right": "Real flame, rising steam",
+   "avoid": "Gas stove branding"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "The earth gives",
+   "shows": "Green wheat field at sunrise with a farmer far in the distance",
+   "view": "Wide, low",
+   "right": "True green and gold",
+   "avoid": "Machines, names on tractors"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "9.4",
+   "use": "Food",
+   "shows": "A steel thali with roti, dal, rice and vegetables",
+   "view": "Top-down, transparent background",
+   "right": "Simple Indian home meal",
+   "avoid": "Fast-food brands"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "9.2",
+   "use": "From seed to food",
+   "shows": "Five frames: seed in soil, sprout, plant, grain, bread",
+   "view": "Same camera, same light",
+   "right": "Real wheat growth",
+   "avoid": "Cartoon art"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Sanskrit manuscripts",
+   "shows": "A palm-leaf manuscript lying open on a wooden desk",
+   "view": "Close, soft light",
+   "right": "Real palm-leaf, aged colour",
+   "avoid": "Readable invented text"
+  }
+ ]
+}

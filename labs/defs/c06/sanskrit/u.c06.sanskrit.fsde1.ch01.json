@@ -1,0 +1,1290 @@
+{
+  "chapter_key": "u.c06.sanskrit.fsde1.ch01",
+  "class": 6,
+  "subject_id": "sanskrit",
+  "title": "वयं वर्णमालां पठामः",
+  "source": "https://ncert.nic.in/textbook.php?fsde1=0-16",
+  "topics": [
+    {
+      "n": "1.1",
+      "title": "Vowels (स्वराः): short, long and joined",
+      "labs": [
+        "c06-sanskrit-fsde1-ch01-vowels"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.2",
+      "title": "How the joined vowels (सन्ध्यक्षर) are made",
+      "labs": [
+        "c06-sanskrit-fsde1-ch01-join"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.3",
+      "title": "Consonants and the five groups (वर्ग)",
+      "labs": [
+        "c06-sanskrit-fsde1-ch01-vargas"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.4",
+      "title": "Vowel signs on consonants (गुणिताक्षर)",
+      "labs": [
+        "c06-sanskrit-fsde1-ch01-matra"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.5",
+      "title": "Semi-vowels in the place of vowels",
+      "labs": [
+        "c06-sanskrit-fsde1-ch01-yan"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.6",
+      "title": "Naming pictures and family members",
+      "labs": [],
+      "why_no_lab": "Saying the names of pictures, family members and teachers is spoken practice with the book and the class."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c06-sanskrit-fsde1-ch01-vowels",
+      "topic": "1.1",
+      "template": "sort",
+      "title": {
+        "en": "Short, long and joined vowels",
+        "hi": "ह्रस्व, दीर्घ और सन्ध्यक्षर स्वर"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "sh",
+            "label": {
+              "en": "Short vowels (ह्रस्व)",
+              "hi": "ह्रस्व स्वर"
+            }
+          },
+          {
+            "id": "dh",
+            "label": {
+              "en": "Long vowels (दीर्घ)",
+              "hi": "दीर्घ स्वर"
+            }
+          },
+          {
+            "id": "sn",
+            "label": {
+              "en": "Joined vowels (सन्ध्यक्षर)",
+              "hi": "सन्ध्यक्षर स्वर"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "a",
+            "text": {
+              "en": "अ",
+              "hi": "अ"
+            },
+            "bin": "sh",
+            "why": {
+              "en": "Short vowel: said quickly.",
+              "hi": "छोटा स्वर: जल्दी बोला जाता है।"
+            }
+          },
+          {
+            "id": "i",
+            "text": {
+              "en": "इ",
+              "hi": "इ"
+            },
+            "bin": "sh",
+            "why": {
+              "en": "Short vowel: said quickly.",
+              "hi": "छोटा स्वर: जल्दी बोला जाता है।"
+            }
+          },
+          {
+            "id": "u",
+            "text": {
+              "en": "उ",
+              "hi": "उ"
+            },
+            "bin": "sh",
+            "why": {
+              "en": "Short vowel: said quickly.",
+              "hi": "छोटा स्वर: जल्दी बोला जाता है।"
+            }
+          },
+          {
+            "id": "lr",
+            "text": {
+              "en": "ऌ",
+              "hi": "ऌ"
+            },
+            "bin": "sh",
+            "why": {
+              "en": "Short vowel. It has no long form.",
+              "hi": "छोटा स्वर। इसका दीर्घ रूप नहीं होता।"
+            }
+          },
+          {
+            "id": "aa",
+            "text": {
+              "en": "आ",
+              "hi": "आ"
+            },
+            "bin": "dh",
+            "why": {
+              "en": "Long vowel: held longer than अ.",
+              "hi": "दीर्घ स्वर: अ से देर तक बोला जाता है।"
+            }
+          },
+          {
+            "id": "ii",
+            "text": {
+              "en": "ई",
+              "hi": "ई"
+            },
+            "bin": "dh",
+            "why": {
+              "en": "Long vowel: held longer than इ.",
+              "hi": "दीर्घ स्वर: इ से देर तक बोला जाता है।"
+            }
+          },
+          {
+            "id": "uu",
+            "text": {
+              "en": "ऊ",
+              "hi": "ऊ"
+            },
+            "bin": "dh",
+            "why": {
+              "en": "Long vowel: held longer than उ.",
+              "hi": "दीर्घ स्वर: उ से देर तक बोला जाता है।"
+            }
+          },
+          {
+            "id": "e",
+            "text": {
+              "en": "ए",
+              "hi": "ए"
+            },
+            "bin": "sn",
+            "why": {
+              "en": "Made by joining अ and इ.",
+              "hi": "अ और इ के मेल से बना है।"
+            }
+          },
+          {
+            "id": "ai",
+            "text": {
+              "en": "ऐ",
+              "hi": "ऐ"
+            },
+            "bin": "sn",
+            "why": {
+              "en": "Made by joining अ and ए.",
+              "hi": "अ और ए के मेल से बना है।"
+            }
+          },
+          {
+            "id": "o",
+            "text": {
+              "en": "ओ",
+              "hi": "ओ"
+            },
+            "bin": "sn",
+            "why": {
+              "en": "Made by joining अ and उ.",
+              "hi": "अ और उ के मेल से बना है।"
+            }
+          },
+          {
+            "id": "au",
+            "text": {
+              "en": "औ",
+              "hi": "औ"
+            },
+            "bin": "sn",
+            "why": {
+              "en": "Made by joining अ and ओ.",
+              "hi": "अ और ओ के मेल से बना है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:a",
+          "expect": "placed:a",
+          "say": {
+            "en": "Tap the card अ, then tap the group where it belongs.",
+            "hi": "कार्ड अ छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which vowels are made when two vowels join?",
+            "hi": "दो स्वर मिलने पर कौन-से स्वर बनते हैं?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "आ ई ऊ",
+              "hi": "आ ई ऊ"
+            },
+            {
+              "id": "b",
+              "en": "ए ऐ ओ औ",
+              "hi": "ए ऐ ओ औ"
+            },
+            {
+              "id": "c",
+              "en": "अ इ उ",
+              "hi": "अ इ उ"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Put every card in a group, then press Check.",
+            "hi": "सारे कार्ड समूहों में रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Vowels (स्वर) are said on their own. अ इ उ ऌ are short. आ ई ऊ are long. ए ऐ ओ औ are not plain letters: they are made when two vowels join, so they are called सन्ध्यक्षर.",
+            "hi": "स्वर अपने आप बोले जाते हैं। अ इ उ ऌ छोटे हैं। आ ई ऊ लंबे हैं। ए ऐ ओ औ सीधे अक्षर नहीं हैं: ये दो स्वरों के मेल से बनते हैं, इसलिए इन्हें सन्ध्यक्षर कहते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which one is a सन्ध्यक्षर?",
+                "hi": "इनमें सन्ध्यक्षर कौन-सा है?"
+              },
+              "options": [
+                "ई",
+                "ओ",
+                "उ"
+              ],
+              "answer": 1,
+              "why": {
+                "en": "ओ is made by joining अ and उ.",
+                "hi": "ओ, अ और उ के मेल से बना है।"
+              },
+              "wrong": [
+                {
+                  "en": "ई is a long vowel from the plain group.",
+                  "hi": "ई सादे समूह का दीर्घ स्वर है।"
+                },
+                "",
+                {
+                  "en": "उ is a short vowel. It is not made by joining.",
+                  "hi": "उ छोटा स्वर है। यह मेल से नहीं बना।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which pair has two short vowels?",
+                "hi": "किस जोड़ी में दोनों स्वर छोटे हैं?"
+              },
+              "options": [
+                "अ, इ",
+                "आ, ई",
+                "ए, ऐ"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "अ and इ are both short.",
+                "hi": "अ और इ दोनों छोटे हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "आ and ई are both long.",
+                  "hi": "आ और ई दोनों दीर्घ हैं।"
+                },
+                {
+                  "en": "ए and ऐ are joined vowels, not short ones.",
+                  "hi": "ए और ऐ मेल से बने स्वर हैं, छोटे नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Say each vowel aloud. Which ones feel quick and which ones feel long?",
+            "hi": "हर स्वर ज़ोर से बोलो। कौन-से जल्दी और कौन-से देर तक बोले जाते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch01-join",
+      "topic": "1.2",
+      "template": "match",
+      "title": {
+        "en": "How joined vowels are made",
+        "hi": "सन्ध्यक्षर कैसे बनते हैं"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "ae",
+            "left": {
+              "en": "अ + इ",
+              "hi": "अ + इ"
+            },
+            "right": {
+              "en": "ए",
+              "hi": "ए"
+            },
+            "why": {
+              "en": "अ and इ join to make ए.",
+              "hi": "अ और इ मिलकर ए बनाते हैं।"
+            }
+          },
+          {
+            "id": "ao",
+            "left": {
+              "en": "अ + उ",
+              "hi": "अ + उ"
+            },
+            "right": {
+              "en": "ओ",
+              "hi": "ओ"
+            },
+            "why": {
+              "en": "अ and उ join to make ओ.",
+              "hi": "अ और उ मिलकर ओ बनाते हैं।"
+            }
+          },
+          {
+            "id": "aai",
+            "left": {
+              "en": "अ + ए",
+              "hi": "अ + ए"
+            },
+            "right": {
+              "en": "ऐ",
+              "hi": "ऐ"
+            },
+            "why": {
+              "en": "अ and ए join to make ऐ.",
+              "hi": "अ और ए मिलकर ऐ बनाते हैं।"
+            }
+          },
+          {
+            "id": "aau",
+            "left": {
+              "en": "अ + ओ",
+              "hi": "अ + ओ"
+            },
+            "right": {
+              "en": "औ",
+              "hi": "औ"
+            },
+            "why": {
+              "en": "अ and ओ join to make औ.",
+              "hi": "अ और ओ मिलकर औ बनाते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:ae",
+          "expect": "matched:ae",
+          "say": {
+            "en": "Tap अ + इ, then tap the card that goes with it.",
+            "hi": "अ + इ छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What does अ + उ make?",
+            "hi": "अ + उ से क्या बनता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "ओ",
+              "hi": "ओ"
+            },
+            {
+              "id": "b",
+              "en": "ऊ",
+              "hi": "ऊ"
+            },
+            {
+              "id": "c",
+              "en": "औ",
+              "hi": "औ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:aau",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Two vowels can join by sandhi and make a new vowel sound. अ + इ = ए, अ + उ = ओ, अ + ए = ऐ and अ + ओ = औ. That is how ए ऐ ओ औ are born.",
+            "hi": "सन्धि से दो स्वर मिलकर नई स्वर-ध्वनि बनाते हैं। अ + इ = ए, अ + उ = ओ, अ + ए = ऐ और अ + ओ = औ। इसी तरह ए ऐ ओ औ बनते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does अ + ए make?",
+                "hi": "अ + ए से क्या बनता है?"
+              },
+              "options": [
+                "ऐ",
+                "ए",
+                "औ"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "अ + ए = ऐ.",
+                "hi": "अ + ए = ऐ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "ए is one of the two vowels being joined, not the result.",
+                  "hi": "ए तो जुड़ने वाले स्वरों में से एक है, परिणाम नहीं।"
+                },
+                {
+                  "en": "औ comes from अ + ओ.",
+                  "hi": "औ तो अ + ओ से बनता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why are ए ऐ ओ औ called सन्ध्यक्षर?",
+                "hi": "ए ऐ ओ औ को सन्ध्यक्षर क्यों कहते हैं?"
+              },
+              "options": [
+                {
+                  "en": "They are made when two vowels join",
+                  "hi": "ये दो स्वरों के मेल से बनते हैं"
+                },
+                {
+                  "en": "They are short vowels",
+                  "hi": "ये छोटे स्वर हैं"
+                },
+                {
+                  "en": "They are consonants",
+                  "hi": "ये व्यञ्जन हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Sandhi means joining, so these are joined vowels.",
+                "hi": "सन्धि का अर्थ मेल है, इसलिए ये मेल से बने स्वर हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "They are long, and none of them is short.",
+                  "hi": "ये दीर्घ हैं, इनमें कोई छोटा नहीं है।"
+                },
+                {
+                  "en": "Consonants are क ख ग and so on, not vowels.",
+                  "hi": "व्यञ्जन क ख ग आदि हैं, स्वर नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Try joining अ with इ again. Can you say ए slowly as अ then इ?",
+            "hi": "अ और इ को फिर मिलाओ। क्या ए को धीरे-धीरे अ फिर इ की तरह बोल सकते हो?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch01-vargas",
+      "topic": "1.3",
+      "template": "sort",
+      "title": {
+        "en": "Five groups of touching consonants",
+        "hi": "स्पर्श व्यञ्जनों के पाँच वर्ग"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "k",
+            "label": {
+              "en": "Ka-group (क-वर्ग)",
+              "hi": "क-वर्ग"
+            }
+          },
+          {
+            "id": "c",
+            "label": {
+              "en": "Cha-group (च-वर्ग)",
+              "hi": "च-वर्ग"
+            }
+          },
+          {
+            "id": "tt",
+            "label": {
+              "en": "Ta-group (ट-वर्ग)",
+              "hi": "ट-वर्ग"
+            }
+          },
+          {
+            "id": "t",
+            "label": {
+              "en": "Ta-group (त-वर्ग)",
+              "hi": "त-वर्ग"
+            }
+          },
+          {
+            "id": "p",
+            "label": {
+              "en": "Pa-group (प-वर्ग)",
+              "hi": "प-वर्ग"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "k1",
+            "text": {
+              "en": "क",
+              "hi": "क"
+            },
+            "bin": "k",
+            "why": {
+              "en": "क is in the क-वर्ग.",
+              "hi": "क क-वर्ग में है।"
+            }
+          },
+          {
+            "id": "k2",
+            "text": {
+              "en": "ख",
+              "hi": "ख"
+            },
+            "bin": "k",
+            "why": {
+              "en": "ख is in the क-वर्ग.",
+              "hi": "ख क-वर्ग में है।"
+            }
+          },
+          {
+            "id": "k3",
+            "text": {
+              "en": "ग",
+              "hi": "ग"
+            },
+            "bin": "k",
+            "why": {
+              "en": "ग is in the क-वर्ग.",
+              "hi": "ग क-वर्ग में है।"
+            }
+          },
+          {
+            "id": "c1",
+            "text": {
+              "en": "च",
+              "hi": "च"
+            },
+            "bin": "c",
+            "why": {
+              "en": "च is in the च-वर्ग.",
+              "hi": "च च-वर्ग में है।"
+            }
+          },
+          {
+            "id": "c2",
+            "text": {
+              "en": "छ",
+              "hi": "छ"
+            },
+            "bin": "c",
+            "why": {
+              "en": "छ is in the च-वर्ग.",
+              "hi": "छ च-वर्ग में है।"
+            }
+          },
+          {
+            "id": "c3",
+            "text": {
+              "en": "ज",
+              "hi": "ज"
+            },
+            "bin": "c",
+            "why": {
+              "en": "ज is in the च-वर्ग.",
+              "hi": "ज च-वर्ग में है।"
+            }
+          },
+          {
+            "id": "t1",
+            "text": {
+              "en": "ट",
+              "hi": "ट"
+            },
+            "bin": "tt",
+            "why": {
+              "en": "ट is in the ट-वर्ग.",
+              "hi": "ट ट-वर्ग में है।"
+            }
+          },
+          {
+            "id": "t2",
+            "text": {
+              "en": "ठ",
+              "hi": "ठ"
+            },
+            "bin": "tt",
+            "why": {
+              "en": "ठ is in the ट-वर्ग.",
+              "hi": "ठ ट-वर्ग में है।"
+            }
+          },
+          {
+            "id": "t3",
+            "text": {
+              "en": "ड",
+              "hi": "ड"
+            },
+            "bin": "tt",
+            "why": {
+              "en": "ड is in the ट-वर्ग.",
+              "hi": "ड ट-वर्ग में है।"
+            }
+          },
+          {
+            "id": "u1",
+            "text": {
+              "en": "त",
+              "hi": "त"
+            },
+            "bin": "t",
+            "why": {
+              "en": "त is in the त-वर्ग.",
+              "hi": "त त-वर्ग में है।"
+            }
+          },
+          {
+            "id": "u2",
+            "text": {
+              "en": "थ",
+              "hi": "थ"
+            },
+            "bin": "t",
+            "why": {
+              "en": "थ is in the त-वर्ग.",
+              "hi": "थ त-वर्ग में है।"
+            }
+          },
+          {
+            "id": "u3",
+            "text": {
+              "en": "द",
+              "hi": "द"
+            },
+            "bin": "t",
+            "why": {
+              "en": "द is in the त-वर्ग.",
+              "hi": "द त-वर्ग में है।"
+            }
+          },
+          {
+            "id": "p1",
+            "text": {
+              "en": "प",
+              "hi": "प"
+            },
+            "bin": "p",
+            "why": {
+              "en": "प is in the प-वर्ग.",
+              "hi": "प प-वर्ग में है।"
+            }
+          },
+          {
+            "id": "p2",
+            "text": {
+              "en": "फ",
+              "hi": "फ"
+            },
+            "bin": "p",
+            "why": {
+              "en": "फ is in the प-वर्ग.",
+              "hi": "फ प-वर्ग में है।"
+            }
+          },
+          {
+            "id": "p3",
+            "text": {
+              "en": "ब",
+              "hi": "ब"
+            },
+            "bin": "p",
+            "why": {
+              "en": "ब is in the प-वर्ग.",
+              "hi": "ब प-वर्ग में है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:k1",
+          "expect": "placed:k1",
+          "say": {
+            "en": "Tap the card क, then tap the group where it belongs.",
+            "hi": "कार्ड क छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "ञ belongs to which group?",
+            "hi": "ञ किस वर्ग में आता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "क-वर्ग",
+              "hi": "क-वर्ग"
+            },
+            {
+              "id": "b",
+              "en": "च-वर्ग",
+              "hi": "च-वर्ग"
+            },
+            {
+              "id": "c",
+              "en": "प-वर्ग",
+              "hi": "प-वर्ग"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Put every card in a group, then press Check.",
+            "hi": "सारे कार्ड समूहों में रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Sparsha consonants (स्पर्श व्यञ्जन) are put in five groups by where the mouth touches when we say them. Each group has five letters and is named after its first letter: क-वर्ग is क ख ग घ ङ, च-वर्ग is च छ ज झ ञ, and so on.",
+            "hi": "स्पर्श व्यञ्जन बोलते समय मुँह में जहाँ स्पर्श होता है, उसके अनुसार पाँच वर्गों में बँटे हैं। हर वर्ग में पाँच अक्षर हैं और पहले अक्षर के नाम से वर्ग का नाम है: क-वर्ग यानी क ख ग घ ङ, च-वर्ग यानी च छ ज झ ञ, आदि।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which letter is in the प-वर्ग?",
+                "hi": "प-वर्ग में कौन-सा अक्षर है?"
+              },
+              "options": [
+                "म",
+                "न",
+                "ण"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "प फ ब भ म are the प-वर्ग.",
+                "hi": "प फ ब भ म प-वर्ग हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "न is in the त-वर्ग (त थ द ध न).",
+                  "hi": "न त-वर्ग (त थ द ध न) में है।"
+                },
+                {
+                  "en": "ण is in the ट-वर्ग (ट ठ ड ढ ण).",
+                  "hi": "ण ट-वर्ग (ट ठ ड ढ ण) में है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many letters are in each वर्ग?",
+                "hi": "हर वर्ग में कितने अक्षर हैं?"
+              },
+              "options": [
+                "3",
+                "5",
+                "4"
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Every वर्ग has five letters.",
+                "hi": "हर वर्ग में पाँच अक्षर होते हैं।"
+              },
+              "wrong": [
+                {
+                  "en": "We placed three cards here, but each group has two more letters.",
+                  "hi": "यहाँ हमने तीन कार्ड रखे, पर हर वर्ग में दो अक्षर और हैं।"
+                },
+                "",
+                {
+                  "en": "Four counts one letter too few; the last one is the nasal letter.",
+                  "hi": "चार में एक अक्षर कम गिना; आख़िरी नासिक्य अक्षर है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write all five letters of the क-वर्ग in your notebook from memory.",
+            "hi": "क-वर्ग के पाँचों अक्षर कॉपी में याद से लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch01-matra",
+      "topic": "1.4",
+      "template": "words",
+      "title": {
+        "en": "Letters with vowel signs",
+        "hi": "मात्रा लगाकर अक्षर बनाओ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "matra",
+        "lang": "sa",
+        "consonants": [
+          "क",
+          "ख",
+          "ग",
+          "च",
+          "ज"
+        ],
+        "matras": [
+          "ा",
+          "ि",
+          "ी",
+          "ु",
+          "ू"
+        ],
+        "examples": {
+          "का": "काकः",
+          "कि": "किम्",
+          "गु": "गुडः",
+          "जा": "जानाति"
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "pick:क",
+          "expect": "pick:क",
+          "say": {
+            "en": "Tap the letter क.",
+            "hi": "अक्षर क छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What will क with the sign ा become?",
+            "hi": "क में ा की मात्रा लगाने पर क्या बनेगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "का",
+              "hi": "का"
+            },
+            {
+              "id": "b",
+              "en": "कि",
+              "hi": "कि"
+            },
+            {
+              "id": "c",
+              "en": "कु",
+              "hi": "कु"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "matra:ा",
+          "expect": "make:का",
+          "say": {
+            "en": "Now tap the sign ा to make का.",
+            "hi": "अब ा की मात्रा छूकर का बनाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "matra:ि",
+          "expect": "make:कि",
+          "say": {
+            "en": "Try the sign ि to make कि.",
+            "hi": "ि की मात्रा लगाकर कि बनाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A consonant alone, like क्, has no vowel. Adding अ makes क. Joining a vowel sign changes the sound: क + ा = का, क + ि = कि, क + ु = कु. These are called गुणिताक्षर.",
+            "hi": "अकेला व्यञ्जन क् बिना स्वर का होता है। अ जोड़ने से क बनता है। मात्रा जोड़ने से ध्वनि बदलती है: क + ा = का, क + ि = कि, क + ु = कु। इन्हें गुणिताक्षर कहते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "ग with the sign ु makes:",
+                "hi": "ग में ु की मात्रा लगाने पर बनता है:"
+              },
+              "options": [
+                "गु",
+                "गू",
+                "गा"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "ग + ु = गु, as in गुडः (jaggery).",
+                "hi": "ग + ु = गु, जैसे गुडः में।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "गू uses the long sign ू, not ु.",
+                  "hi": "गू में दीर्घ मात्रा ू है, ु नहीं।"
+                },
+                {
+                  "en": "गा uses the sign ा.",
+                  "hi": "गा में ा की मात्रा है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "The sign ि is written:",
+                "hi": "ि की मात्रा लिखी जाती है:"
+              },
+              "options": [
+                "before the letter",
+                "below the letter",
+                "after the letter"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "ि is written before the letter, though we say it after.",
+                "hi": "ि अक्षर से पहले लिखी जाती है, पर बोली बाद में जाती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Below is where ु and ू go.",
+                  "hi": "नीचे ु और ू लगती हैं।"
+                },
+                {
+                  "en": "After is where ा and ी go.",
+                  "hi": "बाद में ा और ी लगती हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make as many letters as you can with च and ज. Say each one aloud.",
+            "hi": "च और ज से जितने अक्षर बन सकें बनाओ। हर एक बोलकर देखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch01-yan",
+      "topic": "1.5",
+      "template": "words",
+      "title": {
+        "en": "When a vowel turns into य, व or र",
+        "hi": "जब स्वर य, व या र बन जाता है"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "sandhi",
+        "lang": "sa",
+        "words": [
+          {
+            "w": "यद्यपि",
+            "parts": [
+              "यदि",
+              "अपि"
+            ],
+            "meaning": {
+              "en": "although",
+              "hi": "हालाँकि"
+            }
+          },
+          {
+            "w": "स्वागतम्",
+            "parts": [
+              "सु",
+              "आगतम्"
+            ],
+            "meaning": {
+              "en": "welcome",
+              "hi": "स्वागत"
+            }
+          },
+          {
+            "w": "पित्राज्ञा",
+            "parts": [
+              "पितृ",
+              "आज्ञा"
+            ],
+            "meaning": {
+              "en": "father's order",
+              "hi": "पिता की आज्ञा"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "part:यदि",
+          "expect": "part:यदि",
+          "say": {
+            "en": "Tap the part यदि.",
+            "hi": "भाग यदि छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "यदि + अपि joins. What will इ turn into?",
+            "hi": "यदि + अपि जुड़ने पर इ क्या बन जाएगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "य्",
+              "hi": "य्"
+            },
+            {
+              "id": "b",
+              "en": "व्",
+              "hi": "व्"
+            },
+            {
+              "id": "c",
+              "en": "र्",
+              "hi": "र्"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "part:अपि",
+          "expect": "joined:यद्यपि",
+          "say": {
+            "en": "Now tap the part अपि to join the word.",
+            "hi": "अब भाग अपि छूकर शब्द जोड़ो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The semi-vowels य र ल व sit in the place of vowels. इ turns into य्, उ into व् and ऋ into र् when another vowel follows: यदि + अपि = यद्यपि, सु + आगतम् = स्वागतम्, पितृ + आज्ञा = पित्राज्ञा.",
+            "hi": "अन्तःस्थ य र ल व स्वरों की जगह आते हैं। बाद में दूसरा स्वर आए तो इ का य्, उ का व् और ऋ का र् हो जाता है: यदि + अपि = यद्यपि, सु + आगतम् = स्वागतम्, पितृ + आज्ञा = पित्राज्ञा।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "सु + आगतम् makes:",
+                "hi": "सु + आगतम् से बनता है:"
+              },
+              "options": [
+                "स्वागतम्",
+                "सुआगतम्",
+                "सागतम्"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "उ turns into व्, so सु + आगतम् = स्वागतम्.",
+                "hi": "उ का व् हो जाता है, इसलिए सु + आगतम् = स्वागतम्।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The two words do not stay side by side; उ changes.",
+                  "hi": "दोनों शब्द ऐसे ही नहीं जुड़ते; उ बदल जाता है।"
+                },
+                {
+                  "en": "सागतम् drops the u sound and does not use व्.",
+                  "hi": "सागतम् में उ की ध्वनि गायब है और व् नहीं है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "In यद्यपि, which letter took the place of इ?",
+                "hi": "यद्यपि में इ की जगह कौन-सा अक्षर आया?"
+              },
+              "options": [
+                "य्",
+                "व्",
+                "र्"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "इ becomes य्.",
+                "hi": "इ का य् हो जाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "व् takes the place of उ.",
+                  "hi": "व् उ की जगह आता है।"
+                },
+                {
+                  "en": "र् takes the place of ऋ.",
+                  "hi": "र् ऋ की जगह आता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Build the other two words, स्वागतम् and पित्राज्ञा, with the Next button.",
+            "hi": "अगला बटन दबाकर बाकी दो शब्द स्वागतम् और पित्राज्ञा भी बनाओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1.1",
+      "use": "Opens the chapter",
+      "shows": "Hands of Indian primary-school children tracing letter shapes with a finger in a tray of fine sand, desks and a green board blurred behind",
+      "view": "Top-down, soft window light, shallow depth",
+      "right": "Real children hands, sand lines clearly visible",
+      "avoid": "Readable words or faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1.1",
+      "use": "First-letter picture cards",
+      "shows": "Separate cut-outs: lotus, elephant, clay pot, peacock, boat, book, tree, house",
+      "view": "Front or three-quarter view, one file per object",
+      "right": "Real shapes, true colours, objects well known in India",
+      "avoid": "Text and brand marks"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "1.4",
+      "use": "Writing guide",
+      "shows": "A clean four-line practice grid with a shirorekha line, empty",
+      "view": "Flat, white background",
+      "right": "Even line spacing for Devanagari letters",
+      "avoid": "Any letter or word"
+    },
+    {
+      "n": 4,
+      "kind": "CUT",
+      "topic": "1.3",
+      "use": "Where the sound is made",
+      "shows": "Side cut-away of a mouth and throat showing throat, palate, teeth and lips, no labels",
+      "view": "Side view, neutral background",
+      "right": "Anatomically correct, friendly colours",
+      "avoid": "Labels, scary detail"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "1.4",
+      "use": "A letter grows a vowel sign",
+      "shows": "One hand writing the letter क and then adding the sign ा to make का, four frames on a white page",
+      "view": "Same camera, same light, from above",
+      "right": "Stroke order and the sign position are correct",
+      "avoid": "Changing the pen or the angle"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "1.5",
+      "use": "Welcome",
+      "shows": "A doorway of an Indian home with a rangoli, a plate with a lamp and flowers",
+      "view": "Eye level, warm daylight",
+      "right": "Real rangoli patterns",
+      "avoid": "People or writing"
+    }
+  ]
+}

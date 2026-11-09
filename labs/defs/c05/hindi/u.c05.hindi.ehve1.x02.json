@@ -1,0 +1,303 @@
+{
+  "chapter_key": "u.c05.hindi.ehve1.x02",
+  "class": 5,
+  "subject_id": "hindi",
+  "title": "पेड़ का जादू",
+  "source": "https://ncert.nic.in/textbook/pdf/ehve1ps.pdf",
+  "topics": [
+    {
+      "n": "1",
+      "title": "What a tree brings by itself",
+      "labs": [
+        "c05-hindi-ehve1-x02-tree"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Think and talk: what can we do for trees",
+      "labs": [],
+      "why_no_lab": "This is a talking-and-doing task for class and home; a photo scene and the reader give it better than a game."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c05-hindi-ehve1-x02-tree",
+      "topic": "1",
+      "template": "sort",
+      "title": {
+        "en": "What the tree brings",
+        "hi": "पेड़ क्या-क्या बुला लाता है"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "tree",
+            "label": {
+              "en": "Comes with a tree",
+              "hi": "पेड़ के साथ आते हैं"
+            }
+          },
+          {
+            "id": "bought",
+            "label": {
+              "en": "We must get or make",
+              "hi": "हमें लाना या बनाना पड़ता है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "squirrel",
+            "text": {
+              "en": "Squirrel",
+              "hi": "गिलहरी"
+            },
+            "bin": "tree",
+            "why": {
+              "en": "A squirrel makes its home and finds food on a tree, so it comes by itself.",
+              "hi": "गिलहरी पेड़ पर घर और भोजन पाती है, इसलिए अपने आप आ जाती है।"
+            }
+          },
+          {
+            "id": "bird",
+            "text": {
+              "en": "Birds",
+              "hi": "चिड़ियाँ"
+            },
+            "bin": "tree",
+            "why": {
+              "en": "Birds build nests on a tree; nobody has to bring them.",
+              "hi": "चिड़ियाँ पेड़ पर घोंसला बनाती हैं; उन्हें कोई लाता नहीं।"
+            }
+          },
+          {
+            "id": "shade",
+            "text": {
+              "en": "Cool shade",
+              "hi": "ठंडी छाया"
+            },
+            "bin": "tree",
+            "why": {
+              "en": "When the sun is bright, the tree's leaves make shade underneath.",
+              "hi": "धूप तेज़ हो तो पेड़ की पत्तियों से नीचे छाया बन जाती है।"
+            }
+          },
+          {
+            "id": "butterfly",
+            "text": {
+              "en": "Butterflies",
+              "hi": "तितलियाँ"
+            },
+            "bin": "tree",
+            "why": {
+              "en": "Butterflies visit the flowers and leaves of trees and plants.",
+              "hi": "तितलियाँ पेड़-पौधों के फूलों और पत्तों पर आती हैं।"
+            }
+          },
+          {
+            "id": "toy",
+            "text": {
+              "en": "Toy car",
+              "hi": "खिलौना कार"
+            },
+            "bin": "bought",
+            "why": {
+              "en": "A toy car is made in a factory and bought from a shop.",
+              "hi": "खिलौना कार कारखाने में बनती है और दुकान से आती है।"
+            }
+          },
+          {
+            "id": "bag",
+            "text": {
+              "en": "School bag",
+              "hi": "स्कूल का बस्ता"
+            },
+            "bin": "bought",
+            "why": {
+              "en": "A bag is stitched by people; a tree does not bring it.",
+              "hi": "बस्ता लोग सिलते हैं; पेड़ उसे नहीं लाता।"
+            }
+          },
+          {
+            "id": "cycle",
+            "text": {
+              "en": "Bicycle",
+              "hi": "साइकिल"
+            },
+            "bin": "bought",
+            "why": {
+              "en": "A bicycle has to be built and bought.",
+              "hi": "साइकिल बनानी और खरीदनी पड़ती है।"
+            }
+          },
+          {
+            "id": "clock",
+            "text": {
+              "en": "Wall clock",
+              "hi": "दीवार घड़ी"
+            },
+            "bin": "bought",
+            "why": {
+              "en": "A clock is made by people and bought from a shop.",
+              "hi": "घड़ी लोग बनाते हैं और दुकान से लेते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:squirrel",
+          "expect": "placed:squirrel",
+          "say": {
+            "en": "Tap the squirrel card, then tap the group where it belongs.",
+            "hi": "गिलहरी के कार्ड पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह रहती है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which of these will come to a tree without anyone bringing it?",
+            "hi": "इनमें से कौन बिना किसी के लाए पेड़ के पास आ जाएगा?"
+          },
+          "options": [
+            {
+              "id": "bird",
+              "en": "चिड़िया",
+              "hi": "चिड़िया"
+            },
+            {
+              "id": "toy",
+              "en": "खिलौना कार",
+              "hi": "खिलौना कार"
+            },
+            {
+              "id": "clock",
+              "en": "घड़ी",
+              "hi": "घड़ी"
+            }
+          ],
+          "answer": "bird"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the cards, then press Check.",
+            "hi": "सारे कार्ड छाँटो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The aunt in the piece says she never bought a squirrel; the squirrel came because of the tree. Where there is a tree, there is food, a home and shade, so living things arrive by themselves. That is the 'magic' of a tree.",
+            "hi": "पाठ में बुआ कहती हैं कि उन्होंने गिलहरी खरीदी नहीं, वह पेड़ के कारण आई। जहाँ पेड़ है, वहाँ भोजन, घर और छाया मिलते हैं, इसलिए जीव अपने आप आ जाते हैं। यही पेड़ का जादू है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why did the squirrel come to Bua's house?",
+                "hi": "गिलहरी बुआ के घर क्यों आई?"
+              },
+              "options": [
+                {
+                  "en": "Because there was a tree",
+                  "hi": "क्योंकि वहाँ पेड़ था"
+                },
+                {
+                  "en": "Because Bua bought it",
+                  "hi": "क्योंकि बुआ ने उसे खरीदा था"
+                },
+                {
+                  "en": "Because it was a holiday",
+                  "hi": "क्योंकि छुट्टी का दिन था"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A tree gives a squirrel food and a home, so it came on its own.",
+                "hi": "पेड़ गिलहरी को भोजन और घर देता है, इसलिए वह अपने आप आई।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Bua said she did not buy it; it came by itself.",
+                  "hi": "बुआ ने कहा कि उन्होंने उसे खरीदा नहीं, वह अपने आप आई।"
+                },
+                {
+                  "en": "A holiday does not call a squirrel; a tree does.",
+                  "hi": "छुट्टी से गिलहरी नहीं आती; पेड़ से आती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Name three living things you have seen near one tree in your lane or school.",
+            "hi": "अपनी गली या स्कूल के किसी एक पेड़ के पास रहने वाले तीन जीवों के नाम सोचो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the piece: a tree in a village aunt's yard",
+      "shows": "A large neem or mango tree in a courtyard, a squirrel on the trunk and sparrows on a branch",
+      "view": "Wide 16:9 from the courtyard gate",
+      "right": "Real Indian tree, squirrel with three stripes (Indian palm squirrel)",
+      "avoid": "Cartoon animals"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sort cards: squirrel",
+      "shows": "An Indian palm squirrel sitting upright",
+      "view": "Side view cut-out, soft light",
+      "right": "Three pale stripes along the back",
+      "avoid": "Pet-shop cage"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sort cards: sparrow",
+      "shows": "A house sparrow perched",
+      "view": "Side view cut-out",
+      "right": "Brown, grey cap, black bib on male"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Reader: shade under a tree",
+      "shows": "Children's slippers and a ball resting in the cool shade of a tree on a sunny lane",
+      "view": "Low angle, bright sun beyond the shade",
+      "right": "Sharp edge between sun and shade, no faces",
+      "avoid": "Identifiable children"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sort cards: toy car, bag, clock",
+      "shows": "Three plain everyday objects on a transparent background",
+      "view": "Front view cut-outs, same light",
+      "right": "Plain items, no brand names",
+      "avoid": "Logos"
+    }
+  ]
+}

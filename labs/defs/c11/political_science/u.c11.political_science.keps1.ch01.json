@@ -1,0 +1,814 @@
+{
+ "chapter_key": "u.c11.political_science.keps1.ch01",
+ "class": 11,
+ "subject_id": "political_science",
+ "title": "Political Theory: An Introduction",
+ "source": "https://ncert.nic.in/textbook/pdf/keps101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "What is politics?",
+   "labs": [
+    "c11-political_science-keps1-ch01-public-or-private"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "What do we study in political theory?",
+   "labs": [
+    "c11-political_science-keps1-ch01-big-ideas"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Putting political theory to practice",
+   "labs": [
+    "c11-political_science-keps1-ch01-park-rule"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Why should we study political theory?",
+   "labs": [],
+   "why_no_lab": "This is best met by class debate and the reader, which let children argue with reasons."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-political_science-keps1-ch01-public-or-private",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "Public decision or private choice?",
+    "hi": "सार्वजनिक निर्णय या निजी चुनाव?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pub",
+      "label": {
+       "en": "Public decision (many people)",
+       "hi": "सार्वजनिक निर्णय (बहुत लोग)"
+      }
+     },
+     {
+      "id": "own",
+      "label": {
+       "en": "Private choice (only me)",
+       "hi": "निजी चुनाव (सिर्फ़ मैं)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "fare",
+      "text": {
+       "en": "Fixing bus fares in a city",
+       "hi": "शहर में बस का किराया तय करना"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "Many people travel by bus, so the fare is decided for all of them together.",
+       "hi": "बहुत लोग बस से चलते हैं, इसलिए किराया सबके लिए मिलकर तय होता है।"
+      }
+     },
+     {
+      "id": "pond",
+      "text": {
+       "en": "A village deciding how to share pond water",
+       "hi": "गाँव का तय करना कि तालाब का पानी कैसे बँटे"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "The whole village needs the water, so the rule must be agreed by all.",
+       "hi": "पूरे गाँव को पानी चाहिए, इसलिए नियम सबकी सहमति से बनना चाहिए।"
+      }
+     },
+     {
+      "id": "rules",
+      "text": {
+       "en": "A school making rules for all its students",
+       "hi": "स्कूल का सब विद्यार्थियों के लिए नियम बनाना"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "A rule that binds everyone in the school is a decision for the whole group.",
+       "hi": "जो नियम स्कूल में सब पर लागू हो, वह पूरे समूह का निर्णय है।"
+      }
+     },
+     {
+      "id": "law",
+      "text": {
+       "en": "Parliament passing a law on school education",
+       "hi": "संसद का स्कूली शिक्षा पर क़ानून बनाना"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "A law applies to everyone in the country.",
+       "hi": "क़ानून देश में सब पर लागू होता है।"
+      }
+     },
+     {
+      "id": "tax",
+      "text": {
+       "en": "Deciding how much tax people must pay",
+       "hi": "तय करना कि लोग कितना कर दें"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "Tax is collected from many people and spent on shared things like roads and schools.",
+       "hi": "कर बहुत लोगों से लिया जाता है और सड़क, स्कूल जैसी साझा चीज़ों पर ख़र्च होता है।"
+      }
+     },
+     {
+      "id": "lunch",
+      "text": {
+       "en": "Choosing what to eat in my own tiffin",
+       "hi": "अपने टिफ़िन में क्या खाना है, यह चुनना"
+      },
+      "bin": "own",
+      "why": {
+       "en": "This choice affects only me and nobody else needs to agree.",
+       "hi": "यह चुनाव सिर्फ़ मुझे प्रभावित करता है, किसी और की सहमति नहीं चाहिए।"
+      }
+     },
+     {
+      "id": "book",
+      "text": {
+       "en": "Choosing a storybook to read tonight",
+       "hi": "आज रात कौन-सी कहानी पढ़नी है, यह चुनना"
+      },
+      "bin": "own",
+      "why": {
+       "en": "Reading my own book is a private choice.",
+       "hi": "अपनी किताब पढ़ना निजी चुनाव है।"
+      }
+     },
+     {
+      "id": "colour",
+      "text": {
+       "en": "Picking my own favourite colour",
+       "hi": "अपना पसंदीदा रंग चुनना"
+      },
+      "bin": "own",
+      "why": {
+       "en": "A favourite colour is personal. No group decision is needed.",
+       "hi": "पसंदीदा रंग निजी बात है। इसके लिए समूह को तय नहीं करना पड़ता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:fare",
+     "expect": "placed:fare",
+     "say": {
+      "en": "Tap the card \"Fixing bus fares in a city\", then tap the group where it belongs.",
+      "hi": "\"शहर में बस का किराया तय करना\" कार्ड छुओ, फिर उस समूह को छुओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will sort the bus-fare card. Which group will it go in?",
+      "hi": "तुम बस-किराए वाला कार्ड रखोगे। यह किस समूह में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "pub",
+       "en": "Public decision",
+       "hi": "सार्वजनिक निर्णय"
+      },
+      {
+       "id": "own",
+       "en": "Private choice",
+       "hi": "निजी चुनाव"
+      }
+     ],
+     "answer": "pub"
+    },
+    {
+     "kind": "do",
+     "target": "card:pond",
+     "expect": "placed:pond",
+     "say": {
+      "en": "Now place the village pond card.",
+      "hi": "अब गाँव के तालाब वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Tap Check to see how you did.",
+      "hi": "जाँचने के लिए जाँचो बटन छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Politics begins when many people must decide something together. A bus fare, pond water or a school rule touches everybody, so people must talk, bargain and agree on one rule. What you eat in your own tiffin touches only you.",
+      "hi": "राजनीति तब शुरू होती है जब बहुत लोगों को कोई बात मिलकर तय करनी होती है। बस का किराया, तालाब का पानी या स्कूल का नियम सबको छूता है, इसलिए लोग बात करते हैं, समझौता करते हैं और एक नियम मानते हैं। अपने टिफ़िन में क्या खाना है, यह सिर्फ़ तुम्हें छूता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What makes a decision part of politics?",
+        "hi": "किस बात से कोई निर्णय राजनीति का हिस्सा बनता है?"
+       },
+       "options": [
+        {
+         "en": "Many people are affected and must agree on a rule",
+         "hi": "बहुत लोग प्रभावित होते हैं और उन्हें एक नियम पर सहमत होना है"
+        },
+        {
+         "en": "It is made by someone older",
+         "hi": "इसे कोई बड़ा व्यक्ति करता है"
+        },
+        {
+         "en": "It happens only in Delhi",
+         "hi": "यह सिर्फ़ दिल्ली में होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When a decision affects a whole group, the group must find a rule that works for all.",
+        "hi": "जब निर्णय पूरे समूह को प्रभावित करे, तो समूह को ऐसा नियम खोजना पड़ता है जो सबके काम आए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Age does not decide it. A grown-up choosing her own lunch is not politics.",
+         "hi": "उम्र से फ़र्क़ नहीं पड़ता। कोई बड़ा अपना खाना चुने तो वह राजनीति नहीं है।"
+        },
+        {
+         "en": "Politics happens in villages, schools and colonies too, not only in Delhi.",
+         "hi": "राजनीति गाँव, स्कूल और कॉलोनी में भी होती है, सिर्फ़ दिल्ली में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why must a village agree on a rule for pond water?",
+        "hi": "गाँव को तालाब के पानी का नियम मिलकर क्यों बनाना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Everyone needs the same water, so it has to be shared fairly",
+         "hi": "सबको वही पानी चाहिए, इसलिए उसे ठीक से बाँटना होगा"
+        },
+        {
+         "en": "Water has no use without a rule",
+         "hi": "नियम के बिना पानी बेकार है"
+        },
+        {
+         "en": "Only the richest family should decide",
+         "hi": "सिर्फ़ सबसे अमीर परिवार को तय करना चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A shared resource needs a shared rule that people accept.",
+        "hi": "साझा चीज़ के लिए ऐसा साझा नियम चाहिए जिसे लोग मानें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water is useful even without a rule. The rule is needed to avoid quarrels.",
+         "hi": "नियम के बिना भी पानी उपयोगी है। नियम झगड़े रोकने के लिए चाहिए।"
+        },
+        {
+         "en": "If one family decides alone, the others lose their say. That is not a shared decision.",
+         "hi": "अगर एक परिवार अकेले तय करे तो बाक़ी की बात नहीं सुनी जाती। यह साझा निर्णय नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add a card of your own in your mind: your class monitor election. Which group is it in?",
+      "hi": "अपने मन में एक और कार्ड सोचो: कक्षा के मॉनिटर का चुनाव। वह किस समूह में जाएगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps1-ch01-big-ideas",
+   "topic": "1.2",
+   "template": "match",
+   "title": {
+    "en": "Big ideas of political theory",
+    "hi": "राजनीतिक सिद्धांत के बड़े विचार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "liberty",
+      "left": {
+       "en": "Liberty",
+       "hi": "स्वतंत्रता"
+      },
+      "right": {
+       "en": "Acting freely, without unfair limits",
+       "hi": "बिना अनुचित रोक के अपने ढंग से काम करना"
+      },
+      "why": {
+       "en": "Political theory asks what freedom is and which limits are fair.",
+       "hi": "राजनीतिक सिद्धांत पूछता है कि स्वतंत्रता क्या है और कौन-सी रोक उचित है।"
+      }
+     },
+     {
+      "id": "equality",
+      "left": {
+       "en": "Equality",
+       "hi": "समानता"
+      },
+      "right": {
+       "en": "Treating people as equals, with equal chances",
+       "hi": "लोगों को बराबर मानना और बराबर मौक़े देना"
+      },
+      "why": {
+       "en": "It asks when people should be treated alike.",
+       "hi": "यह पूछता है कि लोगों के साथ कब एक जैसा व्यवहार हो।"
+      }
+     },
+     {
+      "id": "justice",
+      "left": {
+       "en": "Justice",
+       "hi": "न्याय"
+      },
+      "right": {
+       "en": "Giving each person what is fairly due",
+       "hi": "हर व्यक्ति को वह देना जो उचित रूप से उसका हो"
+      },
+      "why": {
+       "en": "It asks how to share things fairly.",
+       "hi": "यह पूछता है कि चीज़ें न्यायपूर्ण ढंग से कैसे बँटें।"
+      }
+     },
+     {
+      "id": "rights",
+      "left": {
+       "en": "Rights",
+       "hi": "अधिकार"
+      },
+      "right": {
+       "en": "Claims every person can make and the state must respect",
+       "hi": "ऐसे दावे जो हर व्यक्ति कर सकता है और राज्य को मानने होते हैं"
+      },
+      "why": {
+       "en": "It asks where rights come from and which ones we need.",
+       "hi": "यह पूछता है कि अधिकार कहाँ से आते हैं और कौन-से ज़रूरी हैं।"
+      }
+     },
+     {
+      "id": "citizenship",
+      "left": {
+       "en": "Citizenship",
+       "hi": "नागरिकता"
+      },
+      "right": {
+       "en": "Full and equal membership of a political community",
+       "hi": "किसी राजनीतिक समुदाय की पूर्ण और समान सदस्यता"
+      },
+      "why": {
+       "en": "It asks who belongs and with what rights.",
+       "hi": "यह पूछता है कि कौन सदस्य है और उसके क्या अधिकार हैं।"
+      }
+     },
+     {
+      "id": "secularism",
+      "left": {
+       "en": "Secularism",
+       "hi": "धर्मनिरपेक्षता"
+      },
+      "right": {
+       "en": "Equal respect for all faiths, no religion ruling the state",
+       "hi": "सब धर्मों का बराबर सम्मान, कोई धर्म राज्य पर शासन न करे"
+      },
+      "why": {
+       "en": "It asks how people of many faiths can live together fairly.",
+       "hi": "यह पूछता है कि कई धर्मों के लोग न्यायपूर्ण ढंग से साथ कैसे रहें।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:liberty",
+     "expect": "matched:liberty",
+     "say": {
+      "en": "Tap \"Liberty\" on the left, then its meaning on the right.",
+      "hi": "बाईं ओर \"स्वतंत्रता\" छुओ, फिर दाईं ओर उसका अर्थ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these ideas asks \"who is a full and equal member of the country\"?",
+      "hi": "इनमें से कौन-सा विचार पूछता है कि \"देश का पूर्ण और समान सदस्य कौन है\"?"
+     },
+     "options": [
+      {
+       "id": "cit",
+       "en": "Citizenship",
+       "hi": "नागरिकता"
+      },
+      {
+       "id": "lib",
+       "en": "Liberty",
+       "hi": "स्वतंत्रता"
+      },
+      {
+       "id": "jus",
+       "en": "Justice",
+       "hi": "न्याय"
+      }
+     ],
+     "answer": "cit"
+    },
+    {
+     "kind": "do",
+     "target": "left:justice",
+     "expect": "matched:justice",
+     "say": {
+      "en": "Now match \"Justice\" with its meaning.",
+      "hi": "अब \"न्याय\" को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then tap Check.",
+      "hi": "बाक़ी जोड़ियाँ मिलाओ, फिर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Political theory studies big ideas like liberty, equality, justice, rights, citizenship and secularism. It asks what they mean, why they matter and how to use them in daily life. A clear meaning helps us argue well about real problems.",
+      "hi": "राजनीतिक सिद्धांत स्वतंत्रता, समानता, न्याय, अधिकार, नागरिकता और धर्मनिरपेक्षता जैसे बड़े विचारों का अध्ययन करता है। वह पूछता है कि इनका अर्थ क्या है, ये क्यों ज़रूरी हैं और रोज़ के जीवन में इनका उपयोग कैसे हो। साफ़ अर्थ से हम असली समस्याओं पर अच्छी बहस कर पाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does political theory mainly do with ideas like justice and liberty?",
+        "hi": "राजनीतिक सिद्धांत न्याय और स्वतंत्रता जैसे विचारों का मुख्यतः क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Explains what they mean and tests whether they are used well",
+         "hi": "समझाता है कि इनका अर्थ क्या है और जाँचता है कि इनका ठीक उपयोग हो रहा है या नहीं"
+        },
+        {
+         "en": "Lists the names of ministers",
+         "hi": "मंत्रियों के नाम गिनाता है"
+        },
+        {
+         "en": "Counts votes in an election",
+         "hi": "चुनाव में वोट गिनता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It studies the meaning of political ideas and how they apply to life.",
+        "hi": "यह राजनीतिक विचारों के अर्थ और जीवन में उनके उपयोग का अध्ययन करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Names of ministers are facts to memorise, not ideas to study.",
+         "hi": "मंत्रियों के नाम याद करने की बातें हैं, अध्ययन के विचार नहीं।"
+        },
+        {
+         "en": "Counting votes is the work of election officers.",
+         "hi": "वोट गिनना चुनाव अधिकारियों का काम है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "\"Claims every person can make and the state must respect\" describes which idea?",
+        "hi": "\"ऐसे दावे जो हर व्यक्ति कर सकता है और राज्य को मानने होते हैं\" किस विचार का वर्णन है?"
+       },
+       "options": [
+        {
+         "en": "Equality",
+         "hi": "समानता"
+        },
+        {
+         "en": "Rights",
+         "hi": "अधिकार"
+        },
+        {
+         "en": "Nationalism",
+         "hi": "राष्ट्रवाद"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "That is what a right is: a claim backed by the community.",
+        "hi": "अधिकार यही है: ऐसा दावा जिसे समुदाय का समर्थन हो।"
+       },
+       "wrong": [
+        {
+         "en": "Equality is about equal treatment, not about claims.",
+         "hi": "समानता बराबर व्यवहार की बात है, दावों की नहीं।"
+        },
+        "",
+        {
+         "en": "Nationalism is about belonging to a nation.",
+         "hi": "राष्ट्रवाद किसी राष्ट्र से जुड़ाव की बात है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick one idea and think of one real problem in your colony or school where it matters.",
+      "hi": "एक विचार चुनो और अपनी कॉलोनी या स्कूल की एक असली समस्या सोचो जहाँ वह काम आता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps1-ch01-park-rule",
+   "topic": "1.3",
+   "template": "scenario",
+   "title": {
+    "en": "A fair rule for the park",
+    "hi": "पार्क के लिए निष्पक्ष नियम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "colony park",
+    "role": {
+     "en": "A member of your colony's residents' committee",
+     "hi": "आपकी कॉलोनी की निवासी समिति के सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "The colony park has a cricket game every evening. Elders also want to walk there in peace. Each side says, 'The park is ours.' The committee asks you for advice.",
+       "hi": "कॉलोनी के पार्क में रोज़ शाम को क्रिकेट होता है। बुज़ुर्ग भी वहाँ चैन से टहलना चाहते हैं। दोनों कहते हैं, 'पार्क हमारा है।' समिति आपसे सलाह माँगती है।"
+      },
+      "choices": [
+       {
+        "id": "hear-both",
+        "text": {
+         "en": "Ask each side why the park matters to them",
+         "hi": "हर पक्ष से पूछो कि पार्क उनके लिए क्यों ज़रूरी है"
+        },
+        "next": "reasons",
+        "feedback": {
+         "en": "Good. Asking for reasons is how political thinking starts.",
+         "hi": "अच्छा। कारण पूछना ही राजनीतिक सोच की शुरुआत है।"
+        },
+        "good": true
+       },
+       {
+        "id": "ban-play",
+        "text": {
+         "en": "Stop the cricket because elders are older",
+         "hi": "क्रिकेट बंद कर दो क्योंकि बुज़ुर्ग बड़े हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This gives no reason that the children can accept. A fair rule needs reasons for both sides.",
+         "hi": "इसमें ऐसा कारण नहीं है जिसे बच्चे मान सकें। निष्पक्ष नियम के लिए दोनों पक्षों के लिए कारण चाहिए।"
+        },
+        "good": false
+       },
+       {
+        "id": "loud-wins",
+        "text": {
+         "en": "Let the louder group decide",
+         "hi": "जो समूह ज़्यादा शोर करे, उसे तय करने दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Noise is not a reason. The quieter side is ignored, which is unfair.",
+         "hi": "शोर कोई कारण नहीं है। शांत पक्ष की बात अनसुनी रह जाती है, यह अन्याय है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "reasons",
+      "text": {
+       "en": "The children say they have no other ground nearby. The elders say a stray ball can hurt them and they need a safe path. What will you suggest?",
+       "hi": "बच्चे कहते हैं कि आसपास कोई और मैदान नहीं है। बुज़ुर्ग कहते हैं कि भटकी गेंद से चोट लग सकती है और उन्हें सुरक्षित रास्ता चाहिए। आप क्या सुझाव देंगे?"
+      },
+      "choices": [
+       {
+        "id": "share-time",
+        "text": {
+         "en": "Fix cricket hours and keep a safe walking track at all times",
+         "hi": "क्रिकेट का समय तय करो और टहलने का रास्ता हमेशा सुरक्षित रखो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A rule that respects both reasons can be accepted by both groups. That is what a good public decision looks like.",
+         "hi": "ऐसा नियम जो दोनों के कारणों का सम्मान करे, दोनों समूह मान सकते हैं। अच्छा सार्वजनिक निर्णय ऐसा ही होता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "close-park",
+        "text": {
+         "en": "Close the park for everyone",
+         "hi": "पार्क सबके लिए बंद कर दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This ends the quarrel but takes away what both groups need.",
+         "hi": "इससे झगड़ा तो रुकता है पर दोनों समूहों की ज़रूरत छिन जाती है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two groups both claim the park. Which way is most likely to give a fair rule?",
+      "hi": "दो समूह पार्क पर दावा करते हैं। किस तरीक़े से निष्पक्ष नियम मिलने की सबसे ज़्यादा संभावना है?"
+     },
+     "options": [
+      {
+       "id": "ask",
+       "en": "Ask for reasons from both sides",
+       "hi": "दोनों पक्षों से कारण पूछना"
+      },
+      {
+       "id": "loud",
+       "en": "Let the louder side win",
+       "hi": "ज़्यादा शोर वाला पक्ष जीते"
+      },
+      {
+       "id": "old",
+       "en": "Always follow the oldest person",
+       "hi": "हमेशा सबसे बड़े की बात मानना"
+      }
+     ],
+     "answer": "ask"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:hear-both",
+     "expect": "chose:hear-both",
+     "say": {
+      "en": "Choose the first option: ask each side why the park matters to them.",
+      "hi": "पहला विकल्प चुनो: हर पक्ष से पूछो कि पार्क उनके लिए क्यों ज़रूरी है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:reasons:share-time",
+     "expect": "ended:good",
+     "say": {
+      "en": "Now suggest a rule that respects both reasons.",
+      "hi": "अब ऐसा नियम सुझाओ जो दोनों के कारणों का सम्मान करे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Political theory is not only for books. In your colony, you used the same steps: listen to reasons, test them, and find a rule that others can accept. Ideas such as fairness and freedom helped you judge the options.",
+      "hi": "राजनीतिक सिद्धांत सिर्फ़ किताबों के लिए नहीं है। अपनी कॉलोनी में तुमने वही कदम अपनाए: कारण सुने, उन्हें परखा और ऐसा नियम खोजा जिसे दूसरे मान सकें। निष्पक्षता और स्वतंत्रता जैसे विचारों ने विकल्प परखने में मदद की।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did asking for reasons help?",
+        "hi": "कारण पूछने से क्या मदद मिली?"
+       },
+       "options": [
+        {
+         "en": "It showed what each side really needs, so a fair rule could be found",
+         "hi": "इससे पता चला कि हर पक्ष को सच में क्या चाहिए, इसलिए निष्पक्ष नियम मिल सका"
+        },
+        {
+         "en": "It made the groups quieter",
+         "hi": "इससे दोनों समूह चुप हो गए"
+        },
+        {
+         "en": "It proved the elders were right",
+         "hi": "इससे साबित हुआ कि बुज़ुर्ग सही थे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A rule built on the real needs of both sides is easier for everyone to accept.",
+        "hi": "जो नियम दोनों की असली ज़रूरतों पर बना हो, उसे सब आसानी से मानते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Silence does not solve the quarrel; agreement does.",
+         "hi": "चुप्पी से झगड़ा नहीं सुलझता, सहमति से सुलझता है।"
+        },
+        {
+         "en": "Neither side was simply right. Both had good reasons.",
+         "hi": "कोई एक पक्ष पूरी तरह सही नहीं था। दोनों के पास अच्छे कारण थे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and choose the other options. Which one leaves a group out?",
+      "hi": "फिर से खेलो और दूसरे विकल्प चुनो। कौन-सा विकल्प किसी समूह को बाहर छोड़ देता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Opens the chapter",
+   "shows": "Villagers of different ages sitting together near a village pond or well, talking about how to share its water",
+   "view": "Wide, 16:9, eye level",
+   "right": "Real Indian village setting, people of different ages and both genders, calm discussion",
+   "avoid": "Faces of identifiable children, political party flags or posters"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Shows a public decision at school",
+   "shows": "Students and a teacher in a school assembly hall, a notice board with an empty rule chart in the background",
+   "view": "Wide, 16:9",
+   "right": "Plain Indian school hall, students seated on the floor or benches",
+   "avoid": "Readable text on boards, school names or logos"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Opens the park lab",
+   "shows": "An Indian colony park in the evening, children playing cricket on one side and elders walking on a path on the other",
+   "view": "Wide, 16:9, slightly raised",
+   "right": "Both groups visible, same light, safe distance between them",
+   "avoid": "Faces close-up, brand names on shirts"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "1.2",
+   "use": "Base for the big-ideas lab",
+   "shows": "Six empty round badge shapes in a ring around a centre circle, ready for the app to label",
+   "view": "Flat, square, white background",
+   "right": "Clean shapes, no words, high contrast",
+   "avoid": "Any text, icons that look like a logo"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "Cut-out for the public decision lab",
+   "shows": "A village notice board with blank pinned papers, cut out on a transparent background",
+   "view": "Front view, 3/4 angle",
+   "right": "Wooden frame, blank sheets, soft shadow",
+   "avoid": "Words, stamps or logos"
+  }
+ ]
+}

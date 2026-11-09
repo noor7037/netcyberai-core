@@ -1,0 +1,712 @@
+{
+  "chapter_key": "u.c12.business_studies.lebs2.ch11",
+  "class": 12,
+  "subject_id": "business_studies",
+  "title": "Consumer Protection",
+  "source": "https://ncert.nic.in/textbook/pdf/lebs2ps.pdf",
+  "topics": [
+    {
+      "n": "11.1",
+      "title": "Importance of consumer protection for consumers and business",
+      "labs": [],
+      "why_no_lab": "Reasons read in the lesson; the rights lab shows the protection in action."
+    },
+    {
+      "n": "11.2",
+      "title": "Consumer rights and responsibilities",
+      "labs": [
+        "c12-business_studies-lebs2-ch11-rights"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "11.3",
+      "title": "Ways and means of consumer protection: self-regulation, standards marks",
+      "labs": [
+        "c12-business_studies-lebs2-ch11-marks"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "11.4",
+      "title": "Legal framework: Consumer Protection Act, commissions and relief",
+      "labs": [
+        "c12-business_studies-lebs2-ch11-forum",
+        "c12-business_studies-lebs2-ch11-complaint"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "11.5",
+      "title": "Role of consumer organisations and NGOs",
+      "labs": [],
+      "why_no_lab": "A reading point about groups that help buyers; the complaint lab shows where to go."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-business_studies-lebs2-ch11-rights",
+      "topic": "11.2",
+      "template": "business",
+      "title": {
+        "en": "Which consumer right is broken?",
+        "hi": "कौन-सा उपभोक्ता अधिकार टूटा?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "consumer",
+        "business": {
+          "type": "bakery"
+        },
+        "params": {
+          "focus": "rights",
+          "case": "cooker"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A pressure cooker lid flew off and hurt a family. Which consumer right is broken?",
+            "hi": "प्रेशर कुकर का ढक्कन उछलकर एक परिवार को चोट पहुँचा गया। कौन-सा उपभोक्ता अधिकार टूटा?"
+          },
+          "options": [
+            {
+              "id": "safety",
+              "en": "Right to safety",
+              "hi": "सुरक्षा का अधिकार"
+            },
+            {
+              "id": "info",
+              "en": "Right to information",
+              "hi": "सूचना का अधिकार"
+            },
+            {
+              "id": "choose",
+              "en": "Right to choose",
+              "hi": "चुनाव का अधिकार"
+            }
+          ],
+          "answer": "safety"
+        },
+        {
+          "kind": "do",
+          "target": "choice:safety",
+          "expect": "answered:right",
+          "say": {
+            "en": "Read the case, then tap the right that applies.",
+            "hi": "मामला पढ़ो, फिर वह अधिकार दबाओ जो लागू होता है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Consumers have six rights: safety, information, choice, being heard, seeking redress and consumer education. A product that can hurt the user breaks the right to safety, so the consumer must be protected from it.",
+            "hi": "उपभोक्ताओं के छह अधिकार हैं: सुरक्षा, सूचना, चुनाव, सुनवाई, निवारण पाना और उपभोक्ता शिक्षा। जो उत्पाद उपयोगकर्ता को चोट पहुँचा सके, वह सुरक्षा के अधिकार का उल्लंघन है, इसलिए उपभोक्ता को उससे बचाव मिलना चाहिए।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which consumer right lets a buyer have a complaint listened to by the right place?",
+                "hi": "कौन-सा उपभोक्ता अधिकार ग्राहक को शिकायत सही जगह पर सुने जाने देता है?"
+              },
+              "options": [
+                {
+                  "en": "Right to be heard",
+                  "hi": "सुनवाई का अधिकार"
+                },
+                {
+                  "en": "Right to information",
+                  "hi": "सूचना का अधिकार"
+                },
+                {
+                  "en": "Right to consumer education",
+                  "hi": "उपभोक्ता शिक्षा का अधिकार"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A complaint must reach the right place and be heard, which is the right to be heard.",
+                "hi": "शिकायत सही जगह तक पहुँचे और सुनी जाए, यही सुनवाई का अधिकार है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Information is about knowing quality, price and ingredients, not about hearing a complaint.",
+                  "hi": "सूचना गुणवत्ता, दाम और सामग्री जानने के बारे में है, शिकायत सुनने के बारे में नहीं।"
+                },
+                {
+                  "en": "Consumer education is learning one’s rights. It does not mean the complaint is heard.",
+                  "hi": "उपभोक्ता शिक्षा अपने अधिकार सीखना है। इसका अर्थ यह नहीं कि शिकायत सुनी गई।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of a packet with no price and no weight written on it. Which right is missed, and what would you ask the shop?",
+            "hi": "किसी और मामले पर सोचो, जैसे बिना दाम वाला पैकेट। फिर बताओ कि कौन-सा अधिकार छूटा।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs2-ch11-marks",
+      "topic": "11.3",
+      "template": "match",
+      "title": {
+        "en": "Marks that protect buyers",
+        "hi": "ग्राहकों की रक्षा करने वाले चिह्न"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "p1",
+            "left": {
+              "en": "Agmark",
+              "hi": "एगमार्क"
+            },
+            "right": {
+              "en": "A mark on farm goods like ghee, honey and pulses, showing grade and quality.",
+              "hi": "घी, शहद और दालों जैसे कृषि उत्पादों पर चिह्न, जो ग्रेड और गुणवत्ता बताता है।"
+            },
+            "why": {
+              "en": "Agmark certifies the quality and grade of farm produce.",
+              "hi": "एगमार्क कृषि उत्पादों की गुणवत्ता और ग्रेड प्रमाणित करता है।"
+            }
+          },
+          {
+            "id": "p2",
+            "left": {
+              "en": "BIS standard mark",
+              "hi": "बीआईएस मानक चिह्न"
+            },
+            "right": {
+              "en": "A mark on many industrial goods that meet Indian standards.",
+              "hi": "कई औद्योगिक वस्तुओं पर चिह्न, जो भारतीय मानकों पर खरी हैं।"
+            },
+            "why": {
+              "en": "BIS sets and certifies product standards.",
+              "hi": "बीआईएस उत्पाद मानक तय और प्रमाणित करता है।"
+            }
+          },
+          {
+            "id": "p3",
+            "left": {
+              "en": "Hallmark",
+              "hi": "हॉलमार्क"
+            },
+            "right": {
+              "en": "A mark on gold jewellery, showing its purity.",
+              "hi": "सोने के गहनों पर चिह्न, जो उसकी शुद्धता बताता है।"
+            },
+            "why": {
+              "en": "A hallmark tells the buyer the purity of the gold.",
+              "hi": "हॉलमार्क ग्राहक को सोने की शुद्धता बताता है।"
+            }
+          },
+          {
+            "id": "p4",
+            "left": {
+              "en": "Self-regulation by business",
+              "hi": "व्यवसाय का स्व-नियमन"
+            },
+            "right": {
+              "en": "A firm follows a code of conduct it sets for itself.",
+              "hi": "संस्था अपने लिए तय की गई आचार संहिता का पालन करती है।"
+            },
+            "why": {
+              "en": "Businesses can regulate their own fair dealing.",
+              "hi": "व्यवसाय अपना उचित व्यवहार ख़ुद नियंत्रित कर सकते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A jar of honey carries a mark that shows government grading for quality. Which mark is this?",
+            "hi": "शहद के एक जार पर ऐसा चिह्न है जो सरकारी गुणवत्ता ग्रेडिंग दिखाता है। यह कौन-सा चिह्न है?"
+          },
+          "options": [
+            {
+              "id": "agm",
+              "en": "Agmark",
+              "hi": "एगमार्क"
+            },
+            {
+              "id": "hall",
+              "en": "Hallmark",
+              "hi": "हॉलमार्क"
+            },
+            {
+              "id": "bis",
+              "en": "BIS standard mark",
+              "hi": "बीआईएस मानक चिह्न"
+            }
+          ],
+          "answer": "agm"
+        },
+        {
+          "kind": "do",
+          "target": "right:p1",
+          "expect": "matched:p1",
+          "say": {
+            "en": "Tap Agmark on the left, then its description on the right.",
+            "hi": "बाईं ओर एगमार्क दबाओ, फिर दाईं ओर उसका विवरण।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "right:p3",
+          "expect": "matched:p3",
+          "say": {
+            "en": "Now match Hallmark with gold jewellery.",
+            "hi": "अब हॉलमार्क को सोने के गहनों से मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Marks help a buyer trust what they buy. Agmark grades farm produce. The BIS mark shows industrial goods meet standards. The hallmark shows the purity of gold. Self-regulation means the firm follows its own fair code.",
+            "hi": "चिह्न ग्राहक को उसकी ख़रीद पर भरोसा देने में मदद करते हैं। एगमार्क कृषि उत्पादों की ग्रेडिंग करता है। बीआईएस चिह्न दिखाता है कि औद्योगिक वस्तुएँ मानकों पर खरी हैं। हॉलमार्क सोने की शुद्धता दिखाता है। स्व-नियमन का अर्थ है कि संस्था अपनी उचित आचार संहिता ख़ुद मानती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A gold ring carries a hallmark. What does it tell the buyer?",
+                "hi": "एक सोने की अंगूठी पर हॉलमार्क है। यह ग्राहक को क्या बताता है?"
+              },
+              "options": [
+                {
+                  "en": "The purity of the gold",
+                  "hi": "सोने की शुद्धता"
+                },
+                {
+                  "en": "The price of the ring",
+                  "hi": "अंगूठी का दाम"
+                },
+                {
+                  "en": "The name of the shop",
+                  "hi": "दुकान का नाम"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A hallmark certifies the purity of gold, so the buyer knows what metal they hold.",
+                "hi": "हॉलमार्क सोने की शुद्धता प्रमाणित करता है, ताकि ग्राहक जाने कि उसके पास कौन-सा धातु है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A hallmark does not set the price. The shop sets the price.",
+                  "hi": "हॉलमार्क दाम तय नहीं करता। दाम दुकान तय करती है।"
+                },
+                {
+                  "en": "A hallmark is not a shop name. It is a mark of purity from a standard body.",
+                  "hi": "हॉलमार्क दुकान का नाम नहीं है। यह एक मानक संस्था का शुद्धता चिह्न है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the last two pairs. Then name one mark you have seen on a packet at home, and say what it promises.",
+            "hi": "आख़िरी दो जोड़ियाँ मिलाओ। फिर घर के किसी पैकेट पर देखे चिह्न का नाम बताओ और वह क्या वादा करता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs2-ch11-forum",
+      "topic": "11.4",
+      "template": "business",
+      "title": {
+        "en": "Which consumer commission hears the claim?",
+        "hi": "कौन-सा उपभोक्ता आयोग शिकायत सुनेगा?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "consumer",
+        "business": {
+          "type": "bakery"
+        },
+        "params": {
+          "focus": "forum",
+          "claim": 7500000
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A buyer claims ₹75 lakh for a faulty machine. Which commission hears the case?",
+            "hi": "एक ग्राहक ख़राब मशीन के लिए ₹75 लाख का दावा करता है। कौन-सा आयोग मामला सुनेगा?"
+          },
+          "options": [
+            {
+              "id": "district",
+              "en": "District Commission",
+              "hi": "ज़िला आयोग"
+            },
+            {
+              "id": "state",
+              "en": "State Commission",
+              "hi": "राज्य आयोग"
+            },
+            {
+              "id": "national",
+              "en": "National Commission",
+              "hi": "राष्ट्रीय आयोग"
+            }
+          ],
+          "answer": "state"
+        },
+        {
+          "kind": "do",
+          "target": "slider:claim",
+          "expect": "moved:claim",
+          "say": {
+            "en": "Move the claim slider and watch which commission takes over.",
+            "hi": "दावे वाला स्लाइडर चलाओ और देखो कौन-सा आयोग मामला लेता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "choice:state",
+          "expect": "answered:right",
+          "say": {
+            "en": "Tap the commission that hears a claim of this size.",
+            "hi": "इतने बड़े दावे को सुनने वाला आयोग दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Consumer commissions are sorted by the value of the claim. Up to ₹50 lakh goes to the District Commission. Above ₹50 lakh and up to ₹2 crore goes to the State Commission. Above ₹2 crore goes to the National Commission.",
+            "hi": "उपभोक्ता आयोग दावे की राशि के हिसाब से बँटे हैं। ₹50 लाख तक का मामला ज़िला आयोग सुनता है। ₹50 लाख से ऊपर और ₹2 करोड़ तक राज्य आयोग। ₹2 करोड़ से ऊपर राष्ट्रीय आयोग।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A buyer claims ₹40 lakh for a defective car. Which commission hears it?",
+                "hi": "एक ग्राहक दोषपूर्ण कार के लिए ₹40 लाख का दावा करता है। कौन-सा आयोग सुनेगा?"
+              },
+              "options": [
+                {
+                  "en": "District Commission",
+                  "hi": "ज़िला आयोग"
+                },
+                {
+                  "en": "State Commission",
+                  "hi": "राज्य आयोग"
+                },
+                {
+                  "en": "National Commission",
+                  "hi": "राष्ट्रीय आयोग"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "₹40 lakh is up to ₹50 lakh, so the District Commission hears it.",
+                "hi": "₹40 लाख ₹50 लाख तक है, इसलिए ज़िला आयोग सुनेगा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The State Commission hears claims above ₹50 lakh. ₹40 lakh is below that.",
+                  "hi": "राज्य आयोग ₹50 लाख से ऊपर के दावे सुनता है। ₹40 लाख उससे कम है।"
+                },
+                {
+                  "en": "The National Commission hears claims above ₹2 crore, far above ₹40 lakh.",
+                  "hi": "राष्ट्रीय आयोग ₹2 करोड़ से ऊपर के दावे सुनता है, जो ₹40 लाख से बहुत ऊपर है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Move the claim slider across the levels and note where each commission starts.",
+            "hi": "दावे वाले स्लाइडर को सभी स्तरों पर ले जाओ और नोट करो कि हर आयोग कहाँ से शुरू होता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs2-ch11-complaint",
+      "topic": "11.4",
+      "template": "scenario",
+      "title": {
+        "en": "A faulty mixer: what do you do?",
+        "hi": "ख़राब मिक्सर: तुम क्या करोगे?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "setting": "shop",
+        "role": {
+          "en": "Buyer",
+          "hi": "ग्राहक"
+        },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": {
+              "en": "You bought a mixer for ₹4,000. It stopped in three days, and the shop refuses to replace it. What do you do?",
+              "hi": "तुमने ₹4,000 का मिक्सर लिया। वह तीन दिन में बंद हो गया, और दुकान उसे बदलने से मना करती है। तुम क्या करोगे?"
+            },
+            "choices": [
+              {
+                "id": "c1",
+                "text": {
+                  "en": "Keep the bill and warranty card, then write a complaint to the seller",
+                  "hi": "बिल और वारंटी कार्ड सँभालो, फिर विक्रेता को लिखित शिकायत दो"
+                },
+                "next": "s2",
+                "good": true,
+                "feedback": {
+                  "en": "Good. Written proof and a clear complaint help your case.",
+                  "hi": "बढ़िया। लिखित सबूत और साफ़ शिकायत तुम्हारे पक्ष को मज़बूत करते हैं।"
+                }
+              },
+              {
+                "id": "c2",
+                "text": {
+                  "en": "Accept the refusal and throw the mixer away",
+                  "hi": "मना को मान लो और मिक्सर फेंक दो"
+                },
+                "next": "end",
+                "good": false,
+                "feedback": {
+                  "en": "You give up your right to a remedy. Consumers can seek redressal.",
+                  "hi": "तुम निवारण पाने का अधिकार छोड़ देते हो। उपभोक्ता निवारण माँग सकते हैं।"
+                }
+              },
+              {
+                "id": "c3",
+                "text": {
+                  "en": "Post a rude message online only, with no complaint",
+                  "hi": "बिना शिकायत के केवल ऑनलाइन गुस्से वाला संदेश डालो"
+                },
+                "next": "end",
+                "good": false,
+                "feedback": {
+                  "en": "Insults do not get a remedy. A formal complaint does.",
+                  "hi": "अपशब्द निवारण नहीं दिलाते। औपचारिक शिकायत दिलाती है।"
+                }
+              }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "The seller still refuses. Where do you take the complaint next?",
+              "hi": "विक्रेता फिर भी नहीं मानता। अब शिकायत कहाँ ले जाओगे?"
+            },
+            "choices": [
+              {
+                "id": "c4",
+                "text": {
+                  "en": "The consumer commission of your district, with the bill and proof",
+                  "hi": "अपने ज़िले के उपभोक्ता आयोग में, बिल और सबूत के साथ"
+                },
+                "next": "end",
+                "good": true,
+                "feedback": {
+                  "en": "Right. A commission can order replacement, repair or refund.",
+                  "hi": "सही। आयोग बदलने, मरम्मत या वापसी का आदेश दे सकता है।"
+                }
+              },
+              {
+                "id": "c5",
+                "text": {
+                  "en": "Nowhere, the matter must end here",
+                  "hi": "कहीं नहीं, मामला यहीं ख़त्म करना होगा"
+                },
+                "next": "end",
+                "good": false,
+                "feedback": {
+                  "en": "You can complain to the proper commission. Do not give up.",
+                  "hi": "तुम सही आयोग में शिकायत कर सकते हो। हार मत मानो।"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A new mixer stops in three days and the shop refuses to help. What is your first step?",
+            "hi": "एक नया मिक्सर तीन दिन में बंद हो जाता है और दुकान मदद से मना करती है। तुम्हारा पहला कदम क्या है?"
+          },
+          "options": [
+            {
+              "id": "write",
+              "en": "Keep the bill and write a complaint",
+              "hi": "बिल सँभालना और शिकायत लिखना"
+            },
+            {
+              "id": "throw",
+              "en": "Throw it away",
+              "hi": "फेंक देना"
+            },
+            {
+              "id": "nothing",
+              "en": "Do nothing",
+              "hi": "कुछ न करना"
+            }
+          ],
+          "answer": "write"
+        },
+        {
+          "kind": "do",
+          "target": "choice:s1:c1",
+          "expect": "chose:c1",
+          "say": {
+            "en": "Read the first scene and tap the choice that builds proof.",
+            "hi": "पहला दृश्य पढ़ो और वह विकल्प दबाओ जो सबूत बनाता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "choice:s2:c4",
+          "expect": "chose:c4",
+          "say": {
+            "en": "Now choose where the complaint goes next.",
+            "hi": "अब तय करो कि शिकायत आगे कहाँ जाएगी।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A buyer who keeps proof and complains in writing has a strong case. If the seller does not act, the consumer commission can hear the case and order a remedy. Silence or giving up loses that right.",
+            "hi": "जो ग्राहक सबूत रखता है और लिखित शिकायत करता है, उसका मामला मज़बूत होता है। विक्रेता कदम न उठाए तो उपभोक्ता आयोग मामला सुनकर निवारण का आदेश दे सकता है। चुप रहने या हार मानने से यह अधिकार चला जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which remedy can a consumer commission order?",
+                "hi": "उपभोक्ता आयोग कौन-सा निवारण आदेश दे सकता है?"
+              },
+              "options": [
+                {
+                  "en": "Replacement, repair or refund",
+                  "hi": "बदलना, मरम्मत या पैसे वापस करना"
+                },
+                {
+                  "en": "Jail for the shop owner for any fault",
+                  "hi": "किसी भी ख़राबी पर दुकानदार को जेल"
+                },
+                {
+                  "en": "A new car for every buyer",
+                  "hi": "हर ग्राहक को नई कार"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The Act allows relief such as replacement, repair or refund of the money.",
+                "hi": "अधिनियम में बदलना, मरम्मत या पैसे वापस करने जैसे निवारण का प्रावधान है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The commission gives civil relief, not a prison term for every fault.",
+                  "hi": "आयोग सिविल निवारण देता है, हर ख़राबी पर जेल नहीं।"
+                },
+                {
+                  "en": "Relief is for the buyer’s own loss, not a gift for every buyer.",
+                  "hi": "निवारण ग्राहक के अपने नुक़सान के लिए है, हर ग्राहक को उपहार के लिए नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Try the other choices in each scene and see where each path ends. Then say which path protects a buyer best.",
+            "hi": "हर दृश्य में बाक़ी विकल्प आज़माओ और देखो हर रास्ता कहाँ ख़त्म होता है। फिर बताओ कि कौन-सा रास्ता ग्राहक की सबसे अच्छी रक्षा करता है।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "11.1",
+      "use": "Hook: a buyer and a shop counter",
+      "shows": "A buyer at a small shop counter holding a product box, the shopkeeper listening",
+      "view": "Medium shot, 16:9, daylight",
+      "right": "Real counter; box blank; no readable brand",
+      "avoid": "Identifiable faces, brand names, text on boxes"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "11.2",
+      "use": "A pressure cooker and its safety valve (lab 1)",
+      "shows": "A steel pressure cooker lid with the safety valve clearly visible",
+      "view": "Front view, 4:3, soft light from the top left",
+      "right": "Real steel, clean valve; no brand logo",
+      "avoid": "Brand logos, readable text"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "11.3",
+      "use": "Consumer marks on real packs (lab 2)",
+      "shows": "A jar of honey, a small gold ring on a cloth, and a blank packet with a mark area",
+      "view": "Top-down, 1:1, soft light",
+      "right": "Blank marks; real honey and gold; no readable names",
+      "avoid": "Real certification marks copied, brand logos"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "11.4",
+      "use": "A complaint in steps (lab 4)",
+      "shows": "Four papers in a row: receipt, warranty card, written complaint, commission notice",
+      "view": "Top-down, same framing in four numbered frames",
+      "right": "Blank papers or lightly printed; same table and light",
+      "avoid": "Legible personal details, official logos"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "11.4",
+      "use": "Commission levels base (lab 3)",
+      "shows": "A clean three-tier base with equal boxes for the three commission levels",
+      "view": "Flat, 16:9, white background",
+      "right": "Three equal boxes, clean edges",
+      "avoid": "Words, numbers"
+    }
+  ]
+}

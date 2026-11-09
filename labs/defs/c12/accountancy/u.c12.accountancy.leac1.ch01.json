@@ -1,0 +1,2238 @@
+{
+ "chapter_key": "u.c12.accountancy.leac1.ch01",
+ "class": 12,
+ "subject_id": "accountancy",
+ "title": "Accounting for Partnership: Basic Concepts",
+ "source": "https://ncert.nic.in/textbook/pdf/leac101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Nature of partnership",
+   "labs": [
+    "c12-accountancy-leac1-ch01-nature"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Partnership deed and the rules of the Act when the deed is silent",
+   "labs": [
+    "c12-accountancy-leac1-ch01-deed-silent"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Special aspects of partnership accounts",
+   "labs": [],
+   "why_no_lab": "This is a short map of what the chapter covers; each aspect has its own lab below, so the reader is enough here."
+  },
+  {
+   "n": "1.4",
+   "title": "Capital accounts: fixed and fluctuating",
+   "labs": [
+    "c12-accountancy-leac1-ch01-fixed-capital"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Distribution of profit: the profit and loss appropriation account",
+   "labs": [
+    "c12-accountancy-leac1-ch01-appropriation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5.2",
+   "title": "Interest on capital",
+   "labs": [
+    "c12-accountancy-leac1-ch01-interest-capital",
+    "c12-accountancy-leac1-ch01-not-enough"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5.3",
+   "title": "Interest on drawings",
+   "labs": [
+    "c12-accountancy-leac1-ch01-drawings-interest"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Guarantee of profit to a partner",
+   "labs": [
+    "c12-accountancy-leac1-ch01-guarantee"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.7",
+   "title": "Past adjustments",
+   "labs": [
+    "c12-accountancy-leac1-ch01-past-adjust"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-accountancy-leac1-ch01-nature",
+   "topic": "1.1",
+   "template": "scenario",
+   "title": {
+    "en": "Is it a partnership?",
+    "hi": "क्या यह साझेदारी है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "market",
+    "role": {
+     "en": "Adviser to small businesses",
+     "hi": "छोटे व्यवसायों के सलाहकार"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Riya and Kabir sign an agreement to run a cycle-repair shop in Pune. Both put in money. Kabir runs the shop every day, and they will share the profit equally. Is this a partnership?",
+       "hi": "रिया और कबीर पुणे में साइकिल-मरम्मत की दुकान चलाने का समझौता करते हैं। दोनों पैसा लगाते हैं। कबीर रोज़ दुकान चलाता है और लाभ बराबर बाँटा जाएगा। क्या यह साझेदारी है?"
+      },
+      "choices": [
+       {
+        "id": "yes-all",
+        "text": {
+         "en": "Yes: there is an agreement, a business and profit sharing, and Kabir acts for both",
+         "hi": "हाँ: समझौता है, व्यवसाय है, लाभ बँटता है और कबीर दोनों की ओर से काम करता है"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Right. A partnership needs two or more persons, an agreement, a business, sharing of profit, and the business carried on by all or any of them acting for all.",
+         "hi": "सही। साझेदारी के लिए दो या अधिक व्यक्ति, समझौता, व्यवसाय, लाभ का बँटवारा, और सबके या किसी एक के द्वारा सबकी ओर से व्यवसाय चलाना ज़रूरी है।"
+        },
+        "good": true
+       },
+       {
+        "id": "no-work",
+        "text": {
+         "en": "No, because Riya does not work in the shop",
+         "hi": "नहीं, क्योंकि रिया दुकान में काम नहीं करती"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Think again. The business may be run by any one partner acting for all. Kabir is Riya’s agent and she is his: this is mutual agency.",
+         "hi": "फिर सोचो। व्यवसाय कोई एक साझेदार भी सबकी ओर से चला सकता है। कबीर रिया का एजेंट है और रिया कबीर की: इसे पारस्परिक एजेंसी कहते हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Two sisters inherit a flat in Jaipur and share the rent they get from it. They run no business. Is this a partnership?",
+       "hi": "दो बहनों को जयपुर में एक फ़्लैट विरासत में मिलता है और वे उसका किराया बाँट लेती हैं। वे कोई व्यवसाय नहीं चलातीं। क्या यह साझेदारी है?"
+      },
+      "choices": [
+       {
+        "id": "no-co",
+        "text": {
+         "en": "No: they are co-owners sharing income from property",
+         "hi": "नहीं: वे संपत्ति की आय बाँटने वाली सह-स्वामी हैं"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Right. Sharing rent from a property they own together is co-ownership, not a business, so it is not a partnership.",
+         "hi": "सही। साथ की संपत्ति का किराया बाँटना सह-स्वामित्व है, व्यवसाय नहीं, इसलिए यह साझेदारी नहीं है।"
+        },
+        "good": true
+       },
+       {
+        "id": "yes-rent",
+        "text": {
+         "en": "Yes: they share an income",
+         "hi": "हाँ: वे एक आय बाँटती हैं"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Think again. Sharing an income is not enough. There must be an agreement to carry on a business and share its profit.",
+         "hi": "फिर सोचो। केवल आय बाँटना काफ़ी नहीं है। व्यवसाय चलाने और उसका लाभ बाँटने का समझौता होना चाहिए।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "A growing firm in Surat already has 50 partners and wants to take in one more. What does the law allow?",
+       "hi": "सूरत की एक बढ़ती फ़र्म में पहले से 50 साझेदार हैं और वह एक और लेना चाहती है। क़ानून क्या अनुमति देता है?"
+      },
+      "choices": [
+       {
+        "id": "limit50",
+        "text": {
+         "en": "It cannot: a firm may have at most 50 partners",
+         "hi": "नहीं ले सकती: एक फ़र्म में अधिकतम 50 साझेदार हो सकते हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Under the Companies Act 2013 and its rules, a partnership firm can have at most 50 partners, and at least two.",
+         "hi": "सही। कंपनी अधिनियम 2013 और उसके नियमों के अनुसार साझेदारी फ़र्म में अधिकतम 50 और कम से कम दो साझेदार हो सकते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "nolimit",
+        "text": {
+         "en": "Any number of partners is fine",
+         "hi": "कितने भी साझेदार हो सकते हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. There is an upper limit of 50 partners; a bigger group would have to form a company.",
+         "hi": "फिर सोचो। अधिकतम सीमा 50 साझेदारों की है; इससे बड़े समूह को कंपनी बनानी होगी।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Riya puts in money but does not work in the shop. Can she still be a partner?",
+      "hi": "रिया पैसा लगाती है पर दुकान में काम नहीं करती। क्या वह फिर भी साझेदार हो सकती है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, if she shares the profit under the agreement",
+       "hi": "हाँ, अगर समझौते के अनुसार वह लाभ में हिस्सा लेती है"
+      },
+      {
+       "id": "no",
+       "en": "No, every partner must work daily",
+       "hi": "नहीं, हर साझेदार को रोज़ काम करना ज़रूरी है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:yes-all",
+     "expect": "chose:yes-all",
+     "say": {
+      "en": "Tap the answer that names every feature of a partnership.",
+      "hi": "वह उत्तर चुनो जिसमें साझेदारी की हर विशेषता हो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A partnership is the relation between persons who agree to share the profit of a business carried on by all or any of them acting for all. So the five features are: two or more persons, an agreement, a business, profit sharing and mutual agency. Kabir runs the shop as an agent of both, so Riya is a full partner.",
+      "hi": "साझेदारी उन व्यक्तियों का संबंध है जो सबके या किसी एक के द्वारा सबकी ओर से चलाए गए व्यवसाय का लाभ बाँटने पर सहमत होते हैं। इसलिए पाँच विशेषताएँ हैं: दो या अधिक व्यक्ति, समझौता, व्यवसाय, लाभ का बँटवारा और पारस्परिक एजेंसी। कबीर दोनों के एजेंट के रूप में दुकान चलाता है, इसलिए रिया पूरी साझेदार है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A firm has no written deed. Is it still a partnership?",
+        "hi": "फ़र्म का कोई लिखित विलेख नहीं है। क्या यह फिर भी साझेदारी है?"
+       },
+       "options": [
+        {
+         "en": "Yes, the agreement can be oral or written",
+         "hi": "हाँ, समझौता मौखिक या लिखित हो सकता है"
+        },
+        {
+         "en": "No, only a written deed creates a partnership",
+         "hi": "नहीं, केवल लिखित विलेख से साझेदारी बनती है"
+        },
+        {
+         "en": "Only if it is registered",
+         "hi": "केवल अगर पंजीकृत हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The agreement may be oral or written; a written deed is better because it avoids disputes later.",
+        "hi": "समझौता मौखिक या लिखित हो सकता है; लिखित विलेख बेहतर है क्योंकि इससे बाद में विवाद नहीं होते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A deed is advised, not required: the Act accepts an oral agreement too.",
+         "hi": "विलेख की सलाह दी जाती है, यह अनिवार्य नहीं: अधिनियम मौखिक समझौता भी मानता है।"
+        },
+        {
+         "en": "Registration is not what creates a partnership; it is the agreement to share profit of a business.",
+         "hi": "साझेदारी पंजीकरण से नहीं बनती; यह व्यवसाय का लाभ बाँटने के समझौते से बनती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who is liable when the firm cannot pay a supplier?",
+        "hi": "जब फ़र्म किसी आपूर्तिकर्ता को भुगतान नहीं कर पाती, तो कौन ज़िम्मेदार है?"
+       },
+       "options": [
+        {
+         "en": "Each partner, without limit, out of private assets too",
+         "hi": "हर साझेदार, असीमित रूप से, अपनी निजी संपत्ति से भी"
+        },
+        {
+         "en": "Only the partner who bought the goods",
+         "hi": "केवल वह साझेदार जिसने माल ख़रीदा"
+        },
+        {
+         "en": "No one, the firm is a separate person",
+         "hi": "कोई नहीं, फ़र्म एक अलग व्यक्ति है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Partners have unlimited liability, jointly and individually; a firm is not a separate legal person.",
+        "hi": "साझेदारों का दायित्व असीमित है, संयुक्त रूप से और व्यक्तिगत रूप से; फ़र्म अलग वैधानिक व्यक्ति नहीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Because of mutual agency, an act of one partner binds all of them.",
+         "hi": "पारस्परिक एजेंसी के कारण एक साझेदार का काम सब पर लागू होता है।"
+        },
+        {
+         "en": "That is true of a company, not a firm: a firm has no legal entity apart from its partners.",
+         "hi": "यह कंपनी के लिए सही है, फ़र्म के लिए नहीं: फ़र्म का साझेदारों से अलग कोई वैधानिक अस्तित्व नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next and decide the flat and the 51st partner. Then restart and choose the wrong answers to read why they fail.",
+      "hi": "आगे दबाओ और फ़्लैट तथा 51वें साझेदार का फ़ैसला करो। फिर दोबारा शुरू करके ग़लत उत्तर चुनो और पढ़ो कि वे क्यों ग़लत हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch01-deed-silent",
+   "topic": "1.2",
+   "template": "scenario",
+   "title": {
+    "en": "When the deed is silent",
+    "hi": "जब विलेख में कुछ न लिखा हो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Mediator for two partners",
+     "hi": "दो साझेदारों के मध्यस्थ"
+    },
+    "scenes": [
+     {
+      "id": "d1",
+      "text": {
+       "en": "Anil put ₹3,00,000 into the bakery and Sunita ₹1,00,000. They never agreed on a profit ratio. This year’s profit is ₹80,000. How is it shared?",
+       "hi": "अनिल ने बेकरी में ₹3,00,000 लगाए और सुनीता ने ₹1,00,000। उन्होंने कभी लाभ का अनुपात तय नहीं किया। इस साल का लाभ ₹80,000 है। यह कैसे बँटेगा?"
+      },
+      "choices": [
+       {
+        "id": "equal",
+        "text": {
+         "en": "Equally: ₹40,000 each",
+         "hi": "बराबर: हर एक को ₹40,000"
+        },
+        "next": "d2",
+        "feedback": {
+         "en": "Right. When the deed is silent, the Partnership Act says profits and losses are shared equally, whatever the capitals.",
+         "hi": "सही। विलेख चुप हो तो साझेदारी अधिनियम कहता है कि लाभ और हानि बराबर बँटेंगे, पूँजी चाहे जितनी हो।"
+        },
+        "good": true
+       },
+       {
+        "id": "cap-ratio",
+        "text": {
+         "en": "In the capital ratio 3 : 1: ₹60,000 and ₹20,000",
+         "hi": "पूँजी के अनुपात 3 : 1 में: ₹60,000 और ₹20,000"
+        },
+        "next": "d2",
+        "feedback": {
+         "en": "Think again. Capital ratio is used only if the partners agree to it. Without an agreement the Act says equally.",
+         "hi": "फिर सोचो। पूँजी अनुपात तभी लगता है जब साझेदार उस पर सहमत हों। सहमति न हो तो अधिनियम बराबर बाँटने को कहता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "Anil asks for interest on his bigger capital. What does the Act say?",
+       "hi": "अनिल अपनी बड़ी पूँजी पर ब्याज माँगता है। अधिनियम क्या कहता है?"
+      },
+      "choices": [
+       {
+        "id": "no-int",
+        "text": {
+         "en": "No interest on capital, since the deed does not allow it",
+         "hi": "पूँजी पर कोई ब्याज नहीं, क्योंकि विलेख इसकी अनुमति नहीं देता"
+        },
+        "next": "d3",
+        "feedback": {
+         "en": "Right. Interest on capital is allowed only if the deed provides for it, and then only out of profits.",
+         "hi": "सही। पूँजी पर ब्याज तभी मिलता है जब विलेख में लिखा हो, और वह भी केवल लाभ में से।"
+        },
+        "good": true
+       },
+       {
+        "id": "int6",
+        "text": {
+         "en": "Yes, 6% a year on capital",
+         "hi": "हाँ, पूँजी पर 6% वार्षिक"
+        },
+        "next": "d3",
+        "feedback": {
+         "en": "Think again. The 6% rule is for a partner’s loan to the firm, not for capital.",
+         "hi": "फिर सोचो। 6% का नियम साझेदार द्वारा फ़र्म को दिए ऋण के लिए है, पूँजी के लिए नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "d3",
+      "text": {
+       "en": "Sunita also lent the firm ₹50,000 as a loan for one year. What interest does she get on it?",
+       "hi": "सुनीता ने फ़र्म को एक साल के लिए ₹50,000 का ऋण भी दिया। उसे इस पर कितना ब्याज मिलेगा?"
+      },
+      "choices": [
+       {
+        "id": "loan6",
+        "text": {
+         "en": "6% a year: ₹3,000, even if there is a loss",
+         "hi": "6% वार्षिक: ₹3,000, हानि होने पर भी"
+        },
+        "next": "d4",
+        "feedback": {
+         "en": "Right. A partner’s loan earns 6% a year under the Act. It is a charge against profit, so it is paid even in a loss year.",
+         "hi": "सही। अधिनियम के अनुसार साझेदार के ऋण पर 6% वार्षिक ब्याज मिलता है। यह लाभ पर भार है, इसलिए हानि वाले साल में भी दिया जाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "loan0",
+        "text": {
+         "en": "Nothing, the deed does not mention it",
+         "hi": "कुछ नहीं, विलेख में इसका ज़िक्र नहीं है"
+        },
+        "next": "d4",
+        "feedback": {
+         "en": "Think again. For a loan the Act itself fills the gap: 6% a year.",
+         "hi": "फिर सोचो। ऋण के लिए अधिनियम स्वयं कमी पूरी करता है: 6% वार्षिक।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "d4",
+      "text": {
+       "en": "Anil works in the bakery full-time and asks for a salary. What does the Act say?",
+       "hi": "अनिल पूरे समय बेकरी में काम करता है और वेतन माँगता है। अधिनियम क्या कहता है?"
+      },
+      "choices": [
+       {
+        "id": "no-sal",
+        "text": {
+         "en": "No salary or commission unless the deed allows it",
+         "hi": "विलेख में लिखा न हो तो कोई वेतन या कमीशन नहीं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. A partner gets no salary for working unless the partners agree to it. Interest on drawings is also not charged.",
+         "hi": "सही। साझेदार को काम के लिए वेतन तभी मिलता है जब सहमति हो। आहरण पर ब्याज भी नहीं लिया जाता।"
+        },
+        "good": true
+       },
+       {
+        "id": "sal",
+        "text": {
+         "en": "Yes, a fair salary for his work",
+         "hi": "हाँ, उसके काम का उचित वेतन"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. Working more does not by itself earn a salary; the deed must allow it.",
+         "hi": "फिर सोचो। अधिक काम करने से अपने आप वेतन नहीं मिलता; विलेख में अनुमति होनी चाहिए।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Anil put in three times Sunita’s capital and there is no deed. How will the profit be shared?",
+      "hi": "अनिल ने सुनीता से तीन गुना पूँजी लगाई और कोई विलेख नहीं है। लाभ कैसे बँटेगा?"
+     },
+     "options": [
+      {
+       "id": "eq",
+       "en": "Equally",
+       "hi": "बराबर"
+      },
+      {
+       "id": "cap",
+       "en": "3 : 1, like the capitals",
+       "hi": "3 : 1, पूँजी की तरह"
+      },
+      {
+       "id": "work",
+       "en": "By who works more",
+       "hi": "जो ज़्यादा काम करे उसके हिसाब से"
+      }
+     ],
+     "answer": "eq"
+    },
+    {
+     "kind": "do",
+     "target": "choice:d1:equal",
+     "expect": "chose:equal",
+     "say": {
+      "en": "Tap the way the Act shares the ₹80,000.",
+      "hi": "वह तरीका चुनो जिससे अधिनियम ₹80,000 बाँटता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A partnership deed is the written agreement on ratio, interest, salary and so on. When it is silent, Section 13 of the Partnership Act fills the gap: share profits equally, no interest on capital, no salary, no interest on drawings, and 6% a year on a partner’s loan. That is why Anil gets ₹40,000 though his capital is bigger.",
+      "hi": "साझेदारी विलेख अनुपात, ब्याज, वेतन आदि पर लिखित समझौता है। जब यह चुप हो, तो साझेदारी अधिनियम की धारा 13 कमी पूरी करती है: लाभ बराबर बाँटो, पूँजी पर ब्याज नहीं, वेतन नहीं, आहरण पर ब्याज नहीं, और साझेदार के ऋण पर 6% वार्षिक। इसीलिए बड़ी पूँजी होने पर भी अनिल को ₹40,000 मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The deed is silent. Sunita lent ₹50,000 for the whole year and the firm made a loss. What interest does she get?",
+        "hi": "विलेख चुप है। सुनीता ने पूरे साल के लिए ₹50,000 उधार दिए और फ़र्म को हानि हुई। उसे कितना ब्याज मिलेगा?"
+       },
+       "options": [
+        {
+         "en": "₹3,000",
+         "hi": "3,000 रुपये"
+        },
+        {
+         "en": "Nothing, because of the loss",
+         "hi": "कुछ नहीं, हानि के कारण"
+        },
+        {
+         "en": "₹5,000 at 10%",
+         "hi": "10% पर ₹5,000"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Interest on a partner’s loan is 6% a year and is a charge, paid whether there is profit or loss: ₹50,000 × 6% = ₹3,000.",
+        "hi": "साझेदार के ऋण पर 6% वार्षिक ब्याज भार है, लाभ हो या हानि, दिया जाता है: ₹50,000 × 6% = ₹3,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the rule for interest on capital, which comes only out of profit; a loan is owed like any outside loan.",
+         "hi": "यह पूँजी पर ब्याज का नियम है, जो केवल लाभ से मिलता है; ऋण बाहरी ऋण की तरह देय होता है।"
+        },
+        {
+         "en": "10% is not in the Act; with no deed the rate is fixed at 6%.",
+         "hi": "10% अधिनियम में नहीं है; विलेख न होने पर दर 6% तय है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is NOT a rule of the Act when the deed is silent?",
+        "hi": "विलेख चुप हो तो इनमें से कौन-सा अधिनियम का नियम नहीं है?"
+       },
+       "options": [
+        {
+         "en": "Interest on drawings at 6%",
+         "hi": "आहरण पर 6% ब्याज"
+        },
+        {
+         "en": "Profits shared equally",
+         "hi": "लाभ बराबर बँटेगा"
+        },
+        {
+         "en": "No salary to partners",
+         "hi": "साझेदारों को वेतन नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Act charges no interest on drawings. 6% belongs only to a partner’s loan.",
+        "hi": "अधिनियम आहरण पर कोई ब्याज नहीं लेता। 6% केवल साझेदार के ऋण पर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equal sharing is exactly what the Act says when no ratio is agreed.",
+         "hi": "अनुपात तय न हो तो बराबर बँटवारा ही अधिनियम का नियम है।"
+        },
+        {
+         "en": "No salary is also the Act’s rule, unless the partners agree otherwise.",
+         "hi": "वेतन नहीं, यह भी अधिनियम का नियम है, जब तक साझेदार कुछ और तय न करें।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next and settle the interest, the loan and the salary. Try the wrong answers too and read what the Act says.",
+      "hi": "आगे दबाओ और ब्याज, ऋण और वेतन का फ़ैसला करो। ग़लत उत्तर भी आज़माओ और पढ़ो कि अधिनियम क्या कहता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch01-fixed-capital",
+   "topic": "1.4",
+   "template": "ledger",
+   "title": {
+    "en": "Fixed capitals and current accounts",
+    "hi": "स्थिर पूँजी और चालू खाते"
+   },
+   "minutes": 9,
+   "level": "core",
+   "config": {
+    "mode": "partnership",
+    "business": {
+     "en": "Mehta and Rao Traders",
+     "hi": "मेहता एंड राव ट्रेडर्स"
+    },
+    "transactions": [],
+    "partners": [
+     {
+      "name": {
+       "en": "Neeta",
+       "hi": "नीता"
+      },
+      "capital": 200000,
+      "ratio": 3,
+      "salary": 24000
+     },
+     {
+      "name": {
+       "en": "Arjun",
+       "hi": "अर्जुन"
+      },
+      "capital": 100000,
+      "ratio": 2
+     }
+    ],
+    "profit": 90000,
+    "interest": 10,
+    "fixed": true
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:interest",
+     "say": {
+      "en": "Tap “Allow 10% interest on capital”.",
+      "hi": "“पूँजी पर 10% ब्याज दो” दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The capitals are fixed. Where does Neeta’s ₹20,000 interest go?",
+      "hi": "पूँजी स्थिर है। नीता का ₹20,000 ब्याज कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "cur",
+       "en": "To her current account",
+       "hi": "उसके चालू खाते में"
+      },
+      {
+       "id": "cap",
+       "en": "To her capital account",
+       "hi": "उसके पूँजी खाते में"
+      },
+      {
+       "id": "cash",
+       "en": "Paid out in cash at once",
+       "hi": "तुरंत नकद दिया जाएगा"
+      }
+     ],
+     "answer": "cur"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:salary",
+     "say": {
+      "en": "Tap “Pay the partner’s salary” for Neeta’s ₹24,000.",
+      "hi": "नीता के ₹24,000 के लिए “साझेदार का वेतन दो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:share",
+     "say": {
+      "en": "Tap the button to share the rest 3 : 2.",
+      "hi": "बाक़ी को 3 : 2 में बाँटने वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: how much is Neeta’s share of the rest?",
+      "hi": "उत्तर दो: बाक़ी में नीता का हिस्सा कितना है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap “Balance the current accounts”.",
+      "hi": "“चालू खाते संतुलित करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "With fixed capitals, the capital accounts stay at ₹2,00,000 and ₹1,00,000. Everything else goes to a current account: interest, salary, profit share and drawings. Neeta’s current account gets ₹20,000 + ₹24,000 + ₹21,600 = ₹65,600. With fluctuating capitals, all of this would go straight into the capital account instead.",
+      "hi": "स्थिर पूँजी में पूँजी खाते ₹2,00,000 और ₹1,00,000 पर ही रहते हैं। बाक़ी सब चालू खाते में जाता है: ब्याज, वेतन, लाभ का हिस्सा और आहरण। नीता के चालू खाते में ₹20,000 + ₹24,000 + ₹21,600 = ₹65,600 आते हैं। अस्थिर (परिवर्तनशील) पूँजी में यह सब सीधे पूँजी खाते में जाता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Under the fixed capital method, which account can show a debit balance?",
+        "hi": "स्थिर पूँजी पद्धति में कौन-सा खाता नाम (डेबिट) शेष दिखा सकता है?"
+       },
+       "options": [
+        {
+         "en": "The current account",
+         "hi": "चालू खाता"
+        },
+        {
+         "en": "The capital account",
+         "hi": "पूँजी खाता"
+        },
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If a partner draws more than the interest, salary and profit credited, the current account shows a debit balance. The fixed capital account always shows a credit balance.",
+        "hi": "अगर साझेदार जमा हुए ब्याज, वेतन और लाभ से अधिक निकाल ले, तो चालू खाता नाम शेष दिखाता है। स्थिर पूँजी खाता हमेशा जमा शेष दिखाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The capital account only changes when capital is added or withdrawn by agreement, so it keeps its credit balance.",
+         "hi": "पूँजी खाता केवल सहमति से पूँजी जोड़ने या निकालने पर बदलता है, इसलिए उसका जमा शेष बना रहता है।"
+        },
+        {
+         "en": "Heavy drawings can push the current account below zero, so one of them can.",
+         "hi": "अधिक आहरण चालू खाते को शून्य से नीचे ले जा सकता है, इसलिए एक खाता ऐसा कर सकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many accounts does each partner have under the fixed capital method?",
+        "hi": "स्थिर पूँजी पद्धति में हर साझेदार के कितने खाते होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Two: capital and current",
+         "hi": "दो: पूँजी और चालू"
+        },
+        {
+         "en": "One: capital only",
+         "hi": "एक: केवल पूँजी"
+        },
+        {
+         "en": "Three: capital, current and drawings",
+         "hi": "तीन: पूँजी, चालू और आहरण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two accounts: a capital account that stays fixed and a current account for everything else.",
+        "hi": "दो खाते: एक पूँजी खाता जो स्थिर रहता है और एक चालू खाता बाक़ी सबके लिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One account is the fluctuating capital method, where the capital changes every year.",
+         "hi": "एक खाता अस्थिर पूँजी पद्धति है, जिसमें पूँजी हर साल बदलती है।"
+        },
+        {
+         "en": "Drawings may be kept in a drawings account during the year, but it is closed to the current account; the method itself keeps two.",
+         "hi": "साल भर आहरण अलग खाते में रख सकते हैं, पर वह चालू खाते में बंद होता है; पद्धति में दो ही खाते होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Read Arjun’s current account in the summary. Which items made it grow? Compare the capital row, which never moved.",
+      "hi": "सारांश में अर्जुन का चालू खाता पढ़ो। किन मदों से यह बढ़ा? पूँजी वाली पंक्ति से तुलना करो, जो कभी नहीं बदली।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch01-appropriation",
+   "topic": "1.5",
+   "template": "ledger",
+   "title": {
+    "en": "Sharing the profit: the appropriation account",
+    "hi": "लाभ का बँटवारा: विनियोजन खाता"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "partnership",
+    "business": {
+     "en": "Farhan and Gita Opticals",
+     "hi": "फ़रहान एंड गीता ऑप्टिकल्स"
+    },
+    "transactions": [],
+    "partners": [
+     {
+      "name": {
+       "en": "Farhan",
+       "hi": "फ़रहान"
+      },
+      "capital": 150000,
+      "ratio": 2,
+      "salary": 30000
+     },
+     {
+      "name": {
+       "en": "Gita",
+       "hi": "गीता"
+      },
+      "capital": 150000,
+      "ratio": 1
+     }
+    ],
+    "profit": 120000
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:salary",
+     "say": {
+      "en": "Tap “Pay the partner’s salary”: Farhan gets ₹30,000 a year.",
+      "hi": "“साझेदार का वेतन दो” दबाओ: फ़रहान को ₹30,000 वार्षिक मिलते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "₹90,000 is left. They share profit 2 : 1. What is Farhan’s share of it?",
+      "hi": "₹90,000 बचे हैं। वे लाभ 2 : 1 में बाँटते हैं। इसमें फ़रहान का हिस्सा कितना है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "₹60,000",
+       "hi": "60,000 रुपये"
+      },
+      {
+       "id": "b",
+       "en": "₹45,000",
+       "hi": "45,000 रुपये"
+      },
+      {
+       "id": "c",
+       "en": "₹80,000",
+       "hi": "80,000 रुपये"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:share",
+     "say": {
+      "en": "Tap the button to share the rest 2 : 1.",
+      "hi": "बाक़ी को 2 : 1 में बाँटने वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about Farhan’s share.",
+      "hi": "फ़रहान के हिस्से वाले प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap “Balance the capital accounts”.",
+      "hi": "“पूँजी खाते संतुलित करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The net profit of ₹1,20,000 is credited to the profit and loss appropriation account. First the salary allowed by the deed, ₹30,000, is debited. The remaining ₹90,000 is shared 2 : 1, so Farhan gets ₹60,000 and Gita ₹30,000. Salary to a partner is an appropriation of profit, not a business expense.",
+      "hi": "₹1,20,000 का शुद्ध लाभ लाभ-हानि विनियोजन खाते में जमा होता है। पहले विलेख में तय ₹30,000 वेतन नाम किया जाता है। बचे ₹90,000 को 2 : 1 में बाँटते हैं, इसलिए फ़रहान को ₹60,000 और गीता को ₹30,000 मिलते हैं। साझेदार का वेतन लाभ का विनियोजन है, व्यवसाय का व्यय नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a partner’s salary debited to the appropriation account and not to the profit and loss account?",
+        "hi": "साझेदार का वेतन लाभ-हानि खाते में नहीं, विनियोजन खाते में क्यों नाम होता है?"
+       },
+       "options": [
+        {
+         "en": "It is a share of profit given to a partner, not a cost of earning it",
+         "hi": "यह साझेदार को दिया गया लाभ का हिस्सा है, लाभ कमाने की लागत नहीं"
+        },
+        {
+         "en": "Because it is paid in cash",
+         "hi": "क्योंकि यह नकद दिया जाता है"
+        },
+        {
+         "en": "Because it is small",
+         "hi": "क्योंकि यह छोटी राशि है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Interest on capital, salary and commission to partners are appropriations: they divide the profit among the owners.",
+        "hi": "पूँजी पर ब्याज, साझेदारों का वेतन और कमीशन विनियोजन हैं: ये मालिकों में लाभ बाँटते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Many expenses are paid in cash too; how it is paid does not decide where it goes.",
+         "hi": "कई व्यय भी नकद चुकाए जाते हैं; भुगतान का तरीका तय नहीं करता कि वह कहाँ जाएगा।"
+        },
+        {
+         "en": "Size does not matter; the nature of the item does.",
+         "hi": "राशि का आकार मायने नहीं रखता; मद की प्रकृति मायने रखती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If the profit had been only ₹30,000, how much would be left to share 2 : 1 after the salary?",
+        "hi": "अगर लाभ केवल ₹30,000 होता, तो वेतन के बाद 2 : 1 में बाँटने के लिए कितना बचता?"
+       },
+       "options": [
+        {
+         "en": "Nothing",
+         "hi": "कुछ नहीं"
+        },
+        {
+         "en": "₹30,000",
+         "hi": "30,000 रुपये"
+        },
+        {
+         "en": "₹20,000",
+         "hi": "20,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹30,000 − ₹30,000 salary leaves ₹0 to share in the ratio.",
+        "hi": "₹30,000 − ₹30,000 वेतन के बाद अनुपात में बाँटने को ₹0 बचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The salary comes out first; the ratio applies only to what is left.",
+         "hi": "वेतन पहले निकलता है; अनुपात केवल बचे हिस्से पर लगता है।"
+        },
+        {
+         "en": "₹20,000 is Farhan’s 2/3 of ₹30,000, but the ₹30,000 is already used up by his salary.",
+         "hi": "₹20,000 तो ₹30,000 का 2/3 है, पर ₹30,000 तो वेतन में ही ख़त्म हो गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the donut: which colour is Farhan’s salary and which his share? Read the closing capitals in the summary.",
+      "hi": "डोनट देखो: फ़रहान का वेतन किस रंग में है और उसका हिस्सा किस रंग में? सारांश में अंतिम पूँजी पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch01-interest-capital",
+   "topic": "1.5.2",
+   "template": "ledger",
+   "title": {
+    "en": "Interest on capital",
+    "hi": "पूँजी पर ब्याज"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "partnership",
+    "business": {
+     "en": "Kiran and Dev Tiles",
+     "hi": "किरण एंड देव टाइल्स"
+    },
+    "transactions": [],
+    "partners": [
+     {
+      "name": {
+       "en": "Kiran",
+       "hi": "किरण"
+      },
+      "capital": 400000,
+      "ratio": 1
+     },
+     {
+      "name": {
+       "en": "Dev",
+       "hi": "देव"
+      },
+      "capital": 200000,
+      "ratio": 1
+     }
+    ],
+    "profit": 60000,
+    "interest": 6
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The deed allows 6% interest on capital. Kiran’s capital is ₹4,00,000 and Dev’s ₹2,00,000. Who gets more interest?",
+      "hi": "विलेख पूँजी पर 6% ब्याज देता है। किरण की पूँजी ₹4,00,000 और देव की ₹2,00,000 है। किसे अधिक ब्याज मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "k",
+       "en": "Kiran, twice as much",
+       "hi": "किरण, दोगुना"
+      },
+      {
+       "id": "same",
+       "en": "Both the same, they share equally",
+       "hi": "दोनों बराबर, क्योंकि वे बराबर बाँटते हैं"
+      },
+      {
+       "id": "d",
+       "en": "Dev",
+       "hi": "देव"
+      }
+     ],
+     "answer": "k"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:interest",
+     "say": {
+      "en": "Tap “Allow 6% interest on capital”.",
+      "hi": "“पूँजी पर 6% ब्याज दो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:share",
+     "say": {
+      "en": "Now share the rest equally.",
+      "hi": "अब बाक़ी को बराबर बाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: how much is Kiran’s share of the rest?",
+      "hi": "उत्तर दो: बाक़ी में किरण का हिस्सा कितना है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap “Balance the capital accounts”.",
+      "hi": "“पूँजी खाते संतुलित करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Interest on capital rewards the money each partner put in, so it follows the capitals: ₹4,00,000 × 6% = ₹24,000 and ₹2,00,000 × 6% = ₹12,000. Only the remaining ₹24,000 is shared in the profit ratio 1 : 1. So Kiran gets ₹36,000 in all and Dev ₹24,000. Interest on capital is paid only out of profit.",
+      "hi": "पूँजी पर ब्याज हर साझेदार की लगाई राशि का पुरस्कार है, इसलिए यह पूँजी के हिसाब से चलता है: ₹4,00,000 × 6% = ₹24,000 और ₹2,00,000 × 6% = ₹12,000। केवल बचे ₹24,000 लाभ अनुपात 1 : 1 में बँटते हैं। इसलिए किरण को कुल ₹36,000 और देव को ₹24,000 मिलते हैं। पूँजी पर ब्याज केवल लाभ में से दिया जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Kiran brought in ₹1,00,000 more capital on 1 October. The year ends on 31 March. Interest at 6% on this extra amount is:",
+        "hi": "किरण ने 1 अक्टूबर को ₹1,00,000 और पूँजी लगाई। साल 31 मार्च को ख़त्म होता है। इस अतिरिक्त राशि पर 6% ब्याज होगा:"
+       },
+       "options": [
+        {
+         "en": "₹3,000",
+         "hi": "3,000 रुपये"
+        },
+        {
+         "en": "₹6,000",
+         "hi": "6,000 रुपये"
+        },
+        {
+         "en": "₹500",
+         "hi": "500 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Interest runs only for the time the money was in the firm: ₹1,00,000 × 6% × 6/12 = ₹3,000.",
+        "hi": "ब्याज केवल उतने समय का होता है जितना पैसा फ़र्म में रहा: ₹1,00,000 × 6% × 6/12 = ₹3,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹6,000 is for a full year, but the money was in the firm for only six months.",
+         "hi": "₹6,000 पूरे साल का है, पर पैसा केवल छह महीने फ़र्म में रहा।"
+        },
+        {
+         "en": "₹500 is one month’s interest; October to March is six months.",
+         "hi": "₹500 एक महीने का ब्याज है; अक्टूबर से मार्च छह महीने हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Interest on capital is credited to which account under the fluctuating capital method?",
+        "hi": "अस्थिर पूँजी पद्धति में पूँजी पर ब्याज किस खाते में जमा होता है?"
+       },
+       "options": [
+        {
+         "en": "The partner’s capital account",
+         "hi": "साझेदार का पूँजी खाता"
+        },
+        {
+         "en": "The partner’s current account",
+         "hi": "साझेदार का चालू खाता"
+        },
+        {
+         "en": "The profit and loss account",
+         "hi": "लाभ-हानि खाता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With fluctuating capitals there is only one account per partner, so interest is credited to the capital account.",
+        "hi": "अस्थिर पूँजी में हर साझेदार का एक ही खाता होता है, इसलिए ब्याज पूँजी खाते में जमा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A current account exists only under the fixed capital method.",
+         "hi": "चालू खाता केवल स्थिर पूँजी पद्धति में होता है।"
+        },
+        {
+         "en": "It is debited to the appropriation account and credited to the partner, not to the profit and loss account.",
+         "hi": "यह विनियोजन खाते में नाम होता है और साझेदार के खाते में जमा, लाभ-हानि खाते में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the capital summary: which row grew more, the interest or the profit share? Think about why.",
+      "hi": "पूँजी सारांश देखो: कौन-सी पंक्ति अधिक बढ़ी, ब्याज या लाभ का हिस्सा? सोचो क्यों।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch01-not-enough",
+   "topic": "1.5.2",
+   "template": "ledger",
+   "title": {
+    "en": "When profit is not enough for interest",
+    "hi": "जब लाभ ब्याज के लिए काफ़ी न हो"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "mode": "partnership",
+    "business": {
+     "en": "Kiran and Dev Tiles",
+     "hi": "किरण एंड देव टाइल्स"
+    },
+    "transactions": [],
+    "partners": [
+     {
+      "name": {
+       "en": "Kiran",
+       "hi": "किरण"
+      },
+      "capital": 400000,
+      "ratio": 1
+     },
+     {
+      "name": {
+       "en": "Dev",
+       "hi": "देव"
+      },
+      "capital": 200000,
+      "ratio": 1
+     }
+    ],
+    "profit": 30000,
+    "interest": 10
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Interest at 10% would be ₹40,000 + ₹20,000 = ₹60,000, but the profit is only ₹30,000. What happens?",
+      "hi": "10% पर ब्याज ₹40,000 + ₹20,000 = ₹60,000 होगा, पर लाभ केवल ₹30,000 है। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "limit",
+       "en": "The ₹30,000 is shared 2 : 1, like the interest amounts",
+       "hi": "₹30,000 ब्याज की राशियों की तरह 2 : 1 में बँटेंगे"
+      },
+      {
+       "id": "full",
+       "en": "Full interest is paid and the firm shows a loss",
+       "hi": "पूरा ब्याज दिया जाएगा और फ़र्म हानि दिखाएगी"
+      },
+      {
+       "id": "none",
+       "en": "No interest is paid at all",
+       "hi": "कोई ब्याज नहीं दिया जाएगा"
+      }
+     ],
+     "answer": "limit"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:interest",
+     "say": {
+      "en": "Tap “Allow 10% interest on capital” and read the message.",
+      "hi": "“पूँजी पर 10% ब्याज दो” दबाओ और संदेश पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:share",
+     "say": {
+      "en": "Tap the button to share what is left.",
+      "hi": "जो बचा है उसे बाँटने वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: what is Kiran’s share of the rest now?",
+      "hi": "उत्तर दो: अब बाक़ी में किरण का हिस्सा कितना है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap “Balance the capital accounts”.",
+      "hi": "“पूँजी खाते संतुलित करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Interest on capital is an appropriation, so it can never be more than the profit. When the profit is short, the whole profit goes as interest, in the ratio of the interest due: 40,000 : 20,000 = 2 : 1. Kiran gets ₹20,000 and Dev ₹10,000, and nothing is left for the profit ratio. In a loss year, no interest on capital is allowed at all.",
+      "hi": "पूँजी पर ब्याज एक विनियोजन है, इसलिए यह लाभ से अधिक नहीं हो सकता। लाभ कम हो तो पूरा लाभ ब्याज के रूप में, देय ब्याज के अनुपात में बँटता है: 40,000 : 20,000 = 2 : 1। किरण को ₹20,000 और देव को ₹10,000 मिलते हैं, और लाभ अनुपात के लिए कुछ नहीं बचता। हानि वाले साल में पूँजी पर ब्याज बिल्कुल नहीं मिलता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The deed treats interest on capital as a charge, not an appropriation. Profit is ₹30,000 and interest due is ₹60,000. What then?",
+        "hi": "विलेख पूँजी पर ब्याज को भार मानता है, विनियोजन नहीं। लाभ ₹30,000 है और देय ब्याज ₹60,000। तब क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "Full ₹60,000 is allowed and a loss of ₹30,000 is shared in the profit ratio",
+         "hi": "पूरा ₹60,000 मिलेगा और ₹30,000 की हानि लाभ अनुपात में बँटेगी"
+        },
+        {
+         "en": "Only ₹30,000 is allowed",
+         "hi": "केवल ₹30,000 मिलेगा"
+        },
+        {
+         "en": "No interest is allowed",
+         "hi": "कोई ब्याज नहीं मिलेगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "As a charge, interest is allowed in full like an expense, even if it turns the profit into a loss.",
+        "hi": "भार के रूप में ब्याज व्यय की तरह पूरा मिलता है, भले ही इससे लाभ हानि बन जाए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Limiting interest to profit is the rule only when interest is an appropriation.",
+         "hi": "ब्याज को लाभ तक सीमित करना केवल तब का नियम है जब ब्याज विनियोजन हो।"
+        },
+        {
+         "en": "A charge must be paid whatever the result; that is what makes it a charge.",
+         "hi": "भार हर हालत में देना होता है; यही उसे भार बनाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In which ratio was the ₹30,000 divided as interest?",
+        "hi": "₹30,000 ब्याज के रूप में किस अनुपात में बँटा?"
+       },
+       "options": [
+        {
+         "en": "2 : 1, the ratio of interest due",
+         "hi": "2 : 1, देय ब्याज का अनुपात"
+        },
+        {
+         "en": "1 : 1, the profit ratio",
+         "hi": "1 : 1, लाभ अनुपात"
+        },
+        {
+         "en": "3 : 1",
+         "hi": "3 : 1 का अनुपात"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Interest due was ₹40,000 and ₹20,000, which is 2 : 1, the same as the capitals here.",
+        "hi": "देय ब्याज ₹40,000 और ₹20,000 था, जो 2 : 1 है, यहाँ पूँजी के समान।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The profit ratio is used only for profit left after interest; here nothing is left.",
+         "hi": "लाभ अनुपात केवल ब्याज के बाद बचे लाभ पर लगता है; यहाँ कुछ नहीं बचा।"
+        },
+        {
+         "en": "3 : 1 does not come from these figures; 40,000 : 20,000 simplifies to 2 : 1.",
+         "hi": "3 : 1 इन आँकड़ों से नहीं आता; 40,000 : 20,000 सरल होकर 2 : 1 बनता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare this donut with the full-profit lab. Why is there no profit-share colour this time?",
+      "hi": "इस डोनट की तुलना पूरे लाभ वाली प्रयोगशाला से करो। इस बार लाभ-हिस्से का रंग क्यों नहीं है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch01-drawings-interest",
+   "topic": "1.5.3",
+   "template": "scenario",
+   "title": {
+    "en": "Interest on drawings: the average period",
+    "hi": "आहरण पर ब्याज: औसत अवधि"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant of the firm",
+     "hi": "फ़र्म का लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "w1",
+      "text": {
+       "en": "Meena takes ₹5,000 at the start of every month for 12 months: ₹60,000 in all. The deed charges 6% a year on drawings. For how long, on average, was the money out of the firm?",
+       "hi": "मीना 12 महीने तक हर महीने की शुरुआत में ₹5,000 निकालती है: कुल ₹60,000। विलेख आहरण पर 6% वार्षिक ब्याज लेता है। औसतन पैसा कितने समय फ़र्म से बाहर रहा?"
+      },
+      "choices": [
+       {
+        "id": "m65",
+        "text": {
+         "en": "6½ months, so interest is ₹60,000 × 6% × 6.5/12 = ₹1,950",
+         "hi": "6½ महीने, इसलिए ब्याज ₹60,000 × 6% × 6.5/12 = ₹1,950"
+        },
+        "next": "w2",
+        "feedback": {
+         "en": "Right. The first ₹5,000 is out for 12 months and the last for 1 month; the average of 12 and 1 is 6½ months.",
+         "hi": "सही। पहले ₹5,000 बारह महीने बाहर रहे और आख़िरी एक महीना; 12 और 1 का औसत 6½ महीने है।"
+        },
+        "good": true
+       },
+       {
+        "id": "m6",
+        "text": {
+         "en": "6 months",
+         "hi": "6 महीने"
+        },
+        "next": "w2",
+        "feedback": {
+         "en": "Think again. 6 months is right only when money is taken in the middle of each month.",
+         "hi": "फिर सोचो। 6 महीने तभी सही है जब पैसा हर महीने के बीच में निकाला जाए।"
+        },
+        "good": false
+       },
+       {
+        "id": "m55",
+        "text": {
+         "en": "5½ months",
+         "hi": "5½ महीने"
+        },
+        "next": "w2",
+        "feedback": {
+         "en": "Think again. 5½ months is for drawings at the end of each month. Money taken at the start is out for longer.",
+         "hi": "फिर सोचो। 5½ महीने हर महीने के अंत में निकासी के लिए है। शुरुआत में निकाला पैसा अधिक समय बाहर रहता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "w2",
+      "text": {
+       "en": "Next year Meena takes ₹5,000 at the end of every month instead. What is the interest on drawings now?",
+       "hi": "अगले साल मीना हर महीने के अंत में ₹5,000 निकालती है। अब आहरण पर ब्याज कितना है?"
+      },
+      "choices": [
+       {
+        "id": "i1650",
+        "text": {
+         "en": "₹1,650, for 5½ months on average",
+         "hi": "₹1,650, औसतन 5½ महीने के लिए"
+        },
+        "next": "w3",
+        "feedback": {
+         "en": "Right. The first amount is out for 11 months and the last for 0, average 5½: ₹60,000 × 6% × 5.5/12 = ₹1,650.",
+         "hi": "सही। पहली राशि 11 महीने बाहर रही और आख़िरी 0, औसत 5½: ₹60,000 × 6% × 5.5/12 = ₹1,650।"
+        },
+        "good": true
+       },
+       {
+        "id": "i1950",
+        "text": {
+         "en": "₹1,950, the same as before",
+         "hi": "₹1,950, पहले जितना"
+        },
+        "next": "w3",
+        "feedback": {
+         "en": "Think again. Drawing a month later each time means each amount is out one month less.",
+         "hi": "फिर सोचो। हर बार एक महीना बाद निकालने से हर राशि एक महीना कम बाहर रहती है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "w3",
+      "text": {
+       "en": "Ravi takes ₹10,000 at the start of each quarter: ₹40,000 in the year, at 6%. What is his interest on drawings?",
+       "hi": "रवि हर तिमाही की शुरुआत में ₹10,000 निकालता है: साल में ₹40,000, 6% पर। उसका आहरण पर ब्याज कितना है?"
+      },
+      "choices": [
+       {
+        "id": "q75",
+        "text": {
+         "en": "₹1,500, for 7½ months on average",
+         "hi": "₹1,500, औसतन 7½ महीने के लिए"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. The amounts are out for 12, 9, 6 and 3 months; the average is 7½: ₹40,000 × 6% × 7.5/12 = ₹1,500.",
+         "hi": "सही। राशियाँ 12, 9, 6 और 3 महीने बाहर रहीं; औसत 7½ है: ₹40,000 × 6% × 7.5/12 = ₹1,500।"
+        },
+        "good": true
+       },
+       {
+        "id": "q45",
+        "text": {
+         "en": "₹900, for 4½ months on average",
+         "hi": "₹900, औसतन 4½ महीने के लिए"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. 4½ months is for drawings at the end of each quarter (9, 6, 3, 0 months).",
+         "hi": "फिर सोचो। 4½ महीने हर तिमाही के अंत में निकासी के लिए है (9, 6, 3, 0 महीने)।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Money taken at the start of each month is out of the firm for longer than money taken at the end. So the interest is:",
+      "hi": "हर महीने की शुरुआत में निकाला पैसा अंत में निकाले पैसे से अधिक समय बाहर रहता है। इसलिए ब्याज:"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More for drawings at the start",
+       "hi": "शुरुआत की निकासी पर अधिक"
+      },
+      {
+       "id": "same",
+       "en": "The same either way",
+       "hi": "दोनों हालत में बराबर"
+      },
+      {
+       "id": "less",
+       "en": "Less for drawings at the start",
+       "hi": "शुरुआत की निकासी पर कम"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "choice:w1:m65",
+     "expect": "chose:m65",
+     "say": {
+      "en": "Tap the average period for drawings at the start of each month.",
+      "hi": "हर महीने की शुरुआत की निकासी के लिए औसत अवधि चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Interest on drawings charges a partner for using the firm’s money. When equal amounts are taken regularly, use the average period: start of each month 6½ months, middle 6, end 5½; start of each quarter 7½, end 4½. Interest = total drawings × rate × average months ÷ 12. It is debited to the partner and credited to the appropriation account.",
+      "hi": "आहरण पर ब्याज फ़र्म का पैसा इस्तेमाल करने के लिए साझेदार से लिया जाता है। जब नियमित रूप से बराबर राशियाँ निकाली जाएँ, तो औसत अवधि लगाओ: हर महीने की शुरुआत 6½ महीने, बीच 6, अंत 5½; हर तिमाही की शुरुआत 7½, अंत 4½। ब्याज = कुल आहरण × दर × औसत महीने ÷ 12। यह साझेदार के खाते में नाम और विनियोजन खाते में जमा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Drawings of ₹24,000 are made evenly through the year, and the dates are not known. What period is used at 10%?",
+        "hi": "साल भर में ₹24,000 का आहरण समान रूप से हुआ और तिथियाँ पता नहीं। 10% पर कौन-सी अवधि ली जाएगी?"
+       },
+       "options": [
+        {
+         "en": "6 months: interest ₹1,200",
+         "hi": "6 महीने: ब्याज ₹1,200"
+        },
+        {
+         "en": "12 months: interest ₹2,400",
+         "hi": "12 महीने: ब्याज ₹2,400"
+        },
+        {
+         "en": "No interest without dates",
+         "hi": "तिथियों के बिना कोई ब्याज नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When dates are not given, drawings are taken to be made evenly, so on average they are out for half the year.",
+        "hi": "तिथियाँ न दी हों तो आहरण समान रूप से माना जाता है, इसलिए औसतन वे आधे साल बाहर रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Not all of the money was out for the whole year; only the first part was.",
+         "hi": "पूरा पैसा पूरे साल बाहर नहीं रहा; केवल पहला हिस्सा रहा।"
+        },
+        {
+         "en": "Interest is still charged if the deed says so; the average period of 6 months is used.",
+         "hi": "विलेख में लिखा हो तो ब्याज फिर भी लगता है; 6 महीने की औसत अवधि ली जाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Interest on drawings is:",
+        "hi": "आहरण पर ब्याज है:"
+       },
+       "options": [
+        {
+         "en": "A gain for the firm, credited to the appropriation account",
+         "hi": "फ़र्म के लिए आय, विनियोजन खाते में जमा"
+        },
+        {
+         "en": "An expense of the firm",
+         "hi": "फ़र्म का व्यय"
+        },
+        {
+         "en": "Paid to the partner",
+         "hi": "साझेदार को दिया जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The partner pays it, so it reduces the partner’s capital and adds to the profit to be shared.",
+        "hi": "इसे साझेदार देता है, इसलिए यह उसकी पूँजी घटाता है और बाँटे जाने वाले लाभ में जुड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is interest on capital, which the firm allows to partners.",
+         "hi": "वह पूँजी पर ब्याज है, जो फ़र्म साझेदारों को देती है।"
+        },
+        {
+         "en": "It is charged from the partner, not paid to the partner.",
+         "hi": "यह साझेदार से लिया जाता है, उसे दिया नहीं जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to try drawings at the end of the month and at the start of each quarter. Restart and pick other answers to see why they fail.",
+      "hi": "महीने के अंत और हर तिमाही की शुरुआत वाली निकासी आज़माने के लिए आगे दबाओ। दोबारा शुरू करके दूसरे उत्तर चुनो और देखो वे क्यों ग़लत हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch01-guarantee",
+   "topic": "1.6",
+   "template": "scenario",
+   "title": {
+    "en": "A guaranteed minimum profit",
+    "hi": "न्यूनतम लाभ की गारंटी"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant of the firm",
+     "hi": "फ़र्म का लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "g1",
+      "text": {
+       "en": "Asha, Bilal and Chetan share profits 2 : 2 : 1. Chetan was promised at least ₹30,000 a year. This year’s profit is ₹1,20,000. What is Chetan’s normal share?",
+       "hi": "आशा, बिलाल और चेतन लाभ 2 : 2 : 1 में बाँटते हैं। चेतन को हर साल कम से कम ₹30,000 का वादा है। इस साल का लाभ ₹1,20,000 है। चेतन का सामान्य हिस्सा कितना है?"
+      },
+      "choices": [
+       {
+        "id": "c24",
+        "text": {
+         "en": "₹24,000, which is 1/5 of ₹1,20,000",
+         "hi": "₹24,000, जो ₹1,20,000 का 1/5 है"
+        },
+        "next": "g2",
+        "feedback": {
+         "en": "Right. 1 out of 5 parts: ₹1,20,000 × 1/5 = ₹24,000. That is ₹6,000 below the guarantee.",
+         "hi": "सही। 5 में से 1 भाग: ₹1,20,000 × 1/5 = ₹24,000। यह गारंटी से ₹6,000 कम है।"
+        },
+        "good": true
+       },
+       {
+        "id": "c30",
+        "text": {
+         "en": "₹30,000",
+         "hi": "₹30,000"
+        },
+        "next": "g2",
+        "feedback": {
+         "en": "Think again. ₹30,000 is what he must finally get; first find his normal share in the ratio.",
+         "hi": "फिर सोचो। ₹30,000 वह है जो उसे अंत में मिलना चाहिए; पहले अनुपात में उसका सामान्य हिस्सा निकालो।"
+        },
+        "good": false
+       },
+       {
+        "id": "c40",
+        "text": {
+         "en": "₹40,000",
+         "hi": "₹40,000"
+        },
+        "next": "g2",
+        "feedback": {
+         "en": "Think again. ₹40,000 would be a 1/3 share; Chetan’s share is 1 out of 2 + 2 + 1 = 5 parts.",
+         "hi": "फिर सोचो। ₹40,000 तो 1/3 हिस्सा होगा; चेतन का हिस्सा 2 + 2 + 1 = 5 में से 1 भाग है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "g2",
+      "text": {
+       "en": "The firm gave the guarantee, so Asha and Bilal must make up the ₹6,000. How do they share it?",
+       "hi": "गारंटी फ़र्म ने दी थी, इसलिए आशा और बिलाल को ₹6,000 की कमी पूरी करनी है। वे इसे कैसे बाँटेंगे?"
+      },
+      "choices": [
+       {
+        "id": "ab22",
+        "text": {
+         "en": "In their own ratio 2 : 2: ₹3,000 each",
+         "hi": "अपने अनुपात 2 : 2 में: हर एक ₹3,000"
+        },
+        "next": "g3",
+        "feedback": {
+         "en": "Right. The deficiency is borne by the other partners in their profit-sharing ratio. Chetan now gets ₹30,000; Asha and Bilal get ₹45,000 each.",
+         "hi": "सही। कमी बाक़ी साझेदार अपने लाभ अनुपात में उठाते हैं। अब चेतन को ₹30,000 और आशा व बिलाल को ₹45,000-₹45,000 मिलते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "abc",
+        "text": {
+         "en": "All three, in 2 : 2 : 1",
+         "hi": "तीनों, 2 : 2 : 1 में"
+        },
+        "next": "g3",
+        "feedback": {
+         "en": "Think again. Chetan is the one being protected; he does not pay towards his own guarantee.",
+         "hi": "फिर सोचो। चेतन को सुरक्षा दी जा रही है; वह अपनी गारंटी के लिए ख़ुद भुगतान नहीं करता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "g3",
+      "text": {
+       "en": "Next year only Asha gave Chetan the guarantee, and again his share falls short by ₹4,000. Who bears it?",
+       "hi": "अगले साल केवल आशा ने चेतन को गारंटी दी, और फिर उसका हिस्सा ₹4,000 कम पड़ता है। इसे कौन उठाएगा?"
+      },
+      "choices": [
+       {
+        "id": "asha",
+        "text": {
+         "en": "Asha alone, all ₹4,000",
+         "hi": "केवल आशा, पूरे ₹4,000"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. The partner who gives the guarantee bears the whole deficiency.",
+         "hi": "सही। जो साझेदार गारंटी देता है, वही पूरी कमी उठाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "both",
+        "text": {
+         "en": "Asha and Bilal equally",
+         "hi": "आशा और बिलाल बराबर"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. Bilal made no promise this time, so he pays nothing towards it.",
+         "hi": "फिर सोचो। इस बार बिलाल ने कोई वादा नहीं किया, इसलिए वह कुछ नहीं देता।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chetan’s share comes to less than the ₹30,000 he was promised. Who makes up the shortfall when the firm gave the promise?",
+      "hi": "चेतन का हिस्सा वादे के ₹30,000 से कम आता है। अगर वादा फ़र्म ने किया था, तो कमी कौन पूरी करेगा?"
+     },
+     "options": [
+      {
+       "id": "others",
+       "en": "The other partners, in their ratio",
+       "hi": "बाक़ी साझेदार, अपने अनुपात में"
+      },
+      {
+       "id": "chetan",
+       "en": "Chetan himself",
+       "hi": "चेतन ख़ुद"
+      },
+      {
+       "id": "nobody",
+       "en": "Nobody: the share is final",
+       "hi": "कोई नहीं: हिस्सा अंतिम है"
+      }
+     ],
+     "answer": "others"
+    },
+    {
+     "kind": "do",
+     "target": "choice:g1:c24",
+     "expect": "chose:c24",
+     "say": {
+      "en": "Tap Chetan’s normal share of ₹1,20,000.",
+      "hi": "₹1,20,000 में चेतन का सामान्य हिस्सा चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A guarantee promises a partner a minimum profit. First share the profit in the normal ratio. If the guaranteed partner gets less, the shortfall is made up by the partner who gave the guarantee, or by all the other partners in their ratio if the firm gave it. Here Chetan gets ₹24,000 + ₹6,000 = ₹30,000.",
+      "hi": "गारंटी किसी साझेदार को न्यूनतम लाभ का वादा है। पहले लाभ सामान्य अनुपात में बाँटो। अगर गारंटी वाले साझेदार को कम मिले, तो कमी वह साझेदार पूरी करता है जिसने गारंटी दी, या फ़र्म ने दी हो तो बाक़ी सभी साझेदार अपने अनुपात में। यहाँ चेतन को ₹24,000 + ₹6,000 = ₹30,000 मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the profit had been ₹1,60,000, what would Chetan get?",
+        "hi": "अगर लाभ ₹1,60,000 होता, तो चेतन को क्या मिलता?"
+       },
+       "options": [
+        {
+         "en": "₹32,000, his own share, since it is above ₹30,000",
+         "hi": "₹32,000, उसका अपना हिस्सा, क्योंकि यह ₹30,000 से अधिक है"
+        },
+        {
+         "en": "₹30,000, the guarantee",
+         "hi": "₹30,000, गारंटी"
+        },
+        {
+         "en": "₹62,000",
+         "hi": "62,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1/5 of ₹1,60,000 is ₹32,000. A guarantee is a floor, not a ceiling, so he keeps the bigger amount.",
+        "hi": "₹1,60,000 का 1/5 = ₹32,000। गारंटी न्यूनतम सीमा है, अधिकतम नहीं, इसलिए उसे बड़ी राशि मिलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The guarantee only matters when the normal share is lower than it.",
+         "hi": "गारंटी तभी काम आती है जब सामान्य हिस्सा उससे कम हो।"
+        },
+        {
+         "en": "The guarantee is not added on top of the share; it only fills a shortfall.",
+         "hi": "गारंटी हिस्से के ऊपर नहीं जुड़ती; यह केवल कमी पूरी करती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "After the guarantee, Asha’s final share of the ₹1,20,000 was:",
+        "hi": "गारंटी के बाद ₹1,20,000 में आशा का अंतिम हिस्सा था:"
+       },
+       "options": [
+        {
+         "en": "₹45,000",
+         "hi": "45,000 रुपये"
+        },
+        {
+         "en": "₹48,000",
+         "hi": "48,000 रुपये"
+        },
+        {
+         "en": "₹42,000",
+         "hi": "42,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Her normal share 2/5 × ₹1,20,000 = ₹48,000, less her ₹3,000 part of the deficiency = ₹45,000.",
+        "hi": "उसका सामान्य हिस्सा 2/5 × ₹1,20,000 = ₹48,000, उसमें से कमी का ₹3,000 घटाकर ₹45,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹48,000 is before she pays her half of the ₹6,000 deficiency.",
+         "hi": "₹48,000 तो ₹6,000 की कमी का आधा देने से पहले है।"
+        },
+        {
+         "en": "₹42,000 would mean she paid the whole ₹6,000, but Bilal shares it.",
+         "hi": "₹42,000 का अर्थ होगा कि उसने पूरे ₹6,000 दिए, पर बिलाल भी उसमें भागीदार है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to share the deficiency, then try the year when only Asha gave the guarantee.",
+      "hi": "कमी बाँटने के लिए आगे दबाओ, फिर वह साल आज़माओ जब केवल आशा ने गारंटी दी।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch01-past-adjust",
+   "topic": "1.7",
+   "template": "scenario",
+   "title": {
+    "en": "Correcting a past mistake",
+    "hi": "पिछली ग़लती सुधारना"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant of the firm",
+     "hi": "फ़र्म का लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "p1",
+      "text": {
+       "en": "Last year’s profit of ₹60,000 was shared equally by Pooja and Rahul. They forgot the 10% interest on capital the deed allows. Pooja’s capital was ₹80,000 and Rahul’s ₹40,000. What interest should each have got?",
+       "hi": "पिछले साल का ₹60,000 लाभ पूजा और राहुल ने बराबर बाँट लिया। वे विलेख में दिया गया पूँजी पर 10% ब्याज भूल गए। पूजा की पूँजी ₹80,000 थी और राहुल की ₹40,000। हर एक को कितना ब्याज मिलना चाहिए था?"
+      },
+      "choices": [
+       {
+        "id": "due",
+        "text": {
+         "en": "Pooja ₹8,000 and Rahul ₹4,000",
+         "hi": "पूजा ₹8,000 और राहुल ₹4,000"
+        },
+        "next": "p2",
+        "feedback": {
+         "en": "Right. 10% of each capital: ₹8,000 and ₹4,000, ₹12,000 in all.",
+         "hi": "सही। हर पूँजी का 10%: ₹8,000 और ₹4,000, कुल ₹12,000।"
+        },
+        "good": true
+       },
+       {
+        "id": "due-eq",
+        "text": {
+         "en": "₹6,000 each",
+         "hi": "हर एक को ₹6,000"
+        },
+        "next": "p2",
+        "feedback": {
+         "en": "Think again. Interest follows the capitals, not the profit ratio.",
+         "hi": "फिर सोचो। ब्याज पूँजी के हिसाब से चलता है, लाभ अनुपात से नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "Had interest been given, the ₹12,000 would have come out of the same ₹60,000, so each would have got ₹6,000 less profit. What is the net effect for each?",
+       "hi": "अगर ब्याज दिया जाता, तो ₹12,000 उसी ₹60,000 में से निकलते, इसलिए हर एक को ₹6,000 कम लाभ मिलता। हर एक पर शुद्ध असर क्या है?"
+      },
+      "choices": [
+       {
+        "id": "net",
+        "text": {
+         "en": "Pooja gains ₹2,000 and Rahul loses ₹2,000",
+         "hi": "पूजा को ₹2,000 का लाभ और राहुल को ₹2,000 की कमी"
+        },
+        "next": "p3",
+        "feedback": {
+         "en": "Right. Pooja: +₹8,000 − ₹6,000 = +₹2,000. Rahul: +₹4,000 − ₹6,000 = −₹2,000.",
+         "hi": "सही। पूजा: +₹8,000 − ₹6,000 = +₹2,000। राहुल: +₹4,000 − ₹6,000 = −₹2,000।"
+        },
+        "good": true
+       },
+       {
+        "id": "gross",
+        "text": {
+         "en": "Pooja gains ₹8,000 and Rahul ₹4,000",
+         "hi": "पूजा को ₹8,000 और राहुल को ₹4,000 का लाभ"
+        },
+        "next": "p3",
+        "feedback": {
+         "en": "Think again. The interest is not extra money; it comes out of the profit that was already shared.",
+         "hi": "फिर सोचो। ब्याज अतिरिक्त पैसा नहीं है; यह उसी लाभ से निकलता है जो पहले ही बँट चुका।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "p3",
+      "text": {
+       "en": "The books are closed, so we pass one adjusting entry through the capital accounts. Which one?",
+       "hi": "खाते बंद हो चुके हैं, इसलिए पूँजी खातों के ज़रिये एक समायोजन प्रविष्टि करते हैं। कौन-सी?"
+      },
+      "choices": [
+       {
+        "id": "entry",
+        "text": {
+         "en": "Debit Rahul’s capital and credit Pooja’s capital with ₹2,000",
+         "hi": "राहुल की पूँजी नाम और पूजा की पूँजी जमा, ₹2,000"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. The partner who got too much is debited; the one who got too little is credited.",
+         "hi": "सही। जिसे अधिक मिला उसे नाम किया जाता है; जिसे कम मिला उसे जमा।"
+        },
+        "good": true
+       },
+       {
+        "id": "reverse",
+        "text": {
+         "en": "Debit Pooja’s capital and credit Rahul’s capital",
+         "hi": "पूजा की पूँजी नाम और राहुल की पूँजी जमा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. That would take more from Pooja, who was short-changed.",
+         "hi": "फिर सोचो। इससे पूजा से और लिया जाएगा, जिसे पहले ही कम मिला था।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The interest was forgotten, but the profit was already shared. Will both partners gain when we correct it?",
+      "hi": "ब्याज भूल गए, पर लाभ पहले ही बँट चुका। सुधार करने पर क्या दोनों साझेदारों को लाभ होगा?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "No: one gains and the other loses the same amount",
+       "hi": "नहीं: एक को लाभ होगा और दूसरे को उतनी ही कमी"
+      },
+      {
+       "id": "both",
+       "en": "Yes, both get their interest",
+       "hi": "हाँ, दोनों को अपना ब्याज मिलेगा"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "choice:p1:due",
+     "expect": "chose:due",
+     "say": {
+      "en": "Tap the interest each partner should have got.",
+      "hi": "वह ब्याज चुनो जो हर साझेदार को मिलना चाहिए था।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Past adjustments correct omissions after the accounts are closed, without redoing them. Work out what each partner got, what each should have got, and take the difference. The net amounts always add to zero: here +₹2,000 and −₹2,000. One entry fixes it: Rahul’s capital is debited and Pooja’s capital is credited.",
+      "hi": "पिछले समायोजन खाते बंद होने के बाद हुई भूलों को, उन्हें दोबारा बनाए बिना, सुधारते हैं। हर साझेदार को क्या मिला, क्या मिलना चाहिए था, और उनका अंतर निकालो। शुद्ध राशियों का जोड़ हमेशा शून्य होता है: यहाँ +₹2,000 और −₹2,000। एक प्रविष्टि से सुधार होता है: राहुल की पूँजी नाम और पूजा की पूँजी जमा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If both capitals had been ₹60,000, what adjustment would be needed?",
+        "hi": "अगर दोनों की पूँजी ₹60,000 होती, तो कौन-सा समायोजन चाहिए होता?"
+       },
+       "options": [
+        {
+         "en": "None: equal interest is cancelled by equal profit",
+         "hi": "कोई नहीं: बराबर ब्याज बराबर लाभ से कट जाता"
+        },
+        {
+         "en": "₹6,000 to each partner",
+         "hi": "हर साझेदार को ₹6,000"
+        },
+        {
+         "en": "₹12,000 to Pooja",
+         "hi": "पूजा को ₹12,000"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each would get ₹6,000 interest and ₹6,000 less profit, so the net effect is zero.",
+        "hi": "हर एक को ₹6,000 ब्याज मिलता और ₹6,000 कम लाभ, इसलिए शुद्ध असर शून्य होता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The interest would come out of the profit already shared, so it is not a gain.",
+         "hi": "ब्याज पहले से बँटे लाभ में से आता, इसलिए यह लाभ नहीं है।"
+        },
+        {
+         "en": "No partner is short-changed when capitals and ratio match.",
+         "hi": "जब पूँजी और अनुपात मेल खाते हों तो किसी साझेदार को कम नहीं मिलता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the adjusting entry passed through the partners’ capital accounts only?",
+        "hi": "समायोजन प्रविष्टि केवल साझेदारों के पूँजी खातों के ज़रिये क्यों की जाती है?"
+       },
+       "options": [
+        {
+         "en": "The profit and loss account of that year is already closed",
+         "hi": "उस साल का लाभ-हानि खाता पहले ही बंद हो चुका है"
+        },
+        {
+         "en": "Because cash must be paid",
+         "hi": "क्योंकि नकद देना पड़ता है"
+        },
+        {
+         "en": "Because the bank asks for it",
+         "hi": "क्योंकि बैंक यह माँगता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Reopening a closed year is avoided; moving the net difference between capitals gives the same result.",
+        "hi": "बंद साल को फिर से खोलने से बचते हैं; पूँजियों के बीच शुद्ध अंतर बदलने से वही परिणाम मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No cash moves: the correction is a book entry between partners.",
+         "hi": "कोई नकद नहीं चलता: सुधार साझेदारों के बीच एक बही प्रविष्टि है।"
+        },
+        {
+         "en": "This is an internal matter between the partners, not something the bank decides.",
+         "hi": "यह साझेदारों का आंतरिक मामला है, बैंक इसे तय नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to find the net effect and the entry. Then restart and try the wrong choices.",
+      "hi": "शुद्ध असर और प्रविष्टि निकालने के लिए आगे दबाओ। फिर दोबारा शुरू करके ग़लत विकल्प आज़माओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook: two partners open their shop",
+   "shows": "Two adults raising the shutter of a small cycle-repair shop in an Indian town at morning, tools and tyres visible inside",
+   "view": "Wide street view from across the road, morning light, 16:9",
+   "right": "Faces turned away or in shadow; a real Indian street shopfront",
+   "avoid": "Readable signboards, brand logos, identifiable faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Partnership deed lab and reader",
+   "shows": "A folded stamp-paper document with a blank first page, a fountain pen and an ink pad beside it",
+   "view": "Top-down on a wooden desk, soft daylight, transparent-background cut-out",
+   "right": "Looks like Indian non-judicial stamp paper with a coloured border, no readable words or numbers",
+   "avoid": "Any printed text, seals with real names, signatures"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "1.5",
+   "use": "Base for the appropriation account",
+   "shows": "A blank two-sided T-form account sheet with Dr and Cr halves, ruled lines and an amount column on each side",
+   "view": "Flat, front-on, white background, 4:3",
+   "right": "Lines straight and evenly spaced, two equal halves, room for 6 rows a side",
+   "avoid": "Words, numbers or headings drawn in"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "1.4",
+   "use": "Fixed and fluctuating capitals side by side",
+   "shows": "Two blank columnar ledger sheets side by side: one with two columns per partner, one with a single column",
+   "view": "Flat, front-on, white background, 16:9",
+   "right": "Columns clearly countable; same paper style for both",
+   "avoid": "Any text, numbers or logos"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "1.5.3",
+   "use": "Interest on drawings: start, middle and end of month",
+   "shows": "Three frames of the same desk calendar page for one month with a small stack of ₹500 notes placed at the first day, the middle day, then the last day",
+   "view": "Same camera, top-down, same light for all three frames, square",
+   "right": "Calendar grid with no printed words; notes look like real Indian currency but numbers are blurred",
+   "avoid": "Readable serial numbers, brand names on the calendar"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "1.6",
+   "use": "Guarantee lab: three shares of profit",
+   "shows": "Three open steel cash boxes side by side holding unequal stacks of rupee notes (large, large, small)",
+   "view": "Front three-quarter view, soft shadow, transparent background",
+   "right": "Stacks clearly in the ratio 2 : 2 : 1 by height",
+   "avoid": "Readable note numbers, faces"
+  }
+ ]
+}

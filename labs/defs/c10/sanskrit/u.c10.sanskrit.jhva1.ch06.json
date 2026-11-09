@@ -1,0 +1,714 @@
+{
+ "chapter_key": "u.c10.sanskrit.jhva1.ch06",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "उपसर्ग",
+ "source": "https://ncert.nic.in/textbook.php?jhva1=0-12",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "What an upasarga is and how it changes a root: twenty-two upasargas",
+   "labs": [
+    "c10-sanskrit-jhva1-ch06-gam",
+    "c10-sanskrit-jhva1-ch06-hara",
+    "c10-sanskrit-jhva1-ch06-sandhi"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "The list of twenty-two upasargas with examples",
+   "labs": [],
+   "why_no_lab": "The list is learnt by reading and repeating it with examples from the book, and the labs here teach how upasargas behave, not the list by heart."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jhva1-ch06-gam",
+   "topic": "6.1",
+   "template": "words",
+   "title": {
+    "en": "Prefixes that change गच्छति",
+    "hi": "गच्छति का अर्थ बदलने वाले उपसर्ग"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "affix",
+    "lang": "sa",
+    "words": [
+     {
+      "w": "आगच्छति"
+     },
+     {
+      "w": "निर्गच्छति"
+     },
+     {
+      "w": "अनुगच्छति"
+     },
+     {
+      "w": "उपगच्छति"
+     },
+     {
+      "w": "अपगच्छति"
+     },
+     {
+      "w": "अभिगच्छति"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:आ",
+     "expect": "part:आ",
+     "say": {
+      "en": "Tap the small word आ (towards) first.",
+      "hi": "पहले छोटा शब्द आ (की ओर) छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "गच्छति means 'goes'. If we put आ (towards) in front of it, the meaning is:",
+      "hi": "गच्छति का अर्थ है 'जाता है'। उसके आगे आ (की ओर) लगाने पर अर्थ होगा:"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "comes",
+       "hi": "आता है"
+      },
+      {
+       "id": "b",
+       "en": "goes away",
+       "hi": "दूर जाता है"
+      },
+      {
+       "id": "c",
+       "en": "sits",
+       "hi": "बैठता है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "part:गच्छति",
+     "expect": "joined:आगच्छति",
+     "say": {
+      "en": "Tap गच्छति to finish the word.",
+      "hi": "शब्द पूरा करने के लिए गच्छति छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An upasarga is a small word placed before a root or verb that changes its meaning, without a life of its own. The same गच्छति ('goes') becomes आगच्छति (comes), निर्गच्छति (goes out), अनुगच्छति (follows), उपगच्छति (goes near), अपगच्छति (goes away) and अभिगच्छति (goes towards). There are twenty-two upasargas, and one of them is enough to turn a verb around.",
+      "hi": "उपसर्ग वह छोटा शब्द है जो धातु या क्रिया के आगे लगकर उसका अर्थ बदल देता है, पर उसका स्वतंत्र प्रयोग नहीं होता। वही गच्छति ('जाता है') आगच्छति (आता है), निर्गच्छति (बाहर जाता है), अनुगच्छति (पीछे चलता है), उपगच्छति (पास जाता है), अपगच्छति (दूर जाता है) और अभिगच्छति (सामने जाता है) बन जाता है। उपसर्ग बाईस हैं, और एक ही उपसर्ग क्रिया का अर्थ पलट देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'अनुगच्छति' mean?",
+        "hi": "'अनुगच्छति' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Follows",
+         "hi": "पीछे चलता है"
+        },
+        {
+         "en": "Goes out",
+         "hi": "बाहर जाता है"
+        },
+        {
+         "en": "Comes",
+         "hi": "आता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "अनु means 'after', so अनुगच्छति is 'goes after, follows'.",
+        "hi": "अनु का अर्थ 'पीछे' है, इसलिए अनुगच्छति 'पीछे जाता है, अनुसरण करता है'।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Goes out is निर्गच्छति.",
+         "hi": "बाहर जाता है निर्गच्छति है।"
+        },
+        {
+         "en": "Comes is आगच्छति.",
+         "hi": "आता है आगच्छति है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can an upasarga be used alone as a word?",
+        "hi": "क्या उपसर्ग को अकेले शब्द के रूप में प्रयोग कर सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "No, it is always joined to a root or word",
+         "hi": "नहीं, वह सदा धातु या शब्द से जुड़ता है"
+        },
+        {
+         "en": "Yes, always",
+         "hi": "हाँ, सदा"
+        },
+        {
+         "en": "Only in poems",
+         "hi": "केवल कविता में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "उपसर्गाणां स्वतन्त्रप्रयोगो न भवति: they work only with a root or word.",
+        "hi": "उपसर्गों का स्वतंत्र प्रयोग नहीं होता: वे केवल धातु या शब्द के साथ काम करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They cannot stand alone in any sentence.",
+         "hi": "वे किसी वाक्य में अकेले नहीं आ सकते।"
+        },
+        {
+         "en": "Poems follow the same rule.",
+         "hi": "कविता में भी यही नियम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose another verb you know, such as नमति or हरति, and try putting two different upasargas before it. How does the meaning change?",
+      "hi": "कोई और क्रिया लो, जैसे नमति या हरति, और उसके आगे दो अलग उपसर्ग लगाओ। अर्थ कैसे बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch06-hara",
+   "topic": "6.1",
+   "template": "match",
+   "title": {
+    "en": "One root हार, six meanings",
+    "hi": "एक शब्द हार, छह अर्थ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "p1",
+      "left": {
+       "en": "प्र + हारः",
+       "hi": "प्र + हारः"
+      },
+      "right": {
+       "en": "प्रहारः: a blow, striking",
+       "hi": "प्रहारः: चोट, मारना"
+      },
+      "why": {
+       "en": "प्र adds the sense of 'forward': to strike.",
+       "hi": "प्र 'आगे' का भाव जोड़ता है: प्रहार करना।"
+      }
+     },
+     {
+      "id": "p2",
+      "left": {
+       "en": "आ + हारः",
+       "hi": "आ + हारः"
+      },
+      "right": {
+       "en": "आहारः: food, what is brought to oneself",
+       "hi": "आहारः: भोजन, जो अपने पास लाया जाए"
+      },
+      "why": {
+       "en": "आ means 'towards', so what is brought in is food.",
+       "hi": "आ का अर्थ 'की ओर' है, इसलिए जो भीतर लाया जाए वह भोजन है।"
+      }
+     },
+     {
+      "id": "p3",
+      "left": {
+       "en": "सम् + हारः",
+       "hi": "सम् + हारः"
+      },
+      "right": {
+       "en": "संहारः: destruction, gathering all together",
+       "hi": "संहारः: नाश, सबको समेट लेना"
+      },
+      "why": {
+       "en": "सम् means 'together': to gather up and finish.",
+       "hi": "सम् का अर्थ 'साथ' है: सबको समेटकर समाप्त करना।"
+      }
+     },
+     {
+      "id": "p4",
+      "left": {
+       "en": "वि + हारः",
+       "hi": "वि + हारः"
+      },
+      "right": {
+       "en": "विहारः: roaming about for pleasure",
+       "hi": "विहारः: आनंद के लिए घूमना-फिरना"
+      },
+      "why": {
+       "en": "वि means 'apart or about'.",
+       "hi": "वि का अर्थ 'अलग' या 'इधर-उधर' है।"
+      }
+     },
+     {
+      "id": "p5",
+      "left": {
+       "en": "परि + हारः",
+       "hi": "परि + हारः"
+      },
+      "right": {
+       "en": "परिहारः: avoiding, giving up, correcting",
+       "hi": "परिहारः: बचना, त्याग, सुधार"
+      },
+      "why": {
+       "en": "परि means 'around': to move away from the fault.",
+       "hi": "परि का अर्थ 'चारों ओर' है: दोष से दूर हटना।"
+      }
+     },
+     {
+      "id": "p6",
+      "left": {
+       "en": "उप + हारः",
+       "hi": "उप + हारः"
+      },
+      "right": {
+       "en": "उपहारः: a gift brought near",
+       "hi": "उपहारः: पास लाई गई भेंट"
+      },
+      "why": {
+       "en": "उप means 'near': to bring something near, a gift.",
+       "hi": "उप का अर्थ 'पास' है: पास लाई गई चीज़, भेंट।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p1",
+     "expect": "matched:p1",
+     "say": {
+      "en": "Tap the first term on the left, then tap its match.",
+      "hi": "बाईं ओर का पहला शब्द छुओ, फिर उसका जोड़ा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The plain word हारः means a garland. What happens when we put प्र before it?",
+      "hi": "साधारण शब्द हारः का अर्थ माला है। उसके आगे प्र लगाने पर क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The meaning changes completely, to 'a blow'",
+       "hi": "अर्थ पूरी तरह बदल जाता है, 'चोट'"
+      },
+      {
+       "id": "b",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलता"
+      },
+      {
+       "id": "c",
+       "en": "It becomes a longer garland",
+       "hi": "वह और लंबी माला बन जाती है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:p2",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the remaining pairs.",
+      "hi": "अब बाकी सभी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There is an old verse about this: उपसर्गेण धात्वर्थो बलादन्यत्र नीयते। प्रहाराहारसंहारविहारपरिहारवत्॥ It says: 'an upasarga drags the meaning of the root to another place with force, as in प्रहार, आहार, संहार, विहार and परिहार.' The root हृ means to take. With प्र it is to strike, with आ to bring food, with सम् to gather and destroy, with वि to roam, with परि to avoid.",
+      "hi": "इस पर एक प्राचीन श्लोक है: उपसर्गेण धात्वर्थो बलादन्यत्र नीयते। प्रहाराहारसंहारविहारपरिहारवत्॥ इसका अर्थ है: 'उपसर्ग धातु के अर्थ को ज़ोर से दूसरी जगह खींच ले जाता है, जैसे प्रहार, आहार, संहार, विहार और परिहार में।' धातु हृ का अर्थ लेना है। प्र के साथ मारना, आ के साथ भोजन लाना, सम् के साथ समेटना और नष्ट करना, वि के साथ घूमना, परि के साथ बचना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does आहारः mean?",
+        "hi": "आहारः का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Food",
+         "hi": "भोजन"
+        },
+        {
+         "en": "A blow",
+         "hi": "चोट"
+        },
+        {
+         "en": "Wandering",
+         "hi": "घूमना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "आ + हारः brings food towards oneself.",
+        "hi": "आ + हारः अपनी ओर भोजन लाना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A blow is प्रहारः.",
+         "hi": "चोट प्रहारः है।"
+        },
+        {
+         "en": "Wandering is विहारः.",
+         "hi": "घूमना विहारः है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which upasarga gives विहारः, 'roaming about'?",
+        "hi": "कौन-सा उपसर्ग विहारः, 'घूमना', बनाता है?"
+       },
+       "options": [
+        {
+         "en": "वि",
+         "hi": "वि"
+        },
+        {
+         "en": "सम्",
+         "hi": "सम्"
+        },
+        {
+         "en": "परि",
+         "hi": "परि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "वि means 'about, apart', so वि + हारः is roaming about.",
+        "hi": "वि का अर्थ 'इधर-उधर' है, इसलिए वि + हारः घूमना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "सम् + हारः is संहारः, destruction.",
+         "hi": "सम् + हारः संहारः, नाश है।"
+        },
+        {
+         "en": "परि + हारः is परिहारः, avoiding.",
+         "hi": "परि + हारः परिहारः, बचना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of the Hindi words प्रहार, आहार, विहार, उपहार. Use each in a short sentence.",
+      "hi": "हिंदी के शब्द प्रहार, आहार, विहार, उपहार सोचो। हर एक से छोटा वाक्य बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch06-sandhi",
+   "topic": "6.1",
+   "template": "words",
+   "title": {
+    "en": "Upasargas that join by sandhi",
+    "hi": "सन्धि से जुड़ने वाले उपसर्ग"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "sandhi",
+    "lang": "sa",
+    "words": [
+     {
+      "w": "अन्विच्छति",
+      "parts": [
+       "अनु",
+       "इच्छति"
+      ],
+      "meaning": {
+       "en": "searches after",
+       "hi": "खोजता है"
+      }
+     },
+     {
+      "w": "अन्वगच्छत्",
+      "parts": [
+       "अनु",
+       "अगच्छत्"
+      ],
+      "meaning": {
+       "en": "followed",
+       "hi": "पीछे चला"
+      }
+     },
+     {
+      "w": "अभ्यागतः",
+      "parts": [
+       "अभि",
+       "आगतः"
+      ],
+      "meaning": {
+       "en": "a guest, one who has come",
+       "hi": "अतिथि, जो आया हो"
+      }
+     },
+     {
+      "w": "प्रत्युपकारः",
+      "parts": [
+       "प्रति",
+       "उपकारः"
+      ],
+      "meaning": {
+       "en": "a good deed in return",
+       "hi": "बदले में उपकार"
+      }
+     },
+     {
+      "w": "अत्याचारः",
+      "parts": [
+       "अति",
+       "आचारः"
+      ],
+      "meaning": {
+       "en": "excess, cruelty",
+       "hi": "अति, अत्याचार"
+      }
+     }
+    ],
+    "parts": [
+     "अति",
+     "उप"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:अनु",
+     "expect": "part:अनु",
+     "say": {
+      "en": "Tap the first part, अनु.",
+      "hi": "पहला भाग, अनु, छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "अनु ends in उ and इच्छति starts with इ. What does उ turn into before a different vowel?",
+      "hi": "अनु उ पर समाप्त होता है और इच्छति इ से शुरू होता है। भिन्न स्वर से पहले उ क्या बन जाता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "व्",
+       "hi": "व्"
+      },
+      {
+       "id": "b",
+       "en": "य्",
+       "hi": "य्"
+      },
+      {
+       "id": "c",
+       "en": "र्",
+       "hi": "र्"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "part:इच्छति",
+     "expect": "joined:अन्विच्छति",
+     "say": {
+      "en": "Tap the second part, इच्छति, to join the word.",
+      "hi": "शब्द जोड़ने के लिए दूसरा भाग, इच्छति, छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When an upasarga ending in इ or उ meets a verb or noun beginning with a different vowel, यण् sandhi happens. उ becomes व् and इ becomes य्. So अनु + इच्छति = अन्विच्छति, अभि + आगतः = अभ्यागतः, प्रति + उपकारः = प्रत्युपकारः and अति + आचारः = अत्याचारः. Remember this when you form verbs like अन्वगच्छत्, the past of अनुगच्छति.",
+      "hi": "जब इ या उ पर समाप्त उपसर्ग के बाद भिन्न स्वर से शुरू होने वाली क्रिया या संज्ञा आती है तो यण् सन्धि होती है। उ का व् और इ का य् हो जाता है। इसलिए अनु + इच्छति = अन्विच्छति, अभि + आगतः = अभ्यागतः, प्रति + उपकारः = प्रत्युपकारः और अति + आचारः = अत्याचारः। अनुगच्छति के भूतकाल अन्वगच्छत् जैसे रूप बनाते समय यह याद रखो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is अभि + आगतः?",
+        "hi": "अभि + आगतः क्या बनता है?"
+       },
+       "options": [
+        {
+         "en": "अभ्यागतः",
+         "hi": "अभ्यागतः"
+        },
+        {
+         "en": "अभिआगतः",
+         "hi": "अभिआगतः"
+        },
+        {
+         "en": "अभागतः",
+         "hi": "अभागतः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "इ becomes य्: अभ्यागतः, a guest.",
+        "hi": "इ का य् हो जाता है: अभ्यागतः, अतिथि।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The two vowels must join; they cannot stay separate.",
+         "hi": "दोनों स्वर मिलने चाहिए; वे अलग नहीं रह सकते।"
+        },
+        {
+         "en": "The इ is replaced by य्; it is not simply dropped.",
+         "hi": "इ का य् होता है; वह यूँ ही हटता नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which sandhi is this?",
+        "hi": "यह कौन-सी सन्धि है?"
+       },
+       "options": [
+        {
+         "en": "यण् सन्धि",
+         "hi": "यण् सन्धि"
+        },
+        {
+         "en": "दीर्घ सन्धि",
+         "hi": "दीर्घ सन्धि"
+        },
+        {
+         "en": "वृद्धि सन्धि",
+         "hi": "वृद्धि सन्धि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "इ/उ turned into य्/व्: यण् सन्धि.",
+        "hi": "इ/उ का य्/व् हुआ: यण् सन्धि।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "दीर्घ needs two like vowels.",
+         "hi": "दीर्घ में दो समान स्वर चाहिए।"
+        },
+        {
+         "en": "वृद्धि starts with अ or आ.",
+         "hi": "वृद्धि अ या आ से शुरू होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make the past form of अनुगच्छति, अन्वगच्छत्, from अनु + अगच्छत्, and say it aloud.",
+      "hi": "अनुगच्छति का भूतकाल रूप अन्वगच्छत्, अनु + अगच्छत् से बनाओ और बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "6.1",
+   "use": "One verb, many directions: movement with a toy",
+   "shows": "Six frames of a small wooden toy figure moving towards, away from, near, behind, out of and to the front of a small box",
+   "view": "Same table, same camera",
+   "right": "Direction changes only; same figure and box",
+   "avoid": "Hands, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "A flower garland for हार",
+   "shows": "A marigold garland as a cut-out",
+   "view": "Front view, top-left light",
+   "right": "Real marigolds, thread visible",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "A plate of food for आहार",
+   "shows": "A steel thali with roti, dal and sabzi on a mat, from above",
+   "view": "Overhead, soft light",
+   "right": "Real Indian food, steel plate",
+   "avoid": "Branded items"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "A gift for उपहार",
+   "shows": "A wrapped gift on a tray with a diya, from the front",
+   "view": "Eye level, warm light",
+   "right": "Plain wrapping, a diya, no text",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "6.1",
+   "use": "The upasarga wheel",
+   "shows": "A blank circle with twenty-two small empty slots around it",
+   "view": "Flat, white",
+   "right": "Twenty-two equal slots around a centre",
+   "avoid": "Letters"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "A guest at the door for अभ्यागतः",
+   "shows": "A family greeting a guest at their doorway with folded hands, seen from the back",
+   "view": "Eye level",
+   "right": "Warm welcome, doorway with a toran",
+   "avoid": "Faces"
+  }
+ ]
+}

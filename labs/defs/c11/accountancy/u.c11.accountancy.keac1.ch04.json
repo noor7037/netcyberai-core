@@ -1,0 +1,1752 @@
+{
+ "chapter_key": "u.c11.accountancy.keac1.ch04",
+ "class": 11,
+ "subject_id": "accountancy",
+ "title": "Recording of Transactions - II",
+ "source": "https://ncert.nic.in/textbook/pdf/keac104.pdf",
+ "topics": [
+  {
+   "n": "4.1.1",
+   "title": "Single column cash book",
+   "labs": [
+    "c11-accountancy-keac1-ch04-cash-single"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.1.2",
+   "title": "Double column cash book (cash and bank) and contra entries",
+   "labs": [
+    "c11-accountancy-keac1-ch04-cash-double"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.1.3",
+   "title": "Petty cash book",
+   "labs": [],
+   "why_no_lab": "The imprest system and analysis columns are best shown in the reader with a photo of a petty cash box and a worked page; no template mode keeps a petty cash book yet."
+  },
+  {
+   "n": "4.1.4",
+   "title": "Balancing of the cash book",
+   "labs": [],
+   "why_no_lab": "Balancing is the last step of both cash book labs (4.1.1 and 4.1.2), so a separate lab would repeat them."
+  },
+  {
+   "n": "4.2",
+   "title": "Purchases (journal) book",
+   "labs": [
+    "c11-accountancy-keac1-ch04-purchases-book"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Purchases return (journal) book",
+   "labs": [
+    "c11-accountancy-keac1-ch04-purchase-return"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Sales (journal) book",
+   "labs": [
+    "c11-accountancy-keac1-ch04-sales-book"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Sales return (journal) book",
+   "labs": [
+    "c11-accountancy-keac1-ch04-sales-return"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Journal proper",
+   "labs": [
+    "c11-accountancy-keac1-ch04-journal-proper"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.7",
+   "title": "Balancing the accounts",
+   "labs": [],
+   "why_no_lab": "Every ledger in this chapter is balanced at the end of the purchases book and sales book labs (4.2 and 4.4)."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-accountancy-keac1-ch04-cash-single",
+   "topic": "4.1.1",
+   "template": "ledger",
+   "title": {
+    "en": "A simple cash book",
+    "hi": "साधारण रोकड़ बही"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "cash-book",
+    "business": {
+     "en": "Deepa Tailors",
+     "hi": "दीपा टेलर्स"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-07-01",
+      "text": {
+       "en": "Sold readymade kurtas for cash",
+       "hi": "नकद में रेडीमेड कुर्ते बेचे"
+      },
+      "amount": 12000,
+      "debit": "cash",
+      "credit": "sales"
+     },
+     {
+      "id": "t2",
+      "date": "2024-07-03",
+      "text": {
+       "en": "Paid shop rent in cash",
+       "hi": "दुकान का किराया नकद दिया"
+      },
+      "amount": 3000,
+      "debit": "rent",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2024-07-05",
+      "text": {
+       "en": "Bought cloth for cash",
+       "hi": "नकद में कपड़ा ख़रीदा"
+      },
+      "amount": 5000,
+      "debit": "purchases",
+      "credit": "cash"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap “Sold readymade kurtas for cash”.",
+      "hi": "“नकद में रेडीमेड कुर्ते बेचे” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Cash comes in from the sale. Which side of the cash book does it go on?",
+      "hi": "बिक्री से नकद आता है। यह रोकड़ बही के किस पक्ष में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "dr",
+       "en": "Receipts side (debit, left)",
+       "hi": "प्राप्ति पक्ष (नाम, बायाँ)"
+      },
+      {
+       "id": "cr",
+       "en": "Payments side (credit, right)",
+       "hi": "भुगतान पक्ष (जमा, दायाँ)"
+      }
+     ],
+     "answer": "dr"
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap “Receipts side (Dr)”.",
+      "hi": "“प्राप्ति पक्ष (नाम)” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "txn:t2",
+     "expect": "selected:t2",
+     "say": {
+      "en": "Now tap “Paid shop rent in cash”.",
+      "hi": "अब “दुकान का किराया नकद दिया” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "The rent money goes out: tap “Payments side (Cr)”.",
+      "hi": "किराए का पैसा बाहर जाता है: “भुगतान पक्ष (जमा)” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t3",
+     "say": {
+      "en": "Tap “Show me” to see where the cloth purchase goes.",
+      "hi": "कपड़े की ख़रीद कहाँ जाती है, यह देखने के लिए “मुझे दिखाओ” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap “Balance the cash book”.",
+      "hi": "“रोकड़ बही संतुलित करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cash book is a journal and the cash account in one. Money received goes on the left, the receipts (debit) side; money paid goes on the right, the payments (credit) side. To balance it, the difference is written on the payments side as “Balance c/d”: ₹12,000 − ₹8,000 = ₹4,000 cash in hand.",
+      "hi": "रोकड़ बही एक साथ रोज़नामचा भी है और रोकड़ खाता भी। आया पैसा बाईं ओर, प्राप्ति (नाम) पक्ष में जाता है; दिया पैसा दाईं ओर, भुगतान (जमा) पक्ष में। संतुलन के लिए अंतर भुगतान पक्ष में “शेष आगे ले गए” लिखा जाता है: ₹12,000 − ₹8,000 = ₹4,000 हाथ में नकद।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can a cash book never show a credit balance in its cash column?",
+        "hi": "रोकड़ बही के रोकड़ खाने में कभी जमा शेष क्यों नहीं हो सकता?"
+       },
+       "options": [
+        {
+         "en": "You cannot pay out more cash than you have",
+         "hi": "जितना नकद है उससे ज़्यादा नहीं दे सकते"
+        },
+        {
+         "en": "A credit balance would mean a profit",
+         "hi": "जमा शेष का अर्थ लाभ होगा"
+        },
+        {
+         "en": "Only banks are allowed credit balances",
+         "hi": "केवल बैंकों को जमा शेष की अनुमति है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Payments can never be more than the cash received, so receipts are always at least as big as payments.",
+        "hi": "भुगतान कभी मिले नकद से ज़्यादा नहीं हो सकते, इसलिए प्राप्तियाँ हमेशा भुगतान जितनी या उससे ज़्यादा होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Debit and credit are the two sides of an account; they do not mean profit or loss.",
+         "hi": "नाम और जमा खाते के दो पक्ष हैं; इनका अर्थ लाभ या हानि नहीं है।"
+        },
+        {
+         "en": "A bank column can go into overdraft, but cash in hand can never fall below zero.",
+         "hi": "बैंक खाना अधिविकर्ष में जा सकता है, पर हाथ का नकद कभी शून्य से कम नहीं हो सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Cloth is bought on credit from a supplier. Does it go in the cash book?",
+        "hi": "आपूर्तिकर्ता से उधार कपड़ा ख़रीदा। क्या यह रोकड़ बही में जाएगा?"
+       },
+       "options": [
+        {
+         "en": "No, no cash moves",
+         "hi": "नहीं, कोई नकद नहीं चला"
+        },
+        {
+         "en": "Yes, on the payments side",
+         "hi": "हाँ, भुगतान पक्ष में"
+        },
+        {
+         "en": "Yes, on the receipts side",
+         "hi": "हाँ, प्राप्ति पक्ष में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The cash book records only cash coming in or going out. A credit purchase goes in the purchases book.",
+        "hi": "रोकड़ बही में केवल आता-जाता नकद लिखा जाता है। उधार ख़रीद क्रय बही में जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing is paid today. It enters the cash book only when the supplier is paid.",
+         "hi": "आज कुछ नहीं दिया गया। यह रोकड़ बही में तभी आएगा जब आपूर्तिकर्ता को भुगतान होगा।"
+        },
+        {
+         "en": "No money comes in either; buying is never a receipt.",
+         "hi": "कोई पैसा आया भी नहीं; ख़रीदना कभी प्राप्ति नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question below the book: how much cash is in hand? Then read each row and say whether the money came in or went out.",
+      "hi": "पुस्तक के नीचे के प्रश्न का उत्तर दो: हाथ में कितना नकद है? फिर हर पंक्ति पढ़कर बताओ कि पैसा आया या गया।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch04-cash-double",
+   "topic": "4.1.2",
+   "template": "ledger",
+   "title": {
+    "en": "Cash and bank columns",
+    "hi": "रोकड़ और बैंक खाने"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "cash-book",
+    "business": {
+     "en": "Deepa Tailors",
+     "hi": "दीपा टेलर्स"
+    },
+    "accounts": [
+     {
+      "id": "sharma",
+      "name": {
+       "en": "Sharma Cloth House",
+       "hi": "शर्मा क्लॉथ हाउस"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-08-01",
+      "text": {
+       "en": "Started business with cash",
+       "hi": "नकद से व्यापार शुरू किया"
+      },
+      "amount": 40000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2024-08-02",
+      "text": {
+       "en": "Deposited cash into the bank",
+       "hi": "नकद बैंक में जमा किया"
+      },
+      "amount": 25000,
+      "debit": "bank",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2024-08-06",
+      "text": {
+       "en": "Paid Sharma Cloth House by cheque",
+       "hi": "शर्मा क्लॉथ हाउस को चेक से भुगतान किया"
+      },
+      "amount": 8000,
+      "debit": "sharma",
+      "credit": "bank"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap “Started business with cash”.",
+      "hi": "“नकद से व्यापार शुरू किया” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Cash comes in: tap “Receipts side (Dr)”.",
+      "hi": "नकद आता है: “प्राप्ति पक्ष (नाम)” दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next, cash is put into the bank. Where does this entry go?",
+      "hi": "अब नकद बैंक में डाला जाता है। यह प्रविष्टि कहाँ जाएगी?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "On both sides, marked C",
+       "hi": "दोनों पक्षों में, (C) लिखकर"
+      },
+      {
+       "id": "dr",
+       "en": "Only on the receipts side",
+       "hi": "केवल प्राप्ति पक्ष में"
+      },
+      {
+       "id": "cr",
+       "en": "Only on the payments side",
+       "hi": "केवल भुगतान पक्ष में"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "txn:t2",
+     "expect": "selected:t2",
+     "say": {
+      "en": "Tap “Deposited cash into the bank”.",
+      "hi": "“नकद बैंक में जमा किया” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap “Receipts side (Dr)”: the bank column receives the money.",
+      "hi": "“प्राप्ति पक्ष (नाम)” दबाओ: बैंक खाने में पैसा आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t3",
+     "say": {
+      "en": "Tap “Show me” for the cheque paid to Sharma Cloth House.",
+      "hi": "शर्मा क्लॉथ हाउस को दिए चेक के लिए “मुझे दिखाओ” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap “Balance the cash book”.",
+      "hi": "“रोकड़ बही संतुलित करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A double column cash book has a cash column and a bank column on each side. Putting cash into the bank is a contra entry: cash goes out (payments side, cash column) and the bank gets it (receipts side, bank column), and both are marked C. The cheque to Sharma Cloth House goes on the payments side in the bank column. Balances: cash ₹15,000, bank ₹17,000.",
+      "hi": "दो खानों वाली रोकड़ बही में हर पक्ष में एक रोकड़ खाना और एक बैंक खाना होता है। नकद बैंक में डालना विपरीत (कॉन्ट्रा) प्रविष्टि है: नकद जाता है (भुगतान पक्ष, रोकड़ खाना) और बैंक को मिलता है (प्राप्ति पक्ष, बैंक खाना), और दोनों पर C लिखते हैं। शर्मा क्लॉथ हाउस का चेक भुगतान पक्ष के बैंक खाने में जाता है। शेष: रोकड़ ₹15,000, बैंक ₹17,000।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Cash is taken out of the bank for office use. This is …",
+        "hi": "कार्यालय के उपयोग के लिए बैंक से नकद निकाला गया। यह है …"
+       },
+       "options": [
+        {
+         "en": "a contra entry on both sides",
+         "hi": "दोनों पक्षों में विपरीत प्रविष्टि"
+        },
+        {
+         "en": "a receipt only",
+         "hi": "केवल एक प्राप्ति"
+        },
+        {
+         "en": "an expense",
+         "hi": "एक व्यय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Money only moves from the bank to the cash box: the bank column is paid out and the cash column receives it.",
+        "hi": "पैसा केवल बैंक से गल्ले में जाता है: बैंक खाने से भुगतान और रोकड़ खाने में प्राप्ति।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The bank balance also falls, so both columns must show the movement.",
+         "hi": "बैंक शेष भी घटता है, इसलिए दोनों खानों में यह दिखना चाहिए।"
+        },
+        {
+         "en": "No money leaves the business; it only changes place, so it is not an expense.",
+         "hi": "कोई पैसा व्यापार से बाहर नहीं जाता; बस जगह बदलता है, इसलिए यह व्यय नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A customer pays by cheque and the shop deposits it the same day. Which column?",
+        "hi": "एक ग्राहक चेक से भुगतान करता है और दुकान उसी दिन उसे जमा कर देती है। कौन-सा खाना?"
+       },
+       "options": [
+        {
+         "en": "Bank column, receipts side",
+         "hi": "बैंक खाना, प्राप्ति पक्ष"
+        },
+        {
+         "en": "Cash column, receipts side",
+         "hi": "रोकड़ खाना, प्राप्ति पक्ष"
+        },
+        {
+         "en": "Bank column, payments side",
+         "hi": "बैंक खाना, भुगतान पक्ष"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The money goes straight into the bank and comes into the business, so it is a bank receipt.",
+        "hi": "पैसा सीधे बैंक में जाता है और व्यापार में आता है, इसलिए यह बैंक प्राप्ति है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The cheque went straight into the bank, never into the cash box.",
+         "hi": "चेक सीधे बैंक में गया, गल्ले में कभी नहीं।"
+        },
+        {
+         "en": "Money comes in, so it is a receipt, not a payment.",
+         "hi": "पैसा आता है, इसलिए यह प्राप्ति है, भुगतान नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question below the book about cash in hand. Then look at the two C rows: why does the same ₹25,000 appear on both sides?",
+      "hi": "हाथ के नकद वाले प्रश्न का उत्तर दो। फिर C वाली दोनों पंक्तियाँ देखो: वही ₹25,000 दोनों पक्षों में क्यों दिखते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch04-purchases-book",
+   "topic": "4.2",
+   "template": "ledger",
+   "title": {
+    "en": "Posting the purchases book",
+    "hi": "क्रय बही की खतौनी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "ledger",
+    "business": {
+     "en": "Bansal Crockery",
+     "hi": "बंसल क्रॉकरी"
+    },
+    "accounts": [
+     {
+      "id": "gupta",
+      "name": {
+       "en": "Gupta Traders",
+       "hi": "गुप्ता ट्रेडर्स"
+      },
+      "kind": "creditor"
+     },
+     {
+      "id": "verma",
+      "name": {
+       "en": "Verma Glass Works",
+       "hi": "वर्मा ग्लास वर्क्स"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-09-02",
+      "text": {
+       "en": "Bought glasses on credit from Gupta Traders",
+       "hi": "गुप्ता ट्रेडर्स से उधार गिलास ख़रीदे"
+      },
+      "amount": 18000,
+      "debit": "purchases",
+      "credit": "gupta"
+     },
+     {
+      "id": "t2",
+      "date": "2024-09-10",
+      "text": {
+       "en": "Bought plates on credit from Verma Glass Works",
+       "hi": "वर्मा ग्लास वर्क्स से उधार प्लेटें ख़रीदीं"
+      },
+      "amount": 12000,
+      "debit": "purchases",
+      "credit": "verma"
+     },
+     {
+      "id": "t3",
+      "date": "2024-09-18",
+      "text": {
+       "en": "Bought bowls on credit from Gupta Traders",
+       "hi": "गुप्ता ट्रेडर्स से उधार कटोरे ख़रीदे"
+      },
+      "amount": 7000,
+      "debit": "purchases",
+      "credit": "gupta"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the first entry, “Bought glasses on credit from Gupta Traders”.",
+      "hi": "पहली प्रविष्टि “गुप्ता ट्रेडर्स से उधार गिलास ख़रीदे” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This credit purchase is in the purchases book. In which account is ₹18,000 written on the credit side?",
+      "hi": "यह उधार ख़रीद क्रय बही में है। किस खाते के जमा पक्ष में ₹18,000 लिखे जाएँगे?"
+     },
+     "options": [
+      {
+       "id": "gupta",
+       "en": "Gupta Traders",
+       "hi": "गुप्ता ट्रेडर्स"
+      },
+      {
+       "id": "purchases",
+       "en": "Purchases",
+       "hi": "क्रय"
+      },
+      {
+       "id": "cash",
+       "en": "Cash",
+       "hi": "रोकड़"
+      }
+     ],
+     "answer": "gupta"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t1",
+     "say": {
+      "en": "Tap “Post the entry” and watch the amount go to both accounts.",
+      "hi": "“खतौनी करो” दबाओ और देखो राशि दोनों खातों में कैसे जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t2",
+     "say": {
+      "en": "Post the next entry.",
+      "hi": "अगली प्रविष्टि की खतौनी करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t3",
+     "say": {
+      "en": "Post the last entry.",
+      "hi": "आख़िरी प्रविष्टि की खतौनी करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap “Balance the accounts”.",
+      "hi": "“खाते संतुलित करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "What is the balance of the Purchases account? Answer below.",
+      "hi": "क्रय खाते का शेष क्या है? नीचे उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The purchases book lists only credit purchases of goods. Each supplier’s account is credited on its own date, because the shop owes each of them. The Purchases account is debited; in a real book only the month’s total, here ₹37,000, is posted to it. Gupta Traders has a credit balance of ₹25,000: the shop owes them that much.",
+      "hi": "क्रय बही में केवल माल की उधार ख़रीद लिखी जाती है। हर आपूर्तिकर्ता का खाता उसकी तिथि पर जमा होता है, क्योंकि दुकान को हर एक का पैसा देना है। क्रय खाता नाम होता है; असली बही में इसमें केवल महीने का योग, यहाँ ₹37,000, जाता है। गुप्ता ट्रेडर्स का जमा शेष ₹25,000 है: दुकान को उन्हें इतना देना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these goes in the purchases book?",
+        "hi": "इनमें से कौन क्रय बही में जाएगा?"
+       },
+       "options": [
+        {
+         "en": "Goods for sale bought on credit",
+         "hi": "बेचने का माल उधार ख़रीदा"
+        },
+        {
+         "en": "Goods for sale bought for cash",
+         "hi": "बेचने का माल नकद ख़रीदा"
+        },
+        {
+         "en": "A computer bought on credit",
+         "hi": "उधार कंप्यूटर ख़रीदा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The purchases book is only for goods bought on credit to sell again.",
+        "hi": "क्रय बही केवल फिर से बेचने के लिए उधार ख़रीदे माल के लिए है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cash purchase goes in the cash book.",
+         "hi": "नकद ख़रीद रोकड़ बही में जाती है।"
+        },
+        {
+         "en": "An asset bought on credit goes in the journal proper, not the purchases book.",
+         "hi": "उधार ख़रीदी परिसंपत्ति मुख्य रोज़नामचे में जाती है, क्रय बही में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does Gupta Traders’ credit balance of ₹25,000 mean?",
+        "hi": "गुप्ता ट्रेडर्स के ₹25,000 के जमा शेष का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "The shop owes Gupta Traders ₹25,000",
+         "hi": "दुकान को गुप्ता ट्रेडर्स को ₹25,000 देने हैं"
+        },
+        {
+         "en": "Gupta Traders owes the shop ₹25,000",
+         "hi": "गुप्ता ट्रेडर्स को दुकान को ₹25,000 देने हैं"
+        },
+        {
+         "en": "The shop made a profit of ₹25,000",
+         "hi": "दुकान को ₹25,000 का लाभ हुआ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A credit balance in a supplier’s account is the amount the business still owes.",
+        "hi": "आपूर्तिकर्ता के खाते में जमा शेष वह राशि है जो व्यापार को अभी देनी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If Gupta Traders owed the shop, the account would have a debit balance, like a debtor’s.",
+         "hi": "अगर गुप्ता ट्रेडर्स पर दुकान का पैसा होता, तो खाते में देनदार की तरह नाम शेष होता।"
+        },
+        {
+         "en": "The balance of a person’s account shows what is owed, not a profit.",
+         "hi": "किसी व्यक्ति के खाते का शेष बकाया राशि दिखाता है, लाभ नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Read the Gupta Traders account: two purchases, one balance. Then look at Verma Glass Works. Who is owed more, and by how much?",
+      "hi": "गुप्ता ट्रेडर्स का खाता पढ़ो: दो ख़रीद, एक शेष। फिर वर्मा ग्लास वर्क्स देखो। किसे ज़्यादा देना है, और कितना?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch04-purchase-return",
+   "topic": "4.3",
+   "template": "ledger",
+   "title": {
+    "en": "Goods sent back to a supplier",
+    "hi": "आपूर्तिकर्ता को लौटाया माल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Bansal Crockery",
+     "hi": "बंसल क्रॉकरी"
+    },
+    "accounts": [
+     {
+      "id": "gupta",
+      "name": {
+       "en": "Gupta Traders",
+       "hi": "गुप्ता ट्रेडर्स"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-09-02",
+      "text": {
+       "en": "Bought glasses on credit from Gupta Traders",
+       "hi": "गुप्ता ट्रेडर्स से उधार गिलास ख़रीदे"
+      },
+      "amount": 18000,
+      "debit": "purchases",
+      "credit": "gupta"
+     },
+     {
+      "id": "t2",
+      "date": "2024-09-05",
+      "text": {
+       "en": "Returned broken glasses to Gupta Traders and sent a debit note",
+       "hi": "टूटे गिलास गुप्ता ट्रेडर्स को लौटाए और नाम पत्र भेजा"
+      },
+      "amount": 2000,
+      "debit": "gupta",
+      "credit": "purchase-returns"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t2",
+     "expect": "selected:t2",
+     "say": {
+      "en": "Tap the transaction “Returned broken glasses to Gupta Traders and sent a debit note”.",
+      "hi": "लेन-देन “टूटे गिलास गुप्ता ट्रेडर्स को लौटाए और नाम पत्र भेजा” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Broken glasses worth ₹2,000 go back to Gupta Traders. Which account is debited?",
+      "hi": "₹2,000 के टूटे गिलास गुप्ता ट्रेडर्स को लौटते हैं। कौन-सा खाता नाम होगा?"
+     },
+     "options": [
+      {
+       "id": "gupta",
+       "en": "Gupta Traders",
+       "hi": "गुप्ता ट्रेडर्स"
+      },
+      {
+       "id": "pr",
+       "en": "Purchases returns",
+       "hi": "क्रय वापसी"
+      },
+      {
+       "id": "purchases",
+       "en": "Purchases",
+       "hi": "क्रय"
+      }
+     ],
+     "answer": "gupta"
+    },
+    {
+     "kind": "do",
+     "target": "account:gupta",
+     "expect": "chose:gupta",
+     "say": {
+      "en": "Tap the Gupta Traders account chip.",
+      "hi": "गुप्ता ट्रेडर्स खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Gupta Traders on the debit side.",
+      "hi": "गुप्ता ट्रेडर्स को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:purchase-returns",
+     "expect": "chose:purchase-returns",
+     "say": {
+      "en": "Now tap the Purchases returns account chip.",
+      "hi": "अब क्रय वापसी खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Purchases returns on the credit side.",
+      "hi": "क्रय वापसी को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t2",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Goods sent back to a supplier are purchases returns (returns outwards). The shop now owes Gupta Traders ₹2,000 less, so Gupta Traders is debited. Purchases returns is credited: it lowers the purchases. The shop sends a debit note to tell the supplier that their account has been debited.",
+      "hi": "आपूर्तिकर्ता को लौटाया माल क्रय वापसी (बाह्य वापसी) है। अब दुकान को गुप्ता ट्रेडर्स को ₹2,000 कम देने हैं, इसलिए गुप्ता ट्रेडर्स नाम होता है। क्रय वापसी जमा होती है: यह क्रय को घटाती है। दुकान आपूर्तिकर्ता को नाम पत्र (डेबिट नोट) भेजती है कि उनका खाता नाम किया गया है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which document goes with goods returned to a supplier?",
+        "hi": "आपूर्तिकर्ता को माल लौटाते समय कौन-सा पत्र भेजा जाता है?"
+       },
+       "options": [
+        {
+         "en": "A debit note",
+         "hi": "नाम पत्र (डेबिट नोट)"
+        },
+        {
+         "en": "A credit note",
+         "hi": "जमा पत्र (क्रेडिट नोट)"
+        },
+        {
+         "en": "A cash memo",
+         "hi": "नकद पर्ची"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The buyer debits the supplier’s account and sends a debit note to say so.",
+        "hi": "ख़रीदार आपूर्तिकर्ता का खाता नाम करता है और यह बताने के लिए नाम पत्र भेजता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A credit note is sent by the one who takes goods back, as when a shop accepts a return from its customer.",
+         "hi": "जमा पत्र वह भेजता है जो माल वापस लेता है, जैसे दुकान अपने ग्राहक से वापसी लेते समय।"
+        },
+        {
+         "en": "A cash memo is given for a cash sale, not for a return.",
+         "hi": "नकद पर्ची नकद बिक्री पर दी जाती है, वापसी पर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "After the return, how much does the shop owe Gupta Traders?",
+        "hi": "वापसी के बाद दुकान को गुप्ता ट्रेडर्स को कितना देना है?"
+       },
+       "options": [
+        "₹16,000",
+        "₹18,000",
+        "₹20,000"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹18,000 bought − ₹2,000 returned = ₹16,000 still owed.",
+        "hi": "₹18,000 की ख़रीद − ₹2,000 वापसी = ₹16,000 अभी देने हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That ignores the return. Goods sent back are no longer paid for.",
+         "hi": "इसमें वापसी छोड़ दी गई। लौटाए माल का भुगतान नहीं करना होता।"
+        },
+        {
+         "en": "A return lowers the debt; it can never raise it.",
+         "hi": "वापसी क़र्ज़ घटाती है; यह उसे कभी नहीं बढ़ाती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the first credit purchase too. Compare: which account is debited in the purchase, and which in the return?",
+      "hi": "पहली उधार ख़रीद भी दर्ज करो। तुलना करो: ख़रीद में कौन-सा खाता नाम होता है, और वापसी में कौन-सा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch04-sales-book",
+   "topic": "4.4",
+   "template": "ledger",
+   "title": {
+    "en": "Posting the sales book",
+    "hi": "विक्रय बही की खतौनी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "ledger",
+    "business": {
+     "en": "Bansal Crockery",
+     "hi": "बंसल क्रॉकरी"
+    },
+    "accounts": [
+     {
+      "id": "meena",
+      "name": {
+       "en": "Meena Caterers",
+       "hi": "मीना कैटरर्स"
+      },
+      "kind": "debtor"
+     },
+     {
+      "id": "kabir",
+      "name": {
+       "en": "Kabir Hotel",
+       "hi": "कबीर होटल"
+      },
+      "kind": "debtor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-10-03",
+      "text": {
+       "en": "Sold dinner sets on credit to Meena Caterers",
+       "hi": "मीना कैटरर्स को उधार डिनर सेट बेचे"
+      },
+      "amount": 9000,
+      "debit": "meena",
+      "credit": "sales"
+     },
+     {
+      "id": "t2",
+      "date": "2024-10-11",
+      "text": {
+       "en": "Sold tea cups on credit to Kabir Hotel",
+       "hi": "कबीर होटल को उधार चाय के कप बेचे"
+      },
+      "amount": 6500,
+      "debit": "kabir",
+      "credit": "sales"
+     },
+     {
+      "id": "t3",
+      "date": "2024-10-25",
+      "text": {
+       "en": "Sold glasses on credit to Meena Caterers",
+       "hi": "मीना कैटरर्स को उधार गिलास बेचे"
+      },
+      "amount": 4000,
+      "debit": "meena",
+      "credit": "sales"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the first entry, “Sold dinner sets on credit to Meena Caterers”.",
+      "hi": "पहली प्रविष्टि “मीना कैटरर्स को उधार डिनर सेट बेचे” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This credit sale is in the sales book. In which account is ₹9,000 written on the debit side?",
+      "hi": "यह उधार बिक्री विक्रय बही में है। किस खाते के नाम पक्ष में ₹9,000 लिखे जाएँगे?"
+     },
+     "options": [
+      {
+       "id": "meena",
+       "en": "Meena Caterers",
+       "hi": "मीना कैटरर्स"
+      },
+      {
+       "id": "sales",
+       "en": "Sales",
+       "hi": "विक्रय"
+      },
+      {
+       "id": "cash",
+       "en": "Cash",
+       "hi": "रोकड़"
+      }
+     ],
+     "answer": "meena"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t1",
+     "say": {
+      "en": "Tap “Post the entry” and watch the amount go to both accounts.",
+      "hi": "“खतौनी करो” दबाओ और देखो राशि दोनों खातों में कैसे जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t2",
+     "say": {
+      "en": "Post the next entry.",
+      "hi": "अगली प्रविष्टि की खतौनी करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t3",
+     "say": {
+      "en": "Post the last entry.",
+      "hi": "आख़िरी प्रविष्टि की खतौनी करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap “Balance the accounts”.",
+      "hi": "“खाते संतुलित करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "What is the balance of the Sales account? Answer below.",
+      "hi": "विक्रय खाते का शेष क्या है? नीचे उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sales book lists only credit sales of goods. Each customer’s account is debited, because each now owes the shop. The Sales account is credited, in a real book with the month’s total, here ₹19,500. Meena Caterers has a debit balance of ₹13,000: a debtor who still has to pay that much.",
+      "hi": "विक्रय बही में केवल माल की उधार बिक्री लिखी जाती है। हर ग्राहक का खाता नाम होता है, क्योंकि अब उस पर दुकान का पैसा बाक़ी है। विक्रय खाता जमा होता है, असली बही में महीने के योग से, यहाँ ₹19,500। मीना कैटरर्स का नाम शेष ₹13,000 है: वह देनदार है जिसे इतना देना बाक़ी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these goes in the sales book?",
+        "hi": "इनमें से कौन विक्रय बही में जाएगा?"
+       },
+       "options": [
+        {
+         "en": "Goods sold on credit",
+         "hi": "उधार माल बेचा"
+        },
+        {
+         "en": "Goods sold for cash",
+         "hi": "नकद माल बेचा"
+        },
+        {
+         "en": "Old furniture sold on credit",
+         "hi": "पुराना फ़र्नीचर उधार बेचा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The sales book is only for goods sold on credit.",
+        "hi": "विक्रय बही केवल उधार बेचे माल के लिए है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cash sales go in the cash book.",
+         "hi": "नकद बिक्री रोकड़ बही में जाती है।"
+        },
+        {
+         "en": "Selling an old asset is not a sale of goods; it goes in the journal proper.",
+         "hi": "पुरानी परिसंपत्ति बेचना माल की बिक्री नहीं है; यह मुख्य रोज़नामचे में जाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Kabir Hotel’s account has a debit balance of ₹6,500. Kabir Hotel is …",
+        "hi": "कबीर होटल के खाते में ₹6,500 का नाम शेष है। कबीर होटल है …"
+       },
+       "options": [
+        {
+         "en": "a debtor of the shop",
+         "hi": "दुकान का देनदार"
+        },
+        {
+         "en": "a creditor of the shop",
+         "hi": "दुकान का लेनदार"
+        },
+        {
+         "en": "the shop’s income",
+         "hi": "दुकान की आय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A debit balance in a customer’s account is money the customer still owes the shop.",
+        "hi": "ग्राहक के खाते में नाम शेष वह पैसा है जो ग्राहक को दुकान को देना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A creditor’s account has a credit balance: the shop owes the creditor.",
+         "hi": "लेनदार के खाते में जमा शेष होता है: दुकान को लेनदार को देना है।"
+        },
+        {
+         "en": "The income is shown in the Sales account; Kabir Hotel’s account only shows what he owes.",
+         "hi": "आय विक्रय खाते में दिखती है; कबीर होटल का खाता केवल उसका बकाया दिखाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Read the Meena Caterers account: two sales, one balance. If she pays ₹5,000 next week, what will her balance be?",
+      "hi": "मीना कैटरर्स का खाता पढ़ो: दो बिक्री, एक शेष। अगर वह अगले हफ़्ते ₹5,000 दे दे, तो उसका शेष कितना होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch04-sales-return",
+   "topic": "4.5",
+   "template": "ledger",
+   "title": {
+    "en": "Goods returned by a customer",
+    "hi": "ग्राहक द्वारा लौटाया माल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Bansal Crockery",
+     "hi": "बंसल क्रॉकरी"
+    },
+    "accounts": [
+     {
+      "id": "meena",
+      "name": {
+       "en": "Meena Caterers",
+       "hi": "मीना कैटरर्स"
+      },
+      "kind": "debtor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-10-03",
+      "text": {
+       "en": "Sold dinner sets on credit to Meena Caterers",
+       "hi": "मीना कैटरर्स को उधार डिनर सेट बेचे"
+      },
+      "amount": 9000,
+      "debit": "meena",
+      "credit": "sales"
+     },
+     {
+      "id": "t2",
+      "date": "2024-10-07",
+      "text": {
+       "en": "Meena Caterers returned damaged dinner sets; a credit note was sent",
+       "hi": "मीना कैटरर्स ने ख़राब डिनर सेट लौटाए; जमा पत्र भेजा"
+      },
+      "amount": 1500,
+      "debit": "sales-returns",
+      "credit": "meena"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t2",
+     "expect": "selected:t2",
+     "say": {
+      "en": "Tap the transaction “Meena Caterers returned damaged dinner sets; a credit note was sent”.",
+      "hi": "लेन-देन “मीना कैटरर्स ने ख़राब डिनर सेट लौटाए; जमा पत्र भेजा” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Goods worth ₹1,500 come back from Meena Caterers. Which account is credited?",
+      "hi": "₹1,500 का माल मीना कैटरर्स से वापस आता है। कौन-सा खाता जमा होगा?"
+     },
+     "options": [
+      {
+       "id": "meena",
+       "en": "Meena Caterers",
+       "hi": "मीना कैटरर्स"
+      },
+      {
+       "id": "sr",
+       "en": "Sales returns",
+       "hi": "विक्रय वापसी"
+      },
+      {
+       "id": "sales",
+       "en": "Sales",
+       "hi": "विक्रय"
+      }
+     ],
+     "answer": "meena"
+    },
+    {
+     "kind": "do",
+     "target": "account:sales-returns",
+     "expect": "chose:sales-returns",
+     "say": {
+      "en": "Tap the Sales returns account chip.",
+      "hi": "विक्रय वापसी खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Sales returns on the debit side.",
+      "hi": "विक्रय वापसी को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:meena",
+     "expect": "chose:meena",
+     "say": {
+      "en": "Now tap the Meena Caterers account chip.",
+      "hi": "अब मीना कैटरर्स खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Meena Caterers on the credit side.",
+      "hi": "मीना कैटरर्स को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t2",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Goods returned by a customer are sales returns (returns inwards). Sales returns is debited: it lowers the sales. Meena Caterers now owes ₹1,500 less, so her account is credited. The shop sends her a credit note to say her account has been credited.",
+      "hi": "ग्राहक द्वारा लौटाया माल विक्रय वापसी (आंतरिक वापसी) है। विक्रय वापसी नाम होती है: यह विक्रय को घटाती है। अब मीना कैटरर्स को ₹1,500 कम देने हैं, इसलिए उनका खाता जमा होता है। दुकान उन्हें जमा पत्र (क्रेडिट नोट) भेजती है कि उनका खाता जमा किया गया है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why use a Sales returns account instead of debiting Sales directly?",
+        "hi": "सीधे विक्रय खाते को नाम करने के बजाय विक्रय वापसी खाता क्यों रखते हैं?"
+       },
+       "options": [
+        {
+         "en": "It shows clearly how much was returned",
+         "hi": "इससे साफ़ दिखता है कि कितना माल लौटा"
+        },
+        {
+         "en": "The Sales account can never be debited",
+         "hi": "विक्रय खाता कभी नाम नहीं हो सकता"
+        },
+        {
+         "en": "It lowers the tax",
+         "hi": "इससे कर घटता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A separate account tells the owner how much was returned, which helps to spot quality problems.",
+        "hi": "अलग खाता स्वामी को बताता है कि कितना माल लौटा, जिससे गुणवत्ता की समस्या पकड़ में आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sales is debited when it is closed at the year end. Returns are kept apart only for clear information.",
+         "hi": "वर्ष के अंत में बंद करते समय विक्रय नाम होता है। वापसी केवल साफ़ जानकारी के लिए अलग रखते हैं।"
+        },
+        {
+         "en": "The net sales are the same either way, so the tax does not change.",
+         "hi": "दोनों तरह शुद्ध विक्रय वही रहता है, इसलिए कर नहीं बदलता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "After the return, how much does Meena Caterers owe?",
+        "hi": "वापसी के बाद मीना कैटरर्स को कितना देना है?"
+       },
+       "options": [
+        "₹7,500",
+        "₹9,000",
+        "₹10,500"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹9,000 sold − ₹1,500 returned = ₹7,500.",
+        "hi": "₹9,000 की बिक्री − ₹1,500 वापसी = ₹7,500।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That ignores the return; she does not pay for goods she sent back.",
+         "hi": "इसमें वापसी छोड़ दी गई; लौटाए माल का भुगतान वह नहीं करेगी।"
+        },
+        {
+         "en": "A return lowers what the customer owes; it does not add to it.",
+         "hi": "वापसी ग्राहक का बकाया घटाती है; बढ़ाती नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the first credit sale too. Compare it with the return: which account changes side?",
+      "hi": "पहली उधार बिक्री भी दर्ज करो। वापसी से तुलना करो: किस खाते का पक्ष बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch04-journal-proper",
+   "topic": "4.6",
+   "template": "ledger",
+   "title": {
+    "en": "Entries for the journal proper",
+    "hi": "मुख्य रोज़नामचे की प्रविष्टियाँ"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Bansal Crockery",
+     "hi": "बंसल क्रॉकरी"
+    },
+    "accounts": [
+     {
+      "id": "kapoor",
+      "name": {
+       "en": "Kapoor Machines",
+       "hi": "कपूर मशीन्स"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-11-04",
+      "text": {
+       "en": "Bought a packing machine on credit from Kapoor Machines",
+       "hi": "कपूर मशीन्स से उधार पैकिंग मशीन ख़रीदी"
+      },
+      "amount": 60000,
+      "debit": "machinery",
+      "credit": "kapoor"
+     },
+     {
+      "id": "t2",
+      "date": "2024-11-20",
+      "text": {
+       "en": "The owner took crockery from the shop for home use",
+       "hi": "स्वामी ने घर के उपयोग के लिए दुकान से क्रॉकरी ली"
+      },
+      "amount": 1500,
+      "debit": "drawings",
+      "credit": "purchases"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the transaction “Bought a packing machine on credit from Kapoor Machines”.",
+      "hi": "लेन-देन “कपूर मशीन्स से उधार पैकिंग मशीन ख़रीदी” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A machine for the shop’s own use is bought on credit. Which account is debited?",
+      "hi": "दुकान के अपने उपयोग के लिए मशीन उधार ख़रीदी गई। कौन-सा खाता नाम होगा?"
+     },
+     "options": [
+      {
+       "id": "machinery",
+       "en": "Machinery",
+       "hi": "मशीनरी"
+      },
+      {
+       "id": "purchases",
+       "en": "Purchases",
+       "hi": "क्रय"
+      },
+      {
+       "id": "kapoor",
+       "en": "Kapoor Machines",
+       "hi": "कपूर मशीन्स"
+      }
+     ],
+     "answer": "machinery"
+    },
+    {
+     "kind": "do",
+     "target": "account:machinery",
+     "expect": "chose:machinery",
+     "say": {
+      "en": "Tap the Machinery account chip.",
+      "hi": "मशीनरी खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Machinery on the debit side.",
+      "hi": "मशीनरी को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:kapoor",
+     "expect": "chose:kapoor",
+     "say": {
+      "en": "Now tap the Kapoor Machines account chip.",
+      "hi": "अब कपूर मशीन्स खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Kapoor Machines on the credit side.",
+      "hi": "कपूर मशीन्स को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The purchases book is only for goods bought to sell. A machine for the shop’s own use, bought on credit, has no special book, so it goes in the journal proper. Machinery, an asset, is debited; Kapoor Machines, now a creditor, is credited.",
+      "hi": "क्रय बही केवल बेचने के लिए ख़रीदे माल के लिए है। दुकान के अपने उपयोग की मशीन, उधार ख़रीदी गई, किसी विशेष बही में नहीं जाती, इसलिए मुख्य रोज़नामचे में लिखी जाती है। मशीनरी, एक परिसंपत्ति, नाम होती है; कपूर मशीन्स, अब लेनदार, जमा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is written in the journal proper?",
+        "hi": "इनमें से कौन मुख्य रोज़नामचे में लिखा जाता है?"
+       },
+       "options": [
+        {
+         "en": "The owner takes goods for home use",
+         "hi": "स्वामी घर के लिए माल लेता है"
+        },
+        {
+         "en": "Goods sold on credit",
+         "hi": "उधार माल बेचा"
+        },
+        {
+         "en": "Cash paid for rent",
+         "hi": "किराए का नकद भुगतान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "No special book records goods taken by the owner, so it goes in the journal proper.",
+        "hi": "स्वामी द्वारा लिया माल किसी विशेष बही में नहीं जाता, इसलिए मुख्य रोज़नामचे में जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Credit sales of goods have their own book, the sales book.",
+         "hi": "माल की उधार बिक्री की अपनी बही है, विक्रय बही।"
+        },
+        {
+         "en": "Cash payments go in the cash book.",
+         "hi": "नकद भुगतान रोकड़ बही में जाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The owner takes crockery worth ₹1,500 for home use. Which account is credited?",
+        "hi": "स्वामी ₹1,500 की क्रॉकरी घर के लिए लेता है। कौन-सा खाता जमा होगा?"
+       },
+       "options": [
+        {
+         "en": "Purchases",
+         "hi": "क्रय"
+        },
+        {
+         "en": "Sales",
+         "hi": "विक्रय"
+        },
+        {
+         "en": "Drawings",
+         "hi": "आहरण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The goods were bought for sale but left the shop at cost, so the purchases are reduced.",
+        "hi": "माल बेचने के लिए ख़रीदा गया था पर लागत पर दुकान से गया, इसलिए क्रय घटाया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing was sold and no money came in, so Sales is not touched.",
+         "hi": "कुछ बेचा नहीं गया और पैसा नहीं आया, इसलिए विक्रय नहीं छुआ जाता।"
+        },
+        {
+         "en": "Drawings is debited, because the owner receives the goods.",
+         "hi": "आहरण नाम होता है, क्योंकि माल स्वामी को मिलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the owner’s goods for home use yourself. Then switch the rules and read both reasons.",
+      "hi": "स्वामी द्वारा घर के लिए लिया माल ख़ुद दर्ज करो। फिर नियम बदलकर दोनों कारण पढ़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1.1",
+   "use": "Hook: cash in and cash out",
+   "shows": "A tailoring shop counter in an Indian market: a customer’s hand paying rupee notes for a folded kurta, the tailor’s cash drawer open, a sewing machine behind",
+   "view": "Eye level from the customer’s side, warm daylight, 16:9",
+   "right": "Real tailoring shop items; money clearly changing hands",
+   "avoid": "Shop names, readable price tags, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.1.2",
+   "use": "Bank column items (shared with Chapter 5)",
+   "shows": "Separate cut-outs: a closed unbranded cheque book, a bank deposit (pay-in) slip book, and a passbook with a plain cover",
+   "view": "Front view, slightly angled, lit from top left, transparent background",
+   "right": "Real proportions of Indian cheque books and passbooks",
+   "avoid": "Bank names, logos, account numbers, MICR codes, signatures"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.1.3",
+   "use": "Petty cash in the reader",
+   "shows": "A small metal petty cash box, lid open, with a few small notes and coins, and a pad of blank petty cash vouchers beside it",
+   "view": "Three-quarter view from above, transparent background",
+   "right": "Small amounts only: ₹10, ₹20, ₹50 notes and coins",
+   "avoid": "Large notes, printed text on the vouchers, brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Credit purchases arriving",
+   "shows": "Cartons of crockery being unloaded from a small goods van at the back door of a shop; a worker checks them against a blank delivery slip",
+   "view": "Eye level, daylight, 16:9",
+   "right": "Cartons, a hand trolley and a delivery slip with no readable writing",
+   "avoid": "Brand names on cartons, number plates, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "4.3",
+   "use": "Goods returned to the supplier",
+   "shows": "Three frames: an opened carton showing broken glasses; the same carton repacked and taped; the carton handed back to a delivery man at the door",
+   "view": "Same spot, camera and light in every frame; 4:3",
+   "right": "The same carton in all frames; the breakage clearly visible in frame 1",
+   "avoid": "Sharp broken edges near hands, brand names, faces"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "4.1.2",
+   "use": "Cash book base",
+   "shows": "A blank two-sided cash book page: on each side columns for date, particulars, folio, cash and bank",
+   "view": "Flat, front-on, landscape",
+   "right": "The two sides mirror each other; cash and bank columns equal in width",
+   "avoid": "Any words, Dr or Cr marks (the app adds them)"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "4.4",
+   "use": "Day book base for purchases and sales books",
+   "shows": "A blank single-sided book page with columns for date, invoice number, particulars, folio and amount, and a totals line at the bottom",
+   "view": "Flat, front-on, A4 proportion",
+   "right": "Five columns; the amount column on the right",
+   "avoid": "Any words or numbers (the app adds them)"
+  }
+ ]
+}

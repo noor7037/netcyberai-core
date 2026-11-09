@@ -1,0 +1,868 @@
+{
+ "chapter_key": "u.c01.english.aemr1.ch03",
+ "class": 1,
+ "subject_id": "english",
+ "title": "Picture Time",
+ "source": "https://ncert.nic.in/textbook/pdf/aemr1ps.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Picture Time: naming animals and what they do",
+   "labs": [
+    "c01-english-aemr1-ch03-animal-clues"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Fun with Numbers and Five Little Monkeys: counting up and down",
+   "labs": [
+    "c01-english-aemr1-ch03-monkey-countdown"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Rhyming words: ten, hen, pen, men, den",
+   "labs": [
+    "c01-english-aemr1-ch03-rhyme-en"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Joining letters in alphabetical order",
+   "labs": [
+    "c01-english-aemr1-ch03-alphabet-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Sharing number rhymes from home, drawing a fish, naming animals",
+   "labs": [],
+   "why_no_lab": "The child shares from memory with the class and draws on paper; a screen cannot take the place of that."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-english-aemr1-ch03-animal-clues",
+   "topic": "3.1",
+   "template": "match",
+   "title": {
+    "en": "Match the animal to its clue",
+    "hi": "जानवर को उसके सुराग से मिलाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "lion",
+      "left": {
+       "en": "Lion",
+       "hi": "शेर"
+      },
+      "right": {
+       "en": "roars in the jungle",
+       "hi": "जंगल में दहाड़ता है"
+      },
+      "why": {
+       "en": "A lion roars loudly in the jungle.",
+       "hi": "शेर जंगल में ज़ोर से दहाड़ता है।"
+      }
+     },
+     {
+      "id": "monkey",
+      "left": {
+       "en": "Monkey",
+       "hi": "बंदर"
+      },
+      "right": {
+       "en": "jumps from tree to tree",
+       "hi": "पेड़ से पेड़ पर कूदता है"
+      },
+      "why": {
+       "en": "A monkey jumps and swings in the trees.",
+       "hi": "बंदर पेड़ों पर कूदता और झूलता है।"
+      }
+     },
+     {
+      "id": "fish",
+      "left": {
+       "en": "Fish",
+       "hi": "मछली"
+      },
+      "right": {
+       "en": "swims in water",
+       "hi": "पानी में तैरती है"
+      },
+      "why": {
+       "en": "A fish lives and swims in water.",
+       "hi": "मछली पानी में रहती और तैरती है।"
+      }
+     },
+     {
+      "id": "elephant",
+      "left": {
+       "en": "Elephant",
+       "hi": "हाथी"
+      },
+      "right": {
+       "en": "has a long trunk",
+       "hi": "की लंबी सूँड़ होती है"
+      },
+      "why": {
+       "en": "An elephant uses its long trunk to drink and pick up things.",
+       "hi": "हाथी अपनी लंबी सूँड़ से पानी पीता है और चीज़ें उठाता है।"
+      }
+     },
+     {
+      "id": "frog",
+      "left": {
+       "en": "Frog",
+       "hi": "मेंढक"
+      },
+      "right": {
+       "en": "croaks near the pond",
+       "hi": "तालाब के पास टर्र-टर्र करता है"
+      },
+      "why": {
+       "en": "A frog sits near the pond and croaks.",
+       "hi": "मेंढक तालाब के पास बैठकर टर्र-टर्र करता है।"
+      }
+     },
+     {
+      "id": "rabbit",
+      "left": {
+       "en": "Rabbit",
+       "hi": "खरगोश"
+      },
+      "right": {
+       "en": "has long ears and eats carrots",
+       "hi": "के लंबे कान होते हैं और गाजर खाता है"
+      },
+      "why": {
+       "en": "A rabbit has long ears and loves carrots.",
+       "hi": "खरगोश के लंबे कान होते हैं और उसे गाजर पसंद है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:monkey",
+     "expect": "matched:monkey",
+     "say": {
+      "en": "Tap 'Monkey'. Then tap its clue.",
+      "hi": "'बंदर' पर टैप करो। फिर उसका सुराग दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which animal swims in water?",
+      "hi": "कौन-सा जानवर पानी में तैरता है?"
+     },
+     "options": [
+      {
+       "id": "fish",
+       "en": "Fish",
+       "hi": "मछली (Fish)"
+      },
+      {
+       "id": "lion",
+       "en": "Lion",
+       "hi": "शेर (Lion)"
+      },
+      {
+       "id": "rabbit",
+       "en": "Rabbit",
+       "hi": "खरगोश (Rabbit)"
+      }
+     ],
+     "answer": "fish"
+    },
+    {
+     "kind": "do",
+     "target": "left:fish",
+     "expect": "matched:fish",
+     "say": {
+      "en": "Match 'Fish' with its clue.",
+      "hi": "'मछली' को उसके सुराग से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:elephant",
+     "expect": "matched:elephant",
+     "say": {
+      "en": "Match 'Elephant'.",
+      "hi": "'हाथी' को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:lion",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest: lion, frog and rabbit.",
+      "hi": "बाकी भी मिलाओ: शेर, मेंढक और खरगोश।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each animal has something special. A lion roars, a monkey jumps, a fish swims, an elephant has a trunk, a frog croaks and a rabbit has long ears. When you look at a picture, these clues help you name the animal.",
+      "hi": "हर जानवर में कुछ ख़ास होता है। शेर दहाड़ता है, बंदर कूदता है, मछली तैरती है, हाथी की सूँड़ होती है, मेंढक टर्राता है और खरगोश के लंबे कान होते हैं। तस्वीर देखकर ये सुराग जानवर का नाम बताने में मदद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which animal has a long trunk?",
+        "hi": "किस जानवर की लंबी सूँड़ होती है?"
+       },
+       "options": [
+        {
+         "en": "Elephant",
+         "hi": "हाथी (Elephant)"
+        },
+        {
+         "en": "Frog",
+         "hi": "मेंढक (Frog)"
+        },
+        {
+         "en": "Monkey",
+         "hi": "बंदर (Monkey)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An elephant's trunk is its long nose.",
+        "hi": "हाथी की सूँड़ उसकी लंबी नाक होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A frog has no trunk; it has a wide mouth and long back legs.",
+         "hi": "मेंढक की सूँड़ नहीं होती; उसका मुँह चौड़ा और पिछले पैर लंबे होते हैं।"
+        },
+        {
+         "en": "A monkey has hands and a tail, but no trunk.",
+         "hi": "बंदर के हाथ और पूँछ होती है, सूँड़ नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which animal from the picture do you like best? Say its name and one clue.",
+      "hi": "तस्वीर का कौन-सा जानवर तुम्हें सबसे अच्छा लगता है? उसका नाम और एक सुराग बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch03-monkey-countdown",
+   "topic": "3.2",
+   "template": "sequence",
+   "title": {
+    "en": "Count down the monkeys",
+    "hi": "बंदरों की उलटी गिनती"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "m5",
+      "text": {
+       "en": "Five monkeys are jumping on the tree.",
+       "hi": "पेड़ पर पाँच बंदर कूद रहे हैं।"
+      }
+     },
+     {
+      "id": "m4",
+      "text": {
+       "en": "One falls down. Four are left on the tree.",
+       "hi": "एक गिर गया। पेड़ पर चार बचे हैं।"
+      }
+     },
+     {
+      "id": "m3",
+      "text": {
+       "en": "Another falls. Three are left.",
+       "hi": "एक और गिरा। तीन बचे हैं।"
+      }
+     },
+     {
+      "id": "m2",
+      "text": {
+       "en": "Again one falls. Two are left.",
+       "hi": "फिर एक गिरा। दो बचे हैं।"
+      }
+     },
+     {
+      "id": "m1",
+      "text": {
+       "en": "One more falls. Only one is left.",
+       "hi": "एक और गिरा। सिर्फ़ एक बचा है।"
+      }
+     },
+     {
+      "id": "m0",
+      "text": {
+       "en": "The last one comes down. No monkeys are left.",
+       "hi": "आख़िरी भी उतर आया। अब कोई बंदर नहीं बचा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:m5",
+     "expect": "placed:m5",
+     "say": {
+      "en": "Find the card with five monkeys and place it first.",
+      "hi": "पाँच बंदरों वाला कार्ड ढूँढो और उसे सबसे पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One monkey falls from five. How many are left on the tree?",
+      "hi": "पाँच में से एक बंदर गिरा। पेड़ पर कितने बचे?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "Four",
+       "hi": "चार"
+      },
+      {
+       "id": "six",
+       "en": "Six",
+       "hi": "छह"
+      },
+      {
+       "id": "three",
+       "en": "Three",
+       "hi": "तीन"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "item:m4",
+     "expect": "placed:m4",
+     "say": {
+      "en": "Place the card with four monkeys next.",
+      "hi": "चार बंदरों वाला कार्ड अगला रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other cards in order. Then tap Check.",
+      "hi": "बाकी कार्ड भी क्रम में लगाओ। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The story counts down: five, four, three, two, one, none. Each time one monkey leaves, there is one less. Counting back is a great way to remember number words in order.",
+      "hi": "कहानी उलटी गिनती में चलती है: पाँच, चार, तीन, दो, एक, शून्य। हर बार एक बंदर कम हो जाता है। उलटी गिनती से संख्या वाले शब्द क्रम में याद रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number comes after three when we count down?",
+        "hi": "उलटी गिनती में तीन के बाद कौन-सी संख्या आती है?"
+       },
+       "options": [
+        {
+         "en": "Two",
+         "hi": "दो (Two)"
+        },
+        {
+         "en": "Four",
+         "hi": "चार (Four)"
+        },
+        {
+         "en": "Five",
+         "hi": "पाँच (Five)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Counting down, we go 3, 2, 1.",
+        "hi": "उलटी गिनती में 3, 2, 1 आते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Four comes before three when we count down.",
+         "hi": "उलटी गिनती में चार, तीन से पहले आता है।"
+        },
+        {
+         "en": "Five is even earlier when we count down.",
+         "hi": "उलटी गिनती में पाँच तो और पहले आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Count down from ten with your fingers. Then count back up.",
+      "hi": "अपनी उँगलियों से दस से उलटी गिनती करो। फिर सीधी गिनती करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch03-rhyme-en",
+   "topic": "3.3",
+   "template": "words",
+   "title": {
+    "en": "Rhyming words with -en",
+    "hi": "-en वाले तुकबंदी शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "phonics",
+    "lang": "en",
+    "words": [
+     {
+      "w": "hen",
+      "meaning": {
+       "en": "A hen is a bird that lays eggs.",
+       "hi": "मुर्गी अंडे देने वाली चिड़िया है।"
+      }
+     },
+     {
+      "w": "pen",
+      "meaning": {
+       "en": "We write with a pen.",
+       "hi": "हम पेन से लिखते हैं।"
+      }
+     },
+     {
+      "w": "men",
+      "meaning": {
+       "en": "Men means more than one man.",
+       "hi": "Men का मतलब एक से ज़्यादा आदमी।"
+      }
+     },
+     {
+      "w": "den",
+      "meaning": {
+       "en": "A den is the home of a wild animal.",
+       "hi": "माँद जंगली जानवर का घर होती है।"
+      }
+     },
+     {
+      "w": "ten",
+      "meaning": {
+       "en": "Ten comes after nine.",
+       "hi": "दस, नौ के बाद आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "listen",
+     "expect": "listen",
+     "say": {
+      "en": "Press the sound button and listen to 'hen'.",
+      "hi": "ध्वनि वाला बटन दबाकर 'hen' सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "hen and ten end with the same sounds. What do we call such words?",
+      "hi": "hen और ten के अंत की ध्वनियाँ एक जैसी हैं। ऐसे शब्दों को क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "rhyme",
+       "en": "They rhyme",
+       "hi": "इनकी तुक मिलती है"
+      },
+      {
+       "id": "different",
+       "en": "They are very different",
+       "hi": "ये बिल्कुल अलग हैं"
+      }
+     ],
+     "answer": "rhyme"
+    },
+    {
+     "kind": "do",
+     "target": "pick:h",
+     "expect": "pick:h",
+     "say": {
+      "en": "Tap h.",
+      "hi": "h दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:e",
+     "expect": "pick:e",
+     "say": {
+      "en": "Tap e.",
+      "hi": "e दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:n",
+     "expect": "word:hen",
+     "say": {
+      "en": "Tap n to make hen.",
+      "hi": "n दबाकर hen बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "hen, pen, men, den and ten all end with -en. Only the first sound changes. Words that end with the same sound are called rhyming words, and they make songs and poems sound sweet.",
+      "hi": "hen, pen, men, den और ten सब -en पर ख़त्म होते हैं। सिर्फ़ पहली ध्वनि बदलती है। जिन शब्दों के अंत की ध्वनि एक जैसी हो, उनकी तुक मिलती है, और वे गीत-कविता को मीठा बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word rhymes with ten?",
+        "hi": "कौन-सा शब्द ten से तुक मिलाता है?"
+       },
+       "options": [
+        {
+         "en": "pen",
+         "hi": "pen (पेन)"
+        },
+        {
+         "en": "pin",
+         "hi": "pin (पिन)"
+        },
+        {
+         "en": "hat",
+         "hi": "hat (टोपी)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "pen and ten both end with -en.",
+        "hi": "pen और ten दोनों -en पर ख़त्म होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "pin ends with -in, which sounds different from -en.",
+         "hi": "pin -in पर ख़त्म होता है, जो -en से अलग सुनाई देता है।"
+        },
+        {
+         "en": "hat ends with -at, not -en.",
+         "hi": "hat -at पर ख़त्म होता है, -en पर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What changes when hen becomes ten?",
+        "hi": "hen से ten बनने पर क्या बदलता है?"
+       },
+       "options": [
+        {
+         "en": "The first letter",
+         "hi": "पहला अक्षर"
+        },
+        {
+         "en": "The last letter",
+         "hi": "आख़िरी अक्षर"
+        },
+        {
+         "en": "Nothing",
+         "hi": "कुछ नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "h changes to t. The -en part stays the same.",
+        "hi": "h बदलकर t हो जाता है। -en वाला भाग वैसा ही रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The last letter n stays in both words.",
+         "hi": "आख़िरी अक्षर n दोनों शब्दों में रहता है।"
+        },
+        {
+         "en": "The words are different, so something does change.",
+         "hi": "शब्द अलग हैं, इसलिए कुछ तो बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Build all five words. Can you think of one more word that ends with -en?",
+      "hi": "पाँचों शब्द बनाओ। क्या -en पर ख़त्म होने वाला एक और शब्द सोच सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch03-alphabet-order",
+   "topic": "3.4",
+   "template": "sequence",
+   "title": {
+    "en": "Put the letters in ABC order",
+    "hi": "अक्षरों को ABC क्रम में लगाओ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "p",
+      "text": {
+       "en": "P",
+       "hi": "P (पी)"
+      }
+     },
+     {
+      "id": "q",
+      "text": {
+       "en": "Q",
+       "hi": "Q (क्यू)"
+      }
+     },
+     {
+      "id": "r",
+      "text": {
+       "en": "R",
+       "hi": "R (आर)"
+      }
+     },
+     {
+      "id": "s",
+      "text": {
+       "en": "S",
+       "hi": "S (एस)"
+      }
+     },
+     {
+      "id": "t",
+      "text": {
+       "en": "T",
+       "hi": "T (टी)"
+      }
+     },
+     {
+      "id": "u",
+      "text": {
+       "en": "U",
+       "hi": "U (यू)"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:p",
+     "expect": "placed:p",
+     "say": {
+      "en": "Which letter comes first? Place P in the first spot.",
+      "hi": "सबसे पहले कौन-सा अक्षर आता है? P को पहली जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the ABC song, which letter comes just after P?",
+      "hi": "ABC गाने में P के ठीक बाद कौन-सा अक्षर आता है?"
+     },
+     "options": [
+      {
+       "id": "q",
+       "en": "Q",
+       "hi": "Q (क्यू)"
+      },
+      {
+       "id": "r",
+       "en": "R",
+       "hi": "R (आर)"
+      },
+      {
+       "id": "o",
+       "en": "O",
+       "hi": "O (ओ)"
+      }
+     ],
+     "answer": "q"
+    },
+    {
+     "kind": "do",
+     "target": "item:q",
+     "expect": "placed:q",
+     "say": {
+      "en": "Place Q next.",
+      "hi": "अब Q रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the other letters in order. Then tap Check.",
+      "hi": "बाकी अक्षर भी क्रम में रखो। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The letters of the alphabet always come in the same order. After P comes Q, then R, S, T and U. Singing the ABC song helps you remember which letter comes next.",
+      "hi": "वर्णमाला के अक्षर हमेशा एक ही क्रम में आते हैं। P के बाद Q, फिर R, S, T और U आते हैं। ABC गाना गाने से याद रहता है कि अगला अक्षर कौन-सा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which letter comes after S?",
+        "hi": "S के बाद कौन-सा अक्षर आता है?"
+       },
+       "options": [
+        {
+         "en": "T",
+         "hi": "T (टी)"
+        },
+        {
+         "en": "R",
+         "hi": "R (आर)"
+        },
+        {
+         "en": "U",
+         "hi": "U (यू)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "S is followed by T.",
+        "hi": "S के बाद T आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "R comes before S.",
+         "hi": "R, S से पहले आता है।"
+        },
+        {
+         "en": "U comes after T, so it is two letters after S.",
+         "hi": "U, T के बाद आता है, यानी S से दो अक्षर आगे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sing the ABC song and point to each letter as you sing.",
+      "hi": "ABC गाना गाओ और गाते हुए हर अक्षर पर उँगली रखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Opens the chapter",
+   "shows": "A busy jungle scene in daylight with a monkey on a branch, two snakes on the ground, a parrot and a peacock, an elephant far behind",
+   "view": "16:9, wide view, all animals clearly visible and not overlapping",
+   "right": "Snakes can be counted (exactly two); the monkey is mid-swing; animals look real and calm",
+   "avoid": "No fear or violence; no text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Animal clues match",
+   "shows": "Cut-outs of a lion, a monkey, a fish, an elephant, a frog, and a rabbit",
+   "view": "Each straight on or three-quarter view, soft light from top left",
+   "right": "Each animal's clue (mane, tail, trunk, long ears) obvious",
+   "avoid": "No cartoon faces"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "3.2",
+   "use": "Monkey countdown",
+   "shows": "Six frames of the same tree: five, four, three, two, one and then no monkeys",
+   "view": "6 frames, same camera and light",
+   "right": "Exact count of monkeys in each frame",
+   "avoid": "No text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Rhyming words",
+   "shows": "A hen, a pen, a group of men (seen from the back), a fox den entrance, and ten pebbles in a row",
+   "view": "Each as a separate cut-out, same style",
+   "right": "Exactly ten pebbles",
+   "avoid": "No faces, no text"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "3.4",
+   "use": "Alphabet order",
+   "shows": "A plain winding path of dots that a child can join in order, with empty circles for letters",
+   "view": "Plain white, bold shapes",
+   "right": "Empty circles large enough for letters",
+   "avoid": "No letters or numbers baked in"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Counting a fish",
+   "shows": "A child's hands holding a small bright fish near a pond",
+   "view": "16:9, hands only",
+   "right": "Fish colour clearly visible",
+   "avoid": "No face; handle fish gently"
+  }
+ ]
+}

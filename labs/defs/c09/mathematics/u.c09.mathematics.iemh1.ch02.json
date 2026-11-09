@@ -1,0 +1,946 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh1.ch02",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "Introduction to Linear Polynomials",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Introduction: quantities that change together",
+   "labs": [],
+   "why_no_lab": "A short opening story; the labs on patterns and lines that follow teach the idea by doing."
+  },
+  {
+   "n": "2.2",
+   "title": "Linear polynomials: the form ax + b",
+   "labs": [
+    "c09-mathematics-iemh1-ch02-linear-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Exploring linear patterns",
+   "labs": [
+    "c09-mathematics-iemh1-ch02-matchstick"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Linear growth and linear decay",
+   "labs": [
+    "c09-mathematics-iemh1-ch02-decay"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Linear relationships in daily life",
+   "labs": [
+    "c09-mathematics-iemh1-ch02-situations"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Visualising linear relationships as straight lines",
+   "labs": [
+    "c09-mathematics-iemh1-ch02-line-sliders"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh1-ch02-linear-sort",
+   "topic": "2.2",
+   "template": "sort",
+   "title": {
+    "en": "Is it a linear polynomial?",
+    "hi": "क्या यह रैखिक बहुपद है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "lin",
+      "label": {
+       "en": "Linear polynomial",
+       "hi": "रैखिक बहुपद"
+      }
+     },
+     {
+      "id": "not",
+      "label": {
+       "en": "Not linear",
+       "hi": "रैखिक नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "3x + 5",
+       "hi": "3x + 5"
+      },
+      "bin": "lin",
+      "why": {
+       "en": "The highest power of x is 1.",
+       "hi": "x की सबसे बड़ी घात 1 है।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "7 − 2y",
+       "hi": "7 − 2y"
+      },
+      "bin": "lin",
+      "why": {
+       "en": "−2y has power 1, so this is linear.",
+       "hi": "−2y की घात 1 है, इसलिए यह रैखिक है।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "x/4 + 1",
+       "hi": "x/4 + 1"
+      },
+      "bin": "lin",
+      "why": {
+       "en": "x/4 is (1/4)x, still power 1.",
+       "hi": "x/4 यानी (1/4)x, घात अब भी 1 है।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "5t",
+       "hi": "5t"
+      },
+      "bin": "lin",
+      "why": {
+       "en": "One term of power 1 is linear too.",
+       "hi": "घात 1 वाला एक पद भी रैखिक है।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "x² + 3",
+       "hi": "x² + 3"
+      },
+      "bin": "not",
+      "why": {
+       "en": "x² has power 2.",
+       "hi": "x² की घात 2 है।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "4/x",
+       "hi": "4/x"
+      },
+      "bin": "not",
+      "why": {
+       "en": "4/x is 4 × x⁻¹; a polynomial cannot divide by x.",
+       "hi": "4/x यानी 4 × x⁻¹; बहुपद में x से भाग नहीं होता।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "√x + 2",
+       "hi": "√x + 2"
+      },
+      "bin": "not",
+      "why": {
+       "en": "√x is x to the power ½, not a whole number.",
+       "hi": "√x की घात ½ है, पूर्ण संख्या नहीं।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "x × x − x",
+       "hi": "x × x − x"
+      },
+      "bin": "not",
+      "why": {
+       "en": "x × x is x², so the power is 2.",
+       "hi": "x × x = x², इसलिए घात 2 है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "correct:a",
+     "say": {
+      "en": "Tap the card 3x + 5, then tap the group it belongs to.",
+      "hi": "कार्ड 3x + 5 छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is x × x − x a linear polynomial?",
+      "hi": "क्या x × x − x रैखिक बहुपद है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:h",
+     "expect": "correct:h",
+     "say": {
+      "en": "Place the card x × x − x.",
+      "hi": "कार्ड x × x − x रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A linear polynomial in x has the form ax + b, where a is not 0. The variable appears only to the power 1. Squares, square roots and x in the denominator make it non-linear.",
+      "hi": "x में रैखिक बहुपद ax + b के रूप का होता है, जहाँ a शून्य नहीं है। चर केवल घात 1 में आता है। वर्ग, वर्गमूल या हर में x होने से वह रैखिक नहीं रहता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is linear?",
+        "hi": "इनमें से कौन रैखिक है?"
+       },
+       "options": [
+        "2(x + 3)",
+        "x² − 1",
+        "1/x"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2(x + 3) = 2x + 6, which has the form ax + b.",
+        "hi": "2(x + 3) = 2x + 6, जो ax + b के रूप में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "x² has power 2.",
+         "hi": "x² की घात 2 है।"
+        },
+        {
+         "en": "1/x divides by x; that is power −1.",
+         "hi": "1/x में x से भाग है; यह घात −1 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write three linear polynomials from daily life, such as the cost of n bananas at ₹6 each plus a ₹10 bag.",
+      "hi": "रोज़ के जीवन से तीन रैखिक बहुपद लिखो, जैसे ₹6 प्रति केले के हिसाब से n केलों का दाम और ₹10 का थैला।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch02-matchstick",
+   "topic": "2.3",
+   "template": "algebra",
+   "title": {
+    "en": "Growing patterns and their rule",
+    "hi": "बढ़ते पैटर्न और उनका नियम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "pattern",
+    "equation": "3n+2",
+    "unknown": "n"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A pattern has 5, 8, 11 dots in steps 1, 2, 3. How many dots in step 10?",
+      "hi": "एक पैटर्न में चरण 1, 2, 3 में 5, 8, 11 बिंदु हैं। चरण 10 में कितने बिंदु होंगे?"
+     },
+     "options": [
+      {
+       "id": "32",
+       "en": "32 dots",
+       "hi": "32 बिंदु"
+      },
+      {
+       "id": "50",
+       "en": "50 dots",
+       "hi": "50 बिंदु"
+      },
+      {
+       "id": "35",
+       "en": "35 dots",
+       "hi": "35 बिंदु"
+      }
+     ],
+     "answer": "32"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Study the table of steps and dots, then answer the question.",
+      "hi": "चरणों और बिंदुओं की तालिका देखो, फिर प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each step adds the same 3 dots, and 2 dots were there at the start. So step n has 3n + 2 dots. A pattern that grows by the same amount each time is described by a linear polynomial.",
+      "hi": "हर चरण में वही 3 बिंदु जुड़ते हैं, और शुरू में 2 बिंदु थे। इसलिए चरण n में 3n + 2 बिंदु हैं। जो पैटर्न हर बार उतना ही बढ़ता है, उसे रैखिक बहुपद से लिखा जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A pattern goes 4, 9, 14, 19. What is the rule for step n?",
+        "hi": "एक पैटर्न 4, 9, 14, 19 है। चरण n का नियम क्या है?"
+       },
+       "options": [
+        "5n − 1",
+        "4n",
+        "n + 5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It grows by 5 each time, and 5 × 1 − 1 = 4 for step 1.",
+        "hi": "यह हर बार 5 बढ़ता है, और चरण 1 पर 5 × 1 − 1 = 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4n gives 4, 8, 12: it grows by 4, not 5.",
+         "hi": "4n से 4, 8, 12 बनता है: यह 4 बढ़ता है, 5 नहीं।"
+        },
+        {
+         "en": "n + 5 gives 6, 7, 8: it grows by 1.",
+         "hi": "n + 5 से 6, 7, 8 बनता है: यह 1 बढ़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In 3n + 2, what does the 3 tell us?",
+        "hi": "3n + 2 में 3 क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "How much the pattern grows each step",
+         "hi": "हर चरण में पैटर्न कितना बढ़ता है"
+        },
+        {
+         "en": "The number of steps",
+         "hi": "चरणों की संख्या"
+        },
+        {
+         "en": "The dots in step 1",
+         "hi": "चरण 1 के बिंदु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The number that multiplies n is the change from one step to the next.",
+        "hi": "n को गुणा करने वाली संख्या एक चरण से अगले चरण का बदलाव है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "n is the step number; 3 is fixed.",
+         "hi": "n चरण की संख्या है; 3 स्थिर है।"
+        },
+        {
+         "en": "Step 1 has 3 × 1 + 2 = 5 dots, not 3.",
+         "hi": "चरण 1 में 3 × 1 + 2 = 5 बिंदु हैं, 3 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the slider to other steps and check the rule each time. Then build the pattern with matchsticks at home.",
+      "hi": "स्लाइडर से दूसरे चरणों पर जाओ और हर बार नियम जाँचो। फिर घर पर माचिस की तीलियों से पैटर्न बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch02-decay",
+   "topic": "2.4",
+   "template": "pattern",
+   "title": {
+    "en": "Linear decay: a water tank emptying",
+    "hi": "रैखिक ह्रास: खाली होती पानी की टंकी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     500,
+     450,
+     400,
+     350
+    ],
+    "rule": "-50",
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tank has 500 L and loses 50 L every hour. How much is left after 4 hours?",
+      "hi": "टंकी में 500 लीटर है और हर घंटे 50 लीटर निकलता है। 4 घंटे बाद कितना बचेगा?"
+     },
+     "options": [
+      {
+       "id": "300",
+       "en": "300 L",
+       "hi": "300 लीटर"
+      },
+      {
+       "id": "450",
+       "en": "450 L",
+       "hi": "450 लीटर"
+      },
+      {
+       "id": "200",
+       "en": "200 L",
+       "hi": "200 लीटर"
+      }
+     ],
+     "answer": "300"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next number in the pattern.",
+      "hi": "पैटर्न की अगली संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Now find the rule that takes you from one number to the next.",
+      "hi": "अब वह नियम ढूँढो जो एक संख्या से अगली तक ले जाता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The amount falls by the same 50 L every hour. After t hours it is 500 − 50t. This is linear decay: a linear polynomial whose number in front of t is negative.",
+      "hi": "मात्रा हर घंटे उतनी ही 50 लीटर घटती है। t घंटे बाद यह 500 − 50t है। यह रैखिक ह्रास है: ऐसा रैखिक बहुपद जिसमें t के आगे की संख्या ऋणात्मक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When will the tank be empty?",
+        "hi": "टंकी कब खाली होगी?"
+       },
+       "options": [
+        {
+         "en": "After 10 hours",
+         "hi": "10 घंटे बाद"
+        },
+        {
+         "en": "After 50 hours",
+         "hi": "50 घंटे बाद"
+        },
+        {
+         "en": "Never",
+         "hi": "कभी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "500 − 50t = 0 when t = 10.",
+        "hi": "500 − 50t = 0 जब t = 10।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "50 is the loss per hour, not the time.",
+         "hi": "50 प्रति घंटे की कमी है, समय नहीं।"
+        },
+        {
+         "en": "A fixed loss each hour will reach 0; only halving would never reach it.",
+         "hi": "हर घंटे एक जैसी कमी 0 तक पहुँचेगी; केवल आधा करते जाने से कभी नहीं पहुँचते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is linear growth?",
+        "hi": "रैखिक वृद्धि कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "Saving ₹20 every week",
+         "hi": "हर हफ़्ते ₹20 बचाना"
+        },
+        {
+         "en": "Spending ₹20 every week",
+         "hi": "हर हफ़्ते ₹20 ख़र्च करना"
+        },
+        {
+         "en": "Doubling money every week",
+         "hi": "हर हफ़्ते पैसे दुगुने करना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A fixed amount added each time is linear growth.",
+        "hi": "हर बार एक तय राशि जुड़ना रैखिक वृद्धि है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A fixed amount taken away is linear decay, not growth.",
+         "hi": "हर बार तय राशि घटना रैखिक ह्रास है, वृद्धि नहीं।"
+        },
+        {
+         "en": "Doubling multiplies, so the jumps get bigger; that is not linear.",
+         "hi": "दुगुना करने में गुणा होता है, छलाँगें बड़ी होती जाती हैं; यह रैखिक नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to see more terms. Which term is the first one below zero, and what does that mean for a real tank?",
+      "hi": "अगला दबाकर और पद देखो। शून्य से नीचे वाला पहला पद कौन-सा है, और असली टंकी के लिए उसका क्या अर्थ है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch02-situations",
+   "topic": "2.5",
+   "template": "match",
+   "title": {
+    "en": "Linear relationships around us",
+    "hi": "हमारे आसपास के रैखिक संबंध"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "auto",
+      "left": {
+       "en": "Auto fare: ₹30 to start plus ₹15 per km, for k km",
+       "hi": "ऑटो किराया: ₹30 शुरू में और ₹15 प्रति किमी, k किमी के लिए"
+      },
+      "right": {
+       "en": "30 + 15k",
+       "hi": "30 + 15k"
+      },
+      "why": {
+       "en": "The fixed part is 30 and each km adds 15.",
+       "hi": "तय भाग 30 है और हर किमी 15 जोड़ता है।"
+      }
+     },
+     {
+      "id": "candle",
+      "left": {
+       "en": "A 20 cm candle burns 2 cm per hour, after h hours",
+       "hi": "20 सेमी की मोमबत्ती हर घंटे 2 सेमी जलती है, h घंटे बाद"
+      },
+      "right": {
+       "en": "20 − 2h",
+       "hi": "20 − 2h"
+      },
+      "why": {
+       "en": "It starts at 20 and loses 2 each hour.",
+       "hi": "यह 20 से शुरू होकर हर घंटे 2 घटती है।"
+      }
+     },
+     {
+      "id": "plant",
+      "left": {
+       "en": "A 5 cm plant grows 3 cm each week, after w weeks",
+       "hi": "5 सेमी का पौधा हर हफ़्ते 3 सेमी बढ़ता है, w हफ़्ते बाद"
+      },
+      "right": {
+       "en": "5 + 3w",
+       "hi": "5 + 3w"
+      },
+      "why": {
+       "en": "Start 5, add 3 per week.",
+       "hi": "शुरुआत 5, हर हफ़्ते 3 जुड़ें।"
+      }
+     },
+     {
+      "id": "phone",
+      "left": {
+       "en": "Phone battery at 100% drops 8% per hour, after t hours",
+       "hi": "फ़ोन की 100% बैटरी हर घंटे 8% घटती है, t घंटे बाद"
+      },
+      "right": {
+       "en": "100 − 8t",
+       "hi": "100 − 8t"
+      },
+      "why": {
+       "en": "Start 100, take away 8 each hour.",
+       "hi": "शुरुआत 100, हर घंटे 8 घटाओ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:auto",
+     "expect": "matched:auto",
+     "say": {
+      "en": "Tap the auto fare card, then the expression that gives the fare.",
+      "hi": "ऑटो किराए वाला कार्ड छुओ, फिर किराया बताने वाला व्यंजक छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A candle is 20 cm and burns 2 cm each hour. Which expression gives its length?",
+      "hi": "मोमबत्ती 20 सेमी की है और हर घंटे 2 सेमी जलती है। कौन-सा व्यंजक उसकी लंबाई बताता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "20 − 2h",
+       "hi": "लंबाई = 20 − 2h"
+      },
+      {
+       "id": "b",
+       "en": "2 − 20h",
+       "hi": "लंबाई = 2 − 20h"
+      },
+      {
+       "id": "c",
+       "en": "20 + 2h",
+       "hi": "लंबाई = 20 + 2h"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:candle",
+     "expect": "matched:candle",
+     "say": {
+      "en": "Match the candle card.",
+      "hi": "मोमबत्ती वाला कार्ड मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each situation has a starting amount and a fixed change per unit. Written as start + (change) × (units), it is a linear polynomial. A rise gives a plus sign, a fall gives a minus sign.",
+      "hi": "हर स्थिति में एक शुरुआती राशि और प्रति इकाई एक तय बदलाव है। शुरुआत + (बदलाव) × (इकाइयाँ) लिखने पर यह रैखिक बहुपद बनता है। बढ़त में धन चिह्न, घटत में ऋण चिह्न आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A taxi charges ₹50 plus ₹12 per km. What is the fare for 10 km?",
+        "hi": "टैक्सी ₹50 और ₹12 प्रति किमी लेती है। 10 किमी का किराया क्या है?"
+       },
+       "options": [
+        "₹170",
+        "₹620",
+        "₹72"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "50 + 12 × 10 = 50 + 120 = 170.",
+        "hi": "50 + 12 × 10 = 50 + 120 = 170।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is (50 + 12) × 10; only the ₹12 is paid per km.",
+         "hi": "यह (50 + 12) × 10 है; केवल ₹12 प्रति किमी है।"
+        },
+        {
+         "en": "That is 50 + 12 + 10; the 12 must be multiplied by the km.",
+         "hi": "यह 50 + 12 + 10 है; 12 को किमी से गुणा करना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a mobile recharge or a gym fee. Write its rule as start + change × time.",
+      "hi": "मोबाइल रिचार्ज या जिम की फ़ीस सोचो। उसका नियम शुरुआत + बदलाव × समय के रूप में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch02-line-sliders",
+   "topic": "2.6",
+   "template": "grapher",
+   "title": {
+    "en": "See a linear relationship as a line",
+    "hi": "रैखिक संबंध को रेखा के रूप में देखो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "a*x + b",
+    "params": {
+     "a": [
+      -3,
+      3,
+      2,
+      0.5
+     ],
+     "b": [
+      -4,
+      6,
+      1,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Move the x slider and watch the point travel along the line y = 2x + 1.",
+      "hi": "x स्लाइडर खिसकाओ और देखो बिंदु रेखा y = 2x + 1 पर कैसे चलता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you make a negative, which way will the line lean?",
+      "hi": "अगर a को ऋणात्मक करो, तो रेखा किस ओर झुकेगी?"
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "It will go down from left to right",
+       "hi": "बाएँ से दाएँ नीचे जाएगी"
+      },
+      {
+       "id": "up",
+       "en": "It will still go up",
+       "hi": "अब भी ऊपर जाएगी"
+      },
+      {
+       "id": "flat",
+       "en": "It will be flat",
+       "hi": "सपाट हो जाएगी"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the a slider below zero.",
+      "hi": "a स्लाइडर को शून्य से नीचे खींचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Now change b and see where the line crosses the y-axis.",
+      "hi": "अब b बदलो और देखो रेखा y-अक्ष को कहाँ काटती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the line.",
+      "hi": "रेखा के बारे में प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The graph of ax + b is always a straight line. a sets the steepness: positive a rises (growth), negative a falls (decay). b is where the line meets the y-axis, the starting value.",
+      "hi": "ax + b का ग्राफ़ हमेशा सीधी रेखा होता है। a ढलान तय करता है: धनात्मक a पर रेखा ऊपर जाती है (वृद्धि), ऋणात्मक a पर नीचे (ह्रास)। b वह जगह है जहाँ रेखा y-अक्ष से मिलती है, यानी शुरुआती मान।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The line y = 3x + 2 meets the y-axis at…",
+        "hi": "रेखा y = 3x + 2, y-अक्ष से कहाँ मिलती है?"
+       },
+       "options": [
+        "(0, 2)",
+        "(0, 3)",
+        "(2, 0)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "On the y-axis x = 0, so y = 3 × 0 + 2 = 2.",
+        "hi": "y-अक्ष पर x = 0, इसलिए y = 3 × 0 + 2 = 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 is the steepness, not the starting value.",
+         "hi": "3 ढलान है, शुरुआती मान नहीं।"
+        },
+        {
+         "en": "(2, 0) is on the x-axis; it swaps x and y.",
+         "hi": "(2, 0) x-अक्ष पर है; इसमें x और y उलट गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a to 0. What kind of line do you get, and what real situation could it show?",
+      "hi": "a को 0 करो। कैसी रेखा बनती है, और यह कौन-सी असली स्थिति दिखा सकती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Chapter hook: things that change at a steady rate",
+   "shows": "A row of auto-rickshaws waiting at an Indian railway station stand, one with its fare meter visible but blank",
+   "view": "Eye level, daylight",
+   "right": "Meter screen clear and empty",
+   "avoid": "Number plates, faces, readable fares"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Pattern lab: matchstick shapes",
+   "shows": "Three matchstick figures in a row on a wooden table, each one bigger than the last by the same number of sticks",
+   "view": "Straight from above, soft shadow",
+   "right": "Each figure adds exactly 3 sticks",
+   "avoid": "Burnt or broken sticks"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "2.4",
+   "use": "Decay lab: a tank emptying",
+   "shows": "The same clear plastic water tank in four frames with the water level dropping by equal amounts",
+   "view": "Front view, same position in each frame",
+   "right": "Level falls by the same height each frame",
+   "avoid": "Brand names, uneven steps"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "2.5",
+   "use": "Candle burning at a steady rate",
+   "shows": "One white candle on a steel plate in four frames, getting shorter by equal lengths",
+   "view": "Side view against a plain wall",
+   "right": "Equal drops in height; steady flame",
+   "avoid": "Wax drips that hide the height"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "2.5",
+   "use": "Plant growing week by week",
+   "shows": "A money plant cutting in a glass of water photographed over four weeks next to a wooden ruler",
+   "view": "Side view, same framing",
+   "right": "Growth roughly equal each week",
+   "avoid": "Printed numbers on the ruler being unreadable"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "2.6",
+   "use": "Rising and falling lines",
+   "shows": "Two straight lines on squared paper, one rising in green and one falling in orange, meeting the vertical axis at different heights",
+   "view": "Flat, straight on",
+   "right": "Lines are perfectly straight",
+   "avoid": "Labels or numbers baked in"
+  }
+ ]
+}

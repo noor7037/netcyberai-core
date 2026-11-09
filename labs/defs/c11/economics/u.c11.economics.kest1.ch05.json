@@ -1,0 +1,941 @@
+{
+ "chapter_key": "u.c11.economics.kest1.ch05",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Measures of Central Tendency",
+ "source": "https://ncert.nic.in/textbook/pdf/kest105.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Introduction: what an average does",
+   "labs": [],
+   "why_no_lab": "Explains the need for one summary value; the labs that follow compute each average."
+  },
+  {
+   "n": "2",
+   "title": "Arithmetic mean: simple, assumed mean, step deviation, weighted",
+   "labs": [
+    "c11-economics-kest1-ch05-mean",
+    "c11-economics-kest1-ch05-grouped-mean"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "Median, quartiles and percentiles",
+   "labs": [
+    "c11-economics-kest1-ch05-median"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5",
+   "title": "Mode",
+   "labs": [
+    "c11-economics-kest1-ch05-mode"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6",
+   "title": "Relative position of mean, median and mode",
+   "labs": [
+    "c11-economics-kest1-ch05-skew"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary best read."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-kest1-ch05-mean",
+   "topic": "2",
+   "template": "data",
+   "title": {
+    "en": "The arithmetic mean",
+    "hi": "समांतर माध्य"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "mean",
+    "title": {
+     "en": "Weekly pocket money of six friends (example, ₹)",
+     "hi": "छह दोस्तों का साप्ताहिक जेब ख़र्च (उदाहरण, ₹)"
+    },
+    "xlabel": {
+     "en": "Friend",
+     "hi": "दोस्त"
+    },
+    "ylabel": {
+     "en": "₹ a week",
+     "hi": "₹ प्रति सप्ताह"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Asha",
+       "hi": "आशा"
+      },
+      "value": 50
+     },
+     {
+      "label": {
+       "en": "Ravi",
+       "hi": "रवि"
+      },
+      "value": 80
+     },
+     {
+      "label": {
+       "en": "Sana",
+       "hi": "सना"
+      },
+      "value": 60
+     },
+     {
+      "label": {
+       "en": "Tenzin",
+       "hi": "तेनज़िन"
+      },
+      "value": 100
+     },
+     {
+      "label": {
+       "en": "Meera",
+       "hi": "मीरा"
+      },
+      "value": 70
+     },
+     {
+      "label": {
+       "en": "Kabir",
+       "hi": "कबीर"
+      },
+      "value": 120
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Without working it out exactly, is the mean nearer ₹80 or ₹110?",
+      "hi": "ठीक हिसाब लगाए बिना, माध्य ₹80 के पास है या ₹110 के?"
+     },
+     "options": [
+      {
+       "id": "m80",
+       "en": "Nearer ₹80",
+       "hi": "₹80 के पास"
+      },
+      {
+       "id": "m110",
+       "en": "Nearer ₹110",
+       "hi": "₹110 के पास"
+      }
+     ],
+     "answer": "m80"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Add all six amounts, divide by 6 and type the mean below.",
+      "hi": "छहों रक़में जोड़ो, 6 से भाग दो और नीचे माध्य लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:5",
+     "expect": "changed",
+     "say": {
+      "en": "Now move Kabir's slider up to ₹180 and watch the mean.",
+      "hi": "अब कबीर का स्लाइडर ₹180 तक ऊपर ले जाओ और माध्य देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The arithmetic mean is the sum of all values divided by their number: (50 + 80 + 60 + 100 + 70 + 120) ÷ 6 = 480 ÷ 6 = ₹80. When one value changes, the mean changes too: Kabir alone moving to ₹180 lifts the mean to ₹90. The mean uses every value, which is its strength, but extreme values pull it a lot. In grouped data we use class marks, or a short-cut with an assumed mean.",
+      "hi": "समांतर माध्य सभी मानों का योग उनकी संख्या से भाग देने पर मिलता है: (50 + 80 + 60 + 100 + 70 + 120) ÷ 6 = 480 ÷ 6 = ₹80। जब एक मान बदलता है, तो माध्य भी बदलता है: अकेले कबीर के ₹180 होने से माध्य ₹90 हो जाता है। माध्य हर मान का उपयोग करता है, यह इसकी ताक़त है, पर चरम मान इसे बहुत खींचते हैं। वर्गीकृत आँकड़ों में हम वर्ग चिह्न, या कल्पित माध्य वाली छोटी विधि, इस्तेमाल करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After Kabir's money became ₹180, what is the new mean?",
+        "hi": "कबीर के पैसे ₹180 होने के बाद नया माध्य क्या है?"
+       },
+       "options": [
+        "₹90",
+        "₹80",
+        "₹180"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "New sum = 480 + 60 = 540; 540 ÷ 6 = ₹90.",
+        "hi": "नया योग = 480 + 60 = 540; 540 ÷ 6 = ₹90।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹80 was the old mean; the sum grew by ₹60.",
+         "hi": "₹80 पुराना माध्य था; योग ₹60 बढ़ा।"
+        },
+        {
+         "en": "₹180 is only Kabir's amount, not the mean.",
+         "hi": "₹180 केवल कबीर की रक़म है, माध्य नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is a weighted mean used for?",
+        "hi": "भारित माध्य किसके लिए उपयोग होता है?"
+       },
+       "options": [
+        {
+         "en": "When some items matter more than others",
+         "hi": "जब कुछ मदें दूसरों से ज़्यादा महत्वपूर्ण हों"
+        },
+        {
+         "en": "Only for weighing things on a scale",
+         "hi": "केवल तराज़ू पर चीज़ें तौलने के लिए"
+        },
+        {
+         "en": "When all values are equal",
+         "hi": "जब सभी मान बराबर हों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each value is multiplied by its weight, for example rice counts more than salt in a family budget.",
+        "hi": "हर मान को उसके भार से गुणा किया जाता है, जैसे परिवार के बजट में चावल का महत्व नमक से ज़्यादा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "\"Weight\" here means importance, not kilograms.",
+         "hi": "यहाँ \"भार\" का अर्थ महत्व है, किलोग्राम नहीं।"
+        },
+        {
+         "en": "If all values are equal, the simple mean already works.",
+         "hi": "अगर सभी मान बराबर हों, तो साधारण माध्य ही काफ़ी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change any amounts and predict the new mean before you look. Can you make the mean exactly ₹100?",
+      "hi": "कोई भी रक़म बदलो और देखने से पहले नया माध्य अनुमान लगाओ। क्या तुम माध्य ठीक ₹100 बना सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch05-median",
+   "topic": "3",
+   "template": "data",
+   "title": {
+    "en": "The median: the middle value",
+    "hi": "माध्यिका: बीच का मान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "median",
+    "title": {
+     "en": "Daily wages of seven workers in a workshop (example, ₹)",
+     "hi": "एक कार्यशाला में सात श्रमिकों की दैनिक मज़दूरी (उदाहरण, ₹)"
+    },
+    "xlabel": {
+     "en": "Worker",
+     "hi": "श्रमिक"
+    },
+    "ylabel": {
+     "en": "₹ a day",
+     "hi": "₹ प्रति दिन"
+    },
+    "data": [
+     {
+      "label": "A",
+      "value": 300
+     },
+     {
+      "label": "B",
+      "value": 350
+     },
+     {
+      "label": "C",
+      "value": 320
+     },
+     {
+      "label": "D",
+      "value": 900
+     },
+     {
+      "label": "E",
+      "value": 380
+     },
+     {
+      "label": "F",
+      "value": 340
+     },
+     {
+      "label": "G",
+      "value": 360
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Worker D is the supervisor and earns ₹900. Will the median wage be close to ₹900?",
+      "hi": "श्रमिक D पर्यवेक्षक है और ₹900 कमाता है। क्या माध्यिका मज़दूरी ₹900 के पास होगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it stays near the others",
+       "hi": "नहीं, यह बाक़ी के पास रहेगी"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "sort",
+     "expect": "sorted",
+     "say": {
+      "en": "Tap \"Sort\" to arrange the wages from smallest to largest.",
+      "hi": "\"छाँटो\" पर टैप करो और मज़दूरी छोटी से बड़ी क्रम में लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Find the middle (4th) value and type the median below.",
+      "hi": "बीच का (चौथा) मान खोजो और नीचे माध्यिका लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The median is the middle value when the data are arranged in order. With 7 values, it is the (7 + 1) ÷ 2 = 4th value: 300, 320, 340, 350, 360, 380, 900, so the median is ₹350. The supervisor's ₹900 does not change it, so the median is better than the mean when there are extreme values. Quartiles split ordered data into four equal parts and percentiles into a hundred.",
+      "hi": "आँकड़ों को क्रम में लगाने पर बीच का मान माध्यिका है। 7 मानों में यह (7 + 1) ÷ 2 = चौथा मान है: 300, 320, 340, 350, 360, 380, 900, इसलिए माध्यिका ₹350 है। पर्यवेक्षक के ₹900 से यह नहीं बदलती, इसलिए जब चरम मान हों तो माध्यिका माध्य से बेहतर है। चतुर्थक क्रमित आँकड़ों को चार बराबर भागों में और शतमक सौ भागों में बाँटते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the mean wage of the seven workers?",
+        "hi": "सात श्रमिकों की माध्य मज़दूरी क्या है?"
+       },
+       "options": [
+        "₹421.4",
+        "₹350",
+        "₹900"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sum = 2,950; 2,950 ÷ 7 ≈ ₹421.4, pulled up by the ₹900 wage.",
+        "hi": "योग = 2,950; 2,950 ÷ 7 ≈ ₹421.4, जो ₹900 की मज़दूरी से ऊपर खिंचा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹350 is the median, not the mean.",
+         "hi": "₹350 माध्यिका है, माध्य नहीं।"
+        },
+        {
+         "en": "₹900 is the highest wage, not an average.",
+         "hi": "₹900 सबसे ऊँची मज़दूरी है, औसत नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "With 8 values in order, how is the median found?",
+        "hi": "क्रम में 8 मान हों तो माध्यिका कैसे निकलती है?"
+       },
+       "options": [
+        {
+         "en": "Average of the 4th and 5th values",
+         "hi": "चौथे और पाँचवें मान का औसत"
+        },
+        {
+         "en": "The 4th value only",
+         "hi": "केवल चौथा मान"
+        },
+        {
+         "en": "The 8th value",
+         "hi": "आठवाँ मान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(8 + 1) ÷ 2 = 4.5, so take the mean of the 4th and 5th values.",
+        "hi": "(8 + 1) ÷ 2 = 4.5, इसलिए चौथे और पाँचवें मान का माध्य लो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "With an even count there are two middle values.",
+         "hi": "सम संख्या में दो बीच के मान होते हैं।"
+        },
+        {
+         "en": "The 8th value is the largest, not the middle.",
+         "hi": "आठवाँ मान सबसे बड़ा है, बीच का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag D's bar down to ₹370. Does the median change? Does the mean?",
+      "hi": "D का दंड ₹370 तक नीचे खींचो। क्या माध्यिका बदलती है? और माध्य?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch05-grouped-mean",
+   "topic": "2",
+   "template": "data",
+   "title": {
+    "en": "Mean of grouped data",
+    "hi": "वर्गीकृत आँकड़ों का माध्य"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "chart": "histogram",
+    "ask": "mean",
+    "title": {
+     "en": "Marks of 50 students (sample)",
+     "hi": "50 विद्यार्थियों के अंक (नमूना)"
+    },
+    "xlabel": {
+     "en": "Marks",
+     "hi": "अंक"
+    },
+    "ylabel": {
+     "en": "Number of students",
+     "hi": "विद्यार्थियों की संख्या"
+    },
+    "data": [
+     {
+      "label": "0-10",
+      "value": 5
+     },
+     {
+      "label": "10-20",
+      "value": 8
+     },
+     {
+      "label": "20-30",
+      "value": 15
+     },
+     {
+      "label": "30-40",
+      "value": 12
+     },
+     {
+      "label": "40-50",
+      "value": 10
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For grouped data, which value stands for every student in the class 20–30?",
+      "hi": "वर्गीकृत आँकड़ों में वर्ग 20–30 के हर विद्यार्थी के लिए कौन-सा मान लिया जाता है?"
+     },
+     "options": [
+      {
+       "id": "mark",
+       "en": "The class mark, 25",
+       "hi": "वर्ग चिह्न, 25"
+      },
+      {
+       "id": "lower",
+       "en": "The lower limit, 20",
+       "hi": "निम्न सीमा, 20"
+      },
+      {
+       "id": "upper",
+       "en": "The upper limit, 30",
+       "hi": "उच्च सीमा, 30"
+      }
+     ],
+     "answer": "mark"
+    },
+    {
+     "kind": "do",
+     "target": "bar:2",
+     "expect": "selected:2",
+     "say": {
+      "en": "Tap the bar of the class 20–30.",
+      "hi": "वर्ग 20–30 के दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Work out Σfm ÷ Σf and type the mean below.",
+      "hi": "Σfm ÷ Σf निकालो और नीचे माध्य लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For grouped data, each class is represented by its class mark m. Mean = Σfm ÷ Σf = (5×5 + 8×15 + 15×25 + 12×35 + 10×45) ÷ 50 = 1,390 ÷ 50 = 27.8. The step deviation method gives the same answer with smaller numbers: take an assumed mean A = 25 and width h = 10; d′ = (m − 25) ÷ 10 = −2, −1, 0, 1, 2; Σfd′ = 14; mean = 25 + (14 ÷ 50) × 10 = 27.8.",
+      "hi": "वर्गीकृत आँकड़ों में हर वर्ग को उसके वर्ग चिह्न m से दिखाया जाता है। माध्य = Σfm ÷ Σf = (5×5 + 8×15 + 15×25 + 12×35 + 10×45) ÷ 50 = 1,390 ÷ 50 = 27.8। पद विचलन विधि छोटे अंकों से वही उत्तर देती है: कल्पित माध्य A = 25 और विस्तार h = 10 लो; d′ = (m − 25) ÷ 10 = −2, −1, 0, 1, 2; Σfd′ = 14; माध्य = 25 + (14 ÷ 50) × 10 = 27.8।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why use the step deviation method?",
+        "hi": "पद विचलन विधि क्यों इस्तेमाल करते हैं?"
+       },
+       "options": [
+        {
+         "en": "It makes the arithmetic easier and gives the same mean",
+         "hi": "इससे हिसाब आसान होता है और माध्य वही आता है"
+        },
+        {
+         "en": "It gives a bigger mean",
+         "hi": "इससे बड़ा माध्य आता है"
+        },
+        {
+         "en": "It ignores the frequencies",
+         "hi": "इसमें बारंबारता छोड़ दी जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dividing deviations by the class width keeps the numbers small.",
+        "hi": "विचलनों को वर्ग विस्तार से भाग देने पर अंक छोटे रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The method changes the working, not the answer.",
+         "hi": "विधि हिसाब का तरीक़ा बदलती है, उत्तर नहीं।"
+        },
+        {
+         "en": "Frequencies are still used: Σfd′.",
+         "hi": "बारंबारताएँ अब भी इस्तेमाल होती हैं: Σfd′।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the 40–50 bar up. Predict whether the mean rises or falls, then check the mean card.",
+      "hi": "40–50 वाले दंड को ऊपर खींचो। अनुमान लगाओ कि माध्य बढ़ेगा या घटेगा, फिर माध्य वाला कार्ड देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch05-mode",
+   "topic": "5",
+   "template": "data",
+   "title": {
+    "en": "The mode: what sells most",
+    "hi": "बहुलक: जो सबसे ज़्यादा बिकता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "max",
+    "title": {
+     "en": "Pairs of school shoes sold by size in one month (example)",
+     "hi": "एक महीने में नाप के अनुसार बिके स्कूल जूते के जोड़े (उदाहरण)"
+    },
+    "xlabel": {
+     "en": "Shoe size",
+     "hi": "जूते का नाप"
+    },
+    "ylabel": {
+     "en": "Pairs sold",
+     "hi": "बिके जोड़े"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Size 5",
+       "hi": "नाप 5"
+      },
+      "value": 12
+     },
+     {
+      "label": {
+       "en": "Size 6",
+       "hi": "नाप 6"
+      },
+      "value": 20
+     },
+     {
+      "label": {
+       "en": "Size 7",
+       "hi": "नाप 7"
+      },
+      "value": 35
+     },
+     {
+      "label": {
+       "en": "Size 8",
+       "hi": "नाप 8"
+      },
+      "value": 28
+     },
+     {
+      "label": {
+       "en": "Size 9",
+       "hi": "नाप 9"
+      },
+      "value": 10
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The shopkeeper wants to stock up on the size that sells most. Which average helps her?",
+      "hi": "दुकानदार सबसे ज़्यादा बिकने वाला नाप ज़्यादा रखना चाहती है। कौन-सा औसत उसकी मदद करेगा?"
+     },
+     "options": [
+      {
+       "id": "mode",
+       "en": "The mode",
+       "hi": "बहुलक"
+      },
+      {
+       "id": "mean",
+       "en": "The mean size",
+       "hi": "माध्य नाप"
+      },
+      {
+       "id": "median",
+       "en": "The median size",
+       "hi": "माध्यिका नाप"
+      }
+     ],
+     "answer": "mode"
+    },
+    {
+     "kind": "do",
+     "target": "bar:2",
+     "expect": "selected:2",
+     "say": {
+      "en": "Tap the tallest bar.",
+      "hi": "सबसे ऊँचे दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer below: which size sold the most pairs?",
+      "hi": "नीचे उत्तर दो: किस नाप के सबसे ज़्यादा जोड़े बिके?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The mode is the value that occurs most often. Here size 7 sold 35 pairs, more than any other size, so the modal size is 7. A mean size such as 7.1 would be useless to a shopkeeper, because no such shoe exists. The mode suits qualitative data and things like sizes; in grouped data it is found inside the class with the highest frequency.",
+      "hi": "बहुलक वह मान है जो सबसे ज़्यादा बार आता है। यहाँ नाप 7 के 35 जोड़े बिके, किसी और नाप से ज़्यादा, इसलिए बहुलक नाप 7 है। 7.1 जैसा माध्य नाप दुकानदार के किसी काम का नहीं, क्योंकि ऐसा जूता होता ही नहीं। बहुलक गुणात्मक आँकड़ों और नाप जैसी चीज़ों के लिए ठीक है; वर्गीकृत आँकड़ों में यह सबसे ज़्यादा बारंबारता वाले वर्ग के अंदर मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which average can be found for qualitative data, like favourite colour?",
+        "hi": "पसंदीदा रंग जैसे गुणात्मक आँकड़ों का कौन-सा औसत निकाला जा सकता है?"
+       },
+       "options": [
+        {
+         "en": "Mode",
+         "hi": "बहुलक"
+        },
+        {
+         "en": "Mean",
+         "hi": "माध्य"
+        },
+        {
+         "en": "Median",
+         "hi": "माध्यिका"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "You can count which colour is chosen most, but you cannot add or order colours.",
+        "hi": "गिना जा सकता है कि कौन-सा रंग सबसे ज़्यादा चुना गया, पर रंगों को जोड़ा या क्रम में नहीं लगाया जा सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A mean needs numbers to add.",
+         "hi": "माध्य के लिए जोड़ने लायक़ अंक चाहिए।"
+        },
+        {
+         "en": "A median needs values that can be put in order.",
+         "hi": "माध्यिका के लिए क्रम में लगने वाले मान चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the bars so that two sizes tie for the most. What happens to the mode then?",
+      "hi": "दंड खींचकर दो नापों को सबसे ज़्यादा में बराबर करो। तब बहुलक का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch05-skew",
+   "topic": "6",
+   "template": "data",
+   "title": {
+    "en": "When mean, median and mode part ways",
+    "hi": "जब माध्य, माध्यिका और बहुलक अलग होते हैं"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "chart": "histogram",
+    "title": {
+     "en": "Monthly income of 60 families (sample, ₹ thousand)",
+     "hi": "60 परिवारों की मासिक आय (नमूना, ₹ हज़ार)"
+    },
+    "xlabel": {
+     "en": "Income (₹ thousand)",
+     "hi": "आय (₹ हज़ार)"
+    },
+    "ylabel": {
+     "en": "Number of families",
+     "hi": "परिवारों की संख्या"
+    },
+    "data": [
+     {
+      "label": "0-10",
+      "value": 6
+     },
+     {
+      "label": "10-20",
+      "value": 14
+     },
+     {
+      "label": "20-30",
+      "value": 20
+     },
+     {
+      "label": "30-40",
+      "value": 14
+     },
+     {
+      "label": "40-50",
+      "value": 6
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:2",
+     "expect": "selected:2",
+     "say": {
+      "en": "Tap the middle bar. Look at the mean, median and mode cards: all are 25.",
+      "hi": "बीच के दंड पर टैप करो। माध्य, माध्यिका और बहुलक के कार्ड देखो: सब 25 हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ten more rich families join the 40–50 class. Which will rise most?",
+      "hi": "40–50 वर्ग में दस और अमीर परिवार जुड़ते हैं। कौन-सा सबसे ज़्यादा बढ़ेगा?"
+     },
+     "options": [
+      {
+       "id": "mean",
+       "en": "The mean",
+       "hi": "माध्य"
+      },
+      {
+       "id": "mode",
+       "en": "The mode",
+       "hi": "बहुलक"
+      },
+      {
+       "id": "none",
+       "en": "None of them",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "mean"
+    },
+    {
+     "kind": "do",
+     "target": "slider:4",
+     "expect": "changed",
+     "say": {
+      "en": "Move the slider of the class 40–50 up to 16.",
+      "hi": "वर्ग 40–50 का स्लाइडर 16 तक ऊपर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When the data are symmetrical, mean = median = mode, as at the start. Adding families at the top pulls the mean up most, to about 27.9, the median a little, to 27.5, and the mode stays near 25. So mean > median > mode: the data are positively skewed, with a long tail of high values. Incomes in real life are often like this, which is why the median is often used for income.",
+      "hi": "जब आँकड़े सममित होते हैं, तो माध्य = माध्यिका = बहुलक, जैसा शुरू में था। ऊपर परिवार जोड़ने से माध्य सबसे ज़्यादा, लगभग 27.9 तक, माध्यिका थोड़ी, 27.5 तक, बढ़ती है, और बहुलक लगभग 25 पर रहता है। तो माध्य > माध्यिका > बहुलक: आँकड़े धनात्मक रूप से विषम हैं, ऊँचे मानों की लंबी पूँछ के साथ। असल जीवन में आय अक्सर ऐसी होती है, इसीलिए आय के लिए अक्सर माध्यिका इस्तेमाल होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In positively skewed data, which order is usual?",
+        "hi": "धनात्मक विषम आँकड़ों में आमतौर पर कौन-सा क्रम होता है?"
+       },
+       "options": [
+        {
+         "en": "Mean > median > mode",
+         "hi": "माध्य > माध्यिका > बहुलक"
+        },
+        {
+         "en": "Mode > median > mean",
+         "hi": "बहुलक > माध्यिका > माध्य"
+        },
+        {
+         "en": "All three equal",
+         "hi": "तीनों बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A long tail of high values pulls the mean up the most.",
+        "hi": "ऊँचे मानों की लंबी पूँछ माध्य को सबसे ज़्यादा ऊपर खींचती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That order belongs to negatively skewed data, with a tail of low values.",
+         "hi": "यह क्रम ऋणात्मक विषम आँकड़ों का है, जिनमें कम मानों की पूँछ होती है।"
+        },
+        {
+         "en": "They are equal only for symmetrical data.",
+         "hi": "ये केवल सममित आँकड़ों में बराबर होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Now raise the 0–10 class instead. Which way does the mean move compared with the median?",
+      "hi": "अब इसके बजाय 0–10 वर्ग बढ़ाओ। माध्यिका की तुलना में माध्य किस ओर जाता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Hook of the chapter: a class result board",
+   "shows": "A row of students' hands holding answer sheets fanned out on a desk, marks circled in red but unreadable",
+   "view": "Top-down view, soft light, 16:9",
+   "right": "Marks blurred and unreadable",
+   "avoid": "Faces, names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "5",
+   "use": "Mode in a shoe shop",
+   "shows": "A wall of school shoe boxes in a small Indian shoe shop, one size column clearly fuller than the others",
+   "view": "Eye level, warm light, 16:9",
+   "right": "Boxes plain without brand names",
+   "avoid": "Logos, faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Median wage",
+   "shows": "Seven workers' tiffin boxes lined up on a bench in order of size",
+   "view": "Front view, 16:9",
+   "right": "Exactly seven boxes in a clear order",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2",
+   "use": "Weights on a balance",
+   "shows": "A traditional brass balance with weights on one pan, for the idea of a weighted mean",
+   "view": "Front view, transparent background",
+   "right": "Real brass balance and weights",
+   "avoid": "Text, logos"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "6",
+   "use": "Base for skewed and symmetrical curves",
+   "shows": "Three plain smooth bell-shaped outlines on white: symmetrical, tail to the right, tail to the left",
+   "view": "Flat, 16:9, evenly spaced",
+   "right": "Curves smooth and clearly different",
+   "avoid": "Labels or numbers"
+  }
+ ]
+}

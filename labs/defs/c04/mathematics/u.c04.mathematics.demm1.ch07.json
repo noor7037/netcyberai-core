@@ -1,0 +1,557 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch07",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "The Cleanest Village",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "7.1",
+      "title": "A school trip: departure 7 am, arrival 4 pm",
+      "labs": [
+        "c04-mathematics-demm1-ch07-trip-time"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.2",
+      "title": "Sapan Dada's cart: cost for 1 kg and the bill",
+      "labs": [
+        "c04-mathematics-demm1-ch07-vegetable-bill"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.3",
+      "title": "Money and change in the shop",
+      "labs": [
+        "c04-mathematics-demm1-ch07-give-change"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.4",
+      "title": "A clean village: talking about waste at home",
+      "labs": [],
+      "why_no_lab": "Talking about waste and cleanliness at home and school builds good habits through discussion; it needs no lab."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch07-trip-time",
+      "topic": "7.1",
+      "template": "clock",
+      "title": {
+        "en": "How long was the school trip?",
+        "hi": "स्कूल की यात्रा कितनी देर की थी?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "elapsed",
+        "time": "07:00",
+        "ask": "16:00"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The school bus leaves at 7 in the morning and returns at 4 in the afternoon. Was the trip about 9 hours, 5 hours or 12 hours?",
+            "hi": "स्कूल की बस सुबह 7 बजे चलती है और दोपहर बाद 4 बजे लौटती है। यात्रा लगभग 9 घंटे की थी, 5 घंटे की या 12 घंटे की?"
+          },
+          "options": [
+            {
+              "id": "nine",
+              "en": "About 9 hours",
+              "hi": "लगभग 9 घंटे"
+            },
+            {
+              "id": "five",
+              "en": "About 5 hours",
+              "hi": "लगभग 5 घंटे"
+            },
+            {
+              "id": "twelve",
+              "en": "About 12 hours",
+              "hi": "लगभग 12 घंटे"
+            }
+          ],
+          "answer": "nine"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Look at the start and end times on the clock. Count the hours from 7 am to 4 pm and tap the answer.",
+            "hi": "घड़ी पर शुरू और अंत का समय देखो। सुबह 7 बजे से दोपहर बाद 4 बजे तक के घंटे गिनो और उत्तर पर टैप करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "From 7 am to 12 noon is 5 hours. From 12 noon to 4 pm is 4 more hours. Together that is 9 hours. A good way to find how long something took is to count up from the start time to the end time, in easy jumps.",
+            "hi": "सुबह 7 बजे से दोपहर 12 बजे तक 5 घंटे होते हैं। दोपहर 12 बजे से 4 बजे तक 4 घंटे और। कुल 9 घंटे। किसी काम में कितना समय लगा, यह जानने का अच्छा तरीक़ा है शुरू के समय से अंत के समय तक आसान छलाँगों में गिनना।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A bus leaves at 8 am and reaches the village at 11 am. How long is the journey?",
+                "hi": "एक बस सुबह 8 बजे चलती है और 11 बजे गाँव पहुँचती है। यात्रा कितनी लंबी है?"
+              },
+              "options": [
+                {
+                  "en": "3 hours",
+                  "hi": "3 घंटे"
+                },
+                {
+                  "en": "2 hours",
+                  "hi": "2 घंटे"
+                },
+                {
+                  "en": "11 hours",
+                  "hi": "11 घंटे"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "From 8 to 11 is 3 hours: 9, 10, 11.",
+                "hi": "8 से 11 तक 3 घंटे: 9, 10, 11।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "2 hours would end at 10. Count the hour to 11 as well.",
+                  "hi": "2 घंटे में 10 बजे पहुँचते। 11 तक का घंटा भी गिनो।"
+                },
+                {
+                  "en": "11 hours is the clock time at the end, not the time that passed.",
+                  "hi": "11 घंटे अंत का समय है, बीता हुआ समय नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Lunch starts at 1 pm and ends at 2 pm. How long is lunch?",
+                "hi": "भोजन दोपहर 1 बजे शुरू होकर 2 बजे ख़त्म होता है। भोजन कितनी देर चला?"
+              },
+              "options": [
+                {
+                  "en": "1 hour",
+                  "hi": "1 घंटा"
+                },
+                {
+                  "en": "2 hours",
+                  "hi": "2 घंटे"
+                },
+                {
+                  "en": "12 hours",
+                  "hi": "12 घंटे"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "From 1 to 2 is one hour.",
+                "hi": "1 से 2 तक एक घंटा होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "2 hours is the end time, not the length of lunch.",
+                  "hi": "2 घंटे अंत का समय है, भोजन की अवधि नहीं।"
+                },
+                {
+                  "en": "12 hours is far too long for lunch. Count from 1 to 2 only.",
+                  "hi": "भोजन के लिए 12 घंटे बहुत ज़्यादा हैं। केवल 1 से 2 तक गिनो।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tell the time you wake up and the time you go to sleep. How many hours are you awake?",
+            "hi": "बताओ कि तुम कितने बजे उठते हो और कितने बजे सोते हो। तुम कितने घंटे जागते हो?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch07-vegetable-bill",
+      "topic": "7.2",
+      "template": "money",
+      "title": {
+        "en": "Make a vegetable bill",
+        "hi": "सब्ज़ी का बिल बनाओ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "bill",
+        "items": [
+          {
+            "name": {
+              "en": "Potatoes, 1 kg",
+              "hi": "आलू, 1 किलो"
+            },
+            "price": 30,
+            "qty": 2
+          },
+          {
+            "name": {
+              "en": "Tomatoes, 1 kg",
+              "hi": "टमाटर, 1 किलो"
+            },
+            "price": 40,
+            "qty": 1
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Potatoes cost 30 rupees for 1 kg. The bill has 2 kg of potatoes and 1 kg of tomatoes at 40 rupees. You add 1 more kg of potatoes. Will the bill be more than 100 rupees?",
+            "hi": "आलू 30 रुपये किलो हैं। बिल में 2 किलो आलू और 40 रुपये किलो वाले 1 किलो टमाटर हैं। तुम 1 किलो आलू और जोड़ते हो। क्या बिल 100 रुपये से ज़्यादा होगा?"
+          },
+          "options": [
+            {
+              "id": "yes",
+              "en": "Yes",
+              "hi": "हाँ"
+            },
+            {
+              "id": "no",
+              "en": "No",
+              "hi": "नहीं"
+            }
+          ],
+          "answer": "yes"
+        },
+        {
+          "kind": "do",
+          "target": "item:0",
+          "expect": "picked:0",
+          "say": {
+            "en": "Tap + next to the potatoes to add 1 more kg.",
+            "hi": "आलू के पास + दबाकर 1 किलो और जोड़ो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Work out the total bill: 3 kg of potatoes and 1 kg of tomatoes. Type the total.",
+            "hi": "कुल बिल निकालो: 3 किलो आलू और 1 किलो टमाटर। कुल लिखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "3 kg of potatoes cost 3 times 30, which is 90 rupees. 1 kg of tomatoes costs 40 rupees. The total bill is 90 plus 40, which is 130 rupees. When the cost of 1 kg is known, the cost of many kg is the cost of 1 kg added again and again.",
+            "hi": "3 किलो आलू का दाम 3 गुणा 30, यानी 90 रुपये। 1 किलो टमाटर का दाम 40 रुपये। कुल बिल 90 जोड़ 40, यानी 130 रुपये। जब 1 किलो का दाम पता हो तो कई किलो का दाम 1 किलो के दाम को बार-बार जोड़ने से मिलता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Onions cost 20 rupees for 1 kg. What is the cost of 4 kg?",
+                "hi": "प्याज़ 20 रुपये किलो है। 4 किलो का दाम क्या होगा?"
+              },
+              "options": [
+                {
+                  "en": "80 rupees",
+                  "hi": "80 रुपये"
+                },
+                {
+                  "en": "24 rupees",
+                  "hi": "24 रुपये"
+                },
+                {
+                  "en": "40 rupees",
+                  "hi": "40 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "4 groups of 20: 20, 40, 60, 80. So 80 rupees.",
+                "hi": "20 के 4 समूह: 20, 40, 60, 80। इसलिए 80 रुपये।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "24 is 20 plus 4. But every kg costs 20 rupees, so 20 is added 4 times.",
+                  "hi": "24 मतलब 20 जोड़ 4। पर हर किलो का दाम 20 रुपये है, इसलिए 20 को 4 बार जोड़ना है।"
+                },
+                {
+                  "en": "40 is the cost of 2 kg. There are 2 more kg to add.",
+                  "hi": "40 रुपये 2 किलो का दाम है। अभी 2 किलो और जोड़ने हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which is the bill for 2 kg of tomatoes at 40 rupees and 1 kg of onions at 20 rupees?",
+                "hi": "40 रुपये किलो वाले 2 किलो टमाटर और 20 रुपये किलो वाले 1 किलो प्याज़ का बिल कौन-सा है?"
+              },
+              "options": [
+                {
+                  "en": "100 rupees",
+                  "hi": "100 रुपये"
+                },
+                {
+                  "en": "60 rupees",
+                  "hi": "60 रुपये"
+                },
+                {
+                  "en": "140 rupees",
+                  "hi": "140 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "2 kg of tomatoes is 80 rupees. Add 20 for onions to get 100 rupees.",
+                "hi": "2 किलो टमाटर 80 रुपये के हैं। प्याज़ के 20 जोड़ो तो 100 रुपये।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "60 rupees is the price of one kg of tomatoes and one of onions. The bill needs 2 kg of tomatoes.",
+                  "hi": "60 रुपये 1 किलो टमाटर और 1 किलो प्याज़ का दाम है। बिल में 2 किलो टमाटर चाहिए।"
+                },
+                {
+                  "en": "140 rupees counts 3 kg of tomatoes. The bill has 2 kg.",
+                  "hi": "140 रुपये में 3 किलो टमाटर गिन लिए गए हैं। बिल में 2 किलो हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make your own bill. Add carrots, onions or potatoes using + and −. Work out the total before you tap Check.",
+            "hi": "अपना बिल बनाओ। + और − से गाजर, प्याज़ या आलू जोड़ो। जाँचने से पहले कुल निकालो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch07-give-change",
+      "topic": "7.3",
+      "template": "money",
+      "title": {
+        "en": "Give back the change",
+        "hi": "बाक़ी पैसे लौटाओ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "change",
+        "items": [
+          {
+            "name": {
+              "en": "Notebook",
+              "hi": "कॉपी"
+            },
+            "price": 35
+          },
+          {
+            "name": {
+              "en": "Pencil",
+              "hi": "पेंसिल"
+            },
+            "price": 6
+          }
+        ],
+        "budget": 50,
+        "pick": [
+          0
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A customer buys a notebook for 35 rupees and gives a 50 rupee note. Will you give back more than 10 rupees or less than 10 rupees?",
+            "hi": "एक ग्राहक 35 रुपये की कॉपी ख़रीदता है और 50 रुपये का नोट देता है। तुम 10 रुपये से ज़्यादा लौटाओगे या कम?"
+          },
+          "options": [
+            {
+              "id": "more",
+              "en": "More than 10 rupees",
+              "hi": "10 रुपये से ज़्यादा"
+            },
+            {
+              "id": "less",
+              "en": "Less than 10 rupees",
+              "hi": "10 रुपये से कम"
+            }
+          ],
+          "answer": "more"
+        },
+        {
+          "kind": "do",
+          "target": "coin:10",
+          "expect": "placed:coin:10",
+          "say": {
+            "en": "Tap the 10 rupee coin to put it on the counter.",
+            "hi": "10 रुपये के सिक्के पर टैप करके उसे काउंटर पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "coin:5",
+          "expect": "placed:coin:5",
+          "say": {
+            "en": "Tap the 5 rupee coin to add it.",
+            "hi": "5 रुपये के सिक्के पर टैप करके उसे जोड़ो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Tap Give the change.",
+            "hi": "बाक़ी पैसे दो पर टैप करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The customer gave 50 rupees and the notebook costs 35 rupees. 50 minus 35 is 15 rupees. You can also count up from 35: add 5 to reach 40, then add 10 to reach 50. The coins you gave, 5 and 10, make 15 rupees.",
+            "hi": "ग्राहक ने 50 रुपये दिए और कॉपी 35 रुपये की है। 50 में से 35 घटाओ तो 15 रुपये। तुम 35 से ऊपर की ओर भी गिन सकते हो: 5 जोड़कर 40 तक पहुँचो, फिर 10 जोड़कर 50 तक। तुमने जो सिक्के दिए, 5 और 10, मिलकर 15 रुपये हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A pencil costs 6 rupees. You pay with a 10 rupee note. How much change should you get?",
+                "hi": "पेंसिल 6 रुपये की है। तुम 10 रुपये के नोट से देते हो। तुम्हें कितने रुपये वापस मिलने चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "4 rupees",
+                  "hi": "4 रुपये"
+                },
+                {
+                  "en": "6 rupees",
+                  "hi": "6 रुपये"
+                },
+                {
+                  "en": "16 rupees",
+                  "hi": "16 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "10 minus 6 is 4. Or count up: 6 and 4 more is 10.",
+                "hi": "10 में से 6 घटाओ तो 4। या ऊपर गिनो: 6 और 4 मिलकर 10।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "6 rupees is the price, not the change.",
+                  "hi": "6 रुपये दाम है, बाक़ी पैसे नहीं।"
+                },
+                {
+                  "en": "16 adds the price to the note. Change is what is left of the note after paying.",
+                  "hi": "16 में दाम को नोट में जोड़ दिया गया। बाक़ी पैसे वे हैं जो भुगतान के बाद नोट में से बचते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Pick the pencil for 6 rupees with a 50 rupee note and give the change. Which coins and notes will you use?",
+            "hi": "50 रुपये के नोट से 6 रुपये की पेंसिल लो और बाक़ी पैसे दो। तुम कौन-से सिक्के और नोट इस्तेमाल करोगे?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "7.1",
+      "use": "Chapter hook: a clean village lane",
+      "shows": "A neat village lane in the hills of Meghalaya, swept stone path, bamboo dustbins by the roadside, flower pots at the doorsteps",
+      "view": "Eye level, wide, soft morning light after rain",
+      "right": "Visibly clean, no litter; bamboo bins prominent; real hill-village look",
+      "avoid": "Identifiable people, place name boards"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "7.1",
+      "use": "School bus",
+      "shows": "A yellow school bus, side view, cut-out on transparent background",
+      "view": "Straight side view, even light",
+      "right": "Doors, windows and wheels clear",
+      "avoid": "School names, numbers, phone numbers"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "7.1",
+      "use": "Clock face frame",
+      "shows": "An empty round clock face with the twelve hour marks and no hands",
+      "view": "Flat, straight on, white background",
+      "right": "Hour marks evenly spaced and bold",
+      "avoid": "Brand marks, extra numbers"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "7.2",
+      "use": "Sapan Dada's cart",
+      "shows": "A wooden push-cart with heaps of potatoes, onions, tomatoes and bananas on a village road, a hanging scale beside it",
+      "view": "Eye level, warm daylight",
+      "right": "Produce looks fresh and natural; hanging scale clearly visible",
+      "avoid": "Price signs with readable numbers, faces"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "7.2",
+      "use": "Vegetables for the bill lab",
+      "shows": "A potato, a tomato, an onion and a bunch of carrots as separate cut-outs",
+      "view": "Three-quarter view, soft light",
+      "right": "True colours, single objects, a soft ground shadow on a separate layer",
+      "avoid": "Stickers, brand labels"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "7.3",
+      "use": "Indian coins and notes for change",
+      "shows": "Indian one, two, five and ten rupee coins and ten, twenty and fifty rupee play notes, each a separate cut-out",
+      "view": "Straight on, centred",
+      "right": "Colours and sizes like the real currency; clearly play money",
+      "avoid": "Real note security details"
+    },
+    {
+      "n": 7,
+      "kind": "SCN",
+      "topic": "7.4",
+      "use": "Sorting waste at home",
+      "shows": "Two bins on a kitchen floor, a green one with vegetable peels and a blue one with paper and plastic, a hand dropping a peel",
+      "view": "Slightly above, even indoor light",
+      "right": "Colours of the bins obvious, waste clearly sorted",
+      "avoid": "Brand names on packets, faces"
+    }
+  ]
+}

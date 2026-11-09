@@ -1,0 +1,771 @@
+{
+ "chapter_key": "u.c01.mathematics.aejm1.ch02",
+ "class": 1,
+ "subject_id": "mathematics",
+ "title": "What is Long? What is Round? (Shapes)",
+ "source": "https://ncert.nic.in/textbook/pdf/aejm102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Long things and round things",
+   "labs": [
+    "c01-mathematics-aejm1-ch02-round-ball"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Things with the same shape: ball, cap, glass and matchbox",
+   "labs": [
+    "c01-mathematics-aejm1-ch02-cap",
+    "c01-mathematics-aejm1-ch02-matchbox"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Things that roll, things that slide and things that do both",
+   "labs": [
+    "c01-mathematics-aejm1-ch02-roll-slide"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Building with shapes: towers, toys and puppets",
+   "labs": [],
+   "why_no_lab": "Building with real boxes, bottles and clay teaches which shapes stack well better than a screen can."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-mathematics-aejm1-ch02-round-ball",
+   "topic": "2.1",
+   "template": "solids",
+   "title": {
+    "en": "A ball is round all over",
+    "hi": "गेंद हर तरफ़ से गोल है"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "solid": "sphere",
+    "mode": "turn"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "rotate",
+     "expect": "rotated",
+     "say": {
+      "en": "This is the shape of a ball. Drag it to turn it round and round.",
+      "hi": "यह गेंद का आकार है। इसे खींचकर गोल-गोल घुमाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will look at it from the top. What shape do you think you will see?",
+      "hi": "अब तुम इसे ऊपर से देखोगे। तुम्हें क्या लगता है, कौन-सा आकार दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "circle",
+       "en": "A round circle",
+       "hi": "गोल घेरा"
+      },
+      {
+       "id": "square",
+       "en": "A square",
+       "hi": "वर्ग"
+      },
+      {
+       "id": "triangle",
+       "en": "A triangle",
+       "hi": "त्रिभुज"
+      }
+     ],
+     "answer": "circle"
+    },
+    {
+     "kind": "do",
+     "target": "view:top",
+     "expect": "viewed:top",
+     "say": {
+      "en": "Tap Top view to look at it from above.",
+      "hi": "इसे ऊपर से देखने के लिए ऊपर से दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which of these things has the same shape? Tap it.",
+      "hi": "इनमें से किस चीज़ का आकार ऐसा ही है? उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A ball looks round from the top, the front and the side. It has no flat part and no corner. So a ball can roll in every direction. Laddoos, oranges and marbles are round like a ball.",
+      "hi": "गेंद ऊपर, सामने और बगल से गोल दिखती है। उसमें कोई सपाट हिस्सा और कोई कोना नहीं। इसलिए गेंद हर दिशा में लुढ़क सकती है। लड्डू, संतरा और कंचा भी गेंद जैसे गोल हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these can roll in any direction?",
+        "hi": "इनमें से कौन-सी चीज़ किसी भी दिशा में लुढ़क सकती है?"
+       },
+       "options": [
+        {
+         "en": "A marble",
+         "hi": "कंचा"
+        },
+        {
+         "en": "A book",
+         "hi": "किताब"
+        },
+        {
+         "en": "A brick",
+         "hi": "ईंट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A marble is round all over like a ball, so it rolls whichever way you push it.",
+        "hi": "कंचा गेंद की तरह हर तरफ़ से गोल है, इसलिए जिधर धकेलो उधर लुढ़कता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A book has flat sides and corners. It slides, it does not roll.",
+         "hi": "किताब की सपाट सतहें और कोने हैं। वह सरकती है, लुढ़कती नहीं।"
+        },
+        {
+         "en": "A brick has flat faces and corners, so it cannot roll.",
+         "hi": "ईंट की सपाट सतहें और कोने हैं, इसलिए वह लुढ़क नहीं सकती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Vidya says her pencil box is long. Which of these is long too?",
+        "hi": "विद्या कहती है उसका पेंसिल-बॉक्स लंबा है। इनमें से और क्या लंबा है?"
+       },
+       "options": [
+        {
+         "en": "A laddoo",
+         "hi": "लड्डू"
+        },
+        {
+         "en": "A ruler",
+         "hi": "पैमाना (स्केल)"
+        },
+        {
+         "en": "An orange",
+         "hi": "संतरा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A ruler stretches out far in one direction, so we call it long.",
+        "hi": "पैमाना एक दिशा में दूर तक फैला होता है, इसलिए हम उसे लंबा कहते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A laddoo is round, about the same size every way, so it is not long.",
+         "hi": "लड्डू गोल है, हर तरफ़ लगभग बराबर, इसलिए वह लंबा नहीं।"
+        },
+        "",
+        {
+         "en": "An orange is round like a ball, not long.",
+         "hi": "संतरा गेंद जैसा गोल है, लंबा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Look from the front and the side too. Is it round every time? Name three round things in your home.",
+      "hi": "अब ख़ुद आज़माओ। सामने और बगल से भी देखो। क्या हर बार गोल दिखता है? अपने घर की तीन गोल चीज़ों के नाम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch02-cap",
+   "topic": "2.2",
+   "template": "solids",
+   "title": {
+    "en": "The shape of a birthday cap",
+    "hi": "जन्मदिन की टोपी का आकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "solid": "cone",
+    "mode": "turn"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "rotate",
+     "expect": "rotated",
+     "say": {
+      "en": "This is the shape of a birthday cap. Drag it to turn it.",
+      "hi": "यह जन्मदिन की टोपी का आकार है। इसे खींचकर घुमाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you look at it from the front, what shape do you think you will see?",
+      "hi": "अगर तुम इसे सामने से देखो, तो तुम्हें क्या लगता है, कौन-सा आकार दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "tri",
+       "en": "A triangle",
+       "hi": "त्रिभुज"
+      },
+      {
+       "id": "circle",
+       "en": "A circle",
+       "hi": "घेरा"
+      },
+      {
+       "id": "square",
+       "en": "A square",
+       "hi": "वर्ग"
+      }
+     ],
+     "answer": "tri"
+    },
+    {
+     "kind": "do",
+     "target": "view:front",
+     "expect": "viewed:front",
+     "say": {
+      "en": "Tap Front view.",
+      "hi": "सामने से दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:top",
+     "expect": "viewed:top",
+     "say": {
+      "en": "Now tap Top view. What do you see from above?",
+      "hi": "अब ऊपर से दबाओ। ऊपर से क्या दिखता है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which thing has the same shape as this cap? Tap it.",
+      "hi": "किस चीज़ का आकार इस टोपी जैसा है? उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A birthday cap has a pointed top and a round bottom. From the front it looks like a triangle; from the top it looks like a circle. An ice-cream cone and a mehndi cone have the same shape.",
+      "hi": "जन्मदिन की टोपी का ऊपर का सिरा नुकीला और नीचे का हिस्सा गोल होता है। सामने से यह त्रिभुज जैसी और ऊपर से घेरे जैसी दिखती है। आइसक्रीम कोन और मेहंदी कोन का आकार भी ऐसा ही है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these has the same shape as a birthday cap?",
+        "hi": "इनमें से किसका आकार जन्मदिन की टोपी जैसा है?"
+       },
+       "options": [
+        {
+         "en": "A football",
+         "hi": "फ़ुटबॉल"
+        },
+        {
+         "en": "A matchbox",
+         "hi": "माचिस की डिब्बी"
+        },
+        {
+         "en": "An ice-cream cone",
+         "hi": "आइसक्रीम कोन"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "An ice-cream cone is pointed at one end and round at the other, just like the cap.",
+        "hi": "आइसक्रीम कोन एक सिरे पर नुकीला और दूसरे पर गोल होता है, बिल्कुल टोपी जैसा।"
+       },
+       "wrong": [
+        {
+         "en": "A football is round all over and has no pointed top.",
+         "hi": "फ़ुटबॉल हर तरफ़ से गोल है, उसका कोई नुकीला सिरा नहीं।"
+        },
+        {
+         "en": "A matchbox has flat faces and corners, not a round bottom and a point.",
+         "hi": "माचिस की डिब्बी की सपाट सतहें और कोने हैं, गोल तला और नुकीला सिरा नहीं।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Lay a cap on its side and give it a push. What does it do?",
+        "hi": "टोपी को करवट लिटाकर धकेलो। वह क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "It rolls round in a circle",
+         "hi": "गोल घेरे में लुढ़कती है"
+        },
+        {
+         "en": "It rolls straight like a ball",
+         "hi": "गेंद की तरह सीधी लुढ़कती है"
+        },
+        {
+         "en": "It cannot move at all",
+         "hi": "बिल्कुल नहीं हिलती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Its side is curved, so it rolls, but the pointed top stays in one place, so it goes round in a circle.",
+        "hi": "इसकी बगल घुमावदार है, इसलिए यह लुढ़कती है, पर नुकीला सिरा एक जगह रहता है, इसलिए यह घेरे में घूमती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A ball is round everywhere. The cap has a point that holds one end still, so it cannot roll straight.",
+         "hi": "गेंद हर जगह गोल है। टोपी का नुकीला सिरा एक ओर टिका रहता है, इसलिए वह सीधी नहीं लुढ़कती।"
+        },
+        {
+         "en": "The curved side lets it roll, so it does move.",
+         "hi": "घुमावदार बगल के कारण वह लुढ़कती है, तो हिलती ज़रूर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Turn it slowly and watch the point and the round bottom. Can you find something in your kitchen with this shape?",
+      "hi": "अब ख़ुद आज़माओ। इसे धीरे-धीरे घुमाओ और नुकीले सिरे व गोल तले को देखो। क्या तुम्हारी रसोई में इस आकार की कोई चीज़ है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch02-matchbox",
+   "topic": "2.2",
+   "template": "solids",
+   "title": {
+    "en": "The shape of a matchbox",
+    "hi": "माचिस की डिब्बी का आकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "solid": "cuboid",
+    "mode": "turn"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "rotate",
+     "expect": "rotated",
+     "say": {
+      "en": "This is the shape of a matchbox. Drag it to turn it.",
+      "hi": "यह माचिस की डिब्बी का आकार है। इसे खींचकर घुमाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A matchbox has flat faces. If you push it on the table, what will it do?",
+      "hi": "माचिस की डिब्बी की सतहें सपाट हैं। अगर तुम इसे मेज़ पर धकेलो, तो यह क्या करेगी?"
+     },
+     "options": [
+      {
+       "id": "slide",
+       "en": "It will slide",
+       "hi": "सरकेगी"
+      },
+      {
+       "id": "roll",
+       "en": "It will roll",
+       "hi": "लुढ़केगी"
+      },
+      {
+       "id": "bounce",
+       "en": "It will bounce",
+       "hi": "उछलेगी"
+      }
+     ],
+     "answer": "slide"
+    },
+    {
+     "kind": "do",
+     "target": "view:top",
+     "expect": "viewed:top",
+     "say": {
+      "en": "Tap Top view.",
+      "hi": "ऊपर से दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:side",
+     "expect": "viewed:side",
+     "say": {
+      "en": "Now tap Side view. Is it flat again?",
+      "hi": "अब बगल से दबाओ। क्या यह फिर से सपाट है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which thing has the same shape as a matchbox? Tap it.",
+      "hi": "किस चीज़ का आकार माचिस की डिब्बी जैसा है? उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A matchbox has only flat faces, straight edges and corners. A flat face sits still on the table, so a matchbox slides when you push it, but it cannot roll. A brick and a book have the same shape.",
+      "hi": "माचिस की डिब्बी में सिर्फ़ सपाट सतहें, सीधे किनारे और कोने हैं। सपाट सतह मेज़ पर टिकी रहती है, इसलिए धकेलने पर डिब्बी सरकती है, लुढ़कती नहीं। ईंट और किताब का आकार भी ऐसा ही है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these will slide but not roll?",
+        "hi": "इनमें से कौन-सी चीज़ सरकेगी पर लुढ़केगी नहीं?"
+       },
+       "options": [
+        {
+         "en": "A ball",
+         "hi": "गेंद"
+        },
+        {
+         "en": "A book",
+         "hi": "किताब"
+        },
+        {
+         "en": "A bangle",
+         "hi": "चूड़ी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A book has flat faces and corners, like a matchbox, so it slides.",
+        "hi": "किताब में माचिस की डिब्बी जैसी सपाट सतहें और कोने हैं, इसलिए वह सरकती है।"
+       },
+       "wrong": [
+        {
+         "en": "A ball is round all over, so it rolls.",
+         "hi": "गेंद हर तरफ़ से गोल है, इसलिए लुढ़कती है।"
+        },
+        "",
+        {
+         "en": "A bangle is a round ring. Stand it up and it rolls like a wheel.",
+         "hi": "चूड़ी गोल छल्ला है। खड़ी करो तो पहिये की तरह लुढ़कती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can a matchbox not roll?",
+        "hi": "माचिस की डिब्बी लुढ़क क्यों नहीं सकती?"
+       },
+       "options": [
+        {
+         "en": "It is too light",
+         "hi": "वह बहुत हल्की है"
+        },
+        {
+         "en": "It has no round side",
+         "hi": "उसकी कोई गोल बगल नहीं"
+        },
+        {
+         "en": "It is too small",
+         "hi": "वह बहुत छोटी है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "To roll, a thing needs a round or curved side. All the faces of a matchbox are flat.",
+        "hi": "लुढ़कने के लिए चीज़ की कोई गोल या घुमावदार बगल चाहिए। माचिस की डिब्बी की सारी सतहें सपाट हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A light marble still rolls. Weight is not what stops a matchbox.",
+         "hi": "हल्का कंचा भी लुढ़कता है। डिब्बी को वज़न नहीं रोकता।"
+        },
+        "",
+        {
+         "en": "A small bead still rolls. Size is not the reason; flat faces are.",
+         "hi": "छोटा मनका भी लुढ़कता है। कारण आकार का छोटापन नहीं, सपाट सतहें हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Turn it and count how many flat faces you can find. Look for boxes of this shape at home.",
+      "hi": "अब ख़ुद आज़माओ। इसे घुमाकर गिनो कि कितनी सपाट सतहें हैं। घर में इस आकार के डिब्बे खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch02-roll-slide",
+   "topic": "2.3",
+   "template": "solids",
+   "title": {
+    "en": "Roll or slide? The shape of a tin",
+    "hi": "लुढ़के या सरके? डिब्बे का आकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "solid": "cylinder",
+    "mode": "turn"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "rotate",
+     "expect": "rotated",
+     "say": {
+      "en": "This is the shape of a steel tin or a glass. Drag it to turn it.",
+      "hi": "यह स्टील के डिब्बे या गिलास का आकार है। इसे खींचकर घुमाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Lay this shape on its side on the floor and push it. What do you think it will do?",
+      "hi": "इस आकार को फ़र्श पर करवट लिटाकर धकेलो। तुम्हें क्या लगता है, यह क्या करेगा?"
+     },
+     "options": [
+      {
+       "id": "roll",
+       "en": "It will roll",
+       "hi": "लुढ़केगा"
+      },
+      {
+       "id": "slide",
+       "en": "It will slide",
+       "hi": "सरकेगा"
+      },
+      {
+       "id": "stay",
+       "en": "It will not move",
+       "hi": "नहीं हिलेगा"
+      }
+     ],
+     "answer": "roll"
+    },
+    {
+     "kind": "do",
+     "target": "view:front",
+     "expect": "viewed:front",
+     "say": {
+      "en": "Tap Front view. You see its long curved side.",
+      "hi": "सामने से दबाओ। तुम्हें इसकी लंबी घुमावदार बगल दिखेगी।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:top",
+     "expect": "viewed:top",
+     "say": {
+      "en": "Now tap Top view. What shape is the end?",
+      "hi": "अब ऊपर से दबाओ। सिरे का आकार कैसा है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which thing has the same shape? Tap it.",
+      "hi": "किस चीज़ का आकार ऐसा ही है? उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This shape has a curved side and two flat round ends. Lying on its curved side, it rolls. Standing on a flat end, it slides. So it can roll and slide. That is why the dholak in the story could roll down the hill so fast.",
+      "hi": "इस आकार की एक घुमावदार बगल और दो सपाट गोल सिरे हैं। घुमावदार बगल पर लेटा हो तो लुढ़कता है। सपाट सिरे पर खड़ा हो तो सरकता है। यानी यह लुढ़क भी सकता है और सरक भी। इसीलिए कहानी में ढोलक पहाड़ी से इतनी तेज़ लुढ़क पाई।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these can both roll and slide?",
+        "hi": "इनमें से कौन लुढ़क भी सकता है और सरक भी?"
+       },
+       "options": [
+        {
+         "en": "A brick",
+         "hi": "ईंट"
+        },
+        {
+         "en": "A marble",
+         "hi": "कंचा"
+        },
+        {
+         "en": "A candle",
+         "hi": "मोमबत्ती"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "A candle has a curved side to roll on and flat ends to slide on.",
+        "hi": "मोमबत्ती की घुमावदार बगल पर वह लुढ़कती है और सपाट सिरों पर सरकती है।"
+       },
+       "wrong": [
+        {
+         "en": "A brick has only flat faces, so it slides but does not roll.",
+         "hi": "ईंट में सिर्फ़ सपाट सतहें हैं, इसलिए वह सरकती है, लुढ़कती नहीं।"
+        },
+        {
+         "en": "A marble is round all over with no flat part, so it rolls but does not slide well.",
+         "hi": "कंचा हर तरफ़ से गोल है, कोई सपाट हिस्सा नहीं, इसलिए वह लुढ़कता है, ठीक से सरकता नहीं।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "A carrom striker usually slides. When does it roll?",
+        "hi": "कैरम की गोटी आमतौर पर सरकती है। वह कब लुढ़कती है?"
+       },
+       "options": [
+        {
+         "en": "When it stands on its round edge",
+         "hi": "जब वह अपने गोल किनारे पर खड़ी हो"
+        },
+        {
+         "en": "When it lies flat",
+         "hi": "जब वह सपाट लेटी हो"
+        },
+        {
+         "en": "Never",
+         "hi": "कभी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "On its flat face it slides; standing on its round edge it rolls like a wheel.",
+        "hi": "सपाट सतह पर वह सरकती है; गोल किनारे पर खड़ी हो तो पहिये की तरह लुढ़कती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lying flat, the striker rests on a flat face, so it slides.",
+         "hi": "सपाट लेटी गोटी सपाट सतह पर टिकी होती है, इसलिए सरकती है।"
+        },
+        {
+         "en": "Its edge is round, so it can roll when it stands up on that edge.",
+         "hi": "इसका किनारा गोल है, इसलिए उस पर खड़ी होकर यह लुढ़क सकती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Try Side view too. Then collect a pencil, a bottle and an eraser. Which roll, which slide, and which do both?",
+      "hi": "अब ख़ुद आज़माओ। बगल से भी देखो। फिर पेंसिल, बोतल और रबर लो। कौन लुढ़कता है, कौन सरकता है, और कौन दोनों करता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Hook of the chapter",
+   "shows": "Children sitting in a circle on a classroom floor, with long things (a pencil box, a ruler, a broom) and round things (a ball, an orange, a bangle) placed in the middle",
+   "view": "From above and a little to one side; only hands, knees and backs of children seen",
+   "right": "Long things clearly stretched out; round things clearly round",
+   "avoid": "Faces of children; text on the board"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "2.2",
+   "use": "Same-shape labs (ball, cap, glass, matchbox)",
+   "shows": "Four everyday objects, each as its own set: a rubber ball, a paper birthday cap, a steel glass, a matchbox",
+   "view": "Each object from the front, the side, the top and three-quarter view, same size and centre, transparent background",
+   "right": "The cap has a sharp point and a round open bottom; the matchbox has 6 flat faces",
+   "avoid": "Brand names or printing on the matchbox; shiny glare that hides the shape"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Roll-or-slide lab and the dholak story",
+   "shows": "A dholak lying on its side, rolling down a gentle grassy slope towards a village house",
+   "view": "Low side view, the dholak in the front third, soft morning light",
+   "right": "The dholak rolls on its curved side; the slope goes downhill in the direction it moves",
+   "avoid": "Animals, people, a lamb inside the drum"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "2.3",
+   "use": "Sliding on a carrom board",
+   "shows": "A carrom board seen from above: frame 1 the striker flat at the baseline, frame 2 sliding across with a soft motion blur, frame 3 resting near a corner pocket",
+   "view": "Identical framing from straight above in all three frames",
+   "right": "Striker flat on its face in every frame; coins in their usual places",
+   "avoid": "Hands covering the board; changing the camera"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Things to test: roll, slide or both",
+   "shows": "Separate cut-outs: a glass marble, a cricket ball, a white candle, a steel tin, a book, a brick, a matchbox, an eraser",
+   "view": "Each on a transparent background, lit from the top left, object fills 80%",
+   "right": "True colours and sizes; the candle and the tin clearly have flat ends",
+   "avoid": "Labels and logos"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Building with shapes",
+   "shows": "A tall tower and a small bus made from old boxes, bottles, bottle caps and a funnel, on a classroom table",
+   "view": "Three-quarter view at table height, bright daylight",
+   "right": "Boxes at the bottom and round things on top, so the tower looks stable",
+   "avoid": "Glue mess; brand labels on boxes"
+  }
+ ]
+}

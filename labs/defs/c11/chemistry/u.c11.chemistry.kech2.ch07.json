@@ -1,0 +1,1619 @@
+{
+ "chapter_key": "u.c11.chemistry.kech2.ch07",
+ "class": 11,
+ "subject_id": "chemistry",
+ "title": "Redox Reactions",
+ "source": "https://ncert.nic.in/textbook/pdf/kech201.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Classical idea of redox reactions: oxidising and reducing agents",
+   "labs": [
+    "c11-chemistry-kech2-ch07-classical-redox"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Redox reactions in terms of electron transfer; competitive electron transfer",
+   "labs": [
+    "c11-chemistry-kech2-ch07-zinc-copper",
+    "c11-chemistry-kech2-ch07-copper-silver"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Oxidation number: rules, types of redox reactions, balancing",
+   "labs": [
+    "c11-chemistry-kech2-ch07-oxidation-numbers",
+    "c11-chemistry-kech2-ch07-redox-types",
+    "c11-chemistry-kech2-ch07-balancing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3.3",
+   "title": "Redox reactions as the basis for titrations",
+   "labs": [],
+   "why_no_lab": "A titration is a careful skill with a burette and a colour end point; the photo sequence of the permanganate end point and the reader's worked example show it better than a screen."
+  },
+  {
+   "n": "7.3.4",
+   "title": "Limitations of the concept of oxidation number",
+   "labs": [],
+   "why_no_lab": "This is a short idea about bonds that are not fully ionic; two paragraphs of the reader explain it, with nothing to move or test."
+  },
+  {
+   "n": "7.4",
+   "title": "Redox reactions and electrode processes: Daniell cell, standard electrode potentials",
+   "labs": [
+    "c11-chemistry-kech2-ch07-metals-acid",
+    "c11-chemistry-kech2-ch07-daniell-cell"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-chemistry-kech2-ch07-classical-redox",
+   "topic": "7.1",
+   "template": "sort",
+   "title": {
+    "en": "Oxidised or reduced?",
+    "hi": "उपचयित या अपचयित?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ox",
+      "label": {
+       "en": "Oxidised",
+       "hi": "उपचयित"
+      }
+     },
+     {
+      "id": "red",
+      "label": {
+       "en": "Reduced",
+       "hi": "अपचयित"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "mg",
+      "text": {
+       "en": "2Mg + O₂ → 2MgO: magnesium",
+       "hi": "2Mg + O₂ → 2MgO: मैग्नीशियम"
+      },
+      "bin": "ox",
+      "why": {
+       "en": "Magnesium gains oxygen.",
+       "hi": "मैग्नीशियम ऑक्सीजन लेता है।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "C + O₂ → CO₂: carbon",
+       "hi": "C + O₂ → CO₂: कार्बन"
+      },
+      "bin": "ox",
+      "why": {
+       "en": "Carbon gains oxygen, as in a coal angithi.",
+       "hi": "कार्बन ऑक्सीजन लेता है, जैसे कोयले की अँगीठी में।"
+      }
+     },
+     {
+      "id": "h2s",
+      "text": {
+       "en": "2H₂S + O₂ → 2S + 2H₂O: H₂S",
+       "hi": "2H₂S + O₂ → 2S + 2H₂O: H₂S"
+      },
+      "bin": "ox",
+      "why": {
+       "en": "H₂S loses hydrogen.",
+       "hi": "H₂S हाइड्रोजन खोता है।"
+      }
+     },
+     {
+      "id": "cuo",
+      "text": {
+       "en": "CuO + H₂ → Cu + H₂O: copper oxide",
+       "hi": "CuO + H₂ → Cu + H₂O: कॉपर ऑक्साइड"
+      },
+      "bin": "red",
+      "why": {
+       "en": "Copper oxide loses oxygen.",
+       "hi": "कॉपर ऑक्साइड ऑक्सीजन खोता है।"
+      }
+     },
+     {
+      "id": "hgo",
+      "text": {
+       "en": "2HgO → 2Hg + O₂: mercury(II) oxide",
+       "hi": "2HgO → 2Hg + O₂: मर्क्यूरी(II) ऑक्साइड"
+      },
+      "bin": "red",
+      "why": {
+       "en": "It loses oxygen on heating.",
+       "hi": "गर्म करने पर यह ऑक्सीजन खोता है।"
+      }
+     },
+     {
+      "id": "fecl3",
+      "text": {
+       "en": "2FeCl₃ + H₂ → 2FeCl₂ + 2HCl: FeCl₃",
+       "hi": "2FeCl₃ + H₂ → 2FeCl₂ + 2HCl: FeCl₃"
+      },
+      "bin": "red",
+      "why": {
+       "en": "It loses an electronegative element, chlorine.",
+       "hi": "यह एक विद्युत ऋणात्मक तत्व, क्लोरीन, खोता है।"
+      }
+     },
+     {
+      "id": "ethene",
+      "text": {
+       "en": "CH₂=CH₂ + H₂ → CH₃–CH₃: ethene",
+       "hi": "CH₂=CH₂ + H₂ → CH₃–CH₃: एथीन"
+      },
+      "bin": "red",
+      "why": {
+       "en": "Ethene gains hydrogen.",
+       "hi": "एथीन हाइड्रोजन लेती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In CuO + H₂ → Cu + H₂O, hydrogen takes oxygen from copper oxide. What happens to hydrogen?",
+      "hi": "CuO + H₂ → Cu + H₂O में हाइड्रोजन कॉपर ऑक्साइड से ऑक्सीजन लेता है। हाइड्रोजन का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "ox",
+       "en": "It is oxidised",
+       "hi": "यह उपचयित होता है"
+      },
+      {
+       "id": "red",
+       "en": "It is reduced",
+       "hi": "यह अपचयित होता है"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "ox"
+    },
+    {
+     "kind": "do",
+     "target": "card:mg",
+     "expect": "correct:mg",
+     "say": {
+      "en": "Tap the magnesium card, then its bin.",
+      "hi": "मैग्नीशियम वाला कार्ड छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:cuo",
+     "expect": "correct:cuo",
+     "say": {
+      "en": "Now place copper oxide.",
+      "hi": "अब कॉपर ऑक्साइड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the classical idea, oxidation is adding oxygen or an electronegative element, or removing hydrogen or an electropositive element. Reduction is the reverse. They always happen together: when copper oxide is reduced, the hydrogen that takes its oxygen is oxidised. That is why we say redox.",
+      "hi": "पुराने विचार में ऑक्सीजन या विद्युत ऋणात्मक तत्व जुड़ना, या हाइड्रोजन या विद्युत धनात्मक तत्व हटना, उपचयन है। अपचयन इसका उलटा है। दोनों हमेशा साथ होते हैं: जब कॉपर ऑक्साइड अपचयित होता है, तो उसकी ऑक्सीजन लेने वाला हाइड्रोजन उपचयित होता है। इसीलिए हम रेडॉक्स कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In CuO + H₂ → Cu + H₂O, which is the reducing agent?",
+        "hi": "CuO + H₂ → Cu + H₂O में अपचायक कौन है?"
+       },
+       "options": [
+        "H₂",
+        "CuO",
+        "H₂O"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "H₂ removes oxygen from CuO, so it reduces CuO and is itself oxidised.",
+        "hi": "H₂, CuO से ऑक्सीजन हटाता है, इसलिए यह CuO को अपचयित करता है और ख़ुद उपचयित होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "CuO gives away oxygen; it is the oxidising agent.",
+         "hi": "CuO ऑक्सीजन देता है; यह उपचायक है।"
+        },
+        {
+         "en": "Water is a product, not an agent.",
+         "hi": "पानी उत्पाद है, कारक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. For each card, also name the other substance and say what happens to it.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर कार्ड के लिए दूसरे पदार्थ का नाम लो और बताओ उसका क्या होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch07-zinc-copper",
+   "topic": "7.2",
+   "template": "beaker",
+   "title": {
+    "en": "Zinc meets copper sulphate",
+    "hi": "जस्ता और कॉपर सल्फ़ेट"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "zinc",
+     "copperwire",
+     "znso4",
+     "cuso4"
+    ],
+    "start": [
+     "cuso4"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A zinc granule is dropped into blue copper sulphate solution. What will you see after some time?",
+      "hi": "एक जस्ते का दाना नीले कॉपर सल्फ़ेट विलयन में डाला जाता है। कुछ देर बाद क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "coat",
+       "en": "A reddish coat on the zinc and the blue colour fading",
+       "hi": "जस्ते पर लाल-भूरी परत और नीला रंग फीका"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      },
+      {
+       "id": "blue",
+       "en": "The blue colour gets darker",
+       "hi": "नीला रंग और गहरा"
+      }
+     ],
+     "answer": "coat"
+    },
+    {
+     "kind": "do",
+     "target": "pick:zinc",
+     "expect": "pick:zinc",
+     "say": {
+      "en": "Tap the zinc granules.",
+      "hi": "जस्ते के दाने छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Tap the beaker to drop the zinc in.",
+      "hi": "जस्ता डालने के लिए बीकर छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Zinc gives two electrons to each Cu²⁺ ion: Zn → Zn²⁺ + 2e⁻ (oxidation) and Cu²⁺ + 2e⁻ → Cu (reduction). Copper metal coats the zinc and the blue Cu²⁺ ions disappear. Zinc loses electrons more readily than copper, so this reaction goes on its own. In the reverse, copper metal in zinc sulphate, nothing happens.",
+      "hi": "जस्ता हर Cu²⁺ आयन को दो इलेक्ट्रॉन देता है: Zn → Zn²⁺ + 2e⁻ (उपचयन) और Cu²⁺ + 2e⁻ → Cu (अपचयन)। ताँबा धातु जस्ते पर चढ़ जाती है और नीले Cu²⁺ आयन ग़ायब होते हैं। जस्ता ताँबे से ज़्यादा आसानी से इलेक्ट्रॉन छोड़ता है, इसलिए यह अभिक्रिया अपने-आप होती है। उलटे में, ज़िंक सल्फ़ेट में ताँबा धातु, कुछ नहीं होता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In Zn + Cu²⁺ → Zn²⁺ + Cu, which species is the oxidising agent?",
+        "hi": "Zn + Cu²⁺ → Zn²⁺ + Cu में उपचायक कौन है?"
+       },
+       "options": [
+        "Cu²⁺",
+        "Zn",
+        "Zn²⁺"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cu²⁺ takes electrons from zinc, so it oxidises zinc and is itself reduced.",
+        "hi": "Cu²⁺ जस्ते से इलेक्ट्रॉन लेता है, इसलिए वह जस्ते को उपचयित करता है और ख़ुद अपचयित होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zinc gives electrons away; it is the reducing agent.",
+         "hi": "जस्ता इलेक्ट्रॉन देता है; यह अपचायक है।"
+        },
+        {
+         "en": "Zn²⁺ is a product; it has already been formed.",
+         "hi": "Zn²⁺ उत्पाद है; यह बन चुका है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does copper wire in zinc sulphate show no change?",
+        "hi": "ज़िंक सल्फ़ेट में ताँबे का तार कोई परिवर्तन क्यों नहीं दिखाता?"
+       },
+       "options": [
+        {
+         "en": "Copper gives electrons less readily than zinc",
+         "hi": "ताँबा जस्ते से कम आसानी से इलेक्ट्रॉन देता है"
+        },
+        {
+         "en": "The wire is too thin",
+         "hi": "तार बहुत पतला है"
+        },
+        {
+         "en": "Zinc sulphate has no ions",
+         "hi": "ज़िंक सल्फ़ेट में आयन नहीं हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Electron transfer runs from the metal that loses electrons more easily; Zn²⁺ cannot take electrons from copper.",
+        "hi": "इलेक्ट्रॉन उस धातु से जाते हैं जो उन्हें ज़्यादा आसानी से छोड़ती है; Zn²⁺ ताँबे से इलेक्ट्रॉन नहीं ले सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Thickness changes speed, not whether the reaction can happen.",
+         "hi": "मोटाई गति बदलती है, यह नहीं कि अभिक्रिया हो सकती है या नहीं।"
+        },
+        {
+         "en": "Zinc sulphate solution is full of Zn²⁺ and SO₄²⁻ ions.",
+         "hi": "ज़िंक सल्फ़ेट विलयन Zn²⁺ और SO₄²⁻ आयनों से भरा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker, pour in zinc sulphate and drop in the copper wire. Watch whether anything happens.",
+      "hi": "बीकर साफ़ करो, ज़िंक सल्फ़ेट डालो और ताँबे का तार डालो। देखो कि कुछ होता है या नहीं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch07-copper-silver",
+   "topic": "7.2",
+   "template": "beaker",
+   "title": {
+    "en": "Copper wire in silver nitrate",
+    "hi": "सिल्वर नाइट्रेट में ताँबे का तार"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "items": [
+     "copperwire",
+     "agno3"
+    ],
+    "start": [
+     "agno3"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Copper is put into colourless silver nitrate solution. What colour will the solution turn?",
+      "hi": "ताँबे को रंगहीन सिल्वर नाइट्रेट विलयन में रखा जाता है। विलयन का रंग क्या हो जाएगा?"
+     },
+     "options": [
+      {
+       "id": "blue",
+       "en": "Blue",
+       "hi": "नीला"
+      },
+      {
+       "id": "none",
+       "en": "It stays colourless",
+       "hi": "रंगहीन ही रहेगा"
+      },
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल"
+      }
+     ],
+     "answer": "blue"
+    },
+    {
+     "kind": "do",
+     "target": "pick:copperwire",
+     "expect": "pick:copperwire",
+     "say": {
+      "en": "Tap the copper wire.",
+      "hi": "ताँबे का तार छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Tap the beaker to put the wire in.",
+      "hi": "तार डालने के लिए बीकर छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each copper atom gives two electrons to two silver ions: Cu + 2Ag⁺ → Cu²⁺ + 2Ag. Shiny silver grows on the wire and blue Cu²⁺ ions appear in the solution. Copper reduced silver ions, just as zinc reduced copper ions. So the order of losing electrons is zinc, then copper, then silver.",
+      "hi": "हर ताँबे का परमाणु दो सिल्वर आयनों को दो इलेक्ट्रॉन देता है: Cu + 2Ag⁺ → Cu²⁺ + 2Ag। तार पर चमकीली चाँदी उगती है और विलयन में नीले Cu²⁺ आयन आते हैं। ताँबे ने सिल्वर आयनों को अपचयित किया, जैसे जस्ते ने कॉपर आयनों को किया था। तो इलेक्ट्रॉन छोड़ने का क्रम है: जस्ता, फिर ताँबा, फिर चाँदी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Will silver metal react with copper sulphate solution?",
+        "hi": "क्या चाँदी धातु कॉपर सल्फ़ेट विलयन से अभिक्रिया करेगी?"
+       },
+       "options": [
+        {
+         "en": "No",
+         "hi": "नहीं"
+        },
+        {
+         "en": "Yes, copper will deposit",
+         "hi": "हाँ, ताँबा जमेगा"
+        },
+        {
+         "en": "Yes, hydrogen will form",
+         "hi": "हाँ, हाइड्रोजन बनेगी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Silver loses electrons less readily than copper, so it cannot reduce Cu²⁺.",
+        "hi": "चाँदी ताँबे से कम आसानी से इलेक्ट्रॉन छोड़ती है, इसलिए वह Cu²⁺ को अपचयित नहीं कर सकती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would need silver to push electrons to Cu²⁺, the wrong way.",
+         "hi": "इसके लिए चाँदी को Cu²⁺ की ओर इलेक्ट्रॉन धकेलने होते, जो उलटी दिशा है।"
+        },
+        {
+         "en": "Silver is below hydrogen; it does not release hydrogen from water or acids.",
+         "hi": "चाँदी हाइड्रोजन से नीचे है; यह पानी या अम्लों से हाइड्रोजन नहीं निकालती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put the three metals, zinc, copper and silver, in order of how easily they give electrons. Explain each step with a beaker result.",
+      "hi": "तीनों धातुओं, जस्ता, ताँबा और चाँदी, को इलेक्ट्रॉन देने की आसानी के क्रम में लगाओ। हर क़दम को बीकर के परिणाम से समझाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch07-oxidation-numbers",
+   "topic": "7.3",
+   "template": "sort",
+   "title": {
+    "en": "Oxidation number of sulphur",
+    "hi": "सल्फ़र की ऑक्सीकरण संख्या"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "m2",
+      "label": {
+       "en": "−2",
+       "hi": "−2 (ऋण दो)"
+      }
+     },
+     {
+      "id": "z",
+      "label": {
+       "en": "0",
+       "hi": "0 (शून्य)"
+      }
+     },
+     {
+      "id": "p4",
+      "label": {
+       "en": "+4",
+       "hi": "+4 (धन चार)"
+      }
+     },
+     {
+      "id": "p6",
+      "label": {
+       "en": "+6",
+       "hi": "+6 (धन छह)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "h2s",
+      "text": {
+       "en": "H₂S",
+       "hi": "H₂S"
+      },
+      "bin": "m2",
+      "why": {
+       "en": "2(+1) + x = 0, so x = −2.",
+       "hi": "2(+1) + x = 0, तो x = −2।"
+      }
+     },
+     {
+      "id": "na2s",
+      "text": {
+       "en": "Na₂S",
+       "hi": "Na₂S"
+      },
+      "bin": "m2",
+      "why": {
+       "en": "2(+1) + x = 0, so x = −2.",
+       "hi": "2(+1) + x = 0, तो x = −2।"
+      }
+     },
+     {
+      "id": "s8",
+      "text": {
+       "en": "S₈ (sulphur powder)",
+       "hi": "S₈ (गंधक का चूर्ण)"
+      },
+      "bin": "z",
+      "why": {
+       "en": "Any element on its own has oxidation number 0.",
+       "hi": "अकेले किसी तत्व की ऑक्सीकरण संख्या 0 होती है।"
+      }
+     },
+     {
+      "id": "so2",
+      "text": {
+       "en": "SO₂",
+       "hi": "SO₂"
+      },
+      "bin": "p4",
+      "why": {
+       "en": "x + 2(−2) = 0, so x = +4.",
+       "hi": "x + 2(−2) = 0, तो x = +4।"
+      }
+     },
+     {
+      "id": "h2so3",
+      "text": {
+       "en": "H₂SO₃",
+       "hi": "H₂SO₃"
+      },
+      "bin": "p4",
+      "why": {
+       "en": "2(+1) + x + 3(−2) = 0, so x = +4.",
+       "hi": "2(+1) + x + 3(−2) = 0, तो x = +4।"
+      }
+     },
+     {
+      "id": "so3",
+      "text": {
+       "en": "SO₃",
+       "hi": "SO₃"
+      },
+      "bin": "p6",
+      "why": {
+       "en": "x + 3(−2) = 0, so x = +6.",
+       "hi": "x + 3(−2) = 0, तो x = +6।"
+      }
+     },
+     {
+      "id": "h2so4",
+      "text": {
+       "en": "H₂SO₄",
+       "hi": "H₂SO₄"
+      },
+      "bin": "p6",
+      "why": {
+       "en": "2(+1) + x + 4(−2) = 0, so x = +6.",
+       "hi": "2(+1) + x + 4(−2) = 0, तो x = +6।"
+      }
+     },
+     {
+      "id": "so4",
+      "text": {
+       "en": "SO₄²⁻ ion",
+       "hi": "SO₄²⁻ आयन"
+      },
+      "bin": "p6",
+      "why": {
+       "en": "x + 4(−2) = −2, so x = +6.",
+       "hi": "x + 4(−2) = −2, तो x = +6।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In H₂SO₄, hydrogen is +1 and oxygen is −2, and the molecule is neutral. What is sulphur?",
+      "hi": "H₂SO₄ में हाइड्रोजन +1 और ऑक्सीजन −2 है, और अणु उदासीन है। सल्फ़र क्या है?"
+     },
+     "options": [
+      {
+       "id": "6",
+       "en": "+6",
+       "hi": "+6 (धन छह)"
+      },
+      {
+       "id": "4",
+       "en": "+4",
+       "hi": "+4 (धन चार)"
+      },
+      {
+       "id": "m2",
+       "en": "−2",
+       "hi": "−2 (ऋण दो)"
+      }
+     ],
+     "answer": "6"
+    },
+    {
+     "kind": "do",
+     "target": "card:h2so4",
+     "expect": "correct:h2so4",
+     "say": {
+      "en": "Tap H₂SO₄, then its bin.",
+      "hi": "H₂SO₄ छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:s8",
+     "expect": "correct:s8",
+     "say": {
+      "en": "Now place S₈.",
+      "hi": "अब S₈ रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Oxidation number is the charge an atom would carry if every bond were fully ionic. The rules: an element alone is 0; hydrogen is usually +1, oxygen usually −2; the numbers in a neutral compound add up to 0, and in an ion to its charge. Sulphur goes from −2 in H₂S to +6 in H₂SO₄. An increase in oxidation number is oxidation; a decrease is reduction.",
+      "hi": "ऑक्सीकरण संख्या वह आवेश है जो किसी परमाणु पर होता अगर हर आबंध पूरी तरह आयनिक होता। नियम: अकेला तत्व 0 है; हाइड्रोजन आमतौर पर +1, ऑक्सीजन आमतौर पर −2; उदासीन यौगिक में संख्याओं का योग 0 और आयन में उसके आवेश के बराबर होता है। सल्फ़र H₂S में −2 से H₂SO₄ में +6 तक जाता है। ऑक्सीकरण संख्या बढ़ना उपचयन है; घटना अपचयन है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the oxidation number of manganese in KMnO₄?",
+        "hi": "KMnO₄ में मैंगनीज़ की ऑक्सीकरण संख्या क्या है?"
+       },
+       "options": [
+        "+7",
+        "+4",
+        "+2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "+1 + x + 4(−2) = 0, so x = +7.",
+        "hi": "+1 + x + 4(−2) = 0, तो x = +7।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "+4 is manganese in MnO₂.",
+         "hi": "+4, MnO₂ में मैंगनीज़ है।"
+        },
+        {
+         "en": "+2 is Mn²⁺, the product when permanganate is reduced in acid.",
+         "hi": "+2, Mn²⁺ है, अम्ल में परमैंगनेट के अपचयन से बना उत्पाद।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In H₂O₂, what is the oxidation number of oxygen?",
+        "hi": "H₂O₂ में ऑक्सीजन की ऑक्सीकरण संख्या क्या है?"
+       },
+       "options": [
+        "−1",
+        "−2",
+        "0"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2(+1) + 2x = 0, so x = −1. Peroxides are an exception to the −2 rule.",
+        "hi": "2(+1) + 2x = 0, तो x = −1। परॉक्साइड −2 वाले नियम के अपवाद हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "−2 is usual for oxygen, but in peroxides the O–O bond changes it.",
+         "hi": "−2 ऑक्सीजन के लिए सामान्य है, पर परॉक्साइड में O–O आबंध इसे बदल देता है।"
+        },
+        {
+         "en": "0 is oxygen as the element O₂.",
+         "hi": "0 तत्व के रूप में O₂ की ऑक्सीजन है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. Then work out sulphur in Na₂S₂O₃ (thiosulphate). Its average is +2.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। फिर Na₂S₂O₃ (थायोसल्फ़ेट) में सल्फ़र निकालो। इसका औसत +2 है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch07-redox-types",
+   "topic": "7.3",
+   "template": "sort",
+   "title": {
+    "en": "Four kinds of redox reaction",
+    "hi": "चार तरह की रेडॉक्स अभिक्रियाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "comb",
+      "label": {
+       "en": "Combination",
+       "hi": "संयोजन"
+      }
+     },
+     {
+      "id": "dec",
+      "label": {
+       "en": "Decomposition",
+       "hi": "वियोजन"
+      }
+     },
+     {
+      "id": "disp",
+      "label": {
+       "en": "Displacement",
+       "hi": "विस्थापन"
+      }
+     },
+     {
+      "id": "disprop",
+      "label": {
+       "en": "Disproportionation",
+       "hi": "असमानुपातन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c",
+      "text": {
+       "en": "C + O₂ → CO₂",
+       "hi": "C + O₂ → CO₂"
+      },
+      "bin": "comb",
+      "why": {
+       "en": "Two elements join into one compound.",
+       "hi": "दो तत्व जुड़कर एक यौगिक बनाते हैं।"
+      }
+     },
+     {
+      "id": "mgn",
+      "text": {
+       "en": "3Mg + N₂ → Mg₃N₂",
+       "hi": "3Mg + N₂ → Mg₃N₂"
+      },
+      "bin": "comb",
+      "why": {
+       "en": "Magnesium burning in nitrogen joins with it.",
+       "hi": "नाइट्रोजन में जलता मैग्नीशियम उससे जुड़ता है।"
+      }
+     },
+     {
+      "id": "h2o",
+      "text": {
+       "en": "2H₂O → 2H₂ + O₂ (electricity)",
+       "hi": "2H₂O → 2H₂ + O₂ (विद्युत)"
+      },
+      "bin": "dec",
+      "why": {
+       "en": "One compound breaks into two elements.",
+       "hi": "एक यौगिक टूटकर दो तत्व बनाता है।"
+      }
+     },
+     {
+      "id": "kclo3",
+      "text": {
+       "en": "2KClO₃ → 2KCl + 3O₂ (heat)",
+       "hi": "2KClO₃ → 2KCl + 3O₂ (ऊष्मा)"
+      },
+      "bin": "dec",
+      "why": {
+       "en": "One compound gives two products.",
+       "hi": "एक यौगिक से दो उत्पाद बनते हैं।"
+      }
+     },
+     {
+      "id": "zn",
+      "text": {
+       "en": "Zn + CuSO₄ → ZnSO₄ + Cu",
+       "hi": "Zn + CuSO₄ → ZnSO₄ + Cu"
+      },
+      "bin": "disp",
+      "why": {
+       "en": "A metal takes the place of another metal.",
+       "hi": "एक धातु दूसरी धातु की जगह लेती है।"
+      }
+     },
+     {
+      "id": "cl2",
+      "text": {
+       "en": "Cl₂ + 2KBr → 2KCl + Br₂",
+       "hi": "Cl₂ + 2KBr → 2KCl + Br₂"
+      },
+      "bin": "disp",
+      "why": {
+       "en": "A non-metal pushes out another: chlorine displaces bromine.",
+       "hi": "एक अधातु दूसरी को निकालती है: क्लोरीन ब्रोमीन को विस्थापित करती है।"
+      }
+     },
+     {
+      "id": "na",
+      "text": {
+       "en": "2Na + 2H₂O → 2NaOH + H₂",
+       "hi": "2Na + 2H₂O → 2NaOH + H₂"
+      },
+      "bin": "disp",
+      "why": {
+       "en": "Sodium displaces hydrogen from water.",
+       "hi": "सोडियम पानी से हाइड्रोजन को विस्थापित करता है।"
+      }
+     },
+     {
+      "id": "h2o2",
+      "text": {
+       "en": "2H₂O₂ → 2H₂O + O₂",
+       "hi": "2H₂O₂ → 2H₂O + O₂"
+      },
+      "bin": "disprop",
+      "why": {
+       "en": "Oxygen at −1 goes both up to 0 and down to −2.",
+       "hi": "−1 वाली ऑक्सीजन 0 तक ऊपर और −2 तक नीचे दोनों जाती है।"
+      }
+     },
+     {
+      "id": "cloh",
+      "text": {
+       "en": "Cl₂ + 2OH⁻ → ClO⁻ + Cl⁻ + H₂O",
+       "hi": "Cl₂ + 2OH⁻ → ClO⁻ + Cl⁻ + H₂O"
+      },
+      "bin": "disprop",
+      "why": {
+       "en": "Chlorine at 0 becomes +1 and −1 at the same time: this is how bleach is made.",
+       "hi": "0 वाली क्लोरीन एक साथ +1 और −1 बनती है: ऐसे ही ब्लीच बनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 2H₂O₂ → 2H₂O + O₂, the same element is both oxidised and reduced. Which kind is this?",
+      "hi": "2H₂O₂ → 2H₂O + O₂ में एक ही तत्व उपचयित भी होता है और अपचयित भी। यह किस तरह की है?"
+     },
+     "options": [
+      {
+       "id": "disprop",
+       "en": "Disproportionation",
+       "hi": "असमानुपातन"
+      },
+      {
+       "id": "dec",
+       "en": "Only decomposition",
+       "hi": "केवल वियोजन"
+      },
+      {
+       "id": "comb",
+       "en": "Combination",
+       "hi": "संयोजन"
+      }
+     ],
+     "answer": "disprop"
+    },
+    {
+     "kind": "do",
+     "target": "card:zn",
+     "expect": "correct:zn",
+     "say": {
+      "en": "Tap the zinc card, then its bin.",
+      "hi": "जस्ते वाला कार्ड छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:h2o2",
+     "expect": "correct:h2o2",
+     "say": {
+      "en": "Now place hydrogen peroxide.",
+      "hi": "अब हाइड्रोजन परॉक्साइड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All of these are redox, because some oxidation numbers change. Combination joins substances, decomposition breaks one apart, and displacement swaps an element in a compound for another. In disproportionation, one element in one oxidation state is oxidised and reduced at the same time. Fluorine never disproportionates, because it cannot have a positive oxidation number.",
+      "hi": "ये सब रेडॉक्स हैं, क्योंकि कुछ ऑक्सीकरण संख्याएँ बदलती हैं। संयोजन पदार्थों को जोड़ता है, वियोजन एक को तोड़ता है, और विस्थापन किसी यौगिक के एक तत्व को दूसरे से बदलता है। असमानुपातन में एक ही ऑक्सीकरण अवस्था का एक तत्व एक साथ उपचयित और अपचयित होता है। फ्लुओरीन कभी असमानुपातित नहीं होती, क्योंकि उसकी धनात्मक ऑक्सीकरण संख्या नहीं हो सकती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Is 2KClO₃ → 2KCl + 3O₂ a redox reaction?",
+        "hi": "क्या 2KClO₃ → 2KCl + 3O₂ रेडॉक्स अभिक्रिया है?"
+       },
+       "options": [
+        {
+         "en": "Yes: Cl goes from +5 to −1 and O from −2 to 0",
+         "hi": "हाँ: Cl +5 से −1 और O −2 से 0 जाता है"
+        },
+        {
+         "en": "No, it is only a decomposition",
+         "hi": "नहीं, यह केवल वियोजन है"
+        },
+        {
+         "en": "No oxidation numbers change",
+         "hi": "कोई ऑक्सीकरण संख्या नहीं बदलती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chlorine is reduced and oxygen is oxidised, so it is a redox decomposition.",
+        "hi": "क्लोरीन अपचयित और ऑक्सीजन उपचयित होती है, इसलिए यह रेडॉक्स वियोजन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A decomposition can also be redox, as here.",
+         "hi": "वियोजन भी रेडॉक्स हो सकता है, जैसे यहाँ।"
+        },
+        {
+         "en": "Work them out: Cl is +5 in KClO₃ and −1 in KCl.",
+         "hi": "इन्हें निकालो: KClO₃ में Cl +5 और KCl में −1 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. For each card, write the oxidation numbers that change.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर कार्ड के लिए बदलने वाली ऑक्सीकरण संख्याएँ लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch07-balancing",
+   "topic": "7.3",
+   "template": "sequence",
+   "title": {
+    "en": "Balancing by half-reactions",
+    "hi": "अर्ध-अभिक्रियाओं से संतुलन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "split",
+      "text": {
+       "en": "Write the oxidation and reduction half-reactions separately.",
+       "hi": "उपचयन और अपचयन की अर्ध-अभिक्रियाएँ अलग-अलग लिखो।"
+      }
+     },
+     {
+      "id": "atoms",
+      "text": {
+       "en": "Balance atoms other than O and H in each half.",
+       "hi": "हर आधे में O और H के अलावा परमाणु संतुलित करो।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Add H₂O to balance oxygen atoms.",
+       "hi": "ऑक्सीजन परमाणु संतुलित करने के लिए H₂O जोड़ो।"
+      }
+     },
+     {
+      "id": "hplus",
+      "text": {
+       "en": "Add H⁺ to balance hydrogen atoms (acidic solution).",
+       "hi": "हाइड्रोजन परमाणु संतुलित करने के लिए H⁺ जोड़ो (अम्लीय विलयन)।"
+      }
+     },
+     {
+      "id": "elec",
+      "text": {
+       "en": "Add electrons to balance the charge in each half.",
+       "hi": "हर आधे में आवेश संतुलित करने के लिए इलेक्ट्रॉन जोड़ो।"
+      }
+     },
+     {
+      "id": "mult",
+      "text": {
+       "en": "Multiply so both halves have the same number of electrons.",
+       "hi": "गुणा करो ताकि दोनों आधों में इलेक्ट्रॉन बराबर हों।"
+      }
+     },
+     {
+      "id": "add",
+      "text": {
+       "en": "Add the halves, cancel electrons, and check atoms and charges.",
+       "hi": "दोनों आधे जोड़ो, इलेक्ट्रॉन काटो, और परमाणु व आवेश जाँचो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For MnO₄⁻ + Fe²⁺ → Mn²⁺ + Fe³⁺ in acid, how many Fe²⁺ ions does one MnO₄⁻ need?",
+      "hi": "अम्ल में MnO₄⁻ + Fe²⁺ → Mn²⁺ + Fe³⁺ के लिए एक MnO₄⁻ को कितने Fe²⁺ आयन चाहिए?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "Five",
+       "hi": "पाँच"
+      },
+      {
+       "id": "1",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "2",
+       "en": "Two",
+       "hi": "दो"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "item:split",
+     "expect": "placed:split",
+     "say": {
+      "en": "Put the first step in place 1.",
+      "hi": "पहला चरण स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:atoms",
+     "expect": "placed:atoms",
+     "say": {
+      "en": "Put the next step in place 2.",
+      "hi": "अगला चरण स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the rest, then press Check.",
+      "hi": "बाकी को क्रम में लगाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For permanganate: MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O, and Fe²⁺ → Fe³⁺ + e⁻. To match five electrons, the iron half is multiplied by 5. Adding gives MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O. Both atoms and charges (+17 on each side) now balance.",
+      "hi": "परमैंगनेट के लिए: MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O, और Fe²⁺ → Fe³⁺ + e⁻। पाँच इलेक्ट्रॉन मिलाने के लिए आयरन वाले आधे को 5 से गुणा किया जाता है। जोड़ने पर MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O मिलता है। अब परमाणु और आवेश (दोनों ओर +17) दोनों संतुलित हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a basic solution, what is added at the end to remove H⁺?",
+        "hi": "क्षारीय विलयन में अंत में H⁺ हटाने के लिए क्या जोड़ा जाता है?"
+       },
+       "options": [
+        {
+         "en": "The same number of OH⁻ ions on both sides",
+         "hi": "दोनों ओर उतने ही OH⁻ आयन"
+        },
+        {
+         "en": "More electrons",
+         "hi": "और इलेक्ट्रॉन"
+        },
+        {
+         "en": "Extra oxygen gas",
+         "hi": "अतिरिक्त ऑक्सीजन गैस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "H⁺ + OH⁻ make H₂O, so adding OH⁻ to both sides turns H⁺ into water and keeps the equation balanced.",
+        "hi": "H⁺ + OH⁻ मिलकर H₂O बनाते हैं, इसलिए दोनों ओर OH⁻ जोड़ने से H⁺ पानी बन जाता है और समीकरण संतुलित रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Electrons are fixed by the oxidation number change; adding more would unbalance the charge.",
+         "hi": "इलेक्ट्रॉन ऑक्सीकरण संख्या के बदलाव से तय होते हैं; और जोड़ने से आवेश असंतुलित होगा।"
+        },
+        {
+         "en": "Oxygen atoms are balanced with water, not O₂ gas.",
+         "hi": "ऑक्सीजन परमाणु पानी से संतुलित होते हैं, O₂ गैस से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and order again. Then use the steps to balance Cr₂O₇²⁻ + Fe²⁺ → Cr³⁺ + Fe³⁺ in acid.",
+      "hi": "फिर से शुरू करो और दोबारा क्रम लगाओ। फिर इन चरणों से अम्ल में Cr₂O₇²⁻ + Fe²⁺ → Cr³⁺ + Fe³⁺ संतुलित करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch07-metals-acid",
+   "topic": "7.4",
+   "template": "beaker",
+   "title": {
+    "en": "Which metals push out hydrogen?",
+    "hi": "कौन-सी धातुएँ हाइड्रोजन निकालती हैं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "copperwire",
+     "mg",
+     "zinc",
+     "hcl"
+    ],
+    "start": [
+     "hcl"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Copper's standard electrode potential is +0.34 V, above hydrogen's 0 V. Will copper react with dilute hydrochloric acid?",
+      "hi": "ताँबे का मानक इलेक्ट्रोड विभव +0.34 V है, हाइड्रोजन के 0 V से ऊपर। क्या ताँबा तनु हाइड्रोक्लोरिक अम्ल से अभिक्रिया करेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, with bubbles",
+       "hi": "हाँ, बुलबुलों के साथ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "pick:copperwire",
+     "expect": "pick:copperwire",
+     "say": {
+      "en": "The beaker holds dilute HCl. Tap the copper wire.",
+      "hi": "बीकर में तनु HCl है। ताँबे का तार छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:copperwire",
+     "say": {
+      "en": "Tap the beaker to dip the copper in. Watch closely.",
+      "hi": "ताँबा डुबाने के लिए बीकर छुओ। ध्यान से देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:mg",
+     "expect": "pick:mg",
+     "say": {
+      "en": "Now tap the magnesium ribbon.",
+      "hi": "अब मैग्नीशियम का फ़ीता छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Add the magnesium to the same acid.",
+      "hi": "मैग्नीशियम को उसी अम्ल में डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A metal with a negative standard electrode potential gives electrons more easily than hydrogen, so it reduces H⁺ to hydrogen gas: Mg + 2H⁺ → Mg²⁺ + H₂. Magnesium (−2.37 V) reacts fast; zinc (−0.76 V) more slowly. Copper (+0.34 V) holds its electrons more tightly than hydrogen, so nothing happens. The electrochemical series lists metals in this order.",
+      "hi": "जिस धातु का मानक इलेक्ट्रोड विभव ऋणात्मक है, वह हाइड्रोजन से ज़्यादा आसानी से इलेक्ट्रॉन देती है, इसलिए वह H⁺ को हाइड्रोजन गैस में अपचयित करती है: Mg + 2H⁺ → Mg²⁺ + H₂। मैग्नीशियम (−2.37 V) तेज़ी से अभिक्रिया करता है; जस्ता (−0.76 V) धीरे। ताँबा (+0.34 V) अपने इलेक्ट्रॉन हाइड्रोजन से कसकर पकड़ता है, इसलिए कुछ नहीं होता। विद्युत-रासायनिक श्रेणी धातुओं को इसी क्रम में रखती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the strongest reducing agent among Mg, Zn and Cu?",
+        "hi": "Mg, Zn और Cu में सबसे प्रबल अपचायक कौन है?"
+       },
+       "options": [
+        "Mg",
+        "Zn",
+        "Cu"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The most negative E° (Mg, −2.37 V) means it gives electrons most readily.",
+        "hi": "सबसे ऋणात्मक E° (Mg, −2.37 V) का अर्थ है कि यह सबसे आसानी से इलेक्ट्रॉन देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zinc (−0.76 V) gives electrons less readily than magnesium.",
+         "hi": "जस्ता (−0.76 V) मैग्नीशियम से कम आसानी से इलेक्ट्रॉन देता है।"
+        },
+        {
+         "en": "Copper has a positive E°, so it is the weakest reducer of the three.",
+         "hi": "ताँबे का E° धनात्मक है, इसलिए यह तीनों में सबसे दुर्बल अपचायक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker, pour in fresh acid, and try zinc. Compare how fast the bubbles come with magnesium.",
+      "hi": "बीकर साफ़ करो, नया अम्ल डालो और जस्ता आज़माओ। मैग्नीशियम से तुलना करो कि बुलबुले कितनी तेज़ी से आते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech2-ch07-daniell-cell",
+   "topic": "7.4",
+   "template": "match",
+   "title": {
+    "en": "Inside the Daniell cell",
+    "hi": "डेनियल सेल के अंदर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "zn",
+      "left": {
+       "en": "Zinc rod in ZnSO₄",
+       "hi": "ZnSO₄ में जस्ते की छड़"
+      },
+      "right": {
+       "en": "Anode: Zn → Zn²⁺ + 2e⁻ (oxidation)",
+       "hi": "ऐनोड: Zn → Zn²⁺ + 2e⁻ (उपचयन)"
+      }
+     },
+     {
+      "id": "cu",
+      "left": {
+       "en": "Copper rod in CuSO₄",
+       "hi": "CuSO₄ में ताँबे की छड़"
+      },
+      "right": {
+       "en": "Cathode: Cu²⁺ + 2e⁻ → Cu (reduction)",
+       "hi": "कैथोड: Cu²⁺ + 2e⁻ → Cu (अपचयन)"
+      }
+     },
+     {
+      "id": "wire",
+      "left": {
+       "en": "Electrons in the outer wire",
+       "hi": "बाहरी तार में इलेक्ट्रॉन"
+      },
+      "right": {
+       "en": "Flow from zinc to copper",
+       "hi": "जस्ते से ताँबे की ओर बहते हैं"
+      }
+     },
+     {
+      "id": "bridge",
+      "left": {
+       "en": "Salt bridge",
+       "hi": "लवण सेतु"
+      },
+      "right": {
+       "en": "Lets ions move so both solutions stay neutral",
+       "hi": "आयनों को चलने देता है ताकि दोनों विलयन उदासीन रहें"
+      }
+     },
+     {
+      "id": "volt",
+      "left": {
+       "en": "Cell voltage at standard conditions",
+       "hi": "मानक परिस्थितियों में सेल वोल्टता"
+      },
+      "right": {
+       "en": "About 1.10 V",
+       "hi": "लगभग 1.10 V"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the Daniell cell, which rod slowly gets thinner?",
+      "hi": "डेनियल सेल में कौन-सी छड़ धीरे-धीरे पतली होती है?"
+     },
+     "options": [
+      {
+       "id": "zn",
+       "en": "Zinc, because its atoms go into solution as ions",
+       "hi": "जस्ता, क्योंकि उसके परमाणु आयन बनकर विलयन में जाते हैं"
+      },
+      {
+       "id": "cu",
+       "en": "Copper",
+       "hi": "ताँबा"
+      }
+     ],
+     "answer": "zn"
+    },
+    {
+     "kind": "do",
+     "target": "left:zn",
+     "expect": "matched:zn",
+     "say": {
+      "en": "Match the zinc rod with what happens there.",
+      "hi": "जस्ते की छड़ को वहाँ होने वाली क्रिया से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:wire",
+     "expect": "matched:wire",
+     "say": {
+      "en": "Match the electrons in the wire.",
+      "hi": "तार के इलेक्ट्रॉनों को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाकी मिलाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Daniell cell runs the zinc–copper reaction with the two halves kept apart, so the electrons travel through a wire and can do work, like lighting a bulb. Oxidation at the zinc anode releases electrons; reduction at the copper cathode uses them. The salt bridge carries ions to stop charge building up. The voltage, 1.10 V, is the difference between the two electrode potentials: 0.34 − (−0.76).",
+      "hi": "डेनियल सेल जस्ता–ताँबा अभिक्रिया को दोनों आधे अलग रखकर चलाता है, ताकि इलेक्ट्रॉन तार से होकर जाएँ और कार्य करें, जैसे बल्ब जलाना। जस्ते के ऐनोड पर उपचयन इलेक्ट्रॉन छोड़ता है; ताँबे के कैथोड पर अपचयन उन्हें इस्तेमाल करता है। लवण सेतु आयन ले जाकर आवेश जमा होने से रोकता है। वोल्टता, 1.10 V, दोनों इलेक्ट्रोड विभवों का अंतर है: 0.34 − (−0.76)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What happens if the salt bridge is removed?",
+        "hi": "लवण सेतु हटा दिया जाए तो क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "The current stops",
+         "hi": "धारा रुक जाती है"
+        },
+        {
+         "en": "The voltage doubles",
+         "hi": "वोल्टता दुगुनी हो जाती है"
+        },
+        {
+         "en": "Copper starts to dissolve",
+         "hi": "ताँबा घुलने लगता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without a path for ions, charge builds up in each beaker at once and the electron flow stops.",
+        "hi": "आयनों के रास्ते के बिना हर बीकर में तुरंत आवेश जमा होता है और इलेक्ट्रॉन प्रवाह रुक जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Removing the bridge breaks the circuit; it cannot raise the voltage.",
+         "hi": "सेतु हटाने से परिपथ टूटता है; इससे वोल्टता नहीं बढ़ सकती।"
+        },
+        {
+         "en": "The reaction direction is set by the metals, not by the bridge.",
+         "hi": "अभिक्रिया की दिशा धातुओं से तय होती है, सेतु से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and match again. Then work out the voltage of a cell made from magnesium (−2.37 V) and copper (+0.34 V).",
+      "hi": "फिर से शुरू करो और दोबारा मिलाओ। फिर मैग्नीशियम (−2.37 V) और ताँबे (+0.34 V) से बने सेल की वोल्टता निकालो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Hook of the chapter",
+   "shows": "Three separate photos: a rusting iron gate in the monsoon, a cut apple turning brown on a plate, a coal angithi glowing",
+   "view": "Eye level, natural light",
+   "right": "Rust reddish-brown; apple browning only on the cut face",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.2",
+   "use": "Zinc in copper sulphate",
+   "shows": "Four frames of a zinc granule in blue copper sulphate solution in a beaker: at the start, after 5 minutes, 30 minutes and 2 hours",
+   "view": "Same camera, same light, macro on the granule",
+   "right": "Reddish-brown copper coat growing; blue colour fading frame by frame",
+   "avoid": "Stirring rods, hands, changing background"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "7.2",
+   "use": "Silver tree on copper wire",
+   "shows": "Macro of a coiled copper wire in silver nitrate solution with shiny grey silver crystals growing on it and the solution turned pale blue",
+   "view": "Macro, side light, black background",
+   "right": "Silver crystals needle-like and metallic; solution pale blue",
+   "avoid": "Labels; gloves missing in any hand shown"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "7.4",
+   "use": "Daniell cell for the match lab",
+   "shows": "A realistic render of two beakers, zinc rod in clear ZnSO₄ and copper rod in blue CuSO₄, joined by a U-shaped salt bridge and a wire through a small voltmeter",
+   "view": "Three-quarter view, light background",
+   "right": "CuSO₄ blue, ZnSO₄ colourless; salt bridge dips into both",
+   "avoid": "Labels, numbers on the voltmeter, signs"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "7.3.3",
+   "use": "Permanganate titration end point",
+   "shows": "Three frames of a conical flask under a burette: colourless iron(II) solution, purple drops vanishing on swirling, a lasting pale pink at the end point",
+   "view": "Same camera and light",
+   "right": "Pale pink, not deep purple, at the end point",
+   "avoid": "Labels on the burette; spilled liquid"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "7.4",
+   "use": "Metals for the hydrogen test",
+   "shows": "Separate cut-outs: a coil of copper wire, a strip of zinc, a short magnesium ribbon, a small silver coin-shaped disc",
+   "view": "Same scale, slightly above, top-left light",
+   "right": "True metal colours: copper reddish, zinc grey-blue, magnesium bright silver",
+   "avoid": "Real currency, logos"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "7.2",
+   "use": "Library images reused",
+   "shows": "Library images LIB-CHEM-zinc-granules, LIB-CHEM-copper-sulphate, LIB-CHEM-magnesium-ribbon and LIB-LAB-beaker-250ml (shared cut-outs; do not make again)",
+   "view": "As in the library",
+   "right": "As in the library",
+   "avoid": "Making new copies"
+  }
+ ]
+}

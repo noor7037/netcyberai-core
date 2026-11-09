@@ -1,0 +1,862 @@
+{
+ "chapter_key": "u.c08.sanskrit.hsde1.ch08",
+ "class": 8,
+ "subject_id": "sanskrit",
+ "title": "पश्यत कोणमैशान्यं भारतस्य मनोहरम्",
+ "source": "https://ncert.nic.in/textbook.php?hsde1=0-16",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "The north-eastern corner of India: eight states and their landscape",
+   "labs": [
+    "c08-sanskrit-hsde1-ch08-map"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Seven sisters and one brother: the riddle verse",
+   "labs": [
+    "c08-sanskrit-hsde1-ch08-sisters"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "The ten directions (दश दिशः)",
+   "labs": [
+    "c08-sanskrit-hsde1-ch08-directions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "People, crafts and products of the north-east",
+   "labs": [],
+   "why_no_lab": "Tribes, bamboo and cane craft, tea and handloom are best met through photographs and short films, not tapping."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-sanskrit-hsde1-ch08-map",
+   "topic": "8.1",
+   "template": "map",
+   "title": {
+    "en": "Find the north-east states",
+    "hi": "पूर्वोत्तर के राज्य ढूँढो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "states",
+     "rivers"
+    ],
+    "task": "locate",
+    "places": [
+     "assam",
+     "sikkim",
+     "mizoram",
+     "arunachal-pradesh"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:states",
+     "expect": "layer:states",
+     "say": {
+      "en": "Switch on the States layer.",
+      "hi": "राज्यों वाली परत चालू करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where in India do the eight sister states lie?",
+      "hi": "आठ बहन-राज्य भारत में कहाँ हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "In the far north-east",
+       "hi": "सुदूर उत्तर-पूर्व में"
+      },
+      {
+       "id": "b",
+       "en": "In the south-west",
+       "hi": "दक्षिण-पश्चिम में"
+      },
+      {
+       "id": "c",
+       "en": "In the middle of the country",
+       "hi": "देश के बीच में"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "located:assam",
+     "say": {
+      "en": "Drop a pin where you think Assam is, then press Check.",
+      "hi": "जहाँ तुम्हें असम लगता है वहाँ पिन गिराओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "located:sikkim",
+     "say": {
+      "en": "Now find Sikkim, the little brother. Drop a pin and press Check.",
+      "hi": "अब छोटे भाई सिक्किम को ढूँढो। पिन गिराओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Assam, Arunachal Pradesh, Manipur, Meghalaya, Mizoram, Nagaland, Tripura and Sikkim lie in the north-east corner of India, joined to the rest of the country by a narrow strip of land. The Brahmaputra and other rivers flow through green hills and valleys. The lesson calls this corner ऐशान्यकोणः, the north-eastern corner, and says it is as lovely as a bunch of flowers on the tree of Bharat.",
+      "hi": "असम, अरुणाचल प्रदेश, मणिपुर, मेघालय, मिज़ोरम, नागालैंड, त्रिपुरा और सिक्किम भारत के उत्तर-पूर्वी कोने में हैं और एक पतली पट्टी से देश के बाकी भाग से जुड़े हैं। ब्रह्मपुत्र और अन्य नदियाँ हरी पहाड़ियों और घाटियों से बहती हैं। पाठ इस कोने को ऐशान्यकोणः कहता है और कहता है कि यह भारत-वृक्ष पर फूलों के गुच्छे जैसा सुंदर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is in the north-east corner of India?",
+        "hi": "इनमें से कौन-सा भारत के उत्तर-पूर्वी कोने में है?"
+       },
+       "options": [
+        {
+         "en": "Mizoram",
+         "hi": "मिज़ोरम"
+        },
+        {
+         "en": "Kerala",
+         "hi": "केरल"
+        },
+        {
+         "en": "Rajasthan",
+         "hi": "राजस्थान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mizoram is one of the eight north-eastern states.",
+        "hi": "मिज़ोरम आठ पूर्वोत्तर राज्यों में से एक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Kerala is in the far south-west of India.",
+         "hi": "केरल भारत के सुदूर दक्षिण-पश्चिम में है।"
+        },
+        {
+         "en": "Rajasthan is in the west of India, with the desert.",
+         "hi": "राजस्थान भारत के पश्चिम में है, जहाँ मरुस्थल है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which river flows through Assam?",
+        "hi": "असम से कौन-सी नदी बहती है?"
+       },
+       "options": [
+        {
+         "en": "Brahmaputra",
+         "hi": "ब्रह्मपुत्र"
+        },
+        {
+         "en": "Godavari",
+         "hi": "गोदावरी"
+        },
+        {
+         "en": "Kaveri",
+         "hi": "कावेरी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Brahmaputra enters India in Arunachal Pradesh and flows through Assam.",
+        "hi": "ब्रह्मपुत्र अरुणाचल प्रदेश से भारत में आती है और असम से बहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Godavari flows in the Deccan in the south.",
+         "hi": "गोदावरी दक्षिण के पठार में बहती है।"
+        },
+        {
+         "en": "The Kaveri flows in the far south.",
+         "hi": "कावेरी सुदूर दक्षिण में बहती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the Rivers layer on and off. Follow the Brahmaputra with your finger from the north-east hills down through Assam.",
+      "hi": "नदियों वाली परत चालू-बंद करो। उत्तर-पूर्व की पहाड़ियों से असम तक ब्रह्मपुत्र को उँगली से देखते जाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-sanskrit-hsde1-ch08-directions",
+   "topic": "8.3",
+   "template": "match",
+   "title": {
+    "en": "The ten directions",
+    "hi": "दस दिशाएँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "purva",
+      "left": {
+       "en": "पूर्वा",
+       "hi": "पूर्वा"
+      },
+      "right": {
+       "en": "East",
+       "hi": "पूर्व"
+      },
+      "why": {
+       "en": "पूर्वा is east, where the sun rises.",
+       "hi": "पूर्वा पूर्व दिशा है, जहाँ सूर्य उगता है।"
+      }
+     },
+     {
+      "id": "agneyi",
+      "left": {
+       "en": "आग्नेयी",
+       "hi": "आग्नेयी"
+      },
+      "right": {
+       "en": "South-East",
+       "hi": "दक्षिण-पूर्व"
+      },
+      "why": {
+       "en": "आग्नेयी lies between east and south.",
+       "hi": "आग्नेयी पूर्व और दक्षिण के बीच है।"
+      }
+     },
+     {
+      "id": "dakshina",
+      "left": {
+       "en": "दक्षिणा",
+       "hi": "दक्षिणा"
+      },
+      "right": {
+       "en": "South",
+       "hi": "दक्षिण"
+      },
+      "why": {
+       "en": "दक्षिणा is south.",
+       "hi": "दक्षिणा दक्षिण दिशा है।"
+      }
+     },
+     {
+      "id": "nairriti",
+      "left": {
+       "en": "नैर्ऋती",
+       "hi": "नैर्ऋती"
+      },
+      "right": {
+       "en": "South-West",
+       "hi": "दक्षिण-पश्चिम"
+      },
+      "why": {
+       "en": "नैर्ऋती lies between south and west.",
+       "hi": "नैर्ऋती दक्षिण और पश्चिम के बीच है।"
+      }
+     },
+     {
+      "id": "paschima",
+      "left": {
+       "en": "पश्चिमा",
+       "hi": "पश्चिमा"
+      },
+      "right": {
+       "en": "West",
+       "hi": "पश्चिम"
+      },
+      "why": {
+       "en": "पश्चिमा is west, where the sun sets.",
+       "hi": "पश्चिमा पश्चिम दिशा है, जहाँ सूर्य अस्त होता है।"
+      }
+     },
+     {
+      "id": "vayavi",
+      "left": {
+       "en": "वायवी",
+       "hi": "वायवी"
+      },
+      "right": {
+       "en": "North-West",
+       "hi": "उत्तर-पश्चिम"
+      },
+      "why": {
+       "en": "वायवी lies between west and north.",
+       "hi": "वायवी पश्चिम और उत्तर के बीच है।"
+      }
+     },
+     {
+      "id": "uttara",
+      "left": {
+       "en": "उत्तरा",
+       "hi": "उत्तरा"
+      },
+      "right": {
+       "en": "North",
+       "hi": "उत्तर"
+      },
+      "why": {
+       "en": "उत्तरा is north.",
+       "hi": "उत्तरा उत्तर दिशा है।"
+      }
+     },
+     {
+      "id": "ishani",
+      "left": {
+       "en": "ईशानी",
+       "hi": "ईशानी"
+      },
+      "right": {
+       "en": "North-East",
+       "hi": "उत्तर-पूर्व"
+      },
+      "why": {
+       "en": "ईशानी lies between north and east. The lesson's ऐशान्य corner comes from this word.",
+       "hi": "ईशानी उत्तर और पूर्व के बीच है। पाठ का ऐशान्य कोण इसी शब्द से बना है।"
+      }
+     },
+     {
+      "id": "urdhva",
+      "left": {
+       "en": "ऊर्ध्वा",
+       "hi": "ऊर्ध्वा"
+      },
+      "right": {
+       "en": "Up, above",
+       "hi": "ऊपर"
+      },
+      "why": {
+       "en": "ऊर्ध्वा is upward, towards the sky.",
+       "hi": "ऊर्ध्वा ऊपर की ओर, आकाश की तरफ़ है।"
+      }
+     },
+     {
+      "id": "adhah",
+      "left": {
+       "en": "अधः",
+       "hi": "अधः"
+      },
+      "right": {
+       "en": "Down, below",
+       "hi": "नीचे"
+      },
+      "why": {
+       "en": "अधः is downward, towards the earth.",
+       "hi": "अधः नीचे की ओर, धरती की तरफ़ है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ishani",
+     "expect": "matched:ishani",
+     "say": {
+      "en": "Tap ईशानी, then tap its direction.",
+      "hi": "ईशानी छुओ, फिर उसकी दिशा चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The lesson calls India's north-east corner ऐशान्यकोणः. Which direction word is it made from?",
+      "hi": "पाठ भारत के उत्तर-पूर्वी कोने को ऐशान्यकोणः कहता है। यह किस दिशा के नाम से बना है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "ईशानी",
+       "hi": "ईशानी"
+      },
+      {
+       "id": "b",
+       "en": "आग्नेयी",
+       "hi": "आग्नेयी"
+      },
+      {
+       "id": "c",
+       "en": "नैर्ऋती",
+       "hi": "नैर्ऋती"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:purva",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the other directions.",
+      "hi": "अब बाकी सभी दिशाएँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sanskrit counts ten directions, दश दिशः: four main ones, four corners between them, and up and down. The east is पूर्वा, the south is दक्षिणा, the west is पश्चिमा and the north is उत्तरा. The corners are आग्नेयी (south-east), नैर्ऋती (south-west), वायवी (north-west) and ईशानी (north-east). Above is ऊर्ध्वा and below is अधः.",
+      "hi": "संस्कृत में दस दिशाएँ गिनी जाती हैं, दश दिशः: चार मुख्य दिशाएँ, उनके बीच के चार कोण, और ऊपर-नीचे। पूर्व पूर्वा है, दक्षिण दक्षिणा, पश्चिम पश्चिमा और उत्तर उत्तरा। कोण हैं आग्नेयी (दक्षिण-पूर्व), नैर्ऋती (दक्षिण-पश्चिम), वायवी (उत्तर-पश्चिम) और ईशानी (उत्तर-पूर्व)। ऊपर ऊर्ध्वा है और नीचे अधः।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which direction is आग्नेयी?",
+        "hi": "आग्नेयी कौन-सी दिशा है?"
+       },
+       "options": [
+        {
+         "en": "South-East",
+         "hi": "दक्षिण-पूर्व"
+        },
+        {
+         "en": "North-East",
+         "hi": "उत्तर-पूर्व"
+        },
+        {
+         "en": "North-West",
+         "hi": "उत्तर-पश्चिम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "आग्नेयी lies between पूर्वा (east) and दक्षिणा (south).",
+        "hi": "आग्नेयी पूर्वा (पूर्व) और दक्षिणा (दक्षिण) के बीच है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "North-East is ईशानी.",
+         "hi": "उत्तर-पूर्व ईशानी है।"
+        },
+        {
+         "en": "North-West is वायवी.",
+         "hi": "उत्तर-पश्चिम वायवी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which two words mean \"up\" and \"down\"?",
+        "hi": "\"ऊपर\" और \"नीचे\" के लिए कौन-से दो शब्द हैं?"
+       },
+       "options": [
+        {
+         "en": "ऊर्ध्वा and अधः",
+         "hi": "ऊर्ध्वा and अधः"
+        },
+        {
+         "en": "पूर्वा and पश्चिमा",
+         "hi": "पूर्वा and पश्चिमा"
+        },
+        {
+         "en": "उत्तरा and दक्षिणा",
+         "hi": "उत्तरा and दक्षिणा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ऊर्ध्वा is up and अधः is down, which make the ninth and tenth directions.",
+        "hi": "ऊर्ध्वा ऊपर और अधः नीचे है, जो नौवीं और दसवीं दिशाएँ हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "पूर्वा and पश्चिमा are east and west.",
+         "hi": "पूर्वा और पश्चिमा पूर्व और पश्चिम हैं।"
+        },
+        {
+         "en": "उत्तरा and दक्षिणा are north and south.",
+         "hi": "उत्तरा और दक्षिणा उत्तर और दक्षिण हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Stand facing the sunrise. Point to पूर्वा, then turn to your right to find दक्षिणा. Can you point to all ten?",
+      "hi": "सूर्योदय की ओर मुँह करके खड़े हो जाओ। पूर्वा की ओर इशारा करो, फिर दाईं ओर मुड़कर दक्षिणा ढूँढो। क्या तुम सभी दस दिशाओं की ओर इशारा कर सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-sanskrit-hsde1-ch08-sisters",
+   "topic": "8.2",
+   "template": "sort",
+   "title": {
+    "en": "Seven sisters and a little brother",
+    "hi": "सात बहनें और छोटा भाई"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "a2",
+      "label": {
+       "en": "Start with अ: the first two",
+       "hi": "अ से शुरू: पहले दो"
+      }
+     },
+     {
+      "id": "m3",
+      "label": {
+       "en": "Start with म: the next three",
+       "hi": "म से शुरू: अगले तीन"
+      }
+     },
+     {
+      "id": "nt",
+      "label": {
+       "en": "Start with न and त्रि: two",
+       "hi": "न और त्रि से शुरू: दो"
+      }
+     },
+     {
+      "id": "br",
+      "label": {
+       "en": "The little brother",
+       "hi": "छोटा भाई"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "arun",
+      "text": {
+       "en": "अरुणाचलप्रदेशः",
+       "hi": "अरुणाचलप्रदेशः"
+      },
+      "bin": "a2",
+      "why": {
+       "en": "It begins with अ: one of the two states of \"अद्वयम्\".",
+       "hi": "यह अ से शुरू होता है: \"अद्वयम्\" के दो राज्यों में से एक।"
+      }
+     },
+     {
+      "id": "assam",
+      "text": {
+       "en": "असमः",
+       "hi": "असमः"
+      },
+      "bin": "a2",
+      "why": {
+       "en": "It begins with अ: the second of the two states of \"अद्वयम्\".",
+       "hi": "यह अ से शुरू होता है: \"अद्वयम्\" का दूसरा राज्य।"
+      }
+     },
+     {
+      "id": "mani",
+      "text": {
+       "en": "मणिपुरम्",
+       "hi": "मणिपुरम्"
+      },
+      "bin": "m3",
+      "why": {
+       "en": "It begins with म: one of the three states of \"मत्रयम्\".",
+       "hi": "यह म से शुरू होता है: \"मत्रयम्\" के तीन राज्यों में से एक।"
+      }
+     },
+     {
+      "id": "mizo",
+      "text": {
+       "en": "मिजोरमः",
+       "hi": "मिजोरमः"
+      },
+      "bin": "m3",
+      "why": {
+       "en": "It begins with म: one of the three states of \"मत्रयम्\".",
+       "hi": "यह म से शुरू होता है: \"मत्रयम्\" के तीन राज्यों में से एक।"
+      }
+     },
+     {
+      "id": "megh",
+      "text": {
+       "en": "मेघालयः",
+       "hi": "मेघालयः"
+      },
+      "bin": "m3",
+      "why": {
+       "en": "It begins with म: one of the three states of \"मत्रयम्\".",
+       "hi": "यह म से शुरू होता है: \"मत्रयम्\" के तीन राज्यों में से एक।"
+      }
+     },
+     {
+      "id": "naga",
+      "text": {
+       "en": "नागालैण्डम्",
+       "hi": "नागालैण्डम्"
+      },
+      "bin": "nt",
+      "why": {
+       "en": "It begins with न: part of \"न-त्रि-युक्तम्\".",
+       "hi": "यह न से शुरू होता है: \"न-त्रि-युक्तम्\" का भाग।"
+      }
+     },
+     {
+      "id": "tri",
+      "text": {
+       "en": "त्रिपुरा",
+       "hi": "त्रिपुरा"
+      },
+      "bin": "nt",
+      "why": {
+       "en": "It begins with त्रि: part of \"न-त्रि-युक्तम्\".",
+       "hi": "यह त्रि से शुरू होता है: \"न-त्रि-युक्तम्\" का भाग।"
+      }
+     },
+     {
+      "id": "sik",
+      "text": {
+       "en": "सिक्किमः",
+       "hi": "सिक्किमः"
+      },
+      "bin": "br",
+      "why": {
+       "en": "Sikkim is the smallest of the eight, so it is the little brother who joins the seven sisters.",
+       "hi": "सिक्किम आठों में सबसे छोटा है, इसलिए वह सात बहनों के साथ जुड़ने वाला छोटा भाई है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:assam",
+     "expect": "placed:assam",
+     "say": {
+      "en": "Tap the card असमः, then tap its group.",
+      "hi": "कार्ड असमः छुओ, फिर उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The riddle says \"अद्वयम्\": two states start with अ. Which one is a state of that pair?",
+      "hi": "पहेली कहती है \"अद्वयम्\": दो राज्य अ से शुरू होते हैं। उस जोड़ी का राज्य कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Arunachal Pradesh",
+       "hi": "अरुणाचल प्रदेश"
+      },
+      {
+       "id": "b",
+       "en": "Sikkim",
+       "hi": "सिक्किम"
+      },
+      {
+       "id": "c",
+       "en": "Tripura",
+       "hi": "त्रिपुरा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Put every card in a group, then press Check.",
+      "hi": "सारे कार्ड किसी समूह में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The lesson gives a clever Sanskrit riddle to remember the sisters: अद्वयम् (two with अ), मत्रयम् (three with म), and न-त्रि-युक्तं तथाद्वयम् (two more with न and त्रि). That makes seven sisters. Tiny Sikkim joins them as the little brother, लघुः भ्राता. Together they are known as सप्तभगिन्यः एकः भ्राता च.",
+      "hi": "पाठ सात बहनों को याद रखने के लिए एक चतुर संस्कृत पहेली देता है: अद्वयम् (अ वाले दो), मत्रयम् (म वाले तीन), और न-त्रि-युक्तं तथाद्वयम् (न और त्रि वाले दो और)। ये सात बहनें हुईं। छोटा-सा सिक्किम उनके साथ लघुः भ्राता यानी छोटे भाई के रूप में जुड़ता है। सब मिलकर सप्तभगिन्यः एकः भ्राता च कहलाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many sisters and how many brothers are there?",
+        "hi": "कितनी बहनें और कितने भाई हैं?"
+       },
+       "options": [
+        {
+         "en": "Seven sisters and one brother",
+         "hi": "सात बहनें और एक भाई"
+        },
+        {
+         "en": "Eight sisters and no brother",
+         "hi": "आठ बहनें और कोई भाई नहीं"
+        },
+        {
+         "en": "Six sisters and two brothers",
+         "hi": "छह बहनें और दो भाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "सप्तभगिन्यः means seven sisters and एकः भ्राता means one brother, Sikkim.",
+        "hi": "सप्तभगिन्यः का अर्थ सात बहनें है और एकः भ्राता का अर्थ एक भाई, यानी सिक्किम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There are eight states in all, but one of them is the brother.",
+         "hi": "कुल आठ राज्य हैं, पर उनमें से एक भाई है।"
+        },
+        {
+         "en": "The riddle counts 2 + 3 + 2 = 7 sisters, plus 1 brother.",
+         "hi": "पहेली में 2 + 3 + 2 = 7 बहनें हैं, और 1 भाई।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which state is the \"little brother\"?",
+        "hi": "कौन-सा राज्य \"छोटा भाई\" है?"
+       },
+       "options": [
+        {
+         "en": "Sikkim",
+         "hi": "सिक्किम"
+        },
+        {
+         "en": "Assam",
+         "hi": "असम"
+        },
+        {
+         "en": "Mizoram",
+         "hi": "मिज़ोरम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "सिक्किमः is the लघुः भ्राता, the little brother of the seven sisters.",
+        "hi": "सिक्किमः सात बहनों का लघुः भ्राता, यानी छोटा भाई है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Assam is one of the sisters, the first of the अ pair.",
+         "hi": "असम बहनों में से एक है, अ वाली जोड़ी का दूसरा सदस्य।"
+        },
+        {
+         "en": "Mizoram is one of the sisters, the second of the म group.",
+         "hi": "मिज़ोरम बहनों में से एक है, म वाले समूह का सदस्य।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say the riddle slowly with a friend: अद्वयम्, मत्रयम्, न-त्रि-युक्तम्. Count on your fingers 2, 3, 2. Can you name all seven sisters?",
+      "hi": "मित्र के साथ पहेली धीरे-धीरे बोलो: अद्वयम्, मत्रयम्, न-त्रि-युक्तम्। उँगलियों पर 2, 3, 2 गिनो। क्या तुम सातों बहनों के नाम बता सकते हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "MAP",
+   "topic": "8.1",
+   "use": "The north-east corner as terrain",
+   "shows": "A relief map of north-east India: the Brahmaputra valley in green, hills in brown, the Himalayan edge in white, no names or borders",
+   "view": "16:9, north up, the Siliguri neck visible",
+   "right": "Rivers dark blue, hills rising smoothly, correct shape of the region",
+   "avoid": "State borders, labels, symbols"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Green hills of Assam",
+   "shows": "A tea garden in Assam in the morning mist, rows of bushes curving over a hill, a few pluckers far away with baskets",
+   "view": "Wide, from a slope above",
+   "right": "Real tea rows, soft mist, workers small and facing away",
+   "avoid": "Faces, brand names on packets"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Living roots of Meghalaya",
+   "shows": "A living root bridge made from rubber-tree roots over a clear stream in a rain forest",
+   "view": "Eye level from the bank",
+   "right": "Real roots woven in a natural arch, wet green light",
+   "avoid": "Tourists in front, signboards"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Sikkim and the snow peaks",
+   "shows": "Kangchenjunga glowing pink at sunrise above a green valley and clouds, seen from Sikkim",
+   "view": "Wide, telephoto compression",
+   "right": "Correct peak shape and pink-gold alpine light",
+   "avoid": "Hotels, text, aircraft"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "Bamboo and cane craft",
+   "shows": "A craftsperson's hands weaving a bamboo basket, other finished baskets and mats behind",
+   "view": "Close on hands, shallow depth",
+   "right": "Fresh bamboo strips and a half-woven pattern",
+   "avoid": "Faces, price boards with writing"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "Handloom of the north-east",
+   "shows": "Hands passing a shuttle on a wooden handloom weaving a bright striped shawl",
+   "view": "Close, top-left light",
+   "right": "Colourful thread, loom parts clear",
+   "avoid": "Faces, labels, machine-made cloth"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "8.3",
+   "use": "Base for the ten directions",
+   "shows": "A compass rose with eight arrows around a centre plus a vertical arrow up and one down, all blank",
+   "view": "Flat, white background",
+   "right": "Eight equal-spaced arrows, two vertical arrows clearly marked by shape",
+   "avoid": "Any letters or words"
+  }
+ ]
+}

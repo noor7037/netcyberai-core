@@ -1,0 +1,589 @@
+{
+ "chapter_key": "u.c03.hindi.chve1.ch18",
+ "class": 3,
+ "subject_id": "hindi",
+ "title": "We are many yet one (हम अनेक किंतु एक)",
+ "source": "https://ncert.nic.in/textbook.php?chve1=0-18",
+ "topics": [
+  {
+   "n": "18.1",
+   "title": "Poem: many yet one",
+   "labs": [
+    "c03-hindi-chve1-ch18-many-one"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "18.2",
+   "title": "Rhyming words in the poem",
+   "labs": [
+    "c03-hindi-chve1-ch18-poem-rhymes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "18.3",
+   "title": "Languages spoken at home and in the neighbourhood",
+   "labs": [],
+   "why_no_lab": "A class survey where each child shares their own home language; no fixed answer to check."
+  },
+  {
+   "n": "18.4",
+   "title": "Sing the poem together",
+   "labs": [],
+   "why_no_lab": "Singing together is a group activity in class."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-hindi-chve1-ch18-many-one",
+   "topic": "18.1",
+   "template": "sort",
+   "title": {
+    "en": "Many, yet one",
+    "hi": "अनेक, फिर भी एक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "many",
+      "label": {
+       "en": "Many (अनेक)",
+       "hi": "अनेक"
+      }
+     },
+     {
+      "id": "one",
+      "label": {
+       "en": "One (एक)",
+       "hi": "एक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "languages",
+      "text": {
+       "en": "Our languages and dialects",
+       "hi": "हमारी भाषाएँ और बोलियाँ"
+      },
+      "bin": "many",
+      "why": {
+       "en": "India has many languages and dialects.",
+       "hi": "भारत में बहुत-सी भाषाएँ और बोलियाँ हैं।"
+      }
+     },
+     {
+      "id": "dress",
+      "text": {
+       "en": "Our clothes",
+       "hi": "हमारे पहनावे"
+      },
+      "bin": "many",
+      "why": {
+       "en": "People wear different clothes in different regions.",
+       "hi": "अलग-अलग प्रदेशों में लोग अलग पहनावे पहनते हैं।"
+      }
+     },
+     {
+      "id": "food",
+      "text": {
+       "en": "Our foods",
+       "hi": "हमारे खान-पान"
+      },
+      "bin": "many",
+      "why": {
+       "en": "Every region has its own dishes.",
+       "hi": "हर प्रदेश के अपने पकवान हैं।"
+      }
+     },
+     {
+      "id": "festivals",
+      "text": {
+       "en": "Our festivals",
+       "hi": "हमारे त्योहार"
+      },
+      "bin": "many",
+      "why": {
+       "en": "We celebrate many different festivals.",
+       "hi": "हम अनेक अलग-अलग त्योहार मनाते हैं।"
+      }
+     },
+     {
+      "id": "country",
+      "text": {
+       "en": "Our country India",
+       "hi": "हमारा देश भारत"
+      },
+      "bin": "one",
+      "why": {
+       "en": "All regions together make one country.",
+       "hi": "सारे प्रदेश मिलकर एक देश बनाते हैं।"
+      }
+     },
+     {
+      "id": "flag",
+      "text": {
+       "en": "Our national flag",
+       "hi": "हमारा राष्ट्रीय ध्वज"
+      },
+      "bin": "one",
+      "why": {
+       "en": "The whole country has one flag, the tricolour.",
+       "hi": "पूरे देश का एक ही ध्वज है, तिरंगा।"
+      }
+     },
+     {
+      "id": "anthem",
+      "text": {
+       "en": "Our national anthem",
+       "hi": "हमारा राष्ट्रगान"
+      },
+      "bin": "one",
+      "why": {
+       "en": "The whole country sings one anthem.",
+       "hi": "पूरा देश एक ही राष्ट्रगान गाता है।"
+      }
+     },
+     {
+      "id": "motherland",
+      "text": {
+       "en": "Our motherland",
+       "hi": "हमारी मातृभूमि"
+      },
+      "bin": "one",
+      "why": {
+       "en": "We all have one motherland, Bharat.",
+       "hi": "हम सबकी एक ही मातृभूमि है, भारत।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:languages",
+     "expect": "placed:languages",
+     "say": {
+      "en": "Tap the card 'हमारी भाषाएँ और बोलियाँ', then tap the box where it belongs.",
+      "hi": "'हमारी भाषाएँ और बोलियाँ' का कार्ड छुओ, फिर सही डिब्बा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many national flags does India have?",
+      "hi": "भारत के कितने राष्ट्रीय ध्वज हैं?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "many",
+       "en": "Many",
+       "hi": "अनेक"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "card:flag",
+     "expect": "placed:flag",
+     "say": {
+      "en": "Place the flag card in the right box.",
+      "hi": "ध्वज वाला कार्ड सही डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:motherland",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards.",
+      "hi": "बाकी सारे कार्ड भी छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has many languages, clothes, foods and festivals, yet it is one country with one flag, one anthem and one motherland. This is the message of the poem: we are many, but we are one.",
+      "hi": "भारत में अनेक भाषाएँ, पहनावे, पकवान और त्योहार हैं, फिर भी यह एक देश है जिसका एक ध्वज, एक राष्ट्रगान और एक मातृभूमि है। कविता का संदेश यही है: हम अनेक हैं, किंतु एक हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is ONE for the whole country?",
+        "hi": "इनमें से कौन-सी चीज़ पूरे देश की एक है?"
+       },
+       "options": [
+        {
+         "en": "National flag",
+         "hi": "राष्ट्रीय ध्वज"
+        },
+        {
+         "en": "Foods",
+         "hi": "खान-पान"
+        },
+        {
+         "en": "Dialects",
+         "hi": "बोलियाँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The whole country has one flag, the tricolour.",
+        "hi": "पूरे देश का एक ही ध्वज है, तिरंगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Foods differ in every region.",
+         "hi": "हर प्रदेश का खान-पान अलग है।"
+        },
+        {
+         "en": "Dialects differ from place to place.",
+         "hi": "बोलियाँ जगह-जगह अलग होती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does 'हम अनेक किंतु एक' mean?",
+        "hi": "'हम अनेक किंतु एक' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "We are different in many ways, but we are one country",
+         "hi": "हम कई बातों में अलग हैं, पर एक देश हैं"
+        },
+        {
+         "en": "We are all exactly the same",
+         "hi": "हम सब बिल्कुल एक जैसे हैं"
+        },
+        {
+         "en": "We are many countries",
+         "hi": "हम कई देश हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We differ in language, dress and food, yet we belong together as Indians.",
+        "hi": "हम भाषा, पहनावे और भोजन में अलग हैं, फिर भी भारतीय के रूप में साथ हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "We are not all the same; our differences make India beautiful.",
+         "hi": "हम सब एक जैसे नहीं हैं; हमारी विविधता भारत को सुंदर बनाती है।"
+        },
+        {
+         "en": "India is one country, not many.",
+         "hi": "भारत एक ही देश है, कई नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which languages are spoken in your class? Count them, and share one word from each.",
+      "hi": "तुम्हारी कक्षा में कौन-कौन सी भाषाएँ बोली जाती हैं? गिनो और हर भाषा का एक शब्द बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-hindi-chve1-ch18-poem-rhymes",
+   "topic": "18.2",
+   "template": "match",
+   "title": {
+    "en": "Rhyming words from the poem",
+    "hi": "कविता के तुक वाले शब्द"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "toli",
+      "left": {
+       "en": "Toli (group)",
+       "hi": "टोली"
+      },
+      "right": {
+       "en": "Boli (spoken language)",
+       "hi": "बोली"
+      },
+      "why": {
+       "en": "The two words end with the same sound, so they rhyme.",
+       "hi": "दोनों शब्दों की अंतिम आवाज़ एक जैसी है, इसलिए इनकी तुक मिलती है।"
+      }
+     },
+     {
+      "id": "desh",
+      "left": {
+       "en": "Desh (country)",
+       "hi": "देश"
+      },
+      "right": {
+       "en": "Vesh (dress)",
+       "hi": "वेश"
+      },
+      "why": {
+       "en": "The two words end with the same sound, so they rhyme.",
+       "hi": "दोनों शब्दों की अंतिम आवाज़ एक जैसी है, इसलिए इनकी तुक मिलती है।"
+      }
+     },
+     {
+      "id": "rang",
+      "left": {
+       "en": "Rang (colour)",
+       "hi": "रंग"
+      },
+      "right": {
+       "en": "Sang (together)",
+       "hi": "संग"
+      },
+      "why": {
+       "en": "The two words end with the same sound, so they rhyme.",
+       "hi": "दोनों शब्दों की अंतिम आवाज़ एक जैसी है, इसलिए इनकी तुक मिलती है।"
+      }
+     },
+     {
+      "id": "kadam",
+      "left": {
+       "en": "Kadam (step)",
+       "hi": "कदम"
+      },
+      "right": {
+       "en": "Hum (we)",
+       "hi": "हम"
+      },
+      "why": {
+       "en": "The two words end with the same sound, so they rhyme.",
+       "hi": "दोनों शब्दों की अंतिम आवाज़ एक जैसी है, इसलिए इनकी तुक मिलती है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:toli",
+     "expect": "matched:toli",
+     "say": {
+      "en": "Tap 'टोली' and then tap the word that rhymes with it.",
+      "hi": "'टोली' छुओ, फिर उसकी तुक वाला शब्द छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word rhymes with 'देश'?",
+      "hi": "'देश' की तुक किस शब्द से मिलती है?"
+     },
+     "options": [
+      {
+       "id": "vesh",
+       "en": "वेश",
+       "hi": "वेश"
+      },
+      {
+       "id": "rang",
+       "en": "रंग",
+       "hi": "रंग"
+      },
+      {
+       "id": "hum",
+       "en": "हम",
+       "hi": "हम"
+      }
+     ],
+     "answer": "vesh"
+    },
+    {
+     "kind": "do",
+     "target": "left:desh",
+     "expect": "matched:desh",
+     "say": {
+      "en": "Match 'देश' with its rhyme.",
+      "hi": "'देश' को उसकी तुक वाले शब्द से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:kadam",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the remaining pairs.",
+      "hi": "बाकी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Poets use rhyming words so that the lines sound like music. In this poem, देश and वेश, टोली and बोली, रंग and संग sound alike at the end. Listen for them when you sing the poem.",
+      "hi": "कवि तुक वाले शब्दों का प्रयोग करते हैं ताकि पंक्तियाँ संगीत जैसी लगें। इस कविता में देश-वेश, टोली-बोली और रंग-संग के अंत की आवाज़ एक जैसी है। कविता गाते समय इन्हें ध्यान से सुनो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which pair rhymes?",
+        "hi": "कौन-सी जोड़ी तुक वाली है?"
+       },
+       "options": [
+        {
+         "en": "टोली – बोली",
+         "hi": "टोली – बोली"
+        },
+        {
+         "en": "टोली – रंग",
+         "hi": "टोली – रंग"
+        },
+        {
+         "en": "देश – हम",
+         "hi": "देश – हम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both टोली and बोली end with 'ोली'.",
+        "hi": "टोली और बोली दोनों 'ोली' पर खत्म होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "टोली and रंग end with different sounds.",
+         "hi": "टोली और रंग के अंत की आवाज़ अलग है।"
+        },
+        {
+         "en": "देश and हम end with different sounds.",
+         "hi": "देश और हम के अंत की आवाज़ अलग है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word rhymes with 'कदम'?",
+        "hi": "'कदम' की तुक किस शब्द से मिलती है?"
+       },
+       "options": [
+        {
+         "en": "हम",
+         "hi": "हम"
+        },
+        {
+         "en": "देश",
+         "hi": "देश"
+        },
+        {
+         "en": "बोली",
+         "hi": "बोली"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "कदम and हम both end with 'म'.",
+        "hi": "कदम और हम दोनों 'म' पर खत्म होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "देश ends with 'श', not 'म'.",
+         "hi": "देश 'श' पर खत्म होता है, 'म' पर नहीं।"
+        },
+        {
+         "en": "बोली ends with 'ी', not 'म'.",
+         "hi": "बोली 'ी' पर खत्म होता है, 'म' पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find one more pair of rhyming words for the poem, for example रंग – उमंग. Say them aloud.",
+      "hi": "कविता के लिए तुक वाले शब्दों की एक और जोड़ी ढूँढ़ो, जैसे रंग – उमंग। उन्हें बोलकर सुनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "18.1",
+   "use": "Opens the poem",
+   "shows": "A line of children seen from behind in dresses of different Indian regions holding hands on a school ground",
+   "view": "Back view, wide",
+   "right": "Varied, respectful traditional clothes, joyful posture",
+   "avoid": "Faces, stereotypes"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "18.1",
+   "use": "Many foods",
+   "shows": "A big table spread with dishes from different Indian regions (idli, thepla, litti, momos, rice and fish)",
+   "view": "Slightly above, wide",
+   "right": "Colourful, tidy, balanced across regions",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "18.1",
+   "use": "Sort card: flag",
+   "shows": "The Indian tricolour on a pole, gently waving, on transparent background",
+   "view": "Front",
+   "right": "Correct proportions, 24-spoke Ashoka Chakra in navy",
+   "avoid": "Distorted colours"
+  },
+  {
+   "n": 4,
+   "kind": "MAP",
+   "topic": "18.1",
+   "use": "One country",
+   "shows": "A plain India map with a soft glow on the whole country, no names or borders drawn inside",
+   "view": "Top-down, 4:3",
+   "right": "Whole country as one shape",
+   "avoid": "State borders, labels"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "18.1",
+   "use": "Many voices",
+   "shows": "Assorted Indian folk instruments (dholak, ektara, harmonium, tabla) together on transparent background",
+   "view": "Front, slightly above",
+   "right": "Real instruments",
+   "avoid": "Brand logos"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "18.2",
+   "use": "Marching together",
+   "shows": "Children's feet marching in step on a school ground in the morning, no faces",
+   "view": "Low, close",
+   "right": "Feet in line, same rhythm",
+   "avoid": "Faces"
+  }
+ ]
+}

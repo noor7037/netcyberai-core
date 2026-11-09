@@ -1,0 +1,993 @@
+{
+ "chapter_key": "u.c08.social_science.hees2.ch05",
+ "class": 8,
+ "subject_id": "social_science",
+ "title": "Citizenship: Rights and Duties",
+ "source": "https://ncert.nic.in/textbook/pdf/hees205.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Fundamental rights in the Constitution",
+   "labs": [
+    "c08-social_science-hees2-ch05-rights"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Key constitutional articles that guide our rights",
+   "labs": [
+    "c08-social_science-hees2-ch05-articles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Rights and duties: two sides of the same coin",
+   "labs": [
+    "c08-social_science-hees2-ch05-rd",
+    "c08-social_science-hees2-ch05-classmate"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-social_science-hees2-ch05-rights",
+   "topic": "5.1",
+   "template": "govern",
+   "title": {
+    "en": "Which fundamental right?",
+    "hi": "कौन-सा मौलिक अधिकार?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "rights",
+    "options": {
+     "cards": [
+      "r-well",
+      "r-speech",
+      "r-school",
+      "r-child",
+      "r-bonded",
+      "r-festival",
+      "r-script",
+      "r-court"
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:r-well",
+     "expect": "picked:r-well",
+     "say": {
+      "en": "Tap the card about everyone drawing water from the village well.",
+      "hi": "सबके गाँव के कुएँ से पानी भरने वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:equality",
+     "expect": "placed",
+     "say": {
+      "en": "Tap the Right to Equality box.",
+      "hi": "समता का अधिकार वाला डिब्बा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A factory cannot employ a child of ten. Which right protects the child?",
+      "hi": "कारख़ाना दस साल के बच्चे को काम पर नहीं रख सकता। कौन-सा अधिकार बच्चे की रक्षा करता है?"
+     },
+     "options": [
+      {
+       "id": "expl",
+       "en": "Right against Exploitation",
+       "hi": "शोषण के विरुद्ध अधिकार"
+      },
+      {
+       "id": "rel",
+       "en": "Freedom of Religion",
+       "hi": "धार्मिक स्वतंत्रता का अधिकार"
+      },
+      {
+       "id": "cult",
+       "en": "Cultural Rights",
+       "hi": "सांस्कृतिक अधिकार"
+      }
+     ],
+     "answer": "expl"
+    },
+    {
+     "kind": "do",
+     "target": "card:r-child",
+     "expect": "picked:r-child",
+     "say": {
+      "en": "Pick the card about the factory and the child.",
+      "hi": "कारख़ाने और बच्चे वाला कार्ड चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:exploitation",
+     "expect": "placed",
+     "say": {
+      "en": "Place it in the Right against Exploitation box.",
+      "hi": "उसे शोषण के विरुद्ध अधिकार वाले डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Constitution gives six groups of fundamental rights (Articles 14 to 32): equality, freedom, protection from exploitation, freedom of religion, cultural and educational rights, and the right to constitutional remedies. They let every person live with dignity. If any right is denied, a citizen can go to the High Court or the Supreme Court.",
+      "hi": "संविधान छह समूहों के मौलिक अधिकार देता है (अनुच्छेद 14 से 32): समता, स्वतंत्रता, शोषण से सुरक्षा, धार्मिक स्वतंत्रता, संस्कृति और शिक्षा संबंधी अधिकार, और संवैधानिक उपचारों का अधिकार। ये हर व्यक्ति को गरिमा से जीने देते हैं। कोई अधिकार छीना जाए तो नागरिक उच्च न्यायालय या सर्वोच्च न्यायालय जा सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which right does a child's free schooling for ages 6 to 14 come under?",
+        "hi": "6 से 14 वर्ष के बच्चे की मुफ़्त शिक्षा किस अधिकार में आती है?"
+       },
+       "options": [
+        {
+         "en": "Right to Freedom (Article 21A)",
+         "hi": "स्वतंत्रता का अधिकार (अनुच्छेद 21A)"
+        },
+        {
+         "en": "Right to Equality",
+         "hi": "समता का अधिकार"
+        },
+        {
+         "en": "Freedom of Religion",
+         "hi": "धार्मिक स्वतंत्रता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Article 21A, the right to education, sits within the Right to Freedom.",
+        "hi": "अनुच्छेद 21A, शिक्षा का अधिकार, स्वतंत्रता के अधिकार में आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equality is about equal treatment.",
+         "hi": "समता बराबरी के व्यवहार के बारे में है।"
+        },
+        {
+         "en": "Religion is about faith.",
+         "hi": "धर्म आस्था के बारे में है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which right lets a citizen go to the Supreme Court if a right is denied?",
+        "hi": "अधिकार छीने जाने पर नागरिक को सर्वोच्च न्यायालय जाने देने वाला अधिकार कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Right to Constitutional Remedies",
+         "hi": "संवैधानिक उपचारों का अधिकार"
+        },
+        {
+         "en": "Right against Exploitation",
+         "hi": "शोषण के विरुद्ध अधिकार"
+        },
+        {
+         "en": "Cultural Rights",
+         "hi": "सांस्कृतिक अधिकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This right (Article 32) makes all the other rights enforceable.",
+        "hi": "यह अधिकार (अनुच्छेद 32) अन्य सभी अधिकारों को लागू करवा सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That one protects people from forced labour and child labour.",
+         "hi": "वह बलात् श्रम और बाल श्रम से बचाता है।"
+        },
+        {
+         "en": "That one protects languages, scripts and minority schools.",
+         "hi": "वह भाषाओं, लिपियों और अल्पसंख्यक स्कूलों की रक्षा करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the remaining cards. Which cards made you think twice? Why do you think the right to go to court is called the heart of the Constitution?",
+      "hi": "बाक़ी कार्ड रखो। किन कार्डों पर तुम्हें दो बार सोचना पड़ा? न्यायालय जाने के अधिकार को संविधान का हृदय क्यों कहते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch05-articles",
+   "topic": "5.2",
+   "template": "match",
+   "title": {
+    "en": "Articles that guide our rights",
+    "hi": "हमारे अधिकारों के अनुच्छेद"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "a14",
+      "left": {
+       "en": "Article 14",
+       "hi": "अनुच्छेद 14"
+      },
+      "right": {
+       "en": "Equality before the law",
+       "hi": "क़ानून के समक्ष समानता"
+      }
+     },
+     {
+      "id": "a17",
+      "left": {
+       "en": "Article 17",
+       "hi": "अनुच्छेद 17"
+      },
+      "right": {
+       "en": "Untouchability is abolished",
+       "hi": "अस्पृश्यता का अंत"
+      }
+     },
+     {
+      "id": "a21a",
+      "left": {
+       "en": "Article 21A",
+       "hi": "अनुच्छेद 21A"
+      },
+      "right": {
+       "en": "Free and compulsory education for ages 6 to 14",
+       "hi": "6 से 14 वर्ष के बच्चों के लिए मुफ़्त और अनिवार्य शिक्षा"
+      }
+     },
+     {
+      "id": "a24",
+      "left": {
+       "en": "Article 24",
+       "hi": "अनुच्छेद 24"
+      },
+      "right": {
+       "en": "No child under 14 in factories or dangerous work",
+       "hi": "14 वर्ष से कम के बच्चे कारख़ाने या ख़तरनाक काम में नहीं"
+      }
+     },
+     {
+      "id": "a25",
+      "left": {
+       "en": "Article 25",
+       "hi": "अनुच्छेद 25"
+      },
+      "right": {
+       "en": "Freedom to follow and practise any religion",
+       "hi": "किसी भी धर्म को मानने और निभाने की स्वतंत्रता"
+      }
+     },
+     {
+      "id": "a32",
+      "left": {
+       "en": "Article 32",
+       "hi": "अनुच्छेद 32"
+      },
+      "right": {
+       "en": "The right to go to the Supreme Court for rights",
+       "hi": "अधिकारों के लिए सर्वोच्च न्यायालय जाने का अधिकार"
+      }
+     },
+     {
+      "id": "a51a",
+      "left": {
+       "en": "Article 51A",
+       "hi": "अनुच्छेद 51क"
+      },
+      "right": {
+       "en": "The list of fundamental duties",
+       "hi": "मौलिक कर्तव्यों की सूची"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a14",
+     "expect": "matched:a14",
+     "say": {
+      "en": "Tap 'Article 14' and tap what it guarantees.",
+      "hi": "'अनुच्छेद 14' चुनो और उसकी गारंटी चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is Article 51A about rights or duties?",
+      "hi": "अनुच्छेद 51क अधिकारों के बारे में है या कर्तव्यों के?"
+     },
+     "options": [
+      {
+       "id": "duties",
+       "en": "Duties",
+       "hi": "कर्तव्य"
+      },
+      {
+       "id": "rights",
+       "en": "Rights",
+       "hi": "अधिकार"
+      }
+     ],
+     "answer": "duties"
+    },
+    {
+     "kind": "do",
+     "target": "left:a51a",
+     "expect": "matched:a51a",
+     "say": {
+      "en": "Match Article 51A.",
+      "hi": "अनुच्छेद 51क को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "You need not memorise the numbers, but a citizen should know that the Constitution guards our rights: equality (14 and 17), education (21A), protection of children (24), freedom of faith (25), and the right to go to court (32). Article 51A lists our fundamental duties. Rights and duties go together.",
+      "hi": "संख्याएँ रटना ज़रूरी नहीं, पर नागरिक को जानना चाहिए कि संविधान हमारे अधिकारों की रक्षा करता है: समानता (14 और 17), शिक्षा (21A), बच्चों की सुरक्षा (24), आस्था की स्वतंत्रता (25) और न्यायालय जाने का अधिकार (32)। अनुच्छेद 51क हमारे मौलिक कर्तव्य बताता है। अधिकार और कर्तव्य साथ चलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does Article 17 do?",
+        "hi": "अनुच्छेद 17 क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Abolishes untouchability",
+         "hi": "अस्पृश्यता का अंत करता है"
+        },
+        {
+         "en": "Gives free sweets",
+         "hi": "मुफ़्त मिठाई देता है"
+        },
+        {
+         "en": "Sets taxes",
+         "hi": "कर तय करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It makes the practice of untouchability illegal.",
+        "hi": "यह अस्पृश्यता की प्रथा को ग़ैरक़ानूनी बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Constitution does not give free sweets.",
+         "hi": "संविधान मुफ़्त मिठाई नहीं देता।"
+        },
+        {
+         "en": "Taxes are set by other laws.",
+         "hi": "कर अन्य क़ानूनों से तय होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which article gives free education for ages 6 to 14?",
+        "hi": "6 से 14 वर्ष की मुफ़्त शिक्षा कौन-सा अनुच्छेद देता है?"
+       },
+       "options": [
+        {
+         "en": "Article 21A",
+         "hi": "अनुच्छेद 21A"
+        },
+        {
+         "en": "Article 24",
+         "hi": "अनुच्छेद 24"
+        },
+        {
+         "en": "Article 32",
+         "hi": "अनुच्छेद 32"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It was added by the 86th Amendment in 2002.",
+        "hi": "इसे 2002 के 86वें संशोधन से जोड़ा गया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Article 24 bans child labour.",
+         "hi": "अनुच्छेद 24 बाल श्रम पर रोक लगाता है।"
+        },
+        {
+         "en": "Article 32 is about going to court.",
+         "hi": "अनुच्छेद 32 न्यायालय जाने के अधिकार का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask an adult which of these rights matters most in their daily life. Why?",
+      "hi": "किसी बड़े से पूछो कि उनके रोज़ के जीवन में इनमें से कौन-सा अधिकार सबसे महत्त्वपूर्ण है, और क्यों।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch05-rd",
+   "topic": "5.3",
+   "template": "sort",
+   "title": {
+    "en": "Right or duty?",
+    "hi": "अधिकार या कर्तव्य?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "right",
+      "label": {
+       "en": "A right we enjoy",
+       "hi": "एक अधिकार जो हमें मिलता है"
+      }
+     },
+     {
+      "id": "duty",
+      "label": {
+       "en": "A duty we owe",
+       "hi": "एक कर्तव्य जो हमें निभाना है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "edu",
+      "text": {
+       "en": "Free schooling for every child aged 6 to 14",
+       "hi": "6 से 14 वर्ष के हर बच्चे को मुफ़्त स्कूली शिक्षा"
+      },
+      "bin": "right",
+      "why": {
+       "en": "This is a fundamental right under Article 21A.",
+       "hi": "यह अनुच्छेद 21A का मौलिक अधिकार है।"
+      }
+     },
+     {
+      "id": "faith",
+      "text": {
+       "en": "Freedom to follow any religion",
+       "hi": "किसी भी धर्म को मानने की स्वतंत्रता"
+      },
+      "bin": "right",
+      "why": {
+       "en": "Freedom of religion is a fundamental right.",
+       "hi": "धार्मिक स्वतंत्रता मौलिक अधिकार है।"
+      }
+     },
+     {
+      "id": "equal",
+      "text": {
+       "en": "Equal treatment before the law",
+       "hi": "क़ानून के सामने बराबर व्यवहार"
+      },
+      "bin": "right",
+      "why": {
+       "en": "Everyone is equal before the law.",
+       "hi": "क़ानून के सामने सब बराबर हैं।"
+      }
+     },
+     {
+      "id": "speak",
+      "text": {
+       "en": "Freedom to speak and express opinions",
+       "hi": "बोलने और विचार रखने की स्वतंत्रता"
+      },
+      "bin": "right",
+      "why": {
+       "en": "Freedom of speech is part of the Right to Freedom.",
+       "hi": "वाक् स्वतंत्रता स्वतंत्रता के अधिकार का भाग है।"
+      }
+     },
+     {
+      "id": "flag",
+      "text": {
+       "en": "Respect the Constitution, the flag and the anthem",
+       "hi": "संविधान, ध्वज और राष्ट्रगान का सम्मान करना"
+      },
+      "bin": "duty",
+      "why": {
+       "en": "This is one of the duties in Article 51A.",
+       "hi": "यह अनुच्छेद 51क के कर्तव्यों में से एक है।"
+      }
+     },
+     {
+      "id": "prop",
+      "text": {
+       "en": "Protect public property",
+       "hi": "सार्वजनिक संपत्ति की रक्षा करना"
+      },
+      "bin": "duty",
+      "why": {
+       "en": "Public property belongs to all of us.",
+       "hi": "सार्वजनिक संपत्ति हम सबकी है।"
+      }
+     },
+     {
+      "id": "env",
+      "text": {
+       "en": "Protect and improve the environment",
+       "hi": "पर्यावरण की रक्षा और सुधार करना"
+      },
+      "bin": "duty",
+      "why": {
+       "en": "Caring for nature is a fundamental duty.",
+       "hi": "प्रकृति की देखभाल मौलिक कर्तव्य है।"
+      }
+     },
+     {
+      "id": "harm",
+      "text": {
+       "en": "Promote harmony and brotherhood among all",
+       "hi": "सबमें सद्भाव और भाईचारा बढ़ाना"
+      },
+      "bin": "duty",
+      "why": {
+       "en": "Harmony keeps a diverse society together.",
+       "hi": "सद्भाव विविधता वाले समाज को जोड़े रखता है।"
+      }
+     },
+     {
+      "id": "parent",
+      "text": {
+       "en": "Parents see that children of 6 to 14 go to school",
+       "hi": "माता-पिता 6 से 14 वर्ष के बच्चों को स्कूल भेजें"
+      },
+      "bin": "duty",
+      "why": {
+       "en": "This duty was added in 2002.",
+       "hi": "यह कर्तव्य 2002 में जोड़ा गया।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:edu",
+     "expect": "placed:edu",
+     "say": {
+      "en": "Tap the free schooling card and pick a group.",
+      "hi": "मुफ़्त शिक्षा वाला कार्ड चुनो और समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If I have the right to speak freely, what is my matching duty?",
+      "hi": "यदि मुझे खुलकर बोलने का अधिकार है, तो मेरा संगत कर्तव्य क्या है?"
+     },
+     "options": [
+      {
+       "id": "respect",
+       "en": "To respect others' views and not cause harm",
+       "hi": "दूसरों के विचारों का सम्मान करना और हानि न पहुँचाना"
+      },
+      {
+       "id": "shout",
+       "en": "To shout louder",
+       "hi": "और ज़ोर से चिल्लाना"
+      },
+      {
+       "id": "none",
+       "en": "I have no duty",
+       "hi": "मेरा कोई कर्तव्य नहीं"
+      }
+     ],
+     "answer": "respect"
+    },
+    {
+     "kind": "do",
+     "target": "card:parent",
+     "expect": "placed:parent",
+     "say": {
+      "en": "Place the parents' card.",
+      "hi": "माता-पिता वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and press check.",
+      "hi": "बाक़ी रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rights are freedoms and benefits that let us live with dignity. Duties are responsibilities we owe to our family, community, country and the environment. Rights and duties are two sides of one coin: if I have a right to be respected, I have a duty to respect others. Article 51A lists the fundamental duties; the Constitution of 1950 had none at first.",
+      "hi": "अधिकार वे स्वतंत्रताएँ और लाभ हैं जो हमें गरिमा से जीने देते हैं। कर्तव्य वे ज़िम्मेदारियाँ हैं जो हम पर परिवार, समाज, देश और पर्यावरण के प्रति हैं। अधिकार और कर्तव्य एक सिक्के के दो पहलू हैं: यदि मुझे सम्मान पाने का अधिकार है तो दूसरों का सम्मान करना मेरा कर्तव्य है। अनुच्छेद 51क मौलिक कर्तव्य गिनाता है; 1950 के संविधान में आरंभ में कोई कर्तव्य नहीं था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a fundamental duty?",
+        "hi": "मौलिक कर्तव्य कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Protecting public property",
+         "hi": "सार्वजनिक संपत्ति की रक्षा करना"
+        },
+        {
+         "en": "Free education",
+         "hi": "मुफ़्त शिक्षा"
+        },
+        {
+         "en": "Freedom of speech",
+         "hi": "बोलने की स्वतंत्रता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Public property is for everyone, so all must protect it.",
+        "hi": "सार्वजनिक संपत्ति सबके लिए है, इसलिए सबको उसकी रक्षा करनी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Free education is a right.",
+         "hi": "मुफ़्त शिक्षा अधिकार है।"
+        },
+        {
+         "en": "Freedom of speech is a right.",
+         "hi": "बोलने की स्वतंत्रता अधिकार है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Rights and duties are…",
+        "hi": "अधिकार और कर्तव्य…"
+       },
+       "options": [
+        {
+         "en": "Two sides of the same coin",
+         "hi": "एक ही सिक्के के दो पहलू हैं"
+        },
+        {
+         "en": "Always in conflict",
+         "hi": "हमेशा टकराते हैं"
+        },
+        {
+         "en": "Unrelated",
+         "hi": "अलग-अलग हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every right has a matching duty, and doing our duties protects everyone's rights.",
+        "hi": "हर अधिकार का एक संगत कर्तव्य है, और कर्तव्य निभाने से सबके अधिकार सुरक्षित रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They work together, not against each other.",
+         "hi": "वे साथ-साथ काम करते हैं, एक-दूसरे के विरुद्ध नहीं।"
+        },
+        {
+         "en": "They are closely related.",
+         "hi": "वे आपस में गहराई से जुड़े हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write down one right you enjoy at school and the matching duty you owe. Make a classroom charter of rights and duties.",
+      "hi": "विद्यालय में अपना एक अधिकार और उससे जुड़ा कर्तव्य लिखो। कक्षा के लिए अधिकारों और कर्तव्यों का घोषणा-पत्र बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch05-classmate",
+   "topic": "5.3",
+   "template": "scenario",
+   "title": {
+    "en": "Rights and duties at school",
+    "hi": "विद्यालय में अधिकार और कर्तव्य"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "school",
+    "role": {
+     "en": "The class monitor",
+     "hi": "कक्षा का मॉनिटर"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "A new student joins your class from another State. He speaks a different language and some classmates laugh at his accent. What do you do?",
+       "hi": "तुम्हारी कक्षा में दूसरे राज्य से एक नया विद्यार्थी आया है। वह अलग भाषा बोलता है और कुछ सहपाठी उसके उच्चारण पर हँसते हैं। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "include",
+        "text": {
+         "en": "Ask the class to stop, welcome him and invite him to play",
+         "hi": "कक्षा को रुकने को कहो, उसका स्वागत करो और उसे खेलने बुलाओ"
+        },
+        "next": "wall",
+        "feedback": {
+         "en": "Everyone has the right to be treated with respect, and it is our duty to respect others.",
+         "hi": "हर किसी को सम्मान पाने का अधिकार है और दूसरों का सम्मान करना हमारा कर्तव्य है।"
+        },
+        "good": true
+       },
+       {
+        "id": "laugh",
+        "text": {
+         "en": "Laugh along with the others",
+         "hi": "बाक़ियों के साथ तुम भी हँसो"
+        },
+        "next": "wall",
+        "feedback": {
+         "en": "Making fun of someone's language breaks his right to be treated with dignity.",
+         "hi": "किसी की भाषा का मज़ाक उड़ाना उसके गरिमामय व्यवहार के अधिकार को तोड़ता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "quiet",
+        "text": {
+         "en": "Stay quiet and do nothing",
+         "hi": "चुप रहो और कुछ न करो"
+        },
+        "next": "wall",
+        "feedback": {
+         "en": "Staying silent lets disrespect continue.",
+         "hi": "चुप रहने से अनादर चलता रहता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "wall",
+      "text": {
+       "en": "During the school clean-up drive, someone has scribbled on a freshly painted classroom wall. What do you do?",
+       "hi": "विद्यालय की सफ़ाई मुहिम के दौरान किसी ने ताज़ा रंगी कक्षा की दीवार पर लकीरें खींच दी हैं। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "clean",
+        "text": {
+         "en": "Clean it with friends and remind everyone that school property is ours",
+         "hi": "दोस्तों के साथ साफ़ करो और सबको याद दिलाओ कि विद्यालय की संपत्ति हमारी है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Protecting public property is a fundamental duty.",
+         "hi": "सार्वजनिक संपत्ति की रक्षा मौलिक कर्तव्य है।"
+        },
+        "good": true
+       },
+       {
+        "id": "blame",
+        "text": {
+         "en": "Blame someone without proof",
+         "hi": "बिना सबूत किसी को दोष दे दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Blaming without proof is unfair and breaks trust.",
+         "hi": "बिना सबूत दोष देना अनुचित है और भरोसा तोड़ता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which behaviour shows respect for another person's rights?",
+      "hi": "कौन-सा व्यवहार दूसरे के अधिकारों का सम्मान दिखाता है?"
+     },
+     "options": [
+      {
+       "id": "welcome",
+       "en": "Welcoming a new student whatever his language",
+       "hi": "नए विद्यार्थी का भाषा की परवाह किए बिना स्वागत करना"
+      },
+      {
+       "id": "mock",
+       "en": "Mocking his accent",
+       "hi": "उसके उच्चारण का मज़ाक उड़ाना"
+      }
+     ],
+     "answer": "welcome"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:include",
+     "expect": "chose:include",
+     "say": {
+      "en": "Choose to welcome the new student.",
+      "hi": "नए विद्यार्थी का स्वागत करने का विकल्प चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:wall:clean",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose to clean the wall and remind everyone.",
+      "hi": "दीवार साफ़ करने और सबको याद दिलाने का विकल्प चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rights and duties meet in everyday life. The new student has the right to equal and respectful treatment, and we have the duty to give it. The school wall belongs to everyone, so protecting it is a duty. A society becomes fair and peaceful when every person remembers both.",
+      "hi": "अधिकार और कर्तव्य रोज़ के जीवन में मिलते हैं। नए विद्यार्थी को बराबरी और सम्मान के व्यवहार का अधिकार है और उसे देना हमारा कर्तव्य है। विद्यालय की दीवार सबकी है, इसलिए उसकी रक्षा कर्तव्य है। जब हर व्यक्ति दोनों याद रखता है तब समाज निष्पक्ष और शांतिपूर्ण बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which duty is shown when students clean a school wall?",
+        "hi": "विद्यालय की दीवार साफ़ करने से कौन-सा कर्तव्य दिखता है?"
+       },
+       "options": [
+        {
+         "en": "Protecting public property",
+         "hi": "सार्वजनिक संपत्ति की रक्षा"
+        },
+        {
+         "en": "Collecting taxes",
+         "hi": "कर वसूलना"
+        },
+        {
+         "en": "Making laws",
+         "hi": "क़ानून बनाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "School property is public property that all must care for.",
+        "hi": "विद्यालय की संपत्ति सार्वजनिक संपत्ति है जिसकी देखभाल सबको करनी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Students do not collect taxes.",
+         "hi": "विद्यार्थी कर नहीं वसूलते।"
+        },
+        {
+         "en": "Law-making is done by legislatures.",
+         "hi": "क़ानून विधायिकाएँ बनाती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and take other choices. What would happen in a class where everyone ignored their duties?",
+      "hi": "फिर खेलो और दूसरे विकल्प चुनो। जिस कक्षा में सब अपने कर्तव्य भूल जाएँ वहाँ क्या होगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "Duty to the neighbourhood",
+   "shows": "Residents of a colony sweeping, planting saplings and painting a wall together on a Sunday morning, seen from behind",
+   "view": "Wide, 16:9",
+   "right": "All ages working together; Indian colony street",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Right to education",
+   "shows": "Children of different ages walking to a school gate in morning light, seen from behind",
+   "view": "Wide, 16:9",
+   "right": "School bags, uniforms of different styles",
+   "avoid": "Faces, school names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Freedom of expression",
+   "shows": "A school debate with a girl at the microphone and students listening, seen from the side or behind",
+   "view": "Wide, 16:9",
+   "right": "Stage, microphone, audience",
+   "avoid": "Identifiable faces, banners with text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Freedom of faith",
+   "shows": "Diyas, a prayer cap, a church candle and a gurdwara rumala laid side by side, hands only",
+   "view": "Wide, 16:9",
+   "right": "Respectful, bright, no faces",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "The Constitution's preamble",
+   "shows": "A framed Preamble page with illustrated border, shown unreadable or blurred",
+   "view": "Front, PNG",
+   "right": "Frame and border visible, text blurred",
+   "avoid": "Readable text"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "5.3",
+   "use": "Two sides of a coin",
+   "shows": "A large coin with two empty halves, one for rights and one for duties",
+   "view": "PNG, transparent",
+   "right": "Two equal halves",
+   "avoid": "Any text"
+  }
+ ]
+}

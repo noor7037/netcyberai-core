@@ -1,0 +1,1393 @@
+{
+ "chapter_key": "u.c11.political_science.keps2.ch02",
+ "class": 11,
+ "subject_id": "political_science",
+ "title": "Rights in the Indian Constitution",
+ "source": "https://ncert.nic.in/textbook/pdf/keps202.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Introduction: why rights matter in everyday life",
+   "labs": [],
+   "why_no_lab": "A real story of a person whose rights were denied is best met in the reader and the opening photo."
+  },
+  {
+   "n": "2.2",
+   "title": "The importance of rights",
+   "labs": [],
+   "why_no_lab": "Why rights matter is argued best through the chapter's real cases and class discussion."
+  },
+  {
+   "n": "2.3",
+   "title": "Fundamental rights in the Indian Constitution",
+   "labs": [
+    "c11-political_science-keps2-ch02-sort-rights"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Right to equality",
+   "labs": [
+    "c11-political_science-keps2-ch02-match-articles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Right to freedom, arrest and preventive detention",
+   "labs": [
+    "c11-political_science-keps2-ch02-scenario-arrest"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Right against exploitation",
+   "labs": [
+    "c11-political_science-keps2-ch02-match-articles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.7",
+   "title": "Right to freedom of religion",
+   "labs": [
+    "c11-political_science-keps2-ch02-sort-rights"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.8",
+   "title": "Cultural and educational rights",
+   "labs": [
+    "c11-political_science-keps2-ch02-sort-rights"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.9",
+   "title": "Right to constitutional remedies and writs",
+   "labs": [
+    "c11-political_science-keps2-ch02-match-writs",
+    "c11-political_science-keps2-ch02-scenario-arrest"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.10",
+   "title": "Directive Principles of State Policy",
+   "labs": [
+    "c11-political_science-keps2-ch02-sort-dpsp"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.11",
+   "title": "Relationship between fundamental rights and directive principles",
+   "labs": [
+    "c11-political_science-keps2-ch02-sort-dpsp"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-political_science-keps2-ch02-sort-rights",
+   "topic": "2.3",
+   "template": "govern",
+   "title": {
+    "en": "Which fundamental right is it?",
+    "hi": "यह कौन-सा मौलिक अधिकार है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "rights",
+    "options": {
+     "cards": [
+      "r-speech",
+      "r-arrest",
+      "r-merit",
+      "r-well",
+      "r-child",
+      "r-festival",
+      "r-script",
+      "r-court"
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:r-speech",
+     "expect": "picked:r-speech",
+     "say": {
+      "en": "Tap the card about Priya speaking in a school debate.",
+      "hi": "प्रिया के स्कूल की बहस में बोलने वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:freedom",
+     "expect": "placed",
+     "say": {
+      "en": "Now tap the right it shows: Right to Freedom.",
+      "hi": "अब वह अधिकार छुओ जो इसमें दिखता है: स्वतंत्रता का अधिकार।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A factory cannot employ a child of ten. Which right protects the child?",
+      "hi": "कोई कारख़ाना दस साल के बच्चे को काम पर नहीं रख सकता। कौन-सा अधिकार बच्चे की रक्षा करता है?"
+     },
+     "options": [
+      {
+       "id": "exp",
+       "en": "Right against Exploitation",
+       "hi": "शोषण के विरुद्ध अधिकार"
+      },
+      {
+       "id": "eq",
+       "en": "Right to Equality",
+       "hi": "समता का अधिकार"
+      },
+      {
+       "id": "rel",
+       "en": "Freedom of Religion",
+       "hi": "धार्मिक स्वतंत्रता का अधिकार"
+      }
+     ],
+     "answer": "exp"
+    },
+    {
+     "kind": "do",
+     "target": "card:r-child",
+     "expect": "picked:r-child",
+     "say": {
+      "en": "Tap the card about the factory and the child.",
+      "hi": "कारख़ाने और बच्चे वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:exploitation",
+     "expect": "placed",
+     "say": {
+      "en": "Place it under Against Exploitation.",
+      "hi": "इसे शोषण के विरुद्ध अधिकार में रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Constitution gives six groups of fundamental rights in Part III. Equality, freedom, protection from exploitation, freedom of religion, cultural and educational rights, and the right to go to court if a right is denied. Each group protects a different part of a person's life, and the courts guard them.",
+      "hi": "संविधान के भाग III में मौलिक अधिकारों के छह समूह हैं: समता, स्वतंत्रता, शोषण से सुरक्षा, धार्मिक स्वतंत्रता, संस्कृति और शिक्षा संबंधी अधिकार, और अधिकार छीने जाने पर अदालत जाने का अधिकार। हर समूह जीवन के अलग हिस्से को बचाता है, और अदालतें इनकी रक्षा करती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which right lets a community run its own school and keep its own script?",
+        "hi": "कौन-सा अधिकार किसी समुदाय को अपना स्कूल चलाने और अपनी लिपि बचाने देता है?"
+       },
+       "options": [
+        {
+         "en": "Cultural and Educational Rights",
+         "hi": "संस्कृति और शिक्षा संबंधी अधिकार"
+        },
+        {
+         "en": "Right to Equality",
+         "hi": "समता का अधिकार"
+        },
+        {
+         "en": "Right against Exploitation",
+         "hi": "शोषण के विरुद्ध अधिकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Articles 29 and 30 protect the language, script and culture of every section, and let minorities set up their own schools.",
+        "hi": "अनुच्छेद 29 और 30 हर वर्ग की भाषा, लिपि और संस्कृति की रक्षा करते हैं और अल्पसंख्यकों को अपने स्कूल खोलने देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equality is about equal treatment before the law, not about keeping a culture or running a school.",
+         "hi": "समता का अर्थ क़ानून के सामने बराबरी है, संस्कृति बचाना या स्कूल चलाना नहीं।"
+        },
+        {
+         "en": "Exploitation covers forced labour and child labour, which have nothing to do with schools of a community.",
+         "hi": "शोषण में बेगार और बाल मज़दूरी आती है, जिसका समुदाय के स्कूल से संबंध नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A citizen's right is denied. Which right lets her go straight to the Supreme Court?",
+        "hi": "एक नागरिक का अधिकार छीना गया है। कौन-सा अधिकार उसे सीधे सर्वोच्च न्यायालय जाने देता है?"
+       },
+       "options": [
+        {
+         "en": "Right to Freedom of Religion",
+         "hi": "धार्मिक स्वतंत्रता का अधिकार"
+        },
+        {
+         "en": "Right to Constitutional Remedies",
+         "hi": "संवैधानिक उपचारों का अधिकार"
+        },
+        {
+         "en": "Right to Equality",
+         "hi": "समता का अधिकार"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Article 32 is the right to go to court to get any other fundamental right enforced. Without it, other rights would be only promises.",
+        "hi": "अनुच्छेद 32 बाक़ी मौलिक अधिकारों को लागू करवाने के लिए अदालत जाने का अधिकार है। इसके बिना अन्य अधिकार केवल वादे रह जाते।"
+       },
+       "wrong": [
+        {
+         "en": "Religion protects faith and worship. It does not by itself give a route to the court.",
+         "hi": "धर्म की स्वतंत्रता आस्था और पूजा की रक्षा करती है। वह खुद अदालत का रास्ता नहीं देती।"
+        },
+        "",
+        {
+         "en": "Equality protects against unfair treatment, but the right to approach the court for any right is a separate right.",
+         "hi": "समता अनुचित व्यवहार से बचाती है, पर किसी भी अधिकार के लिए अदालत जाने का अधिकार अलग है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the remaining cards. For each, say which article of the Constitution might protect it.",
+      "hi": "बाक़ी कार्ड छाँटो। हर एक के लिए सोचो कि संविधान का कौन-सा अनुच्छेद उसकी रक्षा कर सकता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch02-match-articles",
+   "topic": "2.4",
+   "template": "match",
+   "title": {
+    "en": "Articles that protect you",
+    "hi": "आपकी रक्षा करने वाले अनुच्छेद"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "art14",
+      "left": {
+       "en": "Article 14",
+       "hi": "अनुच्छेद 14"
+      },
+      "right": {
+       "en": "Everyone is equal before the law and gets equal protection of the law",
+       "hi": "क़ानून के सामने सब बराबर हैं और सबको क़ानून की बराबर सुरक्षा मिलती है"
+      },
+      "why": {
+       "en": "No one, however rich or powerful, is above the law.",
+       "hi": "कोई कितना भी अमीर या ताक़तवर हो, क़ानून से ऊपर नहीं है।"
+      }
+     },
+     {
+      "id": "art15",
+      "left": {
+       "en": "Article 15",
+       "hi": "अनुच्छेद 15"
+      },
+      "right": {
+       "en": "No discrimination on grounds of religion, race, caste, sex or place of birth",
+       "hi": "धर्म, मूलवंश, जाति, लिंग या जन्मस्थान के आधार पर भेदभाव नहीं"
+      },
+      "why": {
+       "en": "It also opens shops, wells, roads and hotels to everyone.",
+       "hi": "यह दुकानों, कुओं, सड़कों और होटलों को सबके लिए खोलता है।"
+      }
+     },
+     {
+      "id": "art17",
+      "left": {
+       "en": "Article 17",
+       "hi": "अनुच्छेद 17"
+      },
+      "right": {
+       "en": "Untouchability is abolished; practising it is a punishable offence",
+       "hi": "अस्पृश्यता समाप्त; इसे मानना दंडनीय अपराध है"
+      },
+      "why": {
+       "en": "It ends a social practice that treated some people as impure.",
+       "hi": "यह उस सामाजिक प्रथा को समाप्त करता है जिसमें कुछ लोगों को अपवित्र माना जाता था।"
+      }
+     },
+     {
+      "id": "art21a",
+      "left": {
+       "en": "Article 21A",
+       "hi": "अनुच्छेद 21क"
+      },
+      "right": {
+       "en": "Free and compulsory education for children aged 6 to 14",
+       "hi": "6 से 14 वर्ष के बच्चों को मुफ़्त और अनिवार्य शिक्षा"
+      },
+      "why": {
+       "en": "Added by the 86th Amendment in 2002.",
+       "hi": "इसे 2002 में 86वें संशोधन से जोड़ा गया।"
+      }
+     },
+     {
+      "id": "art23",
+      "left": {
+       "en": "Article 23",
+       "hi": "अनुच्छेद 23"
+      },
+      "right": {
+       "en": "Trafficking in human beings and forced labour (begar) are banned",
+       "hi": "मनुष्यों का व्यापार और बेगार (ज़बरदस्ती काम) प्रतिबंधित"
+      },
+      "why": {
+       "en": "No person can be bought, sold or made to work without pay.",
+       "hi": "किसी को ख़रीदा-बेचा नहीं जा सकता, न बिना मज़दूरी काम कराया जा सकता है।"
+      }
+     },
+     {
+      "id": "art24",
+      "left": {
+       "en": "Article 24",
+       "hi": "अनुच्छेद 24"
+      },
+      "right": {
+       "en": "No child below 14 may work in a factory, mine or other hazardous job",
+       "hi": "14 वर्ष से छोटा बच्चा कारख़ाने, खान या ख़तरनाक काम में नहीं लग सकता"
+      },
+      "why": {
+       "en": "It protects childhood and health.",
+       "hi": "यह बचपन और स्वास्थ्य की रक्षा करता है।"
+      }
+     },
+     {
+      "id": "art32",
+      "left": {
+       "en": "Article 32",
+       "hi": "अनुच्छेद 32"
+      },
+      "right": {
+       "en": "A citizen can go straight to the Supreme Court if a fundamental right is denied",
+       "hi": "मौलिक अधिकार छीने जाने पर नागरिक सीधे सर्वोच्च न्यायालय जा सकता है"
+      },
+      "why": {
+       "en": "It makes every other fundamental right enforceable.",
+       "hi": "यह बाक़ी हर मौलिक अधिकार को लागू करवाने योग्य बनाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:art17",
+     "expect": "matched:art17",
+     "say": {
+      "en": "Tap \"Article 17\", then the line that says what it does.",
+      "hi": "\"अनुच्छेद 17\" छुओ, फिर वह पंक्ति जो बताती है कि वह क्या करता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which article protects a child of twelve from working in a factory?",
+      "hi": "कौन-सा अनुच्छेद बारह साल के बच्चे को कारख़ाने में काम करने से बचाता है?"
+     },
+     "options": [
+      {
+       "id": "a24",
+       "en": "Article 24",
+       "hi": "अनुच्छेद 24"
+      },
+      {
+       "id": "a14",
+       "en": "Article 14",
+       "hi": "अनुच्छेद 14"
+      },
+      {
+       "id": "a32",
+       "en": "Article 32",
+       "hi": "अनुच्छेद 32"
+      }
+     ],
+     "answer": "a24"
+    },
+    {
+     "kind": "do",
+     "target": "left:art24",
+     "expect": "matched:art24",
+     "say": {
+      "en": "Now match \"Article 24\".",
+      "hi": "अब \"अनुच्छेद 24\" मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each article is a promise from the Constitution. Articles 14 to 18 give equality, 23 and 24 stop exploitation, 21A gives schooling and 32 lets you go to court. A right matters only if you know it and can use it.",
+      "hi": "हर अनुच्छेद संविधान का एक वादा है। अनुच्छेद 14 से 18 समता देते हैं, 23 और 24 शोषण रोकते हैं, 21क स्कूली शिक्षा देता है और 32 अदालत जाने देता है। अधिकार तभी काम का है जब आप उसे जानें और इस्तेमाल कर सकें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A shop refuses to serve a customer because of her caste. Which article is broken?",
+        "hi": "एक दुकान जाति के कारण एक ग्राहक को सामान नहीं देती। कौन-सा अनुच्छेद टूटा?"
+       },
+       "options": [
+        {
+         "en": "Article 15",
+         "hi": "अनुच्छेद 15"
+        },
+        {
+         "en": "Article 21A",
+         "hi": "अनुच्छेद 21क"
+        },
+        {
+         "en": "Article 24",
+         "hi": "अनुच्छेद 24"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Article 15 forbids discrimination on grounds such as caste and opens public places to all.",
+        "hi": "अनुच्छेद 15 जाति जैसे आधारों पर भेदभाव रोकता है और सार्वजनिक स्थान सबके लिए खोलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "21A is about free schooling for children, not about shop service.",
+         "hi": "21क बच्चों की मुफ़्त शिक्षा के बारे में है, दुकान की सेवा के बारे में नहीं।"
+        },
+        {
+         "en": "Article 24 is about child labour, which is not the issue here.",
+         "hi": "अनुच्छेद 24 बाल मज़दूरी के बारे में है, जो यहाँ मुद्दा नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which article makes the other fundamental rights enforceable?",
+        "hi": "कौन-सा अनुच्छेद बाक़ी मौलिक अधिकारों को लागू करवाने योग्य बनाता है?"
+       },
+       "options": [
+        {
+         "en": "Article 17",
+         "hi": "अनुच्छेद 17"
+        },
+        {
+         "en": "Article 23",
+         "hi": "अनुच्छेद 23"
+        },
+        {
+         "en": "Article 32",
+         "hi": "अनुच्छेद 32"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Article 32 lets a person go to the Supreme Court when any fundamental right is denied.",
+        "hi": "अनुच्छेद 32 किसी भी मौलिक अधिकार के छिनने पर सर्वोच्च न्यायालय जाने देता है।"
+       },
+       "wrong": [
+        {
+         "en": "Article 17 only ends untouchability.",
+         "hi": "अनुच्छेद 17 केवल अस्पृश्यता समाप्त करता है।"
+        },
+        {
+         "en": "Article 23 bans trafficking and forced labour; it does not give a route to court for all rights.",
+         "hi": "अनुच्छेद 23 मनुष्य-व्यापार और बेगार रोकता है; यह सब अधिकारों के लिए अदालत का रास्ता नहीं देता।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask an elder if they remember a time when these rights were not followed. What changed?",
+      "hi": "किसी बड़े से पूछो कि क्या उन्हें याद है जब ये अधिकार नहीं माने जाते थे। क्या बदला?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch02-scenario-arrest",
+   "topic": "2.5",
+   "template": "scenario",
+   "title": {
+    "en": "Your neighbour is held by police",
+    "hi": "पड़ोसी को पुलिस ने रोक रखा है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "police station",
+    "role": {
+     "en": "A concerned neighbour",
+     "hi": "एक चिंतित पड़ोसी"
+    },
+    "scenes": [
+     {
+      "id": "arrest",
+      "text": {
+       "en": "Late at night police take your neighbour Salim away. They do not tell his family why. By next evening he has still not been shown to any magistrate.",
+       "hi": "देर रात पुलिस आपके पड़ोसी सलीम को ले जाती है। परिवार को कारण नहीं बताया जाता। अगली शाम तक भी उसे किसी मजिस्ट्रेट के सामने पेश नहीं किया गया।"
+      },
+      "choices": [
+       {
+        "id": "wait-quiet",
+        "text": {
+         "en": "Wait quietly; the police must know best",
+         "hi": "चुपचाप इंतज़ार करो; पुलिस को ही पता होगा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A person arrested has the right to be told the reasons and to be produced before a magistrate within 24 hours (Article 22). Staying silent lets a possible wrong continue.",
+         "hi": "गिरफ़्तार व्यक्ति को कारण जानने और 24 घंटे में मजिस्ट्रेट के सामने पेश होने का अधिकार है (अनुच्छेद 22)। चुप रहने से संभावित अन्याय चलता रहता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "cite-rule",
+        "text": {
+         "en": "Calmly ask the police for the reason and remind them of the 24-hour rule",
+         "hi": "शांति से पुलिस से कारण पूछो और 24 घंटे का नियम याद दिलाओ"
+        },
+        "next": "court",
+        "feedback": {
+         "en": "Good. Asking politely and knowing the rule is the first step. A person arrested must be told the grounds and produced before a magistrate within 24 hours.",
+         "hi": "अच्छा। विनम्रता से पूछना और नियम जानना पहला क़दम है। गिरफ़्तार व्यक्ति को आधार बताना और 24 घंटे में मजिस्ट्रेट के सामने पेश करना ज़रूरी है।"
+        },
+        "good": true
+       },
+       {
+        "id": "shout",
+        "text": {
+         "en": "Shout at the officers and block the gate",
+         "hi": "अफ़सरों पर चिल्लाओ और फाटक रोको"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Anger does not protect a right and may bring trouble on you. The Constitution gives a lawful remedy instead.",
+         "hi": "ग़ुस्सा अधिकार की रक्षा नहीं करता और आप पर मुसीबत ला सकता है। संविधान एक वैध उपाय देता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "court",
+      "text": {
+       "en": "The police still refuse to say anything. A lawyer tells the family that Salim may be held unlawfully. Where can they turn?",
+       "hi": "पुलिस फिर भी कुछ नहीं बताती। वकील परिवार को कहता है कि सलीम को ग़ैरक़ानूनी ढंग से रखा गया हो सकता है। वे कहाँ जाएँ?"
+      },
+      "choices": [
+       {
+        "id": "leader-only",
+        "text": {
+         "en": "Only a local leader can help",
+         "hi": "केवल कोई स्थानीय नेता मदद कर सकता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A right does not depend on a leader's favour. The Constitution lets citizens go to the courts themselves.",
+         "hi": "अधिकार किसी नेता की कृपा पर निर्भर नहीं है। संविधान नागरिकों को स्वयं अदालत जाने देता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "habeas",
+        "text": {
+         "en": "File a habeas corpus petition in the High Court or the Supreme Court",
+         "hi": "उच्च न्यायालय या सर्वोच्च न्यायालय में बंदी प्रत्यक्षीकरण याचिका दायर करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Under the Right to Constitutional Remedies the court can order the police to produce Salim and explain why he is held. If the detention is unlawful he is freed.",
+         "hi": "सही। संवैधानिक उपचारों के अधिकार के तहत अदालत पुलिस को सलीम को पेश करने और कारण बताने का आदेश दे सकती है। हिरासत ग़ैरक़ानूनी हो तो वह रिहा होता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "give-up",
+        "text": {
+         "en": "Give up; courts are only for the rich",
+         "hi": "छोड़ दो; अदालतें केवल अमीरों के लिए हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Courts are open to every citizen, and a person who cannot afford a lawyer can get free legal aid.",
+         "hi": "अदालतें हर नागरिक के लिए खुली हैं, और वकील का ख़र्च न उठा सकने वाले को मुफ़्त क़ानूनी सहायता मिल सकती है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the first thing a person arrested has a right to know?",
+      "hi": "गिरफ़्तार व्यक्ति को सबसे पहले क्या जानने का अधिकार है?"
+     },
+     "options": [
+      {
+       "id": "why",
+       "en": "Why he is being arrested",
+       "hi": "उसे क्यों गिरफ़्तार किया जा रहा है"
+      },
+      {
+       "id": "who",
+       "en": "Which officer will get a medal",
+       "hi": "किस अफ़सर को पदक मिलेगा"
+      },
+      {
+       "id": "how",
+       "en": "How long the court will take",
+       "hi": "अदालत कितना समय लेगी"
+      }
+     ],
+     "answer": "why"
+    },
+    {
+     "kind": "do",
+     "target": "choice:arrest:cite-rule",
+     "expect": "chose:cite-rule",
+     "say": {
+      "en": "Choose to ask calmly and remind the police of the rule.",
+      "hi": "शांति से पूछने और पुलिस को नियम याद दिलाने वाला विकल्प चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:court:habeas",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose the lawful remedy for the family.",
+      "hi": "परिवार के लिए वैध उपाय चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Article 22 gives an arrested person the right to know the reasons, to meet a lawyer and to be produced before a magistrate within 24 hours. If these are denied, Article 32 or 226 lets a person ask the court for a writ such as habeas corpus. That is how the Constitution protects freedom.",
+      "hi": "अनुच्छेद 22 गिरफ़्तार व्यक्ति को कारण जानने, वकील से मिलने और 24 घंटे के भीतर मजिस्ट्रेट के सामने पेश होने का अधिकार देता है। इनके न मिलने पर अनुच्छेद 32 या 226 से बंदी प्रत्यक्षीकरण जैसी रिट के लिए अदालत जाया जा सकता है। इस तरह संविधान स्वतंत्रता की रक्षा करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Within how many hours must an arrested person be produced before a magistrate?",
+        "hi": "गिरफ़्तार व्यक्ति को कितने घंटे में मजिस्ट्रेट के सामने पेश करना होता है?"
+       },
+       "options": [
+        {
+         "en": "24 hours",
+         "hi": "24 घंटे"
+        },
+        {
+         "en": "7 days",
+         "hi": "7 दिन"
+        },
+        {
+         "en": "One month",
+         "hi": "एक महीना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The rule is 24 hours, not counting the travel time to the court.",
+        "hi": "नियम 24 घंटे का है, अदालत तक जाने का समय छोड़कर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A week is far too long; the person could be held unlawfully all that time.",
+         "hi": "एक सप्ताह बहुत लंबा है; इतने समय तक व्यक्ति ग़ैरक़ानूनी ढंग से बंद रह सकता है।"
+        },
+        {
+         "en": "A month would let the police keep anyone without a court's check.",
+         "hi": "एक महीने में पुलिस बिना अदालत की जाँच के किसी को भी रोक सकती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does a writ of habeas corpus do?",
+        "hi": "बंदी प्रत्यक्षीकरण रिट क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "Orders that a detained person be brought before the court",
+         "hi": "हिरासत में रखे व्यक्ति को अदालत में पेश करने का आदेश देती है"
+        },
+        {
+         "en": "Removes a judge from office",
+         "hi": "न्यायाधीश को पद से हटाती है"
+        },
+        {
+         "en": "Makes a new law",
+         "hi": "नया क़ानून बनाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The court examines whether the detention is lawful and frees the person if it is not.",
+        "hi": "अदालत देखती है कि हिरासत वैध है या नहीं, और नहीं हो तो व्यक्ति को छोड़ देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Removing judges is done through a different process in Parliament.",
+         "hi": "न्यायाधीशों को हटाने की प्रक्रिया संसद में अलग है।"
+        },
+        {
+         "en": "Courts do not make laws; Parliament does.",
+         "hi": "अदालतें क़ानून नहीं बनातीं; संसद बनाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Replay and pick the other choices. What does each one lead to, and which right did it forget?",
+      "hi": "फिर खेलो और दूसरे विकल्प चुनो। हर एक कहाँ ले जाता है, और उसमें कौन-सा अधिकार भूल गया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch02-match-writs",
+   "topic": "2.9",
+   "template": "match",
+   "title": {
+    "en": "Five writs of the court",
+    "hi": "अदालत की पाँच रिटें"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "habeas",
+      "left": {
+       "en": "Habeas corpus",
+       "hi": "बंदी प्रत्यक्षीकरण"
+      },
+      "right": {
+       "en": "Bring the detained person before the court so it can check the arrest",
+       "hi": "हिरासत में रखे व्यक्ति को अदालत में लाओ ताकि गिरफ़्तारी की जाँच हो"
+      },
+      "why": {
+       "en": "It protects personal liberty.",
+       "hi": "यह व्यक्तिगत स्वतंत्रता की रक्षा करती है।"
+      }
+     },
+     {
+      "id": "mandamus",
+      "left": {
+       "en": "Mandamus",
+       "hi": "परमादेश"
+      },
+      "right": {
+       "en": "Orders an official or body to do the duty it has failed to do",
+       "hi": "किसी अधिकारी या संस्था को वह कर्तव्य निभाने का आदेश जो उसने नहीं निभाया"
+      },
+      "why": {
+       "en": "It makes public officials do their job.",
+       "hi": "यह सरकारी अधिकारियों से उनका काम करवाती है।"
+      }
+     },
+     {
+      "id": "prohibition",
+      "left": {
+       "en": "Prohibition",
+       "hi": "प्रतिषेध"
+      },
+      "right": {
+       "en": "A higher court tells a lower court to stop a case beyond its power",
+       "hi": "उच्च अदालत निचली अदालत को उसकी शक्ति से बाहर का मामला रोकने को कहती है"
+      },
+      "why": {
+       "en": "It stops a court from going beyond its limits.",
+       "hi": "यह अदालत को अपनी सीमा लाँघने से रोकती है।"
+      }
+     },
+     {
+      "id": "certiorari",
+      "left": {
+       "en": "Certiorari",
+       "hi": "उत्प्रेषण"
+      },
+      "right": {
+       "en": "A higher court cancels a wrong order of a lower court or authority",
+       "hi": "उच्च अदालत निचली अदालत या प्राधिकारी के ग़लत आदेश को रद्द करती है"
+      },
+      "why": {
+       "en": "It corrects a decision already made.",
+       "hi": "यह हो चुके फ़ैसले को सुधारती है।"
+      }
+     },
+     {
+      "id": "quowarranto",
+      "left": {
+       "en": "Quo warranto",
+       "hi": "अधिकार-पृच्छा"
+      },
+      "right": {
+       "en": "Asks a person holding a public office: by what right do you hold it?",
+       "hi": "सार्वजनिक पद पर बैठे व्यक्ति से पूछती है: किस अधिकार से यह पद सँभाला है?"
+      },
+      "why": {
+       "en": "It removes people who hold office without being entitled to it.",
+       "hi": "यह उन्हें हटाती है जो बिना पात्रता के पद पर हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:habeas",
+     "expect": "matched:habeas",
+     "say": {
+      "en": "Tap \"Habeas corpus\" and match what it does.",
+      "hi": "\"बंदी प्रत्यक्षीकरण\" छुओ और उसका काम मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A clerk refuses to issue a ration card he must by law issue. Which writ orders him to do his duty?",
+      "hi": "एक क्लर्क वह राशन कार्ड नहीं बना रहा जो उसे क़ानून से बनाना है। कौन-सी रिट उसे कर्तव्य निभाने का आदेश देती है?"
+     },
+     "options": [
+      {
+       "id": "mand",
+       "en": "Mandamus",
+       "hi": "परमादेश"
+      },
+      {
+       "id": "quo",
+       "en": "Quo warranto",
+       "hi": "अधिकार-पृच्छा"
+      },
+      {
+       "id": "hab",
+       "en": "Habeas corpus",
+       "hi": "बंदी प्रत्यक्षीकरण"
+      }
+     ],
+     "answer": "mand"
+    },
+    {
+     "kind": "do",
+     "target": "left:mandamus",
+     "expect": "matched:mandamus",
+     "say": {
+      "en": "Match \"Mandamus\".",
+      "hi": "\"परमादेश\" मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Under Articles 32 and 226 the Supreme Court and the High Courts can issue five kinds of writ. Each is a special order for a different kind of wrong: unlawful detention, a duty not done, a court going beyond its power, a wrong order, or a person wrongly holding office.",
+      "hi": "अनुच्छेद 32 और 226 के तहत सर्वोच्च न्यायालय और उच्च न्यायालय पाँच प्रकार की रिटें जारी कर सकते हैं। हर रिट अलग तरह के अन्याय के लिए विशेष आदेश है: ग़ैरक़ानूनी हिरासत, न निभाया गया कर्तव्य, अदालत का शक्ति से बाहर जाना, ग़लत आदेश, या अपात्र का पद पर होना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which writ asks \"By what authority do you hold this office?\"",
+        "hi": "कौन-सी रिट पूछती है \"किस अधिकार से आप यह पद धारण करते हैं?\""
+       },
+       "options": [
+        {
+         "en": "Quo warranto",
+         "hi": "अधिकार-पृच्छा"
+        },
+        {
+         "en": "Prohibition",
+         "hi": "प्रतिषेध"
+        },
+        {
+         "en": "Mandamus",
+         "hi": "परमादेश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Quo warranto questions the right of a person to hold a public office.",
+        "hi": "अधिकार-पृच्छा किसी व्यक्ति के पद पर बने रहने के अधिकार पर प्रश्न उठाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Prohibition stops a lower court from going beyond its power.",
+         "hi": "प्रतिषेध निचली अदालत को शक्ति से बाहर जाने से रोकता है।"
+        },
+        {
+         "en": "Mandamus orders an official to carry out a duty; it does not question the post itself.",
+         "hi": "परमादेश अधिकारी को कर्तव्य निभाने का आदेश देता है; वह पद पर प्रश्न नहीं उठाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who can issue these writs to protect fundamental rights?",
+        "hi": "मौलिक अधिकारों की रक्षा के लिए ये रिटें कौन जारी कर सकता है?"
+       },
+       "options": [
+        {
+         "en": "The Supreme Court and the High Courts",
+         "hi": "सर्वोच्च न्यायालय और उच्च न्यायालय"
+        },
+        {
+         "en": "Only the police",
+         "hi": "केवल पुलिस"
+        },
+        {
+         "en": "The Election Commission",
+         "hi": "निर्वाचन आयोग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Articles 32 and 226 give these powers to the Supreme Court and the High Courts.",
+        "hi": "अनुच्छेद 32 और 226 ये शक्तियाँ सर्वोच्च न्यायालय और उच्च न्यायालयों को देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The police enforce laws; they cannot order courts or officials with a writ.",
+         "hi": "पुलिस क़ानून लागू करती है; वह रिट से अदालतों या अधिकारियों को आदेश नहीं दे सकती।"
+        },
+        {
+         "en": "The Election Commission runs elections and has no power to issue writs.",
+         "hi": "निर्वाचन आयोग चुनाव कराता है; रिट जारी करने की शक्ति उसके पास नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a local problem, such as a road never repaired. Which writ might fit, and why?",
+      "hi": "कोई स्थानीय समस्या सोचो, जैसे सड़क जो कभी ठीक नहीं हुई। कौन-सी रिट ठीक बैठेगी, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch02-sort-dpsp",
+   "topic": "2.10",
+   "template": "sort",
+   "title": {
+    "en": "Right or Directive Principle?",
+    "hi": "अधिकार या नीति-निदेशक तत्व?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fr",
+      "label": {
+       "en": "Fundamental Right",
+       "hi": "मौलिक अधिकार"
+      }
+     },
+     {
+      "id": "dp",
+      "label": {
+       "en": "Directive Principle",
+       "hi": "नीति-निदेशक तत्व"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "untouch",
+      "text": {
+       "en": "Untouchability is abolished",
+       "hi": "अस्पृश्यता समाप्त है"
+      },
+      "bin": "fr",
+      "why": {
+       "en": "Article 17 is a fundamental right; a person can go to court if it is broken.",
+       "hi": "अनुच्छेद 17 मौलिक अधिकार है; टूटे तो व्यक्ति अदालत जा सकता है।"
+      }
+     },
+     {
+      "id": "speech",
+      "text": {
+       "en": "Freedom of speech and expression",
+       "hi": "बोलने और अभिव्यक्ति की स्वतंत्रता"
+      },
+      "bin": "fr",
+      "why": {
+       "en": "Article 19 is a fundamental right and courts protect it.",
+       "hi": "अनुच्छेद 19 मौलिक अधिकार है और अदालतें इसकी रक्षा करती हैं।"
+      }
+     },
+     {
+      "id": "life",
+      "text": {
+       "en": "Right to life and personal liberty",
+       "hi": "जीवन और दैहिक स्वतंत्रता का अधिकार"
+      },
+      "bin": "fr",
+      "why": {
+       "en": "Article 21 is a fundamental right.",
+       "hi": "अनुच्छेद 21 मौलिक अधिकार है।"
+      }
+     },
+     {
+      "id": "remedy",
+      "text": {
+       "en": "Going to the Supreme Court when a right is denied",
+       "hi": "अधिकार छिनने पर सर्वोच्च न्यायालय जाना"
+      },
+      "bin": "fr",
+      "why": {
+       "en": "Article 32 is itself a fundamental right.",
+       "hi": "अनुच्छेद 32 स्वयं एक मौलिक अधिकार है।"
+      }
+     },
+     {
+      "id": "equalpay",
+      "text": {
+       "en": "Equal pay for equal work for men and women",
+       "hi": "स्त्री-पुरुष को समान काम का समान वेतन"
+      },
+      "bin": "dp",
+      "why": {
+       "en": "This is a Directive Principle; the government should work toward it, but a court cannot order it as a right.",
+       "hi": "यह नीति-निदेशक तत्व है; सरकार को इसकी ओर बढ़ना है, पर अदालत इसे अधिकार की तरह लागू नहीं करवाती।"
+      }
+     },
+     {
+      "id": "panchayat",
+      "text": {
+       "en": "The State should organise village panchayats",
+       "hi": "राज्य ग्राम पंचायतों का गठन करे"
+      },
+      "bin": "dp",
+      "why": {
+       "en": "Article 40 is a Directive Principle, a guide for governments.",
+       "hi": "अनुच्छेद 40 नीति-निदेशक तत्व है, सरकारों के लिए मार्गदर्शन।"
+      }
+     },
+     {
+      "id": "environment",
+      "text": {
+       "en": "The State protects forests and wildlife",
+       "hi": "राज्य वन और वन्य जीवों की रक्षा करे"
+      },
+      "bin": "dp",
+      "why": {
+       "en": "A goal set for the State, not a right a person can enforce in court on its own.",
+       "hi": "यह राज्य के लिए लक्ष्य है, कोई ऐसा अधिकार नहीं जिसे व्यक्ति अकेले अदालत से लागू करवाए।"
+      }
+     },
+     {
+      "id": "legalaid",
+      "text": {
+       "en": "Free legal aid for the poor",
+       "hi": "ग़रीबों को मुफ़्त क़ानूनी सहायता"
+      },
+      "bin": "dp",
+      "why": {
+       "en": "Article 39A is a Directive Principle that guides the government's laws and schemes.",
+       "hi": "अनुच्छेद 39क नीति-निदेशक तत्व है जो सरकार के क़ानूनों और योजनाओं का मार्गदर्शन करता है।"
+      }
+     },
+     {
+      "id": "separate",
+      "text": {
+       "en": "Courts to be kept separate from the executive",
+       "hi": "न्यायपालिका को कार्यपालिका से अलग रखा जाए"
+      },
+      "bin": "dp",
+      "why": {
+       "en": "Article 50 is a Directive Principle.",
+       "hi": "अनुच्छेद 50 नीति-निदेशक तत्व है।"
+      }
+     },
+     {
+      "id": "religion",
+      "text": {
+       "en": "Freedom to follow and practise any religion",
+       "hi": "किसी भी धर्म को मानने और पालन करने की स्वतंत्रता"
+      },
+      "bin": "fr",
+      "why": {
+       "en": "Articles 25 to 28 are fundamental rights.",
+       "hi": "अनुच्छेद 25 से 28 मौलिक अधिकार हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:untouch",
+     "expect": "placed:untouch",
+     "say": {
+      "en": "Tap the card about untouchability, then pick its group.",
+      "hi": "अस्पृश्यता वाला कार्ड छुओ, फिर उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The government has not yet made laws for equal pay for equal work. Can you demand it in court as a fundamental right?",
+      "hi": "सरकार ने समान काम के समान वेतन पर अभी क़ानून नहीं बनाए। क्या आप इसे मौलिक अधिकार की तरह अदालत में माँग सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is a Directive Principle",
+       "hi": "नहीं, यह नीति-निदेशक तत्व है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, like any fundamental right",
+       "hi": "हाँ, किसी भी मौलिक अधिकार की तरह"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:equalpay",
+     "expect": "placed:equalpay",
+     "say": {
+      "en": "Place the equal pay card.",
+      "hi": "समान वेतन वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Fundamental Rights can be enforced by the courts. Directive Principles are goals the Constitution sets for governments, such as a fair economy and care for the poor. The two work together: rights protect the individual now, and directives guide the State towards a better society.",
+      "hi": "मौलिक अधिकारों को अदालतें लागू करवाती हैं। नीति-निदेशक तत्व संविधान द्वारा सरकारों को दिए लक्ष्य हैं, जैसे न्यायपूर्ण अर्थव्यवस्था और ग़रीबों की देखभाल। दोनों साथ चलते हैं: अधिकार आज व्यक्ति की रक्षा करते हैं और निदेशक तत्व राज्य को बेहतर समाज की ओर ले जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the main difference between a fundamental right and a directive principle?",
+        "hi": "मौलिक अधिकार और नीति-निदेशक तत्व में मुख्य अंतर क्या है?"
+       },
+       "options": [
+        {
+         "en": "Courts enforce fundamental rights; directive principles guide governments",
+         "hi": "मौलिक अधिकार अदालतें लागू करवाती हैं; निदेशक तत्व सरकारों का मार्गदर्शन करते हैं"
+        },
+        {
+         "en": "Directive principles are older",
+         "hi": "निदेशक तत्व अधिक पुराने हैं"
+        },
+        {
+         "en": "Fundamental rights are only for the poor",
+         "hi": "मौलिक अधिकार केवल ग़रीबों के लिए हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A person can go to court for a fundamental right; a directive principle is a guide for the State's policies.",
+        "hi": "मौलिक अधिकार के लिए व्यक्ति अदालत जा सकता है; निदेशक तत्व राज्य की नीतियों के लिए मार्गदर्शक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Age is not the difference; both came with the Constitution.",
+         "hi": "अंतर उम्र का नहीं है; दोनों संविधान के साथ आए।"
+        },
+        {
+         "en": "Fundamental rights belong to every person; they are not only for the poor.",
+         "hi": "मौलिक अधिकार हर व्यक्ति के हैं; केवल ग़रीबों के नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the Constitution include Directive Principles at all?",
+        "hi": "संविधान में नीति-निदेशक तत्व क्यों रखे गए हैं?"
+       },
+       "options": [
+        {
+         "en": "To set goals such as social and economic justice for governments",
+         "hi": "सरकारों के लिए सामाजिक-आर्थिक न्याय जैसे लक्ष्य तय करने के लिए"
+        },
+        {
+         "en": "To replace the courts",
+         "hi": "अदालतों की जगह लेने के लिए"
+        },
+        {
+         "en": "To reduce the rights of citizens",
+         "hi": "नागरिकों के अधिकार घटाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They remind every government of the aim of a fair society, which policies and laws should follow.",
+        "hi": "वे हर सरकार को न्यायपूर्ण समाज के उद्देश्य की याद दिलाते हैं, जिस पर नीतियाँ और क़ानून चलें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Courts stay; directives do not replace them.",
+         "hi": "अदालतें बनी रहती हैं; निदेशक तत्व उनकी जगह नहीं लेते।"
+        },
+        {
+         "en": "Directives are meant to widen well-being, not to cut rights.",
+         "hi": "निदेशक तत्वों का उद्देश्य कल्याण बढ़ाना है, अधिकार घटाना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick one directive principle. What is one thing your State or village could do to move towards it?",
+      "hi": "कोई एक निदेशक तत्व चुनो। उसकी ओर बढ़ने के लिए तुम्हारा राज्य या गाँव कौन-सी एक चीज़ कर सकता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Opens the chapter",
+   "shows": "Boys and girls in school uniform walking together along a village lane to a government school in the morning light",
+   "view": "Wide, 16:9, eye level",
+   "right": "Girls and boys equally, simple uniforms, open sky, Indian village setting",
+   "avoid": "Readable school names, close-up faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Shows equality in daily life",
+   "shows": "People of different ages and dress drawing water from the same village well or hand pump, taking turns",
+   "view": "Wide, 16:9",
+   "right": "Everyone mixing naturally, calm light, no one set apart",
+   "avoid": "Caste or religion markers, readable text, faces close up"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.6",
+   "use": "Shows protection from exploitation",
+   "shows": "A boy and a girl in uniform going through a school gate, with a closed small workshop shutter across the lane",
+   "view": "Wide, 16:9, morning",
+   "right": "Clear contrast between school and the closed workshop; hopeful mood",
+   "avoid": "Children working, distressing scenes, readable signs"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.7",
+   "use": "Shows freedom of religion and living together",
+   "shows": "A street at dusk with a temple, a mosque, a church and a gurdwara close together, lamps lit, people walking by",
+   "view": "Wide, 16:9",
+   "right": "All four buildings equally prominent and respectfully shown",
+   "avoid": "Readable names, political flags, crowds in close-up"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "2.3",
+   "use": "Base for the rights sorting lab",
+   "shows": "A circle divided into six equal coloured segments around a small centre, each segment empty",
+   "view": "Square, white background",
+   "right": "No words or numbers, clear distinct colours, patterns as well as colour",
+   "avoid": "Any lettering"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "2.9",
+   "use": "Cut-out for the remedies topic",
+   "shows": "A wooden judge's gavel on its block next to a rolled blank paper tied with a ribbon",
+   "view": "Three-quarter view, transparent background",
+   "right": "Warm wood, clean edges, soft shadow on a separate layer",
+   "avoid": "Any text on the paper, brand marks"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "2.10",
+   "use": "Shows the State working toward a goal",
+   "shows": "A mid-day meal being served in a government school, children seated in a row, a cook with a ladle",
+   "view": "Wide, 16:9",
+   "right": "Warm, orderly, healthy meal, mixed children",
+   "avoid": "Brand packaging, readable boards, faces close up"
+  }
+ ]
+}

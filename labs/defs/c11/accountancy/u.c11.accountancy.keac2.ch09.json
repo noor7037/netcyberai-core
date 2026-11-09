@@ -1,0 +1,2093 @@
+{
+ "chapter_key": "u.c11.accountancy.keac2.ch09",
+ "class": 11,
+ "subject_id": "accountancy",
+ "title": "Financial Statements - II",
+ "source": "https://ncert.nic.in/textbook/pdf/keac202.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Need for adjustments",
+   "labs": [
+    "c11-accountancy-keac2-ch09-need"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Closing stock",
+   "labs": [
+    "c11-accountancy-keac2-ch09-closing-stock"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Outstanding expenses",
+   "labs": [
+    "c11-accountancy-keac2-ch09-outstanding"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Prepaid expenses",
+   "labs": [
+    "c11-accountancy-keac2-ch09-prepaid"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "Accrued income",
+   "labs": [
+    "c11-accountancy-keac2-ch09-accrued-income"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.6",
+   "title": "Income received in advance",
+   "labs": [
+    "c11-accountancy-keac2-ch09-received-in-advance"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.7",
+   "title": "Depreciation",
+   "labs": [
+    "c11-accountancy-keac2-ch09-depreciation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.8",
+   "title": "Bad debts",
+   "labs": [
+    "c11-accountancy-keac2-ch09-bad-debts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.9",
+   "title": "Provision for bad and doubtful debts",
+   "labs": [],
+   "why_no_lab": "The provision is charged to the profit and loss account and deducted from debtors in the balance sheet, which the accounts book cannot show yet; the reader works it step by step."
+  },
+  {
+   "n": "9.10",
+   "title": "Provision for discount on debtors",
+   "labs": [],
+   "why_no_lab": "It follows the same pattern as the doubtful debts provision on the debtors left after it, a worked calculation best followed in the reader."
+  },
+  {
+   "n": "9.11",
+   "title": "Manager’s commission",
+   "labs": [],
+   "why_no_lab": "The commission is a percentage of profit before or after charging it, a short calculation shown in the reader with both cases side by side."
+  },
+  {
+   "n": "9.12",
+   "title": "Interest on capital",
+   "labs": [],
+   "why_no_lab": "Interest on capital is an expense credited to the owner’s capital, a two-line entry the reader explains; the accounts book has no interest on capital account."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-accountancy-keac2-ch09-need",
+   "topic": "9.1",
+   "template": "ledger",
+   "title": {
+    "en": "Why adjustments are needed",
+    "hi": "समायोजन क्यों ज़रूरी हैं"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "final-accounts",
+    "business": {
+     "en": "Neha Bakery",
+     "hi": "नेहा बेकरी"
+    },
+    "accounts": [
+     {
+      "id": "salary-due",
+      "name": {
+       "en": "Outstanding salaries",
+       "hi": "बकाया वेतन"
+      },
+      "kind": "creditor"
+     },
+     {
+      "id": "insurance-prepaid",
+      "name": {
+       "en": "Prepaid insurance",
+       "hi": "पूर्वदत्त बीमा"
+      },
+      "kind": "debtor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-04-01",
+      "text": {
+       "en": "Neha started the bakery with cash",
+       "hi": "नेहा ने नकद लगाकर बेकरी शुरू की"
+      },
+      "amount": 70000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2025-04-03",
+      "text": {
+       "en": "Bought flour, sugar and butter for cash",
+       "hi": "नकद में मैदा, चीनी और मक्खन ख़रीदा"
+      },
+      "amount": 30000,
+      "debit": "purchases",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2025-07-01",
+      "text": {
+       "en": "Paid fire insurance for one year, July to June",
+       "hi": "एक साल (जुलाई से जून) का अग्नि बीमा भरा"
+      },
+      "amount": 4000,
+      "debit": "insurance",
+      "credit": "cash"
+     },
+     {
+      "id": "t4",
+      "date": "2026-02-28",
+      "text": {
+       "en": "Paid the helper’s salary for April to February",
+       "hi": "सहायक का अप्रैल से फ़रवरी का वेतन दिया"
+      },
+      "amount": 11000,
+      "debit": "salaries",
+      "credit": "cash"
+     },
+     {
+      "id": "t5",
+      "date": "2026-03-25",
+      "text": {
+       "en": "Sold cakes and bread for cash during the year",
+       "hi": "साल भर में नकद केक और ब्रेड बेचे"
+      },
+      "amount": 60000,
+      "debit": "cash",
+      "credit": "sales"
+     },
+     {
+      "id": "t6",
+      "date": "2026-03-31",
+      "text": {
+       "en": "March salary is due but not yet paid",
+       "hi": "मार्च का वेतन बकाया है, अभी दिया नहीं"
+      },
+      "amount": 1000,
+      "debit": "salaries",
+      "credit": "salary-due"
+     },
+     {
+      "id": "t7",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Insurance for April to June next year is paid in advance",
+       "hi": "अगले साल अप्रैल से जून का बीमा पहले ही दे दिया गया है"
+      },
+      "amount": 1000,
+      "debit": "insurance-prepaid",
+      "credit": "insurance"
+     }
+    ],
+    "closingStock": 5000
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "account:salary-due",
+     "expect": "chose:salary-due",
+     "say": {
+      "en": "Tap Outstanding salaries: March pay that Neha still owes.",
+      "hi": "बकाया वेतन पर टैप करो: मार्च का वेतन जो नेहा को अभी देना है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Neha paid ₹11,000 of salary in cash, and ₹1,000 for March is still due. What salary belongs to this year?",
+      "hi": "नेहा ने ₹11,000 वेतन नकद दिया, और मार्च का ₹1,000 अभी बाक़ी है। इस साल का वेतन कितना है?"
+     },
+     "options": [
+      {
+       "id": "s12",
+       "en": "₹12,000",
+       "hi": "12,000 रुपये"
+      },
+      {
+       "id": "s11",
+       "en": "₹11,000, only what was paid",
+       "hi": "11,000 रुपये, जितना दिया गया"
+      },
+      {
+       "id": "s1",
+       "en": "₹1,000",
+       "hi": "1,000 रुपये"
+      }
+     ],
+     "answer": "s12"
+    },
+    {
+     "kind": "do",
+     "target": "account:salaries",
+     "expect": "chose:salaries",
+     "say": {
+      "en": "Now tap the Salaries balance.",
+      "hi": "अब वेतन के शेष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:insurance-prepaid",
+     "expect": "chose:insurance-prepaid",
+     "say": {
+      "en": "Tap Prepaid insurance: cover already paid for next year.",
+      "hi": "पूर्वदत्त बीमा पर टैप करो: अगले साल की सुरक्षा का पहले से दिया पैसा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On the accrual basis, a year is charged with what it used, not just what it paid. So salaries for this year are ₹12,000, and the ₹1,000 still due is a liability. Of the ₹4,000 insurance, ₹1,000 covers next year, so it is an asset and only ₹3,000 is this year’s expense. Without these adjustments the profit and the balance sheet would be wrong.",
+      "hi": "उपार्जन आधार पर साल पर वही ख़र्च लगता है जो उसने इस्तेमाल किया, सिर्फ़ जो चुकाया वह नहीं। इसलिए इस साल का वेतन ₹12,000 है, और बाक़ी ₹1,000 एक देयता है। ₹4,000 के बीमे में से ₹1,000 अगले साल का है, इसलिए वह परिसंपत्ति है और केवल ₹3,000 इस साल का व्यय है। इन समायोजनों के बिना लाभ और तुलन पत्र ग़लत होंगे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Without the two adjustments the net profit here would still be ₹20,000. Why do the adjustments still matter?",
+        "hi": "दोनों समायोजनों के बिना भी यहाँ शुद्ध लाभ ₹20,000 ही रहता। फिर भी समायोजन क्यों ज़रूरी हैं?"
+       },
+       "options": [
+        {
+         "en": "The balance sheet would hide a ₹1,000 debt and a ₹1,000 asset",
+         "hi": "तुलन पत्र ₹1,000 का कर्ज़ और ₹1,000 की परिसंपत्ति छिपा देता"
+        },
+        {
+         "en": "It does not matter at all",
+         "hi": "इससे कोई फ़र्क़ नहीं पड़ता"
+        },
+        {
+         "en": "The cash would be different",
+         "hi": "नकद अलग हो जाता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Here the two effects cancel in the profit by chance, but the position statement would still be wrong: an amount owed and an amount paid ahead would both be missing.",
+        "hi": "यहाँ दोनों असर संयोग से लाभ में कट जाते हैं, पर स्थिति फिर भी ग़लत रहती: बकाया राशि और पहले दी गई राशि दोनों ग़ायब होतीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A true and fair view needs every amount owed and owned; one lucky cancel does not make the books right.",
+         "hi": "सही और उचित चित्र के लिए हर देय और हर परिसंपत्ति चाहिए; एक संयोग से कटना हिसाब को सही नहीं बनाता।"
+        },
+        {
+         "en": "Adjustments are made on 31 March without moving any cash, so the cash stays ₹85,000 either way.",
+         "hi": "समायोजन 31 मार्च को बिना नकद हिलाए होते हैं, इसलिए नकद दोनों हालत में ₹85,000 ही रहता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which concept tells us to count March salary in this year even though it is paid in April?",
+        "hi": "कौन-सा सिद्धांत कहता है कि मार्च का वेतन, अप्रैल में चुकाने पर भी, इसी साल में गिनो?"
+       },
+       "options": [
+        {
+         "en": "Matching (accrual) concept",
+         "hi": "मिलान (उपार्जन) सिद्धांत"
+        },
+        {
+         "en": "Money measurement concept",
+         "hi": "मुद्रा मापन सिद्धांत"
+        },
+        {
+         "en": "Business entity concept",
+         "hi": "व्यावसायिक इकाई सिद्धांत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Matching sets this year’s expenses against this year’s revenue, whenever the cash moves.",
+        "hi": "मिलान सिद्धांत इस साल के व्ययों को इस साल की आय से मिलाता है, नकद चाहे जब आए-जाए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Money measurement says only money events are recorded; it says nothing about which year an expense belongs to.",
+         "hi": "मुद्रा मापन कहता है कि केवल पैसे में मापी गई घटनाएँ दर्ज हों; यह नहीं बताता कि व्यय किस साल का है।"
+        },
+        {
+         "en": "Business entity keeps the owner and the business apart; it does not decide the year of an expense.",
+         "hi": "व्यावसायिक इकाई स्वामी और व्यापार को अलग रखती है; यह व्यय का साल तय नहीं करती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest and tap “Find the profit”. Find the ₹1,000 outstanding salaries among the liabilities and the ₹1,000 prepaid insurance among the assets.",
+      "hi": "बाक़ी शेष रखो और “लाभ निकालो” दबाओ। ₹1,000 बकाया वेतन देयताओं में और ₹1,000 पूर्वदत्त बीमा परिसंपत्तियों में खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac2-ch09-closing-stock",
+   "topic": "9.2",
+   "template": "ledger",
+   "title": {
+    "en": "Valuing the closing stock",
+    "hi": "अंतिम स्टॉक का मूल्यांकन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "final-accounts",
+    "business": {
+     "en": "Lakshmi Sarees",
+     "hi": "लक्ष्मी साड़ीज़"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-04-01",
+      "text": {
+       "en": "Started the saree shop with cash",
+       "hi": "नकद लगाकर साड़ी की दुकान शुरू की"
+      },
+      "amount": 100000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2025-04-05",
+      "text": {
+       "en": "Bought silk and cotton sarees for cash",
+       "hi": "नकद में रेशमी और सूती साड़ियाँ ख़रीदीं"
+      },
+      "amount": 80000,
+      "debit": "purchases",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2025-04-06",
+      "text": {
+       "en": "Paid freight to bring the sarees from the weavers",
+       "hi": "बुनकरों से साड़ियाँ लाने का भाड़ा दिया"
+      },
+      "amount": 2000,
+      "debit": "carriage-in",
+      "credit": "cash"
+     },
+     {
+      "id": "t4",
+      "date": "2026-03-15",
+      "text": {
+       "en": "Sold sarees for cash during the year",
+       "hi": "साल भर में नकद साड़ियाँ बेचीं"
+      },
+      "amount": 90000,
+      "debit": "cash",
+      "credit": "sales"
+     },
+     {
+      "id": "t5",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Paid shop rent for the year",
+       "hi": "साल भर का दुकान किराया दिया"
+      },
+      "amount": 8000,
+      "debit": "rent",
+      "credit": "cash"
+     }
+    ],
+    "closingStock": 12000
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "account:sales",
+     "expect": "chose:sales",
+     "say": {
+      "en": "Tap the Sales balance.",
+      "hi": "विक्रय के शेष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The unsold sarees cost ₹15,000, but their colours went out of fashion and they would now sell for only ₹12,000. At what value is closing stock shown?",
+      "hi": "बिना बिकी साड़ियों की लागत ₹15,000 थी, पर उनके रंग चलन से बाहर हो गए और अब वे केवल ₹12,000 में बिकेंगी। अंतिम स्टॉक किस मूल्य पर दिखाया जाएगा?"
+     },
+     "options": [
+      {
+       "id": "v12",
+       "en": "₹12,000, the lower value",
+       "hi": "12,000 रुपये, कम मूल्य"
+      },
+      {
+       "id": "v15",
+       "en": "₹15,000, the cost",
+       "hi": "15,000 रुपये, लागत"
+      },
+      {
+       "id": "v27",
+       "en": "₹27,000, both added",
+       "hi": "27,000 रुपये, दोनों जोड़कर"
+      }
+     ],
+     "answer": "v12"
+    },
+    {
+     "kind": "do",
+     "target": "account:closing-stock",
+     "expect": "chose:closing-stock",
+     "say": {
+      "en": "Tap Closing stock, valued at ₹12,000.",
+      "hi": "अंतिम स्टॉक पर टैप करो, जिसका मूल्य ₹12,000 है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes. It may go to two places.",
+      "hi": "चुनो कि यह कहाँ जाएगा। यह दो जगह जा सकता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Closing stock is valued at cost or net realisable value, whichever is lower. This is the conservatism (prudence) concept: a likely loss is counted now, a hoped-for gain is not. The ₹12,000 is credited in the trading account and shown as an asset in the balance sheet.",
+      "hi": "अंतिम स्टॉक का मूल्य लागत या शुद्ध वसूली योग्य मूल्य में से जो कम हो, उस पर लगाया जाता है। यह रूढ़िवादिता (विवेक) का सिद्धांत है: संभावित हानि अभी गिनी जाती है, उम्मीद वाला लाभ नहीं। ₹12,000 व्यापार खाते में जमा होता है और तुलन पत्र में परिसंपत्ति के रूप में दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the sarees could now sell for ₹18,000 (more than their cost of ₹15,000), what value would be used?",
+        "hi": "अगर साड़ियाँ अब ₹18,000 (लागत ₹15,000 से ज़्यादा) में बिक सकतीं, तो कौन-सा मूल्य लिया जाता?"
+       },
+       "options": [
+        {
+         "en": "₹15,000, the cost",
+         "hi": "15,000 रुपये, लागत"
+        },
+        {
+         "en": "₹18,000, the selling value",
+         "hi": "18,000 रुपये, बिक्री मूल्य"
+        },
+        {
+         "en": "₹3,000, the expected gain",
+         "hi": "3,000 रुपये, संभावित लाभ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The lower of cost and realisable value is ₹15,000. A gain is recorded only when the goods are really sold.",
+        "hi": "लागत और वसूली मूल्य में से कम ₹15,000 है। लाभ तभी दर्ज होता है जब माल सच में बिकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Using ₹18,000 would count a profit before any sale has happened, which conservatism does not allow.",
+         "hi": "₹18,000 लेने से बिक्री से पहले ही लाभ गिन लिया जाता, जिसकी रूढ़िवादिता अनुमति नहीं देती।"
+        },
+        {
+         "en": "Stock is a value of goods, not a gain; and an unearned gain is never recorded.",
+         "hi": "स्टॉक माल का मूल्य है, लाभ नहीं; और बिना कमाया लाभ कभी दर्ज नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Closing stock is valued at ₹12,000 instead of ₹15,000. What happens to the gross profit?",
+        "hi": "अंतिम स्टॉक का मूल्य ₹15,000 के बजाय ₹12,000 लगाया गया। सकल लाभ का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It is ₹3,000 lower",
+         "hi": "यह ₹3,000 कम होता है"
+        },
+        {
+         "en": "It is ₹3,000 higher",
+         "hi": "यह ₹3,000 ज़्यादा होता है"
+        },
+        {
+         "en": "It does not change",
+         "hi": "यह नहीं बदलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Closing stock sits on the credit side of the trading account, so a lower value gives a lower gross profit: ₹20,000 instead of ₹23,000.",
+        "hi": "अंतिम स्टॉक व्यापार खाते के जमा पक्ष में होता है, इसलिए कम मूल्य से सकल लाभ भी कम होता है: ₹23,000 के बजाय ₹20,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A smaller credit in the trading account cannot raise the profit.",
+         "hi": "व्यापार खाते में छोटी जमा राशि से लाभ नहीं बढ़ सकता।"
+        },
+        {
+         "en": "Closing stock is part of the trading account, so its value always changes the gross profit.",
+         "hi": "अंतिम स्टॉक व्यापार खाते का हिस्सा है, इसलिए उसका मूल्य हमेशा सकल लाभ बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest and tap “Find the profit”. Is the gross profit ₹20,000? Find the ₹12,000 again among the assets.",
+      "hi": "बाक़ी शेष रखो और “लाभ निकालो” दबाओ। क्या सकल लाभ ₹20,000 है? ₹12,000 को परिसंपत्तियों में फिर खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac2-ch09-outstanding",
+   "topic": "9.3",
+   "template": "ledger",
+   "title": {
+    "en": "Outstanding expenses",
+    "hi": "बकाया व्यय"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Anand Coaching Centre",
+     "hi": "आनंद कोचिंग सेंटर"
+    },
+    "accounts": [
+     {
+      "id": "salary-due",
+      "name": {
+       "en": "Outstanding salaries",
+       "hi": "बकाया वेतन"
+      },
+      "kind": "creditor"
+     },
+     {
+      "id": "rent-due",
+      "name": {
+       "en": "Outstanding rent",
+       "hi": "बकाया किराया"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2026-03-31",
+      "text": {
+       "en": "March salary of the maths teacher, not yet paid",
+       "hi": "गणित शिक्षक का मार्च का वेतन, अभी दिया नहीं"
+      },
+      "amount": 12000,
+      "debit": "salaries",
+      "credit": "salary-due"
+     },
+     {
+      "id": "t2",
+      "date": "2026-03-31",
+      "text": {
+       "en": "March rent of the classroom, not yet paid",
+       "hi": "कक्षा का मार्च का किराया, अभी दिया नहीं"
+      },
+      "amount": 5000,
+      "debit": "rent",
+      "credit": "rent-due"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the transaction “March salary of the maths teacher, not yet paid”.",
+      "hi": "लेन-देन “गणित शिक्षक का मार्च का वेतन, अभी दिया नहीं” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The teacher worked in March, so the salary is this year’s expense even though it is unpaid. Which account is debited?",
+      "hi": "शिक्षक ने मार्च में काम किया, इसलिए वेतन बिना चुकाए भी इसी साल का व्यय है। कौन-सा खाता नाम होगा?"
+     },
+     "options": [
+      {
+       "id": "sal",
+       "en": "Salaries",
+       "hi": "वेतन"
+      },
+      {
+       "id": "due",
+       "en": "Outstanding salaries",
+       "hi": "बकाया वेतन"
+      },
+      {
+       "id": "cash",
+       "en": "Cash",
+       "hi": "रोकड़"
+      }
+     ],
+     "answer": "sal"
+    },
+    {
+     "kind": "do",
+     "target": "account:salaries",
+     "expect": "chose:salaries",
+     "say": {
+      "en": "Tap the Salaries account chip.",
+      "hi": "वेतन खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Salaries on the debit side.",
+      "hi": "वेतन को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:salary-due",
+     "expect": "chose:salary-due",
+     "say": {
+      "en": "Now tap the Outstanding salaries account chip.",
+      "hi": "अब बकाया वेतन खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Outstanding salaries on the credit side.",
+      "hi": "बकाया वेतन को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Salaries is debited because the expense of the year goes up. Outstanding salaries is credited because the centre now owes the teacher: it is a liability. No cash moves today. In the final accounts the ₹12,000 is added to salaries in the profit and loss account and shown as a liability in the balance sheet.",
+      "hi": "वेतन नाम होता है क्योंकि साल का व्यय बढ़ता है। बकाया वेतन जमा होता है क्योंकि सेंटर को अब शिक्षक को देना है: यह एक देयता है। आज कोई नकद नहीं हिलता। अंतिम खातों में ₹12,000 लाभ-हानि खाते में वेतन में जुड़ता है और तुलन पत्र में देयता के रूप में दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Salaries paid in cash during the year were ₹1,32,000. With March outstanding, what goes to the profit and loss account?",
+        "hi": "साल में नकद दिया गया वेतन ₹1,32,000 था। मार्च के बकाये के साथ लाभ-हानि खाते में कितना जाएगा?"
+       },
+       "options": [
+        {
+         "en": "₹1,44,000",
+         "hi": "1,44,000 रुपये"
+        },
+        {
+         "en": "₹1,32,000",
+         "hi": "1,32,000 रुपये"
+        },
+        {
+         "en": "₹1,20,000",
+         "hi": "1,20,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹1,32,000 paid + ₹12,000 outstanding = ₹1,44,000, the full salary of the year.",
+        "hi": "₹1,32,000 चुकाया + ₹12,000 बकाया = ₹1,44,000, साल का पूरा वेतन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is only what was paid; the March salary is also this year’s expense.",
+         "hi": "यह केवल चुकाई गई राशि है; मार्च का वेतन भी इसी साल का व्यय है।"
+        },
+        {
+         "en": "An outstanding amount is added to the expense, not taken away; the year used more than it paid.",
+         "hi": "बकाया राशि व्यय में जोड़ी जाती है, घटाई नहीं जाती; साल ने चुकाए से ज़्यादा इस्तेमाल किया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where is Outstanding salaries shown in the balance sheet?",
+        "hi": "बकाया वेतन तुलन पत्र में कहाँ दिखता है?"
+       },
+       "options": [
+        {
+         "en": "On the liabilities side",
+         "hi": "देयता पक्ष में"
+        },
+        {
+         "en": "On the assets side",
+         "hi": "परिसंपत्ति पक्ष में"
+        },
+        {
+         "en": "It is not shown",
+         "hi": "यह नहीं दिखता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is money the centre owes to the teacher, so it is a current liability.",
+        "hi": "यह वह राशि है जो सेंटर को शिक्षक को देनी है, इसलिए यह चालू देयता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An asset is something the business owns or will receive; here the centre has to pay.",
+         "hi": "परिसंपत्ति वह है जो व्यापार के पास है या मिलना है; यहाँ सेंटर को देना है।"
+        },
+        {
+         "en": "Every adjustment has two effects: one in the profit and loss account and one in the balance sheet.",
+         "hi": "हर समायोजन के दो असर होते हैं: एक लाभ-हानि खाते में और एक तुलन पत्र में।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the outstanding rent too. Compare the two entries: which kind of account is credited each time?",
+      "hi": "बकाया किराया भी दर्ज करो। दोनों प्रविष्टियों की तुलना करो: हर बार किस तरह का खाता जमा होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac2-ch09-prepaid",
+   "topic": "9.4",
+   "template": "ledger",
+   "title": {
+    "en": "Prepaid expenses",
+    "hi": "पूर्वदत्त व्यय"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Joseph Medicals",
+     "hi": "जोसेफ़ मेडिकल्स"
+    },
+    "accounts": [
+     {
+      "id": "insurance-prepaid",
+      "name": {
+       "en": "Prepaid insurance",
+       "hi": "पूर्वदत्त बीमा"
+      },
+      "kind": "debtor"
+     },
+     {
+      "id": "rent-prepaid",
+      "name": {
+       "en": "Prepaid rent",
+       "hi": "पूर्वदत्त किराया"
+      },
+      "kind": "debtor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Insurance of ₹12,000 paid on 1 July for a year: April to June is next year’s",
+       "hi": "1 जुलाई को एक साल का ₹12,000 बीमा दिया: अप्रैल से जून अगले साल का है"
+      },
+      "amount": 3000,
+      "debit": "insurance-prepaid",
+      "credit": "insurance"
+     },
+     {
+      "id": "t2",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Rent paid for April in advance",
+       "hi": "अप्रैल का किराया पहले ही दे दिया"
+      },
+      "amount": 4000,
+      "debit": "rent-prepaid",
+      "credit": "rent"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the transaction “Insurance of ₹12,000 paid on 1 July for a year: April to June is next year’s”.",
+      "hi": "लेन-देन “1 जुलाई को एक साल का ₹12,000 बीमा दिया: अप्रैल से जून अगले साल का है” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "₹12,000 covers 12 months from 1 July. How much of it belongs to next year (April, May, June)?",
+      "hi": "₹12,000 में 1 जुलाई से 12 महीने की सुरक्षा है। इसमें से अगले साल (अप्रैल, मई, जून) का कितना है?"
+     },
+     "options": [
+      {
+       "id": "p3",
+       "en": "₹3,000",
+       "hi": "3,000 रुपये"
+      },
+      {
+       "id": "p9",
+       "en": "₹9,000",
+       "hi": "9,000 रुपये"
+      },
+      {
+       "id": "p12",
+       "en": "₹12,000",
+       "hi": "12,000 रुपये"
+      }
+     ],
+     "answer": "p3"
+    },
+    {
+     "kind": "do",
+     "target": "account:insurance-prepaid",
+     "expect": "chose:insurance-prepaid",
+     "say": {
+      "en": "Tap the Prepaid insurance account chip.",
+      "hi": "पूर्वदत्त बीमा खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Prepaid insurance on the debit side.",
+      "hi": "पूर्वदत्त बीमा को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:insurance",
+     "expect": "chose:insurance",
+     "say": {
+      "en": "Now tap the Insurance account chip.",
+      "hi": "अब बीमा खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Insurance on the credit side.",
+      "hi": "बीमा को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Three months of cover are still to come, so ₹12,000 × 3/12 = ₹3,000 is prepaid. Prepaid insurance is debited: it is an asset, a benefit the shop will receive next year. Insurance is credited, so this year’s expense falls to ₹9,000. In the balance sheet the ₹3,000 appears on the assets side.",
+      "hi": "तीन महीने की सुरक्षा अभी बाक़ी है, इसलिए ₹12,000 × 3/12 = ₹3,000 पूर्वदत्त है। पूर्वदत्त बीमा नाम होता है: यह परिसंपत्ति है, एक लाभ जो दुकान को अगले साल मिलेगा। बीमा जमा होता है, इसलिए इस साल का व्यय घटकर ₹9,000 रह जाता है। तुलन पत्र में ₹3,000 परिसंपत्ति पक्ष में दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After this entry, what insurance expense goes to this year’s profit and loss account?",
+        "hi": "इस प्रविष्टि के बाद इस साल के लाभ-हानि खाते में बीमे का कितना व्यय जाएगा?"
+       },
+       "options": [
+        {
+         "en": "₹9,000",
+         "hi": "9,000 रुपये"
+        },
+        {
+         "en": "₹12,000",
+         "hi": "12,000 रुपये"
+        },
+        {
+         "en": "₹15,000",
+         "hi": "15,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹12,000 paid − ₹3,000 prepaid = ₹9,000 for July to March.",
+        "hi": "₹12,000 चुकाया − ₹3,000 पूर्वदत्त = जुलाई से मार्च के लिए ₹9,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹12,000 includes cover for next year, which must not be charged to this year.",
+         "hi": "₹12,000 में अगले साल की सुरक्षा भी है, जो इस साल पर नहीं लगनी चाहिए।"
+        },
+        {
+         "en": "A prepaid amount is taken away from the expense; adding it would charge the year twice.",
+         "hi": "पूर्वदत्त राशि व्यय में से घटाई जाती है; जोड़ने से साल पर दोहरा भार पड़ेगा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is Prepaid insurance an asset?",
+        "hi": "पूर्वदत्त बीमा परिसंपत्ति क्यों है?"
+       },
+       "options": [
+        {
+         "en": "The shop will get the benefit of it next year",
+         "hi": "दुकान को अगले साल इसका लाभ मिलेगा"
+        },
+        {
+         "en": "It can be sold for cash today",
+         "hi": "इसे आज नकद में बेचा जा सकता है"
+        },
+        {
+         "en": "The insurance company owes a refund",
+         "hi": "बीमा कंपनी पर वापसी बाक़ी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An asset is a future benefit; three months of cover are still to be received.",
+        "hi": "परिसंपत्ति भविष्य का लाभ है; तीन महीने की सुरक्षा अभी मिलनी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Prepaid cover is not sold; it is used up month by month.",
+         "hi": "पूर्वदत्त सुरक्षा बेची नहीं जाती; यह महीने-दर-महीने इस्तेमाल होती है।"
+        },
+        {
+         "en": "No refund is due; the company will give cover, not money.",
+         "hi": "कोई वापसी बाक़ी नहीं है; कंपनी सुरक्षा देगी, पैसा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the prepaid rent too. Then tap the Rules button to switch to the traditional rules: what kind of account is a prepaid expense?",
+      "hi": "पूर्वदत्त किराया भी दर्ज करो। फिर नियम वाला बटन दबाकर पारंपरिक नियम देखो: पूर्वदत्त व्यय किस तरह का खाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac2-ch09-accrued-income",
+   "topic": "9.5",
+   "template": "ledger",
+   "title": {
+    "en": "Accrued income",
+    "hi": "उपार्जित आय"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Kapoor Traders",
+     "hi": "कपूर ट्रेडर्स"
+    },
+    "accounts": [
+     {
+      "id": "interest-accrued",
+      "name": {
+       "en": "Accrued interest",
+       "hi": "उपार्जित ब्याज"
+      },
+      "kind": "debtor"
+     },
+     {
+      "id": "commission-accrued",
+      "name": {
+       "en": "Accrued commission",
+       "hi": "उपार्जित कमीशन"
+      },
+      "kind": "debtor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Interest earned on a fixed deposit for January to March, not yet received",
+       "hi": "सावधि जमा पर जनवरी से मार्च का ब्याज कमाया, अभी मिला नहीं"
+      },
+      "amount": 1500,
+      "debit": "interest-accrued",
+      "credit": "interest-received"
+     },
+     {
+      "id": "t2",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Commission earned in March, to be received in April",
+       "hi": "मार्च में कमीशन कमाया, अप्रैल में मिलेगा"
+      },
+      "amount": 2000,
+      "debit": "commission-accrued",
+      "credit": "commission"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the transaction “Interest earned on a fixed deposit for January to March, not yet received”.",
+      "hi": "लेन-देन “सावधि जमा पर जनवरी से मार्च का ब्याज कमाया, अभी मिला नहीं” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The interest is earned this year but will come in later. Which account is debited?",
+      "hi": "ब्याज इस साल कमाया गया पर बाद में आएगा। कौन-सा खाता नाम होगा?"
+     },
+     "options": [
+      {
+       "id": "acc",
+       "en": "Accrued interest",
+       "hi": "उपार्जित ब्याज"
+      },
+      {
+       "id": "int",
+       "en": "Interest received",
+       "hi": "प्राप्त ब्याज"
+      },
+      {
+       "id": "bank",
+       "en": "Bank",
+       "hi": "बैंक"
+      }
+     ],
+     "answer": "acc"
+    },
+    {
+     "kind": "do",
+     "target": "account:interest-accrued",
+     "expect": "chose:interest-accrued",
+     "say": {
+      "en": "Tap the Accrued interest account chip.",
+      "hi": "उपार्जित ब्याज खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Accrued interest on the debit side.",
+      "hi": "उपार्जित ब्याज को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:interest-received",
+     "expect": "chose:interest-received",
+     "say": {
+      "en": "Now tap the Interest received account chip.",
+      "hi": "अब प्राप्त ब्याज खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Interest received on the credit side.",
+      "hi": "प्राप्त ब्याज को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Income earned in the year belongs to the year, even if the cash arrives later. Accrued interest is debited: the bank owes the firm this money, so it is an asset. Interest received is credited, so this year’s income rises by ₹1,500. Nothing has come into the bank yet.",
+      "hi": "साल में कमाई गई आय उसी साल की है, चाहे नकद बाद में आए। उपार्जित ब्याज नाम होता है: बैंक को यह पैसा फ़र्म को देना है, इसलिए यह परिसंपत्ति है। प्राप्त ब्याज जमा होता है, इसलिए इस साल की आय ₹1,500 बढ़ती है। बैंक में अभी कुछ नहीं आया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Interest of ₹4,500 was received in cash during the year. What goes to the profit and loss account after this adjustment?",
+        "hi": "साल में ₹4,500 ब्याज नकद मिला। इस समायोजन के बाद लाभ-हानि खाते में कितना जाएगा?"
+       },
+       "options": [
+        {
+         "en": "₹6,000",
+         "hi": "6,000 रुपये"
+        },
+        {
+         "en": "₹4,500",
+         "hi": "4,500 रुपये"
+        },
+        {
+         "en": "₹3,000",
+         "hi": "3,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹4,500 received + ₹1,500 accrued = ₹6,000, all earned this year.",
+        "hi": "₹4,500 मिला + ₹1,500 उपार्जित = ₹6,000, सब इसी साल कमाया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That counts only the cash; the January to March interest was also earned this year.",
+         "hi": "इसमें केवल नकद गिना गया; जनवरी से मार्च का ब्याज भी इसी साल कमाया गया।"
+        },
+        {
+         "en": "Accrued income is added to the income, not taken away.",
+         "hi": "उपार्जित आय को आय में जोड़ा जाता है, घटाया नहीं जाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where does Accrued interest appear in the balance sheet?",
+        "hi": "उपार्जित ब्याज तुलन पत्र में कहाँ दिखता है?"
+       },
+       "options": [
+        {
+         "en": "Assets side",
+         "hi": "परिसंपत्ति पक्ष"
+        },
+        {
+         "en": "Liabilities side",
+         "hi": "देयता पक्ष"
+        },
+        {
+         "en": "It does not appear",
+         "hi": "यह नहीं दिखता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is an amount the firm will receive, a current asset.",
+        "hi": "यह वह राशि है जो फ़र्म को मिलनी है, एक चालू परिसंपत्ति।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A liability is money the firm owes; here someone owes the firm.",
+         "hi": "देयता वह है जो फ़र्म को देना है; यहाँ फ़र्म को किसी से लेना है।"
+        },
+        {
+         "en": "Each adjustment shows twice: in the profit and loss account and in the balance sheet.",
+         "hi": "हर समायोजन दो जगह दिखता है: लाभ-हानि खाते में और तुलन पत्र में।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the accrued commission too. Is it entered the same way as the interest?",
+      "hi": "उपार्जित कमीशन भी दर्ज करो। क्या इसे ब्याज की तरह ही दर्ज करते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac2-ch09-received-in-advance",
+   "topic": "9.6",
+   "template": "ledger",
+   "title": {
+    "en": "Income received in advance",
+    "hi": "अग्रिम प्राप्त आय"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Singh Properties",
+     "hi": "सिंह प्रॉपर्टीज़"
+    },
+    "accounts": [
+     {
+      "id": "rent-advance",
+      "name": {
+       "en": "Rent received in advance",
+       "hi": "अग्रिम प्राप्त किराया"
+      },
+      "kind": "creditor"
+     },
+     {
+      "id": "commission-advance",
+      "name": {
+       "en": "Commission received in advance",
+       "hi": "अग्रिम प्राप्त कमीशन"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Rent of ₹12,000 received includes ₹2,000 for April and May",
+       "hi": "मिले ₹12,000 किराये में ₹2,000 अप्रैल और मई का है"
+      },
+      "amount": 2000,
+      "debit": "rent-received",
+      "credit": "rent-advance"
+     },
+     {
+      "id": "t2",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Commission received for work to be done in April",
+       "hi": "अप्रैल में होने वाले काम का कमीशन पहले मिला"
+      },
+      "amount": 1500,
+      "debit": "commission",
+      "credit": "commission-advance"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the transaction “Rent of ₹12,000 received includes ₹2,000 for April and May”.",
+      "hi": "लेन-देन “मिले ₹12,000 किराये में ₹2,000 अप्रैल और मई का है” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The ₹2,000 is for months that have not come yet. Right now, is it an income of this year or something the firm owes?",
+      "hi": "₹2,000 उन महीनों का है जो अभी आए नहीं। अभी यह इस साल की आय है या फ़र्म पर कुछ बाक़ी है?"
+     },
+     "options": [
+      {
+       "id": "owe",
+       "en": "Something owed: a liability",
+       "hi": "बाक़ी देनदारी: एक देयता"
+      },
+      {
+       "id": "inc",
+       "en": "Income of this year",
+       "hi": "इस साल की आय"
+      },
+      {
+       "id": "asset",
+       "en": "An asset",
+       "hi": "एक परिसंपत्ति"
+      }
+     ],
+     "answer": "owe"
+    },
+    {
+     "kind": "do",
+     "target": "account:rent-received",
+     "expect": "chose:rent-received",
+     "say": {
+      "en": "Tap the Rent received account chip.",
+      "hi": "प्राप्त किराया खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Rent received on the debit side.",
+      "hi": "प्राप्त किराया को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:rent-advance",
+     "expect": "chose:rent-advance",
+     "say": {
+      "en": "Now tap the Rent received in advance account chip.",
+      "hi": "अब अग्रिम प्राप्त किराया खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Rent received in advance on the credit side.",
+      "hi": "अग्रिम प्राप्त किराया को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rent received is debited, so this year’s rent income falls to ₹10,000: only what was earned. Rent received in advance is credited: the firm owes the tenant two months of use, so it is a liability. Next year, when April and May pass, it becomes that year’s income.",
+      "hi": "प्राप्त किराया नाम होता है, इसलिए इस साल की किराया आय घटकर ₹10,000 रह जाती है: केवल जितना कमाया। अग्रिम प्राप्त किराया जमा होता है: फ़र्म पर किरायेदार के दो महीने के उपयोग का दायित्व है, इसलिए यह देयता है। अगले साल अप्रैल और मई बीतने पर यह उस साल की आय बन जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What rent income goes to this year’s profit and loss account?",
+        "hi": "इस साल के लाभ-हानि खाते में किराये की कितनी आय जाएगी?"
+       },
+       "options": [
+        {
+         "en": "₹10,000",
+         "hi": "10,000 रुपये"
+        },
+        {
+         "en": "₹12,000",
+         "hi": "12,000 रुपये"
+        },
+        {
+         "en": "₹14,000",
+         "hi": "14,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹12,000 received − ₹2,000 in advance = ₹10,000 earned this year.",
+        "hi": "₹12,000 मिला − ₹2,000 अग्रिम = इस साल कमाया ₹10,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹12,000 includes rent for next year’s months, not yet earned.",
+         "hi": "₹12,000 में अगले साल के महीनों का किराया भी है, जो अभी कमाया नहीं।"
+        },
+        {
+         "en": "An advance is taken away from income, not added to it.",
+         "hi": "अग्रिम राशि आय में से घटाई जाती है, जोड़ी नहीं जाती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which pair is the opposite of income received in advance?",
+        "hi": "अग्रिम प्राप्त आय का उल्टा कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Accrued income: earned but not received",
+         "hi": "उपार्जित आय: कमाई पर मिली नहीं"
+        },
+        {
+         "en": "Prepaid expense: paid but not used",
+         "hi": "पूर्वदत्त व्यय: दिया पर इस्तेमाल नहीं"
+        },
+        {
+         "en": "Outstanding expense: used but not paid",
+         "hi": "बकाया व्यय: इस्तेमाल किया पर दिया नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Received in advance is cash before earning; accrued income is earning before cash.",
+        "hi": "अग्रिम प्राप्त आय कमाई से पहले नकद है; उपार्जित आय नकद से पहले कमाई है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A prepaid expense is about paying, not about income.",
+         "hi": "पूर्वदत्त व्यय भुगतान से जुड़ा है, आय से नहीं।"
+        },
+        {
+         "en": "An outstanding expense is about paying later, not about income.",
+         "hi": "बकाया व्यय बाद में चुकाने से जुड़ा है, आय से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the commission received in advance too. Then compare it with the accrued income lab: which side does each adjustment take in the balance sheet?",
+      "hi": "अग्रिम प्राप्त कमीशन भी दर्ज करो। फिर उपार्जित आय वाले लैब से तुलना करो: तुलन पत्र में हर समायोजन किस पक्ष में जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac2-ch09-depreciation",
+   "topic": "9.7",
+   "template": "ledger",
+   "title": {
+    "en": "Depreciation in the final accounts",
+    "hi": "अंतिम खातों में मूल्यह्रास"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "final-accounts",
+    "business": {
+     "en": "Raju Flour Mill",
+     "hi": "राजू आटा चक्की"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-04-01",
+      "text": {
+       "en": "Raju started the mill with cash",
+       "hi": "राजू ने नकद लगाकर चक्की शुरू की"
+      },
+      "amount": 150000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2025-04-01",
+      "text": {
+       "en": "Bought a flour grinding machine for cash",
+       "hi": "नकद में आटा पीसने की मशीन ख़रीदी"
+      },
+      "amount": 100000,
+      "debit": "machinery",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2025-04-05",
+      "text": {
+       "en": "Bought wheat for cash",
+       "hi": "नकद में गेहूँ ख़रीदा"
+      },
+      "amount": 40000,
+      "debit": "purchases",
+      "credit": "cash"
+     },
+     {
+      "id": "t4",
+      "date": "2025-04-30",
+      "text": {
+       "en": "Paid wages to the mill workers",
+       "hi": "चक्की के मज़दूरों को मज़दूरी दी"
+      },
+      "amount": 10000,
+      "debit": "wages",
+      "credit": "cash"
+     },
+     {
+      "id": "t5",
+      "date": "2026-03-20",
+      "text": {
+       "en": "Sold flour for cash during the year",
+       "hi": "साल भर में नकद आटा बेचा"
+      },
+      "amount": 80000,
+      "debit": "cash",
+      "credit": "sales"
+     },
+     {
+      "id": "t6",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Paid the electricity bill of the office",
+       "hi": "दफ़्तर का बिजली बिल भरा"
+      },
+      "amount": 5000,
+      "debit": "electricity",
+      "credit": "cash"
+     },
+     {
+      "id": "t7",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Depreciation on the machine at 10% for the year",
+       "hi": "मशीन पर साल का 10% मूल्यह्रास"
+      },
+      "amount": 10000,
+      "debit": "depreciation",
+      "credit": "machinery"
+     }
+    ],
+    "closingStock": 6000
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "account:depreciation",
+     "expect": "chose:depreciation",
+     "say": {
+      "en": "Tap the Depreciation balance: ₹10,000 of the machine’s value used up this year.",
+      "hi": "मूल्यह्रास के शेष पर टैप करो: इस साल मशीन के मूल्य का ₹10,000 इस्तेमाल हुआ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The machine cost ₹1,00,000 and ₹10,000 of depreciation was charged. At what value does it appear in the balance sheet?",
+      "hi": "मशीन की लागत ₹1,00,000 थी और ₹10,000 मूल्यह्रास लगाया गया। तुलन पत्र में यह किस मूल्य पर दिखेगी?"
+     },
+     "options": [
+      {
+       "id": "m90",
+       "en": "₹90,000",
+       "hi": "90,000 रुपये"
+      },
+      {
+       "id": "m100",
+       "en": "₹1,00,000",
+       "hi": "1,00,000 रुपये"
+      },
+      {
+       "id": "m10",
+       "en": "₹10,000",
+       "hi": "10,000 रुपये"
+      }
+     ],
+     "answer": "m90"
+    },
+    {
+     "kind": "do",
+     "target": "account:machinery",
+     "expect": "chose:machinery",
+     "say": {
+      "en": "Now tap the Machinery balance.",
+      "hi": "अब मशीनरी के शेष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Depreciation is an expense of the year, so it is debited in the profit and loss account and lowers the net profit. The same amount is taken away from the machine, which appears in the balance sheet at ₹1,00,000 − ₹10,000 = ₹90,000. One adjustment, two effects.",
+      "hi": "मूल्यह्रास साल का व्यय है, इसलिए यह लाभ-हानि खाते में नाम होता है और शुद्ध लाभ घटाता है। उतनी ही राशि मशीन से घटती है, जो तुलन पत्र में ₹1,00,000 − ₹10,000 = ₹90,000 पर दिखती है। एक समायोजन, दो असर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Without the depreciation, the net profit would be ₹31,000. What is it after charging ₹10,000?",
+        "hi": "मूल्यह्रास के बिना शुद्ध लाभ ₹31,000 होता। ₹10,000 लगाने के बाद यह कितना है?"
+       },
+       "options": [
+        {
+         "en": "₹21,000",
+         "hi": "21,000 रुपये"
+        },
+        {
+         "en": "₹31,000",
+         "hi": "31,000 रुपये"
+        },
+        {
+         "en": "₹41,000",
+         "hi": "41,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Depreciation is an expense: ₹31,000 − ₹10,000 = ₹21,000.",
+        "hi": "मूल्यह्रास एक व्यय है: ₹31,000 − ₹10,000 = ₹21,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No cash is paid for depreciation, but it is still an expense, so the profit falls.",
+         "hi": "मूल्यह्रास के लिए नकद नहीं दिया जाता, फिर भी यह व्यय है, इसलिए लाभ घटता है।"
+        },
+        {
+         "en": "An expense lowers the profit; it never adds to it.",
+         "hi": "व्यय लाभ घटाता है; उसे कभी बढ़ाता नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is depreciation not in the trading account here?",
+        "hi": "यहाँ मूल्यह्रास व्यापार खाते में क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "It is treated as an indirect expense of running the business",
+         "hi": "इसे व्यापार चलाने का अप्रत्यक्ष व्यय माना जाता है"
+        },
+        {
+         "en": "It is not an expense",
+         "hi": "यह व्यय नहीं है"
+        },
+        {
+         "en": "It is a liability",
+         "hi": "यह देयता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In these final accounts depreciation is charged to the profit and loss account with the other running costs.",
+        "hi": "इन अंतिम खातों में मूल्यह्रास दूसरे चालू ख़र्चों के साथ लाभ-हानि खाते में लगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is an expense: the cost of using the machine for a year.",
+         "hi": "यह व्यय है: मशीन को एक साल इस्तेमाल करने की लागत।"
+        },
+        {
+         "en": "Nobody is owed anything for depreciation, so it is not a liability.",
+         "hi": "मूल्यह्रास के लिए किसी को कुछ देना नहीं है, इसलिए यह देयता नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest and tap “Find the profit”. Is the net profit ₹21,000? Does the balance sheet total ₹1,71,000 on both sides?",
+      "hi": "बाक़ी शेष रखो और “लाभ निकालो” दबाओ। क्या शुद्ध लाभ ₹21,000 है? क्या तुलन पत्र के दोनों पक्षों का योग ₹1,71,000 है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac2-ch09-bad-debts",
+   "topic": "9.8",
+   "template": "ledger",
+   "title": {
+    "en": "Bad debts",
+    "hi": "अशोध्य ऋण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Verma Hardware",
+     "hi": "वर्मा हार्डवेयर"
+    },
+    "accounts": [
+     {
+      "id": "mohan",
+      "name": {
+       "en": "Mohan",
+       "hi": "मोहन"
+      },
+      "kind": "debtor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-09-10",
+      "text": {
+       "en": "Sold paint and brushes to Mohan on credit",
+       "hi": "मोहन को उधार में पेंट और ब्रश बेचे"
+      },
+      "amount": 4000,
+      "debit": "mohan",
+      "credit": "sales"
+     },
+     {
+      "id": "t2",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Mohan has closed his business and cannot pay: written off",
+       "hi": "मोहन ने अपना काम बंद कर दिया और भुगतान नहीं कर सकता: अपलिखित"
+      },
+      "amount": 4000,
+      "debit": "bad-debts",
+      "credit": "mohan"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t2",
+     "expect": "selected:t2",
+     "say": {
+      "en": "Tap the transaction “Mohan has closed his business and cannot pay: written off”.",
+      "hi": "लेन-देन “मोहन ने अपना काम बंद कर दिया और भुगतान नहीं कर सकता: अपलिखित” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The ₹4,000 Mohan owed will never come. It is a loss to the business. Which account is debited?",
+      "hi": "मोहन पर बाक़ी ₹4,000 कभी नहीं आएँगे। यह व्यापार की हानि है। कौन-सा खाता नाम होगा?"
+     },
+     "options": [
+      {
+       "id": "bd",
+       "en": "Bad debts",
+       "hi": "अशोध्य ऋण"
+      },
+      {
+       "id": "mohan",
+       "en": "Mohan",
+       "hi": "मोहन"
+      },
+      {
+       "id": "sales",
+       "en": "Sales",
+       "hi": "विक्रय"
+      }
+     ],
+     "answer": "bd"
+    },
+    {
+     "kind": "do",
+     "target": "account:bad-debts",
+     "expect": "chose:bad-debts",
+     "say": {
+      "en": "Tap the Bad debts account chip.",
+      "hi": "अशोध्य ऋण खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Bad debts on the debit side.",
+      "hi": "अशोध्य ऋण को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:mohan",
+     "expect": "chose:mohan",
+     "say": {
+      "en": "Now tap the Mohan account chip.",
+      "hi": "अब मोहन खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Mohan on the credit side.",
+      "hi": "मोहन को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t2",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bad debts is debited because a loss is an expense. Mohan’s account is credited, so it closes: he no longer appears among the debtors. In the final accounts, bad debts go to the profit and loss account, and the debtors in the balance sheet are shown without Mohan’s ₹4,000.",
+      "hi": "अशोध्य ऋण नाम होता है क्योंकि हानि एक व्यय है। मोहन का खाता जमा होता है, इसलिए वह बंद हो जाता है: अब वह देनदारों में नहीं दिखता। अंतिम खातों में अशोध्य ऋण लाभ-हानि खाते में जाता है, और तुलन पत्र में देनदार मोहन के ₹4,000 के बिना दिखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the sale to Mohan not cancelled instead?",
+        "hi": "मोहन को हुई बिक्री को रद्द क्यों नहीं करते?"
+       },
+       "options": [
+        {
+         "en": "The sale really happened; only the money is lost",
+         "hi": "बिक्री सच में हुई थी; केवल पैसा डूबा"
+        },
+        {
+         "en": "Sales can never be changed",
+         "hi": "विक्रय कभी बदला नहीं जा सकता"
+        },
+        {
+         "en": "Mohan returned the goods",
+         "hi": "मोहन ने माल लौटा दिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The goods were sold and are gone, so the sale stays. The loss is shown separately as bad debts.",
+        "hi": "माल बिका और चला गया, इसलिए विक्रय बना रहता है। हानि अलग से अशोध्य ऋण के रूप में दिखती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sales can be reduced by a sales return, but nothing came back here.",
+         "hi": "विक्रय वापसी से विक्रय घटता है, पर यहाँ कुछ वापस नहीं आया।"
+        },
+        {
+         "en": "Mohan did not return anything; he simply cannot pay.",
+         "hi": "मोहन ने कुछ नहीं लौटाया; वह बस भुगतान नहीं कर सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Debtors in the trial balance are ₹54,000, before Mohan’s ₹4,000 is written off. What appears in the balance sheet?",
+        "hi": "तलपट में देनदार ₹54,000 हैं, मोहन के ₹4,000 अपलिखित करने से पहले। तुलन पत्र में कितना दिखेगा?"
+       },
+       "options": [
+        {
+         "en": "₹50,000",
+         "hi": "50,000 रुपये"
+        },
+        {
+         "en": "₹54,000",
+         "hi": "54,000 रुपये"
+        },
+        {
+         "en": "₹58,000",
+         "hi": "58,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹54,000 − ₹4,000 = ₹50,000: only the amounts the business still expects to collect.",
+        "hi": "₹54,000 − ₹4,000 = ₹50,000: केवल वह राशि जो व्यापार को अभी भी मिलने की उम्मीद है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This keeps Mohan’s debt, which will never be received; the asset would be overstated.",
+         "hi": "इसमें मोहन का कर्ज़ बचा रहता है, जो कभी नहीं मिलेगा; परिसंपत्ति ज़्यादा दिखेगी।"
+        },
+        {
+         "en": "A bad debt lowers the debtors; it never adds to them.",
+         "hi": "अशोध्य ऋण देनदारों को घटाता है; कभी बढ़ाता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the first entry too: the credit sale to Mohan. Follow Mohan’s account from the sale to the write-off.",
+      "hi": "पहली प्रविष्टि भी देखो: मोहन को उधार बिक्री। बिक्री से अपलेखन तक मोहन के खाते को देखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Hook: the year-end desk",
+   "shows": "An accountant’s desk on 31 March: a wall calendar turned to March, an open ledger, a few unpaid bills under a paperweight and a receipt book",
+   "view": "Top-down, soft daylight, 16:9",
+   "right": "An Indian-style calendar page with no readable text; papers look real",
+   "avoid": "Readable figures, brand names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "Closing stock valued lower",
+   "shows": "Separate cut-outs: a neat stack of folded silk sarees in bright colours, and a second stack in faded, old-fashioned colours",
+   "view": "Front three-quarter view, same scale, transparent background",
+   "right": "The difference in freshness of colour is clear at a glance",
+   "avoid": "Price tags, brand labels"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "9.3",
+   "use": "Outstanding salary",
+   "shows": "A small coaching classroom with a whiteboard (blank), benches, and a teacher’s empty chair with a register on the desk",
+   "view": "Eye level, daylight, 16:9",
+   "right": "Ordinary Indian coaching-centre furniture",
+   "avoid": "Readable writing on the board, faces, logos"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "9.4",
+   "use": "Prepaid months timeline base",
+   "shows": "A blank horizontal strip of 12 equal month boxes in a row, with a slightly thicker divider after the ninth box",
+   "view": "Flat, front-on, wide 4:1",
+   "right": "Twelve boxes exactly equal; the divider clearly marks the year end",
+   "avoid": "Any month names or numbers (the app adds them)"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "9.7",
+   "use": "Wear on the machine",
+   "shows": "Close-up of the worn grinding stones of a flour mill machine, with fine flour dust on the metal casing",
+   "view": "Macro, side light to show the wear, 4:3",
+   "right": "Real stone and metal textures; machine switched off",
+   "avoid": "Moving parts in action, brand plates"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "9.8",
+   "use": "A bad debt",
+   "shows": "A small hardware shop shutter pulled down and padlocked, with paint cans visible through a side window",
+   "view": "Eye level from the street, daylight, 16:9",
+   "right": "Looks like an ordinary closed Indian shop",
+   "avoid": "Readable shop names, notices, faces"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "9.5",
+   "use": "Accrued interest",
+   "shows": "A fixed deposit passbook-style booklet lying open next to a few rupee coins and a pen",
+   "view": "Top-down, soft light, transparent background",
+   "right": "Looks like a real Indian bank booklet",
+   "avoid": "Readable names, numbers, bank logos"
+  }
+ ]
+}

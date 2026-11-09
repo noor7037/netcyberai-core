@@ -1,0 +1,1648 @@
+{
+ "chapter_key": "u.c12.computer_science.lecs1.ch02",
+ "class": 12,
+ "subject_id": "computer_science",
+ "title": "File Handling in Python",
+ "source": "https://ncert.nic.in/textbook/pdf/lecs102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Introduction: why files",
+   "labs": [],
+   "why_no_lab": "The need for files (data that lives after the program ends) is a short idea for the reader."
+  },
+  {
+   "n": "2.2",
+   "title": "Types of files: text and binary",
+   "labs": [
+    "c12-computer_science-lecs1-ch02-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Opening and closing a text file, modes and the with clause",
+   "labs": [
+    "c12-computer_science-lecs1-ch02-modes",
+    "c12-computer_science-lecs1-ch02-attendance"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Writing to a text file: write() and writelines()",
+   "labs": [
+    "c12-computer_science-lecs1-ch02-methods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Reading from a text file: read(), readline(), readlines()",
+   "labs": [
+    "c12-computer_science-lecs1-ch02-methods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Setting offsets in a file: tell() and seek()",
+   "labs": [
+    "c12-computer_science-lecs1-ch02-pointer"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.7",
+   "title": "Creating and traversing a text file",
+   "labs": [
+    "c12-computer_science-lecs1-ch02-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.8",
+   "title": "Binary file handling with pickle",
+   "labs": [
+    "c12-computer_science-lecs1-ch02-pickle"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-computer_science-lecs1-ch02-types",
+   "topic": "2.2",
+   "template": "sort",
+   "title": {
+    "en": "Text file or binary file?",
+    "hi": "टेक्स्ट फ़ाइल या बाइनरी फ़ाइल?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "text",
+      "label": {
+       "en": "Text file",
+       "hi": "टेक्स्ट फ़ाइल"
+      }
+     },
+     {
+      "id": "binary",
+      "label": {
+       "en": "Binary file",
+       "hi": "बाइनरी फ़ाइल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "notes",
+      "text": {
+       "en": "notes.txt",
+       "hi": "notes.txt"
+      },
+      "bin": "text",
+      "why": {
+       "en": "Plain characters that any text editor can show. Each line ends with a newline character.",
+       "hi": "साधारण अक्षर, जिन्हें कोई भी टेक्स्ट एडिटर दिखा सकता है। हर पंक्ति नई-पंक्ति वर्ण पर ख़त्म होती है।"
+      }
+     },
+     {
+      "id": "csv",
+      "text": {
+       "en": "marks.csv",
+       "hi": "marks.csv"
+      },
+      "bin": "text",
+      "why": {
+       "en": "A CSV file is plain text with values separated by commas, so it is a text file.",
+       "hi": "CSV फ़ाइल कॉमा से अलग किए मानों वाला साधारण टेक्स्ट है, इसलिए वह टेक्स्ट फ़ाइल है।"
+      }
+     },
+     {
+      "id": "py",
+      "text": {
+       "en": "hello.py",
+       "hi": "hello.py"
+      },
+      "bin": "text",
+      "why": {
+       "en": "A Python program is written in readable characters, so it is stored as a text file.",
+       "hi": "Python प्रोग्राम पढ़ने योग्य अक्षरों में लिखा होता है, इसलिए वह टेक्स्ट फ़ाइल है।"
+      }
+     },
+     {
+      "id": "photo",
+      "text": {
+       "en": "photo.jpg",
+       "hi": "photo.jpg"
+      },
+      "bin": "binary",
+      "why": {
+       "en": "A picture is stored as bytes in a special format. A text editor would show only strange symbols.",
+       "hi": "चित्र एक ख़ास रूप में बाइट के रूप में रखा जाता है। टेक्स्ट एडिटर में केवल अजीब चिह्न दिखेंगे।"
+      }
+     },
+     {
+      "id": "song",
+      "text": {
+       "en": "song.mp3",
+       "hi": "song.mp3"
+      },
+      "bin": "binary",
+      "why": {
+       "en": "Sound is stored as bytes that a music player decodes. It is not readable characters.",
+       "hi": "ध्वनि बाइट के रूप में रखी जाती है जिसे म्यूज़िक प्लेयर समझता है। यह पढ़ने योग्य अक्षर नहीं है।"
+      }
+     },
+     {
+      "id": "dat",
+      "text": {
+       "en": "student.dat (made by pickle)",
+       "hi": "student.dat (pickle से बनी)"
+      },
+      "bin": "binary",
+      "why": {
+       "en": "pickle turns Python objects into bytes. Only Python can read them back correctly.",
+       "hi": "pickle पाइथन ऑब्जेक्ट को बाइट में बदलता है। उन्हें सही-सही केवल Python ही वापस पढ़ सकता है।"
+      }
+     },
+     {
+      "id": "diary",
+      "text": {
+       "en": "diary.txt",
+       "hi": "diary.txt"
+      },
+      "bin": "text",
+      "why": {
+       "en": "A diary written in a text editor is a text file.",
+       "hi": "टेक्स्ट एडिटर में लिखी डायरी टेक्स्ट फ़ाइल है।"
+      }
+     },
+     {
+      "id": "video",
+      "text": {
+       "en": "film.mp4",
+       "hi": "film.mp4"
+      },
+      "bin": "binary",
+      "why": {
+       "en": "Video is stored as encoded bytes, not as lines of text.",
+       "hi": "वीडियो कोड किए हुए बाइट के रूप में रखा जाता है, पंक्तियों वाले टेक्स्ट के रूप में नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:notes",
+     "expect": "correct:notes",
+     "say": {
+      "en": "Place the card \"notes.txt\" in its group.",
+      "hi": "कार्ड \"notes.txt\" को उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The file marks.csv holds names and marks separated by commas. Is it a text file or a binary file?",
+      "hi": "marks.csv फ़ाइल में कॉमा से अलग किए नाम और अंक हैं। यह टेक्स्ट फ़ाइल है या बाइनरी फ़ाइल?"
+     },
+     "options": [
+      {
+       "id": "text",
+       "en": "Text file",
+       "hi": "टेक्स्ट फ़ाइल"
+      },
+      {
+       "id": "binary",
+       "en": "Binary file",
+       "hi": "बाइनरी फ़ाइल"
+      }
+     ],
+     "answer": "text"
+    },
+    {
+     "kind": "do",
+     "target": "card:csv",
+     "expect": "correct:csv",
+     "say": {
+      "en": "Place the card \"marks.csv\".",
+      "hi": "कार्ड \"marks.csv\" रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:photo",
+     "expect": "correct:photo",
+     "say": {
+      "en": "Place the card \"photo.jpg\".",
+      "hi": "कार्ड \"photo.jpg\" रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A text file stores characters. Each line ends with a special end-of-line character, and a text editor can show it. A binary file stores raw bytes with no lines: pictures, songs, videos and objects saved by pickle are binary. A binary file needs the right program to make sense of it, which is why opening a photo in Notepad shows nonsense.",
+      "hi": "टेक्स्ट फ़ाइल अक्षर रखती है। हर पंक्ति एक ख़ास अंत-वर्ण पर ख़त्म होती है, और टेक्स्ट एडिटर उसे दिखा सकता है। बाइनरी फ़ाइल बिना पंक्तियों के कच्चे बाइट रखती है: चित्र, गाने, वीडियो और pickle से रखे ऑब्जेक्ट बाइनरी होते हैं। बाइनरी फ़ाइल को समझने के लिए सही प्रोग्राम चाहिए, इसीलिए Notepad में फ़ोटो खोलने पर बेतुके चिह्न दिखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a text file?",
+        "hi": "इनमें से टेक्स्ट फ़ाइल कौन-सी है?"
+       },
+       "options": [
+        "song.mp3",
+        "hello.py",
+        "photo.jpg"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A Python program is made of readable characters, so it is a text file.",
+        "hi": "Python प्रोग्राम पढ़ने योग्य अक्षरों से बना है, इसलिए वह टेक्स्ट फ़ाइल है।"
+       },
+       "wrong": [
+        {
+         "en": "An mp3 holds encoded sound bytes.",
+         "hi": "mp3 में कोड की हुई ध्वनि के बाइट होते हैं।"
+        },
+        "",
+        {
+         "en": "A jpg holds picture bytes.",
+         "hi": "jpg में चित्र के बाइट होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What do you see if you open a binary file in a text editor?",
+        "hi": "बाइनरी फ़ाइल को टेक्स्ट एडिटर में खोलो तो क्या दिखेगा?"
+       },
+       "options": [
+        "Neat readable lines",
+        "Strange unreadable symbols",
+        "An empty page"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The bytes are not characters meant to be read, so the editor shows odd symbols.",
+        "hi": "बाइट पढ़ने के लिए बने अक्षर नहीं हैं, इसलिए एडिटर अजीब चिह्न दिखाता है।"
+       },
+       "wrong": [
+        {
+         "en": "Readable lines are what a text file gives.",
+         "hi": "पढ़ने योग्य पंक्तियाँ टेक्स्ट फ़ाइल देती है।"
+        },
+        "",
+        {
+         "en": "The file is not empty; it is full of bytes.",
+         "hi": "फ़ाइल ख़ाली नहीं है; उसमें बाइट भरे हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish placing all the cards. Then look at the files on your computer and name one text file and one binary file.",
+      "hi": "सारे कार्ड रखो। फिर अपने कंप्यूटर की फ़ाइलें देखो और एक टेक्स्ट फ़ाइल व एक बाइनरी फ़ाइल का नाम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch02-modes",
+   "topic": "2.3",
+   "template": "match",
+   "title": {
+    "en": "File modes: what each letter means",
+    "hi": "फ़ाइल मोड: हर अक्षर का मतलब"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "r",
+      "left": {
+       "en": "open('f.txt', 'r')",
+       "hi": "open('f.txt', 'r')"
+      },
+      "right": {
+       "en": "Read only; the file must already exist",
+       "hi": "केवल पढ़ना; फ़ाइल पहले से होनी चाहिए"
+      },
+      "why": {
+       "en": "'r' is the default mode. It cannot create a file; a missing file gives FileNotFoundError.",
+       "hi": "'r' डिफ़ॉल्ट मोड है। वह फ़ाइल नहीं बना सकता; फ़ाइल न मिले तो FileNotFoundError आती है।"
+      }
+     },
+     {
+      "id": "w",
+      "left": {
+       "en": "open('f.txt', 'w')",
+       "hi": "open('f.txt', 'w')"
+      },
+      "right": {
+       "en": "Write; erases old contents or creates the file",
+       "hi": "लिखना; पुरानी सामग्री मिटा देता है या फ़ाइल बनाता है"
+      },
+      "why": {
+       "en": "Opening an existing file in 'w' empties it first. Use it with care.",
+       "hi": "पहले से बनी फ़ाइल को 'w' में खोलने पर वह पहले ख़ाली हो जाती है। सावधानी से इस्तेमाल करो।"
+      }
+     },
+     {
+      "id": "a",
+      "left": {
+       "en": "open('f.txt', 'a')",
+       "hi": "open('f.txt', 'a')"
+      },
+      "right": {
+       "en": "Append; new data goes at the end",
+       "hi": "जोड़ना; नया डेटा अंत में जाता है"
+      },
+      "why": {
+       "en": "'a' keeps the old contents and adds after them. It creates the file if it is missing.",
+       "hi": "'a' पुरानी सामग्री रखता है और उसके बाद जोड़ता है। फ़ाइल न हो तो बना देता है।"
+      }
+     },
+     {
+      "id": "rplus",
+      "left": {
+       "en": "open('f.txt', 'r+')",
+       "hi": "open('f.txt', 'r+')"
+      },
+      "right": {
+       "en": "Read and write; the file must exist",
+       "hi": "पढ़ना और लिखना; फ़ाइल होनी चाहिए"
+      },
+      "why": {
+       "en": "'r+' allows both reading and writing from the start of an existing file.",
+       "hi": "'r+' मौजूदा फ़ाइल को शुरू से पढ़ने और लिखने, दोनों की छूट देता है।"
+      }
+     },
+     {
+      "id": "rb",
+      "left": {
+       "en": "open('f.dat', 'rb')",
+       "hi": "open('f.dat', 'rb')"
+      },
+      "right": {
+       "en": "Read a binary file",
+       "hi": "बाइनरी फ़ाइल पढ़ना"
+      },
+      "why": {
+       "en": "The letter b means binary. 'rb' reads bytes, for example for pickle.load().",
+       "hi": "अक्षर b का मतलब बाइनरी है। 'rb' बाइट पढ़ता है, जैसे pickle.load() के लिए।"
+      }
+     },
+     {
+      "id": "wb",
+      "left": {
+       "en": "open('f.dat', 'wb')",
+       "hi": "open('f.dat', 'wb')"
+      },
+      "right": {
+       "en": "Write a binary file",
+       "hi": "बाइनरी फ़ाइल में लिखना"
+      },
+      "why": {
+       "en": "'wb' writes bytes, for example for pickle.dump(). Old contents are erased.",
+       "hi": "'wb' बाइट लिखता है, जैसे pickle.dump() के लिए। पुरानी सामग्री मिट जाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:r",
+     "expect": "matched:r",
+     "say": {
+      "en": "Match open('f.txt', 'r') with its meaning.",
+      "hi": "open('f.txt', 'r') को उसके मतलब से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A file already holds 5 lines of marks. You open it with 'w' and write one new line. How many lines will it have?",
+      "hi": "एक फ़ाइल में अंकों की 5 पंक्तियाँ पहले से हैं। तुम उसे 'w' में खोलकर एक नई पंक्ति लिखते हो। फ़ाइल में कितनी पंक्तियाँ होंगी?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "Only 1 line",
+       "hi": "केवल 1 पंक्ति"
+      },
+      {
+       "id": "six",
+       "en": "6 lines",
+       "hi": "6 पंक्तियाँ"
+      },
+      {
+       "id": "five",
+       "en": "5 lines",
+       "hi": "5 पंक्तियाँ"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "left:w",
+     "expect": "matched:w",
+     "say": {
+      "en": "Match the 'w' mode.",
+      "hi": "'w' मोड को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Match the 'a' mode.",
+      "hi": "'a' मोड को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The mode letter tells Python what you will do with the file. 'r' reads, 'w' writes from scratch and wipes the old contents, 'a' adds to the end and keeps what was there, and a plus sign allows both reading and writing. Adding b means a binary file. Choosing 'w' by mistake is a classic way to lose data.",
+      "hi": "मोड का अक्षर Python को बताता है कि तुम फ़ाइल के साथ क्या करोगे। 'r' पढ़ता है, 'w' नए सिरे से लिखता है और पुरानी सामग्री मिटा देता है, 'a' अंत में जोड़ता है और पहले का रखता है, और प्लस का निशान पढ़ना-लिखना दोनों देता है। b जुड़ने का मतलब बाइनरी फ़ाइल है। गलती से 'w' चुनना डेटा खोने का पुराना तरीका है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which mode adds new lines without deleting the old ones?",
+        "hi": "कौन-सा मोड पुरानी पंक्तियाँ मिटाए बिना नई पंक्तियाँ जोड़ता है?"
+       },
+       "options": [
+        "'r'",
+        "'w'",
+        "'a'"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "'a' is append: the old contents stay and new data goes after them.",
+        "hi": "'a' का मतलब जोड़ना है: पुरानी सामग्री रहती है और नया डेटा उसके बाद जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "'r' only reads.",
+         "hi": "'r' केवल पढ़ता है।"
+        },
+        {
+         "en": "'w' wipes the old contents before writing.",
+         "hi": "'w' लिखने से पहले पुरानी सामग्री मिटा देता है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the letter b in \"rb\" stand for?",
+        "hi": "\"rb\" में अक्षर b का क्या मतलब है?"
+       },
+       "options": [
+        "bold",
+        "binary",
+        "begin"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "b means binary: the file is read as bytes, not as text lines.",
+        "hi": "b का मतलब बाइनरी है: फ़ाइल बाइट के रूप में पढ़ी जाती है, टेक्स्ट पंक्तियों के रूप में नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "Files have no bold; that is a text style.",
+         "hi": "फ़ाइलों में बोल्ड नहीं होता; वह टेक्स्ट की शैली है।"
+        },
+        "",
+        {
+         "en": "Python does not need a letter to begin reading.",
+         "hi": "पढ़ना शुरू करने के लिए Python को किसी अक्षर की ज़रूरत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Then say which mode you would use to keep adding today's attendance to one file, and why.",
+      "hi": "बाकी मिलाओ। फिर बताओ कि एक ही फ़ाइल में रोज़ की उपस्थिति जोड़ते जाने के लिए तुम कौन-सा मोड लोगे, और क्यों।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch02-attendance",
+   "topic": "2.3",
+   "template": "scenario",
+   "title": {
+    "en": "Do not wipe the attendance file",
+    "hi": "उपस्थिति की फ़ाइल मत मिटाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "classroom",
+    "role": {
+     "en": "Class monitor who keeps the attendance file",
+     "hi": "उपस्थिति की फ़ाइल रखने वाला कक्षा मॉनिटर"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "The file attendance.txt already has the records for Monday to Thursday. It is Friday and you must add today's line. Which mode do you open the file in?",
+       "hi": "attendance.txt में सोमवार से गुरुवार का रिकॉर्ड पहले से है। आज शुक्रवार है और तुम्हें आज की पंक्ति जोड़नी है। फ़ाइल किस मोड में खोलोगे?"
+      },
+      "choices": [
+       {
+        "id": "append",
+        "text": {
+         "en": "Open it with 'a' (append)",
+         "hi": "इसे 'a' (जोड़ना) में खोलूँगा"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Wise. 'a' keeps Monday to Thursday safe and puts Friday after them.",
+         "hi": "समझदारी। 'a' सोमवार से गुरुवार को सुरक्षित रखता है और शुक्रवार को उनके बाद लगाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "wipe",
+        "text": {
+         "en": "Open it with 'w' (write)",
+         "hi": "इसे 'w' (लिखना) में खोलूँगा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "'w' empties the file the moment it opens. Four days of records are gone, and only Friday is left. Use 'a' to add.",
+         "hi": "'w' खुलते ही फ़ाइल ख़ाली कर देता है। चार दिन का रिकॉर्ड चला गया, केवल शुक्रवार बचा। जोड़ने के लिए 'a' लो।"
+        },
+        "good": false
+       },
+       {
+        "id": "readonly",
+        "text": {
+         "en": "Open it with 'r' (read)",
+         "hi": "इसे 'r' (पढ़ना) में खोलूँगा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "'r' only lets you read. Trying to write gives an error, so Friday cannot be added.",
+         "hi": "'r' केवल पढ़ने देता है। लिखने पर त्रुटि आती है, इसलिए शुक्रवार नहीं जुड़ पाएगा।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Friday's line is written. Now the file must be closed so that the data is saved, even if something goes wrong in between. How will you do it?",
+       "hi": "शुक्रवार की पंक्ति लिख दी गई। अब फ़ाइल बंद होनी चाहिए ताकि डेटा सुरक्षित रहे, भले बीच में कुछ गड़बड़ हो जाए। कैसे करोगे?"
+      },
+      "choices": [
+       {
+        "id": "with",
+        "text": {
+         "en": "Use the with open(...) as f: form, which closes by itself",
+         "hi": "with open(...) as f: रूप इस्तेमाल करूँगा, जो अपने-आप बंद करता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Wise. The with block closes the file automatically when it ends, even if an exception happens inside it.",
+         "hi": "समझदारी। with ब्लॉक ख़त्म होते ही फ़ाइल अपने-आप बंद कर देता है, भीतर अपवाद आए तब भी।"
+        },
+        "good": true
+       },
+       {
+        "id": "forget",
+        "text": {
+         "en": "Leave it open and shut down the computer",
+         "hi": "इसे खुला छोड़कर कंप्यूटर बंद कर दूँगा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Data waits in memory (a buffer) until the file is closed. Switching off without closing can lose the line.",
+         "hi": "डेटा तब तक मेमोरी (बफ़र) में रुका रहता है जब तक फ़ाइल बंद न हो। बिना बंद किए कंप्यूटर बंद करने पर पंक्ति खो सकती है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before you choose: which mode keeps Monday to Thursday and adds Friday after them?",
+      "hi": "चुनने से पहले: कौन-सा मोड सोमवार से गुरुवार को रखकर शुक्रवार को उनके बाद जोड़ता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "'a' append",
+       "hi": "'a' जोड़ना"
+      },
+      {
+       "id": "w",
+       "en": "'w' write",
+       "hi": "'w' लिखना"
+      },
+      {
+       "id": "r",
+       "en": "'r' read",
+       "hi": "'r' पढ़ना"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:append",
+     "expect": "chose:append",
+     "say": {
+      "en": "Choose the mode that keeps the old records safe.",
+      "hi": "वह मोड चुनो जो पुराने रिकॉर्ड सुरक्षित रखे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:s2:with",
+     "expect": "chose:with",
+     "say": {
+      "en": "Now choose the way that closes the file for you.",
+      "hi": "अब वह तरीका चुनो जो फ़ाइल तुम्हारे लिए बंद कर दे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mode 'a' protects what is already in the file, while 'w' replaces it. A file must also be closed, because data is first held in memory and reaches the disk when the file closes. The with statement does the closing automatically, even when an error happens, so it is the safest way to work with files.",
+      "hi": "मोड 'a' फ़ाइल की मौजूदा सामग्री को बचाता है, जबकि 'w' उसे बदल देता है। फ़ाइल बंद भी करनी होती है, क्योंकि डेटा पहले मेमोरी में रहता है और फ़ाइल बंद होने पर डिस्क तक पहुँचता है। with कथन बंद करने का काम अपने-आप करता है, त्रुटि आने पर भी, इसलिए फ़ाइलों के साथ काम करने का वह सबसे सुरक्षित तरीका है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the with statement the safest way to open a file?",
+        "hi": "फ़ाइल खोलने के लिए with कथन सबसे सुरक्षित क्यों है?"
+       },
+       "options": [
+        "It closes the file automatically",
+        "It makes the file bigger",
+        "It stops the file from being read"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When the with block ends, the file is closed by itself, even after an error. Nothing is left open or unsaved.",
+        "hi": "with ब्लॉक ख़त्म होते ही फ़ाइल अपने-आप बंद हो जाती है, त्रुटि के बाद भी। कुछ खुला या बिना सहेजा नहीं रहता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "with has nothing to do with the size of the file.",
+         "hi": "with का फ़ाइल के आकार से कोई लेना-देना नहीं।"
+        },
+        {
+         "en": "You can still read the file inside the with block.",
+         "hi": "with ब्लॉक के अंदर फ़ाइल पढ़ी जा सकती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What happens to the old lines if you open the file with 'w'?",
+        "hi": "फ़ाइल को 'w' में खोलने पर पुरानी पंक्तियों का क्या होता है?"
+       },
+       "options": [
+        "They stay",
+        "They are erased",
+        "They move to the end"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "'w' empties the file when it opens, so the old lines are erased.",
+        "hi": "'w' खुलते ही फ़ाइल ख़ाली कर देता है, इसलिए पुरानी पंक्तियाँ मिट जाती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "That is what 'a' does, not 'w'.",
+         "hi": "ऐसा 'a' करता है, 'w' नहीं।"
+        },
+        "",
+        {
+         "en": "Nothing in Python moves old lines to the end.",
+         "hi": "Python में कुछ भी पुरानी पंक्तियों को अंत में नहीं भेजता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Restart and take the other choices to see what each one does. Which wrong choice would hurt most in a real school?",
+      "hi": "फिर से शुरू करो और दूसरे विकल्प चुनकर देखो कि हर एक क्या करता है। असली स्कूल में कौन-सा गलत विकल्प सबसे ज़्यादा नुकसान करता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch02-methods",
+   "topic": "2.5",
+   "template": "match",
+   "title": {
+    "en": "The file methods and what they do",
+    "hi": "फ़ाइल के तरीके और उनके काम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "write",
+      "left": {
+       "en": "write(\"Hello\")",
+       "hi": "write(\"Hello\")"
+      },
+      "right": {
+       "en": "Writes one string to the file",
+       "hi": "फ़ाइल में एक स्ट्रिंग लिखता है"
+      },
+      "why": {
+       "en": "write() takes one string and returns how many characters it wrote.",
+       "hi": "write() एक स्ट्रिंग लेता है और बताता है कि कितने अक्षर लिखे।"
+      }
+     },
+     {
+      "id": "writelines",
+      "left": {
+       "en": "writelines(lines)",
+       "hi": "writelines(lines)"
+      },
+      "right": {
+       "en": "Writes a list of strings",
+       "hi": "स्ट्रिंग की सूची लिखता है"
+      },
+      "why": {
+       "en": "writelines() writes every string of the list; it does not add newlines for you.",
+       "hi": "writelines() सूची की हर स्ट्रिंग लिखता है; वह नई पंक्ति अपने-आप नहीं जोड़ता।"
+      }
+     },
+     {
+      "id": "read",
+      "left": {
+       "en": "read()",
+       "hi": "read()"
+      },
+      "right": {
+       "en": "Gives the whole file as one string",
+       "hi": "पूरी फ़ाइल एक स्ट्रिंग के रूप में देता है"
+      },
+      "why": {
+       "en": "read() returns everything from the current position to the end.",
+       "hi": "read() मौजूदा स्थान से अंत तक सब कुछ लौटाता है।"
+      }
+     },
+     {
+      "id": "readline",
+      "left": {
+       "en": "readline()",
+       "hi": "readline()"
+      },
+      "right": {
+       "en": "Gives one line at a time",
+       "hi": "एक बार में एक पंक्ति देता है"
+      },
+      "why": {
+       "en": "Each call to readline() returns the next line.",
+       "hi": "readline() की हर कॉल अगली पंक्ति लौटाती है।"
+      }
+     },
+     {
+      "id": "readlines",
+      "left": {
+       "en": "readlines()",
+       "hi": "readlines()"
+      },
+      "right": {
+       "en": "Gives a list of all the lines",
+       "hi": "सभी पंक्तियों की सूची देता है"
+      },
+      "why": {
+       "en": "readlines() returns a list with one string per line.",
+       "hi": "readlines() हर पंक्ति की एक स्ट्रिंग वाली सूची लौटाता है।"
+      }
+     },
+     {
+      "id": "tell",
+      "left": {
+       "en": "tell()",
+       "hi": "tell()"
+      },
+      "right": {
+       "en": "Says where the file pointer is now",
+       "hi": "बताता है कि फ़ाइल पॉइंटर अभी कहाँ है"
+      },
+      "why": {
+       "en": "tell() returns the current byte position in the file.",
+       "hi": "tell() फ़ाइल में मौजूदा बाइट-स्थान लौटाता है।"
+      }
+     },
+     {
+      "id": "seek",
+      "left": {
+       "en": "seek(0)",
+       "hi": "seek(0)"
+      },
+      "right": {
+       "en": "Moves the pointer to a chosen position",
+       "hi": "पॉइंटर को चुने हुए स्थान पर ले जाता है"
+      },
+      "why": {
+       "en": "seek(0) sends the pointer back to the start of the file.",
+       "hi": "seek(0) पॉइंटर को फ़ाइल की शुरुआत पर भेज देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:read",
+     "expect": "matched:read",
+     "say": {
+      "en": "Match read() with what it returns.",
+      "hi": "read() को उससे मिलाओ जो वह लौटाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A file has 3 lines. What does readlines() give back?",
+      "hi": "एक फ़ाइल में 3 पंक्तियाँ हैं। readlines() क्या लौटाता है?"
+     },
+     "options": [
+      {
+       "id": "list",
+       "en": "A list of 3 strings",
+       "hi": "3 स्ट्रिंग की एक सूची"
+      },
+      {
+       "id": "one",
+       "en": "One long string",
+       "hi": "एक लंबी स्ट्रिंग"
+      },
+      {
+       "id": "first",
+       "en": "Only the first line",
+       "hi": "केवल पहली पंक्ति"
+      }
+     ],
+     "answer": "list"
+    },
+    {
+     "kind": "do",
+     "target": "left:readlines",
+     "expect": "matched:readlines",
+     "say": {
+      "en": "Match readlines().",
+      "hi": "readlines() को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:readline",
+     "expect": "matched:readline",
+     "say": {
+      "en": "Match readline().",
+      "hi": "readline() को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:seek",
+     "expect": "matched:seek",
+     "say": {
+      "en": "Match seek(0).",
+      "hi": "seek(0) को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To write, write() sends one string and writelines() sends a list of strings. To read, read() gives the whole file as one string, readline() gives one line each time you call it, and readlines() gives a list of all the lines. Behind these, the file keeps a pointer for the current position: tell() shows it and seek() moves it.",
+      "hi": "लिखने के लिए write() एक स्ट्रिंग और writelines() स्ट्रिंग की सूची भेजता है। पढ़ने के लिए read() पूरी फ़ाइल एक स्ट्रिंग में देता है, readline() हर कॉल पर एक पंक्ति देता है, और readlines() सभी पंक्तियों की सूची देता है। इन सबके पीछे फ़ाइल एक पॉइंटर रखती है जो मौजूदा स्थान बताता है: tell() उसे दिखाता है और seek() उसे हटाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which method reads only one line each time it is called?",
+        "hi": "कौन-सा तरीका हर कॉल पर केवल एक पंक्ति पढ़ता है?"
+       },
+       "options": [
+        "read()",
+        "readline()",
+        "readlines()"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "readline() returns the next single line, then the pointer moves on.",
+        "hi": "readline() अगली अकेली पंक्ति लौटाता है, फिर पॉइंटर आगे बढ़ जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "read() returns the whole file in one go.",
+         "hi": "read() पूरी फ़ाइल एक साथ लौटाता है।"
+        },
+        "",
+        {
+         "en": "readlines() returns all the lines as a list.",
+         "hi": "readlines() सभी पंक्तियाँ सूची में लौटाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You read a whole file and now read() gives an empty string. Which call brings the pointer back to the start?",
+        "hi": "तुमने पूरी फ़ाइल पढ़ ली और अब read() ख़ाली स्ट्रिंग देता है। कौन-सी कॉल पॉइंटर को शुरुआत पर लाती है?"
+       },
+       "options": [
+        "f.tell()",
+        "f.seek(0)",
+        "f.close()"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "seek(0) moves the pointer to position 0, the start, so reading can begin again.",
+        "hi": "seek(0) पॉइंटर को स्थान 0, यानी शुरुआत पर ले जाता है, ताकि पढ़ना फिर शुरू हो सके।"
+       },
+       "wrong": [
+        {
+         "en": "tell() only reports the position; it does not move anything.",
+         "hi": "tell() केवल स्थान बताता है; वह कुछ हिलाता नहीं।"
+        },
+        "",
+        {
+         "en": "close() ends your work with the file.",
+         "hi": "close() फ़ाइल के साथ तुम्हारा काम ख़त्म करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the others. Then explain to a friend why readlines() is handy when you want to count the lines of a file.",
+      "hi": "बाकी मिलाओ। फिर दोस्त को समझाओ कि फ़ाइल की पंक्तियाँ गिनने में readlines() काम का क्यों है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch02-pointer",
+   "topic": "2.6",
+   "template": "code",
+   "title": {
+    "en": "The file pointer: tell() and seek()",
+    "hi": "फ़ाइल पॉइंटर: tell() और seek()"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "text = \"NAMASTE\"",
+     "pos = 0",
+     "print(text[pos])",
+     "pos = pos + 1",
+     "print(text[pos])",
+     "pos = pos + 1",
+     "print(text[pos])",
+     "pos = 0",
+     "print(text[pos])"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Imagine a file that holds NAMASTE. We read one letter, then another, then another, then jump back to the start. What will the last letter printed be?",
+      "hi": "सोचो एक फ़ाइल में NAMASTE रखा है। हम एक अक्षर पढ़ते हैं, फिर एक और, फिर एक और, फिर शुरुआत पर वापस कूदते हैं। आख़िर में कौन-सा अक्षर छपेगा?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "N, the first letter",
+       "hi": "N, यानी पहला अक्षर"
+      },
+      {
+       "id": "m",
+       "en": "M",
+       "hi": "अक्षर M"
+      },
+      {
+       "id": "e",
+       "en": "E, the last letter",
+       "hi": "E, यानी आख़िरी अक्षर"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch pos (our pointer) move one place after every read.",
+      "hi": "\"एक क़दम\" दबाओ और देखो कि हर पढ़ने के बाद pos (हमारा पॉइंटर) एक जगह आगे खिसकता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish and see the jump back to the start.",
+      "hi": "पूरा करने के लिए \"चलाओ\" दबाओ और शुरुआत पर वापस कूदना देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A file keeps a pointer: the place from where the next read or write will happen. Reading moves it forward. Here the variable pos plays the pointer. tell() tells you the pointer position, and seek(0) is like setting pos = 0, which takes you back to the beginning so you can read again.",
+      "hi": "फ़ाइल एक पॉइंटर रखती है: वह जगह जहाँ से अगला पढ़ना या लिखना होगा। पढ़ने पर वह आगे बढ़ता है। यहाँ वेरिएबल pos पॉइंटर का काम करता है। tell() पॉइंटर का स्थान बताता है, और seek(0) वैसा ही है जैसे pos = 0 करना: तुम शुरुआत पर लौट जाते हो और फिर पढ़ सकते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After reading three letters of a file, where is the pointer?",
+        "hi": "फ़ाइल के तीन अक्षर पढ़ने के बाद पॉइंटर कहाँ है?"
+       },
+       "options": [
+        "At position 0",
+        "At position 3",
+        "At the end for sure"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Each letter moves the pointer one place, so after three letters it is at position 3, ready to read the fourth.",
+        "hi": "हर अक्षर पॉइंटर को एक जगह बढ़ाता है, इसलिए तीन अक्षरों के बाद वह स्थान 3 पर है, चौथा अक्षर पढ़ने को तैयार।"
+       },
+       "wrong": [
+        {
+         "en": "Position 0 is where it started, before anything was read.",
+         "hi": "स्थान 0 वह है जहाँ से शुरू हुआ था, कुछ भी पढ़ने से पहले।"
+        },
+        "",
+        {
+         "en": "The file has more letters, so the pointer is not at the end.",
+         "hi": "फ़ाइल में और अक्षर हैं, इसलिए पॉइंटर अंत पर नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which call sends the pointer back to the beginning of the file?",
+        "hi": "कौन-सी कॉल पॉइंटर को फ़ाइल की शुरुआत पर भेजती है?"
+       },
+       "options": [
+        "f.seek(0)",
+        "f.tell(0)",
+        "f.read(0)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "seek(0) moves the pointer to byte 0, the start.",
+        "hi": "seek(0) पॉइंटर को बाइट 0, यानी शुरुआत पर ले जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "tell() takes no position; it only reports where the pointer is.",
+         "hi": "tell() कोई स्थान नहीं लेता; वह केवल बताता है कि पॉइंटर कहाँ है।"
+        },
+        {
+         "en": "read(0) reads zero characters and does not move anything back.",
+         "hi": "read(0) शून्य अक्षर पढ़ता है और कुछ वापस नहीं ले जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think: what would the program print if the last pos = 0 were pos = 4? Work it out, then trace the program again to test your guess.",
+      "hi": "सोचो: अगर आख़िरी pos = 0 की जगह pos = 4 होता तो प्रोग्राम क्या छापता? पहले हल करो, फिर प्रोग्राम दोबारा चलाकर अपना अंदाज़ा परखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch02-order",
+   "topic": "2.7",
+   "template": "sequence",
+   "title": {
+    "en": "Create a file, then read it back",
+    "hi": "फ़ाइल बनाओ, फिर उसे पढ़ो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "openw",
+      "text": {
+       "en": "Open the file in write mode: open('a.txt', 'w')",
+       "hi": "फ़ाइल को लिखने के मोड में खोलो: open('a.txt', 'w')"
+      }
+     },
+     {
+      "id": "write",
+      "text": {
+       "en": "Write the lines into the file",
+       "hi": "फ़ाइल में पंक्तियाँ लिखो"
+      }
+     },
+     {
+      "id": "close1",
+      "text": {
+       "en": "Close the file so the data is saved",
+       "hi": "फ़ाइल बंद करो ताकि डेटा सुरक्षित हो"
+      }
+     },
+     {
+      "id": "openr",
+      "text": {
+       "en": "Open the same file in read mode: open('a.txt', 'r')",
+       "hi": "वही फ़ाइल पढ़ने के मोड में खोलो: open('a.txt', 'r')"
+      }
+     },
+     {
+      "id": "read",
+      "text": {
+       "en": "Read the lines and print them",
+       "hi": "पंक्तियाँ पढ़ो और छापो"
+      }
+     },
+     {
+      "id": "close2",
+      "text": {
+       "en": "Close the file again",
+       "hi": "फ़ाइल को फिर बंद करो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which comes first when you make a new file with Python: opening it in write mode, or reading it?",
+      "hi": "Python से नई फ़ाइल बनाते समय पहले क्या आता है: उसे लिखने के मोड में खोलना, या उसे पढ़ना?"
+     },
+     "options": [
+      {
+       "id": "open",
+       "en": "Open it in write mode",
+       "hi": "लिखने के मोड में खोलना"
+      },
+      {
+       "id": "read",
+       "en": "Read it",
+       "hi": "पढ़ना"
+      }
+     ],
+     "answer": "open"
+    },
+    {
+     "kind": "do",
+     "target": "item:openw",
+     "expect": "placed:openw",
+     "say": {
+      "en": "Put the first step in slot 1.",
+      "hi": "पहला चरण स्थान 1 में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:write",
+     "expect": "placed:write",
+     "say": {
+      "en": "Place the step where the data goes into the file.",
+      "hi": "वह चरण रखो जहाँ डेटा फ़ाइल में जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the other steps, then press Check.",
+      "hi": "बाकी चरण क्रम में लगाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Creating and traversing a text file always follows the same rhythm: open, use, close. First open in write mode, write the data and close, so that it is saved. Then open again in read mode, read the data to show it, and close again. Using with does the closing for you.",
+      "hi": "टेक्स्ट फ़ाइल बनाने और पढ़ने की लय हमेशा एक ही होती है: खोलो, काम करो, बंद करो। पहले लिखने के मोड में खोलो, डेटा लिखो और बंद करो ताकि वह सुरक्षित हो जाए। फिर पढ़ने के मोड में खोलो, डेटा पढ़कर दिखाओ और फिर बंद करो। with बंद करने का काम तुम्हारे लिए कर देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we close the file after writing?",
+        "hi": "लिखने के बाद फ़ाइल क्यों बंद करते हैं?"
+       },
+       "options": [
+        "To make sure the data is saved",
+        "To make the file read-only forever",
+        "To change its name"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Data waits in memory until the file is closed. Closing pushes it safely to the disk.",
+        "hi": "डेटा फ़ाइल बंद होने तक मेमोरी में रुका रहता है। बंद करने पर वह सुरक्षित रूप से डिस्क तक पहुँचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Closing does not change permissions.",
+         "hi": "बंद करने से अनुमतियाँ नहीं बदलतीं।"
+        },
+        {
+         "en": "Renaming is done with a different tool.",
+         "hi": "नाम बदलने का काम किसी और उपकरण से होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which mode do you use to read the lines back?",
+        "hi": "पंक्तियाँ वापस पढ़ने के लिए कौन-सा मोड लेते हैं?"
+       },
+       "options": [
+        "'w'",
+        "'r'",
+        "'a'"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "'r' opens an existing file for reading.",
+        "hi": "'r' मौजूदा फ़ाइल को पढ़ने के लिए खोलता है।"
+       },
+       "wrong": [
+        {
+         "en": "'w' would erase the lines you just wrote.",
+         "hi": "'w' अभी लिखी पंक्तियाँ मिटा देता।"
+        },
+        "",
+        {
+         "en": "'a' is for adding at the end, not for reading.",
+         "hi": "'a' अंत में जोड़ने के लिए है, पढ़ने के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Rewrite the six steps using one with statement for writing and one for reading. Which steps disappear?",
+      "hi": "छह चरणों को लिखने के लिए एक with कथन और पढ़ने के लिए एक with कथन से दोबारा लिखो। कौन-से चरण गायब हो जाते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch02-pickle",
+   "topic": "2.8",
+   "template": "sort",
+   "title": {
+    "en": "Saving and loading Python objects with pickle",
+    "hi": "pickle से ऑब्जेक्ट सहेजना और वापस लाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "dump",
+      "label": {
+       "en": "Saving (dump)",
+       "hi": "सहेजना (dump)"
+      }
+     },
+     {
+      "id": "load",
+      "label": {
+       "en": "Loading (load)",
+       "hi": "वापस लाना (load)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "wb",
+      "text": {
+       "en": "open('s.dat', 'wb')",
+       "hi": "open('s.dat', 'wb')"
+      },
+      "bin": "dump",
+      "why": {
+       "en": "To save, open the binary file for writing: wb.",
+       "hi": "सहेजने के लिए बाइनरी फ़ाइल को लिखने के लिए खोलो: wb।"
+      }
+     },
+     {
+      "id": "dumpcall",
+      "text": {
+       "en": "pickle.dump(data, f)",
+       "hi": "pickle.dump(data, f)"
+      },
+      "bin": "dump",
+      "why": {
+       "en": "dump() writes the object into the file as bytes.",
+       "hi": "dump() ऑब्जेक्ट को बाइट के रूप में फ़ाइल में लिखता है।"
+      }
+     },
+     {
+      "id": "list",
+      "text": {
+       "en": "A list becomes bytes in the file",
+       "hi": "सूची फ़ाइल में बाइट बन जाती है"
+      },
+      "bin": "dump",
+      "why": {
+       "en": "Saving turns the Python object into a stream of bytes.",
+       "hi": "सहेजने पर Python ऑब्जेक्ट बाइट की धारा में बदल जाता है।"
+      }
+     },
+     {
+      "id": "rb",
+      "text": {
+       "en": "open('s.dat', 'rb')",
+       "hi": "open('s.dat', 'rb')"
+      },
+      "bin": "load",
+      "why": {
+       "en": "To get the object back, open the same file for reading in binary: rb.",
+       "hi": "ऑब्जेक्ट वापस पाने के लिए वही फ़ाइल बाइनरी पढ़ने के लिए खोलो: rb।"
+      }
+     },
+     {
+      "id": "loadcall",
+      "text": {
+       "en": "data = pickle.load(f)",
+       "hi": "data = pickle.load(f)"
+      },
+      "bin": "load",
+      "why": {
+       "en": "load() reads the bytes and rebuilds the original object.",
+       "hi": "load() बाइट पढ़कर मूल ऑब्जेक्ट फिर से बना देता है।"
+      }
+     },
+     {
+      "id": "back",
+      "text": {
+       "en": "Bytes become a list again",
+       "hi": "बाइट फिर सूची बन जाते हैं"
+      },
+      "bin": "load",
+      "why": {
+       "en": "Loading turns the bytes back into the same Python object.",
+       "hi": "वापस लाने पर बाइट फिर वही Python ऑब्जेक्ट बन जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:dumpcall",
+     "expect": "correct:dumpcall",
+     "say": {
+      "en": "Place pickle.dump(data, f) in its group.",
+      "hi": "pickle.dump(data, f) को उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To read the saved object back, which mode letters will the file use?",
+      "hi": "सहेजा हुआ ऑब्जेक्ट वापस पढ़ने के लिए फ़ाइल किन मोड-अक्षरों में खुलेगी?"
+     },
+     "options": [
+      {
+       "id": "rb",
+       "en": "'rb'",
+       "hi": "'rb' मोड"
+      },
+      {
+       "id": "r",
+       "en": "'r' only",
+       "hi": "केवल 'r'"
+      },
+      {
+       "id": "wb",
+       "en": "'wb'",
+       "hi": "'wb' मोड"
+      }
+     ],
+     "answer": "rb"
+    },
+    {
+     "kind": "do",
+     "target": "card:rb",
+     "expect": "correct:rb",
+     "say": {
+      "en": "Place open('s.dat', 'rb').",
+      "hi": "open('s.dat', 'rb') रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:loadcall",
+     "expect": "correct:loadcall",
+     "say": {
+      "en": "Place data = pickle.load(f).",
+      "hi": "data = pickle.load(f) रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A text file can only hold characters, so a list or a dictionary must be converted to text first. The pickle module avoids that: pickle.dump() writes any Python object into a binary file, and pickle.load() reads it back as the very same object. You must import pickle, and open the file in binary mode: wb to save and rb to load.",
+      "hi": "टेक्स्ट फ़ाइल में केवल अक्षर रह सकते हैं, इसलिए सूची या डिक्शनरी को पहले टेक्स्ट में बदलना पड़ता। pickle मॉड्यूल यह झंझट बचाता है: pickle.dump() किसी भी Python ऑब्जेक्ट को बाइनरी फ़ाइल में लिख देता है, और pickle.load() उसे वही ऑब्जेक्ट बनाकर वापस पढ़ लेता है। pickle को import करना होता है और फ़ाइल बाइनरी मोड में खोलनी होती है: सहेजने के लिए wb और वापस लाने के लिए rb।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which function writes an object to a binary file?",
+        "hi": "कौन-सा फ़ंक्शन ऑब्जेक्ट को बाइनरी फ़ाइल में लिखता है?"
+       },
+       "options": [
+        "pickle.load()",
+        "pickle.dump()",
+        "f.readline()"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "dump() saves the object into the file.",
+        "hi": "dump() ऑब्जेक्ट को फ़ाइल में सहेजता है।"
+       },
+       "wrong": [
+        {
+         "en": "load() does the opposite: it reads the object back.",
+         "hi": "load() इसका उलटा है: वह ऑब्जेक्ट वापस पढ़ता है।"
+        },
+        "",
+        {
+         "en": "readline() reads a line of text, and pickle files are not lines of text.",
+         "hi": "readline() टेक्स्ट की पंक्ति पढ़ता है, और pickle फ़ाइलें टेक्स्ट की पंक्तियाँ नहीं होतीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a pickle file opened in binary mode?",
+        "hi": "pickle फ़ाइल बाइनरी मोड में क्यों खोली जाती है?"
+       },
+       "options": [
+        "Because it stores bytes, not text",
+        "Because it is bigger than other files",
+        "Because Python cannot open text files"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "pickle stores objects as bytes, so the file must be opened as binary (wb or rb).",
+        "hi": "pickle ऑब्जेक्ट को बाइट के रूप में रखता है, इसलिए फ़ाइल बाइनरी (wb या rb) में खुलनी चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size does not decide the mode; the kind of content does.",
+         "hi": "मोड का फ़ैसला आकार से नहीं, सामग्री के प्रकार से होता है।"
+        },
+        {
+         "en": "Python opens text files very well, in r, w and a modes.",
+         "hi": "Python टेक्स्ट फ़ाइलें r, w और a मोड में बख़ूबी खोलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the remaining cards. Then say what would go wrong if you tried pickle.load() on a file opened with plain \"r\".",
+      "hi": "बाकी कार्ड रखो। फिर बताओ कि सादे \"r\" में खुली फ़ाइल पर pickle.load() चलाने से क्या गड़बड़ होगी।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Opens the chapter: paper records versus a computer file",
+   "shows": "A school office table with a stack of paper attendance registers beside a laptop showing a plain folder window",
+   "view": "Eye level, 16:9, warm window light",
+   "right": "Paper register and laptop both clearly visible, folder window shows no readable names",
+   "avoid": "Readable student names, school logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Text file as a notebook page",
+   "shows": "A single ruled notebook page with a few neat handwritten lines, slightly curled corner",
+   "view": "Top-down, light from top left, transparent background",
+   "right": "Lines are evenly spaced and blurred writing",
+   "avoid": "Readable personal text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Binary file as a sealed packet",
+   "shows": "A small sealed brown parcel tied with string, no markings",
+   "view": "Front three-quarter view, soft shadow, transparent background",
+   "right": "The parcel is closed so the contents are clearly hidden",
+   "avoid": "Any writing, stamps or logos"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "2.3",
+   "use": "Open, use, close",
+   "shows": "Four frames of the same cupboard: closed, door opened, a book taken out, door closed again",
+   "view": "Same camera and light in all frames, 4:3",
+   "right": "Only the door state and the book change",
+   "avoid": "Visible people faces"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "2.6",
+   "use": "File pointer strip",
+   "shows": "A horizontal strip of eight equal empty cells with one small arrow marker above the third cell",
+   "view": "Flat white background, vector, 16:9",
+   "right": "Cells equal width so the app can write letters in them and move the arrow",
+   "avoid": "Any text in the cells"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "2.8",
+   "use": "Pickle idea: a jar sealing food to store and open later",
+   "shows": "A glass jar with a metal lid, filled with a few cut vegetables in clear liquid",
+   "view": "Front view, light from top left, transparent background",
+   "right": "Glass and liquid look real; lid closed",
+   "avoid": "Brand labels"
+  }
+ ]
+}

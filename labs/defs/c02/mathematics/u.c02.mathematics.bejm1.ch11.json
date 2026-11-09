@@ -1,0 +1,801 @@
+{
+ "chapter_key": "u.c02.mathematics.bejm1.ch11",
+ "class": 2,
+ "subject_id": "mathematics",
+ "title": "Data Handling",
+ "source": "https://ncert.nic.in/textbook/pdf/bejm111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Favourite colours: table and tally",
+   "labs": [
+    "c2-mathematics-bejm1-ch11-fav-colours"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Picnic day: favourite fruits",
+   "labs": [
+    "c2-mathematics-bejm1-ch11-fruit-party"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "How we come to school: table and picture graph",
+   "labs": [
+    "c2-mathematics-bejm1-ch11-how-we-come"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Games we play: table, graph and questions",
+   "labs": [
+    "c2-mathematics-bejm1-ch11-games-we-play"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5",
+   "title": "Survey of vegetables and family members in nearby homes",
+   "labs": [],
+   "why_no_lab": "This is a real survey of friends and neighbours, so asking real people is the learning."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c2-mathematics-bejm1-ch11-fav-colours",
+   "topic": "11.1",
+   "template": "data",
+   "title": {
+    "en": "Tally the favourite colours",
+    "hi": "पसंदीदा रंगों की टैली"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "tally",
+    "title": {
+     "en": "Favourite colours of 18 children",
+     "hi": "18 बच्चों के पसंदीदा रंग"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Red",
+       "hi": "लाल"
+      },
+      "value": 6
+     },
+     {
+      "label": {
+       "en": "Green",
+       "hi": "हरा"
+      },
+      "value": 3
+     },
+     {
+      "label": {
+       "en": "Blue",
+       "hi": "नीला"
+      },
+      "value": 5
+     },
+     {
+      "label": {
+       "en": "Yellow",
+       "hi": "पीला"
+      },
+      "value": 4
+     }
+    ],
+    "show": 3,
+    "ask": "max"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a tally chart we make one stroke for each child, and the fifth stroke crosses the other four. How is 6 shown?",
+      "hi": "टैली चार्ट में हर बच्चे के लिए एक रेखा खींचते हैं और पाँचवीं रेखा चार रेखाओं को काटती है। 6 कैसे दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "One bundle of 5 and one more stroke",
+       "hi": "5 का एक गुच्छा और एक रेखा और"
+      },
+      {
+       "id": "b",
+       "en": "Six bundles of 5",
+       "hi": "5 के छह गुच्छे"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add a row to put the last colour on the chart.",
+      "hi": "आख़िरी रंग को चार्ट में डालने के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the tally marks. Which colour do most children like? Choose it.",
+      "hi": "टैली के निशान देखो। सबसे ज़्यादा बच्चों को कौन-सा रंग पसंद है? उसे चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Counting in bundles of 5 is quick. Red has 6 children, blue 5, yellow 4 and green 3. The longest row is red, so red is liked the most. A tally chart helps us count and compare.",
+      "hi": "5 के गुच्छों में गिनना तेज़ है। लाल को 6 बच्चे, नीले को 5, पीले को 4 और हरे को 3 बच्चे पसंद करते हैं। सबसे लंबी पंक्ति लाल की है, इसलिए लाल सबसे ज़्यादा पसंद है। टैली चार्ट से गिनना और तुलना करना आसान होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which colour is liked the least?",
+        "hi": "कौन-सा रंग सबसे कम पसंद है?"
+       },
+       "options": [
+        {
+         "en": "Red",
+         "hi": "लाल"
+        },
+        {
+         "en": "Green",
+         "hi": "हरा"
+        },
+        {
+         "en": "Blue",
+         "hi": "नीला"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Green has only 3 children, fewer than any other colour.",
+        "hi": "हरे को केवल 3 बच्चे पसंद करते हैं, किसी भी दूसरे रंग से कम।"
+       },
+       "wrong": [
+        {
+         "en": "Red has 6, the most.",
+         "hi": "लाल को 6 बच्चे पसंद करते हैं, सबसे ज़्यादा।"
+        },
+        "",
+        {
+         "en": "Blue has 5, more than green.",
+         "hi": "नीले को 5 बच्चे पसंद करते हैं, हरे से ज़्यादा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many more children like blue than yellow?",
+        "hi": "पीले से कितने ज़्यादा बच्चों को नीला पसंद है?"
+       },
+       "options": [
+        {
+         "en": "1 more",
+         "hi": "1 ज़्यादा"
+        },
+        {
+         "en": "5 more",
+         "hi": "5 ज़्यादा"
+        },
+        {
+         "en": "9 more",
+         "hi": "9 ज़्यादा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Blue 5 and yellow 4. 5 − 4 = 1.",
+        "hi": "नीला 5 और पीला 4। 5 − 4 = 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 is the number who like blue, not the difference.",
+         "hi": "5 नीले को पसंद करने वालों की संख्या है, अंतर नहीं।"
+        },
+        {
+         "en": "9 is 5 + 4. To compare we take away.",
+         "hi": "9 तो 5 + 4 है। तुलना के लिए हम घटाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask your friends their favourite colour and make your own tally on paper.",
+      "hi": "अपने दोस्तों से उनका पसंदीदा रंग पूछो और कॉपी में अपनी टैली बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch11-fruit-party",
+   "topic": "11.2",
+   "template": "data",
+   "title": {
+    "en": "Fruits at the picnic",
+    "hi": "पिकनिक के फल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "pictograph",
+    "icon": "smile",
+    "unit": 1,
+    "title": {
+     "en": "Favourite fruits of 19 children (1 face = 1 child)",
+     "hi": "19 बच्चों के पसंदीदा फल (1 चेहरा = 1 बच्चा)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Apple",
+       "hi": "सेब"
+      },
+      "value": 7
+     },
+     {
+      "label": {
+       "en": "Banana",
+       "hi": "केला"
+      },
+      "value": 5
+     },
+     {
+      "label": {
+       "en": "Guava",
+       "hi": "अमरूद"
+      },
+      "value": 3
+     },
+     {
+      "label": {
+       "en": "Orange",
+       "hi": "संतरा"
+      },
+      "value": 4
+     }
+    ],
+    "show": 3,
+    "ask": "min"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In this picture graph, one face stands for one child. If 7 children like apples, how many faces will apple have?",
+      "hi": "इस चित्र-आलेख में एक चेहरा एक बच्चे को दिखाता है। 7 बच्चों को सेब पसंद हैं तो सेब के कितने चेहरे होंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "1 face",
+       "hi": "1 चेहरा"
+      },
+      {
+       "id": "b",
+       "en": "7 faces",
+       "hi": "7 चेहरे"
+      },
+      {
+       "id": "c",
+       "en": "17 faces",
+       "hi": "17 चेहरे"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add a row to put the last fruit on the graph.",
+      "hi": "आख़िरी फल को आलेख में डालने के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Count the faces in each row. Which fruit is liked the least? Choose it.",
+      "hi": "हर पंक्ति के चेहरे गिनो। सबसे कम कौन-सा फल पसंद है? उसे चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each face is one child. Apple has 7 faces, banana 5, orange 4 and guava 3. Guava has the shortest row, so it is liked the least. A picture graph lets us compare quickly by just looking at the rows.",
+      "hi": "हर चेहरा एक बच्चा है। सेब के 7 चेहरे, केले के 5, संतरे के 4 और अमरूद के 3 हैं। अमरूद की पंक्ति सबसे छोटी है, इसलिए वह सबसे कम पसंद है। चित्र-आलेख में केवल पंक्तियाँ देखकर तुलना कर लेते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which fruit is liked by more children, orange or guava?",
+        "hi": "संतरा या अमरूद, किसे ज़्यादा बच्चे पसंद करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Orange",
+         "hi": "संतरा"
+        },
+        {
+         "en": "Guava",
+         "hi": "अमरूद"
+        },
+        {
+         "en": "Same number",
+         "hi": "बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Orange has 4 faces and guava has 3. 4 is more than 3.",
+        "hi": "संतरे के 4 चेहरे और अमरूद के 3 हैं। 4, 3 से ज़्यादा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Guava has 3, which is fewer than orange's 4.",
+         "hi": "अमरूद के 3 हैं, जो संतरे के 4 से कम हैं।"
+        },
+        {
+         "en": "The two rows are not the same length.",
+         "hi": "दोनों पंक्तियाँ बराबर लंबी नहीं हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many children are there in all at the fruit party?",
+        "hi": "फल पार्टी में कुल कितने बच्चे हैं?"
+       },
+       "options": [
+        {
+         "en": "19 children",
+         "hi": "19 बच्चे"
+        },
+        {
+         "en": "4 children",
+         "hi": "4 बच्चे"
+        },
+        {
+         "en": "7 children",
+         "hi": "7 बच्चे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 + 5 + 3 + 4 = 19 children.",
+        "hi": "7 + 5 + 3 + 4 = 19 बच्चे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 is the number of fruits, not children.",
+         "hi": "4 फलों की संख्या है, बच्चों की नहीं।"
+        },
+        {
+         "en": "7 is only the children who like apples.",
+         "hi": "7 केवल सेब पसंद करने वाले बच्चे हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap a row to select it and see its number. Which two rows together make 9?",
+      "hi": "किसी पंक्ति को दबाकर उसकी संख्या देखो। कौन-सी दो पंक्तियाँ मिलकर 9 होती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch11-how-we-come",
+   "topic": "11.3",
+   "template": "data",
+   "title": {
+    "en": "How do children come to school?",
+    "hi": "बच्चे स्कूल कैसे आते हैं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "pictograph",
+    "icon": "smile",
+    "unit": 1,
+    "title": {
+     "en": "How 26 children come to school (1 face = 1 child)",
+     "hi": "26 बच्चे स्कूल कैसे आते हैं (1 चेहरा = 1 बच्चा)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "On foot",
+       "hi": "पैदल"
+      },
+      "value": 8
+     },
+     {
+      "label": {
+       "en": "Bus",
+       "hi": "बस"
+      },
+      "value": 6
+     },
+     {
+      "label": {
+       "en": "Bicycle",
+       "hi": "साइकिल"
+      },
+      "value": 5
+     },
+     {
+      "label": {
+       "en": "Auto",
+       "hi": "ऑटो"
+      },
+      "value": 4
+     },
+     {
+      "label": {
+       "en": "Bike",
+       "hi": "बाइक"
+      },
+      "value": 3
+     }
+    ],
+    "show": 4,
+    "ask": "max"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Most children live near the school. Which way do you think most children will come?",
+      "hi": "ज़्यादातर बच्चे स्कूल के पास रहते हैं। तुम्हें क्या लगता है, सबसे ज़्यादा बच्चे कैसे आते हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "On foot",
+       "hi": "पैदल"
+      },
+      {
+       "id": "b",
+       "en": "By bike",
+       "hi": "बाइक से"
+      },
+      {
+       "id": "c",
+       "en": "By auto",
+       "hi": "ऑटो से"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add a row for the last way of coming to school.",
+      "hi": "स्कूल आने के आख़िरी तरीक़े के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "chart:bar",
+     "expect": "plotted",
+     "say": {
+      "en": "Now tap Bar to see the same data as a bar graph.",
+      "hi": "अब वही आँकड़े पट्टी-आलेख में देखने के लिए पट्टी दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which way do most children use? Choose it.",
+      "hi": "सबसे ज़्यादा बच्चे कौन-सा तरीक़ा अपनाते हैं? उसे चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The same numbers can be shown as faces or as bars. 8 children come on foot, 6 by bus, 5 by bicycle, 4 by auto and 3 by bike. The longest bar is on foot, so most children walk. A graph turns numbers into a picture that is easy to read.",
+      "hi": "वही संख्याएँ चेहरों से भी दिखाई जा सकती हैं और पट्टियों से भी। 8 बच्चे पैदल, 6 बस से, 5 साइकिल से, 4 ऑटो से और 3 बाइक से आते हैं। सबसे लंबी पट्टी पैदल की है, इसलिए ज़्यादातर बच्चे पैदल आते हैं। आलेख संख्याओं को ऐसी तस्वीर बना देता है जो आसानी से पढ़ी जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Do more children come by bus or by auto?",
+        "hi": "बस से ज़्यादा बच्चे आते हैं या ऑटो से?"
+       },
+       "options": [
+        {
+         "en": "By bus",
+         "hi": "बस से"
+        },
+        {
+         "en": "By auto",
+         "hi": "ऑटो से"
+        },
+        {
+         "en": "The same",
+         "hi": "बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Bus has 6 and auto has 4. 6 is more than 4.",
+        "hi": "बस के 6 और ऑटो के 4 हैं। 6, 4 से ज़्यादा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Auto has 4, which is fewer than 6.",
+         "hi": "ऑटो के 4 हैं, जो 6 से कम हैं।"
+        },
+        {
+         "en": "6 and 4 are not equal.",
+         "hi": "6 और 4 बराबर नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch between Faces, Bars and Tally. Which one is easiest for you to read?",
+      "hi": "चेहरे, पट्टी और टैली के बीच बदलकर देखो। तुम्हारे लिए सबसे आसान कौन-सा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch11-games-we-play",
+   "topic": "11.4",
+   "template": "data",
+   "title": {
+    "en": "Games we play",
+    "hi": "हम कौन-से खेल खेलते हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "title": {
+     "en": "Games 26 children like most",
+     "hi": "26 बच्चों को सबसे ज़्यादा पसंद खेल"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Gilli-danda",
+       "hi": "गिल्ली-डंडा"
+      },
+      "value": 4
+     },
+     {
+      "label": {
+       "en": "Kabaddi",
+       "hi": "कबड्डी"
+      },
+      "value": 6
+     },
+     {
+      "label": {
+       "en": "Pithu",
+       "hi": "पिट्ठू"
+      },
+      "value": 3
+     },
+     {
+      "label": {
+       "en": "Football",
+       "hi": "फ़ुटबॉल"
+      },
+      "value": 5
+     },
+     {
+      "label": {
+       "en": "Cricket",
+       "hi": "क्रिकेट"
+      },
+      "value": 8
+     }
+    ],
+    "show": 4,
+    "ask": "max"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Cricket will have a very tall bar. What do you think a tall bar means?",
+      "hi": "क्रिकेट की पट्टी बहुत ऊँची होगी। तुम्हें क्या लगता है, ऊँची पट्टी का क्या मतलब है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "More children like it",
+       "hi": "उसे ज़्यादा बच्चे पसंद करते हैं"
+      },
+      {
+       "id": "b",
+       "en": "Fewer children like it",
+       "hi": "उसे कम बच्चे पसंद करते हैं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add a row to put the last game on the graph.",
+      "hi": "आख़िरी खेल को आलेख में डालने के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "sort",
+     "expect": "sorted",
+     "say": {
+      "en": "Tap Sort to put the bars from the shortest to the tallest.",
+      "hi": "पट्टियों को छोटी से लंबी क्रम में लगाने के लिए क्रम से लगाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which game do most children like? Choose it.",
+      "hi": "सबसे ज़्यादा बच्चे कौन-सा खेल पसंद करते हैं? उसे चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A taller bar means more children. Cricket is liked by 8, kabaddi by 6, football by 5, gilli-danda by 4 and pithu by 3. After sorting, the bars rise like stairs, so the biggest and smallest are easy to see.",
+      "hi": "ऊँची पट्टी का मतलब ज़्यादा बच्चे। क्रिकेट को 8, कबड्डी को 6, फ़ुटबॉल को 5, गिल्ली-डंडा को 4 और पिट्ठू को 3 बच्चे पसंद करते हैं। क्रम से लगाने पर पट्टियाँ सीढ़ी की तरह चढ़ती हैं, इसलिए सबसे बड़ी और सबसे छोटी आसानी से दिखती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Is pithu liked more or less than football?",
+        "hi": "पिट्ठू फ़ुटबॉल से ज़्यादा पसंद है या कम?"
+       },
+       "options": [
+        {
+         "en": "More",
+         "hi": "ज़्यादा"
+        },
+        {
+         "en": "Less",
+         "hi": "कम"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Pithu has 3 and football has 5. 3 is less than 5.",
+        "hi": "पिट्ठू के 3 और फ़ुटबॉल के 5 हैं। 3, 5 से कम है।"
+       },
+       "wrong": [
+        {
+         "en": "Pithu has the shortest bar, so it is liked less, not more.",
+         "hi": "पिट्ठू की पट्टी सबसे छोटी है, इसलिए वह कम पसंद है, ज़्यादा नहीं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap a bar to select it. How many more children like cricket than pithu?",
+      "hi": "किसी पट्टी को दबाओ। पिट्ठू से कितने ज़्यादा बच्चे क्रिकेट पसंद करते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Colours of the class",
+   "shows": "Children's colourful bags, bottles and caps arranged in four groups by colour on a classroom floor: red, green, blue and yellow",
+   "view": "Slightly above, bright daylight, no faces",
+   "right": "Each group is a clear single colour",
+   "avoid": "Faces; text; brand logos"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "11.2",
+   "use": "Fruit party",
+   "shows": "A picnic mat in a park with plates of apples, bananas, guavas and oranges, children's hands reaching in",
+   "view": "Wide view from above, no faces",
+   "right": "Four different fruits easy to tell apart by shape and colour",
+   "avoid": "Faces; stickers on the fruit"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "11.3",
+   "use": "Coming to school",
+   "shows": "The school gate in the morning with a bus, an auto, children on foot, one on a bicycle and one on a bike",
+   "view": "Wide view at eye level, soft light, no faces",
+   "right": "All five ways of coming are visible",
+   "avoid": "Faces; number plates; unsafe riding without helmets"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "11.4",
+   "use": "Playground games",
+   "shows": "Children playing gilli-danda, kabaddi, pithu, football and cricket in different corners of a playground",
+   "view": "Wide high view, midday light, no faces",
+   "right": "Five games easy to tell apart",
+   "avoid": "Faces; text on banners"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "11.1",
+   "use": "Tally mark samples",
+   "shows": "A neat set of tally marks from 1 to 10 on a slate, groups of five crossed",
+   "view": "Close-up, straight on, white chalk on a dark slate",
+   "right": "Fifth stroke crosses the four before it",
+   "avoid": "Numbers written beside the marks"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "11.2",
+   "use": "Smile faces",
+   "shows": "Round smiling face tokens in several skin tones and a few plain colours, as a pictograph icon set",
+   "view": "Straight front, transparent background",
+   "right": "All faces friendly and equal in size",
+   "avoid": "Real children's faces; frowns"
+  }
+ ]
+}

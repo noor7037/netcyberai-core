@@ -1,0 +1,1944 @@
+{
+  "chapter_key": "u.c12.biology.lebo1.ch01",
+  "class": 12,
+  "subject_id": "biology",
+  "title": "Sexual Reproduction in Flowering Plants",
+  "source": "https://ncert.nic.in/textbook/pdf/lebo101.pdf",
+  "topics": [
+    {
+      "n": "1.1",
+      "title": "Flower: a fascinating structure",
+      "labs": [
+        "c12-biology-lebo1-ch01-flower-parts"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.2.1",
+      "title": "Stamen, microsporangium and pollen grain",
+      "labs": [
+        "c12-biology-lebo1-ch01-pollen-grain"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.2.2",
+      "title": "The pistil, megasporangium (ovule) and embryo sac",
+      "labs": [
+        "c12-biology-lebo1-ch01-embryo-sac"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.2.3",
+      "title": "Pollination: kinds and agents",
+      "labs": [
+        "c12-biology-lebo1-ch01-wind-or-insect",
+        "c12-biology-lebo1-ch01-pollination-types"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.3",
+      "title": "Double fertilisation",
+      "labs": [
+        "c12-biology-lebo1-ch01-double-fertilisation"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.4",
+      "title": "Post-fertilisation: endosperm, embryo, seed and fruit",
+      "labs": [
+        "c12-biology-lebo1-ch01-after-fertilisation"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.5",
+      "title": "Apomixis and polyembryony",
+      "labs": [
+        "c12-biology-lebo1-ch01-apomixis"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-biology-lebo1-ch01-flower-parts",
+      "topic": "1.1",
+      "template": "plant",
+      "title": {
+        "en": "From flower to fruit",
+        "hi": "फूल से फल तक"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "flower",
+        "plant": "hibiscus"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "part:anther",
+          "expect": "identified:anther",
+          "say": {
+            "en": "Tap the anther, the knob on top of the male part (the stamen).",
+            "hi": "परागकोश को छुओ। यह नर भाग (पुंकेसर) के ऊपर की घुंडी है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "part:ovary",
+          "expect": "identified:ovary",
+          "say": {
+            "en": "Now tap the ovary at the base of the female part (the pistil).",
+            "hi": "अब मादा भाग (स्त्रीकेसर) के आधार पर अंडाशय को छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Pollen from the anther will land on the stigma. What will become of the ovary and the ovules inside it?",
+            "hi": "परागकोश का पराग वर्तिकाग्र पर गिरेगा। अंडाशय और उसके अंदर के बीजांडों का क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "fruit",
+              "en": "Ovary becomes the fruit, ovules become seeds",
+              "hi": "अंडाशय फल बनेगा, बीजांड बीज बनेंगे"
+            },
+            {
+              "id": "petal",
+              "en": "They become petals",
+              "hi": "वे पंखुड़ियाँ बन जाएँगे"
+            },
+            {
+              "id": "nothing",
+              "en": "They stay the same",
+              "hi": "वे वैसे ही रहेंगे"
+            }
+          ],
+          "answer": "fruit"
+        },
+        {
+          "kind": "do",
+          "target": "play",
+          "expect": "fertilised",
+          "say": {
+            "en": "Press Play and watch pollination and fertilisation happen.",
+            "hi": "चलाओ दबाओ और परागण तथा निषेचन होते देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The flower is the plant's reproductive organ. The stamen makes pollen, and the pistil holds the ovules. After pollen reaches the stigma and fertilisation happens, the ovules become seeds and the ovary grows into the fruit. The other parts, like petals, usually wither.",
+            "hi": "फूल पौधे का जनन अंग है। पुंकेसर पराग बनाता है और स्त्रीकेसर में बीजांड होते हैं। पराग वर्तिकाग्र पर पहुँचकर निषेचन कराता है तो बीजांड बीज बन जाते हैं और अंडाशय फल बन जाता है। पंखुड़ी जैसे बाकी भाग प्रायः मुरझा जाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which part of the flower becomes the seed?",
+                "hi": "फूल का कौन-सा भाग बीज बनता है?"
+              },
+              "options": [
+                {
+                  "en": "Ovule",
+                  "hi": "बीजांड"
+                },
+                {
+                  "en": "Ovary",
+                  "hi": "अंडाशय"
+                },
+                {
+                  "en": "Stigma",
+                  "hi": "वर्तिकाग्र"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Each fertilised ovule becomes one seed.",
+                "hi": "निषेचित हर बीजांड एक बीज बन जाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The ovary is the part that grows into the fruit, the seeds are only inside it.",
+                  "hi": "अंडाशय तो फल बनता है, बीज उसके अंदर रहते हैं।"
+                },
+                {
+                  "en": "The stigma only receives pollen; it dries up after fertilisation.",
+                  "hi": "वर्तिकाग्र केवल पराग ग्रहण करता है; निषेचन के बाद वह सूख जाता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Where is pollen made?",
+                "hi": "पराग कहाँ बनता है?"
+              },
+              "options": [
+                {
+                  "en": "In the anther",
+                  "hi": "परागकोश में"
+                },
+                {
+                  "en": "In the ovary",
+                  "hi": "अंडाशय में"
+                },
+                {
+                  "en": "In the petal",
+                  "hi": "पंखुड़ी में"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The anther of the stamen makes pollen grains.",
+                "hi": "पुंकेसर का परागकोश पराग कण बनाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The ovary holds the ovules, the female part.",
+                  "hi": "अंडाशय में बीजांड होते हैं, जो मादा भाग हैं।"
+                },
+                {
+                  "en": "Petals attract insects but make no pollen.",
+                  "hi": "पंखुड़ियाँ कीटों को खींचती हैं पर पराग नहीं बनातीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press Reset and play again. Tap the stigma, style and ovule and say aloud what each one does.",
+            "hi": "रीसेट दबाओ और फिर चलाओ। वर्तिकाग्र, वर्तिका और बीजांड को छुओ और हर एक का काम बोलकर बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch01-pollen-grain",
+      "topic": "1.2.1",
+      "template": "scope",
+      "title": {
+        "en": "Look at pollen grains",
+        "hi": "पराग कणों को देखो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "slide": "pollen"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "lens:10x",
+          "expect": "zoomed:10x",
+          "say": {
+            "en": "Choose the 10x lens to look closer.",
+            "hi": "और पास से देखने के लिए 10x लेंस चुनो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "knob:coarse",
+          "expect": "focused",
+          "say": {
+            "en": "Turn the coarse knob until the pollen grains look sharp.",
+            "hi": "मोटे घुंडे को तब तक घुमाओ जब तक पराग कण साफ़ न दिखें।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A pollen grain has a very hard outer wall. Which layer do you think survives heat, acid and millions of years?",
+            "hi": "पराग कण की बाहरी दीवार बहुत कठोर होती है। तुम्हारे अनुसार कौन-सी परत गर्मी, अम्ल और लाखों साल झेल लेती है?"
+          },
+          "options": [
+            {
+              "id": "exine",
+              "en": "The outer exine",
+              "hi": "बाहरी बाह्यचोल"
+            },
+            {
+              "id": "intine",
+              "en": "The inner intine",
+              "hi": "भीतरी अंतःचोल"
+            },
+            {
+              "id": "none",
+              "en": "No layer is tough",
+              "hi": "कोई परत कठोर नहीं"
+            }
+          ],
+          "answer": "exine"
+        },
+        {
+          "kind": "do",
+          "target": "part:exine",
+          "expect": "identified:exine",
+          "say": {
+            "en": "Tap the outer wall, the exine.",
+            "hi": "बाहरी दीवार, बाह्यचोल को छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "part:germ-pore",
+          "expect": "identified:germ-pore",
+          "say": {
+            "en": "Now find a germ pore, a spot where the exine is thin or missing.",
+            "hi": "अब एक जनन छिद्र खोजो, जहाँ बाह्यचोल पतला है या नहीं है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The exine is made of sporopollenin, one of the toughest natural materials. It resists high temperature, strong acids and alkalis, and no enzyme known breaks it down. That is why pollen is found as fossils. The germ pores are the places where the exine is absent, and the pollen tube comes out of one of them. Inside, the grain has a large vegetative cell and a small generative cell, which will give two male gametes.",
+            "hi": "बाह्यचोल स्पोरोपोलेनिन का बना होता है, जो प्रकृति के सबसे कठोर पदार्थों में है। यह उच्च ताप, तेज़ अम्ल और क्षार सह लेता है और कोई ज्ञात एंज़ाइम इसे तोड़ नहीं पाता। इसीलिए पराग जीवाश्म के रूप में मिलते हैं। जनन छिद्र वे स्थान हैं जहाँ बाह्यचोल नहीं होता, और परागनलिका उनमें से एक से बाहर निकलती है। कण के अंदर एक बड़ी कायिक कोशिका और एक छोटी जनन कोशिका होती है, जो दो नर युग्मक देगी।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why can pollen grains be found as fossils?",
+                "hi": "पराग कण जीवाश्म के रूप में क्यों मिलते हैं?"
+              },
+              "options": [
+                {
+                  "en": "The exine is made of sporopollenin and does not decay",
+                  "hi": "बाह्यचोल स्पोरोपोलेनिन का बना है और सड़ता नहीं"
+                },
+                {
+                  "en": "Pollen grains are made of stone",
+                  "hi": "पराग कण पत्थर के बने होते हैं"
+                },
+                {
+                  "en": "The intine is very thick",
+                  "hi": "अंतःचोल बहुत मोटा होता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Sporopollenin resists heat, acids and enzymes, so the walls last for ages.",
+                "hi": "स्पोरोपोलेनिन ताप, अम्ल और एंज़ाइमों से बचा रहता है, इसलिए दीवार युगों तक टिकती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Pollen is living material wrapped in a tough wall; it is not stone.",
+                  "hi": "पराग जीवित पदार्थ है जो कठोर दीवार में लिपटा है; वह पत्थर नहीं है।"
+                },
+                {
+                  "en": "The intine is thin and soft, made of cellulose and pectin.",
+                  "hi": "अंतःचोल पतला और मुलायम होता है, सेल्यूलोज़ और पेक्टिन का बना।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What is the use of a germ pore?",
+                "hi": "जनन छिद्र का क्या उपयोग है?"
+              },
+              "options": [
+                {
+                  "en": "The pollen tube comes out through it",
+                  "hi": "परागनलिका इससे बाहर निकलती है"
+                },
+                {
+                  "en": "Water leaves the pollen through it",
+                  "hi": "पराग से पानी इससे निकलता है"
+                },
+                {
+                  "en": "Insects hold on to it",
+                  "hi": "कीट इससे चिपकते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Where the exine is absent, the intine can bulge out as the pollen tube.",
+                "hi": "जहाँ बाह्यचोल नहीं होता, वहाँ से अंतःचोल नलिका बनकर बाहर आता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A pollen grain is not meant to lose water; the pore is for the tube.",
+                  "hi": "पराग को पानी खोना नहीं है; छिद्र नलिका के लिए है।"
+                },
+                {
+                  "en": "Insects are held by the rough exine surface, not by the pores.",
+                  "hi": "कीट खुरदरी बाह्य सतह से चिपकते हैं, छिद्र से नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the lens to 40x and the stain to iodine. Does the pollen look different? Count the germ pores you can see.",
+            "hi": "लेंस 40x करो और अभिरंजक आयोडीन चुनो। क्या पराग अलग दिखता है? गिनो कितने जनन छिद्र दिखते हैं।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch01-embryo-sac",
+      "topic": "1.2.2",
+      "template": "match",
+      "title": {
+        "en": "Inside the ovule and embryo sac",
+        "hi": "बीजांड और भ्रूणकोश के अंदर"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "micropyle",
+            "left": {
+              "en": "Micropyle",
+              "hi": "बीजांडद्वार"
+            },
+            "right": {
+              "en": "A small opening through which the pollen tube enters the ovule",
+              "hi": "छोटा छिद्र जिससे परागनलिका बीजांड में घुसती है"
+            },
+            "why": {
+              "en": "The micropyle is the doorway at one end of the ovule.",
+              "hi": "बीजांडद्वार बीजांड के एक सिरे का प्रवेश-द्वार है।"
+            }
+          },
+          {
+            "id": "funicle",
+            "left": {
+              "en": "Funicle",
+              "hi": "बीजांडवृंत"
+            },
+            "right": {
+              "en": "The stalk that joins the ovule to the placenta",
+              "hi": "वह डंठल जो बीजांड को अपरा से जोड़ता है"
+            },
+            "why": {
+              "en": "The funicle attaches the ovule, like a stalk on a fruit.",
+              "hi": "बीजांडवृंत बीजांड को टिकाए रखता है।"
+            }
+          },
+          {
+            "id": "integument",
+            "left": {
+              "en": "Integuments",
+              "hi": "अध्यावरण"
+            },
+            "right": {
+              "en": "Protective layers around the ovule that later form the seed coat",
+              "hi": "बीजांड के चारों ओर सुरक्षा परतें, जो बाद में बीज-चोल बनती हैं"
+            },
+            "why": {
+              "en": "Integuments cover the nucellus except at the micropyle.",
+              "hi": "अध्यावरण बीजांडकाय को ढकते हैं, केवल बीजांडद्वार खुला रहता है।"
+            }
+          },
+          {
+            "id": "nucellus",
+            "left": {
+              "en": "Nucellus",
+              "hi": "बीजांडकाय"
+            },
+            "right": {
+              "en": "Mass of cells inside that holds reserve food and the embryo sac",
+              "hi": "भीतर की कोशिकाओं का समूह, जिसमें भोजन और भ्रूणकोश होता है"
+            },
+            "why": {
+              "en": "The nucellus nourishes the embryo sac.",
+              "hi": "बीजांडकाय भ्रूणकोश को पोषण देता है।"
+            }
+          },
+          {
+            "id": "egg",
+            "left": {
+              "en": "Egg apparatus",
+              "hi": "अंड उपकरण"
+            },
+            "right": {
+              "en": "One egg cell and two synergids at the micropylar end",
+              "hi": "बीजांडद्वार वाले सिरे पर एक अंड कोशिका और दो सहायक कोशिकाएँ"
+            },
+            "why": {
+              "en": "The egg and two synergids sit together as a three-celled group.",
+              "hi": "अंड और दो सहायक कोशिकाएँ तीन कोशिकाओं के समूह में साथ रहती हैं।"
+            }
+          },
+          {
+            "id": "central",
+            "left": {
+              "en": "Central cell",
+              "hi": "केंद्रीय कोशिका"
+            },
+            "right": {
+              "en": "A large cell with two polar nuclei",
+              "hi": "दो ध्रुवीय केंद्रक वाली बड़ी कोशिका"
+            },
+            "why": {
+              "en": "The two polar nuclei later fuse with a male gamete to form the endosperm.",
+              "hi": "दो ध्रुवीय केंद्रक आगे एक नर युग्मक से मिलकर भ्रूणपोष बनाते हैं।"
+            }
+          },
+          {
+            "id": "antipodal",
+            "left": {
+              "en": "Antipodals",
+              "hi": "प्रतिव्यासांत कोशिकाएँ"
+            },
+            "right": {
+              "en": "Three cells at the chalazal end, away from the micropyle",
+              "hi": "बीजांडद्वार से दूर, निभागी सिरे की तीन कोशिकाएँ"
+            },
+            "why": {
+              "en": "Three antipodals sit at the end opposite the micropyle.",
+              "hi": "तीन प्रतिव्यासांत कोशिकाएँ बीजांडद्वार के विपरीत सिरे पर होती हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:micropyle",
+          "expect": "matched:micropyle",
+          "say": {
+            "en": "Match \"Micropyle\" with its meaning.",
+            "hi": "\"बीजांडद्वार\" को उसके अर्थ से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A typical embryo sac is 7-celled. How many nuclei does it hold in all?",
+            "hi": "सामान्य भ्रूणकोश में 7 कोशिकाएँ होती हैं। उसमें कुल कितने केंद्रक होते हैं?"
+          },
+          "options": [
+            {
+              "id": "n6",
+              "en": "6",
+              "hi": "6 केंद्रक"
+            },
+            {
+              "id": "n8",
+              "en": "8",
+              "hi": "8 केंद्रक"
+            },
+            {
+              "id": "n7",
+              "en": "7",
+              "hi": "7 केंद्रक"
+            }
+          ],
+          "answer": "n8"
+        },
+        {
+          "kind": "do",
+          "target": "left:egg",
+          "expect": "matched:egg",
+          "say": {
+            "en": "Now match \"Egg apparatus\".",
+            "hi": "अब \"अंड उपकरण\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:central",
+          "expect": "matched:central",
+          "say": {
+            "en": "Match \"Central cell\", the one with two nuclei.",
+            "hi": "\"केंद्रीय कोशिका\" को मिलाओ, जिसमें दो केंद्रक होते हैं।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The embryo sac has 3 cells at the micropylar end (the egg apparatus: one egg and two synergids), 3 antipodal cells at the other end, and one large central cell with two polar nuclei. That is 7 cells but 8 nuclei, because the central cell has two. The embryo sac is the female gametophyte, grown from one megaspore.",
+            "hi": "भ्रूणकोश में बीजांडद्वार की ओर 3 कोशिकाएँ (अंड उपकरण: एक अंड और दो सहायक कोशिकाएँ), दूसरे सिरे पर 3 प्रतिव्यासांत कोशिकाएँ और बीच में दो ध्रुवीय केंद्रक वाली एक बड़ी केंद्रीय कोशिका होती है। यानी 7 कोशिकाएँ पर 8 केंद्रक, क्योंकि केंद्रीय कोशिका में दो होते हैं। भ्रूणकोश मादा युग्मकोद्भिद है, जो एक गुरुबीजाणु से बनता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many cells and how many nuclei are there in a mature embryo sac?",
+                "hi": "परिपक्व भ्रूणकोश में कितनी कोशिकाएँ और कितने केंद्रक होते हैं?"
+              },
+              "options": [
+                {
+                  "en": "7 cells, 8 nuclei",
+                  "hi": "7 कोशिकाएँ, 8 केंद्रक"
+                },
+                {
+                  "en": "8 cells, 8 nuclei",
+                  "hi": "8 कोशिकाएँ, 8 केंद्रक"
+                },
+                {
+                  "en": "7 cells, 7 nuclei",
+                  "hi": "7 कोशिकाएँ, 7 केंद्रक"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Three at each end make 6 cells, plus the central cell is the 7th; it holds two polar nuclei, so 8 nuclei.",
+                "hi": "हर सिरे पर तीन से 6 कोशिकाएँ और सातवीं केंद्रीय कोशिका; उसमें दो ध्रुवीय केंद्रक हैं, इसलिए 8 केंद्रक।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The 8 nuclei are shared among 7 cells: the central cell has two.",
+                  "hi": "8 केंद्रक 7 कोशिकाओं में बँटे हैं: केंद्रीय कोशिका में दो हैं।"
+                },
+                {
+                  "en": "Counting only one nucleus per cell misses the second polar nucleus.",
+                  "hi": "हर कोशिका में एक केंद्रक गिनने से दूसरा ध्रुवीय केंद्रक छूट जाता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which part of the ovule will form the seed coat?",
+                "hi": "बीजांड का कौन-सा भाग बीज-चोल बनाएगा?"
+              },
+              "options": [
+                {
+                  "en": "Integuments",
+                  "hi": "अध्यावरण"
+                },
+                {
+                  "en": "Nucellus",
+                  "hi": "बीजांडकाय"
+                },
+                {
+                  "en": "Funicle",
+                  "hi": "बीजांडवृंत"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The integuments harden into the seed coat after fertilisation.",
+                "hi": "निषेचन के बाद अध्यावरण कठोर होकर बीज-चोल बन जाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The nucellus is mostly used up to feed the growing embryo.",
+                  "hi": "बीजांडकाय अधिकतर बढ़ते भ्रूण के पोषण में खप जाता है।"
+                },
+                {
+                  "en": "The funicle only attaches the seed to the fruit wall.",
+                  "hi": "बीजांडवृंत बीज को फल की दीवार से जोड़ता भर है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Finish the remaining pairs. Which cell in the embryo sac do you think will become the embryo itself?",
+            "hi": "बाकी जोड़ियाँ मिलाओ। तुम्हारे विचार से भ्रूणकोश की कौन-सी कोशिका आगे भ्रूण बनेगी?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch01-wind-or-insect",
+      "topic": "1.2.3",
+      "template": "sort",
+      "title": {
+        "en": "Wind or insect: who carries the pollen?",
+        "hi": "हवा या कीट: पराग कौन ले जाता है?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "wind",
+            "label": {
+              "en": "Wind-pollinated",
+              "hi": "वायु-परागित"
+            }
+          },
+          {
+            "id": "insect",
+            "label": {
+              "en": "Insect-pollinated",
+              "hi": "कीट-परागित"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "light",
+            "text": {
+              "en": "Light, dry, non-sticky pollen",
+              "hi": "हल्का, सूखा, चिपचिपा न होने वाला पराग"
+            },
+            "bin": "wind",
+            "why": {
+              "en": "Light pollen floats easily on the wind.",
+              "hi": "हल्का पराग हवा में आसानी से उड़ता है।"
+            }
+          },
+          {
+            "id": "feathery",
+            "text": {
+              "en": "Large, feathery stigma",
+              "hi": "बड़ा, पंखदार वर्तिकाग्र"
+            },
+            "bin": "wind",
+            "why": {
+              "en": "A feathery stigma catches pollen from the air, like a net.",
+              "hi": "पंखदार वर्तिकाग्र हवा से पराग जाल की तरह पकड़ता है।"
+            }
+          },
+          {
+            "id": "maize",
+            "text": {
+              "en": "Maize cob with silky tassels",
+              "hi": "रेशमी गुच्छों वाला मक्का का भुट्टा"
+            },
+            "bin": "wind",
+            "why": {
+              "en": "Maize is wind-pollinated; the silks are its feathery stigmas.",
+              "hi": "मक्का वायु-परागित है; रेशे उसके पंखदार वर्तिकाग्र हैं।"
+            }
+          },
+          {
+            "id": "exposed",
+            "text": {
+              "en": "Well-exposed stamens",
+              "hi": "खुले बाहर निकले पुंकेसर"
+            },
+            "bin": "wind",
+            "why": {
+              "en": "Exposed stamens let wind pick up pollen.",
+              "hi": "बाहर निकले पुंकेसरों से हवा पराग उड़ा ले जाती है।"
+            }
+          },
+          {
+            "id": "colour",
+            "text": {
+              "en": "Large, bright and colourful petals",
+              "hi": "बड़ी, चटख रंगीन पंखुड़ियाँ"
+            },
+            "bin": "insect",
+            "why": {
+              "en": "Colour shows insects where the flower is.",
+              "hi": "रंग कीटों को फूल का पता देते हैं।"
+            }
+          },
+          {
+            "id": "nectar",
+            "text": {
+              "en": "Fragrance and nectar",
+              "hi": "सुगंध और मकरंद"
+            },
+            "bin": "insect",
+            "why": {
+              "en": "Smell and nectar reward and attract insects.",
+              "hi": "सुगंध और मकरंद कीटों को खींचते और पुरस्कार देते हैं।"
+            }
+          },
+          {
+            "id": "sticky",
+            "text": {
+              "en": "Sticky pollen and a rough stigma",
+              "hi": "चिपचिपा पराग और खुरदरा वर्तिकाग्र"
+            },
+            "bin": "insect",
+            "why": {
+              "en": "Sticky pollen clings to an insect's body.",
+              "hi": "चिपचिपा पराग कीट के शरीर से चिपक जाता है।"
+            }
+          },
+          {
+            "id": "mustard",
+            "text": {
+              "en": "Mustard flowers visited by bees",
+              "hi": "मधुमक्खियों के आने वाले सरसों के फूल"
+            },
+            "bin": "insect",
+            "why": {
+              "en": "Bees visit mustard for nectar and carry pollen.",
+              "hi": "मधुमक्खियाँ मकरंद के लिए सरसों पर आती हैं और पराग ले जाती हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:light",
+          "expect": "correct:light",
+          "say": {
+            "en": "Put \"Light, dry, non-sticky pollen\" in the right group.",
+            "hi": "\"हल्का, सूखा, चिपचिपा न होने वाला पराग\" को सही समूह में रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which group will \"Fragrance and nectar\" go into?",
+            "hi": "\"सुगंध और मकरंद\" किस समूह में जाएगा?"
+          },
+          "options": [
+            {
+              "id": "wind",
+              "en": "Wind-pollinated",
+              "hi": "वायु-परागित"
+            },
+            {
+              "id": "insect",
+              "en": "Insect-pollinated",
+              "hi": "कीट-परागित"
+            }
+          ],
+          "answer": "insect"
+        },
+        {
+          "kind": "do",
+          "target": "card:nectar",
+          "expect": "correct:nectar",
+          "say": {
+            "en": "Place \"Fragrance and nectar\".",
+            "hi": "\"सुगंध और मकरंद\" को रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:feathery",
+          "expect": "correct:feathery",
+          "say": {
+            "en": "Place \"Large, feathery stigma\".",
+            "hi": "\"बड़ा, पंखदार वर्तिकाग्र\" को रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Flowers pollinated by wind do not need to attract anyone, so they are small and plain. They make huge amounts of light pollen, have exposed stamens and large feathery stigmas. Flowers pollinated by insects spend energy on petals, scent and nectar, and their pollen is sticky. Each design fits how pollen is carried.",
+            "hi": "वायु-परागित फूलों को किसी को आकर्षित नहीं करना पड़ता, इसलिए वे छोटे और सादे होते हैं। वे बहुत सारा हल्का पराग बनाते हैं, पुंकेसर खुले होते हैं और वर्तिकाग्र बड़ा तथा पंखदार। कीट-परागित फूल पंखुड़ी, सुगंध और मकरंद पर ऊर्जा लगाते हैं और उनका पराग चिपचिपा होता है। हर बनावट पराग ले जाने के तरीके के अनुकूल है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why do wind-pollinated flowers make so much pollen?",
+                "hi": "वायु-परागित फूल इतना अधिक पराग क्यों बनाते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Most grains never reach a stigma by chance",
+                  "hi": "संयोग से अधिकतर कण वर्तिकाग्र तक पहुँचते ही नहीं"
+                },
+                {
+                  "en": "To feed the insects",
+                  "hi": "कीटों को खिलाने के लिए"
+                },
+                {
+                  "en": "Because pollen is heavy",
+                  "hi": "क्योंकि पराग भारी होता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Wind carries pollen in all directions, so only a few grains land on a stigma. Quantity makes up for chance.",
+                "hi": "हवा पराग को हर दिशा में ले जाती है, इसलिए कुछ ही कण वर्तिकाग्र पर गिरते हैं। मात्रा संयोग की कमी पूरी करती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Feeding insects is the job of nectar in insect-pollinated flowers, not wind-pollinated ones.",
+                  "hi": "कीटों को खिलाना कीट-परागित फूलों के मकरंद का काम है, वायु-परागित का नहीं।"
+                },
+                {
+                  "en": "Wind-carried pollen is light, not heavy.",
+                  "hi": "हवा से जाने वाला पराग हल्का होता है, भारी नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A flower is small, green, with long feathery stigmas. How is it probably pollinated?",
+                "hi": "एक फूल छोटा, हरा और लंबे पंखदार वर्तिकाग्र वाला है। वह किससे परागित होता होगा?"
+              },
+              "options": [
+                {
+                  "en": "By wind",
+                  "hi": "हवा से"
+                },
+                {
+                  "en": "By bees",
+                  "hi": "मधुमक्खियों से"
+                },
+                {
+                  "en": "By birds",
+                  "hi": "पक्षियों से"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "No bright colour or scent means no animal is invited; feathery stigmas fit catching airborne pollen.",
+                "hi": "न चटख रंग, न सुगंध, यानी किसी जीव को नहीं बुलाया गया; पंखदार वर्तिकाग्र हवा का पराग पकड़ने के लिए हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Bees look for colour, scent and nectar, which this flower lacks.",
+                  "hi": "मधुमक्खियाँ रंग, गंध और मकरंद खोजती हैं, जो इस फूल में नहीं है।"
+                },
+                {
+                  "en": "Birds are drawn to bright, nectar-rich flowers too.",
+                  "hi": "पक्षी भी चटख, मकरंद वाले फूलों की ओर आते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place all the remaining cards. Then think of a flower near your home. Which group does it belong to, and why?",
+            "hi": "बाकी सब कार्ड रखो। फिर अपने घर के पास के किसी फूल के बारे में सोचो। वह किस समूह में आता है और क्यों?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch01-pollination-types",
+      "topic": "1.2.3",
+      "template": "match",
+      "title": {
+        "en": "Autogamy, geitonogamy and xenogamy",
+        "hi": "स्वयुग्मन, सजातपुष्पी परागण और परनिषेचन"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "auto",
+            "left": {
+              "en": "Autogamy",
+              "hi": "स्वयुग्मन"
+            },
+            "right": {
+              "en": "Pollen falls on the stigma of the same flower",
+              "hi": "पराग उसी फूल के वर्तिकाग्र पर गिरता है"
+            },
+            "why": {
+              "en": "\"Auto\" means self: the same flower.",
+              "hi": "\"स्व\" यानी अपना: वही फूल।"
+            }
+          },
+          {
+            "id": "geito",
+            "left": {
+              "en": "Geitonogamy",
+              "hi": "सजातपुष्पी परागण"
+            },
+            "right": {
+              "en": "Pollen goes to another flower of the same plant",
+              "hi": "पराग उसी पौधे के दूसरे फूल पर जाता है"
+            },
+            "why": {
+              "en": "The pollen moves between flowers but the plant is the same, so it is genetically like self-pollination.",
+              "hi": "पराग फूलों के बीच जाता है पर पौधा वही है, इसलिए आनुवंशिक रूप से यह स्व-परागण जैसा है।"
+            }
+          },
+          {
+            "id": "xeno",
+            "left": {
+              "en": "Xenogamy",
+              "hi": "परनिषेचन"
+            },
+            "right": {
+              "en": "Pollen goes to a flower of a different plant",
+              "hi": "पराग किसी दूसरे पौधे के फूल पर जाता है"
+            },
+            "why": {
+              "en": "Only xenogamy brings genetically different pollen.",
+              "hi": "केवल परनिषेचन में आनुवंशिक रूप से अलग पराग आता है।"
+            }
+          },
+          {
+            "id": "clei",
+            "left": {
+              "en": "Cleistogamous flower",
+              "hi": "अनुन्मील्य परागणी (क्लीस्टोगैमस) फूल"
+            },
+            "right": {
+              "en": "A flower that never opens, so it can only self-pollinate",
+              "hi": "फूल जो कभी नहीं खुलता, इसलिए केवल स्व-परागण कर सकता है"
+            },
+            "why": {
+              "en": "Viola, Oxalis and Commelina have such flowers and always set seed.",
+              "hi": "वायोला, ऑक्सेलिस और कॉमेलिना में ऐसे फूल होते हैं और उनमें बीज हमेशा बनते हैं।"
+            }
+          },
+          {
+            "id": "chasmo",
+            "left": {
+              "en": "Chasmogamous flower",
+              "hi": "उन्मील्य परागणी (केसमोगैमस) फूल"
+            },
+            "right": {
+              "en": "A flower that opens, exposing anthers and stigma",
+              "hi": "फूल जो खुलता है और परागकोश तथा वर्तिकाग्र दिखते हैं"
+            },
+            "why": {
+              "en": "Open flowers allow visitors to carry pollen from other plants.",
+              "hi": "खुले फूलों पर आने वाले जीव दूसरे पौधों का पराग ला सकते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:auto",
+          "expect": "matched:auto",
+          "say": {
+            "en": "Match \"Autogamy\" with its meaning.",
+            "hi": "\"स्वयुग्मन\" को उसके अर्थ से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which of these three brings genetically new pollen to the flower?",
+            "hi": "इन तीनों में से कौन फूल तक आनुवंशिक रूप से नया पराग लाता है?"
+          },
+          "options": [
+            {
+              "id": "auto",
+              "en": "Autogamy",
+              "hi": "स्वयुग्मन"
+            },
+            {
+              "id": "geito",
+              "en": "Geitonogamy",
+              "hi": "सजातपुष्पी परागण"
+            },
+            {
+              "id": "xeno",
+              "en": "Xenogamy",
+              "hi": "परनिषेचन"
+            }
+          ],
+          "answer": "xeno"
+        },
+        {
+          "kind": "do",
+          "target": "left:geito",
+          "expect": "matched:geito",
+          "say": {
+            "en": "Match \"Geitonogamy\".",
+            "hi": "\"सजातपुष्पी परागण\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:xeno",
+          "expect": "matched:xeno",
+          "say": {
+            "en": "Match \"Xenogamy\".",
+            "hi": "\"परनिषेचन\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Pollination is only complete when pollen lands on a compatible stigma. Autogamy and geitonogamy use pollen from the same plant, so the seeds have little new variation, although geitonogamy still needs an agent like wind or an insect. Xenogamy is true cross-pollination and gives variation, which helps a species survive changes. Cleistogamous flowers never open, so seed is sure even without any pollinator.",
+            "hi": "परागण तभी पूरा होता है जब पराग अनुकूल वर्तिकाग्र पर पहुँचे। स्वयुग्मन और सजातपुष्पी परागण में उसी पौधे का पराग काम आता है, इसलिए बीजों में नई विविधता कम होती है, हालाँकि सजातपुष्पी परागण में भी हवा या कीट जैसा कारक चाहिए। परनिषेचन सच्चा पर-परागण है और विविधता देता है, जो जाति को बदलावों में बचाती है। अनुन्मील्य फूल कभी नहीं खुलते, इसलिए परागणकर्ता न हो तब भी बीज पक्का बनता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A bee carries pollen from one flower of a pumpkin plant to another flower of the same plant. What is this?",
+                "hi": "मधुमक्खी कद्दू के एक फूल से उसी पौधे के दूसरे फूल पर पराग ले जाती है। यह क्या है?"
+              },
+              "options": [
+                {
+                  "en": "Geitonogamy",
+                  "hi": "सजातपुष्पी परागण"
+                },
+                {
+                  "en": "Xenogamy",
+                  "hi": "परनिषेचन"
+                },
+                {
+                  "en": "Autogamy",
+                  "hi": "स्वयुग्मन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The flowers are different but the plant is the same.",
+                "hi": "फूल अलग हैं पर पौधा वही है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Xenogamy needs a different plant.",
+                  "hi": "परनिषेचन में दूसरा पौधा चाहिए।"
+                },
+                {
+                  "en": "Autogamy stays in the same flower.",
+                  "hi": "स्वयुग्मन उसी फूल के अंदर रहता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why are cleistogamous flowers useful to a plant?",
+                "hi": "अनुन्मील्य फूल पौधे के लिए उपयोगी क्यों हैं?"
+              },
+              "options": [
+                {
+                  "en": "They set seed even when no pollinator comes",
+                  "hi": "परागणकर्ता न आए तब भी बीज बनते हैं"
+                },
+                {
+                  "en": "They make more varied seeds",
+                  "hi": "वे अधिक विविध बीज बनाते हैं"
+                },
+                {
+                  "en": "They attract more insects",
+                  "hi": "वे अधिक कीटों को खींचते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The flower stays closed and pollinates itself, so seed formation is assured.",
+                "hi": "फूल बंद रहकर स्वयं परागित होता है, इसलिए बीज बनना निश्चित है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Self-pollination gives little new variation.",
+                  "hi": "स्व-परागण से नई विविधता कम मिलती है।"
+                },
+                {
+                  "en": "A closed flower attracts no one.",
+                  "hi": "बंद फूल किसी को नहीं बुलाता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think about a papaya plant that has separate male and female plants. Which kind of pollination can it have, and why?",
+            "hi": "पपीते के नर और मादा पौधे अलग-अलग होते हैं। उसमें कौन-सा परागण हो सकता है और क्यों?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch01-double-fertilisation",
+      "topic": "1.3",
+      "template": "sequence",
+      "title": {
+        "en": "Double fertilisation: the steps",
+        "hi": "दोहरा निषेचन: चरण"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "land",
+            "text": {
+              "en": "Pollen lands on the stigma",
+              "hi": "पराग वर्तिकाग्र पर गिरता है"
+            }
+          },
+          {
+            "id": "tube",
+            "text": {
+              "en": "The pollen tube grows down through the style",
+              "hi": "परागनलिका वर्तिका में नीचे की ओर बढ़ती है"
+            }
+          },
+          {
+            "id": "micropyle",
+            "text": {
+              "en": "The tube enters the ovule through the micropyle",
+              "hi": "नलिका बीजांडद्वार से बीजांड में घुसती है"
+            }
+          },
+          {
+            "id": "release",
+            "text": {
+              "en": "Two male gametes are released into the embryo sac",
+              "hi": "दो नर युग्मक भ्रूणकोश में छूटते हैं"
+            }
+          },
+          {
+            "id": "syngamy",
+            "text": {
+              "en": "One male gamete fuses with the egg: syngamy, giving a zygote (2n)",
+              "hi": "एक नर युग्मक अंड से मिलता है: संयुग्मन, जिससे युग्मनज (2n) बनता है"
+            }
+          },
+          {
+            "id": "triple",
+            "text": {
+              "en": "The other male gamete fuses with two polar nuclei: triple fusion, giving PEN (3n)",
+              "hi": "दूसरा नर युग्मक दो ध्रुवीय केंद्रकों से मिलता है: त्रि-संलयन, जिससे प्राथमिक भ्रूणपोष केंद्रक (3n) बनता है"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:land",
+          "expect": "placed:land",
+          "say": {
+            "en": "Tap \"Pollen lands on the stigma\" and put it in place 1.",
+            "hi": "\"पराग वर्तिकाग्र पर गिरता है\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:tube",
+          "expect": "placed:tube",
+          "say": {
+            "en": "Put \"The pollen tube grows down\" in place 2.",
+            "hi": "\"परागनलिका नीचे बढ़ती है\" को स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Before you place step 4: how many male gametes does each pollen tube carry?",
+            "hi": "चरण 4 रखने से पहले: हर परागनलिका कितने नर युग्मक ले जाती है?"
+          },
+          "options": [
+            {
+              "id": "one",
+              "en": "One",
+              "hi": "एक"
+            },
+            {
+              "id": "two",
+              "en": "Two",
+              "hi": "दो"
+            },
+            {
+              "id": "four",
+              "en": "Four",
+              "hi": "चार"
+            }
+          ],
+          "answer": "two"
+        },
+        {
+          "kind": "do",
+          "target": "item:micropyle",
+          "expect": "placed:micropyle",
+          "say": {
+            "en": "Put \"The tube enters through the micropyle\" in place 3.",
+            "hi": "\"नलिका बीजांडद्वार से घुसती है\" को स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:release",
+          "expect": "placed:release",
+          "say": {
+            "en": "Put \"Two male gametes are released\" in place 4.",
+            "hi": "\"दो नर युग्मक छूटते हैं\" को स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Two male gametes enter the embryo sac, and both are used. One fuses with the egg (syngamy) to make the diploid zygote. The other joins the two polar nuclei (triple fusion) to make the triploid primary endosperm nucleus. Since two fusions take place, this is called double fertilisation, and it is found only in flowering plants.",
+            "hi": "दोनों नर युग्मक भ्रूणकोश में आते हैं और दोनों काम आते हैं। एक अंड से मिलकर (संयुग्मन) द्विगुणित युग्मनज बनाता है। दूसरा दो ध्रुवीय केंद्रकों से मिलकर (त्रि-संलयन) त्रिगुणित प्राथमिक भ्रूणपोष केंद्रक बनाता है। दो संलयन होने से इसे दोहरा निषेचन कहते हैं, जो केवल पुष्पी पौधों में होता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does triple fusion produce?",
+                "hi": "त्रि-संलयन से क्या बनता है?"
+              },
+              "options": [
+                {
+                  "en": "Primary endosperm nucleus (3n)",
+                  "hi": "प्राथमिक भ्रूणपोष केंद्रक (3n)"
+                },
+                {
+                  "en": "Zygote (2n)",
+                  "hi": "युग्मनज (2n)"
+                },
+                {
+                  "en": "Egg cell (n)",
+                  "hi": "अंड कोशिका (n)"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "One male gamete (n) plus two polar nuclei (n + n) gives 3n.",
+                "hi": "एक नर युग्मक (n) और दो ध्रुवीय केंद्रक (n + n) मिलकर 3n देते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The zygote comes from syngamy, the fusion with the egg.",
+                  "hi": "युग्मनज संयुग्मन से बनता है, यानी अंड से मिलने पर।"
+                },
+                {
+                  "en": "The egg is already there before fertilisation.",
+                  "hi": "अंड कोशिका तो निषेचन से पहले ही मौजूद होती है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is it called double fertilisation?",
+                "hi": "इसे दोहरा निषेचन क्यों कहते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Two fusions happen in the embryo sac",
+                  "hi": "भ्रूणकोश में दो संलयन होते हैं"
+                },
+                {
+                  "en": "Two pollen grains land on the stigma",
+                  "hi": "वर्तिकाग्र पर दो पराग कण गिरते हैं"
+                },
+                {
+                  "en": "Two eggs are present",
+                  "hi": "दो अंड कोशिकाएँ होती हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Syngamy and triple fusion both take place, one after the other.",
+                "hi": "संयुग्मन और त्रि-संलयन दोनों होते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "More than one pollen grain can land, but that is not what the name means.",
+                  "hi": "एक से अधिक पराग गिर सकते हैं, पर नाम का अर्थ यह नहीं।"
+                },
+                {
+                  "en": "There is one egg cell in the egg apparatus.",
+                  "hi": "अंड उपकरण में अंड कोशिका एक ही होती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place step 5 and step 6 and read the ploidy of each result. Why must the endosperm be 3n?",
+            "hi": "चरण 5 और 6 रखो और हर परिणाम की सूत्रगुणता पढ़ो। भ्रूणपोष 3n क्यों होता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch01-after-fertilisation",
+      "topic": "1.4",
+      "template": "match",
+      "title": {
+        "en": "After fertilisation: who becomes what?",
+        "hi": "निषेचन के बाद: कौन क्या बनता है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "zygote",
+            "left": {
+              "en": "Zygote",
+              "hi": "युग्मनज"
+            },
+            "right": {
+              "en": "Embryo",
+              "hi": "भ्रूण"
+            },
+            "why": {
+              "en": "The zygote divides again and again to form the embryo.",
+              "hi": "युग्मनज बार-बार बँटकर भ्रूण बनाता है।"
+            }
+          },
+          {
+            "id": "pen",
+            "left": {
+              "en": "Primary endosperm nucleus",
+              "hi": "प्राथमिक भ्रूणपोष केंद्रक"
+            },
+            "right": {
+              "en": "Endosperm: food store for the embryo",
+              "hi": "भ्रूणपोष: भ्रूण का भोजन भंडार"
+            },
+            "why": {
+              "en": "The PEN divides first and makes the nutritive tissue.",
+              "hi": "PEN पहले बँटकर पोषक ऊतक बनाता है।"
+            }
+          },
+          {
+            "id": "ovule",
+            "left": {
+              "en": "Ovule",
+              "hi": "बीजांड"
+            },
+            "right": {
+              "en": "Seed",
+              "hi": "बीज"
+            },
+            "why": {
+              "en": "Each fertilised ovule becomes a seed.",
+              "hi": "हर निषेचित बीजांड बीज बन जाता है।"
+            }
+          },
+          {
+            "id": "integ",
+            "left": {
+              "en": "Integuments",
+              "hi": "अध्यावरण"
+            },
+            "right": {
+              "en": "Seed coat",
+              "hi": "बीज-चोल"
+            },
+            "why": {
+              "en": "The integuments harden to protect the seed.",
+              "hi": "अध्यावरण कठोर होकर बीज की रक्षा करते हैं।"
+            }
+          },
+          {
+            "id": "ovary",
+            "left": {
+              "en": "Ovary",
+              "hi": "अंडाशय"
+            },
+            "right": {
+              "en": "Fruit",
+              "hi": "फल"
+            },
+            "why": {
+              "en": "The ovary grows into the fruit, with its wall as the pericarp.",
+              "hi": "अंडाशय फल बनता है और उसकी दीवार फलभित्ति।"
+            }
+          },
+          {
+            "id": "syn",
+            "left": {
+              "en": "Synergids and antipodals",
+              "hi": "सहायक और प्रतिव्यासांत कोशिकाएँ"
+            },
+            "right": {
+              "en": "Degenerate (disappear)",
+              "hi": "नष्ट हो जाती हैं"
+            },
+            "why": {
+              "en": "They have done their job and are not needed afterwards.",
+              "hi": "वे अपना काम कर चुकी होती हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:zygote",
+          "expect": "matched:zygote",
+          "say": {
+            "en": "Match \"Zygote\" with what it becomes.",
+            "hi": "\"युग्मनज\" को उसके परिणाम से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which develops first after fertilisation, the endosperm or the embryo?",
+            "hi": "निषेचन के बाद पहले क्या विकसित होता है, भ्रूणपोष या भ्रूण?"
+          },
+          "options": [
+            {
+              "id": "endo",
+              "en": "Endosperm",
+              "hi": "भ्रूणपोष"
+            },
+            {
+              "id": "emb",
+              "en": "Embryo",
+              "hi": "भ्रूण"
+            },
+            {
+              "id": "same",
+              "en": "Both at the same moment",
+              "hi": "दोनों एक साथ"
+            }
+          ],
+          "answer": "endo"
+        },
+        {
+          "kind": "do",
+          "target": "left:pen",
+          "expect": "matched:pen",
+          "say": {
+            "en": "Match \"Primary endosperm nucleus\".",
+            "hi": "\"प्राथमिक भ्रूणपोष केंद्रक\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:ovary",
+          "expect": "matched:ovary",
+          "say": {
+            "en": "Match \"Ovary\".",
+            "hi": "\"अंडाशय\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The endosperm develops first, so the embryo always has food ready when it starts to grow. The zygote then forms the embryo, the integuments become the seed coat, and each ovule becomes a seed. The ovary develops into the fruit. Coconut water is free-nuclear endosperm, and the white kernel is the cellular endosperm. In some seeds like pea and bean the endosperm is used up and the cotyledons store the food.",
+            "hi": "भ्रूणपोष पहले विकसित होता है, इसलिए भ्रूण को बढ़ना शुरू करते ही भोजन तैयार मिलता है। फिर युग्मनज भ्रूण बनाता है, अध्यावरण बीज-चोल बनते हैं और हर बीजांड एक बीज। अंडाशय फल में बदलता है। नारियल का पानी मुक्त-केंद्रकी भ्रूणपोष है और सफ़ेद गूदा कोशिकीय भ्रूणपोष। मटर और सेम जैसे कुछ बीजों में भ्रूणपोष खप जाता है और बीजपत्र भोजन जमा रखते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In a fruit like a mango, the fleshy part and stone come from which flower part?",
+                "hi": "आम जैसे फल का गूदा और गुठली फूल के किस भाग से बनते हैं?"
+              },
+              "options": [
+                {
+                  "en": "The ovary wall (pericarp) and ovule",
+                  "hi": "अंडाशय की दीवार (फलभित्ति) और बीजांड"
+                },
+                {
+                  "en": "The petals",
+                  "hi": "पंखुड़ियाँ"
+                },
+                {
+                  "en": "The anther",
+                  "hi": "परागकोश"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The ovary becomes the fruit. Its wall is the pericarp, and the ovule inside becomes the seed.",
+                "hi": "अंडाशय फल बनता है। उसकी दीवार फलभित्ति है और अंदर का बीजांड बीज।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Petals usually wither after fertilisation.",
+                  "hi": "पंखुड़ियाँ निषेचन के बाद प्रायः मुरझा जाती हैं।"
+                },
+                {
+                  "en": "The anther makes pollen and dries up.",
+                  "hi": "परागकोश पराग बनाकर सूख जाता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why does the endosperm form before the embryo grows much?",
+                "hi": "भ्रूण के बहुत बढ़ने से पहले ही भ्रूणपोष क्यों बन जाता है?"
+              },
+              "options": [
+                {
+                  "en": "So food is ready for the embryo",
+                  "hi": "ताकि भ्रूण के लिए भोजन तैयार रहे"
+                },
+                {
+                  "en": "To protect the seed coat",
+                  "hi": "बीज-चोल की रक्षा के लिए"
+                },
+                {
+                  "en": "To make the fruit sweet",
+                  "hi": "फल मीठा करने के लिए"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The embryo needs nutrition as soon as it starts developing.",
+                "hi": "भ्रूण को विकास शुरू होते ही पोषण चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The seed coat comes from the integuments, not the endosperm.",
+                  "hi": "बीज-चोल अध्यावरण से बनता है, भ्रूणपोष से नहीं।"
+                },
+                {
+                  "en": "Sweetness of fruit comes from the pericarp, not the endosperm.",
+                  "hi": "फल की मिठास फलभित्ति से आती है, भ्रूणपोष से नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the rest. Name a seed in your kitchen that keeps its endosperm (like wheat or rice) and one that does not (like gram).",
+            "hi": "बाकी जोड़ियाँ मिलाओ। रसोई का ऐसा बीज बताओ जिसमें भ्रूणपोष रहता है (जैसे गेहूँ, चावल) और ऐसा जिसमें नहीं रहता (जैसे चना)।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch01-apomixis",
+      "topic": "1.5",
+      "template": "sort",
+      "title": {
+        "en": "Apomixis or normal fertilisation?",
+        "hi": "असंगजनन या सामान्य निषेचन?"
+      },
+      "minutes": 5,
+      "level": "stretch",
+      "config": {
+        "bins": [
+          {
+            "id": "apo",
+            "label": {
+              "en": "Apomixis",
+              "hi": "असंगजनन (एपोमिक्सिस)"
+            }
+          },
+          {
+            "id": "sex",
+            "label": {
+              "en": "Normal sexual seed",
+              "hi": "सामान्य लैंगिक बीज"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "nofuse",
+            "text": {
+              "en": "Seed forms without fertilisation",
+              "hi": "बिना निषेचन के बीज बनता है"
+            },
+            "bin": "apo",
+            "why": {
+              "en": "Apomixis means seed without fusion of gametes.",
+              "hi": "असंगजनन का अर्थ है युग्मकों के मिले बिना बीज बनना।"
+            }
+          },
+          {
+            "id": "clone",
+            "text": {
+              "en": "Seedlings are clones of the mother plant",
+              "hi": "अंकुर माँ पौधे के क्लोन हैं"
+            },
+            "bin": "apo",
+            "why": {
+              "en": "No gametes mix, so the seedlings are genetically identical to the mother.",
+              "hi": "युग्मक मिलते नहीं, इसलिए अंकुर माँ के आनुवंशिक रूप से समान हैं।"
+            }
+          },
+          {
+            "id": "citrus",
+            "text": {
+              "en": "Many embryos in one citrus or mango seed",
+              "hi": "नींबू या आम के एक बीज में कई भ्रूण"
+            },
+            "bin": "apo",
+            "why": {
+              "en": "Many embryos from one seed is polyembryony, a common result of apomixis.",
+              "hi": "एक बीज में कई भ्रूण बहुभ्रूणता है, जो असंगजनन का आम परिणाम है।"
+            }
+          },
+          {
+            "id": "keep",
+            "text": {
+              "en": "Farmers could save hybrid seed and sow it again every year",
+              "hi": "किसान संकर बीज बचाकर हर साल दोबारा बो सकते हैं"
+            },
+            "bin": "apo",
+            "why": {
+              "en": "If a hybrid were apomictic, its good traits would not split in the next generation.",
+              "hi": "संकर असंगजनी हो तो उसके अच्छे गुण अगली पीढ़ी में बँटते नहीं।"
+            }
+          },
+          {
+            "id": "new",
+            "text": {
+              "en": "Offspring show new combinations of traits",
+              "hi": "संतति में लक्षणों के नए मेल दिखते हैं"
+            },
+            "bin": "sex",
+            "why": {
+              "en": "Gametes from two parents mix genes, giving variation.",
+              "hi": "दो माता-पिता के युग्मक जीन मिलाकर विविधता देते हैं।"
+            }
+          },
+          {
+            "id": "meiosis",
+            "text": {
+              "en": "Egg is formed by meiosis and fuses with a male gamete",
+              "hi": "अंड अर्धसूत्री विभाजन से बनता है और नर युग्मक से मिलता है"
+            },
+            "bin": "sex",
+            "why": {
+              "en": "This is ordinary fertilisation.",
+              "hi": "यही सामान्य निषेचन है।"
+            }
+          },
+          {
+            "id": "segregate",
+            "text": {
+              "en": "Hybrid seeds lose the hybrid vigour in the next crop",
+              "hi": "संकर बीजों का अगली फ़सल में संकर ओज घट जाता है"
+            },
+            "bin": "sex",
+            "why": {
+              "en": "Because hybrids made by sexual reproduction segregate, farmers must buy fresh seed each year.",
+              "hi": "लैंगिक जनन से बने संकर का जीन बँट जाता है, इसलिए किसान को हर साल नया बीज लेना पड़ता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:nofuse",
+          "expect": "correct:nofuse",
+          "say": {
+            "en": "Sort \"Seed forms without fertilisation\".",
+            "hi": "\"बिना निषेचन के बीज बनता है\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Will apomictic seedlings be the same as, or different from, the mother plant?",
+            "hi": "असंगजनी अंकुर माँ पौधे जैसे होंगे या अलग?"
+          },
+          "options": [
+            {
+              "id": "same",
+              "en": "The same as the mother",
+              "hi": "माँ जैसे ही"
+            },
+            {
+              "id": "diff",
+              "en": "Different from the mother",
+              "hi": "माँ से अलग"
+            }
+          ],
+          "answer": "same"
+        },
+        {
+          "kind": "do",
+          "target": "card:clone",
+          "expect": "correct:clone",
+          "say": {
+            "en": "Sort \"Seedlings are clones of the mother plant\".",
+            "hi": "\"अंकुर माँ पौधे के क्लोन हैं\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:new",
+          "expect": "correct:new",
+          "say": {
+            "en": "Sort \"Offspring show new combinations of traits\".",
+            "hi": "\"संतति में लक्षणों के नए मेल दिखते हैं\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Apomixis is a way of making seeds without meiosis and fertilisation. The seed grows from an unfertilised egg or from other cells of the ovule (like nucellus), so seedlings are clones of the mother. Polyembryony, many embryos in one seed, is often seen in citrus and mango. If hybrid crops could be made apomictic, farmers could keep and sow their own seed each year and still get the hybrid's high yield.",
+            "hi": "असंगजनन में अर्धसूत्री विभाजन और निषेचन के बिना बीज बनते हैं। बीज अनिषेचित अंड या बीजांड की अन्य कोशिकाओं (जैसे बीजांडकाय) से बनता है, इसलिए अंकुर माँ के क्लोन होते हैं। नींबू और आम में बहुभ्रूणता, यानी एक बीज में कई भ्रूण, अक्सर दिखती है। संकर फ़सलों को असंगजनी बनाया जा सके तो किसान अपना बीज रखकर हर साल बो सकेंगे और संकर जैसी उपज पाएँगे।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is polyembryony?",
+                "hi": "बहुभ्रूणता क्या है?"
+              },
+              "options": [
+                {
+                  "en": "More than one embryo in a seed",
+                  "hi": "एक बीज में एक से अधिक भ्रूण"
+                },
+                {
+                  "en": "More than one seed in a fruit",
+                  "hi": "एक फल में एक से अधिक बीज"
+                },
+                {
+                  "en": "Many flowers in a cluster",
+                  "hi": "एक गुच्छे में कई फूल"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Poly means many; embryo means the young plant. Many embryos in one seed.",
+                "hi": "बहु यानी अनेक; भ्रूण यानी नन्हा पौधा। एक बीज में कई भ्रूण।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Many seeds in a fruit is common, like in a guava, but is not polyembryony.",
+                  "hi": "फल में कई बीज (जैसे अमरूद) आम है, वह बहुभ्रूणता नहीं है।"
+                },
+                {
+                  "en": "A cluster of flowers is an inflorescence.",
+                  "hi": "फूलों का गुच्छा पुष्पक्रम कहलाता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why would apomictic hybrid seed help farmers?",
+                "hi": "असंगजनी संकर बीज किसानों के लिए क्यों लाभकारी होगा?"
+              },
+              "options": [
+                {
+                  "en": "They could reuse their own seed every year",
+                  "hi": "वे अपना बीज हर साल दोबारा उपयोग कर सकेंगे"
+                },
+                {
+                  "en": "The seed would be larger",
+                  "hi": "बीज बड़ा होगा"
+                },
+                {
+                  "en": "No water would be needed",
+                  "hi": "पानी की ज़रूरत नहीं होगी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Clones keep the hybrid's traits, so seed need not be bought each year.",
+                "hi": "क्लोन संकर के गुण बनाए रखते हैं, इसलिए हर साल बीज नहीं ख़रीदना पड़ेगा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Apomixis does not change seed size by itself.",
+                  "hi": "असंगजनन अपने आप बीज का आकार नहीं बदलता।"
+                },
+                {
+                  "en": "Plants still need water; apomixis is about how seed forms.",
+                  "hi": "पौधों को पानी फिर भी चाहिए; असंगजनन बीज बनने का तरीका है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Why is a farmer who grows hybrid maize told to buy new seed every season?",
+            "hi": "बाकी कार्ड छाँटो। संकर मक्का उगाने वाले किसान को हर मौसम नया बीज ख़रीदने को क्यों कहा जाता है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "DIA",
+      "topic": "1.1",
+      "use": "Chapter hook: anatomy of a flower",
+      "shows": "A sliced hibiscus flower showing sepals, petals, stamens and the pistil with ovary, labelled in Hindi and English",
+      "view": "Flat-lay, cut in half lengthwise, white background",
+      "right": "Anther, filament, stigma, style, ovary and ovule all visible",
+      "avoid": "Wilted or torn flowers"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1.2.1",
+      "use": "Pollen on the anther",
+      "shows": "Close-up of yellow pollen on a hibiscus or sunflower anther, with a second panel of a pollen grain under a microscope",
+      "view": "Macro, dark background",
+      "right": "Spiny exine and germ pores visible on the grain",
+      "avoid": "Blurred shots"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "1.2.2",
+      "use": "Embryo sac",
+      "shows": "Clean cut-away of an ovule with the 7-celled embryo sac, egg apparatus, central cell and antipodals",
+      "view": "Straight side section, soft colours",
+      "right": "Three cells at each end and a large central cell with two polar nuclei",
+      "avoid": "Photographs, cluttered labels"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "1.2.3",
+      "use": "Pollinators at work",
+      "shows": "A honeybee on a mustard flower and a maize field with tassels shedding pollen, shown side by side",
+      "view": "Macro of the bee; wide shot of maize in morning light",
+      "right": "Pollen on the bee, tassels clearly visible",
+      "avoid": "Stock-looking staged shots"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "1.3",
+      "use": "Pollen tube journey",
+      "shows": "Four-panel sequence: pollen on stigma, pollen tube in style, tube at the micropyle, double fertilisation",
+      "view": "Section view, same colours and orientation in every panel",
+      "right": "Two male gametes clear; syngamy and triple fusion marked with arrows",
+      "avoid": "Different styles in each panel"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "1.4",
+      "use": "Seeds and fruits cut open",
+      "shows": "A halved mango, a coconut cut open and a split gram seed side by side",
+      "view": "Top-down on a slate board",
+      "right": "Seed coat, endosperm and cotyledons clear",
+      "avoid": "Dirty knives, brand stickers"
+    }
+  ]
+}

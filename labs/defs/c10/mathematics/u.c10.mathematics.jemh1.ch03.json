@@ -1,0 +1,532 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch03",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Pair of Linear Equations in Two Variables",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Introduction: linear equations in two variables and their graphs",
+   "labs": [],
+   "why_no_lab": "A recap of Class 9 ideas; the reader revises them before the first lab."
+  },
+  {
+   "n": "3.2",
+   "title": "Graphical method of solution of a pair of linear equations",
+   "labs": [
+    "c10-mathematics-jemh1-ch03-graph-pair"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Algebraic methods of solving a pair of linear equations",
+   "labs": [],
+   "why_no_lab": "This heading introduces the two methods; each method has its own lab below."
+  },
+  {
+   "n": "3.3.1",
+   "title": "Substitution method",
+   "labs": [
+    "c10-mathematics-jemh1-ch03-substitution"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3.2",
+   "title": "Elimination method",
+   "labs": [
+    "c10-mathematics-jemh1-ch03-elimination"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch03-graph-pair",
+   "topic": "3.2",
+   "template": "grapher",
+   "title": {
+    "en": "Two lines, how many meeting points?",
+    "hi": "दो रेखाएँ, कितने मिलन बिंदु?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "pair",
+    "expr": "y = a*x + 1; y = 2*x - 2",
+    "params": {
+     "a": [
+      -3,
+      3,
+      -1,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "intersect",
+     "expect": "intersect",
+     "say": {
+      "en": "Tap Find the meeting point to see where the two lines cross.",
+      "hi": "मिलन बिंदु खोजो पर टैप करो और देखो कि दोनों रेखाएँ कहाँ कटती हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now make the first line as steep as the second (a = 2). What will happen?",
+      "hi": "अब पहली रेखा को दूसरी जितना ढलवाँ करो (a = 2)। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "none",
+       "en": "They will never meet",
+       "hi": "वे कभी नहीं मिलेंगी"
+      },
+      {
+       "id": "new",
+       "en": "They will meet at a new point",
+       "hi": "वे किसी नए बिंदु पर मिलेंगी"
+      },
+      {
+       "id": "same",
+       "en": "They will become one line",
+       "hi": "वे एक ही रेखा बन जाएँगी"
+      }
+     ],
+     "answer": "none"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move the a slider to 2.",
+      "hi": "a स्लाइडर को 2 पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the quick check: how many solutions does the pair have now?",
+      "hi": "झटपट जाँच का उत्तर दो: अब इस युग्म के कितने हल हैं?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every point on a line fits its equation, so the point where two lines cross fits both: it is the solution. Crossing lines give exactly one solution (consistent). Parallel lines never meet, so there is no solution (inconsistent). If both equations draw the same line, every point on it is a solution.",
+      "hi": "रेखा का हर बिंदु उसके समीकरण में बैठता है, इसलिए दो रेखाओं का कटान बिंदु दोनों में बैठता है: वही हल है। काटती रेखाएँ ठीक एक हल देती हैं (संगत)। समांतर रेखाएँ कभी नहीं मिलतीं, इसलिए कोई हल नहीं (असंगत)। यदि दोनों समीकरण एक ही रेखा बनाएँ, तो उस पर का हर बिंदु हल है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many solutions do x + 2y = 4 and 2x + 4y = 8 have?",
+        "hi": "x + 2y = 4 और 2x + 4y = 8 के कितने हल हैं?"
+       },
+       "options": [
+        {
+         "en": "Infinitely many",
+         "hi": "अनगिनत"
+        },
+        {
+         "en": "Exactly one",
+         "hi": "ठीक एक"
+        },
+        {
+         "en": "None",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The second equation is the first one doubled, so both draw the same line: 1/2 = 2/4 = 4/8.",
+        "hi": "दूसरा समीकरण पहले का दोगुना है, इसलिए दोनों एक ही रेखा बनाते हैं: 1/2 = 2/4 = 4/8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One solution needs lines that cross; these two lie on top of each other.",
+         "hi": "एक हल के लिए रेखाओं को काटना चाहिए; ये दोनों एक-दूसरे पर पड़ी हैं।"
+        },
+        {
+         "en": "No solution needs parallel lines with different number terms; here 4 doubled is 8, so they are the same line.",
+         "hi": "कोई हल न होने के लिए समांतर रेखाओं के अचर पद अलग होने चाहिए; यहाँ 4 का दोगुना 8 है, इसलिए रेखा एक ही है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For a₁x + b₁y = c₁ and a₂x + b₂y = c₂, when do the lines cross at exactly one point?",
+        "hi": "a₁x + b₁y = c₁ और a₂x + b₂y = c₂ में रेखाएँ ठीक एक बिंदु पर कब कटती हैं?"
+       },
+       "options": [
+        {
+         "en": "When a₁/a₂ ≠ b₁/b₂",
+         "hi": "जब a₁/a₂ ≠ b₁/b₂"
+        },
+        {
+         "en": "When a₁/a₂ = b₁/b₂ ≠ c₁/c₂",
+         "hi": "जब a₁/a₂ = b₁/b₂ ≠ c₁/c₂"
+        },
+        {
+         "en": "When all three ratios are equal",
+         "hi": "जब तीनों अनुपात बराबर हों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Different ratios mean different slopes, and lines with different slopes cross once.",
+        "hi": "अलग अनुपात यानी अलग ढलान, और अलग ढलान वाली रेखाएँ एक बार कटती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the test for parallel lines, which never meet.",
+         "hi": "यह समांतर रेखाओं की पहचान है, जो कभी नहीं मिलतीं।"
+        },
+        {
+         "en": "That is the test for the same line, which has infinitely many solutions.",
+         "hi": "यह एक ही रेखा की पहचान है, जिसके अनगिनत हल होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try a = 3 and a = −3. Where do the lines meet each time? Can you find a value of a with no meeting point other than 2?",
+      "hi": "आज़माओ: a = 3 और a = −3 करके देखो। हर बार रेखाएँ कहाँ मिलती हैं? क्या 2 के अलावा a का कोई मान है जिस पर वे न मिलें?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch03-substitution",
+   "topic": "3.3.1",
+   "template": "algebra",
+   "title": {
+    "en": "Solve by substitution: the marbles puzzle",
+    "hi": "प्रतिस्थापन से हल करो: कंचों की पहेली"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "solve-pair",
+    "equation": "x+y=14, x-y=4"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Meera (x) and her brother (y) have 14 marbles in all, and Meera has 4 more. Which pair fits both facts?",
+      "hi": "मीरा (x) और उसके भाई (y) के पास कुल 14 कंचे हैं, और मीरा के पास 4 ज़्यादा हैं। कौन-सी जोड़ी दोनों बातों में बैठती है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Meera 9, brother 5",
+       "hi": "मीरा 9, भाई 5"
+      },
+      {
+       "id": "b",
+       "en": "Meera 10, brother 4",
+       "hi": "मीरा 10, भाई 4"
+      },
+      {
+       "id": "c",
+       "en": "Meera 7, brother 7",
+       "hi": "मीरा 7, भाई 7"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "solved:9,5",
+     "say": {
+      "en": "Slide x along. Stop where both lines give the same y.",
+      "hi": "x को खिसकाओ। वहाँ रुको जहाँ दोनों रेखाएँ एक ही y दें।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Enter x and y in Your answer and press Check.",
+      "hi": "तुम्हारा उत्तर में x और y भरो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Substitution: from x − y = 4 we get x = y + 4. Put this into x + y = 14: (y + 4) + y = 14, so 2y = 10 and y = 5. Then x = 5 + 4 = 9. One equation tells us what x is, and we replace x in the other.",
+      "hi": "प्रतिस्थापन: x − y = 4 से x = y + 4 मिलता है। इसे x + y = 14 में रखो: (y + 4) + y = 14, इसलिए 2y = 10 और y = 5। फिर x = 5 + 4 = 9। एक समीकरण बताता है कि x क्या है, और हम दूसरे में x की जगह वह रख देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Solve by substitution: y = 2x and x + y = 12. What is x?",
+        "hi": "प्रतिस्थापन से हल करो: y = 2x और x + y = 12। x क्या है?"
+       },
+       "options": [
+        "4",
+        "6",
+        "8",
+        "12"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Put y = 2x: x + 2x = 12, so 3x = 12 and x = 4 (then y = 8).",
+        "hi": "y = 2x रखो: x + 2x = 12, इसलिए 3x = 12 और x = 4 (फिर y = 8)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 + 6 = 12, but y = 2x needs y = 12 when x = 6, and 6 + 12 is 18.",
+         "hi": "6 + 6 = 12, पर x = 6 हो तो y = 2x से y = 12 होगा, और 6 + 12 = 18 है।"
+        },
+        {
+         "en": "8 is the value of y, not x.",
+         "hi": "8, y का मान है, x का नहीं।"
+        },
+        {
+         "en": "That forgets that y also takes part of the 12.",
+         "hi": "इसमें यह भूल गए कि 12 में y का भी हिस्सा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Show the steps and compare them with your own working. Then make up a puzzle of your own about two friends' ages.",
+      "hi": "आज़माओ: चरण दिखाओ दबाओ और उन्हें अपने हल से मिलाओ। फिर दो दोस्तों की उम्र पर अपनी एक पहेली बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch03-elimination",
+   "topic": "3.3.2",
+   "template": "algebra",
+   "title": {
+    "en": "Solve by elimination: toffees and erasers",
+    "hi": "विलोपन से हल करो: टॉफ़ी और रबड़"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "solve-pair",
+    "equation": "2x+y=16, x+3y=18"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "2 toffees and 1 eraser cost ₹16; 1 toffee and 3 erasers cost ₹18. To remove y, by what should you multiply the first equation before subtracting?",
+      "hi": "2 टॉफ़ी और 1 रबड़ ₹16 के हैं; 1 टॉफ़ी और 3 रबड़ ₹18 के। y हटाने के लिए घटाने से पहले पहले समीकरण को किससे गुणा करना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "By 3",
+       "hi": "3 से"
+      },
+      {
+       "id": "b",
+       "en": "By 2",
+       "hi": "2 से"
+      },
+      {
+       "id": "c",
+       "en": "By 16",
+       "hi": "16 से"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Work it out, enter the price of a toffee (x) and an eraser (y), and press Check.",
+      "hi": "हल निकालो, टॉफ़ी (x) और रबड़ (y) का दाम भरो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Elimination: 3 × (2x + y = 16) gives 6x + 3y = 48. Subtract x + 3y = 18: the y terms vanish and 5x = 30, so x = 6. Then 2(6) + y = 16 gives y = 4. A toffee costs ₹6 and an eraser ₹4. We make one unknown's numbers equal, then subtract to remove it.",
+      "hi": "विलोपन: 3 × (2x + y = 16) से 6x + 3y = 48 मिलता है। इसमें से x + 3y = 18 घटाओ: y वाले पद हट जाते हैं और 5x = 30, इसलिए x = 6। फिर 2(6) + y = 16 से y = 4। टॉफ़ी ₹6 की और रबड़ ₹4 का है। हम एक अज्ञात के गुणांक बराबर करते हैं, फिर घटाकर उसे हटा देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Solve 3x + 2y = 12 and 3x − 2y = 0 by elimination. What is x?",
+        "hi": "विलोपन से 3x + 2y = 12 और 3x − 2y = 0 हल करो। x क्या है?"
+       },
+       "options": [
+        "2",
+        "3",
+        "4",
+        "12"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Add the equations: 6x = 12, so x = 2 (and then y = 3).",
+        "hi": "दोनों समीकरण जोड़ो: 6x = 12, इसलिए x = 2 (और फिर y = 3)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 is the value of y.",
+         "hi": "3, y का मान है।"
+        },
+        {
+         "en": "That divides 12 by 3 only; adding the equations gives 6x, not 3x.",
+         "hi": "यह 12 को केवल 3 से भाग देना है; जोड़ने पर 6x मिलता है, 3x नहीं।"
+        },
+        {
+         "en": "12 is 6x, not x. Divide by 6.",
+         "hi": "12 तो 6x है, x नहीं। 6 से भाग दो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When is it quicker to add the two equations instead of subtracting?",
+        "hi": "दोनों समीकरणों को घटाने के बजाय जोड़ना कब जल्दी होता है?"
+       },
+       "options": [
+        {
+         "en": "When one unknown has opposite signs, like +2y and −2y",
+         "hi": "जब किसी अज्ञात के चिह्न उल्टे हों, जैसे +2y और −2y"
+        },
+        {
+         "en": "When both equations equal the same number",
+         "hi": "जब दोनों समीकरण एक ही संख्या के बराबर हों"
+        },
+        {
+         "en": "Never: you must always subtract",
+         "hi": "कभी नहीं: हमेशा घटाना ही पड़ता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "+2y and −2y cancel when added, so that unknown disappears.",
+        "hi": "+2y और −2y जोड़ने पर कट जाते हैं, इसलिए वह अज्ञात हट जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The right-hand numbers do not decide it; the signs of the matching terms do.",
+         "hi": "दाईं ओर की संख्याएँ यह तय नहीं करतीं; मिलते पदों के चिह्न तय करते हैं।"
+        },
+        {
+         "en": "Adding works as well as subtracting whenever it makes one unknown cancel.",
+         "hi": "जब भी जोड़ने से कोई अज्ञात कट जाए, जोड़ना भी उतना ही ठीक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: slide x to check your answer on the graph. Then remove x first instead of y: multiply the second equation by 2. Do you get the same prices?",
+      "hi": "आज़माओ: x स्लाइडर से ग्राफ़ पर अपना उत्तर जाँचो। फिर y के बजाय पहले x हटाओ: दूसरे समीकरण को 2 से गुणा करो। क्या वही दाम आते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Chapter hook: two unknowns at a fair",
+   "shows": "A village mela stall in India with a ring-toss game and a small giant wheel behind it, suggesting two kinds of ride tickets",
+   "view": "Wide, late afternoon, warm light",
+   "right": "Two different rides clearly visible",
+   "avoid": "Price boards, brand names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.3.2",
+   "use": "Toffee for the elimination lab",
+   "shows": "A single wrapped toffee in a bright twisted wrapper",
+   "view": "Three-quarter view, transparent background",
+   "right": "Plain wrapper with no printing",
+   "avoid": "Brand names, logos"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.3.2",
+   "use": "Eraser for the elimination lab",
+   "shows": "A plain white rectangular school eraser",
+   "view": "Three-quarter view, transparent background",
+   "right": "Clean edges, no printing",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "3.3.1",
+   "use": "Marbles for the substitution lab",
+   "shows": "A small heap of glass marbles of different colours",
+   "view": "From slightly above, transparent background",
+   "right": "Round, glossy, with swirls inside",
+   "avoid": "Hands, packaging"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Parallel and crossing paths",
+   "shows": "Two railway tracks running side by side and, further ahead, a road that crosses them at a level crossing in rural India",
+   "view": "High viewpoint, morning haze",
+   "right": "The rails stay parallel; the road crosses at one place",
+   "avoid": "Signs with text, vehicle number plates"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "3.2",
+   "use": "Graph-paper base for two lines",
+   "shows": "A sheet of graph paper with darker axes, a ruler and two coloured pencils (blue and orange) beside it",
+   "view": "From above, even light",
+   "right": "Square grid; two clearly different pencil colours",
+   "avoid": "Any drawn lines (the app draws them)"
+  }
+ ]
+}

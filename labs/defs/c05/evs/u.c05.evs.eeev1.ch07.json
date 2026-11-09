@@ -1,0 +1,1393 @@
+{
+ "chapter_key": "u.c05.evs.eeev1.ch07",
+ "class": 5,
+ "subject_id": "evs",
+ "title": "Energy — How Things Work",
+ "source": "https://ncert.nic.in/textbook/pdf/eeev107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "What is energy? Sources of energy in daily life",
+   "labs": [
+    "c5-evs-eeev1-ch07-sources"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Balloon air rocket",
+   "labs": [
+    "c5-evs-eeev1-ch07-rocket"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Rubber band guitar: vibration makes sound",
+   "labs": [
+    "c5-evs-eeev1-ch07-guitar"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Sun-powered water warmer",
+   "labs": [
+    "c5-evs-eeev1-ch07-sun"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "Energy from fuel",
+   "labs": [
+    "c5-evs-eeev1-ch07-fuel"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6",
+   "title": "Electricity at home",
+   "labs": [
+    "c5-evs-eeev1-ch07-electric"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.7",
+   "title": "Pinwheel, water wheel and focusing sunlight",
+   "labs": [],
+   "why_no_lab": "Making a real pinwheel and water wheel teaches by building; focusing sunlight with a magnifier needs an adult and is not shown on screen."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c5-evs-eeev1-ch07-sources",
+   "topic": "7.1",
+   "template": "sort",
+   "title": {
+    "en": "Where does the energy come from?",
+    "hi": "ऊर्जा कहाँ से आती है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "food",
+      "label": {
+       "en": "Food",
+       "hi": "भोजन"
+      }
+     },
+     {
+      "id": "fuel",
+      "label": {
+       "en": "Fuel",
+       "hi": "ईंधन"
+      }
+     },
+     {
+      "id": "elec",
+      "label": {
+       "en": "Electricity",
+       "hi": "बिजली"
+      }
+     },
+     {
+      "id": "sun",
+      "label": {
+       "en": "The Sun",
+       "hi": "सूरज"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "child",
+      "text": {
+       "en": "A child running",
+       "hi": "दौड़ता हुआ बच्चा"
+      },
+      "bin": "food",
+      "why": {
+       "en": "We get the energy to move from the food we eat.",
+       "hi": "हमें चलने की ऊर्जा खाने से मिलती है।"
+      }
+     },
+     {
+      "id": "dog",
+      "text": {
+       "en": "A dog chasing a ball",
+       "hi": "गेंद के पीछे भागता कुत्ता"
+      },
+      "bin": "food",
+      "why": {
+       "en": "Animals get energy to run from their food.",
+       "hi": "जानवरों को दौड़ने की ऊर्जा उनके भोजन से मिलती है।"
+      }
+     },
+     {
+      "id": "scooter",
+      "text": {
+       "en": "A scooter on the road",
+       "hi": "सड़क पर चलता स्कूटर"
+      },
+      "bin": "fuel",
+      "why": {
+       "en": "Petrol is the fuel that gives a scooter energy.",
+       "hi": "पेट्रोल वह ईंधन है जो स्कूटर को ऊर्जा देता है।"
+      }
+     },
+     {
+      "id": "stove",
+      "text": {
+       "en": "A gas stove cooking dal",
+       "hi": "दाल पकाता गैस चूल्हा"
+      },
+      "bin": "fuel",
+      "why": {
+       "en": "Cooking gas is a fuel that burns to give heat.",
+       "hi": "रसोई गैस ईंधन है जो जलकर गर्मी देती है।"
+      }
+     },
+     {
+      "id": "fan",
+      "text": {
+       "en": "A ceiling fan turning",
+       "hi": "घूमता छत का पंखा"
+      },
+      "bin": "elec",
+      "why": {
+       "en": "A fan runs on electricity.",
+       "hi": "पंखा बिजली से चलता है।"
+      }
+     },
+     {
+      "id": "bulb",
+      "text": {
+       "en": "A bulb glowing",
+       "hi": "जलता हुआ बल्ब"
+      },
+      "bin": "elec",
+      "why": {
+       "en": "A bulb gives light using electricity.",
+       "hi": "बल्ब बिजली से रोशनी देता है।"
+      }
+     },
+     {
+      "id": "clothes",
+      "text": {
+       "en": "Wet clothes drying",
+       "hi": "सूखते गीले कपड़े"
+      },
+      "bin": "sun",
+      "why": {
+       "en": "The Sun's heat dries the clothes.",
+       "hi": "सूरज की गर्मी कपड़ों को सुखाती है।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Water warming in a cup outside",
+       "hi": "बाहर कप में गर्म होता पानी"
+      },
+      "bin": "sun",
+      "why": {
+       "en": "The Sun's heat warms the water.",
+       "hi": "सूरज की गर्मी पानी को गर्म करती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:child",
+     "expect": "correct:child",
+     "say": {
+      "en": "Tap the running child and put it with its source of energy.",
+      "hi": "दौड़ते बच्चे को छुओ और उसे उसकी ऊर्जा के स्रोत के साथ रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What gives a scooter the energy to run?",
+      "hi": "स्कूटर को चलने की ऊर्जा क्या देता है?"
+     },
+     "options": [
+      {
+       "id": "fuel",
+       "en": "Petrol, a fuel",
+       "hi": "पेट्रोल, एक ईंधन"
+      },
+      {
+       "id": "air",
+       "en": "Only air",
+       "hi": "सिर्फ़ हवा"
+      },
+      {
+       "id": "water",
+       "en": "Water in the tank",
+       "hi": "टंकी का पानी"
+      }
+     ],
+     "answer": "fuel"
+    },
+    {
+     "kind": "do",
+     "target": "card:scooter",
+     "expect": "correct:scooter",
+     "say": {
+      "en": "Sort the scooter.",
+      "hi": "स्कूटर को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:water",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards.",
+      "hi": "बाक़ी सारे कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Energy is what makes things move, light up, make sound, do work and change temperature. We get energy from food, and animals do too. Vehicles and stoves use fuels like petrol and cooking gas. Fans and bulbs use electricity. And the Sun gives us light and heat. Wood and coal also burn as fuel, but their smoke pollutes the air.",
+      "hi": "ऊर्जा वह है जो चीज़ों को चलाती है, रोशन करती है, आवाज़ पैदा करती है, काम करवाती है और तापमान बदलती है। हमें भी और जानवरों को भी ऊर्जा भोजन से मिलती है। वाहन और चूल्हे पेट्रोल और रसोई गैस जैसे ईंधन से चलते हैं। पंखे और बल्ब बिजली से चलते हैं। और सूरज हमें रोशनी और गर्मी देता है। लकड़ी और कोयला भी ईंधन की तरह जलते हैं, पर उनका धुआँ हवा को गंदा करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where do living things get energy to move?",
+        "hi": "जीवों को चलने की ऊर्जा कहाँ से मिलती है?"
+       },
+       "options": [
+        {
+         "en": "From food",
+         "hi": "भोजन से"
+        },
+        {
+         "en": "From a switch",
+         "hi": "स्विच से"
+        },
+        {
+         "en": "From the Moon",
+         "hi": "चाँद से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Food is the source of energy for all living things.",
+        "hi": "भोजन सभी जीवों के लिए ऊर्जा का स्रोत है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A switch only turns electricity on or off. It does not give energy to our body.",
+         "hi": "स्विच बस बिजली चालू या बंद करता है। वह हमारे शरीर को ऊर्जा नहीं देता।"
+        },
+        {
+         "en": "The Moon does not give us energy to move.",
+         "hi": "चाँद हमें चलने की ऊर्जा नहीं देता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which one is a fuel?",
+        "hi": "इनमें से कौन ईंधन है?"
+       },
+       "options": [
+        {
+         "en": "Cooking gas",
+         "hi": "रसोई गैस"
+        },
+        {
+         "en": "A shadow",
+         "hi": "छाया"
+        },
+        {
+         "en": "A mirror",
+         "hi": "दर्पण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cooking gas burns and gives heat, so it is a fuel.",
+        "hi": "रसोई गैस जलकर गर्मी देती है, इसलिए वह ईंधन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A shadow is only an absence of light and gives no energy.",
+         "hi": "छाया बस रोशनी की कमी है और ऊर्जा नहीं देती।"
+        },
+        {
+         "en": "A mirror reflects light but does not burn or give energy.",
+         "hi": "दर्पण रोशनी लौटाता है, पर जलता नहीं और ऊर्जा नहीं देता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sit in the kitchen for five minutes and list everything you see that uses energy. Write which source each one uses.",
+      "hi": "पाँच मिनट रसोई में बैठकर देखो और ऊर्जा इस्तेमाल करने वाली हर चीज़ लिखो। लिखो कि हर एक कौन-सा स्रोत इस्तेमाल करती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch07-rocket",
+   "topic": "7.2",
+   "template": "sequence",
+   "title": {
+    "en": "Make a balloon air rocket",
+    "hi": "गुब्बारे का रॉकेट बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "thread",
+      "text": {
+       "en": "Pass a long string through a straw and tie the string tight between two supports",
+       "hi": "पतली डोरी को स्ट्रॉ में डालो और दो सहारों के बीच कसकर बाँधो"
+      }
+     },
+     {
+      "id": "blow",
+      "text": {
+       "en": "Blow up a balloon and pinch its mouth closed",
+       "hi": "गुब्बारा फुलाओ और उसका मुँह दबाकर बंद रखो"
+      }
+     },
+     {
+      "id": "tape",
+      "text": {
+       "en": "Tape the balloon to the straw",
+       "hi": "गुब्बारे को स्ट्रॉ से टेप से चिपकाओ"
+      }
+     },
+     {
+      "id": "release",
+      "text": {
+       "en": "Let go of the mouth of the balloon",
+       "hi": "गुब्बारे का मुँह छोड़ दो"
+      }
+     },
+     {
+      "id": "fly",
+      "text": {
+       "en": "Air rushes out and the balloon shoots along the string",
+       "hi": "हवा तेज़ी से बाहर निकलती है और गुब्बारा डोरी पर दौड़ पड़ता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:thread",
+     "expect": "placed:thread",
+     "say": {
+      "en": "Place the first step of the experiment.",
+      "hi": "प्रयोग का पहला चरण रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When the air rushes out of the balloon to the back, which way does the balloon go?",
+      "hi": "जब हवा गुब्बारे के पीछे से तेज़ी से निकलती है, तो गुब्बारा किधर जाता है?"
+     },
+     "options": [
+      {
+       "id": "fwd",
+       "en": "Forward, the other way",
+       "hi": "आगे, उलटी दिशा में"
+      },
+      {
+       "id": "back",
+       "en": "Backward, with the air",
+       "hi": "पीछे, हवा के साथ"
+      },
+      {
+       "id": "stay",
+       "en": "It stays still",
+       "hi": "वह स्थिर रहता है"
+      }
+     ],
+     "answer": "fwd"
+    },
+    {
+     "kind": "do",
+     "target": "item:release",
+     "expect": "placed:release",
+     "say": {
+      "en": "Place the step where the balloon is let go.",
+      "hi": "वह चरण रखो जहाँ गुब्बारा छोड़ा जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order, then press Check.",
+      "hi": "सारे चरण क्रम में लगाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The stretched balloon pushes the air out of its mouth. The air rushing out backwards pushes the balloon forwards, so the balloon moves. A moving balloon shows that energy is working. Letting out the air faster, or using a bigger balloon, makes the rocket go faster.",
+      "hi": "खिंचा हुआ गुब्बारा हवा को अपने मुँह से बाहर धकेलता है। पीछे की ओर निकलती हवा गुब्बारे को आगे धकेलती है, इसलिए वह चलता है। चलता हुआ गुब्बारा दिखाता है कि ऊर्जा काम कर रही है। हवा तेज़ निकले या गुब्बारा बड़ा हो तो रॉकेट तेज़ चलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What makes the balloon rocket move?",
+        "hi": "गुब्बारा रॉकेट किससे चलता है?"
+       },
+       "options": [
+        {
+         "en": "Air rushing out of it",
+         "hi": "उससे तेज़ी से निकलती हवा"
+        },
+        {
+         "en": "Light from the Sun",
+         "hi": "सूरज की रोशनी"
+        },
+        {
+         "en": "The string pulling it",
+         "hi": "उसे खींचती डोरी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The air rushing out pushes the balloon the other way.",
+        "hi": "बाहर निकलती हवा गुब्बारे को उलटी दिशा में धकेलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sunlight does not push the balloon.",
+         "hi": "सूरज की रोशनी गुब्बारे को नहीं धकेलती।"
+        },
+        {
+         "en": "The string only guides the balloon along. It does not pull it.",
+         "hi": "डोरी बस गुब्बारे को राह दिखाती है। वह उसे खींचती नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try it with a bigger or smaller balloon. Which goes farther? How could you make it faster or slower?",
+      "hi": "बड़े और छोटे गुब्बारे से कोशिश करो। कौन ज़्यादा दूर जाता है? इसे तेज़ या धीमा कैसे कर सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch07-guitar",
+   "topic": "7.3",
+   "template": "waves",
+   "title": {
+    "en": "The rubber band guitar",
+    "hi": "रबर बैंड गिटार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "string"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pluck",
+     "expect": "vibrating",
+     "say": {
+      "en": "Press Pluck and watch the string shake.",
+      "hi": "\"छेड़ो\" दबाओ और तार को हिलते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If we make the string tighter, will the sound be higher or lower?",
+      "hi": "अगर हम तार को ज़्यादा कस दें तो आवाज़ ऊँची होगी या नीची?"
+     },
+     "options": [
+      {
+       "id": "high",
+       "en": "Higher",
+       "hi": "ऊँची"
+      },
+      {
+       "id": "low",
+       "en": "Lower",
+       "hi": "नीची"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "वही"
+      }
+     ],
+     "answer": "high"
+    },
+    {
+     "kind": "do",
+     "target": "slider:tension",
+     "expect": "pitch:high",
+     "say": {
+      "en": "Slide the tension up to tighten the string, then pluck again.",
+      "hi": "तनाव का स्लाइडर बढ़ाकर तार कसो, फिर दोबारा छेड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:length",
+     "expect": "pitch:low",
+     "say": {
+      "en": "Now make the string longer and listen again.",
+      "hi": "अब तार को लंबा करो और फिर सुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When we pluck a rubber band, it moves quickly back and forth. We call this vibration, and it makes sound. A tighter or shorter string vibrates faster and makes a higher sound. A looser or longer string vibrates slower and makes a lower sound. This is why different bands on the guitar give different notes.",
+      "hi": "जब हम रबर बैंड को छेड़ते हैं तो वह तेज़ी से आगे-पीछे हिलता है। इसे कंपन कहते हैं और इससे आवाज़ बनती है। ज़्यादा कसा या छोटा तार तेज़ काँपता है और ऊँची आवाज़ देता है। ढीला या लंबा तार धीमे काँपता है और नीची आवाज़ देता है। इसीलिए गिटार के अलग-अलग बैंड अलग सुर देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What produces the sound when a rubber band is plucked?",
+        "hi": "रबर बैंड छेड़ने पर आवाज़ कैसे बनती है?"
+       },
+       "options": [
+        {
+         "en": "Its vibration",
+         "hi": "उसके कंपन से"
+        },
+        {
+         "en": "Its colour",
+         "hi": "उसके रंग से"
+        },
+        {
+         "en": "Its smell",
+         "hi": "उसकी गंध से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A vibrating band shakes the air, and we hear this as sound.",
+        "hi": "काँपता हुआ बैंड हवा को हिलाता है और हम इसे आवाज़ की तरह सुनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Colour has nothing to do with sound.",
+         "hi": "रंग का आवाज़ से कोई संबंध नहीं।"
+        },
+        {
+         "en": "Smell does not make sound.",
+         "hi": "गंध से आवाज़ नहीं बनती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A thin tight band gives a...",
+        "hi": "पतला, कसा बैंड कैसी आवाज़ देता है?"
+       },
+       "options": [
+        {
+         "en": "Higher sound",
+         "hi": "ऊँची आवाज़"
+        },
+        {
+         "en": "Lower sound",
+         "hi": "नीची आवाज़"
+        },
+        {
+         "en": "No sound",
+         "hi": "कोई आवाज़ नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Thin and tight bands vibrate faster, and faster vibration means a higher sound.",
+        "hi": "पतले और कसे बैंड तेज़ काँपते हैं और तेज़ कंपन का मतलब ऊँची आवाज़ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A thick, loose band is the one that gives a lower sound.",
+         "hi": "नीची आवाज़ तो मोटा और ढीला बैंड देता है।"
+        },
+        {
+         "en": "Every vibrating band gives some sound.",
+         "hi": "काँपता हर बैंड कुछ आवाज़ देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a rubber band guitar at home with a box and bands of different thickness. Which band gives the lowest sound?",
+      "hi": "घर पर डिब्बे और अलग मोटाई के बैंड से रबर बैंड गिटार बनाओ। कौन-सा बैंड सबसे नीची आवाज़ देता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch07-sun",
+   "topic": "7.4",
+   "template": "heat",
+   "title": {
+    "en": "Sunlight gives heat",
+    "hi": "सूरज की रोशनी गर्मी देती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "radiation"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two cups of water: one in sunlight and one in shade. After twenty minutes, which is warmer?",
+      "hi": "पानी के दो कप: एक धूप में, एक छाया में। बीस मिनट बाद कौन-सा ज़्यादा गर्म होगा?"
+     },
+     "options": [
+      {
+       "id": "sun",
+       "en": "The cup in sunlight",
+       "hi": "धूप वाला कप"
+      },
+      {
+       "id": "shade",
+       "en": "The cup in shade",
+       "hi": "छाया वाला कप"
+      },
+      {
+       "id": "same",
+       "en": "Both the same",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "sun"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "heated",
+     "say": {
+      "en": "Press Heat to switch on the lamp, our pretend Sun.",
+      "hi": "\"गर्म करो\" दबाओ। लैम्प हमारा बनावटी सूरज है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "thermometer",
+     "expect": "reading",
+     "say": {
+      "en": "Read the thermometers after some time.",
+      "hi": "कुछ देर बाद थर्मामीटर पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:distance",
+     "expect": "moved:distance",
+     "say": {
+      "en": "Move the lamp farther away. Does the heating get less?",
+      "hi": "लैम्प को दूर ले जाओ। क्या गर्मी कम हो जाती है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Sun gives us light and heat. Water kept in sunlight becomes warmer than water in the shade, because it takes in the Sun's heat energy. The farther the source is, the weaker the heating. People use the Sun's heat to dry clothes and grain, and solar heaters warm water without burning any fuel.",
+      "hi": "सूरज हमें रोशनी और गर्मी देता है। धूप में रखा पानी छाया वाले पानी से गर्म हो जाता है क्योंकि वह सूरज की ऊष्मा ऊर्जा सोखता है। स्रोत जितना दूर होता है, गर्मी उतनी कम होती है। लोग कपड़े और अनाज सुखाने के लिए सूरज की गर्मी का उपयोग करते हैं, और सौर हीटर बिना ईंधन जलाए पानी गर्म करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is water in sunlight warmer than water in shade?",
+        "hi": "धूप में रखा पानी छाया वाले पानी से गर्म क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "It takes in the Sun's heat",
+         "hi": "वह सूरज की गर्मी सोखता है"
+        },
+        {
+         "en": "It is lighter",
+         "hi": "वह हल्का होता है"
+        },
+        {
+         "en": "It is in a bigger cup",
+         "hi": "वह बड़े कप में होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sunlight carries heat energy, and the water absorbs it.",
+        "hi": "सूरज की रोशनी ऊष्मा ऊर्जा लाती है और पानी उसे सोख लेता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Weight has nothing to do with it.",
+         "hi": "इसका वज़न से कोई संबंध नहीं।"
+        },
+        {
+         "en": "The cup's size is not the reason. The Sun's heat is.",
+         "hi": "कारण कप का आकार नहीं है। कारण सूरज की गर्मी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What do solar water heaters use to heat water?",
+        "hi": "सौर वॉटर हीटर पानी गर्म करने के लिए क्या इस्तेमाल करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Sunlight",
+         "hi": "सूरज की रोशनी"
+        },
+        {
+         "en": "Petrol",
+         "hi": "पेट्रोल"
+        },
+        {
+         "en": "Wood smoke",
+         "hi": "लकड़ी का धुआँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They use the Sun's heat, so no fuel is burnt.",
+        "hi": "वे सूरज की गर्मी इस्तेमाल करते हैं, इसलिए कोई ईंधन नहीं जलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Petrol is a fuel, but solar heaters do not burn it.",
+         "hi": "पेट्रोल ईंधन है, पर सौर हीटर उसे जलाते नहीं।"
+        },
+        {
+         "en": "Wood smoke is a result of burning wood, not what a solar heater uses.",
+         "hi": "लकड़ी का धुआँ लकड़ी जलाने से बनता है, सौर हीटर में नहीं लगता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Do the real experiment at home: two cups of water, one in the Sun and one in the shade. Touch the water after twenty minutes. Tell what you feel.",
+      "hi": "घर पर असली प्रयोग करो: दो कप पानी, एक धूप में, एक छाया में। बीस मिनट बाद पानी छूकर देखो। बताओ तुम्हें क्या लगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch07-fuel",
+   "topic": "7.5",
+   "template": "match",
+   "title": {
+    "en": "Fuel, flame and smoke",
+    "hi": "ईंधन, लौ और धुआँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "nooil",
+      "left": {
+       "en": "A diya with a wick but no oil",
+       "hi": "बाती वाला दीया पर तेल नहीं"
+      },
+      "right": {
+       "en": "The flame dies quickly: it has no fuel",
+       "hi": "लौ जल्दी बुझ जाती है: उसे ईंधन नहीं मिला"
+      },
+      "why": {
+       "en": "A flame needs fuel to keep burning.",
+       "hi": "लौ को जलते रहने के लिए ईंधन चाहिए।"
+      }
+     },
+     {
+      "id": "oil",
+      "left": {
+       "en": "A diya with a wick and oil",
+       "hi": "बाती और तेल वाला दीया"
+      },
+      "right": {
+       "en": "It burns for a long time: the oil is the fuel",
+       "hi": "वह देर तक जलता है: तेल ईंधन है"
+      },
+      "why": {
+       "en": "The wick soaks up oil and the oil keeps the flame going.",
+       "hi": "बाती तेल सोखती है और तेल लौ को जलाए रखता है।"
+      }
+     },
+     {
+      "id": "gas",
+      "left": {
+       "en": "Cooking gas",
+       "hi": "रसोई गैस"
+      },
+      "right": {
+       "en": "Fuel for the kitchen stove",
+       "hi": "रसोई के चूल्हे का ईंधन"
+      },
+      "why": {
+       "en": "Cooking gas burns to give the heat that cooks food.",
+       "hi": "रसोई गैस जलकर वह गर्मी देती है जिससे खाना पकता है।"
+      }
+     },
+     {
+      "id": "petrol",
+      "left": {
+       "en": "Petrol and diesel",
+       "hi": "पेट्रोल और डीज़ल"
+      },
+      "right": {
+       "en": "Fuel for scooters, cars and trucks",
+       "hi": "स्कूटर, कार और ट्रकों का ईंधन"
+      },
+      "why": {
+       "en": "Vehicles burn petrol or diesel to move.",
+       "hi": "वाहन चलने के लिए पेट्रोल या डीज़ल जलाते हैं।"
+      }
+     },
+     {
+      "id": "wood",
+      "left": {
+       "en": "Burning wood and coal",
+       "hi": "लकड़ी और कोयला जलाना"
+      },
+      "right": {
+       "en": "Gives heat but makes smoke and pollution",
+       "hi": "गर्मी देता है पर धुआँ और प्रदूषण करता है"
+      },
+      "why": {
+       "en": "Smoke from wood and coal harms our lungs and the air, so use them carefully.",
+       "hi": "लकड़ी और कोयले का धुआँ हमारे फेफड़ों और हवा को नुक़सान पहुँचाता है, इसलिए इनका उपयोग सावधानी से करो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:nooil",
+     "expect": "matched:nooil",
+     "say": {
+      "en": "Match the diya with no oil.",
+      "hi": "बिना तेल वाले दीये को जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does a flame need to keep burning for a long time?",
+      "hi": "लौ को देर तक जलते रहने के लिए क्या चाहिए?"
+     },
+     "options": [
+      {
+       "id": "fuel",
+       "en": "Fuel, such as oil",
+       "hi": "ईंधन, जैसे तेल"
+      },
+      {
+       "id": "water",
+       "en": "Water",
+       "hi": "पानी"
+      },
+      {
+       "id": "ice",
+       "en": "Ice",
+       "hi": "बर्फ़"
+      }
+     ],
+     "answer": "fuel"
+    },
+    {
+     "kind": "do",
+     "target": "left:oil",
+     "expect": "matched:oil",
+     "say": {
+      "en": "Match the diya with oil.",
+      "hi": "तेल वाले दीये को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:wood",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest.",
+      "hi": "बाक़ी जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A fuel is something that burns to give us energy as heat and light. A diya burns for long only when it has oil. Cooking gas cooks our food, and petrol and diesel move vehicles. Wood and coal also burn, but they make smoke that pollutes the air. We should use fuel carefully and look for cleaner ways, like the Sun.",
+      "hi": "ईंधन वह चीज़ है जो जलकर हमें गर्मी और रोशनी के रूप में ऊर्जा देती है। दीया तभी देर तक जलता है जब उसमें तेल हो। रसोई गैस खाना पकाती है और पेट्रोल-डीज़ल वाहन चलाते हैं। लकड़ी और कोयला भी जलते हैं, पर उनका धुआँ हवा को गंदा करता है। हमें ईंधन सावधानी से इस्तेमाल करना चाहिए और सूरज जैसे साफ़ तरीक़े खोजने चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a diya with no oil stop burning?",
+        "hi": "बिना तेल का दीया क्यों बुझ जाता है?"
+       },
+       "options": [
+        {
+         "en": "The flame has no fuel left",
+         "hi": "लौ के पास ईंधन नहीं बचता"
+        },
+        {
+         "en": "It is too bright",
+         "hi": "वह बहुत चमकदार है"
+        },
+        {
+         "en": "It is too big",
+         "hi": "वह बहुत बड़ा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A flame goes on only while it has fuel to burn.",
+        "hi": "लौ तभी तक जलती है जब तक उसे जलने के लिए ईंधन मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Brightness is not why a flame goes out.",
+         "hi": "चमक लौ बुझने का कारण नहीं।"
+        },
+        {
+         "en": "Size is not the reason. It is the missing fuel.",
+         "hi": "आकार कारण नहीं। कारण ईंधन की कमी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why should we be careful with wood and coal fires?",
+        "hi": "लकड़ी और कोयले की आग में सावधानी क्यों रखनी चाहिए?"
+       },
+       "options": [
+        {
+         "en": "They make smoke that harms health and air",
+         "hi": "उनसे धुआँ बनता है जो सेहत और हवा को नुक़सान पहुँचाता है"
+        },
+        {
+         "en": "They are too cold",
+         "hi": "वे बहुत ठंडे होते हैं"
+        },
+        {
+         "en": "They make water",
+         "hi": "उनसे पानी बनता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Smoke from burning wood and coal causes pollution and can hurt our lungs.",
+        "hi": "लकड़ी और कोयला जलाने का धुआँ प्रदूषण करता है और फेफड़ों को नुक़सान पहुँचा सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fires are hot, not cold.",
+         "hi": "आग गर्म होती है, ठंडी नहीं।"
+        },
+        {
+         "en": "Burning wood and coal gives heat and smoke, not water to drink.",
+         "hi": "लकड़ी और कोयला जलने से गर्मी और धुआँ मिलता है, पीने का पानी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "With an adult, watch a lit diya. What happens to the flame when the oil is almost over? Never touch a flame by yourself.",
+      "hi": "किसी बड़े के साथ जलता दीया देखो। तेल कम होने पर लौ का क्या होता है? लौ को कभी अकेले मत छुओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch07-electric",
+   "topic": "7.6",
+   "template": "sort",
+   "title": {
+    "en": "Does it run on electricity?",
+    "hi": "क्या यह बिजली से चलता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Runs on electricity",
+       "hi": "बिजली से चलता है"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Does not use electricity",
+       "hi": "बिजली से नहीं चलता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "fan",
+      "text": {
+       "en": "Ceiling fan",
+       "hi": "छत का पंखा"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "A ceiling fan has a motor that runs on electricity.",
+       "hi": "छत के पंखे में मोटर होती है जो बिजली से चलती है।"
+      }
+     },
+     {
+      "id": "tv",
+      "text": {
+       "en": "Television",
+       "hi": "टेलीविज़न"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "A television needs electricity to show pictures and sound.",
+       "hi": "टेलीविज़न को चित्र और आवाज़ के लिए बिजली चाहिए।"
+      }
+     },
+     {
+      "id": "fridge",
+      "text": {
+       "en": "Refrigerator",
+       "hi": "फ़्रिज"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "A fridge uses electricity to keep food cold.",
+       "hi": "फ़्रिज खाने को ठंडा रखने के लिए बिजली इस्तेमाल करता है।"
+      }
+     },
+     {
+      "id": "mixer",
+      "text": {
+       "en": "Mixer grinder",
+       "hi": "मिक्सर-ग्राइंडर"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "The motor of a mixer runs on electricity.",
+       "hi": "मिक्सर की मोटर बिजली से चलती है।"
+      }
+     },
+     {
+      "id": "handfan",
+      "text": {
+       "en": "Hand fan",
+       "hi": "हाथ का पंखा"
+      },
+      "bin": "no",
+      "why": {
+       "en": "A hand fan moves when you wave it, using your own energy from food.",
+       "hi": "हाथ का पंखा तब चलता है जब तुम उसे हिलाते हो, यानी भोजन से मिली तुम्हारी अपनी ऊर्जा से।"
+      }
+     },
+     {
+      "id": "diya",
+      "text": {
+       "en": "Oil diya",
+       "hi": "तेल का दीया"
+      },
+      "bin": "no",
+      "why": {
+       "en": "A diya burns oil, which is a fuel.",
+       "hi": "दीया तेल जलाता है, जो एक ईंधन है।"
+      }
+     },
+     {
+      "id": "charkha",
+      "text": {
+       "en": "Charkha spinning wheel",
+       "hi": "चरखा"
+      },
+      "bin": "no",
+      "why": {
+       "en": "A charkha is turned by hand.",
+       "hi": "चरखा हाथ से घुमाया जाता है।"
+      }
+     },
+     {
+      "id": "cycle",
+      "text": {
+       "en": "Bicycle",
+       "hi": "साइकिल"
+      },
+      "bin": "no",
+      "why": {
+       "en": "A bicycle moves with the rider's own energy.",
+       "hi": "साइकिल सवार की अपनी ऊर्जा से चलती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:fan",
+     "expect": "correct:fan",
+     "say": {
+      "en": "Sort the ceiling fan.",
+      "hi": "छत के पंखे को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bicycle moves along the road. Does it use electricity?",
+      "hi": "साइकिल सड़क पर चलती है। क्या वह बिजली इस्तेमाल करती है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it uses the rider's own energy",
+       "hi": "नहीं, वह सवार की अपनी ऊर्जा से चलती है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:cycle",
+     "expect": "correct:cycle",
+     "say": {
+      "en": "Sort the bicycle.",
+      "hi": "साइकिल को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:charkha",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards.",
+      "hi": "सारे कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many things in our homes run on electricity: fans, televisions, fridges and mixers. Other things work without it. A hand fan and a bicycle use our own energy from food. A diya burns oil. Electricity is a very useful form of energy, so we should switch off what we do not need.",
+      "hi": "हमारे घरों में बहुत-सी चीज़ें बिजली से चलती हैं: पंखे, टेलीविज़न, फ़्रिज और मिक्सर। कुछ चीज़ें बिना बिजली के चलती हैं। हाथ का पंखा और साइकिल भोजन से मिली हमारी अपनी ऊर्जा से चलते हैं। दीया तेल जलाता है। बिजली ऊर्जा का बहुत उपयोगी रूप है, इसलिए जो ज़रूरी न हो उसे बंद करना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these runs on electricity?",
+        "hi": "इनमें से कौन बिजली से चलता है?"
+       },
+       "options": [
+        {
+         "en": "A television",
+         "hi": "टेलीविज़न"
+        },
+        {
+         "en": "A bicycle",
+         "hi": "साइकिल"
+        },
+        {
+         "en": "A charkha",
+         "hi": "चरखा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A television needs electricity from the plug.",
+        "hi": "टेलीविज़न को प्लग से बिजली चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A bicycle is driven by the rider's legs.",
+         "hi": "साइकिल सवार के पैरों से चलती है।"
+        },
+        {
+         "en": "A charkha is turned by hand.",
+         "hi": "चरखा हाथ से घुमाया जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why should we switch off lights and fans in an empty room?",
+        "hi": "खाली कमरे की बत्ती और पंखा क्यों बंद करने चाहिए?"
+       },
+       "options": [
+        {
+         "en": "To save electricity",
+         "hi": "बिजली बचाने के लिए"
+        },
+        {
+         "en": "To make the room hot",
+         "hi": "कमरे को गर्म करने के लिए"
+        },
+        {
+         "en": "To make them last for ever",
+         "hi": "उन्हें हमेशा चलाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Electricity is made using resources, and switching off saves it and money.",
+        "hi": "बिजली बनाने में संसाधन लगते हैं, और बंद करने से बिजली और पैसे बचते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Switching off does not make a room hot.",
+         "hi": "बंद करने से कमरा गर्म नहीं होता।"
+        },
+        {
+         "en": "Nothing lasts for ever, but switching off does make things last longer.",
+         "hi": "कुछ भी हमेशा नहीं चलता, पर बंद करने से चीज़ें ज़्यादा चलती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Fill a table of five things in your home that run on electricity. Beside each, write what it gives: light, motion, sound or cold.",
+      "hi": "अपने घर की बिजली से चलने वाली पाँच चीज़ों की तालिका बनाओ। हर एक के आगे लिखो कि वह क्या देती है: रोशनी, गति, आवाज़ या ठंडक।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Opens the chapter",
+   "shows": "An Indian kitchen in action: a pressure cooker on a gas stove, a mixer, a fan, sunlight from a window",
+   "view": "16:9, warm morning light",
+   "right": "Gas flame is blue; steam rises from the cooker",
+   "avoid": "Faces in focus, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.2",
+   "use": "Balloon rocket",
+   "shows": "Four frames of a balloon on a straw along a string: inflated, taped, released, flying",
+   "view": "Same camera, same string",
+   "right": "Balloon moves along the string in the last frames",
+   "avoid": "A balloon popping"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "7.3",
+   "use": "Rubber band guitar",
+   "shows": "A cardboard box with five rubber bands of different thickness over a hole, a pencil under the bands",
+   "view": "PNG with transparency, three-quarter view",
+   "right": "Bands differ in thickness; box has a clear hole",
+   "avoid": "Printed words on the box"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "7.4",
+   "use": "Two cups in sun and shade",
+   "shows": "Two identical steel cups of water, one in a sunny window and one in shade, with a thermometer each",
+   "view": "16:9, same time of day",
+   "right": "The sunny cup's thermometer reads higher",
+   "avoid": "Fake readings"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "7.5",
+   "use": "Two diyas",
+   "shows": "Two diyas, one with a wick and oil and one with a wick and no oil, in four frames",
+   "view": "Same table, same light",
+   "right": "The no-oil diya goes out first, the oil diya keeps burning",
+   "avoid": "A child touching the flame"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "7.6",
+   "use": "Electric things",
+   "shows": "A ceiling fan, a mixer, a television and a fridge as cut-outs",
+   "view": "PNG with transparency",
+   "right": "Realistic Indian household models, no brands",
+   "avoid": "Visible brand logos"
+  }
+ ]
+}

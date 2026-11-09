@@ -1,0 +1,1039 @@
+{
+ "chapter_key": "u.c01.english.aemr1.ch09",
+ "class": 1,
+ "subject_id": "english",
+ "title": "Anandi’s Rainbow",
+ "source": "https://ncert.nic.in/textbook/pdf/aemr1ps.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "The story: the rainbow and its seven colours",
+   "labs": [
+    "c01-english-aemr1-ch09-rainbow-order",
+    "c01-english-aemr1-ch09-anandi-story"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Colours of things around us",
+   "labs": [
+    "c01-english-aemr1-ch09-colour-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Let us write: My name is ... I am ... years old",
+   "labs": [
+    "c01-english-aemr1-ch09-about-me"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Colour the Indian flag",
+   "labs": [
+    "c01-english-aemr1-ch09-flag-colours"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "Looking at clouds, drawing them, watching the sky at sunrise and sunset",
+   "labs": [],
+   "why_no_lab": "The child goes outside and looks at the real sky; no screen can replace that."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-english-aemr1-ch09-rainbow-order",
+   "topic": "9.1",
+   "template": "sequence",
+   "title": {
+    "en": "The colours of the rainbow",
+    "hi": "इंद्रधनुष के रंग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "red",
+      "text": {
+       "en": "Red",
+       "hi": "लाल"
+      }
+     },
+     {
+      "id": "orange",
+      "text": {
+       "en": "Orange",
+       "hi": "नारंगी"
+      }
+     },
+     {
+      "id": "yellow",
+      "text": {
+       "en": "Yellow",
+       "hi": "पीला"
+      }
+     },
+     {
+      "id": "green",
+      "text": {
+       "en": "Green",
+       "hi": "हरा"
+      }
+     },
+     {
+      "id": "blue",
+      "text": {
+       "en": "Blue",
+       "hi": "नीला"
+      }
+     },
+     {
+      "id": "indigo",
+      "text": {
+       "en": "Indigo",
+       "hi": "जामुनी"
+      }
+     },
+     {
+      "id": "violet",
+      "text": {
+       "en": "Violet",
+       "hi": "बैंगनी"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:red",
+     "expect": "placed:red",
+     "say": {
+      "en": "A rainbow has seven colours. Place Red first.",
+      "hi": "इंद्रधनुष में सात रंग होते हैं। लाल को सबसे पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which colour comes just after red in the rainbow?",
+      "hi": "इंद्रधनुष में लाल के ठीक बाद कौन-सा रंग आता है?"
+     },
+     "options": [
+      {
+       "id": "orange",
+       "en": "Orange",
+       "hi": "नारंगी (Orange)"
+      },
+      {
+       "id": "blue",
+       "en": "Blue",
+       "hi": "नीला (Blue)"
+      },
+      {
+       "id": "green",
+       "en": "Green",
+       "hi": "हरा (Green)"
+      }
+     ],
+     "answer": "orange"
+    },
+    {
+     "kind": "do",
+     "target": "item:orange",
+     "expect": "placed:orange",
+     "say": {
+      "en": "Place Orange next.",
+      "hi": "अब नारंगी रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the other colours in order. Then tap Check.",
+      "hi": "बाकी रंग भी क्रम में रखो। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The rainbow always has the same seven colours in the same order: red, orange, yellow, green, blue, indigo, violet. A rainbow appears when the Sun shines through raindrops.",
+      "hi": "इंद्रधनुष में हमेशा वही सात रंग उसी क्रम में होते हैं: लाल, नारंगी, पीला, हरा, नीला, जामुनी, बैंगनी। जब सूरज की रोशनी बारिश की बूँदों से गुज़रती है, तब इंद्रधनुष बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which colour comes just after green?",
+        "hi": "हरे के ठीक बाद कौन-सा रंग आता है?"
+       },
+       "options": [
+        {
+         "en": "Blue",
+         "hi": "नीला (Blue)"
+        },
+        {
+         "en": "Yellow",
+         "hi": "पीला (Yellow)"
+        },
+        {
+         "en": "Red",
+         "hi": "लाल (Red)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After green comes blue.",
+        "hi": "हरे के बाद नीला आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Yellow comes just before green, not after.",
+         "hi": "पीला हरे से ठीक पहले आता है, बाद में नहीं।"
+        },
+        {
+         "en": "Red is the first colour, far from green.",
+         "hi": "लाल पहला रंग है, हरे से बहुत दूर।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When do we see a rainbow?",
+        "hi": "इंद्रधनुष हमें कब दिखता है?"
+       },
+       "options": [
+        {
+         "en": "When the Sun shines after or during rain",
+         "hi": "जब बारिश के बाद या बारिश में धूप निकलती है"
+        },
+        {
+         "en": "On a dark night",
+         "hi": "अँधेरी रात में"
+        },
+        {
+         "en": "When it is very cold and dry",
+         "hi": "जब बहुत ठंड और सूखा हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sunlight passes through raindrops and splits into colours.",
+        "hi": "धूप बारिश की बूँदों से गुज़रकर रंगों में बँट जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At night there is no sunlight, so there is no rainbow.",
+         "hi": "रात में धूप नहीं होती, इसलिए इंद्रधनुष नहीं बनता।"
+        },
+        {
+         "en": "A rainbow needs raindrops as well as sunshine.",
+         "hi": "इंद्रधनुष के लिए बारिश की बूँदें और धूप दोनों चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw a rainbow with seven crayons. Say the colours as you draw.",
+      "hi": "सात रंगों से इंद्रधनुष बनाओ। बनाते हुए रंगों के नाम बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch09-anandi-story",
+   "topic": "9.2",
+   "template": "reader",
+   "title": {
+    "en": "Anandi's rainbow garden",
+    "hi": "आनंदी का इंद्रधनुषी बगीचा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "panels",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "Anandi's rainbow",
+      "hi": "आनंदी का इंद्रधनुष"
+     },
+     "lines": [
+      "It was raining. Anandi was asleep and dreaming of rainbows.",
+      "She woke up and saw a big, bright rainbow in the clear blue sky.",
+      "She ran to the garden with her cat, Milli.",
+      "Anandi loved to paint. She wanted to paint her garden in rainbow colours.",
+      "She coloured flowers violet, indigo, blue, orange and red, and the leaves green.",
+      "She left yellow for the Sun, so it would shine bright.",
+      "The garden looked beautiful. Then the rainbow was gone."
+     ]
+    },
+    "question": {
+     "q": {
+      "en": "Which colour did Anandi keep for the Sun?",
+      "hi": "आनंदी ने सूरज के लिए कौन-सा रंग रखा?"
+     },
+     "options": [
+      {
+       "en": "Yellow",
+       "hi": "पीला (Yellow)"
+      },
+      {
+       "en": "Green",
+       "hi": "हरा (Green)"
+      },
+      {
+       "en": "Red",
+       "hi": "लाल (Red)"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "She left yellow so the Sun could shine bright.",
+      "hi": "उसने पीला रंग छोड़ दिया ताकि सूरज चमकीला दिखे।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play and watch the story in pictures.",
+      "hi": "चलाओ दबाकर कहानी चित्रों में देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Anandi paints flowers in rainbow colours. Which colour will she keep for the Sun?",
+      "hi": "आनंदी फूलों को इंद्रधनुष के रंगों से रंगती है। सूरज के लिए वह कौन-सा रंग रखेगी?"
+     },
+     "options": [
+      {
+       "id": "yellow",
+       "en": "Yellow",
+       "hi": "पीला (Yellow)"
+      },
+      {
+       "id": "green",
+       "en": "Green",
+       "hi": "हरा (Green)"
+      },
+      {
+       "id": "violet",
+       "en": "Violet",
+       "hi": "बैंगनी (Violet)"
+      }
+     ],
+     "answer": "yellow"
+    },
+    {
+     "kind": "do",
+     "target": "line:5",
+     "expect": "line:5",
+     "say": {
+      "en": "Tap picture 6 to hear what she kept for the Sun.",
+      "hi": "तस्वीर 6 दबाओ और सुनो कि उसने सूरज के लिए क्या रखा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now answer the question below the pictures.",
+      "hi": "अब तस्वीरों के नीचे वाला सवाल हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Anandi woke up to a rainbow and painted her garden with its colours. She kept yellow for the Sun, because the Sun looks yellow and bright. The story shows how a rainbow can make us feel happy and want to create.",
+      "hi": "आनंदी इंद्रधनुष देखकर जागी और अपने बगीचे को उसके रंगों से रंग दिया। उसने सूरज के लिए पीला रंग रखा, क्योंकि सूरज पीला और चमकीला दिखता है। कहानी बताती है कि इंद्रधनुष हमें ख़ुश करता है और कुछ नया बनाने की प्रेरणा देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the name of Anandi's cat?",
+        "hi": "आनंदी की बिल्ली का नाम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Milli",
+         "hi": "मिल्ली (Milli)"
+        },
+        {
+         "en": "Mini",
+         "hi": "मिनी (Mini)"
+        },
+        {
+         "en": "Jaggu",
+         "hi": "जग्गू (Jaggu)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Her cat is called Milli.",
+        "hi": "उसकी बिल्ली का नाम मिल्ली है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mini is a girl in a different story.",
+         "hi": "मिनी दूसरी कहानी की लड़की है।"
+        },
+        {
+         "en": "Jaggu is the boy from the animals and birds story.",
+         "hi": "जग्गू जानवरों और पक्षियों वाली कहानी का लड़का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look out of the window. What colour is the sky right now?",
+      "hi": "खिड़की से बाहर देखो। अभी आसमान का रंग कैसा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch09-about-me",
+   "topic": "9.3",
+   "template": "grammar",
+   "title": {
+    "en": "Write about yourself",
+    "hi": "अपने बारे में लिखो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "en",
+    "items": [
+     {
+      "id": "name",
+      "words": [
+       "My",
+       "name",
+       "is",
+       "Anandi",
+       "."
+      ],
+      "answer": "My name is Anandi.",
+      "rule": {
+       "en": "A name starts with a capital letter. 'My name is' tells who you are.",
+       "hi": "नाम बड़े अक्षर से शुरू होता है। 'My name is' बताता है कि तुम कौन हो।"
+      }
+     },
+     {
+      "id": "age",
+      "words": [
+       "I",
+       "am",
+       "six",
+       "years",
+       "old",
+       "."
+      ],
+      "answer": "I am six years old.",
+      "rule": {
+       "en": "'I am' goes together. 'years old' tells your age.",
+       "hi": "'I am' साथ आते हैं। 'years old' तुम्हारी उम्र बताता है।"
+      }
+     },
+     {
+      "id": "colour",
+      "words": [
+       "My",
+       "favourite",
+       "colour",
+       "is",
+       "yellow",
+       "."
+      ],
+      "answer": "My favourite colour is yellow.",
+      "rule": {
+       "en": "'favourite' means the one you like best.",
+       "hi": "'favourite' का मतलब है जो तुम्हें सबसे अच्छा लगे।"
+      }
+     },
+     {
+      "id": "like",
+      "words": [
+       "I",
+       "like",
+       "to",
+       "draw",
+       "and",
+       "paint",
+       "."
+      ],
+      "answer": "I like to draw and paint.",
+      "rule": {
+       "en": "'and' joins two things we like to do.",
+       "hi": "'and' दो पसंदीदा कामों को जोड़ता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:name",
+     "say": {
+      "en": "Tap the word tiles in order to build: My name is Anandi.",
+      "hi": "शब्द वाली टाइलों को क्रम से दबाकर बनाओ: My name is Anandi."
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word comes after 'I' in 'I ... six years old': 'am' or 'is'?",
+      "hi": "'I ... six years old' में 'I' के बाद कौन-सा शब्द आएगा: 'am' या 'is'?"
+     },
+     "options": [
+      {
+       "id": "am",
+       "en": "am",
+       "hi": "am (हूँ)"
+      },
+      {
+       "id": "is",
+       "en": "is",
+       "hi": "is (है)"
+      }
+     ],
+     "answer": "am"
+    },
+    {
+     "kind": "do",
+     "target": "item:age",
+     "expect": "built:age",
+     "say": {
+      "en": "Build: I am six years old.",
+      "hi": "बनाओ: I am six years old."
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:colour",
+     "expect": "built:colour",
+     "say": {
+      "en": "Build: My favourite colour is yellow.",
+      "hi": "बनाओ: My favourite colour is yellow."
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We say 'I am' about ourselves and 'My name is' to tell our name. We start every sentence with a capital letter and end it with a full stop. You can change the name, the age and the colour to match you.",
+      "hi": "अपने बारे में हम 'I am' कहते हैं और नाम बताने के लिए 'My name is'। हर वाक्य बड़े अक्षर से शुरू होता है और पूर्ण विराम पर ख़त्म होता है। नाम, उम्र और रंग को तुम अपने हिसाब से बदल सकते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is right?",
+        "hi": "कौन-सा वाक्य सही है?"
+       },
+       "options": [
+        {
+         "en": "I am six years old.",
+         "hi": "I am six years old. (मैं छह साल का/की हूँ।)"
+        },
+        {
+         "en": "I is six years old.",
+         "hi": "I is six years old. (गलत)"
+        },
+        {
+         "en": "Am I six year old.",
+         "hi": "Am I six year old. (गलत)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With 'I' we use 'am'.",
+        "hi": "'I' के साथ 'am' आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'is' goes with he, she or it, not with I.",
+         "hi": "'is' he, she या it के साथ आता है, I के साथ नहीं।"
+        },
+        {
+         "en": "The words are in the wrong order for telling your age.",
+         "hi": "अपनी उम्र बताने के लिए शब्द गलत क्रम में हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say these sentences about yourself, with your own name, age and favourite colour.",
+      "hi": "अपने नाम, उम्र और पसंदीदा रंग के साथ ये वाक्य अपने बारे में बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch09-flag-colours",
+   "topic": "9.4",
+   "template": "sequence",
+   "title": {
+    "en": "Colour the Indian flag",
+    "hi": "तिरंगे में रंग भरो"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "saffron",
+      "text": {
+       "en": "The top stripe is saffron (orange).",
+       "hi": "ऊपर की पट्टी केसरिया (नारंगी) है।"
+      }
+     },
+     {
+      "id": "white",
+      "text": {
+       "en": "The middle stripe is white, with a blue wheel.",
+       "hi": "बीच की पट्टी सफ़ेद है, उस पर नीला चक्र है।"
+      }
+     },
+     {
+      "id": "green",
+      "text": {
+       "en": "The bottom stripe is green.",
+       "hi": "नीचे की पट्टी हरी है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:saffron",
+     "expect": "placed:saffron",
+     "say": {
+      "en": "The flag is read from top to bottom. Place the top stripe first.",
+      "hi": "झंडा ऊपर से नीचे पढ़ा जाता है। ऊपर की पट्टी सबसे पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What colour is the bottom stripe of the Indian flag?",
+      "hi": "भारत के झंडे की नीचे वाली पट्टी किस रंग की है?"
+     },
+     "options": [
+      {
+       "id": "green",
+       "en": "Green",
+       "hi": "हरा (Green)"
+      },
+      {
+       "id": "saffron",
+       "en": "Saffron",
+       "hi": "केसरिया (Saffron)"
+      },
+      {
+       "id": "white",
+       "en": "White",
+       "hi": "सफ़ेद (White)"
+      }
+     ],
+     "answer": "green"
+    },
+    {
+     "kind": "do",
+     "target": "item:white",
+     "expect": "placed:white",
+     "say": {
+      "en": "Place the middle stripe next.",
+      "hi": "अब बीच वाली पट्टी रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the last stripe. Then tap Check.",
+      "hi": "आख़िरी पट्टी रखो। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Indian flag has three stripes: saffron at the top, white in the middle and green at the bottom. In the white stripe there is a blue wheel with 24 spokes.",
+      "hi": "भारत के झंडे में तीन पट्टियाँ हैं: ऊपर केसरिया, बीच में सफ़ेद और नीचे हरी। सफ़ेद पट्टी के बीच में 24 तीलियों वाला नीला चक्र है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which colour is in the middle of the Indian flag?",
+        "hi": "भारत के झंडे के बीच में कौन-सा रंग है?"
+       },
+       "options": [
+        {
+         "en": "White",
+         "hi": "सफ़ेद (White)"
+        },
+        {
+         "en": "Saffron",
+         "hi": "केसरिया (Saffron)"
+        },
+        {
+         "en": "Green",
+         "hi": "हरा (Green)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The middle stripe is white.",
+        "hi": "बीच की पट्टी सफ़ेद है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Saffron is the top stripe.",
+         "hi": "केसरिया ऊपर की पट्टी है।"
+        },
+        {
+         "en": "Green is the bottom stripe.",
+         "hi": "हरा नीचे की पट्टी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Colour the flag on paper in the right order. Which colour do you put at the top?",
+      "hi": "काग़ज़ पर झंडे में सही क्रम से रंग भरो। ऊपर कौन-सा रंग लगाओगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch09-colour-match",
+   "topic": "9.5",
+   "template": "match",
+   "title": {
+    "en": "What colour is it?",
+    "hi": "यह किस रंग का है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "sun",
+      "left": {
+       "en": "Sun",
+       "hi": "सूरज"
+      },
+      "right": {
+       "en": "yellow",
+       "hi": "पीला"
+      },
+      "why": {
+       "en": "The Sun looks yellow and bright.",
+       "hi": "सूरज पीला और चमकीला दिखता है।"
+      }
+     },
+     {
+      "id": "sky",
+      "left": {
+       "en": "Clear sky",
+       "hi": "साफ़ आसमान"
+      },
+      "right": {
+       "en": "blue",
+       "hi": "नीला"
+      },
+      "why": {
+       "en": "A clear day sky looks blue.",
+       "hi": "साफ़ दिन में आसमान नीला दिखता है।"
+      }
+     },
+     {
+      "id": "leaf",
+      "left": {
+       "en": "Leaf",
+       "hi": "पत्ती"
+      },
+      "right": {
+       "en": "green",
+       "hi": "हरा"
+      },
+      "why": {
+       "en": "Most leaves are green.",
+       "hi": "ज़्यादातर पत्तियाँ हरी होती हैं।"
+      }
+     },
+     {
+      "id": "tomato",
+      "left": {
+       "en": "Ripe tomato",
+       "hi": "पका टमाटर"
+      },
+      "right": {
+       "en": "red",
+       "hi": "लाल"
+      },
+      "why": {
+       "en": "A ripe tomato is red.",
+       "hi": "पका टमाटर लाल होता है।"
+      }
+     },
+     {
+      "id": "carrot",
+      "left": {
+       "en": "Carrot",
+       "hi": "गाजर"
+      },
+      "right": {
+       "en": "orange",
+       "hi": "नारंगी"
+      },
+      "why": {
+       "en": "A carrot is orange.",
+       "hi": "गाजर नारंगी होती है।"
+      }
+     },
+     {
+      "id": "brinjal",
+      "left": {
+       "en": "Brinjal",
+       "hi": "बैंगन"
+      },
+      "right": {
+       "en": "violet",
+       "hi": "बैंगनी"
+      },
+      "why": {
+       "en": "A brinjal is a deep violet colour.",
+       "hi": "बैंगन गहरे बैंगनी रंग का होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:sun",
+     "expect": "matched:sun",
+     "say": {
+      "en": "Tap 'Sun'. Then tap its colour.",
+      "hi": "'सूरज' पर टैप करो। फिर उसका रंग दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What colour is a clear sky in the daytime?",
+      "hi": "दिन में साफ़ आसमान किस रंग का दिखता है?"
+     },
+     "options": [
+      {
+       "id": "blue",
+       "en": "Blue",
+       "hi": "नीला (Blue)"
+      },
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल (Red)"
+      },
+      {
+       "id": "green",
+       "en": "Green",
+       "hi": "हरा (Green)"
+      }
+     ],
+     "answer": "blue"
+    },
+    {
+     "kind": "do",
+     "target": "left:sky",
+     "expect": "matched:sky",
+     "say": {
+      "en": "Match 'Clear sky' with its colour.",
+      "hi": "'साफ़ आसमान' को उसके रंग से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:leaf",
+     "expect": "matched:leaf",
+     "say": {
+      "en": "Match 'Leaf'.",
+      "hi": "'पत्ती' को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:tomato",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest: tomato, carrot and brinjal.",
+      "hi": "बाकी भी मिलाओ: टमाटर, गाजर और बैंगन।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Things around us have colours: the Sun is yellow, a clear sky is blue, leaves are green, a ripe tomato is red, a carrot is orange and a brinjal is violet. These are also colours of the rainbow.",
+      "hi": "हमारे आसपास की चीज़ों के रंग होते हैं: सूरज पीला, साफ़ आसमान नीला, पत्तियाँ हरी, पका टमाटर लाल, गाजर नारंगी और बैंगन बैंगनी। ये सब इंद्रधनुष के भी रंग हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is orange?",
+        "hi": "इनमें से नारंगी कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Carrot",
+         "hi": "गाजर (Carrot)"
+        },
+        {
+         "en": "Leaf",
+         "hi": "पत्ती (Leaf)"
+        },
+        {
+         "en": "Sky",
+         "hi": "आसमान (Sky)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A carrot is orange.",
+        "hi": "गाजर नारंगी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Most leaves are green.",
+         "hi": "ज़्यादातर पत्तियाँ हरी होती हैं।"
+        },
+        {
+         "en": "A clear sky is blue.",
+         "hi": "साफ़ आसमान नीला होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find three things of different colours in your room. Say their names and colours.",
+      "hi": "अपने कमरे में अलग-अलग रंग की तीन चीज़ें ढूँढो। उनके नाम और रंग बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Opens the chapter",
+   "shows": "A big double-edged rainbow over a green Indian village field after rain, with wet leaves shining",
+   "view": "16:9, wide view, golden light",
+   "right": "All seven colours visible in the right order, red outside",
+   "avoid": "No people; no text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "9.1",
+   "use": "The rainbow garden",
+   "shows": "Four frames of the same garden: grey rain, rainbow appears, flowers painted in bright colours, rainbow gone",
+   "view": "4 frames, same camera",
+   "right": "Same garden in each frame",
+   "avoid": "No faces"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "Colour matching",
+   "shows": "Cut-outs of a ripe tomato, a carrot, a brinjal, a green leaf, a lemon-yellow sun disc drawing, a blue sky photo disc",
+   "view": "Straight on, soft light",
+   "right": "True colours (leaf green, brinjal deep violet)",
+   "avoid": "No text"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "9.4",
+   "use": "Indian flag",
+   "shows": "A plain outline of a rectangular flag with three equal horizontal stripes and a circle in the middle, uncoloured",
+   "view": "Front view, flat, white background",
+   "right": "Three equal stripes, circle in the centre",
+   "avoid": "No text, no colours"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "9.3",
+   "use": "Writing about myself",
+   "shows": "A child's hands writing at a desk with crayons beside a notebook",
+   "view": "16:9 top view",
+   "right": "Crayons in many colours",
+   "avoid": "No faces; no readable writing"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "9.5",
+   "use": "Clouds and sky",
+   "shows": "A big blue sky with fluffy clouds in different shapes over a field",
+   "view": "16:9",
+   "right": "Shapes in clouds clear and varied",
+   "avoid": "No text"
+  }
+ ]
+}

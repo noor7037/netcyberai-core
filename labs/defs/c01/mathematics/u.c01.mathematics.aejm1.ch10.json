@@ -1,0 +1,975 @@
+{
+ "chapter_key": "u.c01.mathematics.aejm1.ch10",
+ "class": 1,
+ "subject_id": "mathematics",
+ "title": "How do I Spend my Day? (Time)",
+ "source": "https://ncert.nic.in/textbook/pdf/aejm110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Pihu's day, in order",
+   "labs": [
+    "c01-mathematics-aejm1-ch10-day-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Morning, afternoon, evening and night",
+   "labs": [
+    "c01-mathematics-aejm1-ch10-parts-of-day"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Which takes a longer time",
+   "labs": [
+    "c01-mathematics-aejm1-ch10-takes-longer"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Seasons",
+   "labs": [
+    "c01-mathematics-aejm1-ch10-seasons"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "My own daily routine",
+   "labs": [],
+   "why_no_lab": "Each child talks about their own day with the teacher and draws it on paper, which is more personal than a screen can be."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-mathematics-aejm1-ch10-day-order",
+   "topic": "10.1",
+   "template": "sequence",
+   "title": {
+    "en": "Pihu's day, in order",
+    "hi": "पीहू का दिन, क्रम से"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Get up and do yoga",
+       "hi": "उठकर योग करना"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Brush teeth and take a bath",
+       "hi": "दाँत साफ़ करना और नहाना"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Eat breakfast and go to school",
+       "hi": "नाश्ता करके स्कूल जाना"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Wash hands and eat lunch",
+       "hi": "हाथ धोकर खाना खाना"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Play with friends",
+       "hi": "दोस्तों के साथ खेलना"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "Eat dinner and go to sleep",
+       "hi": "रात का खाना खाकर सोना"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Put Pihu's day in order, from morning to night. Tap 'Get up and do yoga' and put it first.",
+      "hi": "पीहू का दिन सुबह से रात तक क्रम में रखो। 'उठकर योग करना' छुओ और सबसे पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which comes right after 'Get up and do yoga'?",
+      "hi": "'उठकर योग करना' के ठीक बाद क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "brush",
+       "en": "Brush teeth and take a bath",
+       "hi": "दाँत साफ़ करना और नहाना"
+      },
+      {
+       "id": "sleep",
+       "en": "Go to sleep",
+       "hi": "सो जाना"
+      },
+      {
+       "id": "play",
+       "en": "Play with friends",
+       "hi": "दोस्तों के साथ खेलना"
+      }
+     ],
+     "answer": "brush"
+    },
+    {
+     "kind": "do",
+     "target": "item:s2",
+     "expect": "placed:s2",
+     "say": {
+      "en": "Put 'Brush teeth and take a bath' second.",
+      "hi": "'दाँत साफ़ करना और नहाना' दूसरे स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the rest in order and tap Check.",
+      "hi": "बाक़ी को क्रम में रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A day has things that happen one after another: first, then, next, and last. Pihu gets up in the morning and sleeps at night. Keeping the order helps us plan our day.",
+      "hi": "दिन में काम एक के बाद एक होते हैं: पहले, फिर, उसके बाद और आख़िर में। पीहू सुबह उठती है और रात को सोती है। क्रम याद रखने से हम अपना दिन अच्छे से बना पाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does Pihu do just before going to school?",
+        "hi": "स्कूल जाने से ठीक पहले पीहू क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "Eats breakfast",
+         "hi": "नाश्ता करती है"
+        },
+        {
+         "en": "Eats dinner",
+         "hi": "रात का खाना खाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Breakfast is in the morning, before school.",
+        "hi": "नाश्ता सुबह स्कूल से पहले होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dinner is at night, after school and play.",
+         "hi": "रात का खाना रात को होता है, स्कूल और खेल के बाद।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does Pihu do last in the day?",
+        "hi": "पीहू दिन में सबसे आख़िर में क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "Goes to sleep",
+         "hi": "सो जाती है"
+        },
+        {
+         "en": "Does yoga",
+         "hi": "योग करती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sleep comes at the end of the day.",
+        "hi": "नींद दिन के अंत में आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Yoga is how her day begins.",
+         "hi": "योग से उसका दिन शुरू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tell your friend what you do first, next and last after you wake up.",
+      "hi": "अब ख़ुद आज़माओ। दोस्त को बताओ कि सुबह उठकर तुम पहले, फिर और आख़िर में क्या करते हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch10-parts-of-day",
+   "topic": "10.2",
+   "template": "sort",
+   "title": {
+    "en": "Morning, afternoon, evening or night?",
+    "hi": "सुबह, दोपहर, शाम या रात?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "morning",
+      "label": {
+       "en": "Morning",
+       "hi": "सुबह"
+      }
+     },
+     {
+      "id": "afternoon",
+      "label": {
+       "en": "Afternoon",
+       "hi": "दोपहर"
+      }
+     },
+     {
+      "id": "evening",
+      "label": {
+       "en": "Evening",
+       "hi": "शाम"
+      }
+     },
+     {
+      "id": "night",
+      "label": {
+       "en": "Night",
+       "hi": "रात"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "yoga",
+      "text": {
+       "en": "Doing yoga as the sun rises",
+       "hi": "सूरज निकलते समय योग करना"
+      },
+      "bin": "morning",
+      "why": {
+       "en": "The sun is rising, so it is morning.",
+       "hi": "सूरज निकल रहा है, इसलिए सुबह है।"
+      }
+     },
+     {
+      "id": "breakfast",
+      "text": {
+       "en": "Eating breakfast",
+       "hi": "नाश्ता करना"
+      },
+      "bin": "morning",
+      "why": {
+       "en": "Breakfast is in the morning.",
+       "hi": "नाश्ता सुबह होता है।"
+      }
+     },
+     {
+      "id": "lunch",
+      "text": {
+       "en": "Eating lunch when the sun is high",
+       "hi": "सूरज ऊपर हो तब खाना खाना"
+      },
+      "bin": "afternoon",
+      "why": {
+       "en": "The sun is high in the sky, so it is afternoon.",
+       "hi": "सूरज आसमान में ऊपर है, इसलिए दोपहर है।"
+      }
+     },
+     {
+      "id": "rest",
+      "text": {
+       "en": "Resting after school",
+       "hi": "स्कूल के बाद आराम करना"
+      },
+      "bin": "afternoon",
+      "why": {
+       "en": "We come home and rest in the afternoon.",
+       "hi": "हम दोपहर में घर आकर आराम करते हैं।"
+      }
+     },
+     {
+      "id": "play",
+      "text": {
+       "en": "Playing as the sun sets",
+       "hi": "सूरज डूबते समय खेलना"
+      },
+      "bin": "evening",
+      "why": {
+       "en": "The sun is setting, so it is evening.",
+       "hi": "सूरज डूब रहा है, इसलिए शाम है।"
+      }
+     },
+     {
+      "id": "study",
+      "text": {
+       "en": "Doing homework in the evening light",
+       "hi": "शाम की रोशनी में पढ़ाई करना"
+      },
+      "bin": "evening",
+      "why": {
+       "en": "It is evening time to study after play.",
+       "hi": "खेल के बाद शाम को पढ़ाई का समय होता है।"
+      }
+     },
+     {
+      "id": "stars",
+      "text": {
+       "en": "Seeing the moon and stars",
+       "hi": "चाँद और तारे देखना"
+      },
+      "bin": "night",
+      "why": {
+       "en": "The moon and stars are in the sky at night.",
+       "hi": "चाँद और तारे रात को आसमान में दिखते हैं।"
+      }
+     },
+     {
+      "id": "sleep",
+      "text": {
+       "en": "Sleeping in bed",
+       "hi": "बिस्तर में सोना"
+      },
+      "bin": "night",
+      "why": {
+       "en": "We sleep at night.",
+       "hi": "हम रात को सोते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:yoga",
+     "expect": "correct:yoga",
+     "say": {
+      "en": "Tap 'Doing yoga as the sun rises', then tap the part of the day.",
+      "hi": "'सूरज निकलते समय योग करना' छुओ, फिर दिन का वह भाग छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You see the moon and stars. What time of the day is it?",
+      "hi": "तुम्हें चाँद और तारे दिख रहे हैं। दिन का कौन-सा समय है?"
+     },
+     "options": [
+      {
+       "id": "morning",
+       "en": "Morning",
+       "hi": "सुबह"
+      },
+      {
+       "id": "evening",
+       "en": "Evening",
+       "hi": "शाम"
+      },
+      {
+       "id": "night",
+       "en": "Night",
+       "hi": "रात"
+      }
+     ],
+     "answer": "night"
+    },
+    {
+     "kind": "do",
+     "target": "card:stars",
+     "expect": "correct:stars",
+     "say": {
+      "en": "Sort the moon and stars card.",
+      "hi": "चाँद और तारों वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:evening",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards.",
+      "hi": "बाक़ी सब कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A day has four parts: morning, afternoon, evening and night. In the morning the sun rises. In the afternoon it is high. In the evening it sets. At night we see the moon and the stars. We do different things at different times.",
+      "hi": "दिन के चार भाग होते हैं: सुबह, दोपहर, शाम और रात। सुबह सूरज निकलता है। दोपहर में वह ऊपर होता है। शाम को डूबता है। रात को चाँद और तारे दिखते हैं। अलग-अलग समय पर हम अलग-अलग काम करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The sun is high in the sky. It is...",
+        "hi": "सूरज आसमान में ऊपर है। यह है..."
+       },
+       "options": [
+        {
+         "en": "afternoon",
+         "hi": "दोपहर"
+        },
+        {
+         "en": "night",
+         "hi": "रात"
+        },
+        {
+         "en": "morning",
+         "hi": "सुबह"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When the sun is high, it is afternoon.",
+        "hi": "जब सूरज ऊपर होता है, तब दोपहर होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At night the sun is not in the sky.",
+         "hi": "रात को सूरज आसमान में नहीं होता।"
+        },
+        {
+         "en": "In the morning the sun is just rising and still low.",
+         "hi": "सुबह सूरज अभी निकल रहा होता है और नीचे होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Name one thing you do in each part of your day.",
+      "hi": "अब ख़ुद आज़माओ। अपने दिन के हर भाग में किया जाने वाला एक-एक काम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch10-takes-longer",
+   "topic": "10.3",
+   "template": "sort",
+   "title": {
+    "en": "Takes a short time or a long time?",
+    "hi": "थोड़ा समय लगता है या ज़्यादा?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "short",
+      "label": {
+       "en": "Takes a short time",
+       "hi": "थोड़ा समय लगता है"
+      }
+     },
+     {
+      "id": "long",
+      "label": {
+       "en": "Takes a long time",
+       "hi": "ज़्यादा समय लगता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "blink",
+      "text": {
+       "en": "Blinking your eyes",
+       "hi": "आँखें झपकाना"
+      },
+      "bin": "short",
+      "why": {
+       "en": "You blink in a moment.",
+       "hi": "आँखें एक पल में झपक जाती हैं।"
+      }
+     },
+     {
+      "id": "clap",
+      "text": {
+       "en": "Clapping your hands once",
+       "hi": "एक बार ताली बजाना"
+      },
+      "bin": "short",
+      "why": {
+       "en": "One clap takes a moment.",
+       "hi": "एक ताली एक पल में बज जाती है।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Drinking a glass of water",
+       "hi": "एक गिलास पानी पीना"
+      },
+      "bin": "short",
+      "why": {
+       "en": "Drinking a glass of water takes a short time.",
+       "hi": "एक गिलास पानी पीने में थोड़ा समय लगता है।"
+      }
+     },
+     {
+      "id": "hands",
+      "text": {
+       "en": "Washing your hands",
+       "hi": "हाथ धोना"
+      },
+      "bin": "short",
+      "why": {
+       "en": "Washing hands takes a short time.",
+       "hi": "हाथ धोने में थोड़ा समय लगता है।"
+      }
+     },
+     {
+      "id": "sleep",
+      "text": {
+       "en": "Sleeping at night",
+       "hi": "रात को सोना"
+      },
+      "bin": "long",
+      "why": {
+       "en": "Sleeping at night takes many hours.",
+       "hi": "रात की नींद में कई घंटे लगते हैं।"
+      }
+     },
+     {
+      "id": "school",
+      "text": {
+       "en": "A day at school",
+       "hi": "स्कूल में एक दिन"
+      },
+      "bin": "long",
+      "why": {
+       "en": "A school day takes many hours.",
+       "hi": "स्कूल के एक दिन में कई घंटे लगते हैं।"
+      }
+     },
+     {
+      "id": "train",
+      "text": {
+       "en": "A train journey to another city",
+       "hi": "दूसरे शहर तक रेल की यात्रा"
+      },
+      "bin": "long",
+      "why": {
+       "en": "A train journey to another city takes many hours.",
+       "hi": "दूसरे शहर तक रेल की यात्रा में कई घंटे लगते हैं।"
+      }
+     },
+     {
+      "id": "seed",
+      "text": {
+       "en": "A seed growing into a plant",
+       "hi": "बीज से पौधा बनना"
+      },
+      "bin": "long",
+      "why": {
+       "en": "A seed takes many days to grow into a plant.",
+       "hi": "बीज को पौधा बनने में कई दिन लगते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:blink",
+     "expect": "correct:blink",
+     "say": {
+      "en": "Tap 'Blinking your eyes', then tap the group where it belongs.",
+      "hi": "'आँखें झपकाना' छुओ, फिर उस समूह को छुओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does a day at school take a short time or a long time?",
+      "hi": "स्कूल में एक दिन बिताने में थोड़ा समय लगता है या ज़्यादा?"
+     },
+     "options": [
+      {
+       "id": "short",
+       "en": "A short time",
+       "hi": "थोड़ा समय"
+      },
+      {
+       "id": "long",
+       "en": "A long time",
+       "hi": "ज़्यादा समय"
+      }
+     ],
+     "answer": "long"
+    },
+    {
+     "kind": "do",
+     "target": "card:school",
+     "expect": "correct:school",
+     "say": {
+      "en": "Sort 'A day at school'.",
+      "hi": "'स्कूल में एक दिन' को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:short",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards.",
+      "hi": "बाक़ी सब कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Some things happen in a moment, like a blink or a clap. Other things take many hours or days, like a school day, a train journey or a seed growing. We say one takes a short time and the other takes a long time.",
+      "hi": "कुछ काम एक पल में हो जाते हैं, जैसे आँख झपकना या ताली बजाना। कुछ में कई घंटे या दिन लगते हैं, जैसे स्कूल का दिन, रेल की यात्रा या बीज का बढ़ना। हम कहते हैं कि एक में थोड़ा समय लगता है और दूसरे में ज़्यादा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which takes longer?",
+        "hi": "किसमें ज़्यादा समय लगता है?"
+       },
+       "options": [
+        {
+         "en": "Sleeping at night",
+         "hi": "रात को सोना"
+        },
+        {
+         "en": "Clapping once",
+         "hi": "एक बार ताली बजाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sleep lasts many hours but a clap takes a moment.",
+        "hi": "नींद कई घंटे चलती है, जबकि ताली एक पल की होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One clap is over in a moment.",
+         "hi": "एक ताली एक पल में ख़त्म हो जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Think of two things that take a short time and two that take a long time in your day.",
+      "hi": "अब ख़ुद आज़माओ। अपने दिन के दो काम सोचो जिनमें थोड़ा समय लगता है और दो जिनमें ज़्यादा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch10-seasons",
+   "topic": "10.4",
+   "template": "match",
+   "title": {
+    "en": "Match things with seasons",
+    "hi": "चीज़ों को ऋतुओं से मिलाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "Umbrella and raincoat",
+       "hi": "छाता और रेनकोट"
+      },
+      "right": {
+       "en": "Monsoon",
+       "hi": "बरसात"
+      },
+      "why": {
+       "en": "In the monsoon it rains, so we use an umbrella.",
+       "hi": "बरसात में पानी गिरता है, इसलिए हम छाता लेते हैं।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "Woollen sweater and quilt",
+       "hi": "ऊनी स्वेटर और रज़ाई"
+      },
+      "right": {
+       "en": "Winter",
+       "hi": "सर्दी"
+      },
+      "why": {
+       "en": "Winter is cold, so we wear sweaters.",
+       "hi": "सर्दी में ठंड होती है, इसलिए हम स्वेटर पहनते हैं।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "Ice cream and a hand fan",
+       "hi": "आइसक्रीम और हाथ का पंखा"
+      },
+      "right": {
+       "en": "Summer",
+       "hi": "गर्मी"
+      },
+      "why": {
+       "en": "Summer is hot, so we eat ice cream and use a fan.",
+       "hi": "गर्मी में धूप तेज़ होती है, इसलिए हम आइसक्रीम खाते हैं और पंखा झलते हैं।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "New green leaves and flowers",
+       "hi": "नए हरे पत्ते और फूल"
+      },
+      "right": {
+       "en": "Spring",
+       "hi": "वसंत"
+      },
+      "why": {
+       "en": "In spring trees get new leaves and flowers.",
+       "hi": "वसंत में पेड़ों पर नए पत्ते और फूल आते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Tap 'Umbrella and raincoat', then tap the season when we use them.",
+      "hi": "'छाता और रेनकोट' छुओ, फिर वह ऋतु छुओ जब हम इन्हें इस्तेमाल करते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which season needs a woollen sweater?",
+      "hi": "किस ऋतु में ऊनी स्वेटर चाहिए?"
+     },
+     "options": [
+      {
+       "id": "summer",
+       "en": "Summer",
+       "hi": "गर्मी"
+      },
+      {
+       "id": "winter",
+       "en": "Winter",
+       "hi": "सर्दी"
+      },
+      {
+       "id": "monsoon",
+       "en": "Monsoon",
+       "hi": "बरसात"
+      }
+     ],
+     "answer": "winter"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Match the sweater and quilt.",
+      "hi": "स्वेटर और रज़ाई को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest.",
+      "hi": "बाक़ी को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The year has seasons: summer is hot, monsoon is rainy, winter is cold, and spring brings new leaves and flowers. What we wear and eat changes with the season.",
+      "hi": "साल में ऋतुएँ होती हैं: गर्मी में तेज़ धूप और बहुत गर्मी होती है, बरसात में पानी गिरता है, सर्दी में ठंड होती है और वसंत में नए पत्ते और फूल आते हैं। ऋतु के साथ हमारे कपड़े और खाना बदलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which season do we need an umbrella most?",
+        "hi": "किस ऋतु में हमें छाते की सबसे ज़्यादा ज़रूरत होती है?"
+       },
+       "options": [
+        {
+         "en": "Monsoon",
+         "hi": "बरसात"
+        },
+        {
+         "en": "Winter",
+         "hi": "सर्दी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In the monsoon it rains often.",
+        "hi": "बरसात में अक्सर पानी गिरता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Winter is cold and mostly dry, so we need warm clothes.",
+         "hi": "सर्दी में ठंड होती है और ज़्यादातर सूखा रहता है, इसलिए गर्म कपड़े चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which season is hot?",
+        "hi": "कौन-सी ऋतु गर्म होती है?"
+       },
+       "options": [
+        {
+         "en": "Summer",
+         "hi": "गर्मी"
+        },
+        {
+         "en": "Winter",
+         "hi": "सर्दी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Summer days are hot and sunny.",
+        "hi": "गर्मी के दिन गर्म और धूप वाले होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Winter is the cold season.",
+         "hi": "सर्दी ठंड की ऋतु है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tell your friend your favourite food in each season.",
+      "hi": "अब ख़ुद आज़माओ। दोस्त को हर ऋतु का अपना पसंदीदा खाना बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "10.2",
+   "use": "Sun through the day",
+   "shows": "Five frames of the same view from a village window: sunrise, mid-morning, noon with a high sun, sunset, night with the moon",
+   "view": "Same camera, same window, only the sky changes",
+   "right": "Sun and moon in true positions; colours of the sky right for each time",
+   "avoid": "People; clock faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "Morning routine",
+   "shows": "A toothbrush with a little paste, a bucket with a mug, and a yoga mat (each its own file)",
+   "view": "Straight on, transparent background",
+   "right": "True colours; no brand marks",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Lunch at school",
+   "shows": "Children sitting in a circle eating from tiffin boxes in a school courtyard, seen from behind",
+   "view": "Eye level, bright daylight",
+   "right": "Clearly daytime with the sun high",
+   "avoid": "Faces; food waste"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "10.4",
+   "use": "Four seasons",
+   "shows": "The same mango tree in four frames: summer with fruit, monsoon with rain, winter with mist, spring with new leaves",
+   "view": "Same camera spot and framing",
+   "right": "Season clearly readable in each frame",
+   "avoid": "People; buildings changing between frames"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "10.4",
+   "use": "Season things",
+   "shows": "Umbrella, woollen sweater, hand fan, and an ice cream cone (each its own file)",
+   "view": "Front view, transparent background",
+   "right": "True colours and shapes",
+   "avoid": "Brand logos"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "Quick and slow",
+   "shows": "A child blinking in close-up beside a long train at a station",
+   "view": "Close, even light",
+   "right": "Both easy to see as a pair for comparing time",
+   "avoid": "Identifiable child"
+  }
+ ]
+}

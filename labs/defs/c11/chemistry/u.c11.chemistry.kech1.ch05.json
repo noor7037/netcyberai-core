@@ -1,0 +1,2397 @@
+{
+ "chapter_key": "u.c11.chemistry.kech1.ch05",
+ "class": 11,
+ "subject_id": "chemistry",
+ "title": "Thermodynamics",
+ "source": "https://ncert.nic.in/textbook/pdf/kech105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Thermodynamic terms: system and surroundings, types of system, state of the system, internal energy as a state function",
+   "labs": [
+    "c11-chemistry-kech1-ch05-system-types",
+    "c11-chemistry-kech1-ch05-state-functions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Applications: work, enthalpy, extensive and intensive properties, heat capacity, ΔH and ΔU",
+   "labs": [
+    "c11-chemistry-kech1-ch05-first-law",
+    "c11-chemistry-kech1-ch05-delta-n-gas"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Measurement of ΔU and ΔH: calorimetry",
+   "labs": [
+    "c11-chemistry-kech1-ch05-calorimeter"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Enthalpy change of a reaction: standard enthalpies, thermochemical equations, Hess's law",
+   "labs": [
+    "c11-chemistry-kech1-ch05-hess-law"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Enthalpies for different types of reactions: combustion, atomisation, bond, solution, lattice",
+   "labs": [
+    "c11-chemistry-kech1-ch05-fuels",
+    "c11-chemistry-kech1-ch05-enthalpy-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "Spontaneity: entropy, the second law, Gibbs energy",
+   "labs": [
+    "c11-chemistry-kech1-ch05-entropy",
+    "c11-chemistry-kech1-ch05-gibbs-signs",
+    "c11-chemistry-kech1-ch05-ice-gibbs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.7",
+   "title": "Gibbs energy change and equilibrium",
+   "labs": [],
+   "why_no_lab": "The link ΔG° = −RT ln K is a formula used with worked numbers; the reader's solved examples teach it better than anything a child can move, and the ice lab already shows ΔG = 0 at equilibrium."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-chemistry-kech1-ch05-system-types",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "Open, closed or isolated?",
+    "hi": "खुला, बंद या विलगित?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "open",
+      "label": {
+       "en": "Open: energy and matter cross",
+       "hi": "खुला: ऊर्जा और द्रव्य दोनों आते-जाते हैं"
+      }
+     },
+     {
+      "id": "closed",
+      "label": {
+       "en": "Closed: only energy crosses",
+       "hi": "बंद: केवल ऊर्जा आती-जाती है"
+      }
+     },
+     {
+      "id": "isolated",
+      "label": {
+       "en": "Isolated: nothing crosses",
+       "hi": "विलगित: कुछ नहीं आता-जाता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "chai",
+      "text": {
+       "en": "Hot chai in an open cup",
+       "hi": "खुले कप में गर्म चाय"
+      },
+      "bin": "open",
+      "why": {
+       "en": "Steam leaves (matter) and the cup cools (energy).",
+       "hi": "भाप निकलती है (द्रव्य) और कप ठंडा होता है (ऊर्जा)।"
+      }
+     },
+     {
+      "id": "pan",
+      "text": {
+       "en": "Dal boiling in an open pan",
+       "hi": "खुले बर्तन में उबलती दाल"
+      },
+      "bin": "open",
+      "why": {
+       "en": "Water vapour escapes and heat flows in from the flame.",
+       "hi": "जलवाष्प निकलती है और लौ से ऊष्मा अंदर आती है।"
+      }
+     },
+     {
+      "id": "cooker",
+      "text": {
+       "en": "A pressure cooker with its whistle shut",
+       "hi": "सीटी बंद वाला प्रेशर कुकर"
+      },
+      "bin": "closed",
+      "why": {
+       "en": "No steam escapes, but heat comes in from the stove.",
+       "hi": "भाप बाहर नहीं निकलती, पर चूल्हे से ऊष्मा अंदर आती है।"
+      }
+     },
+     {
+      "id": "bottle",
+      "text": {
+       "en": "A sealed cold-drink bottle warming on a table",
+       "hi": "मेज़ पर गर्म होती बंद कोल्ड-ड्रिंक की बोतल"
+      },
+      "bin": "closed",
+      "why": {
+       "en": "The gas stays inside, but heat flows in from the room.",
+       "hi": "गैस अंदर रहती है, पर कमरे से ऊष्मा अंदर आती है।"
+      }
+     },
+     {
+      "id": "flask",
+      "text": {
+       "en": "Hot milk in a closed thermos flask",
+       "hi": "बंद थर्मस फ्लास्क में गर्म दूध"
+      },
+      "bin": "isolated",
+      "why": {
+       "en": "The vacuum walls and stopper stop both heat and matter, nearly perfectly.",
+       "hi": "निर्वात दीवारें और ढक्कन ऊष्मा और द्रव्य दोनों को लगभग पूरी तरह रोकते हैं।"
+      }
+     },
+     {
+      "id": "plant",
+      "text": {
+       "en": "A potted plant in sunlight",
+       "hi": "धूप में गमले का पौधा"
+      },
+      "bin": "open",
+      "why": {
+       "en": "It takes in water and CO₂ and receives light energy.",
+       "hi": "यह पानी और CO₂ लेता है और प्रकाश ऊर्जा पाता है।"
+      }
+     },
+     {
+      "id": "ice",
+      "text": {
+       "en": "Ice cubes in a closed steel tiffin",
+       "hi": "बंद स्टील के टिफ़िन में बर्फ़"
+      },
+      "bin": "closed",
+      "why": {
+       "en": "Steel lets heat in, so the ice melts, but no water leaves.",
+       "hi": "स्टील ऊष्मा अंदर आने देता है, इसलिए बर्फ़ पिघलती है, पर पानी बाहर नहीं जाता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A thermos keeps tea hot for hours. Which kind of system is the tea inside?",
+      "hi": "थर्मस चाय को घंटों गर्म रखता है। अंदर की चाय कौन-सा तंत्र है?"
+     },
+     "options": [
+      {
+       "id": "iso",
+       "en": "Nearly isolated",
+       "hi": "लगभग विलगित"
+      },
+      {
+       "id": "open",
+       "en": "Open",
+       "hi": "खुला"
+      },
+      {
+       "id": "closed",
+       "en": "Closed but losing heat fast",
+       "hi": "बंद पर तेज़ी से ऊष्मा खोता"
+      }
+     ],
+     "answer": "iso"
+    },
+    {
+     "kind": "do",
+     "target": "card:chai",
+     "expect": "correct:chai",
+     "say": {
+      "en": "Tap the chai card, then its bin.",
+      "hi": "चाय वाला कार्ड छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:cooker",
+     "expect": "correct:cooker",
+     "say": {
+      "en": "Now place the pressure cooker.",
+      "hi": "अब प्रेशर कुकर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The system is the part we study; everything else is the surroundings, and the boundary separates them. If both matter and energy can cross, the system is open. If only energy can cross, it is closed. If neither can cross, it is isolated. Real thermos flasks come close to isolated but slowly lose some heat.",
+      "hi": "तंत्र वह हिस्सा है जिसका हम अध्ययन करते हैं; बाकी सब परिवेश है, और सीमा दोनों को अलग करती है। अगर द्रव्य और ऊर्जा दोनों आ-जा सकें तो तंत्र खुला है। अगर केवल ऊर्जा आ-जा सके तो बंद है। अगर दोनों में से कुछ नहीं, तो विलगित है। असली थर्मस लगभग विलगित होते हैं, पर धीरे-धीरे कुछ ऊष्मा खोते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A reaction runs in a sealed steel container placed in a water bath. Which system is it?",
+        "hi": "एक अभिक्रिया पानी के कुंड में रखे बंद स्टील पात्र में होती है। यह कौन-सा तंत्र है?"
+       },
+       "options": [
+        {
+         "en": "Closed",
+         "hi": "बंद"
+        },
+        {
+         "en": "Open",
+         "hi": "खुला"
+        },
+        {
+         "en": "Isolated",
+         "hi": "विलगित"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Steel conducts heat to the water, but no matter can leave the sealed container.",
+        "hi": "स्टील ऊष्मा पानी तक पहुँचाता है, पर बंद पात्र से द्रव्य बाहर नहीं जा सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An open system lets matter out; the container is sealed.",
+         "hi": "खुला तंत्र द्रव्य को बाहर जाने देता है; पात्र बंद है।"
+        },
+        {
+         "en": "Steel walls let heat through, so it is not isolated.",
+         "hi": "स्टील की दीवारें ऊष्मा जाने देती हैं, इसलिए यह विलगित नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look around your kitchen. Find one more example of each kind of system and say why.",
+      "hi": "अपनी रसोई में देखो। हर तरह के तंत्र का एक और उदाहरण खोजो और कारण बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch05-state-functions",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "State function or path function?",
+    "hi": "अवस्था फलन या पथ फलन?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "state",
+      "label": {
+       "en": "State function: start and end only",
+       "hi": "अवस्था फलन: केवल आरंभ और अंत"
+      }
+     },
+     {
+      "id": "path",
+      "label": {
+       "en": "Path function: depends on the route",
+       "hi": "पथ फलन: रास्ते पर निर्भर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "u",
+      "text": {
+       "en": "Internal energy, U",
+       "hi": "आंतरिक ऊर्जा, U"
+      },
+      "bin": "state",
+      "why": {
+       "en": "ΔU is the same however the change is made.",
+       "hi": "परिवर्तन किसी भी तरह हो, ΔU वही रहता है।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "Enthalpy, H",
+       "hi": "एन्थैल्पी, H"
+      },
+      "bin": "state",
+      "why": {
+       "en": "H = U + pV, built only from state functions.",
+       "hi": "H = U + pV, केवल अवस्था फलनों से बना है।"
+      }
+     },
+     {
+      "id": "t",
+      "text": {
+       "en": "Temperature, T",
+       "hi": "ताप, T"
+      },
+      "bin": "state",
+      "why": {
+       "en": "It describes the state right now, not how it got there.",
+       "hi": "यह अभी की अवस्था बताता है, वहाँ कैसे पहुँचे यह नहीं।"
+      }
+     },
+     {
+      "id": "p",
+      "text": {
+       "en": "Pressure, p",
+       "hi": "दाब, p"
+      },
+      "bin": "state",
+      "why": {
+       "en": "A property of the state.",
+       "hi": "अवस्था का एक गुण।"
+      }
+     },
+     {
+      "id": "v",
+      "text": {
+       "en": "Volume, V",
+       "hi": "आयतन, V"
+      },
+      "bin": "state",
+      "why": {
+       "en": "A property of the state.",
+       "hi": "अवस्था का एक गुण।"
+      }
+     },
+     {
+      "id": "q",
+      "text": {
+       "en": "Heat, q",
+       "hi": "ऊष्मा, q"
+      },
+      "bin": "path",
+      "why": {
+       "en": "The same change can take in different amounts of heat by different routes.",
+       "hi": "एक ही परिवर्तन अलग रास्तों से अलग मात्रा में ऊष्मा ले सकता है।"
+      }
+     },
+     {
+      "id": "w",
+      "text": {
+       "en": "Work, w",
+       "hi": "कार्य, w"
+      },
+      "bin": "path",
+      "why": {
+       "en": "Work depends on how the gas is expanded or compressed.",
+       "hi": "कार्य इस पर निर्भर है कि गैस कैसे फैलाई या दबाई गई।"
+      }
+     },
+     {
+      "id": "dist",
+      "text": {
+       "en": "Distance walked from home to school",
+       "hi": "घर से स्कूल तक चली गई दूरी"
+      },
+      "bin": "path",
+      "why": {
+       "en": "Two different roads give different distances.",
+       "hi": "दो अलग रास्तों से अलग दूरी आती है।"
+      }
+     },
+     {
+      "id": "height",
+      "text": {
+       "en": "Height gained climbing a hill",
+       "hi": "पहाड़ी पर चढ़कर बढ़ी ऊँचाई"
+      },
+      "bin": "state",
+      "why": {
+       "en": "Whatever path you take, the height gained is the same.",
+       "hi": "कोई भी रास्ता लो, बढ़ी ऊँचाई वही रहती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You climb from the foot of a hill to the top, once by the steep steps and once by the winding road. What is the same both times?",
+      "hi": "तुम पहाड़ी के नीचे से ऊपर तक एक बार सीधी सीढ़ियों से और एक बार घुमावदार सड़क से चढ़ते हो। दोनों बार क्या एक जैसा है?"
+     },
+     "options": [
+      {
+       "id": "height",
+       "en": "The height gained",
+       "hi": "बढ़ी हुई ऊँचाई"
+      },
+      {
+       "id": "dist",
+       "en": "The distance walked",
+       "hi": "चली गई दूरी"
+      },
+      {
+       "id": "time",
+       "en": "The time taken",
+       "hi": "लगा हुआ समय"
+      }
+     ],
+     "answer": "height"
+    },
+    {
+     "kind": "do",
+     "target": "card:height",
+     "expect": "correct:height",
+     "say": {
+      "en": "Tap the hill card, then its bin.",
+      "hi": "पहाड़ी वाला कार्ड छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:q",
+     "expect": "correct:q",
+     "say": {
+      "en": "Now place heat, q.",
+      "hi": "अब ऊष्मा, q, रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A state function depends only on the state of the system, so its change depends only on where you start and end. U, H, p, V and T are state functions. Heat and work are not: they are energy in transit, and their amounts depend on the route. Yet their sum, q + w, equals ΔU, which does not depend on the route.",
+      "hi": "अवस्था फलन केवल तंत्र की अवस्था पर निर्भर करता है, इसलिए उसका परिवर्तन केवल शुरू और अंत पर निर्भर है। U, H, p, V और T अवस्था फलन हैं। ऊष्मा और कार्य नहीं हैं: ये रास्ते में चल रही ऊर्जा हैं, और इनकी मात्रा रास्ते पर निर्भर है। फिर भी इनका योग, q + w, ΔU के बराबर है, जो रास्ते पर निर्भर नहीं है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which property is extensive, changing with the amount of matter?",
+        "hi": "कौन-सा गुण विस्तीर्ण है, जो द्रव्य की मात्रा के साथ बदलता है?"
+       },
+       "options": [
+        {
+         "en": "Volume",
+         "hi": "आयतन"
+        },
+        {
+         "en": "Temperature",
+         "hi": "ताप"
+        },
+        {
+         "en": "Density",
+         "hi": "घनत्व"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Double the water and you double its volume, mass and enthalpy; these are extensive.",
+        "hi": "पानी दुगना करो तो आयतन, द्रव्यमान और एन्थैल्पी दुगुने हो जाते हैं; ये विस्तीर्ण हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A bucket and a cup of the same water have the same temperature: intensive.",
+         "hi": "एक ही पानी की बाल्टी और कप का ताप एक जैसा होता है: गहन गुण।"
+        },
+        {
+         "en": "Density is mass ÷ volume, the same for any amount: intensive.",
+         "hi": "घनत्व द्रव्यमान ÷ आयतन है, किसी भी मात्रा के लिए वही: गहन गुण।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. For each state function, think of two routes and check that its change stays the same.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर अवस्था फलन के लिए दो रास्ते सोचो और जाँचो कि उसका परिवर्तन वही रहता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch05-first-law",
+   "topic": "5.2",
+   "template": "sort",
+   "title": {
+    "en": "ΔU = q + w: which way does U go?",
+    "hi": "ΔU = q + w: U किस ओर जाता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "up",
+      "label": {
+       "en": "ΔU positive: U rises",
+       "hi": "ΔU धनात्मक: U बढ़ता है"
+      }
+     },
+     {
+      "id": "zero",
+      "label": {
+       "en": "ΔU = 0: no change",
+       "hi": "ΔU = 0: कोई परिवर्तन नहीं"
+      }
+     },
+     {
+      "id": "down",
+      "label": {
+       "en": "ΔU negative: U falls",
+       "hi": "ΔU ऋणात्मक: U घटता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "System absorbs 50 J of heat; no work",
+       "hi": "तंत्र 50 J ऊष्मा लेता है; कोई कार्य नहीं"
+      },
+      "bin": "up",
+      "why": {
+       "en": "q = +50, w = 0, so ΔU = +50 J.",
+       "hi": "q = +50, w = 0, इसलिए ΔU = +50 J।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "20 J of work is done on the gas; no heat",
+       "hi": "गैस पर 20 J कार्य किया जाता है; कोई ऊष्मा नहीं"
+      },
+      "bin": "up",
+      "why": {
+       "en": "Work done on the system is positive: ΔU = +20 J.",
+       "hi": "तंत्र पर किया गया कार्य धनात्मक है: ΔU = +20 J।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "Absorbs 40 J of heat and does 40 J of work",
+       "hi": "40 J ऊष्मा लेता है और 40 J कार्य करता है"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "q = +40, w = −40, so ΔU = 0.",
+       "hi": "q = +40, w = −40, इसलिए ΔU = 0।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "Gives out 30 J of heat; no work",
+       "hi": "30 J ऊष्मा छोड़ता है; कोई कार्य नहीं"
+      },
+      "bin": "down",
+      "why": {
+       "en": "q = −30, so ΔU = −30 J.",
+       "hi": "q = −30, इसलिए ΔU = −30 J।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "Absorbs 10 J of heat and does 25 J of work",
+       "hi": "10 J ऊष्मा लेता है और 25 J कार्य करता है"
+      },
+      "bin": "down",
+      "why": {
+       "en": "q = +10, w = −25, so ΔU = −15 J.",
+       "hi": "q = +10, w = −25, इसलिए ΔU = −15 J।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "Absorbs 70 J of heat and does 30 J of work",
+       "hi": "70 J ऊष्मा लेता है और 30 J कार्य करता है"
+      },
+      "bin": "up",
+      "why": {
+       "en": "q = +70, w = −30, so ΔU = +40 J.",
+       "hi": "q = +70, w = −30, इसलिए ΔU = +40 J।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "Gas expands freely into a vacuum, no heat",
+       "hi": "गैस बिना ऊष्मा के निर्वात में मुक्त फैलती है"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "Nothing pushes back, so w = 0, and q = 0: ΔU = 0.",
+       "hi": "कोई पीछे नहीं धकेलता, तो w = 0, और q = 0: ΔU = 0।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A gas absorbs 40 J of heat and does 40 J of work pushing a piston. What happens to its internal energy?",
+      "hi": "एक गैस 40 J ऊष्मा लेती है और पिस्टन धकेलने में 40 J कार्य करती है। उसकी आंतरिक ऊर्जा का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वही रहती है"
+      },
+      {
+       "id": "up80",
+       "en": "It rises by 80 J",
+       "hi": "80 J बढ़ती है"
+      },
+      {
+       "id": "up40",
+       "en": "It rises by 40 J",
+       "hi": "40 J बढ़ती है"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "card:c",
+     "expect": "correct:c",
+     "say": {
+      "en": "Tap that card and place it.",
+      "hi": "वह कार्ड छुओ और रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:e",
+     "expect": "correct:e",
+     "say": {
+      "en": "Now place the 10 J and 25 J card. Work it out first.",
+      "hi": "अब 10 J और 25 J वाला कार्ड रखो। पहले हिसाब लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The first law says energy is neither made nor destroyed: ΔU = q + w. Heat taken in and work done on the system are positive, because they add energy. Heat given out and work done by the system are negative. So a system that takes in heat but does even more work ends up with less internal energy.",
+      "hi": "पहला नियम कहता है कि ऊर्जा न बनती है न नष्ट होती है: ΔU = q + w। तंत्र द्वारा ली गई ऊष्मा और तंत्र पर किया गया कार्य धनात्मक हैं, क्योंकि ये ऊर्जा जोड़ते हैं। छोड़ी गई ऊष्मा और तंत्र द्वारा किया गया कार्य ऋणात्मक हैं। इसलिए जो तंत्र ऊष्मा लेता है पर उससे भी ज़्यादा कार्य करता है, उसकी आंतरिक ऊर्जा घट जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In an isolated system, what is ΔU?",
+        "hi": "विलगित तंत्र में ΔU क्या है?"
+       },
+       "options": [
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        },
+        {
+         "en": "Always positive",
+         "hi": "हमेशा धनात्मक"
+        },
+        {
+         "en": "Equal to q only",
+         "hi": "केवल q के बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "No heat or work can cross the boundary, so q = 0 and w = 0, and ΔU = 0.",
+        "hi": "सीमा के पार न ऊष्मा जा सकती है न कार्य, इसलिए q = 0 और w = 0, और ΔU = 0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing enters an isolated system to raise its energy.",
+         "hi": "विलगित तंत्र में ऊर्जा बढ़ाने के लिए कुछ नहीं आता।"
+        },
+        {
+         "en": "q is zero too, since heat cannot cross.",
+         "hi": "q भी शून्य है, क्योंकि ऊष्मा पार नहीं जा सकती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. For each card, write q, w and ΔU with their signs.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर कार्ड के लिए चिह्न सहित q, w और ΔU लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch05-delta-n-gas",
+   "topic": "5.2",
+   "template": "sort",
+   "title": {
+    "en": "ΔH or ΔU: which is bigger?",
+    "hi": "ΔH या ΔU: कौन बड़ा है?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "more",
+      "label": {
+       "en": "Δn(gas) > 0: ΔH > ΔU",
+       "hi": "Δn(गैस) > 0: ΔH > ΔU"
+      }
+     },
+     {
+      "id": "equal",
+      "label": {
+       "en": "Δn(gas) = 0: ΔH = ΔU",
+       "hi": "Δn(गैस) = 0: ΔH = ΔU"
+      }
+     },
+     {
+      "id": "less",
+      "label": {
+       "en": "Δn(gas) < 0: ΔH < ΔU",
+       "hi": "Δn(गैस) < 0: ΔH < ΔU"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "h2i2",
+      "text": {
+       "en": "H₂(g) + I₂(g) → 2HI(g)",
+       "hi": "H₂(g) + I₂(g) → 2HI(g)"
+      },
+      "bin": "equal",
+      "why": {
+       "en": "2 mol of gas on each side: Δn = 0.",
+       "hi": "दोनों ओर 2 mol गैस: Δn = 0।"
+      }
+     },
+     {
+      "id": "n2o2",
+      "text": {
+       "en": "N₂(g) + O₂(g) → 2NO(g)",
+       "hi": "N₂(g) + O₂(g) → 2NO(g)"
+      },
+      "bin": "equal",
+      "why": {
+       "en": "2 mol of gas becomes 2 mol: Δn = 0.",
+       "hi": "2 mol गैस 2 mol बनती है: Δn = 0।"
+      }
+     },
+     {
+      "id": "caco3",
+      "text": {
+       "en": "CaCO₃(s) → CaO(s) + CO₂(g)",
+       "hi": "CaCO₃(s) → CaO(s) + CO₂(g)"
+      },
+      "bin": "more",
+      "why": {
+       "en": "Solids do not count; 1 mol of gas is made: Δn = +1.",
+       "hi": "ठोस नहीं गिने जाते; 1 mol गैस बनती है: Δn = +1।"
+      }
+     },
+     {
+      "id": "pcl5",
+      "text": {
+       "en": "PCl₅(g) → PCl₃(g) + Cl₂(g)",
+       "hi": "PCl₅(g) → PCl₃(g) + Cl₂(g)"
+      },
+      "bin": "more",
+      "why": {
+       "en": "1 mol of gas becomes 2: Δn = +1.",
+       "hi": "1 mol गैस 2 बनती है: Δn = +1।"
+      }
+     },
+     {
+      "id": "nh3",
+      "text": {
+       "en": "N₂(g) + 3H₂(g) → 2NH₃(g)",
+       "hi": "N₂(g) + 3H₂(g) → 2NH₃(g)"
+      },
+      "bin": "less",
+      "why": {
+       "en": "4 mol of gas becomes 2: Δn = −2.",
+       "hi": "4 mol गैस 2 बनती है: Δn = −2।"
+      }
+     },
+     {
+      "id": "h2o",
+      "text": {
+       "en": "2H₂(g) + O₂(g) → 2H₂O(l)",
+       "hi": "2H₂(g) + O₂(g) → 2H₂O(l)"
+      },
+      "bin": "less",
+      "why": {
+       "en": "Liquid water is not counted: 3 mol of gas disappears, Δn = −3.",
+       "hi": "द्रव पानी नहीं गिना जाता: 3 mol गैस ग़ायब होती है, Δn = −3।"
+      }
+     },
+     {
+      "id": "ch4",
+      "text": {
+       "en": "CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(l)",
+       "hi": "CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(l)"
+      },
+      "bin": "less",
+      "why": {
+       "en": "3 mol of gas becomes 1: Δn = −2.",
+       "hi": "3 mol गैस 1 बनती है: Δn = −2।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When limestone is heated, CO₂ gas is made and has to push back the air. Will ΔH be more or less than ΔU?",
+      "hi": "चूना पत्थर गर्म करने पर CO₂ गैस बनती है जिसे हवा को पीछे धकेलना पड़ता है। ΔH, ΔU से ज़्यादा होगा या कम?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More, by the work of pushing back the air",
+       "hi": "ज़्यादा, हवा को धकेलने के कार्य जितना"
+      },
+      {
+       "id": "less",
+       "en": "Less",
+       "hi": "कम"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "बराबर"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "card:caco3",
+     "expect": "correct:caco3",
+     "say": {
+      "en": "Tap the limestone card, then its bin.",
+      "hi": "चूना पत्थर वाला कार्ड छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:nh3",
+     "expect": "correct:nh3",
+     "say": {
+      "en": "Now place the ammonia reaction. Count only gases.",
+      "hi": "अब अमोनिया वाली अभिक्रिया रखो। केवल गैसें गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At constant pressure ΔH = ΔU + Δn(gas)RT, where Δn is moles of gaseous products minus moles of gaseous reactants. Solids and liquids are left out because their volume change is tiny. When gas is made, part of the heat goes into pushing back the atmosphere, so ΔH is larger than ΔU. When gas is used up, the atmosphere does work on the system and ΔH is smaller.",
+      "hi": "स्थिर दाब पर ΔH = ΔU + Δn(गैस)RT, जहाँ Δn गैसीय उत्पादों के मोल घटा गैसीय अभिकारकों के मोल है। ठोस और द्रव छोड़े जाते हैं क्योंकि उनके आयतन का परिवर्तन बहुत छोटा है। जब गैस बनती है, तो ऊष्मा का कुछ हिस्सा वायुमंडल को पीछे धकेलने में जाता है, इसलिए ΔH, ΔU से बड़ा है। जब गैस ख़र्च होती है, तो वायुमंडल तंत्र पर कार्य करता है और ΔH छोटा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For water boiling, H₂O(l) → H₂O(g) at 373 K, how do ΔH and ΔU compare?",
+        "hi": "पानी के उबलने, H₂O(l) → H₂O(g), 373 K पर, ΔH और ΔU की तुलना कैसी है?"
+       },
+       "options": [
+        {
+         "en": "ΔH is larger by about 3.1 kJ/mol",
+         "hi": "ΔH लगभग 3.1 kJ/mol बड़ा है"
+        },
+        {
+         "en": "They are equal",
+         "hi": "बराबर हैं"
+        },
+        {
+         "en": "ΔU is larger",
+         "hi": "ΔU बड़ा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Δn = +1, so ΔH − ΔU = RT = 8.314 × 373 J ≈ 3.1 kJ/mol.",
+        "hi": "Δn = +1, तो ΔH − ΔU = RT = 8.314 × 373 J ≈ 3.1 kJ/mol।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They would be equal only if no gas were made; here 1 mol of vapour forms.",
+         "hi": "बराबर तभी होते जब गैस न बनती; यहाँ 1 mol वाष्प बनती है।"
+        },
+        {
+         "en": "ΔU is larger only when gas is used up.",
+         "hi": "ΔU तभी बड़ा होता है जब गैस ख़र्च हो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. For each card write Δn as a number before you place it.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर कार्ड रखने से पहले Δn को अंक में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch05-calorimeter",
+   "topic": "5.3",
+   "template": "heat",
+   "title": {
+    "en": "Measuring heat by mixing",
+    "hi": "मिलाकर ऊष्मा मापना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "mixing",
+    "materials": [
+     "copper",
+     "steel",
+     "glass"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "thermometer",
+     "expect": "reading",
+     "say": {
+      "en": "Tap the thermometer to read the two starting temperatures.",
+      "hi": "दोनों शुरुआती ताप पढ़ने के लिए थर्मामीटर छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "200 g of water at 80 °C is poured into 200 g of water at 20 °C in an insulated cup. What will the final temperature be?",
+      "hi": "ऊष्मारोधी कप में 20 °C के 200 g पानी में 80 °C का 200 g पानी डाला जाता है। अंतिम ताप क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "50",
+       "en": "50 °C, halfway",
+       "hi": "50 °C, बीच में"
+      },
+      {
+       "id": "100",
+       "en": "100 °C, the temperatures add",
+       "hi": "100 °C, ताप जुड़ जाते हैं"
+      },
+      {
+       "id": "80",
+       "en": "80 °C, the hot water wins",
+       "hi": "80 °C, गर्म पानी जीतता है"
+      }
+     ],
+     "answer": "50"
+    },
+    {
+     "kind": "do",
+     "target": "mix",
+     "expect": "mixed",
+     "say": {
+      "en": "Tap Mix to pour the hot water in.",
+      "hi": "गर्म पानी डालने के लिए 'मिलाओ' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "thermometer",
+     "expect": "equilibrium",
+     "say": {
+      "en": "Watch the two temperatures meet and read the final value.",
+      "hi": "दोनों ताप मिलते देखो और अंतिम मान पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In an insulated cup no heat escapes, so the heat lost by the hot water equals the heat gained by the cold water: q = m × c × ΔT for each. With equal masses of water, each changes by 30 °C and they meet at 50 °C. A calorimeter uses the same idea: from the temperature change of a known mass of water we find the heat released or absorbed by a reaction.",
+      "hi": "ऊष्मारोधी कप में ऊष्मा बाहर नहीं जाती, इसलिए गर्म पानी द्वारा खोई ऊष्मा ठंडे पानी द्वारा पाई ऊष्मा के बराबर है: हर एक के लिए q = m × c × ΔT। पानी के बराबर द्रव्यमान से, हर एक 30 °C बदलता है और वे 50 °C पर मिलते हैं। कैलोरीमीटर यही विचार अपनाता है: पानी के ज्ञात द्रव्यमान के ताप-परिवर्तन से हम किसी अभिक्रिया की छोड़ी या ली गई ऊष्मा पता करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How much heat did the hot water lose? (c of water = 4.18 J/g °C)",
+        "hi": "गर्म पानी ने कितनी ऊष्मा खोई? (पानी का c = 4.18 J/g °C)"
+       },
+       "options": [
+        {
+         "en": "About 25 kJ",
+         "hi": "लगभग 25 kJ"
+        },
+        {
+         "en": "About 167 kJ",
+         "hi": "लगभग 167 kJ"
+        },
+        {
+         "en": "About 0.2 kJ",
+         "hi": "लगभग 0.2 kJ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "q = 200 g × 4.18 J/g °C × 30 °C = 25,080 J ≈ 25 kJ.",
+        "hi": "q = 200 g × 4.18 J/g °C × 30 °C = 25,080 J ≈ 25 kJ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "167 kJ would use the full 80 °C with 500 g; only a 30 °C drop of 200 g happened.",
+         "hi": "167 kJ में पूरा 80 °C और 500 g लगता; यहाँ 200 g में केवल 30 °C गिरावट हुई।"
+        },
+        {
+         "en": "0.2 kJ forgets to multiply by the mass in grams.",
+         "hi": "0.2 kJ में ग्राम में द्रव्यमान से गुणा करना छूट गया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does a bomb calorimeter measure ΔU, not ΔH?",
+        "hi": "बम कैलोरीमीटर ΔH नहीं, ΔU क्यों मापता है?"
+       },
+       "options": [
+        {
+         "en": "Its steel vessel keeps the volume fixed, so no p–V work is done",
+         "hi": "इसका स्टील पात्र आयतन स्थिर रखता है, तो कोई p–V कार्य नहीं होता"
+        },
+        {
+         "en": "It works at constant pressure",
+         "hi": "यह स्थिर दाब पर काम करता है"
+        },
+        {
+         "en": "It has no water",
+         "hi": "इसमें पानी नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At constant volume w = 0, so the heat measured is q_V = ΔU.",
+        "hi": "स्थिर आयतन पर w = 0, इसलिए मापी गई ऊष्मा q_V = ΔU है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Constant-pressure heat gives ΔH; a sealed bomb is constant volume.",
+         "hi": "स्थिर दाब की ऊष्मा ΔH देती है; बंद बम स्थिर आयतन पर होता है।"
+        },
+        {
+         "en": "The bomb sits in a known mass of water that takes up the heat.",
+         "hi": "बम पानी के ज्ञात द्रव्यमान में रखा होता है जो ऊष्मा लेता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and choose a hot copper block instead of hot water. Why does it warm the water much less?",
+      "hi": "फिर से शुरू करो और गर्म पानी की जगह गर्म ताँबे का टुकड़ा चुनो। यह पानी को बहुत कम गर्म क्यों करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch05-hess-law",
+   "topic": "5.4",
+   "template": "data",
+   "title": {
+    "en": "Hess's law: two roads, one total",
+    "hi": "हेस का नियम: दो रास्ते, एक योग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 1,
+    "ask": "max",
+    "title": {
+     "en": "Heat released, kJ per mole of carbon",
+     "hi": "निकली ऊष्मा, kJ प्रति मोल कार्बन"
+    },
+    "xlabel": {
+     "en": "Step",
+     "hi": "चरण"
+    },
+    "ylabel": {
+     "en": "Heat released (kJ/mol)",
+     "hi": "निकली ऊष्मा (kJ/mol)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "C → CO",
+       "hi": "C → CO"
+      },
+      "value": 110.5
+     },
+     {
+      "label": {
+       "en": "CO → CO₂",
+       "hi": "CO → CO₂"
+      },
+      "value": 283.0
+     },
+     {
+      "label": {
+       "en": "C → CO₂ in one step",
+       "hi": "C → CO₂ एक चरण में"
+      },
+      "value": 393.5
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Carbon can burn straight to CO₂, or first to CO and then to CO₂. Which route releases more heat in total?",
+      "hi": "कार्बन सीधे CO₂ तक जल सकता है, या पहले CO और फिर CO₂ तक। कुल मिलाकर कौन-सा रास्ता ज़्यादा ऊष्मा छोड़ता है?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "Both release the same total",
+       "hi": "दोनों बराबर कुल ऊष्मा छोड़ते हैं"
+      },
+      {
+       "id": "direct",
+       "en": "The direct route",
+       "hi": "सीधा रास्ता"
+      },
+      {
+       "id": "two",
+       "en": "The two-step route",
+       "hi": "दो चरण वाला रास्ता"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add to plot CO burning to CO₂.",
+      "hi": "CO के CO₂ तक जलने का बार बनाने के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Plot the one-step route too, then pick the tallest bar.",
+      "hi": "एक चरण वाला रास्ता भी बनाओ, फिर सबसे ऊँचा बार चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The one-step bar is 393.5 kJ, and the two steps add to 110.5 + 283.0 = 393.5 kJ, exactly the same. Enthalpy is a state function, so the total change from carbon to CO₂ does not depend on the route. This is Hess's law. It lets us find ΔH for a step we cannot measure, like C → CO, by adding and subtracting equations we can measure.",
+      "hi": "एक चरण वाला बार 393.5 kJ है, और दोनों चरण जुड़कर 110.5 + 283.0 = 393.5 kJ होते हैं, ठीक बराबर। एन्थैल्पी अवस्था फलन है, इसलिए कार्बन से CO₂ तक कुल परिवर्तन रास्ते पर निर्भर नहीं है। यही हेस का नियम है। इससे हम उस चरण का ΔH, जैसे C → CO, निकाल सकते हैं जिसे सीधे माप नहीं सकते, मापे जा सकने वाले समीकरणों को जोड़-घटाकर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If C → CO₂ is −393.5 kJ and CO → CO₂ is −283.0 kJ, what is ΔH for C → CO?",
+        "hi": "अगर C → CO₂ = −393.5 kJ और CO → CO₂ = −283.0 kJ है, तो C → CO का ΔH क्या है?"
+       },
+       "options": [
+        "−110.5 kJ",
+        "−676.5 kJ",
+        "+110.5 kJ"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Subtract the second equation from the first: −393.5 − (−283.0) = −110.5 kJ.",
+        "hi": "पहले समीकरण से दूसरा घटाओ: −393.5 − (−283.0) = −110.5 kJ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding the two gives −676.5, but the CO step must be taken away, not added.",
+         "hi": "दोनों जोड़ने से −676.5 आता है, पर CO वाला चरण घटाना है, जोड़ना नहीं।"
+        },
+        {
+         "en": "Burning carbon releases heat, so ΔH is negative, not positive.",
+         "hi": "कार्बन जलने पर ऊष्मा निकलती है, इसलिए ΔH ऋणात्मक है, धनात्मक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the first two bars and see that the total no longer matches. Real chemistry never allows that: why?",
+      "hi": "पहले दो बार खींचो और देखो कि योग अब मेल नहीं खाता। असली रसायन में ऐसा कभी नहीं होता: क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch05-fuels",
+   "topic": "5.5",
+   "template": "data",
+   "title": {
+    "en": "Which fuel gives the most heat per gram?",
+    "hi": "कौन-सा ईंधन प्रति ग्राम सबसे ज़्यादा ऊष्मा देता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 1,
+    "ask": "max",
+    "title": {
+     "en": "Heat released when 1 g of fuel burns completely",
+     "hi": "1 g ईंधन के पूरा जलने पर निकली ऊष्मा"
+    },
+    "xlabel": {
+     "en": "Fuel",
+     "hi": "ईंधन"
+    },
+    "ylabel": {
+     "en": "Heat released (kJ/g)",
+     "hi": "निकली ऊष्मा (kJ/g)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Glucose (food)",
+       "hi": "ग्लूकोज़ (भोजन)"
+      },
+      "value": 15.6
+     },
+     {
+      "label": {
+       "en": "Ethanol",
+       "hi": "एथेनॉल"
+      },
+      "value": 29.7
+     },
+     {
+      "label": {
+       "en": "Butane (LPG)",
+       "hi": "ब्यूटेन (LPG)"
+      },
+      "value": 49.5
+     },
+     {
+      "label": {
+       "en": "Methane (CNG)",
+       "hi": "मेथेन (CNG)"
+      },
+      "value": 55.6
+     },
+     {
+      "label": {
+       "en": "Hydrogen",
+       "hi": "हाइड्रोजन"
+      },
+      "value": 141.9
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these do you think releases the most heat when 1 gram burns?",
+      "hi": "तुम्हारे अनुसार इनमें से कौन 1 ग्राम जलने पर सबसे ज़्यादा ऊष्मा छोड़ता है?"
+     },
+     "options": [
+      {
+       "id": "h2",
+       "en": "Hydrogen",
+       "hi": "हाइड्रोजन"
+      },
+      {
+       "id": "lpg",
+       "en": "LPG",
+       "hi": "एलपीजी (LPG)"
+      },
+      {
+       "id": "glu",
+       "en": "Glucose",
+       "hi": "ग्लूकोज़"
+      }
+     ],
+     "answer": "h2"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add to plot ethanol.",
+      "hi": "एथेनॉल का बार बनाने के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add for LPG.",
+      "hi": "LPG के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Plot the rest, then pick the fuel with the tallest bar.",
+      "hi": "बाकी बार बनाओ, फिर सबसे ऊँचे बार वाला ईंधन चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The enthalpy of combustion is the heat released when one mole of a substance burns completely in oxygen. Dividing by the molar mass gives heat per gram. Hydrogen is so light that one gram holds many molecules, so it gives the most heat per gram, and its only product is water. Glucose gives the least of these, which is why our body burns food slowly through many steps.",
+      "hi": "दहन एन्थैल्पी वह ऊष्मा है जो किसी पदार्थ के एक मोल के ऑक्सीजन में पूरा जलने पर निकलती है। मोलर द्रव्यमान से भाग देने पर प्रति ग्राम ऊष्मा मिलती है। हाइड्रोजन इतना हल्का है कि एक ग्राम में बहुत अणु होते हैं, इसलिए यह प्रति ग्राम सबसे ज़्यादा ऊष्मा देता है, और इसका एकमात्र उत्पाद पानी है। इनमें ग्लूकोज़ सबसे कम देता है, इसीलिए हमारा शरीर भोजन को कई चरणों में धीरे-धीरे जलाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "ΔcH of methane is −890 kJ/mol and its molar mass is 16 g/mol. What is the heat per gram?",
+        "hi": "मेथेन का ΔcH −890 kJ/mol है और इसका मोलर द्रव्यमान 16 g/mol। प्रति ग्राम ऊष्मा क्या है?"
+       },
+       "options": [
+        {
+         "en": "About 55.6 kJ",
+         "hi": "लगभग 55.6 kJ"
+        },
+        {
+         "en": "About 14,240 kJ",
+         "hi": "लगभग 14,240 kJ"
+        },
+        {
+         "en": "About 890 kJ",
+         "hi": "लगभग 890 kJ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "890 ÷ 16 ≈ 55.6 kJ released per gram.",
+        "hi": "890 ÷ 16 ≈ 55.6 kJ प्रति ग्राम निकलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Multiplying by 16 gives the heat for 16 moles, not for 1 gram.",
+         "hi": "16 से गुणा करने पर 16 मोल की ऊष्मा आती है, 1 ग्राम की नहीं।"
+        },
+        {
+         "en": "890 kJ is for a whole mole, which is 16 g.",
+         "hi": "890 kJ पूरे एक मोल, यानी 16 g, के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the ethanol bar to match LPG. How much more ethanol would a cook need for the same heat?",
+      "hi": "एथेनॉल के बार को LPG के बराबर खींचो। उतनी ही ऊष्मा के लिए रसोइए को कितना ज़्यादा एथेनॉल चाहिए होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch05-enthalpy-types",
+   "topic": "5.5",
+   "template": "match",
+   "title": {
+    "en": "Name that enthalpy",
+    "hi": "एन्थैल्पी का नाम बताओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "form",
+      "left": {
+       "en": "C(graphite) + O₂(g) → CO₂(g), from elements in standard states",
+       "hi": "C(ग्रेफ़ाइट) + O₂(g) → CO₂(g), मानक अवस्था के तत्वों से"
+      },
+      "right": {
+       "en": "Standard enthalpy of formation",
+       "hi": "मानक संभवन एन्थैल्पी"
+      }
+     },
+     {
+      "id": "comb",
+      "left": {
+       "en": "CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(l)",
+       "hi": "CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(l)"
+      },
+      "right": {
+       "en": "Enthalpy of combustion",
+       "hi": "दहन एन्थैल्पी"
+      }
+     },
+     {
+      "id": "atom",
+      "left": {
+       "en": "H₂(g) → 2H(g)",
+       "hi": "H₂(g) → 2H(g)"
+      },
+      "right": {
+       "en": "Enthalpy of atomisation (bond dissociation)",
+       "hi": "परमाणुकरण (आबंध वियोजन) एन्थैल्पी"
+      }
+     },
+     {
+      "id": "fus",
+      "left": {
+       "en": "H₂O(s) → H₂O(l) at 273 K",
+       "hi": "H₂O(s) → H₂O(l), 273 K पर"
+      },
+      "right": {
+       "en": "Enthalpy of fusion",
+       "hi": "गलन एन्थैल्पी"
+      }
+     },
+     {
+      "id": "vap",
+      "left": {
+       "en": "H₂O(l) → H₂O(g) at 373 K",
+       "hi": "H₂O(l) → H₂O(g), 373 K पर"
+      },
+      "right": {
+       "en": "Enthalpy of vaporisation",
+       "hi": "वाष्पन एन्थैल्पी"
+      }
+     },
+     {
+      "id": "sol",
+      "left": {
+       "en": "NaCl(s) + water → Na⁺(aq) + Cl⁻(aq)",
+       "hi": "NaCl(s) + पानी → Na⁺(aq) + Cl⁻(aq)"
+      },
+      "right": {
+       "en": "Enthalpy of solution",
+       "hi": "विलयन एन्थैल्पी"
+      }
+     },
+     {
+      "id": "lat",
+      "left": {
+       "en": "Na⁺(g) + Cl⁻(g) → NaCl(s), reversed is lattice enthalpy",
+       "hi": "Na⁺(g) + Cl⁻(g) → NaCl(s), उलटा जालक एन्थैल्पी है"
+      },
+      "right": {
+       "en": "Lattice enthalpy (for the breaking up)",
+       "hi": "जालक एन्थैल्पी (टूटने के लिए)"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these is the heat change when 1 mol of a compound is made from its elements?",
+      "hi": "इनमें से किसी यौगिक के 1 mol का उसके तत्वों से बनने पर ऊष्मा-परिवर्तन क्या कहलाता है?"
+     },
+     "options": [
+      {
+       "id": "form",
+       "en": "Enthalpy of formation",
+       "hi": "संभवन एन्थैल्पी"
+      },
+      {
+       "id": "comb",
+       "en": "Enthalpy of combustion",
+       "hi": "दहन एन्थैल्पी"
+      },
+      {
+       "id": "sol",
+       "en": "Enthalpy of solution",
+       "hi": "विलयन एन्थैल्पी"
+      }
+     ],
+     "answer": "form"
+    },
+    {
+     "kind": "do",
+     "target": "left:form",
+     "expect": "matched:form",
+     "say": {
+      "en": "Match the graphite equation with its name.",
+      "hi": "ग्रेफ़ाइट वाले समीकरण को उसके नाम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:fus",
+     "expect": "matched:fus",
+     "say": {
+      "en": "Match ice melting.",
+      "hi": "बर्फ़ पिघलने को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the others, then press Check.",
+      "hi": "बाकी सब मिलाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each named enthalpy is the heat change for one mole in a fixed kind of process at constant pressure. Formation builds a compound from elements in their standard states. Combustion burns one mole completely. Atomisation breaks all bonds to give gaseous atoms. Fusion and vaporisation are changes of state. Solution and lattice enthalpies describe salts dissolving and ionic crystals forming.",
+      "hi": "हर नामित एन्थैल्पी स्थिर दाब पर एक तय तरह की प्रक्रिया में एक मोल के लिए ऊष्मा-परिवर्तन है। संभवन किसी यौगिक को मानक अवस्था के तत्वों से बनाता है। दहन एक मोल को पूरा जलाता है। परमाणुकरण सारे आबंध तोड़कर गैसीय परमाणु देता है। गलन और वाष्पन अवस्था-परिवर्तन हैं। विलयन और जालक एन्थैल्पी लवण के घुलने और आयनिक क्रिस्टल बनने को बताती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the standard enthalpy of formation of O₂(g)?",
+        "hi": "O₂(g) की मानक संभवन एन्थैल्पी क्या है?"
+       },
+       "options": [
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        },
+        "−393.5 kJ/mol",
+        "+498 kJ/mol"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An element in its standard state is the starting point, so its formation enthalpy is zero by definition.",
+        "hi": "मानक अवस्था में तत्व आरंभ बिंदु है, इसलिए परिभाषा से उसकी संभवन एन्थैल्पी शून्य है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "−393.5 kJ/mol is for CO₂, a compound.",
+         "hi": "−393.5 kJ/mol CO₂, एक यौगिक, का है।"
+        },
+        {
+         "en": "About 498 kJ/mol is the energy to break O=O into atoms, not to form O₂.",
+         "hi": "लगभग 498 kJ/mol O=O को परमाणुओं में तोड़ने की ऊर्जा है, O₂ बनाने की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and match again. Say whether each process gives out heat or takes it in.",
+      "hi": "फिर से शुरू करो और दोबारा मिलाओ। बोलो कि हर प्रक्रिया ऊष्मा छोड़ती है या लेती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch05-entropy",
+   "topic": "5.6",
+   "template": "sort",
+   "title": {
+    "en": "More disorder or less?",
+    "hi": "अव्यवस्था ज़्यादा या कम?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "up",
+      "label": {
+       "en": "Entropy increases (ΔS > 0)",
+       "hi": "एन्ट्रॉपी बढ़ती है (ΔS > 0)"
+      }
+     },
+     {
+      "id": "down",
+      "label": {
+       "en": "Entropy decreases (ΔS < 0)",
+       "hi": "एन्ट्रॉपी घटती है (ΔS < 0)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "melt",
+      "text": {
+       "en": "Ice melting in a glass",
+       "hi": "गिलास में बर्फ़ पिघलना"
+      },
+      "bin": "up",
+      "why": {
+       "en": "An ordered solid becomes a freely moving liquid.",
+       "hi": "व्यवस्थित ठोस खुलकर घूमने वाला द्रव बनता है।"
+      }
+     },
+     {
+      "id": "boil",
+      "text": {
+       "en": "Water boiling to steam",
+       "hi": "पानी उबलकर भाप बनना"
+      },
+      "bin": "up",
+      "why": {
+       "en": "Gas molecules spread through a huge volume.",
+       "hi": "गैस के अणु बहुत बड़े आयतन में फैल जाते हैं।"
+      }
+     },
+     {
+      "id": "dissolve",
+      "text": {
+       "en": "Sugar dissolving in tea",
+       "hi": "चाय में चीनी घुलना"
+      },
+      "bin": "up",
+      "why": {
+       "en": "Molecules leave the crystal and spread through the liquid.",
+       "hi": "अणु क्रिस्टल छोड़कर द्रव में फैल जाते हैं।"
+      }
+     },
+     {
+      "id": "perfume",
+      "text": {
+       "en": "Agarbatti smell spreading in a room",
+       "hi": "कमरे में अगरबत्ती की ख़ुशबू फैलना"
+      },
+      "bin": "up",
+      "why": {
+       "en": "Gas particles mix and spread out on their own.",
+       "hi": "गैस के कण अपने-आप मिलकर फैलते हैं।"
+      }
+     },
+     {
+      "id": "caco3",
+      "text": {
+       "en": "CaCO₃(s) → CaO(s) + CO₂(g)",
+       "hi": "CaCO₃(s) → CaO(s) + CO₂(g)"
+      },
+      "bin": "up",
+      "why": {
+       "en": "A gas is produced from a solid.",
+       "hi": "ठोस से गैस बनती है।"
+      }
+     },
+     {
+      "id": "freeze",
+      "text": {
+       "en": "Water freezing into ice",
+       "hi": "पानी जमकर बर्फ़ बनना"
+      },
+      "bin": "down",
+      "why": {
+       "en": "Molecules lock into a regular crystal.",
+       "hi": "अणु एक नियमित क्रिस्टल में बँध जाते हैं।"
+      }
+     },
+     {
+      "id": "dew",
+      "text": {
+       "en": "Water vapour forming dew drops",
+       "hi": "जलवाष्प से ओस की बूँदें बनना"
+      },
+      "bin": "down",
+      "why": {
+       "en": "Gas becomes liquid: far less freedom.",
+       "hi": "गैस द्रव बनती है: बहुत कम स्वतंत्रता।"
+      }
+     },
+     {
+      "id": "nh3",
+      "text": {
+       "en": "N₂(g) + 3H₂(g) → 2NH₃(g)",
+       "hi": "N₂(g) + 3H₂(g) → 2NH₃(g)"
+      },
+      "bin": "down",
+      "why": {
+       "en": "Four molecules of gas become two.",
+       "hi": "गैस के चार अणु दो बन जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When ice melts at room temperature, does the randomness of the water molecules go up or down?",
+      "hi": "कमरे के ताप पर बर्फ़ पिघलने पर पानी के अणुओं की यादृच्छिकता बढ़ती है या घटती है?"
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "Up",
+       "hi": "बढ़ती है"
+      },
+      {
+       "id": "down",
+       "en": "Down",
+       "hi": "घटती है"
+      }
+     ],
+     "answer": "up"
+    },
+    {
+     "kind": "do",
+     "target": "card:melt",
+     "expect": "correct:melt",
+     "say": {
+      "en": "Tap the ice card, then its bin.",
+      "hi": "बर्फ़ वाला कार्ड छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:nh3",
+     "expect": "correct:nh3",
+     "say": {
+      "en": "Now place the ammonia reaction. Count gas molecules.",
+      "hi": "अब अमोनिया वाली अभिक्रिया रखो। गैस के अणु गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Entropy, S, measures the randomness of a system: how many ways its particles and energy can be spread out. Solids have the lowest entropy, liquids more and gases the most. Entropy rises when a solid melts, a liquid boils, a solid dissolves, or a reaction makes more gas molecules. It falls in the reverse changes.",
+      "hi": "एन्ट्रॉपी, S, किसी तंत्र की यादृच्छिकता मापती है: उसके कण और ऊर्जा कितने तरीक़ों से फैल सकते हैं। ठोसों की एन्ट्रॉपी सबसे कम, द्रवों की ज़्यादा और गैसों की सबसे ज़्यादा होती है। एन्ट्रॉपी तब बढ़ती है जब ठोस पिघलता है, द्रव उबलता है, ठोस घुलता है, या अभिक्रिया में गैस के अणु बढ़ते हैं। उलटे परिवर्तनों में यह घटती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Water freezes at −5 °C on its own though its entropy falls. How is this allowed?",
+        "hi": "−5 °C पर पानी अपने-आप जमता है, जबकि उसकी एन्ट्रॉपी घटती है। ऐसा कैसे संभव है?"
+       },
+       "options": [
+        {
+         "en": "The heat it releases raises the entropy of the surroundings more",
+         "hi": "इससे निकली ऊष्मा परिवेश की एन्ट्रॉपी ज़्यादा बढ़ाती है"
+        },
+        {
+         "en": "Entropy does not matter for spontaneity",
+         "hi": "स्वतःप्रवर्तिता में एन्ट्रॉपी का कोई महत्व नहीं"
+        },
+        {
+         "en": "Freezing absorbs heat",
+         "hi": "जमने में ऊष्मा ली जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The total entropy of system plus surroundings rises. At low temperature the released heat makes a big entropy gain in the cold surroundings.",
+        "hi": "तंत्र और परिवेश की कुल एन्ट्रॉपी बढ़ती है। कम ताप पर निकली ऊष्मा ठंडे परिवेश में एन्ट्रॉपी की बड़ी बढ़त करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The second law says total entropy must rise in a spontaneous change, so it does matter.",
+         "hi": "दूसरा नियम कहता है कि स्वतःप्रवर्ती परिवर्तन में कुल एन्ट्रॉपी बढ़नी चाहिए, इसलिए इसका महत्व है।"
+        },
+        {
+         "en": "Freezing releases heat; melting absorbs it.",
+         "hi": "जमने में ऊष्मा निकलती है; पिघलने में ली जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. Then think of one change at home that lowers entropy and say where the extra entropy goes.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। फिर घर का कोई परिवर्तन सोचो जो एन्ट्रॉपी घटाता है, और बताओ कि अतिरिक्त एन्ट्रॉपी कहाँ जाती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch05-gibbs-signs",
+   "topic": "5.6",
+   "template": "sort",
+   "title": {
+    "en": "ΔG = ΔH − TΔS: when is it spontaneous?",
+    "hi": "ΔG = ΔH − TΔS: कब स्वतःप्रवर्ती है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "always",
+      "label": {
+       "en": "Spontaneous at all temperatures",
+       "hi": "हर ताप पर स्वतःप्रवर्ती"
+      }
+     },
+     {
+      "id": "high",
+      "label": {
+       "en": "Spontaneous only at high T",
+       "hi": "केवल ऊँचे ताप पर स्वतःप्रवर्ती"
+      }
+     },
+     {
+      "id": "low",
+      "label": {
+       "en": "Spontaneous only at low T",
+       "hi": "केवल कम ताप पर स्वतःप्रवर्ती"
+      }
+     },
+     {
+      "id": "never",
+      "label": {
+       "en": "Never spontaneous",
+       "hi": "कभी स्वतःप्रवर्ती नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "ΔH negative, ΔS positive",
+       "hi": "ΔH ऋणात्मक, ΔS धनात्मक"
+      },
+      "bin": "always",
+      "why": {
+       "en": "Both terms make ΔG negative.",
+       "hi": "दोनों पद ΔG को ऋणात्मक बनाते हैं।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "ΔH positive, ΔS negative",
+       "hi": "ΔH धनात्मक, ΔS ऋणात्मक"
+      },
+      "bin": "never",
+      "why": {
+       "en": "Both terms make ΔG positive at every temperature.",
+       "hi": "दोनों पद हर ताप पर ΔG को धनात्मक बनाते हैं।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "ΔH positive, ΔS positive",
+       "hi": "ΔH धनात्मक, ΔS धनात्मक"
+      },
+      "bin": "high",
+      "why": {
+       "en": "TΔS beats ΔH only when T is large.",
+       "hi": "TΔS केवल बड़े T पर ΔH से आगे निकलता है।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "ΔH negative, ΔS negative",
+       "hi": "ΔH ऋणात्मक, ΔS ऋणात्मक"
+      },
+      "bin": "low",
+      "why": {
+       "en": "ΔH wins while TΔS is still small.",
+       "hi": "जब तक TΔS छोटा है, ΔH जीतता है।"
+      }
+     },
+     {
+      "id": "melt",
+      "text": {
+       "en": "Ice melting",
+       "hi": "बर्फ़ पिघलना"
+      },
+      "bin": "high",
+      "why": {
+       "en": "It takes in heat (ΔH > 0) and gains entropy (ΔS > 0): it happens above 0 °C.",
+       "hi": "यह ऊष्मा लेती है (ΔH > 0) और एन्ट्रॉपी बढ़ाती है (ΔS > 0): 0 °C से ऊपर होता है।"
+      }
+     },
+     {
+      "id": "freeze",
+      "text": {
+       "en": "Water freezing",
+       "hi": "पानी जमना"
+      },
+      "bin": "low",
+      "why": {
+       "en": "It gives out heat and loses entropy: it happens below 0 °C.",
+       "hi": "यह ऊष्मा छोड़ता है और एन्ट्रॉपी घटाता है: 0 °C से नीचे होता है।"
+      }
+     },
+     {
+      "id": "lime",
+      "text": {
+       "en": "CaCO₃ → CaO + CO₂",
+       "hi": "CaCO₃ → CaO + CO₂"
+      },
+      "bin": "high",
+      "why": {
+       "en": "Endothermic but makes a gas; lime kilns run very hot for this reason.",
+       "hi": "ऊष्माशोषी है पर गैस बनाती है; इसी कारण चूने के भट्ठे बहुत गर्म चलते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A change takes in heat (ΔH > 0) but also increases entropy (ΔS > 0). When can it happen on its own?",
+      "hi": "एक परिवर्तन ऊष्मा लेता है (ΔH > 0) पर एन्ट्रॉपी भी बढ़ाता है (ΔS > 0)। यह अपने-आप कब हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "high",
+       "en": "At high enough temperature",
+       "hi": "पर्याप्त ऊँचे ताप पर"
+      },
+      {
+       "id": "never",
+       "en": "Never",
+       "hi": "कभी नहीं"
+      },
+      {
+       "id": "always",
+       "en": "Always",
+       "hi": "हमेशा"
+      }
+     ],
+     "answer": "high"
+    },
+    {
+     "kind": "do",
+     "target": "card:c",
+     "expect": "correct:c",
+     "say": {
+      "en": "Tap that card and place it.",
+      "hi": "वह कार्ड छुओ और रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:melt",
+     "expect": "correct:melt",
+     "say": {
+      "en": "Now place ice melting.",
+      "hi": "अब बर्फ़ पिघलना रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Gibbs energy combines both drives: ΔG = ΔH − TΔS. A change is spontaneous when ΔG is negative. If ΔH and ΔS help each other, the answer is the same at every temperature. If they fight, temperature decides: the TΔS term grows with T, so an entropy-driven change wins at high temperature and an enthalpy-driven change wins at low temperature.",
+      "hi": "गिब्स ऊर्जा दोनों प्रेरणाओं को जोड़ती है: ΔG = ΔH − TΔS। परिवर्तन तब स्वतःप्रवर्ती है जब ΔG ऋणात्मक हो। अगर ΔH और ΔS एक-दूसरे की मदद करें, तो हर ताप पर उत्तर एक जैसा है। अगर वे टकराएँ, तो ताप निर्णय करता है: TΔS पद T के साथ बढ़ता है, इसलिए एन्ट्रॉपी-प्रेरित परिवर्तन ऊँचे ताप पर और एन्थैल्पी-प्रेरित परिवर्तन कम ताप पर जीतता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does ΔG = 0 mean for a process?",
+        "hi": "किसी प्रक्रिया के लिए ΔG = 0 का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "The system is at equilibrium",
+         "hi": "तंत्र साम्यावस्था में है"
+        },
+        {
+         "en": "The process is very fast",
+         "hi": "प्रक्रिया बहुत तेज़ है"
+        },
+        {
+         "en": "No heat is involved",
+         "hi": "कोई ऊष्मा शामिल नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With no Gibbs energy left to drive either direction, forward and backward balance, as ice and water at 0 °C.",
+        "hi": "जब किसी भी दिशा को चलाने के लिए गिब्स ऊर्जा नहीं बचती, तो आगे और पीछे संतुलित रहते हैं, जैसे 0 °C पर बर्फ़ और पानी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "ΔG says nothing about speed; diamond turning into graphite has ΔG < 0 but is extremely slow.",
+         "hi": "ΔG गति के बारे में कुछ नहीं बताता; हीरे का ग्रेफ़ाइट बनना ΔG < 0 है पर बहुत धीमा है।"
+        },
+        {
+         "en": "ΔH can be large even when ΔG = 0, as for melting ice.",
+         "hi": "ΔG = 0 होने पर भी ΔH बड़ा हो सकता है, जैसे बर्फ़ पिघलने में।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. For each example card, say the signs of ΔH and ΔS before you place it.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर उदाहरण वाले कार्ड को रखने से पहले ΔH और ΔS के चिह्न बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch05-ice-gibbs",
+   "topic": "5.6",
+   "template": "data",
+   "title": {
+    "en": "The temperature where ice melts",
+    "hi": "वह ताप जहाँ बर्फ़ पिघलती है"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "chart": "line",
+    "show": 1,
+    "title": {
+     "en": "ΔG for ice → water at different temperatures",
+     "hi": "अलग-अलग ताप पर बर्फ़ → पानी के लिए ΔG"
+    },
+    "xlabel": {
+     "en": "Temperature (K)",
+     "hi": "ताप (K)"
+    },
+    "ylabel": {
+     "en": "ΔG (kJ/mol)",
+     "hi": "ΔG (kJ/mol)"
+    },
+    "data": {
+     "rows": [
+      [
+       253,
+       0.44
+      ],
+      [
+       263,
+       0.22
+      ],
+      [
+       273,
+       0.0
+      ],
+      [
+       283,
+       -0.22
+      ],
+      [
+       293,
+       -0.44
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For melting, ΔH = +6.01 kJ/mol and ΔS = +22.0 J/K mol. At what temperature should ΔG become zero?",
+      "hi": "पिघलने के लिए ΔH = +6.01 kJ/mol और ΔS = +22.0 J/K mol है। किस ताप पर ΔG शून्य होना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "273",
+       "en": "About 273 K (0 °C)",
+       "hi": "लगभग 273 K (0 °C)"
+      },
+      {
+       "id": "373",
+       "en": "About 373 K (100 °C)",
+       "hi": "लगभग 373 K (100 °C)"
+      },
+      {
+       "id": "6",
+       "en": "About 6 K",
+       "hi": "लगभग 6 K"
+      }
+     ],
+     "answer": "273"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add to plot 263 K.",
+      "hi": "263 K का बिंदु बनाने के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add for 273 K.",
+      "hi": "273 K के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add for 283 K.",
+      "hi": "283 K के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add for 293 K.",
+      "hi": "293 K के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each point is ΔG = ΔH − TΔS = 6.01 − T × 0.0220. Below 273 K, ΔG is positive and ice does not melt; above it, ΔG is negative and ice melts on its own. At T = ΔH ÷ ΔS = 6010 ÷ 22.0 ≈ 273 K, ΔG = 0 and ice and water are at equilibrium. That is the melting point.",
+      "hi": "हर बिंदु ΔG = ΔH − TΔS = 6.01 − T × 0.0220 है। 273 K से नीचे ΔG धनात्मक है और बर्फ़ नहीं पिघलती; उसके ऊपर ΔG ऋणात्मक है और बर्फ़ अपने-आप पिघलती है। T = ΔH ÷ ΔS = 6010 ÷ 22.0 ≈ 273 K पर ΔG = 0 है और बर्फ़ और पानी साम्यावस्था में हैं। यही गलनांक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did we divide 6010 J by 22.0 J/K and not 6.01 by 22.0?",
+        "hi": "हमने 6.01 को नहीं, 6010 J को 22.0 J/K से क्यों भाग दिया?"
+       },
+       "options": [
+        {
+         "en": "ΔH and ΔS must be in the same energy unit, joules",
+         "hi": "ΔH और ΔS एक ही ऊर्जा इकाई, जूल, में होने चाहिए"
+        },
+        {
+         "en": "To make the answer bigger",
+         "hi": "उत्तर बड़ा करने के लिए"
+        },
+        {
+         "en": "Because ΔS is always in kJ",
+         "hi": "क्योंकि ΔS हमेशा kJ में होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6.01 kJ is 6010 J; with ΔS in J/K, the units give kelvin.",
+        "hi": "6.01 kJ = 6010 J; ΔS J/K में हो, तो इकाइयाँ केल्विन देती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Units are not chosen to change the size of an answer; mixing kJ and J gives 0.27 K, which is wrong.",
+         "hi": "इकाइयाँ उत्तर का आकार बदलने के लिए नहीं चुनी जातीं; kJ और J मिलाने से 0.27 K आता है, जो ग़लत है।"
+        },
+        {
+         "en": "ΔS is usually given in J/K mol, as here.",
+         "hi": "ΔS आमतौर पर J/K mol में दिया जाता है, जैसा यहाँ।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag a point and see the line cross zero at a different temperature. What would that mean for the ice?",
+      "hi": "कोई बिंदु खींचो और देखो कि रेखा अलग ताप पर शून्य पार करती है। बर्फ़ के लिए इसका क्या अर्थ होगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Hook of the chapter",
+   "shows": "An Indian kitchen: chai steaming in an open cup, a pressure cooker on a gas stove, and a steel thermos flask, all on one counter",
+   "view": "Eye level, warm morning light",
+   "right": "Steam visible from the open cup only; cooker whistle closed",
+   "avoid": "Brand names, faces, flame left unattended by a child"
+  },
+  {
+   "n": 2,
+   "kind": "CUT",
+   "topic": "5.3",
+   "use": "Inside a coffee-cup calorimeter",
+   "shows": "Cut-away of two nested polystyrene cups with a lid, a thermometer and a stirrer, water inside",
+   "view": "Side view, realistic render, light background",
+   "right": "Thermometer bulb in the water; air gap between the two cups",
+   "avoid": "Labels or numbers on the thermometer"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "5.3",
+   "use": "Inside a bomb calorimeter",
+   "shows": "Cut-away of a steel bomb with a sample cup and ignition wires, sitting in an insulated water bucket with a stirrer and thermometer",
+   "view": "Three-quarter view, realistic render",
+   "right": "Bomb fully sealed; water surrounds it",
+   "avoid": "Labels; open bomb during firing"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.5",
+   "use": "Fuels in Indian life",
+   "shows": "Three separate photos: an LPG cylinder by a kitchen stove, a CNG auto-rickshaw at a filling point, a plate of sweets standing for food energy",
+   "view": "Eye level, natural light",
+   "right": "Real Indian settings; cylinder upright with a regulator",
+   "avoid": "Brand names, number plates, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "5.6",
+   "use": "Ice melting for the entropy and ΔG labs",
+   "shows": "Four frames of the same ice cube in a clear glass on a steel plate: whole, edges rounded, half melted, only water",
+   "view": "Same camera, same light, same framing",
+   "right": "Water level rises as the ice shrinks; no extra water added",
+   "avoid": "Hands, spoons or a changing background"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "5.6",
+   "use": "Order and disorder up close",
+   "shows": "Two macro photos: a single clear sugar crystal, and the same crystal half dissolved in water with swirling streaks",
+   "view": "Macro, backlit, black background",
+   "right": "Sharp crystal faces in the first; schlieren swirls in the second",
+   "avoid": "Food colouring"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "5.3",
+   "use": "Library apparatus reused",
+   "shows": "Library images LIB-LAB-thermometer, LIB-LAB-beaker-250ml and LIB-LAB-spirit-lamp (shared cut-outs; do not make again)",
+   "view": "As in the library",
+   "right": "As in the library",
+   "avoid": "Making new copies"
+  }
+ ]
+}

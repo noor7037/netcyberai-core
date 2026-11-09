@@ -1,0 +1,463 @@
+{
+ "chapter_key": "u.c11.english.keww1.ch02.s3",
+ "class": 11,
+ "subject_id": "english",
+ "title": "My Three Passions",
+ "source": "https://ncert.nic.in/textbook/pdf/keww1ps.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "The three passions: love, knowledge and pity",
+   "labs": [
+    "c11-english-keww1-ch02s3-passions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Writing an essay with a clear plan",
+   "labs": [
+    "c11-english-keww1-ch02s3-essay"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Language: the images of wind and sea",
+   "labs": [],
+   "why_no_lab": "Images such as winds over a deep ocean are best discussed aloud."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-english-keww1-ch02s3-passions",
+   "topic": "2.1",
+   "template": "sort",
+   "title": {
+    "en": "Love, knowledge or pity?",
+    "hi": "प्रेम, ज्ञान या दया?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "love",
+      "label": {
+       "en": "Love",
+       "hi": "प्रेम"
+      }
+     },
+     {
+      "id": "knowledge",
+      "label": {
+       "en": "Knowledge",
+       "hi": "ज्ञान"
+      }
+     },
+     {
+      "id": "pity",
+      "label": {
+       "en": "Pity",
+       "hi": "करुणा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "lonely",
+      "text": {
+       "en": "The joy that takes away loneliness",
+       "hi": "वह ख़ुशी जो अकेलापन मिटा दे"
+      },
+      "bin": "love",
+      "why": {
+       "en": "Russell says love brings an ecstasy that can end loneliness.",
+       "hi": "रसेल कहते हैं कि प्रेम ऐसी परमानंद-सी ख़ुशी देता है जो अकेलापन मिटा दे।"
+      }
+     },
+     {
+      "id": "union",
+      "text": {
+       "en": "The mystical picture of heaven when two people are united",
+       "hi": "दो लोगों के मिलन में स्वर्ग की रहस्यमयी झलक"
+      },
+      "bin": "love",
+      "why": {
+       "en": "This is the second reason he gives for seeking love.",
+       "hi": "यह प्रेम खोजने का उनका दूसरा कारण है।"
+      }
+     },
+     {
+      "id": "stars",
+      "text": {
+       "en": "Wanting to know why the stars shine",
+       "hi": "यह जानने की चाह कि तारे क्यों चमकते हैं"
+      },
+      "bin": "knowledge",
+      "why": {
+       "en": "He tried to understand the hearts of people and the shining of stars.",
+       "hi": "उन्होंने इंसानों के दिल और तारों के चमकने को समझना चाहा।"
+      }
+     },
+     {
+      "id": "pythag",
+      "text": {
+       "en": "Understanding the power of number that rules the flux",
+       "hi": "संख्या की उस शक्ति को समझना जो बदलाव पर राज करती है"
+      },
+      "bin": "knowledge",
+      "why": {
+       "en": "Number is the Pythagorean idea he wanted to grasp.",
+       "hi": "संख्या वह पाइथागोरस-विचार है जिसे वे समझना चाहते थे।"
+      }
+     },
+     {
+      "id": "hunger",
+      "text": {
+       "en": "Children in famine, helpless and in pain",
+       "hi": "अकाल में असहाय और पीड़ित बच्चे"
+      },
+      "bin": "pity",
+      "why": {
+       "en": "These cries of pain echo in his heart.",
+       "hi": "ये पीड़ा की चीख़ें उनके हृदय में गूँजती हैं।"
+      }
+     },
+     {
+      "id": "old",
+      "text": {
+       "en": "Old people who are a hated burden to their children",
+       "hi": "बूढ़े लोग जो अपने बच्चों के लिए घृणित बोझ बन गए"
+      },
+      "bin": "pity",
+      "why": {
+       "en": "He is moved by their loneliness and hurt.",
+       "hi": "उनका अकेलापन और दर्द उन्हें द्रवित करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Russell names three passions. Which one makes him feel the suffering of others?",
+      "hi": "रसेल तीन जुनून बताते हैं। कौन-सा उन्हें दूसरों का कष्ट महसूस कराता है?"
+     },
+     "options": [
+      {
+       "id": "pity",
+       "en": "Pity",
+       "hi": "करुणा"
+      },
+      {
+       "id": "love",
+       "en": "Love",
+       "hi": "प्रेम"
+      }
+     ],
+     "answer": "pity"
+    },
+    {
+     "kind": "do",
+     "target": "card:stars",
+     "expect": "placed:stars",
+     "say": {
+      "en": "Tap 'Wanting to know why the stars shine' and place it in a group.",
+      "hi": "'यह जानने की चाह कि तारे क्यों चमकते हैं' दबाओ और किसी समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सभी कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Russell says three simple but strong passions governed his life: the longing for love, the search for knowledge, and unbearable pity for the suffering of mankind. They blow him like great winds over a deep sea.",
+      "hi": "रसेल कहते हैं कि तीन सरल पर प्रबल जुनून उनके जीवन को चलाते रहे: प्रेम की चाह, ज्ञान की खोज, और मनुष्यों के कष्ट के प्रति असह्य करुणा। ये उन्हें गहरे समुद्र पर तेज़ हवाओं की तरह उड़ाते रहे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which passion makes him say 'I long to alleviate the evil'?",
+        "hi": "कौन-सा जुनून उन्हें बुराई कम करने की तड़प देता है?"
+       },
+       "options": [
+        {
+         "en": "Pity",
+         "hi": "करुणा"
+        },
+        {
+         "en": "Love",
+         "hi": "प्रेम"
+        },
+        {
+         "en": "Knowledge",
+         "hi": "ज्ञान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He feels the pain of others and longs to ease it.",
+        "hi": "वे दूसरों का दुख महसूस करते हैं और उसे कम करना चाहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Love is about joy and union, not about easing suffering.",
+         "hi": "प्रेम ख़ुशी और मिलन की बात है, कष्ट मिटाने की नहीं।"
+        },
+        {
+         "en": "Knowledge is the search for understanding.",
+         "hi": "ज्ञान समझने की खोज है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of the three passions is strongest in you today? Write one sentence.",
+      "hi": "इन तीनों में से आज तुम्हारे भीतर कौन सबसे प्रबल है? एक वाक्य लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-english-keww1-ch02s3-essay",
+   "topic": "2.2",
+   "template": "writing",
+   "title": {
+    "en": "Write your own 'passions' essay",
+    "hi": "अपने 'जुनून' पर निबंध लिखो"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "kind": "essay",
+    "lang": "en",
+    "task": {
+     "en": "Write a short essay on what you live for, with a title, an introduction, three points and a conclusion.",
+     "hi": "तुम किसके लिए जीते हो, इस पर शीर्षक, प्रस्तावना, तीन बातों और निष्कर्ष वाला छोटा निबंध लिखो।"
+    },
+    "parts": [
+     {
+      "id": "title",
+      "slot": "title",
+      "text": {
+       "en": "What I Live For",
+       "hi": "मैं किसके लिए जीता हूँ"
+      }
+     },
+     {
+      "id": "intro",
+      "slot": "introduction",
+      "text": {
+       "en": "Everyone needs something to live for. For me three things matter: friendship, learning and kindness.",
+       "hi": "हर किसी को जीने के लिए कुछ चाहिए। मेरे लिए तीन चीज़ें मायने रखती हैं: मित्रता, सीखना और दया।"
+      }
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": {
+       "en": "Friendship fills my days with laughter and takes away loneliness.",
+       "hi": "मित्रता मेरे दिनों को हँसी से भर देती है और अकेलापन दूर करती है।"
+      }
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": {
+       "en": "Learning is my second passion. I like to know why the sky is blue and how a seed becomes a tree.",
+       "hi": "सीखना मेरा दूसरा जुनून है। मुझे जानना अच्छा लगता है कि आकाश नीला क्यों है और बीज पेड़ कैसे बनता है।"
+      }
+     },
+     {
+      "id": "b3",
+      "slot": "body",
+      "text": {
+       "en": "Kindness is my third. When I see a hungry child, I want to help.",
+       "hi": "दया मेरा तीसरा जुनून है। जब मैं किसी भूखे बच्चे को देखता हूँ, मदद करना चाहता हूँ।"
+      }
+     },
+     {
+      "id": "end",
+      "slot": "conclusion",
+      "text": {
+       "en": "These three passions guide me. They make my life warm, curious and useful.",
+       "hi": "ये तीनों जुनून मेरा मार्गदर्शन करते हैं। इनसे मेरा जीवन गर्म, जिज्ञासु और उपयोगी बनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part of an essay comes first, after the title?",
+      "hi": "शीर्षक के बाद निबंध का कौन-सा भाग पहले आता है?"
+     },
+     "options": [
+      {
+       "id": "intro",
+       "en": "Introduction",
+       "hi": "प्रस्तावना"
+      },
+      {
+       "id": "end",
+       "en": "Conclusion",
+       "hi": "निष्कर्ष"
+      }
+     ],
+     "answer": "intro"
+    },
+    {
+     "kind": "do",
+     "target": "part:title",
+     "expect": "placed:title",
+     "say": {
+      "en": "Place the title in its slot.",
+      "hi": "शीर्षक को उसके खाने में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:intro",
+     "expect": "placed:intro",
+     "say": {
+      "en": "Now place the introduction.",
+      "hi": "अब प्रस्तावना रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Fill the other slots in order and press Check.",
+      "hi": "बाक़ी खाने क्रम से भरो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An essay has a title, an introduction that opens the theme, body paragraphs with one idea each, and a conclusion that closes it. Russell's essay follows the same plan: three passions, each with its own paragraph.",
+      "hi": "निबंध में शीर्षक, विषय खोलने वाली प्रस्तावना, एक-एक विचार वाले मुख्य अनुच्छेद और उसे बंद करने वाला निष्कर्ष होता है। रसेल का निबंध भी यही योजना अपनाता है: तीन जुनून, हर एक का अपना अनुच्छेद।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where should the main points go?",
+        "hi": "मुख्य बातें कहाँ रखनी चाहिए?"
+       },
+       "options": [
+        {
+         "en": "In the body, one idea in each paragraph",
+         "hi": "मुख्य भाग में, हर अनुच्छेद में एक विचार"
+        },
+        {
+         "en": "Only in the title",
+         "hi": "केवल शीर्षक में"
+        },
+        {
+         "en": "After the conclusion",
+         "hi": "निष्कर्ष के बाद"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The body carries the points, one for each paragraph.",
+        "hi": "मुख्य भाग बातों को ले जाता है, हर अनुच्छेद एक बात।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A title is short and only names the theme.",
+         "hi": "शीर्षक छोटा होता है और सिर्फ़ विषय बताता है।"
+        },
+        {
+         "en": "Nothing comes after the conclusion.",
+         "hi": "निष्कर्ष के बाद कुछ नहीं आता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write your own essay 'What I live for' in your notebook, with your three points.",
+      "hi": "अपनी कॉपी में अपने तीन बिंदुओं के साथ 'मैं किसके लिए जीता हूँ' निबंध लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Opens the chapter",
+   "shows": "A wide sea under a stormy sky with gulls tossed by the wind",
+   "view": "Wide",
+   "right": "Cold light, rolling waves",
+   "avoid": "Boats, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Starry sky",
+   "shows": "A clear night sky full of stars over a hill",
+   "view": "Wide",
+   "right": "Many stars",
+   "avoid": "Text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Famine scene",
+   "shows": "An empty cracked paddy field in a drought, a child's hand holding an empty bowl",
+   "view": "Close",
+   "right": "Dry, cracked earth",
+   "avoid": "Faces"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Two hands",
+   "shows": "Two hands holding each other, one old and one young",
+   "view": "Close",
+   "right": "Natural skin tones",
+   "avoid": "Faces"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Essay frame",
+   "shows": "A blank page with four labelled boxes: title, introduction, body, conclusion",
+   "view": "Top-down",
+   "right": "Clean empty boxes",
+   "avoid": "Writing"
+  }
+ ]
+}

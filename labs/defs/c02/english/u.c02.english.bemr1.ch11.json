@@ -1,0 +1,957 @@
+{
+ "chapter_key": "u.c02.english.bemr1.ch11",
+ "class": 2,
+ "subject_id": "english",
+ "title": "The Smart Monkey",
+ "source": "https://ncert.nic.in/textbook/pdf/bemr111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "The story: The Smart Monkey (Anju, Farida and the monkey)",
+   "labs": [
+    "c02-english-bemr1-ch11-story-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Let us speak: people throwing packets and bottles; what I do with a wrapper",
+   "labs": [],
+   "why_no_lab": "This is a talk about our own habits; it works best as a spoken class discussion."
+  },
+  {
+   "n": "11.3",
+   "title": "Let us draw: three things used to clean the house",
+   "labs": [],
+   "why_no_lab": "A drawing task with pencil and paper."
+  },
+  {
+   "n": "11.4",
+   "title": "Let us listen: clapping the syllables of market, monkey, packet, dustbin, classroom",
+   "labs": [
+    "c02-english-bemr1-ch11-clap-syllables"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5",
+   "title": "Let us write: true and false sentences about the story",
+   "labs": [
+    "c02-english-bemr1-ch11-true-false"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.6",
+   "title": "Let us speak: the blends fl and cl in flag, flower, floor, cloud, clap, clock",
+   "labs": [
+    "c02-english-bemr1-ch11-blends-fl-cl"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.7",
+   "title": "Project work: visit a nearby shop with family",
+   "labs": [],
+   "why_no_lab": "A real visit with family, then talking about what was seen."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c02-english-bemr1-ch11-story-order",
+   "topic": "11.1",
+   "template": "sequence",
+   "title": {
+    "en": "What happened first?",
+    "hi": "पहले क्या हुआ?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "market",
+      "text": {
+       "en": "Anju and Farida go to the market.",
+       "hi": "अंजू और फ़रीदा बाज़ार जाती हैं।"
+      }
+     },
+     {
+      "id": "bench",
+      "text": {
+       "en": "They sit on a bench under a tree to rest.",
+       "hi": "वे आराम करने के लिए पेड़ के नीचे बेंच पर बैठती हैं।"
+      }
+     },
+     {
+      "id": "eat",
+      "text": {
+       "en": "They eat groundnuts and drink juice.",
+       "hi": "वे मूँगफली खाती हैं और जूस पीती हैं।"
+      }
+     },
+     {
+      "id": "litter",
+      "text": {
+       "en": "They throw the packet and the bottle down.",
+       "hi": "वे पैकेट और बोतल नीचे फेंक देती हैं।"
+      }
+     },
+     {
+      "id": "peel",
+      "text": {
+       "en": "The monkey drops his banana peel in the dustbin.",
+       "hi": "बंदर अपने केले का छिलका कूड़ेदान में डालता है।"
+      }
+     },
+     {
+      "id": "clean",
+      "text": {
+       "en": "The girls feel ashamed and pick up the litter.",
+       "hi": "लड़कियाँ शर्मिंदा होती हैं और कचरा उठा लेती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:market",
+     "expect": "placed:market",
+     "say": {
+      "en": "Tap the card that starts the story. Where did Anju and Farida go?",
+      "hi": "वह कार्ड दबाओ जिससे कहानी शुरू होती है। अंजू और फ़रीदा कहाँ गईं?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now think about the monkey. What does he do with his banana peel?",
+      "hi": "अब बंदर के बारे में सोचो। वह अपने केले के छिलके का क्या करता है?"
+     },
+     "options": [
+      {
+       "id": "dustbin",
+       "en": "He puts it in the dustbin.",
+       "hi": "वह उसे कूड़ेदान में डालता है।"
+      },
+      {
+       "id": "ground",
+       "en": "He throws it on the ground.",
+       "hi": "वह उसे ज़मीन पर फेंकता है।"
+      },
+      {
+       "id": "eat",
+       "en": "He eats it.",
+       "hi": "वह उसे खा जाता है।"
+      }
+     ],
+     "answer": "dustbin"
+    },
+    {
+     "kind": "do",
+     "target": "item:bench",
+     "expect": "placed:bench",
+     "say": {
+      "en": "Place the card where they sit on the bench.",
+      "hi": "वह कार्ड रखो जिसमें वे बेंच पर बैठती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all six cards in order. Then press Check.",
+      "hi": "सभी छह कार्ड क्रम में लगाओ। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A story has a beginning, a middle and an end. The girls litter in the middle. The smart monkey shows the right thing to do, and at the end the girls learn from him.",
+      "hi": "कहानी की शुरुआत, बीच और अंत होता है। बीच में लड़कियाँ कचरा फेंकती हैं। समझदार बंदर सही काम करके दिखाता है, और अंत में लड़कियाँ उससे सीखती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What did the girls do after they saw the monkey?",
+        "hi": "बंदर को देखने के बाद लड़कियों ने क्या किया?"
+       },
+       "options": [
+        {
+         "en": "They picked up the packet and bottle.",
+         "hi": "उन्होंने पैकेट और बोतल उठा लिए।"
+        },
+        {
+         "en": "They ran away.",
+         "hi": "वे भाग गईं।"
+        },
+        {
+         "en": "They gave the monkey the juice.",
+         "hi": "उन्होंने बंदर को जूस दे दिया।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They felt ashamed and put their litter in the dustbin.",
+        "hi": "वे शर्मिंदा हुईं और अपना कचरा कूड़ेदान में डाल दिया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing in the story says they ran. They felt ashamed and stayed to clean up.",
+         "hi": "कहानी में भागने की बात नहीं है। वे शर्मिंदा हुईं और सफ़ाई करने रुकीं।"
+        },
+        {
+         "en": "The monkey never asked for juice. He only showed them how to use the dustbin.",
+         "hi": "बंदर ने जूस माँगा ही नहीं। उसने बस कूड़ेदान का सही इस्तेमाल दिखाया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tell the story to a friend in six sentences, one for each card.",
+      "hi": "अपने दोस्त को छह वाक्यों में कहानी सुनाओ, हर कार्ड का एक वाक्य।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-english-bemr1-ch11-clap-syllables",
+   "topic": "11.4",
+   "template": "words",
+   "title": {
+    "en": "Clap the beats of a word",
+    "hi": "शब्द की ताली बजाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "syllables",
+    "lang": "en",
+    "words": [
+     {
+      "w": "market",
+      "parts": [
+       "mar",
+       "ket"
+      ],
+      "meaning": {
+       "en": "A place where people buy and sell things.",
+       "hi": "वह जगह जहाँ लोग चीज़ें खरीदते और बेचते हैं।"
+      }
+     },
+     {
+      "w": "monkey",
+      "parts": [
+       "mon",
+       "key"
+      ],
+      "meaning": {
+       "en": "An animal that climbs trees and eats fruit.",
+       "hi": "पेड़ पर चढ़ने और फल खाने वाला जानवर।"
+      }
+     },
+     {
+      "w": "packet",
+      "parts": [
+       "pack",
+       "et"
+      ],
+      "meaning": {
+       "en": "A small bag or box that holds things.",
+       "hi": "चीज़ें रखने वाला छोटा थैला या डिब्बा।"
+      }
+     },
+     {
+      "w": "dustbin",
+      "parts": [
+       "dust",
+       "bin"
+      ],
+      "meaning": {
+       "en": "A bin where we throw rubbish.",
+       "hi": "कूड़ा फेंकने का डिब्बा।"
+      }
+     },
+     {
+      "w": "classroom",
+      "parts": [
+       "class",
+       "room"
+      ],
+      "meaning": {
+       "en": "The room where children study.",
+       "hi": "वह कमरा जहाँ बच्चे पढ़ते हैं।"
+      }
+     },
+     {
+      "w": "banana",
+      "parts": [
+       "ba",
+       "na",
+       "na"
+      ],
+      "meaning": {
+       "en": "A long yellow fruit.",
+       "hi": "लंबा पीला फल।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "clap",
+     "expect": "clap",
+     "say": {
+      "en": "Press Clap and clap once for each beat of the word.",
+      "hi": "ताली दबाओ और शब्द की हर धड़कन पर एक ताली बजाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many beats does 'market' have?",
+      "hi": "'market' में कितनी धड़कनें हैं?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "Two: mar and ket",
+       "hi": "दो: mar और ket"
+      },
+      {
+       "id": "one",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "three",
+       "en": "Three",
+       "hi": "तीन"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "gap:3",
+     "expect": "word:market",
+     "say": {
+      "en": "Tap the gap between the two beats: mar | ket.",
+      "hi": "दोनों धड़कनों के बीच की जगह दबाओ: mar | ket।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A word breaks into small beats called syllables. Each syllable has one vowel sound. Market has 2 beats, monkey has 2, and banana has 3. Clapping helps you say and spell long words.",
+      "hi": "शब्द छोटी धड़कनों में बँटता है, जिन्हें अक्षर-खंड (सिलेबल) कहते हैं। हर खंड में एक स्वर ध्वनि होती है। Market में 2, monkey में 2 और banana में 3 धड़कनें हैं। ताली बजाने से लंबे शब्द बोलना और लिखना आसान होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many beats are in 'banana'?",
+        "hi": "'banana' में कितनी धड़कनें हैं?"
+       },
+       "options": [
+        {
+         "en": "Two",
+         "hi": "दो"
+        },
+        {
+         "en": "Three",
+         "hi": "तीन"
+        },
+        {
+         "en": "Four",
+         "hi": "चार"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Ba-na-na: clap three times.",
+        "hi": "बा-ना-ना: तीन बार ताली बजाओ।"
+       },
+       "wrong": [
+        {
+         "en": "Two beats would be ba-nana. The word really has ba, na and na.",
+         "hi": "दो धड़कनें मानने पर ba-nana बनता है। असल में ba, na और na तीन खंड हैं।"
+        },
+        "",
+        {
+         "en": "Four is too many. There is no fourth vowel sound.",
+         "hi": "चार बहुत ज़्यादा हैं। चौथी स्वर ध्वनि है ही नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word has two beats?",
+        "hi": "किस शब्द में दो धड़कनें हैं?"
+       },
+       "options": [
+        {
+         "en": "dustbin",
+         "hi": "dustbin (कूड़ेदान)"
+        },
+        {
+         "en": "banana",
+         "hi": "banana (केला)"
+        },
+        {
+         "en": "a",
+         "hi": "a (एक)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dust-bin has two beats.",
+        "hi": "Dust-bin में दो धड़कनें हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Banana has three beats: ba, na, na.",
+         "hi": "Banana में तीन धड़कनें हैं: ba, na, na।"
+        },
+        {
+         "en": "The word 'a' has only one beat.",
+         "hi": "'a' शब्द में सिर्फ़ एक धड़कन है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clap the beats of your own name and the names of Anju and Farida. Whose name has the most beats?",
+      "hi": "अपने नाम और अंजू व फ़रीदा के नामों की ताली बजाओ। किसके नाम में सबसे ज़्यादा धड़कनें हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-english-bemr1-ch11-true-false",
+   "topic": "11.5",
+   "template": "sort",
+   "title": {
+    "en": "True or false?",
+    "hi": "सही या ग़लत?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "true",
+      "label": {
+       "en": "True",
+       "hi": "सही"
+      }
+     },
+     {
+      "id": "false",
+      "label": {
+       "en": "False",
+       "hi": "ग़लत"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "bag",
+      "text": {
+       "en": "Anju bought a bag.",
+       "hi": "अंजू ने एक बैग खरीदा।"
+      },
+      "bin": "true",
+      "why": {
+       "en": "The story says Anju bought a bag.",
+       "hi": "कहानी में लिखा है कि अंजू ने बैग खरीदा।"
+      }
+     },
+     {
+      "id": "bottle",
+      "text": {
+       "en": "Farida bought a water bottle.",
+       "hi": "फ़रीदा ने पानी की बोतल खरीदी।"
+      },
+      "bin": "true",
+      "why": {
+       "en": "Farida bought a water bottle.",
+       "hi": "फ़रीदा ने पानी की बोतल खरीदी थी।"
+      }
+     },
+     {
+      "id": "banana",
+      "text": {
+       "en": "The monkey had a banana.",
+       "hi": "बंदर के पास एक केला था।"
+      },
+      "bin": "true",
+      "why": {
+       "en": "The monkey peeled and ate a banana.",
+       "hi": "बंदर ने केला छीलकर खाया।"
+      }
+     },
+     {
+      "id": "ashamed",
+      "text": {
+       "en": "The girls felt ashamed.",
+       "hi": "लड़कियाँ शर्मिंदा हुईं।"
+      },
+      "bin": "true",
+      "why": {
+       "en": "They saw the monkey use the dustbin and felt ashamed.",
+       "hi": "बंदर को कूड़ेदान में डालते देख वे शर्मिंदा हुईं।"
+      }
+     },
+     {
+      "id": "car",
+      "text": {
+       "en": "The girls sat in a car.",
+       "hi": "लड़कियाँ कार में बैठी थीं।"
+      },
+      "bin": "false",
+      "why": {
+       "en": "They sat on a bench under a tree.",
+       "hi": "वे पेड़ के नीचे बेंच पर बैठी थीं।"
+      }
+     },
+     {
+      "id": "nuts",
+      "text": {
+       "en": "The monkey ate the groundnuts.",
+       "hi": "बंदर ने मूँगफली खाई।"
+      },
+      "bin": "false",
+      "why": {
+       "en": "The girls ate the groundnuts. The monkey ate a banana.",
+       "hi": "मूँगफली लड़कियों ने खाई। बंदर ने केला खाया।"
+      }
+     },
+     {
+      "id": "peel",
+      "text": {
+       "en": "The monkey threw the peel on the road.",
+       "hi": "बंदर ने छिलका सड़क पर फेंका।"
+      },
+      "bin": "false",
+      "why": {
+       "en": "He put the peel in the dustbin.",
+       "hi": "उसने छिलका कूड़ेदान में डाला।"
+      }
+     },
+     {
+      "id": "dust",
+      "text": {
+       "en": "The girls left the packet on the ground.",
+       "hi": "लड़कियाँ पैकेट ज़मीन पर ही छोड़ गईं।"
+      },
+      "bin": "false",
+      "why": {
+       "en": "At the end they picked it up and put it in the dustbin.",
+       "hi": "आख़िर में उन्होंने उसे उठाकर कूड़ेदान में डाला।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Read the first card. Is it true or false?",
+      "hi": "पहला कार्ड पढ़ो। वह सही है या ग़लत?"
+     },
+     "options": [
+      {
+       "id": "true",
+       "en": "True",
+       "hi": "सही"
+      },
+      {
+       "id": "false",
+       "en": "False",
+       "hi": "ग़लत"
+      }
+     ],
+     "answer": "true"
+    },
+    {
+     "kind": "do",
+     "target": "card:bag",
+     "expect": "correct:bag",
+     "say": {
+      "en": "Tap the card 'Anju bought a bag.' and then tap the right group.",
+      "hi": "'Anju bought a bag.' वाला कार्ड दबाओ, फिर सही समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:car",
+     "expect": "correct:car",
+     "say": {
+      "en": "Now find the card about a car. True or false?",
+      "hi": "अब कार वाला कार्ड ढूँढो। सही या ग़लत?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards. Then press Check.",
+      "hi": "सभी कार्ड छाँटो। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To decide if a sentence is true, go back to the story and find the same fact. If the story says something different, the sentence is false.",
+      "hi": "कोई वाक्य सही है या नहीं, यह जानने के लिए कहानी में वही बात ढूँढो। अगर कहानी में कुछ और लिखा है, तो वाक्य ग़लत है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where did the monkey put the banana peel?",
+        "hi": "बंदर ने केले का छिलका कहाँ डाला?"
+       },
+       "options": [
+        {
+         "en": "In the dustbin",
+         "hi": "कूड़ेदान में"
+        },
+        {
+         "en": "On the road",
+         "hi": "सड़क पर"
+        },
+        {
+         "en": "In the bag",
+         "hi": "बैग में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The dustbin was nearby, so the monkey used it.",
+        "hi": "कूड़ेदान पास में ही था, इसलिए बंदर ने उसे इस्तेमाल किया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The monkey did not litter. The girls did.",
+         "hi": "बंदर ने कचरा नहीं फेंका। कचरा लड़कियों ने फेंका था।"
+        },
+        {
+         "en": "The bag belonged to Anju. The peel went in the dustbin.",
+         "hi": "बैग अंजू का था। छिलका कूड़ेदान में गया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make one true and one false sentence about the story. Ask a friend to say which is which.",
+      "hi": "कहानी के बारे में एक सही और एक ग़लत वाक्य बनाओ। दोस्त से पूछो कि कौन-सा कौन-सा है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-english-bemr1-ch11-blends-fl-cl",
+   "topic": "11.6",
+   "template": "words",
+   "title": {
+    "en": "Blend fl and cl",
+    "hi": "fl और cl को मिलाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "phonics",
+    "lang": "en",
+    "words": [
+     {
+      "w": "flag",
+      "parts": [
+       "fl",
+       "a",
+       "g"
+      ],
+      "meaning": {
+       "en": "A cloth on a pole.",
+       "hi": "डंडे पर लगा कपड़ा।"
+      }
+     },
+     {
+      "w": "flower",
+      "parts": [
+       "fl",
+       "ow",
+       "er"
+      ],
+      "meaning": {
+       "en": "The pretty part of a plant.",
+       "hi": "पौधे का सुंदर भाग।"
+      }
+     },
+     {
+      "w": "floor",
+      "parts": [
+       "fl",
+       "oo",
+       "r"
+      ],
+      "meaning": {
+       "en": "The ground inside a room.",
+       "hi": "कमरे की ज़मीन।"
+      }
+     },
+     {
+      "w": "cloud",
+      "parts": [
+       "cl",
+       "ou",
+       "d"
+      ],
+      "meaning": {
+       "en": "A white or grey puff in the sky.",
+       "hi": "आसमान में सफ़ेद या स्लेटी गुच्छा।"
+      }
+     },
+     {
+      "w": "clap",
+      "parts": [
+       "cl",
+       "a",
+       "p"
+      ],
+      "meaning": {
+       "en": "To hit your hands together.",
+       "hi": "हाथों से ताली बजाना।"
+      }
+     },
+     {
+      "w": "clock",
+      "parts": [
+       "cl",
+       "o",
+       "ck"
+      ],
+      "meaning": {
+       "en": "It shows the time.",
+       "hi": "यह समय बताती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "listen",
+     "expect": "listen",
+     "say": {
+      "en": "Press Listen. Hear how f and l are said fast together.",
+      "hi": "सुनो दबाओ। सुनो कि f और l तेज़ी से साथ कैसे बोले जाते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The word starts with the blend fl. Which sound comes first in 'flag'?",
+      "hi": "शब्द fl से शुरू होता है। 'flag' में पहले कौन-सी ध्वनि आती है?"
+     },
+     "options": [
+      {
+       "id": "fl",
+       "en": "fl की ध्वनि",
+       "hi": "fl की ध्वनि"
+      },
+      {
+       "id": "cl",
+       "en": "cl की ध्वनि",
+       "hi": "cl की ध्वनि"
+      },
+      {
+       "id": "g",
+       "en": "g की ध्वनि",
+       "hi": "g की ध्वनि"
+      }
+     ],
+     "answer": "fl"
+    },
+    {
+     "kind": "do",
+     "target": "pick:fl",
+     "expect": "pick:fl",
+     "say": {
+      "en": "Pick the blend fl first.",
+      "hi": "पहले fl वाला टुकड़ा चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:a",
+     "expect": "pick:a",
+     "say": {
+      "en": "Now pick the letter a.",
+      "hi": "अब अक्षर a चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:g",
+     "expect": "word:flag",
+     "say": {
+      "en": "Finish the word with g.",
+      "hi": "g चुनकर शब्द पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A blend is two letters whose sounds are said quickly together, with both sounds still heard. In flag, f and l blend into fl. In clap, c and l blend into cl.",
+      "hi": "ब्लेंड दो अक्षरों की ध्वनियाँ हैं जो तेज़ी से साथ बोली जाती हैं, पर दोनों सुनाई देती हैं। flag में f और l मिलकर fl बनते हैं। clap में c और l मिलकर cl बनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word starts with the blend cl?",
+        "hi": "कौन-सा शब्द ब्लेंड cl से शुरू होता है?"
+       },
+       "options": [
+        {
+         "en": "clock",
+         "hi": "clock (घड़ी)"
+        },
+        {
+         "en": "flower",
+         "hi": "flower (फूल)"
+        },
+        {
+         "en": "floor",
+         "hi": "floor (फ़र्श)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Clock starts with c and l said together.",
+        "hi": "Clock c और l को साथ बोलने से शुरू होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Flower starts with fl, not cl.",
+         "hi": "Flower fl से शुरू होता है, cl से नहीं।"
+        },
+        {
+         "en": "Floor starts with fl.",
+         "hi": "Floor fl से शुरू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a sentence with a fl word and a cl word. Say it aloud, like: There is a clock on the floor.",
+      "hi": "एक वाक्य सोचो जिसमें fl वाला और cl वाला शब्द हो। ज़ोर से बोलो, जैसे: There is a clock on the floor।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Opens the chapter",
+   "shows": "Two Indian girls on a park bench under a big tree, a monkey on the branch above them with a banana",
+   "view": "16:9, girls seen from behind, soft afternoon light",
+   "right": "Real rhesus-style monkey, banana clearly yellow, park bench and tree look real",
+   "avoid": "No faces of real children, no text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "11.1",
+   "use": "Frames to order the story",
+   "shows": "Five frames: girls at the market, resting on the bench, eating snacks, the monkey with a peel near a dustbin, the girls clearing up",
+   "view": "Same park and light, same camera, 3:2",
+   "right": "A green dustbin in all park frames; clothes the same in each frame",
+   "avoid": "No frightening monkey, no faces"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Cut-outs for the sort and sequence cards",
+   "shows": "A banana peel, an empty groundnut packet and an empty plastic bottle",
+   "view": "Three files, front view, transparent background",
+   "right": "Real items, clean, lit from top left",
+   "avoid": "No brand names or logos on the packet and bottle"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "The dustbin the monkey uses",
+   "shows": "A green public park dustbin",
+   "view": "Front three-quarter view, transparent background",
+   "right": "Opening at the top, no overflowing rubbish",
+   "avoid": "Dirty or smelly look"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "11.4",
+   "use": "Syllable clapping prompt",
+   "shows": "A child's two hands about to clap, seen close up",
+   "view": "Square, hands in the middle, plain bright background",
+   "right": "Natural hands, both clearly visible",
+   "avoid": "No face, no jewellery"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "11.6",
+   "use": "Pictures for the blends",
+   "shows": "A flag, a flower, a floor tile, a cloud, a pair of clapping hands, a wall clock",
+   "view": "Six files, front view, transparent background, same size",
+   "right": "Indian tricolour correct (saffron, white, green, blue chakra); clock shows 3 o'clock",
+   "avoid": "No letters on the picture other than the clock numbers"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "11.7",
+   "use": "Project work: a neighbourhood shop",
+   "shows": "A small Indian kirana shop with fruit baskets outside, seen from the road",
+   "view": "16:9, no customers' faces",
+   "right": "Bananas, groundnuts and juice bottles visible on the shelves",
+   "avoid": "No shop name or brand boards"
+  }
+ ]
+}

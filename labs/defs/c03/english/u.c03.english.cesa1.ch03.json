@@ -1,0 +1,1139 @@
+{
+ "chapter_key": "u.c03.english.cesa1.ch03",
+ "class": 3,
+ "subject_id": "english",
+ "title": "Best Friends",
+ "source": "https://ncert.nic.in/textbook/pdf/cesa103.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Story: Circle, Square, Triangle, Rectangle and the star",
+   "labs": [
+    "c03-english-cesa1-ch03-shape-friends"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "Using 'a' and 'an'",
+   "labs": [
+    "c03-english-cesa1-ch03-a-or-an"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "Poem: What do you do? (action words of animals)",
+   "labs": [
+    "c03-english-cesa1-ch03-animal-actions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4",
+   "title": "Writing about my friend",
+   "labs": [],
+   "why_no_lab": "A child fills in personal facts about a real friend; a screen lab cannot know them, so the notebook is the right place."
+  },
+  {
+   "n": "5",
+   "title": "Shapes around us",
+   "labs": [
+    "c03-english-cesa1-ch03-shapes-around-us"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-english-cesa1-ch03-shape-friends",
+   "topic": "1",
+   "template": "reader",
+   "title": {
+    "en": "Meet the four shape friends",
+    "hi": "चार आकार-दोस्तों से मिलो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "The best friends",
+      "hi": "सबसे अच्छे दोस्त"
+     },
+     "lines": [
+      "Circle, Square, Triangle and Rectangle are four friends.",
+      "One day each of them says, 'I am the best!'",
+      "Circle is round and has no sharp edges.",
+      "Square has four sides, and all of them are equal.",
+      "Triangle has only three sides.",
+      "Rectangle has four sides, two long and two short.",
+      "They ask a wise star to decide who is the best.",
+      "The star says that together they can make lovely pictures, so they stop fighting."
+     ]
+    },
+    "characters": [
+     {
+      "id": "circle",
+      "name": {
+       "en": "Circle",
+       "hi": "वृत्त"
+      },
+      "traits": [
+       {
+        "en": "I have no corners and no sharp edges.",
+        "hi": "मेरे कोई कोने या तीखे किनारे नहीं हैं।"
+       },
+       {
+        "en": "I am round like a wheel.",
+        "hi": "मैं पहिये जैसा गोल हूँ।"
+       }
+      ]
+     },
+     {
+      "id": "square",
+      "name": {
+       "en": "Square",
+       "hi": "वर्ग"
+      },
+      "traits": [
+       {
+        "en": "I have four sides and they are all equal.",
+        "hi": "मेरी चार भुजाएँ हैं और सब बराबर हैं।"
+       },
+       {
+        "en": "My four sides are the same length.",
+        "hi": "मेरी चारों भुजाओं की लंबाई एक जैसी है।"
+       }
+      ]
+     },
+     {
+      "id": "triangle",
+      "name": {
+       "en": "Triangle",
+       "hi": "त्रिभुज"
+      },
+      "traits": [
+       {
+        "en": "I have only three sides.",
+        "hi": "मेरी केवल तीन भुजाएँ हैं।"
+       },
+       {
+        "en": "I look like the top of a mountain.",
+        "hi": "मैं पहाड़ की चोटी जैसा दिखता हूँ।"
+       }
+      ]
+     },
+     {
+      "id": "rectangle",
+      "name": {
+       "en": "Rectangle",
+       "hi": "आयत"
+      },
+      "traits": [
+       {
+        "en": "I have four sides: two long and two short.",
+        "hi": "मेरी चार भुजाएँ हैं: दो लंबी और दो छोटी।"
+       },
+       {
+        "en": "A chocolate bar is shaped like me.",
+        "hi": "चॉकलेट की पट्टी मेरे जैसी होती है।"
+       }
+      ]
+     },
+     {
+      "id": "star",
+      "name": {
+       "en": "Star",
+       "hi": "तारा"
+      },
+      "traits": [
+       {
+        "en": "I helped the friends stop fighting.",
+        "hi": "मैंने दोस्तों की लड़ाई ख़त्म करवाई।"
+       },
+       {
+        "en": "I am wise and I shine in the sky.",
+        "hi": "मैं समझदार हूँ और आसमान में चमकती हूँ।"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:circle",
+     "expect": "picked:circle",
+     "say": {
+      "en": "Tap Circle to read about this friend.",
+      "hi": "इस दोस्त के बारे में पढ़ने के लिए वृत्त पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Circle says it has no sharp edges. Which shape is round like a wheel?",
+      "hi": "वृत्त कहता है उसके कोई तीखे किनारे नहीं हैं। कौन-सा आकार पहिये जैसा गोल है?"
+     },
+     "options": [
+      {
+       "id": "circle",
+       "en": "Circle",
+       "hi": "वृत्त"
+      },
+      {
+       "id": "square",
+       "en": "Square",
+       "hi": "वर्ग"
+      },
+      {
+       "id": "triangle",
+       "en": "Triangle",
+       "hi": "त्रिभुज"
+      }
+     ],
+     "answer": "circle"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the clue and tap the friend it belongs to.",
+      "hi": "संकेत पढ़ो और उस दोस्त पर टैप करो जिसके बारे में है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:square",
+     "expect": "picked:square",
+     "say": {
+      "en": "Now tap Square to see how it is different.",
+      "hi": "अब वर्ग पर टैप करो और देखो वह कैसे अलग है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each shape is special. A circle is round with no corners. A square has four equal sides. A triangle has three sides. A rectangle has four sides: two long and two short. None of them is the best, because together they make wonderful pictures.",
+      "hi": "हर आकार ख़ास है। वृत्त गोल होता है और उसके कोने नहीं होते। वर्ग की चार भुजाएँ बराबर होती हैं। त्रिभुज की तीन भुजाएँ होती हैं। आयत की चार भुजाएँ होती हैं: दो लंबी और दो छोटी। इनमें से कोई सबसे अच्छा नहीं, क्योंकि साथ मिलकर ये सुंदर चित्र बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the same in a square?",
+        "hi": "वर्ग में कौन-सी बात एक जैसी होती है?"
+       },
+       "options": [
+        {
+         "en": "All four sides are equal.",
+         "hi": "चारों भुजाएँ बराबर होती हैं।"
+        },
+        {
+         "en": "Two sides are long and two are short.",
+         "hi": "दो भुजाएँ लंबी और दो छोटी होती हैं।"
+        },
+        {
+         "en": "It has three sides.",
+         "hi": "इसकी तीन भुजाएँ होती हैं।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A square has four sides of the same length.",
+        "hi": "वर्ग की चारों भुजाएँ एक ही लंबाई की होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a rectangle, not a square.",
+         "hi": "यह आयत है, वर्ग नहीं।"
+        },
+        {
+         "en": "A shape with three sides is a triangle.",
+         "hi": "तीन भुजाओं वाला आकार त्रिभुज होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who helped the four friends stop fighting?",
+        "hi": "चारों दोस्तों की लड़ाई किसने ख़त्म करवाई?"
+       },
+       "options": [
+        {
+         "en": "A wise star",
+         "hi": "एक समझदार तारे ने"
+        },
+        {
+         "en": "The Sun",
+         "hi": "सूरज ने"
+        },
+        {
+         "en": "A teacher",
+         "hi": "एक शिक्षक ने"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The star told them that together they could make beautiful pictures.",
+        "hi": "तारे ने कहा कि साथ मिलकर वे सुंदर चित्र बना सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Sun is not in this story; a star helps.",
+         "hi": "इस कहानी में सूरज नहीं है; तारा मदद करता है।"
+        },
+        {
+         "en": "The friends meet a star, not a teacher.",
+         "hi": "दोस्तों को तारा मिलता है, शिक्षक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the rest of the clues. Which shape friend are you most like, and why?",
+      "hi": "बाक़ी संकेत हल करो। तुम किस आकार-दोस्त जैसे हो, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-ch03-a-or-an",
+   "topic": "2",
+   "template": "sort",
+   "title": {
+    "en": "A or an? Listen to the first sound",
+    "hi": "a या an? पहली आवाज़ सुनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "a",
+      "label": {
+       "en": "Use  a",
+       "hi": "a लगाओ"
+      }
+     },
+     {
+      "id": "an",
+      "label": {
+       "en": "Use  an",
+       "hi": "an लगाओ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "dog",
+      "text": {
+       "en": "dog",
+       "hi": "कुत्ता"
+      },
+      "bin": "a",
+      "why": {
+       "en": "Dog begins with the consonant sound d, so we say a dog.",
+       "hi": "dog व्यंजन की आवाज़ d से शुरू होता है, इसलिए a dog कहते हैं।"
+      }
+     },
+     {
+      "id": "cow",
+      "text": {
+       "en": "cow",
+       "hi": "गाय"
+      },
+      "bin": "a",
+      "why": {
+       "en": "Cow begins with a consonant sound, so a cow.",
+       "hi": "cow व्यंजन की आवाज़ से शुरू होता है, इसलिए a cow।"
+      }
+     },
+     {
+      "id": "sparrow",
+      "text": {
+       "en": "sparrow",
+       "hi": "गौरैया"
+      },
+      "bin": "a",
+      "why": {
+       "en": "Sparrow begins with the sound s, so a sparrow.",
+       "hi": "sparrow की शुरुआत s की आवाज़ से होती है, इसलिए a sparrow।"
+      }
+     },
+     {
+      "id": "hen",
+      "text": {
+       "en": "hen",
+       "hi": "मुर्गी"
+      },
+      "bin": "a",
+      "why": {
+       "en": "Hen begins with the sound h, so a hen.",
+       "hi": "hen की शुरुआत h की आवाज़ से होती है, इसलिए a hen।"
+      }
+     },
+     {
+      "id": "uniform",
+      "text": {
+       "en": "uniform",
+       "hi": "वर्दी"
+      },
+      "bin": "a",
+      "why": {
+       "en": "Uniform starts with the sound 'yoo', which is a consonant sound. So we say a uniform.",
+       "hi": "uniform की शुरुआत 'यू' की आवाज़ से होती है, जो व्यंजन की आवाज़ है। इसलिए a uniform कहते हैं।"
+      }
+     },
+     {
+      "id": "elephant",
+      "text": {
+       "en": "elephant",
+       "hi": "हाथी"
+      },
+      "bin": "an",
+      "why": {
+       "en": "Elephant begins with the vowel sound e, so an elephant.",
+       "hi": "elephant स्वर की आवाज़ e से शुरू होता है, इसलिए an elephant।"
+      }
+     },
+     {
+      "id": "apple",
+      "text": {
+       "en": "apple",
+       "hi": "सेब"
+      },
+      "bin": "an",
+      "why": {
+       "en": "Apple begins with the vowel sound a, so an apple.",
+       "hi": "apple स्वर की आवाज़ a से शुरू होता है, इसलिए an apple।"
+      }
+     },
+     {
+      "id": "umbrella",
+      "text": {
+       "en": "umbrella",
+       "hi": "छाता"
+      },
+      "bin": "an",
+      "why": {
+       "en": "Umbrella begins with the vowel sound u, so an umbrella.",
+       "hi": "umbrella स्वर की आवाज़ u से शुरू होता है, इसलिए an umbrella।"
+      }
+     },
+     {
+      "id": "icecream",
+      "text": {
+       "en": "ice-cream",
+       "hi": "आइसक्रीम"
+      },
+      "bin": "an",
+      "why": {
+       "en": "Ice-cream begins with the vowel sound i, so an ice-cream.",
+       "hi": "ice-cream स्वर की आवाज़ i से शुरू होता है, इसलिए an ice-cream।"
+      }
+     },
+     {
+      "id": "owl",
+      "text": {
+       "en": "owl",
+       "hi": "उल्लू"
+      },
+      "bin": "an",
+      "why": {
+       "en": "Owl begins with the vowel sound o, so an owl.",
+       "hi": "owl स्वर की आवाज़ o से शुरू होता है, इसलिए an owl।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "We say 'a pigeon' and 'an ant'. Which sound does 'ant' begin with?",
+      "hi": "हम 'a pigeon' और 'an ant' कहते हैं। 'ant' किस तरह की आवाज़ से शुरू होता है?"
+     },
+     "options": [
+      {
+       "id": "vowel",
+       "en": "A vowel sound",
+       "hi": "स्वर की आवाज़"
+      },
+      {
+       "id": "cons",
+       "en": "A consonant sound",
+       "hi": "व्यंजन की आवाज़"
+      }
+     ],
+     "answer": "vowel"
+    },
+    {
+     "kind": "do",
+     "target": "card:apple",
+     "expect": "correct:apple",
+     "say": {
+      "en": "Tap the card 'apple'. Then tap the bin where it belongs.",
+      "hi": "'apple' कार्ड पर टैप करो। फिर सही डिब्बे पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:dog",
+     "expect": "correct:dog",
+     "say": {
+      "en": "Now sort the card 'dog'.",
+      "hi": "अब 'dog' कार्ड को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We use 'an' before a word that begins with a vowel sound (a, e, i, o, u), like an apple or an owl. We use 'a' before a word that begins with a consonant sound, like a dog or a cow. Listen to the sound, not just the letter: uniform starts with the letter u, but it sounds like 'yoo', so we say a uniform.",
+      "hi": "जिस शब्द की शुरुआत स्वर की आवाज़ (a, e, i, o, u) से होती है, उससे पहले 'an' लगाते हैं, जैसे an apple, an owl। जिस शब्द की शुरुआत व्यंजन की आवाज़ से होती है, उससे पहले 'a' लगाते हैं, जैसे a dog, a cow। अक्षर नहीं, आवाज़ सुनो: uniform अक्षर u से शुरू होता है, पर उसकी आवाज़ 'यू' जैसी है, इसलिए a uniform कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is right?",
+        "hi": "कौन-सा सही है?"
+       },
+       "options": [
+        {
+         "en": "a eagle",
+         "hi": "a eagle (अ ईगल)"
+        },
+        {
+         "en": "an eagle",
+         "hi": "an eagle (ऐन ईगल)"
+        },
+        {
+         "en": "an cow",
+         "hi": "an cow (ऐन काउ)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Eagle begins with a vowel sound, so we say an eagle.",
+        "hi": "eagle स्वर की आवाज़ से शुरू होता है, इसलिए an eagle कहते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Eagle begins with the vowel sound 'ee', so it needs 'an'.",
+         "hi": "eagle स्वर की आवाज़ 'ई' से शुरू होता है, इसलिए इसके साथ 'an' आएगा।"
+        },
+        "",
+        {
+         "en": "Cow begins with a consonant sound, so it needs 'a'.",
+         "hi": "cow व्यंजन की आवाज़ से शुरू होता है, इसलिए इसके साथ 'a' आएगा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we say 'a uniform'?",
+        "hi": "हम 'a uniform' क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It begins with the sound 'yoo', a consonant sound.",
+         "hi": "यह 'यू' की आवाज़ से शुरू होता है, जो व्यंजन की आवाज़ है।"
+        },
+        {
+         "en": "Because u is always a consonant.",
+         "hi": "क्योंकि u हमेशा व्यंजन होता है।"
+        },
+        {
+         "en": "Because uniform is a long word.",
+         "hi": "क्योंकि uniform लंबा शब्द है।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The first sound is 'yoo', so we choose 'a'.",
+        "hi": "पहली आवाज़ 'यू' है, इसलिए हम 'a' चुनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "U is a vowel letter. It is the sound at the start of uniform that matters.",
+         "hi": "u स्वर का अक्षर है। यहाँ मायने रखती है uniform की शुरुआत की आवाज़।"
+        },
+        {
+         "en": "The length of the word does not matter, only the first sound.",
+         "hi": "शब्द की लंबाई मायने नहीं रखती, केवल पहली आवाज़ रखती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort all the cards and press Check. Say each one aloud with a or an: a ___ or an ___.",
+      "hi": "सभी कार्ड छाँटो और Check दबाओ। हर एक को a या an के साथ ज़ोर से बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-ch03-animal-actions",
+   "topic": "3",
+   "template": "match",
+   "title": {
+    "en": "What do animals do?",
+    "hi": "जानवर क्या करते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "birds",
+      "left": {
+       "en": "Birds",
+       "hi": "चिड़ियाँ"
+      },
+      "right": {
+       "en": "chirp and sing",
+       "hi": "चहचहाती और गाती हैं"
+      },
+      "why": {
+       "en": "Birds chirp and sing.",
+       "hi": "चिड़ियाँ चहचहाती और गाती हैं।"
+      }
+     },
+     {
+      "id": "monkeys",
+      "left": {
+       "en": "Monkeys",
+       "hi": "बंदर"
+      },
+      "right": {
+       "en": "jump and swing",
+       "hi": "कूदते और झूलते हैं"
+      },
+      "why": {
+       "en": "Monkeys jump and swing from branch to branch.",
+       "hi": "बंदर डाल-डाल पर कूदते और झूलते हैं।"
+      }
+     },
+     {
+      "id": "dogs",
+      "left": {
+       "en": "Dogs",
+       "hi": "कुत्ते"
+      },
+      "right": {
+       "en": "run and bark",
+       "hi": "दौड़ते और भौंकते हैं"
+      },
+      "why": {
+       "en": "Dogs run and bark.",
+       "hi": "कुत्ते दौड़ते और भौंकते हैं।"
+      }
+     },
+     {
+      "id": "cats",
+      "left": {
+       "en": "Cats",
+       "hi": "बिल्लियाँ"
+      },
+      "right": {
+       "en": "mew in the dark",
+       "hi": "अँधेरे में म्याऊँ करती हैं"
+      },
+      "why": {
+       "en": "Cats mew.",
+       "hi": "बिल्लियाँ म्याऊँ करती हैं।"
+      }
+     },
+     {
+      "id": "elephants",
+      "left": {
+       "en": "Elephants",
+       "hi": "हाथी"
+      },
+      "right": {
+       "en": "raise their trunks",
+       "hi": "अपनी सूँड़ उठाते हैं"
+      },
+      "why": {
+       "en": "An elephant lifts its long trunk.",
+       "hi": "हाथी अपनी लंबी सूँड़ ऊपर उठाता है।"
+      }
+     },
+     {
+      "id": "lions",
+      "left": {
+       "en": "Lions",
+       "hi": "शेर"
+      },
+      "right": {
+       "en": "roar and hunt",
+       "hi": "दहाड़ते और शिकार करते हैं"
+      },
+      "why": {
+       "en": "Lions roar loudly and hunt.",
+       "hi": "शेर ज़ोर से दहाड़ते और शिकार करते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Birds chirp and sing. What do monkeys do?",
+      "hi": "चिड़ियाँ चहचहाती और गाती हैं। बंदर क्या करते हैं?"
+     },
+     "options": [
+      {
+       "id": "jump",
+       "en": "Jump and swing",
+       "hi": "कूदते और झूलते हैं"
+      },
+      {
+       "id": "roar",
+       "en": "Roar and hunt",
+       "hi": "दहाड़ते और शिकार करते हैं"
+      },
+      {
+       "id": "mew",
+       "en": "Mew in the dark",
+       "hi": "अँधेरे में म्याऊँ करते हैं"
+      }
+     ],
+     "answer": "jump"
+    },
+    {
+     "kind": "do",
+     "target": "left:monkeys",
+     "expect": "matched:monkeys",
+     "say": {
+      "en": "Tap Monkeys. Then tap what monkeys do.",
+      "hi": "Monkeys पर टैप करो। फिर टैप करो कि बंदर क्या करते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:lions",
+     "expect": "matched:lions",
+     "say": {
+      "en": "Now match Lions with their action.",
+      "hi": "अब Lions को उनके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The words chirp, jump, swing, run, bark, mew, raise and roar are action words. Each animal has its own special action. The rhyme asks 'What do you do?' and each animal answers with action words.",
+      "hi": "chirp, jump, swing, run, bark, mew, raise और roar काम बताने वाले शब्द हैं। हर जानवर का अपना ख़ास काम होता है। तुकबंदी पूछती है 'तुम क्या करते हो?' और हर जानवर काम बताने वाले शब्दों में जवाब देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which animal roars?",
+        "hi": "कौन-सा जानवर दहाड़ता है?"
+       },
+       "options": [
+        {
+         "en": "Cat",
+         "hi": "बिल्ली"
+        },
+        {
+         "en": "Lion",
+         "hi": "शेर"
+        },
+        {
+         "en": "Bird",
+         "hi": "चिड़िया"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A lion roars loudly.",
+        "hi": "शेर ज़ोर से दहाड़ता है।"
+       },
+       "wrong": [
+        {
+         "en": "A cat mews, it does not roar.",
+         "hi": "बिल्ली म्याऊँ करती है, दहाड़ती नहीं।"
+        },
+        "",
+        {
+         "en": "A bird chirps and sings.",
+         "hi": "चिड़िया चहचहाती और गाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is an action word?",
+        "hi": "इनमें से कौन-सा काम बताने वाला शब्द है?"
+       },
+       "options": [
+        {
+         "en": "monkey",
+         "hi": "monkey (बंदर)"
+        },
+        {
+         "en": "swing",
+         "hi": "swing (झूलना)"
+        },
+        {
+         "en": "trunk",
+         "hi": "trunk (सूँड़)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Swing tells what a monkey does.",
+        "hi": "swing बताता है कि बंदर क्या करता है।"
+       },
+       "wrong": [
+        {
+         "en": "Monkey names an animal.",
+         "hi": "monkey एक जानवर का नाम है।"
+        },
+        "",
+        {
+         "en": "Trunk names a part of an elephant.",
+         "hi": "trunk हाथी के एक अंग का नाम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match every animal and press Check. Then act out one animal and let your friends guess what it does.",
+      "hi": "हर जानवर मिलाओ और Check दबाओ। फिर कोई एक जानवर बनकर दिखाओ और दोस्तों से बूझने को कहो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-ch03-shapes-around-us",
+   "topic": "5",
+   "template": "sort",
+   "title": {
+    "en": "Find the shape around you",
+    "hi": "अपने आसपास का आकार पहचानो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "circle",
+      "label": {
+       "en": "Circle",
+       "hi": "वृत्त"
+      }
+     },
+     {
+      "id": "square",
+      "label": {
+       "en": "Square",
+       "hi": "वर्ग"
+      }
+     },
+     {
+      "id": "triangle",
+      "label": {
+       "en": "Triangle",
+       "hi": "त्रिभुज"
+      }
+     },
+     {
+      "id": "rect",
+      "label": {
+       "en": "Rectangle",
+       "hi": "आयत"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "wheel",
+      "text": {
+       "en": "Bicycle wheel",
+       "hi": "साइकिल का पहिया"
+      },
+      "bin": "circle",
+      "why": {
+       "en": "A wheel is round with no corners: a circle.",
+       "hi": "पहिया गोल होता है और उसके कोने नहीं होते: वृत्त।"
+      }
+     },
+     {
+      "id": "clock",
+      "text": {
+       "en": "Wall clock",
+       "hi": "दीवार घड़ी"
+      },
+      "bin": "circle",
+      "why": {
+       "en": "Most wall clocks are round: a circle.",
+       "hi": "ज़्यादातर दीवार घड़ियाँ गोल होती हैं: वृत्त।"
+      }
+     },
+     {
+      "id": "hanky",
+      "text": {
+       "en": "Handkerchief",
+       "hi": "रूमाल"
+      },
+      "bin": "square",
+      "why": {
+       "en": "A hankie has four equal sides: a square.",
+       "hi": "रूमाल की चारों भुजाएँ बराबर होती हैं: वर्ग।"
+      }
+     },
+     {
+      "id": "tile",
+      "text": {
+       "en": "Floor tile",
+       "hi": "फ़र्श की टाइल"
+      },
+      "bin": "square",
+      "why": {
+       "en": "A floor tile has four equal sides: a square.",
+       "hi": "फ़र्श की टाइल की चारों भुजाएँ बराबर होती हैं: वर्ग।"
+      }
+     },
+     {
+      "id": "samosa",
+      "text": {
+       "en": "Samosa",
+       "hi": "समोसा"
+      },
+      "bin": "triangle",
+      "why": {
+       "en": "A samosa has three sides: a triangle.",
+       "hi": "समोसे की तीन भुजाएँ होती हैं: त्रिभुज।"
+      }
+     },
+     {
+      "id": "flag",
+      "text": {
+       "en": "Pennant flag",
+       "hi": "तिकोना झंडा"
+      },
+      "bin": "triangle",
+      "why": {
+       "en": "A pennant has three sides: a triangle.",
+       "hi": "तिकोने झंडे की तीन भुजाएँ होती हैं: त्रिभुज।"
+      }
+     },
+     {
+      "id": "door",
+      "text": {
+       "en": "Door",
+       "hi": "दरवाज़ा"
+      },
+      "bin": "rect",
+      "why": {
+       "en": "A door has two long and two short sides: a rectangle.",
+       "hi": "दरवाज़े की दो भुजाएँ लंबी और दो छोटी होती हैं: आयत।"
+      }
+     },
+     {
+      "id": "choco",
+      "text": {
+       "en": "Chocolate bar",
+       "hi": "चॉकलेट की पट्टी"
+      },
+      "bin": "rect",
+      "why": {
+       "en": "A chocolate bar has two long and two short sides: a rectangle.",
+       "hi": "चॉकलेट की पट्टी की दो भुजाएँ लंबी और दो छोटी होती हैं: आयत।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A samosa has three sides. Which shape is it?",
+      "hi": "समोसे की तीन भुजाएँ होती हैं। यह कौन-सा आकार है?"
+     },
+     "options": [
+      {
+       "id": "triangle",
+       "en": "Triangle",
+       "hi": "त्रिभुज"
+      },
+      {
+       "id": "circle",
+       "en": "Circle",
+       "hi": "वृत्त"
+      },
+      {
+       "id": "rect",
+       "en": "Rectangle",
+       "hi": "आयत"
+      }
+     ],
+     "answer": "triangle"
+    },
+    {
+     "kind": "do",
+     "target": "card:samosa",
+     "expect": "correct:samosa",
+     "say": {
+      "en": "Tap the card 'Samosa'. Then tap the shape bin.",
+      "hi": "'Samosa' कार्ड पर टैप करो। फिर आकार वाले डिब्बे पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:wheel",
+     "expect": "correct:wheel",
+     "say": {
+      "en": "Now sort the Bicycle wheel.",
+      "hi": "अब साइकिल के पहिये को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Shapes are everywhere. A circle is round, a square has four equal sides, a triangle has three sides and a rectangle has two long and two short sides. When you look at an object, count its sides and look at whether they are equal.",
+      "hi": "आकार हर जगह हैं। वृत्त गोल होता है, वर्ग की चार भुजाएँ बराबर होती हैं, त्रिभुज की तीन भुजाएँ होती हैं और आयत की दो भुजाएँ लंबी और दो छोटी होती हैं। किसी चीज़ को देखकर उसकी भुजाएँ गिनो और देखो कि वे बराबर हैं या नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A door has two long sides and two short sides. Which shape is it?",
+        "hi": "दरवाज़े की दो भुजाएँ लंबी और दो छोटी होती हैं। यह कौन-सा आकार है?"
+       },
+       "options": [
+        {
+         "en": "Square",
+         "hi": "वर्ग"
+        },
+        {
+         "en": "Rectangle",
+         "hi": "आयत"
+        },
+        {
+         "en": "Circle",
+         "hi": "वृत्त"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Two long and two short sides make a rectangle.",
+        "hi": "दो लंबी और दो छोटी भुजाएँ आयत बनाती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A square has all four sides equal; a door does not.",
+         "hi": "वर्ग की चारों भुजाएँ बराबर होती हैं; दरवाज़े की नहीं।"
+        },
+        "",
+        {
+         "en": "A circle has no sides or corners.",
+         "hi": "वृत्त की कोई भुजा या कोना नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort all eight cards and press Check. Then find one circle, one square, one triangle and one rectangle in your classroom.",
+      "hi": "सभी आठ कार्ड छाँटो और Check दबाओ। फिर अपनी कक्षा में एक वृत्त, एक वर्ग, एक त्रिभुज और एक आयत ढूँढो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "3DM",
+   "topic": "1",
+   "use": "Hook: the four shape friends",
+   "shows": "Four toy-like shapes made of smooth wood or card: a circle, a square, a triangle and a rectangle, standing side by side",
+   "view": "Front, side, top and three-quarter views, plain light background",
+   "right": "Bright primary colours, flat surfaces, edges rounded for child safety",
+   "avoid": "Faces or letters printed on the shapes",
+   "n": 1
+  },
+  {
+   "kind": "SCN",
+   "topic": "1",
+   "use": "The star scene",
+   "shows": "A night sky over a village roof with one large bright star",
+   "view": "Wide, low angle, deep blue sky",
+   "right": "Realistic night colours, stars soft and sharp",
+   "avoid": "Moon phases, text",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "2",
+   "use": "A or an lab: ten objects",
+   "shows": "Cut-outs of an apple, an elephant, an umbrella, an owl, an ice-cream cone, a dog, a cow, a sparrow, a hen and a school uniform shirt",
+   "view": "Front view each, soft shadow",
+   "right": "Real animals and objects in natural colours, uniform in a regular Indian school style",
+   "avoid": "Brand or school logos on the uniform",
+   "n": 3
+  },
+  {
+   "kind": "MAC",
+   "topic": "5",
+   "use": "Shapes around us",
+   "shows": "Close-ups of a samosa, a chocolate bar, floor tile and bicycle wheel from straight above",
+   "view": "Top-down, filling the frame",
+   "right": "Triangle samosa, rectangular chocolate bar with grooves, square tile, round wheel with spokes",
+   "avoid": "Brand name on the chocolate wrapper",
+   "n": 4
+  },
+  {
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Animals and their actions",
+   "shows": "A monkey swinging on a branch, a dog running on a lane, a cat on a wall at dusk and a lion roaring",
+   "view": "Four separate wide shots",
+   "right": "Natural poses; clear action in each",
+   "avoid": "Zoo bars, signs or people",
+   "n": 5
+  },
+  {
+   "kind": "OBJ",
+   "topic": "5",
+   "use": "Everyday shape objects",
+   "shows": "A set of objects: wall clock, handkerchief, pennant flag, door model",
+   "view": "Front view, even light",
+   "right": "Handkerchief square, flag a true triangle, door in rectangle shape",
+   "avoid": "Numbers or hands showing wrong time",
+   "n": 6
+  }
+ ]
+}

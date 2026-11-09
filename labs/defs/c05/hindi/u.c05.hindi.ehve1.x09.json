@@ -1,0 +1,445 @@
+{
+  "chapter_key": "u.c05.hindi.ehve1.x09",
+  "class": 5,
+  "subject_id": "hindi",
+  "title": "हाथी और चींटी",
+  "source": "https://ncert.nic.in/textbook/pdf/ehve1ps.pdf",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Road habits: safe and unsafe",
+      "labs": [
+        "c05-hindi-ehve1-x09-habits"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "How to cross the road",
+      "labs": [
+        "c05-hindi-ehve1-x09-cross"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c05-hindi-ehve1-x09-habits",
+      "topic": "1",
+      "template": "sort",
+      "title": {
+        "en": "Be an ant, not an elephant",
+        "hi": "चींटी बनो, हाथी नहीं"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "safe",
+            "label": {
+              "en": "Safe road habit",
+              "hi": "सुरक्षित आदत"
+            }
+          },
+          {
+            "id": "unsafe",
+            "label": {
+              "en": "Unsafe road habit",
+              "hi": "असुरक्षित आदत"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "helmet",
+            "text": {
+              "en": "Wearing a helmet on a two-wheeler",
+              "hi": "दोपहिया पर हेलमेट पहनना"
+            },
+            "bin": "safe",
+            "why": {
+              "en": "A helmet protects the head in a fall, as the ant's did.",
+              "hi": "गिरने पर हेलमेट सिर को बचाता है, जैसे चींटी का बचा।"
+            }
+          },
+          {
+            "id": "path",
+            "text": {
+              "en": "Walking on the footpath",
+              "hi": "पटरी पर चलना"
+            },
+            "bin": "safe",
+            "why": {
+              "en": "The footpath keeps walkers away from vehicles.",
+              "hi": "पटरी पैदल चलने वालों को वाहनों से दूर रखती है।"
+            }
+          },
+          {
+            "id": "red",
+            "text": {
+              "en": "Waiting for the red light",
+              "hi": "लाल बत्ती पर रुकना"
+            },
+            "bin": "safe",
+            "why": {
+              "en": "At red, vehicles must stop, so crossing is safe.",
+              "hi": "लाल बत्ती पर वाहन रुकते हैं, इसलिए पार करना सुरक्षित है।"
+            }
+          },
+          {
+            "id": "zebra",
+            "text": {
+              "en": "Crossing on the zebra crossing",
+              "hi": "ज़ेब्रा क्रॉसिंग से पार करना"
+            },
+            "bin": "safe",
+            "why": {
+              "en": "Drivers expect walkers on a zebra crossing.",
+              "hi": "ज़ेब्रा क्रॉसिंग पर चालक पैदल यात्री की उम्मीद रखते हैं।"
+            }
+          },
+          {
+            "id": "talk",
+            "text": {
+              "en": "Chatting while crossing",
+              "hi": "सड़क पार करते समय बातें करना"
+            },
+            "bin": "unsafe",
+            "why": {
+              "en": "Chatting takes your eyes and mind off the traffic.",
+              "hi": "बातों में ध्यान यातायात से हट जाता है।"
+            }
+          },
+          {
+            "id": "run",
+            "text": {
+              "en": "Running across the road",
+              "hi": "सड़क पर दौड़कर निकलना"
+            },
+            "bin": "unsafe",
+            "why": {
+              "en": "Running can make you trip or surprise a driver.",
+              "hi": "दौड़ने से गिर सकते हैं या चालक चौंक सकता है।"
+            }
+          },
+          {
+            "id": "jump",
+            "text": {
+              "en": "Jumping the red light",
+              "hi": "लाल बत्ती पार कर जाना"
+            },
+            "bin": "unsafe",
+            "why": {
+              "en": "Other vehicles may be coming on green.",
+              "hi": "दूसरी ओर हरी बत्ती से वाहन आ सकते हैं।"
+            }
+          },
+          {
+            "id": "nohold",
+            "text": {
+              "en": "Letting go of an elder's hand",
+              "hi": "बड़े का हाथ छोड़कर भागना"
+            },
+            "bin": "unsafe",
+            "why": {
+              "en": "A child alone on a busy road can be hurt.",
+              "hi": "भीड़ वाली सड़क पर अकेला बच्चा चोटिल हो सकता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:helmet",
+          "expect": "placed:helmet",
+          "say": {
+            "en": "Tap the helmet card and put it where it belongs.",
+            "hi": "हेलमेट का कार्ड चुनो और उसकी सही जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which habit is unsafe?",
+            "hi": "कौन-सी आदत असुरक्षित है?"
+          },
+          "options": [
+            {
+              "id": "run",
+              "en": "Running across",
+              "hi": "दौड़कर निकलना"
+            },
+            {
+              "id": "wait",
+              "en": "Waiting for the red light",
+              "hi": "लाल बत्ती पर रुकना"
+            }
+          ],
+          "answer": "run"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the cards and press Check.",
+            "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The ant wore a helmet and was safe; the elephant had none and got hurt. Small rules, like the helmet, the footpath, the red light and the zebra crossing, protect us every day.",
+            "hi": "चींटी ने हेलमेट पहना था इसलिए बच गई; हाथी के पास हेलमेट नहीं था, इसलिए चोट खाई। हेलमेट, पटरी, लाल बत्ती और ज़ेब्रा क्रॉसिंग जैसे छोटे नियम रोज़ हमारी रक्षा करते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why did the ant not get a serious injury?",
+                "hi": "चींटी को गंभीर चोट क्यों नहीं लगी?"
+              },
+              "options": [
+                {
+                  "en": "She wore a helmet",
+                  "hi": "उसने हेलमेट पहन रखा था"
+                },
+                {
+                  "en": "She was bigger",
+                  "hi": "वह बड़ी थी"
+                },
+                {
+                  "en": "She was far away",
+                  "hi": "वह दूर थी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A helmet takes the shock of a fall, so she got only a scratch.",
+                "hi": "हेलमेट गिरने का झटका सह लेता है, इसलिए उसे केवल खरोंच आई।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The ant is small; size did not save her.",
+                  "hi": "चींटी छोटी है; उसे आकार ने नहीं बचाया।"
+                },
+                {
+                  "en": "She was on the same bike as the elephant.",
+                  "hi": "वह हाथी के साथ ही मोटर साइकिल पर थी।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make a safety poster idea for your school gate. What one rule would you put first?",
+            "hi": "अपने स्कूल के गेट के लिए सुरक्षा पोस्टर का विचार सोचो। तुम पहला नियम कौन-सा रखोगे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-x09-cross",
+      "topic": "2",
+      "template": "sequence",
+      "title": {
+        "en": "Cross the road safely",
+        "hi": "सड़क सुरक्षित पार करो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "stop",
+            "text": {
+              "en": "Stop on the footpath, away from vehicles",
+              "hi": "पटरी पर रुको, वाहनों से दूर"
+            }
+          },
+          {
+            "id": "wait",
+            "text": {
+              "en": "Wait till the red light stops the vehicles",
+              "hi": "प्रतीक्षा करो जब तक लाल बत्ती वाहनों को रोक न दे"
+            }
+          },
+          {
+            "id": "look",
+            "text": {
+              "en": "Look at both sides of the road",
+              "hi": "सड़क के दोनों ओर देखो"
+            }
+          },
+          {
+            "id": "hold",
+            "text": {
+              "en": "Hold an elder's hand and walk, do not run",
+              "hi": "बड़े का हाथ पकड़कर चलो, दौड़ो मत"
+            }
+          },
+          {
+            "id": "zebra",
+            "text": {
+              "en": "Walk along the zebra crossing till the other side",
+              "hi": "ज़ेब्रा क्रॉसिंग पर चलते हुए दूसरी ओर पहुँचो"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:stop",
+          "expect": "placed:stop",
+          "say": {
+            "en": "Tap the card for the first step and put it first.",
+            "hi": "पहले कदम का कार्ड चुनो और पहले स्थान पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "When should you start crossing?",
+            "hi": "सड़क पार करना कब शुरू करना चाहिए?"
+          },
+          "options": [
+            {
+              "id": "red",
+              "en": "When the vehicles have stopped at the red light",
+              "hi": "जब लाल बत्ती पर वाहन रुक गए हों"
+            },
+            {
+              "id": "anyway",
+              "en": "As soon as you reach the road",
+              "hi": "सड़क पर पहुँचते ही"
+            }
+          ],
+          "answer": "red"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Arrange all five steps and press Check.",
+            "hi": "पाँचों कदम क्रम में लगाओ और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A safe crossing is a habit of five small steps: stop, wait, look, hold hands, and use the zebra crossing. Doing the steps in order keeps you away from danger.",
+            "hi": "सुरक्षित सड़क पार करना पाँच छोटे कदमों की आदत है: रुको, प्रतीक्षा करो, देखो, हाथ पकड़ो और ज़ेब्रा क्रॉसिंग से चलो। कदम क्रम से करने पर खतरा दूर रहता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What should you do before stepping onto the road?",
+                "hi": "सड़क पर कदम रखने से पहले क्या करना चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "Look at both sides",
+                  "hi": "दोनों ओर देखना"
+                },
+                {
+                  "en": "Close your eyes",
+                  "hi": "आँखें बंद करना"
+                },
+                {
+                  "en": "Run quickly",
+                  "hi": "तेज़ दौड़ना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Looking both ways shows if anything is coming.",
+                "hi": "दोनों ओर देखने से पता चलता है कि कोई वाहन आ तो नहीं रहा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Closing the eyes makes it unsafe.",
+                  "hi": "आँखें बंद करने से खतरा बढ़ता है।"
+                },
+                {
+                  "en": "Running can cause a fall or a surprise for drivers.",
+                  "hi": "दौड़ने से गिर सकते हैं या चालक चौंक सकता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Walk to the nearest crossing with an elder and name each step aloud.",
+            "hi": "किसी बड़े के साथ पास की क्रॉसिंग तक जाओ और हर कदम को ज़ोर से बोलो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens: a busy Indian street crossing",
+      "shows": "A zebra crossing and red light at a city crossing, vehicles stopped, a few walkers far away",
+      "view": "Wide 16:9",
+      "right": "Correct red light for vehicles, white zebra stripes",
+      "avoid": "Real number plates, faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sort card: helmet",
+      "shows": "A plain two-wheeler helmet",
+      "view": "Front three-quarter cut-out",
+      "right": "Standard-looking, no brand",
+      "avoid": "Logos"
+    },
+    {
+      "n": 3,
+      "kind": "SEQ",
+      "topic": "2",
+      "use": "Sequence for crossing safely",
+      "shows": "Five frames from the back: standing on footpath, waiting, looking, holding hands, walking over",
+      "view": "Same camera behind the walkers, f1-f5",
+      "right": "Children seen only from behind, elder's hand",
+      "avoid": "Faces"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "2",
+      "use": "Road signs for reading practice",
+      "shows": "Six plain traffic sign shapes: stop, pedestrian crossing, school ahead, no horn, no parking, footpath",
+      "view": "Flat, white",
+      "right": "Indian standard colours, symbols only",
+      "avoid": "Text on signs"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Fun cartoon-free scene: toy elephant and ant on a toy motorcycle",
+      "shows": "A toy motorcycle with a small toy ant rider with a helmet",
+      "view": "Close table view",
+      "right": "Playful, not cartoon-like"
+    }
+  ]
+}

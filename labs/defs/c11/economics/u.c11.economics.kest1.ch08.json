@@ -1,0 +1,487 @@
+{
+ "chapter_key": "u.c11.economics.kest1.ch08",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Use of Statistical Tools",
+ "source": "https://ncert.nic.in/textbook/pdf/kest108.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "Explains the purpose of a project; best read."
+  },
+  {
+   "n": "2",
+   "title": "Suggested list of projects",
+   "labs": [],
+   "why_no_lab": "A list to choose from; the project lab shows how to plan any one of them."
+  },
+  {
+   "n": "3",
+   "title": "Steps of a project: questionnaire, data, analysis, interpretation and report",
+   "labs": [
+    "c11-economics-kest1-ch08-project",
+    "c11-economics-kest1-ch08-survey-results"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "A",
+   "title": "Appendix A: glossary of statistical terms",
+   "labs": [],
+   "why_no_lab": "A glossary to read and look up."
+  },
+  {
+   "n": "B",
+   "title": "Appendix B: table of random numbers",
+   "labs": [],
+   "why_no_lab": "A reference table; the sampling lab in Chapter 2 shows random selection in action."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-kest1-ch08-project",
+   "topic": "3",
+   "template": "scenario",
+   "title": {
+    "en": "Plan a statistics project",
+    "hi": "एक सांख्यिकी परियोजना की योजना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "school",
+    "role": {
+     "en": "Student leading a class project",
+     "hi": "कक्षा परियोजना का नेतृत्व करता विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "aim",
+      "text": {
+       "en": "Your class will study \"How do students in our school travel to school, and why?\" What should you write down first?",
+       "hi": "तुम्हारी कक्षा अध्ययन करेगी \"हमारे स्कूल के विद्यार्थी स्कूल कैसे आते हैं, और क्यों?\" तुम्हें सबसे पहले क्या लिखना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "objective",
+        "text": {
+         "en": "A clear objective and the questions to answer",
+         "hi": "एक स्पष्ट उद्देश्य और उत्तर देने वाले प्रश्न"
+        },
+        "next": "who",
+        "feedback": {
+         "en": "Good. A clear objective decides what data you need.",
+         "hi": "अच्छा। स्पष्ट उद्देश्य तय करता है कि तुम्हें कौन-से आँकड़े चाहिए।"
+        },
+        "good": true
+       },
+       {
+        "id": "chart",
+        "text": {
+         "en": "The final pie chart",
+         "hi": "अंतिम पाई चार्ट"
+        },
+        "next": "who",
+        "feedback": {
+         "en": "Charts come at the end, after data are collected.",
+         "hi": "चार्ट आख़िर में आते हैं, आँकड़े इकट्ठे होने के बाद।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "who",
+      "text": {
+       "en": "The school has 800 students. You cannot ask all of them. What do you do?",
+       "hi": "स्कूल में 800 विद्यार्थी हैं। तुम सबसे नहीं पूछ सकते। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "random",
+        "text": {
+         "en": "Pick a random sample, such as 40 students from different classes",
+         "hi": "एक यादृच्छिक प्रतिदर्श चुनो, जैसे अलग-अलग कक्षाओं से 40 विद्यार्थी"
+        },
+        "next": "tool",
+        "feedback": {
+         "en": "Yes. A random sample from all classes represents the school.",
+         "hi": "हाँ। सभी कक्षाओं से यादृच्छिक प्रतिदर्श स्कूल का प्रतिनिधित्व करता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "friends",
+        "text": {
+         "en": "Ask only your friends",
+         "hi": "केवल अपने दोस्तों से पूछो"
+        },
+        "next": "tool",
+        "feedback": {
+         "en": "Friends may live close by or travel the same way; that biases the sample.",
+         "hi": "दोस्त शायद पास रहते हों या एक ही तरीक़े से आते हों; इससे प्रतिदर्श पक्षपाती होता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "tool",
+      "text": {
+       "en": "You have 40 answers. Which tool will show how students travel most clearly?",
+       "hi": "तुम्हारे पास 40 उत्तर हैं। कौन-सा साधन सबसे साफ़ दिखाएगा कि विद्यार्थी कैसे आते हैं?"
+      },
+      "choices": [
+       {
+        "id": "pie-tool",
+        "text": {
+         "en": "A frequency table and a pie or bar diagram, with the mode",
+         "hi": "एक बारंबारता तालिका और पाई या दंड आरेख, बहुलक के साथ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Travel mode is qualitative, so counts, shares and the mode suit it.",
+         "hi": "सही। आने का तरीक़ा गुणात्मक है, इसलिए गिनती, हिस्से और बहुलक इसके लिए ठीक हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "mean-tool",
+        "text": {
+         "en": "The mean travel mode",
+         "hi": "आने के तरीक़े का माध्य"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "You cannot average \"bus\" and \"bicycle\"; use counts and the mode.",
+         "hi": "\"बस\" और \"साइकिल\" का औसत नहीं निकल सकता; गिनती और बहुलक इस्तेमाल करो।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the right order for a statistics project?",
+      "hi": "सांख्यिकी परियोजना का सही क्रम क्या है?"
+     },
+     "options": [
+      {
+       "id": "right",
+       "en": "Objective, sample and questionnaire, data, analysis, report",
+       "hi": "उद्देश्य, प्रतिदर्श और प्रश्नावली, आँकड़े, विश्लेषण, रिपोर्ट"
+      },
+      {
+       "id": "wrong",
+       "en": "Report, data, objective",
+       "hi": "रिपोर्ट, आँकड़े, उद्देश्य"
+      }
+     ],
+     "answer": "right"
+    },
+    {
+     "kind": "do",
+     "target": "choice:aim:objective",
+     "expect": "chose:objective",
+     "say": {
+      "en": "Tap what you should write down first.",
+      "hi": "जो सबसे पहले लिखना चाहिए उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A statistics project follows the steps of the whole course: state the objective, decide the population and sample, design a questionnaire, collect data, organise it in tables, present it in diagrams, analyse it with tools such as averages and correlation, and interpret the results in a short report. Each tool must fit the type of data.",
+      "hi": "सांख्यिकी परियोजना पूरे पाठ्यक्रम के कदमों पर चलती है: उद्देश्य बताओ, जनसंख्या और प्रतिदर्श तय करो, प्रश्नावली बनाओ, आँकड़े इकट्ठे करो, तालिकाओं में व्यवस्थित करो, आरेखों में प्रस्तुत करो, औसत और सहसंबंध जैसे साधनों से विश्लेषण करो, और एक छोटी रिपोर्ट में नतीजों की व्याख्या करो। हर साधन आँकड़ों के प्रकार के अनुकूल होना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why should a project report mention the size of the sample and how it was chosen?",
+        "hi": "परियोजना रिपोर्ट में प्रतिदर्श का आकार और उसे कैसे चुना गया, क्यों बताना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "So readers can judge how reliable the results are",
+         "hi": "ताकि पाठक आँक सकें कि नतीजे कितने विश्वसनीय हैं"
+        },
+        {
+         "en": "To make the report longer",
+         "hi": "रिपोर्ट लंबी करने के लिए"
+        },
+        {
+         "en": "It is never needed",
+         "hi": "इसकी कभी ज़रूरत नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A tiny or biased sample can mislead; stating it lets others check.",
+        "hi": "बहुत छोटा या पक्षपाती प्रतिदर्श भ्रामक हो सकता है; इसे बताने से दूसरे जाँच सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Length is not the aim; trust is.",
+         "hi": "लंबाई उद्देश्य नहीं; भरोसा है।"
+        },
+        {
+         "en": "Without it, nobody can judge the results.",
+         "hi": "इसके बिना कोई नतीजे आँक नहीं सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the sample and tools scenes. Then plan your own project: write its objective in one line.",
+      "hi": "प्रतिदर्श और साधनों वाले दृश्य खेलो। फिर अपनी परियोजना की योजना बनाओ: एक पंक्ति में उसका उद्देश्य लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch08-survey-results",
+   "topic": "3",
+   "template": "data",
+   "title": {
+    "en": "Results of our travel survey",
+    "hi": "हमारे यात्रा सर्वेक्षण के नतीजे"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "views": [
+     "bar",
+     "pie"
+    ],
+    "ask": "max",
+    "show": 2,
+    "title": {
+     "en": "How 40 sampled students travel to school (sample)",
+     "hi": "प्रतिदर्श के 40 विद्यार्थी स्कूल कैसे आते हैं (नमूना)"
+    },
+    "xlabel": {
+     "en": "Way of travel",
+     "hi": "आने का तरीक़ा"
+    },
+    "ylabel": {
+     "en": "Number of students",
+     "hi": "विद्यार्थियों की संख्या"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Walk",
+       "hi": "पैदल"
+      },
+      "value": 12
+     },
+     {
+      "label": {
+       "en": "Bicycle",
+       "hi": "साइकिल"
+      },
+      "value": 10
+     },
+     {
+      "label": {
+       "en": "School bus",
+       "hi": "स्कूल बस"
+      },
+      "value": 14
+     },
+     {
+      "label": {
+       "en": "Car",
+       "hi": "कार"
+      },
+      "value": 4
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the students who come by school bus.",
+      "hi": "\"जोड़ो\" पर टैप करो और स्कूल बस से आने वाले विद्यार्थी दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the students who come by car.",
+      "hi": "\"जोड़ो\" पर टैप करो और कार से आने वाले विद्यार्थी दिखाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What share of the sample comes on foot or by bicycle?",
+      "hi": "प्रतिदर्श का कितना भाग पैदल या साइकिल से आता है?"
+     },
+     "options": [
+      {
+       "id": "half",
+       "en": "More than half",
+       "hi": "आधे से ज़्यादा"
+      },
+      {
+       "id": "quarter",
+       "en": "About a quarter",
+       "hi": "लगभग एक-चौथाई"
+      },
+      {
+       "id": "tenth",
+       "en": "About a tenth",
+       "hi": "लगभग दसवाँ भाग"
+      }
+     ],
+     "answer": "half"
+    },
+    {
+     "kind": "do",
+     "target": "chart:pie",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Pie chart\" to see each way as a share of the whole.",
+      "hi": "\"पाई चार्ट\" पर टैप करो और हर तरीक़े को पूरे के हिस्से के रूप में देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer below: which way of travel is the mode?",
+      "hi": "नीचे उत्तर दो: आने का कौन-सा तरीक़ा बहुलक है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The survey shows 14 of 40 students, 35 per cent, come by school bus, the mode. Walking (12) and cycling (10) together are 22 of 40, 55 per cent, so more than half come without motor transport. A report would interpret this: for example, safer cycle paths could help many students. Because this is a sample, the school-wide shares may differ a little.",
+      "hi": "सर्वेक्षण दिखाता है कि 40 में से 14 विद्यार्थी, 35 प्रतिशत, स्कूल बस से आते हैं, यही बहुलक है। पैदल (12) और साइकिल (10) मिलाकर 40 में से 22, यानी 55 प्रतिशत, हैं, इसलिए आधे से ज़्यादा बिना मोटर वाहन के आते हैं। रिपोर्ट इसकी व्याख्या करेगी: जैसे, सुरक्षित साइकिल रास्ते कई विद्यार्थियों की मदद कर सकते हैं। क्योंकि यह प्रतिदर्श है, पूरे स्कूल के हिस्से थोड़े अलग हो सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What percentage of the sample comes by car?",
+        "hi": "प्रतिदर्श का कितना प्रतिशत कार से आता है?"
+       },
+       "options": [
+        {
+         "en": "10 per cent",
+         "hi": "10 प्रतिशत"
+        },
+        {
+         "en": "4 per cent",
+         "hi": "4 प्रतिशत"
+        },
+        {
+         "en": "40 per cent",
+         "hi": "40 प्रतिशत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 ÷ 40 × 100 = 10 per cent.",
+        "hi": "4 ÷ 40 × 100 = 10 प्रतिशत।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 is the number of students, not the percentage.",
+         "hi": "4 विद्यार्थियों की संख्या है, प्रतिशत नहीं।"
+        },
+        {
+         "en": "40 is the size of the whole sample.",
+         "hi": "40 पूरे प्रतिदर्श का आकार है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the numbers to match your own class. Which chart, bar or pie, tells your story better?",
+      "hi": "संख्याएँ बदलकर अपनी कक्षा जैसी बनाओ। कौन-सा चार्ट, दंड या पाई, तुम्हारी बात बेहतर बताता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Hook of the chapter: students on their way to school",
+   "shows": "A school gate in the morning with students arriving on foot, on bicycles and by a yellow school bus, seen from behind",
+   "view": "Wide view from across the road, morning light, 16:9",
+   "right": "All three ways of travel visible; boys and girls",
+   "avoid": "Faces, school names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Students running a survey",
+   "shows": "Two students' hands holding a clipboard and pen while another student answers, in a school corridor",
+   "view": "Over-the-shoulder close view, 4:3",
+   "right": "Form unreadable",
+   "avoid": "Faces, readable text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3",
+   "use": "Project report",
+   "shows": "A spiral-bound project report with a blank cover beside a ruler and coloured pencils",
+   "view": "Top-down view, transparent background",
+   "right": "Blank cover, no text",
+   "avoid": "Logos, writing"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Analysing data together",
+   "shows": "A group of students around a table drawing a bar chart on chart paper, only hands and paper visible",
+   "view": "Top-down view, 16:9",
+   "right": "Bars drawn neatly, no numbers readable",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "B",
+   "use": "Base for a random number table",
+   "shows": "A plain grid of empty boxes, 10 by 10, in soft grey on white",
+   "view": "Flat, square",
+   "right": "Even grid",
+   "avoid": "Numbers baked in"
+  }
+ ]
+}

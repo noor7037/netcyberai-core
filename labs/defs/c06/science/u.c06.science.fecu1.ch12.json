@@ -1,0 +1,487 @@
+{
+ "chapter_key": "u.c06.science.fecu1.ch12",
+ "class": 6,
+ "subject_id": "science",
+ "title": "Beyond Earth",
+ "source": "https://ncert.nic.in/textbook/pdf/fecu112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Stars and constellations",
+   "labs": [
+    "c06-science-fecu1-ch12-saptarishi"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Night sky watching and light pollution",
+   "labs": [
+    "c06-science-fecu1-ch12-nightsky"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Our Solar System",
+   "labs": [
+    "c06-science-fecu1-ch12-planets"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "The Milky Way galaxy",
+   "labs": [],
+   "why_no_lab": "Best felt from a real photo of the Milky Way over a dark Indian sky; a lab would add little."
+  },
+  {
+   "n": "12.5",
+   "title": "The universe and India in space",
+   "labs": [],
+   "why_no_lab": "A story of scale and space missions, told best by photos and the reader."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-science-fecu1-ch12-saptarishi",
+   "topic": "12.1",
+   "template": "sky",
+   "title": {
+    "en": "Find the Saptarishi and the Pole Star",
+    "hi": "सप्तर्षि और ध्रुव तारा खोजो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "constellations"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "view:north",
+     "expect": "view:north",
+     "say": {
+      "en": "Look towards the northern sky.",
+      "hi": "उत्तरी आकाश की ओर देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "const:great-bear",
+     "expect": "picked:great-bear",
+     "say": {
+      "en": "Find the Saptarishi (the Big Dipper): seven bright stars like a ladle.",
+      "hi": "सप्तर्षि खोजो: कलछी जैसे सात चमकीले तारे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The two stars at the end of the ladle's bowl point to a star. Which one?",
+      "hi": "कलछी के कटोरे के सिरे के दो तारे एक तारे की ओर इशारा करते हैं। कौन-सा?"
+     },
+     "options": [
+      {
+       "id": "pole",
+       "en": "The Pole Star (Dhruva tara)",
+       "hi": "ध्रुव तारा"
+      },
+      {
+       "id": "sirius",
+       "en": "Sirius, the brightest star",
+       "hi": "व्याध, सबसे चमकीला तारा"
+      },
+      {
+       "id": "sun",
+       "en": "The Sun",
+       "hi": "सूर्य"
+      }
+     ],
+     "answer": "pole"
+    },
+    {
+     "kind": "do",
+     "target": "const:pole-star",
+     "expect": "picked:pole-star",
+     "say": {
+      "en": "Tap the Pole Star.",
+      "hi": "ध्रुव तारे को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A constellation is a group of stars that seems to form a pattern. The Saptarishi is part of Ursa Major. A line through its two pointer stars leads to the Pole Star, which stays nearly still in the north while other stars seem to go round it.",
+      "hi": "तारामंडल तारों का ऐसा समूह है जो कोई आकृति बनाता लगता है। सप्तर्षि सप्तर्षि मंडल (अर्सा मेजर) का भाग है। इसके दो संकेतक तारों से होकर जाने वाली रेखा ध्रुव तारे तक पहुँचती है, जो उत्तर में लगभग स्थिर रहता है, जबकि बाक़ी तारे उसके चारों ओर घूमते लगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why was the Pole Star useful to travellers long ago?",
+        "hi": "पुराने समय में यात्रियों के लिए ध्रुव तारा क्यों उपयोगी था?"
+       },
+       "options": [
+        {
+         "en": "It stays in the north, so it shows direction",
+         "hi": "यह उत्तर में रहता है, इसलिए दिशा बताता है"
+        },
+        {
+         "en": "It is the brightest star",
+         "hi": "यह सबसे चमकीला तारा है"
+        },
+        {
+         "en": "It rises in the east",
+         "hi": "यह पूर्व में उगता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Because it hardly moves and is always in the north, it helped people find their way at night.",
+        "hi": "क्योंकि यह मुश्किल से हिलता है और हमेशा उत्तर में रहता है, इसने लोगों को रात में रास्ता खोजने में मदद की।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is not the brightest; Sirius is much brighter.",
+         "hi": "यह सबसे चमकीला नहीं है; व्याध इससे कहीं अधिक चमकीला है।"
+        },
+        {
+         "en": "It does not rise or set; it stays nearly still in the north.",
+         "hi": "यह न उगता है न डूबता है; उत्तर में लगभग स्थिर रहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the southern sky and find Orion, the hunter, with three stars in a row as his belt.",
+      "hi": "दक्षिणी आकाश में देखो और मृग (ओरायन, शिकारी) खोजो, जिसकी कमर पर एक पंक्ति में तीन तारे हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch12-nightsky",
+   "topic": "12.2",
+   "template": "sky",
+   "title": {
+    "en": "Stars turn round the Pole Star",
+    "hi": "तारे ध्रुव तारे के चारों ओर घूमते हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "constellations"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "view:north",
+     "expect": "view:north",
+     "say": {
+      "en": "Face the northern sky.",
+      "hi": "उत्तरी आकाश की ओर मुँह करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you watch the northern sky all night, how do the stars seem to move?",
+      "hi": "अगर तुम रात भर उत्तरी आकाश देखो, तो तारे कैसे चलते लगेंगे?"
+     },
+     "options": [
+      {
+       "id": "round",
+       "en": "In circles round the Pole Star",
+       "hi": "ध्रुव तारे के चारों ओर गोलाई में"
+      },
+      {
+       "id": "fall",
+       "en": "They fall down",
+       "hi": "नीचे गिरते हैं"
+      },
+      {
+       "id": "still",
+       "en": "They do not move at all",
+       "hi": "बिल्कुल नहीं हिलते"
+      }
+     ],
+     "answer": "round"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:trails",
+     "expect": "toggled:trails",
+     "say": {
+      "en": "Turn on star trails.",
+      "hi": "तारों के निशान (ट्रेल) चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "play",
+     "say": {
+      "en": "Press Play to watch the night pass.",
+      "hi": "रात बीतते देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "As the Earth spins, the stars seem to move across the sky. In the north they seem to go round the Pole Star, which stays almost still. To see many stars, watch from a dark place: bright city lights (light pollution), smoke and dust hide them.",
+      "hi": "पृथ्वी के घूमने से तारे आकाश में चलते लगते हैं। उत्तर में वे ध्रुव तारे के चारों ओर घूमते लगते हैं, जो लगभग स्थिर रहता है। बहुत-से तारे देखने के लिए अँधेरी जगह से देखो: शहर की तेज़ रोशनी (प्रकाश प्रदूषण), धुआँ और धूल उन्हें छिपा देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can you see more stars in a village than in a big city?",
+        "hi": "बड़े शहर की तुलना में गाँव में ज़्यादा तारे क्यों दिखते हैं?"
+       },
+       "options": [
+        {
+         "en": "There is less light pollution",
+         "hi": "प्रकाश प्रदूषण कम होता है"
+        },
+        {
+         "en": "Villages are closer to the stars",
+         "hi": "गाँव तारों के ज़्यादा पास हैं"
+        },
+        {
+         "en": "Stars shine only over villages",
+         "hi": "तारे केवल गाँवों के ऊपर चमकते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without bright street and building lights, the faint stars stand out.",
+        "hi": "तेज़ सड़क और इमारतों की रोशनी न होने से धुँधले तारे भी दिखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Stars are so far away that a few kilometres make no difference.",
+         "hi": "तारे इतने दूर हैं कि कुछ किलोमीटर से कोई फ़र्क़ नहीं पड़ता।"
+        },
+        {
+         "en": "The same stars shine over cities; city lights hide them.",
+         "hi": "शहरों के ऊपर भी वही तारे चमकते हैं; शहर की रोशनी उन्हें छिपा देती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn the lines and labels on and off. Find Cassiopeia, the W, on the other side of the Pole Star from the Saptarishi.",
+      "hi": "रेखाएँ और नाम चालू-बंद करो। ध्रुव तारे के दूसरी ओर, सप्तर्षि के सामने, W आकार वाली शर्मिष्ठा (कैसियोपिया) खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch12-planets",
+   "topic": "12.3",
+   "template": "sky",
+   "title": {
+    "en": "A tour of the Solar System",
+    "hi": "सौरमंडल की सैर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "solar-system"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "planet:mercury",
+     "expect": "picked:mercury",
+     "say": {
+      "en": "Tap the planet nearest the Sun.",
+      "hi": "सूर्य के सबसे पास वाले ग्रह को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "planet:earth",
+     "expect": "picked:earth",
+     "say": {
+      "en": "Now find our home, the Earth.",
+      "hi": "अब हमारा घर, पृथ्वी, खोजो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is the biggest planet?",
+      "hi": "सबसे बड़ा ग्रह कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "jupiter",
+       "en": "Jupiter",
+       "hi": "बृहस्पति"
+      },
+      {
+       "id": "earth",
+       "en": "Earth",
+       "hi": "पृथ्वी"
+      },
+      {
+       "id": "mars",
+       "en": "Mars",
+       "hi": "मंगल"
+      }
+     ],
+     "answer": "jupiter"
+    },
+    {
+     "kind": "do",
+     "target": "planet:jupiter",
+     "expect": "picked:jupiter",
+     "say": {
+      "en": "Tap Jupiter and read about it.",
+      "hi": "बृहस्पति को छुओ और उसके बारे में पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "play",
+     "say": {
+      "en": "Press Play to watch the planets go round the Sun.",
+      "hi": "ग्रहों को सूर्य के चारों ओर घूमते देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Solar System is the Sun and everything that goes round it: eight planets, their moons, asteroids and comets. In order from the Sun the planets are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune. Planets do not make their own light; they shine by reflecting sunlight.",
+      "hi": "सौरमंडल में सूर्य और उसके चारों ओर घूमने वाली हर चीज़ है: आठ ग्रह, उनके चंद्रमा, क्षुद्रग्रह और धूमकेतु। सूर्य से क्रम में ग्रह हैं बुध, शुक्र, पृथ्वी, मंगल, बृहस्पति, शनि, अरुण और वरुण। ग्रह अपना प्रकाश नहीं बनाते; वे सूर्य का प्रकाश परावर्तित करके चमकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How is a planet different from a star?",
+        "hi": "ग्रह तारे से कैसे अलग है?"
+       },
+       "options": [
+        {
+         "en": "A planet shines by reflected sunlight; a star makes its own light",
+         "hi": "ग्रह सूर्य का परावर्तित प्रकाश देता है; तारा अपना प्रकाश बनाता है"
+        },
+        {
+         "en": "A planet is always bigger than a star",
+         "hi": "ग्रह हमेशा तारे से बड़ा होता है"
+        },
+        {
+         "en": "A planet twinkles more",
+         "hi": "ग्रह ज़्यादा टिमटिमाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Stars, like the Sun, are hot and glow; planets only reflect light.",
+        "hi": "तारे, जैसे सूर्य, गर्म होते हैं और चमकते हैं; ग्रह केवल प्रकाश परावर्तित करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Stars are usually far bigger; the Sun is much bigger than Jupiter.",
+         "hi": "तारे प्रायः कहीं बड़े होते हैं; सूर्य बृहस्पति से बहुत बड़ा है।"
+        },
+        {
+         "en": "Planets usually twinkle less than stars, because they look like tiny discs, not points.",
+         "hi": "ग्रह प्रायः तारों से कम टिमटिमाते हैं, क्योंकि वे बिंदु नहीं, छोटी तश्तरी जैसे दिखते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn on \"True sizes\" and compare how big the planets really are. Which planets have rings?",
+      "hi": "\"असली आकार\" चालू करो और देखो ग्रह असल में कितने बड़े हैं। किन ग्रहों के वलय हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Chapter opener: night sky",
+   "shows": "The starry sky over the Hanle dark sky reserve in Ladakh with the Milky Way and a telescope dome",
+   "view": "Wide, long exposure, no star trails",
+   "right": "Real star colours; dark foreground",
+   "avoid": "Light trails from cars, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Saptarishi over a village",
+   "shows": "The Saptarishi (Big Dipper) above a village rooftop in north India on a dark night",
+   "view": "Wide, short exposure",
+   "right": "True star pattern and position in the north",
+   "avoid": "Drawn lines (the app adds them)"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "12.2",
+   "use": "Star trails",
+   "shows": "A long-exposure photo of circular star trails round the Pole Star over a hill, plus a short-exposure frame of the same scene",
+   "view": "Same camera, same framing",
+   "right": "Circles centred on the Pole Star",
+   "avoid": "Aircraft streaks"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "12.2",
+   "use": "Light pollution",
+   "shows": "Two photos of the same sky direction: from a bright city with few stars and from a dark village with many",
+   "view": "Same lens, same exposure",
+   "right": "Only the light level changes",
+   "avoid": "Logos, faces"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "12.3",
+   "use": "Planets",
+   "shows": "Renders of the eight planets, each a separate file, front view and a three-quarter view showing rings where present",
+   "view": "Lit from the left, black background",
+   "right": "True colours; Saturn's rings; Jupiter's bands and red spot",
+   "avoid": "Planets drawn to the same size as fact"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "12.4",
+   "use": "The Milky Way",
+   "shows": "The band of the Milky Way rising over a lake in the Rann of Kutch on a moonless night",
+   "view": "Wide, long exposure",
+   "right": "Dust lanes visible; no colour exaggeration",
+   "avoid": "Heavy editing"
+  }
+ ]
+}

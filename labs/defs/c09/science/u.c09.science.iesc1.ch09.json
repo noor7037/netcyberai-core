@@ -1,0 +1,1282 @@
+{
+ "chapter_key": "u.c09.science.iesc1.ch09",
+ "class": 9,
+ "subject_id": "science",
+ "title": "Atomic Foundations of Matter",
+ "source": "https://ncert.nic.in/textbook/pdf/iesc109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Law of conservation of mass",
+   "labs": [
+    "c09-science-iesc1-ch09-closed"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Law of constant proportions",
+   "labs": [
+    "c09-science-iesc1-ch09-proportions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Dalton's atomic theory",
+   "labs": [],
+   "why_no_lab": "Dalton's ideas are a list of postulates best read and discussed; the two laws above are the evidence they explain."
+  },
+  {
+   "n": "9.4.1",
+   "title": "Bonding by sharing of electrons: covalent bond",
+   "labs": [
+    "c09-science-iesc1-ch09-water"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4.2",
+   "title": "Bonding by electron transfer: ionic bond",
+   "labs": [
+    "c09-science-iesc1-ch09-nacl"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5.1",
+   "title": "Writing chemical formulae of covalent compounds",
+   "labs": [
+    "c09-science-iesc1-ch09-nh3"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5.2",
+   "title": "Writing chemical formulae of ionic compounds",
+   "labs": [
+    "c09-science-iesc1-ch09-mgcl2"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.6",
+   "title": "Properties of ionic and covalent compounds",
+   "labs": [
+    "c09-science-iesc1-ch09-properties"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.7",
+   "title": "Molecular mass of covalent compounds",
+   "labs": [
+    "c09-science-iesc1-ch09-mass"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.8",
+   "title": "Formula unit mass of ionic compounds",
+   "labs": [
+    "c09-science-iesc1-ch09-mass"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-science-iesc1-ch09-closed",
+   "topic": "9.1",
+   "template": "beaker",
+   "title": {
+    "en": "Mass is conserved in a reaction",
+    "hi": "अभिक्रिया में द्रव्यमान संरक्षित रहता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "bacl2",
+     "na2so4"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:bacl2",
+     "expect": "pick:bacl2",
+     "say": {
+      "en": "Pick up the barium chloride solution.",
+      "hi": "बेरियम क्लोराइड विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:bacl2",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next you add sodium sulphate solution and a white solid forms. If you weighed everything before and after, the total mass would…",
+      "hi": "अब तुम सोडियम सल्फेट विलयन डालोगे और सफ़ेद ठोस बनेगा। अगर पहले और बाद में सब कुछ तौलो, तो कुल द्रव्यमान…"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "Stay the same",
+       "hi": "वही रहेगा"
+      },
+      {
+       "id": "more",
+       "en": "Increase, because a solid appeared",
+       "hi": "बढ़ेगा, क्योंकि ठोस बना"
+      },
+      {
+       "id": "less",
+       "en": "Decrease",
+       "hi": "घटेगा"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "pick:na2so4",
+     "expect": "pick:na2so4",
+     "say": {
+      "en": "Pick up the sodium sulphate solution.",
+      "hi": "सोडियम सल्फेट विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour it in and watch the white precipitate form.",
+      "hi": "इसे डालो और सफ़ेद अवक्षेप बनते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A new substance, white barium sulphate, formed: a chemical change. Yet nothing entered or left the beaker, so the total mass did not change. The law of conservation of mass: mass is neither created nor destroyed in a chemical reaction. The atoms only rearrange into new substances.",
+      "hi": "एक नया पदार्थ, सफ़ेद बेरियम सल्फेट, बना: एक रासायनिक परिवर्तन। फिर भी बीकर में न कुछ आया, न कुछ गया, इसलिए कुल द्रव्यमान नहीं बदला। द्रव्यमान संरक्षण का नियम: रासायनिक अभिक्रिया में द्रव्यमान न बनता है, न नष्ट होता है। परमाणु बस नए पदार्थों में फिर से व्यवस्थित होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Vinegar and baking soda react in an open glass and the mass seems to drop. Why?",
+        "hi": "खुले गिलास में सिरका और खाने का सोडा अभिक्रिया करते हैं और द्रव्यमान घटता लगता है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Carbon dioxide gas escapes into the air",
+         "hi": "कार्बन डाइऑक्साइड गैस हवा में निकल जाती है"
+        },
+        {
+         "en": "Mass is destroyed in the reaction",
+         "hi": "अभिक्रिया में द्रव्यमान नष्ट होता है"
+        },
+        {
+         "en": "The glass gets lighter",
+         "hi": "गिलास हल्का हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a sealed flask the mass would stay the same, because the gas could not escape.",
+        "hi": "बंद फ्लास्क में द्रव्यमान वही रहता, क्योंकि गैस निकल नहीं पाती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mass is never destroyed; it leaves as gas.",
+         "hi": "द्रव्यमान कभी नष्ट नहीं होता; वह गैस बनकर निकलता है।"
+        },
+        {
+         "en": "The glass does not change; the missing mass is the gas that left.",
+         "hi": "गिलास नहीं बदलता; कम हुआ द्रव्यमान वह गैस है जो निकल गई।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker and try other pairs. Does any reaction make mass disappear in a closed container?",
+      "hi": "आज़माओ: बीकर साफ़ करो और दूसरे जोड़े आज़माओ। क्या कोई अभिक्रिया बंद बर्तन में द्रव्यमान ग़ायब करती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch09-proportions",
+   "topic": "9.2",
+   "template": "data",
+   "title": {
+    "en": "Water always has the same proportion",
+    "hi": "पानी में अनुपात हमेशा एक जैसा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "double-bar",
+    "title": {
+     "en": "Hydrogen and oxygen in different amounts of pure water",
+     "hi": "शुद्ध पानी की अलग-अलग मात्राओं में हाइड्रोजन और ऑक्सीजन"
+    },
+    "xlabel": {
+     "en": "Mass of water",
+     "hi": "पानी का द्रव्यमान"
+    },
+    "ylabel": {
+     "en": "Mass in grams",
+     "hi": "द्रव्यमान ग्राम में"
+    },
+    "series": [
+     {
+      "en": "Hydrogen",
+      "hi": "हाइड्रोजन"
+     },
+     {
+      "en": "Oxygen",
+      "hi": "ऑक्सीजन"
+     }
+    ],
+    "data": [
+     {
+      "label": {
+       "en": "9 g of water",
+       "hi": "9 g पानी"
+      },
+      "value": 1,
+      "value2": 8
+     },
+     {
+      "label": {
+       "en": "18 g of water",
+       "hi": "18 g पानी"
+      },
+      "value": 2,
+      "value2": 16
+     },
+     {
+      "label": {
+       "en": "45 g of water",
+       "hi": "45 g पानी"
+      },
+      "value": 5,
+      "value2": 40
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "9 g of water contains 1 g of hydrogen and 8 g of oxygen. How much oxygen is in 18 g of water?",
+      "hi": "9 g पानी में 1 g हाइड्रोजन और 8 g ऑक्सीजन है। 18 g पानी में कितनी ऑक्सीजन है?"
+     },
+     "options": [
+      {
+       "id": "16",
+       "en": "16 g",
+       "hi": "16 ग्राम"
+      },
+      {
+       "id": "8",
+       "en": "8 g",
+       "hi": "8 ग्राम"
+      },
+      {
+       "id": "10",
+       "en": "10 g",
+       "hi": "10 ग्राम"
+      }
+     ],
+     "answer": "16"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the hydrogen bar for 9 g of water.",
+      "hi": "9 g पानी के हाइड्रोजन वाले दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:4",
+     "expect": "selected:1",
+     "say": {
+      "en": "Tap the oxygen bar for 18 g of water.",
+      "hi": "18 g पानी के ऑक्सीजन वाले दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:5",
+     "expect": "selected:2",
+     "say": {
+      "en": "Tap the oxygen bar for 45 g of water.",
+      "hi": "45 g पानी के ऑक्सीजन वाले दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "However much water you take, and wherever it comes from, the mass of oxygen is always 8 times the mass of hydrogen: a fixed ratio of 1 : 8. The law of constant proportions: a pure compound always contains the same elements in the same proportion by mass.",
+      "hi": "पानी कितना भी लो और कहीं से भी लो, ऑक्सीजन का द्रव्यमान हमेशा हाइड्रोजन का 8 गुना होता है: 1 : 8 का तय अनुपात। स्थिर अनुपात का नियम: किसी शुद्ध यौगिक में हमेशा वही तत्व द्रव्यमान के उसी अनुपात में होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Carbon dioxide always has carbon and oxygen in the mass ratio 3 : 8. How much oxygen combines with 6 g of carbon?",
+        "hi": "कार्बन डाइऑक्साइड में कार्बन और ऑक्सीजन का द्रव्यमान अनुपात हमेशा 3 : 8 है। 6 g कार्बन से कितनी ऑक्सीजन जुड़ेगी?"
+       },
+       "options": [
+        "16 g",
+        "8 g",
+        "11 g"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Doubling the carbon doubles the oxygen: 6 : 16 is the same as 3 : 8.",
+        "hi": "कार्बन दोगुना करने पर ऑक्सीजन दोगुनी: 6 : 16, 3 : 8 के बराबर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 g goes with 3 g of carbon; 6 g is double that.",
+         "hi": "8 g, 3 g कार्बन के साथ जाती है; 6 g उसका दोगुना है।"
+        },
+        {
+         "en": "11 g is the mass of carbon dioxide made from 3 g of carbon.",
+         "hi": "11 g, 3 g कार्बन से बनी कार्बन डाइऑक्साइड का द्रव्यमान है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: switch the chart view and check the ratio of oxygen to hydrogen in each sample.",
+      "hi": "आज़माओ: चार्ट का रूप बदलो और हर नमूने में ऑक्सीजन और हाइड्रोजन का अनुपात जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch09-water",
+   "topic": "9.4.1",
+   "template": "molecule",
+   "title": {
+    "en": "Covalent bonds: build a water molecule",
+    "hi": "सहसंयोजी बंध: पानी का अणु बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "covalent",
+    "atoms": [
+     "H",
+     "O"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:O",
+     "expect": "added:O",
+     "say": {
+      "en": "Tap O to place an oxygen atom.",
+      "hi": "ऑक्सीजन परमाणु रखने के लिए O पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Oxygen has 6 outer electrons and needs 2 more. How many hydrogen atoms must share with it?",
+      "hi": "ऑक्सीजन के 6 बाहरी इलेक्ट्रॉन हैं और उसे 2 और चाहिए। कितने हाइड्रोजन परमाणुओं को उसके साथ साझा करना होगा?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "Two",
+       "hi": "दो"
+      },
+      {
+       "id": "one",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "four",
+       "en": "Four",
+       "hi": "चार"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "built:H2O",
+     "say": {
+      "en": "Tap H to add hydrogen atoms until the molecule is complete.",
+      "hi": "अणु पूरा होने तक H पर टैप करके हाइड्रोजन परमाणु जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:dot",
+     "expect": "view:dot",
+     "say": {
+      "en": "Switch to the dot view to see the shared electrons.",
+      "hi": "साझा इलेक्ट्रॉन देखने के लिए बिंदु दृश्य पर जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a covalent bond two atoms share a pair of electrons. Oxygen shares one pair with each hydrogen. Now oxygen has 8 outer electrons and each hydrogen has 2, so all shells are full. Non-metals usually join this way, forming molecules such as H₂O, CH₄ and O₂.",
+      "hi": "सहसंयोजी बंध में दो परमाणु इलेक्ट्रॉनों का एक जोड़ा साझा करते हैं। ऑक्सीजन हर हाइड्रोजन के साथ एक जोड़ा साझा करती है। अब ऑक्सीजन के 8 बाहरी इलेक्ट्रॉन हैं और हर हाइड्रोजन के 2, इसलिए सब कोश पूरे हैं। अधातुएँ आमतौर पर ऐसे ही जुड़कर H₂O, CH₄ और O₂ जैसे अणु बनाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What holds the atoms together in a water molecule?",
+        "hi": "पानी के अणु में परमाणुओं को क्या जोड़े रखता है?"
+       },
+       "options": [
+        {
+         "en": "Shared pairs of electrons",
+         "hi": "साझा इलेक्ट्रॉन जोड़े"
+        },
+        {
+         "en": "Oxygen giving its electrons away",
+         "hi": "ऑक्सीजन का अपने इलेक्ट्रॉन दे देना"
+        },
+        {
+         "en": "Glue between the atoms",
+         "hi": "परमाणुओं के बीच गोंद"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each shared pair is attracted by both nuclei and holds them together: a covalent bond.",
+        "hi": "हर साझा जोड़ा दोनों नाभिकों से आकर्षित होता है और उन्हें जोड़ता है: सहसंयोजी बंध।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Oxygen does not give electrons away here; it shares them.",
+         "hi": "यहाँ ऑक्सीजन इलेक्ट्रॉन नहीं देती; साझा करती है।"
+        },
+        {
+         "en": "There is no glue; the shared electrons attract both nuclei.",
+         "hi": "कोई गोंद नहीं है; साझा इलेक्ट्रॉन दोनों नाभिकों को आकर्षित करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: turn the molecule in 3D. Why is water bent and not straight? Then build hydrogen chloride from H and Cl in a new run.",
+      "hi": "आज़माओ: अणु को 3D में घुमाओ। पानी सीधा न होकर मुड़ा क्यों है? फिर नए प्रयास में H और Cl से हाइड्रोजन क्लोराइड बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch09-nacl",
+   "topic": "9.4.2",
+   "template": "molecule",
+   "title": {
+    "en": "Ionic bonds: sodium gives, chlorine takes",
+    "hi": "आयनिक बंध: सोडियम देता है, क्लोरीन लेता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "ionic",
+    "atoms": [
+     "Na",
+     "Cl"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:Na",
+     "expect": "added:Na",
+     "say": {
+      "en": "Tap Na to bring in a sodium atom (2, 8, 1).",
+      "hi": "सोडियम परमाणु (2, 8, 1) लाने के लिए Na पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:Cl",
+     "expect": "added:Cl",
+     "say": {
+      "en": "Tap Cl to bring in a chlorine atom (2, 8, 7).",
+      "hi": "क्लोरीन परमाणु (2, 8, 7) लाने के लिए Cl पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which way will the electron move?",
+      "hi": "इलेक्ट्रॉन किस ओर जाएगा?"
+     },
+     "options": [
+      {
+       "id": "naCl",
+       "en": "From sodium to chlorine",
+       "hi": "सोडियम से क्लोरीन की ओर"
+      },
+      {
+       "id": "clNa",
+       "en": "From chlorine to sodium",
+       "hi": "क्लोरीन से सोडियम की ओर"
+      },
+      {
+       "id": "share",
+       "en": "They will share it equally",
+       "hi": "वे इसे बराबर साझा करेंगे"
+      }
+     ],
+     "answer": "naCl"
+    },
+    {
+     "kind": "do",
+     "target": "transfer",
+     "expect": "built:NaCl",
+     "say": {
+      "en": "Tap \"transfer\" to move the electron.",
+      "hi": "इलेक्ट्रॉन ले जाने के लिए \"स्थानांतरण\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sodium loses its single outer electron and becomes Na⁺ (2, 8). Chlorine gains it and becomes Cl⁻ (2, 8, 8). Both now have full outer shells. The opposite charges attract strongly: an ionic bond. Metals usually lose electrons and non-metals gain them, so metals and non-metals form ionic compounds.",
+      "hi": "सोडियम अपना अकेला बाहरी इलेक्ट्रॉन खोकर Na⁺ (2, 8) बनता है। क्लोरीन उसे लेकर Cl⁻ (2, 8, 8) बनता है। अब दोनों के बाहरी कोश पूरे हैं। विपरीत आवेश ज़ोर से आकर्षित करते हैं: आयनिक बंध। धातुएँ आमतौर पर इलेक्ट्रॉन खोती हैं और अधातुएँ लेती हैं, इसलिए धातु और अधातु आयनिक यौगिक बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does sodium lose an electron rather than gain seven?",
+        "hi": "सोडियम सात इलेक्ट्रॉन लेने के बजाय एक क्यों खोता है?"
+       },
+       "options": [
+        {
+         "en": "Losing one is far easier than gaining seven",
+         "hi": "एक खोना सात लेने से कहीं आसान है"
+        },
+        {
+         "en": "Sodium does not like chlorine",
+         "hi": "सोडियम को क्लोरीन पसंद नहीं"
+        },
+        {
+         "en": "Electrons always move to the bigger atom",
+         "hi": "इलेक्ट्रॉन हमेशा बड़े परमाणु की ओर जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Giving away 1 electron reaches a full shell with the least energy.",
+        "hi": "एक इलेक्ट्रॉन देकर सबसे कम ऊर्जा में पूरा कोश मिल जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Atoms have no likes; it is about the energy needed.",
+         "hi": "परमाणुओं की पसंद नहीं होती; बात ज़रूरी ऊर्जा की है।"
+        },
+        {
+         "en": "Sodium is actually the bigger atom here.",
+         "hi": "यहाँ असल में सोडियम ही बड़ा परमाणु है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: switch to the 3D view to see the crystal of Na⁺ and Cl⁻ ions packed together.",
+      "hi": "आज़माओ: Na⁺ और Cl⁻ आयनों के आपस में जमे क्रिस्टल को देखने के लिए 3D दृश्य पर जाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch09-nh3",
+   "topic": "9.5.1",
+   "template": "molecule",
+   "title": {
+    "en": "Write the formula of a covalent compound: ammonia",
+    "hi": "सहसंयोजी यौगिक का सूत्र लिखो: अमोनिया"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "covalent",
+    "atoms": [
+     "N",
+     "H"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Nitrogen has valency 3 and hydrogen has valency 1. What is the formula of ammonia?",
+      "hi": "नाइट्रोजन की संयोजकता 3 और हाइड्रोजन की 1 है। अमोनिया का सूत्र क्या है?"
+     },
+     "options": [
+      {
+       "id": "nh3",
+       "en": "NH₃",
+       "hi": "NH₃ (एक N, तीन H)"
+      },
+      {
+       "id": "nh",
+       "en": "NH",
+       "hi": "NH (एक N, एक H)"
+      },
+      {
+       "id": "n3h",
+       "en": "N₃H",
+       "hi": "N₃H (तीन N, एक H)"
+      }
+     ],
+     "answer": "nh3"
+    },
+    {
+     "kind": "do",
+     "target": "atom:N",
+     "expect": "added:N",
+     "say": {
+      "en": "Tap N to place a nitrogen atom.",
+      "hi": "नाइट्रोजन परमाणु रखने के लिए N पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "built:NH3",
+     "say": {
+      "en": "Tap H until every bond of nitrogen is used.",
+      "hi": "नाइट्रोजन के सारे बंध भरने तक H पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To write a covalent formula, match the valencies: nitrogen can form 3 bonds and each hydrogen forms 1, so one nitrogen joins three hydrogens: NH₃. The small number after a symbol tells how many atoms of that element are in one molecule.",
+      "hi": "सहसंयोजी सूत्र लिखने के लिए संयोजकताएँ मिलाओ: नाइट्रोजन 3 बंध बना सकता है और हर हाइड्रोजन 1, इसलिए एक नाइट्रोजन तीन हाइड्रोजन से जुड़ता है: NH₃। प्रतीक के बाद की छोटी संख्या बताती है कि एक अणु में उस तत्व के कितने परमाणु हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Carbon has valency 4 and hydrogen 1. What is the formula of methane?",
+        "hi": "कार्बन की संयोजकता 4 और हाइड्रोजन की 1 है। मेथेन का सूत्र क्या है?"
+       },
+       "options": [
+        "CH₄",
+        "C₄H",
+        "CH"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One carbon with four bonds takes four hydrogens: CH₄.",
+        "hi": "चार बंधों वाला एक कार्बन चार हाइड्रोजन लेता है: CH₄।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The 4 belongs to hydrogen: four H atoms are needed for carbon's four bonds.",
+         "hi": "4 हाइड्रोजन का है: कार्बन के चार बंधों के लिए चार H चाहिए।"
+        },
+        {
+         "en": "That uses only one of carbon's four bonds.",
+         "hi": "इसमें कार्बन के चार में से केवल एक बंध भरा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: start again with O and H to build water, then compare: how many hydrogens does each centre atom take?",
+      "hi": "आज़माओ: फिर से O और H से पानी बनाओ, और तुलना करो: हर केंद्रीय परमाणु कितने हाइड्रोजन लेता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch09-mgcl2",
+   "topic": "9.5.2",
+   "template": "molecule",
+   "title": {
+    "en": "Write the formula of an ionic compound: magnesium chloride",
+    "hi": "आयनिक यौगिक का सूत्र लिखो: मैग्नीशियम क्लोराइड"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "ionic",
+    "atoms": [
+     "Mg",
+     "Cl"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:Mg",
+     "expect": "added:Mg",
+     "say": {
+      "en": "Tap Mg to bring in a magnesium atom (2, 8, 2).",
+      "hi": "मैग्नीशियम परमाणु (2, 8, 2) लाने के लिए Mg पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:Cl",
+     "expect": "added:Cl",
+     "say": {
+      "en": "Tap Cl to bring in chlorine.",
+      "hi": "क्लोरीन लाने के लिए Cl पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Magnesium gives away 2 electrons, but each chlorine takes only 1. How many chlorine atoms are needed?",
+      "hi": "मैग्नीशियम 2 इलेक्ट्रॉन देता है, पर हर क्लोरीन केवल 1 लेता है। कितने क्लोरीन परमाणु चाहिए?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "Two",
+       "hi": "दो"
+      },
+      {
+       "id": "one",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "three",
+       "en": "Three",
+       "hi": "तीन"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "transfer",
+     "expect": "built:MgCl2",
+     "say": {
+      "en": "Tap \"transfer\" until both electrons have moved.",
+      "hi": "दोनों इलेक्ट्रॉन जाने तक \"स्थानांतरण\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Magnesium forms Mg²⁺ and chlorine forms Cl⁻. The total charge of a compound must be zero, so one Mg²⁺ needs two Cl⁻: MgCl₂. A quick way is to cross over the valencies: Mg has 2 and Cl has 1, giving Mg₁Cl₂, written MgCl₂.",
+      "hi": "मैग्नीशियम Mg²⁺ और क्लोरीन Cl⁻ बनाता है। यौगिक का कुल आवेश शून्य होना चाहिए, इसलिए एक Mg²⁺ को दो Cl⁻ चाहिए: MgCl₂। जल्दी का तरीक़ा है संयोजकताओं को अदला-बदली करना: Mg की 2 और Cl की 1, जिससे Mg₁Cl₂, यानी MgCl₂ लिखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Aluminium has valency 3 and oxygen has valency 2. What is the formula of aluminium oxide?",
+        "hi": "ऐलुमिनियम की संयोजकता 3 और ऑक्सीजन की 2 है। ऐलुमिनियम ऑक्साइड का सूत्र क्या है?"
+       },
+       "options": [
+        "Al₂O₃",
+        "Al₃O₂",
+        "AlO"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 × (+3) = +6 and 3 × (−2) = −6, so Al₂O₃ is neutral.",
+        "hi": "2 × (+3) = +6 और 3 × (−2) = −6, इसलिए Al₂O₃ उदासीन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The valencies cross over: Al takes oxygen's 2 and O takes aluminium's 3.",
+         "hi": "संयोजकताएँ अदला-बदली होती हैं: Al को ऑक्सीजन की 2 और O को ऐलुमिनियम की 3 मिलती है।"
+        },
+        {
+         "en": "Then the charges +3 and −2 would not cancel.",
+         "hi": "तब +3 और −2 आवेश रद्द नहीं होते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: in a new run make sodium chloride and compare the number of chloride ions needed.",
+      "hi": "आज़माओ: नए प्रयास में सोडियम क्लोराइड बनाओ और ज़रूरी क्लोराइड आयनों की संख्या की तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch09-properties",
+   "topic": "9.6",
+   "template": "scenario",
+   "title": {
+    "en": "Ionic or covalent? Test the properties",
+    "hi": "आयनिक या सहसंयोजी? गुण जाँचो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "lab",
+    "role": {
+     "en": "A careful tester in the school lab",
+     "hi": "स्कूल की प्रयोगशाला में सावधान परीक्षक"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Your teacher heats small samples on a spoon. Camphor melts and turns to vapour quickly. Common salt does not melt even on a strong flame. Which is ionic?",
+       "hi": "शिक्षिका चम्मच पर छोटे नमूने गर्म करती हैं। कपूर जल्दी पिघलकर वाष्प बन जाता है। साधारण नमक तेज़ लौ पर भी नहीं पिघलता। कौन आयनिक है?"
+      },
+      "choices": [
+       {
+        "id": "salt",
+        "text": {
+         "en": "Common salt",
+         "hi": "साधारण नमक"
+        },
+        "next": "conduct",
+        "feedback": {
+         "en": "Yes. Strong forces between ions give ionic compounds very high melting points.",
+         "hi": "हाँ। आयनों के बीच मज़बूत बल आयनिक यौगिकों को बहुत ऊँचा गलनांक देते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "camphor",
+        "text": {
+         "en": "Camphor",
+         "hi": "कपूर"
+        },
+        "next": "conduct",
+        "feedback": {
+         "en": "Camphor melts easily, a sign of weak forces between molecules: it is covalent.",
+         "hi": "कपूर आसानी से पिघलता है, जो अणुओं के बीच कमज़ोर बल का संकेत है: यह सहसंयोजी है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "conduct",
+      "text": {
+       "en": "The teacher dips two wires joined to a bulb and a cell into salt water, then into sugar water. In which does the bulb glow?",
+       "hi": "शिक्षिका बल्ब और सेल से जुड़े दो तार नमक के पानी में, फिर चीनी के पानी में डुबाती हैं। किसमें बल्ब जलता है?"
+      },
+      "choices": [
+       {
+        "id": "saltwater",
+        "text": {
+         "en": "Salt water",
+         "hi": "नमक का पानी"
+        },
+        "next": "solid",
+        "feedback": {
+         "en": "Right. Dissolved ions are free to move and carry current. Sugar stays as neutral molecules.",
+         "hi": "सही। घुले आयन घूमने को स्वतंत्र हैं और धारा ले जाते हैं। चीनी उदासीन अणु ही रहती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "sugarwater",
+        "text": {
+         "en": "Sugar water",
+         "hi": "चीनी का पानी"
+        },
+        "next": "solid",
+        "feedback": {
+         "en": "Sugar is covalent and forms no ions in water, so the bulb stays off.",
+         "hi": "चीनी सहसंयोजी है और पानी में आयन नहीं बनाती, इसलिए बल्ब नहीं जलता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "solid",
+      "text": {
+       "en": "A dry crystal of salt is tested the same way. Does it conduct?",
+       "hi": "नमक का सूखा क्रिस्टल इसी तरह जाँचा जाता है। क्या यह विद्युत चालन करता है?"
+      },
+      "choices": [
+       {
+        "id": "noconduct",
+        "text": {
+         "en": "No, the ions are held in place in the solid",
+         "hi": "नहीं, ठोस में आयन अपनी जगह पर बँधे हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. Ionic compounds conduct only when melted or dissolved, when ions can move.",
+         "hi": "सही। आयनिक यौगिक तभी चालन करते हैं जब पिघले या घुले हों, जब आयन चल सकें।"
+        },
+        "good": true
+       },
+       {
+        "id": "yesconduct",
+        "text": {
+         "en": "Yes, because it is ionic",
+         "hi": "हाँ, क्योंकि यह आयनिक है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Being ionic is not enough; the ions must be free to move.",
+         "hi": "आयनिक होना काफ़ी नहीं; आयनों का चलने को स्वतंत्र होना ज़रूरी है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which property would you expect of copper sulphate crystals?",
+      "hi": "कॉपर सल्फेट के क्रिस्टल में तुम कौन-सा गुण अपेक्षित करोगे?"
+     },
+     "options": [
+      {
+       "id": "high",
+       "en": "A high melting point and solutions that conduct",
+       "hi": "ऊँचा गलनांक और चालन करने वाले विलयन"
+      },
+      {
+       "id": "low",
+       "en": "Melting at room temperature",
+       "hi": "कमरे के तापमान पर पिघलना"
+      }
+     ],
+     "answer": "high"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:salt",
+     "expect": "chose:salt",
+     "say": {
+      "en": "Read about the heating test and tap the ionic compound.",
+      "hi": "गर्म करने के परीक्षण के बारे में पढ़ो और आयनिक यौगिक पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ionic compounds such as common salt and copper sulphate are hard solids with high melting points, often dissolve in water, and conduct electricity when melted or dissolved. Covalent compounds such as sugar, camphor and naphthalene usually have low melting points and do not conduct, because they have no free ions.",
+      "hi": "साधारण नमक और कॉपर सल्फेट जैसे आयनिक यौगिक ऊँचे गलनांक वाले कठोर ठोस हैं, अक्सर पानी में घुलते हैं, और पिघलने या घुलने पर विद्युत चालन करते हैं। चीनी, कपूर और नेफ़थलीन जैसे सहसंयोजी यौगिकों का गलनांक आमतौर पर कम होता है और वे चालन नहीं करते, क्योंकि उनमें स्वतंत्र आयन नहीं होते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Naphthalene melts at about 80 °C and does not conduct when melted. It is most likely…",
+        "hi": "नेफ़थलीन लगभग 80 °C पर पिघलती है और पिघलने पर चालन नहीं करती। यह सबसे संभवतः…"
+       },
+       "options": [
+        {
+         "en": "Covalent",
+         "hi": "सहसंयोजी"
+        },
+        {
+         "en": "Ionic",
+         "hi": "आयनिक"
+        },
+        {
+         "en": "A metal",
+         "hi": "एक धातु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A low melting point and no conduction point to a covalent compound.",
+        "hi": "कम गलनांक और चालन न होना सहसंयोजी यौगिक का संकेत है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ionic solids melt far higher and conduct when molten.",
+         "hi": "आयनिक ठोस कहीं ऊँचे तापमान पर पिघलते हैं और पिघलने पर चालन करते हैं।"
+        },
+        {
+         "en": "Metals conduct even as solids.",
+         "hi": "धातुएँ ठोस रूप में भी चालन करती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again with the other answers. Never heat chemicals yourself; this is done by your teacher with care.",
+      "hi": "दूसरे उत्तरों के साथ फिर से खेलो। रसायनों को कभी ख़ुद गर्म मत करो; यह शिक्षक सावधानी से करते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch09-mass",
+   "topic": "9.7",
+   "template": "atom",
+   "title": {
+    "en": "Molecular mass from atomic masses",
+    "hi": "परमाणु द्रव्यमानों से आण्विक द्रव्यमान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "table"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One molecule of carbon dioxide, CO₂, has one carbon and two oxygen atoms. How will you find its mass?",
+      "hi": "कार्बन डाइऑक्साइड, CO₂, के एक अणु में एक कार्बन और दो ऑक्सीजन परमाणु हैं। उसका द्रव्यमान कैसे निकालोगे?"
+     },
+     "options": [
+      {
+       "id": "add",
+       "en": "Add the masses of all its atoms",
+       "hi": "उसके सभी परमाणुओं के द्रव्यमान जोड़कर"
+      },
+      {
+       "id": "mult",
+       "en": "Multiply the two atomic numbers",
+       "hi": "दोनों परमाणु क्रमांक गुणा करके"
+      },
+      {
+       "id": "one",
+       "en": "Use only the mass of carbon",
+       "hi": "केवल कार्बन का द्रव्यमान लेकर"
+      }
+     ],
+     "answer": "add"
+    },
+    {
+     "kind": "do",
+     "target": "element:C",
+     "expect": "picked:C",
+     "say": {
+      "en": "Tap C and read the atomic mass of carbon.",
+      "hi": "C पर टैप करो और कार्बन का परमाणु द्रव्यमान पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:O",
+     "expect": "picked:O",
+     "say": {
+      "en": "Tap O and read the atomic mass of oxygen.",
+      "hi": "O पर टैप करो और ऑक्सीजन का परमाणु द्रव्यमान पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Atomic masses are measured in atomic mass units (u): carbon is 12 u and oxygen 16 u. The molecular mass is the sum of the masses of all atoms in a molecule: CO₂ = 12 + 2 × 16 = 44 u. For an ionic compound we add the masses in one formula unit: NaCl = 23 + 35.5 = 58.5 u.",
+      "hi": "परमाणु द्रव्यमान परमाणु द्रव्यमान इकाई (u) में मापे जाते हैं: कार्बन 12 u और ऑक्सीजन 16 u। आण्विक द्रव्यमान अणु के सभी परमाणुओं के द्रव्यमानों का योग है: CO₂ = 12 + 2 × 16 = 44 u। आयनिक यौगिक के लिए हम एक सूत्र इकाई के द्रव्यमान जोड़ते हैं: NaCl = 23 + 35.5 = 58.5 u।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the molecular mass of water, H₂O (H = 1 u, O = 16 u)?",
+        "hi": "पानी, H₂O, का आण्विक द्रव्यमान क्या है (H = 1 u, O = 16 u)?"
+       },
+       "options": [
+        "18 u",
+        "17 u",
+        "32 u"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 × 1 + 16 = 18 u.",
+        "hi": "2 × 1 + 16 = 18 u।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That counts only one hydrogen; water has two.",
+         "hi": "इसमें एक ही हाइड्रोजन गिना; पानी में दो हैं।"
+        },
+        {
+         "en": "That doubles the oxygen instead of the hydrogen.",
+         "hi": "इसमें हाइड्रोजन की जगह ऑक्सीजन दोगुनी कर दी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the formula unit mass of calcium chloride, CaCl₂ (Ca = 40 u, Cl = 35.5 u)?",
+        "hi": "कैल्शियम क्लोराइड, CaCl₂, का सूत्र इकाई द्रव्यमान क्या है (Ca = 40 u, Cl = 35.5 u)?"
+       },
+       "options": [
+        "75.5 u",
+        "111 u",
+        "151 u"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "40 + 2 × 35.5 = 111 u.",
+        "hi": "40 + 2 × 35.5 = 111 u।"
+       },
+       "wrong": [
+        {
+         "en": "That counts one chloride ion; there are two.",
+         "hi": "इसमें एक क्लोराइड आयन गिना; दो हैं।"
+        },
+        "",
+        {
+         "en": "That doubles calcium too; only chlorine has the 2.",
+         "hi": "इसमें कैल्शियम भी दोगुना कर दिया; 2 केवल क्लोरीन का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find N and H and work out the molecular mass of ammonia, NH₃.",
+      "hi": "आज़माओ: N और H ढूँढो और अमोनिया, NH₃, का आण्विक द्रव्यमान निकालो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Hook of the chapter",
+   "shows": "A sealed glass bottle of soda water on a digital kitchen scale, beside the same opened bottle fizzing",
+   "view": "Front view at table height, soft light",
+   "right": "Scale displays blank (the app writes the numbers)",
+   "avoid": "Brand labels"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "9.1",
+   "use": "Conservation of mass with two flasks (Activity 9.3)",
+   "shows": "Two conical flasks on a digital balance, one with barium chloride and a small tube of sodium sulphate inside; then tilted to mix, white precipitate forming (conical flask: reuse LIB-LAB-conical-flask)",
+   "view": "Front view, same framing, two frames",
+   "right": "Stopper in place in both frames; precipitate white",
+   "avoid": "Balance display numbers"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.6",
+   "use": "Compounds to compare (Activity 9.4)",
+   "shows": "Each a separate file: a small heap of common salt, sugar, camphor tablets, copper sulphate crystals and naphthalene balls (copper sulphate: reuse LIB-CHEM-copper-sulphate)",
+   "view": "From slightly above, transparent background",
+   "right": "Salt cubic grains, copper sulphate blue, camphor waxy white",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "3DM",
+   "topic": "9.4.1",
+   "use": "Water molecule model",
+   "shows": "A ball-and-stick model of a water molecule: one red oxygen, two white hydrogens at about 104.5°",
+   "view": "Front, side, top and three-quarter views, transparent background",
+   "right": "Molecule bent, not straight",
+   "avoid": "Labels"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "9.4.2",
+   "use": "Sodium chloride crystal model",
+   "shows": "A cubic lattice model of sodium chloride with small purple sodium ions and larger green chloride ions alternating",
+   "view": "Front, three-quarter and top views, transparent background",
+   "right": "Each ion surrounded by six of the other kind",
+   "avoid": "Labels"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "9.4.2",
+   "use": "Salt crystals close-up",
+   "shows": "Cubic crystals of common salt magnified on a dark background",
+   "view": "Square crop, sharp, side light",
+   "right": "Crystals clearly cube-shaped",
+   "avoid": "Text"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "9.6",
+   "use": "Conductivity tester base",
+   "shows": "A beaker with two carbon rods dipping in a liquid, wires to a torch bulb and a cell (beaker: reuse LIB-LAB-beaker-250ml)",
+   "view": "Front view, clean realistic render, white background",
+   "right": "Circuit complete only through the liquid",
+   "avoid": "Labels, plus and minus signs"
+  }
+ ]
+}

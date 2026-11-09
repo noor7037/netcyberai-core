@@ -1,0 +1,1544 @@
+{
+  "chapter_key": "u.c12.biology.lebo1.ch12",
+  "class": 12,
+  "subject_id": "biology",
+  "title": "Ecosystem",
+  "source": "https://ncert.nic.in/textbook/pdf/lebo112.pdf",
+  "topics": [
+    {
+      "n": "12.1",
+      "title": "Ecosystem: structure and function",
+      "labs": [
+        "c12-biology-lebo1-ch12-ecosystem-roles"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "12.2",
+      "title": "Productivity",
+      "labs": [
+        "c12-biology-lebo1-ch12-productivity"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "12.3",
+      "title": "Decomposition",
+      "labs": [
+        "c12-biology-lebo1-ch12-decomposition-steps"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "12.4",
+      "title": "Energy flow and food chains",
+      "labs": [
+        "c12-biology-lebo1-ch12-energy-flow",
+        "c12-biology-lebo1-ch12-gfc-dfc"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "12.5",
+      "title": "Ecological pyramids",
+      "labs": [
+        "c12-biology-lebo1-ch12-ecological-pyramids"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-biology-lebo1-ch12-ecosystem-roles",
+      "topic": "12.1",
+      "template": "sort",
+      "title": {
+        "en": "Who does what in an ecosystem?",
+        "hi": "पारितंत्र में कौन क्या करता है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "prod",
+            "label": {
+              "en": "Producer",
+              "hi": "उत्पादक"
+            }
+          },
+          {
+            "id": "cons",
+            "label": {
+              "en": "Consumer",
+              "hi": "उपभोक्ता"
+            }
+          },
+          {
+            "id": "dec",
+            "label": {
+              "en": "Decomposer",
+              "hi": "अपघटक"
+            }
+          },
+          {
+            "id": "abiotic",
+            "label": {
+              "en": "Non-living part",
+              "hi": "अजैव घटक"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "grass",
+            "text": {
+              "en": "Grass in a meadow",
+              "hi": "चरागाह की घास"
+            },
+            "bin": "prod",
+            "why": {
+              "en": "It makes food by photosynthesis.",
+              "hi": "यह प्रकाश संश्लेषण से भोजन बनाती है।"
+            }
+          },
+          {
+            "id": "algae",
+            "text": {
+              "en": "Algae in a pond",
+              "hi": "तालाब के शैवाल"
+            },
+            "bin": "prod",
+            "why": {
+              "en": "Algae are producers in water.",
+              "hi": "शैवाल जल में उत्पादक हैं।"
+            }
+          },
+          {
+            "id": "deer",
+            "text": {
+              "en": "Chital (spotted deer)",
+              "hi": "चीतल (चितकबरा हिरण)"
+            },
+            "bin": "cons",
+            "why": {
+              "en": "A herbivore feeding on plants: a primary consumer.",
+              "hi": "पौधे खाने वाला शाकाहारी: प्राथमिक उपभोक्ता।"
+            }
+          },
+          {
+            "id": "tiger",
+            "text": {
+              "en": "Tiger",
+              "hi": "बाघ"
+            },
+            "bin": "cons",
+            "why": {
+              "en": "A carnivore feeding on deer: a secondary or tertiary consumer.",
+              "hi": "हिरण खाने वाला मांसाहारी: द्वितीयक या तृतीयक उपभोक्ता।"
+            }
+          },
+          {
+            "id": "fungi",
+            "text": {
+              "en": "Mushrooms growing on a log",
+              "hi": "सड़ी लकड़ी पर उगे कुकुरमुत्ते"
+            },
+            "bin": "dec",
+            "why": {
+              "en": "Fungi digest dead matter outside the body.",
+              "hi": "कवक मृत पदार्थ को शरीर के बाहर पचाते हैं।"
+            }
+          },
+          {
+            "id": "bacteria",
+            "text": {
+              "en": "Bacteria in the soil",
+              "hi": "मिट्टी के जीवाणु"
+            },
+            "bin": "dec",
+            "why": {
+              "en": "They break dead matter down into simple nutrients.",
+              "hi": "वे मृत पदार्थ को सरल पोषक तत्त्वों में तोड़ते हैं।"
+            }
+          },
+          {
+            "id": "sun",
+            "text": {
+              "en": "Sunlight",
+              "hi": "सूर्य का प्रकाश"
+            },
+            "bin": "abiotic",
+            "why": {
+              "en": "The source of energy, but not living.",
+              "hi": "ऊर्जा का स्रोत, पर निर्जीव।"
+            }
+          },
+          {
+            "id": "water",
+            "text": {
+              "en": "Water and soil minerals",
+              "hi": "जल और मिट्टी के खनिज"
+            },
+            "bin": "abiotic",
+            "why": {
+              "en": "Non-living parts the producers take up.",
+              "hi": "निर्जीव घटक जो उत्पादक लेते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:grass",
+          "expect": "correct:grass",
+          "say": {
+            "en": "Sort \"Grass in a meadow\".",
+            "hi": "\"चरागाह की घास\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Does the sun count as a producer, a consumer or a non-living part?",
+            "hi": "सूर्य उत्पादक है, उपभोक्ता है या अजैव घटक?"
+          },
+          "options": [
+            {
+              "id": "abiotic",
+              "en": "A non-living part",
+              "hi": "अजैव घटक"
+            },
+            {
+              "id": "prod",
+              "en": "A producer",
+              "hi": "उत्पादक"
+            },
+            {
+              "id": "cons",
+              "en": "A consumer",
+              "hi": "उपभोक्ता"
+            }
+          ],
+          "answer": "abiotic"
+        },
+        {
+          "kind": "do",
+          "target": "card:sun",
+          "expect": "correct:sun",
+          "say": {
+            "en": "Sort \"Sunlight\".",
+            "hi": "\"सूर्य का प्रकाश\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:fungi",
+          "expect": "correct:fungi",
+          "say": {
+            "en": "Sort \"Mushrooms growing on a log\".",
+            "hi": "\"सड़ी लकड़ी पर उगे कुकुरमुत्ते\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "An ecosystem is made of living (biotic) parts and non-living (abiotic) parts that work together. Producers (green plants, algae) capture the sun's energy and make food. Consumers (animals) eat producers or other consumers: herbivores are primary consumers and carnivores that eat them are secondary consumers. Decomposers (bacteria and fungi) break dead matter into simple nutrients that plants can use again. Energy flows one way through all of this, but the nutrients go round and round. In a forest, plants also form layers from the tall trees to the herbs below: this is stratification.",
+            "hi": "पारितंत्र जैविक (सजीव) और अजैविक (निर्जीव) घटकों से बनता है जो मिलकर काम करते हैं। उत्पादक (हरे पौधे, शैवाल) सूर्य की ऊर्जा लेकर भोजन बनाते हैं। उपभोक्ता (जंतु) उत्पादकों या अन्य उपभोक्ताओं को खाते हैं: शाकाहारी प्राथमिक उपभोक्ता और उन्हें खाने वाले मांसाहारी द्वितीयक उपभोक्ता हैं। अपघटक (जीवाणु और कवक) मृत पदार्थ को सरल पोषक तत्त्वों में तोड़ते हैं जिन्हें पौधे फिर काम में ले सकते हैं। इन सबमें ऊर्जा एक ही दिशा में बहती है, पर पोषक तत्त्व घूमते रहते हैं। वन में पौधे ऊँचे पेड़ों से नीचे की शाकों तक परतों में भी रहते हैं: यह स्तरीकरण है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why are decomposers important?",
+                "hi": "अपघटक महत्त्वपूर्ण क्यों हैं?"
+              },
+              "options": [
+                {
+                  "en": "They return nutrients from dead matter to the soil",
+                  "hi": "वे मृत पदार्थ के पोषक तत्त्व मिट्टी को लौटाते हैं"
+                },
+                {
+                  "en": "They make food from sunlight",
+                  "hi": "वे सूर्य के प्रकाश से भोजन बनाते हैं"
+                },
+                {
+                  "en": "They are the top predators",
+                  "hi": "वे शीर्ष परभक्षी हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Without them dead matter would pile up and nutrients would not be reused.",
+                "hi": "उनके बिना मृत पदार्थ जमा होता और पोषक तत्त्व दोबारा काम न आते।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is the work of producers.",
+                  "hi": "यह उत्पादकों का काम है।"
+                },
+                {
+                  "en": "Top predators are consumers.",
+                  "hi": "शीर्ष परभक्षी उपभोक्ता हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A deer eating grass is a",
+                "hi": "घास खाने वाला हिरण है"
+              },
+              "options": [
+                {
+                  "en": "Primary consumer",
+                  "hi": "प्राथमिक उपभोक्ता"
+                },
+                {
+                  "en": "Producer",
+                  "hi": "उत्पादक"
+                },
+                {
+                  "en": "Decomposer",
+                  "hi": "अपघटक"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The first animal in the chain feeds directly on producers.",
+                "hi": "शृंखला का पहला जंतु सीधे उत्पादकों को खाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Grass is the producer.",
+                  "hi": "घास उत्पादक है।"
+                },
+                {
+                  "en": "A decomposer feeds on dead matter.",
+                  "hi": "अपघटक मृत पदार्थ पर निर्वाह करता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Name one producer, one consumer and one decomposer you can find within walking distance of your home.",
+            "hi": "बाकी कार्ड छाँटो। अपने घर के पैदल दायरे में एक उत्पादक, एक उपभोक्ता और एक अपघटक का नाम बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch12-productivity",
+      "topic": "12.2",
+      "template": "match",
+      "title": {
+        "en": "Primary productivity",
+        "hi": "प्राथमिक उत्पादकता"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "gpp",
+            "left": {
+              "en": "Gross primary productivity (GPP)",
+              "hi": "सकल प्राथमिक उत्पादकता (GPP)"
+            },
+            "right": {
+              "en": "Total organic matter made by plants in photosynthesis",
+              "hi": "प्रकाश संश्लेषण में पौधों द्वारा बनाया कुल कार्बनिक पदार्थ"
+            },
+            "why": {
+              "en": "It is the rate of production of organic matter.",
+              "hi": "यह कार्बनिक पदार्थ बनने की दर है।"
+            }
+          },
+          {
+            "id": "r",
+            "left": {
+              "en": "R (respiration losses)",
+              "hi": "R (श्वसन हानि)"
+            },
+            "right": {
+              "en": "Part of the GPP that plants use for their own living",
+              "hi": "GPP का वह भाग जो पौधे अपने जीवन में खर्च करते हैं"
+            },
+            "why": {
+              "en": "Plants also respire.",
+              "hi": "पौधे भी श्वसन करते हैं।"
+            }
+          },
+          {
+            "id": "npp",
+            "left": {
+              "en": "Net primary productivity (NPP)",
+              "hi": "निवल प्राथमिक उत्पादकता (NPP)"
+            },
+            "right": {
+              "en": "GPP minus R: the food available for consumers and decomposers",
+              "hi": "GPP - R: उपभोक्ताओं और अपघटकों के लिए उपलब्ध भोजन"
+            },
+            "why": {
+              "en": "GPP - R = NPP.",
+              "hi": "GPP - R = NPP।"
+            }
+          },
+          {
+            "id": "secondary",
+            "left": {
+              "en": "Secondary productivity",
+              "hi": "द्वितीयक उत्पादकता"
+            },
+            "right": {
+              "en": "The rate of forming new organic matter by consumers",
+              "hi": "उपभोक्ताओं द्वारा नया कार्बनिक पदार्थ बनने की दर"
+            },
+            "why": {
+              "en": "Animals build biomass from the plants they eat.",
+              "hi": "जंतु खाए पौधों से जैव द्रव्यमान बनाते हैं।"
+            }
+          },
+          {
+            "id": "ocean",
+            "left": {
+              "en": "Oceans (70% of Earth's surface)",
+              "hi": "महासागर (पृथ्वी की सतह का 70%)"
+            },
+            "right": {
+              "en": "Give only 55 of the 170 billion tons of yearly NPP",
+              "hi": "कुल 170 अरब टन की वार्षिक NPP में केवल 55 अरब देते हैं"
+            },
+            "why": {
+              "en": "Light and nutrients limit production in much of the sea.",
+              "hi": "समुद्र के बड़े भाग में प्रकाश और पोषक तत्त्व उत्पादन सीमित करते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:gpp",
+          "expect": "matched:gpp",
+          "say": {
+            "en": "Match \"GPP\".",
+            "hi": "\"GPP\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "If GPP is 100 units and plants use 40 units in respiration, what is NPP?",
+            "hi": "GPP 100 इकाई है और पौधे श्वसन में 40 इकाई खर्च करते हैं तो NPP क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "60",
+              "en": "60 units",
+              "hi": "60 इकाई"
+            },
+            {
+              "id": "140",
+              "en": "140 units",
+              "hi": "140 इकाई"
+            },
+            {
+              "id": "40",
+              "en": "40 units",
+              "hi": "40 इकाई"
+            }
+          ],
+          "answer": "60"
+        },
+        {
+          "kind": "do",
+          "target": "left:npp",
+          "expect": "matched:npp",
+          "say": {
+            "en": "Match \"NPP\".",
+            "hi": "\"NPP\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:ocean",
+          "expect": "matched:ocean",
+          "say": {
+            "en": "Match \"Oceans\".",
+            "hi": "\"महासागर\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Primary productivity is the amount of organic matter made by producers per unit area in a given time, in g per square metre per year or kcal per square metre per year. Gross primary productivity (GPP) is the total made. Plants use some in respiration (R). What is left, NPP = GPP - R, is the biomass available for herbivores and decomposers. Secondary productivity is what consumers make. NPP depends on the plants, light, water, nutrients and temperature. The whole biosphere makes about 170 billion tons of dry matter a year, but the oceans, though about 70 per cent of the surface, contribute only 55 billion tons.",
+            "hi": "प्राथमिक उत्पादकता किसी दिए समय में प्रति इकाई क्षेत्र उत्पादकों द्वारा बने कार्बनिक पदार्थ की मात्रा है, g प्रति वर्ग मीटर प्रति वर्ष या kcal प्रति वर्ग मीटर प्रति वर्ष में। सकल प्राथमिक उत्पादकता (GPP) कुल बनी मात्रा है। पौधे कुछ भाग श्वसन (R) में खर्च करते हैं। जो बचता है, NPP = GPP - R, शाकाहारियों और अपघटकों के लिए उपलब्ध जैवभार है। द्वितीयक उत्पादकता उपभोक्ताओं द्वारा बनी मात्रा है। NPP पौधों, प्रकाश, जल, पोषक तत्त्वों और ताप पर निर्भर है। पूरी जीवमंडल हर साल लगभग 170 अरब टन शुष्क पदार्थ बनाता है, पर महासागर, लगभग 70 प्रतिशत सतह होकर भी, केवल 55 अरब टन देते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is NPP?",
+                "hi": "NPP क्या है?"
+              },
+              "options": [
+                {
+                  "en": "GPP minus respiration losses",
+                  "hi": "GPP में से श्वसन हानि घटाकर"
+                },
+                {
+                  "en": "GPP plus respiration",
+                  "hi": "GPP में श्वसन जोड़कर"
+                },
+                {
+                  "en": "The rate of consumer growth",
+                  "hi": "उपभोक्ताओं की वृद्धि दर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "NPP is what remains for others after the plants have used their share.",
+                "hi": "पौधों द्वारा अपना हिस्सा लेने के बाद दूसरों के लिए जो बचता है वह NPP है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Adding respiration would be bigger than GPP.",
+                  "hi": "श्वसन जोड़ने पर GPP से अधिक आता।"
+                },
+                {
+                  "en": "The growth rate of consumers is secondary productivity.",
+                  "hi": "उपभोक्ताओं की वृद्धि दर द्वितीयक उत्पादकता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Who uses the NPP?",
+                "hi": "NPP का उपयोग कौन करता है?"
+              },
+              "options": [
+                {
+                  "en": "Herbivores and decomposers",
+                  "hi": "शाकाहारी और अपघटक"
+                },
+                {
+                  "en": "Only the sun",
+                  "hi": "केवल सूर्य"
+                },
+                {
+                  "en": "Only the producers",
+                  "hi": "केवल उत्पादक"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "NPP is the biomass available to heterotrophs.",
+                "hi": "NPP परपोषियों को उपलब्ध जैवभार है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The sun is an energy source and uses nothing.",
+                  "hi": "सूर्य ऊर्जा स्रोत है और कुछ उपयोग नहीं करता।"
+                },
+                {
+                  "en": "The producers have already taken their share in respiration.",
+                  "hi": "उत्पादक श्वसन में अपना हिस्सा ले चुके हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the other pair. Why do you think the oceans, though so large, give less NPP than the land?",
+            "hi": "दूसरी जोड़ी मिलाओ। इतने बड़े होने पर भी महासागर भूमि से कम NPP क्यों देते होंगे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch12-decomposition-steps",
+      "topic": "12.3",
+      "template": "sequence",
+      "title": {
+        "en": "How dead leaves become soil",
+        "hi": "सूखी पत्तियाँ मिट्टी कैसे बनती हैं"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "detritus",
+            "text": {
+              "en": "Dead leaves, bark and animal remains form detritus",
+              "hi": "सूखी पत्तियाँ, छाल और जंतु अवशेष अपरद बनाते हैं"
+            }
+          },
+          {
+            "id": "frag",
+            "text": {
+              "en": "Fragmentation: detritivores like earthworms break it into small bits",
+              "hi": "विखंडन: केंचुए जैसे अपरदभक्षी उसे छोटे टुकड़ों में तोड़ते हैं"
+            }
+          },
+          {
+            "id": "leach",
+            "text": {
+              "en": "Leaching: water carries soluble nutrients into the soil",
+              "hi": "निक्षालन: पानी घुलनशील पोषक तत्त्वों को मिट्टी में ले जाता है"
+            }
+          },
+          {
+            "id": "cata",
+            "text": {
+              "en": "Catabolism: bacterial and fungal enzymes break it into simpler substances",
+              "hi": "अपचय: जीवाणु और कवक के एंज़ाइम उसे सरल पदार्थों में तोड़ते हैं"
+            }
+          },
+          {
+            "id": "humus",
+            "text": {
+              "en": "Humification: a dark, slowly decaying humus forms",
+              "hi": "ह्यूमस निर्माण: गहरा, धीरे सड़ने वाला ह्यूमस बनता है"
+            }
+          },
+          {
+            "id": "mineral",
+            "text": {
+              "en": "Mineralisation: microbes release inorganic nutrients from humus",
+              "hi": "खनिजीकरण: सूक्ष्मजीव ह्यूमस से अकार्बनिक पोषक तत्त्व छोड़ते हैं"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:detritus",
+          "expect": "placed:detritus",
+          "say": {
+            "en": "Tap \"Dead leaves, bark and animal remains form detritus\" and put it in place 1.",
+            "hi": "\"सूखी पत्तियाँ, छाल और जंतु अवशेष अपरद बनाते हैं\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:frag",
+          "expect": "placed:frag",
+          "say": {
+            "en": "Tap \"Fragmentation\" and put it in place 2.",
+            "hi": "\"विखंडन\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Decomposition is faster in warm, moist conditions. Where will leaves rot faster: a wet forest floor or a cold dry one?",
+            "hi": "अपघटन गर्म और नम परिस्थितियों में तेज़ होता है। पत्तियाँ कहाँ जल्दी सड़ेंगी: गीले वन तल पर या ठंडे सूखे पर?"
+          },
+          "options": [
+            {
+              "id": "wet",
+              "en": "A warm wet forest floor",
+              "hi": "गर्म गीले वन तल पर"
+            },
+            {
+              "id": "dry",
+              "en": "A cold dry one",
+              "hi": "ठंडे सूखे पर"
+            }
+          ],
+          "answer": "wet"
+        },
+        {
+          "kind": "do",
+          "target": "item:leach",
+          "expect": "placed:leach",
+          "say": {
+            "en": "Tap \"Leaching\" and put it in place 3.",
+            "hi": "\"निक्षालन\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:cata",
+          "expect": "placed:cata",
+          "say": {
+            "en": "Tap \"Catabolism\" and put it in place 4.",
+            "hi": "\"अपचय\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:humus",
+          "expect": "placed:humus",
+          "say": {
+            "en": "Tap \"Humification\" and put it in place 5.",
+            "hi": "\"ह्यूमस निर्माण\" छुओ और स्थान 5 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Decomposition turns dead matter into inorganic nutrients. The five steps happen together on the same detritus: fragmentation, leaching, catabolism, humification and mineralisation. Humus is dark, colloidal and decays very slowly, so it stores nutrients in the soil. Decomposition needs oxygen. It is faster when the detritus is rich in nitrogen and sugars and slower if it is rich in lignin and chitin. Warm, moist conditions speed it up, while cold and lack of oxygen slow it down, so dead matter piles up as in peat bogs.",
+            "hi": "अपघटन मृत पदार्थ को अकार्बनिक पोषक तत्त्वों में बदलता है। पाँच चरण एक ही अपरद पर साथ-साथ चलते हैं: विखंडन, निक्षालन, अपचय, ह्यूमस निर्माण और खनिजीकरण। ह्यूमस गहरा, कोलॉइडी होता है और बहुत धीरे सड़ता है, इसलिए मिट्टी में पोषक तत्त्व जमा रखता है। अपघटन को ऑक्सीजन चाहिए। अपरद नाइट्रोजन और शर्करा से भरपूर हो तो वह तेज़ होता है और लिग्निन तथा काइटिन से भरपूर हो तो धीमा। गर्म और नम परिस्थितियाँ उसे तेज़ करती हैं, जबकि ठंड और ऑक्सीजन की कमी उसे धीमा करती है, इसलिए मृत पदार्थ पीट दलदल की तरह जमा हो जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What do earthworms do in decomposition?",
+                "hi": "अपघटन में केंचुए क्या करते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Break detritus into smaller pieces (fragmentation)",
+                  "hi": "अपरद को छोटे टुकड़ों में तोड़ते हैं (विखंडन)"
+                },
+                {
+                  "en": "Make humus directly",
+                  "hi": "सीधे ह्यूमस बनाते हैं"
+                },
+                {
+                  "en": "Absorb sunlight",
+                  "hi": "सूर्य का प्रकाश सोखते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Smaller pieces give microbes a bigger surface to work on.",
+                "hi": "छोटे टुकड़ों से सूक्ष्मजीवों को काम करने की बड़ी सतह मिलती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Humus forms by microbial action.",
+                  "hi": "ह्यूमस सूक्ष्मजीवों की क्रिया से बनता है।"
+                },
+                {
+                  "en": "Animals cannot absorb sunlight to make food.",
+                  "hi": "जंतु भोजन बनाने के लिए सूर्य का प्रकाश नहीं सोख सकते।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is humus useful to the soil?",
+                "hi": "ह्यूमस मिट्टी के लिए उपयोगी क्यों है?"
+              },
+              "options": [
+                {
+                  "en": "It is a slowly released store of nutrients",
+                  "hi": "यह पोषक तत्त्वों का धीरे-धीरे मिलने वाला भंडार है"
+                },
+                {
+                  "en": "It makes the soil acidic and dead",
+                  "hi": "यह मिट्टी को अम्लीय और मृत बनाता है"
+                },
+                {
+                  "en": "It blocks all water",
+                  "hi": "यह सारा पानी रोकता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Colloidal humus holds nutrients and releases them gradually by mineralisation.",
+                "hi": "कोलॉइडी ह्यूमस पोषक तत्त्व थामे रखता है और खनिजीकरण से धीरे छोड़ता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Humus improves soil life.",
+                  "hi": "ह्यूमस मिट्टी के जीवन को बेहतर करता है।"
+                },
+                {
+                  "en": "Humus helps soil hold water.",
+                  "hi": "ह्यूमस मिट्टी को पानी थामने में मदद करता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. Why is a compost pit a good use of kitchen waste and dry leaves?",
+            "hi": "आख़िरी चरण रखो। रसोई का कचरा और सूखी पत्तियाँ खाद के गड्ढे में डालना अच्छा क्यों है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch12-energy-flow",
+      "topic": "12.4",
+      "template": "eco",
+      "title": {
+        "en": "Energy along a food chain",
+        "hi": "आहार शृंखला में ऊर्जा"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "chain",
+        "habitat": "pond"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:algae",
+          "expect": "picked:algae",
+          "say": {
+            "en": "Tap the algae, the producer of the pond.",
+            "hi": "शैवाल को छुओ, जो तालाब का उत्पादक है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "link",
+          "expect": "linked",
+          "say": {
+            "en": "Press Link to start the food chain with algae.",
+            "hi": "शैवाल से आहार शृंखला शुरू करने के लिए जोड़ो दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Only about how much of the energy at one step passes on to the next step?",
+            "hi": "एक चरण की ऊर्जा का लगभग कितना भाग अगले चरण को जाता है?"
+          },
+          "options": [
+            {
+              "id": "10",
+              "en": "About 10 per cent",
+              "hi": "लगभग 10 प्रतिशत"
+            },
+            {
+              "id": "90",
+              "en": "About 90 per cent",
+              "hi": "लगभग 90 प्रतिशत"
+            },
+            {
+              "id": "50",
+              "en": "About 50 per cent",
+              "hi": "लगभग 50 प्रतिशत"
+            }
+          ],
+          "answer": "10"
+        },
+        {
+          "kind": "do",
+          "target": "card:zooplankton",
+          "expect": "picked:zooplankton",
+          "say": {
+            "en": "Tap the zooplankton that eat the algae.",
+            "hi": "शैवाल खाने वाले प्राणिप्लवक को छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "link",
+          "expect": "linked",
+          "say": {
+            "en": "Link the zooplankton to the chain.",
+            "hi": "प्राणिप्लवक को शृंखला में जोड़ो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "play",
+          "expect": "energy",
+          "say": {
+            "en": "Press Play and watch the energy move along the arrows.",
+            "hi": "चलाओ दबाओ और तीरों के साथ ऊर्जा चलती देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Energy comes from the Sun and flows one way: from producers to herbivores to carnivores. At each step only about 10 per cent of the energy is passed on to the next level (the 10 per cent law). The rest is used for living and lost as heat. This is why food chains rarely have more than four or five steps, and why a top predator is always rare. Plants capture only 2 to 10 per cent of the sunlight (PAR) that reaches them, so the amount of energy at the start is small too.",
+            "hi": "ऊर्जा सूर्य से आती है और एक ही दिशा में बहती है: उत्पादकों से शाकाहारियों और फिर मांसाहारियों तक। हर चरण में केवल लगभग 10 प्रतिशत ऊर्जा अगले स्तर को जाती है (10 प्रतिशत का नियम)। बाकी जीने में खर्च होती और ऊष्मा बनकर खो जाती है। इसीलिए आहार शृंखला में शायद ही चार-पाँच से अधिक चरण होते हैं, और शीर्ष परभक्षी हमेशा कम होते हैं। पौधे पहुँचने वाले सूर्य प्रकाश (PAR) का केवल 2 से 10 प्रतिशत ही ग्रहण करते हैं, इसलिए आरंभ में ऊर्जा की मात्रा भी कम होती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "If producers hold 10000 units of energy, how much reaches the secondary consumer?",
+                "hi": "उत्पादकों में 10000 इकाई ऊर्जा हो तो द्वितीयक उपभोक्ता तक कितनी पहुँचेगी?"
+              },
+              "options": [
+                {
+                  "en": "100 units",
+                  "hi": "100 इकाई"
+                },
+                {
+                  "en": "1000 units",
+                  "hi": "1000 इकाई"
+                },
+                {
+                  "en": "5000 units",
+                  "hi": "5000 इकाई"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "10% of 10000 = 1000 for the herbivore, and 10% of that = 100 for the next level.",
+                "hi": "10000 का 10% = 1000 शाकाहारी को, और उसका 10% = 100 अगले स्तर को।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "1000 is what the primary consumer gets.",
+                  "hi": "1000 प्राथमिक उपभोक्ता को मिलता है।"
+                },
+                {
+                  "en": "5000 would be a 50 per cent transfer.",
+                  "hi": "5000 का अर्थ 50 प्रतिशत स्थानांतरण होता।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why are top predators few?",
+                "hi": "शीर्ष परभक्षी कम क्यों होते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Little energy is left at the top of the chain",
+                  "hi": "शृंखला के शीर्ष पर बहुत कम ऊर्जा बचती है"
+                },
+                {
+                  "en": "They are all hunted by plants",
+                  "hi": "पौधे उनका शिकार करते हैं"
+                },
+                {
+                  "en": "They do not eat",
+                  "hi": "वे खाते नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Each step loses about 90 per cent of the energy.",
+                "hi": "हर चरण लगभग 90 प्रतिशत ऊर्जा खोता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Plants do not hunt.",
+                  "hi": "पौधे शिकार नहीं करते।"
+                },
+                {
+                  "en": "Predators have to eat a lot.",
+                  "hi": "परभक्षियों को बहुत खाना पड़ता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Add the other animals of the pond to the chain. How many steps can you make before the energy becomes very small?",
+            "hi": "तालाब के अन्य जंतु भी शृंखला में जोड़ो। ऊर्जा बहुत कम होने से पहले कितने चरण बना सकते हो?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch12-gfc-dfc",
+      "topic": "12.4",
+      "template": "sort",
+      "title": {
+        "en": "Grazing or detritus food chain?",
+        "hi": "चारण या अपरद आहार शृंखला?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "gfc",
+            "label": {
+              "en": "Grazing food chain",
+              "hi": "चारण आहार शृंखला"
+            }
+          },
+          {
+            "id": "dfc",
+            "label": {
+              "en": "Detritus food chain",
+              "hi": "अपरद आहार शृंखला"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "start-plant",
+            "text": {
+              "en": "Starts with living green plants",
+              "hi": "जीवित हरे पौधों से शुरू होती है"
+            },
+            "bin": "gfc",
+            "why": {
+              "en": "Producers are the first link.",
+              "hi": "पहली कड़ी उत्पादक है।"
+            }
+          },
+          {
+            "id": "grass",
+            "text": {
+              "en": "Grass, grasshopper, frog, snake",
+              "hi": "घास, टिड्डा, मेंढक, साँप"
+            },
+            "bin": "gfc",
+            "why": {
+              "en": "Each member eats a living organism of the level below.",
+              "hi": "हर सदस्य नीचे के स्तर का जीवित जीव खाता है।"
+            }
+          },
+          {
+            "id": "sun-energy",
+            "text": {
+              "en": "Gets energy mainly directly from sunlight via plants",
+              "hi": "ऊर्जा मुख्यतः पौधों के द्वारा सीधे सूर्य प्रकाश से लेती है"
+            },
+            "bin": "gfc",
+            "why": {
+              "en": "Sunlight is captured in photosynthesis.",
+              "hi": "प्रकाश संश्लेषण में सूर्य प्रकाश ग्रहण होता है।"
+            }
+          },
+          {
+            "id": "start-dead",
+            "text": {
+              "en": "Starts with dead organic matter",
+              "hi": "मृत कार्बनिक पदार्थ से शुरू होती है"
+            },
+            "bin": "dfc",
+            "why": {
+              "en": "Detritus is the first link.",
+              "hi": "पहली कड़ी अपरद है।"
+            }
+          },
+          {
+            "id": "litter",
+            "text": {
+              "en": "Leaf litter, earthworm, frog, snake",
+              "hi": "पत्ती कचरा, केंचुआ, मेंढक, साँप"
+            },
+            "bin": "dfc",
+            "why": {
+              "en": "Earthworms eat dead leaves, and the chain continues.",
+              "hi": "केंचुए सूखी पत्तियाँ खाते हैं और शृंखला आगे बढ़ती है।"
+            }
+          },
+          {
+            "id": "fungi-bact",
+            "text": {
+              "en": "Made up of decomposers like fungi and bacteria",
+              "hi": "कवक और जीवाणु जैसे अपघटकों से बनी"
+            },
+            "bin": "dfc",
+            "why": {
+              "en": "Saprotrophs feed on detritus.",
+              "hi": "मृतजीवी अपरद पर निर्वाह करते हैं।"
+            }
+          },
+          {
+            "id": "land-big",
+            "text": {
+              "en": "Carries most of the energy in a forest",
+              "hi": "वन में अधिकांश ऊर्जा ले जाती है"
+            },
+            "bin": "dfc",
+            "why": {
+              "en": "On land, a larger part of the energy flows through the detritus chain.",
+              "hi": "भूमि पर ऊर्जा का बड़ा भाग अपरद शृंखला से बहता है।"
+            }
+          },
+          {
+            "id": "aquatic",
+            "text": {
+              "en": "Main route of energy in a lake or sea",
+              "hi": "झील या समुद्र में ऊर्जा का मुख्य मार्ग"
+            },
+            "bin": "gfc",
+            "why": {
+              "en": "In aquatic ecosystems, the grazing chain is the major conduit.",
+              "hi": "जलीय पारितंत्रों में चारण शृंखला मुख्य माध्यम है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:grass",
+          "expect": "correct:grass",
+          "say": {
+            "en": "Sort \"Grass, grasshopper, frog, snake\".",
+            "hi": "\"घास, टिड्डा, मेंढक, साँप\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Dead leaves on the forest floor feed earthworms. Is this the grazing or the detritus chain?",
+            "hi": "वन तल की मृत पत्तियाँ केंचुओं को भोजन देती हैं। यह चारण है या अपरद शृंखला?"
+          },
+          "options": [
+            {
+              "id": "dfc",
+              "en": "Detritus chain",
+              "hi": "अपरद शृंखला"
+            },
+            {
+              "id": "gfc",
+              "en": "Grazing chain",
+              "hi": "चारण शृंखला"
+            }
+          ],
+          "answer": "dfc"
+        },
+        {
+          "kind": "do",
+          "target": "card:litter",
+          "expect": "correct:litter",
+          "say": {
+            "en": "Sort \"Leaf litter, earthworm, frog, snake\".",
+            "hi": "\"पत्ती कचरा, केंचुआ, मेंढक, साँप\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:start-dead",
+          "expect": "correct:start-dead",
+          "say": {
+            "en": "Sort \"Starts with dead organic matter\".",
+            "hi": "\"मृत कार्बनिक पदार्थ से शुरू होती है\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "There are two kinds of food chains in nature. The grazing food chain begins with green plants, goes through herbivores and then carnivores, and its source of energy is sunlight. The detritus food chain begins with dead organic matter and is carried by decomposers and detritivores, which are eaten in turn by small carnivores. In an aquatic ecosystem the grazing chain is the major route of energy flow. On land, a much larger part of the energy flows through the detritus food chain. The two chains are linked, because the dead remains of animals in the grazing chain enter the detritus chain.",
+            "hi": "प्रकृति में दो प्रकार की आहार शृंखलाएँ हैं। चारण आहार शृंखला हरे पौधों से शुरू होकर शाकाहारियों और फिर मांसाहारियों तक जाती है, और उसका ऊर्जा स्रोत सूर्य का प्रकाश है। अपरद आहार शृंखला मृत कार्बनिक पदार्थ से शुरू होती है और अपघटकों तथा अपरदभक्षियों से चलती है, जिन्हें बदले में छोटे मांसाहारी खाते हैं। जलीय पारितंत्र में चारण शृंखला ऊर्जा प्रवाह का मुख्य मार्ग है। भूमि पर ऊर्जा का बहुत बड़ा भाग अपरद आहार शृंखला से बहता है। दोनों शृंखलाएँ जुड़ी हैं, क्योंकि चारण शृंखला के जंतुओं के मृत अवशेष अपरद शृंखला में पहुँचते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where does the detritus food chain begin?",
+                "hi": "अपरद आहार शृंखला कहाँ से शुरू होती है?"
+              },
+              "options": [
+                {
+                  "en": "With dead organic matter",
+                  "hi": "मृत कार्बनिक पदार्थ से"
+                },
+                {
+                  "en": "With sunlight",
+                  "hi": "सूर्य के प्रकाश से"
+                },
+                {
+                  "en": "With carnivores",
+                  "hi": "मांसाहारियों से"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The first link is detritus, eaten by detritivores and decomposers.",
+                "hi": "पहली कड़ी अपरद है, जिसे अपरदभक्षी और अपघटक खाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Sunlight is the energy source for the grazing chain.",
+                  "hi": "सूर्य प्रकाश चारण शृंखला का ऊर्जा स्रोत है।"
+                },
+                {
+                  "en": "Carnivores are late links in any chain.",
+                  "hi": "मांसाहारी किसी भी शृंखला की बाद की कड़ियाँ हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "In a lake, which chain carries most of the energy?",
+                "hi": "झील में कौन-सी शृंखला अधिकांश ऊर्जा ले जाती है?"
+              },
+              "options": [
+                {
+                  "en": "The grazing food chain",
+                  "hi": "चारण आहार शृंखला"
+                },
+                {
+                  "en": "The detritus food chain",
+                  "hi": "अपरद आहार शृंखला"
+                },
+                {
+                  "en": "Neither",
+                  "hi": "दोनों में से कोई नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "In aquatic ecosystems phytoplankton passes energy up the grazing chain.",
+                "hi": "जलीय पारितंत्रों में पादपप्लवक ऊर्जा चारण शृंखला में ऊपर पहुँचाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "On land, the detritus chain is the larger one.",
+                  "hi": "भूमि पर अपरद शृंखला बड़ी होती है।"
+                },
+                {
+                  "en": "One of them is always the main route.",
+                  "hi": "एक न एक हमेशा मुख्य मार्ग होती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Where does the energy of a dead tiger enter the food web?",
+            "hi": "बाकी कार्ड छाँटो। मरे बाघ की ऊर्जा आहार जाल में कहाँ से प्रवेश करती है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch12-ecological-pyramids",
+      "topic": "12.5",
+      "template": "sort",
+      "title": {
+        "en": "Upright or inverted pyramids?",
+        "hi": "सीधे या उलटे पिरामिड?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "up",
+            "label": {
+              "en": "Always upright",
+              "hi": "सदा सीधा"
+            }
+          },
+          {
+            "id": "inv",
+            "label": {
+              "en": "Can be inverted",
+              "hi": "उलटा हो सकता है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "energy",
+            "text": {
+              "en": "Pyramid of energy",
+              "hi": "ऊर्जा का पिरामिड"
+            },
+            "bin": "up",
+            "why": {
+              "en": "Energy is lost at every step, so each level has less than the one below.",
+              "hi": "हर चरण में ऊर्जा घटती है, इसलिए हर स्तर में नीचे वाले से कम होती है।"
+            }
+          },
+          {
+            "id": "grass-num",
+            "text": {
+              "en": "Pyramid of numbers in a grassland",
+              "hi": "घास के मैदान में संख्या का पिरामिड"
+            },
+            "bin": "up",
+            "why": {
+              "en": "Many grass plants, fewer grasshoppers, fewer frogs.",
+              "hi": "घास के पौधे बहुत, टिड्डे कम, मेंढक और कम।"
+            }
+          },
+          {
+            "id": "forest-bio",
+            "text": {
+              "en": "Pyramid of biomass in a forest",
+              "hi": "वन में जैवभार का पिरामिड"
+            },
+            "bin": "up",
+            "why": {
+              "en": "Trees weigh far more than the animals they support.",
+              "hi": "पेड़ों का भार उनके सहारे जीने वाले जंतुओं से कहीं अधिक है।"
+            }
+          },
+          {
+            "id": "sea-bio",
+            "text": {
+              "en": "Pyramid of biomass in the sea",
+              "hi": "समुद्र में जैवभार का पिरामिड"
+            },
+            "bin": "inv",
+            "why": {
+              "en": "Tiny phytoplankton have a small standing crop but grow and multiply fast, so zooplankton and fish outweigh them.",
+              "hi": "नन्हे पादपप्लवक का खड़ा भार कम पर वृद्धि तेज़ है, इसलिए प्राणिप्लवक और मछलियाँ भार में अधिक हैं।"
+            }
+          },
+          {
+            "id": "tree-num",
+            "text": {
+              "en": "Numbers: one big tree, many insects, a few birds",
+              "hi": "संख्या: एक बड़ा पेड़, अनेक कीट, कुछ पक्षी"
+            },
+            "bin": "inv",
+            "why": {
+              "en": "One producer supports many consumers, so the base is narrow.",
+              "hi": "एक उत्पादक अनेक उपभोक्ताओं को पोषण देता है, इसलिए आधार संकरा है।"
+            }
+          },
+          {
+            "id": "parasite",
+            "text": {
+              "en": "Numbers: one tree, a few birds, hundreds of parasites",
+              "hi": "संख्या: एक पेड़, कुछ पक्षी, सैकड़ों परजीवी"
+            },
+            "bin": "inv",
+            "why": {
+              "en": "Many small parasites live on a few hosts.",
+              "hi": "कई छोटे परजीवी थोड़े परपोषियों पर रहते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:energy",
+          "expect": "correct:energy",
+          "say": {
+            "en": "Sort \"Pyramid of energy\".",
+            "hi": "\"ऊर्जा का पिरामिड\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which pyramid can never be inverted?",
+            "hi": "कौन-सा पिरामिड कभी उलटा नहीं हो सकता?"
+          },
+          "options": [
+            {
+              "id": "energy",
+              "en": "The pyramid of energy",
+              "hi": "ऊर्जा का पिरामिड"
+            },
+            {
+              "id": "bio",
+              "en": "The pyramid of biomass",
+              "hi": "जैवभार का पिरामिड"
+            },
+            {
+              "id": "num",
+              "en": "The pyramid of numbers",
+              "hi": "संख्या का पिरामिड"
+            }
+          ],
+          "answer": "energy"
+        },
+        {
+          "kind": "do",
+          "target": "card:sea-bio",
+          "expect": "correct:sea-bio",
+          "say": {
+            "en": "Sort \"Pyramid of biomass in the sea\".",
+            "hi": "\"समुद्र में जैवभार का पिरामिड\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:tree-num",
+          "expect": "correct:tree-num",
+          "say": {
+            "en": "Sort the one-big-tree card.",
+            "hi": "एक बड़े पेड़ वाला कार्ड छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "An ecological pyramid shows the producers at the base and the higher levels above. There are pyramids of numbers, of biomass (dry weight of living matter) and of energy. Numbers and biomass pyramids are usually upright but can be inverted: one big tree supports thousands of insects, and in the sea the small standing crop of phytoplankton supports a larger biomass of zooplankton because the algae multiply very fast. But the pyramid of energy is always upright, because energy is lost at each step. Pyramids also do not include decomposers and they assume simple chains, which is a limit.",
+            "hi": "पारिस्थितिक पिरामिड में उत्पादक आधार पर और ऊँचे स्तर उसके ऊपर होते हैं। संख्या, जैवभार (जीवित पदार्थ का शुष्क भार) और ऊर्जा के पिरामिड होते हैं। संख्या और जैवभार के पिरामिड प्रायः सीधे होते हैं पर उलटे भी हो सकते हैं: एक बड़ा पेड़ हज़ारों कीटों को पोषण देता है, और समुद्र में पादपप्लवक का कम खड़ा भार अधिक प्राणिप्लवक जैवभार को आधार देता है क्योंकि शैवाल बहुत तेज़ी से बढ़ते हैं। पर ऊर्जा का पिरामिड सदा सीधा होता है, क्योंकि हर चरण में ऊर्जा घटती है। पिरामिडों में अपघटक शामिल नहीं होते और वे सरल शृंखलाएँ मानते हैं, जो एक सीमा है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is the pyramid of energy always upright?",
+                "hi": "ऊर्जा का पिरामिड हमेशा सीधा क्यों होता है?"
+              },
+              "options": [
+                {
+                  "en": "Energy is lost at each step, mostly as heat",
+                  "hi": "हर चरण में ऊर्जा घटती है, अधिकतर ऊष्मा के रूप में"
+                },
+                {
+                  "en": "Producers are the smallest",
+                  "hi": "उत्पादक सबसे छोटे होते हैं"
+                },
+                {
+                  "en": "Carnivores eat producers",
+                  "hi": "मांसाहारी उत्पादकों को खाते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Each level can only get a fraction of what the one below has.",
+                "hi": "हर स्तर को नीचे वाले का केवल अंश ही मिल सकता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Producers hold the most energy.",
+                  "hi": "उत्पादकों में सर्वाधिक ऊर्जा होती है।"
+                },
+                {
+                  "en": "That does not explain the shape.",
+                  "hi": "यह आकार की व्याख्या नहीं करता।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is the biomass pyramid of the sea often inverted?",
+                "hi": "समुद्र का जैवभार पिरामिड प्रायः उलटा क्यों होता है?"
+              },
+              "options": [
+                {
+                  "en": "Phytoplankton are small but reproduce very fast",
+                  "hi": "पादपप्लवक छोटे पर बहुत तेज़ी से प्रजनन करते हैं"
+                },
+                {
+                  "en": "There are no plants in the sea",
+                  "hi": "समुद्र में पौधे नहीं होते"
+                },
+                {
+                  "en": "Fish do not eat anything",
+                  "hi": "मछलियाँ कुछ नहीं खातीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Fast turnover of a small standing crop supports a larger consumer biomass.",
+                "hi": "छोटे खड़े भार का तेज़ चक्र बड़े उपभोक्ता जैवभार को आधार देता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Phytoplankton are the plants of the sea.",
+                  "hi": "पादपप्लवक समुद्र के पौधे हैं।"
+                },
+                {
+                  "en": "Fish are consumers that eat plankton or other animals.",
+                  "hi": "मछलियाँ उपभोक्ता हैं जो प्लवक या अन्य जंतु खाती हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Draw a pyramid of numbers for a tree, caterpillars and a bird. What shape does it have?",
+            "hi": "बाकी कार्ड छाँटो। पेड़, इल्लियों और एक चिड़िया का संख्या पिरामिड बनाओ। उसका आकार क्या है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "12.1",
+      "use": "A forest ecosystem",
+      "shows": "A tropical forest in India (for example Western Ghats) showing the tall canopy, shrubs and herbs in layers",
+      "view": "Wide shot looking up through the layers, morning mist",
+      "right": "Layers of the forest visible; no people",
+      "avoid": "Plantation rows"
+    },
+    {
+      "n": 2,
+      "kind": "SCN",
+      "topic": "12.1",
+      "use": "A pond ecosystem",
+      "shows": "A village pond with lotus, algae, fish and a heron at the edge",
+      "view": "Eye-level at the water, early morning",
+      "right": "Producers, consumers and the water in one frame",
+      "avoid": "Litter"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "12.3",
+      "use": "Earthworms and humus",
+      "shows": "A handful of dark humus-rich soil with an earthworm, held in a hand",
+      "view": "Close-up, soft daylight",
+      "right": "Earthworm and crumbly soil texture clear",
+      "avoid": "Chemical fertiliser"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "12.4",
+      "use": "Energy flow in a food chain",
+      "shows": "Sun, plant, herbivore, carnivore with arrows and 10% energy labels, losses as heat shown",
+      "view": "Flat vector, left to right",
+      "right": "10% numbers clear at each step",
+      "avoid": "Cluttered text"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "12.5",
+      "use": "Three pyramids",
+      "shows": "An upright pyramid of numbers, an inverted pyramid of biomass in the sea and an upright energy pyramid",
+      "view": "Flat vector, same colour scheme",
+      "right": "Each pyramid clearly labelled with its levels",
+      "avoid": "Real photos"
+    },
+    {
+      "n": 6,
+      "kind": "SEQ",
+      "topic": "12.3",
+      "use": "Compost pit",
+      "shows": "Four stages of a kitchen-waste compost pit: fresh waste, half rotted, dark humus, used on plants",
+      "view": "Same pit, same angle",
+      "right": "Colour change from fresh to humus clear",
+      "avoid": "Smelly looks"
+    }
+  ]
+}

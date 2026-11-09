@@ -1,0 +1,803 @@
+{
+ "chapter_key": "u.c11.hindi.khar1.ch05.s1",
+ "class": 11,
+ "subject_id": "hindi",
+ "title": "गलता लोहा",
+ "source": "https://ncert.nic.in/textbook/pdf/khar105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "The people of the story (पात्र)",
+   "labs": [
+    "c11-hindi-khar1-ch05-people"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Mohan's road from village to forge (कथा-क्रम)",
+   "labs": [
+    "c11-hindi-khar1-ch05-journey"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "The blacksmith's words (लोहार के शब्द)",
+   "labs": [
+    "c11-hindi-khar1-ch05-tools"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Caste, work and respect (संदेश)",
+   "labs": [],
+   "why_no_lab": "A class conversation with the reader and photographs of the forge teaches this better than a game."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-hindi-khar1-ch05-people",
+   "topic": "5.1",
+   "template": "reader",
+   "title": {
+    "en": "Who is who in the village",
+    "hi": "गाँव में कौन कौन है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Mohan, Dhanram and the forge",
+      "hi": "मोहन, धनराम और आफर"
+     },
+     "lines": [
+      "वंशीधर पुरोहित हैं, पर बुढ़ापे में अनुष्ठान करना उनके लिए कठिन हो गया है।",
+      "उनका बेटा मोहन पढ़ने में तेज़ है, पर घर की ग़रीबी उसे आगे बढ़ने नहीं देती।",
+      "मास्टर त्रिलोक सिंह मोहन को चहेता शिष्य मानते हैं और उसे कक्षा का मॉनीटर बनाते हैं।",
+      "धनराम लोहार का बेटा है, जो स्कूल में पिछड़ गया और पिता के साथ आफर पर काम सीखने लगा।",
+      "गाँव लौटने पर मोहन धनराम की भट्ठी के पास बैठता है और जाति की दीवार भूलकर लोहा गढ़ने लगता है।"
+     ]
+    },
+    "characters": [
+     {
+      "id": "vanshi",
+      "name": {
+       "en": "Vanshidhar",
+       "hi": "वंशीधर"
+      },
+      "traits": [
+       {
+        "en": "a priest who runs the house on his rites",
+        "hi": "पुरोहिताई से घर चलाने वाला"
+       },
+       {
+        "en": "wants his son to become a big man",
+        "hi": "बेटे को बड़ा आदमी बनाना चाहता है"
+       }
+      ]
+     },
+     {
+      "id": "mohan",
+      "name": {
+       "en": "Mohan",
+       "hi": "मोहन"
+      },
+      "traits": [
+       {
+        "en": "a bright boy from a Brahmin family",
+        "hi": "ब्राह्मण परिवार का तेज़ बुद्धि लड़का"
+       },
+       {
+        "en": "at the end takes up the hammer himself",
+        "hi": "अंत में ख़ुद हथौड़ा उठा लेता है"
+       }
+      ]
+     },
+     {
+      "id": "trilok",
+      "name": {
+       "en": "Master Trilok Singh",
+       "hi": "त्रिलोक सिंह"
+      },
+      "traits": [
+       {
+        "en": "a stern teacher with a cane",
+        "hi": "बेंत वाला कड़ा मास्टर"
+       },
+       {
+        "en": "expects great things from Mohan",
+        "hi": "मोहन से बड़ी उम्मीदें रखता है"
+       }
+      ]
+     },
+     {
+      "id": "dhanram",
+      "name": {
+       "en": "Dhanram",
+       "hi": "धनराम"
+      },
+      "traits": [
+       {
+        "en": "a blacksmith who fell behind at school",
+        "hi": "पढ़ाई में पिछड़ा हुआ लोहार"
+       },
+       {
+        "en": "respects Mohan though he feels some envy",
+        "hi": "थोड़ी ईर्ष्या के बाद भी मोहन का आदर करता है"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A Brahmin boy and a blacksmith's son sat in the same class. Which of them do you think grew up to be the teacher's favourite?",
+      "hi": "ब्राह्मण का बेटा और लोहार का बेटा एक ही कक्षा में बैठते थे। तुम्हें क्या लगता है, मास्टर का चहेता कौन बना?"
+     },
+     "options": [
+      {
+       "id": "mohan",
+       "en": "Mohan",
+       "hi": "मोहन"
+      },
+      {
+       "id": "dhan",
+       "en": "Dhanram",
+       "hi": "धनराम"
+      }
+     ],
+     "answer": "mohan"
+    },
+    {
+     "kind": "do",
+     "target": "character:mohan",
+     "expect": "picked:mohan",
+     "say": {
+      "en": "Tap Mohan, the bright boy who was sent far to study.",
+      "hi": "मोहन को छुओ, वह तेज़ लड़का जिसे पढ़ने दूर भेजा गया।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:dhanram",
+     "expect": "picked:dhanram",
+     "say": {
+      "en": "Now tap Dhanram, the blacksmith's son.",
+      "hi": "अब लोहार के बेटे धनराम को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the clue about one character.",
+      "hi": "किसी एक पात्र के संकेत का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mohan is a clever Brahmin boy; Dhanram is the blacksmith's son who fell behind. The master loved Mohan, but life later brings Mohan to Dhanram's forge. The story is about how each of them is shaped by work, school and caste.",
+      "hi": "मोहन तेज़ ब्राह्मण लड़का है; धनराम लोहार का बेटा है जो पढ़ाई में पिछड़ गया। मास्टर मोहन को चाहते थे, पर जीवन उसे आगे चलकर धनराम की भट्ठी तक ले आता है। कहानी बताती है कि काम, स्कूल और जाति हर किसी को कैसे गढ़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who works with the hammer and the forge from childhood?",
+        "hi": "बचपन से हथौड़े और भट्ठी पर कौन काम करता है?"
+       },
+       "options": [
+        {
+         "en": "Dhanram",
+         "hi": "धनराम"
+        },
+        {
+         "en": "Vanshidhar",
+         "hi": "वंशीधर"
+        },
+        {
+         "en": "Master Trilok Singh",
+         "hi": "मास्टर त्रिलोक सिंह"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dhanram learnt his father's trade at the forge.",
+        "hi": "धनराम ने पिता का काम भट्ठी पर सीखा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Vanshidhar is a priest.",
+         "hi": "वंशीधर पुरोहित हैं।"
+        },
+        {
+         "en": "The master teaches in school.",
+         "hi": "मास्टर स्कूल में पढ़ाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does Vanshidhar want Mohan to study?",
+        "hi": "वंशीधर मोहन को क्यों पढ़ाना चाहते हैं?"
+       },
+       "options": [
+        {
+         "en": "So that he becomes a big man and the family's poverty ends",
+         "hi": "ताकि वह बड़ा आदमी बने और घर की ग़रीबी दूर हो"
+        },
+        {
+         "en": "Because Mohan asked him to",
+         "hi": "क्योंकि मोहन ने ऐसा कहा था"
+        },
+        {
+         "en": "To keep him away from work",
+         "hi": "ताकि वह काम से बचा रहे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A poor priest hopes that schooling will lift his son and his family.",
+        "hi": "ग़रीब पुरोहित को आशा है कि पढ़ाई बेटे और परिवार को ऊपर उठाएगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is the father's own dream for the boy.",
+         "hi": "यह बेटे के लिए पिता का अपना सपना है।"
+        },
+        {
+         "en": "He wants Mohan to succeed, not to avoid work.",
+         "hi": "वे चाहते हैं कि मोहन सफल बने, काम से न बचे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a character and say in one sentence what that person wants most.",
+      "hi": "कोई एक पात्र चुनो और एक वाक्य में बताओ कि वह सबसे ज़्यादा क्या चाहता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khar1-ch05-journey",
+   "topic": "5.2",
+   "template": "sequence",
+   "title": {
+    "en": "Mohan's road from village to forge",
+    "hi": "मोहन का रास्ता: गाँव से भट्ठी तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "school",
+      "text": {
+       "en": "Mohan and Dhanram study under Master Trilok Singh",
+       "hi": "मोहन और धनराम मास्टर त्रिलोक सिंह से पढ़ते हैं"
+      }
+     },
+     {
+      "id": "dhan",
+      "text": {
+       "en": "Dhanram falls behind and learns ironwork",
+       "hi": "धनराम पढ़ाई में पिछड़कर लोहे का काम सीखता है"
+      }
+     },
+     {
+      "id": "far",
+      "text": {
+       "en": "Mohan walks far to a bigger school, crossing a river",
+       "hi": "मोहन बड़े स्कूल के लिए दूर चलता है, नदी भी पार करता है"
+      }
+     },
+     {
+      "id": "lucknow",
+      "text": {
+       "en": "Ramesh takes Mohan to Lucknow, where he does house chores",
+       "hi": "रमेश मोहन को लखनऊ ले जाता है, जहाँ वह घर के काम करता है"
+      }
+     },
+     {
+      "id": "factory",
+      "text": {
+       "en": "He is put into a workshop to learn a craft",
+       "hi": "उसे हुनर सीखने के लिए कारख़ाने में भर्ती कराया जाता है"
+      }
+     },
+     {
+      "id": "forge",
+      "text": {
+       "en": "Back in the village, Mohan shapes iron at Dhanram's forge",
+       "hi": "गाँव लौटकर मोहन धनराम की भट्ठी पर लोहा गढ़ता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:school",
+     "expect": "placed:school",
+     "say": {
+      "en": "Tap the card about the village school and put it in place 1.",
+      "hi": "गाँव के स्कूल वाला कार्ड छुओ और जगह 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At the end, Mohan is a Brahmin's son standing at a blacksmith's forge. Will he step back or step in?",
+      "hi": "अंत में एक ब्राह्मण का बेटा लोहार की भट्ठी पर खड़ा है। क्या वह पीछे हटेगा या आगे बढ़ेगा?"
+     },
+     "options": [
+      {
+       "id": "step",
+       "en": "He steps in and works the iron",
+       "hi": "वह आगे बढ़कर लोहा गढ़ेगा"
+      },
+      {
+       "id": "back",
+       "en": "He walks away",
+       "hi": "वह चला जाएगा"
+      },
+      {
+       "id": "watch",
+       "en": "He only watches",
+       "hi": "वह बस देखता रहेगा"
+      }
+     ],
+     "answer": "step"
+    },
+    {
+     "kind": "do",
+     "target": "item:forge",
+     "expect": "placed:forge",
+     "say": {
+      "en": "Put the card about Mohan at the forge in its place.",
+      "hi": "भट्ठी पर मोहन वाला कार्ड उसकी जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Press Check when all the cards are placed.",
+      "hi": "सब कार्ड लगाकर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mohan's life moves from a priest's house to school, to Lucknow's workshop and back to the village forge. Each step teaches him the dignity of work. At the end he breaks the unwritten rule that a Brahmin boy must not do a blacksmith's job.",
+      "hi": "मोहन का जीवन पुरोहित के घर से स्कूल, फिर लखनऊ के कारख़ाने और वापस गाँव की भट्ठी तक चलता है। हर क़दम उसे काम का सम्मान सिखाता है। अंत में वह उस अनकहे नियम को तोड़ देता है कि ब्राह्मण का बेटा लोहार का काम नहीं करेगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who takes Mohan to Lucknow?",
+        "hi": "मोहन को लखनऊ कौन ले जाता है?"
+       },
+       "options": [
+        {
+         "en": "Ramesh, a relative's son",
+         "hi": "रमेश, एक रिश्तेदार का बेटा"
+        },
+        {
+         "en": "Dhanram",
+         "hi": "धनराम"
+        },
+        {
+         "en": "Master Trilok Singh",
+         "hi": "मास्टर त्रिलोक सिंह"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ramesh offered to take Mohan to the city to study.",
+        "hi": "रमेश ने मोहन को पढ़ाने के लिए शहर ले जाने की बात की।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dhanram stayed in the village at the forge.",
+         "hi": "धनराम गाँव में भट्ठी पर रहा।"
+        },
+        {
+         "en": "The master taught in the village school.",
+         "hi": "मास्टर गाँव के स्कूल में पढ़ाते थे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the ending of the story show?",
+        "hi": "कहानी का अंत क्या दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "Skill and hard work can break caste barriers",
+         "hi": "हुनर और मेहनत जाति की दीवार तोड़ सकते हैं"
+        },
+        {
+         "en": "Priests should never study",
+         "hi": "पुरोहितों को पढ़ना नहीं चाहिए"
+        },
+        {
+         "en": "Iron cannot be shaped by hand",
+         "hi": "लोहा हाथ से नहीं गढ़ा जा सकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mohan's skill with the hammer makes caste feel small beside honest work.",
+        "hi": "मोहन के हुनर के सामने जाति की बात छोटी पड़ जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The story does not say this; it respects learning and work both.",
+         "hi": "कहानी ऐसा नहीं कहती; वह पढ़ाई और काम दोनों का सम्मान करती है।"
+        },
+        {
+         "en": "The story shows iron being shaped with hammer and skill.",
+         "hi": "कहानी में लोहा हथौड़े और हुनर से गढ़ा जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine Dhanram's face when Mohan lifts the hammer. Write what he feels in one line.",
+      "hi": "सोचो जब मोहन हथौड़ा उठाता है तब धनराम के चेहरे पर क्या भाव होंगे। एक पंक्ति में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khar1-ch05-tools",
+   "topic": "5.3",
+   "template": "match",
+   "title": {
+    "en": "The blacksmith's words",
+    "hi": "लोहार के औज़ार और शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "bhatthi",
+      "left": {
+       "en": "भट्ठी",
+       "hi": "भट्ठी"
+      },
+      "right": {
+       "en": "The fire-pit where iron is heated",
+       "hi": "आग की वह जगह जहाँ लोहा गरम किया जाता है"
+      },
+      "why": {
+       "en": "The iron is heated red-hot in the भट्ठी.",
+       "hi": "लोहा भट्ठी में तपकर लाल होता है।"
+      }
+     },
+     {
+      "id": "dhaunkni",
+      "left": {
+       "en": "धौंकनी",
+       "hi": "धौंकनी"
+      },
+      "right": {
+       "en": "The bellows that blow air to raise the fire",
+       "hi": "हवा फूँककर आग तेज़ करने वाला यंत्र"
+      },
+      "why": {
+       "en": "Air from the धौंकनी makes the coal burn hotter.",
+       "hi": "धौंकनी की हवा से कोयला और तेज़ जलता है।"
+      }
+     },
+     {
+      "id": "nihai",
+      "left": {
+       "en": "निहाई",
+       "hi": "निहाई"
+      },
+      "right": {
+       "en": "The heavy iron block on which hot iron is beaten",
+       "hi": "भारी लोहे का टुकड़ा जिस पर गरम लोहा पीटा जाता है"
+      },
+      "why": {
+       "en": "The hammer strikes the iron lying on the निहाई.",
+       "hi": "हथौड़ा निहाई पर रखे लोहे को पीटता है।"
+      }
+     },
+     {
+      "id": "hansua",
+      "left": {
+       "en": "हँसुवा",
+       "hi": "हँसुवा"
+      },
+      "right": {
+       "en": "A curved tool for cutting grass and shrubs",
+       "hi": "घास या झाड़ी काटने का मुड़ा हुआ औज़ार"
+      },
+      "why": {
+       "en": "Vanshidhar's हँसुवा has a long handle and needs sharpening.",
+       "hi": "वंशीधर के हँसुवे का बेंट लंबा है और उसे धार चाहिए।"
+      }
+     },
+     {
+      "id": "aphar",
+      "left": {
+       "en": "आफर",
+       "hi": "आफर"
+      },
+      "right": {
+       "en": "The blacksmith's workshop",
+       "hi": "लोहार की कार्यशाला"
+      },
+      "why": {
+       "en": "The village calls the forge Dhanram's आफर.",
+       "hi": "गाँव वाले इसे धनराम का आफर कहते हैं।"
+      }
+     },
+     {
+      "id": "ghasi",
+      "left": {
+       "en": "घसियारे",
+       "hi": "घसियारे"
+      },
+      "right": {
+       "en": "People who cut grass for a living",
+       "hi": "घास काटने का काम करने वाले लोग"
+      },
+      "why": {
+       "en": "Mohan crosses the river with some घसियारे.",
+       "hi": "मोहन कुछ घसियारों के साथ नदी पार करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is the tool on which the hammer strikes hot iron: भट्ठी, धौंकनी or निहाई?",
+      "hi": "गरम लोहे पर हथौड़ा जिस पर चोट करता है, वह औज़ार कौन-सा है: भट्ठी, धौंकनी या निहाई?"
+     },
+     "options": [
+      {
+       "id": "nihai",
+       "en": "निहाई",
+       "hi": "निहाई"
+      },
+      {
+       "id": "bhat",
+       "en": "भट्ठी",
+       "hi": "भट्ठी"
+      },
+      {
+       "id": "dhaun",
+       "en": "धौंकनी",
+       "hi": "धौंकनी"
+      }
+     ],
+     "answer": "nihai"
+    },
+    {
+     "kind": "do",
+     "target": "left:bhatthi",
+     "expect": "matched:bhatthi",
+     "say": {
+      "en": "Match भट्ठी with what it is.",
+      "hi": "भट्ठी को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:nihai",
+     "expect": "matched:nihai",
+     "say": {
+      "en": "Match निहाई.",
+      "hi": "निहाई को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाकी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A blacksmith's work has a clear order: the भट्ठी heats the iron, the धौंकनी feeds the fire, and the iron is beaten on the निहाई. Learning these words helps us see how skilled the work is, and why Mohan's handling of it surprises everyone.",
+      "hi": "लोहार के काम का एक साफ़ क्रम है: भट्ठी लोहा गरम करती है, धौंकनी आग को हवा देती है, और लोहा निहाई पर पीटा जाता है। इन शब्दों से दिखता है कि यह काम कितना हुनर माँगता है, और मोहन का इसे सँभालना सबको क्यों चौंकाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which tool gives air to the fire?",
+        "hi": "आग को हवा कौन-सा औज़ार देता है?"
+       },
+       "options": [
+        {
+         "en": "धौंकनी",
+         "hi": "धौंकनी"
+        },
+        {
+         "en": "निहाई",
+         "hi": "निहाई"
+        },
+        {
+         "en": "हँसुवा",
+         "hi": "हँसुवा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The धौंकनी blows air so that the fire burns hot.",
+        "hi": "धौंकनी हवा फूँककर आग को तेज़ करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The निहाई is the block on which iron is beaten.",
+         "hi": "निहाई वह भारी टुकड़ा है जिस पर लोहा पीटा जाता है।"
+        },
+        {
+         "en": "The हँसुवा is a tool for cutting grass.",
+         "hi": "हँसुवा घास काटने का औज़ार है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the आफर?",
+        "hi": "आफर क्या है?"
+       },
+       "options": [
+        {
+         "en": "The blacksmith's workshop",
+         "hi": "लोहार की कार्यशाला"
+        },
+        {
+         "en": "A field of wheat",
+         "hi": "गेहूँ का खेत"
+        },
+        {
+         "en": "A school",
+         "hi": "एक स्कूल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The आफर is where the forge, bellows and anvil are kept.",
+        "hi": "आफर वह जगह है जहाँ भट्ठी, धौंकनी और निहाई रहती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wheat is grown in a field, not at the forge.",
+         "hi": "गेहूँ खेत में उगता है, भट्ठी पर नहीं।"
+        },
+        {
+         "en": "A school is where Master Trilok Singh teaches.",
+         "hi": "स्कूल में मास्टर त्रिलोक सिंह पढ़ाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw the forge with a भट्ठी, a धौंकनी and a निहाई, and label each in Hindi.",
+      "hi": "भट्ठी, धौंकनी और निहाई के साथ आफर का चित्र बनाओ और हर चीज़ का नाम हिंदी में लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Hook of the chapter",
+   "shows": "A small blacksmith's workshop of a hill village, red-hot iron on an anvil, charcoal glow",
+   "view": "Eye level, dim interior, glow as the main light",
+   "right": "Orange-red hot iron, grey anvil, wooden hammer handle, soot on walls",
+   "avoid": "Faces, branded tools"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.3",
+   "use": "Forge tools",
+   "shows": "An iron anvil (निहाई) and a heavy hammer",
+   "view": "Three-quarter view on a transparent background",
+   "right": "Dark iron, worn flat top, wooden handle",
+   "avoid": "Text, brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "5.3",
+   "use": "Forge tools",
+   "shows": "A hand bellows (धौंकनी) made of leather and wood",
+   "view": "Side view",
+   "right": "Leather folds, wooden handles, brass nozzle",
+   "avoid": "Electric blowers"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "5.3",
+   "use": "Village tool",
+   "shows": "A sickle (हँसुवा) with a long wooden handle",
+   "view": "Side view, transparent background",
+   "right": "Curved blade, long handle; clean metal",
+   "avoid": "Rust patches that hide the shape"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "5.3",
+   "use": "Shaping iron",
+   "shows": "Four frames: a rod in the fire, glowing, on the anvil under the hammer, cooled and shaped",
+   "view": "Same close angle, hands only",
+   "right": "Colour moves from black to orange to cooling grey-blue",
+   "avoid": "Faces; unsafe grip without tongs"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Mohan's road",
+   "shows": "A hill footpath and a monsoon stream with a few grass-cutters crossing, seen from a distance",
+   "view": "Wide, eye level, overcast",
+   "right": "Brown swollen water, green slopes, small figures",
+   "avoid": "Close faces, people in danger"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "The school",
+   "shows": "A village primary school veranda with a bare cement floor and a neem tree outside",
+   "view": "Eye level, afternoon light",
+   "right": "Plain walls, slate boards, bare feet outside the door",
+   "avoid": "Signboards, children's faces"
+  }
+ ]
+}

@@ -1,0 +1,1001 @@
+{
+ "chapter_key": "u.c12.physics.leph1.ch04",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Moving Charges and Magnetism",
+ "source": "https://ncert.nic.in/textbook/pdf/leph104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "An opening story of Oersted's compass and magnetic effects; the photos and the reader set the scene."
+  },
+  {
+   "n": "4.2",
+   "title": "Magnetic force, Lorentz force and force on a current-carrying conductor",
+   "labs": [
+    "c12-physics-leph1-ch04-force-angle",
+    "c12-physics-leph1-ch04-force-on-wire"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Motion in a magnetic field",
+   "labs": [
+    "c12-physics-leph1-ch04-circle-radius"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Magnetic field due to a current (Biot–Savart law)",
+   "labs": [
+    "c12-physics-leph1-ch04-wire-field"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Magnetic field on the axis of a circular current loop",
+   "labs": [
+    "c12-physics-leph1-ch04-loop-field"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Ampere's circuital law",
+   "labs": [],
+   "why_no_lab": "A law proved by integration; the wire lab shows the field circling the current and the reader works out the examples."
+  },
+  {
+   "n": "4.7",
+   "title": "The solenoid and the toroid",
+   "labs": [
+    "c12-physics-leph1-ch04-solenoid"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.8",
+   "title": "Force between two parallel currents",
+   "labs": [],
+   "why_no_lab": "Best taught by a diagram of two wires and the worked examples; the force-on-wire lab already shows the push."
+  },
+  {
+   "n": "4.9",
+   "title": "Torque on a current loop and the magnetic dipole",
+   "labs": [
+    "c12-physics-leph1-ch04-motor"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.10",
+   "title": "The moving coil galvanometer",
+   "labs": [],
+   "why_no_lab": "Conversion to an ammeter or voltmeter is worked with formulas; a photo of the real meter and the reader teach it better."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph1-ch04-force-angle",
+   "topic": "4.2",
+   "template": "grapher",
+   "title": {
+    "en": "Magnetic force depends on the angle",
+    "hi": "चुंबकीय बल कोण पर निर्भर करता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trig",
+    "expr": "a*sin(x)",
+    "params": {
+     "a": [
+      1,
+      5,
+      3
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A charge moves along the magnetic field lines (angle 0). The magnetic force on it is",
+      "hi": "एक आवेश चुंबकीय क्षेत्र रेखाओं के अनुदिश (कोण 0) चलता है। उस पर चुंबकीय बल है"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "zero",
+       "hi": "शून्य"
+      },
+      {
+       "id": "o1",
+       "en": "maximum",
+       "hi": "अधिकतम"
+      },
+      {
+       "id": "o2",
+       "en": "half the maximum",
+       "hi": "अधिकतम का आधा"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the angle θ between the velocity and the field (in radians, π/2 is 90°). Slide it and watch the force F.",
+      "hi": "x वेग और क्षेत्र के बीच का कोण θ है (रेडियन में, π/2 यानी 90°)। उसे चलाओ और बल F देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a stands for qvB. A faster or bigger charge gives a taller curve.",
+      "hi": "a का अर्थ qvB है। तेज़ या बड़ा आवेश ऊँचा वक्र देता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The magnetic force is F = qvB sin θ. It is zero along the field (θ = 0) and largest when the charge crosses the field at a right angle. The force is always at right angles to the velocity, so it can change the direction of motion but never the speed: a magnetic field does no work on a moving charge.",
+      "hi": "चुंबकीय बल F = qvB sin θ होता है। क्षेत्र के अनुदिश (θ = 0) यह शून्य है और जब आवेश क्षेत्र को समकोण पर काटता है तब सबसे अधिक है। बल हमेशा वेग के लंबवत होता है, इसलिए वह गति की दिशा बदल सकता है पर चाल कभी नहीं: चुंबकीय क्षेत्र चलते आवेश पर कार्य नहीं करता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A proton moves at 90° to a magnetic field. If its speed doubles, the force",
+        "hi": "एक प्रोटॉन चुंबकीय क्षेत्र से 90° पर चल रहा है। चाल दोगुनी करने पर बल"
+       },
+       "options": [
+        {
+         "en": "doubles",
+         "hi": "दोगुना हो जाता है"
+        },
+        {
+         "en": "stays the same",
+         "hi": "वही रहता है"
+        },
+        {
+         "en": "becomes zero",
+         "hi": "शून्य हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "F is proportional to v when θ and B are fixed.",
+        "hi": "θ और B स्थिर हों तो F, v के समानुपाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "F = qvB sin θ contains v, so a change in speed changes the force.",
+         "hi": "F = qvB sin θ में v है, इसलिए चाल बदलने से बल बदलता है।"
+        },
+        {
+         "en": "Zero happens only when the angle is 0 or 180°, not when speed changes.",
+         "hi": "शून्य तब होता है जब कोण 0 या 180° हो, चाल बदलने पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide x past π. The curve goes below zero. What does a negative force mean for the direction?",
+      "hi": "x को π के आगे ले जाओ। वक्र शून्य से नीचे जाता है। ऋणात्मक बल का दिशा के लिए क्या अर्थ है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch04-circle-radius",
+   "topic": "4.3",
+   "template": "grapher",
+   "title": {
+    "en": "A charge in a magnetic field goes in a circle",
+    "hi": "चुंबकीय क्षेत्र में आवेश वृत्त में घूमता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "a*x",
+    "params": {
+     "a": [
+      0.5,
+      4,
+      1.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A charged particle enters a uniform field at right angles. If it enters faster, the circle it makes is",
+      "hi": "एक आवेशित कण समान क्षेत्र में समकोण पर घुसता है। यदि वह तेज़ घुसे तो उसका वृत्त"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "the same size",
+       "hi": "उतना ही होगा"
+      },
+      {
+       "id": "o0",
+       "en": "bigger",
+       "hi": "बड़ा होगा"
+      },
+      {
+       "id": "o1",
+       "en": "smaller",
+       "hi": "छोटा होगा"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the speed v. Slide it and read the radius r of the circle.",
+      "hi": "x चाल v है। उसे चलाओ और वृत्त की त्रिज्या r पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a is m/(qB). A heavier particle or a weaker field makes a larger a, so a bigger circle.",
+      "hi": "a का मान m/(qB) है। भारी कण या कमज़ोर क्षेत्र से a बड़ा और वृत्त भी बड़ा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The magnetic force provides the pull towards the centre, so qvB = mv²/r and r = mv/(qB). Faster particles loop on bigger circles, and a stronger field squeezes the circle smaller. The time for one round does not depend on the speed, which is the idea behind the cyclotron that speeds up particles in hospitals and research labs.",
+      "hi": "चुंबकीय बल केंद्र की ओर खिंचाव देता है, इसलिए qvB = mv²/r और r = mv/(qB)। तेज़ कण बड़े वृत्त में घूमते हैं और प्रबल क्षेत्र वृत्त को छोटा कर देता है। एक चक्कर का समय चाल पर निर्भर नहीं करता, यही साइक्लोट्रॉन का विचार है जो अस्पतालों और अनुसंधान प्रयोगशालाओं में कणों को त्वरित करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The magnetic field is made twice as strong. For the same particle and speed, the radius becomes",
+        "hi": "चुंबकीय क्षेत्र दोगुना प्रबल किया गया। उसी कण और चाल के लिए त्रिज्या हो जाती है"
+       },
+       "options": [
+        {
+         "en": "half",
+         "hi": "आधी"
+        },
+        {
+         "en": "double",
+         "hi": "दोगुनी"
+        },
+        {
+         "en": "unchanged",
+         "hi": "वही"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "r is inversely proportional to B, so doubling B halves r.",
+        "hi": "r, B के व्युत्क्रमानुपाती है, इसलिए B दोगुना होने पर r आधा हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A stronger field bends the path more, so the circle shrinks, not grows.",
+         "hi": "प्रबल क्षेत्र पथ को अधिक मोड़ता है, इसलिए वृत्त छोटा होता है, बड़ा नहीं।"
+        },
+        {
+         "en": "r = mv/(qB), so B is in the formula and the radius depends on it.",
+         "hi": "r = mv/(qB) में B है, इसलिए त्रिज्या उस पर निर्भर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a very large. Which change in the particle or the field would do that in real life?",
+      "hi": "a को बहुत बड़ा करो। असल में कण या क्षेत्र में कौन-सा बदलाव यह करेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch04-wire-field",
+   "topic": "4.4",
+   "template": "field",
+   "title": {
+    "en": "The magnetic field around a current-carrying wire",
+    "hi": "धारावाही तार के चारों ओर चुंबकीय क्षेत्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "source": "wire",
+    "show": "compass",
+    "current": 3,
+    "on": false
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A current flows in a straight wire. The compass needles around it will point",
+      "hi": "सीधे तार में धारा बह रही है। उसके चारों ओर कंपास की सुइयाँ संकेत करेंगी"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "straight towards the wire",
+       "hi": "सीधे तार की ओर"
+      },
+      {
+       "id": "o2",
+       "en": "away from the wire in a line",
+       "hi": "तार से दूर सीधी रेखा में"
+      },
+      {
+       "id": "o0",
+       "en": "in circles around the wire",
+       "hi": "तार के चारों ओर वृत्तों की दिशा में"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "on",
+     "say": {
+      "en": "Switch the current on.",
+      "hi": "धारा चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "compass",
+     "expect": "deflected",
+     "say": {
+      "en": "Move the compass close to the wire and see the needle turn.",
+      "hi": "कंपास को तार के पास ले जाओ और सुई को घूमते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "reverse",
+     "expect": "reversed",
+     "say": {
+      "en": "Reverse the current. The needle turns the other way.",
+      "hi": "धारा उलट दो। सुई दूसरी ओर घूमती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Oersted found that a current produces a magnetic field. The field lines are circles around the wire, and their direction follows the right-hand thumb rule: point the thumb along the current and the fingers curl along the field. The field is stronger near the wire and falls as 1/r.",
+      "hi": "ऑर्स्टेड ने पाया कि धारा चुंबकीय क्षेत्र उत्पन्न करती है। क्षेत्र रेखाएँ तार के चारों ओर वृत्त हैं और उनकी दिशा दाएँ हाथ के अँगूठे के नियम से मिलती है: अँगूठा धारा की दिशा में रखो तो उँगलियाँ क्षेत्र की दिशा में मुड़ती हैं। क्षेत्र तार के पास प्रबल होता है और 1/r की तरह घटता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When the current in the wire is reversed, the field direction",
+        "hi": "तार में धारा उलटने पर क्षेत्र की दिशा"
+       },
+       "options": [
+        {
+         "en": "reverses",
+         "hi": "उलट जाती है"
+        },
+        {
+         "en": "stays the same",
+         "hi": "वही रहती है"
+        },
+        {
+         "en": "becomes radial",
+         "hi": "अरीय हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Reversing the current reverses the circulation of the field.",
+        "hi": "धारा उलटने से क्षेत्र का परिक्रमण उलट जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The field direction follows the thumb rule, so reversing the thumb reverses the curl.",
+         "hi": "क्षेत्र की दिशा अँगूठे के नियम से मिलती है, अँगूठा उलटने पर उँगलियों का मोड़ भी उलटता है।"
+        },
+        {
+         "en": "The field lines always remain circles around the wire.",
+         "hi": "क्षेत्र रेखाएँ हमेशा तार के चारों ओर वृत्त ही रहती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Raise the current slider and move the compass farther away. Where does the needle stop being affected?",
+      "hi": "धारा का स्लाइडर बढ़ाओ और कंपास को दूर ले जाओ। सुई कहाँ असर लेना बंद करती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch04-loop-field",
+   "topic": "4.5",
+   "template": "field",
+   "title": {
+    "en": "The field of a circular loop",
+    "hi": "वृत्ताकार कुंडली का क्षेत्र"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "source": "loop",
+    "show": "lines",
+    "current": 3,
+    "on": false
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Inside a circular current loop, the field lines near the centre are",
+      "hi": "वृत्ताकार धारावाही कुंडली के भीतर केंद्र के पास क्षेत्र रेखाएँ"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "almost straight and along the axis",
+       "hi": "लगभग सीधी और अक्ष के अनुदिश"
+      },
+      {
+       "id": "o1",
+       "en": "circles around the centre",
+       "hi": "केंद्र के चारों ओर वृत्त"
+      },
+      {
+       "id": "o2",
+       "en": "absent",
+       "hi": "अनुपस्थित"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "on",
+     "say": {
+      "en": "Switch the current on.",
+      "hi": "धारा चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:lines",
+     "expect": "lines",
+     "say": {
+      "en": "Show the field lines.",
+      "hi": "क्षेत्र रेखाएँ दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "compass",
+     "expect": "deflected",
+     "say": {
+      "en": "Place the compass at the centre of the loop.",
+      "hi": "कंपास को कुंडली के केंद्र पर रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each small part of the loop makes a field, and they add up on the axis. At the centre the field is B = μ0I/2R, pointing along the axis; the right-hand rule gives its direction (curl the fingers with the current, the thumb gives the field). A loop behaves like a tiny bar magnet with a north face and a south face.",
+      "hi": "कुंडली का हर छोटा भाग क्षेत्र बनाता है और अक्ष पर वे जुड़ जाते हैं। केंद्र पर क्षेत्र B = μ0I/2R होता है, जो अक्ष के अनुदिश है; दाएँ हाथ के नियम से दिशा मिलती है (उँगलियाँ धारा के साथ मोड़ो तो अँगूठा क्षेत्र दिखाता है)। कुंडली एक छोटे दंड चुंबक की तरह व्यवहार करती है जिसका एक उत्तरी और एक दक्षिणी फलक होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For a single loop, doubling the current makes the centre field",
+        "hi": "एक कुंडली में धारा दोगुनी करने पर केंद्र का क्षेत्र"
+       },
+       "options": [
+        {
+         "en": "double",
+         "hi": "दोगुना"
+        },
+        {
+         "en": "half",
+         "hi": "आधा"
+        },
+        {
+         "en": "unchanged",
+         "hi": "वही"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "B is proportional to I at the centre of a loop.",
+        "hi": "कुंडली के केंद्र पर B, I के समानुपाती होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "B = μ0I/2R grows with I, so more current gives a stronger field.",
+         "hi": "B = μ0I/2R में I के साथ B बढ़ता है, इसलिए अधिक धारा से क्षेत्र प्रबल होता है।"
+        },
+        {
+         "en": "The field depends on the current, so it cannot stay unchanged.",
+         "hi": "क्षेत्र धारा पर निर्भर है, इसलिए वही नहीं रह सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reverse the current. Which face of the loop acts as north now?",
+      "hi": "धारा उलटो। अब कुंडली का कौन-सा फलक उत्तर बनता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch04-solenoid",
+   "topic": "4.7",
+   "template": "field",
+   "title": {
+    "en": "The solenoid: a magnet you can switch off",
+    "hi": "परिनालिका: एक चुंबक जिसे बंद किया जा सकता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "source": "solenoid",
+    "show": "lines",
+    "current": 3,
+    "turns": 6,
+    "on": false
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the field inside a long solenoid like?",
+      "hi": "लंबी परिनालिका के भीतर क्षेत्र कैसा होता है?"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "strong only near the ends",
+       "hi": "केवल सिरों के पास प्रबल"
+      },
+      {
+       "id": "o0",
+       "en": "strong and uniform",
+       "hi": "प्रबल और एकसमान"
+      },
+      {
+       "id": "o1",
+       "en": "zero",
+       "hi": "शून्य"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "on",
+     "say": {
+      "en": "Switch the current on.",
+      "hi": "धारा चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "compass",
+     "expect": "deflected",
+     "say": {
+      "en": "Move the compass inside, then outside the coil.",
+      "hi": "कंपास को कुंडली के भीतर, फिर बाहर ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "reverse",
+     "expect": "reversed",
+     "say": {
+      "en": "Reverse the current and see the poles swap.",
+      "hi": "धारा उलटो और ध्रुव बदलते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Inside a long solenoid the field is uniform, B = μ0nI, where n is turns per metre. Outside it is nearly zero. It looks like a bar magnet from outside. An iron core makes it far stronger, which is how electromagnets lift scrap iron in junkyards and run electric bells and relays.",
+      "hi": "लंबी परिनालिका के भीतर क्षेत्र एकसमान, B = μ0nI होता है, जहाँ n प्रति मीटर फेरे हैं। बाहर यह लगभग शून्य है। बाहर से यह दंड चुंबक जैसी दिखती है। लोहे की क्रोड इसे बहुत प्रबल बना देती है, इसीलिए विद्युत चुंबक कबाड़ी के यहाँ लोहे का कबाड़ उठाते हैं और बिजली की घंटी तथा रिले चलाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "To make the field inside a solenoid stronger you can",
+        "hi": "परिनालिका के भीतर क्षेत्र प्रबल करने के लिए तुम कर सकते हो"
+       },
+       "options": [
+        {
+         "en": "increase current or turns per metre",
+         "hi": "धारा या प्रति मीटर फेरे बढ़ाना"
+        },
+        {
+         "en": "make the wire longer without more turns",
+         "hi": "फेरे बढ़ाए बिना तार लंबा करना"
+        },
+        {
+         "en": "lower the current",
+         "hi": "धारा घटाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "B = μ0nI grows with both n and I.",
+        "hi": "B = μ0nI, n और I दोनों के साथ बढ़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "B = μ0nI depends on turns per metre n; extra wire without extra turns changes nothing.",
+         "hi": "B = μ0nI में प्रति मीटर फेरे n हैं; फेरे बढ़ाए बिना अतिरिक्त तार से कुछ नहीं बदलता।"
+        },
+        {
+         "en": "Less current makes the field weaker.",
+         "hi": "कम धारा से क्षेत्र कमज़ोर होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Raise the turns slider. How do the lines inside change?",
+      "hi": "फेरों वाला स्लाइडर बढ़ाओ। भीतर की रेखाएँ कैसे बदलती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch04-force-on-wire",
+   "topic": "4.2",
+   "template": "field",
+   "title": {
+    "en": "The push on a current-carrying wire",
+    "hi": "धारावाही तार पर धक्का"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "source": "force-on-wire",
+    "current": 3,
+    "on": false
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A wire carrying current sits in a magnetic field. It will",
+      "hi": "चुंबकीय क्षेत्र में रखे धारावाही तार पर"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "not feel anything",
+       "hi": "कोई प्रभाव नहीं होगा"
+      },
+      {
+       "id": "o2",
+       "en": "be pulled along its own length",
+       "hi": "तार की अपनी लंबाई के अनुदिश खिंचाव लगेगा"
+      },
+      {
+       "id": "o0",
+       "en": "be pushed sideways",
+       "hi": "बगल की ओर धक्का लगेगा"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "deflected",
+     "say": {
+      "en": "Switch on the current and watch the wire move.",
+      "hi": "धारा चालू करो और तार को हिलते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "reverse",
+     "expect": "reversed",
+     "say": {
+      "en": "Reverse the current. The push changes direction.",
+      "hi": "धारा उलट दो। धक्के की दिशा बदल जाती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A force acts on a current-carrying wire in a magnetic field: F = BIl sin θ. Its direction is given by Fleming's left-hand rule: first finger along the field, middle finger along the current, thumb gives the force. The force is at right angles to both the field and the wire. Electric motors use exactly this push.",
+      "hi": "चुंबकीय क्षेत्र में धारावाही तार पर बल लगता है: F = BIl sin θ। उसकी दिशा फ़्लेमिंग के बाएँ हाथ के नियम से मिलती है: तर्जनी क्षेत्र की दिशा में, मध्यमा धारा की दिशा में, तब अँगूठा बल की दिशा बताता है। बल क्षेत्र और तार, दोनों के लंबवत होता है। बिजली की मोटरें ठीक यही धक्का काम में लेती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If both the current and the magnetic field are reversed together, the force direction",
+        "hi": "यदि धारा और चुंबकीय क्षेत्र दोनों एक साथ उलट दिए जाएँ तो बल की दिशा"
+       },
+       "options": [
+        {
+         "en": "stays the same",
+         "hi": "वही रहती है"
+        },
+        {
+         "en": "reverses",
+         "hi": "उलट जाती है"
+        },
+        {
+         "en": "becomes zero",
+         "hi": "शून्य हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two flips cancel: F stays in the same direction.",
+        "hi": "दो पलटाव एक-दूसरे को काट देते हैं: F की दिशा वही रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Each reversal flips the force once, so two reversals bring it back.",
+         "hi": "हर उलटाव बल को एक बार पलटता है, इसलिए दो उलटाव उसे वापस ले आते हैं।"
+        },
+        {
+         "en": "The wire still crosses the field, so the force is still there.",
+         "hi": "तार अब भी क्षेत्र को काटता है, इसलिए बल अब भी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Raise the current. Does the wire swing farther?",
+      "hi": "धारा बढ़ाओ। क्या तार और अधिक झूलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch04-motor",
+   "topic": "4.9",
+   "template": "field",
+   "title": {
+    "en": "Torque on a loop: the electric motor",
+    "hi": "कुंडली पर बल-आघूर्ण: बिजली की मोटर"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "source": "motor",
+    "current": 3,
+    "on": false
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A current loop is placed in a magnetic field. The two long sides feel forces that are",
+      "hi": "चुंबकीय क्षेत्र में धारावाही कुंडली रखी है। दोनों लंबी भुजाओं पर बल"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "equal and opposite, making it turn",
+       "hi": "बराबर और विपरीत होते हैं, जिससे वह घूमती है"
+      },
+      {
+       "id": "o1",
+       "en": "equal and in the same direction",
+       "hi": "बराबर और एक ही दिशा में होते हैं"
+      },
+      {
+       "id": "o2",
+       "en": "zero",
+       "hi": "शून्य होते हैं"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "rotated",
+     "say": {
+      "en": "Switch on the current and watch the coil turn.",
+      "hi": "धारा चालू करो और कुंडली को घूमते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "reverse",
+     "expect": "reversed",
+     "say": {
+      "en": "Reverse the current. The coil turns the other way.",
+      "hi": "धारा उलटो। कुंडली दूसरी ओर घूमती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The two sides get equal and opposite forces, which form a couple and make a torque τ = NIAB sin θ on the coil. A split-ring commutator reverses the current every half turn so the torque keeps the same sense and the coil keeps spinning. This is how fans, mixers and water pumps work. A current loop is a magnetic dipole with moment m = NIA.",
+      "hi": "दोनों भुजाओं पर बराबर और विपरीत बल लगते हैं जो बल-युग्म बनाकर कुंडली पर बल-आघूर्ण τ = NIAB sin θ लगाते हैं। विभक्त वलय दिक्परिवर्तक हर आधे चक्कर पर धारा उलट देता है ताकि बल-आघूर्ण की दिशा वही रहे और कुंडली घूमती रहे। पंखे, मिक्सर और पानी के पंप इसी तरह चलते हैं। धारावाही कुंडली एक चुंबकीय द्विध्रुव है जिसका आघूर्ण m = NIA है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The torque on a coil is largest when the plane of the coil is",
+        "hi": "कुंडली पर बल-आघूर्ण सबसे अधिक तब होता है जब उसका तल"
+       },
+       "options": [
+        {
+         "en": "parallel to the field",
+         "hi": "क्षेत्र के समांतर हो"
+        },
+        {
+         "en": "perpendicular to the field",
+         "hi": "क्षेत्र के लंबवत हो"
+        },
+        {
+         "en": "neither; torque is the same",
+         "hi": "दोनों नहीं; बल-आघूर्ण समान रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "τ = NIAB sin θ with θ measured from the normal; it is maximum when the plane is along the field.",
+        "hi": "τ = NIAB sin θ, जहाँ θ अभिलंब से मापा जाता है; तल क्षेत्र के अनुदिश हो तो यह अधिकतम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Then the forces on the sides lie along the same line and give no turning effect.",
+         "hi": "तब भुजाओं के बल एक ही रेखा में आ जाते हैं और घुमाने का कोई प्रभाव नहीं देते।"
+        },
+        {
+         "en": "The torque depends on the angle, so it changes as the coil turns.",
+         "hi": "बल-आघूर्ण कोण पर निर्भर है, इसलिए कुंडली घूमने पर बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Raise the current. How does the speed of the coil change?",
+      "hi": "धारा बढ़ाओ। कुंडली की चाल कैसे बदलती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Chapter hook: Oersted's compass",
+   "shows": "A school lab bench with a straight copper wire above a compass; the needle visibly turned away from north when the wire is connected to a cell",
+   "view": "Close three-quarter view from above, bright light",
+   "right": "Needle clearly off north; wire straight and close above it",
+   "avoid": "Faces, writing on the compass"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "4.2",
+   "use": "Force on a wire in a field",
+   "shows": "Three frames of a hanging aluminium rod between the poles of a horseshoe magnet: no current, current one way (rod swings), current reversed (swings other way)",
+   "view": "Same side view and background in all three",
+   "right": "Rod angle clearly different in frames 2 and 3",
+   "avoid": "Changing the magnet between frames"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.7",
+   "use": "A solenoid and an electromagnet",
+   "shows": "A long copper coil wound on a plastic tube beside an iron nail wrapped with wire holding paper clips",
+   "view": "Straight overhead, plain white",
+   "right": "Paper clips hanging from the nail",
+   "avoid": "Brand names on the battery"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "4.9",
+   "use": "Inside a small DC motor",
+   "shows": "Cutaway of a small motor: magnets, coil (armature), commutator and brushes, in clear colours",
+   "view": "Three-quarter cutaway",
+   "right": "Commutator split ring clearly visible",
+   "avoid": "Text labels"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.10",
+   "use": "A moving coil galvanometer",
+   "shows": "A school galvanometer with its pointer at zero, case front-on and clear dial",
+   "view": "Straight front view",
+   "right": "Scale and pointer sharp",
+   "avoid": "Readable brand names"
+  },
+  {
+   "n": 6,
+   "kind": "3DM",
+   "topic": "4.3",
+   "use": "Circular path of a charge",
+   "shows": "A glossy curved glowing path of a particle in a bubble chamber style, forming a neat circle on a dark background",
+   "view": "Flat, front-on",
+   "right": "Smooth circle without noise",
+   "avoid": "Text and numbers"
+  }
+ ]
+}

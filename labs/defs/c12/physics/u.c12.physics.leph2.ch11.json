@@ -1,0 +1,822 @@
+{
+ "chapter_key": "u.c12.physics.leph2.ch11",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Dual Nature of Radiation and Matter",
+ "source": "https://ncert.nic.in/textbook/pdf/leph211.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "A short opening about Hertz's and Lenard's discoveries; photos and the reader set the scene."
+  },
+  {
+   "n": "11.2",
+   "title": "Electron emission",
+   "labs": [],
+   "why_no_lab": "Thermionic, field and photoelectric emission are definitions best taught by the reader and a table."
+  },
+  {
+   "n": "11.3",
+   "title": "Photoelectric effect (Hertz, Hallwachs and Lenard)",
+   "labs": [],
+   "why_no_lab": "The early observations are a story; the experiment photo and the lab on the equation carry the idea."
+  },
+  {
+   "n": "11.4",
+   "title": "Experimental study of the photoelectric effect (intensity, potential, frequency)",
+   "labs": [
+    "c12-physics-leph2-ch11-intensity-current",
+    "c12-physics-leph2-ch11-kmax-frequency"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5",
+   "title": "Photoelectric effect and the wave theory of light",
+   "labs": [
+    "c12-physics-leph2-ch11-wave-vs-photon"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.6",
+   "title": "Einstein's photoelectric equation",
+   "labs": [
+    "c12-physics-leph2-ch11-kmax-frequency"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.7",
+   "title": "Particle nature of light: the photon",
+   "labs": [
+    "c12-physics-leph2-ch11-photon-energy"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.8",
+   "title": "Wave nature of matter",
+   "labs": [
+    "c12-physics-leph2-ch11-de-broglie"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph2-ch11-kmax-frequency",
+   "topic": "11.6",
+   "template": "grapher",
+   "title": {
+    "en": "Einstein's photoelectric equation",
+    "hi": "आइंस्टाइन की प्रकाश-विद्युत समीकरण"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "2*x - b",
+    "params": {
+     "b": [
+      1,
+      6,
+      3
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Light of frequency below the threshold frequency falls on a metal. Electrons are emitted",
+      "hi": "देहली आवृत्ति से कम आवृत्ति का प्रकाश धातु पर पड़ता है। इलेक्ट्रॉन उत्सर्जित होते हैं"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "never, however bright the light",
+       "hi": "कभी नहीं, चाहे प्रकाश कितना भी तेज़ हो"
+      },
+      {
+       "id": "o1",
+       "en": "when the light is bright enough",
+       "hi": "जब प्रकाश पर्याप्त तेज़ हो"
+      },
+      {
+       "id": "o2",
+       "en": "always, but slowly",
+       "hi": "हमेशा, पर धीरे-धीरे"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the frequency of the light. Slide it and read the maximum kinetic energy K (height). Below the x-axis, no electron escapes.",
+      "hi": "x प्रकाश की आवृत्ति है। उसे चलाओ और अधिकतम गतिज ऊर्जा K (ऊँचाई) पढ़ो। x-अक्ष के नीचे कोई इलेक्ट्रॉन नहीं निकलता।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "b is the work function φ of the metal. A metal with a larger φ needs a higher frequency before it emits.",
+      "hi": "b धातु का कार्य-फलन φ है। जिस धातु का φ अधिक हो उसे उत्सर्जन के लिए अधिक आवृत्ति चाहिए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Find the point where the line crosses zero. That frequency is the threshold frequency.",
+      "hi": "वह बिंदु खोजो जहाँ रेखा शून्य को काटती है। वही देहली आवृत्ति है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Einstein: light comes in packets (photons), each of energy hf. One photon gives all its energy to one electron. The electron spends φ (the work function) to leave the metal, and the rest is its kinetic energy: K_max = hf − φ. This is a straight line in f with the same slope h for every metal, cutting the axis at the threshold frequency f₀ = φ/h. Below f₀ no photon has enough energy, however many arrive.",
+      "hi": "आइंस्टाइन: प्रकाश पैकेटों (फ़ोटॉनों) में आता है, हर एक की ऊर्जा hf। एक फ़ोटॉन अपनी पूरी ऊर्जा एक इलेक्ट्रॉन को देता है। इलेक्ट्रॉन धातु से निकलने में φ (कार्य-फलन) खर्च करता है और शेष उसकी गतिज ऊर्जा बनती है: K_max = hf − φ। यह f में सीधी रेखा है जिसकी ढलान हर धातु के लिए समान h है, और जो अक्ष को देहली आवृत्ति f₀ = φ/h पर काटती है। f₀ से नीचे किसी फ़ोटॉन में पर्याप्त ऊर्जा नहीं होती, चाहे कितने भी आएँ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A metal has work function 2 eV. Photons of 5 eV fall on it. The maximum kinetic energy is",
+        "hi": "एक धातु का कार्य-फलन 2 eV है। उस पर 5 eV के फ़ोटॉन पड़ते हैं। अधिकतम गतिज ऊर्जा है"
+       },
+       "options": [
+        {
+         "en": "3 eV",
+         "hi": "3 इलेक्ट्रॉन-वोल्ट"
+        },
+        {
+         "en": "7 eV",
+         "hi": "7 इलेक्ट्रॉन-वोल्ट"
+        },
+        {
+         "en": "2 eV",
+         "hi": "2 इलेक्ट्रॉन-वोल्ट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "K_max = hf − φ = 5 − 2 = 3 eV.",
+        "hi": "K_max = hf − φ = 5 − 2 = 3 eV।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "You added. The electron spends φ to escape, so subtract: K = 5 − 2.",
+         "hi": "तुमने जोड़ दिया। इलेक्ट्रॉन निकलने में φ खर्च करता है, इसलिए घटाओ: K = 5 − 2।"
+        },
+        {
+         "en": "That is the work function itself, not the leftover energy.",
+         "hi": "यह कार्य-फलन है, शेष ऊर्जा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Raise b. How does the threshold move? Why do some metals respond to visible light and others only to ultraviolet?",
+      "hi": "b बढ़ाओ। देहली कैसे खिसकती है? कुछ धातुएँ दृश्य प्रकाश पर और कुछ केवल पराबैंगनी पर क्यों प्रतिक्रिया करती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch11-intensity-current",
+   "topic": "11.4",
+   "template": "grapher",
+   "title": {
+    "en": "Brighter light, more photoelectrons",
+    "hi": "अधिक तेज़ प्रकाश, अधिक प्रकाशिक इलेक्ट्रॉन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "a*x",
+    "params": {
+     "a": [
+      1,
+      5,
+      2
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The frequency is above the threshold. If the intensity of light doubles, the photocurrent",
+      "hi": "आवृत्ति देहली से ऊपर है। यदि प्रकाश की तीव्रता दोगुनी हो जाए तो प्रकाश-विद्युत धारा"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "stays the same",
+       "hi": "वही रहती है"
+      },
+      {
+       "id": "o0",
+       "en": "doubles",
+       "hi": "दोगुनी हो जाती है"
+      },
+      {
+       "id": "o1",
+       "en": "halves",
+       "hi": "आधी हो जाती है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the intensity of the light. Slide it and read the photocurrent I (height).",
+      "hi": "x प्रकाश की तीव्रता है। उसे चलाओ और प्रकाश-विद्युत धारा I (ऊँचाई) पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a depends on the metal and the frequency. A brighter colour or a better metal gives a steeper line.",
+      "hi": "a धातु और आवृत्ति पर निर्भर है। अधिक ऊर्जा वाला रंग या बेहतर धातु रेखा को तीखी बनाते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The number of photons per second is proportional to the intensity. Each photon (of frequency above f₀) frees at most one electron, so the number of photoelectrons per second, and hence the photocurrent, is proportional to the intensity. But the maximum kinetic energy of each electron does not change with intensity; it depends only on the frequency. Brightness gives more electrons, not faster ones.",
+      "hi": "प्रति सेकंड फ़ोटॉनों की संख्या तीव्रता के समानुपाती है। प्रत्येक फ़ोटॉन (f₀ से ऊपर की आवृत्ति का) अधिकतम एक इलेक्ट्रॉन मुक्त करता है, इसलिए प्रति सेकंड प्रकाशिक इलेक्ट्रॉनों की संख्या, और इस प्रकार प्रकाश-विद्युत धारा, तीव्रता के समानुपाती है। पर प्रत्येक इलेक्ट्रॉन की अधिकतम गतिज ऊर्जा तीव्रता से नहीं बदलती; वह केवल आवृत्ति पर निर्भर है। तेज़ प्रकाश अधिक इलेक्ट्रॉन देता है, तेज़ इलेक्ट्रॉन नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Intensity of the light is doubled at a fixed frequency above the threshold. The maximum kinetic energy of the electrons",
+        "hi": "देहली से ऊपर निश्चित आवृत्ति पर प्रकाश की तीव्रता दोगुनी की गई। इलेक्ट्रॉनों की अधिकतम गतिज ऊर्जा"
+       },
+       "options": [
+        {
+         "en": "does not change",
+         "hi": "नहीं बदलती"
+        },
+        {
+         "en": "doubles",
+         "hi": "दोगुनी हो जाती है"
+        },
+        {
+         "en": "falls to half",
+         "hi": "आधी हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "K_max depends only on f and φ.",
+        "hi": "K_max केवल f और φ पर निर्भर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More photons give more electrons, not more energy per electron.",
+         "hi": "अधिक फ़ोटॉन से अधिक इलेक्ट्रॉन मिलते हैं, प्रति इलेक्ट्रॉन अधिक ऊर्जा नहीं।"
+        },
+        {
+         "en": "Nothing in K = hf − φ falls when the intensity rises.",
+         "hi": "K = hf − φ में तीव्रता बढ़ने पर कुछ नहीं घटता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of the two sliders would you change to make the electrons move faster, not just more numerous?",
+      "hi": "इलेक्ट्रॉनों को केवल अधिक संख्या में नहीं, तेज़ चलाने के लिए तुम दोनों में से कौन-सा स्लाइडर बदलोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch11-wave-vs-photon",
+   "topic": "11.5",
+   "template": "sort",
+   "title": {
+    "en": "Where the wave theory fails",
+    "hi": "जहाँ तरंग सिद्धांत विफल रहता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "wave",
+      "label": {
+       "en": "Wave theory can explain",
+       "hi": "तरंग सिद्धांत समझा सकता है"
+      }
+     },
+     {
+      "id": "photon",
+      "label": {
+       "en": "Only photons explain",
+       "hi": "केवल फ़ोटॉन समझाते हैं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "current",
+      "text": {
+       "en": "More intense light gives more current",
+       "hi": "तेज़ प्रकाश अधिक धारा देता है"
+      },
+      "bin": "wave",
+      "why": {
+       "en": "More energy per second can free more electrons; the wave picture allows this.",
+       "hi": "प्रति सेकंड अधिक ऊर्जा अधिक इलेक्ट्रॉन मुक्त कर सकती है; तरंग चित्र इसे मान लेता है।"
+      }
+     },
+     {
+      "id": "threshold",
+      "text": {
+       "en": "No emission below a threshold frequency",
+       "hi": "देहली आवृत्ति से कम पर उत्सर्जन नहीं"
+      },
+      "bin": "photon",
+      "why": {
+       "en": "In the wave picture a bright enough wave should always work. Only a photon of too little energy explains the cut-off.",
+       "hi": "तरंग चित्र में पर्याप्त तेज़ तरंग हमेशा काम करनी चाहिए। केवल कम ऊर्जा का फ़ोटॉन इस सीमा को समझाता है।"
+      }
+     },
+     {
+      "id": "instant",
+      "text": {
+       "en": "Emission starts instantly",
+       "hi": "उत्सर्जन तुरंत शुरू होता है"
+      },
+      "bin": "photon",
+      "why": {
+       "en": "A wave would need time to gather enough energy; a single photon gives it at once.",
+       "hi": "तरंग को पर्याप्त ऊर्जा जुटाने में समय लगता; एक फ़ोटॉन उसे एक साथ दे देता है।"
+      }
+     },
+     {
+      "id": "kmax",
+      "text": {
+       "en": "K_max does not depend on intensity",
+       "hi": "K_max तीव्रता पर निर्भर नहीं"
+      },
+      "bin": "photon",
+      "why": {
+       "en": "A stronger wave should give electrons more energy. The photon picture says energy depends on frequency only.",
+       "hi": "प्रबल तरंग से इलेक्ट्रॉनों को अधिक ऊर्जा मिलनी चाहिए। फ़ोटॉन चित्र कहता है कि ऊर्जा केवल आवृत्ति पर निर्भर है।"
+      }
+     },
+     {
+      "id": "freq",
+      "text": {
+       "en": "K_max grows with frequency",
+       "hi": "आवृत्ति के साथ K_max बढ़ती है"
+      },
+      "bin": "photon",
+      "why": {
+       "en": "Frequency has no role in the wave picture of energy, but E = hf puts it at the centre.",
+       "hi": "तरंग चित्र में ऊर्जा के लिए आवृत्ति की कोई भूमिका नहीं, पर E = hf उसे केंद्र में रखता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which fact about the photoelectric effect did the wave theory of light fail to explain?",
+      "hi": "प्रकाश-विद्युत प्रभाव का कौन-सा तथ्य प्रकाश का तरंग सिद्धांत नहीं समझा सका?"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "current rising with intensity",
+       "hi": "तीव्रता के साथ धारा का बढ़ना"
+      },
+      {
+       "id": "o2",
+       "en": "that metals contain electrons",
+       "hi": "कि धातुओं में इलेक्ट्रॉन होते हैं"
+      },
+      {
+       "id": "o0",
+       "en": "the threshold frequency",
+       "hi": "देहली आवृत्ति"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "card:current",
+     "expect": "placed:current",
+     "say": {
+      "en": "Place the observation that the wave theory can explain.",
+      "hi": "वह प्रेक्षण रखो जिसे तरंग सिद्धांत समझा सकता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:threshold",
+     "expect": "placed:threshold",
+     "say": {
+      "en": "Place the threshold frequency card.",
+      "hi": "देहली आवृत्ति वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press check.",
+      "hi": "सभी कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the wave picture, energy spreads over the whole wave front, so a bright wave of any colour should eventually give an electron enough energy, and it should take time. Experiment showed no emission below a threshold frequency, instant emission, and kinetic energy that depends on frequency, not on intensity. Einstein's photons fit all of these facts, which is why light has a particle side too.",
+      "hi": "तरंग चित्र में ऊर्जा पूरे तरंगाग्र पर फैलती है, इसलिए किसी भी रंग की तेज़ तरंग को अंततः इलेक्ट्रॉन को पर्याप्त ऊर्जा दे देनी चाहिए, और इसमें समय लगना चाहिए। प्रयोगों ने दिखाया कि देहली आवृत्ति से कम पर उत्सर्जन नहीं होता, उत्सर्जन तुरंत होता है, और गतिज ऊर्जा आवृत्ति पर निर्भर है, तीव्रता पर नहीं। आइंस्टाइन के फ़ोटॉन इन सभी तथ्यों से मेल खाते हैं, इसीलिए प्रकाश का एक कण-पक्ष भी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Light has both wave and particle behaviour. Which experiment shows the particle side?",
+        "hi": "प्रकाश में तरंग और कण दोनों व्यवहार हैं। कौन-सा प्रयोग कण-पक्ष दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "the photoelectric effect",
+         "hi": "प्रकाश-विद्युत प्रभाव"
+        },
+        {
+         "en": "Young's double slit",
+         "hi": "यंग का द्वि-झिरी प्रयोग"
+        },
+        {
+         "en": "single-slit diffraction",
+         "hi": "एकल झिरी विवर्तन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Photons delivering energy in packets explain the photoelectric effect.",
+        "hi": "पैकेटों में ऊर्जा देने वाले फ़ोटॉन प्रकाश-विद्युत प्रभाव को समझाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fringes show the wave side of light.",
+         "hi": "फ्रिंज प्रकाश का तरंग-पक्ष दिखाती हैं।"
+        },
+        {
+         "en": "Diffraction is also a wave effect.",
+         "hi": "विवर्तन भी तरंग का प्रभाव है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why do we say light is both a wave and a particle, not one or the other?",
+      "hi": "हम यह क्यों कहते हैं कि प्रकाश तरंग भी है और कण भी, एक या दूसरा नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch11-photon-energy",
+   "topic": "11.7",
+   "template": "grapher",
+   "title": {
+    "en": "Energy of a photon: E = hf",
+    "hi": "फ़ोटॉन की ऊर्जा: E = hf"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "0.414*x"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which photon carries more energy: red light or violet light?",
+      "hi": "किस फ़ोटॉन में अधिक ऊर्जा है: लाल प्रकाश या बैंगनी प्रकाश?"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "violet",
+       "hi": "बैंगनी"
+      },
+      {
+       "id": "o1",
+       "en": "red",
+       "hi": "लाल"
+      },
+      {
+       "id": "o2",
+       "en": "both equal",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the frequency in units of 10¹⁴ Hz. Move to red (about 4.3) and read the energy in eV.",
+      "hi": "x आवृत्ति है, 10¹⁴ हर्ट्ज़ की इकाई में। लाल (लगभग 4.3) पर जाओ और eV में ऊर्जा पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Now move to violet (about 7.5) and compare.",
+      "hi": "अब बैंगनी (लगभग 7.5) पर जाओ और तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A photon of frequency f has energy E = hf, with h = 6.63 × 10⁻³⁴ J s. In electron-volts, E (eV) is about 0.414 times f in units of 10¹⁴ Hz, so red photons carry about 1.8 eV and violet about 3.1 eV. Photon momentum is p = h/λ. Light of any intensity is a stream of such packets; a brighter beam has more of them, but each has the same energy.",
+      "hi": "आवृत्ति f वाले फ़ोटॉन की ऊर्जा E = hf होती है, जहाँ h = 6.63 × 10⁻³⁴ जूल-सेकंड। इलेक्ट्रॉन-वोल्ट में E (eV) लगभग 0.414 गुना है 10¹⁴ हर्ट्ज़ की इकाई वाली आवृत्ति का, इसलिए लाल फ़ोटॉन लगभग 1.8 eV और बैंगनी लगभग 3.1 eV ऊर्जा लेकर चलते हैं। फ़ोटॉन का संवेग p = h/λ है। किसी भी तीव्रता का प्रकाश ऐसे पैकेटों की धारा है; तेज़ किरण में उनकी संख्या अधिक होती है, पर हर एक की ऊर्जा वही रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which has more energy per photon?",
+        "hi": "किसमें प्रति फ़ोटॉन अधिक ऊर्जा है?"
+       },
+       "options": [
+        {
+         "en": "ultraviolet",
+         "hi": "पराबैंगनी"
+        },
+        {
+         "en": "infrared",
+         "hi": "अवरक्त"
+        },
+        {
+         "en": "a bright red lamp",
+         "hi": "तेज़ लाल लैंप"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "E = hf, so the higher frequency has more energy.",
+        "hi": "E = hf, इसलिए अधिक आवृत्ति में अधिक ऊर्जा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Infrared has lower frequency than ultraviolet, so each photon has less energy.",
+         "hi": "अवरक्त की आवृत्ति पराबैंगनी से कम है, इसलिए प्रत्येक फ़ोटॉन में ऊर्जा कम है।"
+        },
+        {
+         "en": "Brightness means more photons, not more energy per photon.",
+         "hi": "तेज़ी का अर्थ अधिक फ़ोटॉन है, प्रति फ़ोटॉन अधिक ऊर्जा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What frequency would give a photon of 2.5 eV? Which colour is it?",
+      "hi": "2.5 eV का फ़ोटॉन किस आवृत्ति से मिलेगा? वह कौन-सा रंग है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch11-de-broglie",
+   "topic": "11.8",
+   "template": "grapher",
+   "title": {
+    "en": "Matter waves: de Broglie wavelength",
+    "hi": "पदार्थ तरंगें: दे ब्रॉग्ली तरंगदैर्घ्य"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "a/x",
+    "params": {
+     "a": [
+      1,
+      5,
+      2
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An electron is made to move twice as fast. Its de Broglie wavelength",
+      "hi": "एक इलेक्ट्रॉन को दोगुनी चाल से चलाया जाता है। उसका दे ब्रॉग्ली तरंगदैर्घ्य"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "stays the same",
+       "hi": "वही रहता है"
+      },
+      {
+       "id": "o0",
+       "en": "halves",
+       "hi": "आधा हो जाता है"
+      },
+      {
+       "id": "o1",
+       "en": "doubles",
+       "hi": "दोगुना हो जाता है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the momentum p = mv. Slide it up and watch the wavelength λ fall.",
+      "hi": "x संवेग p = mv है। उसे बढ़ाओ और तरंगदैर्घ्य λ को घटते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a stands for Planck's constant h. It is fixed in nature, but here you can see what a bigger h would do.",
+      "hi": "a प्लांक नियतांक h है। यह प्रकृति में निश्चित है, पर यहाँ तुम देख सकते हो कि बड़ा h क्या करता।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "De Broglie suggested that every moving particle has a wave with λ = h/p = h/mv. Because h is extremely small, the wavelength of everyday objects like a cricket ball is far too tiny to notice. But an electron has so little mass that its wavelength is comparable to the gaps between atoms, so electrons can be diffracted by crystals, as Davisson and Germer showed. The electron microscope is built on this.",
+      "hi": "दे ब्रॉग्ली ने सुझाया कि हर गतिमान कण के साथ तरंग जुड़ी है, जिसका λ = h/p = h/mv। चूँकि h अत्यंत छोटा है, इसलिए क्रिकेट की गेंद जैसी दैनिक वस्तुओं का तरंगदैर्घ्य इतना छोटा है कि दिखाई नहीं देता। पर इलेक्ट्रॉन का द्रव्यमान इतना कम है कि उसका तरंगदैर्घ्य परमाणुओं के बीच की दूरी के बराबर होता है, इसलिए क्रिस्टल इलेक्ट्रॉनों को विवर्तित कर सकते हैं, जैसा डेविसन और जर्मर ने दिखाया। इलेक्ट्रॉन सूक्ष्मदर्शी इसी पर बना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why don't we see the wave nature of a moving cricket ball?",
+        "hi": "हम चलती क्रिकेट गेंद का तरंग स्वभाव क्यों नहीं देखते?"
+       },
+       "options": [
+        {
+         "en": "its wavelength is extremely small",
+         "hi": "उसका तरंगदैर्घ्य अत्यंत छोटा है"
+        },
+        {
+         "en": "it has no wavelength",
+         "hi": "उसका कोई तरंगदैर्घ्य नहीं है"
+        },
+        {
+         "en": "it moves too slowly",
+         "hi": "वह बहुत धीमे चलती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Large p makes λ = h/p unimaginably small.",
+        "hi": "बड़ा p, λ = h/p को कल्पनातीत छोटा कर देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Every moving object has λ = h/p; it is just too tiny to notice here.",
+         "hi": "हर गतिमान वस्तु का λ = h/p होता है; यहाँ वह बस इतना छोटा है कि दिखता नहीं।"
+        },
+        {
+         "en": "Even fast balls have tiny wavelengths because their mass is large.",
+         "hi": "तेज़ गेंदों का भी तरंगदैर्घ्य छोटा होता है क्योंकि उनका द्रव्यमान बड़ा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Is a proton's wavelength longer or shorter than an electron's at the same speed? Think of p = mv.",
+      "hi": "समान चाल पर प्रोटॉन का तरंगदैर्घ्य इलेक्ट्रॉन से अधिक है या कम? p = mv से सोचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Chapter hook: a solar cell panel",
+   "shows": "A small solar panel in bright sunlight on a rooftop powering a tiny fan, with blue sky behind",
+   "view": "Close three-quarter view",
+   "right": "Panel cells clearly visible",
+   "avoid": "Brand names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "11.4",
+   "use": "Photocell (phototube)",
+   "shows": "A glass phototube with a curved cathode and a rod-like anode, on a white background",
+   "view": "Straight front view, soft light",
+   "right": "Glass transparent and electrodes clear",
+   "avoid": "Brand marks, text"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "11.6",
+   "use": "Photons knocking out electrons",
+   "shows": "A glossy 3D drawing: yellow photon packets hitting a metal surface and blue electrons leaving, on a dark background",
+   "view": "Three-quarter view",
+   "right": "Photons and electrons clearly different",
+   "avoid": "Text labels, equations"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "11.4",
+   "use": "Photoelectric experiment set-up",
+   "shows": "A clean circuit drawing of a phototube with a variable battery, a microammeter and a voltmeter, white background",
+   "view": "Flat front-on",
+   "right": "Symbols standard and tidy",
+   "avoid": "Numbers and labels baked in"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "11.8",
+   "use": "Electron diffraction rings",
+   "shows": "A ring pattern of electron diffraction on a phosphor screen, bright concentric rings on black",
+   "view": "Straight front view",
+   "right": "Rings sharp and concentric",
+   "avoid": "Text, instrument branding"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "11.8",
+   "use": "An electron microscope",
+   "shows": "A modern electron microscope in a laboratory, a tall column with a monitor beside it",
+   "view": "Three-quarter view, bright lab light",
+   "right": "Column clear, no people",
+   "avoid": "Brand names, screens with readable text"
+  }
+ ]
+}

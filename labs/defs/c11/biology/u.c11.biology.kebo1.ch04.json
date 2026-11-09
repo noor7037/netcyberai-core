@@ -1,0 +1,1585 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch04",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Animal Kingdom",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Basis of classification: levels of organisation, symmetry, germ layers, coelom, segmentation, notochord",
+   "labs": [
+    "c11-biology-kebo1-ch04-symmetry",
+    "c11-biology-kebo1-ch04-body-cavity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2.1-4.2.6",
+   "title": "Phyla Porifera, Coelenterata, Ctenophora, Platyhelminthes, Aschelminthes, Annelida",
+   "labs": [
+    "c11-biology-kebo1-ch04-phyla-simple"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2.7-4.2.10",
+   "title": "Phyla Arthropoda, Mollusca, Echinodermata, Hemichordata",
+   "labs": [
+    "c11-biology-kebo1-ch04-phyla-advanced"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2.11",
+   "title": "Phylum Chordata: Cyclostomata to Mammalia",
+   "labs": [
+    "c11-biology-kebo1-ch04-vertebrates"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch04-symmetry",
+   "topic": "4.1",
+   "template": "sort",
+   "title": {
+    "en": "Body symmetry",
+    "hi": "शरीर की सममिति"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "asym",
+      "label": {
+       "en": "Asymmetrical",
+       "hi": "असममित"
+      }
+     },
+     {
+      "id": "radial",
+      "label": {
+       "en": "Radial symmetry",
+       "hi": "अरीय सममिति"
+      }
+     },
+     {
+      "id": "bilateral",
+      "label": {
+       "en": "Bilateral symmetry",
+       "hi": "द्विपार्श्व सममिति"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sponge",
+      "text": {
+       "en": "Sponge (Sycon)",
+       "hi": "स्पंज (साइकॉन)"
+      },
+      "bin": "asym",
+      "why": {
+       "en": "No plane through the centre cuts a sponge into two equal halves.",
+       "hi": "केंद्र से गुज़रता कोई भी तल स्पंज को दो बराबर हिस्सों में नहीं बाँटता।"
+      }
+     },
+     {
+      "id": "hydra",
+      "text": {
+       "en": "Hydra",
+       "hi": "हाइड्रा"
+      },
+      "bin": "radial",
+      "why": {
+       "en": "Any cut through the central axis gives two equal halves, like slicing a cake.",
+       "hi": "केंद्रीय अक्ष से गुज़रता हर कट दो बराबर हिस्से देता है, जैसे केक काटना।"
+      }
+     },
+     {
+      "id": "jelly",
+      "text": {
+       "en": "Jellyfish (Aurelia)",
+       "hi": "जेलीफ़िश (ऑरेलिया)"
+      },
+      "bin": "radial",
+      "why": {
+       "en": "Coelenterates are radially symmetrical.",
+       "hi": "सीलेंटरेट अरीय सममित होते हैं।"
+      }
+     },
+     {
+      "id": "starfish",
+      "text": {
+       "en": "Adult starfish",
+       "hi": "वयस्क तारामीन"
+      },
+      "bin": "radial",
+      "why": {
+       "en": "Adult echinoderms are radial, though their larvae are bilateral.",
+       "hi": "वयस्क एकाइनोडर्म अरीय होते हैं, पर उनके लार्वा द्विपार्श्व होते हैं।"
+      }
+     },
+     {
+      "id": "earthworm",
+      "text": {
+       "en": "Earthworm",
+       "hi": "केंचुआ"
+      },
+      "bin": "bilateral",
+      "why": {
+       "en": "Only one cut, down the middle from head to tail, gives two mirror halves.",
+       "hi": "केवल एक कट, सिर से पूँछ तक बीच से, दो दर्पण-प्रतिबिंब हिस्से देता है।"
+      }
+     },
+     {
+      "id": "cockroach",
+      "text": {
+       "en": "Cockroach",
+       "hi": "तिलचट्टा"
+      },
+      "bin": "bilateral",
+      "why": {
+       "en": "Arthropods are bilaterally symmetrical.",
+       "hi": "आर्थ्रोपोड द्विपार्श्व सममित होते हैं।"
+      }
+     },
+     {
+      "id": "frog",
+      "text": {
+       "en": "Frog",
+       "hi": "मेंढक"
+      },
+      "bin": "bilateral",
+      "why": {
+       "en": "Left and right sides mirror each other along one plane.",
+       "hi": "एक तल के साथ बायाँ और दायाँ भाग एक-दूसरे का प्रतिबिंब हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:hydra",
+     "expect": "correct:hydra",
+     "say": {
+      "en": "Tap the Hydra card, then tap its kind of symmetry.",
+      "hi": "हाइड्रा कार्ड पर टैप करो, फिर उसकी सममिति के प्रकार पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:earthworm",
+     "expect": "correct:earthworm",
+     "say": {
+      "en": "Now sort the earthworm.",
+      "hi": "अब केंचुए को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A starfish has five arms around a centre. A young starfish larva swims with a clear left and right side. Which bin fits the adult?",
+      "hi": "तारामीन की पाँच भुजाएँ एक केंद्र के चारों ओर होती हैं। इसका नन्हा लार्वा साफ़ बाएँ-दाएँ भाग के साथ तैरता है। वयस्क किस डिब्बे में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "radial",
+       "en": "Radial",
+       "hi": "अरीय"
+      },
+      {
+       "id": "bilateral",
+       "en": "Bilateral",
+       "hi": "द्विपार्श्व"
+      },
+      {
+       "id": "asym",
+       "en": "Asymmetrical",
+       "hi": "असममित"
+      }
+     ],
+     "answer": "radial"
+    },
+    {
+     "kind": "do",
+     "target": "card:starfish",
+     "expect": "correct:starfish",
+     "say": {
+      "en": "Tap the adult starfish and sort it.",
+      "hi": "वयस्क तारामीन पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Symmetry is one basis of animal classification. Sponges are mostly asymmetrical. Coelenterates, ctenophores and adult echinoderms are radial: many cuts through the centre give equal halves. Most other animals, from flatworms to us, are bilateral: only one cut gives left and right halves.",
+      "hi": "सममिति जंतु वर्गीकरण का एक आधार है। स्पंज अधिकतर असममित होते हैं। सीलेंटरेट, टीनोफ़ोर और वयस्क एकाइनोडर्म अरीय हैं: केंद्र से गुज़रते कई कट बराबर हिस्से देते हैं। चपटे कृमियों से लेकर हम तक अधिकतर दूसरे जंतु द्विपार्श्व हैं: केवल एक कट बाएँ और दाएँ हिस्से देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many cuts give two equal halves in a bilaterally symmetrical animal?",
+        "hi": "द्विपार्श्व सममित जंतु में कितने कट दो बराबर हिस्से देते हैं?"
+       },
+       "options": [
+        {
+         "en": "Only one",
+         "hi": "केवल एक"
+        },
+        {
+         "en": "Any cut through the centre",
+         "hi": "केंद्र से गुज़रता हर कट"
+        },
+        {
+         "en": "None",
+         "hi": "एक भी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the cut down the middle, from head to tail, splits it into mirror halves.",
+        "hi": "केवल सिर से पूँछ तक बीच वाला कट इसे दर्पण-प्रतिबिंब हिस्सों में बाँटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That describes radial symmetry, as in Hydra.",
+         "hi": "यह अरीय सममिति है, जैसे हाइड्रा में।"
+        },
+        {
+         "en": "No equal cut at all is asymmetry, as in most sponges.",
+         "hi": "कोई बराबर कट न होना असममिति है, जैसे अधिकतर स्पंजों में।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Animals with only two germ layers, like Hydra, are called what?",
+        "hi": "केवल दो भ्रूणीय परतों वाले जंतु, जैसे हाइड्रा, क्या कहलाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Diploblastic",
+         "hi": "द्विकोरकी"
+        },
+        {
+         "en": "Triploblastic",
+         "hi": "त्रिकोरकी"
+        },
+        {
+         "en": "Coelomate",
+         "hi": "प्रगुही"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Coelenterates have ectoderm and endoderm with jelly-like mesoglea between: diploblastic.",
+        "hi": "सीलेंटरेट में बाह्यत्वचा और अंतस्त्वचा होती है, बीच में जेली जैसा मीसोग्लिया: द्विकोरकी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Triploblastic animals also have a middle layer, the mesoderm; Hydra does not.",
+         "hi": "त्रिकोरकी जंतुओं में बीच की परत, मध्यजनस्तर, भी होती है; हाइड्रा में नहीं।"
+        },
+        {
+         "en": "Coelomate refers to a body cavity lined by mesoderm, which Hydra lacks.",
+         "hi": "प्रगुही का अर्थ मध्यजनस्तर से घिरी देहगुहा है, जो हाइड्रा में नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then look at a flower, a bicycle wheel and your own face: what kind of symmetry does each have?",
+      "hi": "बाक़ी कार्ड छाँटो। फिर एक फूल, साइकिल का पहिया और अपना चेहरा देखो: हर एक में किस तरह की सममिति है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch04-body-cavity",
+   "topic": "4.1",
+   "template": "sort",
+   "title": {
+    "en": "Body cavity: the coelom",
+    "hi": "देहगुहा: सीलोम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "acoel",
+      "label": {
+       "en": "Acoelomate (no cavity)",
+       "hi": "अगुहीय (गुहा नहीं)"
+      }
+     },
+     {
+      "id": "pseudo",
+      "label": {
+       "en": "Pseudocoelomate",
+       "hi": "कूटगुहीय"
+      }
+     },
+     {
+      "id": "coel",
+      "label": {
+       "en": "Coelomate (true coelom)",
+       "hi": "प्रगुही (असली सीलोम)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tapeworm",
+      "text": {
+       "en": "Tapeworm (Taenia)",
+       "hi": "फ़ीताकृमि (टीनिया)"
+      },
+      "bin": "acoel",
+      "why": {
+       "en": "Flatworms have no cavity between the body wall and the gut.",
+       "hi": "चपटे कृमियों में देहभित्ति और आहारनाल के बीच कोई गुहा नहीं होती।"
+      }
+     },
+     {
+      "id": "planaria",
+      "text": {
+       "en": "Planaria",
+       "hi": "प्लेनेरिया"
+      },
+      "bin": "acoel",
+      "why": {
+       "en": "Another flatworm: acoelomate.",
+       "hi": "एक और चपटा कृमि: अगुहीय।"
+      }
+     },
+     {
+      "id": "ascaris",
+      "text": {
+       "en": "Roundworm (Ascaris)",
+       "hi": "गोलकृमि (ऐस्केरिस)"
+      },
+      "bin": "pseudo",
+      "why": {
+       "en": "Its body cavity is not fully lined by mesoderm; the mesoderm lies in scattered pouches.",
+       "hi": "इसकी देहगुहा पूरी तरह मध्यजनस्तर से नहीं घिरी; मध्यजनस्तर बिखरी थैलियों में है।"
+      }
+     },
+     {
+      "id": "hookworm",
+      "text": {
+       "en": "Hookworm (Ancylostoma)",
+       "hi": "अंकुशकृमि (एन्काइलोस्टोमा)"
+      },
+      "bin": "pseudo",
+      "why": {
+       "en": "Aschelminthes are pseudocoelomates.",
+       "hi": "एस्केल्मिन्थीज़ कूटगुहीय होते हैं।"
+      }
+     },
+     {
+      "id": "earthworm",
+      "text": {
+       "en": "Earthworm",
+       "hi": "केंचुआ"
+      },
+      "bin": "coel",
+      "why": {
+       "en": "Annelids have a true coelom lined by mesoderm.",
+       "hi": "ऐनेलिड में मध्यजनस्तर से घिरा असली सीलोम होता है।"
+      }
+     },
+     {
+      "id": "snail",
+      "text": {
+       "en": "Apple snail (Pila)",
+       "hi": "घोंघा (पाइला)"
+      },
+      "bin": "coel",
+      "why": {
+       "en": "Molluscs are coelomates.",
+       "hi": "मोलस्क प्रगुही होते हैं।"
+      }
+     },
+     {
+      "id": "fish",
+      "text": {
+       "en": "Rohu fish",
+       "hi": "रोहू मछली"
+      },
+      "bin": "coel",
+      "why": {
+       "en": "All chordates have a true coelom.",
+       "hi": "सभी कॉर्डेट में असली सीलोम होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:tapeworm",
+     "expect": "correct:tapeworm",
+     "say": {
+      "en": "Tap the tapeworm card, then tap its group.",
+      "hi": "फ़ीताकृमि कार्ड पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A roundworm has a cavity, but it is not lined by mesoderm all round. Which group is that?",
+      "hi": "गोलकृमि में गुहा है, पर वह चारों ओर से मध्यजनस्तर से घिरी नहीं है। यह कौन-सा समूह है?"
+     },
+     "options": [
+      {
+       "id": "pseudo",
+       "en": "Pseudocoelomate",
+       "hi": "कूटगुहीय"
+      },
+      {
+       "id": "coel",
+       "en": "Coelomate",
+       "hi": "प्रगुही"
+      },
+      {
+       "id": "acoel",
+       "en": "Acoelomate",
+       "hi": "अगुहीय"
+      }
+     ],
+     "answer": "pseudo"
+    },
+    {
+     "kind": "do",
+     "target": "card:ascaris",
+     "expect": "correct:ascaris",
+     "say": {
+      "en": "Tap Ascaris and sort it.",
+      "hi": "ऐस्केरिस पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:earthworm",
+     "expect": "correct:earthworm",
+     "say": {
+      "en": "Now sort the earthworm.",
+      "hi": "अब केंचुए को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The coelom is a body cavity between the body wall and the gut, lined by mesoderm. Flatworms have no cavity. Roundworms have a false coelom, with mesoderm only in pouches. Annelids, molluscs, arthropods, echinoderms, hemichordates and chordates have a true coelom, which gives the organs room to move and grow.",
+      "hi": "सीलोम देहभित्ति और आहारनाल के बीच की देहगुहा है, जो मध्यजनस्तर से घिरी होती है। चपटे कृमियों में गुहा नहीं होती। गोलकृमियों में कूटसीलोम होता है, जिसमें मध्यजनस्तर केवल थैलियों में होता है। ऐनेलिड, मोलस्क, आर्थ्रोपोड, एकाइनोडर्म, हेमीकॉर्डेट और कॉर्डेट में असली सीलोम होता है, जिससे अंगों को हिलने और बढ़ने की जगह मिलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which animal is acoelomate?",
+        "hi": "कौन-सा जंतु अगुहीय है?"
+       },
+       "options": [
+        {
+         "en": "Liver fluke (Fasciola)",
+         "hi": "यकृत पर्णकृमि (फ़ैसिओला)"
+        },
+        {
+         "en": "Leech",
+         "hi": "जोंक"
+        },
+        {
+         "en": "Cockroach",
+         "hi": "तिलचट्टा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fasciola is a flatworm, and flatworms have no body cavity.",
+        "hi": "फ़ैसिओला चपटा कृमि है, और चपटे कृमियों में देहगुहा नहीं होती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A leech is an annelid, with a true coelom.",
+         "hi": "जोंक एक ऐनेलिड है, असली सीलोम के साथ।"
+        },
+        {
+         "en": "Arthropods like the cockroach are coelomates.",
+         "hi": "तिलचट्टे जैसे आर्थ्रोपोड प्रगुही हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Body segments that repeat one after another, as in the earthworm, are called what?",
+        "hi": "केंचुए की तरह एक के बाद एक दोहराए गए शरीर-खंड क्या कहलाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Metameric segmentation",
+         "hi": "विखंडीय खंडीभवन"
+        },
+        {
+         "en": "Radial symmetry",
+         "hi": "अरीय सममिति"
+        },
+        {
+         "en": "Pseudocoelom",
+         "hi": "कूटसीलोम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In metamerism the body is divided inside and outside into a series of similar segments.",
+        "hi": "विखंडता में शरीर भीतर और बाहर एक जैसे खंडों की शृंखला में बँटा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Symmetry is about equal halves, not about repeated segments.",
+         "hi": "सममिति बराबर हिस्सों की बात है, दोहराए खंडों की नहीं।"
+        },
+        {
+         "en": "A pseudocoelom is a kind of body cavity, not segments.",
+         "hi": "कूटसीलोम एक तरह की देहगुहा है, खंड नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then think: which animal has a rod, the notochord, along its back during its early life?",
+      "hi": "बाक़ी कार्ड छाँटो। फिर सोचो: किस जंतु की पीठ पर शुरुआती जीवन में एक छड़, पृष्ठरज्जु, होती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch04-phyla-simple",
+   "topic": "4.2.1-4.2.6",
+   "template": "sort",
+   "title": {
+    "en": "From sponges to segmented worms",
+    "hi": "स्पंज से खंडित कृमि तक"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "porifera",
+      "label": {
+       "en": "Porifera",
+       "hi": "पोरीफ़ेरा"
+      }
+     },
+     {
+      "id": "cnidaria",
+      "label": {
+       "en": "Coelenterata",
+       "hi": "सीलेंटरेटा"
+      }
+     },
+     {
+      "id": "platy",
+      "label": {
+       "en": "Platyhelminthes",
+       "hi": "प्लेटीहेल्मिन्थीज़"
+      }
+     },
+     {
+      "id": "aschel",
+      "label": {
+       "en": "Aschelminthes",
+       "hi": "एस्केल्मिन्थीज़"
+      }
+     },
+     {
+      "id": "annelida",
+      "label": {
+       "en": "Annelida",
+       "hi": "ऐनेलिडा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "spongilla",
+      "text": {
+       "en": "Spongilla, a freshwater sponge",
+       "hi": "स्पंजिला, मीठे पानी का स्पंज"
+      },
+      "bin": "porifera",
+      "why": {
+       "en": "Water enters through ostia, flows through canals and leaves by the osculum.",
+       "hi": "पानी ऑस्टिया से आता है, नालों से बहता है और ऑस्कुलम से निकलता है।"
+      }
+     },
+     {
+      "id": "choano",
+      "text": {
+       "en": "Collar cells (choanocytes) line its canals",
+       "hi": "नालों में कॉलर कोशिकाएँ (कोएनोसाइट)"
+      },
+      "bin": "porifera",
+      "why": {
+       "en": "Choanocytes beat flagella to drive water and catch food.",
+       "hi": "कोएनोसाइट कशाभ चलाकर पानी बहाते और भोजन पकड़ते हैं।"
+      }
+     },
+     {
+      "id": "physalia",
+      "text": {
+       "en": "Physalia (Portuguese man-of-war)",
+       "hi": "फ़ाइसेलिया (पुर्तगाली युद्धपोत)"
+      },
+      "bin": "cnidaria",
+      "why": {
+       "en": "A coelenterate with stinging cnidoblasts on its tentacles.",
+       "hi": "स्पर्शकों पर डंक वाले निडोब्लास्ट वाला सीलेंटरेट।"
+      }
+     },
+     {
+      "id": "coral",
+      "text": {
+       "en": "Brain coral (Meandrina)",
+       "hi": "मस्तिष्क प्रवाल (मीएंड्रिना)"
+      },
+      "bin": "cnidaria",
+      "why": {
+       "en": "Corals have a skeleton of calcium carbonate; they are polyps.",
+       "hi": "प्रवालों का कंकाल कैल्शियम कार्बोनेट का होता है; ये पॉलिप हैं।"
+      }
+     },
+     {
+      "id": "taenia",
+      "text": {
+       "en": "Tapeworm (Taenia)",
+       "hi": "फ़ीताकृमि (टीनिया)"
+      },
+      "bin": "platy",
+      "why": {
+       "en": "A flat, ribbon-like parasite with hooks and suckers; flame cells remove waste.",
+       "hi": "हुक और चूषकों वाला चपटा, फ़ीते जैसा परजीवी; ज्वाला कोशिकाएँ अपशिष्ट निकालती हैं।"
+      }
+     },
+     {
+      "id": "planaria",
+      "text": {
+       "en": "Planaria regrows lost parts",
+       "hi": "प्लेनेरिया खोए भाग फिर उगाता है"
+      },
+      "bin": "platy",
+      "why": {
+       "en": "Planaria has a great power of regeneration.",
+       "hi": "प्लेनेरिया में पुनरुद्भवन की बड़ी क्षमता है।"
+      }
+     },
+     {
+      "id": "ascaris",
+      "text": {
+       "en": "Ascaris, the roundworm",
+       "hi": "ऐस्केरिस, गोलकृमि"
+      },
+      "bin": "aschel",
+      "why": {
+       "en": "Round in cross-section; the gut is complete, with a mouth and an anus.",
+       "hi": "काटने पर गोल; आहारनाल पूर्ण, मुख और गुदा के साथ।"
+      }
+     },
+     {
+      "id": "wuchereria",
+      "text": {
+       "en": "Wuchereria (filarial worm)",
+       "hi": "वुचेरेरिया (फ़ाइलेरिया कृमि)"
+      },
+      "bin": "aschel",
+      "why": {
+       "en": "This roundworm causes elephantiasis.",
+       "hi": "यह गोलकृमि हाथीपाँव रोग करता है।"
+      }
+     },
+     {
+      "id": "nereis",
+      "text": {
+       "en": "Nereis with parapodia",
+       "hi": "पैरापोडिया वाला नेरीस"
+      },
+      "bin": "annelida",
+      "why": {
+       "en": "A marine annelid; paired parapodia help it swim.",
+       "hi": "समुद्री ऐनेलिड; युग्मित पैरापोडिया तैरने में मदद करते हैं।"
+      }
+     },
+     {
+      "id": "leech",
+      "text": {
+       "en": "Blood-sucking leech (Hirudinaria)",
+       "hi": "ख़ून चूसने वाली जोंक (हिरुडिनेरिया)"
+      },
+      "bin": "annelida",
+      "why": {
+       "en": "A segmented worm; nephridia remove its waste.",
+       "hi": "खंडित कृमि; वृक्कक इसके अपशिष्ट निकालते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:spongilla",
+     "expect": "correct:spongilla",
+     "say": {
+      "en": "Tap the Spongilla card, then tap its phylum.",
+      "hi": "स्पंजिला कार्ड पर टैप करो, फिर उसके संघ पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:physalia",
+     "expect": "correct:physalia",
+     "say": {
+      "en": "Now sort Physalia.",
+      "hi": "अब फ़ाइसेलिया को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ascaris and the earthworm both look like long worms. Do you think they are in the same phylum?",
+      "hi": "ऐस्केरिस और केंचुआ दोनों लंबे कृमि जैसे दिखते हैं। तुम्हें क्या लगता है, क्या वे एक ही संघ में हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No: Ascaris is not segmented",
+       "hi": "नहीं: ऐस्केरिस खंडित नहीं है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes: both are worms",
+       "hi": "हाँ: दोनों कृमि हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:ascaris",
+     "expect": "correct:ascaris",
+     "say": {
+      "en": "Tap Ascaris and sort it.",
+      "hi": "ऐस्केरिस पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:leech",
+     "expect": "correct:leech",
+     "say": {
+      "en": "Now sort the leech.",
+      "hi": "अब जोंक को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each phylum has its own key mark. Porifera: pores and a water canal system. Coelenterata: stinging cnidoblasts. Platyhelminthes: flat body with flame cells. Aschelminthes: round, unsegmented body with a false coelom. Annelida: body divided into ring-like segments.",
+      "hi": "हर संघ की अपनी मुख्य पहचान है। पोरीफ़ेरा: छिद्र और जल-नाल तंत्र। सीलेंटरेटा: डंक वाले निडोब्लास्ट। प्लेटीहेल्मिन्थीज़: चपटा शरीर और ज्वाला कोशिकाएँ। एस्केल्मिन्थीज़: गोल, अखंडित शरीर और कूटसीलोम। ऐनेलिडा: छल्लों जैसे खंडों में बँटा शरीर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Comb jellies have eight rows of ciliated comb plates and glow in the sea. Which phylum is that?",
+        "hi": "कंकत जेली में पक्ष्माभी कंकत पट्टियों की आठ पंक्तियाँ होती हैं और ये समुद्र में चमकती हैं। यह कौन-सा संघ है?"
+       },
+       "options": [
+        {
+         "en": "Ctenophora",
+         "hi": "टीनोफ़ोरा"
+        },
+        {
+         "en": "Coelenterata",
+         "hi": "सीलेंटरेटा"
+        },
+        {
+         "en": "Porifera",
+         "hi": "पोरीफ़ेरा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ctenophores like Pleurobrachia swim with comb plates and show bioluminescence.",
+        "hi": "प्लूरोब्रैकिया जैसे टीनोफ़ोर कंकत पट्टियों से तैरते हैं और जैवदीप्ति दिखाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Coelenterates have stinging cells; comb plates are the ctenophore mark.",
+         "hi": "सीलेंटरेट में डंक कोशिकाएँ होती हैं; कंकत पट्टियाँ टीनोफ़ोर की पहचान हैं।"
+        },
+        {
+         "en": "Sponges are fixed and have pores and canals, not comb plates.",
+         "hi": "स्पंज स्थिर रहते हैं और उनमें छिद्र और नाल होते हैं, कंकत पट्टियाँ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which cells remove waste in flatworms?",
+        "hi": "चपटे कृमियों में अपशिष्ट कौन-सी कोशिकाएँ निकालती हैं?"
+       },
+       "options": [
+        {
+         "en": "Flame cells",
+         "hi": "ज्वाला कोशिकाएँ"
+        },
+        {
+         "en": "Nephridia",
+         "hi": "वृक्कक"
+        },
+        {
+         "en": "Choanocytes",
+         "hi": "कोएनोसाइट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Flame cells help in osmoregulation and excretion in Platyhelminthes.",
+        "hi": "प्लेटीहेल्मिन्थीज़ में ज्वाला कोशिकाएँ परासरण-नियमन और उत्सर्जन में मदद करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nephridia do this job in annelids, not flatworms.",
+         "hi": "वृक्कक यह काम ऐनेलिड में करते हैं, चपटे कृमियों में नहीं।"
+        },
+        {
+         "en": "Choanocytes are the collar cells of sponges.",
+         "hi": "कोएनोसाइट स्पंजों की कॉलर कोशिकाएँ हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then think of where you might meet these animals in India: a pond, a seashore, a farm field, or a doctor's chart.",
+      "hi": "बाक़ी कार्ड छाँटो। फिर सोचो कि भारत में ये जंतु कहाँ मिल सकते हैं: तालाब, समुद्र तट, खेत या डॉक्टर का चार्ट।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch04-phyla-advanced",
+   "topic": "4.2.7-4.2.10",
+   "template": "sort",
+   "title": {
+    "en": "Arthropods to chordates",
+    "hi": "आर्थ्रोपोड से कॉर्डेट तक"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "arthro",
+      "label": {
+       "en": "Arthropoda",
+       "hi": "आर्थ्रोपोडा"
+      }
+     },
+     {
+      "id": "mollusca",
+      "label": {
+       "en": "Mollusca",
+       "hi": "मोलस्का"
+      }
+     },
+     {
+      "id": "echino",
+      "label": {
+       "en": "Echinodermata",
+       "hi": "एकाइनोडर्मेटा"
+      }
+     },
+     {
+      "id": "hemi",
+      "label": {
+       "en": "Hemichordata",
+       "hi": "हेमीकॉर्डेटा"
+      }
+     },
+     {
+      "id": "chorda",
+      "label": {
+       "en": "Chordata",
+       "hi": "कॉर्डेटा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "honeybee",
+      "text": {
+       "en": "Honey bee (Apis)",
+       "hi": "मधुमक्खी (एपिस)"
+      },
+      "bin": "arthro",
+      "why": {
+       "en": "Jointed legs and a chitin exoskeleton: the largest phylum.",
+       "hi": "संधियुक्त पैर और काइटिन का बाह्यकंकाल: सबसे बड़ा संघ।"
+      }
+     },
+     {
+      "id": "limulus",
+      "text": {
+       "en": "King crab (Limulus), a living fossil",
+       "hi": "राजकर्कट (लिमुलस), जीवित जीवाश्म"
+      },
+      "bin": "arthro",
+      "why": {
+       "en": "Limulus is an arthropod that has changed little over millions of years.",
+       "hi": "लिमुलस एक आर्थ्रोपोड है जो लाखों वर्षों में बहुत कम बदला है।"
+      }
+     },
+     {
+      "id": "pila",
+      "text": {
+       "en": "Apple snail (Pila)",
+       "hi": "घोंघा (पाइला)"
+      },
+      "bin": "mollusca",
+      "why": {
+       "en": "Soft body under a shell; a rasping tongue called the radula.",
+       "hi": "कवच के नीचे कोमल शरीर; रेती जैसी जीभ, रेडुला।"
+      }
+     },
+     {
+      "id": "octopus",
+      "text": {
+       "en": "Octopus (devil fish)",
+       "hi": "ऑक्टोपस (डेविल फ़िश)"
+      },
+      "bin": "mollusca",
+      "why": {
+       "en": "A mollusc with no outer shell; it has a mantle and a muscular foot turned into arms.",
+       "hi": "बिना बाहरी कवच का मोलस्क; इसमें मैंटल है और पेशीय पाद भुजाओं में बदला है।"
+      }
+     },
+     {
+      "id": "pinctada",
+      "text": {
+       "en": "Pearl oyster (Pinctada)",
+       "hi": "मोती सीप (पिंक्टाडा)"
+      },
+      "bin": "mollusca",
+      "why": {
+       "en": "The mantle of this mollusc lays down pearl.",
+       "hi": "इस मोलस्क का मैंटल मोती बनाता है।"
+      }
+     },
+     {
+      "id": "starfish",
+      "text": {
+       "en": "Starfish (Asterias)",
+       "hi": "तारामीन (एस्टेरियस)"
+      },
+      "bin": "echino",
+      "why": {
+       "en": "Spiny skin and a water vascular system that works its tube feet.",
+       "hi": "काँटेदार त्वचा और जल-संवहन तंत्र जो नाल-पादों को चलाता है।"
+      }
+     },
+     {
+      "id": "urchin",
+      "text": {
+       "en": "Sea urchin (Echinus)",
+       "hi": "समुद्री अर्चिन (एकाइनस)"
+      },
+      "bin": "echino",
+      "why": {
+       "en": "An echinoderm with a skeleton of calcium plates and spines.",
+       "hi": "कैल्शियम की पट्टियों और काँटों के कंकाल वाला एकाइनोडर्म।"
+      }
+     },
+     {
+      "id": "balano",
+      "text": {
+       "en": "Acorn worm (Balanoglossus)",
+       "hi": "बैलेनोग्लॉसस"
+      },
+      "bin": "hemi",
+      "why": {
+       "en": "A worm-like sea animal with proboscis, collar and trunk; it has a stomochord.",
+       "hi": "शुंड, कॉलर और धड़ वाला कृमि जैसा समुद्री जंतु; इसमें मुखरज्जु होता है।"
+      }
+     },
+     {
+      "id": "frog",
+      "text": {
+       "en": "Frog",
+       "hi": "मेंढक"
+      },
+      "bin": "chorda",
+      "why": {
+       "en": "Notochord in the embryo, a hollow nerve cord on the back and gill slits in the pharynx.",
+       "hi": "भ्रूण में पृष्ठरज्जु, पीठ पर खोखली तंत्रिका रज्जु और ग्रसनी में क्लोम-छिद्र।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:honeybee",
+     "expect": "correct:honeybee",
+     "say": {
+      "en": "Tap the honey bee card, then tap its phylum.",
+      "hi": "मधुमक्खी कार्ड पर टैप करो, फिर उसके संघ पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:pila",
+     "expect": "correct:pila",
+     "say": {
+      "en": "Now sort the apple snail.",
+      "hi": "अब घोंघे को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A starfish is called a \"fish\". Which phylum do you think it really belongs to?",
+      "hi": "तारामीन को \"मछली\" कहते हैं। तुम्हें क्या लगता है, असल में यह किस संघ का है?"
+     },
+     "options": [
+      {
+       "id": "echino",
+       "en": "Echinodermata",
+       "hi": "एकाइनोडर्मेटा"
+      },
+      {
+       "id": "chorda",
+       "en": "Chordata, like fish",
+       "hi": "कॉर्डेटा, मछली की तरह"
+      },
+      {
+       "id": "mollusca",
+       "en": "Mollusca",
+       "hi": "मोलस्का"
+      }
+     ],
+     "answer": "echino"
+    },
+    {
+     "kind": "do",
+     "target": "card:starfish",
+     "expect": "correct:starfish",
+     "say": {
+      "en": "Tap the starfish and sort it.",
+      "hi": "तारामीन पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Arthropods have jointed legs and a chitin exoskeleton. Molluscs have a soft body with a mantle, often a shell, and a radula. Echinoderms have spiny skin and a water vascular system. Hemichordates have a stomochord, not a true notochord. Chordates have a notochord, a dorsal hollow nerve cord and gill slits.",
+      "hi": "आर्थ्रोपोड में संधियुक्त पैर और काइटिन का बाह्यकंकाल होता है। मोलस्क में मैंटल वाला कोमल शरीर, अक्सर कवच, और रेडुला होता है। एकाइनोडर्म में काँटेदार त्वचा और जल-संवहन तंत्र होता है। हेमीकॉर्डेट में मुखरज्जु होता है, असली पृष्ठरज्जु नहीं। कॉर्डेट में पृष्ठरज्जु, पृष्ठीय खोखली तंत्रिका रज्जु और क्लोम-छिद्र होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which feature is found in every chordate at some stage of life?",
+        "hi": "कौन-सी विशेषता हर कॉर्डेट में जीवन की किसी अवस्था में मिलती है?"
+       },
+       "options": [
+        {
+         "en": "A notochord",
+         "hi": "पृष्ठरज्जु"
+        },
+        {
+         "en": "A shell",
+         "hi": "कवच"
+        },
+        {
+         "en": "Jointed legs",
+         "hi": "संधियुक्त पैर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The notochord, dorsal hollow nerve cord and pharyngeal gill slits are the three chordate marks.",
+        "hi": "पृष्ठरज्जु, पृष्ठीय खोखली तंत्रिका रज्जु और ग्रसनी क्लोम-छिद्र कॉर्डेट की तीन पहचान हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Shells belong to many molluscs, not chordates.",
+         "hi": "कवच कई मोलस्क में होता है, कॉर्डेट में नहीं।"
+        },
+        {
+         "en": "Jointed legs are the mark of arthropods.",
+         "hi": "संधियुक्त पैर आर्थ्रोपोड की पहचान हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The silkworm (Bombyx) and the lac insect (Laccifer) are useful animals. Which phylum are they in?",
+        "hi": "रेशम कीट (बॉम्बिक्स) और लाख कीट (लैसिफ़र) उपयोगी जंतु हैं। ये किस संघ में हैं?"
+       },
+       "options": [
+        {
+         "en": "Mollusca",
+         "hi": "मोलस्का"
+        },
+        {
+         "en": "Arthropoda",
+         "hi": "आर्थ्रोपोडा"
+        },
+        {
+         "en": "Annelida",
+         "hi": "ऐनेलिडा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Both are insects, with jointed legs and an exoskeleton.",
+        "hi": "दोनों कीट हैं, संधियुक्त पैरों और बाह्यकंकाल के साथ।"
+       },
+       "wrong": [
+        {
+         "en": "Molluscs have soft bodies and no jointed legs.",
+         "hi": "मोलस्क का शरीर कोमल होता है और पैर संधियुक्त नहीं होते।"
+        },
+        "",
+        {
+         "en": "A silkworm larva looks worm-like, but it is an insect, not a segmented annelid worm.",
+         "hi": "रेशम कीट का लार्वा कृमि जैसा दिखता है, पर यह कीट है, खंडित ऐनेलिड कृमि नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then visit a fish market in your mind: which phyla do prawns, crabs, squid and pomfret belong to?",
+      "hi": "बाक़ी कार्ड छाँटो। फिर मन में मछली बाज़ार घूमो: झींगा, केकड़ा, स्क्विड और पॉम्फ़्रेट किन संघों के हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch04-vertebrates",
+   "topic": "4.2.11",
+   "template": "sort",
+   "title": {
+    "en": "Classes of vertebrates",
+    "hi": "कशेरुकियों के वर्ग"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pisces",
+      "label": {
+       "en": "Pisces (fishes)",
+       "hi": "पिसीज़ (मछलियाँ)"
+      }
+     },
+     {
+      "id": "amphibia",
+      "label": {
+       "en": "Amphibia",
+       "hi": "उभयचर"
+      }
+     },
+     {
+      "id": "reptilia",
+      "label": {
+       "en": "Reptilia",
+       "hi": "सरीसृप"
+      }
+     },
+     {
+      "id": "aves",
+      "label": {
+       "en": "Aves (birds)",
+       "hi": "पक्षी"
+      }
+     },
+     {
+      "id": "mammalia",
+      "label": {
+       "en": "Mammalia",
+       "hi": "स्तनधारी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "shark",
+      "text": {
+       "en": "Shark (Scoliodon), skeleton of cartilage",
+       "hi": "उपास्थि कंकाल वाली शार्क (स्कोलियोडॉन)"
+      },
+      "bin": "pisces",
+      "why": {
+       "en": "A cartilaginous fish (Chondrichthyes) with placoid scales and gill slits without a cover.",
+       "hi": "उपास्थिल मछली (कॉन्ड्रिक्थीज़), पट्टाभ शल्क और बिना ढक्कन के क्लोम-छिद्र।"
+      }
+     },
+     {
+      "id": "rohu",
+      "text": {
+       "en": "Rohu (Labeo), bony skeleton",
+       "hi": "हड्डी के कंकाल वाली रोहू (लेबियो)"
+      },
+      "bin": "pisces",
+      "why": {
+       "en": "A bony fish (Osteichthyes) with gills covered by an operculum and an air bladder.",
+       "hi": "अस्थिल मछली (ऑस्टिक्थीज़), ढक्कन से ढके क्लोम और वायु-आशय।"
+      }
+     },
+     {
+      "id": "toad",
+      "text": {
+       "en": "Toad (Bufo)",
+       "hi": "टोड (बूफ़ो)"
+      },
+      "bin": "amphibia",
+      "why": {
+       "en": "Lives on land and in water; moist skin with no scales; three-chambered heart.",
+       "hi": "ज़मीन और पानी दोनों में; बिना शल्क की नम त्वचा; तीन-कक्षीय हृदय।"
+      }
+     },
+     {
+      "id": "cobra",
+      "text": {
+       "en": "Cobra (Naja)",
+       "hi": "नाग (नाजा)"
+      },
+      "bin": "reptilia",
+      "why": {
+       "en": "Dry, scaly skin; lays shelled eggs on land.",
+       "hi": "सूखी, शल्की त्वचा; ज़मीन पर कवचयुक्त अंडे देता है।"
+      }
+     },
+     {
+      "id": "crocodile",
+      "text": {
+       "en": "Crocodile (Crocodilus)",
+       "hi": "मगरमच्छ (क्रोकोडाइलस)"
+      },
+      "bin": "reptilia",
+      "why": {
+       "en": "A reptile whose heart has four chambers; most reptiles have three.",
+       "hi": "एक सरीसृप जिसके हृदय में चार कक्ष हैं; अधिकतर सरीसृपों में तीन होते हैं।"
+      }
+     },
+     {
+      "id": "peacock",
+      "text": {
+       "en": "Peacock (Pavo)",
+       "hi": "मोर (पावो)"
+      },
+      "bin": "aves",
+      "why": {
+       "en": "Feathers, a beak, hollow pneumatic bones; warm-blooded.",
+       "hi": "पंख, चोंच, खोखली वायवीय हड्डियाँ; नियततापी।"
+      }
+     },
+     {
+      "id": "ostrich",
+      "text": {
+       "en": "Ostrich, a bird that cannot fly",
+       "hi": "शुतुरमुर्ग, न उड़ने वाला पक्षी"
+      },
+      "bin": "aves",
+      "why": {
+       "en": "It has feathers and lays eggs: a bird, even without flight.",
+       "hi": "इसमें पंख हैं और यह अंडे देता है: न उड़े तब भी पक्षी है।"
+      }
+     },
+     {
+      "id": "bat",
+      "text": {
+       "en": "Flying fox (Pteropus), a bat",
+       "hi": "उड़न लोमड़ी (टेरोपस), चमगादड़"
+      },
+      "bin": "mammalia",
+      "why": {
+       "en": "It flies, but it has hair, external ears and feeds its young on milk.",
+       "hi": "यह उड़ता है, पर इसमें बाल, बाहरी कान हैं और यह बच्चों को दूध पिलाता है।"
+      }
+     },
+     {
+      "id": "whale",
+      "text": {
+       "en": "Blue whale (Balaenoptera)",
+       "hi": "नीली व्हेल (बैलेनॉप्टेरा)"
+      },
+      "bin": "mammalia",
+      "why": {
+       "en": "It lives in the sea but breathes air with lungs and has mammary glands.",
+       "hi": "यह समुद्र में रहती है पर फेफड़ों से हवा लेती है और इसमें स्तन ग्रंथियाँ हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:rohu",
+     "expect": "correct:rohu",
+     "say": {
+      "en": "Tap the rohu card, then tap its class.",
+      "hi": "रोहू कार्ड पर टैप करो, फिर उसके वर्ग पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:toad",
+     "expect": "correct:toad",
+     "say": {
+      "en": "Now sort the toad.",
+      "hi": "अब टोड को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bat flies with wings. Which class do you think it belongs to?",
+      "hi": "चमगादड़ पंखों से उड़ता है। तुम्हें क्या लगता है, यह किस वर्ग का है?"
+     },
+     "options": [
+      {
+       "id": "mammalia",
+       "en": "Mammalia: it has hair and feeds milk",
+       "hi": "स्तनधारी: इसमें बाल हैं और यह दूध पिलाता है"
+      },
+      {
+       "id": "aves",
+       "en": "Aves: it has wings",
+       "hi": "पक्षी: इसके पंख हैं"
+      }
+     ],
+     "answer": "mammalia"
+    },
+    {
+     "kind": "do",
+     "target": "card:bat",
+     "expect": "correct:bat",
+     "say": {
+      "en": "Tap the bat and sort it.",
+      "hi": "चमगादड़ पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:whale",
+     "expect": "correct:whale",
+     "say": {
+      "en": "Now sort the blue whale.",
+      "hi": "अब नीली व्हेल को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Vertebrates are chordates with a backbone. We sort them by skin cover, breathing and young ones, not by where they live or how they move. Mammals have hair and mammary glands, so the bat and the whale are mammals. Birds have feathers. Reptiles have dry scales. Amphibians have moist skin. Fishes have gills and fins.",
+      "hi": "कशेरुकी रीढ़ वाले कॉर्डेट हैं। हम इन्हें त्वचा के आवरण, श्वसन और बच्चों से छाँटते हैं, इस बात से नहीं कि वे कहाँ रहते या कैसे चलते हैं। स्तनधारियों में बाल और स्तन ग्रंथियाँ होती हैं, इसलिए चमगादड़ और व्हेल स्तनधारी हैं। पक्षियों में पंख होते हैं। सरीसृपों में सूखे शल्क होते हैं। उभयचरों की त्वचा नम होती है। मछलियों में क्लोम और पख होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Petromyzon (lamprey) has a round sucking mouth and no jaws. Which class is it in?",
+        "hi": "पेट्रोमाइज़ॉन (लैम्प्रे) का मुख गोल, चूसने वाला है और जबड़े नहीं हैं। यह किस वर्ग में है?"
+       },
+       "options": [
+        {
+         "en": "Cyclostomata",
+         "hi": "साइक्लोस्टोमेटा"
+        },
+        {
+         "en": "Osteichthyes",
+         "hi": "ऑस्टिक्थीज़"
+        },
+        {
+         "en": "Amphibia",
+         "hi": "उभयचर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cyclostomes are jawless, eel-like, and live as ectoparasites on fish.",
+        "hi": "साइक्लोस्टोम बिना जबड़े के, ईल जैसे होते हैं और मछलियों पर बाह्यपरजीवी के रूप में रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Bony fishes have jaws; the lamprey does not.",
+         "hi": "अस्थिल मछलियों में जबड़े होते हैं; लैम्प्रे में नहीं।"
+        },
+        {
+         "en": "Amphibians have jaws and limbs; the lamprey has neither.",
+         "hi": "उभयचरों में जबड़े और पाद होते हैं; लैम्प्रे में दोनों नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which group is warm-blooded (homoiothermous)?",
+        "hi": "कौन-सा समूह नियततापी है?"
+       },
+       "options": [
+        {
+         "en": "Birds and mammals",
+         "hi": "पक्षी और स्तनधारी"
+        },
+        {
+         "en": "Fishes and amphibians",
+         "hi": "मछलियाँ और उभयचर"
+        },
+        {
+         "en": "Reptiles and amphibians",
+         "hi": "सरीसृप और उभयचर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Birds and mammals keep a constant body temperature; the others are cold-blooded.",
+        "hi": "पक्षी और स्तनधारी शरीर का तापमान स्थिर रखते हैं; बाक़ी असमतापी हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fish and amphibian body temperature changes with the surroundings.",
+         "hi": "मछलियों और उभयचरों का शरीर-ताप परिवेश के साथ बदलता है।"
+        },
+        {
+         "en": "Reptiles bask in the sun because they are cold-blooded.",
+         "hi": "सरीसृप धूप सेंकते हैं क्योंकि वे असमतापी हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then list five animals you saw this week and sort them in your notebook the same way.",
+      "hi": "बाक़ी कार्ड छाँटो। फिर इस हफ़्ते देखे पाँच जंतुओं को अपनी कॉपी में इसी तरह छाँटो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.2.7-4.2.10",
+   "use": "Chapter hook: a rock pool",
+   "shows": "A rocky tide pool on an Indian coast with a starfish, sea anemones, small crabs, snails and a fish",
+   "view": "Top-down at a slight angle, clear water, daylight",
+   "right": "At least five phyla visible; true colours",
+   "avoid": "Hands, people, plastic"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "4.1",
+   "use": "Symmetry cut lines",
+   "shows": "Three simple outline drawings: a sponge, a jellyfish seen from above, a butterfly, each with dashed cut lines",
+   "view": "Front view, white background",
+   "right": "Many cut lines on the jellyfish, one on the butterfly, none equal on the sponge",
+   "avoid": "Any words"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "4.1",
+   "use": "Body cavity cross-sections",
+   "shows": "Three cross-sections side by side: flatworm (solid), roundworm (cavity with scattered mesoderm), earthworm (true coelom lined by mesoderm), colour-coded layers",
+   "view": "Flat diagram, white background",
+   "right": "Ectoderm, mesoderm and endoderm in the same three colours across all three",
+   "avoid": "Words or numbers"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "4.2.1-4.2.6",
+   "use": "Simple animal cards",
+   "shows": "Separate cut-outs of a bath sponge, a jellyfish, a brain coral piece and an earthworm",
+   "view": "Three-quarter view, plain background",
+   "right": "Real specimens, natural colours",
+   "avoid": "Aquarium decorations, preserved jars with labels"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.2.7-4.2.10",
+   "use": "Arthropod and mollusc cards",
+   "shows": "Cut-outs of a honey bee, a king crab, an apple snail (Pila), an octopus and a sea urchin",
+   "view": "Side or top view, same scale feel",
+   "right": "Jointed legs visible on the bee and crab; spines on the urchin",
+   "avoid": "Cooked seafood"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.2.11",
+   "use": "Vertebrates of India",
+   "shows": "A wetland scene at dawn with a rohu jumping, a frog on a lotus leaf, a monitor lizard on a log, a painted stork and a buffalo wading",
+   "view": "Wide, eye level, golden light",
+   "right": "Five classes in one frame; Indian species",
+   "avoid": "People, text"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "4.2.11",
+   "use": "Odd ones out",
+   "shows": "Cut-outs of a flying fox bat with wings open and a breaching blue whale",
+   "view": "Side view, plain background",
+   "right": "Bat fur and ears visible; whale blowhole visible",
+   "avoid": "Cartoon style"
+  }
+ ]
+}

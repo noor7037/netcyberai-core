@@ -1,0 +1,736 @@
+{
+ "chapter_key": "u.c12.physics.leph1.ch08",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Electromagnetic Waves",
+ "source": "https://ncert.nic.in/textbook/pdf/leph108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "A short opening about light and electricity joining into one idea; photos and the reader set the scene."
+  },
+  {
+   "n": "8.2",
+   "title": "Displacement current",
+   "labs": [],
+   "why_no_lab": "Maxwell's displacement current is a reasoning and formula topic taught by the reader and a diagram."
+  },
+  {
+   "n": "8.3",
+   "title": "Electromagnetic waves and their sources",
+   "labs": [
+    "c12-physics-leph1-ch08-wavelength"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "The electromagnetic spectrum: radio, microwave, infrared, visible, ultraviolet, X-rays and gamma rays",
+   "labs": [
+    "c12-physics-leph1-ch08-spectrum",
+    "c12-physics-leph1-ch08-order",
+    "c12-physics-leph1-ch08-uses"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph1-ch08-spectrum",
+   "topic": "8.4",
+   "template": "waves",
+   "title": {
+    "en": "Travel along the electromagnetic spectrum",
+    "hi": "विद्युत चुंबकीय स्पेक्ट्रम की यात्रा"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "spectrum"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which has the highest frequency: radio waves, visible light, or gamma rays?",
+      "hi": "किसकी आवृत्ति सबसे अधिक है: रेडियो तरंगें, दृश्य प्रकाश या गामा किरणें?"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "gamma rays",
+       "hi": "गामा किरणें"
+      },
+      {
+       "id": "o1",
+       "en": "visible light",
+       "hi": "दृश्य प्रकाश"
+      },
+      {
+       "id": "o2",
+       "en": "radio waves",
+       "hi": "रेडियो तरंगें"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "band:xray",
+     "say": {
+      "en": "In the electromagnetic view, slide the frequency up until you reach X-rays.",
+      "hi": "विद्युत चुंबकीय दृश्य में आवृत्ति तब तक बढ़ाओ जब तक एक्स-किरणें न आ जाएँ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "band:visible",
+     "say": {
+      "en": "Slide down to the narrow band of visible light, the only part your eyes can see.",
+      "hi": "नीचे उतरकर दृश्य प्रकाश की पतली पट्टी तक आओ, जिसे ही तुम्हारी आँखें देख सकती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "band:radio",
+     "say": {
+      "en": "Slide all the way down to the radio waves.",
+      "hi": "पूरा नीचे जाकर रेडियो तरंगों तक पहुँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All electromagnetic waves travel at the same speed in vacuum, c = 3 × 10⁸ m/s, and are made of oscillating electric and magnetic fields at right angles to each other and to the direction of travel. They differ only in frequency and wavelength: radio, microwaves, infrared, visible, ultraviolet, X-rays, gamma rays, in order of increasing frequency. Visible light is a tiny slice of the whole family.",
+      "hi": "निर्वात में सभी विद्युत चुंबकीय तरंगें एक ही चाल c = 3 × 10⁸ मीटर/सेकंड से चलती हैं और ऐसे दोलित विद्युत तथा चुंबकीय क्षेत्रों से बनी होती हैं जो एक-दूसरे और गति की दिशा के लंबवत होते हैं। वे केवल आवृत्ति और तरंगदैर्घ्य में भिन्न हैं: बढ़ती आवृत्ति के क्रम में रेडियो, सूक्ष्म तरंगें, अवरक्त, दृश्य, पराबैंगनी, एक्स-किरणें, गामा किरणें। दृश्य प्रकाश पूरे परिवार का बहुत छोटा टुकड़ा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement about radio waves and X-rays in vacuum is correct?",
+        "hi": "निर्वात में रेडियो तरंगों और एक्स-किरणों के बारे में कौन-सा कथन सही है?"
+       },
+       "options": [
+        {
+         "en": "They travel at the same speed",
+         "hi": "दोनों की चाल समान है"
+        },
+        {
+         "en": "X-rays travel faster",
+         "hi": "एक्स-किरणें अधिक तेज़ चलती हैं"
+        },
+        {
+         "en": "Radio waves travel faster",
+         "hi": "रेडियो तरंगें अधिक तेज़ चलती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All EM waves have speed c in vacuum.",
+        "hi": "निर्वात में सभी EM तरंगों की चाल c है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Speed in vacuum is the same for every electromagnetic wave. X-rays have a higher frequency, not a higher speed.",
+         "hi": "निर्वात में हर विद्युत चुंबकीय तरंग की चाल समान है। एक्स-किरणों की आवृत्ति अधिक है, चाल नहीं।"
+        },
+        {
+         "en": "Radio waves have a longer wavelength, but the speed is the same.",
+         "hi": "रेडियो तरंगों का तरंगदैर्घ्य अधिक है, पर चाल समान है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Flip to the sound view and compare. How is sound different from the electromagnetic waves?",
+      "hi": "ध्वनि दृश्य पर जाकर तुलना करो। ध्वनि विद्युत चुंबकीय तरंगों से कैसे अलग है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch08-wavelength",
+   "topic": "8.3",
+   "template": "grapher",
+   "title": {
+    "en": "Wavelength and frequency: c = f λ",
+    "hi": "तरंगदैर्घ्य और आवृत्ति: c = f λ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "a/x",
+    "params": {
+     "a": [
+      1,
+      6,
+      3
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In vacuum, if the frequency of an electromagnetic wave doubles, its wavelength",
+      "hi": "निर्वात में यदि विद्युत चुंबकीय तरंग की आवृत्ति दोगुनी हो तो उसका तरंगदैर्घ्य"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "stays the same",
+       "hi": "वही रहता है"
+      },
+      {
+       "id": "o0",
+       "en": "halves",
+       "hi": "आधा हो जाता है"
+      },
+      {
+       "id": "o1",
+       "en": "doubles",
+       "hi": "दोगुना हो जाता है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the frequency. Slide it up and watch the wavelength (height) fall.",
+      "hi": "x आवृत्ति है। उसे बढ़ाओ और तरंगदैर्घ्य (ऊँचाई) को घटते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a stands for the speed c. In a medium where the wave is slower, a is smaller.",
+      "hi": "a चाल c के लिए है। जिस माध्यम में तरंग धीमी हो वहाँ a छोटा होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The speed, frequency and wavelength are tied by c = fλ, so λ = c/f. At a fixed speed, higher frequency means shorter wavelength. A 100 MHz FM radio wave has λ = 3 m, while visible light with λ about 500 nm has a frequency of 6 × 10¹⁴ Hz. When a wave enters glass or water its frequency stays the same but its speed and wavelength drop.",
+      "hi": "चाल, आवृत्ति और तरंगदैर्घ्य c = fλ से जुड़े हैं, इसलिए λ = c/f। निश्चित चाल पर ऊँची आवृत्ति का अर्थ है छोटा तरंगदैर्घ्य। 100 मेगाहर्ट्ज़ की FM रेडियो तरंग का λ = 3 मीटर है, जबकि लगभग 500 नैनोमीटर तरंगदैर्घ्य वाले दृश्य प्रकाश की आवृत्ति 6 × 10¹⁴ हर्ट्ज़ है। काँच या जल में जाने पर तरंग की आवृत्ति वही रहती है पर चाल और तरंगदैर्घ्य घट जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An FM station broadcasts at 100 MHz. The wavelength in air is about",
+        "hi": "एक FM स्टेशन 100 मेगाहर्ट्ज़ पर प्रसारित करता है। हवा में तरंगदैर्घ्य लगभग है"
+       },
+       "options": [
+        {
+         "en": "3 m",
+         "hi": "3 मीटर"
+        },
+        {
+         "en": "30 m",
+         "hi": "30 मीटर"
+        },
+        {
+         "en": "0.3 m",
+         "hi": "0.3 मीटर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "λ = c/f = 3×10⁸ / 10⁸ = 3 m.",
+        "hi": "λ = c/f = 3×10⁸ / 10⁸ = 3 मीटर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This divides by 10 MHz by mistake. λ = 3×10⁸ / 10⁸ = 3 m.",
+         "hi": "यह गलती से 10 मेगाहर्ट्ज़ से भाग है। λ = 3×10⁸ / 10⁸ = 3 मीटर।"
+        },
+        {
+         "en": "That is for 1000 MHz, ten times higher.",
+         "hi": "यह 1000 मेगाहर्ट्ज़ के लिए है, जो दस गुना अधिक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which part of the spectrum has wavelengths close to the size of a cricket ball? Think of it in metres.",
+      "hi": "स्पेक्ट्रम के किस भाग के तरंगदैर्घ्य क्रिकेट की गेंद के माप के पास हैं? मीटर में सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch08-order",
+   "topic": "8.4",
+   "template": "sequence",
+   "title": {
+    "en": "Order the spectrum by frequency",
+    "hi": "स्पेक्ट्रम को आवृत्ति के क्रम में लगाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "radio",
+      "text": {
+       "en": "Radio waves",
+       "hi": "रेडियो तरंगें"
+      }
+     },
+     {
+      "id": "micro",
+      "text": {
+       "en": "Microwaves",
+       "hi": "सूक्ष्म तरंगें"
+      }
+     },
+     {
+      "id": "ir",
+      "text": {
+       "en": "Infrared",
+       "hi": "अवरक्त किरणें"
+      }
+     },
+     {
+      "id": "vis",
+      "text": {
+       "en": "Visible light",
+       "hi": "दृश्य प्रकाश"
+      }
+     },
+     {
+      "id": "uv",
+      "text": {
+       "en": "Ultraviolet",
+       "hi": "पराबैंगनी किरणें"
+      }
+     },
+     {
+      "id": "xray",
+      "text": {
+       "en": "X-rays",
+       "hi": "एक्स-किरणें"
+      }
+     },
+     {
+      "id": "gamma",
+      "text": {
+       "en": "Gamma rays",
+       "hi": "गामा किरणें"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which comes right after visible light as the frequency rises?",
+      "hi": "आवृत्ति बढ़ने पर दृश्य प्रकाश के ठीक बाद कौन आता है?"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "infrared",
+       "hi": "अवरक्त"
+      },
+      {
+       "id": "o2",
+       "en": "X-rays",
+       "hi": "एक्स-किरणें"
+      },
+      {
+       "id": "o0",
+       "en": "ultraviolet",
+       "hi": "पराबैंगनी"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "item:radio",
+     "expect": "placed:radio",
+     "say": {
+      "en": "Start with the lowest frequency: place the radio waves first.",
+      "hi": "सबसे कम आवृत्ति से शुरू करो: रेडियो तरंगों को पहले रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:vis",
+     "expect": "placed:vis",
+     "say": {
+      "en": "Place visible light in its spot.",
+      "hi": "दृश्य प्रकाश को उसकी जगह रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the rest and press check.",
+      "hi": "बाकी को रखो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In order of increasing frequency: radio, microwave, infrared, visible, ultraviolet, X-ray, gamma. Higher frequency means more energy per photon, E = hf, which is why ultraviolet can burn the skin and X-rays and gamma rays can damage living cells, while radio waves pass through us harmlessly.",
+      "hi": "बढ़ती आवृत्ति के क्रम में: रेडियो, सूक्ष्म तरंग, अवरक्त, दृश्य, पराबैंगनी, एक्स-किरण, गामा किरण। ऊँची आवृत्ति का अर्थ है प्रति फ़ोटॉन अधिक ऊर्जा, E = hf, इसीलिए पराबैंगनी त्वचा जला सकती है और एक्स-किरणें तथा गामा किरणें जीवित कोशिकाओं को हानि पहुँचा सकती हैं, जबकि रेडियो तरंगें हमसे हानिरहित गुज़र जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which has the longest wavelength?",
+        "hi": "किसका तरंगदैर्घ्य सबसे अधिक है?"
+       },
+       "options": [
+        {
+         "en": "radio waves",
+         "hi": "रेडियो तरंगें"
+        },
+        {
+         "en": "gamma rays",
+         "hi": "गामा किरणें"
+        },
+        {
+         "en": "visible light",
+         "hi": "दृश्य प्रकाश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Lowest frequency means longest wavelength.",
+        "hi": "सबसे कम आवृत्ति का अर्थ है सबसे अधिक तरंगदैर्घ्य।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Gamma rays have the highest frequency, so the shortest wavelength.",
+         "hi": "गामा किरणों की आवृत्ति सबसे अधिक है, इसलिए तरंगदैर्घ्य सबसे कम।"
+        },
+        {
+         "en": "Visible light lies in the middle of the spectrum.",
+         "hi": "दृश्य प्रकाश स्पेक्ट्रम के बीच में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Where would a phone's Wi-Fi signal fit in this ordering? Between which two neighbours?",
+      "hi": "फ़ोन का वाई-फ़ाई संकेत इस क्रम में कहाँ आएगा? किन दो पड़ोसियों के बीच?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch08-uses",
+   "topic": "8.4",
+   "template": "match",
+   "title": {
+    "en": "Match each wave to what it is used for",
+    "hi": "हर तरंग को उसके उपयोग से मिलाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "radio",
+      "left": {
+       "en": "Radio waves",
+       "hi": "रेडियो तरंगें"
+      },
+      "right": {
+       "en": "Broadcasting and mobile signals",
+       "hi": "प्रसारण और मोबाइल संकेत"
+      },
+      "why": {
+       "en": "Long wavelengths travel far and bend around buildings.",
+       "hi": "लंबे तरंगदैर्घ्य दूर तक जाते और इमारतों के चारों ओर मुड़ते हैं।"
+      }
+     },
+     {
+      "id": "micro",
+      "left": {
+       "en": "Microwaves",
+       "hi": "सूक्ष्म तरंगें"
+      },
+      "right": {
+       "en": "Cooking and radar",
+       "hi": "भोजन गर्म करना और रडार"
+      },
+      "why": {
+       "en": "They make water molecules vibrate, heating food.",
+       "hi": "ये जल अणुओं को कंपित कर भोजन गर्म करती हैं।"
+      }
+     },
+     {
+      "id": "ir",
+      "left": {
+       "en": "Infrared",
+       "hi": "अवरक्त किरणें"
+      },
+      "right": {
+       "en": "TV remote and night vision",
+       "hi": "टीवी रिमोट और रात्रि-दृष्टि"
+      },
+      "why": {
+       "en": "Warm bodies give off infrared.",
+       "hi": "गर्म वस्तुएँ अवरक्त किरणें छोड़ती हैं।"
+      }
+     },
+     {
+      "id": "uv",
+      "left": {
+       "en": "Ultraviolet",
+       "hi": "पराबैंगनी किरणें"
+      },
+      "right": {
+       "en": "Killing germs in water purifiers",
+       "hi": "जल शोधकों में कीटाणु मारना"
+      },
+      "why": {
+       "en": "Its photons carry enough energy to destroy germs.",
+       "hi": "इसके फ़ोटॉनों में कीटाणु नष्ट करने की ऊर्जा होती है।"
+      }
+     },
+     {
+      "id": "xray",
+      "left": {
+       "en": "X-rays",
+       "hi": "एक्स-किरणें"
+      },
+      "right": {
+       "en": "Seeing broken bones",
+       "hi": "टूटी हड्डियाँ देखना"
+      },
+      "why": {
+       "en": "They pass through flesh but are stopped by bone.",
+       "hi": "ये माँस से गुज़रती हैं पर हड्डी से रुक जाती हैं।"
+      }
+     },
+     {
+      "id": "gamma",
+      "left": {
+       "en": "Gamma rays",
+       "hi": "गामा किरणें"
+      },
+      "right": {
+       "en": "Treating cancer",
+       "hi": "कैंसर का उपचार"
+      },
+      "why": {
+       "en": "Very high energy can destroy tumour cells when aimed carefully.",
+       "hi": "बहुत अधिक ऊर्जा सावधानी से लक्षित होने पर ट्यूमर की कोशिकाएँ नष्ट कर सकती है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which wave heats your food in a microwave oven?",
+      "hi": "माइक्रोवेव ओवन में तुम्हारा भोजन कौन-सी तरंग गर्म करती है?"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "microwaves",
+       "hi": "सूक्ष्म तरंगें"
+      },
+      {
+       "id": "o1",
+       "en": "X-rays",
+       "hi": "एक्स-किरणें"
+      },
+      {
+       "id": "o2",
+       "en": "radio waves",
+       "hi": "रेडियो तरंगें"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "left:micro",
+     "expect": "matched:micro",
+     "say": {
+      "en": "Match the microwaves with their use.",
+      "hi": "सूक्ष्म तरंगों को उनके उपयोग से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:xray",
+     "expect": "matched:xray",
+     "say": {
+      "en": "Match the X-rays.",
+      "hi": "एक्स-किरणों को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the others and press check.",
+      "hi": "बाकी को मिलाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each part of the spectrum is useful because of its own wavelength and energy. Long waves carry signals, microwaves and infrared heat things, ultraviolet kills germs, X-rays pass through soft tissue and gamma rays are the most energetic. The same family of waves does all of this, but high-energy waves need careful, controlled use.",
+      "hi": "स्पेक्ट्रम का हर भाग अपने तरंगदैर्घ्य और ऊर्जा के कारण उपयोगी है। लंबी तरंगें संकेत ले जाती हैं, सूक्ष्म तरंगें और अवरक्त वस्तुओं को गर्म करती हैं, पराबैंगनी कीटाणु मारती है, एक्स-किरणें कोमल ऊतकों से गुज़रती हैं और गामा किरणें सबसे अधिक ऊर्जावान हैं। तरंगों का एक ही परिवार यह सब करता है, पर उच्च ऊर्जा वाली तरंगों का उपयोग सावधानी और नियंत्रण से करना पड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a doctor shield other parts of your body during an X-ray?",
+        "hi": "एक्स-किरण के समय डॉक्टर तुम्हारे शरीर के अन्य भागों को क्यों ढकते हैं?"
+       },
+       "options": [
+        {
+         "en": "X-rays carry enough energy to damage cells",
+         "hi": "एक्स-किरणों में कोशिकाओं को हानि पहुँचाने की ऊर्जा होती है"
+        },
+        {
+         "en": "X-rays are heavy",
+         "hi": "एक्स-किरणें भारी होती हैं"
+        },
+        {
+         "en": "X-rays are too slow",
+         "hi": "एक्स-किरणें बहुत धीमी हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Higher photon energy can ionise and damage cells.",
+        "hi": "उच्च फ़ोटॉन ऊर्जा आयनित करके कोशिकाओं को हानि पहुँचा सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Waves have no weight like that. The danger is their high photon energy.",
+         "hi": "तरंगों में ऐसा भार नहीं होता। खतरा उनकी उच्च फ़ोटॉन ऊर्जा का है।"
+        },
+        {
+         "en": "They travel at the speed of light.",
+         "hi": "वे प्रकाश की चाल से चलती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick one use that affects your daily life. Which wave is behind it?",
+      "hi": "अपने दैनिक जीवन को छूने वाला एक उपयोग चुनो। उसके पीछे कौन-सी तरंग है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Chapter hook: a mobile tower at sunrise",
+   "shows": "A cell tower with antennas on a hill in India at sunrise, with a village below",
+   "view": "Wide, low angle",
+   "right": "Antennas sharp, sky colourful",
+   "avoid": "Logos, number plates, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "Everyday EM devices",
+   "shows": "A TV remote, a microwave oven, a UV torch, a mobile phone and a radio laid out on white",
+   "view": "Straight overhead, equal light",
+   "right": "Each object distinct",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "An X-ray of a hand",
+   "shows": "A clear hospital X-ray film of a hand on a light box with a doctor's silhouette in the background",
+   "view": "Straight front view",
+   "right": "Bones clear, soft tissue faint",
+   "avoid": "Patient names or numbers on the film"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "8.3",
+   "use": "An electromagnetic wave",
+   "shows": "A clean 3D drawing of a wave with the electric field in blue vertical and the magnetic field in red horizontal, travelling to the right",
+   "view": "Slight three-quarter view, white background",
+   "right": "Fields perpendicular to each other and in phase",
+   "avoid": "Text labels"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "Infrared camera view",
+   "shows": "A thermal-camera picture of a person's hands holding a cup of hot tea (colour-coded heat)",
+   "view": "Straight front view",
+   "right": "Hot cup clearly brightest",
+   "avoid": "Faces and screen text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "Water purifier with UV lamp",
+   "shows": "The cut-away of a household UV water purifier showing the glowing UV lamp inside its chamber",
+   "view": "Side cutaway view",
+   "right": "Lamp and water path clear",
+   "avoid": "Brand text"
+  }
+ ]
+}

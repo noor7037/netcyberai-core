@@ -1,0 +1,1677 @@
+{
+ "chapter_key": "u.c11.psychology.kepy1.ch08",
+ "class": 11,
+ "subject_id": "psychology",
+ "title": "Motivation and Emotion",
+ "source": "https://ncert.nic.in/textbook/pdf/kepy108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Nature of motivation",
+   "labs": [],
+   "why_no_lab": "Introduced by the motives sort that follows."
+  },
+  {
+   "n": "8.2",
+   "title": "Types of motives: biological and psychosocial",
+   "labs": [
+    "c11-psychology-kepy1-ch08-motives"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Maslow's hierarchy of needs",
+   "labs": [
+    "c11-psychology-kepy1-ch08-maslow-order",
+    "c11-psychology-kepy1-ch08-maslow-examples"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Nature of emotions",
+   "labs": [
+    "c11-psychology-kepy1-ch08-emotion-parts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Expression of emotions, culture and labelling",
+   "labs": [],
+   "why_no_lab": "Best seen through photographs and stories from different communities in the reader."
+  },
+  {
+   "n": "8.6",
+   "title": "Managing negative emotions and exam anxiety",
+   "labs": [
+    "c11-psychology-kepy1-ch08-exam-anxiety"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.7",
+   "title": "Post-traumatic stress disorder",
+   "labs": [],
+   "why_no_lab": "A sensitive topic that should be handled by a teacher or counsellor, not a game."
+  },
+  {
+   "n": "8.8",
+   "title": "Enhancing positive emotions",
+   "labs": [
+    "c11-psychology-kepy1-ch08-coping"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-psychology-kepy1-ch08-motives",
+   "topic": "8.2",
+   "template": "sort",
+   "title": {
+    "en": "What drives us?",
+    "hi": "हमें क्या चलाता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "bio",
+      "label": {
+       "en": "Biological motive",
+       "hi": "जैविक अभिप्रेरक"
+      }
+     },
+     {
+      "id": "psy",
+      "label": {
+       "en": "Psychosocial motive",
+       "hi": "मनोसामाजिक अभिप्रेरक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "hunger",
+      "text": {
+       "en": "Hunger",
+       "hi": "भूख"
+      },
+      "bin": "bio",
+      "why": {
+       "en": "The body needs food to live; this motive is inborn.",
+       "hi": "शरीर को जीने के लिए भोजन चाहिए; यह अभिप्रेरक जन्मजात है।"
+      }
+     },
+     {
+      "id": "thirst",
+      "text": {
+       "en": "Thirst",
+       "hi": "प्यास"
+      },
+      "bin": "bio",
+      "why": {
+       "en": "The body needs water; the drive is biological.",
+       "hi": "शरीर को पानी चाहिए; यह प्रेरणा जैविक है।"
+      }
+     },
+     {
+      "id": "sleep",
+      "text": {
+       "en": "Need for sleep",
+       "hi": "नींद की ज़रूरत"
+      },
+      "bin": "bio",
+      "why": {
+       "en": "The body needs rest, so it is biological.",
+       "hi": "शरीर को आराम चाहिए, इसलिए यह जैविक है।"
+      }
+     },
+     {
+      "id": "pain",
+      "text": {
+       "en": "Wanting to avoid pain",
+       "hi": "दर्द से बचने की चाह"
+      },
+      "bin": "bio",
+      "why": {
+       "en": "Protecting the body from harm is biological.",
+       "hi": "शरीर को हानि से बचाना जैविक है।"
+      }
+     },
+     {
+      "id": "ach",
+      "text": {
+       "en": "Wanting to win the science fair",
+       "hi": "विज्ञान मेला जीतने की चाह"
+      },
+      "bin": "psy",
+      "why": {
+       "en": "Striving to do well is the need for achievement, learned in society.",
+       "hi": "अच्छा करने की कोशिश उपलब्धि की आवश्यकता है, जो समाज में सीखी जाती है।"
+      }
+     },
+     {
+      "id": "aff",
+      "text": {
+       "en": "Wanting to make friends and belong",
+       "hi": "दोस्त बनाने और जुड़ने की चाह"
+      },
+      "bin": "psy",
+      "why": {
+       "en": "The need to be with others is affiliation.",
+       "hi": "दूसरों के साथ रहने की आवश्यकता संबंध-निर्माण (एफ़िलिएशन) है।"
+      }
+     },
+     {
+      "id": "pow",
+      "text": {
+       "en": "Wanting to lead the class",
+       "hi": "कक्षा का नेतृत्व करने की चाह"
+      },
+      "bin": "psy",
+      "why": {
+       "en": "Wanting influence over others is the need for power.",
+       "hi": "दूसरों पर प्रभाव चाहना शक्ति की आवश्यकता है।"
+      }
+     },
+     {
+      "id": "curi",
+      "text": {
+       "en": "Wanting to know how things work",
+       "hi": "चीज़ें कैसे चलती हैं यह जानने की चाह"
+      },
+      "bin": "psy",
+      "why": {
+       "en": "Curiosity is a motive that grows with experience.",
+       "hi": "जिज्ञासा ऐसा अभिप्रेरक है जो अनुभव से बढ़ता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:hunger",
+     "expect": "placed:hunger",
+     "say": {
+      "en": "Tap the card \"Hunger\" and then the group where you think it belongs.",
+      "hi": "कार्ड \"भूख\" दबाओ, फिर वह समूह दबाओ जहाँ तुम्हें लगता है कि यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which motive can a person live without for the longest time: food, water, or wanting to win a prize?",
+      "hi": "कौन-सी ज़रूरत के बिना व्यक्ति सबसे अधिक समय तक रह सकता है: भोजन, पानी, या पुरस्कार जीतने की चाह?"
+     },
+     "options": [
+      {
+       "id": "p",
+       "en": "Wanting to win a prize",
+       "hi": "पुरस्कार जीतने की चाह"
+      },
+      {
+       "id": "w",
+       "en": "Water",
+       "hi": "पानी"
+      }
+     ],
+     "answer": "p"
+    },
+    {
+     "kind": "do",
+     "target": "card:ach",
+     "expect": "placed:ach",
+     "say": {
+      "en": "Now place the card \"Wanting to win the science fair\".",
+      "hi": "अब कार्ड \"विज्ञान मेला जीतने की चाह\" रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Motives push us toward goals. Biological motives, such as hunger, thirst and sleep, come from the body's needs and are necessary for life. Psychosocial motives, such as achievement, affiliation and power, are learned in our families and societies.",
+      "hi": "अभिप्रेरक हमें लक्ष्यों की ओर धकेलते हैं। जैविक अभिप्रेरक, जैसे भूख, प्यास और नींद, शरीर की ज़रूरतों से आते हैं और जीवन के लिए आवश्यक हैं। मनोसामाजिक अभिप्रेरक, जैसे उपलब्धि, संबंध और शक्ति, हमारे परिवारों और समाज में सीखे जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a psychosocial motive?",
+        "hi": "इनमें से कौन-सा मनोसामाजिक अभिप्रेरक है?"
+       },
+       "options": [
+        {
+         "en": "Hunger",
+         "hi": "भूख"
+        },
+        {
+         "en": "Need for achievement",
+         "hi": "उपलब्धि की आवश्यकता"
+        },
+        {
+         "en": "Thirst",
+         "hi": "प्यास"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Wanting to do well is learned from society.",
+        "hi": "अच्छा करने की चाह समाज से सीखी जाती है।"
+       },
+       "wrong": [
+        {
+         "en": "Hunger is a bodily need.",
+         "hi": "भूख शारीरिक आवश्यकता है।"
+        },
+        "",
+        {
+         "en": "Thirst is a bodily need.",
+         "hi": "प्यास शारीरिक आवश्यकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are biological motives called basic?",
+        "hi": "जैविक अभिप्रेरकों को बुनियादी क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "The body cannot survive without meeting them",
+         "hi": "उन्हें पूरा किए बिना शरीर जी नहीं सकता"
+        },
+        {
+         "en": "They are easy",
+         "hi": "वे आसान हैं"
+        },
+        {
+         "en": "They are not important",
+         "hi": "वे ज़रूरी नहीं हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Survival depends on them.",
+        "hi": "जीवन उन पर निर्भर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hunger and thirst can be very hard to bear.",
+         "hi": "भूख और प्यास सहना बहुत कठिन हो सकता है।"
+        },
+        {
+         "en": "They matter greatly.",
+         "hi": "वे बहुत मायने रखते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name a motive that made you get up and do something today. Is it biological or psychosocial?",
+      "hi": "कोई ऐसा अभिप्रेरक बताओ जिसने आज तुम्हें कुछ करने को उठाया। वह जैविक है या मनोसामाजिक?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch08-maslow-order",
+   "topic": "8.3",
+   "template": "sequence",
+   "title": {
+    "en": "Maslow's ladder of needs",
+    "hi": "मैस्लो की आवश्यकताओं की सीढ़ी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "phy",
+      "text": {
+       "en": "Physiological needs: food, water, sleep",
+       "hi": "शारीरिक आवश्यकताएँ: भोजन, पानी, नींद"
+      }
+     },
+     {
+      "id": "saf",
+      "text": {
+       "en": "Safety needs: a safe home, health, security",
+       "hi": "सुरक्षा आवश्यकताएँ: सुरक्षित घर, स्वास्थ्य, निश्चिंतता"
+      }
+     },
+     {
+      "id": "lov",
+      "text": {
+       "en": "Love and belonging: family, friends",
+       "hi": "प्रेम और अपनापन: परिवार, दोस्त"
+      }
+     },
+     {
+      "id": "est",
+      "text": {
+       "en": "Esteem: respect, success, self-worth",
+       "hi": "सम्मान: आदर, सफलता, आत्म-मूल्य"
+      }
+     },
+     {
+      "id": "sel",
+      "text": {
+       "en": "Self-actualisation: becoming all you can be",
+       "hi": "आत्म-सिद्धि: वह सब बनना जो तुम बन सकते हो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:phy",
+     "expect": "placed:phy",
+     "say": {
+      "en": "Tap the card \"Physiological needs: food, water, sleep\" and then the place where it belongs.",
+      "hi": "कार्ड \"शारीरिक आवश्यकताएँ: भोजन, पानी, नींद\" दबाओ, फिर वह जगह दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A very hungry student is offered a place on a quiz team. Which need will she probably attend to first?",
+      "hi": "एक बहुत भूखे विद्यार्थी को क्विज़ टीम में जगह मिलती है। वह शायद पहले किस आवश्यकता को देखेगा?"
+     },
+     "options": [
+      {
+       "id": "f",
+       "en": "Food",
+       "hi": "भोजन"
+      },
+      {
+       "id": "q",
+       "en": "The quiz team",
+       "hi": "क्विज़ टीम"
+      }
+     ],
+     "answer": "f"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the cards in order, then press Check.",
+      "hi": "सब कार्ड क्रम में लगाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Maslow arranged human needs like a ladder. The lowest rungs, body and safety, usually have to be met before higher ones such as belonging, esteem and growth can matter much. People can still climb in unusual ways, but the ladder shows the usual order.",
+      "hi": "मैस्लो ने मानव आवश्यकताओं को सीढ़ी की तरह सजाया। निचली पायदानें, शरीर और सुरक्षा, आमतौर पर पहले पूरी होनी चाहिए, तभी अपनापन, सम्मान और विकास जैसी ऊँची आवश्यकताएँ ज़्यादा मायने रखती हैं। लोग असामान्य ढंग से भी चढ़ सकते हैं, पर सीढ़ी सामान्य क्रम दिखाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which need sits at the bottom of the ladder?",
+        "hi": "सीढ़ी के सबसे नीचे कौन-सी आवश्यकता है?"
+       },
+       "options": [
+        {
+         "en": "Esteem",
+         "hi": "सम्मान"
+        },
+        {
+         "en": "Physiological needs",
+         "hi": "शारीरिक आवश्यकताएँ"
+        },
+        {
+         "en": "Self-actualisation",
+         "hi": "आत्म-सिद्धि"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Food, water and sleep come first.",
+        "hi": "भोजन, पानी और नींद सबसे पहले आते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Esteem is higher up.",
+         "hi": "सम्मान ऊपर की पायदान है।"
+        },
+        "",
+        {
+         "en": "Self-actualisation is at the top.",
+         "hi": "आत्म-सिद्धि सबसे ऊपर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which one is at the very top?",
+        "hi": "सबसे ऊपर कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "Safety",
+         "hi": "सुरक्षा"
+        },
+        {
+         "en": "Love and belonging",
+         "hi": "प्रेम और अपनापन"
+        },
+        {
+         "en": "Self-actualisation",
+         "hi": "आत्म-सिद्धि"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "It means reaching one's own full potential.",
+        "hi": "इसका अर्थ है अपनी पूरी क्षमता तक पहुँचना।"
+       },
+       "wrong": [
+        {
+         "en": "Safety is the second level.",
+         "hi": "सुरक्षा दूसरा स्तर है।"
+        },
+        {
+         "en": "Belonging is the third level.",
+         "hi": "अपनापन तीसरा स्तर है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place yourself on the ladder today. Which need is on your mind most right now?",
+      "hi": "आज खुद को सीढ़ी पर रखो। अभी तुम्हारे मन में कौन-सी आवश्यकता सबसे ज़्यादा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch08-maslow-examples",
+   "topic": "8.3",
+   "template": "sort",
+   "title": {
+    "en": "Which need is it?",
+    "hi": "यह कौन-सी आवश्यकता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "p",
+      "label": {
+       "en": "Physiological",
+       "hi": "शारीरिक"
+      }
+     },
+     {
+      "id": "s",
+      "label": {
+       "en": "Safety",
+       "hi": "सुरक्षा"
+      }
+     },
+     {
+      "id": "l",
+      "label": {
+       "en": "Love and belonging",
+       "hi": "प्रेम और अपनापन"
+      }
+     },
+     {
+      "id": "e",
+      "label": {
+       "en": "Esteem",
+       "hi": "सम्मान"
+      }
+     },
+     {
+      "id": "a",
+      "label": {
+       "en": "Self-actualisation",
+       "hi": "आत्म-सिद्धि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "meal",
+      "text": {
+       "en": "Eating a meal when hungry",
+       "hi": "भूख लगने पर खाना खाना"
+      },
+      "bin": "p",
+      "why": {
+       "en": "A basic bodily need.",
+       "hi": "बुनियादी शारीरिक आवश्यकता।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Drinking water when thirsty",
+       "hi": "प्यास लगने पर पानी पीना"
+      },
+      "bin": "p",
+      "why": {
+       "en": "A basic bodily need.",
+       "hi": "बुनियादी शारीरिक आवश्यकता।"
+      }
+     },
+     {
+      "id": "lock",
+      "text": {
+       "en": "Locking the door at night",
+       "hi": "रात में दरवाज़ा बंद करना"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Feeling protected is a safety need.",
+       "hi": "सुरक्षित महसूस करना सुरक्षा की आवश्यकता है।"
+      }
+     },
+     {
+      "id": "save",
+      "text": {
+       "en": "Saving money for emergencies",
+       "hi": "आपातकाल के लिए पैसे बचाना"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Securing the future is a safety need.",
+       "hi": "भविष्य को सुरक्षित करना सुरक्षा की आवश्यकता है।"
+      }
+     },
+     {
+      "id": "fest",
+      "text": {
+       "en": "Celebrating a festival with relatives",
+       "hi": "रिश्तेदारों के साथ त्योहार मनाना"
+      },
+      "bin": "l",
+      "why": {
+       "en": "Being with loved ones is belonging.",
+       "hi": "अपनों के साथ रहना अपनापन है।"
+      }
+     },
+     {
+      "id": "friend",
+      "text": {
+       "en": "Having close friends to talk to",
+       "hi": "बात करने के लिए क़रीबी दोस्त होना"
+      },
+      "bin": "l",
+      "why": {
+       "en": "Friendship meets the need for belonging.",
+       "hi": "मित्रता अपनेपन की ज़रूरत पूरी करती है।"
+      }
+     },
+     {
+      "id": "prize",
+      "text": {
+       "en": "Winning a prize and being respected",
+       "hi": "पुरस्कार जीतकर सम्मान पाना"
+      },
+      "bin": "e",
+      "why": {
+       "en": "Recognition meets the esteem need.",
+       "hi": "पहचान सम्मान की आवश्यकता पूरी करती है।"
+      }
+     },
+     {
+      "id": "sci",
+      "text": {
+       "en": "A scientist following her passion for discovery",
+       "hi": "अपने शोध के जुनून में लगी वैज्ञानिक"
+      },
+      "bin": "a",
+      "why": {
+       "en": "Living up to one's own potential is self-actualisation.",
+       "hi": "अपनी क्षमता के अनुसार जीना आत्म-सिद्धि है।"
+      }
+     },
+     {
+      "id": "music",
+      "text": {
+       "en": "Learning music for the joy of growing",
+       "hi": "आगे बढ़ने के आनंद के लिए संगीत सीखना"
+      },
+      "bin": "a",
+      "why": {
+       "en": "Growth for its own sake is self-actualisation.",
+       "hi": "विकास के लिए विकास आत्म-सिद्धि है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:meal",
+     "expect": "placed:meal",
+     "say": {
+      "en": "Tap the card \"Eating a meal when hungry\" and then the group where you think it belongs.",
+      "hi": "कार्ड \"भूख लगने पर खाना खाना\" दबाओ, फिर वह समूह दबाओ जहाँ तुम्हें लगता है कि यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which level do you think most of a child's daily worries belong to?",
+      "hi": "तुम्हारे विचार से बच्चे की रोज़ की ज़्यादातर चिंताएँ किस स्तर की हैं?"
+     },
+     "options": [
+      {
+       "id": "b",
+       "en": "Belonging and esteem",
+       "hi": "अपनापन और सम्मान"
+      },
+      {
+       "id": "p",
+       "en": "Only physiological",
+       "hi": "केवल शारीरिक"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:sci",
+     "expect": "placed:sci",
+     "say": {
+      "en": "Now place the card \"A scientist following her passion for discovery\".",
+      "hi": "अब कार्ड \"अपने शोध के जुनून में लगी वैज्ञानिक\" रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Everyday actions fit the ladder. A meal meets a bodily need, a locked door gives safety, friends give belonging, a prize brings esteem, and pursuing a passion is self-actualisation. One action can touch more than one level.",
+      "hi": "रोज़ के काम सीढ़ी में बैठते हैं। भोजन शारीरिक ज़रूरत पूरी करता है, बंद दरवाज़ा सुरक्षा देता है, दोस्त अपनापन देते हैं, पुरस्कार सम्मान लाता है, और जुनून का पीछा करना आत्म-सिद्धि है। एक काम एक से ज़्यादा स्तरों को छू सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Making friends mainly meets the need for…",
+        "hi": "दोस्त बनाना मुख्यतः किस आवश्यकता को पूरा करता है…"
+       },
+       "options": [
+        {
+         "en": "Safety",
+         "hi": "सुरक्षा"
+        },
+        {
+         "en": "Belonging",
+         "hi": "अपनापन"
+        },
+        {
+         "en": "Hunger",
+         "hi": "भूख"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Friends give us a feeling of belonging.",
+        "hi": "दोस्त हमें अपनेपन का अहसास देते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Safety is about protection.",
+         "hi": "सुरक्षा बचाव की बात है।"
+        },
+        "",
+        {
+         "en": "Hunger is a bodily need.",
+         "hi": "भूख शारीरिक आवश्यकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A soldier risks his life for the country. What does this tell us about the ladder?",
+        "hi": "एक सैनिक देश के लिए जान जोखिम में डालता है। यह सीढ़ी के बारे में क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "Some people place a higher goal above safety",
+         "hi": "कुछ लोग सुरक्षा से ऊपर किसी बड़े लक्ष्य को रखते हैं"
+        },
+        {
+         "en": "The ladder is useless",
+         "hi": "सीढ़ी बेकार है"
+        },
+        {
+         "en": "Soldiers have no needs",
+         "hi": "सैनिकों की कोई आवश्यकता नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ladder shows the usual order, but values can change it.",
+        "hi": "सीढ़ी सामान्य क्रम दिखाती है, पर मूल्य उसे बदल सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The ladder is a helpful, not perfect, guide.",
+         "hi": "सीढ़ी उपयोगी मार्गदर्शक है, पूर्ण नहीं।"
+        },
+        {
+         "en": "Soldiers have needs too.",
+         "hi": "सैनिकों की भी आवश्यकताएँ होती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of one person who acts against the ladder, like a doctor working through the night. Why do they do it?",
+      "hi": "कोई ऐसा व्यक्ति सोचो जो सीढ़ी के उलट चलता है, जैसे रात भर काम करता डॉक्टर। वे ऐसा क्यों करते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch08-emotion-parts",
+   "topic": "8.4",
+   "template": "sort",
+   "title": {
+    "en": "Three parts of an emotion",
+    "hi": "भावना के तीन भाग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "body",
+      "label": {
+       "en": "Body change",
+       "hi": "शरीर में बदलाव"
+      }
+     },
+     {
+      "id": "mind",
+      "label": {
+       "en": "Thought and feeling",
+       "hi": "सोच और अनुभूति"
+      }
+     },
+     {
+      "id": "beh",
+      "label": {
+       "en": "Expression and behaviour",
+       "hi": "अभिव्यक्ति और व्यवहार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "heart",
+      "text": {
+       "en": "Heart beating faster",
+       "hi": "दिल का तेज़ धड़कना"
+      },
+      "bin": "body",
+      "why": {
+       "en": "A change inside the body is physiological.",
+       "hi": "शरीर के भीतर का बदलाव शारीरिक है।"
+      }
+     },
+     {
+      "id": "sweat",
+      "text": {
+       "en": "Sweaty palms before a speech",
+       "hi": "भाषण से पहले हथेलियों में पसीना"
+      },
+      "bin": "body",
+      "why": {
+       "en": "The body reacts without our choosing.",
+       "hi": "शरीर हमारे चुने बिना प्रतिक्रिया करता है।"
+      }
+     },
+     {
+      "id": "butter",
+      "text": {
+       "en": "Butterflies in the stomach",
+       "hi": "पेट में तितलियाँ उड़ना"
+      },
+      "bin": "body",
+      "why": {
+       "en": "A bodily sensation.",
+       "hi": "एक शारीरिक संवेदना।"
+      }
+     },
+     {
+      "id": "afraid",
+      "text": {
+       "en": "\"I am afraid I will fail\"",
+       "hi": "\"मुझे डर है कि मैं फ़ेल हो जाऊँगा\""
+      },
+      "bin": "mind",
+      "why": {
+       "en": "It is a thought and feeling in the mind.",
+       "hi": "यह मन की सोच और अनुभूति है।"
+      }
+     },
+     {
+      "id": "glad",
+      "text": {
+       "en": "Feeling happy for a friend's success",
+       "hi": "दोस्त की सफलता पर ख़ुशी महसूस करना"
+      },
+      "bin": "mind",
+      "why": {
+       "en": "An inner feeling and its meaning.",
+       "hi": "भीतर की अनुभूति और उसका अर्थ।"
+      }
+     },
+     {
+      "id": "smile",
+      "text": {
+       "en": "Smiling widely",
+       "hi": "खुलकर मुस्कुराना"
+      },
+      "bin": "beh",
+      "why": {
+       "en": "A visible expression of emotion.",
+       "hi": "भावना की दिखने वाली अभिव्यक्ति।"
+      }
+     },
+     {
+      "id": "frown",
+      "text": {
+       "en": "Frowning and clenching fists",
+       "hi": "भौंहें चढ़ाना और मुट्ठियाँ भींचना"
+      },
+      "bin": "beh",
+      "why": {
+       "en": "What others can see is expression.",
+       "hi": "जो दूसरे देख सकते हैं वह अभिव्यक्ति है।"
+      }
+     },
+     {
+      "id": "run",
+      "text": {
+       "en": "Running away from a barking dog",
+       "hi": "भौंकते कुत्ते से दूर भागना"
+      },
+      "bin": "beh",
+      "why": {
+       "en": "An action driven by fear.",
+       "hi": "भय से चलने वाला कर्म।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:heart",
+     "expect": "placed:heart",
+     "say": {
+      "en": "Tap the card \"Heart beating faster\" and then the group where you think it belongs.",
+      "hi": "कार्ड \"दिल का तेज़ धड़कना\" दबाओ, फिर वह समूह दबाओ जहाँ तुम्हें लगता है कि यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When you are nervous, do your body, your thoughts and your actions all change?",
+      "hi": "जब तुम घबराए होते हो, तो क्या तुम्हारा शरीर, तुम्हारे विचार और तुम्हारे काम सब बदलते हैं?"
+     },
+     "options": [
+      {
+       "id": "y",
+       "en": "Yes, all three",
+       "hi": "हाँ, तीनों"
+      },
+      {
+       "id": "n",
+       "en": "Only the body",
+       "hi": "केवल शरीर"
+      }
+     ],
+     "answer": "y"
+    },
+    {
+     "kind": "do",
+     "target": "card:afraid",
+     "expect": "placed:afraid",
+     "say": {
+      "en": "Now place the card \"\"I am afraid I will fail\"\".",
+      "hi": "अब कार्ड \"\"मुझे डर है कि मैं फ़ेल हो जाऊँगा\"\" रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An emotion has three parts that work together: changes in the body, thoughts and feelings in the mind, and expression or action outside. Seeing all three helps us understand ourselves and others.",
+      "hi": "भावना के तीन भाग साथ चलते हैं: शरीर में बदलाव, मन के विचार और अनुभूतियाँ, और बाहर की अभिव्यक्ति या क्रिया। तीनों को देखने से हम खुद को और दूसरों को बेहतर समझ पाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A racing heart before an exam is which part?",
+        "hi": "परीक्षा से पहले दिल की तेज़ धड़कन कौन-सा भाग है?"
+       },
+       "options": [
+        {
+         "en": "Body change",
+         "hi": "शरीर में बदलाव"
+        },
+        {
+         "en": "Thought",
+         "hi": "सोच"
+        },
+        {
+         "en": "Behaviour",
+         "hi": "व्यवहार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is a change inside the body.",
+        "hi": "यह शरीर के भीतर का बदलाव है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A thought would be something like \"I will fail\".",
+         "hi": "सोच कुछ ऐसी होगी, \"मैं फ़ेल हो जाऊँगा\"।"
+        },
+        {
+         "en": "Behaviour is what we do, like pacing.",
+         "hi": "व्यवहार वह है जो हम करते हैं, जैसे चहलक़दमी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is it useful to know the three parts?",
+        "hi": "तीनों भाग जानना उपयोगी क्यों है?"
+       },
+       "options": [
+        {
+         "en": "We can calm the body, change thoughts and choose actions",
+         "hi": "हम शरीर शांत कर सकते हैं, सोच बदल सकते हैं और कर्म चुन सकते हैं"
+        },
+        {
+         "en": "It is not useful",
+         "hi": "यह उपयोगी नहीं"
+        },
+        {
+         "en": "It stops all emotions",
+         "hi": "यह सब भावनाएँ रोक देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each part gives a way to manage an emotion.",
+        "hi": "हर भाग भावना सँभालने का एक रास्ता देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Knowing the parts gives us tools.",
+         "hi": "भागों को जानना हमें साधन देता है।"
+        },
+        {
+         "en": "Emotions are natural and should not be stopped.",
+         "hi": "भावनाएँ स्वाभाविक हैं और रोकी नहीं जानी चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Recall a strong emotion from this week. What did your body, mind and actions do?",
+      "hi": "इस सप्ताह की कोई तेज़ भावना याद करो। तुम्हारे शरीर, मन और कर्मों ने क्या किया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch08-exam-anxiety",
+   "topic": "8.6",
+   "template": "scenario",
+   "title": {
+    "en": "Calming exam worry",
+    "hi": "परीक्षा की चिंता को शांत करना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "home",
+    "role": {
+     "en": "A Class 11 student before exams",
+     "hi": "परीक्षा से पहले कक्षा 11 का विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Exams start in three days. Your heart races and you cannot sleep well. What do you do?",
+       "hi": "परीक्षा तीन दिन बाद शुरू है। तुम्हारा दिल तेज़ धड़कता है और ठीक से नींद नहीं आती। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "plan",
+        "text": {
+         "en": "Make a simple timetable with short revision sessions and breaks",
+         "hi": "छोटे दोहराव-सत्रों और ब्रेक वाली सरल समय-सारणी बनाओ"
+        },
+        "next": "night",
+        "feedback": {
+         "en": "A plan makes work feel smaller and you feel more in control.",
+         "hi": "योजना काम को छोटा बनाती है और तुम्हें नियंत्रण का अहसास देती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "allnight",
+        "text": {
+         "en": "Study all night without a break",
+         "hi": "बिना रुके रात भर पढ़ते रहो"
+        },
+        "next": "tired",
+        "feedback": {
+         "en": "Going without sleep and rest tires the mind and raises worry.",
+         "hi": "नींद और आराम के बिना मन थकता है और चिंता बढ़ती है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "night",
+      "text": {
+       "en": "At night, a worry comes: \"What if I forget everything?\" What do you do?",
+       "hi": "रात में एक चिंता आती है: \"अगर मैं सब भूल गया तो?\" तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "breathe",
+        "text": {
+         "en": "Take slow deep breaths and remind yourself that you have prepared",
+         "hi": "धीरे-धीरे गहरी साँसें लो और खुद को याद दिलाओ कि तुमने तैयारी की है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Calming the body and changing the thought both lower anxiety.",
+         "hi": "शरीर को शांत करना और सोच बदलना, दोनों चिंता घटाते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "worst",
+        "text": {
+         "en": "Keep imagining the worst result",
+         "hi": "सबसे बुरे नतीजे की कल्पना करते रहो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Catastrophic thinking feeds anxiety.",
+         "hi": "भयानक कल्पनाएँ चिंता को खिलाती हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "tired",
+      "text": {
+       "en": "At 3 am you are exhausted and nothing stays in your head. What now?",
+       "hi": "रात 3 बजे तुम थके हुए हो और कुछ भी याद नहीं रहता। अब क्या?"
+      },
+      "choices": [
+       {
+        "id": "sleep",
+        "text": {
+         "en": "Sleep and restart tomorrow with a plan",
+         "hi": "सो जाओ और कल योजना के साथ फिर शुरू करो"
+        },
+        "next": "night",
+        "feedback": {
+         "en": "Rest helps memory and calm. It is a smart choice.",
+         "hi": "आराम याददाश्त और शांति में मदद करता है। यह समझदारी है।"
+        },
+        "good": true
+       },
+       {
+        "id": "push",
+        "text": {
+         "en": "Push on with no rest",
+         "hi": "बिना आराम के लगे रहो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A tired mind learns little and worries more.",
+         "hi": "थका मन कम सीखता है और ज़्यादा चिंता करता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:start:plan",
+     "expect": "chose:plan",
+     "say": {
+      "en": "Choose how you start.",
+      "hi": "तय करो कि शुरुआत कैसे करोगे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is a little worry before an exam always bad?",
+      "hi": "क्या परीक्षा से पहले थोड़ी चिंता हमेशा बुरी होती है?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, a little can help us prepare",
+       "hi": "नहीं, थोड़ी चिंता तैयारी में मदद कर सकती है"
+      },
+      {
+       "id": "y",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "choice:night:breathe",
+     "expect": "ended:good",
+     "say": {
+      "en": "Now choose how you handle the worry at night.",
+      "hi": "अब चुनो कि रात की चिंता कैसे सँभालोगे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A little tension can keep us alert, but too much hurts memory and sleep. Plans, breaks, enough sleep, slow breathing and kind self-talk all help. If worry feels too big, talk to a trusted adult or counsellor.",
+      "hi": "थोड़ा तनाव हमें सजग रखता है, पर बहुत ज़्यादा याददाश्त और नींद को नुक़सान पहुँचाता है। योजना, ब्रेक, पर्याप्त नींद, धीमी साँसें और अपने प्रति नरम बातें, सब मदद करती हैं। अगर चिंता बहुत भारी लगे तो किसी भरोसेमंद बड़े या परामर्शदाता से बात करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which helps most against exam anxiety?",
+        "hi": "परीक्षा की चिंता के विरुद्ध सबसे ज़्यादा क्या मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "Planning, rest and calm breathing",
+         "hi": "योजना, आराम और शांत साँसें"
+        },
+        {
+         "en": "Staying up all night",
+         "hi": "पूरी रात जागना"
+        },
+        {
+         "en": "Avoiding all friends",
+         "hi": "सब दोस्तों से बचना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They calm the body and organise the mind.",
+        "hi": "ये शरीर को शांत और मन को व्यवस्थित करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lack of sleep makes worry worse.",
+         "hi": "नींद की कमी चिंता बढ़ाती है।"
+        },
+        {
+         "en": "Friends can be a support.",
+         "hi": "दोस्त सहारा हो सकते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When anxiety feels too heavy, a good step is to…",
+        "hi": "जब चिंता बहुत भारी लगे तो अच्छा क़दम है…"
+       },
+       "options": [
+        {
+         "en": "Hide it",
+         "hi": "उसे छिपाना"
+        },
+        {
+         "en": "Talk to a trusted adult or counsellor",
+         "hi": "किसी भरोसेमंद बड़े या परामर्शदाता से बात करना"
+        },
+        {
+         "en": "Ignore it forever",
+         "hi": "उसे हमेशा नज़रअंदाज़ करना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Support from others makes it lighter.",
+        "hi": "दूसरों का सहारा उसे हल्का करता है।"
+       },
+       "wrong": [
+        {
+         "en": "Hiding can make it bigger.",
+         "hi": "छिपाने से वह बड़ी हो सकती है।"
+        },
+        "",
+        {
+         "en": "It will not simply go away.",
+         "hi": "वह अपने आप नहीं जाती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Replay with different choices. Make your own three-step plan for the day before a test.",
+      "hi": "अलग विकल्पों के साथ फिर खेलो। टेस्ट से एक दिन पहले के लिए अपनी तीन चरणों की योजना बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch08-coping",
+   "topic": "8.8",
+   "template": "sort",
+   "title": {
+    "en": "Handling feelings in a healthy way",
+    "hi": "भावनाओं को स्वस्थ ढंग से सँभालना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "h",
+      "label": {
+       "en": "Healthy way",
+       "hi": "स्वस्थ तरीक़ा"
+      }
+     },
+     {
+      "id": "u",
+      "label": {
+       "en": "Unhelpful way",
+       "hi": "अनुपयोगी तरीक़ा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "breath",
+      "text": {
+       "en": "Slow deep breathing",
+       "hi": "धीमी गहरी साँसें"
+      },
+      "bin": "h",
+      "why": {
+       "en": "It calms the body quickly.",
+       "hi": "यह शरीर को जल्दी शांत करती है।"
+      }
+     },
+     {
+      "id": "friend",
+      "text": {
+       "en": "Talking to a trusted friend",
+       "hi": "भरोसेमंद दोस्त से बात करना"
+      },
+      "bin": "h",
+      "why": {
+       "en": "Sharing a feeling makes it lighter.",
+       "hi": "भावना बाँटने से वह हल्की होती है।"
+      }
+     },
+     {
+      "id": "walk",
+      "text": {
+       "en": "Going for a walk or playing",
+       "hi": "टहलने जाना या खेलना"
+      },
+      "bin": "h",
+      "why": {
+       "en": "Activity releases tension.",
+       "hi": "गतिविधि तनाव छोड़ती है।"
+      }
+     },
+     {
+      "id": "thanks",
+      "text": {
+       "en": "Writing three things you are thankful for",
+       "hi": "तीन ऐसी बातें लिखना जिनके लिए आभारी हो"
+      },
+      "bin": "h",
+      "why": {
+       "en": "Gratitude builds positive feelings.",
+       "hi": "आभार सकारात्मक भावनाएँ बनाता है।"
+      }
+     },
+     {
+      "id": "help",
+      "text": {
+       "en": "Helping a classmate",
+       "hi": "सहपाठी की मदद करना"
+      },
+      "bin": "h",
+      "why": {
+       "en": "Kind acts raise our own happiness.",
+       "hi": "दया के काम हमारी अपनी ख़ुशी बढ़ाते हैं।"
+      }
+     },
+     {
+      "id": "shout",
+      "text": {
+       "en": "Shouting at others when angry",
+       "hi": "ग़ुस्से में दूसरों पर चिल्लाना"
+      },
+      "bin": "u",
+      "why": {
+       "en": "It hurts others and often makes things worse.",
+       "hi": "यह दूसरों को दुख देता है और अक्सर हालात बिगाड़ता है।"
+      }
+     },
+     {
+      "id": "bottle",
+      "text": {
+       "en": "Bottling up feelings for weeks",
+       "hi": "हफ़्तों भावनाएँ दबाए रखना"
+      },
+      "bin": "u",
+      "why": {
+       "en": "Held-in feelings tend to grow heavy.",
+       "hi": "दबी भावनाएँ भारी होती जाती हैं।"
+      }
+     },
+     {
+      "id": "break",
+      "text": {
+       "en": "Throwing or breaking things",
+       "hi": "चीज़ें फेंकना या तोड़ना"
+      },
+      "bin": "u",
+      "why": {
+       "en": "It causes harm and does not solve the problem.",
+       "hi": "यह नुक़सान करता है और समस्या हल नहीं करता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:breath",
+     "expect": "placed:breath",
+     "say": {
+      "en": "Tap the card \"Slow deep breathing\" and then the group where you think it belongs.",
+      "hi": "कार्ड \"धीमी गहरी साँसें\" दबाओ, फिर वह समूह दबाओ जहाँ तुम्हें लगता है कि यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When you feel very angry, what is the best first move?",
+      "hi": "जब तुम्हें बहुत ग़ुस्सा आए तो सबसे अच्छा पहला क़दम क्या है?"
+     },
+     "options": [
+      {
+       "id": "p",
+       "en": "Pause and breathe",
+       "hi": "रुकना और साँस लेना"
+      },
+      {
+       "id": "s",
+       "en": "Shout back at once",
+       "hi": "तुरंत पलटकर चिल्लाना"
+      }
+     ],
+     "answer": "p"
+    },
+    {
+     "kind": "do",
+     "target": "card:shout",
+     "expect": "placed:shout",
+     "say": {
+      "en": "Now place the card \"Shouting at others when angry\".",
+      "hi": "अब कार्ड \"ग़ुस्से में दूसरों पर चिल्लाना\" रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All feelings are normal. What matters is what we do with them. Calming the body, talking, moving, being thankful and helping others manage negative feelings and build positive ones. Shouting, bottling up and breaking things only add trouble.",
+      "hi": "सभी भावनाएँ सामान्य हैं। मायने यह रखता है कि हम उनके साथ क्या करते हैं। शरीर को शांत करना, बात करना, हिलना-डुलना, आभारी होना और दूसरों की मदद करना नकारात्मक भावनाओं को सँभालते और सकारात्मक बनाते हैं। चिल्लाना, दबाना और तोड़ना केवल परेशानी बढ़ाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a healthy way to handle sadness?",
+        "hi": "उदासी को सँभालने का स्वस्थ तरीक़ा कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Sharing it with someone you trust",
+         "hi": "किसी भरोसेमंद से साझा करना"
+        },
+        {
+         "en": "Keeping it hidden for weeks",
+         "hi": "हफ़्तों छिपाए रखना"
+        },
+        {
+         "en": "Blaming everyone",
+         "hi": "सबको दोष देना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sharing helps feelings settle.",
+        "hi": "साझा करने से भावनाएँ शांत होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hiding makes it heavier.",
+         "hi": "छिपाना उसे भारी बनाता है।"
+        },
+        {
+         "en": "Blame hurts relationships and does not help.",
+         "hi": "दोष देना रिश्ते बिगाड़ता है और मदद नहीं करता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does gratitude help?",
+        "hi": "आभार क्यों मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "It turns attention to good things and builds positive feelings",
+         "hi": "यह ध्यान अच्छी बातों की ओर मोड़ता है और सकारात्मक भावनाएँ बनाता है"
+        },
+        {
+         "en": "It removes all problems",
+         "hi": "यह सब समस्याएँ मिटा देता है"
+        },
+        {
+         "en": "It costs money",
+         "hi": "इसमें पैसे लगते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Noticing good things lifts mood over time.",
+        "hi": "अच्छी बातों पर ध्यान देने से समय के साथ मन अच्छा रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Problems remain, but we cope better.",
+         "hi": "समस्याएँ रहती हैं, पर हम बेहतर सँभालते हैं।"
+        },
+        {
+         "en": "Gratitude is free.",
+         "hi": "आभार में कोई पैसा नहीं लगता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write down three things you are thankful for today and share one of them with someone.",
+      "hi": "आज की तीन बातें लिखो जिनके लिए तुम आभारी हो और उनमें से एक किसी को बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.2",
+   "use": "Opens the chapter",
+   "shows": "Children running to a lunch break at an Indian school, tiffin boxes and a water tap",
+   "view": "16:9, bright",
+   "right": "Backs and small figures",
+   "avoid": "Faces, school names"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "8.3",
+   "use": "Maslow ladder",
+   "shows": "A five-step staircase or pyramid drawn clean with empty steps",
+   "view": "4:3, white background",
+   "right": "Five equal steps rising",
+   "avoid": "Words and numbers"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "Emotions",
+   "shows": "A group of friends cheering at a cricket match, hands raised, seen from behind",
+   "view": "16:9, golden hour",
+   "right": "Joy shown in posture",
+   "avoid": "Faces, logos"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "8.4",
+   "use": "Body and emotion",
+   "shows": "A clean outline of a human torso showing a heart and a stomach, no labels",
+   "view": "4:3, neutral background",
+   "right": "Anatomically simple and correct",
+   "avoid": "Text, arrows"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "8.6",
+   "use": "Exam anxiety",
+   "shows": "A desk with a study timetable on a wall, a pencil case and a glass of water, separate cut-outs",
+   "view": "Three transparent PNG files",
+   "right": "Calm, tidy objects",
+   "avoid": "Readable text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "8.8",
+   "use": "Positive emotions",
+   "shows": "Two students sharing notes and smiling under a tree, backs and hands",
+   "view": "16:9, afternoon",
+   "right": "Warm, friendly",
+   "avoid": "Faces"
+  }
+ ]
+}

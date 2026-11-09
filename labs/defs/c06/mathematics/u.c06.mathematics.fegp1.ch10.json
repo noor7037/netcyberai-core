@@ -1,0 +1,591 @@
+{
+ "chapter_key": "u.c06.mathematics.fegp1.ch10",
+ "class": 6,
+ "subject_id": "mathematics",
+ "title": "The Other Side of Zero",
+ "source": "https://ncert.nic.in/textbook/pdf/fegp110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Bela’s building of fun: positive and negative numbers",
+   "labs": [
+    "c06-mathematics-fegp1-ch10-lift",
+    "c06-mathematics-fegp1-ch10-compare"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "The token model: adding and subtracting integers",
+   "labs": [
+    "c06-mathematics-fegp1-ch10-add-negative"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Integers in other places: temperature, money, sea level",
+   "labs": [
+    "c06-mathematics-fegp1-ch10-temperature"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Explorations with integers",
+   "labs": [],
+   "why_no_lab": "Integer grid puzzles are solved by trial on paper; the reader sets them out and no template builds such grids yet."
+  },
+  {
+   "n": "10.5",
+   "title": "A pinch of history",
+   "labs": [],
+   "why_no_lab": "How Indian mathematicians such as Brahmagupta gave rules for negative numbers is a story best told in the reader."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-mathematics-fegp1-ch10-lift",
+   "topic": "10.1",
+   "template": "number-line",
+   "title": {
+    "en": "Bela’s building: going below ground",
+    "hi": "बेला की इमारत: ज़मीन के नीचे जाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "integers",
+    "min": -5,
+    "max": 10,
+    "start": 0,
+    "jumps": [
+     1
+    ],
+    "ask": "4-6"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The lift starts on the ground floor, 0. It goes up 4 floors, then down 6 floors. Where does it stop?",
+      "hi": "लिफ़्ट भूतल, यानी 0, से चलती है। वह 4 मंज़िल ऊपर जाती है, फिर 6 मंज़िल नीचे। वह कहाँ रुकेगी?"
+     },
+     "options": [
+      {
+       "id": "-2",
+       "en": "−2, two floors below ground",
+       "hi": "−2, ज़मीन से दो मंज़िल नीचे"
+      },
+      {
+       "id": "2",
+       "en": "2, two floors above ground",
+       "hi": "2, ज़मीन से दो मंज़िल ऊपर"
+      },
+      {
+       "id": "10",
+       "en": "10",
+       "hi": "मंज़िल 10"
+      }
+     ],
+     "answer": "-2"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:4",
+     "say": {
+      "en": "Tap the up jump until the lift reaches floor 4.",
+      "hi": "ऊपर की छलाँग तब तक दबाओ जब तक लिफ़्ट मंज़िल 4 पर न पहुँचे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:-2",
+     "say": {
+      "en": "Now tap the down jump 6 times.",
+      "hi": "अब नीचे की छलाँग 6 बार दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Going up is adding and going down is subtracting. 4 − 6 = −2: the lift passes 0 and goes 2 floors below ground. Numbers below zero are negative numbers, and together with 0 and the positive numbers they are called integers.",
+      "hi": "ऊपर जाना जोड़ना है और नीचे जाना घटाना। 4 − 6 = −2: लिफ़्ट 0 पार करके ज़मीन से 2 मंज़िल नीचे जाती है। शून्य से नीचे की संख्याएँ ऋणात्मक संख्याएँ हैं, और 0 तथा धनात्मक संख्याओं के साथ मिलकर ये पूर्णांक कहलाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The lift is at −3 and goes up 5 floors. Where is it now?",
+        "hi": "लिफ़्ट −3 पर है और 5 मंज़िल ऊपर जाती है। अब वह कहाँ है?"
+       },
+       "options": [
+        "2",
+        "−8",
+        "8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "−3 + 5 = 2: 3 floors up reach 0, then 2 more.",
+        "hi": "−3 + 5 = 2: 3 मंज़िल ऊपर 0 आता है, फिर 2 और।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "−8 would be going down 5; the lift went up.",
+         "hi": "−8 तब होता जब लिफ़्ट 5 नीचे जाती; वह ऊपर गई।"
+        },
+        {
+         "en": "8 ignores the minus sign; starting below 0 uses up 3 of the floors.",
+         "hi": "8 में ऋण चिह्न अनदेखा हुआ; 0 से नीचे से शुरू करने में 3 मंज़िलें लग जाती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Show the opposite. Where is the opposite of 4? Of −2?",
+      "hi": "अब ख़ुद आज़माओ। विपरीत संख्या दिखाओ दबाओ। 4 की विपरीत संख्या कहाँ है? −2 की?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch10-compare",
+   "topic": "10.1",
+   "template": "number-line",
+   "title": {
+    "en": "Which floor is lower: −3 or −7?",
+    "hi": "कौन-सी मंज़िल नीचे है: −3 या −7?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "compare",
+    "min": -10,
+    "max": 10,
+    "start": -3,
+    "ask": -7
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "7 is bigger than 3. Is −7 bigger or smaller than −3?",
+      "hi": "7, 3 से बड़ा है। क्या −7, −3 से बड़ा है या छोटा?"
+     },
+     "options": [
+      {
+       "id": "smaller",
+       "en": "Smaller: it is lower down",
+       "hi": "छोटा: वह और नीचे है"
+      },
+      {
+       "id": "bigger",
+       "en": "Bigger, because 7 > 3",
+       "hi": "बड़ा, क्योंकि 7 > 3"
+      },
+      {
+       "id": "equal",
+       "en": "They are equal",
+       "hi": "दोनों बराबर हैं"
+      }
+     ],
+     "answer": "smaller"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "A is −3 and B is −7. Choose the sign that compares them.",
+      "hi": "A, −3 है और B, −7 है। उनकी तुलना करने वाला चिह्न चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On the number line, numbers get smaller as you go left (or down a building). −7 is further left than −3, so −7 < −3. The floor −7 is deeper underground than −3.",
+      "hi": "संख्या रेखा पर बाईं ओर (या इमारत में नीचे) जाने पर संख्याएँ छोटी होती जाती हैं। −7, −3 से ज़्यादा बाईं ओर है, इसलिए −7 < −3। मंज़िल −7, −3 से ज़्यादा गहराई में है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the smallest?",
+        "hi": "सबसे छोटी संख्या कौन-सी है?"
+       },
+       "options": [
+        "−9",
+        "−1",
+        "0"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "−9 is the furthest to the left on the number line.",
+        "hi": "संख्या रेखा पर −9 सबसे ज़्यादा बाईं ओर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "−1 is just below 0, much higher than −9.",
+         "hi": "−1 तो 0 के ठीक नीचे है, −9 से कहीं ऊपर।"
+        },
+        {
+         "en": "0 is bigger than every negative number.",
+         "hi": "0 हर ऋणात्मक संख्या से बड़ा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Drag A to other numbers and compare it with −7 each time.",
+      "hi": "अब ख़ुद आज़माओ। A को दूसरी संख्याओं पर खिसकाओ और हर बार −7 से तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch10-add-negative",
+   "topic": "10.2",
+   "template": "number-line",
+   "title": {
+    "en": "Adding a negative number",
+    "hi": "ऋणात्मक संख्या जोड़ना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "integers",
+    "min": -6,
+    "max": 6,
+    "start": 0,
+    "jumps": [
+     1
+    ],
+    "ask": "2+(-5)"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:2",
+     "say": {
+      "en": "Start at 0. Tap the forward jump to reach +2, like 2 positive tokens.",
+      "hi": "0 से शुरू करो। +2 तक पहुँचने के लिए आगे की छलाँग दबाओ, जैसे 2 धन टोकन।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you add −5, like adding 5 negative tokens. Each negative cancels one positive. Which way do you move, and where do you stop?",
+      "hi": "अब तुम −5 जोड़ोगे, जैसे 5 ऋण टोकन जोड़ना। हर ऋण टोकन एक धन टोकन को काट देता है। तुम किस ओर जाओगे और कहाँ रुकोगे?"
+     },
+     "options": [
+      {
+       "id": "-3",
+       "en": "Left, to −3",
+       "hi": "बाईं ओर, −3 तक"
+      },
+      {
+       "id": "7",
+       "en": "Right, to 7",
+       "hi": "दाईं ओर, 7 तक"
+      },
+      {
+       "id": "3",
+       "en": "Left, to 3",
+       "hi": "बाईं ओर, 3 तक"
+      }
+     ],
+     "answer": "-3"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:-3",
+     "say": {
+      "en": "Tap the backward jump 5 times to add −5.",
+      "hi": "−5 जोड़ने के लिए पीछे की छलाँग 5 बार दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Adding a negative number moves you left, just like subtracting: 2 + (−5) = 2 − 5 = −3. With tokens, 2 positives and 2 negatives make 2 zero pairs that cancel, and 3 negatives are left.",
+      "hi": "ऋणात्मक संख्या जोड़ने से तुम बाईं ओर जाते हो, बिल्कुल घटाने की तरह: 2 + (−5) = 2 − 5 = −3। टोकनों में, 2 धन और 2 ऋण मिलकर 2 शून्य-जोड़े बनाते हैं जो कट जाते हैं, और 3 ऋण बचते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 4 + (−4)?",
+        "hi": "4 + (−4) कितना है?"
+       },
+       "options": [
+        "0",
+        "8",
+        "−8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 positives and 4 negatives make 4 zero pairs: nothing is left.",
+        "hi": "4 धन और 4 ऋण मिलकर 4 शून्य-जोड़े बनाते हैं: कुछ नहीं बचता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 treats −4 as +4; a negative moves you back.",
+         "hi": "8 में −4 को +4 मान लिया; ऋण संख्या पीछे ले जाती है।"
+        },
+        {
+         "en": "−8 moves left 8; from 4 you only move 4 to the left.",
+         "hi": "−8 तक 8 बाईं ओर जाना होता; 4 से तुम केवल 4 बाईं ओर जाते हो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is (−2) + (−3)?",
+        "hi": "(−2) + (−3) कितना है?"
+       },
+       "options": [
+        "−5",
+        "1",
+        "5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 negatives and 3 more negatives make 5 negatives.",
+        "hi": "2 ऋण और 3 और ऋण मिलकर 5 ऋण बनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 would come from −2 + 3, but both numbers are negative.",
+         "hi": "1 तो −2 + 3 से आता, पर दोनों संख्याएँ ऋणात्मक हैं।"
+        },
+        {
+         "en": "5 loses the minus signs; adding negatives makes the total more negative.",
+         "hi": "5 में ऋण चिह्न छूट गए; ऋण जोड़ने से योग और ऋणात्मक होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. From 0, jump to −4, then jump forward 6. What is −4 + 6?",
+      "hi": "अब ख़ुद आज़माओ। 0 से −4 तक जाओ, फिर 6 आगे छलाँग लगाओ। −4 + 6 कितना है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch10-temperature",
+   "topic": "10.3",
+   "template": "number-line",
+   "title": {
+    "en": "A cold night in Leh",
+    "hi": "लेह की ठंडी रात"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "integers",
+    "min": -10,
+    "max": 10,
+    "start": 3,
+    "jumps": [
+     1
+    ],
+    "ask": "3-8"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One afternoon it is 3 °C. By night the temperature falls by 8 degrees. What is it at night?",
+      "hi": "एक दोपहर तापमान 3 °C है। रात तक तापमान 8 डिग्री गिर जाता है। रात में तापमान कितना है?"
+     },
+     "options": [
+      {
+       "id": "-5",
+       "en": "−5 °C",
+       "hi": "−5 °C (शून्य से 5 नीचे)"
+      },
+      {
+       "id": "5",
+       "en": "5 °C",
+       "hi": "5 °C (शून्य से 5 ऊपर)"
+      },
+      {
+       "id": "-11",
+       "en": "−11 °C",
+       "hi": "−11 °C (शून्य से 11 नीचे)"
+      }
+     ],
+     "answer": "-5"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:-5",
+     "say": {
+      "en": "Tap the backward jump to let the temperature fall 8 degrees.",
+      "hi": "तापमान 8 डिग्री गिराने के लिए पीछे की छलाँग दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Falling 3 degrees brings 3 °C to 0 °C; the other 5 degrees take it to −5 °C, below freezing. So 3 − 8 = −5. Thermometers, bank balances and heights above and below sea level all use negative numbers.",
+      "hi": "3 डिग्री गिरने से 3 °C, 0 °C पर आता है; बाक़ी 5 डिग्री उसे −5 °C तक ले जाते हैं, हिमांक से नीचे। इसलिए 3 − 8 = −5। थर्मामीटर, बैंक का बकाया और समुद्र तल से ऊँचाई-गहराई, सब में ऋणात्मक संख्याएँ आती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Your bank balance is ₹200 and you spend ₹350 on credit. What is your balance?",
+        "hi": "तुम्हारे बैंक में ₹200 हैं और तुम उधार पर ₹350 ख़र्च करते हो। अब बकाया कितना है?"
+       },
+       "options": [
+        "−₹150",
+        "₹150",
+        "₹550"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "200 − 350 = −150: you owe the bank ₹150.",
+        "hi": "200 − 350 = −150: तुम पर बैंक के ₹150 बाक़ी हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹150 is the right size but you spent more than you had, so it is negative.",
+         "hi": "₹150 मात्रा सही है, पर तुमने जितना था उससे ज़्यादा ख़र्च किया, इसलिए यह ऋणात्मक है।"
+        },
+        {
+         "en": "₹550 adds the money you spent; spending takes money away.",
+         "hi": "₹550 में ख़र्च को जोड़ दिया; ख़र्च पैसा घटाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Start at −5 and let the temperature rise 12 degrees by the next afternoon. What do you get?",
+      "hi": "अब ख़ुद आज़माओ। −5 से शुरू करो और अगली दोपहर तक तापमान 12 डिग्री बढ़ाओ। क्या मिलता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Chapter hook: floors below ground",
+   "shows": "A lift panel in a building with buttons for floors above ground and basement levels below",
+   "view": "Straight on, close, soft light",
+   "right": "Basement buttons clearly below the ground-floor button",
+   "avoid": "Brand names, readable text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.2",
+   "use": "Token model",
+   "shows": "Small round tokens in two colours with different shapes: red circles with a minus groove and green circles with a plus groove",
+   "view": "Top-down, transparent background",
+   "right": "Positive and negative tokens differ in shape and colour",
+   "avoid": "Text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "Cold place",
+   "shows": "A snowy street in Leh in winter with a thermometer on a wall",
+   "view": "Eye level, cold morning light",
+   "right": "Thermometer shows below zero",
+   "avoid": "Faces, shop names"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "10.3",
+   "use": "Thermometer",
+   "shows": "A wall thermometer with a scale from −30 °C to 50 °C",
+   "view": "Straight on, transparent background",
+   "right": "Zero clearly marked; negative side below",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "Sea level",
+   "shows": "A coastline with a boat on the sea and a diver below the surface, seen in a split above-and-below-water view",
+   "view": "Split view at the waterline",
+   "right": "Waterline straight; diver clearly below it",
+   "avoid": "Faces, logos"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "10.1",
+   "use": "Number line base for integers",
+   "shows": "A vertical number-line strip like a building, with equal steps above and below a marked zero",
+   "view": "Flat, white background",
+   "right": "Equal spacing; zero in the middle",
+   "avoid": "Numbers or labels"
+  }
+ ]
+}

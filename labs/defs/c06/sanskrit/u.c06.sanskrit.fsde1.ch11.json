@@ -1,0 +1,1073 @@
+{
+  "chapter_key": "u.c06.sanskrit.fsde1.ch11",
+  "class": 6,
+  "subject_id": "sanskrit",
+  "title": "यः जानाति सः पण्डितः",
+  "source": "https://ncert.nic.in/textbook.php?fsde1=0-16",
+  "topics": [
+    {
+      "n": "11.1",
+      "title": "Riddles (प्रहेलिकाः)",
+      "labs": [
+        "c06-sanskrit-fsde1-ch11-riddles",
+        "c06-sanskrit-fsde1-ch11-split"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "11.2",
+      "title": "Teachers and students",
+      "labs": [
+        "c06-sanskrit-fsde1-ch11-gurus"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "11.3",
+      "title": "Authors and their works",
+      "labs": [
+        "c06-sanskrit-fsde1-ch11-works"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "11.4",
+      "title": "Saying \"of\" in sentences",
+      "labs": [
+        "c06-sanskrit-fsde1-ch11-of"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c06-sanskrit-fsde1-ch11-riddles",
+      "topic": "11.1",
+      "template": "match",
+      "title": {
+        "en": "Solve the riddles",
+        "hi": "पहेलियाँ सुलझाओ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "tak",
+            "left": {
+              "en": "What do we drink after a meal? Hard for Indra to get.",
+              "hi": "भोजन के बाद क्या पीते हैं? इन्द्र को भी दुर्लभ।"
+            },
+            "right": {
+              "en": "तक्रम्",
+              "hi": "तक्रम्"
+            },
+            "why": {
+              "en": "तक्रम् is buttermilk.",
+              "hi": "तक्रम् छाछ है।"
+            }
+          },
+          {
+            "id": "nay",
+            "left": {
+              "en": "Starts with न, ends with न, य in the middle. You and I both have it.",
+              "hi": "आदि में न, अन्त में न, बीच में य। तुम्हारे पास भी है, मेरे पास भी।"
+            },
+            "right": {
+              "en": "नयनम्",
+              "hi": "नयनम्"
+            },
+            "why": {
+              "en": "न-य-न: नयनम्, the eye.",
+              "hi": "न-य-न: नयनम्, आँख।"
+            }
+          },
+          {
+            "id": "ana",
+            "left": {
+              "en": "A fruit with a tree on top of it. Starts with अ, ends with स.",
+              "hi": "फल के ऊपर पेड़। अ से शुरू, स पर अन्त।"
+            },
+            "right": {
+              "en": "अनानसः",
+              "hi": "अनानसः"
+            },
+            "why": {
+              "en": "अनानसः is the pineapple.",
+              "hi": "अनानसः अनानास है।"
+            }
+          },
+          {
+            "id": "kum",
+            "left": {
+              "en": "Half in the potter's house, half in Hastinapur, whole in Lanka.",
+              "hi": "आधा कुम्हार के घर, आधा हस्तिनापुर में, पूरा लंका में।"
+            },
+            "right": {
+              "en": "कुम्भकर्णः",
+              "hi": "कुम्भकर्णः"
+            },
+            "why": {
+              "en": "कुम्भ + कर्ण: Kumbhakarna of Lanka.",
+              "hi": "कुम्भ + कर्ण: लंका का कुम्भकर्ण।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:tak",
+          "expect": "matched:tak",
+          "say": {
+            "en": "Tap What do we drink after a meal? Hard for Indra to get., then tap the card that goes with it.",
+            "hi": "भोजन के बाद क्या पीते हैं? इन्द्र को भी दुर्लभ। छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A word with न at the start, य in the middle and न at the end is…",
+            "hi": "जिस शब्द में पहले न, बीच में य और अन्त में न हो वह है…"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "नयनम्",
+              "hi": "नयनम्"
+            },
+            {
+              "id": "b",
+              "en": "नगरम्",
+              "hi": "नगरम्"
+            },
+            {
+              "id": "c",
+              "en": "नदी",
+              "hi": "नदी"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:kum",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A riddle (प्रहेलिका) hides an answer in clever words. It trains the mind and tests how well we know letters and words. The riddles here hide तक्रम्, नयनम्, अनानसः and कुम्भकर्णः.",
+            "hi": "प्रहेलिका चतुर शब्दों में उत्तर छिपाती है। यह बुद्धि को तेज़ करती है और अक्षरों-शब्दों की समझ परखती है। यहाँ की पहेलियों में तक्रम्, नयनम्, अनानसः और कुम्भकर्णः छिपे हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which answer is a fruit?",
+                "hi": "कौन-सा उत्तर फल है?"
+              },
+              "options": [
+                "अनानसः",
+                "नयनम्",
+                "तक्रम्"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "अनानसः is a pineapple.",
+                "hi": "अनानसः अनानास है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "नयनम् is the eye.",
+                  "hi": "नयनम् आँख है।"
+                },
+                {
+                  "en": "तक्रम् is buttermilk.",
+                  "hi": "तक्रम् छाछ है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "कुम्भः means a pot and कर्णः means an ear. Together the riddle gives:",
+                "hi": "कुम्भः का अर्थ घड़ा और कर्णः का कान है। मिलाकर पहेली देती है:"
+              },
+              "options": [
+                "कुम्भकर्णः",
+                "कुम्भकारः",
+                "कर्णकुम्भः"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "कुम्भ + कर्ण = कुम्भकर्णः.",
+                "hi": "कुम्भ + कर्ण = कुम्भकर्णः।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "कुम्भकारः is a potter, not the riddle answer.",
+                  "hi": "कुम्भकारः कुम्हार है, पहेली का उत्तर नहीं।"
+                },
+                {
+                  "en": "The word order is wrong: कुम्भ comes first.",
+                  "hi": "क्रम गलत है: कुम्भ पहले आता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Ask a family member a riddle and see if they can solve it.",
+            "hi": "घर में किसी से पहेली पूछो और देखो वे बूझ पाते हैं या नहीं।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch11-split",
+      "topic": "11.1",
+      "template": "words",
+      "title": {
+        "en": "Split the riddle answers into aksharas",
+        "hi": "पहेलियों के उत्तर अक्षरों में तोड़ो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "syllables",
+        "lang": "sa",
+        "words": [
+          {
+            "w": "नयनम्",
+            "meaning": {
+              "en": "eye",
+              "hi": "आँख"
+            }
+          },
+          {
+            "w": "अनानसः",
+            "meaning": {
+              "en": "pineapple",
+              "hi": "अनानास"
+            }
+          },
+          {
+            "w": "तक्रम्",
+            "meaning": {
+              "en": "buttermilk",
+              "hi": "छाछ"
+            }
+          },
+          {
+            "w": "कुम्भकर्णः",
+            "meaning": {
+              "en": "Kumbhakarna",
+              "hi": "कुम्भकर्ण"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "clap",
+          "expect": "clap",
+          "say": {
+            "en": "Tap Clap to feel the beats of the word.",
+            "hi": "ताली दबाकर शब्द की ध्वनि-ताल महसूस करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "How many aksharas does नयनम् have?",
+            "hi": "नयनम् में कितने अक्षर हैं?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Three: न, य, नम्",
+              "hi": "तीन: न, य, नम्"
+            },
+            {
+              "id": "b",
+              "en": "Two",
+              "hi": "दो"
+            },
+            {
+              "id": "c",
+              "en": "Five",
+              "hi": "पाँच"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "gap:0",
+          "expect": "split:0",
+          "say": {
+            "en": "Tap the gap after the first akshar to cut the word.",
+            "hi": "पहले अक्षर के बाद वाली जगह छूकर शब्द काटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A word is spoken in beats called aksharas. Each akshar is a consonant with its vowel: न-य-न-म्. A conjunct, like क्र in तक्रम् or म्भ in कुम्भकर्णः, stays together in one akshar.",
+            "hi": "शब्द ताल-खंडों में बोला जाता है, जिन्हें अक्षर कहते हैं। हर अक्षर व्यञ्जन और उसके स्वर से बनता है: न-य-न-म्। संयुक्ताक्षर, जैसे तक्रम् का क्र या कुम्भकर्णः का म्भ, एक ही अक्षर में रहता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "तक्रम् splits into:",
+                "hi": "तक्रम् टूटता है:"
+              },
+              "options": [
+                "त - क्र - म्",
+                "तक् - रम्",
+                "त - क - रम्"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "त, क्र (a conjunct) and म्.",
+                "hi": "त, क्र (संयुक्ताक्षर) और म्।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "क् and र do not part in the middle.",
+                  "hi": "क् और र बीच से अलग नहीं होते।"
+                },
+                {
+                  "en": "क्र stays one block; it cannot be क - र.",
+                  "hi": "क्र एक ही खंड है; इसे क - र नहीं कर सकते।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many aksharas has अनानसः?",
+                "hi": "अनानसः में कितने अक्षर हैं?"
+              },
+              "options": [
+                "4",
+                "3",
+                "5"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "अ - ना - न - सः is four.",
+                "hi": "अ - ना - न - सः चार है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Three misses one akshar.",
+                  "hi": "तीन में एक अक्षर छूट गया।"
+                },
+                {
+                  "en": "Five counts one too many.",
+                  "hi": "पाँच में एक ज़्यादा गिन लिया।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Split the other words too. Which one has the most aksharas?",
+            "hi": "बाकी शब्द भी तोड़ो। किसमें सबसे अधिक अक्षर हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch11-gurus",
+      "topic": "11.2",
+      "template": "match",
+      "title": {
+        "en": "Teachers and students",
+        "hi": "गुरु और शिष्य"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "ram",
+            "left": {
+              "en": "श्रीरामः",
+              "hi": "श्रीरामः"
+            },
+            "right": {
+              "en": "वसिष्ठः",
+              "hi": "वसिष्ठः"
+            },
+            "why": {
+              "en": "Vasishtha was the teacher of Shri Ram.",
+              "hi": "वसिष्ठ श्रीराम के गुरु थे।"
+            }
+          },
+          {
+            "id": "karna",
+            "left": {
+              "en": "कर्णः",
+              "hi": "कर्णः"
+            },
+            "right": {
+              "en": "परशुरामः",
+              "hi": "परशुरामः"
+            },
+            "why": {
+              "en": "Parashurama was the teacher of Karna.",
+              "hi": "परशुराम कर्ण के गुरु थे।"
+            }
+          },
+          {
+            "id": "arj",
+            "left": {
+              "en": "अर्जुनः",
+              "hi": "अर्जुनः"
+            },
+            "right": {
+              "en": "द्रोणः",
+              "hi": "द्रोणः"
+            },
+            "why": {
+              "en": "Drona was the teacher of Arjuna.",
+              "hi": "द्रोण अर्जुन के गुरु थे।"
+            }
+          },
+          {
+            "id": "chan",
+            "left": {
+              "en": "चन्द्रगुप्तः",
+              "hi": "चन्द्रगुप्तः"
+            },
+            "right": {
+              "en": "चाणक्यः",
+              "hi": "चाणक्यः"
+            },
+            "why": {
+              "en": "Chanakya was the teacher of Chandragupta.",
+              "hi": "चाणक्य चन्द्रगुप्त के गुरु थे।"
+            }
+          },
+          {
+            "id": "pad",
+            "left": {
+              "en": "पद्मपादः",
+              "hi": "पद्मपादः"
+            },
+            "right": {
+              "en": "शङ्कराचार्यः",
+              "hi": "शङ्कराचार्यः"
+            },
+            "why": {
+              "en": "Shankaracharya was the teacher of Padmapada.",
+              "hi": "शंकराचार्य पद्मपाद के गुरु थे।"
+            }
+          },
+          {
+            "id": "viv",
+            "left": {
+              "en": "विवेकानन्दः",
+              "hi": "विवेकानन्दः"
+            },
+            "right": {
+              "en": "रामकृष्णः",
+              "hi": "रामकृष्णः"
+            },
+            "why": {
+              "en": "Ramakrishna was the teacher of Vivekananda.",
+              "hi": "रामकृष्ण विवेकानन्द के गुरु थे।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:ram",
+          "expect": "matched:ram",
+          "say": {
+            "en": "Tap श्रीरामः, then tap the card that goes with it.",
+            "hi": "श्रीरामः छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Who was the teacher of Arjuna?",
+            "hi": "अर्जुन के गुरु कौन थे?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "द्रोणः",
+              "hi": "द्रोणः"
+            },
+            {
+              "id": "b",
+              "en": "वसिष्ठः",
+              "hi": "वसिष्ठः"
+            },
+            {
+              "id": "c",
+              "en": "चाणक्यः",
+              "hi": "चाणक्यः"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:viv",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A guru-shishya pair is told in two ways: अर्जुनस्य गुरुः द्रोणः (Arjuna's teacher is Drona) and द्रोणस्य शिष्यः अर्जुनः (Drona's student is Arjuna). The ending -स्य means \"of\".",
+            "hi": "गुरु-शिष्य की जोड़ी दो तरह से कही जाती है: अर्जुनस्य गुरुः द्रोणः और द्रोणस्य शिष्यः अर्जुनः। -स्य का अर्थ \"का\" है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Whose teacher was चाणक्यः?",
+                "hi": "चाणक्यः किसके गुरु थे?"
+              },
+              "options": [
+                "चन्द्रगुप्तः",
+                "श्रीरामः",
+                "कर्णः"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Chanakya taught Chandragupta.",
+                "hi": "चाणक्य ने चन्द्रगुप्त को पढ़ाया।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Shri Ram learned from Vasishtha.",
+                  "hi": "श्रीराम ने वसिष्ठ से सीखा।"
+                },
+                {
+                  "en": "Karna learned from Parashurama.",
+                  "hi": "कर्ण ने परशुराम से सीखा।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "विवेकानन्दस्य गुरुः…",
+                "hi": "विवेकानन्दस्य गुरुः…"
+              },
+              "options": [
+                "रामकृष्णः",
+                "द्रोणः",
+                "परशुरामः"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Vivekananda's guru was Ramakrishna.",
+                "hi": "विवेकानन्द के गुरु रामकृष्ण थे।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Drona taught Arjuna.",
+                  "hi": "द्रोण ने अर्जुन को पढ़ाया।"
+                },
+                {
+                  "en": "Parashurama taught Karna.",
+                  "hi": "परशुराम ने कर्ण को पढ़ाया।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tell a friend the name of your own teacher using the pattern मम गुरुः ....",
+            "hi": "मित्र को मम गुरुः .... के ढंग से अपने गुरु का नाम बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch11-works",
+      "topic": "11.3",
+      "template": "match",
+      "title": {
+        "en": "Authors and their books",
+        "hi": "रचनाकार और उनकी रचनाएँ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "val",
+            "left": {
+              "en": "वाल्मीकिः",
+              "hi": "वाल्मीकिः"
+            },
+            "right": {
+              "en": "रामायणम्",
+              "hi": "रामायणम्"
+            }
+          },
+          {
+            "id": "vya",
+            "left": {
+              "en": "व्यासः",
+              "hi": "व्यासः"
+            },
+            "right": {
+              "en": "महाभारतम्",
+              "hi": "महाभारतम्"
+            }
+          },
+          {
+            "id": "bha",
+            "left": {
+              "en": "भासः",
+              "hi": "भासः"
+            },
+            "right": {
+              "en": "कर्णभारम्",
+              "hi": "कर्णभारम्"
+            }
+          },
+          {
+            "id": "kal",
+            "left": {
+              "en": "कालिदासः",
+              "hi": "कालिदासः"
+            },
+            "right": {
+              "en": "रघुवंशम्",
+              "hi": "रघुवंशम्"
+            }
+          },
+          {
+            "id": "vis",
+            "left": {
+              "en": "विष्णुशर्मा",
+              "hi": "विष्णुशर्मा"
+            },
+            "right": {
+              "en": "पञ्चतन्त्रम्",
+              "hi": "पञ्चतन्त्रम्"
+            }
+          },
+          {
+            "id": "nar",
+            "left": {
+              "en": "नारायणपण्डितः",
+              "hi": "नारायणपण्डितः"
+            },
+            "right": {
+              "en": "हितोपदेशः",
+              "hi": "हितोपदेशः"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:val",
+          "expect": "matched:val",
+          "say": {
+            "en": "Tap वाल्मीकिः, then tap the card that goes with it.",
+            "hi": "वाल्मीकिः छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Who wrote the Ramayana?",
+            "hi": "रामायण किसने लिखी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "वाल्मीकिः",
+              "hi": "वाल्मीकिः"
+            },
+            {
+              "id": "b",
+              "en": "व्यासः",
+              "hi": "व्यासः"
+            },
+            {
+              "id": "c",
+              "en": "कालिदासः",
+              "hi": "कालिदासः"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:nar",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Sanskrit has famous authors: वाल्मीकिः wrote the रामायणम्, व्यासः the महाभारतम्, भासः the कर्णभारम्, कालिदासः the रघुवंशम्, विष्णुशर्मा the पञ्चतन्त्रम् and नारायणपण्डितः the हितोपदेशः.",
+            "hi": "संस्कृत में प्रसिद्ध रचनाकार हैं: वाल्मीकि ने रामायण, व्यास ने महाभारत, भास ने कर्णभार, कालिदास ने रघुवंश, विष्णुशर्मा ने पञ्चतन्त्र और नारायणपण्डित ने हितोपदेश रचा।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The author of the पञ्चतन्त्रम् is:",
+                "hi": "पञ्चतन्त्रम् के रचयिता हैं:"
+              },
+              "options": [
+                "विष्णुशर्मा",
+                "भासः",
+                "व्यासः"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Vishnu Sharma wrote it.",
+                "hi": "इसे विष्णुशर्मा ने रचा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "भासः wrote the कर्णभारम्.",
+                  "hi": "भास ने कर्णभार रचा।"
+                },
+                {
+                  "en": "व्यासः wrote the महाभारतम्.",
+                  "hi": "व्यास ने महाभारत रचा।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "रघुवंशम् was written by:",
+                "hi": "रघुवंशम् किसने लिखा?"
+              },
+              "options": [
+                "कालिदासः",
+                "वाल्मीकिः",
+                "नारायणपण्डितः"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Kalidasa wrote the Raghuvamsha.",
+                "hi": "कालिदास ने रघुवंश लिखा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "वाल्मीकिः wrote the रामायणम्.",
+                  "hi": "वाल्मीकि ने रामायण लिखी।"
+                },
+                {
+                  "en": "नारायणपण्डितः wrote the हितोपदेशः.",
+                  "hi": "नारायणपण्डित ने हितोपदेश लिखा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Ask at home which of these stories someone has read or heard.",
+            "hi": "घर में पूछो कि इनमें से कौन-सी कथा किसने पढ़ी या सुनी है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch11-of",
+      "topic": "11.4",
+      "template": "grammar",
+      "title": {
+        "en": "Say \"of\" in Sanskrit",
+        "hi": "संस्कृत में \"का\" कहो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "build",
+        "lang": "sa",
+        "items": [
+          {
+            "id": "r1",
+            "words": [
+              "श्रीरामस्य",
+              "गुरुः",
+              "वसिष्ठः",
+              "शिष्यः"
+            ],
+            "answer": "श्रीरामस्य गुरुः वसिष्ठः",
+            "rule": {
+              "en": "-स्य means \"of\": Shri Ram's teacher.",
+              "hi": "-स्य का अर्थ \"का\": श्रीराम के गुरु।"
+            }
+          },
+          {
+            "id": "r2",
+            "words": [
+              "वसिष्ठस्य",
+              "शिष्यः",
+              "श्रीरामः",
+              "गुरुः"
+            ],
+            "answer": "वसिष्ठस्य शिष्यः श्रीरामः",
+            "rule": {
+              "en": "Vasishtha's student.",
+              "hi": "वसिष्ठ के शिष्य।"
+            }
+          },
+          {
+            "id": "r3",
+            "words": [
+              "सीतायाः",
+              "पतिः",
+              "श्रीरामः",
+              "पत्नी"
+            ],
+            "answer": "सीतायाः पतिः श्रीरामः",
+            "rule": {
+              "en": "Sita's husband.",
+              "hi": "सीता के पति।"
+            }
+          },
+          {
+            "id": "r4",
+            "words": [
+              "वाल्मीकेः",
+              "काव्यं",
+              "रामायणम्",
+              "नाटकं"
+            ],
+            "answer": "वाल्मीकेः काव्यं रामायणम्",
+            "rule": {
+              "en": "Valmiki's poem.",
+              "hi": "वाल्मीकि का काव्य।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "word:0",
+          "expect": "built:r1",
+          "say": {
+            "en": "Tap the word tiles one by one to build the first sentence.",
+            "hi": "शब्द-पट्टियाँ एक-एक करके छूकर पहला वाक्य बनाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "श्रीरामस्य गुरुः: which word shows \"of\"?",
+            "hi": "श्रीरामस्य गुरुः: \"का\" कौन-सा शब्द दिखाता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "श्रीरामस्य",
+              "hi": "श्रीरामस्य"
+            },
+            {
+              "id": "b",
+              "en": "गुरुः",
+              "hi": "गुरुः"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "word:0",
+          "expect": "done",
+          "say": {
+            "en": "Build the rest of the sentences.",
+            "hi": "बाकी वाक्य भी बनाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The \"of\" form changes the owner's name: राम → रामस्य, सीता → सीतायाः, वाल्मीकिः → वाल्मीकेः. Then we name the thing: गुरुः, शिष्यः, पतिः, काव्यम्. Order: owner first, then thing.",
+            "hi": "\"का\" वाला रूप स्वामी का नाम बदल देता है: राम → रामस्य, सीता → सीतायाः, वाल्मीकिः → वाल्मीकेः। फिर वस्तु का नाम आता है: गुरुः, शिष्यः, पतिः, काव्यम्। क्रम: पहले स्वामी, फिर वस्तु।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "सीतायाः पतिः means:",
+                "hi": "सीतायाः पतिः का अर्थ है:"
+              },
+              "options": [
+                "Sita's husband",
+                "Ram's wife",
+                "Sita's teacher"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "सीतायाः is \"of Sita\" and पतिः is husband.",
+                "hi": "सीतायाः यानी सीता का और पतिः यानी पति।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Ram's wife is श्रीरामस्य पत्नी.",
+                  "hi": "राम की पत्नी श्रीरामस्य पत्नी।"
+                },
+                {
+                  "en": "A teacher is गुरुः.",
+                  "hi": "शिक्षक गुरुः है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which is the correct \"of Ram\"?",
+                "hi": "\"राम का\" सही रूप कौन-सा है?"
+              },
+              "options": [
+                "रामस्य",
+                "रामः",
+                "रामायाः"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "राम → रामस्य.",
+                "hi": "राम → रामस्य।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "रामः is the plain form.",
+                  "hi": "रामः सादा रूप है।"
+                },
+                {
+                  "en": "-आयाः is for words like सीता.",
+                  "hi": "-आयाः सीता जैसे शब्दों के लिए है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Say \"my teacher's name\" aloud with the -स्य pattern.",
+            "hi": "-स्य के ढंग से अपने गुरु का नाम बोलो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "11.1",
+      "use": "Opens the chapter",
+      "shows": "A grandmother and a grandchild on a veranda thinking over a riddle, back views",
+      "view": "Wide 16:9, warm light",
+      "right": "Thoughtful mood",
+      "avoid": "Faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "11.1",
+      "use": "Riddle answers",
+      "shows": "Cut-outs: a pineapple, a glass of buttermilk, a human eye (cartoon-free, photo), a clay pot",
+      "view": "Front view, one file each",
+      "right": "Real pineapple with leaves on top",
+      "avoid": "Text"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "11.2",
+      "use": "Books",
+      "shows": "Cut-outs of three old palm-leaf style books and a modern book",
+      "view": "Three-quarter view",
+      "right": "Real manuscripts look",
+      "avoid": "Text"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "11.2",
+      "use": "Gurukul",
+      "shows": "A tree-shaded open-air school with a teacher and students sitting on the ground, far view",
+      "view": "Wide 16:9",
+      "right": "Calm learning",
+      "avoid": "Faces"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "11.3",
+      "use": "Family chart",
+      "shows": "A blank family-tree frame with boxes",
+      "view": "Flat, white",
+      "right": "Clean boxes",
+      "avoid": "Words"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "11.4",
+      "use": "Library",
+      "shows": "A shelf of many books in a school library, no people",
+      "view": "Eye level",
+      "right": "Real books",
+      "avoid": "Titles"
+    }
+  ]
+}

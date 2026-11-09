@@ -1,0 +1,788 @@
+{
+ "chapter_key": "u.c10.sanskrit.jsab1.ch02",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "पत्रलेखनम्",
+ "source": "https://ncert.nic.in/textbook/pdf/jsab1ps.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Anaupacharika patram: an informal letter",
+   "labs": [
+    "c10-sanskrit-jsab1-ch02-informal",
+    "c10-sanskrit-jsab1-ch02-phrases"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Aupacharika patram: a formal letter",
+   "labs": [
+    "c10-sanskrit-jsab1-ch02-formal",
+    "c10-sanskrit-jsab1-ch02-phrases"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jsab1-ch02-informal",
+   "topic": "2.1",
+   "template": "writing",
+   "title": {
+    "en": "A letter to a friend",
+    "hi": "मित्र को पत्र"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "informal-letter",
+    "lang": "hi",
+    "task": {
+     "en": "Invite your friend Mohan to your school's annual day. Write in Sanskrit.",
+     "hi": "अपने मित्र मोहन को विद्यालय के वार्षिकोत्सव में बुलाओ। संस्कृत में लिखो।"
+    },
+    "parts": [
+     {
+      "id": "sender",
+      "slot": "sender",
+      "text": "रामनगरम्\nप्रयागराजः"
+     },
+     {
+      "id": "date",
+      "slot": "date",
+      "text": "दिनाङ्कः – १५.११.२०२६"
+     },
+     {
+      "id": "hello",
+      "slot": "salutation",
+      "text": "प्रिय मित्र मोहन!"
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": "अत्र कुशलं तत्र अपि कुशलं कामये।"
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": "अस्माकं विद्यालये आगामिनि रविवासरे वार्षिकोत्सवः भविष्यति।"
+     },
+     {
+      "id": "b3",
+      "slot": "body",
+      "text": "त्वम् अवश्यम् आगच्छ।"
+     },
+     {
+      "id": "close",
+      "slot": "close",
+      "text": "तव मित्रम्"
+     },
+     {
+      "id": "name",
+      "slot": "signature",
+      "text": "सुरेशः"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:hello",
+     "expect": "placed:hello",
+     "say": {
+      "en": "Place the greeting for a friend.",
+      "hi": "मित्र के लिए संबोधन रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a letter to a friend, how do you begin the body?",
+      "hi": "मित्र को लिखे पत्र के मुख्य भाग की शुरुआत कैसे करते हैं?"
+     },
+     "options": [
+      {
+       "id": "kushal",
+       "en": "With news of well-being: 'all is well here'",
+       "hi": "कुशल-समाचार से: 'यहाँ सब कुशल है'"
+      },
+      {
+       "id": "sir",
+       "en": "With 'respected sir'",
+       "hi": "'आदरणीय महोदय' से"
+      },
+      {
+       "id": "thanks",
+       "en": "With 'thank you for the favour'",
+       "hi": "'उपकार के लिए धन्यवाद' से"
+      }
+     ],
+     "answer": "kushal"
+    },
+    {
+     "kind": "do",
+     "target": "part:b1",
+     "expect": "placed:b1",
+     "say": {
+      "en": "Place the first line of the body.",
+      "hi": "मुख्य भाग की पहली पंक्ति रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Place every part, then press Check.",
+      "hi": "सब भाग रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An informal letter is warm and personal. It has your address and the date at the top, a friendly greeting (प्रिय मित्र ...!), the body, a loving closing (तव मित्रम्) and your name. The body begins with news of well-being (अत्र कुशलं तत्र अपि कुशलं कामये), then gives the main message, then a last request. No subject line and no 'सेवायाम्' are needed.",
+      "hi": "अनौपचारिक पत्र आत्मीय होता है। ऊपर तुम्हारा पता और दिनाङ्क, फिर मित्रवत् संबोधन (प्रिय मित्र ...!), मुख्य भाग, स्नेहपूर्ण समापन (तव मित्रम्) और तुम्हारा नाम। मुख्य भाग कुशल-समाचार (अत्र कुशलं तत्र अपि कुशलं कामये) से शुरू होता है, फिर मुख्य संदेश, फिर अंतिम निवेदन। इसमें विषय पंक्ति और 'सेवायाम्' की ज़रूरत नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which closing fits a letter to a friend?",
+        "hi": "मित्र को पत्र के लिए कौन-सा समापन ठीक है?"
+       },
+       "options": [
+        {
+         "en": "तव मित्रम्",
+         "hi": "तव मित्रम्"
+        },
+        {
+         "en": "भवदीयः आज्ञाकारी शिष्यः",
+         "hi": "भवदीयः आज्ञाकारी शिष्यः"
+        },
+        {
+         "en": "सेवायाम्",
+         "hi": "सेवायाम्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "तव मित्रम् means 'your friend', a warm and informal ending.",
+        "hi": "तव मित्रम् का अर्थ 'तुम्हारा मित्र' है, यह आत्मीय समापन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is how a student closes a formal letter to a Principal.",
+         "hi": "यह प्रधानाचार्य को लिखे औपचारिक पत्र का समापन है।"
+        },
+        {
+         "en": "सेवायाम् begins the receiver block of a formal letter; it does not close any letter.",
+         "hi": "सेवायाम् औपचारिक पत्र में पाने वाले के भाग का आरंभ है; यह किसी पत्र का समापन नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Does an informal letter need a subject line?",
+        "hi": "क्या अनौपचारिक पत्र में विषय पंक्ति चाहिए?"
+       },
+       "options": [
+        {
+         "en": "No, it does not",
+         "hi": "नहीं, नहीं चाहिए"
+        },
+        {
+         "en": "Yes, always",
+         "hi": "हाँ, सदा"
+        },
+        {
+         "en": "Yes, in bold capitals",
+         "hi": "हाँ, मोटे अक्षरों में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A subject line belongs to formal letters.",
+        "hi": "विषय पंक्ति औपचारिक पत्र की होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only formal letters need one.",
+         "hi": "केवल औपचारिक पत्रों में होती है।"
+        },
+        {
+         "en": "No letter uses capitals in Sanskrit; Devanagari has none.",
+         "hi": "संस्कृत में बड़े अक्षर नहीं होते; देवनागरी में वे हैं ही नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write the same invitation to a cousin who is older than you. What changes in the greeting?",
+      "hi": "यही निमंत्रण अपने बड़े चचेरे भाई को सोचो। संबोधन में क्या बदलेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch02-formal",
+   "topic": "2.2",
+   "template": "writing",
+   "title": {
+    "en": "A letter to the municipal chairman",
+    "hi": "नगरपालिका अध्यक्ष को पत्र"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "formal-letter",
+    "lang": "hi",
+    "task": {
+     "en": "Your street is dirty. Write to the chairman of the municipality in Sanskrit.",
+     "hi": "तुम्हारी गली गंदी है। नगरपालिका के अध्यक्ष को संस्कृत में पत्र लिखो।"
+    },
+    "parts": [
+     {
+      "id": "sender",
+      "slot": "sender",
+      "text": "गृहसंख्या १५, शान्तिनगरम्\nलखनऊ"
+     },
+     {
+      "id": "date",
+      "slot": "date",
+      "text": "दिनाङ्कः – २०.११.२०२६"
+     },
+     {
+      "id": "receiver",
+      "slot": "receiver",
+      "text": "सेवायाम्\nश्रीमान् अध्यक्षः\nनगरपालिका\nलखनऊ"
+     },
+     {
+      "id": "subject",
+      "slot": "subject",
+      "text": "विषयः – मार्गस्य स्वच्छतार्थं प्रार्थनापत्रम्"
+     },
+     {
+      "id": "hello",
+      "slot": "salutation",
+      "text": "माननीय महोदय!"
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": "सविनयं निवेदनम् अस्ति यत् अस्माकं मार्गे बहुदिनेभ्यः मलिनता वर्तते।"
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": "दुर्गन्धात् रोगभयं वर्धते।"
+     },
+     {
+      "id": "b3",
+      "slot": "body",
+      "text": "अतः कृपया मार्गस्य स्वच्छतां कारयतु।"
+     },
+     {
+      "id": "close",
+      "slot": "close",
+      "text": "भवदीयः"
+     },
+     {
+      "id": "name",
+      "slot": "signature",
+      "text": "रामः\nशान्तिनगरम्"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:receiver",
+     "expect": "placed:receiver",
+     "say": {
+      "en": "Place the receiver block.",
+      "hi": "पाने वाले का भाग रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which line says WHY you are writing: the subject line, or the greeting?",
+      "hi": "कौन-सी पंक्ति बताती है कि तुम क्यों लिख रहे हो: विषय पंक्ति या संबोधन?"
+     },
+     "options": [
+      {
+       "id": "subject",
+       "en": "The subject line",
+       "hi": "विषय पंक्ति"
+      },
+      {
+       "id": "greeting",
+       "en": "The greeting",
+       "hi": "संबोधन"
+      },
+      {
+       "id": "date",
+       "en": "The date",
+       "hi": "दिनाङ्क"
+      }
+     ],
+     "answer": "subject"
+    },
+    {
+     "kind": "do",
+     "target": "part:b3",
+     "expect": "placed:b3",
+     "say": {
+      "en": "Place the request line of the body.",
+      "hi": "मुख्य भाग की निवेदन पंक्ति रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Place every part, then press Check.",
+      "hi": "सब भाग रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A formal letter goes to an officer or institution. It keeps a fixed order: sender's address, date, receiver (सेवायाम्), subject (विषयः), greeting, body, closing (भवदीयः), name. The body states the problem briefly (मलिनता वर्तते), gives the effect (रोगभयम्), and ends with a polite request (कृपया ... कारयतु). Formal letters stay short and respectful.",
+      "hi": "औपचारिक पत्र किसी अधिकारी या संस्था को लिखा जाता है। उसका क्रम तय है: भेजने वाले का पता, दिनाङ्क, पाने वाला (सेवायाम्), विषय (विषयः), संबोधन, मुख्य भाग, समापन (भवदीयः), नाम। मुख्य भाग में समस्या संक्षेप में (मलिनता वर्तते), उसका प्रभाव (रोगभयम्) और अंत में विनम्र निवेदन (कृपया ... कारयतु) होता है। औपचारिक पत्र छोटे और आदरपूर्ण रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the purpose of 'कृपया' in the last line?",
+        "hi": "अंतिम पंक्ति में 'कृपया' का क्या काम है?"
+       },
+       "options": [
+        {
+         "en": "It makes the request polite",
+         "hi": "यह निवेदन को विनम्र बनाता है"
+        },
+        {
+         "en": "It names the receiver",
+         "hi": "यह पाने वाले का नाम बताता है"
+        },
+        {
+         "en": "It gives the date",
+         "hi": "यह तारीख़ बताता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "कृपया means 'please', the key word of a formal request.",
+        "hi": "कृपया का अर्थ 'कृपा करके' है, औपचारिक निवेदन का मुख्य शब्द।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The receiver is named in the 'सेवायाम्' block.",
+         "hi": "पाने वाला 'सेवायाम्' वाले भाग में है।"
+        },
+        {
+         "en": "The date is written at the top.",
+         "hi": "तारीख़ ऊपर लिखी जाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which part tells the officer what the letter is about, in a few words?",
+        "hi": "कौन-सा भाग अधिकारी को कुछ शब्दों में बताता है कि पत्र किस बारे में है?"
+       },
+       "options": [
+        {
+         "en": "विषयः",
+         "hi": "विषयः"
+        },
+        {
+         "en": "दिनाङ्कः",
+         "hi": "दिनाङ्कः"
+        },
+        {
+         "en": "भवदीयः",
+         "hi": "भवदीयः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "विषयः is the short line that states the purpose.",
+        "hi": "विषयः वह छोटी पंक्ति है जो उद्देश्य बताती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The date only tells when.",
+         "hi": "दिनाङ्क केवल कब बताता है।"
+        },
+        {
+         "en": "भवदीयः is the closing word.",
+         "hi": "भवदीयः समापन शब्द है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the problem to a broken street lamp. Which line of the body changes?",
+      "hi": "समस्या बदलकर टूटी हुई सड़क-बत्ती सोचो। मुख्य भाग की कौन-सी पंक्ति बदलेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch02-phrases",
+   "topic": "2.2",
+   "template": "sort",
+   "title": {
+    "en": "Friendly or formal?",
+    "hi": "आत्मीय या औपचारिक?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "inf",
+      "label": {
+       "en": "Informal letter",
+       "hi": "अनौपचारिक पत्र"
+      }
+     },
+     {
+      "id": "for",
+      "label": {
+       "en": "Formal letter",
+       "hi": "औपचारिक पत्र"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "i1",
+      "text": {
+       "en": "प्रिय मित्र मोहन!",
+       "hi": "प्रिय मित्र मोहन!"
+      },
+      "bin": "inf",
+      "why": {
+       "en": "A warm greeting to a friend.",
+       "hi": "मित्र को आत्मीय संबोधन।"
+      }
+     },
+     {
+      "id": "i2",
+      "text": {
+       "en": "तव मित्रम्",
+       "hi": "तव मित्रम्"
+      },
+      "bin": "inf",
+      "why": {
+       "en": "'Your friend': a warm closing.",
+       "hi": "'तुम्हारा मित्र': आत्मीय समापन।"
+      }
+     },
+     {
+      "id": "i3",
+      "text": {
+       "en": "अत्र कुशलं तत्र अपि कुशलं कामये",
+       "hi": "अत्र कुशलं तत्र अपि कुशलं कामये"
+      },
+      "bin": "inf",
+      "why": {
+       "en": "News of well-being opens a friendly letter.",
+       "hi": "कुशल-समाचार मित्रवत् पत्र की शुरुआत है।"
+      }
+     },
+     {
+      "id": "i4",
+      "text": {
+       "en": "शीघ्रं पत्रं लिख",
+       "hi": "शीघ्रं पत्रं लिख"
+      },
+      "bin": "inf",
+      "why": {
+       "en": "'Write soon': a friendly request.",
+       "hi": "'जल्दी पत्र लिखना': आत्मीय निवेदन।"
+      }
+     },
+     {
+      "id": "f1",
+      "text": {
+       "en": "माननीय महोदय!",
+       "hi": "माननीय महोदय!"
+      },
+      "bin": "for",
+      "why": {
+       "en": "A respectful greeting to an officer.",
+       "hi": "अधिकारी को आदरपूर्ण संबोधन।"
+      }
+     },
+     {
+      "id": "f2",
+      "text": {
+       "en": "सेवायाम्",
+       "hi": "सेवायाम्"
+      },
+      "bin": "for",
+      "why": {
+       "en": "Opens the receiver block.",
+       "hi": "पाने वाले के भाग को खोलता है।"
+      }
+     },
+     {
+      "id": "f3",
+      "text": {
+       "en": "भवदीयः आज्ञाकारी शिष्यः",
+       "hi": "भवदीयः आज्ञाकारी शिष्यः"
+      },
+      "bin": "for",
+      "why": {
+       "en": "A student closes a formal letter like this.",
+       "hi": "विद्यार्थी औपचारिक पत्र ऐसे समाप्त करता है।"
+      }
+     },
+     {
+      "id": "f4",
+      "text": {
+       "en": "विषयः – अवकाशार्थं प्रार्थनापत्रम्",
+       "hi": "विषयः – अवकाशार्थं प्रार्थनापत्रम्"
+      },
+      "bin": "for",
+      "why": {
+       "en": "A subject line belongs to formal letters.",
+       "hi": "विषय पंक्ति औपचारिक पत्र में होती है।"
+      }
+     },
+     {
+      "id": "f5",
+      "text": {
+       "en": "सविनयं निवेदनम् अस्ति यत्",
+       "hi": "सविनयं निवेदनम् अस्ति यत्"
+      },
+      "bin": "for",
+      "why": {
+       "en": "'It is a humble request that': a formal opening.",
+       "hi": "'विनम्र निवेदन है कि': औपचारिक आरंभ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:i1",
+     "expect": "placed:i1",
+     "say": {
+      "en": "Tap प्रिय मित्र मोहन! and choose its letter.",
+      "hi": "प्रिय मित्र मोहन! छुओ और उसका पत्र चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which closing do you use for a letter to the Principal?",
+      "hi": "प्रधानाचार्य को पत्र में कौन-सा समापन आएगा?"
+     },
+     "options": [
+      {
+       "id": "formal",
+       "en": "भवदीयः आज्ञाकारी शिष्यः",
+       "hi": "भवदीयः आज्ञाकारी शिष्यः"
+      },
+      {
+       "id": "friendly",
+       "en": "तव मित्रम्",
+       "hi": "तव मित्रम्"
+      },
+      {
+       "id": "none",
+       "en": "No closing at all",
+       "hi": "कोई समापन नहीं"
+      }
+     ],
+     "answer": "formal"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the phrases, then press Check.",
+      "hi": "सब वाक्यांश रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The words you choose tell the reader how close you are to them. Friendly letters use प्रिय, तव मित्रम् and news of well-being. Formal letters use माननीय, सेवायाम्, विषयः, सविनयं and भवदीयः. The Sanskrit words themselves carry the level of respect, so the right words in the right place are marks of a good letter.",
+      "hi": "तुम्हारे चुने हुए शब्द पाठक को बताते हैं कि तुम उसके कितने निकट हो। मित्रवत् पत्रों में प्रिय, तव मित्रम् और कुशल-समाचार आते हैं। औपचारिक पत्रों में माननीय, सेवायाम्, विषयः, सविनयं और भवदीयः आते हैं। संस्कृत शब्द स्वयं आदर का स्तर बताते हैं, इसलिए सही स्थान पर सही शब्द अच्छे पत्र की पहचान हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which phrase can open a formal letter?",
+        "hi": "कौन-सा वाक्यांश औपचारिक पत्र की शुरुआत हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "सविनयं निवेदनम् अस्ति यत्",
+         "hi": "सविनयं निवेदनम् अस्ति यत्"
+        },
+        {
+         "en": "प्रिय मित्र!",
+         "hi": "प्रिय मित्र!"
+        },
+        {
+         "en": "शीघ्रं पत्रं लिख",
+         "hi": "शीघ्रं पत्रं लिख"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "सविनयं (humbly) is a mark of a formal request.",
+        "hi": "सविनयं (विनम्रता से) औपचारिक निवेदन का चिह्न है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "प्रिय मित्र! is for a friend.",
+         "hi": "प्रिय मित्र! मित्र के लिए है।"
+        },
+        {
+         "en": "'Write soon' is an informal request.",
+         "hi": "'जल्दी पत्र लिखना' अनौपचारिक निवेदन है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who would receive a letter that begins with 'सेवायाम्'?",
+        "hi": "'सेवायाम्' से शुरू होने वाला पत्र किसे जाएगा?"
+       },
+       "options": [
+        {
+         "en": "An officer or Principal",
+         "hi": "किसी अधिकारी या प्रधानाचार्य को"
+        },
+        {
+         "en": "A close friend",
+         "hi": "किसी घनिष्ठ मित्र को"
+        },
+        {
+         "en": "A younger brother",
+         "hi": "छोटे भाई को"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "सेवायाम् is for those we address with respect.",
+        "hi": "सेवायाम् उनके लिए है जिन्हें हम आदर से संबोधित करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A friend is addressed with प्रिय.",
+         "hi": "मित्र को प्रिय से संबोधित करते हैं।"
+        },
+        {
+         "en": "A younger brother is also addressed warmly, not formally.",
+         "hi": "छोटे भाई को भी आत्मीयता से संबोधित करते हैं, औपचारिकता से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the cards again. Say what each phrase means in Hindi.",
+      "hi": "कार्ड फिर रखो। हर वाक्यांश का हिंदी में अर्थ बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Writing a letter to a friend",
+   "shows": "A blank cream letter sheet, an envelope and a fountain pen laid out together",
+   "view": "From above, white background, soft light from the top left",
+   "right": "Sheet and envelope fully blank",
+   "avoid": "Any writing, stamps, logos"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "The school annual day",
+   "shows": "A school stage with colourful backdrop fabric and rows of empty chairs before an annual function",
+   "view": "Wide shot from the back of the hall, warm light",
+   "right": "Empty chairs in neat rows, stage decorated in logo colours",
+   "avoid": "Children's faces, banners with writing, school names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "A dirty street (formal letter topic)",
+   "shows": "A narrow lane in an Indian town with a heap of uncollected waste at the corner",
+   "view": "Eye level, daylight, lane runs to the vanishing point",
+   "right": "Waste is clearly visible and the lane otherwise ordinary",
+   "avoid": "People, vehicles with plates, signs"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "A clean street, for the contrast",
+   "shows": "The same kind of lane clean and swept, with a municipal dustbin",
+   "view": "Same angle and light as the dirty lane",
+   "right": "A clean lane with a neat bin",
+   "avoid": "People, signs, vehicle plates"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Formal letter layout",
+   "shows": "A blank page frame with pale boxes marking sender, date, receiver, subject, greeting, body, closing and name",
+   "view": "Flat front view on white",
+   "right": "Eight boxes in the right order",
+   "avoid": "Text, arrows, numbers"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Post box",
+   "shows": "A red Indian letter box on a transparent background",
+   "view": "Front three-quarter view, soft light from the top left",
+   "right": "Round-topped red pillar box with a slot",
+   "avoid": "Writing, logos, stickers"
+  }
+ ]
+}

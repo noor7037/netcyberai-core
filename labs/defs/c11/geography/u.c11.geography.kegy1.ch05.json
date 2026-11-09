@@ -1,0 +1,989 @@
+{
+ "chapter_key": "u.c11.geography.kegy1.ch05",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Natural Vegetation",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Types of forests and their trees",
+   "labs": [
+    "c11-geography-kegy1-ch05-forest-map",
+    "c11-geography-kegy1-ch05-rain-order",
+    "c11-geography-kegy1-ch05-tree-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Wildlife conservation: parks, Project Tiger and Project Elephant",
+   "labs": [
+    "c11-geography-kegy1-ch05-park-map",
+    "c11-geography-kegy1-ch05-park-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Role of vegetation for humankind",
+   "labs": [],
+   "why_no_lab": "This is a discussion topic; reading and a class talk about forests and people work better than an activity."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy1-ch05-forest-map",
+   "topic": "5.1",
+   "template": "map",
+   "title": {
+    "en": "Forests of India on the map",
+    "hi": "मानचित्र पर भारत के वन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "forests",
+     "rainfall",
+     "states"
+    ],
+    "show": [
+     "forests"
+    ],
+    "places": [
+     "veg-evergreen",
+     "veg-deciduous",
+     "veg-thorn",
+     "veg-montane",
+     "veg-mangrove"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where would you expect the thickest, evergreen forests: in the wettest regions or in the driest?",
+      "hi": "तुम्हें कहाँ सबसे घने, सदाबहार वन मिलेंगे: सबसे गीले क्षेत्रों में या सबसे सूखे में?"
+     },
+     "options": [
+      {
+       "id": "w",
+       "en": "Wettest regions",
+       "hi": "सबसे गीले क्षेत्रों में"
+      },
+      {
+       "id": "d",
+       "en": "Driest regions",
+       "hi": "सबसे सूखे क्षेत्रों में"
+      }
+     ],
+     "answer": "w"
+    },
+    {
+     "kind": "do",
+     "target": "layer:forests",
+     "expect": "layer:forests",
+     "say": {
+      "en": "Switch on the forests layer.",
+      "hi": "वनों की परत चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:veg-evergreen",
+     "expect": "located:veg-evergreen",
+     "say": {
+      "en": "Tap the tropical evergreen forest zone.",
+      "hi": "उष्णकटिबंधीय सदाबहार वन क्षेत्र पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:veg-thorn",
+     "expect": "located:veg-thorn",
+     "say": {
+      "en": "Now tap the thorn forest zone and note where it lies.",
+      "hi": "अब काँटेदार वन क्षेत्र पर टैप करो और देखो वह कहाँ है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:veg-mangrove",
+     "expect": "located:veg-mangrove",
+     "say": {
+      "en": "Tap the mangrove zone on the coast.",
+      "hi": "तट पर मैंग्रोव क्षेत्र पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Natural vegetation follows rainfall, temperature and soil. Evergreen forests grow where rain is heavy: the Western Ghats, the north-east and the Andaman and Nicobar Islands. Deciduous forests cover much of the peninsula and the Ganga plain. Thorn forests grow in dry north-west India. Montane forests change with height in the mountains, and mangroves grow in salty delta and coastal water such as the Sundarbans.",
+      "hi": "प्राकृतिक वनस्पति वर्षा, तापमान और मिट्टी के अनुसार बदलती है। सदाबहार वन वहाँ उगते हैं जहाँ वर्षा भारी होती है: पश्चिमी घाट, उत्तर-पूर्व और अंडमान-निकोबार द्वीपसमूह। पर्णपाती वन प्रायद्वीप और गंगा के मैदान के बड़े भाग में हैं। काँटेदार वन शुष्क उत्तर-पश्चिम भारत में उगते हैं। पर्वतीय वन ऊँचाई के साथ बदलते हैं, और मैंग्रोव सुंदरवन जैसे खारे डेल्टा और तटीय जल में उगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which forest grows in the driest north-western parts?",
+        "hi": "सबसे शुष्क उत्तर-पश्चिमी भागों में कौन-सा वन उगता है?"
+       },
+       "options": [
+        {
+         "en": "Thorn forest",
+         "hi": "काँटेदार वन"
+        },
+        {
+         "en": "Tropical evergreen forest",
+         "hi": "उष्णकटिबंधीय सदाबहार वन"
+        },
+        {
+         "en": "Mangrove forest",
+         "hi": "मैंग्रोव वन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Low rainfall suits thorny plants with deep roots and small leaves.",
+        "hi": "कम वर्षा गहरी जड़ों और छोटी पत्तियों वाले काँटेदार पौधों के अनुकूल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Evergreen forests need heavy rain and are found in the Western Ghats and the north-east, not the dry north-west.",
+         "hi": "सदाबहार वनों को भारी वर्षा चाहिए; वे पश्चिमी घाट और उत्तर-पूर्व में मिलते हैं, शुष्क उत्तर-पश्चिम में नहीं।"
+        },
+        {
+         "en": "Mangroves grow on salty coasts and deltas, not in a dry desert area.",
+         "hi": "मैंग्रोव खारे तटों और डेल्टा में उगते हैं, सूखे मरुस्थलीय क्षेत्र में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the rainfall layer on and off. How does it match the forests?",
+      "hi": "वर्षा की परत चालू और बंद करो। वह वनों से कैसे मेल खाती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch05-rain-order",
+   "topic": "5.1",
+   "template": "sequence",
+   "title": {
+    "en": "Forests from wettest to driest",
+    "hi": "सबसे गीले से सबसे सूखे वन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "ev",
+      "text": {
+       "en": "Tropical evergreen forest: heavy rain, over 200 cm",
+       "hi": "उष्णकटिबंधीय सदाबहार वन: भारी वर्षा, 200 सेमी से अधिक"
+      }
+     },
+     {
+      "id": "dec",
+      "text": {
+       "en": "Tropical deciduous forest: moderate rain, 70 to 200 cm",
+       "hi": "उष्णकटिबंधीय पर्णपाती वन: मध्यम वर्षा, 70 से 200 सेमी"
+      }
+     },
+     {
+      "id": "thorn",
+      "text": {
+       "en": "Thorn forest and scrub: dry, below 70 cm",
+       "hi": "काँटेदार वन और झाड़ियाँ: शुष्क, 70 सेमी से कम"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which forest needs the most rain?",
+      "hi": "किस वन को सबसे अधिक वर्षा चाहिए?"
+     },
+     "options": [
+      {
+       "id": "e",
+       "en": "Evergreen",
+       "hi": "सदाबहार"
+      },
+      {
+       "id": "t",
+       "en": "Thorn",
+       "hi": "काँटेदार"
+      },
+      {
+       "id": "d",
+       "en": "Deciduous",
+       "hi": "पर्णपाती"
+      }
+     ],
+     "answer": "e"
+    },
+    {
+     "kind": "do",
+     "target": "item:ev",
+     "expect": "placed:ev",
+     "say": {
+      "en": "Put the wettest forest in the first place.",
+      "hi": "सबसे गीले वन को पहली जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the other two forests, then press Check.",
+      "hi": "बाकी दो वन रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "As rainfall falls, the forest changes from tall dense evergreen trees to deciduous trees that shed leaves in the dry season, and then to thorny shrubs and scrub. The trees are shaped by how much water they can get.",
+      "hi": "जैसे-जैसे वर्षा घटती है, वन ऊँचे घने सदाबहार वृक्षों से बदलकर पर्णपाती वृक्षों में बदल जाता है जो शुष्क ऋतु में पत्तियाँ झाड़ देते हैं, और फिर काँटेदार झाड़ियों और झाड़-झंखाड़ में। वृक्षों का रूप इस पर निर्भर करता है कि उन्हें कितना पानी मिल सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do deciduous trees shed their leaves in the dry season?",
+        "hi": "पर्णपाती वृक्ष शुष्क ऋतु में पत्तियाँ क्यों झाड़ देते हैं?"
+       },
+       "options": [
+        {
+         "en": "To lose less water",
+         "hi": "ताकि पानी की हानि कम हो"
+        },
+        {
+         "en": "Because the sun is too weak",
+         "hi": "क्योंकि सूर्य बहुत कमज़ोर होता है"
+        },
+        {
+         "en": "To make more seeds",
+         "hi": "ताकि अधिक बीज बनें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Leaves lose water by transpiration, so dropping them saves water.",
+        "hi": "पत्तियों से वाष्पोत्सर्जन द्वारा पानी निकलता है, इसलिए उन्हें झाड़कर पानी बचाया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sun is strong in the dry season; the real problem is the shortage of water.",
+         "hi": "शुष्क ऋतु में सूर्य तेज़ होता है; असली समस्या पानी की कमी है।"
+        },
+        {
+         "en": "Shedding leaves is a way to save water and has nothing to do with making seeds.",
+         "hi": "पत्तियाँ झाड़ना पानी बचाने का तरीका है, इसका बीज बनाने से संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Order them again, then say which of the three grows nearest to where you live.",
+      "hi": "फिर क्रम में लगाओ, और बताओ इनमें से कौन-सा तुम्हारे घर के सबसे पास उगता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch05-tree-sort",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "Which forest does the tree belong to?",
+    "hi": "यह पेड़ किस वन का है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ev",
+      "label": {
+       "en": "Tropical evergreen",
+       "hi": "उष्णकटिबंधीय सदाबहार"
+      }
+     },
+     {
+      "id": "dec",
+      "label": {
+       "en": "Tropical deciduous",
+       "hi": "उष्णकटिबंधीय पर्णपाती"
+      }
+     },
+     {
+      "id": "thorn",
+      "label": {
+       "en": "Thorn forest",
+       "hi": "काँटेदार वन"
+      }
+     },
+     {
+      "id": "mont",
+      "label": {
+       "en": "Montane (Himalaya)",
+       "hi": "पर्वतीय (हिमालय)"
+      }
+     },
+     {
+      "id": "mang",
+      "label": {
+       "en": "Mangrove",
+       "hi": "मैंग्रोव"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "rose",
+      "text": {
+       "en": "Rosewood",
+       "hi": "रोज़वुड"
+      },
+      "bin": "ev",
+      "why": {
+       "en": "Rosewood and ebony grow in the heavy-rain forests of the Western Ghats.",
+       "hi": "रोज़वुड और आबनूस पश्चिमी घाट के भारी वर्षा वाले वनों में उगते हैं।"
+      }
+     },
+     {
+      "id": "teak",
+      "text": {
+       "en": "Teak",
+       "hi": "सागौन"
+      },
+      "bin": "dec",
+      "why": {
+       "en": "Teak is the best-known tree of the deciduous forests.",
+       "hi": "सागौन पर्णपाती वनों का सबसे जाना-माना वृक्ष है।"
+      }
+     },
+     {
+      "id": "sal",
+      "text": {
+       "en": "Sal",
+       "hi": "साल"
+      },
+      "bin": "dec",
+      "why": {
+       "en": "Sal forms large stretches of deciduous forest in eastern and central India.",
+       "hi": "साल पूर्वी और मध्य भारत में पर्णपाती वनों के बड़े भाग बनाता है।"
+      }
+     },
+     {
+      "id": "babool",
+      "text": {
+       "en": "Babool (acacia)",
+       "hi": "बबूल"
+      },
+      "bin": "thorn",
+      "why": {
+       "en": "Babool has thorns and small leaves, and survives in dry land.",
+       "hi": "बबूल में काँटे और छोटी पत्तियाँ होती हैं, और वह सूखी भूमि में जीवित रहता है।"
+      }
+     },
+     {
+      "id": "khejri",
+      "text": {
+       "en": "Khejri",
+       "hi": "खेजड़ी"
+      },
+      "bin": "thorn",
+      "why": {
+       "en": "Khejri is a hardy tree of Rajasthan's dry areas.",
+       "hi": "खेजड़ी राजस्थान के शुष्क क्षेत्रों का कठोर वृक्ष है।"
+      }
+     },
+     {
+      "id": "deodar",
+      "text": {
+       "en": "Deodar",
+       "hi": "देवदार"
+      },
+      "bin": "mont",
+      "why": {
+       "en": "Deodar is a coniferous tree of the Himalayan slopes.",
+       "hi": "देवदार हिमालय की ढलानों का शंकुधारी वृक्ष है।"
+      }
+     },
+     {
+      "id": "pine",
+      "text": {
+       "en": "Pine",
+       "hi": "चीड़"
+      },
+      "bin": "mont",
+      "why": {
+       "en": "Pines are cone-bearing trees of the cooler mountain slopes.",
+       "hi": "चीड़ ठंडी पर्वतीय ढलानों के शंकुधारी वृक्ष हैं।"
+      }
+     },
+     {
+      "id": "sundari",
+      "text": {
+       "en": "Sundari",
+       "hi": "सुंदरी"
+      },
+      "bin": "mang",
+      "why": {
+       "en": "The Sundarbans are named after this mangrove tree.",
+       "hi": "सुंदरवन का नाम इसी मैंग्रोव वृक्ष पर पड़ा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tree with long thorns and tiny leaves will belong to which forest?",
+      "hi": "लंबे काँटों और छोटी पत्तियों वाला वृक्ष किस वन का होगा?"
+     },
+     "options": [
+      {
+       "id": "t",
+       "en": "Thorn forest",
+       "hi": "काँटेदार वन"
+      },
+      {
+       "id": "e",
+       "en": "Evergreen forest",
+       "hi": "सदाबहार वन"
+      },
+      {
+       "id": "m",
+       "en": "Mangrove",
+       "hi": "मैंग्रोव"
+      }
+     ],
+     "answer": "t"
+    },
+    {
+     "kind": "do",
+     "target": "card:teak",
+     "expect": "correct:teak",
+     "say": {
+      "en": "Place the teak in its forest.",
+      "hi": "सागौन को उसके वन में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:deodar",
+     "expect": "correct:deodar",
+     "say": {
+      "en": "Now place the deodar.",
+      "hi": "अब देवदार को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other trees, then press Check.",
+      "hi": "बाकी पेड़ छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A tree shows the place it comes from. Thorny, small-leaved trees save water in the dry areas. Teak and sal drop leaves in the dry season. Deodar and pine have needle leaves and a cone shape that sheds snow in the Himalaya. Mangroves have special roots that stand in salty water.",
+      "hi": "वृक्ष अपने स्थान का परिचय देता है। काँटेदार और छोटी पत्तियों वाले वृक्ष शुष्क क्षेत्रों में पानी बचाते हैं। सागौन और साल शुष्क ऋतु में पत्तियाँ गिरा देते हैं। देवदार और चीड़ की पत्तियाँ सुई जैसी और आकार शंकु जैसा होता है जिससे हिमालय में बर्फ़ फिसल जाती है। मैंग्रोव की विशेष जड़ें खारे पानी में खड़ी रहती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which tree is a conifer of the Himalayan slopes?",
+        "hi": "हिमालय की ढलानों का शंकुधारी वृक्ष कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Deodar",
+         "hi": "देवदार"
+        },
+        {
+         "en": "Teak",
+         "hi": "सागौन"
+        },
+        {
+         "en": "Sundari",
+         "hi": "सुंदरी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Deodar and pine are conifers, with needle leaves and cones.",
+        "hi": "देवदार और चीड़ शंकुधारी हैं, जिनकी पत्तियाँ सुई जैसी और फल शंकु जैसे होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Teak is a broad-leaved deciduous tree of the peninsula, not a conifer.",
+         "hi": "सागौन प्रायद्वीप का चौड़ी पत्ती वाला पर्णपाती वृक्ष है, शंकुधारी नहीं।"
+        },
+        {
+         "en": "Sundari is a mangrove of the Sundarbans delta, not a Himalayan conifer.",
+         "hi": "सुंदरी सुंदरवन डेल्टा का मैंग्रोव है, हिमालयी शंकुधारी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which tree card was hardest? Explain to a friend what clue helped you.",
+      "hi": "कौन-सा पेड़ सबसे कठिन लगा? किसी मित्र को बताओ कि तुम्हें किस संकेत से मदद मिली।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch05-park-map",
+   "topic": "5.2",
+   "template": "map",
+   "title": {
+    "en": "Find the national parks",
+    "hi": "राष्ट्रीय उद्यान खोजो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "national-parks",
+     "forests",
+     "states"
+    ],
+    "show": [
+     "national-parks"
+    ],
+    "places": [
+     "kaziranga",
+     "gir",
+     "jim-corbett",
+     "silent-valley"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A national park protects forest and its animals. Would the one-horned rhinoceros live in the north-east, in the west or in the far south?",
+      "hi": "राष्ट्रीय उद्यान वन और उसके पशुओं की रक्षा करता है। एक सींग वाला गैंडा उत्तर-पूर्व में रहता है, पश्चिम में या सुदूर दक्षिण में?"
+     },
+     "options": [
+      {
+       "id": "ne",
+       "en": "North-east",
+       "hi": "उत्तर-पूर्व"
+      },
+      {
+       "id": "w",
+       "en": "West",
+       "hi": "पश्चिम"
+      },
+      {
+       "id": "s",
+       "en": "Far south",
+       "hi": "सुदूर दक्षिण"
+      }
+     ],
+     "answer": "ne"
+    },
+    {
+     "kind": "do",
+     "target": "layer:national-parks",
+     "expect": "layer:national-parks",
+     "say": {
+      "en": "Switch on the national parks layer.",
+      "hi": "राष्ट्रीय उद्यानों की परत चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:kaziranga",
+     "expect": "located:kaziranga",
+     "say": {
+      "en": "Tap Kaziranga in Assam.",
+      "hi": "असम में काज़ीरंगा पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:gir",
+     "expect": "located:gir",
+     "say": {
+      "en": "Tap Gir in Gujarat.",
+      "hi": "गुजरात में गिर पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:silent-valley",
+     "expect": "located:silent-valley",
+     "say": {
+      "en": "Tap Silent Valley in Kerala.",
+      "hi": "केरल में साइलेंट वैली पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India protects its wildlife in national parks, sanctuaries and biosphere reserves. Each protected area is chosen for animals that live only in a particular kind of habitat: the one-horned rhinoceros in the grasslands of Kaziranga, the Asiatic lion in the dry forests of Gir, and the lion-tailed macaque in the evergreen forest of Silent Valley. Project Tiger began in 1973 and Project Elephant in 1992.",
+      "hi": "भारत अपने वन्य जीवों की रक्षा राष्ट्रीय उद्यानों, अभयारण्यों और जीवमंडल निचयों में करता है। हर संरक्षित क्षेत्र उन पशुओं के लिए चुना जाता है जो किसी विशेष आवास में ही रहते हैं: काज़ीरंगा के घास के मैदानों में एक सींग वाला गैंडा, गिर के शुष्क वनों में एशियाई सिंह और साइलेंट वैली के सदाबहार वन में सिंह-पूँछ वाला लंगूर। प्रोजेक्ट टाइगर 1973 में और प्रोजेक्ट एलीफ़ेंट 1992 में शुरू हुआ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which state is Gir, home of the Asiatic lion?",
+        "hi": "एशियाई सिंह के घर गिर वन किस राज्य में है?"
+       },
+       "options": [
+        {
+         "en": "Gujarat",
+         "hi": "गुजरात"
+        },
+        {
+         "en": "Assam",
+         "hi": "असम"
+        },
+        {
+         "en": "Kerala",
+         "hi": "केरल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gir National Park lies in Gujarat and is the last home of the Asiatic lion in the wild.",
+        "hi": "गिर राष्ट्रीय उद्यान गुजरात में है और जंगल में एशियाई सिंह का अंतिम घर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Assam has Kaziranga, famous for the one-horned rhinoceros, not Gir.",
+         "hi": "असम में काज़ीरंगा है जो एक सींग वाले गैंडे के लिए प्रसिद्ध है, गिर नहीं।"
+        },
+        {
+         "en": "Kerala has Silent Valley with the lion-tailed macaque, not Gir.",
+         "hi": "केरल में साइलेंट वैली है जहाँ सिंह-पूँछ वाला लंगूर रहता है, गिर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Jim Corbett too. Which animal is it known for?",
+      "hi": "जिम कॉर्बेट भी टैप करो। वह किस पशु के लिए जाना जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch05-park-match",
+   "topic": "5.2",
+   "template": "match",
+   "title": {
+    "en": "Parks, projects and their animals",
+    "hi": "उद्यान, परियोजनाएँ और उनके पशु"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "kaz",
+      "left": {
+       "en": "Kaziranga",
+       "hi": "काज़ीरंगा"
+      },
+      "right": {
+       "en": "One-horned rhinoceros",
+       "hi": "एक सींग वाला गैंडा"
+      },
+      "why": {
+       "en": "Kaziranga's tall grassland and wetlands suit the rhinoceros.",
+       "hi": "काज़ीरंगा के ऊँचे घास के मैदान और आर्द्रभूमि गैंडे के अनुकूल हैं।"
+      }
+     },
+     {
+      "id": "gir",
+      "left": {
+       "en": "Gir",
+       "hi": "गिर"
+      },
+      "right": {
+       "en": "Asiatic lion",
+       "hi": "एशियाई सिंह"
+      },
+      "why": {
+       "en": "Gir is the last natural home of this lion.",
+       "hi": "गिर इस सिंह का अंतिम प्राकृतिक घर है।"
+      }
+     },
+     {
+      "id": "cor",
+      "left": {
+       "en": "Jim Corbett",
+       "hi": "जिम कॉर्बेट"
+      },
+      "right": {
+       "en": "Bengal tiger",
+       "hi": "बाघ"
+      },
+      "why": {
+       "en": "It was the first park under Project Tiger.",
+       "hi": "यह प्रोजेक्ट टाइगर के अंतर्गत पहला उद्यान था।"
+      }
+     },
+     {
+      "id": "sil",
+      "left": {
+       "en": "Silent Valley",
+       "hi": "साइलेंट वैली"
+      },
+      "right": {
+       "en": "Lion-tailed macaque",
+       "hi": "सिंह-पूँछ वाला लंगूर"
+      },
+      "why": {
+       "en": "This monkey lives in the evergreen forest of the Western Ghats.",
+       "hi": "यह बंदर पश्चिमी घाट के सदाबहार वन में रहता है।"
+      }
+     },
+     {
+      "id": "pt",
+      "left": {
+       "en": "Project Tiger",
+       "hi": "प्रोजेक्ट टाइगर"
+      },
+      "right": {
+       "en": "Started in 1973",
+       "hi": "1973 में शुरू हुआ"
+      },
+      "why": {
+       "en": "It was launched to save tigers and their forest homes.",
+       "hi": "यह बाघों और उनके वन-आवासों को बचाने के लिए शुरू हुआ था।"
+      }
+     },
+     {
+      "id": "pe",
+      "left": {
+       "en": "Project Elephant",
+       "hi": "प्रोजेक्ट एलीफ़ेंट"
+      },
+      "right": {
+       "en": "Started in 1992",
+       "hi": "1992 में शुरू हुआ"
+      },
+      "why": {
+       "en": "It protects elephants and their corridors.",
+       "hi": "यह हाथियों और उनके गलियारों की रक्षा करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which project came first, Project Tiger or Project Elephant?",
+      "hi": "कौन-सी परियोजना पहले आई, प्रोजेक्ट टाइगर या प्रोजेक्ट एलीफ़ेंट?"
+     },
+     "options": [
+      {
+       "id": "t",
+       "en": "Project Tiger",
+       "hi": "प्रोजेक्ट टाइगर"
+      },
+      {
+       "id": "e",
+       "en": "Project Elephant",
+       "hi": "प्रोजेक्ट एलीफ़ेंट"
+      }
+     ],
+     "answer": "t"
+    },
+    {
+     "kind": "do",
+     "target": "left:kaz",
+     "expect": "matched:kaz",
+     "say": {
+      "en": "Match Kaziranga with its animal.",
+      "hi": "काज़ीरंगा को उसके पशु से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:pt",
+     "expect": "matched:pt",
+     "say": {
+      "en": "Match Project Tiger with its year.",
+      "hi": "प्रोजेक्ट टाइगर को उसके वर्ष से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Finish the other pairs, then press Check.",
+      "hi": "बाकी जोड़ियाँ पूरी करो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Protecting a wild animal means protecting its home. Each park keeps a habitat safe: grassland, dry forest, evergreen forest. Special projects focus on animals that are in danger, such as the tiger and the elephant.",
+      "hi": "किसी जंगली पशु की रक्षा का अर्थ है उसके घर की रक्षा। हर उद्यान एक आवास को सुरक्षित रखता है: घास का मैदान, शुष्क वन, सदाबहार वन। विशेष परियोजनाएँ संकटग्रस्त पशुओं, जैसे बाघ और हाथी, पर ध्यान देती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why must we protect forests to save a tiger?",
+        "hi": "बाघ को बचाने के लिए वनों की रक्षा क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "The forest is the tiger's home and food source",
+         "hi": "वन बाघ का घर और भोजन का स्रोत है"
+        },
+        {
+         "en": "Tigers eat only trees",
+         "hi": "बाघ केवल पेड़ खाते हैं"
+        },
+        {
+         "en": "Tigers can live anywhere",
+         "hi": "बाघ कहीं भी रह सकते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A tiger needs forest for shelter and for the animals it hunts.",
+        "hi": "बाघ को आश्रय और शिकार के लिए वन चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Tigers are carnivores; they hunt deer and other animals that live in the forest.",
+         "hi": "बाघ मांसाहारी हैं; वे वन में रहने वाले हिरण और अन्य पशुओं का शिकार करते हैं।"
+        },
+        {
+         "en": "A tiger needs enough forest, cover and prey; it cannot live in an open desert.",
+         "hi": "बाघ को पर्याप्त वन, आड़ और शिकार चाहिए; वह खुले मरुस्थल में नहीं रह सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose one animal of your state and name the place where it is protected.",
+      "hi": "अपने राज्य का कोई पशु चुनो और बताओ उसकी रक्षा किस स्थान पर होती है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Hook: a dense Western Ghats rainforest",
+   "shows": "Dense evergreen forest in the Western Ghats with tall layered trees and mist",
+   "view": "Wide, from a forest path",
+   "right": "Many layers of green; wet look; no single species dominant",
+   "avoid": "People, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "5.1",
+   "use": "Deciduous forest across the year",
+   "shows": "The same sal or teak stand in green monsoon, dry leafless season and new leaves",
+   "view": "Same camera position, 3 frames",
+   "right": "Leaves present, bare, then fresh",
+   "avoid": "People, animals"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Cut-outs for the tree sort",
+   "shows": "Leaf and bark of teak, babool, deodar, and mangrove roots as separate cut-outs",
+   "view": "Each object centred, soft shadow",
+   "right": "True leaf shapes: broad teak, tiny babool, needle deodar",
+   "avoid": "Labels, mixed-up species"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Mangrove forest",
+   "shows": "Sundarbans mangrove roots standing in muddy tidal water",
+   "view": "Low angle at low tide",
+   "right": "Pneumatophores (breathing roots) visible",
+   "avoid": "Boats with names, people"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "5.1",
+   "use": "Base map for forest lab",
+   "shows": "India relief with no names or borders, soft shading only",
+   "view": "16:9 top-down",
+   "right": "Mountains and plateaus visible",
+   "avoid": "Names, borders"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Wildlife at a protected area",
+   "shows": "One-horned rhinoceros grazing in Kaziranga grass at dawn",
+   "view": "Distance shot with a telephoto lens",
+   "right": "Single horn, armour-like skin folds",
+   "avoid": "Vehicles with names, people"
+  }
+ ]
+}

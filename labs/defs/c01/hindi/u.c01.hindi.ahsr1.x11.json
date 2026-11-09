@@ -1,0 +1,412 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.x11",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Kabri Jhabri Bakri (कबरी झबरी बकरी) - poem",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Rhyming words",
+   "labs": [
+    "c01-hindi-ahsr1-x11-rhymes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Poem about two goats: ahead and behind",
+   "labs": [
+    "c01-hindi-ahsr1-x11-goats"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-x11-rhymes",
+   "topic": "11.1",
+   "template": "match",
+   "title": {
+    "en": "Find the rhyming word",
+    "hi": "तुक वाला शब्द खोजो"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "aage",
+      "left": {
+       "en": "Aage (ahead)",
+       "hi": "आगे"
+      },
+      "right": {
+       "en": "भागे (run)",
+       "hi": "भागे"
+      },
+      "why": {
+       "en": "आगे and भागे both end with the sound 'आगे'.",
+       "hi": "आगे और भागे दोनों के अंत में 'आगे' की ध्वनि है।"
+      }
+     },
+     {
+      "id": "peeche",
+      "left": {
+       "en": "Peeche (behind)",
+       "hi": "पीछे"
+      },
+      "right": {
+       "en": "नीचे (below)",
+       "hi": "नीचे"
+      },
+      "why": {
+       "en": "पीछे and नीचे both end with the sound 'ईचे'.",
+       "hi": "पीछे और नीचे दोनों के अंत में 'ईचे' की ध्वनि है।"
+      }
+     },
+     {
+      "id": "ghaas",
+      "left": {
+       "en": "Ghaas (grass)",
+       "hi": "घास"
+      },
+      "right": {
+       "en": "पास (near)",
+       "hi": "पास"
+      },
+      "why": {
+       "en": "घास and पास both end with 'आस'.",
+       "hi": "घास और पास दोनों के अंत में 'आस' है।"
+      }
+     },
+     {
+      "id": "chali",
+      "left": {
+       "en": "Chali (went)",
+       "hi": "चली"
+      },
+      "right": {
+       "en": "गली (lane)",
+       "hi": "गली"
+      },
+      "why": {
+       "en": "चली and गली both end with 'अली'.",
+       "hi": "चली और गली दोनों के अंत में 'अली' है।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:aage",
+     "expect": "matched:aage",
+     "say": {
+      "en": "Tap a card on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर का कोई कार्ड छुओ, फिर दाईं ओर उसकी जोड़ी छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word rhymes with आगे?",
+      "hi": "आगे से तुक कौन-सा शब्द मिलाता है?"
+     },
+     "options": [
+      {
+       "id": "bhaage",
+       "en": "भागे",
+       "hi": "भागे"
+      },
+      {
+       "id": "neeche",
+       "en": "नीचे",
+       "hi": "नीचे"
+      },
+      {
+       "id": "paas",
+       "en": "पास",
+       "hi": "पास"
+      }
+     ],
+     "answer": "bhaage"
+    },
+    {
+     "kind": "do",
+     "target": "left:chali",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the pairs until all are joined.",
+      "hi": "बाकी जोड़ियाँ तब तक मिलाओ जब तक सब जुड़ न जाएँ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rhyming words end with the same sound. Poets use rhymes to make poems sing. Two goats, one ahead and one behind, give us many rhyming words like आगे-भागे and पीछे-नीचे.",
+      "hi": "तुक वाले शब्दों के अंत की ध्वनि एक जैसी होती है। कवि कविता को गाने लायक बनाने के लिए तुक का प्रयोग करते हैं। आगे-पीछे चलती दो बकरियों से हमें आगे-भागे और पीछे-नीचे जैसे कई तुक वाले शब्द मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which pair of words rhymes?",
+        "hi": "कौन-सी जोड़ी तुक वाली है?"
+       },
+       "options": [
+        {
+         "en": "घास - पास",
+         "hi": "घास - पास"
+        },
+        {
+         "en": "घास - गली",
+         "hi": "घास - गली"
+        },
+        {
+         "en": "चली - पीछे",
+         "hi": "चली - पीछे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "घास and पास both end with 'आस'.",
+        "hi": "घास और पास दोनों 'आस' पर ख़त्म होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "घास ends with 'आस' and गली with 'अली'; they are different.",
+         "hi": "घास का अंत 'आस' और गली का 'अली' है; वे अलग हैं।"
+        },
+        {
+         "en": "चली and पीछे end with different sounds.",
+         "hi": "चली और पीछे के अंत की ध्वनियाँ अलग हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a rhyming word for 'बकरी'. Say two lines using it.",
+      "hi": "'बकरी' के लिए तुक वाला शब्द ढूँढो। उसके साथ दो पंक्तियाँ बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-x11-goats",
+   "topic": "11.2",
+   "template": "reader",
+   "title": {
+    "en": "Two goats walk",
+    "hi": "दो बकरियों की चाल"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "rhythm",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Brown goat and black goat",
+      "hi": "भूरी और काली बकरी"
+     },
+     "lines": [
+      "भूरी बकरी आगे-आगे।",
+      "काली बकरी पीछे-पीछे।",
+      "दोनों चलीं हरे मैदान में।",
+      "घास चरने साथ-साथ में।"
+     ]
+    },
+    "bpm": 76,
+    "question": {
+     "q": {
+      "en": "Which goat walks in front?",
+      "hi": "कौन-सी बकरी आगे चलती है?"
+     },
+     "options": [
+      {
+       "en": "The brown goat",
+       "hi": "भूरी बकरी"
+      },
+      {
+       "en": "The black goat",
+       "hi": "काली बकरी"
+      },
+      {
+       "en": "Neither",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "The first line says the brown goat walks ahead.",
+      "hi": "पहली पंक्ति में लिखा है कि भूरी बकरी आगे चलती है।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line and listen.",
+      "hi": "पहली पंक्ति छूकर सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which line will end like 'आगे-आगे'?",
+      "hi": "कौन-सी पंक्ति 'आगे-आगे' की तरह ख़त्म होगी?"
+     },
+     "options": [
+      {
+       "id": "l2",
+       "en": "Line 2: पीछे-पीछे",
+       "hi": "दूसरी पंक्ति: पीछे-पीछे"
+      },
+      {
+       "id": "l3",
+       "en": "Line 3: हरे मैदान में",
+       "hi": "तीसरी पंक्ति: हरे मैदान में"
+      }
+     ],
+     "answer": "l2"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play and walk like the goats.",
+      "hi": "चलाओ दबाओ और बकरियों की तरह चलो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beat",
+     "expect": "beat-ok",
+     "say": {
+      "en": "Tap the drum each time a part glows.",
+      "hi": "जब कोई भाग चमके तो ढोल बजाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Words that repeat, like आगे-आगे and पीछे-पीछे, give a poem its beat. They also tell us who is ahead and who is behind.",
+      "hi": "आगे-आगे और पीछे-पीछे जैसे दोहराए गए शब्द कविता को ताल देते हैं। वे यह भी बताते हैं कि कौन आगे है और कौन पीछे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word means the opposite of 'आगे'?",
+        "hi": "'आगे' का उल्टा शब्द कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "पीछे",
+         "hi": "पीछे"
+        },
+        {
+         "en": "साथ",
+         "hi": "साथ"
+        },
+        {
+         "en": "घास",
+         "hi": "घास"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ahead and behind are opposites.",
+        "hi": "आगे और पीछे उल्टे शब्द हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "साथ means together, which is not the opposite of ahead.",
+         "hi": "साथ का अर्थ है एक साथ; यह आगे का उल्टा नहीं है।"
+        },
+        {
+         "en": "घास means grass, not a direction.",
+         "hi": "घास का अर्थ है घास; यह दिशा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a train with friends. Who is first and who is last? Say आगे and पीछे loudly.",
+      "hi": "दोस्तों के साथ रेलगाड़ी बनाओ। कौन आगे है और कौन पीछे? आगे और पीछे ज़ोर से बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "x.1",
+   "use": "Opening picture",
+   "shows": "Two goats, one brown and one black with shaggy fur, walking across a green village field",
+   "view": "Eye level, morning light",
+   "right": "Brown goat in front, black goat behind, grass and a path visible",
+   "avoid": "People in the frame",
+   "n": 1
+  },
+  {
+   "kind": "OBJ",
+   "topic": "x.1",
+   "use": "Goats as cut-outs",
+   "shows": "A brown goat and a black shaggy goat as separate cut-outs",
+   "view": "Side view",
+   "right": "Fur texture visible, horns small",
+   "avoid": "Ear tags",
+   "n": 2
+  },
+  {
+   "kind": "SEQ",
+   "topic": "x.1",
+   "use": "Ahead and behind",
+   "shows": "Three frames: brown goat ahead, both side by side, black goat ahead",
+   "view": "Same field and camera",
+   "right": "Position changes clearly",
+   "avoid": "Changing background",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "x.1",
+   "use": "Grass",
+   "shows": "A bunch of green grass, cut-out",
+   "view": "Slight angle",
+   "right": "Fresh green blades",
+   "avoid": "Weeds with flowers",
+   "n": 4
+  },
+  {
+   "kind": "SCN",
+   "topic": "x.1",
+   "use": "Goats in a field",
+   "shows": "A small flock of goats grazing with two main goats clearly visible, one ahead of the other",
+   "view": "Wide",
+   "right": "Both main goats distinct in colour",
+   "avoid": "People",
+   "n": 5
+  }
+ ]
+}

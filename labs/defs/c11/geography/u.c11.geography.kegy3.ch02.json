@@ -1,0 +1,796 @@
+{
+ "chapter_key": "u.c11.geography.kegy3.ch02",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Map Scale",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy302.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "What is scale; large-scale and small-scale maps",
+   "labs": [
+    "c11-geography-kegy3-ch02-globe",
+    "c11-geography-kegy3-ch02-sizes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Methods of showing scale: statement of scale, representative fraction and graphical scale",
+   "labs": [
+    "c11-geography-kegy3-ch02-rf"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Conversion of scale",
+   "labs": [],
+   "why_no_lab": "It is covered inside the representative-fraction lab, and practised on paper with a ruler."
+  },
+  {
+   "n": "2.4",
+   "title": "Construction of a graphical (bar) scale",
+   "labs": [
+    "c11-geography-kegy3-ch02-bar"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy3-ch02-globe",
+   "topic": "2.1",
+   "template": "globe",
+   "title": {
+    "en": "Scale: how far is far?",
+    "hi": "पैमाना: दूरी कितनी बड़ी?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "scale",
+    "place": "delhi"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:mumbai",
+     "expect": "located",
+     "say": {
+      "en": "Home is Delhi and the scale is 1 cm = 500 km. Tap Mumbai and read the ruler.",
+      "hi": "घर दिल्ली है और पैमाना 1 सेमी = 500 किमी है। मुंबई पर टैप करो और पैमाना पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Delhi to Mumbai is about 1,150 km. At 1 cm = 500 km, how long will the line to Chennai (about 1,750 km) be?",
+      "hi": "दिल्ली से मुंबई लगभग 1,150 किमी है। 1 सेमी = 500 किमी पर चेन्नई (लगभग 1,750 किमी) की रेखा कितनी लंबी होगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "About 3 to 4 cm",
+       "hi": "लगभग 3 से 4 सेमी"
+      },
+      {
+       "id": "b",
+       "en": "About 30 cm",
+       "hi": "लगभग 30 सेमी"
+      },
+      {
+       "id": "c",
+       "en": "Less than 1 cm",
+       "hi": "1 सेमी से कम"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "place:chennai",
+     "expect": "located",
+     "say": {
+      "en": "Now tap Chennai and check your guess against the ruler.",
+      "hi": "अब चेन्नई पर टैप करो और अपना अनुमान पैमाने से जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:sydney",
+     "expect": "located",
+     "say": {
+      "en": "Tap Sydney, very far away. The line is now longer than the ruler.",
+      "hi": "बहुत दूर सिडनी पर टैप करो। अब रेखा पैमाने से लंबी हो गई।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Map length = real distance divided by the distance that one centimetre stands for. Delhi to Mumbai, about 1,150 km, is only about 2 to 3 cm at 500 km to a cm. If 1 cm stands for a small distance, the map is large-scale: it shows a small area in much detail. If 1 cm stands for a large distance, the map is small-scale: it shows a large area with less detail. Scale is the ratio between a distance on the map and the same distance on the ground.",
+      "hi": "मानचित्र पर लंबाई = वास्तविक दूरी ÷ एक सेंटीमीटर जितनी दूरी दिखाता है। 500 किमी प्रति सेमी पर दिल्ली से मुंबई, लगभग 1,150 किमी, केवल 2 से 3 सेमी की है। यदि 1 सेमी छोटी दूरी दिखाए तो मानचित्र बड़े पैमाने का है: छोटा क्षेत्र, अधिक ब्योरा। यदि 1 सेमी बड़ी दूरी दिखाए तो मानचित्र छोटे पैमाने का है: बड़ा क्षेत्र, कम ब्योरा। पैमाना मानचित्र की दूरी और धरती की उसी दूरी का अनुपात है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which map shows a country with the LEAST detail?",
+        "hi": "किस मानचित्र में देश का ब्योरा सबसे कम दिखता है?"
+       },
+       "options": [
+        {
+         "en": "1 cm = 10 km",
+         "hi": "1 सेमी = 10 किमी"
+        },
+        {
+         "en": "1 cm = 500 km",
+         "hi": "1 सेमी = 500 किमी"
+        },
+        {
+         "en": "1 cm = 1 km",
+         "hi": "1 सेमी = 1 किमी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "When 1 cm stands for 500 km, a whole country squeezes into a small page, so it is the smallest scale and shows least detail.",
+        "hi": "जब 1 सेमी 500 किमी दिखाता है तो पूरा देश छोटे पन्ने में समा जाता है; यह सबसे छोटा पैमाना है और इसमें सबसे कम ब्योरा होता है।"
+       },
+       "wrong": [
+        {
+         "en": "1 cm = 10 km is a larger scale, so it shows more detail than 1 cm = 500 km.",
+         "hi": "1 सेमी = 10 किमी बड़ा पैमाना है, इसमें 1 सेमी = 500 किमी से अधिक ब्योरा होता है।"
+        },
+        "",
+        {
+         "en": "1 cm = 1 km is the largest of the three and shows the most detail.",
+         "hi": "1 सेमी = 1 किमी तीनों में सबसे बड़ा है और सबसे अधिक ब्योरा दिखाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: now tap the scale buttons, 10, 100, 500, 1000 or 2000 km, and watch the ruler change for the same city. At which scale is a far city too long for the ruler?",
+      "hi": "आज़माओ: अब पैमाने के बटन, 10, 100, 500, 1000 या 2000 किमी, दबाओ और देखो कि उसी शहर के लिए पैमाना कैसे बदलता है। किस पैमाने पर दूर का शहर पैमाने से लंबा पड़ता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch02-rf",
+   "topic": "2.2",
+   "template": "match",
+   "title": {
+    "en": "Statement of scale and representative fraction",
+    "hi": "कथन-पैमाना और प्रदर्शक भिन्न"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "1 cm = 1 km",
+       "hi": "1 सेमी = 1 किमी"
+      },
+      "right": {
+       "en": "1 : 100,000",
+       "hi": "1 : 1,00,000"
+      },
+      "why": {
+       "en": "1 km is 1,00,000 cm, so 1 cm on the map is 1,00,000 cm on the ground.",
+       "hi": "1 किमी = 1,00,000 सेमी, इसलिए मानचित्र का 1 सेमी धरती के 1,00,000 सेमी के बराबर है।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "1 cm = 2 km",
+       "hi": "1 सेमी = 2 किमी"
+      },
+      "right": {
+       "en": "1 : 200,000",
+       "hi": "1 : 2,00,000"
+      },
+      "why": {
+       "en": "2 km is 2,00,000 cm.",
+       "hi": "2 किमी = 2,00,000 सेमी।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "1 cm = 5 km",
+       "hi": "1 सेमी = 5 किमी"
+      },
+      "right": {
+       "en": "1 : 500,000",
+       "hi": "1 : 5,00,000"
+      },
+      "why": {
+       "en": "5 km is 5,00,000 cm.",
+       "hi": "5 किमी = 5,00,000 सेमी।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "1 cm = 10 km",
+       "hi": "1 सेमी = 10 किमी"
+      },
+      "right": {
+       "en": "1 : 1,000,000",
+       "hi": "1 : 10,00,000"
+      },
+      "why": {
+       "en": "10 km is 10,00,000 cm.",
+       "hi": "10 किमी = 10,00,000 सेमी।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "1 cm = 50 m",
+       "hi": "1 सेमी = 50 मी"
+      },
+      "right": {
+       "en": "1 : 5,000",
+       "hi": "1 : 5,000"
+      },
+      "why": {
+       "en": "50 m is 5,000 cm.",
+       "hi": "50 मी = 5,000 सेमी।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Match 1 cm = 1 km with its representative fraction. Remember: 1 km = 1,00,000 cm.",
+      "hi": "1 सेमी = 1 किमी को उसकी प्रदर्शक भिन्न से मिलाओ। याद रखो: 1 किमी = 1,00,000 सेमी।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If 1 cm = 5 km, what will the R.F. be?",
+      "hi": "यदि 1 सेमी = 5 किमी हो, तो प्रदर्शक भिन्न क्या होगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "1 : 5,00,000",
+       "hi": "अनुपात 1 : 5,00,000"
+      },
+      {
+       "id": "b",
+       "en": "1 : 50,000",
+       "hi": "अनुपात 1 : 50,000"
+      },
+      {
+       "id": "c",
+       "en": "1 : 5,000",
+       "hi": "अनुपात 1 : 5,000"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "matched:c",
+     "say": {
+      "en": "Match 1 cm = 5 km.",
+      "hi": "1 सेमी = 5 किमी को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the pairs and press Check.",
+      "hi": "सब जोड़ियाँ मिलाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A statement of scale says in words how far one centimetre is on the ground. The representative fraction, R.F., says the same with numbers and no unit: 1 : 100,000 means 1 unit on the map is 100,000 of the same unit on the ground. To convert, change the ground distance into centimetres: 1 km = 1,00,000 cm.",
+      "hi": "कथन-पैमाना शब्दों में बताता है कि 1 सेमी धरती पर कितनी दूरी है। प्रदर्शक भिन्न वही बात बिना इकाई की संख्याओं में कहती है: 1 : 1,00,000 का अर्थ है मानचित्र की 1 इकाई धरती की उसी इकाई की 1,00,000 के बराबर। बदलने के लिए धरती की दूरी सेंटीमीटर में बदलो: 1 किमी = 1,00,000 सेमी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "R.F. 1 : 50,000. How many metres does 1 cm on the map stand for?",
+        "hi": "प्रदर्शक भिन्न 1 : 50,000 है। मानचित्र का 1 सेमी कितने मीटर दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "500 m",
+         "hi": "500 मी"
+        },
+        {
+         "en": "50 m",
+         "hi": "50 मी"
+        },
+        {
+         "en": "5 km",
+         "hi": "5 किमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "50,000 cm = 500 m, because 100 cm make 1 m.",
+        "hi": "50,000 सेमी = 500 मी, क्योंकि 100 सेमी का 1 मी होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "50 m is only 5,000 cm, ten times too small.",
+         "hi": "50 मी केवल 5,000 सेमी है, दस गुना कम।"
+        },
+        {
+         "en": "5 km is 5,00,000 cm, ten times too big.",
+         "hi": "5 किमी 5,00,000 सेमी है, दस गुना ज़्यादा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: write the R.F. of your school map if 1 cm stands for 20 m (hint: 20 m = 2,000 cm).",
+      "hi": "आज़माओ: यदि 1 सेमी 20 मी दिखाता हो तो अपने स्कूल के मानचित्र की प्रदर्शक भिन्न लिखो (संकेत: 20 मी = 2,000 सेमी)।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch02-sizes",
+   "topic": "2.1",
+   "template": "sort",
+   "title": {
+    "en": "Large-scale or small-scale?",
+    "hi": "बड़ा पैमाना या छोटा पैमाना?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "large",
+      "label": {
+       "en": "Large scale: small area, more detail",
+       "hi": "बड़ा पैमाना: छोटा क्षेत्र, अधिक ब्योरा"
+      }
+     },
+     {
+      "id": "small",
+      "label": {
+       "en": "Small scale: large area, less detail",
+       "hi": "छोटा पैमाना: बड़ा क्षेत्र, कम ब्योरा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "class",
+      "text": {
+       "en": "Plan of a classroom",
+       "hi": "कक्षा का नक्शा"
+      },
+      "bin": "large",
+      "why": {
+       "en": "A tiny area drawn big, so every desk can be shown.",
+       "hi": "बहुत छोटा क्षेत्र बड़ा बनाया जाता है, इसलिए हर डेस्क दिखती है।"
+      }
+     },
+     {
+      "id": "campus",
+      "text": {
+       "en": "Plan of a school campus",
+       "hi": "स्कूल परिसर का नक्शा"
+      },
+      "bin": "large",
+      "why": {
+       "en": "A small area is shown with buildings, paths and trees.",
+       "hi": "छोटा क्षेत्र इमारतों, रास्तों और पेड़ों के साथ दिखाया जाता है।"
+      }
+     },
+     {
+      "id": "village",
+      "text": {
+       "en": "Map of one village",
+       "hi": "एक गाँव का मानचित्र"
+      },
+      "bin": "large",
+      "why": {
+       "en": "Fields, houses and the pond can be marked separately.",
+       "hi": "खेत, घर और तालाब अलग-अलग दिखाए जा सकते हैं।"
+      }
+     },
+     {
+      "id": "cadastral",
+      "text": {
+       "en": "Cadastral map showing plot boundaries",
+       "hi": "भूखंडों की सीमाएँ दिखाने वाला भू-अभिलेख मानचित्र"
+      },
+      "bin": "large",
+      "why": {
+       "en": "Each plot of land is drawn to show its boundary, so it needs a large scale.",
+       "hi": "हर भूखंड की सीमा दिखाने के लिए बड़ा पैमाना चाहिए।"
+      }
+     },
+     {
+      "id": "india",
+      "text": {
+       "en": "Atlas map of India",
+       "hi": "एटलस में भारत का मानचित्र"
+      },
+      "bin": "small",
+      "why": {
+       "en": "A whole country on one page, so only major features are shown.",
+       "hi": "पूरा देश एक पन्ने पर है, इसलिए केवल मुख्य बातें दिखती हैं।"
+      }
+     },
+     {
+      "id": "world",
+      "text": {
+       "en": "Wall map of the world",
+       "hi": "दीवार पर लगा विश्व मानचित्र"
+      },
+      "bin": "small",
+      "why": {
+       "en": "The whole earth in one map is the smallest scale of all.",
+       "hi": "पूरी पृथ्वी एक मानचित्र में, यानी सबसे छोटा पैमाना।"
+      }
+     },
+     {
+      "id": "asia",
+      "text": {
+       "en": "Map of the continent of Asia",
+       "hi": "एशिया महाद्वीप का मानचित्र"
+      },
+      "bin": "small",
+      "why": {
+       "en": "A very large area on a page gives little detail.",
+       "hi": "पन्ने पर बहुत बड़ा क्षेत्र होने से ब्योरा कम रहता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:class",
+     "expect": "correct:class",
+     "say": {
+      "en": "Put the classroom plan in the right group.",
+      "hi": "कक्षा का नक्शा सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which shows more detail: a map of your village or a map of Asia on the same size of paper?",
+      "hi": "समान आकार के कागज़ पर किसमें अधिक ब्योरा दिखेगा: तुम्हारे गाँव का मानचित्र या एशिया का मानचित्र?"
+     },
+     "options": [
+      {
+       "id": "v",
+       "en": "The village map",
+       "hi": "गाँव का मानचित्र"
+      },
+      {
+       "id": "a",
+       "en": "The map of Asia",
+       "hi": "एशिया का मानचित्र"
+      }
+     ],
+     "answer": "v"
+    },
+    {
+     "kind": "do",
+     "target": "card:asia",
+     "expect": "correct:asia",
+     "say": {
+      "en": "Place the map of Asia.",
+      "hi": "एशिया का मानचित्र रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the remaining cards and press Check.",
+      "hi": "बाक़ी कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A large-scale map covers a small area but shows many details, such as a school campus or a village. A small-scale map covers a large area and shows few details, such as a map of India or the world. The word \"large\" refers to the size of the scale fraction: 1 : 1,000 is a larger fraction than 1 : 10,00,000.",
+      "hi": "बड़े पैमाने का मानचित्र छोटा क्षेत्र ढकता है पर बहुत ब्योरा दिखाता है, जैसे स्कूल परिसर या गाँव। छोटे पैमाने का मानचित्र बड़ा क्षेत्र ढकता है और कम ब्योरा दिखाता है, जैसे भारत या विश्व का मानचित्र। \"बड़ा\" शब्द पैमाने की भिन्न के आकार के लिए है: 1 : 1,000 भिन्न 1 : 10,00,000 से बड़ी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which scale is the largest?",
+        "hi": "इनमें कौन-सा पैमाना सबसे बड़ा है?"
+       },
+       "options": [
+        {
+         "en": "1 : 1,000",
+         "hi": "पैमाना 1 : 1,000"
+        },
+        {
+         "en": "1 : 50,000",
+         "hi": "पैमाना 1 : 50,000"
+        },
+        {
+         "en": "1 : 10,00,000",
+         "hi": "पैमाना 1 : 10,00,000"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1/1,000 is the biggest fraction of the three, so it shows the most detail.",
+        "hi": "तीनों में 1/1,000 सबसे बड़ी भिन्न है, इसलिए इसमें सबसे अधिक ब्योरा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1/50,000 is smaller than 1/1,000, so its map shows less detail.",
+         "hi": "1/50,000, 1/1,000 से छोटी है, इसलिए उसके मानचित्र में कम ब्योरा है।"
+        },
+        {
+         "en": "1/10,00,000 is the smallest fraction, so it is the smallest scale.",
+         "hi": "1/10,00,000 सबसे छोटी भिन्न है, इसलिए यह सबसे छोटा पैमाना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: sort again, but this time think which map you would carry for a walk in the village and which for a flight abroad.",
+      "hi": "आज़माओ: फिर से छाँटो और सोचो कि गाँव में घूमने के लिए कौन-सा मानचित्र लोगे और विदेश की उड़ान के लिए कौन-सा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch02-bar",
+   "topic": "2.4",
+   "template": "sequence",
+   "title": {
+    "en": "Drawing a graphical scale",
+    "hi": "आलेखी पैमाना बनाना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "longest",
+      "text": {
+       "en": "Decide the longest distance the scale must show, say 20 km",
+       "hi": "तय करो कि पैमाना सबसे लंबी कितनी दूरी दिखाए, मान लो 20 किमी"
+      }
+     },
+     {
+      "id": "convert",
+      "text": {
+       "en": "Work out its length on paper: 20 km at 1 cm = 5 km is 4 cm",
+       "hi": "कागज़ पर उसकी लंबाई निकालो: 1 सेमी = 5 किमी पर 20 किमी 4 सेमी है"
+      }
+     },
+     {
+      "id": "draw",
+      "text": {
+       "en": "Draw a straight line of that length and divide it into equal parts",
+       "hi": "उतनी लंबी सीधी रेखा खींचो और उसे बराबर भागों में बाँटो"
+      }
+     },
+     {
+      "id": "mark",
+      "text": {
+       "en": "Write 0 at the first mark and the distances beside the others",
+       "hi": "पहले निशान पर 0 और बाक़ी पर दूरियाँ लिखो"
+      }
+     },
+     {
+      "id": "units",
+      "text": {
+       "en": "Write the unit, km, and the scale below the line",
+       "hi": "रेखा के नीचे इकाई, किमी, और पैमाना लिखो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slot:1",
+     "expect": "placed:longest",
+     "say": {
+      "en": "Place the first step in slot 1: what must you decide before drawing?",
+      "hi": "पहला चरण खाना 1 में रखो: चित्र बनाने से पहले क्या तय करना होगा?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The scale is 1 cm = 5 km. How long a line will you draw for 20 km?",
+      "hi": "पैमाना 1 सेमी = 5 किमी है। 20 किमी के लिए कितनी लंबी रेखा खींचोगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "4 cm",
+       "hi": "4 सेमी"
+      },
+      {
+       "id": "b",
+       "en": "20 cm",
+       "hi": "20 सेमी"
+      },
+      {
+       "id": "c",
+       "en": "100 cm",
+       "hi": "100 सेमी"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "slot:2",
+     "expect": "placed:convert",
+     "say": {
+      "en": "Place the second step: the sum that gives the length of the line.",
+      "hi": "दूसरा चरण रखो: वह हिसाब जिससे रेखा की लंबाई निकलती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the remaining steps in order and press Check.",
+      "hi": "बाक़ी चरण क्रम में लगाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A graphical or bar scale is a line marked in real distances, so it stays correct even if the map is enlarged or reduced. First choose the longest distance to show, then convert it with the scale into a length in centimetres, draw the line, divide it equally, label it from zero, and write the unit.",
+      "hi": "आलेखी या पट्टी-पैमाना वह रेखा है जिस पर असली दूरियाँ लिखी होती हैं, इसलिए मानचित्र बड़ा या छोटा करने पर भी वह सही रहता है। पहले सबसे लंबी दिखाई जाने वाली दूरी चुनो, फिर पैमाने से उसे सेंटीमीटर की लंबाई में बदलो, रेखा खींचो, बराबर भागों में बाँटो, शून्य से नाम लिखो और इकाई लिखो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a bar scale useful when a map is photocopied smaller?",
+        "hi": "मानचित्र की फ़ोटोकॉपी छोटी होने पर पट्टी-पैमाना क्यों उपयोगी है?"
+       },
+       "options": [
+        {
+         "en": "It shrinks along with the map, so it stays correct",
+         "hi": "वह मानचित्र के साथ छोटा हो जाता है, इसलिए सही रहता है"
+        },
+        {
+         "en": "It does not change at all",
+         "hi": "वह बिल्कुल नहीं बदलता"
+        },
+        {
+         "en": "It stops the map from shrinking",
+         "hi": "वह मानचित्र को छोटा होने से रोकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bar and the map change size together, so the ratio between them is unchanged.",
+        "hi": "पट्टी और मानचित्र साथ-साथ छोटे होते हैं, इसलिए दोनों का अनुपात वही रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If the bar did not change, it would no longer match the smaller map.",
+         "hi": "यदि पट्टी न बदलती तो वह छोटे मानचित्र से मेल न खाती।"
+        },
+        {
+         "en": "A bar scale cannot control the size of the copy.",
+         "hi": "पट्टी-पैमाना प्रति का आकार नियंत्रित नहीं कर सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: draw a bar scale for 1 cm = 2 km that shows up to 10 km. How long is your line?",
+      "hi": "आज़माओ: 1 सेमी = 2 किमी के लिए 10 किमी तक का पट्टी-पैमाना बनाओ। तुम्हारी रेखा कितनी लंबी है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Hook: the same place at two scales",
+   "shows": "A town seen from above: a satellite-style close view and a wide view of the district, side by side, without text",
+   "view": "Top-down, same location centre in both",
+   "right": "Same landmark (a river bend) recognisable in both",
+   "avoid": "Place names, borders, logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.4",
+   "use": "Bar scale tools",
+   "shows": "A ruler, a compass (geometry) and a pencil on squared paper where a bar scale is being drawn",
+   "view": "From above, even light",
+   "right": "Pencil line straight; compass open at the scale length",
+   "avoid": "Brand names, writing on the paper"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "2.4",
+   "use": "Drawing a bar scale",
+   "shows": "Four frames: a line drawn on paper, divided into equal parts, marked with zero and distances, finished scale",
+   "view": "Same top-down framing in all frames",
+   "right": "Equal divisions; zero at the first mark",
+   "avoid": "Different paper between frames"
+  },
+  {
+   "n": 4,
+   "kind": "MAP",
+   "topic": "2.1",
+   "use": "Large and small scale base",
+   "shows": "A blank street-level plan of a small neighbourhood and a blank outline plan of a whole district, no names",
+   "view": "Top-down, 4:3",
+   "right": "Neighbourhood has house blocks; district only main roads",
+   "avoid": "Any text or numbers"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Ratio diagram base",
+   "shows": "A clean strip showing a 1 cm bar above a long ground bar, no numbers",
+   "view": "Flat, white background",
+   "right": "The ground bar is much longer than the map bar",
+   "avoid": "Numbers, labels"
+  }
+ ]
+}

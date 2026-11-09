@@ -1,0 +1,1019 @@
+{
+ "chapter_key": "u.c06.science.fecu1.ch05",
+ "class": 6,
+ "subject_id": "science",
+ "title": "Measurement of Length and Motion",
+ "source": "https://ncert.nic.in/textbook/pdf/fecu105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "How do we measure? Body units such as hand-span, cubit and angul",
+   "labs": [
+    "c06-science-fecu1-ch05-handspan"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Standard units: metre, centimetre, millimetre, kilometre",
+   "labs": [
+    "c06-science-fecu1-ch05-units"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Correct way of measuring length",
+   "labs": [
+    "c06-science-fecu1-ch05-ruler"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Measuring the length of a curved line",
+   "labs": [],
+   "why_no_lab": "Best done for real with a thread and a ruler on a curved line; the photo sequence shows how."
+  },
+  {
+   "n": "5.5",
+   "title": "Describing position from a reference point",
+   "labs": [],
+   "why_no_lab": "Taught with the milestone photo and in the motion lab of 5.6, which uses a reference point."
+  },
+  {
+   "n": "5.6",
+   "title": "Moving things: motion is a change of position with time",
+   "labs": [
+    "c06-science-fecu1-ch05-moving"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.7",
+   "title": "Types of motion: linear, circular, periodic",
+   "labs": [
+    "c06-science-fecu1-ch05-kinds"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-science-fecu1-ch05-handspan",
+   "topic": "5.1",
+   "template": "measure",
+   "title": {
+    "en": "Measure a desk with hand-spans",
+    "hi": "बित्ते से डेस्क नापो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "instrument": "hand-span",
+    "object": "desk"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Your father's hand-span is bigger than yours. Who will count more spans for the same desk?",
+      "hi": "पापा का बित्ता तुम्हारे बित्ते से बड़ा है। एक ही डेस्क के लिए ज़्यादा बित्ते कौन गिनेगा?"
+     },
+     "options": [
+      {
+       "id": "me",
+       "en": "Me, with the smaller hand",
+       "hi": "मैं, छोटे हाथ से"
+      },
+      {
+       "id": "papa",
+       "en": "Papa, with the bigger hand",
+       "hi": "पापा, बड़े हाथ से"
+      },
+      {
+       "id": "same",
+       "en": "Both the same",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "me"
+    },
+    {
+     "kind": "do",
+     "target": "instrument",
+     "expect": "aligned",
+     "say": {
+      "en": "Press \"Lay the next hand\" again and again until your hands cover the whole desk.",
+      "hi": "\"अगला हाथ रखो\" बार-बार दबाओ जब तक हाथ पूरी डेस्क को न ढक लें।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Press Read.",
+      "hi": "\"पढ़ो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type how many hand-spans long the desk is, then press Check.",
+      "hi": "लिखो कि डेस्क कितने बित्ते लंबी है, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Measuring means comparing with a fixed amount, called a unit. A hand-span is a unit, but hands are of different sizes, so different people get different numbers for the same desk. That is why we need standard units.",
+      "hi": "नापने का अर्थ है किसी तय मात्रा से तुलना करना, जिसे मात्रक कहते हैं। बित्ता एक मात्रक है, पर हाथ अलग-अलग आकार के होते हैं, इसलिए एक ही डेस्क के लिए अलग लोग अलग संख्या पाते हैं। इसीलिए हमें मानक मात्रक चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Meena says the desk is 8 spans. Her little sister says 12 spans. Who is right?",
+        "hi": "मीना कहती है डेस्क 8 बित्ते की है। उसकी छोटी बहन कहती है 12 बित्ते। कौन सही है?"
+       },
+       "options": [
+        {
+         "en": "Both, because their spans are of different sizes",
+         "hi": "दोनों, क्योंकि उनके बित्ते अलग आकार के हैं"
+        },
+        {
+         "en": "Only Meena",
+         "hi": "केवल मीना"
+        },
+        {
+         "en": "Only the sister",
+         "hi": "केवल बहन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The desk is the same, but the unit (the hand) is different, so the count is different.",
+        "hi": "डेस्क वही है, पर मात्रक (हाथ) अलग है, इसलिए गिनती अलग है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sister also measured carefully; her smaller hand fits more times.",
+         "hi": "बहन ने भी ध्यान से नापा; उसका छोटा हाथ ज़्यादा बार आता है।"
+        },
+        {
+         "en": "Meena also measured carefully; her bigger hand fits fewer times.",
+         "hi": "मीना ने भी ध्यान से नापा; उसका बड़ा हाथ कम बार आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the \"Whose hand?\" slider and measure the desk again with Papa's and your little sister's hands. Then try the bench and the blackboard.",
+      "hi": "\"किसका हाथ?\" स्लाइडर बदलो और पापा व छोटी बहन के हाथ से डेस्क फिर नापो। फिर बेंच और श्यामपट आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch05-units",
+   "topic": "5.2",
+   "template": "match",
+   "title": {
+    "en": "Standard units of length",
+    "hi": "लंबाई के मानक मात्रक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "si",
+      "left": {
+       "en": "SI unit of length",
+       "hi": "लंबाई का SI मात्रक"
+      },
+      "right": {
+       "en": "metre (m)",
+       "hi": "मीटर (m)"
+      },
+      "why": {
+       "en": "The whole world uses the metre as the standard unit of length.",
+       "hi": "पूरी दुनिया लंबाई के मानक मात्रक के रूप में मीटर का उपयोग करती है।"
+      }
+     },
+     {
+      "id": "cm",
+      "left": {
+       "en": "1 centimetre",
+       "hi": "1 सेंटीमीटर"
+      },
+      "right": {
+       "en": "10 millimetres",
+       "hi": "10 मिलीमीटर"
+      },
+      "why": {
+       "en": "Each centimetre on a ruler has 10 small millimetre marks.",
+       "hi": "पैमाने पर हर सेंटीमीटर में 10 छोटे मिलीमीटर के निशान होते हैं।"
+      }
+     },
+     {
+      "id": "m",
+      "left": {
+       "en": "1 metre",
+       "hi": "1 मीटर"
+      },
+      "right": {
+       "en": "100 centimetres",
+       "hi": "100 सेंटीमीटर"
+      },
+      "why": {
+       "en": "A metre is 100 cm, about the height of a kitchen counter.",
+       "hi": "एक मीटर 100 सेमी है, लगभग रसोई के स्लैब की ऊँचाई।"
+      }
+     },
+     {
+      "id": "km",
+      "left": {
+       "en": "1 kilometre",
+       "hi": "1 किलोमीटर"
+      },
+      "right": {
+       "en": "1000 metres",
+       "hi": "1000 मीटर"
+      },
+      "why": {
+       "en": "Long distances, like home to the railway station, are given in kilometres.",
+       "hi": "लंबी दूरियाँ, जैसे घर से रेलवे स्टेशन, किलोमीटर में बताई जाती हैं।"
+      }
+     },
+     {
+      "id": "cubit",
+      "left": {
+       "en": "Cubit (old unit)",
+       "hi": "हाथ (पुराना मात्रक)"
+      },
+      "right": {
+       "en": "Elbow to the tip of the middle finger",
+       "hi": "कोहनी से बीच वाली उँगली की नोक तक"
+      },
+      "why": {
+       "en": "Old units used body parts, which differ from person to person.",
+       "hi": "पुराने मात्रक शरीर के अंगों पर आधारित थे, जो हर व्यक्ति में अलग होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many centimetres make one metre?",
+      "hi": "एक मीटर में कितने सेंटीमीटर होते हैं?"
+     },
+     "options": [
+      {
+       "id": "100",
+       "en": "100 cm",
+       "hi": "100 सेमी"
+      },
+      {
+       "id": "10",
+       "en": "10 cm",
+       "hi": "10 सेमी"
+      },
+      {
+       "id": "1000",
+       "en": "1000 cm",
+       "hi": "1000 सेमी"
+      }
+     ],
+     "answer": "100"
+    },
+    {
+     "kind": "do",
+     "target": "left:m",
+     "expect": "matched:m",
+     "say": {
+      "en": "Tap \"1 metre\", then its partner.",
+      "hi": "\"1 मीटर\" को छुओ, फिर उसका जोड़ीदार।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:si",
+     "expect": "matched:si",
+     "say": {
+      "en": "Now match \"SI unit of length\".",
+      "hi": "अब \"लंबाई का SI मात्रक\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी को मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A standard unit is the same for everyone, everywhere. The SI unit of length is the metre. For small lengths we use centimetres and millimetres; for long distances, kilometres.",
+      "hi": "मानक मात्रक हर किसी के लिए, हर जगह एक जैसा होता है। लंबाई का SI मात्रक मीटर है। छोटी लंबाइयों के लिए सेंटीमीटर और मिलीमीटर, और लंबी दूरियों के लिए किलोमीटर का उपयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A pencil is 15 cm long. How long is it in millimetres?",
+        "hi": "एक पेंसिल 15 सेमी लंबी है। मिलीमीटर में कितनी लंबी है?"
+       },
+       "options": [
+        {
+         "en": "150 mm",
+         "hi": "150 मिमी"
+        },
+        {
+         "en": "15 mm",
+         "hi": "15 मिमी"
+        },
+        {
+         "en": "1500 mm",
+         "hi": "1500 मिमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1 cm = 10 mm, so 15 cm = 15 × 10 = 150 mm.",
+        "hi": "1 सेमी = 10 मिमी, इसलिए 15 सेमी = 15 × 10 = 150 मिमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "15 mm is only one and a half centimetres, as small as a fingernail.",
+         "hi": "15 मिमी तो केवल डेढ़ सेंटीमीटर है, नाख़ून जितना।"
+        },
+        {
+         "en": "That multiplies by 100; 1 cm is 10 mm, not 100 mm.",
+         "hi": "यह 100 से गुणा है; 1 सेमी = 10 मिमी होता है, 100 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which unit suits the distance from Delhi to Agra?",
+        "hi": "दिल्ली से आगरा की दूरी के लिए कौन-सा मात्रक ठीक है?"
+       },
+       "options": [
+        {
+         "en": "Millimetre",
+         "hi": "मिलीमीटर"
+        },
+        {
+         "en": "Kilometre",
+         "hi": "किलोमीटर"
+        },
+        {
+         "en": "Centimetre",
+         "hi": "सेंटीमीटर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Long distances between cities are measured in kilometres.",
+        "hi": "शहरों के बीच की लंबी दूरी किलोमीटर में नापी जाती है।"
+       },
+       "wrong": [
+        {
+         "en": "Millimetres are for tiny lengths, like the thickness of a coin.",
+         "hi": "मिलीमीटर बहुत छोटी लंबाई के लिए है, जैसे सिक्के की मोटाई।"
+        },
+        "",
+        {
+         "en": "Centimetres suit a book or a pencil, not a journey between cities.",
+         "hi": "सेंटीमीटर किताब या पेंसिल के लिए ठीक है, शहरों के बीच की यात्रा के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and match the pairs as fast as you can. Then guess, in metres, the length of your classroom, and check with a tape.",
+      "hi": "\"फिर से शुरू\" दबाओ और जितनी जल्दी हो सके जोड़ियाँ मिलाओ। फिर अपनी कक्षा की लंबाई मीटर में अनुमान से बताओ, और फ़ीते से जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch05-ruler",
+   "topic": "5.3",
+   "template": "measure",
+   "title": {
+    "en": "Measuring with a ruler the right way",
+    "hi": "पैमाने से सही तरीक़े से नापना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "instrument": "scale",
+    "object": "leaf",
+    "units": "cm"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The leaf's left end is not at the 0 mark. How do you find its length?",
+      "hi": "पत्ती का बायाँ सिरा 0 के निशान पर नहीं है। उसकी लंबाई कैसे निकालोगे?"
+     },
+     "options": [
+      {
+       "id": "sub",
+       "en": "Reading at the right end minus reading at the left end",
+       "hi": "दाएँ सिरे की रीडिंग में से बाएँ सिरे की रीडिंग घटाओ"
+      },
+      {
+       "id": "right",
+       "en": "Just read the right end",
+       "hi": "बस दाएँ सिरे को पढ़ो"
+      },
+      {
+       "id": "add",
+       "en": "Add the two readings",
+       "hi": "दोनों रीडिंग जोड़ो"
+      }
+     ],
+     "answer": "sub"
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Press Read to look closely at both ends of the leaf.",
+      "hi": "पत्ती के दोनों सिरों को पास से देखने के लिए \"पढ़ो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the length of the leaf in cm, then press Check.",
+      "hi": "पत्ती की लंबाई सेमी में लिखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Place the ruler along the object. If the 0 mark is not used, or is broken, subtract the reading at one end from the reading at the other. Keep your eye straight above the mark you read; looking from the side gives a wrong reading.",
+      "hi": "पैमाने को वस्तु के साथ-साथ रखो। अगर 0 का निशान काम में नहीं आया या टूटा है, तो एक सिरे की रीडिंग को दूसरे सिरे की रीडिंग से घटाओ। जिस निशान को पढ़ रहे हो, आँख ठीक उसके ऊपर रखो; तिरछा देखने से रीडिंग ग़लत आती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A pencil starts at the 2.0 cm mark and ends at the 11.5 cm mark. How long is it?",
+        "hi": "एक पेंसिल 2.0 सेमी के निशान से शुरू होकर 11.5 सेमी पर ख़त्म होती है। वह कितनी लंबी है?"
+       },
+       "options": [
+        {
+         "en": "9.5 cm",
+         "hi": "9.5 सेमी"
+        },
+        {
+         "en": "11.5 cm",
+         "hi": "11.5 सेमी"
+        },
+        {
+         "en": "13.5 cm",
+         "hi": "13.5 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Length = 11.5 − 2.0 = 9.5 cm.",
+        "hi": "लंबाई = 11.5 − 2.0 = 9.5 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "11.5 is only the right-end reading; the pencil does not start at 0.",
+         "hi": "11.5 केवल दाएँ सिरे की रीडिंग है; पेंसिल 0 से शुरू नहीं होती।"
+        },
+        {
+         "en": "Adding the readings makes it longer than the ruler shows. Subtract instead.",
+         "hi": "रीडिंग जोड़ने से लंबाई पैमाने से भी ज़्यादा हो जाती है। घटाना चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where should your eye be when you read the scale?",
+        "hi": "पैमाना पढ़ते समय आँख कहाँ होनी चाहिए?"
+       },
+       "options": [
+        {
+         "en": "To the left of the mark",
+         "hi": "निशान के बाईं ओर"
+        },
+        {
+         "en": "Straight above the mark",
+         "hi": "निशान के ठीक ऊपर"
+        },
+        {
+         "en": "To the right of the mark",
+         "hi": "निशान के दाईं ओर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Looking straight down avoids the error that comes from a slanted look.",
+        "hi": "सीधे नीचे देखने से तिरछी नज़र वाली ग़लती नहीं होती।"
+       },
+       "wrong": [
+        {
+         "en": "From the left, the mark seems to shift and the reading comes out wrong.",
+         "hi": "बाईं ओर से देखने पर निशान खिसका लगता है और रीडिंग ग़लत आती है।"
+        },
+        "",
+        {
+         "en": "From the right, the mark also seems to shift, so the reading is wrong.",
+         "hi": "दाईं ओर से देखने पर भी निशान खिसका लगता है, इसलिए रीडिंग ग़लत आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide the leaf so its end sits on 0, and move your eye straight above. Read again: is it the same length? Then measure the key and the crayon.",
+      "hi": "पत्ती को खिसकाकर उसका सिरा 0 पर लाओ, और आँख को ठीक ऊपर ले जाओ। फिर पढ़ो: क्या लंबाई वही है? फिर चाबी और क्रेयॉन नापो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch05-moving",
+   "topic": "5.6",
+   "template": "motion",
+   "title": {
+    "en": "Is it moving?",
+    "hi": "क्या यह गति में है?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "1d",
+    "vehicle": "cycle",
+    "u": 4,
+    "a": 0
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The cycle starts at the start line, our reference point. What changes as it moves?",
+      "hi": "साइकिल आरंभ रेखा से चलती है, जो हमारा संदर्भ बिंदु है। चलते समय क्या बदलता है?"
+     },
+     "options": [
+      {
+       "id": "pos",
+       "en": "Its distance from the start line",
+       "hi": "आरंभ रेखा से उसकी दूरी"
+      },
+      {
+       "id": "colour",
+       "en": "Its colour",
+       "hi": "उसका रंग"
+      },
+      {
+       "id": "none",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलता"
+      }
+     ],
+     "answer": "pos"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "moving",
+     "say": {
+      "en": "Press Play and watch the distance from the start.",
+      "hi": "\"चलाओ\" दबाओ और शुरुआत से दूरी देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "stopped",
+     "say": {
+      "en": "Let it run, or press again, until it stops.",
+      "hi": "इसे चलने दो, या फिर दबाओ, जब तक यह रुक न जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We describe where something is by its distance and direction from a fixed reference point, like a pole or a milestone. An object is in motion when its position changes with time. The cycle's distance from the start line grew every second, so it was moving.",
+      "hi": "कोई चीज़ कहाँ है, यह हम किसी तय संदर्भ बिंदु, जैसे खंभा या मील का पत्थर, से उसकी दूरी और दिशा बताकर कहते हैं। जब समय के साथ किसी वस्तु की स्थिति बदलती है, तो वह गति में होती है। आरंभ रेखा से साइकिल की दूरी हर सेकंड बढ़ी, इसलिए वह गति में थी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A milestone says \"Delhi 70 km\". After an hour on a bus you see \"Delhi 20 km\". What happened?",
+        "hi": "एक मील के पत्थर पर लिखा है \"दिल्ली 70 किमी\"। बस में एक घंटे बाद दिखता है \"दिल्ली 20 किमी\"। क्या हुआ?"
+       },
+       "options": [
+        {
+         "en": "The bus moved 50 km towards Delhi",
+         "hi": "बस दिल्ली की ओर 50 किमी चली"
+        },
+        {
+         "en": "The bus did not move",
+         "hi": "बस नहीं चली"
+        },
+        {
+         "en": "Delhi moved closer",
+         "hi": "दिल्ली पास आ गई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The position of the bus from Delhi changed from 70 km to 20 km, so it moved 70 − 20 = 50 km.",
+        "hi": "दिल्ली से बस की स्थिति 70 किमी से 20 किमी हुई, इसलिए वह 70 − 20 = 50 किमी चली।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Its distance from Delhi changed, so it was in motion.",
+         "hi": "दिल्ली से उसकी दूरी बदली, इसलिए वह गति में थी।"
+        },
+        {
+         "en": "Delhi is the fixed reference point here; the bus is what moved.",
+         "hi": "यहाँ दिल्ली तय संदर्भ बिंदु है; चलने वाली बस है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the starting-speed slider (u) and play again. How far does the cycle go before it stops each time? Look at the distance-time graph too.",
+      "hi": "आरंभिक चाल (u) का स्लाइडर बदलो और फिर चलाओ। हर बार रुकने से पहले साइकिल कितनी दूर जाती है? दूरी-समय ग्राफ़ भी देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch05-kinds",
+   "topic": "5.7",
+   "template": "sort",
+   "title": {
+    "en": "Kinds of motion",
+    "hi": "गति के प्रकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "line",
+      "label": {
+       "en": "Straight line (linear)",
+       "hi": "सीधी रेखा में (रैखिक)"
+      }
+     },
+     {
+      "id": "circle",
+      "label": {
+       "en": "Circular",
+       "hi": "वृत्तीय"
+      }
+     },
+     {
+      "id": "period",
+      "label": {
+       "en": "Repeats to and fro (periodic)",
+       "hi": "आगे-पीछे दोहराती (आवर्ती)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "train",
+      "text": {
+       "en": "A train on a straight track",
+       "hi": "सीधी पटरी पर रेलगाड़ी"
+      },
+      "bin": "line",
+      "why": {
+       "en": "It moves along a straight line.",
+       "hi": "यह सीधी रेखा में चलती है।"
+      }
+     },
+     {
+      "id": "fall",
+      "text": {
+       "en": "A mango falling from a tree",
+       "hi": "पेड़ से गिरता आम"
+      },
+      "bin": "line",
+      "why": {
+       "en": "It falls straight down.",
+       "hi": "यह सीधा नीचे गिरता है।"
+      }
+     },
+     {
+      "id": "march",
+      "text": {
+       "en": "Children in a march-past",
+       "hi": "मार्च-पास्ट में बच्चे"
+      },
+      "bin": "line",
+      "why": {
+       "en": "They march along a straight path.",
+       "hi": "वे सीधे रास्ते पर मार्च करते हैं।"
+      }
+     },
+     {
+      "id": "fan",
+      "text": {
+       "en": "Blades of a ceiling fan",
+       "hi": "छत के पंखे की पंखुड़ियाँ"
+      },
+      "bin": "circle",
+      "why": {
+       "en": "Each blade goes round and round a fixed centre.",
+       "hi": "हर पंखुड़ी एक तय केंद्र के चारों ओर घूमती है।"
+      }
+     },
+     {
+      "id": "wheel",
+      "text": {
+       "en": "A point on a giant wheel",
+       "hi": "झूले (जायंट व्हील) पर एक बिंदु"
+      },
+      "bin": "circle",
+      "why": {
+       "en": "It moves in a circle at the same distance from the centre.",
+       "hi": "यह केंद्र से एक ही दूरी पर वृत्त में घूमता है।"
+      }
+     },
+     {
+      "id": "clock",
+      "text": {
+       "en": "Tip of a clock's hand",
+       "hi": "घड़ी की सुई की नोक"
+      },
+      "bin": "circle",
+      "why": {
+       "en": "The tip goes round in a circle.",
+       "hi": "नोक वृत्त में घूमती है।"
+      }
+     },
+     {
+      "id": "swing",
+      "text": {
+       "en": "A swing (jhoola) going to and fro",
+       "hi": "आगे-पीछे झूलता झूला"
+      },
+      "bin": "period",
+      "why": {
+       "en": "It goes to and fro and repeats after a fixed time.",
+       "hi": "यह आगे-पीछे जाता है और तय समय बाद दोहराता है।"
+      }
+     },
+     {
+      "id": "pendulum",
+      "text": {
+       "en": "Pendulum of a wall clock",
+       "hi": "दीवार घड़ी का लोलक"
+      },
+      "bin": "period",
+      "why": {
+       "en": "It swings to and fro, again and again, in equal times.",
+       "hi": "यह बराबर समय में बार-बार आगे-पीछे झूलता है।"
+      }
+     },
+     {
+      "id": "needle",
+      "text": {
+       "en": "A sewing machine needle",
+       "hi": "सिलाई मशीन की सुई"
+      },
+      "bin": "period",
+      "why": {
+       "en": "It moves up and down and repeats.",
+       "hi": "यह ऊपर-नीचे चलती है और दोहराती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How does the tip of a ceiling fan blade move?",
+      "hi": "छत के पंखे की पंखुड़ी की नोक कैसे चलती है?"
+     },
+     "options": [
+      {
+       "id": "circle",
+       "en": "Round in a circle",
+       "hi": "वृत्त में घूमती है"
+      },
+      {
+       "id": "line",
+       "en": "In a straight line",
+       "hi": "सीधी रेखा में"
+      },
+      {
+       "id": "swing",
+       "en": "To and fro",
+       "hi": "आगे-पीछे"
+      }
+     ],
+     "answer": "circle"
+    },
+    {
+     "kind": "do",
+     "target": "card:fan",
+     "expect": "correct:fan",
+     "say": {
+      "en": "Tap the ceiling fan card, then its group.",
+      "hi": "छत के पंखे का कार्ड छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:swing",
+     "expect": "correct:swing",
+     "say": {
+      "en": "Now sort the swing.",
+      "hi": "अब झूले को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी को छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In linear motion an object moves along a straight line. In circular motion it moves in a circle about a fixed centre. In periodic motion it repeats itself after a fixed time, like a swing or a pendulum.",
+      "hi": "रैखिक गति में वस्तु सीधी रेखा में चलती है। वृत्तीय गति में वह किसी तय केंद्र के चारों ओर वृत्त में घूमती है। आवर्ती गति में वह तय समय बाद ख़ुद को दोहराती है, जैसे झूला या लोलक।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The Earth goes round the Sun once every year. This motion is…",
+        "hi": "पृथ्वी हर वर्ष एक बार सूर्य के चारों ओर घूमती है। यह गति है…"
+       },
+       "options": [
+        {
+         "en": "Only linear",
+         "hi": "केवल रैखिक"
+        },
+        {
+         "en": "Circular and also periodic",
+         "hi": "वृत्तीय और आवर्ती भी"
+        },
+        {
+         "en": "No motion at all",
+         "hi": "कोई गति नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It goes round a centre (roughly circular) and repeats every year, so it is also periodic.",
+        "hi": "यह एक केंद्र के चारों ओर घूमती है (लगभग वृत्तीय) और हर वर्ष दोहराती है, इसलिए आवर्ती भी है।"
+       },
+       "wrong": [
+        {
+         "en": "The path curves round the Sun; it is not a straight line.",
+         "hi": "रास्ता सूर्य के चारों ओर मुड़ता है; यह सीधी रेखा नहीं है।"
+        },
+        "",
+        {
+         "en": "The Earth's position changes all the time, so it is in motion.",
+         "hi": "पृथ्वी की स्थिति हर समय बदलती है, इसलिए वह गति में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Then look around your home: find one more example of each kind of motion.",
+      "hi": "\"फिर से शुरू\" दबाओ। फिर घर में देखो: हर प्रकार की गति का एक और उदाहरण खोजो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Chapter opener: body units",
+   "shows": "A tailor in an Indian shop measuring cloth with his forearm (cubit) beside a measuring tape on the counter",
+   "view": "Medium shot, side view, adult only",
+   "right": "Elbow to fingertip along the cloth",
+   "avoid": "Shop name, faces in close-up"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "5.1",
+   "use": "Hand-span lab",
+   "shows": "A child's hand and an adult's hand each laying spans along the same school desk, two frames",
+   "view": "From above, same desk, same framing",
+   "right": "Thumb tip to little finger tip; adult hand clearly bigger",
+   "avoid": "Rings, watches, faces"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "5.3",
+   "use": "Reading a ruler",
+   "shows": "A 15 cm ruler next to a neem leaf whose end sits at the 1 cm mark, close-up of the mm marks",
+   "view": "Straight from above, square",
+   "right": "Millimetre marks sharp; ruler edge touching the leaf",
+   "avoid": "Brand names on the ruler"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "5.4",
+   "use": "Curved line with a thread",
+   "shows": "Three frames: a thread laid along a curved line drawn on paper; the thread marked at the end with ink; the thread stretched along a ruler",
+   "view": "From above, same framing",
+   "right": "Thread follows the curve closely",
+   "avoid": "Writing on the paper"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "5.5",
+   "use": "Reference point",
+   "shows": "A yellow-and-white milestone on an Indian highway, the road stretching away, a bus far off",
+   "view": "Low angle, roadside",
+   "right": "Milestone shape real; text area left blank (the app adds names)",
+   "avoid": "Readable place names, number plates"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "5.6",
+   "use": "Moving things",
+   "shows": "A boy cycling past a lamp post, four frames from the same camera one second apart",
+   "view": "Side view, fixed camera, back of the rider",
+   "right": "Post fixed, cycle further each frame",
+   "avoid": "Faces, traffic"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "5.7",
+   "use": "Types of motion",
+   "shows": "Three separate photos: a train on a straight track, a giant wheel at a mela, a child on a swing (back view)",
+   "view": "Each 16:9",
+   "right": "Real motion blur only where moving",
+   "avoid": "Faces, logos"
+  }
+ ]
+}

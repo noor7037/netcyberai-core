@@ -1,0 +1,790 @@
+{
+ "chapter_key": "u.c11.hindi.khar1.ch07.s1",
+ "class": 11,
+ "subject_id": "hindi",
+ "title": "जामुन का पेड़",
+ "source": "https://ncert.nic.in/textbook/pdf/khar107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "The file that outlived the man (कथा-क्रम)",
+   "labs": [
+    "c11-hindi-khar1-ch07-story"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Every office has an excuse (विभागों के बहाने)",
+   "labs": [
+    "c11-hindi-khar1-ch07-offices"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "People under the jamun tree (पात्र)",
+   "labs": [
+    "c11-hindi-khar1-ch07-people"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "A life against a file (संदेश)",
+   "labs": [],
+   "why_no_lab": "This is best handled in a class debate; turning it into a game would make a serious point light."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-hindi-khar1-ch07-story",
+   "topic": "7.1",
+   "template": "sequence",
+   "title": {
+    "en": "The file that outlived the man",
+    "hi": "फ़ाइल जो आदमी से ज़्यादा जी गई"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "fall",
+      "text": {
+       "en": "A storm blows a jamun tree down in the Secretariat lawn",
+       "hi": "आँधी से सचिवालय के लॉन में जामुन का पेड़ गिर जाता है"
+      }
+     },
+     {
+      "id": "found",
+      "text": {
+       "en": "The gardener finds a man pinned under it",
+       "hi": "माली देखता है कि पेड़ के नीचे एक आदमी दबा है"
+      }
+     },
+     {
+      "id": "file",
+      "text": {
+       "en": "The matter becomes a file passed from desk to desk",
+       "hi": "मामला फ़ाइल बनकर एक मेज़ से दूसरी मेज़ तक घूमता है"
+      }
+     },
+     {
+      "id": "cutman",
+      "text": {
+       "en": "Since a fruit tree cannot be cut, someone says to cut the man",
+       "hi": "फलदार पेड़ नहीं कट सकता, इसलिए कोई आदमी को काटने को कहता है"
+      }
+     },
+     {
+      "id": "medical",
+      "text": {
+       "en": "Doctors say freeing him that way would kill him",
+       "hi": "डॉक्टर कहते हैं कि इस तरह निकालने से वह मर जाएगा"
+      }
+     },
+     {
+      "id": "poet",
+      "text": {
+       "en": "He turns out to be a poet, so the cultural department steps in",
+       "hi": "वह कवि निकलता है, तो संस्कृति विभाग आगे आता है"
+      }
+     },
+     {
+      "id": "late",
+      "text": {
+       "en": "The order to cut the tree finally comes, too late",
+       "hi": "पेड़ काटने का हुक्म आख़िर आता है, पर बहुत देर से"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:fall",
+     "expect": "placed:fall",
+     "say": {
+      "en": "Tap the card about the storm and put it in place 1.",
+      "hi": "आँधी वाला कार्ड छुओ और जगह 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Do you think the man will be saved in the end?",
+      "hi": "तुम्हें क्या लगता है, क्या अंत में आदमी बच जाएगा?"
+     },
+     "options": [
+      {
+       "id": "late",
+       "en": "No, the order comes too late",
+       "hi": "नहीं, हुक्म बहुत देर से आता है"
+      },
+      {
+       "id": "soon",
+       "en": "Yes, quickly",
+       "hi": "हाँ, जल्दी ही"
+      },
+      {
+       "id": "poet",
+       "en": "Yes, because he is a poet",
+       "hi": "हाँ, क्योंकि वह कवि है"
+      }
+     ],
+     "answer": "late"
+    },
+    {
+     "kind": "do",
+     "target": "item:late",
+     "expect": "placed:late",
+     "say": {
+      "en": "Put the card about the order coming too late in its place.",
+      "hi": "देर से आए हुक्म वाला कार्ड उसकी जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Press Check when all the cards are placed.",
+      "hi": "सब कार्ड लगाकर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This story is a joke with a sad end. Every department finds a reason not to act: one says the tree is a fruit tree, one says the man cannot be freed that way, one says he is a poet and not their business. When the order finally comes, the man has died. It mocks a system that cares more for files than for a life.",
+      "hi": "यह कहानी हँसी की तरह शुरू होकर दुखद अंत पर पहुँचती है। हर विभाग कुछ न करने का कारण ढूँढ लेता है: कोई कहता है पेड़ फलदार है, कोई कहता है आदमी इस तरह नहीं निकल सकता, कोई कहता है वह कवि है और उनका काम नहीं। जब हुक्म आता है, तब तक आदमी मर चुका होता है। यह उस व्यवस्था पर चोट है जो जान से ज़्यादा फ़ाइलों की परवाह करती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What stops people from simply cutting the tree?",
+        "hi": "लोग पेड़ को सीधे काट क्यों नहीं देते?"
+       },
+       "options": [
+        {
+         "en": "Rules and departments argue about who may decide",
+         "hi": "नियम हैं और विभाग इस पर बहस करते हैं कि फ़ैसला कौन करे"
+        },
+        {
+         "en": "The tree is too small",
+         "hi": "पेड़ बहुत छोटा है"
+        },
+        {
+         "en": "No one has an axe",
+         "hi": "किसी के पास कुल्हाड़ी नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each department points to a rule or another office, and the file goes round and round.",
+        "hi": "हर विभाग किसी नियम या दूसरे दफ़्तर का नाम लेता है, और फ़ाइल घूमती रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The tree is big enough to trap a man.",
+         "hi": "पेड़ इतना बड़ा है कि आदमी दब गया।"
+        },
+        {
+         "en": "Cutting a tree needs no special axe; the delay is not about tools.",
+         "hi": "पेड़ काटने के लिए कोई ख़ास कुल्हाड़ी नहीं चाहिए; देरी औज़ारों की नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the story mainly mocking?",
+        "hi": "यह कहानी मुख्य रूप से किस पर व्यंग्य करती है?"
+       },
+       "options": [
+        {
+         "en": "Red tape that values files above a human life",
+         "hi": "लालफ़ीताशाही, जो जान से ऊपर फ़ाइल को रखती है"
+        },
+        {
+         "en": "Gardeners",
+         "hi": "माली"
+        },
+        {
+         "en": "Fruit trees",
+         "hi": "फलदार पेड़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A life is lost while papers move between desks.",
+        "hi": "काग़ज़ एक मेज़ से दूसरी तक जाते रहते हैं और जान चली जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The gardener is the only one who helps.",
+         "hi": "माली तो अकेला मदद करने वाला है।"
+        },
+        {
+         "en": "The trouble is not the fruit tree but the system.",
+         "hi": "समस्या फलदार पेड़ नहीं, व्यवस्था है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine you are the Superintendent. What one small decision could have saved the man?",
+      "hi": "सोचो तुम सुपरिंटेंडेंट हो। कौन-सा एक छोटा फ़ैसला उस आदमी को बचा सकता था?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khar1-ch07-offices",
+   "topic": "7.2",
+   "template": "match",
+   "title": {
+    "en": "Every office has an excuse",
+    "hi": "हर दफ़्तर का एक बहाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "agri",
+      "left": {
+       "en": "Agriculture department",
+       "hi": "कृषि विभाग"
+      },
+      "right": {
+       "en": "Says it is a fruit tree, so it cannot be cut",
+       "hi": "कहता है कि पेड़ फलदार है, इसलिए नहीं कट सकता"
+      },
+      "why": {
+       "en": "The department is more worried about the tree than the man.",
+       "hi": "विभाग को आदमी से ज़्यादा पेड़ की चिंता है।"
+      }
+     },
+     {
+      "id": "medical",
+      "left": {
+       "en": "Medical department",
+       "hi": "चिकित्सा विभाग"
+      },
+      "right": {
+       "en": "Says the operation would work but the man would die",
+       "hi": "कहता है कि ऑपरेशन सफल होगा पर आदमी मर जाएगा"
+      },
+      "why": {
+       "en": "Its answer also leaves him stuck under the tree.",
+       "hi": "उसके उत्तर से भी वह पेड़ के नीचे फँसा रह जाता है।"
+      }
+     },
+     {
+      "id": "culture",
+      "left": {
+       "en": "Cultural department",
+       "hi": "संस्कृति विभाग"
+      },
+      "right": {
+       "en": "Takes interest only because the man is a poet",
+       "hi": "आदमी के कवि होने के कारण ही रुचि लेता है"
+      },
+      "why": {
+       "en": "It offers to make him a member and help his wife, not to pull him out.",
+       "hi": "वह उसे सदस्य बनाने और पत्नी को मदद देने की बात करता है, निकालने की नहीं।"
+      }
+     },
+     {
+      "id": "forest",
+      "left": {
+       "en": "Forest department",
+       "hi": "वन विभाग"
+      },
+      "right": {
+       "en": "Says a friendly country's leader planted the tree",
+       "hi": "कहता है कि पेड़ किसी मित्र देश के प्रधानमंत्री ने लगाया था"
+      },
+      "why": {
+       "en": "Cutting it could harm relations, so it must not be cut.",
+       "hi": "काटने से संबंध बिगड़ सकते हैं, इसलिए नहीं काटना चाहिए।"
+      }
+     },
+     {
+      "id": "gardener",
+      "left": {
+       "en": "The gardener",
+       "hi": "माली"
+      },
+      "right": {
+       "en": "Brings food and hope to the trapped man",
+       "hi": "फँसे आदमी के लिए खाना और हौसला लाता है"
+      },
+      "why": {
+       "en": "He is the one who actually cares about the man.",
+       "hi": "असल में आदमी की परवाह वही करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which person in the story is the only one who treats the trapped man as a human being first?",
+      "hi": "कहानी में कौन अकेला फँसे आदमी को पहले इंसान समझता है?"
+     },
+     "options": [
+      {
+       "id": "gardener",
+       "en": "The gardener",
+       "hi": "माली"
+      },
+      {
+       "id": "super",
+       "en": "The Superintendent",
+       "hi": "सुपरिंटेंडेंट"
+      },
+      {
+       "id": "forest",
+       "en": "The Forest department",
+       "hi": "वन विभाग"
+      }
+     ],
+     "answer": "gardener"
+    },
+    {
+     "kind": "do",
+     "target": "left:agri",
+     "expect": "matched:agri",
+     "say": {
+      "en": "Match the Agriculture department with its excuse.",
+      "hi": "कृषि विभाग को उसके बहाने से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:gardener",
+     "expect": "matched:gardener",
+     "say": {
+      "en": "Match the gardener.",
+      "hi": "माली को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाकी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every office thinks only of its own rule. Agriculture protects the tree, medicine warns of risk, culture is interested in poets, and the forest office worries about a friendly country. Only the gardener, the smallest person in the story, thinks of the man himself.",
+      "hi": "हर दफ़्तर सिर्फ़ अपने नियम के बारे में सोचता है। कृषि विभाग पेड़ बचाता है, चिकित्सा विभाग ख़तरा बताता है, संस्कृति विभाग कवियों में रुचि लेता है, और वन विभाग मित्र देश की चिंता करता है। सिर्फ़ माली, कहानी का सबसे छोटा आदमी, उस आदमी के बारे में सोचता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which department says the tree was planted by a friendly country's leader?",
+        "hi": "कौन-सा विभाग कहता है कि पेड़ मित्र देश के प्रधानमंत्री ने लगाया था?"
+       },
+       "options": [
+        {
+         "en": "Forest department",
+         "hi": "वन विभाग"
+        },
+        {
+         "en": "Medical department",
+         "hi": "चिकित्सा विभाग"
+        },
+        {
+         "en": "Cultural department",
+         "hi": "संस्कृति विभाग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "That is the Forest department's reason for not cutting it.",
+        "hi": "यही वन विभाग का पेड़ न काटने का कारण है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Medical department talks about the operation.",
+         "hi": "चिकित्सा विभाग ऑपरेशन की बात करता है।"
+        },
+        {
+         "en": "The Cultural department talks about the poet.",
+         "hi": "संस्कृति विभाग कवि की बात करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the Cultural department take interest?",
+        "hi": "संस्कृति विभाग रुचि क्यों लेता है?"
+       },
+       "options": [
+        {
+         "en": "Because the trapped man is a poet",
+         "hi": "क्योंकि फँसा आदमी कवि है"
+        },
+        {
+         "en": "Because the tree is old",
+         "hi": "क्योंकि पेड़ पुराना है"
+        },
+        {
+         "en": "Because the gardener asked",
+         "hi": "क्योंकि माली ने कहा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the poet's name brings the office, and even then it does not free him.",
+        "hi": "कवि का नाम सुनकर ही दफ़्तर आता है, फिर भी वह उसे निकालता नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The tree's age is never the reason.",
+         "hi": "पेड़ की उम्र कभी कारण नहीं बनती।"
+        },
+        {
+         "en": "The gardener asked for help, but that is not why the office comes.",
+         "hi": "माली ने मदद माँगी थी, पर दफ़्तर इसलिए नहीं आता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose one office and write one honest sentence it should have said instead of its excuse.",
+      "hi": "कोई एक दफ़्तर चुनो और उसके बहाने की जगह एक सच्चा वाक्य लिखो जो उसे कहना चाहिए था।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khar1-ch07-people",
+   "topic": "7.3",
+   "template": "reader",
+   "title": {
+    "en": "People under the jamun tree",
+    "hi": "जामुन के पेड़ के पास के लोग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "A man trapped under a tree",
+      "hi": "पेड़ के नीचे दबा आदमी"
+     },
+     "lines": [
+      "आँधी के बाद सचिवालय के बगीचे में जामुन का पेड़ गिरा और उसके नीचे एक आदमी दब गया।",
+      "माली ने सबसे पहले उसे देखा और दौड़कर चपरासी और क्लर्कों को ख़बर दी।",
+      "सुपरिंटेंडेंट ने कहा कि मामला टेढ़ा है, इसलिए फ़ाइल बनाकर ऊपर भेजनी होगी।",
+      "पता चला कि दबा हुआ आदमी कवि है, इसलिए संस्कृति विभाग का सेक्रेटरी उसके पास आया।",
+      "हर विभाग ने अपनी बात कही, पर किसी ने आदमी को निकालने का हुक्म नहीं दिया।"
+     ]
+    },
+    "characters": [
+     {
+      "id": "mali",
+      "name": {
+       "en": "Gardener",
+       "hi": "माली"
+      },
+      "traits": [
+       {
+        "en": "runs first to get help",
+        "hi": "सबसे पहले मदद के लिए दौड़ता है"
+       },
+       {
+        "en": "looks after the trapped man",
+        "hi": "फँसे आदमी का ख़याल रखता है"
+       }
+      ]
+     },
+     {
+      "id": "super",
+      "name": {
+       "en": "Superintendent",
+       "hi": "सुपरिंटेंडेंट"
+      },
+      "traits": [
+       {
+        "en": "puts the file above the man",
+        "hi": "आदमी से ऊपर फ़ाइल को रखता है"
+       },
+       {
+        "en": "advises sending everything upward",
+        "hi": "हर बात ऊपर भेजने की सलाह देता है"
+       }
+      ]
+     },
+     {
+      "id": "kavi",
+      "name": {
+       "en": "Poet",
+       "hi": "कवि"
+      },
+      "traits": [
+       {
+        "en": "the trapped man, who still quotes a famous verse",
+        "hi": "फँसा हुआ आदमी, जो फिर भी मशहूर शेर सुनाता है"
+       },
+       {
+        "en": "his life is lost among files",
+        "hi": "उसकी जान फ़ाइलों में उलझकर चली जाती है"
+       }
+      ]
+     },
+     {
+      "id": "sec",
+      "name": {
+       "en": "Secretary",
+       "hi": "सेक्रेटरी"
+      },
+      "traits": [
+       {
+        "en": "talks of giving his wife a stipend instead of freeing him",
+        "hi": "उसे निकालने के बजाय पत्नी को वज़ीफ़ा देने की बात करता है"
+       },
+       {
+        "en": "thinks only within his department's limits",
+        "hi": "अपने विभाग की सीमा में ही सोचता है"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who do you think keeps the man's courage up during the long night?",
+      "hi": "तुम्हें क्या लगता है, लंबी रात में आदमी का हौसला कौन बनाए रखता है?"
+     },
+     "options": [
+      {
+       "id": "mali",
+       "en": "The gardener",
+       "hi": "माली"
+      },
+      {
+       "id": "super",
+       "en": "The Superintendent",
+       "hi": "सुपरिंटेंडेंट"
+      },
+      {
+       "id": "sec",
+       "en": "The Secretary",
+       "hi": "सेक्रेटरी"
+      }
+     ],
+     "answer": "mali"
+    },
+    {
+     "kind": "do",
+     "target": "character:mali",
+     "expect": "picked:mali",
+     "say": {
+      "en": "Tap the gardener, the first to help.",
+      "hi": "माली को छुओ, जो सबसे पहले मदद करता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:super",
+     "expect": "picked:super",
+     "say": {
+      "en": "Now tap the Superintendent.",
+      "hi": "अब सुपरिंटेंडेंट को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the clue about one character.",
+      "hi": "किसी एक पात्र के संकेत का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The gardener has no power but has a heart. The Superintendent and the Secretary have power but follow only rules. The poet, who laughs at his own fate with a verse, makes the loss even sadder. Their roles together show the story's anger at a system without feeling.",
+      "hi": "माली के पास ताक़त नहीं, पर दिल है। सुपरिंटेंडेंट और सेक्रेटरी के पास ताक़त है, पर वे सिर्फ़ नियमों पर चलते हैं। कवि अपने भाग्य पर शेर सुनाकर हँसता है, और इससे नुकसान और दुखद लगता है। इन सबकी भूमिकाएँ मिलकर दिखाती हैं कि कहानी भावहीन व्यवस्था पर गुस्सा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who tells the file to be sent upward instead of acting?",
+        "hi": "कौन काम करने की जगह फ़ाइल को ऊपर भेजने को कहता है?"
+       },
+       "options": [
+        {
+         "en": "The Superintendent",
+         "hi": "सुपरिंटेंडेंट"
+        },
+        {
+         "en": "The gardener",
+         "hi": "माली"
+        },
+        {
+         "en": "The poet",
+         "hi": "कवि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He is the one who turns a life into a file.",
+        "hi": "वही एक जान को फ़ाइल बना देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The gardener wants quick help.",
+         "hi": "माली तुरंत मदद चाहता है।"
+        },
+        {
+         "en": "The poet is the one trapped.",
+         "hi": "कवि तो फँसा हुआ आदमी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the Secretary offer the poet?",
+        "hi": "सेक्रेटरी कवि को क्या देने की बात करता है?"
+       },
+       "options": [
+        {
+         "en": "A stipend for his wife, not rescue",
+         "hi": "पत्नी को वज़ीफ़ा, बचाव नहीं"
+        },
+        {
+         "en": "A new tree",
+         "hi": "एक नया पेड़"
+        },
+        {
+         "en": "A ladder",
+         "hi": "एक सीढ़ी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The offer shows how far the office is from the real need.",
+        "hi": "यह प्रस्ताव दिखाता है कि दफ़्तर असली ज़रूरत से कितनी दूर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No new tree is offered.",
+         "hi": "किसी नए पेड़ की बात नहीं होती।"
+        },
+        {
+         "en": "No ladder is mentioned.",
+         "hi": "किसी सीढ़ी का ज़िक्र नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a character and write what that person might think at night after the story ends.",
+      "hi": "कोई पात्र चुनो और लिखो कि कहानी ख़त्म होने के बाद रात को वह क्या सोच रहा होगा।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Hook of the chapter",
+   "shows": "A large jamun tree fallen across the lawn of a sandstone government building after a storm",
+   "view": "Eye level, wide, grey stormy light",
+   "right": "Dark purple jamuns on the branches, bent grass, torn leaves",
+   "avoid": "People pinned under the tree, any injury"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "The tree",
+   "shows": "A cluster of ripe jamun fruit on a leafy twig",
+   "view": "Close, transparent background",
+   "right": "Dark purple-black fruit, glossy dark-green leaves",
+   "avoid": "Unripe green fruit"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "The file",
+   "shows": "Stacks of files tied with red tape on a wooden office desk under a ceiling fan",
+   "view": "Slightly above, wide",
+   "right": "Faded brown covers, string ties, rubber stamps; no readable text",
+   "avoid": "Readable text, faces"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "7.2",
+   "use": "A file travels",
+   "shows": "Four frames of a file being handed over from one desk to another in a government office",
+   "view": "Same wide angle, hands only",
+   "right": "The file gets thicker in each frame",
+   "avoid": "Faces, readable text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "7.2",
+   "use": "Office objects",
+   "shows": "A wooden rubber stamp and a blue ink pad",
+   "view": "Three-quarter view, transparent background",
+   "right": "Plain wood, blue ink; blank stamp face",
+   "avoid": "Any text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "7.3",
+   "use": "The gardener",
+   "shows": "A garden worker's tools: a spade, a watering can and a basket lying on dewy grass at dawn",
+   "view": "Eye level, low",
+   "right": "Steel spade, green watering can; dew on blades",
+   "avoid": "People's faces"
+  }
+ ]
+}

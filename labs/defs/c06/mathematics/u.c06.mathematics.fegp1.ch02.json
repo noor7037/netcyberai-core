@@ -1,0 +1,898 @@
+{
+ "chapter_key": "u.c06.mathematics.fegp1.ch02",
+ "class": 6,
+ "subject_id": "mathematics",
+ "title": "Lines and Angles",
+ "source": "https://ncert.nic.in/textbook/pdf/fegp102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Point",
+   "labs": [],
+   "why_no_lab": "A point is an exact position with no size; a close photo of a pencil dot and the reader teach it better than a lab."
+  },
+  {
+   "n": "2.2",
+   "title": "Line segment",
+   "labs": [],
+   "why_no_lab": "Joining two points with a ruler is best practised on real paper; the reader shows how, and the angle labs use segments as arms."
+  },
+  {
+   "n": "2.3",
+   "title": "Line",
+   "labs": [],
+   "why_no_lab": "That a line goes on for ever in both directions is shown best by the folded-paper crease photo and the reader."
+  },
+  {
+   "n": "2.4",
+   "title": "Ray",
+   "labs": [],
+   "why_no_lab": "A ray (one starting point, going on for ever) is shown best by the torch-beam photo; the labs then use rays as the arms of angles."
+  },
+  {
+   "n": "2.5",
+   "title": "Angle: vertex and arms",
+   "labs": [],
+   "why_no_lab": "Naming the vertex and arms is learnt from the reader’s photos of scissors and a clock; the rotating-arms lab of 2.7 then lets the child turn them."
+  },
+  {
+   "n": "2.6",
+   "title": "Comparing angles",
+   "labs": [],
+   "why_no_lab": "Comparing by laying one angle over another is a tracing-paper activity shown by the photo sequence; comparing by measure is done in the 2.9 lab."
+  },
+  {
+   "n": "2.7",
+   "title": "Making rotating arms",
+   "labs": [
+    "c06-mathematics-fegp1-ch02-arms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.8",
+   "title": "Special types of angles: right and straight",
+   "labs": [
+    "c06-mathematics-fegp1-ch02-right-angle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.9",
+   "title": "Measuring angles with a protractor",
+   "labs": [
+    "c06-mathematics-fegp1-ch02-protractor"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.10",
+   "title": "Drawing angles",
+   "labs": [
+    "c06-mathematics-fegp1-ch02-draw-angle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.11",
+   "title": "Types of angles and their measures",
+   "labs": [
+    "c06-mathematics-fegp1-ch02-angle-types"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-mathematics-fegp1-ch02-arms",
+   "topic": "2.7",
+   "template": "shapes",
+   "title": {
+    "en": "Rotating arms make an angle",
+    "hi": "घूमती भुजाएँ कोण बनाती हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "angle",
+    "task": "make",
+    "given": {
+     "angles": [
+      120
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Arm OA stays still. You will turn arm OB further and further away from OA. What happens to the angle?",
+      "hi": "भुजा OA अपनी जगह रहती है। तुम भुजा OB को OA से और दूर घुमाओगे। कोण का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "big",
+       "en": "It gets bigger",
+       "hi": "वह बड़ा होता जाएगा"
+      },
+      {
+       "id": "small",
+       "en": "It gets smaller",
+       "hi": "वह छोटा होता जाएगा"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वह वैसा ही रहेगा"
+      }
+     ],
+     "answer": "big"
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag point B to turn arm OB. Watch the number of degrees.",
+      "hi": "बिंदु B को खिसकाकर भुजा OB घुमाओ। अंशों की संख्या पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "constructed",
+     "say": {
+      "en": "Now turn arm OB until the angle is exactly 120°.",
+      "hi": "अब भुजा OB को तब तक घुमाओ जब तक कोण ठीक 120° न हो जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An angle is the amount of turn between two arms that start at the same point, the vertex O. The more you turn arm OB away from OA, the bigger the angle. The length of the arms does not change the angle; only the turn does.",
+      "hi": "कोण दो भुजाओं के बीच के घुमाव की मात्रा है, जो एक ही बिंदु, शीर्ष O, से शुरू होती हैं। भुजा OB को OA से जितना ज़्यादा घुमाओगे, कोण उतना बड़ा होगा। भुजाओं की लंबाई से कोण नहीं बदलता; केवल घुमाव से बदलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two angles have the same turn, but one has longer arms. Which is bigger?",
+        "hi": "दो कोणों में घुमाव बराबर है, पर एक की भुजाएँ लंबी हैं। कौन-सा बड़ा है?"
+       },
+       "options": [
+        {
+         "en": "They are equal",
+         "hi": "दोनों बराबर हैं"
+        },
+        {
+         "en": "The one with longer arms",
+         "hi": "लंबी भुजाओं वाला"
+        },
+        {
+         "en": "The one with shorter arms",
+         "hi": "छोटी भुजाओं वाला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An angle measures the turn, not the length of the arms.",
+        "hi": "कोण घुमाव को मापता है, भुजाओं की लंबाई को नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Longer arms only look bigger; the opening between them is the same.",
+         "hi": "लंबी भुजाएँ केवल बड़ी दिखती हैं; उनके बीच का खुलाव वही है।"
+        },
+        {
+         "en": "Shorter arms do not shrink the turn; the turn is the same.",
+         "hi": "छोटी भुजाएँ घुमाव को कम नहीं करतीं; घुमाव वही है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the point O, where the two arms meet, called?",
+        "hi": "बिंदु O, जहाँ दोनों भुजाएँ मिलती हैं, क्या कहलाता है?"
+       },
+       "options": [
+        {
+         "en": "The vertex",
+         "hi": "शीर्ष"
+        },
+        {
+         "en": "An arm",
+         "hi": "एक भुजा"
+        },
+        {
+         "en": "A ray",
+         "hi": "एक किरण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The common starting point of the two arms is the vertex of the angle.",
+        "hi": "दोनों भुजाओं का साझा आरंभ बिंदु कोण का शीर्ष होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An arm is one of the two rays, not the point where they meet.",
+         "hi": "भुजा दो किरणों में से एक है, वह बिंदु नहीं जहाँ वे मिलती हैं।"
+        },
+        {
+         "en": "A ray starts at a point and goes on; O is only the starting point.",
+         "hi": "किरण एक बिंदु से शुरू होकर आगे जाती है; O केवल आरंभ बिंदु है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make the arms open like scissors, a door and a clock at 4 o’clock. Which angle is the biggest?",
+      "hi": "अब ख़ुद आज़माओ। भुजाओं को कैंची, दरवाज़े और 4 बजे की घड़ी जैसा खोलो। कौन-सा कोण सबसे बड़ा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch02-right-angle",
+   "topic": "2.8",
+   "template": "shapes",
+   "title": {
+    "en": "A right angle: a quarter turn",
+    "hi": "समकोण: चौथाई चक्कर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "angle",
+    "task": "make",
+    "given": {
+     "angles": [
+      90
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A full turn brings arm OB all the way round to OA again. What part of a full turn is a right angle, like the corner of a book?",
+      "hi": "पूरा चक्कर भुजा OB को घुमाकर फिर से OA पर ले आता है। समकोण, जैसे किताब का कोना, पूरे चक्कर का कौन-सा भाग है?"
+     },
+     "options": [
+      {
+       "id": "quarter",
+       "en": "A quarter turn",
+       "hi": "चौथाई चक्कर"
+      },
+      {
+       "id": "half",
+       "en": "A half turn",
+       "hi": "आधा चक्कर"
+      },
+      {
+       "id": "third",
+       "en": "A third of a turn",
+       "hi": "चक्कर का तिहाई"
+      }
+     ],
+     "answer": "quarter"
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "constructed",
+     "say": {
+      "en": "Drag point B until arm OB stands straight up from OA: exactly 90°.",
+      "hi": "बिंदु B को तब तक खिसकाओ जब तक भुजा OB, OA पर सीधी खड़ी न हो जाए: ठीक 90°।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A full turn is 360°. A right angle is a quarter of it: 360 ÷ 4 = 90°. Two right angles together make a straight angle of 180°, a half turn, where the two arms lie on one straight line.",
+      "hi": "पूरा चक्कर 360° का होता है। समकोण उसका चौथाई है: 360 ÷ 4 = 90°। दो समकोण मिलकर 180° का ऋजु कोण बनाते हैं, यानी आधा चक्कर, जिसमें दोनों भुजाएँ एक ही सीधी रेखा पर होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many right angles make a straight angle?",
+        "hi": "कितने समकोण मिलकर ऋजु कोण बनाते हैं?"
+       },
+       "options": [
+        "2",
+        "4",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "90° + 90° = 180°, a straight angle.",
+        "hi": "90° + 90° = 180°, एक ऋजु कोण।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 right angles make 360°, a full turn, not a straight angle.",
+         "hi": "4 समकोण से 360° बनता है, पूरा चक्कर, ऋजु कोण नहीं।"
+        },
+        {
+         "en": "3 right angles make 270°, more than a straight line.",
+         "hi": "3 समकोण से 270° बनता है, सीधी रेखा से ज़्यादा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these has a right angle?",
+        "hi": "इनमें से किसमें समकोण है?"
+       },
+       "options": [
+        {
+         "en": "The corner of a postcard",
+         "hi": "पोस्टकार्ड का कोना"
+        },
+        {
+         "en": "An open pair of scissors",
+         "hi": "खुली हुई कैंची"
+        },
+        {
+         "en": "The tip of a samosa",
+         "hi": "समोसे की नोक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A postcard is a rectangle, and every corner of a rectangle is 90°.",
+        "hi": "पोस्टकार्ड आयताकार है, और आयत का हर कोना 90° का होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Scissors can open to any angle; usually they make a small, acute angle.",
+         "hi": "कैंची किसी भी कोण तक खुल सकती है; आमतौर पर वह छोटा, न्यून कोण बनाती है।"
+        },
+        {
+         "en": "The tip of a samosa is sharp, less than 90°.",
+         "hi": "समोसे की नोक नुकीली होती है, 90° से कम।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Turn arm OB to make a straight angle of 180°. Then find right angles in your room.",
+      "hi": "अब ख़ुद आज़माओ। भुजा OB घुमाकर 180° का ऋजु कोण बनाओ। फिर अपने कमरे में समकोण ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch02-protractor",
+   "topic": "2.9",
+   "template": "shapes",
+   "title": {
+    "en": "Measure an angle with a protractor",
+    "hi": "चाँदे से कोण मापो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "angle",
+    "task": "measure",
+    "given": {
+     "angles": [
+      65
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A protractor has two scales, one inside and one outside. Which scale should you read?",
+      "hi": "चाँदे पर दो पैमाने होते हैं, एक भीतर और एक बाहर। तुम्हें कौन-सा पैमाना पढ़ना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "zero",
+       "en": "The one that starts at 0 on arm OA",
+       "hi": "वह जो भुजा OA पर 0 से शुरू होता है"
+      },
+      {
+       "id": "outer",
+       "en": "Always the outer one",
+       "hi": "हमेशा बाहर वाला"
+      },
+      {
+       "id": "big",
+       "en": "The one with the bigger number",
+       "hi": "जिस पर बड़ी संख्या हो"
+      }
+     ],
+     "answer": "zero"
+    },
+    {
+     "kind": "do",
+     "target": "tool:protractor",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the protractor to place its centre on the vertex O.",
+      "hi": "चाँदे पर टैप करो ताकि उसका केंद्र शीर्ष O पर रखा जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read where arm OB crosses the scale that starts at 0 on OA. Choose the angle.",
+      "hi": "देखो कि भुजा OB उस पैमाने को कहाँ काटती है जो OA पर 0 से शुरू होता है। कोण चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Put the centre of the protractor on the vertex and its base line along one arm. Start from the 0 that lies on that arm and count up to the other arm. Reading the other scale gives 180° minus the true angle, a common mistake.",
+      "hi": "चाँदे का केंद्र शीर्ष पर और उसकी आधार रेखा एक भुजा पर रखो। उस भुजा पर पड़े 0 से शुरू करो और दूसरी भुजा तक गिनो। दूसरा पैमाना पढ़ने पर 180° में से असली कोण घटा हुआ मिलता है, यह एक आम ग़लती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An angle looks small, but you read 115° on the protractor. What went wrong?",
+        "hi": "कोण छोटा दिखता है, पर तुमने चाँदे पर 115° पढ़ा। क्या ग़लत हुआ?"
+       },
+       "options": [
+        {
+         "en": "I read the wrong scale",
+         "hi": "मैंने ग़लत पैमाना पढ़ा"
+        },
+        {
+         "en": "Nothing, it is right",
+         "hi": "कुछ नहीं, यह सही है"
+        },
+        {
+         "en": "The arms are too short",
+         "hi": "भुजाएँ बहुत छोटी हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A small (acute) angle is less than 90°. 115° = 180° − 65°, the reading from the other scale.",
+        "hi": "छोटा (न्यून) कोण 90° से कम होता है। 115° = 180° − 65°, यह दूसरे पैमाने की रीडिंग है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An angle that looks smaller than a right angle cannot be 115°.",
+         "hi": "जो कोण समकोण से छोटा दिखे, वह 115° नहीं हो सकता।"
+        },
+        {
+         "en": "Short arms can be extended with a ruler; they do not change the reading.",
+         "hi": "छोटी भुजाओं को रूलर से बढ़ाया जा सकता है; इससे रीडिंग नहीं बदलती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where must the centre of the protractor go?",
+        "hi": "चाँदे का केंद्र कहाँ रखना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "On the vertex",
+         "hi": "शीर्ष पर"
+        },
+        {
+         "en": "At the end of arm OB",
+         "hi": "भुजा OB के सिरे पर"
+        },
+        {
+         "en": "Anywhere inside the angle",
+         "hi": "कोण के भीतर कहीं भी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Angles are measured from the vertex, so the centre goes exactly on it.",
+        "hi": "कोण शीर्ष से मापे जाते हैं, इसलिए केंद्र ठीक उसी पर रखा जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The end of an arm is not where the turn happens.",
+         "hi": "भुजा का सिरा वह जगह नहीं जहाँ घुमाव होता है।"
+        },
+        {
+         "en": "Off the vertex, the scale does not line up with the arms and the reading is wrong.",
+         "hi": "शीर्ष से हटकर रखने पर पैमाना भुजाओं से मेल नहीं खाता और रीडिंग ग़लत होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Drag point B to a new angle, place the protractor and read it again.",
+      "hi": "अब ख़ुद आज़माओ। बिंदु B को नए कोण पर खिसकाओ, चाँदा रखो और फिर से पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch02-draw-angle",
+   "topic": "2.10",
+   "template": "shapes",
+   "title": {
+    "en": "Draw an angle of 75°",
+    "hi": "75° का कोण बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "angle",
+    "task": "make",
+    "given": {
+     "angles": [
+      75
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:protractor",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the protractor to put it on the angle, centre on O.",
+      "hi": "चाँदे पर टैप करके उसे कोण पर रखो, केंद्र O पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "75° is between which two marks you know well?",
+      "hi": "75° किन दो जाने-पहचाने निशानों के बीच है?"
+     },
+     "options": [
+      {
+       "id": "60-90",
+       "en": "Between 60° and 90°",
+       "hi": "60° और 90° के बीच"
+      },
+      {
+       "id": "90-120",
+       "en": "Between 90° and 120°",
+       "hi": "90° और 120° के बीच"
+      },
+      {
+       "id": "30-60",
+       "en": "Between 30° and 60°",
+       "hi": "30° और 60° के बीच"
+      }
+     ],
+     "answer": "60-90"
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "constructed",
+     "say": {
+      "en": "Drag point B along the scale that starts at 0 on OA until it reads 75°.",
+      "hi": "बिंदु B को OA पर 0 से शुरू होने वाले पैमाने पर तब तक खिसकाओ जब तक 75° न दिखे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To draw an angle, draw one arm, put the protractor’s centre on its end and its 0 on the arm. Count up on that scale to 75°, mark a point, and join it to the vertex. 75° is less than 90°, so it is an acute angle.",
+      "hi": "कोण बनाने के लिए एक भुजा खींचो, चाँदे का केंद्र उसके सिरे पर और 0 भुजा पर रखो। उसी पैमाने पर 75° तक गिनो, एक बिंदु लगाओ और उसे शीर्ष से मिलाओ। 75° का कोण 90° से कम है, इसलिए यह न्यून कोण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You want 75° but your arm points at 105° on the same scale. What should you do?",
+        "hi": "तुम्हें 75° चाहिए, पर उसी पैमाने पर भुजा 105° दिखा रही है। क्या करना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Turn arm OB back towards OA",
+         "hi": "भुजा OB को OA की ओर वापस घुमाओ"
+        },
+        {
+         "en": "Turn it further away from OA",
+         "hi": "उसे OA से और दूर घुमाओ"
+        },
+        {
+         "en": "Make the arm longer",
+         "hi": "भुजा को लंबा करो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "105° is too big by 30°, so close the angle by turning OB towards OA.",
+        "hi": "105° में 30° ज़्यादा हैं, इसलिए OB को OA की ओर घुमाकर कोण छोटा करो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Turning further makes the angle even bigger than 105°.",
+         "hi": "और दूर घुमाने से कोण 105° से भी बड़ा हो जाएगा।"
+        },
+        {
+         "en": "Arm length does not change the angle.",
+         "hi": "भुजा की लंबाई से कोण नहीं बदलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Draw angles of 30°, 150° and 180°. Say whether each is acute, obtuse or straight.",
+      "hi": "अब ख़ुद आज़माओ। 30°, 150° और 180° के कोण बनाओ। बताओ कि हर एक न्यून, अधिक या ऋजु है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch02-angle-types",
+   "topic": "2.11",
+   "template": "shapes",
+   "title": {
+    "en": "Kinds of angles by their measure",
+    "hi": "माप के अनुसार कोणों के प्रकार"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "angle",
+    "task": "types"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "answered:right",
+     "say": {
+      "en": "Drag point B to make an acute angle, less than 90°.",
+      "hi": "बिंदु B को खिसकाकर न्यून कोण बनाओ, 90° से कम।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now make a right angle, exactly 90°.",
+      "hi": "अब समकोण बनाओ, ठीक 90°।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next you must make an obtuse angle. What is its size?",
+      "hi": "अब तुम्हें अधिक कोण बनाना है। उसका माप कितना होता है?"
+     },
+     "options": [
+      {
+       "id": "90-180",
+       "en": "Between 90° and 180°",
+       "hi": "90° और 180° के बीच"
+      },
+      {
+       "id": "lt90",
+       "en": "Less than 90°",
+       "hi": "90° से कम"
+      },
+      {
+       "id": "gt180",
+       "en": "More than 180°",
+       "hi": "180° से ज़्यादा"
+      }
+     ],
+     "answer": "90-180"
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "answered:right",
+     "say": {
+      "en": "Make an obtuse angle.",
+      "hi": "अधिक कोण बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now make a straight angle: the arms on one straight line.",
+      "hi": "अब ऋजु कोण बनाओ: दोनों भुजाएँ एक सीधी रेखा पर।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Angles are named by their size: acute is less than 90°, right is exactly 90°, obtuse is between 90° and 180°, straight is exactly 180°, and reflex is between 180° and 360°.",
+      "hi": "कोणों के नाम उनके माप से होते हैं: न्यून कोण 90° से कम, समकोण ठीक 90°, अधिक कोण 90° और 180° के बीच, ऋजु कोण ठीक 180°, और प्रतिवर्ती कोण 180° और 360° के बीच होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What kind of angle is 140°?",
+        "hi": "140° कैसा कोण है?"
+       },
+       "options": [
+        {
+         "en": "Obtuse",
+         "hi": "अधिक कोण"
+        },
+        {
+         "en": "Acute",
+         "hi": "न्यून कोण"
+        },
+        {
+         "en": "Reflex",
+         "hi": "प्रतिवर्ती कोण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "140° is more than 90° and less than 180°.",
+        "hi": "140°, 90° से ज़्यादा और 180° से कम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Acute angles are less than 90°; 140° is bigger.",
+         "hi": "न्यून कोण 90° से कम होते हैं; 140° बड़ा है।"
+        },
+        {
+         "en": "Reflex angles are more than 180°; 140° is less.",
+         "hi": "प्रतिवर्ती कोण 180° से ज़्यादा होते हैं; 140° कम है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The hands of a clock at 3 o’clock make which angle?",
+        "hi": "3 बजे घड़ी की सुइयाँ कौन-सा कोण बनाती हैं?"
+       },
+       "options": [
+        {
+         "en": "A right angle",
+         "hi": "समकोण"
+        },
+        {
+         "en": "A straight angle",
+         "hi": "ऋजु कोण"
+        },
+        {
+         "en": "An obtuse angle",
+         "hi": "अधिक कोण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "From 12 to 3 is a quarter of the clock face: 90°.",
+        "hi": "12 से 3 तक घड़ी का चौथाई भाग है: 90°।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A straight angle is 6 o’clock, when the hands point opposite ways.",
+         "hi": "ऋजु कोण 6 बजे बनता है, जब सुइयाँ उल्टी दिशाओं में होती हैं।"
+        },
+        {
+         "en": "An obtuse angle would need the hour hand past 3, such as at 4 o’clock.",
+         "hi": "अधिक कोण के लिए घंटे की सुई 3 से आगे होनी चाहिए, जैसे 4 बजे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make a reflex angle, bigger than a straight angle. Where do you see one at home?",
+      "hi": "अब ख़ुद आज़माओ। प्रतिवर्ती कोण बनाओ, जो ऋजु कोण से बड़ा हो। घर में तुम्हें ऐसा कोण कहाँ दिखता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "MAC",
+   "topic": "2.1",
+   "use": "A point",
+   "shows": "The tip of a sharp pencil just lifting from a tiny dot on white paper",
+   "view": "Very close, side light, shallow focus on the dot",
+   "right": "The dot is small and round; paper grain visible",
+   "avoid": "Brand names on the pencil"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "A ray",
+   "shows": "A torch beam shining from a hand across a dark courtyard at dusk, the beam fading into the distance",
+   "view": "Wide, low angle, the torch at the left edge",
+   "right": "Beam starts at the torch and goes one way only",
+   "avoid": "Faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "A line as a crease",
+   "shows": "A square sheet of paper folded and opened, the straight crease running edge to edge, on a wooden desk",
+   "view": "Top-down, raking light so the crease shows",
+   "right": "Crease straight and sharp",
+   "avoid": "Writing on the paper"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "2.7",
+   "use": "Rotating arms lab",
+   "shows": "Two coloured paper straws joined at one end with a paper clip, opened to a small angle, a right angle, an obtuse angle and a straight line",
+   "view": "Top-down on white card, the joint at the same spot in all four frames",
+   "right": "The joint stays fixed; one straw does not move",
+   "avoid": "Hands covering the joint"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.9",
+   "use": "Protractor lab",
+   "shows": "A clear plastic 180° protractor with inner and outer scales",
+   "view": "Flat, straight on, transparent background",
+   "right": "Both scales run 0 to 180 in opposite directions; centre mark visible",
+   "avoid": "Brand names, scratches"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.5",
+   "use": "Angles at home",
+   "shows": "A half-open almirah door, an open pair of scissors and a wall clock in one tidy Indian room",
+   "view": "Eye level, soft daylight",
+   "right": "Each object clearly shows two arms meeting at a point",
+   "avoid": "People, logos"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "2.11",
+   "use": "Kinds of angles",
+   "shows": "A laptop-style wooden book stand opened to an acute angle, a right angle, an obtuse angle and flat (straight)",
+   "view": "Side view, same position in every frame",
+   "right": "Hinge in the same place; angles clearly different",
+   "avoid": "Brand names"
+  }
+ ]
+}

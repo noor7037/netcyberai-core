@@ -1,0 +1,1304 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp1.ch01",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "Large Numbers Around Us",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "A lakh varieties: how big is one lakh?",
+   "labs": [
+    "c07-mathematics-gegp1-ch01-lakh-or-not"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Land of Tens: ten of one place make one of the next",
+   "labs": [
+    "c07-mathematics-gegp1-ch01-build-lakh"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Of crores and crores: Indian and international names",
+   "labs": [
+    "c07-mathematics-gegp1-ch01-crore-names"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Exact and approximate values: rounding off",
+   "labs": [
+    "c07-mathematics-gegp1-ch01-round-off",
+    "c07-mathematics-gegp1-ch01-exact-approx"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Patterns in products: a multiplication shortcut",
+   "labs": [
+    "c07-mathematics-gegp1-ch01-quick-products"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Did you ever wonder? Imagining very large numbers",
+   "labs": [],
+   "why_no_lab": "An open thinking task about real quantities; the reader with photos and a class discussion teaches it better than a lab."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp1-ch01-lakh-or-not",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "Less than, equal to or more than a lakh?",
+    "hi": "एक लाख से कम, बराबर या ज़्यादा?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "less",
+      "label": {
+       "en": "Less than 1 lakh",
+       "hi": "1 लाख से कम"
+      }
+     },
+     {
+      "id": "equal",
+      "label": {
+       "en": "Exactly 1 lakh",
+       "hi": "ठीक 1 लाख"
+      }
+     },
+     {
+      "id": "more",
+      "label": {
+       "en": "More than 1 lakh",
+       "hi": "1 लाख से ज़्यादा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "day",
+      "text": {
+       "en": "Seconds in one day",
+       "hi": "एक दिन के सेकंड"
+      },
+      "bin": "less",
+      "why": {
+       "en": "24 × 60 × 60 = 86,400. That is less than 1,00,000.",
+       "hi": "24 × 60 × 60 = 86,400। यह 1,00,000 से कम है।"
+      }
+     },
+     {
+      "id": "year",
+      "text": {
+       "en": "Minutes in one year of 365 days",
+       "hi": "365 दिन के एक साल के मिनट"
+      },
+      "bin": "more",
+      "why": {
+       "en": "365 × 24 × 60 = 5,25,600, more than five lakh.",
+       "hi": "365 × 24 × 60 = 5,25,600, पाँच लाख से भी ज़्यादा।"
+      }
+     },
+     {
+      "id": "notes",
+      "text": {
+       "en": "Rupees in 1,000 notes of ₹100",
+       "hi": "₹100 के 1,000 नोटों में रुपये"
+      },
+      "bin": "equal",
+      "why": {
+       "en": "1,000 × 100 = 1,00,000 rupees, exactly one lakh.",
+       "hi": "1,000 × 100 = 1,00,000 रुपये, ठीक एक लाख।"
+      }
+     },
+     {
+      "id": "books",
+      "text": {
+       "en": "Pages in 250 books of 400 pages",
+       "hi": "400 पन्नों वाली 250 किताबों के पन्ने"
+      },
+      "bin": "equal",
+      "why": {
+       "en": "250 × 400 = 1,00,000 pages.",
+       "hi": "250 × 400 = 1,00,000 पन्ने।"
+      }
+     },
+     {
+      "id": "walk",
+      "text": {
+       "en": "5,000 steps a day for 30 days",
+       "hi": "30 दिन तक रोज़ 5,000 क़दम"
+      },
+      "bin": "more",
+      "why": {
+       "en": "5,000 × 30 = 1,50,000 steps, one and a half lakh.",
+       "hi": "5,000 × 30 = 1,50,000 क़दम, डेढ़ लाख।"
+      }
+     },
+     {
+      "id": "hours",
+      "text": {
+       "en": "Hours in 10 years",
+       "hi": "10 साल के घंटे"
+      },
+      "bin": "less",
+      "why": {
+       "en": "About 365 × 24 × 10 = 87,600 hours. Still less than a lakh.",
+       "hi": "लगभग 365 × 24 × 10 = 87,600 घंटे। फिर भी एक लाख से कम।"
+      }
+     },
+     {
+      "id": "rice",
+      "text": {
+       "en": "Grams in 100 kg of rice",
+       "hi": "100 किलो चावल के ग्राम"
+      },
+      "bin": "equal",
+      "why": {
+       "en": "1 kg = 1,000 g, so 100 kg = 1,00,000 g.",
+       "hi": "1 किलो = 1,000 ग्राम, इसलिए 100 किलो = 1,00,000 ग्राम।"
+      }
+     },
+     {
+      "id": "big",
+      "text": {
+       "en": "Rupees in 2,000 notes of ₹500",
+       "hi": "₹500 के 2,000 नोटों में रुपये"
+      },
+      "bin": "more",
+      "why": {
+       "en": "2,000 × 500 = 10,00,000, which is ten lakh.",
+       "hi": "2,000 × 500 = 10,00,000, यानी दस लाख।"
+      }
+     },
+     {
+      "id": "days",
+      "text": {
+       "en": "Days in 100 years",
+       "hi": "100 साल के दिन"
+      },
+      "bin": "less",
+      "why": {
+       "en": "About 100 × 365 = 36,500 days, far less than a lakh.",
+       "hi": "लगभग 100 × 365 = 36,500 दिन, एक लाख से बहुत कम।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:day",
+     "expect": "correct:day",
+     "say": {
+      "en": "Tap the card \"Seconds in one day\", then tap the group it belongs to.",
+      "hi": "\"एक दिन के सेकंड\" कार्ड छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:year",
+     "expect": "correct:year",
+     "say": {
+      "en": "Now sort \"Minutes in one year\". Multiply before you choose.",
+      "hi": "अब \"एक साल के मिनट\" छाँटो। चुनने से पहले गुणा करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Think about \"Pages in 250 books of 400 pages\". Where will it go?",
+      "hi": "\"400 पन्नों वाली 250 किताबों के पन्ने\" के बारे में सोचो। यह कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Less than a lakh",
+       "hi": "एक लाख से कम"
+      },
+      {
+       "id": "equal",
+       "en": "Exactly a lakh",
+       "hi": "ठीक एक लाख"
+      },
+      {
+       "id": "more",
+       "en": "More than a lakh",
+       "hi": "एक लाख से ज़्यादा"
+      }
+     ],
+     "answer": "equal"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाक़ी सारे कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One lakh is 1,00,000: a hundred thousands. To compare a quantity with a lakh, first work out its value by multiplying. A day has fewer than a lakh seconds, but a year has more than five lakh minutes.",
+      "hi": "एक लाख यानी 1,00,000: सौ हज़ार। किसी मात्रा की तुलना लाख से करने के लिए पहले गुणा करके उसका मान निकालो। एक दिन में लाख से कम सेकंड होते हैं, पर एक साल में पाँच लाख से ज़्यादा मिनट।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A school has 400 children. Each brings 250 grams of old paper. How much paper is that?",
+        "hi": "एक स्कूल में 400 बच्चे हैं। हर बच्चा 250 ग्राम पुराना काग़ज़ लाता है। कुल कितना काग़ज़ हुआ?"
+       },
+       "options": [
+        {
+         "en": "1,00,000 grams, which is 100 kg",
+         "hi": "1,00,000 ग्राम, यानी 100 किलो"
+        },
+        {
+         "en": "10,000 grams",
+         "hi": "10,000 ग्राम"
+        },
+        {
+         "en": "10,00,000 grams",
+         "hi": "10,00,000 ग्राम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "400 × 250 = 1,00,000 grams. Since 1,000 g = 1 kg, that is 100 kg.",
+        "hi": "400 × 250 = 1,00,000 ग्राम। 1,000 ग्राम = 1 किलो, इसलिए यह 100 किलो है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One zero is missing: 4 × 25 = 100, and 400 × 250 has three more zeros, so 1,00,000.",
+         "hi": "एक शून्य छूट गया: 4 × 25 = 100, और 400 × 250 में तीन शून्य और हैं, यानी 1,00,000।"
+        },
+        {
+         "en": "This has one zero too many; that would need 4,000 children.",
+         "hi": "इसमें एक शून्य ज़्यादा है; इसके लिए 4,000 बच्चे चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many thousands make one lakh?",
+        "hi": "कितने हज़ार मिलकर एक लाख बनते हैं?"
+       },
+       "options": [
+        "10",
+        "100",
+        "1,000"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "1,00,000 ÷ 1,000 = 100. So one lakh is a hundred thousands.",
+        "hi": "1,00,000 ÷ 1,000 = 100। इसलिए एक लाख सौ हज़ार है।"
+       },
+       "wrong": [
+        {
+         "en": "10 thousands make 10,000, which is ten thousand, not a lakh.",
+         "hi": "10 हज़ार से 10,000 बनता है, यानी दस हज़ार, लाख नहीं।"
+        },
+        "",
+        {
+         "en": "1,000 thousands make 10,00,000, which is ten lakh.",
+         "hi": "1,000 हज़ार से 10,00,000 बनता है, यानी दस लाख।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Reset and sort again. For each card, say its value aloud in lakhs and thousands.",
+      "hi": "आज़माओ: रीसेट दबाओ और फिर से छाँटो। हर कार्ड का मान लाख और हज़ार में बोलकर बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch01-build-lakh",
+   "topic": "1.2",
+   "template": "place-value",
+   "title": {
+    "en": "Ten ten-thousands make a lakh",
+    "hi": "दस दस-हज़ार मिलकर एक लाख"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "target": 100000,
+    "places": 6
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add:tenthousands",
+     "expect": "built:90000",
+     "say": {
+      "en": "Tap + on the Ten thousands column nine times to make 90,000.",
+      "hi": "दस हज़ार वाले खाने में + को नौ बार छूकर 90,000 बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now add one more ten thousand. What will happen?",
+      "hi": "अब एक दस हज़ार और जोड़ो। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "lakh",
+       "en": "The 10 blocks become 1 lakh",
+       "hi": "10 ब्लॉक मिलकर 1 लाख बन जाएँगे"
+      },
+      {
+       "id": "ten",
+       "en": "The column will show 10",
+       "hi": "खाने में 10 दिखेगा"
+      },
+      {
+       "id": "91",
+       "en": "It becomes 91,000",
+       "hi": "यह 91,000 हो जाएगा"
+      }
+     ],
+     "answer": "lakh"
+    },
+    {
+     "kind": "do",
+     "target": "add:tenthousands",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap + on Ten thousands once more and watch.",
+      "hi": "दस हज़ार पर + एक बार और छुओ और देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A column can hold only up to 9. Ten ten-thousands are traded for one lakh block, so the number is 1,00,000. It is the same rule at every place: ten of one place make one of the next place.",
+      "hi": "एक खाने में 9 तक ही रह सकते हैं। दस दस-हज़ार के बदले एक लाख का ब्लॉक मिलता है, इसलिए संख्या 1,00,000 हो गई। हर स्थान पर यही नियम है: एक स्थान के दस मिलकर अगले स्थान का एक बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A calculator has only a +1000 button. How many presses show 53,000?",
+        "hi": "एक कैलकुलेटर में केवल +1000 बटन है। 53,000 दिखाने के लिए कितनी बार दबाना होगा?"
+       },
+       "options": [
+        "53",
+        "530",
+        "5,300"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each press adds one thousand, and 53,000 is 53 thousands.",
+        "hi": "हर बार एक हज़ार जुड़ता है, और 53,000 में 53 हज़ार हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "530 presses of +1000 give 5,30,000, ten times too much.",
+         "hi": "+1000 को 530 बार दबाने से 5,30,000 मिलेगा, दस गुना ज़्यादा।"
+        },
+        {
+         "en": "5,300 presses would be right for a +10 button, not +1000.",
+         "hi": "5,300 बार तो +10 वाले बटन के लिए सही होता, +1000 के लिए नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many hundreds make one lakh?",
+        "hi": "कितने सौ मिलकर एक लाख बनते हैं?"
+       },
+       "options": [
+        "100",
+        "1,000",
+        "10,000"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "1,00,000 ÷ 100 = 1,000 hundreds.",
+        "hi": "1,00,000 ÷ 100 = 1,000 सैकड़े।"
+       },
+       "wrong": [
+        {
+         "en": "100 hundreds make only 10,000.",
+         "hi": "100 सैकड़ों से केवल 10,000 बनता है।"
+        },
+        "",
+        {
+         "en": "10,000 hundreds make 10,00,000, ten lakh.",
+         "hi": "10,000 सैकड़ों से 10,00,000 बनता है, दस लाख।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make 2,05,030 with the fewest taps. Which columns do you need?",
+      "hi": "आज़माओ: सबसे कम बार छूकर 2,05,030 बनाओ। तुम्हें कौन-से खाने चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch01-crore-names",
+   "topic": "1.3",
+   "template": "match",
+   "title": {
+    "en": "Lakh, crore, million, billion",
+    "hi": "लाख, करोड़, मिलियन, बिलियन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "lakh",
+      "left": {
+       "en": "1,00,000",
+       "hi": "1,00,000"
+      },
+      "right": {
+       "en": "One lakh = one hundred thousand",
+       "hi": "एक लाख = एक सौ हज़ार"
+      },
+      "why": {
+       "en": "Five zeros. Indian commas: after 3 digits from the right, then every 2.",
+       "hi": "पाँच शून्य। भारतीय पद्धति में अल्पविराम: दाएँ से 3 अंकों के बाद, फिर हर 2 के बाद।"
+      }
+     },
+     {
+      "id": "tenlakh",
+      "left": {
+       "en": "10,00,000",
+       "hi": "10,00,000"
+      },
+      "right": {
+       "en": "Ten lakh = one million",
+       "hi": "दस लाख = एक मिलियन"
+      },
+      "why": {
+       "en": "Six zeros: 10 lakh is called one million in the international system.",
+       "hi": "छह शून्य: 10 लाख को अंतरराष्ट्रीय पद्धति में एक मिलियन कहते हैं।"
+      }
+     },
+     {
+      "id": "crore",
+      "left": {
+       "en": "1,00,00,000",
+       "hi": "1,00,00,000"
+      },
+      "right": {
+       "en": "One crore = ten million",
+       "hi": "एक करोड़ = दस मिलियन"
+      },
+      "why": {
+       "en": "Seven zeros: 1 crore = 100 lakh = 10 million.",
+       "hi": "सात शून्य: 1 करोड़ = 100 लाख = 10 मिलियन।"
+      }
+     },
+     {
+      "id": "tencrore",
+      "left": {
+       "en": "10,00,00,000",
+       "hi": "10,00,00,000"
+      },
+      "right": {
+       "en": "Ten crore = one hundred million",
+       "hi": "दस करोड़ = एक सौ मिलियन"
+      },
+      "why": {
+       "en": "Eight zeros: ten crore is 100 million.",
+       "hi": "आठ शून्य: दस करोड़ 100 मिलियन है।"
+      }
+     },
+     {
+      "id": "billion",
+      "left": {
+       "en": "1,00,00,00,000",
+       "hi": "1,00,00,00,000"
+      },
+      "right": {
+       "en": "One hundred crore = one billion",
+       "hi": "सौ करोड़ = एक बिलियन"
+      },
+      "why": {
+       "en": "Nine zeros: 100 crore is one billion, which is 1,000 million.",
+       "hi": "नौ शून्य: 100 करोड़ एक बिलियन है, यानी 1,000 मिलियन।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:lakh",
+     "expect": "matched:lakh",
+     "say": {
+      "en": "Tap 1,00,000, then tap its name.",
+      "hi": "1,00,000 छुओ, फिर उसका नाम छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:crore",
+     "expect": "matched:crore",
+     "say": {
+      "en": "Count the zeros in 1,00,00,000 and match it.",
+      "hi": "1,00,00,000 में शून्य गिनो और उसकी जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is bigger: one billion or one crore?",
+      "hi": "कौन बड़ा है: एक बिलियन या एक करोड़?"
+     },
+     "options": [
+      {
+       "id": "billion",
+       "en": "One billion",
+       "hi": "एक बिलियन"
+      },
+      {
+       "id": "crore",
+       "en": "One crore",
+       "hi": "एक करोड़"
+      },
+      {
+       "id": "same",
+       "en": "They are equal",
+       "hi": "दोनों बराबर हैं"
+      }
+     ],
+     "answer": "billion"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then tap Check.",
+      "hi": "बाक़ी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every time we add a zero, the number becomes ten times bigger. 100 lakh make a crore, and 100 crore make a billion. In India we put commas after three digits and then after every two; the international system puts them after every three.",
+      "hi": "हर बार एक शून्य जुड़ने से संख्या दस गुना बड़ी हो जाती है। 100 लाख से एक करोड़ बनता है, और 100 करोड़ से एक बिलियन। भारत में पहले तीन अंकों के बाद, फिर हर दो अंकों के बाद अल्पविराम लगाते हैं; अंतरराष्ट्रीय पद्धति में हर तीन अंकों के बाद।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many lakhs make one crore?",
+        "hi": "कितने लाख मिलकर एक करोड़ बनते हैं?"
+       },
+       "options": [
+        "10",
+        "100",
+        "1,000"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "1,00,00,000 ÷ 1,00,000 = 100.",
+        "hi": "1,00,00,000 ÷ 1,00,000 = 100।"
+       },
+       "wrong": [
+        {
+         "en": "10 lakh is 10,00,000, which is only one million.",
+         "hi": "10 लाख = 10,00,000, यानी केवल एक मिलियन।"
+        },
+        "",
+        {
+         "en": "1,000 lakh is 10 crore.",
+         "hi": "1,000 लाख = 10 करोड़।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How do we read 2,50,00,000?",
+        "hi": "2,50,00,000 को कैसे पढ़ेंगे?"
+       },
+       "options": [
+        {
+         "en": "Two crore fifty lakh",
+         "hi": "दो करोड़ पचास लाख"
+        },
+        {
+         "en": "Twenty-five lakh",
+         "hi": "पच्चीस लाख"
+        },
+        {
+         "en": "Two crore five lakh",
+         "hi": "दो करोड़ पाँच लाख"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The commas split it as 2 | 50 | 00 | 000: 2 crore and 50 lakh.",
+        "hi": "अल्पविराम इसे 2 | 50 | 00 | 000 में बाँटते हैं: 2 करोड़ और 50 लाख।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Twenty-five lakh is 25,00,000, which has only seven digits.",
+         "hi": "पच्चीस लाख = 25,00,000, इसमें केवल सात अंक हैं।"
+        },
+        {
+         "en": "Two crore five lakh is 2,05,00,000: the lakh part would be 05.",
+         "hi": "दो करोड़ पाँच लाख = 2,05,00,000: लाख वाला भाग 05 होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: match again and say each number aloud in both systems, like \"ten lakh, one million\".",
+      "hi": "आज़माओ: फिर से मिलाओ और हर संख्या दोनों पद्धतियों में बोलो, जैसे \"दस लाख, एक मिलियन\"।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch01-round-off",
+   "topic": "1.4",
+   "template": "number-line",
+   "title": {
+    "en": "Round off on the number line",
+    "hi": "संख्या रेखा पर पूर्णांकन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "place",
+    "min": 4600,
+    "max": 4800,
+    "step": 10,
+    "ask": 4670
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "marker",
+     "expect": "placed",
+     "say": {
+      "en": "A village has 4,670 people. Drag the marker to 4,670 on the line.",
+      "hi": "एक गाँव में 4,670 लोग हैं। निशान को रेखा पर 4,670 तक खिसकाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check to see if the marker is on 4,670.",
+      "hi": "जाँचो दबाकर देखो कि निशान 4,670 पर है या नहीं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at the line. Which hundred is 4,670 closest to?",
+      "hi": "रेखा देखो। 4,670 किस सैकड़े के सबसे पास है?"
+     },
+     "options": [
+      {
+       "id": "46",
+       "en": "4,600",
+       "hi": "4,600 के"
+      },
+      {
+       "id": "47",
+       "en": "4,700",
+       "hi": "4,700 के"
+      },
+      {
+       "id": "48",
+       "en": "4,800",
+       "hi": "4,800 के"
+      }
+     ],
+     "answer": "47"
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "4,670 is 70 away from 4,600 but only 30 away from 4,700. So, rounded to the nearest hundred, it is 4,700. Large numbers are rounded the same way: 46,700 is closer to 47,000 than to 46,000. We round when an exact number is not needed.",
+      "hi": "4,670 की दूरी 4,600 से 70 है, पर 4,700 से केवल 30। इसलिए निकटतम सैकड़े तक पूर्णांकित करने पर यह 4,700 है। बड़ी संख्याओं का पूर्णांकन भी ऐसे ही होता है: 46,700, 46,000 की तुलना में 47,000 के ज़्यादा पास है। जब ठीक संख्या ज़रूरी न हो, तब पूर्णांकन करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A stadium holds 38,450 people. What is this, rounded to the nearest thousand?",
+        "hi": "एक स्टेडियम में 38,450 लोग आ सकते हैं। निकटतम हज़ार तक यह कितना है?"
+       },
+       "options": [
+        "38,000",
+        "39,000",
+        "40,000"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "450 is less than 500, so 38,450 is closer to 38,000.",
+        "hi": "450, 500 से कम है, इसलिए 38,450, 38,000 के ज़्यादा पास है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "39,000 is 550 away, but 38,000 is only 450 away.",
+         "hi": "39,000 की दूरी 550 है, पर 38,000 की केवल 450।"
+        },
+        {
+         "en": "40,000 is rounding to the nearest ten thousand, not thousand.",
+         "hi": "40,000 तो निकटतम दस हज़ार तक का पूर्णांकन है, हज़ार तक का नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these should be an exact number?",
+        "hi": "इनमें से कौन-सी संख्या ठीक-ठीक होनी चाहिए?"
+       },
+       "options": [
+        {
+         "en": "The amount on your electricity bill",
+         "hi": "तुम्हारे बिजली के बिल की राशि"
+        },
+        {
+         "en": "People at the Kumbh Mela",
+         "hi": "कुंभ मेले में आए लोग"
+        },
+        {
+         "en": "Stars you can see at night",
+         "hi": "रात में दिखने वाले तारे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A bill must be paid exactly, to the rupee and paisa.",
+        "hi": "बिल ठीक-ठीक भरना होता है, रुपये और पैसे तक।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nobody can count every person at a huge mela, so we use an approximate number.",
+         "hi": "बड़े मेले में हर व्यक्ति को कोई नहीं गिन सकता, इसलिए अनुमानित संख्या लेते हैं।"
+        },
+        {
+         "en": "Stars cannot all be counted exactly; an estimate is used.",
+         "hi": "सारे तारे ठीक-ठीक नहीं गिने जा सकते; अनुमान लगाया जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: move the marker to 4,650, exactly halfway. By the usual rule we round it up to 4,700. Try other numbers too.",
+      "hi": "आज़माओ: निशान को 4,650 पर ले जाओ, ठीक बीच में। सामान्य नियम से इसे ऊपर 4,700 करते हैं। दूसरी संख्याएँ भी आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch01-exact-approx",
+   "topic": "1.4",
+   "template": "sort",
+   "title": {
+    "en": "Exact or approximate?",
+    "hi": "ठीक या अनुमानित?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "exact",
+      "label": {
+       "en": "Must be exact",
+       "hi": "ठीक होनी चाहिए"
+      }
+     },
+     {
+      "id": "approx",
+      "label": {
+       "en": "Approximate is fine",
+       "hi": "अनुमान ठीक है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "roll",
+      "text": {
+       "en": "Your roll number",
+       "hi": "तुम्हारा रोल नंबर"
+      },
+      "bin": "exact",
+      "why": {
+       "en": "A roll number names one child; \"about 20\" would not work.",
+       "hi": "रोल नंबर एक बच्चे की पहचान है; \"लगभग 20\" नहीं चलेगा।"
+      }
+     },
+     {
+      "id": "crowd",
+      "text": {
+       "en": "People watching a cricket match",
+       "hi": "क्रिकेट मैच देखने आए लोग"
+      },
+      "bin": "approx",
+      "why": {
+       "en": "A huge crowd is reported as about 50,000; no one counts each person.",
+       "hi": "बड़ी भीड़ को लगभग 50,000 बताते हैं; कोई हर व्यक्ति को नहीं गिनता।"
+      }
+     },
+     {
+      "id": "change",
+      "text": {
+       "en": "Change returned at a shop",
+       "hi": "दुकान से लौटाए गए पैसे"
+      },
+      "bin": "exact",
+      "why": {
+       "en": "You must get back exactly the right money.",
+       "hi": "तुम्हें ठीक उतने ही पैसे वापस मिलने चाहिए।"
+      }
+     },
+     {
+      "id": "trees",
+      "text": {
+       "en": "Trees in a big forest",
+       "hi": "बड़े जंगल के पेड़"
+      },
+      "bin": "approx",
+      "why": {
+       "en": "Forests are estimated, for example \"about 2 lakh trees\".",
+       "hi": "जंगल का अनुमान लगाते हैं, जैसे \"लगभग 2 लाख पेड़\"।"
+      }
+     },
+     {
+      "id": "pin",
+      "text": {
+       "en": "A PIN code of a post office",
+       "hi": "डाकघर का पिन कोड"
+      },
+      "bin": "exact",
+      "why": {
+       "en": "One wrong digit sends the letter to another place.",
+       "hi": "एक अंक ग़लत होने से चिट्ठी दूसरी जगह पहुँच जाएगी।"
+      }
+     },
+     {
+      "id": "dist",
+      "text": {
+       "en": "Distance from Delhi to Mumbai",
+       "hi": "दिल्ली से मुंबई की दूरी"
+      },
+      "bin": "approx",
+      "why": {
+       "en": "We say \"about 1,400 km\"; the exact value depends on the road taken.",
+       "hi": "हम कहते हैं \"लगभग 1,400 किमी\"; ठीक दूरी रास्ते पर निर्भर है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:roll",
+     "expect": "correct:roll",
+     "say": {
+      "en": "Tap \"Your roll number\" and put it in its group.",
+      "hi": "\"तुम्हारा रोल नंबर\" छुओ और उसे उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where should \"Distance from Delhi to Mumbai\" go?",
+      "hi": "\"दिल्ली से मुंबई की दूरी\" कहाँ जानी चाहिए?"
+     },
+     "options": [
+      {
+       "id": "exact",
+       "en": "Must be exact",
+       "hi": "ठीक होनी चाहिए"
+      },
+      {
+       "id": "approx",
+       "en": "Approximate is fine",
+       "hi": "अनुमान ठीक है"
+      }
+     ],
+     "answer": "approx"
+    },
+    {
+     "kind": "do",
+     "target": "card:dist",
+     "expect": "correct:dist",
+     "say": {
+      "en": "Now sort the distance card.",
+      "hi": "अब दूरी वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Numbers that name, pay or count a few things must be exact. Very large counts, like crowds and trees, are approximate, and we round them to make them easy to say and compare.",
+      "hi": "जो संख्याएँ पहचान बताती हैं, भुगतान करती हैं या थोड़ी चीज़ें गिनती हैं, वे ठीक होनी चाहिए। बहुत बड़ी गिनतियाँ, जैसे भीड़ और पेड़, अनुमानित होती हैं, और उन्हें बोलने व तुलना करने में आसानी के लिए पूर्णांकित करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A news report says \"about 3 lakh people visited the fair\". The true count was 2,96,840. Is the report fair?",
+        "hi": "ख़बर में लिखा है \"मेले में लगभग 3 लाख लोग आए\"। सही गिनती 2,96,840 थी। क्या ख़बर ठीक है?"
+       },
+       "options": [
+        {
+         "en": "Yes, it is rounded to the nearest lakh",
+         "hi": "हाँ, यह निकटतम लाख तक पूर्णांकित है"
+        },
+        {
+         "en": "No, it must say 2,96,840",
+         "hi": "नहीं, उसमें 2,96,840 लिखना चाहिए"
+        },
+        {
+         "en": "No, it should say 2 lakh",
+         "hi": "नहीं, उसमें 2 लाख लिखना चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2,96,840 is much closer to 3,00,000 than to 2,00,000, and \"about\" tells us it is rounded.",
+        "hi": "2,96,840, 2,00,000 की तुलना में 3,00,000 के बहुत पास है, और \"लगभग\" बताता है कि पूर्णांकन किया गया है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A crowd count need not be exact; the word \"about\" makes the report honest.",
+         "hi": "भीड़ की गिनती ठीक होना ज़रूरी नहीं; \"लगभग\" शब्द ख़बर को सच्चा बनाता है।"
+        },
+        {
+         "en": "2,96,840 is only 3,160 away from 3 lakh but 96,840 away from 2 lakh.",
+         "hi": "2,96,840 की दूरी 3 लाख से केवल 3,160 है, पर 2 लाख से 96,840।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: think of two numbers from your home, one that must be exact and one that can be approximate.",
+      "hi": "आज़माओ: अपने घर की दो संख्याएँ सोचो, एक जो ठीक होनी चाहिए और एक जो अनुमानित हो सकती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch01-quick-products",
+   "topic": "1.5",
+   "template": "match",
+   "title": {
+    "en": "Quick products with 5, 25 and 125",
+    "hi": "5, 25 और 125 से झटपट गुणा"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "pairs": [
+     {
+      "id": "five",
+      "left": {
+       "en": "38 × 5",
+       "hi": "38 × 5"
+      },
+      "right": {
+       "en": "380 ÷ 2 = 190",
+       "hi": "380 ÷ 2 = 190"
+      },
+      "why": {
+       "en": "5 is 10 ÷ 2, so multiply by 10 and halve.",
+       "hi": "5 = 10 ÷ 2, इसलिए 10 से गुणा करो और आधा करो।"
+      }
+     },
+     {
+      "id": "tf",
+      "left": {
+       "en": "64 × 25",
+       "hi": "64 × 25"
+      },
+      "right": {
+       "en": "6400 ÷ 4 = 1600",
+       "hi": "6400 ÷ 4 = 1600"
+      },
+      "why": {
+       "en": "25 is 100 ÷ 4, so multiply by 100 and divide by 4.",
+       "hi": "25 = 100 ÷ 4, इसलिए 100 से गुणा करो और 4 से भाग दो।"
+      }
+     },
+     {
+      "id": "ot",
+      "left": {
+       "en": "24 × 125",
+       "hi": "24 × 125"
+      },
+      "right": {
+       "en": "24000 ÷ 8 = 3000",
+       "hi": "24000 ÷ 8 = 3000"
+      },
+      "why": {
+       "en": "125 is 1000 ÷ 8.",
+       "hi": "125 = 1000 ÷ 8।"
+      }
+     },
+     {
+      "id": "pair",
+      "left": {
+       "en": "4 × 37 × 25",
+       "hi": "4 × 37 × 25"
+      },
+      "right": {
+       "en": "100 × 37 = 3700",
+       "hi": "100 × 37 = 3700"
+      },
+      "why": {
+       "en": "Change the order: 4 × 25 = 100 first.",
+       "hi": "क्रम बदलो: पहले 4 × 25 = 100।"
+      }
+     },
+     {
+      "id": "thou",
+      "left": {
+       "en": "8 × 7 × 125",
+       "hi": "8 × 7 × 125"
+      },
+      "right": {
+       "en": "1000 × 7 = 7000",
+       "hi": "1000 × 7 = 7000"
+      },
+      "why": {
+       "en": "8 × 125 = 1000, then times 7.",
+       "hi": "8 × 125 = 1000, फिर 7 से गुणा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:five",
+     "expect": "matched:five",
+     "say": {
+      "en": "Tap 38 × 5 and find its quick way.",
+      "hi": "38 × 5 छुओ और उसका झटपट तरीक़ा ढूँढो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why is multiplying by 5 the same as multiplying by 10 and halving?",
+      "hi": "5 से गुणा करना, 10 से गुणा करके आधा करने जैसा क्यों है?"
+     },
+     "options": [
+      {
+       "id": "half",
+       "en": "Because 5 is half of 10",
+       "hi": "क्योंकि 5, 10 का आधा है"
+      },
+      {
+       "id": "add",
+       "en": "Because 5 + 5 = 10",
+       "hi": "क्योंकि 5 + 5 = 10"
+      },
+      {
+       "id": "even",
+       "en": "It works only for even numbers",
+       "hi": "यह केवल सम संख्याओं पर चलता है"
+      }
+     ],
+     "answer": "half"
+    },
+    {
+     "kind": "do",
+     "target": "left:tf",
+     "expect": "matched:tf",
+     "say": {
+      "en": "Now match 64 × 25.",
+      "hi": "अब 64 × 25 की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the others and tap Check.",
+      "hi": "बाक़ी जोड़ियाँ मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "5, 25 and 125 are 10, 100 and 1000 divided by 2, 4 and 8. Multiplying by 10, 100 or 1000 is easy: just put zeros. Then one small division finishes the job. We may also change the order of a product to make 100 or 1000 first.",
+      "hi": "5, 25 और 125 क्रमशः 10, 100 और 1000 को 2, 4 और 8 से भाग देने पर मिलते हैं। 10, 100 या 1000 से गुणा आसान है: बस शून्य लगाओ। फिर एक छोटा भाग काम पूरा कर देता है। गुणनफल का क्रम बदलकर पहले 100 या 1000 भी बना सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a quick way to find 46 × 50?",
+        "hi": "46 × 50 निकालने का झटपट तरीक़ा क्या है?"
+       },
+       "options": [
+        "46 × 100 ÷ 2 = 2300",
+        "46 × 10 ÷ 5",
+        "46 + 50 × 10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "50 = 100 ÷ 2, so 4600 ÷ 2 = 2300.",
+        "hi": "50 = 100 ÷ 2, इसलिए 4600 ÷ 2 = 2300।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "10 ÷ 5 is 2, not 50, so this gives only 92.",
+         "hi": "10 ÷ 5 = 2 है, 50 नहीं, इसलिए इससे केवल 92 आएगा।"
+        },
+        {
+         "en": "This adds instead of multiplying and gives 546.",
+         "hi": "यह गुणा की जगह जोड़ता है और 546 देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make up your own product with 25 or 125 and try the shortcut. Check it the long way.",
+      "hi": "आज़माओ: 25 या 125 वाला अपना गुणनफल बनाओ और झटपट तरीक़ा आज़माओ। लंबे तरीक़े से जाँचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Chapter hook: many varieties",
+   "shows": "Open jute sacks of many different rice varieties in an Indian grain market, each a different colour and grain shape",
+   "view": "From slightly above, rows of sacks filling the frame, warm daylight",
+   "right": "Real rice colours: white, brown, red and black rice; long and short grains",
+   "avoid": "Shop signs, price cards, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "How heavy is a lakh sheets? (estimation)",
+   "shows": "A sealed ream of 500 plain white A4 sheets on a dial kitchen weighing scale",
+   "view": "Three-quarter view, top-left light, white background",
+   "right": "Scale needle near 2.5 kg (500 sheets of about 5 g each)",
+   "avoid": "Printed wrappers, brand marks, digital displays"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Counting in tens with sticks",
+   "shows": "A bundle of ten toothpicks tied with a rubber band beside ten such bundles tied into a bigger bundle of hundred",
+   "view": "From above on a wooden table, soft light",
+   "right": "Exactly 10 sticks per small bundle and 10 bundles in the big one",
+   "avoid": "Loose sticks mixed in, sharp points towards the camera"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "How big is a crore?",
+   "shows": "A huge crowd at a river-bank festival seen from far away, people as tiny dots along the ghats",
+   "view": "Wide aerial view, morning light",
+   "right": "People only as distant figures; real ghats and river",
+   "avoid": "Identifiable faces, banners with text"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "1.3",
+   "use": "Base for the place-value chart in the reader",
+   "shows": "A clean empty chart of nine columns grouped as 3 + 2 + 2 + 2 from the right, in soft pastel colours",
+   "view": "Flat, front view, white background",
+   "right": "Column groups clearly separated so the app can write Indian period names",
+   "avoid": "Any printed words or digits"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "Approximate counts",
+   "shows": "A packed cricket stadium during a day match, stands full of spectators",
+   "view": "Wide view from a high stand, bright daylight",
+   "right": "Crowd too large to count, pitch visible",
+   "avoid": "Scoreboard text, team logos, sponsor boards"
+  }
+ ]
+}

@@ -1,0 +1,160 @@
+{
+  "chapter_key": "u.c12.geography.legy2.ch05",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "Mineral and Energy Resources",
+  "source": "https://ncert.nic.in/textbook/pdf/legy2ps.pdf",
+  "topics": [
+    { "n": "5.1", "title": "Types of mineral resources: ferrous, non-ferrous and non-metallic", "labs": ["c12-geography-legy2-ch05-mineral-types"], "why_no_lab": null },
+    { "n": "5.2", "title": "Distribution of minerals: plateau regions, coal and iron ore", "labs": ["c12-geography-legy2-ch05-coal-iron-map"], "why_no_lab": null },
+    { "n": "5.3", "title": "Energy resources: petroleum, natural gas and pipelines", "labs": ["c12-geography-legy2-ch05-petroleum-map"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy2-ch05-mineral-types",
+      "topic": "5.1",
+      "template": "sort",
+      "title": { "en": "Sort the minerals: iron, no iron, or fuel?", "hi": "खनिज छाँटो: लोहा, बिना लोहा, या ईंधन?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "ferrous", "label": { "en": "Ferrous: contains iron", "hi": "लौह: इसमें लोहा होता है" } },
+          { "id": "nonferrous", "label": { "en": "Non-ferrous: has no iron", "hi": "अलौह: इसमें लोहा नहीं होता" } },
+          { "id": "nonmetal", "label": { "en": "Non-metallic: not a metal", "hi": "अधात्विक: धातु नहीं" } },
+          { "id": "energy", "label": { "en": "Energy: fuels for heat or power", "hi": "ऊर्जा: ऊष्मा या बिजली के ईंधन" } }
+        ],
+        "cards": [
+          { "id": "iron", "text": { "en": "Iron ore, the raw material of steel", "hi": "लौह-अयस्क, इस्पात का कच्चा माल" }, "bin": "ferrous", "why": { "en": "Iron ore is the basic raw material of the iron and steel industry.", "hi": "लौह-अयस्क लोहा और इस्पात उद्योग का मूल कच्चा माल है।" } },
+          { "id": "manganese", "text": { "en": "Manganese, added to steel to make it tough", "hi": "मैंगनीज़, इस्पात को मज़बूत बनाने के लिए मिलाया जाता है" }, "bin": "ferrous", "why": { "en": "Manganese is a ferrous mineral, used along with iron to make strong steel.", "hi": "मैंगनीज़ लौह-वर्ग का खनिज है, जो लोहे के साथ मज़बूत इस्पात बनाने में काम आता है।" } },
+          { "id": "bauxite", "text": { "en": "Bauxite, the ore of aluminium", "hi": "बॉक्साइट, एल्युमिनियम का अयस्क" }, "bin": "nonferrous", "why": { "en": "Bauxite has no iron. Aluminium is a non-ferrous metal.", "hi": "बॉक्साइट में लोहा नहीं होता। एल्युमिनियम एक अलौह धातु है।" } },
+          { "id": "copper", "text": { "en": "Copper, used for electric wires", "hi": "तांबा, बिजली के तारों में" }, "bin": "nonferrous", "why": { "en": "Copper is a non-ferrous metal and a good conductor of electricity.", "hi": "तांबा एक अलौह धातु है और बिजली का अच्छा चालक है।" } },
+          { "id": "mica", "text": { "en": "Mica, which splits into thin sheets", "hi": "अभ्रक, जो पतली परतों में टूटता है" }, "bin": "nonmetal", "why": { "en": "Mica is not a metal. It is used in electrical goods because it splits thinly.", "hi": "अभ्रक धातु नहीं है। पतला टूटने के कारण यह बिजली के सामान में काम आता है।" } },
+          { "id": "coal", "text": { "en": "Coal, a fuel formed from ancient plants", "hi": "कोयला, प्राचीन पौधों से बना ईंधन" }, "bin": "energy", "why": { "en": "Coal is a fossil fuel. It gives heat and power for industry and electricity.", "hi": "कोयला जीवाश्म ईंधन है। यह उद्योग और बिजली के लिए ऊष्मा और शक्ति देता है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "card:iron", "expect": "correct:iron", "say": { "en": "Tap the iron ore card, then tap its bin.", "hi": "लौह-अयस्क वाला कार्ड छुओ, फिर उसका खाना छुओ।" } },
+        { "kind": "predict", "say": { "en": "Bauxite gives aluminium. Is bauxite a ferrous mineral?", "hi": "बॉक्साइट से एल्युमिनियम मिलता है। क्या बॉक्साइट लौह-वर्ग का खनिज है?" }, "options": [ { "id": "yes", "en": "Yes, because all metals are ferrous", "hi": "हाँ, क्योंकि सभी धातुएँ लौह-वर्ग की होती हैं" }, { "id": "no", "en": "No, it has no iron, so it is non-ferrous", "hi": "नहीं, इसमें लोहा नहीं है, इसलिए यह अलौह है" } ], "answer": "no" },
+        { "kind": "do", "target": "card:bauxite", "expect": "correct:bauxite", "say": { "en": "Place the bauxite card in its bin.", "hi": "बॉक्साइट वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:mica", "expect": "correct:mica", "say": { "en": "Place the mica card in its bin.", "hi": "अभ्रक वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:coal", "expect": "correct:coal", "say": { "en": "Place the coal card in its bin.", "hi": "कोयला वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Sort the rest and tap Check.", "hi": "बाकी छाँटो और जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Minerals are grouped by what they contain and what they do. Ferrous minerals contain iron, such as iron ore and manganese, and feed the steel industry. Non-ferrous minerals contain no iron, such as bauxite, copper and gold. Non-metallic minerals, such as mica, are not metals. Energy minerals, such as coal, petroleum and natural gas, are fuels.", "hi": "खनिजों को इस आधार पर बाँटा जाता है कि उनमें क्या है और वे क्या करते हैं। लौह-वर्ग के खनिजों में लोहा होता है, जैसे लौह-अयस्क और मैंगनीज़, और वे इस्पात उद्योग को सहारा देते हैं। अलौह खनिजों में लोहा नहीं होता, जैसे बॉक्साइट, तांबा और सोना। अधात्विक खनिज, जैसे अभ्रक, धातु नहीं हैं। ऊर्जा खनिज, जैसे कोयला, पेट्रोलियम और प्राकृतिक गैस, ईंधन हैं।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which group does copper belong to?", "hi": "तांबा किस समूह में है?" },
+              "options": [
+                { "en": "Ferrous", "hi": "लौह-वर्ग" },
+                { "en": "Non-ferrous", "hi": "अलौह" },
+                { "en": "Energy", "hi": "ऊर्जा" }
+              ],
+              "answer": 1,
+              "why": { "en": "Copper has no iron, so it is a non-ferrous metal.", "hi": "तांबे में लोहा नहीं है, इसलिए यह अलौह धातु है।" },
+              "wrong": [
+                { "en": "Copper contains no iron, so it is not ferrous.", "hi": "तांबे में लोहा नहीं है, इसलिए वह लौह-वर्ग का नहीं है।" },
+                "",
+                { "en": "Copper is a metal used in wires. It is not a fuel for energy.", "hi": "तांबा तारों में काम आने वाली धातु है। वह ऊर्जा का ईंधन नहीं है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Find a metal object at home, such as a pot or a key. Guess whether its metal is ferrous or non-ferrous, and say why.", "hi": "घर में कोई धातु की चीज़ खोजो, जैसे बर्तन या चाबी। अंदाज़ा लगाओ कि उसकी धातु लौह-वर्ग की है या अलौह, और कारण बताओ।" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch05-coal-iron-map",
+      "topic": "5.2",
+      "template": "map",
+      "title": { "en": "Coal and iron on the plateau", "hi": "पठार पर कोयला और लोहा" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["minerals:coal", "minerals:iron"],
+        "task": "locate",
+        "places": ["jharia", "bailadila"]
+      },
+      "steps": [
+        { "kind": "do", "target": "layer:minerals:coal", "expect": "layer:minerals:coal", "say": { "en": "Switch on the Coal layer.", "hi": "'कोयला' परत चालू करो।" } },
+        { "kind": "predict", "say": { "en": "Most of India's coal lies in which region?", "hi": "भारत का अधिकतर कोयला किस क्षेत्र में है?" }, "options": [ { "id": "ne", "en": "The north-eastern plateau: the Damodar valley in Jharkhand and West Bengal", "hi": "उत्तर-पूर्वी पठार: झारखंड और पश्चिम बंगाल की दामोदर घाटी" }, { "id": "thar", "en": "The Thar desert of Rajasthan", "hi": "राजस्थान का थार मरुस्थल" } ], "answer": "ne" },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Drop a pin on Jharia, the coalfield, and tap Check.", "hi": "कोयला क्षेत्र झरिया पर पिन लगाओ और जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Now find Bailadila, an iron-ore area, and tap Check.", "hi": "अब लौह-अयस्क क्षेत्र बैलाडीला खोजो और जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Most coal lies in the north-eastern plateau, in the Damodar valley, where Jharia is. Iron ore is found in this plateau too, and in the south-western plateau. Bailadila in Chhattisgarh is a well-known iron-ore area. Minerals are not spread evenly; they are concentrated in certain regions.", "hi": "अधिकतर कोयला उत्तर-पूर्वी पठार में, दामोदर घाटी में है, जहाँ झरिया है। लौह-अयस्क भी इसी पठार में और दक्षिण-पश्चिमी पठार में मिलता है। छत्तीसगढ़ का बैलाडीला एक प्रसिद्ध लौह-अयस्क क्षेत्र है। खनिज समान रूप से नहीं फैले हैं; वे कुछ ही क्षेत्रों में केंद्रित हैं।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which region is richest in coal and iron ore in India?", "hi": "भारत में कोयले और लौह-अयस्क में सबसे धनी क्षेत्र कौन-सा है?" },
+              "options": [
+                { "en": "The north-eastern plateau", "hi": "उत्तर-पूर्वी पठार" },
+                { "en": "The Thar desert", "hi": "थार मरुस्थल" },
+                { "en": "The Himalayan belt", "hi": "हिमालय क्षेत्र" }
+              ],
+              "answer": 0,
+              "why": { "en": "The north-eastern plateau, including Chota Nagpur and Odisha, holds much of the coal and iron ore.", "hi": "उत्तर-पूर्वी पठार, जिसमें छोटानागपुर और ओडिशा हैं, कोयले और लौह-अयस्क का बड़ा भंडार रखता है।" },
+              "wrong": [
+                "",
+                { "en": "The Thar desert has little mineral wealth. It is mostly sand and dunes.", "hi": "थार मरुस्थल में खनिज संपदा कम है। वह मुख्यतः रेत और टिब्बों वाला है।" },
+                { "en": "The Himalaya have some minerals, but not the largest coal and iron reserves.", "hi": "हिमालय में कुछ खनिज हैं, पर सबसे बड़े कोयला और लौह-अयस्क भंडार नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Turn on the Iron ore layer and compare it with the Coal layer. Are the two close together or far apart?", "hi": "'लौह-अयस्क' परत चालू करो और उसे 'कोयला' परत से मिलाओ। दोनों पास-पास हैं या दूर?" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch05-petroleum-map",
+      "topic": "5.3",
+      "template": "map",
+      "title": { "en": "Oil and gas: where to find them", "hi": "तेल और गैस: कहाँ मिलते हैं" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["minerals:petroleum", "minerals:natural-gas"],
+        "task": "locate",
+        "places": ["mumbai-high", "naharkatiya"]
+      },
+      "steps": [
+        { "kind": "do", "target": "layer:minerals:petroleum", "expect": "layer:minerals:petroleum", "say": { "en": "Switch on the Petroleum layer.", "hi": "'पेट्रोलियम' परत चालू करो।" } },
+        { "kind": "predict", "say": { "en": "Where is most of India's offshore oil found?", "hi": "भारत का अधिकतर समुद्री तेल कहाँ मिलता है?" }, "options": [ { "id": "mh", "en": "Mumbai High, in the Arabian Sea off Maharashtra", "hi": "मुंबई हाई, महाराष्ट्र के तट से दूर अरब सागर में" }, { "id": "thar", "en": "In the sands of the Thar desert", "hi": "थार मरुस्थल की रेत में" } ], "answer": "mh" },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Drop a pin on Mumbai High and tap Check.", "hi": "मुंबई हाई पर पिन लगाओ और जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Now find Naharkatiya in Assam, drop a pin, and tap Check.", "hi": "अब असम का नहरकटिया खोजो, पिन लगाओ, और जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Petroleum and natural gas are found in sedimentary rocks, where layers of old plant and sea remains were buried and pressed over a long time. Mumbai High, offshore in the Arabian Sea, is a major source of oil. Naharkatiya in Assam is an oil and gas field in the north-east. Refined petroleum gives petrol, diesel and many other products.", "hi": "पेट्रोलियम और प्राकृतिक गैस अवसादी चट्टानों में मिलते हैं, जहाँ पुराने पौधों और समुद्री अवशेषों की परतें लंबे समय में दबकर जम गईं। अरब सागर में तट से दूर मुंबई हाई तेल का बड़ा स्रोत है। असम का नहरकटिया उत्तर-पूर्व का तेल और गैस क्षेत्र है। शोधित पेट्रोलियम से पेट्रोल, डीज़ल और कई अन्य उत्पाद बनते हैं।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "In which kind of rock are petroleum and natural gas usually found?", "hi": "पेट्रोलियम और प्राकृतिक गैस आम तौर पर किस प्रकार की चट्टान में मिलते हैं?" },
+              "options": [
+                { "en": "Igneous rock formed from cooled lava", "hi": "ठंडे लावा से बनी आग्नेय चट्टान" },
+                { "en": "Sedimentary rock formed in layers", "hi": "परतों में बनी अवसादी चट्टान" },
+                { "en": "Metamorphic marble", "hi": "रूपांतरित संगमरमर" }
+              ],
+              "answer": 1,
+              "why": { "en": "Sedimentary rocks trap oil and gas formed from buried plant and sea remains.", "hi": "अवसादी चट्टानें दबे पौधों और समुद्री अवशेषों से बने तेल और गैस को फँसाती हैं।" },
+              "wrong": [
+                { "en": "Igneous rock forms from cooled lava or magma. It rarely traps oil and gas.", "hi": "आग्नेय चट्टान ठंडे लावा या मैग्मा से बनती है। वह शायद ही तेल और गैस फँसाती है।" },
+                "",
+                { "en": "Marble is metamorphic and is not a common trap for oil and gas.", "hi": "संगमरमर रूपांतरित चट्टान है और तेल व गैस को फँसाने वाली आम चट्टान नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Turn on the Natural gas layer and compare it with the Petroleum layer. Name one place where both are found.", "hi": "'प्राकृतिक गैस' परत चालू करो और उसे 'पेट्रोलियम' परत से मिलाओ। एक ऐसी जगह बताओ जहाँ दोनों मिलते हैं।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "OBJ", "topic": "5.1", "use": "Mineral samples for the sorting lab", "shows": "A lump of iron ore, a bauxite nodule, a sheet of mica, a piece of copper and a lump of coal on a plain tray", "view": "Top view, soft light, transparent background if cut out, each object fills about 80% of its frame", "right": "Iron ore dark reddish-brown, bauxite rough red-brown, mica pale and layered, copper with a metal sheen, coal black", "avoid": "Labels, price tags or brand names" },
+    { "n": 2, "kind": "CUT", "topic": "5.2", "use": "Coal seam in a rock cut-away", "shows": "A cut-away of layered rock with a dark, thick coal seam between grey and brown rock layers", "view": "4:3, side cut-away, neutral background", "right": "Dark coal seam clearly sitting between rock layers", "avoid": "Depth numbers, labels or arrows" },
+    { "n": 3, "kind": "CUT", "topic": "5.3", "use": "Oil and gas trap in sedimentary rock", "shows": "A cut-away of porous sandstone under a hard cap rock, with oil and gas shown as a pale and a dark zone in the pores", "view": "4:3, side cut-away, neutral background", "right": "Porous rock below a hard cap rock; the trap is clear", "avoid": "Labels, numbers or arrows" },
+    { "n": 4, "kind": "SCN", "topic": "5.2", "use": "Open-cast iron ore mine", "shows": "An open-cast mine with stepped benches of reddish rock and two haul trucks, dusty hills behind, workers in helmets at a distance", "view": "16:9, bright midday light", "right": "Stepped reddish benches and large haul trucks", "avoid": "Readable company names or faces" },
+    { "n": 5, "kind": "SCN", "topic": "5.3", "use": "Offshore oil platform at sunrise", "shows": "An offshore platform on a calm sea at sunrise, with a few support legs and a flare tower", "view": "16:9, sunrise glow on the water", "right": "Platform on legs above calm water with a warm sunrise", "avoid": "Company logos or readable signs" },
+    { "n": 6, "kind": "MAP", "topic": "5.2", "use": "Plateau base map of peninsular India", "shows": "A relief map of peninsular and eastern India showing plateaus, hills and river valleys, no names or borders", "view": "16:9, soft relief shading", "right": "Plateau edges and river valleys clearly shaped", "avoid": "Names, state borders or place labels" }
+  ]
+}

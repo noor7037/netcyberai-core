@@ -1,0 +1,946 @@
+{
+ "chapter_key": "u.c08.science.hecu1.ch09",
+ "class": 8,
+ "subject_id": "science",
+ "title": "The Amazing World of Solutes, Solvents, and Solutions",
+ "source": "https://ncert.nic.in/textbook/pdf/hecu109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Solute, solvent and solution",
+   "labs": [
+    "c08-science-hecu1-ch09-solute"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "How much solute can a fixed amount of solvent dissolve? Saturated and unsaturated solutions",
+   "labs": [
+    "c08-science-hecu1-ch09-saturated"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2.1",
+   "title": "Effect of temperature on the solubility of a solid",
+   "labs": [
+    "c08-science-hecu1-ch09-hotwater"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Solubility of gases",
+   "labs": [],
+   "why_no_lab": "No template dissolves gases yet; warm and cold soda bottles and fish in a warm pond are shown as photos, and the hot-water lab check covers the idea."
+  },
+  {
+   "n": "9.4",
+   "title": "Why do objects float or sink in water?",
+   "labs": [
+    "c08-science-hecu1-ch09-egg"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "What is density? Density = mass ÷ volume",
+   "labs": [
+    "c08-science-hecu1-ch09-density"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5.1",
+   "title": "Determination of density with a balance and a measuring cylinder",
+   "labs": [],
+   "why_no_lab": "Reading a balance and a measuring cylinder were done in the Grade 6 measuring labs; the density lab and its check do the calculation."
+  },
+  {
+   "n": "9.5.2",
+   "title": "Effect of temperature on density",
+   "labs": [],
+   "why_no_lab": "The hot air balloon is best shown as a photo; the density lab check covers it."
+  },
+  {
+   "n": "9.5.3",
+   "title": "Effect of pressure on density",
+   "labs": [],
+   "why_no_lab": "A short reading point (gases get denser when squeezed) already met in the syringe lab of Chapter 7."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-science-hecu1-ch09-solute",
+   "topic": "9.1",
+   "template": "sort",
+   "title": {
+    "en": "Solute or solvent?",
+    "hi": "विलेय या विलायक?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "solute",
+      "label": {
+       "en": "Solute: gets dissolved",
+       "hi": "विलेय: जो घुलता है"
+      }
+     },
+     {
+      "id": "solvent",
+      "label": {
+       "en": "Solvent: does the dissolving",
+       "hi": "विलायक: जो घोलता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Sugar in a glass of sherbet",
+       "hi": "शरबत के गिलास में चीनी"
+      },
+      "bin": "solute",
+      "why": {
+       "en": "Sugar is the solid that dissolves, so it is the solute.",
+       "hi": "चीनी वह ठोस है जो घुलती है, इसलिए वह विलेय है।"
+      }
+     },
+     {
+      "id": "water1",
+      "text": {
+       "en": "Water in a glass of sherbet",
+       "hi": "शरबत के गिलास में पानी"
+      },
+      "bin": "solvent",
+      "why": {
+       "en": "Water is the liquid that dissolves the sugar.",
+       "hi": "पानी वह द्रव है जो चीनी को घोलता है।"
+      }
+     },
+     {
+      "id": "salt",
+      "text": {
+       "en": "Salt in sea water",
+       "hi": "समुद्री पानी में नमक"
+      },
+      "bin": "solute",
+      "why": {
+       "en": "The dissolved salt is the solute.",
+       "hi": "घुला हुआ नमक विलेय है।"
+      }
+     },
+     {
+      "id": "water2",
+      "text": {
+       "en": "Water in sea water",
+       "hi": "समुद्री पानी में पानी"
+      },
+      "bin": "solvent",
+      "why": {
+       "en": "Water is present in the larger amount and dissolves the salt.",
+       "hi": "पानी अधिक मात्रा में है और नमक को घोलता है।"
+      }
+     },
+     {
+      "id": "co2",
+      "text": {
+       "en": "Carbon dioxide in soda water",
+       "hi": "सोडा पानी में कार्बन डाइऑक्साइड"
+      },
+      "bin": "solute",
+      "why": {
+       "en": "A gas can be a solute too; here it is dissolved in water.",
+       "hi": "गैस भी विलेय हो सकती है; यहाँ यह पानी में घुली है।"
+      }
+     },
+     {
+      "id": "iodine",
+      "text": {
+       "en": "Iodine in tincture of iodine",
+       "hi": "टिंचर आयोडीन में आयोडीन"
+      },
+      "bin": "solute",
+      "why": {
+       "en": "Iodine is dissolved in alcohol.",
+       "hi": "आयोडीन ऐल्कोहॉल में घुला है।"
+      }
+     },
+     {
+      "id": "alcohol",
+      "text": {
+       "en": "Alcohol in tincture of iodine",
+       "hi": "टिंचर आयोडीन में ऐल्कोहॉल"
+      },
+      "bin": "solvent",
+      "why": {
+       "en": "Alcohol is the solvent here, not water.",
+       "hi": "यहाँ विलायक ऐल्कोहॉल है, पानी नहीं।"
+      }
+     },
+     {
+      "id": "lemon",
+      "text": {
+       "en": "Lemon juice in a big jug of nimbu pani",
+       "hi": "नींबू पानी के बड़े जग में नींबू का रस"
+      },
+      "bin": "solute",
+      "why": {
+       "en": "When two liquids mix, the one in smaller amount is the solute.",
+       "hi": "जब दो द्रव मिलते हैं, कम मात्रा वाला विलेय होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:sugar",
+     "expect": "correct:sugar",
+     "say": {
+      "en": "Tap the sugar in sherbet, then its group.",
+      "hi": "शरबत की चीनी छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:water1",
+     "expect": "correct:water1",
+     "say": {
+      "en": "Now place the water in sherbet.",
+      "hi": "अब शरबत का पानी रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In tincture of iodine, iodine is dissolved in alcohol. What is the solvent?",
+      "hi": "टिंचर आयोडीन में आयोडीन ऐल्कोहॉल में घुला है। विलायक क्या है?"
+     },
+     "options": [
+      {
+       "id": "alcohol",
+       "en": "Alcohol",
+       "hi": "ऐल्कोहॉल"
+      },
+      {
+       "id": "iodine",
+       "en": "Iodine",
+       "hi": "आयोडीन"
+      },
+      {
+       "id": "water",
+       "en": "Water, always",
+       "hi": "हमेशा पानी"
+      }
+     ],
+     "answer": "alcohol"
+    },
+    {
+     "kind": "do",
+     "target": "card:alcohol",
+     "expect": "correct:alcohol",
+     "say": {
+      "en": "Place the alcohol card.",
+      "hi": "ऐल्कोहॉल वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A solution is a uniform mixture. The substance that dissolves is the solute; the one that dissolves it is the solvent. A solute can be a solid, a liquid or a gas. When two liquids mix, the one present in smaller amount is the solute. Water dissolves so many things that it is called a universal solvent, but not the only one.",
+      "hi": "विलयन एक समांगी मिश्रण है। जो पदार्थ घुलता है वह विलेय है; जो उसे घोलता है वह विलायक। विलेय ठोस, द्रव या गैस हो सकता है। जब दो द्रव मिलते हैं, कम मात्रा वाला विलेय होता है। पानी इतनी चीज़ें घोलता है कि उसे सार्वत्रिक विलायक कहते हैं, पर वह अकेला विलायक नहीं है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In soda water, what is the solute?",
+        "hi": "सोडा पानी में विलेय क्या है?"
+       },
+       "options": [
+        {
+         "en": "Carbon dioxide gas",
+         "hi": "कार्बन डाइऑक्साइड गैस"
+        },
+        {
+         "en": "Water",
+         "hi": "पानी"
+        },
+        {
+         "en": "The bottle",
+         "hi": "बोतल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The gas is dissolved in water; that makes it the solute.",
+        "hi": "गैस पानी में घुली है; इसलिए वह विलेय है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water is the solvent; it does the dissolving.",
+         "hi": "पानी विलायक है; वह घोलता है।"
+        },
+        {
+         "en": "The bottle is only the container.",
+         "hi": "बोतल केवल बर्तन है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again. Then name the solute and solvent in a cup of chai, in nail-polish remover and in the air around you.",
+      "hi": "फिर से छाँटो। फिर चाय के कप, नेल-पॉलिश रिमूवर और अपने आसपास की हवा में विलेय और विलायक बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch09-saturated",
+   "topic": "9.2",
+   "template": "particles",
+   "title": {
+    "en": "How much salt can water hold?",
+    "hi": "पानी कितना नमक घोल सकता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "dissolve",
+    "substance": "salt",
+    "temp": 25
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add",
+     "expect": "dissolved",
+     "say": {
+      "en": "Add one spoonful (5 g) of salt to the 50 mL of water.",
+      "hi": "50 mL पानी में एक चम्मच (5 g) नमक डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add",
+     "expect": "dissolved",
+     "say": {
+      "en": "Add a second spoonful.",
+      "hi": "दूसरा चम्मच डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at \"Most that can dissolve now\". Will a third spoonful dissolve too?",
+      "hi": "\"अभी अधिकतम कितना घुल सकता है\" देखो। क्या तीसरा चम्मच भी घुलेगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, there is still room for it",
+       "hi": "हाँ, अभी उसकी जगह है"
+      },
+      {
+       "id": "no",
+       "en": "No, the water is already full",
+       "hi": "नहीं, पानी पहले ही भर गया है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "add",
+     "expect": "dissolved",
+     "say": {
+      "en": "Add the third spoonful.",
+      "hi": "तीसरा चम्मच डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At 25 °C, 50 mL of water can dissolve about 18 g of salt. Up to that, the solution is unsaturated: more can dissolve. When the most possible has dissolved, it is saturated, and any extra salt stays at the bottom. The amount that dissolves in 100 g of water at a temperature is called solubility.",
+      "hi": "25 °C पर 50 mL पानी लगभग 18 g नमक घोल सकता है। तब तक विलयन असंतृप्त है: और घुल सकता है। जब अधिकतम घुल जाए, वह संतृप्त हो जाता है, और अतिरिक्त नमक तली में रह जाता है। किसी तापमान पर 100 g पानी में जितना घुलता है, उसे विलेयता कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You now have 15 g of salt in 50 mL of water at 25 °C. Is the solution saturated?",
+        "hi": "अब 25 °C पर 50 mL पानी में 15 g नमक है। क्या विलयन संतृप्त है?"
+       },
+       "options": [
+        {
+         "en": "No; about 3 g more can still dissolve",
+         "hi": "नहीं; लगभग 3 g और घुल सकता है"
+        },
+        {
+         "en": "Yes; nothing more can dissolve",
+         "hi": "हाँ; और कुछ नहीं घुल सकता"
+        },
+        {
+         "en": "It is not a solution",
+         "hi": "यह विलयन नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The limit is about 18 g, so it is still unsaturated.",
+        "hi": "सीमा लगभग 18 g है, इसलिए यह अभी असंतृप्त है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It becomes saturated only when about 18 g has dissolved.",
+         "hi": "लगभग 18 g घुलने पर ही यह संतृप्त होगा।"
+        },
+        {
+         "en": "The salt dissolved evenly into the water, so it is a solution.",
+         "hi": "नमक पानी में बराबर घुल गया, इसलिए यह विलयन है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Salt is left at the bottom even after long stirring. This means ___.",
+        "hi": "देर तक चलाने पर भी तली में नमक बचा है। इसका मतलब ___।"
+       },
+       "options": [
+        {
+         "en": "the solution is saturated",
+         "hi": "विलयन संतृप्त है"
+        },
+        {
+         "en": "the salt is fake",
+         "hi": "नमक नकली है"
+        },
+        {
+         "en": "the water is too cold to be water",
+         "hi": "पानी इतना ठंडा है कि पानी ही नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The water holds as much as it can at that temperature; the rest cannot dissolve.",
+        "hi": "उस तापमान पर पानी जितना रख सकता है रख चुका; बाकी नहीं घुल सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Real salt also stops dissolving once the water is saturated.",
+         "hi": "असली नमक भी पानी के संतृप्त होने पर घुलना बंद कर देता है।"
+        },
+        {
+         "en": "Cold water is still water; it just holds a little less.",
+         "hi": "ठंडा पानी भी पानी है; बस थोड़ा कम घोलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add a fourth spoonful and see the label change to saturated. Then press Heat: does hot water dissolve much more salt? Try sugar to compare.",
+      "hi": "चौथा चम्मच डालो और \"संतृप्त\" लिखा देखो। फिर गर्म करो दबाओ: क्या गर्म पानी बहुत ज़्यादा नमक घोलता है? तुलना के लिए चीनी आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch09-hotwater",
+   "topic": "9.2.1",
+   "template": "particles",
+   "title": {
+    "en": "Hot water dissolves more sugar",
+    "hi": "गर्म पानी ज़्यादा चीनी घोलता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "dissolve",
+    "substance": "sugar",
+    "temp": 20
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You warm the water from 20 °C to 60 °C. What happens to the most sugar it can dissolve?",
+      "hi": "तुम पानी को 20 °C से 60 °C तक गर्म करते हो। यह अधिकतम जितनी चीनी घोल सकता है, उसका क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "It goes up a lot",
+       "hi": "वह बहुत बढ़ जाएगी"
+      },
+      {
+       "id": "less",
+       "en": "It goes down",
+       "hi": "वह घट जाएगी"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वैसी ही रहेगी"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "slider:temp",
+     "expect": "changed:temp",
+     "say": {
+      "en": "Drag the water temperature to 60 °C and look at \"Most that can dissolve now\".",
+      "hi": "पानी का तापमान 60 °C तक खींचो और \"अभी अधिकतम कितना घुल सकता है\" देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add",
+     "expect": "dissolved",
+     "say": {
+      "en": "Add a spoonful of sugar.",
+      "hi": "एक चम्मच चीनी डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:temp",
+     "expect": "changed:temp",
+     "say": {
+      "en": "Now cool the water back to 20 °C.",
+      "hi": "अब पानी को फिर 20 °C तक ठंडा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For most solids, solubility rises with temperature. 50 mL of water holds about 102 g of sugar at 20 °C but about 144 g at 60 °C. That is why sugar syrup for gulab jamun is made in hot water. Salt is different: its solubility hardly changes. Gases behave the other way: they dissolve less in warm water.",
+      "hi": "ज़्यादातर ठोसों की विलेयता तापमान के साथ बढ़ती है। 50 mL पानी 20 °C पर लगभग 102 g चीनी रखता है पर 60 °C पर लगभग 144 g। इसीलिए गुलाब जामुन की चाशनी गर्म पानी में बनाते हैं। नमक अलग है: उसकी विलेयता लगभग नहीं बदलती। गैसें उल्टा व्यवहार करती हैं: वे गर्म पानी में कम घुलती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A cold bottle of soda keeps its fizz longer than a warm one. Why?",
+        "hi": "ठंडी सोडा की बोतल गर्म बोतल से ज़्यादा देर तक झाग बनाए रखती है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Gases dissolve better in cold water",
+         "hi": "गैसें ठंडे पानी में ज़्यादा घुलती हैं"
+        },
+        {
+         "en": "Cold water has more sugar",
+         "hi": "ठंडे पानी में ज़्यादा चीनी है"
+        },
+        {
+         "en": "Warm soda has no gas at all",
+         "hi": "गर्म सोडा में गैस बिल्कुल नहीं होती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The solubility of gases falls as temperature rises, so warm soda loses its gas faster.",
+        "hi": "तापमान बढ़ने पर गैसों की विलेयता घटती है, इसलिए गर्म सोडा जल्दी गैस खोता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sugar does not keep the fizz; the fizz is dissolved carbon dioxide.",
+         "hi": "चीनी झाग नहीं रोकती; झाग घुली कार्बन डाइऑक्साइड है।"
+        },
+        {
+         "en": "Warm soda still has some gas; it just escapes faster.",
+         "hi": "गर्म सोडा में भी कुछ गैस होती है; बस वह जल्दी निकलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep adding sugar at 20 °C until it stops dissolving, then heat it. Then cool it again and watch crystals appear.",
+      "hi": "20 °C पर तब तक चीनी डालो जब तक घुलना बंद न हो, फिर गर्म करो। फिर ठंडा करके क्रिस्टल बनते देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch09-egg",
+   "topic": "9.4",
+   "template": "forces",
+   "title": {
+    "en": "Make an egg float",
+    "hi": "अंडे को तैराओ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "buoyancy",
+    "object": "egg",
+    "fluid": "water"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A fresh egg is dropped into tap water. Will it float or sink?",
+      "hi": "एक ताज़ा अंडा नल के पानी में डाला जाता है। यह तैरेगा या डूबेगा?"
+     },
+     "options": [
+      {
+       "id": "sink",
+       "en": "Sink",
+       "hi": "डूबेगा"
+      },
+      {
+       "id": "float",
+       "en": "Float",
+       "hi": "तैरेगा"
+      }
+     ],
+     "answer": "sink"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "sinks",
+     "say": {
+      "en": "Drop the egg into the water.",
+      "hi": "अंडे को पानी में डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "fluid:salt-water",
+     "expect": "floats",
+     "say": {
+      "en": "Change the water to very salty water.",
+      "hi": "पानी बदलकर बहुत नमकीन पानी करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "fluid:water",
+     "expect": "sinks",
+     "say": {
+      "en": "Change back to plain water.",
+      "hi": "फिर सादा पानी करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An object floats if it is less dense than the liquid, and sinks if it is denser. An egg is a little denser than water, so it sinks. Dissolving lots of salt makes the water denser than the egg, so the egg floats. This is why swimming in the sea is easier than in a river.",
+      "hi": "कोई वस्तु तब तैरती है जब वह द्रव से कम सघन हो, और डूबती है जब ज़्यादा सघन हो। अंडा पानी से थोड़ा ज़्यादा सघन है, इसलिए डूबता है। बहुत नमक घोलने से पानी अंडे से ज़्यादा सघन हो जाता है, इसलिए अंडा तैरता है। इसीलिए समुद्र में तैरना नदी से आसान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did the egg float in salty water?",
+        "hi": "नमकीन पानी में अंडा क्यों तैरा?"
+       },
+       "options": [
+        {
+         "en": "Salty water is denser than the egg",
+         "hi": "नमकीन पानी अंडे से ज़्यादा सघन है"
+        },
+        {
+         "en": "Salt made the egg lighter",
+         "hi": "नमक ने अंडे को हल्का कर दिया"
+        },
+        {
+         "en": "The egg got bigger",
+         "hi": "अंडा बड़ा हो गया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dissolved salt adds mass without much extra volume, raising the water's density.",
+        "hi": "घुला नमक बिना ज़्यादा आयतन बढ़ाए द्रव्यमान जोड़ता है, जिससे पानी का घनत्व बढ़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The egg is unchanged; the liquid changed.",
+         "hi": "अंडा नहीं बदला; द्रव बदला।"
+        },
+        {
+         "en": "Its size stayed the same.",
+         "hi": "उसका आकार वही रहा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try cork, wax, ice and an iron ball in water, salt water and oil. Can you find one object that floats in water but sinks in oil?",
+      "hi": "कॉर्क, मोम, बर्फ़ और लोहे की गेंद को पानी, नमकीन पानी और तेल में आज़माओ। क्या ऐसी चीज़ ढूँढ सकते हो जो पानी में तैरे पर तेल में डूबे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch09-density",
+   "topic": "9.5",
+   "template": "forces",
+   "title": {
+    "en": "Density decides",
+    "hi": "घनत्व तय करता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "buoyancy",
+    "object": "block",
+    "mass": 0.5,
+    "fluid": "water"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "floats",
+     "say": {
+      "en": "This block has a volume of 1 litre and a mass of 0.5 kg. Drop it in.",
+      "hi": "इस गुटके का आयतन 1 लीटर और द्रव्यमान 0.5 kg है। इसे डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One litre of water has a mass of 1 kg. What mass will make this 1-litre block sink?",
+      "hi": "एक लीटर पानी का द्रव्यमान 1 kg है। कितने द्रव्यमान पर यह 1 लीटर का गुटका डूबेगा?"
+     },
+     "options": [
+      {
+       "id": "over",
+       "en": "More than 1 kg",
+       "hi": "1 kg से ज़्यादा"
+      },
+      {
+       "id": "half",
+       "en": "Exactly 0.5 kg",
+       "hi": "ठीक 0.5 kg"
+      },
+      {
+       "id": "never",
+       "en": "It can never sink",
+       "hi": "यह कभी नहीं डूब सकता"
+      }
+     ],
+     "answer": "over"
+    },
+    {
+     "kind": "do",
+     "target": "slider:mass",
+     "expect": "sinks",
+     "say": {
+      "en": "Raise the mass of the block until it sinks.",
+      "hi": "गुटके का द्रव्यमान तब तक बढ़ाओ जब तक वह डूबे नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Density is mass per unit volume: density = mass ÷ volume. Water has a density of 1 g/mL, which is 1000 kg per cubic metre. The block floats while its density is less than water's and sinks once it is more. Mass is measured with a weighing balance and volume with a measuring cylinder.",
+      "hi": "घनत्व प्रति इकाई आयतन का द्रव्यमान है: घनत्व = द्रव्यमान ÷ आयतन। पानी का घनत्व 1 g/mL है, यानी 1000 kg प्रति घन मीटर। जब तक गुटके का घनत्व पानी से कम है वह तैरता है, ज़्यादा होते ही डूब जाता है। द्रव्यमान तौल मशीन से और आयतन मापक सिलिंडर से मापते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A stone has a mass of 78 g and a volume of 30 mL. What is its density?",
+        "hi": "एक पत्थर का द्रव्यमान 78 g और आयतन 30 mL है। उसका घनत्व क्या है?"
+       },
+       "options": [
+        {
+         "en": "2.6 g/mL",
+         "hi": "2.6 ग्राम/मिली"
+        },
+        {
+         "en": "108 g/mL",
+         "hi": "108 ग्राम/मिली"
+        },
+        {
+         "en": "0.38 g/mL",
+         "hi": "0.38 ग्राम/मिली"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Density = 78 ÷ 30 = 2.6 g/mL, more than water, so the stone sinks.",
+        "hi": "घनत्व = 78 ÷ 30 = 2.6 g/mL, पानी से ज़्यादा, इसलिए पत्थर डूबता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "108 is mass plus volume; density divides mass by volume.",
+         "hi": "108 द्रव्यमान और आयतन का योग है; घनत्व में द्रव्यमान को आयतन से भाग देते हैं।"
+        },
+        {
+         "en": "0.38 is volume divided by mass, the wrong way round.",
+         "hi": "0.38 आयतन को द्रव्यमान से भाग देने पर आता है, जो उल्टा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A hot air balloon rises. What does heating do to the air inside?",
+        "hi": "गर्म हवा का गुब्बारा ऊपर उठता है। गर्म करने से अंदर की हवा का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It expands and becomes less dense",
+         "hi": "वह फैलकर कम सघन हो जाती है"
+        },
+        {
+         "en": "It becomes denser",
+         "hi": "वह ज़्यादा सघन हो जाती है"
+        },
+        {
+         "en": "It loses all its mass",
+         "hi": "उसका सारा द्रव्यमान ख़त्म हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heating spreads the same air over more volume, so its density falls and it rises.",
+        "hi": "गर्म करने से वही हवा ज़्यादा आयतन में फैलती है, घनत्व घटता है और वह उठती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Generally density falls when temperature rises.",
+         "hi": "आम तौर पर तापमान बढ़ने पर घनत्व घटता है।"
+        },
+        {
+         "en": "The air still has mass; it is just spread out.",
+         "hi": "हवा का द्रव्यमान बना रहता है; वह बस फैल जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the exact mass where the block changes from floating to sinking. Then try it in oil and in salt water: does that mass change?",
+      "hi": "वह ठीक द्रव्यमान ढूँढो जिस पर गुटका तैरने से डूबने लगता है। फिर तेल और नमकीन पानी में आज़माओ: क्या वह द्रव्यमान बदलता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Hook of the chapter",
+   "shows": "A glass of nimbu pani being stirred on a summer afternoon, sugar crystals swirling and disappearing",
+   "view": "Close side view, bright daylight",
+   "right": "Crystals visible only in the swirl at the bottom",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "9.2",
+   "use": "Saturating salt water",
+   "shows": "A glass of 50 mL water with spoons of salt added one by one: clear after 1, 2, 3 spoons; after the 4th a layer of salt stays at the bottom",
+   "view": "Front view, same framing in four frames",
+   "right": "Undissolved salt only in the last frame",
+   "avoid": "Cloudy or coloured water"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "9.2.1",
+   "use": "Sugar in hot and cold water",
+   "shows": "Two beakers with the same heap of sugar: the cold one with sugar left at the bottom, the hot one (thermometer showing about 60 °C) fully clear (beaker: reuse LIB-LAB-beaker-250ml; thermometer: reuse LIB-LAB-thermometer)",
+   "view": "Front view, side by side",
+   "right": "Same amount added; only the hot one fully dissolved",
+   "avoid": "Open flame"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "9.3",
+   "use": "Soda losing fizz",
+   "shows": "Two opened glass bottles of soda water, one from the fridge and one kept in the sun, bubbles streaming faster in the warm one",
+   "view": "Close side view against a dark background",
+   "right": "Many more bubbles in the warm bottle",
+   "avoid": "Labels or brands"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "9.4",
+   "use": "Egg in plain and salty water",
+   "shows": "Two tall glasses: the egg resting at the bottom of plain water; the egg floating near the top of very salty water",
+   "view": "Front view, same framing",
+   "right": "Water clear in both; egg the same",
+   "avoid": "Cracked eggs"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "9.5.1",
+   "use": "Measuring tools for density",
+   "shows": "A digital kitchen balance, a 100 mL measuring cylinder with water at 50 mL and a stone on a thread",
+   "view": "Three-quarter view on a table",
+   "right": "Cylinder scale readable; balance display blank",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "9.5.2",
+   "use": "Hot air balloon",
+   "shows": "A colourful hot air balloon rising over a fort in Rajasthan at sunrise, burner flame visible",
+   "view": "Wide view from the ground",
+   "right": "Burner flame under the open mouth of the balloon",
+   "avoid": "Logos on the balloon"
+  }
+ ]
+}

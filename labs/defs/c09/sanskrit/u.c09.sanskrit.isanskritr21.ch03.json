@@ -1,0 +1,785 @@
+{
+ "chapter_key": "u.c09.sanskrit.isanskritr21.ch03",
+ "class": 9,
+ "subject_id": "sanskrit",
+ "title": "वैद्यवृत्तिश्चतुर्विधा",
+ "source": "https://ncert.nic.in/textbook/pdf/isanskritr2103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "The four feet of treatment: physician, patient, medicine, attendant",
+   "labs": [
+    "c09-sanskrit-isanskritr21-ch03-padas"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "The four attitudes of a physician (वैद्यवृत्तिः)",
+   "labs": [
+    "c09-sanskrit-isanskritr21-ch03-vritti"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Daily habits that keep us well, from the Ayurveda verses",
+   "labs": [
+    "c09-sanskrit-isanskritr21-ch03-habits"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Class talk: why health is the first support of dharma (शरीरमाद्यं खलु धर्मसाधनम्)",
+   "labs": [],
+   "why_no_lab": "This is a values talk with the teacher; the habits and roles are in the labs. § यह शिक्षक के साथ मूल्यों की चर्चा है; आदतें और भूमिकाएँ लैब में हैं।"
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-sanskrit-isanskritr21-ch03-padas",
+   "topic": "3.1",
+   "template": "match",
+   "title": {
+    "en": "The four feet of treatment",
+    "hi": "चिकित्सा के चार पाद"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "vaidya",
+      "left": {
+       "en": "वैद्यः",
+       "hi": "वैद्यः"
+      },
+      "right": {
+       "en": "The physician",
+       "hi": "चिकित्सक"
+      },
+      "why": {
+       "en": "वैद्यः is the one who knows and gives treatment.",
+       "hi": "वैद्यः वह है जो चिकित्सा जानता और करता है।"
+      }
+     },
+     {
+      "id": "vyadhi",
+      "left": {
+       "en": "व्याध्युपसृष्टः",
+       "hi": "व्याध्युपसृष्टः"
+      },
+      "right": {
+       "en": "The patient, troubled by disease",
+       "hi": "रोगी, रोग से पीड़ित"
+      },
+      "why": {
+       "en": "व्याधि is disease and उपसृष्टः means afflicted.",
+       "hi": "व्याधि रोग है और उपसृष्टः का अर्थ पीड़ित है।"
+      }
+     },
+     {
+      "id": "bheshaja",
+      "left": {
+       "en": "भेषजम्",
+       "hi": "भेषजम्"
+      },
+      "right": {
+       "en": "The medicine",
+       "hi": "औषधि"
+      },
+      "why": {
+       "en": "भेषजम् is the remedy used to cure.",
+       "hi": "भेषजम् रोग मिटाने की दवा है।"
+      }
+     },
+     {
+      "id": "paricharaka",
+      "left": {
+       "en": "परिचारकः",
+       "hi": "परिचारकः"
+      },
+      "right": {
+       "en": "The attendant or nurse",
+       "hi": "सेवा करने वाला, परिचारक"
+      },
+      "why": {
+       "en": "परिचारकः cares for the patient day and night.",
+       "hi": "परिचारकः रोगी की दिन-रात सेवा करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:vaidya",
+     "expect": "matched:vaidya",
+     "say": {
+      "en": "Tap वैद्यः, then tap his meaning.",
+      "hi": "वैद्यः छुओ, फिर उसका अर्थ छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many \"feet\" (पाद) does treatment stand on?",
+      "hi": "चिकित्सा कितने \"पादों\" पर खड़ी है?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "Four",
+       "hi": "चार"
+      },
+      {
+       "id": "two",
+       "en": "Two",
+       "hi": "दो"
+      },
+      {
+       "id": "six",
+       "en": "Six",
+       "hi": "छह"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "left:paricharaka",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match the other three feet.",
+      "hi": "अब बाकी तीन पाद मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The verse says treatment stands on four feet, like a table: the physician, the patient, the medicine and the attendant. All four must be good for treatment to work. The verse adds that a skilled physician with the three helpers can cure even a big illness in a short time.",
+      "hi": "श्लोक कहता है कि चिकित्सा मेज़ की तरह चार पादों पर खड़ी है: वैद्य, रोगी, औषधि और परिचारक। उपचार सफल होने के लिए चारों अच्छे होने चाहिए। श्लोक यह भी कहता है कि गुणी वैद्य तीन सहायकों के साथ बड़े रोग को भी थोड़े समय में ठीक कर सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which are the four feet of treatment?",
+        "hi": "चिकित्सा के चार पाद कौन-से हैं?"
+       },
+       "options": [
+        {
+         "en": "Hospital, bed, food, visitors",
+         "hi": "अस्पताल, बिस्तर, भोजन, आगंतुक"
+        },
+        {
+         "en": "Physician, patient, medicine, attendant",
+         "hi": "वैद्य, रोगी, औषधि, परिचारक"
+        },
+        {
+         "en": "Doctor, teacher, farmer, driver",
+         "hi": "डॉक्टर, शिक्षक, किसान, चालक"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The verse names these four as the feet of treatment.",
+        "hi": "श्लोक इन्हीं चार को चिकित्सा के पाद कहता है।"
+       },
+       "wrong": [
+        {
+         "en": "These are not the four named in the verse.",
+         "hi": "ये श्लोक में बताए चार नहीं हैं।"
+        },
+        "",
+        {
+         "en": "Teachers, farmers and drivers are not parts of treatment in the verse.",
+         "hi": "शिक्षक, किसान और चालक श्लोक में चिकित्सा के अंग नहीं हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who is the परिचारकः?",
+        "hi": "परिचारकः कौन है?"
+       },
+       "options": [
+        {
+         "en": "The person who makes medicine",
+         "hi": "औषधि बनाने वाला"
+        },
+        {
+         "en": "The patient's relative who visits",
+         "hi": "मिलने आने वाला रिश्तेदार"
+        },
+        {
+         "en": "The attendant who cares for the patient",
+         "hi": "रोगी की सेवा करने वाला"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "परिचारकः looks after the patient.",
+        "hi": "परिचारकः रोगी की देखभाल करता है।"
+       },
+       "wrong": [
+        {
+         "en": "Medicine is called भेषजम्.",
+         "hi": "दवा को भेषजम् कहते हैं।"
+        },
+        {
+         "en": "A visitor does not give care as one of the four feet.",
+         "hi": "आगंतुक चार पादों में से देखभाल करने वाला नहीं है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine a table with only three legs. Why does treatment need all four feet?",
+      "hi": "तीन पैरों वाली मेज़ सोचो। चिकित्सा को चारों पाद क्यों चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-sanskrit-isanskritr21-ch03-vritti",
+   "topic": "3.2",
+   "template": "match",
+   "title": {
+    "en": "Four attitudes of a physician",
+    "hi": "वैद्य के चार भाव"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "maitri",
+      "left": {
+       "en": "मैत्री",
+       "hi": "मैत्री"
+      },
+      "right": {
+       "en": "Friendliness toward the healthy",
+       "hi": "स्वस्थ लोगों के प्रति मित्रता"
+      },
+      "why": {
+       "en": "The physician is a friend to those who are healthy and helps them stay so.",
+       "hi": "वैद्य स्वस्थ लोगों का मित्र होता है और उन्हें स्वस्थ रखता है।"
+      }
+     },
+     {
+      "id": "karunya",
+      "left": {
+       "en": "कारुण्यम्",
+       "hi": "कारुण्यम्"
+      },
+      "right": {
+       "en": "Compassion toward the sick",
+       "hi": "रोगियों के प्रति करुणा"
+      },
+      "why": {
+       "en": "कारुण्यम् is feeling the pain of the sick.",
+       "hi": "कारुण्यम् रोगियों की पीड़ा को अनुभव करना है।"
+      }
+     },
+     {
+      "id": "priti",
+      "left": {
+       "en": "प्रीतिः",
+       "hi": "प्रीतिः"
+      },
+      "right": {
+       "en": "Joy and effort for those who can be cured",
+       "hi": "ठीक हो सकने वालों के लिए प्रसन्नता और प्रयास"
+      },
+      "why": {
+       "en": "प्रीतिः is the glad effort for the curable.",
+       "hi": "प्रीतिः साध्य रोगियों के लिए प्रसन्न प्रयास है।"
+      }
+     },
+     {
+      "id": "upeksha",
+      "left": {
+       "en": "उपेक्षा",
+       "hi": "उपेक्षा"
+      },
+      "right": {
+       "en": "Calm acceptance toward those who cannot be cured",
+       "hi": "जिनका इलाज संभव नहीं उनके प्रति शांत स्वीकार"
+      },
+      "why": {
+       "en": "Where cure is not possible the physician stays calm and does not give false hope.",
+       "hi": "जहाँ इलाज संभव नहीं, वैद्य शांत रहता है और झूठी आशा नहीं देता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:maitri",
+     "expect": "matched:maitri",
+     "say": {
+      "en": "Tap मैत्री, then tap whom it is for.",
+      "hi": "मैत्री छुओ, फिर वह छुओ जिनके लिए यह है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A physician meets a person in pain. Which attitude should he feel for him?",
+      "hi": "एक वैद्य को पीड़ा में पड़ा रोगी मिलता है। उसके लिए उसमें कौन-सा भाव होना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "m",
+       "en": "मैत्री, friendliness",
+       "hi": "मैत्री, मित्रता"
+      },
+      {
+       "id": "k",
+       "en": "कारुण्यम्, compassion",
+       "hi": "कारुण्यम्, करुणा"
+      },
+      {
+       "id": "u",
+       "en": "उपेक्षा, calm detachment",
+       "hi": "उपेक्षा, तटस्थता"
+      }
+     ],
+     "answer": "k"
+    },
+    {
+     "kind": "do",
+     "target": "left:upeksha",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match the other three attitudes.",
+      "hi": "अब बाकी तीन भाव मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A good physician has four attitudes: friendliness toward the healthy, compassion toward the sick, joy and effort for the curable, and calm acceptance for those who cannot be cured. The same four attitudes also suit a good friend, a nurse or a teacher. Care is more than medicine.",
+      "hi": "अच्छे वैद्य में चार भाव होते हैं: स्वस्थ लोगों के प्रति मित्रता, रोगियों के प्रति करुणा, ठीक हो सकने वालों के लिए प्रसन्नता और प्रयास, और जिनका इलाज संभव नहीं उनके प्रति शांत स्वीकार। ये चारों भाव अच्छे मित्र, परिचारक या शिक्षक के लिए भी उपयुक्त हैं। देखभाल दवा से बढ़कर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For whom is कारुण्यम् meant?",
+        "hi": "कारुण्यम् किसके लिए है?"
+       },
+       "options": [
+        {
+         "en": "The sick, who are in pain",
+         "hi": "रोगी, जो पीड़ा में हैं"
+        },
+        {
+         "en": "The healthy",
+         "hi": "स्वस्थ लोग"
+        },
+        {
+         "en": "Those who cannot be cured",
+         "hi": "जिनका इलाज संभव नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Compassion is for those who suffer from illness.",
+        "hi": "करुणा रोग से पीड़ित लोगों के लिए है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The healthy get मैत्री, friendliness.",
+         "hi": "स्वस्थ लोगों के लिए मैत्री है।"
+        },
+        {
+         "en": "For the incurable the attitude is calm acceptance.",
+         "hi": "असाध्य के लिए भाव शांत स्वीकार है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the physician feel toward those who can be cured?",
+        "hi": "ठीक हो सकने वालों के प्रति वैद्य क्या अनुभव करता है?"
+       },
+       "options": [
+        {
+         "en": "उपेक्षा, calm detachment",
+         "hi": "उपेक्षा, तटस्थता"
+        },
+        {
+         "en": "प्रीतिः, glad effort",
+         "hi": "प्रीतिः, प्रसन्न प्रयास"
+        },
+        {
+         "en": "मैत्री, friendliness",
+         "hi": "मैत्री, मित्रता"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "For the curable the physician works gladly and with hope.",
+        "hi": "साध्य रोगियों के लिए वैद्य प्रसन्न होकर आशा से काम करता है।"
+       },
+       "wrong": [
+        {
+         "en": "उपेक्षा is for those who cannot be cured.",
+         "hi": "उपेक्षा उनके लिए है जिनका इलाज संभव नहीं।"
+        },
+        "",
+        {
+         "en": "मैत्री is for the healthy.",
+         "hi": "मैत्री स्वस्थ लोगों के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of how a nurse or a good teacher can show these four attitudes. Share one example.",
+      "hi": "सोचो कि परिचारक या अच्छा शिक्षक ये चार भाव कैसे दिखा सकता है। एक उदाहरण बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-sanskrit-isanskritr21-ch03-habits",
+   "topic": "3.3",
+   "template": "sort",
+   "title": {
+    "en": "Habits that keep us well",
+    "hi": "स्वस्थ रखने वाली आदतें"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "w",
+      "label": {
+       "en": "Keeps us well",
+       "hi": "स्वस्थ रखती है"
+      }
+     },
+     {
+      "id": "i",
+      "label": {
+       "en": "Brings illness",
+       "hi": "बीमार करती है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "Eating healthy food at proper times",
+       "hi": "उचित समय पर हितकर भोजन"
+      },
+      "bin": "w",
+      "why": {
+       "en": "Regular, wholesome food builds health.",
+       "hi": "नियमित, हितकर भोजन स्वास्थ्य बनाता है।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "Sipping water in small amounts often",
+       "hi": "थोड़ा-थोड़ा पानी बार-बार पीना"
+      },
+      "bin": "w",
+      "why": {
+       "en": "The verse says small, repeated sips help digest food.",
+       "hi": "श्लोक कहता है कि थोड़े-थोड़े घूँट बार-बार पीना पाचन में सहायक है।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "Thinking before acting",
+       "hi": "सोच-समझकर काम करना"
+      },
+      "bin": "w",
+      "why": {
+       "en": "The healthy person is समीक्ष्यकारी, one who acts after thinking.",
+       "hi": "स्वस्थ व्यक्ति समीक्ष्यकारी होता है, यानी सोचकर काम करता है।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "Being truthful, giving and forgiving",
+       "hi": "सत्यवादी, दानशील और क्षमाशील होना"
+      },
+      "bin": "w",
+      "why": {
+       "en": "A calm, kind mind also keeps the body free of disease.",
+       "hi": "शांत और दयालु मन शरीर को भी रोगमुक्त रखता है।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "Gulping lots of water at once, or none",
+       "hi": "एक साथ बहुत पानी पीना, या बिल्कुल नहीं"
+      },
+      "bin": "i",
+      "why": {
+       "en": "Too much or too little water spoils digestion.",
+       "hi": "बहुत ज़्यादा या बहुत कम पानी पाचन बिगाड़ता है।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "Eating junk food and skipping meals",
+       "hi": "जंक खाना और भोजन छोड़ना"
+      },
+      "bin": "i",
+      "why": {
+       "en": "Irregular, unwholesome food brings illness.",
+       "hi": "अनियमित, अहितकर भोजन रोग लाता है।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "Being deeply attached to indulgence",
+       "hi": "भोगों में बहुत आसक्त रहना"
+      },
+      "bin": "i",
+      "why": {
+       "en": "The healthy person is not attached to excess.",
+       "hi": "स्वस्थ व्यक्ति अति में आसक्त नहीं होता।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "Staying awake all night every day",
+       "hi": "रोज़ रात भर जागना"
+      },
+      "bin": "i",
+      "why": {
+       "en": "Lack of sleep wears down the body.",
+       "hi": "नींद की कमी शरीर को थका देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "placed:a",
+     "say": {
+      "en": "Tap the card \"Eating healthy food at proper times\", then tap its group.",
+      "hi": "कार्ड \"उचित समय पर हितकर भोजन\" छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is gulping lots of water with food a healthy habit?",
+      "hi": "क्या भोजन के साथ बहुत सारा पानी एक साथ पीना स्वस्थ आदत है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, the more the better",
+       "hi": "हाँ, जितना ज़्यादा उतना अच्छा"
+      },
+      {
+       "id": "no",
+       "en": "No, small sips are better",
+       "hi": "नहीं, थोड़े घूँट बेहतर हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Put every card in a group, then press Check.",
+      "hi": "सारे कार्ड समूहों में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Ayurveda verses give simple rules. Eat food that helps, and eat at regular times. Sip water often in small amounts, since too much or too little water spoils digestion. Think before you act, be truthful, give and forgive, and do not be attached to excess. Prevention is better than cure.",
+      "hi": "आयुर्वेद के श्लोक सरल नियम देते हैं। हितकर भोजन करो और नियमित समय पर करो। थोड़ा-थोड़ा पानी बार-बार पियो, क्योंकि बहुत ज़्यादा या बहुत कम पानी पाचन बिगाड़ता है। सोचकर काम करो, सत्य बोलो, दान दो, क्षमा करो और अति में आसक्त मत हो। उपचार से बचाव बेहतर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the verse say about drinking water?",
+        "hi": "पानी पीने के बारे में श्लोक क्या कहता है?"
+       },
+       "options": [
+        {
+         "en": "Drink a lot all at once",
+         "hi": "एक साथ बहुत पियो"
+        },
+        {
+         "en": "Never drink water",
+         "hi": "कभी पानी मत पियो"
+        },
+        {
+         "en": "Drink in small amounts, again and again",
+         "hi": "थोड़ा-थोड़ा, बार-बार पियो"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "The verse says both too much and too little spoil digestion.",
+        "hi": "श्लोक कहता है कि बहुत ज़्यादा और बहुत कम दोनों पाचन बिगाड़ते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A large gulp is what the verse warns against.",
+         "hi": "एक बार में बहुत पानी पीने से श्लोक सावधान करता है।"
+        },
+        {
+         "en": "Having no water at all also spoils digestion.",
+         "hi": "बिल्कुल पानी न पीना भी पाचन बिगाड़ता है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Which habit helps keep a person free of illness?",
+        "hi": "कौन-सी आदत व्यक्ति को रोगमुक्त रखने में सहायक है?"
+       },
+       "options": [
+        {
+         "en": "Eating healthy food at regular times",
+         "hi": "नियमित समय पर हितकर भोजन"
+        },
+        {
+         "en": "Skipping meals",
+         "hi": "भोजन छोड़ना"
+        },
+        {
+         "en": "Staying awake every night",
+         "hi": "रोज़ रात जागना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Regular, wholesome food is the base of health.",
+        "hi": "नियमित, हितकर भोजन स्वास्थ्य का आधार है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Skipping meals weakens the body.",
+         "hi": "भोजन छोड़ने से शरीर कमज़ोर होता है।"
+        },
+        {
+         "en": "Staying awake all night harms health.",
+         "hi": "रोज़ रात जागना स्वास्थ्य को हानि पहुँचाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write one healthy habit you will keep for a week and tick it every day.",
+      "hi": "एक स्वस्थ आदत चुनो जो तुम एक सप्ताह तक निभाओगे और रोज़ उस पर निशान लगाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Shows common medicinal plants",
+   "shows": "Fresh tulsi leaves, a turmeric root and a few neem leaves together on a cut-out",
+   "view": "Slightly from above, soft light",
+   "right": "Real colours, tulsi leaf with serrated edge, orange turmeric cut",
+   "avoid": "Brand packaging"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Shows the medicine foot",
+   "shows": "A stone mortar and pestle with ground herbs and a small brass bowl",
+   "view": "Three-quarter view on a cut-out",
+   "right": "Real stone, fine green paste",
+   "avoid": "Capsules, tablets with brands"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Shows the physician at work",
+   "shows": "A vaidya (adult) feeling a patient's pulse at the wrist, seen from the side",
+   "view": "Close, hands only with the physician's torso",
+   "right": "Respectful pose, clean room, adult models with consent",
+   "avoid": "Identifiable child, branded items"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Shows the attendant foot",
+   "shows": "A nurse adjusting a pillow for a patient in a bed, seen from the side",
+   "view": "Medium, faces softly out of focus",
+   "right": "Clean ward, natural light, uniform without logos",
+   "avoid": "Readable badges"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Shows sipping water",
+   "shows": "A steel tumbler of water held by a hand, with a small pot of water beside it",
+   "view": "Close, side view",
+   "right": "Real steel shine, clear water",
+   "avoid": "Plastic bottles, brand names"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "3.1",
+   "use": "Frame for the four feet",
+   "shows": "A table seen from the front with four legs, all empty",
+   "view": "Flat, white background",
+   "right": "Four even legs the app can label",
+   "avoid": "Any text"
+  }
+ ]
+}

@@ -1,0 +1,580 @@
+{
+ "chapter_key": "u.c11.physics.keph1.ch06",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "System of Particles and Rotational Motion",
+ "source": "https://ncert.nic.in/textbook/pdf/keph106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Introduction: rigid bodies, translation and rotation",
+   "labs": [],
+   "why_no_lab": "An overview of how a rigid body can slide and turn; the reader's photos of a rolling wheel and a spinning top set the scene."
+  },
+  {
+   "n": "6.2",
+   "title": "Centre of mass",
+   "labs": [],
+   "why_no_lab": "Finding the centre of mass is a weighted average worked on paper; the reader's photo of a ruler balanced on a finger and worked examples teach it, and no template yet places masses on a free rod."
+  },
+  {
+   "n": "6.3",
+   "title": "Motion of centre of mass",
+   "labs": [],
+   "why_no_lab": "The reader's picture of a firecracker shell bursting in the sky, whose pieces' centre of mass keeps the old path, teaches this better than a lab."
+  },
+  {
+   "n": "6.4",
+   "title": "Linear momentum of a system of particles",
+   "labs": [],
+   "why_no_lab": "It extends momentum conservation from Chapter 4's carts lab to many particles; the reader's derivation covers it."
+  },
+  {
+   "n": "6.5",
+   "title": "Vector product of two vectors",
+   "labs": [],
+   "why_no_lab": "The cross product and the right-hand rule are vector algebra on paper, shown by the reader's hand-and-arrow figure."
+  },
+  {
+   "n": "6.6",
+   "title": "Angular velocity and its relation with linear velocity; angular acceleration",
+   "labs": [
+    "c11-physics-keph1-ch06-angular-velocity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.7",
+   "title": "Torque (moment of force) and angular momentum",
+   "labs": [
+    "c11-physics-keph1-ch06-torque-wheelbarrow"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.8",
+   "title": "Equilibrium of a rigid body: principle of moments and centre of gravity",
+   "labs": [
+    "c11-physics-keph1-ch06-moments-seesaw"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.9",
+   "title": "Moment of inertia",
+   "labs": [],
+   "why_no_lab": "Moment of inertia needs bodies of different shapes spinning; no template does that yet, so the reader's table of rings, discs and rods with a door-handle example teaches it."
+  },
+  {
+   "n": "6.10",
+   "title": "Kinematics of rotational motion about a fixed axis",
+   "labs": [],
+   "why_no_lab": "The rotational equations mirror the straight-line ones; the reader's side-by-side table with a ceiling fan example teaches them."
+  },
+  {
+   "n": "6.11",
+   "title": "Dynamics of rotational motion about a fixed axis",
+   "labs": [],
+   "why_no_lab": "τ = Iα and rotational work and power are worked through the reader's analogy table and examples."
+  },
+  {
+   "n": "6.12",
+   "title": "Angular momentum about a fixed axis and its conservation",
+   "labs": [],
+   "why_no_lab": "The reader's photo sequence of a kathak dancer spinning faster as she pulls in her arms shows conservation of angular momentum; no template spins a body yet."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph1-ch06-angular-velocity",
+   "topic": "6.6",
+   "template": "motion",
+   "title": {
+    "en": "Whirling a stone: angular and linear velocity",
+    "hi": "पत्थर घुमाना: कोणीय और रैखिक वेग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "circular",
+    "speed": 4,
+    "r": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A stone on a 2 m string moves round at 4 m/s. Its angular velocity ω (radians turned each second) is:",
+      "hi": "2 m धागे पर बँधा पत्थर 4 m/s से घूमता है। उसका कोणीय वेग ω (हर सेकंड घूमे रेडियन) है:"
+     },
+     "options": [
+      {
+       "id": "2",
+       "en": "2 rad/s",
+       "hi": "2 rad/s (रेडियन प्रति सेकंड)"
+      },
+      {
+       "id": "8",
+       "en": "8 rad/s",
+       "hi": "8 rad/s (रेडियन प्रति सेकंड)"
+      },
+      {
+       "id": "4",
+       "en": "4 rad/s",
+       "hi": "4 rad/s (रेडियन प्रति सेकंड)"
+      }
+     ],
+     "answer": "2"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "moving",
+     "say": {
+      "en": "Press Whirl and watch the angle grow and the green velocity arrow turn.",
+      "hi": "\"घुमाओ\" दबाओ और कोण बढ़ते तथा हरे वेग-तीर को घूमते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Angular velocity is how fast the angle grows: ω = Δθ/Δt. A point at distance r moves along an arc of length r × θ, so its speed is v = ω r. Here ω = v ÷ r = 4 ÷ 2 = 2 rad/s, and one turn of 2π radians takes about 3.1 s.",
+      "hi": "कोणीय वेग बताता है कि कोण कितनी तेज़ी से बढ़ता है: ω = Δθ/Δt। r दूरी पर का बिंदु r × θ लंबाई का चाप चलता है, इसलिए उसकी चाल v = ω r है। यहाँ ω = v ÷ r = 4 ÷ 2 = 2 rad/s, और 2π रेडियन का एक चक्कर लगभग 3.1 s में होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On a turning ceiling fan, compared with a point near the centre, the tip of a blade has:",
+        "hi": "घूमते छत के पंखे पर, केंद्र के पास के बिंदु की तुलना में पंखुड़ी के सिरे का:"
+       },
+       "options": [
+        {
+         "en": "The same ω but a larger speed v",
+         "hi": "ω वही, पर चाल v ज़्यादा"
+        },
+        {
+         "en": "A larger ω and the same speed",
+         "hi": "ω ज़्यादा, पर चाल वही"
+        },
+        {
+         "en": "The same ω and the same speed",
+         "hi": "ω और चाल दोनों वही"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every point of a rigid fan turns through the same angle in the same time, so ω is shared; v = ω r grows with r.",
+        "hi": "कठोर पंखे का हर बिंदु एक समय में उतना ही कोण घूमता है, इसलिए ω सबका एक है; v = ω r, r के साथ बढ़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If ω differed, the blade would bend or break; it is the speed that changes with r.",
+         "hi": "अगर ω अलग होता तो पंखुड़ी मुड़ या टूट जाती; r के साथ चाल बदलती है।"
+        },
+        {
+         "en": "The tip goes round a bigger circle in the same time, so it must move faster.",
+         "hi": "सिरा उतने ही समय में बड़ा वृत्त घूमता है, इसलिए उसे तेज़ चलना पड़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was 8 rad/s wrong?",
+        "hi": "8 rad/s गलत क्यों था?"
+       },
+       "options": [
+        {
+         "en": "It multiplied v by r instead of dividing",
+         "hi": "इसमें v को r से भाग देने की जगह गुणा किया गया"
+        },
+        {
+         "en": "Angular velocity has no unit",
+         "hi": "कोणीय वेग की कोई इकाई नहीं होती"
+        },
+        {
+         "en": "ω does not depend on the speed",
+         "hi": "ω चाल पर निर्भर नहीं करता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "From v = ω r, ω = v/r = 4/2 = 2 rad/s.",
+        "hi": "v = ω r से, ω = v/r = 4/2 = 2 rad/s।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "ω has the unit rad/s; the mistake was in the arithmetic.",
+         "hi": "ω की इकाई rad/s है; गलती गणना में थी।"
+        },
+        {
+         "en": "On a fixed circle, a faster stone sweeps the angle faster, so ω does depend on v.",
+         "hi": "एक तय वृत्त पर तेज़ पत्थर कोण भी तेज़ी से घूमता है, इसलिए ω, v पर निर्भर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the speed and whirl again. Check that the time for one turn always equals 2π r ÷ v.",
+      "hi": "चाल बदलकर फिर घुमाओ। जाँचो कि एक चक्कर का समय हमेशा 2π r ÷ v के बराबर आता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch06-torque-wheelbarrow",
+   "topic": "6.7",
+   "template": "forces",
+   "title": {
+    "en": "Torque in a wheelbarrow: force times arm",
+    "hi": "हथठेले में बल-आघूर्ण: बल × भुजा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "lever",
+    "object": "wheelbarrow",
+    "mass": 10
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 10 kg load (98 N) sits 0.6 m from the wheel's axle. Your hands lift 1.9 m from the axle. The upward force that just holds it is about:",
+      "hi": "10 kg का भार (98 N) पहिये की धुरी से 0.6 m पर रखा है। तुम्हारे हाथ धुरी से 1.9 m पर उठाते हैं। उसे ठीक थामने वाला ऊपरी बल लगभग है:"
+     },
+     "options": [
+      {
+       "id": "31",
+       "en": "31 N",
+       "hi": "31 N (न्यूटन)"
+      },
+      {
+       "id": "98",
+       "en": "98 N",
+       "hi": "98 N (न्यूटन)"
+      },
+      {
+       "id": "186",
+       "en": "186 N",
+       "hi": "186 N (न्यूटन)"
+      }
+     ],
+     "answer": "31"
+    },
+    {
+     "kind": "do",
+     "target": "slider:effort",
+     "expect": "balanced",
+     "say": {
+      "en": "Slide Effort down until the barrow is held level.",
+      "hi": "\"आयास\" स्लाइडर को तब तक घटाओ जब तक हथठेला बराबर न थम जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A force turns a body about an axis with a torque τ = force × perpendicular distance from the axis (the moment arm). The load makes a torque of 98 × 0.6 ≈ 59 N·m one way; your hands must make the same torque the other way: F × 1.9 = 59, so F ≈ 31 N. A long arm gives a big torque from a small force.",
+      "hi": "कोई बल किसी अक्ष के चारों ओर वस्तु को बल-आघूर्ण τ = बल × अक्ष से लंबवत दूरी (आघूर्ण भुजा) से घुमाता है। भार एक ओर 98 × 0.6 ≈ 59 N·m का बल-आघूर्ण बनाता है; तुम्हारे हाथों को दूसरी ओर उतना ही बनाना होगा: F × 1.9 = 59, इसलिए F ≈ 31 N। लंबी भुजा छोटे बल से बड़ा बल-आघूर्ण देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a door handle fixed far from the hinges?",
+        "hi": "दरवाज़े का हैंडल कब्ज़ों से दूर क्यों लगाया जाता है?"
+       },
+       "options": [
+        {
+         "en": "A longer moment arm gives more torque for the same push",
+         "hi": "लंबी आघूर्ण भुजा उसी धक्के से ज़्यादा बल-आघूर्ण देती है"
+        },
+        {
+         "en": "It makes the door lighter",
+         "hi": "इससे दरवाज़ा हल्का हो जाता है"
+        },
+        {
+         "en": "Torque does not depend on where you push",
+         "hi": "बल-आघूर्ण इस पर निर्भर नहीं कि धक्का कहाँ दिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "τ = F × r; the bigger r, the smaller the F needed to turn the door.",
+        "hi": "τ = F × r; r जितना बड़ा, दरवाज़ा घुमाने के लिए उतना कम F चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The door's mass does not change; only the arm of your force changes.",
+         "hi": "दरवाज़े का द्रव्यमान नहीं बदलता; केवल तुम्हारे बल की भुजा बदलती है।"
+        },
+        {
+         "en": "Push near the hinges and you will feel it: the same force barely turns the door.",
+         "hi": "कब्ज़ों के पास धकेलकर देखो: उतना ही बल दरवाज़े को मुश्किल से घुमाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was 186 N wrong?",
+        "hi": "186 N गलत क्यों था?"
+       },
+       "options": [
+        {
+         "en": "It multiplied the load by the long arm instead of balancing the two torques",
+         "hi": "इसमें दोनों बल-आघूर्णों को बराबर करने की जगह भार को लंबी भुजा से गुणा किया गया"
+        },
+        {
+         "en": "The wheel carries the whole load",
+         "hi": "पहिया पूरा भार उठाता है"
+        },
+        {
+         "en": "Torque is force divided by distance",
+         "hi": "बल-आघूर्ण = बल ÷ दूरी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Balance means 98 × 0.6 = F × 1.9, giving F ≈ 31 N.",
+        "hi": "संतुलन का अर्थ है 98 × 0.6 = F × 1.9, जिससे F ≈ 31 N।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The wheel carries part of it, but your hands still need about 31 N.",
+         "hi": "पहिया कुछ भाग उठाता है, पर तुम्हारे हाथों को फिर भी लगभग 31 N लगाना होता है।"
+        },
+        {
+         "en": "Torque is force times the perpendicular distance, not divided by it.",
+         "hi": "बल-आघूर्ण बल × लंबवत दूरी है, उससे भाग नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Raise the load and find the new holding force. Try the tongs too: why do they need more force than the load?",
+      "hi": "भार बढ़ाकर नया थामने वाला बल खोजो। चिमटा भी आज़माओ: उसमें भार से ज़्यादा बल क्यों लगता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch06-moments-seesaw",
+   "topic": "6.8",
+   "template": "forces",
+   "title": {
+    "en": "Balancing a see-saw: the principle of moments",
+    "hi": "सी-सॉ को संतुलित करना: आघूर्णों का सिद्धांत"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "lever",
+    "object": "seesaw",
+    "mass": 10
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 98 N load sits 0.9 m to the left of the pivot. Your push is 0.9 m to the right. What push balances the beam?",
+      "hi": "98 N का भार आलंब से 0.9 m बाईं ओर है। तुम्हारा धक्का 0.9 m दाईं ओर है। कौन-सा धक्का छड़ को संतुलित करेगा?"
+     },
+     "options": [
+      {
+       "id": "98",
+       "en": "98 N, equal to the load",
+       "hi": "98 N, भार के बराबर"
+      },
+      {
+       "id": "49",
+       "en": "49 N, half the load",
+       "hi": "49 N, भार का आधा"
+      },
+      {
+       "id": "196",
+       "en": "196 N, twice the load",
+       "hi": "196 N, भार का दुगुना"
+      }
+     ],
+     "answer": "98"
+    },
+    {
+     "kind": "do",
+     "target": "slider:effort",
+     "expect": "balanced",
+     "say": {
+      "en": "Slide Effort until the beam comes to rest level.",
+      "hi": "\"आयास\" स्लाइडर तब तक खिसकाओ जब तक छड़ बराबर होकर रुक न जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A rigid body is in equilibrium when the net force on it is zero and the net torque about any point is zero. About the pivot, the anticlockwise moment (98 N × 0.9 m) must equal the clockwise moment (effort × 0.9 m). This is the principle of moments. With equal arms, the forces must be equal.",
+      "hi": "कोई कठोर वस्तु संतुलन में तब होती है जब उस पर कुल बल शून्य हो और किसी भी बिंदु के परितः कुल बल-आघूर्ण शून्य हो। आलंब के परितः वामावर्त आघूर्ण (98 N × 0.9 m) दक्षिणावर्त आघूर्ण (आयास × 0.9 m) के बराबर होना चाहिए। यही आघूर्णों का सिद्धांत है। भुजाएँ बराबर हों तो बल भी बराबर होने चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Riya (30 kg) sits 2 m from the pivot of a see-saw. Where must Aman (40 kg) sit on the other side to balance?",
+        "hi": "रिया (30 kg) सी-सॉ के आलंब से 2 m पर बैठी है। संतुलन के लिए अमन (40 kg) दूसरी ओर कहाँ बैठे?"
+       },
+       "options": [
+        {
+         "en": "1.5 m from the pivot",
+         "hi": "आलंब से 1.5 m पर"
+        },
+        {
+         "en": "2 m from the pivot",
+         "hi": "आलंब से 2 m पर"
+        },
+        {
+         "en": "2.7 m from the pivot",
+         "hi": "आलंब से 2.7 m पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "30 × 2 = 40 × d gives d = 1.5 m; the heavier child sits closer.",
+        "hi": "30 × 2 = 40 × d से d = 1.5 m; भारी बच्चा पास बैठता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At equal distances the heavier side wins; the arms must differ.",
+         "hi": "बराबर दूरी पर भारी ओर नीचे जाएगी; भुजाएँ अलग होनी चाहिए।"
+        },
+        {
+         "en": "2.7 m puts the heavier child further out, which makes his side drop even more.",
+         "hi": "2.7 m पर भारी बच्चा और दूर होगा, जिससे उसकी ओर और नीचे जाएगी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Two equal and opposite forces act on a ruler at different points. The ruler:",
+        "hi": "एक पैमाने पर अलग-अलग बिंदुओं पर दो बराबर और विपरीत बल लगते हैं। पैमाना:"
+       },
+       "options": [
+        {
+         "en": "Does not move along, but starts to turn",
+         "hi": "आगे नहीं खिसकता, पर घूमने लगता है"
+        },
+        {
+         "en": "Stays in equilibrium",
+         "hi": "संतुलन में रहता है"
+        },
+        {
+         "en": "Moves along without turning",
+         "hi": "बिना घूमे आगे खिसकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The net force is zero, but the pair (a couple) makes a net torque, so the ruler rotates.",
+        "hi": "कुल बल शून्य है, पर यह जोड़ा (बल-युग्म) कुल बल-आघूर्ण बनाता है, इसलिए पैमाना घूमता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equilibrium needs zero torque too; forces on different lines make a couple.",
+         "hi": "संतुलन के लिए बल-आघूर्ण भी शून्य चाहिए; अलग रेखाओं पर बल बल-युग्म बनाते हैं।"
+        },
+        {
+         "en": "With zero net force, the centre of mass cannot speed up, so it does not move along.",
+         "hi": "कुल बल शून्य होने पर द्रव्यमान केंद्र तेज़ नहीं हो सकता, इसलिए वह आगे नहीं खिसकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the pivot towards the load and balance again with a smaller effort. Check that load × its arm = effort × its arm each time.",
+      "hi": "आलंब को भार की ओर खिसकाओ और कम आयास से फिर संतुलित करो। हर बार जाँचो कि भार × उसकी भुजा = आयास × उसकी भुजा।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Chapter hook: things that roll and turn",
+   "shows": "A bullock-cart wheel rolling on a village road, and a spinning lattu (wooden top) on a cement floor, as two photos",
+   "view": "Low side view for the wheel; close top-down view for the top",
+   "right": "Motion blur on the spokes only; the top upright and spinning",
+   "avoid": "Faces, logos, a stopped top lying on its side"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Centre of mass and balance",
+   "shows": "A wooden 30 cm ruler balanced on one fingertip, and the same ruler with a coin taped near one end balanced at a new point",
+   "view": "Side view against a plain wall, ruler horizontal",
+   "right": "The balance point clearly shifts towards the coin",
+   "avoid": "Shaky blur, cluttered background"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.7",
+   "use": "Torque lab: the wheelbarrow",
+   "shows": "A steel construction wheelbarrow with a load of bricks",
+   "view": "Side view, the axle, the load and the handles all visible",
+   "right": "Load between the wheel and the handles",
+   "avoid": "Brand names, a person in frame"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.8",
+   "use": "Principle of moments",
+   "shows": "Two children of different sizes balanced on a playground see-saw, the bigger child sitting closer to the pivot",
+   "view": "Side view at the pivot height, the whole see-saw in frame",
+   "right": "The beam level; the distances clearly different",
+   "avoid": "Faces in focus"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "6.12",
+   "use": "Conservation of angular momentum",
+   "shows": "Four frames of a kathak dancer turning: arms stretched out, arms halfway in, arms close to the body (spinning faster, motion-blurred skirt)",
+   "view": "Fixed camera, front view, same stage light",
+   "right": "The skirt blur increases as the arms come in",
+   "avoid": "Face in focus, audience in frame"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "6.9",
+   "use": "Moment of inertia of common shapes",
+   "shows": "A clear table of a ring, a disc, a rod about its centre and a solid sphere, each with its axis drawn and I = ... written beside it",
+   "view": "Flat diagram, one colour per shape, white background",
+   "right": "Axis lines through the right place for each shape",
+   "avoid": "Perspective tricks that hide the axis"
+  }
+ ]
+}

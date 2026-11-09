@@ -1,0 +1,798 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch05",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Linear Inequalities",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Introduction: when \"less than\" or \"at most\" matters",
+   "labs": [],
+   "why_no_lab": "A short reading idea; the shopping and marks labs below turn it into inequalities."
+  },
+  {
+   "n": "5.2",
+   "title": "Inequalities: strict and slack, numerical and in one variable",
+   "labs": [
+    "c11-mathematics-kemh1-ch05-budget"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Algebraic solution of linear inequalities in one variable and the solution on a line",
+   "labs": [
+    "c11-mathematics-kemh1-ch05-solve-steps",
+    "c11-mathematics-kemh1-ch05-negative-flip",
+    "c11-mathematics-kemh1-ch05-double",
+    "c11-mathematics-kemh1-ch05-marks"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch05-budget",
+   "topic": "5.2",
+   "template": "grapher",
+   "title": {
+    "en": "How many pens can I buy?",
+    "hi": "मैं कितने पेन ख़रीद सकती हूँ?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "inequality",
+    "expr": "30x <= 200"
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Reshma has ₹200. One gel pen costs ₹30. If she buys x pens she spends 30x rupees, and she cannot spend more than she has: 30x ≤ 200. The shaded part shows every x that obeys it.",
+      "hi": "रेशमा के पास ₹200 हैं। एक जेल पेन ₹30 का है। यदि वह x पेन ख़रीदे तो 30x रुपये ख़र्च होंगे, और वह जितना है उससे ज़्यादा ख़र्च नहीं कर सकती: 30x ≤ 200। छायांकित भाग वे सभी x दिखाता है जो इसे मानते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap a point with x = 6 to test 6 pens.",
+      "hi": "6 पेन जाँचने के लिए x = 6 वाले किसी बिंदु पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Will 7 pens fit in her budget?",
+      "hi": "क्या 7 पेन उसके बजट में आएँगे?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Now tap a point with x = 7.",
+      "hi": "अब x = 7 वाले किसी बिंदु पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "6 pens cost ₹180 ≤ 200, but 7 pens cost ₹210 > 200. Dividing 30x ≤ 200 by 30 gives x ≤ 6.67, and x must be a whole number of pens, so the solution set is {0, 1, 2, 3, 4, 5, 6}. The boundary line x = 6.67 is solid because \"≤\" includes equality.",
+      "hi": "6 पेन ₹180 के हैं, जो ≤ 200 है, पर 7 पेन ₹210 के, जो > 200 है। 30x ≤ 200 को 30 से भाग देने पर x ≤ 6.67 मिलता है, और पेन पूरी संख्या में होते हैं, इसलिए हल समुच्चय {0, 1, 2, 3, 4, 5, 6} है। सीमा रेखा x = 6.67 ठोस है क्योंकि \"≤\" में बराबरी भी शामिल है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement is a strict inequality?",
+        "hi": "कौन-सा कथन निरंकुश (strict) असमिका है?"
+       },
+       "options": [
+        "30x ≤ 200",
+        "x > 4",
+        "x = 6"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "\"<\" and \">\" are strict: the boundary value itself is not allowed.",
+        "hi": "\"<\" और \">\" निरंकुश हैं: सीमा वाला मान स्वयं शामिल नहीं होता।"
+       },
+       "wrong": [
+        {
+         "en": "\"≤\" allows equality, so it is a slack inequality.",
+         "hi": "\"≤\" बराबरी की अनुमति देता है, इसलिए यह शिथिल असमिका है।"
+        },
+        "",
+        {
+         "en": "This is an equation, not an inequality.",
+         "hi": "यह समीकरण है, असमिका नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If x can be any real number, what is the solution of 30x ≤ 200?",
+        "hi": "यदि x कोई भी वास्तविक संख्या हो, तो 30x ≤ 200 का हल क्या है?"
+       },
+       "options": [
+        "x ≤ 20/3",
+        {
+         "en": "x = 6 only",
+         "hi": "केवल x = 6"
+        },
+        "x ≥ 20/3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "200/30 = 20/3 ≈ 6.67, and every real number up to it works: the interval (−∞, 20/3].",
+        "hi": "200/30 = 20/3 ≈ 6.67, और उस तक की हर वास्तविक संख्या काम करती है: अंतराल (−∞, 20/3]।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 is only the largest whole number; for real x, 6.5 works too.",
+         "hi": "6 केवल सबसे बड़ी पूर्ण संख्या है; वास्तविक x के लिए 6.5 भी चलता है।"
+        },
+        {
+         "en": "Dividing by a positive 30 does not flip the sign; the cheaper side is smaller x.",
+         "hi": "धनात्मक 30 से भाग देने पर चिह्न नहीं पलटता; सस्ती ओर छोटा x है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the story in your head: a pen costs ₹40. Test points again. What is the largest number of pens now?",
+      "hi": "मन में कहानी बदलो: एक पेन ₹40 का है। फिर से बिंदु जाँचो। अब सबसे ज़्यादा कितने पेन आएँगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch05-solve-steps",
+   "topic": "5.3",
+   "template": "grapher",
+   "title": {
+    "en": "Solve 3x + 5 ≤ 20 and test it",
+    "hi": "3x + 5 ≤ 20 हल करो और जाँचो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "inequality",
+    "expr": "3x + 5 <= 20"
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Solve 3x + 5 ≤ 20 like an equation, doing the same thing to both sides. Subtract 5: 3x ≤ 15. Divide by 3, which is positive: x ≤ 5. The shaded region is the solution.",
+      "hi": "3x + 5 ≤ 20 को समीकरण की तरह हल करो, दोनों ओर एक जैसा करते हुए। 5 घटाओ: 3x ≤ 15। 3 से भाग दो, जो धनात्मक है: x ≤ 5। छायांकित क्षेत्र हल है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is x = 5 itself a solution?",
+      "hi": "क्या x = 5 स्वयं एक हल है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, because of \"≤\"",
+       "hi": "हाँ, \"≤\" के कारण"
+      },
+      {
+       "id": "no",
+       "en": "No, it is the edge",
+       "hi": "नहीं, यह किनारा है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap a point on the boundary line, where x = 5.",
+      "hi": "सीमा रेखा पर, जहाँ x = 5 है, किसी बिंदु पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Now tap a point with x = 6.",
+      "hi": "अब x = 6 वाले किसी बिंदु पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At x = 5: 3(5) + 5 = 20 ≤ 20, true. At x = 6: 23 ≤ 20, false. Adding or subtracting the same number on both sides, and multiplying or dividing by the same positive number, never changes an inequality. So the answer is the interval (−∞, 5].",
+      "hi": "x = 5 पर: 3(5) + 5 = 20 ≤ 20, सत्य। x = 6 पर: 23 ≤ 20, असत्य। दोनों ओर एक ही संख्या जोड़ने या घटाने से, और एक ही धनात्मक संख्या से गुणा या भाग करने से, असमिका कभी नहीं बदलती। इसलिए उत्तर अंतराल (−∞, 5] है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Solve 4x − 7 > 9.",
+        "hi": "4x − 7 > 9 हल करो।"
+       },
+       "options": [
+        "x > 4",
+        "x > 1/2",
+        "x < 4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Add 7: 4x > 16. Divide by 4 (positive): x > 4.",
+        "hi": "7 जोड़ो: 4x > 16। 4 (धनात्मक) से भाग दो: x > 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This subtracts 7 instead of adding it: 9 − 7 = 2, then 2/4 = 1/2.",
+         "hi": "यहाँ 7 जोड़ने की जगह घटा दिया: 9 − 7 = 2, फिर 2/4 = 1/2।"
+        },
+        {
+         "en": "Dividing by a positive number keeps the sign; it does not flip.",
+         "hi": "धनात्मक संख्या से भाग देने पर चिह्न वही रहता है; पलटता नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the boundary drawn solid here?",
+        "hi": "यहाँ सीमा रेखा ठोस क्यों बनी है?"
+       },
+       "options": [
+        {
+         "en": "Because the sign is ≤, so the edge is included",
+         "hi": "क्योंकि चिह्न ≤ है, इसलिए किनारा शामिल है"
+        },
+        {
+         "en": "Because 5 is a whole number",
+         "hi": "क्योंकि 5 पूर्ण संख्या है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A solid edge means equality is allowed; \"<\" or \">\" would give a dashed edge.",
+        "hi": "ठोस किनारे का अर्थ है बराबरी की अनुमति; \"<\" या \">\" से किनारा धराशायी बनता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Whole number or not, the style of the edge depends only on whether equality is allowed.",
+         "hi": "पूर्ण संख्या हो या न हो, किनारे की शैली केवल इस पर निर्भर है कि बराबरी मान्य है या नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Test a few points far to the left, like x = −10. Do they all work? Why is the solution set infinite?",
+      "hi": "बाईं ओर दूर के कुछ बिंदु जाँचो, जैसे x = −10। क्या सब काम करते हैं? हल समुच्चय अनंत क्यों है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch05-negative-flip",
+   "topic": "5.3",
+   "template": "grapher",
+   "title": {
+    "en": "Multiply by a negative: the sign flips",
+    "hi": "ऋणात्मक से गुणा: चिह्न पलटता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "inequality",
+    "expr": "-2x + 4 > 10"
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Solve −2x + 4 > 10. Subtract 4: −2x > 6. Now we must divide by −2. Watch what that does to the sign.",
+      "hi": "−2x + 4 > 10 हल करो। 4 घटाओ: −2x > 6। अब हमें −2 से भाग देना है। देखो इससे चिह्न का क्या होता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which side is the solution: x > −3 or x < −3?",
+      "hi": "हल किस ओर है: x > −3 या x < −3?"
+     },
+     "options": [
+      {
+       "id": "gt",
+       "en": "x > −3 (to the right)",
+       "hi": "x > −3 (दाईं ओर)"
+      },
+      {
+       "id": "lt",
+       "en": "x < −3 (to the left)",
+       "hi": "x < −3 (बाईं ओर)"
+      }
+     ],
+     "answer": "lt"
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Test x = 0: tap a point on the y-axis.",
+      "hi": "x = 0 जाँचो: y-अक्ष पर किसी बिंदु पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Now test x = −5: tap a point with x = −5.",
+      "hi": "अब x = −5 जाँचो: x = −5 वाले किसी बिंदु पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At x = 0: 4 > 10 is false. At x = −5: 14 > 10 is true. So the answer is x < −3. Multiplying or dividing both sides by a negative number reverses the sign: > becomes <. Think of 2 < 3: times −1 gives −2 > −3.",
+      "hi": "x = 0 पर: 4 > 10 असत्य। x = −5 पर: 14 > 10 सत्य। इसलिए उत्तर x < −3 है। दोनों ओर किसी ऋणात्मक संख्या से गुणा या भाग करने पर चिह्न उलट जाता है: > बन जाता है <। 2 < 3 सोचो: −1 से गुणा करने पर −2 > −3।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Solve −3x ≤ 12.",
+        "hi": "−3x ≤ 12 हल करो।"
+       },
+       "options": [
+        "x ≤ −4",
+        "x ≥ −4",
+        "x ≥ 4"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Divide by −3 and flip the sign: x ≥ −4. Check x = 0: 0 ≤ 12, true.",
+        "hi": "−3 से भाग दो और चिह्न पलटो: x ≥ −4। x = 0 जाँचो: 0 ≤ 12, सत्य।"
+       },
+       "wrong": [
+        {
+         "en": "The sign was not flipped; x = 0 is a solution but 0 ≤ −4 is false.",
+         "hi": "चिह्न नहीं पलटा; x = 0 हल है पर 0 ≤ −4 असत्य है।"
+        },
+        "",
+        {
+         "en": "The flip is right but 12 ÷ (−3) is −4, not 4.",
+         "hi": "पलटना सही है पर 12 ÷ (−3) = −4 है, 4 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which step must reverse the inequality sign?",
+        "hi": "किस क़दम में असमिका का चिह्न उलटना ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "Adding −5 to both sides",
+         "hi": "दोनों ओर −5 जोड़ना"
+        },
+        {
+         "en": "Multiplying both sides by −5",
+         "hi": "दोनों ओर −5 से गुणा करना"
+        },
+        {
+         "en": "Dividing both sides by 5",
+         "hi": "दोनों ओर 5 से भाग देना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Only multiplying or dividing by a negative number reverses the order.",
+        "hi": "केवल ऋणात्मक संख्या से गुणा या भाग करने पर क्रम उलटता है।"
+       },
+       "wrong": [
+        {
+         "en": "Adding any number, even a negative one, shifts both sides equally and keeps the order.",
+         "hi": "कोई भी संख्या जोड़ना, ऋणात्मक भी, दोनों ओर बराबर खिसकाता है और क्रम बना रहता है।"
+        },
+        "",
+        {
+         "en": "5 is positive, so dividing by it keeps the sign.",
+         "hi": "5 धनात्मक है, इसलिए उससे भाग देने पर चिह्न वही रहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Test x = −3 exactly. Is it in the solution? Look at the edge: is it solid or dashed, and why?",
+      "hi": "ठीक x = −3 जाँचो। क्या यह हल में है? किनारा देखो: ठोस है या धराशायी, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch05-double",
+   "topic": "5.3",
+   "template": "grapher",
+   "title": {
+    "en": "Two inequalities at once",
+    "hi": "एक साथ दो असमिकाएँ"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "inequality",
+    "expr": "2x + 1 >= -3; 2x + 1 < 7"
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Here x must obey both −3 ≤ 2x + 1 and 2x + 1 < 7. Each inequality has its own faint colour; the strong colour is where both are true.",
+      "hi": "यहाँ x को दोनों मानने हैं: −3 ≤ 2x + 1 और 2x + 1 < 7। हर असमिका का अपना हल्का रंग है; गहरा रंग वहाँ है जहाँ दोनों सत्य हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Solve each part. Which strip will be strongly coloured?",
+      "hi": "हर भाग हल करो। कौन-सी पट्टी गहरे रंग में होगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The strip −2 ≤ x < 3",
+       "hi": "पट्टी −2 ≤ x < 3"
+      },
+      {
+       "id": "b",
+       "en": "Both sides: x < −2 or x ≥ 3",
+       "hi": "दोनों ओर: x < −2 या x ≥ 3"
+      },
+      {
+       "id": "c",
+       "en": "The strip −3 ≤ x < 7",
+       "hi": "पट्टी −3 ≤ x < 7"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap a point with x = 0 to test it.",
+      "hi": "x = 0 वाले किसी बिंदु पर टैप करके जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Now tap a point on the right edge, where x = 3.",
+      "hi": "अब दाएँ किनारे पर, जहाँ x = 3 है, किसी बिंदु पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "−3 ≤ 2x + 1 gives −4 ≤ 2x, so x ≥ −2 (solid edge). 2x + 1 < 7 gives 2x < 6, so x < 3 (dashed edge). Together: −2 ≤ x < 3, the interval [−2, 3). x = 3 fails because 7 < 7 is false.",
+      "hi": "−3 ≤ 2x + 1 से −4 ≤ 2x, यानी x ≥ −2 (ठोस किनारा)। 2x + 1 < 7 से 2x < 6, यानी x < 3 (धराशायी किनारा)। दोनों साथ: −2 ≤ x < 3, अंतराल [−2, 3)। x = 3 नहीं चलता क्योंकि 7 < 7 असत्य है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Solve −1 < x − 2 ≤ 4.",
+        "hi": "−1 < x − 2 ≤ 4 हल करो।"
+       },
+       "options": [
+        "1 < x ≤ 6",
+        "−3 < x ≤ 2",
+        "1 ≤ x < 6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Add 2 to all three parts: 1 < x ≤ 6. The signs stay as they were.",
+        "hi": "तीनों भागों में 2 जोड़ो: 1 < x ≤ 6। चिह्न जैसे थे वैसे रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This subtracts 2 instead of adding it.",
+         "hi": "यहाँ 2 जोड़ने की जगह घटा दिया।"
+        },
+        {
+         "en": "The numbers are right but the signs moved; adding 2 does not change < or ≤.",
+         "hi": "संख्याएँ सही हैं पर चिह्न बदल गए; 2 जोड़ने से < या ≤ नहीं बदलते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is x = −2 in the solution of −3 ≤ 2x + 1 < 7?",
+        "hi": "क्या x = −2, −3 ≤ 2x + 1 < 7 के हल में है?"
+       },
+       "options": [
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        },
+        {
+         "en": "No",
+         "hi": "नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2(−2) + 1 = −3, and −3 ≤ −3 is true while −3 < 7 is true.",
+        "hi": "2(−2) + 1 = −3, और −3 ≤ −3 सत्य है तथा −3 < 7 भी सत्य।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The left part uses ≤, so the edge value −2 is included.",
+         "hi": "बायाँ भाग ≤ लेता है, इसलिए किनारे का मान −2 शामिल है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Test points just outside each edge, like x = −2.5 and x = 3.5. Which inequality fails in each case?",
+      "hi": "हर किनारे के ठीक बाहर के बिंदु जाँचो, जैसे x = −2.5 और x = 3.5। हर बार कौन-सी असमिका नहीं मानी जाती?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch05-marks",
+   "topic": "5.3",
+   "template": "code",
+   "title": {
+    "en": "What must I score in the third test?",
+    "hi": "तीसरे टेस्ट में मुझे कितने अंक चाहिए?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "t1 = 62",
+     "t2 = 48",
+     "ok = 0",
+     "for x in range(0, 101, 10):",
+     "    avg = (t1 + t2 + x) / 3",
+     "    if avg >= 60:",
+     "        print(x, 'works: average', round(avg, 1))",
+     "        ok = ok + 1",
+     "print('scores that work:', ok)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Kabir scored 62 and 48 in two tests out of 100. He needs an average of at least 60 over three tests. If x is his third score: (62 + 48 + x)/3 ≥ 60. The program tries x = 0, 10, 20, … 100.",
+      "hi": "कबीर को 100 में से दो टेस्ट में 62 और 48 अंक मिले। उसे तीन टेस्ट का औसत कम से कम 60 चाहिए। यदि तीसरे टेस्ट के अंक x हों: (62 + 48 + x)/3 ≥ 60। प्रोग्राम x = 0, 10, 20, … 100 आज़माता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Solve it first: what is the least score that works?",
+      "hi": "पहले हल करो: सबसे कम कितने अंक काम करेंगे?"
+     },
+     "options": [
+      {
+       "id": "60",
+       "en": "60 marks",
+       "hi": "60 अंक"
+      },
+      {
+       "id": "70",
+       "en": "70 marks",
+       "hi": "70 अंक"
+      },
+      {
+       "id": "80",
+       "en": "80 marks",
+       "hi": "80 अंक"
+      }
+     ],
+     "answer": "70"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run and see which scores work.",
+      "hi": "Run दबाओ और देखो कौन-से अंक काम करते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Multiply by 3: 110 + x ≥ 180, so x ≥ 70. The program agrees: 70 gives exactly 60, and 80, 90, 100 give more. Together with x ≤ 100 (a test is out of 100) the answer is 70 ≤ x ≤ 100.",
+      "hi": "3 से गुणा करो: 110 + x ≥ 180, यानी x ≥ 70। प्रोग्राम भी यही कहता है: 70 पर औसत ठीक 60, और 80, 90, 100 पर उससे ज़्यादा। साथ में x ≤ 100 (टेस्ट 100 का है), तो उत्तर 70 ≤ x ≤ 100 है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: how many tried scores worked?",
+      "hi": "लैब के प्रश्न का उत्तर दो: आज़माए गए कितने अंक काम आए?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did we multiply both sides by 3 without flipping the sign?",
+        "hi": "हमने दोनों ओर 3 से गुणा किया पर चिह्न क्यों नहीं पलटा?"
+       },
+       "options": [
+        {
+         "en": "Because 3 is positive",
+         "hi": "क्योंकि 3 धनात्मक है"
+        },
+        {
+         "en": "Because ≥ never flips",
+         "hi": "क्योंकि ≥ कभी नहीं पलटता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only a negative multiplier reverses an inequality; 3 is positive.",
+        "hi": "केवल ऋणात्मक गुणक असमिका को उलटता है; 3 धनात्मक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "≥ does flip to ≤ when we multiply by a negative number.",
+         "hi": "ऋणात्मक संख्या से गुणा करने पर ≥ पलटकर ≤ बन जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "With the same first two scores, what third score gives an average of at least 50?",
+        "hi": "पहले दो टेस्ट के वही अंक हों, तो कम से कम 50 औसत के लिए तीसरे में कितने अंक चाहिए?"
+       },
+       "options": [
+        "x ≥ 40",
+        "x ≥ 50",
+        "x ≥ 30"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "110 + x ≥ 150, so x ≥ 40.",
+        "hi": "110 + x ≥ 150, इसलिए x ≥ 40।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The average need not be reached by the third test alone; the first two already give 110 marks.",
+         "hi": "औसत अकेले तीसरे टेस्ट से नहीं बनता; पहले दो से ही 110 अंक मिल चुके हैं।"
+        },
+        {
+         "en": "3 × 50 = 150, and 150 − 110 = 40, not 30.",
+         "hi": "3 × 50 = 150, और 150 − 110 = 40, 30 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think: if Kabir wants an average of at least 75, is it possible at all? What does the inequality say?",
+      "hi": "सोचो: यदि कबीर को कम से कम 75 औसत चाहिए, तो क्या यह संभव भी है? असमिका क्या कहती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Chapter hook: a fixed budget",
+   "shows": "A child's hand holding two ₹100 notes at a stationery shop counter with gel pens in a tray",
+   "view": "Close view across the counter, warm shop light",
+   "right": "Real ₹100 notes, pens all the same so one price fits",
+   "avoid": "Faces, brand names on the pens, shop name"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Strict and slack: the edge in or out",
+   "shows": "A lift weight-limit plate shape (blank) next to a weighing scale for parcels, both on a white table",
+   "view": "Front view, soft light, transparent background",
+   "right": "The scale pointer clearly at a mark, blank plate with no text",
+   "avoid": "Any numbers or brand names"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "5.3",
+   "use": "Number line base for solution sets",
+   "shows": "A long horizontal number line with evenly spaced ticks, one solid dot and one hollow ring placed separately above the line as stickers",
+   "view": "Flat, white background",
+   "right": "Solid dot and hollow ring clearly different in shape, not only colour",
+   "avoid": "Numbers, letters, arrows baked in"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "5.3",
+   "use": "Flipping the sign when multiplying by −1",
+   "shows": "Frame 1: two children of different heights standing on a level floor; frame 2: their reflections in a still pool, the taller one now reaching lower",
+   "view": "Same side camera and light in both frames",
+   "right": "The order of heights is clearly reversed in the reflection",
+   "avoid": "Faces (use silhouettes or backs), logos"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "Marks and an average to reach",
+   "shows": "A school report-card style table on a desk with three blank boxes, a pencil and an eraser, the third box empty",
+   "view": "Top view, even light",
+   "right": "Three equal boxes, the last clearly empty",
+   "avoid": "Any names, school names or printed marks"
+  }
+ ]
+}

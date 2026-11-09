@@ -1,0 +1,787 @@
+{
+ "chapter_key": "u.c03.evs.ceev1.ch02",
+ "class": 3,
+ "subject_id": "evs",
+ "title": "Going to the Mela",
+ "source": "https://ncert.nic.in/textbook/pdf/ceev102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Getting ready for a trip: friends, family and the special bag",
+   "labs": [],
+   "why_no_lab": "Packing and planning are best discussed in class and drawn; there is nothing to experiment with."
+  },
+  {
+   "n": "2.2",
+   "title": "Travelling safely by bus and on the road",
+   "labs": [
+    "c3-evs-ceev1-ch02-travel-safety"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "At the mela: the map, the helpers and the Lost and Found booth",
+   "labs": [
+    "c3-evs-ceev1-ch02-lost",
+    "c3-evs-ceev1-ch02-helpers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Mela food, clean hands and putting waste in the dustbin",
+   "labs": [],
+   "why_no_lab": "Handwashing and waste habits are covered by the helpers lab and the waste chapter; a photo story teaches the rest."
+  },
+  {
+   "n": "2.5",
+   "title": "The Kumbh Mela, the biggest festival",
+   "labs": [],
+   "why_no_lab": "A fact box about a place and a time; a map photo and the reader teach it best."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-evs-ceev1-ch02-lost",
+   "topic": "2.3",
+   "template": "scenario",
+   "title": {
+    "en": "Lost at the mela!",
+    "hi": "मेले में खो गए!"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "market",
+    "role": {
+     "en": "A child at the mela",
+     "hi": "मेले में एक बच्चा"
+    },
+    "scenes": [
+     {
+      "id": "lost",
+      "text": {
+       "en": "You are at a big mela. You look around and cannot see your family anywhere. There are many people, music and noise. You feel scared. What do you do first?",
+       "hi": "तुम एक बड़े मेले में हो। तुम चारों ओर देखते हो पर तुम्हें अपना परिवार कहीं नहीं दिखता। बहुत लोग हैं, संगीत और शोर है। तुम्हें डर लग रहा है। सबसे पहले क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "stay",
+        "text": {
+         "en": "Stay where I am and look for a police officer or a volunteer",
+         "hi": "जहाँ हूँ वहीं रुकूँ और पुलिस वाले या स्वयंसेवक को ढूँढूँ"
+        },
+        "next": "booth",
+        "good": true,
+        "feedback": {
+         "en": "Good thinking. Staying in one place makes it easier for your family to find you, and police and volunteers are there to help.",
+         "hi": "अच्छा सोचा। एक जगह रुकने से परिवार तुम्हें आसानी से ढूँढ पाता है, और पुलिस व स्वयंसेवक मदद के लिए ही वहाँ होते हैं।"
+        }
+       },
+       {
+        "id": "wander",
+        "text": {
+         "en": "Run through the crowd to find them myself",
+         "hi": "भीड़ में दौड़कर खुद उन्हें ढूँढूँ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Running through the crowd takes you further away and you may get hurt. It is safer to stop and ask for help.",
+         "hi": "भीड़ में दौड़ने से तुम और दूर चले जाओगे और चोट भी लग सकती है। रुककर मदद माँगना ज़्यादा सुरक्षित है।"
+        }
+       },
+       {
+        "id": "stranger",
+        "text": {
+         "en": "Go with a stranger who says, \"Come, I will take you home\"",
+         "hi": "एक अजनबी के साथ चल दूँ जो कहता है, \"आओ, मैं तुम्हें घर छोड़ दूँगा\""
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Never go with a stranger. Ask only a police officer or a volunteer in a uniform or badge to help you.",
+         "hi": "कभी किसी अजनबी के साथ मत जाओ। केवल वर्दी या बैज वाले पुलिस अधिकारी या स्वयंसेवक से ही मदद माँगो।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "booth",
+      "text": {
+       "en": "A volunteer in a bright jacket sits at the Lost and Found booth. She smiles and asks, \"What is your name? What are your parents' names? Do you know a phone number?\"",
+       "hi": "खोया-पाया केंद्र पर चमकीली जैकेट पहने एक स्वयंसेविका बैठी है। वह मुस्कुराकर पूछती है, \"तुम्हारा नाम क्या है? माता-पिता के नाम क्या हैं? क्या तुम्हें कोई फ़ोन नंबर याद है?\""
+      },
+      "choices": [
+       {
+        "id": "tell",
+        "text": {
+         "en": "Tell her my name, my parents' names and the number I remember",
+         "hi": "उसे अपना नाम, माता-पिता के नाम और जो नंबर याद है वह बता दूँ"
+        },
+        "next": "reunite",
+        "good": true,
+        "feedback": {
+         "en": "Yes. With these details the volunteer can call out for your family and phone them.",
+         "hi": "हाँ। इन बातों से स्वयंसेविका परिवार को पुकार सकती है और उन्हें फ़ोन कर सकती है।"
+        }
+       },
+       {
+        "id": "silent",
+        "text": {
+         "en": "Cry and say nothing",
+         "hi": "रोता रहूँ और कुछ न बोलूँ"
+        },
+        "next": "reunite",
+        "feedback": {
+         "en": "It is okay to feel scared. But the volunteer can help faster when you tell her your name and your parents' names.",
+         "hi": "डरना ठीक है। पर जब तुम अपना नाम और माता-पिता के नाम बताते हो तो स्वयंसेविका जल्दी मदद कर पाती है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "reunite",
+      "text": {
+       "en": "Soon your family comes running to the booth. Everybody hugs you. Mohan Chacha says, \"We were so worried!\"",
+       "hi": "जल्दी ही तुम्हारा परिवार दौड़ता हुआ केंद्र पर आ जाता है। सब तुम्हें गले लगाते हैं। मोहन चाचा कहते हैं, \"हम बहुत परेशान थे!\""
+      },
+      "choices": [
+       {
+        "id": "thank",
+        "text": {
+         "en": "Thank the volunteer and hold an elder's hand from now on",
+         "hi": "स्वयंसेविका को धन्यवाद दूँ और अब से किसी बड़े का हाथ पकड़े रहूँ"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Well done! Saying thank you is kind, and holding a hand in a crowd keeps you together.",
+         "hi": "शाबाश! धन्यवाद कहना अच्छी बात है, और भीड़ में हाथ पकड़ने से साथ बना रहता है।"
+        }
+       },
+       {
+        "id": "run",
+        "text": {
+         "en": "Run off to the giant wheel again without telling anyone",
+         "hi": "किसी को बताए बिना फिर झूले की ओर दौड़ जाऊँ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Running off can get you lost again. Always tell an elder before you go anywhere.",
+         "hi": "बिना बताए भाग जाने से तुम फिर खो सकते हो। कहीं भी जाने से पहले हमेशा किसी बड़े को बताओ।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You cannot see your family at the mela. What is the safest first thing to do?",
+      "hi": "मेले में तुम्हें अपना परिवार नहीं दिख रहा। सबसे पहले सबसे सुरक्षित काम क्या है?"
+     },
+     "options": [
+      {
+       "id": "stay",
+       "en": "Stay in one place and ask a police officer or volunteer",
+       "hi": "एक जगह रुकना और पुलिस वाले या स्वयंसेवक से पूछना"
+      },
+      {
+       "id": "run",
+       "en": "Run around looking for them",
+       "hi": "इधर-उधर दौड़कर ढूँढना"
+      },
+      {
+       "id": "go",
+       "en": "Go with anyone who offers help",
+       "hi": "जो भी मदद की बात करे उसके साथ चल देना"
+      }
+     ],
+     "answer": "stay"
+    },
+    {
+     "kind": "do",
+     "target": "choice:lost:stay",
+     "expect": "chose:stay",
+     "say": {
+      "en": "Read the story and tap the safest choice.",
+      "hi": "कहानी पढ़ो और सबसे सुरक्षित विकल्प छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:booth:tell",
+     "expect": "chose:tell",
+     "say": {
+      "en": "At the booth, tap the choice that helps the volunteer find your family.",
+      "hi": "केंद्र पर वह विकल्प छुओ जिससे स्वयंसेविका तुम्हारा परिवार ढूँढ सके।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:reunite:thank",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose the best ending to the story.",
+      "hi": "कहानी का सबसे अच्छा अंत चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "If you get lost in a crowd, stay where you are and look for a police officer or a volunteer with a badge. Tell them your name, your parents' names and a phone number if you know one. Never go with a stranger, and always tell an elder before you walk away.",
+      "hi": "भीड़ में खो जाओ तो जहाँ हो वहीं रुको और पुलिस वाले या बैज वाले स्वयंसेवक को ढूँढो। उन्हें अपना नाम, माता-पिता के नाम और अगर याद हो तो फ़ोन नंबर बताओ। अजनबी के साथ कभी मत जाओ और कहीं जाने से पहले किसी बड़े को बताओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the 'Lost and Found' booth for?",
+        "hi": "'खोया-पाया' केंद्र किसलिए होता है?"
+       },
+       "options": [
+        {
+         "en": "To sell sweets and toys",
+         "hi": "मिठाई और खिलौने बेचने के लिए"
+        },
+        {
+         "en": "To help lost children and lost things get back to their families",
+         "hi": "खोए बच्चों और खोई चीज़ों को उनके परिवार तक पहुँचाने के लिए"
+        },
+        {
+         "en": "To give rides on the giant wheel",
+         "hi": "झूले की सवारी कराने के लिए"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Volunteers at this booth call out for lost children and help them meet their families again.",
+        "hi": "इस केंद्र के स्वयंसेवक खोए बच्चों के लिए आवाज़ लगाते हैं और उन्हें परिवार से मिलवाते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Sweets and toys are sold at the stalls, not at the Lost and Found booth.",
+         "hi": "मिठाई और खिलौने दुकानों पर बिकते हैं, खोया-पाया केंद्र पर नहीं।"
+        },
+        "",
+        {
+         "en": "Rides are at the giant wheel. The booth is a help point, not a ride.",
+         "hi": "सवारी झूले पर होती है। यह केंद्र मदद की जगह है, सवारी की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Restart and try the other choices to see what happens. Then plan with your family: where will you meet if you get separated?",
+      "hi": "फिर से शुरू करो और दूसरे विकल्प आज़माकर देखो कि क्या होता है। फिर परिवार के साथ योजना बनाओ: अगर बिछड़ जाएँ तो कहाँ मिलेंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch02-travel-safety",
+   "topic": "2.2",
+   "template": "sort",
+   "title": {
+    "en": "Safe travelling",
+    "hi": "सुरक्षित सफ़र"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "safe",
+      "label": {
+       "en": "Safe",
+       "hi": "सुरक्षित"
+      }
+     },
+     {
+      "id": "unsafe",
+      "label": {
+       "en": "Not safe",
+       "hi": "सुरक्षित नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "hand",
+      "text": {
+       "en": "Hold an elder's hand while crossing",
+       "hi": "सड़क पार करते समय बड़े का हाथ पकड़ो"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "Holding hands keeps you close to someone who can watch the traffic.",
+       "hi": "हाथ पकड़ने से तुम उस व्यक्ति के पास रहते हो जो यातायात पर नज़र रख सकता है।"
+      }
+     },
+     {
+      "id": "look",
+      "text": {
+       "en": "Look both ways before crossing",
+       "hi": "पार करने से पहले दोनों ओर देखो"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "Vehicles can come from either side.",
+       "hi": "गाड़ियाँ दोनों ओर से आ सकती हैं।"
+      }
+     },
+     {
+      "id": "seat",
+      "text": {
+       "en": "Sit on your seat in the bus",
+       "hi": "बस में अपनी सीट पर बैठो"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "A child who sits down cannot fall when the bus brakes.",
+       "hi": "बैठे हुए बच्चे के गिरने का डर नहीं रहता जब बस रुकती है।"
+      }
+     },
+     {
+      "id": "giveseat",
+      "text": {
+       "en": "Keep reserved seats for older people",
+       "hi": "बुज़ुर्गों की आरक्षित सीट उनके लिए छोड़ो"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "Older people find it hard to stand in a moving bus. Helping them is kind.",
+       "hi": "चलती बस में बुज़ुर्गों को खड़ा रहना कठिन होता है। उनकी मदद करना अच्छी बात है।"
+      }
+     },
+     {
+      "id": "window",
+      "text": {
+       "en": "Put your hand or head out of the window",
+       "hi": "खिड़की से हाथ या सिर बाहर निकालो"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "A passing vehicle or pole can badly hurt you.",
+       "hi": "पास से गुज़रती गाड़ी या खंभा तुम्हें गंभीर चोट पहुँचा सकता है।"
+      }
+     },
+     {
+      "id": "jump",
+      "text": {
+       "en": "Jump about inside the bus",
+       "hi": "बस के अंदर कूदो-फाँदो"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "You may fall or hurt other passengers when the bus moves.",
+       "hi": "बस चलने पर तुम गिर सकते हो या दूसरे यात्रियों को चोट पहुँचा सकते हो।"
+      }
+     },
+     {
+      "id": "run",
+      "text": {
+       "en": "Run across the road",
+       "hi": "सड़क के पार दौड़ो"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "A fast vehicle cannot stop at once.",
+       "hi": "तेज़ गाड़ी तुरंत नहीं रुक सकती।"
+      }
+     },
+     {
+      "id": "alone",
+      "text": {
+       "en": "Walk away from the group in a crowd",
+       "hi": "भीड़ में अपने समूह से अलग चले जाओ"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "You can easily get lost in a crowd.",
+       "hi": "भीड़ में तुम आसानी से खो सकते हो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:hand",
+     "expect": "placed:hand",
+     "say": {
+      "en": "Tap a card, then tap the group where it belongs.",
+      "hi": "एक कार्ड को छुओ, फिर वह समूह छुओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these is NOT safe on a moving bus?",
+      "hi": "चलती बस में इनमें से कौन-सा सुरक्षित नहीं है?"
+     },
+     "options": [
+      {
+       "id": "sit",
+       "en": "Sitting on your seat",
+       "hi": "अपनी सीट पर बैठना"
+      },
+      {
+       "id": "window",
+       "en": "Putting your head out of the window",
+       "hi": "खिड़की से सिर बाहर निकालना"
+      },
+      {
+       "id": "water",
+       "en": "Keeping your water bottle in your bag",
+       "hi": "पानी की बोतल बैग में रखना"
+      }
+     ],
+     "answer": "window"
+    },
+    {
+     "kind": "do",
+     "target": "card:alone",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards into Safe and Not safe.",
+      "hi": "सारे कार्ड 'सुरक्षित' और 'सुरक्षित नहीं' में छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Safe habits protect us on the road and in a bus. We cross with an elder, look both ways, sit properly and keep our hands and head inside. We also stay with our group in a crowd.",
+      "hi": "सुरक्षित आदतें सड़क पर और बस में हमारी रक्षा करती हैं। हम बड़े के साथ सड़क पार करते हैं, दोनों ओर देखते हैं, ठीक से बैठते हैं और हाथ-सिर अंदर रखते हैं। भीड़ में हम अपने समूह के साथ रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why must we look both ways before crossing a road?",
+        "hi": "सड़क पार करने से पहले दोनों ओर क्यों देखना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Because vehicles may come from either side",
+         "hi": "क्योंकि गाड़ियाँ दोनों ओर से आ सकती हैं"
+        },
+        {
+         "en": "Because it is a game",
+         "hi": "क्योंकि यह एक खेल है"
+        },
+        {
+         "en": "Because roads are always empty",
+         "hi": "क्योंकि सड़क हमेशा ख़ाली रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Traffic moves in both directions, so we look right and left before we step out.",
+        "hi": "यातायात दोनों दिशाओं में चलता है, इसलिए कदम बढ़ाने से पहले दाएँ-बाएँ देखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is not a game. It is a safety habit that keeps us from being hit by a vehicle.",
+         "hi": "यह खेल नहीं, सुरक्षा की आदत है जो हमें गाड़ी से टकराने से बचाती है।"
+        },
+        {
+         "en": "Roads are often busy. That is exactly why we must look.",
+         "hi": "सड़कें अक्सर व्यस्त रहती हैं। इसीलिए देखना ज़रूरी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Walk to your school gate or the road near your home with an elder. Show them where you would stop, look and cross.",
+      "hi": "किसी बड़े के साथ स्कूल के गेट या घर के पास की सड़क तक जाओ। उन्हें दिखाओ कि तुम कहाँ रुकोगे, देखोगे और पार करोगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch02-helpers",
+   "topic": "2.3",
+   "template": "match",
+   "title": {
+    "en": "Helpers at the mela",
+    "hi": "मेले के मददगार"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "ambulance",
+      "left": {
+       "en": "Ambulance",
+       "hi": "एम्बुलेंस"
+      },
+      "right": {
+       "en": "Takes hurt or sick people to the hospital",
+       "hi": "चोटिल या बीमार लोगों को अस्पताल ले जाती है"
+      },
+      "why": {
+       "en": "If someone gets hurt, the ambulance reaches them quickly.",
+       "hi": "किसी को चोट लगे तो एम्बुलेंस जल्दी पहुँचती है।"
+      }
+     },
+     {
+      "id": "police",
+      "left": {
+       "en": "Police jeep",
+       "hi": "पुलिस की जीप"
+      },
+      "right": {
+       "en": "Keeps people safe and helps in trouble",
+       "hi": "लोगों को सुरक्षित रखती है और मुसीबत में मदद करती है"
+      },
+      "why": {
+       "en": "Police officers keep order and help lost children.",
+       "hi": "पुलिस अधिकारी व्यवस्था बनाए रखते हैं और खोए बच्चों की मदद करते हैं।"
+      }
+     },
+     {
+      "id": "fire",
+      "left": {
+       "en": "Fire engine",
+       "hi": "दमकल गाड़ी"
+      },
+      "right": {
+       "en": "Puts out fires",
+       "hi": "आग बुझाती है"
+      },
+      "why": {
+       "en": "Fire fighters come in it with water to stop a fire.",
+       "hi": "दमकल कर्मी पानी लेकर आते हैं ताकि आग बुझ सके।"
+      }
+     },
+     {
+      "id": "lostfound",
+      "left": {
+       "en": "Lost and Found booth",
+       "hi": "खोया-पाया केंद्र"
+      },
+      "right": {
+       "en": "Helps lost children meet their families",
+       "hi": "खोए बच्चों को परिवार से मिलवाता है"
+      },
+      "why": {
+       "en": "Volunteers here call out for families and keep found things safe.",
+       "hi": "यहाँ के स्वयंसेवक परिवारों को पुकारते हैं और मिली हुई चीज़ें सँभालकर रखते हैं।"
+      }
+     },
+     {
+      "id": "water",
+      "left": {
+       "en": "Water point",
+       "hi": "पानी का नल"
+      },
+      "right": {
+       "en": "Wash your hands here before eating",
+       "hi": "खाने से पहले यहाँ हाथ धोओ"
+      },
+      "why": {
+       "en": "Clean hands keep germs out of our food and mouth.",
+       "hi": "साफ़ हाथ कीटाणुओं को खाने और मुँह में जाने से रोकते हैं।"
+      }
+     },
+     {
+      "id": "dustbin",
+      "left": {
+       "en": "Dustbin",
+       "hi": "कूड़ेदान"
+      },
+      "right": {
+       "en": "Throw waste here so the ground stays clean",
+       "hi": "कचरा यहाँ डालो ताकि ज़मीन साफ़ रहे"
+      },
+      "why": {
+       "en": "Waste in a dustbin does not spread on the mela ground.",
+       "hi": "कूड़ेदान में डाला कचरा मेले की ज़मीन पर नहीं फैलता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ambulance",
+     "expect": "matched:ambulance",
+     "say": {
+      "en": "Tap a helper on the left, then tap its job on the right.",
+      "hi": "बाएँ से किसी मददगार को छुओ, फिर दाएँ से उसका काम छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A child has a small cut at the mela. Who can help first?",
+      "hi": "मेले में एक बच्चे को छोटी-सी चोट लगी है। सबसे पहले कौन मदद कर सकता है?"
+     },
+     "options": [
+      {
+       "id": "amb",
+       "en": "The ambulance team",
+       "hi": "एम्बुलेंस की टीम"
+      },
+      {
+       "id": "fire",
+       "en": "The fire engine",
+       "hi": "दमकल गाड़ी"
+      },
+      {
+       "id": "dust",
+       "en": "The dustbin",
+       "hi": "कूड़ेदान"
+      }
+     ],
+     "answer": "amb"
+    },
+    {
+     "kind": "do",
+     "target": "left:dustbin",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest until all the helpers are joined to their jobs.",
+      "hi": "बाक़ी मददगारों को उनके काम से तब तक जोड़ो जब तक सब जुड़ न जाएँ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Big fairs have helpers to keep everyone safe and healthy. The ambulance, the police, the fire engine and the Lost and Found booth help when there is trouble. We also help by washing our hands and putting waste in the dustbin.",
+      "hi": "बड़े मेलों में सबकी सुरक्षा और सेहत के लिए मददगार होते हैं। एम्बुलेंस, पुलिस, दमकल और खोया-पाया केंद्र मुसीबत में मदद करते हैं। हम भी हाथ धोकर और कचरा कूड़ेदान में डालकर मदद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A small fire starts near a food stall. Who should be called?",
+        "hi": "एक खाने की दुकान के पास छोटी आग लग गई। किसे बुलाना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "The fire engine",
+         "hi": "दमकल गाड़ी"
+        },
+        {
+         "en": "The Lost and Found booth",
+         "hi": "खोया-पाया केंद्र"
+        },
+        {
+         "en": "The water point",
+         "hi": "पानी का नल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fire fighters and their engine carry water and tools to put out a fire safely.",
+        "hi": "दमकल कर्मी और उनकी गाड़ी आग को सुरक्षित रूप से बुझाने के लिए पानी और साधन लाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That booth helps lost children and lost things. It cannot put out a fire.",
+         "hi": "वह केंद्र खोए बच्चों और चीज़ों की मदद करता है। वह आग नहीं बुझा सकता।"
+        },
+        {
+         "en": "The water point is for washing hands. Fire fighters have the right tools to stop a fire.",
+         "hi": "पानी का नल हाथ धोने के लिए है। आग बुझाने के सही साधन दमकल कर्मियों के पास होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the map at the mela entrance in your imagination. Where would you put the ambulance, the water point and the Lost and Found booth? Draw your own mela map.",
+      "hi": "कल्पना करो कि मेले के प्रवेश पर एक नक़्शा लगा है। एम्बुलेंस, पानी का नल और खोया-पाया केंद्र कहाँ रखोगे? अपने मेले का नक़्शा बनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Chapter hook: bus stop on mela day",
+   "shows": "A group of families with a grandmother at a city bus stop, water bottles and a cloth bag in hand, bus number board blank",
+   "view": "Eye level from the roadside, bright morning light",
+   "right": "Bus of a real city type, grandmother seated on the bench, bag and bottles visible",
+   "avoid": "Readable bus numbers or route names, faces towards the camera"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Mela ground scene",
+   "shows": "A wide view of a village mela: giant wheel, merry-go-round, toy and bangle stalls, balloon sellers, a crowd walking in",
+   "view": "Raised view from a gate, afternoon light",
+   "right": "Real mela features, colourful but uncluttered, people shown small and from behind",
+   "avoid": "Text on banners, brand logos, close faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Help point row: ambulance, police jeep and fire engine",
+   "shows": "An ambulance, a police jeep and a fire engine parked side by side next to a Lost and Found booth with a blank board",
+   "view": "Front three-quarter view, even daylight",
+   "right": "Vehicles in the colours used in India with sirens, no readable numbers or names",
+   "avoid": "Emblems, phone numbers, text on the booth board"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Match lab cut-out set: helpers",
+   "shows": "Cut-outs of an ambulance, a police jeep, a fire engine, a hand-washing tap and a green dustbin, each a separate file",
+   "view": "Front three-quarter view, light from top left",
+   "right": "Clean, true to life, same size scale for the vehicles",
+   "avoid": "Readable plates, logos or words"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Mela food stalls",
+   "shows": "Hands taking gol gappas and jalebis at a mela stall; a steel water point with a tap close by",
+   "view": "Close three-quarter view, warm light",
+   "right": "Food looks hygienic and covered where needed; hands only",
+   "avoid": "Faces, signboards with writing"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "2.3",
+   "use": "Mela ground map base for the scenario",
+   "shows": "A clean top-down illustration of a mela ground with paths, stall blocks, a gate, a medical tent and a booth, with no labels",
+   "view": "Straight top view, soft colours",
+   "right": "Clear paths and open spaces so the app can place labels",
+   "avoid": "Words, numbers or arrows"
+  }
+ ]
+}

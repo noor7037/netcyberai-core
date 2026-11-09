@@ -1,0 +1,1091 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh1.ch08",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "Predicting What Comes Next: Exploring Sequences and Progressions",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Introduction to sequences",
+   "labs": [
+    "c09-mathematics-iemh1-ch08-squares"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Explicit rule for a sequence",
+   "labs": [
+    "c09-mathematics-iemh1-ch08-explicit"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Recursive rule for a sequence",
+   "labs": [
+    "c09-mathematics-iemh1-ch08-recursive"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Arithmetic progressions and visualising an AP",
+   "labs": [
+    "c09-mathematics-iemh1-ch08-ap"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Sum of the first n natural numbers",
+   "labs": [
+    "c09-mathematics-iemh1-ch08-gauss-sum"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Geometric progressions and visualising a GP",
+   "labs": [
+    "c09-mathematics-iemh1-ch08-gp"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6.1",
+   "title": "Fun with fractals",
+   "labs": [
+    "c09-mathematics-iemh1-ch08-fractal"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh1-ch08-squares",
+   "topic": "8.1",
+   "template": "pattern",
+   "title": {
+    "en": "What comes next? Square numbers",
+    "hi": "आगे क्या आएगा? वर्ग संख्याएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "figurate",
+    "rule": "square",
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The patterns have 1, 4 and 9 dots. How many dots in the next one?",
+      "hi": "पैटर्न में 1, 4 और 9 बिंदु हैं। अगले में कितने होंगे?"
+     },
+     "options": [
+      {
+       "id": "16",
+       "en": "16 dots",
+       "hi": "16 बिंदु"
+      },
+      {
+       "id": "13",
+       "en": "13 dots",
+       "hi": "13 बिंदु"
+      },
+      {
+       "id": "12",
+       "en": "12 dots",
+       "hi": "12 बिंदु"
+      }
+     ],
+     "answer": "16"
+    },
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Tap Next to build the next pattern.",
+      "hi": "अगला पैटर्न बनाने के लिए अगला दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number of dots in the pattern after that.",
+      "hi": "उसके बाद वाले पैटर्न के बिंदुओं की संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Find the rule for the n-th term.",
+      "hi": "n-वें पद का नियम ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A sequence is a list of numbers in order: first term, second term and so on. Here term n is n × n = n², the dots in an n by n square. Each square grows by the next odd number: 1, 3, 5, 7 …",
+      "hi": "अनुक्रम क्रम में लगी संख्याओं की सूची है: पहला पद, दूसरा पद, इसी तरह। यहाँ n-वाँ पद n × n = n² है, n × n वर्ग के बिंदु। हर वर्ग अगली विषम संख्या से बढ़ता है: 1, 3, 5, 7 …"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the 12th square number?",
+        "hi": "12वीं वर्ग संख्या क्या है?"
+       },
+       "options": [
+        "144",
+        "24",
+        "121"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "12 × 12 = 144.",
+        "hi": "12 × 12 = 144।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "24 is 2 × 12; a square is 12 × 12.",
+         "hi": "24 तो 2 × 12 है; वर्ग 12 × 12 होता है।"
+        },
+        {
+         "en": "121 is 11², the 11th term.",
+         "hi": "121, 11² है, यानी 11वाँ पद।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the slider for n and check that each new square adds the next odd number.",
+      "hi": "n का स्लाइडर चलाओ और जाँचो कि हर नया वर्ग अगली विषम संख्या जोड़ता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch08-explicit",
+   "topic": "8.2",
+   "template": "match",
+   "title": {
+    "en": "Explicit rules: term from its position",
+    "hi": "स्पष्ट नियम: स्थान से पद"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "odd",
+      "left": {
+       "en": "2n − 1",
+       "hi": "2n − 1"
+      },
+      "right": {
+       "en": "1, 3, 5, 7, …",
+       "hi": "1, 3, 5, 7, …"
+      },
+      "why": {
+       "en": "n = 1 gives 1, n = 2 gives 3: the odd numbers.",
+       "hi": "n = 1 पर 1, n = 2 पर 3: विषम संख्याएँ।"
+      }
+     },
+     {
+      "id": "five",
+      "left": {
+       "en": "5n",
+       "hi": "5n"
+      },
+      "right": {
+       "en": "5, 10, 15, 20, …",
+       "hi": "5, 10, 15, 20, …"
+      },
+      "why": {
+       "en": "The table of 5.",
+       "hi": "5 का पहाड़ा।"
+      }
+     },
+     {
+      "id": "sq1",
+      "left": {
+       "en": "n² + 1",
+       "hi": "n² + 1"
+      },
+      "right": {
+       "en": "2, 5, 10, 17, …",
+       "hi": "2, 5, 10, 17, …"
+      },
+      "why": {
+       "en": "1 + 1, 4 + 1, 9 + 1, 16 + 1.",
+       "hi": "1 + 1, 4 + 1, 9 + 1, 16 + 1।"
+      }
+     },
+     {
+      "id": "pow",
+      "left": {
+       "en": "2ⁿ",
+       "hi": "2ⁿ"
+      },
+      "right": {
+       "en": "2, 4, 8, 16, …",
+       "hi": "2, 4, 8, 16, …"
+      },
+      "why": {
+       "en": "Each term doubles: 2¹, 2², 2³, 2⁴.",
+       "hi": "हर पद दुगुना: 2¹, 2², 2³, 2⁴।"
+      }
+     },
+     {
+      "id": "dec",
+      "left": {
+       "en": "20 − 3n",
+       "hi": "20 − 3n"
+      },
+      "right": {
+       "en": "17, 14, 11, 8, …",
+       "hi": "17, 14, 11, 8, …"
+      },
+      "why": {
+       "en": "Start 20 − 3 = 17, then take away 3 each time.",
+       "hi": "शुरू 20 − 3 = 17, फिर हर बार 3 घटाओ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:odd",
+     "expect": "matched:odd",
+     "say": {
+      "en": "Tap the rule 2n − 1 and find its sequence.",
+      "hi": "नियम 2n − 1 छुओ और उसका अनुक्रम ढूँढो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which sequence does n² + 1 make?",
+      "hi": "n² + 1 से कौन-सा अनुक्रम बनता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "2, 5, 10, 17, …",
+       "hi": "2, 5, 10, 17, … (वर्ग + 1)"
+      },
+      {
+       "id": "b",
+       "en": "2, 3, 4, 5, …",
+       "hi": "2, 3, 4, 5, … (एक-एक बढ़ता)"
+      },
+      {
+       "id": "c",
+       "en": "1, 4, 9, 16, …",
+       "hi": "1, 4, 9, 16, … (केवल वर्ग)"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:sq1",
+     "expect": "matched:sq1",
+     "say": {
+      "en": "Match n² + 1.",
+      "hi": "n² + 1 मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An explicit rule gives any term straight from its position n, without working out the terms before it. To test a rule, put n = 1, 2, 3 and see if you get the sequence.",
+      "hi": "स्पष्ट नियम किसी भी पद को सीधे उसके स्थान n से देता है, पहले वाले पद निकाले बिना। नियम परखने के लिए n = 1, 2, 3 रखो और देखो अनुक्रम मिलता है या नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the 50th term of 20 − 3n?",
+        "hi": "20 − 3n का 50वाँ पद क्या है?"
+       },
+       "options": [
+        "−130",
+        "17",
+        "130"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "20 − 3 × 50 = 20 − 150 = −130.",
+        "hi": "20 − 3 × 50 = 20 − 150 = −130।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "17 is the first term, n = 1.",
+         "hi": "17 पहला पद है, n = 1।"
+        },
+        {
+         "en": "The sequence goes down, so a far term must be negative.",
+         "hi": "अनुक्रम घट रहा है, इसलिए दूर का पद ऋणात्मक होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up a rule of your own and give your friend the first four terms. Can they find your rule?",
+      "hi": "अपना एक नियम बनाओ और दोस्त को पहले चार पद दो। क्या वह तुम्हारा नियम ढूँढ पाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch08-recursive",
+   "topic": "8.3",
+   "template": "pattern",
+   "title": {
+    "en": "Recursive rules: the Virahānka–Fibonacci numbers",
+    "hi": "पुनरावर्ती नियम: विरहांक–फ़िबोनाची संख्याएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     1,
+     2,
+     3,
+     5,
+     8
+    ],
+    "rule": "fib",
+    "show": 5
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "1, 2, 3, 5, 8: what comes next?",
+      "hi": "1, 2, 3, 5, 8: आगे क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "13",
+       "en": "13",
+       "hi": "13, यानी 5 + 8"
+      },
+      {
+       "id": "11",
+       "en": "11",
+       "hi": "11, यानी 8 + 3"
+      },
+      {
+       "id": "16",
+       "en": "16",
+       "hi": "16, यानी 8 × 2"
+      }
+     ],
+     "answer": "13"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next term.",
+      "hi": "अगला पद लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "And the one after that.",
+      "hi": "और उसके बाद वाला।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Now name the rule.",
+      "hi": "अब नियम का नाम बताओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each term is the sum of the two before it. A rule that makes a term from earlier terms is recursive. Indian poets, such as Virahānka, found these numbers by counting rhythms of short and long beats, long before Fibonacci.",
+      "hi": "हर पद अपने से पहले के दो पदों का योग है। जो नियम पिछले पदों से नया पद बनाए, वह पुनरावर्ती है। विरहांक जैसे भारतीय कवियों ने छोटी और लंबी मात्राओं की लय गिनते हुए ये संख्याएँ फ़िबोनाची से बहुत पहले खोज लीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which needs the earlier terms to find the 10th term?",
+        "hi": "10वाँ पद निकालने के लिए किसे पिछले पद चाहिए?"
+       },
+       "options": [
+        {
+         "en": "A recursive rule like 'add the two before'",
+         "hi": "पुनरावर्ती नियम जैसे 'पिछले दो जोड़ो'"
+        },
+        {
+         "en": "An explicit rule like 2n + 1",
+         "hi": "स्पष्ट नियम जैसे 2n + 1"
+        },
+        {
+         "en": "Neither",
+         "hi": "दोनों में से कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Recursive rules build term by term; explicit rules jump straight to n.",
+        "hi": "पुनरावर्ती नियम पद-दर-पद बनाते हैं; स्पष्ट नियम सीधे n पर पहुँचते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2n + 1 gives the 10th term at once: 21.",
+         "hi": "2n + 1 से 10वाँ पद तुरंत मिलता है: 21।"
+        },
+        {
+         "en": "A recursive rule does need earlier terms.",
+         "hi": "पुनरावर्ती नियम को पिछले पद ज़रूर चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write the AP 3, 7, 11, … as a recursive rule (next = previous + 4) and as an explicit rule (4n − 1).",
+      "hi": "AP 3, 7, 11, … को पुनरावर्ती नियम (अगला = पिछला + 4) और स्पष्ट नियम (4n − 1) दोनों में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch08-ap",
+   "topic": "8.4",
+   "template": "pattern",
+   "title": {
+    "en": "Arithmetic progressions: add the same each time",
+    "hi": "समांतर श्रेढ़ी: हर बार उतना ही जोड़ो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "ap",
+    "seed": [
+     3,
+     4
+    ],
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Tap Next to add one more term.",
+      "hi": "एक और पद जोड़ने के लिए अगला दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The AP starts at 3 and adds 4 each time. What is the 10th term?",
+      "hi": "AP 3 से शुरू होकर हर बार 4 जोड़ती है। 10वाँ पद क्या है?"
+     },
+     "options": [
+      {
+       "id": "39",
+       "en": "39",
+       "hi": "39, यानी 3 + 9 × 4"
+      },
+      {
+       "id": "43",
+       "en": "43",
+       "hi": "43, यानी 3 + 10 × 4"
+      },
+      {
+       "id": "40",
+       "en": "40",
+       "hi": "40, यानी 10 × 4"
+      }
+     ],
+     "answer": "39"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next term in the box.",
+      "hi": "अगला पद ख़ाने में लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Find the rule for the n-th term.",
+      "hi": "n-वें पद का नियम ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In an AP the difference d between neighbours stays the same. From the first term a, the n-th term is reached after n − 1 jumps: aₙ = a + (n − 1)d. Here 3 + 9 × 4 = 39. Drawn as dots, an AP grows like a staircase with equal steps.",
+      "hi": "AP में पास-पास के पदों का अंतर d एक जैसा रहता है। पहले पद a से n-वाँ पद n − 1 छलाँगों के बाद आता है: aₙ = a + (n − 1)d। यहाँ 3 + 9 × 4 = 39। बिंदुओं से बनाओ तो AP बराबर सीढ़ियों जैसी बढ़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Is 2, 5, 9, 14, … an AP?",
+        "hi": "क्या 2, 5, 9, 14, … एक AP है?"
+       },
+       "options": [
+        {
+         "en": "No",
+         "hi": "नहीं"
+        },
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The differences are 3, 4, 5: not the same.",
+        "hi": "अंतर 3, 4, 5 हैं: एक जैसे नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It grows each time, but an AP needs the same jump every time.",
+         "hi": "यह हर बार बढ़ता है, पर AP में हर बार एक जैसी छलाँग चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Rahul saves ₹50 in week 1 and ₹10 more each week. What does he save in week 8?",
+        "hi": "राहुल पहले हफ़्ते ₹50 बचाता है और हर हफ़्ते ₹10 ज़्यादा। आठवें हफ़्ते वह कितना बचाएगा?"
+       },
+       "options": [
+        "₹120",
+        "₹130",
+        "₹80"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "a = 50, d = 10: 50 + 7 × 10 = 120.",
+        "hi": "a = 50, d = 10: 50 + 7 × 10 = 120।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That uses 8 jumps; from week 1 to week 8 there are only 7.",
+         "hi": "इसमें 8 छलाँगें लीं; हफ़्ते 1 से 8 तक केवल 7 हैं।"
+        },
+        {
+         "en": "That is 8 × 10; it forgets the ₹50 start.",
+         "hi": "यह 8 × 10 है; ₹50 की शुरुआत भूल गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the d slider to a negative number. What does a falling AP look like?",
+      "hi": "d स्लाइडर को ऋणात्मक संख्या पर ले जाओ। घटती हुई AP कैसी दिखती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch08-gauss-sum",
+   "topic": "8.5",
+   "template": "pattern",
+   "title": {
+    "en": "Sum of the first n natural numbers",
+    "hi": "पहली n प्राकृत संख्याओं का योग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "ap",
+    "seed": [
+     1,
+     1
+    ],
+    "show": 10
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is 1 + 2 + 3 + … + 10?",
+      "hi": "1 + 2 + 3 + … + 10 कितना है?"
+     },
+     "options": [
+      {
+       "id": "55",
+       "en": "55",
+       "hi": "55, यानी 10 × 11 ÷ 2"
+      },
+      {
+       "id": "50",
+       "en": "50",
+       "hi": "50, यानी 10 × 5"
+      },
+      {
+       "id": "110",
+       "en": "110",
+       "hi": "110, यानी 10 × 11"
+      }
+     ],
+     "answer": "55"
+    },
+    {
+     "kind": "do",
+     "target": "sum",
+     "expect": "sum",
+     "say": {
+      "en": "Tap Sum to add the first ten terms.",
+      "hi": "पहले दस पद जोड़ने के लिए योग दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:n",
+     "expect": "extended",
+     "say": {
+      "en": "Drag the n slider up to show more terms.",
+      "hi": "और पद दिखाने के लिए n स्लाइडर ऊपर खींचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "sum",
+     "expect": "sum",
+     "say": {
+      "en": "Tap Sum again for the new total.",
+      "hi": "नए योग के लिए फिर योग दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Write the sum forwards and backwards and add: each pair, 1 + 10, 2 + 9, …, makes 11, and there are 10 pairs. That is twice the sum, so 1 + 2 + … + n = n(n + 1) ÷ 2.",
+      "hi": "योग को आगे से और पीछे से लिखकर जोड़ो: हर जोड़ा, 1 + 10, 2 + 9, …, 11 बनाता है, और 10 जोड़े हैं। यह योग का दुगुना है, इसलिए 1 + 2 + … + n = n(n + 1) ÷ 2।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 1 + 2 + … + 100?",
+        "hi": "1 + 2 + … + 100 कितना है?"
+       },
+       "options": [
+        "5050",
+        "10100",
+        "5000"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "100 × 101 ÷ 2 = 5050.",
+        "hi": "100 × 101 ÷ 2 = 5050।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is twice the sum; remember to halve.",
+         "hi": "यह योग का दुगुना है; आधा करना याद रखो।"
+        },
+        {
+         "en": "That is 100 × 50; the pairs add to 101, not 100.",
+         "hi": "यह 100 × 50 है; जोड़े 101 बनाते हैं, 100 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Stack coins in rows of 1, 2, 3, 4. Copy the stack upside down beside it. What rectangle do you get?",
+      "hi": "सिक्कों को 1, 2, 3, 4 की पंक्तियों में रखो। उसकी उल्टी नक़ल पास में रखो। कौन-सा आयत बनता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch08-gp",
+   "topic": "8.6",
+   "template": "pattern",
+   "title": {
+    "en": "Geometric progressions: multiply each time",
+    "hi": "गुणोत्तर श्रेढ़ी: हर बार गुणा करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "gp",
+    "seed": [
+     1,
+     2
+    ],
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Tap Next. Each term is double the one before.",
+      "hi": "अगला दबाओ। हर पद पिछले का दुगुना है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "1 grain of rice on square 1, 2 on square 2, 4 on square 3 … How many on square 11?",
+      "hi": "पहले ख़ाने पर चावल का 1 दाना, दूसरे पर 2, तीसरे पर 4 … 11वें ख़ाने पर कितने?"
+     },
+     "options": [
+      {
+       "id": "1024",
+       "en": "1024 grains",
+       "hi": "1024 दाने"
+      },
+      {
+       "id": "22",
+       "en": "22 grains",
+       "hi": "22 दाने"
+      },
+      {
+       "id": "2048",
+       "en": "2048 grains",
+       "hi": "2048 दाने"
+      }
+     ],
+     "answer": "1024"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next term in the box.",
+      "hi": "अगला पद ख़ाने में लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Find the rule for the n-th term.",
+      "hi": "n-वें पद का नियम ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a GP each term is the one before multiplied by the same ratio r. The n-th term is a × rⁿ⁻¹. Doubling grows slowly at first and then explodes: 2¹⁰ = 1024, and square 64 would hold more than all the rice in the world.",
+      "hi": "GP में हर पद पिछले पद को एक ही अनुपात r से गुणा करके बनता है। n-वाँ पद a × rⁿ⁻¹ है। दुगुना होना पहले धीमा लगता है, फिर बहुत तेज़: 2¹⁰ = 1024, और 64वें ख़ाने पर दुनिया के सारे चावल से भी ज़्यादा दाने होंगे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a GP?",
+        "hi": "कौन-सी GP है?"
+       },
+       "options": [
+        "3, 6, 12, 24",
+        "3, 6, 9, 12",
+        "3, 5, 9, 17"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each term is 2 times the one before.",
+        "hi": "हर पद पिछले का 2 गुना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This adds 3 each time: an AP.",
+         "hi": "यह हर बार 3 जोड़ता है: AP है।"
+        },
+        {
+         "en": "The ratios are 5/3, 9/5, 17/9, not the same.",
+         "hi": "अनुपात 5/3, 9/5, 17/9 हैं, एक जैसे नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set r to ½ with the slider: 1, ½, ¼, … Fold a paper strip in half again and again to see it.",
+      "hi": "स्लाइडर से r को ½ करो: 1, ½, ¼, … किसी काग़ज़ की पट्टी को बार-बार आधा मोड़कर इसे देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch08-fractal",
+   "topic": "8.6.1",
+   "template": "pattern",
+   "title": {
+    "en": "Fun with fractals: triangles inside triangles",
+    "hi": "फ्रैक्टल का खेल: त्रिभुज के अंदर त्रिभुज"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "kind": "gp",
+    "seed": [
+     1,
+     3
+    ],
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A triangle is split into 4 by joining midpoints, and the middle one is removed, leaving 3. Repeat on each. How many triangles at stage 3?",
+      "hi": "मध्य-बिंदु जोड़कर त्रिभुज को 4 में बाँटो और बीच वाला हटा दो, 3 बचते हैं। हर एक पर दोहराओ। चरण 3 पर कितने त्रिभुज?"
+     },
+     "options": [
+      {
+       "id": "9",
+       "en": "9 triangles",
+       "hi": "9 त्रिभुज"
+      },
+      {
+       "id": "6",
+       "en": "6 triangles",
+       "hi": "6 त्रिभुज"
+      },
+      {
+       "id": "12",
+       "en": "12 triangles",
+       "hi": "12 त्रिभुज"
+      }
+     ],
+     "answer": "9"
+    },
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Tap Next to go to the next stage.",
+      "hi": "अगले चरण के लिए अगला दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next term in the box.",
+      "hi": "अगला पद ख़ाने में लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Find the rule.",
+      "hi": "नियम ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each stage turns every shaded triangle into 3 smaller ones, so the counts are 1, 3, 9, 27, …, a GP with ratio 3. A shape built by repeating the same step on smaller and smaller copies is a fractal; this one is the Sierpiński triangle.",
+      "hi": "हर चरण हर रंगे त्रिभुज को 3 छोटे त्रिभुजों में बदलता है, इसलिए गिनती 1, 3, 9, 27, … है, अनुपात 3 वाली GP। छोटी-छोटी प्रतियों पर एक ही चरण दोहराकर बनी आकृति फ्रैक्टल कहलाती है; यह सिएरपिंस्की त्रिभुज है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Each new triangle has half the side of the one before. What happens to the shaded area at each stage?",
+        "hi": "हर नए त्रिभुज की भुजा पिछले की आधी है। हर चरण में रंगे क्षेत्रफल का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It is multiplied by 3/4",
+         "hi": "यह 3/4 से गुणा होता है"
+        },
+        {
+         "en": "It halves",
+         "hi": "यह आधा होता है"
+        },
+        {
+         "en": "It stays the same",
+         "hi": "यह वैसा ही रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Of 4 equal small triangles, 3 are kept, so 3/4 of the area stays.",
+        "hi": "4 बराबर छोटे त्रिभुजों में से 3 रखे जाते हैं, इसलिए 3/4 क्षेत्रफल बचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Half the side gives a quarter of the area each; keeping 3 quarters is 3/4, not 1/2.",
+         "hi": "आधी भुजा से हर एक का क्षेत्रफल चौथाई होता है; 3 चौथाई रखना 3/4 है, 1/2 नहीं।"
+        },
+        {
+         "en": "One quarter is removed every time, so it must shrink.",
+         "hi": "हर बार एक चौथाई हटता है, इसलिए यह घटेगा ही।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw stage 3 on paper with a ruler. Find fractal shapes in nature, like a fern leaf or cauliflower.",
+      "hi": "रूलर से काग़ज़ पर चरण 3 बनाओ। प्रकृति में फ्रैक्टल आकार ढूँढो, जैसे फ़र्न की पत्ती या फूलगोभी।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Chapter hook: patterns that continue",
+   "shows": "Stacked steel tumblers in a kitchen shop, arranged in a triangle with rows of 1, 2, 3, 4, 5",
+   "view": "Front view, eye level",
+   "right": "Rows increase by exactly one",
+   "avoid": "Shop name, price tags"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "An AP as a staircase",
+   "shows": "Wooden blocks stacked into columns of 3, 7, 11, 15 blocks in a row",
+   "view": "Three-quarter front view",
+   "right": "Each column exactly 4 blocks taller",
+   "avoid": "Uneven blocks"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "8.5",
+   "use": "Pairing for the sum",
+   "shows": "Coins arranged as a triangle of rows 1 to 5, then a copy turned upside down beside it making a 5 by 6 rectangle, in two frames",
+   "view": "Straight from above",
+   "right": "The rectangle has 30 coins with no gaps",
+   "avoid": "Mixed coin sizes"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "8.6",
+   "use": "Doubling on a chessboard",
+   "shows": "A wooden chessboard with small heaps of rice grains on the first few squares, each heap about double the last",
+   "view": "Low angle along the board",
+   "right": "Heaps 1, 2, 4, 8 visibly growing",
+   "avoid": "Spilled grains between squares"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "8.6.1",
+   "use": "Building a Sierpiński triangle",
+   "shows": "A paper triangle shaded in four stages, each stage removing the middle triangle of every shaded one",
+   "view": "Straight on, transparent background",
+   "right": "Stages show 1, 3, 9, 27 shaded triangles",
+   "avoid": "Wobbly lines"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "8.6.1",
+   "use": "Fractals in nature",
+   "shows": "A close-up of a Romanesco cauliflower or a fern leaf showing repeated smaller copies",
+   "view": "Macro, soft light",
+   "right": "Self-similar spirals or fronds clearly visible",
+   "avoid": "Blur"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "8.3",
+   "use": "Rhythm of beats",
+   "shows": "A small tabla pair on a mat, ready to play",
+   "view": "Three-quarter view, warm light",
+   "right": "Real tabla with skins and straps",
+   "avoid": "People, brand marks"
+  }
+ ]
+}

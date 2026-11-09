@@ -1,0 +1,2128 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch11",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Photosynthesis in Higher Plants",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "What do we know?",
+   "labs": [
+    "c11-biology-kebo1-ch11-in-out"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Early experiments",
+   "labs": [
+    "c11-biology-kebo1-ch11-scientists"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Where does photosynthesis take place?",
+   "labs": [
+    "c11-biology-kebo1-ch11-grana-stroma"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "How many types of pigments are involved?",
+   "labs": [
+    "c11-biology-kebo1-ch11-pigments"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5",
+   "title": "What is light reaction?",
+   "labs": [],
+   "why_no_lab": "The light reaction is built step by step in the Z-scheme and cyclic labs of 11.6, so a separate lab here would repeat them."
+  },
+  {
+   "n": "11.6",
+   "title": "The electron transport: splitting of water, cyclic and non-cyclic photophosphorylation, chemiosmosis",
+   "labs": [
+    "c11-biology-kebo1-ch11-z-scheme",
+    "c11-biology-kebo1-ch11-cyclic"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.7",
+   "title": "Where are the ATP and NADPH used? The Calvin cycle",
+   "labs": [
+    "c11-biology-kebo1-ch11-calvin"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.8",
+   "title": "The C4 pathway",
+   "labs": [
+    "c11-biology-kebo1-ch11-c3-c4"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.9",
+   "title": "Photorespiration",
+   "labs": [],
+   "why_no_lab": "Photorespiration is contrasted card by card in the C3 or C4 lab of 11.8; the reader explains RuBisCO binding oxygen."
+  },
+  {
+   "n": "11.10",
+   "title": "Factors affecting photosynthesis: light, CO2, temperature, water",
+   "labs": [
+    "c11-biology-kebo1-ch11-limiting"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch11-in-out",
+   "topic": "11.1",
+   "template": "plant",
+   "title": {
+    "en": "What goes in, what comes out",
+    "hi": "क्या अंदर जाता है, क्या बाहर आता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "photosynthesis"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:chloroplast",
+     "expect": "identified:chloroplast",
+     "say": {
+      "en": "Tap the chloroplast. This is where the leaf makes food.",
+      "hi": "हरितलवक पर टैप करो। पत्ती यहीं भोजन बनाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:co2",
+     "expect": "identified:co2",
+     "say": {
+      "en": "Now tap carbon dioxide, the gas the plant takes in.",
+      "hi": "अब कार्बन डाइऑक्साइड पर टैप करो, वह गैस जो पौधा अंदर लेता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The lamp is bright and the water has carbon dioxide. When you press play, what will come out of the leaves?",
+      "hi": "लैंप तेज़ है और पानी में कार्बन डाइऑक्साइड है। प्ले दबाने पर पत्तियों से क्या निकलेगा?"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "Bubbles of oxygen",
+       "hi": "ऑक्सीजन के बुलबुले"
+      },
+      {
+       "id": "co2",
+       "en": "Bubbles of carbon dioxide",
+       "hi": "कार्बन डाइऑक्साइड के बुलबुले"
+      },
+      {
+       "id": "none",
+       "en": "Nothing at all",
+       "hi": "कुछ भी नहीं"
+      }
+     ],
+     "answer": "o2"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "bubbles",
+     "say": {
+      "en": "Press play and watch the leaves under the lamp.",
+      "hi": "प्ले दबाओ और लैंप के नीचे पत्तियों को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The bubbles are oxygen. In the chloroplast, light energy splits water and frees oxygen, and carbon dioxide is turned into sugar. So light, water and carbon dioxide go in; sugar and oxygen come out.",
+      "hi": "बुलबुले ऑक्सीजन के हैं। हरितलवक में प्रकाश की ऊर्जा पानी को तोड़ती है और ऑक्सीजन निकलती है, और कार्बन डाइऑक्साइड से शर्करा बनती है। यानी प्रकाश, पानी और कार्बन डाइऑक्साइड अंदर जाते हैं; शर्करा और ऑक्सीजन बाहर आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does the oxygen in the bubbles come from?",
+        "hi": "बुलबुलों की ऑक्सीजन कहाँ से आती है?"
+       },
+       "options": [
+        {
+         "en": "From water",
+         "hi": "पानी से"
+        },
+        {
+         "en": "From carbon dioxide",
+         "hi": "कार्बन डाइऑक्साइड से"
+        },
+        {
+         "en": "From the soil",
+         "hi": "मिट्टी से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Light energy splits water molecules in the chloroplast, and their oxygen is released as gas.",
+        "hi": "हरितलवक में प्रकाश की ऊर्जा पानी के अणुओं को तोड़ती है, और उनकी ऑक्सीजन गैस बनकर निकलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It seems natural because CO2 has oxygen in it, but experiments with bacteria and labelled water showed the freed oxygen comes from water.",
+         "hi": "CO2 में ऑक्सीजन होती है, इसलिए ऐसा लगता है; पर प्रयोगों ने दिखाया कि निकलने वाली ऑक्सीजन पानी से आती है।"
+        },
+        {
+         "en": "Soil gives water and minerals, not the oxygen gas that bubbles out of the leaf.",
+         "hi": "मिट्टी पानी और खनिज देती है, पत्ती से निकलने वाली ऑक्सीजन गैस नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which part of the leaf cell holds the green pigment and makes the food?",
+        "hi": "पत्ती की कोशिका का कौन-सा भाग हरा वर्णक रखता है और भोजन बनाता है?"
+       },
+       "options": [
+        {
+         "en": "Nucleus",
+         "hi": "केंद्रक"
+        },
+        {
+         "en": "Chloroplast",
+         "hi": "हरितलवक"
+        },
+        {
+         "en": "Cell wall",
+         "hi": "कोशिका भित्ति"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Chloroplasts contain chlorophyll and all the enzymes of photosynthesis.",
+        "hi": "हरितलवक में पर्णहरित और प्रकाश संश्लेषण के सारे एंज़ाइम होते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The nucleus controls the cell but has no chlorophyll and makes no sugar.",
+         "hi": "केंद्रक कोशिका को नियंत्रित करता है, पर उसमें पर्णहरित नहीं होता और वह शर्करा नहीं बनाता।"
+        },
+        "",
+        {
+         "en": "The cell wall gives shape and support; light energy is not trapped there.",
+         "hi": "कोशिका भित्ति आकार और सहारा देती है; प्रकाश की ऊर्जा वहाँ नहीं पकड़ी जाती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap glucose and oxygen to read about them, then move the light slider and watch the bubbles change.",
+      "hi": "ख़ुद आज़माओ। ग्लूकोज़ और ऑक्सीजन पर टैप करके पढ़ो, फिर प्रकाश का स्लाइडर हिलाओ और बुलबुलों का बदलना देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch11-scientists",
+   "topic": "11.2",
+   "template": "match",
+   "title": {
+    "en": "The early experiments",
+    "hi": "आरंभिक प्रयोग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "priestley",
+      "left": {
+       "en": "Joseph Priestley (1770s)",
+       "hi": "जोसेफ़ प्रीस्टले (1770 के दशक)"
+      },
+      "right": {
+       "en": "A mint plant in a closed bell jar kept a candle burning and a mouse alive",
+       "hi": "बंद बेल जार में पुदीने के पौधे ने मोमबत्ती जलती और चूहे को ज़िंदा रखा"
+      },
+      "why": {
+       "en": "Priestley guessed that plants give back to the air what burning candles and breathing animals take from it.",
+       "hi": "प्रीस्टले ने समझा कि जलती मोमबत्ती और साँस लेते जानवर हवा से जो लेते हैं, पौधे उसे लौटा देते हैं।"
+      }
+     },
+     {
+      "id": "ingenhousz",
+      "left": {
+       "en": "Jan Ingenhousz",
+       "hi": "जान इंगेनहाउज़"
+      },
+      "right": {
+       "en": "Only the green parts, and only in sunlight, could clean the air",
+       "hi": "केवल हरे भाग, और केवल धूप में, हवा को शुद्ध कर पाए"
+      },
+      "why": {
+       "en": "In the dark the same plant could not do it; bubbles formed on green parts of a water plant only in light.",
+       "hi": "अँधेरे में वही पौधा यह नहीं कर पाया; जलीय पौधे के हरे भागों पर बुलबुले केवल प्रकाश में बने।"
+      }
+     },
+     {
+      "id": "sachs",
+      "left": {
+       "en": "Julius von Sachs (1854)",
+       "hi": "जूलियस वॉन सैक्स (1854)"
+      },
+      "right": {
+       "en": "Green parts make glucose, which is usually stored as starch",
+       "hi": "हरे भाग ग्लूकोज़ बनाते हैं, जो प्रायः मंड के रूप में जमा होता है"
+      },
+      "why": {
+       "en": "Sachs showed that the food made in chloroplasts is glucose, kept as starch.",
+       "hi": "सैक्स ने दिखाया कि हरितलवक में बनने वाला भोजन ग्लूकोज़ है, जो मंड के रूप में रखा जाता है।"
+      }
+     },
+     {
+      "id": "engelmann",
+      "left": {
+       "en": "T. W. Engelmann",
+       "hi": "टी. डब्ल्यू. एंगलमान"
+      },
+      "right": {
+       "en": "Bacteria crowded in blue and red light along an alga lit by a prism",
+       "hi": "प्रिज़्म से रोशन शैवाल पर जीवाणु नीली और लाल रोशनी में जमा हुए"
+      },
+      "why": {
+       "en": "Aerobic bacteria gathered where most oxygen was made, giving the first action spectrum of photosynthesis.",
+       "hi": "ऑक्सीजन चाहने वाले जीवाणु वहाँ जमा हुए जहाँ सबसे अधिक ऑक्सीजन बनी; यह प्रकाश संश्लेषण का पहला क्रिया स्पेक्ट्रम था।"
+      }
+     },
+     {
+      "id": "vanniel",
+      "left": {
+       "en": "Cornelius van Niel",
+       "hi": "कॉर्नेलियस वान नील"
+      },
+      "right": {
+       "en": "The oxygen given out comes from water, not from carbon dioxide",
+       "hi": "निकलने वाली ऑक्सीजन पानी से आती है, कार्बन डाइऑक्साइड से नहीं"
+      },
+      "why": {
+       "en": "Purple and green bacteria use H2S instead of water and give out sulphur, not oxygen; so in green plants oxygen must come from H2O.",
+       "hi": "बैंगनी और हरे जीवाणु पानी की जगह H2S लेते हैं और सल्फ़र छोड़ते हैं, ऑक्सीजन नहीं; इसलिए हरे पौधों में ऑक्सीजन H2O से ही आती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:priestley",
+     "expect": "matched:priestley",
+     "say": {
+      "en": "Tap Priestley, then tap what his bell-jar experiment showed.",
+      "hi": "प्रीस्टले पर टैप करो, फिर वह कार्ड जो उनके बेल जार प्रयोग ने दिखाया।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:ingenhousz",
+     "expect": "matched:ingenhousz",
+     "say": {
+      "en": "Now match Ingenhousz with his finding about light.",
+      "hi": "अब इंगेनहाउज़ को प्रकाश वाली उनकी खोज से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Engelmann split light into colours with a prism and lit a green alga. Bacteria that need oxygen crowded where most oxygen was made. Where did they crowd?",
+      "hi": "एंगलमान ने प्रिज़्म से प्रकाश को रंगों में बाँटा और एक हरे शैवाल पर डाला। ऑक्सीजन चाहने वाले जीवाणु वहाँ जमा हुए जहाँ सबसे अधिक ऑक्सीजन बनी। वे कहाँ जमा हुए?"
+     },
+     "options": [
+      {
+       "id": "br",
+       "en": "In the blue and red light",
+       "hi": "नीली और लाल रोशनी में"
+      },
+      {
+       "id": "g",
+       "en": "In the green light",
+       "hi": "हरी रोशनी में"
+      },
+      {
+       "id": "y",
+       "en": "In the yellow light",
+       "hi": "पीली रोशनी में"
+      }
+     ],
+     "answer": "br"
+    },
+    {
+     "kind": "do",
+     "target": "left:engelmann",
+     "expect": "matched:engelmann",
+     "say": {
+      "en": "Tap Engelmann and match his result.",
+      "hi": "एंगलमान पर टैप करो और उनका परिणाम मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Step by step, scientists found that green parts need light, take in carbon dioxide, make glucose and give out oxygen. Chlorophyll absorbs blue and red light best, which is why Engelmann's bacteria gathered there. Van Niel's bacteria proved that the oxygen comes from water.",
+      "hi": "क़दम-दर-क़दम वैज्ञानिकों ने पाया कि हरे भागों को प्रकाश चाहिए, वे कार्बन डाइऑक्साइड लेते हैं, ग्लूकोज़ बनाते हैं और ऑक्सीजन छोड़ते हैं। पर्णहरित नीली और लाल रोशनी सबसे अच्छी सोखता है, इसीलिए एंगलमान के जीवाणु वहाँ जमा हुए। वान नील के जीवाणुओं ने सिद्ध किया कि ऑक्सीजन पानी से आती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did Priestley's candle keep burning in the bell jar with mint?",
+        "hi": "पुदीने वाले बेल जार में प्रीस्टले की मोमबत्ती क्यों जलती रही?"
+       },
+       "options": [
+        {
+         "en": "The plant put oxygen back into the air",
+         "hi": "पौधे ने हवा में ऑक्सीजन लौटाई"
+        },
+        {
+         "en": "The plant took in oxygen",
+         "hi": "पौधे ने ऑक्सीजन ली"
+        },
+        {
+         "en": "The jar let fresh air in",
+         "hi": "जार में ताज़ी हवा आई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A green plant in light gives out oxygen, which a flame and a mouse both need.",
+        "hi": "प्रकाश में हरा पौधा ऑक्सीजन छोड़ता है, जो लौ और चूहे दोनों को चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If the plant only took oxygen, the candle would go out even faster.",
+         "hi": "अगर पौधा केवल ऑक्सीजन लेता, तो मोमबत्ती और जल्दी बुझती।"
+        },
+        {
+         "en": "The jar was sealed; without the plant the candle went out quickly.",
+         "hi": "जार बंद था; पौधे के बिना मोमबत्ती जल्दी बुझ गई।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Purple bacteria use H2S and give out sulphur. What did this tell van Niel?",
+        "hi": "बैंगनी जीवाणु H2S लेते हैं और सल्फ़र छोड़ते हैं। इससे वान नील को क्या पता चला?"
+       },
+       "options": [
+        {
+         "en": "Oxygen in plants comes from CO2",
+         "hi": "पौधों में ऑक्सीजन CO2 से आती है"
+        },
+        {
+         "en": "Oxygen in plants comes from water",
+         "hi": "पौधों में ऑक्सीजन पानी से आती है"
+        },
+        {
+         "en": "Bacteria cannot make food",
+         "hi": "जीवाणु भोजन नहीं बना सकते"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The hydrogen donor (H2S or H2O) is the one that is split, so in plants water gives the oxygen.",
+        "hi": "हाइड्रोजन देने वाला अणु (H2S या H2O) ही टूटता है, इसलिए पौधों में ऑक्सीजन पानी देता है।"
+       },
+       "wrong": [
+        {
+         "en": "If CO2 gave the oxygen, these bacteria would also give out oxygen; they give out sulphur instead.",
+         "hi": "अगर CO2 ऑक्सीजन देता, तो ये जीवाणु भी ऑक्सीजन छोड़ते; पर वे सल्फ़र छोड़ते हैं।"
+        },
+        "",
+        {
+         "en": "These bacteria do make food by photosynthesis; they just use H2S instead of water.",
+         "hi": "ये जीवाणु प्रकाश संश्लेषण से भोजन बनाते हैं; बस पानी की जगह H2S लेते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match the rest, then tap any matched pair to read why again.",
+      "hi": "ख़ुद आज़माओ। बाकी जोड़ियाँ मिलाओ, फिर किसी जोड़ी पर टैप करके कारण दोबारा पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch11-grana-stroma",
+   "topic": "11.3",
+   "template": "sort",
+   "title": {
+    "en": "Grana or stroma?",
+    "hi": "ग्रैना या स्ट्रोमा?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "grana",
+      "label": {
+       "en": "In the grana (thylakoids)",
+       "hi": "ग्रैना (थायलेकॉइड) में"
+      }
+     },
+     {
+      "id": "stroma",
+      "label": {
+       "en": "In the stroma",
+       "hi": "स्ट्रोमा में"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "light",
+      "text": {
+       "en": "Light is trapped by chlorophyll",
+       "hi": "पर्णहरित प्रकाश पकड़ता है"
+      },
+      "bin": "grana",
+      "why": {
+       "en": "Chlorophyll sits in the thylakoid membranes of the grana, so light is caught there.",
+       "hi": "पर्णहरित ग्रैना की थायलेकॉइड झिल्लियों में होता है, इसलिए प्रकाश वहीं पकड़ा जाता है।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Water is split",
+       "hi": "पानी टूटता है"
+      },
+      "bin": "grana",
+      "why": {
+       "en": "Water splitting is linked to photosystem II on the inner side of the thylakoid membrane.",
+       "hi": "पानी का टूटना थायलेकॉइड झिल्ली के भीतरी ओर प्रकाश तंत्र II से जुड़ा है।"
+      }
+     },
+     {
+      "id": "oxygen",
+      "text": {
+       "en": "Oxygen is released",
+       "hi": "ऑक्सीजन निकलती है"
+      },
+      "bin": "grana",
+      "why": {
+       "en": "Oxygen comes from splitting water, which happens in the grana.",
+       "hi": "ऑक्सीजन पानी टूटने से आती है, जो ग्रैना में होता है।"
+      }
+     },
+     {
+      "id": "atp",
+      "text": {
+       "en": "ATP and NADPH are made",
+       "hi": "ATP और NADPH बनते हैं"
+      },
+      "bin": "grana",
+      "why": {
+       "en": "The light reaction on the thylakoids makes ATP and NADPH.",
+       "hi": "थायलेकॉइड पर होने वाली प्रकाश अभिक्रिया ATP और NADPH बनाती है।"
+      }
+     },
+     {
+      "id": "rubisco",
+      "text": {
+       "en": "RuBisCO fixes carbon dioxide",
+       "hi": "RuBisCO कार्बन डाइऑक्साइड को जोड़ता है"
+      },
+      "bin": "stroma",
+      "why": {
+       "en": "RuBisCO, the most plentiful enzyme on Earth, works in the stroma.",
+       "hi": "RuBisCO, धरती का सबसे अधिक पाया जाने वाला एंज़ाइम, स्ट्रोमा में काम करता है।"
+      }
+     },
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Sugar is built",
+       "hi": "शर्करा बनती है"
+      },
+      "bin": "stroma",
+      "why": {
+       "en": "The Calvin cycle in the stroma uses ATP and NADPH to build sugar.",
+       "hi": "स्ट्रोमा में केल्विन चक्र ATP और NADPH से शर्करा बनाता है।"
+      }
+     },
+     {
+      "id": "calvin",
+      "text": {
+       "en": "The Calvin cycle turns",
+       "hi": "केल्विन चक्र चलता है"
+      },
+      "bin": "stroma",
+      "why": {
+       "en": "All the enzymes of the Calvin cycle are dissolved in the stroma.",
+       "hi": "केल्विन चक्र के सारे एंज़ाइम स्ट्रोमा में घुले होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:light",
+     "expect": "correct:light",
+     "say": {
+      "en": "Tap the card about light, then tap the group where it happens.",
+      "hi": "प्रकाश वाले कार्ड पर टैप करो, फिर उस समूह पर जहाँ यह होता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:rubisco",
+     "expect": "correct:rubisco",
+     "say": {
+      "en": "Now sort the card about RuBisCO.",
+      "hi": "अब RuBisCO वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sugar building does not use light directly, but it needs the ATP and NADPH that light makes. Where is sugar built?",
+      "hi": "शर्करा बनने में सीधे प्रकाश नहीं लगता, पर प्रकाश से बने ATP और NADPH लगते हैं। शर्करा कहाँ बनती है?"
+     },
+     "options": [
+      {
+       "id": "s",
+       "en": "In the stroma",
+       "hi": "स्ट्रोमा में"
+      },
+      {
+       "id": "g",
+       "en": "In the grana",
+       "hi": "ग्रैना में"
+      },
+      {
+       "id": "o",
+       "en": "Outside the chloroplast",
+       "hi": "हरितलवक के बाहर"
+      }
+     ],
+     "answer": "s"
+    },
+    {
+     "kind": "do",
+     "target": "card:sugar",
+     "expect": "correct:sugar",
+     "say": {
+      "en": "Sort the card about sugar.",
+      "hi": "शर्करा वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The chloroplast divides the work. The membranes of the grana trap light, split water, free oxygen and make ATP and NADPH. The stroma uses that ATP and NADPH with enzymes to turn carbon dioxide into sugar.",
+      "hi": "हरितलवक काम बाँट लेता है। ग्रैना की झिल्लियाँ प्रकाश पकड़ती हैं, पानी तोड़ती हैं, ऑक्सीजन छोड़ती हैं और ATP व NADPH बनाती हैं। स्ट्रोमा उन ATP और NADPH को एंज़ाइमों के साथ लगाकर कार्बन डाइऑक्साइड से शर्करा बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are the sugar-making reactions wrongly called 'dark reactions'?",
+        "hi": "शर्करा बनाने वाली अभिक्रियाओं को 'अदीप्त अभिक्रिया' कहना ठीक क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "They depend on products of the light reaction",
+         "hi": "वे प्रकाश अभिक्रिया के उत्पादों पर निर्भर हैं"
+        },
+        {
+         "en": "They happen only at night",
+         "hi": "वे केवल रात में होती हैं"
+        },
+        {
+         "en": "They need no energy",
+         "hi": "उन्हें ऊर्जा नहीं चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They do not use light directly, but they need ATP and NADPH from the light reaction, so they run in daytime.",
+        "hi": "वे सीधे प्रकाश नहीं लेतीं, पर प्रकाश अभिक्रिया के ATP और NADPH चाहिए, इसलिए वे दिन में चलती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The name misleads: without fresh ATP and NADPH from light they soon stop at night.",
+         "hi": "नाम भ्रम पैदा करता है: प्रकाश से नए ATP और NADPH न मिलें तो रात में ये जल्दी रुक जाती हैं।"
+        },
+        {
+         "en": "Building sugar needs a lot of energy, supplied as ATP and NADPH.",
+         "hi": "शर्करा बनाने में बहुत ऊर्जा लगती है, जो ATP और NADPH से मिलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where is oxygen released in the chloroplast?",
+        "hi": "हरितलवक में ऑक्सीजन कहाँ निकलती है?"
+       },
+       "options": [
+        {
+         "en": "Stroma",
+         "hi": "स्ट्रोमा"
+        },
+        {
+         "en": "Grana (thylakoids)",
+         "hi": "ग्रैना (थायलेकॉइड)"
+        },
+        {
+         "en": "Outer membrane",
+         "hi": "बाहरी झिल्ली"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Oxygen comes from water split by photosystem II on the thylakoids.",
+        "hi": "ऑक्सीजन थायलेकॉइड पर प्रकाश तंत्र II द्वारा तोड़े गए पानी से आती है।"
+       },
+       "wrong": [
+        {
+         "en": "The stroma fixes carbon dioxide; it does not split water.",
+         "hi": "स्ट्रोमा कार्बन डाइऑक्साइड जोड़ता है; वह पानी नहीं तोड़ता।"
+        },
+        "",
+        {
+         "en": "The outer membrane only wraps the chloroplast; no pigments work there.",
+         "hi": "बाहरी झिल्ली केवल हरितलवक को ढकती है; वहाँ कोई वर्णक काम नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the remaining cards, then press Start again and try to get all of them right first time.",
+      "hi": "ख़ुद आज़माओ। बाकी कार्ड छाँटो, फिर 'फिर से शुरू' दबाकर सब पहली बार में सही करने की कोशिश करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch11-pigments",
+   "topic": "11.4",
+   "template": "match",
+   "title": {
+    "en": "Four leaf pigments",
+    "hi": "पत्ती के चार वर्णक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "chla",
+      "left": {
+       "en": "Chlorophyll a",
+       "hi": "पर्णहरित a"
+      },
+      "right": {
+       "en": "Bright or blue-green: the chief pigment",
+       "hi": "चमकीला या नीला-हरा: मुख्य वर्णक"
+      },
+      "why": {
+       "en": "Chlorophyll a is the main pigment; it sits at the reaction centre and drives the reactions.",
+       "hi": "पर्णहरित a मुख्य वर्णक है; यह अभिक्रिया केंद्र पर रहता है और अभिक्रियाएँ चलाता है।"
+      }
+     },
+     {
+      "id": "chlb",
+      "left": {
+       "en": "Chlorophyll b",
+       "hi": "पर्णहरित b"
+      },
+      "right": {
+       "en": "Yellow-green: a helper chlorophyll",
+       "hi": "पीला-हरा: सहायक पर्णहरित"
+      },
+      "why": {
+       "en": "Chlorophyll b absorbs slightly different light and passes the energy to chlorophyll a.",
+       "hi": "पर्णहरित b थोड़ा अलग प्रकाश सोखता है और ऊर्जा पर्णहरित a को देता है।"
+      }
+     },
+     {
+      "id": "xan",
+      "left": {
+       "en": "Xanthophylls",
+       "hi": "ज़ैंथोफ़िल"
+      },
+      "right": {
+       "en": "Yellow",
+       "hi": "पीला"
+      },
+      "why": {
+       "en": "Xanthophylls are yellow accessory pigments.",
+       "hi": "ज़ैंथोफ़िल पीले सहायक वर्णक हैं।"
+      }
+     },
+     {
+      "id": "car",
+      "left": {
+       "en": "Carotenoids",
+       "hi": "कैरोटिनॉइड"
+      },
+      "right": {
+       "en": "Yellow to yellow-orange",
+       "hi": "पीले से पीला-नारंगी"
+      },
+      "why": {
+       "en": "Carotenoids, like those in carrots, are yellow-orange; they also protect chlorophyll a from too much light.",
+       "hi": "गाजर जैसे कैरोटिनॉइड पीले-नारंगी होते हैं; ये पर्णहरित a को ज़्यादा प्रकाश से भी बचाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:chla",
+     "expect": "matched:chla",
+     "say": {
+      "en": "Tap chlorophyll a, then tap its colour and role.",
+      "hi": "पर्णहरित a पर टैप करो, फिर उसका रंग और काम।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chlorophyll a alone absorbs mostly blue and red light. Why does a leaf also keep other pigments?",
+      "hi": "पर्णहरित a अकेला मुख्यतः नीला और लाल प्रकाश सोखता है। पत्ती दूसरे वर्णक भी क्यों रखती है?"
+     },
+     "options": [
+      {
+       "id": "wide",
+       "en": "To catch more colours of light and protect chlorophyll a",
+       "hi": "प्रकाश के और रंग पकड़ने और पर्णहरित a को बचाने के लिए"
+      },
+      {
+       "id": "store",
+       "en": "To store sugar",
+       "hi": "शर्करा जमा करने के लिए"
+      },
+      {
+       "id": "look",
+       "en": "Only to look colourful",
+       "hi": "केवल रंगीन दिखने के लिए"
+      }
+     ],
+     "answer": "wide"
+    },
+    {
+     "kind": "do",
+     "target": "left:chlb",
+     "expect": "matched:chlb",
+     "say": {
+      "en": "Match chlorophyll b.",
+      "hi": "पर्णहरित b को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:car",
+     "expect": "matched:car",
+     "say": {
+      "en": "Match the carotenoids.",
+      "hi": "कैरोटिनॉइड को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A leaf holds four main pigments. Chlorophyll a is the chief one. Chlorophyll b, xanthophylls and carotenoids are accessory pigments: they absorb other wavelengths, pass the energy to chlorophyll a, and protect it from too much light. In autumn-like yellow leaves the green fades first and the yellow pigments show.",
+      "hi": "पत्ती में चार मुख्य वर्णक होते हैं। पर्णहरित a मुख्य है। पर्णहरित b, ज़ैंथोफ़िल और कैरोटिनॉइड सहायक वर्णक हैं: वे दूसरी तरंगदैर्घ्य सोखते हैं, ऊर्जा पर्णहरित a को देते हैं और उसे ज़्यादा प्रकाश से बचाते हैं। पीली होती पत्तियों में पहले हरा रंग मिटता है और पीले वर्णक दिखने लगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which pigment is at the reaction centre and drives photosynthesis?",
+        "hi": "कौन-सा वर्णक अभिक्रिया केंद्र पर रहकर प्रकाश संश्लेषण चलाता है?"
+       },
+       "options": [
+        {
+         "en": "Carotenoid",
+         "hi": "कैरोटिनॉइड"
+        },
+        {
+         "en": "Xanthophyll",
+         "hi": "ज़ैंथोफ़िल"
+        },
+        {
+         "en": "Chlorophyll a",
+         "hi": "पर्णहरित a"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Chlorophyll a is the chief pigment; the others hand their energy to it.",
+        "hi": "पर्णहरित a मुख्य वर्णक है; बाकी अपनी ऊर्जा उसे देते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Carotenoids catch extra light and protect, but they pass energy on rather than drive the reaction.",
+         "hi": "कैरोटिनॉइड अतिरिक्त प्रकाश पकड़ते और बचाते हैं, पर वे ऊर्जा आगे देते हैं, अभिक्रिया नहीं चलाते।"
+        },
+        {
+         "en": "Xanthophylls are accessory pigments, not the reaction-centre pigment.",
+         "hi": "ज़ैंथोफ़िल सहायक वर्णक हैं, अभिक्रिया केंद्र के वर्णक नहीं।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "A paper strip separates spinach pigments into bands. Which band is yellow-green?",
+        "hi": "काग़ज़ की पट्टी पर पालक के वर्णक पट्टियों में बँटते हैं। कौन-सी पट्टी पीली-हरी होती है?"
+       },
+       "options": [
+        {
+         "en": "Chlorophyll b",
+         "hi": "पर्णहरित b"
+        },
+        {
+         "en": "Chlorophyll a",
+         "hi": "पर्णहरित a"
+        },
+        {
+         "en": "Carotenoids",
+         "hi": "कैरोटिनॉइड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chlorophyll b is yellow-green, while chlorophyll a is bright or blue-green.",
+        "hi": "पर्णहरित b पीला-हरा होता है, जबकि पर्णहरित a चमकीला या नीला-हरा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chlorophyll a is the blue-green band, a bluer shade than chlorophyll b.",
+         "hi": "पर्णहरित a नीली-हरी पट्टी है, जो पर्णहरित b से अधिक नीली है।"
+        },
+        {
+         "en": "Carotenoids show as a yellow to orange band, with no green.",
+         "hi": "कैरोटिनॉइड पीली से नारंगी पट्टी बनाते हैं, उनमें हरा नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match xanthophylls too, then think: which pigments would you see in a ripe mango or a carrot?",
+      "hi": "ख़ुद आज़माओ। ज़ैंथोफ़िल भी मिलाओ, फिर सोचो: पके आम या गाजर में कौन-से वर्णक दिखते होंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch11-z-scheme",
+   "topic": "11.6",
+   "template": "sequence",
+   "title": {
+    "en": "The journey of an electron (Z scheme)",
+    "hi": "एक इलेक्ट्रॉन की यात्रा (Z योजना)"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "ps2",
+      "text": {
+       "en": "Light excites chlorophyll P680 in photosystem II",
+       "hi": "प्रकाश तंत्र II में प्रकाश पर्णहरित P680 को उत्तेजित करता है"
+      }
+     },
+     {
+      "id": "acc",
+      "text": {
+       "en": "An excited electron jumps to a primary electron acceptor",
+       "hi": "उत्तेजित इलेक्ट्रॉन प्राथमिक इलेक्ट्रॉन ग्राही पर कूदता है"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "PS II fills the gap with an electron from water; O2 is freed",
+       "hi": "PS II पानी से इलेक्ट्रॉन लेकर कमी भरता है; O2 निकलती है"
+      }
+     },
+     {
+      "id": "chain",
+      "text": {
+       "en": "The electron runs downhill along a chain of cytochromes",
+       "hi": "इलेक्ट्रॉन साइटोक्रोम की शृंखला पर नीचे की ओर बहता है"
+      }
+     },
+     {
+      "id": "ps1",
+      "text": {
+       "en": "At photosystem I, light excites P700 and lifts the electron again",
+       "hi": "प्रकाश तंत्र I पर प्रकाश P700 को उत्तेजित कर इलेक्ट्रॉन फिर ऊपर उठाता है"
+      }
+     },
+     {
+      "id": "nadph",
+      "text": {
+       "en": "The electron reduces NADP+ to NADPH",
+       "hi": "इलेक्ट्रॉन NADP+ को NADPH में बदल देता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:ps2",
+     "expect": "placed:ps2",
+     "say": {
+      "en": "Put the first event in place 1: tap the card, then tap place 1.",
+      "hi": "पहली घटना को स्थान 1 पर रखो: कार्ड पर टैप करो, फिर स्थान 1 पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:acc",
+     "expect": "placed:acc",
+     "say": {
+      "en": "Where does the excited electron go next? Place that card.",
+      "hi": "उत्तेजित इलेक्ट्रॉन आगे कहाँ जाता है? वह कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Photosystem II has lost an electron. Where does it get a new one?",
+      "hi": "प्रकाश तंत्र II ने एक इलेक्ट्रॉन खो दिया। उसे नया इलेक्ट्रॉन कहाँ से मिलता है?"
+     },
+     "options": [
+      {
+       "id": "w",
+       "en": "From water",
+       "hi": "पानी से"
+      },
+      {
+       "id": "c",
+       "en": "From carbon dioxide",
+       "hi": "कार्बन डाइऑक्साइड से"
+      },
+      {
+       "id": "n",
+       "en": "From NADPH",
+       "hi": "NADPH से"
+      }
+     ],
+     "answer": "w"
+    },
+    {
+     "kind": "do",
+     "target": "item:water",
+     "expect": "placed:water",
+     "say": {
+      "en": "Place the card that refills photosystem II.",
+      "hi": "वह कार्ड रखो जो प्रकाश तंत्र II की कमी भरता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Light hits PS II first and lifts an electron to a high energy level. It flows downhill through the cytochromes, giving energy to make ATP. PS I uses a second burst of light to lift it again, and it ends on NADP+, making NADPH. Water refills PS II and gives out oxygen. Drawn as energy levels, the path looks like a Z.",
+      "hi": "प्रकाश पहले PS II पर पड़ता है और इलेक्ट्रॉन को ऊँचे ऊर्जा स्तर पर उठाता है। वह साइटोक्रोम से नीचे बहता है और ATP बनाने के लिए ऊर्जा देता है। PS I प्रकाश की दूसरी चोट से उसे फिर उठाता है, और वह NADP+ पर पहुँचकर NADPH बनाता है। पानी PS II की कमी भरता है और ऑक्सीजन देता है। ऊर्जा स्तरों पर बनाने पर यह रास्ता Z जैसा दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which photosystem receives light first in the Z scheme?",
+        "hi": "Z योजना में पहले कौन-सा प्रकाश तंत्र प्रकाश पाता है?"
+       },
+       "options": [
+        {
+         "en": "Photosystem I",
+         "hi": "प्रकाश तंत्र I"
+        },
+        {
+         "en": "Photosystem II",
+         "hi": "प्रकाश तंत्र II"
+        },
+        {
+         "en": "Both at once, with no order",
+         "hi": "दोनों एक साथ, बिना क्रम के"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The chain starts at PS II (P680), then passes through the cytochromes to PS I (P700).",
+        "hi": "शृंखला PS II (P680) से शुरू होकर साइटोक्रोम से होते हुए PS I (P700) तक जाती है।"
+       },
+       "wrong": [
+        {
+         "en": "PS I is numbered first because it was discovered first, but in the chain it works second.",
+         "hi": "PS I को पहला नंबर इसलिए मिला क्योंकि वह पहले खोजा गया, पर शृंखला में वह दूसरे स्थान पर काम करता है।"
+        },
+        "",
+        {
+         "en": "Both absorb light, but the electron must pass from PS II to PS I in that order.",
+         "hi": "दोनों प्रकाश सोखते हैं, पर इलेक्ट्रॉन को PS II से PS I की ओर ही जाना होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What finally receives the electron at the end of the Z scheme?",
+        "hi": "Z योजना के अंत में इलेक्ट्रॉन अंततः किसे मिलता है?"
+       },
+       "options": [
+        {
+         "en": "Oxygen",
+         "hi": "ऑक्सीजन"
+        },
+        {
+         "en": "Water",
+         "hi": "पानी"
+        },
+        {
+         "en": "NADP+",
+         "hi": "NADP+ (एनएडीपी)"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "NADP+ takes the electrons and becomes NADPH, which the Calvin cycle uses.",
+        "hi": "NADP+ इलेक्ट्रॉन लेकर NADPH बनता है, जिसे केल्विन चक्र काम में लेता है।"
+       },
+       "wrong": [
+        {
+         "en": "Oxygen is the final acceptor in respiration, not in photosynthesis; here oxygen is given out.",
+         "hi": "ऑक्सीजन श्वसन में अंतिम ग्राही है, प्रकाश संश्लेषण में नहीं; यहाँ ऑक्सीजन बाहर निकलती है।"
+        },
+        {
+         "en": "Water is where electrons come from, at the start, not where they end.",
+         "hi": "पानी से इलेक्ट्रॉन शुरू में आते हैं, वहाँ ख़त्म नहीं होते।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Finish the order and press Check. Then imagine PS II stops working: which events would still happen?",
+      "hi": "ख़ुद आज़माओ। क्रम पूरा करो और 'जाँचो' दबाओ। फिर सोचो: अगर PS II काम करना बंद कर दे, तो कौन-सी घटनाएँ फिर भी होंगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch11-cyclic",
+   "topic": "11.6",
+   "template": "sort",
+   "title": {
+    "en": "Cyclic or non-cyclic?",
+    "hi": "चक्रीय या अचक्रीय?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "non",
+      "label": {
+       "en": "Non-cyclic photophosphorylation",
+       "hi": "अचक्रीय प्रकाश फ़ॉस्फ़ोरिलीकरण"
+      }
+     },
+     {
+      "id": "cyc",
+      "label": {
+       "en": "Cyclic photophosphorylation",
+       "hi": "चक्रीय प्रकाश फ़ॉस्फ़ोरिलीकरण"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "both",
+      "text": {
+       "en": "Uses PS II and PS I together",
+       "hi": "PS II और PS I दोनों साथ"
+      },
+      "bin": "non",
+      "why": {
+       "en": "In the non-cyclic path the electron goes from PS II to PS I in series.",
+       "hi": "अचक्रीय रास्ते में इलेक्ट्रॉन क्रम से PS II से PS I तक जाता है।"
+      }
+     },
+     {
+      "id": "only1",
+      "text": {
+       "en": "Uses only PS I",
+       "hi": "केवल PS I"
+      },
+      "bin": "cyc",
+      "why": {
+       "en": "When only PS I works, the electron circles back to it.",
+       "hi": "जब केवल PS I काम करता है, तो इलेक्ट्रॉन घूमकर उसी पर लौट आता है।"
+      }
+     },
+     {
+      "id": "twin",
+      "text": {
+       "en": "Makes ATP and NADPH",
+       "hi": "ATP और NADPH बनते हैं"
+      },
+      "bin": "non",
+      "why": {
+       "en": "The electron ends on NADP+, so NADPH forms along with ATP.",
+       "hi": "इलेक्ट्रॉन NADP+ पर पहुँचता है, इसलिए ATP के साथ NADPH भी बनता है।"
+      }
+     },
+     {
+      "id": "atponly",
+      "text": {
+       "en": "Makes ATP only",
+       "hi": "केवल ATP बनता है"
+      },
+      "bin": "cyc",
+      "why": {
+       "en": "The electron returns to PS I instead of reaching NADP+, so no NADPH forms.",
+       "hi": "इलेक्ट्रॉन NADP+ तक न जाकर PS I पर लौटता है, इसलिए NADPH नहीं बनता।"
+      }
+     },
+     {
+      "id": "split",
+      "text": {
+       "en": "Splits water and frees oxygen",
+       "hi": "पानी टूटता है, ऑक्सीजन निकलती है"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Only PS II is linked to water splitting, and only the non-cyclic path uses PS II.",
+       "hi": "पानी का टूटना केवल PS II से जुड़ा है, और केवल अचक्रीय रास्ता PS II लेता है।"
+      }
+     },
+     {
+      "id": "lamellae",
+      "text": {
+       "en": "Happens in the stroma lamellae",
+       "hi": "स्ट्रोमा पटलिकाओं में होता है"
+      },
+      "bin": "cyc",
+      "why": {
+       "en": "Stroma lamellae have PS I but lack PS II and NADP reductase.",
+       "hi": "स्ट्रोमा पटलिकाओं में PS I है, पर PS II और NADP रिडक्टेज़ नहीं।"
+      }
+     },
+     {
+      "id": "granal",
+      "text": {
+       "en": "Happens in the grana lamellae",
+       "hi": "ग्रैना पटलिकाओं में होता है"
+      },
+      "bin": "non",
+      "why": {
+       "en": "The grana have both photosystems, so the full Z scheme runs there.",
+       "hi": "ग्रैना में दोनों प्रकाश तंत्र हैं, इसलिए पूरी Z योजना वहीं चलती है।"
+      }
+     },
+     {
+      "id": "loop",
+      "text": {
+       "en": "The electron returns to the same photosystem",
+       "hi": "इलेक्ट्रॉन उसी प्रकाश तंत्र पर लौटता है"
+      },
+      "bin": "cyc",
+      "why": {
+       "en": "That return loop is why it is called cyclic.",
+       "hi": "इसी लौटने वाले चक्कर के कारण इसे चक्रीय कहते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:only1",
+     "expect": "correct:only1",
+     "say": {
+      "en": "Tap the card 'Uses only PS I' and sort it.",
+      "hi": "'केवल PS I' वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:split",
+     "expect": "correct:split",
+     "say": {
+      "en": "Now sort the card about splitting water.",
+      "hi": "अब पानी टूटने वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the cyclic path the electron never reaches NADP+. What does that path make?",
+      "hi": "चक्रीय रास्ते में इलेक्ट्रॉन कभी NADP+ तक नहीं पहुँचता। वह रास्ता क्या बनाता है?"
+     },
+     "options": [
+      {
+       "id": "atp",
+       "en": "ATP only",
+       "hi": "केवल ATP"
+      },
+      {
+       "id": "both",
+       "en": "ATP and NADPH",
+       "hi": "ATP और NADPH"
+      },
+      {
+       "id": "nadph",
+       "en": "NADPH only",
+       "hi": "केवल NADPH"
+      }
+     ],
+     "answer": "atp"
+    },
+    {
+     "kind": "do",
+     "target": "card:atponly",
+     "expect": "correct:atponly",
+     "say": {
+      "en": "Sort the card that answers this.",
+      "hi": "जो कार्ड इसका उत्तर है, उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Non-cyclic photophosphorylation uses both photosystems, splits water, frees oxygen and makes both ATP and NADPH. Cyclic photophosphorylation uses only PS I in the stroma lamellae; the electron loops back, so it makes ATP but no NADPH and no oxygen. It also runs when only light longer than 680 nm is available.",
+      "hi": "अचक्रीय प्रकाश फ़ॉस्फ़ोरिलीकरण दोनों प्रकाश तंत्र लेता है, पानी तोड़ता है, ऑक्सीजन छोड़ता है और ATP व NADPH दोनों बनाता है। चक्रीय प्रकाश फ़ॉस्फ़ोरिलीकरण स्ट्रोमा पटलिकाओं में केवल PS I लेता है; इलेक्ट्रॉन लौट आता है, इसलिए ATP बनता है पर NADPH और ऑक्सीजन नहीं। यह तब भी चलता है जब केवल 680 nm से लंबी तरंगदैर्घ्य का प्रकाश मिले।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is no oxygen given out in cyclic photophosphorylation?",
+        "hi": "चक्रीय प्रकाश फ़ॉस्फ़ोरिलीकरण में ऑक्सीजन क्यों नहीं निकलती?"
+       },
+       "options": [
+        {
+         "en": "PS II, which splits water, is not used",
+         "hi": "पानी तोड़ने वाला PS II काम में नहीं आता"
+        },
+        {
+         "en": "Oxygen is used up at once",
+         "hi": "ऑक्सीजन तुरंत ख़र्च हो जाती है"
+        },
+        {
+         "en": "There is no chlorophyll",
+         "hi": "पर्णहरित नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water splitting belongs to PS II; with only PS I working, water is not split.",
+        "hi": "पानी का टूटना PS II का काम है; केवल PS I चलने पर पानी नहीं टूटता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No oxygen is made in the first place; nothing is being used up.",
+         "hi": "ऑक्सीजन बनती ही नहीं; ख़र्च होने की बात नहीं है।"
+        },
+        {
+         "en": "PS I is itself made of chlorophyll molecules (P700), so chlorophyll is present.",
+         "hi": "PS I स्वयं पर्णहरित अणुओं (P700) से बना है, इसलिए पर्णहरित मौजूद है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the rest of the cards. Which single card explains the name 'cyclic'?",
+      "hi": "ख़ुद आज़माओ। बाकी कार्ड छाँटो। कौन-सा एक कार्ड 'चक्रीय' नाम का कारण बताता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch11-calvin",
+   "topic": "11.7",
+   "template": "sequence",
+   "title": {
+    "en": "Turn the Calvin cycle",
+    "hi": "केल्विन चक्र घुमाओ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "carbox",
+      "text": {
+       "en": "CO2 joins RuBP (5 carbons), helped by RuBisCO",
+       "hi": "RuBisCO की मदद से CO2, RuBP (5 कार्बन) से जुड़ता है"
+      }
+     },
+     {
+      "id": "pga",
+      "text": {
+       "en": "The new compound splits into two 3-PGA (3 carbons each)",
+       "hi": "नया यौगिक दो 3-PGA (हर एक 3 कार्बन) में टूटता है"
+      }
+     },
+     {
+      "id": "reduce",
+      "text": {
+       "en": "ATP and NADPH reduce PGA to triose phosphate",
+       "hi": "ATP और NADPH, PGA को ट्रायोज़ फ़ॉस्फ़ेट में बदलते हैं"
+      }
+     },
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Some triose phosphate leaves to build glucose",
+       "hi": "कुछ ट्रायोज़ फ़ॉस्फ़ेट निकलकर ग्लूकोज़ बनाता है"
+      }
+     },
+     {
+      "id": "regen",
+      "text": {
+       "en": "ATP helps rebuild RuBP from the rest",
+       "hi": "ATP की मदद से बचे हुए से RuBP फिर बनता है"
+      }
+     }
+    ],
+    "cyclic": true
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:carbox",
+     "expect": "placed:carbox",
+     "say": {
+      "en": "Start the cycle: put carboxylation (CO2 joins RuBP) in place 1.",
+      "hi": "चक्र शुरू करो: कार्बोक्सिलीकरण (CO2 का RuBP से जुड़ना) स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:pga",
+     "expect": "placed:pga",
+     "say": {
+      "en": "Place what happens to the unstable new compound.",
+      "hi": "अस्थिर नए यौगिक का क्या होता है, वह कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the plant is kept in the dark for a long time, what happens to the Calvin cycle?",
+      "hi": "अगर पौधे को देर तक अँधेरे में रखा जाए, तो केल्विन चक्र का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "stop",
+       "en": "It stops, as ATP and NADPH run out",
+       "hi": "ATP और NADPH ख़त्म होने से रुक जाता है"
+      },
+      {
+       "id": "same",
+       "en": "It keeps going just the same",
+       "hi": "पहले जैसा ही चलता रहता है"
+      },
+      {
+       "id": "fast",
+       "en": "It runs faster",
+       "hi": "तेज़ चलता है"
+      }
+     ],
+     "answer": "stop"
+    },
+    {
+     "kind": "do",
+     "target": "item:reduce",
+     "expect": "placed:reduce",
+     "say": {
+      "en": "Place the step that uses ATP and NADPH.",
+      "hi": "वह चरण रखो जिसमें ATP और NADPH लगते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Calvin cycle has three stages: carboxylation, reduction and regeneration. CO2 is fixed onto RuBP, the PGA formed is reduced using ATP and NADPH, and RuBP is rebuilt so the cycle can turn again. Six turns fix six CO2 and make one glucose, using 18 ATP and 12 NADPH.",
+      "hi": "केल्विन चक्र के तीन चरण हैं: कार्बोक्सिलीकरण, अपचयन और पुनर्जनन। CO2, RuBP से जुड़ता है, बने PGA को ATP और NADPH से अपचयित किया जाता है, और RuBP फिर बनता है ताकि चक्र दोबारा घूमे। छह चक्करों में छह CO2 जुड़ते हैं और एक ग्लूकोज़ बनता है; इसमें 18 ATP और 12 NADPH लगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the first stable product when CO2 is fixed in the Calvin cycle?",
+        "hi": "केल्विन चक्र में CO2 जुड़ने पर पहला स्थिर उत्पाद क्या है?"
+       },
+       "options": [
+        {
+         "en": "Glucose",
+         "hi": "ग्लूकोज़"
+        },
+        {
+         "en": "3-phosphoglyceric acid (PGA)",
+         "hi": "3-फ़ॉस्फ़ोग्लिसरिक अम्ल (PGA)"
+        },
+        {
+         "en": "Oxaloacetic acid",
+         "hi": "ऑक्सैलोऐसिटिक अम्ल"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "RuBP plus CO2 splits at once into two molecules of 3-PGA, a 3-carbon acid; that is why these are C3 plants.",
+        "hi": "RuBP और CO2 तुरंत दो 3-PGA अणुओं में टूटते हैं, जो 3-कार्बन का अम्ल है; इसीलिए ये C3 पौधे कहलाते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Glucose is made much later, after reduction, and only from triose phosphate that leaves the cycle.",
+         "hi": "ग्लूकोज़ बहुत बाद में, अपचयन के बाद, चक्र से निकले ट्रायोज़ फ़ॉस्फ़ेट से बनता है।"
+        },
+        "",
+        {
+         "en": "OAA is the first product in C4 plants' mesophyll, not in the Calvin cycle.",
+         "hi": "OAA, C4 पौधों के पर्णमध्योतक में पहला उत्पाद है, केल्विन चक्र में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many ATP are used to make one glucose in the Calvin cycle?",
+        "hi": "केल्विन चक्र में एक ग्लूकोज़ बनाने में कितने ATP लगते हैं?"
+       },
+       "options": [
+        {
+         "en": "6 ATP",
+         "hi": "6 ATP अणु"
+        },
+        {
+         "en": "12 ATP",
+         "hi": "12 ATP अणु"
+        },
+        {
+         "en": "18 ATP",
+         "hi": "18 ATP अणु"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Each CO2 needs 3 ATP and 2 NADPH; six CO2 give 18 ATP and 12 NADPH.",
+        "hi": "हर CO2 के लिए 3 ATP और 2 NADPH लगते हैं; छह CO2 के लिए 18 ATP और 12 NADPH।"
+       },
+       "wrong": [
+        {
+         "en": "Six is the number of turns (one per CO2), not the number of ATP.",
+         "hi": "छह चक्करों (हर CO2 का एक) की संख्या है, ATP की नहीं।"
+        },
+        {
+         "en": "Twelve is the number of NADPH, not ATP; ATP is also needed to rebuild RuBP.",
+         "hi": "बारह NADPH की संख्या है, ATP की नहीं; RuBP फिर बनाने में भी ATP लगता है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Finish the cycle and press Check: any starting card works in a cycle. Which stage would stop first if RuBisCO were missing?",
+      "hi": "ख़ुद आज़माओ। चक्र पूरा करो और 'जाँचो' दबाओ: चक्र में कहीं से भी शुरू कर सकते हो। अगर RuBisCO न हो तो कौन-सा चरण सबसे पहले रुकेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch11-c3-c4",
+   "topic": "11.8",
+   "template": "sort",
+   "title": {
+    "en": "C3 or C4?",
+    "hi": "C3 या C4?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "c3",
+      "label": {
+       "en": "C3 plants",
+       "hi": "C3 पौधे"
+      }
+     },
+     {
+      "id": "c4",
+      "label": {
+       "en": "C4 plants",
+       "hi": "C4 पौधे"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "maize",
+      "text": {
+       "en": "Maize (makka)",
+       "hi": "मक्का"
+      },
+      "bin": "c4",
+      "why": {
+       "en": "Maize is a classic C4 plant of hot, sunny fields.",
+       "hi": "मक्का गर्म, धूप वाले खेतों का एक जाना-माना C4 पौधा है।"
+      }
+     },
+     {
+      "id": "jowar",
+      "text": {
+       "en": "Jowar (sorghum)",
+       "hi": "ज्वार"
+      },
+      "bin": "c4",
+      "why": {
+       "en": "Sorghum is a C4 grass, like maize.",
+       "hi": "ज्वार भी मक्का की तरह C4 घास है।"
+      }
+     },
+     {
+      "id": "cane",
+      "text": {
+       "en": "Sugarcane",
+       "hi": "गन्ना"
+      },
+      "bin": "c4",
+      "why": {
+       "en": "Sugarcane uses the C4 pathway and makes a lot of sugar in tropical heat.",
+       "hi": "गन्ना C4 मार्ग अपनाता है और उष्ण गर्मी में बहुत शर्करा बनाता है।"
+      }
+     },
+     {
+      "id": "wheat",
+      "text": {
+       "en": "Wheat",
+       "hi": "गेहूँ"
+      },
+      "bin": "c3",
+      "why": {
+       "en": "Wheat fixes CO2 directly by the Calvin cycle: a C3 plant.",
+       "hi": "गेहूँ सीधे केल्विन चक्र से CO2 जोड़ता है: C3 पौधा।"
+      }
+     },
+     {
+      "id": "rice",
+      "text": {
+       "en": "Rice",
+       "hi": "धान"
+      },
+      "bin": "c3",
+      "why": {
+       "en": "Rice is a C3 plant, even though it grows in warm places.",
+       "hi": "धान गर्म जगहों में उगता है, फिर भी C3 पौधा है।"
+      }
+     },
+     {
+      "id": "kranz",
+      "text": {
+       "en": "Kranz anatomy: big bundle-sheath cells",
+       "hi": "क्रान्ज़ शारीरिकी: बड़ी पूल आच्छद कोशिकाएँ"
+      },
+      "bin": "c4",
+      "why": {
+       "en": "C4 leaves have a ring of large bundle-sheath cells with many chloroplasts around each vein.",
+       "hi": "C4 पत्तियों में हर शिरा के चारों ओर बहुत हरितलवक वाली बड़ी पूल आच्छद कोशिकाओं का घेरा होता है।"
+      }
+     },
+     {
+      "id": "oaa",
+      "text": {
+       "en": "First product: OAA (4 carbons)",
+       "hi": "पहला उत्पाद: OAA (4 कार्बन)"
+      },
+      "bin": "c4",
+      "why": {
+       "en": "PEP case fixes CO2 in the mesophyll into oxaloacetic acid, a 4-carbon acid.",
+       "hi": "पर्णमध्योतक में PEP केस CO2 को ऑक्सैलोऐसिटिक अम्ल में जोड़ता है, जो 4-कार्बन अम्ल है।"
+      }
+     },
+     {
+      "id": "pga",
+      "text": {
+       "en": "First product: PGA (3 carbons)",
+       "hi": "पहला उत्पाद: PGA (3 कार्बन)"
+      },
+      "bin": "c3",
+      "why": {
+       "en": "In C3 plants RuBisCO fixes CO2 straight into 3-PGA.",
+       "hi": "C3 पौधों में RuBisCO सीधे CO2 को 3-PGA में जोड़ता है।"
+      }
+     },
+     {
+      "id": "photoresp",
+      "text": {
+       "en": "Loses much carbon to photorespiration",
+       "hi": "प्रकाश श्वसन में बहुत कार्बन खोता है"
+      },
+      "bin": "c3",
+      "why": {
+       "en": "In C3 leaves RuBisCO often grabs O2 instead of CO2 and wastes energy.",
+       "hi": "C3 पत्तियों में RuBisCO अक्सर CO2 की जगह O2 पकड़ लेता है और ऊर्जा बर्बाद होती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:maize",
+     "expect": "correct:maize",
+     "say": {
+      "en": "Tap maize and sort it.",
+      "hi": "मक्का पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:wheat",
+     "expect": "correct:wheat",
+     "say": {
+      "en": "Now sort wheat.",
+      "hi": "अब गेहूँ को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "C4 plants pump CO2 into their bundle-sheath cells, so CO2 there is very high. What happens to photorespiration in them?",
+      "hi": "C4 पौधे CO2 को पूल आच्छद कोशिकाओं में भर देते हैं, इसलिए वहाँ CO2 बहुत अधिक होती है। उनमें प्रकाश श्वसन का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "none",
+       "en": "It almost does not happen",
+       "hi": "लगभग नहीं होता"
+      },
+      {
+       "id": "more",
+       "en": "It becomes stronger",
+       "hi": "और बढ़ जाता है"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same as in wheat",
+       "hi": "गेहूँ जैसा ही रहता है"
+      }
+     ],
+     "answer": "none"
+    },
+    {
+     "kind": "do",
+     "target": "card:photoresp",
+     "expect": "correct:photoresp",
+     "say": {
+      "en": "Sort the card about photorespiration.",
+      "hi": "प्रकाश श्वसन वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "C4 plants such as maize, jowar and sugarcane first fix CO2 in mesophyll cells with PEP case, making a 4-carbon acid. It travels to the bundle-sheath cells, releases CO2 there, and the Calvin cycle runs with lots of CO2 around RuBisCO. So C4 plants avoid photorespiration and do well in heat and bright light.",
+      "hi": "मक्का, ज्वार और गन्ने जैसे C4 पौधे पहले पर्णमध्योतक कोशिकाओं में PEP केस से CO2 जोड़कर 4-कार्बन अम्ल बनाते हैं। यह पूल आच्छद कोशिकाओं में जाकर CO2 छोड़ता है, और वहाँ RuBisCO के आसपास भरपूर CO2 के साथ केल्विन चक्र चलता है। इसलिए C4 पौधे प्रकाश श्वसन से बचते हैं और गर्मी व तेज़ धूप में अच्छे रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a C4 plant, where does the Calvin cycle run?",
+        "hi": "C4 पौधे में केल्विन चक्र कहाँ चलता है?"
+       },
+       "options": [
+        {
+         "en": "In the mesophyll cells",
+         "hi": "पर्णमध्योतक कोशिकाओं में"
+        },
+        {
+         "en": "In the bundle-sheath cells",
+         "hi": "पूल आच्छद कोशिकाओं में"
+        },
+        {
+         "en": "In the guard cells",
+         "hi": "द्वार कोशिकाओं में"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Bundle-sheath cells hold RuBisCO; the mesophyll only catches CO2 with PEP case.",
+        "hi": "RuBisCO पूल आच्छद कोशिकाओं में होता है; पर्णमध्योतक केवल PEP केस से CO2 पकड़ता है।"
+       },
+       "wrong": [
+        {
+         "en": "The mesophyll of C4 plants lacks RuBisCO; it does the first fixation into OAA.",
+         "hi": "C4 पौधों के पर्णमध्योतक में RuBisCO नहीं होता; वह पहली बार CO2 को OAA में जोड़ता है।"
+        },
+        "",
+        {
+         "en": "Guard cells open and close stomata; they do not run the Calvin cycle for the leaf.",
+         "hi": "द्वार कोशिकाएँ रंध्र खोलती-बंद करती हैं; वे पत्ती के लिए केल्विन चक्र नहीं चलातीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is photorespiration wasteful?",
+        "hi": "प्रकाश श्वसन व्यर्थ क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It makes no sugar and no ATP, and releases CO2",
+         "hi": "इसमें न शर्करा बनती है न ATP, और CO2 निकलती है"
+        },
+        {
+         "en": "It makes extra glucose",
+         "hi": "इसमें अतिरिक्त ग्लूकोज़ बनता है"
+        },
+        {
+         "en": "It splits water",
+         "hi": "इसमें पानी टूटता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When RuBisCO binds O2, energy is spent but carbon is lost as CO2 and nothing useful is made.",
+        "hi": "जब RuBisCO, O2 से जुड़ता है, तो ऊर्जा ख़र्च होती है पर कार्बन CO2 बनकर निकल जाता है और कुछ उपयोगी नहीं बनता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If it made extra glucose it would help the plant; in fact it loses fixed carbon.",
+         "hi": "अगर इससे ग्लूकोज़ बनता तो पौधे को फ़ायदा होता; असल में जुड़ा कार्बन खो जाता है।"
+        },
+        {
+         "en": "Water splitting is part of the light reaction, not of photorespiration.",
+         "hi": "पानी का टूटना प्रकाश अभिक्रिया का भाग है, प्रकाश श्वसन का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the remaining cards. Then guess: which kind of crop could give a better yield in a hot, dry Rajasthan summer?",
+      "hi": "ख़ुद आज़माओ। बाकी कार्ड छाँटो। फिर अनुमान लगाओ: राजस्थान की गर्म, सूखी गर्मियों में किस तरह की फ़सल बेहतर उपज दे सकती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch11-limiting",
+   "topic": "11.10",
+   "template": "plant",
+   "title": {
+    "en": "Find the limiting factor",
+    "hi": "सीमाकारी कारक खोजो"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "photosynthesis",
+    "variables": [
+     "light",
+     "air",
+     "temperature"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "bubbles",
+     "say": {
+      "en": "Press play. The lamp is bright and there is plenty of CO2. Count the bubbles.",
+      "hi": "प्ले दबाओ। लैंप तेज़ है और CO2 भरपूर है। बुलबुले गिनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will dim the lamp to almost nothing. What will happen to the bubbles?",
+      "hi": "अब तुम लैंप को लगभग बुझा दोगे। बुलबुलों का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "fewer",
+       "en": "Far fewer bubbles",
+       "hi": "बहुत कम बुलबुले"
+      },
+      {
+       "id": "more",
+       "en": "More bubbles",
+       "hi": "ज़्यादा बुलबुले"
+      },
+      {
+       "id": "same",
+       "en": "No change",
+       "hi": "कोई बदलाव नहीं"
+      }
+     ],
+     "answer": "fewer"
+    },
+    {
+     "kind": "do",
+     "target": "slider:light",
+     "expect": "set:light",
+     "say": {
+      "en": "Drag the light slider down low, to about 10.",
+      "hi": "प्रकाश का स्लाइडर नीचे, लगभग 10 तक खिसकाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "With little light, the light reaction makes little ATP and NADPH, so sugar making slows and fewer oxygen bubbles rise. Light is now the factor in shortest supply. Blackman's law says the rate is set by the factor that is nearest its minimum.",
+      "hi": "कम प्रकाश में प्रकाश अभिक्रिया कम ATP और NADPH बनाती है, इसलिए शर्करा बनना धीमा हो जाता है और ऑक्सीजन के कम बुलबुले उठते हैं। अब प्रकाश सबसे कम उपलब्ध कारक है। ब्लैकमैन का नियम कहता है कि दर उस कारक से तय होती है जो अपनी न्यूनतम मात्रा के सबसे पास है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:air",
+     "expect": "set:air",
+     "say": {
+      "en": "Keep the light low and move the CO2 slider up and down. Watch whether the bubbles change much.",
+      "hi": "प्रकाश कम ही रखो और CO2 का स्लाइडर ऊपर-नीचे करो। देखो कि बुलबुले बहुत बदलते हैं या नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "With the lamp dim, adding more CO2 hardly helped. Why?",
+        "hi": "लैंप धीमा होने पर अधिक CO2 देने से लगभग कोई फ़ायदा नहीं हुआ। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Light was the limiting factor",
+         "hi": "प्रकाश सीमाकारी कारक था"
+        },
+        {
+         "en": "CO2 harms the plant",
+         "hi": "CO2 पौधे को नुक़सान पहुँचाती है"
+        },
+        {
+         "en": "The plant was dead",
+         "hi": "पौधा मर गया था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The rate rises only when the factor in shortest supply is raised; here that was light.",
+        "hi": "दर तभी बढ़ती है जब सबसे कम उपलब्ध कारक बढ़ाया जाए; यहाँ वह प्रकाश था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At these levels CO2 is a raw material, not a poison; it simply was not the shortage.",
+         "hi": "इन मात्राओं पर CO2 कच्चा माल है, ज़हर नहीं; बस कमी उसकी नहीं थी।"
+        },
+        {
+         "en": "The plant bubbled again as soon as light returned, so it was alive.",
+         "hi": "प्रकाश लौटते ही पौधे से फिर बुलबुले निकले, यानी वह जीवित था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do some greenhouse growers add CO2 for tomatoes and capsicum?",
+        "hi": "कुछ पॉलीहाउस में टमाटर और शिमला मिर्च के लिए CO2 क्यों बढ़ाई जाती है?"
+       },
+       "options": [
+        {
+         "en": "Air has only about 0.04% CO2, which often limits C3 plants",
+         "hi": "हवा में केवल लगभग 0.04% CO2 है, जो C3 पौधों को अक्सर सीमित करती है"
+        },
+        {
+         "en": "CO2 keeps insects away",
+         "hi": "CO2 कीड़ों को दूर रखती है"
+        },
+        {
+         "en": "CO2 makes the soil wet",
+         "hi": "CO2 मिट्टी को गीला करती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "C3 plants respond to more CO2 with faster photosynthesis and higher yields when light is enough.",
+        "hi": "प्रकाश पर्याप्त हो तो C3 पौधे अधिक CO2 मिलने पर तेज़ प्रकाश संश्लेषण और अधिक उपज देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding CO2 is done to feed photosynthesis, not to control pests.",
+         "hi": "CO2 प्रकाश संश्लेषण बढ़ाने के लिए दी जाती है, कीड़े भगाने के लिए नहीं।"
+        },
+        {
+         "en": "CO2 is a gas; it does not water the soil.",
+         "hi": "CO2 एक गैस है; यह मिट्टी को पानी नहीं देती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Bring the light back to high, then lower CO2. Now try a very hot temperature. Which factor limits the rate each time?",
+      "hi": "ख़ुद आज़माओ। प्रकाश फिर तेज़ करो, फिर CO2 घटाओ। अब बहुत ऊँचा तापमान आज़माओ। हर बार कौन-सा कारक दर को सीमित करता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Hook of the chapter",
+   "shows": "A green paddy field in Punjab or Kerala under bright morning sun, young rice plants in neat rows with sunlight on the leaves",
+   "view": "Low angle across the field, sun behind the camera, 16:9",
+   "right": "Leaves a healthy green, sky clear, water visible between rows",
+   "avoid": "People, tractors with brand names, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "11.10",
+   "use": "The limiting-factor lab and the light experiment",
+   "shows": "A sprig of Hydrilla upside down in a beaker of water with a pinch of baking soda, under a desk lamp at three distances: far, middle, near; bubbles rising from the cut stem increase as the lamp comes closer (beaker: reuse LIB-LAB-beaker-250ml)",
+   "view": "Same side view, same framing in all three frames, dark plain background",
+   "right": "Bubbles small and silvery, clearly more when the lamp is near; water clear",
+   "avoid": "Labels, a hot bare bulb touching the glass"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "11.3",
+   "use": "Inside a chloroplast",
+   "shows": "A 3D render of one chloroplast cut open: double outer membrane, stacks of disc-shaped thylakoids (grana) joined by flat stroma lamellae, the stroma around them",
+   "view": "Three-quarter view from above, cut face towards the camera, white background",
+   "right": "Grana as coin-like stacks, stroma lamellae linking them, lens shape about 5 micrometres long",
+   "avoid": "Labels, cartoon faces, wrong colours such as blue stroma"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "11.4",
+   "use": "The four leaf pigments",
+   "shows": "A paper chromatography strip of palak (spinach) leaf extract, showing separate bands: yellow-orange at the top, yellow, blue-green and yellow-green lower down",
+   "view": "Straight on, strip vertical against white, square crop",
+   "right": "Band colours true: carotenoids yellow-orange, xanthophylls yellow, chlorophyll a blue-green, chlorophyll b yellow-green",
+   "avoid": "Text, rulers with printing, brand names on solvent bottles"
+  },
+  {
+   "n": 5,
+   "kind": "CUT",
+   "topic": "11.8",
+   "use": "Kranz anatomy",
+   "shows": "A light-microscope style image of a maize leaf cross-section: veins each ringed by large, dark-green bundle-sheath cells, with mesophyll cells around them; beside it a wheat leaf section without the ring (microscope setup photo: reuse LIB-BIO-microscope)",
+   "view": "Two square micrographs side by side, same magnification",
+   "right": "Maize: clear wreath of large bundle-sheath cells; wheat: small pale sheath",
+   "avoid": "Labels, scale bars, stain colours that hide the green"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "11.8",
+   "use": "Sort cards for C3 and C4 plants",
+   "shows": "Five cut-outs: a maize plant with cob, a jowar head, a piece of sugarcane, a wheat ear, a rice panicle",
+   "view": "Each upright on transparent background, lit from top left",
+   "right": "Each crop true to its Indian form and colour",
+   "avoid": "Soil clumps, people, packaging"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "11.10",
+   "use": "CO2 enrichment in a greenhouse",
+   "shows": "Inside a polyhouse in Maharashtra with rows of tomato and capsicum plants heavy with fruit, diffused light through the plastic roof",
+   "view": "Eye level down a row, 16:9",
+   "right": "Tomatoes red and green, capsicums glossy, plants healthy",
+   "avoid": "Workers' faces, brand names on pipes or tags"
+  },
+  {
+   "n": 8,
+   "kind": "DIA",
+   "topic": "11.6",
+   "use": "Base for the Z scheme",
+   "shows": "A clean energy-level frame: a tall left step and a tall right step joined by a downhill line, shaped like a Z on its side, with empty boxes where the app writes PS II, cytochromes, PS I and NADP+",
+   "view": "Flat vector on white, 4:3",
+   "right": "Left peak lower than the right peak; the downhill line slopes from the first peak to the base of the second",
+   "avoid": "Any words, numbers or arrows baked in"
+  }
+ ]
+}

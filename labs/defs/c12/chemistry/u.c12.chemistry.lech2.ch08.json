@@ -1,0 +1,2521 @@
+{
+ "chapter_key": "u.c12.chemistry.lech2.ch08",
+ "class": 12,
+ "subject_id": "chemistry",
+ "title": "Aldehydes, Ketones and Carboxylic Acids",
+ "source": "https://ncert.nic.in/textbook/pdf/lech203.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Nomenclature and structure of the carbonyl group",
+   "labs": [
+    "c12-chemistry-lech2-ch08-build-ethanal"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Preparation of aldehydes and ketones",
+   "labs": [
+    "c12-chemistry-lech2-ch08-prepare-carbonyls"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Physical properties",
+   "labs": [
+    "c12-chemistry-lech2-ch08-bp-carbonyl"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Chemical reactions: nucleophilic addition, oxidation and the tests",
+   "labs": [
+    "c12-chemistry-lech2-ch08-reactivity-order",
+    "c12-chemistry-lech2-ch08-nucleophilic-addition",
+    "c12-chemistry-lech2-ch08-tollens-test"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Uses of aldehydes and ketones",
+   "labs": [
+    "c12-chemistry-lech2-ch08-uses-carbonyl-acids"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Carboxylic acids: nomenclature and structure",
+   "labs": [
+    "c12-chemistry-lech2-ch08-build-ethanoic-acid"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.7",
+   "title": "Methods of preparation of carboxylic acids",
+   "labs": [
+    "c12-chemistry-lech2-ch08-prepare-acids"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.8",
+   "title": "Physical properties of carboxylic acids",
+   "labs": [],
+   "why_no_lab": "The hydrogen-bonded dimer of an acid is best seen in the 3D model images and a photo; a lab adds little."
+  },
+  {
+   "n": "8.9",
+   "title": "Chemical reactions of carboxylic acids: acidity, substitution and reduction",
+   "labs": [
+    "c12-chemistry-lech2-ch08-acid-strength",
+    "c12-chemistry-lech2-ch08-acid-bicarbonate"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.10",
+   "title": "Uses of carboxylic acids",
+   "labs": [
+    "c12-chemistry-lech2-ch08-uses-carbonyl-acids"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-chemistry-lech2-ch08-build-ethanal",
+   "topic": "8.1",
+   "template": "molecule",
+   "title": {
+    "en": "Build and name ethanal",
+    "hi": "एथेनल बनाओ और नाम दो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "carbon",
+    "atoms": [
+     "C",
+     "H",
+     "O"
+    ],
+    "target": "ethanal"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "added:C",
+     "say": {
+      "en": "Tap C to start a carbon chain.",
+      "hi": "कार्बन श्रृंखला शुरू करने के लिए C छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:ethane",
+     "say": {
+      "en": "Tap C again to make ethane.",
+      "hi": "एथेन बनाने के लिए फिर C छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An aldehyde has the –CHO group at the end of a chain. If the –CHO group is added to ethane's end, what will the compound be called?",
+      "hi": "ऐल्डिहाइड में –CHO समूह श्रृंखला के सिरे पर होता है। एथेन के सिरे पर –CHO जोड़ने पर यौगिक का नाम क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "ethanal",
+       "en": "Ethanal",
+       "hi": "एथेनल"
+      },
+      {
+       "id": "ethanone",
+       "en": "Ethanone",
+       "hi": "एथेनोन"
+      },
+      {
+       "id": "ethanol",
+       "en": "Ethanol",
+       "hi": "एथेनॉल"
+      }
+     ],
+     "answer": "ethanal"
+    },
+    {
+     "kind": "do",
+     "target": "group:aldehyde",
+     "expect": "named:ethanal",
+     "say": {
+      "en": "Tap the aldehyde group, –CHO.",
+      "hi": "ऐल्डिहाइड समूह, –CHO, छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the IUPAC system an aldehyde takes the ending -al: ethane becomes ethanal (common name acetaldehyde). The aldehyde carbon is always carbon 1, so no number is needed. A ketone has the carbonyl group, C=O, inside the chain between two carbon groups and takes -one, as in propanone (acetone). The carbonyl carbon is sp² hybridised and the group is planar and polar: the carbon is slightly positive and the oxygen slightly negative.",
+      "hi": "IUPAC पद्धति में ऐल्डिहाइड का अंत -ऐल होता है: एथेन से एथेनल (सामान्य नाम ऐसीटैल्डिहाइड)। ऐल्डिहाइड कार्बन हमेशा कार्बन 1 होता है, इसलिए संख्या की आवश्यकता नहीं। कीटोन में कार्बोनिल समूह, C=O, श्रृंखला के भीतर दो कार्बन समूहों के बीच होता है और अंत -ओन होता है, जैसे प्रोपेनोन (ऐसीटोन)। कार्बोनिल कार्बन sp² संकरित है और समूह समतलीय और ध्रुवीय है: कार्बन आंशिक धनात्मक और ऑक्सीजन आंशिक ऋणात्मक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the ending used for aldehydes in IUPAC names?",
+        "hi": "IUPAC नामों में ऐल्डिहाइडों के लिए कौन-सा अंत प्रयुक्त होता है?"
+       },
+       "options": [
+        {
+         "en": "-al",
+         "hi": "-ऐल (-al)"
+        },
+        {
+         "en": "-one",
+         "hi": "-ओन (-one)"
+        },
+        {
+         "en": "-ol",
+         "hi": "-ऑल (-ol)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-al marks the aldehyde, -one the ketone and -ol the alcohol.",
+        "hi": "-al ऐल्डिहाइड, -one कीटोन और -ol ऐल्कोहॉल को दर्शाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-one is for ketones.",
+         "hi": "-one कीटोनों के लिए है।"
+        },
+        {
+         "en": "-ol is for alcohols.",
+         "hi": "-ol ऐल्कोहॉलों के लिए है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the hybridisation of the carbonyl carbon?",
+        "hi": "कार्बोनिल कार्बन का संकरण क्या है?"
+       },
+       "options": [
+        "sp²",
+        "sp³",
+        "sp"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It has three sigma bonds in a plane and one pi bond to oxygen.",
+        "hi": "इसके तीन सिग्मा आबंध एक तल में हैं और ऑक्सीजन से एक पाई आबंध है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "sp³ would be tetrahedral, with four sigma bonds.",
+         "hi": "sp³ चतुष्फलकीय होता, चार सिग्मा आबंध के साथ।"
+        },
+        {
+         "en": "sp is linear with two sigma bonds.",
+         "hi": "sp रैखिक है, दो सिग्मा आबंध के साथ।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset. Tap C three times, then the ketone group. Which compound appears: propanal or propanone?",
+      "hi": "रीसेट दबाओ। C तीन बार छुओ, फिर कीटोन समूह। कौन-सा यौगिक दिखता है: प्रोपेनल या प्रोपेनोन?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch08-prepare-carbonyls",
+   "topic": "8.2",
+   "template": "match",
+   "title": {
+    "en": "Making aldehydes and ketones",
+    "hi": "ऐल्डिहाइड और कीटोन बनाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "pcc",
+      "left": {
+       "en": "Primary alcohol + PCC",
+       "hi": "प्राथमिक ऐल्कोहॉल + PCC"
+      },
+      "right": {
+       "en": "An aldehyde",
+       "hi": "ऐल्डिहाइड"
+      },
+      "why": {
+       "en": "A mild oxidant stops at the aldehyde.",
+       "hi": "मृदु ऑक्सीकारक ऐल्डिहाइड पर रुक जाता है।"
+      }
+     },
+     {
+      "id": "cro3",
+      "left": {
+       "en": "Secondary alcohol + CrO₃",
+       "hi": "द्वितीयक ऐल्कोहॉल + CrO₃"
+      },
+      "right": {
+       "en": "A ketone",
+       "hi": "कीटोन"
+      },
+      "why": {
+       "en": "A secondary alcohol is oxidised to the ketone.",
+       "hi": "द्वितीयक ऐल्कोहॉल का ऑक्सीकरण कीटोन में होता है।"
+      }
+     },
+     {
+      "id": "ros",
+      "left": {
+       "en": "Acyl chloride + H₂ over Pd on BaSO₄",
+       "hi": "ऐसिल क्लोराइड + BaSO₄ पर Pd के साथ H₂"
+      },
+      "right": {
+       "en": "An aldehyde (Rosenmund reduction)",
+       "hi": "ऐल्डिहाइड (रोज़ेनमुंड अपचयन)"
+      },
+      "why": {
+       "en": "The poisoned catalyst stops the reduction at the aldehyde.",
+       "hi": "विषाक्त उत्प्रेरक अपचयन को ऐल्डिहाइड पर रोक देता है।"
+      }
+     },
+     {
+      "id": "steph",
+      "left": {
+       "en": "Nitrile + SnCl₂/HCl, then water",
+       "hi": "नाइट्राइल + SnCl₂/HCl, फिर जल"
+      },
+      "right": {
+       "en": "An aldehyde (Stephen reaction)",
+       "hi": "ऐल्डिहाइड (स्टीफ़न अभिक्रिया)"
+      },
+      "why": {
+       "en": "The nitrile is reduced to an imine, then hydrolysed.",
+       "hi": "नाइट्राइल का अपचयन इमीन में होता है, फिर जलअपघटन।"
+      }
+     },
+     {
+      "id": "ethyne",
+      "left": {
+       "en": "Ethyne + water with HgSO₄ and H₂SO₄",
+       "hi": "एथाइन + जल, HgSO₄ और H₂SO₄ के साथ"
+      },
+      "right": {
+       "en": "Ethanal (other alkynes give ketones)",
+       "hi": "एथेनल (अन्य ऐल्काइन कीटोन देती हैं)"
+      },
+      "why": {
+       "en": "Hydration of an alkyne gives a carbonyl compound; ethyne gives the only aldehyde.",
+       "hi": "ऐल्काइन का जलयोजन कार्बोनिल यौगिक देता है; एथाइन से एकमात्र ऐल्डिहाइड मिलता है।"
+      }
+     },
+     {
+      "id": "fc",
+      "left": {
+       "en": "Benzene + CH₃COCl with AlCl₃",
+       "hi": "बेन्ज़ीन + CH₃COCl, AlCl₃ के साथ"
+      },
+      "right": {
+       "en": "Acetophenone (Friedel–Crafts acylation)",
+       "hi": "ऐसीटोफ़ीनोन (फ्रीडेल–क्राफ्ट्स ऐसिलन)"
+      },
+      "why": {
+       "en": "The acyl group joins the ring to give an aromatic ketone.",
+       "hi": "ऐसिल समूह वलय से जुड़कर ऐरोमैटिक कीटोन बनाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:pcc",
+     "expect": "matched:pcc",
+     "say": {
+      "en": "Tap “Primary alcohol + PCC” on the left, then tap its partner on the right.",
+      "hi": "“प्राथमिक ऐल्कोहॉल + PCC” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Oxidising a secondary alcohol like propan-2-ol with CrO₃ gives which carbonyl compound?",
+      "hi": "प्रोपेन-2-ऑल जैसे द्वितीयक ऐल्कोहॉल को CrO₃ से ऑक्सीकृत करने पर कौन-सा कार्बोनिल यौगिक बनता है?"
+     },
+     "options": [
+      {
+       "id": "ket",
+       "en": "A ketone, propanone",
+       "hi": "कीटोन, प्रोपेनोन"
+      },
+      {
+       "id": "ald",
+       "en": "An aldehyde",
+       "hi": "ऐल्डिहाइड"
+      },
+      {
+       "id": "acid",
+       "en": "An acid",
+       "hi": "अम्ल"
+      }
+     ],
+     "answer": "ket"
+    },
+    {
+     "kind": "do",
+     "target": "left:cro3",
+     "expect": "matched:cro3",
+     "say": {
+      "en": "Now match “Secondary alcohol + CrO₃”.",
+      "hi": "अब “द्वितीयक ऐल्कोहॉल + CrO₃” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The most common route to carbonyl compounds is the oxidation of alcohols: primary alcohols give aldehydes (with mild PCC) and secondary alcohols give ketones. Aldehydes can also come from acyl chlorides (Rosenmund) and nitriles (Stephen). Ethyne gives ethanal on hydration. Aromatic ketones are made by Friedel–Crafts acylation of benzene.",
+      "hi": "कार्बोनिल यौगिक बनाने का सबसे आम मार्ग ऐल्कोहॉलों का ऑक्सीकरण है: प्राथमिक ऐल्कोहॉल (मृदु PCC से) ऐल्डिहाइड और द्वितीयक ऐल्कोहॉल कीटोन देते हैं। ऐल्डिहाइड ऐसिल क्लोराइडों (रोज़ेनमुंड) और नाइट्राइलों (स्टीफ़न) से भी बन सकते हैं। एथाइन के जलयोजन से एथेनल मिलता है। ऐरोमैटिक कीटोन बेन्ज़ीन के फ्रीडेल–क्राफ्ट्स ऐसिलन से बनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which alcohol would you oxidise to make propanone?",
+        "hi": "प्रोपेनोन बनाने के लिए तुम किस ऐल्कोहॉल का ऑक्सीकरण करोगे?"
+       },
+       "options": [
+        {
+         "en": "Propan-2-ol",
+         "hi": "प्रोपेन-2-ऑल"
+        },
+        {
+         "en": "Propan-1-ol",
+         "hi": "प्रोपेन-1-ऑल"
+        },
+        {
+         "en": "Methanol",
+         "hi": "मेथेनॉल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A secondary alcohol gives a ketone, and propan-2-ol is the secondary one.",
+        "hi": "द्वितीयक ऐल्कोहॉल कीटोन देता है और प्रोपेन-2-ऑल द्वितीयक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Propan-1-ol is primary and gives propanal.",
+         "hi": "प्रोपेन-1-ऑल प्राथमिक है और प्रोपेनल देता है।"
+        },
+        {
+         "en": "Methanol gives methanal, an aldehyde.",
+         "hi": "मेथेनॉल मेथेनल देता है, जो ऐल्डिहाइड है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is the only alkyne whose hydration gives an aldehyde?",
+        "hi": "इनमें से कौन-सी एकमात्र ऐल्काइन है जिसके जलयोजन से ऐल्डिहाइड बनता है?"
+       },
+       "options": [
+        {
+         "en": "Ethyne",
+         "hi": "एथाइन"
+        },
+        {
+         "en": "Propyne",
+         "hi": "प्रोपाइन"
+        },
+        {
+         "en": "But-2-yne",
+         "hi": "ब्यूट-2-आइन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ethyne gives ethanal; others give ketones.",
+        "hi": "एथाइन से एथेनल मिलता है; अन्य से कीटोन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Propyne gives propanone, a ketone.",
+         "hi": "प्रोपाइन प्रोपेनोन, यानी कीटोन, देती है।"
+        },
+        {
+         "en": "But-2-yne gives butanone, a ketone.",
+         "hi": "ब्यूट-2-आइन ब्यूटेनोन, यानी कीटोन, देती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Which two methods start from a carbon–carbon triple bond or a nitrile?",
+      "hi": "बाकी मिलाओ। कौन-सी दो विधियाँ कार्बन–कार्बन त्रिआबंध या नाइट्राइल से शुरू होती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch08-bp-carbonyl",
+   "topic": "8.3",
+   "template": "data",
+   "title": {
+    "en": "Why carbonyls boil higher than alkanes",
+    "hi": "कार्बोनिल यौगिक ऐल्केनों से ऊँचे ताप पर क्यों उबलते हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 1,
+    "ask": "max",
+    "title": {
+     "en": "Boiling points of four compounds with a mass of about 58–60 u (K)",
+     "hi": "लगभग 58–60 u द्रव्यमान वाले चार यौगिकों के क्वथनांक (K)"
+    },
+    "xlabel": {
+     "en": "Compound",
+     "hi": "यौगिक"
+    },
+    "ylabel": {
+     "en": "Boiling point (K)",
+     "hi": "क्वथनांक (K)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Butane",
+       "hi": "ब्यूटेन"
+      },
+      "value": 273
+     },
+     {
+      "label": {
+       "en": "Propanal",
+       "hi": "प्रोपेनल"
+      },
+      "value": 322
+     },
+     {
+      "label": {
+       "en": "Propanone",
+       "hi": "प्रोपेनोन"
+      },
+      "value": 329
+     },
+     {
+      "label": {
+       "en": "Propan-1-ol",
+       "hi": "प्रोपेन-1-ऑल"
+      },
+      "value": 370
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show propanal.",
+      "hi": "प्रोपेनल दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Propanal has a polar C=O group but no O–H. Where will its boiling point fall compared with butane and propan-1-ol?",
+      "hi": "प्रोपेनल में ध्रुवीय C=O समूह है पर O–H नहीं। उसका क्वथनांक ब्यूटेन और प्रोपेन-1-ऑल की तुलना में कहाँ रहेगा?"
+     },
+     "options": [
+      {
+       "id": "mid",
+       "en": "In between the two",
+       "hi": "दोनों के बीच"
+      },
+      {
+       "id": "low",
+       "en": "Lower than butane",
+       "hi": "ब्यूटेन से कम"
+      },
+      {
+       "id": "high",
+       "en": "Higher than propan-1-ol",
+       "hi": "प्रोपेन-1-ऑल से अधिक"
+      }
+     ],
+     "answer": "mid"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add propanone.",
+      "hi": "प्रोपेनोन जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add propan-1-ol.",
+      "hi": "प्रोपेन-1-ऑल जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The four compounds have nearly the same mass. Butane has only weak forces, so it boils lowest (273 K). The carbonyl compounds are polar, so their molecules attract each other through dipole–dipole forces, and boil higher (322 K and 329 K). Propan-1-ol forms hydrogen bonds, which are stronger, so it boils highest (370 K). So the order is alkane < aldehyde or ketone < alcohol.",
+      "hi": "चारों यौगिकों का द्रव्यमान लगभग समान है। ब्यूटेन में केवल दुर्बल बल हैं, इसलिए वह सबसे कम (273 K) पर उबलता है। कार्बोनिल यौगिक ध्रुवीय हैं, इसलिए उनके अणु द्विध्रुव–द्विध्रुव बलों से आकर्षित होते हैं और ऊँचे (322 K और 329 K) पर उबलते हैं। प्रोपेन-1-ऑल हाइड्रोजन आबंध बनाता है, जो प्रबल हैं, इसलिए वह सबसे ऊँचे (370 K) पर उबलता है। इसलिए क्रम है: ऐल्केन < ऐल्डिहाइड या कीटोन < ऐल्कोहॉल।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the boiling point of propanal higher than that of butane?",
+        "hi": "प्रोपेनल का क्वथनांक ब्यूटेन से अधिक क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Its polar C=O group gives dipole–dipole attraction",
+         "hi": "इसका ध्रुवीय C=O समूह द्विध्रुव–द्विध्रुव आकर्षण देता है"
+        },
+        {
+         "en": "Propanal is heavier than butane",
+         "hi": "प्रोपेनल ब्यूटेन से भारी है"
+        },
+        {
+         "en": "Propanal has hydrogen bonds with itself",
+         "hi": "प्रोपेनल स्वयं के साथ हाइड्रोजन आबंध बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The extra attraction between polar molecules needs more energy to overcome.",
+        "hi": "ध्रुवीय अणुओं के बीच अतिरिक्त आकर्षण को पार करने में अधिक ऊर्जा लगती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Their masses are almost equal.",
+         "hi": "उनके द्रव्यमान लगभग समान हैं।"
+        },
+        {
+         "en": "Propanal has no O–H or N–H, so it cannot hydrogen-bond to itself.",
+         "hi": "प्रोपेनल में O–H या N–H नहीं है, इसलिए वह स्वयं से हाइड्रोजन आबंध नहीं बना सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are the lower aldehydes and ketones soluble in water?",
+        "hi": "निम्न ऐल्डिहाइड और कीटोन पानी में घुलनशील क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "Their oxygen forms hydrogen bonds with water",
+         "hi": "उनकी ऑक्सीजन पानी के साथ हाइड्रोजन आबंध बनाती है"
+        },
+        {
+         "en": "They are ionic",
+         "hi": "वे आयनिक हैं"
+        },
+        {
+         "en": "They contain water",
+         "hi": "उनमें पानी होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The carbonyl oxygen accepts a hydrogen bond from water.",
+        "hi": "कार्बोनिल ऑक्सीजन पानी से हाइड्रोजन आबंध ग्रहण करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Carbonyl compounds are covalent, not ionic.",
+         "hi": "कार्बोनिल यौगिक सहसंयोजी हैं, आयनिक नहीं।"
+        },
+        {
+         "en": "Anhydrous propanone contains no water.",
+         "hi": "निर्जल प्रोपेनोन में पानी नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the propanal bar up to 370. What would that say about propanal molecules?",
+      "hi": "प्रोपेनल का बार 370 तक ऊपर खींचो। प्रोपेनल अणुओं के बारे में यह क्या कहेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch08-reactivity-order",
+   "topic": "8.4",
+   "template": "sequence",
+   "title": {
+    "en": "Which carbonyl is most reactive?",
+    "hi": "कौन-सा कार्बोनिल सबसे अधिक अभिक्रियाशील है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "dtbk",
+      "text": {
+       "en": "Di-tert-butyl ketone (least reactive)",
+       "hi": "डाइ-तृतीयक-ब्यूटिल कीटोन (सबसे कम अभिक्रियाशील)"
+      }
+     },
+     {
+      "id": "acetone",
+      "text": {
+       "en": "Propanone",
+       "hi": "प्रोपेनोन"
+      }
+     },
+     {
+      "id": "propanal",
+      "text": {
+       "en": "Propanal",
+       "hi": "प्रोपेनल"
+      }
+     },
+     {
+      "id": "ethanal",
+      "text": {
+       "en": "Ethanal",
+       "hi": "एथेनल"
+      }
+     },
+     {
+      "id": "methanal",
+      "text": {
+       "en": "Methanal (most reactive)",
+       "hi": "मेथेनल (सबसे अधिक अभिक्रियाशील)"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:dtbk",
+     "expect": "placed:dtbk",
+     "say": {
+      "en": "Tap the step “Di-tert-butyl ketone (least reactive)” and put it in the slot where you think it belongs.",
+      "hi": "चरण “डाइ-तृतीयक-ब्यूटिल कीटोन (सबसे कम अभिक्रियाशील)” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Methanal has two small hydrogens on the carbonyl carbon, while a ketone has two bulky alkyl groups. Which will a nucleophile attack more easily?",
+      "hi": "मेथेनल के कार्बोनिल कार्बन पर दो छोटे हाइड्रोजन हैं, जबकि कीटोन में दो भारी ऐल्किल समूह हैं। न्यूक्लियोफाइल किस पर आसानी से आक्रमण करेगा?"
+     },
+     "options": [
+      {
+       "id": "methanal",
+       "en": "Methanal",
+       "hi": "मेथेनल"
+      },
+      {
+       "id": "ketone",
+       "en": "The ketone",
+       "hi": "कीटोन"
+      }
+     ],
+     "answer": "methanal"
+    },
+    {
+     "kind": "do",
+     "target": "item:methanal",
+     "expect": "placed:methanal",
+     "say": {
+      "en": "Now place “Methanal (most reactive)”.",
+      "hi": "अब “मेथेनल (सबसे अधिक अभिक्रियाशील)” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Put them in order from the least to the most reactive towards nucleophilic addition. Two things lower reactivity as alkyl groups increase. They crowd the carbonyl carbon (steric hindrance), and they push electrons towards it, which reduces its partial positive charge. So methanal is the most reactive, then other aldehydes, and ketones are less reactive than aldehydes.",
+      "hi": "उन्हें नाभिकरागी योग के प्रति सबसे कम से सबसे अधिक अभिक्रियाशील के क्रम में रखो। ऐल्किल समूह बढ़ने पर दो बातें अभिक्रियाशीलता घटाती हैं। वे कार्बोनिल कार्बन के आसपास भीड़ करते हैं (त्रिविम बाधा) और उसकी ओर इलेक्ट्रॉन धकेलते हैं, जिससे उसका आंशिक धनावेश घटता है। इसलिए मेथेनल सबसे अधिक अभिक्रियाशील है, फिर अन्य ऐल्डिहाइड, और कीटोन ऐल्डिहाइडों से कम।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is more reactive towards nucleophilic addition, ethanal or propanone?",
+        "hi": "नाभिकरागी योग के प्रति कौन अधिक अभिक्रियाशील है, एथेनल या प्रोपेनोन?"
+       },
+       "options": [
+        {
+         "en": "Ethanal",
+         "hi": "एथेनल"
+        },
+        {
+         "en": "Propanone",
+         "hi": "प्रोपेनोन"
+        },
+        {
+         "en": "They are the same",
+         "hi": "दोनों समान हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It has one alkyl group and one hydrogen, so less crowding and less electron push.",
+        "hi": "इसमें एक ऐल्किल समूह और एक हाइड्रोजन है, इसलिए कम भीड़ और कम इलेक्ट्रॉन धकेलाव।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Propanone has two alkyl groups that crowd and push electrons.",
+         "hi": "प्रोपेनोन में दो ऐल्किल समूह हैं जो भीड़ करते और इलेक्ट्रॉन धकेलते हैं।"
+        },
+        {
+         "en": "Their reactivities differ.",
+         "hi": "उनकी अभिक्रियाशीलता भिन्न है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does an alkyl group do to the carbonyl carbon?",
+        "hi": "ऐल्किल समूह कार्बोनिल कार्बन के साथ क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Pushes electrons towards it, reducing its positive charge",
+         "hi": "उसकी ओर इलेक्ट्रॉन धकेलता है, जिससे उसका धनावेश घटता है"
+        },
+        {
+         "en": "Pulls electrons away",
+         "hi": "इलेक्ट्रॉन खींच लेता है"
+        },
+        {
+         "en": "Makes it negative",
+         "hi": "उसे ऋणात्मक बना देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This is the +I (electron-releasing) effect of alkyl groups.",
+        "hi": "यह ऐल्किल समूहों का +I (इलेक्ट्रॉन-मोचक) प्रभाव है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Alkyl groups release electrons; they do not pull them.",
+         "hi": "ऐल्किल समूह इलेक्ट्रॉन देते हैं; खींचते नहीं।"
+        },
+        {
+         "en": "The carbon stays slightly positive, only less so.",
+         "hi": "कार्बन आंशिक धनात्मक ही रहता है, बस कम।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the steps in order. Benzaldehyde is less reactive than ethanal. What does the benzene ring do to the carbonyl carbon?",
+      "hi": "क्रम में रखो। बेन्ज़ैल्डिहाइड एथेनल से कम अभिक्रियाशील है। बेन्ज़ीन वलय कार्बोनिल कार्बन के साथ क्या करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch08-nucleophilic-addition",
+   "topic": "8.4",
+   "template": "sequence",
+   "title": {
+    "en": "Nucleophilic addition to a carbonyl group",
+    "hi": "कार्बोनिल समूह पर नाभिकरागी योग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "attack",
+      "text": {
+       "en": "The nucleophile attacks the partly positive carbonyl carbon",
+       "hi": "न्यूक्लियोफाइल आंशिक धनात्मक कार्बोनिल कार्बन पर आक्रमण करता है"
+      }
+     },
+     {
+      "id": "sp3",
+      "text": {
+       "en": "The carbon changes from planar sp² to tetrahedral sp³",
+       "hi": "कार्बन समतलीय sp² से चतुष्फलकीय sp³ हो जाता है"
+      }
+     },
+     {
+      "id": "ominus",
+      "text": {
+       "en": "The C=O electrons move to oxygen, which becomes O⁻",
+       "hi": "C=O के इलेक्ट्रॉन ऑक्सीजन पर जाते हैं, जो O⁻ बन जाती है"
+      }
+     },
+     {
+      "id": "proton",
+      "text": {
+       "en": "O⁻ picks up a proton to give the final product",
+       "hi": "O⁻ एक प्रोटॉन लेकर अंतिम उत्पाद देती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:attack",
+     "expect": "placed:attack",
+     "say": {
+      "en": "Tap the step “The nucleophile attacks the partly positive carbonyl carbon” and put it in the slot where you think it belongs.",
+      "hi": "चरण “न्यूक्लियोफाइल आंशिक धनात्मक कार्बोनिल कार्बन पर आक्रमण करता है” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The C=O group is polar. Which end do you think a nucleophile (an electron-rich species) will attack?",
+      "hi": "C=O समूह ध्रुवीय है। नाभिकरागी (इलेक्ट्रॉन-समृद्ध स्पीशीज़) किस सिरे पर आक्रमण करेगा?"
+     },
+     "options": [
+      {
+       "id": "carbon",
+       "en": "The carbon end, which is slightly positive",
+       "hi": "कार्बन सिरे पर, जो आंशिक धनात्मक है"
+      },
+      {
+       "id": "oxygen",
+       "en": "The oxygen end",
+       "hi": "ऑक्सीजन सिरे पर"
+      }
+     ],
+     "answer": "carbon"
+    },
+    {
+     "kind": "do",
+     "target": "item:proton",
+     "expect": "placed:proton",
+     "say": {
+      "en": "Now place “O⁻ picks up a proton to give the final product”.",
+      "hi": "अब “O⁻ एक प्रोटॉन लेकर अंतिम उत्पाद देती है” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Aldehydes and ketones typically undergo nucleophilic addition. The nucleophile attacks the partly positive carbon, the pi electrons of C=O move onto oxygen, and the carbon changes from flat sp² to tetrahedral sp³. The oxygen anion then takes a proton. Many named reactions follow this pattern: HCN adds to give cyanohydrins, NaHSO₃ gives bisulphite compounds, and Grignard reagents give alcohols.",
+      "hi": "ऐल्डिहाइड और कीटोन सामान्यतः नाभिकरागी योग करते हैं। न्यूक्लियोफाइल आंशिक धनात्मक कार्बन पर आक्रमण करता है, C=O के पाई इलेक्ट्रॉन ऑक्सीजन पर चले जाते हैं और कार्बन समतलीय sp² से चतुष्फलकीय sp³ हो जाता है। फिर ऑक्सीजन ऋणायन प्रोटॉन ले लेता है। कई नामित अभिक्रियाएँ इसी ढंग की हैं: HCN जुड़कर सायनोहाइड्रिन देता है, NaHSO₃ बाइसल्फ़ाइट यौगिक देता है और ग्रिन्यार अभिकर्मक ऐल्कोहॉल देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What happens to the hybridisation of the carbonyl carbon in nucleophilic addition?",
+        "hi": "नाभिकरागी योग में कार्बोनिल कार्बन के संकरण का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "sp² changes to sp³",
+         "hi": "sp² से sp³ हो जाता है"
+        },
+        {
+         "en": "sp³ changes to sp²",
+         "hi": "sp³ से sp² हो जाता है"
+        },
+        {
+         "en": "It stays sp²",
+         "hi": "sp² ही रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It goes from three groups in a plane to four groups around it.",
+        "hi": "तीन समूहों वाले तल से चार समूहों वाली चतुष्फलकीय व्यवस्था बनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It starts as sp², so it cannot change from sp³.",
+         "hi": "यह sp² से शुरू होता है, इसलिए sp³ से नहीं बदल सकता।"
+        },
+        {
+         "en": "A fourth group is added, so the carbon cannot stay sp².",
+         "hi": "चौथा समूह जुड़ता है, इसलिए कार्बन sp² नहीं रह सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "HCN adds to a carbonyl compound. The CN⁻ ion is the…",
+        "hi": "HCN कार्बोनिल यौगिक पर जुड़ता है। CN⁻ आयन है…"
+       },
+       "options": [
+        {
+         "en": "Nucleophile",
+         "hi": "न्यूक्लियोफाइल"
+        },
+        {
+         "en": "Electrophile",
+         "hi": "इलेक्ट्रॉनरागी"
+        },
+        {
+         "en": "Catalyst only",
+         "hi": "केवल उत्प्रेरक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "CN⁻ is electron-rich and attacks the carbonyl carbon.",
+        "hi": "CN⁻ इलेक्ट्रॉन-समृद्ध है और कार्बोनिल कार्बन पर आक्रमण करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The electrophile is the carbonyl carbon.",
+         "hi": "इलेक्ट्रॉनरागी तो कार्बोनिल कार्बन है।"
+        },
+        {
+         "en": "CN⁻ takes part in the product; it is not a catalyst alone.",
+         "hi": "CN⁻ उत्पाद में भाग लेता है; वह केवल उत्प्रेरक नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the steps in order. Why is the product of HCN addition to a ketone a tertiary alcohol with a –CN group?",
+      "hi": "चरणों को क्रम में रखो। कीटोन पर HCN के योग का उत्पाद –CN समूह वाला तृतीयक ऐल्कोहॉल क्यों होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch08-tollens-test",
+   "topic": "8.4",
+   "template": "sort",
+   "title": {
+    "en": "Tollens' test: silver mirror or not?",
+    "hi": "टॉलेन परीक्षण: चाँदी का दर्पण बनता है या नहीं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mirror",
+      "label": {
+       "en": "Silver mirror forms",
+       "hi": "चाँदी का दर्पण बनता है"
+      }
+     },
+     {
+      "id": "none",
+      "label": {
+       "en": "No silver mirror",
+       "hi": "चाँदी का दर्पण नहीं बनता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ethanal",
+      "text": {
+       "en": "Ethanal",
+       "hi": "एथेनल"
+      },
+      "bin": "mirror",
+      "why": {
+       "en": "Aldehydes are easily oxidised, so they reduce Ag⁺ to silver.",
+       "hi": "ऐल्डिहाइड आसानी से ऑक्सीकृत होते हैं, इसलिए Ag⁺ को चाँदी में अपचयित करते हैं।"
+      }
+     },
+     {
+      "id": "propanal",
+      "text": {
+       "en": "Propanal",
+       "hi": "प्रोपेनल"
+      },
+      "bin": "mirror",
+      "why": {
+       "en": "An aliphatic aldehyde gives the mirror.",
+       "hi": "ऐलिफैटिक ऐल्डिहाइड दर्पण देता है।"
+      }
+     },
+     {
+      "id": "benzal",
+      "text": {
+       "en": "Benzaldehyde",
+       "hi": "बेन्ज़ैल्डिहाइड"
+      },
+      "bin": "mirror",
+      "why": {
+       "en": "Aromatic aldehydes also give a silver mirror with Tollens' reagent.",
+       "hi": "ऐरोमैटिक ऐल्डिहाइड भी टॉलेन अभिकर्मक से चाँदी का दर्पण देते हैं।"
+      }
+     },
+     {
+      "id": "methanal",
+      "text": {
+       "en": "Methanal",
+       "hi": "मेथेनल"
+      },
+      "bin": "mirror",
+      "why": {
+       "en": "The simplest aldehyde is a strong reducing agent.",
+       "hi": "सबसे सरल ऐल्डिहाइड प्रबल अपचायक है।"
+      }
+     },
+     {
+      "id": "acetone",
+      "text": {
+       "en": "Propanone (acetone)",
+       "hi": "प्रोपेनोन (ऐसीटोन)"
+      },
+      "bin": "none",
+      "why": {
+       "en": "Ketones are not easily oxidised, so no silver forms.",
+       "hi": "कीटोनों का ऑक्सीकरण आसानी से नहीं होता, इसलिए चाँदी नहीं बनती।"
+      }
+     },
+     {
+      "id": "butanone",
+      "text": {
+       "en": "Butanone",
+       "hi": "ब्यूटेनोन"
+      },
+      "bin": "none",
+      "why": {
+       "en": "A ketone: no easy oxidation.",
+       "hi": "कीटोन: आसान ऑक्सीकरण नहीं।"
+      }
+     },
+     {
+      "id": "acetophen",
+      "text": {
+       "en": "Acetophenone",
+       "hi": "ऐसीटोफ़ीनोन"
+      },
+      "bin": "none",
+      "why": {
+       "en": "An aromatic ketone does not reduce Tollens' reagent.",
+       "hi": "ऐरोमैटिक कीटोन टॉलेन अभिकर्मक का अपचयन नहीं करता।"
+      }
+     },
+     {
+      "id": "cyclohex",
+      "text": {
+       "en": "Cyclohexanone",
+       "hi": "साइक्लोहेक्सेनोन"
+      },
+      "bin": "none",
+      "why": {
+       "en": "Ring ketones are not oxidised by Tollens' reagent.",
+       "hi": "वलय कीटोन टॉलेन अभिकर्मक से ऑक्सीकृत नहीं होते।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ethanal",
+     "expect": "correct:ethanal",
+     "say": {
+      "en": "Tap the card “Ethanal”, then tap the group it belongs to.",
+      "hi": "कार्ड “एथेनल” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Tollens' reagent is [Ag(NH₃)₂]⁺. An aldehyde gets oxidised to an acid and the silver ions are reduced. What will you see in the test tube?",
+      "hi": "टॉलेन अभिकर्मक [Ag(NH₃)₂]⁺ है। ऐल्डिहाइड ऑक्सीकृत होकर अम्ल बनता है और चाँदी के आयन अपचयित होते हैं। परखनली में क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "mirror",
+       "en": "A shiny silver mirror on the wall of the tube",
+       "hi": "परखनली की दीवार पर चमकदार चाँदी का दर्पण"
+      },
+      {
+       "id": "green",
+       "en": "A green solution",
+       "hi": "हरा विलयन"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "mirror"
+    },
+    {
+     "kind": "do",
+     "target": "card:acetone",
+     "expect": "correct:acetone",
+     "say": {
+      "en": "Now sort “Propanone (acetone)”.",
+      "hi": "अब “प्रोपेनोन (ऐसीटोन)” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:benzal",
+     "expect": "correct:benzal",
+     "say": {
+      "en": "Now sort “Benzaldehyde”.",
+      "hi": "अब “बेन्ज़ैल्डिहाइड” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Aldehydes are easily oxidised, but ketones are not, because an aldehyde has an H on the carbonyl carbon. Tollens' reagent (ammoniacal silver nitrate) is reduced by aldehydes to metallic silver, which coats the tube like a mirror. Fehling's solution is reduced by aliphatic aldehydes to a red-brown precipitate, but not by aromatic aldehydes. Ketones give neither test.",
+      "hi": "ऐल्डिहाइड आसानी से ऑक्सीकृत होते हैं पर कीटोन नहीं, क्योंकि ऐल्डिहाइड के कार्बोनिल कार्बन पर H होता है। टॉलेन अभिकर्मक (अमोनियाकल सिल्वर नाइट्रेट) ऐल्डिहाइडों से अपचयित होकर धात्विक चाँदी देता है, जो परखनली पर दर्पण की तरह जम जाती है। फेलिंग विलयन ऐलिफैटिक ऐल्डिहाइडों से अपचयित होकर लाल-भूरा अवक्षेप देता है, पर ऐरोमैटिक ऐल्डिहाइडों से नहीं। कीटोन दोनों परीक्षण नहीं देते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which compound gives a silver mirror with Tollens' reagent?",
+        "hi": "कौन-सा यौगिक टॉलेन अभिकर्मक से चाँदी का दर्पण देता है?"
+       },
+       "options": [
+        {
+         "en": "Propanal",
+         "hi": "प्रोपेनल"
+        },
+        {
+         "en": "Propanone",
+         "hi": "प्रोपेनोन"
+        },
+        {
+         "en": "Acetophenone",
+         "hi": "ऐसीटोफ़ीनोन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only aldehydes reduce the silver ion.",
+        "hi": "केवल ऐल्डिहाइड चाँदी के आयन का अपचयन करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Propanone is a ketone and does not give the test.",
+         "hi": "प्रोपेनोन कीटोन है और परीक्षण नहीं देता।"
+        },
+        {
+         "en": "Acetophenone is a ketone too.",
+         "hi": "ऐसीटोफ़ीनोन भी कीटोन है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do ketones not reduce Tollens' reagent?",
+        "hi": "कीटोन टॉलेन अभिकर्मक का अपचयन क्यों नहीं करते?"
+       },
+       "options": [
+        {
+         "en": "They have no H on the carbonyl carbon and are not easily oxidised",
+         "hi": "उनके कार्बोनिल कार्बन पर H नहीं होता और वे आसानी से ऑक्सीकृत नहीं होते"
+        },
+        {
+         "en": "They are insoluble in water",
+         "hi": "वे पानी में अघुलनशील हैं"
+        },
+        {
+         "en": "They are acids",
+         "hi": "वे अम्ल हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Oxidising a ketone needs a C–C bond to break, which is hard.",
+        "hi": "कीटोन के ऑक्सीकरण में C–C आबंध तोड़ना पड़ता है, जो कठिन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Propanone mixes well with water.",
+         "hi": "प्रोपेनोन पानी में अच्छी तरह मिलता है।"
+        },
+        {
+         "en": "Ketones are not acids.",
+         "hi": "कीटोन अम्ल नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Which of these (ethanal or propanone) would be oxidised by Fehling's solution?",
+      "hi": "बाकी छाँटो। इनमें (एथेनल या प्रोपेनोन) से कौन फेलिंग विलयन से ऑक्सीकृत होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch08-uses-carbonyl-acids",
+   "topic": "8.5",
+   "template": "match",
+   "title": {
+    "en": "Uses of carbonyl compounds and acids",
+    "hi": "कार्बोनिल यौगिकों और अम्लों के उपयोग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "hcho",
+      "left": {
+       "en": "Methanal (formalin)",
+       "hi": "मेथेनल (फ़ॉर्मेलिन)"
+      },
+      "right": {
+       "en": "Preserving biological specimens",
+       "hi": "जैविक नमूनों का परिरक्षण"
+      },
+      "why": {
+       "en": "A 40% solution called formalin hardens and preserves tissue.",
+       "hi": "40% विलयन फ़ॉर्मेलिन ऊतकों को कठोर कर सुरक्षित रखता है।"
+      }
+     },
+     {
+      "id": "ch3cho",
+      "left": {
+       "en": "Ethanal",
+       "hi": "एथेनल"
+      },
+      "right": {
+       "en": "Making ethanoic acid",
+       "hi": "एथेनॉइक अम्ल बनाना"
+      },
+      "why": {
+       "en": "Oxidation of ethanal gives ethanoic acid on a large scale.",
+       "hi": "एथेनल के ऑक्सीकरण से बड़े पैमाने पर एथेनॉइक अम्ल बनता है।"
+      }
+     },
+     {
+      "id": "acetone",
+      "left": {
+       "en": "Propanone (acetone)",
+       "hi": "प्रोपेनोन (ऐसीटोन)"
+      },
+      "right": {
+       "en": "Solvent and nail-polish remover",
+       "hi": "विलायक और नेल-पॉलिश रिमूवर"
+      },
+      "why": {
+       "en": "It dissolves many organic substances and evaporates quickly.",
+       "hi": "यह कई कार्बनिक पदार्थ घोलता है और तेज़ी से उड़ता है।"
+      }
+     },
+     {
+      "id": "benzal",
+      "left": {
+       "en": "Benzaldehyde",
+       "hi": "बेन्ज़ैल्डिहाइड"
+      },
+      "right": {
+       "en": "Perfumes and flavouring, with an almond smell",
+       "hi": "इत्र और सुगंध, बादाम जैसी गंध"
+      },
+      "why": {
+       "en": "It is used in the perfume and flavour industries.",
+       "hi": "इसका उपयोग इत्र और सुगंध उद्योगों में होता है।"
+      }
+     },
+     {
+      "id": "hcooh",
+      "left": {
+       "en": "Methanoic acid",
+       "hi": "मेथेनॉइक अम्ल"
+      },
+      "right": {
+       "en": "Rubber, textile and leather industries",
+       "hi": "रबर, कपड़ा और चमड़ा उद्योग"
+      },
+      "why": {
+       "en": "It is used to coagulate latex and in dyeing and tanning.",
+       "hi": "यह लैटेक्स को जमाने तथा रँगाई और चर्मशोधन में काम आता है।"
+      }
+     },
+     {
+      "id": "ch3cooh",
+      "left": {
+       "en": "Ethanoic acid",
+       "hi": "एथेनॉइक अम्ल"
+      },
+      "right": {
+       "en": "Vinegar, and a solvent in industry",
+       "hi": "सिरका, और उद्योग में विलायक"
+      },
+      "why": {
+       "en": "A 5–8% solution in water is the vinegar in the kitchen.",
+       "hi": "पानी में 5–8% विलयन रसोई का सिरका है।"
+      }
+     },
+     {
+      "id": "adipic",
+      "left": {
+       "en": "Hexanedioic acid (adipic acid)",
+       "hi": "हेक्सेनडाइऑइक अम्ल (ऐडिपिक अम्ल)"
+      },
+      "right": {
+       "en": "Making nylon-6,6",
+       "hi": "नायलॉन-6,6 बनाना"
+      },
+      "why": {
+       "en": "It joins with a diamine to form the nylon polymer.",
+       "hi": "यह डाइऐमीन से जुड़कर नायलॉन बहुलक बनाता है।"
+      }
+     },
+     {
+      "id": "benzoic",
+      "left": {
+       "en": "Benzoic acid and sodium benzoate",
+       "hi": "बेन्ज़ोइक अम्ल और सोडियम बेन्ज़ोएट"
+      },
+      "right": {
+       "en": "Food preservative",
+       "hi": "खाद्य परिरक्षक"
+      },
+      "why": {
+       "en": "It stops microbes growing in pickles and sauces.",
+       "hi": "यह अचार और सॉस में सूक्ष्मजीवों को बढ़ने से रोकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:hcho",
+     "expect": "matched:hcho",
+     "say": {
+      "en": "Tap “Methanal (formalin)” on the left, then tap its partner on the right.",
+      "hi": "“मेथेनल (फ़ॉर्मेलिन)” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which carbonyl compound is found in many nail-polish removers?",
+      "hi": "कई नेल-पॉलिश रिमूवरों में कौन-सा कार्बोनिल यौगिक होता है?"
+     },
+     "options": [
+      {
+       "id": "acetone",
+       "en": "Propanone (acetone)",
+       "hi": "प्रोपेनोन (ऐसीटोन)"
+      },
+      {
+       "id": "formalin",
+       "en": "Methanal",
+       "hi": "मेथेनल"
+      },
+      {
+       "id": "benz",
+       "en": "Benzaldehyde",
+       "hi": "बेन्ज़ैल्डिहाइड"
+      }
+     ],
+     "answer": "acetone"
+    },
+    {
+     "kind": "do",
+     "target": "left:acetone",
+     "expect": "matched:acetone",
+     "say": {
+      "en": "Now match “Propanone (acetone)”.",
+      "hi": "अब “प्रोपेनोन (ऐसीटोन)” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:ch3cooh",
+     "expect": "matched:ch3cooh",
+     "say": {
+      "en": "Now match “Ethanoic acid”.",
+      "hi": "अब “एथेनॉइक अम्ल” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Carbonyl compounds and carboxylic acids are all around us. Methanal as formalin preserves specimens, and it makes bakelite. Propanone is a solvent. Benzaldehyde gives the smell of almonds in perfumes. Ethanoic acid is the vinegar in your kitchen, adipic acid makes nylon, and benzoate preserves pickles. Many of these are also raw materials for medicines, dyes and polymers.",
+      "hi": "कार्बोनिल यौगिक और कार्बोक्सिलिक अम्ल हमारे चारों ओर हैं। फ़ॉर्मेलिन के रूप में मेथेनल नमूनों को सुरक्षित रखता है और बेकेलाइट बनाता है। प्रोपेनोन विलायक है। बेन्ज़ैल्डिहाइड इत्रों में बादाम की गंध देता है। एथेनॉइक अम्ल रसोई का सिरका है, ऐडिपिक अम्ल नायलॉन बनाता है और बेन्ज़ोएट अचार को सुरक्षित रखता है। इनमें से कई दवाओं, रंजकों और बहुलकों के कच्चे माल भी हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which acid is present in kitchen vinegar?",
+        "hi": "रसोई के सिरके में कौन-सा अम्ल होता है?"
+       },
+       "options": [
+        {
+         "en": "Ethanoic acid",
+         "hi": "एथेनॉइक अम्ल"
+        },
+        {
+         "en": "Methanoic acid",
+         "hi": "मेथेनॉइक अम्ल"
+        },
+        {
+         "en": "Benzoic acid",
+         "hi": "बेन्ज़ोइक अम्ल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Vinegar is a dilute solution of ethanoic acid.",
+        "hi": "सिरका एथेनॉइक अम्ल का तनु विलयन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Methanoic acid is the acid in ant and nettle stings.",
+         "hi": "मेथेनॉइक अम्ल चींटी और बिच्छू-बूटी के डंक में होता है।"
+        },
+        {
+         "en": "Benzoic acid is a preservative.",
+         "hi": "बेन्ज़ोइक अम्ल परिरक्षक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which compound is used to preserve biological specimens?",
+        "hi": "जैविक नमूनों को सुरक्षित रखने के लिए कौन-सा यौगिक प्रयुक्त होता है?"
+       },
+       "options": [
+        {
+         "en": "Formalin (methanal solution)",
+         "hi": "फ़ॉर्मेलिन (मेथेनल विलयन)"
+        },
+        {
+         "en": "Acetone",
+         "hi": "ऐसीटोन"
+        },
+        {
+         "en": "Vinegar",
+         "hi": "सिरका"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Formalin hardens proteins and kills microbes.",
+        "hi": "फ़ॉर्मेलिन प्रोटीन कठोर करता है और सूक्ष्मजीवों को मारता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Acetone is a solvent and does not preserve tissue.",
+         "hi": "ऐसीटोन विलायक है और ऊतक को सुरक्षित नहीं रखता।"
+        },
+        {
+         "en": "Vinegar is a weak acid used in cooking.",
+         "hi": "सिरका खाना पकाने में प्रयुक्त दुर्बल अम्ल है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Which of these would you find in your home, and which only in a laboratory or factory?",
+      "hi": "बाकी मिलाओ। इनमें से कौन तुम्हारे घर में मिलेगा और कौन केवल प्रयोगशाला या कारखाने में?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch08-build-ethanoic-acid",
+   "topic": "8.6",
+   "template": "molecule",
+   "title": {
+    "en": "Build and name ethanoic acid",
+    "hi": "एथेनॉइक अम्ल बनाओ और नाम दो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "carbon",
+    "atoms": [
+     "C",
+     "H",
+     "O"
+    ],
+    "target": "ethanoic acid"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "added:C",
+     "say": {
+      "en": "Tap C to start a carbon chain.",
+      "hi": "कार्बन श्रृंखला शुरू करने के लिए C छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:ethane",
+     "say": {
+      "en": "Tap C again to make ethane.",
+      "hi": "एथेन बनाने के लिए फिर C छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A carboxylic acid has the –COOH group, a carbonyl and a hydroxyl on the same carbon. If –COOH is placed at the end of ethane, what will the acid be called?",
+      "hi": "कार्बोक्सिलिक अम्ल में –COOH समूह होता है, एक ही कार्बन पर कार्बोनिल और हाइड्रॉक्सिल। एथेन के सिरे पर –COOH लगाने पर अम्ल का नाम क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "ethanoic",
+       "en": "Ethanoic acid",
+       "hi": "एथेनॉइक अम्ल"
+      },
+      {
+       "id": "ethanal",
+       "en": "Ethanal",
+       "hi": "एथेनल"
+      },
+      {
+       "id": "ethanol",
+       "en": "Ethanol",
+       "hi": "एथेनॉल"
+      }
+     ],
+     "answer": "ethanoic"
+    },
+    {
+     "kind": "do",
+     "target": "group:acid",
+     "expect": "named:ethanoic acid",
+     "say": {
+      "en": "Tap the acid group, –COOH.",
+      "hi": "अम्ल समूह, –COOH, छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Carboxylic acids are named by changing -e of the alkane to -oic acid: ethane gives ethanoic acid (acetic acid, in vinegar). The carboxyl carbon is always carbon 1. The group is made of C=O and –OH on the same carbon: the O–H hydrogen is acidic because the carboxylate ion that is left behind is stabilised by resonance, the negative charge being shared equally by two oxygens.",
+      "hi": "कार्बोक्सिलिक अम्लों का नाम ऐल्केन का -e बदलकर -ऑइक अम्ल करके बनता है: एथेन से एथेनॉइक अम्ल (ऐसिटिक अम्ल, जो सिरके में है)। कार्बोक्सिल कार्बन हमेशा कार्बन 1 होता है। यह समूह एक ही कार्बन पर C=O और –OH से बना है: O–H का हाइड्रोजन अम्लीय है क्योंकि बचा कार्बोक्सिलेट आयन अनुनाद से स्थिर होता है, जिसमें ऋणावेश दो ऑक्सीजनों में बराबर बँट जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the common name of ethanoic acid?",
+        "hi": "एथेनॉइक अम्ल का सामान्य नाम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Acetic acid",
+         "hi": "ऐसिटिक अम्ल"
+        },
+        {
+         "en": "Formic acid",
+         "hi": "फ़ॉर्मिक अम्ल"
+        },
+        {
+         "en": "Benzoic acid",
+         "hi": "बेन्ज़ोइक अम्ल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The two-carbon acid is acetic acid, the sour part of vinegar.",
+        "hi": "दो कार्बन वाला अम्ल ऐसिटिक अम्ल है, सिरके का खट्टा भाग।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Formic acid has one carbon, HCOOH.",
+         "hi": "फ़ॉर्मिक अम्ल में एक कार्बन है, HCOOH।"
+        },
+        {
+         "en": "Benzoic acid has a benzene ring.",
+         "hi": "बेन्ज़ोइक अम्ल में बेन्ज़ीन वलय है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the carboxylate ion stable?",
+        "hi": "कार्बोक्सिलेट आयन स्थिर क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Its negative charge is shared by two oxygen atoms through resonance",
+         "hi": "इसका ऋणावेश अनुनाद से दो ऑक्सीजन परमाणुओं में बँटा है"
+        },
+        {
+         "en": "It has no charge",
+         "hi": "उस पर कोई आवेश नहीं"
+        },
+        {
+         "en": "It contains no oxygen",
+         "hi": "उसमें ऑक्सीजन नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sharing the charge lowers the energy of the ion, which makes the acid stronger.",
+        "hi": "आवेश बँटने से आयन की ऊर्जा घटती है, जिससे अम्ल प्रबल होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The carboxylate ion carries a negative charge.",
+         "hi": "कार्बोक्सिलेट आयन ऋणावेशित होता है।"
+        },
+        {
+         "en": "The ion has two oxygens.",
+         "hi": "आयन में दो ऑक्सीजन होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and build methanoic acid, HCOOH, with only one carbon. What do you notice in the name?",
+      "hi": "रीसेट दबाओ और केवल एक कार्बन वाला मेथेनॉइक अम्ल, HCOOH, बनाओ। नाम में क्या अंतर दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch08-prepare-acids",
+   "topic": "8.7",
+   "template": "match",
+   "title": {
+    "en": "Making carboxylic acids",
+    "hi": "कार्बोक्सिलिक अम्ल बनाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "ox",
+      "left": {
+       "en": "Primary alcohol + acidified KMnO₄",
+       "hi": "प्राथमिक ऐल्कोहॉल + अम्लीय KMnO₄"
+      },
+      "right": {
+       "en": "A carboxylic acid with the same number of carbons",
+       "hi": "उतने ही कार्बनों वाला कार्बोक्सिलिक अम्ल"
+      },
+      "why": {
+       "en": "Strong oxidation of the –CH₂OH group.",
+       "hi": "–CH₂OH समूह का प्रबल ऑक्सीकरण।"
+      }
+     },
+     {
+      "id": "tol",
+      "left": {
+       "en": "Toluene + alkaline KMnO₄, then acid",
+       "hi": "टॉलूईन + क्षारीय KMnO₄, फिर अम्ल"
+      },
+      "right": {
+       "en": "Benzoic acid",
+       "hi": "बेन्ज़ोइक अम्ल"
+      },
+      "why": {
+       "en": "The –CH₃ side chain is oxidised to –COOH.",
+       "hi": "पार्श्व श्रृंखला –CH₃ का ऑक्सीकरण –COOH में होता है।"
+      }
+     },
+     {
+      "id": "nit",
+      "left": {
+       "en": "Nitrile + water (acid or alkali hydrolysis)",
+       "hi": "नाइट्राइल + जल (अम्ल या क्षार जलअपघटन)"
+      },
+      "right": {
+       "en": "An acid with the carbon of the –CN group included",
+       "hi": "–CN समूह का कार्बन शामिल करता हुआ अम्ल"
+      },
+      "why": {
+       "en": "The –CN carbon becomes the –COOH carbon.",
+       "hi": "–CN का कार्बन –COOH का कार्बन बन जाता है।"
+      }
+     },
+     {
+      "id": "gr",
+      "left": {
+       "en": "Grignard reagent + CO₂, then H₃O⁺",
+       "hi": "ग्रिन्यार अभिकर्मक + CO₂, फिर H₃O⁺"
+      },
+      "right": {
+       "en": "An acid with one more carbon than the Grignard reagent",
+       "hi": "ग्रिन्यार अभिकर्मक से एक कार्बन अधिक वाला अम्ल"
+      },
+      "why": {
+       "en": "CO₂ adds one carbon as the new –COOH.",
+       "hi": "CO₂ नया –COOH बनकर एक कार्बन जोड़ता है।"
+      }
+     },
+     {
+      "id": "est",
+      "left": {
+       "en": "An ester + water with acid or alkali",
+       "hi": "एस्टर + जल, अम्ल या क्षार के साथ"
+      },
+      "right": {
+       "en": "The acid and the alcohol (hydrolysis)",
+       "hi": "अम्ल और ऐल्कोहॉल (जलअपघटन)"
+      },
+      "why": {
+       "en": "Hydrolysis splits an ester back into the acid and the alcohol.",
+       "hi": "जलअपघटन एस्टर को फिर अम्ल और ऐल्कोहॉल में तोड़ता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ox",
+     "expect": "matched:ox",
+     "say": {
+      "en": "Tap “Primary alcohol + acidified KMnO₄” on the left, then tap its partner on the right.",
+      "hi": "“प्राथमिक ऐल्कोहॉल + अम्लीय KMnO₄” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A Grignard reagent, CH₃MgBr, reacts with CO₂ and is then hydrolysed. How many carbons will the acid have?",
+      "hi": "ग्रिन्यार अभिकर्मक CH₃MgBr CO₂ से अभिक्रिया करता है और फिर जलअपघटित होता है। अम्ल में कितने कार्बन होंगे?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "Two: ethanoic acid",
+       "hi": "दो: एथेनॉइक अम्ल"
+      },
+      {
+       "id": "one",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "three",
+       "en": "Three",
+       "hi": "तीन"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "left:gr",
+     "expect": "matched:gr",
+     "say": {
+      "en": "Now match “Grignard reagent + CO₂, then H₃O⁺”.",
+      "hi": "अब “ग्रिन्यार अभिकर्मक + CO₂, फिर H₃O⁺” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Carboxylic acids come from oxidation (of primary alcohols or aldehydes, or the side chain of toluene), from hydrolysis (of nitriles and esters), and from Grignard reagents with carbon dioxide. Nitrile hydrolysis keeps the carbon count of the nitrile, while the Grignard–CO₂ route adds one carbon to the Grignard reagent. Choose the route that gives the carbon skeleton you need.",
+      "hi": "कार्बोक्सिलिक अम्ल ऑक्सीकरण (प्राथमिक ऐल्कोहॉल या ऐल्डिहाइड, या टॉलूईन की पार्श्व श्रृंखला), जलअपघटन (नाइट्राइल और एस्टर) और कार्बन डाइऑक्साइड के साथ ग्रिन्यार अभिकर्मकों से बनते हैं। नाइट्राइल के जलअपघटन में नाइट्राइल का कार्बन गिना जाता है, जबकि ग्रिन्यार–CO₂ मार्ग ग्रिन्यार अभिकर्मक में एक कार्बन जोड़ता है। वही मार्ग चुनो जो आवश्यक कार्बन ढाँचा दे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which reaction increases the carbon chain by one carbon?",
+        "hi": "कौन-सी अभिक्रिया कार्बन श्रृंखला में एक कार्बन बढ़ाती है?"
+       },
+       "options": [
+        {
+         "en": "Grignard reagent with CO₂",
+         "hi": "ग्रिन्यार अभिकर्मक और CO₂"
+        },
+        {
+         "en": "Oxidation of a primary alcohol",
+         "hi": "प्राथमिक ऐल्कोहॉल का ऑक्सीकरण"
+        },
+        {
+         "en": "Hydrolysis of an ester",
+         "hi": "एस्टर का जलअपघटन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "CO₂ supplies the new carboxyl carbon.",
+        "hi": "CO₂ नया कार्बोक्सिल कार्बन देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Oxidation keeps the same number of carbons.",
+         "hi": "ऑक्सीकरण में कार्बनों की संख्या वही रहती है।"
+        },
+        {
+         "en": "Hydrolysis only splits the ester.",
+         "hi": "जलअपघटन केवल एस्टर को तोड़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What do you get when toluene is oxidised with alkaline KMnO₄ and then acidified?",
+        "hi": "टॉलूईन को क्षारीय KMnO₄ से ऑक्सीकृत करके फिर अम्लीकृत करने पर क्या मिलता है?"
+       },
+       "options": [
+        {
+         "en": "Benzoic acid",
+         "hi": "बेन्ज़ोइक अम्ल"
+        },
+        {
+         "en": "Benzaldehyde only",
+         "hi": "केवल बेन्ज़ैल्डिहाइड"
+        },
+        {
+         "en": "Phenol",
+         "hi": "फीनॉल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The whole side chain is oxidised to –COOH.",
+        "hi": "पूरी पार्श्व श्रृंखला का ऑक्सीकरण –COOH में होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Strong oxidation goes beyond the aldehyde.",
+         "hi": "प्रबल ऑक्सीकरण ऐल्डिहाइड से आगे जाता है।"
+        },
+        {
+         "en": "Phenol is not formed by oxidising the methyl group.",
+         "hi": "मेथिल समूह के ऑक्सीकरण से फीनॉल नहीं बनता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Which of these routes could make 2-methylpropanoic acid from 2-chloropropane?",
+      "hi": "बाकी मिलाओ। इनमें से कौन-सा मार्ग 2-क्लोरोप्रोपेन से 2-मेथिलप्रोपेनॉइक अम्ल बना सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch08-acid-strength",
+   "topic": "8.9",
+   "template": "data",
+   "title": {
+    "en": "Which carboxylic acid is stronger?",
+    "hi": "कौन-सा कार्बोक्सिलिक अम्ल प्रबल है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 2,
+    "ask": "min",
+    "title": {
+     "en": "pKa of acids: a smaller number means a stronger acid",
+     "hi": "अम्लों का pKa: छोटी संख्या का अर्थ प्रबल अम्ल"
+    },
+    "xlabel": {
+     "en": "Acid",
+     "hi": "अम्ल"
+    },
+    "ylabel": {
+     "en": "pKa",
+     "hi": "pKa"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Ethanoic",
+       "hi": "एथेनॉइक"
+      },
+      "value": 4.76
+     },
+     {
+      "label": {
+       "en": "Methanoic",
+       "hi": "मेथेनॉइक"
+      },
+      "value": 3.75
+     },
+     {
+      "label": {
+       "en": "Chloroethanoic",
+       "hi": "क्लोरोएथेनॉइक"
+      },
+      "value": 2.86
+     },
+     {
+      "label": {
+       "en": "Dichloroethanoic",
+       "hi": "डाइक्लोरोएथेनॉइक"
+      },
+      "value": 1.48
+     },
+     {
+      "label": {
+       "en": "Trichloroethanoic",
+       "hi": "ट्राइक्लोरोएथेनॉइक"
+      },
+      "value": 0.7
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show chloroethanoic acid.",
+      "hi": "क्लोरोएथेनॉइक अम्ल दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chlorine pulls electrons towards itself. How will adding more chlorine atoms to ethanoic acid change its strength?",
+      "hi": "क्लोरीन इलेक्ट्रॉनों को अपनी ओर खींचता है। एथेनॉइक अम्ल में अधिक क्लोरीन परमाणु जोड़ने से उसकी प्रबलता कैसे बदलेगी?"
+     },
+     "options": [
+      {
+       "id": "stronger",
+       "en": "It becomes stronger",
+       "hi": "प्रबल होगा"
+      },
+      {
+       "id": "weaker",
+       "en": "It becomes weaker",
+       "hi": "दुर्बल होगा"
+      },
+      {
+       "id": "same",
+       "en": "No change",
+       "hi": "कोई बदलाव नहीं"
+      }
+     ],
+     "answer": "stronger"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add dichloroethanoic acid.",
+      "hi": "डाइक्लोरोएथेनॉइक अम्ल जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add trichloroethanoic acid.",
+      "hi": "ट्राइक्लोरोएथेनॉइक अम्ल जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "pKa = −log Ka, so a lower pKa means a stronger acid. Electron-withdrawing groups such as Cl pull charge away from the carboxylate ion and stabilise it, making the acid stronger: 4.76 for ethanoic acid falls to 0.70 for trichloroethanoic acid. Electron-releasing groups such as alkyl groups do the opposite, so methanoic acid (3.75) is stronger than ethanoic acid. Carboxylic acids are much stronger than alcohols and phenols.",
+      "hi": "pKa = −log Ka, इसलिए कम pKa का अर्थ प्रबल अम्ल। Cl जैसे इलेक्ट्रॉन-आकर्षी समूह कार्बोक्सिलेट आयन से आवेश खींचकर उसे स्थिर करते हैं और अम्ल प्रबल बनाते हैं: एथेनॉइक अम्ल का 4.76 घटकर ट्राइक्लोरोएथेनॉइक अम्ल के लिए 0.70 हो जाता है। ऐल्किल जैसे इलेक्ट्रॉन-मोचक समूह उलटा करते हैं, इसलिए मेथेनॉइक अम्ल (3.75) एथेनॉइक अम्ल से प्रबल है। कार्बोक्सिलिक अम्ल ऐल्कोहॉलों और फीनॉलों से कहीं प्रबल हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the strongest acid here?",
+        "hi": "यहाँ सबसे प्रबल अम्ल कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Trichloroethanoic acid",
+         "hi": "ट्राइक्लोरोएथेनॉइक अम्ल"
+        },
+        {
+         "en": "Ethanoic acid",
+         "hi": "एथेनॉइक अम्ल"
+        },
+        {
+         "en": "Methanoic acid",
+         "hi": "मेथेनॉइक अम्ल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It has the lowest pKa, 0.70.",
+        "hi": "इसका pKa सबसे कम, 0.70, है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ethanoic acid has the highest pKa, so it is the weakest.",
+         "hi": "एथेनॉइक अम्ल का pKa सबसे अधिक है, इसलिए वह सबसे दुर्बल है।"
+        },
+        {
+         "en": "Methanoic acid is stronger than ethanoic but weaker than the chloro acids.",
+         "hi": "मेथेनॉइक अम्ल एथेनॉइक से प्रबल पर क्लोरो अम्लों से दुर्बल है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is methanoic acid a stronger acid than ethanoic acid?",
+        "hi": "मेथेनॉइक अम्ल एथेनॉइक अम्ल से प्रबल क्यों है?"
+       },
+       "options": [
+        {
+         "en": "The CH₃ group of ethanoic acid pushes electrons and destabilises the anion",
+         "hi": "एथेनॉइक अम्ल का CH₃ समूह इलेक्ट्रॉन धकेलकर ऋणायन को अस्थिर करता है"
+        },
+        {
+         "en": "Methanoic acid has more carbon atoms",
+         "hi": "मेथेनॉइक अम्ल में अधिक कार्बन परमाणु हैं"
+        },
+        {
+         "en": "Methanoic acid has a ring",
+         "hi": "मेथेनॉइक अम्ल में वलय है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The methyl group is electron-releasing, which makes the carboxylate less stable.",
+        "hi": "मेथिल समूह इलेक्ट्रॉन-मोचक है, जिससे कार्बोक्सिलेट कम स्थिर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Methanoic acid has fewer carbon atoms, only one.",
+         "hi": "मेथेनॉइक अम्ल में कम कार्बन परमाणु, केवल एक, हैं।"
+        },
+        {
+         "en": "Methanoic acid has no ring.",
+         "hi": "मेथेनॉइक अम्ल में कोई वलय नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the trichloroethanoic bar up to 5. What would that say about the effect of three chlorine atoms?",
+      "hi": "ट्राइक्लोरोएथेनॉइक का बार 5 तक ऊपर खींचो। यह तीन क्लोरीन परमाणुओं के प्रभाव के बारे में क्या कहेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch08-acid-bicarbonate",
+   "topic": "8.9",
+   "template": "beaker",
+   "title": {
+    "en": "Carboxylic acid and baking soda: the fizz test",
+    "hi": "कार्बोक्सिलिक अम्ल और बेकिंग सोडा: बुलबुला परीक्षण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "soda",
+     "ethanoic",
+     "water"
+    ],
+    "tools": [
+     "limewater"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:soda",
+     "expect": "pick:soda",
+     "say": {
+      "en": "Pick up the baking soda, sodium hydrogencarbonate.",
+      "hi": "बेकिंग सोडा, सोडियम हाइड्रोजनकार्बोनेट, उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:soda",
+     "say": {
+      "en": "Put it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next you will add dilute ethanoic acid. What do you expect to see?",
+      "hi": "अब तुम तनु एथेनॉइक अम्ल डालोगे। तुम्हें क्या दिखने की उम्मीद है?"
+     },
+     "options": [
+      {
+       "id": "fizz",
+       "en": "Fizzing, as gas bubbles out",
+       "hi": "झाग और गैस के बुलबुले"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      },
+      {
+       "id": "fire",
+       "en": "Flames",
+       "hi": "लपटें"
+      }
+     ],
+     "answer": "fizz"
+    },
+    {
+     "kind": "do",
+     "target": "pick:ethanoic",
+     "expect": "pick:ethanoic",
+     "say": {
+      "en": "Pick up the dilute ethanoic acid.",
+      "hi": "तनु एथेनॉइक अम्ल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour it into the beaker and watch.",
+      "hi": "इसे बीकर में डालो और देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tool:limewater",
+     "expect": "tested:limewater",
+     "say": {
+      "en": "Test the gas with lime water.",
+      "hi": "गैस की जाँच चूने के पानी से करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A carboxylic acid is strong enough to push the weaker carbonic acid out of its salt: CH₃COOH + NaHCO₃ → CH₃COONa + H₂O + CO₂. The gas turns lime water milky, which shows it is carbon dioxide. Alcohols and most phenols are too weak to do this, so this fizz is the classic test for a carboxylic acid.",
+      "hi": "कार्बोक्सिलिक अम्ल इतना प्रबल है कि वह दुर्बल कार्बोनिक अम्ल को उसके लवण से बाहर निकाल देता है: CH₃COOH + NaHCO₃ → CH₃COONa + H₂O + CO₂। गैस चूने के पानी को दूधिया कर देती है, जो दिखाता है कि वह कार्बन डाइऑक्साइड है। ऐल्कोहॉल और अधिकतर फीनॉल इतने दुर्बल हैं कि ऐसा नहीं कर पाते, इसलिए यह बुलबुला परीक्षण कार्बोक्सिलिक अम्ल की मानक पहचान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the gas that turns lime water milky?",
+        "hi": "चूने के पानी को दूधिया करने वाली गैस कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "Carbon dioxide",
+         "hi": "कार्बन डाइऑक्साइड"
+        },
+        {
+         "en": "Hydrogen",
+         "hi": "हाइड्रोजन"
+        },
+        {
+         "en": "Oxygen",
+         "hi": "ऑक्सीजन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "CO₂ reacts with lime water to make insoluble calcium carbonate.",
+        "hi": "CO₂ चूने के पानी से अभिक्रिया करके अघुलनशील कैल्शियम कार्बोनेट बनाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hydrogen does not change lime water.",
+         "hi": "हाइड्रोजन चूने के पानी को नहीं बदलती।"
+        },
+        {
+         "en": "Oxygen does not make lime water milky.",
+         "hi": "ऑक्सीजन चूने के पानी को दूधिया नहीं करती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does ethanol not fizz with baking soda?",
+        "hi": "एथेनॉल बेकिंग सोडा के साथ बुलबुले क्यों नहीं बनाता?"
+       },
+       "options": [
+        {
+         "en": "It is a much weaker acid than carbonic acid",
+         "hi": "यह कार्बोनिक अम्ल से कहीं दुर्बल अम्ल है"
+        },
+        {
+         "en": "It is too strong an acid",
+         "hi": "यह बहुत प्रबल अम्ल है"
+        },
+        {
+         "en": "It contains no hydrogen",
+         "hi": "इसमें हाइड्रोजन नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only acids stronger than carbonic acid can release CO₂ from hydrogencarbonates.",
+        "hi": "केवल कार्बोनिक अम्ल से प्रबल अम्ल ही हाइड्रोजनकार्बोनेट से CO₂ मुक्त कर सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ethanol is a weak acid, not a strong one.",
+         "hi": "एथेनॉल दुर्बल अम्ल है, प्रबल नहीं।"
+        },
+        {
+         "en": "Ethanol has an –OH hydrogen.",
+         "hi": "एथेनॉल में –OH का हाइड्रोजन है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker. Try vinegar instead of ethanoic acid, if it is on the shelf. Why does vinegar fizz with baking soda too?",
+      "hi": "बीकर साफ़ करो। यदि अलमारी में हो तो एथेनॉइक अम्ल की जगह सिरका आज़माओ। सिरका भी बेकिंग सोडा के साथ क्यों बुलबुले बनाता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.5",
+   "use": "Hook of the chapter",
+   "shows": "An Indian kitchen shelf with a bottle of white vinegar, a lemon, a bowl of pickled mango and a glass of milk beside it",
+   "view": "Eye level, warm light",
+   "right": "Vinegar bottle clearly unlabelled; pickle jar in the background",
+   "avoid": "Brand names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "Silver mirror test",
+   "shows": "A test tube whose inner wall is coated with a shiny silver mirror after Tollens' reagent was warmed with an aldehyde, held in a test-tube holder over a water bath",
+   "view": "Straight front view, plain background",
+   "right": "Mirror smooth and bright, not black",
+   "avoid": "Open flame, bare fingers touching hot glass"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "8.4",
+   "use": "Fehling's test",
+   "shows": "Three frames of a test tube: clear blue Fehling's solution with an aldehyde, warming, and the red-brown precipitate of copper(I) oxide at the end",
+   "view": "Fixed camera, same light, white background",
+   "right": "Blue to green to red-brown; precipitate settles at the bottom",
+   "avoid": "Labels on the tube, no safety gear"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "8.9",
+   "use": "Fizzing with baking soda",
+   "shows": "Macro of vinegar being poured on a heap of baking soda in a glass dish, with bubbles rising",
+   "view": "Side macro view, bright light",
+   "right": "Clear bubbles forming above the white powder",
+   "avoid": "Brand names, overflow"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "8.6",
+   "use": "Ethanoic acid dimer",
+   "shows": "Ball-and-stick model of two ethanoic acid molecules held face to face by two dotted hydrogen bonds",
+   "view": "Four fixed angles, same size and centre",
+   "right": "Two hydrogen bonds clearly drawn between the two carboxyl groups",
+   "avoid": "Labels or text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "8.5",
+   "use": "Formalin-preserved specimens",
+   "shows": "A school biology museum shelf with sealed glass jars containing preserved specimens in clear liquid, taken from a safe distance",
+   "view": "Eye level, soft light",
+   "right": "Sealed jars with clear liquid; no handling by students",
+   "avoid": "Faces, readable labels, open jars"
+  }
+ ]
+}

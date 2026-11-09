@@ -1,0 +1,797 @@
+{
+ "chapter_key": "u.c01.mathematics.aejm1.ch01",
+ "class": 1,
+ "subject_id": "mathematics",
+ "title": "Finding the Furry Cat! (Pre-number Concepts)",
+ "source": "https://ncert.nic.in/textbook/pdf/aejm101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Where is it? On, under, inside, outside, above and below",
+   "labs": [
+    "c01-mathematics-aejm1-ch01-cat-hunt"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Top, middle and bottom: the colours of the tiranga",
+   "labs": [],
+   "why_no_lab": "Best learnt by looking at a real flag and making one from paper, as the reader suggests; there is nothing to move or test."
+  },
+  {
+   "n": "1.3",
+   "title": "Before and after: bogies of a train",
+   "labs": [
+    "c01-mathematics-aejm1-ch01-train"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Sorting things into groups",
+   "labs": [
+    "c01-mathematics-aejm1-ch01-groups"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-mathematics-aejm1-ch01-cat-hunt",
+   "topic": "1.1",
+   "template": "scenario",
+   "title": {
+    "en": "Where is the furry cat?",
+    "hi": "रोएँदार बिल्ली कहाँ है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "home",
+    "role": {
+     "en": "Cat finder",
+     "hi": "बिल्ली खोजने वाले"
+    },
+    "scenes": [
+     {
+      "id": "hunt",
+      "text": {
+       "en": "Riya cannot find Mittu, her furry cat. She looks around her room. A soft grey tail peeps out near the floor, below the bed. Where is Mittu?",
+       "hi": "रिया को अपनी रोएँदार बिल्ली मिट्ठू नहीं मिल रही। वह कमरे में ढूँढती है। पलंग के नीचे, फ़र्श के पास, एक मुलायम भूरी पूँछ दिख रही है। मिट्ठू कहाँ है?"
+      },
+      "choices": [
+       {
+        "id": "c-under",
+        "next": "window",
+        "feedback": {
+         "en": "Yes! Mittu is under the bed. The bed is above her and the floor is below her.",
+         "hi": "हाँ! मिट्ठू पलंग के नीचे है। पलंग उसके ऊपर है और फ़र्श उसके नीचे।"
+        },
+        "good": true,
+        "text": {
+         "en": "Under the bed",
+         "hi": "पलंग के नीचे"
+        }
+       },
+       {
+        "id": "c-on",
+        "next": "window",
+        "feedback": {
+         "en": "Look again. The top of the bed is empty. The tail is lower down, under the bed.",
+         "hi": "फिर से देखो। पलंग के ऊपर कुछ नहीं है। पूँछ नीचे है, पलंग के नीचे।"
+        },
+        "good": false,
+        "text": {
+         "en": "On the bed",
+         "hi": "पलंग के ऊपर"
+        }
+       },
+       {
+        "id": "c-cupboard",
+        "next": "window",
+        "feedback": {
+         "en": "The cupboard door is shut. The tail is near the floor, under the bed.",
+         "hi": "अलमारी का दरवाज़ा बंद है। पूँछ फ़र्श के पास, पलंग के नीचे है।"
+        },
+        "good": false,
+        "text": {
+         "en": "Inside the cupboard",
+         "hi": "अलमारी के अंदर"
+        }
+       }
+      ]
+     },
+     {
+      "id": "window",
+      "text": {
+       "en": "Mittu runs out and jumps up high. Now she sits on the window, in the warm sun. Where is Mittu now?",
+       "hi": "मिट्ठू बाहर निकलकर ऊँची छलाँग लगाती है। अब वह गुनगुनी धूप में खिड़की पर बैठी है। अब मिट्ठू कहाँ है?"
+      },
+      "choices": [
+       {
+        "id": "w-on",
+        "next": "bag",
+        "feedback": {
+         "en": "Right! Mittu is on the window. She is up high, above the floor.",
+         "hi": "सही! मिट्ठू खिड़की पर है। वह ऊपर है, फ़र्श से ऊपर।"
+        },
+        "good": true,
+        "text": {
+         "en": "On the window",
+         "hi": "खिड़की पर"
+        }
+       },
+       {
+        "id": "w-under",
+        "next": "bag",
+        "feedback": {
+         "en": "Under the window is the wall and the floor. Mittu jumped up, so she is on the window.",
+         "hi": "खिड़की के नीचे दीवार और फ़र्श है। मिट्ठू ऊपर कूदी, इसलिए वह खिड़की पर है।"
+        },
+        "good": false,
+        "text": {
+         "en": "Under the window",
+         "hi": "खिड़की के नीचे"
+        }
+       },
+       {
+        "id": "w-outside",
+        "next": "bag",
+        "feedback": {
+         "en": "The window is closed. Mittu is sitting on it, inside the room.",
+         "hi": "खिड़की बंद है। मिट्ठू उस पर बैठी है, कमरे के अंदर।"
+        },
+        "good": false,
+        "text": {
+         "en": "Outside the house",
+         "hi": "घर के बाहर"
+        }
+       }
+      ]
+     },
+     {
+      "id": "bag",
+      "text": {
+       "en": "Riya starts to pack her school bag. Something moves in it! Two green eyes look out from the open backpack. Where is Mittu?",
+       "hi": "रिया अपना स्कूल बस्ता भरने लगती है। उसमें कुछ हिलता है! खुले बस्ते से दो हरी आँखें झाँक रही हैं। मिट्ठू कहाँ है?"
+      },
+      "choices": [
+       {
+        "id": "b-inside",
+        "next": "mat",
+        "feedback": {
+         "en": "Yes! Mittu is inside the backpack. The bag is all around her.",
+         "hi": "हाँ! मिट्ठू बस्ते के अंदर है। बस्ता उसके चारों ओर है।"
+        },
+        "good": true,
+        "text": {
+         "en": "Inside the backpack",
+         "hi": "बस्ते के अंदर"
+        }
+       },
+       {
+        "id": "b-outside",
+        "next": "mat",
+        "feedback": {
+         "en": "Only her eyes look out. The rest of Mittu is inside the bag.",
+         "hi": "सिर्फ़ उसकी आँखें बाहर झाँक रही हैं। बाक़ी मिट्ठू बस्ते के अंदर है।"
+        },
+        "good": false,
+        "text": {
+         "en": "Outside the backpack",
+         "hi": "बस्ते के बाहर"
+        }
+       },
+       {
+        "id": "b-above",
+        "next": "mat",
+        "feedback": {
+         "en": "Nothing is above the bag. Mittu is down inside it.",
+         "hi": "बस्ते के ऊपर कुछ नहीं है। मिट्ठू उसके अंदर है।"
+        },
+        "good": false,
+        "text": {
+         "en": "Above the backpack",
+         "hi": "बस्ते के ऊपर"
+        }
+       }
+      ]
+     },
+     {
+      "id": "mat",
+      "text": {
+       "en": "Riya lifts Mittu out. Mittu jumps down and creeps below the doormat. Only her pink nose peeps out. Where is Mittu?",
+       "hi": "रिया मिट्ठू को बाहर निकालती है। मिट्ठू नीचे कूदकर दरवाज़े की दरी के नीचे घुस जाती है। सिर्फ़ उसकी गुलाबी नाक दिख रही है। मिट्ठू कहाँ है?"
+      },
+      "choices": [
+       {
+        "id": "m-under",
+        "next": "end",
+        "feedback": {
+         "en": "Found her! Mittu is under the mat. Riya gives her a big hug.",
+         "hi": "मिल गई! मिट्ठू दरी के नीचे है। रिया उसे गले लगा लेती है।"
+        },
+        "good": true,
+        "text": {
+         "en": "Under the mat",
+         "hi": "दरी के नीचे"
+        }
+       },
+       {
+        "id": "m-on",
+        "next": "end",
+        "feedback": {
+         "en": "The top of the mat is flat and empty. Mittu crept under it.",
+         "hi": "दरी के ऊपर कुछ नहीं है। मिट्ठू उसके नीचे घुसी है।"
+        },
+        "good": false,
+        "text": {
+         "en": "On top of the mat",
+         "hi": "दरी के ऊपर"
+        }
+       },
+       {
+        "id": "m-jar",
+        "next": "end",
+        "feedback": {
+         "en": "The jar is on the shelf with its lid on. Mittu is under the mat.",
+         "hi": "मर्तबान ढक्कन लगा अलमारी में रखा है। मिट्ठू दरी के नीचे है।"
+        },
+        "good": false,
+        "text": {
+         "en": "Inside the jar",
+         "hi": "मर्तबान के अंदर"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Cats love cosy, hidden places. Where do you think Mittu is hiding?",
+      "hi": "बिल्लियों को छिपी, आरामदार जगहें पसंद हैं। तुम्हें क्या लगता है, मिट्ठू कहाँ छिपी है?"
+     },
+     "options": [
+      {
+       "id": "under",
+       "en": "Under the bed",
+       "hi": "पलंग के नीचे"
+      },
+      {
+       "id": "fan",
+       "en": "On top of the fan",
+       "hi": "पंखे के ऊपर"
+      },
+      {
+       "id": "fridge",
+       "en": "Inside the fridge",
+       "hi": "फ़्रिज के अंदर"
+      }
+     ],
+     "answer": "under"
+    },
+    {
+     "kind": "do",
+     "target": "choice:hunt:c-under",
+     "expect": "chose:c-under",
+     "say": {
+      "en": "Read the clue. Tap the place where Mittu is.",
+      "hi": "संकेत पढ़ो। उस जगह को छुओ जहाँ मिट्ठू है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Words like on, under, inside, outside, above and below tell us where a thing is. Under the bed means the bed is over Mittu. Inside the bag means the bag is all around her.",
+      "hi": "ऊपर, नीचे, अंदर, बाहर जैसे शब्द बताते हैं कि कोई चीज़ कहाँ है। पलंग के नीचे का मतलब है पलंग मिट्ठू के ऊपर है। बस्ते के अंदर का मतलब है बस्ता उसके चारों ओर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bird sits on a branch of the tree. Where is the trunk of the tree?",
+        "hi": "एक चिड़िया पेड़ की डाल पर बैठी है। पेड़ का तना कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "Below the bird",
+         "hi": "चिड़िया के नीचे"
+        },
+        {
+         "en": "Above the bird",
+         "hi": "चिड़िया के ऊपर"
+        },
+        {
+         "en": "Inside the bird",
+         "hi": "चिड़िया के अंदर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The branch is high up and the trunk goes down to the ground, so the trunk is below the bird.",
+        "hi": "डाल ऊपर है और तना नीचे ज़मीन तक जाता है, इसलिए तना चिड़िया के नीचे है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Above would mean higher than the bird. The bird sits high on the branch, and the trunk is lower.",
+         "hi": "ऊपर का मतलब चिड़िया से ऊँचा। चिड़िया ऊँची डाल पर है, तना उससे नीचे है।"
+        },
+        {
+         "en": "A trunk cannot be inside a bird. Inside means something is all around it.",
+         "hi": "तना चिड़िया के अंदर नहीं हो सकता। अंदर का मतलब है कोई चीज़ चारों ओर से घेरे हो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Amma keeps the milk in the fridge and shuts the door. Where is the milk?",
+        "hi": "अम्मा दूध फ़्रिज में रखकर दरवाज़ा बंद करती हैं। दूध कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "Outside the fridge",
+         "hi": "फ़्रिज के बाहर"
+        },
+        {
+         "en": "Inside the fridge",
+         "hi": "फ़्रिज के अंदर"
+        },
+        {
+         "en": "On top of the fridge",
+         "hi": "फ़्रिज के ऊपर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The fridge is all around the milk, so the milk is inside it.",
+        "hi": "फ़्रिज दूध के चारों ओर है, इसलिए दूध उसके अंदर है।"
+       },
+       "wrong": [
+        {
+         "en": "Outside would mean the milk is left in the kitchen. It was put in and the door was shut.",
+         "hi": "बाहर का मतलब दूध रसोई में ही छूटा है। पर उसे अंदर रखकर दरवाज़ा बंद किया गया।"
+        },
+        "",
+        {
+         "en": "On top means resting on the fridge roof. The milk was put in, not on.",
+         "hi": "ऊपर का मतलब फ़्रिज की छत पर रखा। दूध अंदर रखा गया, ऊपर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Next and help Riya find Mittu in more places. Say each place word aloud.",
+      "hi": "अब ख़ुद आज़माओ। आगे दबाओ और मिट्ठू को और जगहों पर खोजने में रिया की मदद करो। हर जगह का शब्द ज़ोर से बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch01-train",
+   "topic": "1.3",
+   "template": "number-line",
+   "title": {
+    "en": "Bogies before and after",
+    "hi": "पहले और बाद वाले डिब्बे"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 1,
+    "max": 8,
+    "start": 1,
+    "jumps": [
+     1
+    ],
+    "ask": 6
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:2",
+     "say": {
+      "en": "The train has bogies 1 to 8. The marker is on bogie 1. Tap the forward hop once.",
+      "hi": "रेलगाड़ी में 1 से 8 तक डिब्बे हैं। निशान डिब्बे 1 पर है। आगे की छलाँग एक बार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which bogie comes just after bogie 4?",
+      "hi": "डिब्बे 4 के ठीक बाद कौन-सा डिब्बा आता है?"
+     },
+     "options": [
+      {
+       "id": "five",
+       "en": "Bogie 5",
+       "hi": "डिब्बा 5"
+      },
+      {
+       "id": "three",
+       "en": "Bogie 3",
+       "hi": "डिब्बा 3"
+      },
+      {
+       "id": "six",
+       "en": "Bogie 6",
+       "hi": "डिब्बा 6"
+      }
+     ],
+     "answer": "five"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:5",
+     "say": {
+      "en": "Keep hopping forward, one bogie at a time, until you reach the bogie just after 4.",
+      "hi": "एक-एक डिब्बा आगे छलाँग लगाते रहो, जब तक 4 के ठीक बाद वाले डिब्बे पर न पहुँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:4",
+     "say": {
+      "en": "Now hop back once. Which bogie are you on?",
+      "hi": "अब एक बार पीछे छलाँग लगाओ। तुम किस डिब्बे पर हो?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Hopping forward takes you to the bogie after. Hopping back takes you to the bogie before. Bogie 5 comes just after 4, and bogie 4 comes just before 5. Every bogie in the middle has one before it and one after it.",
+      "hi": "आगे छलाँग लगाने से तुम बाद वाले डिब्बे पर पहुँचते हो। पीछे छलाँग से पहले वाले डिब्बे पर। डिब्बा 5, डिब्बे 4 के ठीक बाद आता है, और 4, डिब्बे 5 के ठीक पहले। बीच के हर डिब्बे के आगे एक और पीछे एक डिब्बा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the train game, Meera stands just after Rohit. Rohit is number 3. What number is Meera?",
+        "hi": "रेल के खेल में मीरा रोहित के ठीक बाद खड़ी है। रोहित नंबर 3 है। मीरा कौन-सा नंबर है?"
+       },
+       "options": [
+        "2",
+        "4",
+        "5"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Just after 3 comes 4, one step forward.",
+        "hi": "3 के ठीक बाद 4 आता है, एक क़दम आगे।"
+       },
+       "wrong": [
+        {
+         "en": "2 comes before 3, not after. Before means one step back.",
+         "hi": "2, 3 से पहले आता है, बाद में नहीं। पहले का मतलब एक क़दम पीछे।"
+        },
+        "",
+        {
+         "en": "5 is two steps after 3. Just after means only one step forward.",
+         "hi": "5, 3 से दो क़दम बाद है। ठीक बाद का मतलब सिर्फ़ एक क़दम आगे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which bogie comes just before bogie 7?",
+        "hi": "डिब्बे 7 के ठीक पहले कौन-सा डिब्बा आता है?"
+       },
+       "options": [
+        {
+         "en": "Bogie 8",
+         "hi": "डिब्बा 8"
+        },
+        {
+         "en": "Bogie 5",
+         "hi": "डिब्बा 5"
+        },
+        {
+         "en": "Bogie 6",
+         "hi": "डिब्बा 6"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Hop back once from 7 and you land on 6.",
+        "hi": "7 से एक बार पीछे छलाँग लगाओ तो 6 पर पहुँचोगे।"
+       },
+       "wrong": [
+        {
+         "en": "8 comes after 7. Before means going back, not forward.",
+         "hi": "8, 7 के बाद आता है। पहले का मतलब पीछे जाना, आगे नहीं।"
+        },
+        {
+         "en": "5 is two bogies back from 7. Just before is only one hop back.",
+         "hi": "5, 7 से दो डिब्बे पीछे है। ठीक पहले का मतलब सिर्फ़ एक छलाँग पीछे।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Hop to bogie 6 and press Check my answer. Then hop back and forth and say which bogie is before and which is after.",
+      "hi": "अब ख़ुद आज़माओ। डिब्बे 6 तक छलाँग लगाओ और उत्तर जाँचो दबाओ। फिर आगे-पीछे छलाँग लगाकर बोलो कौन-सा डिब्बा पहले है और कौन-सा बाद में।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch01-groups",
+   "topic": "1.4",
+   "template": "data",
+   "title": {
+    "en": "Sort the buttons into groups",
+    "hi": "बटनों को समूहों में छाँटो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "pictograph",
+    "icon": "ball",
+    "show": 0,
+    "ask": "max",
+    "title": {
+     "en": "Suwali's buttons in groups",
+     "hi": "सुवाली के बटन समूहों में"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Red buttons",
+       "hi": "लाल बटन"
+      },
+      "value": 4
+     },
+     {
+      "label": {
+       "en": "Blue buttons",
+       "hi": "नीले बटन"
+      },
+      "value": 3
+     },
+     {
+      "label": {
+       "en": "Yellow buttons",
+       "hi": "पीले बटन"
+      },
+      "value": 5
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Suwali has a heap of buttons. She puts the red ones together. Tap Add to show her red group.",
+      "hi": "सुवाली के पास बटनों का ढेर है। वह लाल बटन एक साथ रखती है। उसका लाल समूह दिखाने के लिए जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Now she puts the blue buttons together. Tap Add again.",
+      "hi": "अब वह नीले बटन एक साथ रखती है। फिर से जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One more group is coming: the yellow buttons. Which group do you think will have the most buttons?",
+      "hi": "एक समूह और आ रहा है: पीले बटन। तुम्हें क्या लगता है, किस समूह में सबसे ज़्यादा बटन होंगे?"
+     },
+     "options": [
+      {
+       "id": "yellow",
+       "en": "Yellow",
+       "hi": "पीला"
+      },
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल"
+      },
+      {
+       "id": "blue",
+       "en": "Blue",
+       "hi": "नीला"
+      }
+     ],
+     "answer": "yellow"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add to show the yellow group.",
+      "hi": "पीला समूह दिखाने के लिए जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Count each group. Tap the group that has the most buttons.",
+      "hi": "हर समूह गिनो। उस समूह को छुओ जिसमें सबसे ज़्यादा बटन हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Suwali put buttons of the same colour together. Now each group is easy to count: red 4, blue 3, yellow 5. Yellow has the most and blue has the fewest.",
+      "hi": "सुवाली ने एक रंग के बटन एक साथ रखे। अब हर समूह गिनना आसान है: लाल 4, नीले 3, पीले 5। पीले सबसे ज़्यादा हैं और नीले सबसे कम।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Rohit puts all the leaves in one heap and all the pebbles in another heap. Why?",
+        "hi": "रोहित सारी पत्तियाँ एक ढेर में और सारे कंकड़ दूसरे ढेर में रखता है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Things that are alike go together",
+         "hi": "एक जैसी चीज़ें एक साथ रखी जाती हैं"
+        },
+        {
+         "en": "Leaves are heavier than pebbles",
+         "hi": "पत्तियाँ कंकड़ों से भारी होती हैं"
+        },
+        {
+         "en": "To make a big mess",
+         "hi": "बड़ा ढेर लगाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sorting means putting things that are alike in the same group, so leaves go with leaves and pebbles with pebbles.",
+        "hi": "छाँटने का मतलब है एक जैसी चीज़ों को एक समूह में रखना, इसलिए पत्तियाँ पत्तियों के साथ और कंकड़ कंकड़ों के साथ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Pebbles are heavier, not leaves, and he did not sort by weight. He sorted by what the things are.",
+         "hi": "भारी तो कंकड़ होते हैं, पत्तियाँ नहीं, और उसने वज़न से नहीं छाँटा। उसने चीज़ के प्रकार से छाँटा।"
+        },
+        {
+         "en": "Sorting makes things neat and easy to count, not messy.",
+         "hi": "छाँटने से चीज़ें सजी हुई और गिनने में आसान होती हैं, बिखरी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Suwali wants to sort her buttons in a new way. Which way works?",
+        "hi": "सुवाली अपने बटन नए ढंग से छाँटना चाहती है। कौन-सा ढंग ठीक है?"
+       },
+       "options": [
+        {
+         "en": "By the number of holes",
+         "hi": "छेदों की गिनती से"
+        },
+        {
+         "en": "By the day of the week",
+         "hi": "हफ़्ते के दिन से"
+        },
+        {
+         "en": "By who is looking",
+         "hi": "कौन देख रहा है, उससे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Buttons with 2 holes can go in one group and buttons with 4 holes in another. Size works too.",
+        "hi": "2 छेद वाले बटन एक समूह में और 4 छेद वाले दूसरे में रखे जा सकते हैं। आकार से भी छाँट सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A button does not change with the day, so the day cannot make groups.",
+         "hi": "बटन दिन के साथ नहीं बदलता, इसलिए दिन से समूह नहीं बनते।"
+        },
+        {
+         "en": "The buttons stay the same whoever looks, so that cannot sort them.",
+         "hi": "कोई भी देखे, बटन वही रहते हैं, इसलिए उससे छाँटा नहीं जा सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Drag a bar up or down to add or take away buttons. Which group has the most now? Press Sort to line them up.",
+      "hi": "अब ख़ुद आज़माओ। किसी पट्टी को ऊपर-नीचे खींचकर बटन जोड़ो या हटाओ। अब किस समूह में सबसे ज़्यादा हैं? क्रम से लगाने के लिए छाँटो दबाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook of the chapter and the cat-hunt lab",
+   "shows": "A cosy Indian child's bedroom: a wooden bed with a bright bedsheet, a grey furry cat's tail peeping out from under the bed, a school backpack on a chair, a window with sunlight",
+   "view": "Eye level from the doorway, whole room in view, warm morning light",
+   "right": "The tail clearly comes from under the bed, near the floor",
+   "avoid": "A child's face; clutter; any text or posters with words"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "The cat in every scene of the lab",
+   "shows": "A friendly grey-and-white furry house cat, three files: sitting, peeping with only eyes showing, curled up asleep",
+   "view": "Plain transparent background, lit from the top left, cat fills 80% of the frame",
+   "right": "Real cat proportions, four legs, whiskers, soft fur",
+   "avoid": "Cartoon style, a collar with a name tag"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Before and after lab",
+   "shows": "A wooden toy train on a floor mat: an engine and six bogies, each a different bright colour, joined in a line",
+   "view": "Side view at floor level, the whole train in one line from left to right",
+   "right": "Engine at the front (left), bogies clearly separate and countable",
+   "avoid": "Numbers or letters painted on the bogies (the app adds them)"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.4",
+   "use": "Sorting lab and the reader",
+   "shows": "Shirt buttons in red, blue and yellow, some with 2 holes and some with 4 holes, scattered on a white cloth",
+   "view": "From straight above, soft even light, about 12 buttons",
+   "right": "Holes clearly visible so a child can count them; colours clearly different",
+   "avoid": "Brand marks on buttons; buttons overlapping"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "Sorting in daily life",
+   "shows": "Four small neat heaps on a school desk: green leaves, grey pebbles, white chalk pieces and tamarind seeds",
+   "view": "Three-quarter view from above, natural daylight",
+   "right": "Each heap holds only one kind of thing",
+   "avoid": "Mixed heaps; hands with rings or nail paint"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Top, middle and bottom",
+   "shows": "The Indian national flag, flat and fully spread",
+   "view": "Straight on, plain light background",
+   "right": "Saffron at the top, white in the middle with the navy blue Ashoka Chakra of 24 spokes, green at the bottom; length to width 3:2",
+   "avoid": "Wrinkles that hide a colour; any text"
+  }
+ ]
+}

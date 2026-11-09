@@ -1,0 +1,146 @@
+{
+  "chapter_key": "u.c12.political_science.leps2.ch05",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "Challenges to and Restoration of the Congress System",
+  "source": "https://ncert.nic.in/textbook/pdf/leps205.pdf",
+  "topics": [
+    { "n": "5.1", "title": "The challenge of political succession: from Nehru to Indira Gandhi", "labs": ["c12-political_science-leps2-ch05-succession-timeline"], "why_no_lab": null },
+    { "n": "5.2", "title": "Non-Congressism, coalitions and defection", "labs": ["c12-political_science-leps2-ch05-terms-match"], "why_no_lab": null },
+    { "n": "5.3", "title": "The Congress Syndicate and its role", "labs": [], "why_no_lab": "Covered by the terms lab; the rest is a story of party leaders told in the reader." },
+    { "n": "5.4", "title": "The 1971 election and the restoration of Congress", "labs": [], "why_no_lab": "The result is the last event in the timeline lab; the campaign itself is for class discussion." },
+    { "n": "5.5", "title": "The abolition of the Privy Purse", "labs": [], "why_no_lab": "Covered by the terms lab, where the Privy Purse is explained with the 1971 amendment." }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps2-ch05-succession-timeline",
+      "topic": "5.1",
+      "template": "timeline",
+      "title": { "en": "After Nehru: the key events in order", "hi": "नेहरू के बाद: मुख्य घटनाएँ क्रम से" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1960, 1975],
+        "task": "order",
+        "title": { "en": "The Congress system in change", "hi": "बदलती कांग्रेस व्यवस्था" },
+        "events": [
+          { "id": "nehru", "year": 1964, "label": { "en": "Jawaharlal Nehru dies in May 1964", "hi": "मई 1964 में जवाहरलाल नेहरू का निधन होता है" } },
+          { "id": "shastri", "year": 1966, "label": { "en": "Lal Bahadur Shastri dies in Tashkent, and Indira Gandhi becomes Prime Minister", "hi": "ताशकंद में लाल बहादुर शास्त्री का निधन होता है, और इंदिरा गांधी प्रधानमंत्री बनती हैं" } },
+          { "id": "elec67", "year": 1967, "label": { "en": "The Fourth General Elections weaken Congress in several states", "hi": "चौथे आम चुनाव में कई राज्यों में कांग्रेस कमज़ोर पड़ती है" } },
+          { "id": "split", "year": 1969, "label": { "en": "The Congress party splits into two groups", "hi": "कांग्रेस पार्टी दो गुटों में बँटती है" } },
+          { "id": "elec71", "year": 1971, "label": { "en": "Congress wins a large majority in the Lok Sabha election", "hi": "लोक सभा चुनाव में कांग्रेस भारी बहुमत जीतती है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Who became Prime Minister right after Nehru's death in 1964?", "hi": "1964 में नेहरू के निधन के बाद कौन प्रधानमंत्री बना?" },
+          "options": [
+            { "id": "shastri", "en": "Lal Bahadur Shastri", "hi": "लाल बहादुर शास्त्री" },
+            { "id": "indira", "en": "Indira Gandhi", "hi": "इंदिरा गांधी" },
+            { "id": "desai", "en": "Morarji Desai", "hi": "मोरारजी देसाई" }
+          ],
+          "answer": "shastri"
+        },
+        { "kind": "do", "target": "event:nehru", "expect": "placed:nehru", "say": { "en": "Tap Nehru's death in 1964.", "hi": "1964 में नेहरू के निधन वाली घटना छुओ।" } },
+        { "kind": "do", "target": "event:shastri", "expect": "placed:shastri", "say": { "en": "Tap the Tashkent event of 1966.", "hi": "1966 की ताशकंद वाली घटना छुओ।" } },
+        { "kind": "do", "target": "event:elec67", "expect": "placed:elec67", "say": { "en": "Tap the Fourth General Elections of 1967.", "hi": "1967 के चौथे आम चुनाव छुओ।" } },
+        { "kind": "do", "target": "event:split", "expect": "placed:split", "say": { "en": "Tap the Congress split of 1969.", "hi": "1969 की कांग्रेस की टूट छुओ।" } },
+        { "kind": "do", "target": "event:elec71", "expect": "placed:elec71", "say": { "en": "Tap the 1971 election win.", "hi": "1971 की चुनावी जीत छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to test the order.", "hi": "क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Nehru's death in 1964 raised the question of succession. Shastri led until 1966, and then Indira Gandhi became Prime Minister. In 1967 Congress kept its majority at the Centre but lost many states. The party split in 1969, and in 1971 Congress under Indira Gandhi won a large majority.", "hi": "1964 में नेहरू के निधन से उत्तराधिकार का सवाल उठा। शास्त्री 1966 तक नेता रहे, फिर इंदिरा गांधी प्रधानमंत्री बनीं। 1967 में कांग्रेस ने केंद्र में बहुमत रखा, पर कई राज्य खो दिए। 1969 में पार्टी बँटी, और 1971 में इंदिरा गांधी के नेतृत्व में कांग्रेस ने भारी बहुमत जीता।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which Prime Minister led Congress into the 1971 election?", "hi": "1971 के चुनाव में कांग्रेस का नेतृत्व किस प्रधानमंत्री ने किया?" },
+              "options": [
+                { "en": "Lal Bahadur Shastri", "hi": "लाल बहादुर शास्त्री" },
+                { "en": "Indira Gandhi", "hi": "इंदिरा गांधी" },
+                { "en": "Morarji Desai", "hi": "मोरारजी देसाई" }
+              ],
+              "answer": 1,
+              "why": { "en": "Indira Gandhi was Prime Minister from 1966 and led Congress in 1971.", "hi": "इंदिरा गांधी 1966 से प्रधानमंत्री थीं और 1971 में कांग्रेस का नेतृत्व उन्होंने किया।" },
+              "wrong": [
+                { "en": "Shastri died in 1966, before the 1971 election.", "hi": "शास्त्री का निधन 1966 में हुआ, 1971 के चुनाव से पहले।" },
+                "",
+                { "en": "Morarji Desai became Prime Minister only in 1977, after the 1971 election.", "hi": "मोरारजी देसाई 1977 में, 1971 के चुनाव के बाद प्रधानमंत्री बने।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Write one reason why a party might split after its leader changes. Use the events of 1966 and 1969 as your example.", "hi": "एक कारण लिखो कि नेता बदलने के बाद दल क्यों बँट सकता है। 1966 और 1969 की घटनाओं को उदाहरण बनाओ।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch05-terms-match",
+      "topic": "5.2",
+      "template": "match",
+      "title": { "en": "Key words of the Congress system's challenge", "hi": "कांग्रेस व्यवस्था की चुनौती के मुख्य शब्द" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "syndicate", "left": { "en": "Syndicate", "hi": "सिंडिकेट" }, "right": { "en": "A group of powerful Congress leaders who shaped party decisions", "hi": "कांग्रेस के कुछ शक्तिशाली नेताओं का गुट, जो पार्टी के फ़ैसलों को आकार देता था" }, "why": { "en": "It had a strong say in choosing party leaders, including Prime Ministers.", "hi": "पार्टी नेता चुनने में, प्रधानमंत्री चुनने में भी, इसकी बड़ी भूमिका थी।" } },
+          { "id": "nonc", "left": { "en": "Non-Congressism", "hi": "गैर-कांग्रेसवाद" }, "right": { "en": "Opposition parties joining hands to defeat Congress in states", "hi": "कांग्रेस को राज्यों में हराने के लिए विपक्षी दलों का हाथ मिलाना" }, "why": { "en": "In 1967 several such alliances formed state governments.", "hi": "1967 में ऐसे कई गठबंधनों ने राज्यों में सरकारें बनाईं।" } },
+          { "id": "coalition", "left": { "en": "Coalition", "hi": "गठबंधन सरकार" }, "right": { "en": "A government formed by several parties sharing power", "hi": "कई दलों के मेल से बनी और सत्ता बाँटने वाली सरकार" }, "why": { "en": "Coalitions in states after 1967 were often unstable.", "hi": "1967 के बाद राज्यों में गठबंधन सरकारें अक्सर अस्थिर रहीं।" } },
+          { "id": "defect", "left": { "en": "Defection", "hi": "दल-बदल" }, "right": { "en": "An elected member leaves one party to join another", "hi": "निर्वाचित सदस्य एक दल छोड़कर दूसरे दल में चला जाता है" }, "why": { "en": "Frequent defections made governments unstable in the late 1960s.", "hi": "1960 के दशक के अंत में बार-बार दल-बदल से सरकारें अस्थिर हुईं।" } },
+          { "id": "privy", "left": { "en": "Privy purse", "hi": "प्रिवी पर्स" }, "right": { "en": "Payments to former princely rulers, ended by a 1971 amendment", "hi": "पूर्व रियासती शासकों को दिए जाने वाले भत्ते, जिन्हें 1971 के संशोधन से ख़त्म किया गया" }, "why": { "en": "The government ended these payments in 1971 to remove a special privilege.", "hi": "सरकार ने एक विशेष सुविधा ख़त्म करने के लिए 1971 में ये भत्ते बंद किए।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A member changes party in the middle of a term. What is this called?", "hi": "कार्यकाल के बीच में कोई सदस्य दल बदल ले, तो इसे क्या कहते हैं?" },
+          "options": [
+            { "id": "defect", "en": "Defection", "hi": "दल-बदल" },
+            { "id": "coalition", "en": "Coalition", "hi": "गठबंधन" },
+            { "id": "syndicate", "en": "Syndicate", "hi": "सिंडिकेट" }
+          ],
+          "answer": "defect"
+        },
+        { "kind": "do", "target": "right:syndicate", "expect": "matched:syndicate", "say": { "en": "Tap 'Syndicate' on the left, then its description on the right.", "hi": "बाईं ओर 'सिंडिकेट' छुओ, फिर दाईं ओर उसका विवरण छुओ।" } },
+        { "kind": "do", "target": "right:nonc", "expect": "matched:nonc", "say": { "en": "Match Non-Congressism with its meaning.", "hi": "गैर-कांग्रेसवाद का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:coalition", "expect": "matched:coalition", "say": { "en": "Match coalition with its meaning.", "hi": "गठबंधन का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:defect", "expect": "matched:defect", "say": { "en": "Match defection with its meaning.", "hi": "दल-बदल का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:privy", "expect": "matched:privy", "say": { "en": "Match the Privy purse. The last match completes the set.", "hi": "प्रिवी पर्स का मिलान करो। आख़िरी मिलान से सेट पूरा होगा।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "In the late 1960s the Congress system was challenged from many sides. Opposition parties joined to defeat Congress in states, coalitions became common, and defections shook governments. The Syndicate shaped party choices, and the Privy Purse was ended in 1971.", "hi": "1960 के दशक के अंत में कांग्रेस व्यवस्था को कई ओर से चुनौती मिली। विपक्षी दल कांग्रेस को राज्यों में हराने के लिए जुड़े, गठबंधन आम हो गए, और दल-बदल ने सरकारें हिला दीं। सिंडिकेट पार्टी के फ़ैसलों को आकार देता था, और 1971 में प्रिवी पर्स बंद हुआ।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which action ended the Privy Purse?", "hi": "प्रिवी पर्स किस कदम से बंद हुआ?" },
+              "options": [
+                { "en": "A constitutional amendment in 1971", "hi": "1971 का एक संवैधानिक संशोधन" },
+                { "en": "The 1967 general election", "hi": "1967 का आम चुनाव" },
+                { "en": "A decision of the Syndicate", "hi": "सिंडिकेट का एक फ़ैसला" }
+              ],
+              "answer": 0,
+              "why": { "en": "A constitutional amendment passed in 1971 ended the Privy Purse.", "hi": "1971 में पारित एक संवैधानिक संशोधन ने प्रिवी पर्स बंद किया।" },
+              "wrong": [
+                "",
+                { "en": "The 1967 election weakened Congress in states but did not end the Privy Purse.", "hi": "1967 के चुनाव ने राज्यों में कांग्रेस को कमज़ोर किया, पर प्रिवी पर्स बंद नहीं किया।" },
+                { "en": "The Syndicate was a group inside Congress, not a legal act.", "hi": "सिंडिकेट कांग्रेस के अंदर एक गुट था, कोई क़ानूनी कदम नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Write one difference between a coalition and a defection in your own words.", "hi": "गठबंधन और दल-बदल के बीच का एक अंतर अपने शब्दों में लिखो।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "DIA", "topic": "5.1", "use": "Blank strip for the succession story", "shows": "A horizontal white strip with five evenly spaced marks, ready for dates and labels added by the app", "view": "Flat, 16:9, straight-on", "right": "Clean line, round marks, no words", "avoid": "Any text" },
+    { "n": 2, "kind": "SCN", "topic": "5.1", "use": "Opening picture of the seat of government", "shows": "Parliament House in New Delhi at dusk with empty steps and no people in frame", "view": "Eye level, wide 16:9, warm evening light", "right": "Real sandstone colours, true sky", "avoid": "Readable signs, crowds, flags" },
+    { "n": 3, "kind": "OBJ", "topic": "5.5", "use": "Old coins as a symbol of the Privy Purse payments", "shows": "A small stack of old silver-toned coins on a plain cloth, cut-out on a transparent background", "view": "Three-quarter view from above, object fills about 80 percent", "right": "Real metal wear, soft shadow", "avoid": "Readable currency text, portraits, modern notes" },
+    { "n": 4, "kind": "SEQ", "topic": "5.2", "use": "An empty seat in a party meeting over one day", "shows": "Three frames of an empty chair in a meeting room at morning, afternoon and evening, same camera position", "view": "Same frame size, same angle, daylight changing, numbered files", "right": "Real room, true light change, no people", "avoid": "Party symbols, readable posters" },
+    { "n": 5, "kind": "MAP", "topic": "5.1", "use": "The country where the Congress system ruled", "shows": "Plain outline map of India with relief shaded, no states and no borders", "view": "Top-down, 16:9, centred on the subcontinent", "right": "Soft earth colours, true relief, pale sea", "avoid": "State borders, names, capitals" }
+  ]
+}

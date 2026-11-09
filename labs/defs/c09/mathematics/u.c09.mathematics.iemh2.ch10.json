@@ -1,0 +1,918 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh2.ch10",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "How Quantities Combine: Understanding Data",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh202.pdf",
+ "topics": [
+  {
+   "n": "10.1.1",
+   "title": "Average of averages",
+   "labs": [
+    "c09-mathematics-iemh2-ch10-average-of-averages"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.1.2",
+   "title": "Mixtures",
+   "labs": [
+    "c09-mathematics-iemh2-ch10-mixtures"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.1.3",
+   "title": "Custom weights: the weighted average",
+   "labs": [
+    "c09-mathematics-iemh2-ch10-weights"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2.1",
+   "title": "Visualising data: stacking columns and 100% stacked columns",
+   "labs": [
+    "c09-mathematics-iemh2-ch10-stacking"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2.2",
+   "title": "An alternative to the pie chart",
+   "labs": [
+    "c09-mathematics-iemh2-ch10-pie-alternative"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh2-ch10-average-of-averages",
+   "topic": "10.1.1",
+   "template": "data",
+   "title": {
+    "en": "Average of averages: why it can mislead",
+    "hi": "औसतों का औसत: यह क्यों भटका सकता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "mean",
+    "show": 4,
+    "title": {
+     "en": "Quiz marks out of 10 in two groups (sample data)",
+     "hi": "दो समूहों के क्विज़ अंक, 10 में से (नमूना आँकड़े)"
+    },
+    "xlabel": {
+     "en": "Student (group)",
+     "hi": "विद्यार्थी (समूह)"
+    },
+    "ylabel": {
+     "en": "Marks",
+     "hi": "अंक"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Asha (A)",
+       "hi": "आशा (A)"
+      },
+      "value": 8
+     },
+     {
+      "label": {
+       "en": "Bilal (A)",
+       "hi": "बिलाल (A)"
+      },
+      "value": 9
+     },
+     {
+      "label": {
+       "en": "Chitra (A)",
+       "hi": "चित्रा (A)"
+      },
+      "value": 7
+     },
+     {
+      "label": {
+       "en": "Dev (A)",
+       "hi": "देव (A)"
+      },
+      "value": 8
+     },
+     {
+      "label": {
+       "en": "Esha (B)",
+       "hi": "ईशा (B)"
+      },
+      "value": 4
+     },
+     {
+      "label": {
+       "en": "Faiz (B)",
+       "hi": "फ़ैज़ (B)"
+      },
+      "value": 6
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Group A is on the graph. Tap Add row to plot Esha from group B.",
+      "hi": "समूह A ग्राफ़ पर है। समूह B की ईशा को जोड़ने के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row again for Faiz.",
+      "hi": "फ़ैज़ के लिए फिर पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Group A (4 students) has average 8 and group B (2 students) has average 5. Is the average of all six (8 + 5) ÷ 2 = 6.5?",
+      "hi": "समूह A (4 विद्यार्थी) का औसत 8 और समूह B (2 विद्यार्थी) का औसत 5 है। क्या सभी छह का औसत (8 + 5) ÷ 2 = 6.5 है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is more than 6.5",
+       "hi": "नहीं, यह 6.5 से ज़्यादा है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, 6.5",
+       "hi": "हाँ, 6.5"
+      },
+      {
+       "id": "less",
+       "en": "No, it is less than 6.5",
+       "hi": "नहीं, यह 6.5 से कम है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Find the mean of all six marks.",
+      "hi": "सभी छह अंकों का माध्य निकालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The true mean is the total of all marks divided by 6: (32 + 10) ÷ 6 = 7. Averaging 8 and 5 treats both groups as equal, but group A has twice as many students. The right way is (8 × 4 + 5 × 2) ÷ (4 + 2) = 7.",
+      "hi": "सही माध्य सभी अंकों का योग ÷ 6 है: (32 + 10) ÷ 6 = 7। 8 और 5 का औसत दोनों समूहों को बराबर मानता है, पर समूह A में दुगुने विद्यार्थी हैं। सही तरीक़ा है (8 × 4 + 5 × 2) ÷ (4 + 2) = 7।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When does the simple average of two group averages give the right overall mean?",
+        "hi": "दो समूह-औसतों का सीधा औसत कब सही कुल माध्य देता है?"
+       },
+       "options": [
+        {
+         "en": "When both groups have the same number of members",
+         "hi": "जब दोनों समूहों में सदस्य बराबर हों"
+        },
+        {
+         "en": "Always",
+         "hi": "हमेशा"
+        },
+        {
+         "en": "Never",
+         "hi": "कभी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal sizes mean equal weights, so (a + b) ÷ 2 works.",
+        "hi": "बराबर आकार का अर्थ बराबर भार है, इसलिए (a + b) ÷ 2 चलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It failed here because the groups had 4 and 2 members.",
+         "hi": "यहाँ यह विफल हुआ क्योंकि समूहों में 4 और 2 सदस्य थे।"
+        },
+        {
+         "en": "With equal group sizes it does work, as in a week of 5 days each.",
+         "hi": "बराबर आकार के समूहों में यह चलता है, जैसे हर हफ़्ते के 5 दिन।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag Faiz's bar up to 10. How much does the overall mean change? Why does one value in the small group still matter?",
+      "hi": "फ़ैज़ का दंड 10 तक खींचो। कुल माध्य कितना बदलता है? छोटे समूह का एक मान भी क्यों मायने रखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch10-mixtures",
+   "topic": "10.1.2",
+   "template": "match",
+   "title": {
+    "en": "Mixtures: the weighted average",
+    "hi": "मिश्रण: भारित औसत"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "eq",
+      "left": {
+       "en": "1 kg rice at ₹40 mixed with 1 kg at ₹60",
+       "hi": "₹40 वाला 1 किलो चावल और ₹60 वाला 1 किलो मिलाया"
+      },
+      "right": {
+       "en": "₹50 per kg",
+       "hi": "₹50 प्रति किलो"
+      },
+      "why": {
+       "en": "Equal amounts: the plain average (40 + 60) ÷ 2.",
+       "hi": "बराबर मात्रा: सीधा औसत (40 + 60) ÷ 2।"
+      }
+     },
+     {
+      "id": "cheap",
+      "left": {
+       "en": "3 kg at ₹40 mixed with 1 kg at ₹60",
+       "hi": "₹40 वाला 3 किलो और ₹60 वाला 1 किलो मिलाया"
+      },
+      "right": {
+       "en": "₹45 per kg",
+       "hi": "₹45 प्रति किलो"
+      },
+      "why": {
+       "en": "(120 + 60) ÷ 4 = 45: closer to the price you have more of.",
+       "hi": "(120 + 60) ÷ 4 = 45: जिसकी मात्रा ज़्यादा उसके पास।"
+      }
+     },
+     {
+      "id": "dear",
+      "left": {
+       "en": "1 kg at ₹40 mixed with 3 kg at ₹60",
+       "hi": "₹40 वाला 1 किलो और ₹60 वाला 3 किलो मिलाया"
+      },
+      "right": {
+       "en": "₹55 per kg",
+       "hi": "₹55 प्रति किलो"
+      },
+      "why": {
+       "en": "(40 + 180) ÷ 4 = 55.",
+       "hi": "(40 + 180) ÷ 4 = 55।"
+      }
+     },
+     {
+      "id": "juice",
+      "left": {
+       "en": "2 L of juice with 10% sugar plus 3 L with 20%",
+       "hi": "10% चीनी वाला 2 लीटर रस और 20% वाला 3 लीटर"
+      },
+      "right": {
+       "en": "16% sugar",
+       "hi": "16% चीनी"
+      },
+      "why": {
+       "en": "Sugar 0.2 + 0.6 = 0.8 L in 5 L, so 16%.",
+       "hi": "चीनी 0.2 + 0.6 = 0.8 लीटर, 5 लीटर में, यानी 16%।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:eq",
+     "expect": "matched:eq",
+     "say": {
+      "en": "Tap the card with equal amounts, then its price per kg.",
+      "hi": "बराबर मात्रा वाला कार्ड छुओ, फिर उसका प्रति किलो दाम।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "3 kg at ₹40 and 1 kg at ₹60 are mixed. Is the price per kg more or less than ₹50?",
+      "hi": "₹40 वाला 3 किलो और ₹60 वाला 1 किलो मिलाया। प्रति किलो दाम ₹50 से ज़्यादा है या कम?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Less than ₹50",
+       "hi": "₹50 से कम"
+      },
+      {
+       "id": "more",
+       "en": "More than ₹50",
+       "hi": "₹50 से ज़्यादा"
+      },
+      {
+       "id": "same",
+       "en": "Exactly ₹50",
+       "hi": "ठीक ₹50"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "left:cheap",
+     "expect": "matched:cheap",
+     "say": {
+      "en": "Match that card.",
+      "hi": "वह कार्ड मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a mixture, each part counts as much as its amount. Price of mix = total cost ÷ total amount. The answer always lies between the two prices, closer to the one there is more of.",
+      "hi": "मिश्रण में हर भाग उतना गिना जाता है जितनी उसकी मात्रा है। मिश्रण का दाम = कुल लागत ÷ कुल मात्रा। उत्तर हमेशा दोनों दामों के बीच होता है, जिसकी मात्रा ज़्यादा उसके पास।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A milkman mixes 4 L of milk with 1 L of water. What share of the mix is milk?",
+        "hi": "दूधवाला 4 लीटर दूध में 1 लीटर पानी मिलाता है। मिश्रण का कितना भाग दूध है?"
+       },
+       "options": [
+        "80%",
+        "75%",
+        "40%"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 L of 5 L is 4/5 = 80%.",
+        "hi": "5 लीटर में 4 लीटर, यानी 4/5 = 80%।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "75% would be 3 parts milk to 1 part water.",
+         "hi": "75% तब होता जब 3 भाग दूध और 1 भाग पानी होता।"
+        },
+        {
+         "en": "That divides by 10, not by the 5 L in the can.",
+         "hi": "इसमें 10 से भाग दिया, डिब्बे के 5 लीटर से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "At a shop, find two packets of the same item at different prices. Work out the price per 100 g for a mix of one of each.",
+      "hi": "किसी दुकान पर एक ही चीज़ के अलग दाम वाले दो पैकेट देखो। दोनों का एक-एक मिलाने पर प्रति 100 ग्राम दाम निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch10-weights",
+   "topic": "10.1.3",
+   "template": "sequence",
+   "title": {
+    "en": "Custom weights: a fair final score",
+    "hi": "अपने भार: एक उचित अंतिम अंक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "w1",
+      "text": {
+       "en": "Write the scores: exam 80, project 60, attendance 90",
+       "hi": "अंक लिखो: परीक्षा 80, प्रोजेक्ट 60, उपस्थिति 90"
+      }
+     },
+     {
+      "id": "w2",
+      "text": {
+       "en": "Write the weights the school chose: 3, 1, 1",
+       "hi": "स्कूल के चुने भार लिखो: 3, 1, 1"
+      }
+     },
+     {
+      "id": "w3",
+      "text": {
+       "en": "Multiply each score by its weight: 240, 60, 90",
+       "hi": "हर अंक को उसके भार से गुणा करो: 240, 60, 90"
+      }
+     },
+     {
+      "id": "w4",
+      "text": {
+       "en": "Add them: 240 + 60 + 90 = 390",
+       "hi": "जोड़ो: 240 + 60 + 90 = 390"
+      }
+     },
+     {
+      "id": "w5",
+      "text": {
+       "en": "Divide by the sum of the weights: 390 ÷ 5 = 78",
+       "hi": "भारों के योग से भाग दो: 390 ÷ 5 = 78"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Exam 80, project 60, attendance 90. The exam counts three times as much as each of the others. Will the final score be above or below the plain average 76.7?",
+      "hi": "परीक्षा 80, प्रोजेक्ट 60, उपस्थिति 90। परीक्षा बाक़ी हर एक से तीन गुना गिनी जाती है। अंतिम अंक सीधे औसत 76.7 से ऊपर होगा या नीचे?"
+     },
+     "options": [
+      {
+       "id": "above",
+       "en": "Above",
+       "hi": "ऊपर"
+      },
+      {
+       "id": "below",
+       "en": "Below",
+       "hi": "नीचे"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "उतना ही"
+      }
+     ],
+     "answer": "above"
+    },
+    {
+     "kind": "do",
+     "target": "item:w1",
+     "expect": "placed:w1",
+     "say": {
+      "en": "Put the first step in place.",
+      "hi": "पहला चरण उसकी जगह रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the remaining steps and tap Check.",
+      "hi": "बाक़ी चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A weighted average lets us decide how much each part should count. Weighted average = (sum of score × weight) ÷ (sum of weights). Here 78 is pulled towards the exam score 80, because the exam has the biggest weight.",
+      "hi": "भारित औसत से हम तय करते हैं कि हर भाग कितना गिना जाए। भारित औसत = (अंक × भार का योग) ÷ (भारों का योग)। यहाँ 78 परीक्षा के अंक 80 की ओर खिंचता है, क्योंकि परीक्षा का भार सबसे ज़्यादा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If all three weights were 1, what would the final score be?",
+        "hi": "अगर तीनों भार 1 होते, तो अंतिम अंक क्या होता?"
+       },
+       "options": [
+        {
+         "en": "About 76.7",
+         "hi": "लगभग 76.7"
+        },
+        {
+         "en": "78",
+         "hi": "78 अंक"
+        },
+        {
+         "en": "230",
+         "hi": "230 अंक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal weights give the plain average: 230 ÷ 3 ≈ 76.7.",
+        "hi": "बराबर भार सीधा औसत देते हैं: 230 ÷ 3 ≈ 76.7।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "78 came from giving the exam weight 3.",
+         "hi": "78 परीक्षा को भार 3 देने से आया।"
+        },
+        {
+         "en": "230 is the total; it still has to be divided by 3.",
+         "hi": "230 योग है; इसे 3 से भाग देना बाक़ी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose your own weights for exam, project and attendance. Which choice do you think is fairest, and why?",
+      "hi": "परीक्षा, प्रोजेक्ट और उपस्थिति के लिए अपने भार चुनो। तुम्हारे हिसाब से कौन-सा चुनाव सबसे उचित है, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch10-stacking",
+   "topic": "10.2.1",
+   "template": "data",
+   "title": {
+    "en": "Two quantities in one picture: stacking columns",
+    "hi": "एक चित्र में दो राशियाँ: स्तंभों को जोड़कर रखना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "double-bar",
+    "ask": "max",
+    "title": {
+     "en": "Girls and boys in three sections (sample data)",
+     "hi": "तीन वर्गों में लड़कियाँ और लड़के (नमूना आँकड़े)"
+    },
+    "series": [
+     {
+      "en": "Girls",
+      "hi": "लड़कियाँ"
+     },
+     {
+      "en": "Boys",
+      "hi": "लड़के"
+     }
+    ],
+    "xlabel": {
+     "en": "Section",
+     "hi": "वर्ग"
+    },
+    "ylabel": {
+     "en": "Students",
+     "hi": "विद्यार्थी"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "9A",
+       "hi": "9A"
+      },
+      "value": 18,
+      "value2": 22
+     },
+     {
+      "label": {
+       "en": "9B",
+       "hi": "9B"
+      },
+      "value": 24,
+      "value2": 16
+     },
+     {
+      "label": {
+       "en": "9C",
+       "hi": "9C"
+      },
+      "value": 15,
+      "value2": 20
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you put each section's two bars on top of each other, which section's column is tallest?",
+      "hi": "अगर हर वर्ग के दोनों दंड एक के ऊपर एक रखो, तो किस वर्ग का स्तंभ सबसे ऊँचा होगा?"
+     },
+     "options": [
+      {
+       "id": "ab",
+       "en": "9A and 9B tie with 40",
+       "hi": "9A और 9B बराबर, 40-40"
+      },
+      {
+       "id": "c",
+       "en": "9C",
+       "hi": "केवल 9C"
+      },
+      {
+       "id": "b",
+       "en": "Only 9B",
+       "hi": "केवल 9B"
+      }
+     ],
+     "answer": "ab"
+    },
+    {
+     "kind": "do",
+     "target": "bar:1",
+     "expect": "selected:1",
+     "say": {
+      "en": "Tap section 9B to read its numbers.",
+      "hi": "9B वर्ग को छूकर उसकी संख्याएँ पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the graph.",
+      "hi": "ग्राफ़ के प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Side-by-side bars compare girls with boys. Stacking the two bars into one column shows the total of each section too: 40, 40 and 35. A 100% stacked column shows instead what share of each section is girls: 45%, 60% and about 43%.",
+      "hi": "पास-पास के दंड लड़कियों और लड़कों की तुलना करते हैं। दोनों दंडों को एक स्तंभ में जोड़कर रखने से हर वर्ग का कुल भी दिखता है: 40, 40 और 35। 100% वाला जुड़ा स्तंभ बताता है कि हर वर्ग में लड़कियों का हिस्सा कितना है: 45%, 60% और लगभग 43%।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which section has the biggest share of girls?",
+        "hi": "किस वर्ग में लड़कियों का हिस्सा सबसे ज़्यादा है?"
+       },
+       "options": [
+        "9B",
+        "9A",
+        "9C"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "24 of 40 = 60%, the highest share.",
+        "hi": "40 में से 24 = 60%, सबसे ज़्यादा हिस्सा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9A has 18 of 40 = 45%.",
+         "hi": "9A में 40 में से 18 = 45%।"
+        },
+        {
+         "en": "9C has fewer girls and a smaller share: 15 of 35 ≈ 43%.",
+         "hi": "9C में कम लड़कियाँ और कम हिस्सा है: 35 में से 15 ≈ 43%।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw the three stacked columns on squared paper, then redraw them as 100% columns. Which picture answers 'which section is biggest?' and which answers 'where are girls the majority?'",
+      "hi": "चौकोर काग़ज़ पर तीनों जुड़े स्तंभ बनाओ, फिर 100% वाले स्तंभों में बदलो। कौन-सा चित्र बताता है 'कौन-सा वर्ग सबसे बड़ा है?' और कौन-सा 'कहाँ लड़कियाँ ज़्यादा हैं?'"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch10-pie-alternative",
+   "topic": "10.2.2",
+   "template": "data",
+   "title": {
+    "en": "An alternative to the pie chart",
+    "hi": "पाई चार्ट का एक विकल्प"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "views": [
+     "pie",
+     "bar"
+    ],
+    "title": {
+     "en": "A family's monthly budget of ₹20,000 (sample)",
+     "hi": "एक परिवार का ₹20,000 का मासिक बजट (नमूना)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Food",
+       "hi": "भोजन"
+      },
+      "value": 6000
+     },
+     {
+      "label": {
+       "en": "Rent",
+       "hi": "किराया"
+      },
+      "value": 5000
+     },
+     {
+      "label": {
+       "en": "Travel",
+       "hi": "यात्रा"
+      },
+      "value": 2000
+     },
+     {
+      "label": {
+       "en": "School",
+       "hi": "पढ़ाई"
+      },
+      "value": 3000
+     },
+     {
+      "label": {
+       "en": "Savings",
+       "hi": "बचत"
+      },
+      "value": 4000
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the Food slice to see its share.",
+      "hi": "भोजन वाले हिस्से को छूकर उसका भाग देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rent is ₹5000 and Savings ₹4000. On the pie, is it easy to tell which slice is bigger?",
+      "hi": "किराया ₹5000 और बचत ₹4000 है। पाई पर क्या आसानी से पता चलता है कि कौन-सा हिस्सा बड़ा है?"
+     },
+     "options": [
+      {
+       "id": "hard",
+       "en": "Hard: angles are tricky to compare",
+       "hi": "मुश्किल: कोणों की तुलना कठिन है"
+      },
+      {
+       "id": "easy",
+       "en": "Easy, always",
+       "hi": "हमेशा आसान"
+      }
+     ],
+     "answer": "hard"
+    },
+    {
+     "kind": "do",
+     "target": "chart:bar",
+     "expect": "plotted",
+     "say": {
+      "en": "Switch to the bar view.",
+      "hi": "दंड वाले दृश्य पर जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A pie chart shows parts of one whole: Food is 6000 ÷ 20000 = 30%, so its angle is 30% of 360° = 108°. But eyes judge lengths better than angles. Bars, or a single 100% bar cut into lengths, make close shares like 25% and 20% easy to compare.",
+      "hi": "पाई चार्ट एक पूरे के भाग दिखाता है: भोजन 6000 ÷ 20000 = 30% है, इसलिए उसका कोण 360° का 30% = 108° है। पर आँखें कोणों से बेहतर लंबाइयाँ पहचानती हैं। दंड, या लंबाइयों में बँटा एक 100% दंड, 25% और 20% जैसे पास के हिस्सों की तुलना आसान कर देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What angle does Savings (₹4000 of ₹20,000) get in the pie?",
+        "hi": "पाई में बचत (₹20,000 में से ₹4000) का कोण कितना है?"
+       },
+       "options": [
+        "72°",
+        "40°",
+        "20°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4000 ÷ 20000 = 20%, and 20% of 360° = 72°.",
+        "hi": "4000 ÷ 20000 = 20%, और 360° का 20% = 72°।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "40 is not a share of 360°; it comes from 4000 ÷ 100.",
+         "hi": "40, 360° का कोई हिस्सा नहीं; यह 4000 ÷ 100 से आया।"
+        },
+        {
+         "en": "20 is the percentage, not the angle.",
+         "hi": "20 प्रतिशत है, कोण नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag a bar in the bar view and switch back to the pie. Which view shows the change more clearly?",
+      "hi": "दंड वाले दृश्य में कोई दंड खींचो और फिर पाई पर लौटो। कौन-सा दृश्य बदलाव ज़्यादा साफ़ दिखाता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1.1",
+   "use": "Chapter hook: two groups, one average",
+   "shows": "A badminton court in an Indian sports hall with a tall group of senior shuttlecock rackets and a smaller group of junior rackets leaning on the net",
+   "view": "Wide shot, indoor light",
+   "right": "Clearly two groups of very different size",
+   "avoid": "Faces, academy names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.1.2",
+   "use": "Mixing rice of two prices",
+   "shows": "Two steel bowls of rice, one with a small heap and one with a large heap, being poured into one big bowl",
+   "view": "Three-quarter view from above",
+   "right": "Heap sizes clearly about 1 : 3",
+   "avoid": "Brand bags, price tags"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "10.1.2",
+   "use": "Juice of two strengths",
+   "shows": "Two glass jugs of orange juice, one pale and one deep orange, beside a larger jug of the mixed colour",
+   "view": "Front view, eye level",
+   "right": "Mixed colour between the two",
+   "avoid": "Brand labels"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "10.1.3",
+   "use": "Weighing the parts",
+   "shows": "A two-pan balance with three wooden blocks on one side and one block on the other, standing for weights",
+   "view": "Front view",
+   "right": "Balance tips toward the heavier side",
+   "avoid": "Numbers baked in"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "10.2.1",
+   "use": "Stacked columns",
+   "shows": "Three tall columns made of two colours of stacked wooden blocks, different totals",
+   "view": "Front view, transparent background",
+   "right": "Each column is two colours, one above the other",
+   "avoid": "Labels"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "10.2.2",
+   "use": "Pie versus a 100% bar",
+   "shows": "A paper pie cut into five coloured slices beside one long paper strip cut into the same five colours by length",
+   "view": "Straight from above",
+   "right": "Colour shares match between pie and strip",
+   "avoid": "Numbers or labels"
+  }
+ ]
+}

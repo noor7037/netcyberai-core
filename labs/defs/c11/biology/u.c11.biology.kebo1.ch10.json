@@ -1,0 +1,1154 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch10",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Cell Cycle and Cell Division",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Cell cycle and its phases: G1, S, G2, M; G0",
+   "labs": [
+    "c11-biology-kebo1-ch10-cell-cycle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "M phase: prophase, metaphase, anaphase, telophase, cytokinesis",
+   "labs": [
+    "c11-biology-kebo1-ch10-root-tip",
+    "c11-biology-kebo1-ch10-mitosis-steps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Significance of mitosis",
+   "labs": [
+    "c11-biology-kebo1-ch10-mitosis-meiosis"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Meiosis: meiosis I (with the five stages of prophase I) and meiosis II",
+   "labs": [
+    "c11-biology-kebo1-ch10-prophase-1"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Significance of meiosis",
+   "labs": [
+    "c11-biology-kebo1-ch10-mitosis-meiosis"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch10-cell-cycle",
+   "topic": "10.1",
+   "template": "sequence",
+   "title": {
+    "en": "Phases of the cell cycle",
+    "hi": "कोशिका चक्र की प्रावस्थाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "g1",
+      "text": {
+       "en": "G1: the cell grows and works, but does not copy DNA",
+       "hi": "G1: कोशिका बढ़ती और काम करती है, पर डीएनए की प्रति नहीं बनाती"
+      }
+     },
+     {
+      "id": "s",
+      "text": {
+       "en": "S: DNA is copied; DNA doubles but the chromosome number stays the same",
+       "hi": "S: डीएनए की प्रति बनती है; डीएनए दुगुना पर गुणसूत्र संख्या वही"
+      }
+     },
+     {
+      "id": "g2",
+      "text": {
+       "en": "G2: proteins are made for division; the cell keeps growing",
+       "hi": "G2: विभाजन के लिए प्रोटीन बनते हैं; कोशिका बढ़ती रहती है"
+      }
+     },
+     {
+      "id": "karyo",
+      "text": {
+       "en": "M (karyokinesis): the nucleus divides",
+       "hi": "M (केंद्रक विभाजन): केंद्रक बँटता है"
+      }
+     },
+     {
+      "id": "cyto",
+      "text": {
+       "en": "Cytokinesis: the cytoplasm divides into two daughter cells",
+       "hi": "कोशिकाद्रव्य विभाजन: कोशिकाद्रव्य दो संतति कोशिकाओं में बँटता है"
+      }
+     }
+    ],
+    "cyclic": true
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:g1",
+     "expect": "placed:g1",
+     "say": {
+      "en": "Tap the G1 card, then tap place 1.",
+      "hi": "G1 कार्ड पर टैप करो, फिर स्थान 1 पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A cell has 2C amount of DNA in G1. How much will it have at the end of S phase?",
+      "hi": "G1 में कोशिका में 2C डीएनए है। S प्रावस्था के अंत में कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "4c",
+       "en": "4C: the DNA doubles",
+       "hi": "4C: डीएनए दुगुना"
+      },
+      {
+       "id": "2c",
+       "en": "2C: no change",
+       "hi": "2C: कोई बदलाव नहीं"
+      },
+      {
+       "id": "1c",
+       "en": "1C: half",
+       "hi": "1C: आधा"
+      }
+     ],
+     "answer": "4c"
+    },
+    {
+     "kind": "do",
+     "target": "item:s",
+     "expect": "placed:s",
+     "say": {
+      "en": "Put the S phase in place 2.",
+      "hi": "S प्रावस्था को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:g2",
+     "expect": "placed:g2",
+     "say": {
+      "en": "Put G2 in place 3.",
+      "hi": "G2 को स्थान 3 पर रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The cell cycle has interphase (G1, S and G2) and the M phase. Interphase is about 95 per cent of the time: a human cell in culture takes about 24 hours for one cycle, and the M phase lasts only about an hour. In S phase DNA goes from 2C to 4C, but the number of chromosomes does not change. Cells that stop dividing leave G1 and enter a resting stage called G0.",
+      "hi": "कोशिका चक्र में अंतरावस्था (G1, S और G2) और M प्रावस्था होती है। अंतरावस्था लगभग 95 प्रतिशत समय लेती है: संवर्धन में मानव कोशिका एक चक्र में लगभग 24 घंटे लेती है, और M प्रावस्था केवल लगभग एक घंटा चलती है। S प्रावस्था में डीएनए 2C से 4C होता है, पर गुणसूत्रों की संख्या नहीं बदलती। जो कोशिकाएँ बँटना बंद कर देती हैं वे G1 से निकलकर G0 नाम की विश्राम अवस्था में चली जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is interphase not called a resting phase any more?",
+        "hi": "अंतरावस्था को अब विश्राम प्रावस्था क्यों नहीं कहते?"
+       },
+       "options": [
+        {
+         "en": "The cell grows and copies its DNA in it",
+         "hi": "इसमें कोशिका बढ़ती है और डीएनए की प्रति बनाती है"
+        },
+        {
+         "en": "It is very short",
+         "hi": "यह बहुत छोटी है"
+        },
+        {
+         "en": "The cell is dead in it",
+         "hi": "इसमें कोशिका मृत होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Interphase is a busy time of growth and DNA replication that prepares the cell to divide.",
+        "hi": "अंतरावस्था बढ़ने और डीएनए प्रतिकृति का व्यस्त समय है जो कोशिका को बँटने के लिए तैयार करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Interphase is the longest part of the cycle.",
+         "hi": "अंतरावस्था चक्र का सबसे लंबा भाग है।"
+        },
+        {
+         "en": "The cell is alive and active throughout.",
+         "hi": "कोशिका पूरे समय जीवित और सक्रिय रहती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Heart muscle cells in adults do not divide. Which stage are they in?",
+        "hi": "वयस्कों की हृदय पेशी कोशिकाएँ नहीं बँटतीं। वे किस अवस्था में हैं?"
+       },
+       "options": [
+        {
+         "en": "G0, the quiescent stage",
+         "hi": "G0, शांत अवस्था"
+        },
+        {
+         "en": "S phase",
+         "hi": "S प्रावस्था"
+        },
+        {
+         "en": "Metaphase",
+         "hi": "मध्यावस्था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cells in G0 stay alive and working but do not proliferate unless needed.",
+        "hi": "G0 की कोशिकाएँ जीवित रहकर काम करती हैं, पर ज़रूरत न हो तो बँटती नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In S phase the cell is copying DNA to divide.",
+         "hi": "S प्रावस्था में कोशिका बँटने के लिए डीएनए की प्रति बनाती है।"
+        },
+        {
+         "en": "Metaphase is a stage of division itself.",
+         "hi": "मध्यावस्था ख़ुद विभाजन की एक अवस्था है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the cycle. Then think: in which phase are most cells you see in an onion root tip?",
+      "hi": "चक्र पूरा करो। फिर सोचो: प्याज़ की जड़ के सिरे में दिखने वाली ज़्यादातर कोशिकाएँ किस प्रावस्था में होंगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch10-root-tip",
+   "topic": "10.2",
+   "template": "scope",
+   "title": {
+    "en": "Mitosis in an onion root tip",
+    "hi": "प्याज़ की जड़ के सिरे में समसूत्री विभाजन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "slide": "root-tip"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Choose the 10x lens.",
+      "hi": "10x लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Focus with the coarse knob.",
+      "hi": "मोटे नॉब से फ़ोकस करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "lens:40x",
+     "expect": "zoomed:40x",
+     "say": {
+      "en": "Now choose the 40x lens to see chromosomes.",
+      "hi": "गुणसूत्र देखने के लिए अब 40x लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:fine",
+     "expect": "focused",
+     "say": {
+      "en": "Sharpen with the fine knob.",
+      "hi": "बारीक नॉब से साफ़ करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look for a cell with its chromosomes in a line across the middle. Which stage do you think that is?",
+      "hi": "ऐसी कोशिका ढूँढो जिसके गुणसूत्र बीच में एक पंक्ति में हों। तुम्हें क्या लगता है, यह कौन-सी अवस्था है?"
+     },
+     "options": [
+      {
+       "id": "meta",
+       "en": "Metaphase",
+       "hi": "मध्यावस्था"
+      },
+      {
+       "id": "pro",
+       "en": "Prophase",
+       "hi": "पूर्वावस्था"
+      },
+      {
+       "id": "telo",
+       "en": "Telophase",
+       "hi": "अंत्यावस्था"
+      }
+     ],
+     "answer": "meta"
+    },
+    {
+     "kind": "do",
+     "target": "part:metaphase",
+     "expect": "identified:metaphase",
+     "say": {
+      "en": "Tap a cell in metaphase.",
+      "hi": "मध्यावस्था वाली कोशिका पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:anaphase",
+     "expect": "identified:anaphase",
+     "say": {
+      "en": "Now find a cell in anaphase, with chromatids moving apart.",
+      "hi": "अब पश्चावस्था वाली कोशिका ढूँढो, जिसमें क्रोमैटिड अलग जा रहे हों।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Root tips grow fast, so many cells divide there. In metaphase the condensed chromosomes line up on the metaphase plate, each held by spindle fibres at its kinetochores; this is the best stage to study their shape. In anaphase the centromeres split and sister chromatids move to opposite poles.",
+      "hi": "जड़ के सिरे तेज़ी से बढ़ते हैं, इसलिए वहाँ बहुत कोशिकाएँ बँटती हैं। मध्यावस्था में संघनित गुणसूत्र मध्यावस्था पट्टिका पर पंक्ति में आते हैं, हर एक अपने काइनेटोकोर पर तर्कु तंतुओं से थमा; उनका आकार देखने के लिए यह सबसे अच्छी अवस्था है। पश्चावस्था में गुणसूत्रबिंदु बँटते हैं और सहोदर क्रोमैटिड विपरीत ध्रुवों की ओर जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which stage is best for counting and studying the shape of chromosomes?",
+        "hi": "गुणसूत्र गिनने और उनका आकार देखने के लिए कौन-सी अवस्था सबसे अच्छी है?"
+       },
+       "options": [
+        {
+         "en": "Metaphase",
+         "hi": "मध्यावस्था"
+        },
+        {
+         "en": "Interphase",
+         "hi": "अंतरावस्था"
+        },
+        {
+         "en": "Telophase",
+         "hi": "अंत्यावस्था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chromosomes are most condensed and spread in one plane at metaphase.",
+        "hi": "मध्यावस्था में गुणसूत्र सबसे ज़्यादा संघनित और एक तल में फैले होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In interphase chromatin is loose and threads cannot be counted.",
+         "hi": "अंतरावस्था में क्रोमैटिन ढीला होता है और धागे गिने नहीं जा सकते।"
+        },
+        {
+         "en": "In telophase chromosomes start to uncoil at the poles.",
+         "hi": "अंत्यावस्था में गुणसूत्र ध्रुवों पर खुलने लगते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In plant cells, how does the cytoplasm divide after mitosis?",
+        "hi": "पादप कोशिकाओं में समसूत्री विभाजन के बाद कोशिकाद्रव्य कैसे बँटता है?"
+       },
+       "options": [
+        {
+         "en": "A cell plate forms in the middle and grows outward",
+         "hi": "बीच में कोशिका पट्ट बनकर बाहर की ओर बढ़ता है"
+        },
+        {
+         "en": "A furrow pinches the cell in two",
+         "hi": "एक खाँच कोशिका को दो में दबाती है"
+        },
+        {
+         "en": "It does not divide",
+         "hi": "यह नहीं बँटता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The stiff wall cannot pinch in, so a cell plate (the future middle lamella) grows from the centre.",
+        "hi": "कठोर भित्ति दब नहीं सकती, इसलिए बीच से कोशिका पट्ट (भविष्य की मध्य पटलिका) बढ़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Furrowing is how animal cells divide their cytoplasm.",
+         "hi": "खाँच बनाकर जंतु कोशिकाएँ अपना कोशिकाद्रव्य बाँटती हैं।"
+        },
+        {
+         "en": "Cytokinesis does happen in root tip cells, giving two cells with walls.",
+         "hi": "जड़ के सिरे की कोशिकाओं में कोशिकाद्रव्य विभाजन होता है, जिससे भित्ति वाली दो कोशिकाएँ बनती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find prophase and telophase too. Count 20 cells: how many are dividing and how many are in interphase?",
+      "hi": "पूर्वावस्था और अंत्यावस्था भी ढूँढो। 20 कोशिकाएँ गिनो: कितनी बँट रही हैं और कितनी अंतरावस्था में हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch10-mitosis-steps",
+   "topic": "10.2",
+   "template": "sequence",
+   "title": {
+    "en": "Mitosis step by step",
+    "hi": "समसूत्री विभाजन क्रम से"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "condense",
+      "text": {
+       "en": "Chromatin condenses into chromosomes; centrosomes move apart",
+       "hi": "क्रोमैटिन संघनित होकर गुणसूत्र बनता है; तारककाय अलग होते हैं"
+      }
+     },
+     {
+      "id": "envelope",
+      "text": {
+       "en": "Nuclear envelope, nucleolus, Golgi and ER disappear",
+       "hi": "केंद्रक आवरण, केंद्रिका, गॉल्जी और ER ग़ायब होते हैं"
+      }
+     },
+     {
+      "id": "plate",
+      "text": {
+       "en": "Chromosomes line up at the metaphase plate",
+       "hi": "गुणसूत्र मध्यावस्था पट्टिका पर पंक्ति में आते हैं"
+      }
+     },
+     {
+      "id": "split",
+      "text": {
+       "en": "Centromeres split; chromatids move to opposite poles",
+       "hi": "गुणसूत्रबिंदु बँटते हैं; क्रोमैटिड विपरीत ध्रुवों पर जाते हैं"
+      }
+     },
+     {
+      "id": "reform",
+      "text": {
+       "en": "Chromosomes uncoil at the poles; nuclear envelope forms again",
+       "hi": "ध्रुवों पर गुणसूत्र खुलते हैं; केंद्रक आवरण फिर बनता है"
+      }
+     },
+     {
+      "id": "divide",
+      "text": {
+       "en": "The cytoplasm divides: a furrow or a cell plate",
+       "hi": "कोशिकाद्रव्य बँटता है: खाँच या कोशिका पट्ट"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:condense",
+     "expect": "placed:condense",
+     "say": {
+      "en": "Tap the first prophase card, then tap place 1.",
+      "hi": "पूर्वावस्था के पहले कार्ड पर टैप करो, फिर स्थान 1 पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:envelope",
+     "expect": "placed:envelope",
+     "say": {
+      "en": "Put the card about the nuclear envelope in place 2.",
+      "hi": "केंद्रक आवरण वाले कार्ड को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After the chromosomes line up, what do you think happens next?",
+      "hi": "गुणसूत्रों के पंक्ति में आने के बाद तुम्हें क्या लगता है, आगे क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "split",
+       "en": "Centromeres split and chromatids pull apart",
+       "hi": "गुणसूत्रबिंदु बँटते हैं और क्रोमैटिड अलग खिंचते हैं"
+      },
+      {
+       "id": "reform",
+       "en": "The nucleus forms again at once",
+       "hi": "केंद्रक तुरंत फिर बन जाता है"
+      },
+      {
+       "id": "copy",
+       "en": "The DNA is copied",
+       "hi": "डीएनए की प्रति बनती है"
+      }
+     ],
+     "answer": "split"
+    },
+    {
+     "kind": "do",
+     "target": "item:plate",
+     "expect": "placed:plate",
+     "say": {
+      "en": "Put metaphase in place 3.",
+      "hi": "मध्यावस्था को स्थान 3 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:split",
+     "expect": "placed:split",
+     "say": {
+      "en": "Put anaphase in place 4.",
+      "hi": "पश्चावस्था को स्थान 4 पर रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mitosis gives two daughter cells with the same number of chromosomes as the parent, so it is called equational division. Prophase condenses the chromosomes, metaphase lines them up, anaphase separates the sister chromatids, telophase rebuilds two nuclei, and cytokinesis splits the cell. Mitosis helps growth, repair and the replacement of worn-out cells.",
+      "hi": "समसूत्री विभाजन से जनक जितने ही गुणसूत्रों वाली दो संतति कोशिकाएँ बनती हैं, इसलिए इसे समीकरणी विभाजन कहते हैं। पूर्वावस्था गुणसूत्रों को संघनित करती है, मध्यावस्था उन्हें पंक्ति में लाती है, पश्चावस्था सहोदर क्रोमैटिडों को अलग करती है, अंत्यावस्था दो केंद्रक फिर बनाती है, और कोशिकाद्रव्य विभाजन कोशिका को बाँटता है। समसूत्री विभाजन वृद्धि, मरम्मत और घिसी कोशिकाओं को बदलने में मदद करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Coconut water is liquid endosperm with many nuclei but no walls between them. How can that happen?",
+        "hi": "नारियल पानी तरल भ्रूणपोष है जिसमें बहुत केंद्रक हैं पर उनके बीच भित्ति नहीं। ऐसा कैसे होता है?"
+       },
+       "options": [
+        {
+         "en": "The nucleus divides but cytokinesis does not follow",
+         "hi": "केंद्रक बँटता है पर कोशिकाद्रव्य विभाजन नहीं होता"
+        },
+        {
+         "en": "DNA is never copied",
+         "hi": "डीएनए की प्रति कभी नहीं बनती"
+        },
+        {
+         "en": "The cells fuse after meiosis",
+         "hi": "अर्धसूत्री विभाजन के बाद कोशिकाएँ जुड़ जाती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Karyokinesis without cytokinesis gives a multinucleate syncytium.",
+        "hi": "कोशिकाद्रव्य विभाजन के बिना केंद्रक विभाजन से बहुकेंद्रकी संकोशिका बनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Each new nucleus needs copied DNA, so DNA must be copied.",
+         "hi": "हर नए केंद्रक को डीएनए की प्रति चाहिए, इसलिए प्रति बनती ही है।"
+        },
+        {
+         "en": "The endosperm nuclei come from repeated mitosis, not from cell fusion.",
+         "hi": "भ्रूणपोष के केंद्रक बार-बार के समसूत्री विभाजन से आते हैं, कोशिका जुड़ने से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the order. Then say which phase each card belongs to: prophase, metaphase, anaphase, telophase or cytokinesis.",
+      "hi": "क्रम पूरा करो। फिर बताओ कि हर कार्ड किस प्रावस्था का है: पूर्वावस्था, मध्यावस्था, पश्चावस्था, अंत्यावस्था या कोशिकाद्रव्य विभाजन।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch10-prophase-1",
+   "topic": "10.4",
+   "template": "sequence",
+   "title": {
+    "en": "The five stages of prophase I",
+    "hi": "पूर्वावस्था I की पाँच अवस्थाएँ"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "items": [
+     {
+      "id": "lepto",
+      "text": {
+       "en": "Leptotene: chromosomes become visible as threads",
+       "hi": "तनुपट्ट: गुणसूत्र धागों की तरह दिखने लगते हैं"
+      }
+     },
+     {
+      "id": "zygo",
+      "text": {
+       "en": "Zygotene: homologous chromosomes pair up (synapsis)",
+       "hi": "युग्मपट्ट: समजात गुणसूत्र जोड़े बनाते हैं (सूत्रयुग्मन)"
+      }
+     },
+     {
+      "id": "pachy",
+      "text": {
+       "en": "Pachytene: crossing over between non-sister chromatids",
+       "hi": "स्थूलपट्ट: असहोदर क्रोमैटिडों के बीच जीन विनिमय"
+      }
+     },
+     {
+      "id": "diplo",
+      "text": {
+       "en": "Diplotene: homologues pull apart except at chiasmata",
+       "hi": "द्विपट्ट: काइऐज़्मा को छोड़कर समजात अलग होते हैं"
+      }
+     },
+     {
+      "id": "diaki",
+      "text": {
+       "en": "Diakinesis: chiasmata move to the ends; nucleolus and envelope vanish",
+       "hi": "पारगतिक्रम: काइऐज़्मा सिरों तक खिसकते हैं; केंद्रिका और आवरण ग़ायब"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:lepto",
+     "expect": "placed:lepto",
+     "say": {
+      "en": "Tap the leptotene card, then tap place 1.",
+      "hi": "तनुपट्ट वाले कार्ड पर टैप करो, फिर स्थान 1 पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Crossing over needs pairs of chromosomes lying close together. Which must happen first?",
+      "hi": "जीन विनिमय के लिए गुणसूत्रों के जोड़े पास-पास होने चाहिए। पहले क्या होना ज़रूरी है?"
+     },
+     "options": [
+      {
+       "id": "synapsis",
+       "en": "Synapsis: homologues pair up",
+       "hi": "सूत्रयुग्मन: समजात जोड़े बनाते हैं"
+      },
+      {
+       "id": "chiasmata",
+       "en": "Chiasmata move to the ends",
+       "hi": "काइऐज़्मा सिरों तक जाते हैं"
+      },
+      {
+       "id": "none",
+       "en": "Nothing; it can happen any time",
+       "hi": "कुछ नहीं; यह कभी भी हो सकता है"
+      }
+     ],
+     "answer": "synapsis"
+    },
+    {
+     "kind": "do",
+     "target": "item:zygo",
+     "expect": "placed:zygo",
+     "say": {
+      "en": "Put zygotene in place 2.",
+      "hi": "युग्मपट्ट को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:pachy",
+     "expect": "placed:pachy",
+     "say": {
+      "en": "Put pachytene in place 3.",
+      "hi": "स्थूलपट्ट को स्थान 3 पर रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Prophase I is long. In zygotene homologues pair, held by the synaptonemal complex; each pair is a bivalent or tetrad. In pachytene, at recombination nodules, the enzyme recombinase helps non-sister chromatids exchange pieces. In diplotene the X-shaped chiasmata show where crossing over happened. In diakinesis they move to the ends and the spindle starts to form.",
+      "hi": "पूर्वावस्था I लंबी होती है। युग्मपट्ट में समजात जोड़े बनाते हैं, जिन्हें सिनैप्टोनीमल संकुल थामता है; हर जोड़ा एक युगली या चतुष्क है। स्थूलपट्ट में पुनर्योजन ग्रंथिकाओं पर रिकॉम्बिनेज़ एंज़ाइम असहोदर क्रोमैटिडों को टुकड़े बदलने में मदद करता है। द्विपट्ट में X आकार के काइऐज़्मा दिखाते हैं कि जीन विनिमय कहाँ हुआ। पारगतिक्रम में ये सिरों तक खिसकते हैं और तर्कु बनना शुरू होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which stage does crossing over happen?",
+        "hi": "जीन विनिमय किस अवस्था में होता है?"
+       },
+       "options": [
+        {
+         "en": "Pachytene",
+         "hi": "स्थूलपट्ट"
+        },
+        {
+         "en": "Leptotene",
+         "hi": "तनुपट्ट"
+        },
+        {
+         "en": "Diakinesis",
+         "hi": "पारगतिक्रम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Crossing over takes place in pachytene, helped by recombinase.",
+        "hi": "जीन विनिमय स्थूलपट्ट में होता है, रिकॉम्बिनेज़ की मदद से।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In leptotene chromosomes are only becoming visible; they are not yet paired.",
+         "hi": "तनुपट्ट में गुणसूत्र अभी दिखने ही लगते हैं; अभी जोड़े नहीं बने।"
+        },
+        {
+         "en": "In diakinesis chiasmata are already moving to the ends.",
+         "hi": "पारगतिक्रम में काइऐज़्मा पहले से सिरों की ओर जा रहे होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In the oocytes of some vertebrates, which stage can last for months or years?",
+        "hi": "कुछ कशेरुकियों के अंडकों में कौन-सी अवस्था महीनों या वर्षों तक चल सकती है?"
+       },
+       "options": [
+        {
+         "en": "Diplotene",
+         "hi": "द्विपट्ट"
+        },
+        {
+         "en": "Zygotene",
+         "hi": "युग्मपट्ट"
+        },
+        {
+         "en": "Anaphase I",
+         "hi": "पश्चावस्था I"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Diplotene can be very long in oocytes.",
+        "hi": "अंडकों में द्विपट्ट बहुत लंबा हो सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zygotene is the pairing stage and is not the long one in oocytes.",
+         "hi": "युग्मपट्ट जोड़े बनने की अवस्था है, अंडकों में लंबी वाली नहीं।"
+        },
+        {
+         "en": "Anaphase I comes after prophase I and is short.",
+         "hi": "पश्चावस्था I पूर्वावस्था I के बाद आती है और छोटी होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the order. Then make a chiasma with two pairs of coloured threads: cross one red and one blue strand and swap their ends.",
+      "hi": "क्रम पूरा करो। फिर रंगीन धागों के दो जोड़ों से एक काइऐज़्मा बनाओ: एक लाल और एक नीला धागा क्रॉस करके उनके सिरे बदलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch10-mitosis-meiosis",
+   "topic": "10.5",
+   "template": "sort",
+   "title": {
+    "en": "Mitosis or meiosis?",
+    "hi": "समसूत्री या अर्धसूत्री?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mitosis",
+      "label": {
+       "en": "Mitosis",
+       "hi": "समसूत्री विभाजन"
+      }
+     },
+     {
+      "id": "meiosis",
+      "label": {
+       "en": "Meiosis",
+       "hi": "अर्धसूत्री विभाजन"
+      }
+     },
+     {
+      "id": "both",
+      "label": {
+       "en": "Both",
+       "hi": "दोनों"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "two-cells",
+      "text": {
+       "en": "Gives two daughter cells",
+       "hi": "दो संतति कोशिकाएँ देता है"
+      },
+      "bin": "mitosis",
+      "why": {
+       "en": "One division gives two cells.",
+       "hi": "एक विभाजन से दो कोशिकाएँ बनती हैं।"
+      }
+     },
+     {
+      "id": "same-number",
+      "text": {
+       "en": "Daughter cells have the same chromosome number as the parent",
+       "hi": "संतति कोशिकाओं में जनक जितने गुणसूत्र"
+      },
+      "bin": "mitosis",
+      "why": {
+       "en": "Mitosis is equational division.",
+       "hi": "समसूत्री विभाजन समीकरणी विभाजन है।"
+      }
+     },
+     {
+      "id": "repair",
+      "text": {
+       "en": "Helps heal a wound in your skin",
+       "hi": "त्वचा का घाव भरने में मदद करता है"
+      },
+      "bin": "mitosis",
+      "why": {
+       "en": "Repair needs exact copies of cells.",
+       "hi": "मरम्मत के लिए कोशिकाओं की सटीक प्रतियाँ चाहिए।"
+      }
+     },
+     {
+      "id": "four-cells",
+      "text": {
+       "en": "Gives four haploid cells",
+       "hi": "चार अगुणित कोशिकाएँ देता है"
+      },
+      "bin": "meiosis",
+      "why": {
+       "en": "Two divisions follow one round of DNA copying.",
+       "hi": "डीएनए की एक प्रतिकृति के बाद दो विभाजन होते हैं।"
+      }
+     },
+     {
+      "id": "crossing",
+      "text": {
+       "en": "Crossing over between homologous chromosomes",
+       "hi": "समजात गुणसूत्रों के बीच जीन विनिमय"
+      },
+      "bin": "meiosis",
+      "why": {
+       "en": "Crossing over in pachytene mixes genes.",
+       "hi": "स्थूलपट्ट में जीन विनिमय जीनों को मिलाता है।"
+      }
+     },
+     {
+      "id": "gametes",
+      "text": {
+       "en": "Makes gametes for sexual reproduction",
+       "hi": "लैंगिक जनन के लिए युग्मक बनाता है"
+      },
+      "bin": "meiosis",
+      "why": {
+       "en": "Halving the number keeps it constant when gametes fuse.",
+       "hi": "संख्या आधी होने से युग्मकों के मिलने पर संख्या स्थिर रहती है।"
+      }
+     },
+     {
+      "id": "dna-copy",
+      "text": {
+       "en": "DNA is copied in the S phase before it starts",
+       "hi": "शुरू होने से पहले S प्रावस्था में डीएनए की प्रति बनती है"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Both divisions begin after one S phase.",
+       "hi": "दोनों विभाजन एक S प्रावस्था के बाद शुरू होते हैं।"
+      }
+     },
+     {
+      "id": "spindle",
+      "text": {
+       "en": "Spindle fibres pull chromosomes to the poles",
+       "hi": "तर्कु तंतु गुणसूत्रों को ध्रुवों तक खींचते हैं"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Both use a spindle.",
+       "hi": "दोनों में तर्कु काम आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:same-number",
+     "expect": "correct:same-number",
+     "say": {
+      "en": "Tap \"Daughter cells have the same chromosome number\", then tap its group.",
+      "hi": "\"संतति कोशिकाओं में जनक जितने गुणसूत्र\" पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:four-cells",
+     "expect": "correct:four-cells",
+     "say": {
+      "en": "Now sort \"Gives four haploid cells\".",
+      "hi": "अब \"चार अगुणित कोशिकाएँ देता है\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is DNA copied before mitosis only, before meiosis only, or before both?",
+      "hi": "डीएनए की प्रति केवल समसूत्री से पहले बनती है, केवल अर्धसूत्री से पहले, या दोनों से पहले?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Before both",
+       "hi": "दोनों से पहले"
+      },
+      {
+       "id": "mitosis",
+       "en": "Only before mitosis",
+       "hi": "केवल समसूत्री से पहले"
+      },
+      {
+       "id": "meiosis",
+       "en": "Only before meiosis",
+       "hi": "केवल अर्धसूत्री से पहले"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "card:dna-copy",
+     "expect": "correct:dna-copy",
+     "say": {
+      "en": "Tap the DNA copy card and sort it.",
+      "hi": "डीएनए प्रति वाले कार्ड पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:crossing",
+     "expect": "correct:crossing",
+     "say": {
+      "en": "Now sort crossing over.",
+      "hi": "अब जीन विनिमय को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mitosis makes two cells just like the parent, for growth and repair. Meiosis has two divisions after only one round of DNA copying, so it makes four haploid cells. It keeps the chromosome number the same from one generation to the next, and crossing over adds genetic variation, which matters for evolution.",
+      "hi": "समसूत्री विभाजन जनक जैसी दो कोशिकाएँ बनाता है, वृद्धि और मरम्मत के लिए। अर्धसूत्री विभाजन में डीएनए की एक प्रतिकृति के बाद दो विभाजन होते हैं, इसलिए चार अगुणित कोशिकाएँ बनती हैं। यह एक पीढ़ी से अगली पीढ़ी तक गुणसूत्र संख्या स्थिर रखता है, और जीन विनिमय आनुवंशिक विविधता जोड़ता है, जो विकास के लिए ज़रूरी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What separates in anaphase I of meiosis?",
+        "hi": "अर्धसूत्री विभाजन की पश्चावस्था I में क्या अलग होता है?"
+       },
+       "options": [
+        {
+         "en": "Homologous chromosomes, while sister chromatids stay together",
+         "hi": "समजात गुणसूत्र, जबकि सहोदर क्रोमैटिड साथ रहते हैं"
+        },
+        {
+         "en": "Sister chromatids",
+         "hi": "सहोदर क्रोमैटिड"
+        },
+        {
+         "en": "Nothing",
+         "hi": "कुछ नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Homologues go to opposite poles in anaphase I; sister chromatids separate only in anaphase II.",
+        "hi": "पश्चावस्था I में समजात विपरीत ध्रुवों पर जाते हैं; सहोदर क्रोमैटिड केवल पश्चावस्था II में अलग होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sister chromatids split in mitosis and in anaphase II, not in anaphase I.",
+         "hi": "सहोदर क्रोमैटिड समसूत्री विभाजन और पश्चावस्था II में बँटते हैं, पश्चावस्था I में नहीं।"
+        },
+        {
+         "en": "Anaphase I is when homologues move apart.",
+         "hi": "पश्चावस्था I में ही समजात अलग होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If meiosis did not halve the chromosome number, what would happen over generations?",
+        "hi": "अगर अर्धसूत्री विभाजन गुणसूत्र संख्या आधी न करता, तो पीढ़ियों में क्या होता?"
+       },
+       "options": [
+        {
+         "en": "The number would double every generation",
+         "hi": "हर पीढ़ी में संख्या दुगुनी हो जाती"
+        },
+        {
+         "en": "The number would stay the same",
+         "hi": "संख्या वही रहती"
+        },
+        {
+         "en": "The number would halve",
+         "hi": "संख्या आधी हो जाती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two gametes fuse at fertilisation; without halving, the zygote would have twice the parent number.",
+        "hi": "निषेचन में दो युग्मक मिलते हैं; आधा न होता तो युग्मनज में जनक से दुगुनी संख्या होती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It stays the same only because meiosis halves it first.",
+         "hi": "यह केवल इसलिए वही रहती है क्योंकि अर्धसूत्री विभाजन पहले इसे आधा करता है।"
+        },
+        {
+         "en": "Without meiosis nothing would halve it.",
+         "hi": "अर्धसूत्री विभाजन के बिना इसे कोई आधा नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then think: in which part of a flower does meiosis happen to make pollen?",
+      "hi": "बाक़ी कार्ड छाँटो। फिर सोचो: पराग बनाने के लिए फूल के किस भाग में अर्धसूत्री विभाजन होता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Chapter hook: growing means dividing",
+   "shows": "Onion bulbs sitting on the mouths of water-filled glass tumblers on a windowsill, white roots grown down into the water",
+   "view": "Side view, eye level, morning light",
+   "right": "Roots 2 to 3 cm long, fresh and white",
+   "avoid": "Brand jars, text"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "10.1",
+   "use": "Cell cycle wheel",
+   "shows": "A clean ring divided into G1, S, G2 and a small M slice, with a side door for G0, in soft gradient colours",
+   "view": "Front view, white background",
+   "right": "Slice sizes roughly true: M about one twenty-fourth of the ring",
+   "avoid": "Words (the app adds them)"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "10.2",
+   "use": "Root tip squash",
+   "shows": "An onion root tip squash at 400x stained with acetocarmine, showing interphase, prophase, metaphase, anaphase and telophase cells in one field (microscope: reuse LIB-BIO-microscope)",
+   "view": "Square micrograph",
+   "right": "Chromosomes dark red-purple, cells squarish",
+   "avoid": "Labels"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "10.2",
+   "use": "Mitosis stages",
+   "shows": "Five separate micrograph crops of single cells: prophase, metaphase, anaphase, telophase, cytokinesis with a cell plate",
+   "view": "Same scale, square crops",
+   "right": "Each stage textbook-clear",
+   "avoid": "Labels, arrows"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "10.4",
+   "use": "Crossing over model",
+   "shows": "A 3D model of a pair of homologous chromosomes (one red, one blue, each two chromatids) crossing to form a chiasma, then the swapped pieces after",
+   "view": "Two panels, studio light",
+   "right": "Colours show exchanged segments clearly",
+   "avoid": "Words"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "10.5",
+   "use": "Mitosis vs meiosis outcome",
+   "shows": "One parent cell giving two cells with four chromosomes each (mitosis) beside one giving four cells with two chromosomes each (meiosis)",
+   "view": "Front view, white background",
+   "right": "Chromosome counts correct and colour-matched",
+   "avoid": "Words or numbers"
+  }
+ ]
+}

@@ -1,0 +1,1136 @@
+{
+ "chapter_key": "u.c07.social_science.gees1.ch02",
+ "class": 7,
+ "subject_id": "social_science",
+ "title": "Understanding the Weather",
+ "source": "https://ncert.nic.in/textbook/pdf/gees1ps.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "What is weather? The atmosphere and the elements of weather",
+   "labs": [
+    "c07-social_science-gees1-ch02-elements"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Weather instruments: temperature, rainfall, pressure, wind, humidity",
+   "labs": [
+    "c07-social_science-gees1-ch02-instruments",
+    "c07-social_science-gees1-ch02-match",
+    "c07-social_science-gees1-ch02-temperature"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Predicting the weather: traditional signs, weather stations and forecasts",
+   "labs": [
+    "c07-social_science-gees1-ch02-forecast"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Daily weather parameters and weather warning maps",
+   "labs": [],
+   "why_no_lab": "A real IMD chart or warning map is the best material here; reading it with the teacher teaches better than a simulation."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-social_science-gees1-ch02-instruments",
+   "topic": "2.2",
+   "template": "earth",
+   "title": {
+    "en": "Meet the weather instruments",
+    "hi": "मौसम के उपकरणों से मिलो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "weather"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:thermometer",
+     "expect": "revealed:thermometer",
+     "say": {
+      "en": "Tap the thermometer to see what it measures.",
+      "hi": "थर्मामीटर पर टैप करो और देखो कि वह क्या मापता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which instrument tells us how hard the air presses down, which drops before a storm?",
+      "hi": "कौन-सा उपकरण बताता है कि हवा कितना दबाव डाल रही है, जो तूफ़ान से पहले घटता है?"
+     },
+     "options": [
+      {
+       "id": "baro",
+       "en": "Barometer",
+       "hi": "वायुदाबमापी"
+      },
+      {
+       "id": "thermo",
+       "en": "Thermometer",
+       "hi": "थर्मामीटर"
+      },
+      {
+       "id": "vane",
+       "en": "Wind vane",
+       "hi": "पवन-दिशासूचक"
+      }
+     ],
+     "answer": "baro"
+    },
+    {
+     "kind": "do",
+     "target": "layer:barometer",
+     "expect": "revealed:barometer",
+     "say": {
+      "en": "Tap the barometer.",
+      "hi": "वायुदाबमापी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:rain-gauge",
+     "expect": "revealed:rain-gauge",
+     "say": {
+      "en": "Tap the rain gauge. It catches rain in a funnel.",
+      "hi": "वर्षामापी पर टैप करो। वह कीप में वर्षा का जल पकड़ता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:wind-vane",
+     "expect": "revealed:wind-vane",
+     "say": {
+      "en": "Tap the wind vane.",
+      "hi": "पवन-दिशासूचक पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:anemometer",
+     "expect": "revealed:anemometer",
+     "say": {
+      "en": "Tap the anemometer, the spinning cups.",
+      "hi": "पवनवेगमापी पर टैप करो, जो घूमते प्यालों वाला उपकरण है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each instrument measures one element of the weather. The thermometer measures temperature. The rain gauge measures rainfall in millimetres. The barometer measures air pressure, usually in millibars. The wind vane shows the direction the wind blows from, and the anemometer measures its speed.",
+      "hi": "हर उपकरण मौसम का एक तत्त्व मापता है। थर्मामीटर तापमान मापता है। वर्षामापी वर्षा मिलीमीटर में मापता है। वायुदाबमापी हवा का दबाव मापता है, आमतौर पर मिलीबार में। पवन-दिशासूचक बताता है कि हवा किस ओर से आ रही है, और पवनवेगमापी उसकी गति मापता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does an anemometer measure?",
+        "hi": "पवनवेगमापी (एनीमोमीटर) क्या मापता है?"
+       },
+       "options": [
+        {
+         "en": "Wind speed",
+         "hi": "पवन की गति"
+        },
+        {
+         "en": "Rainfall",
+         "hi": "वर्षा"
+        },
+        {
+         "en": "Temperature",
+         "hi": "तापमान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Its cups spin faster when the wind is stronger, and a meter turns the spins into km/h.",
+        "hi": "हवा तेज़ होने पर उसके प्याले तेज़ घूमते हैं और मीटर उसे किमी/घंटा में बदल देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rainfall is measured by a rain gauge.",
+         "hi": "वर्षा वर्षामापी से मापी जाती है।"
+        },
+        {
+         "en": "Temperature is measured by a thermometer.",
+         "hi": "तापमान थर्मामीटर से मापा जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The wind vane points to the east. The wind is blowing from...",
+        "hi": "पवन-दिशासूचक पूर्व की ओर इशारा करता है। हवा किस ओर से आ रही है?"
+       },
+       "options": [
+        {
+         "en": "The west",
+         "hi": "पश्चिम से"
+        },
+        {
+         "en": "The east",
+         "hi": "पूर्व से"
+        },
+        {
+         "en": "Nowhere",
+         "hi": "कहीं से नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A wind vane points into the wind, so the direction it shows is where the wind comes from.",
+        "hi": "पवन-दिशासूचक हवा की ओर मुँह करता है, इसलिए वह जिस दिशा में दिखाता है हवा वहीं से आती है।"
+       },
+       "wrong": [
+        {
+         "en": "If it pointed east, the wind would not come from the west.",
+         "hi": "यदि वह पूर्व की ओर इशारा करे तो हवा पश्चिम से नहीं आ रही।"
+        },
+        "",
+        {
+         "en": "A pointing vane means there is wind; it blows from the pointed direction.",
+         "hi": "इशारा करता दिशासूचक बताता है कि हवा चल रही है; वह इशारे की दिशा से आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the sliders for temperature, humidity and wind and press Lift the air. What do you notice when the air is humid?",
+      "hi": "तापमान, आर्द्रता और पवन के स्लाइडर बदलो और हवा ऊपर उठाओ दबाओ। हवा में नमी ज़्यादा हो तो क्या दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch02-match",
+   "topic": "2.2",
+   "template": "match",
+   "title": {
+    "en": "Instrument and element",
+    "hi": "उपकरण और मौसम का तत्त्व"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "thermo",
+      "left": {
+       "en": "Thermometer",
+       "hi": "थर्मामीटर"
+      },
+      "right": {
+       "en": "How hot or cold the air is",
+       "hi": "हवा कितनी गर्म या ठंडी है"
+      },
+      "why": {
+       "en": "It measures temperature in degrees Celsius.",
+       "hi": "यह तापमान को डिग्री सेल्सियस में मापता है।"
+      }
+     },
+     {
+      "id": "rain",
+      "left": {
+       "en": "Rain gauge",
+       "hi": "वर्षामापी"
+      },
+      "right": {
+       "en": "How much rain fell, in mm",
+       "hi": "कितनी वर्षा हुई, मिमी में"
+      },
+      "why": {
+       "en": "Rain collects in a cylinder with a scale.",
+       "hi": "वर्षा का जल पैमाने वाले बेलन में जमा होता है।"
+      }
+     },
+     {
+      "id": "baro",
+      "left": {
+       "en": "Barometer",
+       "hi": "वायुदाबमापी"
+      },
+      "right": {
+       "en": "Air pressure in millibars",
+       "hi": "हवा का दबाव, मिलीबार में"
+      },
+      "why": {
+       "en": "Pressure below 1000 mb at the coast can mean a depression.",
+       "hi": "तट पर 1000 मिलीबार से कम दाब अवदाब का संकेत हो सकता है।"
+      }
+     },
+     {
+      "id": "vane",
+      "left": {
+       "en": "Wind vane",
+       "hi": "पवन-दिशासूचक"
+      },
+      "right": {
+       "en": "Direction the wind comes from",
+       "hi": "हवा किस दिशा से आ रही है"
+      },
+      "why": {
+       "en": "Its pointer turns into the wind.",
+       "hi": "इसका संकेतक हवा की ओर घूम जाता है।"
+      }
+     },
+     {
+      "id": "anemo",
+      "left": {
+       "en": "Anemometer",
+       "hi": "पवनवेगमापी"
+      },
+      "right": {
+       "en": "How fast the wind blows",
+       "hi": "हवा कितनी तेज़ चल रही है"
+      },
+      "why": {
+       "en": "Spinning cups count the turns to find km/h.",
+       "hi": "घूमते प्याले चक्कर गिनकर किमी/घंटा बताते हैं।"
+      }
+     },
+     {
+      "id": "hygro",
+      "left": {
+       "en": "Hygrometer",
+       "hi": "आर्द्रतामापी"
+      },
+      "right": {
+       "en": "Water vapour in the air",
+       "hi": "हवा में जलवाष्प की मात्रा"
+      },
+      "why": {
+       "en": "It gives relative humidity as a percentage.",
+       "hi": "यह सापेक्ष आर्द्रता प्रतिशत में बताता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:thermo",
+     "expect": "matched:thermo",
+     "say": {
+      "en": "Tap Thermometer, then tap what it measures.",
+      "hi": "थर्मामीटर पर टैप करो, फिर उस पर जो वह मापता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which one do you think measures the water vapour in the air?",
+      "hi": "तुम्हें क्या लगता है, हवा में जलवाष्प कौन मापता है?"
+     },
+     "options": [
+      {
+       "id": "hygro",
+       "en": "Hygrometer",
+       "hi": "आर्द्रतामापी"
+      },
+      {
+       "id": "baro",
+       "en": "Barometer",
+       "hi": "वायुदाबमापी"
+      },
+      {
+       "id": "vane",
+       "en": "Wind vane",
+       "hi": "पवन-दिशासूचक"
+      }
+     ],
+     "answer": "hygro"
+    },
+    {
+     "kind": "do",
+     "target": "left:hygro",
+     "expect": "matched:hygro",
+     "say": {
+      "en": "Match the hygrometer.",
+      "hi": "आर्द्रतामापी को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:anemo",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the other instruments.",
+      "hi": "बाकी सब उपकरण जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A weather station brings many instruments together. Temperature, rain, pressure, wind speed, wind direction and humidity are measured at fixed times. Experts use these numbers to plan and to forecast the weather.",
+      "hi": "मौसम केंद्र में कई उपकरण एक साथ होते हैं। तापमान, वर्षा, दाब, पवन की गति और दिशा तथा आर्द्रता निश्चित समय पर मापी जाती हैं। विशेषज्ञ इन संख्याओं से योजना बनाते हैं और मौसम का पूर्वानुमान लगाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which instrument measures rainfall?",
+        "hi": "कौन-सा उपकरण वर्षा मापता है?"
+       },
+       "options": [
+        {
+         "en": "Barometer",
+         "hi": "वायुदाबमापी"
+        },
+        {
+         "en": "Rain gauge",
+         "hi": "वर्षामापी"
+        },
+        {
+         "en": "Hygrometer",
+         "hi": "आर्द्रतामापी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A rain gauge collects rain in a cylinder and shows the depth in millimetres.",
+        "hi": "वर्षामापी वर्षा का जल बेलन में जमा करके गहराई मिलीमीटर में दिखाता है।"
+       },
+       "wrong": [
+        {
+         "en": "A barometer measures air pressure, not rain.",
+         "hi": "वायुदाबमापी हवा का दबाव मापता है, वर्षा नहीं।"
+        },
+        "",
+        {
+         "en": "A hygrometer measures water vapour in the air, not the rain that falls.",
+         "hi": "आर्द्रतामापी हवा में जलवाष्प मापता है, गिरी हुई वर्षा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these instruments could you make at home? Try a rain gauge from a plastic bottle.",
+      "hi": "इनमें से कौन-सा उपकरण तुम घर पर बना सकते हो? प्लास्टिक की बोतल से वर्षामापी बनाकर देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch02-elements",
+   "topic": "2.1",
+   "template": "sort",
+   "title": {
+    "en": "Which element of weather is it?",
+    "hi": "यह मौसम का कौन-सा तत्त्व है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "temp",
+      "label": {
+       "en": "Temperature",
+       "hi": "तापमान"
+      }
+     },
+     {
+      "id": "rain",
+      "label": {
+       "en": "Precipitation",
+       "hi": "वर्षण"
+      }
+     },
+     {
+      "id": "wind",
+      "label": {
+       "en": "Wind",
+       "hi": "पवन"
+      }
+     },
+     {
+      "id": "humid",
+      "label": {
+       "en": "Humidity",
+       "hi": "आर्द्रता"
+      }
+     },
+     {
+      "id": "press",
+      "label": {
+       "en": "Pressure",
+       "hi": "वायुदाब"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sweater",
+      "text": {
+       "en": "Wearing a sweater in December",
+       "hi": "दिसंबर में स्वेटर पहनना"
+      },
+      "bin": "temp",
+      "why": {
+       "en": "How cold or hot the air is is its temperature.",
+       "hi": "हवा कितनी ठंडी या गर्म है, यह तापमान है।"
+      }
+     },
+     {
+      "id": "loo",
+      "text": {
+       "en": "A hot day at 44 degrees",
+       "hi": "44 डिग्री की गर्म दोपहर"
+      },
+      "bin": "temp",
+      "why": {
+       "en": "This is about how hot the air is.",
+       "hi": "यह हवा की गर्मी की बात है।"
+      }
+     },
+     {
+      "id": "puddle",
+      "text": {
+       "en": "Puddles on the road after a storm",
+       "hi": "तूफ़ान के बाद सड़क पर पोखर"
+      },
+      "bin": "rain",
+      "why": {
+       "en": "Rain, snow, hail and sleet are all precipitation.",
+       "hi": "वर्षा, बर्फ़, ओले और हिमवृष्टि सब वर्षण हैं।"
+      }
+     },
+     {
+      "id": "hail",
+      "text": {
+       "en": "Small hard ice balls falling",
+       "hi": "बर्फ़ के छोटे सख़्त गोले गिरना"
+      },
+      "bin": "rain",
+      "why": {
+       "en": "Hail is a form of precipitation.",
+       "hi": "ओले वर्षण का एक रूप हैं।"
+      }
+     },
+     {
+      "id": "kite",
+      "text": {
+       "en": "A kite flying high in a strong breeze",
+       "hi": "तेज़ हवा में ऊँची उड़ती पतंग"
+      },
+      "bin": "wind",
+      "why": {
+       "en": "Moving air is wind; its speed and direction matter.",
+       "hi": "चलती हुई हवा पवन है; उसकी गति और दिशा मायने रखती है।"
+      }
+     },
+     {
+      "id": "windsock",
+      "text": {
+       "en": "A wind sock at the airport swinging",
+       "hi": "हवाई अड्डे पर हवा-सूचक का हिलना"
+      },
+      "bin": "wind",
+      "why": {
+       "en": "The wind sock shows which way the wind blows.",
+       "hi": "यह सूचक बताता है कि हवा किस ओर चल रही है।"
+      }
+     },
+     {
+      "id": "clothes",
+      "text": {
+       "en": "Wet clothes dry very slowly",
+       "hi": "गीले कपड़े बहुत धीरे सूखना"
+      },
+      "bin": "humid",
+      "why": {
+       "en": "When the air already holds a lot of water vapour, water evaporates slowly.",
+       "hi": "हवा में पहले से बहुत जलवाष्प हो तो पानी धीरे वाष्पित होता है।"
+      }
+     },
+     {
+      "id": "sweat",
+      "text": {
+       "en": "Sticky, sweaty feeling in Kochi",
+       "hi": "कोच्चि में चिपचिपा पसीना"
+      },
+      "bin": "humid",
+      "why": {
+       "en": "Humid air makes sweat stay on the skin.",
+       "hi": "नम हवा में पसीना त्वचा पर टिका रहता है।"
+      }
+     },
+     {
+      "id": "breath",
+      "text": {
+       "en": "Feeling breathless on a high mountain",
+       "hi": "ऊँचे पहाड़ पर साँस फूलना"
+      },
+      "bin": "press",
+      "why": {
+       "en": "Higher up the air is thinner and its pressure is lower.",
+       "hi": "ऊपर हवा हल्की होती है और उसका दाब कम होता है।"
+      }
+     },
+     {
+      "id": "heavy",
+      "text": {
+       "en": "Weather feels heavy before a storm",
+       "hi": "तूफ़ान से पहले मौसम का भारी लगना"
+      },
+      "bin": "press",
+      "why": {
+       "en": "A sudden fall in atmospheric pressure can come before a storm.",
+       "hi": "वायुदाब का अचानक घटना तूफ़ान से पहले हो सकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:sweater",
+     "expect": "placed:sweater",
+     "say": {
+      "en": "Tap the sweater card, then the element it is about.",
+      "hi": "स्वेटर वाले कार्ड पर टैप करो, फिर उस तत्त्व पर जिसकी बात है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A mountaineer feels dizzy high up. Which element has changed?",
+      "hi": "ऊँचाई पर एक पर्वतारोही को चक्कर आता है। कौन-सा तत्त्व बदल गया है?"
+     },
+     "options": [
+      {
+       "id": "press",
+       "en": "Air pressure",
+       "hi": "हवा का दाब"
+      },
+      {
+       "id": "rain",
+       "en": "Rainfall",
+       "hi": "वर्षा"
+      },
+      {
+       "id": "wind",
+       "en": "Wind direction",
+       "hi": "पवन की दिशा"
+      }
+     ],
+     "answer": "press"
+    },
+    {
+     "kind": "do",
+     "target": "card:breath",
+     "expect": "placed:breath",
+     "say": {
+      "en": "Place the breathless card.",
+      "hi": "साँस फूलने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the other cards and press Check.",
+      "hi": "बाकी कार्ड रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Five elements together describe the weather: temperature, precipitation, wind, humidity and atmospheric pressure. At different times one element can matter most: rain in July, heat in May, pressure when a cyclone comes, wind when the loo blows.",
+      "hi": "पाँच तत्त्व मिलकर मौसम बताते हैं: तापमान, वर्षण, पवन, आर्द्रता और वायुदाब। अलग-अलग समय पर कोई एक तत्त्व सबसे अहम हो सकता है: जुलाई में वर्षा, मई में गर्मी, चक्रवात आने पर दाब, लू चलने पर हवा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Wet clothes dry slowly on a rainy day because the air has high...",
+        "hi": "बरसात के दिन गीले कपड़े धीरे सूखते हैं क्योंकि हवा में अधिक है..."
+       },
+       "options": [
+        {
+         "en": "Temperature",
+         "hi": "तापमान"
+        },
+        {
+         "en": "Humidity",
+         "hi": "आर्द्रता"
+        },
+        {
+         "en": "Wind speed",
+         "hi": "पवन की गति"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "High humidity means the air is already full of water vapour, so water evaporates slowly.",
+        "hi": "अधिक आर्द्रता का मतलब है कि हवा में पहले से बहुत जलवाष्प है, इसलिए पानी धीरे उड़ता है।"
+       },
+       "wrong": [
+        {
+         "en": "High temperature actually helps clothes dry faster.",
+         "hi": "अधिक तापमान तो कपड़े जल्दी सुखाने में मदद करता है।"
+        },
+        "",
+        {
+         "en": "Strong wind helps clothes dry faster too.",
+         "hi": "तेज़ हवा भी कपड़े जल्दी सुखाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List the weather words you use in your own language. Which element does each describe?",
+      "hi": "अपनी भाषा के मौसम वाले शब्द लिखो। हर शब्द किस तत्त्व को बताता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch02-temperature",
+   "topic": "2.2",
+   "template": "data",
+   "title": {
+    "en": "Read a week of temperatures",
+    "hi": "एक हफ़्ते का तापमान पढ़ो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "data": [
+     {
+      "label": {
+       "en": "Mon",
+       "hi": "सोम"
+      },
+      "value": 31
+     },
+     {
+      "label": {
+       "en": "Tue",
+       "hi": "मंगल"
+      },
+      "value": 33
+     },
+     {
+      "label": {
+       "en": "Wed",
+       "hi": "बुध"
+      },
+      "value": 34
+     },
+     {
+      "label": {
+       "en": "Thu",
+       "hi": "गुरु"
+      },
+      "value": 32
+     },
+     {
+      "label": {
+       "en": "Fri",
+       "hi": "शुक्र"
+      },
+      "value": 30
+     },
+     {
+      "label": {
+       "en": "Sat",
+       "hi": "शनि"
+      },
+      "value": 28
+     },
+     {
+      "label": {
+       "en": "Sun",
+       "hi": "रवि"
+      },
+      "value": 29
+     }
+    ],
+    "ask": "range",
+    "show": 3,
+    "title": {
+     "en": "Highest temperature each day (sample numbers)",
+     "hi": "हर दिन का अधिकतम तापमान (नमूना संख्याएँ)"
+    },
+    "ylabel": {
+     "en": "Temperature (°C)",
+     "hi": "तापमान (°C)"
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Press Add to plot the next day.",
+      "hi": "अगला दिन जोड़ने के लिए जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The range is the highest minus the lowest. For all seven days, will it be more than 5 degrees?",
+      "hi": "परास = सबसे अधिक - सबसे कम। सातों दिनों के लिए क्या यह 5 डिग्री से ज़्यादा होगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, more than 5",
+       "hi": "हाँ, 5 से ज़्यादा"
+      },
+      {
+       "id": "no",
+       "en": "No, 5 or less",
+       "hi": "नहीं, 5 या उससे कम"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Keep adding days until all seven are on the graph.",
+      "hi": "सातों दिन ग्राफ़ पर आने तक दिन जोड़ते जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Find the highest and the lowest bar, subtract, and enter the range.",
+      "hi": "सबसे ऊँचा और सबसे छोटा दंड ढूँढो, घटाओ और परास भरो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The range of temperature is the highest value minus the lowest value in a period. Here the highest was 34 and the lowest 28, so the range is 6 degrees. A big range means the temperature swings a lot. These numbers are a sample made for this lab, not a real record.",
+      "hi": "तापमान का परास किसी अवधि के सबसे अधिक मान में से सबसे कम मान घटाने पर मिलता है। यहाँ सबसे अधिक 34 और सबसे कम 28 था, इसलिए परास 6 डिग्री है। बड़ा परास यानी तापमान में बहुत उतार-चढ़ाव। ये संख्याएँ इस प्रयोग के लिए बनाए गए नमूने हैं, असली रिकॉर्ड नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "One day the highest temperature was 36 and the lowest 24. What is the range?",
+        "hi": "एक दिन अधिकतम तापमान 36 और न्यूनतम 24 था। परास क्या है?"
+       },
+       "options": [
+        {
+         "en": "12 degrees",
+         "hi": "12 डिग्री"
+        },
+        {
+         "en": "30 degrees",
+         "hi": "30 डिग्री"
+        },
+        {
+         "en": "60 degrees",
+         "hi": "60 डिग्री"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Range = 36 − 24 = 12 degrees.",
+        "hi": "परास = 36 − 24 = 12 डिग्री।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "30 is the average of the two numbers, not the difference.",
+         "hi": "30 दोनों संख्याओं का औसत है, अंतर नहीं।"
+        },
+        {
+         "en": "60 is their sum; the range is a difference.",
+         "hi": "60 उनका योग है; परास अंतर होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep your own record for a week. Note the highest and lowest temperature each day and find the range.",
+      "hi": "एक हफ़्ते अपना रिकॉर्ड रखो। हर दिन का अधिकतम और न्यूनतम तापमान लिखो और परास निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch02-forecast",
+   "topic": "2.3",
+   "template": "sequence",
+   "title": {
+    "en": "From instruments to a forecast",
+    "hi": "उपकरणों से पूर्वानुमान तक"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "measure",
+      "text": {
+       "en": "Instruments at weather stations measure the weather at fixed times.",
+       "hi": "मौसम केंद्रों के उपकरण निश्चित समय पर मौसम मापते हैं।"
+      }
+     },
+     {
+      "id": "collect",
+      "text": {
+       "en": "The readings from many places are collected together.",
+       "hi": "अनेक स्थानों की रीडिंग एक जगह इकट्ठी की जाती हैं।"
+      }
+     },
+     {
+      "id": "study",
+      "text": {
+       "en": "Meteorologists study the data with scientific methods.",
+       "hi": "मौसम वैज्ञानिक वैज्ञानिक तरीक़ों से आँकड़ों का अध्ययन करते हैं।"
+      }
+     },
+     {
+      "id": "warn",
+      "text": {
+       "en": "The forecast and warnings are issued, for example a cyclone alert.",
+       "hi": "पूर्वानुमान और चेतावनियाँ जारी होती हैं, जैसे चक्रवात की चेतावनी।"
+      }
+     },
+     {
+      "id": "act",
+      "text": {
+       "en": "People act: fishermen stay ashore and coastal areas get ready.",
+       "hi": "लोग कदम उठाते हैं: मछुआरे तट पर रुकते हैं और तटीय इलाक़े तैयार होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:measure",
+     "expect": "placed:measure",
+     "say": {
+      "en": "Tap the step that happens first, then tap slot 1.",
+      "hi": "जो चरण सबसे पहले होता है उसे चुनो, फिर खाना 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why must the readings be taken at regular times?",
+      "hi": "रीडिंग नियमित समय पर क्यों ली जानी चाहिए?"
+     },
+     "options": [
+      {
+       "id": "compare",
+       "en": "So changes can be compared and patterns found",
+       "hi": "ताकि बदलाव की तुलना हो सके और ढर्रे मिल सकें"
+      },
+      {
+       "id": "nothing",
+       "en": "There is no reason",
+       "hi": "कोई कारण नहीं"
+      },
+      {
+       "id": "pretty",
+       "en": "To make the charts colourful",
+       "hi": "ताकि चार्ट रंगीन दिखें"
+      }
+     ],
+     "answer": "compare"
+    },
+    {
+     "kind": "do",
+     "target": "item:study",
+     "expect": "placed:study",
+     "say": {
+      "en": "Place the step where experts study the data.",
+      "hi": "वह चरण रखो जहाँ विशेषज्ञ आँकड़ों का अध्ययन करते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the rest and press Check.",
+      "hi": "बाकी चरण लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A forecast is a prediction of the weather before it happens. It starts with measurements from many weather stations. Meteorologists study the data and warn people about heat waves, heavy rain or cyclones. Warnings help fishermen, farmers and local governments prepare.",
+      "hi": "पूर्वानुमान मौसम के होने से पहले उसकी भविष्यवाणी है। यह अनेक मौसम केंद्रों की माप से शुरू होता है। मौसम वैज्ञानिक आँकड़ों का अध्ययन करके लू, भारी वर्षा या चक्रवात की चेतावनी देते हैं। चेतावनियाँ मछुआरों, किसानों और स्थानीय सरकारों को तैयारी में मदद करती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who is helped most by a cyclone warning for the sea?",
+        "hi": "समुद्र में चक्रवात की चेतावनी से सबसे ज़्यादा मदद किसे मिलती है?"
+       },
+       "options": [
+        {
+         "en": "Fishermen who might go out in boats",
+         "hi": "नाव लेकर जाने वाले मछुआरों को"
+        },
+        {
+         "en": "People living far inland in a desert",
+         "hi": "दूर मरुस्थल में रहने वालों को"
+        },
+        {
+         "en": "Nobody",
+         "hi": "किसी को नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The warning tells fishermen not to sail, which saves lives.",
+        "hi": "चेतावनी मछुआरों को समुद्र में न जाने को कहती है, जिससे जानें बचती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A desert far inland is not at risk from a sea cyclone.",
+         "hi": "दूर के मरुस्थल को समुद्री चक्रवात से ख़तरा नहीं होता।"
+        },
+        {
+         "en": "Warnings are made to help many people, so they do matter.",
+         "hi": "चेतावनियाँ बहुत लोगों की मदद के लिए बनती हैं, इसलिए वे मायने रखती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask an elder how they guessed the weather before forecasts. Which signs did they use: birds, ants, clouds?",
+      "hi": "किसी बुज़ुर्ग से पूछो कि पूर्वानुमान से पहले वे मौसम का अंदाज़ा कैसे लगाते थे। कौन-से संकेत: पक्षी, चींटियाँ, बादल?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Opens the chapter",
+   "shows": "A sky of mixed clouds over a village field, sun breaking through, a farmer's hat on a fence post",
+   "view": "Wide, 16:9, morning light",
+   "right": "Real clouds, natural colours",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 2,
+   "kind": "CUT",
+   "topic": "2.1",
+   "use": "Layers of the air near the ground",
+   "shows": "A clean cut-away of the troposphere, stratosphere and the ozone layer from the ground up with a plane and a cloud, no text",
+   "view": "4:3, neutral background",
+   "right": "Troposphere thin at the poles and thick at the equator is shown in a second file",
+   "avoid": "Labels, numbers"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Thermometer card (reuse library)",
+   "shows": "Reuse LIB-LAB-thermometer from the shared library",
+   "view": "As in library",
+   "right": "Red liquid, scale in degrees Celsius",
+   "avoid": "New copy of the same object"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Rain gauge",
+   "shows": "A simple rain gauge: funnel, measuring cylinder and a scale in millimetres, standing on short grass",
+   "view": "Front view, cut-out PNG",
+   "right": "Funnel diameter matches the cylinder; scale readable",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Wind vane and anemometer",
+   "shows": "A metal wind vane with an arrow, and a cup anemometer on a pole, two separate cut-outs",
+   "view": "Front view, same size",
+   "right": "Three or four cups on the anemometer",
+   "avoid": "Brand marks, text"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Barometer and hygrometer",
+   "shows": "A dial aneroid barometer and a simple hygrometer, two separate cut-outs",
+   "view": "Straight front view",
+   "right": "Dial readable, no brand",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "A weather station in a field",
+   "shows": "A white Stevenson screen and instrument mast in an open field at an Indian school or research station",
+   "view": "Wide, 16:9",
+   "right": "Open ground, instruments clear",
+   "avoid": "Logos, faces"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Cyclone warning on the coast",
+   "shows": "Fishing boats pulled up on a beach under dark clouds before a storm, fishermen seen only from far away",
+   "view": "Wide, 16:9",
+   "right": "Real boats of the Indian coast",
+   "avoid": "Identifiable faces, text"
+  }
+ ]
+}

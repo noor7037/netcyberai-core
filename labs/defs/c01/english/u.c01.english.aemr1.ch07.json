@@ -1,0 +1,811 @@
+{
+ "chapter_key": "u.c01.english.aemr1.ch07",
+ "class": 1,
+ "subject_id": "english",
+ "title": "The Food we Eat",
+ "source": "https://ncert.nic.in/textbook/pdf/aemr1ps.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Sharing food, and where food comes from (farmers, cows, hens, bees)",
+   "labs": [
+    "c01-english-aemr1-ch07-where-food-comes-from",
+    "c01-english-aemr1-ch07-sharing-lunch"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Fun with Words: one-beat and two-beat words (farmer, carrot, market)",
+   "labs": [
+    "c01-english-aemr1-ch07-clap-food-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "What we have for lunch: I have, she has, they have, thank you",
+   "labs": [
+    "c01-english-aemr1-ch07-i-have-lunch"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Drawing and naming special dishes, matching food to its shape",
+   "labs": [],
+   "why_no_lab": "Drawing and matching food shapes use the book's pictures and the child's own paper, which a lab cannot replace."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-english-aemr1-ch07-where-food-comes-from",
+   "topic": "7.1",
+   "template": "match",
+   "title": {
+    "en": "Where does our food come from?",
+    "hi": "हमारा खाना कहाँ से आता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "milk",
+      "left": {
+       "en": "Milk",
+       "hi": "दूध"
+      },
+      "right": {
+       "en": "comes from cows",
+       "hi": "गाय से मिलता है"
+      },
+      "why": {
+       "en": "A cow gives us milk, and we make curd and butter from it.",
+       "hi": "गाय हमें दूध देती है, और उससे दही और मक्खन बनता है।"
+      }
+     },
+     {
+      "id": "honey",
+      "left": {
+       "en": "Honey",
+       "hi": "शहद"
+      },
+      "right": {
+       "en": "is made by bees",
+       "hi": "मधुमक्खियाँ बनाती हैं"
+      },
+      "why": {
+       "en": "Bees collect nectar from flowers and make honey.",
+       "hi": "मधुमक्खियाँ फूलों से रस इकट्ठा करके शहद बनाती हैं।"
+      }
+     },
+     {
+      "id": "eggs",
+      "left": {
+       "en": "Eggs",
+       "hi": "अंडे"
+      },
+      "right": {
+       "en": "are laid by hens",
+       "hi": "मुर्गियाँ देती हैं"
+      },
+      "why": {
+       "en": "Hens lay eggs on the farm.",
+       "hi": "मुर्गियाँ खेत पर अंडे देती हैं।"
+      }
+     },
+     {
+      "id": "wheat",
+      "left": {
+       "en": "Wheat",
+       "hi": "गेहूँ"
+      },
+      "right": {
+       "en": "grows in a farmer's field",
+       "hi": "किसान के खेत में उगता है"
+      },
+      "why": {
+       "en": "Farmers grow wheat, and we make roti from its flour.",
+       "hi": "किसान गेहूँ उगाते हैं और उसके आटे से रोटी बनती है।"
+      }
+     },
+     {
+      "id": "curd",
+      "left": {
+       "en": "Curd",
+       "hi": "दही"
+      },
+      "right": {
+       "en": "is made from milk",
+       "hi": "दूध से बनता है"
+      },
+      "why": {
+       "en": "Milk is set to make curd.",
+       "hi": "दूध जमाने से दही बनता है।"
+      }
+     },
+     {
+      "id": "potato",
+      "left": {
+       "en": "Potato",
+       "hi": "आलू"
+      },
+      "right": {
+       "en": "grows under the soil",
+       "hi": "मिट्टी के नीचे उगता है"
+      },
+      "why": {
+       "en": "A potato grows under the ground, and the farmer digs it out.",
+       "hi": "आलू ज़मीन के नीचे उगता है और किसान उसे खोदकर निकालता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:milk",
+     "expect": "matched:milk",
+     "say": {
+      "en": "Tap 'Milk'. Then tap where it comes from.",
+      "hi": "'दूध' पर टैप करो। फिर टैप करो कि वह कहाँ से आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who gives us honey?",
+      "hi": "हमें शहद कौन देता है?"
+     },
+     "options": [
+      {
+       "id": "bees",
+       "en": "Bees",
+       "hi": "मधुमक्खियाँ (Bees)"
+      },
+      {
+       "id": "hens",
+       "en": "Hens",
+       "hi": "मुर्गियाँ (Hens)"
+      },
+      {
+       "id": "cows",
+       "en": "Cows",
+       "hi": "गायें (Cows)"
+      }
+     ],
+     "answer": "bees"
+    },
+    {
+     "kind": "do",
+     "target": "left:honey",
+     "expect": "matched:honey",
+     "say": {
+      "en": "Match 'Honey' with where it comes from.",
+      "hi": "'शहद' को उसके स्रोत से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:eggs",
+     "expect": "matched:eggs",
+     "say": {
+      "en": "Match 'Eggs'.",
+      "hi": "'अंडे' को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:wheat",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest: wheat, curd and potato.",
+      "hi": "बाकी भी मिलाओ: गेहूँ, दही और आलू।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Our food comes from farmers, animals and bees. Cows give milk, and curd and butter are made from milk. Hens lay eggs, bees make honey, and farmers grow wheat and vegetables. We should say thank you to the people who work hard to give us food.",
+      "hi": "हमारा खाना किसानों, जानवरों और मधुमक्खियों से आता है। गायें दूध देती हैं और दूध से दही और मक्खन बनता है। मुर्गियाँ अंडे देती हैं, मधुमक्खियाँ शहद बनाती हैं और किसान गेहूँ और सब्ज़ियाँ उगाते हैं। जो लोग मेहनत करके हमें खाना देते हैं, उन्हें हमें धन्यवाद कहना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is curd made from?",
+        "hi": "दही किससे बनता है?"
+       },
+       "options": [
+        {
+         "en": "Milk",
+         "hi": "दूध (Milk)"
+        },
+        {
+         "en": "Honey",
+         "hi": "शहद (Honey)"
+        },
+        {
+         "en": "Wheat",
+         "hi": "गेहूँ (Wheat)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Milk is set to make curd.",
+        "hi": "दूध जमाने से दही बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Honey is made by bees, not used to make curd.",
+         "hi": "शहद मधुमक्खियाँ बनाती हैं; उससे दही नहीं बनता।"
+        },
+        {
+         "en": "Wheat gives flour for roti, not curd.",
+         "hi": "गेहूँ से रोटी के लिए आटा मिलता है, दही नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Thank someone at home who cooks for you. What would you say?",
+      "hi": "घर में जो तुम्हारे लिए खाना बनाते हैं, उन्हें धन्यवाद कहो। तुम क्या कहोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch07-clap-food-words",
+   "topic": "7.2",
+   "template": "words",
+   "title": {
+    "en": "Clap the food words",
+    "hi": "खाने के शब्दों पर ताली"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "syllables",
+    "lang": "en",
+    "words": [
+     {
+      "w": "farmer",
+      "parts": [
+       "far",
+       "mer"
+      ],
+      "meaning": {
+       "en": "A farmer grows our food.",
+       "hi": "किसान हमारा अनाज और सब्ज़ियाँ उगाता है।"
+      }
+     },
+     {
+      "w": "carrot",
+      "parts": [
+       "car",
+       "rot"
+      ],
+      "meaning": {
+       "en": "A carrot is an orange vegetable.",
+       "hi": "गाजर एक नारंगी सब्ज़ी है।"
+      }
+     },
+     {
+      "w": "market",
+      "meaning": {
+       "en": "We buy things in a market.",
+       "hi": "बाज़ार में हम चीज़ें खरीदते हैं।"
+      }
+     },
+     {
+      "w": "butter",
+      "parts": [
+       "but",
+       "ter"
+      ],
+      "meaning": {
+       "en": "We make butter from milk.",
+       "hi": "मक्खन दूध से बनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "clap",
+     "expect": "clap",
+     "say": {
+      "en": "Press Clap and count the beats in 'farmer'.",
+      "hi": "ताली दबाओ और 'farmer' की ताली गिनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many claps for 'farmer'?",
+      "hi": "'farmer' के लिए कितनी ताली?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "Two (far-mer)",
+       "hi": "दो (far-mer)"
+      },
+      {
+       "id": "one",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "three",
+       "en": "Three",
+       "hi": "तीन"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "gap:3",
+     "expect": "word:farmer",
+     "say": {
+      "en": "Tap the letter r to cut the word after 'far'.",
+      "hi": "अक्षर r पर टैप करके शब्द को 'far' के बाद काटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Words like man, food and eat have one beat, so we clap once. Words like farmer, carrot and market have two beats, so we clap twice: far-mer, car-rot, mar-ket.",
+      "hi": "man, food और eat जैसे शब्दों में एक बीट होती है, इसलिए एक ताली। farmer, carrot और market जैसे शब्दों में दो बीट होती हैं, इसलिए दो ताली: far-mer, car-rot, mar-ket।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many claps for 'market'?",
+        "hi": "'market' के लिए कितनी ताली?"
+       },
+       "options": [
+        {
+         "en": "Two",
+         "hi": "दो (Two)"
+        },
+        {
+         "en": "One",
+         "hi": "एक (One)"
+        },
+        {
+         "en": "Three",
+         "hi": "तीन (Three)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "mar-ket has two parts.",
+        "hi": "mar-ket के दो भाग हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One clap is for short words like 'eat'.",
+         "hi": "एक ताली 'eat' जैसे छोटे शब्दों के लिए होती है।"
+        },
+        {
+         "en": "Three would be too many; market has only two parts.",
+         "hi": "तीन बहुत ज़्यादा हैं; market में सिर्फ़ दो भाग हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clap the beats of your favourite food: roti, paratha, idli, chilla.",
+      "hi": "अपने पसंदीदा खाने की ताली गिनो: roti, paratha, idli, chilla।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch07-sharing-lunch",
+   "topic": "7.3",
+   "template": "reader",
+   "title": {
+    "en": "Sharing lunch",
+    "hi": "साथ मिलकर खाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "emotion-map",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "Ravi and Meena at lunch",
+      "hi": "रवि और मीना का लंच"
+     },
+     "lines": [
+      "Ravi's mother is sick, so there is no lunch in his box.",
+      "He sits quietly. His tummy is rumbling.",
+      "Meena sees him and says, 'Come, share my paratha.'",
+      "Ravi says, 'Thank you!' and takes a bite.",
+      "The two friends eat together and smile."
+     ]
+    },
+    "emotions": [
+     "sadness",
+     "worry",
+     "love",
+     "joy",
+     "calm"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap line 1. Then pick how Ravi feels.",
+      "hi": "पंक्ति 1 दबाओ। फिर चुनो कि रवि कैसा महसूस करता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Meena shares her paratha. What feeling does she show?",
+      "hi": "मीना अपना पराठा बाँटती है। वह कौन-सी भावना दिखाती है?"
+     },
+     "options": [
+      {
+       "id": "love",
+       "en": "Love and kindness",
+       "hi": "प्यार और दया (Love)"
+      },
+      {
+       "id": "anger",
+       "en": "Anger",
+       "hi": "ग़ुस्सा (Anger)"
+      },
+      {
+       "id": "fear",
+       "en": "Fear",
+       "hi": "डर (Fear)"
+      }
+     ],
+     "answer": "love"
+    },
+    {
+     "kind": "do",
+     "target": "line:2",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap line 3 and choose Meena's feeling.",
+      "hi": "पंक्ति 3 दबाओ और मीना की भावना चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "map-done",
+     "say": {
+      "en": "Do the other lines too, until the map is complete.",
+      "hi": "बाकी पंक्तियाँ भी करो, जब तक नक्शा पूरा न हो जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ravi is sad and worried at first, because he has no lunch. Meena shows love by sharing her food. Ravi becomes happy and says thank you. Sharing food makes friends happy and makes friendship stronger.",
+      "hi": "रवि पहले उदास और चिंतित है, क्योंकि उसके पास खाना नहीं है। मीना अपना खाना बाँटकर प्यार दिखाती है। रवि ख़ुश हो जाता है और धन्यवाद कहता है। खाना बाँटने से दोस्त ख़ुश होते हैं और दोस्ती गहरी होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is Ravi worried at first?",
+        "hi": "रवि पहले चिंतित क्यों है?"
+       },
+       "options": [
+        {
+         "en": "He has no lunch.",
+         "hi": "उसके पास लंच नहीं है।"
+        },
+        {
+         "en": "He lost his bag.",
+         "hi": "उसका बस्ता खो गया है।"
+        },
+        {
+         "en": "He is late for school.",
+         "hi": "उसे स्कूल के लिए देर हो गई है।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "His mother is sick, so there is no lunch in his box.",
+        "hi": "उसकी माँ बीमार हैं, इसलिए उसके डिब्बे में लंच नहीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The story does not say he lost his bag.",
+         "hi": "कहानी में बस्ता खोने की बात नहीं है।"
+        },
+        {
+         "en": "He is already at school and it is lunch time, so he is not late.",
+         "hi": "वह स्कूल में है और लंच का समय है, इसलिए उसे देर नहीं हुई है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Do you share your food with your friends? Tell one time when you shared.",
+      "hi": "क्या तुम अपना खाना दोस्तों के साथ बाँटते हो? एक बार बताओ जब तुमने बाँटा था।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch07-i-have-lunch",
+   "topic": "7.4",
+   "template": "grammar",
+   "title": {
+    "en": "I have, she has, they have",
+    "hi": "I have, she has, they have (मेरे पास, उसके पास)"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "en",
+    "items": [
+     {
+      "id": "roti",
+      "words": [
+       "I",
+       "have",
+       "roti",
+       "with",
+       "sabzi",
+       "."
+      ],
+      "answer": "I have roti with sabzi.",
+      "rule": {
+       "en": "Use 'have' with I. 'with' tells what the food is eaten with.",
+       "hi": "I के साथ 'have' आता है। 'with' बताता है कि खाना किसके साथ खाया जाता है।"
+      }
+     },
+     {
+      "id": "she",
+      "words": [
+       "She",
+       "has",
+       "a",
+       "paratha",
+       "."
+      ],
+      "answer": "She has a paratha.",
+      "rule": {
+       "en": "Use 'has' with she, he or one person.",
+       "hi": "she, he या एक व्यक्ति के साथ 'has' आता है।"
+      }
+     },
+     {
+      "id": "they",
+      "words": [
+       "They",
+       "have",
+       "fruits",
+       "."
+      ],
+      "answer": "They have fruits.",
+      "rule": {
+       "en": "Use 'have' with they, we, you and I.",
+       "hi": "they, we, you और I के साथ 'have' आता है।"
+      }
+     },
+     {
+      "id": "thanks",
+      "words": [
+       "Thank",
+       "you",
+       "for",
+       "the",
+       "food",
+       "."
+      ],
+      "answer": "Thank you for the food.",
+      "rule": {
+       "en": "'Thank you for' tells what we are thankful for.",
+       "hi": "'Thank you for' बताता है कि हम किस बात के लिए धन्यवाद दे रहे हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:roti",
+     "say": {
+      "en": "Tap the word tiles in order to build: I have roti with sabzi.",
+      "hi": "शब्द वाली टाइलों को क्रम से दबाकर बनाओ: I have roti with sabzi."
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word goes with 'she': 'have' or 'has'?",
+      "hi": "'she' के साथ कौन-सा शब्द आएगा: 'have' या 'has'?"
+     },
+     "options": [
+      {
+       "id": "has",
+       "en": "has",
+       "hi": "has (है)"
+      },
+      {
+       "id": "have",
+       "en": "have",
+       "hi": "have (हैं/है)"
+      }
+     ],
+     "answer": "has"
+    },
+    {
+     "kind": "do",
+     "target": "item:she",
+     "expect": "built:she",
+     "say": {
+      "en": "Build: She has a paratha.",
+      "hi": "बनाओ: She has a paratha."
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:thanks",
+     "expect": "built:thanks",
+     "say": {
+      "en": "Build: Thank you for the food.",
+      "hi": "बनाओ: Thank you for the food."
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We use 'have' with I, we, you and they. We use 'has' with she, he or one person. We say 'Thank you' to show we are grateful.",
+      "hi": "I, we, you और they के साथ 'have' आता है। she, he या एक व्यक्ति के साथ 'has' आता है। आभार दिखाने के लिए हम 'Thank you' कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is right?",
+        "hi": "कौन-सा वाक्य सही है?"
+       },
+       "options": [
+        {
+         "en": "They have fruits.",
+         "hi": "They have fruits. (उनके पास फल हैं।)"
+        },
+        {
+         "en": "They has fruits.",
+         "hi": "They has fruits. (गलत)"
+        },
+        {
+         "en": "She have fruits.",
+         "hi": "She have fruits. (गलत)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "'They' goes with 'have'.",
+        "hi": "'They' के साथ 'have' आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'has' goes with she or he, not they.",
+         "hi": "'has' she या he के साथ आता है, they के साथ नहीं।"
+        },
+        {
+         "en": "'have' goes with they, I, we, you, but 'she' needs 'has'.",
+         "hi": "'have' they, I, we, you के साथ आता है, पर 'she' के साथ 'has' चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say what you have in your lunch box today. Start with 'I have'.",
+      "hi": "आज तुम्हारे लंच बॉक्स में क्या है, बताओ। 'I have' से शुरू करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Opens the chapter",
+   "shows": "Four Indian school children (backs and hands only) sitting in a circle on a classroom floor opening lunch boxes with roti, idli, paratha and chilla",
+   "view": "16:9, from a slight height",
+   "right": "Different foods clear in each box; two children offering food to another",
+   "avoid": "No faces; no brand lunch boxes"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Food source matching",
+   "shows": "Cut-outs of a glass of milk, a jar of honey, a few eggs, a bunch of wheat, a bowl of curd and potatoes",
+   "view": "Straight on, soft light from top left",
+   "right": "True colours; wheat golden",
+   "avoid": "No labels on jars"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Where food comes from",
+   "shows": "A farmer milking a cow in the early morning, with hens nearby",
+   "view": "16:9",
+   "right": "Calm cow, clean bucket",
+   "avoid": "No faces needed (back view)"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.2",
+   "use": "Two-beat words",
+   "shows": "A farmer's hands holding a carrot; a heap of carrots; a pat of butter on a plate",
+   "view": "Straight on",
+   "right": "Real vegetables",
+   "avoid": "No faces"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "7.3",
+   "use": "Sharing lunch",
+   "shows": "Four frames of two children's hands: an empty lunch box, a friend offering a paratha, taking a bite, two empty boxes and happy hands together",
+   "view": "4 frames, same table, hands only",
+   "right": "Emotion shown by hands and posture",
+   "avoid": "No faces"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Market and food",
+   "shows": "A steaming plate of idli with chutney and a plate of poori with aloo sabzi on a wooden table",
+   "view": "16:9 top view",
+   "right": "Food looks fresh and homemade",
+   "avoid": "No branding on plates"
+  }
+ ]
+}

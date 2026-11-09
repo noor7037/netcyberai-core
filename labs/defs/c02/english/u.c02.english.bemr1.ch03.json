@@ -1,0 +1,699 @@
+{
+ "chapter_key": "u.c02.english.bemr1.ch03",
+ "class": 2,
+ "subject_id": "english",
+ "title": "It is Fun",
+ "source": "https://ncert.nic.in/textbook/pdf/bemr103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Let us recite: the poem about being a lamb, a cat, a frog, a fish, a horse and a bird",
+   "labs": [],
+   "why_no_lab": "The poem is best enjoyed by reciting it aloud with actions; its action words get their own lab under 3.2."
+  },
+  {
+   "n": "3.2",
+   "title": "Let us speak: animal sounds and action words climb, leap, swim, trot, fly",
+   "labs": [
+    "c02-english-bemr1-ch03-animal-actions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Let us write: I can ___ like a ___",
+   "labs": [
+    "c02-english-bemr1-ch03-i-can"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Let us think: match animals to what they do",
+   "labs": [
+    "c02-english-bemr1-ch03-animal-actions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "The vowel sound 'i' in pin, fish and ship",
+   "labs": [
+    "c02-english-bemr1-ch03-sound-i"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Let us sing: the Song of I, where 'I' means oneself",
+   "labs": [],
+   "why_no_lab": "A song with claps is learnt by singing it together; the word I is practised in the sentence lab under 3.3."
+  },
+  {
+   "n": "3.7",
+   "title": "Let us draw: a rangoli in three steps",
+   "labs": [],
+   "why_no_lab": "Drawing a rangoli with colours is a hands-on art task done on paper or on the floor."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c02-english-bemr1-ch03-animal-actions",
+   "topic": "3.2",
+   "template": "match",
+   "title": {
+    "en": "What animals can do",
+    "hi": "जानवर क्या कर सकते हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "cat",
+      "left": {
+       "en": "cat",
+       "hi": "बिल्ली"
+      },
+      "right": {
+       "en": "climbs",
+       "hi": "चढ़ती है"
+      },
+      "why": {
+       "en": "A cat climbs trees and walls.",
+       "hi": "बिल्ली पेड़ों और दीवारों पर चढ़ती है।"
+      }
+     },
+     {
+      "id": "lamb",
+      "left": {
+       "en": "lamb",
+       "hi": "मेमना"
+      },
+      "right": {
+       "en": "leaps",
+       "hi": "उछलता है"
+      },
+      "why": {
+       "en": "A lamb leaps and jumps in the grass.",
+       "hi": "मेमना घास में उछलता-कूदता है।"
+      }
+     },
+     {
+      "id": "frog",
+      "left": {
+       "en": "frog",
+       "hi": "मेंढक"
+      },
+      "right": {
+       "en": "hops",
+       "hi": "फुदकता है"
+      },
+      "why": {
+       "en": "A frog hops on its strong back legs.",
+       "hi": "मेंढक अपनी मज़बूत पिछली टाँगों से फुदकता है।"
+      }
+     },
+     {
+      "id": "fish",
+      "left": {
+       "en": "fish",
+       "hi": "मछली"
+      },
+      "right": {
+       "en": "swims",
+       "hi": "तैरती है"
+      },
+      "why": {
+       "en": "A fish swims in water with its fins.",
+       "hi": "मछली अपने पंखों से पानी में तैरती है।"
+      }
+     },
+     {
+      "id": "horse",
+      "left": {
+       "en": "horse",
+       "hi": "घोड़ा"
+      },
+      "right": {
+       "en": "trots",
+       "hi": "दुलकी चलता है"
+      },
+      "why": {
+       "en": "A horse trots on four legs.",
+       "hi": "घोड़ा चार टाँगों पर दुलकी चलता है।"
+      }
+     },
+     {
+      "id": "bird",
+      "left": {
+       "en": "bird",
+       "hi": "चिड़िया"
+      },
+      "right": {
+       "en": "flies",
+       "hi": "उड़ती है"
+      },
+      "why": {
+       "en": "A bird flies with its wings.",
+       "hi": "चिड़िया अपने पंखों से उड़ती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which animal swims?",
+      "hi": "कौन-सा जानवर तैरता है?"
+     },
+     "options": [
+      {
+       "id": "fish",
+       "en": "fish",
+       "hi": "मछली"
+      },
+      {
+       "id": "cat",
+       "en": "cat",
+       "hi": "बिल्ली"
+      },
+      {
+       "id": "horse",
+       "en": "horse",
+       "hi": "घोड़ा"
+      }
+     ],
+     "answer": "fish"
+    },
+    {
+     "kind": "do",
+     "target": "left:fish",
+     "expect": "matched:fish",
+     "say": {
+      "en": "Tap 'fish', then tap what a fish does.",
+      "hi": "'fish' को दबाओ, फिर वह कार्ड दबाओ जो बताता है कि मछली क्या करती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every animal with its action. Then press Check.",
+      "hi": "हर जानवर को उसके काम से मिलाओ। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Words like climb, leap, swim, trot and fly are action words. They tell what someone does. Each animal has its own special way to move: a cat climbs, a lamb leaps and a bird flies.",
+      "hi": "Climb, leap, swim, trot और fly काम बताने वाले शब्द हैं। वे बताते हैं कि कोई क्या करता है। हर जानवर के चलने का अपना तरीका है: बिल्ली चढ़ती है, मेमना उछलता है और चिड़िया उड़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which animal trots?",
+        "hi": "कौन-सा जानवर दुलकी चलता है?"
+       },
+       "options": [
+        {
+         "en": "horse",
+         "hi": "घोड़ा"
+        },
+        {
+         "en": "fish",
+         "hi": "मछली"
+        },
+        {
+         "en": "bird",
+         "hi": "चिड़िया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A horse trots, which is a steady running walk on four legs.",
+        "hi": "घोड़ा दुलकी चलता है, यानी चार टाँगों पर एक लगातार तेज़ चाल।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A fish swims in water and has no legs to trot.",
+         "hi": "मछली पानी में तैरती है और उसके चलने के लिए टाँगें नहीं होतीं।"
+        },
+        {
+         "en": "A bird flies with its wings. It does not trot.",
+         "hi": "चिड़िया पंखों से उड़ती है। वह दुलकी नहीं चलती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word tells what a lamb does?",
+        "hi": "कौन-सा शब्द बताता है कि मेमना क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "swims",
+         "hi": "swims (तैरती है)"
+        },
+        {
+         "en": "leaps",
+         "hi": "leaps (उछलता है)"
+        },
+        {
+         "en": "flies",
+         "hi": "flies (उड़ती है)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A lamb leaps and jumps for joy on the grass.",
+        "hi": "मेमना घास पर खुशी से उछलता-कूदता है।"
+       },
+       "wrong": [
+        {
+         "en": "A lamb does not swim like a fish.",
+         "hi": "मेमना मछली की तरह नहीं तैरता।"
+        },
+        "",
+        {
+         "en": "A lamb has no wings, so it does not fly.",
+         "hi": "मेमने के पंख नहीं होते, इसलिए वह नहीं उड़ता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Act out each action yourself. Can you leap, trot and climb? Which one is the most fun?",
+      "hi": "हर काम की ख़ुद नकल करो। क्या तुम उछल सकते हो, दुलकी चल सकते हो और चढ़ सकते हो? कौन-सा सबसे मज़ेदार है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-english-bemr1-ch03-i-can",
+   "topic": "3.3",
+   "template": "grammar",
+   "title": {
+    "en": "I can ... like a ...",
+    "hi": "मैं ... सकता हूँ, ... की तरह"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "en",
+    "items": [
+     {
+      "id": "c1",
+      "words": [
+       "like",
+       "can",
+       "a",
+       "I",
+       "cat",
+       "climb",
+       "."
+      ],
+      "answer": "I can climb like a cat.",
+      "rule": {
+       "en": "A sentence starts with a capital letter, tells one whole idea and ends with a full stop (.).",
+       "hi": "वाक्य बड़े अक्षर से शुरू होता है, एक पूरी बात कहता है और पूर्ण विराम (.) पर खत्म होता है।"
+      },
+      "task": {
+       "en": "Tap the words in the right order.",
+       "hi": "शब्दों को सही क्रम में दबाओ।"
+      }
+     },
+     {
+      "id": "c2",
+      "words": [
+       "fish",
+       "swim",
+       "I",
+       "a",
+       "can",
+       "like",
+       "."
+      ],
+      "answer": "I can swim like a fish.",
+      "rule": {
+       "en": "A sentence starts with a capital letter, tells one whole idea and ends with a full stop (.).",
+       "hi": "वाक्य बड़े अक्षर से शुरू होता है, एक पूरी बात कहता है और पूर्ण विराम (.) पर खत्म होता है।"
+      },
+      "task": {
+       "en": "Tap the words in the right order.",
+       "hi": "शब्दों को सही क्रम में दबाओ।"
+      }
+     },
+     {
+      "id": "c3",
+      "words": [
+       "I",
+       "fly",
+       "bird",
+       "like",
+       "a",
+       "can",
+       "."
+      ],
+      "answer": "I can fly like a bird.",
+      "rule": {
+       "en": "A sentence starts with a capital letter, tells one whole idea and ends with a full stop (.).",
+       "hi": "वाक्य बड़े अक्षर से शुरू होता है, एक पूरी बात कहता है और पूर्ण विराम (.) पर खत्म होता है।"
+      },
+      "task": {
+       "en": "Tap the words in the right order.",
+       "hi": "शब्दों को सही क्रम में दबाओ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'I can swim like a fish', which word shows what I can do?",
+      "hi": "'I can swim like a fish' में कौन-सा शब्द बताता है कि मैं क्या कर सकता हूँ?"
+     },
+     "options": [
+      {
+       "id": "swim",
+       "en": "swim",
+       "hi": "swim (तैरना)"
+      },
+      {
+       "id": "fish",
+       "en": "fish",
+       "hi": "fish (मछली)"
+      },
+      {
+       "id": "a",
+       "en": "a",
+       "hi": "a (एक)"
+      }
+     ],
+     "answer": "swim"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "built:c1",
+     "say": {
+      "en": "Build the sentence about the cat. Then press Check.",
+      "hi": "बिल्ली वाला वाक्य बनाओ। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Build the other two sentences.",
+      "hi": "बाकी दो वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The pattern I can ___ like a ___ lets you say what you can do. After 'I can' we put the action word, like climb or swim. After 'like a' we put the animal or bird. The word 'like' means 'in the same way as'.",
+      "hi": "I can ___ like a ___ ढाँचे से हम बताते हैं कि हम क्या कर सकते हैं। 'I can' के बाद काम वाला शब्द आता है, जैसे climb या swim। 'like a' के बाद जानवर या पक्षी आता है। 'like' का मतलब है 'की तरह'।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is right?",
+        "hi": "कौन-सा वाक्य सही है?"
+       },
+       "options": [
+        {
+         "en": "I can fly like a bird.",
+         "hi": "I can fly like a bird. (मैं चिड़िया की तरह उड़ सकता हूँ।)"
+        },
+        {
+         "en": "I fly can bird like a.",
+         "hi": "I fly can bird like a. (उलझा हुआ वाक्य)"
+        },
+        {
+         "en": "Can I bird fly like.",
+         "hi": "Can I bird fly like. (उलझा हुआ वाक्य)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The words come in the right order: I can, the action, like a, the bird.",
+        "hi": "शब्द सही क्रम में हैं: I can, काम, like a, पक्षी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The words are jumbled, so the sentence makes no sense.",
+         "hi": "शब्द उलझे हैं, इसलिए वाक्य का कोई मतलब नहीं बनता।"
+        },
+        {
+         "en": "The words are out of order. We start with I, not with can.",
+         "hi": "शब्दों का क्रम ग़लत है। हम I से शुरू करते हैं, can से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own: I can ___ like a ___. Use leap, trot or hop with a new animal.",
+      "hi": "अपना वाक्य बनाओ: I can ___ like a ___. नए जानवर के साथ leap, trot या hop इस्तेमाल करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-english-bemr1-ch03-sound-i",
+   "topic": "3.5",
+   "template": "words",
+   "title": {
+    "en": "The short 'i' sound",
+    "hi": "छोटी 'i' ध्वनि"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "phonics",
+    "lang": "en",
+    "extra": "e",
+    "words": [
+     {
+      "w": "pin",
+      "meaning": {
+       "en": "A thin pointed metal stick used to hold cloth.",
+       "hi": "कपड़ा रोकने वाली पतली नुकीली धातु की कील।"
+      }
+     },
+     {
+      "w": "fish",
+      "pic": "fish",
+      "meaning": {
+       "en": "It lives in water and swims.",
+       "hi": "यह पानी में रहती है और तैरती है।"
+      }
+     },
+     {
+      "w": "ship",
+      "pic": "ship",
+      "meaning": {
+       "en": "A big boat that sails on the sea.",
+       "hi": "समुद्र में चलने वाली बड़ी नाव।"
+      }
+     },
+     {
+      "w": "ring",
+      "meaning": {
+       "en": "A circle you wear on a finger.",
+       "hi": "उँगली में पहना जाने वाला गोल छल्ला।"
+      }
+     },
+     {
+      "w": "bin",
+      "meaning": {
+       "en": "You throw rubbish in it.",
+       "hi": "इसमें कूड़ा डालते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "listen",
+     "expect": "listen",
+     "say": {
+      "en": "Press Listen and hear the word.",
+      "hi": "सुनो दबाओ और शब्द सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which sound do pin, fish and ship all have in the middle?",
+      "hi": "pin, fish और ship सब के बीच में कौन-सी ध्वनि है?"
+     },
+     "options": [
+      {
+       "id": "i",
+       "en": "The short 'i' sound",
+       "hi": "छोटी 'i' ध्वनि"
+      },
+      {
+       "id": "a",
+       "en": "The short 'a' sound",
+       "hi": "छोटी 'a' ध्वनि"
+      },
+      {
+       "id": "o",
+       "en": "The short 'o' sound",
+       "hi": "छोटी 'o' ध्वनि"
+      }
+     ],
+     "answer": "i"
+    },
+    {
+     "kind": "do",
+     "target": "pick:p",
+     "expect": "pick:p",
+     "say": {
+      "en": "Tap the sound tiles to build the word. Start with p.",
+      "hi": "ध्वनि वाले टाइल दबाकर शब्द बनाओ। p से शुरू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tiles",
+     "expect": "word:pin",
+     "say": {
+      "en": "Finish the word pin.",
+      "hi": "शब्द pin पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Pin, fish, ship, ring and bin all have the short 'i' sound. In fish and ship, the two letters sh together make one sound. Say the sounds slowly and then blend them: p-i-n, pin.",
+      "hi": "Pin, fish, ship, ring और bin सब में छोटी 'i' ध्वनि है। Fish और ship में दो अक्षर sh मिलकर एक ही ध्वनि बनाते हैं। ध्वनियों को धीरे-धीरे बोलकर मिलाओ: p-i-n, pin।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word has the short 'i' sound?",
+        "hi": "किस शब्द में छोटी 'i' ध्वनि है?"
+       },
+       "options": [
+        {
+         "en": "ship",
+         "hi": "ship (जहाज़)"
+        },
+        {
+         "en": "bus",
+         "hi": "bus (बस)"
+        },
+        {
+         "en": "hen",
+         "hi": "hen (मुर्गी)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ship is sh-i-p. The short 'i' is in the middle.",
+        "hi": "Ship यानी sh-i-p में बीच में छोटी 'i' है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Bus has the short 'u' sound.",
+         "hi": "Bus में छोटी 'u' ध्वनि है।"
+        },
+        {
+         "en": "Hen has the short 'e' sound.",
+         "hi": "Hen में छोटी 'e' ध्वनि है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Build the other words. Then say the song 'I is both a letter and a word' and clap.",
+      "hi": "बाकी शब्द भी बनाओ। फिर गीत 'I is both a letter and a word' गाओ और ताली बजाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Opens the poem lesson",
+   "shows": "A lamb, a cat, a frog and a horse in a green farm yard, with a fish pond and a bird in a tree",
+   "view": "16:9, soft morning light, no people",
+   "right": "All animals true to life, calm and friendly, in a clean Indian village setting",
+   "avoid": "Cartoon faces, any words"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Cut-outs of the six animals for the match lab",
+   "shows": "A cat, a lamb, a frog, a fish, a horse and a bird, one picture each, in the action pose",
+   "view": "Side view, transparent background, one file each",
+   "right": "Cat climbing, lamb leaping, frog sitting ready to hop, fish swimming, horse trotting, bird in flight",
+   "avoid": "Faces drawn like cartoons"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "3.2",
+   "use": "Shows a frog hopping",
+   "shows": "Four frames of a frog sitting, pushing off, in the air and landing",
+   "view": "Same camera and light for all four frames",
+   "right": "A real green frog on a leaf, legs stretching in the right way",
+   "avoid": "A frog drawn like a toy"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "3.5",
+   "use": "Word cards for the short i lab",
+   "shows": "Five cut-outs: pin, fish, ship, ring, bin",
+   "view": "One file each, transparent background",
+   "right": "A steel pin, an orange fish, a sea ship, a gold ring, a green dustbin",
+   "avoid": "Words on the objects"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "3.7",
+   "use": "Base for the rangoli steps",
+   "shows": "A plain rangoli grid of dots, then the pattern in three stages",
+   "view": "Top view on a clean floor, white chalk powder, three separate files",
+   "right": "Dots in even rows, a simple flower pattern, true symmetry",
+   "avoid": "Colour names or written steps"
+  }
+ ]
+}

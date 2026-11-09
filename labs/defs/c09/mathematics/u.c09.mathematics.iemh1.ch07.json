@@ -1,0 +1,1149 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh1.ch07",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "The Mathematics of Maybe: Introduction to Probability",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "What is probability? Randomness and the probability scale",
+   "labs": [
+    "c09-mathematics-iemh1-ch07-scale"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Measuring probability: experimental probability",
+   "labs": [
+    "c09-mathematics-iemh1-ch07-coin"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2.2",
+   "title": "Theoretical probability",
+   "labs": [
+    "c09-mathematics-iemh1-ch07-die"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2.3",
+   "title": "Analysing statistical data using probability",
+   "labs": [
+    "c09-mathematics-iemh1-ch07-from-data"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Elements of probability: sample spaces and events",
+   "labs": [
+    "c09-mathematics-iemh1-ch07-two-dice"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Tree diagrams",
+   "labs": [
+    "c09-mathematics-iemh1-ch07-tree"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh1-ch07-scale",
+   "topic": "7.1",
+   "template": "sort",
+   "title": {
+    "en": "The probability scale: from impossible to certain",
+    "hi": "प्रायिकता का पैमाना: असंभव से निश्चित तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "imp",
+      "label": {
+       "en": "Impossible (0)",
+       "hi": "असंभव (0)"
+      }
+     },
+     {
+      "id": "unl",
+      "label": {
+       "en": "Unlikely",
+       "hi": "कम संभव"
+      }
+     },
+     {
+      "id": "even",
+      "label": {
+       "en": "Even chance (½)",
+       "hi": "बराबर संभावना (½)"
+      }
+     },
+     {
+      "id": "lik",
+      "label": {
+       "en": "Likely",
+       "hi": "अधिक संभव"
+      }
+     },
+     {
+      "id": "cert",
+      "label": {
+       "en": "Certain (1)",
+       "hi": "निश्चित (1)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "seven",
+      "text": {
+       "en": "A normal die shows 7",
+       "hi": "साधारण पासे पर 7 आए"
+      },
+      "bin": "imp",
+      "why": {
+       "en": "A die has only 1 to 6.",
+       "hi": "पासे पर केवल 1 से 6 होते हैं।"
+      }
+     },
+     {
+      "id": "east",
+      "text": {
+       "en": "Tomorrow the Sun rises in the east",
+       "hi": "कल सूरज पूर्व में उगेगा"
+      },
+      "bin": "cert",
+      "why": {
+       "en": "This happens every single day.",
+       "hi": "यह हर दिन होता है।"
+      }
+     },
+     {
+      "id": "lt7",
+      "text": {
+       "en": "A die shows a number less than 7",
+       "hi": "पासे पर 7 से छोटी संख्या आए"
+      },
+      "bin": "cert",
+      "why": {
+       "en": "Every face, 1 to 6, is less than 7.",
+       "hi": "हर फलक, 1 से 6, 7 से छोटा है।"
+      }
+     },
+     {
+      "id": "head",
+      "text": {
+       "en": "A fair coin shows heads",
+       "hi": "उचित सिक्के पर चित आए"
+      },
+      "bin": "even",
+      "why": {
+       "en": "Heads and tails are equally likely: 1 out of 2.",
+       "hi": "चित और पट बराबर संभव हैं: 2 में से 1।"
+      }
+     },
+     {
+      "id": "even",
+      "text": {
+       "en": "A die shows an even number",
+       "hi": "पासे पर सम संख्या आए"
+      },
+      "bin": "even",
+      "why": {
+       "en": "2, 4, 6: three of the six faces.",
+       "hi": "2, 4, 6: छह में से तीन फलक।"
+      }
+     },
+     {
+      "id": "red",
+      "text": {
+       "en": "Pick red from a bag of 9 red and 1 blue ball",
+       "hi": "9 लाल और 1 नीली गेंद वाले थैले से लाल निकले"
+      },
+      "bin": "lik",
+      "why": {
+       "en": "9 out of 10 balls are red.",
+       "hi": "10 में से 9 गेंदें लाल हैं।"
+      }
+     },
+     {
+      "id": "blue",
+      "text": {
+       "en": "Pick blue from the same bag",
+       "hi": "उसी थैले से नीली निकले"
+      },
+      "bin": "unl",
+      "why": {
+       "en": "Only 1 ball out of 10 is blue.",
+       "hi": "10 में से केवल 1 गेंद नीली है।"
+      }
+     },
+     {
+      "id": "six",
+      "text": {
+       "en": "A die shows 6",
+       "hi": "पासे पर 6 आए"
+      },
+      "bin": "unl",
+      "why": {
+       "en": "1 face out of 6.",
+       "hi": "6 में से 1 फलक।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:seven",
+     "expect": "correct:seven",
+     "say": {
+      "en": "Tap 'A normal die shows 7', then put it on the scale.",
+      "hi": "'साधारण पासे पर 7 आए' छुओ, फिर उसे पैमाने पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does 'a fair coin shows heads' go?",
+      "hi": "'उचित सिक्के पर चित आए' कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "even",
+       "en": "Even chance",
+       "hi": "बराबर संभावना"
+      },
+      {
+       "id": "lik",
+       "en": "Likely",
+       "hi": "अधिक संभव"
+      },
+      {
+       "id": "cert",
+       "en": "Certain",
+       "hi": "निश्चित"
+      }
+     ],
+     "answer": "even"
+    },
+    {
+     "kind": "do",
+     "target": "card:head",
+     "expect": "correct:head",
+     "say": {
+      "en": "Place the coin card.",
+      "hi": "सिक्के वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Probability measures how likely an event is, on a scale from 0 (impossible) to 1 (certain). ½ means an even chance. A random event is one whose single result we cannot predict, though over many tries a pattern appears.",
+      "hi": "प्रायिकता बताती है कि कोई घटना कितनी संभव है, 0 (असंभव) से 1 (निश्चित) के पैमाने पर। ½ का अर्थ है बराबर संभावना। यादृच्छिक घटना वह है जिसका एक बार का परिणाम हम पहले से नहीं बता सकते, पर बहुत बार करने पर एक पैटर्न दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number can be a probability?",
+        "hi": "कौन-सी संख्या प्रायिकता हो सकती है?"
+       },
+       "options": [
+        "0.7",
+        "1.5",
+        "−0.2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every probability lies from 0 to 1.",
+        "hi": "हर प्रायिकता 0 से 1 के बीच होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More than 1 would be 'more than certain', which has no meaning.",
+         "hi": "1 से ज़्यादा का अर्थ 'निश्चित से भी ज़्यादा' होगा, जिसका कोई मतलब नहीं।"
+        },
+        {
+         "en": "Less than 0 would be 'less than impossible'.",
+         "hi": "0 से कम का अर्थ 'असंभव से भी कम' होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make two cards of your own for each part of the scale from your school day.",
+      "hi": "अपने स्कूल के दिन से पैमाने के हर भाग के लिए दो-दो कार्ड ख़ुद बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch07-coin",
+   "topic": "7.2",
+   "template": "probability",
+   "title": {
+    "en": "Experimental probability: toss a coin many times",
+    "hi": "प्रायोगिक प्रायिकता: सिक्का बार-बार उछालो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "device": "coin",
+    "ask": "head"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toss",
+     "expect": "tossed",
+     "say": {
+      "en": "Tap Toss once and see the result.",
+      "hi": "एक बार उछालो दबाओ और परिणाम देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toss:10",
+     "expect": "tossed",
+     "say": {
+      "en": "Toss 10 times. Is the share of heads exactly ½?",
+      "hi": "10 बार उछालो। क्या चित का हिस्सा ठीक ½ है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After 100 more tosses, where will the share of heads be?",
+      "hi": "100 और उछालों के बाद चित का हिस्सा कहाँ होगा?"
+     },
+     "options": [
+      {
+       "id": "near",
+       "en": "Close to ½",
+       "hi": "½ के पास"
+      },
+      {
+       "id": "exact",
+       "en": "Exactly ½",
+       "hi": "ठीक ½"
+      },
+      {
+       "id": "far",
+       "en": "Far from ½",
+       "hi": "½ से बहुत दूर"
+      }
+     ],
+     "answer": "near"
+    },
+    {
+     "kind": "do",
+     "target": "toss:100",
+     "expect": "tossed",
+     "say": {
+      "en": "Toss 100 times and watch the graph.",
+      "hi": "100 बार उछालो और ग्राफ़ देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: what is the theoretical probability of heads?",
+      "hi": "उत्तर दो: चित आने की सैद्धांतिक प्रायिकता क्या है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Experimental probability = (times the event happened) ÷ (number of trials). With few tosses it jumps around. With many tosses it settles close to the theoretical value ½, but it rarely hits ½ exactly.",
+      "hi": "प्रायोगिक प्रायिकता = (घटना कितनी बार हुई) ÷ (कुल प्रयास)। कम उछालों में यह ऊपर-नीचे होती है। बहुत उछालों में यह सैद्धांतिक मान ½ के पास टिक जाती है, पर ठीक ½ कम ही होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In 50 tosses Ria got 28 heads. What is her experimental probability of heads?",
+        "hi": "50 उछालों में रिया को 28 बार चित मिला। उसकी चित की प्रायोगिक प्रायिकता क्या है?"
+       },
+       "options": [
+        "28/50",
+        "1/2",
+        "28/22"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heads ÷ total trials = 28/50 = 0.56.",
+        "hi": "चित ÷ कुल प्रयास = 28/50 = 0.56।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1/2 is the theoretical value; her experiment gave a slightly different share.",
+         "hi": "1/2 सैद्धांतिक मान है; उसके प्रयोग में हिस्सा थोड़ा अलग आया।"
+        },
+        {
+         "en": "Divide by all 50 trials, not by the 22 tails.",
+         "hi": "सभी 50 प्रयासों से भाग दो, 22 पट से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Reset and run 100 tosses again. Is the result the same as before? Why not?",
+      "hi": "रीसेट दबाओ और फिर 100 उछालो। क्या परिणाम पहले जैसा है? क्यों नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch07-die",
+   "topic": "7.2.2",
+   "template": "probability",
+   "title": {
+    "en": "Theoretical probability with a die",
+    "hi": "पासे से सैद्धांतिक प्रायिकता"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "device": "die",
+    "ask": "prime"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the probability that a die shows a prime number?",
+      "hi": "पासे पर अभाज्य संख्या आने की प्रायिकता क्या है?"
+     },
+     "options": [
+      {
+       "id": "half",
+       "en": "3/6 = 1/2",
+       "hi": "3/6 = 1/2 (आधा)"
+      },
+      {
+       "id": "third",
+       "en": "2/6 = 1/3",
+       "hi": "2/6 = 1/3 (तिहाई)"
+      },
+      {
+       "id": "four",
+       "en": "4/6 = 2/3",
+       "hi": "4/6 = 2/3 (दो-तिहाई)"
+      }
+     ],
+     "answer": "half"
+    },
+    {
+     "kind": "do",
+     "target": "toss:100",
+     "expect": "tossed",
+     "say": {
+      "en": "Roll the die 100 times and watch how often a prime comes up.",
+      "hi": "पासा 100 बार फेंको और देखो कितनी बार अभाज्य आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question.",
+      "hi": "प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The primes on a die are 2, 3 and 5. When all outcomes are equally likely, P(event) = (favourable outcomes) ÷ (all outcomes) = 3 ÷ 6 = ½. 1 is not prime and 4, 6 are not prime.",
+      "hi": "पासे पर अभाज्य संख्याएँ 2, 3 और 5 हैं। जब सभी परिणाम बराबर संभव हों, तो P(घटना) = (अनुकूल परिणाम) ÷ (सभी परिणाम) = 3 ÷ 6 = ½। 1 अभाज्य नहीं है और 4, 6 भी नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is P(a number greater than 4) on a die?",
+        "hi": "पासे पर P(4 से बड़ी संख्या) क्या है?"
+       },
+       "options": [
+        "2/6 = 1/3",
+        "4/6",
+        "1/6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 and 6 are greater than 4: 2 out of 6.",
+        "hi": "5 और 6, 4 से बड़े हैं: 6 में से 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4/6 counts 1 to 4, the numbers not greater than 4.",
+         "hi": "4/6 में 1 से 4 गिने, जो 4 से बड़े नहीं हैं।"
+        },
+        {
+         "en": "Only 6 is counted; 5 is greater than 4 too.",
+         "hi": "केवल 6 गिना; 5 भी 4 से बड़ा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is P(prime) + P(not prime) always 1?",
+        "hi": "क्या P(अभाज्य) + P(अभाज्य नहीं) हमेशा 1 होता है?"
+       },
+       "options": [
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        },
+        {
+         "en": "No",
+         "hi": "नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every roll is either prime or not, so the two together are certain.",
+        "hi": "हर फेंक या तो अभाज्य है या नहीं, इसलिए दोनों मिलकर निश्चित हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is no third kind of result, so the two parts make the whole.",
+         "hi": "कोई तीसरा परिणाम नहीं होता, इसलिए दोनों भाग मिलकर पूरा बनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Roll 100 more times. Does your experimental share move closer to ½?",
+      "hi": "100 बार और फेंको। क्या तुम्हारा प्रायोगिक हिस्सा ½ के और पास आता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch07-from-data",
+   "topic": "7.2.3",
+   "template": "match",
+   "title": {
+    "en": "Probability from recorded data",
+    "hi": "दर्ज आँकड़ों से प्रायिकता"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "bus",
+      "left": {
+       "en": "A school bus was on time on 45 of 60 sample days",
+       "hi": "स्कूल बस 60 नमूना दिनों में से 45 दिन समय पर आई"
+      },
+      "right": {
+       "en": "P(on time) ≈ 3/4",
+       "hi": "P(समय पर) ≈ 3/4"
+      },
+      "why": {
+       "en": "45 ÷ 60 = 0.75.",
+       "hi": "45 ÷ 60 = 0.75।"
+      }
+     },
+     {
+      "id": "seed",
+      "left": {
+       "en": "120 of 150 sample seeds sprouted",
+       "hi": "150 नमूना बीजों में से 120 अंकुरित हुए"
+      },
+      "right": {
+       "en": "P(sprouts) ≈ 4/5",
+       "hi": "P(अंकुरण) ≈ 4/5"
+      },
+      "why": {
+       "en": "120 ÷ 150 = 0.8.",
+       "hi": "120 ÷ 150 = 0.8।"
+      }
+     },
+     {
+      "id": "bulb",
+      "left": {
+       "en": "6 of 200 sample bulbs were faulty",
+       "hi": "200 नमूना बल्बों में से 6 ख़राब निकले"
+      },
+      "right": {
+       "en": "P(faulty) ≈ 3/100",
+       "hi": "P(ख़राब) ≈ 3/100"
+      },
+      "why": {
+       "en": "6 ÷ 200 = 0.03.",
+       "hi": "6 ÷ 200 = 0.03।"
+      }
+     },
+     {
+      "id": "rain",
+      "left": {
+       "en": "It rained on 10 of 40 sample July days",
+       "hi": "जुलाई के 40 नमूना दिनों में से 10 दिन बारिश हुई"
+      },
+      "right": {
+       "en": "P(rain) ≈ 1/4",
+       "hi": "P(बारिश) ≈ 1/4"
+      },
+      "why": {
+       "en": "10 ÷ 40 = 0.25.",
+       "hi": "10 ÷ 40 = 0.25।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:bus",
+     "expect": "matched:bus",
+     "say": {
+      "en": "Tap the bus card, then the probability it gives.",
+      "hi": "बस वाला कार्ड छुओ, फिर उससे मिलने वाली प्रायिकता।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "6 out of 200 bulbs were faulty. Out of 1000 bulbs, about how many would you expect to be faulty?",
+      "hi": "200 में से 6 बल्ब ख़राब थे। 1000 बल्बों में से लगभग कितने ख़राब होने की उम्मीद है?"
+     },
+     "options": [
+      {
+       "id": "30",
+       "en": "About 30",
+       "hi": "लगभग 30"
+      },
+      {
+       "id": "6",
+       "en": "About 6",
+       "hi": "लगभग 6"
+      },
+      {
+       "id": "300",
+       "en": "About 300",
+       "hi": "लगभग 300"
+      }
+     ],
+     "answer": "30"
+    },
+    {
+     "kind": "do",
+     "target": "left:bulb",
+     "expect": "matched:bulb",
+     "say": {
+      "en": "Match the bulb card.",
+      "hi": "बल्ब वाला कार्ड मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When we cannot count equally likely outcomes, we use records. The share of times an event happened estimates its probability, and the estimate gets better with more data. We can then predict: expected number = probability × total.",
+      "hi": "जब बराबर संभव परिणाम गिने नहीं जा सकते, तो हम रिकॉर्ड का उपयोग करते हैं। घटना जितनी बार हुई उसका हिस्सा उसकी प्रायिकता का अनुमान देता है, और ज़्यादा आँकड़ों से अनुमान बेहतर होता है। फिर अनुमान लगा सकते हैं: अपेक्षित संख्या = प्रायिकता × कुल।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Using the seed data, how many of 50 new seeds would you expect to sprout?",
+        "hi": "बीज वाले आँकड़ों से, 50 नए बीजों में से कितने अंकुरित होने की उम्मीद है?"
+       },
+       "options": [
+        "40",
+        "50",
+        "120"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4/5 × 50 = 40.",
+        "hi": "4/5 × 50 = 40।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "All 50 would mean probability 1, but some seeds failed in the data.",
+         "hi": "सभी 50 का अर्थ प्रायिकता 1 होगा, पर आँकड़ों में कुछ बीज नहीं उगे।"
+        },
+        {
+         "en": "120 was the count out of 150, not out of 50.",
+         "hi": "120 तो 150 में से गिनती थी, 50 में से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record for two weeks whether your school bus or your tea vendor is on time. Work out your own probability.",
+      "hi": "दो हफ़्ते तक दर्ज करो कि तुम्हारी स्कूल बस या चायवाला समय पर आता है या नहीं। अपनी प्रायिकता निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch07-two-dice",
+   "topic": "7.3",
+   "template": "probability",
+   "title": {
+    "en": "Sample space of two dice",
+    "hi": "दो पासों का प्रतिदर्श समष्टि"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "device": "two-dice",
+    "ask": "sum-7"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two dice are rolled. Which total comes up most often?",
+      "hi": "दो पासे फेंके जाते हैं। कौन-सा योग सबसे ज़्यादा बार आता है?"
+     },
+     "options": [
+      {
+       "id": "7",
+       "en": "7",
+       "hi": "योग 7"
+      },
+      {
+       "id": "12",
+       "en": "12",
+       "hi": "योग 12"
+      },
+      {
+       "id": "all",
+       "en": "All totals equally often",
+       "hi": "सभी योग बराबर बार"
+      }
+     ],
+     "answer": "7"
+    },
+    {
+     "kind": "do",
+     "target": "toss:100",
+     "expect": "tossed",
+     "say": {
+      "en": "Roll both dice 100 times and look at the totals.",
+      "hi": "दोनों पासे 100 बार फेंको और योग देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: what is P(sum = 7)?",
+      "hi": "उत्तर दो: P(योग = 7) क्या है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sample space has 6 × 6 = 36 equally likely pairs, like (1, 6) and (6, 1). Six pairs add to 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). So P(7) = 6/36 = 1/6. Only (6, 6) gives 12, so P(12) = 1/36. An event is a set of outcomes from the sample space.",
+      "hi": "प्रतिदर्श समष्टि में 6 × 6 = 36 बराबर संभव जोड़े हैं, जैसे (1, 6) और (6, 1)। छह जोड़ों का योग 7 है: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1)। इसलिए P(7) = 6/36 = 1/6। केवल (6, 6) से 12 आता है, इसलिए P(12) = 1/36। घटना प्रतिदर्श समष्टि के परिणामों का एक समूह है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are (2, 5) and (5, 2) counted as two outcomes?",
+        "hi": "(2, 5) और (5, 2) को दो परिणाम क्यों गिनते हैं?"
+       },
+       "options": [
+        {
+         "en": "The dice are different, like a red and a blue die",
+         "hi": "पासे अलग हैं, जैसे लाल और नीला पासा"
+        },
+        {
+         "en": "By mistake",
+         "hi": "ग़लती से"
+        },
+        {
+         "en": "Because 2 + 5 ≠ 5 + 2",
+         "hi": "क्योंकि 2 + 5 ≠ 5 + 2"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Red 2 with blue 5 is a different roll from red 5 with blue 2.",
+        "hi": "लाल 2 और नीला 5, लाल 5 और नीले 2 से अलग फेंक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is not a mistake: counting both keeps all 36 outcomes equally likely.",
+         "hi": "यह ग़लती नहीं: दोनों गिनने से सभी 36 परिणाम बराबर संभव रहते हैं।"
+        },
+        {
+         "en": "The sums are equal; the outcomes differ because the dice differ.",
+         "hi": "योग बराबर है; परिणाम इसलिए अलग हैं क्योंकि पासे अलग हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a 6 × 6 table of sums on paper. Colour the cells for 'sum is more than 8' and find that probability.",
+      "hi": "काग़ज़ पर योगों की 6 × 6 तालिका बनाओ। 'योग 8 से ज़्यादा' वाले ख़ाने रंगो और उसकी प्रायिकता निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch07-tree",
+   "topic": "7.4",
+   "template": "sort",
+   "title": {
+    "en": "A tree diagram for three coin tosses",
+    "hi": "तीन बार सिक्का उछालने का वृक्ष आरेख"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "h3",
+      "label": {
+       "en": "3 heads",
+       "hi": "3 चित"
+      }
+     },
+     {
+      "id": "h2",
+      "label": {
+       "en": "2 heads",
+       "hi": "2 चित"
+      }
+     },
+     {
+      "id": "h1",
+      "label": {
+       "en": "1 head",
+       "hi": "1 चित"
+      }
+     },
+     {
+      "id": "h0",
+      "label": {
+       "en": "0 heads",
+       "hi": "0 चित"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "hhh",
+      "text": {
+       "en": "HHH",
+       "hi": "HHH"
+      },
+      "bin": "h3",
+      "why": {
+       "en": "HHH has three heads.",
+       "hi": "HHH में तीन चित है।"
+      }
+     },
+     {
+      "id": "hht",
+      "text": {
+       "en": "HHT",
+       "hi": "HHT"
+      },
+      "bin": "h2",
+      "why": {
+       "en": "HHT has two heads.",
+       "hi": "HHT में दो चित है।"
+      }
+     },
+     {
+      "id": "hth",
+      "text": {
+       "en": "HTH",
+       "hi": "HTH"
+      },
+      "bin": "h2",
+      "why": {
+       "en": "HTH has two heads.",
+       "hi": "HTH में दो चित है।"
+      }
+     },
+     {
+      "id": "thh",
+      "text": {
+       "en": "THH",
+       "hi": "THH"
+      },
+      "bin": "h2",
+      "why": {
+       "en": "THH has two heads.",
+       "hi": "THH में दो चित है।"
+      }
+     },
+     {
+      "id": "htt",
+      "text": {
+       "en": "HTT",
+       "hi": "HTT"
+      },
+      "bin": "h1",
+      "why": {
+       "en": "HTT has one head.",
+       "hi": "HTT में एक चित है।"
+      }
+     },
+     {
+      "id": "tht",
+      "text": {
+       "en": "THT",
+       "hi": "THT"
+      },
+      "bin": "h1",
+      "why": {
+       "en": "THT has one head.",
+       "hi": "THT में एक चित है।"
+      }
+     },
+     {
+      "id": "tth",
+      "text": {
+       "en": "TTH",
+       "hi": "TTH"
+      },
+      "bin": "h1",
+      "why": {
+       "en": "TTH has one head.",
+       "hi": "TTH में एक चित है।"
+      }
+     },
+     {
+      "id": "ttt",
+      "text": {
+       "en": "TTT",
+       "hi": "TTT"
+      },
+      "bin": "h0",
+      "why": {
+       "en": "TTT has no heads.",
+       "hi": "TTT में कोई चित नहीं है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A coin is tossed three times. How many different outcomes are there?",
+      "hi": "सिक्का तीन बार उछाला जाता है। कितने अलग परिणाम हो सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "8",
+       "en": "8 outcomes",
+       "hi": "8 परिणाम"
+      },
+      {
+       "id": "6",
+       "en": "6 outcomes",
+       "hi": "6 परिणाम"
+      },
+      {
+       "id": "4",
+       "en": "4 outcomes",
+       "hi": "4 परिणाम"
+      }
+     ],
+     "answer": "8"
+    },
+    {
+     "kind": "do",
+     "target": "card:hhh",
+     "expect": "correct:hhh",
+     "say": {
+      "en": "Each branch of the tree ends in one outcome. Put HHH in its group.",
+      "hi": "वृक्ष की हर शाखा एक परिणाम पर ख़त्म होती है। HHH को उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other seven outcomes and tap Check.",
+      "hi": "बाक़ी सात परिणाम छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each toss splits every branch in two, so 2 × 2 × 2 = 8 outcomes, all equally likely. Counting heads gives 1, 3, 3, 1. So P(exactly two heads) = 3/8 and P(at least one head) = 7/8.",
+      "hi": "हर उछाल हर शाखा को दो में बाँटता है, इसलिए 2 × 2 × 2 = 8 परिणाम, सभी बराबर संभव। चित गिनने पर 1, 3, 3, 1 मिलते हैं। इसलिए P(ठीक दो चित) = 3/8 और P(कम से कम एक चित) = 7/8।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is P(at least one tail) in three tosses?",
+        "hi": "तीन उछालों में P(कम से कम एक पट) क्या है?"
+       },
+       "options": [
+        "7/8",
+        "3/8",
+        "1/8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every outcome except HHH has a tail: 7 of 8.",
+        "hi": "HHH को छोड़कर हर परिणाम में पट है: 8 में से 7।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3/8 is exactly one tail; 'at least one' also includes two and three tails.",
+         "hi": "3/8 ठीक एक पट है; 'कम से कम एक' में दो और तीन पट भी आते हैं।"
+        },
+        {
+         "en": "1/8 is the chance of no tail at all.",
+         "hi": "1/8 तो एक भी पट न आने की संभावना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw the tree for a family's three children being a boy or a girl, if both are equally likely. What is P(two girls and one boy)?",
+      "hi": "मान लो लड़का या लड़की बराबर संभव हैं; किसी परिवार के तीन बच्चों का वृक्ष बनाओ। P(दो लड़कियाँ और एक लड़का) क्या है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Chapter hook: chance in daily life",
+   "shows": "A cricket captain's hand tossing a one-rupee coin into the air above a grass pitch",
+   "view": "Low angle, coin mid-air, soft daylight",
+   "right": "Coin real Indian rupee, sharp in the air",
+   "avoid": "Faces, team logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.2",
+   "use": "Coins for the toss lab",
+   "shows": "An Indian ₹1 coin, heads side and tails side, each a separate file",
+   "view": "Straight on, transparent background",
+   "right": "Real design, sharp edges",
+   "avoid": "Worn or bent coins"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "7.2.2",
+   "use": "A fair die",
+   "shows": "A white six-sided die with black pips, shown at three angles",
+   "view": "Three-quarter view, transparent background",
+   "right": "Opposite faces add to 7 (1–6, 2–5, 3–4)",
+   "avoid": "Casino styling"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.3",
+   "use": "Two dice of different colours",
+   "shows": "One red and one blue die side by side showing 2 and 5",
+   "view": "From slightly above",
+   "right": "Clearly two different dice",
+   "avoid": "Gambling settings"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "7.2.3",
+   "use": "Recording data",
+   "shows": "A child's notebook page with a hand-drawn tally table beside a window looking out at a bus stop",
+   "view": "From above at an angle",
+   "right": "Tally marks in groups of five",
+   "avoid": "Readable names, school logos"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "7.4",
+   "use": "Tree diagram shape",
+   "shows": "A clean branching tree drawn with coloured strokes, one point splitting into two, then four, then eight",
+   "view": "Flat, straight on",
+   "right": "Exactly 8 end points, evenly spaced",
+   "avoid": "Letters baked in"
+  }
+ ]
+}

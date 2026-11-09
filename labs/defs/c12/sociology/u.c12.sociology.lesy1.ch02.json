@@ -1,0 +1,144 @@
+{
+  "chapter_key": "u.c12.sociology.lesy1.ch02",
+  "class": 12,
+  "subject_id": "sociology",
+  "title": "The Demographic Structure of the Indian Society",
+  "source": "https://ncert.nic.in/textbook/pdf/lesy102.pdf",
+  "topics": [
+    { "n": "2.1", "title": "Some theories and concepts in demography (the demographic transition)", "labs": ["c12-sociology-lesy1-ch02-transition"], "why_no_lab": null },
+    { "n": "2.2", "title": "Size and growth of India's population (the census)", "labs": ["c12-sociology-lesy1-ch02-census"], "why_no_lab": null },
+    { "n": "2.3", "title": "Age structure of the Indian population", "labs": [], "why_no_lab": "The age pyramid is best read as a picture; the image row for this topic shows it, and the figures are read from the book." },
+    { "n": "2.4", "title": "The declining sex ratio in India", "labs": ["c12-sociology-lesy1-ch02-sexratio"], "why_no_lab": null },
+    { "n": "2.5", "title": "Literacy", "labs": [], "why_no_lab": "Literacy is a set of figures to read and compare; the rural-urban lab below uses the same idea of a gap between places." },
+    { "n": "2.6", "title": "Rural-urban differences", "labs": ["c12-sociology-lesy1-ch02-rural"], "why_no_lab": null },
+    { "n": "2.7", "title": "Population policy in India", "labs": [], "why_no_lab": "Population policy is a debate with real value questions; a lab would take a side. The book's reading and the project ideas in Chapter 7 teach it." }
+  ],
+  "labs": [
+    {
+      "id": "c12-sociology-lesy1-ch02-transition",
+      "topic": "2.1",
+      "template": "sequence",
+      "title": { "en": "The three stages of population change", "hi": "जनसंख्या बदलाव के तीन चरण" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          { "id": "s1", "text": { "en": "Stage 1: birth rate and death rate are both high", "hi": "पहला चरण: जन्म दर और मृत्यु दर दोनों ऊँची" } },
+          { "id": "s2", "text": { "en": "Stage 2: death rate falls first, birth rate stays high", "hi": "दूसरा चरण: पहले मृत्यु दर घटती है, जन्म दर ऊँची रहती है" } },
+          { "id": "s3", "text": { "en": "Stage 3: birth rate falls too, so growth slows", "hi": "तीसरा चरण: जन्म दर भी घटती है, इसलिए वृद्धि धीमी होती है" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "slot:1", "expect": "placed:s1", "say": { "en": "Tap the card 'Stage 1' to pick it, then tap place 1.", "hi": "'पहला चरण' कार्ड चुनो, फिर स्थान 1 छुओ।" } },
+        { "kind": "predict", "say": { "en": "Stage 2 begins when one of the two rates falls first. Which one do you think falls first?", "hi": "दूसरा चरण तब शुरू होता है जब दो में से कोई एक दर पहले घटती है। तुम्हें लगता है कौन-सी पहले घटती है?" }, "options": [ { "id": "death", "en": "The death rate falls first", "hi": "मृत्यु दर पहले घटती है" }, { "id": "birth", "en": "The birth rate falls first", "hi": "जन्म दर पहले घटती है" }, { "id": "both", "en": "Both fall on the same day", "hi": "दोनों एक ही दिन घटती हैं" } ], "answer": "death" },
+        { "kind": "do", "target": "slot:2", "expect": "placed:s2", "say": { "en": "Pick the 'Stage 2' card and tap place 2.", "hi": "'दूसरा चरण' कार्ड चुनो और स्थान 2 छुओ।" } },
+        { "kind": "do", "target": "slot:3", "expect": "placed:s3", "say": { "en": "Pick the 'Stage 3' card and tap place 3.", "hi": "'तीसरा चरण' कार्ड चुनो और स्थान 3 छुओ।" } },
+        { "kind": "do", "target": "check", "expect": "ordered", "say": { "en": "Press Check to see if the stages are in the right order.", "hi": "जाँचने के लिए 'जाँचो' दबाओ कि चरण सही क्रम में हैं या नहीं।" } },
+        { "kind": "explain", "say": { "en": "A country begins with high births and high deaths, so its population grows slowly. Better health and food cut deaths first. Births stay high for a while, so the population grows fast. Later, families have fewer children and growth slows again. This pattern is called the demographic transition.", "hi": "किसी देश में शुरू में जन्म और मृत्यु दोनों ऊँची होती हैं, इसलिए जनसंख्या धीरे बढ़ती है। बेहतर स्वास्थ्य और भोजन से पहले मृत्यु दर घटती है। जन्म दर कुछ समय ऊँची रहती है, इसलिए जनसंख्या तेज़ी से बढ़ती है। बाद में परिवार कम बच्चे चाहते हैं और वृद्धि फिर धीमी होती है। इस क्रम को जनसांख्यिकीय संक्रमण कहते हैं।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "In stage 2, why does the population grow fast?", "hi": "दूसरे चरण में जनसंख्या तेज़ी से क्यों बढ़ती है?" }, "options": [ { "en": "Death falls but birth stays high", "hi": "मृत्यु दर घटती है पर जन्म दर ऊँची रहती है" }, { "en": "Both birth and death rise", "hi": "जन्म और मृत्यु दोनों बढ़ती हैं" }, { "en": "People stop having children", "hi": "लोग बच्चे पैदा करना बंद कर देते हैं" } ], "answer": 0, "why": { "en": "When more babies are born than people die, the population rises quickly.", "hi": "जब मरने वालों से ज़्यादा बच्चे जन्म लें, तो जनसंख्या तेज़ी से बढ़ती है।" }, "wrong": [ "", { "en": "If both rose, the gap would not widen as fast; the key is that deaths fall first.", "hi": "अगर दोनों बढ़ें, तो अंतर उतनी तेज़ी से नहीं बढ़ेगा; मुख्य बात यह है कि मृत्यु पहले घटती है।" }, { "en": "Stopping births is stage 3, when growth slows, not stage 2.", "hi": "जन्म रुकना तीसरे चरण में होता है, जब वृद्धि धीमी होती है, दूसरे में नहीं।" } ] },
+          { "q": { "en": "Which of these helps the death rate fall first?", "hi": "इनमें से कौन-सी चीज़ मृत्यु दर को पहले घटाती है?" }, "options": [ { "en": "Better health care and clean water", "hi": "बेहतर स्वास्थ्य सेवा और साफ़ पानी" }, { "en": "A fall in the number of schools", "hi": "स्कूलों की संख्या में कमी" }, { "en": "Less food for every family", "hi": "हर परिवार को कम भोजन" } ], "answer": 0, "why": { "en": "Health care, clean water and food prevent deaths from disease and hunger.", "hi": "स्वास्थ्य सेवा, साफ़ पानी और भोजन बीमारी और भूख से होने वाली मौतों को रोकते हैं।" }, "wrong": [ "", { "en": "Fewer schools do not directly lower deaths; they affect literacy.", "hi": "कम स्कूल सीधे मौतें नहीं घटाते; वे साक्षरता पर असर डालते हैं।" }, { "en": "Less food increases hunger and death, so the death rate would rise.", "hi": "कम भोजन से भूख और मौतें बढ़ती हैं, इसलिए मृत्यु दर बढ़ेगी।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Move the cards out of order and press Check. Notice how the hint appears. Then think: which stage do you think India is in today, and why?", "hi": "कार्ड गलत क्रम में रखकर 'जाँचो' दबाओ। देखो संकेत कैसे आता है। फिर सोचो: तुम्हारे हिसाब से भारत आज किस चरण में है, और क्यों?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy1-ch02-census",
+      "topic": "2.2",
+      "template": "timeline",
+      "title": { "en": "When were India's censuses held?", "hi": "भारत में जनगणनाएँ कब हुईं?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "range": [1870, 2020],
+        "task": "order",
+        "title": { "en": "Censuses in the book", "hi": "पुस्तक में बताई गई जनगणनाएँ" },
+        "events": [
+          { "id": "c1881", "year": 1881, "label": { "en": "Regular census every ten years begins", "hi": "हर दस वर्ष पर नियमित जनगणना शुरू" } },
+          { "id": "c1951", "year": 1951, "label": { "en": "First census of independent India", "hi": "स्वतंत्र भारत की पहली जनगणना" } },
+          { "id": "c2011", "year": 2011, "label": { "en": "Most recent census named in this book", "hi": "इस पुस्तक में बताई गई सबसे नई जनगणना" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "event:c1881", "expect": "placed:c1881", "say": { "en": "Tap the 1881 card first, because it is the earliest of the three.", "hi": "पहले 1881 कार्ड छुओ, क्योंकि यह तीनों में सबसे पुराना है।" } },
+        { "kind": "predict", "say": { "en": "After the regular census began in 1881, what came next in the book's story?", "hi": "1881 में नियमित जनगणना शुरू होने के बाद पुस्तक की कहानी में आगे क्या आया?" }, "options": [ { "id": "ind", "en": "The first census of independent India, in 1951", "hi": "स्वतंत्र भारत की पहली जनगणना, 1951 में" }, { "id": "stop", "en": "A census was stopped for ever", "hi": "जनगणना हमेशा के लिए बंद कर दी गई" }, { "id": "one", "en": "Only one census was ever held", "hi": "कभी केवल एक ही जनगणना हुई" } ], "answer": "ind" },
+        { "kind": "do", "target": "event:c1951", "expect": "placed:c1951", "say": { "en": "Now tap the 1951 card, the first census of independent India.", "hi": "अब 1951 कार्ड छुओ, जो स्वतंत्र भारत की पहली जनगणना है।" } },
+        { "kind": "do", "target": "event:c2011", "expect": "placed:c2011", "say": { "en": "Tap the 2011 card last.", "hi": "2011 कार्ड आख़िर में छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to see if your order is right.", "hi": "सही क्रम जाँचने के लिए 'जाँचो' दबाओ।" } },
+        { "kind": "explain", "say": { "en": "The census counts every person and records their age, sex, work and place of living. It is held every ten years, so the government can plan schools, roads and hospitals. The first regular census began in 1881. Since 1951, India has held a census after every ten years, and the book names 2011 as the most recent.", "hi": "जनगणना हर व्यक्ति की गिनती करती है और उसकी आयु, लिंग, काम और रहने की जगह दर्ज करती है। यह हर दस वर्ष पर होती है, ताकि सरकार स्कूल, सड़कें और अस्पताल की योजना बना सके। नियमित जनगणना 1881 में शुरू हुई। 1951 से स्वतंत्र भारत में हर दस वर्ष पर जनगणना होती आई है, और पुस्तक 2011 को सबसे नई बताती है।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "What does 'decennial', used for the census, mean?", "hi": "जनगणना के लिए प्रयुक्त 'दशकीय' का अर्थ क्या है?" }, "options": [ { "en": "Every ten years", "hi": "हर दस वर्ष पर" }, { "en": "Every year", "hi": "हर वर्ष" }, { "en": "Once in a century", "hi": "सदी में एक बार" } ], "answer": 0, "why": { "en": "Decennial means once every ten years, so the census can be compared over time.", "hi": "दशकीय का अर्थ है हर दस वर्ष में एक बार, ताकि समय के साथ जनगणना की तुलना हो सके।" }, "wrong": [ "", { "en": "A yearly count would be annual, not decennial.", "hi": "हर वर्ष की गिनती वार्षिक होती, दशकीय नहीं।" }, { "en": "Once a century would be too rare to plan schools and roads.", "hi": "सदी में एक बार बहुत कम होगा, स्कूल और सड़कों की योजना के लिए।" } ] },
+          { "q": { "en": "Which census is the most recent one named in this book?", "hi": "इस पुस्तक में बताई गई सबसे नई जनगणना कौन-सी है?" }, "options": [ { "en": "1881", "hi": "१८८१" }, { "en": "1951", "hi": "१९५१" }, { "en": "2011", "hi": "२०११" } ], "answer": 2, "why": { "en": "The book names 2011 as the most recent census.", "hi": "पुस्तक 2011 को सबसे नई जनगणना बताती है।" }, "wrong": [ { "en": "1881 is when the regular census began, which is much older.", "hi": "1881 में नियमित जनगणना शुरू हुई थी, जो बहुत पुरानी है।" }, { "en": "1951 is the first census of independent India, not the most recent.", "hi": "1951 स्वतंत्र भारत की पहली जनगणना है, सबसे नई नहीं।" }, "" ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Press Check after a wrong order to see the message. Then think: why would a school planner need the census count of children?", "hi": "गलत क्रम रखकर 'जाँचो' दबाओ और संदेश देखो। फिर सोचो: स्कूल की योजना बनाने वाले को बच्चों की जनगणना गिनती की ज़रूरत क्यों होगी?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy1-ch02-sexratio",
+      "topic": "2.4",
+      "template": "match",
+      "title": { "en": "Words of the sex ratio", "hi": "लिंगानुपात के शब्द" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          { "id": "p1", "left": { "en": "Sex ratio", "hi": "लिंगानुपात" }, "right": { "en": "Number of females for every 1000 males", "hi": "हर 1000 पुरुषों पर महिलाओं की संख्या" }, "why": { "en": "The sex ratio counts females against males, which shows the balance between girls and boys in a population.", "hi": "लिंगानुपात महिलाओं की तुलना पुरुषों से करता है, जिससे लड़कियों और लड़कों के संतुलन का पता चलता है।" } },
+          { "id": "p2", "left": { "en": "Son preference", "hi": "बेटे को प्राथमिकता" }, "right": { "en": "A belief that sons are more valuable than daughters", "hi": "यह सोच कि बेटे, बेटियों से अधिक क़ीमती हैं" }, "why": { "en": "This belief is one reason families may want fewer daughters, which pulls the sex ratio down.", "hi": "यह सोच एक कारण है कि परिवार कम बेटियाँ चाहें, जिससे लिंगानुपात घटता है।" } },
+          { "id": "p3", "left": { "en": "Declining sex ratio", "hi": "घटता लिंगानुपात" }, "right": { "en": "Fewer girls than boys are born or survive", "hi": "लड़कों की तुलना में कम लड़कियाँ जन्म लेती या जीवित रहती हैं" }, "why": { "en": "When the number of women per 1000 men falls over time, the sex ratio is declining.", "hi": "जब समय के साथ हर 1000 पुरुषों पर महिलाओं की संख्या घटती है, तो लिंगानुपात घट रहा होता है।" } },
+          { "id": "p4", "left": { "en": "Gender equality", "hi": "लैंगिक समानता" }, "right": { "en": "Equal rights, dignity and chances for girls and boys", "hi": "लड़कों और लड़कियों को बराबर अधिकार, सम्मान और अवसर" }, "why": { "en": "A healthy sex ratio is one sign that girls and boys get equal care, food, health and schooling.", "hi": "सही लिंगानुपात एक संकेत है कि लड़कियों और लड़कों को बराबर देखभाल, भोजन, स्वास्थ्य और शिक्षा मिलती है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "right:p1", "expect": "matched:p1", "say": { "en": "Tap 'Sex ratio' on the left, then its meaning on the right.", "hi": "बायीं ओर 'लिंगानुपात' छुओ, फिर दायीं ओर उसका अर्थ छुओ।" } },
+        { "kind": "predict", "say": { "en": "A village has fewer girls than boys every year for a decade. What do you think is happening to the sex ratio?", "hi": "एक गाँव में दस साल से हर वर्ष लड़कियाँ लड़कों से कम हैं। तुम्हें लगता है लिंगानुपात के साथ क्या हो रहा है?" }, "options": [ { "id": "fall", "en": "It is falling", "hi": "यह घट रहा है" }, { "id": "rise", "en": "It is rising", "hi": "यह बढ़ रहा है" }, { "id": "none", "en": "It has nothing to do with the ratio", "hi": "इसका लिंगानुपात से कोई लेना-देना नहीं" } ], "answer": "fall" },
+        { "kind": "do", "target": "right:p3", "expect": "matched:p3", "say": { "en": "Tap 'Declining sex ratio' on the left, then its meaning on the right.", "hi": "बायीं ओर 'घटता लिंगानुपात' छुओ, फिर दायीं ओर उसका अर्थ छुओ।" } },
+        { "kind": "explain", "say": { "en": "The sex ratio is the number of females for every 1000 males. When a belief such as son preference makes families want fewer daughters, the ratio can fall. Gender equality is the goal: girls and boys should have the same rights, care, health and schooling. The book shows why a falling ratio is a social problem, not just a count.", "hi": "लिंगानुपात हर 1000 पुरुषों पर महिलाओं की संख्या है। जब बेटे को प्राथमिकता जैसी सोच परिवारों को कम बेटियाँ चाहने पर मजबूर करती है, तो अनुपात घट सकता है। लैंगिक समानता लक्ष्य है: लड़कों और लड़कियों को बराबर अधिकार, देखभाल, स्वास्थ्य और शिक्षा मिलनी चाहिए। पुस्तक दिखाती है कि घटता अनुपात केवल गिनती नहीं, एक सामाजिक समस्या है।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "What does a sex ratio of 900 mean?", "hi": "900 का लिंगानुपात किसे दर्शाता है?" }, "options": [ { "en": "900 females for every 1000 males", "hi": "हर 1000 पुरुषों पर 900 महिलाएँ" }, { "en": "900 males for every 1000 females", "hi": "हर 1000 महिलाओं पर 900 पुरुष" }, { "en": "900 people in a village", "hi": "एक गाँव में 900 लोग" } ], "answer": 0, "why": { "en": "The sex ratio counts females for every 1000 males, so 900 means 900 females per 1000 males.", "hi": "लिंगानुपात हर 1000 पुरुषों पर महिलाएँ गिनता है, इसलिए 900 का अर्थ है हर 1000 पुरुषों पर 900 महिलाएँ।" }, "wrong": [ "", { "en": "The count is reversed; the ratio is always females per 1000 males.", "hi": "गिनती उल्टी है; अनुपात हमेशा हर 1000 पुरुषों पर महिलाएँ होता है।" }, { "en": "The ratio is not a head count of a village.", "hi": "यह अनुपात किसी गाँव की कुल गिनती नहीं है।" } ] },
+          { "q": { "en": "Which idea is the root of son preference?", "hi": "बेटे को प्राथमिकता की जड़ कौन-सी सोच है?" }, "options": [ { "en": "A belief that sons are more valuable than daughters", "hi": "यह सोच कि बेटे, बेटियों से अधिक क़ीमती हैं" }, { "en": "A rule that girls must go to school", "hi": "यह नियम कि लड़कियों को स्कूल जाना ही होगा" }, { "en": "The count of people in a city", "hi": "शहर में लोगों की गिनती" } ], "answer": 0, "why": { "en": "Son preference is a social belief, and that belief is what the book questions.", "hi": "बेटे को प्राथमिकता एक सामाजिक सोच है, और पुस्तक इसी सोच पर सवाल उठाती है।" }, "wrong": [ "", { "en": "A school rule for girls promotes equality, the opposite of son preference.", "hi": "लड़कियों के लिए स्कूल का नियम समानता बढ़ाता है, जो बेटे को प्राथमिकता के उलट है।" }, { "en": "A count of people does not explain the belief behind the ratio.", "hi": "लोगों की गिनती उस सोच को नहीं समझाती जो अनुपात के पीछे है।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Match the last pair, 'Gender equality', yourself. Then think: what can a school and a family do to make girls and boys equal?", "hi": "आख़िरी जोड़ी 'लैंगिक समानता' खुद मिलाओ। फिर सोचो: स्कूल और परिवार लड़कों और लड़कियों को बराबर बनाने के लिए क्या कर सकते हैं?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy1-ch02-rural",
+      "topic": "2.6",
+      "template": "sort",
+      "title": { "en": "Village or city: where is it found?", "hi": "गाँव या शहर: यह कहाँ मिलता है?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "village", "label": { "en": "Mainly in villages", "hi": "मुख्य रूप से गाँवों में" } },
+          { "id": "city", "label": { "en": "Mainly in towns and cities", "hi": "मुख्य रूप से कस्बों और शहरों में" } },
+          { "id": "both", "label": { "en": "Found in both", "hi": "दोनों जगह मिलता है" } }
+        ],
+        "cards": [
+          { "id": "k1", "text": { "en": "Most families depend on farming for income", "hi": "ज़्यादातर परिवार आय के लिए खेती पर निर्भर हैं" }, "bin": "village", "why": { "en": "Farming is the main work in most villages, though not in every family.", "hi": "ज़्यादातर गाँवों में खेती मुख्य काम है, हालाँकि हर परिवार में नहीं।" } },
+          { "id": "k2", "text": { "en": "Many factories, offices and shops are close by", "hi": "कई फ़ैक्टरियाँ, दफ़्तर और दुकानें पास में हैं" }, "bin": "city", "why": { "en": "Industry and services are concentrated in towns and cities, so most jobs there are not in farming.", "hi": "उद्योग और सेवाएँ कस्बों और शहरों में केंद्रित हैं, इसलिए वहाँ ज़्यादातर नौकरियाँ खेती की नहीं होतीं।" } },
+          { "id": "k3", "text": { "en": "Colleges and big hospitals are nearby", "hi": "कॉलेज और बड़े अस्पताल पास में हैं" }, "bin": "city", "why": { "en": "Higher education and specialist care are more often found in cities than villages.", "hi": "उच्च शिक्षा और विशेष इलाज अक्सर गाँवों की तुलना में शहरों में मिलते हैं।" } },
+          { "id": "k4", "text": { "en": "Some workers live in a village and travel to a city for work", "hi": "कुछ कामगार गाँव में रहते हैं और काम के लिए शहर जाते हैं" }, "bin": "both", "why": { "en": "Commuting links village and city life. The book describes people who travel from villages to urban centres.", "hi": "आना-जाना गाँव और शहर के जीवन को जोड़ता है। पुस्तक उन लोगों की बात करती है जो गाँवों से शहरों में काम के लिए जाते हैं।" } },
+          { "id": "k5", "text": { "en": "Children in both villages and towns can go to school", "hi": "गाँव और कस्बे, दोनों जगह बच्चे स्कूल जा सकते हैं" }, "bin": "both", "why": { "en": "Schools exist in both, but their reach and quality often differ, which is why the book compares them.", "hi": "स्कूल दोनों जगह हैं, पर उनकी पहुँच और गुणवत्ता अक्सर अलग होती है, इसीलिए पुस्तक उनकी तुलना करती है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "bin:village", "expect": "correct:k1", "say": { "en": "Tap the card 'Most families depend on farming', then tap 'Mainly in villages'.", "hi": "'ज़्यादातर परिवार खेती पर निर्भर हैं' कार्ड छुओ, फिर 'मुख्य रूप से गाँवों में' छुओ।" } },
+        { "kind": "predict", "say": { "en": "Where would you put 'Many factories, offices and shops are close by'?", "hi": "'कई फ़ैक्टरियाँ, दफ़्तर और दुकानें पास में हैं' कार्ड तुम कहाँ रखोगे?" }, "options": [ { "id": "village", "en": "Mainly in villages", "hi": "मुख्य रूप से गाँवों में" }, { "id": "city", "en": "Mainly in towns and cities", "hi": "मुख्य रूप से कस्बों और शहरों में" }, { "id": "both", "en": "Found in both", "hi": "दोनों जगह मिलता है" } ], "answer": "city" },
+        { "kind": "do", "target": "bin:city", "expect": "correct:k2", "say": { "en": "Tap the factory card, then tap 'Mainly in towns and cities'.", "hi": "फ़ैक्टरी वाला कार्ड छुओ, फिर 'मुख्य रूप से कस्बों और शहरों में' छुओ।" } },
+        { "kind": "explain", "say": { "en": "Rural and urban life differ in work, services and schooling. Farming is the main work in villages, while factories and offices are concentrated in cities. Some cards fit both: people from villages often travel to cities for work, and both kinds of place have schools, though the reach and quality can differ.", "hi": "ग्रामीण और शहरी जीवन काम, सेवाओं और शिक्षा में अलग हैं। गाँवों में खेती मुख्य काम है, जबकि फ़ैक्टरियाँ और दफ़्तर शहरों में केंद्रित हैं। कुछ कार्ड दोनों पर लागू होते हैं: गाँव के लोग अक्सर काम के लिए शहर जाते हैं, और दोनों जगह स्कूल हैं, हालाँकि उनकी पहुँच और गुणवत्ता अलग हो सकती है।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Where does 'Colleges and big hospitals are nearby' belong?", "hi": "'कॉलेज और बड़े अस्पताल पास में हैं' कार्ड कहाँ जाएगा?" }, "options": [ { "en": "Mainly in villages", "hi": "मुख्य रूप से गाँवों में" }, { "en": "Mainly in towns and cities", "hi": "मुख्य रूप से कस्बों और शहरों में" }, { "en": "Found in both", "hi": "दोनों जगह मिलता है" } ], "answer": 1, "why": { "en": "Higher education and specialist hospitals are more common in cities than in villages.", "hi": "उच्च शिक्षा और विशेष अस्पताल गाँवों की तुलना में शहरों में ज़्यादा मिलते हैं।" }, "wrong": [ { "en": "Villages often have to travel far for colleges and special hospitals.", "hi": "गाँवों को अक्सर कॉलेज और विशेष अस्पतालों के लिए दूर जाना पड़ता है।" }, "", { "en": "Not every village or city has the same services, so it is not found equally in both.", "hi": "हर गाँव या शहर में एक जैसी सेवाएँ नहीं होतीं, इसलिए यह दोनों जगह बराबर नहीं मिलता।" } ] },
+          { "q": { "en": "Which card fits 'Found in both'?", "hi": "कौन-सा कार्ड 'दोनों जगह मिलता है' में आएगा?" }, "options": [ { "en": "Most families depend on farming", "hi": "ज़्यादातर परिवार खेती पर निर्भर हैं" }, { "en": "Some workers live in a village and travel to a city for work", "hi": "कुछ कामगार गाँव में रहते हैं और काम के लिए शहर जाते हैं" }, { "en": "Many factories and shops are close by", "hi": "कई फ़ैक्टरियाँ और दुकानें पास में हैं" } ], "answer": 1, "why": { "en": "Commuting from a village to work in a city is a link between both places, so it fits 'Found in both'.", "hi": "गाँव से शहर काम के लिए आना-जाना दोनों जगहों को जोड़ता है, इसलिए यह 'दोनों जगह मिलता है' में आता है।" }, "wrong": [ { "en": "Farming is mainly a village activity, so it is not found in both.", "hi": "खेती मुख्य रूप से गाँव का काम है, इसलिए यह दोनों जगह नहीं मिलता।" }, "", { "en": "Factories and shops cluster in cities, so they are not found in both.", "hi": "फ़ैक्टरियाँ और दुकानें शहरों में जमा होती हैं, इसलिए वे दोनों जगह नहीं मिलतीं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Sort the other cards freely. Then think of a card of your own about your town or village, and decide which box it belongs in.", "hi": "बाकी कार्ड अपनी मर्ज़ी से छाँटो। फिर अपने गाँव या शहर के बारे में एक कार्ड सोचो और तय करो कि वह किस डिब्बे में जाएगा।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "2.3", "use": "Opening for the age structure topic", "shows": "A family courtyard with a grandmother sitting, a working adult with a bicycle, and a young child with a school bag, all in one frame", "view": "Eye level, medium wide, soft daylight", "right": "Indian home with three generations; each person clearly of a different age", "avoid": "Identifiable child without written consent; text or posters" },
+    { "n": 2, "kind": "DIA", "topic": "2.3", "use": "Base for the age pyramid the book describes", "shows": "A blank pyramid frame with five horizontal bands from bottom to top, plain white, no numbers", "view": "Straight front view, flat and clean", "right": "Five equal bands, widest at the bottom; no labels baked in", "avoid": "Any numbers or age labels on the bands" },
+    { "n": 3, "kind": "SEQ", "topic": "2.1", "use": "Three frames to show the three stages of population change", "shows": "Three village scenes with the same framing: a crowded small house with many children in stage 1, a growing school in stage 2, and a small family with a few children and a clinic in stage 3", "view": "Identical camera height and framing in all three; same season and light", "right": "Each frame shows the change in family size and health, not a country's flag or map", "avoid": "Changing the framing between frames; faces of identifiable children" },
+    { "n": 4, "kind": "SCN", "topic": "2.6", "use": "Rural-urban contrast opening picture", "shows": "A village field at harvest on one side of a river, a town bridge with buses and shops on the other side", "view": "Elevated, wide, golden afternoon light", "right": "Real Indian village and town; the bridge and road connect both", "avoid": "Brand names; modern skyscrapers out of scale for a small town" },
+    { "n": 5, "kind": "SCN", "topic": "2.4", "use": "Mood picture for the sex ratio topic", "shows": "A girl and a boy at a school gate together, both with books, in a village road in morning light", "view": "Medium shot from the side, natural light, both faces partly turned away", "right": "Equal space and attention to the girl and the boy; school uniform or ordinary clothes", "avoid": "Identifiable children; any message that favours one sex; text on the gate" }
+  ]
+}

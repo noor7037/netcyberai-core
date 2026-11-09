@@ -1,0 +1,1072 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch08",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "Weigh It, Pour It",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "8.1",
+      "title": "Estimating and weighing fruits and vegetables",
+      "labs": [
+        "c04-mathematics-demm1-ch08-weigh-a-sugar-packet"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "8.2",
+      "title": "Kilograms and grams: packets of 500 g, 250 g and 100 g",
+      "labs": [
+        "c04-mathematics-demm1-ch08-packets-and-kilograms"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "8.3",
+      "title": "Litres and millilitres: how much does a container hold?",
+      "labs": [
+        "c04-mathematics-demm1-ch08-litre-in-millilitres",
+        "c04-mathematics-demm1-ch08-litres-and-millilitres"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "8.4",
+      "title": "Which things do we weigh and which do we pour?",
+      "labs": [
+        "c04-mathematics-demm1-ch08-weigh-or-pour"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch08-weigh-a-sugar-packet",
+      "topic": "8.1",
+      "template": "measure",
+      "title": {
+        "en": "Weigh a packet of sugar",
+        "hi": "चीनी का पैकेट तौलो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "instrument": "balance",
+        "units": "g"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The shopkeeper says this packet of sugar is 1 kilogram. How many grams do you think it weighs?",
+            "hi": "दुकानदार कहता है कि चीनी का यह पैकेट 1 किलोग्राम का है। तुम्हें क्या लगता है उसका वज़न कितने ग्राम है?"
+          },
+          "options": [
+            {
+              "id": "1000",
+              "en": "1000 grams",
+              "hi": "1000 ग्राम"
+            },
+            {
+              "id": "100",
+              "en": "100 grams",
+              "hi": "100 ग्राम"
+            },
+            {
+              "id": "10",
+              "en": "10 grams",
+              "hi": "10 ग्राम"
+            }
+          ],
+          "answer": "1000"
+        },
+        {
+          "kind": "do",
+          "target": "object:sugar",
+          "expect": "placed",
+          "say": {
+            "en": "Tap the packet of sugar to put it on the left pan.",
+            "hi": "चीनी के पैकेट पर टैप करके उसे बाएँ पलड़े पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "object:weight-1000",
+          "expect": "aligned",
+          "say": {
+            "en": "Tap the 1000 g weight to put it on the right pan. Does the beam come level?",
+            "hi": "1000 ग्राम के बाट पर टैप करके उसे दाएँ पलड़े पर रखो। क्या तराज़ू बराबर हो जाता है?"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "read",
+          "expect": "measured",
+          "say": {
+            "en": "Tap Read once the pointer is in the middle.",
+            "hi": "सूचक बीच में आने पर पढ़ो दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Type the weight of the sugar in grams.",
+            "hi": "चीनी का वज़न ग्राम में लिखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The packet balances the 1000 g weight, so it weighs 1000 grams. 1000 grams make 1 kilogram, so the packet is 1 kg. When the pans are level, the weight on the right pan equals the weight of the packet on the left.",
+            "hi": "पैकेट 1000 ग्राम के बाट से संतुलित होता है, इसलिए उसका वज़न 1000 ग्राम है। 1000 ग्राम मिलकर 1 किलोग्राम बनते हैं, इसलिए पैकेट 1 किलो का है। पलड़े बराबर होने पर दाएँ पलड़े के बाट का वज़न बाएँ पलड़े के पैकेट के वज़न के बराबर होता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which is heavier: 1 kg of cotton or 1 kg of iron?",
+                "hi": "कौन भारी है: 1 किलो रुई या 1 किलो लोहा?"
+              },
+              "options": [
+                {
+                  "en": "They weigh the same",
+                  "hi": "दोनों का वज़न बराबर है"
+                },
+                {
+                  "en": "The iron",
+                  "hi": "लोहा"
+                },
+                {
+                  "en": "The cotton",
+                  "hi": "रुई"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Both are 1 kg, so they weigh the same. Iron takes less space, but the weight is equal.",
+                "hi": "दोनों 1 किलो हैं, इसलिए वज़न बराबर है। लोहा कम जगह घेरता है, पर वज़न बराबर है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "1 kg of iron looks smaller, but it weighs exactly the same as 1 kg of cotton.",
+                  "hi": "1 किलो लोहा छोटा दिखता है, पर उसका वज़न ठीक 1 किलो रुई के बराबर है।"
+                },
+                {
+                  "en": "1 kg of cotton fills a big bag, but it weighs the same as 1 kg of iron.",
+                  "hi": "1 किलो रुई बड़ा थैला भरती है, पर उसका वज़न 1 किलो लोहे के बराबर है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "The pans of a balance are level. What does that tell us?",
+                "hi": "तराज़ू के पलड़े बराबर हैं। यह हमें क्या बताता है?"
+              },
+              "options": [
+                {
+                  "en": "Both pans carry the same weight",
+                  "hi": "दोनों पलड़ों पर बराबर वज़न है"
+                },
+                {
+                  "en": "The left pan is heavier",
+                  "hi": "बायाँ पलड़ा भारी है"
+                },
+                {
+                  "en": "The right pan is heavier",
+                  "hi": "दायाँ पलड़ा भारी है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Level pans mean the weights on both sides are equal.",
+                "hi": "बराबर पलड़ों का मतलब है कि दोनों ओर का वज़न बराबर है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A heavier left pan would hang lower, not stay level.",
+                  "hi": "भारी बायाँ पलड़ा नीचे झुकता, बराबर नहीं रहता।"
+                },
+                {
+                  "en": "A heavier right pan would hang lower, not stay level.",
+                  "hi": "भारी दायाँ पलड़ा नीचे झुकता, बराबर नहीं रहता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Take the weight off and put the eraser on the pan. Which weight balances it? Try 20 g.",
+            "hi": "बाट हटाओ और पलड़े पर रबर रखो। कौन-सा बाट उसे संतुलित करता है? 20 ग्राम आज़माओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch08-packets-and-kilograms",
+      "topic": "8.2",
+      "template": "match",
+      "title": {
+        "en": "Packets and kilograms",
+        "hi": "पैकेट और किलोग्राम"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "p1000",
+            "left": {
+              "en": "1000 g packet",
+              "hi": "1000 ग्राम का पैकेट"
+            },
+            "right": {
+              "en": "1 kilogram",
+              "hi": "1 किलोग्राम"
+            },
+            "why": {
+              "en": "1000 grams make 1 kilogram.",
+              "hi": "1000 ग्राम मिलकर 1 किलोग्राम बनते हैं।"
+            }
+          },
+          {
+            "id": "p500",
+            "left": {
+              "en": "500 g packet",
+              "hi": "500 ग्राम का पैकेट"
+            },
+            "right": {
+              "en": "Half a kilogram",
+              "hi": "आधा किलोग्राम"
+            },
+            "why": {
+              "en": "500 is half of 1000, so 500 g is half a kilogram.",
+              "hi": "500, 1000 का आधा है, इसलिए 500 ग्राम आधा किलोग्राम है।"
+            }
+          },
+          {
+            "id": "p250",
+            "left": {
+              "en": "250 g packet",
+              "hi": "250 ग्राम का पैकेट"
+            },
+            "right": {
+              "en": "A quarter of a kilogram",
+              "hi": "चौथाई किलोग्राम"
+            },
+            "why": {
+              "en": "250 is a quarter of 1000, so 4 such packets make 1 kg.",
+              "hi": "250, 1000 का चौथाई है, इसलिए ऐसे 4 पैकेट मिलकर 1 किलो बनते हैं।"
+            }
+          },
+          {
+            "id": "p100",
+            "left": {
+              "en": "10 packets of 100 g",
+              "hi": "100 ग्राम के 10 पैकेट"
+            },
+            "right": {
+              "en": "1000 g in all, from ten packets",
+              "hi": "कुल 1000 ग्राम, दस पैकेट से"
+            },
+            "why": {
+              "en": "10 times 100 is 1000 grams, which is 1 kilogram.",
+              "hi": "10 गुणा 100 बराबर 1000 ग्राम, यानी 1 किलोग्राम।"
+            }
+          },
+          {
+            "id": "p2x500",
+            "left": {
+              "en": "Two 500 g packets",
+              "hi": "500 ग्राम के दो पैकेट"
+            },
+            "right": {
+              "en": "1000 g in all, from two packets",
+              "hi": "कुल 1000 ग्राम, दो पैकेट से"
+            },
+            "why": {
+              "en": "500 and 500 make 1000 grams, which is 1 kilogram.",
+              "hi": "500 और 500 मिलकर 1000 ग्राम, यानी 1 किलोग्राम।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Two packets of 500 g are put on the pan together. Will they weigh 1 kilogram?",
+            "hi": "500 ग्राम के दो पैकेट एक साथ पलड़े पर रखे गए। क्या उनका वज़न 1 किलोग्राम होगा?"
+          },
+          "options": [
+            {
+              "id": "yes",
+              "en": "Yes, 500 and 500 make 1000 g",
+              "hi": "हाँ, 500 और 500 मिलकर 1000 ग्राम"
+            },
+            {
+              "id": "no",
+              "en": "No, less than 1 kg",
+              "hi": "नहीं, 1 किलो से कम"
+            }
+          ],
+          "answer": "yes"
+        },
+        {
+          "kind": "do",
+          "target": "left:p1000",
+          "expect": "matched:p1000",
+          "say": {
+            "en": "Tap the 1000 g packet, then tap '1 kilogram'.",
+            "hi": "1000 ग्राम का पैकेट चुनो, फिर '1 किलोग्राम' चुनो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:p500",
+          "expect": "matched:p500",
+          "say": {
+            "en": "Match the 500 g packet with its name.",
+            "hi": "500 ग्राम के पैकेट को उसके नाम से मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest, then press Check.",
+            "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "1 kilogram is 1000 grams. Half a kilogram is 500 grams. A quarter of a kilogram is 250 grams. Ten packets of 100 g, two packets of 500 g and four packets of 250 g all make 1 kilogram.",
+            "hi": "1 किलोग्राम बराबर 1000 ग्राम। आधा किलोग्राम 500 ग्राम। चौथाई किलोग्राम 250 ग्राम। 100 ग्राम के दस पैकेट, 500 ग्राम के दो पैकेट और 250 ग्राम के चार पैकेट, सब मिलकर 1 किलोग्राम बनाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many 250 g packets make 1 kilogram?",
+                "hi": "250 ग्राम के कितने पैकेट मिलकर 1 किलोग्राम बनाते हैं?"
+              },
+              "options": [
+                "4",
+                "2",
+                "10"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "250, 500, 750, 1000: four packets make 1000 g.",
+                "hi": "250, 500, 750, 1000: चार पैकेट मिलकर 1000 ग्राम बनाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "2 packets of 250 g make only 500 g, half a kilogram.",
+                  "hi": "250 ग्राम के 2 पैकेट केवल 500 ग्राम, यानी आधा किलोग्राम, बनाते हैं।"
+                },
+                {
+                  "en": "10 packets would be 2500 g. That is much more than 1 kg.",
+                  "hi": "10 पैकेट 2500 ग्राम होंगे। यह 1 किलो से बहुत ज़्यादा है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Mother buys 1 kg of rice. She has already put in a 500 g packet. How much more rice does she need?",
+                "hi": "माँ 1 किलो चावल ख़रीदती हैं। उन्होंने 500 ग्राम का पैकेट रख लिया है। उन्हें और कितने चावल चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "500 g",
+                  "hi": "500 ग्राम"
+                },
+                {
+                  "en": "1000 g",
+                  "hi": "1000 ग्राम"
+                },
+                {
+                  "en": "250 g",
+                  "hi": "250 ग्राम"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "1000 g minus 500 g is 500 g.",
+                "hi": "1000 ग्राम में से 500 ग्राम घटाओ तो 500 ग्राम।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "1000 g is the whole kilogram. She already has 500 g of it.",
+                  "hi": "1000 ग्राम पूरा किलोग्राम है। उनके पास उसमें से 500 ग्राम पहले ही है।"
+                },
+                {
+                  "en": "250 g would make only 750 g in all. She needs another 500 g.",
+                  "hi": "250 ग्राम से कुल केवल 750 ग्राम होगा। उन्हें 500 ग्राम और चाहिए।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of three things at home that come in 500 g, 250 g or 1 kg packets. Which packet is the heaviest?",
+            "hi": "घर की तीन चीज़ें सोचो जो 500 ग्राम, 250 ग्राम या 1 किलो के पैकेट में आती हैं। कौन-सा पैकेट सबसे भारी है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch08-litre-in-millilitres",
+      "topic": "8.3",
+      "template": "number-line",
+      "title": {
+        "en": "Ten cups of 100 mL make a litre",
+        "hi": "100 मिली के दस कप मिलकर एक लीटर"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "count",
+        "min": 0,
+        "max": 1000,
+        "step": 100,
+        "start": 0,
+        "jumps": [
+          100
+        ],
+        "ask": 1000
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A small cup holds 100 mL. How many such cups of water fill a 1 litre bottle?",
+            "hi": "एक छोटे कप में 100 मिली आता है। 1 लीटर की बोतल भरने में ऐसे कितने कप पानी लगेंगे?"
+          },
+          "options": [
+            {
+              "id": "ten",
+              "en": "10 cups",
+              "hi": "10 कप"
+            },
+            {
+              "id": "five",
+              "en": "5 cups",
+              "hi": "5 कप"
+            },
+            {
+              "id": "hundred",
+              "en": "100 cups",
+              "hi": "100 कप"
+            }
+          ],
+          "answer": "ten"
+        },
+        {
+          "kind": "do",
+          "target": "jump:+",
+          "expect": "landed:100",
+          "say": {
+            "en": "Tap the forward jump once. One cup of 100 mL is poured in.",
+            "hi": "आगे की छलाँग पर एक बार टैप करो। 100 मिली का एक कप डल गया।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "jump:+",
+          "expect": "landed:500",
+          "say": {
+            "en": "Keep pouring cups until the bottle is half full, 500 mL.",
+            "hi": "कप डालते रहो जब तक बोतल आधी, यानी 500 मिली, न भर जाए।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "jump:+",
+          "expect": "landed:1000",
+          "say": {
+            "en": "Pour on until the bottle is full, 1000 mL.",
+            "hi": "बोतल पूरी, यानी 1000 मिली, भरने तक डालते रहो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Tap Check.",
+            "hi": "जाँचो पर टैप करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "10 cups of 100 mL make 1000 mL, and 1000 mL make 1 litre. Half way, at 500 mL, the bottle is half a litre. Litres measure big amounts, like a bucket of water. Millilitres measure small amounts, like a spoon of medicine.",
+            "hi": "100 मिली के 10 कप मिलकर 1000 मिली बनते हैं, और 1000 मिली मिलकर 1 लीटर। आधे रास्ते पर, 500 मिली पर, बोतल आधा लीटर है। लीटर बड़ी मात्रा नापता है, जैसे बाल्टी भर पानी। मिलीलीटर छोटी मात्रा नापता है, जैसे चम्मच भर दवा।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many millilitres make 1 litre?",
+                "hi": "कितने मिलीलीटर मिलकर 1 लीटर बनते हैं?"
+              },
+              "options": [
+                "1000",
+                "100",
+                "10"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "1 litre = 1000 millilitres.",
+                "hi": "1 लीटर = 1000 मिलीलीटर।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "100 mL is only one small cup, a tenth of a litre.",
+                  "hi": "100 मिली केवल एक छोटा कप है, यानी लीटर का दसवाँ भाग।"
+                },
+                {
+                  "en": "10 is the number of cups, not the number of millilitres.",
+                  "hi": "10 कपों की संख्या है, मिलीलीटर की नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How do you read the level of a liquid in a measuring cylinder?",
+                "hi": "मापक सिलिंडर में द्रव का स्तर कैसे पढ़ते हो?"
+              },
+              "options": [
+                {
+                  "en": "Eye level with the bottom of the curved surface",
+                  "hi": "आँख बराबर रखकर वक्र सतह के निचले भाग को"
+                },
+                {
+                  "en": "From above, at the top of the liquid",
+                  "hi": "ऊपर से, द्रव के ऊपरी भाग को"
+                },
+                {
+                  "en": "From below, at the top of the liquid",
+                  "hi": "नीचे से, द्रव के ऊपरी भाग को"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The liquid curves at the edge. We read the lowest point with the eye straight across it.",
+                "hi": "द्रव किनारे पर मुड़ता है। हम सबसे निचला बिंदु पढ़ते हैं, आँख सीधे उसके बराबर रखकर।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Looking from above makes the level look lower than it is.",
+                  "hi": "ऊपर से देखने पर स्तर असली से नीचे दिखता है।"
+                },
+                {
+                  "en": "Looking from below makes the level look higher than it is.",
+                  "hi": "नीचे से देखने पर स्तर असली से ऊपर दिखता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Jump back from 1000 by 100s. How many cups do you take out to leave half a litre?",
+            "hi": "1000 से 100-100 करके पीछे छलाँग लगाओ। आधा लीटर बचाने के लिए तुम कितने कप निकालते हो?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch08-litres-and-millilitres",
+      "topic": "8.3",
+      "template": "match",
+      "title": {
+        "en": "Litres and millilitres",
+        "hi": "लीटर और मिलीलीटर"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "l1",
+            "left": {
+              "en": "1 litre bottle",
+              "hi": "1 लीटर की बोतल"
+            },
+            "right": {
+              "en": "1000 mL",
+              "hi": "1000 मिली"
+            },
+            "why": {
+              "en": "1 litre is 1000 millilitres.",
+              "hi": "1 लीटर बराबर 1000 मिलीलीटर।"
+            }
+          },
+          {
+            "id": "l5",
+            "left": {
+              "en": "Half a litre of milk",
+              "hi": "आधा लीटर दूध"
+            },
+            "right": {
+              "en": "500 mL",
+              "hi": "500 मिली"
+            },
+            "why": {
+              "en": "Half of 1000 mL is 500 mL.",
+              "hi": "1000 मिली का आधा 500 मिली है।"
+            }
+          },
+          {
+            "id": "l25",
+            "left": {
+              "en": "A quarter of a litre",
+              "hi": "चौथाई लीटर"
+            },
+            "right": {
+              "en": "250 mL",
+              "hi": "250 मिली"
+            },
+            "why": {
+              "en": "A quarter of 1000 mL is 250 mL.",
+              "hi": "1000 मिली का चौथाई 250 मिली है।"
+            }
+          },
+          {
+            "id": "l2",
+            "left": {
+              "en": "2 litres",
+              "hi": "2 लीटर"
+            },
+            "right": {
+              "en": "2000 mL",
+              "hi": "2000 मिली"
+            },
+            "why": {
+              "en": "Each litre is 1000 mL, so 2 litres are 2000 mL.",
+              "hi": "हर लीटर 1000 मिली का है, इसलिए 2 लीटर 2000 मिली हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A 1 litre bottle is filled using a small cup of 250 mL. How many cups does it take?",
+            "hi": "1 लीटर की बोतल 250 मिली के छोटे कप से भरी जाती है। इसमें कितने कप लगेंगे?"
+          },
+          "options": [
+            {
+              "id": "four",
+              "en": "4 cups",
+              "hi": "4 कप"
+            },
+            {
+              "id": "two",
+              "en": "2 cups",
+              "hi": "2 कप"
+            },
+            {
+              "id": "ten",
+              "en": "10 cups",
+              "hi": "10 कप"
+            }
+          ],
+          "answer": "four"
+        },
+        {
+          "kind": "do",
+          "target": "left:l1",
+          "expect": "matched:l1",
+          "say": {
+            "en": "Match the 1 litre bottle with its measure.",
+            "hi": "1 लीटर की बोतल को उसकी माप से मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest, then press Check.",
+            "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "1 litre is 1000 millilitres. Half a litre is 500 mL and a quarter of a litre is 250 mL. Four cups of 250 mL fill a 1 litre bottle. Litres are for big amounts, millilitres for small amounts.",
+            "hi": "1 लीटर बराबर 1000 मिलीलीटर। आधा लीटर 500 मिली और चौथाई लीटर 250 मिली है। 250 मिली के चार कप 1 लीटर की बोतल भर देते हैं। लीटर बड़ी मात्रा के लिए है, मिलीलीटर छोटी मात्रा के लिए।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many millilitres are there in half a litre?",
+                "hi": "आधे लीटर में कितने मिलीलीटर होते हैं?"
+              },
+              "options": [
+                "500",
+                "50",
+                "1000"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Half of 1000 mL is 500 mL.",
+                "hi": "1000 मिली का आधा 500 मिली होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "50 is far too small. Half a litre is a big glassful, not a spoonful.",
+                  "hi": "50 बहुत कम है। आधा लीटर पूरे गिलास भर होता है, चम्मच भर नहीं।"
+                },
+                {
+                  "en": "1000 mL is a whole litre, not half.",
+                  "hi": "1000 मिली पूरा लीटर है, आधा नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at a milk or oil packet at home. How many mL or litres does it say? Is it more or less than 1 litre?",
+            "hi": "घर पर दूध या तेल का पैकेट देखो। उस पर कितने मिली या लीटर लिखा है? वह 1 लीटर से ज़्यादा है या कम?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch08-weigh-or-pour",
+      "topic": "8.4",
+      "template": "sort",
+      "title": {
+        "en": "Weigh it or pour it?",
+        "hi": "तौलें या उड़ेलें?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "weigh",
+            "label": {
+              "en": "Weigh it: kg and g",
+              "hi": "तौलो: किलो और ग्राम"
+            }
+          },
+          {
+            "id": "pour",
+            "label": {
+              "en": "Pour it: L and mL",
+              "hi": "उड़ेलो: लीटर और मिली"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "sugar",
+            "text": {
+              "en": "Sugar",
+              "hi": "चीनी"
+            },
+            "bin": "weigh",
+            "why": {
+              "en": "Sugar is a solid. We weigh it in kg and g.",
+              "hi": "चीनी ठोस है। हम उसे किलो और ग्राम में तौलते हैं।"
+            }
+          },
+          {
+            "id": "potato",
+            "text": {
+              "en": "Potatoes",
+              "hi": "आलू"
+            },
+            "bin": "weigh",
+            "why": {
+              "en": "Vegetables are weighed, not poured.",
+              "hi": "सब्ज़ियाँ तौली जाती हैं, उड़ेली नहीं जातीं।"
+            }
+          },
+          {
+            "id": "gold",
+            "text": {
+              "en": "A gold chain",
+              "hi": "सोने की चेन"
+            },
+            "bin": "weigh",
+            "why": {
+              "en": "A solid chain is weighed, in grams.",
+              "hi": "ठोस चेन तौली जाती है, ग्राम में।"
+            }
+          },
+          {
+            "id": "rice",
+            "text": {
+              "en": "Rice",
+              "hi": "चावल"
+            },
+            "bin": "weigh",
+            "why": {
+              "en": "Rice is bought by weight in kg.",
+              "hi": "चावल वज़न से, किलो में, ख़रीदा जाता है।"
+            }
+          },
+          {
+            "id": "milk",
+            "text": {
+              "en": "Milk",
+              "hi": "दूध"
+            },
+            "bin": "pour",
+            "why": {
+              "en": "Milk flows, so we pour it and measure in litres.",
+              "hi": "दूध बहता है, इसलिए उसे उड़ेलते हैं और लीटर में नापते हैं।"
+            }
+          },
+          {
+            "id": "oil",
+            "text": {
+              "en": "Cooking oil",
+              "hi": "खाने का तेल"
+            },
+            "bin": "pour",
+            "why": {
+              "en": "Oil is a liquid. We pour it and measure it in litres or mL.",
+              "hi": "तेल द्रव है। हम उसे उड़ेलते हैं और लीटर या मिली में नापते हैं।"
+            }
+          },
+          {
+            "id": "water",
+            "text": {
+              "en": "Water in a bucket",
+              "hi": "बाल्टी में पानी"
+            },
+            "bin": "pour",
+            "why": {
+              "en": "Water is a liquid, measured in litres.",
+              "hi": "पानी द्रव है, लीटर में नापा जाता है।"
+            }
+          },
+          {
+            "id": "syrup",
+            "text": {
+              "en": "Cough syrup",
+              "hi": "खाँसी की दवा"
+            },
+            "bin": "pour",
+            "why": {
+              "en": "A small amount of liquid is measured in mL.",
+              "hi": "द्रव की थोड़ी मात्रा मिली में नापी जाती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which one will you weigh and which will you pour: rice and milk?",
+            "hi": "इनमें से किसे तौलोगे और किसे उड़ेलोगे: चावल और दूध?"
+          },
+          "options": [
+            {
+              "id": "rice-weigh",
+              "en": "Weigh the rice, pour the milk",
+              "hi": "चावल तौलेंगे, दूध उड़ेलेंगे"
+            },
+            {
+              "id": "rice-pour",
+              "en": "Pour the rice, weigh the milk",
+              "hi": "चावल उड़ेलेंगे, दूध तौलेंगे"
+            }
+          ],
+          "answer": "rice-weigh"
+        },
+        {
+          "kind": "do",
+          "target": "card:sugar",
+          "expect": "correct:sugar",
+          "say": {
+            "en": "Tap the sugar card, then tap the group it belongs to.",
+            "hi": "चीनी वाले कार्ड पर टैप करो, फिर उसके समूह पर।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:milk",
+          "expect": "correct:milk",
+          "say": {
+            "en": "Now sort the milk card.",
+            "hi": "अब दूध वाला कार्ड छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the other cards, then press Check.",
+            "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Solid things like sugar, potatoes and a gold chain are weighed in grams and kilograms. Liquids like milk, oil and water are poured and measured in millilitres and litres. Weight tells us how heavy something is. Capacity tells us how much a container holds.",
+            "hi": "चीनी, आलू और सोने की चेन जैसी ठोस चीज़ें ग्राम और किलोग्राम में तौली जाती हैं। दूध, तेल और पानी जैसे द्रव उड़ेले जाते हैं और मिलीलीटर व लीटर में नापे जाते हैं। वज़न बताता है कि कोई चीज़ कितनी भारी है। धारिता बताती है कि बर्तन में कितना आता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which unit do you use for the amount of ghee in a small jar?",
+                "hi": "छोटे जार में घी की मात्रा के लिए कौन-सी इकाई इस्तेमाल करोगे?"
+              },
+              "options": [
+                {
+                  "en": "Millilitres",
+                  "hi": "मिलीलीटर"
+                },
+                {
+                  "en": "Kilometres",
+                  "hi": "किलोमीटर"
+                },
+                {
+                  "en": "Kilograms",
+                  "hi": "किलोग्राम"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Ghee in a small jar can be poured, and it is a small amount, so we use mL.",
+                "hi": "छोटे जार का घी उड़ेला जा सकता है, और मात्रा थोड़ी है, इसलिए मिली इस्तेमाल करते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Kilometres measure distance, not how much a jar holds.",
+                  "hi": "किलोमीटर दूरी नापते हैं, यह नहीं कि जार में कितना आता है।"
+                },
+                {
+                  "en": "Kilograms measure weight, and we use them for large heavy things, not a small jar of liquid.",
+                  "hi": "किलोग्राम वज़न नापते हैं और बड़ी भारी चीज़ों के लिए इस्तेमाल होते हैं, द्रव के छोटे जार के लिए नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of a food that is sold both by weight and by volume, such as ghee: some shops weigh it, some pour it. Does the amount change?",
+            "hi": "ऐसा कोई खाना सोचो जो वज़न से भी बिकता है और नाप से भी, जैसे घी। क्या मात्रा बदल जाती है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "8.1",
+      "use": "Chapter hook: vegetable market",
+      "shows": "A vegetable seller weighing tomatoes on a hanging scale in a morning market, heaps of vegetables behind",
+      "view": "Eye level, warm light, hands and scale in focus",
+      "right": "Scale pan with vegetables and a visible pointer; no faces",
+      "avoid": "Price boards with numbers, faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "8.1",
+      "use": "Two-pan balance with weights",
+      "shows": "A school beam balance with two pans, a box of brass weights beside it, pans level",
+      "view": "Straight on, pointer centred, even light",
+      "right": "Pointer in the middle, weights shiny brass with no numbers readable on them",
+      "avoid": "Brand name on the balance"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "8.1",
+      "use": "Fruits for the balance",
+      "shows": "A mango, an apple, an orange and a banana bunch as separate cut-outs",
+      "view": "Three-quarter view, soft light",
+      "right": "Real ripe colours, natural size proportions",
+      "avoid": "Stickers"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "8.2",
+      "use": "Grain packets",
+      "shows": "Plain paper packets of rice, sugar and dal in three sizes, a 1 kg, a 500 g and a 250 g packet, with no printing",
+      "view": "Straight on, similar light",
+      "right": "Sizes clearly different, exactly in the ratio of their weights in how full they look",
+      "avoid": "Printed brand names, weights printed on the packets"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "8.3",
+      "use": "Measuring cylinder and jug",
+      "shows": "A clear plastic measuring cylinder with a mL scale and a small measuring jug, empty, cut-outs",
+      "view": "Straight on, even light",
+      "right": "Scale marks readable, spout clear",
+      "avoid": "Brand names"
+    },
+    {
+      "n": 6,
+      "kind": "SEQ",
+      "topic": "8.3",
+      "use": "Pouring milk into the jug",
+      "shows": "A steel tumbler of milk being poured into a transparent measuring jug in four frames from empty to 500 mL",
+      "view": "Same camera, same light",
+      "right": "Level rises evenly; the last frame at the 500 mL mark",
+      "avoid": "Faces, brand packets"
+    },
+    {
+      "n": 7,
+      "kind": "SCN",
+      "topic": "8.4",
+      "use": "Milk, oil and sugar at the kitchen shelf",
+      "shows": "A kitchen shelf with a milk packet and oil bottle on one side and jars of sugar and rice on the other",
+      "view": "Eye level, warm light",
+      "right": "Liquids and solids visibly grouped; no readable labels",
+      "avoid": "Brand logos"
+    }
+  ]
+}

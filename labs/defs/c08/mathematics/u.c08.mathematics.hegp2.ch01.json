@@ -1,0 +1,1273 @@
+{
+  "chapter_key": "u.c08.mathematics.hegp2.ch01",
+  "class": 8,
+  "subject_id": "mathematics",
+  "title": "Fractions in Disguise",
+  "source": "https://ncert.nic.in/textbook/pdf/hegp201.pdf",
+  "topics": [
+    {
+      "n": "1.1",
+      "title": "Fractions as percentages: changing fractions and decimals to percentages, percentages around us",
+      "labs": [
+        "c08-mathematics-hegp2-ch01-convert",
+        "c08-mathematics-hegp2-ch01-pocket"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.2",
+      "title": "Percentage of some quantity: finding a percent of a number, free-hand computation",
+      "labs": [
+        "c08-mathematics-hegp2-ch01-of"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.3",
+      "title": "Using percentages: comparing, increase and decrease, profit and loss, tax and compounding",
+      "labs": [
+        "c08-mathematics-hegp2-ch01-change",
+        "c08-mathematics-hegp2-ch01-profit",
+        "c08-mathematics-hegp2-ch01-discount",
+        "c08-mathematics-hegp2-ch01-compound"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c08-mathematics-hegp2-ch01-convert",
+      "topic": "1.1",
+      "template": "match",
+      "title": {
+        "en": "Fractions in disguise",
+        "hi": "वेश बदले भिन्न"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "a",
+            "left": {
+              "en": "1/2",
+              "hi": "1/2"
+            },
+            "right": {
+              "en": "50%",
+              "hi": "50%"
+            },
+            "why": {
+              "en": "1/2 = 50/100.",
+              "hi": "1/2 = 50/100।"
+            }
+          },
+          {
+            "id": "b",
+            "left": {
+              "en": "1/4",
+              "hi": "1/4"
+            },
+            "right": {
+              "en": "25%",
+              "hi": "25%"
+            },
+            "why": {
+              "en": "1/4 = 25/100.",
+              "hi": "1/4 = 25/100।"
+            }
+          },
+          {
+            "id": "c",
+            "left": {
+              "en": "3/5",
+              "hi": "3/5"
+            },
+            "right": {
+              "en": "60%",
+              "hi": "60%"
+            },
+            "why": {
+              "en": "Multiply top and bottom by 20: 60/100.",
+              "hi": "ऊपर-नीचे 20 से गुणा: 60/100।"
+            }
+          },
+          {
+            "id": "d",
+            "left": {
+              "en": "0.07",
+              "hi": "0.07"
+            },
+            "right": {
+              "en": "7%",
+              "hi": "7%"
+            },
+            "why": {
+              "en": "0.07 = 7 hundredths = 7/100.",
+              "hi": "0.07 = 7 सौवें = 7/100।"
+            }
+          },
+          {
+            "id": "e",
+            "left": {
+              "en": "7/20",
+              "hi": "7/20"
+            },
+            "right": {
+              "en": "35%",
+              "hi": "35%"
+            },
+            "why": {
+              "en": "Multiply top and bottom by 5: 35/100.",
+              "hi": "ऊपर-नीचे 5 से गुणा: 35/100।"
+            }
+          },
+          {
+            "id": "f",
+            "left": {
+              "en": "1/8",
+              "hi": "1/8"
+            },
+            "right": {
+              "en": "12.5%",
+              "hi": "12.5%"
+            },
+            "why": {
+              "en": "1/8 is half of 1/4, so half of 25%.",
+              "hi": "1/8, 1/4 का आधा है, इसलिए 25% का आधा।"
+            }
+          },
+          {
+            "id": "g",
+            "left": {
+              "en": "1.2",
+              "hi": "1.2"
+            },
+            "right": {
+              "en": "120%",
+              "hi": "120%"
+            },
+            "why": {
+              "en": "1.2 = 120/100. More than the whole is more than 100%.",
+              "hi": "1.2 = 120/100। पूरे से ज़्यादा, यानी 100% से ज़्यादा।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:a",
+          "expect": "matched:a",
+          "say": {
+            "en": "Tap 1/2 and then the same amount as a percentage.",
+            "hi": "1/2 छुओ और फिर वही मात्रा प्रतिशत में।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Per cent means “out of 100”. What is 3/5 as a percentage?",
+            "hi": "प्रतिशत का अर्थ है “100 में से”। 3/5 प्रतिशत में क्या है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "60%",
+              "hi": "60 प्रतिशत"
+            },
+            {
+              "id": "b",
+              "en": "35%",
+              "hi": "35 प्रतिशत"
+            },
+            {
+              "id": "c",
+              "en": "3.5%",
+              "hi": "3.5 प्रतिशत"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:c",
+          "expect": "matched:c",
+          "say": {
+            "en": "Match 3/5.",
+            "hi": "3/5 मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:g",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest.",
+            "hi": "बाक़ी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A percentage is just a fraction with 100 at the bottom. To change a fraction, make its denominator 100, or multiply the fraction by 100. A decimal moves two places: 0.07 = 7%. More than one whole is more than 100%.",
+            "hi": "प्रतिशत बस ऐसा भिन्न है जिसके नीचे 100 हो। भिन्न को बदलने के लिए उसका हर 100 बनाओ, या भिन्न को 100 से गुणा करो। दशमलव दो स्थान खिसकता है: 0.07 = 7%। एक पूरे से ज़्यादा, 100% से ज़्यादा है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In a class of 40, 18 children walk to school. What percent is that?",
+                "hi": "40 बच्चों की कक्षा में 18 बच्चे पैदल स्कूल आते हैं। यह कितने प्रतिशत है?"
+              },
+              "options": [
+                "45%",
+                "18%",
+                "22%"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "18/40 = 45/100 = 45%.",
+                "hi": "18/40 = 45/100 = 45%।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "18% would be 18 out of 100, but the class has only 40.",
+                  "hi": "18% का अर्थ 100 में से 18 होता, पर कक्षा में सिर्फ़ 40 हैं।"
+                },
+                {
+                  "en": "22 is 40 − 18, the children who do not walk, and it is not a percent.",
+                  "hi": "22 = 40 − 18, जो पैदल नहीं आते, और यह प्रतिशत नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which is the biggest?",
+                "hi": "सबसे बड़ा कौन-सा है?"
+              },
+              "options": [
+                "0.6",
+                "55%",
+                "4/8"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "0.6 = 60%, 4/8 = 50%, so 0.6 is the biggest.",
+                "hi": "0.6 = 60%, 4/8 = 50%, इसलिए 0.6 सबसे बड़ा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "55% is less than 0.6, which is 60%.",
+                  "hi": "55%, 0.6 से कम है, जो 60% है।"
+                },
+                {
+                  "en": "4/8 = 1/2 = 50%, the smallest here.",
+                  "hi": "4/8 = 1/2 = 50%, यहाँ सबसे छोटा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at a packet in your kitchen. Find a percentage on it and write it as a fraction.",
+            "hi": "अपनी रसोई में किसी पैकेट को देखो। उस पर लिखा कोई प्रतिशत ढूँढो और उसे भिन्न में लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch01-pocket",
+      "topic": "1.1",
+      "template": "data",
+      "title": {
+        "en": "Where did the money go?",
+        "hi": "पैसे कहाँ गए?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "pie",
+        "views": [
+          "pie",
+          "bar"
+        ],
+        "title": {
+          "en": "How Arjun spent ₹200 of pocket money (sample)",
+          "hi": "अर्जुन ने ₹200 जेबख़र्च कैसे ख़र्च किया (नमूना)"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Books",
+              "hi": "किताबें"
+            },
+            "value": 80
+          },
+          {
+            "label": {
+              "en": "Snacks",
+              "hi": "नाश्ता"
+            },
+            "value": 50
+          },
+          {
+            "label": {
+              "en": "Savings",
+              "hi": "बचत"
+            },
+            "value": 40
+          },
+          {
+            "label": {
+              "en": "Bus fare",
+              "hi": "बस किराया"
+            },
+            "value": 30
+          }
+        ],
+        "ask": "max"
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Arjun got ₹200 this month. The pie shows how he used it. Each slice is a fraction of the whole ₹200.",
+            "hi": "अर्जुन को इस महीने ₹200 मिले। पाई चार्ट दिखाता है उसने इन्हें कैसे इस्तेमाल किया। हर टुकड़ा पूरे ₹200 का एक भिन्न है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Books cost ₹80 of ₹200. What percent of the pie is that?",
+            "hi": "किताबें ₹200 में से ₹80 की हैं। यह पाई का कितना प्रतिशत है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "40%",
+              "hi": "40 प्रतिशत"
+            },
+            {
+              "id": "b",
+              "en": "80%",
+              "hi": "80 प्रतिशत"
+            },
+            {
+              "id": "c",
+              "en": "25%",
+              "hi": "25 प्रतिशत"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "bar:0",
+          "expect": "selected:0",
+          "say": {
+            "en": "Tap the Books slice to read its value.",
+            "hi": "किताबों वाला टुकड़ा छूकर उसका मान पढ़ो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "chart:bar",
+          "expect": "plotted",
+          "say": {
+            "en": "Switch to the bar graph. Same data, new picture.",
+            "hi": "दंड आलेख पर जाओ। वही आँकड़े, नई तस्वीर।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question.",
+            "hi": "प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Books: 80/200 = 40%. Snacks: 50/200 = 25%. Savings: 40/200 = 20%. Bus: 30/200 = 15%. Together they make 100%, the whole pie. A percentage lets us compare parts even when totals are different.",
+            "hi": "किताबें: 80/200 = 40%। नाश्ता: 50/200 = 25%। बचत: 40/200 = 20%। बस: 30/200 = 15%। सब मिलकर 100%, पूरी पाई। प्रतिशत से हम हिस्सों की तुलना कर सकते हैं, भले ही कुल अलग हों।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Next month Arjun gets ₹300 and still saves 20%. How much does he save?",
+                "hi": "अगले महीने अर्जुन को ₹300 मिलते हैं और वह फिर भी 20% बचाता है। वह कितना बचाता है?"
+              },
+              "options": [
+                "₹60",
+                "₹40",
+                "₹20"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "20% of 300 = 20/100 × 300 = ₹60.",
+                "hi": "300 का 20% = 20/100 × 300 = ₹60।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹40 was 20% of ₹200. The whole is now ₹300, so 20% is bigger.",
+                  "hi": "₹40, ₹200 का 20% था। अब पूरा ₹300 है, इसलिए 20% ज़्यादा है।"
+                },
+                {
+                  "en": "₹20 confuses the percent with rupees. 20% means 20 out of every 100.",
+                  "hi": "₹20 में प्रतिशत को रुपये समझ लिया। 20% का अर्थ है हर 100 में से 20।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag the bars to make your own budget of ₹200. Can you make savings exactly 25%?",
+            "hi": "दंड खींचकर ₹200 का अपना बजट बनाओ। क्या बचत ठीक 25% कर सकते हो?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch01-of",
+      "topic": "1.2",
+      "template": "match",
+      "title": {
+        "en": "Percent of a number, in your head",
+        "hi": "किसी संख्या का प्रतिशत, मन में"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "a",
+            "left": {
+              "en": "10% of 450",
+              "hi": "450 का 10%"
+            },
+            "right": {
+              "en": "45",
+              "hi": "45"
+            },
+            "why": {
+              "en": "10% is one tenth: 450 ÷ 10.",
+              "hi": "10% दसवाँ भाग है: 450 ÷ 10।"
+            }
+          },
+          {
+            "id": "b",
+            "left": {
+              "en": "5% of 450",
+              "hi": "450 का 5%"
+            },
+            "right": {
+              "en": "22.5",
+              "hi": "22.5"
+            },
+            "why": {
+              "en": "5% is half of 10%: half of 45.",
+              "hi": "5%, 10% का आधा है: 45 का आधा।"
+            }
+          },
+          {
+            "id": "c",
+            "left": {
+              "en": "15% of 200",
+              "hi": "200 का 15%"
+            },
+            "right": {
+              "en": "30",
+              "hi": "30"
+            },
+            "why": {
+              "en": "10% is 20 and 5% is 10, so 30.",
+              "hi": "10% = 20 और 5% = 10, तो 30।"
+            }
+          },
+          {
+            "id": "d",
+            "left": {
+              "en": "25% of 64",
+              "hi": "64 का 25%"
+            },
+            "right": {
+              "en": "16",
+              "hi": "16"
+            },
+            "why": {
+              "en": "25% is one quarter: 64 ÷ 4.",
+              "hi": "25% चौथाई है: 64 ÷ 4।"
+            }
+          },
+          {
+            "id": "e",
+            "left": {
+              "en": "1% of 3,500",
+              "hi": "3,500 का 1%"
+            },
+            "right": {
+              "en": "35",
+              "hi": "35"
+            },
+            "why": {
+              "en": "1% is one hundredth: 3500 ÷ 100.",
+              "hi": "1% सौवाँ भाग है: 3500 ÷ 100।"
+            }
+          },
+          {
+            "id": "f",
+            "left": {
+              "en": "12.5% of 80",
+              "hi": "80 का 12.5%"
+            },
+            "right": {
+              "en": "10",
+              "hi": "10"
+            },
+            "why": {
+              "en": "12.5% = 1/8, and 80 ÷ 8 = 10.",
+              "hi": "12.5% = 1/8, और 80 ÷ 8 = 10।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:a",
+          "expect": "matched:a",
+          "say": {
+            "en": "Tap “10% of 450” and its value.",
+            "hi": "“450 का 10%” छुओ और उसका मान।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "If 10% of 450 is 45, what is 5% of 450?",
+            "hi": "अगर 450 का 10% = 45, तो 450 का 5% क्या है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "22.5, half of 45",
+              "hi": "22.5, 45 का आधा"
+            },
+            {
+              "id": "b",
+              "en": "90, double 45",
+              "hi": "90, 45 का दुगुना"
+            },
+            {
+              "id": "c",
+              "en": "40, 45 minus 5",
+              "hi": "40, 45 में से 5 कम"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:b",
+          "expect": "matched:b",
+          "say": {
+            "en": "Match 5% of 450.",
+            "hi": "450 का 5% मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:f",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest using 10%, 5%, 1% and easy fractions.",
+            "hi": "10%, 5%, 1% और आसान भिन्नों से बाक़ी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Free-hand percentages build from easy pieces: 10% is ÷ 10, 5% is half of that, 1% is ÷ 100, 25% is ÷ 4, 50% is ÷ 2. Add the pieces to get others: 15% = 10% + 5%, 35% = 25% + 10%.",
+            "hi": "मन से प्रतिशत आसान टुकड़ों से बनते हैं: 10% यानी ÷ 10, 5% उसका आधा, 1% यानी ÷ 100, 25% यानी ÷ 4, 50% यानी ÷ 2। दूसरे प्रतिशत के लिए टुकड़े जोड़ो: 15% = 10% + 5%, 35% = 25% + 10%।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A ₹600 school bag has 35% off. How much is taken off?",
+                "hi": "₹600 के स्कूल बैग पर 35% छूट है। कितने रुपये कम होंगे?"
+              },
+              "options": [
+                "₹210",
+                "₹35",
+                "₹390"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "25% of 600 = 150, 10% = 60, so 35% = 210.",
+                "hi": "600 का 25% = 150, 10% = 60, तो 35% = 210।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹35 treats 35% as ₹35. It is 35 out of every 100 rupees.",
+                  "hi": "₹35 में 35% को ₹35 मान लिया। यह हर 100 रुपये में से 35 है।"
+                },
+                {
+                  "en": "₹390 is what you still pay, not what is taken off.",
+                  "hi": "₹390 वह है जो तुम चुकाओगे, छूट नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find 20%, 30% and 40% of 250 using only 10% steps.",
+            "hi": "सिर्फ़ 10% के कदमों से 250 का 20%, 30% और 40% निकालो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch01-change",
+      "topic": "1.3",
+      "template": "match",
+      "title": {
+        "en": "Percentage increase and decrease",
+        "hi": "प्रतिशत वृद्धि और कमी"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "a",
+            "left": {
+              "en": "₹40 rises to ₹50",
+              "hi": "₹40 से ₹50 हुआ"
+            },
+            "right": {
+              "en": "25% increase",
+              "hi": "25% वृद्धि"
+            },
+            "why": {
+              "en": "Change 10 out of the old 40: 10/40 = 25%.",
+              "hi": "पुराने 40 में से 10 बदला: 10/40 = 25%।"
+            }
+          },
+          {
+            "id": "b",
+            "left": {
+              "en": "₹50 falls to ₹40",
+              "hi": "₹50 से ₹40 हुआ"
+            },
+            "right": {
+              "en": "20% decrease",
+              "hi": "20% कमी"
+            },
+            "why": {
+              "en": "Change 10 out of the old 50: 10/50 = 20%.",
+              "hi": "पुराने 50 में से 10 बदला: 10/50 = 20%।"
+            }
+          },
+          {
+            "id": "c",
+            "left": {
+              "en": "200 students grow to 260",
+              "hi": "200 छात्र बढ़कर 260"
+            },
+            "right": {
+              "en": "30% increase",
+              "hi": "30% वृद्धि"
+            },
+            "why": {
+              "en": "60/200 = 30%.",
+              "hi": "60/200 = 30%।"
+            }
+          },
+          {
+            "id": "d",
+            "left": {
+              "en": "80 kg falls to 60 kg",
+              "hi": "80 किग्रा घटकर 60 किग्रा"
+            },
+            "right": {
+              "en": "25% decrease",
+              "hi": "25% कमी"
+            },
+            "why": {
+              "en": "20/80 = 25%.",
+              "hi": "20/80 = 25%।"
+            }
+          },
+          {
+            "id": "e",
+            "left": {
+              "en": "₹300 doubles to ₹600",
+              "hi": "₹300 दुगुना होकर ₹600"
+            },
+            "right": {
+              "en": "100% increase",
+              "hi": "100% वृद्धि"
+            },
+            "why": {
+              "en": "The change equals the old value: 300/300.",
+              "hi": "बदलाव पुराने मान के बराबर: 300/300।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:a",
+          "expect": "matched:a",
+          "say": {
+            "en": "The price of a kilo of onions went from ₹40 to ₹50. Tap it and its percentage change.",
+            "hi": "एक किलो प्याज़ ₹40 से ₹50 हो गया। इसे छुओ और इसका प्रतिशत बदलाव।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Going back from ₹50 to ₹40 is the same ₹10 change. Is it also 25%?",
+            "hi": "₹50 से वापस ₹40 होना भी ₹10 का बदलाव है। क्या यह भी 25% है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "No, it is 20%, because we divide by 50",
+              "hi": "नहीं, यह 20% है, क्योंकि 50 से भाग देते हैं"
+            },
+            {
+              "id": "b",
+              "en": "Yes, the change is still ₹10",
+              "hi": "हाँ, बदलाव अब भी ₹10 है"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:b",
+          "expect": "matched:b",
+          "say": {
+            "en": "Match the fall from ₹50 to ₹40.",
+            "hi": "₹50 से ₹40 की गिरावट मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:e",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest.",
+            "hi": "बाक़ी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Percentage change = change ÷ original value × 100. Always divide by the value you started from. That is why a rise of ₹10 on ₹40 (25%) is a bigger percent than a fall of ₹10 from ₹50 (20%).",
+            "hi": "प्रतिशत बदलाव = बदलाव ÷ मूल मान × 100। हमेशा उस मान से भाग दो जहाँ से शुरू किया। इसीलिए ₹40 पर ₹10 की बढ़त (25%), ₹50 से ₹10 की कमी (20%) से बड़ा प्रतिशत है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A shop raises a price by 10%, then lowers the new price by 10%. The final price is …",
+                "hi": "दुकान दाम 10% बढ़ाती है, फिर नए दाम को 10% घटाती है। अंतिम दाम …"
+              },
+              "options": [
+                {
+                  "en": "less than the start",
+                  "hi": "शुरुआत से कम"
+                },
+                {
+                  "en": "the same as the start",
+                  "hi": "शुरुआत जितना"
+                },
+                {
+                  "en": "more than the start",
+                  "hi": "शुरुआत से ज़्यादा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "₹100 → ₹110 → ₹110 − ₹11 = ₹99. The second 10% is of a bigger number.",
+                "hi": "₹100 → ₹110 → ₹110 − ₹11 = ₹99। दूसरा 10% बड़ी संख्या का है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The two 10%s are of different amounts (100 and 110), so they do not cancel.",
+                  "hi": "दोनों 10% अलग रक़मों (100 और 110) के हैं, इसलिए कटते नहीं।"
+                },
+                {
+                  "en": "The fall (₹11) is bigger than the rise (₹10), so it ends lower, not higher.",
+                  "hi": "कमी (₹11) बढ़त (₹10) से बड़ी है, इसलिए अंत कम पर होता है, ज़्यादा नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Ask at home how much a litre of milk cost a year ago and now. Work out the percentage increase.",
+            "hi": "घर पर पूछो कि एक साल पहले और अब एक लीटर दूध कितने का है। प्रतिशत वृद्धि निकालो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch01-profit",
+      "topic": "1.3",
+      "template": "money",
+      "title": {
+        "en": "Profit and loss as a percent",
+        "hi": "प्रतिशत में लाभ और हानि"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "profit-loss",
+        "items": [
+          {
+            "name": {
+              "en": "Woollen sweater",
+              "hi": "ऊनी स्वेटर"
+            },
+            "price": 800
+          }
+        ],
+        "rate": 25
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A shopkeeper buys a woollen sweater for ₹800. That is the cost price. The price she sells it for is the selling price.",
+            "hi": "एक दुकानदार ₹800 में एक ऊनी स्वेटर ख़रीदती है। यह क्रय मूल्य है। जिस दाम पर वह इसे बेचती है, वह विक्रय मूल्य है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "She sells it for ₹1,000. Profit percent is profit out of which amount?",
+            "hi": "वह इसे ₹1,000 में बेचती है। लाभ प्रतिशत किस रक़म के आधार पर निकलता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "The cost price, ₹800",
+              "hi": "क्रय मूल्य, ₹800"
+            },
+            {
+              "id": "b",
+              "en": "The selling price, ₹1,000",
+              "hi": "विक्रय मूल्य, ₹1,000"
+            },
+            {
+              "id": "c",
+              "en": "₹100 always",
+              "hi": "हमेशा ₹100"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Work out the profit percent and type it.",
+            "hi": "लाभ प्रतिशत निकालो और लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slider:price",
+          "expect": "moved:price",
+          "say": {
+            "en": "Now slide the selling price below ₹800. Watch profit turn into loss.",
+            "hi": "अब विक्रय मूल्य ₹800 से नीचे खिसकाओ। देखो लाभ हानि में बदलता है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Profit = selling price − cost price = ₹200. Profit % = 200 ÷ 800 × 100 = 25%. If the selling price is less than the cost price, there is a loss, and loss % is also out of the cost price.",
+            "hi": "लाभ = विक्रय मूल्य − क्रय मूल्य = ₹200। लाभ % = 200 ÷ 800 × 100 = 25%। अगर विक्रय मूल्य क्रय मूल्य से कम हो, तो हानि होती है, और हानि % भी क्रय मूल्य पर निकलता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A cycle bought for ₹4,000 is sold for ₹3,600. What is the loss percent?",
+                "hi": "₹4,000 में ख़रीदी साइकिल ₹3,600 में बिकी। हानि प्रतिशत क्या है?"
+              },
+              "options": [
+                "10%",
+                "11.1%",
+                "400%"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Loss = ₹400. 400 ÷ 4000 × 100 = 10%.",
+                "hi": "हानि = ₹400। 400 ÷ 4000 × 100 = 10%।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "11.1% divides by the selling price (3,600). Loss % uses the cost price.",
+                  "hi": "11.1% में विक्रय मूल्य (3,600) से भाग दिया। हानि % क्रय मूल्य से निकलता है।"
+                },
+                {
+                  "en": "400 is the loss in rupees, not a percent.",
+                  "hi": "400 रुपये में हानि है, प्रतिशत नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find the selling price that gives exactly 10% profit on the sweater.",
+            "hi": "स्वेटर पर ठीक 10% लाभ देने वाला विक्रय मूल्य खोजो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch01-discount",
+      "topic": "1.3",
+      "template": "money",
+      "title": {
+        "en": "Sale! How much do you pay?",
+        "hi": "सेल! तुम कितना चुकाओगे?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "discount",
+        "items": [
+          {
+            "name": {
+              "en": "School bag",
+              "hi": "स्कूल बैग"
+            },
+            "price": 1200
+          }
+        ],
+        "rate": 20
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A school bag is marked ₹1,200 and the shop gives 20% off. The marked price is the price on the tag; the discount is taken off it.",
+            "hi": "एक स्कूल बैग पर ₹1,200 लिखा है और दुकान 20% छूट देती है। अंकित मूल्य टैग पर लिखा दाम है; छूट उसी में से घटती है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is 20% off the same as paying 80%?",
+            "hi": "क्या 20% छूट और 80% चुकाना एक ही बात है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Yes",
+              "hi": "हाँ"
+            },
+            {
+              "id": "b",
+              "en": "No",
+              "hi": "नहीं"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Work out what you pay and type it.",
+            "hi": "तुम कितना चुकाओगे, निकालो और लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slider:rate",
+          "expect": "moved:rate",
+          "say": {
+            "en": "Change the discount and watch the price you pay.",
+            "hi": "छूट बदलो और चुकाने वाला दाम देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "20% of ₹1,200 is ₹240, so you pay ₹1,200 − ₹240 = ₹960. A quicker way: you pay 80% of the marked price, 0.8 × 1200 = ₹960. The discount is always worked out on the marked price.",
+            "hi": "₹1,200 का 20% = ₹240, इसलिए तुम ₹1,200 − ₹240 = ₹960 चुकाओगे। आसान तरीक़ा: तुम अंकित मूल्य का 80% चुकाते हो, 0.8 × 1200 = ₹960। छूट हमेशा अंकित मूल्य पर निकाली जाती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Shop A: ₹1,000 shoes at 30% off. Shop B: same shoes, ₹200 off. Which is cheaper?",
+                "hi": "दुकान A: ₹1,000 के जूते 30% छूट पर। दुकान B: वही जूते, ₹200 छूट। कौन सस्ती है?"
+              },
+              "options": [
+                {
+                  "en": "Shop A",
+                  "hi": "दुकान A"
+                },
+                {
+                  "en": "Shop B",
+                  "hi": "दुकान B"
+                },
+                {
+                  "en": "Both the same",
+                  "hi": "दोनों बराबर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "30% of 1000 = ₹300 off, so A costs ₹700 and B costs ₹800.",
+                "hi": "1000 का 30% = ₹300 छूट, इसलिए A में ₹700 और B में ₹800।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹200 off is less than 30% of ₹1,000, which is ₹300.",
+                  "hi": "₹200 छूट, ₹1,000 के 30% यानी ₹300 से कम है।"
+                },
+                {
+                  "en": "₹700 and ₹800 are not the same.",
+                  "hi": "₹700 और ₹800 बराबर नहीं हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Is “50% off, then another 20% off” the same as 70% off? Work it out for the bag, then use the slider to find the single discount that gives the same price.",
+            "hi": "क्या “50% छूट, फिर और 20% छूट”, 70% छूट के बराबर है? बैग के लिए हिसाब लगाओ, फिर स्लाइडर से वह एक छूट खोजो जो वही दाम देती है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch01-compound",
+      "topic": "1.3",
+      "template": "money",
+      "title": {
+        "en": "Money that grows on its growth",
+        "hi": "बढ़त पर भी बढ़ने वाला पैसा"
+      },
+      "minutes": 7,
+      "level": "stretch",
+      "config": {
+        "mode": "compound-interest",
+        "budget": 10000,
+        "rate": 10,
+        "years": 3
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Nani puts ₹10,000 in a bank at 10% a year, compounded yearly. Each year the interest is added and the next year's interest is on the bigger amount.",
+            "hi": "नानी ₹10,000 बैंक में 10% सालाना पर रखती हैं, हर साल चक्रवृद्धि। हर साल ब्याज जुड़ जाता है और अगले साल का ब्याज बड़ी रक़म पर लगता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "After 3 years, will the interest be more than, equal to, or less than ₹3,000?",
+            "hi": "3 साल बाद, ब्याज ₹3,000 से ज़्यादा होगा, बराबर या कम?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "More than ₹3,000",
+              "hi": "₹3,000 से ज़्यादा"
+            },
+            {
+              "id": "b",
+              "en": "Exactly ₹3,000",
+              "hi": "ठीक ₹3,000"
+            },
+            {
+              "id": "c",
+              "en": "Less than ₹3,000",
+              "hi": "₹3,000 से कम"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Work out the compound interest for 3 years and type it.",
+            "hi": "3 साल का चक्रवृद्धि ब्याज निकालो और लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slider:years",
+          "expect": "moved:years",
+          "say": {
+            "en": "Slide the years up to 7. Watch the amount grow faster each year.",
+            "hi": "सालों को 7 तक खिसकाओ। देखो रक़म हर साल और तेज़ी से बढ़ती है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Year 1: ₹10,000 + ₹1,000 = ₹11,000. Year 2: ₹11,000 + ₹1,100 = ₹12,100. Year 3: ₹12,100 + ₹1,210 = ₹13,310. The interest is ₹3,310, more than the ₹3,000 of simple interest. In short, amount = P × (1 + r)ᵗ.",
+            "hi": "साल 1: ₹10,000 + ₹1,000 = ₹11,000। साल 2: ₹11,000 + ₹1,100 = ₹12,100। साल 3: ₹12,100 + ₹1,210 = ₹13,310। ब्याज ₹3,310 है, साधारण ब्याज के ₹3,000 से ज़्यादा। संक्षेप में, मिश्रधन = P × (1 + r)ᵗ।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "₹5,000 at 10% a year, compounded yearly. Amount after 2 years?",
+                "hi": "₹5,000, 10% सालाना चक्रवृद्धि पर। 2 साल बाद मिश्रधन?"
+              },
+              "options": [
+                "₹6,050",
+                "₹6,000",
+                "₹5,500"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "5000 × 1.1 = 5500, then 5500 × 1.1 = 6050.",
+                "hi": "5000 × 1.1 = 5500, फिर 5500 × 1.1 = 6050।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹6,000 is simple interest: ₹500 each year. Compounding adds interest on interest.",
+                  "hi": "₹6,000 साधारण ब्याज है: हर साल ₹500। चक्रवृद्धि में ब्याज पर भी ब्याज लगता है।"
+                },
+                {
+                  "en": "₹5,500 is only after 1 year.",
+                  "hi": "₹5,500 सिर्फ़ 1 साल बाद का है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the rate to 5% and the years to 10. Compare it with 10% for 5 years. Which gives more?",
+            "hi": "दर 5% और साल 10 करो। इसकी तुलना 10% पर 5 साल से करो। किसमें ज़्यादा मिलता है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1.1",
+      "use": "Chapter hook: percentages around us",
+      "shows": "A busy Indian market street with sale banners hanging over shops, banners left blank for the app to add text",
+      "view": "Street level, late afternoon light",
+      "right": "Banners clearly blank; real shopfronts",
+      "avoid": "Readable brand names, faces in close-up"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1.1",
+      "use": "A 10 × 10 hundred grid",
+      "shows": "A wooden tray with 100 small square cells, 40 filled with red beans and 60 empty",
+      "view": "Straight from above",
+      "right": "Exactly 40 filled cells, clean grid",
+      "avoid": "Numbers or labels on the tray"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "1.2",
+      "use": "Nutrition panel style",
+      "shows": "A blank food packet back with an empty table area for nutrients (app adds text)",
+      "view": "Straight on, flat light",
+      "right": "Realistic packet texture",
+      "avoid": "Any real brand, real numbers"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "1.3",
+      "use": "From cost price to selling price",
+      "shows": "Three frames: a woollen sweater on a factory rack, on a wholesale pile, and folded on a shop shelf",
+      "view": "Same angle in each frame, files -f1 -f2 -f3",
+      "right": "Same sweater design in every frame",
+      "avoid": "Price tags, faces, logos"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "1.3",
+      "use": "A sale in a shop",
+      "shows": "A school-bag shop with bags hanging and an empty sale board",
+      "view": "Eye level, bright shop light",
+      "right": "Board blank; bags varied and colourful",
+      "avoid": "Brand names, readable prices"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "1.3",
+      "use": "Savings growing",
+      "shows": "Three stacks of ₹1 coins growing taller in a row beside a small piggy bank",
+      "view": "Low side angle, soft light",
+      "right": "Each stack a bit taller than the last, growing faster",
+      "avoid": "Fake currency designs, text"
+    }
+  ]
+}

@@ -1,0 +1,374 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch10",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Circles",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Introduction: a line and a circle (non-intersecting, secant, tangent)",
+   "labs": [],
+   "why_no_lab": "The three cases are shown by the photos and the reader; the tangent lab at 10.2 lets the child move the line."
+  },
+  {
+   "n": "10.2",
+   "title": "Tangent to a circle: perpendicular to the radius at the point of contact",
+   "labs": [
+    "c10-mathematics-jemh1-ch10-tangent-radius"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Number of tangents from a point on a circle; equal tangents from an outside point",
+   "labs": [
+    "c10-mathematics-jemh1-ch10-two-tangents"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch10-tangent-radius",
+   "topic": "10.2",
+   "template": "shapes",
+   "title": {
+    "en": "A tangent meets the radius at a right angle",
+    "hi": "स्पर्श रेखा त्रिज्या से समकोण बनाती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "circle",
+    "task": "tangent"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tangent touches the circle at P. What angle does it make with the radius OP?",
+      "hi": "एक स्पर्श रेखा वृत्त को P पर छूती है। वह त्रिज्या OP से कितना कोण बनाती है?"
+     },
+     "options": [
+      {
+       "id": "ninety",
+       "en": "90°, always",
+       "hi": "हमेशा 90°"
+      },
+      {
+       "id": "depends",
+       "en": "It depends on where P is",
+       "hi": "P कहाँ है, इस पर निर्भर"
+      },
+      {
+       "id": "fortyfive",
+       "en": "45°",
+       "hi": "45° का"
+      }
+     ],
+     "answer": "ninety"
+    },
+    {
+     "kind": "do",
+     "target": "drag:P",
+     "expect": "proved",
+     "say": {
+      "en": "Drag P around the circle and watch the angle between OP and the tangent.",
+      "hi": "P को वृत्त पर घुमाओ और OP तथा स्पर्श रेखा के बीच का कोण देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A tangent meets the circle at exactly one point, the point of contact. Of all points on the tangent, P is the closest to the centre O, and the shortest line from a point to a line is the perpendicular. So the tangent is at 90° to the radius at P. A secant cuts the circle at two points.",
+      "hi": "स्पर्श रेखा वृत्त से ठीक एक बिंदु पर मिलती है, जिसे स्पर्श बिंदु कहते हैं। स्पर्श रेखा के सभी बिंदुओं में P केंद्र O के सबसे पास है, और किसी बिंदु से रेखा तक सबसे छोटी रेखा लंब होती है। इसलिए P पर स्पर्श रेखा त्रिज्या से 90° बनाती है। छेदक रेखा वृत्त को दो बिंदुओं पर काटती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many tangents can a circle have at one point on it?",
+        "hi": "वृत्त के एक बिंदु पर कितनी स्पर्श रेखाएँ हो सकती हैं?"
+       },
+       "options": [
+        {
+         "en": "Exactly one",
+         "hi": "ठीक एक"
+        },
+        {
+         "en": "Two",
+         "hi": "दो"
+        },
+        {
+         "en": "Infinitely many",
+         "hi": "अनगिनत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only one line through P is at 90° to OP.",
+        "hi": "P से होकर केवल एक ही रेखा OP से 90° बनाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two tangents come from a point outside the circle, not from a point on it.",
+         "hi": "दो स्पर्श रेखाएँ वृत्त के बाहर के बिंदु से आती हैं, उस पर के बिंदु से नहीं।"
+        },
+        {
+         "en": "Many lines pass through P, but all except one cut the circle again.",
+         "hi": "P से अनेक रेखाएँ गुज़रती हैं, पर एक को छोड़ सब वृत्त को फिर काटती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A wheel of radius 35 cm rests on a straight road. What angle does the spoke to the contact point make with the road?",
+        "hi": "35 सेमी त्रिज्या का पहिया सीधी सड़क पर टिका है। स्पर्श बिंदु तक की तीली सड़क से कितना कोण बनाती है?"
+       },
+       "options": [
+        "90°",
+        "35°",
+        "180°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The road is a tangent to the wheel, so the spoke (a radius) is perpendicular to it.",
+        "hi": "सड़क पहिये की स्पर्श रेखा है, इसलिए तीली (त्रिज्या) उस पर लंब है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The radius is a length; it does not set the angle.",
+         "hi": "त्रिज्या एक लंबाई है; यह कोण तय नहीं करती।"
+        },
+        {
+         "en": "180° would mean the spoke lies along the road.",
+         "hi": "180° का मतलब होगा कि तीली सड़क पर ही लेटी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag E far away and close to the circle. Does the right angle at the point of contact ever change?",
+      "hi": "आज़माओ: E को दूर और वृत्त के पास ले जाओ। क्या स्पर्श बिंदु पर समकोण कभी बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch10-two-tangents",
+   "topic": "10.3",
+   "template": "shapes",
+   "title": {
+    "en": "Two tangents from an outside point",
+    "hi": "बाहर के बिंदु से दो स्पर्श रेखाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "circle",
+    "task": "tangent"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "From a point E outside the circle you draw both tangents. How do their lengths compare?",
+      "hi": "वृत्त के बाहर के बिंदु E से दोनों स्पर्श रेखाएँ खींचो। उनकी लंबाइयाँ कैसी होंगी?"
+     },
+     "options": [
+      {
+       "id": "equal",
+       "en": "Equal",
+       "hi": "बराबर"
+      },
+      {
+       "id": "near",
+       "en": "The one nearer the top is longer",
+       "hi": "ऊपर वाली लंबी"
+      },
+      {
+       "id": "differ",
+       "en": "They differ unless E is close",
+       "hi": "E पास न हो तो अलग"
+      }
+     ],
+     "answer": "equal"
+    },
+    {
+     "kind": "do",
+     "target": "drag:E",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag E to different places outside the circle and read EQ and ER.",
+      "hi": "E को वृत्त के बाहर अलग-अलग जगह खींचो और EQ तथा ER पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "From a point outside a circle there are exactly two tangents. Join E to the centre O: the triangles OQE and ORE are right-angled at Q and R, share OE and have OQ = OR (radii). So they are congruent (RHS) and EQ = ER. From a point on the circle there is one tangent, and from a point inside, none.",
+      "hi": "वृत्त के बाहर के बिंदु से ठीक दो स्पर्श रेखाएँ होती हैं। E को केंद्र O से मिलाओ: त्रिभुज OQE और ORE, Q और R पर समकोण हैं, OE साझा है और OQ = OR (त्रिज्याएँ) है। इसलिए वे सर्वांगसम हैं (RHS) और EQ = ER। वृत्त पर के बिंदु से एक स्पर्श रेखा होती है, और अंदर के बिंदु से कोई नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A point is 13 cm from the centre of a circle of radius 5 cm. How long is the tangent from it?",
+        "hi": "एक बिंदु 5 सेमी त्रिज्या वाले वृत्त के केंद्र से 13 सेमी दूर है। उससे स्पर्श रेखा की लंबाई कितनी है?"
+       },
+       "options": [
+        {
+         "en": "12 cm",
+         "hi": "12 सेमी"
+        },
+        {
+         "en": "8 cm",
+         "hi": "8 सेमी"
+        },
+        {
+         "en": "18 cm",
+         "hi": "18 सेमी"
+        },
+        {
+         "en": "√194 cm",
+         "hi": "√194 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The radius meets the tangent at 90°, so tangent² = 13² − 5² = 144, tangent = 12 cm.",
+        "hi": "त्रिज्या स्पर्श रेखा से 90° पर मिलती है, इसलिए स्पर्श रेखा² = 13² − 5² = 144, स्पर्श रेखा = 12 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "13 − 5 subtracts lengths; Pythagoras needs the squares.",
+         "hi": "13 − 5 लंबाइयाँ घटाना है; पाइथागोरस में वर्ग चाहिए।"
+        },
+        {
+         "en": "13 + 5 adds lengths; the tangent is shorter than the line to the centre.",
+         "hi": "13 + 5 लंबाइयाँ जोड़ना है; स्पर्श रेखा केंद्र तक की रेखा से छोटी होती है।"
+        },
+        {
+         "en": "That adds the squares; 13 cm is the hypotenuse, so subtract.",
+         "hi": "इसमें वर्ग जोड़ दिए; 13 सेमी कर्ण है, इसलिए घटाओ।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many tangents can be drawn to a circle from a point inside it?",
+        "hi": "वृत्त के अंदर के बिंदु से उस पर कितनी स्पर्श रेखाएँ खींची जा सकती हैं?"
+       },
+       "options": [
+        {
+         "en": "None",
+         "hi": "कोई नहीं"
+        },
+        {
+         "en": "One",
+         "hi": "एक"
+        },
+        {
+         "en": "Two",
+         "hi": "दो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every line through an inside point cuts the circle at two points, so none is a tangent.",
+        "hi": "अंदर के बिंदु से जाने वाली हर रेखा वृत्त को दो बिंदुओं पर काटती है, इसलिए कोई स्पर्श रेखा नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One tangent is for a point on the circle.",
+         "hi": "एक स्पर्श रेखा वृत्त पर के बिंदु के लिए होती है।"
+        },
+        {
+         "en": "Two tangents are for a point outside the circle.",
+         "hi": "दो स्पर्श रेखाएँ बाहर के बिंदु के लिए होती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: bring E close to the circle. What happens to the two tangent lengths? What happens when E is on the circle?",
+      "hi": "आज़माओ: E को वृत्त के पास लाओ। दोनों स्पर्श रेखाओं की लंबाई का क्या होता है? जब E वृत्त पर हो तब क्या होता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Chapter hook: a wheel on the road",
+   "shows": "A bicycle wheel standing on a smooth straight road, its spokes clear, the contact point with the road sharp",
+   "view": "Side-on at road level, soft daylight",
+   "right": "Wheel round and upright; road straight and flat",
+   "avoid": "Brand names on the tyre, people"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "10.1",
+   "use": "A line meeting a circle in 0, 1 and 2 points",
+   "shows": "Three frames of a steel ring lying on a table with a straight thin rod placed beside it, then touching it, then across it",
+   "view": "From above, same framing",
+   "right": "Rod straight; in the middle frame it touches the ring at one point only",
+   "avoid": "Hands in the frame"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "Two belts from a pulley",
+   "shows": "A water-well pulley wheel with a rope going down on both sides to two buckets, the two rope lengths from the wheel to a meeting knot equal",
+   "view": "Front view, plain background",
+   "right": "Both rope pieces straight and leaving the wheel as tangents",
+   "avoid": "People, brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "10.2",
+   "use": "Bangles as circles",
+   "shows": "A single round glass bangle lying flat with a straight wooden ruler touching its edge at one point",
+   "view": "From above, transparent background",
+   "right": "Bangle perfectly round; ruler touches but does not cross it",
+   "avoid": "Brand names on the ruler"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "10.3",
+   "use": "Base for the two-tangents lab",
+   "shows": "A clean circle drawn with a compass on white paper and a pin stuck outside it",
+   "view": "From above, even light",
+   "right": "Circle clean and closed; pin clearly outside",
+   "avoid": "Lines or labels (the app draws them)"
+  }
+ ]
+}

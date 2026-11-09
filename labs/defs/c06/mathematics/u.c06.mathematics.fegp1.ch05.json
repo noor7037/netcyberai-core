@@ -1,0 +1,799 @@
+{
+ "chapter_key": "u.c06.mathematics.fegp1.ch05",
+ "class": 6,
+ "subject_id": "mathematics",
+ "title": "Prime Time",
+ "source": "https://ncert.nic.in/textbook/pdf/fegp105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Common multiples and common factors",
+   "labs": [
+    "c06-mathematics-fegp1-ch05-idli-vada"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Prime numbers",
+   "labs": [
+    "c06-mathematics-fegp1-ch05-is-prime"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Co-prime numbers for safekeeping treasures",
+   "labs": [
+    "c06-mathematics-fegp1-ch05-co-prime"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Prime factorisation",
+   "labs": [
+    "c06-mathematics-fegp1-ch05-factorise"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Divisibility tests",
+   "labs": [
+    "c06-mathematics-fegp1-ch05-divisible-4"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "Fun with numbers",
+   "labs": [],
+   "why_no_lab": "Number puzzles to think about with a partner; the reader poses them and no lab adds to the reasoning."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-mathematics-fegp1-ch05-idli-vada",
+   "topic": "5.1",
+   "template": "number-line",
+   "title": {
+    "en": "Idli-Vada: common multiples",
+    "hi": "इडली-वड़ा: सार्व गुणज"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 30,
+    "jumps": [
+     3
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:3",
+     "say": {
+      "en": "In the Idli-Vada game, multiples of 3 say “idli”. Tap the forward jump to hop by 3.",
+      "hi": "इडली-वड़ा खेल में 3 के गुणज पर “इडली” बोलते हैं। 3 की छलाँग लगाने के लिए आगे की छलाँग दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Multiples of 5 say “vada”. Which is the first number that says “idli-vada”, a multiple of both 3 and 5?",
+      "hi": "5 के गुणज पर “वड़ा” बोलते हैं। पहली कौन-सी संख्या “इडली-वड़ा” बोलेगी, यानी 3 और 5 दोनों का गुणज?"
+     },
+     "options": [
+      {
+       "id": "15",
+       "en": "15",
+       "hi": "संख्या 15"
+      },
+      {
+       "id": "8",
+       "en": "8",
+       "hi": "संख्या 8"
+      },
+      {
+       "id": "30",
+       "en": "30",
+       "hi": "संख्या 30"
+      }
+     ],
+     "answer": "15"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:15",
+     "say": {
+      "en": "Keep hopping by 3 until you land on 15.",
+      "hi": "3-3 की छलाँगें तब तक लगाओ जब तक 15 पर न पहुँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Hopping by 3 lands on 3, 6, 9, 12, 15. Hopping by 5 would land on 5, 10, 15. 15 is on both lists, so it is a common multiple of 3 and 5, and the smallest one. The next is 30.",
+      "hi": "3 की छलाँगें 3, 6, 9, 12, 15 पर पड़ती हैं। 5 की छलाँगें 5, 10, 15 पर पड़तीं। 15 दोनों सूचियों में है, इसलिए यह 3 और 5 का सार्व गुणज है, और सबसे छोटा। अगला 30 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number is a common multiple of 4 and 6?",
+        "hi": "कौन-सी संख्या 4 और 6 का सार्व गुणज है?"
+       },
+       "options": [
+        "12",
+        "10",
+        "18"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "12 = 4 × 3 and 12 = 6 × 2.",
+        "hi": "12 = 4 × 3 और 12 = 6 × 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "10 = 4 + 6, but it is not a multiple of 4 or of 6.",
+         "hi": "10 = 4 + 6 है, पर यह न 4 का गुणज है न 6 का।"
+        },
+        {
+         "en": "18 is a multiple of 6, but 18 ÷ 4 leaves a remainder.",
+         "hi": "18, 6 का गुणज है, पर 18 ÷ 4 में शेष बचता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is 3 a factor of 15?",
+        "hi": "क्या 3, 15 का गुणनखंड है?"
+       },
+       "options": [
+        {
+         "en": "Yes, 15 = 3 × 5",
+         "hi": "हाँ, 15 = 3 × 5"
+        },
+        {
+         "en": "No, 3 is smaller",
+         "hi": "नहीं, 3 छोटा है"
+        },
+        {
+         "en": "No, 15 is odd",
+         "hi": "नहीं, 15 विषम है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 divides 15 exactly, five times, so 3 is a factor and 15 is a multiple of 3.",
+        "hi": "3, 15 को ठीक पाँच बार में बाँटता है, इसलिए 3 गुणनखंड है और 15, 3 का गुणज है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Factors are usually smaller than the number; being smaller is not a problem.",
+         "hi": "गुणनखंड आमतौर पर संख्या से छोटे होते हैं; छोटा होना कोई समस्या नहीं।"
+        },
+        {
+         "en": "Odd numbers have factors too; only 2 cannot be a factor of an odd number.",
+         "hi": "विषम संख्याओं के भी गुणनखंड होते हैं; केवल 2 विषम संख्या का गुणनखंड नहीं हो सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Keep hopping by 3 to 30. Which landing spots are also multiples of 5?",
+      "hi": "अब ख़ुद आज़माओ। 3-3 की छलाँगें 30 तक लगाओ। कौन-से पड़ाव 5 के भी गुणज हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch05-is-prime",
+   "topic": "5.2",
+   "template": "code",
+   "title": {
+    "en": "Is 13 a prime number?",
+    "hi": "क्या 13 एक अभाज्य संख्या है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "flowchart",
+    "program": [
+     "n = 13",
+     "count = 0",
+     "for d in range(1, n + 1):",
+     "    if n % d == 0:",
+     "        count = count + 1",
+     "print(count)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This flowchart tries every number d from 1 to 13 and counts the ones that divide 13 exactly. What count will it print?",
+      "hi": "यह फ़्लोचार्ट 1 से 13 तक हर संख्या d आज़माता है और उन्हें गिनता है जो 13 को ठीक-ठीक बाँटती हैं। यह कितनी गिनती छापेगा?"
+     },
+     "options": [
+      {
+       "id": "2",
+       "en": "2",
+       "hi": "गिनती 2"
+      },
+      {
+       "id": "1",
+       "en": "1",
+       "hi": "गिनती 1"
+      },
+      {
+       "id": "13",
+       "en": "13",
+       "hi": "गिनती 13"
+      }
+     ],
+     "answer": "2"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to follow the flowchart one box at a time.",
+      "hi": "फ़्लोचार्ट को एक-एक डिब्बा करके चलाने के लिए स्टेप दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to finish the flowchart.",
+      "hi": "फ़्लोचार्ट पूरा करने के लिए रन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the flowchart.",
+      "hi": "फ़्लोचार्ट के बारे में पूछे गए प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Only 1 and 13 divide 13 exactly, so the count is 2. A number with exactly two factors, 1 and itself, is a prime number. A number with more than two factors, like 12, is a composite number. 1 has only one factor, so it is neither.",
+      "hi": "केवल 1 और 13 ही 13 को ठीक-ठीक बाँटते हैं, इसलिए गिनती 2 है। जिस संख्या के ठीक दो गुणनखंड हों, 1 और वह स्वयं, वह अभाज्य संख्या है। जिसके दो से ज़्यादा गुणनखंड हों, जैसे 12, वह भाज्य संख्या है। 1 का केवल एक गुणनखंड है, इसलिए वह दोनों में से कुछ नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a prime number?",
+        "hi": "इनमें से कौन-सी अभाज्य संख्या है?"
+       },
+       "options": [
+        "29",
+        "21",
+        "27"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "29 has only the factors 1 and 29.",
+        "hi": "29 के केवल 1 और 29 गुणनखंड हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "21 = 3 × 7, so it has 4 factors.",
+         "hi": "21 = 3 × 7, इसलिए इसके 4 गुणनखंड हैं।"
+        },
+        {
+         "en": "27 = 3 × 9, so it is composite.",
+         "hi": "27 = 3 × 9, इसलिए यह भाज्य है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If the flowchart used n = 12, what would the count be?",
+        "hi": "अगर फ़्लोचार्ट में n = 12 होता, तो गिनती क्या होती?"
+       },
+       "options": [
+        "6",
+        "2",
+        "12"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "12 has 6 factors: 1, 2, 3, 4, 6, 12.",
+        "hi": "12 के 6 गुणनखंड हैं: 1, 2, 3, 4, 6, 12।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 would mean 12 is prime, but 2, 3, 4 and 6 also divide it.",
+         "hi": "2 का मतलब होता कि 12 अभाज्य है, पर 2, 3, 4 और 6 भी उसे बाँटते हैं।"
+        },
+        {
+         "en": "12 counts every number tried, not only those that divide 12.",
+         "hi": "12 हर आज़माई गई संख्या को गिनता है, केवल बाँटने वालों को नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. On paper, check 15, 17 and 19 the same way. Which are prime?",
+      "hi": "अब ख़ुद आज़माओ। काग़ज़ पर 15, 17 और 19 को इसी तरह जाँचो। कौन-सी अभाज्य हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch05-co-prime",
+   "topic": "5.3",
+   "template": "code",
+   "title": {
+    "en": "Are 15 and 28 co-prime?",
+    "hi": "क्या 15 और 28 सह-अभाज्य हैं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flowchart",
+    "program": [
+     "for d in range(1, 16):",
+     "    if 15 % d == 0 and 28 % d == 0:",
+     "        print(d)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The flowchart prints every number that divides both 15 and 28. Neither 15 nor 28 is prime. What will it print?",
+      "hi": "फ़्लोचार्ट हर वह संख्या छापता है जो 15 और 28 दोनों को बाँटती है। न 15 अभाज्य है, न 28। यह क्या छापेगा?"
+     },
+     "options": [
+      {
+       "id": "1",
+       "en": "Only 1",
+       "hi": "केवल 1"
+      },
+      {
+       "id": "1-2",
+       "en": "1 and 2",
+       "hi": "1 और 2"
+      },
+      {
+       "id": "1-5",
+       "en": "1, 3 and 5",
+       "hi": "1, 3 और 5"
+      }
+     ],
+     "answer": "1"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to let the flowchart test every number.",
+      "hi": "हर संख्या जाँचने के लिए रन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about what was printed.",
+      "hi": "जो छपा उसके बारे में प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "15 = 3 × 5 and 28 = 2 × 2 × 7. They share no prime factor, so their only common factor is 1. Two numbers whose only common factor is 1 are called co-prime, even when neither of them is prime.",
+      "hi": "15 = 3 × 5 और 28 = 2 × 2 × 7। इनमें कोई साझा अभाज्य गुणनखंड नहीं है, इसलिए इनका एकमात्र सार्व गुणनखंड 1 है। जिन दो संख्याओं का एकमात्र सार्व गुणनखंड 1 हो, वे सह-अभाज्य कहलाती हैं, भले ही उनमें से कोई अभाज्य न हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which pair is co-prime?",
+        "hi": "कौन-सा जोड़ा सह-अभाज्य है?"
+       },
+       "options": [
+        {
+         "en": "8 and 9",
+         "hi": "8 और 9"
+        },
+        {
+         "en": "6 and 9",
+         "hi": "6 और 9"
+        },
+        {
+         "en": "10 and 15",
+         "hi": "10 और 15"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "8 = 2 × 2 × 2 and 9 = 3 × 3 share no factor except 1.",
+        "hi": "8 = 2 × 2 × 2 और 9 = 3 × 3 में 1 के सिवा कोई साझा गुणनखंड नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 and 9 both divide by 3.",
+         "hi": "6 और 9 दोनों 3 से बँटते हैं।"
+        },
+        {
+         "en": "10 and 15 both divide by 5.",
+         "hi": "10 और 15 दोनों 5 से बँटते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Think of two even numbers. Can they ever be co-prime? Why not?",
+      "hi": "अब ख़ुद आज़माओ। दो सम संख्याएँ सोचो। क्या वे कभी सह-अभाज्य हो सकती हैं? क्यों नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch05-factorise",
+   "topic": "5.4",
+   "template": "code",
+   "title": {
+    "en": "Prime factors of 60",
+    "hi": "60 के अभाज्य गुणनखंड"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "flowchart",
+    "program": [
+     "n = 60",
+     "d = 2",
+     "while n > 1:",
+     "    if n % d == 0:",
+     "        print(d)",
+     "        n = n // d",
+     "    else:",
+     "        d = d + 1"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The flowchart keeps dividing 60 by the smallest number that goes in exactly, and prints it. What is the first number it prints?",
+      "hi": "फ़्लोचार्ट 60 को बार-बार उस सबसे छोटी संख्या से भाग देता है जो ठीक-ठीक बाँटे, और उसे छापता है। सबसे पहले कौन-सी संख्या छपेगी?"
+     },
+     "options": [
+      {
+       "id": "2",
+       "en": "2",
+       "hi": "संख्या 2"
+      },
+      {
+       "id": "6",
+       "en": "6",
+       "hi": "संख्या 6"
+      },
+      {
+       "id": "10",
+       "en": "10",
+       "hi": "संख्या 10"
+      }
+     ],
+     "answer": "2"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to follow the flowchart one box at a time.",
+      "hi": "फ़्लोचार्ट को एक-एक डिब्बा करके चलाने के लिए स्टेप दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to finish dividing.",
+      "hi": "भाग पूरा करने के लिए रन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the flowchart.",
+      "hi": "फ़्लोचार्ट के बारे में पूछे गए प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "It prints 2, 2, 3, 5: 60 ÷ 2 = 30, 30 ÷ 2 = 15, 15 ÷ 3 = 5, 5 ÷ 5 = 1. So 60 = 2 × 2 × 3 × 5. Every number bigger than 1 can be written as a product of primes in just one way, apart from the order.",
+      "hi": "यह 2, 2, 3, 5 छापता है: 60 ÷ 2 = 30, 30 ÷ 2 = 15, 15 ÷ 3 = 5, 5 ÷ 5 = 1। इसलिए 60 = 2 × 2 × 3 × 5। 1 से बड़ी हर संख्या को अभाज्य संख्याओं के गुणनफल के रूप में केवल एक ही तरह से लिखा जा सकता है, क्रम को छोड़कर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the prime factorisation of 36?",
+        "hi": "36 का अभाज्य गुणनखंडन क्या है?"
+       },
+       "options": [
+        "2 × 2 × 3 × 3",
+        "4 × 9",
+        "6 × 6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All the factors are prime: 2, 2, 3, 3, and 2 × 2 × 3 × 3 = 36.",
+        "hi": "सारे गुणनखंड अभाज्य हैं: 2, 2, 3, 3, और 2 × 2 × 3 × 3 = 36।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 and 9 are not prime; break them into 2 × 2 and 3 × 3.",
+         "hi": "4 और 9 अभाज्य नहीं हैं; उन्हें 2 × 2 और 3 × 3 में तोड़ो।"
+        },
+        {
+         "en": "6 is not prime; 6 = 2 × 3.",
+         "hi": "6 अभाज्य नहीं है; 6 = 2 × 3।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. On paper, find the prime factors of 84 by dividing by the smallest prime each time.",
+      "hi": "अब ख़ुद आज़माओ। काग़ज़ पर हर बार सबसे छोटी अभाज्य संख्या से भाग देकर 84 के अभाज्य गुणनखंड निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch05-divisible-4",
+   "topic": "5.5",
+   "template": "number-line",
+   "title": {
+    "en": "Divisible by 4: look at the last two digits",
+    "hi": "4 से विभाज्यता: आख़िरी दो अंक देखो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 100,
+    "max": 140,
+    "start": 100,
+    "jumps": [
+     4
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:104",
+     "say": {
+      "en": "Start at 100 and tap the forward jump to hop by 4.",
+      "hi": "100 से शुरू करके 4 की छलाँग लगाने के लिए आगे की छलाँग दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "100 is divisible by 4. Will 116 be one of your landing spots?",
+      "hi": "100, 4 से विभाज्य है। क्या 116 तुम्हारे पड़ावों में आएगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, because 16 is a multiple of 4",
+       "hi": "हाँ, क्योंकि 16, 4 का गुणज है"
+      },
+      {
+       "id": "no",
+       "en": "No, because 116 is not even",
+       "hi": "नहीं, क्योंकि 116 सम नहीं है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:116",
+     "say": {
+      "en": "Keep hopping by 4 until you land on 116.",
+      "hi": "4-4 की छलाँगें तब तक लगाओ जब तक 116 पर न पहुँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "100 is 25 fours, so every hundred is divisible by 4. That means only the last two digits decide: 116 is divisible by 4 because 16 is. In the same way a number ends in 0 or 5 when divisible by 5, and in 0 when divisible by 10.",
+      "hi": "100 में 25 चौके हैं, इसलिए हर सैकड़ा 4 से विभाज्य है। इसका मतलब केवल आख़िरी दो अंक तय करते हैं: 116, 4 से विभाज्य है क्योंकि 16 है। इसी तरह 5 से विभाज्य संख्या 0 या 5 पर ख़त्म होती है, और 10 से विभाज्य संख्या 0 पर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number is divisible by 4?",
+        "hi": "कौन-सी संख्या 4 से विभाज्य है?"
+       },
+       "options": [
+        "1932",
+        "1934",
+        "1942"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The last two digits are 32 and 32 = 4 × 8.",
+        "hi": "आख़िरी दो अंक 32 हैं और 32 = 4 × 8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "34 is even but 34 ÷ 4 leaves 2.",
+         "hi": "34 सम है पर 34 ÷ 4 में 2 बचता है।"
+        },
+        {
+         "en": "42 ÷ 4 leaves 2, so 1942 is not divisible by 4.",
+         "hi": "42 ÷ 4 में 2 बचता है, इसलिए 1942, 4 से विभाज्य नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we not need the hundreds digit to test for 4?",
+        "hi": "4 की जाँच के लिए सैकड़े का अंक क्यों नहीं चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Every hundred divides by 4",
+         "hi": "हर सैकड़ा 4 से बँटता है"
+        },
+        {
+         "en": "The hundreds digit is always 0",
+         "hi": "सैकड़े का अंक हमेशा 0 होता है"
+        },
+        {
+         "en": "4 is smaller than 100",
+         "hi": "4, 100 से छोटा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "100 = 4 × 25, so any number of hundreds is a multiple of 4.",
+        "hi": "100 = 4 × 25, इसलिए कितने भी सैकड़े 4 के गुणज होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The hundreds digit can be anything; it just does not matter for 4.",
+         "hi": "सैकड़े का अंक कुछ भी हो सकता है; बस 4 की जाँच में उससे फ़र्क़ नहीं पड़ता।"
+        },
+        {
+         "en": "3 is smaller than 100 too, yet the test for 3 needs all the digits.",
+         "hi": "3 भी 100 से छोटा है, फिर भी 3 की जाँच में सारे अंक चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Hop on to 140. Write the last two digits of every landing spot. What do you notice?",
+      "hi": "अब ख़ुद आज़माओ। 140 तक छलाँगें लगाओ। हर पड़ाव के आख़िरी दो अंक लिखो। तुम्हें क्या दिखता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Chapter hook: the Idli-Vada game",
+   "shows": "Children sitting in a circle on a school veranda playing a counting game, one with a hand raised",
+   "view": "Slightly high angle, children seen from behind and side",
+   "right": "Circle clear; even mix of girls and boys",
+   "avoid": "Faces, school names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Idli and vada",
+   "shows": "A plate with soft white idlis and golden medu vadas",
+   "view": "Three-quarter top view, transparent background",
+   "right": "Real South Indian idli and vada with the hole",
+   "avoid": "Brand names, cutlery logos"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "5.2",
+   "use": "Primes as rectangles",
+   "shows": "Twelve buttons arranged as 1 × 12, 2 × 6 and 3 × 4 rectangles, then thirteen buttons that only make a 1 × 13 row",
+   "view": "Top-down, same buttons, same light in every frame",
+   "right": "Counts exact; rows straight",
+   "avoid": "Hands"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "5.3",
+   "use": "Treasure box",
+   "shows": "A small old wooden treasure chest with a brass latch, slightly open",
+   "view": "Three-quarter front view, transparent background",
+   "right": "Real wood grain and brass",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "5.4",
+   "use": "Factor tree base",
+   "shows": "An empty factor tree: one circle at the top branching twice into circles, clean lines on white",
+   "view": "Flat, centred",
+   "right": "Branches evenly spaced, room for numbers",
+   "avoid": "Any numbers or text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "5.5",
+   "use": "Divisibility in daily life",
+   "shows": "Laddoos packed in boxes of 4 on a sweet-shop counter, one box open",
+   "view": "Eye level, warm light",
+   "right": "Each box holds exactly 4 laddoos",
+   "avoid": "Shop names, faces"
+  }
+ ]
+}

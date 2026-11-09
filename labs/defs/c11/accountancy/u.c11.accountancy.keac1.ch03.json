@@ -1,0 +1,1042 @@
+{
+ "chapter_key": "u.c11.accountancy.keac1.ch03",
+ "class": 11,
+ "subject_id": "accountancy",
+ "title": "Recording of Transactions - I",
+ "source": "https://ncert.nic.in/textbook/pdf/keac103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Source documents and vouchers; preparing accounting vouchers",
+   "labs": [],
+   "why_no_lab": "Cash memos, bills and vouchers are best learnt from clear photos of real documents in the reader; there is no entry to move."
+  },
+  {
+   "n": "3.2",
+   "title": "Accounting equation",
+   "labs": [
+    "c11-accountancy-keac1-ch03-equation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Using debit and credit: the rules of debit and credit",
+   "labs": [
+    "c11-accountancy-keac1-ch03-rules"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Books of original entry: the journal",
+   "labs": [
+    "c11-accountancy-keac1-ch03-credit-purchase"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "The ledger and the classification of ledger accounts",
+   "labs": [],
+   "why_no_lab": "The kinds of account are practised in the rules lab (3.3), where the traditional rules name each one personal, real or nominal, and the posting lab (3.6) uses the ledger itself."
+  },
+  {
+   "n": "3.6",
+   "title": "Posting from the journal to the ledger, and balancing",
+   "labs": [
+    "c11-accountancy-keac1-ch03-posting"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-accountancy-keac1-ch03-equation",
+   "topic": "3.2",
+   "template": "ledger",
+   "title": {
+    "en": "The accounting equation",
+    "hi": "लेखांकन समीकरण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "equation",
+    "business": {
+     "en": "Rohit Shoe House",
+     "hi": "रोहित शू हाउस"
+    },
+    "accounts": [
+     {
+      "id": "lata",
+      "name": {
+       "en": "Lata Leather Works",
+       "hi": "लता लेदर वर्क्स"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-04-01",
+      "text": {
+       "en": "Rohit starts the business with cash",
+       "hi": "रोहित नकद लगाकर व्यापार शुरू करता है"
+      },
+      "amount": 60000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2024-04-02",
+      "text": {
+       "en": "Buys shoes for cash",
+       "hi": "नकद में जूते ख़रीदता है"
+      },
+      "amount": 20000,
+      "debit": "stock",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2024-04-05",
+      "text": {
+       "en": "Buys shoes on credit from Lata Leather Works",
+       "hi": "लता लेदर वर्क्स से उधार जूते ख़रीदता है"
+      },
+      "amount": 10000,
+      "debit": "stock",
+      "credit": "lata"
+     },
+     {
+      "id": "t4",
+      "date": "2024-04-15",
+      "text": {
+       "en": "Pays Lata Leather Works part of the amount in cash",
+       "hi": "लता लेदर वर्क्स को कुछ राशि नकद चुकाता है"
+      },
+      "amount": 6000,
+      "debit": "lata",
+      "credit": "cash"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t1",
+     "say": {
+      "en": "Tap “Post to the equation” to start Rohit’s business.",
+      "hi": "रोहित का व्यापार शुरू करने के लिए “समीकरण में दर्ज करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "txn:t2",
+     "expect": "selected:t2",
+     "say": {
+      "en": "Tap the transaction “Buys shoes for cash”.",
+      "hi": "लेन-देन “नकद में जूते ख़रीदता है” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rohit pays ₹20,000 cash for shoes to sell. What will his total assets be?",
+      "hi": "रोहित बेचने के लिए ₹20,000 नकद देकर जूते ख़रीदता है। उसकी कुल परिसंपत्तियाँ कितनी होंगी?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "Still ₹60,000",
+       "hi": "अब भी ₹60,000"
+      },
+      {
+       "id": "up",
+       "en": "It rises to ₹80,000",
+       "hi": "बढ़कर ₹80,000"
+      },
+      {
+       "id": "down",
+       "en": "It falls to ₹40,000",
+       "hi": "घटकर ₹40,000"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t2",
+     "say": {
+      "en": "Tap “Post to the equation”.",
+      "hi": "“समीकरण में दर्ज करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t3",
+     "say": {
+      "en": "Tap “Post to the equation” again for the credit purchase.",
+      "hi": "उधार ख़रीद के लिए फिर से “समीकरण में दर्ज करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer below the scale: what is the capital now?",
+      "hi": "तराज़ू के नीचे उत्तर दो: अब पूँजी कितनी है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Buying shoes for cash swaps one asset for another: stock up ₹20,000, cash down ₹20,000, total still ₹60,000. Buying on credit adds an asset and a liability together. Either way Assets = Liabilities + Capital still holds. That is the accounting equation, and every transaction keeps it true.",
+      "hi": "नकद में जूते ख़रीदना एक परिसंपत्ति को दूसरी से बदलना है: स्टॉक ₹20,000 बढ़ा, नकद ₹20,000 घटा, कुल अब भी ₹60,000। उधार ख़रीदने से एक परिसंपत्ति और एक देयता साथ-साथ बढ़ती हैं। दोनों में परिसंपत्तियाँ = देयताएँ + पूँजी बना रहता है। यही लेखांकन समीकरण है, और हर लेन-देन इसे सही रखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Rohit pays Lata Leather Works ₹6,000 in cash. What happens?",
+        "hi": "रोहित लता लेदर वर्क्स को ₹6,000 नकद देता है। क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "Assets and liabilities both fall by ₹6,000",
+         "hi": "परिसंपत्तियाँ और देयताएँ दोनों ₹6,000 घटेंगी"
+        },
+        {
+         "en": "Assets fall and capital falls",
+         "hi": "परिसंपत्तियाँ घटेंगी और पूँजी घटेगी"
+        },
+        {
+         "en": "Liabilities fall and capital rises",
+         "hi": "देयताएँ घटेंगी और पूँजी बढ़ेगी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cash goes out and the debt to Lata Leather Works goes down by the same amount.",
+        "hi": "नकद जाता है और लता लेदर वर्क्स का क़र्ज़ उतना ही घटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Paying a creditor is not a loss to the owner: the debt goes away together with the cash.",
+         "hi": "लेनदार को चुकाना स्वामी की हानि नहीं है: नकद के साथ क़र्ज़ भी चला जाता है।"
+        },
+        {
+         "en": "Capital does not change; only the cash and the amount owed fall.",
+         "hi": "पूँजी नहीं बदलती; केवल नकद और देय राशि घटती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which transaction changes neither side’s total?",
+        "hi": "किस लेन-देन से किसी पक्ष का योग नहीं बदलता?"
+       },
+       "options": [
+        {
+         "en": "Buying shoes for cash",
+         "hi": "नकद में जूते ख़रीदना"
+        },
+        {
+         "en": "Buying shoes on credit",
+         "hi": "उधार जूते ख़रीदना"
+        },
+        {
+         "en": "The owner bringing in more cash",
+         "hi": "स्वामी का और नकद लाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One asset goes up and another goes down by the same amount.",
+        "hi": "एक परिसंपत्ति बढ़ती है और दूसरी उतनी ही घटती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A credit purchase raises assets and liabilities together.",
+         "hi": "उधार ख़रीद से परिसंपत्तियाँ और देयताएँ साथ-साथ बढ़ती हैं।"
+        },
+        {
+         "en": "More capital raises both assets and capital.",
+         "hi": "अधिक पूँजी से परिसंपत्तियाँ और पूँजी दोनों बढ़ती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Post the payment to Lata Leather Works. Both totals fall, yet the scale stays level. Can you explain why?",
+      "hi": "लता लेदर वर्क्स का भुगतान दर्ज करो। दोनों योग घटते हैं, फिर भी तराज़ू बराबर रहता है। क्या तुम बता सकते हो क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch03-rules",
+   "topic": "3.3",
+   "template": "ledger",
+   "title": {
+    "en": "Modern and traditional rules",
+    "hi": "आधुनिक और पारंपरिक नियम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Meena General Store",
+     "hi": "मीना जनरल स्टोर"
+    },
+    "rules": "modern",
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-05-02",
+      "text": {
+       "en": "Sold goods for cash",
+       "hi": "नकद में माल बेचा"
+      },
+      "amount": 8000,
+      "debit": "cash",
+      "credit": "sales"
+     },
+     {
+      "id": "t2",
+      "date": "2024-05-04",
+      "text": {
+       "en": "Paid shop rent in cash",
+       "hi": "दुकान का किराया नकद दिया"
+      },
+      "amount": 3000,
+      "debit": "rent",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2024-05-06",
+      "text": {
+       "en": "Bought goods for cash",
+       "hi": "नकद में माल ख़रीदा"
+      },
+      "amount": 5000,
+      "debit": "purchases",
+      "credit": "cash"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "With nothing chosen, tap “Record entry”: the book shows how the first entry is written.",
+      "hi": "कुछ चुने बिना “प्रविष्टि दर्ज करो” दबाओ: पुस्तक दिखाएगी कि पहली प्रविष्टि कैसे लिखते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rules",
+     "expect": "rules:traditional",
+     "say": {
+      "en": "Tap the Rules button to read the same entry in the traditional rules.",
+      "hi": "वही प्रविष्टि पारंपरिक नियमों में पढ़ने के लिए नियम वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next is rent paid in cash. In the traditional rules, which kind of account is Rent?",
+      "hi": "अगला है नकद दिया किराया। पारंपरिक नियमों में किराया किस प्रकार का खाता है?"
+     },
+     "options": [
+      {
+       "id": "nominal",
+       "en": "Nominal: an expense",
+       "hi": "नाममात्र: एक व्यय"
+      },
+      {
+       "id": "real",
+       "en": "Real: a thing we own",
+       "hi": "वास्तविक: हमारी कोई वस्तु"
+      },
+      {
+       "id": "personal",
+       "en": "Personal: a person",
+       "hi": "व्यक्तिगत: कोई व्यक्ति"
+      }
+     ],
+     "answer": "nominal"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t2",
+     "say": {
+      "en": "Tap “Record entry” to see the rent entry with its traditional rule.",
+      "hi": "किराए की प्रविष्टि और उसका पारंपरिक नियम देखने के लिए “प्रविष्टि दर्ज करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rules",
+     "expect": "rules:modern",
+     "say": {
+      "en": "Tap Rules again to go back to the modern rules.",
+      "hi": "आधुनिक नियमों पर लौटने के लिए फिर से नियम वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Both sets of rules give the same entry. The modern rules ask what kind of account it is: assets, expenses and drawings increase on the debit side; liabilities, capital and incomes increase on the credit side. The traditional rules ask: personal (debit the receiver, credit the giver), real (debit what comes in, credit what goes out) or nominal (debit expenses and losses, credit incomes and gains).",
+      "hi": "दोनों तरह के नियम एक ही प्रविष्टि देते हैं। आधुनिक नियम पूछते हैं कि खाता किस प्रकार का है: परिसंपत्तियाँ, व्यय और आहरण नाम पक्ष में बढ़ते हैं; देयताएँ, पूँजी और आय जमा पक्ष में बढ़ती हैं। पारंपरिक नियम पूछते हैं: व्यक्तिगत (पाने वाले को नाम, देने वाले को जमा), वास्तविक (जो आए उसे नाम, जो जाए उसे जमा) या नाममात्र (व्यय और हानि नाम, आय और लाभ जमा)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the modern rules, an increase in capital is recorded on the …",
+        "hi": "आधुनिक नियमों में पूँजी में वृद्धि किस पक्ष में लिखी जाती है?"
+       },
+       "options": [
+        {
+         "en": "debit side",
+         "hi": "नाम पक्ष"
+        },
+        {
+         "en": "credit side",
+         "hi": "जमा पक्ष"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Capital, like liabilities and incomes, increases on the credit side.",
+        "hi": "पूँजी, देयताओं और आय की तरह, जमा पक्ष में बढ़ती है।"
+       },
+       "wrong": [
+        {
+         "en": "The debit side increases assets, expenses and drawings. Capital is the owner’s claim and rises on the credit side.",
+         "hi": "नाम पक्ष परिसंपत्तियाँ, व्यय और आहरण बढ़ाता है। पूँजी स्वामी का दावा है और जमा पक्ष में बढ़ती है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Cash is a real account. When cash comes into the business, Cash is …",
+        "hi": "रोकड़ एक वास्तविक खाता है। जब नकद व्यापार में आता है, तो रोकड़ खाता …"
+       },
+       "options": [
+        {
+         "en": "debited",
+         "hi": "नाम होता है"
+        },
+        {
+         "en": "credited",
+         "hi": "जमा होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "For a real account: debit what comes in.",
+        "hi": "वास्तविक खाते के लिए: जो आए उसे नाम करो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Credit is for what goes out. Here cash comes in.",
+         "hi": "जमा उसके लिए है जो बाहर जाए। यहाँ नकद आ रहा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Gupta Traders, a supplier, gives the shop goods on credit. In the traditional rules, Gupta Traders is …",
+        "hi": "आपूर्तिकर्ता गुप्ता ट्रेडर्स दुकान को उधार माल देता है। पारंपरिक नियमों में गुप्ता ट्रेडर्स …"
+       },
+       "options": [
+        {
+         "en": "credited: a personal account that gives",
+         "hi": "जमा होगा: देने वाला व्यक्तिगत खाता"
+        },
+        {
+         "en": "debited: a personal account that receives",
+         "hi": "नाम होगा: पाने वाला व्यक्तिगत खाता"
+        },
+        {
+         "en": "not recorded until paid",
+         "hi": "भुगतान तक दर्ज नहीं होगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gupta Traders gives the goods, and the giver is credited.",
+        "hi": "गुप्ता ट्रेडर्स माल देता है, और देने वाले को जमा करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The shop receives the goods; Gupta Traders gives them. The receiver here is the shop’s Purchases account.",
+         "hi": "माल दुकान पाती है; गुप्ता ट्रेडर्स देता है। यहाँ पाने वाला दुकान का क्रय खाता है।"
+        },
+        {
+         "en": "A credit transaction is recorded on the day it happens, not on the day of payment.",
+         "hi": "उधार लेन-देन उसी दिन दर्ज होता है जिस दिन वह होता है, भुगतान वाले दिन नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the cash purchase yourself: tap it, choose the two accounts, Debit and Credit, then Record entry. Switch the rules to read both reasons.",
+      "hi": "नकद ख़रीद ख़ुद दर्ज करो: उस पर टैप करो, दोनों खाते चुनो, नाम और जमा करो, फिर प्रविष्टि दर्ज करो। दोनों कारण पढ़ने के लिए नियम बदलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch03-credit-purchase",
+   "topic": "3.4",
+   "template": "ledger",
+   "title": {
+    "en": "Write a journal entry",
+    "hi": "रोज़नामचा प्रविष्टि लिखो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Meena General Store",
+     "hi": "मीना जनरल स्टोर"
+    },
+    "accounts": [
+     {
+      "id": "gupta",
+      "name": {
+       "en": "Gupta Traders",
+       "hi": "गुप्ता ट्रेडर्स"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-05-06",
+      "text": {
+       "en": "Bought goods on credit from Gupta Traders",
+       "hi": "गुप्ता ट्रेडर्स से उधार माल ख़रीदा"
+      },
+      "amount": 15000,
+      "debit": "purchases",
+      "credit": "gupta"
+     },
+     {
+      "id": "t2",
+      "date": "2024-05-20",
+      "text": {
+       "en": "Paid Gupta Traders in cash",
+       "hi": "गुप्ता ट्रेडर्स को नकद भुगतान किया"
+      },
+      "amount": 15000,
+      "debit": "gupta",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2024-05-22",
+      "text": {
+       "en": "Bought a computer for the shop, paying by cheque",
+       "hi": "दुकान के लिए चेक से कंप्यूटर ख़रीदा"
+      },
+      "amount": 32000,
+      "debit": "computer",
+      "credit": "bank"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the transaction “Bought goods on credit from Gupta Traders”.",
+      "hi": "लेन-देन “गुप्ता ट्रेडर्स से उधार माल ख़रीदा” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Goods for sale come in on credit from Gupta Traders. Which account is debited?",
+      "hi": "बेचने का माल गुप्ता ट्रेडर्स से उधार आता है। कौन-सा खाता नाम होगा?"
+     },
+     "options": [
+      {
+       "id": "purchases",
+       "en": "Purchases",
+       "hi": "क्रय"
+      },
+      {
+       "id": "gupta",
+       "en": "Gupta Traders",
+       "hi": "गुप्ता ट्रेडर्स"
+      },
+      {
+       "id": "cash",
+       "en": "Cash",
+       "hi": "रोकड़"
+      }
+     ],
+     "answer": "purchases"
+    },
+    {
+     "kind": "do",
+     "target": "account:purchases",
+     "expect": "chose:purchases",
+     "say": {
+      "en": "Tap the Purchases account chip.",
+      "hi": "क्रय खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Purchases on the debit side.",
+      "hi": "क्रय को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:gupta",
+     "expect": "chose:gupta",
+     "say": {
+      "en": "Now tap the Gupta Traders account chip.",
+      "hi": "अब गुप्ता ट्रेडर्स खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Gupta Traders on the credit side.",
+      "hi": "गुप्ता ट्रेडर्स को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Goods bought to sell are debited to Purchases, an expense in the modern rules. Gupta Traders gave the goods and is now owed ₹15,000, so Gupta Traders, a creditor, is credited. The journal writes it as “Purchases A/c Dr. To Gupta Traders A/c”, with a short narration in brackets.",
+      "hi": "बेचने के लिए ख़रीदा माल क्रय खाते में नाम होता है, जो आधुनिक नियमों में एक व्यय है। गुप्ता ट्रेडर्स ने माल दिया और अब उसे ₹15,000 देने हैं, इसलिए लेनदार गुप्ता ट्रेडर्स जमा होता है। रोज़नामचे में इसे “क्रय खाता नाम, गुप्ता ट्रेडर्स खाते से” लिखते हैं, और कोष्ठक में छोटा विवरण।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The shop buys a computer for its own use and pays by cheque. Which account is debited?",
+        "hi": "दुकान अपने उपयोग के लिए कंप्यूटर ख़रीदती है और चेक से भुगतान करती है। कौन-सा खाता नाम होगा?"
+       },
+       "options": [
+        {
+         "en": "Computers",
+         "hi": "कंप्यूटर"
+        },
+        {
+         "en": "Purchases",
+         "hi": "क्रय"
+        },
+        {
+         "en": "Bank",
+         "hi": "बैंक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A computer kept for use is an asset, so the Computers account is debited and Bank is credited.",
+        "hi": "उपयोग के लिए रखा कंप्यूटर परिसंपत्ति है, इसलिए कंप्यूटर खाता नाम और बैंक जमा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Purchases is only for goods bought to sell again. This computer is not for sale.",
+         "hi": "क्रय खाता केवल फिर से बेचने वाले माल के लिए है। यह कंप्यूटर बिक्री के लिए नहीं है।"
+        },
+        {
+         "en": "Money leaves the bank, so Bank is credited, not debited.",
+         "hi": "पैसा बैंक से जाता है, इसलिए बैंक जमा होता है, नाम नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "On 20 May the shop pays Gupta Traders ₹15,000 in cash. The entry is …",
+        "hi": "20 मई को दुकान गुप्ता ट्रेडर्स को ₹15,000 नकद देती है। प्रविष्टि होगी …"
+       },
+       "options": [
+        {
+         "en": "Gupta Traders A/c Dr. To Cash A/c",
+         "hi": "गुप्ता ट्रेडर्स खाता नाम, रोकड़ खाते से"
+        },
+        {
+         "en": "Cash A/c Dr. To Gupta Traders A/c",
+         "hi": "रोकड़ खाता नाम, गुप्ता ट्रेडर्स खाते से"
+        },
+        {
+         "en": "Purchases A/c Dr. To Cash A/c",
+         "hi": "क्रय खाता नाम, रोकड़ खाते से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The debt to Gupta Traders goes down (debit) and cash goes out (credit).",
+        "hi": "गुप्ता ट्रेडर्स का क़र्ज़ घटता है (नाम) और नकद जाता है (जमा)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would mean cash came in from Gupta Traders. Here cash goes out to them.",
+         "hi": "इसका अर्थ होगा कि गुप्ता ट्रेडर्स से नकद आया। यहाँ नकद उन्हें जाता है।"
+        },
+        {
+         "en": "The goods were recorded on 6 May. This payment only clears the debt; it is not a new purchase.",
+         "hi": "माल 6 मई को दर्ज हो चुका। यह भुगतान केवल क़र्ज़ चुकाता है; यह नई ख़रीद नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the payment to Gupta Traders and the computer yourself. Switch Rules to traditional and read the reasons again.",
+      "hi": "गुप्ता ट्रेडर्स का भुगतान और कंप्यूटर ख़ुद दर्ज करो। नियम पारंपरिक पर करो और कारण फिर से पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch03-posting",
+   "topic": "3.6",
+   "template": "ledger",
+   "title": {
+    "en": "From journal to ledger",
+    "hi": "रोज़नामचे से खाता बही तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "ledger",
+    "business": {
+     "en": "Arora Stores",
+     "hi": "अरोड़ा स्टोर्स"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-04-01",
+      "text": {
+       "en": "Started business with cash",
+       "hi": "नकद से व्यापार शुरू किया"
+      },
+      "amount": 50000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2024-04-04",
+      "text": {
+       "en": "Bought goods for cash",
+       "hi": "नकद में माल ख़रीदा"
+      },
+      "amount": 20000,
+      "debit": "purchases",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2024-04-09",
+      "text": {
+       "en": "Sold goods for cash",
+       "hi": "नकद में माल बेचा"
+      },
+      "amount": 12000,
+      "debit": "cash",
+      "credit": "sales"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the first journal entry, “Started business with cash”.",
+      "hi": "पहली प्रविष्टि “नकद से व्यापार शुरू किया” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Cash is debited in this entry. How is it written in the Cash account?",
+      "hi": "इस प्रविष्टि में रोकड़ नाम है। रोकड़ खाते में यह कैसे लिखा जाएगा?"
+     },
+     "options": [
+      {
+       "id": "dr",
+       "en": "Debit side: “To Capital A/c”",
+       "hi": "नाम पक्ष: “पूँजी खाते से”"
+      },
+      {
+       "id": "cr",
+       "en": "Credit side: “By Capital A/c”",
+       "hi": "जमा पक्ष: “पूँजी खाते द्वारा”"
+      },
+      {
+       "id": "self",
+       "en": "Debit side: “To Cash A/c”",
+       "hi": "नाम पक्ष: “रोकड़ खाते से”"
+      }
+     ],
+     "answer": "dr"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t1",
+     "say": {
+      "en": "Tap “Post the entry” and watch the amount go to both accounts.",
+      "hi": "“खतौनी करो” दबाओ और देखो राशि दोनों खातों में कैसे जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t2",
+     "say": {
+      "en": "Post the next entry.",
+      "hi": "अगली प्रविष्टि की खतौनी करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t3",
+     "say": {
+      "en": "Post the last entry.",
+      "hi": "आख़िरी प्रविष्टि की खतौनी करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap “Balance the accounts”.",
+      "hi": "“खाते संतुलित करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "What is the balance of the Cash account? Answer below.",
+      "hi": "रोकड़ खाते का शेष क्या है? नीचे उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Posting copies each journal entry into two ledger accounts. The account debited gets the amount on its debit side, written “To” and the other account’s name; the account credited gets it on its credit side, written “By”. To balance, add both sides and write the difference on the smaller side as “Balance c/d”. Cash has ₹62,000 in and ₹20,000 out: a debit balance of ₹42,000.",
+      "hi": "खतौनी में हर प्रविष्टि दो खातों में लिखी जाती है। नाम वाले खाते के नाम पक्ष में राशि “से” और दूसरे खाते के नाम के साथ लिखते हैं; जमा वाले खाते के जमा पक्ष में “द्वारा” के साथ। संतुलन के लिए दोनों पक्ष जोड़ो और अंतर छोटे पक्ष में “शेष आगे ले गए” लिखो। रोकड़ में ₹62,000 आए और ₹20,000 गए: ₹42,000 का नाम शेष।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the Capital account, how is the ₹50,000 written?",
+        "hi": "पूँजी खाते में ₹50,000 कैसे लिखे जाएँगे?"
+       },
+       "options": [
+        {
+         "en": "Credit side: “By Cash A/c”",
+         "hi": "जमा पक्ष: “रोकड़ खाते द्वारा”"
+        },
+        {
+         "en": "Debit side: “To Cash A/c”",
+         "hi": "नाम पक्ष: “रोकड़ खाते से”"
+        },
+        {
+         "en": "Credit side: “By Capital A/c”",
+         "hi": "जमा पक्ष: “पूँजी खाते द्वारा”"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Capital is credited in the journal, so it goes on the credit side, naming the other account, Cash.",
+        "hi": "रोज़नामचे में पूँजी जमा है, इसलिए यह जमा पक्ष में जाती है, दूसरे खाते रोकड़ के नाम के साथ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Capital was credited in the journal, so it cannot appear on the debit side.",
+         "hi": "रोज़नामचे में पूँजी जमा थी, इसलिए यह नाम पक्ष में नहीं आ सकती।"
+        },
+        {
+         "en": "Each side names the other account, never the account itself.",
+         "hi": "हर पक्ष में दूसरे खाते का नाम लिखते हैं, उसी खाते का कभी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "An account’s debit side totals ₹62,000 and its credit side ₹20,000. Its balance is …",
+        "hi": "किसी खाते के नाम पक्ष का योग ₹62,000 और जमा पक्ष का ₹20,000 है। उसका शेष है …"
+       },
+       "options": [
+        {
+         "en": "₹42,000 debit",
+         "hi": "₹42,000 नाम"
+        },
+        {
+         "en": "₹42,000 credit",
+         "hi": "₹42,000 जमा"
+        },
+        {
+         "en": "₹82,000 debit",
+         "hi": "₹82,000 नाम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The balance is the difference, ₹42,000, and it is named after the bigger side, the debit side.",
+        "hi": "शेष अंतर है, ₹42,000, और उसका नाम बड़े पक्ष, यानी नाम पक्ष, पर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The bigger side is the debit side, so the balance is a debit balance.",
+         "hi": "बड़ा पक्ष नाम पक्ष है, इसलिए शेष नाम शेष है।"
+        },
+        {
+         "en": "The balance is the difference between the two sides, not their sum.",
+         "hi": "शेष दोनों पक्षों का अंतर है, उनका योग नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at each account. Which have debit balances and which credit balances? Which of them are assets, and which is an income?",
+      "hi": "हर खाते को देखो। किनके नाम शेष हैं और किनके जमा शेष? इनमें कौन-से परिसंपत्ति हैं, और कौन-सा आय है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Source documents in the reader",
+   "shows": "Separate cut-outs of three blank source documents an Indian shop uses: a carbon-copy cash memo book, a receipt book with counterfoils, and a spiked bill holder with blank slips",
+   "view": "Top-down, lit from top left, transparent background",
+   "right": "Real paper look with perforations and counterfoils; all forms empty",
+   "avoid": "Any printed shop name, GST number, logos or handwriting"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Preparing a voucher",
+   "shows": "An accountant’s desk in a small Indian office: an open voucher file, a stapler, a calculator, a few rupee notes and a hand writing on a blank voucher",
+   "view": "Over the shoulder, soft daylight from a window, 16:9",
+   "right": "Ordinary office items; the voucher has no readable writing",
+   "avoid": "Faces, brand names, readable figures"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Debit and credit: in and out",
+   "shows": "A shop counter seen from above: on the left a customer’s hand gives rupee notes to the shopkeeper; on the right the shopkeeper’s other hand pays a delivery man",
+   "view": "Top-down, even light, 16:9, the two exchanges clearly separate",
+   "right": "Money clearly coming in on one side and going out on the other",
+   "avoid": "Faces, logos, readable bills"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "3.6",
+   "use": "The ledger book",
+   "shows": "A traditional Indian bahi-khata ledger with a red cloth cover, open on a wooden desk to two blank ruled pages",
+   "view": "Three-quarter view from above, warm light, transparent background around the book",
+   "right": "Red cloth binding, cream ruled paper, string tie",
+   "avoid": "Writing on the pages, religious symbols in sharp focus, brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "3.4",
+   "use": "Journal page base",
+   "shows": "A blank journal page: five columns (date, particulars, ledger folio, debit, credit) on cream paper with a red margin line",
+   "view": "Flat, front-on, A4 proportion",
+   "right": "Exactly five columns; the two money columns on the right are equal in width",
+   "avoid": "Column headings or any words (the app adds them)"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "3.5",
+   "use": "Ledger account base",
+   "shows": "A blank two-sided ledger page split down the middle into a debit half and a credit half, each with date, particulars, folio and amount columns",
+   "view": "Flat, front-on, landscape",
+   "right": "Both halves mirror each other exactly",
+   "avoid": "Any words, Dr or Cr marks (the app adds them)"
+  }
+ ]
+}

@@ -1,0 +1,1261 @@
+{
+ "chapter_key": "u.c09.science.iesc1.ch10",
+ "class": 9,
+ "subject_id": "science",
+ "title": "Sound Waves: Characteristics and Applications",
+ "source": "https://ncert.nic.in/textbook/pdf/iesc110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Production of sound",
+   "labs": [
+    "c09-science-iesc1-ch10-fork"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.1.1",
+   "title": "Tuning fork",
+   "labs": [
+    "c09-science-iesc1-ch10-fork"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Propagation of sound",
+   "labs": [
+    "c09-science-iesc1-ch10-medium"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2.1",
+   "title": "Sound needs a medium to propagate",
+   "labs": [
+    "c09-science-iesc1-ch10-medium"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Sound waves: compressions and rarefactions",
+   "labs": [
+    "c09-science-iesc1-ch10-compress"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Energy of sound waves",
+   "labs": [],
+   "why_no_lab": "Best seen in a real demonstration (a membrane over a can making paper bits jump), shown as a photo sequence; the loudness lab links energy to amplitude."
+  },
+  {
+   "n": "10.5",
+   "title": "Graphical representation of a sound wave",
+   "labs": [
+    "c09-science-iesc1-ch10-loud"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6.1",
+   "title": "Wavelength, frequency and time period",
+   "labs": [
+    "c09-science-iesc1-ch10-pitch"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6.2",
+   "title": "Amplitude and intensity",
+   "labs": [
+    "c09-science-iesc1-ch10-loud"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6.3",
+   "title": "Speed of sound",
+   "labs": [
+    "c09-science-iesc1-ch10-rail"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6.4",
+   "title": "Human perception of sound",
+   "labs": [
+    "c09-science-iesc1-ch10-hearing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.7.1",
+   "title": "Echo",
+   "labs": [
+    "c09-science-iesc1-ch10-echo"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.7.2",
+   "title": "Reverberation",
+   "labs": [],
+   "why_no_lab": "Reverberation is about how a whole hall sounds; photos of acoustic panels in a real auditorium explain it better than a simulation."
+  },
+  {
+   "n": "10.8.1",
+   "title": "Echolocation and sonar",
+   "labs": [
+    "c09-science-iesc1-ch10-sonar"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-science-iesc1-ch10-fork",
+   "topic": "10.1.1",
+   "template": "waves",
+   "title": {
+    "en": "A tuning fork: sound comes from vibration",
+    "hi": "स्वरित्र: ध्वनि कंपन से आती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "vibrate",
+    "medium": "air"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A struck tuning fork is touched gently to the surface of water. What will you see?",
+      "hi": "बजते स्वरित्र को पानी की सतह से धीरे छुआते हैं। क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "splash",
+       "en": "Ripples and tiny splashes",
+       "hi": "लहरें और छोटे छींटे"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing at all",
+       "hi": "कुछ नहीं"
+      },
+      {
+       "id": "ice",
+       "en": "The water freezes",
+       "hi": "पानी जम जाता है"
+      }
+     ],
+     "answer": "splash"
+    },
+    {
+     "kind": "do",
+     "target": "pluck",
+     "expect": "vibrating",
+     "say": {
+      "en": "Strike the tuning fork once.",
+      "hi": "स्वरित्र पर एक बार चोट करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "vibrating",
+     "say": {
+      "en": "Now press play to keep the fork ringing and watch the prongs and the air.",
+      "hi": "अब स्वरित्र को बजता रखने के लिए प्ले दबाओ और उसकी भुजाओं और हवा को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every sound is made by something vibrating: moving rapidly to and fro. The prongs of the fork vibrate many hundred times a second. They push and pull the air next to them, and that disturbance travels to your ear. In the same way our vocal cords vibrate when we speak.",
+      "hi": "हर ध्वनि किसी कंपित वस्तु से बनती है: जो तेज़ी से आगे-पीछे हिलती है। स्वरित्र की भुजाएँ एक सेकंड में कई सौ बार कंपन करती हैं। वे पास की हवा को धकेलती और खींचती हैं, और यह विक्षोभ तुम्हारे कान तक जाता है। इसी तरह बोलते समय हमारे स्वर-रज्जु कंपन करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You stretch a rubber band over an open box and pluck it. Where does the sound come from?",
+        "hi": "तुम खुले डिब्बे पर रबर बैंड तानकर उसे छेड़ते हो। ध्वनि कहाँ से आती है?"
+       },
+       "options": [
+        {
+         "en": "The vibrating rubber band",
+         "hi": "कंपन करती रबर बैंड"
+        },
+        {
+         "en": "Your finger",
+         "hi": "तुम्हारी उँगली"
+        },
+        {
+         "en": "The empty space in the box",
+         "hi": "डिब्बे की ख़ाली जगह"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The band vibrates; the box vibrates with it and makes it louder.",
+        "hi": "बैंड कंपन करता है; डिब्बा उसके साथ कंपन करके ध्वनि तेज़ करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Your finger only starts the vibration; the band makes the sound.",
+         "hi": "उँगली केवल कंपन शुरू करती है; ध्वनि बैंड बनाती है।"
+        },
+        {
+         "en": "The box makes the sound louder, but the band's vibration is the source.",
+         "hi": "डिब्बा ध्वनि को तेज़ करता है, पर स्रोत बैंड का कंपन है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: strike the fork, then touch the vibrating prongs in your mind: what would stop the sound? Try steel and water as the medium.",
+      "hi": "आज़माओ: स्वरित्र बजाओ, फिर सोचो: कंपन करती भुजाओं को पकड़ने पर क्या होगा? माध्यम के रूप में स्टील और पानी आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch10-medium",
+   "topic": "10.2.1",
+   "template": "waves",
+   "title": {
+    "en": "Sound needs a medium",
+    "hi": "ध्वनि को माध्यम चाहिए"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "vibrate",
+    "medium": "water"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two spoons are knocked together under water in a tub. With your ear on the side of the tub, can you hear them?",
+      "hi": "टब में पानी के अंदर दो चम्मच टकराए जाते हैं। टब की दीवार पर कान लगाकर क्या तुम उन्हें सुन सकते हो?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, sound travels through water",
+       "hi": "हाँ, ध्वनि पानी से गुज़रती है"
+      },
+      {
+       "id": "no",
+       "en": "No, sound cannot go through water",
+       "hi": "नहीं, ध्वनि पानी से नहीं गुज़र सकती"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "pluck",
+     "expect": "vibrating",
+     "say": {
+      "en": "The source is now under water. Strike it once and watch the water particles.",
+      "hi": "स्रोत अब पानी के अंदर है। उस पर एक बार चोट करो और पानी के कणों को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sound travels as a disturbance passed from particle to particle, so it needs a medium: a solid, a liquid or a gas. It travels through water and through solids even better than through air. In a vacuum there are no particles, so sound cannot travel at all. Astronauts on the Moon talk by radio.",
+      "hi": "ध्वनि एक कण से दूसरे कण तक पहुँचते विक्षोभ के रूप में चलती है, इसलिए उसे माध्यम चाहिए: ठोस, द्रव या गैस। यह पानी और ठोसों में हवा से भी अच्छी तरह चलती है। निर्वात में कण नहीं होते, इसलिए ध्वनि बिल्कुल नहीं चल सकती। चंद्रमा पर अंतरिक्ष यात्री रेडियो से बात करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can astronauts on the Moon not hear each other shout?",
+        "hi": "चंद्रमा पर अंतरिक्ष यात्री एक-दूसरे का चिल्लाना क्यों नहीं सुन पाते?"
+       },
+       "options": [
+        {
+         "en": "There is no air to carry sound",
+         "hi": "ध्वनि ले जाने के लिए हवा नहीं है"
+        },
+        {
+         "en": "It is too cold",
+         "hi": "बहुत ठंड है"
+        },
+        {
+         "en": "Their helmets are too thick",
+         "hi": "उनके हेलमेट बहुत मोटे हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Moon has almost no atmosphere, so sound has no medium to travel through.",
+        "hi": "चंद्रमा पर लगभग कोई वायुमंडल नहीं है, इसलिए ध्वनि के चलने के लिए माध्यम नहीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cold air still carries sound; the problem is that there is no air.",
+         "hi": "ठंडी हवा भी ध्वनि ले जाती है; समस्या यह है कि हवा है ही नहीं।"
+        },
+        {
+         "en": "Even without helmets, sound could not cross empty space.",
+         "hi": "हेलमेट के बिना भी ध्वनि ख़ाली जगह पार नहीं कर पाती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You put your ear on a desk while a friend taps the far end. The tap sounds…",
+        "hi": "तुम मेज़ पर कान लगाते हो और दोस्त दूसरे सिरे पर थपथपाता है। थपथपाहट सुनाई देती है…"
+       },
+       "options": [
+        {
+         "en": "Louder and clearer than through air",
+         "hi": "हवा से अधिक तेज़ और साफ़"
+        },
+        {
+         "en": "Not at all",
+         "hi": "बिल्कुल नहीं"
+        },
+        {
+         "en": "Exactly as through air",
+         "hi": "बिल्कुल हवा जैसी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Particles in a solid are close together and pass on vibrations well.",
+        "hi": "ठोस में कण पास-पास होते हैं और कंपन अच्छी तरह आगे बढ़ाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Solids carry sound very well.",
+         "hi": "ठोस ध्वनि को बहुत अच्छी तरह ले जाते हैं।"
+        },
+        {
+         "en": "The wood carries it better, so it is clearer.",
+         "hi": "लकड़ी इसे बेहतर ले जाती है, इसलिए साफ़ है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: choose vacuum as the medium and strike the fork again. What does the panel say?",
+      "hi": "आज़माओ: माध्यम के रूप में निर्वात चुनो और स्वरित्र फिर बजाओ। पैनल क्या कहता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch10-compress",
+   "topic": "10.3",
+   "template": "waves",
+   "title": {
+    "en": "Compressions and rarefactions",
+    "hi": "संपीडन और विरलन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "vibrate",
+    "medium": "air"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As the fork vibrates, do the air particles travel all the way to your ear?",
+      "hi": "स्वरित्र के कंपन करते समय क्या हवा के कण पूरे रास्ते तुम्हारे कान तक जाते हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, each particle moves to and fro; the disturbance travels",
+       "hi": "नहीं, हर कण आगे-पीछे हिलता है; विक्षोभ आगे जाता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, the air flows like wind",
+       "hi": "हाँ, हवा पवन की तरह बहती है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "vibrating",
+     "say": {
+      "en": "Press play and watch the crowded and spread-out bands of air move outward.",
+      "hi": "प्ले दबाओ और हवा की घनी और विरल पट्टियों को बाहर की ओर जाते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When a prong moves forward it squeezes the air into a compression, a region of high pressure. When it moves back it leaves a rarefaction, a region of low pressure. These move outward as a longitudinal wave: the particles vibrate along the direction the wave travels, but they do not travel with it.",
+      "hi": "जब भुजा आगे जाती है, वह हवा को दबाकर संपीडन, ऊँचे दाब का क्षेत्र, बनाती है। जब पीछे जाती है, तो विरलन, कम दाब का क्षेत्र, छोड़ती है। ये अनुदैर्ध्य तरंग के रूप में बाहर जाते हैं: कण तरंग की दिशा में ही कंपन करते हैं, पर उसके साथ आगे नहीं जाते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You push and pull one end of a stretched slinky along its length. What kind of wave do you make?",
+        "hi": "तुम तनी हुई स्लिंकी के एक सिरे को उसकी लंबाई में आगे-पीछे करते हो। कौन-सी तरंग बनती है?"
+       },
+       "options": [
+        {
+         "en": "Longitudinal, like sound",
+         "hi": "अनुदैर्ध्य, ध्वनि जैसी"
+        },
+        {
+         "en": "Transverse",
+         "hi": "अनुप्रस्थ"
+        },
+        {
+         "en": "No wave",
+         "hi": "कोई तरंग नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The coils move along the direction of the wave, making compressions and rarefactions.",
+        "hi": "कुंडलियाँ तरंग की दिशा में चलती हैं और संपीडन व विरलन बनाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A transverse wave needs side-to-side movement, across the slinky.",
+         "hi": "अनुप्रस्थ तरंग के लिए स्लिंकी के आर-पार अगल-बगल गति चाहिए।"
+        },
+        {
+         "en": "The coils bunch up and spread out along the slinky: that is a wave.",
+         "hi": "कुंडलियाँ स्लिंकी पर घनी और विरल होती हैं: यही तरंग है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the frequency and see how the distance between compressions changes.",
+      "hi": "आज़माओ: आवृत्ति बदलो और देखो संपीडनों के बीच की दूरी कैसे बदलती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch10-pitch",
+   "topic": "10.6.1",
+   "template": "waves",
+   "title": {
+    "en": "Frequency and pitch",
+    "hi": "आवृत्ति और तारत्व"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "vibrate",
+    "medium": "air"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "vibrating",
+     "say": {
+      "en": "Press play to start the sound.",
+      "hi": "ध्वनि शुरू करने के लिए प्ले दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the source vibrates more times each second, what will you hear?",
+      "hi": "अगर स्रोत हर सेकंड अधिक बार कंपन करे, तो क्या सुनाई देगा?"
+     },
+     "options": [
+      {
+       "id": "high",
+       "en": "A higher, shriller sound",
+       "hi": "ऊँची, तीखी ध्वनि"
+      },
+      {
+       "id": "loud",
+       "en": "A louder sound",
+       "hi": "तेज़ ध्वनि"
+      },
+      {
+       "id": "low",
+       "en": "A deeper sound",
+       "hi": "गहरी ध्वनि"
+      }
+     ],
+     "answer": "high"
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "pitch:high",
+     "say": {
+      "en": "Raise the frequency with the slider.",
+      "hi": "स्लाइडर से आवृत्ति बढ़ाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "pitch:low",
+     "say": {
+      "en": "Now lower the frequency.",
+      "hi": "अब आवृत्ति घटाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Frequency is the number of vibrations per second, measured in hertz (Hz). The time for one vibration is the time period, T = 1 ÷ f. The distance between two compressions is the wavelength, λ. Speed v = f × λ, so in the same air a higher frequency means a shorter wavelength. We hear higher frequency as higher pitch.",
+      "hi": "आवृत्ति प्रति सेकंड कंपनों की संख्या है, हर्ट्ज़ (Hz) में। एक कंपन का समय आवर्तकाल है, T = 1 ÷ f। दो संपीडनों के बीच की दूरी तरंगदैर्ध्य, λ, है। चाल v = f × λ, इसलिए उसी हवा में अधिक आवृत्ति का अर्थ है छोटा तरंगदैर्ध्य। अधिक आवृत्ति हमें ऊँचे तारत्व के रूप में सुनाई देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A sound has a frequency of 340 Hz in air, where its speed is 340 m/s. What is its wavelength?",
+        "hi": "हवा में एक ध्वनि की आवृत्ति 340 Hz है, जहाँ उसकी चाल 340 m/s है। उसका तरंगदैर्ध्य क्या है?"
+       },
+       "options": [
+        "1 m",
+        "340 m",
+        "115 600 m"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "λ = 340 ÷ 340 = 1 m.",
+        "hi": "λ = 340 ÷ 340 = 1 m।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That ignores the frequency; λ = v ÷ f.",
+         "hi": "इसमें आवृत्ति छोड़ दी; λ = v ÷ f।"
+        },
+        {
+         "en": "That multiplies speed and frequency instead of dividing.",
+         "hi": "यह चाल और आवृत्ति का गुणा है, भाग नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A fork vibrates 500 times a second. What is its time period?",
+        "hi": "एक स्वरित्र एक सेकंड में 500 बार कंपन करता है। उसका आवर्तकाल क्या है?"
+       },
+       "options": [
+        "0.002 s",
+        "500 s",
+        "0.5 s"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "T = 1 ÷ 500 = 0.002 s.",
+        "hi": "T = 1 ÷ 500 = 0.002 s।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One vibration takes a tiny fraction of a second, not 500 s.",
+         "hi": "एक कंपन में सेकंड का बहुत छोटा भाग लगता है, 500 s नहीं।"
+        },
+        {
+         "en": "That would be only 2 vibrations a second.",
+         "hi": "तब एक सेकंड में केवल 2 कंपन होते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try the highest and lowest frequency the slider allows. Which sounds like a whistle and which like a drum?",
+      "hi": "आज़माओ: स्लाइडर की सबसे ऊँची और सबसे नीची आवृत्ति आज़माओ। कौन सीटी जैसी और कौन ढोल जैसी लगती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch10-loud",
+   "topic": "10.6.2",
+   "template": "waves",
+   "title": {
+    "en": "Amplitude and loudness",
+    "hi": "आयाम और प्रबलता"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "vibrate",
+    "medium": "air"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "vibrating",
+     "say": {
+      "en": "Press play to start the sound and look at the wave graph.",
+      "hi": "ध्वनि शुरू करने के लिए प्ले दबाओ और तरंग का ग्राफ़ देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You strike a drum harder. On the graph of the sound wave, what changes?",
+      "hi": "तुम ढोल पर अधिक ज़ोर से चोट करते हो। ध्वनि तरंग के ग्राफ़ पर क्या बदलेगा?"
+     },
+     "options": [
+      {
+       "id": "height",
+       "en": "The peaks get taller",
+       "hi": "शिखर ऊँचे होते हैं"
+      },
+      {
+       "id": "closer",
+       "en": "The peaks get closer together",
+       "hi": "शिखर पास-पास आते हैं"
+      },
+      {
+       "id": "none",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलता"
+      }
+     ],
+     "answer": "height"
+    },
+    {
+     "kind": "do",
+     "target": "slider:amplitude",
+     "expect": "loud",
+     "say": {
+      "en": "Raise the amplitude with the slider.",
+      "hi": "स्लाइडर से आयाम बढ़ाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:amplitude",
+     "expect": "soft",
+     "say": {
+      "en": "Now lower it again.",
+      "hi": "अब इसे फिर घटाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A sound wave can be drawn as a graph of pressure against distance or time. The amplitude is the height of a peak from the middle line: how big the vibration is. A bigger amplitude carries more energy, so the sound is louder (more intense). The pitch stays the same because the frequency did not change.",
+      "hi": "ध्वनि तरंग को दाब और दूरी या समय के ग्राफ़ के रूप में बनाया जा सकता है। आयाम बीच की रेखा से शिखर की ऊँचाई है: कंपन कितना बड़ा है। बड़ा आयाम अधिक ऊर्जा ले जाता है, इसलिए ध्वनि तेज़ (अधिक तीव्र) होती है। तारत्व वही रहता है क्योंकि आवृत्ति नहीं बदली।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two sounds have the same frequency but one has twice the amplitude. They differ in…",
+        "hi": "दो ध्वनियों की आवृत्ति एक है पर एक का आयाम दोगुना है। वे किसमें अलग हैं?"
+       },
+       "options": [
+        {
+         "en": "Loudness",
+         "hi": "प्रबलता"
+        },
+        {
+         "en": "Pitch",
+         "hi": "तारत्व"
+        },
+        {
+         "en": "Speed",
+         "hi": "चाल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Amplitude decides loudness; frequency decides pitch.",
+        "hi": "आयाम प्रबलता तय करता है; आवृत्ति तारत्व।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Pitch depends on frequency, which is the same.",
+         "hi": "तारत्व आवृत्ति पर निर्भर है, जो एक जैसी है।"
+        },
+        {
+         "en": "Both travel at the same speed in the same air.",
+         "hi": "दोनों उसी हवा में एक ही चाल से चलती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the frequency and the amplitude together. Can you make a soft high sound and a loud low sound?",
+      "hi": "आज़माओ: आवृत्ति और आयाम साथ बदलो। क्या तुम धीमी ऊँची ध्वनि और तेज़ गहरी ध्वनि बना सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch10-rail",
+   "topic": "10.6.3",
+   "template": "waves",
+   "title": {
+    "en": "Sound is fastest in solids",
+    "hi": "ध्वनि ठोसों में सबसे तेज़ है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "echo",
+    "medium": "steel"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In air sound travels about 343 m every second. In steel it is…",
+      "hi": "हवा में ध्वनि हर सेकंड लगभग 343 m चलती है। स्टील में यह…"
+     },
+     "options": [
+      {
+       "id": "faster",
+       "en": "Much faster",
+       "hi": "बहुत तेज़ है"
+      },
+      {
+       "id": "slower",
+       "en": "Slower",
+       "hi": "धीमी है"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "उतनी ही है"
+      }
+     ],
+     "answer": "faster"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "echo",
+     "say": {
+      "en": "Press play to tap one end of the steel rail and time the echo from the far end.",
+      "hi": "स्टील की पटरी के एक सिरे पर थपथपाने और दूसरे सिरे से लौटी गूँज का समय नापने के लिए प्ले दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sound goes to the end of the rail and back. Speed = total distance ÷ time = 2d ÷ t. In steel it comes out near 6000 m/s, about 17 times faster than in air. Sound is usually fastest in solids, slower in liquids and slowest in gases, and it is faster in warmer air.",
+      "hi": "ध्वनि पटरी के सिरे तक जाकर लौटती है। चाल = कुल दूरी ÷ समय = 2d ÷ t। स्टील में यह लगभग 6000 m/s आती है, हवा से लगभग 17 गुना तेज़। ध्वनि आमतौर पर ठोसों में सबसे तेज़, द्रवों में धीमी और गैसों में सबसे धीमी होती है, और गर्म हवा में तेज़ होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why could people long ago put an ear to a railway track to know a train was coming?",
+        "hi": "पहले लोग पटरी पर कान लगाकर कैसे जान लेते थे कि रेलगाड़ी आ रही है?"
+       },
+       "options": [
+        {
+         "en": "Sound travels faster and farther through the steel rail",
+         "hi": "ध्वनि स्टील की पटरी से तेज़ और दूर तक जाती है"
+        },
+        {
+         "en": "The rail gets hot",
+         "hi": "पटरी गर्म हो जाती है"
+        },
+        {
+         "en": "They could see the train in the rail",
+         "hi": "उन्हें पटरी में रेलगाड़ी दिखती थी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Steel carries sound much faster and with less loss than air.",
+        "hi": "स्टील हवा की तुलना में ध्वनि को बहुत तेज़ और कम क्षय के साथ ले जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Heat would take far too long to reach them; sound arrives first.",
+         "hi": "ऊष्मा पहुँचने में बहुत समय लेती; ध्वनि पहले पहुँचती है।"
+        },
+        {
+         "en": "You cannot see a train through a rail; you hear it.",
+         "hi": "पटरी में रेलगाड़ी नहीं दिखती; सुनाई देती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: switch the medium to air and to water with the same distance. Compare the echo times.",
+      "hi": "आज़माओ: उसी दूरी के साथ माध्यम हवा और पानी करो। गूँज के समय की तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch10-echo",
+   "topic": "10.7.1",
+   "template": "waves",
+   "title": {
+    "en": "Hear an echo from a cliff",
+    "hi": "चट्टान से प्रतिध्वनि सुनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "echo",
+    "medium": "air"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You clap 100 m from a cliff. Sound travels about 343 m/s. About when will the echo come back?",
+      "hi": "तुम चट्टान से 100 m दूर ताली बजाते हो। ध्वनि लगभग 343 m/s चलती है। प्रतिध्वनि लगभग कब लौटेगी?"
+     },
+     "options": [
+      {
+       "id": "06",
+       "en": "After about 0.6 s",
+       "hi": "लगभग 0.6 सेकंड बाद"
+      },
+      {
+       "id": "03",
+       "en": "After about 0.3 s",
+       "hi": "लगभग 0.3 सेकंड बाद"
+      },
+      {
+       "id": "3",
+       "en": "After about 3 s",
+       "hi": "लगभग 3 सेकंड बाद"
+      }
+     ],
+     "answer": "06"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "echo",
+     "say": {
+      "en": "Press play to clap and wait for the echo.",
+      "hi": "ताली बजाने के लिए प्ले दबाओ और प्रतिध्वनि का इंतज़ार करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An echo is sound reflected back from a large hard surface. The sound goes to the cliff and back, 200 m, so t = 200 ÷ 343, about 0.58 s. Our brain keeps a sound for about 0.1 s, so to hear a separate echo the reflector must be at least about 17 m away in air.",
+      "hi": "प्रतिध्वनि किसी बड़ी कठोर सतह से लौटी ध्वनि है। ध्वनि चट्टान तक जाकर लौटती है, 200 m, इसलिए t = 200 ÷ 343, लगभग 0.58 s। हमारा मस्तिष्क ध्वनि को लगभग 0.1 s तक रखता है, इसलिए अलग प्रतिध्वनि सुनने के लिए हवा में परावर्तक कम से कम लगभग 17 m दूर होना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do you not hear an echo in a small room?",
+        "hi": "छोटे कमरे में प्रतिध्वनि क्यों नहीं सुनाई देती?"
+       },
+       "options": [
+        {
+         "en": "The reflection returns in less than 0.1 s and mixes with the sound",
+         "hi": "परावर्तन 0.1 s से कम में लौटकर ध्वनि में मिल जाता है"
+        },
+        {
+         "en": "Walls do not reflect sound",
+         "hi": "दीवारें ध्वनि परावर्तित नहीं करतीं"
+        },
+        {
+         "en": "Sound is slower indoors",
+         "hi": "घर के अंदर ध्वनि धीमी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The walls are too close for a separate echo, though the reflections can make a room boom (reverberation).",
+        "hi": "दीवारें अलग प्रतिध्वनि के लिए बहुत पास हैं, हालाँकि परावर्तन कमरे में गूँज (अनुरणन) बना सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Walls do reflect sound; it just comes back too soon.",
+         "hi": "दीवारें ध्वनि परावर्तित करती हैं; बस वह बहुत जल्दी लौटती है।"
+        },
+        {
+         "en": "Sound has about the same speed indoors.",
+         "hi": "अंदर भी ध्वनि की चाल लगभग वही है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "An echo is heard 2 s after a shout in a valley. How far is the reflecting hill (sound 340 m/s)?",
+        "hi": "घाटी में पुकार के 2 s बाद प्रतिध्वनि सुनाई देती है। परावर्तक पहाड़ी कितनी दूर है (ध्वनि 340 m/s)?"
+       },
+       "options": [
+        "340 m",
+        "680 m",
+        "170 m"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "d = v × t ÷ 2 = 340 × 2 ÷ 2 = 340 m.",
+        "hi": "d = v × t ÷ 2 = 340 × 2 ÷ 2 = 340 m।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "680 m is the whole journey there and back; halve it.",
+         "hi": "680 m जाने-आने की पूरी दूरी है; इसका आधा लो।"
+        },
+        {
+         "en": "That halves twice.",
+         "hi": "इसमें दो बार आधा कर दिया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: move the cliff closer with the slider. At what distance do you stop hearing a separate echo?",
+      "hi": "आज़माओ: स्लाइडर से चट्टान पास लाओ। किस दूरी पर अलग प्रतिध्वनि सुनाई देना बंद हो जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch10-sonar",
+   "topic": "10.8.1",
+   "template": "waves",
+   "title": {
+    "en": "Sonar: measure the depth of the sea",
+    "hi": "सोनार: समुद्र की गहराई नापो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "echo",
+    "medium": "water"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A ship sends a sound pulse down and hears it return after 2 s. Sound travels about 1500 m/s in sea water. How deep is the sea?",
+      "hi": "एक जहाज़ नीचे ध्वनि का स्पंद भेजता है और 2 s बाद उसे लौटता सुनता है। समुद्री पानी में ध्वनि लगभग 1500 m/s चलती है। समुद्र कितना गहरा है?"
+     },
+     "options": [
+      {
+       "id": "1500",
+       "en": "1500 m",
+       "hi": "1500 मीटर"
+      },
+      {
+       "id": "3000",
+       "en": "3000 m",
+       "hi": "3000 मीटर"
+      },
+      {
+       "id": "750",
+       "en": "750 m",
+       "hi": "750 मीटर"
+      }
+     ],
+     "answer": "1500"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "echo",
+     "say": {
+      "en": "Press play to send the sound pulse and wait for the echo from the sea bed.",
+      "hi": "ध्वनि स्पंद भेजने के लिए प्ले दबाओ और समुद्र तल से प्रतिध्वनि का इंतज़ार करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sonar sends out pulses of ultrasound and times their echoes. Depth = speed × time ÷ 2, because the sound goes down and comes back. Bats and dolphins use echolocation the same way to find food and avoid obstacles, and doctors use ultrasound echoes to see inside the body.",
+      "hi": "सोनार पराश्रव्य ध्वनि के स्पंद भेजता है और उनकी प्रतिध्वनि का समय नापता है। गहराई = चाल × समय ÷ 2, क्योंकि ध्वनि नीचे जाकर लौटती है। चमगादड़ और डॉल्फ़िन इसी तरह प्रतिध्वनि-स्थान निर्धारण से भोजन ढूँढते और रुकावटों से बचते हैं, और डॉक्टर शरीर के अंदर देखने के लिए पराश्रव्य प्रतिध्वनि का उपयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How does a bat find a moth in the dark?",
+        "hi": "अँधेरे में चमगादड़ पतंगे को कैसे ढूँढता है?"
+       },
+       "options": [
+        {
+         "en": "It sends out high-pitched squeaks and listens for the echoes",
+         "hi": "वह ऊँची चीं-चीं भेजता है और प्रतिध्वनि सुनता है"
+        },
+        {
+         "en": "It sees with very sharp eyes",
+         "hi": "वह बहुत तेज़ आँखों से देखता है"
+        },
+        {
+         "en": "It smells the moth from far away",
+         "hi": "वह दूर से पतंगे को सूँघता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The time and direction of each echo tell the bat where the moth is.",
+        "hi": "हर प्रतिध्वनि का समय और दिशा चमगादड़ को बताते हैं कि पतंगा कहाँ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In the dark its eyes help little; it relies on echoes.",
+         "hi": "अँधेरे में आँखें कम मदद करती हैं; वह प्रतिध्वनियों पर निर्भर है।"
+        },
+        {
+         "en": "Bats that hunt moths find them mainly by echolocation.",
+         "hi": "पतंगों का शिकार करने वाले चमगादड़ उन्हें मुख्यतः प्रतिध्वनि से ढूँढते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the depth with the slider and check that depth = 1500 × time ÷ 2 each time.",
+      "hi": "आज़माओ: स्लाइडर से गहराई बदलो और हर बार जाँचो कि गहराई = 1500 × समय ÷ 2।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch10-hearing",
+   "topic": "10.6.4",
+   "template": "waves",
+   "title": {
+    "en": "The range of human hearing",
+    "hi": "मनुष्य के सुनने की सीमा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "spectrum",
+    "medium": "air"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A dog whistle seems silent to us, yet the dog runs to it. Why?",
+      "hi": "कुत्ते की सीटी हमें चुप लगती है, फिर भी कुत्ता दौड़कर आता है। क्यों?"
+     },
+     "options": [
+      {
+       "id": "ultra",
+       "en": "Its frequency is above what humans can hear",
+       "hi": "उसकी आवृत्ति मनुष्य के सुनने की सीमा से ऊपर है"
+      },
+      {
+       "id": "soft",
+       "en": "It is too soft for anyone",
+       "hi": "वह सबके लिए बहुत धीमी है"
+      },
+      {
+       "id": "none",
+       "en": "It makes no sound at all",
+       "hi": "वह कोई ध्वनि नहीं करती"
+      }
+     ],
+     "answer": "ultra"
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "band:*",
+     "say": {
+      "en": "Move the frequency slider until you cross from one band into another.",
+      "hi": "आवृत्ति का स्लाइडर तब तक हिलाओ जब तक एक पट्टी से दूसरी में न पहुँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Humans hear sounds from about 20 Hz to 20 000 Hz. Below 20 Hz is infrasound, made by earthquakes and elephants. Above 20 000 Hz is ultrasound, heard by dogs, bats and dolphins and used in sonar and medical scans. The upper limit falls with age, and very loud sounds can damage hearing.",
+      "hi": "मनुष्य लगभग 20 Hz से 20 000 Hz तक की ध्वनियाँ सुनते हैं। 20 Hz से नीचे अवश्रव्य ध्वनि है, जो भूकंप और हाथी बनाते हैं। 20 000 Hz से ऊपर पराश्रव्य ध्वनि है, जिसे कुत्ते, चमगादड़ और डॉल्फ़िन सुनते हैं और जो सोनार व चिकित्सा जाँचों में काम आती है। उम्र के साथ ऊपरी सीमा घटती है, और बहुत तेज़ ध्वनियाँ सुनने की शक्ति को हानि पहुँचा सकती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A sound of 30 000 Hz is…",
+        "hi": "30 000 Hz की ध्वनि है…"
+       },
+       "options": [
+        {
+         "en": "Ultrasound, which we cannot hear",
+         "hi": "पराश्रव्य, जिसे हम नहीं सुन सकते"
+        },
+        {
+         "en": "Infrasound",
+         "hi": "अवश्रव्य"
+        },
+        {
+         "en": "A normal audible sound",
+         "hi": "सामान्य सुनाई देने वाली ध्वनि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Above 20 000 Hz is ultrasound.",
+        "hi": "20 000 Hz से ऊपर पराश्रव्य ध्वनि है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Infrasound is below 20 Hz.",
+         "hi": "अवश्रव्य 20 Hz से नीचे है।"
+        },
+        {
+         "en": "It is above the 20 000 Hz limit of human hearing.",
+         "hi": "यह मनुष्य के सुनने की 20 000 Hz सीमा से ऊपर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: slide through the whole range and read which animals use each band. Keep earphones at a low volume.",
+      "hi": "आज़माओ: पूरी सीमा में स्लाइड करो और पढ़ो कि कौन-से जंतु किस पट्टी का उपयोग करते हैं। ईयरफ़ोन की आवाज़ धीमी रखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Hook of the chapter",
+   "shows": "A child's hands playing a tabla, with a few grains of rice jumping on the drum skin",
+   "view": "Close-up from the side, fast shutter to freeze the grains",
+   "right": "Grains in the air above the skin",
+   "avoid": "Faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.1.1",
+   "use": "A tuning fork and rubber pad (Activity 10.2)",
+   "shows": "A steel tuning fork beside a rubber striking pad",
+   "view": "Diagonal, from slightly above, transparent background",
+   "right": "Two prongs, a stem; plain steel",
+   "avoid": "Frequency markings readable"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "10.1.1",
+   "use": "Tuning fork touching water",
+   "shows": "A struck tuning fork touching the surface of water in a glass, with ripples and fine splashes",
+   "view": "Side view at water level, fast shutter, two frames: before and touching",
+   "right": "Splashes small and fine",
+   "avoid": "Fingers on the prongs"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "10.3",
+   "use": "A slinky showing compressions (Activity 10.5)",
+   "shows": "A metal slinky stretched on a long table, pushed at one end: bunched coils moving along it, a marked coil staying in place",
+   "view": "From above, same framing, three frames",
+   "right": "Marked coil moves to and fro but stays near its place",
+   "avoid": "Hands hiding the slinky"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "10.7.1",
+   "use": "Echo in the hills",
+   "shows": "A girl shouting towards a steep rocky hillside across a valley in Himachal Pradesh",
+   "view": "Wide view from behind her",
+   "right": "Cliff face clearly far away and hard",
+   "avoid": "Face"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "10.8.1",
+   "use": "Sonar on a ship",
+   "shows": "A survey ship on the Indian Ocean seen from the side, its hull above calm water",
+   "view": "Wide, low angle, daylight",
+   "right": "No sound waves drawn (the app animates them)",
+   "avoid": "Ship names, flags with text"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "10.8.1",
+   "use": "Bats at dusk",
+   "shows": "Fruit bats flying out of a banyan tree at dusk against an orange sky",
+   "view": "Wide view from below",
+   "right": "Bats in flight with wings spread",
+   "avoid": "Text"
+  }
+ ]
+}

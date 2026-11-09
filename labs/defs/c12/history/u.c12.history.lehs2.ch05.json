@@ -1,0 +1,195 @@
+{
+  "chapter_key": "u.c12.history.lehs2.ch05",
+  "class": 12,
+  "subject_id": "history",
+  "title": "Through the Eyes of Travellers",
+  "source": "https://ncert.nic.in/textbook/pdf/lehs2ps.pdf",
+  "topics": [
+    { "n": "1", "title": "Al-Biruni and the Kitab-ul-Hind", "labs": ["c12-history-lehs2-ch05-travellers"], "why_no_lab": null },
+    { "n": "2", "title": "Ibn Battuta's Rihla: an early globe-trotter", "labs": [], "why_no_lab": "The travel route is best followed in the text; the timeline lab gives the dates." },
+    { "n": "3", "title": "Bernier and the Mughal court", "labs": [], "why_no_lab": "Bernier's comparisons are read and weighed in discussion, not sorted." },
+    { "n": "4", "title": "Making sense of an alien world", "labs": ["c12-history-lehs2-ch05-understanding"], "why_no_lab": null },
+    { "n": "5", "title": "Ibn Battuta and Indian cities: coconut, paan and communication", "labs": ["c12-history-lehs2-ch05-observations"], "why_no_lab": null },
+    { "n": "6", "title": "Bernier and landownership", "labs": [], "why_no_lab": "Two views on land are a debate to be weighed by reading the passages, not a set of facts to sort." },
+    { "n": "7", "title": "Women in the travellers' accounts", "labs": [], "why_no_lab": "What travellers saw of women is a matter of interpretation, best discussed with the sources." }
+  ],
+  "labs": [
+    {
+      "id": "c12-history-lehs2-ch05-travellers",
+      "topic": "1",
+      "template": "timeline",
+      "title": { "en": "The travellers in order", "hi": "यात्रियों का क्रम" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1000, 1700],
+        "task": "order",
+        "title": { "en": "Three travellers and their times", "hi": "तीन यात्री और उनके समय" },
+        "events": [
+          { "id": "biruni", "year": 1030, "label": { "en": "Al-Biruni completes his book on India", "hi": "अल-बिरूनी भारत पर अपनी किताब पूरी करता है" } },
+          { "id": "battuta", "year": 1334, "label": { "en": "Ibn Battuta reaches Delhi", "hi": "इब्न बतूता दिल्ली पहुँचता है" } },
+          { "id": "bernier", "year": 1656, "label": { "en": "Bernier arrives in India and serves at the Mughal court", "hi": "बर्नियर भारत पहुँचता है और मुग़ल दरबार में सेवा करता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Three travellers wrote about India. Which one do you think came first in time?", "hi": "तीन यात्रियों ने भारत के बारे में लिखा। तुम्हें लगता है समय में कौन सबसे पहले था?" },
+          "options": [
+            { "id": "biruni", "en": "Al-Biruni", "hi": "अल-बिरूनी" },
+            { "id": "bernier", "en": "Bernier", "hi": "बर्नियर" }
+          ],
+          "answer": "biruni"
+        },
+        { "kind": "do", "target": "event:biruni", "expect": "placed:biruni", "say": { "en": "Tap the book of Al-Biruni first.", "hi": "सबसे पहले अल-बिरूनी की किताब वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:battuta", "expect": "placed:battuta", "say": { "en": "Next, tap Ibn Battuta's arrival in Delhi.", "hi": "अब इब्न बतूता के दिल्ली पहुँचने वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:bernier", "expect": "placed:bernier", "say": { "en": "Last, tap Bernier's arrival at the Mughal court, then press Check.", "hi": "आख़िर में बर्नियर के मुग़ल दरबार पहुँचने वाली घटना टैप करो, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to see your order.", "hi": "अपना क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Al-Biruni wrote about India in the eleventh century, after he had studied Indian learning. Ibn Battuta travelled in the fourteenth century and reached Delhi in 1334. Bernier came in the seventeenth century, when the Mughal empire was at its height. Each traveller saw a different India, shaped by his own time and purpose.", "hi": "अल-बिरूनी ने ग्यारहवीं सदी में भारत के बारे में लिखा, भारतीय ज्ञान का अध्ययन करने के बाद। इब्न बतूता चौदहवीं सदी में यात्रा पर था और 1334 में दिल्ली पहुँचा। बर्नियर सत्रहवीं सदी में आया, जब मुग़ल साम्राज्य अपने चरम पर था। हर यात्री ने अपने समय और उद्देश्य से बनी एक अलग भारत की तस्वीर देखी।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which traveller came to India in the seventeenth century?", "hi": "कौन-सा यात्री सत्रहवीं सदी में भारत आया?" },
+              "options": [
+                { "en": "Al-Biruni", "hi": "अल-बिरूनी" },
+                { "en": "Ibn Battuta", "hi": "इब्न बतूता" },
+                { "en": "Bernier", "hi": "बर्नियर" }
+              ],
+              "answer": 2,
+              "why": { "en": "Bernier arrived in India in 1656, in the seventeenth century, and served at the Mughal court.", "hi": "बर्नियर 1656 में भारत आया, जो सत्रहवीं सदी है, और मुग़ल दरबार में रहा।" },
+              "wrong": [
+                { "en": "Al-Biruni wrote in the eleventh century, centuries before the seventeenth.", "hi": "अल-बिरूनी ने ग्यारहवीं सदी में लिखा, सत्रहवीं से कई सदी पहले।" },
+                { "en": "Ibn Battuta reached Delhi in 1334, in the fourteenth century.", "hi": "इब्न बतूता 1334 में दिल्ली पहुँचा, जो चौदहवीं सदी है।" },
+                ""
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Zoom out and count the years between Al-Biruni and Bernier. Why would a traveller's view change over such a long time?", "hi": "ज़ूम आउट करके अल-बिरूनी और बर्नियर के बीच के साल गिनो। इतने लंबे समय में किसी यात्री का नज़रिया क्यों बदल सकता है?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs2-ch05-understanding",
+      "topic": "4",
+      "template": "sort",
+      "title": { "en": "What helped, and what got in the way?", "hi": "किसने मदद की, और किसने रुकावट डाली?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "helped", "label": { "en": "Helped understanding", "hi": "समझ में मदद की" } },
+          { "id": "hindered", "label": { "en": "Made understanding harder", "hi": "समझ कठिन बनाई" } }
+        ],
+        "cards": [
+          { "id": "sanskrit", "text": { "en": "Learning Sanskrit and reading Indian texts closely", "hi": "संस्कृत सीखना और भारतीय ग्रंथों को ध्यान से पढ़ना" }, "bin": "helped", "why": { "en": "Al-Biruni learned Sanskrit and studied Indian texts, so he could read ideas in their own language.", "hi": "अल-बिरूनी ने संस्कृत सीखी और भारतीय ग्रंथ पढ़े, इसलिए वह विचारों को उनकी अपनी भाषा में समझ सका।" } },
+          { "id": "compare", "text": { "en": "Comparing Indian ideas with Greek and Persian writings", "hi": "भारतीय विचारों की तुलना यूनानी और फ़ारसी लेखन से करना" }, "bin": "helped", "why": { "en": "Comparing one tradition with another helped Al-Biruni find points of contact and difference.", "hi": "एक परंपरा की दूसरी से तुलना करने से अल-बिरूनी को समानताएँ और फ़र्क पहचानने में मदद मिली।" } },
+          { "id": "rumours", "text": { "en": "Relying on rumours from people who never visited", "hi": "ऐसे लोगों की अफ़वाहों पर भरोसा करना जो कभी वहाँ गए ही नहीं" }, "bin": "hindered", "why": { "en": "Rumours can be wrong, and a writer who never saw the place may repeat false ideas.", "hi": "अफ़वाहें ग़लत हो सकती हैं, और जिसने जगह कभी देखी ही न हो, वह ग़लत बातें दोहरा सकता है।" } },
+          { "id": "homeland", "text": { "en": "Judging every Indian custom by the rules of one's homeland", "hi": "हर भारतीय रिवाज को अपने देश के नियमों से परखना" }, "bin": "hindered", "why": { "en": "Judging everything by one's own homeland blocks understanding of a different culture.", "hi": "हर चीज़ को अपने देश के पैमाने से परखने से दूसरी संस्कृति की समझ रुक जाती है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A traveller who writes about a strange land can understand it well, or badly. What do you think helps most?", "hi": "अजनबी देश के बारे में लिखने वाला यात्री उसे अच्छी तरह या बुरी तरह समझ सकता है। तुम्हें लगता है सबसे ज़्यादा क्या मदद करता है?" },
+          "options": [
+            { "id": "language", "en": "Learning the language and texts", "hi": "भाषा और ग्रंथ सीखना" },
+            { "id": "rumour", "en": "Hearing what others say", "hi": "दूसरों की बातें सुनना" }
+          ],
+          "answer": "language"
+        },
+        { "kind": "do", "target": "bin:helped", "expect": "correct:sanskrit", "say": { "en": "Pick the Sanskrit card and tap 'Helped understanding'.", "hi": "संस्कृत वाला कार्ड उठाकर 'समझ में मदद की' टैप करो।" } },
+        { "kind": "do", "target": "bin:hindered", "expect": "correct:rumours", "say": { "en": "Pick the rumours card and tap 'Made understanding harder'.", "hi": "अफ़वाहों वाला कार्ड उठाकर 'समझ कठिन बनाई' टैप करो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Al-Biruni tried to understand India on its own terms. He learned Sanskrit and compared Indian ideas with Greek and Persian works. Travellers who relied on rumour, or judged all customs by their own home, understood less of what they saw.", "hi": "अल-बिरूनी ने भारत को उसकी अपनी शर्तों पर समझने की कोशिश की। उसने संस्कृत सीखी और भारतीय विचारों की तुलना यूनानी और फ़ारसी रचनाओं से की। जो यात्री अफ़वाहों पर टिके रहे, या हर रिवाज को अपने घर के पैमाने से परखते रहे, उन्होंने जो देखा उसे कम समझा।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which action helped Al-Biruni understand India?", "hi": "कौन-सा काम अल-बिरूनी को भारत समझने में मदद करता था?" },
+              "options": [
+                { "en": "Accepting rumours about the land", "hi": "ज़मीन के बारे में अफ़वाहें मान लेना" },
+                { "en": "Learning Sanskrit and reading Indian texts", "hi": "संस्कृत सीखना और भारतीय ग्रंथ पढ़ना" },
+                { "en": "Judging every custom by his homeland", "hi": "हर रिवाज को अपने देश से परखना" }
+              ],
+              "answer": 1,
+              "why": { "en": "Reading the texts in Sanskrit let him understand Indian ideas on their own terms.", "hi": "संस्कृत में ग्रंथ पढ़ने से वह भारतीय विचारों को उनकी अपनी शर्तों पर समझ सका।" },
+              "wrong": [
+                { "en": "Rumours can mislead, so they blocked understanding rather than helped it.", "hi": "अफ़वाहें भटका सकती हैं, इसलिए वे समझ में मदद नहीं, रुकावट बनती हैं।" },
+                "",
+                { "en": "Judging by one's homeland blocks understanding of a different culture.", "hi": "अपने देश के पैमाने से परखना दूसरी संस्कृति की समझ रोकता है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Put the Greek and Persian card in the 'Made it harder' bin and read the reason. Why does comparison help?", "hi": "यूनानी और फ़ारसी वाला कार्ड 'कठिन बनाई' वाले खाने में रखकर कारण पढ़ो। तुलना से मदद क्यों मिलती है?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs2-ch05-observations",
+      "topic": "5",
+      "template": "match",
+      "title": { "en": "What Ibn Battuta noticed", "hi": "इब्न बतूता ने क्या देखा" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "ulaq", "left": { "en": "Ulaq, a relay system", "hi": "उलाक़, एक रिले व्यवस्था" }, "right": { "en": "Messengers carried news in relays on horse and on foot", "hi": "संदेशवाहक घोड़े और पैदल से बारी-बारी संदेश ले जाते थे" }, "why": { "en": "Ibn Battuta describes the ulaq, a system of relays on horse and on foot that carried messages across the empire.", "hi": "इब्न बतूता उलाक़ का वर्णन करता है, यानी घोड़े और पैदल की रिले व्यवस्था, जो साम्राज्य में संदेश पहुँचाती थी।" } },
+          { "id": "paan", "left": { "en": "Paan", "hi": "पान" }, "right": { "en": "A leaf chewed with areca nut, shared as a sign of honour", "hi": "सुपारी के साथ चबाया जाने वाला पत्ता, सम्मान के संकेत के रूप में बाँटा जाता" }, "why": { "en": "Ibn Battuta notes paan being chewed and offered as a mark of respect and welcome.", "hi": "इब्न बतूता पान चबाने और उसे आदर व स्वागत के रूप में देने का ज़िक्र करता है।" } },
+          { "id": "coconut", "left": { "en": "Coconut", "hi": "नारियल" }, "right": { "en": "One tree that gives food, drink and fibre", "hi": "एक ही पेड़ जो भोजन, पेय और रेशा देता है" }, "why": { "en": "Ibn Battuta was struck by the coconut palm, which gave food, drink and fibre for rope.", "hi": "इब्न बतूता नारियल के पेड़ से चकित हुआ, जो भोजन, पेय और रस्सी के लिए रेशा देता है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A foreign traveller notices things that are new to him. What kind of things do you think caught Ibn Battuta's eye?", "hi": "कोई विदेशी यात्री उन चीज़ों पर ध्यान देता है जो उसके लिए नई हों। तुम्हें लगता है इब्न बतूता की नज़र किन चीज़ों पर गई होगी?" },
+          "options": [
+            { "id": "daily", "en": "Everyday things such as food, customs and communication", "hi": "रोज़ की चीज़ें, जैसे भोजन, रिवाज और संचार" },
+            { "id": "kings", "en": "Only the names of kings", "hi": "केवल राजाओं के नाम" }
+          ],
+          "answer": "daily"
+        },
+        { "kind": "do", "target": "right:ulaq", "expect": "matched:ulaq", "say": { "en": "Tap 'Ulaq' on the left, then its meaning on the right.", "hi": "बाईं ओर 'उलाक़' टैप करो, फिर दाईं ओर उसका अर्थ टैप करो।" } },
+        { "kind": "do", "target": "right:coconut", "expect": "matched:coconut", "say": { "en": "Now match 'Coconut' with what it gave.", "hi": "अब 'नारियल' को उससे मिलने वाली चीज़ों से मिलाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Ibn Battuta wrote about everyday life: how messages moved through relays, how paan was shared as a welcome, and how the coconut palm gave many useful things. His eye for daily detail makes his account a rich source for the life of cities and roads.", "hi": "इब्न बतूता ने रोज़ की ज़िंदगी के बारे में लिखा: संदेश रिले से कैसे चलते थे, पान स्वागत के रूप में कैसे बाँटा जाता था, और नारियल का पेड़ कितनी उपयोगी चीज़ें देता था। रोज़मर्रा की बारीकियों पर उसकी नज़र उसके विवरण को शहरों और सड़कों के जीवन का समृद्ध स्रोत बनाती है।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What did the ulaq do, according to the lab?", "hi": "लैब के अनुसार उलाक़ क्या करता था?" },
+              "options": [
+                { "en": "It grew coconut palms", "hi": "यह नारियल के पेड़ उगाता था" },
+                { "en": "It carried messages in relays on horse and on foot", "hi": "यह घोड़े और पैदल से रिले में संदेश ले जाता था" },
+                { "en": "It sold paan in the markets", "hi": "यह बाज़ारों में पान बेचता था" }
+              ],
+              "answer": 1,
+              "why": { "en": "The ulaq was a relay of messengers, on horse and on foot, that carried news across the empire.", "hi": "उलाक़ घोड़े और पैदल संदेशवाहकों की रिले थी, जो साम्राज्य में खबरें ले जाती थी।" },
+              "wrong": [
+                { "en": "Coconut palms were a different observation; the ulaq was about messengers.", "hi": "नारियल के पेड़ एक अलग अवलोकन थे; उलाक़ संदेशवाहकों के बारे में था।" },
+                "",
+                { "en": "Paan was chewed and shared as a sign of honour; it was not the ulaq.", "hi": "पान चबाया जाता था और आदर के संकेत के रूप में बाँटा जाता था; वह उलाक़ नहीं था।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Try the paan card on the coconut pair and read the note. Which everyday detail would you have noticed if you were the traveller?", "hi": "पान वाला कार्ड नारियल वाली जोड़ी पर रखकर नोट पढ़ो। अगर तुम यात्री होते, तो रोज़ की कौन-सी बात तुम्हारी नज़र में आती?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "OBJ", "topic": "1", "use": "Opening object: an astrolabe, the instrument of a learned traveller", "shows": "A brass astrolabe, an old scientific instrument with a pierced plate and a pointer, on a plain wooden table", "view": "Three-quarter view, cut-out on transparent background, object fills about 80 percent, soft light from top-left", "right": "Brass with a warm worn finish, engraved scale lines, true proportions", "avoid": "Modern labels, brand marks, a museum display case with glare" },
+    { "n": 2, "kind": "MAP", "topic": "2", "use": "The travel route of the travellers, as a base map", "shows": "Plain relief map of Central Asia, Iran, Afghanistan and northern India, with mountains, rivers and deserts shown, no borders, no names", "view": "Top-down, 16:9, soft relief shading in muted greens and browns", "right": "Mountain ranges, the Indus and its tributaries, the deserts of the west, in true position", "avoid": "State borders, city names, route lines drawn on the map" },
+    { "n": 3, "kind": "OBJ", "topic": "5", "use": "Paan and coconut, the everyday objects the traveller noticed", "shows": "A bunch of green paan leaves, a few areca nuts and a whole coconut, arranged on a brass tray", "view": "Top-down, cut-out on transparent background, each item fully in frame", "right": "Paan leaves fresh and glossy, areca nuts pale brown, coconut with its natural husk", "avoid": "Packaged paan, brand packets, plastic items" },
+    { "n": 4, "kind": "SCN", "topic": "5", "use": "A city street as the travellers would have seen it", "shows": "A narrow street of an Indian old city at midday, with shop fronts, a cart and a carved wooden doorway, no visible faces", "view": "Eye level, 16:9, natural daylight, the street receding to the centre", "right": "Warm colours of old brick and plaster, true daylight shadows", "avoid": "Faces, signboards with names, modern vehicles dominating the frame" },
+    { "n": 5, "kind": "DIA", "topic": "5", "use": "A relay diagram for the ulaq, without words", "shows": "A simple row of posts, each with a small horse-and-runner icon, joined by a line, a pattern of relay", "view": "Flat, white background, dark thin lines, 4:3", "right": "The posts evenly spaced, the line continuous, each icon the same size", "avoid": "Text or numbers, a map of real places" }
+  ]
+}

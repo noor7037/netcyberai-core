@@ -1,0 +1,1533 @@
+{
+ "chapter_key": "u.c07.social_science.gees1.ch11",
+ "class": 7,
+ "subject_id": "social_science",
+ "title": "From Barter to Money",
+ "source": "https://ncert.nic.in/textbook/pdf/gees111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Barter system: swapping goods and services",
+   "labs": [
+    "c07-social_science-gees1-ch11-ox"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Why do we need money? Problems of barter",
+   "labs": [
+    "c07-social_science-gees1-ch11-problems"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Basic functions of money",
+   "labs": [
+    "c07-social_science-gees1-ch11-functions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "The journey of money and coinage",
+   "labs": [
+    "c07-social_science-gees1-ch11-journey",
+    "c07-social_science-gees1-ch11-coins"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5",
+   "title": "Paper money",
+   "labs": [
+    "c07-social_science-gees1-ch11-notes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.6",
+   "title": "New forms of money",
+   "labs": [
+    "c07-social_science-gees1-ch11-forms"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-social_science-gees1-ch11-ox",
+   "topic": "11.1",
+   "template": "scenario",
+   "title": {
+    "en": "A farmer with an ox",
+    "hi": "बैल वाला किसान"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "A farmer with one spare ox",
+     "hi": "एक फ़ालतू बैल वाले किसान"
+    },
+    "scenes": [
+     {
+      "id": "shoemaker",
+      "text": {
+       "en": "Nobody in your village uses money. You need new shoes, a sweater and medicine for your grandmother, and you have only one spare ox. The shoemaker has the shoes but does not need an ox. What do you do?",
+       "hi": "आपके गाँव में कोई पैसे का उपयोग नहीं करता। आपको नए जूते, स्वेटर और दादी के लिए दवा चाहिए, और आपके पास बस एक फ़ालतू बैल है। मोची के पास जूते हैं पर उसे बैल नहीं चाहिए। आप क्या करेंगे?"
+      },
+      "choices": [
+       {
+        "id": "ox-for-shoes",
+        "text": {
+         "en": "Insist on giving the whole ox for one pair of shoes",
+         "hi": "पूरा बैल देकर बस एक जोड़ी जूते लेने पर अड़ जाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Not fair. An ox is worth far more than shoes, and you cannot give half an ox and take change.",
+         "hi": "यह उचित नहीं। बैल की क़ीमत जूतों से कहीं ज़्यादा है, और आधा बैल देकर बाक़ी वापस नहीं लिया जा सकता।"
+        },
+        "good": false
+       },
+       {
+        "id": "wheat-first",
+        "text": {
+         "en": "Swap the ox for bags of wheat with a neighbour who wants an ox, then offer wheat for the shoes",
+         "hi": "जिस पड़ोसी को बैल चाहिए उससे बैल के बदले गेहूँ के बोरे लो, फिर जूतों के बदले गेहूँ दो"
+        },
+        "next": "wheat",
+        "feedback": {
+         "en": "A chain of swaps can work, but it takes time and effort.",
+         "hi": "अदला-बदली की कड़ी चल सकती है, पर इसमें समय और मेहनत लगती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "go-home",
+        "text": {
+         "en": "Go home without the shoes",
+         "hi": "जूतों के बिना घर लौट जाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Your needs stay unmet. Barter can leave people stuck like this.",
+         "hi": "आपकी ज़रूरतें पूरी नहीं हुईं। वस्तु-विनिमय में लोग ऐसे अटक सकते हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "wheat",
+      "text": {
+       "en": "You now hold many bags of wheat. The shoemaker, the weaver and the medicine-seller must each agree how many bags their goods are worth.",
+       "hi": "अब आपके पास गेहूँ के कई बोरे हैं। मोची, बुनकर और दवा बेचने वाले को यह तय करना है कि उनके सामान के बदले कितने बोरे उचित हैं।"
+      },
+      "choices": [
+       {
+        "id": "bargain",
+        "text": {
+         "en": "Bargain with each person, one at a time",
+         "hi": "हर व्यक्ति से एक-एक करके मोलभाव करो"
+        },
+        "next": "store",
+        "feedback": {
+         "en": "It works, but with no common measure of value every deal needs a long talk.",
+         "hi": "यह चलता है, पर मूल्य का कोई साझा मापक न होने से हर सौदे में लंबी बातचीत लगती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "hand-over",
+        "text": {
+         "en": "Hand over some bags and hope it is fair",
+         "hi": "कुछ बोरे दे दो और उम्मीद करो कि यह उचित होगा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Without a fair measure you may give too much or too little.",
+         "hi": "उचित मापक के बिना आप ज़रूरत से ज़्यादा या कम दे सकते हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "store",
+      "text": {
+       "en": "You have everything you need, but some bags are left over. Rats are about and rain is coming. What now?",
+       "hi": "आपको सब मिल गया, पर कुछ बोरे बच गए हैं। चूहे घूम रहे हैं और बारिश आने वाली है। अब क्या करें?"
+      },
+      "choices": [
+       {
+        "id": "swap-soon",
+        "text": {
+         "en": "Swap the extra wheat soon for things you will need",
+         "hi": "बचा हुआ गेहूँ जल्दी ही काम की चीज़ों से बदल लो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Wise. Wheat cannot be stored for long, so you must trade fast. Money would last.",
+         "hi": "समझदारी। गेहूँ ज़्यादा दिन नहीं रखा जा सकता, इसलिए जल्दी बदलना पड़ता है। पैसा टिकाऊ रहता।"
+        },
+        "good": true
+       },
+       {
+        "id": "keep-open",
+        "text": {
+         "en": "Keep the wheat in the open for a year",
+         "hi": "गेहूँ को एक साल खुले में रखो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "It will rot or be eaten by rats.",
+         "hi": "वह सड़ जाएगा या चूहे खा जाएँगे।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You want shoes, a sweater and medicine, and you have one ox. How many swaps will you probably need?",
+      "hi": "आपको जूते, स्वेटर और दवा चाहिए और आपके पास एक बैल है। संभवतः कितनी अदला-बदलियाँ करनी पड़ेंगी?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "Just one: the ox for all three",
+       "hi": "बस एक: बैल के बदले तीनों"
+      },
+      {
+       "id": "chain",
+       "en": "Several, one after another",
+       "hi": "कई, एक के बाद एक"
+      },
+      {
+       "id": "none",
+       "en": "None are possible",
+       "hi": "कोई नहीं हो सकती"
+      }
+     ],
+     "answer": "chain"
+    },
+    {
+     "kind": "do",
+     "target": "choice:shoemaker:wheat-first",
+     "expect": "chose:wheat-first",
+     "say": {
+      "en": "Choose a way to get the shoes without giving the whole ox for them.",
+      "hi": "पूरा बैल दिए बिना जूते पाने का तरीक़ा चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:wheat:bargain",
+     "expect": "chose:bargain",
+     "say": {
+      "en": "Now settle how many bags each person gets.",
+      "hi": "अब तय करो कि हर व्यक्ति को कितने बोरे मिलेंगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:store:swap-soon",
+     "expect": "chose:swap-soon",
+     "say": {
+      "en": "Decide what to do with the leftover wheat.",
+      "hi": "बचे हुए गेहूँ का क्या करना है, तय करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Barter means swapping goods for goods with no money. You had to find people who wanted what you had (a double coincidence of wants), agree a fair amount with no common measure of value, and trade fast because wheat spoils. Money was invented to solve these problems.",
+      "hi": "वस्तु-विनिमय में चीज़ों के बदले चीज़ें ली जाती हैं, पैसा नहीं। आपको ऐसे लोग खोजने पड़े जिन्हें आपकी चीज़ चाहिए (इच्छाओं का दोहरा संयोग), मूल्य के साझा मापक के बिना उचित मात्रा तय करनी पड़ी, और गेहूँ ख़राब होने से जल्दी बदलना पड़ा। इन्हीं कठिनाइयों को दूर करने के लिए पैसा बना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did the farmer first swap the ox for wheat?",
+        "hi": "किसान ने पहले बैल को गेहूँ से क्यों बदला?"
+       },
+       "options": [
+        {
+         "en": "The shoemaker did not need an ox, so he needed something the shoemaker would accept",
+         "hi": "मोची को बैल नहीं चाहिए था, इसलिए उसे ऐसी चीज़ चाहिए थी जो मोची ले ले"
+        },
+        {
+         "en": "Wheat is worth the same as an ox",
+         "hi": "गेहूँ की क़ीमत बैल के बराबर होती है"
+        },
+        {
+         "en": "Barter does not allow shoes to be swapped",
+         "hi": "वस्तु-विनिमय में जूते बदले नहीं जा सकते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He had to find something the other person wanted. That is the double coincidence of wants.",
+        "hi": "उसे ऐसी चीज़ ढूँढनी थी जो दूसरा व्यक्ति चाहता हो। यही इच्छाओं का दोहरा संयोग है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wheat is not worth one ox; many bags equal an ox, so the swap was for many bags.",
+         "hi": "गेहूँ का एक बोरा बैल के बराबर नहीं; बैल के बदले कई बोरे मिले।"
+        },
+        {
+         "en": "Shoes can be swapped. The trouble was finding what the shoemaker wanted.",
+         "hi": "जूते बदले जा सकते हैं। दिक़्क़त यह थी कि मोची को क्या चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the other choices too. Which ending shows spoiling, which shows an unfair swap, and which shows a stuck farmer?",
+      "hi": "दूसरे विकल्प भी आज़माओ। कौन-सा अंत ख़राब होने को, कौन-सा अनुचित अदला-बदली को और कौन-सा अटके हुए किसान को दिखाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch11-problems",
+   "topic": "11.2",
+   "template": "match",
+   "title": {
+    "en": "Problems of barter",
+    "hi": "वस्तु-विनिमय की कठिनाइयाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "dcw",
+      "left": {
+       "en": "You must find someone who wants your ox and also has the shoes you want",
+       "hi": "आपको ऐसा व्यक्ति ढूँढना है जिसे आपका बैल चाहिए और जिसके पास आपको चाहिए वाले जूते हों"
+      },
+      "right": {
+       "en": "Double coincidence of wants",
+       "hi": "इच्छाओं का दोहरा संयोग"
+      },
+      "why": {
+       "en": "Both people must want what the other has, at the same time.",
+       "hi": "दोनों व्यक्तियों को एक ही समय में एक-दूसरे की चीज़ चाहिए होनी चाहिए।"
+      }
+     },
+     {
+      "id": "value",
+      "left": {
+       "en": "Nobody agrees how many bags of wheat equal a sweater",
+       "hi": "कोई तय नहीं कर पाता कि एक स्वेटर के बराबर गेहूँ के कितने बोरे हैं"
+      },
+      "right": {
+       "en": "No common standard measure of value",
+       "hi": "मूल्य का कोई साझा मापक नहीं"
+      },
+      "why": {
+       "en": "Without one measure for all goods it is hard to compare their worth.",
+       "hi": "सब चीज़ों के लिए एक मापक न हो तो उनकी क़ीमत की तुलना कठिन होती है।"
+      }
+     },
+     {
+      "id": "divis",
+      "left": {
+       "en": "You cannot swap just half an ox for a sweater",
+       "hi": "आप एक स्वेटर के लिए सिर्फ़ आधा बैल नहीं दे सकते"
+      },
+      "right": {
+       "en": "Divisibility",
+       "hi": "विभाज्यता (बाँटा जा सकना)"
+      },
+      "why": {
+       "en": "An ox cannot be split into small parts to buy small things.",
+       "hi": "बैल को छोटी चीज़ें ख़रीदने के लिए छोटे हिस्सों में नहीं बाँटा जा सकता।"
+      }
+     },
+     {
+      "id": "port",
+      "left": {
+       "en": "Taking an ox or heavy bags to every shop is hard",
+       "hi": "हर दुकान तक बैल या भारी बोरे ले जाना कठिन है"
+      },
+      "right": {
+       "en": "Portability",
+       "hi": "सुवाह्यता (ले जा पाना)"
+      },
+      "why": {
+       "en": "Goods used for exchange should be easy to carry.",
+       "hi": "विनिमय की चीज़ें आसानी से ले जाने लायक होनी चाहिए।"
+      }
+     },
+     {
+      "id": "dura",
+      "left": {
+       "en": "Stored wheat rots or is eaten by rats",
+       "hi": "रखा हुआ गेहूँ सड़ जाता है या चूहे खा जाते हैं"
+      },
+      "right": {
+       "en": "Durability",
+       "hi": "टिकाऊपन"
+      },
+      "why": {
+       "en": "Money must last a long time without spoiling.",
+       "hi": "पैसा बिना ख़राब हुए लंबे समय तक टिकना चाहिए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which problem would you expect to be the worst for someone who sells fresh fish?",
+      "hi": "ताज़ी मछली बेचने वाले के लिए कौन-सी कठिनाई सबसे बुरी होगी?"
+     },
+     "options": [
+      {
+       "id": "dura",
+       "en": "Durability",
+       "hi": "टिकाऊपन"
+      },
+      {
+       "id": "port",
+       "en": "Portability",
+       "hi": "सुवाह्यता"
+      },
+      {
+       "id": "none",
+       "en": "Nothing; fish is easy to keep",
+       "hi": "कुछ नहीं; मछली रखना आसान है"
+      }
+     ],
+     "answer": "dura"
+    },
+    {
+     "kind": "do",
+     "target": "left:dcw",
+     "expect": "matched:dcw",
+     "say": {
+      "en": "Match the first situation with its problem.",
+      "hi": "पहली स्थिति को उसकी कठिनाई से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:dura",
+     "expect": "matched:dura",
+     "say": {
+      "en": "Now match the spoiling wheat.",
+      "hi": "अब सड़ते गेहूँ को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Five problems made barter hard: finding a double coincidence of wants, having no common measure of value, being unable to divide goods, being unable to carry them easily, and goods that spoil. A good form of money solves all five.",
+      "hi": "पाँच कठिनाइयों ने वस्तु-विनिमय को मुश्किल बनाया: इच्छाओं का दोहरा संयोग ढूँढना, मूल्य का साझा मापक न होना, चीज़ों को बाँट न पाना, उन्हें आसानी से ले जा न पाना और चीज़ों का ख़राब होना। अच्छी मुद्रा इन पाँचों को हल कर देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A coin is easy to split into change and to carry. Which two problems of barter does that solve?",
+        "hi": "सिक्के को छुट्टे में बाँटना और ले जाना आसान है। इससे वस्तु-विनिमय की कौन-सी दो कठिनाइयाँ हल होती हैं?"
+       },
+       "options": [
+        {
+         "en": "Divisibility and portability",
+         "hi": "विभाज्यता और सुवाह्यता"
+        },
+        {
+         "en": "Durability and double coincidence of wants",
+         "hi": "टिकाऊपन और इच्छाओं का दोहरा संयोग"
+        },
+        {
+         "en": "Only the common measure of value",
+         "hi": "केवल मूल्य का साझा मापक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Coins come in small values (divisible) and are light to carry (portable).",
+        "hi": "सिक्के छोटे मूल्यों में आते हैं (विभाज्य) और हल्के होते हैं (सुवाह्य)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A coin is durable too, but it does not by itself make two people want each other's goods.",
+         "hi": "सिक्का टिकाऊ भी है, पर इससे दो लोगों को एक-दूसरे की चीज़ चाहिए, यह अपने आप नहीं होता।"
+        },
+        {
+         "en": "A coin also has a price tag, but that is not about splitting or carrying it.",
+         "hi": "सिक्के का एक मूल्य होता है, पर वह बाँटने या ले जाने की बात नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of something your family swapped or shared without money. Which of the five problems could it face?",
+      "hi": "सोचो, तुम्हारे परिवार ने बिना पैसे के क्या बदला या साझा किया। उसमें इन पाँच में से कौन-सी कठिनाई आ सकती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch11-functions",
+   "topic": "11.3",
+   "template": "match",
+   "title": {
+    "en": "What money does",
+    "hi": "पैसा क्या काम करता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "medium",
+      "left": {
+       "en": "A shopkeeper takes rupees for any goods you buy",
+       "hi": "दुकानदार आपके ख़रीदे किसी भी सामान के बदले रुपये लेता है"
+      },
+      "right": {
+       "en": "Medium of exchange",
+       "hi": "विनिमय का माध्यम"
+      },
+      "why": {
+       "en": "Everyone accepts money in return for goods and services.",
+       "hi": "सब लोग वस्तुओं और सेवाओं के बदले पैसा स्वीकार करते हैं।"
+      }
+     },
+     {
+      "id": "store",
+      "left": {
+       "en": "The farmer keeps money for months and buys what he needs later",
+       "hi": "किसान महीनों तक पैसा रखता है और ज़रूरत पड़ने पर बाद में ख़रीदता है"
+      },
+      "right": {
+       "en": "Store of value",
+       "hi": "मूल्य का भंडार"
+      },
+      "why": {
+       "en": "Money does not rot, so it can be saved and used later.",
+       "hi": "पैसा सड़ता नहीं, इसलिए उसे बचाकर बाद में उपयोग किया जा सकता है।"
+      }
+     },
+     {
+      "id": "measure",
+      "left": {
+       "en": "Every item has a price in rupees, so you can compare a pencil and a book",
+       "hi": "हर चीज़ का दाम रुपयों में होता है, इसलिए पेंसिल और किताब की तुलना हो सकती है"
+      },
+      "right": {
+       "en": "Common measure of value",
+       "hi": "मूल्य का साझा मापक"
+      },
+      "why": {
+       "en": "Prices in one unit let us compare the worth of different goods.",
+       "hi": "एक ही इकाई में दाम होने से अलग-अलग चीज़ों की क़ीमत की तुलना हो पाती है।"
+      }
+     },
+     {
+      "id": "defer",
+      "left": {
+       "en": "You pay ₹50 now for a ₹100 book and the rest later",
+       "hi": "आप ₹100 की किताब के लिए अभी ₹50 देते हैं और बाक़ी बाद में"
+      },
+      "right": {
+       "en": "Standard of deferred payment",
+       "hi": "आस्थगित (बाद के) भुगतान का मानक"
+      },
+      "why": {
+       "en": "Money lets people pay later, and both sides agree on the amount.",
+       "hi": "पैसे से लोग बाद में भुगतान कर सकते हैं, और दोनों पक्ष रक़म पर सहमत होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You have ₹50 and the book you want costs ₹100. Which function of money lets you pay the rest later?",
+      "hi": "आपके पास ₹50 हैं और मनपसंद किताब ₹100 की है। पैसे का कौन-सा कार्य आपको बाक़ी रक़म बाद में देने देता है?"
+     },
+     "options": [
+      {
+       "id": "defer",
+       "en": "Deferred payment",
+       "hi": "आस्थगित भुगतान"
+      },
+      {
+       "id": "store",
+       "en": "Store of value",
+       "hi": "मूल्य का भंडार"
+      },
+      {
+       "id": "exch",
+       "en": "Medium of exchange only",
+       "hi": "केवल विनिमय का माध्यम"
+      }
+     ],
+     "answer": "defer"
+    },
+    {
+     "kind": "do",
+     "target": "left:medium",
+     "expect": "matched:medium",
+     "say": {
+      "en": "Match the shopkeeper with the job money does.",
+      "hi": "दुकानदार वाली स्थिति को पैसे के कार्य से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:defer",
+     "expect": "matched:defer",
+     "say": {
+      "en": "Now match the part payment.",
+      "hi": "अब आंशिक भुगतान को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Finish the matching, then press Check.",
+      "hi": "मिलान पूरा करो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Money does four jobs. It is the medium of exchange everyone accepts, a store of value you can keep, a common measure of value for comparing prices, and a standard of deferred payment for paying later. Barter could not do these as well.",
+      "hi": "पैसा चार काम करता है। यह विनिमय का माध्यम है जिसे सब स्वीकार करते हैं, मूल्य का भंडार है जिसे रखा जा सकता है, दामों की तुलना के लिए मूल्य का साझा मापक है और बाद में भुगतान करने का मानक है। वस्तु-विनिमय ये काम इतनी अच्छी तरह नहीं कर पाता था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The farmer keeps his earnings in money instead of wheat. Which function is this?",
+        "hi": "किसान गेहूँ की जगह अपनी कमाई पैसे में रखता है। यह कौन-सा कार्य है?"
+       },
+       "options": [
+        {
+         "en": "Store of value",
+         "hi": "मूल्य का भंडार"
+        },
+        {
+         "en": "Medium of exchange",
+         "hi": "विनिमय का माध्यम"
+        },
+        {
+         "en": "Deferred payment",
+         "hi": "आस्थगित भुगतान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Money keeps its worth over time, but wheat can rot or be eaten.",
+        "hi": "पैसा समय के साथ अपना मूल्य बनाए रखता है, जबकि गेहूँ सड़ सकता है या खाया जा सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Exchange is about handing money over for goods. Here he is keeping it.",
+         "hi": "विनिमय में सामान के बदले पैसा दिया जाता है। यहाँ वह उसे रख रहा है।"
+        },
+        {
+         "en": "Deferred payment is about paying later. He is saving, not paying.",
+         "hi": "आस्थगित भुगतान बाद में चुकाने की बात है। वह बचा रहा है, चुका नहीं रहा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the price tags in a shop near you. Which function of money do they show?",
+      "hi": "अपने पास की किसी दुकान के दाम-पर्चे देखो। वे पैसे के कौन-से कार्य को दिखाते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch11-journey",
+   "topic": "11.4",
+   "template": "sequence",
+   "title": {
+    "en": "The journey of money",
+    "hi": "पैसे की यात्रा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "barter",
+      "text": {
+       "en": "Barter: goods swapped for other goods",
+       "hi": "वस्तु-विनिमय: चीज़ों के बदले चीज़ें"
+      }
+     },
+     {
+      "id": "shells",
+      "text": {
+       "en": "Common items like cowrie shells or salt used as money",
+       "hi": "कौड़ी या नमक जैसी आम चीज़ें पैसे की तरह चलीं"
+      }
+     },
+     {
+      "id": "coins",
+      "text": {
+       "en": "Metal coins minted by rulers",
+       "hi": "शासकों द्वारा ढाले गए धातु के सिक्के"
+      }
+     },
+     {
+      "id": "notes",
+      "text": {
+       "en": "Paper notes, now issued only by the RBI",
+       "hi": "काग़ज़ के नोट, जो अब केवल रिज़र्व बैंक (RBI) छापता है"
+      }
+     },
+     {
+      "id": "digital",
+      "text": {
+       "en": "Digital money: UPI, cards and net banking",
+       "hi": "डिजिटल पैसा: यूपीआई, कार्ड और नेट बैंकिंग"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which came first in the story of money?",
+      "hi": "पैसे की कहानी में पहले क्या आया?"
+     },
+     "options": [
+      {
+       "id": "barter",
+       "en": "Barter",
+       "hi": "वस्तु-विनिमय"
+      },
+      {
+       "id": "notes",
+       "en": "Paper notes",
+       "hi": "काग़ज़ के नोट"
+      },
+      {
+       "id": "upi",
+       "en": "UPI",
+       "hi": "यूपीआई"
+      }
+     ],
+     "answer": "barter"
+    },
+    {
+     "kind": "do",
+     "target": "item:barter",
+     "expect": "placed:barter",
+     "say": {
+      "en": "Place barter, the earliest way of exchange, first.",
+      "hi": "सबसे पुराने तरीक़े, वस्तु-विनिमय को पहले रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:digital",
+     "expect": "placed:digital",
+     "say": {
+      "en": "Place the newest form, digital money, last.",
+      "hi": "सबसे नए रूप, डिजिटल पैसे को आख़िर में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill the middle places, then press Check.",
+      "hi": "बीच की जगहें भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "People first bartered. Then common things such as shells and salt served as money. Rulers began to mint metal coins, which were easy to carry. Paper notes came later, and today money can even be digital. Each change made exchange easier.",
+      "hi": "पहले लोग वस्तुओं की अदला-बदली करते थे। फिर कौड़ी और नमक जैसी आम चीज़ें पैसे का काम करने लगीं। शासकों ने धातु के सिक्के ढालने शुरू किए जो ले जाने में आसान थे। बाद में काग़ज़ के नोट आए और आज पैसा डिजिटल भी हो सकता है। हर बदलाव से लेन-देन आसान हुआ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did people move from coins to paper notes for large payments?",
+        "hi": "बड़े भुगतानों के लिए लोग सिक्कों से काग़ज़ के नोटों की ओर क्यों बढ़े?"
+       },
+       "options": [
+        {
+         "en": "Carrying and storing many coins was hard",
+         "hi": "बहुत-से सिक्के ले जाना और रखना कठिन था"
+        },
+        {
+         "en": "Coins were not accepted anywhere",
+         "hi": "सिक्के कहीं स्वीकार नहीं होते थे"
+        },
+        {
+         "en": "Notes never get damaged",
+         "hi": "नोट कभी ख़राब नहीं होते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Notes are light, so big amounts are easier to carry and keep.",
+        "hi": "नोट हल्के होते हैं, इसलिए बड़ी रक़म ले जाना और रखना आसान होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Coins were accepted widely. The trouble was their weight and number.",
+         "hi": "सिक्के व्यापक रूप से चलते थे। समस्या उनके वज़न और संख्या की थी।"
+        },
+        {
+         "en": "Notes can tear or get wet, so this is not the reason.",
+         "hi": "नोट फट या भीग सकते हैं, इसलिए यह कारण नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask an elder what they remember using to pay: coins, notes or phone. Add it to your own money timeline.",
+      "hi": "किसी बड़े से पूछो कि उन्हें याद है कि वे किससे भुगतान करते थे: सिक्के, नोट या फ़ोन। इसे अपनी पैसे की समयरेखा में जोड़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch11-coins",
+   "topic": "11.4",
+   "template": "match",
+   "title": {
+    "en": "Reading an old coin",
+    "hi": "पुराने सिक्के को पढ़ना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "karsha",
+      "left": {
+       "en": "Kārṣhāpaṇa or paṇa",
+       "hi": "कार्षापण या पण"
+      },
+      "right": {
+       "en": "An ancient Indian coin of silver, copper, gold or their alloys",
+       "hi": "चाँदी, ताँबे, सोने या उनके मिश्र धातु का प्राचीन भारतीय सिक्का"
+      },
+      "why": {
+       "en": "Ancient rulers issued these coins, and variations of paṇa are still words for money in some Indian languages.",
+       "hi": "प्राचीन शासक ये सिक्के जारी करते थे, और पण का रूप आज भी कुछ भारतीय भाषाओं में पैसे के लिए शब्द है।"
+      }
+     },
+     {
+      "id": "rupa",
+      "left": {
+       "en": "Rūpa",
+       "hi": "रूप"
+      },
+      "right": {
+       "en": "A symbol punched on an ancient coin",
+       "hi": "प्राचीन सिक्के पर ठोककर बनाया गया चिह्न"
+      },
+      "why": {
+       "en": "The word sounds like our word rupee.",
+       "hi": "यह शब्द हमारे शब्द रुपया जैसा लगता है।"
+      }
+     },
+     {
+      "id": "mint",
+      "left": {
+       "en": "Mint",
+       "hi": "टकसाल"
+      },
+      "right": {
+       "en": "The place where coins are made",
+       "hi": "वह जगह जहाँ सिक्के बनाए जाते हैं"
+      },
+      "why": {
+       "en": "Minting is the process of producing coins.",
+       "hi": "सिक्के बनाने की प्रक्रिया को ढलाई कहते हैं।"
+      }
+     },
+     {
+      "id": "alloy",
+      "left": {
+       "en": "Alloy",
+       "hi": "मिश्र धातु"
+      },
+      "right": {
+       "en": "A metal made by combining two or more metals",
+       "hi": "दो या अधिक धातुओं को मिलाकर बनी धातु"
+      },
+      "why": {
+       "en": "Alloys make a coin strong. Today's coins are alloys too.",
+       "hi": "मिश्र धातु सिक्के को मज़बूत बनाती है। आज के सिक्के भी मिश्र धातु के हैं।"
+      }
+     },
+     {
+      "id": "obverse",
+      "left": {
+       "en": "Obverse",
+       "hi": "सिक्के का अग्र भाग"
+      },
+      "right": {
+       "en": "The \"head\" side with the main design",
+       "hi": "मुख्य चित्र वाला \"सिर\" की ओर का भाग"
+      },
+      "why": {
+       "en": "The other side is called the reverse.",
+       "hi": "दूसरी ओर को पृष्ठ भाग कहते हैं।"
+      }
+     },
+     {
+      "id": "roman",
+      "left": {
+       "en": "Roman gold coins dug up at Pudukkottai",
+       "hi": "पुदुक्कोट्टै में खुदाई में मिले रोमन सोने के सिक्के"
+      },
+      "right": {
+       "en": "A clue that India traded by sea with far countries",
+       "hi": "संकेत कि भारत समुद्र से दूर देशों से व्यापार करता था"
+      },
+      "why": {
+       "en": "Coins found far from where they were made show trade between lands.",
+       "hi": "जहाँ बने वहाँ से दूर मिले सिक्के देशों के बीच व्यापार दिखाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Roman gold coins were found in Tamil Nadu. What does this suggest?",
+      "hi": "तमिलनाडु में रोमन सोने के सिक्के मिले। यह क्या संकेत देता है?"
+     },
+     "options": [
+      {
+       "id": "trade",
+       "en": "Traders from India and Rome exchanged goods",
+       "hi": "भारत और रोम के व्यापारी वस्तुओं का लेन-देन करते थे"
+      },
+      {
+       "id": "war",
+       "en": "Rome ruled all of India",
+       "hi": "रोम पूरे भारत पर राज करता था"
+      },
+      {
+       "id": "lost",
+       "en": "Someone lost them by accident",
+       "hi": "किसी से ग़लती से खो गए"
+      }
+     ],
+     "answer": "trade"
+    },
+    {
+     "kind": "do",
+     "target": "left:roman",
+     "expect": "matched:roman",
+     "say": {
+      "en": "Match the Roman coins with what they tell us.",
+      "hi": "रोमन सिक्कों को उनके संकेत से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:mint",
+     "expect": "matched:mint",
+     "say": {
+      "en": "Now match the mint.",
+      "hi": "अब टकसाल को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ancient coins were made of metals such as gold, silver and copper, or their alloys, in a mint controlled by the ruler. Symbols called rūpas were punched on them. Coins of powerful rulers were accepted beyond their own kingdoms, which helped trade. Roman coins found in the south show sea trade with far lands.",
+      "hi": "प्राचीन सिक्के सोने, चाँदी, ताँबे जैसी धातुओं या उनके मिश्र धातुओं से शासक के नियंत्रण वाली टकसाल में बनते थे। उन पर रूप नामक चिह्न ठोके जाते थे। शक्तिशाली शासकों के सिक्के उनके राज्य से बाहर भी चलते थे, जिससे व्यापार बढ़ा। दक्षिण में मिले रोमन सिक्के दूर देशों से समुद्री व्यापार दिखाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why were coins of powerful rulers accepted in other kingdoms too?",
+        "hi": "शक्तिशाली शासकों के सिक्के दूसरे राज्यों में भी क्यों चलते थे?"
+       },
+       "options": [
+        {
+         "en": "People trusted them, and this made trade across regions easier",
+         "hi": "लोग उन पर भरोसा करते थे, जिससे अलग-अलग क्षेत्रों में व्यापार आसान हुआ"
+        },
+        {
+         "en": "Every kingdom had to use them by law",
+         "hi": "हर राज्य को क़ानून से उन्हें चलाना पड़ता था"
+        },
+        {
+         "en": "They were made of paper",
+         "hi": "वे काग़ज़ के बने थे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Wide acceptance helped trade across places.",
+        "hi": "व्यापक स्वीकृति से अलग-अलग जगहों के बीच व्यापार में मदद मिली।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There was no such single law. Trust and trade made them popular.",
+         "hi": "ऐसा कोई एक क़ानून नहीं था। भरोसे और व्यापार से वे लोकप्रिय हुए।"
+        },
+        {
+         "en": "Old coins were metal, not paper. Paper money came much later.",
+         "hi": "पुराने सिक्के धातु के थे, काग़ज़ के नहीं। काग़ज़ का पैसा बहुत बाद में आया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a coin in your pocket. Can you find its obverse, its value and its year?",
+      "hi": "अपनी जेब का कोई सिक्का देखो। क्या उसका अग्र भाग, मूल्य और वर्ष ढूँढ सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch11-notes",
+   "topic": "11.5",
+   "template": "money",
+   "title": {
+    "en": "Pay with coins and notes",
+    "hi": "सिक्कों और नोटों से भुगतान"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "pay",
+    "items": [
+     {
+      "name": {
+       "en": "Notebook",
+       "hi": "कॉपी"
+      },
+      "price": 45
+     },
+     {
+      "name": {
+       "en": "Pen",
+       "hi": "पेन"
+      },
+      "price": 20
+     },
+     {
+      "name": {
+       "en": "Eraser",
+       "hi": "रबर"
+      },
+      "price": 5
+     }
+    ],
+    "pick": [
+     0,
+     1
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A notebook costs ₹45 and a pen ₹20. How much must you pay?",
+      "hi": "कॉपी ₹45 की और पेन ₹20 का है। कुल कितना देना होगा?"
+     },
+     "options": [
+      {
+       "id": "65",
+       "en": "₹65",
+       "hi": "65 रुपये"
+      },
+      {
+       "id": "55",
+       "en": "₹55",
+       "hi": "55 रुपये"
+      },
+      {
+       "id": "25",
+       "en": "₹25",
+       "hi": "25 रुपये"
+      }
+     ],
+     "answer": "65"
+    },
+    {
+     "kind": "do",
+     "target": "note:50",
+     "expect": "placed:note:50",
+     "say": {
+      "en": "Put a ₹50 note on the counter.",
+      "hi": "काउंटर पर ₹50 का नोट रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "coin:10",
+     "expect": "placed:coin:10",
+     "say": {
+      "en": "Add a ₹10 coin.",
+      "hi": "एक ₹10 का सिक्का जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "coin:5",
+     "expect": "placed:coin:5",
+     "say": {
+      "en": "Add a ₹5 coin to make the exact amount.",
+      "hi": "ठीक रक़म बनाने के लिए ₹5 का सिक्का जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pay",
+     "expect": "paid",
+     "say": {
+      "en": "Press Pay.",
+      "hi": "भुगतान करो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The notebook and the pen cost 45 + 20 = ₹65. You paid with a note and coins. Coins are used for smaller amounts and notes for larger ones. In India only the Reserve Bank of India (RBI) can issue currency notes, so nobody else may print them.",
+      "hi": "कॉपी और पेन का दाम 45 + 20 = ₹65 है। आपने नोट और सिक्कों से भुगतान किया। छोटी रक़म के लिए सिक्के और बड़ी रक़म के लिए नोट चलते हैं। भारत में केवल भारतीय रिज़र्व बैंक (RBI) करेंसी नोट जारी कर सकता है, इसलिए कोई और उन्हें नहीं छाप सकता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who is allowed to issue currency notes in India?",
+        "hi": "भारत में करेंसी नोट जारी करने का अधिकार किसे है?"
+       },
+       "options": [
+        {
+         "en": "The Reserve Bank of India",
+         "hi": "भारतीय रिज़र्व बैंक"
+        },
+        {
+         "en": "Any shopkeeper or bank",
+         "hi": "कोई भी दुकानदार या बैंक"
+        },
+        {
+         "en": "Each state's police",
+         "hi": "हर राज्य की पुलिस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the RBI controls the issue of currency; it is illegal for anyone else.",
+        "hi": "केवल RBI करेंसी जारी करने को नियंत्रित करता है; किसी और के लिए यह अवैध है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Banks and shops handle money but cannot issue notes. That is illegal.",
+         "hi": "बैंक और दुकानें पैसे का लेन-देन करती हैं पर नोट जारी नहीं कर सकतीं। यह अवैध है।"
+        },
+        {
+         "en": "The police protect people; they do not issue money.",
+         "hi": "पुलिस लोगों की रक्षा करती है; पैसा जारी नहीं करती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the items and make the exact price with different coins and notes. How many ways can you make ₹65?",
+      "hi": "सामान बदलो और अलग-अलग सिक्कों और नोटों से ठीक दाम बनाओ। ₹65 कितने तरीक़ों से बन सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch11-forms",
+   "topic": "11.6",
+   "template": "sort",
+   "title": {
+    "en": "Money you can touch, and money you cannot",
+    "hi": "छूने वाला पैसा और बिना छुए वाला पैसा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "touch",
+      "label": {
+       "en": "Money you can touch",
+       "hi": "छूने वाला पैसा"
+      }
+     },
+     {
+      "id": "digital",
+      "label": {
+       "en": "Digital money",
+       "hi": "डिजिटल पैसा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "coin5",
+      "text": {
+       "en": "A ₹5 coin",
+       "hi": "₹5 का सिक्का"
+      },
+      "bin": "touch",
+      "why": {
+       "en": "You can hold a coin in your hand.",
+       "hi": "सिक्के को हाथ में पकड़ा जा सकता है।"
+      }
+     },
+     {
+      "id": "note100",
+      "text": {
+       "en": "A ₹100 note",
+       "hi": "₹100 का नोट"
+      },
+      "bin": "touch",
+      "why": {
+       "en": "Paper notes are physical money.",
+       "hi": "काग़ज़ के नोट भौतिक पैसा हैं।"
+      }
+     },
+     {
+      "id": "oldcoin",
+      "text": {
+       "en": "An ancient silver coin",
+       "hi": "चाँदी का प्राचीन सिक्का"
+      },
+      "bin": "touch",
+      "why": {
+       "en": "Metal coins are also money you can touch.",
+       "hi": "धातु के सिक्के भी छूने वाला पैसा हैं।"
+      }
+     },
+     {
+      "id": "qr",
+      "text": {
+       "en": "Paying a fruit seller by scanning a QR code",
+       "hi": "फल वाले को QR कोड स्कैन करके भुगतान"
+      },
+      "bin": "digital",
+      "why": {
+       "en": "The money goes straight into his bank account, with nothing passed from hand to hand.",
+       "hi": "पैसा सीधे उसके बैंक खाते में जाता है, हाथ से हाथ में कुछ नहीं दिया जाता।"
+      }
+     },
+     {
+      "id": "debit",
+      "text": {
+       "en": "Paying with a debit card",
+       "hi": "डेबिट कार्ड से भुगतान"
+      },
+      "bin": "digital",
+      "why": {
+       "en": "The amount moves electronically from your account.",
+       "hi": "रक़म आपके खाते से इलेक्ट्रॉनिक रूप से कटती है।"
+      }
+     },
+     {
+      "id": "netbank",
+      "text": {
+       "en": "Sending money through net banking",
+       "hi": "नेट बैंकिंग से पैसे भेजना"
+      },
+      "bin": "digital",
+      "why": {
+       "en": "Money is transferred between bank accounts on a computer or phone.",
+       "hi": "कंप्यूटर या फ़ोन पर बैंक खातों के बीच पैसा भेजा जाता है।"
+      }
+     },
+     {
+      "id": "upi",
+      "text": {
+       "en": "Sending money with a UPI app",
+       "hi": "यूपीआई ऐप से पैसे भेजना"
+      },
+      "bin": "digital",
+      "why": {
+       "en": "UPI moves money directly from one bank account to another.",
+       "hi": "यूपीआई पैसा सीधे एक बैंक खाते से दूसरे में भेजता है।"
+      }
+     },
+     {
+      "id": "note20",
+      "text": {
+       "en": "A ₹20 note",
+       "hi": "₹20 का नोट"
+      },
+      "bin": "touch",
+      "why": {
+       "en": "You can feel a note in your hand.",
+       "hi": "नोट को हाथ में महसूस किया जा सकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Fruit seller Krishnappa shows a QR code card. How does a customer's money reach him?",
+      "hi": "फल बेचने वाले कृष्णप्पा के पास QR कोड का कार्ड है। ग्राहक का पैसा उन तक कैसे पहुँचता है?"
+     },
+     "options": [
+      {
+       "id": "bank",
+       "en": "Straight into his bank account",
+       "hi": "सीधे उसके बैंक खाते में"
+      },
+      {
+       "id": "coins",
+       "en": "As coins in a box",
+       "hi": "डिब्बे में सिक्कों के रूप में"
+      },
+      {
+       "id": "post",
+       "en": "By post the next day",
+       "hi": "अगले दिन डाक से"
+      }
+     ],
+     "answer": "bank"
+    },
+    {
+     "kind": "do",
+     "target": "card:qr",
+     "expect": "correct:qr",
+     "say": {
+      "en": "Put the QR code payment in the right group.",
+      "hi": "QR कोड वाले भुगतान को सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:coin5",
+     "expect": "correct:coin5",
+     "say": {
+      "en": "Now place the ₹5 coin.",
+      "hi": "अब ₹5 के सिक्के को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Coins and notes are money you can touch. Digital money exists only in electronic form. Cards, net banking, UPI and QR codes move money from one bank account to another without cash changing hands. Both kinds are money; they are just kept and passed on differently.",
+      "hi": "सिक्के और नोट छूने वाला पैसा हैं। डिजिटल पैसा केवल इलेक्ट्रॉनिक रूप में होता है। कार्ड, नेट बैंकिंग, यूपीआई और QR कोड बिना नक़दी हाथ बदले पैसा एक बैंक खाते से दूसरे में भेजते हैं। दोनों पैसा ही हैं; बस उन्हें रखने और देने का तरीक़ा अलग है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does digital money mainly stay?",
+        "hi": "डिजिटल पैसा मुख्य रूप से कहाँ रहता है?"
+       },
+       "options": [
+        {
+         "en": "In electronic form in bank accounts",
+         "hi": "बैंक खातों में इलेक्ट्रॉनिक रूप में"
+        },
+        {
+         "en": "In a locked wooden box",
+         "hi": "लकड़ी की ताला लगी पेटी में"
+        },
+        {
+         "en": "As paper in your wallet",
+         "hi": "आपके बटुए में काग़ज़ के रूप में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is a record in a bank account that apps and cards can move.",
+        "hi": "यह बैंक खाते में दर्ज रक़म है जिसे ऐप और कार्ड आगे भेज सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A box holds coins and notes, which are touchable money.",
+         "hi": "पेटी में सिक्के और नोट रखे जाते हैं, जो छूने वाला पैसा हैं।"
+        },
+        {
+         "en": "Paper in a wallet means notes, not digital money.",
+         "hi": "बटुए में काग़ज़ का मतलब नोट है, डिजिटल पैसा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask a shopkeeper whether more customers pay by cash or by UPI, and why. Share what you hear.",
+      "hi": "किसी दुकानदार से पूछो कि ज़्यादा ग्राहक नक़द देते हैं या यूपीआई से, और क्यों। जो सुनो उसे साझा करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Opens the chapter: barter today",
+   "shows": "Hill and plains traders at a fair, swapping roots, herbs and woven baskets for rice cakes, seen from behind at a stall",
+   "view": "Wide, 16:9, early morning light",
+   "right": "Real Indian fair, natural goods, goods clearly visible",
+   "avoid": "Faces of children, logos, plastic bags"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Cards for barter and old money",
+   "shows": "Cowrie shells, a lump of rock salt, a folded length of cotton cloth and a small sack of seeds, each cut out on its own",
+   "view": "Three-quarter view, soft top-left light",
+   "right": "Real cowries, real rock salt, cotton weave visible",
+   "avoid": "Labels, brand packaging"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "11.4",
+   "use": "Journey of money strip",
+   "shows": "Five frames in the same light: cowrie shells; a punched silver coin; a plain old metal coin; a modern coin; a currency note",
+   "view": "Top view on a neutral cloth, same camera each frame",
+   "right": "Coins shown as replicas or from a free-to-use museum source",
+   "avoid": "Real wording on notes at readable size, watermarks"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "11.4",
+   "use": "Library image LIB-SOC-rupee-coins: shared coin cut-outs",
+   "shows": "Indian coins of ₹1, ₹2, ₹5, ₹10 and ₹20, front and back, each cut out",
+   "view": "Straight top view, one file per face",
+   "right": "Current designs and sizes, ₹ symbol visible",
+   "avoid": "Foreign coins, damaged coins"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "11.5",
+   "use": "Library image LIB-SOC-rupee-notes: shared note cut-outs",
+   "shows": "Indian notes of ₹10, ₹20, ₹50, ₹100, ₹200 and ₹500, front and back, in their true colours",
+   "view": "Flat top view, slightly reduced size",
+   "right": "Follow the RBI rules on showing notes; true colours and proportions",
+   "avoid": "Full-size sharp copies, fake or torn notes"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "11.5",
+   "use": "Feel the note: raised print",
+   "shows": "A close-up of the raised printed lines on a currency note, with light skimming across",
+   "view": "Macro, light from the side",
+   "right": "Raised lines clearly visible, which help people with low vision",
+   "avoid": "Whole note in focus, readable serial numbers"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "11.6",
+   "use": "Digital payment at a cart",
+   "shows": "A fruit cart with a small card showing a QR code and a hand holding a phone to scan it, fruit in the background",
+   "view": "Close, 16:9, phone screen kept blank",
+   "right": "Real cart, real fruit, QR card in focus",
+   "avoid": "Readable bank details, faces"
+  }
+ ]
+}

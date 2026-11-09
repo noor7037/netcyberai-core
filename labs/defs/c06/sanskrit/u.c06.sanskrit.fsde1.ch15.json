@@ -1,0 +1,668 @@
+{
+  "chapter_key": "u.c06.sanskrit.fsde1.ch15",
+  "class": 6,
+  "subject_id": "sanskrit",
+  "title": "माधवस्य प्रियम् अङ्गम्",
+  "source": "https://ncert.nic.in/textbook.php?fsde1=0-16",
+  "topics": [
+    {
+      "n": "15.1",
+      "title": "Body parts and what they do",
+      "labs": [
+        "c06-sanskrit-fsde1-ch15-parts"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "15.2",
+      "title": "Saying \"with the eyes, with the ears\"",
+      "labs": [
+        "c06-sanskrit-fsde1-ch15-use"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "15.3",
+      "title": "Madhav's dream",
+      "labs": [
+        "c06-sanskrit-fsde1-ch15-dream"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "15.4",
+      "title": "Home and school words",
+      "labs": [],
+      "why_no_lab": "These everyday words are learned while reading the dialogue aloud; the body-part words are practised in the match lab."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c06-sanskrit-fsde1-ch15-parts",
+      "topic": "15.1",
+      "template": "match",
+      "title": {
+        "en": "Body parts and their jobs",
+        "hi": "अंग और उनके काम"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "pada",
+            "left": {
+              "en": "पादः",
+              "hi": "पादः"
+            },
+            "right": {
+              "en": "Foot: helps us walk",
+              "hi": "पैर: चलने में सहायक"
+            }
+          },
+          {
+            "id": "hasta",
+            "left": {
+              "en": "हस्तः",
+              "hi": "हस्तः"
+            },
+            "right": {
+              "en": "Hand: writes and carries",
+              "hi": "हाथ: लिखता और उठाता है"
+            }
+          },
+          {
+            "id": "nay",
+            "left": {
+              "en": "नयनम्",
+              "hi": "नयनम्"
+            },
+            "right": {
+              "en": "Eye: helps us see",
+              "hi": "आँख: देखने में सहायक"
+            }
+          },
+          {
+            "id": "karna",
+            "left": {
+              "en": "कर्णः",
+              "hi": "कर्णः"
+            },
+            "right": {
+              "en": "Ear: helps us hear",
+              "hi": "कान: सुनने में सहायक"
+            }
+          },
+          {
+            "id": "mukha",
+            "left": {
+              "en": "मुखम्",
+              "hi": "मुखम्"
+            },
+            "right": {
+              "en": "Mouth: helps us speak and eat",
+              "hi": "मुख: बोलने और खाने में सहायक"
+            }
+          },
+          {
+            "id": "udara",
+            "left": {
+              "en": "उदरम्",
+              "hi": "उदरम्"
+            },
+            "right": {
+              "en": "Stomach: digests food",
+              "hi": "पेट: भोजन पचाता है"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:pada",
+          "expect": "matched:pada",
+          "say": {
+            "en": "Tap पादः, then tap the card that goes with it.",
+            "hi": "पादः छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which body part helps us hear?",
+            "hi": "कौन-सा अंग सुनने में सहायक है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "कर्णः",
+              "hi": "कर्णः"
+            },
+            {
+              "id": "b",
+              "en": "पादः",
+              "hi": "पादः"
+            },
+            {
+              "id": "c",
+              "en": "उदरम्",
+              "hi": "उदरम्"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:udara",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Every part of the body has a job: पादः walks, हस्तः works, नयनम् sees, कर्णः hears, मुखम् speaks and eats, उदरम् digests. No part is greater than another, because they all work together.",
+            "hi": "शरीर के हर अंग का अपना काम है: पादः चलता है, हस्तः काम करता है, नयनम् देखता है, कर्णः सुनता है, मुखम् बोलता और खाता है, उदरम् भोजन पचाता है। कोई अंग दूसरे से बड़ा नहीं, क्योंकि सब मिलकर काम करते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "उदरम् is the:",
+                "hi": "उदरम् है:"
+              },
+              "options": [
+                "stomach",
+                "eye",
+                "foot"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "उदरम् is the stomach.",
+                "hi": "उदरम् पेट है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Eye is नयनम्.",
+                  "hi": "आँख नयनम् है।"
+                },
+                {
+                  "en": "Foot is पादः.",
+                  "hi": "पैर पादः है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which part lets Madhav see?",
+                "hi": "माधव को देखने की शक्ति कौन-सा अंग देता है?"
+              },
+              "options": [
+                "नयनम्",
+                "कर्णः",
+                "हस्तः"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The eye lets us see.",
+                "hi": "आँख देखने देती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The ear hears.",
+                  "hi": "कान सुनता है।"
+                },
+                {
+                  "en": "The hand works.",
+                  "hi": "हाथ काम करता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Touch each part and say its Sanskrit name.",
+            "hi": "हर अंग को छूकर उसका संस्कृत नाम बोलो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch15-use",
+      "topic": "15.2",
+      "template": "grammar",
+      "title": {
+        "en": "With what do I do it?",
+        "hi": "मैं किससे करता हूँ?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "build",
+        "lang": "sa",
+        "items": [
+          {
+            "id": "u1",
+            "words": [
+              "अहं",
+              "नयनाभ्यां",
+              "पश्यामि",
+              "शृणोमि"
+            ],
+            "answer": "अहं नयनाभ्यां पश्यामि",
+            "rule": {
+              "en": "With two eyes I see.",
+              "hi": "दो आँखों से मैं देखता हूँ।"
+            }
+          },
+          {
+            "id": "u2",
+            "words": [
+              "अहं",
+              "कर्णाभ्यां",
+              "शृणोमि",
+              "पश्यामि"
+            ],
+            "answer": "अहं कर्णाभ्यां शृणोमि",
+            "rule": {
+              "en": "With two ears I hear.",
+              "hi": "दो कानों से मैं सुनता हूँ।"
+            }
+          },
+          {
+            "id": "u3",
+            "words": [
+              "अहं",
+              "पादाभ्यां",
+              "चलामि",
+              "पश्यामि"
+            ],
+            "answer": "अहं पादाभ्यां चलामि",
+            "rule": {
+              "en": "With two feet I walk.",
+              "hi": "दो पैरों से मैं चलता हूँ।"
+            }
+          },
+          {
+            "id": "u4",
+            "words": [
+              "अहं",
+              "मुखेन",
+              "भाषणं",
+              "करोमि"
+            ],
+            "answer": "अहं मुखेन भाषणं करोमि",
+            "rule": {
+              "en": "With the mouth I speak.",
+              "hi": "मुख से मैं बोलता हूँ।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "word:0",
+          "expect": "built:u1",
+          "say": {
+            "en": "Tap the word tiles one by one to build the first sentence.",
+            "hi": "शब्द-पट्टियाँ एक-एक करके छूकर पहला वाक्य बनाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "\"With two eyes\" in Sanskrit is…",
+            "hi": "\"दो आँखों से\" संस्कृत में है…"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "नयनाभ्याम्",
+              "hi": "नयनाभ्याम्"
+            },
+            {
+              "id": "b",
+              "en": "नयनम्",
+              "hi": "नयनम्"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "word:0",
+          "expect": "done",
+          "say": {
+            "en": "Build the rest of the sentences.",
+            "hi": "बाकी वाक्य भी बनाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "To say \"with\" we change the body part: नयनाभ्याम् (with two eyes), कर्णाभ्याम् (with two ears), पादाभ्याम् (with two feet), मुखेन (with the mouth). Then the verb for \"I\": पश्यामि, शृणोमि, चलामि, करोमि.",
+            "hi": "\"से\" कहने के लिए अंग का रूप बदलता है: नयनाभ्याम् (दो आँखों से), कर्णाभ्याम् (दो कानों से), पादाभ्याम् (दो पैरों से), मुखेन (मुख से)। फिर \"मैं\" की क्रिया: पश्यामि, शृणोमि, चलामि, करोमि।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which is right?",
+                "hi": "कौन-सा सही है?"
+              },
+              "options": [
+                "अहं कर्णाभ्यां शृणोमि",
+                "अहं कर्णाभ्यां पश्यामि",
+                "अहं कर्णाभ्यां चलामि"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Ears are for hearing: शृणोमि.",
+                "hi": "कान सुनने के लिए हैं: शृणोमि।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Seeing is done with eyes.",
+                  "hi": "देखना आँखों से होता है।"
+                },
+                {
+                  "en": "Walking is done with feet.",
+                  "hi": "चलना पैरों से होता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "अहं पादाभ्यां चलामि means:",
+                "hi": "अहं पादाभ्यां चलामि का अर्थ है:"
+              },
+              "options": [
+                "I walk with my feet",
+                "I see with my feet",
+                "I write with my hand"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "पादाभ्याम् is \"with feet\", चलामि is \"I walk\".",
+                "hi": "पादाभ्याम् \"पैरों से\", चलामि \"मैं चलता हूँ\"।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Seeing is पश्यामि.",
+                  "hi": "देखना पश्यामि है।"
+                },
+                {
+                  "en": "The hand is हस्तः.",
+                  "hi": "हाथ हस्तः है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Say one such sentence about your hand.",
+            "hi": "अपने हाथ के बारे में ऐसा एक वाक्य बोलो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch15-dream",
+      "topic": "15.3",
+      "template": "sequence",
+      "title": {
+        "en": "Madhav's dream",
+        "hi": "माधव का स्वप्न"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "a",
+            "text": {
+              "en": "Madhav dreams that his body parts are talking",
+              "hi": "माधव स्वप्न में देखता है कि उसके अंग बातें कर रहे हैं"
+            }
+          },
+          {
+            "id": "b",
+            "text": {
+              "en": "The foot says: I make Madhav walk, so I am the best",
+              "hi": "पैर कहता है: मैं माधव को चलाता हूँ, इसलिए मैं श्रेष्ठ हूँ"
+            }
+          },
+          {
+            "id": "c",
+            "text": {
+              "en": "The hand says: I write and bring things, so I am the best",
+              "hi": "हाथ कहता है: मैं लिखता और चीज़ें लाता हूँ, इसलिए मैं श्रेष्ठ हूँ"
+            }
+          },
+          {
+            "id": "d",
+            "text": {
+              "en": "The eye says: without me nothing can be seen",
+              "hi": "आँख कहती है: मेरे बिना कुछ नहीं दिखता"
+            }
+          },
+          {
+            "id": "e",
+            "text": {
+              "en": "The ear says it keeps Madhav safe and helps him learn",
+              "hi": "कान कहता है कि वह माधव को सुरक्षित रखता और सीखने में सहायता करता है"
+            }
+          },
+          {
+            "id": "f",
+            "text": {
+              "en": "The mouth says: I let him eat and speak",
+              "hi": "मुख कहता है: मैं उसे खाने और बोलने देता हूँ"
+            }
+          },
+          {
+            "id": "g",
+            "text": {
+              "en": "The stomach asks for silence; they ask Madhav",
+              "hi": "पेट शान्ति माँगता है; वे सब माधव से पूछते हैं"
+            }
+          },
+          {
+            "id": "h",
+            "text": {
+              "en": "Madhav says all the parts are dear to him",
+              "hi": "माधव कहता है कि सब अंग उसे प्रिय हैं"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:a",
+          "expect": "placed:a",
+          "say": {
+            "en": "Tap the card that comes FIRST, then tap place 1.",
+            "hi": "जो कार्ड सबसे पहले आता है उसे छुओ, फिर स्थान 1 छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Who is the best part, by the end of the dream?",
+            "hi": "स्वप्न के अन्त तक सबसे अच्छा अंग कौन है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "All parts together",
+              "hi": "सब अंग मिलकर"
+            },
+            {
+              "id": "b",
+              "en": "Only the hand",
+              "hi": "केवल हाथ"
+            },
+            {
+              "id": "c",
+              "en": "Only the eye",
+              "hi": "केवल आँख"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Fill all the places in order, then press Check.",
+            "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each part boasts of its work, but Madhav sees that all of them help him. Teamwork inside the body is like teamwork in a class: nobody is useless and nobody is alone.",
+            "hi": "हर अंग अपने काम का बखान करता है, पर माधव समझता है कि सब उसकी सहायता करते हैं। शरीर में मिलकर काम करना कक्षा में मिलकर काम करने जैसा है: कोई बेकार नहीं और कोई अकेला नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does Madhav say in the end?",
+                "hi": "अन्त में माधव क्या कहता है?"
+              },
+              "options": [
+                "All the parts are dear to me",
+                "Only the hand is dear",
+                "None is useful"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "भवन्तः सर्वेऽपि मम प्रियाः.",
+                "hi": "भवन्तः सर्वेऽपि मम प्रियाः।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "He did not pick a favourite.",
+                  "hi": "उसने कोई पसंदीदा नहीं चुना।"
+                },
+                {
+                  "en": "All of them help him.",
+                  "hi": "सब उसके काम आते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "The stomach's role is to…",
+                "hi": "पेट का काम है…"
+              },
+              "options": [
+                "digest food and give strength",
+                "see",
+                "hear"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The stomach digests food so that we get energy.",
+                "hi": "पेट भोजन पचाता है ताकि हमें शक्ति मिले।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The eye sees.",
+                  "hi": "आँख देखती है।"
+                },
+                {
+                  "en": "The ear hears.",
+                  "hi": "कान सुनता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Act the dream with four friends, each playing one body part.",
+            "hi": "चार मित्रों के साथ स्वप्न का अभिनय करो, हर एक एक अंग बने।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "15.1",
+      "use": "Opens the chapter",
+      "shows": "A sleeping boy in bed with a thought-cloud-like soft glow above, back view",
+      "view": "Eye level, night light",
+      "right": "Calm sleep",
+      "avoid": "Faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "15.1",
+      "use": "Body part cards",
+      "shows": "Real photos: a foot, a hand, an eye, an ear, a mouth, a stomach drawing area (kid-safe)",
+      "view": "Front view, one file each",
+      "right": "Natural skin tones, appropriate",
+      "avoid": "Text, blood"
+    },
+    {
+      "n": 3,
+      "kind": "CUT",
+      "topic": "15.1",
+      "use": "Digestion",
+      "shows": "A simple, friendly cut-away of the digestive system, no labels",
+      "view": "Front view",
+      "right": "Anatomically right",
+      "avoid": "Labels, gore"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "15.3",
+      "use": "Parts at work",
+      "shows": "Child using feet to walk, hands to write, eyes to read, four frames",
+      "view": "Same room",
+      "right": "Different part clear each time",
+      "avoid": "Faces"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "15.3",
+      "use": "Team",
+      "shows": "Children working together to build a tower of blocks",
+      "view": "Wide, from above",
+      "right": "Cooperation",
+      "avoid": "Faces"
+    }
+  ]
+}

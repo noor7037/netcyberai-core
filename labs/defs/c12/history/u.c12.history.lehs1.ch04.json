@@ -1,0 +1,309 @@
+{
+  "chapter_key": "u.c12.history.lehs1.ch04",
+  "class": 12,
+  "subject_id": "history",
+  "title": "Thinkers, Beliefs and Buildings",
+  "source": "https://ncert.nic.in/textbook/pdf/lehs1ps.pdf",
+  "topics": [
+    { "n": "1", "title": "A glimpse of Sanchi", "labs": ["c12-history-lehs1-ch04-sanchi"], "why_no_lab": null },
+    { "n": "2", "title": "The background: sacrifice, new questions and debates", "labs": [], "why_no_lab": "Debates among thinkers are best read as argument; a lab would flatten them into a quiz." },
+    { "n": "3", "title": "The spread of Jainism", "labs": [], "why_no_lab": "Jain spread is a story of travel and patronage, taught through the chapter's narrative." },
+    { "n": "5", "title": "The teachings of the Buddha", "labs": ["c12-history-lehs1-ch04-teachings"], "why_no_lab": null },
+    { "n": "6", "title": "Followers of the Buddha", "labs": [], "why_no_lab": "The roles of monks, nuns and lay donors are best learnt from the chapter's own accounts." },
+    { "n": "7", "title": "Stupas: why, how and what they are made of", "labs": ["c12-history-lehs1-ch04-stupa"], "why_no_lab": null },
+    { "n": "9", "title": "Sculpture: stories in stone and symbols of worship", "labs": ["c12-history-lehs1-ch04-symbols"], "why_no_lab": null },
+    { "n": "10", "title": "New religious traditions: Mahayana, Puranic Hinduism and temples", "labs": ["c12-history-lehs1-ch04-traditions"], "why_no_lab": null },
+    { "n": "11", "title": "Can we know what the text and image say?", "labs": [], "why_no_lab": "Matching a text with an image is a judgement, taught by comparing examples in discussion." }
+  ],
+  "labs": [
+    {
+      "id": "c12-history-lehs1-ch04-sanchi",
+      "topic": "1",
+      "template": "map",
+      "title": { "en": "Find the early Buddhist places", "hi": "शुरुआती बौद्ध स्थान खोजो" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["rivers", "historic:mauryan"],
+        "show": ["rivers"],
+        "task": "locate",
+        "places": ["sanchi", "sarnath", "dhauli"]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Sanchi is a hill with a great stupa. Do you think it is near a big river, or on a high plateau far from rivers?", "hi": "सांची एक पहाड़ी है जिस पर महान स्तूप है। तुम्हें लगता है यह किसी बड़ी नदी के पास होगा, या ऊँचे पठार पर नदियों से दूर?" },
+          "options": [
+            { "id": "plateau", "en": "On a plateau far from big rivers", "hi": "नदियों से दूर पठार पर" },
+            { "id": "river", "en": "Near a big river plain", "hi": "किसी बड़े नदी-मैदान के पास" }
+          ],
+          "answer": "plateau"
+        },
+        { "kind": "do", "target": "layer:historic:mauryan", "expect": "layer:historic:mauryan", "say": { "en": "Tap the layer 'The Mauryas and Ashoka' to switch its places on.", "hi": "'मौर्य और अशोक' परत टैप करके उसके स्थान चालू करो।" } },
+        { "kind": "do", "target": "answer", "expect": "located:sanchi", "say": { "en": "Find Sanchi in Madhya Pradesh. Tap the map and press Check.", "hi": "मध्य प्रदेश में सांची खोजो। मानचित्र पर टैप करो और जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "located:sarnath", "say": { "en": "Next, find Sarnath, near Varanasi.", "hi": "अब वाराणसी के पास सारनाथ खोजो।" } },
+        { "kind": "do", "target": "answer", "expect": "located:dhauli", "say": { "en": "Last, find Dhauli on the Odisha plain, where an Ashokan edict is carved.", "hi": "आख़िर में ओडिशा के मैदान में धौली खोजो, जहाँ अशोक का शिलालेख उकेरा गया है।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Sanchi, Sarnath and Dhauli were all connected with the Mauryan age. Sanchi's stupa was built and enlarged on a hill, and Sarnath is where the Buddha gave his first sermon, according to the tradition. Many early Buddhist places were linked by roads and by the travel of monks and donors.", "hi": "सांची, सारनाथ और धौली तीनों मौर्य काल से जुड़े हैं। सांची का स्तूप एक पहाड़ी पर बना और बढ़ाया गया, और परंपरा के अनुसार सारनाथ वह जगह है जहाँ बुद्ध ने पहला उपदेश दिया। कई शुरुआती बौद्ध स्थान सड़कों और भिक्षुओं व दानदाताओं की यात्राओं से जुड़े थे।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Where is Sarnath, according to the lab's map?", "hi": "लैब के मानचित्र के अनुसार सारनाथ कहाँ है?" },
+              "options": [
+                { "en": "Near Varanasi, on the Ganga plain", "hi": "वाराणसी के पास, गंगा मैदान में" },
+                { "en": "In the far south, near the coast", "hi": "सुदूर दक्षिण में, तट के पास" },
+                { "en": "In the Himalayan hills of the north", "hi": "उत्तर की हिमालयी पहाड़ियों में" }
+              ],
+              "answer": 0,
+              "why": { "en": "Sarnath lies near Varanasi, on the Ganga plain, a short way from the city.", "hi": "सारनाथ वाराणसी के पास, गंगा मैदान में, शहर से थोड़ी दूरी पर है।" },
+              "wrong": [
+                "",
+                { "en": "The south coast is far from the Mauryan Buddhist sites, which lie in the north and centre.", "hi": "दक्षिण तट मौर्यकालीन बौद्ध स्थलों से बहुत दूर है, जो उत्तर और मध्य भारत में हैं।" },
+                { "en": "The Himalayan hills are north of Sarnath; Sarnath is on the flat plain.", "hi": "हिमालयी पहाड़ियाँ सारनाथ के उत्तर में हैं; सारनाथ समतल मैदान पर है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Turn on the rivers layer and look at Sanchi again. Why might a hill site be chosen for a stupa?", "hi": "नदियों वाली परत चालू करके सांची फिर से देखो। स्तूप के लिए पहाड़ी जगह क्यों चुनी गई होगी?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch04-teachings",
+      "topic": "5",
+      "template": "sort",
+      "title": { "en": "Whose teaching is it?", "hi": "यह किसकी शिक्षा है?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "buddha", "label": { "en": "Buddha's teaching", "hi": "बुद्ध की शिक्षा" } },
+          { "id": "jain", "label": { "en": "Jain teaching", "hi": "जैन शिक्षा" } }
+        ],
+        "cards": [
+          { "id": "truths", "text": { "en": "The Four Noble Truths about suffering", "hi": "दुःख के बारे में चार आर्य सत्य" }, "bin": "buddha", "why": { "en": "The Buddha taught the Four Noble Truths about suffering, its cause, its end and the path to that end.", "hi": "बुद्ध ने दुःख, उसके कारण, उसके अंत और उसके मार्ग के बारे में चार आर्य सत्य सिखाए।" } },
+          { "id": "middle", "text": { "en": "The Middle Path between harsh and easy living", "hi": "कठोर और आरामदायक जीवन के बीच का मध्य मार्ग" }, "bin": "buddha", "why": { "en": "The Buddha taught a middle way, avoiding both extreme self-denial and extreme indulgence.", "hi": "बुद्ध ने मध्य मार्ग सिखाया, जिसमें न अति-त्याग था न अति-भोग।" } },
+          { "id": "tirthankara", "text": { "en": "Tirthankaras, the great teachers who crossed over", "hi": "तीर्थंकर, वे महान शिक्षक जिन्होंने संसार-सागर पार किया" }, "bin": "jain", "why": { "en": "Jains honour the Tirthankaras, who showed the path to liberation of the soul.", "hi": "जैन तीर्थंकरों का सम्मान करते हैं, जिन्होंने आत्मा की मुक्ति का मार्ग दिखाया।" } },
+          { "id": "ahimsa", "text": { "en": "Strict non-violence to every living being", "hi": "हर जीव के प्रति कठोर अहिंसा" }, "bin": "jain", "why": { "en": "Jains stress non-violence very strongly, including to tiny creatures. Buddhists also value compassion, but strict non-violence is central to Jain practice.", "hi": "जैन अहिंसा पर बहुत ज़ोर देते हैं, छोटे जीवों तक के प्रति भी। बौद्ध भी करुणा को मानते हैं, पर कठोर अहिंसा जैन आचरण के केंद्र में है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Two religions grew at the same time and shared some ideas. Do you think they had exactly the same teachings?", "hi": "दो धर्म एक ही समय में बढ़े और कुछ विचार साझा करते थे। तुम्हें लगता है उनकी शिक्षाएँ बिल्कुल एक-सी थीं?" },
+          "options": [
+            { "id": "same", "en": "Yes, exactly the same", "hi": "हाँ, बिल्कुल एक-सी" },
+            { "id": "differ", "en": "No, they had different teachers and emphasis", "hi": "नहीं, उनके शिक्षक और ज़ोर अलग थे" }
+          ],
+          "answer": "differ"
+        },
+        { "kind": "do", "target": "bin:buddha", "expect": "correct:truths", "say": { "en": "Pick the Four Noble Truths card, then tap 'Buddha's teaching'.", "hi": "चार आर्य सत्य वाला कार्ड उठाओ, फिर 'बुद्ध की शिक्षा' टैप करो।" } },
+        { "kind": "do", "target": "bin:jain", "expect": "correct:tirthankara", "say": { "en": "Pick the Tirthankaras card and tap 'Jain teaching'.", "hi": "तीर्थंकर वाला कार्ड उठाकर 'जैन शिक्षा' टैप करो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Buddhism and Jainism both arose in the same period and both questioned the sacrifices of the Vedic rituals. Each had its own teachers and its own key ideas. Some ideas, such as non-violence and compassion, were shared, but the teachings and the way they were stressed were different.", "hi": "बौद्ध और जैन धर्म एक ही काल में उभरे, और दोनों ने वैदिक यज्ञों पर सवाल उठाए। हर धर्म के अपने शिक्षक और अपने मुख्य विचार थे। अहिंसा और करुणा जैसे कुछ विचार साझा थे, पर शिक्षाएँ और उन पर दिया गया ज़ोर अलग था।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which teaching does the lab link to the Tirthankaras?", "hi": "लैब तीर्थंकरों को किस शिक्षा से जोड़ती है?" },
+              "options": [
+                { "en": "The Four Noble Truths", "hi": "चार आर्य सत्य" },
+                { "en": "The Middle Path", "hi": "मध्य मार्ग" },
+                { "en": "Honouring the Tirthankaras who showed the path", "hi": "मुक्ति का मार्ग दिखाने वाले तीर्थंकरों का सम्मान" }
+              ],
+              "answer": 2,
+              "why": { "en": "Jains honour the Tirthankaras; the Four Noble Truths and the Middle Path are the Buddha's teachings.", "hi": "जैन तीर्थंकरों का सम्मान करते हैं; चार आर्य सत्य और मध्य मार्ग बुद्ध की शिक्षाएँ हैं।" },
+              "wrong": [
+                { "en": "The Four Noble Truths belong to the Buddha, not to the Tirthankaras.", "hi": "चार आर्य सत्य बुद्ध के हैं, तीर्थंकरों के नहीं।" },
+                { "en": "The Middle Path is the Buddha's teaching about avoiding extremes.", "hi": "मध्य मार्ग बुद्ध की शिक्षा है, जो अतियों से बचने के बारे में है।" },
+                ""
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Put the non-violence card in the Buddha's bin and read why it is off. What is shared, and what is special?", "hi": "अहिंसा वाला कार्ड बुद्ध वाले खाने में रखकर पढ़ो कि वह क्यों ठीक नहीं बैठता। क्या साझा है, और क्या खास है?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch04-stupa",
+      "topic": "7",
+      "template": "sequence",
+      "title": { "en": "Build a stupa from the bottom up", "hi": "स्तूप को नीचे से ऊपर तक बनाओ" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          { "id": "medhi", "text": { "en": "A round base platform, for people to walk around", "hi": "एक गोल आधार चबूतरा, जिसके चारों ओर लोग घूमते हैं" } },
+          { "id": "anda", "text": { "en": "A solid dome that covers the relics", "hi": "एक ठोस गुंबद जो अवशेषों को ढकता है" } },
+          { "id": "harmika", "text": { "en": "A square box on top of the dome", "hi": "गुंबद के ऊपर एक चौकोर डिब्बा" } },
+          { "id": "chhatra", "text": { "en": "An umbrella-like stack above the box", "hi": "डिब्बे के ऊपर छाता जैसी लाट" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A stupa is a solid mound with a set of parts. Which part do you think sits at the very bottom?", "hi": "स्तूप एक ठोस टीला है जिसके कई हिस्से हैं। तुम्हें लगता है सबसे नीचे कौन-सा हिस्सा होगा?" },
+          "options": [
+            { "id": "dome", "en": "The dome", "hi": "गुंबद" },
+            { "id": "platform", "en": "The base platform", "hi": "आधार चबूतरा" },
+            { "id": "umbrella", "en": "The umbrella stack", "hi": "छाता जैसी लाट" }
+          ],
+          "answer": "platform"
+        },
+        { "kind": "do", "target": "slot:1", "expect": "placed:medhi", "say": { "en": "Pick the base platform card, then tap slot 1.", "hi": "आधार चबूतरे वाला कार्ड उठाओ, फिर स्थान 1 टैप करो।" } },
+        { "kind": "do", "target": "slot:2", "expect": "placed:anda", "say": { "en": "Pick the dome card and place it in slot 2.", "hi": "गुंबद वाला कार्ड उठाकर स्थान 2 पर रखो।" } },
+        { "kind": "do", "target": "check", "expect": "ordered", "say": { "en": "Place the last two parts in order, then press Check.", "hi": "आख़िरी दो हिस्से सही क्रम में रखो, फिर जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "A stupa was built from the ground up. A raised base platform gave room for walking round the stupa, the solid dome held the relics, and a square box and an umbrella-like stack sat on top. The shape was a symbol, and each part had its own meaning for the people who worshipped there.", "hi": "स्तूप ज़मीन से ऊपर की ओर बनता था। ऊँचा आधार चबूतरा परिक्रमा के लिए जगह देता था, ठोस गुंबद अवशेष रखता था, और ऊपर एक चौकोर डिब्बा और छाता जैसी लाट बैठती थी। यह आकार एक प्रतीक था, और हर हिस्सा वहाँ पूजा करने वालों के लिए अपना अर्थ रखता था।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What did the solid dome of a stupa hold?", "hi": "स्तूप का ठोस गुंबद क्या रखता था?" },
+              "options": [
+                { "en": "Relics", "hi": "अवशेष" },
+                { "en": "Grain for the monks", "hi": "भिक्षुओं के लिए अनाज" },
+                { "en": "A water tank", "hi": "पानी की टंकी" }
+              ],
+              "answer": 0,
+              "why": { "en": "The dome covered relics, which were treated as sacred and central to the stupa's purpose.", "hi": "गुंबद अवशेषों को ढकता था, जिन्हें पवित्र माना जाता था और जो स्तूप के उद्देश्य का केंद्र थे।" },
+              "wrong": [
+                "",
+                { "en": "Grain was stored in granaries, not inside the solid dome of a stupa.", "hi": "अनाज भंडार में रखा जाता था, स्तूप के ठोस गुंबद में नहीं।" },
+                { "en": "A stupa was a solid mound, so there was no water tank inside it.", "hi": "स्तूप ठोस टीला था, इसलिए उसके अंदर पानी की टंकी नहीं थी।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Move the umbrella card to slot 1 and read the message. Why must the base come first?", "hi": "छाता वाला कार्ड स्थान 1 पर रखकर संदेश पढ़ो। आधार पहले क्यों होना चाहिए?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch04-symbols",
+      "topic": "9",
+      "template": "match",
+      "title": { "en": "Symbols that stood for the Buddha", "hi": "बुद्ध की ओर संकेत करने वाले प्रतीक" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "wheel", "left": { "en": "A wheel", "hi": "चक्र" }, "right": { "en": "The first sermon, the Dharma set in motion", "hi": "पहला उपदेश, धर्म का चक्र चलना" }, "why": { "en": "The wheel stood for the Buddha's first sermon, when the Dharma was set in motion.", "hi": "चक्र बुद्ध के पहले उपदेश का प्रतीक था, जब धर्म का चक्र चला।" } },
+          { "id": "tree", "left": { "en": "A tree", "hi": "पेड़" }, "right": { "en": "The moment of enlightenment under a tree", "hi": "पेड़ के नीचे ज्ञान-प्राप्ति का क्षण" }, "why": { "en": "The tree stood for the place where the Buddha attained enlightenment.", "hi": "पेड़ उस स्थान का प्रतीक था जहाँ बुद्ध को ज्ञान मिला।" } },
+          { "id": "footprints", "left": { "en": "Footprints", "hi": "पदचिह्न" }, "right": { "en": "The Buddha's presence, without showing his body", "hi": "बुद्ध की उपस्थिति, बिना उनका शरीर दिखाए" }, "why": { "en": "Early artists showed the Buddha's presence with footprints or a seat, so the body was not shown.", "hi": "शुरुआती कलाकार बुद्ध की उपस्थिति पदचिह्न या आसन से दिखाते थे, इसलिए शरीर नहीं दिखाया जाता था।" } },
+          { "id": "elephant", "left": { "en": "An elephant", "hi": "हाथी" }, "right": { "en": "The Buddha's birth, as told in the stories", "hi": "कहानियों में बताया गया बुद्ध का जन्म" }, "why": { "en": "In the stories, the Buddha's mother dreamt of a white elephant, so the elephant marks the birth.", "hi": "कहानियों के अनुसार बुद्ध की माता ने एक सफ़ेद हाथी का स्वप्न देखा था, इसलिए हाथी जन्म का प्रतीक है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Early sculptors did not always show the Buddha's body. How do you think they could show him?", "hi": "शुरुआती मूर्तिकार हमेशा बुद्ध का शरीर नहीं दिखाते थे। तुम्हें लगता है वे उन्हें कैसे दिखा सकते थे?" },
+          "options": [
+            { "id": "symbol", "en": "With symbols such as a wheel or a tree", "hi": "चक्र या पेड़ जैसे प्रतीकों से" },
+            { "id": "portrait", "en": "Only with a painted face", "hi": "केवल चेहरे की पेंटिंग से" }
+          ],
+          "answer": "symbol"
+        },
+        { "kind": "do", "target": "right:wheel", "expect": "matched:wheel", "say": { "en": "Tap 'A wheel' on the left, then its meaning on the right.", "hi": "बाईं ओर 'चक्र' टैप करो, फिर दाईं ओर उसका अर्थ टैप करो।" } },
+        { "kind": "do", "target": "right:tree", "expect": "matched:tree", "say": { "en": "Now match the tree with its meaning.", "hi": "अब पेड़ को उसके अर्थ से मिलाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Sculpture at the early Buddhist sites often told stories in stone, and symbols stood in for the Buddha. The wheel, the tree, the footprints and the elephant each pointed to a part of his life. People who could read the symbols understood the story without a human figure.", "hi": "शुरुआती बौद्ध स्थलों की मूर्तिकला अक्सर पत्थर में कहानियाँ कहती थी, और प्रतीक बुद्ध की जगह खड़े होते थे। चक्र, पेड़, पदचिह्न और हाथी उनके जीवन के अलग-अलग हिस्सों की ओर इशारा करते थे। जो प्रतीक पढ़ सकते थे, वे बिना मानव आकृति के भी कहानी समझ जाते थे।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which symbol pointed to the Buddha's first sermon?", "hi": "कौन-सा प्रतीक बुद्ध के पहले उपदेश की ओर इशारा करता था?" },
+              "options": [
+                { "en": "The wheel", "hi": "चक्र" },
+                { "en": "The elephant", "hi": "हाथी" },
+                { "en": "The footprints", "hi": "पदचिह्न" }
+              ],
+              "answer": 0,
+              "why": { "en": "The wheel stood for the Dharma set in motion, the first sermon.", "hi": "चक्र धर्म के चलने, यानी पहले उपदेश, का प्रतीक था।" },
+              "wrong": [
+                "",
+                { "en": "The elephant marks the birth in the stories, not the sermon.", "hi": "हाथी कहानियों में जन्म का प्रतीक है, उपदेश का नहीं।" },
+                { "en": "Footprints showed the Buddha's presence, not the sermon.", "hi": "पदचिह्न बुद्ध की उपस्थिति दिखाते थे, उपदेश नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Try a wrong pair on purpose and read the reason. Which symbol do you think tells the story of the Buddha's birth?", "hi": "जानबूझकर गलत जोड़ी बनाकर कारण पढ़ो। तुम्हें लगता है कौन-सा प्रतीक बुद्ध के जन्म की कहानी बताता है?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch04-traditions",
+      "topic": "10",
+      "template": "timeline",
+      "title": { "en": "Traditions and buildings over time", "hi": "समय के साथ परंपराएँ और इमारतें" },
+      "minutes": 6,
+      "level": "stretch",
+      "config": {
+        "range": [-300, 500],
+        "task": "order",
+        "title": { "en": "Early religious buildings and ideas", "hi": "शुरुआती धार्मिक इमारतें और विचार" },
+        "events": [
+          { "id": "sanchi", "year": -250, "label": { "en": "The great stupa at Sanchi is built and enlarged", "hi": "सांची का महान स्तूप बनता और बड़ा होता है" } },
+          { "id": "mahayana", "year": 100, "label": { "en": "Mahayana ideas develop among Buddhists", "hi": "बौद्धों में महायान विचार विकसित होते हैं" } },
+          { "id": "temples", "year": 450, "label": { "en": "Brick and stone temples with shrines are built", "hi": "गर्भगृह वाले ईंट और पत्थर के मंदिर बनते हैं" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Three developments are on the strip. Which came first: the temples with shrines, or the great stupa at Sanchi?", "hi": "पट्टी पर तीन विकास हैं। पहले कौन-सा हुआ: गर्भगृह वाले मंदिर, या सांची का महान स्तूप?" },
+          "options": [
+            { "id": "sanchi", "en": "The great stupa at Sanchi", "hi": "सांची का महान स्तूप" },
+            { "id": "temples", "en": "The temples with shrines", "hi": "गर्भगृह वाले मंदिर" }
+          ],
+          "answer": "sanchi"
+        },
+        { "kind": "do", "target": "event:sanchi", "expect": "placed:sanchi", "say": { "en": "Tap the great stupa at Sanchi first.", "hi": "सबसे पहले सांची के महान स्तूप वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:mahayana", "expect": "placed:mahayana", "say": { "en": "Next, tap the rise of Mahayana ideas.", "hi": "अब महायान विचारों के उभरने वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:temples", "expect": "placed:temples", "say": { "en": "Last, tap the temples with shrines, then press Check.", "hi": "आख़िर में गर्भगृह वाले मंदिरों वाली घटना टैप करो, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to see your order.", "hi": "अपना क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Religious building and belief kept changing. Stupas were built from early times, new Buddhist ideas developed later, and the first temples with shrines for images came in the Gupta age and after. Each change grew out of the one before, so the order matters for understanding them.", "hi": "धार्मिक इमारतें और विश्वास लगातार बदलते रहे। स्तूप शुरुआती समय से बने, बाद में बौद्ध विचार विकसित हुए, और मूर्तियों के लिए गर्भगृह वाले पहले मंदिर गुप्त काल और उसके बाद आए। हर बदलाव पिछले से निकला, इसलिए उन्हें समझने के लिए क्रम ज़रूरी है।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which development came last on the strip?", "hi": "पट्टी पर कौन-सा विकास सबसे आख़िर में है?" },
+              "options": [
+                { "en": "The great stupa at Sanchi", "hi": "सांची का महान स्तूप" },
+                { "en": "Mahayana ideas", "hi": "महायान विचार" },
+                { "en": "Temples with shrines", "hi": "गर्भगृह वाले मंदिर" }
+              ],
+              "answer": 2,
+              "why": { "en": "The temples with shrines date to about 450 CE, after the stupa (about 250 BCE) and Mahayana ideas (about 100 CE).", "hi": "गर्भगृह वाले मंदिर लगभग 450 ई. के हैं, जो स्तूप (लगभग 250 ई.पू.) और महायान विचारों (लगभग 100 ई.) के बाद हैं।" },
+              "wrong": [
+                { "en": "The stupa at Sanchi is the earliest of the three, not the latest.", "hi": "सांची का स्तूप तीनों में सबसे पुराना है, सबसे नया नहीं।" },
+                { "en": "Mahayana ideas came before the temples, so they are not last.", "hi": "महायान विचार मंदिरों से पहले आए, इसलिए वे आख़िरी नहीं।" },
+                ""
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Zoom out on the strip. How many centuries lie between the stupa and the temples?", "hi": "पट्टी को ज़ूम आउट करो। स्तूप और मंदिरों के बीच कितनी सदियाँ हैं?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "1", "use": "Opening picture of the chapter: the great stupa on its hill", "shows": "The great stupa of Sanchi on a low hill at morning, its dome and stone railings visible, the gateway in the foreground, no visitors", "view": "Eye level, 16:9, soft early light from the left, trees lightly behind", "right": "Pale sandstone, the dome in a true cream tone, carved gateway details sharp", "avoid": "Visitor crowds, railings with modern signs, tourist boards, text" },
+    { "n": 2, "kind": "3DM", "topic": "7", "use": "The stupa from four angles, for the stupa lab", "shows": "A stupa model with a round base platform, a solid dome, a square box on top and an umbrella-like stack above it, shown from front, side, top and three-quarter", "view": "Four fixed views on a transparent background, same size and centre, lit from top-left", "right": "Base steps clear, the dome smooth and round, the box square, the stack clearly above it", "avoid": "Carved decoration that hides the outline, text or numbers, painted colours" },
+    { "n": 3, "kind": "MAC", "topic": "9", "use": "Close-up of a carved panel with wheel and lotus symbols", "shows": "Close-up of a stone panel with a carved wheel and a lotus flower, shallow relief, lit from the side", "view": "Square crop, close, side light to show carving depth", "right": "Stone surface with real wear, relief shapes crisp, true sandstone colour", "avoid": "Broken corners that hide the symbols, modern repairs, text" },
+    { "n": 4, "kind": "DIA", "topic": "9", "use": "Symbol icons for the match lab, without words", "shows": "A clean row of simple line drawings: a wheel, a tree, a pair of footprints and an elephant, each in its own box", "view": "Flat, white background, dark thin lines, 4:3", "right": "Each symbol recognisable and in true shape, no shading, no words", "avoid": "Labels, names, colour that alone tells two symbols apart" },
+    { "n": 5, "kind": "OBJ", "topic": "9", "use": "A small Buddha image as a cut-out, to show the later human figure", "shows": "A small seated stone or clay Buddha figure in meditation pose, a museum-quality replica", "view": "Front, cut-out on transparent background, object fills about 80 percent, soft shadow", "right": "Serene face, calm posture, earthy stone colour", "avoid": "Gold paint, modern plastic, a religious shrine setting" }
+  ]
+}

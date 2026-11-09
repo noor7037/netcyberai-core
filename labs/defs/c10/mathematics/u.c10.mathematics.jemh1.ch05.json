@@ -1,0 +1,515 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch05",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Arithmetic Progressions",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Introduction: lists of numbers that grow by a fixed amount in daily life",
+   "labs": [],
+   "why_no_lab": "The reader opens with everyday lists; the hands-on work starts in the 5.2 lab."
+  },
+  {
+   "n": "5.2",
+   "title": "Arithmetic progressions: first term and common difference",
+   "labs": [
+    "c10-mathematics-jemh1-ch05-spot-ap"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "nth term of an AP",
+   "labs": [
+    "c10-mathematics-jemh1-ch05-nth-term"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Sum of first n terms of an AP",
+   "labs": [
+    "c10-mathematics-jemh1-ch05-sum"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch05-spot-ap",
+   "topic": "5.2",
+   "template": "pattern",
+   "title": {
+    "en": "Spot the common difference",
+    "hi": "सार्व अंतर पहचानो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "ap",
+    "seed": [
+     7,
+     4
+    ],
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Look at 7, 11, 15, 19. Tap Next to add one more term.",
+      "hi": "7, 11, 15, 19 देखो। एक और पद जोड़ने के लिए अगला दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do you add each time to get the next term?",
+      "hi": "अगला पद पाने के लिए हर बार क्या जोड़ते हो?"
+     },
+     "options": [
+      {
+       "id": "d4",
+       "en": "Add 4",
+       "hi": "4 जोड़ो"
+      },
+      {
+       "id": "d7",
+       "en": "Add 7",
+       "hi": "7 जोड़ो"
+      },
+      {
+       "id": "x2",
+       "en": "Double it",
+       "hi": "दोगुना करो"
+      }
+     ],
+     "answer": "d4"
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Pick the rule that makes every term from the one before.",
+      "hi": "वह नियम चुनो जो हर पद को उससे पहले वाले से बनाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the next term.",
+      "hi": "अगले पद वाले प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In an arithmetic progression (AP) each term is the one before plus a fixed number d, the common difference. Here a = 7 and d = 4. d can be positive, negative or zero; what matters is that it is the same every time.",
+      "hi": "समांतर श्रेढ़ी (AP) में हर पद अपने पिछले पद में एक निश्चित संख्या d जोड़कर बनता है, जिसे सार्व अंतर कहते हैं। यहाँ a = 7 और d = 4 है। d धनात्मक, ऋणात्मक या शून्य हो सकता है; ज़रूरी यह है कि वह हर बार एक जैसा रहे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which list is an AP?",
+        "hi": "कौन-सी सूची AP है?"
+       },
+       "options": [
+        "20, 17, 14, 11, …",
+        "1, 2, 4, 8, …",
+        "1, 4, 9, 16, …"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each term is 3 less than the one before, so d = −3 every time.",
+        "hi": "हर पद पिछले से 3 कम है, इसलिए हर बार d = −3 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The gaps are 1, 2, 4: they double, so there is no common difference.",
+         "hi": "अंतर 1, 2, 4 हैं: ये दोगुने होते हैं, इसलिए कोई सार्व अंतर नहीं।"
+        },
+        {
+         "en": "The gaps are 3, 5, 7: they grow, so this is not an AP.",
+         "hi": "अंतर 3, 5, 7 हैं: ये बढ़ते जाते हैं, इसलिए यह AP नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A taxi charges ₹30 for the first km and ₹12 for each km after that. Do the fares for 1, 2, 3, … km form an AP?",
+        "hi": "टैक्सी पहले किमी के ₹30 और उसके बाद हर किमी के ₹12 लेती है। क्या 1, 2, 3, … किमी के किराए AP बनाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes, with d = 12",
+         "hi": "हाँ, d = 12 के साथ"
+        },
+        {
+         "en": "Yes, with d = 30",
+         "hi": "हाँ, d = 30 के साथ"
+        },
+        {
+         "en": "No",
+         "hi": "नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fares are 30, 42, 54, …: each is ₹12 more than the last.",
+        "hi": "किराए 30, 42, 54, … हैं: हर किराया पिछले से ₹12 ज़्यादा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "30 is the first term a, not the difference.",
+         "hi": "30 पहला पद a है, अंतर नहीं।"
+        },
+        {
+         "en": "The fare grows by the same ₹12 every km, which is exactly an AP.",
+         "hi": "किराया हर किमी पर एक जैसा ₹12 बढ़ता है, यही तो AP है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the d slider to −3 and then to 0. Is it still an AP? What does the pattern look like?",
+      "hi": "आज़माओ: d स्लाइडर को −3 और फिर 0 करो। क्या यह अब भी AP है? पैटर्न कैसा दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch05-nth-term",
+   "topic": "5.3",
+   "template": "pattern",
+   "title": {
+    "en": "Jump straight to the nth term",
+    "hi": "सीधे n-वें पद पर पहुँचो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "ap",
+    "seed": [
+     3,
+     5
+    ],
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:n",
+     "expect": "extended",
+     "say": {
+      "en": "The AP is 3, 8, 13, … Move the n slider to show more terms.",
+      "hi": "AP 3, 8, 13, … है। ज़्यादा पद दिखाने के लिए n स्लाइडर खिसकाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Without listing them all, what is the 10th term?",
+      "hi": "सारे पद लिखे बिना, 10वाँ पद क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "48",
+       "hi": "48 होगा"
+      },
+      {
+       "id": "b",
+       "en": "53",
+       "hi": "53 होगा"
+      },
+      {
+       "id": "c",
+       "en": "50",
+       "hi": "50 होगा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the next term.",
+      "hi": "अगले पद वाले प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To reach the nth term you start at a and add d, (n − 1) times: aₙ = a + (n − 1)d. For 3, 8, 13, …: a₁₀ = 3 + 9 × 5 = 48. It is 9 jumps, not 10, because the first term needs no jump.",
+      "hi": "n-वें पद तक पहुँचने के लिए a से शुरू करके d को (n − 1) बार जोड़ते हो: aₙ = a + (n − 1)d। 3, 8, 13, … में a₁₀ = 3 + 9 × 5 = 48। यह 9 छलाँगें हैं, 10 नहीं, क्योंकि पहले पद के लिए कोई छलाँग नहीं चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which term of the AP 3, 8, 13, … is 98?",
+        "hi": "AP 3, 8, 13, … का कौन-सा पद 98 है?"
+       },
+       "options": [
+        {
+         "en": "20th",
+         "hi": "20वाँ"
+        },
+        {
+         "en": "19th",
+         "hi": "19वाँ"
+        },
+        {
+         "en": "21st",
+         "hi": "21वाँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 + (n − 1)5 = 98 gives (n − 1)5 = 95, n − 1 = 19, n = 20.",
+        "hi": "3 + (n − 1)5 = 98 से (n − 1)5 = 95, n − 1 = 19, n = 20।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "19 is the number of jumps (n − 1); add 1 for the first term.",
+         "hi": "19 छलाँगों की संख्या (n − 1) है; पहले पद के लिए 1 जोड़ो।"
+        },
+        {
+         "en": "Check: the 21st term is 3 + 20 × 5 = 103, not 98.",
+         "hi": "जाँचो: 21वाँ पद 3 + 20 × 5 = 103 है, 98 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Sana saves ₹50 in the first week and ₹20 more each week than the week before. How much does she save in week 12?",
+        "hi": "सना पहले हफ़्ते ₹50 बचाती है और हर हफ़्ते पिछले से ₹20 ज़्यादा। 12वें हफ़्ते में वह कितना बचाएगी?"
+       },
+       "options": [
+        "₹270",
+        "₹290",
+        "₹240"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "a₁₂ = 50 + 11 × 20 = 270.",
+        "hi": "a₁₂ = 50 + 11 × 20 = 270।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That uses 12 jumps; week 12 is only 11 jumps after week 1.",
+         "hi": "इसमें 12 छलाँगें लीं; 12वाँ हफ़्ता पहले हफ़्ते से केवल 11 छलाँग दूर है।"
+        },
+        {
+         "en": "12 × 20 = 240 forgets the ₹50 of the first week.",
+         "hi": "12 × 20 = 240 में पहले हफ़्ते के ₹50 छूट गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: set a = 100 and d = −7 with the sliders. Which is the first term that goes below 0?",
+      "hi": "आज़माओ: स्लाइडर से a = 100 और d = −7 करो। पहला कौन-सा पद 0 से नीचे जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch05-sum",
+   "topic": "5.4",
+   "template": "pattern",
+   "title": {
+    "en": "Add up an AP quickly",
+    "hi": "AP का योग झटपट निकालो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "ap",
+    "seed": [
+     20,
+     2
+    ],
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:n",
+     "expect": "extended",
+     "say": {
+      "en": "A hall has 20 chairs in row 1 and 2 more in each next row. Move n to 10 rows.",
+      "hi": "एक हॉल की पहली पंक्ति में 20 कुर्सियाँ हैं और हर अगली पंक्ति में 2 ज़्यादा। n को 10 पंक्तियों तक ले जाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Pair the first row with the last, the second with the second-last, and so on. What does each pair add up to?",
+      "hi": "पहली पंक्ति को आख़िरी से, दूसरी को आख़िरी से पहले वाली से जोड़ो, और इसी तरह आगे। हर जोड़ी का योग कितना है?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "The same, 58, for every pair",
+       "hi": "हर जोड़ी का एक जैसा, 58"
+      },
+      {
+       "id": "grow",
+       "en": "It grows each time",
+       "hi": "हर बार बढ़ता है"
+      },
+      {
+       "id": "half",
+       "en": "Half of the last row",
+       "hi": "आख़िरी पंक्ति का आधा"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "sum",
+     "expect": "sum",
+     "say": {
+      "en": "Press Sum to add all the terms shown.",
+      "hi": "दिखाए गए सारे पदों को जोड़ने के लिए योग दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Row 10 has 20 + 9 × 2 = 38 chairs. Each pair (20 + 38, 22 + 36, …) makes 58, and 10 rows make 5 pairs, so the total is 5 × 58 = 290. In general Sₙ = n/2 × (first + last) = n/2 × [2a + (n − 1)d].",
+      "hi": "10वीं पंक्ति में 20 + 9 × 2 = 38 कुर्सियाँ हैं। हर जोड़ी (20 + 38, 22 + 36, …) 58 बनाती है, और 10 पंक्तियों से 5 जोड़ियाँ बनती हैं, इसलिए कुल 5 × 58 = 290 है। सामान्य रूप में Sₙ = n/2 × (पहला + आख़िरी) = n/2 × [2a + (n − 1)d]।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the sum of the first 20 odd numbers 1 + 3 + 5 + …?",
+        "hi": "पहली 20 विषम संख्याओं 1 + 3 + 5 + … का योग क्या है?"
+       },
+       "options": [
+        "400",
+        "200",
+        "39",
+        "420"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "a = 1, d = 2, n = 20: S = 20/2 × (2 + 19 × 2) = 10 × 40 = 400.",
+        "hi": "a = 1, d = 2, n = 20: S = 20/2 × (2 + 19 × 2) = 10 × 40 = 400।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That forgets to double a in 2a, or halves twice.",
+         "hi": "इसमें 2a का दोगुना भूल गए या दो बार आधा कर दिया।"
+        },
+        {
+         "en": "39 is the 20th odd number, the last term, not the sum.",
+         "hi": "39, 20वीं विषम संख्या यानी आख़िरी पद है, योग नहीं।"
+        },
+        {
+         "en": "That is the sum of the first 20 even numbers 2 + 4 + … + 40.",
+         "hi": "यह पहली 20 सम संख्याओं 2 + 4 + … + 40 का योग है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change d to 0. What is the sum of 10 rows now? Then find how many rows give exactly 290 chairs with a = 20, d = 2.",
+      "hi": "आज़माओ: d को 0 करो। अब 10 पंक्तियों का योग कितना है? फिर पता करो कि a = 20, d = 2 पर कितनी पंक्तियों से ठीक 290 कुर्सियाँ बनती हैं।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Chapter hook: steps that rise evenly",
+   "shows": "Stone ghat steps leading down to a river in an Indian town at sunrise, each step the same height",
+   "view": "Low angle from the side, golden light",
+   "right": "Steps evenly spaced and equal in height",
+   "avoid": "People's faces, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "5.4",
+   "use": "Chairs in rows for the sum lab",
+   "shows": "A school assembly hall with rows of plastic chairs, each row a little longer than the one in front",
+   "view": "From the back of the hall, slightly raised",
+   "right": "Rows clearly growing by the same number of chairs",
+   "avoid": "Children's faces, school name"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Coins for a savings AP",
+   "shows": "Stacks of Indian ₹10 coins: 1, 2, 3, 4 and 5 coins high, in a row",
+   "view": "Three-quarter view, transparent background",
+   "right": "Real ₹10 coins, stacks grow by exactly one coin",
+   "avoid": "Other currencies, banknotes"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "Taxi meter idea",
+   "shows": "An Indian auto-rickshaw waiting at a stand in the evening, its meter box visible but unreadable",
+   "view": "Side view, warm street light",
+   "right": "Meter present but no readable numbers",
+   "avoid": "Number plates, driver's face"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "5.2",
+   "use": "A pattern of growing matchstick squares",
+   "shows": "Four frames: 1, 2, 3 and 4 squares made of matchsticks in a row on a dark table",
+   "view": "From above, same framing in all frames",
+   "right": "Each new square adds exactly 3 sticks",
+   "avoid": "Burnt or broken matchsticks"
+  }
+ ]
+}

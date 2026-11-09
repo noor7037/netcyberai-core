@@ -1,0 +1,1214 @@
+{
+ "chapter_key": "u.c12.physics.leph1.ch02",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Electrostatic Potential and Capacitance",
+ "source": "https://ncert.nic.in/textbook/pdf/leph102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "A short opening about potential and capacitors; the lab topics that follow carry the ideas."
+  },
+  {
+   "n": "2.3",
+   "title": "Potential due to a point charge",
+   "labs": [
+    "c12-physics-leph1-ch02-v-and-e"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Potential due to an electric dipole",
+   "labs": [
+    "c12-physics-leph1-ch02-equipotential"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Potential due to a system of charges",
+   "labs": [
+    "c12-physics-leph1-ch02-equipotential"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Equipotential surfaces and the relation between field and potential",
+   "labs": [
+    "c12-physics-leph1-ch02-v-and-e"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.7",
+   "title": "Potential energy of a system of charges",
+   "labs": [
+    "c12-physics-leph1-ch02-push-together"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.8",
+   "title": "Potential energy in an external field",
+   "labs": [],
+   "why_no_lab": "Dipole torque and energy in a uniform field are formula work that the reader and worked examples teach better."
+  },
+  {
+   "n": "2.9",
+   "title": "Electrostatics of conductors",
+   "labs": [],
+   "why_no_lab": "Shielding and the zero field inside a conductor are best shown by the photo of a car or a cage and the reader."
+  },
+  {
+   "n": "2.10",
+   "title": "Dielectrics and polarisation",
+   "labs": [
+    "c12-physics-leph1-ch02-dielectric"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.11",
+   "title": "Capacitors and capacitance",
+   "labs": [
+    "c12-physics-leph1-ch02-q-equals-cv"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.12",
+   "title": "The parallel plate capacitor",
+   "labs": [],
+   "why_no_lab": "The formula C = ε0A/d is a derivation and is covered by the capacitor image and the reader."
+  },
+  {
+   "n": "2.13",
+   "title": "Effect of dielectric on capacitance",
+   "labs": [
+    "c12-physics-leph1-ch02-dielectric"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.14",
+   "title": "Combination of capacitors",
+   "labs": [
+    "c12-physics-leph1-ch02-series",
+    "c12-physics-leph1-ch02-parallel"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.15",
+   "title": "Energy stored in a capacitor",
+   "labs": [
+    "c12-physics-leph1-ch02-energy"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph1-ch02-push-together",
+   "topic": "2.7",
+   "template": "field",
+   "title": {
+    "en": "Pushing like charges together",
+    "hi": "समान आवेशों को पास लाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "source": "charges",
+    "show": "vectors",
+    "charges": [
+     {
+      "q": 1,
+      "x": 25,
+      "y": 35
+     },
+     {
+      "q": 1,
+      "x": 75,
+      "y": 35
+     },
+     {
+      "q": -1,
+      "x": 50,
+      "y": 80
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You push two + charges closer. Do you have to do work against the push between them?",
+      "hi": "तुम दो + आवेशों को पास धकेलते हो। क्या उनके आपसी धक्के के विरुद्ध तुम्हें कार्य करना पड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "Yes, I must push hard",
+       "hi": "हाँ, ज़ोर लगाना पड़ेगा"
+      },
+      {
+       "id": "o1",
+       "en": "No, they come close by themselves",
+       "hi": "नहीं, वे अपने आप पास आ जाएँगे"
+      },
+      {
+       "id": "o2",
+       "en": "Same work as for + and −",
+       "hi": "+ और − जितना ही कार्य"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "charge:1",
+     "expect": "repel",
+     "say": {
+      "en": "Drag the right + charge towards the left + charge. Feel how the arrows grow.",
+      "hi": "दाएँ वाले + आवेश को बाएँ वाले + आवेश की ओर खींचो। देखो तीर कैसे बड़े होते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "charge:2",
+     "expect": "attract",
+     "say": {
+      "en": "Now bring the − charge near a + charge. It pulls in by itself.",
+      "hi": "अब − आवेश को किसी + आवेश के पास लाओ। वह अपने आप खिंच जाता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bringing like charges together needs work, and that work is stored as electric potential energy. Unlike charges release energy as they move together, like a ball rolling downhill. Potential energy is the work done by us against the electric force, nothing is lost.",
+      "hi": "समान आवेशों को पास लाने में कार्य करना पड़ता है, और यही कार्य विद्युत स्थितिज ऊर्जा के रूप में जमा हो जाता है। असमान आवेश पास आते समय ऊर्जा छोड़ते हैं, जैसे ढलान पर लुढ़कती गेंद। स्थितिज ऊर्जा वह कार्य है जो हमने विद्युत बल के विरुद्ध किया, कुछ भी खोता नहीं है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two + charges are pushed closer. Their potential energy",
+        "hi": "दो + आवेशों को पास धकेला गया। उनकी स्थितिज ऊर्जा"
+       },
+       "options": [
+        {
+         "en": "increases",
+         "hi": "बढ़ती है"
+        },
+        {
+         "en": "decreases",
+         "hi": "घटती है"
+        },
+        {
+         "en": "stays the same",
+         "hi": "वही रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Work done against the repulsion is stored as potential energy, so it increases.",
+        "hi": "प्रतिकर्षण के विरुद्ध किया कार्य स्थितिज ऊर्जा बनकर जमा होता है, इसलिए वह बढ़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They would drop only if they were free to fly apart, which is not what you did.",
+         "hi": "तब घटती जब वे खुले छोड़े जाते और दूर उड़ते, तुमने ऐसा नहीं किया।"
+        },
+        {
+         "en": "Work was done, and work done against a force is stored, so the energy changes.",
+         "hi": "कार्य हुआ है, और बल के विरुद्ध किया कार्य जमा होता है, इसलिए ऊर्जा बदलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A + and a − charge move closer on their own. Their potential energy",
+        "hi": "एक + और एक − आवेश अपने आप पास आते हैं। उनकी स्थितिज ऊर्जा"
+       },
+       "options": [
+        {
+         "en": "increases",
+         "hi": "बढ़ती है"
+        },
+        {
+         "en": "decreases",
+         "hi": "घटती है"
+        },
+        {
+         "en": "becomes zero always",
+         "hi": "हमेशा शून्य हो जाती है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The field does positive work, the energy turns into motion, so potential energy decreases.",
+        "hi": "क्षेत्र धनात्मक कार्य करता है, ऊर्जा गति में बदलती है, इसलिए स्थितिज ऊर्जा घटती है।"
+       },
+       "wrong": [
+        {
+         "en": "It increases only when we push against the force. Here the force itself does the work.",
+         "hi": "यह तब बढ़ती है जब हम बल के विरुद्ध धकेलें। यहाँ बल स्वयं कार्य करता है।"
+        },
+        "",
+        {
+         "en": "It becomes smaller but not zero, as the charges are still separate.",
+         "hi": "यह कम होती है पर शून्य नहीं, क्योंकि आवेश अब भी अलग हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place all three charges close together and then move one away. Which move needs your effort and which one does not?",
+      "hi": "तीनों आवेशों को पास रखो और फिर एक को दूर ले जाओ। किस चाल में तुम्हें ज़ोर लगाना पड़ता है और किसमें नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch02-equipotential",
+   "topic": "2.4",
+   "template": "field",
+   "title": {
+    "en": "Equipotential lines of a dipole",
+    "hi": "द्विध्रुव की समविभव रेखाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "source": "charges",
+    "show": "lines",
+    "charges": [
+     {
+      "q": 2,
+      "x": 30,
+      "y": 50
+     },
+     {
+      "q": -2,
+      "x": 70,
+      "y": 50
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A small + test charge is moved along the line exactly halfway between a + and a − charge. Is work needed?",
+      "hi": "एक छोटा + परीक्षण आवेश + और − आवेश के ठीक बीच वाली रेखा पर चलाया जाता है। क्या कार्य लगेगा?"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "Negative work only",
+       "hi": "केवल ऋणात्मक कार्य"
+      },
+      {
+       "id": "o0",
+       "en": "No work is needed",
+       "hi": "कोई कार्य नहीं लगेगा"
+      },
+      {
+       "id": "o1",
+       "en": "Some work, always",
+       "hi": "हमेशा कुछ कार्य"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "view:lines",
+     "expect": "lines",
+     "say": {
+      "en": "Switch to the field lines view and see the lines go from + to −.",
+      "hi": "क्षेत्र रेखाओं वाला दृश्य चुनो और देखो कि रेखाएँ + से − की ओर जाती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "charge:0",
+     "expect": "moved",
+     "say": {
+      "en": "Drag the + charge a little. Watch how the whole pattern changes with it.",
+      "hi": "+ आवेश को थोड़ा खींचो। देखो पूरा पैटर्न उसके साथ कैसे बदलता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every point on the line halfway between equal and opposite charges is at zero potential, because the two contributions cancel. Potential is a plain number (a scalar) so it just adds. An equipotential surface is always at right angles to the field lines, so moving along it needs no work.",
+      "hi": "बराबर और विपरीत आवेशों के ठीक बीच की रेखा का हर बिंदु शून्य विभव पर होता है, क्योंकि दोनों के योगदान कट जाते हैं। विभव केवल एक संख्या (अदिश) है, इसलिए सीधा जुड़ता है। समविभव पृष्ठ हमेशा क्षेत्र रेखाओं के लंबवत होता है, इसलिए उस पर चलने में कार्य नहीं लगता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How does an equipotential surface meet the field lines?",
+        "hi": "समविभव पृष्ठ क्षेत्र रेखाओं से कैसे मिलता है?"
+       },
+       "options": [
+        {
+         "en": "At right angles",
+         "hi": "समकोण पर"
+        },
+        {
+         "en": "Along them, parallel",
+         "hi": "उनके साथ-साथ, समांतर"
+        },
+        {
+         "en": "At 45 degrees",
+         "hi": "45 डिग्री पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The field has no part along the surface, so no work is done in moving along it.",
+        "hi": "क्षेत्र का कोई भाग पृष्ठ के अनुदिश नहीं होता, इसलिए उस पर चलने में कार्य नहीं होता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If the field had a part along the surface, a charge would be pushed along it and the potential would change.",
+         "hi": "यदि क्षेत्र का कोई भाग पृष्ठ के अनुदिश होता, तो आवेश उस पर धकेला जाता और विभव बदलता।"
+        },
+        {
+         "en": "Only a right angle makes the work zero for every small move on the surface.",
+         "hi": "केवल समकोण पर ही पृष्ठ पर हर छोटी चाल के लिए कार्य शून्य होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make the two charges unequal by dragging one very close to the other. Where do the lines bunch up, and what does that say about the field there?",
+      "hi": "एक आवेश को दूसरे के बहुत पास ले जाओ। रेखाएँ कहाँ घनी होती हैं, और इससे वहाँ के क्षेत्र के बारे में क्या पता चलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch02-v-and-e",
+   "topic": "2.6",
+   "template": "grapher",
+   "title": {
+    "en": "Potential falls with distance; field is its slope",
+    "hi": "दूरी से विभव घटता है; क्षेत्र उसकी ढलान है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "a/x",
+    "params": {
+     "a": [
+      1,
+      5,
+      2
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For a point charge, the potential V is proportional to 1/r. If you double the distance, V becomes",
+      "hi": "बिंदु आवेश के लिए विभव V, 1/r के समानुपाती होता है। दूरी दोगुनी करने पर V हो जाता है"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "quarter",
+       "hi": "एक-चौथाई"
+      },
+      {
+       "id": "o2",
+       "en": "double",
+       "hi": "दोगुना"
+      },
+      {
+       "id": "o0",
+       "en": "half",
+       "hi": "आधा"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Slide x (distance r) from small to large. Watch the height of the curve (V).",
+      "hi": "x (दूरी r) को छोटे से बड़ा करो। वक्र की ऊँचाई (V) देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Make the charge bigger with the a slider. The whole curve rises.",
+      "hi": "a स्लाइडर से आवेश बड़ा करो। पूरा वक्र ऊपर उठता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tangent",
+     "expect": "plotted",
+     "say": {
+      "en": "Switch on the tangent. Its slope shows how fast V changes with r.",
+      "hi": "स्पर्श रेखा चालू करो। उसकी ढलान बताती है कि V, r के साथ कितनी तेज़ी से बदलता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The curve is V = kq/r. It is steep near the charge and flat far away. The electric field is the slope of this curve with a minus sign, E = −dV/dr. That is why the field is strong near a charge and weak far from it, and why E falls as 1/r².",
+      "hi": "वक्र V = kq/r है। आवेश के पास यह तीखा और दूर सपाट है। विद्युत क्षेत्र इस वक्र की ऋणात्मक ढलान है, E = −dV/dr। इसीलिए आवेश के पास क्षेत्र प्रबल और दूर कमज़ोर होता है, और E, 1/r² की तरह घटता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where is the field strongest?",
+        "hi": "क्षेत्र कहाँ सबसे प्रबल है?"
+       },
+       "options": [
+        {
+         "en": "Where the V–r curve is steepest",
+         "hi": "जहाँ V–r वक्र सबसे तीखा है"
+        },
+        {
+         "en": "Where V is zero",
+         "hi": "जहाँ V शून्य है"
+        },
+        {
+         "en": "Where V is largest",
+         "hi": "जहाँ V सबसे अधिक है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "E is minus the slope of V, so a steep curve means a strong field.",
+        "hi": "E, V की ऋणात्मक ढलान है, इसलिए तीखा वक्र यानी प्रबल क्षेत्र।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zero V does not mean zero field. The field depends on how V changes, not on its value.",
+         "hi": "V शून्य होने से क्षेत्र शून्य नहीं होता। क्षेत्र इस पर निर्भर है कि V कैसे बदलता है, उसके मान पर नहीं।"
+        },
+        {
+         "en": "A high V can sit on a flat part of the curve, where the field is small.",
+         "hi": "ऊँचा V वक्र के सपाट भाग पर भी हो सकता है, जहाँ क्षेत्र छोटा होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move x to different values and read the slope each time. Does the slope fall faster than V does?",
+      "hi": "x को अलग-अलग मानों पर ले जाओ और हर बार ढलान देखो। क्या ढलान V से तेज़ी से घटती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch02-q-equals-cv",
+   "topic": "2.11",
+   "template": "grapher",
+   "title": {
+    "en": "A capacitor stores charge: Q = CV",
+    "hi": "संधारित्र आवेश जमा करता है: Q = CV"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "a*x",
+    "params": {
+     "a": [
+      1,
+      10,
+      2
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Doubling the voltage across a capacitor of fixed capacitance makes the stored charge",
+      "hi": "निश्चित धारिता वाले संधारित्र पर वोल्टता दोगुनी करने से जमा आवेश हो जाता है"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "double",
+       "hi": "दोगुना"
+      },
+      {
+       "id": "o1",
+       "en": "half",
+       "hi": "आधा"
+      },
+      {
+       "id": "o2",
+       "en": "same",
+       "hi": "वही"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Move x (the voltage V). Read the height of the line, which is the charge Q.",
+      "hi": "x (वोल्टता V) को चलाओ। रेखा की ऊँचाई देखो, यही आवेश Q है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Now change a (the capacitance C). The line becomes steeper for a bigger C.",
+      "hi": "अब a (धारिता C) बदलो। C बड़ा होने पर रेखा तीखी होती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Q = CV is a straight line through the origin. Its slope is the capacitance C, measured in farad. A bigger C means the capacitor holds more charge at the same voltage. Like a bigger bucket that holds more water at the same water level.",
+      "hi": "Q = CV मूलबिंदु से गुज़रती सीधी रेखा है। इसकी ढलान धारिता C है, जो फैरड में मापी जाती है। बड़ा C यानी उसी वोल्टता पर अधिक आवेश। जैसे बड़ी बाल्टी उसी जल-स्तर पर अधिक पानी रखती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two capacitors are charged to the same voltage. The one with the larger Q has",
+        "hi": "दो संधारित्र एक ही वोल्टता तक आवेशित हैं। जिसका Q अधिक है उसकी"
+       },
+       "options": [
+        {
+         "en": "larger capacitance",
+         "hi": "अधिक धारिता"
+        },
+        {
+         "en": "smaller capacitance",
+         "hi": "कम धारिता"
+        },
+        {
+         "en": "no difference in capacitance",
+         "hi": "धारिता में कोई अंतर नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At the same V, Q = CV is larger only if C is larger.",
+        "hi": "समान V पर Q = CV तभी अधिक होगा जब C अधिक हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "C = Q/V, so at equal V a larger Q needs a larger C.",
+         "hi": "C = Q/V है, इसलिए समान V पर अधिक Q के लिए अधिक C चाहिए।"
+        },
+        {
+         "en": "Capacitance is exactly what tells how much charge is held per volt.",
+         "hi": "धारिता ही बताती है कि प्रति वोल्ट कितना आवेश रखा जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a to its smallest and largest values. How much voltage is needed to store the same Q in each case?",
+      "hi": "a को सबसे छोटे और सबसे बड़े मान पर रखो। दोनों में उतना ही Q जमा करने के लिए कितनी वोल्टता चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch02-dielectric",
+   "topic": "2.13",
+   "template": "grapher",
+   "title": {
+    "en": "A dielectric slab raises capacitance",
+    "hi": "परावैद्युत पट्टी धारिता बढ़ाती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "a*x",
+    "params": {
+     "a": [
+      1,
+      6,
+      2
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A slab of dielectric (like mica) is slid fully between the plates. The capacitance",
+      "hi": "परावैद्युत की पट्टी (जैसे अभ्रक) प्लेटों के बीच पूरी डाली जाती है। धारिता"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "stays same",
+       "hi": "वही रहती है"
+      },
+      {
+       "id": "o0",
+       "en": "increases",
+       "hi": "बढ़ जाती है"
+      },
+      {
+       "id": "o1",
+       "en": "decreases",
+       "hi": "घट जाती है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Set a to the capacitance C0 with air between the plates.",
+      "hi": "a को हवा वाले संधारित्र की धारिता C0 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Move x (the dielectric constant K). Air is K = 1, mica is about 6. Watch C = K × C0 rise.",
+      "hi": "x (परावैद्युत स्थिरांक K) चलाओ। हवा के लिए K = 1 और अभ्रक के लिए लगभग 6 है। C = K × C0 को बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The molecules of a dielectric line up in the electric field and produce a small field of their own against the main one. The net field between the plates falls, so for the same charge the voltage falls and C = Q/V rises by the factor K. That is why the capacitors in radios and fans hide thin dielectric layers.",
+      "hi": "परावैद्युत के अणु विद्युत क्षेत्र में पंक्तिबद्ध होकर अपना छोटा क्षेत्र बनाते हैं जो मुख्य क्षेत्र के विपरीत होता है। प्लेटों के बीच कुल क्षेत्र घटता है, इसलिए उतने ही आवेश पर वोल्टता घटती है और C = Q/V, K गुना बढ़ जाता है। इसीलिए रेडियो और पंखों के संधारित्रों में पतली परावैद्युत परतें होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "With a dielectric of K = 4, a capacitor of 5 µF becomes",
+        "hi": "K = 4 वाले परावैद्युत से 5 µF का संधारित्र हो जाता है"
+       },
+       "options": [
+        {
+         "en": "20 µF",
+         "hi": "20 माइक्रोफ़ैरड"
+        },
+        {
+         "en": "1.25 µF",
+         "hi": "1.25 माइक्रोफ़ैरड"
+        },
+        {
+         "en": "5 µF",
+         "hi": "5 माइक्रोफ़ैरड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "C = K × C0 = 4 × 5 = 20 µF.",
+        "hi": "C = K × C0 = 4 × 5 = 20 µF।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would divide by K. A dielectric multiplies C by K.",
+         "hi": "यह K से भाग देना है। परावैद्युत C को K से गुणा करता है।"
+        },
+        {
+         "en": "The dielectric does change C. It multiplies it by K.",
+         "hi": "परावैद्युत C को बदलता है। यह उसे K से गुणा करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take K to its largest value. Why is a big K so useful when we want a small capacitor to store a lot of charge?",
+      "hi": "K को सबसे बड़े मान पर ले जाओ। छोटे संधारित्र में बहुत आवेश रखना हो तो बड़ा K क्यों उपयोगी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch02-series",
+   "topic": "2.14",
+   "template": "grapher",
+   "title": {
+    "en": "Capacitors in series",
+    "hi": "श्रेणी में संधारित्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "a*x/(a+x)",
+    "params": {
+     "a": [
+      1,
+      6,
+      3
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two capacitors in series: the total capacitance is",
+      "hi": "श्रेणी में दो संधारित्रों की कुल धारिता होती है"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "the sum of the two",
+       "hi": "दोनों का योग"
+      },
+      {
+       "id": "o2",
+       "en": "the larger one",
+       "hi": "बड़ी वाली के बराबर"
+      },
+      {
+       "id": "o0",
+       "en": "smaller than either one",
+       "hi": "दोनों में से छोटी से भी कम"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is C2. Slide it up and see how the total C = C1·C2 / (C1 + C2) changes.",
+      "hi": "x यहाँ C2 है। उसे बढ़ाओ और देखो कुल C = C1·C2 / (C1 + C2) कैसे बदलता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a is C1. Change it and see where the curve flattens out.",
+      "hi": "a यहाँ C1 है। उसे बदलो और देखो वक्र कहाँ सपाट होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In series the same charge sits on every capacitor and the voltages add, so 1/C = 1/C1 + 1/C2. The total is always smaller than the smallest one. However large you make C2, the total never goes above C1; the curve flattens at C1.",
+      "hi": "श्रेणी में हर संधारित्र पर आवेश बराबर होता है और वोल्टताएँ जुड़ती हैं, इसलिए 1/C = 1/C1 + 1/C2। कुल मान सबसे छोटे से भी कम रहता है। C2 कितना भी बड़ा करो, कुल C1 से ऊपर नहीं जाता; वक्र C1 पर सपाट हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two capacitors of 6 µF each are joined in series. The total is",
+        "hi": "6 µF के दो संधारित्र श्रेणी में जोड़े गए। कुल धारिता है"
+       },
+       "options": [
+        {
+         "en": "3 µF",
+         "hi": "3 माइक्रोफ़ैरड"
+        },
+        {
+         "en": "12 µF",
+         "hi": "12 माइक्रोफ़ैरड"
+        },
+        {
+         "en": "6 µF",
+         "hi": "6 माइक्रोफ़ैरड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6 × 6 / (6 + 6) = 3 µF.",
+        "hi": "6 × 6 / (6 + 6) = 3 µF।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 µF is the parallel answer, where capacitances add.",
+         "hi": "12 µF समांतर क्रम का उत्तर है, जहाँ धारिताएँ जुड़ती हैं।"
+        },
+        {
+         "en": "Joining in series lowers the total, it does not keep it equal.",
+         "hi": "श्रेणी जोड़ने से कुल घटती है, बराबर नहीं रहती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try a = 1 and slide x to the end. What number does the total approach?",
+      "hi": "a = 1 रखकर x को अंत तक ले जाओ। कुल धारिता किस संख्या के पास पहुँचती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch02-parallel",
+   "topic": "2.14",
+   "template": "grapher",
+   "title": {
+    "en": "Capacitors in parallel",
+    "hi": "समांतर में संधारित्र"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "x + b",
+    "params": {
+     "b": [
+      1,
+      6,
+      2
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two capacitors in parallel: the total capacitance is",
+      "hi": "समांतर में दो संधारित्रों की कुल धारिता होती है"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "the sum",
+       "hi": "योग"
+      },
+      {
+       "id": "o1",
+       "en": "smaller than either",
+       "hi": "दोनों से कम"
+      },
+      {
+       "id": "o2",
+       "en": "the average",
+       "hi": "औसत"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "b is C1. Set it, then use x as C2.",
+      "hi": "b यहाँ C1 है। उसे रखो, फिर x को C2 मानो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Slide x (C2) and watch the total C = C1 + C2 climb in a straight line.",
+      "hi": "x (C2) को चलाओ और कुल C = C1 + C2 को सीधी रेखा में चढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In parallel every capacitor has the same voltage, and the charges add, so C = C1 + C2. Parallel connection is like adding more plate area side by side, which always gives more capacitance.",
+      "hi": "समांतर में हर संधारित्र पर वोल्टता बराबर होती है और आवेश जुड़ते हैं, इसलिए C = C1 + C2। समांतर जोड़ना मानो प्लेट का क्षेत्रफल बगल-बगल बढ़ाना है, जिससे धारिता हमेशा बढ़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 2 µF and a 3 µF capacitor are in parallel. The total is",
+        "hi": "2 µF और 3 µF के संधारित्र समांतर में हैं। कुल धारिता है"
+       },
+       "options": [
+        {
+         "en": "5 µF",
+         "hi": "5 माइक्रोफ़ैरड"
+        },
+        {
+         "en": "1.2 µF",
+         "hi": "1.2 माइक्रोफ़ैरड"
+        },
+        {
+         "en": "6 µF",
+         "hi": "6 माइक्रोफ़ैरड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 + 3 = 5 µF.",
+        "hi": "2 + 3 = 5 µF।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the series result. In parallel the values add.",
+         "hi": "यह श्रेणी का परिणाम है। समांतर में मान जुड़ते हैं।"
+        },
+        {
+         "en": "Multiplying is not what happens. Capacitances in parallel are simply added.",
+         "hi": "गुणा नहीं होता। समांतर में धारिताएँ सीधे जोड़ी जाती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare this line with the series curve in the last lab. Which connection gives more capacitance for the same two capacitors?",
+      "hi": "इस रेखा की तुलना पिछली प्रयोगशाला के श्रेणी वक्र से करो। उन्हीं दो संधारित्रों के लिए कौन-सा जोड़ अधिक धारिता देता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch02-energy",
+   "topic": "2.15",
+   "template": "grapher",
+   "title": {
+    "en": "Energy stored in a capacitor",
+    "hi": "संधारित्र में जमा ऊर्जा"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "quadratic",
+    "expr": "a*x^2",
+    "params": {
+     "a": [
+      0.5,
+      4,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A capacitor is charged to double the voltage. The energy stored becomes",
+      "hi": "संधारित्र को दोगुनी वोल्टता तक आवेशित किया गया। जमा ऊर्जा हो जाती है"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "half",
+       "hi": "आधी"
+      },
+      {
+       "id": "o0",
+       "en": "four times",
+       "hi": "चार गुनी"
+      },
+      {
+       "id": "o1",
+       "en": "double",
+       "hi": "दोगुनी"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the voltage V. Slide it and watch U = ½CV² grow like a parabola (a stands for C/2).",
+      "hi": "x वोल्टता V है। उसे चलाओ और U = ½CV² को परवलय की तरह बढ़ते देखो (a यहाँ C/2 है)।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Make a larger. The curve gets narrower: more energy at the same voltage.",
+      "hi": "a बड़ा करो। वक्र संकरा होता है: उसी वोल्टता पर अधिक ऊर्जा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The energy is U = ½CV². It grows as the square of the voltage, so doubling V gives four times the energy. It is the work done in moving charge onto the plates, and it is stored in the electric field between them. A camera flash uses this stored energy for a sudden bright burst.",
+      "hi": "ऊर्जा U = ½CV² है। यह वोल्टता के वर्ग के साथ बढ़ती है, इसलिए V दोगुना करने पर ऊर्जा चार गुनी होती है। यह प्लेटों पर आवेश पहुँचाने में किया गया कार्य है, जो उनके बीच के विद्युत क्षेत्र में जमा रहता है। कैमरे की फ़्लैश इसी जमा ऊर्जा से अचानक तेज़ रोशनी देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 100 µF capacitor at 10 V stores",
+        "hi": "10 V पर 100 µF का संधारित्र जमा करता है"
+       },
+       "options": [
+        {
+         "en": "5 mJ",
+         "hi": "5 मिलीजूल"
+        },
+        {
+         "en": "1 mJ",
+         "hi": "1 मिलीजूल"
+        },
+        {
+         "en": "10 mJ",
+         "hi": "10 मिलीजूल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "U = ½ × 100×10⁻⁶ × 10² = 5×10⁻³ J = 5 mJ.",
+        "hi": "U = ½ × 100×10⁻⁶ × 10² = 5×10⁻³ J = 5 mJ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That uses V instead of V². Square the voltage: ½ × 100 µF × 100.",
+         "hi": "यह V² की जगह V लेता है। वोल्टता का वर्ग लो: ½ × 100 µF × 100।"
+        },
+        {
+         "en": "You forgot the half in ½CV².",
+         "hi": "½CV² में आधा छूट गया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why do capacitor makers print a maximum voltage on the body? Think about what happens to the energy if V keeps rising.",
+      "hi": "संधारित्र बनाने वाले उस पर अधिकतम वोल्टता क्यों छापते हैं? सोचो V बढ़ती रहे तो ऊर्जा का क्या होगा।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Chapter hook: the camera flash",
+   "shows": "A smartphone-style camera flash firing in a dim room, a child's hands holding the camera, bright burst of light on a wall",
+   "view": "Over-the-shoulder, dim room",
+   "right": "Visible flash burst and a dark room",
+   "avoid": "Faces, brand logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.11",
+   "use": "Real capacitors",
+   "shows": "Five capacitors on white: a small ceramic disc, a blue electrolytic can, a tubular film capacitor, a large fan-motor capacitor, a tiny chip capacitor",
+   "view": "Straight overhead, equal lighting",
+   "right": "Different sizes clearly seen; leads visible",
+   "avoid": "Printed brand names, readable ratings"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "2.12",
+   "use": "Parallel plate capacitor",
+   "shows": "Two shiny metal plates a few millimetres apart, drawn as a 3D model with soft pale blue field lines between them",
+   "view": "Three-quarter view from above, plain background",
+   "right": "Plates parallel, lines straight in the middle and bending slightly at the edges",
+   "avoid": "Plus and minus signs baked in"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "2.13",
+   "use": "A dielectric between plates",
+   "shows": "A thin yellow-brown mica sheet half pulled out from between two metal plates, cutaway 3D render",
+   "view": "Side view, studio light",
+   "right": "Sheet thickness clear, gap visible",
+   "avoid": "Text labels"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.9",
+   "use": "Shielding in a car",
+   "shows": "A car on a road in a thunderstorm with lightning near it, passengers calm inside (illustration)",
+   "view": "Wide side view",
+   "right": "Metal body clearly unbroken",
+   "avoid": "Frightened faces"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "2.6",
+   "use": "Equipotentials of a point charge",
+   "shows": "Concentric circles around one centre with radial lines crossing them at right angles, clean white background",
+   "view": "Flat front-on",
+   "right": "Circles evenly spaced in value, lines perpendicular",
+   "avoid": "Labels and numbers"
+  }
+ ]
+}

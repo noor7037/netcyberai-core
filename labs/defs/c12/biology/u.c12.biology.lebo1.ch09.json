@@ -1,0 +1,1534 @@
+{
+  "chapter_key": "u.c12.biology.lebo1.ch09",
+  "class": 12,
+  "subject_id": "biology",
+  "title": "Biotechnology : Principles and Processes",
+  "source": "https://ncert.nic.in/textbook/pdf/lebo109.pdf",
+  "topics": [
+    {
+      "n": "9.1",
+      "title": "Principles of biotechnology",
+      "labs": [],
+      "why_no_lab": "The principles (genetic engineering and bioprocess engineering) are the story the process labs act out; see the whole-process lab."
+    },
+    {
+      "n": "9.2",
+      "title": "Tools of recombinant DNA technology: restriction enzymes, vectors, host",
+      "labs": [
+        "c12-biology-lebo1-ch09-rdna-tools"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "9.2.1",
+      "title": "Restriction enzymes and palindromic sites",
+      "labs": [
+        "c12-biology-lebo1-ch09-palindrome-sites"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "9.3",
+      "title": "Processes of recombinant DNA technology",
+      "labs": [
+        "c12-biology-lebo1-ch09-rdna-steps"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "9.3.2",
+      "title": "Cutting of DNA and gel electrophoresis",
+      "labs": [
+        "c12-biology-lebo1-ch09-gel-electrophoresis"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "9.3.3",
+      "title": "Amplification of the gene of interest using PCR",
+      "labs": [
+        "c12-biology-lebo1-ch09-pcr-cycle"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "9.3.5",
+      "title": "Obtaining the foreign gene product and downstream processing",
+      "labs": [
+        "c12-biology-lebo1-ch09-bioreactor-downstream"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-biology-lebo1-ch09-rdna-steps",
+      "topic": "9.3",
+      "template": "sequence",
+      "title": {
+        "en": "Making recombinant DNA: the whole process",
+        "hi": "पुनर्योगज DNA बनाना: पूरी प्रक्रिया"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "isolate",
+            "text": {
+              "en": "Isolate the DNA from the cells",
+              "hi": "कोशिकाओं से DNA अलग करो"
+            }
+          },
+          {
+            "id": "cut",
+            "text": {
+              "en": "Cut the DNA with restriction enzymes",
+              "hi": "प्रतिबंधन एंज़ाइमों से DNA काटो"
+            }
+          },
+          {
+            "id": "gel",
+            "text": {
+              "en": "Separate and pick the gene of interest by gel electrophoresis",
+              "hi": "जेल वैद्युतकण संचलन से रुचि का जीन अलग करो"
+            }
+          },
+          {
+            "id": "pcr",
+            "text": {
+              "en": "Make many copies of the gene by PCR",
+              "hi": "PCR से जीन की अनेक प्रतियाँ बनाओ"
+            }
+          },
+          {
+            "id": "ligate",
+            "text": {
+              "en": "Join the gene to a vector with DNA ligase",
+              "hi": "DNA लाइगेज़ से जीन को वाहक से जोड़ो"
+            }
+          },
+          {
+            "id": "insert",
+            "text": {
+              "en": "Put the recombinant DNA into a host cell",
+              "hi": "पुनर्योगज DNA को परपोषी कोशिका में डालो"
+            }
+          },
+          {
+            "id": "grow",
+            "text": {
+              "en": "Grow the host in a bioreactor to get the product",
+              "hi": "उत्पाद पाने के लिए परपोषी को बायोरिएक्टर में उगाओ"
+            }
+          },
+          {
+            "id": "down",
+            "text": {
+              "en": "Downstream processing: purify, test and package the product",
+              "hi": "अनुप्रवाह प्रसंस्करण: उत्पाद को शुद्ध, परीक्षित और पैक करो"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:isolate",
+          "expect": "placed:isolate",
+          "say": {
+            "en": "Tap \"Isolate the DNA from the cells\" and put it in place 1.",
+            "hi": "\"कोशिकाओं से DNA अलग करो\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:cut",
+          "expect": "placed:cut",
+          "say": {
+            "en": "Tap \"Cut the DNA with restriction enzymes\" and put it in place 2.",
+            "hi": "\"प्रतिबंधन एंज़ाइमों से DNA काटो\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A gene is found in only a few cells. After cutting it out, what will help to get enough copies to work with?",
+            "hi": "जीन कुछ ही कोशिकाओं में मिलता है। उसे काटकर निकालने के बाद पर्याप्त प्रतियाँ पाने में क्या सहायक होगा?"
+          },
+          "options": [
+            {
+              "id": "pcr",
+              "en": "PCR, which copies DNA",
+              "hi": "PCR, जो DNA की प्रतियाँ बनाता है"
+            },
+            {
+              "id": "cut",
+              "en": "More cutting",
+              "hi": "और काटना"
+            }
+          ],
+          "answer": "pcr"
+        },
+        {
+          "kind": "do",
+          "target": "item:gel",
+          "expect": "placed:gel",
+          "say": {
+            "en": "Tap \"Separate and pick the gene of interest by gel electrophoresis\" and put it in place 3.",
+            "hi": "\"जेल वैद्युतकण संचलन से रुचि का जीन अलग करो\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:pcr",
+          "expect": "placed:pcr",
+          "say": {
+            "en": "Tap \"Make many copies of the gene by PCR\" and put it in place 4.",
+            "hi": "\"PCR से जीन की अनेक प्रतियाँ बनाओ\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:ligate",
+          "expect": "placed:ligate",
+          "say": {
+            "en": "Tap \"Join the gene to a vector with DNA ligase\" and put it in place 5.",
+            "hi": "\"DNA लाइगेज़ से जीन को वाहक से जोड़ो\" छुओ और स्थान 5 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Recombinant DNA technology follows a clear path. DNA is isolated and cut at specific places by restriction enzymes. The gene of interest is separated and multiplied by PCR. It is joined to a vector with DNA ligase, and the new, recombinant DNA is put into a host. The host then makes the product, as it multiplies in a bioreactor, and downstream processing purifies it. The first recombinant DNA was made by Stanley Cohen and Herbert Boyer in 1972, who linked an antibiotic-resistance gene to a plasmid and put it into E. coli.",
+            "hi": "पुनर्योगज DNA तकनीक एक साफ़ रास्ते पर चलती है। DNA अलग किया जाता है और प्रतिबंधन एंज़ाइम उसे विशेष स्थानों पर काटते हैं। रुचि का जीन अलग होकर PCR से बढ़ाया जाता है। उसे DNA लाइगेज़ से वाहक से जोड़ा जाता है और नया, पुनर्योगज DNA परपोषी में डाला जाता है। फिर परपोषी बायोरिएक्टर में बढ़ते हुए उत्पाद बनाता है, और अनुप्रवाह प्रसंस्करण उसे शुद्ध करता है। पहला पुनर्योगज DNA 1972 में स्टैनली कोहेन और हर्बर्ट बॉयर ने बनाया, जिन्होंने प्रतिजैविक-प्रतिरोधी जीन को प्लाज़्मिड से जोड़कर E. coli में डाला।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which enzyme joins the gene to the vector?",
+                "hi": "कौन-सा एंज़ाइम जीन को वाहक से जोड़ता है?"
+              },
+              "options": [
+                {
+                  "en": "DNA ligase",
+                  "hi": "DNA लाइगेज़"
+                },
+                {
+                  "en": "Restriction endonuclease",
+                  "hi": "प्रतिबंधन एंडोन्यूक्लिएज़"
+                },
+                {
+                  "en": "Taq polymerase",
+                  "hi": "Taq पॉलीमरेज़"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Ligase is the molecular glue that seals the cut ends.",
+                "hi": "लाइगेज़ आणविक गोंद है जो कटे सिरों को जोड़ता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Restriction enzymes cut, they do not join.",
+                  "hi": "प्रतिबंधन एंज़ाइम काटते हैं, जोड़ते नहीं।"
+                },
+                {
+                  "en": "Taq polymerase copies DNA in PCR.",
+                  "hi": "Taq पॉलीमरेज़ PCR में DNA की प्रतिलिपि बनाता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is a host such as E. coli used?",
+                "hi": "E. coli जैसा परपोषी क्यों प्रयोग होता है?"
+              },
+              "options": [
+                {
+                  "en": "It multiplies fast and makes the product in large amounts",
+                  "hi": "वह तेज़ी से बढ़ता है और उत्पाद अधिक मात्रा में बनाता है"
+                },
+                {
+                  "en": "It is a large animal",
+                  "hi": "वह बड़ा जंतु है"
+                },
+                {
+                  "en": "It lives for years",
+                  "hi": "वह वर्षों जीता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Fast growth means many copies of the gene and its protein.",
+                "hi": "तेज़ वृद्धि का अर्थ है जीन और उसके प्रोटीन की अनेक प्रतियाँ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "E. coli is a tiny bacterium.",
+                  "hi": "E. coli छोटा जीवाणु है।"
+                },
+                {
+                  "en": "Its short life cycle, not long life, is the benefit.",
+                  "hi": "लाभ उसका छोटा जीवन चक्र है, लंबा जीवन नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last three steps. Why must everything be kept sterile when the host is grown in the bioreactor?",
+            "hi": "अंतिम तीन चरण रखो। बायोरिएक्टर में परपोषी उगाते समय सब कुछ निर्जर्म क्यों रखना पड़ता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch09-rdna-tools",
+      "topic": "9.2",
+      "template": "match",
+      "title": {
+        "en": "The toolkit of genetic engineering",
+        "hi": "आनुवंशिक अभियांत्रिकी के औज़ार"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "scissors",
+            "left": {
+              "en": "Restriction enzymes",
+              "hi": "प्रतिबंधन एंज़ाइम"
+            },
+            "right": {
+              "en": "Molecular scissors: cut DNA at specific recognition sequences",
+              "hi": "आणविक कैंची: विशिष्ट पहचान क्रम पर DNA काटती है"
+            },
+            "why": {
+              "en": "EcoRI, for instance, cuts at GAATTC.",
+              "hi": "जैसे EcoRI, GAATTC पर काटता है।"
+            }
+          },
+          {
+            "id": "sticky",
+            "left": {
+              "en": "Sticky ends",
+              "hi": "चिपचिपे सिरे"
+            },
+            "right": {
+              "en": "Short single-stranded overhangs left by the cut, which pair with a matching end",
+              "hi": "कटाव से बचे छोटे एकल-लड़ी बाहर निकले सिरे, जो मेल खाते सिरे से जुड़ते हैं"
+            },
+            "why": {
+              "en": "They let two pieces cut by the same enzyme join together.",
+              "hi": "वे एक ही एंज़ाइम से कटे दो टुकड़ों को जुड़ने देते हैं।"
+            }
+          },
+          {
+            "id": "ligase",
+            "left": {
+              "en": "DNA ligase",
+              "hi": "DNA लाइगेज़"
+            },
+            "right": {
+              "en": "Molecular glue: seals the cut ends of DNA together",
+              "hi": "आणविक गोंद: DNA के कटे सिरों को जोड़ती है"
+            },
+            "why": {
+              "en": "It makes the covalent bond between neighbouring nucleotides.",
+              "hi": "यह पास-पास के न्यूक्लियोटाइडों के बीच सहसंयोजी आबंध बनाता है।"
+            }
+          },
+          {
+            "id": "plasmid",
+            "left": {
+              "en": "Plasmid vector",
+              "hi": "प्लाज़्मिड वाहक"
+            },
+            "right": {
+              "en": "Small circular DNA of bacteria that replicates on its own and carries the gene in",
+              "hi": "जीवाणु का छोटा वृत्ताकार DNA जो स्वयं द्विगुणित होता है और जीन को भीतर ले जाता है"
+            },
+            "why": {
+              "en": "Plasmids such as pBR322 are common vectors.",
+              "hi": "pBR322 जैसे प्लाज़्मिड सामान्य वाहक हैं।"
+            }
+          },
+          {
+            "id": "marker",
+            "left": {
+              "en": "Selectable marker",
+              "hi": "चयन चिह्न"
+            },
+            "right": {
+              "en": "A gene, such as antibiotic resistance, that shows which cells took up the plasmid",
+              "hi": "प्रतिजैविक-प्रतिरोध जैसा जीन जो दिखाता है कि किन कोशिकाओं ने प्लाज़्मिड लिया"
+            },
+            "why": {
+              "en": "Only cells with the plasmid survive on antibiotic.",
+              "hi": "केवल प्लाज़्मिड वाली कोशिकाएँ प्रतिजैविक पर जीवित रहती हैं।"
+            }
+          },
+          {
+            "id": "competent",
+            "left": {
+              "en": "Competent host",
+              "hi": "सक्षम परपोषी"
+            },
+            "right": {
+              "en": "A cell made able to take up DNA, for example by treating it with calcium ions and heat",
+              "hi": "ऐसी कोशिका जो DNA ले सके, जैसे कैल्शियम आयन और गर्मी से उपचार कर"
+            },
+            "why": {
+              "en": "The heat shock helps DNA enter the cell.",
+              "hi": "ऊष्मा आघात DNA को कोशिका में जाने में सहायता करता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:scissors",
+          "expect": "matched:scissors",
+          "say": {
+            "en": "Match \"Restriction enzymes\" with their job.",
+            "hi": "\"प्रतिबंधन एंज़ाइम\" को उनके काम से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "When two DNA pieces are cut by the same enzyme, will their ends match and fit?",
+            "hi": "एक ही एंज़ाइम से कटे दो DNA टुकड़ों के सिरे क्या मेल खाकर जुड़ पाएँगे?"
+          },
+          "options": [
+            {
+              "id": "yes",
+              "en": "Yes: the sticky ends are complementary",
+              "hi": "हाँ: चिपचिपे सिरे पूरक हैं"
+            },
+            {
+              "id": "no",
+              "en": "No",
+              "hi": "नहीं"
+            }
+          ],
+          "answer": "yes"
+        },
+        {
+          "kind": "do",
+          "target": "left:sticky",
+          "expect": "matched:sticky",
+          "say": {
+            "en": "Match \"Sticky ends\".",
+            "hi": "\"चिपचिपे सिरे\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:ligase",
+          "expect": "matched:ligase",
+          "say": {
+            "en": "Match \"DNA ligase\".",
+            "hi": "\"DNA लाइगेज़\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Three tools are needed. Restriction enzymes cut DNA at special palindromic sites, often leaving sticky ends. DNA from different sources cut by the same enzyme can be joined because the sticky ends fit, and ligase seals them. A vector, like a plasmid with an origin of replication, a selectable marker and cloning sites, carries the gene and multiplies in the host. Finally, the host must be competent: its walls are made able to let DNA in by calcium ions and heat shock.",
+            "hi": "तीन औज़ार चाहिए। प्रतिबंधन एंज़ाइम विशेष पैलिंड्रोमिक स्थलों पर DNA काटते हैं और प्रायः चिपचिपे सिरे छोड़ते हैं। एक ही एंज़ाइम से कटे अलग-अलग स्रोतों के DNA जुड़ सकते हैं क्योंकि चिपचिपे सिरे मेल खाते हैं, और लाइगेज़ उन्हें सील करता है। वाहक, जैसे द्विगुणन उत्पत्ति, चयन चिह्न और क्लोनिंग स्थलों वाला प्लाज़्मिड, जीन को ले जाता है और परपोषी में बढ़ता है। अंत में परपोषी सक्षम होना चाहिए: कैल्शियम आयन और ऊष्मा आघात से उसकी दीवार DNA भीतर आने देने योग्य बनाई जाती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why do cells with the plasmid survive on an antibiotic plate?",
+                "hi": "प्लाज़्मिड वाली कोशिकाएँ प्रतिजैविक की प्लेट पर क्यों जीवित रहती हैं?"
+              },
+              "options": [
+                {
+                  "en": "The plasmid carries a resistance gene as a marker",
+                  "hi": "प्लाज़्मिड में चिह्न के रूप में प्रतिरोधी जीन है"
+                },
+                {
+                  "en": "The antibiotic feeds them",
+                  "hi": "प्रतिजैविक उन्हें भोजन देता है"
+                },
+                {
+                  "en": "They are bigger cells",
+                  "hi": "वे बड़ी कोशिकाएँ हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Only cells that took up the plasmid can resist the antibiotic.",
+                "hi": "केवल प्लाज़्मिड लेने वाली कोशिकाएँ प्रतिजैविक सह पाती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The antibiotic would kill, not feed.",
+                  "hi": "प्रतिजैविक मारेगा, खिलाएगा नहीं।"
+                },
+                {
+                  "en": "Size has nothing to do with it.",
+                  "hi": "आकार का इससे संबंध नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What is the role of \"ori\" in a vector?",
+                "hi": "वाहक में \"ori\" की क्या भूमिका है?"
+              },
+              "options": [
+                {
+                  "en": "It starts replication, so the plasmid is copied in the host",
+                  "hi": "यह द्विगुणन शुरू करता है, इसलिए प्लाज़्मिड परपोषी में प्रतिलिपित होता है"
+                },
+                {
+                  "en": "It cuts DNA",
+                  "hi": "यह DNA काटता है"
+                },
+                {
+                  "en": "It joins DNA",
+                  "hi": "यह DNA जोड़ता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The origin of replication lets the vector make many copies.",
+                "hi": "द्विगुणन उत्पत्ति वाहक को अनेक प्रतियाँ बनाने देती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Cutting is done by restriction enzymes.",
+                  "hi": "काटने का काम प्रतिबंधन एंज़ाइम करते हैं।"
+                },
+                {
+                  "en": "Joining is done by ligase.",
+                  "hi": "जोड़ने का काम लाइगेज़ करता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the rest. Why is it useful that restriction enzymes cut only at one special sequence and not anywhere?",
+            "hi": "बाकी जोड़ियाँ मिलाओ। प्रतिबंधन एंज़ाइमों का केवल एक विशेष क्रम पर काटना, कहीं भी नहीं, क्यों उपयोगी है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch09-palindrome-sites",
+      "topic": "9.2.1",
+      "template": "sort",
+      "title": {
+        "en": "Which DNA is a restriction site?",
+        "hi": "कौन-सा DNA प्रतिबंधन स्थल है?"
+      },
+      "minutes": 6,
+      "level": "stretch",
+      "config": {
+        "bins": [
+          {
+            "id": "site",
+            "label": {
+              "en": "Palindrome: a site",
+              "hi": "पैलिंड्रोम: स्थल है"
+            }
+          },
+          {
+            "id": "not",
+            "label": {
+              "en": "Not a palindrome",
+              "hi": "पैलिंड्रोम नहीं"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "gaattc",
+            "text": {
+              "en": "GAATTC (EcoRI site)",
+              "hi": "GAATTC (EcoRI स्थल)"
+            },
+            "bin": "site",
+            "why": {
+              "en": "Its partner strand also reads GAATTC when read 5 to 3.",
+              "hi": "इसकी साथी लड़ी भी 5 से 3 पढ़ने पर GAATTC है।"
+            }
+          },
+          {
+            "id": "ggatcc",
+            "text": {
+              "en": "GGATCC (BamHI site)",
+              "hi": "GGATCC (BamHI स्थल)"
+            },
+            "bin": "site",
+            "why": {
+              "en": "Complement CCTAGG, read backwards, is GGATCC.",
+              "hi": "पूरक CCTAGG को उलटा पढ़ने पर GGATCC मिलता है।"
+            }
+          },
+          {
+            "id": "aagctt",
+            "text": {
+              "en": "AAGCTT (HindIII site)",
+              "hi": "AAGCTT (HindIII स्थल)"
+            },
+            "bin": "site",
+            "why": {
+              "en": "Complement TTCGAA, read backwards, is AAGCTT.",
+              "hi": "पूरक TTCGAA को उलटा पढ़ने पर AAGCTT मिलता है।"
+            }
+          },
+          {
+            "id": "cccggg",
+            "text": {
+              "en": "CCCGGG (SmaI site)",
+              "hi": "CCCGGG (SmaI स्थल)"
+            },
+            "bin": "site",
+            "why": {
+              "en": "Complement GGGCCC, read backwards, is CCCGGG.",
+              "hi": "पूरक GGGCCC को उलटा पढ़ने पर CCCGGG मिलता है।"
+            }
+          },
+          {
+            "id": "gattac",
+            "text": {
+              "en": "GATTAC",
+              "hi": "GATTAC क्रम"
+            },
+            "bin": "not",
+            "why": {
+              "en": "Its partner reads GTAATC from 5 to 3, a different sequence.",
+              "hi": "इसकी साथी लड़ी 5 से 3 पर GTAATC पढ़ती है, जो अलग क्रम है।"
+            }
+          },
+          {
+            "id": "ttaggc",
+            "text": {
+              "en": "TTAGGC",
+              "hi": "TTAGGC क्रम"
+            },
+            "bin": "not",
+            "why": {
+              "en": "Its partner reads GCCTAA, a different sequence.",
+              "hi": "इसकी साथी लड़ी GCCTAA पढ़ती है, जो अलग क्रम है।"
+            }
+          },
+          {
+            "id": "catcat",
+            "text": {
+              "en": "CATCAT",
+              "hi": "CATCAT क्रम"
+            },
+            "bin": "not",
+            "why": {
+              "en": "Its partner reads ATGATG, a different sequence.",
+              "hi": "इसकी साथी लड़ी ATGATG पढ़ती है, जो अलग क्रम है।"
+            }
+          },
+          {
+            "id": "acgtta",
+            "text": {
+              "en": "ACGTTA",
+              "hi": "ACGTTA क्रम"
+            },
+            "bin": "not",
+            "why": {
+              "en": "Its partner reads TAACGT, a different sequence.",
+              "hi": "इसकी साथी लड़ी TAACGT पढ़ती है, जो अलग क्रम है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:gaattc",
+          "expect": "correct:gaattc",
+          "say": {
+            "en": "Sort \"GAATTC (EcoRI site)\".",
+            "hi": "\"GAATTC (EcoRI स्थल)\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A palindrome reads the same from both ends in words like \"MADAM\". In DNA, what is read on the partner strand?",
+            "hi": "शब्द \"MADAM\" की तरह पैलिंड्रोम दोनों ओर से एक-सा पढ़ा जाता है। DNA में साथी लड़ी पर क्या पढ़ा जाता है?"
+          },
+          "options": [
+            {
+              "id": "same",
+              "en": "The same sequence, read 5 to 3",
+              "hi": "वही क्रम, 5 से 3 पढ़ने पर"
+            },
+            {
+              "id": "diff",
+              "en": "A completely different one",
+              "hi": "बिल्कुल अलग क्रम"
+            }
+          ],
+          "answer": "same"
+        },
+        {
+          "kind": "do",
+          "target": "card:gattac",
+          "expect": "correct:gattac",
+          "say": {
+            "en": "Sort \"GATTAC\".",
+            "hi": "\"GATTAC\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:ggatcc",
+          "expect": "correct:ggatcc",
+          "say": {
+            "en": "Sort \"GGATCC (BamHI site)\".",
+            "hi": "\"GGATCC (BamHI स्थल)\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A restriction enzyme recognises a specific palindromic sequence in DNA: one where the base sequence reads the same on both strands when each is read in the 5 to 3 direction. EcoRI recognises GAATTC and cuts between G and A on each strand, leaving sticky ends. To test a sequence, write its partner strand (complement) and read that one 5 to 3. If it matches the original, it is a palindrome. The names come from the bacteria: EcoRI from E. coli, BamHI from Bacillus amyloliquefaciens, HindIII from Haemophilus influenzae.",
+            "hi": "प्रतिबंधन एंज़ाइम DNA में विशिष्ट पैलिंड्रोमिक क्रम पहचानता है: ऐसा क्रम जो दोनों लड़ियों पर 5 से 3 दिशा में पढ़ने पर एक-सा हो। EcoRI, GAATTC पहचानता है और हर लड़ी पर G और A के बीच काटता है, जिससे चिपचिपे सिरे बनते हैं। किसी क्रम को जाँचने के लिए उसकी साथी लड़ी (पूरक) लिखो और उसे 5 से 3 पढ़ो। मूल से मेल खाए तो वह पैलिंड्रोम है। नाम जीवाणुओं से आते हैं: EcoRI, E. coli से; BamHI, बैसिलस एमाइलोलिक्विफ़ेशियन्स से; HindIII, हीमोफ़िलस इन्फ़्लुएंज़ी से।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "EcoRI is named after which bacterium?",
+                "hi": "EcoRI का नाम किस जीवाणु पर पड़ा है?"
+              },
+              "options": [
+                {
+                  "en": "Escherichia coli",
+                  "hi": "एशेरिशिया कोलाई"
+                },
+                {
+                  "en": "Bacillus subtilis",
+                  "hi": "बैसिलस सबटिलिस"
+                },
+                {
+                  "en": "Salmonella typhi",
+                  "hi": "साल्मोनेला टाइफ़ी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The first letters Eco come from Escherichia coli, strain RY13.",
+                "hi": "पहले अक्षर Eco, एशेरिशिया कोलाई के स्ट्रेन RY13 से हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Bacillus is the source of BamHI, a different enzyme.",
+                  "hi": "बैसिलस BamHI का स्रोत है, जो अलग एंज़ाइम है।"
+                },
+                {
+                  "en": "Salmonella is not the source of EcoRI.",
+                  "hi": "साल्मोनेला EcoRI का स्रोत नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Is ATGCAT a palindrome in this sense?",
+                "hi": "क्या इस अर्थ में ATGCAT पैलिंड्रोम है?"
+              },
+              "options": [
+                {
+                  "en": "Yes: partner ATGCAT reads the same",
+                  "hi": "हाँ: साथी लड़ी ATGCAT एक-सी पढ़ी जाती है"
+                },
+                {
+                  "en": "No: partner reads TACGTA",
+                  "hi": "नहीं: साथी लड़ी TACGTA पढ़ती है"
+                },
+                {
+                  "en": "Cannot be told",
+                  "hi": "बताया नहीं जा सकता"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Complement is TACGTA; read backwards it is ATGCAT. It matches.",
+                "hi": "पूरक TACGTA है; उलटा पढ़ने पर ATGCAT। मेल खाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "TACGTA is the complement, but you must read it 5 to 3, which gives ATGCAT.",
+                  "hi": "TACGTA पूरक है, पर उसे 5 से 3 पढ़ना है, जो ATGCAT देता है।"
+                },
+                {
+                  "en": "It can be told by the rule: complement and reverse.",
+                  "hi": "नियम से बताया जा सकता है: पूरक लो और उलटा पढ़ो।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Write a six-letter palindromic DNA site of your own using the rule.",
+            "hi": "बाकी कार्ड छाँटो। नियम से छह अक्षर का अपना पैलिंड्रोमिक DNA स्थल लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch09-gel-electrophoresis",
+      "topic": "9.3.2",
+      "template": "sequence",
+      "title": {
+        "en": "Sorting DNA pieces by size",
+        "hi": "DNA के टुकड़ों को आकार से छाँटना"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "gel",
+            "text": {
+              "en": "Pour an agarose gel with small wells",
+              "hi": "छोटे कूपों वाली एगारोज़ जेल बनाओ"
+            }
+          },
+          {
+            "id": "load",
+            "text": {
+              "en": "Load the cut DNA into the wells at the negative end",
+              "hi": "कटा DNA ऋण सिरे के कूपों में डालो"
+            }
+          },
+          {
+            "id": "current",
+            "text": {
+              "en": "Switch on the electric current",
+              "hi": "विद्युत धारा चालू करो"
+            }
+          },
+          {
+            "id": "move",
+            "text": {
+              "en": "Negative DNA moves towards the positive electrode; small pieces go farther",
+              "hi": "ऋणावेशित DNA धन इलेक्ट्रोड की ओर जाता है; छोटे टुकड़े अधिक दूर जाते हैं"
+            }
+          },
+          {
+            "id": "stain",
+            "text": {
+              "en": "Stain with ethidium bromide and see bands under UV light",
+              "hi": "एथिडियम ब्रोमाइड से रँगो और UV प्रकाश में पट्टियाँ देखो"
+            }
+          },
+          {
+            "id": "cut",
+            "text": {
+              "en": "Cut out the band of interest and take the DNA from the gel (elution)",
+              "hi": "रुचि की पट्टी काटो और जेल से DNA निकालो (निक्षालन)"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:gel",
+          "expect": "placed:gel",
+          "say": {
+            "en": "Tap \"Pour an agarose gel with small wells\" and put it in place 1.",
+            "hi": "\"छोटे कूपों वाली एगारोज़ जेल बनाओ\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:load",
+          "expect": "placed:load",
+          "say": {
+            "en": "Tap \"Load the cut DNA into the wells at the negative end\" and put it in place 2.",
+            "hi": "\"कटा DNA ऋण सिरे के कूपों में डालो\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "DNA carries a negative charge because of its phosphate groups. Towards which electrode will it move?",
+            "hi": "फ़ॉस्फ़ेट समूहों के कारण DNA ऋणावेशित होता है। वह किस इलेक्ट्रोड की ओर जाएगा?"
+          },
+          "options": [
+            {
+              "id": "pos",
+              "en": "The positive (anode)",
+              "hi": "धन (एनोड)"
+            },
+            {
+              "id": "neg",
+              "en": "The negative (cathode)",
+              "hi": "ऋण (कैथोड)"
+            }
+          ],
+          "answer": "pos"
+        },
+        {
+          "kind": "do",
+          "target": "item:current",
+          "expect": "placed:current",
+          "say": {
+            "en": "Tap \"Switch on the electric current\" and put it in place 3.",
+            "hi": "\"विद्युत धारा चालू करो\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:move",
+          "expect": "placed:move",
+          "say": {
+            "en": "Tap \"Negative DNA moves towards the positive electrode; small pieces go farther\" and put it in place 4.",
+            "hi": "\"ऋणावेशित DNA धन इलेक्ट्रोड की ओर जाता है; छोटे टुकड़े अधिक दूर जाते हैं\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:stain",
+          "expect": "placed:stain",
+          "say": {
+            "en": "Tap \"Stain with ethidium bromide and see bands under UV light\" and put it in place 5.",
+            "hi": "\"एथिडियम ब्रोमाइड से रँगो और UV प्रकाश में पट्टियाँ देखो\" छुओ और स्थान 5 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In gel electrophoresis, DNA fragments are pushed through a gel by an electric field. Because DNA is negatively charged, it moves towards the positive electrode. The gel acts like a sieve: small fragments pass through easily and travel far, while big ones lag behind. So the fragments end up separated by size. DNA itself is invisible, but ethidium bromide makes it glow orange under UV light. Wear gloves because ethidium bromide is harmful; UV light also needs eye protection. The band of interest is cut out and the DNA is eluted for use.",
+            "hi": "जेल वैद्युतकण संचलन में विद्युत क्षेत्र DNA खंडों को जेल में से धकेलता है। DNA ऋणावेशित है, इसलिए धन इलेक्ट्रोड की ओर जाता है। जेल छलनी की तरह काम करती है: छोटे खंड आसानी से निकलकर दूर जाते हैं, बड़े पीछे रह जाते हैं। इस तरह खंड आकार से अलग हो जाते हैं। DNA अपने आप अदृश्य है, पर एथिडियम ब्रोमाइड उसे UV प्रकाश में नारंगी चमकाता है। दस्ताने पहनें क्योंकि एथिडियम ब्रोमाइड हानिकारक है; UV प्रकाश में आँखों की सुरक्षा भी चाहिए। रुचि की पट्टी काटकर DNA निक्षालित किया जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which DNA fragments travel farthest on a gel?",
+                "hi": "जेल पर कौन-से DNA खंड सबसे दूर जाते हैं?"
+              },
+              "options": [
+                {
+                  "en": "The smallest fragments",
+                  "hi": "सबसे छोटे खंड"
+                },
+                {
+                  "en": "The largest fragments",
+                  "hi": "सबसे बड़े खंड"
+                },
+                {
+                  "en": "All travel the same distance",
+                  "hi": "सब बराबर दूरी चलते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "They pass through the gel pores more easily.",
+                "hi": "वे जेल के छिद्रों से आसानी से निकल जाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Large fragments are slowed by the gel.",
+                  "hi": "बड़े खंडों को जेल धीमा करती है।"
+                },
+                {
+                  "en": "Size decides the distance.",
+                  "hi": "दूरी आकार तय करता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is ethidium bromide used?",
+                "hi": "एथिडियम ब्रोमाइड क्यों प्रयोग होता है?"
+              },
+              "options": [
+                {
+                  "en": "To make DNA bands visible under UV light",
+                  "hi": "UV प्रकाश में DNA पट्टियाँ दिखाने के लिए"
+                },
+                {
+                  "en": "To cut DNA",
+                  "hi": "DNA काटने के लिए"
+                },
+                {
+                  "en": "To move DNA",
+                  "hi": "DNA हिलाने के लिए"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It binds to DNA and glows orange under UV.",
+                "hi": "यह DNA से जुड़कर UV में नारंगी चमकता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Cutting is done by restriction enzymes.",
+                  "hi": "काटने का काम प्रतिबंधन एंज़ाइम करते हैं।"
+                },
+                {
+                  "en": "The electric field moves the DNA.",
+                  "hi": "DNA को विद्युत क्षेत्र हिलाता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. If you want a fragment of 200 bp, will it be nearer the wells or nearer the far end than a 2000 bp fragment?",
+            "hi": "आख़िरी चरण रखो। 200 bp का खंड 2000 bp के खंड की तुलना में कूपों के पास होगा या दूर वाले सिरे के पास?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch09-pcr-cycle",
+      "topic": "9.3.3",
+      "template": "sequence",
+      "title": {
+        "en": "PCR: copying DNA in a tube",
+        "hi": "PCR: परखनली में DNA की प्रतिलिपि"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "denature",
+            "text": {
+              "en": "Denaturation: heat to about 94 degrees C so the double strand separates",
+              "hi": "विकृतीकरण: लगभग 94 अंश C तक गर्म करो ताकि दोहरी लड़ी अलग हो"
+            }
+          },
+          {
+            "id": "anneal",
+            "text": {
+              "en": "Annealing: cool so the primers bind to the single strands",
+              "hi": "तापानुशीतन: ठंडा करो ताकि प्राइमर एकल लड़ियों से जुड़ें"
+            }
+          },
+          {
+            "id": "extend",
+            "text": {
+              "en": "Extension: Taq polymerase adds nucleotides from the primers at about 72 degrees C",
+              "hi": "विस्तार: Taq पॉलीमरेज़ लगभग 72 अंश C पर प्राइमरों से न्यूक्लियोटाइड जोड़ता है"
+            }
+          },
+          {
+            "id": "repeat",
+            "text": {
+              "en": "Repeat the cycle many times",
+              "hi": "चक्र को कई बार दोहराओ"
+            }
+          },
+          {
+            "id": "copies",
+            "text": {
+              "en": "The amount of DNA doubles each cycle: after 30 cycles over a billion copies",
+              "hi": "हर चक्र में DNA दुगुना होता है: 30 चक्र के बाद अरब से अधिक प्रतियाँ"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:denature",
+          "expect": "placed:denature",
+          "say": {
+            "en": "Tap \"Denaturation\" and put it in place 1.",
+            "hi": "\"विकृतीकरण\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:anneal",
+          "expect": "placed:anneal",
+          "say": {
+            "en": "Tap \"Annealing\" and put it in place 2.",
+            "hi": "\"तापानुशीतन\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A cycle doubles the DNA. If you start with 1 copy, how many are there after 3 cycles?",
+            "hi": "एक चक्र DNA को दुगुना करता है। 1 प्रति से शुरू करें तो 3 चक्र बाद कितनी प्रतियाँ होंगी?"
+          },
+          "options": [
+            {
+              "id": "8",
+              "en": "8 copies",
+              "hi": "8 प्रतियाँ"
+            },
+            {
+              "id": "6",
+              "en": "6 copies",
+              "hi": "6 प्रतियाँ"
+            },
+            {
+              "id": "3",
+              "en": "3 copies",
+              "hi": "3 प्रतियाँ"
+            }
+          ],
+          "answer": "8"
+        },
+        {
+          "kind": "do",
+          "target": "item:extend",
+          "expect": "placed:extend",
+          "say": {
+            "en": "Tap \"Extension\" and put it in place 3.",
+            "hi": "\"विस्तार\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:repeat",
+          "expect": "placed:repeat",
+          "say": {
+            "en": "Tap \"Repeat the cycle many times\" and put it in place 4.",
+            "hi": "\"चक्र को कई बार दोहराओ\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "PCR, the polymerase chain reaction, makes millions of copies of a chosen piece of DNA in a few hours. Each cycle has three steps: denaturation to separate the strands, annealing of two short primers on either side of the target, and extension by a heat-stable DNA polymerase called Taq polymerase, from the bacterium Thermus aquaticus, which keeps working at high temperatures. Because each cycle doubles the DNA (1, 2, 4, 8 and so on), 30 cycles give about a billion copies. PCR is used in diagnosis of infections, cancer and genetic disorders, and in forensics.",
+            "hi": "PCR, यानी पॉलीमरेज़ शृंखला अभिक्रिया, कुछ घंटों में DNA के चुने हुए टुकड़े की लाखों प्रतियाँ बनाती है। हर चक्र में तीन चरण हैं: लड़ियाँ अलग करने को विकृतीकरण, लक्ष्य के दोनों ओर दो छोटे प्राइमरों का तापानुशीतन, और ताप-स्थायी DNA पॉलीमरेज़, Taq पॉलीमरेज़ (जीवाणु थर्मस एक्वाटिकस से), द्वारा विस्तार, जो उच्च ताप पर भी काम करता रहता है। हर चक्र DNA को दुगुना करता है (1, 2, 4, 8 आदि), इसलिए 30 चक्र लगभग एक अरब प्रतियाँ देते हैं। PCR का उपयोग संक्रमणों, कैंसर और आनुवंशिक रोगों के निदान और फ़ोरेंसिक में होता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is Taq polymerase used in PCR?",
+                "hi": "PCR में Taq पॉलीमरेज़ क्यों प्रयोग होता है?"
+              },
+              "options": [
+                {
+                  "en": "It stays active at high temperatures",
+                  "hi": "वह उच्च ताप पर सक्रिय रहता है"
+                },
+                {
+                  "en": "It cuts DNA",
+                  "hi": "वह DNA काटता है"
+                },
+                {
+                  "en": "It is cheap sugar",
+                  "hi": "वह सस्ती शर्करा है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It comes from a heat-loving bacterium, so heating to 94 degrees C does not destroy it.",
+                "hi": "वह ताप-प्रेमी जीवाणु से आता है, इसलिए 94 अंश C पर गर्म करने से नष्ट नहीं होता।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Cutting is the job of restriction enzymes.",
+                  "hi": "काटना प्रतिबंधन एंज़ाइमों का काम है।"
+                },
+                {
+                  "en": "It is an enzyme, not a sugar.",
+                  "hi": "यह एंज़ाइम है, शर्करा नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What do the primers do?",
+                "hi": "प्राइमर क्या करते हैं?"
+              },
+              "options": [
+                {
+                  "en": "They mark the start of the DNA to be copied",
+                  "hi": "वे कॉपी होने वाले DNA की शुरुआत बताते हैं"
+                },
+                {
+                  "en": "They melt the DNA",
+                  "hi": "वे DNA पिघलाते हैं"
+                },
+                {
+                  "en": "They stain the DNA",
+                  "hi": "वे DNA को रँगते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The polymerase needs a short double-stranded start made by the primer.",
+                "hi": "पॉलीमरेज़ को प्राइमर से बनी छोटी दोहरी लड़ी का आरंभ चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Heat melts the strands.",
+                  "hi": "ताप लड़ियाँ पिघलाता है।"
+                },
+                {
+                  "en": "Staining is done afterwards on a gel.",
+                  "hi": "रँगना बाद में जेल पर होता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. Why is PCR useful when a crime scene has only a tiny trace of DNA?",
+            "hi": "आख़िरी चरण रखो। अपराध स्थल पर DNA का केवल बहुत थोड़ा अंश मिले तो PCR क्यों उपयोगी है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch09-bioreactor-downstream",
+      "topic": "9.3.5",
+      "template": "match",
+      "title": {
+        "en": "From the flask to the bottle",
+        "hi": "फ़्लास्क से बोतल तक"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "flask",
+            "left": {
+              "en": "Small flask culture",
+              "hi": "छोटे फ़्लास्क में संवर्धन"
+            },
+            "right": {
+              "en": "Good for trial, but the volume is small and conditions are not well controlled",
+              "hi": "परीक्षण को ठीक, पर आयतन कम और परिस्थितियाँ ठीक से नियंत्रित नहीं"
+            },
+            "why": {
+              "en": "That is why industry uses large bioreactors.",
+              "hi": "इसीलिए उद्योग बड़े बायोरिएक्टर इस्तेमाल करता है।"
+            }
+          },
+          {
+            "id": "bioreactor",
+            "left": {
+              "en": "Bioreactor",
+              "hi": "बायोरिएक्टर"
+            },
+            "right": {
+              "en": "A large vessel in which cells grow on a big scale under controlled conditions",
+              "hi": "बड़ा पात्र जिसमें कोशिकाएँ बड़े पैमाने पर नियंत्रित परिस्थितियों में बढ़ती हैं"
+            },
+            "why": {
+              "en": "Often 100 to 1000 litres.",
+              "hi": "प्रायः 100 से 1000 लीटर।"
+            }
+          },
+          {
+            "id": "stirred",
+            "left": {
+              "en": "Stirrer",
+              "hi": "विलोडक (स्टिरर)"
+            },
+            "right": {
+              "en": "Mixes the contents evenly and helps oxygen reach all cells",
+              "hi": "सामग्री को एकसमान मिलाता है और ऑक्सीजन सब कोशिकाओं तक पहुँचाता है"
+            },
+            "why": {
+              "en": "A stirred-tank reactor mixes well.",
+              "hi": "विलोडित टंकी रिएक्टर अच्छी तरह मिलाता है।"
+            }
+          },
+          {
+            "id": "sparger",
+            "left": {
+              "en": "Sparger",
+              "hi": "स्पार्जर"
+            },
+            "right": {
+              "en": "Bubbles sterile air into the culture to supply oxygen",
+              "hi": "संवर्धन में निर्जर्म हवा के बुलबुले भेजकर ऑक्सीजन देता है"
+            },
+            "why": {
+              "en": "Sparged air feeds aerobic cells.",
+              "hi": "बुलबुले वाली हवा वायुवीय कोशिकाओं को पोषण देती है।"
+            }
+          },
+          {
+            "id": "probe",
+            "left": {
+              "en": "Control probes",
+              "hi": "नियंत्रण संवेदक"
+            },
+            "right": {
+              "en": "Measure and adjust temperature, pH and oxygen",
+              "hi": "ताप, pH और ऑक्सीजन मापकर समायोजित करते हैं"
+            },
+            "why": {
+              "en": "The best growth happens only in the right range.",
+              "hi": "सबसे अच्छी वृद्धि उचित सीमा में ही होती है।"
+            }
+          },
+          {
+            "id": "down",
+            "left": {
+              "en": "Downstream processing",
+              "hi": "अनुप्रवाह प्रसंस्करण"
+            },
+            "right": {
+              "en": "Separation, purification, testing, preservatives and packaging of the product",
+              "hi": "उत्पाद का पृथक्करण, शुद्धिकरण, परीक्षण, परिरक्षक और पैकिंग"
+            },
+            "why": {
+              "en": "A medicine must pass quality control and clinical trials.",
+              "hi": "दवा को गुणवत्ता नियंत्रण और क्लिनिकल परीक्षण से गुज़रना पड़ता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:bioreactor",
+          "expect": "matched:bioreactor",
+          "say": {
+            "en": "Match \"Bioreactor\".",
+            "hi": "\"बायोरिएक्टर\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which gas must the sparger supply for most cells in a bioreactor?",
+            "hi": "बायोरिएक्टर की अधिकतर कोशिकाओं के लिए स्पार्जर को कौन-सी गैस देनी है?"
+          },
+          "options": [
+            {
+              "id": "o2",
+              "en": "Oxygen (sterile air)",
+              "hi": "ऑक्सीजन (निर्जर्म हवा)"
+            },
+            {
+              "id": "co",
+              "en": "Carbon monoxide",
+              "hi": "कार्बन मोनोऑक्साइड"
+            }
+          ],
+          "answer": "o2"
+        },
+        {
+          "kind": "do",
+          "target": "left:sparger",
+          "expect": "matched:sparger",
+          "say": {
+            "en": "Match \"Sparger\".",
+            "hi": "\"स्पार्जर\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:down",
+          "expect": "matched:down",
+          "say": {
+            "en": "Match \"Downstream processing\".",
+            "hi": "\"अनुप्रवाह प्रसंस्करण\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "If the engineered host is grown in small flasks, you get only a little product. A bioreactor, usually a stirred tank, lets cells grow in volumes of hundreds of litres under tight control. A stirrer mixes, a sparger adds sterile air, and probes track temperature, pH and oxygen. When the product is ready it must be separated and purified, tested for quality, mixed with suitable preservatives and sometimes shown safe in clinical trials. All these steps after growth are called downstream processing, and they decide whether the product is safe for people.",
+            "hi": "इंजीनियर किए परपोषी को छोटे फ़्लास्कों में उगाएँ तो उत्पाद थोड़ा ही मिलता है। बायोरिएक्टर, प्रायः विलोडित टंकी, सैकड़ों लीटर आयतन में कोशिकाओं को कड़े नियंत्रण में बढ़ने देता है। विलोडक मिलाता है, स्पार्जर निर्जर्म हवा देता है और संवेदक ताप, pH और ऑक्सीजन देखते हैं। उत्पाद तैयार होने पर उसे अलग और शुद्ध करना, गुणवत्ता जाँचना, उचित परिरक्षक मिलाना और कभी क्लिनिकल परीक्षण में सुरक्षित सिद्ध करना होता है। वृद्धि के बाद के ये सब चरण अनुप्रवाह प्रसंस्करण कहलाते हैं, और वे तय करते हैं कि उत्पाद लोगों के लिए सुरक्षित है या नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is a bioreactor used instead of a flask?",
+                "hi": "फ़्लास्क की जगह बायोरिएक्टर क्यों प्रयोग होता है?"
+              },
+              "options": [
+                {
+                  "en": "It gives large volumes under controlled conditions",
+                  "hi": "यह नियंत्रित परिस्थितियों में बड़ा आयतन देता है"
+                },
+                {
+                  "en": "It is cheaper than a flask",
+                  "hi": "यह फ़्लास्क से सस्ता है"
+                },
+                {
+                  "en": "It does not need any control",
+                  "hi": "इसे किसी नियंत्रण की ज़रूरत नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Large-scale production needs steady temperature, pH and oxygen.",
+                "hi": "बड़े पैमाने के उत्पादन में स्थिर ताप, pH और ऑक्सीजन चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It is more costly, but yields far more.",
+                  "hi": "यह अधिक महँगा है, पर उपज कहीं अधिक देता है।"
+                },
+                {
+                  "en": "It needs more control, not less.",
+                  "hi": "इसे कम नहीं, अधिक नियंत्रण चाहिए।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which step comes after the cells have made the product?",
+                "hi": "कोशिकाओं के उत्पाद बनाने के बाद कौन-सा चरण आता है?"
+              },
+              "options": [
+                {
+                  "en": "Downstream processing",
+                  "hi": "अनुप्रवाह प्रसंस्करण"
+                },
+                {
+                  "en": "Restriction digestion",
+                  "hi": "प्रतिबंधन पाचन"
+                },
+                {
+                  "en": "PCR",
+                  "hi": "PCR तकनीक"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The product must be purified and tested before use.",
+                "hi": "उपयोग से पहले उत्पाद शुद्ध और परीक्षित होना चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Restriction digestion happens at the start, on DNA.",
+                  "hi": "प्रतिबंधन पाचन शुरू में, DNA पर होता है।"
+                },
+                {
+                  "en": "PCR is used to copy the gene, long before.",
+                  "hi": "PCR जीन की प्रतियाँ बनाने में बहुत पहले होती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the rest. Why must the air and the vessel be sterile in a bioreactor?",
+            "hi": "बाकी जोड़ियाँ मिलाओ। बायोरिएक्टर में हवा और पात्र निर्जर्म क्यों होने चाहिए?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "DIA",
+      "topic": "9.2",
+      "use": "Restriction enzyme at work",
+      "shows": "EcoRI cutting a DNA double strand at GAATTC leaving sticky ends, shown in three clear steps",
+      "view": "Flat vector, strands in two colours",
+      "right": "Palindromic site and the staggered cut clear",
+      "avoid": "Cluttered labels"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "9.2",
+      "use": "A plasmid vector",
+      "shows": "A circular plasmid (pBR322 style) with ori, antibiotic resistance genes and cloning sites around it",
+      "view": "Top-down circle, flat colour",
+      "right": "Ori, ampR, tetR and cloning sites labelled",
+      "avoid": "Real-world copies of a branded map"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "9.3",
+      "use": "A gel electrophoresis setup",
+      "shows": "A gel tank with a gel and DNA bands glowing under UV on a transilluminator, with gloved hands",
+      "view": "Eye-level, bench light",
+      "right": "Wells at the top and bands in lanes clear",
+      "avoid": "People faces"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "9.3",
+      "use": "PCR cycle",
+      "shows": "A three-step PCR cycle with temperatures and primers, then the doubling of copies",
+      "view": "Flat vector in three panels",
+      "right": "Denature, anneal and extend in order",
+      "avoid": "Photographs"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "9.3",
+      "use": "A bioreactor",
+      "shows": "A stirred-tank bioreactor in a clean laboratory with a stirrer, sparger and probes marked",
+      "view": "Eye-level, clean light",
+      "right": "Parts clearly visible; no brand marks",
+      "avoid": "Brand labels"
+    },
+    {
+      "n": 6,
+      "kind": "SEQ",
+      "topic": "9.3",
+      "use": "rDNA technology flow",
+      "shows": "A left-to-right flow from DNA isolation to the final product in eight panels",
+      "view": "Flat icons with arrows",
+      "right": "Order of steps identical to the lab",
+      "avoid": "Cluttered text"
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "chapter_key": "u.c04.hindi.dhve1.x19",
+  "class": 4,
+  "subject_id": "hindi",
+  "title": "Laughter (ठहाके)",
+  "source": "https://ncert.nic.in/textbook.php?dhve1=0-13",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Jokes: finding why each one is funny",
+      "labs": [
+        "c04-hindi-dhve1-x19-jokes"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Make up our own jokes and riddles",
+      "labs": [],
+      "why_no_lab": "Making up and telling jokes is best done aloud with friends and family, not alone in a lab."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-hindi-dhve1-x19-jokes",
+      "topic": "1",
+      "template": "match",
+      "title": {
+        "en": "Why is it funny?",
+        "hi": "यह मज़ेदार क्यों है?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "stars",
+            "left": {
+              "en": "Can you count the stars in the sky?",
+              "hi": "क्या तुम आकाश के तारे गिन सकती हो?"
+            },
+            "right": {
+              "en": "She says she will count them in daylight, when stars cannot be seen",
+              "hi": "वह कहती है दिन की रोशनी में गिनूँगी, जब तारे दिखते ही नहीं"
+            },
+            "why": {
+              "en": "It is an excuse: stars cannot be seen in the day, so she never has to count.",
+              "hi": "यह बहाना है: दिन में तारे दिखते ही नहीं, इसलिए उसे गिनना ही नहीं पड़ेगा।"
+            }
+          },
+          {
+            "id": "dhoop",
+            "left": {
+              "en": "Mother asks Sonu to bring dhoop for the puja",
+              "hi": "माँ सोनू से पूजा के लिए धूप लाने को कहती हैं"
+            },
+            "right": {
+              "en": "Sonu takes it as sunshine and says the sky was cloudy",
+              "hi": "सोनू धूप को सूरज की धूप समझता है और कहता है बादल छाए रहे"
+            },
+            "why": {
+              "en": "The word dhoop has two meanings: sunshine and incense. Sonu picked the wrong one.",
+              "hi": "धूप के दो अर्थ हैं: सूरज की धूप और पूजा की धूप (अगरबत्ती)। सोनू ने गलत अर्थ ले लिया।"
+            }
+          },
+          {
+            "id": "lion",
+            "left": {
+              "en": "Who is not afraid of a lion?",
+              "hi": "शेर से कौन नहीं डरता?"
+            },
+            "right": {
+              "en": "A lion cub, because it is a lion too",
+              "hi": "शेर का बच्चा, क्योंकि वह भी शेर है"
+            },
+            "why": {
+              "en": "The answer is funny because it is true but not what we expect.",
+              "hi": "उत्तर मज़ेदार है क्योंकि वह सच है पर हमारी उम्मीद के उलट है।"
+            }
+          },
+          {
+            "id": "broom",
+            "left": {
+              "en": "The teacher asks for the plural of tinka",
+              "hi": "अध्यापक तिनके का बहुवचन पूछते हैं"
+            },
+            "right": {
+              "en": "The student says broom, as a broom is made of many tinkas",
+              "hi": "छात्र कहता है झाड़ू, क्योंकि झाड़ू बहुत से तिनकों से बनती है"
+            },
+            "why": {
+              "en": "The student gives a thing made of many tinkas instead of the plural word tinke.",
+              "hi": "छात्र बहुवचन शब्द “तिनके” बताने की जगह बहुत से तिनकों से बनी चीज़ बता देता है।"
+            }
+          },
+          {
+            "id": "ants",
+            "left": {
+              "en": "Why are you following the ants?",
+              "hi": "तुम चींटियों के पीछे क्यों जा रहे हो?"
+            },
+            "right": {
+              "en": "To find where Mother hid the sweets",
+              "hi": "यह देखने के लिए कि माँ ने मिठाई कहाँ छिपाई है"
+            },
+            "why": {
+              "en": "Ants always find sweets, so following them leads to the hiding place.",
+              "hi": "चींटियाँ मिठाई तक पहुँच ही जाती हैं, इसलिए उनके पीछे जाने से छिपने की जगह पता चलती है।"
+            }
+          }
+        ],
+        "style": "cards"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:stars",
+          "expect": "matched:stars",
+          "say": {
+            "en": "Tap the card 'Can you count the stars in the sky?', then tap its partner.",
+            "hi": "'क्या तुम आकाश के तारे गिन सकती हो?' का कार्ड छुओ, फिर उसकी जोड़ी छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which partner goes with 'Mother asks Sonu to bring dhoop for the puja'?",
+            "hi": "अनुमान लगाओ: 'माँ सोनू से पूजा के लिए धूप लाने को कहती हैं' की जोड़ी कौन-सी होगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "She says she will count them in daylight, when stars cannot be seen",
+              "hi": "वह कहती है दिन की रोशनी में गिनूँगी, जब तारे दिखते ही नहीं"
+            },
+            {
+              "id": "b",
+              "en": "A lion cub, because it is a lion too",
+              "hi": "शेर का बच्चा, क्योंकि वह भी शेर है"
+            },
+            {
+              "id": "c",
+              "en": "Sonu takes it as sunshine and says the sky was cloudy",
+              "hi": "सोनू धूप को सूरज की धूप समझता है और कहता है बादल छाए रहे"
+            }
+          ],
+          "answer": "c"
+        },
+        {
+          "kind": "do",
+          "target": "left:ants",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the remaining cards until every pair is joined.",
+            "hi": "बाकी सारे कार्ड तब तक मिलाओ जब तक सब जोड़ियाँ बन जाएँ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Many jokes are funny because of a play on words or an unexpected turn. Dhoop has two meanings, and a broom is made of many tinkas. Noticing this play teaches us the richness of words.",
+            "hi": "कई चुटकुले शब्दों के खेल या अनपेक्षित मोड़ से हँसाते हैं। धूप के दो अर्थ हैं और झाड़ू बहुत से तिनकों से बनती है। इस खेल को पहचानने से हम शब्दों की समृद्धि समझते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which partner belongs to 'Can you count the stars in the sky?'?",
+                "hi": "'क्या तुम आकाश के तारे गिन सकती हो?' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "Sonu takes it as sunshine and says the sky was cloudy",
+                  "hi": "सोनू धूप को सूरज की धूप समझता है और कहता है बादल छाए रहे"
+                },
+                {
+                  "en": "A lion cub, because it is a lion too",
+                  "hi": "शेर का बच्चा, क्योंकि वह भी शेर है"
+                },
+                {
+                  "en": "She says she will count them in daylight, when stars cannot be seen",
+                  "hi": "वह कहती है दिन की रोशनी में गिनूँगी, जब तारे दिखते ही नहीं"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "It is an excuse: stars cannot be seen in the day, so she never has to count.",
+                "hi": "यह बहाना है: दिन में तारे दिखते ही नहीं, इसलिए उसे गिनना ही नहीं पड़ेगा।"
+              },
+              "wrong": [
+                {
+                  "en": "That goes with 'Mother asks Sonu to bring dhoop for the puja'. The word dhoop has two meanings: sunshine and incense. Sonu picked the wrong one.",
+                  "hi": "यह तो 'माँ सोनू से पूजा के लिए धूप लाने को कहती हैं' की जोड़ी है। धूप के दो अर्थ हैं: सूरज की धूप और पूजा की धूप (अगरबत्ती)। सोनू ने गलत अर्थ ले लिया।"
+                },
+                {
+                  "en": "That goes with 'Who is not afraid of a lion?'. The answer is funny because it is true but not what we expect.",
+                  "hi": "यह तो 'शेर से कौन नहीं डरता?' की जोड़ी है। उत्तर मज़ेदार है क्योंकि वह सच है पर हमारी उम्मीद के उलट है।"
+                },
+                ""
+              ]
+            },
+            {
+              "q": {
+                "en": "Which partner belongs to 'Who is not afraid of a lion?'?",
+                "hi": "'शेर से कौन नहीं डरता?' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "She says she will count them in daylight, when stars cannot be seen",
+                  "hi": "वह कहती है दिन की रोशनी में गिनूँगी, जब तारे दिखते ही नहीं"
+                },
+                {
+                  "en": "A lion cub, because it is a lion too",
+                  "hi": "शेर का बच्चा, क्योंकि वह भी शेर है"
+                },
+                {
+                  "en": "Sonu takes it as sunshine and says the sky was cloudy",
+                  "hi": "सोनू धूप को सूरज की धूप समझता है और कहता है बादल छाए रहे"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "The answer is funny because it is true but not what we expect.",
+                "hi": "उत्तर मज़ेदार है क्योंकि वह सच है पर हमारी उम्मीद के उलट है।"
+              },
+              "wrong": [
+                {
+                  "en": "That goes with 'Can you count the stars in the sky?'. It is an excuse: stars cannot be seen in the day, so she never has to count.",
+                  "hi": "यह तो 'क्या तुम आकाश के तारे गिन सकती हो?' की जोड़ी है। यह बहाना है: दिन में तारे दिखते ही नहीं, इसलिए उसे गिनना ही नहीं पड़ेगा।"
+                },
+                "",
+                {
+                  "en": "That goes with 'Mother asks Sonu to bring dhoop for the puja'. The word dhoop has two meanings: sunshine and incense. Sonu picked the wrong one.",
+                  "hi": "यह तो 'माँ सोनू से पूजा के लिए धूप लाने को कहती हैं' की जोड़ी है। धूप के दो अर्थ हैं: सूरज की धूप और पूजा की धूप (अगरबत्ती)। सोनू ने गलत अर्थ ले लिया।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tell one clean joke to your family. Can you say why it is funny?",
+            "hi": "अपने परिवार को एक साफ़-सुथरा चुटकुला सुनाओ। क्या तुम बता सकते हो कि वह मज़ेदार क्यों है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the item",
+      "shows": "Friends laughing together on a school verandah, only backs and hands in frame, bright tiffin boxes on the floor",
+      "view": "Wide, from behind",
+      "right": "Joyful mood, bright colours",
+      "avoid": "Visible faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: stars",
+      "shows": "A clear night sky with many stars above a rooftop silhouette",
+      "view": "Looking up, wide",
+      "right": "Real star field, dark sky",
+      "avoid": "Moon glare, text"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: dhoop",
+      "shows": "A bunch of lit incense sticks in a brass holder beside a sunny window on a split image",
+      "view": "Close, straight",
+      "right": "Visible thin smoke, sunlight",
+      "avoid": "Devotional images with faces"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: broom",
+      "shows": "A traditional grass broom (jhaadu) and a few loose grass stems beside it, on transparent background",
+      "view": "Top view",
+      "right": "True pale-gold grass",
+      "avoid": "Plastic broom"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Match card: ants and sweets",
+      "shows": "A line of black ants walking toward a small steel plate with a laddu on a kitchen floor",
+      "view": "Close, low",
+      "right": "Clear ant line, warm light",
+      "avoid": "Crushed insects"
+    }
+  ]
+}

@@ -1,0 +1,1120 @@
+{
+ "chapter_key": "u.c01.mathematics.aejm1.ch05",
+ "class": 1,
+ "subject_id": "mathematics",
+ "title": "How Many? (Addition and Subtraction of Single Digit Numbers)",
+ "source": "https://ncert.nic.in/textbook/pdf/aejm105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Altogether: putting two groups together",
+   "labs": [
+    "c01-mathematics-aejm1-ch05-altogether"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Adding more: hopping forward on a strip",
+   "labs": [
+    "c01-mathematics-aejm1-ch05-hop"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Addition with dice and comparing scores",
+   "labs": [
+    "c01-mathematics-aejm1-ch05-dice"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Add in your own way: the order does not change the total",
+   "labs": [
+    "c01-mathematics-aejm1-ch05-flip"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Number pairs that make 9",
+   "labs": [
+    "c01-mathematics-aejm1-ch05-make-nine"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "Talking about time with grandparents",
+   "labs": [],
+   "why_no_lab": "A conversation about respect and family time, best done as a talk with the teacher and a parent, not on a screen."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-mathematics-aejm1-ch05-altogether",
+   "topic": "5.1",
+   "template": "match",
+   "title": {
+    "en": "Altogether: joining two groups",
+    "hi": "कुल कितने: दो समूह मिलाना"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "kids",
+      "left": {
+       "en": "4 children and 2 children",
+       "hi": "4 बच्चे और 2 बच्चे"
+      },
+      "right": {
+       "en": "6 children",
+       "hi": "6 बच्चे"
+      },
+      "why": {
+       "en": "4 children and 2 children altogether make 6 children.",
+       "hi": "4 बच्चे और 2 बच्चे मिलकर कुल 6 बच्चे हुए।"
+      }
+     },
+     {
+      "id": "tops",
+      "left": {
+       "en": "3 tops and 1 top",
+       "hi": "3 लट्टू और 1 लट्टू"
+      },
+      "right": {
+       "en": "4 tops",
+       "hi": "4 लट्टू"
+      },
+      "why": {
+       "en": "3 tops and 1 top altogether make 4 tops.",
+       "hi": "3 लट्टू और 1 लट्टू मिलकर कुल 4 लट्टू हुए।"
+      }
+     },
+     {
+      "id": "ants",
+      "left": {
+       "en": "3 ants and 2 ants",
+       "hi": "3 चींटियाँ और 2 चींटियाँ"
+      },
+      "right": {
+       "en": "5 ants",
+       "hi": "5 चींटियाँ"
+      },
+      "why": {
+       "en": "3 ants and 2 ants altogether make 5 ants.",
+       "hi": "3 चींटियाँ और 2 चींटियाँ मिलकर कुल 5 चींटियाँ हुईं।"
+      }
+     },
+     {
+      "id": "pencils",
+      "left": {
+       "en": "4 pencils and 3 pencils",
+       "hi": "4 पेंसिलें और 3 पेंसिलें"
+      },
+      "right": {
+       "en": "7 pencils",
+       "hi": "7 पेंसिलें"
+      },
+      "why": {
+       "en": "4 pencils and 3 pencils altogether make 7 pencils.",
+       "hi": "4 पेंसिलें और 3 पेंसिलें मिलकर कुल 7 पेंसिलें हुईं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:kids",
+     "expect": "matched:kids",
+     "say": {
+      "en": "Tap 4 children and 2 children. Then tap the card that says how many children there are altogether.",
+      "hi": "'4 बच्चे और 2 बच्चे' को छुओ। फिर उस कार्ड को छुओ जिस पर कुल बच्चे लिखे हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next: 3 ants and 2 ants walk together. How many ants altogether?",
+      "hi": "अब 3 चींटियाँ और 2 चींटियाँ साथ चल रही हैं। कुल कितनी चींटियाँ हुईं?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "4 ants",
+       "hi": "4 चींटियाँ"
+      },
+      {
+       "id": "five",
+       "en": "5 ants",
+       "hi": "5 चींटियाँ"
+      },
+      {
+       "id": "six",
+       "en": "6 ants",
+       "hi": "6 चींटियाँ"
+      }
+     ],
+     "answer": "five"
+    },
+    {
+     "kind": "do",
+     "target": "left:ants",
+     "expect": "matched:ants",
+     "say": {
+      "en": "Tap 3 ants and 2 ants, then the group of ants altogether.",
+      "hi": "'3 चींटियाँ और 2 चींटियाँ' को छुओ, फिर कुल चींटियों वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:pencils",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the last two groups to finish.",
+      "hi": "बाक़ी दोनों समूह भी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When we put two groups together, we count all of them. 'Altogether' tells us to join the groups. 4 children and 2 children altogether make 6 children. We write it as 4 + 2 = 6.",
+      "hi": "जब हम दो समूहों को साथ रखते हैं, तो सबको गिनते हैं। 'कुल' का मतलब है समूह मिलाना। 4 बच्चे और 2 बच्चे मिलकर कुल 6 बच्चे हुए। इसे हम 4 + 2 = 6 लिखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "2 kites and 5 kites altogether. How many kites?",
+        "hi": "2 पतंगें और 5 पतंगें कुल कितनी?"
+       },
+       "options": [
+        "6",
+        "7",
+        "8"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Start at 5 and count 2 more: 6, 7. So 7 kites.",
+        "hi": "5 से आगे 2 गिनो: 6, 7। इसलिए 7 पतंगें।"
+       },
+       "wrong": [
+        {
+         "en": "6 is only one more than 5. You need to count 2 more.",
+         "hi": "6, 5 से सिर्फ़ एक ज़्यादा है। तुम्हें 2 और गिनने हैं।"
+        },
+        "",
+        {
+         "en": "8 is 3 more than 5. You counted one too many.",
+         "hi": "8, 5 से 3 ज़्यादा है। तुमने एक बार ज़्यादा गिन लिया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word tells us to put the groups together?",
+        "hi": "कौन-सा शब्द बताता है कि समूह मिलाने हैं?"
+       },
+       "options": [
+        {
+         "en": "Altogether",
+         "hi": "कुल"
+        },
+        {
+         "en": "Under",
+         "hi": "नीचे"
+        },
+        {
+         "en": "Longer",
+         "hi": "ज़्यादा लंबा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "'Altogether' means we count both groups together.",
+        "hi": "'कुल' का मतलब है दोनों समूहों को मिलाकर गिनना।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'Under' tells where something is, not how many.",
+         "hi": "'नीचे' बताता है कि चीज़ कहाँ है, कितनी है यह नहीं।"
+        },
+        {
+         "en": "'Longer' compares lengths. It does not join groups.",
+         "hi": "'ज़्यादा लंबा' लंबाई की तुलना करता है। यह समूह नहीं मिलाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Look at your two hands. Put 3 fingers up on one hand and 4 on the other. How many fingers altogether?",
+      "hi": "अब ख़ुद आज़माओ। अपने दोनों हाथ देखो। एक हाथ की 3 उँगलियाँ और दूसरे हाथ की 4 उँगलियाँ उठाओ। कुल कितनी उँगलियाँ हुईं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch05-hop",
+   "topic": "5.2",
+   "template": "number-line",
+   "title": {
+    "en": "Hop forward to add",
+    "hi": "आगे छलाँग लगाकर जोड़ो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 0,
+    "max": 10,
+    "start": 5,
+    "jumps": [
+     1
+    ],
+    "ask": "5+3"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:6",
+     "say": {
+      "en": "You are standing on 5. Tap the forward hop button once.",
+      "hi": "तुम 5 पर खड़े हो। आगे की छलाँग वाला बटन एक बार दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:7",
+     "say": {
+      "en": "Hop one more time.",
+      "hi": "एक बार और छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You want to add 3. You have hopped 2 times. Where will one more hop land?",
+      "hi": "तुम्हें 3 जोड़ने हैं। तुमने 2 छलाँगें लगाई हैं। एक और छलाँग कहाँ पहुँचाएगी?"
+     },
+     "options": [
+      {
+       "id": "seven",
+       "en": "On 7",
+       "hi": "7 पर"
+      },
+      {
+       "id": "eight",
+       "en": "On 8",
+       "hi": "8 पर"
+      },
+      {
+       "id": "nine",
+       "en": "On 9",
+       "hi": "9 पर"
+      }
+     ],
+     "answer": "eight"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:8",
+     "say": {
+      "en": "Hop the third time.",
+      "hi": "तीसरी छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "You started on 5 and hopped 3 times. Type the number you landed on.",
+      "hi": "तुम 5 से चले और 3 बार कूदे। जिस संख्या पर पहुँचे, उसे लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To add, we move forward. We began at 5. Each hop is one more: 6, 7, 8. So 5 + 3 = 8. A hop forward always makes the number bigger.",
+      "hi": "जोड़ने के लिए हम आगे बढ़ते हैं। हम 5 से चले। हर छलाँग पर एक और: 6, 7, 8। इसलिए 5 + 3 = 8। आगे की छलाँग से संख्या हमेशा बड़ी होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Start on 3 and hop 2 times forward. Where do you land?",
+        "hi": "3 से चलकर आगे 2 छलाँगें लगाओ। कहाँ पहुँचोगे?"
+       },
+       "options": [
+        "4",
+        "5",
+        "6"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "3, then 4, then 5. So 3 + 2 = 5.",
+        "hi": "3, फिर 4, फिर 5। इसलिए 3 + 2 = 5।"
+       },
+       "wrong": [
+        {
+         "en": "4 is where you land after only one hop.",
+         "hi": "4 पर तो पहली छलाँग के बाद ही पहुँच जाते हैं।"
+        },
+        "",
+        {
+         "en": "6 is three hops from 3. You hopped one time too many.",
+         "hi": "6 पर तीन छलाँगों में पहुँचते हैं। तुमने एक छलाँग ज़्यादा गिन ली।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When you add, which way do you hop?",
+        "hi": "जोड़ते समय किस ओर छलाँग लगाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Forward, to bigger numbers",
+         "hi": "आगे, बड़ी संख्याओं की ओर"
+        },
+        {
+         "en": "Backward, to smaller numbers",
+         "hi": "पीछे, छोटी संख्याओं की ओर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Adding means getting more, so we go to bigger numbers.",
+        "hi": "जोड़ने का मतलब ज़्यादा होना है, इसलिए हम बड़ी संख्याओं की ओर जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Going back takes things away. That is for subtraction.",
+         "hi": "पीछे जाने से चीज़ें कम होती हैं। वह घटाने के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Reset, then find 6 + 3 and 4 + 2 by hopping.",
+      "hi": "अब ख़ुद आज़माओ। रीसेट दबाओ, फिर छलाँग लगाकर 6 + 3 और 4 + 2 ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch05-dice",
+   "topic": "5.3",
+   "template": "sort",
+   "title": {
+    "en": "Dice game: who scored more?",
+    "hi": "पासों का खेल: किसके अंक ज़्यादा?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "kishore",
+      "label": {
+       "en": "Kishore scored more",
+       "hi": "किशोर के अंक ज़्यादा"
+      }
+     },
+     {
+      "id": "nitya",
+      "label": {
+       "en": "Nitya scored more",
+       "hi": "नित्या के अंक ज़्यादा"
+      }
+     },
+     {
+      "id": "same",
+      "label": {
+       "en": "Same score",
+       "hi": "अंक बराबर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "Kishore: 3 and 4. Nitya: 2 and 3.",
+       "hi": "किशोर: 3 और 4। नित्या: 2 और 3।"
+      },
+      "bin": "kishore",
+      "why": {
+       "en": "Kishore has 3 + 4 = 7. Nitya has 2 + 3 = 5. 7 is more than 5.",
+       "hi": "किशोर के 3 + 4 = 7। नित्या के 2 + 3 = 5। 7, 5 से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Kishore: 1 and 2. Nitya: 4 and 3.",
+       "hi": "किशोर: 1 और 2। नित्या: 4 और 3।"
+      },
+      "bin": "nitya",
+      "why": {
+       "en": "Kishore has 1 + 2 = 3. Nitya has 4 + 3 = 7. 7 is more than 3.",
+       "hi": "किशोर के 1 + 2 = 3। नित्या के 4 + 3 = 7। 7, 3 से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "Kishore: 5 and 1. Nitya: 4 and 2.",
+       "hi": "किशोर: 5 और 1। नित्या: 4 और 2।"
+      },
+      "bin": "same",
+      "why": {
+       "en": "Kishore has 5 + 1 = 6. Nitya has 4 + 2 = 6. Both are 6.",
+       "hi": "किशोर के 5 + 1 = 6। नित्या के 4 + 2 = 6। दोनों 6 हैं।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "Kishore: 6 and 3. Nitya: 2 and 5.",
+       "hi": "किशोर: 6 और 3। नित्या: 2 और 5।"
+      },
+      "bin": "kishore",
+      "why": {
+       "en": "Kishore has 6 + 3 = 9. Nitya has 2 + 5 = 7. 9 is more than 7.",
+       "hi": "किशोर के 6 + 3 = 9। नित्या के 2 + 5 = 7। 9, 7 से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "Kishore: 2 and 2. Nitya: 3 and 4.",
+       "hi": "किशोर: 2 और 2। नित्या: 3 और 4।"
+      },
+      "bin": "nitya",
+      "why": {
+       "en": "Kishore has 2 + 2 = 4. Nitya has 3 + 4 = 7. 7 is more than 4.",
+       "hi": "किशोर के 2 + 2 = 4। नित्या के 3 + 4 = 7। 7, 4 से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "Kishore: 4 and 4. Nitya: 6 and 2.",
+       "hi": "किशोर: 4 और 4। नित्या: 6 और 2।"
+      },
+      "bin": "same",
+      "why": {
+       "en": "Kishore has 4 + 4 = 8. Nitya has 6 + 2 = 8. Both are 8.",
+       "hi": "किशोर के 4 + 4 = 8। नित्या के 6 + 2 = 8। दोनों 8 हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Each card shows the dots on two dice for each child. Add the dots for each child. Tap the first card, then the group of the child who has more.",
+      "hi": "हर कार्ड में दोनों बच्चों के दो-दो पासों के बिंदु हैं। हर बच्चे के बिंदु जोड़ो। पहला कार्ड छुओ, फिर उस बच्चे का समूह छुओ जिसके अंक ज़्यादा हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c2",
+     "expect": "correct:c2",
+     "say": {
+      "en": "Now tap the second card and sort it.",
+      "hi": "अब दूसरा कार्ड छुओ और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Kishore rolls 5 and 1. Nitya rolls 4 and 2. What will happen?",
+      "hi": "किशोर के पासों पर 5 और 1 आए। नित्या के पासों पर 4 और 2 आए। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "kishore",
+       "en": "Kishore scores more",
+       "hi": "किशोर के अंक ज़्यादा"
+      },
+      {
+       "id": "nitya",
+       "en": "Nitya scores more",
+       "hi": "नित्या के अंक ज़्यादा"
+      },
+      {
+       "id": "same",
+       "en": "Same score",
+       "hi": "अंक बराबर"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "card:c3",
+     "expect": "correct:c3",
+     "say": {
+      "en": "Find the card where Kishore has 5 and 1. Put it in Same score.",
+      "hi": "वह कार्ड ढूँढो जिसमें किशोर के 5 और 1 हैं। उसे 'अंक बराबर' में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:kishore",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest of the cards. Add first, then choose.",
+      "hi": "बाक़ी कार्ड भी छाँटो। पहले जोड़ो, फिर चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Add the two dice of each child first. The bigger total wins. Two different pairs can make the same total, like 5 + 1 and 4 + 2. Both make 6.",
+      "hi": "पहले हर बच्चे के दोनों पासों के बिंदु जोड़ो। जिसका जोड़ बड़ा है, वही जीतता है। दो अलग जोड़ियों का जोड़ बराबर भी हो सकता है, जैसे 5 + 1 और 4 + 2। दोनों से 6 बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Asha rolls 3 and 3. Ravi rolls 5 and 2. Who scored more?",
+        "hi": "आशा के पासों पर 3 और 3 आए। रवि के पासों पर 5 और 2 आए। किसके अंक ज़्यादा?"
+       },
+       "options": [
+        {
+         "en": "Asha",
+         "hi": "आशा"
+        },
+        {
+         "en": "Ravi",
+         "hi": "रवि"
+        },
+        {
+         "en": "Same",
+         "hi": "बराबर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Asha has 3 + 3 = 6. Ravi has 5 + 2 = 7. 7 is more than 6.",
+        "hi": "आशा के 3 + 3 = 6। रवि के 5 + 2 = 7। 7, 6 से ज़्यादा है।"
+       },
+       "wrong": [
+        {
+         "en": "Asha has 6 only. Ravi has 7, which is bigger.",
+         "hi": "आशा के सिर्फ़ 6 हैं। रवि के 7 हैं, जो बड़ा है।"
+        },
+        "",
+        {
+         "en": "6 and 7 are different numbers, so the scores are not the same.",
+         "hi": "6 और 7 अलग संख्याएँ हैं, इसलिए अंक बराबर नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Play with a friend. Roll two dice each. Add the dots. Who scores more?",
+      "hi": "अब ख़ुद आज़माओ। किसी दोस्त के साथ खेलो। दोनों दो-दो पासे फेंको। बिंदु जोड़ो। किसके अंक ज़्यादा हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch05-flip",
+   "topic": "5.4",
+   "template": "match",
+   "title": {
+    "en": "Turn it around: same total",
+    "hi": "पलट दो: जोड़ वही"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "3 + 2",
+       "hi": "3 + 2"
+      },
+      "right": {
+       "en": "2 + 3",
+       "hi": "2 + 3"
+      },
+      "why": {
+       "en": "Both make 5. Turning the numbers around does not change the total.",
+       "hi": "दोनों से 5 बनता है। संख्याएँ पलटने से जोड़ नहीं बदलता।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "4 + 5",
+       "hi": "4 + 5"
+      },
+      "right": {
+       "en": "5 + 4",
+       "hi": "5 + 4"
+      },
+      "why": {
+       "en": "Both make 9.",
+       "hi": "दोनों से 9 बनता है।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "6 + 1",
+       "hi": "6 + 1"
+      },
+      "right": {
+       "en": "1 + 6",
+       "hi": "1 + 6"
+      },
+      "why": {
+       "en": "Both make 7.",
+       "hi": "दोनों से 7 बनता है।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "2 + 6",
+       "hi": "2 + 6"
+      },
+      "right": {
+       "en": "6 + 2",
+       "hi": "6 + 2"
+      },
+      "why": {
+       "en": "Both make 8.",
+       "hi": "दोनों से 8 बनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Tap 3 + 2. Then tap the card with the same numbers turned around.",
+      "hi": "3 + 2 को छुओ। फिर वह कार्ड छुओ जिसमें यही संख्याएँ पलटी हुई हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "3 + 2 makes 5. What will 2 + 3 make?",
+      "hi": "3 + 2 से 5 बनता है। 2 + 3 से क्या बनेगा?"
+     },
+     "options": [
+      {
+       "id": "five",
+       "en": "5",
+       "hi": "5 (पाँच)"
+      },
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 (चार)"
+      },
+      {
+       "id": "six",
+       "en": "6",
+       "hi": "6 (छह)"
+      }
+     ],
+     "answer": "five"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Match 4 + 5 with its turned-around partner.",
+      "hi": "4 + 5 को उसके पलटे हुए साथी से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:d",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other two pairs.",
+      "hi": "बाक़ी दोनों जोड़ियाँ भी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We can add numbers in any order. 3 + 2 and 2 + 3 both make 5. It is like 3 beads and 2 beads, or 2 beads and 3 beads. You always get 5 beads. Knowing this helps you add faster.",
+      "hi": "हम संख्याओं को किसी भी क्रम में जोड़ सकते हैं। 3 + 2 और 2 + 3 दोनों से 5 बनता है। जैसे 3 मनके और 2 मनके, या 2 मनके और 3 मनके। हमेशा 5 मनके ही मिलते हैं। यह जानने से जोड़ना आसान हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sum has the same total as 1 + 8?",
+        "hi": "किस जोड़ का कुल 1 + 8 के बराबर है?"
+       },
+       "options": [
+        "8 + 1",
+        "8 + 2",
+        "9 + 9"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "8 + 1 is 1 + 8 turned around. Both make 9.",
+        "hi": "8 + 1 वही है जो 1 + 8 को पलटने से बनता है। दोनों से 9 बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 + 2 makes 10, which is one more than 9.",
+         "hi": "8 + 2 से 10 बनता है, जो 9 से एक ज़्यादा है।"
+        },
+        {
+         "en": "9 + 9 is a very big total. It does not have the same numbers.",
+         "hi": "9 + 9 बहुत बड़ा जोड़ है। इसमें वही संख्याएँ नहीं हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If 4 + 3 = 7, then 3 + 4 = ?",
+        "hi": "अगर 4 + 3 = 7, तो 3 + 4 = ?"
+       },
+       "options": [
+        "6",
+        "7",
+        "8"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The same numbers make the same total, so 3 + 4 = 7.",
+        "hi": "वही संख्याएँ हों तो कुल भी वही होता है, इसलिए 3 + 4 = 7।"
+       },
+       "wrong": [
+        {
+         "en": "6 is one less than 7. Turning numbers around does not take anything away.",
+         "hi": "6, 7 से एक कम है। संख्याएँ पलटने से कुछ कम नहीं होता।"
+        },
+        "",
+        {
+         "en": "8 is one more than 7. Turning numbers around does not add anything.",
+         "hi": "8, 7 से एक ज़्यादा है। संख्याएँ पलटने से कुछ बढ़ता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Pick two numbers from 1 to 5. Add them both ways. Is the total the same?",
+      "hi": "अब ख़ुद आज़माओ। 1 से 5 में से कोई दो संख्याएँ चुनो। दोनों क्रम में जोड़ो। क्या कुल एक-सा आया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch05-make-nine",
+   "topic": "5.5",
+   "template": "match",
+   "title": {
+    "en": "Pairs that make 9",
+    "hi": "जोड़ी जो 9 बनाए"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "7 + ? = 9",
+       "hi": "7 + ? = 9"
+      },
+      "right": {
+       "en": "2",
+       "hi": "2"
+      },
+      "why": {
+       "en": "7 and 2 make 9.",
+       "hi": "7 और 2 मिलकर 9 बनते हैं।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "4 + ? = 9",
+       "hi": "4 + ? = 9"
+      },
+      "right": {
+       "en": "5",
+       "hi": "5"
+      },
+      "why": {
+       "en": "4 and 5 make 9.",
+       "hi": "4 और 5 मिलकर 9 बनते हैं।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "1 + ? = 9",
+       "hi": "1 + ? = 9"
+      },
+      "right": {
+       "en": "8",
+       "hi": "8"
+      },
+      "why": {
+       "en": "1 and 8 make 9.",
+       "hi": "1 और 8 मिलकर 9 बनते हैं।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "6 + ? = 9",
+       "hi": "6 + ? = 9"
+      },
+      "right": {
+       "en": "3",
+       "hi": "3"
+      },
+      "why": {
+       "en": "6 and 3 make 9.",
+       "hi": "6 और 3 मिलकर 9 बनते हैं।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "9 + ? = 9",
+       "hi": "9 + ? = 9"
+      },
+      "right": {
+       "en": "0",
+       "hi": "0"
+      },
+      "why": {
+       "en": "9 and 0 make 9. Adding 0 changes nothing.",
+       "hi": "9 और 0 मिलकर 9 बनते हैं। 0 जोड़ने से कुछ नहीं बदलता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "You have 7. How many more make 9? Tap 7 + ? = 9, then tap the number that fits.",
+      "hi": "तुम्हारे पास 7 हैं। 9 बनाने के लिए और कितने चाहिए? '7 + ? = 9' छुओ, फिर सही संख्या छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You have 4. How many more make 9?",
+      "hi": "तुम्हारे पास 4 हैं। 9 बनाने के लिए और कितने चाहिए?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 (चार)"
+      },
+      {
+       "id": "five",
+       "en": "5",
+       "hi": "5 (पाँच)"
+      },
+      {
+       "id": "six",
+       "en": "6",
+       "hi": "6 (छह)"
+      }
+     ],
+     "answer": "five"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Match 4 + ? = 9.",
+      "hi": "4 + ? = 9 को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "matched:c",
+     "say": {
+      "en": "Match 1 + ? = 9.",
+      "hi": "1 + ? = 9 को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:e",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the last two pairs.",
+      "hi": "बाक़ी दोनों जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many pairs of numbers make 9: 7 and 2, 4 and 5, 1 and 8, 6 and 3. The second number tells how many more you need. When you add 0, the number stays the same, so 9 and 0 make 9.",
+      "hi": "9 बनाने वाली कई जोड़ियाँ हैं: 7 और 2, 4 और 5, 1 और 8, 6 और 3। दूसरी संख्या बताती है कि और कितने चाहिए। 0 जोड़ने पर संख्या वैसी ही रहती है, इसलिए 9 और 0 मिलकर 9 बनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You have 5 flowers. How many more make 9?",
+        "hi": "तुम्हारे पास 5 फूल हैं। 9 बनाने के लिए और कितने चाहिए?"
+       },
+       "options": [
+        "3",
+        "4",
+        "5"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Count on from 5 to 9: 6, 7, 8, 9. That is 4 more.",
+        "hi": "5 से 9 तक गिनो: 6, 7, 8, 9। यानी 4 और।"
+       },
+       "wrong": [
+        {
+         "en": "5 + 3 makes only 8. You need one more.",
+         "hi": "5 + 3 से सिर्फ़ 8 बनता है। एक और चाहिए।"
+        },
+        "",
+        {
+         "en": "5 + 5 makes 10, which is too many.",
+         "hi": "5 + 5 से 10 बनता है, जो ज़्यादा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Take ten cards numbered 0 to 9. Put two cards together so that they add up to 9. How many pairs can you find?",
+      "hi": "अब ख़ुद आज़माओ। 0 से 9 तक के दस कार्ड लो। दो कार्ड ऐसे रखो कि उनका जोड़ 9 हो। तुम कितनी जोड़ियाँ ढूँढ पाए?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Hook of the chapter",
+   "shows": "An Indian park in the morning: a grandfather on a bench, two children on a swing and a few children playing with a ball",
+   "view": "Wide, eye level, soft morning light",
+   "right": "Real park with trees and a path; children seen from behind or at a distance; clearly countable groups",
+   "avoid": "Faces of identifiable children; crowding; text on signs"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Groups to join",
+   "shows": "Two small groups of everyday things side by side: 4 pencils and 3 pencils; 3 spinning tops and 1 top (each pair its own file)",
+   "view": "Straight from above on a plain white sheet, even light",
+   "right": "Exact counts, items evenly spaced and not touching",
+   "avoid": "Overlapping objects; shadows that look like extra items"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Hop strip",
+   "shows": "A strip of paper marked in 10 equal boxes with a small clay frog on the first box, no numbers",
+   "view": "Top view, flat light, bright colours",
+   "right": "Ten equal boxes in one row; frog clearly in box one",
+   "avoid": "Printed numbers; uneven boxes"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Beads to count on",
+   "shows": "A ginladi (bead string): 10 beads in two colours, 5 red then 5 blue",
+   "view": "Straight front view on a plain background, string slightly curved",
+   "right": "Exactly 10 beads; colours differ in brightness as well as hue",
+   "avoid": "Beads that touch the edge; a clasp that looks like an extra bead"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "5.3",
+   "use": "Dice",
+   "shows": "One plain six-sided die showing each face from 1 to 6 (six files)",
+   "view": "Top-left light, face to camera, transparent background",
+   "right": "White die with black round dots in the usual arrangement; each file shows exactly its number",
+   "avoid": "Opposite faces shown together; tilted dots"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "5.5",
+   "use": "Wheel pattern as a link to Indian heritage",
+   "shows": "The stone wheel of the Konark Sun Temple chariot in Odisha",
+   "view": "Close, slightly low angle, golden afternoon light",
+   "right": "Eight thick spokes and carved rim; real stone texture",
+   "avoid": "Tourists in the frame; any text or signboards"
+  }
+ ]
+}

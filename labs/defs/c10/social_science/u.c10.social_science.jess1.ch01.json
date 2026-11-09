@@ -1,0 +1,2169 @@
+{
+ "chapter_key": "u.c10.social_science.jess1.ch01",
+ "class": 10,
+ "subject_id": "social_science",
+ "title": "Resources and Development",
+ "source": "https://ncert.nic.in/textbook/pdf/jess101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Resources and their classification, resources as human creations",
+   "labs": [
+    "c10-social_science-jess1-ch01-resource-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Development of resources: sustainable development and resource planning",
+   "labs": [
+    "c10-social_science-jess1-ch01-regions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Land resources and land use pattern",
+   "labs": [
+    "c10-social_science-jess1-ch01-relief-pie",
+    "c10-social_science-jess1-ch01-land-use"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Land degradation and conservation measures",
+   "labs": [
+    "c10-social_science-jess1-ch01-degradation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Soil as a resource: soil profile and the soils of India",
+   "labs": [
+    "c10-social_science-jess1-ch01-soil-layers",
+    "c10-social_science-jess1-ch01-soil-types",
+    "c10-social_science-jess1-ch01-soil-map"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Soil erosion and soil conservation",
+   "labs": [
+    "c10-social_science-jess1-ch01-erosion",
+    "c10-social_science-jess1-ch01-conservation"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-social_science-jess1-ch01-resource-types",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "Living and non-living resources",
+    "hi": "जैविक और अजैविक संसाधन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "bio",
+      "label": {
+       "en": "Biotic (living)",
+       "hi": "जैविक (सजीव)"
+      }
+     },
+     {
+      "id": "abio",
+      "label": {
+       "en": "Abiotic (non-living)",
+       "hi": "अजैविक (निर्जीव)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "forest",
+      "text": {
+       "en": "Forests and trees",
+       "hi": "वन और पेड़"
+      },
+      "bin": "bio",
+      "why": {
+       "en": "Forests are living plants, so they are a biotic resource.",
+       "hi": "वन जीवित पौधे हैं, इसलिए वे जैविक संसाधन हैं।"
+      }
+     },
+     {
+      "id": "cattle",
+      "text": {
+       "en": "Cattle and buffaloes",
+       "hi": "गाय-भैंस जैसे पशु"
+      },
+      "bin": "bio",
+      "why": {
+       "en": "Livestock is alive, so it is a biotic resource.",
+       "hi": "पशुधन जीवित है, इसलिए यह जैविक संसाधन है।"
+      }
+     },
+     {
+      "id": "fish",
+      "text": {
+       "en": "Fish in the sea",
+       "hi": "समुद्र की मछलियाँ"
+      },
+      "bin": "bio",
+      "why": {
+       "en": "Fisheries are living things, so they are biotic.",
+       "hi": "मत्स्य संपदा जीवित है, इसलिए जैविक है।"
+      }
+     },
+     {
+      "id": "people",
+      "text": {
+       "en": "Human beings, who do the work",
+       "hi": "काम करने वाले मनुष्य"
+      },
+      "bin": "bio",
+      "why": {
+       "en": "People are a living resource; they turn materials into resources.",
+       "hi": "मनुष्य सजीव संसाधन हैं; वे पदार्थों को संसाधन बनाते हैं।"
+      }
+     },
+     {
+      "id": "rock",
+      "text": {
+       "en": "Rocks",
+       "hi": "चट्टानें"
+      },
+      "bin": "abio",
+      "why": {
+       "en": "Rocks are made of non-living matter, so they are abiotic.",
+       "hi": "चट्टानें निर्जीव पदार्थ से बनी हैं, इसलिए अजैविक हैं।"
+      }
+     },
+     {
+      "id": "iron",
+      "text": {
+       "en": "Iron and other metals",
+       "hi": "लोहा और अन्य धातुएँ"
+      },
+      "bin": "abio",
+      "why": {
+       "en": "Metals are non-living, so they are abiotic.",
+       "hi": "धातुएँ निर्जीव हैं, इसलिए अजैविक हैं।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Water in a river",
+       "hi": "नदी का जल"
+      },
+      "bin": "abio",
+      "why": {
+       "en": "Water itself is non-living, so it is abiotic.",
+       "hi": "जल स्वयं निर्जीव है, इसलिए अजैविक है।"
+      }
+     },
+     {
+      "id": "land",
+      "text": {
+       "en": "Land and the minerals under it",
+       "hi": "भूमि और उसके नीचे के खनिज"
+      },
+      "bin": "abio",
+      "why": {
+       "en": "Land and minerals are non-living, so they are abiotic.",
+       "hi": "भूमि और खनिज निर्जीव हैं, इसलिए अजैविक हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Anything in our surroundings that can meet our needs, if we can reach it, afford it and accept it, is a resource. Is a resource a free gift of nature?",
+      "hi": "हमारे आसपास की जो चीज़ हमारी ज़रूरत पूरी कर सके, यदि हम उस तक पहुँच सकें, उसे जुटा सकें और अपना सकें, वह संसाधन है। क्या संसाधन प्रकृति का मुफ़्त उपहार है?"
+     },
+     "options": [
+      {
+       "id": "free",
+       "en": "Yes, nature gives it free",
+       "hi": "हाँ, प्रकृति मुफ़्त देती है"
+      },
+      {
+       "id": "human",
+       "en": "No, people turn materials into resources",
+       "hi": "नहीं, लोग पदार्थों को संसाधन बनाते हैं"
+      }
+     ],
+     "answer": "human"
+    },
+    {
+     "kind": "do",
+     "target": "card:forest",
+     "expect": "correct:forest",
+     "say": {
+      "en": "Tap \"Forests and trees\", then tap the Biotic group.",
+      "hi": "\"वन और पेड़\" पर टैप करो, फिर जैविक समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:rock",
+     "expect": "correct:rock",
+     "say": {
+      "en": "Tap \"Rocks\", then tap the Abiotic group.",
+      "hi": "\"चट्टानें\" पर टैप करो, फिर अजैविक समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards and press Check.",
+      "hi": "बाक़ी कार्ड छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Resources are not just gifts of nature. People use technology and institutions to turn materials into resources. On the basis of origin, resources are biotic (from living things, such as forests and fish) or abiotic (from non-living things, such as rocks and metals).",
+      "hi": "संसाधन केवल प्रकृति के उपहार नहीं हैं। लोग तकनीक और संस्थाओं की मदद से पदार्थों को संसाधन बनाते हैं। उत्पत्ति के आधार पर संसाधन जैविक होते हैं (सजीवों से, जैसे वन और मछलियाँ) या अजैविक (निर्जीवों से, जैसे चट्टानें और धातुएँ)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is an abiotic resource?",
+        "hi": "इनमें से अजैविक संसाधन कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Livestock",
+         "hi": "पशुधन"
+        },
+        {
+         "en": "Iron ore",
+         "hi": "लौह अयस्क"
+        },
+        {
+         "en": "Fisheries",
+         "hi": "मत्स्य संपदा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Iron ore is a non-living material taken from rocks.",
+        "hi": "लौह अयस्क चट्टानों से मिलने वाला निर्जीव पदार्थ है।"
+       },
+       "wrong": [
+        {
+         "en": "Animals are alive, so livestock is biotic.",
+         "hi": "पशु सजीव हैं, इसलिए पशुधन जैविक है।"
+        },
+        "",
+        {
+         "en": "Fish are living, so fisheries are biotic.",
+         "hi": "मछलियाँ सजीव हैं, इसलिए मत्स्य संपदा जैविक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are people called an essential part of resources?",
+        "hi": "मनुष्यों को संसाधन का आवश्यक भाग क्यों कहा जाता है?"
+       },
+       "options": [
+        {
+         "en": "They transform materials into resources and use them",
+         "hi": "वे पदार्थों को संसाधन में बदलते और उपयोग करते हैं"
+        },
+        {
+         "en": "They are bigger than all other living things",
+         "hi": "वे सभी जीवों से बड़े हैं"
+        },
+        {
+         "en": "They own every resource",
+         "hi": "हर संसाधन उनका ही है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Resources are a function of human activity; people create them from materials.",
+        "hi": "संसाधन मानवीय गतिविधि का परिणाम हैं; मनुष्य पदार्थों से उन्हें बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size has nothing to do with it; it is the work and skill of people that matters.",
+         "hi": "आकार का इससे कोई संबंध नहीं; मनुष्यों का कार्य और कौशल मायने रखता है।"
+        },
+        {
+         "en": "Ownership is a different question; the point is that people create resources by using technology.",
+         "hi": "स्वामित्व अलग प्रश्न है; बात यह है कि मनुष्य तकनीक से संसाधन बनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look around your classroom. List five things and decide whether each came from a biotic or an abiotic resource.",
+      "hi": "अपनी कक्षा में चारों ओर देखो। पाँच चीज़ें लिखो और तय करो कि हर एक जैविक संसाधन से बनी या अजैविक से।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch01-regions",
+   "topic": "1.2",
+   "template": "match",
+   "title": {
+    "en": "Rich in some, poor in others",
+    "hi": "किसी में धनी, किसी में कमज़ोर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "mineral",
+      "left": {
+       "en": "Jharkhand, Chhattisgarh, Madhya Pradesh",
+       "hi": "झारखंड, छत्तीसगढ़, मध्य प्रदेश"
+      },
+      "right": {
+       "en": "Rich in minerals and coal",
+       "hi": "खनिजों और कोयले से समृद्ध"
+      },
+      "why": {
+       "en": "These States hold large mineral and coal deposits.",
+       "hi": "इन राज्यों में खनिजों और कोयले के बड़े भंडार हैं।"
+      }
+     },
+     {
+      "id": "arunachal",
+      "left": {
+       "en": "Arunachal Pradesh",
+       "hi": "अरुणाचल प्रदेश"
+      },
+      "right": {
+       "en": "Plenty of water but weak infrastructure",
+       "hi": "जल बहुत, पर बुनियादी ढाँचा कमज़ोर"
+      },
+      "why": {
+       "en": "It has abundant water resources but lacks infrastructure development.",
+       "hi": "यहाँ जल संसाधन भरपूर हैं, पर बुनियादी ढाँचे का विकास कम है।"
+      }
+     },
+     {
+      "id": "rajasthan",
+      "left": {
+       "en": "Rajasthan",
+       "hi": "राजस्थान"
+      },
+      "right": {
+       "en": "Rich in solar and wind energy but short of water",
+       "hi": "सौर और पवन ऊर्जा में धनी, पर जल की कमी"
+      },
+      "why": {
+       "en": "Rajasthan has plenty of sun and wind but very little water.",
+       "hi": "राजस्थान में धूप और हवा भरपूर हैं, पर पानी बहुत कम है।"
+      }
+     },
+     {
+      "id": "ladakh",
+      "left": {
+       "en": "Ladakh (cold desert)",
+       "hi": "लद्दाख (शीत मरुस्थल)"
+      },
+      "right": {
+       "en": "Rich culture but short of water, roads and some minerals",
+       "hi": "समृद्ध संस्कृति, पर पानी, ढाँचे और कुछ खनिजों की कमी"
+      },
+      "why": {
+       "en": "Ladakh is isolated and lacks water, infrastructure and some vital minerals.",
+       "hi": "लद्दाख अलग-थलग है और जल, ढाँचे व कुछ ज़रूरी खनिजों की कमी वाला है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If a region has many resources, is it always rich and developed?",
+      "hi": "यदि किसी क्षेत्र में बहुत संसाधन हैं, तो क्या वह हमेशा धनी और विकसित होता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      },
+      {
+       "id": "no",
+       "en": "No, it needs technology and good institutions too",
+       "hi": "नहीं, उसे तकनीक और अच्छी संस्थाएँ भी चाहिए"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "left:mineral",
+     "expect": "matched:mineral",
+     "say": {
+      "en": "Match the mineral-rich States with what they have.",
+      "hi": "खनिज-समृद्ध राज्यों को उनकी विशेषता से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:rajasthan",
+     "expect": "matched:rajasthan",
+     "say": {
+      "en": "Match Rajasthan.",
+      "hi": "राजस्थान को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाक़ी जोड़ियाँ मिलाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Resources are spread unevenly. Some regions have plenty of one resource and too little of another. That is why India needs balanced resource planning at the national, State, regional and local levels. Having resources is necessary for development, but not enough: technology, skilled people and institutions must go with them.",
+      "hi": "संसाधन असमान रूप से बँटे हैं। किसी क्षेत्र में एक संसाधन भरपूर और दूसरा बहुत कम होता है। इसीलिए भारत को राष्ट्रीय, राज्य, क्षेत्रीय और स्थानीय स्तर पर संतुलित संसाधन नियोजन चाहिए। विकास के लिए संसाधन ज़रूरी हैं, पर काफ़ी नहीं: उनके साथ तकनीक, कुशल लोग और संस्थाएँ भी चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which State has plenty of solar and wind energy but little water?",
+        "hi": "किस राज्य में सौर और पवन ऊर्जा भरपूर है पर पानी कम?"
+       },
+       "options": [
+        {
+         "en": "Arunachal Pradesh",
+         "hi": "अरुणाचल प्रदेश"
+        },
+        {
+         "en": "Rajasthan",
+         "hi": "राजस्थान"
+        },
+        {
+         "en": "Jharkhand",
+         "hi": "झारखंड"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Rajasthan is rich in solar and wind energy but lacks water.",
+        "hi": "राजस्थान सौर और पवन ऊर्जा में धनी है, पर जल की कमी है।"
+       },
+       "wrong": [
+        {
+         "en": "Arunachal has the opposite: plenty of water but weak infrastructure.",
+         "hi": "अरुणाचल में इसका उलटा है: जल भरपूर, पर ढाँचा कमज़ोर।"
+        },
+        "",
+        {
+         "en": "Jharkhand is known for its minerals and coal.",
+         "hi": "झारखंड अपने खनिजों और कोयले के लिए जाना जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is resource planning needed?",
+        "hi": "संसाधन नियोजन क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "Because every region has all resources in equal amounts",
+         "hi": "क्योंकि हर क्षेत्र में सभी संसाधन बराबर हैं"
+        },
+        {
+         "en": "Because resources are uneven and must be used wisely",
+         "hi": "क्योंकि संसाधन असमान हैं और समझदारी से उपयोग होने चाहिए"
+        },
+        {
+         "en": "Because planning makes resources free",
+         "hi": "क्योंकि नियोजन से संसाधन मुफ़्त हो जाते हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Because regions differ so much in resources, careful planning is the widely accepted way to use them wisely.",
+        "hi": "क्षेत्रों में संसाधन बहुत अलग हैं, इसलिए उन्हें समझदारी से उपयोग करने की मान्य रणनीति नियोजन है।"
+       },
+       "wrong": [
+        {
+         "en": "Resources are NOT equal everywhere; that is exactly why planning is needed.",
+         "hi": "संसाधन हर जगह बराबर नहीं हैं; इसीलिए नियोजन ज़रूरी है।"
+        },
+        "",
+        {
+         "en": "Planning does not make anything free; it helps use limited resources wisely.",
+         "hi": "नियोजन से कुछ मुफ़्त नहीं होता; यह सीमित संसाधनों का समझदार उपयोग कराता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a list of resources your State has and a list of important ones it lacks. How could it get the missing ones?",
+      "hi": "अपने राज्य के संसाधनों की सूची बनाओ और उन ज़रूरी संसाधनों की भी जिनकी कमी है। वे कैसे मिल सकते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch01-relief-pie",
+   "topic": "1.3",
+   "template": "data",
+   "title": {
+    "en": "India's land by relief",
+    "hi": "भारत की भूमि: उच्चावच के अनुसार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "ask": "max",
+    "title": {
+     "en": "Share of India's land area (per cent)",
+     "hi": "भारत के भू-क्षेत्र का हिस्सा (प्रतिशत)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Plains",
+       "hi": "मैदान"
+      },
+      "value": 43
+     },
+     {
+      "label": {
+       "en": "Mountains",
+       "hi": "पर्वत"
+      },
+      "value": 30
+     },
+     {
+      "label": {
+       "en": "Plateau",
+       "hi": "पठार"
+      },
+      "value": 27
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "India has plains, mountains and plateaus. Which covers the biggest share of the land?",
+      "hi": "भारत में मैदान, पर्वत और पठार हैं। भूमि का सबसे बड़ा हिस्सा किसका है?"
+     },
+     "options": [
+      {
+       "id": "plain",
+       "en": "Plains",
+       "hi": "मैदान"
+      },
+      {
+       "id": "mount",
+       "en": "Mountains",
+       "hi": "पर्वत"
+      },
+      {
+       "id": "plat",
+       "en": "Plateau",
+       "hi": "पठार"
+      }
+     ],
+     "answer": "plain"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the Plains slice to read its share.",
+      "hi": "मैदान वाले टुकड़े पर टैप करके उसका हिस्सा पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:2",
+     "expect": "selected:2",
+     "say": {
+      "en": "Tap the Plateau slice.",
+      "hi": "पठार वाले टुकड़े पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which slice is the biggest?",
+      "hi": "प्रश्न का उत्तर दो: सबसे बड़ा टुकड़ा कौन-सा है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "About 43 per cent of India is plain, which gives land for farming and industry. Mountains cover 30 per cent; they feed perennial rivers and bring tourism. The plateau covers 27 per cent and is rich in minerals, fossil fuels and forests. Each kind of land is used in a different way.",
+      "hi": "भारत का लगभग 43 प्रतिशत भाग मैदान है, जो खेती और उद्योग के लिए भूमि देता है। पर्वत 30 प्रतिशत हैं; वे बारहमासी नदियों को जल देते हैं और पर्यटन का आधार बनते हैं। पठार 27 प्रतिशत है और खनिजों, जीवाश्म ईंधन तथा वनों से समृद्ध है। हर तरह की भूमि अलग ढंग से उपयोग होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which relief feature is best for farming and industry?",
+        "hi": "खेती और उद्योग के लिए कौन-सी भू-आकृति सबसे अच्छी है?"
+       },
+       "options": [
+        {
+         "en": "Mountains",
+         "hi": "पर्वत"
+        },
+        {
+         "en": "Plains",
+         "hi": "मैदान"
+        },
+        {
+         "en": "Islands",
+         "hi": "द्वीप"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Plains are flat and give room for farming and industry.",
+        "hi": "मैदान समतल हैं और खेती व उद्योग के लिए जगह देते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Mountains are steep; they help rivers, tourism and ecology more than farming.",
+         "hi": "पर्वत ढलवाँ होते हैं; वे खेती से अधिक नदियों, पर्यटन और पारिस्थितिकी में मदद करते हैं।"
+        },
+        "",
+        {
+         "en": "Islands cover a very small part of the country.",
+         "hi": "द्वीप देश का बहुत छोटा भाग हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the plateau region possess?",
+        "hi": "पठारी क्षेत्र में क्या भरपूर है?"
+       },
+       "options": [
+        {
+         "en": "Rich reserves of minerals, fossil fuels and forests",
+         "hi": "खनिजों, जीवाश्म ईंधन और वनों के समृद्ध भंडार"
+        },
+        {
+         "en": "Only sand dunes",
+         "hi": "केवल रेत के टीले"
+        },
+        {
+         "en": "Only snow and glaciers",
+         "hi": "केवल बर्फ़ और हिमनद"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The plateau possesses rich reserves of minerals, fossil fuels and forests.",
+        "hi": "पठार में खनिजों, जीवाश्म ईंधन और वनों के समृद्ध भंडार हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dunes are found in deserts; the plateau is rich in resources below ground.",
+         "hi": "टीले मरुस्थलों में होते हैं; पठार भूमि के नीचे के संसाधनों से समृद्ध है।"
+        },
+        {
+         "en": "Snow and glaciers belong to the high mountains.",
+         "hi": "बर्फ़ और हिमनद ऊँचे पर्वतों में होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these three kinds of land do you live on? Name two ways your family or neighbours use it.",
+      "hi": "तुम इन तीन में से किस प्रकार की भूमि पर रहते हो? बताओ कि तुम्हारा परिवार या पड़ोसी उसका उपयोग कैसे करते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch01-land-use",
+   "topic": "1.3",
+   "template": "sort",
+   "title": {
+    "en": "How land is used",
+    "hi": "भूमि का उपयोग कैसे होता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "na",
+      "label": {
+       "en": "Not available for cultivation",
+       "hi": "खेती के लिए अनुपलब्ध"
+      }
+     },
+     {
+      "id": "other",
+      "label": {
+       "en": "Other uncultivated land",
+       "hi": "अन्य बिना जुती भूमि"
+      }
+     },
+     {
+      "id": "fallow",
+      "label": {
+       "en": "Fallow land",
+       "hi": "परती भूमि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "barren",
+      "text": {
+       "en": "Barren and waste land",
+       "hi": "बंजर और व्यर्थ भूमि"
+      },
+      "bin": "na",
+      "why": {
+       "en": "Barren land cannot be farmed, so it is not available for cultivation.",
+       "hi": "बंजर भूमि पर खेती नहीं हो सकती, इसलिए वह खेती के लिए अनुपलब्ध है।"
+      }
+     },
+     {
+      "id": "built",
+      "text": {
+       "en": "Buildings, roads and factories",
+       "hi": "इमारतें, सड़कें और कारखाने"
+      },
+      "bin": "na",
+      "why": {
+       "en": "Land used for non-agricultural purposes is not available for cultivation.",
+       "hi": "ग़ैर-कृषि कामों में लगी भूमि खेती के लिए अनुपलब्ध है।"
+      }
+     },
+     {
+      "id": "pasture",
+      "text": {
+       "en": "Permanent pastures and grazing land",
+       "hi": "स्थायी चारागाह और चराई भूमि"
+      },
+      "bin": "other",
+      "why": {
+       "en": "Pastures are uncultivated land kept for grazing.",
+       "hi": "चारागाह बिना जुती भूमि है, जो चराई के लिए रखी जाती है।"
+      }
+     },
+     {
+      "id": "groves",
+      "text": {
+       "en": "Groves of tree crops outside net sown area",
+       "hi": "शुद्ध बोए क्षेत्र के बाहर वृक्ष-फ़सलों के झुरमुट"
+      },
+      "bin": "other",
+      "why": {
+       "en": "These tree groves are other uncultivated land.",
+       "hi": "ये वृक्ष-झुरमुट अन्य बिना जुती भूमि हैं।"
+      }
+     },
+     {
+      "id": "culturable",
+      "text": {
+       "en": "Culturable waste: unused for over 5 years",
+       "hi": "कृषि योग्य बंजर: 5 वर्ष से अधिक अनुपयोगी"
+      },
+      "bin": "other",
+      "why": {
+       "en": "Land left uncultivated for more than five years is culturable waste.",
+       "hi": "पाँच वर्ष से अधिक बिना जुती रही भूमि कृषि योग्य बंजर कहलाती है।"
+      }
+     },
+     {
+      "id": "current",
+      "text": {
+       "en": "Left without crops for one year or less",
+       "hi": "एक वर्ष या कम समय के लिए ख़ाली"
+      },
+      "bin": "fallow",
+      "why": {
+       "en": "This is current fallow.",
+       "hi": "यह चालू परती है।"
+      }
+     },
+     {
+      "id": "older",
+      "text": {
+       "en": "Left uncultivated for 1 to 5 years",
+       "hi": "1 से 5 वर्ष तक बिना जुती"
+      },
+      "bin": "fallow",
+      "why": {
+       "en": "This is fallow land other than current fallow.",
+       "hi": "यह चालू परती के अलावा अन्य परती भूमि है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A farmer rests a field for one season so the soil can recover. Which group does this field belong to?",
+      "hi": "एक किसान मिट्टी को उबरने देने के लिए एक मौसम खेत ख़ाली छोड़ता है। यह खेत किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "na",
+       "en": "Not available for cultivation",
+       "hi": "खेती के लिए अनुपलब्ध"
+      },
+      {
+       "id": "fallow",
+       "en": "Fallow land",
+       "hi": "परती भूमि"
+      },
+      {
+       "id": "other",
+       "en": "Other uncultivated land",
+       "hi": "अन्य बिना जुती भूमि"
+      }
+     ],
+     "answer": "fallow"
+    },
+    {
+     "kind": "do",
+     "target": "card:current",
+     "expect": "correct:current",
+     "say": {
+      "en": "Tap \"Left without crops for one year or less\" and then the Fallow group.",
+      "hi": "\"एक वर्ष या कम समय के लिए ख़ाली\" पर टैप करो, फिर परती समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:barren",
+     "expect": "correct:barren",
+     "say": {
+      "en": "Tap \"Barren and waste land\" and then its group.",
+      "hi": "\"बंजर और व्यर्थ भूमि\" पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाक़ी छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Land is used for forests, for purposes other than farming, for pastures and groves, for fallow and for crops. Land sown with crops is called net sown area. Land that is left unused for farming for some time is fallow. Because land is limited, it must be used with care.",
+      "hi": "भूमि का उपयोग वनों, खेती के अलावा कामों, चारागाहों और झुरमुटों, परती और फ़सलों के लिए होता है। जिस भूमि पर फ़सल बोई जाती है उसे शुद्ध बोया गया क्षेत्र कहते हैं। जो भूमि कुछ समय खेती के लिए नहीं उपयोग होती वह परती है। भूमि सीमित है, इसलिए उसका उपयोग सावधानी से होना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is net sown area?",
+        "hi": "शुद्ध बोया गया क्षेत्र क्या है?"
+       },
+       "options": [
+        {
+         "en": "Land with crops sown and harvested",
+         "hi": "जिस भूमि पर फ़सल बोई और काटी जाती है"
+        },
+        {
+         "en": "Land used only for roads",
+         "hi": "केवल सड़कों वाली भूमि"
+        },
+        {
+         "en": "Land under forest",
+         "hi": "वन के अधीन भूमि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Net sown area is the physical extent of land on which crops are sown and harvested.",
+        "hi": "शुद्ध बोया गया क्षेत्र वह भूमि है जिस पर फ़सलें बोई और काटी जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Roads belong to land not available for cultivation.",
+         "hi": "सड़कें खेती के लिए अनुपलब्ध भूमि में आती हैं।"
+        },
+        {
+         "en": "Forests are a separate category of land use.",
+         "hi": "वन भूमि उपयोग की अलग श्रेणी हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Land left uncultivated for more than five years is called...",
+        "hi": "पाँच वर्ष से अधिक बिना जुती रही भूमि कहलाती है..."
+       },
+       "options": [
+        {
+         "en": "Current fallow",
+         "hi": "चालू परती"
+        },
+        {
+         "en": "Culturable waste land",
+         "hi": "कृषि योग्य बंजर भूमि"
+        },
+        {
+         "en": "Net sown area",
+         "hi": "शुद्ध बोया क्षेत्र"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Culturable waste land is left uncultivated for more than five agricultural years.",
+        "hi": "कृषि योग्य बंजर भूमि पाँच से अधिक कृषि-वर्षों तक बिना जुती रहती है।"
+       },
+       "wrong": [
+        {
+         "en": "Current fallow is rested for one year or less.",
+         "hi": "चालू परती एक वर्ष या कम समय के लिए ख़ाली रहती है।"
+        },
+        "",
+        {
+         "en": "Net sown area is under crops, not left unused.",
+         "hi": "शुद्ध बोया क्षेत्र फ़सलों के अधीन है, अनुपयोगी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of the land around your school or home. Put each piece into one of the groups. Which group is biggest?",
+      "hi": "अपने स्कूल या घर के आसपास की भूमि के बारे में सोचो। हर टुकड़ा किसी एक समूह में रखो। कौन-सा समूह सबसे बड़ा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch01-degradation",
+   "topic": "1.4",
+   "template": "match",
+   "title": {
+    "en": "What spoils the land?",
+    "hi": "भूमि को क्या बिगाड़ता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "mining",
+      "left": {
+       "en": "Mining and quarrying",
+       "hi": "खनन और खदान"
+      },
+      "right": {
+       "en": "Jharkhand, Chhattisgarh, Madhya Pradesh and Odisha",
+       "hi": "झारखंड, छत्तीसगढ़, मध्य प्रदेश और ओडिशा"
+      },
+      "why": {
+       "en": "Deforestation for mining and abandoned pits scar the land in these States.",
+       "hi": "इन राज्यों में खनन के लिए वन कटे और छोड़े गए गड्ढों ने भूमि को घाव दिए हैं।"
+      }
+     },
+     {
+      "id": "grazing",
+      "left": {
+       "en": "Overgrazing",
+       "hi": "अति चराई"
+      },
+      "right": {
+       "en": "Gujarat, Rajasthan, Madhya Pradesh and Maharashtra",
+       "hi": "गुजरात, राजस्थान, मध्य प्रदेश और महाराष्ट्र"
+      },
+      "why": {
+       "en": "Too many animals eat the plant cover, leaving the soil bare.",
+       "hi": "बहुत सारे पशु पौधों का आवरण चर लेते हैं और मिट्टी नंगी रह जाती है।"
+      }
+     },
+     {
+      "id": "irrigation",
+      "left": {
+       "en": "Over-irrigation",
+       "hi": "अति सिंचाई"
+      },
+      "right": {
+       "en": "Punjab, Haryana and western Uttar Pradesh",
+       "hi": "पंजाब, हरियाणा और पश्चिमी उत्तर प्रदेश"
+      },
+      "why": {
+       "en": "Too much water causes waterlogging and makes the soil salty and alkaline.",
+       "hi": "बहुत पानी से जलभराव होता है और मिट्टी लवणीय व क्षारीय हो जाती है।"
+      }
+     },
+     {
+      "id": "dust",
+      "left": {
+       "en": "Dust from grinding limestone and soapstone",
+       "hi": "चूना पत्थर और सैलखड़ी पीसने की धूल"
+      },
+      "right": {
+       "en": "Settles on land and stops water from soaking in",
+       "hi": "भूमि पर जमकर पानी को रिसने से रोकती है"
+      },
+      "why": {
+       "en": "This industrial dust slows down the infiltration of water into the soil.",
+       "hi": "यह औद्योगिक धूल मिट्टी में पानी के रिसाव को धीमा कर देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these harms land: too little care, or too much of a good thing such as water?",
+      "hi": "इनमें से कौन भूमि को हानि पहुँचाता है: बहुत कम देखभाल, या पानी जैसी अच्छी चीज़ की अधिकता?"
+     },
+     "options": [
+      {
+       "id": "little",
+       "en": "Only too little care",
+       "hi": "केवल बहुत कम देखभाल"
+      },
+      {
+       "id": "both",
+       "en": "Both can harm land",
+       "hi": "दोनों हानि कर सकते हैं"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "left:mining",
+     "expect": "matched:mining",
+     "say": {
+      "en": "Match \"Mining and quarrying\" with the States where it scars the land.",
+      "hi": "\"खनन और खदान\" को उन राज्यों से मिलाओ जहाँ यह भूमि को हानि पहुँचाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:irrigation",
+     "expect": "matched:irrigation",
+     "say": {
+      "en": "Match \"Over-irrigation\".",
+      "hi": "\"अति सिंचाई\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाक़ी मिलाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Land degradation is caused by human activities such as deforestation, overgrazing, mining and quarrying, and over-irrigation. Different States face different causes. We can reduce it by planting trees, controlling grazing, stabilising sand dunes with thorny bushes and treating industrial wastes before they are released.",
+      "hi": "भूमि अवनयन मानवीय गतिविधियों से होता है, जैसे वन कटाई, अति चराई, खनन और अति सिंचाई। अलग-अलग राज्यों में कारण अलग हैं। पेड़ लगाकर, चराई पर नियंत्रण करके, काँटेदार झाड़ियों से रेत के टीले स्थिर करके और औद्योगिक अपशिष्ट को उपचारित करके हम इसे घटा सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the main cause of land degradation in Punjab and Haryana?",
+        "hi": "पंजाब और हरियाणा में भूमि अवनयन का मुख्य कारण क्या है?"
+       },
+       "options": [
+        {
+         "en": "Mining",
+         "hi": "खनन"
+        },
+        {
+         "en": "Overgrazing",
+         "hi": "अति चराई"
+        },
+        {
+         "en": "Over-irrigation",
+         "hi": "अति सिंचाई"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Over-irrigation leads to waterlogging and rising salinity and alkalinity.",
+        "hi": "अति सिंचाई से जलभराव होता है और लवणता व क्षारीयता बढ़ती है।"
+       },
+       "wrong": [
+        {
+         "en": "Mining is the main cause in Jharkhand, Chhattisgarh, Madhya Pradesh and Odisha.",
+         "hi": "खनन झारखंड, छत्तीसगढ़, मध्य प्रदेश और ओडिशा में मुख्य कारण है।"
+        },
+        {
+         "en": "Overgrazing is the main cause in Gujarat, Rajasthan, Madhya Pradesh and Maharashtra.",
+         "hi": "अति चराई गुजरात, राजस्थान, मध्य प्रदेश और महाराष्ट्र में मुख्य कारण है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Which step helps to stop land degradation in dry areas?",
+        "hi": "सूखे क्षेत्रों में भूमि अवनयन रोकने में कौन-सा कदम सहायक है?"
+       },
+       "options": [
+        {
+         "en": "Planting shelter belts and controlling grazing",
+         "hi": "आश्रय पट्टियाँ लगाना और चराई पर नियंत्रण"
+        },
+        {
+         "en": "Cutting more trees",
+         "hi": "और पेड़ काटना"
+        },
+        {
+         "en": "Letting more cattle graze",
+         "hi": "और पशुओं को चरने देना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Shelter belts, controlled grazing and thorny bushes on dunes protect arid land.",
+        "hi": "आश्रय पट्टियाँ, नियंत्रित चराई और टीलों पर काँटेदार झाड़ियाँ शुष्क भूमि की रक्षा करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cutting trees removes the cover that protects the soil.",
+         "hi": "पेड़ काटने से वह आवरण हटता है जो मिट्टी को बचाता है।"
+        },
+        {
+         "en": "More grazing worsens the damage.",
+         "hi": "और चराई से नुक़सान बढ़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a patch of waste land near you. What do you think spoiled it, and how could it be revived?",
+      "hi": "अपने पास की किसी बंजर ज़मीन को देखो। तुम्हें क्या लगता है उसे किसने बिगाड़ा और उसे कैसे फिर उपजाऊ बनाया जा सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch01-soil-layers",
+   "topic": "1.5",
+   "template": "earth",
+   "title": {
+    "en": "Inside the soil",
+    "hi": "मिट्टी के भीतर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "soil",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Soil is a living system. How long does nature take to form just a few centimetres of soil?",
+      "hi": "मिट्टी एक जीवित तंत्र है। प्रकृति को कुछ सेंटीमीटर मिट्टी बनाने में कितना समय लगता है?"
+     },
+     "options": [
+      {
+       "id": "days",
+       "en": "A few days",
+       "hi": "कुछ दिन"
+      },
+      {
+       "id": "years",
+       "en": "A few years",
+       "hi": "कुछ वर्ष"
+      },
+      {
+       "id": "mil",
+       "en": "Thousands to millions of years",
+       "hi": "हज़ारों से लाखों वर्ष"
+      }
+     ],
+     "answer": "mil"
+    },
+    {
+     "kind": "do",
+     "target": "layer:topsoil",
+     "expect": "revealed:topsoil",
+     "say": {
+      "en": "Tap the Topsoil layer to read what it is made of.",
+      "hi": "ऊपरी मृदा की परत पर टैप करके पढ़ो कि वह किससे बनी है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:subsoil",
+     "expect": "revealed:subsoil",
+     "say": {
+      "en": "Now tap the Subsoil layer below it.",
+      "hi": "अब उसके नीचे की अवमृदा (सबसॉइल) परत पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:bedrock",
+     "expect": "revealed:bedrock",
+     "say": {
+      "en": "Tap the Bedrock at the bottom.",
+      "hi": "सबसे नीचे आधार शैल (बेडरॉक) पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A soil profile has layers. The top layer is topsoil, dark with humus and full of roots and tiny living things. Below it is subsoil of weathered rock, sand, silt and clay, and below that lies unweathered bedrock. Soil forms very slowly from the parent rock, helped by climate, relief, plants, living things and time, so we must not waste it.",
+      "hi": "मिट्टी की परतें होती हैं। ऊपर की परत ऊपरी मृदा है, जो ह्यूमस से गहरी और जड़ों व सूक्ष्म जीवों से भरी होती है। उसके नीचे अपक्षयित चट्टान, रेत, गाद और चिकनी मिट्टी की अवमृदा है, और सबसे नीचे बिना अपक्षय की आधार शैल है। मिट्टी जनक चट्टान से बहुत धीरे-धीरे बनती है, जिसमें जलवायु, उच्चावच, पौधे, जीव और समय भूमिका निभाते हैं, इसलिए इसे व्यर्थ नहीं गँवाना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which layer do most plant roots grow in?",
+        "hi": "अधिकतर पौधों की जड़ें किस परत में उगती हैं?"
+       },
+       "options": [
+        {
+         "en": "Bedrock",
+         "hi": "आधार शैल"
+        },
+        {
+         "en": "Topsoil",
+         "hi": "ऊपरी मृदा"
+        },
+        {
+         "en": "The air above",
+         "hi": "ऊपर की हवा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Topsoil has humus, water and tiny living things, so roots grow there.",
+        "hi": "ऊपरी मृदा में ह्यूमस, पानी और सूक्ष्म जीव होते हैं, इसलिए जड़ें वहीं उगती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Bedrock is hard solid rock; roots cannot grow there.",
+         "hi": "आधार शैल कठोर ठोस चट्टान है; वहाँ जड़ें नहीं उगतीं।"
+        },
+        "",
+        {
+         "en": "Roots grow in soil, not in air.",
+         "hi": "जड़ें मिट्टी में उगती हैं, हवा में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is soil called a living system?",
+        "hi": "मिट्टी को जीवित तंत्र क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It supports many living organisms and has humus",
+         "hi": "यह अनेक जीवों को सहारा देती है और इसमें ह्यूमस होता है"
+        },
+        {
+         "en": "It moves and breathes like animals",
+         "hi": "यह जानवरों की तरह चलती और साँस लेती है"
+        },
+        {
+         "en": "It is made only of rocks",
+         "hi": "यह केवल चट्टानों से बनी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Soil has organic matter (humus) and supports different living organisms.",
+        "hi": "मिट्टी में जैविक पदार्थ (ह्यूमस) होता है और वह विभिन्न जीवों को सहारा देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Soil does not move or breathe; it holds living organisms.",
+         "hi": "मिट्टी चलती या साँस नहीं लेती; वह जीवों को आश्रय देती है।"
+        },
+        {
+         "en": "Soil also has humus, water, air and living things, not only rock.",
+         "hi": "मिट्टी में ह्यूमस, पानी, हवा और जीव भी होते हैं, केवल चट्टान नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the Drop button to pour water on the soil and see how it soaks in. Which layer holds the water best?",
+      "hi": "मिट्टी पर पानी डालने के लिए बूँद (Drop) बटन दबाओ और देखो कि पानी कैसे रिसता है। कौन-सी परत पानी को सबसे अच्छी तरह रोकती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch01-soil-types",
+   "topic": "1.5",
+   "template": "earth",
+   "title": {
+    "en": "The soils of India",
+    "hi": "भारत की मिट्टियाँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "soil",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which soil do you think is the best for growing cotton?",
+      "hi": "तुम्हारे विचार से कपास उगाने के लिए सबसे अच्छी मिट्टी कौन-सी है?"
+     },
+     "options": [
+      {
+       "id": "alluv",
+       "en": "Alluvial soil",
+       "hi": "जलोढ़ मृदा"
+      },
+      {
+       "id": "black",
+       "en": "Black soil",
+       "hi": "काली मृदा"
+      },
+      {
+       "id": "arid",
+       "en": "Arid soil",
+       "hi": "मरुस्थली मृदा"
+      }
+     ],
+     "answer": "black"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:black",
+     "expect": "revealed:black",
+     "say": {
+      "en": "Tap Black soil (regur) to see where it is found and what it grows.",
+      "hi": "काली मृदा (रेगुर) पर टैप करके देखो कि वह कहाँ मिलती है और क्या उगाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:alluvial",
+     "expect": "revealed:alluvial",
+     "say": {
+      "en": "Now tap Alluvial soil, the most widespread soil in India.",
+      "hi": "अब जलोढ़ मृदा पर टैप करो, जो भारत में सबसे व्यापक है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:laterite",
+     "expect": "revealed:laterite",
+     "say": {
+      "en": "Tap Laterite soil, formed by heavy rain washing nutrients away.",
+      "hi": "लैटेराइट मृदा पर टैप करो, जो भारी वर्षा से पोषक तत्व बह जाने से बनती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Alluvial soil, laid down by the Indus, Ganga and Brahmaputra, is very fertile and grows rice, wheat, sugarcane and pulses. Black soil holds moisture and is ideal for cotton. Red and yellow soils form on crystalline rocks. Laterite soil, made by heavy rain washing nutrients away, suits tea, coffee and cashew nut. Arid soil is sandy and salty, and forest soils lie in the hills.",
+      "hi": "सिंधु, गंगा और ब्रह्मपुत्र द्वारा बिछी जलोढ़ मृदा बहुत उपजाऊ है और धान, गेहूँ, गन्ना व दालें उगाती है। काली मृदा नमी रोकती है और कपास के लिए आदर्श है। लाल और पीली मृदाएँ क्रिस्टलीय चट्टानों पर बनती हैं। भारी वर्षा से पोषक तत्व बह जाने पर बनी लैटेराइट मृदा चाय, कॉफ़ी और काजू के लिए उपयुक्त है। मरुस्थली मृदा रेतीली और लवणीय है, और वन मृदाएँ पहाड़ों में मिलती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which soil is known as regur and is ideal for cotton?",
+        "hi": "किस मृदा को रेगुर कहते हैं और वह कपास के लिए आदर्श है?"
+       },
+       "options": [
+        {
+         "en": "Black soil",
+         "hi": "काली मृदा"
+        },
+        {
+         "en": "Alluvial soil",
+         "hi": "जलोढ़ मृदा"
+        },
+        {
+         "en": "Laterite soil",
+         "hi": "लैटेराइट मृदा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Black soil, made from Deccan lava, holds moisture well and suits cotton.",
+        "hi": "दक्कन के लावा से बनी काली मृदा नमी अच्छी तरह रोकती है और कपास के लिए उपयुक्त है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Alluvial soil suits rice, wheat and sugarcane; cotton prefers black soil.",
+         "hi": "जलोढ़ मृदा धान, गेहूँ और गन्ने के लिए है; कपास को काली मृदा चाहिए।"
+        },
+        {
+         "en": "Laterite is better for tea, coffee and cashew.",
+         "hi": "लैटेराइट चाय, कॉफ़ी और काजू के लिए अच्छी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which rivers laid down the alluvial soil of the northern plains?",
+        "hi": "उत्तरी मैदान की जलोढ़ मृदा किन नदियों ने बिछाई?"
+       },
+       "options": [
+        {
+         "en": "Indus, Ganga and Brahmaputra",
+         "hi": "सिंधु, गंगा और ब्रह्मपुत्र"
+        },
+        {
+         "en": "Only the Narmada",
+         "hi": "केवल नर्मदा"
+        },
+        {
+         "en": "Rivers have nothing to do with it",
+         "hi": "नदियों का इससे कोई संबंध नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Indus, Ganga and Brahmaputra systems deposited the alluvium.",
+        "hi": "सिंधु, गंगा और ब्रह्मपुत्र तंत्रों ने जलोढ़ जमा किया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The northern plains were built by the three great Himalayan river systems, not the Narmada.",
+         "hi": "उत्तरी मैदान तीन महान हिमालयी नदी तंत्रों ने बनाए, नर्मदा ने नहीं।"
+        },
+        {
+         "en": "Alluvial soil is carried and deposited by rivers.",
+         "hi": "जलोढ़ मृदा नदियाँ बहाकर लाती और जमा करती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Arid and Forest soils too. Which soil lies in the part of India where you live?",
+      "hi": "मरुस्थली और वन मृदा पर भी टैप करो। तुम भारत के जिस भाग में रहते हो वहाँ कौन-सी मिट्टी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch01-soil-map",
+   "topic": "1.5",
+   "template": "map",
+   "title": {
+    "en": "Where is each soil?",
+    "hi": "कौन-सी मिट्टी कहाँ है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "soils",
+     "rivers",
+     "states"
+    ],
+    "show": [
+     "soils"
+    ],
+    "task": "locate",
+    "places": [
+     "soil-black",
+     "soil-alluvial",
+     "soil-laterite",
+     "soil-arid"
+    ],
+    "ask": "soil-black"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:rivers",
+     "expect": "layer:rivers",
+     "say": {
+      "en": "Switch on the Rivers layer. Rivers build the plains.",
+      "hi": "नदियों की परत चालू करो। नदियाँ मैदान बनाती हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Black soil comes from the lava of the Deccan plateau. Where will you place the pin?",
+      "hi": "काली मृदा दक्कन पठार के लावा से बनी है। पिन कहाँ रखोगे?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "The northern plains",
+       "hi": "उत्तरी मैदान"
+      },
+      {
+       "id": "dec",
+       "en": "The Deccan, in the west and centre of the peninsula",
+       "hi": "प्रायद्वीप के पश्चिम और मध्य में दक्कन"
+      },
+      {
+       "id": "ne",
+       "en": "The far north-east",
+       "hi": "सुदूर उत्तर-पूर्व"
+      }
+     ],
+     "answer": "dec"
+    },
+    {
+     "kind": "do",
+     "target": "pin",
+     "expect": "located:soil-black",
+     "say": {
+      "en": "Drop the pin on the black soil region and check it.",
+      "hi": "काली मृदा क्षेत्र पर पिन रखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pin",
+     "expect": "located:soil-alluvial",
+     "say": {
+      "en": "Now find the alluvial soil region.",
+      "hi": "अब जलोढ़ मृदा का क्षेत्र खोजो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Alluvial soil lies along the northern plains and the river deltas. Black soil covers the Deccan lava plateau. Laterite soil is found in the high-rainfall parts of the south and west, and arid soil in the dry west. Soil follows rock, climate and rivers.",
+      "hi": "जलोढ़ मृदा उत्तरी मैदानों और नदी डेल्टाओं में है। काली मृदा दक्कन के लावा पठार पर फैली है। लैटेराइट मृदा दक्षिण और पश्चिम के अधिक वर्षा वाले भागों में तथा मरुस्थली मृदा शुष्क पश्चिम में मिलती है। मिट्टी चट्टान, जलवायु और नदियों के अनुसार बदलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where is arid soil found?",
+        "hi": "मरुस्थली मृदा कहाँ मिलती है?"
+       },
+       "options": [
+        {
+         "en": "In the dry west, such as western Rajasthan",
+         "hi": "शुष्क पश्चिम में, जैसे पश्चिमी राजस्थान"
+        },
+        {
+         "en": "In the river deltas of the east coast",
+         "hi": "पूर्वी तट के नदी डेल्टाओं में"
+        },
+        {
+         "en": "On the snowy Himalayan peaks",
+         "hi": "हिमालय की बर्फ़ीली चोटियों पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Arid soil forms in the dry, hot climate of western Rajasthan.",
+        "hi": "मरुस्थली मृदा राजस्थान के पश्चिम की शुष्क, गर्म जलवायु में बनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The deltas have alluvial soil, which is fertile and moist.",
+         "hi": "डेल्टाओं में उपजाऊ और नम जलोढ़ मृदा होती है।"
+        },
+        {
+         "en": "High mountains have forest and mountain soils.",
+         "hi": "ऊँचे पर्वतों में वन और पर्वतीय मृदाएँ होती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The deltas of the Mahanadi, Godavari, Krishna and Kaveri have...",
+        "hi": "महानदी, गोदावरी, कृष्णा और कावेरी के डेल्टाओं में कौन-सी मृदा है?"
+       },
+       "options": [
+        {
+         "en": "Arid soil",
+         "hi": "मरुस्थली मृदा"
+        },
+        {
+         "en": "Alluvial soil",
+         "hi": "जलोढ़ मृदा"
+        },
+        {
+         "en": "Laterite only",
+         "hi": "केवल लैटेराइट"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "River deltas on the eastern coast are made of alluvial soil.",
+        "hi": "पूर्वी तट के नदी डेल्टा जलोढ़ मृदा से बने हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Arid soil belongs to the desert west, not the wet deltas.",
+         "hi": "मरुस्थली मृदा पश्चिम के रेगिस्तान में है, नम डेल्टाओं में नहीं।"
+        },
+        "",
+        {
+         "en": "The deltas are built by river deposits, which are alluvial.",
+         "hi": "डेल्टा नदियों के जमाव से बने हैं, जो जलोढ़ हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the laterite and arid soils too. Which State of India has more than one of these soils?",
+      "hi": "लैटेराइट और मरुस्थली मृदा भी खोजो। भारत के किस राज्य में इनमें से एक से अधिक मृदाएँ हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch01-erosion",
+   "topic": "1.6",
+   "template": "earth",
+   "title": {
+    "en": "Saving the soil",
+    "hi": "मिट्टी को बचाना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "erosion",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Heavy rain falls on a bare slope and on a slope covered with plants. Which loses more soil?",
+      "hi": "भारी वर्षा एक नंगी ढलान और पौधों से ढकी ढलान पर होती है। किसकी मिट्टी अधिक बहेगी?"
+     },
+     "options": [
+      {
+       "id": "bare",
+       "en": "The bare slope",
+       "hi": "नंगी ढलान"
+      },
+      {
+       "id": "plants",
+       "en": "The planted slope",
+       "hi": "पौधों वाली ढलान"
+      },
+      {
+       "id": "same",
+       "en": "Both lose the same",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "bare"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "eroded",
+     "say": {
+      "en": "Choose \"Rain on a slope\", keep the plants off, and press Run time forward.",
+      "hi": "\"ढलान पर वर्षा\" चुनो, पौधे बंद रखो और समय आगे चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:gully",
+     "expect": "revealed:gully",
+     "say": {
+      "en": "Tap the Gully label to see the deep channel that rain cut.",
+      "hi": "अवनालिका (गली) के लेबल पर टैप करके देखो कि वर्षा ने कैसी गहरी नाली काटी।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "eroded",
+     "say": {
+      "en": "Now switch Plants on and run time forward again. Compare the soil washed away.",
+      "hi": "अब पौधे चालू करो और समय फिर आगे चलाओ। बहने वाली मिट्टी की तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Soil erosion is the washing away or blowing away of the soil cover. Running water cuts gullies in clayey soils and leaves bad land; in the Chambal basin such land is called ravines. Deforestation, overgrazing, construction and wrong ploughing up and down a slope speed it up. Plant cover holds the soil and keeps it in place.",
+      "hi": "मृदा अपरदन मिट्टी की परत का बह जाना या उड़ जाना है। बहता पानी चिकनी मिट्टी में अवनालिकाएँ काटता है और ऐसी ज़मीन को ख़राब भूमि बना देता है; चंबल घाटी में इसे बीहड़ कहते हैं। वन कटाई, अति चराई, निर्माण और ढलान पर ऊपर-नीचे जुताई इसे तेज़ करते हैं। पौधों का आवरण मिट्टी को थामे रखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do we call the deep channels cut by running water in clayey soil?",
+        "hi": "चिकनी मिट्टी में बहते पानी से कटी गहरी नालियाँ क्या कहलाती हैं?"
+       },
+       "options": [
+        {
+         "en": "Terraces",
+         "hi": "सीढ़ीदार खेत"
+        },
+        {
+         "en": "Gullies",
+         "hi": "अवनालिकाएँ"
+        },
+        {
+         "en": "Shelter belts",
+         "hi": "आश्रय पट्टियाँ"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Running water cuts the clayey soil into deep channels called gullies.",
+        "hi": "बहता पानी चिकनी मिट्टी में अवनालिका नामक गहरी नालियाँ काटता है।"
+       },
+       "wrong": [
+        {
+         "en": "Terraces are steps cut on a slope to stop erosion; they do not form by erosion.",
+         "hi": "सीढ़ीदार खेत ढलान पर कटी सीढ़ियाँ हैं जो अपरदन रोकती हैं; वे अपरदन से नहीं बनतीं।"
+        },
+        "",
+        {
+         "en": "Shelter belts are rows of trees planted to protect soil from wind.",
+         "hi": "आश्रय पट्टियाँ पवन से मिट्टी बचाने के लिए लगाई गई पेड़ों की पंक्तियाँ हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which human activity does NOT cause soil erosion?",
+        "hi": "इनमें से कौन-सी मानवीय गतिविधि मृदा अपरदन नहीं कराती?"
+       },
+       "options": [
+        {
+         "en": "Deforestation",
+         "hi": "वन कटाई"
+        },
+        {
+         "en": "Overgrazing",
+         "hi": "अति चराई"
+        },
+        {
+         "en": "Planting trees on a slope",
+         "hi": "ढलान पर पेड़ लगाना"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Trees hold the soil, so planting them prevents erosion.",
+        "hi": "पेड़ मिट्टी थामते हैं, इसलिए उन्हें लगाने से अपरदन रुकता है।"
+       },
+       "wrong": [
+        {
+         "en": "Cutting trees leaves the soil bare, so it causes erosion.",
+         "hi": "पेड़ कटने से मिट्टी नंगी हो जाती है, इसलिए अपरदन होता है।"
+        },
+        {
+         "en": "Too much grazing strips the plants, so it causes erosion.",
+         "hi": "अति चराई पौधे साफ़ कर देती है, इसलिए अपरदन होता है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the wind, sea and river buttons. Which agent of erosion works fastest on a slope?",
+      "hi": "पवन, सागर और नदी वाले बटन भी आज़माओ। ढलान पर कौन-सा अपरदन कारक सबसे तेज़ काम करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch01-conservation",
+   "topic": "1.6",
+   "template": "match",
+   "title": {
+    "en": "Farming ways to save soil",
+    "hi": "मिट्टी बचाने के खेती के तरीक़े"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "contour",
+      "left": {
+       "en": "Contour ploughing",
+       "hi": "समोच्च जुताई"
+      },
+      "right": {
+       "en": "Ploughing along the contour lines of a slope",
+       "hi": "ढलान की समोच्च रेखाओं के साथ जुताई"
+      },
+      "why": {
+       "en": "It slows the downhill flow of water instead of making channels for it.",
+       "hi": "यह पानी का ढलान पर बहाव धीमा करती है, उसके लिए नालियाँ नहीं बनाती।"
+      }
+     },
+     {
+      "id": "terrace",
+      "left": {
+       "en": "Terrace farming",
+       "hi": "सीढ़ीदार खेती"
+      },
+      "right": {
+       "en": "Cutting steps on a hillside",
+       "hi": "पहाड़ी ढलान पर सीढ़ियाँ काटना"
+      },
+      "why": {
+       "en": "Terraces restrict erosion; they are well developed in the western and central Himalaya.",
+       "hi": "सीढ़ियाँ अपरदन रोकती हैं; ये पश्चिमी और मध्य हिमालय में अच्छी तरह विकसित हैं।"
+      }
+     },
+     {
+      "id": "strip",
+      "left": {
+       "en": "Strip cropping",
+       "hi": "पट्टीदार खेती"
+      },
+      "right": {
+       "en": "Leaving strips of grass between the crops of a large field",
+       "hi": "बड़े खेत में फ़सलों के बीच घास की पट्टियाँ छोड़ना"
+      },
+      "why": {
+       "en": "The grass strips break the force of the wind.",
+       "hi": "घास की पट्टियाँ पवन का वेग तोड़ती हैं।"
+      }
+     },
+     {
+      "id": "shelter",
+      "left": {
+       "en": "Shelter belts",
+       "hi": "आश्रय पट्टियाँ"
+      },
+      "right": {
+       "en": "Rows of trees planted to give shelter",
+       "hi": "आश्रय देने के लिए लगाई गई पेड़ों की पंक्तियाँ"
+      },
+      "why": {
+       "en": "They have helped stabilise sand dunes and the desert in western India.",
+       "hi": "इन्होंने पश्चिमी भारत में रेत के टीलों और मरुस्थल को स्थिर करने में मदद की है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ploughing straight up and down a slope makes channels for water. What does that do to the soil?",
+      "hi": "ढलान पर सीधी ऊपर-नीचे जुताई से पानी के लिए नालियाँ बनती हैं। मिट्टी पर इसका क्या असर होगा?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More soil is washed away",
+       "hi": "अधिक मिट्टी बह जाएगी"
+      },
+      {
+       "id": "less",
+       "en": "Less soil is washed away",
+       "hi": "कम मिट्टी बहेगी"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "left:contour",
+     "expect": "matched:contour",
+     "say": {
+      "en": "Match contour ploughing with what the farmer does.",
+      "hi": "समोच्च जुताई को किसान के काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:terrace",
+     "expect": "matched:terrace",
+     "say": {
+      "en": "Match terrace farming.",
+      "hi": "सीढ़ीदार खेती को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाक़ी मिलाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Farmers can protect soil with simple methods. Ploughing along contour lines slows running water. Terraces cut steps in a slope. Strips of grass between crops and rows of trees called shelter belts break the force of the wind. Together these methods keep the fertile topsoil in place for future generations.",
+      "hi": "किसान सरल तरीक़ों से मिट्टी की रक्षा कर सकते हैं। समोच्च रेखाओं के साथ जुताई बहते पानी को धीमा करती है। सीढ़ियाँ ढलान को कई चरणों में बाँटती हैं। फ़सलों के बीच घास की पट्टियाँ और आश्रय पट्टियाँ कहलाने वाली पेड़ों की पंक्तियाँ पवन का वेग तोड़ती हैं। ये सब मिलकर उपजाऊ ऊपरी मिट्टी को भावी पीढ़ियों के लिए सुरक्षित रखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which method is used to stop wind from blowing soil away?",
+        "hi": "मिट्टी को पवन से उड़ने से बचाने के लिए कौन-सा तरीक़ा है?"
+       },
+       "options": [
+        {
+         "en": "Strip cropping and shelter belts",
+         "hi": "पट्टीदार खेती और आश्रय पट्टियाँ"
+        },
+        {
+         "en": "Ploughing up and down the slope",
+         "hi": "ढलान पर ऊपर-नीचे जुताई"
+        },
+        {
+         "en": "Removing all plants",
+         "hi": "सारे पौधे हटाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Grass strips and tree rows slow the wind and hold the soil.",
+        "hi": "घास की पट्टियाँ और वृक्ष-पंक्तियाँ पवन को धीमा करती और मिट्टी थामती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That makes channels for water and increases erosion.",
+         "hi": "इससे पानी की नालियाँ बनती हैं और अपरदन बढ़ता है।"
+        },
+        {
+         "en": "Without plants, wind and rain remove the soil faster.",
+         "hi": "पौधों के बिना पवन और वर्षा मिट्टी को और तेज़ी से हटाती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In which hill region is terrace farming well developed?",
+        "hi": "किस पर्वतीय क्षेत्र में सीढ़ीदार खेती अच्छी तरह विकसित है?"
+       },
+       "options": [
+        {
+         "en": "Western and central Himalaya",
+         "hi": "पश्चिमी और मध्य हिमालय"
+        },
+        {
+         "en": "The plains of Punjab",
+         "hi": "पंजाब के मैदान"
+        },
+        {
+         "en": "The Thar desert",
+         "hi": "थार मरुस्थल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Terraces are common on the slopes of the western and central Himalaya.",
+        "hi": "पश्चिमी और मध्य हिमालय की ढलानों पर सीढ़ीदार खेत आम हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Punjab is flat; terraces are for slopes.",
+         "hi": "पंजाब समतल है; सीढ़ियाँ ढलानों के लिए होती हैं।"
+        },
+        {
+         "en": "Terraces are for hill slopes, not for desert dunes.",
+         "hi": "सीढ़ियाँ पहाड़ी ढलानों के लिए हैं, रेगिस्तान के टीलों के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw a hill with a field. Show where you would plough along contours, build terraces and plant a shelter belt.",
+      "hi": "एक खेत वाली पहाड़ी बनाओ। दिखाओ कि समोच्च जुताई, सीढ़ियाँ और आश्रय पट्टी कहाँ बनाओगे।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook of the chapter",
+   "shows": "A busy Indian village market where grain, pots, vegetables and cloth are sold, with a farm and a hill behind",
+   "view": "Wide view from a raised spot, morning light",
+   "right": "Resources of many kinds visible: crops, clay pots, cloth, metal tools",
+   "avoid": "Brand names, text on banners"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Resource-rich but under-served",
+   "shows": "A mining town on the Chota Nagpur plateau with a coal truck on a rough road and children walking to school",
+   "view": "Wide view, dry red soil, trucks and houses",
+   "right": "Red soil; black coal in the truck; honest everyday details",
+   "avoid": "Company logos, faces in close-up"
+  },
+  {
+   "n": 3,
+   "kind": "MAP",
+   "topic": "1.3",
+   "use": "Relief of India",
+   "shows": "Relief map of India with the Himalaya, the northern plains, the Deccan plateau and the coastal plains in natural colours",
+   "view": "Top-down view with soft hill-shading, 16:9, no names or borders",
+   "right": "Plains green, plateau brown, mountains grey-white; India as officially depicted",
+   "avoid": "Place names, state lines, wrong borders"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Land use at a glance",
+   "shows": "An Indian landscape from a hill: crop fields, a patch of forest, a grazing meadow with cattle, a road and a village",
+   "view": "Wide view from above, afternoon light",
+   "right": "Each use clearly separate; green and brown patchwork",
+   "avoid": "People in close-up"
+  },
+  {
+   "n": 5,
+   "kind": "CUT",
+   "topic": "1.5",
+   "use": "Soil profile",
+   "shows": "A vertical cut through soil: dark humus and topsoil with roots and an earthworm, lighter subsoil, broken rock, solid bedrock",
+   "view": "Front view, clean neutral background, 4:3",
+   "right": "Layers in the right order and colours, roots in topsoil only",
+   "avoid": "Labels, arrows"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "1.5",
+   "use": "Soil samples",
+   "shows": "Six handfuls of soil in small dishes: alluvial (tan-brown), black, red, laterite (brick red), arid (pale sand), forest soil (dark and crumbly)",
+   "view": "From above, white background, even light",
+   "right": "Colours true to each soil, a clear difference between dishes",
+   "avoid": "Labels, plastic spoons with logos"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Black soil cotton field",
+   "shows": "A cotton field on black soil in Maharashtra at harvest, with cracked dark soil between the rows",
+   "view": "Low angle across the rows, bright sunlight",
+   "right": "Dark, deeply cracked soil; white cotton bolls open on the plants",
+   "avoid": "Pesticide sprayers, brand names"
+  },
+  {
+   "n": 8,
+   "kind": "SEQ",
+   "topic": "1.6",
+   "use": "Gully erosion",
+   "shows": "The same hillside field in 4 frames: green field, bare after the crop, rain channels, deep gullies",
+   "view": "Same camera spot and light in every frame",
+   "right": "Gullies grow deeper frame by frame; fertile soil colour at the top fades",
+   "avoid": "People or animals in the frame"
+  }
+ ]
+}

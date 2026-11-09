@@ -1,0 +1,1138 @@
+{
+ "chapter_key": "u.c09.science.iesc1.ch06",
+ "class": 9,
+ "subject_id": "science",
+ "title": "How Forces Affect Motion",
+ "source": "https://ncert.nic.in/textbook/pdf/iesc106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "The concept of force",
+   "labs": [
+    "c09-science-iesc1-ch06-push"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.1.1",
+   "title": "Measuring the magnitude of a force",
+   "labs": [
+    "c09-science-iesc1-ch06-spring"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Balanced and unbalanced forces",
+   "labs": [
+    "c09-science-iesc1-ch06-balanced"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "The force of friction",
+   "labs": [
+    "c09-science-iesc1-ch06-friction"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Newton's first law of motion and inertia",
+   "labs": [
+    "c09-science-iesc1-ch06-inertia"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Newton's second law of motion",
+   "labs": [
+    "c09-science-iesc1-ch06-newton2"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Newton's third law of motion",
+   "labs": [
+    "c09-science-iesc1-ch06-third"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.7",
+   "title": "Forces acting on a system of objects",
+   "labs": [
+    "c09-science-iesc1-ch06-system"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-science-iesc1-ch06-push",
+   "topic": "6.1",
+   "template": "forces",
+   "title": {
+    "en": "A push changes motion",
+    "hi": "धक्का गति बदलता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "push",
+    "object": "cart",
+    "surface": "wood"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A trolley is at rest. You give it one push and let go. What happens next?",
+      "hi": "एक ट्रॉली विराम में है। तुम उसे एक धक्का देकर छोड़ देते हो। आगे क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "slows",
+       "en": "It moves, slows down and stops",
+       "hi": "वह चलती है, धीमी होती है और रुक जाती है"
+      },
+      {
+       "id": "forever",
+       "en": "It moves forever at the same speed",
+       "hi": "वह हमेशा उसी चाल से चलती रहती है"
+      },
+      {
+       "id": "still",
+       "en": "It does not move",
+       "hi": "वह नहीं हिलती"
+      }
+     ],
+     "answer": "slows"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "moved",
+     "say": {
+      "en": "Press \"Push / pull!\" to give the trolley a push.",
+      "hi": "ट्रॉली को धक्का देने के लिए \"धक्का दो / खींचो!\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "stopped",
+     "say": {
+      "en": "Watch the speed until the trolley comes to rest.",
+      "hi": "ट्रॉली के रुकने तक उसकी चाल देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A force is a push or a pull. It can start an object moving, stop it, speed it up, slow it down, change its direction or change its shape. After your push ends, friction from the floor acts against the motion, so the trolley slows down and stops. Force is measured in newtons (N).",
+      "hi": "बल एक धक्का या खिंचाव है। यह वस्तु को चला सकता है, रोक सकता है, तेज़ या धीमा कर सकता है, उसकी दिशा या आकार बदल सकता है। धक्का ख़त्म होने के बाद फ़र्श का घर्षण गति के विरुद्ध काम करता है, इसलिए ट्रॉली धीमी होकर रुक जाती है। बल को न्यूटन (N) में मापते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A goalkeeper catches a moving football. What does her force do?",
+        "hi": "गोलकीपर चलती फ़ुटबॉल पकड़ती है। उसका बल क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "It stops the ball",
+         "hi": "गेंद को रोकता है"
+        },
+        {
+         "en": "It speeds the ball up",
+         "hi": "गेंद को तेज़ करता है"
+        },
+        {
+         "en": "Nothing; the ball stops by itself",
+         "hi": "कुछ नहीं; गेंद अपने-आप रुकती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A force opposite to the motion slows and stops an object.",
+        "hi": "गति के विपरीत बल वस्तु को धीमा करके रोकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Her force acts against the ball's motion, so it slows it.",
+         "hi": "उसका बल गेंद की गति के विरुद्ध है, इसलिए उसे धीमा करता है।"
+        },
+        {
+         "en": "A moving ball does not stop by itself in her hands; her push stops it.",
+         "hi": "चलती गेंद उसके हाथों में अपने-आप नहीं रुकती; उसका धक्का उसे रोकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the surface to ice or sand and the force with the slider. Where does the trolley go farthest?",
+      "hi": "आज़माओ: सतह को बर्फ़ या रेत करो और स्लाइडर से बल बदलो। ट्रॉली सबसे दूर कहाँ जाती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch06-spring",
+   "topic": "6.1.1",
+   "template": "forces",
+   "title": {
+    "en": "Measure a force with a spring",
+    "hi": "स्प्रिंग से बल मापो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "spring",
+    "object": "medium"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A spring stretches 8 cm with one mass. If you hang double the mass, how much will it stretch?",
+      "hi": "एक द्रव्यमान से स्प्रिंग 8 cm खिंचती है। दोगुना द्रव्यमान लटकाने पर कितनी खिंचेगी?"
+     },
+     "options": [
+      {
+       "id": "16",
+       "en": "About 16 cm",
+       "hi": "लगभग 16 cm"
+      },
+      {
+       "id": "8",
+       "en": "Still 8 cm",
+       "hi": "अब भी 8 cm"
+      },
+      {
+       "id": "4",
+       "en": "About 4 cm",
+       "hi": "लगभग 4 cm"
+      }
+     ],
+     "answer": "16"
+    },
+    {
+     "kind": "do",
+     "target": "slider:load",
+     "expect": "measured",
+     "say": {
+      "en": "Move the mass slider to hang a different mass. Read the stretch.",
+      "hi": "द्रव्यमान का स्लाइडर हिलाकर अलग द्रव्यमान लटकाओ। खिंचाव पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:load",
+     "expect": "measured",
+     "say": {
+      "en": "Now double the mass and read the new stretch.",
+      "hi": "अब द्रव्यमान दोगुना करो और नया खिंचाव पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The weight of the mass pulls the spring down. The stretch is proportional to the force: double the force, double the stretch. A spring balance uses this to measure force in newtons. A 100 g mass weighs about 1 N on Earth.",
+      "hi": "द्रव्यमान का भार स्प्रिंग को नीचे खींचता है। खिंचाव बल के समानुपाती है: बल दोगुना, खिंचाव दोगुना। कमानीदार तुला इसी से बल को न्यूटन में मापती है। पृथ्वी पर 100 g द्रव्यमान का भार लगभग 1 N होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A spring balance reads 3 N when a bag hangs from it. Which statement is right?",
+        "hi": "एक थैला लटकाने पर कमानीदार तुला 3 N दिखाती है। कौन-सा कथन सही है?"
+       },
+       "options": [
+        {
+         "en": "The bag's weight is 3 N",
+         "hi": "थैले का भार 3 N है"
+        },
+        {
+         "en": "The bag's mass is 3 N",
+         "hi": "थैले का द्रव्यमान 3 N है"
+        },
+        {
+         "en": "The spring has no force on it",
+         "hi": "स्प्रिंग पर कोई बल नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The spring balance measures the pull of gravity on the bag, its weight.",
+        "hi": "कमानीदार तुला थैले पर गुरुत्व का खिंचाव, यानी उसका भार, मापती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mass is measured in kilograms; a spring balance shows weight, a force, in newtons.",
+         "hi": "द्रव्यमान किलोग्राम में मापा जाता है; कमानीदार तुला भार, एक बल, न्यूटन में दिखाती है।"
+        },
+        {
+         "en": "The spring is stretched, so a force of 3 N acts on it.",
+         "hi": "स्प्रिंग खिंची है, इसलिए उस पर 3 N का बल है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: choose the soft and the stiff spring and hang the same mass. Which stretches more? Then press \"Pull down and let go\".",
+      "hi": "आज़माओ: नरम और कड़ी स्प्रिंग चुनो और एक ही द्रव्यमान लटकाओ। कौन अधिक खिंचती है? फिर \"नीचे खींचकर छोड़ो\" दबाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch06-balanced",
+   "topic": "6.2",
+   "template": "forces",
+   "title": {
+    "en": "Balanced and unbalanced forces",
+    "hi": "संतुलित और असंतुलित बल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "newton2",
+    "surface": "carpet",
+    "mass": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You pull a 2 kg box on a carpet with 10 N. Friction can push back with up to about 12.7 N. Will the box move?",
+      "hi": "तुम कालीन पर 2 kg के बक्से को 10 N से खींचते हो। घर्षण अधिकतम लगभग 12.7 N तक पीछे धकेल सकता है। क्या बक्सा हिलेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, friction balances the pull",
+       "hi": "नहीं, घर्षण खिंचाव को संतुलित कर देता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, any pull moves it",
+       "hi": "हाँ, कोई भी खिंचाव इसे हिला देता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "balanced",
+     "say": {
+      "en": "Press \"Go\" to pull the box with 10 N.",
+      "hi": "बक्से को 10 N से खींचने के लिए \"चलो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When the forces on an object cancel out, they are balanced and the motion does not change: the box stays at rest. Friction matched your 10 N pull. If you pull harder than friction can hold, the forces become unbalanced and the box starts to move and speed up.",
+      "hi": "जब किसी वस्तु पर बल एक-दूसरे को रद्द कर दें, तो वे संतुलित होते हैं और गति नहीं बदलती: बक्सा विराम में रहता है। घर्षण ने तुम्हारे 10 N के खिंचाव की बराबरी कर ली। अगर तुम घर्षण की क्षमता से अधिक खींचो, तो बल असंतुलित हो जाते हैं और बक्सा चलने और तेज़ होने लगता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a tug of war both teams pull with 500 N. What happens to the rope?",
+        "hi": "रस्साकशी में दोनों टीमें 500 N से खींचती हैं। रस्सी का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It stays still",
+         "hi": "वह स्थिर रहती है"
+        },
+        {
+         "en": "It moves towards the stronger-looking team",
+         "hi": "वह मज़बूत दिखने वाली टीम की ओर जाती है"
+        },
+        {
+         "en": "It speeds up",
+         "hi": "वह तेज़ होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal and opposite forces are balanced, so the motion does not change.",
+        "hi": "बराबर और विपरीत बल संतुलित हैं, इसलिए गति नहीं बदलती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Looks do not matter; equal pulls cancel.",
+         "hi": "दिखावट से कुछ नहीं होता; बराबर खिंचाव रद्द हो जाते हैं।"
+        },
+        {
+         "en": "Speeding up needs an unbalanced force.",
+         "hi": "तेज़ होने के लिए असंतुलित बल चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: raise the pulling force above 13 N and press Go. Then take away the carpet surface by choosing ice.",
+      "hi": "आज़माओ: खींचने का बल 13 N से ऊपर करो और \"चलो\" दबाओ। फिर सतह बर्फ़ चुनकर देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch06-friction",
+   "topic": "6.3",
+   "template": "forces",
+   "title": {
+    "en": "Friction: harder to start than to keep going",
+    "hi": "घर्षण: चलाना कठिन, चलते रहना आसान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "friction",
+    "surface": "wood",
+    "mass": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You pull a block slowly with a spring balance. When is the reading biggest?",
+      "hi": "तुम कमानीदार तुला से एक गुटके को धीरे खींचते हो। माप सबसे अधिक कब होता है?"
+     },
+     "options": [
+      {
+       "id": "start",
+       "en": "Just before it starts to slide",
+       "hi": "ठीक खिसकना शुरू होने से पहले"
+      },
+      {
+       "id": "moving",
+       "en": "While it is sliding",
+       "hi": "जब वह खिसक रहा हो"
+      },
+      {
+       "id": "same",
+       "en": "The same all the time",
+       "hi": "हर समय एक जैसा"
+      }
+     ],
+     "answer": "start"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "moved",
+     "say": {
+      "en": "Press \"Pull slowly\" and watch the spring balance until the block slides.",
+      "hi": "\"धीरे खींचो\" दबाओ और गुटका खिसकने तक कमानीदार तुला देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "measured",
+     "say": {
+      "en": "Keep watching while it slides, until the reading is recorded.",
+      "hi": "खिसकते समय देखते रहो, जब तक माप दर्ज न हो जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Friction acts between two surfaces in contact and opposes motion. Static friction stops the block from starting; it grows with your pull up to a limit. Once the block slides, sliding friction is a little smaller. That is why it is harder to start pushing a heavy box than to keep it moving.",
+      "hi": "घर्षण संपर्क में दो सतहों के बीच काम करता है और गति का विरोध करता है। स्थैतिक घर्षण गुटके को चलने से रोकता है; यह तुम्हारे खिंचाव के साथ एक सीमा तक बढ़ता है। गुटका खिसकने लगे, तो सर्पी घर्षण थोड़ा कम होता है। इसीलिए भारी बक्से को चलाना शुरू करना उसे चलाते रहने से कठिन है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we sprinkle powder on a carrom board?",
+        "hi": "हम कैरम बोर्ड पर पाउडर क्यों छिड़कते हैं?"
+       },
+       "options": [
+        {
+         "en": "To reduce friction so the coins slide farther",
+         "hi": "घर्षण कम करने के लिए ताकि गोटियाँ दूर तक फिसलें"
+        },
+        {
+         "en": "To increase friction",
+         "hi": "घर्षण बढ़ाने के लिए"
+        },
+        {
+         "en": "To make the board heavier",
+         "hi": "बोर्ड को भारी करने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fine powder lets the surfaces slide past each other more easily.",
+        "hi": "बारीक पाउडर सतहों को एक-दूसरे पर आसानी से फिसलने देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More friction would stop the coins sooner.",
+         "hi": "अधिक घर्षण गोटियों को जल्दी रोक देगा।"
+        },
+        {
+         "en": "The powder adds almost no weight; it smooths the surface.",
+         "hi": "पाउडर से लगभग कोई भार नहीं बढ़ता; यह सतह को चिकना करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Tyres have deep grooves. Why?",
+        "hi": "टायरों में गहरी खाँचें क्यों होती हैं?"
+       },
+       "options": [
+        {
+         "en": "To grip the road better and reduce slipping",
+         "hi": "सड़क को बेहतर पकड़ने और फिसलन कम करने के लिए"
+        },
+        {
+         "en": "To make them lighter",
+         "hi": "उन्हें हल्का करने के लिए"
+        },
+        {
+         "en": "For decoration",
+         "hi": "सजावट के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Treads increase friction with the road and push water away.",
+        "hi": "खाँचें सड़क से घर्षण बढ़ाती हैं और पानी को हटाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Saving weight is not the purpose; grip is.",
+         "hi": "उद्देश्य भार बचाना नहीं, पकड़ है।"
+        },
+        {
+         "en": "The grooves are there for safety, especially on wet roads.",
+         "hi": "खाँचें सुरक्षा के लिए हैं, ख़ासकर गीली सड़कों पर।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: pull the block on ice, glass, carpet and sand, and compare the table of readings.",
+      "hi": "आज़माओ: गुटके को बर्फ़, काँच, कालीन और रेत पर खींचो और मापों की तालिका की तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch06-inertia",
+   "topic": "6.4",
+   "template": "forces",
+   "title": {
+    "en": "Newton's first law: a ball on ice",
+    "hi": "न्यूटन का पहला नियम: बर्फ़ पर गेंद"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "push",
+    "object": "ball",
+    "surface": "ice"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On almost frictionless ice you kick a football once. What will it do?",
+      "hi": "लगभग बिना घर्षण वाली बर्फ़ पर तुम फ़ुटबॉल को एक बार किक मारते हो। वह क्या करेगी?"
+     },
+     "options": [
+      {
+       "id": "far",
+       "en": "Roll a very long way before stopping",
+       "hi": "रुकने से पहले बहुत दूर तक लुढ़केगी"
+      },
+      {
+       "id": "quick",
+       "en": "Stop almost at once",
+       "hi": "लगभग तुरंत रुक जाएगी"
+      },
+      {
+       "id": "back",
+       "en": "Roll back to you",
+       "hi": "तुम्हारी ओर लौट आएगी"
+      }
+     ],
+     "answer": "far"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "moved",
+     "say": {
+      "en": "Press the push button to kick the ball.",
+      "hi": "गेंद को किक मारने के लिए धक्के वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "stopped",
+     "say": {
+      "en": "Watch how far it goes before it stops.",
+      "hi": "देखो रुकने से पहले वह कितनी दूर जाती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Newton's first law: an object stays at rest, or keeps moving at the same speed in a straight line, unless an unbalanced force acts on it. This tendency is called inertia. On ice there is very little friction, so the ball keeps going a long way. More mass means more inertia.",
+      "hi": "न्यूटन का पहला नियम: कोई वस्तु विराम में रहती है, या सीधी रेखा में उसी चाल से चलती रहती है, जब तक उस पर असंतुलित बल न लगे। इस प्रवृत्ति को जड़त्व कहते हैं। बर्फ़ पर घर्षण बहुत कम है, इसलिए गेंद बहुत दूर तक जाती है। अधिक द्रव्यमान का अर्थ है अधिक जड़त्व।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bus stops suddenly and passengers lurch forward. Why?",
+        "hi": "बस अचानक रुकती है और यात्री आगे की ओर झुक जाते हैं। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Their bodies tend to keep moving forward",
+         "hi": "उनके शरीर आगे बढ़ते रहना चाहते हैं"
+        },
+        {
+         "en": "The bus pushes them forward",
+         "hi": "बस उन्हें आगे धकेलती है"
+        },
+        {
+         "en": "Gravity pulls them forward",
+         "hi": "गुरुत्व उन्हें आगे खींचता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "By inertia, their bodies keep the speed the bus had a moment ago.",
+        "hi": "जड़त्व के कारण उनके शरीर वही चाल बनाए रखते हैं जो एक पल पहले बस की थी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The bus slows down; nothing pushes the passengers forward.",
+         "hi": "बस धीमी होती है; यात्रियों को कोई आगे नहीं धकेलता।"
+        },
+        {
+         "en": "Gravity pulls down, not forward.",
+         "hi": "गुरुत्व नीचे खींचता है, आगे नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is harder to stop if both roll at the same speed?",
+        "hi": "अगर दोनों एक ही चाल से लुढ़कें, तो किसे रोकना कठिन है?"
+       },
+       "options": [
+        {
+         "en": "A football",
+         "hi": "एक फ़ुटबॉल"
+        },
+        {
+         "en": "A loaded handcart",
+         "hi": "भरी हुई हाथगाड़ी"
+        },
+        {
+         "en": "Both are equally hard",
+         "hi": "दोनों बराबर कठिन"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The handcart has much more mass and so much more inertia.",
+        "hi": "हाथगाड़ी का द्रव्यमान बहुत अधिक है, इसलिए जड़त्व भी बहुत अधिक है।"
+       },
+       "wrong": [
+        {
+         "en": "The football has less mass, so less inertia.",
+         "hi": "फ़ुटबॉल का द्रव्यमान कम है, इसलिए जड़त्व कम है।"
+        },
+        "",
+        {
+         "en": "More mass means more inertia, so they are not equal.",
+         "hi": "अधिक द्रव्यमान का अर्थ है अधिक जड़त्व, इसलिए वे बराबर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: kick the same ball on wood and on sand. How does friction change the distance?",
+      "hi": "आज़माओ: उसी गेंद को लकड़ी और रेत पर किक मारो। घर्षण दूरी को कैसे बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch06-newton2",
+   "topic": "6.5",
+   "template": "forces",
+   "title": {
+    "en": "Newton's second law: F = ma",
+    "hi": "न्यूटन का दूसरा नियम: F = ma"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "newton2",
+    "mass": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 10 N force pulls a 2 kg cart on a smooth track. What will its acceleration be?",
+      "hi": "चिकने पथ पर 10 N का बल 2 kg की गाड़ी को खींचता है। उसका त्वरण क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5 m/s²",
+       "hi": "5 मीटर प्रति सेकंड²"
+      },
+      {
+       "id": "20",
+       "en": "20 m/s²",
+       "hi": "20 मीटर प्रति सेकंड²"
+      },
+      {
+       "id": "12",
+       "en": "12 m/s²",
+       "hi": "12 मीटर प्रति सेकंड²"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "moved",
+     "say": {
+      "en": "Press \"Go\" to pull the cart. Watch the dots on the tape spread out.",
+      "hi": "गाड़ी खींचने के लिए \"चलो\" दबाओ। टेप पर बिंदुओं को फैलते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "measured",
+     "say": {
+      "en": "Wait for the cart to reach the end and read the acceleration.",
+      "hi": "गाड़ी के अंत तक पहुँचने का इंतज़ार करो और त्वरण पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Newton's second law: the acceleration of an object is the net force divided by its mass, a = F ÷ m, or F = m × a. Here a = 10 N ÷ 2 kg = 5 m/s². A bigger force gives more acceleration; a bigger mass gives less. One newton is the force that gives 1 kg an acceleration of 1 m/s².",
+      "hi": "न्यूटन का दूसरा नियम: वस्तु का त्वरण कुल बल को उसके द्रव्यमान से भाग देने पर मिलता है, a = F ÷ m, या F = m × a। यहाँ a = 10 N ÷ 2 kg = 5 m/s²। बड़ा बल अधिक त्वरण देता है; बड़ा द्रव्यमान कम। एक न्यूटन वह बल है जो 1 kg को 1 m/s² का त्वरण देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What force is needed to give a 50 kg bicycle and rider an acceleration of 2 m/s²?",
+        "hi": "50 kg की साइकिल और सवार को 2 m/s² का त्वरण देने के लिए कितना बल चाहिए?"
+       },
+       "options": [
+        "25 N",
+        "100 N",
+        "52 N"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "F = m × a = 50 × 2 = 100 N.",
+        "hi": "F = m × a = 50 × 2 = 100 N।"
+       },
+       "wrong": [
+        {
+         "en": "That divides; force is mass times acceleration.",
+         "hi": "यह भाग देना है; बल द्रव्यमान गुणा त्वरण है।"
+        },
+        "",
+        {
+         "en": "Adding mass and acceleration does not give a force.",
+         "hi": "द्रव्यमान और त्वरण जोड़ने से बल नहीं मिलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: double the mass with the same force, then double the force. Watch how the dots on the tape change.",
+      "hi": "आज़माओ: उसी बल के साथ द्रव्यमान दोगुना करो, फिर बल दोगुना करो। देखो टेप के बिंदु कैसे बदलते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch06-third",
+   "topic": "6.6",
+   "template": "forces",
+   "title": {
+    "en": "Newton's third law: two carts collide",
+    "hi": "न्यूटन का तीसरा नियम: दो गाड़ियाँ टकराती हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "collision",
+    "object": "elastic"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Cart A rolls into cart B. While they touch, which cart pushes harder on the other?",
+      "hi": "गाड़ी A गाड़ी B से टकराती है। छूते समय कौन-सी गाड़ी दूसरी पर अधिक ज़ोर से धकेलती है?"
+     },
+     "options": [
+      {
+       "id": "equal",
+       "en": "They push each other equally hard, in opposite directions",
+       "hi": "दोनों एक-दूसरे को बराबर ज़ोर से, विपरीत दिशाओं में धकेलती हैं"
+      },
+      {
+       "id": "a",
+       "en": "A pushes harder, because it was moving",
+       "hi": "A अधिक धकेलती है, क्योंकि वह चल रही थी"
+      },
+      {
+       "id": "b",
+       "en": "B pushes harder",
+       "hi": "B अधिक धकेलती है"
+      }
+     ],
+     "answer": "equal"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "collided",
+     "say": {
+      "en": "Press release to roll cart A into cart B.",
+      "hi": "गाड़ी A को B की ओर लुढ़काने के लिए \"छोड़ो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Newton's third law: when one object pushes on another, the second pushes back with a force equal in size and opposite in direction. These action and reaction forces act on different objects, so they do not cancel: A slows down and B speeds up. Rockets and swimmers move forward by pushing gas or water backward.",
+      "hi": "न्यूटन का तीसरा नियम: जब एक वस्तु दूसरी पर बल लगाती है, तो दूसरी उतने ही परिमाण का, विपरीत दिशा में बल वापस लगाती है। ये क्रिया और प्रतिक्रिया बल अलग-अलग वस्तुओं पर लगते हैं, इसलिए रद्द नहीं होते: A धीमी होती है और B तेज़ होती है। रॉकेट और तैराक गैस या पानी को पीछे धकेलकर आगे बढ़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You blow up a balloon on a straw threaded on a string and let it go. Why does it shoot forward?",
+        "hi": "धागे में पिरोई स्ट्रॉ पर लगा गुब्बारा फुलाकर छोड़ते हो। वह आगे क्यों भागता है?"
+       },
+       "options": [
+        {
+         "en": "The air pushed out backward pushes the balloon forward",
+         "hi": "पीछे निकाली गई हवा गुब्बारे को आगे धकेलती है"
+        },
+        {
+         "en": "The string pulls it",
+         "hi": "धागा उसे खींचता है"
+        },
+        {
+         "en": "The air in the room sucks it forward",
+         "hi": "कमरे की हवा उसे आगे खींच लेती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The balloon pushes air back (action) and the air pushes the balloon forward (reaction).",
+        "hi": "गुब्बारा हवा को पीछे धकेलता है (क्रिया) और हवा गुब्बारे को आगे धकेलती है (प्रतिक्रिया)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The string only guides it; it does not pull.",
+         "hi": "धागा केवल रास्ता दिखाता है; खींचता नहीं।"
+        },
+        {
+         "en": "Room air does not suck; it actually resists the motion.",
+         "hi": "कमरे की हवा खींचती नहीं; वह गति का विरोध करती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do action and reaction forces not cancel each other?",
+        "hi": "क्रिया और प्रतिक्रिया बल एक-दूसरे को रद्द क्यों नहीं करते?"
+       },
+       "options": [
+        {
+         "en": "They act on different objects",
+         "hi": "वे अलग-अलग वस्तुओं पर लगते हैं"
+        },
+        {
+         "en": "One is always bigger",
+         "hi": "एक हमेशा बड़ा होता है"
+        },
+        {
+         "en": "They act at different times",
+         "hi": "वे अलग-अलग समय पर लगते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Forces cancel only when they act on the same object.",
+        "hi": "बल तभी रद्द होते हैं जब वे एक ही वस्तु पर लगें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They are always equal in size.",
+         "hi": "वे हमेशा बराबर परिमाण के होते हैं।"
+        },
+        {
+         "en": "They act at the same instant, for the same time.",
+         "hi": "वे एक ही पल में, उतने ही समय के लिए लगते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the masses of the carts and try the sticky pads. What happens to each cart's speed?",
+      "hi": "आज़माओ: गाड़ियों के द्रव्यमान बदलो और चिपकने वाले पैड आज़माओ। हर गाड़ी की चाल का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch06-system",
+   "topic": "6.7",
+   "template": "forces",
+   "title": {
+    "en": "Two boxes as one system",
+    "hi": "दो बक्से एक तंत्र की तरह"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "newton2",
+    "mass": 4
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two 2 kg boxes are tied together and pulled with 10 N on a smooth floor. Treat them as one system. What is the acceleration?",
+      "hi": "दो 2 kg के बक्से बँधे हैं और चिकने फ़र्श पर 10 N से खींचे जाते हैं। उन्हें एक तंत्र मानो। त्वरण क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "2.5",
+       "en": "2.5 m/s²",
+       "hi": "2.5 मीटर प्रति सेकंड²"
+      },
+      {
+       "id": "5",
+       "en": "5 m/s²",
+       "hi": "5 मीटर प्रति सेकंड²"
+      },
+      {
+       "id": "10",
+       "en": "10 m/s²",
+       "hi": "10 मीटर प्रति सेकंड²"
+      }
+     ],
+     "answer": "2.5"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "moved",
+     "say": {
+      "en": "The cart now carries both boxes, 4 kg in all. Press \"Go\".",
+      "hi": "गाड़ी अब दोनों बक्से उठाए है, कुल 4 kg। \"चलो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "measured",
+     "say": {
+      "en": "Wait for the reading of the acceleration.",
+      "hi": "त्वरण का माप आने का इंतज़ार करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When objects are joined, we can treat them as one system. The string between the boxes pulls each one (tension), but these are internal forces and cancel inside the system. Only the outside force counts: a = F ÷ (m1 + m2) = 10 ÷ 4 = 2.5 m/s². Both boxes move together with this acceleration.",
+      "hi": "जब वस्तुएँ जुड़ी हों, तो हम उन्हें एक तंत्र मान सकते हैं। बक्सों के बीच की डोरी हर एक को खींचती है (तनाव), पर ये आंतरिक बल हैं और तंत्र के अंदर रद्द हो जाते हैं। केवल बाहरी बल गिना जाता है: a = F ÷ (m1 + m2) = 10 ÷ 4 = 2.5 m/s²। दोनों बक्से इसी त्वरण से साथ चलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An engine pulls three 10 000 kg coaches with a net force of 60 000 N. What is the acceleration of the train of coaches?",
+        "hi": "एक इंजन तीन 10 000 kg के डिब्बों को 60 000 N के कुल बल से खींचता है। डिब्बों का त्वरण क्या है?"
+       },
+       "options": [
+        "2 m/s²",
+        "6 m/s²",
+        "0.5 m/s²"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "a = 60 000 ÷ (3 × 10 000) = 2 m/s².",
+        "hi": "a = 60 000 ÷ (3 × 10 000) = 2 m/s²।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That uses the mass of only one coach; the system has three.",
+         "hi": "इसमें केवल एक डिब्बे का द्रव्यमान लिया; तंत्र में तीन हैं।"
+        },
+        {
+         "en": "Check the division: 60 000 ÷ 30 000 = 2.",
+         "hi": "भाग जाँचो: 60 000 ÷ 30 000 = 2।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: set the mass to 2 kg (one box) and compare the acceleration with the same 10 N.",
+      "hi": "आज़माओ: द्रव्यमान 2 kg (एक बक्सा) करो और उसी 10 N से त्वरण की तुलना करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Hook of the chapter",
+   "shows": "A school tug of war on a dusty ground, two teams leaning back on a thick rope, the rope's centre mark over a line",
+   "view": "Wide side view, mid-afternoon light",
+   "right": "Both teams leaning; centre flag over the line (balanced)",
+   "avoid": "Faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.1.1",
+   "use": "A spring balance",
+   "shows": "A school spring balance (0 to 10 N) with a hook, hanging straight, a 200 g mass on the hook",
+   "view": "Front view, transparent background",
+   "right": "Scale lines visible; pointer near 2 N",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "6.3",
+   "use": "Coin on different surfaces with a rubber band (Activity 6.1)",
+   "shows": "A coin pulled by a stretched rubber band across glass, a wooden desk and a cloth: the stretch of the band just before the coin moves",
+   "view": "From above, same framing, three frames",
+   "right": "Band stretched most on cloth, least on glass",
+   "avoid": "Fingers covering the band"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "6.3",
+   "use": "Tyre treads",
+   "shows": "Close-up of a bicycle tyre tread and a worn smooth tyre side by side",
+   "view": "Square crop, sharp, side light to show the grooves",
+   "right": "Grooves clear on the new tyre, smooth on the worn one",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Inertia in a bus",
+   "shows": "Standing passengers in a city bus leaning forward as it brakes, holding the rails",
+   "view": "Inside the bus from the back, slight motion blur",
+   "right": "All passengers lean the same way, forward",
+   "avoid": "Identifiable faces"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "6.6",
+   "use": "Balloon rocket (Activity 6.7)",
+   "shows": "A blown-up balloon taped to a straw on a string across a classroom, then the balloon racing along the string with air rushing out",
+   "view": "Side view, same framing, two frames",
+   "right": "Air leaves backward, balloon moves forward",
+   "avoid": "Faces"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "6.7",
+   "use": "Two boxes joined by a string",
+   "shows": "Two wooden boxes on a smooth floor joined by a short rope, a hand pulling the front box",
+   "view": "Side view, clean realistic render, white background",
+   "right": "Rope taut between the boxes",
+   "avoid": "Arrows and labels (the app adds them)"
+  }
+ ]
+}

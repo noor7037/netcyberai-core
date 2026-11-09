@@ -1,0 +1,1299 @@
+{
+ "chapter_key": "u.c10.social_science.jess4.ch05",
+ "class": 10,
+ "subject_id": "social_science",
+ "title": "Outcomes of Democracy",
+ "source": "https://ncert.nic.in/textbook/pdf/jess405.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Accountable, responsive and legitimate government",
+   "labs": [
+    "c10-social_science-jess4-ch05-know-your-road",
+    "c10-social_science-jess4-ch05-good-government",
+    "c10-social_science-jess4-ch05-who-answers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "Economic growth and development",
+   "labs": [
+    "c10-social_science-jess4-ch05-balance-sheet"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "Reduction of inequality and poverty",
+   "labs": [
+    "c10-social_science-jess4-ch05-balance-sheet"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4",
+   "title": "Accommodation of social diversity",
+   "labs": [],
+   "why_no_lab": "Belgium and Sri Lanka in Chapter 1 and the caste and religion labs in Chapter 3 already teach this through sorting and role play."
+  },
+  {
+   "n": "5",
+   "title": "Dignity and freedom of the citizens",
+   "labs": [
+    "c10-social_science-jess4-ch05-dignity"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-social_science-jess4-ch05-know-your-road",
+   "topic": "1",
+   "template": "scenario",
+   "title": {
+    "en": "Where did the road money go?",
+    "hi": "सड़क का पैसा कहाँ गया?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "A villager whose road is still full of potholes",
+     "hi": "एक गाँववाला जिसकी सड़क अब भी गड्ढों से भरी है"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "The panchayat says money was spent on repairing your village road, but the potholes are still there. How will you find out the truth?",
+       "hi": "पंचायत कहती है कि गाँव की सड़क की मरम्मत पर पैसा ख़र्च हुआ, पर गड्ढे अब भी हैं। सच कैसे पता करोगे?"
+      },
+      "choices": [
+       {
+        "id": "rti",
+        "text": {
+         "en": "Write an application under the Right to Information Act asking how the money was spent",
+         "hi": "सूचना का अधिकार क़ानून के तहत आवेदन लिखकर पूछो कि पैसा कैसे ख़र्च हुआ"
+        },
+        "next": "reply",
+        "feedback": {
+         "en": "Good. Citizens have the right to information about how the government works.",
+         "hi": "बढ़िया। नागरिकों को जानने का हक़ है कि सरकार कैसे काम करती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "rumour",
+        "text": {
+         "en": "Spread a rumour that the Sarpanch has stolen the money",
+         "hi": "अफ़वाह फैलाओ कि सरपंच ने पैसा चुरा लिया"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Rumours are not proof. They can harm innocent people and settle nothing.",
+         "hi": "अफ़वाह सबूत नहीं है। इससे निर्दोष को नुक़सान हो सकता है और हल कुछ नहीं निकलता।"
+        },
+        "good": false
+       },
+       {
+        "id": "quiet",
+        "text": {
+         "en": "Say nothing; nothing will change",
+         "hi": "कुछ मत कहो; कुछ नहीं बदलेगा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "If citizens stay silent, officials need not answer to anyone.",
+         "hi": "नागरिक चुप रहें तो अधिकारियों को किसी को जवाब नहीं देना पड़ता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "reply",
+      "text": {
+       "en": "The reply shows only half of the sanctioned amount was spent on the road. What do you do next?",
+       "hi": "जवाब में दिखता है कि मंज़ूर रक़म का केवल आधा सड़क पर लगा। आगे क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "appeal",
+        "text": {
+         "en": "Share the facts at the Gram Sabha and petition the higher officer for an enquiry",
+         "hi": "ग्राम सभा में तथ्य रखो और जाँच के लिए उच्च अधिकारी को अर्ज़ी दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Facts gathered through the law make the government accountable.",
+         "hi": "सही। क़ानून से जुटाए तथ्य सरकार को जवाबदेह बनाते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "threat",
+        "text": {
+         "en": "Threaten the clerk who sent the reply",
+         "hi": "जवाब भेजने वाले क्लर्क को धमकाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Threats are wrong and do not fix the road.",
+         "hi": "धमकी ग़लत है और इससे सड़क नहीं बनती।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You doubt how money was spent. What is the fair, lawful way to find out?",
+      "hi": "तुम्हें शक है कि पैसा कैसे ख़र्च हुआ। जानने का उचित और वैधानिक तरीक़ा क्या है?"
+     },
+     "options": [
+      {
+       "id": "rti",
+       "en": "Ask in writing under the law",
+       "hi": "क़ानून के तहत लिखकर पूछना"
+      },
+      {
+       "id": "rumour",
+       "en": "Spread a rumour",
+       "hi": "अफ़वाह फैलाना"
+      }
+     ],
+     "answer": "rti"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:rti",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose what you think is the wisest thing to do, and keep going until the story ends well.",
+      "hi": "जो सबसे समझदारी का काम लगे उसे चुनो, और तब तक चलो जब तक कहानी अच्छे अंत पर न पहुँचे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A good government should be accountable to citizens, transparent in how it decides, and responsive to their needs. The Right to Information gives citizens a tool to ask and to check. When people use it, officials must show their records, and honest decisions are encouraged.",
+      "hi": "अच्छी सरकार को नागरिकों के प्रति जवाबदेह, निर्णयों में पारदर्शी और उनकी ज़रूरतों के प्रति संवेदनशील होना चाहिए। सूचना का अधिकार नागरिकों को पूछने और जाँचने का औज़ार देता है। जब लोग इसका उपयोग करते हैं तो अधिकारियों को अपने रिकॉर्ड दिखाने पड़ते हैं और ईमानदार फ़ैसलों को बढ़ावा मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does transparency mean?",
+        "hi": "पारदर्शिता का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Citizens can examine how a decision was taken",
+         "hi": "नागरिक देख सकते हैं कि फ़ैसला कैसे लिया गया"
+        },
+        {
+         "en": "Decisions are made in secret",
+         "hi": "फ़ैसले चुपचाप लिए जाते हैं"
+        },
+        {
+         "en": "Only officials may see the papers",
+         "hi": "केवल अधिकारी काग़ज़ देख सकते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Transparency means people have the right and the means to look into the process.",
+        "hi": "पारदर्शिता का अर्थ है कि लोगों को प्रक्रिया की जाँच करने का हक़ और साधन हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the opposite: secrecy.",
+         "hi": "यह उलटा है: गोपनीयता।"
+        },
+        {
+         "en": "With transparency, ordinary citizens can see the papers too.",
+         "hi": "पारदर्शिता में आम नागरिक भी काग़ज़ देख सकते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a rumour a poor tool for accountability?",
+        "hi": "अफ़वाह जवाबदेही का कमज़ोर औज़ार क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It is not proof and can wrongly harm people",
+         "hi": "यह सबूत नहीं है और निर्दोषों को ग़लत ढंग से नुक़सान पहुँचा सकती है"
+        },
+        {
+         "en": "It is too expensive",
+         "hi": "यह बहुत महँगी है"
+        },
+        {
+         "en": "It is a good legal remedy",
+         "hi": "यह अच्छा क़ानूनी उपाय है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Accountability needs evidence. Facts from official records are more reliable than rumours.",
+        "hi": "जवाबदेही के लिए सबूत चाहिए। सरकारी रिकॉर्ड के तथ्य अफ़वाह से ज़्यादा भरोसेमंद हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rumours cost nothing, but they are harmful, not costly.",
+         "hi": "अफ़वाह में पैसा नहीं लगता, पर वह हानिकारक है।"
+        },
+        {
+         "en": "A rumour is not a legal remedy.",
+         "hi": "अफ़वाह क़ानूनी उपाय नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a public service near you (a road, a ration shop, a school meal). What one question would you ask the government about it?",
+      "hi": "अपने पास की कोई सार्वजनिक सेवा चुनो (सड़क, राशन की दुकान, मिड-डे मील)। सरकार से उसके बारे में कौन-सा एक प्रश्न पूछोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess4-ch05-good-government",
+   "topic": "1",
+   "template": "match",
+   "title": {
+    "en": "What we expect from a democratic government",
+    "hi": "लोकतांत्रिक सरकार से हमारी अपेक्षाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "account",
+      "left": {
+       "en": "Accountable",
+       "hi": "जवाबदेह"
+      },
+      "right": {
+       "en": "Rulers must answer to the people for their decisions",
+       "hi": "शासकों को अपने फ़ैसलों के लिए जनता को जवाब देना होता है"
+      },
+      "why": {
+       "en": "People can question and, in elections, replace them.",
+       "hi": "लोग सवाल कर सकते हैं और चुनाव में उन्हें बदल सकते हैं।"
+      }
+     },
+     {
+      "id": "respons",
+      "left": {
+       "en": "Responsive",
+       "hi": "संवेदनशील (उत्तरदायी)"
+      },
+      "right": {
+       "en": "It listens to people and acts on their needs",
+       "hi": "यह जनता की सुनती और उनकी ज़रूरतों पर काम करती है"
+      },
+      "why": {
+       "en": "Public demands shape decisions.",
+       "hi": "जन-माँगें फ़ैसलों को आकार देती हैं।"
+      }
+     },
+     {
+      "id": "transp",
+      "left": {
+       "en": "Transparent",
+       "hi": "पारदर्शी"
+      },
+      "right": {
+       "en": "Citizens can find out how decisions were taken",
+       "hi": "नागरिक जान सकते हैं कि फ़ैसले कैसे लिए गए"
+      },
+      "why": {
+       "en": "Open records and public debate help this.",
+       "hi": "खुले रिकॉर्ड और सार्वजनिक बहस इसमें मदद करते हैं।"
+      }
+     },
+     {
+      "id": "legit",
+      "left": {
+       "en": "Legitimate",
+       "hi": "वैध (जनता की अपनी)"
+      },
+      "right": {
+       "en": "The people accept it as their own because they chose it",
+       "hi": "जनता इसे अपना मानती है क्योंकि उसने इसे चुना"
+      },
+      "why": {
+       "en": "This is its great strength, even when it is slow.",
+       "hi": "धीमी होने पर भी यही इसकी बड़ी ताक़त है।"
+      }
+     },
+     {
+      "id": "slow",
+      "left": {
+       "en": "Some delay",
+       "hi": "कुछ देरी"
+      },
+      "right": {
+       "en": "Debate and procedure take time",
+       "hi": "बहस और प्रक्रिया में समय लगता है"
+      },
+      "why": {
+       "en": "The delay can make decisions more acceptable.",
+       "hi": "देरी से फ़ैसले अधिक स्वीकार्य हो सकते हैं।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:account",
+     "expect": "matched:account",
+     "say": {
+      "en": "Tap \"Accountable\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"जवाबदेह\" पर टैप करो, फिर दाईं ओर उसकी जोड़ी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word means \"people can check how a decision was made\"?",
+      "hi": "कौन-सा शब्द बताता है कि \"लोग जाँच सकते हैं कि फ़ैसला कैसे हुआ\"?"
+     },
+     "options": [
+      {
+       "id": "transp",
+       "en": "Transparent",
+       "hi": "पारदर्शी"
+      },
+      {
+       "id": "legit",
+       "en": "Legitimate",
+       "hi": "वैध"
+      },
+      {
+       "id": "slow",
+       "en": "Some delay",
+       "hi": "कुछ देरी"
+      }
+     ],
+     "answer": "transp"
+    },
+    {
+     "kind": "do",
+     "target": "left:legit",
+     "expect": "matched:legit",
+     "say": {
+      "en": "Tap \"Legitimate\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"वैध (जनता की अपनी)\" पर टैप करो, फिर दाईं ओर उसकी जोड़ी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the pairs, then press Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Democracy may be slower, because it needs debate and procedure. But its decisions are more acceptable to people, because they follow rules and are open to questions. The most basic outcome is a government that is accountable, responsive and legitimate. Even when it is slow or imperfect, it is the people's own government.",
+      "hi": "लोकतंत्र धीमा हो सकता है, क्योंकि उसमें बहस और प्रक्रिया चाहिए। पर उसके फ़ैसले लोगों को ज़्यादा स्वीकार्य होते हैं, क्योंकि वे नियमों से होते और सवालों के लिए खुले हैं। सबसे बुनियादी परिणाम है जवाबदेह, संवेदनशील और वैध सरकार। धीमी या अधूरी होने पर भी यह जनता की अपनी सरकार है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a slower democratic decision sometimes better?",
+        "hi": "धीमा लोकतांत्रिक फ़ैसला कभी-कभी बेहतर क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "Because people can accept it, as it followed procedures",
+         "hi": "क्योंकि प्रक्रिया अपनाई गई, इसलिए लोग उसे स्वीकार कर लेते हैं"
+        },
+        {
+         "en": "Because slow is always better",
+         "hi": "क्योंकि धीमा हमेशा बेहतर होता है"
+        },
+        {
+         "en": "Because no one can question it",
+         "hi": "क्योंकि कोई उसे चुनौती नहीं दे सकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A decision taken by procedure and open debate has less chance of being rejected later.",
+        "hi": "प्रक्रिया और खुली बहस से लिए फ़ैसले के बाद में ठुकराए जाने की संभावना कम होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Slow is not always better; it is the careful process that matters.",
+         "hi": "धीमा हमेशा बेहतर नहीं; सावधानी वाली प्रक्रिया मायने रखती है।"
+        },
+        {
+         "en": "In democracy people can question decisions.",
+         "hi": "लोकतंत्र में लोग फ़ैसलों पर सवाल कर सकते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does \"legitimate government\" mean?",
+        "hi": "\"वैध सरकार\" का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "The people accept it as their own",
+         "hi": "जनता उसे अपना मानती है"
+        },
+        {
+         "en": "A government that never makes mistakes",
+         "hi": "जो सरकार कभी ग़लती नहीं करती"
+        },
+        {
+         "en": "A government that rules by force",
+         "hi": "जो बल से शासन करती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A government chosen by the people is accepted as rightful, even if imperfect.",
+        "hi": "जनता की चुनी सरकार अधूरी होने पर भी उचित मानी जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Democratic governments do make mistakes.",
+         "hi": "लोकतांत्रिक सरकारें ग़लतियाँ करती हैं।"
+        },
+        {
+         "en": "Rule by force lacks the people's consent.",
+         "hi": "बल का शासन जनता की सहमति के बिना होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these words describes your school council best? Which one is weakest?",
+      "hi": "इनमें से कौन-सा शब्द तुम्हारी स्कूल परिषद के लिए सबसे उपयुक्त है? कौन-सा सबसे कमज़ोर?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess4-ch05-who-answers",
+   "topic": "1",
+   "template": "sort",
+   "title": {
+    "en": "Democratic or non-democratic government?",
+    "hi": "लोकतांत्रिक या ग़ैर-लोकतांत्रिक सरकार?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "demo",
+      "label": {
+       "en": "Democratic government",
+       "hi": "लोकतांत्रिक सरकार"
+      }
+     },
+     {
+      "id": "non",
+      "label": {
+       "en": "Non-democratic government",
+       "hi": "ग़ैर-लोकतांत्रिक सरकार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "quick",
+      "text": {
+       "en": "Can decide very quickly without any debate",
+       "hi": "बिना बहस के बहुत जल्दी फ़ैसले ले सकती है"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Speed is possible, but without consent decisions may be rejected.",
+       "hi": "तेज़ी संभव है, पर सहमति के बिना फ़ैसले ठुकराए जा सकते हैं।"
+      }
+     },
+     {
+      "id": "nobother",
+      "text": {
+       "en": "Rulers need not answer to citizens",
+       "hi": "शासकों को नागरिकों को जवाब नहीं देना पड़ता"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Without elections, no one can hold them to account.",
+       "hi": "चुनाव के बिना कोई उनसे जवाब नहीं माँग सकता।"
+      }
+     },
+     {
+      "id": "secret",
+      "text": {
+       "en": "Citizens cannot see how decisions were made",
+       "hi": "नागरिक नहीं देख सकते कि फ़ैसले कैसे हुए"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Secrecy replaces transparency.",
+       "hi": "पारदर्शिता की जगह गोपनीयता होती है।"
+      }
+     },
+     {
+      "id": "force",
+      "text": {
+       "en": "Citizens cannot easily replace the rulers",
+       "hi": "नागरिक शासकों को आसानी से बदल नहीं सकते"
+      },
+      "bin": "non",
+      "why": {
+       "en": "There is no regular, free election to change them.",
+       "hi": "उन्हें बदलने के लिए नियमित, स्वतंत्र चुनाव नहीं होता।"
+      }
+     },
+     {
+      "id": "debate",
+      "text": {
+       "en": "Decisions follow public debate and procedure",
+       "hi": "फ़ैसले सार्वजनिक बहस और प्रक्रिया से होते हैं"
+      },
+      "bin": "demo",
+      "why": {
+       "en": "Open debate and procedure are the core of democracy.",
+       "hi": "खुली बहस और प्रक्रिया लोकतंत्र का मूल हैं।"
+      }
+     },
+     {
+      "id": "vote",
+      "text": {
+       "en": "Rulers can be replaced by voting",
+       "hi": "वोट से शासकों को बदला जा सकता है"
+      },
+      "bin": "demo",
+      "why": {
+       "en": "Regular free and fair elections let people choose.",
+       "hi": "नियमित, स्वतंत्र और निष्पक्ष चुनाव लोगों को चुनने देते हैं।"
+      }
+     },
+     {
+      "id": "right",
+      "text": {
+       "en": "Citizens can look into the process of a decision",
+       "hi": "नागरिक किसी फ़ैसले की प्रक्रिया देख सकते हैं"
+      },
+      "bin": "demo",
+      "why": {
+       "en": "This is called transparency.",
+       "hi": "इसे पारदर्शिता कहते हैं।"
+      }
+     },
+     {
+      "id": "delay",
+      "text": {
+       "en": "Some delay is bound to happen",
+       "hi": "कुछ देरी होना तय है"
+      },
+      "bin": "demo",
+      "why": {
+       "en": "Debate takes time, which is a cost worth paying.",
+       "hi": "बहस में समय लगता है, यह क़ीमत देने लायक़ है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:quick",
+     "expect": "placed:quick",
+     "say": {
+      "en": "Tap the card \"Can decide very quickly without any debate\", then tap the group where it belongs.",
+      "hi": "कार्ड \"बिना बहस के बहुत जल्दी फ़ैसले ले सकती है\" पर टैप करो, फिर उस समूह पर टैप करो जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which kind of government is more likely to decide fast without asking people?",
+      "hi": "किस प्रकार की सरकार लोगों से पूछे बिना जल्दी फ़ैसले लेने की संभावना रखती है?"
+     },
+     "options": [
+      {
+       "id": "non",
+       "en": "Non-democratic",
+       "hi": "ग़ैर-लोकतांत्रिक"
+      },
+      {
+       "id": "demo",
+       "en": "Democratic",
+       "hi": "लोकतांत्रिक"
+      }
+     ],
+     "answer": "non"
+    },
+    {
+     "kind": "do",
+     "target": "card:debate",
+     "expect": "placed:debate",
+     "say": {
+      "en": "Tap the card \"Decisions follow public debate and procedure\", then tap the group where it belongs.",
+      "hi": "कार्ड \"फ़ैसले सार्वजनिक बहस और प्रक्रिया से होते हैं\" पर टैप करो, फिर उस समूह पर टैप करो जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest of the cards, then press Check.",
+      "hi": "बाक़ी कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Non-democratic rulers do not have to worry about debate or public opinion, so they can act quickly. But they are not answerable to the people, and their decisions are not open to inspection. A democratic government is slower, but it is accountable, transparent and replaceable by vote.",
+      "hi": "ग़ैर-लोकतांत्रिक शासकों को बहस या जनमत की चिंता नहीं करनी पड़ती, इसलिए वे तेज़ी से काम कर सकते हैं। पर वे जनता के प्रति उत्तरदायी नहीं और उनके फ़ैसले जाँच के लिए खुले नहीं। लोकतांत्रिक सरकार धीमी है, पर जवाबदेह, पारदर्शी और वोट से बदली जा सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What price does democracy pay for open debate?",
+        "hi": "खुली बहस के लिए लोकतंत्र क्या क़ीमत चुकाता है?"
+       },
+       "options": [
+        {
+         "en": "Some delay in decisions",
+         "hi": "फ़ैसलों में कुछ देरी"
+        },
+        {
+         "en": "Loss of voting rights",
+         "hi": "मतदान के अधिकार का नुक़सान"
+        },
+        {
+         "en": "Secret rule",
+         "hi": "गुप्त शासन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Deliberation takes time. Many consider the delay worth it.",
+        "hi": "विचार-विमर्श में समय लगता है। बहुत लोग इस देरी को सार्थक मानते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Democracy protects voting rights.",
+         "hi": "लोकतंत्र मतदान के अधिकार की रक्षा करता है।"
+        },
+        {
+         "en": "Democracy is open, not secret.",
+         "hi": "लोकतंत्र खुला होता है, गुप्त नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is a strength found in democracy but often missing in non-democracies?",
+        "hi": "लोकतंत्र की कौन-सी ताक़त ग़ैर-लोकतंत्रों में प्रायः नहीं होती?"
+       },
+       "options": [
+        {
+         "en": "Transparency and a way to replace rulers by voting",
+         "hi": "पारदर्शिता और वोट से शासकों को बदलने का तरीक़ा"
+        },
+        {
+         "en": "Quick rule by one person",
+         "hi": "एक व्यक्ति का तेज़ शासन"
+        },
+        {
+         "en": "No need to explain decisions",
+         "hi": "फ़ैसले समझाने की ज़रूरत नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Open process and the power to change rulers keep leaders answerable.",
+        "hi": "खुली प्रक्रिया और शासक बदलने की शक्ति नेताओं को जवाबदेह रखती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Quick rule by one person is more typical of non-democracies.",
+         "hi": "एक व्यक्ति का तेज़ शासन ग़ैर-लोकतंत्रों में ज़्यादा होता है।"
+        },
+        {
+         "en": "Not explaining decisions is a weakness, not a strength.",
+         "hi": "फ़ैसले न समझाना कमज़ोरी है, ताक़त नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name a rule at home or school made by discussion and a rule made by one person. Which one do you follow more willingly?",
+      "hi": "घर या स्कूल का एक नियम बताओ जो चर्चा से बना और एक जो एक व्यक्ति ने बनाया। किसे तुम ज़्यादा मन से मानते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess4-ch05-balance-sheet",
+   "topic": "2",
+   "template": "sort",
+   "title": {
+    "en": "What democracy delivers and where it falls short",
+    "hi": "लोकतंत्र क्या देता है और कहाँ कमी रह जाती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "does",
+      "label": {
+       "en": "Democracy does well",
+       "hi": "लोकतंत्र अच्छा करता है"
+      }
+     },
+     {
+      "id": "short",
+      "label": {
+       "en": "Democracy falls short",
+       "hi": "लोकतंत्र में कमी रहती है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "elect",
+      "text": {
+       "en": "Regular free elections and open public debate",
+       "hi": "नियमित स्वतंत्र चुनाव और खुली सार्वजनिक बहस"
+      },
+      "bin": "does",
+      "why": {
+       "en": "Democracies have done well in setting up these.",
+       "hi": "लोकतंत्रों ने इन्हें स्थापित करने में अच्छा किया है।"
+      }
+     },
+     {
+      "id": "legit",
+      "text": {
+       "en": "The government is accepted as the people's own",
+       "hi": "सरकार को जनता की अपनी माना जाता है"
+      },
+      "bin": "does",
+      "why": {
+       "en": "Legitimacy is democracy's great strength.",
+       "hi": "वैधता लोकतंत्र की बड़ी ताक़त है।"
+      }
+     },
+     {
+      "id": "peace",
+      "text": {
+       "en": "Social differences can be settled by talking",
+       "hi": "सामाजिक मतभेद बातचीत से सुलझ सकते हैं"
+      },
+      "bin": "does",
+      "why": {
+       "en": "Power sharing helps social groups live together.",
+       "hi": "सत्ता-साझेदारी सामाजिक समूहों को साथ रहने में मदद करती है।"
+      }
+     },
+     {
+      "id": "dignity",
+      "text": {
+       "en": "Every citizen has equal rights and dignity in law",
+       "hi": "क़ानून में हर नागरिक के समान अधिकार और गरिमा"
+      },
+      "bin": "does",
+      "why": {
+       "en": "Equality of citizens is a basic democratic promise.",
+       "hi": "नागरिकों की बराबरी लोकतंत्र का बुनियादी वादा है।"
+      }
+     },
+     {
+      "id": "poverty",
+      "text": {
+       "en": "Many families are still poor",
+       "hi": "कई परिवार अब भी ग़रीब हैं"
+      },
+      "bin": "short",
+      "why": {
+       "en": "Economic growth does not always reach everyone.",
+       "hi": "आर्थिक वृद्धि हमेशा सबको नहीं मिलती।"
+      }
+     },
+     {
+      "id": "gap",
+      "text": {
+       "en": "The gap between the rich and the poor is wide",
+       "hi": "अमीर-ग़रीब के बीच की खाई चौड़ी है"
+      },
+      "bin": "short",
+      "why": {
+       "en": "A small group may hold a large share of the wealth.",
+       "hi": "एक छोटे समूह के पास संपत्ति का बड़ा हिस्सा हो सकता है।"
+      }
+     },
+     {
+      "id": "humil",
+      "text": {
+       "en": "Some people still face humiliation because of caste",
+       "hi": "कुछ लोग अब भी जाति के कारण अपमान झेलते हैं"
+      },
+      "bin": "short",
+      "why": {
+       "en": "Laws forbid it, but discrimination continues in places.",
+       "hi": "क़ानून मना करता है, पर कुछ जगह भेदभाव जारी है।"
+      }
+     },
+     {
+      "id": "corrupt",
+      "text": {
+       "en": "Corruption has not disappeared",
+       "hi": "भ्रष्टाचार ख़त्म नहीं हुआ है"
+      },
+      "bin": "short",
+      "why": {
+       "en": "Democracies are not free of corruption.",
+       "hi": "लोकतंत्र भ्रष्टाचार से मुक्त नहीं हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:elect",
+     "expect": "placed:elect",
+     "say": {
+      "en": "Tap the card \"Regular free elections and open public debate\", then tap the group where it belongs.",
+      "hi": "कार्ड \"नियमित स्वतंत्र चुनाव और खुली सार्वजनिक बहस\" पर टैप करो, फिर उस समूह पर टैप करो जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "\"Many families are still poor.\" Does democracy do well or fall short here?",
+      "hi": "\"कई परिवार अब भी ग़रीब हैं।\" यहाँ लोकतंत्र अच्छा करता है या कमी रहती है?"
+     },
+     "options": [
+      {
+       "id": "short",
+       "en": "Falls short",
+       "hi": "कमी रहती है"
+      },
+      {
+       "id": "does",
+       "en": "Does well",
+       "hi": "अच्छा करता है"
+      }
+     ],
+     "answer": "short"
+    },
+    {
+     "kind": "do",
+     "target": "card:poverty",
+     "expect": "placed:poverty",
+     "say": {
+      "en": "Tap the card \"Many families are still poor\", then tap the group where it belongs.",
+      "hi": "कार्ड \"कई परिवार अब भी ग़रीब हैं\" पर टैप करो, फिर उस समूह पर टैप करो जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest of the cards, then press Check.",
+      "hi": "बाक़ी कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Democracy has real strengths: free elections, public debate, legitimacy, peaceful settlement of differences and equal rights. It also falls short in some ways: poverty, inequality, discrimination and corruption remain. Democracies have not always grown the economy faster, but they offer ways to demand reform, which a dictatorship may not.",
+      "hi": "लोकतंत्र की असली ताक़तें हैं: स्वतंत्र चुनाव, सार्वजनिक बहस, वैधता, मतभेदों का शांतिपूर्ण समाधान और समान अधिकार। उसमें कमियाँ भी रहती हैं: ग़रीबी, असमानता, भेदभाव और भ्रष्टाचार बने हुए हैं। लोकतंत्र ने हमेशा अर्थव्यवस्था को तेज़ नहीं बढ़ाया, पर वह सुधार माँगने के रास्ते देता है, जो तानाशाही में नहीं होते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Does democracy always lead to faster economic growth?",
+        "hi": "क्या लोकतंत्र हमेशा तेज़ आर्थिक वृद्धि देता है?"
+       },
+       "options": [
+        {
+         "en": "No, growth depends on many things",
+         "hi": "नहीं, वृद्धि कई बातों पर निर्भर है"
+        },
+        {
+         "en": "Yes, always",
+         "hi": "हाँ, हमेशा"
+        },
+        {
+         "en": "No, it always reduces growth",
+         "hi": "नहीं, यह हमेशा वृद्धि घटाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The record shows democracies and non-democracies both can grow; democracy is valued for other reasons too.",
+        "hi": "अनुभव दिखाता है कि लोकतंत्र और ग़ैर-लोकतंत्र दोनों बढ़ सकते हैं; लोकतंत्र दूसरे कारणों से भी मूल्यवान है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Growth depends on policy and conditions, so \"always\" is too strong.",
+         "hi": "वृद्धि नीतियों और परिस्थितियों पर निर्भर है, इसलिए \"हमेशा\" ज़्यादा है।"
+        },
+        {
+         "en": "It does not always reduce growth either.",
+         "hi": "यह हमेशा वृद्धि भी नहीं घटाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is it still good to live in a democracy even with problems?",
+        "hi": "समस्याओं के बावजूद लोकतंत्र में रहना अच्छा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "People can demand and bring about reforms",
+         "hi": "लोग सुधार माँग सकते और ला सकते हैं"
+        },
+        {
+         "en": "Because problems cannot exist",
+         "hi": "क्योंकि समस्याएँ हो ही नहीं सकतीं"
+        },
+        {
+         "en": "Because the government does everything for us",
+         "hi": "क्योंकि सरकार हमारे लिए सब कुछ करती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Free speech and votes let citizens push for changes.",
+        "hi": "बोलने की आज़ादी और वोट नागरिकों को बदलाव के लिए ज़ोर डालने देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Problems do exist; the point is we can address them.",
+         "hi": "समस्याएँ हैं; बात यह है कि हम उन्हें सुलझा सकते हैं।"
+        },
+        {
+         "en": "Citizens must also act, not only wait.",
+         "hi": "नागरिकों को भी काम करना है, केवल इंतज़ार नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick one \"falls short\" card. What one action could you or your class take to help?",
+      "hi": "\"कमी रहती है\" वाला एक कार्ड चुनो। तुम या तुम्हारी कक्षा उसमें मदद के लिए कौन-सा एक काम कर सकती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess4-ch05-dignity",
+   "topic": "5",
+   "template": "govern",
+   "title": {
+    "en": "Dignity and freedom of citizens",
+    "hi": "नागरिकों की गरिमा और स्वतंत्रता"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "rights",
+    "options": {
+     "cards": [
+      "r-merit",
+      "r-speech",
+      "r-arrest",
+      "r-bonded",
+      "r-child",
+      "r-festival"
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A democracy respects the dignity of each person. Which do you think is a dignity matter: speaking freely or being forced to work?",
+      "hi": "लोकतंत्र हर व्यक्ति की गरिमा का सम्मान करता है। कौन-सा गरिमा का मामला है: खुलकर बोलना या ज़बरदस्ती काम कराया जाना?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Both: one is respected, the other is denied",
+       "hi": "दोनों: एक का सम्मान होता है, दूसरे का हनन"
+      },
+      {
+       "id": "none",
+       "en": "Neither",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "card:r-speech",
+     "expect": "picked:r-speech",
+     "say": {
+      "en": "Pick the card \"Priya speaks her mind in a school debate\".",
+      "hi": "कार्ड \"प्रिया स्कूल की बहस में अपनी बात खुलकर कहती है\" चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:freedom",
+     "expect": "placed",
+     "say": {
+      "en": "Now tap \"Right to Freedom\" to place it.",
+      "hi": "अब उसे रखने के लिए \"स्वतंत्रता का अधिकार\" को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:r-bonded",
+     "expect": "picked:r-bonded",
+     "say": {
+      "en": "Pick the card \"No one can be forced to work without pay\".",
+      "hi": "कार्ड \"किसी से बिना मज़दूरी ज़बरदस्ती काम नहीं कराया जा सकता\" चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:exploitation",
+     "expect": "placed",
+     "say": {
+      "en": "Now tap \"Against Exploitation\" to place it.",
+      "hi": "अब उसे रखने के लिए \"शोषण के विरुद्ध अधिकार\" को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:r-merit",
+     "expect": "picked:r-merit",
+     "say": {
+      "en": "Pick the card \"A government job is open to every candidate, chosen on merit\".",
+      "hi": "कार्ड \"सरकारी नौकरी सभी उम्मीदवारों के लिए खुली है, चयन योग्यता पर होता है\" चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:equality",
+     "expect": "placed",
+     "say": {
+      "en": "Now tap \"Right to Equality\" to place it.",
+      "hi": "अब उसे रखने के लिए \"समता का अधिकार\" को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One of the most important outcomes of democracy is dignity and freedom. Democracy rests on the idea that every person is equal and has equal respect. The Constitution backs this with rights: freedom of speech, equality before the law, and protection from forced labour. Where these are weak, citizens must keep pressing for them.",
+      "hi": "लोकतंत्र के सबसे महत्त्वपूर्ण परिणामों में गरिमा और स्वतंत्रता हैं। लोकतंत्र इस विचार पर टिका है कि हर व्यक्ति बराबर है और समान सम्मान का हक़दार है। संविधान इसे अधिकारों से मज़बूत करता है: बोलने की स्वतंत्रता, क़ानून के सामने समानता और जबरन मज़दूरी से सुरक्षा। जहाँ ये कमज़ोर हों, वहाँ नागरिकों को इनके लिए दबाव बनाए रखना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which right protects a person from being forced to work without pay?",
+        "hi": "कौन-सा अधिकार बिना मज़दूरी जबरन काम कराए जाने से बचाता है?"
+       },
+       "options": [
+        {
+         "en": "Right against Exploitation",
+         "hi": "शोषण के विरुद्ध अधिकार"
+        },
+        {
+         "en": "Right to Equality",
+         "hi": "समता का अधिकार"
+        },
+        {
+         "en": "Right to Freedom of Religion",
+         "hi": "धर्म की स्वतंत्रता का अधिकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Forced labour is banned under the right against exploitation.",
+        "hi": "जबरन मज़दूरी शोषण के विरुद्ध अधिकार के तहत प्रतिबंधित है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equality is about equal treatment.",
+         "hi": "समता का अधिकार समान व्यवहार के बारे में है।"
+        },
+        {
+         "en": "Freedom of religion is about faith.",
+         "hi": "धर्म की स्वतंत्रता आस्था के बारे में है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is dignity linked to democracy?",
+        "hi": "गरिमा लोकतंत्र से क्यों जुड़ी है?"
+       },
+       "options": [
+        {
+         "en": "Democracy treats every person as equal in respect",
+         "hi": "लोकतंत्र हर व्यक्ति को सम्मान में बराबर मानता है"
+        },
+        {
+         "en": "Because democracy ranks people by wealth",
+         "hi": "क्योंकि लोकतंत्र लोगों को संपत्ति से आँकता है"
+        },
+        {
+         "en": "Because democracy has no rights",
+         "hi": "क्योंकि लोकतंत्र में अधिकार नहीं होते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal respect for all citizens is a basic democratic idea.",
+        "hi": "सभी नागरिकों के लिए समान सम्मान लोकतंत्र का बुनियादी विचार है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rank by wealth goes against equality.",
+         "hi": "संपत्ति के आधार पर दर्जा देना समानता के विरुद्ध है।"
+        },
+        {
+         "en": "Democracy guarantees rights.",
+         "hi": "लोकतंत्र अधिकारों की गारंटी देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a time you felt respected or disrespected. What made the difference?",
+      "hi": "कोई ऐसा समय सोचो जब तुम्हें सम्मान मिला या अपमान लगा। फ़र्क़ किस बात से पड़ा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Road money lab",
+   "shows": "A damaged village road with potholes after rain, a bullock cart at the edge, golden evening light",
+   "view": "Wide, low angle",
+   "right": "Muddy water in potholes, real rural road",
+   "avoid": "Faces, signboards, vehicle plates"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Hook of the chapter",
+   "shows": "Hands holding a paper application and a pen at a government office counter, close-up",
+   "view": "Over-the-shoulder, hands only",
+   "right": "Plain paper with unreadable writing",
+   "avoid": "Names, logos, readable text"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "2",
+   "use": "Balance sheet lab",
+   "shows": "A two-pan balance frame, empty, with a faint ground line",
+   "view": "Flat on white",
+   "right": "Pans level and empty",
+   "avoid": "Words, colours coded by good or bad"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5",
+   "use": "Dignity lab",
+   "shows": "A schoolchild's hand raised in a classroom full of raised hands, back view",
+   "view": "Eye level, hands only",
+   "right": "Many different sleeve colours",
+   "avoid": "Faces, school names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Inequality card",
+   "shows": "A split-frame of two neighbouring homes in an Indian town, one a small tin-roof house, one a tall building, same street",
+   "view": "Wide, soft daylight",
+   "right": "Same street, clear contrast",
+   "avoid": "Faces, signs, brand names"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "1",
+   "use": "Accountability story",
+   "shows": "Four frames of the same village road: damaged, survey with measuring tape, repair, repaired",
+   "view": "Same viewpoint and light",
+   "right": "Clear change across frames",
+   "avoid": "People, faces"
+  }
+ ]
+}

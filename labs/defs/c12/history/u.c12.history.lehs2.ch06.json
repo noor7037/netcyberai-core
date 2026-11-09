@@ -1,0 +1,251 @@
+{
+  "chapter_key": "u.c12.history.lehs2.ch06",
+  "class": 12,
+  "subject_id": "history",
+  "title": "Bhakti-Sufi Traditions",
+  "source": "https://ncert.nic.in/textbook/pdf/lehs2ps.pdf",
+  "topics": [
+    { "n": "1", "title": "A mosaic of religious beliefs", "labs": [], "why_no_lab": "Shared and differing beliefs are a picture of many traditions; best seen through the chapter's examples and discussion." },
+    { "n": "2", "title": "Poems of prayer: Alvars and Nayanars, caste and women devotees", "labs": ["c12-history-lehs2-ch06-poets"], "why_no_lab": null },
+    { "n": "3", "title": "The Virashaiva tradition", "labs": [], "why_no_lab": "Covered by the poets lab; its ideas are best read in the chapter's account." },
+    { "n": "4", "title": "Religious ferment and new strands of faith", "labs": [], "why_no_lab": "A debate about communities and names, best read and discussed." },
+    { "n": "6", "title": "The growth of Sufism: khanqahs and silsilas", "labs": ["c12-history-lehs2-ch06-khanqah"], "why_no_lab": null },
+    { "n": "7", "title": "The Chishtis: life in the khanqah and dealings with the state", "labs": [], "why_no_lab": "Covered by the khanqah lab; the chapter's stories of the Chishti life are best read in full." },
+    { "n": "8", "title": "New devotional paths: Guru Nanak and the sacred word, Mirabai", "labs": ["c12-history-lehs2-ch06-saints"], "why_no_lab": null },
+    { "n": "9", "title": "Reconstructing histories of saints: malfuzat, maktubat, tazkiras", "labs": ["c12-history-lehs2-ch06-records"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-history-lehs2-ch06-poets",
+      "topic": "2",
+      "template": "match",
+      "title": { "en": "Who sang which devotion?", "hi": "किसने कौन-सी भक्ति गाई?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "andal", "left": { "en": "Andal", "hi": "आण्डाल" }, "right": { "en": "An Alvar woman poet who sang of Vishnu", "hi": "एक आलवार कवयित्री, जिन्होंने विष्णु के गीत गाए" }, "why": { "en": "Andal was one of the Alvars, the poet-saints of Vishnu, and she is remembered as a woman devotee.", "hi": "आण्डाल आलवार संतों में थीं, जो विष्णु के भक्त कवि थे, और वे एक स्त्री भक्त के रूप में याद की जाती हैं।" } },
+          { "id": "karaikkal", "left": { "en": "Karaikkal Ammaiyar", "hi": "करैक्काल अम्मैयार" }, "right": { "en": "A Nayanar woman who sang to Shiva", "hi": "एक नायनार स्त्री भक्त, जिन्होंने शिव के गीत गाए" }, "why": { "en": "The Nayanars were poet-saints of Shiva, and Karaikkal Ammaiyar was a woman among them.", "hi": "नायनार शिव के भक्त कवि-संत थे, और करैक्काल अम्मैयार उनमें एक स्त्री थीं।" } },
+          { "id": "basavanna", "left": { "en": "Basavanna", "hi": "बसवन्ना" }, "right": { "en": "A Virashaiva leader who opposed caste distinctions", "hi": "एक वीरशैव नेता, जिन्होंने जाति-भेद का विरोध किया" }, "why": { "en": "Basavanna and his followers in the Virashaiva tradition challenged caste distinctions in their teaching.", "hi": "बसवन्ना और वीरशैव परंपरा के उनके अनुयायियों ने अपनी शिक्षा में जाति-भेद को चुनौती दी।" } },
+          { "id": "mirabai", "left": { "en": "Mirabai", "hi": "मीराबाई" }, "right": { "en": "A princess devotee of Krishna who composed songs", "hi": "एक राजकुमारी भक्त, जिन्होंने कृष्ण के लिए पद रचे" }, "why": { "en": "Mirabai was a devotee of Krishna whose songs are still sung, and she is one of the devotional voices in the chapter.", "hi": "मीराबाई कृष्ण की भक्त थीं, जिनके पद आज भी गाए जाते हैं, और वे अध्याय की भक्ति-वाणी का एक स्वर हैं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Devotional poets came from many regions and walks of life. Do you think only men composed these songs?", "hi": "भक्ति कवि कई इलाकों और कई तरह के लोगों से आए। तुम्हें लगता है ये गीत केवल पुरुषों ने रचे थे?" },
+          "options": [
+            { "id": "men", "en": "Yes, only men", "hi": "हाँ, केवल पुरुष" },
+            { "id": "both", "en": "No, men and women both", "hi": "नहीं, पुरुष और स्त्रियाँ दोनों" }
+          ],
+          "answer": "both"
+        },
+        { "kind": "do", "target": "right:andal", "expect": "matched:andal", "say": { "en": "Tap 'Andal' on the left, then her description on the right.", "hi": "बाईं ओर 'आण्डाल' टैप करो, फिर दाईं ओर उनका परिचय टैप करो।" } },
+        { "kind": "do", "target": "right:basavanna", "expect": "matched:basavanna", "say": { "en": "Now match 'Basavanna' with his description.", "hi": "अब 'बसवन्ना' को उनके परिचय से मिलाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The devotional poets sang in local languages, and they spoke to people across caste and gender lines. Some, like Andal and Karaikkal Ammaiyar, were women. Basavanna challenged caste distinctions in the Virashaiva way. Their songs were part of how faith reached ordinary people.", "hi": "भक्ति कवि स्थानीय भाषाओं में गाते थे, और जाति व लिंग की सीमाओं के पार लोगों से बात करते थे। आण्डाल और करैक्काल अम्मैयार जैसी कुछ कवयित्रियाँ स्त्री थीं। बसवन्ना ने वीरशैव ढंग से जाति-भेद को चुनौती दी। उनके गीत यह तरीका थे जिससे आस्था आम लोगों तक पहुँची।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which poet is described as a woman Alvar who sang of Vishnu?", "hi": "किस कवि का परिचय एक आलवार स्त्री के रूप में दिया गया है जिन्होंने विष्णु के गीत गाए?" },
+              "options": [
+                { "en": "Basavanna", "hi": "बसवन्ना" },
+                { "en": "Andal", "hi": "आण्डाल" },
+                { "en": "Karaikkal Ammaiyar", "hi": "करैक्काल अम्मैयार" }
+              ],
+              "answer": 1,
+              "why": { "en": "Andal was an Alvar, one of the poet-saints of Vishnu, and she was a woman.", "hi": "आण्डाल आलवार थीं, विष्णु के भक्त कवि-संतों में से एक, और वे स्त्री थीं।" },
+              "wrong": [
+                { "en": "Basavanna led the Virashaiva tradition; he was not an Alvar.", "hi": "बसवन्ना वीरशैव परंपरा के नेता थे; वे आलवार नहीं थे।" },
+                "",
+                { "en": "Karaikkal Ammaiyar was a Nayanar, a devotee of Shiva, not of Vishnu.", "hi": "करैक्काल अम्मैयार नायनार थीं, शिव की भक्त, विष्णु की नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Sort the names by their god: Shiva or Vishnu or Krishna. What did you notice about how many traditions there were?", "hi": "नामों को उनके देवता के अनुसार छाँटो: शिव, विष्णु या कृष्ण। तुमने देखा कि कितनी परंपराएँ थीं?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs2-ch06-khanqah",
+      "topic": "6",
+      "template": "sort",
+      "title": { "en": "Life in a khanqah", "hi": "खानकाह का जीवन" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "khanqah", "label": { "en": "Inside a khanqah", "hi": "खानकाह के भीतर" } },
+          { "id": "court", "label": { "en": "At a royal court", "hi": "राजदरबार में" } }
+        ],
+        "cards": [
+          { "id": "langar", "text": { "en": "Langar, a free community kitchen", "hi": "लंगर, एक मुफ़्त सामुदायिक रसोई" }, "bin": "khanqah", "why": { "en": "The khanqah ran a langar where food was shared with all who came, whatever their background.", "hi": "खानकाह में लंगर चलता था, जहाँ हर आने वाले को, चाहे उसकी पृष्ठभूमि कुछ हो, भोजन बाँटा जाता था।" } },
+          { "id": "sama", "text": { "en": "Sama, listening to devotional songs together", "hi": "सामा, मिलकर भक्ति-गीत सुनना" }, "bin": "khanqah", "why": { "en": "Sama, the listening to devotional music, was central to the Chishti khanqah life.", "hi": "सामा, यानी भक्ति-संगीत सुनना, चिश्ती खानकाह के जीवन का केंद्र था।" } },
+          { "id": "silsila", "text": { "en": "A silsila linking a master to his disciples", "hi": "एक शेख़ को उसके शिष्यों से जोड़ने वाली सिलसिला-कड़ी" }, "bin": "khanqah", "why": { "en": "A silsila was a chain of teachers and disciples, tying the khanqah to a line of spiritual masters.", "hi": "सिलसिला गुरुओं और शिष्यों की एक कड़ी थी, जो खानकाह को आध्यात्मिक गुरुओं की परंपरा से जोड़ती थी।" } },
+          { "id": "audience", "text": { "en": "A formal ceremonial audience with a ruler", "hi": "शासक के साथ औपचारिक दरबारी मुलाक़ात" }, "bin": "court", "why": { "en": "Formal audiences with rulers took place at the royal court, a different world from the khanqah.", "hi": "शासकों के साथ औपचारिक मुलाक़ातें राजदरबार में होती थीं, जो खानकाह से अलग दुनिया थी।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A khanqah was a place of worship and of community. Do you think it was the same as a royal court?", "hi": "खानकाह इबादत और समुदाय का स्थान था। तुम्हें लगता है यह राजदरबार जैसा ही था?" },
+          "options": [
+            { "id": "same", "en": "Yes, exactly the same", "hi": "हाँ, बिल्कुल वैसा ही" },
+            { "id": "differ", "en": "No, it had different purposes", "hi": "नहीं, इसका उद्देश्य अलग था" }
+          ],
+          "answer": "differ"
+        },
+        { "kind": "do", "target": "bin:khanqah", "expect": "correct:langar", "say": { "en": "Pick the langar card and tap 'Inside a khanqah'.", "hi": "लंगर वाला कार्ड उठाकर 'खानकाह के भीतर' टैप करो।" } },
+        { "kind": "do", "target": "bin:court", "expect": "correct:audience", "say": { "en": "Pick the ceremonial audience card and tap 'At a royal court'.", "hi": "दरबारी मुलाक़ात वाला कार्ड उठाकर 'राजदरबार में' टैप करो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Chishti khanqah was a community of Sufis who lived simply, gave food to all, and listened to devotional music. Its relations with rulers were a separate matter, and the chapter shows that Sufis kept their distance from courts while sometimes meeting rulers. The khanqah and the court were different worlds.", "hi": "चिश्ती खानकाह सूफ़ियों का एक समुदाय था जो सादगी से रहता था, सबको भोजन देता था, और भक्ति-संगीत सुनता था। शासकों से उसके संबंध एक अलग विषय थे, और अध्याय दिखाता है कि सूफ़ी कभी-कभी शासकों से मिलते थे पर दरबारों से दूरी रखते थे। खानकाह और दरबार अलग दुनियाएँ थीं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which practice was typical of a khanqah?", "hi": "कौन-सी प्रथा खानकाह की विशेषता थी?" },
+              "options": [
+                { "en": "A langar that fed all who came", "hi": "हर आने वाले को खिलाने वाला लंगर" },
+                { "en": "A ceremonial audience with a ruler", "hi": "शासक के साथ दरबारी मुलाक़ात" },
+                { "en": "A royal procession through the city", "hi": "शहर में शाही जुलूस" }
+              ],
+              "answer": 0,
+              "why": { "en": "The langar, a free kitchen, was a khanqah practice that fed people from all backgrounds.", "hi": "लंगर, यानी मुफ़्त रसोई, खानकाह की प्रथा थी जो हर पृष्ठभूमि के लोगों को खिलाती थी।" },
+              "wrong": [
+                "",
+                { "en": "Ceremonial audiences were held at the royal court, not in a khanqah.", "hi": "दरबारी मुलाक़ातें राजदरबार में होती थीं, खानकाह में नहीं।" },
+                { "en": "A royal procession belonged to the court and the ruler, not to a khanqah.", "hi": "शाही जुलूस दरबार और शासक का हिस्सा था, खानकाह का नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Try the audience card in the khanqah bin and read the note. Why did a Sufi khanqah keep a distance from courts?", "hi": "दरबारी मुलाक़ात वाला कार्ड खानकाह वाले खाने में रखकर नोट पढ़ो। सूफ़ी खानकाह दरबारों से दूरी क्यों रखते थे?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs2-ch06-saints",
+      "topic": "8",
+      "template": "timeline",
+      "title": { "en": "Saints and their scriptures in order", "hi": "संत और उनके ग्रंथ क्रम में" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1200, 1650],
+        "task": "order",
+        "title": { "en": "From a Chishti master to the Sikh scripture", "hi": "एक चिश्ती संत से सिख ग्रंथ तक" },
+        "events": [
+          { "id": "moinuddin", "year": 1236, "label": { "en": "Moinuddin Chishti dies at Ajmer", "hi": "मुईनुद्दीन चिश्ती का अजमेर में देहांत होता है" } },
+          { "id": "nanak", "year": 1469, "label": { "en": "Guru Nanak is born", "hi": "गुरु नानक का जन्म होता है" } },
+          { "id": "adi", "year": 1604, "label": { "en": "The Adi Granth is compiled", "hi": "आदि ग्रंथ का संकलन होता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Three events are on the strip. Which came first?", "hi": "पट्टी पर तीन घटनाएँ हैं। पहले कौन-सी हुई?" },
+          "options": [
+            { "id": "adi", "en": "The Adi Granth is compiled", "hi": "आदि ग्रंथ का संकलन" },
+            { "id": "moinuddin", "en": "Moinuddin Chishti dies at Ajmer", "hi": "मुईनुद्दीन चिश्ती का देहांत" }
+          ],
+          "answer": "moinuddin"
+        },
+        { "kind": "do", "target": "event:moinuddin", "expect": "placed:moinuddin", "say": { "en": "Tap the death of Moinuddin Chishti first.", "hi": "सबसे पहले मुईनुद्दीन चिश्ती के देहांत वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:nanak", "expect": "placed:nanak", "say": { "en": "Next, tap the birth of Guru Nanak.", "hi": "अब गुरु नानक के जन्म वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:adi", "expect": "placed:adi", "say": { "en": "Last, tap the compiling of the Adi Granth, then press Check.", "hi": "आख़िर में आदि ग्रंथ के संकलन वाली घटना टैप करो, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to see your order.", "hi": "अपना क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Chishti master Moinuddin died at Ajmer in the thirteenth century, long before Guru Nanak was born in the fifteenth. The Adi Granth, the Sikh scripture that holds the sacred word of the Gurus and of many saints, was compiled in the early seventeenth century. Devotional voices followed one another across three centuries.", "hi": "चिश्ती संत मुईनुद्दीन का देहांत तेरहवीं सदी में अजमेर में हुआ, गुरु नानक के जन्म (पंद्रहवीं सदी) से बहुत पहले। आदि ग्रंथ, जिसमें गुरुओं और कई संतों की पवित्र वाणी है, सत्रहवीं सदी के आरंभ में संकलित हुआ। भक्ति की आवाज़ें तीन सदियों में एक के बाद एक आईं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which event came in the fifteenth century?", "hi": "कौन-सी घटना पंद्रहवीं सदी में हुई?" },
+              "options": [
+                { "en": "Moinuddin Chishti's death at Ajmer", "hi": "अजमेर में मुईनुद्दीन चिश्ती का देहांत" },
+                { "en": "The birth of Guru Nanak", "hi": "गुरु नानक का जन्म" },
+                { "en": "The compiling of the Adi Granth", "hi": "आदि ग्रंथ का संकलन" }
+              ],
+              "answer": 1,
+              "why": { "en": "Guru Nanak was born in 1469, in the fifteenth century.", "hi": "गुरु नानक का जन्म 1469 में हुआ था, यानी पंद्रहवीं सदी में।" },
+              "wrong": [
+                { "en": "Moinuddin died in 1236, in the thirteenth century.", "hi": "मुईनुद्दीन का देहांत 1236 में हुआ, यानी तेरहवीं सदी में।" },
+                "",
+                { "en": "The Adi Granth was compiled in 1604, in the seventeenth century.", "hi": "आदि ग्रंथ 1604 में संकलित हुआ, यानी सत्रहवीं सदी में।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Zoom in on the strip. How many years lie between the death of Moinuddin and the birth of Guru Nanak?", "hi": "पट्टी पर ज़ूम करो। मुईनुद्दीन के देहांत और गुरु नानक के जन्म के बीच कितने साल हैं?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs2-ch06-records",
+      "topic": "9",
+      "template": "match",
+      "title": { "en": "Which record tells what?", "hi": "कौन-सा दस्तावेज़ क्या बताता है?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "malfuzat", "left": { "en": "Malfuzat", "hi": "मल्फ़ूज़ात" }, "right": { "en": "Records of a Sufi master's talks and sayings", "hi": "किसी सूफ़ी शेख़ की बातचीत और कथनों का संकलन" }, "why": { "en": "Malfuzat are compiled records of what a Sufi master said in his talks and gatherings.", "hi": "मल्फ़ूज़ात किसी सूफ़ी शेख़ की बातचीत और सभाओं में कही गई बातों के संकलित विवरण हैं।" } },
+          { "id": "maktubat", "left": { "en": "Maktubat", "hi": "मक्तूबात" }, "right": { "en": "Letters written by Sufi masters", "hi": "सूफ़ी शेख़ों द्वारा लिखे गए पत्र" }, "why": { "en": "Maktubat are collections of letters written by Sufi masters to disciples and others.", "hi": "मक्तूबात सूफ़ी शेख़ों द्वारा शिष्यों और दूसरों को लिखे पत्रों के संग्रह हैं।" } },
+          { "id": "tazkira", "left": { "en": "Tazkira", "hi": "तज़्किरा" }, "right": { "en": "Biographies of saints and holy people", "hi": "संतों और पवित्र व्यक्तियों की जीवनियाँ" }, "why": { "en": "A tazkira is a biography or a collection of lives of saints, useful for knowing their histories.", "hi": "तज़्किरा किसी संत की जीवनी या संतों के जीवन-वृत्तांतों का संग्रह है, जो उनके इतिहास जानने में काम आता है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A historian wants to know what a saint believed. Which kind of record would be most useful?", "hi": "एक इतिहासकार जानना चाहता है कि एक संत क्या मानते थे। कौन-सा दस्तावेज़ सबसे काम का होगा?" },
+          "options": [
+            { "id": "talks", "en": "Records of what the saint said", "hi": "संत ने जो कहा उसका विवरण" },
+            { "id": "tomb", "en": "Only the size of his tomb", "hi": "केवल उसकी क़ब्र का आकार" }
+          ],
+          "answer": "talks"
+        },
+        { "kind": "do", "target": "right:malfuzat", "expect": "matched:malfuzat", "say": { "en": "Tap 'Malfuzat' on the left, then its meaning on the right.", "hi": "बाईं ओर 'मल्फ़ूज़ात' टैप करो, फिर दाईं ओर उसका अर्थ टैप करो।" } },
+        { "kind": "do", "target": "right:maktubat", "expect": "matched:maktubat", "say": { "en": "Now match 'Maktubat' with its meaning.", "hi": "अब 'मक्तूबात' को उसके अर्थ से मिलाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Historians of the Sufis rely on three kinds of record. Malfuzat hold the saint's talks, maktubat hold letters, and tazkiras give the lives of saints. Each one is written by a particular person for a particular purpose, so the historian must ask who wrote it and why.", "hi": "सूफ़ी इतिहास के लिए इतिहासकार तीन तरह के दस्तावेज़ों पर निर्भर करते हैं। मल्फ़ूज़ात में संत की बातचीत होती है, मक्तूबात में पत्र, और तज़्किरे संतों के जीवन बताते हैं। हर दस्तावेज़ किसी खास व्यक्ति ने किसी खास मकसद से लिखा होता है, इसलिए इतिहासकार को पूछना होता है कि उसे किसने और क्यों लिखा।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which record holds letters written by Sufi masters?", "hi": "कौन-सा दस्तावेज़ सूफ़ी शेख़ों द्वारा लिखे पत्र रखता है?" },
+              "options": [
+                { "en": "Malfuzat", "hi": "मल्फ़ूज़ात" },
+                { "en": "Maktubat", "hi": "मक्तूबात" },
+                { "en": "Tazkira", "hi": "तज़्किरा" }
+              ],
+              "answer": 1,
+              "why": { "en": "Maktubat are collections of letters written by Sufi masters.", "hi": "मक्तूबात सूफ़ी शेख़ों द्वारा लिखे पत्रों के संग्रह हैं।" },
+              "wrong": [
+                { "en": "Malfuzat record the spoken talks of a master, not letters.", "hi": "मल्फ़ूज़ात शेख़ की बोली गई बातें दर्ज करते हैं, पत्र नहीं।" },
+                "",
+                { "en": "A tazkira gives the life of a saint, not the saint's letters.", "hi": "तज़्किरा संत का जीवन बताता है, उनके पत्र नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick a record and ask: who wrote it, and for whom? Why does the answer change how far you can trust it?", "hi": "कोई एक दस्तावेज़ लो और पूछो: इसे किसने और किसके लिए लिखा? जवाब से तुम्हारा भरोसा कितना है, यह कैसे बदलता है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "2", "use": "Opening picture: a temple courtyard in the south where the Alvars sang", "shows": "A temple courtyard in Tamil Nadu with a pillared hall and a tall gateway tower, empty, morning light", "view": "Eye level, 16:9, soft light from the left, no people", "right": "Granite and plaster in a warm grey, carved pillars sharp, a clean courtyard floor", "avoid": "Worshippers' faces, visitor signs, modern lights and cables" },
+    { "n": 2, "kind": "SCN", "topic": "6", "use": "A Sufi shrine entrance, the setting of the khanqah lab", "shows": "The gate of a Sufi shrine in Ajmer at morning, a carved archway with a cloth-covered doorway, no people", "view": "Eye level, 16:9, soft light from the side, the arch centred", "right": "Marble and red sandstone in natural colour, the arch proportions true", "avoid": "Faces, crowds, offering-stall signs, modern signboards, text" },
+    { "n": 3, "kind": "OBJ", "topic": "6", "use": "Objects of the khanqah: a prayer mat and an earthen lamp", "shows": "A rolled prayer mat and a small earthen oil lamp, placed together on a plain cloth", "view": "Top-down, cut-out on transparent background, each object fully in frame", "right": "Mat in natural woven colour, lamp in unglazed clay, true proportions", "avoid": "Brand labels, plastic items, religious text on the mat" },
+    { "n": 4, "kind": "MAC", "topic": "9", "use": "Close-up of a handwritten page, the kind of record a historian reads", "shows": "Close-up of an old handwritten page with an ornate border and no readable lines, a replica manuscript", "view": "Square crop, close, side light to show the paper texture", "right": "Paper with aged cream tone, ink with a slight sheen, decorated border", "avoid": "Readable script, modern printing, a museum label" },
+    { "n": 5, "kind": "DIA", "topic": "6", "use": "A chain of teachers, the silsila, drawn as a line", "shows": "A simple row of linked circles joined by lines, each circle the same size, the chain running from one master to the next", "view": "Flat, white background, dark thin lines, 4:3", "right": "Circles evenly spaced, joining lines clean, no names", "avoid": "Names, dates, arrows with words" }
+  ]
+}

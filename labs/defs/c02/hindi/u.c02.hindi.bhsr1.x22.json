@@ -1,0 +1,420 @@
+{
+  "chapter_key": "u.c02.hindi.bhsr1.x22",
+  "class": 2,
+  "subject_id": "hindi",
+  "title": "खेल सन्ध्या",
+  "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+  "topics": [
+    {
+      "n": "x22.1",
+      "title": "The poem: evening play with friends (rhythm)",
+      "labs": [
+        "c02-hindi-bhsr1-x22-rhythm"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "x22.2",
+      "title": "Games: with a ball and without",
+      "labs": [
+        "c02-hindi-bhsr1-x22-balls"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "x22.3",
+      "title": "Picture talk: dancing, drums and folk music",
+      "labs": [],
+      "why_no_lab": "A conversation about local songs and dances; the child should hear and see real people doing it."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c02-hindi-bhsr1-x22-rhythm",
+      "topic": "x22.1",
+      "template": "reader",
+      "title": {
+        "en": "Evening play rhythm",
+        "hi": "शाम के खेल की लय"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "mode": "rhythm",
+        "lang": "hi",
+        "bpm": 70,
+        "passage": {
+          "title": {
+            "en": "Evening play",
+            "hi": "शाम का खेल"
+          },
+          "lines": [
+            "शाम हुई तो खेलने चले,",
+            "दोस्तों के साथ हम चले।",
+            "कभी दौड़े और कभी कूदे,",
+            "अँधेरा हुआ तो घर चले।"
+          ]
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "play",
+          "expect": "played",
+          "say": {
+            "en": "Press Play and listen to the poem.",
+            "hi": "चलाओ दबाओ और कविता सुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A poem has beats like a drum. What will you do?",
+            "hi": "कविता में ढोल जैसी ताल होती है। तुम क्या करोगे?"
+          },
+          "options": [
+            {
+              "id": "clap",
+              "en": "Clap with the beat",
+              "hi": "ताल पर ताली बजाऊँगा"
+            },
+            {
+              "id": "sleep",
+              "en": "Sleep",
+              "hi": "सो जाऊँगा"
+            },
+            {
+              "id": "shout",
+              "en": "Shout loudly all the time",
+              "hi": "लगातार ज़ोर से चिल्लाऊँगा"
+            }
+          ],
+          "answer": "clap"
+        },
+        {
+          "kind": "do",
+          "target": "beat",
+          "expect": "beat-ok",
+          "say": {
+            "en": "Tap the big button each time a part of a word lights up.",
+            "hi": "शब्द का कोई भाग चमके तो बड़ा बटन दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A poem has a rhythm. When we clap on each part of a word the lines flow like a song. Poems about play and friends are good to clap and sing in a group.",
+            "hi": "कविता में लय होती है। शब्द के हर भाग पर ताली बजाने से पंक्तियाँ गीत की तरह बहती हैं। खेल और दोस्तों वाली कविताएँ समूह में ताली बजाकर गाने के लिए अच्छी होती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does rhythm in a poem feel like?",
+                "hi": "कविता की लय कैसी लगती है?"
+              },
+              "options": [
+                {
+                  "en": "Like a regular beat",
+                  "hi": "एक नियमित ताल जैसी"
+                },
+                {
+                  "en": "Like silence",
+                  "hi": "चुप्पी जैसी"
+                },
+                {
+                  "en": "Like a loud bang",
+                  "hi": "ज़ोर की आवाज़ जैसी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Rhythm is the steady beat of the words.",
+                "hi": "लय शब्दों की लगातार चलती ताल है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A poem is never silent; it has a beat.",
+                  "hi": "कविता चुप नहीं होती; उसमें ताल होती है।"
+                },
+                {
+                  "en": "A bang is a single loud sound, not a pattern.",
+                  "hi": "धमाका एक अकेली आवाज़ है, दोहराने वाली ताल नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press Play again and clap along with your friends. Make up one more line about evening play.",
+            "hi": "फिर चलाओ दबाओ और दोस्तों के साथ ताली बजाओ। शाम के खेल की एक और पंक्ति बनाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-x22-balls",
+      "topic": "x22.2",
+      "template": "sort",
+      "title": {
+        "en": "With a ball or without?",
+        "hi": "गेंद के साथ या बिना?"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "ball",
+            "label": {
+              "en": "Played with a ball",
+              "hi": "गेंद से खेले जाने वाले"
+            }
+          },
+          {
+            "id": "noball",
+            "label": {
+              "en": "Played without a ball",
+              "hi": "बिना गेंद के खेले जाने वाले"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "cricket",
+            "text": {
+              "en": "Cricket",
+              "hi": "क्रिकेट"
+            },
+            "bin": "ball",
+            "why": {
+              "en": "Cricket uses a ball and a bat.",
+              "hi": "क्रिकेट में गेंद और बल्ला होता है।"
+            }
+          },
+          {
+            "id": "football",
+            "text": {
+              "en": "Football",
+              "hi": "फुटबॉल"
+            },
+            "bin": "ball",
+            "why": {
+              "en": "Football is a ball game.",
+              "hi": "फुटबॉल गेंद का खेल है।"
+            }
+          },
+          {
+            "id": "kabaddi",
+            "text": {
+              "en": "Kabaddi",
+              "hi": "कबड्डी"
+            },
+            "bin": "noball",
+            "why": {
+              "en": "Kabaddi is played with no ball, only breath and skill.",
+              "hi": "कबड्डी में गेंद नहीं होती; साँस और चतुराई चाहिए।"
+            }
+          },
+          {
+            "id": "kho",
+            "text": {
+              "en": "Kho-kho",
+              "hi": "खो-खो"
+            },
+            "bin": "noball",
+            "why": {
+              "en": "Kho-kho is played by chasing.",
+              "hi": "खो-खो पीछा करके खेला जाता है।"
+            }
+          },
+          {
+            "id": "gilli",
+            "text": {
+              "en": "Gilli-danda",
+              "hi": "गिल्ली-डंडा"
+            },
+            "bin": "noball",
+            "why": {
+              "en": "It uses two sticks, no ball.",
+              "hi": "इसमें दो लकड़ियाँ होती हैं, गेंद नहीं।"
+            }
+          },
+          {
+            "id": "gutte",
+            "text": {
+              "en": "Gutte (stones)",
+              "hi": "गुट्टे"
+            },
+            "bin": "noball",
+            "why": {
+              "en": "Gutte is played with small stones.",
+              "hi": "गुट्टे छोटे पत्थरों से खेले जाते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:cricket",
+          "expect": "placed:cricket",
+          "say": {
+            "en": "Tap the card Cricket.",
+            "hi": "क्रिकेट कार्ड दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Will Kabaddi go with the ball games?",
+            "hi": "क्या कबड्डी गेंद वाले खेलों में जाएगी?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No",
+              "hi": "नहीं"
+            },
+            {
+              "id": "yes",
+              "en": "Yes",
+              "hi": "हाँ"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "bin:ball",
+          "expect": "correct:cricket",
+          "say": {
+            "en": "Now tap the bin where this card belongs.",
+            "hi": "अब उस डिब्बे को दबाओ जिसमें यह कार्ड जाएगा।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort every card, then tap Check.",
+            "hi": "सब कार्ड छाँटो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Some games need a ball, many do not. Kabaddi and kho-kho need only friends and an open space. Many of our old games use things we find around us.",
+            "hi": "कुछ खेलों में गेंद चाहिए, कई में नहीं। कबड्डी और खो-खो में सिर्फ़ दोस्त और खुली जगह चाहिए। हमारे कई पुराने खेल आसपास मिलने वाली चीज़ों से खेले जाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these needs no ball?",
+                "hi": "इनमें किसमें गेंद नहीं चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "Kho-kho",
+                  "hi": "खो-खो"
+                },
+                {
+                  "en": "Football",
+                  "hi": "फुटबॉल"
+                },
+                {
+                  "en": "Cricket",
+                  "hi": "क्रिकेट"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Kho-kho is a chasing game.",
+                "hi": "खो-खो पीछा करने का खेल है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Football is played with a ball.",
+                  "hi": "फुटबॉल गेंद से खेला जाता है।"
+                },
+                {
+                  "en": "Cricket needs a ball and a bat.",
+                  "hi": "क्रिकेट में गेंद और बल्ला चाहिए।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Name one more game with a ball and one without.",
+            "hi": "गेंद वाला एक और खेल और बिना गेंद वाला एक खेल बताओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "x22.1",
+      "use": "Opens the poem",
+      "shows": "Children's silhouettes playing kho-kho in a field at sunset",
+      "view": "Wide, backlit orange sky",
+      "right": "Silhouettes only; long shadows and a few birds going home",
+      "avoid": "Faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "x22.2",
+      "use": "Games cards",
+      "shows": "Gilli and danda, a pile of gutte stones, a cricket ball, a football",
+      "view": "Front, each alone",
+      "right": "Wooden danda, smooth round stones",
+      "avoid": "Brand logos"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "x22.1",
+      "use": "Drum and clap",
+      "shows": "Children's hands clapping in a circle in a courtyard",
+      "view": "Top view, hands only",
+      "right": "Many different hands, bangles and wristbands",
+      "avoid": "Faces"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "x22.3",
+      "use": "Folk dance",
+      "shows": "A tabla, dholak and dancers' feet in a village fair",
+      "view": "Low angle, bright colours",
+      "right": "Real folk instruments; colourful clothes",
+      "avoid": "Faces of identifiable children"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "x22.1",
+      "use": "Going home",
+      "shows": "Children walking home along a lane with a sunset behind them",
+      "view": "Wide, from behind",
+      "right": "Warm light; lamps starting to glow in windows",
+      "avoid": "Any text"
+    }
+  ]
+}

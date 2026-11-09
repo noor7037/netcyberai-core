@@ -1,0 +1,805 @@
+{
+ "chapter_key": "u.c06.mathematics.fegp1.ch04",
+ "class": 6,
+ "subject_id": "mathematics",
+ "title": "Data Handling and Presentation",
+ "source": "https://ncert.nic.in/textbook/pdf/fegp104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Collecting and organising data",
+   "labs": [
+    "c06-mathematics-fegp1-ch04-tally"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Pictographs",
+   "labs": [
+    "c06-mathematics-fegp1-ch04-pictograph"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Bar graphs",
+   "labs": [
+    "c06-mathematics-fegp1-ch04-bar-read"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Drawing a bar graph",
+   "labs": [
+    "c06-mathematics-fegp1-ch04-bar-draw"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Artistic and aesthetic considerations",
+   "labs": [],
+   "why_no_lab": "Judging how clear and attractive a chart is comes from comparing real infographic photos in the reader, not from a lab."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-mathematics-fegp1-ch04-tally",
+   "topic": "4.1",
+   "template": "data",
+   "title": {
+    "en": "Tally marks for a class survey",
+    "hi": "कक्षा सर्वे के लिए मिलान चिह्न"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "tally",
+    "data": [
+     {
+      "label": {
+       "en": "Mango",
+       "hi": "आम"
+      },
+      "value": 9
+     },
+     {
+      "label": {
+       "en": "Banana",
+       "hi": "केला"
+      },
+      "value": 6
+     },
+     {
+      "label": {
+       "en": "Guava",
+       "hi": "अमरूद"
+      },
+      "value": 7
+     },
+     {
+      "label": {
+       "en": "Apple",
+       "hi": "सेब"
+      },
+      "value": 4
+     },
+     {
+      "label": {
+       "en": "Orange",
+       "hi": "संतरा"
+      },
+      "value": 3
+     }
+    ],
+    "views": [
+     "tally",
+     "bar"
+    ],
+    "show": 3,
+    "ask": "max",
+    "title": {
+     "en": "Favourite fruit of our class",
+     "hi": "हमारी कक्षा का पसंदीदा फल"
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "A class voted for its favourite fruit. Tap Add row to tally the next fruit.",
+      "hi": "एक कक्षा ने अपने पसंदीदा फल के लिए वोट दिए। अगले फल का मिलान करने के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row again for the last fruit.",
+      "hi": "आख़िरी फल के लिए फिर से पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Tally marks are drawn in groups of five, with the fifth line across the four. How many marks are in 1 group and 4 more?",
+      "hi": "मिलान चिह्न पाँच के समूहों में बनते हैं, पाँचवीं रेखा चार के आर-पार। 1 समूह और 4 अलग रेखाएँ मिलाकर कितने हुए?"
+     },
+     "options": [
+      {
+       "id": "9",
+       "en": "9",
+       "hi": "संख्या 9"
+      },
+      {
+       "id": "5",
+       "en": "5",
+       "hi": "संख्या 5"
+      },
+      {
+       "id": "14",
+       "en": "14",
+       "hi": "संख्या 14"
+      }
+     ],
+     "answer": "9"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which fruit got the most votes? Choose it.",
+      "hi": "किस फल को सबसे ज़्यादा वोट मिले? उसे चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "chart:bar",
+     "expect": "plotted",
+     "say": {
+      "en": "Now tap Bar graph to see the same data as bars.",
+      "hi": "अब वही आँकड़े दंडों में देखने के लिए दंड आलेख दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A tally groups marks in fives, so the counts are quick to read: one bundle and four lines is 9. Mango has 9 votes, the most. The bar graph shows the same counts as heights, so the tallest bar is mango.",
+      "hi": "मिलान चिह्न पाँच-पाँच के समूह बनाते हैं, जिससे गिनती जल्दी पढ़ी जाती है: एक गट्ठर और चार रेखाएँ मिलकर 9। आम को 9 वोट मिले, सबसे ज़्यादा। दंड आलेख वही गिनती ऊँचाई से दिखाता है, इसलिए सबसे ऊँचा दंड आम का है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many children voted in all?",
+        "hi": "कुल कितने बच्चों ने वोट दिया?"
+       },
+       "options": [
+        "29",
+        "9",
+        "5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "9 + 6 + 7 + 4 + 3 = 29.",
+        "hi": "9 + 6 + 7 + 4 + 3 = 29।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9 is only the mango votes; add every fruit.",
+         "hi": "9 तो केवल आम के वोट हैं; हर फल के वोट जोड़ो।"
+        },
+        {
+         "en": "5 is the number of fruits, not the number of children.",
+         "hi": "5 फलों की संख्या है, बच्चों की नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are tally marks grouped in fives?",
+        "hi": "मिलान चिह्न पाँच-पाँच के समूह में क्यों बनाए जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "To count quickly by fives",
+         "hi": "पाँच-पाँच करके जल्दी गिनने के लिए"
+        },
+        {
+         "en": "Because there are 5 fruits",
+         "hi": "क्योंकि फल 5 हैं"
+        },
+        {
+         "en": "To make the chart look nice",
+         "hi": "चार्ट को सुंदर बनाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Bundles of five let you count 5, 10, 15 … instead of one mark at a time.",
+        "hi": "पाँच के गट्ठर से तुम एक-एक की जगह 5, 10, 15 … गिन सकते हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Groups of five are used for any survey, whatever the number of choices.",
+         "hi": "पाँच के समूह हर सर्वे में बनते हैं, चाहे विकल्प कितने भी हों।"
+        },
+        {
+         "en": "The groups are for fast, correct counting, not for looks.",
+         "hi": "समूह जल्दी और सही गिनती के लिए हैं, सुंदरता के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Do a survey of your family’s favourite fruit and compare it with this class.",
+      "hi": "अब ख़ुद आज़माओ। अपने परिवार के पसंदीदा फल का सर्वे करो और इस कक्षा से तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch04-pictograph",
+   "topic": "4.2",
+   "template": "data",
+   "title": {
+    "en": "Reading a pictograph",
+    "hi": "चित्रालेख पढ़ना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "pictograph",
+    "data": [
+     {
+      "label": {
+       "en": "Walk",
+       "hi": "पैदल"
+      },
+      "value": 40
+     },
+     {
+      "label": {
+       "en": "Cycle",
+       "hi": "साइकिल"
+      },
+      "value": 25
+     },
+     {
+      "label": {
+       "en": "Bus",
+       "hi": "बस"
+      },
+      "value": 30
+     },
+     {
+      "label": {
+       "en": "Auto",
+       "hi": "ऑटो"
+      },
+      "value": 15
+     },
+     {
+      "label": {
+       "en": "Car",
+       "hi": "कार"
+      },
+      "value": 10
+     }
+    ],
+    "unit": 5,
+    "icon": "smile",
+    "views": [
+     "pictograph",
+     "bar"
+    ],
+    "ask": "min",
+    "title": {
+     "en": "How children come to school",
+     "hi": "बच्चे स्कूल कैसे आते हैं"
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Here one face stands for 5 children. Walk has 8 faces. How many children walk?",
+      "hi": "यहाँ एक चेहरा 5 बच्चों के बराबर है। पैदल के आगे 8 चेहरे हैं। कितने बच्चे पैदल आते हैं?"
+     },
+     "options": [
+      {
+       "id": "40",
+       "en": "40",
+       "hi": "40 बच्चे"
+      },
+      {
+       "id": "8",
+       "en": "8",
+       "hi": "8 बच्चे"
+      },
+      {
+       "id": "13",
+       "en": "13",
+       "hi": "13 बच्चे"
+      }
+     ],
+     "answer": "40"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which way of coming to school is used by the fewest children? Choose it.",
+      "hi": "स्कूल आने का कौन-सा तरीका सबसे कम बच्चे अपनाते हैं? उसे चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "chart:bar",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Bar graph to see the same data as bars.",
+      "hi": "वही आँकड़े दंडों में देखने के लिए दंड आलेख दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a pictograph each picture stands for a fixed number, here 5 children. So 8 faces mean 8 × 5 = 40. Car has 2 faces, 10 children, the fewest.",
+      "hi": "चित्रालेख में हर चित्र एक तय संख्या के बराबर होता है, यहाँ 5 बच्चे। इसलिए 8 चेहरे यानी 8 × 5 = 40। कार के आगे 2 चेहरे हैं, यानी 10 बच्चे, सबसे कम।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Cycle shows 5 faces. How many children come by cycle?",
+        "hi": "साइकिल के आगे 5 चेहरे हैं। कितने बच्चे साइकिल से आते हैं?"
+       },
+       "options": [
+        "25",
+        "5",
+        "10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 faces × 5 children each = 25.",
+        "hi": "5 चेहरे × हर चेहरे के 5 बच्चे = 25।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 counts the faces; each face is 5 children.",
+         "hi": "5 तो चेहरों की गिनती है; हर चेहरा 5 बच्चों का है।"
+        },
+        {
+         "en": "10 would be 2 faces, the car row.",
+         "hi": "10 के लिए 2 चेहरे होते, जो कार की पंक्ति है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many faces would show 30 children?",
+        "hi": "30 बच्चों को दिखाने के लिए कितने चेहरे होंगे?"
+       },
+       "options": [
+        "6",
+        "30",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "30 ÷ 5 = 6 faces.",
+        "hi": "30 ÷ 5 = 6 चेहरे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "30 faces would mean 150 children, since each face is 5.",
+         "hi": "30 चेहरे यानी 150 बच्चे, क्योंकि हर चेहरा 5 का है।"
+        },
+        {
+         "en": "3 faces are only 15 children.",
+         "hi": "3 चेहरे केवल 15 बच्चे हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Drag a bar to change a count. How does the number of faces change?",
+      "hi": "अब ख़ुद आज़माओ। कोई दंड खिसकाकर गिनती बदलो। चेहरों की संख्या कैसे बदलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch04-bar-read",
+   "topic": "4.3",
+   "template": "data",
+   "title": {
+    "en": "Reading a bar graph",
+    "hi": "दंड आलेख पढ़ना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "data": [
+     {
+      "label": {
+       "en": "Monday",
+       "hi": "सोमवार"
+      },
+      "value": 12
+     },
+     {
+      "label": {
+       "en": "Tuesday",
+       "hi": "मंगलवार"
+      },
+      "value": 18
+     },
+     {
+      "label": {
+       "en": "Wednesday",
+       "hi": "बुधवार"
+      },
+      "value": 9
+     },
+     {
+      "label": {
+       "en": "Thursday",
+       "hi": "गुरुवार"
+      },
+      "value": 15
+     },
+     {
+      "label": {
+       "en": "Friday",
+       "hi": "शुक्रवार"
+      },
+      "value": 21
+     }
+    ],
+    "show": 4,
+    "ask": "max",
+    "title": {
+     "en": "Library books borrowed in a week",
+     "hi": "एक सप्ताह में पुस्तकालय से ली गई किताबें"
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to draw the bar for Friday.",
+      "hi": "शुक्रवार का दंड बनाने के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Without counting, how can you tell which day had the most books borrowed?",
+      "hi": "बिना गिने तुम कैसे बताओगे कि किस दिन सबसे ज़्यादा किताबें ली गईं?"
+     },
+     "options": [
+      {
+       "id": "tall",
+       "en": "Find the tallest bar",
+       "hi": "सबसे ऊँचा दंड ढूँढो"
+      },
+      {
+       "id": "wide",
+       "en": "Find the widest bar",
+       "hi": "सबसे चौड़ा दंड ढूँढो"
+      },
+      {
+       "id": "first",
+       "en": "Look at the first bar",
+       "hi": "पहला दंड देखो"
+      }
+     ],
+     "answer": "tall"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the day with the most books borrowed.",
+      "hi": "वह दिन चुनो जब सबसे ज़्यादा किताबें ली गईं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a bar graph every bar has the same width; only the height shows the number. Friday’s bar reaches 21, the tallest, so Friday had the most books. Wednesday’s bar is the shortest, 9.",
+      "hi": "दंड आलेख में हर दंड की चौड़ाई बराबर होती है; केवल ऊँचाई संख्या दिखाती है। शुक्रवार का दंड 21 तक जाता है, सबसे ऊँचा, इसलिए शुक्रवार को सबसे ज़्यादा किताबें ली गईं। बुधवार का दंड सबसे छोटा है, 9।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many more books were borrowed on Tuesday than on Monday?",
+        "hi": "मंगलवार को सोमवार से कितनी ज़्यादा किताबें ली गईं?"
+       },
+       "options": [
+        "6",
+        "30",
+        "18"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "18 − 12 = 6.",
+        "hi": "18 − 12 = 6।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "30 adds the two days; the question asks for the difference.",
+         "hi": "30 में दोनों दिन जोड़े गए; प्रश्न अंतर पूछता है।"
+        },
+        {
+         "en": "18 is Tuesday alone, not how many more.",
+         "hi": "18 केवल मंगलवार की गिनती है, कितनी ज़्यादा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Sort to arrange the bars from smallest to biggest. Is the order of days the same?",
+      "hi": "अब ख़ुद आज़माओ। दंडों को छोटे से बड़े क्रम में लगाने के लिए क्रम में लगाओ दबाओ। क्या दिनों का क्रम वही रहता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch04-bar-draw",
+   "topic": "4.4",
+   "template": "data",
+   "title": {
+    "en": "Drawing a bar graph with a scale",
+    "hi": "पैमाना लेकर दंड आलेख बनाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "data": [
+     {
+      "label": {
+       "en": "Class 6A",
+       "hi": "कक्षा 6A"
+      },
+      "value": 60
+     },
+     {
+      "label": {
+       "en": "Class 6B",
+       "hi": "कक्षा 6B"
+      },
+      "value": 120
+     },
+     {
+      "label": {
+       "en": "Class 7A",
+       "hi": "कक्षा 7A"
+      },
+      "value": 90
+     },
+     {
+      "label": {
+       "en": "Class 7B",
+       "hi": "कक्षा 7B"
+      },
+      "value": 150
+     },
+     {
+      "label": {
+       "en": "Class 8A",
+       "hi": "कक्षा 8A"
+      },
+      "value": 30
+     }
+    ],
+    "show": 2,
+    "title": {
+     "en": "Saplings planted by each class",
+     "hi": "हर कक्षा द्वारा लगाए गए पौधे"
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to draw the bar for Class 7A.",
+      "hi": "कक्षा 7A का दंड बनाने के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The counts go up to 150. Would 1 small square for 1 sapling fit on the page?",
+      "hi": "गिनती 150 तक जाती है। क्या 1 पौधे के लिए 1 छोटा खाना पन्ने पर समा जाएगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, a bigger scale is needed",
+       "hi": "नहीं, बड़ा पैमाना चाहिए"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it fits easily",
+       "hi": "हाँ, आसानी से समा जाएगा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the bar for Class 7B.",
+      "hi": "कक्षा 7B का दंड जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the last bar, for Class 8A.",
+      "hi": "आख़िरी दंड, कक्षा 8A का, जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "With big numbers we choose a scale, such as 1 unit for 30 saplings. Then 150 needs only 5 units and 30 needs 1. A good scale makes every bar fit and keeps the numbers easy to read on the axis.",
+      "hi": "बड़ी संख्याओं के लिए हम पैमाना चुनते हैं, जैसे 1 इकाई = 30 पौधे। तब 150 के लिए केवल 5 इकाइयाँ और 30 के लिए 1 इकाई चाहिए। अच्छा पैमाना हर दंड को समा देता है और अक्ष पर संख्याएँ पढ़ना आसान रखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "With 1 unit = 30 saplings, how tall is the bar for 120?",
+        "hi": "1 इकाई = 30 पौधे हो, तो 120 का दंड कितना ऊँचा होगा?"
+       },
+       "options": [
+        {
+         "en": "4 units",
+         "hi": "4 इकाई"
+        },
+        {
+         "en": "12 units",
+         "hi": "12 इकाई"
+        },
+        {
+         "en": "120 units",
+         "hi": "120 इकाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "120 ÷ 30 = 4.",
+        "hi": "120 ÷ 30 = 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 units would be the scale 1 unit = 10.",
+         "hi": "12 इकाई तब होती जब पैमाना 1 इकाई = 10 हो।"
+        },
+        {
+         "en": "120 units is no scale at all; it would not fit.",
+         "hi": "120 इकाई का मतलब कोई पैमाना नहीं; वह समा नहीं पाएगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Drag a bar higher. Which class would then have planted the most?",
+      "hi": "अब ख़ुद आज़माओ। किसी दंड को ऊपर खींचो। तब सबसे ज़्यादा पौधे किस कक्षा ने लगाए होते?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Chapter hook: a class survey",
+   "shows": "A classroom where children raise hands to vote while one child writes tally marks on a blackboard",
+   "view": "From the back of the room, children seen from behind",
+   "right": "Tally marks in groups of five with the fifth line across",
+   "avoid": "Faces, school name"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Fruits for the survey",
+   "shows": "A mango, a banana, a guava, an apple and an orange in a row",
+   "view": "Front view, transparent background, same scale",
+   "right": "True colours and sizes of Indian fruit",
+   "avoid": "Stickers, labels"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Ways to school",
+   "shows": "A school gate in the morning with children walking, cycling and getting off a bus and an auto",
+   "view": "Wide, eye level, morning light",
+   "right": "All four ways visible; children as distant figures or backs",
+   "avoid": "Identifiable faces, number plates, school names"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "4.3",
+   "use": "Bar graph base",
+   "shows": "An empty bar-graph frame: two axes and light grid lines on white",
+   "view": "Flat, clean",
+   "right": "Equal grid spacing; no numbers",
+   "avoid": "Any text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "4.4",
+   "use": "Saplings planted",
+   "shows": "A row of young saplings with fresh soil and small bamboo guards along a school wall",
+   "view": "Eye level, along the row",
+   "right": "Saplings of similar size, freshly planted",
+   "avoid": "Readable signs"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.5",
+   "use": "Charts in daily life",
+   "shows": "A newspaper weather page with a chart, lying on a table beside a cup of tea",
+   "view": "Top-down, soft light",
+   "right": "The chart is a simple bar or line chart",
+   "avoid": "Readable text, brand names"
+  }
+ ]
+}

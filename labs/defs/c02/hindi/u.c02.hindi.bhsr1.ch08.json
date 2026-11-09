@@ -1,0 +1,406 @@
+{
+ "chapter_key": "u.c02.hindi.bhsr1.ch08",
+ "class": 2,
+ "subject_id": "hindi",
+ "title": "Three Friends (तीन दोस्त)",
+ "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Story: the three friends who wanted new friends",
+   "labs": [
+    "c02-hindi-bhsr1-ch08-three-friends"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Mixing two colours to make a new one",
+   "labs": [
+    "c02-hindi-bhsr1-ch08-colour-friends"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Talk: being friends, making up, making new friends",
+   "labs": [],
+   "why_no_lab": "This is a talk about feelings and friendships; it is best shared in class."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c02-hindi-bhsr1-ch08-colour-friends",
+   "topic": "8.2",
+   "template": "match",
+   "title": {
+    "en": "When colours meet",
+    "hi": "जब रंग मिलते हैं"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "orange",
+      "left": {
+       "en": "Red + Yellow",
+       "hi": "लाल + पीला"
+      },
+      "right": {
+       "en": "Orange",
+       "hi": "नारंगी"
+      },
+      "why": {
+       "en": "Red and yellow together make orange.",
+       "hi": "लाल और पीला मिलकर नारंगी बनाते हैं।"
+      }
+     },
+     {
+      "id": "green",
+      "left": {
+       "en": "Yellow + Blue",
+       "hi": "पीला + नीला"
+      },
+      "right": {
+       "en": "Green",
+       "hi": "हरा"
+      },
+      "why": {
+       "en": "Yellow and blue together make green.",
+       "hi": "पीला और नीला मिलकर हरा बनाते हैं।"
+      }
+     },
+     {
+      "id": "purple",
+      "left": {
+       "en": "Red + Blue",
+       "hi": "लाल + नीला"
+      },
+      "right": {
+       "en": "Purple",
+       "hi": "बैंगनी"
+      },
+      "why": {
+       "en": "Red and blue together make purple.",
+       "hi": "लाल और नीला मिलकर बैंगनी बनाते हैं।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:orange",
+     "expect": "matched:orange",
+     "say": {
+      "en": "Tap 'लाल + पीला' and then the new colour it makes.",
+      "hi": "'लाल + पीला' छुओ, फिर जो नया रंग बनता है वह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What colour will yellow and blue make?",
+      "hi": "पीला और नीला मिलकर कौन-सा रंग बनाएँगे?"
+     },
+     "options": [
+      {
+       "id": "g",
+       "en": "हरा",
+       "hi": "हरा"
+      },
+      {
+       "id": "o",
+       "en": "नारंगी",
+       "hi": "नारंगी"
+      },
+      {
+       "id": "p",
+       "en": "बैंगनी",
+       "hi": "बैंगनी"
+      }
+     ],
+     "answer": "g"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all three new friends and press Check.",
+      "hi": "तीनों नए दोस्त मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Red, yellow and blue are the three first colours. When two of them meet, they make a new colour. Red and yellow make orange, yellow and blue make green, red and blue make purple.",
+      "hi": "लाल, पीला और नीला तीन पहले रंग हैं। जब इनमें से दो मिलते हैं तो नया रंग बनता है। लाल और पीला मिलकर नारंगी, पीला और नीला मिलकर हरा, लाल और नीला मिलकर बैंगनी बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which two colours make orange?",
+        "hi": "कौन-से दो रंग मिलकर नारंगी बनाते हैं?"
+       },
+       "options": [
+        {
+         "en": "लाल और पीला",
+         "hi": "लाल और पीला"
+        },
+        {
+         "en": "नीला और पीला",
+         "hi": "नीला और पीला"
+        },
+        {
+         "en": "लाल और नीला",
+         "hi": "लाल और नीला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Red and yellow make orange.",
+        "hi": "लाल और पीला मिलकर नारंगी बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Blue and yellow make green, not orange.",
+         "hi": "नीला और पीला मिलकर हरा बनाते हैं।"
+        },
+        {
+         "en": "Red and blue make purple.",
+         "hi": "लाल और नीला मिलकर बैंगनी बनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try it with watercolour or crayons on paper. Mix two colours and see what new friend you find.",
+      "hi": "काग़ज़ पर पानी वाले रंग या क्रेयॉन से दो रंग मिलाओ और देखो कौन-सा नया दोस्त मिला।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-hindi-bhsr1-ch08-three-friends",
+   "topic": "8.1",
+   "template": "sequence",
+   "title": {
+    "en": "The three friends and their new friends",
+    "hi": "तीन दोस्त और उनके नए दोस्त"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "three",
+      "text": {
+       "en": "Long ago there were only three colours: red, yellow and blue.",
+       "hi": "बहुत पहले केवल तीन रंग थे: लाल, पीला और नीला।"
+      }
+     },
+     {
+      "id": "want",
+      "text": {
+       "en": "The three friends decided to make new friends.",
+       "hi": "तीनों दोस्तों ने नए दोस्त बनाने की सोची।"
+      }
+     },
+     {
+      "id": "orange",
+      "text": {
+       "en": "Red and yellow walked together and found orange.",
+       "hi": "लाल और पीला साथ चले तो नारंगी मिला।"
+      }
+     },
+     {
+      "id": "green",
+      "text": {
+       "en": "Yellow and blue shook hands and found green.",
+       "hi": "पीले और नीले ने हाथ मिलाया तो हरा मिला।"
+      }
+     },
+     {
+      "id": "purple",
+      "text": {
+       "en": "Red and blue came close and found purple.",
+       "hi": "लाल और नीले पास आए तो बैंगनी मिला।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:three",
+     "expect": "placed:three",
+     "say": {
+      "en": "Place the card that starts the story.",
+      "hi": "कहानी शुरू करने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many colours were there at the start?",
+      "hi": "शुरू में कितने रंग थे?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "Three",
+       "hi": "तीन"
+      },
+      {
+       "id": "6",
+       "en": "Six",
+       "hi": "छह"
+      },
+      {
+       "id": "1",
+       "en": "One",
+       "hi": "एक"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all five in order and press Check.",
+      "hi": "पाँचों को क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The story begins with three friends and ends with a colourful world. New friends were made when the colours came together. Friends become more when they mix and play.",
+      "hi": "कहानी तीन दोस्तों से शुरू होकर रंगीन दुनिया पर खत्म होती है। जब रंग मिले तो नए दोस्त बने। मिलकर खेलने से दोस्त बढ़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which colour appears after yellow and blue shake hands?",
+        "hi": "पीले और नीले के हाथ मिलाने पर कौन-सा रंग मिलता है?"
+       },
+       "options": [
+        {
+         "en": "हरा",
+         "hi": "हरा"
+        },
+        {
+         "en": "बैंगनी",
+         "hi": "बैंगनी"
+        },
+        {
+         "en": "नारंगी",
+         "hi": "नारंगी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Yellow and blue make green.",
+        "hi": "पीला और नीला मिलकर हरा बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Purple comes from red and blue.",
+         "hi": "बैंगनी लाल और नीले से बनता है।"
+        },
+        {
+         "en": "Orange comes from red and yellow.",
+         "hi": "नारंगी लाल और पीले से बनता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tell the story to a friend using three paper cups: red, yellow and blue.",
+      "hi": "तीन काग़ज़ के कप लाल, पीला और नीला लेकर मित्र को कहानी सुनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "Colour pots",
+   "shows": "Three small pots of paint: red, yellow, blue, cut-outs",
+   "view": "Top view",
+   "right": "Pure bright colours, glossy",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "8.2",
+   "use": "Mixing two paints",
+   "shows": "Three frames of two blobs of paint mixing on a white tray into orange",
+   "view": "Top view, same camera",
+   "right": "Edges blending naturally",
+   "avoid": "Muddy colours"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "8.2",
+   "use": "Yellow and blue to green",
+   "shows": "Three frames of yellow and blue watercolour on wet paper mixing into green",
+   "view": "Top view",
+   "right": "Soft edges, clear transition",
+   "avoid": "Pre-mixed colours"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "8.2",
+   "use": "Red and blue to purple",
+   "shows": "Three frames of red and blue paint mixing into purple",
+   "view": "Top view",
+   "right": "Rich purple at the end",
+   "avoid": "Black tones"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Colourful world",
+   "shows": "A rangoli in red, yellow, blue, orange, green and purple on a courtyard floor",
+   "view": "Wide, top angle",
+   "right": "Crisp petal shapes",
+   "avoid": "Text"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "Rainbow of crayons",
+   "shows": "A fan of crayons in the six colours of the story",
+   "view": "Top view",
+   "right": "All six colours visible",
+   "avoid": "Brand wrappers"
+  }
+ ]
+}

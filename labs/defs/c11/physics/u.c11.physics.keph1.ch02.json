@@ -1,0 +1,763 @@
+{
+ "chapter_key": "u.c11.physics.keph1.ch02",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "Motion in a Straight Line",
+ "source": "https://ncert.nic.in/textbook/pdf/keph1ps.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Introduction: position, path length, displacement and frame of reference",
+   "labs": [],
+   "why_no_lab": "The reader's map of a walk from home to school shows path length and displacement more clearly than a simulation; the labs start with velocity."
+  },
+  {
+   "n": "2.2",
+   "title": "Instantaneous velocity and speed",
+   "labs": [
+    "c11-physics-keph1-ch02-xt-slope"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Acceleration",
+   "labs": [
+    "c11-physics-keph1-ch02-braking-vt"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Kinematic equations for uniformly accelerated motion",
+   "labs": [
+    "c11-physics-keph1-ch02-throw-up",
+    "c11-physics-keph1-ch02-heavy-light-fall"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Relative velocity",
+   "labs": [
+    "c11-physics-keph1-ch02-trains-relative"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph1-ch02-xt-slope",
+   "topic": "2.2",
+   "template": "motion",
+   "title": {
+    "en": "Instantaneous velocity from a position–time graph",
+    "hi": "स्थिति–समय ग्राफ़ से तात्क्षणिक वेग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "1d",
+    "vehicle": "car",
+    "u": 0,
+    "a": 2
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:dt",
+     "say": {
+      "en": "Tap the distance–time tab so the graph shows position against time.",
+      "hi": "दूरी–समय टैब पर टैप करो ताकि ग्राफ़ समय के साथ स्थिति दिखाए।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The car starts from rest at a traffic light and speeds up steadily. What shape will its position–time graph have?",
+      "hi": "कार ट्रैफ़िक लाइट पर विराम से चलकर लगातार तेज़ होती है। उसके स्थिति–समय ग्राफ़ का आकार कैसा होगा?"
+     },
+     "options": [
+      {
+       "id": "line",
+       "en": "A straight sloping line",
+       "hi": "एक सीधी तिरछी रेखा"
+      },
+      {
+       "id": "steeper",
+       "en": "A curve that gets steeper",
+       "hi": "एक वक्र जो लगातार ढलवाँ होता जाता है"
+      },
+      {
+       "id": "flatter",
+       "en": "A curve that gets flatter",
+       "hi": "एक वक्र जो लगातार सपाट होता जाता है"
+      }
+     ],
+     "answer": "steeper"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "stopped",
+     "say": {
+      "en": "Press Play and watch the graph draw itself as the car moves.",
+      "hi": "चलाओ दबाओ और कार के चलने के साथ ग्राफ़ बनते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The slope of the position–time graph at any instant is the instantaneous velocity, v = dx/dt. The car gets faster, so the slope keeps increasing and the curve bends upward. Average velocity over a stretch is the slope of the straight line joining its two ends.",
+      "hi": "स्थिति–समय ग्राफ़ का किसी क्षण पर ढाल ही तात्क्षणिक वेग है, v = dx/dt। कार तेज़ होती जाती है, इसलिए ढाल बढ़ता जाता है और वक्र ऊपर की ओर मुड़ता है। किसी हिस्से का औसत वेग उसके दोनों सिरों को जोड़ने वाली सीधी रेखा का ढाल है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On a position–time graph, the instantaneous velocity at a moment is:",
+        "hi": "स्थिति–समय ग्राफ़ पर किसी क्षण का तात्क्षणिक वेग है:"
+       },
+       "options": [
+        {
+         "en": "The slope of the tangent at that point",
+         "hi": "उस बिंदु पर स्पर्श रेखा का ढाल"
+        },
+        {
+         "en": "The height of the graph at that point",
+         "hi": "उस बिंदु पर ग्राफ़ की ऊँचाई"
+        },
+        {
+         "en": "The area under the graph up to that point",
+         "hi": "उस बिंदु तक ग्राफ़ के नीचे का क्षेत्रफल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Velocity is the rate of change of position, dx/dt, which is the slope of the tangent.",
+        "hi": "वेग स्थिति के बदलने की दर dx/dt है, जो स्पर्श रेखा का ढाल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The height is the position x itself, not how fast x is changing.",
+         "hi": "ऊँचाई तो स्थिति x है, यह नहीं कि x कितनी तेज़ी से बदल रही है।"
+        },
+        {
+         "en": "Area under a position–time graph has no simple meaning; area under a velocity–time graph gives displacement.",
+         "hi": "स्थिति–समय ग्राफ़ के नीचे के क्षेत्रफल का कोई सरल अर्थ नहीं; वेग–समय ग्राफ़ के नीचे का क्षेत्रफल विस्थापन देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A position–time graph is a straight sloping line. The object has:",
+        "hi": "एक स्थिति–समय ग्राफ़ सीधी तिरछी रेखा है। वस्तु का:"
+       },
+       "options": [
+        {
+         "en": "Constant velocity",
+         "hi": "वेग स्थिर है"
+        },
+        {
+         "en": "Constant acceleration, not zero",
+         "hi": "त्वरण स्थिर है, शून्य नहीं"
+        },
+        {
+         "en": "Zero velocity",
+         "hi": "वेग शून्य है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A straight line has the same slope everywhere, so the velocity never changes.",
+        "hi": "सीधी रेखा का ढाल हर जगह एक-सा होता है, इसलिए वेग नहीं बदलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Steady speeding up makes the line curve, as you just saw; a straight line means no change in velocity.",
+         "hi": "लगातार तेज़ होने पर रेखा मुड़ती है, जैसा तुमने अभी देखा; सीधी रेखा का अर्थ है वेग में कोई बदलाव नहीं।"
+        },
+        {
+         "en": "Zero velocity gives a flat, horizontal line, not a sloping one.",
+         "hi": "शून्य वेग पर रेखा क्षैतिज और सपाट होती है, तिरछी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a = 0 and u = 10 m/s and play again: the curve becomes a straight line. Then drag the car yourself, fast and slow, and watch the slope.",
+      "hi": "a = 0 और u = 10 m/s करके फिर चलाओ: वक्र सीधी रेखा बन जाता है। फिर कार को ख़ुद तेज़ और धीरे खींचकर ढाल देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch02-braking-vt",
+   "topic": "2.3",
+   "template": "motion",
+   "title": {
+    "en": "An auto brakes: the velocity–time graph",
+    "hi": "ऑटो ब्रेक लगाता है: वेग–समय ग्राफ़"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "1d",
+    "vehicle": "auto",
+    "u": 20,
+    "a": -4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:vt",
+     "say": {
+      "en": "Tap the velocity–time tab.",
+      "hi": "वेग–समय टैब पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The auto moves at 20 m/s and the driver brakes with an acceleration of −4 m/s². How long does it take to stop?",
+      "hi": "ऑटो 20 m/s से चल रहा है और चालक −4 m/s² के त्वरण से ब्रेक लगाता है। उसे रुकने में कितना समय लगेगा?"
+     },
+     "options": [
+      {
+       "id": "4",
+       "en": "4 s",
+       "hi": "4 सेकंड"
+      },
+      {
+       "id": "5",
+       "en": "5 s",
+       "hi": "5 सेकंड"
+      },
+      {
+       "id": "80",
+       "en": "80 s",
+       "hi": "80 सेकंड"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "stopped",
+     "say": {
+      "en": "Press Play and watch the velocity fall to zero.",
+      "hi": "चलाओ दबाओ और वेग को शून्य तक गिरते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Acceleration is the rate of change of velocity, a = dv/dt. Here v drops by 4 m/s every second, so it reaches zero after 20 ÷ 4 = 5 s, and the v–t graph is a straight line sloping down. The area under the v–t graph is the displacement: ½ × 20 × 5 = 50 m.",
+      "hi": "त्वरण वेग के बदलने की दर है, a = dv/dt। यहाँ v हर सेकंड 4 m/s घटता है, इसलिए 20 ÷ 4 = 5 s में शून्य हो जाता है, और v–t ग्राफ़ नीचे झुकती सीधी रेखा है। v–t ग्राफ़ के नीचे का क्षेत्रफल विस्थापन है: ½ × 20 × 5 = 50 m।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the area under a velocity–time graph give?",
+        "hi": "वेग–समय ग्राफ़ के नीचे का क्षेत्रफल क्या देता है?"
+       },
+       "options": [
+        {
+         "en": "Displacement",
+         "hi": "विस्थापन"
+        },
+        {
+         "en": "Acceleration",
+         "hi": "त्वरण"
+        },
+        {
+         "en": "Time taken",
+         "hi": "लगा समय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each thin strip has area v × Δt, which is the small displacement in that time; adding the strips gives the total displacement.",
+        "hi": "हर पतली पट्टी का क्षेत्रफल v × Δt है, जो उस समय का छोटा विस्थापन है; सारी पट्टियाँ जोड़ने पर कुल विस्थापन मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Acceleration is the slope of the v–t graph, not the area under it.",
+         "hi": "त्वरण v–t ग्राफ़ का ढाल है, उसके नीचे का क्षेत्रफल नहीं।"
+        },
+        {
+         "en": "Time is read along the horizontal axis; the area multiplies velocity by time.",
+         "hi": "समय क्षैतिज अक्ष पर पढ़ा जाता है; क्षेत्रफल वेग को समय से गुणा करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The auto still moves forward, but its acceleration is negative. This means it is:",
+        "hi": "ऑटो अब भी आगे चल रहा है, पर उसका त्वरण ऋणात्मक है। इसका अर्थ है कि वह:"
+       },
+       "options": [
+        {
+         "en": "Slowing down",
+         "hi": "धीमा हो रहा है"
+        },
+        {
+         "en": "Moving backwards",
+         "hi": "पीछे चल रहा है"
+        },
+        {
+         "en": "Standing still",
+         "hi": "रुका हुआ है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Velocity is positive and acceleration is negative, so they point opposite ways and the speed falls.",
+        "hi": "वेग धनात्मक और त्वरण ऋणात्मक है, यानी दोनों उलटी दिशा में हैं, इसलिए चाल घटती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sign of acceleration tells how velocity changes, not which way the auto moves; v is still positive.",
+         "hi": "त्वरण का चिह्न बताता है कि वेग कैसे बदल रहा है, ऑटो किस ओर चल रहा है यह नहीं; v अभी भी धनात्मक है।"
+        },
+        {
+         "en": "It is moving until the very end; a standing auto has v = 0 and the graph would sit on the time axis.",
+         "hi": "वह अंत तक चल रहा है; रुके ऑटो का v = 0 होता है और ग्राफ़ समय-अक्ष पर रहता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the acceleration–time tab: what shape is it? Then try a = −2 m/s² and see how far the auto goes before stopping.",
+      "hi": "त्वरण–समय टैब देखो: उसका आकार कैसा है? फिर a = −2 m/s² करके देखो कि रुकने से पहले ऑटो कितनी दूर जाता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch02-throw-up",
+   "topic": "2.4",
+   "template": "motion",
+   "title": {
+    "en": "A ball thrown up from a roof",
+    "hi": "छत से ऊपर फेंकी गई गेंद"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "free-fall",
+    "vehicle": "ball",
+    "u": 10,
+    "h": 20,
+    "g": 9.8
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Meena throws a ball straight up at 10 m/s from a 20 m high roof. At the highest point, what is its acceleration?",
+      "hi": "मीना 20 m ऊँची छत से गेंद को 10 m/s से सीधा ऊपर फेंकती है। सबसे ऊँचे बिंदु पर उसका त्वरण क्या है?"
+     },
+     "options": [
+      {
+       "id": "zero",
+       "en": "Zero, because it stops",
+       "hi": "शून्य, क्योंकि वह रुक जाती है"
+      },
+      {
+       "id": "down",
+       "en": "9.8 m/s² downward",
+       "hi": "9.8 m/s² नीचे की ओर"
+      },
+      {
+       "id": "up",
+       "en": "9.8 m/s² upward",
+       "hi": "9.8 m/s² ऊपर की ओर"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "max-height",
+     "say": {
+      "en": "Press Play and watch the ball rise and slow down.",
+      "hi": "चलाओ दबाओ और गेंद को ऊपर जाते और धीमा होते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:vt",
+     "say": {
+      "en": "Tap the velocity–time tab and watch the line until the ball lands.",
+      "hi": "वेग–समय टैब पर टैप करो और गेंद गिरने तक रेखा देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Gravity pulls down the whole time, so a = −9.8 m/s² from start to finish, even at the top where v = 0 for an instant. The v–t graph is one straight line crossing zero. Using v = u + at, the ball takes 10 ÷ 9.8 ≈ 1.02 s to reach the top, and v² = u² + 2as gives a rise of 10² ÷ (2 × 9.8) ≈ 5.1 m.",
+      "hi": "गुरुत्व पूरे समय नीचे खींचता है, इसलिए शुरू से अंत तक a = −9.8 m/s² रहता है, सबसे ऊपर भी जहाँ एक पल के लिए v = 0 होता है। v–t ग्राफ़ शून्य को पार करती एक ही सीधी रेखा है। v = u + at से गेंद 10 ÷ 9.8 ≈ 1.02 s में ऊपर पहुँचती है, और v² = u² + 2as से वह 10² ÷ (2 × 9.8) ≈ 5.1 m ऊपर उठती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How high above the roof does the ball rise?",
+        "hi": "गेंद छत से कितनी ऊपर तक जाती है?"
+       },
+       "options": [
+        "About 5.1 m",
+        "10 m",
+        "About 1 m"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At the top v = 0, so 0 = u² − 2gh gives h = u² ÷ 2g = 100 ÷ 19.6 ≈ 5.1 m.",
+        "hi": "सबसे ऊपर v = 0, इसलिए 0 = u² − 2gh से h = u² ÷ 2g = 100 ÷ 19.6 ≈ 5.1 m।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "10 m would need the ball to keep 10 m/s for a whole second, but it slows down all the way up.",
+         "hi": "10 m के लिए गेंद को पूरे एक सेकंड 10 m/s बनाए रखना होता, पर वह ऊपर जाते हुए लगातार धीमी होती है।"
+        },
+        {
+         "en": "About 1 is the time to the top in seconds, not the height in metres.",
+         "hi": "लगभग 1 तो ऊपर पहुँचने का समय सेकंड में है, ऊँचाई मीटर में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which equation finds the height reached without knowing the time?",
+        "hi": "समय जाने बिना पहुँची ऊँचाई कौन-सा समीकरण देता है?"
+       },
+       "options": [
+        "v² = u² + 2as",
+        "v = u + at",
+        "x = v × t"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "v² = u² + 2as links velocities and displacement directly, with no t in it.",
+        "hi": "v² = u² + 2as वेग और विस्थापन को सीधे जोड़ता है, इसमें t नहीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "v = u + at gives the time to the top, but it has no displacement in it.",
+         "hi": "v = u + at से ऊपर पहुँचने का समय मिलता है, पर इसमें विस्थापन नहीं है।"
+        },
+        {
+         "en": "x = vt works only when velocity is constant, and here it keeps changing.",
+         "hi": "x = vt केवल स्थिर वेग पर काम करता है, और यहाँ वेग लगातार बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make u negative to throw the ball downward, or drag the ball to change the roof height. Does the landing speed depend on whether you throw up or down at the same speed?",
+      "hi": "u ऋणात्मक करके गेंद नीचे फेंको, या छत की ऊँचाई बदलने के लिए गेंद खींचो। एक ही चाल से ऊपर या नीचे फेंकने पर क्या ज़मीन से टकराने की चाल बदलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch02-heavy-light-fall",
+   "topic": "2.4",
+   "template": "motion",
+   "title": {
+    "en": "Do heavy things fall faster?",
+    "hi": "क्या भारी चीज़ें जल्दी गिरती हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "free-fall",
+    "vehicle": "ball",
+    "pair": true,
+    "h": 45,
+    "u": 0
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A heavy ball and a light ball are dropped together from 45 m, with no air resistance. Which lands first?",
+      "hi": "एक भारी और एक हल्की गेंद 45 m से एक साथ गिराई जाती हैं, हवा का प्रतिरोध नहीं है। पहले कौन गिरेगी?"
+     },
+     "options": [
+      {
+       "id": "heavy",
+       "en": "The heavy ball",
+       "hi": "भारी गेंद"
+      },
+      {
+       "id": "light",
+       "en": "The light ball",
+       "hi": "हल्की गेंद"
+      },
+      {
+       "id": "same",
+       "en": "Both together",
+       "hi": "दोनों साथ-साथ"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "landed",
+     "say": {
+      "en": "Press Play and watch both balls fall.",
+      "hi": "चलाओ दबाओ और दोनों गेंदों को गिरते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Without air, every body falls with the same acceleration g, whatever its mass. From rest, h = ½gt², so t = √(2h ÷ g) = √(90 ÷ 9.8) ≈ 3.0 s for both. In real air, a feather drifts down slowly only because air pushes back on it.",
+      "hi": "हवा न हो तो हर वस्तु एक ही त्वरण g से गिरती है, उसका द्रव्यमान कुछ भी हो। विराम से h = ½gt², इसलिए दोनों के लिए t = √(2h ÷ g) = √(90 ÷ 9.8) ≈ 3.0 s। असली हवा में पंख धीरे इसलिए गिरता है क्योंकि हवा उसे पीछे धकेलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the balls were dropped from 4 times the height (180 m), the fall time would be:",
+        "hi": "अगर गेंदें 4 गुना ऊँचाई (180 m) से गिराई जाएँ, तो गिरने का समय होगा:"
+       },
+       "options": [
+        "About 6 s",
+        "About 12 s",
+        "About 3 s"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "t = √(2h ÷ g), so 4 times the height gives √4 = 2 times the time: about 6 s.",
+        "hi": "t = √(2h ÷ g), इसलिए 4 गुना ऊँचाई पर समय √4 = 2 गुना, यानी लगभग 6 s।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That assumes time grows in step with height, but distance grows with t², so time grows only with √h.",
+         "hi": "इसमें माना गया कि समय ऊँचाई के साथ उसी अनुपात में बढ़ता है, पर दूरी t² के साथ बढ़ती है, इसलिए समय केवल √h के साथ बढ़ता है।"
+        },
+        {
+         "en": "A greater height always takes longer to fall, because the ball starts from rest each time.",
+         "hi": "ज़्यादा ऊँचाई से गिरने में हमेशा ज़्यादा समय लगता है, क्योंकि गेंद हर बार विराम से शुरू होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the ball to other heights and play again. Can you find the height that takes exactly 2 s?",
+      "hi": "गेंद को दूसरी ऊँचाइयों पर खींचकर फिर चलाओ। क्या तुम वह ऊँचाई खोज सकते हो जिससे गिरने में ठीक 2 s लगें?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch02-trains-relative",
+   "topic": "2.5",
+   "template": "motion",
+   "title": {
+    "en": "Two trains: relative velocity",
+    "hi": "दो रेलगाड़ियाँ: आपेक्षिक वेग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "relative",
+    "vehicle": "train",
+    "vehicle2": "train",
+    "u": 15,
+    "speed": 20
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Train A runs at 15 m/s and train B at 20 m/s on the next track, in the same direction. To a passenger in A, how fast does B seem to move?",
+      "hi": "रेलगाड़ी A 15 m/s से और पास की पटरी पर रेलगाड़ी B 20 m/s से, एक ही दिशा में चल रही है। A के यात्री को B कितनी तेज़ चलती दिखेगी?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5 m/s forward",
+       "hi": "5 m/s आगे की ओर"
+      },
+      {
+       "id": "35",
+       "en": "35 m/s forward",
+       "hi": "35 m/s आगे की ओर"
+      },
+      {
+       "id": "20",
+       "en": "20 m/s forward",
+       "hi": "20 m/s आगे की ओर"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "stopped",
+     "say": {
+      "en": "Press Play. Watch the lower road: it shows what a passenger in A sees.",
+      "hi": "चलाओ दबाओ। नीचे की सड़क देखो: वह दिखाती है कि A का यात्री क्या देखता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:vt",
+     "say": {
+      "en": "Tap the velocity–time tab and find the line for B seen from A.",
+      "hi": "वेग–समय टैब पर टैप करो और A से देखे गए B के वेग की रेखा खोजो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The velocity of B relative to A is v_BA = v_B − v_A = 20 − 15 = 5 m/s. So from A, B creeps ahead slowly, and the gap grows by 5 m every second. If B moved towards A, the velocities would add instead.",
+      "hi": "A के सापेक्ष B का वेग v_BA = v_B − v_A = 20 − 15 = 5 m/s है। इसलिए A से देखने पर B धीरे-धीरे आगे निकलती है, और बीच की दूरी हर सेकंड 5 m बढ़ती है। अगर B, A की ओर आती, तो वेग जुड़ जाते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Now B comes towards A at 20 m/s while A moves at 15 m/s. What is the speed of B seen from A?",
+        "hi": "अब B, 20 m/s से A की ओर आ रही है और A 15 m/s से चल रही है। A से B की चाल कितनी दिखेगी?"
+       },
+       "options": [
+        "35 m/s",
+        "5 m/s",
+        "20 m/s"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Taking A's direction as positive, v_B = −20 m/s, so v_BA = −20 − 15 = −35 m/s: 35 m/s towards A.",
+        "hi": "A की दिशा धनात्मक लें तो v_B = −20 m/s, इसलिए v_BA = −20 − 15 = −35 m/s, यानी A की ओर 35 m/s।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Subtracting the plain speeds forgets that B now moves the opposite way, so its velocity is negative.",
+         "hi": "केवल चालें घटाने में भूल है कि B अब उलटी दिशा में है, इसलिए उसका वेग ऋणात्मक है।"
+        },
+        {
+         "en": "20 m/s is B's velocity seen from the ground, not from moving train A.",
+         "hi": "20 m/s ज़मीन से देखा गया B का वेग है, चलती रेलगाड़ी A से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make the two speeds equal and play: what does a passenger in A see? Then give B a negative speed.",
+      "hi": "दोनों चालें बराबर करके चलाओ: A के यात्री को क्या दिखता है? फिर B को ऋणात्मक चाल दो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Hook of the chapter: motion all around",
+   "shows": "A metro train pulling out of an elevated station in an Indian city, with a cyclist and an auto-rickshaw on the road below",
+   "view": "Wide, eye level from the platform, slight motion blur on the train only",
+   "right": "Train and road vehicles clearly moving in a straight line",
+   "avoid": "Readable signs, logos, faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Braking: negative acceleration",
+   "shows": "An auto-rickshaw slowing at a red traffic signal on a city road, brake lights not needed",
+   "view": "Side view at road level, the auto sharp, background softly blurred",
+   "right": "The auto is slowing in a straight line; signal shows red",
+   "avoid": "Number plates, faces, brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "2.4",
+   "use": "Throw-up lab and the reader: rising, stopping, falling",
+   "shows": "Five frames of the same ball thrown straight up beside a tall house wall: rising, near the top, at the top, falling, near the ground",
+   "view": "Same fixed camera and light in every frame, wall as a scale",
+   "right": "Ball spacing smaller near the top, larger near the ground",
+   "avoid": "Changing the camera or the ball between frames"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "2.4",
+   "use": "Heavy and light fall together",
+   "shows": "Three frames of a steel ball and a wooden ball of the same size released together from a balcony railing, side by side at every frame",
+   "view": "Fixed side view, plain wall, even light",
+   "right": "Both balls at the same height in every frame",
+   "avoid": "A feather or paper (air matters for those), hands in view below the railing"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.5",
+   "use": "Relative velocity from a train window",
+   "shows": "View from inside a train window of another train on the next track moving in the same direction",
+   "view": "Through the window, the other train fills most of the frame",
+   "right": "Both trains on parallel tracks; the other train sharp, the ground blurred",
+   "avoid": "Faces of passengers, railway logos"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Graph base for the reader",
+   "shows": "Clean graph-paper base with two perpendicular axes and fine grid, no numbers",
+   "view": "Flat, white background",
+   "right": "Square grid, axes meet at the lower left",
+   "avoid": "Any text, numbers or curves"
+  }
+ ]
+}

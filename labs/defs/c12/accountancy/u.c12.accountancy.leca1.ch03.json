@@ -1,0 +1,1363 @@
+{
+  "chapter_key": "u.c12.accountancy.leca1.ch03",
+  "class": 12,
+  "subject_id": "accountancy",
+  "title": "Use of Spreadsheet in Business Applications",
+  "source": "https://ncert.nic.in/textbook/pdf/leca103.pdf",
+  "topics": [
+    {
+      "n": "3.1",
+      "title": "Payroll",
+      "labs": [
+        "c12-accountancy-leca1-ch03-payroll-parts"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.1.1",
+      "title": "Payroll components",
+      "labs": [
+        "c12-accountancy-leca1-ch03-payroll-parts"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.1.2",
+      "title": "Elements used in payroll calculation",
+      "labs": [
+        "c12-accountancy-leca1-ch03-payroll-calc"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.1.3",
+      "title": "Building the payroll worksheet",
+      "labs": [
+        "c12-accountancy-leca1-ch03-build-payroll"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.2",
+      "title": "Asset accounting",
+      "labs": [
+        "c12-accountancy-leca1-ch03-slm"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.2.1",
+      "title": "Introduction to asset accounting",
+      "labs": [
+        "c12-accountancy-leca1-ch03-slm"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.2.2",
+      "title": "Computerised asset accounting (depreciation methods)",
+      "labs": [
+        "c12-accountancy-leca1-ch03-slm",
+        "c12-accountancy-leca1-ch03-wdv"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.3.1",
+      "title": "Loan: parameters and explanation",
+      "labs": [
+        "c12-accountancy-leca1-ch03-loan-terms"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.3",
+      "title": "Loan repayment schedule",
+      "labs": [
+        "c12-accountancy-leca1-ch03-loan-schedule"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-accountancy-leca1-ch03-payroll-parts",
+      "topic": "3.1.1",
+      "template": "sort",
+      "title": {
+        "en": "Earnings or deductions?",
+        "hi": "आय या कटौती?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "earn",
+            "label": {
+              "en": "Earnings (added)",
+              "hi": "आय (जुड़ती है)"
+            }
+          },
+          {
+            "id": "ded",
+            "label": {
+              "en": "Deductions (taken off)",
+              "hi": "कटौती (घटती है)"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "basic",
+            "text": {
+              "en": "Basic pay",
+              "hi": "मूल वेतन"
+            },
+            "bin": "earn",
+            "why": {
+              "en": "The main fixed part of pay.",
+              "hi": "वेतन का मुख्य निश्चित भाग।"
+            }
+          },
+          {
+            "id": "da",
+            "text": {
+              "en": "Dearness allowance",
+              "hi": "महँगाई भत्ता"
+            },
+            "bin": "earn",
+            "why": {
+              "en": "An allowance added to meet rising prices.",
+              "hi": "बढ़ती क़ीमतों के लिए जुड़ने वाला भत्ता।"
+            }
+          },
+          {
+            "id": "hra",
+            "text": {
+              "en": "House rent allowance",
+              "hi": "मकान किराया भत्ता"
+            },
+            "bin": "earn",
+            "why": {
+              "en": "An allowance added towards rent.",
+              "hi": "किराये के लिए जुड़ने वाला भत्ता।"
+            }
+          },
+          {
+            "id": "ot",
+            "text": {
+              "en": "Overtime payment",
+              "hi": "अधिसमय भुगतान"
+            },
+            "bin": "earn",
+            "why": {
+              "en": "Extra pay for extra hours.",
+              "hi": "अतिरिक्त घंटों का अतिरिक्त वेतन।"
+            }
+          },
+          {
+            "id": "pf",
+            "text": {
+              "en": "Provident fund contribution",
+              "hi": "भविष्य निधि अंशदान"
+            },
+            "bin": "ded",
+            "why": {
+              "en": "Saved from pay for the employee's future.",
+              "hi": "कर्मचारी के भविष्य के लिए वेतन से बचाया जाता है।"
+            }
+          },
+          {
+            "id": "tax",
+            "text": {
+              "en": "Income tax deducted",
+              "hi": "काटा गया आयकर"
+            },
+            "bin": "ded",
+            "why": {
+              "en": "Tax is cut from pay at source.",
+              "hi": "कर वेतन से स्रोत पर काटा जाता है।"
+            }
+          },
+          {
+            "id": "loan",
+            "text": {
+              "en": "Instalment of a salary advance",
+              "hi": "वेतन अग्रिम की किस्त"
+            },
+            "bin": "ded",
+            "why": {
+              "en": "Money lent earlier is recovered from pay.",
+              "hi": "पहले दिया उधार वेतन से वसूला जाता है।"
+            }
+          },
+          {
+            "id": "pt",
+            "text": {
+              "en": "Professional tax",
+              "hi": "व्यवसाय कर"
+            },
+            "bin": "ded",
+            "why": {
+              "en": "A small state tax cut from pay.",
+              "hi": "राज्य का छोटा कर जो वेतन से कटता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Gross pay is the total of earnings. Does gross pay include provident fund?",
+            "hi": "सकल वेतन आय का योग है। क्या सकल वेतन में भविष्य निधि शामिल है?"
+          },
+          "options": [
+            {
+              "id": "n",
+              "en": "No, it is a deduction",
+              "hi": "नहीं, यह कटौती है"
+            },
+            {
+              "id": "y",
+              "en": "Yes",
+              "hi": "हाँ"
+            }
+          ],
+          "answer": "n"
+        },
+        {
+          "kind": "do",
+          "target": "card:basic",
+          "expect": "correct:basic",
+          "say": {
+            "en": "Tap the card “Basic pay”, then tap the group it belongs to.",
+            "hi": "कार्ड “मूल वेतन” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:pf",
+          "expect": "correct:pf",
+          "say": {
+            "en": "Tap the card “Provident fund contribution”, then tap the group it belongs to.",
+            "hi": "कार्ड “भविष्य निधि अंशदान” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Payroll works out what each employee is paid. Earnings such as basic pay, dearness allowance, house rent allowance and overtime add up to gross pay. Deductions such as provident fund, tax and recoveries of advances are taken off to leave the net pay that reaches the bank account.",
+            "hi": "वेतन-पत्रक निकालता है कि हर कर्मचारी को कितना मिले। मूल वेतन, महँगाई भत्ता, मकान किराया भत्ता और अधिसमय जैसी आय मिलकर सकल वेतन बनाती है। भविष्य निधि, कर और अग्रिम की वसूली जैसी कटौतियाँ घटाने पर शुद्ध वेतन बचता है जो बैंक खाते में पहुँचता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Net pay equals:",
+                "hi": "शुद्ध वेतन बराबर है:"
+              },
+              "options": [
+                {
+                  "en": "Gross pay − deductions",
+                  "hi": "सकल वेतन − कटौतियाँ"
+                },
+                {
+                  "en": "Gross pay + deductions",
+                  "hi": "सकल वेतन + कटौतियाँ"
+                },
+                {
+                  "en": "Basic pay only",
+                  "hi": "केवल मूल वेतन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "What the employee takes home is earnings less deductions.",
+                "hi": "कर्मचारी घर ले जाता है आय घटा कटौतियाँ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Adding deductions would pay more than the employee earned.",
+                  "hi": "कटौतियाँ जोड़ने पर कर्मचारी की आय से अधिक मिलता।"
+                },
+                {
+                  "en": "Allowances and overtime also form part of the pay.",
+                  "hi": "भत्ते और अधिसमय भी वेतन का भाग हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at a sample payslip with an adult and mark the earnings and deductions.",
+            "hi": "किसी बड़े के साथ नमूना वेतन-पर्ची देखो और आय व कटौतियाँ चिह्नित करो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch03-payroll-calc",
+      "topic": "3.1.2",
+      "template": "table",
+      "title": {
+        "en": "Working out a payslip in a sheet",
+        "hi": "शीट में वेतन-पर्ची निकालना"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "spreadsheet",
+        "tables": {
+          "earnings": {
+            "columns": [
+              "Item",
+              "Amount"
+            ],
+            "rows": [
+              [
+                "Basic pay",
+                20000
+              ],
+              [
+                "Dearness allowance",
+                8000
+              ],
+              [
+                "House rent allowance",
+                4000
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "Find gross pay, then the provident fund at 12% of basic pay, then the net pay after PF and ₹1,000 income tax.",
+          "hi": "सकल वेतन निकालो, फिर मूल वेतन का 12% भविष्य निधि, फिर भविष्य निधि और ₹1,000 आयकर के बाद शुद्ध वेतन।"
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =SUM(B2:B4) to find the gross pay.",
+            "hi": "सकल वेतन निकालने के लिए =SUM(B2:B4) लिखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "PF is 12% of the basic pay ₹20,000. Is it ₹2,400 or ₹24,000?",
+            "hi": "भविष्य निधि मूल वेतन ₹20,000 का 12% है। यह ₹2,400 है या ₹24,000?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "₹2,400",
+              "hi": "2,400 रुपये"
+            },
+            {
+              "id": "b",
+              "en": "₹24,000",
+              "hi": "24,000 रुपये"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =B2*12/100 for the provident fund.",
+            "hi": "भविष्य निधि के लिए =B2*12/100 लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Now the net pay: =SUM(B2:B4)-B2*12/100-1000.",
+            "hi": "अब शुद्ध वेतन: =SUM(B2:B4)-B2*12/100-1000।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the sheet.",
+            "hi": "शीट के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Gross pay = 20,000 + 8,000 + 4,000 = ₹32,000. PF = 12% of basic = ₹2,400. Net pay = 32,000 − 2,400 − 1,000 = ₹28,600. Note that PF is calculated on the basic pay alone, not on the gross.",
+            "hi": "सकल वेतन = 20,000 + 8,000 + 4,000 = ₹32,000। भविष्य निधि = मूल वेतन का 12% = ₹2,400। शुद्ध वेतन = 32,000 − 2,400 − 1,000 = ₹28,600। ध्यान दो कि भविष्य निधि केवल मूल वेतन पर निकलती है, सकल पर नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "If the basic pay rises to ₹25,000, the PF at 12% becomes:",
+                "hi": "मूल वेतन ₹25,000 हो जाए तो 12% भविष्य निधि होगी:"
+              },
+              "options": [
+                {
+                  "en": "₹3,000",
+                  "hi": "3,000 रुपये"
+                },
+                {
+                  "en": "₹2,400",
+                  "hi": "2,400 रुपये"
+                },
+                {
+                  "en": "₹30,000",
+                  "hi": "30,000 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "12% of 25,000 = ₹3,000.",
+                "hi": "25,000 का 12% = ₹3,000।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹2,400 is for the old basic of ₹20,000.",
+                  "hi": "₹2,400 पुराने मूल वेतन ₹20,000 का है।"
+                },
+                {
+                  "en": "₹30,000 forgets the division by 100.",
+                  "hi": "₹30,000 में 100 से भाग देना भूल गए।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the basic pay in the sheet and watch the net pay change.",
+            "hi": "शीट में मूल वेतन बदलो और शुद्ध वेतन को बदलते देखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch03-build-payroll",
+      "topic": "3.1.2",
+      "template": "sequence",
+      "title": {
+        "en": "Building a payroll sheet",
+        "hi": "वेतन-पत्रक की शीट बनाना"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "data",
+            "text": {
+              "en": "Type the employees' names, grades and days worked",
+              "hi": "कर्मचारियों के नाम, ग्रेड और काम के दिन टाइप करो"
+            }
+          },
+          {
+            "id": "look",
+            "text": {
+              "en": "Look up each basic pay from the grade",
+              "hi": "ग्रेड से हर मूल वेतन खोजो"
+            }
+          },
+          {
+            "id": "allow",
+            "text": {
+              "en": "Calculate allowances with formulas on the basic pay",
+              "hi": "मूल वेतन पर सूत्र से भत्ते निकालो"
+            }
+          },
+          {
+            "id": "gross",
+            "text": {
+              "en": "Add the earnings to get gross pay",
+              "hi": "आय जोड़कर सकल वेतन निकालो"
+            }
+          },
+          {
+            "id": "ded",
+            "text": {
+              "en": "Calculate the deductions",
+              "hi": "कटौतियाँ निकालो"
+            }
+          },
+          {
+            "id": "net",
+            "text": {
+              "en": "Subtract deductions from gross pay to get net pay",
+              "hi": "सकल वेतन में से कटौतियाँ घटाकर शुद्ध वेतन निकालो"
+            }
+          },
+          {
+            "id": "copy",
+            "text": {
+              "en": "Copy the formulas down for every employee",
+              "hi": "हर कर्मचारी के लिए सूत्र नीचे कॉपी करो"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Should the net pay be worked out before or after the deductions are known?",
+            "hi": "शुद्ध वेतन कटौतियाँ पता होने से पहले निकलेगा या बाद में?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "After",
+              "hi": "बाद में"
+            },
+            {
+              "id": "b",
+              "en": "Before",
+              "hi": "पहले"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:net",
+          "expect": "placed:net",
+          "say": {
+            "en": "Tap the card “Subtract deductions from gross pay to get net pay”, then tap the numbered place where it belongs.",
+            "hi": "कार्ड “सकल वेतन में से कटौतियाँ घटाकर शुद्ध वेतन निकालो” पर टैप करो, फिर उस क्रमांक वाली जगह पर टैप करो जहाँ यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Put all the cards in order, then press Check.",
+            "hi": "सारे कार्ड क्रम में लगाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A payroll sheet is built from the data to the answer, and each step feeds the next. Once the formulas are right for one employee, copying them down gives the whole staff in a moment, and next month only the days worked change.",
+            "hi": "वेतन-पत्रक की शीट डेटा से उत्तर की ओर बनती है और हर चरण अगले को खिलाता है। एक कर्मचारी के लिए सूत्र सही हो जाएँ तो उन्हें नीचे कॉपी करने से पूरा स्टाफ़ पल में बन जाता है, और अगले महीने केवल काम के दिन बदलते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why copy formulas instead of typing each employee's result?",
+                "hi": "हर कर्मचारी का परिणाम टाइप करने की जगह सूत्र कॉपी क्यों करें?"
+              },
+              "options": [
+                {
+                  "en": "It is faster and avoids typing errors",
+                  "hi": "यह तेज़ है और टाइपिंग की ग़लतियों से बचाता है"
+                },
+                {
+                  "en": "The sheet cannot hold typed numbers",
+                  "hi": "शीट टाइप की संख्याएँ रख ही नहीं सकती"
+                },
+                {
+                  "en": "It makes pay higher",
+                  "hi": "इससे वेतन बढ़ता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Copied formulas stay consistent and update when data changes.",
+                "hi": "कॉपी हुए सूत्र एकरूप रहते हैं और डेटा बदलने पर बदलते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It can; the problem is mistakes and effort.",
+                  "hi": "रख सकती है; समस्या ग़लतियों और मेहनत की है।"
+                },
+                {
+                  "en": "Formulas calculate what is due; they do not raise pay.",
+                  "hi": "सूत्र देय की गणना करते हैं; वेतन नहीं बढ़ाते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Which step would you change if the PF rate changed?",
+            "hi": "भविष्य निधि की दर बदले तो कौन-सा चरण बदलोगे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch03-slm",
+      "topic": "3.2.2",
+      "template": "ledger",
+      "title": {
+        "en": "Asset accounting: straight-line depreciation",
+        "hi": "परिसंपत्ति लेखांकन: सीधी रेखा विधि से मूल्यह्रास"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "depreciation",
+        "business": {
+          "en": "Veena Printers",
+          "hi": "वीणा प्रिंटर्स"
+        },
+        "method": "slm",
+        "life": 5,
+        "scrap": 20000,
+        "years": 3,
+        "transactions": [
+          {
+            "id": "t1",
+            "date": "2025-04-01",
+            "text": {
+              "en": "Bought a machine for cash",
+              "hi": "नकद में मशीन ख़रीदी"
+            },
+            "amount": 180000,
+            "debit": "machinery",
+            "credit": "cash"
+          },
+          {
+            "id": "t2",
+            "date": "2025-04-03",
+            "text": {
+              "en": "Paid installation charges in cash",
+              "hi": "नकद में स्थापना ख़र्च दिया"
+            },
+            "amount": 20000,
+            "debit": "machinery",
+            "credit": "cash"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "posted:year-1",
+          "say": {
+            "en": "Charge the first year's depreciation.",
+            "hi": "पहले वर्ष का मूल्यह्रास लगाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "balance",
+          "expect": "balanced",
+          "say": {
+            "en": "Balance the asset account for year 1.",
+            "hi": "वर्ष 1 के लिए परिसंपत्ति खाता संतुलित करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The machine's cost is ₹2,00,000, scrap ₹20,000, life 5 years. Will year 2's depreciation be the same as year 1's?",
+            "hi": "मशीन की लागत ₹2,00,000, अवशेष ₹20,000, जीवन 5 वर्ष। क्या वर्ष 2 का मूल्यह्रास वर्ष 1 जितना ही होगा?"
+          },
+          "options": [
+            {
+              "id": "s",
+              "en": "Yes, the same every year",
+              "hi": "हाँ, हर साल समान"
+            },
+            {
+              "id": "d",
+              "en": "No, it falls",
+              "hi": "नहीं, घटेगा"
+            }
+          ],
+          "answer": "s"
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "posted:year-2",
+          "say": {
+            "en": "Charge year 2.",
+            "hi": "वर्ष 2 लगाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "balance",
+          "expect": "balanced",
+          "say": {
+            "en": "Balance again.",
+            "hi": "फिर संतुलित करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Straight-line depreciation = (cost − scrap) ÷ life = (2,00,000 − 20,000) ÷ 5 = ₹36,000 every year. Cost includes installation, since the machine is useless until installed. In a spreadsheet this is one formula copied down, and the book value falls by the same amount each year: 2,00,000 → 1,64,000 → 1,28,000 → 92,000.",
+            "hi": "सीधी रेखा विधि का मूल्यह्रास = (लागत − अवशेष) ÷ जीवन = (2,00,000 − 20,000) ÷ 5 = हर वर्ष ₹36,000। लागत में स्थापना शामिल है क्योंकि मशीन लगे बिना बेकार है। स्प्रेडशीट में यह एक सूत्र है जो नीचे कॉपी होता है, और पुस्तक मूल्य हर वर्ष समान घटता है: 2,00,000 → 1,64,000 → 1,28,000 → 92,000।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is the book value after year 3?",
+                "hi": "वर्ष 3 के बाद पुस्तक मूल्य क्या है?"
+              },
+              "options": [
+                {
+                  "en": "₹92,000",
+                  "hi": "92,000 रुपये"
+                },
+                {
+                  "en": "₹1,08,000",
+                  "hi": "1,08,000 रुपये"
+                },
+                {
+                  "en": "₹20,000",
+                  "hi": "20,000 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "2,00,000 − 3 × 36,000 = ₹92,000.",
+                "hi": "2,00,000 − 3 × 36,000 = ₹92,000।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹1,08,000 is the total depreciation, not the book value.",
+                  "hi": "₹1,08,000 कुल मूल्यह्रास है, पुस्तक मूल्य नहीं।"
+                },
+                {
+                  "en": "₹20,000 is the scrap value expected only at the end of year 5.",
+                  "hi": "₹20,000 अवशेष मूल्य है जो केवल पाँचवें वर्ष के अंत में अपेक्षित है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the life to 4 years in your head and recalculate the yearly charge.",
+            "hi": "मन में जीवन 4 वर्ष करो और वार्षिक प्रभार फिर निकालो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch03-wdv",
+      "topic": "3.2.2",
+      "template": "ledger",
+      "title": {
+        "en": "Asset accounting: written-down value method",
+        "hi": "परिसंपत्ति लेखांकन: ह्रासित मूल्य विधि"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "depreciation",
+        "business": {
+          "en": "Veena Printers",
+          "hi": "वीणा प्रिंटर्स"
+        },
+        "method": "wdv",
+        "rate": 20,
+        "years": 3,
+        "transactions": [
+          {
+            "id": "t1",
+            "date": "2025-04-01",
+            "text": {
+              "en": "Bought a machine for cash",
+              "hi": "नकद में मशीन ख़रीदी"
+            },
+            "amount": 180000,
+            "debit": "machinery",
+            "credit": "cash"
+          },
+          {
+            "id": "t2",
+            "date": "2025-04-03",
+            "text": {
+              "en": "Paid installation charges in cash",
+              "hi": "नकद में स्थापना ख़र्च दिया"
+            },
+            "amount": 20000,
+            "debit": "machinery",
+            "credit": "cash"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "posted:year-1",
+          "say": {
+            "en": "Charge year 1 at 20% of the cost.",
+            "hi": "वर्ष 1 पर लागत का 20% लगाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "balance",
+          "expect": "balanced",
+          "say": {
+            "en": "Balance the asset account.",
+            "hi": "परिसंपत्ति खाता संतुलित करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In year 2 the 20% is charged on what is left, not on the cost. Will year 2's charge be bigger or smaller than year 1's?",
+            "hi": "वर्ष 2 में 20% बची हुई राशि पर लगेगा, लागत पर नहीं। वर्ष 2 का प्रभार वर्ष 1 से बड़ा होगा या छोटा?"
+          },
+          "options": [
+            {
+              "id": "s",
+              "en": "Smaller",
+              "hi": "छोटा"
+            },
+            {
+              "id": "b",
+              "en": "Bigger",
+              "hi": "बड़ा"
+            }
+          ],
+          "answer": "s"
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "posted:year-2",
+          "say": {
+            "en": "Charge year 2.",
+            "hi": "वर्ष 2 लगाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "balance",
+          "expect": "balanced",
+          "say": {
+            "en": "Balance again.",
+            "hi": "फिर संतुलित करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Under the written-down value method the rate is applied to the opening book value, so the charge falls each year: 20% of 2,00,000 = ₹40,000, then 20% of 1,60,000 = ₹32,000, then 20% of 1,28,000 = ₹25,600. Heavy charges early on suit assets that lose value fast, such as computers. In a spreadsheet the formula refers to the previous year's closing value.",
+            "hi": "ह्रासित मूल्य विधि में दर प्रारंभिक पुस्तक मूल्य पर लगती है, इसलिए प्रभार हर वर्ष घटता है: 2,00,000 का 20% = ₹40,000, फिर 1,60,000 का 20% = ₹32,000, फिर 1,28,000 का 20% = ₹25,600। शुरू में भारी प्रभार उन परिसंपत्तियों के लिए ठीक है जो जल्दी मूल्य खोती हैं, जैसे कंप्यूटर। स्प्रेडशीट में सूत्र पिछले वर्ष के अंतिम मूल्य को देखता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which method gives the larger charge in year 1 for this machine?",
+                "hi": "इस मशीन के लिए वर्ष 1 में बड़ा प्रभार कौन-सी विधि देती है?"
+              },
+              "options": [
+                {
+                  "en": "Written-down value (₹40,000)",
+                  "hi": "ह्रासित मूल्य (₹40,000)"
+                },
+                {
+                  "en": "Straight line (₹36,000)",
+                  "hi": "सीधी रेखा (₹36,000)"
+                },
+                {
+                  "en": "Both give the same",
+                  "hi": "दोनों समान देती हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "20% of the full cost is ₹40,000, more than ₹36,000.",
+                "hi": "पूरी लागत का 20% ₹40,000 है, जो ₹36,000 से अधिक है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Straight line gives ₹36,000, which is smaller.",
+                  "hi": "सीधी रेखा ₹36,000 देती है, जो कम है।"
+                },
+                {
+                  "en": "The two figures differ.",
+                  "hi": "दोनों आँकड़े अलग हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Compare the two methods' book values after 3 years: which is lower?",
+            "hi": "तीन वर्ष बाद दोनों विधियों के पुस्तक मूल्य मिलाओ: कौन-सा कम है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch03-loan-terms",
+      "topic": "3.3.1",
+      "template": "match",
+      "title": {
+        "en": "The words of a loan",
+        "hi": "ऋण के शब्द"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "prin",
+            "left": {
+              "en": "Principal",
+              "hi": "मूलधन"
+            },
+            "right": {
+              "en": "The amount borrowed",
+              "hi": "उधार ली गई राशि"
+            },
+            "why": {
+              "en": "Interest is worked out on the principal.",
+              "hi": "ब्याज मूलधन पर निकलता है।"
+            }
+          },
+          {
+            "id": "rate",
+            "left": {
+              "en": "Rate of interest",
+              "hi": "ब्याज दर"
+            },
+            "right": {
+              "en": "The percentage charged per year on the balance",
+              "hi": "शेष पर साल का प्रतिशत जो लगता है"
+            },
+            "why": {
+              "en": "A higher rate costs more.",
+              "hi": "ऊँची दर महँगी पड़ती है।"
+            }
+          },
+          {
+            "id": "term",
+            "left": {
+              "en": "Term",
+              "hi": "अवधि"
+            },
+            "right": {
+              "en": "The number of years or months over which the loan is repaid",
+              "hi": "वर्षों या महीनों की संख्या जिसमें ऋण चुकाया जाता है"
+            },
+            "why": {
+              "en": "A longer term means smaller instalments but more interest.",
+              "hi": "लंबी अवधि में किस्तें छोटी पर ब्याज अधिक।"
+            }
+          },
+          {
+            "id": "inst",
+            "left": {
+              "en": "Instalment",
+              "hi": "किस्त"
+            },
+            "right": {
+              "en": "One repayment, made regularly",
+              "hi": "एक चुकौती, जो नियमित रूप से की जाती है"
+            },
+            "why": {
+              "en": "An instalment usually includes principal and interest.",
+              "hi": "किस्त में आम तौर पर मूलधन और ब्याज दोनों होते हैं।"
+            }
+          },
+          {
+            "id": "bal",
+            "left": {
+              "en": "Outstanding balance",
+              "hi": "बकाया शेष"
+            },
+            "right": {
+              "en": "The principal still to be repaid",
+              "hi": "मूलधन जो अभी चुकाना बाक़ी है"
+            },
+            "why": {
+              "en": "Interest next period is charged on it.",
+              "hi": "अगली अवधि का ब्याज इसी पर लगता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Interest for the next year is worked out on which amount?",
+            "hi": "अगले वर्ष का ब्याज किस राशि पर निकलता है?"
+          },
+          "options": [
+            {
+              "id": "o",
+              "en": "The outstanding balance",
+              "hi": "बकाया शेष"
+            },
+            {
+              "id": "p",
+              "en": "The original principal always",
+              "hi": "हमेशा मूल मूलधन"
+            }
+          ],
+          "answer": "o"
+        },
+        {
+          "kind": "do",
+          "target": "left:prin",
+          "expect": "matched:prin",
+          "say": {
+            "en": "Tap “Principal”, then tap the meaning that goes with it.",
+            "hi": "“मूलधन” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:bal",
+          "expect": "matched:bal",
+          "say": {
+            "en": "Tap “Outstanding balance”, then tap the meaning that goes with it.",
+            "hi": "“बकाया शेष” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the pairs, then press Check.",
+            "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A loan has a principal, a rate, a term and regular instalments. Each instalment pays some interest on the outstanding balance and reduces the principal. As the balance falls, the interest falls too.",
+            "hi": "ऋण में मूलधन, दर, अवधि और नियमित किस्तें होती हैं। हर किस्त बकाया शेष पर कुछ ब्याज चुकाती है और मूलधन घटाती है। शेष घटने के साथ ब्याज भी घटता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A loan of ₹1,00,000 at 10% a year. Interest for the first year on the full balance is:",
+                "hi": "₹1,00,000 का ऋण, 10% वार्षिक। पूरे शेष पर पहले वर्ष का ब्याज है:"
+              },
+              "options": [
+                {
+                  "en": "₹10,000",
+                  "hi": "10,000 रुपये"
+                },
+                {
+                  "en": "₹1,00,000",
+                  "hi": "1,00,000 रुपये"
+                },
+                {
+                  "en": "₹1,000",
+                  "hi": "1,000 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "10% of ₹1,00,000 = ₹10,000.",
+                "hi": "₹1,00,000 का 10% = ₹10,000।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is the principal itself.",
+                  "hi": "यह तो मूलधन ही है।"
+                },
+                {
+                  "en": "₹1,000 is 1%, not 10%.",
+                  "hi": "₹1,000 1% है, 10% नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Ask an adult about a loan in your family and name its principal, rate and term.",
+            "hi": "किसी बड़े से परिवार के किसी ऋण के बारे में पूछो और उसका मूलधन, दर और अवधि बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch03-loan-schedule",
+      "topic": "3.3",
+      "template": "table",
+      "title": {
+        "en": "A loan repayment schedule",
+        "hi": "ऋण चुकौती तालिका"
+      },
+      "minutes": 8,
+      "level": "core",
+      "config": {
+        "mode": "spreadsheet",
+        "tables": {
+          "loan": {
+            "columns": [
+              "Year",
+              "Principal",
+              "Opening"
+            ],
+            "rows": [
+              [
+                "Year1",
+                30000,
+                120000
+              ],
+              [
+                "Year2",
+                30000,
+                90000
+              ],
+              [
+                "Year3",
+                30000,
+                60000
+              ],
+              [
+                "Year4",
+                30000,
+                30000
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "A loan of ₹1,20,000 is repaid in four equal yearly principal payments, with interest at 12% a year on the opening balance. Check the principal total, then the interest and payment of year 1.",
+          "hi": "₹1,20,000 का ऋण चार समान वार्षिक मूलधन किस्तों में चुकाया जाता है, प्रारंभिक शेष पर 12% वार्षिक ब्याज के साथ। मूलधन का योग जाँचो, फिर वर्ष 1 का ब्याज और भुगतान।"
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =SUM(B2:B5) to check that the principal payments clear the loan.",
+            "hi": "=SUM(B2:B5) लिखकर जाँचो कि मूलधन की किस्तें ऋण चुका देती हैं।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Year 1 interest is 12% of ₹1,20,000. Is it ₹14,400 or ₹1,44,000?",
+            "hi": "वर्ष 1 का ब्याज ₹1,20,000 का 12% है। यह ₹14,400 है या ₹1,44,000?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "₹14,400",
+              "hi": "14,400 रुपये"
+            },
+            {
+              "id": "b",
+              "en": "₹1,44,000",
+              "hi": "1,44,000 रुपये"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =C2*12/100 for the interest.",
+            "hi": "ब्याज के लिए =C2*12/100 लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Now the total payment of year 1: =B2+C2*12/100.",
+            "hi": "अब वर्ष 1 का कुल भुगतान: =B2+C2*12/100।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the sheet.",
+            "hi": "शीट के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The principal parts add to ₹1,20,000, so the loan is fully repaid. Year 1 interest is 12% of 1,20,000 = ₹14,400, so the payment is 30,000 + 14,400 = ₹44,400. Year 2 interest falls to 12% of 90,000 = ₹10,800 because the balance is lower. Copying the interest formula down the Opening column builds the whole schedule.",
+            "hi": "मूलधन के भाग जुड़कर ₹1,20,000 होते हैं, इसलिए ऋण पूरा चुक जाता है। वर्ष 1 का ब्याज 1,20,000 का 12% = ₹14,400 है, इसलिए भुगतान 30,000 + 14,400 = ₹44,400। वर्ष 2 का ब्याज शेष कम होने से 90,000 का 12% = ₹10,800 रह जाता है। Opening स्तंभ में ब्याज का सूत्र नीचे कॉपी करने से पूरी तालिका बन जाती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is the year 2 interest?",
+                "hi": "वर्ष 2 का ब्याज कितना है?"
+              },
+              "options": [
+                {
+                  "en": "₹10,800",
+                  "hi": "10,800 रुपये"
+                },
+                {
+                  "en": "₹14,400",
+                  "hi": "14,400 रुपये"
+                },
+                {
+                  "en": "₹9,000",
+                  "hi": "9,000 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "12% of the opening balance 90,000 = ₹10,800.",
+                "hi": "प्रारंभिक शेष 90,000 का 12% = ₹10,800।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹14,400 was year 1, on the larger balance.",
+                  "hi": "₹14,400 वर्ष 1 का था, बड़े शेष पर।"
+                },
+                {
+                  "en": "₹9,000 is 10% of 90,000, not 12%.",
+                  "hi": "₹9,000, 90,000 का 10% है, 12% नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Raise the rate to 15% in the formula and see the cost of the loan grow.",
+            "hi": "सूत्र में दर 15% करो और ऋण की लागत बढ़ती देखो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "3.1",
+      "use": "Hook: pay day in a small factory",
+      "shows": "Workers in simple uniforms queueing at an office window while a clerk at a desktop computer prepares payslips",
+      "view": "Eye level, bright light, 16:9",
+      "right": "Orderly queue, one computer visible with a plain screen",
+      "avoid": "Faces, readable figures"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "3.1",
+      "use": "A payslip",
+      "shows": "A paper payslip with ruled earnings and deductions sections left blank and a pen on top",
+      "view": "Top-down, PNG with transparent background",
+      "right": "Two clear sections for earnings and deductions",
+      "avoid": "Readable figures or names"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "3.1",
+      "use": "Gross to net as a waterfall",
+      "shows": "A set of floating steps going down from a tall block to a shorter block, with small blocks falling off at each step",
+      "view": "Flat, 16:9, transparent background",
+      "right": "Steps shrink evenly so the app can label",
+      "avoid": "Text, numbers"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "3.2",
+      "use": "A machine ages",
+      "shows": "Four frames of the same printing machine: new and shiny, one year, three years and five years old, with growing wear",
+      "view": "Same angle and light, 4:3",
+      "right": "Same corner of the workshop, increasing dust and scratches",
+      "avoid": "Brand names, faces"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "3.3",
+      "use": "The shrinking loan staircase",
+      "shows": "A staircase descending to the right with four steps, each with a thin slice cut off the front",
+      "view": "Flat, 16:9, white background",
+      "right": "Equal step width, equal slices",
+      "avoid": "Numbers, text"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "3.3",
+      "use": "Visiting the bank for a loan",
+      "shows": "A small shop owner seated opposite a bank officer with a form and a calculator between them, both seen from behind",
+      "view": "Eye level, 16:9, indoor light",
+      "right": "Calm and professional, no faces",
+      "avoid": "Bank names, readable text"
+    }
+  ]
+}

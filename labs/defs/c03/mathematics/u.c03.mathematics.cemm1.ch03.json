@@ -1,0 +1,1012 @@
+{
+ "chapter_key": "u.c03.mathematics.cemm1.ch03",
+ "class": 3,
+ "subject_id": "mathematics",
+ "title": "Double Century",
+ "source": "https://ncert.nic.in/textbook/pdf/cemm103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "The story of our numbers: ten symbols and the zero",
+   "labs": [],
+   "why_no_lab": "A short story of how people counted with marks and how India gave the world 0 to 9; the reader and a scene image tell it better than a lab."
+  },
+  {
+   "n": "3.2",
+   "title": "Making 100 (10 tens, 70 and 30 makes 100)",
+   "labs": [
+    "c3-mathematics-cemm1-ch03-make-100",
+    "c3-mathematics-cemm1-ch03-bundle-100"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Numbers from 100 to 200 with bundles and loose sticks",
+   "labs": [
+    "c3-mathematics-cemm1-ch03-sticks-123"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "One more and one less (the talking pot)",
+   "labs": [
+    "c3-mathematics-cemm1-ch03-one-more"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Numbers on the number line and skip jumps up to 200",
+   "labs": [
+    "c3-mathematics-cemm1-ch03-place-137",
+    "c3-mathematics-cemm1-ch03-jumps-20"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Estimating how many (seeds in a bowl, matchsticks in a box)",
+   "labs": [],
+   "why_no_lab": "Estimating needs a real handful of seeds or a real matchbox to guess and then count; the photo and the reader set the task."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-mathematics-cemm1-ch03-make-100",
+   "topic": "3.2",
+   "template": "number-line",
+   "title": {
+    "en": "Jump to 100",
+    "hi": "100 तक छलाँग लगाओ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 0,
+    "max": 100,
+    "step": 10,
+    "start": 70,
+    "jumps": [
+     10
+    ],
+    "ask": 100
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Bholu is on 70. Each jump is 10. How many jumps will take him to 100?",
+      "hi": "भोलू 70 पर है। हर छलाँग 10 की है। कितनी छलाँगों में वह 100 तक पहुँचेगा?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "3 jumps",
+       "hi": "3 छलाँग"
+      },
+      {
+       "id": "2",
+       "en": "2 jumps",
+       "hi": "2 छलाँग"
+      },
+      {
+       "id": "30",
+       "en": "30 jumps",
+       "hi": "30 छलाँग"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:80",
+     "say": {
+      "en": "Tap the forward jump once. Bholu lands on 80.",
+      "hi": "आगे की छलाँग पर एक बार टैप करो। भोलू 80 पर पहुँचता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:100",
+     "say": {
+      "en": "Keep jumping forward until Bholu reaches the flag at 100.",
+      "hi": "आगे छलाँग लगाते रहो जब तक भोलू 100 वाले झंडे तक न पहुँचे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "You made 3 jumps of 10, and 3 tens are 30. So 70 and 30 makes 100. In the same way 10 bundles of 10 sticks make 100, and a batter who scores 100 runs has made a century.",
+      "hi": "तुमने 10-10 की 3 छलाँगें लगाईं, और 3 दहाई यानी 30। इसलिए 70 और 30 मिलकर 100 बनाते हैं। इसी तरह 10 तीलियों के 10 बंडल 100 बनाते हैं, और 100 रन बनाने वाला बल्लेबाज़ शतक बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "60 and how much makes 100?",
+        "hi": "60 और कितना मिलकर 100 बनाते हैं?"
+       },
+       "options": [
+        {
+         "en": "40",
+         "hi": "40 (चालीस)"
+        },
+        {
+         "en": "30",
+         "hi": "30 (तीस)"
+        },
+        {
+         "en": "50",
+         "hi": "50 (पचास)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "From 60, four jumps of 10 reach 100: 60, 70, 80, 90, 100.",
+        "hi": "60 से 10-10 की चार छलाँगें 100 तक पहुँचती हैं: 60, 70, 80, 90, 100।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "60 and 30 makes 90. One more ten is needed.",
+         "hi": "60 और 30 से 90 बनता है। एक दहाई और चाहिए।"
+        },
+        {
+         "en": "60 and 50 makes 110, which goes past 100.",
+         "hi": "60 और 50 से 110 बनता है, जो 100 से आगे निकल जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many bundles of 10 sticks make 100 sticks?",
+        "hi": "100 तीलियाँ बनाने के लिए 10 तीलियों के कितने बंडल चाहिए?"
+       },
+       "options": [
+        {
+         "en": "10 bundles",
+         "hi": "10 बंडल"
+        },
+        {
+         "en": "100 bundles",
+         "hi": "100 बंडल"
+        },
+        {
+         "en": "1 bundle",
+         "hi": "1 बंडल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10 tens are 100.",
+        "hi": "10 दहाई = 100।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "100 bundles of 10 would be 1000 sticks, far too many.",
+         "hi": "10-10 के 100 बंडल तो 1000 तीलियाँ होंगी, बहुत ज़्यादा।"
+        },
+        {
+         "en": "1 bundle has only 10 sticks.",
+         "hi": "1 बंडल में तो सिर्फ़ 10 तीलियाँ होती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Now jump back from 100. How many jumps of 10 bring you to 40? So 40 and what makes 100?",
+      "hi": "अब 100 से पीछे छलाँग लगाओ। 10-10 की कितनी छलाँगें तुम्हें 40 पर लाती हैं? तो 40 और कितना मिलकर 100 बनाते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch03-bundle-100",
+   "topic": "3.2",
+   "template": "place-value",
+   "title": {
+    "en": "Ten tens make a hundred",
+    "hi": "दस दहाई से एक सैकड़ा"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "target": 100,
+    "places": 3
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:10",
+     "say": {
+      "en": "Tap + under Tens to put down one bundle of 10 sticks.",
+      "hi": "दहाई के नीचे + पर टैप करो और 10 तीलियों का एक बंडल रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:90",
+     "say": {
+      "en": "Keep tapping + under Tens until you have 9 bundles. That is 90.",
+      "hi": "दहाई के नीचे + दबाते रहो जब तक 9 बंडल न हो जाएँ। यह 90 है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You have 9 tens. What will happen when you add one more ten?",
+      "hi": "तुम्हारे पास 9 दहाई हैं। एक दहाई और जोड़ने पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "hundred",
+       "en": "The 10 tens become 1 hundred",
+       "hi": "10 दहाई मिलकर 1 सैकड़ा बन जाएँगी"
+      },
+      {
+       "id": "ten",
+       "en": "There will be 10 tens and nothing changes",
+       "hi": "10 दहाई होंगी और कुछ नहीं बदलेगा"
+      },
+      {
+       "id": "ninety",
+       "en": "It will still be 90",
+       "hi": "फिर भी 90 ही रहेगा"
+      }
+     ],
+     "answer": "hundred"
+    },
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap + under Tens one more time and watch.",
+      "hi": "दहाई के नीचे एक बार और + दबाओ और देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "10 tens are tied into 1 big bundle of 100. The number is now written 100: 1 in the hundreds place, 0 tens and 0 ones. The zeros show that the tens and ones places are empty.",
+      "hi": "10 दहाइयाँ बँधकर 100 का 1 बड़ा बंडल बन गईं। अब संख्या 100 लिखी जाती है: सैकड़े के स्थान पर 1, 0 दहाई और 0 इकाई। शून्य बताते हैं कि दहाई और इकाई के स्थान ख़ाली हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we write 0 twice in 100?",
+        "hi": "100 में हम दो बार 0 क्यों लिखते हैं?"
+       },
+       "options": [
+        {
+         "en": "There are no tens and no ones left over",
+         "hi": "कोई दहाई और कोई इकाई बची नहीं है"
+        },
+        {
+         "en": "Zero means a big number",
+         "hi": "शून्य का मतलब बड़ी संख्या है"
+        },
+        {
+         "en": "To make it look longer",
+         "hi": "उसे लंबा दिखाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "0 means nothing in that place. 100 is 1 hundred, 0 tens, 0 ones.",
+        "hi": "0 का मतलब उस स्थान पर कुछ नहीं। 100 = 1 सैकड़ा, 0 दहाई, 0 इकाई।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zero itself means nothing. It only keeps the places in order.",
+         "hi": "शून्य का अपना मतलब \"कुछ नहीं\" है। वह बस स्थानों को सही क्रम में रखता है।"
+        },
+        {
+         "en": "Each digit has a job. Without the zeros, 100 would read as 1.",
+         "hi": "हर अंक का एक काम है। शून्य के बिना 100 को 1 पढ़ा जाएगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add 3 more ones and 2 more tens. What number do you make now? Say it aloud.",
+      "hi": "3 इकाई और 2 दहाई और जोड़ो। अब कौन-सी संख्या बनी? उसे ज़ोर से बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch03-sticks-123",
+   "topic": "3.3",
+   "template": "place-value",
+   "title": {
+    "en": "Bundles and loose sticks",
+    "hi": "बंडल और खुली तीलियाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "target": 123,
+    "places": 3
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add:hundreds",
+     "expect": "built:100",
+     "say": {
+      "en": "Tap + under Hundreds to put down one big bundle of 100.",
+      "hi": "सैकड़े के नीचे + पर टैप करो और 100 का एक बड़ा बंडल रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:120",
+     "say": {
+      "en": "Tap + under Tens two times for 2 bundles of 10.",
+      "hi": "दहाई के नीचे दो बार + दबाओ, 10-10 के 2 बंडल के लिए।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will add 3 loose sticks. What number will it show?",
+      "hi": "अब तुम 3 खुली तीलियाँ जोड़ोगे। कौन-सी संख्या दिखेगी?"
+     },
+     "options": [
+      {
+       "id": "123",
+       "en": "123",
+       "hi": "123 (एक सौ तेईस)"
+      },
+      {
+       "id": "321",
+       "en": "321",
+       "hi": "321 (तीन सौ इक्कीस)"
+      },
+      {
+       "id": "1023",
+       "en": "1023",
+       "hi": "1023 (एक हज़ार तेईस)"
+      }
+     ],
+     "answer": "123"
+    },
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:123",
+     "say": {
+      "en": "Tap + under Ones three times.",
+      "hi": "इकाई के नीचे तीन बार + दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "1 hundred, 2 tens and 3 ones make 123, one hundred and twenty-three. The digit on the left counts the hundreds, the middle one the tens, and the right one the loose ones.",
+      "hi": "1 सैकड़ा, 2 दहाई और 3 इकाई मिलकर 123 बनाते हैं, एक सौ तेईस। बाईं ओर का अंक सैकड़े गिनता है, बीच का दहाई, और दाईं ओर का खुली इकाइयाँ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the clap, snap and pat game, a clap is 100, a snap is 10 and a pat is 1. Clap once, snap 4 times, pat 2 times. What number is it?",
+        "hi": "ताली, चुटकी और थपकी के खेल में ताली = 100, चुटकी = 10 और थपकी = 1। एक ताली, 4 चुटकी, 2 थपकी। कौन-सी संख्या बनी?"
+       },
+       "options": [
+        {
+         "en": "142",
+         "hi": "142 (एक सौ बयालीस)"
+        },
+        {
+         "en": "7",
+         "hi": "7 (सात)"
+        },
+        {
+         "en": "1042",
+         "hi": "1042 (एक हज़ार बयालीस)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1 hundred + 4 tens + 2 ones = 142.",
+        "hi": "1 सैकड़ा + 4 दहाई + 2 इकाई = 142।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7 just counts the actions. A clap is worth 100, not 1.",
+         "hi": "7 तो बस हरकतें गिनता है। ताली का मूल्य 100 है, 1 नहीं।"
+        },
+        {
+         "en": "There are no thousands. 1 hundred is written as 1 in the hundreds place: 142.",
+         "hi": "यहाँ कोई हज़ार नहीं है। 1 सैकड़ा सैकड़े के स्थान पर 1 लिखा जाता है: 142।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many bundles and sticks make 104?",
+        "hi": "104 बनाने के लिए कितने बंडल और तीलियाँ चाहिए?"
+       },
+       "options": [
+        {
+         "en": "1 hundred, 0 tens, 4 ones",
+         "hi": "1 सैकड़ा, 0 दहाई, 4 इकाई"
+        },
+        {
+         "en": "1 hundred, 4 tens",
+         "hi": "1 सैकड़ा, 4 दहाई"
+        },
+        {
+         "en": "10 tens, 4 tens",
+         "hi": "10 दहाई, 4 दहाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "104 has 1 in the hundreds place, 0 in the tens place and 4 in the ones place.",
+        "hi": "104 में सैकड़े पर 1, दहाई पर 0 और इकाई पर 4 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 hundred and 4 tens make 140, not 104.",
+         "hi": "1 सैकड़ा और 4 दहाई से 140 बनता है, 104 नहीं।"
+        },
+        {
+         "en": "10 tens and 4 tens make 140. The 4 in 104 is loose ones.",
+         "hi": "10 दहाई और 4 दहाई से 140 बनता है। 104 का 4 खुली इकाइयाँ हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make 150, then keep adding ones until you reach 200. What happens when the ones and tens fill up?",
+      "hi": "150 बनाओ, फिर इकाई जोड़ते रहो जब तक 200 न हो जाए। इकाई और दहाई भर जाने पर क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch03-one-more",
+   "topic": "3.4",
+   "template": "number-line",
+   "title": {
+    "en": "The talking pot: one more, one less",
+    "hi": "बोलता मटका: एक ज़्यादा, एक कम"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 140,
+    "max": 160,
+    "start": 149,
+    "jumps": [
+     1
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The talking pot always says one more than you. You say 149. What does the pot say?",
+      "hi": "बोलता मटका हमेशा तुमसे एक ज़्यादा बोलता है। तुम 149 बोलते हो। मटका क्या बोलेगा?"
+     },
+     "options": [
+      {
+       "id": "150",
+       "en": "150",
+       "hi": "150 (एक सौ पचास)"
+      },
+      {
+       "id": "148",
+       "en": "148",
+       "hi": "148 (एक सौ अड़तालीस)"
+      },
+      {
+       "id": "1410",
+       "en": "1410",
+       "hi": "1410 (एक हज़ार चार सौ दस)"
+      }
+     ],
+     "answer": "150"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:150",
+     "say": {
+      "en": "Tap the forward jump once to find one more than 149.",
+      "hi": "149 से एक ज़्यादा ढूँढने के लिए आगे की छलाँग पर एक बार टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:148",
+     "say": {
+      "en": "Now jump back two times. You land on one less than 149.",
+      "hi": "अब दो बार पीछे छलाँग लगाओ। तुम 149 से एक कम पर पहुँचोगे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One more means one jump forward on the number line. One less means one jump back. After 149 comes 150: the 9 ones become a new ten, so 14 tens become 15 tens.",
+      "hi": "एक ज़्यादा यानी संख्या रेखा पर एक छलाँग आगे। एक कम यानी एक छलाँग पीछे। 149 के बाद 150 आता है: 9 इकाइयाँ और 1 मिलकर नई दहाई बनती है, इसलिए 14 दहाई से 15 दहाई हो जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is one less than 160?",
+        "hi": "160 से एक कम क्या है?"
+       },
+       "options": [
+        {
+         "en": "159",
+         "hi": "159 (एक सौ उनसठ)"
+        },
+        {
+         "en": "161",
+         "hi": "161 (एक सौ इकसठ)"
+        },
+        {
+         "en": "150",
+         "hi": "150 (एक सौ पचास)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One jump back from 160 lands on 159.",
+        "hi": "160 से एक छलाँग पीछे 159 आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "161 is one more, not one less.",
+         "hi": "161 तो एक ज़्यादा है, एक कम नहीं।"
+        },
+        {
+         "en": "150 is ten less than 160, not one less.",
+         "hi": "150 तो 160 से दस कम है, एक कम नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Bholu says 109. What will the pot say?",
+        "hi": "भोलू 109 बोलता है। मटका क्या बोलेगा?"
+       },
+       "options": [
+        {
+         "en": "110",
+         "hi": "110 (एक सौ दस)"
+        },
+        {
+         "en": "1010",
+         "hi": "1010 (एक हज़ार दस)"
+        },
+        {
+         "en": "119",
+         "hi": "119 (एक सौ उन्नीस)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One more than 109 is 110: the ones fill up and make a new ten.",
+        "hi": "109 से एक ज़्यादा 110 है: इकाइयाँ भरकर नई दहाई बनाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Do not just write 10 after 10. 109 and 1 more makes 110.",
+         "hi": "दस के आगे दस मत लिखो। 109 और 1 से 110 बनता है।"
+        },
+        {
+         "en": "119 is ten more than 109.",
+         "hi": "119 तो 109 से दस ज़्यादा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the talking pot with yourself: start anywhere and jump one forward and one back. Which numbers make the tens change?",
+      "hi": "खुद से बोलता मटका खेलो: कहीं से शुरू करो और एक आगे, एक पीछे छलाँग लगाओ। किन संख्याओं पर दहाई बदलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch03-place-137",
+   "topic": "3.5",
+   "template": "number-line",
+   "title": {
+    "en": "Find 137 on the number line",
+    "hi": "संख्या रेखा पर 137 ढूँढो"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "place",
+    "min": 100,
+    "max": 150,
+    "ask": 137
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "137 is between which two tens?",
+      "hi": "137 किन दो दहाइयों के बीच है?"
+     },
+     "options": [
+      {
+       "id": "130",
+       "en": "130 and 140",
+       "hi": "130 और 140"
+      },
+      {
+       "id": "120",
+       "en": "120 and 130",
+       "hi": "120 और 130"
+      },
+      {
+       "id": "140",
+       "en": "140 and 150",
+       "hi": "140 और 150"
+      }
+     ],
+     "answer": "130"
+    },
+    {
+     "kind": "do",
+     "target": "slider:value",
+     "expect": "placed",
+     "say": {
+      "en": "Drag the marker to 137. First go to 130, then count 7 small steps.",
+      "hi": "निशान को 137 पर खींचो। पहले 130 पर जाओ, फिर 7 छोटे क़दम गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check when the marker is on 137.",
+      "hi": "जब निशान 137 पर हो तब जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "137 is 1 hundred, 3 tens and 7 ones. So it is after 130 and before 140, a little closer to 140 because 7 is more than half of 10.",
+      "hi": "137 = 1 सैकड़ा, 3 दहाई और 7 इकाई। इसलिए यह 130 के बाद और 140 से पहले है, 140 के थोड़ा पास, क्योंकि 7 दस के आधे से ज़्यादा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number is closer to 150?",
+        "hi": "कौन-सी संख्या 150 के ज़्यादा पास है?"
+       },
+       "options": [
+        {
+         "en": "149",
+         "hi": "149 (एक सौ उनचास)"
+        },
+        {
+         "en": "112",
+         "hi": "112 (एक सौ बारह)"
+        },
+        {
+         "en": "125",
+         "hi": "125 (एक सौ पच्चीस)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "149 is just one step before 150.",
+        "hi": "149 तो 150 से बस एक क़दम पहले है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "112 is near the start, close to 110.",
+         "hi": "112 शुरू के पास है, 110 के क़रीब।"
+        },
+        {
+         "en": "125 is in the middle, halfway between 100 and 150.",
+         "hi": "125 बीच में है, 100 और 150 के ठीक बीच।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the marker to 112, 125 and 149. Say each number aloud as you land on it.",
+      "hi": "निशान को 112, 125 और 149 पर ले जाओ। पहुँचते ही हर संख्या ज़ोर से बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch03-jumps-20",
+   "topic": "3.5",
+   "template": "number-line",
+   "title": {
+    "en": "Jumps of 20 to 200",
+    "hi": "200 तक 20 की छलाँगें"
+   },
+   "minutes": 4,
+   "level": "stretch",
+   "config": {
+    "mode": "count",
+    "min": 100,
+    "max": 200,
+    "step": 10,
+    "start": 100,
+    "jumps": [
+     20
+    ],
+    "ask": 200
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:120",
+     "say": {
+      "en": "Tap the forward jump once. Each jump is 20.",
+      "hi": "आगे की छलाँग पर एक बार टैप करो। हर छलाँग 20 की है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many jumps of 20 does it take to go from 100 to 200?",
+      "hi": "100 से 200 तक जाने में 20 की कितनी छलाँगें लगेंगी?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5 jumps",
+       "hi": "5 छलाँग"
+      },
+      {
+       "id": "10",
+       "en": "10 jumps",
+       "hi": "10 छलाँग"
+      },
+      {
+       "id": "2",
+       "en": "2 jumps",
+       "hi": "2 छलाँग"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:200",
+     "say": {
+      "en": "Keep jumping until you reach 200, the double century.",
+      "hi": "200 तक, यानी दोहरे शतक तक, छलाँग लगाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "You landed on 120, 140, 160, 180 and 200: 5 jumps of 20. 100 and 100 more is 200, two hundreds. That is why 200 runs is called a double century.",
+      "hi": "तुम 120, 140, 160, 180 और 200 पर उतरे: 20 की 5 छलाँगें। 100 और 100 मिलकर 200, यानी दो सैकड़े। इसीलिए 200 रन को दोहरा शतक कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What comes next: 140, 160, 180, ...?",
+        "hi": "आगे क्या आएगा: 140, 160, 180, ...?"
+       },
+       "options": [
+        {
+         "en": "200",
+         "hi": "200 (दो सौ)"
+        },
+        {
+         "en": "190",
+         "hi": "190 (एक सौ नब्बे)"
+        },
+        {
+         "en": "181",
+         "hi": "181 (एक सौ इक्यासी)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each number is 20 more than the one before: 180 + 20 = 200.",
+        "hi": "हर संख्या पिछली से 20 ज़्यादा है: 180 + 20 = 200।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "190 is a jump of 10. These jumps are 20.",
+         "hi": "190 तो 10 की छलाँग है। ये छलाँगें 20 की हैं।"
+        },
+        {
+         "en": "181 is only one more than 180.",
+         "hi": "181 तो 180 से सिर्फ़ एक ज़्यादा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "150 and how much makes 200?",
+        "hi": "150 और कितना मिलकर 200 बनाते हैं?"
+       },
+       "options": [
+        {
+         "en": "50",
+         "hi": "50 (पचास)"
+        },
+        {
+         "en": "150",
+         "hi": "150 (एक सौ पचास)"
+        },
+        {
+         "en": "5",
+         "hi": "5 (पाँच)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "From 150, five jumps of 10 reach 200, so 150 + 50 = 200.",
+        "hi": "150 से 10 की पाँच छलाँगें 200 तक पहुँचती हैं, इसलिए 150 + 50 = 200।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "150 and 150 makes 300, too much.",
+         "hi": "150 और 150 से 300 बनता है, बहुत ज़्यादा।"
+        },
+        {
+         "en": "150 and 5 makes 155. You need 5 tens, not 5 ones.",
+         "hi": "150 और 5 से 155 बनता है। 5 दहाई चाहिए, 5 इकाई नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Jump back from 200 by 20s. Which numbers do you land on? Do they all end in 0?",
+      "hi": "200 से 20-20 करके पीछे छलाँग लगाओ। किन संख्याओं पर उतरते हो? क्या सबके आख़िर में 0 है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Chapter hook: the story of our numbers",
+   "shows": "An old cave wall with rows of scratched marks, lit by a small oil lamp",
+   "view": "Eye level, close to the wall, warm low light",
+   "right": "Marks scratched, not painted; looks ancient and real",
+   "avoid": "Modern digits or any text on the wall"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Bundle lab: what 10 and 100 look like",
+   "shows": "Matchsticks (without heads) tied with a rubber band in a bundle of 10; second file: 10 such bundles tied into one big bundle of 100; third file: a few loose sticks",
+   "view": "Top-down on a plain mat, transparent background, soft light",
+   "right": "Exactly 10 sticks in each small bundle and 10 bundles in the big one",
+   "avoid": "Matchsticks with red heads (fire risk look), text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Bead-string (ginladi) for making 100",
+   "shows": "A ginladi: a string of 100 beads in groups of 10, colours changing every 10 beads (red and white)",
+   "view": "Laid straight across the frame, top-down, transparent background",
+   "right": "Exactly 10 groups of 10 beads; groups clearly alternate in colour",
+   "avoid": "Wrong count of beads"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.6",
+   "use": "Estimation topic",
+   "shows": "A village mela stall with heaps of oranges, stacks of glass bangles, a plate of laddoos and bunches of bananas",
+   "view": "Eye level at child height, the stall fills the frame, daylight",
+   "right": "Real Indian mela; enough items to make estimation hard but countable",
+   "avoid": "Price boards, shop names, faces"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "3.6",
+   "use": "Estimation at home",
+   "shows": "A small steel bowl filled with rajma (kidney beans) and a second photo of the same beans spread out in rows of 10",
+   "view": "Top-down, same light for both",
+   "right": "The second photo shows the same number of beans as the bowl",
+   "avoid": "Mixing other seeds in"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "3.3",
+   "use": "Clap, snap and pat game",
+   "shows": "Three frames of a pair of hands: a clap, a finger snap, and a pat on the knee",
+   "view": "Same camera and light, hands only against a plain background",
+   "right": "Each action clearly different",
+   "avoid": "Faces, blur that hides the action"
+  }
+ ]
+}

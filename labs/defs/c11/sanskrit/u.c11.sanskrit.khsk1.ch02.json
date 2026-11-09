@@ -1,0 +1,564 @@
+{
+ "chapter_key": "u.c11.sanskrit.khsk1.ch02",
+ "class": 11,
+ "subject_id": "sanskrit",
+ "title": "सूक्तिसुधा (Nectar of wise sayings)",
+ "source": "https://ncert.nic.in/textbook/pdf/khsk102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Where to live and who is a true friend (Chanakya's sayings)",
+   "labs": [
+    "c11-sanskrit-khsk1-ch02-place"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "The six faults a person should give up",
+   "labs": [
+    "c11-sanskrit-khsk1-ch02-faults"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Sayings on speech, silence and good company",
+   "labs": [],
+   "why_no_lab": "These are learnt best by reciting, discussing and a short story; there is nothing to build or sort."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-sanskrit-khsk1-ch02-place",
+   "topic": "2.1",
+   "template": "sort",
+   "title": {
+    "en": "A good place to live?",
+    "hi": "रहने के लिए अच्छा स्थान?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "good",
+      "label": {
+       "en": "Good place to live",
+       "hi": "रहने के लिए अच्छा स्थान"
+      }
+     },
+     {
+      "id": "bad",
+      "label": {
+       "en": "Not a good place",
+       "hi": "रहने के लिए अच्छा स्थान नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "g1",
+      "text": {
+       "en": "People respect you here",
+       "hi": "यहाँ लोग तुम्हारा सम्मान करते हैं"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Chanakya says: where there is respect, a person can live with a calm mind.",
+       "hi": "चाणक्य कहते हैं: जहाँ सम्मान हो, वहाँ मन शांत रहता है।"
+      }
+     },
+     {
+      "id": "g2",
+      "text": {
+       "en": "Honest work is easy to find",
+       "hi": "यहाँ ईमानदारी का काम आसानी से मिलता है"
+      },
+      "bin": "good",
+      "why": {
+       "en": "A place with a livelihood lets a family earn and live in peace.",
+       "hi": "जहाँ रोज़ी-रोटी मिले, वहाँ परिवार शांति से रह सकता है।"
+      }
+     },
+     {
+      "id": "g3",
+      "text": {
+       "en": "Relatives and friends live nearby",
+       "hi": "रिश्तेदार और मित्र पास रहते हैं"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Near family and friends, help is close in good times and bad.",
+       "hi": "परिवार और मित्र पास हों तो सुख-दुःख में सहायता पास रहती है।"
+      }
+     },
+     {
+      "id": "g4",
+      "text": {
+       "en": "A good school and teachers are close by",
+       "hi": "अच्छा विद्यालय और शिक्षक पास हैं"
+      },
+      "bin": "good",
+      "why": {
+       "en": "A place with learning helps the whole family grow wiser.",
+       "hi": "जहाँ शिक्षा हो, वहाँ पूरा परिवार समझदार बनता है।"
+      }
+     },
+     {
+      "id": "b1",
+      "text": {
+       "en": "Nobody respects you here",
+       "hi": "यहाँ कोई तुम्हारा सम्मान नहीं करता"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Without respect, a person's spirit is slowly crushed.",
+       "hi": "सम्मान न मिले तो इंसान का मन धीरे-धीरे टूट जाता है।"
+      }
+     },
+     {
+      "id": "b2",
+      "text": {
+       "en": "There is no way to earn a living",
+       "hi": "कमाई का कोई साधन नहीं है"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Without a livelihood a family cannot even eat properly.",
+       "hi": "रोज़ी न हो तो परिवार भरपेट खा भी नहीं सकता।"
+      }
+     },
+     {
+      "id": "b3",
+      "text": {
+       "en": "No relative or friend lives anywhere near",
+       "hi": "कोई रिश्तेदार या मित्र आसपास नहीं रहता"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Alone in trouble, there is no one to turn to.",
+       "hi": "संकट में अकेले रह जाएँ तो किसी से सहायता नहीं मिलती।"
+      }
+     },
+     {
+      "id": "b4",
+      "text": {
+       "en": "There is no way to learn anything",
+       "hi": "कुछ सीखने का कोई साधन नहीं है"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Chanakya warns against a place with no source of learning.",
+       "hi": "चाणक्य ऐसे स्थान से बचने को कहते हैं जहाँ सीखने का कोई साधन न हो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:g1",
+     "expect": "placed:g1",
+     "say": {
+      "en": "Tap the first card, then tap the group where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर वह समूह छुओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Imagine a village with a market for your goods but no school and no one you know. Would Chanakya call it a good place to settle?",
+      "hi": "सोचो कि किसी गाँव में तुम्हारा सामान बिकने का बाज़ार है, पर कोई विद्यालय नहीं और कोई परिचित नहीं। क्या चाणक्य उसे बसने के लिए अच्छा स्थान कहेंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Not fully: some needs are missing",
+       "hi": "पूरी तरह नहीं: कुछ ज़रूरतें अधूरी हैं"
+      },
+      {
+       "id": "b",
+       "en": "Yes, one good thing is enough",
+       "hi": "हाँ, एक अच्छी बात ही काफ़ी है"
+      },
+      {
+       "id": "c",
+       "en": "Yes, because markets are everything",
+       "hi": "हाँ, क्योंकि बाज़ार ही सब कुछ है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Chanakya lists four things that make a place fit to live: respect, a way to earn, relatives and friends, and a source of learning. If even one is missing, he advises thinking again before settling there. The same four are useful when you choose a school or a neighbourhood.",
+      "hi": "चाणक्य चार बातें गिनाते हैं जिनसे कोई स्थान रहने योग्य बनता है: सम्मान, कमाई का साधन, रिश्तेदार और मित्र, और सीखने का साधन। इनमें एक भी कम हो तो बसने से पहले फिर सोचने की सलाह देते हैं। विद्यालय या मोहल्ला चुनते समय भी ये चारों काम आती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is NOT among the four things Chanakya lists?",
+        "hi": "चाणक्य की गिनाई चार बातों में कौन-सी नहीं है?"
+       },
+       "options": [
+        {
+         "en": "A source of learning",
+         "hi": "सीखने का साधन"
+        },
+        {
+         "en": "A big shopping mall",
+         "hi": "बड़ा शॉपिंग मॉल"
+        },
+        {
+         "en": "Respect from people",
+         "hi": "लोगों का सम्मान"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The four are respect, livelihood, relatives and friends, and learning. A mall is not one of them.",
+        "hi": "चार बातें हैं: सम्मान, रोज़ी, रिश्तेदार-मित्र और शिक्षा। मॉल उनमें नहीं है।"
+       },
+       "wrong": [
+        {
+         "en": "Learning is one of the four.",
+         "hi": "शिक्षा चारों में से एक है।"
+        },
+        "",
+        {
+         "en": "Respect is one of the four.",
+         "hi": "सम्मान चारों में से एक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of your own neighbourhood. Which of the four does it have most of? Which is least?",
+      "hi": "अपने मोहल्ले के बारे में सोचो। इन चारों में से सबसे अधिक क्या मिलता है? सबसे कम क्या?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sanskrit-khsk1-ch02-faults",
+   "topic": "2.2",
+   "template": "match",
+   "title": {
+    "en": "Six faults to give up",
+    "hi": "छोड़ने योग्य छह दोष"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "nidra",
+      "left": {
+       "en": "निद्रा",
+       "hi": "निद्रा"
+      },
+      "right": {
+       "en": "too much sleep",
+       "hi": "अत्यधिक नींद"
+      },
+      "why": {
+       "en": "Sleeping long hours wastes the day.",
+       "hi": "बहुत देर तक सोना दिन बरबाद करता है।"
+      }
+     },
+     {
+      "id": "tandra",
+      "left": {
+       "en": "तन्द्रा",
+       "hi": "तन्द्रा"
+      },
+      "right": {
+       "en": "drowsiness, a half-awake dullness",
+       "hi": "ऊँघना, आधी-जगी सुस्ती"
+      },
+      "why": {
+       "en": "Even when awake, a drowsy mind does not work well.",
+       "hi": "जागते हुए भी ऊँघता मन ठीक से काम नहीं करता।"
+      }
+     },
+     {
+      "id": "bhaya",
+      "left": {
+       "en": "भयम्",
+       "hi": "भयम्"
+      },
+      "right": {
+       "en": "fear",
+       "hi": "डर"
+      },
+      "why": {
+       "en": "Fear stops us from trying.",
+       "hi": "डर हमें कोशिश करने से रोकता है।"
+      }
+     },
+     {
+      "id": "krodha",
+      "left": {
+       "en": "क्रोधः",
+       "hi": "क्रोधः"
+      },
+      "right": {
+       "en": "anger",
+       "hi": "गुस्सा"
+      },
+      "why": {
+       "en": "Angry words and acts are often regretted.",
+       "hi": "गुस्से में कहे और किए काम पर अक्सर पछतावा होता है।"
+      }
+     },
+     {
+      "id": "alasya",
+      "left": {
+       "en": "आलस्यम्",
+       "hi": "आलस्यम्"
+      },
+      "right": {
+       "en": "laziness",
+       "hi": "आलस"
+      },
+      "why": {
+       "en": "A lazy person puts off useful work.",
+       "hi": "आलसी आदमी ज़रूरी काम टालता रहता है।"
+      }
+     },
+     {
+      "id": "dirgha",
+      "left": {
+       "en": "दीर्घसूत्रता",
+       "hi": "दीर्घसूत्रता"
+      },
+      "right": {
+       "en": "delaying everything, slowness in doing",
+       "hi": "हर काम को लटकाना, काम में देरी"
+      },
+      "why": {
+       "en": "The word means a 'long thread': work drags on and on.",
+       "hi": "इसका अर्थ है 'लंबा धागा': काम खिंचता ही जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:nidra",
+     "expect": "matched:nidra",
+     "say": {
+      "en": "Pick the first word in the list and match it with its meaning.",
+      "hi": "सूची का पहला शब्द चुनो और उसे उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chanakya's advice is meant for a person who wants to grow. Which of these six faults do you think is most visible in a student who always says 'I will do it tomorrow'?",
+      "hi": "चाणक्य की सलाह उस व्यक्ति के लिए है जो आगे बढ़ना चाहता है। जो विद्यार्थी हमेशा कहता है 'कल कर लूँगा', उसमें इन छह दोषों में कौन-सा सबसे अधिक दिखता है?"
+     },
+     "options": [
+      {
+       "id": "dirgha",
+       "en": "दीर्घसूत्रता (delaying)",
+       "hi": "दीर्घसूत्रता (काम लटकाना)"
+      },
+      {
+       "id": "bhaya",
+       "en": "भयम् (fear)",
+       "hi": "भयम् (डर)"
+      },
+      {
+       "id": "krodha",
+       "en": "क्रोधः (anger)",
+       "hi": "क्रोधः (गुस्सा)"
+      }
+     ],
+     "answer": "dirgha"
+    },
+    {
+     "kind": "do",
+     "target": "left:tandra",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the other pairs.",
+      "hi": "अब बाकी सब जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "These six are the habits that hold a person back: निद्रा, तन्द्रा, भयम्, क्रोधः, आलस्यम् and दीर्घसूत्रता. The first two are about the body's dullness, the next two about strong feelings, and the last two about not acting on time. Naming a fault is the first step to leaving it.",
+      "hi": "ये छह वे आदतें हैं जो इंसान को पीछे रखती हैं: निद्रा, तन्द्रा, भयम्, क्रोधः, आलस्यम् और दीर्घसूत्रता। पहले दो शरीर की सुस्ती के हैं, अगले दो तेज़ भावनाओं के, और अंतिम दो समय पर काम न करने के। दोष को नाम देना उसे छोड़ने का पहला कदम है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A boy keeps pressing the snooze button every morning. Which fault is it?",
+        "hi": "एक लड़का रोज़ सुबह अलार्म बंद करके फिर सो जाता है। यह कौन-सा दोष है?"
+       },
+       "options": [
+        {
+         "en": "भयम्",
+         "hi": "भयम्"
+        },
+        {
+         "en": "निद्रा",
+         "hi": "निद्रा"
+        },
+        {
+         "en": "क्रोधः",
+         "hi": "क्रोधः"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Too much sleep is निद्रा.",
+        "hi": "ज़रूरत से ज़्यादा नींद निद्रा है।"
+       },
+       "wrong": [
+        {
+         "en": "भयम् is fear; the boy is not scared, only sleepy.",
+         "hi": "भयम् डर है; लड़का डरा हुआ नहीं, केवल नींद में है।"
+        },
+        "",
+        {
+         "en": "क्रोधः is anger, which does not fit here.",
+         "hi": "क्रोधः गुस्सा है, जो यहाँ ठीक नहीं बैठता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word means 'delaying work for a long time'?",
+        "hi": "'काम को बहुत देर तक टालना' किस शब्द का अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "दीर्घसूत्रता",
+         "hi": "दीर्घसूत्रता"
+        },
+        {
+         "en": "तन्द्रा",
+         "hi": "तन्द्रा"
+        },
+        {
+         "en": "भयम्",
+         "hi": "भयम्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "दीर्घ means long, सूत्र means thread: the work is stretched like a long thread.",
+        "hi": "दीर्घ यानी लंबा, सूत्र यानी धागा: काम लंबे धागे की तरह खिंचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "तन्द्रा is drowsiness, a dull sleepy state, not delay.",
+         "hi": "तन्द्रा ऊँघना है, यानी सुस्त नींद, देरी नहीं।"
+        },
+        {
+         "en": "भयम् is fear.",
+         "hi": "भयम् डर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose the one fault you want to reduce this week. Write one small step you will take, in your own words.",
+      "hi": "इस सप्ताह जिस एक दोष को कम करना चाहते हो, उसे चुनो। उसके लिए अपने शब्दों में एक छोटा कदम लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Opens the sayings: a peaceful village",
+   "shows": "A small village with a school, a market lane and a well, women and elders talking in a courtyard, seen from the hill above",
+   "view": "Wide shot, 16:9, warm late-afternoon light",
+   "right": "School, market and well all clearly visible; a calm, friendly look",
+   "avoid": "Readable shop boards, faces in close-up"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Contrast: a deserted lonely place",
+   "shows": "A dusty empty lane between closed doors on a hot noon, no people, one dog asleep",
+   "view": "Eye level, flat harsh light",
+   "right": "Empty, silent, lifeless feeling; everything closed",
+   "avoid": "Any person, signs, writing"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Laziness and sleep",
+   "shows": "A boy asleep under a blanket in the morning sun while a schoolbag and a clock stand beside the bed",
+   "view": "Three-quarter overhead, bright window light",
+   "right": "Clock hands visible but not readable as a brand, bag packed and waiting",
+   "avoid": "Readable faces, phone brands"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Delaying: the long thread",
+   "shows": "A long red thread unrolling from a spool across a table, tangled in a few loops",
+   "view": "Top-down view, soft light, transparent background if cut out",
+   "right": "The thread clearly keeps going on and on",
+   "avoid": "Text on the spool"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "2.2",
+   "use": "Anger cooling down: a glass of cloudy water settling",
+   "shows": "Four frames of the same glass: water stirred with mud, then 1 minute, 5 minutes, 30 minutes later, clearing",
+   "view": "Same camera, same light, side view",
+   "right": "Mud settles slowly, water clears in the last frame",
+   "avoid": "Text, timers"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "A true friend in trouble",
+   "shows": "Two village friends, one helping the other carry a heavy load up a muddy path in the rain",
+   "view": "Side view, shot from the back, dusk",
+   "right": "Both are working together; rain and mud are clear",
+   "avoid": "Faces, brand bags"
+  }
+ ]
+}

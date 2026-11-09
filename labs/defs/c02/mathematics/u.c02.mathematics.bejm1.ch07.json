@@ -1,0 +1,743 @@
+{
+ "chapter_key": "u.c02.mathematics.bejm1.ch07",
+ "class": 2,
+ "subject_id": "mathematics",
+ "title": "Rani’s Gift (Measurement)",
+ "source": "https://ncert.nic.in/textbook/pdf/bejm107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Rani's gift: why the raja's bed did not fit, measuring with hand-spans",
+   "labs": [
+    "c2-mathematics-bejm1-ch07-hand-spans"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Measure with blocks, a book and other things",
+   "labs": [],
+   "why_no_lab": "Stacking real blocks and measuring real desks teaches this best; the hand-span lab shows why a fixed unit is needed."
+  },
+  {
+   "n": "7.3",
+   "title": "Longest and shortest path with a thread",
+   "labs": [],
+   "why_no_lab": "Use a real thread on the printed map in the book."
+  },
+  {
+   "n": "7.4",
+   "title": "Heavier and lighter: pumpkin's chaupal, make your own balance",
+   "labs": [
+    "c2-mathematics-bejm1-ch07-heavy-or-light"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "Fruits in the park and nimbu pani: balance and capacity",
+   "labs": [
+    "c2-mathematics-bejm1-ch07-holds-more",
+    "c2-mathematics-bejm1-ch07-nimbu-pani"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c2-mathematics-bejm1-ch07-hand-spans",
+   "topic": "7.1",
+   "template": "measure",
+   "title": {
+    "en": "Measure the desk with hand-spans",
+    "hi": "बित्तों से मेज़ नापो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "instrument": "hand-span",
+    "object": "desk"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The raja measured his bed with his own hand. The carpenter used a smaller hand. Will the carpenter count more hand-spans or fewer?",
+      "hi": "राजा ने अपने हाथ से पलंग नापा। बढ़ई ने छोटे हाथ से नापा। बढ़ई को ज़्यादा बित्ते गिनने पड़ेंगे या कम?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "More hand-spans",
+       "hi": "ज़्यादा बित्ते"
+      },
+      {
+       "id": "b",
+       "en": "Fewer hand-spans",
+       "hi": "कम बित्ते"
+      },
+      {
+       "id": "c",
+       "en": "The same",
+       "hi": "उतने ही"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "instrument",
+     "expect": "aligned",
+     "say": {
+      "en": "Tap Lay the next hand again and again until the hands reach the end of the desk. Count each hand.",
+      "hi": "अगला हाथ रखो बार-बार दबाओ जब तक हाथ मेज़ के अंत तक न पहुँच जाएँ। हर हाथ गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Press Read to see the hands in a row.",
+      "hi": "हाथ एक पंक्ति में देखने के लिए पढ़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type how many hand-spans long the desk is and press Check.",
+      "hi": "लिखो कि मेज़ कितने बित्ते लंबी है और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The desk is 8 of your hand-spans long. A smaller hand covers less, so it needs more hand-spans: 12 for a little sister's hand. A bigger hand covers more, so it needs fewer: 6 for Papa. The desk did not change, only the hand did. That is why we need the same unit for everyone.",
+      "hi": "मेज़ तुम्हारे 8 बित्ते लंबी है। छोटा हाथ कम ढकता है, इसलिए उसके ज़्यादा बित्ते लगते हैं: छोटी बहन के हाथ से 12। बड़ा हाथ ज़्यादा ढकता है, इसलिए कम बित्ते लगते हैं: पापा के हाथ से 6। मेज़ नहीं बदली, हाथ बदला। इसीलिए सबके लिए एक जैसी इकाई चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Rani measures a shelf with her hand and gets 6 hand-spans. Her brother has a bigger hand. What will he get?",
+        "hi": "रानी अपने हाथ से अलमारी नापती है तो 6 बित्ते आते हैं। उसके भाई का हाथ बड़ा है। उसे क्या मिलेगा?"
+       },
+       "options": [
+        {
+         "en": "More than 6",
+         "hi": "6 से ज़्यादा"
+        },
+        {
+         "en": "Fewer than 6",
+         "hi": "6 से कम"
+        },
+        {
+         "en": "Exactly 6",
+         "hi": "ठीक 6"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A bigger hand covers more of the shelf each time, so fewer hand-spans fit.",
+        "hi": "बड़ा हाथ हर बार अलमारी का ज़्यादा हिस्सा ढकता है, इसलिए कम बित्ते लगते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "More hand-spans come from a smaller hand, not a bigger one.",
+         "hi": "ज़्यादा बित्ते छोटे हाथ से आते हैं, बड़े हाथ से नहीं।"
+        },
+        "",
+        {
+         "en": "Different hands give different counts for the same shelf.",
+         "hi": "अलग-अलग हाथ से एक ही अलमारी की अलग गिनती आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the slider to change Whose hand? and lay hands again. How many hand-spans does Papa's hand need?",
+      "hi": "किसका हाथ? वाला स्लाइडर बदलो और फिर से हाथ रखो। पापा के हाथ से कितने बित्ते लगते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch07-heavy-or-light",
+   "topic": "7.4",
+   "template": "measure",
+   "title": {
+    "en": "Balance the eraser",
+    "hi": "रबर को तराज़ू पर तोलो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "instrument": "balance"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "object:eraser",
+     "expect": "placed",
+     "say": {
+      "en": "Tap the eraser to put it on the left pan.",
+      "hi": "बाएँ पलड़े पर रखने के लिए रबर दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The eraser sits on one pan. You will put small 10 gram weights on the other pan. How many will make the pans level?",
+      "hi": "रबर एक पलड़े पर है। दूसरे पलड़े पर तुम 10 ग्राम के छोटे बाट रखोगे। पलड़े बराबर करने में कितने बाट लगेंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "1 weight",
+       "hi": "1 बाट"
+      },
+      {
+       "id": "b",
+       "en": "2 weights",
+       "hi": "2 बाट"
+      },
+      {
+       "id": "c",
+       "en": "5 weights",
+       "hi": "5 बाट"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "object:weight-10",
+     "expect": "aligned",
+     "say": {
+      "en": "Tap the 10 g weight to put it on the right pan. Add another one if the beam is still tilted.",
+      "hi": "10 ग्राम का बाट दाएँ पलड़े पर रखने के लिए दबाओ। तराज़ू झुका रहे तो एक और रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The heavier side goes down and the lighter side goes up. When both pans hold the same weight, the beam is level. The eraser is as heavy as two 10 gram weights. A mango needs many more weights, so a mango is heavier than an eraser.",
+      "hi": "भारी पलड़ा नीचे जाता है और हल्का पलड़ा ऊपर। दोनों पलड़ों पर एक-सा भार हो तो तराज़ू सीधा रहता है। रबर दो 10 ग्राम के बाटों जितना भारी है। आम के लिए बहुत ज़्यादा बाट लगते हैं, इसलिए आम रबर से भारी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On a balance, the left pan goes down. What does that tell you?",
+        "hi": "तराज़ू में बायाँ पलड़ा नीचे चला गया। इससे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "The left side is heavier",
+         "hi": "बाईं ओर भार ज़्यादा है"
+        },
+        {
+         "en": "The left side is lighter",
+         "hi": "बाईं ओर भार कम है"
+        },
+        {
+         "en": "Both sides are equal",
+         "hi": "दोनों ओर बराबर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The heavier side goes down. So the left side is heavier.",
+        "hi": "भारी पलड़ा नीचे जाता है। इसलिए बाईं ओर भार ज़्यादा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The lighter side goes up, not down.",
+         "hi": "हल्का पलड़ा ऊपर जाता है, नीचे नहीं।"
+        },
+        {
+         "en": "If both sides were equal, the pans would be level.",
+         "hi": "बराबर होने पर पलड़े सीधे रहते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take the eraser off and put a notebook or an orange on the pan. How many weights do they need?",
+      "hi": "रबर हटाकर कॉपी या संतरा पलड़े पर रखो। उनके लिए कितने बाट लगते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch07-holds-more",
+   "topic": "7.5",
+   "template": "sort",
+   "title": {
+    "en": "Holds more or less than a glass?",
+    "hi": "गिलास से ज़्यादा या कम समाता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "less",
+      "label": {
+       "en": "Holds less than a glass",
+       "hi": "गिलास से कम समाता है"
+      }
+     },
+     {
+      "id": "more",
+      "label": {
+       "en": "Holds more than a glass",
+       "hi": "गिलास से ज़्यादा समाता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "spoon",
+      "text": {
+       "en": "Teaspoon",
+       "hi": "चम्मच"
+      },
+      "bin": "less",
+      "why": {
+       "en": "A spoon holds only a sip of water.",
+       "hi": "चम्मच में पानी की बस एक घूँट आती है।"
+      }
+     },
+     {
+      "id": "katori",
+      "text": {
+       "en": "Small katori",
+       "hi": "छोटी कटोरी"
+      },
+      "bin": "less",
+      "why": {
+       "en": "A small katori holds less than a glass.",
+       "hi": "छोटी कटोरी में गिलास से कम पानी आता है।"
+      }
+     },
+     {
+      "id": "cap",
+      "text": {
+       "en": "Bottle cap",
+       "hi": "बोतल का ढक्कन"
+      },
+      "bin": "less",
+      "why": {
+       "en": "A bottle cap holds a few drops.",
+       "hi": "बोतल के ढक्कन में कुछ बूँदें आती हैं।"
+      }
+     },
+     {
+      "id": "cup",
+      "text": {
+       "en": "Small tea cup",
+       "hi": "छोटा चाय का कप"
+      },
+      "bin": "less",
+      "why": {
+       "en": "A small tea cup holds less than a glass of water.",
+       "hi": "छोटे चाय के कप में गिलास से कम आता है।"
+      }
+     },
+     {
+      "id": "bucket",
+      "text": {
+       "en": "Bucket",
+       "hi": "बाल्टी"
+      },
+      "bin": "more",
+      "why": {
+       "en": "A bucket holds many glasses of water.",
+       "hi": "बाल्टी में कई गिलास पानी आता है।"
+      }
+     },
+     {
+      "id": "jug",
+      "text": {
+       "en": "Water jug",
+       "hi": "पानी का जग"
+      },
+      "bin": "more",
+      "why": {
+       "en": "A jug fills several glasses.",
+       "hi": "जग से कई गिलास भर जाते हैं।"
+      }
+     },
+     {
+      "id": "matka",
+      "text": {
+       "en": "Matka",
+       "hi": "मटका"
+      },
+      "bin": "more",
+      "why": {
+       "en": "A matka holds many glasses of water.",
+       "hi": "मटके में बहुत से गिलास पानी आता है।"
+      }
+     },
+     {
+      "id": "bottle",
+      "text": {
+       "en": "Big water bottle",
+       "hi": "बड़ी पानी की बोतल"
+      },
+      "bin": "more",
+      "why": {
+       "en": "A big bottle holds more than one glass.",
+       "hi": "बड़ी बोतल में एक गिलास से ज़्यादा आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:spoon",
+     "expect": "correct:spoon",
+     "say": {
+      "en": "Tap the teaspoon, then tap the group for it.",
+      "hi": "चम्मच पर दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Will a bucket hold more or less water than a glass?",
+      "hi": "क्या बाल्टी में गिलास से ज़्यादा पानी आएगा या कम?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "More",
+       "hi": "ज़्यादा"
+      },
+      {
+       "id": "b",
+       "en": "Less",
+       "hi": "कम"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "card:bucket",
+     "expect": "correct:bucket",
+     "say": {
+      "en": "Now sort the bucket.",
+      "hi": "अब बाल्टी को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Different containers hold different amounts. To compare, we pour the same water from one into another. A bucket and a matka hold many glasses. A spoon or a cap holds much less than one glass. This is how we compare how much a container holds.",
+      "hi": "अलग-अलग बर्तनों में अलग-अलग मात्रा समाती है। तुलना करने के लिए हम एक बर्तन का पानी दूसरे में डालते हैं। बाल्टी और मटके में कई गिलास समाते हैं। चम्मच या ढक्कन में एक गिलास से बहुत कम समाता है। इसी तरह हम बर्तनों की क्षमता की तुलना करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A jug can fill 5 glasses. Which holds more, the jug or one glass?",
+        "hi": "एक जग से 5 गिलास भर जाते हैं। किसमें ज़्यादा समाता है, जग में या एक गिलास में?"
+       },
+       "options": [
+        {
+         "en": "The jug",
+         "hi": "जग में"
+        },
+        {
+         "en": "The glass",
+         "hi": "गिलास में"
+        },
+        {
+         "en": "Both the same",
+         "hi": "दोनों में बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The jug fills 5 glasses, so it holds 5 times as much as one glass.",
+        "hi": "जग 5 गिलास भर देता है, इसलिए उसमें एक गिलास से 5 गुना समाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One glass fills only itself. The jug fills 5 of them.",
+         "hi": "एक गिलास केवल खुद को भरता है। जग 5 गिलास भरता है।"
+        },
+        {
+         "en": "If both held the same, the jug could fill only 1 glass.",
+         "hi": "दोनों बराबर होते तो जग केवल 1 गिलास भरता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "At home, find two containers. Pour water from one into the other. Which holds more?",
+      "hi": "घर पर दो बर्तन ढूँढो। एक का पानी दूसरे में डालो। किसमें ज़्यादा समाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch07-nimbu-pani",
+   "topic": "7.5",
+   "template": "sequence",
+   "title": {
+    "en": "Make nimbu pani step by step",
+    "hi": "नींबू पानी बनाओ, क्रम से"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "wash",
+      "text": {
+       "en": "Wash the lemon and cut it in half",
+       "hi": "नींबू धोकर आधा काटो"
+      }
+     },
+     {
+      "id": "squeeze",
+      "text": {
+       "en": "Squeeze the lemon juice into a glass",
+       "hi": "गिलास में नींबू का रस निचोड़ो"
+      }
+     },
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Add a spoon of sugar and a pinch of salt",
+       "hi": "एक चम्मच चीनी और चुटकी भर नमक डालो"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Pour in clean water up to the mark",
+       "hi": "निशान तक साफ़ पानी डालो"
+      }
+     },
+     {
+      "id": "stir",
+      "text": {
+       "en": "Stir well and drink",
+       "hi": "अच्छी तरह चलाओ और पियो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:wash",
+     "expect": "placed:wash",
+     "say": {
+      "en": "Tap the first step, then tap place 1.",
+      "hi": "पहला चरण दबाओ, फिर स्थान 1 दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which step should come last?",
+      "hi": "सबसे आख़िर में कौन-सा चरण आना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Stir well and drink",
+       "hi": "अच्छी तरह चलाओ और पियो"
+      },
+      {
+       "id": "b",
+       "en": "Wash the lemon",
+       "hi": "नींबू धोओ"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "item:squeeze",
+     "expect": "placed:squeeze",
+     "say": {
+      "en": "Put the squeezing step in place 2.",
+      "hi": "निचोड़ने वाला चरण स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order, then press Check.",
+      "hi": "सारे चरण क्रम में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Order matters. We wash first, then squeeze, add sugar and salt, pour water to the mark and stir. Measuring the water to the mark gives the same taste every time. Using the same glass for everyone is a fair way to measure.",
+      "hi": "क्रम ज़रूरी है। पहले धोते हैं, फिर निचोड़ते हैं, चीनी और नमक डालते हैं, निशान तक पानी डालते हैं और चलाते हैं। निशान तक पानी डालने से हर बार स्वाद एक-सा आता है। सबके लिए एक ही गिलास लेना नापने का सही तरीक़ा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we pour water up to the mark in the glass?",
+        "hi": "हम गिलास में निशान तक ही पानी क्यों डालते हैं?"
+       },
+       "options": [
+        {
+         "en": "To get the same amount every time",
+         "hi": "हर बार एक जितना पानी मिलने के लिए"
+        },
+        {
+         "en": "To spill some water",
+         "hi": "थोड़ा पानी गिराने के लिए"
+        },
+        {
+         "en": "Because it looks pretty",
+         "hi": "क्योंकि यह सुंदर लगता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A mark helps us measure the same amount each time.",
+        "hi": "निशान से हम हर बार एक जितना पानी माप पाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Spilling is wasting water.",
+         "hi": "पानी गिराना पानी बर्बाद करना है।"
+        },
+        {
+         "en": "A mark is for measuring, not for looks.",
+         "hi": "निशान नापने के लिए होता है, सुंदरता के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make nimbu pani at home with an adult. Use the same glass and compare two glasses of water.",
+      "hi": "किसी बड़े के साथ घर पर नींबू पानी बनाओ। एक ही गिलास लो और दो गिलास पानी की तुलना करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Chapter opener",
+   "shows": "A carpenter's workshop with a half-built carved wooden bed and a tape of rope used to measure it",
+   "view": "Wide view at eye level, warm light, no faces",
+   "right": "The bed is long with carved legs, the rope lies beside it",
+   "avoid": "Faces; text on tools"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Hand-span measuring",
+   "shows": "A desk with a hand laid flat at the left end, then moved span by span to the right end, 6 frames",
+   "view": "Same overhead view, same desk",
+   "right": "The thumb tip meets the last little finger tip with no gap",
+   "avoid": "Faces; sleeves covering the hand"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Three hands for comparison",
+   "shows": "Three hands side by side, laid flat with fingers spread: a small child's, a young child's and an adult's",
+   "view": "Straight from above, transparent background",
+   "right": "The three sizes clearly differ",
+   "avoid": "Rings, henna, nail polish"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.4",
+   "use": "Pan balance with a paper-cup balance",
+   "shows": "A simple home-made balance: a coat hanger with two paper cups on threads, an eraser in one cup",
+   "view": "Front view, transparent background",
+   "right": "The beam is level when the cups hold equal weight",
+   "avoid": "Brand names; shiny hanger glare"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "7.4",
+   "use": "Pumpkin's chaupal",
+   "shows": "A village market stall with a heap of vegetables: pumpkin, bottle gourd, carrot, cauliflower, capsicum and a muskmelon",
+   "view": "Slightly above, bright daylight, no faces",
+   "right": "Sizes true to life",
+   "avoid": "Faces; price tags; plastic bags"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "7.5",
+   "use": "Containers for capacity",
+   "shows": "A teaspoon, a katori, a tea cup, a steel glass, a water jug, a bucket and a matka lined up in size order",
+   "view": "Straight front view, even light, transparent background",
+   "right": "The size order is clear and real",
+   "avoid": "Water drops; brand names"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "7.5",
+   "use": "Nimbu pani",
+   "shows": "Five frames: cutting a lemon, squeezing it, adding sugar and salt, pouring water, stirring",
+   "view": "Same top view of the counter, hands only",
+   "right": "Each frame shows only its step",
+   "avoid": "Faces; knives pointing at the child"
+  }
+ ]
+}

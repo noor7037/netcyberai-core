@@ -1,0 +1,546 @@
+{
+ "chapter_key": "u.c09.sanskrit.ihsh1.ch01",
+ "class": 9,
+ "subject_id": "sanskrit",
+ "title": "सत्यं शिवं सुन्दरं संस्कृतम्",
+ "source": "https://ncert.nic.in/textbook/pdf/ihsh101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "A song in praise of Sanskrit: six verses about what Sanskrit gives India",
+   "labs": [],
+   "why_no_lab": "A song is learnt by singing it in a group with rhythm, so listening and singing teach it better than a lab. § गीत समूह में लय के साथ गाकर सीखा जाता है, इसलिए सुनना और गाना लैब से बेहतर है।"
+  },
+  {
+   "n": "1.2",
+   "title": "सर्वं शब्देन भासते: word meanings from the song",
+   "labs": [
+    "c09-sanskrit-ihsh1-ch01-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Compound words (समास) in the song and how to open them (विग्रह)",
+   "labs": [
+    "c09-sanskrit-ihsh1-ch01-vigraha"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "The poet and his work (कविकाव्यपरिचयः)",
+   "labs": [],
+   "why_no_lab": "This is a short reading about the poet; it is read and discussed, not experimented with. § यह कवि का छोटा परिचय है; इसे पढ़ा और चर्चा से समझा जाता है।"
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-sanskrit-ihsh1-ch01-words",
+   "topic": "1.2",
+   "template": "match",
+   "title": {
+    "en": "Words of the Sanskrit song",
+    "hi": "संस्कृत गीत के शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "aihikam",
+      "left": {
+       "en": "ऐहिकम्",
+       "hi": "ऐहिकम्"
+      },
+      "right": {
+       "en": "Of this world",
+       "hi": "इस संसार का"
+      },
+      "why": {
+       "en": "ऐहिकम् comes from इह, \"here\": it belongs to this life.",
+       "hi": "ऐहिकम् इह (\"यहाँ\") से बना है: यह इस जीवन से जुड़ा है।"
+      }
+     },
+     {
+      "id": "amushmikam",
+      "left": {
+       "en": "आमुष्मिकम्",
+       "hi": "आमुष्मिकम्"
+      },
+      "right": {
+       "en": "Of the other world",
+       "hi": "परलोक का"
+      },
+      "why": {
+       "en": "आमुष्मिकम् is the opposite of ऐहिकम्: it belongs to the world beyond.",
+       "hi": "आमुष्मिकम् ऐहिकम् का उलटा है: यह परलोक से जुड़ा है।"
+      }
+     },
+     {
+      "id": "charu",
+      "left": {
+       "en": "चारु",
+       "hi": "चारु"
+      },
+      "right": {
+       "en": "Beautiful",
+       "hi": "सुन्दर, मनोहर"
+      },
+      "why": {
+       "en": "चारु means lovely to look at or to hear.",
+       "hi": "चारु का अर्थ है देखने या सुनने में सुन्दर।"
+      }
+     },
+     {
+      "id": "prabha",
+      "left": {
+       "en": "प्रभा",
+       "hi": "प्रभा"
+      },
+      "right": {
+       "en": "Light, glow",
+       "hi": "प्रकाश, चमक"
+      },
+      "why": {
+       "en": "प्रभा is the shine that spreads from a lamp or the sun.",
+       "hi": "प्रभा वह चमक है जो दीपक या सूर्य से फैलती है।"
+      }
+     },
+     {
+      "id": "punjah",
+      "left": {
+       "en": "पुञ्जः",
+       "hi": "पुञ्जः"
+      },
+      "right": {
+       "en": "A heap or mass",
+       "hi": "ढेर, राशि"
+      },
+      "why": {
+       "en": "पुञ्जः is many things gathered into one heap.",
+       "hi": "पुञ्जः बहुत-सी चीज़ों का एक ढेर है।"
+      }
+     },
+     {
+      "id": "satpathah",
+      "left": {
+       "en": "सत्पथः",
+       "hi": "सत्पथः"
+      },
+      "right": {
+       "en": "The good path",
+       "hi": "अच्छा मार्ग"
+      },
+      "why": {
+       "en": "सत् means good and पथः means path.",
+       "hi": "सत् का अर्थ अच्छा और पथः का अर्थ रास्ता है।"
+      }
+     },
+     {
+      "id": "vistarakam",
+      "left": {
+       "en": "विस्तारकम्",
+       "hi": "विस्तारकम्"
+      },
+      "right": {
+       "en": "That which spreads",
+       "hi": "फैलाने वाला"
+      },
+      "why": {
+       "en": "विस्तार means spread and -कम् shows the doer.",
+       "hi": "विस्तार का अर्थ फैलाव है और -कम् करने वाले को दिखाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:aihikam",
+     "expect": "matched:aihikam",
+     "say": {
+      "en": "Tap ऐहिकम्, then tap its meaning.",
+      "hi": "ऐहिकम् छुओ, फिर उसका अर्थ छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "आमुष्मिकम् is the opposite of ऐहिकम्. What do you think it means?",
+      "hi": "आमुष्मिकम् ऐहिकम् का उलटा है। तुम्हें क्या लगता है, इसका अर्थ क्या है?"
+     },
+     "options": [
+      {
+       "id": "this",
+       "en": "Of this world",
+       "hi": "इस संसार का"
+      },
+      {
+       "id": "other",
+       "en": "Of the other world",
+       "hi": "परलोक का"
+      },
+      {
+       "id": "light",
+       "en": "Light",
+       "hi": "प्रकाश"
+      }
+     ],
+     "answer": "other"
+    },
+    {
+     "kind": "do",
+     "target": "left:vistarakam",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the other words.",
+      "hi": "अब बाकी सारे शब्द मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The song uses rich words to praise Sanskrit. ऐहिकम् is \"of this world\" and आमुष्मिकम् is \"of the other world\". चारु is beautiful, प्रभा is light, पुञ्जः is a heap and सत्पथः is the good path. Sanskrit words are built from small meaningful parts, so knowing the parts helps you guess new words.",
+      "hi": "गीत में संस्कृत की प्रशंसा के लिए सुन्दर शब्द आए हैं। ऐहिकम् का अर्थ \"इस संसार का\" और आमुष्मिकम् का \"परलोक का\" है। चारु सुन्दर, प्रभा प्रकाश, पुञ्जः ढेर और सत्पथः अच्छा मार्ग है। संस्कृत शब्द छोटे अर्थवान भागों से बनते हैं, इसलिए भाग पहचानने से नए शब्दों का अर्थ लगाना आसान होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does ऐहिकम् mean?",
+        "hi": "ऐहिकम् का अर्थ क्या है?"
+       },
+       "options": [
+        {
+         "en": "Of this world",
+         "hi": "इस संसार का"
+        },
+        {
+         "en": "Of the other world",
+         "hi": "परलोक का"
+        },
+        {
+         "en": "Beautiful",
+         "hi": "सुन्दर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ऐहिकम् is \"इह लोके भवम्\": it belongs to this world.",
+        "hi": "ऐहिकम् \"इह लोके भवम्\" है: यह इस संसार से जुड़ा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is आमुष्मिकम्; the two words are opposites.",
+         "hi": "वह आमुष्मिकम् का अर्थ है; दोनों शब्द एक-दूसरे के उलटे हैं।"
+        },
+        {
+         "en": "Beautiful is the meaning of चारु, a different word.",
+         "hi": "सुन्दर तो चारु का अर्थ है, जो अलग शब्द है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word means \"that which spreads\"?",
+        "hi": "\"फैलाने वाला\" किस शब्द का अर्थ है?"
+       },
+       "options": [
+        "पुञ्जः",
+        "विस्तारकम्",
+        "प्रभा"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "विस्तार is spread and -कम् shows the one who does it.",
+        "hi": "विस्तार फैलाव है और -कम् करने वाले को दिखाता है।"
+       },
+       "wrong": [
+        {
+         "en": "पुञ्जः means a heap, not something that spreads.",
+         "hi": "पुञ्जः का अर्थ ढेर है, फैलाने वाला नहीं।"
+        },
+        "",
+        {
+         "en": "प्रभा means light or glow.",
+         "hi": "प्रभा का अर्थ प्रकाश या चमक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say each word aloud, then make your own short sentence with चारु or प्रभा.",
+      "hi": "हर शब्द ज़ोर से बोलो, फिर चारु या प्रभा से अपना छोटा वाक्य बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-sanskrit-ihsh1-ch01-vigraha",
+   "topic": "1.3",
+   "template": "grammar",
+   "title": {
+    "en": "Open the compound words",
+    "hi": "समास खोलो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "v1",
+      "task": {
+       "en": "Open the compound ज्ञानदायकम् into two words.",
+       "hi": "समास ज्ञानदायकम् को दो शब्दों में खोलो।"
+      },
+      "words": [
+       "ज्ञानस्य",
+       "दायकम्",
+       "ज्ञानम्",
+       "दायकः"
+      ],
+      "answer": "ज्ञानस्य दायकम्",
+      "rule": {
+       "en": "ज्ञानदायकम् = ज्ञानस्य दायकम्, \"giver of knowledge\". The first word takes the \"of\" ending -स्य.",
+       "hi": "ज्ञानदायकम् = ज्ञानस्य दायकम्, \"ज्ञान देने वाला\"। पहला शब्द \"का\" वाला अंत -स्य लेता है।"
+      }
+     },
+     {
+      "id": "v2",
+      "task": {
+       "en": "Open the compound सुखदायकम्.",
+       "hi": "समास सुखदायकम् को खोलो।"
+      },
+      "words": [
+       "सुखस्य",
+       "दायकम्",
+       "सुखम्",
+       "दाता"
+      ],
+      "answer": "सुखस्य दायकम्",
+      "rule": {
+       "en": "सुखदायकम् = सुखस्य दायकम्, \"giver of happiness\".",
+       "hi": "सुखदायकम् = सुखस्य दायकम्, \"सुख देने वाला\"।"
+      }
+     },
+     {
+      "id": "v3",
+      "task": {
+       "en": "Open the compound देशसेवकः.",
+       "hi": "समास देशसेवकः को खोलो।"
+      },
+      "words": [
+       "देशस्य",
+       "सेवकः",
+       "देशः",
+       "सेवकम्"
+      ],
+      "answer": "देशस्य सेवकः",
+      "rule": {
+       "en": "देशसेवकः = देशस्य सेवकः, \"servant of the country\". The doer stays in the -ः form.",
+       "hi": "देशसेवकः = देशस्य सेवकः, \"देश का सेवक\"। कर्ता -ः रूप में ही रहता है।"
+      }
+     },
+     {
+      "id": "v4",
+      "task": {
+       "en": "Open the compound धर्मरक्षकः.",
+       "hi": "समास धर्मरक्षकः को खोलो।"
+      },
+      "words": [
+       "धर्मस्य",
+       "रक्षकः",
+       "धर्मः",
+       "रक्षकम्"
+      ],
+      "answer": "धर्मस्य रक्षकः",
+      "rule": {
+       "en": "धर्मरक्षकः = धर्मस्य रक्षकः, \"protector of dharma\".",
+       "hi": "धर्मरक्षकः = धर्मस्य रक्षकः, \"धर्म का रक्षक\"।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:v1",
+     "say": {
+      "en": "Tap the word tiles in the right order to open ज्ञानदायकम्.",
+      "hi": "सही क्रम में शब्द-पट्टियाँ छूकर ज्ञानदायकम् को खोलो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In ज्ञानदायकम्, which word will come first when it is opened?",
+      "hi": "ज्ञानदायकम् को खोलने पर पहला शब्द कौन-सा होगा?"
+     },
+     "options": [
+      {
+       "id": "b",
+       "en": "दायकम्",
+       "hi": "दायकम्"
+      },
+      {
+       "id": "c",
+       "en": "ज्ञानः",
+       "hi": "ज्ञानः"
+      },
+      {
+       "id": "a",
+       "en": "ज्ञानस्य",
+       "hi": "ज्ञानस्य"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Open the other three compounds too.",
+      "hi": "बाकी तीन समास भी खोलो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A compound (समास) joins two words into one. Opening it back into parts is called विग्रह. When the first part means \"of\", as in ज्ञानस्य दायकम्, the compound is a षष्ठी-तत्पुरुष. The song has many such compounds, so opening them is the key to its meaning.",
+      "hi": "समास दो शब्दों को जोड़कर एक बनाता है। उसे फिर भागों में खोलना विग्रह कहलाता है। जब पहला भाग \"का\" का अर्थ दे, जैसे ज्ञानस्य दायकम्, तब वह षष्ठी-तत्पुरुष समास होता है। गीत में ऐसे बहुत समास हैं, इसलिए उन्हें खोलना अर्थ समझने की कुंजी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which opening of देशसेवकः is right?",
+        "hi": "देशसेवकः का सही विग्रह कौन-सा है?"
+       },
+       "options": [
+        "देशः सेवकः",
+        "देशम् सेवकः",
+        "देशस्य सेवकः"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "The first word is \"of the country\" (देशस्य), so the compound is \"servant of the country\".",
+        "hi": "पहला शब्द \"देश का\" (देशस्य) है, इसलिए समास का अर्थ \"देश का सेवक\" है।"
+       },
+       "wrong": [
+        {
+         "en": "देशः सेवकः would mean \"the country is a servant\", which is not the sense.",
+         "hi": "देशः सेवकः का अर्थ \"देश ही सेवक है\" होगा, जो यहाँ नहीं है।"
+        },
+        {
+         "en": "देशम् is the \"to the country\" form, not \"of the country\".",
+         "hi": "देशम् \"देश को\" वाला रूप है, \"देश का\" नहीं।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Which ending shows \"of\" in these compounds?",
+        "hi": "इन समासों में \"का\" का भाव कौन-सा अंत दिखाता है?"
+       },
+       "options": [
+        "-स्य",
+        "-म्",
+        "-ः"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-स्य is the sixth-case ending, the one that means \"of\".",
+        "hi": "-स्य षष्ठी विभक्ति का अंत है, जो \"का\" का अर्थ देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-म् is the ending of the object or of a neuter word, not \"of\".",
+         "hi": "-म् कर्म या नपुंसक शब्द का अंत है, \"का\" का नहीं।"
+        },
+        {
+         "en": "-ः is the ending of a masculine doer, not \"of\".",
+         "hi": "-ः पुल्लिंग कर्ता का अंत है, \"का\" का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own षष्ठी-तत्पुरुष: join \"of the school\" and \"teacher\".",
+      "hi": "अपना षष्ठी-तत्पुरुष बनाओ: \"विद्यालय का\" और \"शिक्षक\" को जोड़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Opens the lesson with the joy of singing together",
+   "shows": "Five school students in a row on a stage at morning assembly, singing together",
+   "view": "Wide from the back of the hall, faces not visible",
+   "right": "Real Indian school uniforms, a mic stand, soft morning light from the side windows",
+   "avoid": "Banners with readable text, faces of identifiable children"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Shows how old Sanskrit knowledge was kept",
+   "shows": "A bundle of old palm leaves tied with a cord, fine dark lines scratched on them",
+   "view": "Slightly from above, front-facing, on a plain cut-out",
+   "right": "Real palm-leaf texture and warm brown colour; the script only suggested, not readable",
+   "avoid": "Any readable verse, a museum label"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "Sets the home city of the poet",
+   "shows": "The ghats of Varanasi at sunrise with stone steps, small boats and a few people far away",
+   "view": "Wide, from a boat on the river, people tiny and facing away",
+   "right": "Real river light, steps and temple spires of Varanasi",
+   "avoid": "Close faces, signboards, brand logos"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "1.3",
+   "use": "Frame for opening a compound word",
+   "shows": "Two empty rounded boxes joined by a plus sign and an arrow to one long box below",
+   "view": "Flat, front-on, white background",
+   "right": "Clean lines the app can fill with the two parts and the compound",
+   "avoid": "Any text, decorative borders"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Shows Sanskrit being learnt today",
+   "shows": "A Sanskrit class in a circle: students sitting on a mat reading from open books, a teacher beside them",
+   "view": "Eye level from one side, faces turned away or softly out of focus",
+   "right": "Real books in Devanagari with unreadable small print, natural classroom light",
+   "avoid": "Readable page text, branded bags"
+  }
+ ]
+}

@@ -1,0 +1,678 @@
+{
+ "chapter_key": "u.c11.sanskrit.khsk1.ch11",
+ "class": 11,
+ "subject_id": "sanskrit",
+ "title": "अथ शिक्षां प्रवक्ष्यामि (Now I shall explain phonetics)",
+ "source": "https://ncert.nic.in/textbook/pdf/khsk111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "What शिक्षा (phonetics) is and why it matters for the Vedas",
+   "labs": [],
+   "why_no_lab": "This is the background of the subject, understood by reading and discussion; the labs in 11.2 and 11.3 then make it practical."
+  },
+  {
+   "n": "11.2",
+   "title": "Places where sounds are made: throat, palate, roof, teeth, lips",
+   "labs": [
+    "c11-sanskrit-khsk1-ch11-sthana"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Words for the mouth and for speaking",
+   "labs": [
+    "c11-sanskrit-khsk1-ch11-mouth"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Counting the letters (वर्ण) of Sanskrit",
+   "labs": [],
+   "why_no_lab": "A count of 63 or 64 sounds is a fact to be remembered with the teacher's chart; there is nothing to experiment with."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-sanskrit-khsk1-ch11-sthana",
+   "topic": "11.2",
+   "template": "sort",
+   "title": {
+    "en": "Where is the sound made?",
+    "hi": "ध्वनि कहाँ से बनती है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ka",
+      "label": {
+       "en": "कण्ठ्य (throat)",
+       "hi": "कण्ठ्य (कंठ से)"
+      }
+     },
+     {
+      "id": "ta",
+      "label": {
+       "en": "तालव्य (palate)",
+       "hi": "तालव्य (तालु से)"
+      }
+     },
+     {
+      "id": "mu",
+      "label": {
+       "en": "मूर्धन्य (roof of mouth)",
+       "hi": "मूर्धन्य (मूर्धा से)"
+      }
+     },
+     {
+      "id": "da",
+      "label": {
+       "en": "दन्त्य (teeth)",
+       "hi": "दन्त्य (दाँतों से)"
+      }
+     },
+     {
+      "id": "os",
+      "label": {
+       "en": "ओष्ठ्य (lips)",
+       "hi": "ओष्ठ्य (होंठों से)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a1",
+      "text": {
+       "en": "अ",
+       "hi": "अ"
+      },
+      "bin": "ka",
+      "why": {
+       "en": "अ is said from the throat.",
+       "hi": "अ कंठ से बोला जाता है।"
+      }
+     },
+     {
+      "id": "a2",
+      "text": {
+       "en": "क",
+       "hi": "क"
+      },
+      "bin": "ka",
+      "why": {
+       "en": "क, the first of the क-group, is said from the throat.",
+       "hi": "क-वर्ग का पहला अक्षर क कंठ से बोला जाता है।"
+      }
+     },
+     {
+      "id": "a3",
+      "text": {
+       "en": "ह",
+       "hi": "ह"
+      },
+      "bin": "ka",
+      "why": {
+       "en": "ह is a throat sound.",
+       "hi": "ह कंठ्य ध्वनि है।"
+      }
+     },
+     {
+      "id": "b1",
+      "text": {
+       "en": "इ",
+       "hi": "इ"
+      },
+      "bin": "ta",
+      "why": {
+       "en": "इ is said from the palate.",
+       "hi": "इ तालु से बोला जाता है।"
+      }
+     },
+     {
+      "id": "b2",
+      "text": {
+       "en": "च",
+       "hi": "च"
+      },
+      "bin": "ta",
+      "why": {
+       "en": "च, the first of the च-group, uses the palate.",
+       "hi": "च-वर्ग का पहला अक्षर च तालु से बोला जाता है।"
+      }
+     },
+     {
+      "id": "b3",
+      "text": {
+       "en": "श",
+       "hi": "श"
+      },
+      "bin": "ta",
+      "why": {
+       "en": "श touches the palate.",
+       "hi": "श तालु से बोला जाता है।"
+      }
+     },
+     {
+      "id": "c1",
+      "text": {
+       "en": "ट",
+       "hi": "ट"
+      },
+      "bin": "mu",
+      "why": {
+       "en": "ट, the first of the ट-group, is said with the tongue turned back to the roof of the mouth.",
+       "hi": "ट-वर्ग का पहला अक्षर ट जीभ को पीछे मोड़कर मूर्धा से बोला जाता है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "ष",
+       "hi": "ष"
+      },
+      "bin": "mu",
+      "why": {
+       "en": "ष is a roof-of-mouth sound.",
+       "hi": "ष मूर्धन्य ध्वनि है।"
+      }
+     },
+     {
+      "id": "d1",
+      "text": {
+       "en": "त",
+       "hi": "त"
+      },
+      "bin": "da",
+      "why": {
+       "en": "त, the first of the त-group, uses the teeth.",
+       "hi": "त-वर्ग का पहला अक्षर त दाँतों से बोला जाता है।"
+      }
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "स",
+       "hi": "स"
+      },
+      "bin": "da",
+      "why": {
+       "en": "स is a teeth sound.",
+       "hi": "स दन्त्य ध्वनि है।"
+      }
+     },
+     {
+      "id": "d3",
+      "text": {
+       "en": "द",
+       "hi": "द"
+      },
+      "bin": "da",
+      "why": {
+       "en": "द is said with the tongue at the teeth.",
+       "hi": "द जीभ को दाँतों से लगाकर बोला जाता है।"
+      }
+     },
+     {
+      "id": "e1",
+      "text": {
+       "en": "उ",
+       "hi": "उ"
+      },
+      "bin": "os",
+      "why": {
+       "en": "उ is said with the lips.",
+       "hi": "उ होंठों से बोला जाता है।"
+      }
+     },
+     {
+      "id": "e2",
+      "text": {
+       "en": "प",
+       "hi": "प"
+      },
+      "bin": "os",
+      "why": {
+       "en": "प, the first of the प-group, uses both lips.",
+       "hi": "प-वर्ग का पहला अक्षर प दोनों होंठों से बोला जाता है।"
+      }
+     },
+     {
+      "id": "e3",
+      "text": {
+       "en": "म",
+       "hi": "म"
+      },
+      "bin": "os",
+      "why": {
+       "en": "म is said with the lips and the nose.",
+       "hi": "म होंठों और नाक से बोला जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a1",
+     "expect": "placed:a1",
+     "say": {
+      "en": "Tap the first card, then tap the group where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर वह समूह छुओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Say पा and then का slowly. Which one needs both lips to meet?",
+      "hi": "पा और फिर का धीरे बोलो। किसमें दोनों होंठ मिलते हैं?"
+     },
+     "options": [
+      {
+       "id": "p",
+       "en": "पा",
+       "hi": "पा"
+      },
+      {
+       "id": "k",
+       "en": "का",
+       "hi": "का"
+      },
+      {
+       "id": "both",
+       "en": "Both",
+       "hi": "दोनों"
+      }
+     ],
+     "answer": "p"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every letter is formed at a particular place in the mouth. Sanskrit grammar sorts them into five main groups: कण्ठ्य (throat), तालव्य (palate), मूर्धन्य (roof), दन्त्य (teeth), ओष्ठ्य (lips). The first letter of each of the five groups of consonants (क च ट त प) climbs from the throat to the lips.",
+      "hi": "हर अक्षर मुख में किसी विशेष स्थान पर बनता है। संस्कृत व्याकरण उन्हें पाँच मुख्य समूहों में बाँटता है: कण्ठ्य, तालव्य, मूर्धन्य, दन्त्य और ओष्ठ्य। व्यंजनों के पाँच वर्गों के पहले अक्षर (क च ट त प) कंठ से होंठों तक चढ़ते जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which letter is said with the lips?",
+        "hi": "कौन-सा अक्षर होंठों से बोला जाता है?"
+       },
+       "options": [
+        {
+         "en": "क",
+         "hi": "क"
+        },
+        {
+         "en": "प",
+         "hi": "प"
+        },
+        {
+         "en": "च",
+         "hi": "च"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "प needs both lips to press together.",
+        "hi": "प में दोनों होंठ आपस में मिलते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "क is a throat sound.",
+         "hi": "क कंठ्य ध्वनि है।"
+        },
+        "",
+        {
+         "en": "च is a palate sound.",
+         "hi": "च तालव्य ध्वनि है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The letter ष is made at the:",
+        "hi": "ष अक्षर कहाँ बनता है:"
+       },
+       "options": [
+        {
+         "en": "lips",
+         "hi": "होंठों पर"
+        },
+        {
+         "en": "roof of the mouth",
+         "hi": "मूर्धा पर"
+        },
+        {
+         "en": "throat",
+         "hi": "कंठ में"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "ष is मूर्धन्य, with the tongue curled back.",
+        "hi": "ष मूर्धन्य है, जिसमें जीभ पीछे मुड़ती है।"
+       },
+       "wrong": [
+        {
+         "en": "The lip letters are उ and the प-group.",
+         "hi": "होंठ वाले अक्षर उ और प-वर्ग के हैं।"
+        },
+        "",
+        {
+         "en": "The throat letters are अ, क-group and ह.",
+         "hi": "कंठ वाले अक्षर अ, क-वर्ग और ह हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put your finger on your throat and say क and ग. What do you feel? Then say प and ब with your fingers on your lips.",
+      "hi": "गले पर उँगली रखकर क और ग बोलो। क्या महसूस होता है? फिर होंठों पर उँगली रखकर प और ब बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sanskrit-khsk1-ch11-mouth",
+   "topic": "11.3",
+   "template": "match",
+   "title": {
+    "en": "The mouth and speech",
+    "hi": "मुख और वाणी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "kantha",
+      "left": {
+       "en": "कण्ठः",
+       "hi": "कण्ठः"
+      },
+      "right": {
+       "en": "throat",
+       "hi": "गला, कंठ"
+      },
+      "why": {
+       "en": "The voice begins in the throat.",
+       "hi": "स्वर गले से शुरू होता है।"
+      }
+     },
+     {
+      "id": "talu",
+      "left": {
+       "en": "तालु",
+       "hi": "तालु"
+      },
+      "right": {
+       "en": "palate",
+       "hi": "तालु"
+      },
+      "why": {
+       "en": "The upper hard part inside the mouth.",
+       "hi": "मुख के अंदर ऊपर का कठोर भाग।"
+      }
+     },
+     {
+      "id": "murdha",
+      "left": {
+       "en": "मूर्धा",
+       "hi": "मूर्धा"
+      },
+      "right": {
+       "en": "the top of the palate, near the roof",
+       "hi": "तालु का सबसे ऊपरी भाग"
+      },
+      "why": {
+       "en": "The tongue curls back to touch it for ट-type sounds.",
+       "hi": "ट जैसी ध्वनियों के लिए जीभ पीछे मुड़कर इसे छूती है।"
+      }
+     },
+     {
+      "id": "danta",
+      "left": {
+       "en": "दन्तः",
+       "hi": "दन्तः"
+      },
+      "right": {
+       "en": "tooth",
+       "hi": "दाँत"
+      },
+      "why": {
+       "en": "त, थ, द, ध, न are said with it.",
+       "hi": "त, थ, द, ध, न इससे बोले जाते हैं।"
+      }
+     },
+     {
+      "id": "oshtha",
+      "left": {
+       "en": "ओष्ठौ",
+       "hi": "ओष्ठौ"
+      },
+      "right": {
+       "en": "the two lips",
+       "hi": "दोनों होंठ"
+      },
+      "why": {
+       "en": "The dual ending shows there are two.",
+       "hi": "द्विवचन का अंत बताता है कि वे दो हैं।"
+      }
+     },
+     {
+      "id": "nasika",
+      "left": {
+       "en": "नासिका",
+       "hi": "नासिका"
+      },
+      "right": {
+       "en": "nose",
+       "hi": "नाक"
+      },
+      "why": {
+       "en": "Nasal sounds like म and न pass through it.",
+       "hi": "म और न जैसी नासिक्य ध्वनियाँ इससे गुज़रती हैं।"
+      }
+     },
+     {
+      "id": "jihva",
+      "left": {
+       "en": "जिह्वा",
+       "hi": "जिह्वा"
+      },
+      "right": {
+       "en": "tongue",
+       "hi": "जीभ"
+      },
+      "why": {
+       "en": "It moves to each place to shape the sounds.",
+       "hi": "यह हर स्थान पर जाकर ध्वनियाँ आकार देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:kantha",
+     "expect": "matched:kantha",
+     "say": {
+      "en": "Pick the first word in the list and match it with its meaning.",
+      "hi": "सूची का पहला शब्द चुनो और उसे उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word means the tongue?",
+      "hi": "जीभ के लिए कौन-सा शब्द है?"
+     },
+     "options": [
+      {
+       "id": "j",
+       "en": "जिह्वा",
+       "hi": "जिह्वा"
+      },
+      {
+       "id": "n",
+       "en": "नासिका",
+       "hi": "नासिका"
+      },
+      {
+       "id": "d",
+       "en": "दन्तः",
+       "hi": "दन्तः"
+      }
+     ],
+     "answer": "j"
+    },
+    {
+     "kind": "do",
+     "target": "left:talu",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the other pairs.",
+      "hi": "अब बाकी सब जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The names of the sound-places are old Sanskrit words that give us the group names: कण्ठ → कण्ठ्य, तालु → तालव्य, मूर्धा → मूर्धन्य, दन्त → दन्त्य, ओष्ठ → ओष्ठ्य. Knowing the body word means you know the group.",
+      "hi": "ध्वनि-स्थानों के नाम पुराने संस्कृत शब्द हैं जिनसे समूहों के नाम बने: कण्ठ → कण्ठ्य, तालु → तालव्य, मूर्धा → मूर्धन्य, दन्त → दन्त्य, ओष्ठ → ओष्ठ्य। शरीर का शब्द जान लिया तो समूह का नाम भी पता चल गया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The group of sounds from the lips is called:",
+        "hi": "होंठों से बोले जाने वाली ध्वनियों का समूह कहलाता है:"
+       },
+       "options": [
+        {
+         "en": "ओष्ठ्य",
+         "hi": "ओष्ठ्य"
+        },
+        {
+         "en": "कण्ठ्य",
+         "hi": "कण्ठ्य"
+        },
+        {
+         "en": "दन्त्य",
+         "hi": "दन्त्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ओष्ठ is a lip, so the group is ओष्ठ्य.",
+        "hi": "ओष्ठ यानी होंठ, इसलिए समूह ओष्ठ्य है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "कण्ठ्य comes from the throat.",
+         "hi": "कण्ठ्य कंठ से आता है।"
+        },
+        {
+         "en": "दन्त्य comes from the teeth.",
+         "hi": "दन्त्य दाँतों से आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say each word and touch the part of your body it names.",
+      "hi": "हर शब्द बोलो और शरीर का वह अंग छुओ जिसका वह नाम है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "CUT",
+   "topic": "11.2",
+   "use": "Inside the mouth: places of sound",
+   "shows": "A side cut-away of a human head showing throat, soft palate, hard palate, roof of the mouth, tongue, teeth and lips, with a clean plain background",
+   "view": "Side view, 4:3, soft even light",
+   "right": "True anatomy, tongue shown resting; each place clearly separated",
+   "avoid": "Labels, arrows, numbers"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "11.2",
+   "use": "The tongue moving for क, च, ट, त, प",
+   "shows": "Five side-view cut-away frames of the same head, the tongue touching the throat, palate, roof, teeth and then the lips",
+   "view": "Same camera, same light for all five",
+   "right": "Tongue position changes from back to front",
+   "avoid": "Text, letters"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "11.3",
+   "use": "Lips closing for प",
+   "shows": "Front view of a child's closed lips and then open lips, two frames of the same mouth only",
+   "view": "Close-up, soft light, same size",
+   "right": "Natural lip shapes, no teeth marks",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "11.3",
+   "use": "Tongue and teeth model",
+   "shows": "A clear plastic anatomical model of tongue and teeth, cut-out",
+   "view": "Front three-quarter, top-left light, transparent background",
+   "right": "Model looks real",
+   "avoid": "Labels, brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "A teacher chanting with students",
+   "shows": "A teacher sitting cross-legged under a tree chanting, students repeating, shot from the back",
+   "view": "Wide shot, back view, morning light",
+   "right": "Calm attention, mouths not visible",
+   "avoid": "Faces, books with writing"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "11.2",
+   "use": "Base for the sound-place sort lab",
+   "shows": "Five blank bins of different colours along the top of a wide frame, each with a tiny shape (circle, triangle, square, diamond, oval) in its corner",
+   "view": "Flat front view on white",
+   "right": "Five distinct colours and shapes",
+   "avoid": "Any text or letters"
+  }
+ ]
+}

@@ -1,0 +1,484 @@
+{
+  "chapter_key": "u.c05.hindi.ehve1.x14",
+  "class": 5,
+  "subject_id": "hindi",
+  "title": "घूमो-देखो",
+  "source": "https://ncert.nic.in/textbook/pdf/ehve1ps.pdf",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Loktak Lake in Manipur and Coorg in Karnataka",
+      "labs": [
+        "c05-hindi-ehve1-x14-places"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Facts to match",
+      "labs": [
+        "c05-hindi-ehve1-x14-facts"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c05-hindi-ehve1-x14-places",
+      "topic": "1",
+      "template": "sort",
+      "title": {
+        "en": "Which place is it?",
+        "hi": "यह कौन-सी जगह है?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "lok",
+            "label": {
+              "en": "Loktak Lake, Manipur",
+              "hi": "लोकतक झील, मणिपुर"
+            }
+          },
+          {
+            "id": "coorg",
+            "label": {
+              "en": "Coorg, Karnataka",
+              "hi": "कूर्ग, कर्नाटक"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "phum",
+            "text": {
+              "en": "Floating mats of grass (phumdi)",
+              "hi": "तैरती घास की परतें (फुमदी)"
+            },
+            "bin": "lok",
+            "why": {
+              "en": "Phumdis float on Loktak Lake.",
+              "hi": "फुमदी लोकतक झील पर तैरती हैं।"
+            }
+          },
+          {
+            "id": "park",
+            "text": {
+              "en": "A national park that floats",
+              "hi": "तैरता हुआ राष्ट्रीय उद्यान"
+            },
+            "bin": "lok",
+            "why": {
+              "en": "Keibul Lamjao is the floating park on a phumdi.",
+              "hi": "केईबुल लामजाओ फुमदी पर बना तैरता उद्यान है।"
+            }
+          },
+          {
+            "id": "sangai",
+            "text": {
+              "en": "Sangai deer, state animal",
+              "hi": "राज्य पशु संगई हिरण"
+            },
+            "bin": "lok",
+            "why": {
+              "en": "The sangai is the state animal of Manipur.",
+              "hi": "संगई मणिपुर का राज्य पशु है।"
+            }
+          },
+          {
+            "id": "fisher",
+            "text": {
+              "en": "Fishermen's huts on the mats",
+              "hi": "फुमदी पर मछुआरों की झोंपड़ियाँ"
+            },
+            "bin": "lok",
+            "why": {
+              "en": "Fishermen live on floating mats.",
+              "hi": "मछुआरे तैरती परतों पर रहते हैं।"
+            }
+          },
+          {
+            "id": "coffee",
+            "text": {
+              "en": "Tea, coffee and spice estates",
+              "hi": "चाय, कॉफ़ी और मसालों के बागान"
+            },
+            "bin": "coorg",
+            "why": {
+              "en": "Coorg's green hills are covered with plantations.",
+              "hi": "कूर्ग के हरे पहाड़ बागानों से भरे हैं।"
+            }
+          },
+          {
+            "id": "kaveri",
+            "text": {
+              "en": "Where the river Kaveri begins",
+              "hi": "कावेरी नदी का उद्गम"
+            },
+            "bin": "coorg",
+            "why": {
+              "en": "The Kaveri rises in Coorg.",
+              "hi": "कावेरी नदी कूर्ग से निकलती है।"
+            }
+          },
+          {
+            "id": "cloud",
+            "text": {
+              "en": "Clouds seen close from a hilltop",
+              "hi": "पहाड़ी से पास दिखते बादल"
+            },
+            "bin": "coorg",
+            "why": {
+              "en": "Mandalpatti hill lets you watch clouds from near.",
+              "hi": "मंडलपट्टी पहाड़ी से बादल पास दिखते हैं।"
+            }
+          },
+          {
+            "id": "sambar",
+            "text": {
+              "en": "Sambar and elephants in sanctuaries",
+              "hi": "अभयारण्य में सांभर और हाथी"
+            },
+            "bin": "coorg",
+            "why": {
+              "en": "Brahmagiri and Pushpagiri sanctuaries have them.",
+              "hi": "ब्रह्मगिरि और पुष्पगिरि अभयारण्यों में ये मिलते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:phum",
+          "expect": "placed:phum",
+          "say": {
+            "en": "Tap the phumdi card and put it with its place.",
+            "hi": "फुमदी का कार्ड चुनकर उसकी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which place has hills with coffee estates?",
+            "hi": "किस जगह के पहाड़ों पर कॉफ़ी के बागान हैं?"
+          },
+          "options": [
+            {
+              "id": "coorg",
+              "en": "Coorg",
+              "hi": "कूर्ग"
+            },
+            {
+              "id": "lok",
+              "en": "Loktak Lake",
+              "hi": "लोकतक झील"
+            }
+          ],
+          "answer": "coorg"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all eight cards and press Check.",
+            "hi": "आठों कार्ड छाँटो और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "India has surprising places. Loktak is a freshwater lake with floating islands of grass and the only floating national park. Coorg is a cool hill land of plantations, forests and the source of the Kaveri.",
+            "hi": "भारत में अनोखी जगहें हैं। लोकतक ताज़े पानी की झील है जिसमें घास के तैरते द्वीप और दुनिया का अकेला तैरता राष्ट्रीय उद्यान है। कूर्ग बागानों, जंगलों और कावेरी के उद्गम वाली ठंडी पहाड़ी भूमि है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is a phumdi?",
+                "hi": "फुमदी क्या है?"
+              },
+              "options": [
+                {
+                  "en": "A mat of floating plants on a lake",
+                  "hi": "झील पर तैरती वनस्पति की परत"
+                },
+                {
+                  "en": "A kind of deer",
+                  "hi": "एक प्रकार का हिरण"
+                },
+                {
+                  "en": "A hill in Coorg",
+                  "hi": "कूर्ग की एक पहाड़ी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Phumdis are thick floating mats of plants on Loktak Lake.",
+                "hi": "फुमदी लोकतक झील पर तैरती वनस्पति की मोटी परतें हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The deer is the sangai.",
+                  "hi": "हिरण का नाम संगई है।"
+                },
+                {
+                  "en": "The hill in Coorg is Mandalpatti.",
+                  "hi": "कूर्ग की पहाड़ी का नाम मंडलपट्टी है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Choose a place near you that is surprising and write two lines about it.",
+            "hi": "अपने पास की किसी अनोखी जगह को चुनो और उसके बारे में दो पंक्तियाँ लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-x14-facts",
+      "topic": "2",
+      "template": "match",
+      "title": {
+        "en": "Match the facts",
+        "hi": "तथ्य मिलाओ"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "phumdi",
+            "left": {
+              "en": "Phumdi",
+              "hi": "फुमदी"
+            },
+            "right": {
+              "en": "Floating mats of grass on Loktak",
+              "hi": "लोकतक पर तैरती घास की परतें"
+            },
+            "why": {
+              "en": "Phumdi means a floating plant mat.",
+              "hi": "फुमदी तैरती वनस्पति की परत है।"
+            }
+          },
+          {
+            "id": "sangai",
+            "left": {
+              "en": "Sangai",
+              "hi": "संगई"
+            },
+            "right": {
+              "en": "State animal of Manipur",
+              "hi": "मणिपुर का राज्य पशु"
+            },
+            "why": {
+              "en": "The sangai is a rare deer.",
+              "hi": "संगई एक दुर्लभ हिरण है।"
+            }
+          },
+          {
+            "id": "kaveri",
+            "left": {
+              "en": "Kaveri",
+              "hi": "कावेरी"
+            },
+            "right": {
+              "en": "River that begins in Coorg",
+              "hi": "कूर्ग से निकलने वाली नदी"
+            },
+            "why": {
+              "en": "The Kaveri rises in Coorg.",
+              "hi": "कावेरी कूर्ग से निकलती है।"
+            }
+          },
+          {
+            "id": "mandal",
+            "left": {
+              "en": "Mandalpatti",
+              "hi": "मंडलपट्टी"
+            },
+            "right": {
+              "en": "Hill to see clouds from close",
+              "hi": "बादल पास से देखने वाली पहाड़ी"
+            },
+            "why": {
+              "en": "From its height one watches clouds drift by.",
+              "hi": "इसकी ऊँचाई से बादल पास बहते दिखते हैं।"
+            }
+          },
+          {
+            "id": "keibul",
+            "left": {
+              "en": "Keibul Lamjao",
+              "hi": "केईबुल लामजाओ"
+            },
+            "right": {
+              "en": "The floating national park",
+              "hi": "तैरता हुआ राष्ट्रीय उद्यान"
+            },
+            "why": {
+              "en": "It sits on the largest phumdi island.",
+              "hi": "यह फुमदी के सबसे बड़े द्वीप पर बना है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:phumdi",
+          "expect": "matched:phumdi",
+          "say": {
+            "en": "Tap फुमदी, then tap its meaning.",
+            "hi": "फुमदी पर टैप करो, फिर उसका अर्थ चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which river begins in Coorg?",
+            "hi": "कौन-सी नदी कूर्ग से निकलती है?"
+          },
+          "options": [
+            {
+              "id": "kaveri",
+              "en": "Kaveri",
+              "hi": "कावेरी"
+            },
+            {
+              "id": "ganga",
+              "en": "Ganga",
+              "hi": "गंगा"
+            }
+          ],
+          "answer": "kaveri"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest and press Check.",
+            "hi": "बाकी जोड़ियाँ बनाओ और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each name hides a fact: phumdi is a floating mat, sangai the state animal of Manipur, Kaveri a river that begins in Coorg. Facts and places go together.",
+            "hi": "हर नाम में एक तथ्य छिपा है: फुमदी तैरती परत है, संगई मणिपुर का राज्य पशु है और कावेरी कूर्ग से निकलने वाली नदी है। तथ्य और जगहें साथ-साथ चलते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is the state animal of Manipur?",
+                "hi": "मणिपुर का राज्य पशु कौन-सा है?"
+              },
+              "options": [
+                {
+                  "en": "संगई हिरण",
+                  "hi": "संगई हिरण"
+                },
+                {
+                  "en": "गैंडा",
+                  "hi": "गैंडा"
+                },
+                {
+                  "en": "हाथी",
+                  "hi": "हाथी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The sangai deer is Manipur's state animal.",
+                "hi": "संगई हिरण मणिपुर का राज्य पशु है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The rhino is known from Kaziranga in Assam.",
+                  "hi": "गैंडा असम के काजीरंगा के लिए जाना जाता है।"
+                },
+                {
+                  "en": "The elephant is not Manipur's state animal.",
+                  "hi": "हाथी मणिपुर का राज्य पशु नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look up one more place in India with a special feature and share one fact.",
+            "hi": "भारत की किसी और खास जगह के बारे में पता करो और एक तथ्य बताओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens: Loktak Lake with floating phumdis",
+      "shows": "Green floating mats on a calm lake with a fisher's hut and mountains behind",
+      "view": "Aerial or high-bank 16:9",
+      "right": "Phumdi mats visible as green patches, real Manipur",
+      "avoid": "Faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sort card: sangai deer",
+      "shows": "A brow-antlered sangai deer standing in marsh grass",
+      "view": "Side view",
+      "right": "Brow antlers distinctly curved"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Sort card: Coorg hills with plantations",
+      "shows": "Rolling green hills with rows of coffee and misty clouds",
+      "view": "Wide 16:9",
+      "right": "Distinct rows of crops, real hill terrain"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "2",
+      "use": "Match: clouds from a hilltop",
+      "shows": "Clouds drifting at eye level from a hill railing",
+      "view": "Wide",
+      "right": "Soft white clouds at eye level"
+    },
+    {
+      "n": 5,
+      "kind": "MAP",
+      "topic": "2",
+      "use": "Context: India map base for Manipur and Karnataka",
+      "shows": "A plain India relief map with two soft markers",
+      "view": "Top-down",
+      "right": "Correct outline of India as per Government of India",
+      "avoid": "Names"
+    }
+  ]
+}

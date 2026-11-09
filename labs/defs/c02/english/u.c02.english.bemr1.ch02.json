@@ -1,0 +1,859 @@
+{
+ "chapter_key": "u.c02.english.bemr1.ch02",
+ "class": 2,
+ "subject_id": "english",
+ "title": "Picture Reading",
+ "source": "https://ncert.nic.in/textbook/pdf/bemr102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Picture reading: look at the picture and talk about the children and their games",
+   "labs": [],
+   "why_no_lab": "Looking at the picture and speaking about it is the activity; it needs the book picture and a talking partner, not a game."
+  },
+  {
+   "n": "2.2",
+   "title": "Let us read: the story OUT! OUT! about Jeet, Babli and a home-made ball",
+   "labs": [
+    "c02-english-bemr1-ch02-story-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Let us speak: games with friends, and the words an egg, an engine, an elephant",
+   "labs": [],
+   "why_no_lab": "Speaking about the games children love needs a real talking partner; the short e sound has its own lab under 2.4."
+  },
+  {
+   "n": "2.4",
+   "title": "The vowel sound 'e' in pen, hen and bed",
+   "labs": [
+    "c02-english-bemr1-ch02-sound-e"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Let us write: opposites and joining sentences with 'and'",
+   "labs": [
+    "c02-english-bemr1-ch02-opposites",
+    "c02-english-bemr1-ch02-join-and"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Let us do: role play as Babli and Jeet; ask a grandparent about an old game",
+   "labs": [],
+   "why_no_lab": "Acting the story with a partner and talking to grandparents are real-life tasks that no screen can replace."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c02-english-bemr1-ch02-story-order",
+   "topic": "2.2",
+   "template": "sequence",
+   "title": {
+    "en": "Put the story OUT! OUT! in order",
+    "hi": "कहानी OUT! OUT! को क्रम में लगाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "ready",
+      "text": {
+       "en": "Jeet gets ready to throw the ball.",
+       "hi": "जीत गेंद फेंकने के लिए तैयार होता है।"
+      }
+     },
+     {
+      "id": "throw",
+      "text": {
+       "en": "Jeet throws the ball and Babli hits it.",
+       "hi": "जीत गेंद फेंकता है और बबली उसे मारती है।"
+      }
+     },
+     {
+      "id": "garden",
+      "text": {
+       "en": "The ball flies into a garden and is lost.",
+       "hi": "गेंद एक बगीचे में चली जाती है और खो जाती है।"
+      }
+     },
+     {
+      "id": "make",
+      "text": {
+       "en": "Babli makes a new ball from rags, paper, wool and string.",
+       "hi": "बबली चिथड़ों, कागज़, ऊन और डोरी से नई गेंद बनाती है।"
+      }
+     },
+     {
+      "id": "again",
+      "text": {
+       "en": "The game starts again with the new ball.",
+       "hi": "नई गेंद से खेल फिर शुरू होता है।"
+      }
+     },
+     {
+      "id": "out",
+      "text": {
+       "en": "The ball bursts open, Babli catches a rag and shouts OUT!",
+       "hi": "गेंद खुलकर बिखर जाती है, बबली एक चिथड़ा पकड़ती है और चिल्लाती है OUT!"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The ball goes into a garden and the children cannot find it. What do you think happens next?",
+      "hi": "गेंद बगीचे में चली जाती है और बच्चों को मिलती नहीं। तुम्हें क्या लगता है आगे क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "make",
+       "en": "Babli makes a new ball",
+       "hi": "बबली नई गेंद बनाती है"
+      },
+      {
+       "id": "sleep",
+       "en": "The children go to sleep",
+       "hi": "बच्चे सो जाते हैं"
+      },
+      {
+       "id": "snow",
+       "en": "It begins to snow",
+       "hi": "बर्फ़ गिरने लगती है"
+      }
+     ],
+     "answer": "make"
+    },
+    {
+     "kind": "do",
+     "target": "item:ready",
+     "expect": "placed:ready",
+     "say": {
+      "en": "Put the first thing that happens in place 1. Tap 'Jeet gets ready' and then tap place 1.",
+      "hi": "पहली घटना को स्थान 1 पर रखो। 'जीत तैयार होता है' दबाओ और फिर स्थान 1 दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the cards in order. Then press Check.",
+      "hi": "सभी कार्डों को क्रम में लगाओ। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A story has a beginning, a middle and an end. First Jeet and Babli play, then the ball is lost, then Babli makes a new ball, and at last comes the happy OUT! Words like first, then and at last show the order.",
+      "hi": "कहानी की शुरुआत, बीच और अंत होता है। पहले जीत और बबली खेलते हैं, फिर गेंद खो जाती है, फिर बबली नई गेंद बनाती है और अंत में खुशी वाला OUT! आता है। पहले, फिर, अंत में जैसे शब्द क्रम बताते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What happens just after the ball is lost?",
+        "hi": "गेंद खोने के ठीक बाद क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "Babli makes a new ball",
+         "hi": "बबली नई गेंद बनाती है"
+        },
+        {
+         "en": "Jeet throws the ball",
+         "hi": "जीत गेंद फेंकता है"
+        },
+        {
+         "en": "Babli shouts OUT!",
+         "hi": "बबली OUT! चिल्लाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The old ball is lost, so Babli makes a new one before the game can start again.",
+        "hi": "पुरानी गेंद खो गई, इसलिए खेल फिर शुरू होने से पहले बबली नई गेंद बनाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Jeet throws the ball before it is lost, not after.",
+         "hi": "जीत गेंद खोने से पहले फेंकता है, बाद में नहीं।"
+        },
+        {
+         "en": "The shout OUT! comes at the very end of the story.",
+         "hi": "OUT! की आवाज़ कहानी के बिल्कुल अंत में आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tell the story to a friend in your own words. Use the words first, then and at last.",
+      "hi": "यह कहानी किसी दोस्त को अपने शब्दों में सुनाओ। पहले, फिर और अंत में शब्द इस्तेमाल करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-english-bemr1-ch02-opposites",
+   "topic": "2.5",
+   "template": "match",
+   "title": {
+    "en": "Opposite words",
+    "hi": "उल्टे अर्थ वाले शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "up",
+      "left": {
+       "en": "up",
+       "hi": "ऊपर"
+      },
+      "right": {
+       "en": "down",
+       "hi": "नीचे"
+      },
+      "why": {
+       "en": "Up and down are opposites.",
+       "hi": "ऊपर और नीचे उल्टे अर्थ वाले शब्द हैं।"
+      }
+     },
+     {
+      "id": "in",
+      "left": {
+       "en": "in",
+       "hi": "अंदर"
+      },
+      "right": {
+       "en": "out",
+       "hi": "बाहर"
+      },
+      "why": {
+       "en": "In and out are opposites.",
+       "hi": "अंदर और बाहर उल्टे अर्थ वाले शब्द हैं।"
+      }
+     },
+     {
+      "id": "open",
+      "left": {
+       "en": "open",
+       "hi": "खुला"
+      },
+      "right": {
+       "en": "shut",
+       "hi": "बंद"
+      },
+      "why": {
+       "en": "A door can be open or shut.",
+       "hi": "दरवाज़ा खुला या बंद हो सकता है।"
+      }
+     },
+     {
+      "id": "fat",
+      "left": {
+       "en": "fat",
+       "hi": "मोटा"
+      },
+      "right": {
+       "en": "thin",
+       "hi": "पतला"
+      },
+      "why": {
+       "en": "Fat and thin are opposites.",
+       "hi": "मोटा और पतला उल्टे अर्थ वाले शब्द हैं।"
+      }
+     },
+     {
+      "id": "hot",
+      "left": {
+       "en": "hot",
+       "hi": "गरम"
+      },
+      "right": {
+       "en": "cold",
+       "hi": "ठंडा"
+      },
+      "why": {
+       "en": "Tea can be hot, ice cream is cold.",
+       "hi": "चाय गरम हो सकती है, आइसक्रीम ठंडी होती है।"
+      }
+     },
+     {
+      "id": "small",
+      "left": {
+       "en": "small",
+       "hi": "छोटा"
+      },
+      "right": {
+       "en": "big",
+       "hi": "बड़ा"
+      },
+      "why": {
+       "en": "A mouse is small, an elephant is big.",
+       "hi": "चूहा छोटा होता है, हाथी बड़ा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the opposite of 'hot'?",
+      "hi": "'hot' का उल्टा क्या है?"
+     },
+     "options": [
+      {
+       "id": "cold",
+       "en": "cold",
+       "hi": "ठंडा"
+      },
+      {
+       "id": "big",
+       "en": "big",
+       "hi": "बड़ा"
+      },
+      {
+       "id": "up",
+       "en": "up",
+       "hi": "ऊपर"
+      }
+     ],
+     "answer": "cold"
+    },
+    {
+     "kind": "do",
+     "target": "left:hot",
+     "expect": "matched:hot",
+     "say": {
+      "en": "Tap 'hot', then tap its opposite.",
+      "hi": "'hot' को दबाओ, फिर उसका उल्टा शब्द दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair. Then press Check.",
+      "hi": "सभी जोड़ियाँ मिलाओ। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Opposite words mean the reverse of each other. If one word says hot, its opposite says cold. Knowing opposites helps you say exactly what you mean.",
+      "hi": "उल्टे अर्थ वाले शब्द एक-दूसरे के उलट मतलब रखते हैं। एक शब्द गरम कहे तो उसका उल्टा ठंडा कहता है। उल्टे शब्द जानने से हम अपनी बात ठीक से कह पाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the opposite of 'small'?",
+        "hi": "'small' का उल्टा क्या है?"
+       },
+       "options": [
+        {
+         "en": "big",
+         "hi": "big (बड़ा)"
+        },
+        {
+         "en": "thin",
+         "hi": "thin (पतला)"
+        },
+        {
+         "en": "shut",
+         "hi": "shut (बंद)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Small and big are opposites: a mouse is small and an elephant is big.",
+        "hi": "Small और big उल्टे शब्द हैं: चूहा छोटा और हाथी बड़ा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Thin is the opposite of fat, not of small.",
+         "hi": "Thin, fat का उल्टा है, small का नहीं।"
+        },
+        {
+         "en": "Shut is the opposite of open. It says nothing about size.",
+         "hi": "Shut, open का उल्टा है। उससे आकार का पता नहीं चलता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word is the opposite of 'in'?",
+        "hi": "'in' का उल्टा शब्द कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "up",
+         "hi": "up (ऊपर)"
+        },
+        {
+         "en": "out",
+         "hi": "out (बाहर)"
+        },
+        {
+         "en": "hot",
+         "hi": "hot (गरम)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "In means inside and out means outside, so they are opposites.",
+        "hi": "In का अर्थ अंदर और out का अर्थ बाहर है, इसलिए वे उल्टे हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Up is the opposite of down. It is about height, not inside or outside.",
+         "hi": "Up, down का उल्टा है। वह ऊँचाई की बात है, अंदर-बाहर की नहीं।"
+        },
+        "",
+        {
+         "en": "Hot is about temperature, so it is not the opposite of in.",
+         "hi": "Hot तापमान की बात है, इसलिए वह in का उल्टा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say a word, and let a friend say its opposite. Try 'day', 'happy' and 'long'.",
+      "hi": "तुम कोई शब्द बोलो और दोस्त उसका उल्टा बोले। 'day', 'happy' और 'long' आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-english-bemr1-ch02-join-and",
+   "topic": "2.5",
+   "template": "grammar",
+   "title": {
+    "en": "Join sentences with 'and'",
+    "hi": "'and' से वाक्य जोड़ो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "en",
+    "items": [
+     {
+      "id": "j1",
+      "words": [
+       "Ravi",
+       "and",
+       "Sita",
+       "play",
+       "cricket",
+       "."
+      ],
+      "answer": "Ravi and Sita play cricket.",
+      "rule": {
+       "en": "The word 'and' joins two names so we do not say the same thing twice.",
+       "hi": "'and' शब्द दो नामों को जोड़ता है, ताकि एक ही बात दो बार न कहनी पड़े।"
+      },
+      "task": {
+       "en": "Ravi plays cricket. Sita plays cricket. Join them.",
+       "hi": "रवि क्रिकेट खेलता है। सीता क्रिकेट खेलती है। इन्हें जोड़ो।"
+      }
+     },
+     {
+      "id": "j2",
+      "words": [
+       "I",
+       "like",
+       "mangoes",
+       "and",
+       "grapes",
+       "."
+      ],
+      "answer": "I like mangoes and grapes.",
+      "rule": {
+       "en": "The word 'and' joins two things in one sentence.",
+       "hi": "'and' शब्द एक ही वाक्य में दो चीज़ों को जोड़ता है।"
+      },
+      "task": {
+       "en": "I like mangoes. I like grapes. Join them.",
+       "hi": "मुझे आम पसंद हैं। मुझे अंगूर पसंद हैं। इन्हें जोड़ो।"
+      }
+     },
+     {
+      "id": "j3",
+      "words": [
+       "The",
+       "cat",
+       "and",
+       "the",
+       "dog",
+       "sat",
+       "on",
+       "the",
+       "mat",
+       "."
+      ],
+      "answer": "The cat and the dog sat on the mat.",
+      "rule": {
+       "en": "'And' joins the cat and the dog, who did the same thing.",
+       "hi": "'and' बिल्ली और कुत्ते को जोड़ता है, क्योंकि दोनों ने एक ही काम किया।"
+      },
+      "task": {
+       "en": "The cat sat on the mat. The dog sat on the mat. Join them.",
+       "hi": "बिल्ली चटाई पर बैठी। कुत्ता चटाई पर बैठा। इन्हें जोड़ो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ravi plays cricket and Sita plays cricket. Which word joins them in a short sentence?",
+      "hi": "रवि क्रिकेट खेलता है और सीता क्रिकेट खेलती है। इन्हें छोटे वाक्य में कौन-सा शब्द जोड़ता है?"
+     },
+     "options": [
+      {
+       "id": "and",
+       "en": "and",
+       "hi": "and (और)"
+      },
+      {
+       "id": "on",
+       "en": "on",
+       "hi": "on (पर)"
+      },
+      {
+       "id": "is",
+       "en": "is",
+       "hi": "is (है)"
+      }
+     ],
+     "answer": "and"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "built:j1",
+     "say": {
+      "en": "Tap the words to make one sentence with 'and'. Then press Check.",
+      "hi": "'and' वाला एक वाक्य बनाने के लिए शब्द दबाओ। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Join the other two pairs of sentences.",
+      "hi": "बाकी दो जोड़ी वाक्य भी जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The word 'and' joins words or sentences that go together. When two people or things do the same action, we can say it once with 'and'. Ravi and Sita play cricket is shorter than saying it two times.",
+      "hi": "'and' शब्द साथ चलने वाले शब्दों या वाक्यों को जोड़ता है। जब दो लोग या चीज़ें एक ही काम करें तो हम 'and' से उसे एक बार में कह सकते हैं। 'Ravi and Sita play cricket' दो बार कहने से छोटा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence joins the two ideas?",
+        "hi": "कौन-सा वाक्य दोनों बातों को जोड़ता है?"
+       },
+       "options": [
+        {
+         "en": "I like mangoes and grapes.",
+         "hi": "I like mangoes and grapes. (मुझे आम और अंगूर पसंद हैं।)"
+        },
+        {
+         "en": "I like mangoes grapes.",
+         "hi": "I like mangoes grapes. (बिना and वाला वाक्य)"
+        },
+        {
+         "en": "I like and.",
+         "hi": "I like and. (अधूरा वाक्य)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "'And' sits between mangoes and grapes and joins them.",
+        "hi": "'and', mangoes और grapes के बीच आकर उन्हें जोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Without 'and' the two words are stuck together and the sentence sounds wrong.",
+         "hi": "'and' के बिना दोनों शब्द चिपक जाते हैं और वाक्य ग़लत लगता है।"
+        },
+        {
+         "en": "'And' must join two things. Here it joins nothing.",
+         "hi": "'and' को दो चीज़ें जोड़नी होती हैं। यहाँ वह कुछ नहीं जोड़ रहा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Join two of your own sentences with 'and'. Try it with your two favourite foods.",
+      "hi": "अपने दो वाक्यों को 'and' से जोड़ो। अपने दो पसंदीदा खानों से करके देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-english-bemr1-ch02-sound-e",
+   "topic": "2.4",
+   "template": "words",
+   "title": {
+    "en": "The short 'e' sound",
+    "hi": "छोटी 'e' ध्वनि"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "phonics",
+    "lang": "en",
+    "extra": "x",
+    "words": [
+     {
+      "w": "pen",
+      "pic": "pen",
+      "meaning": {
+       "en": "You write with it.",
+       "hi": "इससे तुम लिखते हो।"
+      }
+     },
+     {
+      "w": "hen",
+      "meaning": {
+       "en": "A bird that lays eggs.",
+       "hi": "एक पक्षी जो अंडे देता है।"
+      }
+     },
+     {
+      "w": "bed",
+      "meaning": {
+       "en": "You sleep on it.",
+       "hi": "इस पर तुम सोते हो।"
+      }
+     },
+     {
+      "w": "egg",
+      "meaning": {
+       "en": "A hen lays it.",
+       "hi": "इसे मुर्गी देती है।"
+      }
+     },
+     {
+      "w": "well",
+      "meaning": {
+       "en": "A deep hole with water in it.",
+       "hi": "पानी वाला गहरा गड्ढा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "listen",
+     "expect": "listen",
+     "say": {
+      "en": "Press Listen and hear the word.",
+      "hi": "सुनो दबाओ और शब्द सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which sound do all these words have in the middle: pen, hen, bed?",
+      "hi": "इन सभी शब्दों के बीच में कौन-सी ध्वनि है: pen, hen, bed?"
+     },
+     "options": [
+      {
+       "id": "e",
+       "en": "The short 'e' sound",
+       "hi": "छोटी 'e' ध्वनि"
+      },
+      {
+       "id": "o",
+       "en": "The 'o' sound",
+       "hi": "'o' की ध्वनि"
+      },
+      {
+       "id": "u",
+       "en": "The 'u' sound",
+       "hi": "'u' की ध्वनि"
+      }
+     ],
+     "answer": "e"
+    },
+    {
+     "kind": "do",
+     "target": "pick:p",
+     "expect": "pick:p",
+     "say": {
+      "en": "Tap the sound tiles in the right order to build the word. Start with p.",
+      "hi": "सही क्रम में ध्वनि वाले टाइल दबाकर शब्द बनाओ। p से शुरू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tiles",
+     "expect": "word:pen",
+     "say": {
+      "en": "Finish the word pen.",
+      "hi": "शब्द pen पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Pen, hen, bed, egg and well all have the short 'e' sound in them. Say them slowly, one sound at a time: p-e-n. When you blend the sounds, you get the word.",
+      "hi": "Pen, hen, bed, egg और well सब में छोटी 'e' ध्वनि है। उन्हें धीरे-धीरे, एक-एक ध्वनि बोलो: p-e-n। ध्वनियाँ मिलाने से शब्द बन जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word has the short 'e' sound?",
+        "hi": "किस शब्द में छोटी 'e' ध्वनि है?"
+       },
+       "options": [
+        {
+         "en": "hen",
+         "hi": "hen (मुर्गी)"
+        },
+        {
+         "en": "cat",
+         "hi": "cat (बिल्ली)"
+        },
+        {
+         "en": "sun",
+         "hi": "sun (सूरज)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Hen is h-e-n and has the short 'e' in the middle.",
+        "hi": "Hen यानी h-e-n में बीच में छोटी 'e' ध्वनि है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cat has the short 'a' sound in the middle.",
+         "hi": "Cat में बीच में छोटी 'a' ध्वनि है।"
+        },
+        {
+         "en": "Sun has the short 'u' sound in the middle.",
+         "hi": "Sun में बीच में छोटी 'u' ध्वनि है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Build the other words too. Then find something at home that has the short 'e' sound in its name.",
+      "hi": "बाकी शब्द भी बनाओ। फिर घर में ऐसी चीज़ ढूँढो जिसके नाम में छोटी 'e' ध्वनि हो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "The big picture for picture reading",
+   "shows": "A busy open courtyard where children play skipping, hide and seek, and bat and ball",
+   "view": "16:9, slightly raised eye level, bright afternoon light, children seen from behind or far away",
+   "right": "At least five different games happening at once, boys and girls together, simple Indian houses behind",
+   "avoid": "Close faces, any writing or logos"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "2.2",
+   "use": "Frames for ordering the story",
+   "shows": "Six frames of the ball story: throwing, hitting, ball in a garden, making a rag ball, new game, the ball bursting",
+   "view": "Same camera and light in each frame, children shown from the back",
+   "right": "The ball is round and made of cloth, wool and string; a bat is a flat wooden bat",
+   "avoid": "Faces of identifiable children"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Picture for the rag ball",
+   "shows": "A home-made ball of rags, paper and wool tied with string",
+   "view": "Three-quarter view, transparent background",
+   "right": "Visible rags and wool, string wound round it",
+   "avoid": "Brand ball logos"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.4",
+   "use": "Word card pictures for the short e lab",
+   "shows": "Five cut-outs: pen, hen, bed, egg, well",
+   "view": "One file each, transparent background",
+   "right": "A blue pen, a brown hen, a simple wooden bed, a white egg, a stone village well",
+   "avoid": "Words on the objects"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "2.5",
+   "use": "Opposite pairs strip",
+   "shows": "Six clear photographs placed in pairs: up and down, in and out, open and shut, fat and thin, hot and cold, small and big",
+   "view": "Each pair shows the same kind of object, side by side, white background",
+   "right": "An open and a shut door, a steaming tea cup and an ice cream, a mouse and an elephant",
+   "avoid": "Text of any kind"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "2.5",
+   "use": "Cards for the join with and lab",
+   "shows": "A cricket bat and ball, mangoes, grapes, a cat and a dog sitting on a woven mat",
+   "view": "Separate cut-outs and one group photo of the cat and dog on the mat",
+   "right": "Real mangoes and black and green grapes, a cat and a dog sitting calmly",
+   "avoid": "Cartoon style"
+  }
+ ]
+}

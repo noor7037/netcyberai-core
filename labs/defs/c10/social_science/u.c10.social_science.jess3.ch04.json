@@ -1,0 +1,1236 @@
+{
+ "chapter_key": "u.c10.social_science.jess3.ch04",
+ "class": 10,
+ "subject_id": "social_science",
+ "title": "The Age of Industrialisation",
+ "source": "https://ncert.nic.in/textbook/pdf/jess304.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Before the Industrial Revolution: proto-industrialisation and the words of the trade",
+   "labs": [
+    "c10-social_science-jess3-ch04-proto-industry",
+    "c10-social_science-jess3-ch04-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.1",
+   "title": "The coming up of the factory",
+   "labs": [
+    "c10-social_science-jess3-ch04-cottage-or-factory",
+    "c10-social_science-jess3-ch04-cotton-imports"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "The pace of industrial change; hand labour and steam power",
+   "labs": [
+    "c10-social_science-jess3-ch04-timeline"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "Industrialisation in the colonies: the age of Indian textiles and Manchester comes to India",
+   "labs": [],
+   "why_no_lab": "The decline of Indian weaving is best read in the chapter's sources and the reader; the timeline lab shows when Indian mills began."
+  },
+  {
+   "n": "4",
+   "title": "Factories come up in India",
+   "labs": [
+    "c10-social_science-jess3-ch04-timeline"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5",
+   "title": "The peculiarities of industrial growth: managing agencies and small-scale industry",
+   "labs": [],
+   "why_no_lab": "Managing agencies and small workshops are met best in short cases in the reader."
+  },
+  {
+   "n": "6",
+   "title": "The market for goods: advertisements, labels and calendars",
+   "labs": [],
+   "why_no_lab": "Labels, calendars and advertisements are images; the image gallery and the reader teach this better than a lab."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-social_science-jess3-ch04-proto-industry",
+   "topic": "1",
+   "template": "sequence",
+   "title": {
+    "en": "Cloth before the factory",
+    "hi": "कारख़ाने से पहले का कपड़ा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "give",
+      "text": {
+       "en": "A town merchant gives raw wool to peasant families in the countryside",
+       "hi": "शहर का व्यापारी देहात के किसान परिवारों को कच्चा ऊन देता है"
+      }
+     },
+     {
+      "id": "spin",
+      "text": {
+       "en": "The families clean, comb and spin the wool at home",
+       "hi": "परिवार घर पर ऊन साफ़ करते, धुनते और कातते हैं"
+      }
+     },
+     {
+      "id": "weave",
+      "text": {
+       "en": "The yarn goes to weavers, who weave it into cloth",
+       "hi": "सूत बुनकरों के पास जाता है, जो उससे कपड़ा बुनते हैं"
+      }
+     },
+     {
+      "id": "collect",
+      "text": {
+       "en": "The merchant collects the cloth from the villages",
+       "hi": "व्यापारी गाँवों से कपड़ा इकट्ठा करता है"
+      }
+     },
+     {
+      "id": "finish",
+      "text": {
+       "en": "The cloth is finished in London and sold in markets",
+       "hi": "कपड़े की फिनिशिंग लंदन में होती है और वह बाज़ार में बिकता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:give",
+     "expect": "placed:give",
+     "say": {
+      "en": "Put this card in its place: \"A town merchant gives raw wool to peasant families in the countryside\".",
+      "hi": "यह कार्ड उसकी जगह पर रखो: \"शहर का व्यापारी देहात के किसान परिवारों को कच्चा ऊन देता है\"।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In this system, where did most of the spinning and weaving take place?",
+      "hi": "इस व्यवस्था में कताई और बुनाई ज़्यादातर कहाँ होती थी?"
+     },
+     "options": [
+      {
+       "id": "home",
+       "en": "In peasant homes and cottages",
+       "hi": "किसानों के घरों और झोपड़ियों में"
+      },
+      {
+       "id": "factory",
+       "en": "In big factories",
+       "hi": "बड़े कारख़ानों में"
+      }
+     ],
+     "answer": "home"
+    },
+    {
+     "kind": "do",
+     "target": "item:weave",
+     "expect": "placed:weave",
+     "say": {
+      "en": "Put this card in its place: \"The yarn goes to weavers, who weave it into cloth\".",
+      "hi": "यह कार्ड उसकी जगह पर रखो: \"सूत बुनकरों के पास जाता है, जो उससे कपड़ा बुनते हैं\"।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Finish the order, then press Check.",
+      "hi": "क्रम पूरा करो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Before factories, merchants took work to the countryside, where peasant families spun and wove at home. This is called proto-industrialisation. It suited merchants because villagers were cheaper than town guild workers. It suited peasants because it gave extra income from small plots of land.",
+      "hi": "कारख़ानों से पहले व्यापारी काम देहात ले जाते थे, जहाँ किसान परिवार घर पर कातते-बुनते थे। इसे आदि-औद्योगीकरण कहते हैं। यह व्यापारियों को सूट करता था क्योंकि गाँववाले शहर के गिल्ड मज़दूरों से सस्ते थे। यह किसानों को सूट करता था क्योंकि छोटे खेतों के साथ अतिरिक्त आमदनी मिलती थी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did merchants take work to the countryside?",
+        "hi": "व्यापारी काम देहात क्यों ले गए?"
+       },
+       "options": [
+        {
+         "en": "Town guilds were strong and country workers were cheaper",
+         "hi": "शहर की गिल्डें ताक़तवर थीं और देहाती मज़दूर सस्ते थे"
+        },
+        {
+         "en": "Villages had steam engines",
+         "hi": "गाँवों में भाप के इंजन थे"
+        },
+        {
+         "en": "Peasants asked them to",
+         "hi": "किसानों ने उनसे कहा था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Guilds in towns controlled prices and entry, so merchants turned to villagers.",
+        "hi": "शहर की गिल्डें दाम और प्रवेश पर नियंत्रण रखती थीं, इसलिए व्यापारी गाँववालों की ओर मुड़े।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Steam engines came later, with factories.",
+         "hi": "भाप के इंजन बाद में, कारख़ानों के साथ आए।"
+        },
+        {
+         "en": "Merchants made the choice for their own profit.",
+         "hi": "यह चुनाव व्यापारियों ने अपने लाभ के लिए किया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did peasant families welcome the extra work?",
+        "hi": "किसान परिवार अतिरिक्त काम का स्वागत क्यों करते थे?"
+       },
+       "options": [
+        {
+         "en": "It gave them extra income alongside farming",
+         "hi": "इससे खेती के साथ अतिरिक्त आमदनी मिलती थी"
+        },
+        {
+         "en": "It replaced farming completely",
+         "hi": "इसने खेती की जगह पूरी तरह ले ली"
+        },
+        {
+         "en": "It paid them in gold",
+         "hi": "इसमें उन्हें सोना मिलता था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Small plots could not support a family, so work at home added to their earnings.",
+        "hi": "छोटे खेत परिवार का पेट नहीं भर पाते थे, इसलिए घर के काम से आमदनी बढ़ती थी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They still farmed; the cloth work was an addition.",
+         "hi": "वे खेती करते रहे; कपड़े का काम अतिरिक्त था।"
+        },
+        {
+         "en": "The text speaks of money earnings, not gold.",
+         "hi": "यहाँ नक़द कमाई की बात है, सोने की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "In your own words, who gained and who might have lost in this system?",
+      "hi": "अपने शब्दों में बताओ कि इस व्यवस्था में किसका लाभ हुआ और किसका नुक़सान हो सकता था।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess3-ch04-cottage-or-factory",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "Cottage work or factory?",
+    "hi": "घर का काम या कारख़ाना?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cottage",
+      "label": {
+       "en": "Work in cottages (proto-industry)",
+       "hi": "घर का काम (आदि-उद्योग)"
+      }
+     },
+     {
+      "id": "factory",
+      "label": {
+       "en": "Work in factories",
+       "hi": "कारख़ाने का काम"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "home",
+      "text": {
+       "en": "Families work in their own homes",
+       "hi": "परिवार अपने घरों में काम करते हैं"
+      },
+      "bin": "cottage",
+      "why": {
+       "en": "Production was spread across many homes in the countryside.",
+       "hi": "उत्पादन देहात के कई घरों में बँटा था।"
+      }
+     },
+     {
+      "id": "merch",
+      "text": {
+       "en": "A merchant supplies raw material",
+       "hi": "व्यापारी कच्चा माल देता है"
+      },
+      "bin": "cottage",
+      "why": {
+       "en": "Merchants gave out material and collected the finished goods.",
+       "hi": "व्यापारी माल देते और तैयार चीज़ें इकट्ठा करते थे।"
+      }
+     },
+     {
+      "id": "season",
+      "text": {
+       "en": "Work follows the farm seasons",
+       "hi": "काम खेती के मौसम के हिसाब से चलता है"
+      },
+      "bin": "cottage",
+      "why": {
+       "en": "Peasants wove when the fields did not need them.",
+       "hi": "जब खेतों को ज़रूरत नहीं होती थी तब किसान बुनते थे।"
+      }
+     },
+     {
+      "id": "hand",
+      "text": {
+       "en": "Tools are worked by hand",
+       "hi": "औज़ार हाथ से चलते हैं"
+      },
+      "bin": "cottage",
+      "why": {
+       "en": "Spinning and weaving were mostly by hand.",
+       "hi": "कताई और बुनाई अधिकतर हाथ से होती थी।"
+      }
+     },
+     {
+      "id": "roof",
+      "text": {
+       "en": "Workers gather under one roof",
+       "hi": "मज़दूर एक छत के नीचे जुटते हैं"
+      },
+      "bin": "factory",
+      "why": {
+       "en": "The factory brought machines and workers together in one place.",
+       "hi": "कारख़ाने ने मशीनें और मज़दूर एक जगह जोड़ दिए।"
+      }
+     },
+     {
+      "id": "mach",
+      "text": {
+       "en": "Machines do the spinning",
+       "hi": "मशीनें कताई करती हैं"
+      },
+      "bin": "factory",
+      "why": {
+       "en": "Machines like the spinning jenny speeded up spinning.",
+       "hi": "स्पिनिंग जेनी जैसी मशीनों ने कताई तेज़ की।"
+      }
+     },
+     {
+      "id": "bell",
+      "text": {
+       "en": "A manager watches the work and fixes the hours",
+       "hi": "प्रबंधक काम देखता है और समय तय करता है"
+      },
+      "bin": "factory",
+      "why": {
+       "en": "Factory owners could supervise quality and control time.",
+       "hi": "कारख़ाने के मालिक गुणवत्ता देख और समय तय कर सकते थे।"
+      }
+     },
+     {
+      "id": "steam",
+      "text": {
+       "en": "Steam power runs the machines",
+       "hi": "भाप की शक्ति मशीनें चलाती है"
+      },
+      "bin": "factory",
+      "why": {
+       "en": "The steam engine gave factories a steady power source.",
+       "hi": "भाप के इंजन ने कारख़ानों को स्थिर शक्ति दी।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:home",
+     "expect": "placed:home",
+     "say": {
+      "en": "Tap the card \"Families work in their own homes\", then tap the group where it belongs.",
+      "hi": "कार्ड \"परिवार अपने घरों में काम करते हैं\" पर टैप करो, फिर उस समूह पर टैप करो जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A manager walks around checking the quality of the cloth. Is this a cottage or a factory?",
+      "hi": "एक प्रबंधक घूमकर कपड़े की गुणवत्ता जाँच रहा है। यह घर है या कारख़ाना?"
+     },
+     "options": [
+      {
+       "id": "cottage",
+       "en": "Cottage",
+       "hi": "घर"
+      },
+      {
+       "id": "factory",
+       "en": "Factory",
+       "hi": "कारख़ाना"
+      }
+     ],
+     "answer": "factory"
+    },
+    {
+     "kind": "do",
+     "target": "card:roof",
+     "expect": "placed:roof",
+     "say": {
+      "en": "Tap the card \"Workers gather under one roof\", then tap the group where it belongs.",
+      "hi": "कार्ड \"मज़दूर एक छत के नीचे जुटते हैं\" पर टैप करो, फिर उस समूह पर टैप करो जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest of the cards, then press Check.",
+      "hi": "बाक़ी कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Factories changed where and how work was done. Under one roof, owners could watch quality, fix the hours and use machines. The first factories in England came up in the late 1730s. Cotton was the first symbol of the new age, and Richard Arkwright built a famous cotton mill. Even so, hand labour continued in many trades for a long time.",
+      "hi": "कारख़ानों ने काम की जगह और तरीक़ा बदल दिया। एक छत के नीचे मालिक गुणवत्ता देख, समय तय कर और मशीनें चला सकते थे। इंग्लैंड में पहले कारख़ाने 1730 के दशक के अंत में बने। कपास नए युग का पहला प्रतीक थी और रिचर्ड आर्कराइट ने एक प्रसिद्ध सूती मिल बनाई। फिर भी कई धंधों में हाथ का काम लंबे समय तक चलता रहा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does a factory bring together under one roof?",
+        "hi": "कारख़ाना एक छत के नीचे क्या जोड़ता है?"
+       },
+       "options": [
+        {
+         "en": "Machines and workers",
+         "hi": "मशीनें और मज़दूर"
+        },
+        {
+         "en": "Farms and fields",
+         "hi": "खेत और खलिहान"
+        },
+        {
+         "en": "Only merchants",
+         "hi": "केवल व्यापारी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A factory brings machines and workers into one place where the owner can control the work.",
+        "hi": "कारख़ाना मशीनें और मज़दूर एक जगह लाता है जहाँ मालिक काम को नियंत्रित कर सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fields belong to farming, not factories.",
+         "hi": "खेत खेती के हैं, कारख़ानों के नहीं।"
+        },
+        {
+         "en": "A factory needs workers, not just merchants.",
+         "hi": "कारख़ाने को मज़दूर चाहिए, केवल व्यापारी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which was the first symbol of the new factory age?",
+        "hi": "नए कारख़ाना युग का पहला प्रतीक क्या था?"
+       },
+       "options": [
+        {
+         "en": "Cotton",
+         "hi": "कपास"
+        },
+        {
+         "en": "Computers",
+         "hi": "कंप्यूटर"
+        },
+        {
+         "en": "Jute only",
+         "hi": "केवल जूट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cotton production boomed with new machines and became the first symbol of the new era.",
+        "hi": "नई मशीनों से कपास का उत्पादन बढ़ा और वह नए युग का पहला प्रतीक बनी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Computers came centuries later.",
+         "hi": "कंप्यूटर सदियों बाद आए।"
+        },
+        {
+         "en": "Jute mills came up in India in the 1850s, after cotton.",
+         "hi": "भारत में जूट मिलें 1850 के दशक में आईं, कपास के बाद।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one job in your town that is done by hand and one done by machine. Which is faster, and which is more careful?",
+      "hi": "अपने नगर का एक हाथ का काम और एक मशीन का काम बताओ। कौन तेज़ है और कौन ज़्यादा सावधानी वाला?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess3-ch04-words",
+   "topic": "1",
+   "template": "match",
+   "title": {
+    "en": "Words of the cloth trade",
+    "hi": "कपड़ा व्यापार के शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "stapler",
+      "left": {
+       "en": "Stapler",
+       "hi": "स्टेपलर"
+      },
+      "right": {
+       "en": "Sorts wool according to its fibre",
+       "hi": "ऊन को रेशे के हिसाब से छाँटता है"
+      },
+      "why": {
+       "en": "The first step in preparing wool.",
+       "hi": "ऊन तैयार करने का पहला चरण।"
+      }
+     },
+     {
+      "id": "fuller",
+      "left": {
+       "en": "Fuller",
+       "hi": "फुलर"
+      },
+      "right": {
+       "en": "Gathers cloth by pleating it",
+       "hi": "कपड़े की सिलवटें डालकर उसे समेटता है"
+      },
+      "why": {
+       "en": "This tightens the cloth after weaving.",
+       "hi": "इससे बुनाई के बाद कपड़ा कसता है।"
+      }
+     },
+     {
+      "id": "carding",
+      "left": {
+       "en": "Carding",
+       "hi": "धुनाई"
+      },
+      "right": {
+       "en": "Preparing fibres for spinning",
+       "hi": "कताई से पहले रेशे तैयार करना"
+      },
+      "why": {
+       "en": "Cotton or wool fibres are combed straight.",
+       "hi": "कपास या ऊन के रेशे सीधे किए जाते हैं।"
+      }
+     },
+     {
+      "id": "jenny",
+      "left": {
+       "en": "Spinning jenny",
+       "hi": "स्पिनिंग जेनी"
+      },
+      "right": {
+       "en": "A machine that spins many threads with one wheel",
+       "hi": "मशीन जो एक पहिये से कई धागे कातती है"
+      },
+      "why": {
+       "en": "It reduced the need for labour.",
+       "hi": "इससे मज़दूरों की ज़रूरत घटी।"
+      }
+     },
+     {
+      "id": "jobber",
+      "left": {
+       "en": "Jobber",
+       "hi": "जॉबर"
+      },
+      "right": {
+       "en": "A person who recruits workers for a mill",
+       "hi": "मिल के लिए मज़दूर भरती करने वाला व्यक्ति"
+      },
+      "why": {
+       "en": "Jobbers often took money from workers in return for jobs.",
+       "hi": "जॉबर अक्सर नौकरी दिलाने के बदले मज़दूरों से पैसे लेते थे।"
+      }
+     },
+     {
+      "id": "gomastha",
+      "left": {
+       "en": "Gomastha",
+       "hi": "गोमस्ता"
+      },
+      "right": {
+       "en": "A Company servant who supervised weavers",
+       "hi": "कंपनी का नौकर जो बुनकरों की निगरानी करता था"
+      },
+      "why": {
+       "en": "He collected supplies and checked cloth quality.",
+       "hi": "वह आपूर्ति इकट्ठा करता और कपड़े की गुणवत्ता जाँचता था।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:stapler",
+     "expect": "matched:stapler",
+     "say": {
+      "en": "Tap \"Stapler\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"स्टेपलर\" पर टैप करो, फिर दाईं ओर उसकी जोड़ी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which person recruited workers for the mill?",
+      "hi": "मिल के लिए मज़दूर कौन भरती करता था?"
+     },
+     "options": [
+      {
+       "id": "jobber",
+       "en": "Jobber",
+       "hi": "जॉबर"
+      },
+      {
+       "id": "stapler",
+       "en": "Stapler",
+       "hi": "स्टेपलर"
+      },
+      {
+       "id": "gomastha",
+       "en": "Gomastha",
+       "hi": "गोमस्ता"
+      }
+     ],
+     "answer": "jobber"
+    },
+    {
+     "kind": "do",
+     "target": "left:jobber",
+     "expect": "matched:jobber",
+     "say": {
+      "en": "Tap \"Jobber\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"जॉबर\" पर टैप करो, फिर दाईं ओर उसकी जोड़ी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the pairs, then press Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every trade has its own words. A stapler and a fuller prepared wool and cloth. The spinning jenny was a machine. In India, a gomastha supervised weavers for the East India Company, and a jobber found workers for the mills. These words show how work was organised and who had power.",
+      "hi": "हर धंधे के अपने शब्द होते हैं। स्टेपलर और फुलर ऊन और कपड़ा तैयार करते थे। स्पिनिंग जेनी एक मशीन थी। भारत में गोमस्ता ईस्ट इंडिया कंपनी के लिए बुनकरों की निगरानी करता था और जॉबर मिलों के लिए मज़दूर ढूँढता था। ये शब्द बताते हैं कि काम कैसे संगठित था और ताक़त किसके पास थी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who was a gomastha?",
+        "hi": "गोमस्ता कौन था?"
+       },
+       "options": [
+        {
+         "en": "A paid servant of the Company who supervised weavers",
+         "hi": "कंपनी का वेतनभोगी नौकर जो बुनकरों की निगरानी करता था"
+        },
+        {
+         "en": "A machine for spinning",
+         "hi": "कताई की मशीन"
+        },
+        {
+         "en": "A cloth merchant in London",
+         "hi": "लंदन का कपड़ा व्यापारी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gomasthas collected supplies and examined the quality of cloth for the Company.",
+        "hi": "गोमस्ते कंपनी के लिए आपूर्ति इकट्ठा करते और कपड़े की गुणवत्ता जाँचते थे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The spinning jenny is the machine.",
+         "hi": "मशीन स्पिनिंग जेनी है।"
+        },
+        {
+         "en": "The gomastha worked in India, not as a London merchant.",
+         "hi": "गोमस्ता भारत में काम करता था, लंदन का व्यापारी नहीं था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What did the spinning jenny do?",
+        "hi": "स्पिनिंग जेनी ने क्या किया?"
+       },
+       "options": [
+        {
+         "en": "Sped up spinning and cut the need for workers",
+         "hi": "कताई तेज़ की और मज़दूरों की ज़रूरत घटाई"
+        },
+        {
+         "en": "Made cloth by hand",
+         "hi": "कपड़ा हाथ से बनाया"
+        },
+        {
+         "en": "Brought cotton from India",
+         "hi": "भारत से कपास लाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One wheel could turn several spindles, so fewer workers were needed.",
+        "hi": "एक पहिया कई तकलियाँ घुमा सकता था, इसलिए कम मज़दूर चाहिए थे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It was a machine, not a hand tool.",
+         "hi": "यह मशीन थी, हाथ का औज़ार नहीं।"
+        },
+        {
+         "en": "It spun thread; it did not bring cotton.",
+         "hi": "यह धागा कातती थी; कपास नहीं लाती थी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a word and act it out in a short two-line role play with a friend.",
+      "hi": "एक शब्द चुनो और दोस्त के साथ दो पंक्तियों का छोटा अभिनय करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess3-ch04-timeline",
+   "topic": "1.2",
+   "template": "timeline",
+   "title": {
+    "en": "Machines and mills, 1764 to 1917",
+    "hi": "मशीनें और मिलें, 1764 से 1917"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "range": [
+     1750,
+     1920
+    ],
+    "task": "order",
+    "events": [
+     {
+      "id": "jenny",
+      "year": 1764,
+      "label": {
+       "en": "The spinning jenny is devised",
+       "hi": "स्पिनिंग जेनी बनाई गई"
+      },
+      "detail": {
+       "en": "James Hargreaves's machine speeded up spinning.",
+       "hi": "जेम्स हरग्रीव्ज़ की मशीन ने कताई तेज़ की।"
+      }
+     },
+     {
+      "id": "watt",
+      "year": 1781,
+      "label": {
+       "en": "Watt patents his improved steam engine",
+       "hi": "वॉट ने अपने बेहतर भाप इंजन का पेटेंट कराया"
+      },
+      "detail": {
+       "en": "Steam power was now ready for use, though buyers were slow at first.",
+       "hi": "भाप की शक्ति तैयार थी, हालाँकि शुरू में ख़रीदार कम थे।"
+      }
+     },
+     {
+      "id": "bombay",
+      "year": 1854,
+      "label": {
+       "en": "The first cotton mill in Bombay is set up",
+       "hi": "बंबई में पहली सूती मिल लगी"
+      },
+      "detail": {
+       "en": "It went into production two years later.",
+       "hi": "इसमें उत्पादन दो साल बाद शुरू हुआ।"
+      }
+     },
+     {
+      "id": "jute",
+      "year": 1855,
+      "label": {
+       "en": "The first jute mill in Bengal",
+       "hi": "बंगाल में पहली जूट मिल"
+      },
+      "detail": {
+       "en": "Jute mills came up near Calcutta.",
+       "hi": "जूट मिलें कलकत्ता के पास लगीं।"
+      }
+     },
+     {
+      "id": "tata",
+      "year": 1912,
+      "label": {
+       "en": "J.N. Tata sets up the iron and steel works at Jamshedpur",
+       "hi": "जे.एन. टाटा ने जमशेदपुर में लोहे-इस्पात का कारख़ाना लगाया"
+      },
+      "detail": {
+       "en": "The first iron and steel works in India.",
+       "hi": "भारत का पहला लोहा-इस्पात कारख़ाना।"
+      }
+     },
+     {
+      "id": "hukum",
+      "year": 1917,
+      "label": {
+       "en": "Seth Hukumchand sets up the first Indian-owned jute mill in Calcutta",
+       "hi": "सेठ हुकुमचंद ने कलकत्ता में पहली भारतीय जूट मिल लगाई"
+      },
+      "detail": {
+       "en": "An Indian businessman who had traded with China.",
+       "hi": "एक भारतीय व्यापारी जिसने चीन से व्यापार किया था।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "event:jenny",
+     "expect": "placed:jenny",
+     "say": {
+      "en": "Drag \"The spinning jenny is devised\" to its place on the timeline.",
+      "hi": "\"स्पिनिंग जेनी बनाई गई\" को समयरेखा पर उसकी जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which came first, the spinning jenny or the first cotton mill in Bombay?",
+      "hi": "पहले क्या आया, स्पिनिंग जेनी या बंबई की पहली सूती मिल?"
+     },
+     "options": [
+      {
+       "id": "jenny",
+       "en": "The spinning jenny",
+       "hi": "स्पिनिंग जेनी"
+      },
+      {
+       "id": "bombay",
+       "en": "The Bombay cotton mill",
+       "hi": "बंबई की सूती मिल"
+      }
+     ],
+     "answer": "jenny"
+    },
+    {
+     "kind": "do",
+     "target": "event:bombay",
+     "expect": "placed:bombay",
+     "say": {
+      "en": "Drag \"The first cotton mill in Bombay is set up\" to its place on the timeline.",
+      "hi": "\"बंबई में पहली सूती मिल लगी\" को समयरेखा पर उसकी जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:hukum",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the remaining events until the timeline is in order.",
+      "hi": "बाक़ी घटनाएँ तब तक रखो जब तक समयरेखा क्रम में न आ जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Machines came to Britain first, in the 1700s. Factories came to India in the 1850s, with cotton in Bombay and jute in Bengal. Indian industry grew slowly: iron and steel came only in the early twentieth century. Colonial rule shaped what could be built and who benefited.",
+      "hi": "मशीनें पहले 1700 के दशक में ब्रिटेन आईं। भारत में कारख़ाने 1850 के दशक में आए, बंबई में कपास और बंगाल में जूट के। भारतीय उद्योग धीरे बढ़ा: लोहा-इस्पात बीसवीं सदी के शुरू में ही आया। औपनिवेशिक शासन ने तय किया कि क्या बन सकता है और लाभ किसे मिले।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where was the first Indian cotton mill of this timeline set up?",
+        "hi": "इस समयरेखा की पहली भारतीय सूती मिल कहाँ लगी?"
+       },
+       "options": [
+        {
+         "en": "Bombay",
+         "hi": "बंबई"
+        },
+        {
+         "en": "Jamshedpur",
+         "hi": "जमशेदपुर"
+        },
+        {
+         "en": "London",
+         "hi": "लंदन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The first cotton mill in Bombay came up in 1854.",
+        "hi": "बंबई की पहली सूती मिल 1854 में लगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Jamshedpur is the site of the iron and steel works.",
+         "hi": "जमशेदपुर लोहा-इस्पात कारख़ाने का स्थान है।"
+        },
+        {
+         "en": "London is in Britain, not in India.",
+         "hi": "लंदन ब्रिटेन में है, भारत में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which industry started in India much later than textiles?",
+        "hi": "कौन-सा उद्योग भारत में कपड़े से बहुत बाद शुरू हुआ?"
+       },
+       "options": [
+        {
+         "en": "Iron and steel",
+         "hi": "लोहा और इस्पात"
+        },
+        {
+         "en": "Cotton",
+         "hi": "कपास"
+        },
+        {
+         "en": "Jute",
+         "hi": "जूट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Iron and steel works started in 1912, long after the cotton and jute mills.",
+        "hi": "लोहा-इस्पात कारख़ाने 1912 में शुरू हुए, कपास और जूट मिलों के बहुत बाद।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cotton mills started in the 1850s.",
+         "hi": "सूती मिलें 1850 के दशक में शुरू हुईं।"
+        },
+        {
+         "en": "Jute mills also started in the 1850s.",
+         "hi": "जूट मिलें भी 1850 के दशक में शुरू हुईं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why do you think steel came to India so much later than cotton? Make a guess and share it.",
+      "hi": "तुम्हें क्या लगता है भारत में इस्पात कपास से इतना बाद में क्यों आया? अनुमान लगाकर बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess3-ch04-cotton-imports",
+   "topic": "1.1",
+   "template": "data",
+   "title": {
+    "en": "Britain's hunger for cotton",
+    "hi": "ब्रिटेन की कपास की भूख"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "max",
+    "title": {
+     "en": "Raw cotton imported by Britain (million pounds)",
+     "hi": "ब्रिटेन में आयातित कच्ची कपास (दस लाख पाउंड)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "1760",
+       "hi": "1760"
+      },
+      "value": 2.5
+     },
+     {
+      "label": {
+       "en": "1787",
+       "hi": "1787"
+      },
+      "value": 22
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Britain imported 2.5 million pounds of raw cotton in 1760. By 1787 do you think the figure was about the same, a little higher or much higher?",
+      "hi": "1760 में ब्रिटेन ने 2.5 दस लाख पाउंड कच्ची कपास मँगाई। 1787 तक यह आँकड़ा लगभग वही, थोड़ा ज़्यादा या बहुत ज़्यादा रहा होगा?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "About the same",
+       "hi": "लगभग वही"
+      },
+      {
+       "id": "little",
+       "en": "A little higher",
+       "hi": "थोड़ा ज़्यादा"
+      },
+      {
+       "id": "much",
+       "en": "Much higher",
+       "hi": "बहुत ज़्यादा"
+      }
+     ],
+     "answer": "much"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the first bar to read its number.",
+      "hi": "पहली पट्टी छुओ और उसकी संख्या पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap the bar that is taller, then answer: which year has the higher number?",
+      "hi": "जो पट्टी ऊँची है उसे छुओ, फिर उत्तर दो: किस वर्ष की संख्या ज़्यादा है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In 1760 Britain imported 2.5 million pounds of raw cotton. By 1787 the figure was 22 million pounds, almost nine times more. The new machines needed much more raw cotton, and Britain had to bring it from overseas.",
+      "hi": "1760 में ब्रिटेन ने 2.5 दस लाख पाउंड कच्ची कपास मँगाई। 1787 तक यह 22 दस लाख पाउंड हो गई, लगभग नौ गुना। नई मशीनों को बहुत ज़्यादा कपास चाहिए थी, और ब्रिटेन को उसे विदेशों से लाना पड़ता था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "About how many times larger was the 1787 figure than the 1760 figure?",
+        "hi": "1787 का आँकड़ा 1760 के आँकड़े से लगभग कितना गुना था?"
+       },
+       "options": [
+        {
+         "en": "About 9 times",
+         "hi": "लगभग 9 गुना"
+        },
+        {
+         "en": "About 2 times",
+         "hi": "लगभग 2 गुना"
+        },
+        {
+         "en": "About the same",
+         "hi": "लगभग बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "22 divided by 2.5 is about 9, so imports grew about nine times.",
+        "hi": "22 को 2.5 से भाग देने पर लगभग 9 आता है, इसलिए आयात लगभग नौ गुना बढ़ा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two times would be about 5 million pounds.",
+         "hi": "दो गुना लगभग 5 दस लाख पाउंड होता।"
+        },
+        {
+         "en": "The bars are very different in height.",
+         "hi": "पट्टियों की ऊँचाई में बहुत फ़र्क़ है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does this growth tell us?",
+        "hi": "यह वृद्धि हमें क्या बताती है?"
+       },
+       "options": [
+        {
+         "en": "Cotton mills were using much more raw cotton",
+         "hi": "सूती मिलें बहुत ज़्यादा कच्ची कपास इस्तेमाल कर रही थीं"
+        },
+        {
+         "en": "Britain stopped making cloth",
+         "hi": "ब्रिटेन ने कपड़ा बनाना बंद कर दिया"
+        },
+        {
+         "en": "Cotton became cheaper to grow in Britain",
+         "hi": "ब्रिटेन में कपास उगाना सस्ता हो गया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A larger import means a growing cotton industry with machines to feed.",
+        "hi": "आयात बढ़ने का अर्थ है बढ़ता हुआ कपास उद्योग जिसे मशीनें चलानी हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cloth making grew, it did not stop.",
+         "hi": "कपड़ा बनाना बढ़ा, बंद नहीं हुआ।"
+        },
+        {
+         "en": "Britain's climate does not suit growing cotton, so it imported it.",
+         "hi": "ब्रिटेन की जलवायु कपास उगाने के अनुकूल नहीं, इसलिए आयात करता था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the other bar and look at its number. How would the graph look if the 1787 figure were only 5?",
+      "hi": "दूसरी पट्टी छुओ और उसकी संख्या देखो। यदि 1787 का आँकड़ा केवल 5 होता तो ग्राफ़ कैसा दिखता?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Cottage or factory lab",
+   "shows": "A rural Indian cottage with a handloom, a woman's hands feeding the thread, afternoon light through a window",
+   "view": "Over-the-shoulder, hands only",
+   "right": "Wooden frame loom with warp threads visible",
+   "avoid": "Faces, modern objects"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Cottage or factory lab",
+   "shows": "A large old mill hall with rows of spinning machines and belts, lit by high windows",
+   "view": "Wide, low angle, no workers",
+   "right": "Belts, wheels and spindles in rows",
+   "avoid": "Faces, readable signs"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "1",
+   "use": "Words lab",
+   "shows": "A hand spinning wheel and a spindle with raw wool on a plain background",
+   "view": "Three-quarter view",
+   "right": "Spokes and wheel look workable",
+   "avoid": "Writing"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "1",
+   "use": "Words lab",
+   "shows": "Raw cotton bolls and a close-up of woven cloth showing the thread weave",
+   "view": "Square macro",
+   "right": "Warp and weft visible",
+   "avoid": "Brand tags"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "4",
+   "use": "Timeline lab",
+   "shows": "A relief map of India showing Bombay, Calcutta, Kanpur and Jamshedpur areas by terrain only, no names",
+   "view": "Top-down 4:3",
+   "right": "Western coast and Ganga plain correct",
+   "avoid": "Names, borders"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "1.2",
+   "use": "Timeline lab",
+   "shows": "A timeline strip from 1750 to 1920 with six empty ticks",
+   "view": "Flat on white",
+   "right": "Even spacing",
+   "avoid": "Dates or words"
+  }
+ ]
+}

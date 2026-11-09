@@ -1,0 +1,1013 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch04",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "We the Travellers - II",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Making sums equal",
+   "labs": [
+    "c05-mathematics-eemm1-ch04-equal-teams"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Fuel arithmetic: adding with regrouping",
+   "labs": [
+    "c05-mathematics-eemm1-ch04-fuel-add",
+    "c05-mathematics-eemm1-ch04-road-add"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Subtraction with regrouping and the link between adding and taking away",
+   "labs": [
+    "c05-mathematics-eemm1-ch04-take-away",
+    "c05-mathematics-eemm1-ch04-undo-pairs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Sums of consecutive numbers",
+   "labs": [
+    "c05-mathematics-eemm1-ch04-consecutive-sums"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Distances between cities on a route",
+   "labs": [],
+   "why_no_lab": "Reading a printed route table and adding the distances between stations is covered by the road-add lab; the map table itself is best seen in the reader."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch04-equal-teams",
+   "topic": "4.1",
+   "template": "scenario",
+   "title": {
+    "en": "Make the two sums equal",
+    "hi": "दोनों योग बराबर करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "game day",
+    "role": {
+     "en": "Score keeper",
+     "hi": "अंक लिखने वाले"
+    },
+    "scenes": [
+     {
+      "id": "totals",
+      "text": {
+       "en": "Team Red scored 4, 11 and 13 in three games. Team Blue scored 6, 12 and 14. What are the two totals?",
+       "hi": "लाल टीम ने तीन खेलों में 4, 11 और 13 अंक बनाए। नीली टीम ने 6, 12 और 14। दोनों के कुल अंक कितने हैं?"
+      },
+      "choices": [
+       {
+        "id": "ok",
+        "text": {
+         "en": "Red 28, Blue 32",
+         "hi": "लाल 28, नीली 32"
+        },
+        "next": "swap",
+        "good": true,
+        "feedback": {
+         "en": "Yes. 4 + 11 + 13 = 28 and 6 + 12 + 14 = 32. Blue is ahead by 4.",
+         "hi": "हाँ। 4 + 11 + 13 = 28 और 6 + 12 + 14 = 32। नीली टीम 4 अंक आगे है।"
+        }
+       },
+       {
+        "id": "low",
+        "text": {
+         "en": "Red 26, Blue 30",
+         "hi": "लाल 26, नीली 30"
+        },
+        "next": "swap",
+        "good": false,
+        "feedback": {
+         "en": "Add again carefully: 4 + 11 = 15, and 15 + 13 = 28; 6 + 12 = 18, and 18 + 14 = 32.",
+         "hi": "फिर से ध्यान से जोड़ो: 4 + 11 = 15 और 15 + 13 = 28; 6 + 12 = 18 और 18 + 14 = 32।"
+        }
+       },
+       {
+        "id": "high",
+        "text": {
+         "en": "Red 28, Blue 34",
+         "hi": "लाल 28, नीली 34"
+        },
+        "next": "swap",
+        "good": false,
+        "feedback": {
+         "en": "Red is right but Blue is 6 + 12 + 14 = 32, not 34.",
+         "hi": "लाल सही है, पर नीली का योग 6 + 12 + 14 = 32 है, 34 नहीं।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "swap",
+      "text": {
+       "en": "Now swap one score of Red with one score of Blue so that both totals become equal. Which swap works?",
+       "hi": "अब लाल का एक अंक नीली के एक अंक से बदलो ताकि दोनों योग बराबर हो जाएँ। कौन-सी अदला-बदली ठीक है?"
+      },
+      "choices": [
+       {
+        "id": "swap-4-6",
+        "text": {
+         "en": "Swap 4 and 6",
+         "hi": "4 और 6 की अदला-बदली"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Red becomes 6 + 11 + 13 = 30 and Blue becomes 4 + 12 + 14 = 30. Equal!",
+         "hi": "लाल 6 + 11 + 13 = 30 हो गई और नीली 4 + 12 + 14 = 30। बराबर!"
+        }
+       },
+       {
+        "id": "swap-11-12",
+        "text": {
+         "en": "Swap 11 and 12",
+         "hi": "11 और 12 की अदला-बदली"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Red becomes 29 and Blue becomes 31. Closer, but not equal.",
+         "hi": "लाल 29 और नीली 31 हो जाती है। पास आए, पर बराबर नहीं।"
+        }
+       },
+       {
+        "id": "swap-4-14",
+        "text": {
+         "en": "Swap 4 and 14",
+         "hi": "4 और 14 की अदला-बदली"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Red jumps to 38 and Blue falls to 22. The gap grows.",
+         "hi": "लाल 38 हो जाती है और नीली 22। अंतर और बढ़ गया।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:totals:ok",
+     "expect": "chose:ok",
+     "say": {
+      "en": "Add the scores of each team and choose the correct totals.",
+      "hi": "हर टीम के अंक जोड़ो और सही योग चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Blue is ahead by 4. When you swap two scores, one team gains and the other loses the same amount. How far apart must the two swapped scores be?",
+      "hi": "नीली टीम 4 अंक आगे है। दो अंक बदलने पर एक टीम उतना पाती है जितना दूसरी खोती है। बदले गए दोनों अंकों में कितना अंतर होना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "A difference of 2",
+       "hi": "2 का अंतर"
+      },
+      {
+       "id": "four",
+       "en": "A difference of 4",
+       "hi": "4 का अंतर"
+      },
+      {
+       "id": "one",
+       "en": "A difference of 1",
+       "hi": "1 का अंतर"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "choice:swap:swap-4-6",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose the swap that makes both totals equal.",
+      "hi": "वह अदला-बदली चुनो जिससे दोनों योग बराबर हों।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A swap moves some points from one team to the other. If the scores differ by 2, Red gains 2 and Blue loses 2, so the gap of 4 closes. Half of the gap is the difference we need: 4 ÷ 2 = 2. Only 4 and 6 differ by 2.",
+      "hi": "अदला-बदली से कुछ अंक एक टीम से दूसरी में चले जाते हैं। अगर अंकों में 2 का अंतर है, तो लाल को 2 मिलते हैं और नीली के 2 घटते हैं, इसलिए 4 का अंतर मिट जाता है। अंतर का आधा ही हमें चाहिए: 4 ÷ 2 = 2। केवल 4 और 6 में 2 का अंतर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Team A has 5, 9, 12 (total 26) and team B has 8, 10, 14 (total 32). They want equal totals by swapping one pair. How far apart must the two swapped scores be?",
+        "hi": "टीम A के अंक 5, 9, 12 (योग 26) और टीम B के 8, 10, 14 (योग 32) हैं। एक जोड़ी बदलकर योग बराबर करना है। बदले जाने वाले दोनों अंकों में कितना अंतर हो?"
+       },
+       "options": [
+        "3",
+        "6",
+        "2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The gap is 32 − 26 = 6. Half of 6 is 3, so the swapped scores must differ by 3 (for example 5 and 8).",
+        "hi": "अंतर 32 − 26 = 6 है। 6 का आधा 3 है, इसलिए बदले गए अंकों में 3 का अंतर चाहिए (जैसे 5 और 8)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 is the whole gap. A swap closes the gap from both sides, so the scores need to differ by only half of it.",
+         "hi": "6 पूरा अंतर है। अदला-बदली अंतर को दोनों ओर से घटाती है, इसलिए अंकों में केवल उसका आधा अंतर चाहिए।"
+        },
+        {
+         "en": "A difference of 2 would leave a gap of 2 between the totals.",
+         "hi": "2 के अंतर से योगों के बीच 2 का अंतर फिर भी रह जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own two groups of three numbers with different totals. Can you find a swap that makes them equal?",
+      "hi": "तीन-तीन संख्याओं के अपने दो समूह बनाओ जिनके योग अलग हों। क्या तुम ऐसी अदला-बदली खोज सकते हो जो उन्हें बराबर कर दे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch04-fuel-add",
+   "topic": "4.2",
+   "template": "place-value",
+   "title": {
+    "en": "Fuel for the lorry: adding with regrouping",
+    "hi": "लॉरी का ईंधन: समूह बनाकर जोड़ना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "a": 47,
+    "b": 68,
+    "places": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A lorry has 47 litres of fuel and 68 litres more are filled. Look at the ones: 7 + 8. Can the ones place hold that many?",
+      "hi": "एक लॉरी में 47 लीटर ईंधन है और 68 लीटर और भरा गया। इकाई देखो: 7 + 8। क्या इकाई का स्थान इतने रख सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, 15 ones is more than 9, so some ones must be traded for a ten",
+       "hi": "नहीं, 15 इकाई 9 से ज़्यादा हैं, इसलिए कुछ इकाइयों को दहाई से बदलना पड़ेगा"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, 15 ones fit in the ones place",
+       "hi": "हाँ, 15 इकाई इकाई के स्थान में आ जाएँगी"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "regroup",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap Regroup. Ten ones turn into one ten.",
+      "hi": "समूह बदलो पर टैप करो। दस इकाइयाँ एक दहाई बन जाती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "regroup",
+     "expect": "regrouped",
+     "say": {
+      "en": "The tens now hold 11. Tap Regroup again.",
+      "hi": "अब दहाई में 11 हैं। फिर से समूह बदलो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Count the blocks in each place and type the total litres.",
+      "hi": "हर स्थान के ब्लॉक गिनो और कुल लीटर लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "7 ones + 8 ones = 15 ones. We regroup 10 ones into 1 ten, leaving 5 ones. Then 4 tens + 6 tens + 1 ten = 11 tens, and 10 tens make 1 hundred, leaving 1 ten. The total is 1 hundred, 1 ten and 5 ones: 115 litres.",
+      "hi": "7 इकाई + 8 इकाई = 15 इकाई। हम 10 इकाइयों को 1 दहाई में बदलते हैं और 5 इकाई बचती हैं। फिर 4 दहाई + 6 दहाई + 1 दहाई = 11 दहाई; 10 दहाई मिलकर 1 सैकड़ा बनते हैं और 1 दहाई बचती है। कुल 1 सैकड़ा, 1 दहाई और 5 इकाई: 115 लीटर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sum needs regrouping in the ones place?",
+        "hi": "किस योग में इकाई के स्थान पर समूह बदलना पड़ेगा?"
+       },
+       "options": [
+        "38 + 27",
+        "32 + 45",
+        "41 + 18"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "8 + 7 = 15 ones, which is more than 9, so we must regroup. In the others the ones add up to less than 10.",
+        "hi": "8 + 7 = 15 इकाई, जो 9 से ज़्यादा हैं, इसलिए समूह बदलना पड़ेगा। बाकी में इकाइयों का योग 10 से कम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 + 5 = 7 ones. Nothing to regroup.",
+         "hi": "2 + 5 = 7 इकाई। समूह बदलने की ज़रूरत नहीं।"
+        },
+        {
+         "en": "1 + 8 = 9 ones. That still fits in the ones place.",
+         "hi": "1 + 8 = 9 इकाई। यह इकाई के स्थान में आ जाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is 76 + 28?",
+        "hi": "76 + 28 कितना है?"
+       },
+       "options": [
+        "104",
+        "94",
+        "114"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6 + 8 = 14 ones: 4 ones and 1 ten. 7 + 2 + 1 = 10 tens: 0 tens and 1 hundred. So 104.",
+        "hi": "6 + 8 = 14 इकाई: 4 इकाई और 1 दहाई। 7 + 2 + 1 = 10 दहाई: 0 दहाई और 1 सैकड़ा। इसलिए 104।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "You forgot the extra ten from the ones. 7 + 2 tens is 9 tens, but 1 more ten came from the ones.",
+         "hi": "तुम इकाई से आई एक दहाई भूल गए। 7 + 2 दहाई 9 दहाई हैं, पर इकाई से 1 दहाई और आई।"
+        },
+        {
+         "en": "The ten from the ones was counted twice. Add it once.",
+         "hi": "इकाई से आई दहाई दो बार गिन ली गई। उसे एक ही बार जोड़ो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Start again and add other pairs of your own. Try 59 + 36. Predict how many times you will need to regroup.",
+      "hi": "फिर से शुरू करो पर टैप करो और अपनी संख्याएँ जोड़ो। 59 + 36 आज़माओ। पहले अनुमान लगाओ कि कितनी बार समूह बदलना पड़ेगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch04-road-add",
+   "topic": "4.2",
+   "template": "place-value",
+   "title": {
+    "en": "Adding road distances",
+    "hi": "सड़क की दूरियाँ जोड़ना"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "add",
+    "a": 1346,
+    "b": 2789,
+    "places": 4
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bus goes 1,346 km on one route and 2,789 km on another. This is an example, not a real route. Which places will need regrouping?",
+      "hi": "एक बस एक मार्ग पर 1,346 किमी और दूसरे पर 2,789 किमी जाती है। यह एक उदाहरण है, असली मार्ग नहीं। किन स्थानों पर समूह बदलना पड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "three",
+       "en": "Ones, tens and hundreds",
+       "hi": "इकाई, दहाई और सैकड़ा"
+      },
+      {
+       "id": "one",
+       "en": "Only the ones",
+       "hi": "केवल इकाई"
+      },
+      {
+       "id": "none",
+       "en": "None",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "regroup",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap Regroup for the ones: 6 + 9 = 15.",
+      "hi": "इकाई के लिए समूह बदलो पर टैप करो: 6 + 9 = 15।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "regroup",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap Regroup for the tens: 4 + 8 + 1 = 13.",
+      "hi": "दहाई के लिए समूह बदलो पर टैप करो: 4 + 8 + 1 = 13।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "regroup",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap Regroup for the hundreds: 3 + 7 + 1 = 11.",
+      "hi": "सैकड़े के लिए समूह बदलो पर टैप करो: 3 + 7 + 1 = 11।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the blocks and type the total distance.",
+      "hi": "ब्लॉक पढ़ो और कुल दूरी लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each place was regrouped into the place on its left, one at a time, from the ones up. The total is 4,135 km. Adding big numbers works exactly like adding small ones, place by place.",
+      "hi": "हर स्थान को बाईं ओर के स्थान में बदला गया, इकाई से शुरू करके एक-एक करके। कुल दूरी 4,135 किमी है। बड़ी संख्याएँ जोड़ना छोटी संख्याएँ जोड़ने जैसा ही है, स्थान-दर-स्थान।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Estimate first: is 1,346 + 2,789 closer to 4,000 or to 5,000?",
+        "hi": "पहले अनुमान लगाओ: 1,346 + 2,789 4,000 के करीब है या 5,000 के?"
+       },
+       "options": [
+        "4,000",
+        "5,000"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1,346 is about 1,300 and 2,789 is about 2,800. Together about 4,100, closer to 4,000.",
+        "hi": "1,346 लगभग 1,300 है और 2,789 लगभग 2,800। साथ में लगभग 4,100, जो 4,000 के करीब है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5,000 would need about 1,500 + 3,500. The numbers here are smaller than that.",
+         "hi": "5,000 के लिए लगभग 1,500 + 3,500 चाहिए। यहाँ संख्याएँ उससे छोटी हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Start again and add 2,468 + 1,975. Say before you tap which place will carry first.",
+      "hi": "फिर से शुरू करो और 2,468 + 1,975 जोड़ो। टैप करने से पहले बताओ कि सबसे पहले किस स्थान पर बदलाव होगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch04-take-away",
+   "topic": "4.3",
+   "template": "place-value",
+   "title": {
+    "en": "Taking away when there are not enough ones",
+    "hi": "जब इकाइयाँ कम पड़ें तो घटाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "subtract",
+    "a": 83,
+    "b": 47,
+    "places": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "There are 8 tens and 3 ones. You must take away 4 tens and 7 ones. Can you take 7 ones from 3 ones?",
+      "hi": "8 दहाई और 3 इकाई हैं। तुम्हें 4 दहाई और 7 इकाई घटानी हैं। क्या 3 इकाई में से 7 इकाई घट सकती हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, we must break one ten into 10 ones first",
+       "hi": "नहीं, पहले एक दहाई को तोड़कर 10 इकाई बनानी होंगी"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, just take them away",
+       "hi": "हाँ, बस घटा दो"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "regroup",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap Regroup. One ten breaks into ten ones.",
+      "hi": "समूह बदलो पर टैप करो। एक दहाई टूटकर दस इकाई बन जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now take away and type the answer.",
+      "hi": "अब घटाओ और उत्तर लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "3 ones are too few. We break 1 ten into 10 ones: now 7 tens and 13 ones. 13 − 7 = 6 ones and 7 − 4 = 3 tens. The answer is 36. We can check: 36 + 47 = 83.",
+      "hi": "3 इकाई कम पड़ती हैं। हम 1 दहाई को तोड़कर 10 इकाई बनाते हैं: अब 7 दहाई और 13 इकाई। 13 − 7 = 6 इकाई और 7 − 4 = 3 दहाई। उत्तर 36 है। जाँच: 36 + 47 = 83।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 62 − 28?",
+        "hi": "62 − 28 कितना है?"
+       },
+       "options": [
+        "34",
+        "44",
+        "36"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Break a ten: 5 tens and 12 ones. 12 − 8 = 4 and 5 − 2 = 3. The answer is 34. Check: 34 + 28 = 62.",
+        "hi": "एक दहाई तोड़ो: 5 दहाई और 12 इकाई। 12 − 8 = 4 और 5 − 2 = 3। उत्तर 34 है। जाँच: 34 + 28 = 62।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "You forgot that one ten was broken. Tens left are 5, not 6. 5 − 2 = 3.",
+         "hi": "तुम भूल गए कि एक दहाई टूट चुकी है। दहाई 5 बचीं, 6 नहीं। 5 − 2 = 3।"
+        },
+        {
+         "en": "You took 2 − 8 as 8 − 2 = 6. We cannot take the bigger from the smaller; break a ten instead.",
+         "hi": "तुमने 2 − 8 को 8 − 2 = 6 कर दिया। छोटी संख्या में से बड़ी नहीं घटती; उसकी जगह दहाई तोड़ो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which sum checks the answer to 83 − 47 = 36?",
+        "hi": "कौन-सा योग 83 − 47 = 36 का उत्तर जाँचता है?"
+       },
+       "options": [
+        "36 + 47 = 83",
+        "36 + 83 = 47",
+        "47 − 36 = 83"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Subtraction and addition undo each other. The answer plus the number taken away gives back the start.",
+        "hi": "घटाना और जोड़ना एक-दूसरे को उलट देते हैं। उत्तर और घटाई गई संख्या जोड़ने पर शुरुआती संख्या मिल जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "36 + 83 is much more than 47. The total must come back to 83.",
+         "hi": "36 + 83, 47 से बहुत ज़्यादा है। योग वापस 83 बनना चाहिए।"
+        },
+        {
+         "en": "47 − 36 is a small number, not 83. The start 83 is the biggest number.",
+         "hi": "47 − 36 एक छोटी संख्या है, 83 नहीं। शुरुआती संख्या 83 सबसे बड़ी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Start again and take away other numbers of your own. Try 90 − 54 and 71 − 26. After each one, check by adding.",
+      "hi": "फिर से शुरू करो और अपनी संख्याएँ घटाओ। 90 − 54 और 71 − 26 आज़माओ। हर बार जोड़कर जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch04-undo-pairs",
+   "topic": "4.3",
+   "template": "match",
+   "title": {
+    "en": "Add and subtract are partners",
+    "hi": "जोड़ और घटाव साथी हैं"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "p1",
+      "left": {
+       "en": "35 + 20 = 55",
+       "hi": "35 + 20 = 55"
+      },
+      "right": {
+       "en": "55 − 20 = 35",
+       "hi": "55 − 20 = 35"
+      },
+      "why": {
+       "en": "Take away the number you added and you are back at 35.",
+       "hi": "जो संख्या जोड़ी थी उसे घटाओ तो वापस 35 मिल जाता है।"
+      }
+     },
+     {
+      "id": "p2",
+      "left": {
+       "en": "48 + 17 = 65",
+       "hi": "48 + 17 = 65"
+      },
+      "right": {
+       "en": "65 − 48 = 17",
+       "hi": "65 − 48 = 17"
+      },
+      "why": {
+       "en": "Taking away one of the two parts leaves the other part.",
+       "hi": "दो भागों में से एक घटाने पर दूसरा भाग बचता है।"
+      }
+     },
+     {
+      "id": "p3",
+      "left": {
+       "en": "98 + 102 = 200",
+       "hi": "98 + 102 = 200"
+      },
+      "right": {
+       "en": "200 − 98 = 102",
+       "hi": "200 − 98 = 102"
+      },
+      "why": {
+       "en": "The total minus one part gives the other part.",
+       "hi": "कुल में से एक भाग घटाओ तो दूसरा भाग मिलता है।"
+      }
+     },
+     {
+      "id": "p4",
+      "left": {
+       "en": "250 + 150 = 400",
+       "hi": "250 + 150 = 400"
+      },
+      "right": {
+       "en": "400 − 150 = 250",
+       "hi": "400 − 150 = 250"
+      },
+      "why": {
+       "en": "400 take away 150 leaves 250.",
+       "hi": "400 में से 150 घटाने पर 250 बचते हैं।"
+      }
+     },
+     {
+      "id": "p5",
+      "left": {
+       "en": "37 + 25 = 62",
+       "hi": "37 + 25 = 62"
+      },
+      "right": {
+       "en": "62 − 25 = 37",
+       "hi": "62 − 25 = 37"
+      },
+      "why": {
+       "en": "62 take away 25 leaves 37.",
+       "hi": "62 में से 25 घटाने पर 37 बचते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p1",
+     "expect": "matched:p1",
+     "say": {
+      "en": "Match the first addition with its partner subtraction.",
+      "hi": "पहले जोड़ को उसके साथी घटाव से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If 48 + 17 = 65, which subtraction must also be true?",
+      "hi": "अगर 48 + 17 = 65 है, तो कौन-सा घटाव भी सही होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The subtraction 65 − 48 = 17",
+       "hi": "घटाव 65 − 48 = 17"
+      },
+      {
+       "id": "b",
+       "en": "The subtraction 48 − 17 = 65",
+       "hi": "घटाव 48 − 17 = 65"
+      },
+      {
+       "id": "c",
+       "en": "The subtraction 17 − 65 = 48",
+       "hi": "घटाव 17 − 65 = 48"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:p2",
+     "expect": "matched:p2",
+     "say": {
+      "en": "Match 48 + 17 = 65.",
+      "hi": "48 + 17 = 65 को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then tap Check.",
+      "hi": "बाकी मिलाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An addition fact has a total and two parts. Taking one part away from the total gives the other part. So every addition fact gives two subtraction facts.",
+      "hi": "जोड़ के तथ्य में एक कुल और दो भाग होते हैं। कुल में से एक भाग घटाने पर दूसरा भाग मिलता है। इसलिए हर जोड़ के तथ्य से दो घटाव के तथ्य बनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If 198 − 98 = 100, which addition is true?",
+        "hi": "अगर 198 − 98 = 100 है, तो कौन-सा जोड़ सही है?"
+       },
+       "options": [
+        "100 + 98 = 198",
+        "100 + 198 = 98",
+        "98 + 198 = 100"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The answer 100 plus the number taken away, 98, gives back 198.",
+        "hi": "उत्तर 100 में घटाई गई संख्या 98 जोड़ने पर 198 वापस मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The total is the biggest number, 198. It must be on the answer side of the equals sign.",
+         "hi": "कुल सबसे बड़ी संख्या 198 है। उसे बराबर के चिह्न के दूसरी ओर होना चाहिए।"
+        },
+        {
+         "en": "98 + 198 is far more than 100.",
+         "hi": "98 + 198, 100 से बहुत ज़्यादा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write an addition of your own and then write its two subtraction partners.",
+      "hi": "अपना एक जोड़ लिखो और फिर उसके दोनों घटाव साथी लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch04-consecutive-sums",
+   "topic": "4.4",
+   "template": "pattern",
+   "title": {
+    "en": "Sums of three numbers in a row",
+    "hi": "लगातार तीन संख्याओं के योग"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     6,
+     9,
+     12,
+     15
+    ],
+    "rule": "+3",
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "1 + 2 + 3 = 6, 2 + 3 + 4 = 9, 3 + 4 + 5 = 12, 4 + 5 + 6 = 15. These are sums of 3 numbers in a row. What will the next sum be?",
+      "hi": "1 + 2 + 3 = 6, 2 + 3 + 4 = 9, 3 + 4 + 5 = 12, 4 + 5 + 6 = 15। ये लगातार 3 संख्याओं के योग हैं। अगला योग क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "eighteen",
+       "en": "The sum is 18",
+       "hi": "योग 18 होगा"
+      },
+      {
+       "id": "sixteen",
+       "en": "The sum is 16",
+       "hi": "योग 16 होगा"
+      },
+      {
+       "id": "twenty",
+       "en": "The sum is 20",
+       "hi": "योग 20 होगा"
+      }
+     ],
+     "answer": "eighteen"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next number in the pattern.",
+      "hi": "पैटर्न की अगली संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number after that.",
+      "hi": "उसके बाद की संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Say the rule: by how much does each sum grow?",
+      "hi": "नियम बताओ: हर योग कितना बढ़ता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each time the three numbers move one step up, every number grows by 1, so the sum grows by 3. The sums 6, 9, 12, 15, 18, 21 are the table of 3. Also, the sum is the middle number times 3: 4 + 5 + 6 = 5 × 3 = 15.",
+      "hi": "हर बार तीनों संख्याएँ एक कदम ऊपर जाती हैं, तो हर संख्या 1 बढ़ती है, इसलिए योग 3 बढ़ता है। योग 6, 9, 12, 15, 18, 21 तीन का पहाड़ा हैं। साथ ही, योग बीच की संख्या का 3 गुना होता है: 4 + 5 + 6 = 5 × 3 = 15।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 10 + 11 + 12 without adding one by one?",
+        "hi": "एक-एक जोड़े बिना 10 + 11 + 12 कितना है?"
+       },
+       "options": [
+        "33",
+        "32",
+        "36"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The middle number is 11, and 11 × 3 = 33.",
+        "hi": "बीच की संख्या 11 है और 11 × 3 = 33।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "32 is one less than the right answer. Check: 11 × 3 = 33.",
+         "hi": "32 सही उत्तर से 1 कम है। जाँचो: 11 × 3 = 33।"
+        },
+        {
+         "en": "36 would be 12 × 3, using the biggest number instead of the middle one.",
+         "hi": "36 वह होता जब बीच की जगह सबसे बड़ी संख्या 12 को 3 से गुणा किया जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the sums of 5 numbers in a row: 1 + 2 + 3 + 4 + 5, 2 + 3 + 4 + 5 + 6 and so on. By how much does each sum grow?",
+      "hi": "लगातार 5 संख्याओं के योग आज़माओ: 1 + 2 + 3 + 4 + 5, 2 + 3 + 4 + 5 + 6 और आगे। हर योग कितना बढ़ता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Fuel story hook",
+   "shows": "A small tanker lorry refuelling a bus at a fuel station in the morning, fuel pump meter blurred",
+   "view": "Wide, eye level, daylight",
+   "right": "Real Indian fuel station feel; meter and nozzle clear but unreadable",
+   "avoid": "Brand logos, readable prices"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Place value blocks for regrouping",
+   "shows": "Base-ten blocks: a single cube, a ten rod, a hundred flat and a thousand cube, each a separate cut-out",
+   "view": "Three-quarter view, top-left light",
+   "right": "Each block exactly 10 times the one before in size",
+   "avoid": "Printed numbers"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Equal teams game",
+   "shows": "Two teams of children's hands holding cards numbered 4, 11, 13 and 6, 12, 14 on two tables",
+   "view": "Top-down, even light",
+   "right": "Cards face-up with clear digits; hands only",
+   "avoid": "Faces"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "4.3",
+   "use": "Column addition frame",
+   "shows": "A blank vertical addition frame with H, T, O column heads and a carry row",
+   "view": "Flat, white background",
+   "right": "Columns aligned with space for the app to write digits",
+   "avoid": "Digits baked in"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "4.5",
+   "use": "Route base for distance sums",
+   "shows": "A plain relief map base of the Indian peninsula with a winding road drawn but no town names or borders",
+   "view": "Straight down, 16:9",
+   "right": "Road drawn as one continuous line with four marked stops",
+   "avoid": "Names, state borders, text"
+  }
+ ]
+}

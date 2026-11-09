@@ -1,0 +1,1650 @@
+{
+ "chapter_key": "u.c10.science.jesc1.ch02",
+ "class": 10,
+ "subject_id": "science",
+ "title": "Acids, Bases and Salts",
+ "source": "https://ncert.nic.in/textbook/pdf/jesc102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Chemical properties of acids and bases: indicators, reactions with metals, carbonates, each other, metal and non-metal oxides",
+   "labs": [
+    "c10-science-jesc1-ch02-indicators",
+    "c10-science-jesc1-ch02-carbonate",
+    "c10-science-jesc1-ch02-neutralise",
+    "c10-science-jesc1-ch02-metal-oxide"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "What all acids and bases have in common; acids and bases in water",
+   "labs": [
+    "c10-science-jesc1-ch02-conduct"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Strength of solutions: the pH scale; importance of pH in everyday life",
+   "labs": [
+    "c10-science-jesc1-ch02-ph-scale"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "More about salts: families, pH of salts, chemicals from common salt, water of crystallisation",
+   "labs": [
+    "c10-science-jesc1-ch02-salt-ph",
+    "c10-science-jesc1-ch02-common-salt",
+    "c10-science-jesc1-ch02-crystal-water"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-science-jesc1-ch02-indicators",
+   "topic": "2.1",
+   "template": "beaker",
+   "title": {
+    "en": "Indicators: telling acid from base",
+    "hi": "सूचक: अम्ल और क्षारक की पहचान"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "hcl",
+     "naoh",
+     "bluelitmus",
+     "redlitmus",
+     "phenol",
+     "turmeric"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:hcl",
+     "expect": "pick:hcl",
+     "say": {
+      "en": "Pick up the dilute hydrochloric acid.",
+      "hi": "तनु हाइड्रोक्लोरिक अम्ल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:hcl",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will add blue litmus to the acid. What colour will it show?",
+      "hi": "तुम अम्ल में नीला लिटमस डालोगे। यह कौन-सा रंग दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल"
+      },
+      {
+       "id": "blue",
+       "en": "It stays blue",
+       "hi": "नीला ही रहेगा"
+      },
+      {
+       "id": "green",
+       "en": "Green",
+       "hi": "हरा"
+      }
+     ],
+     "answer": "red"
+    },
+    {
+     "kind": "do",
+     "target": "pick:bluelitmus",
+     "expect": "pick:bluelitmus",
+     "say": {
+      "en": "Pick up the blue litmus solution.",
+      "hi": "नीला लिटमस विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Add a few drops to the acid.",
+      "hi": "अम्ल में इसकी कुछ बूँदें डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Acids turn blue litmus red; bases turn red litmus blue. Litmus is a natural indicator made from lichen: its colour tells us acid or base. Phenolphthalein is colourless in an acid and pink in a base. Turmeric turns reddish-brown in a base, which is why a curry stain goes red when you rub soap on it.",
+      "hi": "अम्ल नीले लिटमस को लाल करते हैं; क्षारक लाल लिटमस को नीला करते हैं। लिटमस लाइकेन से बना प्राकृतिक सूचक है: इसका रंग बताता है कि पदार्थ अम्ल है या क्षारक। फ़ीनॉल्फ़्थेलिन अम्ल में रंगहीन और क्षारक में गुलाबी रहता है। हल्दी क्षारक में लाल-भूरी हो जाती है, इसलिए सब्ज़ी के दाग पर साबुन लगाने से वह लाल हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A liquid turns red litmus blue. It is…",
+        "hi": "एक द्रव लाल लिटमस को नीला कर देता है। वह है…"
+       },
+       "options": [
+        {
+         "en": "A base",
+         "hi": "क्षारक"
+        },
+        {
+         "en": "An acid",
+         "hi": "अम्ल"
+        },
+        {
+         "en": "Pure water",
+         "hi": "शुद्ध पानी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only a base turns red litmus blue.",
+        "hi": "केवल क्षारक लाल लिटमस को नीला करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An acid turns blue litmus red; it leaves red litmus red.",
+         "hi": "अम्ल नीले लिटमस को लाल करता है; लाल लिटमस को लाल ही रहने देता है।"
+        },
+        {
+         "en": "Pure water is neutral and does not change either litmus.",
+         "hi": "शुद्ध पानी उदासीन है और किसी लिटमस का रंग नहीं बदलता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Phenolphthalein is added to sodium hydroxide solution. What do you see?",
+        "hi": "सोडियम हाइड्रॉक्साइड विलयन में फ़ीनॉल्फ़्थेलिन डाला जाता है। क्या दिखेगा?"
+       },
+       "options": [
+        {
+         "en": "It turns pink",
+         "hi": "गुलाबी हो जाएगा"
+        },
+        {
+         "en": "It stays colourless",
+         "hi": "रंगहीन रहेगा"
+        },
+        {
+         "en": "It turns red",
+         "hi": "लाल हो जाएगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sodium hydroxide is a base, and phenolphthalein is pink in a base.",
+        "hi": "सोडियम हाइड्रॉक्साइड क्षारक है, और फ़ीनॉल्फ़्थेलिन क्षारक में गुलाबी होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It stays colourless in an acid or neutral liquid, not in a base.",
+         "hi": "यह अम्ल या उदासीन द्रव में रंगहीन रहता है, क्षारक में नहीं।"
+        },
+        {
+         "en": "Red is the colour of blue litmus in an acid, not of phenolphthalein.",
+         "hi": "लाल रंग अम्ल में नीले लिटमस का होता है, फ़ीनॉल्फ़्थेलिन का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, pour sodium hydroxide and add phenolphthalein. Clean again and try red litmus and turmeric with the base.",
+      "hi": "आज़माओ: बीकर साफ़ करो, सोडियम हाइड्रॉक्साइड डालो और फ़ीनॉल्फ़्थेलिन मिलाओ। फिर साफ़ करके क्षारक के साथ लाल लिटमस और हल्दी आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch02-carbonate",
+   "topic": "2.1",
+   "template": "beaker",
+   "title": {
+    "en": "Acid and carbonate: the lime water test",
+    "hi": "अम्ल और कार्बोनेट: चूने के पानी की जाँच"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "na2co3",
+     "hcl",
+     "zinc",
+     "chalk"
+    ],
+    "tools": [
+     "limewater",
+     "splint"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:na2co3",
+     "expect": "pick:na2co3",
+     "say": {
+      "en": "Pick up the sodium carbonate solution.",
+      "hi": "सोडियम कार्बोनेट विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:na2co3",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will pour dilute hydrochloric acid into it. What will happen?",
+      "hi": "तुम इसमें तनु हाइड्रोक्लोरिक अम्ल डालोगे। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "fizz",
+       "en": "It fizzes with a gas",
+       "hi": "गैस के साथ झाग उठेगा"
+      },
+      {
+       "id": "ppt",
+       "en": "A yellow solid forms",
+       "hi": "पीला ठोस बनेगा"
+      },
+      {
+       "id": "none",
+       "en": "Nothing happens",
+       "hi": "कुछ नहीं होगा"
+      }
+     ],
+     "answer": "fizz"
+    },
+    {
+     "kind": "do",
+     "target": "pick:hcl",
+     "expect": "pick:hcl",
+     "say": {
+      "en": "Pick up the dilute hydrochloric acid.",
+      "hi": "तनु हाइड्रोक्लोरिक अम्ल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour it in and watch the bubbles.",
+      "hi": "इसे डालो और बुलबुले देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tool:limewater",
+     "expect": "tested:limewater",
+     "say": {
+      "en": "Pass the gas through lime water.",
+      "hi": "गैस को चूने के पानी में से गुज़ारो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The acid and the carbonate made a salt (sodium chloride), water and carbon dioxide gas. Carbon dioxide turns lime water milky because it forms white calcium carbonate. Every carbonate and hydrogencarbonate does this with an acid.",
+      "hi": "अम्ल और कार्बोनेट से एक लवण (सोडियम क्लोराइड), पानी और कार्बन डाइऑक्साइड गैस बनी। कार्बन डाइऑक्साइड चूने के पानी को दूधिया कर देती है, क्योंकि इससे सफ़ेद कैल्शियम कार्बोनेट बनता है। हर कार्बोनेट और हाइड्रोजनकार्बोनेट अम्ल के साथ ऐसा करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which gas turned the lime water milky?",
+        "hi": "किस गैस ने चूने के पानी को दूधिया किया?"
+       },
+       "options": [
+        {
+         "en": "Carbon dioxide",
+         "hi": "कार्बन डाइऑक्साइड"
+        },
+        {
+         "en": "Hydrogen",
+         "hi": "हाइड्रोजन"
+        },
+        {
+         "en": "Oxygen",
+         "hi": "ऑक्सीजन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Carbon dioxide forms insoluble calcium carbonate in lime water.",
+        "hi": "कार्बन डाइऑक्साइड चूने के पानी में अघुलनशील कैल्शियम कार्बोनेट बनाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hydrogen comes when a metal reacts with an acid; it does not affect lime water.",
+         "hi": "हाइड्रोजन तब बनती है जब धातु अम्ल से अभिक्रिया करे; चूने के पानी पर उसका असर नहीं होता।"
+        },
+        {
+         "en": "Oxygen relights a glowing splint but does not turn lime water milky.",
+         "hi": "ऑक्सीजन सुलगती तीली जलाती है, पर चूने के पानी को दूधिया नहीं करती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Zinc is added to dilute hydrochloric acid. How do you test the gas?",
+        "hi": "तनु हाइड्रोक्लोरिक अम्ल में ज़िंक डाला जाता है। गैस की जाँच कैसे करोगे?"
+       },
+       "options": [
+        {
+         "en": "A burning splint makes it pop",
+         "hi": "जलती तीली से पॉप की आवाज़"
+        },
+        {
+         "en": "It turns lime water milky",
+         "hi": "चूने का पानी दूधिया होगा"
+        },
+        {
+         "en": "It relights a glowing splint",
+         "hi": "सुलगती तीली फिर जल उठेगी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A metal with an acid gives hydrogen, which burns with a pop.",
+        "hi": "धातु और अम्ल से हाइड्रोजन बनती है, जो पॉप की आवाज़ से जलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lime water tests for carbon dioxide; zinc has no carbon.",
+         "hi": "चूने का पानी कार्बन डाइऑक्साइड की जाँच है; ज़िंक में कार्बन नहीं है।"
+        },
+        {
+         "en": "Relighting a glowing splint is the test for oxygen.",
+         "hi": "सुलगती तीली का जलना ऑक्सीजन की जाँच है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, put in zinc, pour the acid and use the splint. Then try chalk (calcium carbonate) with the acid and lime water.",
+      "hi": "आज़माओ: बीकर साफ़ करो, ज़िंक डालो, अम्ल डालो और तीली से जाँचो। फिर चॉक (कैल्शियम कार्बोनेट) को अम्ल और चूने के पानी के साथ आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch02-neutralise",
+   "topic": "2.1",
+   "template": "beaker",
+   "title": {
+    "en": "Acid meets base: neutralisation",
+    "hi": "अम्ल और क्षारक: उदासीनीकरण"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     "hcl",
+     "naoh"
+    ],
+    "start": [
+     "naoh",
+     "phenol"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:hcl",
+     "expect": "pick:hcl",
+     "say": {
+      "en": "The beaker has sodium hydroxide with phenolphthalein, so it is pink. Pick up the dilute hydrochloric acid.",
+      "hi": "बीकर में फ़ीनॉल्फ़्थेलिन के साथ सोडियम हाइड्रॉक्साइड है, इसलिए वह गुलाबी है। तनु हाइड्रोक्लोरिक अम्ल उठाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will pour the acid into the pink base. What will happen to the pink colour?",
+      "hi": "तुम गुलाबी क्षारक में अम्ल डालोगे। गुलाबी रंग का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "gone",
+       "en": "It disappears",
+       "hi": "गायब हो जाएगा"
+      },
+      {
+       "id": "dark",
+       "en": "It gets darker",
+       "hi": "और गहरा हो जाएगा"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वैसा ही रहेगा"
+      }
+     ],
+     "answer": "gone"
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour the acid into the beaker.",
+      "hi": "अम्ल को बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The acid and the base cancelled each other out. They made a salt (sodium chloride) and water, and a little heat. This is neutralisation. With no base left, phenolphthalein turned colourless.",
+      "hi": "अम्ल और क्षारक ने एक-दूसरे का असर खत्म कर दिया। इनसे एक लवण (सोडियम क्लोराइड), पानी और थोड़ी ऊष्मा बनी। इसे उदासीनीकरण कहते हैं। क्षारक न बचने से फ़ीनॉल्फ़्थेलिन रंगहीन हो गया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Acid + base gives…",
+        "hi": "अम्ल + क्षारक से बनता है…"
+       },
+       "options": [
+        {
+         "en": "Salt and water",
+         "hi": "लवण और पानी"
+        },
+        {
+         "en": "Salt and hydrogen",
+         "hi": "लवण और हाइड्रोजन"
+        },
+        {
+         "en": "Only a gas",
+         "hi": "केवल एक गैस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "NaOH + HCl → NaCl + H2O: salt and water.",
+        "hi": "NaOH + HCl → NaCl + H2O: लवण और पानी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Salt and hydrogen come from an acid and a metal, not a base.",
+         "hi": "लवण और हाइड्रोजन अम्ल और धातु से बनते हैं, क्षारक से नहीं।"
+        },
+        {
+         "en": "No bubbles formed; the products stayed in the liquid.",
+         "hi": "कोई बुलबुले नहीं बने; उत्पाद द्रव में ही रहे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does an antacid such as milk of magnesia help with acidity?",
+        "hi": "मिल्क ऑफ़ मैग्नीशिया जैसा प्रतिअम्ल अम्लता में क्यों मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "It is a mild base that neutralises extra stomach acid",
+         "hi": "यह हल्का क्षारक है जो पेट के अतिरिक्त अम्ल को उदासीन करता है"
+        },
+        {
+         "en": "It is an acid that cools the stomach",
+         "hi": "यह अम्ल है जो पेट को ठंडा करता है"
+        },
+        {
+         "en": "It is a salt that adds more acid",
+         "hi": "यह लवण है जो और अम्ल बढ़ाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Magnesium hydroxide is a weak base; it neutralises the extra hydrochloric acid in the stomach.",
+        "hi": "मैग्नीशियम हाइड्रॉक्साइड दुर्बल क्षारक है; यह पेट के अतिरिक्त हाइड्रोक्लोरिक अम्ल को उदासीन करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding an acid would make the acidity worse.",
+         "hi": "अम्ल डालने से अम्लता और बढ़ेगी।"
+        },
+        {
+         "en": "More acid is the problem, not the cure.",
+         "hi": "अधिक अम्ल ही तो समस्या है, इलाज नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: pick up the sodium hydroxide and pour it in. Does the pink come back? Why?",
+      "hi": "आज़माओ: सोडियम हाइड्रॉक्साइड उठाकर डालो। क्या गुलाबी रंग लौट आता है? क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch02-metal-oxide",
+   "topic": "2.1",
+   "template": "beaker",
+   "title": {
+    "en": "A metal oxide in acid",
+    "hi": "अम्ल में धातु ऑक्साइड"
+   },
+   "minutes": 4,
+   "level": "stretch",
+   "config": {
+    "items": [
+     "cuo",
+     "hcl",
+     "h2so4"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:cuo",
+     "expect": "pick:cuo",
+     "say": {
+      "en": "Pick up the black copper oxide powder.",
+      "hi": "काला कॉपर ऑक्साइड चूर्ण उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:cuo",
+     "say": {
+      "en": "Put it in the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will dilute acid do to the black copper oxide?",
+      "hi": "तनु अम्ल काले कॉपर ऑक्साइड के साथ क्या करेगा?"
+     },
+     "options": [
+      {
+       "id": "dissolve",
+       "en": "Dissolve it into a blue-green liquid",
+       "hi": "इसे घोलकर नीला-हरा द्रव बनाएगा"
+      },
+      {
+       "id": "fizz",
+       "en": "Make it fizz with hydrogen",
+       "hi": "हाइड्रोजन के साथ झाग बनाएगा"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "dissolve"
+    },
+    {
+     "kind": "do",
+     "target": "pick:hcl",
+     "expect": "pick:hcl",
+     "say": {
+      "en": "Pick up the dilute hydrochloric acid.",
+      "hi": "तनु हाइड्रोक्लोरिक अम्ल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour it in and stir with your eyes on the colour.",
+      "hi": "इसे डालो और रंग पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The black powder dissolved and the liquid turned blue-green: copper chloride and water formed. A metal oxide reacts with an acid just as a base does, giving a salt and water, so metal oxides are basic oxides. Non-metal oxides such as carbon dioxide react with bases, so they are acidic oxides.",
+      "hi": "काला चूर्ण घुल गया और द्रव नीला-हरा हो गया: कॉपर क्लोराइड और पानी बने। धातु ऑक्साइड अम्ल से वैसे ही अभिक्रिया करता है जैसे क्षारक, और लवण व पानी बनाता है; इसलिए धातु ऑक्साइड क्षारकीय होते हैं। कार्बन डाइऑक्साइड जैसे अधातु ऑक्साइड क्षारकों से अभिक्रिया करते हैं, इसलिए वे अम्लीय होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Metal oxide + acid gives…",
+        "hi": "धातु ऑक्साइड + अम्ल से बनता है…"
+       },
+       "options": [
+        {
+         "en": "Salt and water",
+         "hi": "लवण और पानी"
+        },
+        {
+         "en": "Salt and hydrogen",
+         "hi": "लवण और हाइड्रोजन"
+        },
+        {
+         "en": "Only water",
+         "hi": "केवल पानी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "CuO + 2HCl → CuCl2 + H2O.",
+        "hi": "CuO + 2HCl → CuCl2 + H2O।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No bubbles formed: hydrogen comes from a metal, not a metal oxide.",
+         "hi": "बुलबुले नहीं बने: हाइड्रोजन धातु से आती है, धातु ऑक्साइड से नहीं।"
+        },
+        {
+         "en": "The blue-green colour shows a copper salt formed as well.",
+         "hi": "नीला-हरा रंग बताता है कि कॉपर का लवण भी बना।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Carbon dioxide reacts with lime water, which is a base. So carbon dioxide is…",
+        "hi": "कार्बन डाइऑक्साइड चूने के पानी (एक क्षारक) से अभिक्रिया करती है। तो कार्बन डाइऑक्साइड है…"
+       },
+       "options": [
+        {
+         "en": "An acidic oxide",
+         "hi": "अम्लीय ऑक्साइड"
+        },
+        {
+         "en": "A basic oxide",
+         "hi": "क्षारकीय ऑक्साइड"
+        },
+        {
+         "en": "A metal",
+         "hi": "एक धातु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Oxides that react with bases are acidic; carbon is a non-metal.",
+        "hi": "जो ऑक्साइड क्षारक से अभिक्रिया करें, वे अम्लीय हैं; कार्बन अधातु है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A basic oxide reacts with acids, like copper oxide did.",
+         "hi": "क्षारकीय ऑक्साइड अम्ल से अभिक्रिया करता है, जैसे कॉपर ऑक्साइड ने किया।"
+        },
+        {
+         "en": "Carbon dioxide is a gas made of carbon and oxygen, both non-metals.",
+         "hi": "कार्बन डाइऑक्साइड कार्बन और ऑक्सीजन से बनी गैस है, दोनों अधातु हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker and try copper oxide with dilute sulphuric acid. Which salt forms this time?",
+      "hi": "आज़माओ: बीकर साफ़ करो और कॉपर ऑक्साइड को तनु सल्फ़्यूरिक अम्ल के साथ आज़माओ। इस बार कौन-सा लवण बनता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch02-conduct",
+   "topic": "2.2",
+   "template": "beaker",
+   "title": {
+    "en": "Acids in water carry current",
+    "hi": "पानी में अम्ल धारा ले जाते हैं"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     "hcl",
+     "sugarsol",
+     "alcohol"
+    ],
+    "tools": [
+     "electrolysis"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:hcl",
+     "expect": "pick:hcl",
+     "say": {
+      "en": "Pick up the dilute hydrochloric acid.",
+      "hi": "तनु हाइड्रोक्लोरिक अम्ल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:hcl",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Will the bulb glow when current is passed through the acid?",
+      "hi": "जब अम्ल में धारा भेजी जाएगी, क्या बल्ब जलेगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it glows",
+       "hi": "हाँ, जलेगा"
+      },
+      {
+       "id": "no",
+       "en": "No, it stays dark",
+       "hi": "नहीं, बुझा रहेगा"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "tool:electrolysis",
+     "expect": "reacted",
+     "say": {
+      "en": "Tap the electrolysis cell to pass the current.",
+      "hi": "धारा भेजने के लिए विद्युत-अपघटन सेल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The bulb glowed: the acid solution conducts electricity. In water an acid gives hydrogen ions, H+ (they join water as H3O+). Moving ions carry the current. These H+ ions are why all acids behave alike. Bases give hydroxide ions, OH-, in water.",
+      "hi": "बल्ब जल गया: अम्ल का विलयन विद्युत का चालन करता है। पानी में अम्ल हाइड्रोजन आयन, H+, देता है (ये पानी से जुड़कर H3O+ बनते हैं)। चलते हुए आयन धारा ले जाते हैं। इन्हीं H+ आयनों के कारण सभी अम्ल एक जैसा व्यवहार करते हैं। क्षारक पानी में हाइड्रॉक्साइड आयन, OH-, देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Glucose and alcohol contain hydrogen too. Why are they not acids?",
+        "hi": "ग्लूकोज़ और ऐल्कोहॉल में भी हाइड्रोजन है। ये अम्ल क्यों नहीं हैं?"
+       },
+       "options": [
+        {
+         "en": "They do not give H+ ions in water",
+         "hi": "ये पानी में H+ आयन नहीं देते"
+        },
+        {
+         "en": "They have too little hydrogen",
+         "hi": "इनमें हाइड्रोजन बहुत कम है"
+        },
+        {
+         "en": "They are always solids",
+         "hi": "ये हमेशा ठोस होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An acid is a substance that gives H+ ions in water. Glucose and alcohol do not, so their solutions do not conduct.",
+        "hi": "अम्ल वह है जो पानी में H+ आयन दे। ग्लूकोज़ और ऐल्कोहॉल नहीं देते, इसलिए इनके विलयन चालन नहीं करते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Glucose has twelve hydrogen atoms, more than HCl. The amount is not the point; giving H+ is.",
+         "hi": "ग्लूकोज़ में बारह हाइड्रोजन परमाणु हैं, HCl से ज़्यादा। मात्रा नहीं, H+ देना मायने रखता है।"
+        },
+        {
+         "en": "Alcohol is a liquid, and it is still not an acid.",
+         "hi": "ऐल्कोहॉल द्रव है, फिर भी अम्ल नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which ion do all bases give in water?",
+        "hi": "सभी क्षारक पानी में कौन-सा आयन देते हैं?"
+       },
+       "options": [
+        "OH-",
+        "H+",
+        "Cl-"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Bases give hydroxide ions, OH-, in water.",
+        "hi": "क्षारक पानी में हाइड्रॉक्साइड आयन, OH-, देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "H+ ions come from acids.",
+         "hi": "H+ आयन अम्लों से आते हैं।"
+        },
+        {
+         "en": "Cl- comes from hydrochloric acid or chloride salts, not from every base.",
+         "hi": "Cl- हाइड्रोक्लोरिक अम्ल या क्लोराइड लवणों से आता है, हर क्षारक से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, pour sugar solution or alcohol and pass the current. Does the bulb glow?",
+      "hi": "आज़माओ: बीकर साफ़ करो, चीनी का विलयन या ऐल्कोहॉल डालो और धारा भेजो। क्या बल्ब जलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch02-ph-scale",
+   "topic": "2.3",
+   "template": "beaker",
+   "title": {
+    "en": "The pH scale",
+    "hi": "pH पैमाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "lemon",
+     "soapsol",
+     "saltsol",
+     "naoh",
+     "vinegar",
+     "universal"
+    ],
+    "tools": [
+     "ph"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:lemon",
+     "expect": "pick:lemon",
+     "say": {
+      "en": "Pick up the lemon juice.",
+      "hi": "नींबू का रस उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:lemon",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Lemon juice tastes sour. What will the pH meter show?",
+      "hi": "नींबू का रस खट्टा होता है। pH मीटर क्या दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "low",
+       "en": "Less than 7",
+       "hi": "7 से कम"
+      },
+      {
+       "id": "seven",
+       "en": "Exactly 7",
+       "hi": "ठीक 7"
+      },
+      {
+       "id": "high",
+       "en": "More than 7",
+       "hi": "7 से ज़्यादा"
+      }
+     ],
+     "answer": "low"
+    },
+    {
+     "kind": "do",
+     "target": "tool:ph",
+     "expect": "tested:ph",
+     "say": {
+      "en": "Dip the pH meter into the juice.",
+      "hi": "pH मीटर को रस में डुबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The meter read about 2: lemon juice is acidic. On the pH scale, 7 is neutral, below 7 is acidic and above 7 is basic. The lower the number, the more H+ ions and the stronger the acid. Universal indicator shows the same with colours, from red for strong acids to violet for strong bases.",
+      "hi": "मीटर ने लगभग 2 दिखाया: नींबू का रस अम्लीय है। pH पैमाने पर 7 उदासीन है, 7 से कम अम्लीय और 7 से ज़्यादा क्षारकीय। संख्या जितनी कम, H+ आयन उतने ज़्यादा और अम्ल उतना प्रबल। सार्वत्रिक सूचक यही बात रंगों से बताता है: प्रबल अम्ल के लिए लाल से लेकर प्रबल क्षारक के लिए बैंगनी तक।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Soap solution reads pH 10. It is…",
+        "hi": "साबुन के विलयन का pH 10 है। यह है…"
+       },
+       "options": [
+        {
+         "en": "Basic",
+         "hi": "क्षारकीय"
+        },
+        {
+         "en": "Acidic",
+         "hi": "अम्लीय"
+        },
+        {
+         "en": "Neutral",
+         "hi": "उदासीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Above 7 means basic.",
+        "hi": "7 से ऊपर का मतलब क्षारकीय।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Acidic solutions are below 7.",
+         "hi": "अम्लीय विलयन 7 से नीचे होते हैं।"
+        },
+        {
+         "en": "Neutral is exactly 7, like pure water or salt water.",
+         "hi": "उदासीन ठीक 7 होता है, जैसे शुद्ध या नमक वाला पानी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Tooth decay starts when the pH in the mouth falls below about…",
+        "hi": "मुँह का pH लगभग कितने से नीचे जाने पर दाँत सड़ने लगते हैं?"
+       },
+       "options": [
+        "5.5",
+        "9",
+        "7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Below about 5.5, acids made by bacteria from sugary food start to wear away tooth enamel. Brushing with basic toothpaste helps.",
+        "hi": "लगभग 5.5 से नीचे, मीठे भोजन से बैक्टीरिया द्वारा बने अम्ल दाँतों के इनेमल को घिसने लगते हैं। क्षारकीय टूथपेस्ट से ब्रश करना मदद करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "pH 9 is basic; bases do not eat away enamel like acids do.",
+         "hi": "pH 9 क्षारकीय है; क्षारक इनेमल को अम्ल की तरह नहीं घिसते।"
+        },
+        {
+         "en": "pH 7 is neutral and safe for teeth.",
+         "hi": "pH 7 उदासीन है और दाँतों के लिए सुरक्षित है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker and measure soap solution, salt solution, vinegar and sodium hydroxide. Line them up from the lowest pH to the highest.",
+      "hi": "आज़माओ: बीकर साफ़ करो और साबुन का विलयन, नमक का विलयन, सिरका और सोडियम हाइड्रॉक्साइड मापो। इन्हें सबसे कम pH से सबसे ज़्यादा pH तक क्रम में लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch02-salt-ph",
+   "topic": "2.4",
+   "template": "beaker",
+   "title": {
+    "en": "Are all salts neutral?",
+    "hi": "क्या सभी लवण उदासीन होते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "na2co3",
+     "nh4cl",
+     "saltsol",
+     "water"
+    ],
+    "tools": [
+     "ph"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:na2co3",
+     "expect": "pick:na2co3",
+     "say": {
+      "en": "Pick up the sodium carbonate solution. Sodium carbonate is a salt.",
+      "hi": "सोडियम कार्बोनेट विलयन उठाओ। सोडियम कार्बोनेट एक लवण है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:na2co3",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Will this salt solution be neutral (pH 7)?",
+      "hi": "क्या इस लवण का विलयन उदासीन (pH 7) होगा?"
+     },
+     "options": [
+      {
+       "id": "basic",
+       "en": "No, it will be basic",
+       "hi": "नहीं, यह क्षारकीय होगा"
+      },
+      {
+       "id": "neutral",
+       "en": "Yes, neutral",
+       "hi": "हाँ, उदासीन"
+      },
+      {
+       "id": "acidic",
+       "en": "No, it will be acidic",
+       "hi": "नहीं, यह अम्लीय होगा"
+      }
+     ],
+     "answer": "basic"
+    },
+    {
+     "kind": "do",
+     "target": "tool:ph",
+     "expect": "tested:ph",
+     "say": {
+      "en": "Measure it with the pH meter.",
+      "hi": "pH मीटर से इसे मापो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sodium carbonate read about pH 11: it is basic. It comes from a strong base (sodium hydroxide) and a weak acid (carbonic acid). A salt of a strong acid and a strong base, like common salt, is neutral. A salt of a strong acid and a weak base, like ammonium chloride, is acidic.",
+      "hi": "सोडियम कार्बोनेट का pH लगभग 11 आया: यह क्षारकीय है। यह प्रबल क्षारक (सोडियम हाइड्रॉक्साइड) और दुर्बल अम्ल (कार्बोनिक अम्ल) से बनता है। प्रबल अम्ल और प्रबल क्षारक का लवण, जैसे साधारण नमक, उदासीन होता है। प्रबल अम्ल और दुर्बल क्षारक का लवण, जैसे अमोनियम क्लोराइड, अम्लीय होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Common salt comes from HCl and NaOH. Its pH in water is about…",
+        "hi": "साधारण नमक HCl और NaOH से बनता है। पानी में इसका pH लगभग है…"
+       },
+       "options": [
+        "7",
+        "3",
+        "11"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Strong acid + strong base gives a neutral salt.",
+        "hi": "प्रबल अम्ल + प्रबल क्षारक से उदासीन लवण बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "pH 3 would need a weak base in the salt, like ammonium chloride.",
+         "hi": "pH 3 के लिए लवण में दुर्बल क्षारक चाहिए, जैसे अमोनियम क्लोराइड।"
+        },
+        {
+         "en": "pH 11 would need a weak acid in the salt, like sodium carbonate.",
+         "hi": "pH 11 के लिए लवण में दुर्बल अम्ल चाहिए, जैसे सोडियम कार्बोनेट।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Ammonium chloride comes from a strong acid and a weak base. Its solution is…",
+        "hi": "अमोनियम क्लोराइड प्रबल अम्ल और दुर्बल क्षारक से बनता है। इसका विलयन है…"
+       },
+       "options": [
+        {
+         "en": "Acidic",
+         "hi": "अम्लीय"
+        },
+        {
+         "en": "Basic",
+         "hi": "क्षारकीय"
+        },
+        {
+         "en": "Neutral",
+         "hi": "उदासीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The strong partner wins: here the acid is strong, so the solution is acidic.",
+        "hi": "प्रबल साथी जीतता है: यहाँ अम्ल प्रबल है, इसलिए विलयन अम्लीय है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Basic salts come from a strong base and a weak acid.",
+         "hi": "क्षारकीय लवण प्रबल क्षारक और दुर्बल अम्ल से बनते हैं।"
+        },
+        {
+         "en": "Neutral salts need both partners strong.",
+         "hi": "उदासीन लवण के लिए दोनों साथी प्रबल होने चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, dissolve ammonium chloride in water and measure the pH. Then try the salt solution.",
+      "hi": "आज़माओ: बीकर साफ़ करो, अमोनियम क्लोराइड को पानी में घोलो और pH मापो। फिर नमक का विलयन आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch02-common-salt",
+   "topic": "2.4",
+   "template": "beaker",
+   "title": {
+    "en": "Chemicals from common salt",
+    "hi": "साधारण नमक से रसायन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "saltsol",
+     "soda"
+    ],
+    "tools": [
+     "electrolysis",
+     "lamp",
+     "limewater"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:saltsol",
+     "expect": "pick:saltsol",
+     "say": {
+      "en": "Pick up the salt solution (brine).",
+      "hi": "नमक का विलयन (लवण जल) उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:saltsol",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Electricity will be passed through the brine. What do you expect to get?",
+      "hi": "लवण जल में विद्युत भेजी जाएगी। तुम्हें क्या मिलने की आशा है?"
+     },
+     "options": [
+      {
+       "id": "three",
+       "en": "Chlorine, hydrogen and sodium hydroxide",
+       "hi": "क्लोरीन, हाइड्रोजन और सोडियम हाइड्रॉक्साइड"
+      },
+      {
+       "id": "two",
+       "en": "Only oxygen and hydrogen",
+       "hi": "केवल ऑक्सीजन और हाइड्रोजन"
+      },
+      {
+       "id": "none",
+       "en": "Nothing; salt water does not change",
+       "hi": "कुछ नहीं; नमक का पानी नहीं बदलता"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "tool:electrolysis",
+     "expect": "reacted",
+     "say": {
+      "en": "Tap the electrolysis cell to pass the current.",
+      "hi": "धारा भेजने के लिए विद्युत-अपघटन सेल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Hydrogen came off at the negative electrode and chlorine at the positive one, and sodium hydroxide was left in the liquid. This is the chlor-alkali process. From common salt we get chlorine (for bleaching powder and clean water), hydrogen (for fuels and ammonia) and sodium hydroxide (for soaps and paper).",
+      "hi": "ऋण इलेक्ट्रोड पर हाइड्रोजन और धन इलेक्ट्रोड पर क्लोरीन निकली, और द्रव में सोडियम हाइड्रॉक्साइड बचा। इसे क्लोर-क्षार प्रक्रिया कहते हैं। साधारण नमक से हमें क्लोरीन (विरंजक चूर्ण और साफ़ पानी के लिए), हाइड्रोजन (ईंधन और अमोनिया के लिए) और सोडियम हाइड्रॉक्साइड (साबुन और कागज़ के लिए) मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which product of brine is used to make bleaching powder?",
+        "hi": "लवण जल के किस उत्पाद से विरंजक चूर्ण बनता है?"
+       },
+       "options": [
+        {
+         "en": "Chlorine",
+         "hi": "क्लोरीन"
+        },
+        {
+         "en": "Hydrogen",
+         "hi": "हाइड्रोजन"
+        },
+        {
+         "en": "Oxygen",
+         "hi": "ऑक्सीजन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chlorine is passed over dry slaked lime to make bleaching powder.",
+        "hi": "सूखे बुझे चूने पर क्लोरीन गुज़ारकर विरंजक चूर्ण बनाया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hydrogen is used for fuels and fertilisers, not bleach.",
+         "hi": "हाइड्रोजन ईंधन और उर्वरकों में काम आती है, विरंजक में नहीं।"
+        },
+        {
+         "en": "Brine gives chlorine at the positive electrode, not oxygen.",
+         "hi": "लवण जल धन इलेक्ट्रोड पर ऑक्सीजन नहीं, क्लोरीन देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Baking soda is heated in a cake. Which gas makes the cake rise?",
+        "hi": "केक में खाने का सोडा गर्म होता है। कौन-सी गैस केक को फुलाती है?"
+       },
+       "options": [
+        {
+         "en": "Carbon dioxide",
+         "hi": "कार्बन डाइऑक्साइड"
+        },
+        {
+         "en": "Chlorine",
+         "hi": "क्लोरीन"
+        },
+        {
+         "en": "Hydrogen",
+         "hi": "हाइड्रोजन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sodium hydrogencarbonate breaks down on heating and gives carbon dioxide bubbles.",
+        "hi": "सोडियम हाइड्रोजनकार्बोनेट गर्म होने पर टूटकर कार्बन डाइऑक्साइड के बुलबुले देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Baking soda has no chlorine in it.",
+         "hi": "खाने के सोडे में क्लोरीन नहीं होती।"
+        },
+        {
+         "en": "Hydrogen is not given off by baking soda.",
+         "hi": "खाने का सोडा हाइड्रोजन नहीं देता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, put in baking soda, heat it and test the gas with lime water.",
+      "hi": "आज़माओ: बीकर साफ़ करो, खाने का सोडा डालो, गर्म करो और गैस को चूने के पानी से जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch02-crystal-water",
+   "topic": "2.4",
+   "template": "beaker",
+   "title": {
+    "en": "Are salt crystals really dry?",
+    "hi": "क्या लवण के क्रिस्टल सच में सूखे हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "cuso4c",
+     "water"
+    ],
+    "tools": [
+     "lamp"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:cuso4c",
+     "expect": "pick:cuso4c",
+     "say": {
+      "en": "Pick up the blue copper sulphate crystals.",
+      "hi": "नीले कॉपर सल्फ़ेट के क्रिस्टल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:cuso4c",
+     "say": {
+      "en": "Put them in the dry beaker.",
+      "hi": "इन्हें सूखे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The crystals look dry. What happens when you heat them?",
+      "hi": "क्रिस्टल सूखे दिखते हैं। गर्म करने पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "white",
+       "en": "They turn white and drops of water appear",
+       "hi": "वे सफ़ेद होंगे और पानी की बूँदें दिखेंगी"
+      },
+      {
+       "id": "black",
+       "en": "They turn black",
+       "hi": "वे काले हो जाएँगे"
+      },
+      {
+       "id": "same",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "white"
+    },
+    {
+     "kind": "do",
+     "target": "tool:lamp",
+     "expect": "reacted",
+     "say": {
+      "en": "Heat them with the spirit lamp.",
+      "hi": "स्पिरिट लैंप से इन्हें गर्म करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:water",
+     "expect": "pick:water",
+     "say": {
+      "en": "Now pick up the water.",
+      "hi": "अब पानी उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Add a little water to the white powder.",
+      "hi": "सफ़ेद चूर्ण में थोड़ा पानी डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The blue crystals had water locked inside them, called water of crystallisation: five water molecules for each CuSO4. Heat drove it out, so the salt turned white. Adding water brought the blue colour back. Washing soda and gypsum also have water of crystallisation; plaster of Paris is gypsum that has lost most of it.",
+      "hi": "नीले क्रिस्टलों के अंदर पानी बंद था, जिसे क्रिस्टलन जल कहते हैं: हर CuSO4 के साथ पानी के पाँच अणु। ऊष्मा ने इसे बाहर निकाल दिया, इसलिए लवण सफ़ेद हो गया। पानी डालने पर नीला रंग लौट आया। धोने के सोडे और जिप्सम में भी क्रिस्टलन जल होता है; प्लास्टर ऑफ़ पेरिस वह जिप्सम है जिसका अधिकतर जल निकल चुका है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did the crystals turn white on heating?",
+        "hi": "गर्म करने पर क्रिस्टल सफ़ेद क्यों हो गए?"
+       },
+       "options": [
+        {
+         "en": "They lost their water of crystallisation",
+         "hi": "उन्होंने अपना क्रिस्टलन जल खो दिया"
+        },
+        {
+         "en": "They burnt to ash",
+         "hi": "वे जलकर राख हो गए"
+        },
+        {
+         "en": "They turned into copper metal",
+         "hi": "वे ताँबा धातु बन गए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The colour depends on the water inside; adding water made them blue again.",
+        "hi": "रंग अंदर के पानी पर निर्भर है; पानी डालने पर वे फिर नीले हो गए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ash could not turn blue again with water.",
+         "hi": "राख पानी डालने से फिर नीली नहीं हो सकती।"
+        },
+        {
+         "en": "Copper metal is reddish-brown, and the white powder dissolved back to blue.",
+         "hi": "ताँबा धातु लाल-भूरी होती है, और सफ़ेद चूर्ण फिर नीला हो गया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Plaster of Paris sets hard when mixed with water. What does it turn into?",
+        "hi": "प्लास्टर ऑफ़ पेरिस पानी मिलाने पर सख़्त हो जाता है। यह क्या बन जाता है?"
+       },
+       "options": [
+        {
+         "en": "Gypsum",
+         "hi": "जिप्सम"
+        },
+        {
+         "en": "Washing soda",
+         "hi": "धोने का सोडा"
+        },
+        {
+         "en": "Baking soda",
+         "hi": "खाने का सोडा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It takes back water and becomes gypsum, CaSO4·2H2O, a hard solid.",
+        "hi": "यह पानी वापस लेकर जिप्सम, CaSO4·2H2O, बन जाता है, जो सख़्त ठोस है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Washing soda is a sodium salt; plaster of Paris is a calcium salt.",
+         "hi": "धोने का सोडा सोडियम का लवण है; प्लास्टर ऑफ़ पेरिस कैल्शियम का।"
+        },
+        {
+         "en": "Baking soda is sodium hydrogencarbonate, a different compound.",
+         "hi": "खाने का सोडा सोडियम हाइड्रोजनकार्बोनेट है, एक अलग यौगिक।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, heat the blue crystals again and watch the drops of water form on the cool glass.",
+      "hi": "आज़माओ: बीकर साफ़ करो, नीले क्रिस्टल फिर गर्म करो और ठंडे काँच पर बनती पानी की बूँदें देखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Hook: acids and bases at home",
+   "shows": "An Indian kitchen counter with a cut lemon, a bowl of curd, tamarind, a bottle of vinegar, a box of baking soda and a bar of soap",
+   "view": "From slightly above, warm daylight, uncluttered",
+   "right": "Real foods; no labels on containers",
+   "avoid": "Brands"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "2.1.1",
+   "use": "Indicators",
+   "shows": "Four test tubes in a stand: blue litmus turning red in acid, red litmus turning blue in base, phenolphthalein colourless in acid, pink in base",
+   "view": "Front view, white background",
+   "right": "Litmus red and blue; phenolphthalein pink only in the base",
+   "avoid": "Wrong colours"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "2.3.1",
+   "use": "pH in nature: ant and nettle stings",
+   "shows": "A red ant on a green leaf, extreme close-up",
+   "view": "Macro, side view, blurred green background",
+   "right": "A real red weaver or fire ant",
+   "avoid": "Insects on skin"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.3.1",
+   "use": "pH of soil",
+   "shows": "A farmer in an Indian field holding a soil sample and a small soil-testing kit",
+   "view": "Medium shot, morning light, crops in the background",
+   "right": "Realistic test kit with tubes; adult farmer",
+   "avoid": "Close-up of the face; brands"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "2.3",
+   "use": "pH scale base",
+   "shows": "A horizontal band of the universal indicator colours from strongly acidic to strongly basic, 15 equal blocks",
+   "view": "Flat, front-on, white background",
+   "right": "Red, orange, yellow, green at the middle (neutral), blue, indigo, violet, in that order",
+   "avoid": "Numbers and words (the app adds them)"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "2.4.4",
+   "use": "Water of crystallisation",
+   "shows": "Blue copper sulphate crystals in a boiling tube being heated (turning white, water drops on the cooler part of the tube), then the white powder turning blue again when water is added",
+   "view": "Side view, three frames, same framing",
+   "right": "Water droplets near the mouth of the tube; white anhydrous salt",
+   "avoid": "A child heating it"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "2.4.3",
+   "use": "Chemicals from common salt",
+   "shows": "Five separate cut-outs: baking soda powder, washing soda crystals, bleaching powder, plaster of Paris powder, and a plaster of Paris cast (a set plaster mould)",
+   "view": "Each on a small watch glass from slightly above",
+   "right": "Washing soda as clear-white crystals; bleaching powder off-white",
+   "avoid": "Containers with labels"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Where common salt comes from",
+   "shows": "Salt pans in Gujarat with white heaps of salt and salt workers in the distance",
+   "view": "Wide landscape, bright sun",
+   "right": "Rectangular evaporation pans with brine and salt mounds",
+   "avoid": "Identifiable faces"
+  },
+  {
+   "n": 9,
+   "kind": "SEQ",
+   "topic": "2.1.3",
+   "use": "Test for carbon dioxide",
+   "shows": "Gas from a reaction tube bubbling through clear lime water, which turns milky",
+   "view": "Side view, two frames, white background",
+   "right": "Lime water clear, then milky white",
+   "avoid": "Coloured liquids"
+  }
+ ]
+}

@@ -1,0 +1,663 @@
+{
+ "chapter_key": "u.c12.hindi.lhat1.ch03.s1",
+ "class": 12,
+ "subject_id": "hindi",
+ "title": "(क) यह दीप अकेला / (ख) मैंने देखा, एक बूँद",
+ "source": "https://ncert.nic.in/textbook/pdf/lhat1ps.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "यह दीप अकेला: व्यक्ति और समाज",
+   "labs": [
+    "c12-hindi-lhat1-ch03-deep-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "मैंने देखा, एक बूँद: क्षण का अर्थ",
+   "labs": [
+    "c12-hindi-lhat1-ch03-boond-panels"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "प्रतीक: दीप, पंक्ति, सागर और बूँद",
+   "labs": [
+    "c12-hindi-lhat1-ch03-symbols-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "कवि परिचय: अज्ञेय",
+   "labs": [],
+   "why_no_lab": "कवि का परिचय एक छोटे पाठ-टिप्पण की तरह पढ़ने भर के लिए है।"
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-hindi-lhat1-ch03-deep-sort",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "The lamp and the line",
+    "hi": "दीप और पंक्ति"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "deep",
+      "label": {
+       "en": "The lone lamp",
+       "hi": "अकेला दीप"
+      }
+     },
+     {
+      "id": "line",
+      "label": {
+       "en": "The line of lamps",
+       "hi": "दीपों की पंक्ति"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "own",
+      "text": {
+       "en": "Its own love and its own pride",
+       "hi": "अपना स्नेह और अपना गर्व"
+      },
+      "bin": "deep",
+      "why": {
+       "en": "The lamp has its own worth before it joins anyone.",
+       "hi": "दीप का अपना मूल्य जुड़ने से पहले भी होता है।"
+      }
+     },
+     {
+      "id": "alone",
+      "text": {
+       "en": "Burning alone, still precious",
+       "hi": "अकेले जलता हुआ, फिर भी बहुमूल्य"
+      },
+      "bin": "deep",
+      "why": {
+       "en": "The poet honours the individual who burns alone.",
+       "hi": "कवि उस व्यक्ति का सम्मान करता है जो अकेले जलता है।"
+      }
+     },
+     {
+      "id": "unique",
+      "text": {
+       "en": "A flame different from every other",
+       "hi": "हर दूसरे से अलग अपनी लौ"
+      },
+      "bin": "deep",
+      "why": {
+       "en": "Each person has an individual identity.",
+       "hi": "हर व्यक्ति की अपनी अलग पहचान होती है।"
+      }
+     },
+     {
+      "id": "join",
+      "text": {
+       "en": "Joining others to make a big light",
+       "hi": "दूसरों के साथ मिलकर बड़ी रोशनी बनाना"
+      },
+      "bin": "line",
+      "why": {
+       "en": "Many lamps together light up more of the dark.",
+       "hi": "कई दीप मिलकर अँधेरे को अधिक दूर तक मिटाते हैं।"
+      }
+     },
+     {
+      "id": "fight",
+      "text": {
+       "en": "Facing the dark together",
+       "hi": "अँधेरे का मिलकर सामना करना"
+      },
+      "bin": "line",
+      "why": {
+       "en": "The line stands for the society that shares a task.",
+       "hi": "पंक्ति उस समाज का प्रतीक है जो साझा काम करता है।"
+      }
+     },
+     {
+      "id": "use",
+      "text": {
+       "en": "Being useful to everyone",
+       "hi": "सबके काम आना"
+      },
+      "bin": "line",
+      "why": {
+       "en": "A lamp becomes more useful when it joins a line.",
+       "hi": "दीप पंक्ति में मिलकर अधिक उपयोगी बनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:own",
+     "expect": "placed:own",
+     "say": {
+      "en": "Place the card about the lamp's own love and pride.",
+      "hi": "दीप के अपने स्नेह और गर्व वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The poet says the lamp should join the line. Why?",
+      "hi": "कवि कहता है कि दीप पंक्ति में मिले। क्यों?"
+     },
+     "options": [
+      {
+       "id": "share",
+       "en": "So its light helps everyone",
+       "hi": "ताकि उसकी रोशनी सबके काम आए"
+      },
+      {
+       "id": "lose",
+       "en": "So it loses its flame",
+       "hi": "ताकि उसकी लौ बुझ जाए"
+      }
+     ],
+     "answer": "share"
+    },
+    {
+     "kind": "do",
+     "target": "card:join",
+     "expect": "placed:join",
+     "say": {
+      "en": "Place the card about joining others.",
+      "hi": "दूसरों से जुड़ने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाकी कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The poet does not say the lamp has no value alone. It has love, pride and its own flame. But its light becomes most meaningful when it joins the line. Individual and society need each other.",
+      "hi": "कवि यह नहीं कहता कि दीप अकेले में मूल्यहीन है। उसमें स्नेह, गर्व और अपनी लौ है। पर उसकी रोशनी तब सबसे सार्थक होती है जब वह पंक्ति में मिल जाती है। व्यक्ति और समाज को एक-दूसरे की ज़रूरत है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the line of lamps stand for?",
+        "hi": "दीपों की पंक्ति किसका प्रतीक है?"
+       },
+       "options": [
+        {
+         "en": "Society, people working together",
+         "hi": "समाज, यानी मिलकर काम करते लोग"
+        },
+        {
+         "en": "Darkness",
+         "hi": "अँधेरा"
+        },
+        {
+         "en": "The sea",
+         "hi": "सागर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The line is many lamps together, which means society.",
+        "hi": "पंक्ति कई दीपों का साथ है, यानी समाज।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The dark is what the lamps fight; it is not the line.",
+         "hi": "अँधेरा वह है जिससे दीप लड़ते हैं; वह पंक्ति नहीं है।"
+        },
+        {
+         "en": "The sea belongs to the other poem, with the drop.",
+         "hi": "सागर दूसरी कविता में बूँद के साथ आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one thing you do alone that is yours, and one thing you do with others that is better together.",
+      "hi": "अपना एक काम बताओ जो तुम अकेले करते हो और एक काम जो सबके साथ करना बेहतर है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhat1-ch03-boond-panels",
+   "topic": "3.2",
+   "template": "reader",
+   "title": {
+    "en": "A drop at sunset",
+    "hi": "सूर्यास्त में एक बूँद"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "panels",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "A drop at sunset",
+      "hi": "सूर्यास्त में एक बूँद"
+     },
+     "lines": [
+      "शाम का समय है और समुद्र की लहरें किनारे पर उठ-गिर रही हैं।",
+      "अचानक सागर से एक बूँद उछलकर हवा में आ जाती है।",
+      "डूबते सूरज की लाली उस पर पड़ती है और वह पल भर के लिए सोने-सी चमक उठती है।",
+      "कवि उस चमक को देखता है और उसके मन में एक गहरी बात उतर जाती है।",
+      "बूँद फिर सागर में मिल जाती है, पर उसका वह क्षण खो नहीं गया।",
+      "कवि को लगता है कि छोटा जीवन भी अपने क्षण में सार्थक हो सकता है।"
+     ]
+    },
+    "question": {
+     "q": {
+      "en": "What does the poet learn from the shining drop?",
+      "hi": "चमकती बूँद से कवि क्या सीखता है?"
+     },
+     "options": [
+      {
+       "en": "Even a brief moment of life can be full of meaning and beauty",
+       "hi": "जीवन का एक छोटा क्षण भी अर्थ और सुंदरता से भरा हो सकता है"
+      },
+      {
+       "en": "A drop is useless without the sea",
+       "hi": "बूँद सागर के बिना बेकार है"
+      },
+      {
+       "en": "The sun is bigger than the sea",
+       "hi": "सूरज सागर से बड़ा है"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "The drop shines for a moment and that moment is not wasted.",
+      "hi": "बूँद पल भर चमकती है और वह पल व्यर्थ नहीं जाता।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:1",
+     "expect": "line:1",
+     "say": {
+      "en": "Tap the second picture to see the drop leap up.",
+      "hi": "दूसरे चित्र पर टैप करो और बूँद को उछलते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play to watch the sunset moment.",
+      "hi": "सूर्यास्त का क्षण देखने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will happen when the sun's red light falls on the drop?",
+      "hi": "जब सूरज की लाली बूँद पर पड़ेगी तो क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "shine",
+       "en": "It will glow like gold",
+       "hi": "वह सोने-सी चमक उठेगी"
+      },
+      {
+       "id": "dry",
+       "en": "It will dry up at once",
+       "hi": "वह तुरंत सूख जाएगी"
+      }
+     ],
+     "answer": "shine"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer what the poet learns.",
+      "hi": "उत्तर दो कि कवि क्या सीखता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The drop is small and its time is short. But at the moment the sunset touches it, it shines. The poet sees that a short life, lived in full light, has its own worth, even though the drop returns to the sea.",
+      "hi": "बूँद छोटी है और उसका समय थोड़ा है। पर जिस क्षण सूर्यास्त उसे छूता है, वह चमक उठती है। कवि देखता है कि थोड़े समय का जीवन भी, यदि पूरे प्रकाश में जिया जाए, तो अपना मूल्य रखता है, भले ही बूँद सागर में लौट जाए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What happens to the drop at the end?",
+        "hi": "अंत में बूँद का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It returns to the sea, but its moment was not lost",
+         "hi": "वह सागर में लौट जाती है, पर उसका क्षण व्यर्थ नहीं जाता"
+        },
+        {
+         "en": "It stays in the sky forever",
+         "hi": "वह हमेशा आकाश में रहती है"
+        },
+        {
+         "en": "It turns into a stone",
+         "hi": "वह पत्थर बन जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The drop goes back to the sea; the shining moment stays in the poet's mind.",
+        "hi": "बूँद सागर में लौट जाती है; चमकता क्षण कवि के मन में रह जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It falls back; the moment is brief.",
+         "hi": "वह वापस गिरती है; क्षण छोटा है।"
+        },
+        {
+         "en": "Nothing like that happens; it is a drop of water.",
+         "hi": "ऐसा कुछ नहीं होता; वह पानी की बूँद है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a small moment in your day that felt special. Describe it in two lines.",
+      "hi": "अपने दिन के किसी छोटे विशेष क्षण के बारे में सोचो। उसे दो पंक्तियों में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhat1-ch03-symbols-match",
+   "topic": "3.3",
+   "template": "match",
+   "title": {
+    "en": "Symbols in Agyeya's poems",
+    "hi": "अज्ञेय की कविताओं के प्रतीक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "deep",
+      "left": {
+       "en": "The lamp",
+       "hi": "दीप"
+      },
+      "right": {
+       "en": "A person with their own worth",
+       "hi": "अपने मूल्य वाला एक व्यक्ति"
+      },
+      "why": {
+       "en": "The lamp has its own flame, like a person with a self.",
+       "hi": "दीप की अपनी लौ है, जैसे व्यक्ति का अपना व्यक्तित्व।"
+      }
+     },
+     {
+      "id": "line",
+      "left": {
+       "en": "The line of lamps",
+       "hi": "दीपों की पंक्ति"
+      },
+      "right": {
+       "en": "Society moving together",
+       "hi": "साथ चलता समाज"
+      },
+      "why": {
+       "en": "Many lamps together make a line of light.",
+       "hi": "कई दीप मिलकर रोशनी की पंक्ति बनाते हैं।"
+      }
+     },
+     {
+      "id": "sea",
+      "left": {
+       "en": "The sea",
+       "hi": "सागर"
+      },
+      "right": {
+       "en": "The vast world of which we are a part",
+       "hi": "वह विशाल संसार जिसके हम हिस्से हैं"
+      },
+      "why": {
+       "en": "The sea holds all drops.",
+       "hi": "सागर में सारी बूँदें मिलती हैं।"
+      }
+     },
+     {
+      "id": "drop",
+      "left": {
+       "en": "The drop",
+       "hi": "बूँद"
+      },
+      "right": {
+       "en": "A small life with a shining moment",
+       "hi": "एक छोटा जीवन जिसका एक चमकता क्षण है"
+      },
+      "why": {
+       "en": "The drop is brief but valuable.",
+       "hi": "बूँद छोटी है पर अनमोल है।"
+      }
+     },
+     {
+      "id": "sun",
+      "left": {
+       "en": "Sunset glow",
+       "hi": "सूर्यास्त की लाली"
+      },
+      "right": {
+       "en": "The light that gives an ordinary moment meaning",
+       "hi": "वह प्रकाश जो साधारण क्षण को अर्थ देता है"
+      },
+      "why": {
+       "en": "It touches the drop and makes it shine.",
+       "hi": "वह बूँद को छूकर उसे चमका देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which symbol stands for a single person?",
+      "hi": "कौन-सा प्रतीक अकेले व्यक्ति के लिए है?"
+     },
+     "options": [
+      {
+       "id": "lamp",
+       "en": "The lamp",
+       "hi": "दीप"
+      },
+      {
+       "id": "sea",
+       "en": "The sea",
+       "hi": "सागर"
+      }
+     ],
+     "answer": "lamp"
+    },
+    {
+     "kind": "do",
+     "target": "left:deep",
+     "expect": "matched:deep",
+     "say": {
+      "en": "Match the lamp with what it means.",
+      "hi": "दीप को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:drop",
+     "expect": "matched:drop",
+     "say": {
+      "en": "Match the drop with its meaning.",
+      "hi": "बूँद को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाकी जोड़ियाँ मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Poets use symbols to say big things in small pictures. In Agyeya's poems the lamp and the drop are the individual, the line and the sea are the larger whole. Both poems ask how a small life finds meaning in a big world.",
+      "hi": "कवि छोटे चित्रों से बड़ी बातें कहने के लिए प्रतीक चुनते हैं। अज्ञेय की कविताओं में दीप और बूँद व्यक्ति हैं, पंक्ति और सागर बड़ा समूह। दोनों कविताएँ पूछती हैं कि बड़े संसार में छोटा जीवन अर्थ कैसे पाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do the lamp and the drop have in common?",
+        "hi": "दीप और बूँद में क्या समानता है?"
+       },
+       "options": [
+        {
+         "en": "Both stand for a small individual",
+         "hi": "दोनों एक छोटे व्यक्ति के प्रतीक हैं"
+        },
+        {
+         "en": "Both stand for the whole society",
+         "hi": "दोनों पूरे समाज के प्रतीक हैं"
+        },
+        {
+         "en": "Both stand for the dark",
+         "hi": "दोनों अँधेरे के प्रतीक हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each is small but valuable, like an individual.",
+        "hi": "दोनों छोटे पर मूल्यवान हैं, जैसे एक व्यक्ति।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Society is the line and the sea, the bigger whole.",
+         "hi": "समाज तो पंक्ति और सागर हैं, यानी बड़ा समूह।"
+        },
+        {
+         "en": "Neither is the dark; both are small lights or moments.",
+         "hi": "दोनों में से कोई अँधेरा नहीं; दोनों छोटे प्रकाश या क्षण हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a new symbol for yourself, such as a seed or a star, and say what it stands for.",
+      "hi": "अपने लिए कोई नया प्रतीक चुनो, जैसे बीज या तारा, और बताओ कि वह क्या दर्शाता है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook: one lamp among many",
+   "shows": "A single lit clay diya on a ledge beside a long row of unlit diyas at dusk",
+   "view": "Low angle, row leading away",
+   "right": "Warm flame, row of identical clay diyas, soft blur behind",
+   "avoid": "People, firecrackers"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "3.1",
+   "use": "Lamps being lit one by one",
+   "shows": "Four frames of a row of diyas, from one lit to all lit, the same ledge and camera",
+   "view": "Same camera, frames 1 to 4",
+   "right": "Gradual increase in light, steady flames",
+   "avoid": "Different rows, electric lights"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Hook: a wave at sunset",
+   "shows": "A sea wave at sunset on an Indian coast with spray catching golden light",
+   "view": "Wide with a fast shutter",
+   "right": "Droplets lit orange, calm horizon",
+   "avoid": "People, boats, brand logos"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "3.2",
+   "use": "A single drop at the instant of splash",
+   "shows": "A single water drop leaping from a still surface, lit warm from the side",
+   "view": "Macro, black background",
+   "right": "Perfect round drop, tiny ripple ring",
+   "avoid": "Colour dye, text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Word card: दीपक",
+   "shows": "A clay diya with a small flame, cut-out",
+   "view": "Three-quarter view",
+   "right": "Clay texture, steady yellow flame",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "3.3",
+   "use": "Symbol map frame",
+   "shows": "A blank frame with two circles and a larger circle behind them, for placing 'individual' and 'whole' words",
+   "view": "Flat",
+   "right": "Soft shapes, clear space",
+   "avoid": "Written words"
+  }
+ ]
+}

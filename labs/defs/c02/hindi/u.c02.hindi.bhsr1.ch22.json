@@ -1,0 +1,530 @@
+{
+  "chapter_key": "u.c02.hindi.bhsr1.ch22",
+  "class": 2,
+  "subject_id": "hindi",
+  "title": "चार दिशाएँ",
+  "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+  "topics": [
+    {
+      "n": "22.1",
+      "title": "The four directions from the Sun",
+      "labs": [
+        "c02-hindi-bhsr1-ch22-compass",
+        "c02-hindi-bhsr1-ch22-sun"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "22.2",
+      "title": "Names of the directions",
+      "labs": [
+        "c02-hindi-bhsr1-ch22-words"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "22.3",
+      "title": "Left and right in a circle (activity) and direction cards",
+      "labs": [],
+      "why_no_lab": "A circle game with friends and hand-made wall cards; the body and the classroom walls are the lab."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c02-hindi-bhsr1-ch22-compass",
+      "topic": "22.1",
+      "template": "match",
+      "title": {
+        "en": "Face the sunrise",
+        "hi": "सूरज उगने की ओर मुँह करो"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "east",
+            "left": {
+              "en": "In front of you, where the Sun rises",
+              "hi": "तुम्हारे सामने, जहाँ से सूरज उगता है"
+            },
+            "right": {
+              "en": "पूरब",
+              "hi": "पूरब"
+            },
+            "why": {
+              "en": "The Sun rises in the east. Face it and the east is in front.",
+              "hi": "सूरज पूरब में उगता है। उस ओर मुँह करो तो पूरब सामने होता है।"
+            }
+          },
+          {
+            "id": "west",
+            "left": {
+              "en": "Behind your back",
+              "hi": "तुम्हारी पीठ के पीछे"
+            },
+            "right": {
+              "en": "पश्चिम",
+              "hi": "पश्चिम"
+            },
+            "why": {
+              "en": "Behind you is the west, where the Sun sets.",
+              "hi": "पीठ के पीछे पश्चिम है, जहाँ सूरज डूबता है।"
+            }
+          },
+          {
+            "id": "north",
+            "left": {
+              "en": "On your left hand",
+              "hi": "तुम्हारे बाएँ हाथ की ओर"
+            },
+            "right": {
+              "en": "उत्तर",
+              "hi": "उत्तर"
+            },
+            "why": {
+              "en": "The north is on your left when you face the east.",
+              "hi": "पूरब की ओर मुँह हो तो बाएँ हाथ की ओर उत्तर है।"
+            }
+          },
+          {
+            "id": "south",
+            "left": {
+              "en": "On your right hand",
+              "hi": "तुम्हारे दाएँ हाथ की ओर"
+            },
+            "right": {
+              "en": "दक्षिण",
+              "hi": "दक्षिण"
+            },
+            "why": {
+              "en": "The south is on your right when you face the east.",
+              "hi": "पूरब की ओर मुँह हो तो दाएँ हाथ की ओर दक्षिण है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:east",
+          "expect": "matched:east",
+          "say": {
+            "en": "Tap the card In front of you, where the Sun rises.",
+            "hi": "तुम्हारे सामने, जहाँ से सूरज उगता है, यह कार्ड दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which direction is behind you?",
+            "hi": "तुम्हारे पीछे कौन-सी दिशा है?"
+          },
+          "options": [
+            {
+              "id": "west",
+              "en": "West",
+              "hi": "पश्चिम"
+            },
+            {
+              "id": "north",
+              "en": "North",
+              "hi": "उत्तर"
+            },
+            {
+              "id": "south",
+              "en": "South",
+              "hi": "दक्षिण"
+            }
+          ],
+          "answer": "west"
+        },
+        {
+          "kind": "do",
+          "target": "right:south",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest of the pairs.",
+            "hi": "बाक़ी जोड़ियाँ मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Stand and face the place where the Sun rises. That is the east, पूरब. The west, पश्चिम, is behind you. The north, उत्तर, is on your left and the south, दक्षिण, is on your right.",
+            "hi": "जहाँ से सूरज उगता है, उस ओर मुँह करके खड़े हो जाओ। वही पूरब है। पीठ के पीछे पश्चिम है। बाएँ हाथ की ओर उत्तर और दाएँ हाथ की ओर दक्षिण है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "You face the sunrise. Where is the south?",
+                "hi": "तुम सूरज उगने की ओर मुँह करके खड़े हो। दक्षिण कहाँ है?"
+              },
+              "options": [
+                {
+                  "en": "On your right",
+                  "hi": "दाएँ हाथ की ओर"
+                },
+                {
+                  "en": "On your left",
+                  "hi": "बाएँ हाथ की ओर"
+                },
+                {
+                  "en": "Behind you",
+                  "hi": "पीठ के पीछे"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Facing east, the south is to the right.",
+                "hi": "पूरब की ओर मुँह हो तो दक्षिण दाईं ओर होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The left is the north.",
+                  "hi": "बाईं ओर उत्तर होता है।"
+                },
+                {
+                  "en": "Behind you is the west.",
+                  "hi": "पीठ के पीछे पश्चिम होता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Stand in your courtyard or terrace in the morning. Point to all four directions.",
+            "hi": "सुबह आँगन या छत पर खड़े होकर चारों दिशाओं की ओर इशारा करो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch22-sun",
+      "topic": "22.1",
+      "template": "sky",
+      "title": {
+        "en": "Where does the Sun go?",
+        "hi": "सूरज कहाँ जाता है?"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "mode": "day-night"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "play",
+          "expect": "play",
+          "say": {
+            "en": "Press Play and watch the Earth turn.",
+            "hi": "चलाओ दबाओ और पृथ्वी को घूमते देखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Where will you see the Sun at dawn?",
+            "hi": "भोर में तुम सूरज को कहाँ देखोगे?"
+          },
+          "options": [
+            {
+              "id": "east",
+              "en": "In the east, पूरब",
+              "hi": "पूरब में"
+            },
+            {
+              "id": "west",
+              "en": "In the west, पश्चिम",
+              "hi": "पश्चिम में"
+            },
+            {
+              "id": "north",
+              "en": "In the north, उत्तर",
+              "hi": "उत्तर में"
+            }
+          ],
+          "answer": "east"
+        },
+        {
+          "kind": "do",
+          "target": "slider",
+          "expect": "moved",
+          "say": {
+            "en": "Slide through the day. Watch the Sun rise, climb and set.",
+            "hi": "पूरे दिन में स्लाइडर चलाओ। सूरज को उगते, चढ़ते और डूबते देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Every day the Sun seems to rise in the east and set in the west. It really is the Earth turning that makes it look so. That is why the east and the west are known to everyone.",
+            "hi": "रोज़ सूरज पूरब में उगता और पश्चिम में डूबता दिखता है। असल में पृथ्वी के घूमने से ऐसा लगता है। इसीलिए पूरब और पश्चिम सबको पता होते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In which direction does the Sun set?",
+                "hi": "सूरज किस दिशा में डूबता है?"
+              },
+              "options": [
+                {
+                  "en": "West",
+                  "hi": "पश्चिम"
+                },
+                {
+                  "en": "East",
+                  "hi": "पूरब"
+                },
+                {
+                  "en": "North",
+                  "hi": "उत्तर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The Sun sets in the west.",
+                "hi": "सूरज पश्चिम में डूबता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The Sun rises in the east.",
+                  "hi": "सूरज पूरब में उगता है।"
+                },
+                {
+                  "en": "The Sun does not set in the north.",
+                  "hi": "सूरज उत्तर में नहीं डूबता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Slide to sunrise, noon and sunset. Notice where the light falls on the Earth.",
+            "hi": "सूर्योदय, दोपहर और सूर्यास्त तक स्लाइडर ले जाओ। देखो कि पृथ्वी पर रोशनी कहाँ पड़ती है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch22-words",
+      "topic": "22.2",
+      "template": "words",
+      "title": {
+        "en": "Spell the four directions",
+        "hi": "चारों दिशाओं के नाम बनाओ"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "mode": "spelling",
+        "lang": "hi",
+        "words": [
+          {
+            "w": "पूरब",
+            "meaning": {
+              "en": "The direction where the Sun rises.",
+              "hi": "वह दिशा जहाँ सूरज उगता है।"
+            }
+          },
+          {
+            "w": "पश्चिम",
+            "meaning": {
+              "en": "The direction where the Sun sets.",
+              "hi": "वह दिशा जहाँ सूरज डूबता है।"
+            }
+          },
+          {
+            "w": "उत्तर",
+            "meaning": {
+              "en": "The direction on your left when you face the east.",
+              "hi": "पूरब की ओर मुँह हो तो बाईं ओर की दिशा।"
+            }
+          },
+          {
+            "w": "दक्षिण",
+            "meaning": {
+              "en": "The direction on your right when you face the east.",
+              "hi": "पूरब की ओर मुँह हो तो दाईं ओर की दिशा।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "listen",
+          "expect": "listen",
+          "say": {
+            "en": "Tap the speaker and listen to the word.",
+            "hi": "बोलने वाला बटन दबाओ और शब्द सुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which direction has the word part पू?",
+            "hi": "किस दिशा के नाम में पू है?"
+          },
+          "options": [
+            {
+              "id": "east",
+              "en": "East",
+              "hi": "पूरब"
+            },
+            {
+              "id": "west",
+              "en": "West",
+              "hi": "पश्चिम"
+            },
+            {
+              "id": "south",
+              "en": "South",
+              "hi": "दक्षिण"
+            }
+          ],
+          "answer": "east"
+        },
+        {
+          "kind": "do",
+          "target": "pick:पू",
+          "expect": "pick:पू",
+          "say": {
+            "en": "Tap the first letter-part of the word from the tiles.",
+            "hi": "पट्टियों में से शब्द का पहला अक्षर दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "tiles",
+          "expect": "word:पूरब",
+          "say": {
+            "en": "Finish the whole word with the tiles.",
+            "hi": "बाक़ी पट्टियों से पूरा शब्द बनाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each direction has a name made of akshars: पू + र + ब, प + श्चि + म, उ + त्त + र and द + क्षि + ण. When we know the names and how to write them, we can read signs and maps.",
+            "hi": "हर दिशा का नाम अक्षरों से बना है: पू + र + ब, प + श्चि + म, उ + त्त + र और द + क्षि + ण। नाम पढ़ना-लिखना आता हो तो हम बोर्ड और नक्शे पढ़ सकते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where is दक्षिण?",
+                "hi": "दक्षिण कहाँ होती है?"
+              },
+              "options": [
+                {
+                  "en": "On the right when you face the sunrise",
+                  "hi": "सूरज उगने की ओर मुँह हो तो दाएँ हाथ की ओर"
+                },
+                {
+                  "en": "On the left when you face the sunrise",
+                  "hi": "सूरज उगने की ओर मुँह हो तो बाएँ हाथ की ओर"
+                },
+                {
+                  "en": "Where the Sun sets",
+                  "hi": "जहाँ सूरज डूबता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "दक्षिण is the south, on your right when you face the east.",
+                "hi": "दक्षिण दाएँ हाथ की ओर होती है, जब मुँह पूरब की ओर हो।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The left side is उत्तर, the north.",
+                  "hi": "बाईं ओर उत्तर दिशा होती है।"
+                },
+                {
+                  "en": "Where the Sun sets is पश्चिम, the west.",
+                  "hi": "जहाँ सूरज डूबता है वह पश्चिम है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write the four names in your notebook and draw an arrow for each.",
+            "hi": "चारों नाम कॉपी में लिखो और हर दिशा का तीर बनाओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "22.1",
+      "use": "Opens the poem",
+      "shows": "A child's back facing a sunrise over a field, arms spread",
+      "view": "Wide, low sun in front",
+      "right": "Sun just above the horizon, long shadow behind the child",
+      "avoid": "Face"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "22.1",
+      "use": "The Sun's path",
+      "shows": "Four frames from the same rooftop: sunrise on the left, noon overhead, afternoon, sunset on the right",
+      "view": "Same camera, same view",
+      "right": "Sun position changes smoothly; the same houses and tree stay",
+      "avoid": "Anything that shows a different place"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "22.1",
+      "use": "Direction cards",
+      "shows": "Four blank wooden sign boards pointing in four directions",
+      "view": "Front, centre",
+      "right": "Plain boards that the app can label",
+      "avoid": "Any writing"
+    },
+    {
+      "n": 4,
+      "kind": "MAP",
+      "topic": "22.2",
+      "use": "School ground plan",
+      "shows": "A top-view of a school ground with the gate, a tree and a flag pole",
+      "view": "Straight down, clear",
+      "right": "No labels; the gate is on the south side for the lesson",
+      "avoid": "Any text or arrows"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "22.3",
+      "use": "Circle of friends",
+      "shows": "Children's hands holding in a circle seen from above",
+      "view": "Top view",
+      "right": "Many hands; different colours of sleeves",
+      "avoid": "Faces"
+    }
+  ]
+}

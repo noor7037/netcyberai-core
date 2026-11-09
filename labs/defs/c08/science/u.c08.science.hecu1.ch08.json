@@ -1,0 +1,1419 @@
+{
+ "chapter_key": "u.c08.science.hecu1.ch08",
+ "class": 8,
+ "subject_id": "science",
+ "title": "Nature of Matter: Elements, Compounds, and Mixtures",
+ "source": "https://ncert.nic.in/textbook/pdf/hecu108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "What are mixtures? Components keep their properties",
+   "labs": [
+    "c08-science-hecu1-ch08-magnet"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.1.1",
+   "title": "Is air a mixture?",
+   "labs": [],
+   "why_no_lab": "The lime water and dust-on-black-paper activities take hours of exposure to air, so they are shown as photo sequences rather than a lab."
+  },
+  {
+   "n": "8.1.2",
+   "title": "Types of mixtures: uniform and non-uniform",
+   "labs": [
+    "c08-science-hecu1-ch08-uniform"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "What are pure substances? Pure in daily life and in science",
+   "labs": [
+    "c08-science-hecu1-ch08-pure"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Types of pure substances: water breaks into hydrogen and oxygen",
+   "labs": [
+    "c08-science-hecu1-ch08-electrolysis"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3.1",
+   "title": "Elements: metals and non-metals, symbols",
+   "labs": [
+    "c08-science-hecu1-ch08-elements"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3.2",
+   "title": "Compounds: fixed ratio and new properties (iron and sulfur, sugar on heating)",
+   "labs": [
+    "c08-science-hecu1-ch08-compound"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "How we use elements, compounds and mixtures",
+   "labs": [],
+   "why_no_lab": "A survey of everyday uses (alloys, building materials, Dhokra art) best told with photos; the sorting labs already practise naming each kind."
+  },
+  {
+   "n": "8.5",
+   "title": "What are minerals? Native minerals and compounds",
+   "labs": [
+    "c08-science-hecu1-ch08-minerals"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-science-hecu1-ch08-magnet",
+   "topic": "8.1",
+   "template": "particles",
+   "title": {
+    "en": "Pull the iron out of the mixture",
+    "hi": "मिश्रण से लोहा खींच लो"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "iron-sulphur",
+    "method": "magnet"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Iron filings and sulfur powder are mixed together. If you move a magnet over them, what will happen?",
+      "hi": "लोहे का बुरादा और सल्फ़र का चूर्ण आपस में मिलाए गए हैं। ऊपर चुंबक घुमाओ तो क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "iron",
+       "en": "Only the iron is pulled out",
+       "hi": "केवल लोहा खिंचकर निकलेगा"
+      },
+      {
+       "id": "both",
+       "en": "Both are pulled together",
+       "hi": "दोनों साथ खिंचेंगे"
+      },
+      {
+       "id": "none",
+       "en": "Nothing, they are stuck together now",
+       "hi": "कुछ नहीं, अब वे चिपक गए हैं"
+      }
+     ],
+     "answer": "iron"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Run the magnet over the mixture.",
+      "hi": "मिश्रण के ऊपर चुंबक चलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a mixture, each component keeps its own properties. Iron is still magnetic and sulfur is still yellow and not magnetic, so a magnet pulls the iron out. Components of a mixture are not joined chemically, so they can be separated by physical methods such as a magnet, a sieve, filtering or evaporating.",
+      "hi": "मिश्रण में हर घटक अपने गुण बनाए रखता है। लोहा अब भी चुंबकीय है और सल्फ़र अब भी पीला और अचुंबकीय, इसलिए चुंबक लोहे को खींच लेता है। मिश्रण के घटक रासायनिक रूप से नहीं जुड़े होते, इसलिए उन्हें चुंबक, छलनी, छानने या वाष्पन जैसे भौतिक तरीकों से अलग किया जा सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why could the magnet separate iron from sulfur here?",
+        "hi": "यहाँ चुंबक लोहे को सल्फ़र से अलग क्यों कर पाया?"
+       },
+       "options": [
+        {
+         "en": "In a mixture iron keeps its magnetic property",
+         "hi": "मिश्रण में लोहा अपना चुंबकीय गुण बनाए रखता है"
+        },
+        {
+         "en": "Sulfur is magnetic too",
+         "hi": "सल्फ़र भी चुंबकीय है"
+        },
+        {
+         "en": "The magnet melted the sulfur",
+         "hi": "चुंबक ने सल्फ़र पिघला दिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mixing does not change the iron, so it is still attracted.",
+        "hi": "मिलाने से लोहा नहीं बदलता, इसलिए वह अब भी आकर्षित होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sulfur is not magnetic; that is why it stays behind.",
+         "hi": "सल्फ़र चुंबकीय नहीं है; इसीलिए वह पीछे रह जाता है।"
+        },
+        {
+         "en": "A magnet does not heat anything; it only attracts iron.",
+         "hi": "चुंबक कुछ गर्म नहीं करता; केवल लोहे को खींचता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is a mixture?",
+        "hi": "इनमें से कौन मिश्रण है?"
+       },
+       "options": [
+        {
+         "en": "Poha with peanuts and curry leaves",
+         "hi": "मूँगफली और कढ़ी पत्ते वाला पोहा"
+        },
+        {
+         "en": "Pure gold",
+         "hi": "शुद्ध सोना"
+        },
+        {
+         "en": "Distilled water",
+         "hi": "आसुत जल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each ingredient keeps its own taste and look, and you could pick them apart.",
+        "hi": "हर सामग्री अपना स्वाद और रूप बनाए रखती है, और उन्हें अलग चुना जा सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Gold is a single element, a pure substance.",
+         "hi": "सोना एक अकेला तत्व है, शुद्ध पदार्थ।"
+        },
+        {
+         "en": "Distilled water has only water particles: a pure substance.",
+         "hi": "आसुत जल में केवल पानी के कण हैं: शुद्ध पदार्थ।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch to explore and pick other mixtures: sand in water, salt water, flour with bran. Which method works for each one?",
+      "hi": "एक्सप्लोर में जाकर दूसरे मिश्रण चुनो: पानी में रेत, नमक का पानी, चोकर वाला आटा। हर एक के लिए कौन-सा तरीका काम करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch08-uniform",
+   "topic": "8.1.2",
+   "template": "sort",
+   "title": {
+    "en": "Same everywhere or not?",
+    "hi": "हर जगह एक जैसा या नहीं?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "homo",
+      "label": {
+       "en": "Uniform (homogeneous)",
+       "hi": "समांगी (एकसमान)"
+      }
+     },
+     {
+      "id": "hetero",
+      "label": {
+       "en": "Non-uniform (heterogeneous)",
+       "hi": "विषमांगी (असमान)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "saltw",
+      "text": {
+       "en": "Salt dissolved in water",
+       "hi": "पानी में घुला नमक"
+      },
+      "bin": "homo",
+      "why": {
+       "en": "Every drop is equally salty; you cannot see separate parts.",
+       "hi": "हर बूँद बराबर नमकीन है; अलग भाग नहीं दिखते।"
+      }
+     },
+     {
+      "id": "sherbet",
+      "text": {
+       "en": "Sugar sherbet",
+       "hi": "चीनी का शरबत"
+      },
+      "bin": "homo",
+      "why": {
+       "en": "The sugar is spread evenly through the water.",
+       "hi": "चीनी पानी में बराबर फैली है।"
+      }
+     },
+     {
+      "id": "airm",
+      "text": {
+       "en": "Clean air",
+       "hi": "साफ़ हवा"
+      },
+      "bin": "homo",
+      "why": {
+       "en": "Its gases are mixed evenly.",
+       "hi": "इसकी गैसें बराबर मिली हैं।"
+      }
+     },
+     {
+      "id": "brass",
+      "text": {
+       "en": "Brass (copper and zinc)",
+       "hi": "पीतल (ताँबा और जस्ता)"
+      },
+      "bin": "homo",
+      "why": {
+       "en": "An alloy looks the same all through.",
+       "hi": "मिश्रधातु हर जगह एक जैसी दिखती है।"
+      }
+     },
+     {
+      "id": "sandw",
+      "text": {
+       "en": "Sand stirred in water",
+       "hi": "पानी में घोली रेत"
+      },
+      "bin": "hetero",
+      "why": {
+       "en": "The sand settles and you can see grains.",
+       "hi": "रेत बैठ जाती है और दाने दिखते हैं।"
+      }
+     },
+     {
+      "id": "oilw",
+      "text": {
+       "en": "Oil and water",
+       "hi": "तेल और पानी"
+      },
+      "bin": "hetero",
+      "why": {
+       "en": "They form two layers.",
+       "hi": "ये दो परतें बनाते हैं।"
+      }
+     },
+     {
+      "id": "salad",
+      "text": {
+       "en": "Fruit chaat",
+       "hi": "फलों की चाट"
+      },
+      "bin": "hetero",
+      "why": {
+       "en": "You can see each piece of fruit.",
+       "hi": "फल का हर टुकड़ा अलग दिखता है।"
+      }
+     },
+     {
+      "id": "soil",
+      "text": {
+       "en": "Garden soil",
+       "hi": "बगीचे की मिट्टी"
+      },
+      "bin": "hetero",
+      "why": {
+       "en": "It has bits of sand, clay, roots and pebbles.",
+       "hi": "इसमें रेत, चिकनी मिट्टी, जड़ों और कंकड़ के टुकड़े हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:saltw",
+     "expect": "correct:saltw",
+     "say": {
+      "en": "Tap \"Salt dissolved in water\", then its group.",
+      "hi": "\"पानी में घुला नमक\" छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:oilw",
+     "expect": "correct:oilw",
+     "say": {
+      "en": "Now place \"Oil and water\".",
+      "hi": "अब \"तेल और पानी\" रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Brass is copper and zinc melted together. Is it uniform?",
+      "hi": "पीतल ताँबा और जस्ता साथ पिघलाकर बनता है। क्या यह समांगी है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it looks the same all through",
+       "hi": "हाँ, हर जगह एक जैसा दिखता है"
+      },
+      {
+       "id": "no",
+       "en": "No, you can see copper and zinc bits",
+       "hi": "नहीं, ताँबे और जस्ते के टुकड़े दिखते हैं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:brass",
+     "expect": "correct:brass",
+     "say": {
+      "en": "Place brass.",
+      "hi": "पीतल रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A uniform (homogeneous) mixture has the same make-up all through, like salt water, air or brass. A non-uniform (heterogeneous) mixture has parts you can see or that separate, like sand in water, oil and water, or soil.",
+      "hi": "समांगी मिश्रण की बनावट हर जगह एक जैसी होती है, जैसे नमक का पानी, हवा या पीतल। विषमांगी मिश्रण में ऐसे भाग होते हैं जो दिखते हैं या अलग हो जाते हैं, जैसे पानी में रेत, तेल और पानी, या मिट्टी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Lemonade with sugar fully dissolved is ___.",
+        "hi": "पूरी घुली चीनी वाली शिकंजी ___ है।"
+       },
+       "options": [
+        {
+         "en": "a uniform mixture",
+         "hi": "समांगी मिश्रण"
+        },
+        {
+         "en": "a non-uniform mixture",
+         "hi": "विषमांगी मिश्रण"
+        },
+        {
+         "en": "a pure substance",
+         "hi": "शुद्ध पदार्थ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is made of several substances, spread evenly.",
+        "hi": "यह कई पदार्थों से बनी है, जो बराबर फैले हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing settles or shows as separate bits, so it is uniform.",
+         "hi": "कुछ नहीं बैठता या अलग नहीं दिखता, इसलिए यह समांगी है।"
+        },
+        {
+         "en": "It has water, sugar, lemon juice and salt: more than one substance.",
+         "hi": "इसमें पानी, चीनी, नींबू का रस और नमक है: एक से ज़्यादा पदार्थ।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again. Then look at your kitchen: find two uniform and two non-uniform mixtures.",
+      "hi": "फिर से छाँटो। फिर अपनी रसोई देखो: दो समांगी और दो विषमांगी मिश्रण ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch08-pure",
+   "topic": "8.2",
+   "template": "sort",
+   "title": {
+    "en": "Pure in science?",
+    "hi": "विज्ञान में शुद्ध?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pure",
+      "label": {
+       "en": "Pure substance",
+       "hi": "शुद्ध पदार्थ"
+      }
+     },
+     {
+      "id": "mix",
+      "label": {
+       "en": "Mixture",
+       "hi": "मिश्रण"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Sugar",
+       "hi": "चीनी"
+      },
+      "bin": "pure",
+      "why": {
+       "en": "Sugar has only sugar particles.",
+       "hi": "चीनी में केवल चीनी के कण हैं।"
+      }
+     },
+     {
+      "id": "soda",
+      "text": {
+       "en": "Baking soda",
+       "hi": "खाने का सोडा"
+      },
+      "bin": "pure",
+      "why": {
+       "en": "It is a single compound, sodium hydrogencarbonate.",
+       "hi": "यह एक ही यौगिक है, सोडियम हाइड्रोजनकार्बोनेट।"
+      }
+     },
+     {
+      "id": "gold",
+      "text": {
+       "en": "A gold coin of pure gold",
+       "hi": "शुद्ध सोने का सिक्का"
+      },
+      "bin": "pure",
+      "why": {
+       "en": "Pure gold is one element.",
+       "hi": "शुद्ध सोना एक तत्व है।"
+      }
+     },
+     {
+      "id": "dist",
+      "text": {
+       "en": "Distilled water",
+       "hi": "आसुत जल"
+      },
+      "bin": "pure",
+      "why": {
+       "en": "Only water particles, nothing dissolved.",
+       "hi": "केवल पानी के कण, कुछ घुला नहीं।"
+      }
+     },
+     {
+      "id": "milk",
+      "text": {
+       "en": "Milk",
+       "hi": "दूध"
+      },
+      "bin": "mix",
+      "why": {
+       "en": "Milk has water, fat, proteins and sugars: \"pure milk\" is still a mixture to a scientist.",
+       "hi": "दूध में पानी, वसा, प्रोटीन और शर्करा है: \"शुद्ध दूध\" भी वैज्ञानिक के लिए मिश्रण है।"
+      }
+     },
+     {
+      "id": "juice",
+      "text": {
+       "en": "Packed fruit juice",
+       "hi": "डिब्बाबंद फलों का रस"
+      },
+      "bin": "mix",
+      "why": {
+       "en": "It has water, sugars, acids and flavours.",
+       "hi": "इसमें पानी, शर्करा, अम्ल और स्वाद हैं।"
+      }
+     },
+     {
+      "id": "tap",
+      "text": {
+       "en": "Tap water",
+       "hi": "नल का पानी"
+      },
+      "bin": "mix",
+      "why": {
+       "en": "It has dissolved salts and gases.",
+       "hi": "इसमें घुले लवण और गैसें हैं।"
+      }
+     },
+     {
+      "id": "soil2",
+      "text": {
+       "en": "Soil",
+       "hi": "मिट्टी"
+      },
+      "bin": "mix",
+      "why": {
+       "en": "Sand, clay, humus, water and air together.",
+       "hi": "रेत, चिकनी मिट्टी, ह्यूमस, पानी और हवा एक साथ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:sugar",
+     "expect": "correct:sugar",
+     "say": {
+      "en": "Tap sugar, then its group.",
+      "hi": "चीनी छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The packet says \"pure milk\". Is milk a pure substance in science?",
+      "hi": "पैकेट पर \"शुद्ध दूध\" लिखा है। क्या विज्ञान में दूध शुद्ध पदार्थ है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is a mixture of many substances",
+       "hi": "नहीं, यह कई पदार्थों का मिश्रण है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, the packet says so",
+       "hi": "हाँ, पैकेट पर लिखा है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:milk",
+     "expect": "correct:milk",
+     "say": {
+      "en": "Place milk.",
+      "hi": "दूध रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In daily life \"pure\" means not adulterated. In science, a pure substance has only one kind of particle and cannot be split into other kinds by physical methods. Sugar, baking soda, gold and distilled water are pure; milk, juice, tap water and soil are mixtures, however good their quality.",
+      "hi": "रोज़ की भाषा में \"शुद्ध\" का मतलब है बिना मिलावट। विज्ञान में शुद्ध पदार्थ में केवल एक तरह के कण होते हैं और भौतिक तरीकों से उसे दूसरे पदार्थों में नहीं बाँटा जा सकता। चीनी, खाने का सोडा, सोना और आसुत जल शुद्ध हैं; दूध, रस, नल का पानी और मिट्टी मिश्रण हैं, चाहे उनकी गुणवत्ता कितनी भी अच्छी हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is tap water a mixture but distilled water pure?",
+        "hi": "नल का पानी मिश्रण पर आसुत जल शुद्ध क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Tap water has dissolved salts and gases",
+         "hi": "नल के पानी में घुले लवण और गैसें हैं"
+        },
+        {
+         "en": "Tap water is dirty",
+         "hi": "नल का पानी गंदा है"
+        },
+        {
+         "en": "Distilled water is colder",
+         "hi": "आसुत जल ठंडा होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Distilling leaves the salts behind, so only water particles remain.",
+        "hi": "आसवन से लवण पीछे रह जाते हैं, इसलिए केवल पानी के कण बचते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Clean tap water is still a mixture; it is about what is dissolved, not dirt.",
+         "hi": "साफ़ नल का पानी भी मिश्रण है; बात घुले पदार्थों की है, गंदगी की नहीं।"
+        },
+        {
+         "en": "Temperature does not decide purity.",
+         "hi": "तापमान से शुद्धता तय नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the cards again. Then read three food labels at home: how many substances does each one list?",
+      "hi": "कार्ड फिर छाँटो। फिर घर पर तीन खाने के लेबल पढ़ो: हर एक में कितने पदार्थ लिखे हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch08-electrolysis",
+   "topic": "8.3",
+   "template": "beaker",
+   "title": {
+    "en": "Split water with electricity",
+    "hi": "बिजली से पानी को तोड़ो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "water",
+     "h2so4"
+    ],
+    "tools": [
+     "electrolysis"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:water",
+     "expect": "pick:water",
+     "say": {
+      "en": "Pick up the water.",
+      "hi": "पानी उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:water",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:h2so4",
+     "expect": "pick:h2so4",
+     "say": {
+      "en": "Pick up a few drops of dilute sulphuric acid. It helps water conduct.",
+      "hi": "तनु सल्फ़्यूरिक अम्ल की कुछ बूँदें उठाओ। इससे पानी चालक बनता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:h2so4",
+     "say": {
+      "en": "Add them to the water.",
+      "hi": "इन्हें पानी में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Electricity will pass through the water. What will collect in the two tubes?",
+      "hi": "पानी से बिजली गुज़रेगी। दोनों नलियों में क्या जमा होगा?"
+     },
+     "options": [
+      {
+       "id": "gases",
+       "en": "Two different gases, hydrogen and oxygen",
+       "hi": "दो अलग गैसें, हाइड्रोजन और ऑक्सीजन"
+      },
+      {
+       "id": "steam",
+       "en": "Steam",
+       "hi": "भाप"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "gases"
+    },
+    {
+     "kind": "do",
+     "target": "tool:electrolysis",
+     "expect": "tested:electrolysis",
+     "say": {
+      "en": "Switch on the electrolysis set.",
+      "hi": "विद्युत-अपघटन का उपकरण चालू करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Electricity splits water into hydrogen and oxygen, with twice as much hydrogen as oxygen by volume. These gases are very different from water: hydrogen burns and oxygen helps burning, yet water puts out fire. So water is not an element but a compound of hydrogen and oxygen joined in a fixed ratio.",
+      "hi": "बिजली पानी को हाइड्रोजन और ऑक्सीजन में तोड़ देती है, आयतन में ऑक्सीजन से दोगुनी हाइड्रोजन। ये गैसें पानी से बहुत अलग हैं: हाइड्रोजन जलती है और ऑक्सीजन जलने में मदद करती है, जबकि पानी आग बुझाता है। इसलिए पानी तत्व नहीं, बल्कि निश्चित अनुपात में जुड़ी हाइड्रोजन और ऑक्सीजन का यौगिक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How do we know water is a compound and not an element?",
+        "hi": "हमें कैसे पता चलता है कि पानी यौगिक है, तत्व नहीं?"
+       },
+       "options": [
+        {
+         "en": "It breaks down into two simpler substances",
+         "hi": "यह दो सरल पदार्थों में टूट जाता है"
+        },
+        {
+         "en": "It is a liquid",
+         "hi": "यह द्रव है"
+        },
+        {
+         "en": "It has no colour",
+         "hi": "इसका कोई रंग नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An element cannot be broken into simpler substances; water can.",
+        "hi": "तत्व को सरल पदार्थों में नहीं तोड़ा जा सकता; पानी को तोड़ा जा सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Being a liquid says nothing; mercury is a liquid element.",
+         "hi": "द्रव होने से कुछ पता नहीं चलता; पारा एक द्रव तत्व है।"
+        },
+        {
+         "en": "Colour does not decide it; oxygen is colourless and is an element.",
+         "hi": "रंग से तय नहीं होता; ऑक्सीजन रंगहीन है और तत्व है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker and try plain water with no acid. Does electrolysis still work well? Why do we add a little acid or salt?",
+      "hi": "बीकर साफ़ करो और बिना अम्ल का सादा पानी आज़माओ। क्या विद्युत-अपघटन अब भी ठीक होता है? थोड़ा अम्ल या नमक क्यों मिलाते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch08-elements",
+   "topic": "8.3.1",
+   "template": "periodic",
+   "title": {
+    "en": "Meet some elements",
+    "hi": "कुछ तत्वों से मिलो"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "highlight": "metals",
+    "focus": [
+     "Fe",
+     "Cu",
+     "Al",
+     "Zn",
+     "C",
+     "O",
+     "S",
+     "N"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "element:Fe",
+     "expect": "picked:Fe",
+     "say": {
+      "en": "Tap iron (Fe).",
+      "hi": "लोहा (Fe) छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:O",
+     "expect": "picked:O",
+     "say": {
+      "en": "Now tap oxygen (O).",
+      "hi": "अब ऑक्सीजन (O) छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Most elements on the chart are coloured as metals. Which do you think is NOT a metal?",
+      "hi": "चार्ट पर ज़्यादातर तत्व धातु के रंग में हैं। तुम्हें क्या लगता है कौन धातु नहीं है?"
+     },
+     "options": [
+      {
+       "id": "c",
+       "en": "Carbon (C)",
+       "hi": "कार्बन (C)"
+      },
+      {
+       "id": "cu",
+       "en": "Copper (Cu)",
+       "hi": "ताँबा (Cu)"
+      },
+      {
+       "id": "al",
+       "en": "Aluminium (Al)",
+       "hi": "ऐलुमिनियम (Al)"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "element:C",
+     "expect": "picked:C",
+     "say": {
+      "en": "Tap carbon (C) to check.",
+      "hi": "जाँचने के लिए कार्बन (C) छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Elements are the simplest substances; they cannot be broken into anything simpler. Each has a symbol, like Fe for iron and O for oxygen. About 118 are known. Most are metals, which are shiny and conduct heat and electricity, like iron, copper and gold. Some are non-metals, like carbon, oxygen, sulfur and nitrogen.",
+      "hi": "तत्व सबसे सरल पदार्थ हैं; इन्हें और सरल चीज़ों में नहीं तोड़ा जा सकता। हर तत्व का एक प्रतीक है, जैसे लोहे का Fe और ऑक्सीजन का O। लगभग 118 तत्व ज्ञात हैं। ज़्यादातर धातुएँ हैं, जो चमकीली होती हैं और ऊष्मा व बिजली की चालक होती हैं, जैसे लोहा, ताँबा और सोना। कुछ अधातु हैं, जैसे कार्बन, ऑक्सीजन, सल्फ़र और नाइट्रोजन।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the symbol of iron Fe and not I?",
+        "hi": "लोहे का प्रतीक I के बजाय Fe क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It comes from its Latin name, ferrum",
+         "hi": "यह उसके लैटिन नाम फ़ेरम से आता है"
+        },
+        {
+         "en": "It was a spelling mistake",
+         "hi": "यह वर्तनी की ग़लती थी"
+        },
+        {
+         "en": "Fe means metal",
+         "hi": "Fe का मतलब धातु है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Some symbols come from old Latin names: Fe (ferrum), Cu (cuprum), Au (aurum).",
+        "hi": "कुछ प्रतीक पुराने लैटिन नामों से आते हैं: Fe (फ़ेरम), Cu (क्यूप्रम), Au (ऑरम)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is not a mistake; scientists everywhere use Fe on purpose.",
+         "hi": "यह ग़लती नहीं; दुनिया भर के वैज्ञानिक जानबूझकर Fe लिखते हैं।"
+        },
+        {
+         "en": "Fe stands only for iron, not for all metals.",
+         "hi": "Fe केवल लोहे के लिए है, सब धातुओं के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap zinc, aluminium, sulfur and nitrogen. Read where each is found and what we use it for.",
+      "hi": "जस्ता, ऐलुमिनियम, सल्फ़र और नाइट्रोजन छुओ। पढ़ो कि हर एक कहाँ मिलता है और किस काम आता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch08-compound",
+   "topic": "8.3.2",
+   "template": "beaker",
+   "title": {
+    "en": "Make a new substance: iron sulphide",
+    "hi": "नया पदार्थ बनाओ: आयरन सल्फ़ाइड"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "ironfil",
+     "sulphur",
+     "hcl"
+    ],
+    "tools": [
+     "lamp"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:ironfil",
+     "expect": "pick:ironfil",
+     "say": {
+      "en": "Pick up the iron filings.",
+      "hi": "लोहे का बुरादा उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:ironfil",
+     "say": {
+      "en": "Put them in the dish.",
+      "hi": "इन्हें पात्र में डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:sulphur",
+     "expect": "pick:sulphur",
+     "say": {
+      "en": "Pick up the sulfur powder.",
+      "hi": "सल्फ़र का चूर्ण उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:sulphur",
+     "say": {
+      "en": "Add it to the iron and mix.",
+      "hi": "इसे लोहे में डालकर मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will heat the mixture strongly. After it cools, will a magnet still pull iron out of it?",
+      "hi": "तुम मिश्रण को तेज़ गर्म करोगे। ठंडा होने के बाद क्या चुंबक अब भी उसमें से लोहा खींचेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, a new substance has formed",
+       "hi": "नहीं, एक नया पदार्थ बन गया है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, as before",
+       "hi": "हाँ, पहले की तरह"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "tool:lamp",
+     "expect": "reacted",
+     "say": {
+      "en": "Heat it with the lamp (teacher demonstration only).",
+      "hi": "दीपक से गर्म करो (केवल शिक्षक का प्रदर्शन)।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On heating, iron and sulfur join chemically to form a black compound, iron sulphide. Its properties are new: it is not magnetic and not yellow, and with acid it gives a gas with a rotten-egg smell instead of hydrogen. A compound has its elements joined in a fixed ratio (here 7 g iron to 4 g sulfur) and cannot be separated by a magnet.",
+      "hi": "गर्म करने पर लोहा और सल्फ़र रासायनिक रूप से जुड़कर काला यौगिक, आयरन सल्फ़ाइड, बनाते हैं। इसके गुण नए हैं: यह न चुंबकीय है न पीला, और अम्ल के साथ हाइड्रोजन के बजाय सड़े अंडे जैसी गंध वाली गैस देता है। यौगिक में तत्व निश्चित अनुपात में जुड़े होते हैं (यहाँ 7 g लोहे के साथ 4 g सल्फ़र) और चुंबक से अलग नहीं होते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement is true for a compound but not for a mixture?",
+        "hi": "कौन-सा कथन यौगिक के लिए सही है पर मिश्रण के लिए नहीं?"
+       },
+       "options": [
+        {
+         "en": "Its elements are joined in a fixed ratio and its properties are new",
+         "hi": "इसके तत्व निश्चित अनुपात में जुड़े हैं और गुण नए हैं"
+        },
+        {
+         "en": "Its parts can be picked apart with a magnet",
+         "hi": "इसके भाग चुंबक से अलग किए जा सकते हैं"
+        },
+        {
+         "en": "Its parts keep their old properties",
+         "hi": "इसके भाग पुराने गुण बनाए रखते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A chemical change makes a compound with fixed composition and new properties.",
+        "hi": "रासायनिक परिवर्तन से निश्चित बनावट और नए गुणों वाला यौगिक बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That works for the mixture before heating, not for iron sulphide.",
+         "hi": "यह गर्म करने से पहले के मिश्रण पर लागू है, आयरन सल्फ़ाइड पर नहीं।"
+        },
+        {
+         "en": "Keeping old properties is what mixtures do.",
+         "hi": "पुराने गुण बनाए रखना मिश्रण की पहचान है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick up the dilute hydrochloric acid and add it to the black solid. What gas forms? Then clean the beaker and add acid to the unheated mixture: what is different?",
+      "hi": "तनु हाइड्रोक्लोरिक अम्ल उठाकर काले ठोस में डालो। कौन-सी गैस बनती है? फिर बीकर साफ़ करके बिना गर्म किए मिश्रण में अम्ल डालो: क्या अलग है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch08-minerals",
+   "topic": "8.5",
+   "template": "sort",
+   "title": {
+    "en": "Minerals: element or compound?",
+    "hi": "खनिज: तत्व या यौगिक?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "native",
+      "label": {
+       "en": "Native mineral: a pure element",
+       "hi": "प्राकृत खनिज: शुद्ध तत्व"
+      }
+     },
+     {
+      "id": "cmpd",
+      "label": {
+       "en": "Mineral that is a compound",
+       "hi": "खनिज जो यौगिक है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "goldm",
+      "text": {
+       "en": "Gold nuggets",
+       "hi": "सोने के डले"
+      },
+      "bin": "native",
+      "why": {
+       "en": "Gold is found as the pure metal.",
+       "hi": "सोना शुद्ध धातु के रूप में मिलता है।"
+      }
+     },
+     {
+      "id": "silver",
+      "text": {
+       "en": "Native silver",
+       "hi": "प्राकृत चाँदी"
+      },
+      "bin": "native",
+      "why": {
+       "en": "Silver can occur as the pure element.",
+       "hi": "चाँदी शुद्ध तत्व के रूप में मिल सकती है।"
+      }
+     },
+     {
+      "id": "copper",
+      "text": {
+       "en": "Native copper",
+       "hi": "प्राकृत ताँबा"
+      },
+      "bin": "native",
+      "why": {
+       "en": "Copper sometimes occurs pure in rocks.",
+       "hi": "ताँबा कभी-कभी चट्टानों में शुद्ध मिलता है।"
+      }
+     },
+     {
+      "id": "sulfur",
+      "text": {
+       "en": "Sulfur crystals near volcanoes",
+       "hi": "ज्वालामुखियों के पास सल्फ़र के क्रिस्टल"
+      },
+      "bin": "native",
+      "why": {
+       "en": "Yellow sulfur is a non-metal element.",
+       "hi": "पीला सल्फ़र एक अधातु तत्व है।"
+      }
+     },
+     {
+      "id": "quartz",
+      "text": {
+       "en": "Quartz",
+       "hi": "क्वार्ट्ज़"
+      },
+      "bin": "cmpd",
+      "why": {
+       "en": "Quartz is made of silicon and oxygen.",
+       "hi": "क्वार्ट्ज़ सिलिकॉन और ऑक्सीजन से बना है।"
+      }
+     },
+     {
+      "id": "calcite",
+      "text": {
+       "en": "Calcite",
+       "hi": "कैल्साइट"
+      },
+      "bin": "cmpd",
+      "why": {
+       "en": "Calcite is calcium carbonate, used to make cement.",
+       "hi": "कैल्साइट कैल्शियम कार्बोनेट है, जिससे सीमेंट बनता है।"
+      }
+     },
+     {
+      "id": "talc",
+      "text": {
+       "en": "Talc",
+       "hi": "टैल्क"
+      },
+      "bin": "cmpd",
+      "why": {
+       "en": "Talc, used for talcum powder, is a compound of several elements.",
+       "hi": "टैल्क, जिससे टैल्कम पाउडर बनता है, कई तत्वों का यौगिक है।"
+      }
+     },
+     {
+      "id": "mica",
+      "text": {
+       "en": "Mica",
+       "hi": "अभ्रक"
+      },
+      "bin": "cmpd",
+      "why": {
+       "en": "Mica sheets are compounds of many elements.",
+       "hi": "अभ्रक की परतें कई तत्वों के यौगिक हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:goldm",
+     "expect": "correct:goldm",
+     "say": {
+      "en": "Tap gold nuggets, then its group.",
+      "hi": "सोने के डले छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Quartz is made of silicon and oxygen joined together. Where does it go?",
+      "hi": "क्वार्ट्ज़ सिलिकॉन और ऑक्सीजन के जुड़ने से बना है। यह कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "cmpd",
+       "en": "A compound mineral",
+       "hi": "यौगिक खनिज"
+      },
+      {
+       "id": "native",
+       "en": "A native element",
+       "hi": "प्राकृत तत्व"
+      }
+     ],
+     "answer": "cmpd"
+    },
+    {
+     "kind": "do",
+     "target": "card:quartz",
+     "expect": "correct:quartz",
+     "say": {
+      "en": "Place quartz.",
+      "hi": "क्वार्ट्ज़ रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Minerals are natural solids found in the Earth with a fixed chemical make-up. Most are compounds, like quartz, calcite, mica and talc. A few, called native minerals, are pure elements: metals like gold, silver and copper, or non-metals like sulfur and carbon. Rocks are mixtures of minerals.",
+      "hi": "खनिज पृथ्वी में मिलने वाले प्राकृतिक ठोस हैं जिनकी रासायनिक बनावट निश्चित होती है। ज़्यादातर यौगिक हैं, जैसे क्वार्ट्ज़, कैल्साइट, अभ्रक और टैल्क। कुछ, जिन्हें प्राकृत खनिज कहते हैं, शुद्ध तत्व हैं: सोना, चाँदी और ताँबा जैसी धातुएँ, या सल्फ़र और कार्बन जैसी अधातुएँ। चट्टानें खनिजों के मिश्रण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A piece of granite shows pink, white and black grains. It is ___.",
+        "hi": "ग्रेनाइट के टुकड़े में गुलाबी, सफ़ेद और काले दाने दिखते हैं। यह ___ है।"
+       },
+       "options": [
+        {
+         "en": "a rock: a mixture of minerals",
+         "hi": "चट्टान: खनिजों का मिश्रण"
+        },
+        {
+         "en": "a single element",
+         "hi": "एक अकेला तत्व"
+        },
+        {
+         "en": "a single compound",
+         "hi": "एक अकेला यौगिक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Different coloured grains are different minerals mixed together.",
+        "hi": "अलग रंग के दाने अलग-अलग खनिज हैं जो साथ मिले हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An element would look the same all through.",
+         "hi": "तत्व हर जगह एक जैसा दिखता।"
+        },
+        {
+         "en": "One compound would not show grains of three colours.",
+         "hi": "एक यौगिक में तीन रंग के दाने नहीं दिखते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again. Then look for talcum powder, a cement bag or a pencil at home: which mineral is behind each one?",
+      "hi": "फिर से छाँटो। फिर घर में टैल्कम पाउडर, सीमेंट की बोरी या पेंसिल देखो: हर एक के पीछे कौन-सा खनिज है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Hook of the chapter",
+   "shows": "A street vendor's steel tray of bhel puri being mixed, puffed rice, sev, onion, tomato and chutney visible",
+   "view": "Close from slightly above, daylight",
+   "right": "Each ingredient still recognisable in the mix",
+   "avoid": "Faces, shop names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "8.1.1",
+   "use": "Lime water turns milky in air",
+   "shows": "Clear lime water in a glass beaker on day 1, then after some hours with a thin white layer on its surface (beaker: reuse LIB-LAB-beaker-250ml; quicklime: reuse LIB-CHEM-quicklime)",
+   "view": "Front view at eye level, same framing",
+   "right": "Milky skin only at the surface",
+   "avoid": "Coloured liquids"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "8.1.1",
+   "use": "Dust from the air",
+   "shows": "A black sheet of paper near an open window: fresh, then after a few hours with fine dust visible under a magnifying glass",
+   "view": "From above, then close-up through the lens",
+   "right": "Fine grey dust spots in frame 2",
+   "avoid": "Big debris or insects"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "8.3.2",
+   "use": "Iron and sulfur: mixture then compound",
+   "shows": "Frame 1 grey iron filings and yellow sulfur side by side on a watch glass; frame 2 the mixed powder with a magnet pulling filings out; frame 3 the black lump of iron sulphide after heating, ignored by the magnet (watch glass: reuse LIB-LAB-watch-glass)",
+   "view": "From above on a white tile, same framing",
+   "right": "Mixture speckled grey-yellow; product black and not magnetic",
+   "avoid": "Flames near a child"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "8.3.2",
+   "use": "Sugar on heating",
+   "shows": "Sugar in a boiling tube held over a spirit lamp: white crystals, then brown caramel with droplets on the cool upper wall, then black charred carbon (tube: reuse LIB-LAB-boiling-tube; lamp: reuse LIB-LAB-spirit-lamp)",
+   "view": "Side view, same framing in three frames",
+   "right": "Water droplets visible near the mouth; final residue black",
+   "avoid": "An unattended flame"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "8.5",
+   "use": "Common minerals",
+   "shows": "Specimens of quartz, calcite, mica, pyroxene, olivine and talc on a neutral background, each a separate file",
+   "view": "Three-quarter view, soft studio light, a 1 cm scale bar in each",
+   "right": "True colours: quartz clear, calcite white, mica in sheets, olivine green",
+   "avoid": "Labels in the picture"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "Dhokra art",
+   "shows": "A brass Dhokra figure of an elephant with fine wire-like patterns, from Odisha or Bihar",
+   "view": "Three-quarter view on dark cloth, warm light",
+   "right": "Golden brass colour; lost-wax detail visible",
+   "avoid": "Price tags, shop logos"
+  }
+ ]
+}

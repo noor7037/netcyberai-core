@@ -1,0 +1,1709 @@
+{
+ "chapter_key": "u.c11.informatics_practices.keip1.ch05",
+ "class": 11,
+ "subject_id": "informatics_practices",
+ "title": "Understanding Data",
+ "source": "https://ncert.nic.in/textbook/pdf/keip105.pdf",
+ "topics": [
+  {
+   "n": "5.1.1",
+   "title": "Importance of data",
+   "labs": [],
+   "why_no_lab": "The importance of data is best met through the stories and examples in the reader; there is nothing to operate or test."
+  },
+  {
+   "n": "5.1.2",
+   "title": "Types of data: structured and unstructured, and metadata",
+   "labs": [
+    "c11-informatics_practices-keip1-ch05-structured",
+    "c11-informatics_practices-keip1-ch05-metadata"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Data collection",
+   "labs": [
+    "c11-informatics_practices-keip1-ch05-collection"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Data storage",
+   "labs": [],
+   "why_no_lab": "The storage devices are already sorted in the Computer System chapter; no new experiment adds anything here."
+  },
+  {
+   "n": "5.4",
+   "title": "Data processing",
+   "labs": [
+    "c11-informatics_practices-keip1-ch05-atm-cycle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5.1",
+   "title": "Measures of central tendency: mean, median, mode",
+   "labs": [
+    "c11-informatics_practices-keip1-ch05-mean-outlier",
+    "c11-informatics_practices-keip1-ch05-median-sort",
+    "c11-informatics_practices-keip1-ch05-mode"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5.2",
+   "title": "Measures of variability: range",
+   "labs": [
+    "c11-informatics_practices-keip1-ch05-range"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-informatics_practices-keip1-ch05-structured",
+   "topic": "5.1.2",
+   "template": "sort",
+   "title": {
+    "en": "Structured or unstructured data?",
+    "hi": "संरचित या असंरचित डेटा?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "st",
+      "label": {
+       "en": "Structured data",
+       "hi": "संरचित डेटा"
+      }
+     },
+     {
+      "id": "un",
+      "label": {
+       "en": "Unstructured data",
+       "hi": "असंरचित डेटा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "fee",
+      "text": {
+       "en": "School fee register with fixed columns",
+       "hi": "निश्चित स्तंभों वाला स्कूल का फ़ीस रजिस्टर"
+      },
+      "bin": "st",
+      "why": {
+       "en": "Every record has the same fields in rows and columns.",
+       "hi": "हर रिकॉर्ड में पंक्तियों और स्तंभों में वही क्षेत्र होते हैं।"
+      }
+     },
+     {
+      "id": "stock",
+      "text": {
+       "en": "Shop stock list: item, price, quantity",
+       "hi": "दुकान की स्टॉक सूची: चीज़, दाम, मात्रा"
+      },
+      "bin": "st",
+      "why": {
+       "en": "Each column is one attribute, each row one item.",
+       "hi": "हर स्तंभ एक गुण है, हर पंक्ति एक चीज़।"
+      }
+     },
+     {
+      "id": "atm",
+      "text": {
+       "en": "ATM withdrawal records in a table",
+       "hi": "ATM निकासी के रिकॉर्ड एक तालिका में"
+      },
+      "bin": "st",
+      "why": {
+       "en": "Fixed fields such as account number, amount and time.",
+       "hi": "खाता नंबर, राशि और समय जैसे तय क्षेत्र।"
+      }
+     },
+     {
+      "id": "marks",
+      "text": {
+       "en": "Marks sheet with roll number and subjects",
+       "hi": "रोल नंबर और विषयों वाली अंक-तालिका"
+      },
+      "bin": "st",
+      "why": {
+       "en": "The same columns are repeated for every student.",
+       "hi": "वही स्तंभ हर विद्यार्थी के लिए दोहराए जाते हैं।"
+      }
+     },
+     {
+      "id": "mail",
+      "text": {
+       "en": "The body of an email",
+       "hi": "ईमेल का मुख्य भाग"
+      },
+      "bin": "un",
+      "why": {
+       "en": "It has no fixed number of lines or parts.",
+       "hi": "इसमें पंक्तियों या भागों की कोई तय संख्या नहीं होती।"
+      }
+     },
+     {
+      "id": "photo",
+      "text": {
+       "en": "A photo from a mobile phone",
+       "hi": "मोबाइल फ़ोन से खींची गई फ़ोटो"
+      },
+      "bin": "un",
+      "why": {
+       "en": "An image is a mass of pixels, not rows and columns of fields.",
+       "hi": "चित्र पिक्सलों का समूह है, क्षेत्रों की पंक्तियाँ और स्तंभ नहीं।"
+      }
+     },
+     {
+      "id": "video",
+      "text": {
+       "en": "A video clip",
+       "hi": "एक वीडियो क्लिप"
+      },
+      "bin": "un",
+      "why": {
+       "en": "It is made of frames and sound, with no table form.",
+       "hi": "यह फ़्रेम और ध्वनि से बना है, तालिका के रूप में नहीं।"
+      }
+     },
+     {
+      "id": "chat",
+      "text": {
+       "en": "Messages with emoji and pictures",
+       "hi": "इमोजी और चित्रों वाले संदेश"
+      },
+      "bin": "un",
+      "why": {
+       "en": "Free-form text, icons and media, with no fixed pattern.",
+       "hi": "मनमाना पाठ, चिह्न और मीडिया, कोई तय ढर्रा नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:fee",
+     "expect": "placed:fee",
+     "say": {
+      "en": "Place the fee register card.",
+      "hi": "फ़ीस रजिस्टर वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A photo from a phone: structured or unstructured?",
+      "hi": "फ़ोन की फ़ोटो: संरचित या असंरचित?"
+     },
+     "options": [
+      {
+       "id": "u",
+       "en": "Unstructured",
+       "hi": "असंरचित"
+      },
+      {
+       "id": "s",
+       "en": "Structured",
+       "hi": "संरचित"
+      }
+     ],
+     "answer": "u"
+    },
+    {
+     "kind": "do",
+     "target": "card:photo",
+     "expect": "placed:photo",
+     "say": {
+      "en": "Place the photo card.",
+      "hi": "फ़ोटो वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Structured data is neat: it sits in rows and columns, and each column holds one attribute. Unstructured data, such as text, images, audio and video, has no fixed pattern. This book mainly handles structured data, because it is easy to store in tables and to count, sort and add up.",
+      "hi": "संरचित डेटा सलीक़ेदार होता है: वह पंक्तियों और स्तंभों में रहता है, और हर स्तंभ एक गुण रखता है। असंरचित डेटा, जैसे पाठ, चित्र, ऑडियो और वीडियो, का कोई तय ढर्रा नहीं होता। इस पुस्तक में मुख्यतः संरचित डेटा सँभाला जाता है, क्योंकि उसे तालिकाओं में रखना और गिनना, छाँटना व जोड़ना आसान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What makes data structured?",
+        "hi": "डेटा को संरचित क्या बनाता है?"
+       },
+       "options": [
+        {
+         "en": "It is organised in a well-defined format, like rows and columns",
+         "hi": "वह तय प्रारूप में संगठित है, जैसे पंक्तियाँ और स्तंभ"
+        },
+        {
+         "en": "It is stored on a hard disk",
+         "hi": "वह हार्ड डिस्क पर रखा है"
+        },
+        {
+         "en": "It contains only numbers",
+         "hi": "उसमें सिर्फ़ संख्याएँ हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A fixed format lets a computer find, sort and add data easily.",
+        "hi": "तय प्रारूप से कंप्यूटर डेटा आसानी से ढूँढ़, छाँट और जोड़ पाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Unstructured data can sit on a hard disk too. Storage place is not the point.",
+         "hi": "असंरचित डेटा भी हार्ड डिस्क पर रह सकता है। भंडारण की जगह मुद्दा नहीं है।"
+        },
+        {
+         "en": "Structured tables can hold names and dates as well as numbers.",
+         "hi": "संरचित तालिकाओं में संख्याओं के साथ नाम और तारीख़ भी हो सकती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A teacher keeps names and marks in a spreadsheet. Which kind of data is that?",
+        "hi": "एक शिक्षक स्प्रेडशीट में नाम और अंक रखता है। यह किस तरह का डेटा है?"
+       },
+       "options": [
+        {
+         "en": "Structured",
+         "hi": "संरचित"
+        },
+        {
+         "en": "Unstructured",
+         "hi": "असंरचित"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rows are students and columns are attributes.",
+        "hi": "पंक्तियाँ विद्यार्थी हैं और स्तंभ गुण।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A spreadsheet has fixed rows and columns, so it is structured.",
+         "hi": "स्प्रेडशीट में तय पंक्तियाँ और स्तंभ होते हैं, इसलिए वह संरचित है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Is a WhatsApp group chat structured? Think about what its data looks like.",
+      "hi": "क्या व्हाट्सऐप ग्रुप की चैट संरचित है? सोचो उसका डेटा कैसा दिखता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch05-metadata",
+   "topic": "5.1.2",
+   "template": "match",
+   "title": {
+    "en": "Metadata: data about data",
+    "hi": "मेटाडेटा: डेटा के बारे में डेटा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "mail",
+      "left": {
+       "en": "An email",
+       "hi": "एक ईमेल"
+      },
+      "right": {
+       "en": "Subject, recipient and attachments",
+       "hi": "विषय, प्राप्तकर्ता और अटैचमेंट"
+      },
+      "why": {
+       "en": "These describe the email without being its message.",
+       "hi": "ये ईमेल का वर्णन करते हैं पर उसका संदेश नहीं हैं।"
+      }
+     },
+     {
+      "id": "photo",
+      "left": {
+       "en": "A photo file",
+       "hi": "एक फ़ोटो फ़ाइल"
+      },
+      "right": {
+       "en": "Size, type (JPEG or PNG) and resolution",
+       "hi": "आकार, प्रकार (JPEG या PNG) और रिज़ॉल्यूशन"
+      },
+      "why": {
+       "en": "They describe the picture file, not what the picture shows.",
+       "hi": "ये चित्र की फ़ाइल का वर्णन करते हैं, चित्र में दिखने वाली चीज़ का नहीं।"
+      }
+     },
+     {
+      "id": "song",
+      "left": {
+       "en": "A song file",
+       "hi": "एक गाने की फ़ाइल"
+      },
+      "right": {
+       "en": "Title, singer and length",
+       "hi": "शीर्षक, गायक और अवधि"
+      },
+      "why": {
+       "en": "Facts about the song that help you find and sort it.",
+       "hi": "गाने के बारे में तथ्य जो उसे ढूँढ़ने और छाँटने में मदद करते हैं।"
+      }
+     },
+     {
+      "id": "book",
+      "left": {
+       "en": "A library book record",
+       "hi": "पुस्तकालय की किताब का रिकॉर्ड"
+      },
+      "right": {
+       "en": "Author, publisher and year",
+       "hi": "लेखक, प्रकाशक और वर्ष"
+      },
+      "why": {
+       "en": "They describe the book and help you search the catalogue.",
+       "hi": "ये किताब का वर्णन करते हैं और सूची में खोजने में मदद करते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:mail",
+     "expect": "matched:mail",
+     "say": {
+      "en": "Match the email with its metadata.",
+      "hi": "ईमेल को उसके मेटाडेटा से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is the subject line of an email part of its metadata or its message?",
+      "hi": "ईमेल की विषय-पंक्ति उसका मेटाडेटा है या संदेश?"
+     },
+     "options": [
+      {
+       "id": "m",
+       "en": "Metadata",
+       "hi": "मेटाडेटा"
+      },
+      {
+       "id": "b",
+       "en": "The message itself",
+       "hi": "संदेश स्वयं"
+      }
+     ],
+     "answer": "m"
+    },
+    {
+     "kind": "do",
+     "target": "left:photo",
+     "expect": "matched:photo",
+     "say": {
+      "en": "Match the photo file.",
+      "hi": "फ़ोटो फ़ाइल को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Metadata is data about data. It does not hold the content itself but describes it: who sent an email, how big a photo is, who sang a song. Metadata helps us describe, search and sort unstructured data such as emails, pictures and music.",
+      "hi": "मेटाडेटा डेटा के बारे में डेटा है। वह स्वयं सामग्री नहीं रखता, उसका वर्णन करता है: ईमेल किसने भेजा, फ़ोटो कितनी बड़ी है, गाना किसने गाया। मेटाडेटा ईमेल, चित्र और संगीत जैसे असंरचित डेटा को बताने, खोजने और छाँटने में मदद करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is metadata of a photo?",
+        "hi": "इनमें से फ़ोटो का मेटाडेटा कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Its file size in MB",
+         "hi": "उसकी फ़ाइल का आकार MB में"
+        },
+        {
+         "en": "The faces seen in the picture",
+         "hi": "चित्र में दिखते चेहरे"
+        },
+        {
+         "en": "The colours in the sky",
+         "hi": "आकाश के रंग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "File size describes the photo file, so it is metadata.",
+        "hi": "फ़ाइल का आकार फ़ोटो फ़ाइल का वर्णन करता है, इसलिए वह मेटाडेटा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the content of the photo, not data about the file.",
+         "hi": "वह फ़ोटो की सामग्री है, फ़ाइल के बारे में डेटा नहीं।"
+        },
+        {
+         "en": "Colours seen are part of the picture itself.",
+         "hi": "दिखने वाले रंग चित्र का ही हिस्सा हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a file on a computer and open its properties. List three metadata items you see.",
+      "hi": "कंप्यूटर की किसी फ़ाइल के गुण खोलो। तीन मेटाडेटा चीज़ें लिखो जो दिखती हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch05-collection",
+   "topic": "5.2",
+   "template": "match",
+   "title": {
+    "en": "Collecting data: what would you do?",
+    "hi": "डेटा इकट्ठा करना: तुम क्या करोगे?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "diary",
+      "left": {
+       "en": "Sales are written in a paper register",
+       "hi": "बिक्री काग़ज़ के रजिस्टर में लिखी है"
+      },
+      "right": {
+       "en": "Type the entries into a spreadsheet",
+       "hi": "प्रविष्टियाँ स्प्रेडशीट में टाइप करो"
+      },
+      "why": {
+       "en": "The data must first be changed into digital form.",
+       "hi": "डेटा को पहले डिजिटल रूप में बदलना होगा।"
+      }
+     },
+     {
+      "id": "csv",
+      "left": {
+       "en": "Sales are already in a CSV file",
+       "hi": "बिक्री पहले से CSV फ़ाइल में है"
+      },
+      "right": {
+       "en": "Read the file directly into the program",
+       "hi": "फ़ाइल को सीधे प्रोग्राम में पढ़ो"
+      },
+      "why": {
+       "en": "Digital data needs no typing; use it as it is.",
+       "hi": "डिजिटल डेटा को टाइप नहीं करना पड़ता; जैसा है वैसा इस्तेमाल करो।"
+      }
+     },
+     {
+      "id": "none",
+      "left": {
+       "en": "No sales have been recorded anywhere",
+       "hi": "कहीं भी बिक्री दर्ज नहीं की गई है"
+      },
+      "right": {
+       "en": "Build software to record sales from now on",
+       "hi": "अब से बिक्री दर्ज करने के लिए सॉफ़्टवेयर बनाओ"
+      },
+      "why": {
+       "en": "With nothing to collect, create a way to capture new data.",
+       "hi": "जब इकट्ठा करने को कुछ नहीं, तो नए डेटा को पकड़ने का तरीक़ा बनाओ।"
+      }
+     },
+     {
+      "id": "hosp",
+      "left": {
+       "en": "A hospital sees new patients every day",
+       "hi": "अस्पताल में रोज़ नए मरीज़ आते हैं"
+      },
+      "right": {
+       "en": "Record each visit as it happens",
+       "hi": "हर भेंट को होते ही दर्ज करो"
+      },
+      "why": {
+       "en": "Data keeps being generated, so it is collected continuously.",
+       "hi": "डेटा लगातार बनता रहता है, इसलिए वह लगातार इकट्ठा किया जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:diary",
+     "expect": "matched:diary",
+     "say": {
+      "en": "Match the paper register with what to do.",
+      "hi": "काग़ज़ के रजिस्टर को वह काम मिलाओ जो करना है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The sales data is already in a CSV file. Do you need to type it all again?",
+      "hi": "बिक्री का डेटा पहले से CSV फ़ाइल में है। क्या सब फिर से टाइप करना पड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, use the file",
+       "hi": "नहीं, फ़ाइल इस्तेमाल करो"
+      },
+      {
+       "id": "y",
+       "en": "Yes, type it again",
+       "hi": "हाँ, फिर से टाइप करो"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "left:csv",
+     "expect": "matched:csv",
+     "say": {
+      "en": "Match the CSV file.",
+      "hi": "CSV फ़ाइल को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Before data can be processed, it has to be collected. The way depends on where it is. Data on paper must be typed into digital form. Data already in a file such as CSV can be read directly. If nothing exists yet, we create software that records data as it happens.",
+      "hi": "डेटा को प्रोसेस करने से पहले इकट्ठा करना पड़ता है। तरीक़ा इस पर निर्भर है कि वह कहाँ है। काग़ज़ पर रखा डेटा टाइप करके डिजिटल रूप में लाना होता है। CSV जैसी फ़ाइल में पहले से रखा डेटा सीधे पढ़ा जा सकता है। अगर कुछ भी नहीं है तो ऐसा सॉफ़्टवेयर बनाते हैं जो डेटा होते ही दर्ज करे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does CSV stand for?",
+        "hi": "CSV का पूरा रूप क्या है?"
+       },
+       "options": [
+        {
+         "en": "Comma Separated Values",
+         "hi": "कॉमा सेपरेटेड वैल्यूज़ (अल्पविराम से अलग मान)"
+        },
+        {
+         "en": "Computer Stored Video",
+         "hi": "कंप्यूटर स्टोर्ड वीडियो"
+        },
+        {
+         "en": "Central Server Version",
+         "hi": "सेंट्रल सर्वर वर्ज़न"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a CSV file the values in a row are separated by commas.",
+        "hi": "CSV फ़ाइल में एक पंक्ति के मान अल्पविराम से अलग होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A CSV file holds plain table data, not video.",
+         "hi": "CSV फ़ाइल सादी तालिका का डेटा रखती है, वीडियो नहीं।"
+        },
+        {
+         "en": "CSV is a file format, not a server.",
+         "hi": "CSV एक फ़ाइल-प्रारूप है, सर्वर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "How would your school collect attendance data every day?",
+      "hi": "तुम्हारा स्कूल रोज़ की हाज़िरी का डेटा कैसे इकट्ठा करेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch05-atm-cycle",
+   "topic": "5.4",
+   "template": "sequence",
+   "title": {
+    "en": "The data processing cycle at an ATM",
+    "hi": "ATM पर डेटा प्रोसेसिंग चक्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "input",
+      "text": {
+       "en": "Input: you insert the card and type your PIN and amount",
+       "hi": "इनपुट: आप कार्ड डालते हैं और PIN व राशि टाइप करते हैं"
+      }
+     },
+     {
+      "id": "pin",
+      "text": {
+       "en": "Processing: the PIN is checked to see if it is valid",
+       "hi": "प्रोसेसिंग: PIN जाँचा जाता है कि वह सही है या नहीं"
+      }
+     },
+     {
+      "id": "bal",
+      "text": {
+       "en": "Processing: the balance is checked to see if it is enough",
+       "hi": "प्रोसेसिंग: शेष राशि जाँची जाती है कि वह काफ़ी है या नहीं"
+      }
+     },
+     {
+      "id": "deduct",
+      "text": {
+       "en": "Processing: the amount is deducted from the account",
+       "hi": "प्रोसेसिंग: खाते से राशि घटाई जाती है"
+      }
+     },
+     {
+      "id": "output",
+      "text": {
+       "en": "Output: the machine gives the notes and a receipt",
+       "hi": "आउटपुट: मशीन नोट और रसीद देती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:input",
+     "expect": "placed:input",
+     "say": {
+      "en": "Put the input step in slot 1.",
+      "hi": "इनपुट वाला चरण खाना 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Should the machine deduct the money before or after it checks the balance?",
+      "hi": "मशीन पैसे घटाने से पहले शेष राशि जाँचे या बाद में?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "After checking",
+       "hi": "जाँचने के बाद"
+      },
+      {
+       "id": "b",
+       "en": "Before checking",
+       "hi": "जाँचने से पहले"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order, then press Check.",
+      "hi": "सारे चरण क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Data processing has three parts: input, processing and output. Raw data goes in, the system checks and changes it, and useful information comes out. At an ATM, checks come before the deduction so that only a valid request is acted on.",
+      "hi": "डेटा प्रोसेसिंग के तीन भाग हैं: इनपुट, प्रोसेसिंग और आउटपुट। कच्चा डेटा अंदर जाता है, सिस्टम उसे जाँचता और बदलता है, और उपयोगी जानकारी बाहर आती है। ATM में जाँचें घटाने से पहले होती हैं ताकि केवल सही अनुरोध पर कार्रवाई हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part of the cycle is \"checking the PIN\"?",
+        "hi": "चक्र का कौन-सा भाग \"PIN जाँचना\" है?"
+       },
+       "options": [
+        {
+         "en": "Input",
+         "hi": "इनपुट"
+        },
+        {
+         "en": "Processing",
+         "hi": "प्रोसेसिंग"
+        },
+        {
+         "en": "Output",
+         "hi": "आउटपुट"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Checking, calculating and updating are processing.",
+        "hi": "जाँचना, गणना करना और अद्यतन करना प्रोसेसिंग है।"
+       },
+       "wrong": [
+        {
+         "en": "Typing the PIN is input. Checking it is a separate step.",
+         "hi": "PIN टाइप करना इनपुट है। उसे जाँचना अलग चरण है।"
+        },
+        "",
+        {
+         "en": "Output is what the machine gives back, like cash and receipt.",
+         "hi": "आउटपुट वह है जो मशीन लौटाती है, जैसे नक़द और रसीद।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is OUTPUT of the cycle?",
+        "hi": "चक्र का आउटपुट इनमें से कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "The printed receipt",
+         "hi": "छपी हुई रसीद"
+        },
+        {
+         "en": "The card you insert",
+         "hi": "जो कार्ड आप डालते हैं"
+        },
+        {
+         "en": "The PIN you type",
+         "hi": "जो PIN आप टाइप करते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Results and reports that come out are output.",
+        "hi": "जो नतीजे और रिपोर्ट बाहर आते हैं वे आउटपुट हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The card is an input.",
+         "hi": "कार्ड इनपुट है।"
+        },
+        {
+         "en": "The PIN is an input.",
+         "hi": "PIN इनपुट है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a similar chain for booking a train ticket online.",
+      "hi": "ऑनलाइन ट्रेन टिकट बुक करने के लिए ऐसी ही शृंखला बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch05-mean-outlier",
+   "topic": "5.5.1",
+   "template": "data",
+   "title": {
+    "en": "Mean and the odd one out",
+    "hi": "माध्य और अलग-थलग मान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "mean",
+    "title": {
+     "en": "Weekly pocket money of five friends, in rupees (sample)",
+     "hi": "पाँच दोस्तों का साप्ताहिक जेबख़र्च, रुपयों में (नमूना)"
+    },
+    "ylabel": {
+     "en": "Rupees",
+     "hi": "रुपये"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Ria",
+       "hi": "रिया"
+      },
+      "value": 20
+     },
+     {
+      "label": {
+       "en": "Sam",
+       "hi": "सैम"
+      },
+      "value": 25
+     },
+     {
+      "label": {
+       "en": "Tara",
+       "hi": "तारा"
+      },
+      "value": 30
+     },
+     {
+      "label": {
+       "en": "Uma",
+       "hi": "उमा"
+      },
+      "value": 25
+     },
+     {
+      "label": {
+       "en": "Vik",
+       "hi": "विक"
+      },
+      "value": 25
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:1",
+     "expect": "selected:1",
+     "say": {
+      "en": "Tap Sam's bar to read his pocket money.",
+      "hi": "सैम की पट्टी दबाकर उसका जेबख़र्च पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The five amounts are 20, 25, 30, 25 and 25. What is the mean (average)?",
+      "hi": "पाँच राशियाँ 20, 25, 30, 25 और 25 हैं। माध्य (औसत) क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "25",
+       "hi": "उत्तर: 25"
+      },
+      {
+       "id": "b",
+       "en": "30",
+       "hi": "उत्तर: 30"
+      },
+      {
+       "id": "c",
+       "en": "20",
+       "hi": "उत्तर: 20"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Work out the mean and answer the question.",
+      "hi": "माध्य निकालकर सवाल का जवाब दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:2",
+     "expect": "changed",
+     "say": {
+      "en": "Now drag the slider for Tara up to a very large amount.",
+      "hi": "अब तारा का स्लाइडर बहुत बड़ी राशि तक ऊपर खींचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The mean is the sum of all values divided by how many there are: (20 + 25 + 30 + 25 + 25) ÷ 5 = 25. When one value becomes very large, the mean is pulled up a lot. The median hardly moves. Such an extreme value is an outlier, and it can make the mean a poor description of the group.",
+      "hi": "माध्य सब मानों का जोड़ भाग मानों की संख्या है: (20 + 25 + 30 + 25 + 25) ÷ 5 = 25। जब एक मान बहुत बड़ा हो जाता है तो माध्य बहुत ऊपर खिंच जाता है। माध्यिका लगभग नहीं हिलती। ऐसा अति मान आउटलायर है, और वह माध्य को समूह का ख़राब वर्णन बना सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "One friend suddenly gets a huge amount. What happens to the mean?",
+        "hi": "एक दोस्त को अचानक बहुत बड़ी राशि मिल जाती है। माध्य का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It rises a lot",
+         "hi": "वह बहुत बढ़ जाता है"
+        },
+        {
+         "en": "It stays the same",
+         "hi": "वह वही रहता है"
+        },
+        {
+         "en": "It falls",
+         "hi": "वह घट जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The total goes up, and the mean is the total divided by 5.",
+        "hi": "जोड़ बढ़ता है, और माध्य जोड़ को 5 से भाग है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The mean uses every value, so a big value changes it.",
+         "hi": "माध्य हर मान का उपयोग करता है, इसलिए बड़ा मान उसे बदल देता है।"
+        },
+        {
+         "en": "A larger value adds to the total, so the mean goes up.",
+         "hi": "बड़ा मान जोड़ को बढ़ाता है, इसलिए माध्य बढ़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which measure is less affected by an outlier?",
+        "hi": "आउटलायर से कौन-सा माप कम प्रभावित होता है?"
+       },
+       "options": [
+        {
+         "en": "Mean",
+         "hi": "माध्य"
+        },
+        {
+         "en": "Median",
+         "hi": "माध्यिका"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The median is the middle value, so one extreme value barely moves it.",
+        "hi": "माध्यिका बीच का मान है, इसलिए एक अति मान उसे मुश्किल से हिलाता है।"
+       },
+       "wrong": [
+        {
+         "en": "The mean is the one most pulled by outliers.",
+         "hi": "माध्य आउटलायर से सबसे ज़्यादा खिंचता है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the bar back down. At what value does the mean match the median again?",
+      "hi": "पट्टी को वापस नीचे खींचो। किस मान पर माध्य फिर माध्यिका के बराबर होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch05-median-sort",
+   "topic": "5.5.1",
+   "template": "data",
+   "title": {
+    "en": "Median: the middle value",
+    "hi": "माध्यिका: बीच का मान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "median",
+    "title": {
+     "en": "Heights of seven children, in cm (sample)",
+     "hi": "सात बच्चों की ऊँचाई, सेमी में (नमूना)"
+    },
+    "ylabel": {
+     "en": "Height (cm)",
+     "hi": "ऊँचाई (सेमी)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Aman",
+       "hi": "अमन"
+      },
+      "value": 118
+     },
+     {
+      "label": {
+       "en": "Bela",
+       "hi": "बेला"
+      },
+      "value": 105
+     },
+     {
+      "label": {
+       "en": "Chitra",
+       "hi": "चित्रा"
+      },
+      "value": 112
+     },
+     {
+      "label": {
+       "en": "Dev",
+       "hi": "देव"
+      },
+      "value": 109
+     },
+     {
+      "label": {
+       "en": "Esha",
+       "hi": "ईशा"
+      },
+      "value": 121
+     },
+     {
+      "label": {
+       "en": "Farid",
+       "hi": "फ़रीद"
+      },
+      "value": 115
+     },
+     {
+      "label": {
+       "en": "Gita",
+       "hi": "गीता"
+      },
+      "value": 108
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "sort",
+     "expect": "sorted",
+     "say": {
+      "en": "Press Sort to line the heights up from the shortest to the tallest.",
+      "hi": "ऊँचाइयों को सबसे छोटे से सबसे लंबे के क्रम में लगाने के लिए छाँटो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "With seven sorted heights, which position holds the median?",
+      "hi": "सात क्रमबद्ध ऊँचाइयों में माध्यिका किस स्थान पर होती है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The 4th, the middle one",
+       "hi": "चौथा, बीच वाला"
+      },
+      {
+       "id": "b",
+       "en": "The 1st",
+       "hi": "पहला"
+      },
+      {
+       "id": "c",
+       "en": "The 7th",
+       "hi": "सातवाँ"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Find the median and answer the question.",
+      "hi": "माध्यिका निकालकर सवाल का जवाब दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To find the median, sort the values and take the middle one. With 7 values the 4th is the middle: 105, 108, 109, 112, 115, 118, 121 gives 112. If there were an even number of values, the median would be the average of the two middle ones. The median splits the data into two equal halves.",
+      "hi": "माध्यिका निकालने के लिए मानों को क्रम में लगाओ और बीच वाला लो। 7 मानों में चौथा बीच का है: 105, 108, 109, 112, 115, 118, 121 में 112। अगर मानों की संख्या सम होती तो माध्यिका बीच के दो मानों का औसत होती। माध्यिका डेटा को दो बराबर हिस्सों में बाँटती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we sort the values before finding the median?",
+        "hi": "माध्यिका निकालने से पहले मान क्यों छाँटते हैं?"
+       },
+       "options": [
+        {
+         "en": "The middle is only meaningful in an ordered list",
+         "hi": "बीच का मान केवल क्रमबद्ध सूची में ही मायने रखता है"
+        },
+        {
+         "en": "Sorting changes the values",
+         "hi": "छाँटने से मान बदल जाते हैं"
+        },
+        {
+         "en": "Python needs sorting to add numbers",
+         "hi": "जोड़ने के लिए Python को छाँटना पड़ता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The median is the value in the middle position of the ordered data.",
+        "hi": "माध्यिका क्रमबद्ध डेटा के बीच वाले स्थान का मान है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sorting only changes the order, not the values.",
+         "hi": "छाँटने से सिर्फ़ क्रम बदलता है, मान नहीं।"
+        },
+        {
+         "en": "Adding does not depend on the order.",
+         "hi": "जोड़ना क्रम पर निर्भर नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For 4, 8, 10, 20 (an even count), what is the median?",
+        "hi": "4, 8, 10, 20 (सम गिनती) की माध्यिका क्या है?"
+       },
+       "options": [
+        {
+         "en": "9",
+         "hi": "उत्तर: 9"
+        },
+        {
+         "en": "10",
+         "hi": "उत्तर: 10"
+        },
+        {
+         "en": "8",
+         "hi": "उत्तर: 8"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(8 + 10) ÷ 2 = 9.",
+        "hi": "(8 + 10) ÷ 2 = 9।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "10 is one of the middle values. With an even count you average both middle values, 8 and 10.",
+         "hi": "10 बीच के मानों में से एक है। सम गिनती में दोनों बीच के मानों, 8 और 10, का औसत लेते हैं।"
+        },
+        {
+         "en": "8 is one of the middle values. You average it with 10.",
+         "hi": "8 बीच के मानों में से एक है। उसका 10 के साथ औसत लेना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag one height very high. Does the median change?",
+      "hi": "एक ऊँचाई बहुत ऊपर खींचो। क्या माध्यिका बदलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch05-mode",
+   "topic": "5.5.1",
+   "template": "data",
+   "title": {
+    "en": "Mode: the most common value",
+    "hi": "बहुलक: सबसे आम मान"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "mode",
+    "title": {
+     "en": "Shoe sizes of eight children (sample)",
+     "hi": "आठ बच्चों के जूतों के नंबर (नमूना)"
+    },
+    "ylabel": {
+     "en": "Shoe size",
+     "hi": "जूते का नंबर"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Asha",
+       "hi": "आशा"
+      },
+      "value": 6
+     },
+     {
+      "label": {
+       "en": "Binu",
+       "hi": "बिनु"
+      },
+      "value": 7
+     },
+     {
+      "label": {
+       "en": "Cara",
+       "hi": "कारा"
+      },
+      "value": 7
+     },
+     {
+      "label": {
+       "en": "Dhruv",
+       "hi": "ध्रुव"
+      },
+      "value": 8
+     },
+     {
+      "label": {
+       "en": "Elan",
+       "hi": "एलन"
+      },
+      "value": 7
+     },
+     {
+      "label": {
+       "en": "Fiza",
+       "hi": "फ़िज़ा"
+      },
+      "value": 9
+     },
+     {
+      "label": {
+       "en": "Gopi",
+       "hi": "गोपी"
+      },
+      "value": 6
+     },
+     {
+      "label": {
+       "en": "Hari",
+       "hi": "हरि"
+      },
+      "value": 7
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:1",
+     "expect": "selected:1",
+     "say": {
+      "en": "Tap Binu's bar to read his shoe size.",
+      "hi": "बिनु की पट्टी दबाकर उसका जूते का नंबर पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which shoe size do you think appears most often?",
+      "hi": "तुम्हारे ख़्याल से कौन-सा जूते का नंबर सबसे ज़्यादा बार आता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Size 7",
+       "hi": "नंबर 7"
+      },
+      {
+       "id": "b",
+       "en": "Size 6",
+       "hi": "नंबर 6"
+      },
+      {
+       "id": "c",
+       "en": "Size 9",
+       "hi": "नंबर 9"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Find the mode and answer the question.",
+      "hi": "बहुलक निकालकर सवाल का जवाब दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The mode is the value that appears the most times. Here size 7 appears 4 times, size 6 twice, and sizes 8 and 9 once each, so the mode is 7. A shopkeeper stocks the most pairs of the mode size. Data can have two modes, or none if every value is different.",
+      "hi": "बहुलक वह मान है जो सबसे ज़्यादा बार आता है। यहाँ नंबर 7 चार बार, नंबर 6 दो बार, और नंबर 8 व 9 एक-एक बार आते हैं, इसलिए बहुलक 7 है। दुकानदार बहुलक वाले नंबर के सबसे ज़्यादा जोड़े रखता है। डेटा में दो बहुलक हो सकते हैं, या कोई नहीं अगर हर मान अलग हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A shopkeeper wants the shoe size to stock the most. Which measure helps?",
+        "hi": "दुकानदार को सबसे ज़्यादा रखने के लिए जूते का नंबर चाहिए। कौन-सा माप मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "Mode",
+         "hi": "बहुलक"
+        },
+        {
+         "en": "Range",
+         "hi": "परिसर"
+        },
+        {
+         "en": "Mean",
+         "hi": "माध्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The most frequent size is the one most buyers need.",
+        "hi": "सबसे अधिक बार आने वाला नंबर वही है जो ज़्यादातर ग्राहकों को चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Range tells the spread between the biggest and smallest sizes, not which is common.",
+         "hi": "परिसर सबसे बड़े और सबसे छोटे नंबर का फैलाव बताता है, यह नहीं कि कौन-सा आम है।"
+        },
+        {
+         "en": "The mean can be a size nobody wears, like 7.1.",
+         "hi": "माध्य ऐसा नंबर हो सकता है जो कोई नहीं पहनता, जैसे 7.1।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can a set of data have no mode?",
+        "hi": "क्या डेटा का कोई बहुलक न हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "Yes, if every value occurs only once",
+         "hi": "हाँ, अगर हर मान सिर्फ़ एक बार आए"
+        },
+        {
+         "en": "No, every set has exactly one mode",
+         "hi": "नहीं, हर डेटा का ठीक एक बहुलक होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With no repeats there is no value that appears most.",
+        "hi": "दोहराव न हो तो कोई मान सबसे ज़्यादा बार नहीं आता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If all values are different, none repeats the most.",
+         "hi": "अगर सब मान अलग हैं, तो कोई सबसे ज़्यादा बार नहीं आता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change two bars to size 6. Now how many modes are there?",
+      "hi": "दो पट्टियों को नंबर 6 कर दो। अब कितने बहुलक हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch05-range",
+   "topic": "5.5.2",
+   "template": "data",
+   "title": {
+    "en": "Range: how spread out is the data?",
+    "hi": "परिसर: डेटा कितना फैला है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "range",
+    "title": {
+     "en": "Test marks of six students out of 50 (sample)",
+     "hi": "छह विद्यार्थियों के 50 में से अंक (नमूना)"
+    },
+    "ylabel": {
+     "en": "Marks",
+     "hi": "अंक"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Isha",
+       "hi": "ईशा"
+      },
+      "value": 32
+     },
+     {
+      "label": {
+       "en": "Jai",
+       "hi": "जय"
+      },
+      "value": 45
+     },
+     {
+      "label": {
+       "en": "Kavya",
+       "hi": "काव्या"
+      },
+      "value": 28
+     },
+     {
+      "label": {
+       "en": "Lal",
+       "hi": "लाल"
+      },
+      "value": 39
+     },
+     {
+      "label": {
+       "en": "Mina",
+       "hi": "मीना"
+      },
+      "value": 44
+     },
+     {
+      "label": {
+       "en": "Nikhil",
+       "hi": "निखिल"
+      },
+      "value": 36
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:2",
+     "expect": "selected:2",
+     "say": {
+      "en": "Tap Kavya's bar. It is the lowest mark.",
+      "hi": "काव्या की पट्टी दबाओ। यह सबसे कम अंक है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The highest mark is 45 and the lowest is 28. What is the range?",
+      "hi": "सबसे ज़्यादा अंक 45 और सबसे कम 28 है। परिसर क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "17",
+       "hi": "उत्तर: 17"
+      },
+      {
+       "id": "b",
+       "en": "73",
+       "hi": "उत्तर: 73"
+      },
+      {
+       "id": "c",
+       "en": "45",
+       "hi": "उत्तर: 45"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Work out the range and answer.",
+      "hi": "परिसर निकालकर जवाब दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Range = largest value − smallest value = 45 − 28 = 17. It shows how widely the marks are spread. A big range means the class is very mixed; a small range means the marks are close together. Range uses only the two extreme values, so one odd value changes it a lot.",
+      "hi": "परिसर = सबसे बड़ा मान − सबसे छोटा मान = 45 − 28 = 17। यह दिखाता है कि अंक कितने फैले हैं। बड़ा परिसर यानी कक्षा बहुत मिली-जुली है; छोटा परिसर यानी अंक पास-पास हैं। परिसर सिर्फ़ दो अति मानों का उपयोग करता है, इसलिए एक अलग मान उसे बहुत बदल देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two classes have the same mean mark. One has range 5 and the other range 40. What does that tell you?",
+        "hi": "दो कक्षाओं का औसत अंक एक जैसा है। एक का परिसर 5 और दूसरी का 40 है। इससे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "The second class is much more spread out",
+         "hi": "दूसरी कक्षा के अंक बहुत ज़्यादा फैले हैं"
+        },
+        {
+         "en": "The classes are exactly alike",
+         "hi": "दोनों कक्षाएँ बिलकुल एक जैसी हैं"
+        },
+        {
+         "en": "The first class is much more spread out",
+         "hi": "पहली कक्षा के अंक बहुत ज़्यादा फैले हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A larger range means a bigger gap between the highest and lowest values.",
+        "hi": "बड़ा परिसर यानी सबसे ऊँचे और सबसे नीचे मान में बड़ा अंतर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Same mean does not mean same spread. The ranges differ.",
+         "hi": "औसत एक जैसा हो तो फैलाव एक जैसा नहीं होता। परिसर अलग हैं।"
+        },
+        {
+         "en": "Range 5 means the marks are close together.",
+         "hi": "परिसर 5 का मतलब है अंक पास-पास हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the lowest bar up to 40. What happens to the range?",
+      "hi": "सबसे छोटी पट्टी को 40 तक ऊपर खींचो। परिसर का क्या होता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Chapter hook: data in a small shop",
+   "shows": "A kirana shop counter with a handwritten ledger book, a calculator, a phone lying on the counter and jars of sweets behind",
+   "view": "Wide, 16:9, warm shop light",
+   "right": "Real Indian shop feel; ledger page is blurred so no numbers are readable",
+   "avoid": "Faces, readable prices, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.1.2",
+   "use": "Structured and unstructured data objects",
+   "shows": "A ruled school fee register open to a page of columns, and a loose heap of photos, a newspaper and a handwritten letter, as two separate cut-outs",
+   "view": "Top-down view for each, plain backdrop",
+   "right": "Register columns are clearly neat; the heap is clearly messy",
+   "avoid": "Readable text or names, faces in the photos"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Collecting data by hand",
+   "shows": "A pair of hands noting numbers in a notebook while standing beside a bus stop at morning, people in the background out of focus",
+   "view": "Close side view, 16:9",
+   "right": "Notebook and pen sharp, background soft and without faces",
+   "avoid": "Identifiable faces, readable bus numbers"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "5.4",
+   "use": "The ATM cycle",
+   "shows": "Four frames at an ATM booth: a card going in, a hand on the keypad, notes coming out, a receipt being taken",
+   "view": "Same fixed camera and light, hands only",
+   "right": "Frames follow the real order of use",
+   "avoid": "Faces, bank names or logos, readable card numbers"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "5.5.1",
+   "use": "Heights at a school health camp",
+   "shows": "A child seen from behind standing against a wooden height scale in a school courtyard while a nurse holds a clipboard",
+   "view": "Side view, daylight",
+   "right": "Height scale is clear and the child stands straight",
+   "avoid": "Faces, readable names on the clipboard"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "5.5.2",
+   "use": "Number line base for range",
+   "shows": "A long clean horizontal line with evenly spaced tick marks from 0 to 50 and a small gap bracket drawn above two of the ticks, all without numbers",
+   "view": "Flat front view on white",
+   "right": "Ticks equal in spacing so the app can place values on them",
+   "avoid": "Numbers or words"
+  }
+ ]
+}

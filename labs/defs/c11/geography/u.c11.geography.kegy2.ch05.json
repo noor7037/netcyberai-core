@@ -1,0 +1,1352 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch05",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Geomorphic Processes",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy205.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Geomorphic processes and agents: endogenic and exogenic",
+   "labs": [
+    "c11-geography-kegy2-ch05-endo-exo"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Endogenic processes: diastrophism and volcanism",
+   "labs": [
+    "c11-geography-kegy2-ch05-diastrophism"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Exogenic processes: weathering",
+   "labs": [
+    "c11-geography-kegy2-ch05-weathering"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Mass movements",
+   "labs": [
+    "c11-geography-kegy2-ch05-mass-movement"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Soil formation",
+   "labs": [
+    "c11-geography-kegy2-ch05-soil",
+    "c11-geography-kegy2-ch05-soil-factors"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch05-endo-exo",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "Forces from inside and outside",
+    "hi": "भीतर और बाहर की शक्तियाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "endo",
+      "label": {
+       "en": "Endogenic (from inside)",
+       "hi": "अंतर्जात (भीतर से)"
+      }
+     },
+     {
+      "id": "exo",
+      "label": {
+       "en": "Exogenic (from outside)",
+       "hi": "बहिर्जात (बाहर से)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "fold",
+      "bin": "endo",
+      "text": {
+       "en": "Folding of rock layers",
+       "hi": "चट्टानी परतों का मुड़ना"
+      },
+      "why": {
+       "en": "Forces from inside the Earth bend rock layers into folds.",
+       "hi": "पृथ्वी के भीतर की शक्तियाँ चट्टानी परतों को मोड़ती हैं।"
+      }
+     },
+     {
+      "id": "fault",
+      "bin": "endo",
+      "text": {
+       "en": "Faulting, breaking of the crust",
+       "hi": "भ्रंशन, भूपर्पटी का टूटना"
+      },
+      "why": {
+       "en": "Forces from inside break the crust along faults.",
+       "hi": "भीतर की शक्तियाँ भूपर्पटी को भ्रंश पर तोड़ती हैं।"
+      }
+     },
+     {
+      "id": "volc",
+      "bin": "endo",
+      "text": {
+       "en": "Volcanic eruption",
+       "hi": "ज्वालामुखी विस्फोट"
+      },
+      "why": {
+       "en": "Heat from inside the Earth pushes magma up to the surface.",
+       "hi": "पृथ्वी के भीतर की गर्मी मैग्मा को सतह तक धकेलती है।"
+      }
+     },
+     {
+      "id": "quake",
+      "bin": "endo",
+      "text": {
+       "en": "Earthquake",
+       "hi": "भूकंप"
+      },
+      "why": {
+       "en": "Rocks break and slip because of forces working deep underground.",
+       "hi": "गहराई में काम करती शक्तियों से चट्टानें टूटती और खिसकती हैं।"
+      }
+     },
+     {
+      "id": "weather",
+      "bin": "exo",
+      "text": {
+       "en": "Weathering of rocks by sun, rain and frost",
+       "hi": "धूप, वर्षा और पाले से चट्टानों का अपक्षय"
+      },
+      "why": {
+       "en": "Weather and air act from outside on the surface rocks.",
+       "hi": "मौसम और हवा बाहर से सतह की चट्टानों पर काम करते हैं।"
+      }
+     },
+     {
+      "id": "river",
+      "bin": "exo",
+      "text": {
+       "en": "A river cutting a valley",
+       "hi": "नदी का घाटी काटना"
+      },
+      "why": {
+       "en": "Flowing water erodes the land from outside.",
+       "hi": "बहता पानी बाहर से भूमि को काटता है।"
+      }
+     },
+     {
+      "id": "glacier",
+      "bin": "exo",
+      "text": {
+       "en": "A glacier scraping its valley",
+       "hi": "हिमनद का अपनी घाटी को घिसना"
+      },
+      "why": {
+       "en": "Moving ice wears the surface down: an outside agent.",
+       "hi": "बर्फ़ की गति सतह को घिसती है: एक बाहरी कारक।"
+      }
+     },
+     {
+      "id": "dune",
+      "bin": "exo",
+      "text": {
+       "en": "Wind piling up sand dunes",
+       "hi": "हवा का रेत के टीले बनाना"
+      },
+      "why": {
+       "en": "Wind both carries sand and deposits it: an exogenic process.",
+       "hi": "हवा रेत को ले जाती और जमा करती है: बहिर्जात प्रक्रिया।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:fold",
+     "expect": "correct:fold",
+     "say": {
+      "en": "Tap the card \"Folding of rock layers\", then tap the group where it belongs.",
+      "hi": "कार्ड \"चट्टानी परतों का मुड़ना\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"A river cutting a valley\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"नदी का घाटी काटना\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "endo",
+       "en": "Endogenic (from inside)",
+       "hi": "अंतर्जात (भीतर से)"
+      },
+      {
+       "id": "exo",
+       "en": "Exogenic (from outside)",
+       "hi": "बहिर्जात (बाहर से)"
+      }
+     ],
+     "answer": "exo"
+    },
+    {
+     "kind": "do",
+     "target": "card:river",
+     "expect": "correct:river",
+     "say": {
+      "en": "Now sort the card \"A river cutting a valley\".",
+      "hi": "अब कार्ड \"नदी का घाटी काटना\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two sets of forces keep changing the Earth's surface. Endogenic forces come from inside the Earth and mostly build the land up, by folding, faulting and volcanoes. Exogenic forces come from the atmosphere and water, such as wind, rivers, glaciers and waves, and mostly wear the land down. The landscape we see is the result of both.",
+      "hi": "पृथ्वी की सतह को दो प्रकार की शक्तियाँ बदलती रहती हैं। अंतर्जात शक्तियाँ पृथ्वी के भीतर से आती हैं और मोड़ने, तोड़ने और ज्वालामुखी से अधिकतर भूमि को ऊँचा उठाती हैं। बहिर्जात शक्तियाँ वायुमंडल और जल से आती हैं, जैसे हवा, नदी, हिमनद और लहरें, और अधिकतर भूमि को घिसकर नीचा करती हैं। हम जो भू-दृश्य देखते हैं वह दोनों का परिणाम है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A mountain is lifted up by folding while a river cuts a gorge across it. Which force does each?",
+        "hi": "एक पर्वत मुड़ाव से उठता है और एक नदी उसके आर-पार गॉर्ज काटती है। प्रत्येक कौन-सी शक्ति है?"
+       },
+       "options": [
+        {
+         "en": "Folding is endogenic; the river is exogenic",
+         "hi": "मुड़ाव अंतर्जात है; नदी बहिर्जात"
+        },
+        {
+         "en": "Both are endogenic",
+         "hi": "दोनों अंतर्जात हैं"
+        },
+        {
+         "en": "Folding is exogenic; the river is endogenic",
+         "hi": "मुड़ाव बहिर्जात है; नदी अंतर्जात"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Folding comes from forces inside the Earth, while a river works on the surface from outside.",
+        "hi": "मुड़ाव पृथ्वी के भीतर की शक्तियों से होता है, जबकि नदी बाहर से सतह पर काम करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A river is moving water on the surface, not a force from inside the Earth.",
+         "hi": "नदी सतह पर बहता पानी है, पृथ्वी के भीतर की शक्ति नहीं।"
+        },
+        {
+         "en": "This reverses them: folding is the inside force.",
+         "hi": "यह उलटा है: मुड़ाव भीतर की शक्ति है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a hill near you. Which inside force may have raised it, and which outside force is wearing it down now?",
+      "hi": "अपने पास की कोई पहाड़ी चुनो। उसे किस अंतर्जात शक्ति ने उठाया होगा, और अब कौन-सी बहिर्जात शक्ति उसे घिस रही है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch05-diastrophism",
+   "topic": "5.2",
+   "template": "match",
+   "title": {
+    "en": "Building the land: moving the crust",
+    "hi": "भूमि का निर्माण: भूपर्पटी की हलचल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "orogeny",
+      "left": {
+       "en": "Orogenic movement",
+       "hi": "पर्वत-निर्माणकारी संचलन"
+      },
+      "right": {
+       "en": "Quick, strong movement that builds mountains by folding",
+       "hi": "तेज़, प्रबल संचलन जो मुड़ाव से पर्वत बनाता है"
+      },
+      "why": {
+       "en": "Orogeny means mountain building, usually through folding along a narrow belt.",
+       "hi": "ओरोजनी का अर्थ है पर्वत-निर्माण, जो प्रायः संकरी पट्टी में मुड़ाव से होता है।"
+      }
+     },
+     {
+      "id": "epeiro",
+      "left": {
+       "en": "Epeirogenic movement",
+       "hi": "महाद्वीप-निर्माणकारी संचलन"
+      },
+      "right": {
+       "en": "Slow raising or sinking of a large part of a continent",
+       "hi": "महाद्वीप के बड़े भाग का धीमा उठना या धँसना"
+      },
+      "why": {
+       "en": "These slow movements lift or lower wide areas without much folding.",
+       "hi": "ये धीमे संचलन बिना ज़्यादा मुड़ाव के चौड़े क्षेत्रों को उठाते या गिराते हैं।"
+      }
+     },
+     {
+      "id": "folding",
+      "left": {
+       "en": "Folding",
+       "hi": "वलन"
+      },
+      "right": {
+       "en": "Rock layers bent into waves by pushing from the sides",
+       "hi": "किनारों से धक्के से चट्टानी परतों का लहरों की तरह मुड़ना"
+      },
+      "why": {
+       "en": "Compression from the sides bends layers into folds.",
+       "hi": "दोनों ओर के दबाव से परतें मुड़ती हैं।"
+      }
+     },
+     {
+      "id": "faulting",
+      "left": {
+       "en": "Faulting",
+       "hi": "भ्रंशन"
+      },
+      "right": {
+       "en": "Rocks crack and blocks slide past, making rift valleys and block mountains",
+       "hi": "चट्टानें टूटती हैं और खंड खिसकते हैं, जिससे दरार घाटियाँ और ब्लॉक पर्वत बनते हैं"
+      },
+      "why": {
+       "en": "Rocks break along cracks called faults when the stress is too great.",
+       "hi": "तनाव बहुत होने पर चट्टानें भ्रंश नामक दरारों पर टूटती हैं।"
+      }
+     },
+     {
+      "id": "volcanism",
+      "left": {
+       "en": "Volcanism",
+       "hi": "ज्वालामुखीयता"
+      },
+      "right": {
+       "en": "Magma moves up and builds cones and plateaus on or under the surface",
+       "hi": "मैग्मा ऊपर आकर सतह पर या नीचे शंकु और पठार बनाता है"
+      },
+      "why": {
+       "en": "Volcanism covers all the movement of magma towards the surface.",
+       "hi": "ज्वालामुखीयता में मैग्मा की सतह की ओर सारी गति आती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:orogeny",
+     "expect": "matched:orogeny",
+     "say": {
+      "en": "Match \"Orogenic movement\" with its meaning.",
+      "hi": "\"पर्वत-निर्माणकारी संचलन\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Faulting\"?",
+      "hi": "\"भ्रंशन\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "orogeny",
+       "en": "Quick, strong movement that builds mountains by folding",
+       "hi": "तेज़, प्रबल संचलन जो मुड़ाव से पर्वत बनाता है"
+      },
+      {
+       "id": "faulting",
+       "en": "Rocks crack and blocks slide past, making rift valleys and block mountains",
+       "hi": "चट्टानें टूटती हैं और खंड खिसकते हैं, जिससे दरार घाटियाँ और ब्लॉक पर्वत बनते हैं"
+      },
+      {
+       "id": "epeiro",
+       "en": "Slow raising or sinking of a large part of a continent",
+       "hi": "महाद्वीप के बड़े भाग का धीमा उठना या धँसना"
+      }
+     ],
+     "answer": "faulting"
+    },
+    {
+     "kind": "do",
+     "target": "left:faulting",
+     "expect": "matched:faulting",
+     "say": {
+      "en": "Now match \"Faulting\".",
+      "hi": "अब \"भ्रंशन\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Diastrophism means all the movements of the crust. It has two main kinds: slow, wide movements that raise or lower big parts of continents, and fast, narrow ones that build mountains by folding and faulting. Volcanism adds new rock from below. Together they build the land that exogenic forces wear away.",
+      "hi": "भूपर्पटी की सारी हलचलों को पटल-विरूपण (डायस्ट्रोफ़िज़्म) कहते हैं। इसके दो मुख्य रूप हैं: धीमे, चौड़े संचलन जो महाद्वीप के बड़े भागों को उठाते या गिराते हैं, और तेज़, संकरे संचलन जो मुड़ाव और भ्रंशन से पर्वत बनाते हैं। ज्वालामुखीयता नीचे से नई चट्टान लाती है। साथ मिलकर ये वह भूमि बनाते हैं जिसे बहिर्जात शक्तियाँ घिसती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A rift valley forms when the crust ...",
+        "hi": "दरार घाटी तब बनती है जब भूपर्पटी ..."
+       },
+       "options": [
+        {
+         "en": "cracks and a block between two faults drops",
+         "hi": "टूटती है और दो भ्रंशों के बीच का खंड नीचे धँसता है"
+        },
+        {
+         "en": "is folded into a wave",
+         "hi": "लहर की तरह मुड़ जाती है"
+        },
+        {
+         "en": "is blown by wind",
+         "hi": "हवा से उड़ाई जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Faulting breaks the crust, and the middle block sinks to form a rift valley.",
+        "hi": "भ्रंशन से भूपर्पटी टूटती है और बीच का खंड धँसकर दरार घाटी बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Folding makes ridges and valleys of waves, not a block dropping between faults.",
+         "hi": "मुड़ाव से लहर जैसे उभार और घाटियाँ बनती हैं, भ्रंशों के बीच खंड का धँसना नहीं।"
+        },
+        {
+         "en": "Wind is an exogenic agent; rift valleys come from endogenic forces.",
+         "hi": "हवा बहिर्जात कारक है; दरार घाटी अंतर्जात शक्तियों से बनती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press a stack of towels from both sides and watch it fold. What happens if you pull one side up sharply instead?",
+      "hi": "तौलियों के ढेर को दोनों तरफ़ से दबाकर देखो कि वह कैसे मुड़ता है। अगर एक तरफ़ से तेज़ी से खींचो तो क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch05-weathering",
+   "topic": "5.3",
+   "template": "sort",
+   "title": {
+    "en": "Three kinds of weathering",
+    "hi": "अपक्षय के तीन प्रकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "phys",
+      "label": {
+       "en": "Physical",
+       "hi": "भौतिक"
+      }
+     },
+     {
+      "id": "chem",
+      "label": {
+       "en": "Chemical",
+       "hi": "रासायनिक"
+      }
+     },
+     {
+      "id": "bio",
+      "label": {
+       "en": "Biological",
+       "hi": "जैविक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "frost",
+      "bin": "phys",
+      "text": {
+       "en": "Water freezes in cracks and splits the rock",
+       "hi": "दरारों में पानी जमकर चट्टान को तोड़ता है"
+      },
+      "why": {
+       "en": "Ice takes more space than water, so it wedges the rock apart without changing it chemically.",
+       "hi": "बर्फ़ को पानी से अधिक जगह चाहिए, इसलिए वह चट्टान को रासायनिक बदलाव के बिना फोड़ती है।"
+      }
+     },
+     {
+      "id": "exfol",
+      "bin": "phys",
+      "text": {
+       "en": "Hot days and cold nights make rock layers peel",
+       "hi": "गर्म दिन और ठंडी रातों से चट्टान की परतें उतरती हैं"
+      },
+      "why": {
+       "en": "Rock expands and shrinks with heat, and its surface flakes off.",
+       "hi": "गर्मी से चट्टान फैलती-सिकुड़ती है और सतह छिलकों में उतरती है।"
+      }
+     },
+     {
+      "id": "salt",
+      "bin": "phys",
+      "text": {
+       "en": "Salt crystals grow in cracks and push them wider",
+       "hi": "दरारों में नमक के रवे बढ़कर उन्हें चौड़ा करते हैं"
+      },
+      "why": {
+       "en": "Growing crystals push on the rock like tiny wedges.",
+       "hi": "बढ़ते रवे छोटे फन्नों की तरह चट्टान पर दबाव डालते हैं।"
+      }
+     },
+     {
+      "id": "solution",
+      "bin": "chem",
+      "text": {
+       "en": "Limestone slowly dissolves in rainwater",
+       "hi": "चूना-पत्थर वर्षा के पानी में धीरे-धीरे घुलता है"
+      },
+      "why": {
+       "en": "Rainwater with a little carbon dioxide dissolves limestone: a chemical change.",
+       "hi": "थोड़ी कार्बन डाइऑक्साइड वाला वर्षा-जल चूना-पत्थर को घोलता है: रासायनिक परिवर्तन।"
+      }
+     },
+     {
+      "id": "oxid",
+      "bin": "chem",
+      "text": {
+       "en": "Iron in rock rusts to reddish brown",
+       "hi": "चट्टान का लोहा जंग खाकर लाल-भूरा हो जाता है"
+      },
+      "why": {
+       "en": "Iron combining with oxygen and water makes rust: oxidation.",
+       "hi": "लोहा ऑक्सीजन और पानी से मिलकर जंग बनाता है: ऑक्सीकरण।"
+      }
+     },
+     {
+      "id": "hydr",
+      "bin": "chem",
+      "text": {
+       "en": "Minerals absorb water, swell and crumble",
+       "hi": "खनिज पानी सोखकर फूलते और भुरभुरे होते हैं"
+      },
+      "why": {
+       "en": "Taking in water changes some minerals into new, weaker ones: hydration.",
+       "hi": "पानी सोखने से कुछ खनिज नए, कमज़ोर खनिजों में बदल जाते हैं: जलयोजन।"
+      }
+     },
+     {
+      "id": "roots",
+      "bin": "bio",
+      "text": {
+       "en": "Tree roots grow into a rock crack and widen it",
+       "hi": "पेड़ की जड़ें चट्टान की दरार में बढ़कर उसे चौड़ा करती हैं"
+      },
+      "why": {
+       "en": "A living plant breaks the rock as it grows.",
+       "hi": "बढ़ता जीवित पौधा चट्टान को तोड़ता है।"
+      }
+     },
+     {
+      "id": "burrow",
+      "bin": "bio",
+      "text": {
+       "en": "Rats and termites burrow and loosen rocks and soil",
+       "hi": "चूहे और दीमक बिल बनाकर चट्टान व मिट्टी को ढीला करते हैं"
+      },
+      "why": {
+       "en": "Burrowing animals open the ground to air and water.",
+       "hi": "बिल बनाने वाले जीव ज़मीन को हवा और पानी के लिए खोलते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:frost",
+     "expect": "correct:frost",
+     "say": {
+      "en": "Tap the card \"Water freezes in cracks and splits the rock\", then tap the group where it belongs.",
+      "hi": "कार्ड \"दरारों में पानी जमकर चट्टान को तोड़ता है\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Limestone slowly dissolves in rainwater\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"चूना-पत्थर वर्षा के पानी में धीरे-धीरे घुलता है\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "phys",
+       "en": "Physical",
+       "hi": "भौतिक"
+      },
+      {
+       "id": "chem",
+       "en": "Chemical",
+       "hi": "रासायनिक"
+      },
+      {
+       "id": "bio",
+       "en": "Biological",
+       "hi": "जैविक"
+      }
+     ],
+     "answer": "chem"
+    },
+    {
+     "kind": "do",
+     "target": "card:solution",
+     "expect": "correct:solution",
+     "say": {
+      "en": "Now sort the card \"Limestone slowly dissolves in rainwater\".",
+      "hi": "अब कार्ड \"चूना-पत्थर वर्षा के पानी में धीरे-धीरे घुलता है\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Weathering is the breaking down of rock where it lies, without moving it far. Physical weathering splits the rock into smaller pieces. Chemical weathering changes its minerals, through water, air and acids. Biological weathering is done by living things, such as roots and burrowing animals. In hot, wet places chemical weathering is strongest; in cold or dry places physical weathering matters more.",
+      "hi": "अपक्षय का अर्थ है चट्टान का उसी जगह टूटना, बिना दूर ले जाए। भौतिक अपक्षय चट्टान को छोटे टुकड़ों में तोड़ता है। रासायनिक अपक्षय उसके खनिजों को पानी, हवा और अम्लों से बदलता है। जैविक अपक्षय जीव करते हैं, जैसे जड़ें और बिल खोदने वाले जीव। गर्म, नम स्थानों में रासायनिक अपक्षय अधिक होता है; ठंडे या सूखे स्थानों में भौतिक।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A limestone statue in a polluted city slowly loses its detail in the rain. What kind of weathering is this?",
+        "hi": "प्रदूषित शहर में चूना-पत्थर की मूर्ति वर्षा से धीरे-धीरे अपनी बारीकियाँ खो देती है। यह कौन-सा अपक्षय है?"
+       },
+       "options": [
+        {
+         "en": "Chemical",
+         "hi": "रासायनिक"
+        },
+        {
+         "en": "Physical",
+         "hi": "भौतिक"
+        },
+        {
+         "en": "Biological",
+         "hi": "जैविक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Acidic rain reacts with limestone and dissolves it: a chemical change.",
+        "hi": "अम्लीय वर्षा चूना-पत्थर से क्रिया कर उसे घोलती है: रासायनिक परिवर्तन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Physical weathering breaks rock without changing what it is made of; here the rock itself is changing.",
+         "hi": "भौतिक अपक्षय बिना बनावट बदले चट्टान तोड़ता है; यहाँ चट्टान स्वयं बदल रही है।"
+        },
+        {
+         "en": "No living thing is doing it; the rain does.",
+         "hi": "इसे कोई जीव नहीं कर रहा; यह वर्षा कर रही है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look for an old wall or building near you. Can you find a crack, a stain or a plant growing in it? Which kind of weathering made each?",
+      "hi": "अपने पास की कोई पुरानी दीवार या इमारत देखो। क्या कोई दरार, दाग़ या उसमें उगा पौधा दिखता है? हर एक किस अपक्षय का नतीजा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch05-mass-movement",
+   "topic": "5.4",
+   "template": "sort",
+   "title": {
+    "en": "Slow or rapid mass movement?",
+    "hi": "धीमा या तीव्र बृहत् संचलन?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "slow",
+      "label": {
+       "en": "Slow movement",
+       "hi": "धीमा संचलन"
+      }
+     },
+     {
+      "id": "rapid",
+      "label": {
+       "en": "Rapid movement",
+       "hi": "तीव्र संचलन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "creep",
+      "bin": "slow",
+      "text": {
+       "en": "Soil creep on a gentle slope",
+       "hi": "हल्की ढलान पर मृदा सर्पण"
+      },
+      "why": {
+       "en": "Soil moves down a slope bit by bit, too slowly to see.",
+       "hi": "मृदा ढलान पर थोड़ा-थोड़ा सरकती है, इतना धीमे कि दिखता नहीं।"
+      }
+     },
+     {
+      "id": "heave",
+      "bin": "slow",
+      "text": {
+       "en": "Soil heave, lifted and settled by frost and wetting",
+       "hi": "पाले और नमी से मिट्टी का उठना और बैठना"
+      },
+      "why": {
+       "en": "Each lift and drop moves the soil slightly downhill.",
+       "hi": "हर बार उठने-बैठने पर मिट्टी थोड़ी ढलान की ओर खिसकती है।"
+      }
+     },
+     {
+      "id": "solifluc",
+      "bin": "slow",
+      "text": {
+       "en": "Solifluction in cold lands: a soggy soil layer creeping",
+       "hi": "ठंडे प्रदेशों में मृदा-प्रवाह: गीली परत का सरकना"
+      },
+      "why": {
+       "en": "Waterlogged soil flows slowly over frozen ground below.",
+       "hi": "जलभरी मृदा नीचे जमी ज़मीन पर धीरे बहती है।"
+      }
+     },
+     {
+      "id": "mud",
+      "bin": "rapid",
+      "text": {
+       "en": "Mudflow after heavy rain on a bare slope",
+       "hi": "बारिश के बाद खुली ढलान पर कीचड़ का बहाव"
+      },
+      "why": {
+       "en": "Soaked soil turns into a fast-flowing mud river.",
+       "hi": "भीगी मिट्टी तेज़ बहती कीचड़ की धारा बन जाती है।"
+      }
+     },
+     {
+      "id": "slide",
+      "bin": "rapid",
+      "text": {
+       "en": "Landslide on a steep hillside",
+       "hi": "खड़ी पहाड़ी पर भूस्खलन"
+      },
+      "why": {
+       "en": "A large mass of rock and soil slips suddenly downhill.",
+       "hi": "चट्टान और मिट्टी का बड़ा ढेर अचानक नीचे खिसकता है।"
+      }
+     },
+     {
+      "id": "fall",
+      "bin": "rapid",
+      "text": {
+       "en": "Rockfall from a cliff",
+       "hi": "चट्टान का खड़ी चट्टान से गिरना"
+      },
+      "why": {
+       "en": "Rocks drop freely from a steep face.",
+       "hi": "चट्टानें खड़ी दीवार से सीधे गिरती हैं।"
+      }
+     },
+     {
+      "id": "avalanche",
+      "bin": "rapid",
+      "text": {
+       "en": "Debris avalanche in the mountains",
+       "hi": "पहाड़ों में मलबे का हिमस्खलन"
+      },
+      "why": {
+       "en": "A mass of broken rock and soil rushes down at speed.",
+       "hi": "टूटी चट्टान और मिट्टी का ढेर तेज़ी से नीचे दौड़ता है।"
+      }
+     },
+     {
+      "id": "slump",
+      "bin": "rapid",
+      "text": {
+       "en": "Slump, a block sliding with a backward tilt",
+       "hi": "स्लंप, पीछे की ओर झुककर खिसकता खंड"
+      },
+      "why": {
+       "en": "The block slips along a curved surface in one sudden move.",
+       "hi": "खंड घुमावदार सतह पर एक झटके में खिसक जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:creep",
+     "expect": "correct:creep",
+     "say": {
+      "en": "Tap the card \"Soil creep on a gentle slope\", then tap the group where it belongs.",
+      "hi": "कार्ड \"हल्की ढलान पर मृदा सर्पण\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Mudflow after heavy rain on a bare slope\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"बारिश के बाद खुली ढलान पर कीचड़ का बहाव\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "slow",
+       "en": "Slow movement",
+       "hi": "धीमा संचलन"
+      },
+      {
+       "id": "rapid",
+       "en": "Rapid movement",
+       "hi": "तीव्र संचलन"
+      }
+     ],
+     "answer": "rapid"
+    },
+    {
+     "kind": "do",
+     "target": "card:mud",
+     "expect": "correct:mud",
+     "say": {
+      "en": "Now sort the card \"Mudflow after heavy rain on a bare slope\".",
+      "hi": "अब कार्ड \"बारिश के बाद खुली ढलान पर कीचड़ का बहाव\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Gravity pulls all loose rock and soil downhill. This is mass movement. Steep slopes, loose rock, heavy rain and bare ground make it faster. Slow movements like creep are almost invisible but move whole hillsides over years. Rapid movements like landslides can happen in minutes and cause great damage, especially in the Himalaya and the Western Ghats in the rains.",
+      "hi": "गुरुत्व सारी ढीली चट्टान और मिट्टी को नीचे की ओर खींचता है। इसे बृहत् संचलन कहते हैं। खड़ी ढलान, ढीली चट्टान, भारी वर्षा और खुली ज़मीन इसे तेज़ करते हैं। सर्पण जैसे धीमे संचलन लगभग अदृश्य होते हैं पर वर्षों में पूरी पहाड़ी खिसका देते हैं। भूस्खलन जैसे तीव्र संचलन मिनटों में हो जाते हैं और भारी नुक़सान करते हैं, ख़ासकर बरसात में हिमालय और पश्चिमी घाट में।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do landslides often follow very heavy rain?",
+        "hi": "भारी वर्षा के बाद भूस्खलन अक्सर क्यों होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Water makes the soil heavy and slippery",
+         "hi": "पानी मिट्टी को भारी और फिसलनी बना देता है"
+        },
+        {
+         "en": "Rain makes the slope less steep",
+         "hi": "वर्षा ढलान को कम खड़ा कर देती है"
+        },
+        {
+         "en": "Rain freezes the soil solid",
+         "hi": "वर्षा मिट्टी को जमाकर ठोस कर देती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Soaked soil weighs more and slides easily, so the hillside gives way.",
+        "hi": "भीगी मिट्टी का वज़न बढ़ता है और वह आसानी से फिसलती है, इसलिए पहाड़ी धँस जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rain does not change the steepness of the slope.",
+         "hi": "वर्षा ढलान की ढाल नहीं बदलती।"
+        },
+        {
+         "en": "Rain does not freeze soil; if it did, the soil would hold firm.",
+         "hi": "वर्षा मिट्टी को नहीं जमाती; जमती तो मिट्टी टिकी रहती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name two ways people can stop slopes from sliding, such as planting trees or building retaining walls. How does each help?",
+      "hi": "ढलान को खिसकने से रोकने के दो तरीक़े सोचो, जैसे पेड़ लगाना या रोक-दीवार बनाना। हर एक कैसे मदद करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch05-soil",
+   "topic": "5.5",
+   "template": "earth",
+   "title": {
+    "en": "From rock to soil: the soil profile",
+    "hi": "चट्टान से मृदा: मृदा परिच्छेदिका"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "soil",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:bedrock",
+     "expect": "revealed:bedrock",
+     "say": {
+      "en": "Tap the bedrock at the bottom: solid, unbroken rock.",
+      "hi": "सबसे नीचे आधार-शैल पर टैप करो: ठोस, साबुत चट्टान।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:weathered-rock",
+     "expect": "revealed:weathered-rock",
+     "say": {
+      "en": "Tap the weathered rock above it, cracked into pieces.",
+      "hi": "उसके ऊपर की अपक्षयित चट्टान पर टैप करो, जो टुकड़ों में टूटी है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which layer will have the most dead leaves and rotted plants, making it dark and rich?",
+      "hi": "किस परत में सबसे अधिक सूखी पत्तियाँ और सड़े पौधे होंगे, जिससे वह काली और उपजाऊ होगी?"
+     },
+     "options": [
+      {
+       "id": "top",
+       "en": "The top layer",
+       "hi": "सबसे ऊपरी परत"
+      },
+      {
+       "id": "middle",
+       "en": "The middle layer",
+       "hi": "बीच की परत"
+      },
+      {
+       "id": "bottom",
+       "en": "The bedrock",
+       "hi": "आधार-शैल"
+      }
+     ],
+     "answer": "top"
+    },
+    {
+     "kind": "do",
+     "target": "layer:topsoil",
+     "expect": "revealed:topsoil",
+     "say": {
+      "en": "Tap the topsoil.",
+      "hi": "ऊपरी मृदा पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:humus",
+     "expect": "revealed:humus",
+     "say": {
+      "en": "Tap the humus, the dark layer at the very top.",
+      "hi": "ह्यूमस पर टैप करो, सबसे ऊपर की गहरी परत।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Soil forms when weathering breaks bedrock into small pieces, and plants, animals and microbes add humus: rotted plant and animal matter. The layers, from top to bottom, are humus and topsoil, subsoil, weathered rock and bedrock. This stack is the soil profile. It takes hundreds or thousands of years to make a few centimetres of soil.",
+      "hi": "मृदा तब बनती है जब अपक्षय आधार-शैल को छोटे टुकड़ों में तोड़ता है और पौधे, जंतु व सूक्ष्मजीव ह्यूमस, यानी सड़े पौधों व जीवों का पदार्थ, जोड़ते हैं। ऊपर से नीचे परतें हैं: ह्यूमस और ऊपरी मृदा, अधोमृदा, अपक्षयित चट्टान और आधार-शैल। इस परत-क्रम को मृदा परिच्छेदिका कहते हैं। कुछ सेंटीमीटर मृदा बनने में सैकड़ों-हज़ारों वर्ष लगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which layer of the soil profile is closest to the original rock?",
+        "hi": "मृदा परिच्छेदिका की कौन-सी परत मूल चट्टान के सबसे पास है?"
+       },
+       "options": [
+        {
+         "en": "Weathered rock",
+         "hi": "अपक्षयित चट्टान"
+        },
+        {
+         "en": "Humus",
+         "hi": "ह्यूमस"
+        },
+        {
+         "en": "Topsoil",
+         "hi": "ऊपरी मृदा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The weathered rock layer is bedrock that has only started to break into pieces.",
+        "hi": "अपक्षयित चट्टान की परत वही आधार-शैल है जो अभी टूटना शुरू हुई है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Humus is mostly rotted plant matter at the top, far from the bedrock.",
+         "hi": "ह्यूमस सबसे ऊपर का सड़ा पौधा-पदार्थ है, आधार-शैल से बहुत दूर।"
+        },
+        {
+         "en": "Topsoil is already well mixed with humus and far from the bedrock.",
+         "hi": "ऊपरी मृदा ह्यूमस से भली-भाँति मिली है और आधार-शैल से दूर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pour water on the soil with the Drop button and try sandy, loamy and clayey soil. Which holds the most water, and which drains fastest?",
+      "hi": "\"बूँद\" बटन से मृदा पर पानी डालो और बलुई, दोमट और चिकनी मृदा आज़माओ। कौन-सी सबसे अधिक पानी रोकती है और कौन-सी सबसे तेज़ सोख लेती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch05-soil-factors",
+   "topic": "5.5",
+   "template": "match",
+   "title": {
+    "en": "What makes a soil?",
+    "hi": "मृदा किससे बनती है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "parent",
+      "left": {
+       "en": "Parent material",
+       "hi": "मूल पदार्थ"
+      },
+      "right": {
+       "en": "The rock the soil comes from decides its minerals and texture",
+       "hi": "जिस चट्टान से मृदा बनी वह उसके खनिज और गठन तय करती है"
+      },
+      "why": {
+       "en": "Soil gets its minerals from the rock it formed from.",
+       "hi": "मृदा को उसके खनिज उस चट्टान से मिलते हैं जिससे वह बनी।"
+      }
+     },
+     {
+      "id": "climate",
+      "left": {
+       "en": "Climate",
+       "hi": "जलवायु"
+      },
+      "right": {
+       "en": "Heat and rain control how fast rocks weather and humus forms",
+       "hi": "गर्मी और वर्षा तय करती हैं कि चट्टानें कितनी तेज़ी से टूटें और ह्यूमस बने"
+      },
+      "why": {
+       "en": "Warm, wet climates weather rock fast.",
+       "hi": "गर्म, नम जलवायु में चट्टानें तेज़ी से टूटती हैं।"
+      }
+     },
+     {
+      "id": "relief",
+      "left": {
+       "en": "Slope (relief)",
+       "hi": "ढलान (उच्चावच)"
+      },
+      "right": {
+       "en": "Steep slopes lose soil easily, while flat land keeps it",
+       "hi": "खड़ी ढलान से मृदा बह जाती है, समतल भूमि उसे रोके रखती है"
+      },
+      "why": {
+       "en": "Water carries loose soil off steep slopes.",
+       "hi": "पानी ढीली मृदा को खड़ी ढलान से बहा ले जाता है।"
+      }
+     },
+     {
+      "id": "organisms",
+      "left": {
+       "en": "Living things",
+       "hi": "जीव"
+      },
+      "right": {
+       "en": "Plants, worms and microbes add humus and mix the soil",
+       "hi": "पौधे, केंचुए और सूक्ष्मजीव ह्यूमस जोड़ते और मृदा को मिलाते हैं"
+      },
+      "why": {
+       "en": "Rotting plants and animals feed the soil.",
+       "hi": "सड़ते पौधे और जंतु मृदा को पोषण देते हैं।"
+      }
+     },
+     {
+      "id": "time",
+      "left": {
+       "en": "Time",
+       "hi": "समय"
+      },
+      "right": {
+       "en": "Good soil needs hundreds to thousands of years to build up",
+       "hi": "अच्छी मृदा बनने में सैकड़ों से हज़ारों वर्ष लगते हैं"
+      },
+      "why": {
+       "en": "Soil forms very slowly.",
+       "hi": "मृदा बहुत धीरे बनती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:parent",
+     "expect": "matched:parent",
+     "say": {
+      "en": "Match \"Parent material\" with its meaning.",
+      "hi": "\"मूल पदार्थ\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Slope (relief)\"?",
+      "hi": "\"ढलान (उच्चावच)\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "parent",
+       "en": "The rock the soil comes from decides its minerals and texture",
+       "hi": "जिस चट्टान से मृदा बनी वह उसके खनिज और गठन तय करती है"
+      },
+      {
+       "id": "relief",
+       "en": "Steep slopes lose soil easily, while flat land keeps it",
+       "hi": "खड़ी ढलान से मृदा बह जाती है, समतल भूमि उसे रोके रखती है"
+      },
+      {
+       "id": "climate",
+       "en": "Heat and rain control how fast rocks weather and humus forms",
+       "hi": "गर्मी और वर्षा तय करती हैं कि चट्टानें कितनी तेज़ी से टूटें और ह्यूमस बने"
+      }
+     ],
+     "answer": "relief"
+    },
+    {
+     "kind": "do",
+     "target": "left:relief",
+     "expect": "matched:relief",
+     "say": {
+      "en": "Now match \"Slope (relief)\".",
+      "hi": "अब \"ढलान (उच्चावच)\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Five things work together to make soil: the parent rock, the climate, the slope, living things and time. Change any one and you get a different soil. This is why the soil in Punjab's plains, Kerala's hills and Rajasthan's desert differ so much.",
+      "hi": "पाँच चीज़ें मिलकर मृदा बनाती हैं: मूल चट्टान, जलवायु, ढलान, जीव और समय। इनमें से कोई एक बदले तो अलग मृदा बनती है। इसीलिए पंजाब के मैदान, केरल की पहाड़ियों और राजस्थान के मरुस्थल की मृदा इतनी अलग है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is soil on a steep hillside often thin?",
+        "hi": "खड़ी पहाड़ी की ढलान पर मृदा अक्सर पतली क्यों होती है?"
+       },
+       "options": [
+        {
+         "en": "Rain washes the loose soil away downhill",
+         "hi": "वर्षा ढीली मृदा को नीचे बहा ले जाती है"
+        },
+        {
+         "en": "The hill is too warm for soil",
+         "hi": "पहाड़ी मृदा के लिए बहुत गर्म है"
+        },
+        {
+         "en": "Soil only forms on flat land",
+         "hi": "मृदा केवल समतल भूमि पर बनती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "On steep slopes water carries soil away faster than it can build up.",
+        "hi": "खड़ी ढलान पर पानी मृदा को बनने से पहले ही बहा ले जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Warmth does not stop soil forming; slope and washing away explain the thinness.",
+         "hi": "गर्मी मृदा बनने नहीं रोकती; पतलेपन का कारण ढलान और बह जाना है।"
+        },
+        {
+         "en": "Soil forms on slopes too, but it is lost faster there.",
+         "hi": "मृदा ढलान पर भी बनती है, पर वहाँ जल्दी बह जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare soil from a garden and from a roadside. Which has more humus, and what living things can you find in each?",
+      "hi": "बगीचे और सड़क किनारे की मिट्टी की तुलना करो। किसमें ज़्यादा ह्यूमस है, और हर एक में कौन-से जीव मिलते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Hook of the chapter",
+   "shows": "A hillside in the Western Ghats or Himalaya showing a cut road, a stream and a bare scar of past slide",
+   "view": "Wide, 16:9, overcast monsoon light",
+   "right": "Visible layers of rock and soil along the road cut",
+   "avoid": "People, vehicle numbers, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "5.3",
+   "use": "Weathering evidence",
+   "shows": "A cracked boulder with a small tree root growing through the crack",
+   "view": "Close-up, square, soft side light",
+   "right": "Root clearly inside the crack; lichens on the rock",
+   "avoid": "Hands, text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "5.3",
+   "use": "Exfoliation",
+   "shows": "Three frames of a granite dome with peeling outer sheets, at morning, noon and after rain",
+   "view": "Same camera, same light direction",
+   "right": "Curved peeling sheets visible",
+   "avoid": "People, litter"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.4",
+   "use": "Mass movement hook",
+   "shows": "A small landslide scar and fallen debris across a hill road after rain, with workers in helmets seen from far behind",
+   "view": "Elevated eye level, 16:9, wet ground",
+   "right": "Mud and rock debris in true brown-grey; a clear steep scar",
+   "avoid": "Faces, injured persons, text"
+  },
+  {
+   "n": 5,
+   "kind": "CUT",
+   "topic": "5.5",
+   "use": "Soil profile",
+   "shows": "A dug pit wall showing dark topsoil, lighter subsoil, broken rock and solid bedrock, with a ruler beside it",
+   "view": "Straight on, 4:3, soft light",
+   "right": "Colour changes layer by layer in true brown shades",
+   "avoid": "Labels, hands with jewellery"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "5.5",
+   "use": "Soil factors match lab",
+   "shows": "Three small bowls of sandy, loamy and clayey soil, each cut out clearly",
+   "view": "Top view, transparent background",
+   "right": "Clear colour and texture difference between the three",
+   "avoid": "Brand tags, text"
+  }
+ ]
+}

@@ -1,0 +1,599 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch06",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "Measuring Length",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "6.1",
+      "title": "Walk, jump and crawl on 1 m, 5 m and 10 m lines",
+      "labs": [],
+      "why_no_lab": "This is a playground activity: marking the lines, then walking, jumping and crawling along them, cannot be done on a screen."
+    },
+    {
+      "n": "6.2",
+      "title": "Estimating lengths and why we need a standard unit",
+      "labs": [
+        "c04-mathematics-demm1-ch06-hand-span-desk"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.3",
+      "title": "Centimetre and metre: 1 metre is 100 centimetres",
+      "labs": [
+        "c04-mathematics-demm1-ch06-metre-in-centimetres"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.4",
+      "title": "Measuring small things with a ruler",
+      "labs": [
+        "c04-mathematics-demm1-ch06-mark-7-cm"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.5",
+      "title": "Length of a jump",
+      "labs": [],
+      "why_no_lab": "A jump is measured on the ground after your own jump with a real tape; there is nothing to move on the screen."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch06-hand-span-desk",
+      "topic": "6.2",
+      "template": "measure",
+      "title": {
+        "en": "Measure the desk with hand-spans",
+        "hi": "बित्तों से मेज़ नापो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "instrument": "hand-span",
+        "units": "cm"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Your hand-span is 15 cm. Papa's hand-span is 20 cm. Who needs more hand-spans to measure the same desk?",
+            "hi": "तुम्हारा बित्ता 15 सेमी का है। पापा का बित्ता 20 सेमी का है। एक ही मेज़ नापने के लिए किसे ज़्यादा बित्ते चाहिए?"
+          },
+          "options": [
+            {
+              "id": "me",
+              "en": "You, with the smaller hand",
+              "hi": "तुम, छोटे हाथ वाले"
+            },
+            {
+              "id": "papa",
+              "en": "Papa, with the bigger hand",
+              "hi": "पापा, बड़े हाथ वाले"
+            }
+          ],
+          "answer": "me"
+        },
+        {
+          "kind": "do",
+          "target": "object:desk",
+          "expect": "placed",
+          "say": {
+            "en": "Tap the desk to choose it.",
+            "hi": "मेज़ पर टैप करके उसे चुनो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "instrument",
+          "expect": "aligned",
+          "say": {
+            "en": "Tap Lay the next hand again and again, thumb to little finger, until the whole desk is covered.",
+            "hi": "अगला हाथ रखो बार-बार दबाओ, अँगूठे से छोटी उँगली तक, जब तक पूरी मेज़ ढक न जाए।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "read",
+          "expect": "measured",
+          "say": {
+            "en": "Tap Read to stop and count.",
+            "hi": "रुककर गिनने के लिए पढ़ो दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Type how many hand-spans the desk is.",
+            "hi": "लिखो कि मेज़ कितने बित्तों की है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The desk is 120 cm long. With a 15 cm hand-span it is 8 hand-spans. Papa's bigger hand is 20 cm, so he needs only 6 hand-spans. The desk did not change, but the number changed because hands are different. That is why we use the same unit for everyone, the centimetre.",
+            "hi": "मेज़ 120 सेमी लंबी है। 15 सेमी के बित्ते से वह 8 बित्ते की है। पापा का बड़ा हाथ 20 सेमी का है, इसलिए उन्हें केवल 6 बित्ते चाहिए। मेज़ नहीं बदली, पर गिनती बदल गई क्योंकि हाथ अलग-अलग हैं। इसीलिए सबके लिए एक ही इकाई, सेंटीमीटर, इस्तेमाल करते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why do two people get different numbers when they measure with hand-spans?",
+                "hi": "हाथ के बित्तों से नापने पर दो लोगों को अलग संख्या क्यों मिलती है?"
+              },
+              "options": [
+                {
+                  "en": "Their hands are different sizes",
+                  "hi": "उनके हाथ अलग माप के हैं"
+                },
+                {
+                  "en": "The desk changes its length",
+                  "hi": "मेज़ की लंबाई बदल जाती है"
+                },
+                {
+                  "en": "One of them counts wrongly",
+                  "hi": "उनमें से कोई ग़लत गिनता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A bigger hand covers more of the desk in one span, so fewer spans are needed.",
+                "hi": "बड़ा हाथ एक बित्ते में मेज़ का ज़्यादा भाग ढकता है, इसलिए कम बित्ते लगते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The desk stays the same length. Only the hands differ.",
+                  "hi": "मेज़ की लंबाई वही रहती है। केवल हाथ अलग हैं।"
+                },
+                {
+                  "en": "Both can count correctly and still get different numbers, because their units are different.",
+                  "hi": "दोनों सही गिनकर भी अलग संख्या पा सकते हैं, क्योंकि उनकी इकाइयाँ अलग हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What do we use so that everyone gets the same number?",
+                "hi": "सबको एक ही संख्या मिले, इसके लिए हम क्या इस्तेमाल करते हैं?"
+              },
+              "options": [
+                {
+                  "en": "A standard unit like the centimetre",
+                  "hi": "सेंटीमीटर जैसी मानक इकाई"
+                },
+                {
+                  "en": "Bigger hands",
+                  "hi": "बड़े हाथ"
+                },
+                {
+                  "en": "A guess",
+                  "hi": "अंदाज़ा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A standard unit is the same for everyone, so everyone gets the same number.",
+                "hi": "मानक इकाई सबके लिए एक जैसी होती है, इसलिए सबको एक ही संख्या मिलती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Bigger hands are still different from other hands. They would not make the unit the same.",
+                  "hi": "बड़े हाथ भी दूसरों के हाथों से अलग होंगे। इससे इकाई एक जैसी नहीं होगी।"
+                },
+                {
+                  "en": "A guess is not a measurement. Different people guess different numbers.",
+                  "hi": "अंदाज़ा नाप नहीं है। अलग-अलग लोग अलग अंदाज़ा लगाते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Move the Whose hand? slider to Papa's hand and measure again. How many spans now? Try the bench too.",
+            "hi": "किसका हाथ? वाला स्लाइडर पापा के हाथ पर ले जाओ और फिर नापो। अब कितने बित्ते हैं? बेंच भी नापकर देखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch06-metre-in-centimetres",
+      "topic": "6.3",
+      "template": "number-line",
+      "title": {
+        "en": "Ten jumps of 10 make 1 metre",
+        "hi": "10-10 की दस छलाँगें बराबर 1 मीटर"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "count",
+        "min": 0,
+        "max": 100,
+        "step": 10,
+        "start": 0,
+        "jumps": [
+          10
+        ],
+        "ask": 100
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A metre rope is 100 cm long. You mark every 10 cm along it. How many jumps of 10 cm will you make to reach the end?",
+            "hi": "मीटर वाली रस्सी 100 सेमी लंबी है। तुम उस पर हर 10 सेमी पर निशान लगाते हो। अंत तक पहुँचने में 10 सेमी की कितनी छलाँगें लगेंगी?"
+          },
+          "options": [
+            {
+              "id": "ten",
+              "en": "10 jumps",
+              "hi": "10 छलाँगें"
+            },
+            {
+              "id": "five",
+              "en": "5 jumps",
+              "hi": "5 छलाँगें"
+            },
+            {
+              "id": "hundred",
+              "en": "100 jumps",
+              "hi": "100 छलाँगें"
+            }
+          ],
+          "answer": "ten"
+        },
+        {
+          "kind": "do",
+          "target": "jump:+",
+          "expect": "landed:10",
+          "say": {
+            "en": "Tap the forward jump once. You move 10 cm along the rope.",
+            "hi": "आगे की छलाँग पर एक बार टैप करो। तुम रस्सी पर 10 सेमी आगे बढ़ते हो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "jump:+",
+          "expect": "landed:50",
+          "say": {
+            "en": "Keep jumping until you reach the middle, 50 cm. That is half a metre.",
+            "hi": "बीच तक, यानी 50 सेमी तक, छलाँग लगाते रहो। यह आधा मीटर है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "jump:+",
+          "expect": "landed:100",
+          "say": {
+            "en": "Jump on to the end of the rope, 100 cm.",
+            "hi": "रस्सी के अंत, 100 सेमी, तक छलाँग लगाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Tap Check.",
+            "hi": "जाँचो पर टैप करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "10 jumps of 10 cm cover 100 cm, and 100 cm make 1 metre. So 1 m = 100 cm. You passed 50 cm on the way, which is half a metre. A metre is the length of the metre rope; a centimetre is a very small part of it.",
+            "hi": "10 सेमी की 10 छलाँगें 100 सेमी पार करती हैं, और 100 सेमी मिलकर 1 मीटर होते हैं। इसलिए 1 मीटर = 100 सेमी। रास्ते में तुम 50 सेमी से गुज़रे, जो आधा मीटर है। मीटर, मीटर वाली रस्सी की लंबाई है; सेंटीमीटर उसका बहुत छोटा भाग है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many centimetres are there in 1 metre?",
+                "hi": "1 मीटर में कितने सेंटीमीटर होते हैं?"
+              },
+              "options": [
+                "100",
+                "10",
+                "1000"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "1 metre = 100 centimetres.",
+                "hi": "1 मीटर = 100 सेंटीमीटर।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "10 is the number of jumps you made, not the number of centimetres. Each jump was 10 cm.",
+                  "hi": "10 तुम्हारी छलाँगों की संख्या है, सेंटीमीटर की नहीं। हर छलाँग 10 सेमी की थी।"
+                },
+                {
+                  "en": "1000 is too many. A metre rope is not as long as 1000 cm.",
+                  "hi": "1000 बहुत ज़्यादा है। मीटर वाली रस्सी 1000 सेमी जितनी लंबी नहीं होती।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A rope is 50 cm long. What part of a metre is it?",
+                "hi": "एक रस्सी 50 सेमी लंबी है। वह मीटर का कितना भाग है?"
+              },
+              "options": [
+                {
+                  "en": "Half a metre",
+                  "hi": "आधा मीटर"
+                },
+                {
+                  "en": "A quarter of a metre",
+                  "hi": "चौथाई मीटर"
+                },
+                {
+                  "en": "A whole metre",
+                  "hi": "पूरा मीटर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "50 cm is half of 100 cm, so it is half a metre.",
+                "hi": "50 सेमी, 100 सेमी का आधा है, इसलिए यह आधा मीटर है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A quarter of a metre is 25 cm. 50 cm is twice that.",
+                  "hi": "चौथाई मीटर 25 सेमी होता है। 50 सेमी उसका दुगना है।"
+                },
+                {
+                  "en": "A whole metre is 100 cm. This rope is only 50 cm.",
+                  "hi": "पूरा मीटर 100 सेमी होता है। यह रस्सी केवल 50 सेमी की है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Jump back from 100 by tens. At which number do you reach a quarter of a metre, near 25? Is it on a jump?",
+            "hi": "100 से 10-10 करके पीछे छलाँग लगाओ। चौथाई मीटर, यानी 25 के पास, तुम किस संख्या पर पहुँचते हो? क्या वह किसी छलाँग पर है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch06-mark-7-cm",
+      "topic": "6.4",
+      "template": "number-line",
+      "title": {
+        "en": "Mark 7 cm on a ruler",
+        "hi": "रूलर पर 7 सेमी का निशान लगाओ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "place",
+        "min": 0,
+        "max": 15,
+        "step": 1,
+        "ask": 7
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A pencil stub is 7 cm long. Your palm is about 8 cm wide. Is the stub longer or shorter than your palm?",
+            "hi": "पेंसिल का एक टुकड़ा 7 सेमी लंबा है। तुम्हारी हथेली लगभग 8 सेमी चौड़ी है। टुकड़ा हथेली से लंबा है या छोटा?"
+          },
+          "options": [
+            {
+              "id": "shorter",
+              "en": "Shorter than my palm",
+              "hi": "मेरी हथेली से छोटा"
+            },
+            {
+              "id": "longer",
+              "en": "Longer than my palm",
+              "hi": "मेरी हथेली से लंबा"
+            }
+          ],
+          "answer": "shorter"
+        },
+        {
+          "kind": "do",
+          "target": "slider:value",
+          "expect": "placed",
+          "say": {
+            "en": "Slide the marker along the ruler to the 7 cm mark, where the stub ends. Always start counting from 0.",
+            "hi": "मार्कर को रूलर पर 7 सेमी के निशान तक खिसकाओ, जहाँ टुकड़ा ख़त्म होता है। गिनती हमेशा 0 से शुरू करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Tap Check to see if the marker is on 7.",
+            "hi": "मार्कर 7 पर है या नहीं, यह देखने के लिए जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A ruler starts at 0. The number where the object ends is its length. The stub starts at 0 and ends at 7, so it is 7 cm long. Each small mark between two numbers is 1 millimetre, and 10 millimetres make 1 centimetre.",
+            "hi": "रूलर 0 से शुरू होता है। वस्तु जहाँ ख़त्म हो वहाँ की संख्या उसकी लंबाई है। टुकड़ा 0 से शुरू होकर 7 पर ख़त्म होता है, इसलिए वह 7 सेमी लंबा है। दो संख्याओं के बीच का हर छोटा निशान 1 मिलीमीटर है, और 10 मिलीमीटर मिलकर 1 सेंटीमीटर बनते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why do we start measuring from 0 on the ruler?",
+                "hi": "हम रूलर पर 0 से नापना क्यों शुरू करते हैं?"
+              },
+              "options": [
+                {
+                  "en": "So the number at the end is the length",
+                  "hi": "ताकि अंत की संख्या ही लंबाई हो"
+                },
+                {
+                  "en": "Because 1 is too small",
+                  "hi": "क्योंकि 1 बहुत छोटा है"
+                },
+                {
+                  "en": "Because the ruler is bent",
+                  "hi": "क्योंकि रूलर मुड़ा हुआ है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The count of centimetres begins at 0, so the end mark tells all the centimetres the object covers.",
+                "hi": "सेंटीमीटर की गिनती 0 से शुरू होती है, इसलिए अंत का निशान बताता है कि वस्तु कितने सेंटीमीटर ढकती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Starting from 1 would make us miss the first centimetre.",
+                  "hi": "1 से शुरू करने पर पहला सेंटीमीटर छूट जाएगा।"
+                },
+                {
+                  "en": "A ruler is straight. The reason has nothing to do with bending.",
+                  "hi": "रूलर सीधा होता है। कारण का मुड़ने से कोई संबंध नहीं है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A pencil starts at 0 and ends at 12 on the ruler. How long is it?",
+                "hi": "एक पेंसिल रूलर पर 0 से शुरू होकर 12 पर ख़त्म होती है। वह कितनी लंबी है?"
+              },
+              "options": [
+                {
+                  "en": "12 cm",
+                  "hi": "12 सेमी"
+                },
+                {
+                  "en": "0 cm",
+                  "hi": "0 सेमी"
+                },
+                {
+                  "en": "1 cm",
+                  "hi": "1 सेमी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The end mark is 12, and it started at 0, so it is 12 cm long.",
+                "hi": "अंत का निशान 12 है और वह 0 से शुरू हुई, इसलिए वह 12 सेमी लंबी है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "0 is where it starts, not how long it is.",
+                  "hi": "0 वह जगह है जहाँ वह शुरू होती है, उसकी लंबाई नहीं।"
+                },
+                {
+                  "en": "1 cm is one small step. The pencil reaches the 12 mark.",
+                  "hi": "1 सेमी एक छोटा क़दम है। पेंसिल 12 के निशान तक पहुँचती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Move the marker to 10 cm, then to 15 cm. Which is longer, a 10 cm eraser case or a 15 cm ruler?",
+            "hi": "मार्कर को 10 सेमी पर ले जाओ, फिर 15 सेमी पर। 10 सेमी का रबर-डिब्बा लंबा है या 15 सेमी का रूलर?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "6.1",
+      "use": "Chapter hook: marking lines on the playground",
+      "shows": "Three long chalk lines on a school playground, marked 1 m, 5 m and 10 m with small stones at the ends, a pair of bare feet at the start",
+      "view": "Low angle along the lines, morning light",
+      "right": "Lines straight and clearly different lengths; no one's face",
+      "avoid": "Children's faces, school names"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "6.2",
+      "use": "Hand-span",
+      "shows": "An open child's hand pressed flat on a plain sheet with a pencil line from thumb tip to little finger tip",
+      "view": "Flat lay from above, white paper",
+      "right": "Fingers fully spread; the line marks the span exactly",
+      "avoid": "Rings, nail polish, faces"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "6.3",
+      "use": "Measuring tape",
+      "shows": "A tailor's measuring tape, partly rolled out, in cm with numbers",
+      "view": "Flat lay from above, close, cut out on transparent",
+      "right": "Numbers readable, zero end clear, 1 m mark visible",
+      "avoid": "Brand names on the tape"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "6.3",
+      "use": "Metre rope",
+      "shows": "A coiled jute rope with a knotted marker at 0, 50 and 100 cm, laid straight next to a wooden metre scale",
+      "view": "Flat lay from above",
+      "right": "Knot at the exact ends of the metre scale",
+      "avoid": "Writing on the rope"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "6.3",
+      "use": "Measuring the room",
+      "shows": "A child's hands holding a tailor's tape along the length of a school bench, the other end held by a second pair of hands",
+      "view": "Low side angle, classroom light",
+      "right": "Tape pulled straight and tight along the bench edge",
+      "avoid": "Faces, wall posters with writing"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "6.4",
+      "use": "Small things to measure",
+      "shows": "An eraser, a paper clip, a key and a pencil stub laid next to a clear plastic ruler on a desk",
+      "view": "Flat lay from above, zero of the ruler visible",
+      "right": "Each object's left end touching the zero line",
+      "avoid": "Brand names, numbers written on the objects"
+    },
+    {
+      "n": 7,
+      "kind": "SCN",
+      "topic": "6.5",
+      "use": "Length of a jump",
+      "shows": "A child's feet landing on a sand pit with a measuring tape laid beside the footprints",
+      "view": "Low side angle, strong sunlight",
+      "right": "Footprints at the take-off and landing clearly visible",
+      "avoid": "Faces, sports club logos"
+    }
+  ]
+}

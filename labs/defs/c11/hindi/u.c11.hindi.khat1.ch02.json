@@ -1,0 +1,693 @@
+{
+ "chapter_key": "u.c11.hindi.khat1.ch02",
+ "class": 11,
+ "subject_id": "hindi",
+ "title": "दोपहर का भोजन",
+ "source": "https://ncert.nic.in/textbook/pdf/khat102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Order of the meal (भोजन का क्रम)",
+   "labs": [
+    "c11-hindi-khat1-ch02-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "The family (पात्र)",
+   "labs": [
+    "c11-hindi-khat1-ch02-people"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Words of hunger and care (शब्द-भंडार)",
+   "labs": [
+    "c11-hindi-khat1-ch02-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Theme: poverty, dignity and a mother's love (संदेश)",
+   "labs": [],
+   "why_no_lab": "The theme is best felt in class discussion and in the photographs of a bare kitchen, not in a game."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-hindi-khat1-ch02-order",
+   "topic": "2.1",
+   "template": "sequence",
+   "title": {
+    "en": "The afternoon meal in order",
+    "hi": "दोपहर के भोजन का क्रम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "wait",
+      "text": {
+       "en": "Noon: the house is quiet and Siddheshwari waits, worried about food",
+       "hi": "दोपहर: घर में सन्नाटा है और सिद्धेश्वरी खाने की चिंता में इंतज़ार करती है"
+      }
+     },
+     {
+      "id": "cook",
+      "text": {
+       "en": "She cooks a few rotis and a thin dal from what little there is",
+       "hi": "जो थोड़ा-सा है, उसी से वह कुछ रोटियाँ और पतली दाल बनाती है"
+      }
+     },
+     {
+      "id": "ram",
+      "text": {
+       "en": "Eldest son Ramchandra sits down first and she serves him",
+       "hi": "बड़ा बेटा रामचंद्र सबसे पहले बैठता है और वह उसे परोसती है"
+      }
+     },
+     {
+      "id": "mohan",
+      "text": {
+       "en": "Younger son Mohan eats next, and she speaks kindly of his brother",
+       "hi": "छोटा बेटा मोहन उसके बाद खाता है और वह उसके भाई की अच्छी बातें करती है"
+      }
+     },
+     {
+      "id": "munshi",
+      "text": {
+       "en": "Munshi Chandrika Prasad eats last, and she cheers him up with soft words",
+       "hi": "मुंशी चंद्रिका प्रसाद सबसे बाद में खाते हैं और वह मीठी बातों से उनका मन बहलाती है"
+      }
+     },
+     {
+      "id": "self",
+      "text": {
+       "en": "For herself only a little is left, and she drinks water over it",
+       "hi": "उसके अपने लिए बस थोड़ा-सा बचता है और ऊपर से वह पानी पी लेती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:wait",
+     "expect": "placed:wait",
+     "say": {
+      "en": "Tap the card that shows how the afternoon begins and place it first.",
+      "hi": "जिस कार्ड में दोपहर की शुरुआत है, उसे टैप करके सबसे पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who eats LAST in this house?",
+      "hi": "इस घर में सबसे आख़िर में कौन खाती है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The sons",
+       "hi": "बेटे"
+      },
+      {
+       "id": "b",
+       "en": "Siddheshwari, the mother",
+       "hi": "माँ सिद्धेश्वरी"
+      },
+      {
+       "id": "c",
+       "en": "Nobody",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "item:self",
+     "expect": "placed:self",
+     "say": {
+      "en": "Place the card that tells what is left for the mother.",
+      "hi": "माँ के लिए जो बचता है, वह कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the other cards in order, then tap Check.",
+      "hi": "बाक़ी कार्ड क्रम से लगाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The meal is served in a fixed order: sons first, the father last, and the mother gets what remains. The order itself tells the story: she feeds everyone before herself and hides that there is not enough.",
+      "hi": "भोजन एक तय क्रम में परोसा जाता है: पहले बेटे, फिर पिता, और जो बचे वह माँ का। यह क्रम ही कहानी कह देता है: वह सबको पहले खिलाती है और छिपा लेती है कि खाना कम है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does Siddheshwari speak kindly of each person to the others?",
+        "hi": "सिद्धेश्वरी एक-दूसरे के बारे में अच्छी बातें क्यों करती है?"
+       },
+       "options": [
+        {
+         "en": "To keep the family hopeful and together in hard days",
+         "hi": "मुश्किल दिनों में परिवार की आशा और एकता बनाए रखने के लिए"
+        },
+        {
+         "en": "Because she has no work to do",
+         "hi": "क्योंकि उसके पास कोई काम नहीं है"
+        },
+        {
+         "en": "To make them leave the house",
+         "hi": "ताकि वे घर छोड़कर चले जाएँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Her kind words are a way of holding the family together when money and food are short.",
+        "hi": "पैसे और खाने की कमी में उसकी मीठी बातें परिवार को जोड़े रखने का तरीक़ा हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Her kind words come from effort and care, not from idleness; she works all day in the kitchen.",
+         "hi": "उसकी मीठी बातें मेहनत और फ़िक्र से आती हैं, ख़ाली बैठने से नहीं; वह दिन भर रसोई में लगी रहती है।"
+        },
+        {
+         "en": "Nothing in the story shows she wants anyone to leave; she wants them to stay hopeful.",
+         "hi": "कहानी में कहीं नहीं है कि वह किसी को भगाना चाहती है; वह चाहती है कि सब आशा रखें।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the order of serving show about her?",
+        "hi": "परोसने का क्रम उसके बारे में क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "She is selfish",
+         "hi": "वह स्वार्थी है"
+        },
+        {
+         "en": "She puts others before herself",
+         "hi": "वह ख़ुद से पहले दूसरों को रखती है"
+        },
+        {
+         "en": "She dislikes cooking",
+         "hi": "उसे खाना बनाना पसंद नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "She serves the sons and husband first and takes the leftovers: a sign of sacrifice.",
+        "hi": "वह बेटों और पति को पहले परोसती है और बचा हुआ ख़ुद लेती है: यह त्याग की निशानी है।"
+       },
+       "wrong": [
+        {
+         "en": "A selfish person would eat first. She does the opposite.",
+         "hi": "स्वार्थी व्यक्ति पहले ख़ुद खाता। वह इसका उलटा करती है।"
+        },
+        "",
+        {
+         "en": "She cooks with great care even when food is short, so dislike is not the reason.",
+         "hi": "कम सामान में भी वह बहुत ध्यान से खाना बनाती है, इसलिए नापसंदगी कारण नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tell a friend the same meal as seen by Ramchandra, then as seen by his mother. What does each one notice?",
+      "hi": "यही भोजन एक बार रामचंद्र की नज़र से और एक बार उसकी माँ की नज़र से किसी दोस्त को सुनाओ। हर कोई क्या देखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khat1-ch02-people",
+   "topic": "2.2",
+   "template": "reader",
+   "title": {
+    "en": "Know the family",
+    "hi": "परिवार को पहचानो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "A hungry house in the afternoon",
+      "hi": "भूखे घर की दोपहर"
+     },
+     "lines": [
+      "सिद्धेश्वरी चूल्हे के पास बैठी थोड़े-से आटे से रोटियाँ गिन रही थी।",
+      "बड़ा बेटा रामचंद्र खाते हुए भी माँ की उदासी देख रहा था।",
+      "छोटा बेटा मोहन थाली में जो आया, चुपचाप खा गया।",
+      "मुंशी चंद्रिका प्रसाद काम छूटने की चिंता में डूबे रहते थे, फिर भी माँ की बातों से उन्हें ढाढ़स मिलता था।",
+      "माँ ने किसी से अपनी भूख की बात नहीं की और सबको तसल्ली देती रही।"
+     ]
+    },
+    "characters": [
+     {
+      "id": "sid",
+      "name": "सिद्धेश्वरी",
+      "traits": [
+       {
+        "en": "Gives food and comfort to all, keeps her own hunger hidden",
+        "hi": "सबको खाना और तसल्ली देती है, अपनी भूख छिपा लेती है"
+       }
+      ]
+     },
+     {
+      "id": "ram",
+      "name": "रामचंद्र",
+      "traits": [
+       {
+        "en": "The thoughtful elder son who notices his mother's sadness",
+        "hi": "समझदार बड़ा बेटा जो माँ की उदासी देख लेता है"
+       }
+      ]
+     },
+     {
+      "id": "mohan",
+      "name": "मोहन",
+      "traits": [
+       {
+        "en": "The younger son who quietly eats what is served",
+        "hi": "छोटा बेटा जो परोसा हुआ चुपचाप खा लेता है"
+       }
+      ]
+     },
+     {
+      "id": "munshi",
+      "name": "चंद्रिका",
+      "traits": [
+       {
+        "en": "The father, worried about his lost work",
+        "hi": "पिता, जो छूटे हुए काम की चिंता में हैं"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:sid",
+     "expect": "picked:sid",
+     "say": {
+      "en": "Pick the character who keeps her own hunger hidden.",
+      "hi": "उस पात्र को चुनो जो अपनी भूख छिपा लेती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which family member is most like a quiet shield for the others?",
+      "hi": "परिवार का कौन-सा सदस्य बाक़ियों के लिए चुपचाप ढाल जैसा है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The mother",
+       "hi": "माँ"
+      },
+      {
+       "id": "b",
+       "en": "Mohan",
+       "hi": "मोहन"
+      },
+      {
+       "id": "c",
+       "en": "A neighbour",
+       "hi": "पड़ोसी"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "character:ram",
+     "expect": "picked:ram",
+     "say": {
+      "en": "Now pick the elder son who notices his mother's sadness.",
+      "hi": "अब उस बड़े बेटे को चुनो जो माँ की उदासी देख लेता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:mohan",
+     "expect": "picked:mohan",
+     "say": {
+      "en": "Pick the younger son.",
+      "hi": "छोटे बेटे को चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:munshi",
+     "expect": "picked:munshi",
+     "say": {
+      "en": "Pick the father who worries about his lost work.",
+      "hi": "उस पिता को चुनो जो छूटे हुए काम की चिंता में है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each person in the house feels the poverty in a different way. The father worries, the sons eat and notice, and the mother carries everyone. Knowing the characters helps us see how the writer shows a family without long speeches.",
+      "hi": "घर का हर व्यक्ति ग़रीबी को अलग ढंग से महसूस करता है। पिता चिंता करते हैं, बेटे खाते और देखते हैं, और माँ सबका बोझ उठाती है। पात्रों को पहचानने से हम समझते हैं कि लेखक लंबे भाषण के बिना परिवार कैसे दिखाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which trait fits the mother best?",
+        "hi": "माँ पर कौन-सा गुण सबसे ठीक बैठता है?"
+       },
+       "options": [
+        {
+         "en": "Sacrifice and care",
+         "hi": "त्याग और ममता"
+        },
+        {
+         "en": "Anger",
+         "hi": "क्रोध"
+        },
+        {
+         "en": "Greed",
+         "hi": "लालच"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "She feeds all first and hides her hunger.",
+        "hi": "वह सबको पहले खिलाती है और अपनी भूख छिपाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "She does not shout at anyone in the passage; she soothes them.",
+         "hi": "अंश में वह किसी पर चिल्लाती नहीं, सबको शांत करती है।"
+        },
+        {
+         "en": "Greed means wanting more for oneself; she takes the least.",
+         "hi": "लालच यानी अपने लिए ज़्यादा चाहना; वह सबसे कम लेती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick the person you would like to talk to and think of one question to ask them.",
+      "hi": "जिससे बात करना चाहो उसे चुनो और उससे पूछने के लिए एक सवाल सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khat1-ch02-words",
+   "topic": "2.3",
+   "template": "match",
+   "title": {
+    "en": "Words of the poor kitchen",
+    "hi": "ग़रीब रसोई के शब्द"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "chulha",
+      "left": {
+       "en": "चूल्हा",
+       "hi": "चूल्हा"
+      },
+      "right": {
+       "en": "Clay stove on which food is cooked",
+       "hi": "मिट्टी का चूल्हा जिस पर खाना पकता है"
+      },
+      "why": {
+       "en": "Siddheshwari cooks at it.",
+       "hi": "सिद्धेश्वरी इसी पर खाना बनाती है।"
+      }
+     },
+     {
+      "id": "dhadhas",
+      "left": {
+       "en": "ढाढ़स",
+       "hi": "ढाढ़स"
+      },
+      "right": {
+       "en": "Comfort given to a worried person",
+       "hi": "चिंतित को दिया गया सहारा"
+      },
+      "why": {
+       "en": "She gives it to her husband and sons.",
+       "hi": "वह पति और बेटों को यह देती है।"
+      }
+     },
+     {
+      "id": "tyag",
+      "left": {
+       "en": "त्याग",
+       "hi": "त्याग"
+      },
+      "right": {
+       "en": "Giving up one's own share for others",
+       "hi": "दूसरों के लिए अपना हिस्सा छोड़ देना"
+      },
+      "why": {
+       "en": "This is what the mother does at every meal.",
+       "hi": "यही माँ हर भोजन पर करती है।"
+      }
+     },
+     {
+      "id": "abhav",
+      "left": {
+       "en": "अभाव",
+       "hi": "अभाव"
+      },
+      "right": {
+       "en": "Shortage of the things one needs",
+       "hi": "ज़रूरी चीज़ों की कमी"
+      },
+      "why": {
+       "en": "The family lives in want of food and work.",
+       "hi": "परिवार को खाने और काम की कमी है।"
+      }
+     },
+     {
+      "id": "berozgar",
+      "left": {
+       "en": "बेरोज़गार",
+       "hi": "बेरोज़गार"
+      },
+      "right": {
+       "en": "A person who has no job",
+       "hi": "जिसके पास नौकरी न हो"
+      },
+      "why": {
+       "en": "The father has lost his work.",
+       "hi": "पिता का काम छूट गया है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:chulha",
+     "expect": "matched:chulha",
+     "say": {
+      "en": "Match the word for the clay stove with its meaning.",
+      "hi": "चूल्हे वाला शब्द उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word names what the mother does for her family at every meal?",
+      "hi": "माँ हर भोजन पर परिवार के लिए जो करती है, उसका नाम कौन-सा शब्द है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "त्याग",
+       "hi": "त्याग"
+      },
+      {
+       "id": "b",
+       "en": "अभाव",
+       "hi": "अभाव"
+      },
+      {
+       "id": "c",
+       "en": "चूल्हा",
+       "hi": "चूल्हा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:tyag",
+     "expect": "matched:tyag",
+     "say": {
+      "en": "Match त्याग with its meaning.",
+      "hi": "त्याग को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी जोड़ियाँ मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "These words carry the story's feeling. अभाव is the problem, त्याग is the mother's answer and ढाढ़स is the gift she gives. Knowing them lets you say the theme in your own words.",
+      "hi": "ये शब्द कहानी की भावना उठाए हुए हैं। अभाव समस्या है, त्याग माँ का उत्तर है और ढाढ़स वह उपहार जो वह देती है। इन्हें जानकर तुम कहानी का भाव अपने शब्दों में कह सकते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word means 'shortage'?",
+        "hi": "'कमी' का अर्थ किस शब्द में है?"
+       },
+       "options": [
+        {
+         "en": "त्याग",
+         "hi": "त्याग"
+        },
+        {
+         "en": "अभाव",
+         "hi": "अभाव"
+        },
+        {
+         "en": "ढाढ़स",
+         "hi": "ढाढ़स"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "अभाव is the lack of food, money or work.",
+        "hi": "अभाव यानी खाने, पैसे या काम की कमी।"
+       },
+       "wrong": [
+        {
+         "en": "त्याग is giving up one's own share, not a shortage.",
+         "hi": "त्याग अपना हिस्सा छोड़ना है, कमी नहीं।"
+        },
+        "",
+        {
+         "en": "ढाढ़स is comfort, which is a help against worry.",
+         "hi": "ढाढ़स सहारा है, जो चिंता में मदद करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use अभाव and त्याग in one sentence of your own about someone you admire.",
+      "hi": "अभाव और त्याग को अपने किसी आदर्श व्यक्ति के बारे में एक वाक्य में प्रयोग करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Hook of the chapter",
+   "shows": "A small bare kitchen at noon: a clay stove, a few rotis on a plate, a steel glass of water",
+   "view": "Eye level from the doorway, soft noon light through a small window",
+   "right": "Plain walls, a worn steel plate, no food in excess; the mood is quiet",
+   "avoid": "Faces, brand labels, rich-looking kitchens"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Word card: चूल्हा",
+   "shows": "A clay chulha with a little ash and a pair of tongs beside it",
+   "view": "Three-quarter view, top-left light, cut out on transparent background",
+   "right": "Real mud texture, soot marks, dry fuel sticks",
+   "avoid": "Gas stoves, text, decorations"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Word card: थाली",
+   "shows": "A steel thali with two rotis and a small bowl of thin dal",
+   "view": "Top view cut-out",
+   "right": "Few items only; thin dal, not rich curry",
+   "avoid": "Heaped food, brand logos"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "2.1",
+   "use": "The meal in order",
+   "shows": "Four frames of the same worn mat: an empty plate, a plate with roti, a plate half eaten, an empty plate",
+   "view": "Same camera, same light, top view",
+   "right": "Same plate each time so the change is clear",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "The house",
+   "shows": "A mud-and-brick courtyard of a poor town house with a cot and a shut door in the afternoon heat",
+   "view": "Wide shot from the lane, hard noon light, long shadows",
+   "right": "Heat haze feeling; flies near the drain; quiet",
+   "avoid": "Modern vehicles, signboards"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Word card: पानी का गिलास",
+   "shows": "A dented steel glass of water beside a small water pot (matka)",
+   "view": "Front view cut-out, soft shadow",
+   "right": "Water level visible; dents on the glass",
+   "avoid": "Plastic bottles, brands"
+  }
+ ]
+}

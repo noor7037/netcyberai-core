@@ -1,0 +1,684 @@
+{
+  "chapter_key": "u.c02.hindi.bhsr1.ch17",
+  "class": 2,
+  "subject_id": "hindi",
+  "title": "बरसात और मेंढक",
+  "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+  "topics": [
+    {
+      "n": "17.1",
+      "title": "The story: a chain of asking from cow to frog",
+      "labs": [
+        "c02-hindi-bhsr1-ch17-chain"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "17.2",
+      "title": "Word play: the sounds ढ, ड, ड़ and द",
+      "labs": [
+        "c02-hindi-bhsr1-ch17-sounds"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "17.3",
+      "title": "Talk time: saying sorry and mending hurt feelings",
+      "labs": [
+        "c02-hindi-bhsr1-ch17-sorry"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "17.4",
+      "title": "Draw and write: what Kamli and Somaru did at home",
+      "labs": [],
+      "why_no_lab": "Free drawing and writing in the notebook; a screen lab would take the place of the child's own imagination."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c02-hindi-bhsr1-ch17-chain",
+      "topic": "17.1",
+      "template": "sequence",
+      "title": {
+        "en": "The chain of asking",
+        "hi": "माँगने की कड़ी"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "cow",
+            "text": {
+              "en": "They asked the cow for milk.",
+              "hi": "उन्होंने गाय से दूध माँगा।"
+            }
+          },
+          {
+            "id": "grass",
+            "text": {
+              "en": "The cow wanted green grass, but the grass was dry.",
+              "hi": "गाय को हरी घास चाहिए थी, पर घास सूखी थी।"
+            }
+          },
+          {
+            "id": "river",
+            "text": {
+              "en": "The grass wanted water, but the river was dry.",
+              "hi": "घास को पानी चाहिए था, पर नदी सूखी थी।"
+            }
+          },
+          {
+            "id": "cloud",
+            "text": {
+              "en": "The river wanted rain, but the clouds did not rain.",
+              "hi": "नदी को बारिश चाहिए थी, पर बादल नहीं बरस रहे थे।"
+            }
+          },
+          {
+            "id": "frog",
+            "text": {
+              "en": "The clouds wanted the frogs to croak. The frogs forgave them and croaked.",
+              "hi": "बादल मेंढकों की टर्र-टर्र चाहते थे। मेंढकों ने माफ़ किया और टर्र-टर्र की।"
+            }
+          },
+          {
+            "id": "rain",
+            "text": {
+              "en": "Clouds rained, the river filled, the grass grew, the cow gave milk.",
+              "hi": "बादल बरसे, नदी भरी, घास उगी, गाय ने दूध दिया।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:cow",
+          "expect": "placed:cow",
+          "say": {
+            "en": "Which was the very first thing asked for? Tap that card and place it in slot 1.",
+            "hi": "सबसे पहले क्या माँगा गया था? वह कार्ड दबाकर पहली जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which card will be the end of the story?",
+            "hi": "कौन-सा कार्ड कहानी का अंत होगा?"
+          },
+          "options": [
+            {
+              "id": "rain",
+              "en": "Clouds rained, the river filled, the grass grew, the cow gave milk.",
+              "hi": "बादल बरसे, नदी भरी, घास उगी, गाय ने दूध दिया।"
+            },
+            {
+              "id": "cow",
+              "en": "They asked the cow for milk.",
+              "hi": "उन्होंने गाय से दूध माँगा।"
+            },
+            {
+              "id": "frog",
+              "en": "The clouds wanted the frogs to croak. The frogs forgave them and croaked.",
+              "hi": "बादल मेंढकों की टर्र-टर्र चाहते थे। मेंढकों ने माफ़ किया और टर्र-टर्र की।"
+            }
+          ],
+          "answer": "rain"
+        },
+        {
+          "kind": "do",
+          "target": "item:rain",
+          "expect": "placed:rain",
+          "say": {
+            "en": "Now put the last card in its place.",
+            "hi": "अब आख़िरी कार्ड को उसकी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place all the cards in order, then tap Check.",
+            "hi": "सब कार्ड क्रम से रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each one needed something from the next one. One small favour from the frogs started the rain. Then the river, the grass and the cow all got what they needed. Things around us are joined like a chain.",
+            "hi": "हर किसी को अगले से कुछ चाहिए था। मेंढकों की छोटी-सी मदद से बारिश शुरू हुई। फिर नदी, घास और गाय सबको वह मिला जो चाहिए था। हमारे आसपास सब कुछ एक कड़ी की तरह जुड़ा है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Whom did the children go to just before the frogs?",
+                "hi": "मेंढकों से ठीक पहले बच्चे किसके पास गए?"
+              },
+              "options": [
+                {
+                  "en": "The clouds",
+                  "hi": "बादलों के पास"
+                },
+                {
+                  "en": "The cow",
+                  "hi": "गाय के पास"
+                },
+                {
+                  "en": "The grass",
+                  "hi": "घास के पास"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The clouds said they would rain if the frogs croaked.",
+                "hi": "बादलों ने कहा कि मेंढक टर्र-टर्र करें तो वे बरसेंगे।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The cow was the first one they met.",
+                  "hi": "गाय सबसे पहले मिली थी।"
+                },
+                {
+                  "en": "The grass came before the river.",
+                  "hi": "घास नदी से पहले आई थी।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why did the frogs agree to croak?",
+                "hi": "मेंढक टर्र-टर्र करने को क्यों राज़ी हुए?"
+              },
+              "options": [
+                {
+                  "en": "The children said sorry and promised not to throw stones",
+                  "hi": "बच्चों ने माफ़ी माँगी और पत्थर न मारने का वादा किया"
+                },
+                {
+                  "en": "The frogs were hungry",
+                  "hi": "मेंढकों को भूख लगी थी"
+                },
+                {
+                  "en": "The cow told them to",
+                  "hi": "गाय ने उनसे कहा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A sincere sorry and a promise to stop hurting made the frogs trust them.",
+                "hi": "सच्ची माफ़ी और चोट न पहुँचाने के वादे से मेंढकों को भरोसा हुआ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The story does not say anything about the frogs being hungry.",
+                  "hi": "कहानी में मेंढकों की भूख की कोई बात नहीं है।"
+                },
+                {
+                  "en": "The cow never spoke to the frogs in the story.",
+                  "hi": "कहानी में गाय ने मेंढकों से बात नहीं की।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tell a friend how one small kind act can start a chain of good things.",
+            "hi": "दोस्त को बताओ कि एक छोटा-सा अच्छा काम कैसे अच्छी बातों की कड़ी शुरू कर सकता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch17-sounds",
+      "topic": "17.2",
+      "template": "match",
+      "title": {
+        "en": "Four sounds, four letters",
+        "hi": "चार ध्वनियाँ, चार अक्षर"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "dha",
+            "left": {
+              "en": "मेंढक",
+              "hi": "मेंढक"
+            },
+            "right": {
+              "en": "ढ",
+              "hi": "ढ"
+            },
+            "why": {
+              "en": "मेंढक has the heavy sound ढ in it.",
+              "hi": "मेंढक में भारी ध्वनि ढ है।"
+            }
+          },
+          {
+            "id": "da",
+            "left": {
+              "en": "डमरू",
+              "hi": "डमरू"
+            },
+            "right": {
+              "en": "ड",
+              "hi": "ड"
+            },
+            "why": {
+              "en": "डमरू starts with ड, said with the tongue touching the top of the mouth.",
+              "hi": "डमरू ड से शुरू होता है।"
+            }
+          },
+          {
+            "id": "dra",
+            "left": {
+              "en": "घड़ी",
+              "hi": "घड़ी"
+            },
+            "right": {
+              "en": "ड़",
+              "hi": "ड़"
+            },
+            "why": {
+              "en": "घड़ी has ड़, a flapped sound that never starts a word.",
+              "hi": "घड़ी में ड़ है। यह ध्वनि शब्द के शुरू में नहीं आती।"
+            }
+          },
+          {
+            "id": "dd",
+            "left": {
+              "en": "बादाम",
+              "hi": "बादाम"
+            },
+            "right": {
+              "en": "द",
+              "hi": "द"
+            },
+            "why": {
+              "en": "बादाम has द, said with the tongue touching the teeth.",
+              "hi": "बादाम में द है, जिसमें जीभ दाँतों को छूती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:dha",
+          "expect": "matched:dha",
+          "say": {
+            "en": "Tap the word मेंढक on the left to pick it.",
+            "hi": "बाईं ओर से मेंढक शब्द को दबाकर चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which letter will go with the word घड़ी?",
+            "hi": "घड़ी शब्द के साथ कौन-सा अक्षर जाएगा?"
+          },
+          "options": [
+            {
+              "id": "dra",
+              "en": "ड़",
+              "hi": "ड़"
+            },
+            {
+              "id": "da",
+              "en": "ड",
+              "hi": "ड"
+            },
+            {
+              "id": "dd",
+              "en": "द",
+              "hi": "द"
+            }
+          ],
+          "answer": "dra"
+        },
+        {
+          "kind": "do",
+          "target": "right:dd",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest of the pairs.",
+            "hi": "बाक़ी जोड़ियाँ मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "ढ, ड, ड़ and द look alike but sound different. ढ and ड are said with the tongue lifted back. ड़ is a quick flap. द touches the teeth. Say each word aloud and feel where your tongue goes.",
+            "hi": "ढ, ड, ड़ और द देखने में मिलते-जुलते हैं, पर उनकी ध्वनियाँ अलग हैं। ढ और ड में जीभ पीछे उठती है। ड़ में जीभ झट से पलटती है। द में जीभ दाँतों को छूती है। हर शब्द ज़ोर से बोलकर देखो कि जीभ कहाँ जाती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which letter is in the word बादाम?",
+                "hi": "बादाम शब्द में कौन-सा अक्षर है?"
+              },
+              "options": [
+                {
+                  "en": "द",
+                  "hi": "द"
+                },
+                {
+                  "en": "ढ",
+                  "hi": "ढ"
+                },
+                {
+                  "en": "ड़",
+                  "hi": "ड़"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "बादाम is बा + दा + म, and दा has द.",
+                "hi": "बादाम है बा + दा + म, और दा में द है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "ढ is heard in मेंढक.",
+                  "hi": "ढ मेंढक में सुनाई देता है।"
+                },
+                {
+                  "en": "ड़ is heard in घड़ी.",
+                  "hi": "ड़ घड़ी में सुनाई देता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Can you find one more word with each sound? Say them to someone at home.",
+            "hi": "क्या हर ध्वनि का एक और शब्द ढूँढ सकते हो? घर में किसी को बोलकर सुनाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch17-sorry",
+      "topic": "17.3",
+      "template": "scenario",
+      "title": {
+        "en": "Saying sorry",
+        "hi": "माफ़ी माँगना"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "setting": "garden pond",
+        "role": {
+          "en": "A child who threw a stone at a frog",
+          "hi": "एक बच्चा जिसने मेंढक पर पत्थर फेंका था"
+        },
+        "scenes": [
+          {
+            "id": "start",
+            "text": {
+              "en": "You threw a stone and the frog jumped into the pond, scared. Your friend saw it. What will you do?",
+              "hi": "तुमने पत्थर फेंका और मेंढक डरकर तालाब में कूद गया। तुम्हारे दोस्त ने देख लिया। तुम क्या करोगे?"
+            },
+            "choices": [
+              {
+                "id": "sorry",
+                "text": {
+                  "en": "Feel sorry, stop, and promise not to do it again",
+                  "hi": "अफ़सोस करो, रुक जाओ और दोबारा न करने का वादा करो"
+                },
+                "next": "peek",
+                "good": true,
+                "feedback": {
+                  "en": "Saying sorry and promising to stop is how we make things right. Animals trust kind people.",
+                  "hi": "माफ़ी माँगना और रुक जाना ही बात ठीक करना है। जानवर दयालु लोगों पर भरोसा करते हैं।"
+                }
+              },
+              {
+                "id": "again",
+                "text": {
+                  "en": "Throw another stone for fun",
+                  "hi": "मज़े के लिए एक और पत्थर फेंको"
+                },
+                "next": "end",
+                "good": false,
+                "feedback": {
+                  "en": "Hurting an animal for fun is not kind. The frog may hide for a long time.",
+                  "hi": "मज़े के लिए जानवर को चोट पहुँचाना अच्छा नहीं है। मेंढक बहुत देर तक छिपा रहेगा।"
+                }
+              },
+              {
+                "id": "ignore",
+                "text": {
+                  "en": "Pretend nothing happened",
+                  "hi": "ऐसे दिखाओ जैसे कुछ हुआ ही नहीं"
+                },
+                "next": "end",
+                "good": false,
+                "feedback": {
+                  "en": "Ignoring a hurt does not fix it. Saying sorry and changing is what helps.",
+                  "hi": "चोट को अनदेखा करने से बात ठीक नहीं होती। माफ़ी माँगना और बदलना मदद करता है।"
+                }
+              }
+            ]
+          },
+          {
+            "id": "peek",
+            "text": {
+              "en": "After a while the frog peeks out of the water. What will you do now?",
+              "hi": "थोड़ी देर बाद मेंढक पानी से झाँकता है। अब तुम क्या करोगे?"
+            },
+            "choices": [
+              {
+                "id": "promise",
+                "text": {
+                  "en": "Sit quietly and keep your promise never to throw stones",
+                  "hi": "चुपचाप बैठो और पत्थर न मारने का वादा निभाओ"
+                },
+                "next": "end",
+                "good": true,
+                "feedback": {
+                  "en": "Keeping a promise shows the sorry was true. The frog will sing again.",
+                  "hi": "वादा निभाने से पता चलता है कि माफ़ी सच्ची थी। मेंढक फिर गाएगा।"
+                }
+              },
+              {
+                "id": "grab",
+                "text": {
+                  "en": "Catch the frog to show your friends",
+                  "hi": "दोस्तों को दिखाने के लिए मेंढक को पकड़ लो"
+                },
+                "next": "end",
+                "good": false,
+                "feedback": {
+                  "en": "Grabbing the frog frightens it. A promise means leaving it free.",
+                  "hi": "मेंढक को पकड़ने से वह डर जाता है। वादे का मतलब है उसे आज़ाद छोड़ देना।"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "choice:start:sorry",
+          "expect": "chose:sorry",
+          "say": {
+            "en": "Choose the kind thing to do.",
+            "hi": "वह चुनो जो अच्छा काम हो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What do you think the frog would do after your sorry?",
+            "hi": "तुम्हारी माफ़ी के बाद मेंढक क्या करेगा, तुम्हें क्या लगता है?"
+          },
+          "options": [
+            {
+              "id": "trust",
+              "en": "It slowly trusts you",
+              "hi": "वह धीरे-धीरे भरोसा करेगा"
+            },
+            {
+              "id": "hide",
+              "en": "It hides forever",
+              "hi": "वह हमेशा छिपा रहेगा"
+            },
+            {
+              "id": "attack",
+              "en": "It attacks you",
+              "hi": "वह तुम पर हमला करेगा"
+            }
+          ],
+          "answer": "trust"
+        },
+        {
+          "kind": "do",
+          "target": "choice:peek:promise",
+          "expect": "chose:promise",
+          "say": {
+            "en": "The frog is back. Choose how to keep your promise.",
+            "hi": "मेंढक लौट आया। वादा निभाने का तरीका चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In the story Kamli and Somaru said sorry and promised never to throw stones again. The frogs agreed and croaked, and the rain came. A true sorry has two parts: saying it, and not repeating the mistake.",
+            "hi": "कहानी में कमली और सोमारू ने माफ़ी माँगी और कभी पत्थर न मारने का वादा किया। मेंढक मान गए और टर्र-टर्र करने लगे, फिर बारिश आई। सच्ची माफ़ी के दो भाग हैं: उसे कहना और गलती दोहराना नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What makes a sorry true?",
+                "hi": "सच्ची माफ़ी किससे बनती है?"
+              },
+              "options": [
+                {
+                  "en": "Saying it and not repeating the mistake",
+                  "hi": "माफ़ी कहना और गलती न दोहराना"
+                },
+                {
+                  "en": "Saying it loudly",
+                  "hi": "उसे ज़ोर से कहना"
+                },
+                {
+                  "en": "Saying it only when a teacher is looking",
+                  "hi": "सिर्फ़ तब कहना जब टीचर देख रही हो"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Words must go together with a change in what we do.",
+                "hi": "शब्दों के साथ हमारे काम में भी बदलाव होना चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Loud words do not fix a hurt if we do it again.",
+                  "hi": "अगर हम फिर वही करें तो ज़ोर की आवाज़ से चोट ठीक नहीं होती।"
+                },
+                {
+                  "en": "Sorry is for the one we hurt, not for a teacher.",
+                  "hi": "माफ़ी उसके लिए है जिसे चोट पहुँची है, टीचर के लिए नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Run it again and choose the other answers. How does the story change? Talk about a time you said sorry.",
+            "hi": "इसे फिर चलाओ और दूसरे उत्तर चुनो। कहानी कैसे बदलती है? कोई ऐसा समय बताओ जब तुमने माफ़ी माँगी थी।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "17.1",
+      "use": "Opens the story",
+      "shows": "A dry riverbed in a village in summer with a cow standing near yellow grass",
+      "view": "Wide, harsh noon light",
+      "right": "Cracked mud, pale dry grass, a few clouds far away, no people",
+      "avoid": "Any water in the bed"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "17.1",
+      "use": "The dry land turns green",
+      "shows": "Four frames: dry grass, dark clouds, rain falling, green grass with a full stream",
+      "view": "Same camera spot, same field",
+      "right": "Colours change from yellow to green; the stream fills only in the last frames",
+      "avoid": "Different places in different frames"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "17.1",
+      "use": "Characters for cards",
+      "shows": "A cow, a bunch of grass, dark rain clouds and a frog, each on its own",
+      "view": "Front or side, each its own file",
+      "right": "Indian cow breed, green frog on a wet stone",
+      "avoid": "Cartoon look"
+    },
+    {
+      "n": 4,
+      "kind": "MAC",
+      "topic": "17.2",
+      "use": "Sound word pictures",
+      "shows": "A frog, a damaru drum, a wall clock and almonds as separate photos",
+      "view": "Square, centre",
+      "right": "Real everyday objects; the damaru has two small balls on strings",
+      "avoid": "Words printed on them"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "17.3",
+      "use": "Saying sorry",
+      "shows": "Two children's hands, one offering a flower to the other, near a pond",
+      "view": "Low angle, hands only",
+      "right": "Gentle gesture; a small frog on a lily pad in the background",
+      "avoid": "Faces of identifiable children"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "17.4",
+      "use": "Writing prompt",
+      "shows": "Two children's backs walking home along a village road after rain with a rainbow behind",
+      "view": "Wide, evening light",
+      "right": "Wet road, puddles, calm mood",
+      "avoid": "Any text"
+    }
+  ]
+}

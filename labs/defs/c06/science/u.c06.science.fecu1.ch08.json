@@ -1,0 +1,943 @@
+{
+ "chapter_key": "u.c06.science.fecu1.ch08",
+ "class": 6,
+ "subject_id": "science",
+ "title": "A Journey through States of Water",
+ "source": "https://ncert.nic.in/textbook/pdf/fecu108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Water's disappearing act: evaporation",
+   "labs": [],
+   "why_no_lab": "A puddle or wet cloth drying over hours is shown best by a real photo sequence and a home observation."
+  },
+  {
+   "n": "8.2",
+   "title": "Another mystery: drops on a cold glass (condensation)",
+   "labs": [
+    "c06-science-fecu1-ch08-glass"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "The three states of water",
+   "labs": [
+    "c06-science-fecu1-ch08-states"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Changing the states of water",
+   "labs": [
+    "c06-science-fecu1-ch08-cooling"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "What makes water evaporate faster or slower",
+   "labs": [
+    "c06-science-fecu1-ch08-drying"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Cooling effect of evaporation",
+   "labs": [],
+   "why_no_lab": "The cooling of a wet hand or a matka is felt on the skin; a real try with water does it better than a screen."
+  },
+  {
+   "n": "8.7",
+   "title": "How clouds give us rain: the water cycle",
+   "labs": [
+    "c06-science-fecu1-ch08-rain"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-science-fecu1-ch08-glass",
+   "topic": "8.2",
+   "template": "scenario",
+   "title": {
+    "en": "Where did the drops come from?",
+    "hi": "बूँदें कहाँ से आईं?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "setting": "home kitchen",
+    "role": {
+     "en": "A water detective",
+     "hi": "पानी के जासूस"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "On a hot day you put ice cubes in a dry steel tumbler. After a few minutes, tiny drops of water cover the outside. The tumbler does not leak. Where did the drops come from?",
+       "hi": "गर्मी के दिन तुमने सूखे स्टील के गिलास में बर्फ़ के टुकड़े डाले। कुछ मिनट बाद गिलास के बाहर पानी की छोटी बूँदें छा गईं। गिलास से कुछ रिसता नहीं। बूँदें कहाँ से आईं?"
+      },
+      "choices": [
+       {
+        "id": "air",
+        "text": {
+         "en": "From water vapour in the air, cooled by the cold tumbler",
+         "hi": "हवा की जलवाष्प से, जो ठंडे गिलास से ठंडी हुई"
+        },
+        "next": "test",
+        "good": true,
+        "feedback": {
+         "en": "Yes. Air always has some invisible water vapour. It cooled on the cold surface and turned into drops.",
+         "hi": "हाँ। हवा में हमेशा कुछ अदृश्य जलवाष्प होती है। वह ठंडी सतह पर ठंडी होकर बूँदों में बदल गई।"
+        }
+       },
+       {
+        "id": "leak",
+        "text": {
+         "en": "The ice water leaked through the steel",
+         "hi": "बर्फ़ का पानी स्टील से रिस गया"
+        },
+        "next": "test",
+        "good": false,
+        "feedback": {
+         "en": "Steel has no holes. And drops appear even on a sealed bottle from the fridge.",
+         "hi": "स्टील में छेद नहीं होते। और फ़्रिज की बंद बोतल पर भी बूँदें आ जाती हैं।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "test",
+      "text": {
+       "en": "How could you check that the water did not come from inside?",
+       "hi": "कैसे जाँचोगे कि पानी अंदर से नहीं आया?"
+      },
+      "choices": [
+       {
+        "id": "colour",
+        "text": {
+         "en": "Colour the ice water with a little food colour and see if the outside drops are coloured",
+         "hi": "बर्फ़ के पानी में थोड़ा खाने का रंग मिलाओ और देखो कि बाहर की बूँदें रंगीन हैं या नहीं"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "The outside drops stay clear, so they did not come from inside. A fair test!",
+         "hi": "बाहर की बूँदें साफ़ रहती हैं, इसलिए वे अंदर से नहीं आईं। एक सही जाँच!"
+        }
+       },
+       {
+        "id": "taste",
+        "text": {
+         "en": "Lick the drops",
+         "hi": "बूँदों को चाटकर देखो"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Never taste things to test them. Use a safe test, like colouring the water inside.",
+         "hi": "जाँचने के लिए चीज़ें कभी मत चखो। सुरक्षित जाँच करो, जैसे अंदर के पानी को रंगना।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Drops form on the outside of a cold tumbler. Which change of state is this?",
+      "hi": "ठंडे गिलास के बाहर बूँदें बनती हैं। यह कौन-सा अवस्था परिवर्तन है?"
+     },
+     "options": [
+      {
+       "id": "cond",
+       "en": "Water vapour turning into liquid water (condensation)",
+       "hi": "जलवाष्प का द्रव पानी बनना (संघनन)"
+      },
+      {
+       "id": "melt",
+       "en": "Ice melting",
+       "hi": "बर्फ़ पिघलना"
+      },
+      {
+       "id": "evap",
+       "en": "Water turning into vapour",
+       "hi": "पानी का वाष्प बनना"
+      }
+     ],
+     "answer": "cond"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:air",
+     "expect": "chose:air",
+     "say": {
+      "en": "Choose where you think the drops came from.",
+      "hi": "चुनो कि तुम्हारे विचार में बूँदें कहाँ से आईं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Air contains water vapour that we cannot see. When it touches something cold, it cools and turns back into liquid water. This change from gas to liquid is called condensation. It is the same reason dew forms on grass on winter mornings.",
+      "hi": "हवा में जलवाष्प होती है जो दिखती नहीं। जब वह किसी ठंडी चीज़ को छूती है, तो ठंडी होकर फिर द्रव पानी बन जाती है। गैस से द्रव बनने को संघनन कहते हैं। सर्दी की सुबह घास पर ओस भी इसी कारण बनती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do your spectacles fog up when you open a hot cooker near your face?",
+        "hi": "चेहरे के पास गर्म कुकर खोलने पर चश्मे पर धुंध क्यों जम जाती है?"
+       },
+       "options": [
+        {
+         "en": "Steam condenses on the cooler glass",
+         "hi": "भाप ठंडे काँच पर संघनित हो जाती है"
+        },
+        {
+         "en": "The glass melts a little",
+         "hi": "काँच थोड़ा पिघल जाता है"
+        },
+        {
+         "en": "Smoke from the cooker sticks to it",
+         "hi": "कुकर का धुआँ उस पर चिपक जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water vapour from the steam cools on the glass and becomes tiny drops.",
+        "hi": "भाप की जलवाष्प काँच पर ठंडी होकर छोटी बूँदें बन जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Glass does not melt at kitchen temperatures.",
+         "hi": "रसोई के तापमान पर काँच नहीं पिघलता।"
+        },
+        {
+         "en": "It is water vapour, not smoke; it wipes off as water.",
+         "hi": "यह जलवाष्प है, धुआँ नहीं; पोंछने पर पानी निकलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Next and finish the story. Then play again and try the other choices. Try the coloured-water test at home.",
+      "hi": "\"आगे\" दबाओ और कहानी पूरी करो। फिर दोबारा खेलकर दूसरे चुनाव देखो। घर पर रंगीन पानी वाली जाँच करके देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch08-states",
+   "topic": "8.3",
+   "template": "particles",
+   "title": {
+    "en": "Ice, water and steam",
+    "hi": "बर्फ़, पानी और भाप"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "states",
+    "substance": "water",
+    "temp": -10
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This is ice at −10 °C. What happens to its particles when you heat it?",
+      "hi": "यह −10 °C की बर्फ़ है। गर्म करने पर इसके कणों का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "fast",
+       "en": "They move more and break out of their fixed places",
+       "hi": "वे ज़्यादा हिलते हैं और अपनी तय जगह छोड़ देते हैं"
+      },
+      {
+       "id": "stop",
+       "en": "They stop moving",
+       "hi": "वे हिलना बंद कर देते हैं"
+      },
+      {
+       "id": "same",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलता"
+      }
+     ],
+     "answer": "fast"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "state:liquid",
+     "say": {
+      "en": "Press Heat and watch the ice melt into water.",
+      "hi": "\"गर्म करो\" दबाओ और बर्फ़ को पिघलकर पानी बनते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "state:gas",
+     "say": {
+      "en": "Keep heating until the water boils into steam.",
+      "hi": "तब तक गर्म करते रहो जब तक पानी उबलकर भाप न बन जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water exists as a solid (ice), a liquid (water) and a gas (water vapour). In ice the particles are close and fixed. Heating makes them move more: at 0 °C ice melts, and at 100 °C water boils and becomes vapour, with particles far apart.",
+      "hi": "पानी ठोस (बर्फ़), द्रव (पानी) और गैस (जलवाष्प) तीनों रूपों में रहता है। बर्फ़ में कण पास-पास और अपनी जगह पर टिके होते हैं। गर्म करने से वे ज़्यादा हिलते हैं: 0 °C पर बर्फ़ पिघलती है, और 100 °C पर पानी उबलकर वाष्प बन जाता है, जिसमें कण बहुत दूर-दूर होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which state do water particles move most freely?",
+        "hi": "पानी के कण किस अवस्था में सबसे स्वतंत्र रूप से चलते हैं?"
+       },
+       "options": [
+        {
+         "en": "Ice",
+         "hi": "बर्फ़"
+        },
+        {
+         "en": "Liquid water",
+         "hi": "द्रव पानी"
+        },
+        {
+         "en": "Water vapour",
+         "hi": "जलवाष्प"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "In a gas the particles are far apart and move freely in all directions.",
+        "hi": "गैस में कण दूर-दूर होते हैं और सब दिशाओं में स्वतंत्र रूप से चलते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "In ice the particles only shake in fixed places.",
+         "hi": "बर्फ़ में कण केवल अपनी जगह पर काँपते हैं।"
+        },
+        {
+         "en": "In liquid water particles slide past each other but stay close.",
+         "hi": "द्रव पानी में कण एक-दूसरे पर फिसलते हैं पर पास रहते हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Cool and watch the steam turn back to water and then to ice. Use the slider to stop at exactly 0 °C and 100 °C.",
+      "hi": "\"ठंडा करो\" दबाओ और भाप को फिर पानी और फिर बर्फ़ बनते देखो। स्लाइडर से ठीक 0 °C और 100 °C पर रुककर देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch08-cooling",
+   "topic": "8.4",
+   "template": "particles",
+   "title": {
+    "en": "Steam to water to ice",
+    "hi": "भाप से पानी, पानी से बर्फ़"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "states",
+    "substance": "water",
+    "temp": 110
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This is water vapour at 110 °C. What will it become first when you cool it?",
+      "hi": "यह 110 °C की जलवाष्प है। ठंडा करने पर यह पहले क्या बनेगी?"
+     },
+     "options": [
+      {
+       "id": "liquid",
+       "en": "Liquid water",
+       "hi": "द्रव पानी"
+      },
+      {
+       "id": "ice",
+       "en": "Ice, straight away",
+       "hi": "सीधे बर्फ़"
+      },
+      {
+       "id": "more",
+       "en": "More vapour",
+       "hi": "और वाष्प"
+      }
+     ],
+     "answer": "liquid"
+    },
+    {
+     "kind": "do",
+     "target": "cool",
+     "expect": "state:liquid",
+     "say": {
+      "en": "Press Cool and watch the vapour condense.",
+      "hi": "\"ठंडा करो\" दबाओ और वाष्प को संघनित होते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "cool",
+     "expect": "state:solid",
+     "say": {
+      "en": "Keep cooling until the water freezes.",
+      "hi": "तब तक ठंडा करते रहो जब तक पानी जम न जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cooling takes heat away. Vapour turns into liquid water (condensation) and then liquid water turns into ice at 0 °C (freezing). Heating does the opposite: melting and evaporation. These are changes of state of the same water.",
+      "hi": "ठंडा करने से ऊष्मा निकलती है। वाष्प द्रव पानी बनती है (संघनन) और फिर 0 °C पर द्रव पानी बर्फ़ बनता है (हिमीकरण)। गर्म करने से उल्टा होता है: पिघलना और वाष्पन। ये एक ही पानी के अवस्था परिवर्तन हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Water is put in the freezer to make ice. Which change is this?",
+        "hi": "बर्फ़ बनाने के लिए पानी फ़्रीज़र में रखा। यह कौन-सा परिवर्तन है?"
+       },
+       "options": [
+        {
+         "en": "Freezing",
+         "hi": "हिमीकरण (जमना)"
+        },
+        {
+         "en": "Melting",
+         "hi": "पिघलना"
+        },
+        {
+         "en": "Evaporation",
+         "hi": "वाष्पन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Liquid to solid on cooling is freezing.",
+        "hi": "ठंडा होने पर द्रव से ठोस बनना हिमीकरण है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Melting is solid to liquid, the opposite way.",
+         "hi": "पिघलना ठोस से द्रव बनना है, उल्टी दिशा।"
+        },
+        {
+         "en": "Evaporation is liquid to gas.",
+         "hi": "वाष्पन द्रव से गैस बनना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "At what temperature does ice melt?",
+        "hi": "बर्फ़ किस तापमान पर पिघलती है?"
+       },
+       "options": [
+        {
+         "en": "0 °C",
+         "hi": "0 डिग्री सेल्सियस"
+        },
+        {
+         "en": "100 °C",
+         "hi": "100 डिग्री सेल्सियस"
+        },
+        {
+         "en": "37 °C",
+         "hi": "37 डिग्री सेल्सियस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ice melts, and water freezes, at 0 °C.",
+        "hi": "बर्फ़ 0 °C पर पिघलती है, और पानी भी 0 °C पर जमता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "100 °C is where water boils.",
+         "hi": "100 °C पर पानी उबलता है।"
+        },
+        {
+         "en": "37 °C is about our body temperature.",
+         "hi": "37 °C लगभग हमारे शरीर का तापमान है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Heat and cool the water several times. Watch the heating curve: why does it stay flat at 0 °C and 100 °C for a while?",
+      "hi": "पानी को कई बार गर्म और ठंडा करो। तापन वक्र देखो: वह 0 °C और 100 °C पर कुछ देर सपाट क्यों रहता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch08-drying",
+   "topic": "8.5",
+   "template": "sort",
+   "title": {
+    "en": "Faster or slower drying?",
+    "hi": "जल्दी सूखेगा या देर से?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fast",
+      "label": {
+       "en": "Dries faster",
+       "hi": "जल्दी सूखेगा"
+      }
+     },
+     {
+      "id": "slow",
+      "label": {
+       "en": "Dries slower",
+       "hi": "देर से सूखेगा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sun",
+      "text": {
+       "en": "Wet clothes in the sun",
+       "hi": "धूप में गीले कपड़े"
+      },
+      "bin": "fast",
+      "why": {
+       "en": "Heat from the Sun makes water evaporate faster.",
+       "hi": "सूर्य की गर्मी से पानी जल्दी वाष्पित होता है।"
+      }
+     },
+     {
+      "id": "spread",
+      "text": {
+       "en": "A sari spread out wide",
+       "hi": "फैलाकर सुखाई गई साड़ी"
+      },
+      "bin": "fast",
+      "why": {
+       "en": "More open surface means faster evaporation.",
+       "hi": "अधिक खुली सतह से वाष्पन जल्दी होता है।"
+      }
+     },
+     {
+      "id": "breeze",
+      "text": {
+       "en": "Clothes in a breeze",
+       "hi": "हवा में कपड़े"
+      },
+      "bin": "fast",
+      "why": {
+       "en": "Moving air carries vapour away, so more water evaporates.",
+       "hi": "चलती हवा वाष्प को दूर ले जाती है, इसलिए और पानी वाष्पित होता है।"
+      }
+     },
+     {
+      "id": "plate",
+      "text": {
+       "en": "Water in a wide plate",
+       "hi": "चौड़ी थाली में पानी"
+      },
+      "bin": "fast",
+      "why": {
+       "en": "A wide plate gives a large surface.",
+       "hi": "चौड़ी थाली में सतह बड़ी होती है।"
+      }
+     },
+     {
+      "id": "shade",
+      "text": {
+       "en": "Wet clothes in the shade",
+       "hi": "छाया में गीले कपड़े"
+      },
+      "bin": "slow",
+      "why": {
+       "en": "Less heat, so slower evaporation.",
+       "hi": "कम गर्मी, इसलिए वाष्पन धीमा।"
+      }
+     },
+     {
+      "id": "folded",
+      "text": {
+       "en": "A sari left folded",
+       "hi": "तह करके रखी साड़ी"
+      },
+      "bin": "slow",
+      "why": {
+       "en": "Folding hides most of the surface.",
+       "hi": "तह करने से ज़्यादातर सतह छिप जाती है।"
+      }
+     },
+     {
+      "id": "humid",
+      "text": {
+       "en": "Clothes on a humid monsoon day",
+       "hi": "उमस भरे बरसाती दिन कपड़े"
+      },
+      "bin": "slow",
+      "why": {
+       "en": "Air already full of vapour takes in water slowly.",
+       "hi": "पहले से वाष्प से भरी हवा पानी धीरे लेती है।"
+      }
+     },
+     {
+      "id": "glass",
+      "text": {
+       "en": "Water in a narrow glass",
+       "hi": "पतले गिलास में पानी"
+      },
+      "bin": "slow",
+      "why": {
+       "en": "A narrow glass has a small surface.",
+       "hi": "पतले गिलास में सतह छोटी होती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One shirt dries in the sun, one in the shade. Which dries first?",
+      "hi": "एक कमीज़ धूप में सूखती है, एक छाया में। कौन पहले सूखेगी?"
+     },
+     "options": [
+      {
+       "id": "sun",
+       "en": "The one in the sun",
+       "hi": "धूप वाली"
+      },
+      {
+       "id": "shade",
+       "en": "The one in the shade",
+       "hi": "छाया वाली"
+      },
+      {
+       "id": "same",
+       "en": "Both together",
+       "hi": "दोनों साथ"
+      }
+     ],
+     "answer": "sun"
+    },
+    {
+     "kind": "do",
+     "target": "card:sun",
+     "expect": "correct:sun",
+     "say": {
+      "en": "Tap \"Wet clothes in the sun\", then its group.",
+      "hi": "\"धूप में गीले कपड़े\" छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:humid",
+     "expect": "correct:humid",
+     "say": {
+      "en": "Now sort the humid monsoon day.",
+      "hi": "अब उमस भरे बरसाती दिन को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी को छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Evaporation is faster when it is hotter, when more surface is open to the air, when there is a breeze, and when the air is dry. It is slower in the shade, when folded, in still air and on humid days.",
+      "hi": "वाष्पन तब जल्दी होता है जब गर्मी अधिक हो, अधिक सतह हवा के संपर्क में हो, हवा चल रही हो और हवा सूखी हो। छाया में, तह करने पर, रुकी हवा में और उमस भरे दिनों में यह धीमा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do clothes take longer to dry in the monsoon even on a warm day?",
+        "hi": "बरसात में गर्म दिन भी कपड़े सूखने में देर क्यों लगती है?"
+       },
+       "options": [
+        {
+         "en": "The air already holds a lot of water vapour",
+         "hi": "हवा में पहले से बहुत जलवाष्प है"
+        },
+        {
+         "en": "There is no sunlight at all in the monsoon",
+         "hi": "बरसात में बिल्कुल धूप नहीं होती"
+        },
+        {
+         "en": "Water is heavier in the monsoon",
+         "hi": "बरसात में पानी भारी हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Humid air is nearly full of vapour, so water from the clothes evaporates slowly.",
+        "hi": "उमस भरी हवा वाष्प से लगभग भरी होती है, इसलिए कपड़ों का पानी धीरे वाष्पित होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Even with some sun, the humid air slows drying.",
+         "hi": "कुछ धूप हो तब भी उमस भरी हवा सूखना धीमा करती है।"
+        },
+        {
+         "en": "Water does not get heavier; the air is just humid.",
+         "hi": "पानी भारी नहीं होता; बस हवा में उमस होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. At home, put the same spoon of water in a plate and in a glass. Which one dries up first?",
+      "hi": "\"फिर से शुरू\" दबाओ। घर पर एक-एक चम्मच पानी थाली और गिलास में रखो। कौन पहले सूखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch08-rain",
+   "topic": "8.7",
+   "template": "earth",
+   "title": {
+    "en": "How clouds give us rain",
+    "hi": "बादल कैसे वर्षा देते हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "water-cycle"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:evaporation",
+     "expect": "revealed:evaporation",
+     "say": {
+      "en": "Tap Evaporation to see where water vapour comes from.",
+      "hi": "यह देखने के लिए \"वाष्पन\" छुओ कि जलवाष्प कहाँ से आती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Vapour rises high where the air is cold. What will it form?",
+      "hi": "वाष्प ऊपर उठती है जहाँ हवा ठंडी है। वह क्या बनाएगी?"
+     },
+     "options": [
+      {
+       "id": "cloud",
+       "en": "Tiny droplets that make clouds",
+       "hi": "छोटी बूँदें जो बादल बनाती हैं"
+      },
+      {
+       "id": "ice",
+       "en": "Big blocks of ice at once",
+       "hi": "तुरंत बर्फ़ के बड़े टुकड़े"
+      },
+      {
+       "id": "gone",
+       "en": "It disappears for ever",
+       "hi": "हमेशा के लिए ग़ायब"
+      }
+     ],
+     "answer": "cloud"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "rained",
+     "say": {
+      "en": "Press Play and watch the cloud form and move to the hills.",
+      "hi": "\"चलाओ\" दबाओ और बादल को बनते और पहाड़ों की ओर जाते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:condensation",
+     "expect": "revealed:condensation",
+     "say": {
+      "en": "Tap Condensation to read how clouds form.",
+      "hi": "बादल कैसे बनते हैं, पढ़ने के लिए \"संघनन\" छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Sun heats water in seas, rivers and ponds, and it evaporates. Plants also give out vapour. High up, the vapour cools and condenses into tiny droplets that make clouds. Droplets join into bigger drops and fall as rain. The water flows back to the sea: this is the water cycle.",
+      "hi": "सूर्य समुद्र, नदियों और तालाबों का पानी गर्म करता है, और वह वाष्पित होता है। पौधे भी वाष्प छोड़ते हैं। ऊपर वाष्प ठंडी होकर छोटी बूँदों में संघनित होती है, जिनसे बादल बनते हैं। बूँदें मिलकर बड़ी होती हैं और वर्षा बनकर गिरती हैं। पानी बहकर फिर समुद्र में जाता है: यही जल चक्र है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What makes the water vapour in the air turn into cloud droplets?",
+        "hi": "हवा की जलवाष्प बादल की बूँदों में किस कारण बदलती है?"
+       },
+       "options": [
+        {
+         "en": "Cooling high up in the sky",
+         "hi": "आकाश में ऊपर ठंडा होना"
+        },
+        {
+         "en": "Heating by the Sun",
+         "hi": "सूर्य से गर्म होना"
+        },
+        {
+         "en": "Mixing with smoke only",
+         "hi": "केवल धुएँ से मिलना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cooling makes vapour condense into tiny droplets.",
+        "hi": "ठंडा होने से वाष्प छोटी बूँदों में संघनित होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Heating makes water evaporate; it does not form droplets.",
+         "hi": "गर्मी से पानी वाष्पित होता है; बूँदें नहीं बनतीं।"
+        },
+        {
+         "en": "Dust can help droplets form, but cooling is what makes the vapour condense.",
+         "hi": "धूल बूँदें बनने में मदद कर सकती है, पर वाष्प का संघनन ठंडक से होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press \"Follow a drop\" to travel with one drop round the whole cycle. Move the Sun slider down: what happens to evaporation?",
+      "hi": "\"एक बूँद के साथ चलो\" दबाकर एक बूँद के साथ पूरे चक्र की यात्रा करो। सूर्य का स्लाइडर नीचे करो: वाष्पन का क्या होता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "8.1",
+   "use": "Disappearing water",
+   "shows": "A wet patch of water on a sunny verandah floor at 0, 20 and 40 minutes, shrinking and gone",
+   "view": "From above, same framing and time stamps hidden",
+   "right": "Patch shrinks from the edges",
+   "avoid": "Footprints, people"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "8.2",
+   "use": "Condensation on a cold tumbler",
+   "shows": "A steel tumbler with ice cubes, outside covered in tiny water droplets, a few running down",
+   "view": "Close-up, side light, square",
+   "right": "Drops only outside; table under it wet in a ring",
+   "avoid": "Logos, coloured water"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "8.3",
+   "use": "Three states of water",
+   "shows": "Three frames: ice cubes in a steel bowl, the same bowl with water, then the water boiling with steam rising",
+   "view": "Side view, same framing",
+   "right": "Steam a faint mist just above the surface",
+   "avoid": "A child near the flame"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "8.5",
+   "use": "Drying clothes",
+   "shows": "Clothes on a line on a sunny, breezy terrace, beside a folded wet sari in the shade",
+   "view": "Wide, daylight",
+   "right": "Spread clothes moving in the wind",
+   "avoid": "Faces, brand labels"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.6",
+   "use": "Cooling effect",
+   "shows": "A clay matka with drops on its outside, on a stand in an Indian home, a steel glass beside it",
+   "view": "Eye level, soft light",
+   "right": "Matka surface damp and darker in patches",
+   "avoid": "Plastic pots, labels"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "8.7",
+   "use": "Monsoon clouds",
+   "shows": "Dark monsoon clouds over the Western Ghats with rain falling on green hills and a river below",
+   "view": "Wide, from a hill",
+   "right": "Rain shafts visible under the clouds",
+   "avoid": "People, vehicles"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "8.7",
+   "use": "Base for the water-cycle view",
+   "shows": "A clean landscape render: sea, a plain with trees and a village, hills, and empty sky",
+   "view": "Side cut-away view, 16:9",
+   "right": "No clouds, arrows or labels (the app draws them)",
+   "avoid": "Text, arrows"
+  }
+ ]
+}

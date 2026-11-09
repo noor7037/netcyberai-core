@@ -1,0 +1,1084 @@
+{
+ "chapter_key": "u.c03.english.cesa1.ch01",
+ "class": 3,
+ "subject_id": "english",
+ "title": "Colours",
+ "source": "https://ncert.nic.in/textbook/pdf/cesa101.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Poem: sharing crayons",
+   "labs": [
+    "c03-english-cesa1-ch01-crayon-rhyme"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "Colour words and the colour-reading game",
+   "labs": [],
+   "why_no_lab": "The colour-and-word reading game is a speaking game the child plays aloud with friends, so reading and speaking it teaches better than a screen."
+  },
+  {
+   "n": "3",
+   "title": "Blend sounds gr, cr, dr, pr",
+   "labs": [
+    "c03-english-cesa1-ch01-blend-sounds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4",
+   "title": "Action words",
+   "labs": [
+    "c03-english-cesa1-ch01-action-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5",
+   "title": "The alphabet and alphabetical order",
+   "labs": [
+    "c03-english-cesa1-ch01-alphabet-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6",
+   "title": "Word friends: joining two words",
+   "labs": [
+    "c03-english-cesa1-ch01-word-friends"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-english-cesa1-ch01-crayon-rhyme",
+   "topic": "1",
+   "template": "reader",
+   "title": {
+    "en": "A rhyme about sharing colours",
+    "hi": "रंग बाँटने की तुकबंदी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "rhythm",
+    "lang": "en",
+    "bpm": 70,
+    "passage": {
+     "title": {
+      "en": "Colours for you and me",
+      "hi": "तुम्हारे और मेरे रंग"
+     },
+     "lines": [
+      "Orange, purple, green and blue,",
+      "Draw a rainbow, me and you.",
+      "I give you red, you give me brown,",
+      "Together we can colour the town."
+     ]
+    },
+    "question": {
+     "q": {
+      "en": "Which word rhymes with 'blue'?",
+      "hi": "'blue' से कौन-सा शब्द तुक मिलाता है?"
+     },
+     "options": [
+      {
+       "en": "you",
+       "hi": "you (तुम)"
+      },
+      {
+       "en": "brown",
+       "hi": "brown (भूरा)"
+      },
+      {
+       "en": "green",
+       "hi": "green (हरा)"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "'Blue' and 'you' end with the same sound, so they rhyme.",
+      "hi": "'Blue' और 'you' का अंत एक जैसी आवाज़ पर होता है, इसलिए इनकी तुक मिलती है।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Tap Play and listen to the rhyme.",
+      "hi": "Play दबाओ और तुकबंदी सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two lines end with a matching sound. Which word will rhyme with 'town'?",
+      "hi": "दो पंक्तियों के अंत की आवाज़ मिलती है। 'town' से कौन-सा शब्द तुक मिलाएगा?"
+     },
+     "options": [
+      {
+       "id": "brown",
+       "en": "brown",
+       "hi": "brown (भूरा)"
+      },
+      {
+       "id": "blue",
+       "en": "blue",
+       "hi": "blue (नीला)"
+      },
+      {
+       "id": "green",
+       "en": "green",
+       "hi": "green (हरा)"
+      }
+     ],
+     "answer": "brown"
+    },
+    {
+     "kind": "do",
+     "target": "beat",
+     "expect": "beat-ok",
+     "say": {
+      "en": "Tap Beat in time with the rhyme.",
+      "hi": "तुकबंदी की लय के साथ Beat दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A rhyme has words that end with the same sound, like blue and you, or brown and town. The beat is the rhythm we clap while we say it. Sharing crayons is kind, and together we can colour much more.",
+      "hi": "तुकबंदी में कुछ शब्दों के अंत की आवाज़ एक जैसी होती है, जैसे blue और you, या brown और town। बीट वह लय है जिस पर हम ताली बजाते हुए इसे बोलते हैं। क्रेयॉन बाँटना अच्छी बात है, और साथ मिलकर हम ज़्यादा रंग भर सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which two words rhyme?",
+        "hi": "कौन-से दो शब्द आपस में तुक मिलाते हैं?"
+       },
+       "options": [
+        {
+         "en": "brown and town",
+         "hi": "brown और town"
+        },
+        {
+         "en": "red and blue",
+         "hi": "red और blue"
+        },
+        {
+         "en": "rainbow and crayon",
+         "hi": "rainbow और crayon"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Brown and town both end with 'own'.",
+        "hi": "Brown और town दोनों का अंत 'own' पर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "These are colours, but they end with different sounds.",
+         "hi": "ये दोनों रंग हैं, पर इनके अंत की आवाज़ अलग-अलग है।"
+        },
+        {
+         "en": "They end with different sounds, so they do not rhyme.",
+         "hi": "इनके अंत की आवाज़ अलग है, इसलिए तुक नहीं मिलती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the rhyme again and tap the beat every time. Then make your own two lines that rhyme with 'red'.",
+      "hi": "तुकबंदी फिर से चलाओ और हर बार बीट दबाओ। फिर 'red' से तुक मिलाती अपनी दो पंक्तियाँ बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-ch01-blend-sounds",
+   "topic": "3",
+   "template": "words",
+   "title": {
+    "en": "Blend sounds: gr, cr, dr, pr",
+    "hi": "मिले हुए स्वर: gr, cr, dr, pr"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "phonics",
+    "lang": "en",
+    "words": [
+     {
+      "w": "green",
+      "meaning": {
+       "en": "The colour of fresh leaves and grass.",
+       "hi": "ताज़ी पत्तियों और घास का रंग।"
+      }
+     },
+     {
+      "w": "crab",
+      "meaning": {
+       "en": "A sea animal with a hard shell and big claws.",
+       "hi": "सख़्त खोल और बड़े पंजों वाला समुद्री जीव।"
+      }
+     },
+     {
+      "w": "drum",
+      "meaning": {
+       "en": "An instrument that you beat with sticks.",
+       "hi": "एक वाद्य जिसे डंडियों से बजाते हैं।"
+      }
+     },
+     {
+      "w": "prize",
+      "meaning": {
+       "en": "A gift you win for doing well.",
+       "hi": "अच्छा करने पर जीतने वाला उपहार।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "listen",
+     "expect": "listen",
+     "say": {
+      "en": "Tap Listen and hear the word.",
+      "hi": "Listen दबाओ और शब्द सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The word is green. Which two letters make its first sound?",
+      "hi": "शब्द है green। इसकी पहली आवाज़ किन दो अक्षरों से बनती है?"
+     },
+     "options": [
+      {
+       "id": "gr",
+       "en": "g and r",
+       "hi": "g और r"
+      },
+      {
+       "id": "cr",
+       "en": "c and r",
+       "hi": "c और r"
+      },
+      {
+       "id": "dr",
+       "en": "d and r",
+       "hi": "d और r"
+      }
+     ],
+     "answer": "gr"
+    },
+    {
+     "kind": "do",
+     "target": "pick:g",
+     "expect": "pick:g",
+     "say": {
+      "en": "Tap the letter g.",
+      "hi": "अक्षर g पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:r",
+     "expect": "pick:r",
+     "say": {
+      "en": "Now tap the letter r. Say them quickly together.",
+      "hi": "अब अक्षर r पर टैप करो। दोनों को जल्दी-जल्दी साथ बोलो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:ee",
+     "expect": "pick:ee",
+     "say": {
+      "en": "Tap the 'ee' tile.",
+      "hi": "'ee' वाली टाइल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:n",
+     "expect": "word:green",
+     "say": {
+      "en": "Tap n to finish the word green.",
+      "hi": "n पर टैप करके green शब्द पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In green, the sounds g and r are said quickly one after the other. This is a blend. Crab begins with cr, drum begins with dr and prize begins with pr. When you blend, you say both letters, but fast.",
+      "hi": "green में g और r की आवाज़ें एक के बाद एक जल्दी-जल्दी बोली जाती हैं। इसे ब्लेंड कहते हैं। crab cr से, drum dr से और prize pr से शुरू होता है। ब्लेंड में दोनों अक्षर बोले जाते हैं, पर तेज़ी से।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which blend begins the word drum?",
+        "hi": "drum शब्द किस ब्लेंड से शुरू होता है?"
+       },
+       "options": [
+        {
+         "en": "dr",
+         "hi": "dr (ड्र)"
+        },
+        {
+         "en": "cr",
+         "hi": "cr (क्र)"
+        },
+        {
+         "en": "pr",
+         "hi": "pr (प्र)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Drum begins with d and r said together: dr.",
+        "hi": "Drum शुरू होता है d और r को साथ बोलने से: dr।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'cr' begins crab and crayon, not drum.",
+         "hi": "'cr' से crab और crayon शुरू होते हैं, drum नहीं।"
+        },
+        {
+         "en": "'pr' begins prize and prince, not drum.",
+         "hi": "'pr' से prize और prince शुरू होते हैं, drum नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word begins with cr?",
+        "hi": "कौन-सा शब्द cr से शुरू होता है?"
+       },
+       "options": [
+        {
+         "en": "green",
+         "hi": "green (हरा)"
+        },
+        {
+         "en": "crab",
+         "hi": "crab (केकड़ा)"
+        },
+        {
+         "en": "prize",
+         "hi": "prize (इनाम)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Crab starts with c and r together.",
+        "hi": "Crab c और r को साथ बोलने से शुरू होता है।"
+       },
+       "wrong": [
+        {
+         "en": "Green begins with gr.",
+         "hi": "Green gr से शुरू होता है।"
+        },
+        "",
+        {
+         "en": "Prize begins with pr.",
+         "hi": "Prize pr से शुरू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next and build the other words: crab, drum and prize. Listen each time.",
+      "hi": "Next दबाओ और दूसरे शब्द बनाओ: crab, drum और prize। हर बार सुनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-ch01-action-words",
+   "topic": "4",
+   "template": "sort",
+   "title": {
+    "en": "Action words or naming words?",
+    "hi": "काम बताने वाले शब्द या नाम बताने वाले शब्द?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "action",
+      "label": {
+       "en": "Action words",
+       "hi": "काम बताने वाले शब्द"
+      }
+     },
+     {
+      "id": "name",
+      "label": {
+       "en": "Naming words",
+       "hi": "नाम बताने वाले शब्द"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "run",
+      "text": {
+       "en": "run",
+       "hi": "दौड़ना"
+      },
+      "bin": "action",
+      "why": {
+       "en": "You can run. It tells what someone does.",
+       "hi": "तुम दौड़ सकते हो। यह बताता है कि कोई क्या करता है।"
+      }
+     },
+     {
+      "id": "jump",
+      "text": {
+       "en": "jump",
+       "hi": "कूदना"
+      },
+      "bin": "action",
+      "why": {
+       "en": "Jump is something you do with your legs.",
+       "hi": "कूदना वह काम है जो तुम पैरों से करते हो।"
+      }
+     },
+     {
+      "id": "sing",
+      "text": {
+       "en": "sing",
+       "hi": "गाना"
+      },
+      "bin": "action",
+      "why": {
+       "en": "Sing tells what you do with your voice.",
+       "hi": "गाना बताता है कि तुम आवाज़ से क्या करते हो।"
+      }
+     },
+     {
+      "id": "eat",
+      "text": {
+       "en": "eat",
+       "hi": "खाना"
+      },
+      "bin": "action",
+      "why": {
+       "en": "Eat is an action that you do at mealtime.",
+       "hi": "खाना वह काम है जो तुम भोजन के समय करते हो।"
+      }
+     },
+     {
+      "id": "write",
+      "text": {
+       "en": "write",
+       "hi": "लिखना"
+      },
+      "bin": "action",
+      "why": {
+       "en": "You write with a pencil. It is an action.",
+       "hi": "तुम पेंसिल से लिखते हो। यह एक काम है।"
+      }
+     },
+     {
+      "id": "dance",
+      "text": {
+       "en": "dance",
+       "hi": "नाचना"
+      },
+      "bin": "action",
+      "why": {
+       "en": "Dance is something you do to music.",
+       "hi": "नाचना वह काम है जो तुम संगीत पर करते हो।"
+      }
+     },
+     {
+      "id": "tree",
+      "text": {
+       "en": "tree",
+       "hi": "पेड़"
+      },
+      "bin": "name",
+      "why": {
+       "en": "A tree is a thing. It is a naming word.",
+       "hi": "पेड़ एक चीज़ है। यह नाम बताने वाला शब्द है।"
+      }
+     },
+     {
+      "id": "ball",
+      "text": {
+       "en": "ball",
+       "hi": "गेंद"
+      },
+      "bin": "name",
+      "why": {
+       "en": "A ball is a thing you play with, so it names a thing.",
+       "hi": "गेंद वह चीज़ है जिससे तुम खेलते हो, इसलिए यह चीज़ का नाम है।"
+      }
+     },
+     {
+      "id": "chair",
+      "text": {
+       "en": "chair",
+       "hi": "कुर्सी"
+      },
+      "bin": "name",
+      "why": {
+       "en": "A chair is a thing in the room.",
+       "hi": "कुर्सी कमरे की एक चीज़ है।"
+      }
+     },
+     {
+      "id": "mother",
+      "text": {
+       "en": "mother",
+       "hi": "माँ"
+      },
+      "bin": "name",
+      "why": {
+       "en": "Mother names a person.",
+       "hi": "माँ एक व्यक्ति का नाम बताती है।"
+      }
+     },
+     {
+      "id": "book",
+      "text": {
+       "en": "book",
+       "hi": "किताब"
+      },
+      "bin": "name",
+      "why": {
+       "en": "A book is a thing. It names something.",
+       "hi": "किताब एक चीज़ है। यह किसी चीज़ का नाम बताती है।"
+      }
+     },
+     {
+      "id": "kite",
+      "text": {
+       "en": "kite",
+       "hi": "पतंग"
+      },
+      "bin": "name",
+      "why": {
+       "en": "A kite is a thing you fly. It is a naming word.",
+       "hi": "पतंग वह चीज़ है जिसे तुम उड़ाते हो। यह नाम बताने वाला शब्द है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is 'jump' something you do, or the name of a thing?",
+      "hi": "'jump' कोई काम है या किसी चीज़ का नाम?"
+     },
+     "options": [
+      {
+       "id": "do",
+       "en": "Something you do",
+       "hi": "जो काम तुम करते हो"
+      },
+      {
+       "id": "thing",
+       "en": "The name of a thing",
+       "hi": "किसी चीज़ का नाम"
+      }
+     ],
+     "answer": "do"
+    },
+    {
+     "kind": "do",
+     "target": "card:jump",
+     "expect": "correct:jump",
+     "say": {
+      "en": "Tap the card 'jump'. Then tap the bin where it belongs.",
+      "hi": "'jump' कार्ड पर टैप करो। फिर उस डिब्बे पर टैप करो जिसमें यह रखा जाएगा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:chair",
+     "expect": "correct:chair",
+     "say": {
+      "en": "Now sort 'chair'.",
+      "hi": "अब 'chair' को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Action words tell what someone does: run, jump, sing, eat. Naming words tell the name of a person, animal, place or thing: tree, ball, mother. A good test is to ask: can I do it? If yes, it is an action word.",
+      "hi": "काम बताने वाले शब्द बताते हैं कि कोई क्या करता है: run, jump, sing, eat। नाम बताने वाले शब्द किसी व्यक्ति, जानवर, स्थान या चीज़ का नाम बताते हैं: tree, ball, mother। परखने का तरीका है पूछो: क्या मैं इसे कर सकता हूँ? अगर हाँ, तो यह काम बताने वाला शब्द है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word is an action word?",
+        "hi": "कौन-सा शब्द काम बताने वाला है?"
+       },
+       "options": [
+        {
+         "en": "kite",
+         "hi": "kite (पतंग)"
+        },
+        {
+         "en": "dance",
+         "hi": "dance (नाचना)"
+        },
+        {
+         "en": "book",
+         "hi": "book (किताब)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "You can dance, so it is an action word.",
+        "hi": "तुम नाच सकते हो, इसलिए यह काम बताने वाला शब्द है।"
+       },
+       "wrong": [
+        {
+         "en": "A kite is a thing, so it is a naming word.",
+         "hi": "पतंग एक चीज़ है, इसलिए यह नाम बताने वाला शब्द है।"
+        },
+        "",
+        {
+         "en": "A book is a thing, so it is a naming word.",
+         "hi": "किताब एक चीज़ है, इसलिए यह नाम बताने वाला शब्द है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort all the cards and press Check. Then think of three more action words you do at school.",
+      "hi": "सभी कार्ड छाँटो और Check दबाओ। फिर स्कूल में किए जाने वाले तीन और काम बताने वाले शब्द सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-ch01-alphabet-order",
+   "topic": "5",
+   "template": "sequence",
+   "title": {
+    "en": "Put the fruits in ABC order",
+    "hi": "फलों को ABC के क्रम में लगाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "banana",
+      "text": {
+       "en": "Banana (B)",
+       "hi": "केला (Banana)"
+      }
+     },
+     {
+      "id": "cherry",
+      "text": {
+       "en": "Cherry (C)",
+       "hi": "चेरी (Cherry)"
+      }
+     },
+     {
+      "id": "guava",
+      "text": {
+       "en": "Guava (G)",
+       "hi": "अमरूद (Guava)"
+      }
+     },
+     {
+      "id": "lemon",
+      "text": {
+       "en": "Lemon (L)",
+       "hi": "नींबू (Lemon)"
+      }
+     },
+     {
+      "id": "mango",
+      "text": {
+       "en": "Mango (M)",
+       "hi": "आम (Mango)"
+      }
+     },
+     {
+      "id": "papaya",
+      "text": {
+       "en": "Papaya (P)",
+       "hi": "पपीता (Papaya)"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which fruit will come first in alphabetical order?",
+      "hi": "वर्णमाला के क्रम में कौन-सा फल सबसे पहले आएगा?"
+     },
+     "options": [
+      {
+       "id": "banana",
+       "en": "Banana",
+       "hi": "केला"
+      },
+      {
+       "id": "guava",
+       "en": "Guava",
+       "hi": "अमरूद"
+      },
+      {
+       "id": "papaya",
+       "en": "Papaya",
+       "hi": "पपीता"
+      }
+     ],
+     "answer": "banana"
+    },
+    {
+     "kind": "do",
+     "target": "item:banana",
+     "expect": "placed:banana",
+     "say": {
+      "en": "Tap the card Banana. Then tap place 1.",
+      "hi": "Banana कार्ड पर टैप करो। फिर स्थान 1 पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:cherry",
+     "expect": "placed:cherry",
+     "say": {
+      "en": "Next, put Cherry in place 2.",
+      "hi": "अब Cherry को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Alphabetical order means the order of the letters A, B, C and so on. Look at the first letter of each word. B comes before C, C before G, G before L, L before M and M before P.",
+      "hi": "वर्णमाला का क्रम यानी अक्षरों का क्रम A, B, C आदि। हर शब्द का पहला अक्षर देखो। B, C से पहले आता है, C, G से पहले, G, L से पहले, L, M से पहले और M, P से पहले।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which letter comes just before M in the alphabet?",
+        "hi": "वर्णमाला में M से ठीक पहले कौन-सा अक्षर आता है?"
+       },
+       "options": [
+        {
+         "en": "N",
+         "hi": "अक्षर N"
+        },
+        {
+         "en": "L",
+         "hi": "अक्षर L"
+        },
+        {
+         "en": "P",
+         "hi": "अक्षर P"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The order is ... K, L, M, N ... so L is just before M.",
+        "hi": "क्रम है ... K, L, M, N ... इसलिए L, M से ठीक पहले है।"
+       },
+       "wrong": [
+        {
+         "en": "N comes just after M, not before it.",
+         "hi": "N, M के ठीक बाद आता है, पहले नहीं।"
+        },
+        "",
+        {
+         "en": "P comes after M, a few letters later.",
+         "hi": "P, M के कुछ अक्षर बाद आता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Cat, apple, bus: which word comes first?",
+        "hi": "Cat, apple, bus: कौन-सा शब्द सबसे पहले आएगा?"
+       },
+       "options": [
+        {
+         "en": "cat",
+         "hi": "cat (बिल्ली)"
+        },
+        {
+         "en": "apple",
+         "hi": "apple (सेब)"
+        },
+        {
+         "en": "bus",
+         "hi": "bus (बस)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A is the first letter of the alphabet, so apple comes first.",
+        "hi": "A वर्णमाला का पहला अक्षर है, इसलिए apple सबसे पहले आएगा।"
+       },
+       "wrong": [
+        {
+         "en": "C comes after A and B.",
+         "hi": "C, A और B के बाद आता है।"
+        },
+        "",
+        {
+         "en": "B comes after A.",
+         "hi": "B, A के बाद आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put all six fruits in order and press Check. Then try putting the names of three friends in ABC order.",
+      "hi": "सभी छह फल क्रम में लगाओ और Check दबाओ। फिर अपने तीन दोस्तों के नाम ABC क्रम में लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-ch01-word-friends",
+   "topic": "6",
+   "template": "words",
+   "title": {
+    "en": "Word friends make new words",
+    "hi": "शब्द-दोस्त बनाते हैं नए शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "compound",
+    "lang": "en",
+    "words": [
+     {
+      "w": "rainbow"
+     },
+     {
+      "w": "notebook",
+      "parts": [
+       "note",
+       "book"
+      ]
+     },
+     {
+      "w": "sunflower",
+      "parts": [
+       "sun",
+       "flower"
+      ]
+     },
+     {
+      "w": "football",
+      "parts": [
+       "foot",
+       "ball"
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What new word will rain and bow make together?",
+      "hi": "rain और bow मिलकर कौन-सा नया शब्द बनाएँगे?"
+     },
+     "options": [
+      {
+       "id": "rainbow",
+       "en": "rainbow",
+       "hi": "rainbow (इंद्रधनुष)"
+      },
+      {
+       "id": "bowrain",
+       "en": "bowrain",
+       "hi": "bowrain (ऐसा कोई शब्द नहीं)"
+      },
+      {
+       "id": "rainy",
+       "en": "rainy",
+       "hi": "rainy (बरसाती)"
+      }
+     ],
+     "answer": "rainbow"
+    },
+    {
+     "kind": "do",
+     "target": "part:rain",
+     "expect": "part:rain",
+     "say": {
+      "en": "Tap the word piece rain.",
+      "hi": "शब्द-टुकड़े rain पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:bow",
+     "expect": "joined:rainbow",
+     "say": {
+      "en": "Now tap bow to join them.",
+      "hi": "अब उन्हें जोड़ने के लिए bow पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two small words can join and become one new word. Rain and bow join to make rainbow. Note and book make notebook, and foot and ball make football. The new word has a new meaning.",
+      "hi": "दो छोटे शब्द जुड़कर एक नया शब्द बन सकते हैं। rain और bow मिलकर rainbow बनाते हैं। note और book से notebook और foot और ball से football बनता है। नए शब्द का नया अर्थ होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which two words make sunflower?",
+        "hi": "कौन-से दो शब्द मिलकर sunflower बनाते हैं?"
+       },
+       "options": [
+        {
+         "en": "sun + flower",
+         "hi": "sun + flower (सूरज + फूल)"
+        },
+        {
+         "en": "sun + rise",
+         "hi": "sun + rise (सूरज + उगना)"
+        },
+        {
+         "en": "moon + flower",
+         "hi": "moon + flower (चाँद + फूल)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A sunflower is a flower that turns to the sun.",
+        "hi": "सूरजमुखी वह फूल है जो सूरज की ओर घूमता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sun and rise make sunrise, not sunflower.",
+         "hi": "Sun और rise से sunrise बनता है, sunflower नहीं।"
+        },
+        {
+         "en": "Moon and flower do not make sunflower; the word has the sun in it.",
+         "hi": "Moon और flower से sunflower नहीं बनता; इस शब्द में sun है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next and join the other words. Can you think of one word of your own made from two small words?",
+      "hi": "Next दबाओ और बाकी शब्द जोड़ो। क्या तुम दो छोटे शब्दों से बना अपना कोई शब्द सोच सकते हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "OBJ",
+   "topic": "1",
+   "use": "Hook and rhyme lab",
+   "shows": "A new box of twelve wax crayons, lid open, red, yellow, blue, green, purple, black and more standing in their slots",
+   "view": "Front view with a slight tilt from the top left",
+   "right": "Real wax crayon colours, paper wrappers without any brand or letters",
+   "avoid": "Brand names, printed words on the crayons",
+   "n": 1
+  },
+  {
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Sharing crayons",
+   "shows": "Two children's hands passing a red crayon and a brown crayon over a sheet with a half-coloured rainbow drawing",
+   "view": "Top-down view of the desk, soft daylight",
+   "right": "Only hands and arms; a drawing in progress with clear colours",
+   "avoid": "Faces, school names, text on the paper",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "5",
+   "use": "Alphabetical order lab: fruit cut-outs",
+   "shows": "Six fruit cut-outs on transparent backgrounds: banana, cherry, guava, lemon, mango, papaya",
+   "view": "Front view, soft top-left light, each fruit fills 80 percent of the frame",
+   "right": "Ripe true colours: yellow banana, red cherries, green guava, yellow lemon, papaya cut in half",
+   "avoid": "Stickers or brand labels on the fruit",
+   "n": 3
+  },
+  {
+   "kind": "SCN",
+   "topic": "4",
+   "use": "Action words",
+   "shows": "Children running, jumping and skipping on a school playground, seen from behind and from far away",
+   "view": "Wide, eye level, low sun",
+   "right": "Clear action poses and Indian school uniforms in bright colours",
+   "avoid": "Faces, names on bags, school logos",
+   "n": 4
+  },
+  {
+   "kind": "SEQ",
+   "topic": "6",
+   "use": "Rainbow word friend",
+   "shows": "Three frames of the same village sky: rain falling, rain stopping with the Sun peeping, a bright double rainbow",
+   "view": "Same camera position and horizon in all frames",
+   "right": "Rainbow arcs in the correct order of colours with red outside",
+   "avoid": "People, text",
+   "n": 5
+  },
+  {
+   "kind": "OBJ",
+   "topic": "6",
+   "use": "Compound word lab",
+   "shows": "Cut-outs of a notebook, a football and a sunflower, each on its own",
+   "view": "Front or three-quarter view",
+   "right": "Plain notebook cover with no printing; a regular black-and-white football; a yellow sunflower with a brown centre",
+   "avoid": "Brand names or logos on the football or notebook",
+   "n": 6
+  }
+ ]
+}

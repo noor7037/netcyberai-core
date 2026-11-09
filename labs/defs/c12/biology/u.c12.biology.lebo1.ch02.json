@@ -1,0 +1,1438 @@
+{
+  "chapter_key": "u.c12.biology.lebo1.ch02",
+  "class": 12,
+  "subject_id": "biology",
+  "title": "Human Reproduction",
+  "source": "https://ncert.nic.in/textbook/pdf/lebo102.pdf",
+  "topics": [
+    {
+      "n": "2.1",
+      "title": "The male reproductive system",
+      "labs": [
+        "c12-biology-lebo1-ch02-sperm-path"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.2",
+      "title": "The female reproductive system",
+      "labs": [
+        "c12-biology-lebo1-ch02-female-system"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.3",
+      "title": "Gametogenesis",
+      "labs": [
+        "c12-biology-lebo1-ch02-gamete-ploidy"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.4",
+      "title": "Menstrual cycle",
+      "labs": [
+        "c12-biology-lebo1-ch02-menstrual-cycle"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.5",
+      "title": "Fertilisation and implantation",
+      "labs": [
+        "c12-biology-lebo1-ch02-fertilisation-implantation"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.6",
+      "title": "Pregnancy and embryonic development",
+      "labs": [
+        "c12-biology-lebo1-ch02-pregnancy-birth"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.7",
+      "title": "Parturition and lactation",
+      "labs": [
+        "c12-biology-lebo1-ch02-pregnancy-birth"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-biology-lebo1-ch02-female-system",
+      "topic": "2.2",
+      "template": "body",
+      "title": {
+        "en": "The female reproductive system",
+        "hi": "मादा जनन तंत्र"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "system": "reproductive"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "part:ovary",
+          "expect": "picked:ovary",
+          "say": {
+            "en": "Tap an ovary, the organ that makes eggs.",
+            "hi": "अंडाशय को छुओ, जो अंडे बनाने वाला अंग है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "part:oviduct",
+          "expect": "picked:oviduct",
+          "say": {
+            "en": "Tap the oviduct (fallopian tube) next to it.",
+            "hi": "उसके पास की अंडवाहिनी (फैलोपियन नलिका) को छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Where do you think the egg meets a sperm and gets fertilised?",
+            "hi": "तुम्हारे अनुसार अंडा शुक्राणु से कहाँ मिलकर निषेचित होता है?"
+          },
+          "options": [
+            {
+              "id": "oviduct",
+              "en": "In the oviduct",
+              "hi": "अंडवाहिनी में"
+            },
+            {
+              "id": "uterus",
+              "en": "In the uterus wall",
+              "hi": "गर्भाशय की दीवार में"
+            },
+            {
+              "id": "vagina",
+              "en": "In the vagina",
+              "hi": "योनि में"
+            }
+          ],
+          "answer": "oviduct"
+        },
+        {
+          "kind": "do",
+          "target": "part:uterus",
+          "expect": "picked:uterus",
+          "say": {
+            "en": "Tap the uterus, where the embryo will grow.",
+            "hi": "गर्भाशय को छुओ, जहाँ भ्रूण बढ़ेगा।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each ovary holds eggs and makes hormones. The egg is picked up by the funnel-shaped end of the oviduct and moves along it. Fertilisation usually happens in the upper part of the oviduct (the ampulla-isthmus junction). The embryo then travels to the uterus, a pear-shaped muscular organ whose inner lining, the endometrium, receives it. The cervix and vagina form the birth canal.",
+            "hi": "हर अंडाशय में अंडे होते हैं और वह हार्मोन भी बनाता है। अंडे को अंडवाहिनी का कीप जैसा सिरा लेता है और वह उसमें आगे बढ़ता है। निषेचन प्रायः अंडवाहिनी के ऊपरी भाग (तुंबिका-संकीर्ण पथ संधि) में होता है। फिर भ्रूण गर्भाशय में पहुँचता है, जो नाशपाती के आकार का पेशीय अंग है और उसकी भीतरी परत, गर्भाशय अंतःस्तर, भ्रूण को ग्रहण करती है। ग्रीवा और योनि मिलकर जन्म नलिका बनाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where does fertilisation usually take place?",
+                "hi": "निषेचन प्रायः कहाँ होता है?"
+              },
+              "options": [
+                {
+                  "en": "In the upper part of the oviduct",
+                  "hi": "अंडवाहिनी के ऊपरी भाग में"
+                },
+                {
+                  "en": "In the uterus",
+                  "hi": "गर्भाशय में"
+                },
+                {
+                  "en": "In the cervix",
+                  "hi": "ग्रीवा में"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Sperm swim up and meet the egg in the oviduct. The embryo reaches the uterus a few days later.",
+                "hi": "शुक्राणु ऊपर तैरकर अंडवाहिनी में अंडे से मिलते हैं। भ्रूण कुछ दिन बाद गर्भाशय पहुँचता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The uterus is where the embryo implants and grows, after fertilisation has already happened.",
+                  "hi": "गर्भाशय में निषेचन के बाद भ्रूण रोपित होकर बढ़ता है।"
+                },
+                {
+                  "en": "The cervix is only the narrow neck of the uterus.",
+                  "hi": "ग्रीवा गर्भाशय की संकरी गर्दन भर है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which part of the uterus receives the embryo?",
+                "hi": "गर्भाशय का कौन-सा भाग भ्रूण को ग्रहण करता है?"
+              },
+              "options": [
+                {
+                  "en": "The inner lining (endometrium)",
+                  "hi": "भीतरी परत (अंतःस्तर)"
+                },
+                {
+                  "en": "The cervix",
+                  "hi": "ग्रीवा"
+                },
+                {
+                  "en": "The funnel of the oviduct",
+                  "hi": "अंडवाहिनी की कीप"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The endometrium is rich in blood vessels and glands and holds the embryo in place.",
+                "hi": "अंतःस्तर में रक्त वाहिकाएँ और ग्रंथियाँ होती हैं, जो भ्रूण को थामती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The cervix is the passage to the vagina.",
+                  "hi": "ग्रीवा योनि की ओर जाने वाला मार्ग है।"
+                },
+                {
+                  "en": "The funnel only collects the egg from the ovary.",
+                  "hi": "कीप अंडाशय से केवल अंडा उठाती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Now tap the \"Male\" tab and find the testis and the sperm duct. How are the male and female systems alike and different?",
+            "hi": "अब \"पुरुष\" टैब छुओ और वृषण तथा शुक्राणु वाहिनी खोजो। नर और मादा तंत्र में क्या समान और क्या अलग है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch02-sperm-path",
+      "topic": "2.1",
+      "template": "sequence",
+      "title": {
+        "en": "The journey of a sperm",
+        "hi": "शुक्राणु की यात्रा"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "tubules",
+            "text": {
+              "en": "Seminiferous tubules in the testis: sperms are made",
+              "hi": "वृषण की शुक्रजनन नलिकाएँ: शुक्राणु यहाँ बनते हैं"
+            }
+          },
+          {
+            "id": "retetestis",
+            "text": {
+              "en": "Rete testis and vasa efferentia",
+              "hi": "वृषण जालिका और शुक्रवाहिकाएँ"
+            }
+          },
+          {
+            "id": "epi",
+            "text": {
+              "en": "Epididymis: sperms mature and are stored",
+              "hi": "अधिवृषण: शुक्राणु परिपक्व होकर जमा होते हैं"
+            }
+          },
+          {
+            "id": "vas",
+            "text": {
+              "en": "Vas deferens: carries sperms up and over the bladder",
+              "hi": "शुक्र वाहिनी: शुक्राणुओं को मूत्राशय के ऊपर से ले जाती है"
+            }
+          },
+          {
+            "id": "ejac",
+            "text": {
+              "en": "Ejaculatory duct joins the vas deferens with the seminal vesicle",
+              "hi": "स्खलनीय वाहिनी: शुक्र वाहिनी और शुक्राशय का मेल"
+            }
+          },
+          {
+            "id": "urethra",
+            "text": {
+              "en": "Urethra inside the penis: sperms leave the body",
+              "hi": "शिश्न के भीतर मूत्रमार्ग: शुक्राणु शरीर से बाहर निकलते हैं"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:tubules",
+          "expect": "placed:tubules",
+          "say": {
+            "en": "Put \"Seminiferous tubules\" in place 1. Sperms start here.",
+            "hi": "\"शुक्रजनन नलिकाएँ\" को स्थान 1 पर रखो। शुक्राणु यहीं से शुरू होते हैं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:retetestis",
+          "expect": "placed:retetestis",
+          "say": {
+            "en": "Put \"Rete testis and vasa efferentia\" in place 2.",
+            "hi": "\"वृषण जालिका और शुक्रवाहिकाएँ\" को स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Sperms are made in the testes, which hang outside the body in the scrotum. Why do you think they are kept outside?",
+            "hi": "शुक्राणु वृषण में बनते हैं, जो अंडकोष-कोष में शरीर के बाहर लटके होते हैं। तुम्हारे अनुसार बाहर क्यों?"
+          },
+          "options": [
+            {
+              "id": "cool",
+              "en": "A slightly lower temperature (2-2.5 degrees C) is needed for sperm production",
+              "hi": "शुक्राणु बनने के लिए थोड़ा कम तापमान (2-2.5 अंश C) चाहिए"
+            },
+            {
+              "id": "space",
+              "en": "There is no space inside",
+              "hi": "अंदर जगह नहीं है"
+            },
+            {
+              "id": "hot",
+              "en": "Sperms need more heat",
+              "hi": "शुक्राणुओं को अधिक गर्मी चाहिए"
+            }
+          ],
+          "answer": "cool"
+        },
+        {
+          "kind": "do",
+          "target": "item:epi",
+          "expect": "placed:epi",
+          "say": {
+            "en": "Put \"Epididymis\" in place 3.",
+            "hi": "\"अधिवृषण\" को स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:vas",
+          "expect": "placed:vas",
+          "say": {
+            "en": "Put \"Vas deferens\" in place 4.",
+            "hi": "\"शुक्र वाहिनी\" को स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Sperms made in the seminiferous tubules pass through the rete testis and vasa efferentia into the epididymis, where they mature and become able to swim. The vas deferens carries them up into the body and joins the seminal vesicle duct to form the ejaculatory duct, which opens into the urethra. Glands (seminal vesicles, prostate, bulbourethral) add fluid to make semen. The scrotum keeps the testes 2 to 2.5 degrees C cooler than the body, which sperm production needs.",
+            "hi": "शुक्रजनन नलिकाओं में बने शुक्राणु वृषण जालिका और शुक्रवाहिकाओं से होकर अधिवृषण में पहुँचते हैं, जहाँ वे परिपक्व होकर तैरने योग्य बनते हैं। शुक्र वाहिनी उन्हें शरीर के अंदर ले जाकर शुक्राशय की नलिका से मिलकर स्खलनीय वाहिनी बनाती है, जो मूत्रमार्ग में खुलती है। ग्रंथियाँ (शुक्राशय, पुरःस्थ, काउपर) तरल जोड़कर वीर्य बनाती हैं। अंडकोष-कोष वृषण को शरीर से 2 से 2.5 अंश C ठंडा रखता है, जो शुक्राणु बनने के लिए ज़रूरी है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where do sperms mature and get stored?",
+                "hi": "शुक्राणु कहाँ परिपक्व होते और जमा रहते हैं?"
+              },
+              "options": [
+                {
+                  "en": "In the epididymis",
+                  "hi": "अधिवृषण में"
+                },
+                {
+                  "en": "In the prostate",
+                  "hi": "पुरःस्थ ग्रंथि में"
+                },
+                {
+                  "en": "In the urethra",
+                  "hi": "मूत्रमार्ग में"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The epididymis is a coiled tube on each testis where sperms gain motility.",
+                "hi": "अधिवृषण हर वृषण पर कुंडलित नलिका है, जहाँ शुक्राणु गतिशीलता पाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The prostate is a gland that adds fluid to semen; it does not store sperms.",
+                  "hi": "पुरःस्थ ग्रंथि वीर्य में तरल जोड़ती है, शुक्राणु जमा नहीं करती।"
+                },
+                {
+                  "en": "The urethra is only the final passage out.",
+                  "hi": "मूत्रमार्ग तो अंतिम निकास मार्ग है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why are the testes kept in the scrotum?",
+                "hi": "वृषण अंडकोष-कोष में क्यों रखे जाते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Sperm production needs a temperature lower than the body",
+                  "hi": "शुक्राणु निर्माण के लिए शरीर से कम तापमान चाहिए"
+                },
+                {
+                  "en": "To protect them from light",
+                  "hi": "प्रकाश से बचाने के लिए"
+                },
+                {
+                  "en": "To keep them warm",
+                  "hi": "उन्हें गर्म रखने के लिए"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The scrotum is 2 to 2.5 degrees C cooler than inside the abdomen, ideal for making sperms.",
+                "hi": "अंडकोष-कोष पेट के भीतर से 2 से 2.5 अंश C ठंडा होता है, जो शुक्राणु बनाने के लिए सही है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Light has nothing to do with it.",
+                  "hi": "प्रकाश का इससे कोई संबंध नहीं।"
+                },
+                {
+                  "en": "The opposite is true: they need to be cooler, not warmer.",
+                  "hi": "उलटा है: उन्हें अधिक ठंडा चाहिए, गर्म नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last item. Which gland adds the fluid that gives the sperms energy: seminal vesicle, prostate or bulbourethral gland? Look in your book and find out.",
+            "hi": "आख़िरी चरण रखो। शुक्राणुओं को ऊर्जा देने वाला तरल कौन-सी ग्रंथि जोड़ती है: शुक्राशय, पुरःस्थ या काउपर ग्रंथि? किताब में खोजो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch02-gamete-ploidy",
+      "topic": "2.3",
+      "template": "sort",
+      "title": {
+        "en": "Gametogenesis: n or 2n?",
+        "hi": "युग्मकजनन: n या 2n?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "dip",
+            "label": {
+              "en": "2n (46 chromosomes)",
+              "hi": "2n (46 गुणसूत्र)"
+            }
+          },
+          {
+            "id": "hap",
+            "label": {
+              "en": "n (23 chromosomes)",
+              "hi": "n (23 गुणसूत्र)"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "spermatogonium",
+            "text": {
+              "en": "Spermatogonium",
+              "hi": "शुक्राणुजन"
+            },
+            "bin": "dip",
+            "why": {
+              "en": "It divides by mitosis and keeps 46 chromosomes.",
+              "hi": "यह समसूत्री विभाजन से बँटता है और 46 गुणसूत्र रखता है।"
+            }
+          },
+          {
+            "id": "prisper",
+            "text": {
+              "en": "Primary spermatocyte",
+              "hi": "प्राथमिक शुक्राणुकोशिका"
+            },
+            "bin": "dip",
+            "why": {
+              "en": "It is about to start meiosis I, so it is still 2n.",
+              "hi": "यह अर्धसूत्री विभाजन I शुरू करने वाला है, इसलिए अब भी 2n।"
+            }
+          },
+          {
+            "id": "secper",
+            "text": {
+              "en": "Secondary spermatocyte",
+              "hi": "द्वितीयक शुक्राणुकोशिका"
+            },
+            "bin": "hap",
+            "why": {
+              "en": "Meiosis I halves the chromosome number, giving n.",
+              "hi": "अर्धसूत्री विभाजन I गुणसूत्र आधे करता है, यानी n।"
+            }
+          },
+          {
+            "id": "spermatid",
+            "text": {
+              "en": "Spermatid",
+              "hi": "शुक्राणुपूर्व कोशिका"
+            },
+            "bin": "hap",
+            "why": {
+              "en": "Meiosis II gives four haploid spermatids.",
+              "hi": "अर्धसूत्री विभाजन II से चार अगुणित शुक्राणुपूर्व कोशिकाएँ बनती हैं।"
+            }
+          },
+          {
+            "id": "sperm",
+            "text": {
+              "en": "Sperm",
+              "hi": "शुक्राणु"
+            },
+            "bin": "hap",
+            "why": {
+              "en": "A spermatid becomes a sperm by spermiogenesis, still n.",
+              "hi": "शुक्राणुपूर्व कोशिका शुक्राणुजनन-रूपांतरण से शुक्राणु बनती है, अब भी n।"
+            }
+          },
+          {
+            "id": "oogonium",
+            "text": {
+              "en": "Oogonium (foetal ovary)",
+              "hi": "अंडजन (भ्रूण का अंडाशय)"
+            },
+            "bin": "dip",
+            "why": {
+              "en": "Oogonia multiply by mitosis and stay 2n.",
+              "hi": "अंडजन समसूत्री विभाजन से बढ़ते हैं और 2n रहते हैं।"
+            }
+          },
+          {
+            "id": "prioo",
+            "text": {
+              "en": "Primary oocyte",
+              "hi": "प्राथमिक अंडकोशिका"
+            },
+            "bin": "dip",
+            "why": {
+              "en": "It starts meiosis I in the foetus but stops; it is still 2n.",
+              "hi": "यह भ्रूण में अर्धसूत्री विभाजन I शुरू करती है पर रुक जाती है; अब भी 2n।"
+            }
+          },
+          {
+            "id": "secoo",
+            "text": {
+              "en": "Secondary oocyte",
+              "hi": "द्वितीयक अंडकोशिका"
+            },
+            "bin": "hap",
+            "why": {
+              "en": "Meiosis I just before ovulation gives a haploid secondary oocyte and a polar body.",
+              "hi": "अंडोत्सर्ग से पहले अर्धसूत्री विभाजन I से अगुणित द्वितीयक अंडकोशिका और एक ध्रुवीय पिंड बनता है।"
+            }
+          },
+          {
+            "id": "zygote",
+            "text": {
+              "en": "Zygote",
+              "hi": "युग्मनज"
+            },
+            "bin": "dip",
+            "why": {
+              "en": "Sperm (n) and egg (n) fuse to restore 46.",
+              "hi": "शुक्राणु (n) और अंड (n) मिलकर 46 वापस लाते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:spermatogonium",
+          "expect": "correct:spermatogonium",
+          "say": {
+            "en": "Sort \"Spermatogonium\".",
+            "hi": "\"शुक्राणुजन\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Meiosis I will turn a primary spermatocyte into secondary spermatocytes. Will they be 2n or n?",
+            "hi": "अर्धसूत्री विभाजन I प्राथमिक शुक्राणुकोशिका को द्वितीयक शुक्राणुकोशिकाओं में बदलता है। वे 2n होंगी या n?"
+          },
+          "options": [
+            {
+              "id": "hap",
+              "en": "n (haploid)",
+              "hi": "अगुणित (n)"
+            },
+            {
+              "id": "dip",
+              "en": "2n (diploid)",
+              "hi": "द्विगुणित (2n)"
+            }
+          ],
+          "answer": "hap"
+        },
+        {
+          "kind": "do",
+          "target": "card:prisper",
+          "expect": "correct:prisper",
+          "say": {
+            "en": "Sort \"Primary spermatocyte\".",
+            "hi": "\"प्राथमिक शुक्राणुकोशिका\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:secper",
+          "expect": "correct:secper",
+          "say": {
+            "en": "Sort \"Secondary spermatocyte\".",
+            "hi": "\"द्वितीयक शुक्राणुकोशिका\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Cells that divide by mitosis (spermatogonia, oogonia) keep 46 chromosomes. The primary spermatocyte and primary oocyte are still 2n, and meiosis I is the step that makes the cells haploid (n = 23). Meiosis II then separates the chromatids. One primary spermatocyte gives four sperms, but one primary oocyte gives only one ovum and polar bodies, so the egg keeps most of the cytoplasm. At fertilisation the sperm and egg unite and the zygote is 2n again.",
+            "hi": "जो कोशिकाएँ समसूत्री विभाजन से बँटती हैं (शुक्राणुजन, अंडजन) उनमें 46 गुणसूत्र रहते हैं। प्राथमिक शुक्राणुकोशिका और प्राथमिक अंडकोशिका अब भी 2n हैं, और अर्धसूत्री विभाजन I कोशिकाओं को अगुणित (n = 23) बनाता है। अर्धसूत्री विभाजन II में क्रोमैटिड अलग होते हैं। एक प्राथमिक शुक्राणुकोशिका से चार शुक्राणु बनते हैं, पर एक प्राथमिक अंडकोशिका से एक ही अंड और ध्रुवीय पिंड, इसलिए अंड को अधिकतर कोशिकाद्रव्य मिलता है। निषेचन में शुक्राणु और अंड मिलते हैं और युग्मनज फिर 2n हो जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which division makes the chromosome number half?",
+                "hi": "कौन-सा विभाजन गुणसूत्र संख्या आधी करता है?"
+              },
+              "options": [
+                {
+                  "en": "Meiosis I",
+                  "hi": "अर्धसूत्री विभाजन I"
+                },
+                {
+                  "en": "Mitosis of spermatogonia",
+                  "hi": "शुक्राणुजन का समसूत्री विभाजन"
+                },
+                {
+                  "en": "Fertilisation",
+                  "hi": "निषेचन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "In meiosis I the homologous chromosomes separate, so each daughter cell has 23.",
+                "hi": "अर्धसूत्री विभाजन I में समजात गुणसूत्र अलग हो जाते हैं, इसलिए हर पुत्री कोशिका में 23।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Mitosis keeps 46 chromosomes; it only makes more cells.",
+                  "hi": "समसूत्री विभाजन 46 गुणसूत्र रखता है; वह केवल कोशिकाएँ बढ़ाता है।"
+                },
+                {
+                  "en": "Fertilisation doubles the number back to 46.",
+                  "hi": "निषेचन संख्या को वापस 46 कर देता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many functional sperms come from one primary spermatocyte?",
+                "hi": "एक प्राथमिक शुक्राणुकोशिका से कितने क्रियाशील शुक्राणु बनते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Four",
+                  "hi": "चार"
+                },
+                {
+                  "en": "One",
+                  "hi": "एक"
+                },
+                {
+                  "en": "Two",
+                  "hi": "दो"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It makes two secondary spermatocytes, and each makes two spermatids: four in all.",
+                "hi": "वह दो द्वितीयक शुक्राणुकोशिकाएँ बनाती है और हर एक दो शुक्राणुपूर्व कोशिकाएँ: कुल चार।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "One is the number for an egg, not for sperm.",
+                  "hi": "एक की संख्या अंड की है, शुक्राणु की नहीं।"
+                },
+                {
+                  "en": "Two is the number after meiosis I only; meiosis II doubles it.",
+                  "hi": "दो अर्धसूत्री विभाजन I के बाद ही होते हैं; विभाजन II इन्हें दुगुना करता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest of the cards. Why do you think only one of the four cells from an oocyte becomes the egg?",
+            "hi": "बाकी कार्ड छाँटो। अंडकोशिका की चार कोशिकाओं में से केवल एक ही अंड क्यों बनती है, सोचो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch02-menstrual-cycle",
+      "topic": "2.4",
+      "template": "sequence",
+      "title": {
+        "en": "The menstrual cycle",
+        "hi": "ऋतुस्राव चक्र"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "cyclic": true,
+        "items": [
+          {
+            "id": "menses",
+            "text": {
+              "en": "Menstrual phase: the uterine lining breaks down and bleeds for 3 to 5 days",
+              "hi": "रज:स्राव अवस्था: गर्भाशय की परत टूटकर 3 से 5 दिन बहती है"
+            }
+          },
+          {
+            "id": "follicular",
+            "text": {
+              "en": "Follicular phase: FSH grows a follicle; oestrogen rebuilds the lining",
+              "hi": "पुटकीय अवस्था: FSH पुटिका बढ़ाता है; ईस्ट्रोजन परत फिर बनाता है"
+            }
+          },
+          {
+            "id": "surge",
+            "text": {
+              "en": "Mid-cycle LH surge: the follicle bursts (ovulation) about day 14",
+              "hi": "चक्र के बीच LH का उछाल: पुटिका फटती है (अंडोत्सर्ग), लगभग 14वें दिन"
+            }
+          },
+          {
+            "id": "luteal",
+            "text": {
+              "en": "Luteal phase: the corpus luteum makes progesterone and the lining is ready",
+              "hi": "पीतपिंड अवस्था: पीत पिंड प्रोजेस्टेरोन बनाता है और परत तैयार रहती है"
+            }
+          },
+          {
+            "id": "nopreg",
+            "text": {
+              "en": "No fertilisation: the corpus luteum degenerates, hormones fall, menstruation begins again",
+              "hi": "निषेचन नहीं हुआ: पीत पिंड नष्ट होता है, हार्मोन गिरते हैं, फिर ऋतुस्राव शुरू"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:menses",
+          "expect": "placed:menses",
+          "say": {
+            "en": "Put \"Menstrual phase\" in place 1.",
+            "hi": "\"रज:स्राव अवस्था\" को स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:follicular",
+          "expect": "placed:follicular",
+          "say": {
+            "en": "Put \"Follicular phase\" in place 2.",
+            "hi": "\"पुटकीय अवस्था\" को स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "On about which day of a 28-day cycle does ovulation take place?",
+            "hi": "28 दिन के चक्र में अंडोत्सर्ग लगभग किस दिन होता है?"
+          },
+          "options": [
+            {
+              "id": "d5",
+              "en": "Day 5",
+              "hi": "दिन 5"
+            },
+            {
+              "id": "d14",
+              "en": "Day 14",
+              "hi": "दिन 14"
+            },
+            {
+              "id": "d25",
+              "en": "Day 25",
+              "hi": "दिन 25"
+            }
+          ],
+          "answer": "d14"
+        },
+        {
+          "kind": "do",
+          "target": "item:surge",
+          "expect": "placed:surge",
+          "say": {
+            "en": "Put \"Mid-cycle LH surge\" in place 3.",
+            "hi": "\"चक्र के बीच LH का उछाल\" को स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:luteal",
+          "expect": "placed:luteal",
+          "say": {
+            "en": "Put \"Luteal phase\" in place 4.",
+            "hi": "\"पीतपिंड अवस्था\" को स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The cycle repeats about every 28 days. Menstruation lasts a few days. Then FSH makes a follicle grow and oestrogen rebuilds the uterine lining. A surge of LH in the middle of the cycle makes the follicle burst and release the secondary oocyte: ovulation. The empty follicle becomes the corpus luteum, which makes progesterone to keep the lining ready. If the egg is not fertilised, the corpus luteum breaks down and menstruation starts again. If it is fertilised, the cycle pauses until after the baby is born. The first menstruation is called menarche, and the cycles stop at menopause around 50 years.",
+            "hi": "चक्र लगभग हर 28 दिन में दोहराया जाता है। रज:स्राव कुछ दिन रहता है। फिर FSH से पुटिका बढ़ती है और ईस्ट्रोजन गर्भाशय की परत फिर बनाता है। चक्र के बीच में LH का उछाल पुटिका फाड़कर द्वितीयक अंडकोशिका छोड़ता है: अंडोत्सर्ग। खाली पुटिका पीत पिंड बन जाती है, जो प्रोजेस्टेरोन बनाकर परत को तैयार रखता है। अंड निषेचित न हो तो पीत पिंड टूट जाता है और रज:स्राव फिर शुरू होता है। निषेचन हो तो शिशु के जन्म तक चक्र रुक जाता है। पहले रज:स्राव को रजोदर्शन कहते हैं और लगभग 50 वर्ष पर चक्र बंद हो जाते हैं (रजोनिवृत्ति)।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which hormone surge triggers ovulation?",
+                "hi": "किस हार्मोन का उछाल अंडोत्सर्ग कराता है?"
+              },
+              "options": [
+                {
+                  "en": "LH",
+                  "hi": "LH हार्मोन"
+                },
+                {
+                  "en": "Progesterone",
+                  "hi": "प्रोजेस्टेरोन"
+                },
+                {
+                  "en": "FSH only",
+                  "hi": "केवल FSH"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The LH surge in mid-cycle makes the follicle rupture and release the egg.",
+                "hi": "चक्र के बीच LH का उछाल पुटिका को फाड़कर अंडा छोड़ता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Progesterone is made after ovulation by the corpus luteum.",
+                  "hi": "प्रोजेस्टेरोन अंडोत्सर्ग के बाद पीत पिंड बनाता है।"
+                },
+                {
+                  "en": "FSH grows the follicle before ovulation but does not burst it.",
+                  "hi": "FSH अंडोत्सर्ग से पहले पुटिका बढ़ाता है, उसे फाड़ता नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What happens to the corpus luteum if there is no pregnancy?",
+                "hi": "गर्भ न ठहरे तो पीत पिंड का क्या होता है?"
+              },
+              "options": [
+                {
+                  "en": "It degenerates and menstruation begins",
+                  "hi": "वह नष्ट हो जाता है और ऋतुस्राव शुरू होता है"
+                },
+                {
+                  "en": "It becomes a new egg",
+                  "hi": "वह नया अंड बन जाता है"
+                },
+                {
+                  "en": "It grows into the placenta",
+                  "hi": "वह अपरा बन जाता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Progesterone falls, the lining cannot be held, and it is shed.",
+                "hi": "प्रोजेस्टेरोन घटता है, परत टिक नहीं पाती और झड़ जाती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "An egg comes from the follicle before ovulation, not from the corpus luteum.",
+                  "hi": "अंड पुटिका से अंडोत्सर्ग से पहले आता है, पीत पिंड से नहीं।"
+                },
+                {
+                  "en": "The placenta forms from the embryo's tissue and the uterus, only if there is pregnancy.",
+                  "hi": "अपरा केवल गर्भ होने पर भ्रूण के ऊतक और गर्भाशय से बनती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. The cycle is a circle, so step 5 leads back to step 1. Why is a circle a better picture than a straight line?",
+            "hi": "आख़िरी चरण रखो। चक्र गोल होता है, इसलिए चरण 5 से फिर चरण 1 आता है। सीधी रेखा से गोला बेहतर चित्र क्यों है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch02-fertilisation-implantation",
+      "topic": "2.5",
+      "template": "sequence",
+      "title": {
+        "en": "From fertilisation to implantation",
+        "hi": "निषेचन से रोपण तक"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "fert",
+            "text": {
+              "en": "Sperm enters the egg in the oviduct: zygote forms",
+              "hi": "शुक्राणु अंडवाहिनी में अंड में घुसता है: युग्मनज बनता है"
+            }
+          },
+          {
+            "id": "cleave",
+            "text": {
+              "en": "The zygote divides again and again (cleavage) as it moves to the uterus",
+              "hi": "गर्भाशय की ओर जाते हुए युग्मनज बार-बार बँटता है (विदलन)"
+            }
+          },
+          {
+            "id": "morula",
+            "text": {
+              "en": "A solid ball of 8 to 16 cells: the morula",
+              "hi": "ठोस 8 से 16 कोशिकाओं की गेंद: मोरुला"
+            }
+          },
+          {
+            "id": "blast",
+            "text": {
+              "en": "A hollow blastocyst: outer trophoblast and inner cell mass",
+              "hi": "खोखला ब्लास्टोसिस्ट: बाहर ट्रोफोब्लास्ट और भीतर आंतरिक कोशिका समूह"
+            }
+          },
+          {
+            "id": "implant",
+            "text": {
+              "en": "The blastocyst sinks into the endometrium: implantation",
+              "hi": "ब्लास्टोसिस्ट गर्भाशय अंतःस्तर में धँसता है: रोपण"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:fert",
+          "expect": "placed:fert",
+          "say": {
+            "en": "Put \"Sperm enters the egg\" in place 1.",
+            "hi": "\"शुक्राणु अंड में घुसता है\" को स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:cleave",
+          "expect": "placed:cleave",
+          "say": {
+            "en": "Put \"Cleavage\" in place 2.",
+            "hi": "\"विदलन\" को स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which of these will be the hollow stage with an inner cell mass?",
+            "hi": "इनमें से कौन-सी अवस्था खोखली है और उसमें आंतरिक कोशिका समूह है?"
+          },
+          "options": [
+            {
+              "id": "morula",
+              "en": "Morula",
+              "hi": "मोरुला"
+            },
+            {
+              "id": "blast",
+              "en": "Blastocyst",
+              "hi": "ब्लास्टोसिस्ट"
+            },
+            {
+              "id": "zygote",
+              "en": "Zygote",
+              "hi": "युग्मनज"
+            }
+          ],
+          "answer": "blast"
+        },
+        {
+          "kind": "do",
+          "target": "item:morula",
+          "expect": "placed:morula",
+          "say": {
+            "en": "Put \"Morula\" in place 3.",
+            "hi": "\"मोरुला\" को स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:blast",
+          "expect": "placed:blast",
+          "say": {
+            "en": "Put \"Blastocyst\" in place 4.",
+            "hi": "\"ब्लास्टोसिस्ट\" को स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "After fertilisation in the oviduct, the zygote divides by mitosis (cleavage) while moving to the uterus. At 8 to 16 cells it is a morula, which then becomes a blastocyst: an outer layer, the trophoblast, and a group of cells inside, the inner cell mass. The trophoblast attaches to the uterine lining and the blastocyst embeds in it. This is implantation, and pregnancy starts. The inner cell mass becomes the embryo.",
+            "hi": "अंडवाहिनी में निषेचन के बाद युग्मनज गर्भाशय की ओर जाते हुए समसूत्री विभाजन (विदलन) से बँटता है। 8 से 16 कोशिकाओं पर वह मोरुला होता है, फिर ब्लास्टोसिस्ट बनता है: बाहर की परत ट्रोफोब्लास्ट और भीतर कोशिकाओं का समूह, आंतरिक कोशिका समूह। ट्रोफोब्लास्ट गर्भाशय की परत से चिपकता है और ब्लास्टोसिस्ट उसमें धँस जाता है। यही रोपण है और गर्भ शुरू होता है। आंतरिक कोशिका समूह भ्रूण बनता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does the inner cell mass of the blastocyst become?",
+                "hi": "ब्लास्टोसिस्ट का आंतरिक कोशिका समूह क्या बनता है?"
+              },
+              "options": [
+                {
+                  "en": "The embryo",
+                  "hi": "भ्रूण"
+                },
+                {
+                  "en": "The placenta only",
+                  "hi": "केवल अपरा"
+                },
+                {
+                  "en": "The uterus lining",
+                  "hi": "गर्भाशय की परत"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The inner cell mass gives all the tissues of the embryo.",
+                "hi": "आंतरिक कोशिका समूह से भ्रूण के सब ऊतक बनते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The trophoblast helps form the placenta.",
+                  "hi": "ट्रोफोब्लास्ट अपरा बनाने में सहायक है।"
+                },
+                {
+                  "en": "The uterus lining belongs to the mother.",
+                  "hi": "गर्भाशय की परत माँ की होती है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which cell division is cleavage?",
+                "hi": "विदलन कौन-सा कोशिका विभाजन है?"
+              },
+              "options": [
+                {
+                  "en": "Mitosis",
+                  "hi": "समसूत्री विभाजन"
+                },
+                {
+                  "en": "Meiosis",
+                  "hi": "अर्धसूत्री विभाजन"
+                },
+                {
+                  "en": "Binary fission",
+                  "hi": "द्विविखंडन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Cleavage is mitosis; every cell keeps 46 chromosomes.",
+                "hi": "विदलन समसूत्री विभाजन है; हर कोशिका में 46 गुणसूत्र रहते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Meiosis forms gametes, which has already happened.",
+                  "hi": "अर्धसूत्री विभाजन युग्मक बनाता है, जो पहले हो चुका है।"
+                },
+                {
+                  "en": "Binary fission is how single-celled organisms divide.",
+                  "hi": "द्विविखंडन एककोशिकीय जीवों में होता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. How long do you think the journey from the oviduct to implantation takes: hours, days, or months?",
+            "hi": "आख़िरी चरण रखो। अंडवाहिनी से रोपण तक की यात्रा में कितना समय लगता होगा: घंटे, दिन या महीने?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch02-pregnancy-birth",
+      "topic": "2.6",
+      "template": "match",
+      "title": {
+        "en": "Placenta, hormones and birth",
+        "hi": "अपरा, हार्मोन और प्रसव"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "placenta",
+            "left": {
+              "en": "Placenta",
+              "hi": "अपरा"
+            },
+            "right": {
+              "en": "Exchanges food, oxygen and wastes between mother and baby; also makes hormones",
+              "hi": "माँ और शिशु के बीच भोजन, ऑक्सीजन और अपशिष्टों का आदान-प्रदान; हार्मोन भी बनाती है"
+            },
+            "why": {
+              "en": "The placenta joins the baby to the uterus wall.",
+              "hi": "अपरा शिशु को गर्भाशय की दीवार से जोड़ती है।"
+            }
+          },
+          {
+            "id": "cord",
+            "left": {
+              "en": "Umbilical cord",
+              "hi": "नाभि रज्जु"
+            },
+            "right": {
+              "en": "Cord that joins the baby to the placenta",
+              "hi": "वह रज्जु जो शिशु को अपरा से जोड़ती है"
+            },
+            "why": {
+              "en": "Blood vessels in the cord carry materials to and from the baby.",
+              "hi": "रज्जु की रक्त वाहिकाएँ शिशु तक पदार्थ लाती और ले जाती हैं।"
+            }
+          },
+          {
+            "id": "amnion",
+            "left": {
+              "en": "Amniotic fluid",
+              "hi": "उल्बीय द्रव"
+            },
+            "right": {
+              "en": "Fluid that cushions the baby inside the amnion",
+              "hi": "तरल जो उल्ब के अंदर शिशु को झटकों से बचाता है"
+            },
+            "why": {
+              "en": "The baby floats in this fluid, protected from shocks.",
+              "hi": "शिशु इस द्रव में तैरता है और झटकों से बचता है।"
+            }
+          },
+          {
+            "id": "hcg",
+            "left": {
+              "en": "hCG, hPL, oestrogen, progesterone",
+              "hi": "hCG, hPL, ईस्ट्रोजन, प्रोजेस्टेरोन"
+            },
+            "right": {
+              "en": "Hormones made by the placenta during pregnancy",
+              "hi": "गर्भ के दौरान अपरा द्वारा बनाए जाने वाले हार्मोन"
+            },
+            "why": {
+              "en": "These keep pregnancy going and support the mother's body.",
+              "hi": "ये गर्भ बनाए रखते हैं और माँ के शरीर की सहायता करते हैं।"
+            }
+          },
+          {
+            "id": "oxytocin",
+            "left": {
+              "en": "Oxytocin",
+              "hi": "ऑक्सीटोसिन"
+            },
+            "right": {
+              "en": "Hormone that strengthens uterine contractions during birth",
+              "hi": "हार्मोन जो प्रसव में गर्भाशय के संकुचन तेज़ करता है"
+            },
+            "why": {
+              "en": "The foetal ejection reflex releases oxytocin from the mother's pituitary.",
+              "hi": "गर्भ-निष्कासन प्रतिवर्त माँ की पीयूष ग्रंथि से ऑक्सीटोसिन छुड़ाता है।"
+            }
+          },
+          {
+            "id": "colostrum",
+            "left": {
+              "en": "Colostrum",
+              "hi": "खीस (कोलोस्ट्रम)"
+            },
+            "right": {
+              "en": "First milk, rich in antibodies, that protects the newborn",
+              "hi": "पहला दूध, प्रतिरक्षी से भरपूर, नवजात की रक्षा करता है"
+            },
+            "why": {
+              "en": "Colostrum has antibodies (IgA) and is very good for the baby.",
+              "hi": "खीस में प्रतिरक्षी (IgA) होते हैं और यह शिशु के लिए बहुत अच्छा है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:placenta",
+          "expect": "matched:placenta",
+          "say": {
+            "en": "Match \"Placenta\" with its job.",
+            "hi": "\"अपरा\" को उसके काम से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A baby cannot breathe or eat inside the uterus. How do you think it gets oxygen?",
+            "hi": "गर्भाशय में शिशु साँस नहीं ले सकता और खा नहीं सकता। उसे ऑक्सीजन कैसे मिलती होगी?"
+          },
+          "options": [
+            {
+              "id": "placenta",
+              "en": "From the mother's blood through the placenta",
+              "hi": "माँ के रक्त से अपरा के द्वारा"
+            },
+            {
+              "id": "mouth",
+              "en": "Through its own mouth",
+              "hi": "अपने मुँह से"
+            },
+            {
+              "id": "skin",
+              "en": "Through its skin from the air",
+              "hi": "त्वचा से हवा द्वारा"
+            }
+          ],
+          "answer": "placenta"
+        },
+        {
+          "kind": "do",
+          "target": "left:cord",
+          "expect": "matched:cord",
+          "say": {
+            "en": "Match \"Umbilical cord\".",
+            "hi": "\"नाभि रज्जु\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:oxytocin",
+          "expect": "matched:oxytocin",
+          "say": {
+            "en": "Match \"Oxytocin\".",
+            "hi": "\"ऑक्सीटोसिन\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The placenta is a link between mother and baby. Blood of the mother and baby do not mix, but oxygen and nutrients pass across, and carbon dioxide and wastes go back. The placenta also makes hormones (hCG, hPL, oestrogen, progesterone). The baby is cushioned by amniotic fluid. At birth, signals from the fully developed foetus and placenta cause mild contractions, which release oxytocin, which makes stronger contractions, and the baby is delivered. After birth, the first milk, colostrum, gives antibodies to the newborn.",
+            "hi": "अपरा माँ और शिशु के बीच की कड़ी है। माँ और शिशु का रक्त मिलता नहीं, पर ऑक्सीजन और पोषक पदार्थ उधर जाते हैं और कार्बन डाइऑक्साइड तथा अपशिष्ट वापस आते हैं। अपरा हार्मोन (hCG, hPL, ईस्ट्रोजन, प्रोजेस्टेरोन) भी बनाती है। शिशु उल्बीय द्रव में सुरक्षित रहता है। प्रसव में पूर्ण विकसित भ्रूण और अपरा से संकेत हल्के संकुचन कराते हैं, जिनसे ऑक्सीटोसिन निकलता है, जो संकुचन तेज़ करता है और शिशु का जन्म होता है। जन्म के बाद पहला दूध, खीस, नवजात को प्रतिरक्षी देता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Do the blood of the mother and the baby mix in the placenta?",
+                "hi": "क्या अपरा में माँ और शिशु का रक्त मिलता है?"
+              },
+              "options": [
+                {
+                  "en": "No: materials pass across a thin barrier",
+                  "hi": "नहीं: पदार्थ पतले अवरोध से पार जाते हैं"
+                },
+                {
+                  "en": "Yes, completely",
+                  "hi": "हाँ, पूरी तरह"
+                },
+                {
+                  "en": "Only during birth",
+                  "hi": "केवल प्रसव में"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The two bloods stay in separate vessels; food, oxygen and waste move across by diffusion and transport.",
+                "hi": "दोनों रक्त अलग-अलग वाहिकाओं में रहते हैं; भोजन, ऑक्सीजन और अपशिष्ट विसरण और परिवहन से आर-पार जाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "If they mixed completely, blood groups could clash.",
+                  "hi": "पूरी तरह मिलते तो रक्त समूह टकरा सकते थे।"
+                },
+                {
+                  "en": "Birth does not mix the blood either.",
+                  "hi": "प्रसव में भी रक्त नहीं मिलता।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is colostrum important?",
+                "hi": "खीस क्यों महत्त्वपूर्ण है?"
+              },
+              "options": [
+                {
+                  "en": "It has antibodies that protect the newborn",
+                  "hi": "उसमें प्रतिरक्षी होते हैं जो नवजात की रक्षा करते हैं"
+                },
+                {
+                  "en": "It has no nutrients",
+                  "hi": "उसमें पोषक पदार्थ नहीं होते"
+                },
+                {
+                  "en": "It only makes the baby sleep",
+                  "hi": "वह केवल शिशु को सुलाता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Colostrum is the first milk and is rich in IgA antibodies, giving passive immunity.",
+                "hi": "खीस पहला दूध है जो IgA प्रतिरक्षियों से भरपूर है और निष्क्रिय प्रतिरक्षा देता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It is rich in nutrients and antibodies.",
+                  "hi": "वह पोषक पदार्थों और प्रतिरक्षियों से भरपूर है।"
+                },
+                {
+                  "en": "Its job is protection and food, not sleep.",
+                  "hi": "उसका काम सुरक्षा और भोजन है, नींद नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the rest. Why do doctors advise mothers to feed the newborn the first milk within the first hour?",
+            "hi": "बाकी जोड़ियाँ मिलाओ। डॉक्टर माँ को जन्म के पहले घंटे में नवजात को पहला दूध पिलाने की सलाह क्यों देते हैं?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "DIA",
+      "topic": "2.1",
+      "use": "Male reproductive system",
+      "shows": "Clean labelled side-section of the male reproductive system with testis, epididymis, vas deferens, glands and urethra",
+      "view": "Side section, flat colour, textbook register",
+      "right": "Path of the sperm clearly traceable with arrows",
+      "avoid": "Realistic anatomical photos"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "2.2",
+      "use": "Female reproductive system",
+      "shows": "Clean labelled front view of the ovaries, oviducts, uterus, cervix and vagina",
+      "view": "Front view, flat colour, textbook register",
+      "right": "Ovary, funnel of oviduct and endometrium labelled",
+      "avoid": "Realistic anatomical photos"
+    },
+    {
+      "n": 3,
+      "kind": "SEQ",
+      "topic": "2.3",
+      "use": "Spermatogenesis and oogenesis",
+      "shows": "Two side-by-side lineage diagrams with 2n and n marked on each stage",
+      "view": "Flat vector, same colours for sperm and egg stages",
+      "right": "Four sperms versus one egg and polar bodies",
+      "avoid": "Photographs"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "2.4",
+      "use": "Hormones through the cycle",
+      "shows": "A 28-day graph of FSH, LH, oestrogen and progesterone, with ovary and uterus changes underneath",
+      "view": "Clean line graph, four distinct colours",
+      "right": "Ovulation at day 14 aligned with the LH peak",
+      "avoid": "Cluttered axes"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "2.5",
+      "use": "Zygote to blastocyst",
+      "shows": "Five stages: zygote, 2-cell, 4-cell, morula and blastocyst, drawn to scale with the implantation step",
+      "view": "Same scale and background for each stage",
+      "right": "Inner cell mass and trophoblast labelled",
+      "avoid": "Photographs of real embryos"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "2.6",
+      "use": "The placenta and cord",
+      "shows": "A foetus in the uterus with the placenta, umbilical cord and amniotic sac labelled",
+      "view": "Side section, soft colours",
+      "right": "Cord vessels and placenta clear",
+      "avoid": "Realistic photos"
+    }
+  ]
+}

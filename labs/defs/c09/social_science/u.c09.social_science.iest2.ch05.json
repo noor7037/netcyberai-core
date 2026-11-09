@@ -1,0 +1,969 @@
+{
+ "chapter_key": "u.c09.social_science.iest2.ch05",
+ "class": 9,
+ "subject_id": "social_science",
+ "title": "Managing Your Personal Finances",
+ "source": "https://ncert.nic.in/textbook/pdf/iest205.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Pillars of personal finance and income",
+   "labs": [
+    "c09-social_science-iest2-ch05-pillars"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Budgeting",
+   "labs": [
+    "c09-social_science-iest2-ch05-pocket-budget"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Saving",
+   "labs": [
+    "c09-social_science-iest2-ch05-simple"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Investing, inflation and compounding",
+   "labs": [
+    "c09-social_science-iest2-ch05-compound",
+    "c09-social_science-iest2-ch05-money-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Protection and risk management",
+   "labs": [],
+   "why_no_lab": "Best taught by case stories and the reader on insurance; it is about risk and trust, and the idea is well captured in the pillars sorting lab."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-social_science-iest2-ch05-pillars",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "Five pillars of money",
+    "hi": "धन के पाँच स्तंभ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "inc",
+      "label": {
+       "en": "Income",
+       "hi": "आय"
+      }
+     },
+     {
+      "id": "bud",
+      "label": {
+       "en": "Budgeting",
+       "hi": "बजट"
+      }
+     },
+     {
+      "id": "sav",
+      "label": {
+       "en": "Saving",
+       "hi": "बचत"
+      }
+     },
+     {
+      "id": "inv",
+      "label": {
+       "en": "Investing",
+       "hi": "निवेश"
+      }
+     },
+     {
+      "id": "pro",
+      "label": {
+       "en": "Protection",
+       "hi": "सुरक्षा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "salary",
+      "bin": "inc",
+      "text": {
+       "en": "A teacher gets a monthly salary",
+       "hi": "शिक्षक को हर माह वेतन मिलता है"
+      },
+      "why": {
+       "en": "Money received for work is income, the starting point.",
+       "hi": "काम के बदले मिला धन आय है, जो शुरुआत है।"
+      }
+     },
+     {
+      "id": "rent",
+      "bin": "inc",
+      "text": {
+       "en": "A house owner receives monthly rent",
+       "hi": "मकान मालिक को हर माह किराया मिलता है"
+      },
+      "why": {
+       "en": "Rent from property is also income.",
+       "hi": "संपत्ति का किराया भी आय है।"
+      }
+     },
+     {
+      "id": "plan",
+      "bin": "bud",
+      "text": {
+       "en": "Writing how much to spend on food and fees",
+       "hi": "भोजन और फीस पर कितना ख़र्च करना है लिखना"
+      },
+      "why": {
+       "en": "A written plan balancing income and expenses is a budget.",
+       "hi": "आय और ख़र्च का संतुलन बनाने वाली लिखित योजना बजट है।"
+      }
+     },
+     {
+      "id": "track",
+      "bin": "bud",
+      "text": {
+       "en": "Checking spending against the plan each week",
+       "hi": "हर सप्ताह ख़र्च की योजना से तुलना"
+      },
+      "why": {
+       "en": "Tracking and adjusting are steps of budgeting.",
+       "hi": "ख़र्च पर नज़र रखना और बदलाव बजट के चरण हैं।"
+      }
+     },
+     {
+      "id": "piggy",
+      "bin": "sav",
+      "text": {
+       "en": "Putting part of pocket money in a gullak",
+       "hi": "जेब-ख़र्च का एक भाग गुल्लक में डालना"
+      },
+      "why": {
+       "en": "Keeping some money aside for later is saving.",
+       "hi": "कुछ धन बाद के लिए अलग रखना बचत है।"
+      }
+     },
+     {
+      "id": "emerg",
+      "bin": "sav",
+      "text": {
+       "en": "Setting aside money for emergencies",
+       "hi": "आपातकाल के लिए धन अलग रखना"
+      },
+      "why": {
+       "en": "An emergency fund is a form of saving.",
+       "hi": "आपातकालीन निधि बचत का एक रूप है।"
+      }
+     },
+     {
+      "id": "fd",
+      "bin": "inv",
+      "text": {
+       "en": "Putting savings into a bank fixed deposit",
+       "hi": "बचत को बैंक की सावधि जमा में रखना"
+      },
+      "why": {
+       "en": "Putting savings in an asset to earn returns is investing.",
+       "hi": "लाभ पाने के लिए बचत को किसी संपत्ति में लगाना निवेश है।"
+      }
+     },
+     {
+      "id": "ins",
+      "bin": "pro",
+      "text": {
+       "en": "Paying a monthly premium for health insurance",
+       "hi": "स्वास्थ्य बीमा का मासिक प्रीमियम भरना"
+      },
+      "why": {
+       "en": "Insurance protects money against risks.",
+       "hi": "बीमा जोखिमों से धन की रक्षा करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:salary",
+     "expect": "placed:salary",
+     "say": {
+      "en": "Pick the salary card and put it under a pillar of personal finance.",
+      "hi": "वेतन वाला कार्ड उठाओ और उसे व्यक्तिगत वित्त के किसी स्तंभ में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Paying an insurance premium belongs to which pillar?",
+      "hi": "बीमा का प्रीमियम भरना किस स्तंभ में आता है?"
+     },
+     "options": [
+      {
+       "id": "pro",
+       "en": "Protection",
+       "hi": "सुरक्षा"
+      },
+      {
+       "id": "inv",
+       "en": "Investing",
+       "hi": "निवेश"
+      },
+      {
+       "id": "inc",
+       "en": "Income",
+       "hi": "आय"
+      }
+     ],
+     "answer": "pro"
+    },
+    {
+     "kind": "do",
+     "target": "card:ins",
+     "expect": "placed:ins",
+     "say": {
+      "en": "Place the insurance card.",
+      "hi": "बीमा वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Personal finance has five pillars. Income is the money you receive. Budgeting plans how to spend it. Saving keeps some aside. Investing puts savings into assets to earn returns. Protection, such as insurance, guards against risks. Together they help you meet needs and reach goals.",
+      "hi": "व्यक्तिगत वित्त के पाँच स्तंभ हैं। आय वह धन है जो तुम्हें मिलता है। बजट बताता है कि उसे कैसे ख़र्च करें। बचत कुछ भाग अलग रखती है। निवेश बचत को लाभ कमाने के लिए संपत्तियों में लगाता है। सुरक्षा, जैसे बीमा, जोखिमों से बचाती है। सब मिलकर ज़रूरतें पूरी करने और लक्ष्य पाने में मदद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a budget?",
+        "hi": "बजट क्या है?"
+       },
+       "options": [
+        {
+         "en": "A written plan to balance income and expenses",
+         "hi": "आय और ख़र्च में संतुलन की लिखित योजना"
+        },
+        {
+         "en": "A loan from a friend",
+         "hi": "दोस्त से लिया उधार"
+        },
+        {
+         "en": "A kind of insurance",
+         "hi": "बीमा का एक प्रकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A budget plans in advance how income will be spent and saved.",
+        "hi": "बजट पहले से तय करता है कि आय कैसे ख़र्च और बचत की जाएगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A loan is borrowed money, not a plan.",
+         "hi": "उधार लिया हुआ धन है, योजना नहीं।"
+        },
+        {
+         "en": "Insurance protects against risk. A budget is a spending plan.",
+         "hi": "बीमा जोखिम से बचाता है। बजट ख़र्च की योजना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a goal you have, like a bicycle. Which of the five pillars would help you reach it?",
+      "hi": "अपना कोई लक्ष्य सोचो, जैसे साइकिल। पाँचों स्तंभों में से कौन-से उसे पाने में मदद करेंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch05-pocket-budget",
+   "topic": "5.2",
+   "template": "money",
+   "title": {
+    "en": "Plan your pocket money",
+    "hi": "अपने जेब-ख़र्च की योजना बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "budget",
+    "budget": 500,
+    "items": [
+     {
+      "name": {
+       "en": "Stationery for school",
+       "hi": "स्कूल की लेखन सामग्री"
+      },
+      "price": 120
+     },
+     {
+      "name": {
+       "en": "Snacks",
+       "hi": "नाश्ता"
+      },
+      "price": 100
+     },
+     {
+      "name": {
+       "en": "Saving for a bicycle",
+       "hi": "साइकिल के लिए बचत"
+      },
+      "price": 250
+     },
+     {
+      "name": {
+       "en": "Game credits",
+       "hi": "गेम क्रेडिट"
+      },
+      "price": 200
+     },
+     {
+      "name": {
+       "en": "Gift for a friend",
+       "hi": "दोस्त के लिए उपहार"
+      },
+      "price": 100
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You get ₹500 this month. You need stationery and you want to save for a bicycle. What do you do first?",
+      "hi": "इस माह तुम्हें ₹500 मिले हैं। तुम्हें लेखन सामग्री चाहिए और साइकिल के लिए बचत करनी है। सबसे पहले क्या करोगे?"
+     },
+     "options": [
+      {
+       "id": "need",
+       "en": "Cover the need and the saving goal first",
+       "hi": "पहले ज़रूरत और बचत का लक्ष्य पूरा करना"
+      },
+      {
+       "id": "wants",
+       "en": "Buy all the wants first",
+       "hi": "पहले सारी इच्छाएँ ख़रीदना"
+      }
+     ],
+     "answer": "need"
+    },
+    {
+     "kind": "do",
+     "target": "item:0",
+     "expect": "picked:0",
+     "say": {
+      "en": "Add stationery (₹120) to your plan.",
+      "hi": "अपनी योजना में लेखन सामग्री (₹120) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:2",
+     "expect": "picked:2",
+     "say": {
+      "en": "Add the savings for the bicycle (₹250).",
+      "hi": "साइकिल की बचत (₹250) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:1",
+     "expect": "picked:1",
+     "say": {
+      "en": "Add snacks (₹100).",
+      "hi": "नाश्ता (₹100) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pay",
+     "expect": "paid",
+     "say": {
+      "en": "Press Pay to confirm that the plan stays within ₹500.",
+      "hi": "पुष्टि के लिए भुगतान दबाओ कि योजना ₹500 के भीतर है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "₹120 + ₹250 + ₹100 is ₹470, within ₹500, with ₹30 left. A budget lets you choose what matters first, such as needs and a savings goal, and then fit the wants into what remains. Saving first and spending what is left is a good habit.",
+      "hi": "₹120 + ₹250 + ₹100 = ₹470, जो ₹500 के भीतर है और ₹30 बचते हैं। बजट से तुम पहले ज़रूरी चीज़ें, जैसे ज़रूरतें और बचत का लक्ष्य, चुनते हो और फिर बचे धन में इच्छाएँ बिठाते हो। पहले बचत करना और बचा हुआ ख़र्च करना अच्छी आदत है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The plan costs ₹470 of ₹500. What happens if you also add game credits (₹200)?",
+        "hi": "योजना ₹500 में से ₹470 की है। अगर गेम क्रेडिट (₹200) भी जोड़ो तो क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "It goes over budget",
+         "hi": "बजट से बाहर चला जाएगा"
+        },
+        {
+         "en": "It stays within budget",
+         "hi": "बजट के भीतर रहेगा"
+        },
+        {
+         "en": "The total becomes smaller",
+         "hi": "कुल घट जाएगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹470 + ₹200 = ₹670, which is more than ₹500.",
+        "hi": "₹470 + ₹200 = ₹670, जो ₹500 से अधिक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The total would be ₹670, above the limit.",
+         "hi": "कुल ₹670 होगा, जो सीमा से ऊपर है।"
+        },
+        {
+         "en": "Adding costs can only raise the total.",
+         "hi": "ख़र्च जोड़ने से कुल केवल बढ़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and try another plan: which two wants would you choose after meeting the need and the saving goal?",
+      "hi": "रीसेट करके दूसरी योजना आज़माओ: ज़रूरत और बचत का लक्ष्य पूरा करने के बाद तुम कौन-सी दो इच्छाएँ चुनोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch05-simple",
+   "topic": "5.3",
+   "template": "money",
+   "title": {
+    "en": "Interest on savings",
+    "hi": "बचत पर ब्याज"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "simple-interest",
+    "budget": 2000,
+    "rate": 8,
+    "years": 1
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You put ₹2,000 in a savings scheme that pays 8% interest each year. After one year, how much extra money do you earn?",
+      "hi": "तुम ₹2,000 ऐसी बचत योजना में रखते हो जो हर साल 8% ब्याज देती है। एक साल बाद तुम्हें कितना अतिरिक्त धन मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "160",
+       "en": "₹160",
+       "hi": "160 रुपये"
+      },
+      {
+       "id": "80",
+       "en": "₹80",
+       "hi": "80 रुपये"
+      },
+      {
+       "id": "800",
+       "en": "₹800",
+       "hi": "800 रुपये"
+      }
+     ],
+     "answer": "160"
+    },
+    {
+     "kind": "do",
+     "target": "slider:years",
+     "expect": "moved:years",
+     "say": {
+      "en": "Move the years slider and watch the interest and total grow in a straight line.",
+      "hi": "वर्षों का स्लाइडर चलाओ और देखो कि ब्याज और कुल राशि सीधी रेखा में बढ़ती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:rate",
+     "expect": "moved:rate",
+     "say": {
+      "en": "Now move the rate slider. A higher rate gives more interest.",
+      "hi": "अब दर का स्लाइडर चलाओ। अधिक दर पर अधिक ब्याज मिलता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Interest is the reward for keeping money in a scheme. In simple interest, you earn the same amount every year: interest = principal × rate × years ÷ 100. ₹2,000 at 8% gives ₹160 each year. Money kept at home earns nothing, and rising prices (inflation) reduce what it can buy.",
+      "hi": "ब्याज किसी योजना में पैसा रखने का इनाम है। साधारण ब्याज में हर साल बराबर राशि मिलती है: ब्याज = मूलधन × दर × वर्ष ÷ 100। 8% पर ₹2,000 हर साल ₹160 देता है। घर में रखे पैसे पर कुछ नहीं मिलता, और बढ़ती कीमतें (मुद्रास्फीति) उसकी ख़रीद-क्षमता घटाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the simple interest on ₹1,000 at 10% for 2 years?",
+        "hi": "₹1,000 पर 10% की दर से 2 वर्ष का साधारण ब्याज कितना है?"
+       },
+       "options": [
+        {
+         "en": "₹200",
+         "hi": "200 रुपये"
+        },
+        {
+         "en": "₹100",
+         "hi": "100 रुपये"
+        },
+        {
+         "en": "₹2,000",
+         "hi": "2,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1,000 × 10 × 2 ÷ 100 = ₹200.",
+        "hi": "1,000 × 10 × 2 ÷ 100 = ₹200।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹100 is the interest for only one year.",
+         "hi": "₹100 केवल एक वर्ष का ब्याज है।"
+        },
+        {
+         "en": "₹2,000 would be the total if the rate were 100% a year.",
+         "hi": "₹2,000 तब होता जब दर प्रति वर्ष 100% होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the principal, the rate and the years. What happens to the interest if you double only the years?",
+      "hi": "मूलधन, दर और वर्ष बदलो। केवल वर्ष दोगुने करने पर ब्याज का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch05-compound",
+   "topic": "5.4",
+   "template": "money",
+   "title": {
+    "en": "Money that grows on itself",
+    "hi": "जो धन अपने आप बढ़ता है"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "mode": "compound-interest",
+    "budget": 1000,
+    "rate": 7,
+    "years": 10
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "₹1,000 earns 7% a year and the interest is added back each year. Is the result after 30 years more or less than ₹3,000?",
+      "hi": "₹1,000 पर 7% वार्षिक ब्याज मिलता है और हर साल ब्याज मूलधन में जुड़ता है। 30 साल बाद राशि ₹3,000 से अधिक होगी या कम?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "Much more than ₹3,000",
+       "hi": "₹3,000 से बहुत अधिक"
+      },
+      {
+       "id": "less",
+       "en": "Less than ₹3,000",
+       "hi": "₹3,000 से कम"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "slider:years",
+     "expect": "moved:years",
+     "say": {
+      "en": "Slide the years from 10 up to 30 and watch the curve bend upward.",
+      "hi": "वर्षों को 10 से 30 की ओर बढ़ाओ और वक्र को ऊपर मुड़ते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In compound interest, interest is earned not only on the original money but also on the interest already earned. So growth speeds up with time. ₹1,000 at 7% grows to about ₹1,967 in 10 years and about ₹7,612 in 30 years. This is why starting early matters so much.",
+      "hi": "चक्रवृद्धि ब्याज में ब्याज केवल मूल धन पर नहीं, बल्कि पहले मिले ब्याज पर भी मिलता है। इसलिए समय के साथ वृद्धि तेज़ होती जाती है। 7% पर ₹1,000, 10 वर्ष में लगभग ₹1,967 और 30 वर्ष में लगभग ₹7,612 हो जाता है। इसीलिए जल्दी शुरू करना इतना महत्वपूर्ण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two people save the same amount yearly. One starts at 25, the other at 35. Who ends up with more at 65, and why?",
+        "hi": "दो लोग हर साल एक बराबर बचत करते हैं। एक 25 वर्ष की उम्र में, दूसरा 35 में शुरू करता है। 65 की उम्र में किसके पास अधिक होगा और क्यों?"
+       },
+       "options": [
+        {
+         "en": "The early starter, because interest compounds for longer",
+         "hi": "पहले शुरू करने वाले के पास, क्योंकि ब्याज पर ब्याज अधिक समय तक मिला"
+        },
+        {
+         "en": "The late starter",
+         "hi": "देर से शुरू करने वाले के पास"
+        },
+        {
+         "en": "Both have the same",
+         "hi": "दोनों के पास बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More years of compounding multiply the growth, so starting early gives more.",
+        "hi": "अधिक वर्षों की चक्रवृद्धि वृद्धि को कई गुना करती है, इसलिए जल्दी शुरू करने से अधिक मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The late starter has had ten fewer years of growth.",
+         "hi": "देर से शुरू करने वाले के पास दस साल कम वृद्धि हुई है।"
+        },
+        {
+         "en": "They are not the same: time is a big part of compounding.",
+         "hi": "वे बराबर नहीं हैं: चक्रवृद्धि में समय बड़ा कारक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare with the simple-interest lab. For the same money, rate and years, which gives more after 30 years?",
+      "hi": "साधारण ब्याज वाले लैब से तुलना करो। एक ही धन, दर और वर्षों के लिए, 30 साल बाद कौन-सा अधिक देता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch05-money-words",
+   "topic": "5.4",
+   "template": "match",
+   "title": {
+    "en": "Words about money",
+    "hi": "धन के शब्द"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "income",
+      "left": {
+       "en": "Income",
+       "hi": "आय"
+      },
+      "right": {
+       "en": "Money received for work, sales, rent or interest",
+       "hi": "काम, बिक्री, किराए या ब्याज से मिला धन"
+      },
+      "why": {
+       "en": "It is where personal finance begins.",
+       "hi": "व्यक्तिगत वित्त यहीं से शुरू होता है।"
+      }
+     },
+     {
+      "id": "inflation",
+      "left": {
+       "en": "Inflation",
+       "hi": "मुद्रास्फीति"
+      },
+      "right": {
+       "en": "A rise in prices that lowers what money can buy",
+       "hi": "कीमतों में वृद्धि जो पैसे की ख़रीद-क्षमता घटाती है"
+      },
+      "why": {
+       "en": "A bag of ₹1,000 may cost ₹1,060 next year.",
+       "hi": "₹1,000 का बैग अगले साल ₹1,060 का हो सकता है।"
+      }
+     },
+     {
+      "id": "liquid",
+      "left": {
+       "en": "Liquidity",
+       "hi": "तरलता"
+      },
+      "right": {
+       "en": "How quickly something can be turned into cash",
+       "hi": "किसी चीज़ को कितनी जल्दी नकदी में बदला जा सकता है"
+      },
+      "why": {
+       "en": "Cash is the most liquid.",
+       "hi": "नकदी सबसे तरल है।"
+      }
+     },
+     {
+      "id": "compound",
+      "left": {
+       "en": "Compounding",
+       "hi": "चक्रवृद्धि"
+      },
+      "right": {
+       "en": "Earning returns on both the principal and earlier returns",
+       "hi": "मूलधन और पिछले लाभ, दोनों पर लाभ कमाना"
+      },
+      "why": {
+       "en": "It makes money grow faster over time.",
+       "hi": "इससे समय के साथ धन तेज़ी से बढ़ता है।"
+      }
+     },
+     {
+      "id": "premium",
+      "left": {
+       "en": "Premium",
+       "hi": "प्रीमियम"
+      },
+      "right": {
+       "en": "Regular payment made to an insurance company",
+       "hi": "बीमा कंपनी को दिया जाने वाला नियमित भुगतान"
+      },
+      "why": {
+       "en": "In return, the insurer covers specified losses.",
+       "hi": "बदले में बीमाकर्ता निर्दिष्ट नुकसान की भरपाई करता है।"
+      }
+     },
+     {
+      "id": "purchasing",
+      "left": {
+       "en": "Purchasing power",
+       "hi": "क्रय शक्ति"
+      },
+      "right": {
+       "en": "What one rupee can buy",
+       "hi": "एक रुपये से क्या ख़रीदा जा सकता है"
+      },
+      "why": {
+       "en": "It falls when prices rise.",
+       "hi": "कीमतें बढ़ने पर यह घटती है।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If prices rise by 6% in a year and your savings stay in a piggy bank, what happens to what your money can buy?",
+      "hi": "अगर साल में कीमतें 6% बढ़ें और तुम्हारी बचत गुल्लक में ही रहे, तो तुम्हारे पैसे की ख़रीद-क्षमता का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "fall",
+       "en": "It falls",
+       "hi": "घटती है"
+      },
+      {
+       "id": "rise",
+       "en": "It rises",
+       "hi": "बढ़ती है"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वही रहती है"
+      }
+     ],
+     "answer": "fall"
+    },
+    {
+     "kind": "do",
+     "target": "left:inflation",
+     "expect": "matched:inflation",
+     "say": {
+      "en": "Tap 'Inflation', then tap its meaning.",
+      "hi": "'मुद्रास्फीति' छुओ, फिर उसका अर्थ छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:compound",
+     "expect": "matched:compound",
+     "say": {
+      "en": "Now match 'Compounding'.",
+      "hi": "अब 'चक्रवृद्धि' मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other four, then press Check.",
+      "hi": "बाकी चार मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Money words help you think clearly. Inflation lowers purchasing power, so idle cash loses value. Compounding makes invested money grow faster. Liquidity tells you how easily you can get cash. A premium is the price of protection.",
+      "hi": "धन से जुड़े शब्द साफ़ सोचने में मदद करते हैं। मुद्रास्फीति क्रय शक्ति घटाती है, इसलिए पड़ा हुआ नकद मूल्य खोता है। चक्रवृद्धि से निवेशित धन तेज़ी से बढ़ता है। तरलता बताती है कि नकदी कितनी आसानी से मिल सकती है। प्रीमियम सुरक्षा की क़ीमत है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is simply keeping money at home not always wise?",
+        "hi": "सिर्फ़ घर में पैसा रखना हमेशा समझदारी क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "It earns nothing and loses buying power when prices rise",
+         "hi": "उस पर कुछ नहीं मिलता और कीमतें बढ़ने पर ख़रीद-क्षमता घटती है"
+        },
+        {
+         "en": "It is illegal",
+         "hi": "यह अवैध है"
+        },
+        {
+         "en": "Cash disappears at night",
+         "hi": "नकदी रात में ग़ायब हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Savings put to work can earn returns that keep up with rising prices.",
+        "hi": "काम में लगी बचत ऐसा लाभ कमा सकती है जो बढ़ती कीमतों के साथ चल सके।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is not illegal. It is just less effective.",
+         "hi": "यह अवैध नहीं, बस कम प्रभावी है।"
+        },
+        {
+         "en": "The risk is not theft but loss of value over time.",
+         "hi": "जोखिम चोरी का नहीं, समय के साथ मूल्य घटने का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explain to a family member in your own words what inflation means with an example from the market.",
+      "hi": "बाज़ार के किसी उदाहरण से परिवार के किसी सदस्य को अपने शब्दों में समझाओ कि मुद्रास्फीति क्या है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Opens the chapter",
+   "shows": "A child dropping coins into a clay gullak on a table next to a notebook and a pencil",
+   "view": "Close, 4:3",
+   "right": "Coins and gullak sharp; hands only",
+   "avoid": "Faces, brand logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Money items",
+   "shows": "Cut-outs: Indian coins and notes (₹10, ₹20, ₹50, ₹100), a piggy bank, a passbook and a calculator",
+   "view": "Straight front, PNG with transparency",
+   "right": "True colours of current notes; reuse the library coin set if present",
+   "avoid": "Serial numbers, legible bank names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Family budget",
+   "shows": "A family kitchen table with a notebook, a calculator, bills and a cup of tea, afternoon light",
+   "view": "Wide, 16:9, hands only",
+   "right": "Notebook with blank columns",
+   "avoid": "Faces, readable figures"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "5.4",
+   "use": "A growing plant",
+   "shows": "Five frames of the same potted plant at 0, 1, 5, 10 and 20 years of growth, on a shelf",
+   "view": "Same camera, same pot",
+   "right": "Plant grows faster in later frames",
+   "avoid": "Text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "5.5",
+   "use": "Protection",
+   "shows": "A policy file, a helmet and a small umbrella as separate cut-outs",
+   "view": "Straight front, PNG with transparency",
+   "right": "Neutral colours; no insurer logos",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "5.2",
+   "use": "Budget form base",
+   "shows": "An empty monthly budget table with blank rows for income, needs, wants and savings",
+   "view": "Square, white or transparent",
+   "right": "Clear rows and totals line",
+   "avoid": "Words and numbers"
+  }
+ ]
+}

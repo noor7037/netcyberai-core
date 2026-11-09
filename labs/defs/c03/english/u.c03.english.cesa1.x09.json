@@ -1,0 +1,529 @@
+{
+ "chapter_key": "u.c03.english.cesa1.x09",
+ "class": 3,
+ "subject_id": "english",
+ "title": "Picture Reading",
+ "source": "https://ncert.nic.in/textbook/pdf/cesa107.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Reading the picture: from wheat to chapati",
+   "labs": [
+    "c03-english-cesa1-x09-wheat-to-chapati"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "Foods from plants and foods from animals",
+   "labs": [
+    "c03-english-cesa1-x09-food-sources"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "Talking about fields, crops and what we eat with chapati",
+   "labs": [],
+   "why_no_lab": "This is a speaking task where children share what they have seen in fields and at home."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-english-cesa1-x09-wheat-to-chapati",
+   "topic": "1",
+   "template": "sequence",
+   "title": {
+    "en": "From the field to the chapati",
+    "hi": "खेत से चपाती तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "sow",
+      "text": {
+       "en": "The farmer sows wheat seeds in the field.",
+       "hi": "किसान खेत में गेहूँ के बीज बोता है।"
+      }
+     },
+     {
+      "id": "grow",
+      "text": {
+       "en": "The wheat plants grow tall and turn golden.",
+       "hi": "गेहूँ के पौधे ऊँचे होते हैं और सुनहरे हो जाते हैं।"
+      }
+     },
+     {
+      "id": "cut",
+      "text": {
+       "en": "The farmer cuts the ripe wheat and takes out the grains.",
+       "hi": "किसान पकी हुई गेहूँ की फ़सल काटता है और दाने निकालता है।"
+      }
+     },
+     {
+      "id": "mill",
+      "text": {
+       "en": "The grains are ground into flour at a mill.",
+       "hi": "दानों को चक्की में पीसकर आटा बनाया जाता है।"
+      }
+     },
+     {
+      "id": "dough",
+      "text": {
+       "en": "At home, the flour is kneaded with water into dough.",
+       "hi": "घर पर आटे को पानी के साथ गूँधकर आटा तैयार किया जाता है।"
+      }
+     },
+     {
+      "id": "roti",
+      "text": {
+       "en": "The dough is rolled out and cooked on a hot tawa.",
+       "hi": "आटे की लोई बेलकर गरम तवे पर सेंकी जाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which comes first: the farmer cuts the wheat or the farmer sows the seeds?",
+      "hi": "पहले क्या होता है: किसान गेहूँ काटता है या बीज बोता है?"
+     },
+     "options": [
+      {
+       "id": "sow",
+       "en": "Sows the seeds",
+       "hi": "बीज बोता है"
+      },
+      {
+       "id": "cut",
+       "en": "Cuts the wheat",
+       "hi": "गेहूँ काटता है"
+      }
+     ],
+     "answer": "sow"
+    },
+    {
+     "kind": "do",
+     "target": "item:sow",
+     "expect": "placed:sow",
+     "say": {
+      "en": "Tap the card about sowing. Then tap place 1.",
+      "hi": "बोने वाला कार्ड चुनो। फिर स्थान 1 पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:grow",
+     "expect": "placed:grow",
+     "say": {
+      "en": "Put the growing step in place 2.",
+      "hi": "उगने वाला चरण स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Our chapati starts as a seed. The seed grows into a plant, the grains are cut and ground into flour, and the flour becomes dough and then a hot chapati. Many people work together to bring food to our plate: farmers, millers and cooks.",
+      "hi": "हमारी चपाती एक बीज से शुरू होती है। बीज पौधा बनता है, दानों को काटकर पीसा जाता है, आटे से लोई बनती है और फिर गरम चपाती। हमारी थाली तक खाना पहुँचाने में कई लोग मिलकर काम करते हैं: किसान, चक्की वाले और खाना बनाने वाले।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is made when wheat grains are ground?",
+        "hi": "गेहूँ के दानों को पीसने पर क्या बनता है?"
+       },
+       "options": [
+        {
+         "en": "Flour",
+         "hi": "आटा"
+        },
+        {
+         "en": "Rice",
+         "hi": "चावल"
+        },
+        {
+         "en": "Oil",
+         "hi": "तेल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ground wheat is flour, or atta.",
+        "hi": "पिसा हुआ गेहूँ आटा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rice comes from a different plant, the rice plant.",
+         "hi": "चावल दूसरे पौधे, धान, से मिलता है।"
+        },
+        {
+         "en": "Oil comes from seeds like mustard, not from ground wheat.",
+         "hi": "तेल सरसों जैसे बीजों से निकलता है, पिसे गेहूँ से नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What do we do to flour before making a chapati?",
+        "hi": "चपाती बनाने से पहले आटे का क्या करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Knead it with water",
+         "hi": "पानी के साथ गूँधते हैं"
+        },
+        {
+         "en": "Plant it in the soil",
+         "hi": "मिट्टी में बो देते हैं"
+        },
+        {
+         "en": "Put it in the sun",
+         "hi": "धूप में रख देते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Flour mixed with water becomes soft dough.",
+        "hi": "आटे में पानी मिलाने से नरम लोई बनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Flour is already ground, so it cannot be planted. We plant seeds.",
+         "hi": "आटा पिसा हुआ होता है, उसे बोया नहीं जाता। बीज बोए जाते हैं।"
+        },
+        {
+         "en": "Dough does not need sun; it is cooked on a tawa.",
+         "hi": "लोई को धूप नहीं चाहिए; उसे तवे पर सेंकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put all six steps in order and press Check. Who helped to bring your last chapati to the plate?",
+      "hi": "छहों चरण क्रम में लगाओ और Check दबाओ। तुम्हारी आख़िरी चपाती थाली तक लाने में किसने मदद की?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-x09-food-sources",
+   "topic": "2",
+   "template": "sort",
+   "title": {
+    "en": "Does it come from plants or animals?",
+    "hi": "यह पौधे से आता है या जानवर से?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "plant",
+      "label": {
+       "en": "Comes from plants",
+       "hi": "पौधों से मिलता है"
+      }
+     },
+     {
+      "id": "animal",
+      "label": {
+       "en": "Comes from animals",
+       "hi": "जानवरों से मिलता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "wheat",
+      "text": {
+       "en": "Wheat",
+       "hi": "गेहूँ"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "Wheat grains grow on a wheat plant in the field.",
+       "hi": "गेहूँ के दाने खेत में गेहूँ के पौधे पर उगते हैं।"
+      }
+     },
+     {
+      "id": "rice",
+      "text": {
+       "en": "Rice",
+       "hi": "चावल"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "Rice grains grow on the rice plant.",
+       "hi": "चावल के दाने धान के पौधे पर उगते हैं।"
+      }
+     },
+     {
+      "id": "mango",
+      "text": {
+       "en": "Mango",
+       "hi": "आम"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "A mango is a fruit that grows on a tree.",
+       "hi": "आम पेड़ पर उगने वाला फल है।"
+      }
+     },
+     {
+      "id": "potato",
+      "text": {
+       "en": "Potato",
+       "hi": "आलू"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "A potato grows under the soil on a potato plant.",
+       "hi": "आलू आलू के पौधे में मिट्टी के नीचे उगता है।"
+      }
+     },
+     {
+      "id": "dal",
+      "text": {
+       "en": "Dal (lentils)",
+       "hi": "दाल"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "Dal is made from the seeds of lentil plants.",
+       "hi": "दाल दाल के पौधों के बीजों से बनती है।"
+      }
+     },
+     {
+      "id": "milk",
+      "text": {
+       "en": "Milk",
+       "hi": "दूध"
+      },
+      "bin": "animal",
+      "why": {
+       "en": "Cows and buffaloes give milk.",
+       "hi": "गाय और भैंस दूध देती हैं।"
+      }
+     },
+     {
+      "id": "egg",
+      "text": {
+       "en": "Egg",
+       "hi": "अंडा"
+      },
+      "bin": "animal",
+      "why": {
+       "en": "A hen lays eggs.",
+       "hi": "मुर्गी अंडे देती है।"
+      }
+     },
+     {
+      "id": "honey",
+      "text": {
+       "en": "Honey",
+       "hi": "शहद"
+      },
+      "bin": "animal",
+      "why": {
+       "en": "Honey bees make honey from flower nectar.",
+       "hi": "मधुमक्खियाँ फूलों के रस से शहद बनाती हैं।"
+      }
+     },
+     {
+      "id": "curd",
+      "text": {
+       "en": "Curd",
+       "hi": "दही"
+      },
+      "bin": "animal",
+      "why": {
+       "en": "Curd is made from milk, which comes from animals.",
+       "hi": "दही दूध से बनता है, जो जानवरों से मिलता है।"
+      }
+     },
+     {
+      "id": "ghee",
+      "text": {
+       "en": "Ghee",
+       "hi": "घी"
+      },
+      "bin": "animal",
+      "why": {
+       "en": "Ghee is made from milk or butter, so it comes from animals.",
+       "hi": "घी दूध या मक्खन से बनता है, इसलिए यह जानवरों से मिलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does rice come from a plant or from an animal?",
+      "hi": "चावल पौधे से आता है या जानवर से?"
+     },
+     "options": [
+      {
+       "id": "plant",
+       "en": "From a plant",
+       "hi": "पौधे से"
+      },
+      {
+       "id": "animal",
+       "en": "From an animal",
+       "hi": "जानवर से"
+      }
+     ],
+     "answer": "plant"
+    },
+    {
+     "kind": "do",
+     "target": "card:rice",
+     "expect": "correct:rice",
+     "say": {
+      "en": "Tap the card 'Rice'. Then tap the bin where it belongs.",
+      "hi": "'Rice' कार्ड पर टैप करो। फिर सही डिब्बे पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:milk",
+     "expect": "correct:milk",
+     "say": {
+      "en": "Now sort 'Milk'.",
+      "hi": "अब 'Milk' को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Some foods grow on plants: wheat, rice, mango, potato and dal. Other foods come from animals: milk, eggs and honey. Curd and ghee are made from milk, so they also come from animals. A good meal usually has both kinds.",
+      "hi": "कुछ खाने की चीज़ें पौधों पर उगती हैं: गेहूँ, चावल, आम, आलू और दाल। कुछ चीज़ें जानवरों से मिलती हैं: दूध, अंडे और शहद। दही और घी दूध से बनते हैं, इसलिए ये भी जानवरों से मिलते हैं। अच्छे भोजन में आमतौर पर दोनों तरह की चीज़ें होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which food comes from animals?",
+        "hi": "कौन-सा खाना जानवरों से मिलता है?"
+       },
+       "options": [
+        {
+         "en": "Wheat",
+         "hi": "गेहूँ"
+        },
+        {
+         "en": "Honey",
+         "hi": "शहद"
+        },
+        {
+         "en": "Potato",
+         "hi": "आलू"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Bees collect nectar from flowers and make honey.",
+        "hi": "मधुमक्खियाँ फूलों से रस लेकर शहद बनाती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Wheat grows on a plant.",
+         "hi": "गेहूँ पौधे पर उगता है।"
+        },
+        "",
+        {
+         "en": "A potato grows on a plant, under the soil.",
+         "hi": "आलू पौधे में मिट्टी के नीचे उगता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort all ten foods and press Check. What did you eat today that came from a plant, and what came from an animal?",
+      "hi": "सभी दस खाने की चीज़ें छाँटो और Check दबाओ। आज तुमने क्या खाया जो पौधे से आया था और क्या जो जानवर से आया था?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SEQ",
+   "topic": "1",
+   "use": "From wheat to chapati",
+   "shows": "Six frames: wheat seeds in a palm, green wheat field, golden wheat field, a farmer cutting wheat with a sickle (seen from behind), a flour mill pouring flour, a chapati puffing on a tawa",
+   "view": "Documentary style, same colour grading",
+   "right": "Wheat plants are green first, golden when ripe; chapati puffs",
+   "avoid": "Faces, brand names on flour sacks",
+   "n": 1
+  },
+  {
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Hook: a golden wheat field",
+   "shows": "A wide golden wheat field in North India at harvest time, blue sky and a farmhouse far away",
+   "view": "Wide, low angle, evening light",
+   "right": "Wheat heads bend gently; no machinery in the foreground",
+   "avoid": "People close up, text",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "1",
+   "use": "Wheat and flour",
+   "shows": "A bunch of wheat ears, a bowl of wheat grains and a bowl of fine flour (atta)",
+   "view": "Front view, soft shadow",
+   "right": "Wheat grain is brown-gold; atta is soft off-white",
+   "avoid": "Brand names",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "2",
+   "use": "Foods from animals",
+   "shows": "A glass of milk, a boiled egg cut in half, a jar of honey with a wooden spoon, a bowl of curd and ghee in a steel katori",
+   "view": "Front view each",
+   "right": "Real Indian household items",
+   "avoid": "Brand labels",
+   "n": 4
+  },
+  {
+   "kind": "OBJ",
+   "topic": "2",
+   "use": "Foods from plants",
+   "shows": "A mango, a potato, a bowl of rice, a bowl of dal, a handful of wheat grains",
+   "view": "Front view each",
+   "right": "True colours: yellow dal, white rice",
+   "avoid": "Brand names",
+   "n": 5
+  },
+  {
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Chapati meal",
+   "shows": "A thali with chapati, dal, a vegetable and curd, seen from above on a table",
+   "view": "Top-down, warm light",
+   "right": "Fresh chapatis with a few brown spots, steam",
+   "avoid": "Faces, brand names",
+   "n": 6
+  }
+ ]
+}

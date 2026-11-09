@@ -1,0 +1,1101 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch14",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "Maps and Locations",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm114.pdf",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "Finding directions: facing the rising Sun",
+   "labs": [
+    "c05-mathematics-eemm1-ch14-face-the-sun",
+    "c05-mathematics-eemm1-ch14-direction-pairs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.2",
+   "title": "Reading a map: the bird-watching camp",
+   "labs": [
+    "c05-mathematics-eemm1-ch14-camp-clues"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.3",
+   "title": "Map of a room: directions around you",
+   "labs": [
+    "c05-mathematics-eemm1-ch14-room-directions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.4",
+   "title": "A street map and the bus route to the zoo",
+   "labs": [],
+   "why_no_lab": "A printed street map with roads and stops is best read on the page, tracing the route with a finger; the labs build the direction words it needs."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch14-face-the-sun",
+   "topic": "14.1",
+   "template": "scenario",
+   "title": {
+    "en": "Facing the rising Sun",
+    "hi": "उगते सूरज की ओर मुँह"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "morning field",
+    "role": {
+     "en": "Young direction finder",
+     "hi": "दिशा खोजने वाले"
+    },
+    "scenes": [
+     {
+      "id": "east",
+      "text": {
+       "en": "Early in the morning, Manu stands in a field and faces the rising Sun. Which direction is he facing?",
+       "hi": "सुबह-सुबह मनु खेत में खड़ा है और उगते सूरज की ओर मुँह करता है। वह किस दिशा में देख रहा है?"
+      },
+      "choices": [
+       {
+        "id": "e",
+        "text": {
+         "en": "East",
+         "hi": "पूर्व"
+        },
+        "next": "left",
+        "good": true,
+        "feedback": {
+         "en": "Yes! The Sun rises in the east.",
+         "hi": "हाँ! सूरज पूर्व में उगता है।"
+        }
+       },
+       {
+        "id": "w",
+        "text": {
+         "en": "West",
+         "hi": "पश्चिम"
+        },
+        "next": "left",
+        "good": false,
+        "feedback": {
+         "en": "The Sun sets in the west, in the evening. In the morning it rises in the east.",
+         "hi": "सूरज शाम को पश्चिम में डूबता है। सुबह वह पूर्व में उगता है।"
+        }
+       },
+       {
+        "id": "n",
+        "text": {
+         "en": "North",
+         "hi": "उत्तर"
+        },
+        "next": "left",
+        "good": false,
+        "feedback": {
+         "en": "The Sun does not rise in the north. It rises in the east.",
+         "hi": "सूरज उत्तर में नहीं उगता। वह पूर्व में उगता है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "left",
+      "text": {
+       "en": "Manu is facing east. In which direction does his left hand point?",
+       "hi": "मनु पूर्व की ओर मुँह किए है। उसका बायाँ हाथ किस दिशा में है?"
+      },
+      "choices": [
+       {
+        "id": "ln",
+        "text": {
+         "en": "North",
+         "hi": "उत्तर"
+        },
+        "next": "back",
+        "good": true,
+        "feedback": {
+         "en": "Yes! Facing east, north is on your left hand, and south is on your right hand.",
+         "hi": "हाँ! पूर्व की ओर मुँह हो तो उत्तर बाएँ हाथ की ओर और दक्षिण दाएँ हाथ की ओर होता है।"
+        }
+       },
+       {
+        "id": "ls",
+        "text": {
+         "en": "South",
+         "hi": "दक्षिण"
+        },
+        "next": "back",
+        "good": false,
+        "feedback": {
+         "en": "South is on his right hand. His left hand points north.",
+         "hi": "दक्षिण उसके दाएँ हाथ की ओर है। उसका बायाँ हाथ उत्तर की ओर है।"
+        }
+       },
+       {
+        "id": "lw",
+        "text": {
+         "en": "West",
+         "hi": "पश्चिम"
+        },
+        "next": "back",
+        "good": false,
+        "feedback": {
+         "en": "West is behind him, opposite to east.",
+         "hi": "पश्चिम उसके पीछे है, पूर्व के ठीक उलटा।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "back",
+      "text": {
+       "en": "Which direction is directly behind Manu?",
+       "hi": "मनु के ठीक पीछे कौन-सी दिशा है?"
+      },
+      "choices": [
+       {
+        "id": "bw",
+        "text": {
+         "en": "West",
+         "hi": "पश्चिम"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Yes! West is opposite east, so it is behind him.",
+         "hi": "हाँ! पश्चिम पूर्व के ठीक उलटी है, इसलिए वह उसके पीछे है।"
+        }
+       },
+       {
+        "id": "bs",
+        "text": {
+         "en": "South",
+         "hi": "दक्षिण"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "South is on his right hand side, not behind.",
+         "hi": "दक्षिण उसके दाएँ तरफ़ है, पीछे नहीं।"
+        }
+       },
+       {
+        "id": "be",
+        "text": {
+         "en": "East",
+         "hi": "पूर्व"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "East is in front of him, where he is looking.",
+         "hi": "पूर्व उसके सामने है, जहाँ वह देख रहा है।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:east:e",
+     "expect": "chose:e",
+     "say": {
+      "en": "Choose the direction of the rising Sun.",
+      "hi": "उगते सूरज की दिशा चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Manu faces east. Which hand points to the north: left or right?",
+      "hi": "मनु पूर्व की ओर देख रहा है। उत्तर किस हाथ की ओर है: बाएँ या दाएँ?"
+     },
+     "options": [
+      {
+       "id": "left",
+       "en": "Left hand",
+       "hi": "बायाँ हाथ"
+      },
+      {
+       "id": "right",
+       "en": "Right hand",
+       "hi": "दायाँ हाथ"
+      }
+     ],
+     "answer": "left"
+    },
+    {
+     "kind": "do",
+     "target": "choice:left:ln",
+     "expect": "chose:ln",
+     "say": {
+      "en": "Choose the direction of Manu's left hand.",
+      "hi": "मनु के बाएँ हाथ की दिशा चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:back:bw",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose the direction behind Manu.",
+      "hi": "मनु के पीछे की दिशा चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Face the rising Sun: you face east. Your right hand is to the south, your left hand to the north and your back to the west. The four main directions are north, east, south and west, often written N, E, S and W.",
+      "hi": "उगते सूरज की ओर मुँह करो: तुम पूर्व की ओर देखते हो। तुम्हारा दायाँ हाथ दक्षिण की ओर, बायाँ हाथ उत्तर की ओर और पीठ पश्चिम की ओर होती है। चार मुख्य दिशाएँ उत्तर, पूर्व, दक्षिण और पश्चिम हैं, जिन्हें अक्सर N, E, S और W लिखा जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the evening you face the setting Sun. Which direction is in front of you?",
+        "hi": "शाम को तुम डूबते सूरज की ओर मुँह करते हो। तुम्हारे सामने कौन-सी दिशा है?"
+       },
+       "options": [
+        {
+         "en": "West",
+         "hi": "पश्चिम"
+        },
+        {
+         "en": "East",
+         "hi": "पूर्व"
+        },
+        {
+         "en": "North",
+         "hi": "उत्तर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Sun sets in the west.",
+        "hi": "सूरज पश्चिम में डूबता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "East is where the Sun rises, behind you now.",
+         "hi": "पूर्व वहाँ है जहाँ सूरज उगता है, जो अब तुम्हारे पीछे है।"
+        },
+        {
+         "en": "North is on your right hand when you face west.",
+         "hi": "पश्चिम की ओर मुँह हो तो उत्तर दाएँ हाथ की ओर होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You face north. Which direction is on your right hand?",
+        "hi": "तुम उत्तर की ओर मुँह किए हो। दाएँ हाथ की ओर कौन-सी दिशा है?"
+       },
+       "options": [
+        {
+         "en": "East",
+         "hi": "पूर्व"
+        },
+        {
+         "en": "West",
+         "hi": "पश्चिम"
+        },
+        {
+         "en": "South",
+         "hi": "दक्षिण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Turn a quarter turn to the right from north and you face east.",
+        "hi": "उत्तर से दाईं ओर चौथाई चक्कर घूमने पर तुम पूर्व की ओर मुँह करते हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "West is on your left hand when you face north.",
+         "hi": "उत्तर की ओर मुँह हो तो पश्चिम बाएँ हाथ की ओर होता है।"
+        },
+        {
+         "en": "South is behind you when you face north.",
+         "hi": "उत्तर की ओर मुँह हो तो दक्षिण पीछे होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tomorrow morning, stand facing the rising Sun. Check the four directions around you and name something that lies in each.",
+      "hi": "कल सुबह उगते सूरज की ओर मुँह करके खड़े हो। अपने चारों ओर की चार दिशाएँ देखो और हर दिशा में पड़ने वाली एक चीज़ का नाम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch14-direction-pairs",
+   "topic": "14.1",
+   "template": "match",
+   "title": {
+    "en": "Directions and their partners",
+    "hi": "दिशाएँ और उनके साथी"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "sr",
+      "left": {
+       "en": "The Sun rises in this direction",
+       "hi": "सूरज इस दिशा में उगता है"
+      },
+      "right": {
+       "en": "East",
+       "hi": "पूर्व"
+      },
+      "why": {
+       "en": "Every morning the Sun appears in the east.",
+       "hi": "हर सुबह सूरज पूर्व में दिखता है।"
+      }
+     },
+     {
+      "id": "ss",
+      "left": {
+       "en": "The Sun sets in this direction",
+       "hi": "सूरज इस दिशा में डूबता है"
+      },
+      "right": {
+       "en": "West",
+       "hi": "पश्चिम"
+      },
+      "why": {
+       "en": "Every evening the Sun goes down in the west.",
+       "hi": "हर शाम सूरज पश्चिम में डूबता है।"
+      }
+     },
+     {
+      "id": "on",
+      "left": {
+       "en": "Opposite to North",
+       "hi": "उत्तर के ठीक उलटी दिशा"
+      },
+      "right": {
+       "en": "South",
+       "hi": "दक्षिण"
+      },
+      "why": {
+       "en": "North and south are opposite each other.",
+       "hi": "उत्तर और दक्षिण एक-दूसरे के उलटे हैं।"
+      }
+     },
+     {
+      "id": "fe",
+      "left": {
+       "en": "Facing east, your left hand points here",
+       "hi": "पूर्व की ओर मुँह हो तो बायाँ हाथ यहाँ होता है"
+      },
+      "right": {
+       "en": "North",
+       "hi": "उत्तर"
+      },
+      "why": {
+       "en": "Facing east, north is on the left and south on the right.",
+       "hi": "पूर्व की ओर मुँह हो तो उत्तर बाईं ओर और दक्षिण दाईं ओर होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:sr",
+     "expect": "matched:sr",
+     "say": {
+      "en": "Match the direction of sunrise.",
+      "hi": "सूर्योदय की दिशा को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Sun sets opposite to where it rises. If it rises in the east, where does it set?",
+      "hi": "सूरज जहाँ उगता है उसके ठीक उलटी तरफ़ डूबता है। अगर वह पूर्व में उगता है तो कहाँ डूबेगा?"
+     },
+     "options": [
+      {
+       "id": "west",
+       "en": "West",
+       "hi": "पश्चिम"
+      },
+      {
+       "id": "north",
+       "en": "North",
+       "hi": "उत्तर"
+      },
+      {
+       "id": "south",
+       "en": "South",
+       "hi": "दक्षिण"
+      }
+     ],
+     "answer": "west"
+    },
+    {
+     "kind": "do",
+     "target": "left:ss",
+     "expect": "matched:ss",
+     "say": {
+      "en": "Match the direction of sunset.",
+      "hi": "सूर्यास्त की दिशा को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाकी मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The four main directions come in opposite pairs: north and south, east and west. If you know where the Sun rises, you know east. Then west is behind you, and north and south are on your left and right.",
+      "hi": "चार मुख्य दिशाएँ विपरीत जोड़ों में आती हैं: उत्तर और दक्षिण, पूर्व और पश्चिम। अगर तुम जानते हो कि सूरज कहाँ उगता है, तो तुम पूर्व जानते हो। फिर पश्चिम पीछे होता है और उत्तर-दक्षिण बाएँ-दाएँ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which direction is opposite to west?",
+        "hi": "पश्चिम के ठीक उलटी दिशा कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "East",
+         "hi": "पूर्व"
+        },
+        {
+         "en": "North",
+         "hi": "उत्तर"
+        },
+        {
+         "en": "South",
+         "hi": "दक्षिण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "East and west are opposite directions.",
+        "hi": "पूर्व और पश्चिम विपरीत दिशाएँ हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "North is at a right angle to west, not opposite.",
+         "hi": "उत्तर पश्चिम से समकोण पर है, उलटी नहीं।"
+        },
+        {
+         "en": "South is at a right angle to west, not opposite.",
+         "hi": "दक्षिण पश्चिम से समकोण पर है, उलटी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "A compass needle points north. Use it, or the shadow of the morning Sun, to mark the four directions in your classroom.",
+      "hi": "कंपास की सुई उत्तर बताती है। उसकी मदद से, या सुबह के सूरज की परछाईं से, अपनी कक्षा में चारों दिशाएँ चिह्नित करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch14-camp-clues",
+   "topic": "14.2",
+   "template": "scenario",
+   "title": {
+    "en": "The bird-watching camp",
+    "hi": "पक्षी-दर्शन शिविर"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "camp by a lake",
+    "role": {
+     "en": "Camp leader",
+     "hi": "शिविर के नेता"
+    },
+    "scenes": [
+     {
+      "id": "north",
+      "text": {
+       "en": "A round lake is in the middle of the camp. Four tents stand around it: tent A is north of the lake, tent B is east of the lake, tent C is south of it and tent D is west of it. Which tent is west of the lake?",
+       "hi": "शिविर के बीच में एक गोल झील है। उसके चारों ओर चार तंबू हैं: तंबू A झील के उत्तर में, तंबू B पूर्व में, तंबू C दक्षिण में और तंबू D पश्चिम में है। झील के पश्चिम में कौन-सा तंबू है?"
+      },
+      "choices": [
+       {
+        "id": "d",
+        "text": {
+         "en": "Tent D",
+         "hi": "तंबू D"
+        },
+        "next": "walk",
+        "good": true,
+        "feedback": {
+         "en": "Yes! D is west of the lake.",
+         "hi": "हाँ! D झील के पश्चिम में है।"
+        }
+       },
+       {
+        "id": "b",
+        "text": {
+         "en": "Tent B",
+         "hi": "तंबू B"
+        },
+        "next": "walk",
+        "good": false,
+        "feedback": {
+         "en": "B is east of the lake, the opposite side.",
+         "hi": "B झील के पूर्व में है, ठीक उलटी तरफ़।"
+        }
+       },
+       {
+        "id": "a",
+        "text": {
+         "en": "Tent A",
+         "hi": "तंबू A"
+        },
+        "next": "walk",
+        "good": false,
+        "feedback": {
+         "en": "A is north of the lake, not west.",
+         "hi": "A झील के उत्तर में है, पश्चिम में नहीं।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "walk",
+      "text": {
+       "en": "Priya stands at tent A (north of the lake) and walks straight to tent C. Which direction does she walk?",
+       "hi": "प्रिया तंबू A (झील के उत्तर) पर खड़ी है और सीधे तंबू C की ओर चलती है। वह किस दिशा में चलती है?"
+      },
+      "choices": [
+       {
+        "id": "s",
+        "text": {
+         "en": "South",
+         "hi": "दक्षिण"
+        },
+        "next": "tent",
+        "good": true,
+        "feedback": {
+         "en": "Yes! She goes from the north side to the south side, so she walks south.",
+         "hi": "हाँ! वह उत्तर की ओर से दक्षिण की ओर जाती है, इसलिए दक्षिण में चलती है।"
+        }
+       },
+       {
+        "id": "n2",
+        "text": {
+         "en": "North",
+         "hi": "उत्तर"
+        },
+        "next": "tent",
+        "good": false,
+        "feedback": {
+         "en": "A is already at the north. To reach C she must go the other way.",
+         "hi": "A पहले से उत्तर में है। C तक पहुँचने के लिए उसे उलटी ओर जाना है।"
+        }
+       },
+       {
+        "id": "e2",
+        "text": {
+         "en": "East",
+         "hi": "पूर्व"
+        },
+        "next": "tent",
+        "good": false,
+        "feedback": {
+         "en": "Walking east would take her towards tent B, not tent C.",
+         "hi": "पूर्व में चलने पर वह तंबू B की ओर जाएगी, तंबू C की ओर नहीं।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "tent",
+      "text": {
+       "en": "Tent B is east of the lake. If you walk from tent B straight across the lake to tent D, which direction do you walk?",
+       "hi": "तंबू B झील के पूर्व में है। अगर तुम तंबू B से सीधे झील पार करके तंबू D तक जाओ, तो किस दिशा में चलोगे?"
+      },
+      "choices": [
+       {
+        "id": "w2",
+        "text": {
+         "en": "West",
+         "hi": "पश्चिम"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Yes! From the east side to the west side you walk west.",
+         "hi": "हाँ! पूर्व की ओर से पश्चिम की ओर जाने पर तुम पश्चिम में चलते हो।"
+        }
+       },
+       {
+        "id": "e3",
+        "text": {
+         "en": "East",
+         "hi": "पूर्व"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "East would take you away from the lake, farther from tent D.",
+         "hi": "पूर्व में चलने पर तुम झील से दूर, तंबू D से और दूर चले जाओगे।"
+        }
+       },
+       {
+        "id": "n3",
+        "text": {
+         "en": "North",
+         "hi": "उत्तर"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "North would lead you towards tent A, not tent D.",
+         "hi": "उत्तर में चलने पर तुम तंबू A की ओर जाओगे, तंबू D की ओर नहीं।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:north:d",
+     "expect": "chose:d",
+     "say": {
+      "en": "Read the clues about the tents and choose the tent west of the lake.",
+      "hi": "तंबुओं के बारे में संकेत पढ़ो और झील के पश्चिम वाला तंबू चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Priya goes from tent A in the north to tent C in the south. Is she walking north or south?",
+      "hi": "प्रिया उत्तर वाले तंबू A से दक्षिण वाले तंबू C तक जाती है। वह उत्तर की ओर चल रही है या दक्षिण की ओर?"
+     },
+     "options": [
+      {
+       "id": "south",
+       "en": "South",
+       "hi": "दक्षिण"
+      },
+      {
+       "id": "north",
+       "en": "North",
+       "hi": "उत्तर"
+      }
+     ],
+     "answer": "south"
+    },
+    {
+     "kind": "do",
+     "target": "choice:walk:s",
+     "expect": "chose:s",
+     "say": {
+      "en": "Choose the direction Priya walks.",
+      "hi": "प्रिया जिस दिशा में चलती है वह चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:tent:w2",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose the direction from tent B across the lake to tent D.",
+      "hi": "तंबू B से झील पार करके तंबू D तक की दिशा चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A map uses directions to say where things are. The lake is the centre. Something north of the lake is at the top of the map, east is on the right, south is at the bottom and west is on the left. Going from north to south means walking south.",
+      "hi": "नक़्शा चीज़ों की जगह बताने के लिए दिशाओं का उपयोग करता है। झील बीच में है। झील के उत्तर की चीज़ नक़्शे के ऊपर होती है, पूर्व दाईं ओर, दक्षिण नीचे और पश्चिम बाईं ओर। उत्तर से दक्षिण जाने का मतलब दक्षिण की ओर चलना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On a map, north is at the top. Which side is east?",
+        "hi": "नक़्शे में उत्तर ऊपर होता है। पूर्व किस तरफ़ होता है?"
+       },
+       "options": [
+        {
+         "en": "Right",
+         "hi": "दाईं तरफ़"
+        },
+        {
+         "en": "Left",
+         "hi": "बाईं तरफ़"
+        },
+        {
+         "en": "Bottom",
+         "hi": "नीचे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With north at the top, east is on the right and west is on the left.",
+        "hi": "उत्तर ऊपर हो तो पूर्व दाईं ओर और पश्चिम बाईं ओर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The left side of a map is west, not east.",
+         "hi": "नक़्शे की बाईं तरफ़ पश्चिम होता है, पूर्व नहीं।"
+        },
+        {
+         "en": "The bottom of the map is south.",
+         "hi": "नक़्शे का निचला भाग दक्षिण होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw a small map of a park or school ground with a tree in the middle. Place a swing north of it, a bench east of it and a slide west of it.",
+      "hi": "किसी पार्क या स्कूल के मैदान का छोटा नक़्शा बनाओ जिसके बीच में एक पेड़ हो। उसके उत्तर में झूला, पूर्व में बेंच और पश्चिम में फिसलपट्टी रखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch14-room-directions",
+   "topic": "14.3",
+   "template": "sort",
+   "title": {
+    "en": "Directions inside a room",
+    "hi": "कमरे के भीतर दिशाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "n",
+      "label": {
+       "en": "North",
+       "hi": "उत्तर"
+      }
+     },
+     {
+      "id": "e",
+      "label": {
+       "en": "East",
+       "hi": "पूर्व"
+      }
+     },
+     {
+      "id": "s",
+      "label": {
+       "en": "South",
+       "hi": "दक्षिण"
+      }
+     },
+     {
+      "id": "w",
+      "label": {
+       "en": "West",
+       "hi": "पश्चिम"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "o1",
+      "text": {
+       "en": "The door, in front of her",
+       "hi": "दरवाज़ा, उसके सामने"
+      },
+      "bin": "n",
+      "why": {
+       "en": "She faces north, so what is in front of her is in the north.",
+       "hi": "उसका मुँह उत्तर की ओर है, इसलिए जो उसके सामने है वह उत्तर में है।"
+      }
+     },
+     {
+      "id": "o2",
+      "text": {
+       "en": "The shoe rack, next to the door in front",
+       "hi": "जूते का रैक, सामने दरवाज़े के पास"
+      },
+      "bin": "n",
+      "why": {
+       "en": "It is at the front, so it is north.",
+       "hi": "यह सामने है, इसलिए उत्तर में है।"
+      }
+     },
+     {
+      "id": "o3",
+      "text": {
+       "en": "The window, on her right hand",
+       "hi": "खिड़की, उसके दाएँ हाथ की ओर"
+      },
+      "bin": "e",
+      "why": {
+       "en": "Facing north, her right hand points east.",
+       "hi": "उत्तर की ओर मुँह हो तो दायाँ हाथ पूर्व की ओर होता है।"
+      }
+     },
+     {
+      "id": "o4",
+      "text": {
+       "en": "The fan switch, on her right hand",
+       "hi": "पंखे का स्विच, उसके दाएँ हाथ की ओर"
+      },
+      "bin": "e",
+      "why": {
+       "en": "On her right, so east.",
+       "hi": "दाएँ हाथ की ओर है, इसलिए पूर्व।"
+      }
+     },
+     {
+      "id": "o5",
+      "text": {
+       "en": "The bed, behind her",
+       "hi": "पलंग, उसके पीछे"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Behind her is opposite to north: south.",
+       "hi": "उसके पीछे की दिशा उत्तर के उलटी है: दक्षिण।"
+      }
+     },
+     {
+      "id": "o6",
+      "text": {
+       "en": "The lamp, behind her",
+       "hi": "लैंप, उसके पीछे"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Behind her, so south.",
+       "hi": "पीछे की ओर है, इसलिए दक्षिण।"
+      }
+     },
+     {
+      "id": "o7",
+      "text": {
+       "en": "The cupboard, on her left hand",
+       "hi": "अलमारी, उसके बाएँ हाथ की ओर"
+      },
+      "bin": "w",
+      "why": {
+       "en": "Facing north, her left hand points west.",
+       "hi": "उत्तर की ओर मुँह हो तो बायाँ हाथ पश्चिम की ओर होता है।"
+      }
+     },
+     {
+      "id": "o8",
+      "text": {
+       "en": "The bedside table, on her left hand",
+       "hi": "बगल की मेज़, उसके बाएँ हाथ की ओर"
+      },
+      "bin": "w",
+      "why": {
+       "en": "On her left, so west.",
+       "hi": "बाएँ हाथ की ओर है, इसलिए पश्चिम।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:o1",
+     "expect": "correct:o1",
+     "say": {
+      "en": "The girl in the middle of the room faces north. Place 'The door, in front of her'.",
+      "hi": "कमरे के बीच में खड़ी लड़की का मुँह उत्तर की ओर है। 'दरवाज़ा, उसके सामने' को रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The girl faces north. Her right hand points to which direction?",
+      "hi": "लड़की का मुँह उत्तर की ओर है। उसका दायाँ हाथ किस दिशा की ओर है?"
+     },
+     "options": [
+      {
+       "id": "east",
+       "en": "East",
+       "hi": "पूर्व"
+      },
+      {
+       "id": "west",
+       "en": "West",
+       "hi": "पश्चिम"
+      },
+      {
+       "id": "south",
+       "en": "South",
+       "hi": "दक्षिण"
+      }
+     ],
+     "answer": "east"
+    },
+    {
+     "kind": "do",
+     "target": "card:o3",
+     "expect": "correct:o3",
+     "say": {
+      "en": "Place 'The window, on her right hand'.",
+      "hi": "'खिड़की, उसके दाएँ हाथ की ओर' को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards and tap Check.",
+      "hi": "बाकी कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The girl stands at the centre and faces north. In front of her is north, behind her is south, to her right is east and to her left is west. If she turns to face east, the directions stay the same, but which hand points where changes.",
+      "hi": "लड़की बीच में खड़ी है और उत्तर की ओर देखती है। उसके सामने उत्तर, पीछे दक्षिण, दाएँ पूर्व और बाएँ पश्चिम है। अगर वह घूमकर पूर्व की ओर देखे तो दिशाएँ वही रहती हैं, पर कौन-सा हाथ किस ओर है यह बदल जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The girl now turns to face east. Which direction is behind her?",
+        "hi": "लड़की अब घूमकर पूर्व की ओर देखती है। उसके पीछे कौन-सी दिशा है?"
+       },
+       "options": [
+        {
+         "en": "West",
+         "hi": "पश्चिम"
+        },
+        {
+         "en": "North",
+         "hi": "उत्तर"
+        },
+        {
+         "en": "South",
+         "hi": "दक्षिण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Behind east is west.",
+        "hi": "पूर्व के पीछे पश्चिम होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "North is on her left hand when she faces east.",
+         "hi": "पूर्व की ओर मुँह हो तो उत्तर बाएँ हाथ की ओर होता है।"
+        },
+        {
+         "en": "South is on her right hand when she faces east.",
+         "hi": "पूर्व की ओर मुँह हो तो दक्षिण दाएँ हाथ की ओर होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Stand in the middle of your own room. Find which way you face when you look at the window. Name two things in each direction.",
+      "hi": "अपने कमरे के बीच में खड़े हो। खिड़की की ओर देखने पर तुम किस दिशा में देखते हो, पता करो। हर दिशा में दो चीज़ों के नाम बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Sunrise direction",
+   "shows": "A child's back view facing a sunrise over fields, arms stretched out to the left and right",
+   "view": "Low angle from behind, golden light",
+   "right": "Sun clearly rising in front; arms visible",
+   "avoid": "Face, identifiable child"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "14.1",
+   "use": "Compass",
+   "shows": "A simple magnetic compass lying flat with the needle pointing north and N, E, S, W letters on the dial",
+   "view": "Top-down, even light",
+   "right": "Needle clear; letters N, E, S, W readable",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 3,
+   "kind": "MAP",
+   "topic": "14.2",
+   "use": "Camp layout base",
+   "shows": "A top-down view of a round lake with four small coloured tents around it, one on each side, on green grass",
+   "view": "Straight down, 16:9, no text",
+   "right": "Four tents at north, east, south and west of the lake",
+   "avoid": "Names, compass roses"
+  },
+  {
+   "n": 4,
+   "kind": "MAP",
+   "topic": "14.4",
+   "use": "Street map base",
+   "shows": "A simple neighbourhood street map with roads, a park, a hospital block and two bus stops drawn as plain icons, no words",
+   "view": "Straight down, 16:9",
+   "right": "Clean roads, icons recognisable",
+   "avoid": "Real place names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "14.3",
+   "use": "A child's room",
+   "shows": "A tidy bedroom seen from the doorway with a bed, cupboard, window and study table arranged around the room's centre",
+   "view": "Wide, eye level, daylight",
+   "right": "Furniture clearly on four different sides of the room",
+   "avoid": "People, posters with text"
+  }
+ ]
+}

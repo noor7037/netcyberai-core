@@ -1,0 +1,437 @@
+{
+ "chapter_key": "u.c06.mathematics.fegp1.ch09",
+ "class": 6,
+ "subject_id": "mathematics",
+ "title": "Symmetry",
+ "source": "https://ncert.nic.in/textbook/pdf/fegp109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Line of symmetry",
+   "labs": [
+    "c06-mathematics-fegp1-ch09-fold-lines",
+    "c06-mathematics-fegp1-ch09-rangoli"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Rotational symmetry",
+   "labs": [
+    "c06-mathematics-fegp1-ch09-turn"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-mathematics-fegp1-ch09-fold-lines",
+   "topic": "9.1",
+   "template": "shapes",
+   "title": {
+    "en": "Fold to find lines of symmetry",
+    "hi": "मोड़कर सममिति रेखाएँ ढूँढो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "symmetry",
+    "task": "lines"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This is an isosceles triangle, with two equal sides. Which fold will make its two halves match?",
+      "hi": "यह समद्विबाहु त्रिभुज है, जिसकी दो भुजाएँ बराबर हैं। किस मोड़ से इसके दोनों आधे भाग मिल जाएँगे?"
+     },
+     "options": [
+      {
+       "id": "top",
+       "en": "A fold from the top corner straight down",
+       "hi": "ऊपर के कोने से सीधा नीचे का मोड़"
+      },
+      {
+       "id": "flat",
+       "en": "A flat fold across the middle",
+       "hi": "बीच से आड़ा मोड़"
+      },
+      {
+       "id": "slant",
+       "en": "A slanting fold",
+       "hi": "तिरछा मोड़"
+      }
+     ],
+     "answer": "top"
+    },
+    {
+     "kind": "do",
+     "target": "mirror",
+     "expect": "symmetric",
+     "say": {
+      "en": "Tap the dashed lines to fold the shape. Find a fold where the halves match.",
+      "hi": "आकृति मोड़ने के लिए बिंदुदार रेखाओं पर टैप करो। ऐसा मोड़ ढूँढो जिसमें आधे भाग मिल जाएँ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "How many lines of symmetry does this triangle have? Choose.",
+      "hi": "इस त्रिभुज में सममिति की कितनी रेखाएँ हैं? चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A line of symmetry divides a shape into two halves that match exactly when folded, like a mirror image. The isosceles triangle has one such line, from the top corner to the middle of the base.",
+      "hi": "सममिति रेखा आकृति को ऐसे दो आधे भागों में बाँटती है जो मोड़ने पर ठीक मिल जाते हैं, जैसे दर्पण प्रतिबिंब। समद्विबाहु त्रिभुज में ऐसी एक रेखा है, ऊपर के कोने से आधार के बीच तक।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many lines of symmetry does a square have?",
+        "hi": "वर्ग में सममिति की कितनी रेखाएँ होती हैं?"
+       },
+       "options": [
+        "4",
+        "2",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two through the middles of opposite sides and two along the diagonals.",
+        "hi": "दो सम्मुख भुजाओं के बीच से और दो विकर्णों के साथ-साथ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 counts only the straight folds; the diagonal folds work too.",
+         "hi": "2 में केवल सीधे मोड़ गिने गए; विकर्ण वाले मोड़ भी काम करते हैं।"
+        },
+        {
+         "en": "A square folds onto itself in more than one way.",
+         "hi": "वर्ग एक से ज़्यादा तरह से अपने ऊपर मुड़ जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Does a rectangle (not a square) fold onto itself along a diagonal?",
+        "hi": "क्या आयत (वर्ग नहीं) विकर्ण पर मोड़ने से अपने ऊपर बैठता है?"
+       },
+       "options": [
+        {
+         "en": "No",
+         "hi": "नहीं"
+        },
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Folding on a diagonal makes the corners stick out, so the halves do not match. A rectangle has 2 lines of symmetry.",
+        "hi": "विकर्ण पर मोड़ने से कोने बाहर निकल आते हैं, इसलिए आधे भाग नहीं मिलते। आयत में 2 सममिति रेखाएँ हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A diagonal cuts it into two equal triangles, but they do not lie on each other after folding.",
+         "hi": "विकर्ण उसे दो बराबर त्रिभुजों में बाँटता है, पर मोड़ने पर वे एक-दूसरे पर नहीं बैठते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Next for more shapes. Which shape has no line of symmetry at all?",
+      "hi": "अब ख़ुद आज़माओ। और आकृतियों के लिए अगला दबाओ। किस आकृति में एक भी सममिति रेखा नहीं है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch09-rangoli",
+   "topic": "9.1",
+   "template": "art",
+   "title": {
+    "en": "A symmetric rangoli",
+    "hi": "सममित रंगोली"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "rangoli",
+    "grid": 7,
+    "symmetry": "quad"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This rangoli board has two mirror lines. If you draw one short line near a corner, how many copies of it will appear?",
+      "hi": "इस रंगोली बोर्ड में दो दर्पण-रेखाएँ हैं। अगर तुम एक कोने के पास एक छोटी रेखा खींचो, तो उसकी कितनी प्रतियाँ दिखेंगी?"
+     },
+     "options": [
+      {
+       "id": "4",
+       "en": "4 copies",
+       "hi": "4 प्रतियाँ"
+      },
+      {
+       "id": "1",
+       "en": "1 copy",
+       "hi": "1 प्रति"
+      },
+      {
+       "id": "2",
+       "en": "2 copies",
+       "hi": "2 प्रतियाँ"
+      }
+     ],
+     "answer": "4"
+    },
+    {
+     "kind": "do",
+     "target": "canvas",
+     "expect": "drawn",
+     "say": {
+      "en": "Tap two points on the board to draw a line between them.",
+      "hi": "बोर्ड पर दो बिंदुओं पर टैप करके उनके बीच रेखा खींचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "canvas",
+     "expect": "drawn",
+     "say": {
+      "en": "Draw another line anywhere on the board.",
+      "hi": "बोर्ड पर कहीं भी एक और रेखा खींचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each mark is reflected in both mirror lines, so one mark becomes four. The finished rangoli has two lines of symmetry: fold it along either line and the two halves match.",
+      "hi": "हर निशान दोनों दर्पण-रेखाओं में प्रतिबिंबित होता है, इसलिए एक निशान चार बन जाता है। पूरी रंगोली में दो सममिति रेखाएँ हैं: किसी भी रेखा पर मोड़ो, दोनों आधे भाग मिल जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You place a dot exactly on a mirror line. How many copies do you see?",
+        "hi": "तुम ठीक दर्पण-रेखा पर एक बिंदु लगाते हो। तुम्हें कितनी प्रतियाँ दिखेंगी?"
+       },
+       "options": [
+        "2",
+        "4",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Its reflection in that line falls on itself, so only the other mirror makes a copy.",
+        "hi": "उस रेखा में उसका प्रतिबिंब उसी पर पड़ता है, इसलिए केवल दूसरा दर्पण एक प्रति बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 copies need the dot away from both lines.",
+         "hi": "4 प्रतियों के लिए बिंदु दोनों रेखाओं से दूर होना चाहिए।"
+        },
+        {
+         "en": "It is still reflected in the other mirror line.",
+         "hi": "वह दूसरी दर्पण-रेखा में अब भी प्रतिबिंबित होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Change the symmetry with the symmetry tool and make a new design.",
+      "hi": "अब ख़ुद आज़माओ। सममिति वाले औज़ार से सममिति बदलो और नया डिज़ाइन बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch09-turn",
+   "topic": "9.2",
+   "template": "shapes",
+   "title": {
+    "en": "Rotational symmetry of a square",
+    "hi": "वर्ग की घूर्णन सममिति"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "symmetry",
+    "task": "rotation"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You turn a square about its centre. After how many degrees will it first fit its outline again?",
+      "hi": "तुम वर्ग को उसके केंद्र के चारों ओर घुमाते हो। कितने अंश पर वह पहली बार फिर अपनी रूपरेखा पर बैठेगा?"
+     },
+     "options": [
+      {
+       "id": "90",
+       "en": "90°",
+       "hi": "90 अंश"
+      },
+      {
+       "id": "180",
+       "en": "180°",
+       "hi": "180 अंश"
+      },
+      {
+       "id": "45",
+       "en": "45°",
+       "hi": "45 अंश"
+      }
+     ],
+     "answer": "90"
+    },
+    {
+     "kind": "do",
+     "target": "slider:turn",
+     "expect": "symmetric",
+     "say": {
+      "en": "Move the turn slider until the square fits its outline.",
+      "hi": "घुमाव का स्लाइडर तब तक खिसकाओ जब तक वर्ग अपनी रूपरेखा पर न बैठ जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "In one full turn, how many times does it fit? Choose.",
+      "hi": "एक पूरे चक्कर में यह कितनी बार बैठता है? चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The square fits at 90°, 180°, 270° and 360°: 4 times in a full turn. So its order of rotational symmetry is 4 and its smallest angle of symmetry is 360 ÷ 4 = 90°.",
+      "hi": "वर्ग 90°, 180°, 270° और 360° पर बैठता है: एक पूरे चक्कर में 4 बार। इसलिए उसकी घूर्णन सममिति का क्रम 4 है और सबसे छोटा सममिति कोण 360 ÷ 4 = 90° है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A windmill with 3 blades fits after which smallest turn?",
+        "hi": "3 पंखों वाली पवनचक्की सबसे छोटे किस घुमाव पर बैठती है?"
+       },
+       "options": [
+        "120°",
+        "90°",
+        "180°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 equal blades share the full turn: 360 ÷ 3 = 120°.",
+        "hi": "3 बराबर पंख पूरा चक्कर बाँटते हैं: 360 ÷ 3 = 120°।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "90° works for 4 equal parts, not 3.",
+         "hi": "90° चार बराबर भागों के लिए है, 3 के लिए नहीं।"
+        },
+        {
+         "en": "After 180° the blades point between their old places.",
+         "hi": "180° के बाद पंख अपनी पुरानी जगहों के बीच में होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Next for other shapes. Which one fits only after a full turn?",
+      "hi": "अब ख़ुद आज़माओ। दूसरी आकृतियों के लिए अगला दबाओ। कौन-सी आकृति केवल पूरे चक्कर पर बैठती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Chapter hook: symmetry in buildings",
+   "shows": "The front of a symmetric Indian monument with a central dome and matching minarets, reflected in a long pool",
+   "view": "Straight on from the centre line, early morning",
+   "right": "Left and right sides truly match",
+   "avoid": "Crowds, signs"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "9.1",
+   "use": "Symmetry in nature",
+   "shows": "A butterfly resting with open wings on a leaf",
+   "view": "Top-down, wings flat, soft light",
+   "right": "Wing patterns match left and right",
+   "avoid": "Blur on one wing"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "9.1",
+   "use": "Punching game",
+   "shows": "A paper strip folded in half, a hole punched through both layers, then opened to show two matching holes",
+   "view": "Top-down, three frames",
+   "right": "Holes the same distance from the fold",
+   "avoid": "Hands covering the paper"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Rangoli",
+   "shows": "A colourful flower rangoli with four-fold symmetry at a home entrance during Diwali",
+   "view": "Top-down, warm light, diyas around",
+   "right": "Design matches across both mirror lines",
+   "avoid": "Feet, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "9.2",
+   "use": "Rotational symmetry",
+   "shows": "A toy pinwheel with 4 blades photographed at 0°, 90°, 180° and 270° turns",
+   "view": "Straight on, same centre in all frames",
+   "right": "Each frame looks the same; a small mark on one blade shows the turn",
+   "avoid": "Hands"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "Ceiling fan",
+   "shows": "A three-blade ceiling fan seen from below",
+   "view": "Straight up from below, transparent background",
+   "right": "Blades 120° apart",
+   "avoid": "Brand names"
+  }
+ ]
+}

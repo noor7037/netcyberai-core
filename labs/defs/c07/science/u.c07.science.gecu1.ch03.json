@@ -1,0 +1,1157 @@
+{
+ "chapter_key": "u.c07.science.gecu1.ch03",
+ "class": 7,
+ "subject_id": "science",
+ "title": "Electricity: Circuits and their Components",
+ "source": "https://ncert.nic.in/textbook/pdf/gecu103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "A torchlight and its parts",
+   "labs": [
+    "c07-science-gecu1-ch03-torch-parts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2.1",
+   "title": "Electric cell: positive and negative terminals",
+   "labs": [],
+   "why_no_lab": "The two ends of a cell are best seen on a real cell and its photo; the battery lab then uses them."
+  },
+  {
+   "n": "3.2.2",
+   "title": "Battery: cells joined plus to minus",
+   "labs": [
+    "c07-science-gecu1-ch03-battery"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2.3",
+   "title": "Electric lamp: incandescent lamp and LED",
+   "labs": [
+    "c07-science-gecu1-ch03-led"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2.4",
+   "title": "Making a lamp glow with a cell",
+   "labs": [],
+   "why_no_lab": "Practised inside the battery and LED labs, where the child joins the gaps and the lamp glows."
+  },
+  {
+   "n": "3.2.5",
+   "title": "An electric circuit: a closed path",
+   "labs": [],
+   "why_no_lab": "The battery and switch labs show an open and a closed path; a separate lab would repeat them."
+  },
+  {
+   "n": "3.2.6",
+   "title": "Electric switch",
+   "labs": [
+    "c07-science-gecu1-ch03-switch"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Circuit diagrams and symbols",
+   "labs": [
+    "c07-science-gecu1-ch03-symbols"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Electrical conductors and insulators",
+   "labs": [
+    "c07-science-gecu1-ch03-conductors"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-science-gecu1-ch03-torch-parts",
+   "topic": "3.1",
+   "template": "match",
+   "title": {
+    "en": "Inside a torch",
+    "hi": "टॉर्च के अंदर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "cells",
+      "left": {
+       "en": "Cells",
+       "hi": "सेल"
+      },
+      "right": {
+       "en": "Give the electricity that makes the lamp glow",
+       "hi": "वह विद्युत देते हैं जिससे लैंप जलता है"
+      },
+      "why": {
+       "en": "Two or more cells in a torch push the current round the circuit.",
+       "hi": "टॉर्च के दो या अधिक सेल परिपथ में धारा चलाते हैं।"
+      }
+     },
+     {
+      "id": "switch",
+      "left": {
+       "en": "Switch",
+       "hi": "स्विच"
+      },
+      "right": {
+       "en": "Closes or breaks the path of the current",
+       "hi": "धारा का रास्ता जोड़ता या तोड़ता है"
+      },
+      "why": {
+       "en": "ON closes the path, OFF makes a gap.",
+       "hi": "ON रास्ता पूरा करता है, OFF उसमें खाली जगह बना देता है।"
+      }
+     },
+     {
+      "id": "lamp",
+      "left": {
+       "en": "Lamp (bulb)",
+       "hi": "लैंप (बल्ब)"
+      },
+      "right": {
+       "en": "Glows when current flows through it",
+       "hi": "धारा बहने पर जलता है"
+      },
+      "why": {
+       "en": "The thin filament or the LED gives out light.",
+       "hi": "पतला तंतु या LED प्रकाश देता है।"
+      }
+     },
+     {
+      "id": "reflector",
+      "left": {
+       "en": "Shiny reflector",
+       "hi": "चमकीला परावर्तक"
+      },
+      "right": {
+       "en": "Throws the light forward in a beam",
+       "hi": "प्रकाश को आगे एक किरण-पुंज में भेजता है"
+      },
+      "why": {
+       "en": "Its curved shiny surface sends the light one way.",
+       "hi": "इसकी मुड़ी हुई चमकीली सतह प्रकाश को एक ओर भेजती है।"
+      }
+     },
+     {
+      "id": "strip",
+      "left": {
+       "en": "Metal strip and spring",
+       "hi": "धातु की पट्टी और स्प्रिंग"
+      },
+      "right": {
+       "en": "Join the cells to the lamp and switch",
+       "hi": "सेलों को लैंप और स्विच से जोड़ते हैं"
+      },
+      "why": {
+       "en": "Metal lets current pass, so the strip works like a wire.",
+       "hi": "धातु धारा को जाने देती है, इसलिए पट्टी तार का काम करती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:cells",
+     "expect": "matched:cells",
+     "say": {
+      "en": "Tap Cells, then tap what they do.",
+      "hi": "'सेल' पर टैप करो, फिर उस पर जो वे करते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does the switch of a torch do?",
+      "hi": "टॉर्च का स्विच क्या करता है?"
+     },
+     "options": [
+      {
+       "id": "path",
+       "en": "Closes or breaks the path",
+       "hi": "रास्ता जोड़ता या तोड़ता है"
+      },
+      {
+       "id": "glow",
+       "en": "Glows",
+       "hi": "जलता है"
+      },
+      {
+       "id": "beam",
+       "en": "Makes the beam",
+       "hi": "किरण-पुंज बनाता है"
+      }
+     ],
+     "answer": "path"
+    },
+    {
+     "kind": "do",
+     "target": "left:switch",
+     "expect": "matched:switch",
+     "say": {
+      "en": "Match the switch.",
+      "hi": "स्विच को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other parts, then press Check.",
+      "hi": "बाक़ी भाग मिलाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A torch is a small electric circuit. The cells give the electricity, the metal strip and spring carry it, the switch closes the path, and the lamp glows. The reflector sends the light forward. If any part breaks the path, the lamp goes off.",
+      "hi": "टॉर्च एक छोटा विद्युत परिपथ है। सेल विद्युत देते हैं, धातु की पट्टी और स्प्रिंग उसे आगे ले जाते हैं, स्विच रास्ता पूरा करता है और लैंप जलता है। परावर्तक प्रकाश को आगे भेजता है। अगर कोई भाग रास्ता तोड़ दे, तो लैंप बुझ जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A torch has new cells but the lamp does not glow. What could be wrong?",
+        "hi": "टॉर्च में नए सेल हैं, फिर भी लैंप नहीं जलता। क्या ख़राबी हो सकती है?"
+       },
+       "options": [
+        {
+         "en": "The path is broken somewhere, for example a loose strip",
+         "hi": "रास्ता कहीं टूटा है, जैसे पट्टी ढीली है"
+        },
+        {
+         "en": "The reflector is dusty",
+         "hi": "परावर्तक पर धूल है"
+        },
+        {
+         "en": "The torch is too heavy",
+         "hi": "टॉर्च बहुत भारी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Current needs an unbroken path; a loose part or a fused lamp breaks it.",
+        "hi": "धारा को बिना टूटा रास्ता चाहिए; ढीला भाग या फ्यूज़ हुआ लैंप उसे तोड़ देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dust makes the beam dimmer but cannot stop the lamp from glowing.",
+         "hi": "धूल किरण-पुंज को धुँधला करती है, पर लैंप को जलने से नहीं रोकती।"
+        },
+        {
+         "en": "Weight has nothing to do with the flow of current.",
+         "hi": "भार का धारा के बहने से कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and match the parts in a new order. If you can, look inside a torch at home with an adult.",
+      "hi": "'फिर से शुरू' दबाओ और भाग नए क्रम में मिलाओ। हो सके तो किसी बड़े के साथ घर की टॉर्च खोलकर देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch03-battery",
+   "topic": "3.2.2",
+   "template": "circuit",
+   "title": {
+    "en": "Two cells make a battery",
+    "hi": "दो सेल से बैटरी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "free",
+    "preset": "opposite-cells",
+    "parts": [
+     "wire:copper"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:wire:copper",
+     "expect": "placed:wire:copper",
+     "say": {
+      "en": "Tap Copper wire to join the first gap.",
+      "hi": "पहली खाली जगह जोड़ने के लिए 'ताँबे का तार' पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:wire:copper",
+     "expect": "placed:wire:copper",
+     "say": {
+      "en": "Tap it again to join the second gap.",
+      "hi": "दूसरी खाली जगह जोड़ने के लिए फिर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at the two cells: they face opposite ways. Will the lamp glow when you close the switch?",
+      "hi": "दोनों सेल देखो: वे उल्टी दिशा में लगे हैं। स्विच बंद करने पर क्या लैंप जलेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, brightly",
+       "hi": "हाँ, तेज़"
+      },
+      {
+       "id": "dim",
+       "en": "Yes, but dimly",
+       "hi": "हाँ, पर धीमा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "closed",
+     "say": {
+      "en": "Tap the switch to close it.",
+      "hi": "स्विच बंद करने के लिए उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "board",
+     "expect": "lit",
+     "say": {
+      "en": "Tap the first cell to turn it around.",
+      "hi": "पहले सेल को घुमाने के लिए उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "With the cells facing opposite ways, they pushed against each other and no current flowed. Turned the same way, the positive end of one cell touches the negative end of the next. Together they make a battery, and the lamp glows. This is why a torch shows how to put the cells in.",
+      "hi": "जब सेल उल्टी दिशा में थे, तो वे एक-दूसरे के विरुद्ध धक्का दे रहे थे और धारा नहीं बही। एक ही दिशा में करने पर एक सेल का धन सिरा अगले के ऋण सिरे से जुड़ता है। मिलकर वे बैटरी बनाते हैं और लैंप जलता है। इसीलिए टॉर्च पर सेल लगाने का तरीक़ा बना होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a battery of two cells, how are the cells joined?",
+        "hi": "दो सेलों की बैटरी में सेल कैसे जोड़े जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Positive end of one to the negative end of the next",
+         "hi": "एक का धन सिरा अगले के ऋण सिरे से"
+        },
+        {
+         "en": "Positive end to positive end",
+         "hi": "धन सिरा धन सिरे से"
+        },
+        {
+         "en": "They need not touch at all",
+         "hi": "उन्हें छूना ज़रूरी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Plus to minus lets both cells push the same way.",
+        "hi": "धन को ऋण से जोड़ने पर दोनों सेल एक ही दिशा में धक्का देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Plus to plus makes the cells push against each other, as you saw: no glow.",
+         "hi": "धन से धन जोड़ने पर सेल एक-दूसरे के विरुद्ध धक्का देते हैं, जैसा तुमने देखा: लैंप नहीं जला।"
+        },
+        {
+         "en": "Without touching there is a gap, and current cannot cross a gap.",
+         "hi": "बिना छुए खाली जगह रहती है, और धारा खाली जगह पार नहीं कर सकती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What did the wires do in this circuit?",
+        "hi": "इस परिपथ में तारों ने क्या किया?"
+       },
+       "options": [
+        {
+         "en": "Closed the gaps so the path was complete",
+         "hi": "खाली जगहें भरकर रास्ता पूरा किया"
+        },
+        {
+         "en": "Gave the electricity",
+         "hi": "विद्युत दी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A circuit works only when the path from one end of the battery back to the other end is complete.",
+        "hi": "परिपथ तभी काम करता है जब बैटरी के एक सिरे से दूसरे सिरे तक लौटने का रास्ता पूरा हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wires only carry the current; the cells give the electricity.",
+         "hi": "तार केवल धारा ले जाते हैं; विद्युत सेल देते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Open the switch and close it again. Tap a wire to take it off and see what happens to the lamp.",
+      "hi": "स्विच खोलो और फिर बंद करो। किसी तार पर टैप करके उसे हटाओ और देखो लैंप का क्या होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch03-led",
+   "topic": "3.2.3",
+   "template": "circuit",
+   "title": {
+    "en": "Lighting an LED",
+    "hi": "LED जलाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "free",
+    "preset": "led",
+    "parts": [
+     "wire:copper"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:wire:copper",
+     "expect": "placed:wire:copper",
+     "say": {
+      "en": "Tap Copper wire to join the first gap.",
+      "hi": "पहली खाली जगह जोड़ने के लिए 'ताँबे का तार' पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:wire:copper",
+     "expect": "placed:wire:copper",
+     "say": {
+      "en": "Tap it again to join the second gap.",
+      "hi": "दूसरी खाली जगह जोड़ने के लिए फिर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "lit",
+     "say": {
+      "en": "Close the switch. The LED glows.",
+      "hi": "स्विच बंद करो। LED जलता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will happen if you turn the battery around?",
+      "hi": "अगर तुम बैटरी को उल्टा घुमा दो तो क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "off",
+       "en": "The LED goes off",
+       "hi": "LED बुझ जाएगा"
+      },
+      {
+       "id": "bright",
+       "en": "It glows brighter",
+       "hi": "और तेज़ जलेगा"
+      },
+      {
+       "id": "same",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "off"
+    },
+    {
+     "kind": "do",
+     "target": "board",
+     "expect": "open",
+     "say": {
+      "en": "Tap the battery to turn it around.",
+      "hi": "बैटरी को घुमाने के लिए उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An LED glows only when current goes through it one way. Its longer leg must go to the positive side and its shorter leg to the negative side. Turned around, it stops the current. The small resistor in the circuit protects the LED. LEDs use much less electricity than filament bulbs.",
+      "hi": "LED तभी जलता है जब धारा उसमें एक ही दिशा में जाए। उसकी लंबी टाँग धन ओर और छोटी टाँग ऋण ओर लगनी चाहिए। उल्टा करने पर वह धारा रोक देता है। परिपथ का छोटा प्रतिरोधक LED को बचाता है। LED तंतु वाले बल्ब से बहुत कम विद्युत ख़र्च करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An LED does not glow in a closed circuit with a good battery. What should you try first?",
+        "hi": "अच्छी बैटरी वाले बंद परिपथ में LED नहीं जलता। पहले क्या करके देखोगे?"
+       },
+       "options": [
+        {
+         "en": "Turn the LED around",
+         "hi": "LED को उल्टा करके लगाओ"
+        },
+        {
+         "en": "Add more wire",
+         "hi": "और तार जोड़ो"
+        },
+        {
+         "en": "Paint the LED",
+         "hi": "LED को रंग दो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The LED may be the wrong way round; it works only one way.",
+        "hi": "हो सकता है LED उल्टा लगा हो; यह एक ही दिशा में काम करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More wire does not help if the LED is blocking the current.",
+         "hi": "अगर LED धारा रोक रहा है तो और तार जोड़ने से कुछ नहीं होगा।"
+        },
+        {
+         "en": "Paint has no effect on whether current flows.",
+         "hi": "रंग से धारा के बहने पर कोई असर नहीं पड़ता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which leg of an LED goes to the positive terminal?",
+        "hi": "LED की कौन-सी टाँग धन टर्मिनल से जुड़ती है?"
+       },
+       "options": [
+        {
+         "en": "The longer leg",
+         "hi": "लंबी टाँग"
+        },
+        {
+         "en": "The shorter leg",
+         "hi": "छोटी टाँग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The longer leg is the positive leg.",
+        "hi": "लंबी टाँग धन टाँग होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The shorter leg goes to the negative terminal.",
+         "hi": "छोटी टाँग ऋण टर्मिनल से जुड़ती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn the battery back so the LED glows again. Then tap the LED itself to turn it around and see what happens.",
+      "hi": "बैटरी वापस घुमाओ ताकि LED फिर जले। फिर ख़ुद LED पर टैप करके उसे उल्टा करो और देखो क्या होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch03-switch",
+   "topic": "3.2.6",
+   "template": "circuit",
+   "title": {
+    "en": "The switch: ON and OFF",
+    "hi": "स्विच: चालू और बंद"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "free",
+    "preset": "torch",
+    "parts": [
+     "wire:copper"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "open",
+     "say": {
+      "en": "This circuit is like a torch. Tap the switch to turn it OFF.",
+      "hi": "यह परिपथ टॉर्च जैसा है। स्विच पर टैप करके इसे बंद (OFF) करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The switch is OFF and the bulb is dark. What does the switch do inside?",
+      "hi": "स्विच बंद है और बल्ब बुझा है। स्विच अंदर क्या करता है?"
+     },
+     "options": [
+      {
+       "id": "gap",
+       "en": "Makes a gap in the path",
+       "hi": "रास्ते में खाली जगह बनाता है"
+      },
+      {
+       "id": "use",
+       "en": "Uses up the cells",
+       "hi": "सेलों को ख़र्च कर देता है"
+      },
+      {
+       "id": "cool",
+       "en": "Cools the bulb",
+       "hi": "बल्ब को ठंडा करता है"
+      }
+     ],
+     "answer": "gap"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "lit",
+     "say": {
+      "en": "Tap the switch again to turn it ON.",
+      "hi": "स्विच पर फिर टैप करके इसे चालू (ON) करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A switch is a gap that we can open and close. When it is ON, the metal parts touch and the path is complete, so the bulb glows. When it is OFF, they move apart and the circuit is open. The meter in the circuit shows the current: zero when the switch is OFF.",
+      "hi": "स्विच एक ऐसी खाली जगह है जिसे हम खोल और बंद कर सकते हैं। ON होने पर धातु के भाग छूते हैं और रास्ता पूरा होता है, इसलिए बल्ब जलता है। OFF होने पर वे अलग हो जाते हैं और परिपथ खुल जाता है। परिपथ का मीटर धारा दिखाता है: OFF पर शून्य।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When is a circuit called a closed circuit?",
+        "hi": "परिपथ को बंद परिपथ कब कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "When the path has no gap and current flows",
+         "hi": "जब रास्ते में कोई खाली जगह न हो और धारा बहे"
+        },
+        {
+         "en": "When the switch is OFF",
+         "hi": "जब स्विच OFF हो"
+        },
+        {
+         "en": "When the bulb is taken out",
+         "hi": "जब बल्ब निकाल दिया जाए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Closed means complete: current goes all the way round.",
+        "hi": "बंद का अर्थ है पूरा: धारा पूरा चक्कर लगाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "OFF opens the path, so the circuit is open, not closed.",
+         "hi": "OFF रास्ता खोल देता है, इसलिए परिपथ खुला है, बंद नहीं।"
+        },
+        {
+         "en": "Taking out the bulb leaves a gap; the circuit becomes open.",
+         "hi": "बल्ब निकालने से खाली जगह बनती है; परिपथ खुला हो जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap a copper wire on the board to take it off. Does the switch still work? Put it back with the Copper wire button.",
+      "hi": "बोर्ड पर किसी ताँबे के तार पर टैप करके उसे हटाओ। क्या स्विच अब भी काम करता है? 'ताँबे का तार' बटन से उसे वापस लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch03-symbols",
+   "topic": "3.3",
+   "template": "match",
+   "title": {
+    "en": "Circuit symbols",
+    "hi": "परिपथ के प्रतीक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "cell",
+      "left": {
+       "en": "Electric cell",
+       "hi": "विद्युत सेल"
+      },
+      "right": {
+       "en": "A long thin line beside a short thick line",
+       "hi": "एक लंबी पतली रेखा के पास एक छोटी मोटी रेखा"
+      },
+      "why": {
+       "en": "The long line is the positive end, the short thick line the negative end.",
+       "hi": "लंबी रेखा धन सिरा है, छोटी मोटी रेखा ऋण सिरा।"
+      }
+     },
+     {
+      "id": "battery",
+      "left": {
+       "en": "Battery",
+       "hi": "बैटरी"
+      },
+      "right": {
+       "en": "Two or more cell symbols joined in a row",
+       "hi": "दो या अधिक सेल-प्रतीक एक पंक्ति में जुड़े हुए"
+      },
+      "why": {
+       "en": "A battery is cells joined plus to minus.",
+       "hi": "बैटरी में सेल धन से ऋण जोड़े जाते हैं।"
+      }
+     },
+     {
+      "id": "lamp",
+      "left": {
+       "en": "Lamp",
+       "hi": "लैंप"
+      },
+      "right": {
+       "en": "A circle with a cross inside",
+       "hi": "एक वृत्त जिसके अंदर क्रॉस हो"
+      },
+      "why": {
+       "en": "The cross reminds us of the glowing filament.",
+       "hi": "क्रॉस हमें जलते तंतु की याद दिलाता है।"
+      }
+     },
+     {
+      "id": "switchon",
+      "left": {
+       "en": "Switch ON",
+       "hi": "स्विच ON"
+      },
+      "right": {
+       "en": "A line with a dot at each end, closed flat",
+       "hi": "दोनों सिरों पर बिंदु वाली रेखा, सीधी बंद"
+      },
+      "why": {
+       "en": "ON means the path is closed.",
+       "hi": "ON का अर्थ है रास्ता बंद (पूरा) है।"
+      }
+     },
+     {
+      "id": "switchoff",
+      "left": {
+       "en": "Switch OFF",
+       "hi": "स्विच OFF"
+      },
+      "right": {
+       "en": "A line lifted up at one dot, leaving a gap",
+       "hi": "एक बिंदु पर ऊपर उठी रेखा, बीच में खाली जगह"
+      },
+      "why": {
+       "en": "OFF leaves a gap, so the circuit is open.",
+       "hi": "OFF में खाली जगह रहती है, इसलिए परिपथ खुला है।"
+      }
+     },
+     {
+      "id": "wire",
+      "left": {
+       "en": "Connecting wire",
+       "hi": "जोड़ने वाला तार"
+      },
+      "right": {
+       "en": "A plain straight line",
+       "hi": "एक सादी सीधी रेखा"
+      },
+      "why": {
+       "en": "Wires are drawn as straight lines with neat corners.",
+       "hi": "तार साफ़ कोनों वाली सीधी रेखाओं से बनाए जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:cell",
+     "expect": "matched:cell",
+     "say": {
+      "en": "Tap Electric cell, then the drawing that shows it.",
+      "hi": "'विद्युत सेल' पर टैप करो, फिर उस चित्र-विवरण पर जो उसे दिखाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which symbol shows a lamp?",
+      "hi": "कौन-सा प्रतीक लैंप दिखाता है?"
+     },
+     "options": [
+      {
+       "id": "cross",
+       "en": "A circle with a cross",
+       "hi": "क्रॉस वाला वृत्त"
+      },
+      {
+       "id": "line",
+       "en": "A straight line",
+       "hi": "सीधी रेखा"
+      },
+      {
+       "id": "gap",
+       "en": "A line with a gap",
+       "hi": "खाली जगह वाली रेखा"
+      }
+     ],
+     "answer": "cross"
+    },
+    {
+     "kind": "do",
+     "target": "left:lamp",
+     "expect": "matched:lamp",
+     "say": {
+      "en": "Match the lamp.",
+      "hi": "लैंप को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A circuit diagram uses simple symbols instead of pictures. Anyone, anywhere, can read it and build the same circuit. In a cell symbol the long line is the positive end. A switch drawn with a gap means the circuit is open.",
+      "hi": "परिपथ आरेख में चित्रों की जगह सरल प्रतीक होते हैं। कोई भी, कहीं भी, इसे पढ़कर वही परिपथ बना सकता है। सेल के प्रतीक में लंबी रेखा धन सिरा है। खाली जगह वाला स्विच बताता है कि परिपथ खुला है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a circuit diagram the switch is drawn with a gap. Will the lamp glow?",
+        "hi": "परिपथ आरेख में स्विच खाली जगह के साथ बना है। क्या लैंप जलेगा?"
+       },
+       "options": [
+        {
+         "en": "No, the circuit is open",
+         "hi": "नहीं, परिपथ खुला है"
+        },
+        {
+         "en": "Yes, always",
+         "hi": "हाँ, हमेशा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A gap means the switch is OFF, so no current flows.",
+        "hi": "खाली जगह का अर्थ है स्विच OFF है, इसलिए धारा नहीं बहती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A lamp glows only in a closed circuit; the gap breaks it.",
+         "hi": "लैंप केवल बंद परिपथ में जलता है; खाली जगह उसे तोड़ देती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw the torch circuit in your notebook using these symbols: a battery, a switch and a lamp.",
+      "hi": "इन प्रतीकों से अपनी कॉपी में टॉर्च का परिपथ बनाओ: बैटरी, स्विच और लैंप।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch03-conductors",
+   "topic": "3.4",
+   "template": "circuit",
+   "title": {
+    "en": "Conductor or insulator?",
+    "hi": "चालक या विद्युतरोधी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "conductors",
+    "preset": "solids"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "material:copper",
+     "expect": "conducts",
+     "say": {
+      "en": "Put the copper strip between the clips.",
+      "hi": "ताँबे की पट्टी को क्लिपों के बीच रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will test plastic. Will the bulb glow?",
+      "hi": "अब तुम प्लास्टिक जाँचोगे। क्या बल्ब जलेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "material:plastic",
+     "expect": "insulates",
+     "say": {
+      "en": "Test the plastic.",
+      "hi": "प्लास्टिक जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "material:graphite",
+     "expect": "conducts",
+     "say": {
+      "en": "Now test the pencil lead (graphite).",
+      "hi": "अब पेंसिल की लीड (ग्रेफ़ाइट) जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Copper, iron, aluminium and the steel key let current pass: they are conductors. Plastic, rubber, wood, glass, paper and cloth do not: they are insulators. Pencil lead is graphite, a form of carbon, and it conducts too. Wires are made of copper and covered with plastic, so current stays inside and we stay safe.",
+      "hi": "ताँबा, लोहा, ऐलुमिनियम और स्टील की चाबी धारा को जाने देते हैं: ये चालक हैं। प्लास्टिक, रबड़, लकड़ी, काँच, कागज़ और कपड़ा नहीं जाने देते: ये विद्युतरोधी हैं। पेंसिल की लीड ग्रेफ़ाइट है, जो कार्बन का एक रूप है, और यह भी चालक है। तार ताँबे के बनते हैं और उन पर प्लास्टिक चढ़ा होता है, ताकि धारा अंदर रहे और हम सुरक्षित रहें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do electricians use screwdrivers with rubber or plastic handles?",
+        "hi": "बिजली मिस्त्री रबड़ या प्लास्टिक के हत्थे वाले पेचकस क्यों लेते हैं?"
+       },
+       "options": [
+        {
+         "en": "Rubber and plastic are insulators",
+         "hi": "रबड़ और प्लास्टिक विद्युतरोधी हैं"
+        },
+        {
+         "en": "They are cheaper",
+         "hi": "वे सस्ते होते हैं"
+        },
+        {
+         "en": "They conduct better",
+         "hi": "वे बेहतर चालक हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Insulators stop current reaching the hand.",
+        "hi": "विद्युतरोधी धारा को हाथ तक पहुँचने से रोकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cost is not the reason; safety is.",
+         "hi": "कारण क़ीमत नहीं, सुरक्षा है।"
+        },
+        {
+         "en": "They are used because they do NOT conduct.",
+         "hi": "इनका उपयोग इसलिए होता है क्योंकि ये चालक नहीं हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is a conductor?",
+        "hi": "इनमें से चालक कौन है?"
+       },
+       "options": [
+        {
+         "en": "A steel key",
+         "hi": "स्टील की चाबी"
+        },
+        {
+         "en": "An eraser",
+         "hi": "रबड़ (इरेज़र)"
+        },
+        {
+         "en": "A paper strip",
+         "hi": "कागज़ की पट्टी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Steel is a metal, and metals conduct.",
+        "hi": "स्टील एक धातु है, और धातुएँ चालक होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The bulb stays dark with an eraser; it is an insulator.",
+         "hi": "इरेज़र के साथ बल्ब नहीं जलता; यह विद्युतरोधी है।"
+        },
+        {
+         "en": "Paper does not let current pass.",
+         "hi": "कागज़ धारा को नहीं जाने देता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Test every material. Make two lists in your notebook: conductors and insulators. Never test anything with the mains supply at home.",
+      "hi": "हर पदार्थ जाँचो। अपनी कॉपी में दो सूचियाँ बनाओ: चालक और विद्युतरोधी। घर की मेन बिजली से कभी कुछ न जाँचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "CUT",
+   "topic": "3.1",
+   "use": "Inside a torch (match lab and reader)",
+   "shows": "A torch cut open lengthwise: two cells in a row, the spring at the back, the metal strip along the side to the slide switch, the bulb in the shiny reflector, the glass front",
+   "view": "Side view, cut-away, soft studio light, white background",
+   "right": "Cells face the same way (plus towards the bulb); the strip makes a continuous path",
+   "avoid": "Brand names on the cells or body"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.2.1",
+   "use": "The two ends of a cell",
+   "shows": "A 1.5 V dry cell shown twice: the metal cap end (positive) and the flat end (negative) (reuse LIB-PHY-circuit-kit for the cell itself; this row adds the two end views)",
+   "view": "Close-up of each end, lit from top left, transparent background",
+   "right": "Cap raised at positive end, flat disc at negative end",
+   "avoid": "Printed text or brand on the cell"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.2.2",
+   "use": "Cells in a remote control",
+   "shows": "A TV remote with its back cover off and two AA cells lying in opposite directions, as moulded in the holder",
+   "view": "From above, close-up, wooden table",
+   "right": "Cells really lie opposite ways, matching the springs",
+   "avoid": "Logos, readable text"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "3.2.3",
+   "use": "Filament and LED",
+   "shows": "Two frames: the coiled filament inside a glowing torch bulb; an LED glowing with its longer and shorter legs visible",
+   "view": "Macro, dark background",
+   "right": "Filament a thin coil; LED legs clearly of unequal length",
+   "avoid": "Cracked glass, labels"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "3.4",
+   "use": "The conductor tester",
+   "shows": "A cell, a torch bulb and two crocodile clips on a board; frame 1 a steel spoon between the clips and the bulb glowing; frame 2 a plastic ruler between the clips and the bulb dark (parts: reuse LIB-PHY-circuit-kit)",
+   "view": "Same framing from above, white board",
+   "right": "Glow only with the spoon",
+   "avoid": "Mains sockets, bare household wires"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "3.3",
+   "use": "Base for the circuit diagram lab",
+   "shows": "A clean rectangular loop of black lines with three evenly spaced white gaps where the app will place symbols",
+   "view": "Flat, white background",
+   "right": "Neat right-angle corners, equal line width",
+   "avoid": "Any symbols or labels drawn in"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "3.4",
+   "use": "Insulators keep us safe",
+   "shows": "An electrician's hands in rubber gloves holding a screwdriver with a plastic handle at a switchboard",
+   "view": "Close-up, side view, warm indoor light",
+   "right": "Gloves and handle clearly rubber or plastic; adult hands",
+   "avoid": "Faces, live open wiring, brand marks"
+  }
+ ]
+}

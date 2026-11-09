@@ -1,0 +1,208 @@
+{
+  "chapter_key": "u.c12.history.lehs3.ch09",
+  "class": 12,
+  "subject_id": "history",
+  "title": "Colonialism and the Countryside",
+  "source": "https://ncert.nic.in/textbook/pdf/lehs3ps.pdf",
+  "topics": [
+    { "n": "0.1", "title": "Exploring official archives: whose voice is in the record?", "labs": ["c12-history-lehs3-ch09-archives"], "why_no_lab": null },
+    { "n": "1", "title": "Bengal and the zamindars: auctions, defaults and the Fifth Report", "labs": ["c12-history-lehs3-ch09-bengal"], "why_no_lab": null },
+    { "n": "2", "title": "The hoe and the plough: the Santhals and Buchanan", "labs": [], "why_no_lab": "The contrast of hoe and plough is a story told through one official's accounts; reading and discussion serve it better than a quiz." },
+    { "n": "3", "title": "A revolt in the countryside: revenue, debt, cotton and credit", "labs": ["c12-history-lehs3-ch09-debt"], "why_no_lab": null },
+    { "n": "4", "title": "The Deccan Riots Commission", "labs": [], "why_no_lab": "The commission's report is a case to be read closely; a lab would flatten its argument." }
+  ],
+  "labs": [
+    {
+      "id": "c12-history-lehs3-ch09-archives",
+      "topic": "0.1",
+      "template": "sort",
+      "title": { "en": "Whose words are in the record?", "hi": "दस्तावेज़ में किसकी बात है?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "official", "label": { "en": "Written by the state", "hi": "राज्य द्वारा लिखा गया" } },
+          { "id": "voices", "label": { "en": "In the people's own words", "hi": "लोगों के अपने शब्दों में" } }
+        ],
+        "cards": [
+          { "id": "ledger", "text": { "en": "Revenue registers kept by company officers", "hi": "कंपनी अधिकारियों द्वारा रखे गए राजस्व रजिस्टर" }, "bin": "official", "why": { "en": "Revenue registers were kept by officers of the company's administration, so they show the state's view of land and revenue.", "hi": "राजस्व रजिस्टर कंपनी प्रशासन के अधिकारी रखते थे, इसलिए वे ज़मीन और राजस्व पर राज्य का नज़रिया दिखाते हैं।" } },
+          { "id": "survey", "text": { "en": "Survey reports prepared for the government", "hi": "सरकार के लिए तैयार सर्वेक्षण रिपोर्टें" }, "bin": "official", "why": { "en": "Survey reports were written for the government, and they framed rural society in the state's terms.", "hi": "सर्वेक्षण रिपोर्टें सरकार के लिए लिखी जाती थीं, और वे ग्रामीण समाज को राज्य की भाषा में ढालती थीं।" } },
+          { "id": "petition", "text": { "en": "Petitions written by peasants themselves", "hi": "किसानों द्वारा स्वयं लिखी गई अर्ज़ियाँ" }, "bin": "voices", "why": { "en": "Petitions carried a peasant's own complaint, which is a rare voice in official archives.", "hi": "अर्ज़ियों में किसान की अपनी शिकायत होती है, जो सरकारी दस्तावेज़ों में दुर्लभ आवाज़ है।" } },
+          { "id": "songs", "text": { "en": "Folk songs and stories passed on in villages", "hi": "गाँवों में पीढ़ी-दर-पीढ़ी चलने वाले लोकगीत और कहानियाँ" }, "bin": "voices", "why": { "en": "Folk songs and stories carry the villagers' memory of injustice, and they add a voice the archives often leave out.", "hi": "लोकगीत और कहानियाँ गाँवों की अन्याय की स्मृति रखती हैं, और वह आवाज़ जोड़ती हैं जो दस्तावेज़ अक्सर छोड़ देते हैं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "An official archive is full of reports. Do you think it always tells the story from the peasant's side?", "hi": "सरकारी अभिलेखागार रिपोर्टों से भरे हैं। तुम्हें लगता है वे हमेशा किसान के पक्ष से कहानी बताते हैं?" },
+          "options": [
+            { "id": "yes", "en": "Yes, always from the peasant's side", "hi": "हाँ, हमेशा किसान के पक्ष से" },
+            { "id": "no", "en": "No, mostly from the state's side", "hi": "नहीं, ज़्यादातर राज्य के पक्ष से" }
+          ],
+          "answer": "no"
+        },
+        { "kind": "do", "target": "bin:official", "expect": "correct:ledger", "say": { "en": "Pick the revenue registers card and tap 'Written by the state'.", "hi": "राजस्व रजिस्टर वाला कार्ड उठाकर 'राज्य द्वारा लिखा गया' टैप करो।" } },
+        { "kind": "do", "target": "bin:voices", "expect": "correct:petition", "say": { "en": "Pick the peasants' petitions card and tap 'In the people's own words'.", "hi": "किसानों की अर्ज़ियों वाला कार्ड उठाकर 'लोगों के अपने शब्दों में' टैप करो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Official archives were written by officers for the state. They hold valuable facts, but their view of the countryside is partial. To read them well, a historian looks for other voices, such as petitions and village songs, and asks who wrote each record and why.", "hi": "सरकारी अभिलेखागार अधिकारियों ने राज्य के लिए लिखे। उनमें कीमती तथ्य हैं, पर ग्रामीण जीवन का उनका नज़रिया अधूरा है। उन्हें अच्छी तरह पढ़ने के लिए इतिहासकार अर्ज़ियों और लोकगीतों जैसी दूसरी आवाज़ें खोजता है, और पूछता है कि हर दस्तावेज़ किसने और क्यों लिखा।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which source gives the peasants' own complaint?", "hi": "कौन-सा स्रोत किसानों की अपनी शिकायत देता है?" },
+              "options": [
+                { "en": "A revenue register", "hi": "एक राजस्व रजिस्टर" },
+                { "en": "A survey report for the government", "hi": "सरकार के लिए सर्वेक्षण रिपोर्ट" },
+                { "en": "A petition written by peasants", "hi": "किसानों द्वारा लिखी गई अर्ज़ी" }
+              ],
+              "answer": 2,
+              "why": { "en": "A petition written by peasants carries their own words, which is rare in official archives.", "hi": "किसानों द्वारा लिखी अर्ज़ी में उनके अपने शब्द होते हैं, जो सरकारी अभिलेखागार में दुर्लभ है।" },
+              "wrong": [
+                { "en": "A revenue register was kept by officers, so it shows the state's view.", "hi": "राजस्व रजिस्टर अधिकारी रखते थे, इसलिए वह राज्य का नज़रिया दिखाता है।" },
+                { "en": "A survey report was written for the government, not by peasants.", "hi": "सर्वेक्षण रिपोर्ट सरकार के लिए लिखी गई थी, किसानों ने नहीं।" },
+                ""
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Put the folk songs card in the official bin and read why it is wrong. What does a village song remember that a register does not?", "hi": "लोकगीत वाला कार्ड सरकारी खाने में रखकर पढ़ो कि वह गलत क्यों है। गाँव का गीत वह क्या याद रखता है जो रजिस्टर नहीं रखता?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs3-ch09-bengal",
+      "topic": "1",
+      "template": "timeline",
+      "title": { "en": "Bengal's land arrangements in order", "hi": "बंगाल की ज़मीन व्यवस्थाएँ क्रम में" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1750, 1830],
+        "task": "order",
+        "title": { "en": "From the Diwani to the Fifth Report", "hi": "दीवानी से पाँचवीं रिपोर्ट तक" },
+        "events": [
+          { "id": "diwani", "year": 1765, "label": { "en": "The East India Company gets the diwani of Bengal", "hi": "ईस्ट इंडिया कंपनी को बंगाल की दीवानी मिलती है" } },
+          { "id": "permanent", "year": 1793, "label": { "en": "The Permanent Settlement fixes the zamindars' revenue", "hi": "स्थायी बंदोबस्त ज़मींदारों का लगान स्थायी रूप से तय करता है" } },
+          { "id": "fifth", "year": 1812, "label": { "en": "The Fifth Report on the company's rule is presented", "hi": "कंपनी के शासन पर पाँचवीं रिपोर्ट पेश होती है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Three moments are on the strip. Which came first?", "hi": "पट्टी पर तीन पड़ाव हैं। पहले कौन-सा हुआ?" },
+          "options": [
+            { "id": "permanent", "en": "The Permanent Settlement", "hi": "स्थायी बंदोबस्त" },
+            { "id": "diwani", "en": "The diwani grant", "hi": "दीवानी अनुदान" }
+          ],
+          "answer": "diwani"
+        },
+        { "kind": "do", "target": "event:diwani", "expect": "placed:diwani", "say": { "en": "Tap the diwani grant first.", "hi": "सबसे पहले दीवानी अनुदान वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:permanent", "expect": "placed:permanent", "say": { "en": "Next, tap the Permanent Settlement.", "hi": "अब स्थायी बंदोबस्त वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:fifth", "expect": "placed:fifth", "say": { "en": "Last, tap the Fifth Report, then press Check.", "hi": "आख़िर में पाँचवीं रिपोर्ट वाली घटना टैप करो, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to see your order.", "hi": "अपना क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The company gained the right to collect revenue in Bengal in 1765. The Permanent Settlement of 1793 fixed the demand on zamindars for good, and the Fifth Report of 1812 reviewed the company's rule. Revenue arrangements changed the lives of zamindars and peasants alike.", "hi": "कंपनी को 1765 में बंगाल में राजस्व वसूली का अधिकार मिला। 1793 के स्थायी बंदोबस्त ने ज़मींदारों की माँग हमेशा के लिए तय कर दी, और 1812 की पाँचवीं रिपोर्ट ने कंपनी के शासन की समीक्षा की। राजस्व की इन व्यवस्थाओं ने ज़मींदारों और किसानों, दोनों की ज़िंदगी बदली।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which event fixed the zamindars' revenue demand permanently?", "hi": "कौन-सी घटना ने ज़मींदारों की लगान माँग स्थायी रूप से तय की?" },
+              "options": [
+                { "en": "The diwani grant of 1765", "hi": "1765 का दीवानी अनुदान" },
+                { "en": "The Permanent Settlement of 1793", "hi": "1793 का स्थायी बंदोबस्त" },
+                { "en": "The Fifth Report of 1812", "hi": "1812 की पाँचवीं रिपोर्ट" }
+              ],
+              "answer": 1,
+              "why": { "en": "The Permanent Settlement of 1793 fixed the revenue demand on zamindars for good.", "hi": "1793 का स्थायी बंदोबस्त ज़मींदारों की लगान माँग हमेशा के लिए तय करता था।" },
+              "wrong": [
+                { "en": "The diwani grant gave the company the right to collect revenue, but it did not fix the demand.", "hi": "दीवानी अनुदान ने कंपनी को राजस्व वसूली का अधिकार दिया, पर माँग तय नहीं की।" },
+                "",
+                { "en": "The Fifth Report reviewed the company's rule in 1812; it came later and did not set the demand.", "hi": "पाँचवीं रिपोर्ट 1812 में कंपनी के शासन की समीक्षा थी; वह बाद में आई और माँग तय नहीं करती थी।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Zoom in and count the years from the diwani grant to the Fifth Report. Why did the arrangements keep changing?", "hi": "ज़ूम करके दीवानी अनुदान से पाँचवीं रिपोर्ट तक के साल गिनो। व्यवस्थाएँ लगातार क्यों बदलती रहीं?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs3-ch09-debt",
+      "topic": "3",
+      "template": "scenario",
+      "title": { "en": "A family in debt", "hi": "कर्ज़ में डूबा एक परिवार" },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "setting": "cotton village",
+        "role": { "en": "A peasant family facing a high revenue demand", "hi": "ऊँची लगान माँग का सामना करता एक किसान परिवार" },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": { "en": "The revenue demand is high this year. A moneylender offers a loan, and cotton prices are rising. What will the family do first?", "hi": "इस साल लगान की माँग ऊँची है। एक साहूकार कर्ज़ देने को तैयार है, और कपास के दाम बढ़ रहे हैं। परिवार पहले क्या करेगा?" },
+            "choices": [
+              { "id": "c1", "text": { "en": "Take the loan and grow more cotton to pay the rent", "hi": "कर्ज़ लेकर लगान चुकाने के लिए ज़्यादा कपास उगाओ" }, "next": "s2", "feedback": { "en": "The loan helped at first, but the debt grows if prices fall.", "hi": "कर्ज़ से शुरू में मदद मिली, पर दाम गिरे तो कर्ज़ बढ़ता है।" } },
+              { "id": "c2", "text": { "en": "Sell the cattle and leave the field empty", "hi": "पशु बेचो और खेत खाली छोड़ दो" }, "next": "end", "good": false, "feedback": { "en": "Selling everything leaves no seed or draught animals for the next season.", "hi": "सब कुछ बेच देने से अगले मौसम के लिए न बीज बचता है न हल खींचने वाले पशु।" } },
+              { "id": "c3", "text": { "en": "Write a petition asking the officer to lower the demand", "hi": "अधिकारी से माँग घटाने के लिए अर्ज़ी लिखो" }, "next": "end", "good": true, "feedback": { "en": "Petitions were a real way to seek relief, though replies were often slow or absent.", "hi": "राहत माँगने का अर्ज़ी एक असली तरीका था, हालाँकि जवाब अक्सर देर से या नहीं आते थे।" } }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": { "en": "Cotton prices fall, and the moneylender asks for repayment. Credit becomes hard to get. What does the family do next?", "hi": "कपास के दाम गिर गए, और साहूकार चुकौती माँगता है। अब उधार मिलना मुश्किल है। परिवार आगे क्या करे?" },
+            "choices": [
+              { "id": "c4", "text": { "en": "Wait and hope prices will rise again, with no plan", "hi": "बिना किसी योजना के इंतज़ार करो और उम्मीद रखो कि दाम फिर चढ़ेंगे" }, "next": "end", "good": false, "feedback": { "en": "Waiting without a plan left many families open to losing their land.", "hi": "बिना योजना के इंतज़ार ने कई परिवारों को ज़मीन खोने के खतरे में डाल दिया।" } },
+              { "id": "c5", "text": { "en": "Look for other work and cut spending on the household", "hi": "दूसरा काम ढूँढो और घर का खर्च घटाओ" }, "next": "end", "good": true, "feedback": { "en": "Sensible. Some families survived by changing their work and spending, though many still fell into debt.", "hi": "समझदारी भरा फ़ैसला। कुछ परिवार काम और खर्च बदलकर बचे, हालाँकि कई फिर भी कर्ज़ में डूबे।" } }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Before you choose, think: what happens to a loan when the price of the crop it was spent on falls?", "hi": "चुनने से पहले सोचो: जिस फ़सल पर कर्ज़ लगाया गया, उसका दाम गिरे तो कर्ज़ का क्या होगा?" },
+          "options": [
+            { "id": "safe", "en": "The loan is still safe", "hi": "कर्ज़ फिर भी सुरक्षित रहता है" },
+            { "id": "harder", "en": "Repayment becomes harder", "hi": "चुकाना मुश्किल हो जाता है" }
+          ],
+          "answer": "harder"
+        },
+        { "kind": "do", "target": "choice:s1:c1", "expect": "chose:c1", "say": { "en": "Read the first scene, then tap 'Take the loan and grow more cotton'.", "hi": "पहला दृश्य पढ़ो, फिर 'कर्ज़ लेकर ज़्यादा कपास उगाओ' टैप करो।" } },
+        { "kind": "do", "target": "choice:s2:c5", "expect": "chose:c5", "say": { "en": "Now choose 'Look for other work and cut spending'.", "hi": "अब 'दूसरा काम ढूँढो और खर्च घटाओ' चुनो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The revenue demand, the moneylender and the cotton market were tied together. When prices fell, the loan became a burden. Peasants who fell into debt often lost land, and their complaints appear in the records. The story shows how the state's demands and the market shaped rural life.", "hi": "लगान की माँग, साहूकार और कपास का बाज़ार आपस में जुड़े थे। दाम गिरे तो कर्ज़ बोझ बन गया। कर्ज़ में डूबे किसान अक्सर ज़मीन खो देते थे, और उनकी शिकायतें दस्तावेज़ों में दिखती हैं। यह कहानी दिखाती है कि राज्य की माँगें और बाज़ार ग्रामीण जीवन को कैसे ढालते थे।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why did the loan become a burden in the story?", "hi": "कहानी में कर्ज़ बोझ क्यों बन गया?" },
+              "options": [
+                { "en": "Cotton prices fell and repayment became hard", "hi": "कपास के दाम गिरे और चुकाना मुश्किल हो गया" },
+                { "en": "The family had too much land", "hi": "परिवार के पास बहुत ज़मीन थी" },
+                { "en": "The moneylender forgot the loan", "hi": "साहूकार कर्ज़ भूल गया" }
+              ],
+              "answer": 0,
+              "why": { "en": "When cotton prices fell, the family could not earn enough to repay, and the debt grew.", "hi": "कपास के दाम गिरने से परिवार चुकाने लायक कमाई नहीं कर सका, और कर्ज़ बढ़ गया।" },
+              "wrong": [
+                "",
+                { "en": "Land alone did not cause the debt; falling prices and high demand did.", "hi": "केवल ज़मीन से कर्ज़ नहीं हुआ; दाम गिरने और ऊँची माँग से हुआ।" },
+                { "en": "The moneylender expected repayment, so forgetting the loan is not the story.", "hi": "साहूकार चुकौती की उम्मीद करता था, इसलिए कर्ज़ भूलना कहानी नहीं है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Play the scenario again and try the petition path. Why did petitions matter even when replies were slow?", "hi": "परिदृश्य फिर खेलो और अर्ज़ी वाला रास्ता आज़माओ। जवाब धीमे होने पर भी अर्ज़ियाँ क्यों मायने रखती थीं?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "OBJ", "topic": "0.1", "use": "Opening object: an old account ledger, the state's record", "shows": "An old account ledger open on a wooden desk, its pages blank, with a steel-nib pen laid across the page", "view": "Three-quarter view, cut-out on transparent background, soft light from top-left", "right": "Aged paper in cream tone, ruled lines faint, binding worn, true proportions", "avoid": "Readable writing, office logos, modern stationery" },
+    { "n": 2, "kind": "MAP", "topic": "1", "use": "Bengal delta as an empty base map", "shows": "Plain relief map of the Ganga-Brahmaputra delta with rivers and low-lying land, no borders, no names", "view": "Top-down, 16:9, soft relief shading in muted greens and blues", "right": "Many rivers branching into the delta, flat land in true position, coast at the bottom", "avoid": "State borders, city names, route lines" },
+    { "n": 3, "kind": "SCN", "topic": "1", "use": "A surveyed field, the land that was measured and sold", "shows": "A flat village field at dawn with a boundary of earth banks and a measuring chain lying on the ground, no people", "view": "Eye level, 16:9, soft early light from the left", "right": "Dry earth banks, a metal chain with links clearly visible, plain fields", "avoid": "Faces, modern fences, signs, text" },
+    { "n": 4, "kind": "SCN", "topic": "3", "use": "Cotton field at harvest, the crop that rose and then fell in price", "shows": "A cotton field at harvest with open white bolls on the plants, a basket on the ground, no people", "view": "Eye level, 16:9, warm light, field receding to the horizon", "right": "White cotton bolls on green-brown stalks, earthen soil, true colour", "avoid": "Faces, machinery, brand bags, text" },
+    { "n": 5, "kind": "OBJ", "topic": "3", "use": "Cotton bolls and seed, cut-out for the debt story", "shows": "Three open cotton bolls and a few seeds laid on a plain cloth", "view": "Top-down, cut-out on transparent background, each boll fully in frame", "right": "Soft white fibre, dark seeds, natural stalk colour", "avoid": "Packaged cotton products, brand labels" }
+  ]
+}

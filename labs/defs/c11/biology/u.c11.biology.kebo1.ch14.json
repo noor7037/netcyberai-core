@@ -1,0 +1,1450 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch14",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Breathing and Exchange of Gases",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo114.pdf",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "Human respiratory system",
+   "labs": [
+    "c11-biology-kebo1-ch14-airway"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.2",
+   "title": "Mechanism of breathing; respiratory volumes and capacities",
+   "labs": [
+    "c11-biology-kebo1-ch14-breathe-in",
+    "c11-biology-kebo1-ch14-volumes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.3",
+   "title": "Exchange of gases",
+   "labs": [
+    "c11-biology-kebo1-ch14-oxygen-trip"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.4",
+   "title": "Transport of gases: oxygen and carbon dioxide",
+   "labs": [
+    "c11-biology-kebo1-ch14-transport"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.5",
+   "title": "Regulation of respiration",
+   "labs": [
+    "c11-biology-kebo1-ch14-control"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.6",
+   "title": "Disorders of the respiratory system",
+   "labs": [
+    "c11-biology-kebo1-ch14-disorders"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch14-airway",
+   "topic": "14.1",
+   "template": "body",
+   "title": {
+    "en": "Follow a breath of air",
+    "hi": "साँस की हवा का पीछा करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "system": "respiratory",
+    "flow": "air",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:nose",
+     "expect": "picked:nose",
+     "say": {
+      "en": "Tap the nose, where air comes in.",
+      "hi": "नाक पर टैप करो, जहाँ से हवा आती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:larynx",
+     "expect": "picked:larynx",
+     "say": {
+      "en": "Tap the larynx, the voice box.",
+      "hi": "स्वरयंत्र (लैरिंक्स) पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After the windpipe divides into two bronchi, where does the air finally go?",
+      "hi": "श्वासनली के दो श्वसनियों में बँटने के बाद हवा अंत में कहाँ जाती है?"
+     },
+     "options": [
+      {
+       "id": "alv",
+       "en": "Into millions of tiny air sacs (alveoli)",
+       "hi": "लाखों छोटी वायु कूपिकाओं में"
+      },
+      {
+       "id": "heart",
+       "en": "Into the heart",
+       "hi": "हृदय में"
+      },
+      {
+       "id": "stomach",
+       "en": "Into the stomach",
+       "hi": "आमाशय में"
+      }
+     ],
+     "answer": "alv"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "traced",
+     "say": {
+      "en": "Press play and follow the air all the way in.",
+      "hi": "प्ले दबाओ और हवा का पूरा रास्ता देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Air passes the nostrils, nasal chamber, pharynx and larynx, then the trachea. The trachea divides into right and left bronchi, which branch into finer bronchioles and end in thin, cup-like alveoli. The tubes up to the terminal bronchioles only carry and condition air; the alveoli are where gases are exchanged with the blood.",
+      "hi": "हवा नथुनों, नासा कक्ष, ग्रसनी और स्वरयंत्र से होकर श्वासनली में जाती है। श्वासनली दाईं और बाईं श्वसनियों में बँटती है, जो पतली श्वसनिकाओं में शाखित होकर पतली, प्याले जैसी वायु कूपिकाओं पर ख़त्म होती हैं। अंतिम श्वसनिकाओं तक की नलियाँ केवल हवा ले जाती और तैयार करती हैं; गैसों का लेन-देन रक्त से कूपिकाओं में होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What stops food from entering the larynx when we swallow?",
+        "hi": "निगलते समय भोजन को स्वरयंत्र में जाने से क्या रोकता है?"
+       },
+       "options": [
+        {
+         "en": "The epiglottis",
+         "hi": "घाँटी ढक्कन (एपिग्लॉटिस)"
+        },
+        {
+         "en": "The diaphragm",
+         "hi": "डायाफ़्राम"
+        },
+        {
+         "en": "The ribs",
+         "hi": "पसलियाँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The epiglottis, a thin cartilage flap, covers the glottis during swallowing.",
+        "hi": "निगलते समय पतली उपास्थि का ढक्कन, एपिग्लॉटिस, कंठद्वार को ढक देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The diaphragm is below the lungs and controls breathing, not swallowing.",
+         "hi": "डायाफ़्राम फेफड़ों के नीचे है और साँस नियंत्रित करता है, निगलना नहीं।"
+        },
+        {
+         "en": "The ribs protect the chest; they are nowhere near the throat.",
+         "hi": "पसलियाँ छाती की रक्षा करती हैं; वे गले के पास भी नहीं हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which part of the respiratory system is the exchange part?",
+        "hi": "श्वसन तंत्र का कौन-सा भाग गैसों के लेन-देन वाला भाग है?"
+       },
+       "options": [
+        {
+         "en": "Trachea",
+         "hi": "श्वासनली"
+        },
+        {
+         "en": "Alveoli",
+         "hi": "वायु कूपिकाएँ"
+        },
+        {
+         "en": "Pharynx",
+         "hi": "ग्रसनी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Alveoli have very thin walls wrapped in capillaries, where O2 and CO2 diffuse.",
+        "hi": "कूपिकाओं की दीवारें बहुत पतली और केशिकाओं से घिरी होती हैं, जहाँ O2 और CO2 विसरित होती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The trachea is part of the conducting tubes; its wall is too thick for exchange.",
+         "hi": "श्वासनली संवहन नलियों का भाग है; उसकी दीवार लेन-देन के लिए बहुत मोटी है।"
+        },
+        "",
+        {
+         "en": "The pharynx is a shared passage for air and food; no exchange happens there.",
+         "hi": "ग्रसनी हवा और भोजन का साझा रास्ता है; वहाँ लेन-देन नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap every part and read about it. Find the C-shaped rings that keep the windpipe open.",
+      "hi": "ख़ुद आज़माओ। हर भाग पर टैप करके पढ़ो। वे C-आकार के छल्ले ढूँढो जो श्वासनली को खुला रखते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch14-breathe-in",
+   "topic": "14.2",
+   "template": "sequence",
+   "title": {
+    "en": "How we breathe in",
+    "hi": "हम साँस कैसे अंदर लेते हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "dia",
+      "text": {
+       "en": "The diaphragm contracts and flattens",
+       "hi": "डायाफ़्राम सिकुड़कर चपटा होता है"
+      }
+     },
+     {
+      "id": "ap",
+      "text": {
+       "en": "The chest gets longer from front to back",
+       "hi": "छाती आगे से पीछे की ओर बड़ी होती है"
+      }
+     },
+     {
+      "id": "eic",
+      "text": {
+       "en": "External intercostal muscles lift the ribs and sternum",
+       "hi": "बाहरी अंतरापर्शुक पेशियाँ पसलियों और उरोस्थि को उठाती हैं"
+      }
+     },
+     {
+      "id": "vol",
+      "text": {
+       "en": "The volume of the chest and lungs increases",
+       "hi": "छाती और फेफड़ों का आयतन बढ़ता है"
+      }
+     },
+     {
+      "id": "press",
+      "text": {
+       "en": "Pressure inside the lungs falls below the air outside",
+       "hi": "फेफड़ों के अंदर का दाब बाहर की हवा से कम हो जाता है"
+      }
+     },
+     {
+      "id": "rush",
+      "text": {
+       "en": "Air rushes in until the pressures are equal",
+       "hi": "दाब बराबर होने तक हवा अंदर भरती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:dia",
+     "expect": "placed:dia",
+     "say": {
+      "en": "Start breathing in: put the diaphragm card in place 1.",
+      "hi": "साँस लेना शुरू करो: डायाफ़्राम वाला कार्ड स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:eic",
+     "expect": "placed:eic",
+     "say": {
+      "en": "Place the card about the rib muscles.",
+      "hi": "पसलियों की पेशियों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The lungs get bigger. What happens to the air pressure inside them?",
+      "hi": "फेफड़े बड़े होते हैं। उनके अंदर हवा के दाब का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "It falls below the outside air",
+       "hi": "बाहर की हवा से कम हो जाता है"
+      },
+      {
+       "id": "up",
+       "en": "It rises above the outside air",
+       "hi": "बाहर की हवा से बढ़ जाता है"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वैसा ही रहता है"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "item:press",
+     "expect": "placed:press",
+     "say": {
+      "en": "Place the card about pressure.",
+      "hi": "दाब वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We breathe by changing the size of the chest. The diaphragm and the external intercostal muscles contract, the chest and lungs get bigger, and the pressure inside falls below the air outside, so air flows in. When these muscles relax, the chest gets smaller, pressure rises and air is pushed out. Belly muscles can help force out more air.",
+      "hi": "हम छाती का आकार बदलकर साँस लेते हैं। डायाफ़्राम और बाहरी अंतरापर्शुक पेशियाँ सिकुड़ती हैं, छाती और फेफड़े बड़े होते हैं, और अंदर का दाब बाहर की हवा से कम हो जाता है, इसलिए हवा अंदर आती है। इन पेशियों के ढीले होने पर छाती छोटी होती है, दाब बढ़ता है और हवा बाहर धकेली जाती है। पेट की पेशियाँ ज़्यादा हवा बाहर निकालने में मदद कर सकती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does air flow into the lungs?",
+        "hi": "हवा फेफड़ों में क्यों आती है?"
+       },
+       "options": [
+        {
+         "en": "Pressure inside the lungs is lower than outside",
+         "hi": "फेफड़ों के अंदर का दाब बाहर से कम है"
+        },
+        {
+         "en": "The nose sucks it in",
+         "hi": "नाक उसे खींचती है"
+        },
+        {
+         "en": "Air is pumped by the heart",
+         "hi": "हृदय हवा पंप करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gases flow from higher to lower pressure; a bigger chest lowers the pressure in the lungs.",
+        "hi": "गैसें अधिक दाब से कम दाब की ओर बहती हैं; बड़ी छाती फेफड़ों का दाब घटा देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The nose has no muscle pump; it only lets air in and cleans it.",
+         "hi": "नाक में कोई पेशी पंप नहीं; वह केवल हवा आने देती और साफ़ करती है।"
+        },
+        {
+         "en": "The heart pumps blood, not air.",
+         "hi": "हृदय रक्त पंप करता है, हवा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A healthy person breathes 12 to 16 times a minute. What does the diaphragm do when we breathe out normally?",
+        "hi": "स्वस्थ व्यक्ति मिनट में 12 से 16 बार साँस लेता है। सामान्य रूप से साँस छोड़ते समय डायाफ़्राम क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "It relaxes and domes up again",
+         "hi": "वह ढीला होकर फिर गुंबद जैसा हो जाता है"
+        },
+        {
+         "en": "It contracts harder",
+         "hi": "वह और ज़ोर से सिकुड़ता है"
+        },
+        {
+         "en": "It stays flat",
+         "hi": "वह चपटा ही रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Relaxing lets the diaphragm return to its dome shape, making the chest smaller.",
+        "hi": "ढीला होने पर डायाफ़्राम फिर गुंबद आकार लेता है और छाती छोटी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Contracting flattens it, which is what happens when we breathe in.",
+         "hi": "सिकुड़ने से वह चपटा होता है, जो साँस लेते समय होता है।"
+        },
+        {
+         "en": "If it stayed flat the chest would stay large and air would not be pushed out.",
+         "hi": "अगर वह चपटा रहता तो छाती बड़ी रहती और हवा बाहर नहीं निकलती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Finish and check the order. Then put a hand on your belly and breathe slowly: feel it move with your diaphragm.",
+      "hi": "ख़ुद आज़माओ। क्रम पूरा करके जाँचो। फिर पेट पर हाथ रखकर धीरे साँस लो: डायाफ़्राम के साथ उसका हिलना महसूस करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch14-volumes",
+   "topic": "14.2",
+   "template": "match",
+   "title": {
+    "en": "Lung volumes and capacities",
+    "hi": "फेफड़ों के आयतन और क्षमताएँ"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "tv",
+      "left": {
+       "en": "Tidal volume (TV)",
+       "hi": "ज्वारीय आयतन (TV)"
+      },
+      "right": {
+       "en": "About 500 mL in or out in one quiet breath",
+       "hi": "एक शांत साँस में लगभग 500 मिली अंदर या बाहर"
+      },
+      "why": {
+       "en": "In normal breathing we move about 500 mL; that is 6000 to 8000 mL a minute.",
+       "hi": "सामान्य साँस में हम लगभग 500 मिली हवा लेते हैं; यानी मिनट में 6000 से 8000 मिली।"
+      }
+     },
+     {
+      "id": "irv",
+      "left": {
+       "en": "Inspiratory reserve volume (IRV)",
+       "hi": "अंतःश्वसन आरक्षित आयतन (IRV)"
+      },
+      "right": {
+       "en": "2500 to 3000 mL extra you can force in",
+       "hi": "2500 से 3000 मिली अतिरिक्त जो ज़ोर लगाकर अंदर ले सकते हो"
+      },
+      "why": {
+       "en": "After a normal breath in, a deep forced breath can add this much more.",
+       "hi": "सामान्य साँस के बाद गहरी ज़ोरदार साँस इतनी और हवा जोड़ सकती है।"
+      }
+     },
+     {
+      "id": "erv",
+      "left": {
+       "en": "Expiratory reserve volume (ERV)",
+       "hi": "निःश्वसन आरक्षित आयतन (ERV)"
+      },
+      "right": {
+       "en": "1000 to 1100 mL extra you can force out",
+       "hi": "1000 से 1100 मिली अतिरिक्त जो ज़ोर लगाकर बाहर निकाल सकते हो"
+      },
+      "why": {
+       "en": "After a normal breath out, you can still squeeze out this much.",
+       "hi": "सामान्य साँस छोड़ने के बाद भी इतनी हवा और निकाली जा सकती है।"
+      }
+     },
+     {
+      "id": "rv",
+      "left": {
+       "en": "Residual volume (RV)",
+       "hi": "अवशिष्ट आयतन (RV)"
+      },
+      "right": {
+       "en": "1100 to 1200 mL that always stays in the lungs",
+       "hi": "1100 से 1200 मिली जो फेफड़ों में हमेशा रहती है"
+      },
+      "why": {
+       "en": "Even after the hardest breath out, this air stays, so the alveoli never collapse.",
+       "hi": "सबसे ज़ोर से साँस छोड़ने के बाद भी यह हवा रहती है, जिससे कूपिकाएँ कभी पिचकती नहीं।"
+      }
+     },
+     {
+      "id": "vc",
+      "left": {
+       "en": "Vital capacity (VC)",
+       "hi": "जैव क्षमता (VC)"
+      },
+      "right": {
+       "en": "ERV + TV + IRV",
+       "hi": "ERV + TV + IRV (योग)"
+      },
+      "why": {
+       "en": "It is the most air you can breathe out after the deepest breath in.",
+       "hi": "यह सबसे गहरी साँस के बाद बाहर निकाली जा सकने वाली अधिकतम हवा है।"
+      }
+     },
+     {
+      "id": "tlc",
+      "left": {
+       "en": "Total lung capacity (TLC)",
+       "hi": "कुल फेफड़ा क्षमता (TLC)"
+      },
+      "right": {
+       "en": "VC + RV",
+       "hi": "VC + RV (योग)"
+      },
+      "why": {
+       "en": "All the air the lungs can hold after the deepest breath in.",
+       "hi": "सबसे गहरी साँस के बाद फेफड़ों में समा सकने वाली पूरी हवा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:tv",
+     "expect": "matched:tv",
+     "say": {
+      "en": "Tap tidal volume and match it.",
+      "hi": "ज्वारीय आयतन पर टैप करो और उसे मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:rv",
+     "expect": "matched:rv",
+     "say": {
+      "en": "Now match residual volume.",
+      "hi": "अब अवशिष्ट आयतन मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Vital capacity is the most air you can breathe out after the deepest breath in. Which volumes does it add up?",
+      "hi": "जैव क्षमता सबसे गहरी साँस के बाद बाहर निकाली जा सकने वाली अधिकतम हवा है। इसमें कौन-से आयतन जुड़ते हैं?"
+     },
+     "options": [
+      {
+       "id": "vc",
+       "en": "ERV + TV + IRV",
+       "hi": "ERV + TV + IRV का योग"
+      },
+      {
+       "id": "all",
+       "en": "ERV + TV + IRV + RV",
+       "hi": "ERV + TV + IRV + RV का योग"
+      },
+      {
+       "id": "two",
+       "en": "TV + RV",
+       "hi": "TV + RV का योग"
+      }
+     ],
+     "answer": "vc"
+    },
+    {
+     "kind": "do",
+     "target": "left:vc",
+     "expect": "matched:vc",
+     "say": {
+      "en": "Match vital capacity.",
+      "hi": "जैव क्षमता मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Volumes are single amounts of air; capacities add volumes together. Residual volume can never be breathed out, so it is left out of vital capacity but included in total lung capacity. From the ranges, vital capacity comes to about 4000 to 4600 mL and total lung capacity to about 5100 to 5800 mL. A spirometer measures these in a clinic.",
+      "hi": "आयतन हवा की अकेली मात्राएँ हैं; क्षमताएँ आयतनों को जोड़ती हैं। अवशिष्ट आयतन कभी बाहर नहीं निकाला जा सकता, इसलिए वह जैव क्षमता में नहीं, पर कुल फेफड़ा क्षमता में गिना जाता है। इन सीमाओं से जैव क्षमता लगभग 4000 से 4600 मिली और कुल फेफड़ा क्षमता लगभग 5100 से 5800 मिली बनती है। क्लिनिक में स्पाइरोमीटर इन्हें मापता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is residual volume not part of vital capacity?",
+        "hi": "अवशिष्ट आयतन जैव क्षमता का भाग क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "It cannot be breathed out at all",
+         "hi": "उसे बिल्कुल बाहर नहीं निकाला जा सकता"
+        },
+        {
+         "en": "It is too small to count",
+         "hi": "वह गिनने के लिए बहुत छोटा है"
+        },
+        {
+         "en": "It is in the blood, not the lungs",
+         "hi": "वह फेफड़ों में नहीं, रक्त में है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Vital capacity is what you can move in and out; residual air always stays behind.",
+        "hi": "जैव क्षमता वह है जो तुम अंदर-बाहर कर सकते हो; अवशिष्ट हवा हमेशा पीछे रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At 1100 to 1200 mL it is larger than the tidal volume, so size is not the reason.",
+         "hi": "1100 से 1200 मिली के साथ यह ज्वारीय आयतन से बड़ा है, इसलिए आकार कारण नहीं है।"
+        },
+        {
+         "en": "Residual volume is air inside the lungs, not something in the blood.",
+         "hi": "अवशिष्ट आयतन फेफड़ों के अंदर की हवा है, रक्त में कुछ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "With TV 500, IRV 2500 and ERV 1000 mL, what is the vital capacity?",
+        "hi": "TV 500, IRV 2500 और ERV 1000 मिली हो तो जैव क्षमता कितनी है?"
+       },
+       "options": [
+        {
+         "en": "3000 mL",
+         "hi": "3000 मिली"
+        },
+        {
+         "en": "4000 mL",
+         "hi": "4000 मिली"
+        },
+        {
+         "en": "5100 mL",
+         "hi": "5100 मिली"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "1000 + 500 + 2500 = 4000 mL.",
+        "hi": "1000 + 500 + 2500 = 4000 मिली।"
+       },
+       "wrong": [
+        {
+         "en": "3000 mL leaves out the ERV; vital capacity needs all three volumes.",
+         "hi": "3000 मिली में ERV छूट गया; जैव क्षमता में तीनों आयतन चाहिए।"
+        },
+        "",
+        {
+         "en": "5100 mL adds a residual volume too; that would be close to total lung capacity.",
+         "hi": "5100 मिली में अवशिष्ट आयतन भी जुड़ गया; वह कुल फेफड़ा क्षमता के पास होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match the rest. Then work out the total lung capacity for the numbers in the last question, with RV 1100 mL.",
+      "hi": "ख़ुद आज़माओ। बाकी मिलाओ। फिर पिछले प्रश्न के आँकड़ों और RV 1100 मिली से कुल फेफड़ा क्षमता निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch14-oxygen-trip",
+   "topic": "14.3",
+   "template": "sequence",
+   "title": {
+    "en": "The trip of one oxygen molecule",
+    "hi": "ऑक्सीजन के एक अणु की यात्रा"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "alv",
+      "text": {
+       "en": "In the alveolar air, pO2 is high: about 104 mm Hg",
+       "hi": "कूपिका की हवा में pO2 अधिक है: लगभग 104 mm Hg"
+      }
+     },
+     {
+      "id": "wall",
+      "text": {
+       "en": "It diffuses across the thin alveolar and capillary walls",
+       "hi": "यह कूपिका और केशिका की पतली दीवारों से विसरित होता है"
+      }
+     },
+     {
+      "id": "hb",
+      "text": {
+       "en": "In the blood it binds to haemoglobin in a red cell",
+       "hi": "रक्त में यह लाल कणिका के हीमोग्लोबिन से जुड़ता है"
+      }
+     },
+     {
+      "id": "artery",
+      "text": {
+       "en": "Oxygen-rich blood (pO2 about 95) travels to the tissues",
+       "hi": "ऑक्सीजन युक्त रक्त (pO2 लगभग 95) ऊतकों तक जाता है"
+      }
+     },
+     {
+      "id": "release",
+      "text": {
+       "en": "In the tissues, where pO2 is about 40, it is released",
+       "hi": "ऊतकों में, जहाँ pO2 लगभग 40 है, यह मुक्त होता है"
+      }
+     },
+     {
+      "id": "cell",
+      "text": {
+       "en": "It diffuses into a cell and is used in respiration",
+       "hi": "यह कोशिका में जाकर श्वसन में काम आता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:alv",
+     "expect": "placed:alv",
+     "say": {
+      "en": "Start in the lungs: put the alveolar air card in place 1.",
+      "hi": "फेफड़ों से शुरू करो: कूपिका की हवा वाला कार्ड स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:wall",
+     "expect": "placed:wall",
+     "say": {
+      "en": "Place the card where oxygen crosses into the blood.",
+      "hi": "वह कार्ड रखो जहाँ ऑक्सीजन रक्त में जाती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the tissues pO2 is low, pCO2 is high and the blood is more acidic. What will haemoglobin do there?",
+      "hi": "ऊतकों में pO2 कम, pCO2 अधिक और रक्त अधिक अम्लीय है। वहाँ हीमोग्लोबिन क्या करेगा?"
+     },
+     "options": [
+      {
+       "id": "give",
+       "en": "Let go of its oxygen",
+       "hi": "अपनी ऑक्सीजन छोड़ देगा"
+      },
+      {
+       "id": "hold",
+       "en": "Hold its oxygen tighter",
+       "hi": "ऑक्सीजन और कसकर पकड़ेगा"
+      },
+      {
+       "id": "take",
+       "en": "Take in more oxygen",
+       "hi": "और ऑक्सीजन लेगा"
+      }
+     ],
+     "answer": "give"
+    },
+    {
+     "kind": "do",
+     "target": "item:release",
+     "expect": "placed:release",
+     "say": {
+      "en": "Place the card where oxygen is released.",
+      "hi": "वह कार्ड रखो जहाँ ऑक्सीजन मुक्त होती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Gases move by simple diffusion, from higher to lower partial pressure. pO2 falls step by step from the alveoli (104) to the blood leaving them (95) to the tissues (40), so oxygen keeps moving the right way. CO2 goes the opposite way, from tissues (45) to alveoli (40). The diffusion membrane is very thin, less than a millimetre.",
+      "hi": "गैसें सरल विसरण से, अधिक आंशिक दाब से कम की ओर जाती हैं। pO2 कूपिकाओं (104) से उनसे निकलते रक्त (95) और फिर ऊतकों (40) तक क़दम-दर-क़दम घटता है, इसलिए ऑक्सीजन सही दिशा में चलती रहती है। CO2 उल्टी दिशा में, ऊतकों (45) से कूपिकाओं (40) की ओर जाती है। विसरण झिल्ली बहुत पतली, एक मिलीमीटर से भी कम होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can CO2 diffuse well even though its pressure difference is small?",
+        "hi": "दाब का अंतर कम होने पर भी CO2 अच्छी तरह क्यों विसरित होती है?"
+       },
+       "options": [
+        {
+         "en": "It is 20 to 25 times more soluble than O2",
+         "hi": "यह O2 से 20 से 25 गुना अधिक घुलनशील है"
+        },
+        {
+         "en": "It is pumped by the lungs",
+         "hi": "फेफड़े इसे पंप करते हैं"
+        },
+        {
+         "en": "It is lighter than O2",
+         "hi": "यह O2 से हल्की है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "High solubility lets more CO2 diffuse per unit of pressure difference.",
+        "hi": "अधिक घुलनशीलता से दाब के हर अंतर पर अधिक CO2 विसरित होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lungs only change volume; gas crossing the membrane is passive diffusion.",
+         "hi": "फेफड़े केवल आयतन बदलते हैं; झिल्ली पार गैस का जाना निष्क्रिय विसरण है।"
+        },
+        {
+         "en": "CO2 is actually heavier than O2; weight is not the reason.",
+         "hi": "CO2 असल में O2 से भारी है; भार कारण नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Complete the trip and press Check. Then reverse it in your head for a CO2 molecule made in a muscle cell.",
+      "hi": "ख़ुद आज़माओ। यात्रा पूरी करो और 'जाँचो' दबाओ। फिर पेशी कोशिका में बने CO2 अणु के लिए इसे उल्टा सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch14-transport",
+   "topic": "14.4",
+   "template": "sort",
+   "title": {
+    "en": "How blood carries the gases",
+    "hi": "रक्त गैसें कैसे ले जाता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "o2",
+      "label": {
+       "en": "Oxygen",
+       "hi": "ऑक्सीजन"
+      }
+     },
+     {
+      "id": "co2",
+      "label": {
+       "en": "Carbon dioxide",
+       "hi": "कार्बन डाइऑक्साइड"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "oxyhb",
+      "text": {
+       "en": "97% carried by haemoglobin in red cells",
+       "hi": "97% लाल कणिकाओं के हीमोग्लोबिन द्वारा"
+      },
+      "bin": "o2",
+      "why": {
+       "en": "Each haemoglobin can bind up to four O2 molecules as oxyhaemoglobin.",
+       "hi": "हर हीमोग्लोबिन ऑक्सीहीमोग्लोबिन के रूप में चार O2 अणुओं तक जोड़ सकता है।"
+      }
+     },
+     {
+      "id": "o2plasma",
+      "text": {
+       "en": "3% dissolved in plasma",
+       "hi": "3% प्लाज़्मा में घुली"
+      },
+      "bin": "o2",
+      "why": {
+       "en": "Only a small share of oxygen travels dissolved in plasma.",
+       "hi": "ऑक्सीजन का बहुत छोटा भाग प्लाज़्मा में घुलकर जाता है।"
+      }
+     },
+     {
+      "id": "bicarb",
+      "text": {
+       "en": "About 70% carried as bicarbonate",
+       "hi": "लगभग 70% बाइकार्बोनेट के रूप में"
+      },
+      "bin": "co2",
+      "why": {
+       "en": "Carbonic anhydrase turns CO2 and water into bicarbonate in the tissues and back in the lungs.",
+       "hi": "कार्बोनिक एनहाइड्रेज़ ऊतकों में CO2 और पानी को बाइकार्बोनेट बनाता है और फेफड़ों में वापस बदलता है।"
+      }
+     },
+     {
+      "id": "carbamino",
+      "text": {
+       "en": "20 to 25% as carbamino-haemoglobin",
+       "hi": "20 से 25% कार्बामिनो-हीमोग्लोबिन के रूप में"
+      },
+      "bin": "co2",
+      "why": {
+       "en": "CO2 binds to haemoglobin where pCO2 is high and lets go where it is low.",
+       "hi": "CO2 जहाँ pCO2 अधिक हो वहाँ हीमोग्लोबिन से जुड़ती है और जहाँ कम हो वहाँ छूटती है।"
+      }
+     },
+     {
+      "id": "co2plasma",
+      "text": {
+       "en": "About 7% dissolved in plasma",
+       "hi": "लगभग 7% प्लाज़्मा में घुली"
+      },
+      "bin": "co2",
+      "why": {
+       "en": "A small share of CO2 travels simply dissolved.",
+       "hi": "CO2 का छोटा भाग सीधे घुलकर जाता है।"
+      }
+     },
+     {
+      "id": "curve",
+      "text": {
+       "en": "Binding shown by a sigmoid dissociation curve",
+       "hi": "बंधन एक सिग्मॉइड वियोजन वक्र से दिखता है"
+      },
+      "bin": "o2",
+      "why": {
+       "en": "Percentage saturation of haemoglobin with O2 against pO2 gives an S-shaped curve.",
+       "hi": "pO2 के सामने हीमोग्लोबिन की O2 से संतृप्ति का प्रतिशत S-आकार का वक्र देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:oxyhb",
+     "expect": "correct:oxyhb",
+     "say": {
+      "en": "Tap the card about 97 per cent and sort it.",
+      "hi": "97 प्रतिशत वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "CO2 reacts with water inside red cells with the help of an enzyme. In what form is most CO2 carried?",
+      "hi": "लाल कणिकाओं में CO2 एक एंज़ाइम की मदद से पानी से क्रिया करती है। अधिकतर CO2 किस रूप में जाती है?"
+     },
+     "options": [
+      {
+       "id": "bic",
+       "en": "As bicarbonate",
+       "hi": "बाइकार्बोनेट के रूप में"
+      },
+      {
+       "id": "hb",
+       "en": "Bound to haemoglobin",
+       "hi": "हीमोग्लोबिन से जुड़ी"
+      },
+      {
+       "id": "gas",
+       "en": "As dissolved gas",
+       "hi": "घुली हुई गैस के रूप में"
+      }
+     ],
+     "answer": "bic"
+    },
+    {
+     "kind": "do",
+     "target": "card:bicarb",
+     "expect": "correct:bicarb",
+     "say": {
+      "en": "Sort the bicarbonate card.",
+      "hi": "बाइकार्बोनेट वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:carbamino",
+     "expect": "correct:carbamino",
+     "say": {
+      "en": "Now sort the card about carbamino-haemoglobin.",
+      "hi": "अब कार्बामिनो-हीमोग्लोबिन वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Blood carries almost all its oxygen on haemoglobin, which binds O2 in the lungs where pO2 is high and releases it in the tissues. Carbon dioxide is carried three ways: mostly as bicarbonate made by carbonic anhydrase, partly bound to haemoglobin, and a little dissolved. Every 100 mL of oxygenated blood delivers about 5 mL of O2 to the tissues.",
+      "hi": "रक्त अपनी लगभग सारी ऑक्सीजन हीमोग्लोबिन पर ले जाता है, जो फेफड़ों में अधिक pO2 पर O2 जोड़ता है और ऊतकों में छोड़ता है। कार्बन डाइऑक्साइड तीन तरह जाती है: अधिकतर कार्बोनिक एनहाइड्रेज़ से बने बाइकार्बोनेट के रूप में, कुछ हीमोग्लोबिन से जुड़कर, और थोड़ी घुलकर। हर 100 मिली ऑक्सीजन युक्त रक्त ऊतकों को लगभग 5 मिली O2 देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which enzyme is key to carrying most CO2?",
+        "hi": "अधिकतर CO2 ले जाने में कौन-सा एंज़ाइम मुख्य है?"
+       },
+       "options": [
+        {
+         "en": "Carbonic anhydrase",
+         "hi": "कार्बोनिक एनहाइड्रेज़"
+        },
+        {
+         "en": "Pepsin",
+         "hi": "पेप्सिन"
+        },
+        {
+         "en": "RuBisCO",
+         "hi": "रूबिस्को (RuBisCO)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Carbonic anhydrase, plentiful in red cells, joins CO2 and water to make bicarbonate and H+.",
+        "hi": "लाल कणिकाओं में भरपूर कार्बोनिक एनहाइड्रेज़ CO2 और पानी से बाइकार्बोनेट और H+ बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Pepsin digests protein in the stomach; it does not act in blood.",
+         "hi": "पेप्सिन आमाशय में प्रोटीन पचाता है; रक्त में काम नहीं करता।"
+        },
+        {
+         "en": "RuBisCO fixes CO2 in plants during photosynthesis, not in our blood.",
+         "hi": "RuBisCO पौधों में प्रकाश संश्लेषण के समय CO2 जोड़ता है, हमारे रक्त में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the rest. Then say which conditions in a working muscle help haemoglobin unload oxygen.",
+      "hi": "ख़ुद आज़माओ। बाकी छाँटो। फिर बताओ कि काम करती पेशी की कौन-सी स्थितियाँ हीमोग्लोबिन को ऑक्सीजन छोड़ने में मदद करती हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch14-control",
+   "topic": "14.5",
+   "template": "body",
+   "title": {
+    "en": "Who sets the breathing rhythm?",
+    "hi": "साँस की लय कौन तय करता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "system": "brain",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:medulla",
+     "expect": "picked:medulla",
+     "say": {
+      "en": "Tap the medulla at the base of the brain.",
+      "hi": "मस्तिष्क के निचले भाग में मेडुला पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You hold your breath and CO2 and H+ build up in the blood. What does the chemosensitive area next to the rhythm centre do?",
+      "hi": "तुम साँस रोकते हो और रक्त में CO2 और H+ बढ़ जाते हैं। लय केंद्र के पास का रसायनसंवेदी क्षेत्र क्या करता है?"
+     },
+     "options": [
+      {
+       "id": "faster",
+       "en": "Makes the rhythm centre speed up breathing",
+       "hi": "लय केंद्र से साँस तेज़ करवाता है"
+      },
+      {
+       "id": "slower",
+       "en": "Slows breathing down",
+       "hi": "साँस धीमी करता है"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "faster"
+    },
+    {
+     "kind": "do",
+     "target": "part:pons",
+     "expect": "picked:pons",
+     "say": {
+      "en": "Now tap the pons, just above the medulla.",
+      "hi": "अब मेडुला के ठीक ऊपर पॉन्स पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A respiratory rhythm centre in the medulla sets the basic rhythm of breathing. The pneumotaxic centre in the pons can shorten each breath in and so change the rate. A chemosensitive area beside the rhythm centre senses CO2 and H+ and speeds breathing up to get rid of them; receptors in the aortic arch and carotid artery do the same. Oxygen plays only a small part.",
+      "hi": "मेडुला में एक श्वसन लय केंद्र साँस की मूल लय तय करता है। पॉन्स का न्यूमोटैक्सिक केंद्र हर अंतःश्वसन को छोटा करके दर बदल सकता है। लय केंद्र के पास का रसायनसंवेदी क्षेत्र CO2 और H+ महसूस करता है और उन्हें हटाने के लिए साँस तेज़ करवाता है; महाधमनी चाप और कैरोटिड धमनी के ग्राही भी यही करते हैं। ऑक्सीजन की भूमिका बहुत छोटी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which blood change most strongly makes us breathe faster?",
+        "hi": "रक्त का कौन-सा बदलाव हमें सबसे ज़्यादा तेज़ साँस लेने पर मजबूर करता है?"
+       },
+       "options": [
+        {
+         "en": "A rise in CO2 and H+",
+         "hi": "CO2 और H+ का बढ़ना"
+        },
+        {
+         "en": "A rise in glucose",
+         "hi": "ग्लूकोज़ का बढ़ना"
+        },
+        {
+         "en": "A rise in oxygen",
+         "hi": "ऑक्सीजन का बढ़ना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The chemosensitive area reacts to CO2 and H+, signalling the rhythm centre to remove them.",
+        "hi": "रसायनसंवेदी क्षेत्र CO2 और H+ पर प्रतिक्रिया करता है और लय केंद्र को उन्हें हटाने का संकेत देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Blood sugar is controlled by hormones like insulin, not by the breathing centres.",
+         "hi": "रक्त शर्करा इंसुलिन जैसे हार्मोन नियंत्रित करते हैं, श्वसन केंद्र नहीं।"
+        },
+        {
+         "en": "More oxygen would, if anything, reduce the drive to breathe; O2's role is small.",
+         "hi": "अधिक ऑक्सीजन से साँस की ज़रूरत घटेगी ही; O2 की भूमिका छोटी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where is the pneumotaxic centre?",
+        "hi": "न्यूमोटैक्सिक केंद्र कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "Medulla",
+         "hi": "मेडुला"
+        },
+        {
+         "en": "Pons",
+         "hi": "पॉन्स"
+        },
+        {
+         "en": "Cerebellum",
+         "hi": "अनुमस्तिष्क"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It lies in the pons and moderates the medulla's rhythm centre.",
+        "hi": "यह पॉन्स में है और मेडुला के लय केंद्र को नियंत्रित करता है।"
+       },
+       "wrong": [
+        {
+         "en": "The medulla holds the rhythm centre and the chemosensitive area, not the pneumotaxic centre.",
+         "hi": "मेडुला में लय केंद्र और रसायनसंवेदी क्षेत्र हैं, न्यूमोटैक्सिक केंद्र नहीं।"
+        },
+        "",
+        {
+         "en": "The cerebellum keeps balance and posture; it does not pace breathing.",
+         "hi": "अनुमस्तिष्क संतुलन और मुद्रा सँभालता है; साँस की गति तय नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap the other parts of the brain. Which part would you use to decide to hold your breath on purpose?",
+      "hi": "ख़ुद आज़माओ। मस्तिष्क के दूसरे भागों पर टैप करो। जान-बूझकर साँस रोकने का फ़ैसला किस भाग से होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch14-disorders",
+   "topic": "14.6",
+   "template": "match",
+   "title": {
+    "en": "When breathing goes wrong",
+    "hi": "जब साँस बिगड़ती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "asthma",
+      "left": {
+       "en": "Asthma",
+       "hi": "दमा (अस्थमा)"
+      },
+      "right": {
+       "en": "Inflamed bronchi and bronchioles make breathing hard, with wheezing",
+       "hi": "सूजी श्वसनियों और श्वसनिकाओं से साँस लेना कठिन, सीटी जैसी आवाज़"
+      },
+      "why": {
+       "en": "Asthma narrows the airways, so breathing is difficult and wheezing is heard.",
+       "hi": "दमे में वायुमार्ग संकरे हो जाते हैं, साँस लेना कठिन होता है और सीटी जैसी आवाज़ आती है।"
+      }
+     },
+     {
+      "id": "emph",
+      "left": {
+       "en": "Emphysema",
+       "hi": "वातस्फीति (एम्फ़ाइसीमा)"
+      },
+      "right": {
+       "en": "Alveolar walls are damaged and the exchange surface shrinks",
+       "hi": "कूपिकाओं की दीवारें नष्ट होकर लेन-देन की सतह घटती है"
+      },
+      "why": {
+       "en": "Emphysema is a long-lasting disorder; cigarette smoking is one of its major causes.",
+       "hi": "वातस्फीति लंबे समय तक रहने वाला विकार है; सिगरेट पीना इसका एक बड़ा कारण है।"
+      }
+     },
+     {
+      "id": "occ",
+      "left": {
+       "en": "Occupational respiratory disorder",
+       "hi": "व्यावसायिक श्वसन विकार"
+      },
+      "right": {
+       "en": "Years of dust from stone grinding cause lung fibrosis",
+       "hi": "पत्थर पीसने की धूल के वर्षों तक संपर्क से फेफड़ों में तंतुमयता"
+      },
+      "why": {
+       "en": "Dust overwhelms the lungs' defences; inflammation leads to fibrous scarring and serious damage.",
+       "hi": "धूल फेफड़ों की रक्षा को हरा देती है; सूजन से रेशेदार निशान बनते हैं और गंभीर नुक़सान होता है।"
+      }
+     },
+     {
+      "id": "mask",
+      "left": {
+       "en": "Prevention at a dusty workplace",
+       "hi": "धूल भरे काम की जगह पर बचाव"
+      },
+      "right": {
+       "en": "Workers wear protective masks",
+       "hi": "मज़दूर सुरक्षा मास्क पहनते हैं"
+      },
+      "why": {
+       "en": "Masks keep dust out of the airways and lower the risk of occupational disorders.",
+       "hi": "मास्क धूल को वायुमार्ग से दूर रखते हैं और व्यावसायिक विकारों का ख़तरा घटाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:asthma",
+     "expect": "matched:asthma",
+     "say": {
+      "en": "Tap asthma and match it.",
+      "hi": "दमे पर टैप करो और उसे मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In emphysema the walls between alveoli break down. What happens to gas exchange?",
+      "hi": "वातस्फीति में कूपिकाओं के बीच की दीवारें टूट जाती हैं। गैसों के लेन-देन का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "It falls, as the surface area shrinks",
+       "hi": "सतह घटने से कम हो जाता है"
+      },
+      {
+       "id": "more",
+       "en": "It rises, as the sacs get bigger",
+       "hi": "थैलियाँ बड़ी होने से बढ़ जाता है"
+      },
+      {
+       "id": "same",
+       "en": "It does not change",
+       "hi": "नहीं बदलता"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "left:emph",
+     "expect": "matched:emph",
+     "say": {
+      "en": "Match emphysema.",
+      "hi": "वातस्फीति मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:occ",
+     "expect": "matched:occ",
+     "say": {
+      "en": "Match the occupational disorder.",
+      "hi": "व्यावसायिक विकार मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Asthma narrows the airways, emphysema destroys the exchange surface, and long exposure to dust at work scars the lungs. Fewer, larger air sacs have less total surface than many small ones, so emphysema reduces gas exchange. Not smoking and wearing masks in dusty work protect the lungs.",
+      "hi": "दमा वायुमार्ग संकरे करता है, वातस्फीति लेन-देन की सतह नष्ट करती है, और काम पर लंबे समय तक धूल फेफड़ों में निशान छोड़ती है। कम पर बड़ी थैलियों की कुल सतह बहुत सारी छोटी थैलियों से कम होती है, इसलिए वातस्फीति में लेन-देन घटता है। धूम्रपान न करना और धूल भरे काम में मास्क पहनना फेफड़ों को बचाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which habit is a major cause of emphysema?",
+        "hi": "कौन-सी आदत वातस्फीति का बड़ा कारण है?"
+       },
+       "options": [
+        {
+         "en": "Cigarette smoking",
+         "hi": "सिगरेट पीना"
+        },
+        {
+         "en": "Drinking water",
+         "hi": "पानी पीना"
+        },
+        {
+         "en": "Morning walks",
+         "hi": "सुबह की सैर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Smoke damages the alveolar walls over the years.",
+        "hi": "धुआँ वर्षों में कूपिकाओं की दीवारें नष्ट करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water has nothing to do with damage to the alveoli.",
+         "hi": "पानी का कूपिकाओं के नुक़सान से कोई संबंध नहीं।"
+        },
+        {
+         "en": "Walks in clean air help the lungs rather than harm them.",
+         "hi": "साफ़ हवा में सैर फेफड़ों को नुक़सान नहीं, फ़ायदा देती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match the last pair. Which jobs in your town might need protective masks?",
+      "hi": "ख़ुद आज़माओ। आख़िरी जोड़ी मिलाओ। तुम्हारे शहर में किन कामों के लिए सुरक्षा मास्क ज़रूरी हो सकते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Hook of the chapter",
+   "shows": "A girl and a boy, seen from behind, running up a hill path in the Western Ghats in the early morning, their breath faintly visible in cool air",
+   "view": "Wide, from behind and below, soft dawn light, 16:9",
+   "right": "Clear morning air, green hills, both children far enough not to be identified",
+   "avoid": "Faces, brand names on clothes"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "14.1",
+   "use": "Respiratory system to turn in the body lab",
+   "shows": "A model of the larynx, trachea with C-shaped rings, two bronchi and both lungs (right lung 3 lobes, left lung 2 with the cardiac notch), with the diaphragm below",
+   "view": "Front, back, side, top and three-quarter views, same size and centre, transparent background",
+   "right": "C-rings open at the back; right lung 3 lobes, left 2; diaphragm dome-shaped",
+   "avoid": "Labels, heart or other organs blocking the view"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "14.3",
+   "use": "Where gases are exchanged",
+   "shows": "A render of a cluster of alveoli cut open, each sac wrapped in a fine net of red and blue capillaries, one sac sliced to show its very thin wall",
+   "view": "Close three-quarter view, white background, 4:3",
+   "right": "Alveolar wall and capillary wall shown one cell thick; blood colour changes from blue-purple to red across the net",
+   "avoid": "Labels, arrows, cartoon style"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "14.2",
+   "use": "Breathing in and out",
+   "shows": "A cut-away chest model showing ribs, intercostal muscles, lungs and diaphragm at two moments: breathing in (diaphragm flat, ribs raised) and breathing out (diaphragm domed, ribs lowered)",
+   "view": "Identical front view in both frames, transparent background",
+   "right": "Diaphragm clearly flatter and ribs higher in the inhale frame",
+   "avoid": "Labels, arrows baked in"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "14.2",
+   "use": "Measuring lung volumes",
+   "shows": "A simple hospital spirometer or a hand-held peak-flow meter with a fresh mouthpiece",
+   "view": "Three-quarter view, transparent background, lit from top left",
+   "right": "Device shown clean and real; mouthpiece separate and sealed",
+   "avoid": "Brand names, screens with readings, people"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "14.6",
+   "use": "Occupational disorders and prevention",
+   "shows": "Workers at a stone-crushing site in Rajasthan, seen from a distance and from behind, wearing dust masks, with fine dust hanging in the air",
+   "view": "Wide, side light through the dust, 16:9",
+   "right": "Masks worn properly; dust visible but scene not dramatised",
+   "avoid": "Identifiable faces, company names, children at work"
+  }
+ ]
+}

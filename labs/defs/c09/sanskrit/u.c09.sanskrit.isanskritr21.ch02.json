@@ -1,0 +1,1003 @@
+{
+ "chapter_key": "u.c09.sanskrit.isanskritr21.ch02",
+ "class": 9,
+ "subject_id": "sanskrit",
+ "title": "योऽधीतविद्यः सकलः स सर्वेषां गुरुर्भवेत्",
+ "source": "https://ncert.nic.in/textbook/pdf/isanskritr2102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Who can be a guru, and the difference between vidya and kala",
+   "labs": [
+    "c09-sanskrit-isanskritr21-ch02-kala"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Vedas, Upavedas, Vedangas, Darshanas and Smritis",
+   "labs": [
+    "c09-sanskrit-isanskritr21-ch02-vidyas"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "What each branch of learning studies",
+   "labs": [
+    "c09-sanskrit-isanskritr21-ch02-angas"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Compound words with the meaning \"one who has\" (बहुव्रीहि) in the word table",
+   "labs": [],
+   "why_no_lab": "These compounds are practised in a later lab (Lesson 5) and in the exercises. § इन समासों का अभ्यास पाठ 5 की लैब और अभ्यासों में होता है।"
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-sanskrit-isanskritr21-ch02-kala",
+   "topic": "2.1",
+   "template": "sort",
+   "title": {
+    "en": "Vidya or kala?",
+    "hi": "विद्या या कला?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "v",
+      "label": {
+       "en": "Vidya: done with words",
+       "hi": "विद्या: शब्दों से"
+      }
+     },
+     {
+      "id": "k",
+      "label": {
+       "en": "Kala: even a mute can do",
+       "hi": "कला: मूक भी कर सके"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "Explaining a poem in words",
+       "hi": "शब्दों में कविता समझाना"
+      },
+      "bin": "v",
+      "why": {
+       "en": "Explaining uses speech, so it is विद्या.",
+       "hi": "समझाने में वाणी लगती है, इसलिए यह विद्या है।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "Reciting a Vedic hymn",
+       "hi": "वेदमंत्र का पाठ करना"
+      },
+      "bin": "v",
+      "why": {
+       "en": "Reciting is done with the voice: विद्या.",
+       "hi": "पाठ वाणी से होता है: विद्या।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "Teaching grammar rules aloud",
+       "hi": "व्याकरण के नियम बोलकर पढ़ाना"
+      },
+      "bin": "v",
+      "why": {
+       "en": "Teaching aloud is विद्या.",
+       "hi": "बोलकर पढ़ाना विद्या है।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "Debating a question",
+       "hi": "किसी प्रश्न पर वाद-विवाद करना"
+      },
+      "bin": "v",
+      "why": {
+       "en": "Debate runs on spoken words: विद्या.",
+       "hi": "वाद-विवाद बोले शब्दों से चलता है: विद्या।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "Painting a picture",
+       "hi": "चित्र बनाना"
+      },
+      "bin": "k",
+      "why": {
+       "en": "A painter needs no speech: कला.",
+       "hi": "चित्रकार को बोलने की ज़रूरत नहीं: कला।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "Playing the flute",
+       "hi": "बाँसुरी बजाना"
+      },
+      "bin": "k",
+      "why": {
+       "en": "It is done with the hands and breath: कला.",
+       "hi": "यह हाथों और साँस से होता है: कला।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "Weaving cloth",
+       "hi": "कपड़ा बुनना"
+      },
+      "bin": "k",
+      "why": {
+       "en": "Weaving is a skill of the hands: कला.",
+       "hi": "बुनाई हाथों का कौशल है: कला।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "Making a clay pot",
+       "hi": "मिट्टी का घड़ा बनाना"
+      },
+      "bin": "k",
+      "why": {
+       "en": "A potter works without words: कला.",
+       "hi": "कुम्हार बिना शब्दों के काम करता है: कला।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:e",
+     "expect": "placed:e",
+     "say": {
+      "en": "Tap the card \"Painting a picture\", then tap its group.",
+      "hi": "कार्ड \"चित्र बनाना\" छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can a mute person paint a picture? Is it then विद्या or कला?",
+      "hi": "क्या कोई मूक व्यक्ति चित्र बना सकता है? तब वह विद्या है या कला?"
+     },
+     "options": [
+      {
+       "id": "k",
+       "en": "कला",
+       "hi": "कला"
+      },
+      {
+       "id": "v",
+       "en": "विद्या",
+       "hi": "विद्या"
+      }
+     ],
+     "answer": "k"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Put every card in a group, then press Check.",
+      "hi": "सारे कार्ड समूहों में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The verse separates two things. Whatever is done well through speech is called विद्या. Whatever even a mute person can do is called कला. Reciting, explaining and debating are विद्या. Painting, playing an instrument and weaving are कला. The text says there are 32 main vidyas and 64 kalas.",
+      "hi": "श्लोक दो बातों को अलग करता है। जो काम वाणी से भली-भाँति होता है उसे विद्या कहते हैं। जिसे मूक व्यक्ति भी कर सके वह कला कहलाता है। पाठ करना, समझाना और वाद-विवाद विद्या हैं। चित्र बनाना, वाद्य बजाना और बुनना कला हैं। पाठ में 32 मुख्य विद्याएँ और 64 कलाएँ बताई गई हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How does the lesson tell कला from विद्या?",
+        "hi": "पाठ कला को विद्या से कैसे अलग करता है?"
+       },
+       "options": [
+        {
+         "en": "कला is always done with words",
+         "hi": "कला हमेशा शब्दों से होती है"
+        },
+        {
+         "en": "कला is what even a mute person can do",
+         "hi": "कला वह है जिसे मूक भी कर सके"
+        },
+        {
+         "en": "They are the same",
+         "hi": "दोनों एक ही हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The verse says a mute can also do कला.",
+        "hi": "श्लोक कहता है कि कला मूक भी कर सकता है।"
+       },
+       "wrong": [
+        {
+         "en": "Words are the mark of विद्या, not of कला.",
+         "hi": "शब्द विद्या की पहचान हैं, कला की नहीं।"
+        },
+        "",
+        {
+         "en": "The lesson separates them clearly.",
+         "hi": "पाठ दोनों को स्पष्ट रूप से अलग करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many main kalas does the lesson name?",
+        "hi": "पाठ कितनी मुख्य कलाएँ बताता है?"
+       },
+       "options": [
+        {
+         "en": "32",
+         "hi": "32 (बत्तीस)"
+        },
+        {
+         "en": "6",
+         "hi": "6 (छह)"
+        },
+        {
+         "en": "64 (चतुःषष्टिः)",
+         "hi": "64 (चतुःषष्टिः)"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "The verse says 32 vidyas and 64 kalas.",
+        "hi": "श्लोक 32 विद्याएँ और 64 कलाएँ बताता है।"
+       },
+       "wrong": [
+        {
+         "en": "32 is the number of vidyas.",
+         "hi": "32 विद्याओं की संख्या है।"
+        },
+        {
+         "en": "6 is the number of Vedangas.",
+         "hi": "6 वेदाङ्गों की संख्या है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List three things you can do well. Mark each one विद्या or कला.",
+      "hi": "तीन ऐसे काम लिखो जो तुम अच्छे से कर सकते हो। हर एक पर विद्या या कला लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-sanskrit-isanskritr21-ch02-vidyas",
+   "topic": "2.2",
+   "template": "sort",
+   "title": {
+    "en": "The branches of Indian knowledge",
+    "hi": "भारतीय ज्ञान की शाखाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "v",
+      "label": {
+       "en": "Vedas",
+       "hi": "वेद"
+      }
+     },
+     {
+      "id": "u",
+      "label": {
+       "en": "Upavedas",
+       "hi": "उपवेद"
+      }
+     },
+     {
+      "id": "a",
+      "label": {
+       "en": "Vedangas",
+       "hi": "वेदाङ्ग"
+      }
+     },
+     {
+      "id": "d",
+      "label": {
+       "en": "Darshanas",
+       "hi": "दर्शन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "ऋग्वेदः",
+       "hi": "ऋग्वेदः"
+      },
+      "bin": "v",
+      "why": {
+       "en": "ऋग्वेद is the first of the four Vedas.",
+       "hi": "ऋग्वेद चार वेदों में पहला है।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "यजुर्वेदः",
+       "hi": "यजुर्वेदः"
+      },
+      "bin": "v",
+      "why": {
+       "en": "यजुर्वेद is one of the four Vedas.",
+       "hi": "यजुर्वेद चार वेदों में से एक है।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "सामवेदः",
+       "hi": "सामवेदः"
+      },
+      "bin": "v",
+      "why": {
+       "en": "सामवेद is one of the four Vedas.",
+       "hi": "सामवेद चार वेदों में से एक है।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "अथर्ववेदः",
+       "hi": "अथर्ववेदः"
+      },
+      "bin": "v",
+      "why": {
+       "en": "अथर्ववेद is the fourth Veda.",
+       "hi": "अथर्ववेद चौथा वेद है।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "आयुर्वेदः",
+       "hi": "आयुर्वेदः"
+      },
+      "bin": "u",
+      "why": {
+       "en": "आयुर्वेद, the science of health, is an Upaveda.",
+       "hi": "आयुर्वेद, स्वास्थ्य का विज्ञान, उपवेद है।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "धनुर्वेदः",
+       "hi": "धनुर्वेदः"
+      },
+      "bin": "u",
+      "why": {
+       "en": "धनुर्वेद, archery and warfare, is an Upaveda.",
+       "hi": "धनुर्वेद, धनुर्विद्या और युद्ध, उपवेद है।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "गान्धर्ववेदः",
+       "hi": "गान्धर्ववेदः"
+      },
+      "bin": "u",
+      "why": {
+       "en": "गान्धर्ववेद, music and dance, is an Upaveda.",
+       "hi": "गान्धर्ववेद, संगीत और नृत्य, उपवेद है।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "शिक्षा",
+       "hi": "शिक्षा"
+      },
+      "bin": "a",
+      "why": {
+       "en": "शिक्षा, pronunciation, is a Vedanga.",
+       "hi": "शिक्षा, उच्चारण, वेदाङ्ग है।"
+      }
+     },
+     {
+      "id": "i",
+      "text": {
+       "en": "कल्पः",
+       "hi": "कल्पः"
+      },
+      "bin": "a",
+      "why": {
+       "en": "कल्प, rules of rituals, is a Vedanga.",
+       "hi": "कल्प, अनुष्ठान के नियम, वेदाङ्ग है।"
+      }
+     },
+     {
+      "id": "j",
+      "text": {
+       "en": "निरुक्तम्",
+       "hi": "निरुक्तम्"
+      },
+      "bin": "a",
+      "why": {
+       "en": "निरुक्त, the origin of words, is a Vedanga.",
+       "hi": "निरुक्त, शब्दों की उत्पत्ति, वेदाङ्ग है।"
+      }
+     },
+     {
+      "id": "k",
+      "text": {
+       "en": "छन्दः",
+       "hi": "छन्दः"
+      },
+      "bin": "a",
+      "why": {
+       "en": "छन्दः, metre, is a Vedanga.",
+       "hi": "छन्दः, छंद, वेदाङ्ग है।"
+      }
+     },
+     {
+      "id": "l",
+      "text": {
+       "en": "ज्योतिषम्",
+       "hi": "ज्योतिषम्"
+      },
+      "bin": "a",
+      "why": {
+       "en": "ज्योतिष, astronomy and time, is a Vedanga.",
+       "hi": "ज्योतिष, खगोल और समय, वेदाङ्ग है।"
+      }
+     },
+     {
+      "id": "m",
+      "text": {
+       "en": "न्यायः",
+       "hi": "न्यायः"
+      },
+      "bin": "d",
+      "why": {
+       "en": "न्याय, the science of reasoning, is a Darshana.",
+       "hi": "न्याय, तर्कशास्त्र, दर्शन है।"
+      }
+     },
+     {
+      "id": "n",
+      "text": {
+       "en": "योगः",
+       "hi": "योगः"
+      },
+      "bin": "d",
+      "why": {
+       "en": "योग is one of the six Darshanas.",
+       "hi": "योग छह दर्शनों में से एक है।"
+      }
+     },
+     {
+      "id": "o",
+      "text": {
+       "en": "सांख्यम्",
+       "hi": "सांख्यम्"
+      },
+      "bin": "d",
+      "why": {
+       "en": "सांख्य is one of the six Darshanas.",
+       "hi": "सांख्य छह दर्शनों में से एक है।"
+      }
+     },
+     {
+      "id": "p",
+      "text": {
+       "en": "मीमांसा",
+       "hi": "मीमांसा"
+      },
+      "bin": "d",
+      "why": {
+       "en": "मीमांसा is one of the six Darshanas.",
+       "hi": "मीमांसा छह दर्शनों में से एक है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "placed:a",
+     "say": {
+      "en": "Tap the card ऋग्वेदः, then tap the group where it belongs.",
+      "hi": "कार्ड ऋग्वेदः छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "आयुर्वेदः is the science of health. Which group does it belong to?",
+      "hi": "आयुर्वेदः स्वास्थ्य का विज्ञान है। वह किस समूह में आता है?"
+     },
+     "options": [
+      {
+       "id": "v",
+       "en": "Vedas",
+       "hi": "वेद"
+      },
+      {
+       "id": "u",
+       "en": "Upavedas",
+       "hi": "उपवेद"
+      },
+      {
+       "id": "d",
+       "en": "Darshanas",
+       "hi": "दर्शन"
+      }
+     ],
+     "answer": "u"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Put every card in a group, then press Check.",
+      "hi": "सारे कार्ड समूहों में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Shukra-niti lists the main branches of knowledge. There are four Vedas. Beside them are the Upavedas, which are practical sciences such as health, archery and music. The Vedangas are the six limbs that help us understand the Vedas. The six Darshanas are schools of thought. Together they show how wide ancient Indian learning was.",
+      "hi": "शुक्रनीति ज्ञान की मुख्य शाखाओं को गिनाती है। चार वेद हैं। उनके साथ उपवेद हैं, जो स्वास्थ्य, धनुर्विद्या और संगीत जैसे व्यावहारिक विज्ञान हैं। वेदाङ्ग छह अंग हैं जो वेदों को समझने में सहायता करते हैं। छह दर्शन विचार की शाखाएँ हैं। सब मिलकर दिखाते हैं कि प्राचीन भारतीय विद्या कितनी विस्तृत थी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many Vedas are there?",
+        "hi": "वेद कितने हैं?"
+       },
+       "options": [
+        {
+         "en": "Four",
+         "hi": "चार"
+        },
+        {
+         "en": "Six",
+         "hi": "छह"
+        },
+        {
+         "en": "Three",
+         "hi": "तीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The four Vedas are ऋग्, यजुः, साम and अथर्व.",
+        "hi": "चार वेद हैं: ऋग्, यजुः, साम और अथर्व।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Six is the number of Vedangas and of Darshanas, not of Vedas.",
+         "hi": "छह वेदाङ्गों और दर्शनों की संख्या है, वेदों की नहीं।"
+        },
+        {
+         "en": "There are four, not three.",
+         "hi": "वेद चार हैं, तीन नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is an Upaveda?",
+        "hi": "इनमें से उपवेद कौन-सा है?"
+       },
+       "options": [
+        "ज्योतिषम्",
+        "धनुर्वेदः",
+        "योगः"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "धनुर्वेद, the science of archery and warfare, is an Upaveda.",
+        "hi": "धनुर्वेद, धनुर्विद्या और युद्ध का विज्ञान, उपवेद है।"
+       },
+       "wrong": [
+        {
+         "en": "ज्योतिषम् is a Vedanga.",
+         "hi": "ज्योतिषम् वेदाङ्ग है।"
+        },
+        "",
+        {
+         "en": "योगः is a Darshana.",
+         "hi": "योगः दर्शन है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw a tree with four branches (Vedas, Upavedas, Vedangas, Darshanas) and write the names on it.",
+      "hi": "चार शाखाओं वाला वृक्ष बनाओ (वेद, उपवेद, वेदाङ्ग, दर्शन) और उन पर नाम लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-sanskrit-isanskritr21-ch02-angas",
+   "topic": "2.3",
+   "template": "match",
+   "title": {
+    "en": "What each subject studies",
+    "hi": "हर विषय क्या सिखाता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "shiksha",
+      "left": {
+       "en": "शिक्षा",
+       "hi": "शिक्षा"
+      },
+      "right": {
+       "en": "Pronunciation of sounds",
+       "hi": "ध्वनियों का उच्चारण"
+      },
+      "why": {
+       "en": "शिक्षा teaches how to say each sound correctly.",
+       "hi": "शिक्षा हर ध्वनि को सही बोलना सिखाती है।"
+      }
+     },
+     {
+      "id": "vyakarana",
+      "left": {
+       "en": "व्याकरणम्",
+       "hi": "व्याकरणम्"
+      },
+      "right": {
+       "en": "Rules of words and sentences",
+       "hi": "शब्दों और वाक्यों के नियम"
+      },
+      "why": {
+       "en": "व्याकरण is grammar.",
+       "hi": "व्याकरण भाषा के नियम हैं।"
+      }
+     },
+     {
+      "id": "chhandas",
+      "left": {
+       "en": "छन्दः",
+       "hi": "छन्दः"
+      },
+      "right": {
+       "en": "Rhythm and metre of verse",
+       "hi": "पद्य की लय और छंद"
+      },
+      "why": {
+       "en": "छन्दः shapes verses with a fixed beat.",
+       "hi": "छन्दः पद्य को निश्चित लय देता है।"
+      }
+     },
+     {
+      "id": "nirukta",
+      "left": {
+       "en": "निरुक्तम्",
+       "hi": "निरुक्तम्"
+      },
+      "right": {
+       "en": "Origin and meaning of words",
+       "hi": "शब्दों की उत्पत्ति और अर्थ"
+      },
+      "why": {
+       "en": "निरुक्त explains where words come from.",
+       "hi": "निरुक्त बताता है कि शब्द कहाँ से आए।"
+      }
+     },
+     {
+      "id": "jyotisha",
+      "left": {
+       "en": "ज्योतिषम्",
+       "hi": "ज्योतिषम्"
+      },
+      "right": {
+       "en": "Stars, planets and time",
+       "hi": "तारे, ग्रह और समय"
+      },
+      "why": {
+       "en": "ज्योतिष studies the sky and keeps time.",
+       "hi": "ज्योतिष आकाश का अध्ययन करता और समय गिनता है।"
+      }
+     },
+     {
+      "id": "kalpa",
+      "left": {
+       "en": "कल्पः",
+       "hi": "कल्पः"
+      },
+      "right": {
+       "en": "Rules for rituals",
+       "hi": "अनुष्ठानों के नियम"
+      },
+      "why": {
+       "en": "कल्प gives the method of rituals.",
+       "hi": "कल्प अनुष्ठानों की विधि बताता है।"
+      }
+     },
+     {
+      "id": "ayurveda",
+      "left": {
+       "en": "आयुर्वेदः",
+       "hi": "आयुर्वेदः"
+      },
+      "right": {
+       "en": "Health and medicine",
+       "hi": "स्वास्थ्य और चिकित्सा"
+      },
+      "why": {
+       "en": "आयुर्वेद is the science of life and health.",
+       "hi": "आयुर्वेद जीवन और स्वास्थ्य का विज्ञान है।"
+      }
+     },
+     {
+      "id": "dhanurveda",
+      "left": {
+       "en": "धनुर्वेदः",
+       "hi": "धनुर्वेदः"
+      },
+      "right": {
+       "en": "Archery and warfare",
+       "hi": "धनुर्विद्या और युद्ध"
+      },
+      "why": {
+       "en": "धनुः means bow.",
+       "hi": "धनुः का अर्थ धनुष है।"
+      }
+     },
+     {
+      "id": "gandharva",
+      "left": {
+       "en": "गान्धर्ववेदः",
+       "hi": "गान्धर्ववेदः"
+      },
+      "right": {
+       "en": "Music and dance",
+       "hi": "संगीत और नृत्य"
+      },
+      "why": {
+       "en": "The Gandharvas are the heavenly musicians.",
+       "hi": "गन्धर्व स्वर्ग के संगीतकार माने जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:shiksha",
+     "expect": "matched:shiksha",
+     "say": {
+      "en": "Tap शिक्षा, then tap what it studies.",
+      "hi": "शिक्षा छुओ, फिर वह छुओ जो वह सिखाती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which subject do you think studies the stars and time?",
+      "hi": "तुम्हें क्या लगता है कौन-सा विषय तारों और समय का अध्ययन करता है?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "निरुक्तम्",
+       "hi": "निरुक्तम्"
+      },
+      {
+       "id": "k",
+       "en": "कल्पः",
+       "hi": "कल्पः"
+      },
+      {
+       "id": "j",
+       "en": "ज्योतिषम्",
+       "hi": "ज्योतिषम्"
+      }
+     ],
+     "answer": "j"
+    },
+    {
+     "kind": "do",
+     "target": "left:gandharva",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the other subjects.",
+      "hi": "अब बाकी सारे विषय मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each branch has its own task. शिक्षा teaches sounds, व्याकरण teaches grammar, छन्दः gives rhythm to verse, निरुक्त explains the origin of words, ज्योतिष studies stars and time, and कल्प gives the rules of rituals. The Upavedas are practical: आयुर्वेद for health, धनुर्वेद for archery and warfare and गान्धर्ववेद for music and dance.",
+      "hi": "हर शाखा का अपना काम है। शिक्षा ध्वनियाँ सिखाती है, व्याकरण भाषा के नियम, छन्दः पद्य को लय देता है, निरुक्त शब्दों की उत्पत्ति बताता है, ज्योतिष तारों और समय का अध्ययन करता है और कल्प अनुष्ठानों के नियम देता है। उपवेद व्यावहारिक हैं: आयुर्वेद स्वास्थ्य के लिए, धनुर्वेद धनुर्विद्या और युद्ध के लिए और गान्धर्ववेद संगीत और नृत्य के लिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which subject explains where words come from?",
+        "hi": "कौन-सा विषय बताता है कि शब्द कहाँ से आए?"
+       },
+       "options": [
+        "छन्दः",
+        "शिक्षा",
+        "निरुक्तम्"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "निरुक्त studies the origin and meaning of words.",
+        "hi": "निरुक्त शब्दों की उत्पत्ति और अर्थ का अध्ययन करता है।"
+       },
+       "wrong": [
+        {
+         "en": "छन्दः is about rhythm and metre.",
+         "hi": "छन्दः लय और छंद के बारे में है।"
+        },
+        {
+         "en": "शिक्षा is about pronunciation.",
+         "hi": "शिक्षा उच्चारण के बारे में है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "What does गान्धर्ववेदः cover?",
+        "hi": "गान्धर्ववेदः में क्या आता है?"
+       },
+       "options": [
+        {
+         "en": "Music and dance",
+         "hi": "संगीत और नृत्य"
+        },
+        {
+         "en": "Health and medicine",
+         "hi": "स्वास्थ्य और चिकित्सा"
+        },
+        {
+         "en": "Archery and warfare",
+         "hi": "धनुर्विद्या और युद्ध"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Gandharvas were the heavenly musicians.",
+        "hi": "गन्धर्व स्वर्ग के संगीतकार थे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Health and medicine belong to आयुर्वेद.",
+         "hi": "स्वास्थ्य और चिकित्सा आयुर्वेद में आते हैं।"
+        },
+        {
+         "en": "Archery and warfare belong to धनुर्वेद.",
+         "hi": "धनुर्विद्या और युद्ध धनुर्वेद में आते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose the subject you like best and tell a friend how it helps in daily life.",
+      "hi": "वह विषय चुनो जो तुम्हें सबसे अच्छा लगे और मित्र को बताओ कि वह रोज़ के जीवन में कैसे काम आता है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Shows how old knowledge was kept",
+   "shows": "A bundle of palm-leaf manuscripts on a wooden stand, tied with cords",
+   "view": "Slightly from above, on a cut-out",
+   "right": "Real palm leaf, unreadable script",
+   "avoid": "Readable verses"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Shows a guru and students",
+   "shows": "A teacher sitting under a banyan tree with students on mats around him, seen from the side",
+   "view": "Wide, faces softly out of focus",
+   "right": "Real banyan, mat, morning light",
+   "avoid": "Identifiable children, readable books"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Shows astronomy (ज्योतिषम्)",
+   "shows": "A rooftop at night with a clear sky full of stars and a telescope-free view",
+   "view": "Wide, from the roof corner",
+   "right": "Real sky look, Milky Way visible",
+   "avoid": "Constellation lines, text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Shows an art (कला)",
+   "shows": "A veena or bamboo flute on a cut-out",
+   "view": "Three-quarter view",
+   "right": "Real wood and strings, tuning pegs",
+   "avoid": "Brand logos"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Shows a craft (कला)",
+   "shows": "A potter shaping clay on a wheel, hands only, seen from above",
+   "view": "Close, top view",
+   "right": "Real wet clay and spinning wheel",
+   "avoid": "Face"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Frame for the branches of knowledge",
+   "shows": "A tree outline with four empty branches",
+   "view": "Flat, white background",
+   "right": "Clean branches the app can label",
+   "avoid": "Any text"
+  }
+ ]
+}

@@ -1,0 +1,613 @@
+{
+  "chapter_key": "u.c02.hindi.bhsr1.ch20",
+  "class": 2,
+  "subject_id": "hindi",
+  "title": "छुपन-छुपाई",
+  "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+  "topics": [
+    {
+      "n": "20.1",
+      "title": "The story: who was found where, in order",
+      "labs": [
+        "c02-hindi-bhsr1-ch20-found",
+        "c02-hindi-bhsr1-ch20-where"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "20.2",
+      "title": "Making sentences with पीछे, नीचे and ऊपर",
+      "labs": [
+        "c02-hindi-bhsr1-ch20-sentence"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "20.3",
+      "title": "My story: write your own game story",
+      "labs": [],
+      "why_no_lab": "The child's own creative writing in the notebook; the aim is free imagination."
+    },
+    {
+      "n": "20.4",
+      "title": "Word chain (अंत्याक्षरी) and naming sportspeople",
+      "labs": [],
+      "why_no_lab": "A spoken word game for a group, and naming people from photos; better done aloud with friends."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c02-hindi-bhsr1-ch20-found",
+      "topic": "20.1",
+      "template": "sequence",
+      "title": {
+        "en": "Who was found when?",
+        "hi": "कौन कब मिला?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "count",
+            "text": {
+              "en": "Jeet counted up to a hundred.",
+              "hi": "जीत ने सौ तक गिनती गिनी।"
+            }
+          },
+          {
+            "id": "mohit",
+            "text": {
+              "en": "Mohit was found behind the door.",
+              "hi": "मोहित दरवाज़े के पीछे मिला।"
+            }
+          },
+          {
+            "id": "babli",
+            "text": {
+              "en": "Babli was found behind the cupboard.",
+              "hi": "बबली अलमारी के पीछे मिली।"
+            }
+          },
+          {
+            "id": "maria",
+            "text": {
+              "en": "Maria was found under the bed.",
+              "hi": "मारिया पलंग के नीचे मिली।"
+            }
+          },
+          {
+            "id": "simran",
+            "text": {
+              "en": "Simran was found behind Dadi.",
+              "hi": "सिमरन दादी के पीछे मिली।"
+            }
+          },
+          {
+            "id": "nazia",
+            "text": {
+              "en": "Nazia jumped down from above and said Dhappa!",
+              "hi": "नाज़िया ने ऊपर से कूदकर धप्पा कहा!"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:count",
+          "expect": "placed:count",
+          "say": {
+            "en": "What does the seeker do before looking? Tap that card and put it in slot 1.",
+            "hi": "ढूँढने वाला ढूँढने से पहले क्या करता है? वह कार्ड दबाकर पहली जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Who is found last?",
+            "hi": "सबसे आख़िर में कौन मिलता है?"
+          },
+          "options": [
+            {
+              "id": "nazia",
+              "en": "Nazia jumped down from above and said Dhappa!",
+              "hi": "नाज़िया ने ऊपर से कूदकर धप्पा कहा!"
+            },
+            {
+              "id": "mohit",
+              "en": "Mohit was found behind the door.",
+              "hi": "मोहित दरवाज़े के पीछे मिला।"
+            },
+            {
+              "id": "maria",
+              "en": "Maria was found under the bed.",
+              "hi": "मारिया पलंग के नीचे मिली।"
+            }
+          ],
+          "answer": "nazia"
+        },
+        {
+          "kind": "do",
+          "target": "item:nazia",
+          "expect": "placed:nazia",
+          "say": {
+            "en": "Now put the last card in its place.",
+            "hi": "अब आख़िरी कार्ड को उसकी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place all the cards in order, then tap Check.",
+            "hi": "सब कार्ड क्रम से रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Jeet first counted, then looked in the room, then in the courtyard. He found four friends. The last friend, Nazia, jumped on him and said Dhappa. Then Jeet had to count again.",
+            "hi": "जीत ने पहले गिनती की, फिर कमरे में ढूँढा, फिर आँगन में। उसे चार दोस्त मिल गए। आख़िरी दोस्त नाज़िया ने उसे ही धप्पा दे दिया। फिर जीत को दोबारा गिनती गिननी पड़ी।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Who was found right after Mohit?",
+                "hi": "मोहित के बाद सबसे पहले कौन मिला?"
+              },
+              "options": [
+                {
+                  "en": "Babli",
+                  "hi": "बबली"
+                },
+                {
+                  "en": "Nazia",
+                  "hi": "नाज़िया"
+                },
+                {
+                  "en": "Simran",
+                  "hi": "सिमरन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "After the door, Jeet looked in the room and found Babli behind the cupboard.",
+                "hi": "दरवाज़े के बाद जीत ने कमरे में ढूँढा और बबली अलमारी के पीछे मिली।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Nazia was the last one and was not found by Jeet.",
+                  "hi": "नाज़िया सबसे आख़िर में थी और जीत ने उसे ढूँढा नहीं।"
+                },
+                {
+                  "en": "Simran was found after Maria.",
+                  "hi": "सिमरन मारिया के बाद मिली।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Play hide and seek with friends. Who hid in the best place?",
+            "hi": "दोस्तों के साथ छुपन-छुपाई खेलो। सबसे अच्छी जगह कौन छिपा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch20-where",
+      "topic": "20.1",
+      "template": "match",
+      "title": {
+        "en": "Who hid where?",
+        "hi": "कौन कहाँ छिपा?"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "mohit",
+            "left": {
+              "en": "Mohit",
+              "hi": "मोहित"
+            },
+            "right": {
+              "en": "Behind the door",
+              "hi": "दरवाज़े के पीछे"
+            },
+            "why": {
+              "en": "Jeet found Mohit behind the door.",
+              "hi": "जीत को मोहित दरवाज़े के पीछे मिला।"
+            }
+          },
+          {
+            "id": "babli",
+            "left": {
+              "en": "Babli",
+              "hi": "बबली"
+            },
+            "right": {
+              "en": "Behind the cupboard",
+              "hi": "अलमारी के पीछे"
+            },
+            "why": {
+              "en": "Babli hid behind the cupboard.",
+              "hi": "बबली अलमारी के पीछे छिपी थी।"
+            }
+          },
+          {
+            "id": "maria",
+            "left": {
+              "en": "Maria",
+              "hi": "मारिया"
+            },
+            "right": {
+              "en": "Under the bed",
+              "hi": "पलंग के नीचे"
+            },
+            "why": {
+              "en": "Maria was under the bed.",
+              "hi": "मारिया पलंग के नीचे थी।"
+            }
+          },
+          {
+            "id": "simran",
+            "left": {
+              "en": "Simran",
+              "hi": "सिमरन"
+            },
+            "right": {
+              "en": "Behind Dadi",
+              "hi": "दादी के पीछे"
+            },
+            "why": {
+              "en": "Simran was behind Dadi.",
+              "hi": "सिमरन दादी के पीछे थी।"
+            }
+          },
+          {
+            "id": "nazia",
+            "left": {
+              "en": "Nazia",
+              "hi": "नाज़िया"
+            },
+            "right": {
+              "en": "Up on the tree",
+              "hi": "पेड़ के ऊपर"
+            },
+            "why": {
+              "en": "Nazia was above, on the tree, and jumped down.",
+              "hi": "नाज़िया पेड़ के ऊपर थी और कूद पड़ी।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:mohit",
+          "expect": "matched:mohit",
+          "say": {
+            "en": "Tap the name Mohit on the left.",
+            "hi": "बाईं ओर से मोहित का नाम दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Who hid under something?",
+            "hi": "कौन किसी चीज़ के नीचे छिपा था?"
+          },
+          "options": [
+            {
+              "id": "maria",
+              "en": "Maria",
+              "hi": "मारिया"
+            },
+            {
+              "id": "mohit",
+              "en": "Mohit",
+              "hi": "मोहित"
+            },
+            {
+              "id": "nazia",
+              "en": "Nazia",
+              "hi": "नाज़िया"
+            }
+          ],
+          "answer": "maria"
+        },
+        {
+          "kind": "do",
+          "target": "right:nazia",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest of the pairs.",
+            "hi": "बाक़ी जोड़ियाँ मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Words like behind, under and above tell us where. पीछे means at the back, नीचे means below and ऊपर means higher up. These words help us say exactly where something is.",
+            "hi": "पीछे, नीचे और ऊपर जैसे शब्द बताते हैं कि कोई चीज़ कहाँ है। पीछे का मतलब पीठ की ओर, नीचे का मतलब निचली जगह और ऊपर का मतलब ऊँची जगह है। इन शब्दों से हम ठीक-ठीक बता पाते हैं कि चीज़ कहाँ है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where was Maria?",
+                "hi": "मारिया कहाँ थी?"
+              },
+              "options": [
+                {
+                  "en": "Under the bed",
+                  "hi": "पलंग के नीचे"
+                },
+                {
+                  "en": "Behind the door",
+                  "hi": "दरवाज़े के पीछे"
+                },
+                {
+                  "en": "Up on the tree",
+                  "hi": "पेड़ के ऊपर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Maria was found under the bed.",
+                "hi": "मारिया पलंग के नीचे मिली।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Mohit was behind the door.",
+                  "hi": "दरवाज़े के पीछे मोहित था।"
+                },
+                {
+                  "en": "Nazia was on the tree.",
+                  "hi": "पेड़ के ऊपर नाज़िया थी।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Where can you hide in your home? Say a sentence with पीछे, नीचे or ऊपर.",
+            "hi": "तुम अपने घर में कहाँ छिप सकते हो? पीछे, नीचे या ऊपर से एक वाक्य बोलो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch20-sentence",
+      "topic": "20.2",
+      "template": "grammar",
+      "title": {
+        "en": "Build the sentence",
+        "hi": "वाक्य बनाओ"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "mode": "build",
+        "lang": "hi",
+        "items": [
+          {
+            "id": "s1",
+            "words": [
+              "मारिया",
+              "पलंग",
+              "के",
+              "नीचे",
+              "छिपी",
+              "थी"
+            ],
+            "answer": "मारिया पलंग के नीचे छिपी थी",
+            "rule": {
+              "en": "A sentence tells who did what and where. The doing word comes at the end.",
+              "hi": "वाक्य बताता है कि कौन, कहाँ और क्या कर रहा था। क्रिया शब्द वाक्य के अंत में आता है।"
+            }
+          },
+          {
+            "id": "s2",
+            "words": [
+              "मोहित",
+              "दरवाज़े",
+              "के",
+              "पीछे",
+              "छिपा",
+              "था"
+            ],
+            "answer": "मोहित दरवाज़े के पीछे छिपा था",
+            "rule": {
+              "en": "छिपा is used with a boy and छिपी with a girl.",
+              "hi": "लड़के के साथ छिपा और लड़की के साथ छिपी आता है।"
+            }
+          },
+          {
+            "id": "s3",
+            "words": [
+              "जीत",
+              "ने",
+              "बबली",
+              "को",
+              "ढूँढ़ा"
+            ],
+            "answer": "जीत ने बबली को ढूँढ़ा",
+            "rule": {
+              "en": "ने shows who did the work. को shows who it was done to.",
+              "hi": "ने बताता है कि काम किसने किया। को बताता है कि काम किसके लिए हुआ।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "word:0",
+          "expect": "built:s1",
+          "say": {
+            "en": "Tap the words in the right order to build the sentence about Maria.",
+            "hi": "मारिया वाला वाक्य बनाने के लिए शब्द सही क्रम में दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which word goes at the end of a Hindi sentence?",
+            "hi": "हिंदी वाक्य के अंत में कौन-सा शब्द आता है?"
+          },
+          "options": [
+            {
+              "id": "verb",
+              "en": "The doing word, like थी",
+              "hi": "क्रिया शब्द, जैसे थी"
+            },
+            {
+              "id": "name",
+              "en": "A name",
+              "hi": "कोई नाम"
+            },
+            {
+              "id": "place",
+              "en": "A place",
+              "hi": "कोई जगह"
+            }
+          ],
+          "answer": "verb"
+        },
+        {
+          "kind": "do",
+          "target": "word:0",
+          "expect": "built:s3",
+          "say": {
+            "en": "Now build the sentence about Jeet and Babli.",
+            "hi": "अब जीत और बबली वाला वाक्य बनाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In Hindi a sentence usually ends with the doing word. First we say who, then where or what, and the doing word last. The little words के, ने and को join the other words together.",
+            "hi": "हिंदी वाक्य के अंत में आमतौर पर क्रिया आती है। पहले कौन, फिर कहाँ या क्या, और अंत में क्रिया। के, ने और को जैसे छोटे शब्द दूसरे शब्दों को जोड़ते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which sentence is in the right order?",
+                "hi": "किस वाक्य का क्रम सही है?"
+              },
+              "options": [
+                {
+                  "en": "मारिया पलंग के नीचे छिपी थी",
+                  "hi": "मारिया पलंग के नीचे छिपी थी"
+                },
+                {
+                  "en": "छिपी थी मारिया के नीचे पलंग",
+                  "hi": "छिपी थी मारिया के नीचे पलंग"
+                },
+                {
+                  "en": "नीचे के पलंग थी मारिया छिपी",
+                  "hi": "नीचे के पलंग थी मारिया छिपी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It tells who, where, and then what she was doing.",
+                "hi": "इसमें पहले कौन, फिर कहाँ और अंत में क्या कर रही थी, यह है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The words are jumbled and do not make sense.",
+                  "hi": "शब्द उलटे-सीधे हैं और अर्थ नहीं बनता।"
+                },
+                {
+                  "en": "The words are in the wrong places, so the meaning is lost.",
+                  "hi": "शब्द गलत जगह पर हैं, इसलिए अर्थ खो गया।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make a sentence about where you hid. Write it in your notebook.",
+            "hi": "तुम कहाँ छिपे थे, इस पर एक वाक्य बनाओ। उसे अपनी कॉपी में लिखो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "20.1",
+      "use": "Opens the story",
+      "shows": "An Indian home courtyard with a tree, a charpai, a cupboard and a bed seen through a door",
+      "view": "Wide, afternoon light",
+      "right": "Hiding places are all visible: door, cupboard, bed, tree",
+      "avoid": "Children's faces"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "20.1",
+      "use": "Hide-and-seek places",
+      "shows": "Five frames of five hiding places: behind a door, behind a cupboard, under a bed, behind a grandmother's back, up a tree",
+      "view": "Same home, one camera each",
+      "right": "Only a shoe, hand or bangle shows",
+      "avoid": "Faces"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "20.2",
+      "use": "Word cards",
+      "shows": "A closed door, a wooden cupboard, a bed with a bright sheet, a mango tree",
+      "view": "Front, centre",
+      "right": "Real Indian household objects",
+      "avoid": "Brand tags"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "20.1",
+      "use": "Counting at the wall",
+      "shows": "A child's back facing a wall with hands over the eyes, counting",
+      "view": "Medium, from behind",
+      "right": "Clear that eyes are covered; sunlit wall",
+      "avoid": "Face"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "20.3",
+      "use": "Writing prompt",
+      "shows": "Children's shoes lined up at the doorway of a house",
+      "view": "Low angle, close",
+      "right": "Different sizes and colours, chappals and school shoes",
+      "avoid": "Brand logos"
+    }
+  ]
+}

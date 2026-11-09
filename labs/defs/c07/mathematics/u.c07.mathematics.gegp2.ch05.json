@@ -1,0 +1,1415 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp2.ch05",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "Connecting the Dots...",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp205.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Of questions and statements: statistical questions",
+   "labs": [
+    "c07-mathematics-gegp2-ch05-stat-questions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Representative values: mean, median, outliers and range",
+   "labs": [
+    "c07-mathematics-gegp2-ch05-mean",
+    "c07-mathematics-gegp2-ch05-median-outlier",
+    "c07-mathematics-gegp2-ch05-range"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Visualising data: dot plots and double (clustered) bar graphs",
+   "labs": [
+    "c07-mathematics-gegp2-ch05-double-bar"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Data detective: reading what data can and cannot show",
+   "labs": [
+    "c07-mathematics-gegp2-ch05-data-detective"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp2-ch05-stat-questions",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "Is it a statistical question?",
+    "hi": "क्या यह सांख्यिकीय प्रश्न है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "stat",
+      "label": {
+       "en": "Statistical: needs data",
+       "hi": "सांख्यिकीय: आँकड़े चाहिए"
+      }
+     },
+     {
+      "id": "one",
+      "label": {
+       "en": "Not statistical: one answer",
+       "hi": "सांख्यिकीय नहीं: एक ही उत्तर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sleep",
+      "text": {
+       "en": "How many hours do children in our class sleep?",
+       "hi": "हमारी कक्षा के बच्चे कितने घंटे सोते हैं?"
+      },
+      "bin": "stat",
+      "why": {
+       "en": "Each child sleeps a different time, so we must collect data from many children.",
+       "hi": "हर बच्चा अलग समय सोता है, इसलिए कई बच्चों से आँकड़े लेने होंगे।"
+      }
+     },
+     {
+      "id": "capital",
+      "text": {
+       "en": "What is the capital of India?",
+       "hi": "भारत की राजधानी क्या है?"
+      },
+      "bin": "one",
+      "why": {
+       "en": "It has one fixed answer, New Delhi. No data needs to be collected.",
+       "hi": "इसका एक तय उत्तर है, नई दिल्ली। आँकड़े इकट्ठा करने की ज़रूरत नहीं।"
+      }
+     },
+     {
+      "id": "tomato",
+      "text": {
+       "en": "Usual price of tomatoes in our market this month?",
+       "hi": "इस महीने बाज़ार में टमाटर का आम भाव?"
+      },
+      "bin": "stat",
+      "why": {
+       "en": "The price changes from day to day and shop to shop, so we need many prices.",
+       "hi": "भाव हर दिन और हर दुकान पर बदलता है, इसलिए कई भाव चाहिए।"
+      }
+     },
+     {
+      "id": "pages",
+      "text": {
+       "en": "How many pages does this notebook have?",
+       "hi": "इस कॉपी में कितने पन्ने हैं?"
+      },
+      "bin": "one",
+      "why": {
+       "en": "Count once and you have the answer. There is nothing that varies.",
+       "hi": "एक बार गिनो और उत्तर मिल गया। इसमें कुछ बदलता नहीं।"
+      }
+     },
+     {
+      "id": "walk",
+      "text": {
+       "en": "How long do students take to reach our school?",
+       "hi": "हमारे स्कूल पहुँचने में बच्चों को कितना समय लगता है?"
+      },
+      "bin": "stat",
+      "why": {
+       "en": "Every student lives at a different distance, so the times vary.",
+       "hi": "हर बच्चा अलग दूरी पर रहता है, इसलिए समय अलग-अलग होगा।"
+      }
+     },
+     {
+      "id": "likeme",
+      "text": {
+       "en": "Do you like mangoes?",
+       "hi": "क्या तुम्हें आम पसंद है?"
+      },
+      "bin": "one",
+      "why": {
+       "en": "It is asked to one person, who gives one answer.",
+       "hi": "यह एक व्यक्ति से पूछा गया है, जो एक ही उत्तर देगा।"
+      }
+     },
+     {
+      "id": "fruit",
+      "text": {
+       "en": "Which fruit do most children in our colony like?",
+       "hi": "हमारी कॉलोनी के ज़्यादातर बच्चों को कौन-सा फल पसंद है?"
+      },
+      "bin": "stat",
+      "why": {
+       "en": "We must ask many children and count their answers.",
+       "hi": "हमें कई बच्चों से पूछकर उनके उत्तर गिनने होंगे।"
+      }
+     },
+     {
+      "id": "bricks",
+      "text": {
+       "en": "About how many bricks are in this school wall?",
+       "hi": "स्कूल की इस दीवार में लगभग कितनी ईंटें हैं?"
+      },
+      "bin": "one",
+      "why": {
+       "en": "It is one wall with one true count; we can estimate it without asking many people.",
+       "hi": "यह एक ही दीवार है, जिसकी एक सही गिनती है; बिना कई लोगों से पूछे अनुमान लगा सकते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:sleep",
+     "expect": "correct:sleep",
+     "say": {
+      "en": "Tap the card about sleep, then tap the group it belongs to.",
+      "hi": "नींद वाले कार्ड को छुओ, फिर उसका सही समूह छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:capital",
+     "expect": "correct:capital",
+     "say": {
+      "en": "Now sort the card about the capital of India.",
+      "hi": "अब भारत की राजधानी वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is \"Do you like mangoes?\" a statistical question?",
+      "hi": "क्या \"क्या तुम्हें आम पसंद है?\" सांख्यिकीय प्रश्न है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No: one person gives one answer",
+       "hi": "नहीं: एक व्यक्ति एक उत्तर देगा"
+      },
+      {
+       "id": "yes",
+       "en": "Yes: it is about fruit",
+       "hi": "हाँ: यह फल के बारे में है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards, then tap Check.",
+      "hi": "बाकी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A statistical question is answered by collecting data, because the answers vary. \"Do you like mangoes?\" has one answer. \"Which fruit do most children like?\" needs many answers. Statistics is collecting, organising and reading such data.",
+      "hi": "सांख्यिकीय प्रश्न का उत्तर आँकड़े इकट्ठा करके मिलता है, क्योंकि उत्तर अलग-अलग होते हैं। \"क्या तुम्हें आम पसंद है?\" का एक उत्तर है। \"ज़्यादातर बच्चों को कौन-सा फल पसंद है?\" के लिए कई उत्तर चाहिए। ऐसे आँकड़े इकट्ठा करना, सजाना और पढ़ना ही सांख्यिकी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is a statistical question?",
+        "hi": "इनमें से सांख्यिकीय प्रश्न कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "How tall are the Class 7 students in our school?",
+         "hi": "हमारे स्कूल के कक्षा 7 के बच्चे कितने लंबे हैं?"
+        },
+        {
+         "en": "How tall is Ravi today?",
+         "hi": "आज रवि कितना लंबा है?"
+        },
+        {
+         "en": "How tall is the Qutub Minar?",
+         "hi": "क़ुतुब मीनार कितनी ऊँची है?"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heights of many students vary, so we must collect data.",
+        "hi": "कई बच्चों की लंबाई अलग-अलग है, इसलिए आँकड़े इकट्ठा करने होंगे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ravi is one person with one height today.",
+         "hi": "रवि एक व्यक्ति है, जिसकी आज एक ही लंबाई है।"
+        },
+        {
+         "en": "The tower has one fixed height; nothing varies.",
+         "hi": "मीनार की एक तय ऊँचाई है; कुछ नहीं बदलता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is a statistical statement?",
+        "hi": "सांख्यिकीय कथन कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "I usually take about 15 minutes to cycle home.",
+         "hi": "मुझे साइकिल से घर पहुँचने में आमतौर पर लगभग 15 मिनट लगते हैं।"
+        },
+        {
+         "en": "My cycle is red.",
+         "hi": "मेरी साइकिल लाल है।"
+        },
+        {
+         "en": "Today is Monday.",
+         "hi": "आज सोमवार है।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "\"Usually about 15 minutes\" sums up many trips in one number.",
+        "hi": "\"आमतौर पर लगभग 15 मिनट\" कई सफ़रों को एक संख्या में बताता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A colour is a single fact, not a summary of data.",
+         "hi": "रंग एक अकेला तथ्य है, आँकड़ों का सार नहीं।"
+        },
+        {
+         "en": "The day is a single fact; no data is summed up.",
+         "hi": "दिन एक अकेला तथ्य है; कोई आँकड़ा नहीं जोड़ा गया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make up two questions about your family, one statistical and one not, and sort them in your head.",
+      "hi": "आज़माओ: अपने परिवार के बारे में दो प्रश्न बनाओ, एक सांख्यिकीय और एक नहीं, और मन में छाँटो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch05-mean",
+   "topic": "5.2",
+   "template": "data",
+   "title": {
+    "en": "The mean: sharing out the runs",
+    "hi": "माध्य: रनों को बराबर बाँटना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "title": {
+     "en": "Meena's runs in 5 matches (sample data)",
+     "hi": "5 मैचों में मीना के रन (नमूना आँकड़े)"
+    },
+    "xlabel": {
+     "en": "Match",
+     "hi": "मैच"
+    },
+    "ylabel": {
+     "en": "Runs",
+     "hi": "रन"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Match 1",
+       "hi": "मैच 1"
+      },
+      "value": 12
+     },
+     {
+      "label": {
+       "en": "Match 2",
+       "hi": "मैच 2"
+      },
+      "value": 30
+     },
+     {
+      "label": {
+       "en": "Match 3",
+       "hi": "मैच 3"
+      },
+      "value": 45
+     },
+     {
+      "label": {
+       "en": "Match 4",
+       "hi": "मैच 4"
+      },
+      "value": 8
+     },
+     {
+      "label": {
+       "en": "Match 5",
+       "hi": "मैच 5"
+      },
+      "value": 25
+     }
+    ],
+    "ask": "mean",
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Plot next row\" to add Meena's runs in match 5.",
+      "hi": "मैच 5 में मीना के रन जोड़ने के लिए \"अगली पंक्ति आलेखित करो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Meena made 12, 30, 45, 8 and 25 runs. If she had made the same score every match, what would it be?",
+      "hi": "मीना ने 12, 30, 45, 8 और 25 रन बनाए। अगर हर मैच में उसका स्कोर बराबर होता, तो कितना होता?"
+     },
+     "options": [
+      {
+       "id": "24",
+       "en": "24 runs",
+       "hi": "24 रन"
+      },
+      {
+       "id": "45",
+       "en": "45 runs, her best",
+       "hi": "45 रन, उसका सबसे अच्छा"
+      },
+      {
+       "id": "120",
+       "en": "120 runs",
+       "hi": "120 रन"
+      }
+     ],
+     "answer": "24"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Add the runs, divide by the number of matches, type the mean and tap Check.",
+      "hi": "रन जोड़ो, मैचों की संख्या से भाग दो, माध्य लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The total is 12 + 30 + 45 + 8 + 25 = 120 runs in 5 matches. Sharing 120 equally over 5 matches gives 120 ÷ 5 = 24. This equal share is the mean, or average. High scores and low scores balance out around it.",
+      "hi": "कुल रन 12 + 30 + 45 + 8 + 25 = 120 हैं, 5 मैचों में। 120 को 5 मैचों में बराबर बाँटें तो 120 ÷ 5 = 24। यही बराबर हिस्सा माध्य या औसत है। बड़े और छोटे स्कोर इसके आसपास संतुलित हो जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Arjun made 96 runs in 4 matches and Kabir made 110 runs in 5 matches. Who has the higher mean?",
+        "hi": "अर्जुन ने 4 मैचों में 96 रन और कबीर ने 5 मैचों में 110 रन बनाए। किसका माध्य अधिक है?"
+       },
+       "options": [
+        {
+         "en": "Arjun, 24 runs a match",
+         "hi": "अर्जुन, हर मैच 24 रन"
+        },
+        {
+         "en": "Kabir, because 110 is more",
+         "hi": "कबीर, क्योंकि 110 अधिक है"
+        },
+        {
+         "en": "Both are equal",
+         "hi": "दोनों बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "96 ÷ 4 = 24 and 110 ÷ 5 = 22, so Arjun's mean is higher.",
+        "hi": "96 ÷ 4 = 24 और 110 ÷ 5 = 22, इसलिए अर्जुन का माध्य अधिक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Kabir played one more match; compare totals only when the number of matches is the same.",
+         "hi": "कबीर ने एक मैच ज़्यादा खेला; कुल तभी तुलना करो जब मैचों की संख्या बराबर हो।"
+        },
+        {
+         "en": "24 and 22 are not equal.",
+         "hi": "24 और 22 बराबर नहीं हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Meena scores 0 in a sixth match. What happens to her mean of 24?",
+        "hi": "मीना छठे मैच में 0 बनाती है। उसके 24 के माध्य का क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "It goes down to 20",
+         "hi": "घटकर 20 हो जाएगा"
+        },
+        {
+         "en": "It stays 24, since 0 adds nothing",
+         "hi": "24 ही रहेगा, क्योंकि 0 कुछ नहीं जोड़ता"
+        },
+        {
+         "en": "It goes up",
+         "hi": "बढ़ जाएगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The total stays 120, but it is now shared over 6 matches: 120 ÷ 6 = 20.",
+        "hi": "कुल 120 ही रहता है, पर अब 6 मैचों में बँटता है: 120 ÷ 6 = 20।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0 adds no runs, but it adds a match, so we divide by 6, not 5.",
+         "hi": "0 कोई रन नहीं जोड़ता, पर एक मैच जोड़ता है, इसलिए 5 नहीं, 6 से भाग देंगे।"
+        },
+        {
+         "en": "A score below the mean always pulls the mean down, never up.",
+         "hi": "माध्य से कम स्कोर माध्य को हमेशा नीचे खींचता है, ऊपर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag the bar of match 3 up and down. Watch the mean move. Can you make the mean exactly 30?",
+      "hi": "आज़माओ: मैच 3 के दंड को ऊपर-नीचे खींचो। माध्य को बदलते देखो। क्या तुम माध्य ठीक 30 बना सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch05-median-outlier",
+   "topic": "5.2",
+   "template": "data",
+   "title": {
+    "en": "The median and the odd one out",
+    "hi": "माध्यिका और अलग-थलग संख्या"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "title": {
+     "en": "Minutes 7 friends take to walk to school (sample data)",
+     "hi": "7 दोस्तों को स्कूल पैदल पहुँचने में लगने वाले मिनट (नमूना आँकड़े)"
+    },
+    "xlabel": {
+     "en": "Friend",
+     "hi": "दोस्त"
+    },
+    "ylabel": {
+     "en": "Minutes",
+     "hi": "मिनट"
+    },
+    "data": [
+     {
+      "label": "Asha",
+      "value": 10
+     },
+     {
+      "label": "Bunty",
+      "value": 12
+     },
+     {
+      "label": "Chetan",
+      "value": 9
+     },
+     {
+      "label": "Divya",
+      "value": 11
+     },
+     {
+      "label": "Ehsan",
+      "value": 13
+     },
+     {
+      "label": "Farah",
+      "value": 10
+     },
+     {
+      "label": "Gopal",
+      "value": 45
+     }
+    ],
+    "ask": "median"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "sort",
+     "expect": "sorted",
+     "say": {
+      "en": "Tap \"Sort small to big\" to put the times in order.",
+      "hi": "समय को क्रम में लगाने के लिए \"छोटे से बड़े क्रम में लगाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Gopal lives far away and takes 45 minutes. What is the middle time of the 7 friends?",
+      "hi": "गोपाल दूर रहता है और 45 मिनट लेता है। 7 दोस्तों का बीच वाला समय कितना है?"
+     },
+     "options": [
+      {
+       "id": "11",
+       "en": "11 minutes",
+       "hi": "11 मिनट"
+      },
+      {
+       "id": "13",
+       "en": "13 minutes",
+       "hi": "13 मिनट"
+      },
+      {
+       "id": "45",
+       "en": "45 minutes",
+       "hi": "45 मिनट"
+      }
+     ],
+     "answer": "11"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Count to the middle bar, type the median and tap Check.",
+      "hi": "बीच वाले दंड तक गिनो, माध्यिका लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In order the times are 9, 10, 10, 11, 12, 13, 45. The 4th of 7 is in the middle, so the median is 11. The mean is 110 ÷ 7, about 15.7, pulled up by Gopal's 45. A value far from the rest is an outlier. The median hardly notices it, so here the median describes the group better.",
+      "hi": "क्रम में समय हैं 9, 10, 10, 11, 12, 13, 45। 7 में से चौथी संख्या बीच में है, इसलिए माध्यिका 11 है। माध्य 110 ÷ 7, लगभग 15.7 है, जिसे गोपाल के 45 ने ऊपर खींच लिया। बाकी से बहुत दूर की संख्या को बाहरी मान (आउटलायर) कहते हैं। माध्यिका पर इसका असर बहुत कम होता है, इसलिए यहाँ माध्यिका समूह को बेहतर बताती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Find the median of 6 numbers: 4, 7, 8, 10, 12, 15.",
+        "hi": "6 संख्याओं की माध्यिका निकालो: 4, 7, 8, 10, 12, 15।"
+       },
+       "options": [
+        "9",
+        "8",
+        "10",
+        "56 ÷ 6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With an even count there are two middle numbers, 8 and 10. The median is halfway: (8 + 10) ÷ 2 = 9.",
+        "hi": "सम संख्या में बीच की दो संख्याएँ होती हैं, 8 और 10। माध्यिका उनका आधा-आधा: (8 + 10) ÷ 2 = 9।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 is only one of the two middle numbers; take halfway between 8 and 10.",
+         "hi": "8 बीच की दो संख्याओं में से सिर्फ़ एक है; 8 और 10 के ठीक बीच लो।"
+        },
+        {
+         "en": "10 is the other middle number; the median lies halfway between them.",
+         "hi": "10 दूसरी बीच वाली संख्या है; माध्यिका इनके ठीक बीच है।"
+        },
+        {
+         "en": "That is the mean (total ÷ count), not the middle value.",
+         "hi": "यह माध्य (कुल ÷ गिनती) है, बीच वाला मान नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "An outlier is very high. Where will the mean be?",
+        "hi": "एक बाहरी मान बहुत बड़ा है। माध्य कहाँ होगा?"
+       },
+       "options": [
+        {
+         "en": "Above the median",
+         "hi": "माध्यिका से ऊपर"
+        },
+        {
+         "en": "Below the median",
+         "hi": "माध्यिका से नीचे"
+        },
+        {
+         "en": "Always equal to the median",
+         "hi": "हमेशा माध्यिका के बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The big value adds a lot to the total, so the mean shifts towards it; the middle value barely moves.",
+        "hi": "बड़ा मान कुल में बहुत जोड़ता है, इसलिए माध्य उसकी ओर खिसकता है; बीच वाला मान लगभग नहीं हिलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That happens when the outlier is very low, not very high.",
+         "hi": "ऐसा तब होता है जब बाहरी मान बहुत छोटा हो, बड़ा नहीं।"
+        },
+        {
+         "en": "They are close only when the data is evenly spread; an outlier pulls them apart.",
+         "hi": "ये तभी पास होते हैं जब आँकड़े बराबर फैले हों; बाहरी मान इन्हें दूर कर देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag Gopal's bar down to 14. Does the median change? Does the mean change? Then make one time very small.",
+      "hi": "आज़माओ: गोपाल के दंड को 14 तक नीचे खींचो। क्या माध्यिका बदली? क्या माध्य बदला? फिर एक समय बहुत छोटा करके देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch05-range",
+   "topic": "5.2",
+   "template": "data",
+   "title": {
+    "en": "How spread out? The range",
+    "hi": "कितना फैलाव? परिसर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "title": {
+     "en": "Price of 1 kg onions in a town, by month (₹, sample data)",
+     "hi": "एक कस्बे में 1 किलो प्याज़ का भाव, महीने के अनुसार (₹, नमूना आँकड़े)"
+    },
+    "xlabel": {
+     "en": "Month",
+     "hi": "महीना"
+    },
+    "ylabel": {
+     "en": "₹ per kg",
+     "hi": "₹ प्रति किलो"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Jan",
+       "hi": "जन"
+      },
+      "value": 30
+     },
+     {
+      "label": {
+       "en": "Feb",
+       "hi": "फ़र"
+      },
+      "value": 28
+     },
+     {
+      "label": {
+       "en": "Mar",
+       "hi": "मार्च"
+      },
+      "value": 25
+     },
+     {
+      "label": {
+       "en": "Apr",
+       "hi": "अप्रै"
+      },
+      "value": 27
+     },
+     {
+      "label": {
+       "en": "May",
+       "hi": "मई"
+      },
+      "value": 32
+     },
+     {
+      "label": {
+       "en": "Jun",
+       "hi": "जून"
+      },
+      "value": 38
+     },
+     {
+      "label": {
+       "en": "Jul",
+       "hi": "जुला"
+      },
+      "value": 45
+     },
+     {
+      "label": {
+       "en": "Aug",
+       "hi": "अग"
+      },
+      "value": 42
+     }
+    ],
+    "ask": "range",
+    "show": 7
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Plot next row\" to add the August price.",
+      "hi": "अगस्त का भाव जोड़ने के लिए \"अगली पंक्ति आलेखित करो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:6",
+     "expect": "selected:6",
+     "say": {
+      "en": "Tap the tallest bar to read its price.",
+      "hi": "सबसे ऊँचे दंड को छूकर उसका भाव पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The highest price is ₹45 and the lowest is ₹25. How far apart are they?",
+      "hi": "सबसे ऊँचा भाव ₹45 और सबसे कम ₹25 है। दोनों में कितना अंतर है?"
+     },
+     "options": [
+      {
+       "id": "20",
+       "en": "₹20",
+       "hi": "20 रुपये"
+      },
+      {
+       "id": "70",
+       "en": "₹70",
+       "hi": "70 रुपये"
+      },
+      {
+       "id": "35",
+       "en": "₹35",
+       "hi": "35 रुपये"
+      }
+     ],
+     "answer": "20"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the range, highest minus lowest, and tap Check.",
+      "hi": "परिसर लिखो, सबसे बड़े में से सबसे छोटा घटाकर, और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The range is the highest value minus the lowest: 45 − 25 = 20. It tells how spread out the prices are. A small range means the price stayed steady; a big range means it jumped around. Two towns can have the same mean price but very different ranges.",
+      "hi": "परिसर सबसे बड़े मान में से सबसे छोटा घटाने पर मिलता है: 45 − 25 = 20। यह बताता है कि भाव कितने फैले हुए हैं। छोटा परिसर यानी भाव स्थिर रहा; बड़ा परिसर यानी भाव ऊपर-नीचे होता रहा। दो कस्बों का औसत भाव बराबर हो सकता है, पर परिसर बहुत अलग।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Town P's prices: 30, 31, 29, 30. Town Q's: 15, 45, 20, 40. Both have mean ₹30. Which is steadier?",
+        "hi": "कस्बा P के भाव: 30, 31, 29, 30। कस्बा Q के: 15, 45, 20, 40। दोनों का माध्य ₹30 है। किसका भाव ज़्यादा स्थिर है?"
+       },
+       "options": [
+        {
+         "en": "Town P, range 2",
+         "hi": "कस्बा P, परिसर 2"
+        },
+        {
+         "en": "Town Q, range 30",
+         "hi": "कस्बा Q, परिसर 30"
+        },
+        {
+         "en": "Both the same, as the means are equal",
+         "hi": "दोनों एक जैसे, क्योंकि माध्य बराबर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P's range is 31 − 29 = 2, Q's is 45 − 15 = 30. A smaller range means steadier prices.",
+        "hi": "P का परिसर 31 − 29 = 2 है, Q का 45 − 15 = 30। छोटा परिसर यानी ज़्यादा स्थिर भाव।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A range of 30 shows big jumps, the opposite of steady.",
+         "hi": "30 का परिसर बड़े उछाल दिखाता है, जो स्थिर का उलटा है।"
+        },
+        {
+         "en": "The mean hides the spread; the range shows it.",
+         "hi": "माध्य फैलाव को छिपा देता है; परिसर उसे दिखाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag the bars so that the range becomes 5. Is the mean the same as before?",
+      "hi": "आज़माओ: दंडों को खींचकर परिसर 5 बनाओ। क्या माध्य पहले जैसा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch05-double-bar",
+   "topic": "5.3",
+   "template": "data",
+   "title": {
+    "en": "Two towns side by side: a double bar graph",
+    "hi": "दो कस्बे साथ-साथ: दोहरा दंड आलेख"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "double-bar",
+    "title": {
+     "en": "Price of 1 kg onions (₹, sample data)",
+     "hi": "1 किलो प्याज़ का भाव (₹, नमूना आँकड़े)"
+    },
+    "series": [
+     {
+      "en": "Rampur",
+      "hi": "रामपुर"
+     },
+     {
+      "en": "Sitapur",
+      "hi": "सीतापुर"
+     }
+    ],
+    "xlabel": {
+     "en": "Month",
+     "hi": "महीना"
+    },
+    "ylabel": {
+     "en": "₹ per kg",
+     "hi": "₹ प्रति किलो"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Jan",
+       "hi": "जन"
+      },
+      "value": 30,
+      "value2": 20
+     },
+     {
+      "label": {
+       "en": "Mar",
+       "hi": "मार्च"
+      },
+      "value": 28,
+      "value2": 25
+     },
+     {
+      "label": {
+       "en": "May",
+       "hi": "मई"
+      },
+      "value": 32,
+      "value2": 40
+     },
+     {
+      "label": {
+       "en": "Jul",
+       "hi": "जुला"
+      },
+      "value": 35,
+      "value2": 55
+     },
+     {
+      "label": {
+       "en": "Sep",
+       "hi": "सितं"
+      },
+      "value": 33,
+      "value2": 50
+     }
+    ],
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Plot next row\" to add September for both towns.",
+      "hi": "दोनों कस्बों का सितंबर जोड़ने के लिए \"अगली पंक्ति आलेखित करो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at the pairs of bars. In which month is the gap between the two towns biggest?",
+      "hi": "दंडों की जोड़ियाँ देखो। किस महीने में दोनों कस्बों के भाव में सबसे बड़ा अंतर है?"
+     },
+     "options": [
+      {
+       "id": "jul",
+       "en": "July",
+       "hi": "जुलाई"
+      },
+      {
+       "id": "jan",
+       "en": "January",
+       "hi": "जनवरी"
+      },
+      {
+       "id": "mar",
+       "en": "March",
+       "hi": "मार्च"
+      }
+     ],
+     "answer": "jul"
+    },
+    {
+     "kind": "do",
+     "target": "bar:3",
+     "expect": "selected:3",
+     "say": {
+      "en": "Tap the Rampur bar for July to read it.",
+      "hi": "जुलाई के रामपुर वाले दंड को छूकर पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:8",
+     "expect": "selected:3",
+     "say": {
+      "en": "Now tap the Sitapur bar for July.",
+      "hi": "अब जुलाई के सीतापुर वाले दंड को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A double bar graph puts two groups side by side, one colour each, so we compare them month by month. In July, Rampur is ₹35 and Sitapur ₹55: a gap of ₹20, the biggest. Rampur's bars stay nearly level, so its price is steady; Sitapur's rise and fall, so its range is bigger.",
+      "hi": "दोहरा दंड आलेख दो समूहों को साथ-साथ रखता है, हर एक का अलग रंग, ताकि हम महीने-दर-महीने तुलना कर सकें। जुलाई में रामपुर ₹35 और सीतापुर ₹55 है: ₹20 का अंतर, सबसे बड़ा। रामपुर के दंड लगभग बराबर रहते हैं, यानी भाव स्थिर है; सीतापुर के दंड ऊपर-नीचे होते हैं, इसलिए उसका परिसर बड़ा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which month was onion cheaper in Sitapur than in Rampur?",
+        "hi": "किस महीने सीतापुर में प्याज़ रामपुर से सस्ता था?"
+       },
+       "options": [
+        {
+         "en": "January",
+         "hi": "जनवरी"
+        },
+        {
+         "en": "July",
+         "hi": "जुलाई"
+        },
+        {
+         "en": "September",
+         "hi": "सितंबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In January Sitapur's bar (₹20) is shorter than Rampur's (₹30).",
+        "hi": "जनवरी में सीतापुर का दंड (₹20) रामपुर के (₹30) से छोटा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In July Sitapur's bar is taller: ₹55 against ₹35.",
+         "hi": "जुलाई में सीतापुर का दंड ऊँचा है: ₹55 बनाम ₹35।"
+        },
+        {
+         "en": "In September Sitapur is ₹50, more than Rampur's ₹33.",
+         "hi": "सितंबर में सीतापुर ₹50 है, रामपुर के ₹33 से ज़्यादा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are the two towns drawn in different colours?",
+        "hi": "दोनों कस्बे अलग-अलग रंग में क्यों दिखाए गए हैं?"
+       },
+       "options": [
+        {
+         "en": "So we can tell which bar belongs to which town",
+         "hi": "ताकि पता चले कौन-सा दंड किस कस्बे का है"
+        },
+        {
+         "en": "Because one town is bigger",
+         "hi": "क्योंकि एक कस्बा बड़ा है"
+        },
+        {
+         "en": "Only to look pretty",
+         "hi": "सिर्फ़ सुंदर दिखने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The key (legend) links each colour to a town, so pairs can be compared.",
+        "hi": "संकेत (लेजेंड) हर रंग को एक कस्बे से जोड़ता है, ताकि जोड़ियों की तुलना हो सके।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The colours say nothing about the size of the towns; only bar height carries a number.",
+         "hi": "रंग कस्बे के आकार के बारे में कुछ नहीं बताते; संख्या सिर्फ़ दंड की ऊँचाई बताती है।"
+        },
+        {
+         "en": "Colours do a job here: without them we could not tell the towns apart.",
+         "hi": "यहाँ रंगों का काम है: इनके बिना कस्बों को अलग नहीं पहचान पाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap \"Sort small to big\" and see how the months line up. Then drag a Sitapur bar to make the two towns equal in May.",
+      "hi": "आज़माओ: \"छोटे से बड़े क्रम में लगाओ\" दबाकर देखो महीने कैसे सजते हैं। फिर सीतापुर का एक दंड खींचकर मई में दोनों कस्बे बराबर करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch05-data-detective",
+   "topic": "5.4",
+   "template": "sort",
+   "title": {
+    "en": "Data detective: what can the data prove?",
+    "hi": "आँकड़ा जासूस: आँकड़े क्या साबित कर सकते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "The data supports this",
+       "hi": "आँकड़े इसका समर्थन करते हैं"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "The data cannot tell this",
+       "hi": "आँकड़े यह नहीं बता सकते"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "Mean height is 145 cm, so every child is 145 cm.",
+       "hi": "औसत लंबाई 145 सेमी, तो हर बच्चा 145 सेमी का है।"
+      },
+      "bin": "no",
+      "why": {
+       "en": "A mean is a summary; most children are taller or shorter than it.",
+       "hi": "माध्य एक सार है; ज़्यादातर बच्चे इससे लंबे या छोटे होते हैं।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Median is 11 min, so about half take 11 min or less.",
+       "hi": "माध्यिका 11 मिनट, तो लगभग आधे 11 मिनट या कम लेते हैं।"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "That is exactly what the median means: half the values are at or below it.",
+       "hi": "माध्यिका का यही अर्थ है: आधे मान उसके बराबर या कम हैं।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "Our town's onions cost more in July than in March.",
+       "hi": "हमारे कस्बे में प्याज़ मार्च से जुलाई में महँगा था।"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Read the two bars for that town and compare them.",
+       "hi": "उस कस्बे के दोनों दंड पढ़कर तुलना करो।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "Costlier this July, so costlier every July.",
+       "hi": "इस जुलाई महँगा, तो हर जुलाई महँगा होगा।"
+      },
+      "bin": "no",
+      "why": {
+       "en": "One year of data cannot promise the future; we would need many years.",
+       "hi": "एक साल के आँकड़े भविष्य का वादा नहीं कर सकते; कई सालों के आँकड़े चाहिए।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "Our class girls are taller, so girls everywhere are.",
+       "hi": "कक्षा में लड़कियाँ लंबी, तो हर जगह लड़कियाँ लंबी।"
+      },
+      "bin": "no",
+      "why": {
+       "en": "One class is too small a group to say anything about all children.",
+       "hi": "एक कक्षा इतना छोटा समूह है कि सब बच्चों के बारे में कुछ नहीं कह सकते।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "Mean 24 vs 22, so Arjun scored more per match.",
+       "hi": "माध्य 24 बनाम 22, तो अर्जुन ने प्रति मैच ज़्यादा बनाए।"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "The mean is runs per match, so a higher mean means more runs per match on average.",
+       "hi": "माध्य यानी प्रति मैच रन, इसलिए बड़ा माध्य यानी औसतन प्रति मैच ज़्यादा रन।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "Bigger range, so Sitapur's prices jumped around more.",
+       "hi": "परिसर बड़ा, तो सीतापुर के भाव ज़्यादा ऊपर-नीचे हुए।"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "A bigger range means the values are more spread out.",
+       "hi": "बड़ा परिसर यानी मान ज़्यादा फैले हुए हैं।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "Average sleep is 8 hours, so no one sleeps 6 hours.",
+       "hi": "औसत नींद 8 घंटे, तो कोई 6 घंटे नहीं सोता।"
+      },
+      "bin": "no",
+      "why": {
+       "en": "An average of 8 can include some who sleep 6 and some who sleep 10.",
+       "hi": "8 के औसत में कुछ 6 घंटे और कुछ 10 घंटे सोने वाले हो सकते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap the first card about mean height and put it in a group.",
+      "hi": "औसत लंबाई वाले पहले कार्ड को छुओ और उसे एक समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "\"Onions were costlier in July, so they will be costlier every July.\" Can one year of data prove this?",
+      "hi": "\"जुलाई में प्याज़ महँगा था, इसलिए हर जुलाई महँगा होगा।\" क्या एक साल के आँकड़े यह साबित कर सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it needs many years",
+       "hi": "नहीं, कई सालों के आँकड़े चाहिए"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, the graph shows it",
+       "hi": "हाँ, ग्राफ़ यह दिखाता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards, then tap Check.",
+      "hi": "सब कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A good data detective first reads what the data really shows, then asks what it cannot show. Means and medians sum up a group but do not describe each member. Data from one class or one year cannot be stretched to everyone or to every year.",
+      "hi": "अच्छा आँकड़ा जासूस पहले यह पढ़ता है कि आँकड़े सच में क्या दिखाते हैं, फिर पूछता है कि वे क्या नहीं दिखा सकते। माध्य और माध्यिका समूह का सार बताते हैं, हर सदस्य का नहीं। एक कक्षा या एक साल के आँकड़ों को सब लोगों या हर साल पर नहीं खींचा जा सकता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A survey of 30 children in one school finds most like cricket. What can we say?",
+        "hi": "एक स्कूल के 30 बच्चों के सर्वे में ज़्यादातर को क्रिकेट पसंद है। हम क्या कह सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "Most of these 30 children like cricket",
+         "hi": "इन 30 में से ज़्यादातर बच्चों को क्रिकेट पसंद है"
+        },
+        {
+         "en": "Most children in India like cricket",
+         "hi": "भारत के ज़्यादातर बच्चों को क्रिकेट पसंद है"
+        },
+        {
+         "en": "Every child in that school likes cricket",
+         "hi": "उस स्कूल के हर बच्चे को क्रिकेट पसंद है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The data is about these 30 children only, so the claim must stay with them.",
+        "hi": "आँकड़े सिर्फ़ इन 30 बच्चों के हैं, इसलिए दावा भी उन्हीं तक रहना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "30 children from one school are far too few to speak for all of India.",
+         "hi": "एक स्कूल के 30 बच्चे पूरे भारत की बात कहने के लिए बहुत कम हैं।"
+        },
+        {
+         "en": "\"Most\" is not \"every\", and the other children were not even asked.",
+         "hi": "\"ज़्यादातर\" का अर्थ \"हर\" नहीं है, और बाकी बच्चों से पूछा भी नहीं गया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap any sorted card to read why again. Then write one true and one stretched claim about your own class.",
+      "hi": "आज़माओ: किसी भी छँटे कार्ड को छूकर कारण फिर पढ़ो। फिर अपनी कक्षा के बारे में एक सही और एक खींचा हुआ दावा लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Chapter hook: everyday data",
+   "shows": "A Class 7 group in an Indian school yard noting down how each child came to school (walk, cycle, bus, auto) on a clipboard",
+   "view": "Eye level, children seen from behind or side so faces are not clear, morning light",
+   "right": "A tally sheet with marks visible; school uniforms plain",
+   "avoid": "Clear faces, school name boards, logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Mean as an equal share",
+   "shows": "Five steel tumblers with different heights of water (low to high), then the same water poured to an equal level in all five",
+   "view": "Front view, white background, two frames side by side",
+   "right": "Same total water in both frames; equal levels in the second",
+   "avoid": "Coloured liquids, brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Cricket runs for the mean lab",
+   "shows": "A school cricket match on a dusty ground with a hand-written scoreboard of runs per match on a blackboard",
+   "view": "Wide view from the boundary, afternoon light",
+   "right": "Scoreboard numbers hand-written, generic team names",
+   "avoid": "Real players' names, sponsor logos, faces of children"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "5.2",
+   "use": "Dot plot with an outlier",
+   "shows": "A clean dot plot of walking times 9 to 45 minutes, a cluster around 10 to 13 and one far dot at 45, the mean and median marked as two different lines",
+   "view": "Flat vector, white background, large readable numbers",
+   "right": "Median line at 11, mean line near 15.7, outlier clearly apart",
+   "avoid": "3D effects, decorative clutter"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "Onion prices for the double-bar lab",
+   "shows": "A sabzi mandi stall with heaps of onions and a small chalk board showing a price per kg",
+   "view": "Eye level, three-quarter view, soft daylight",
+   "right": "Real red onions in jute sacks and a hanging weighing pan",
+   "avoid": "Readable shop names, faces of shoppers"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "5.3",
+   "use": "How to read a double bar graph",
+   "shows": "A double bar graph template with a key (legend), labelled axes, a scale in steps of 10 and one pair of bars highlighted",
+   "view": "Flat vector, white background",
+   "right": "Bars start at 0; equal gaps on the scale; two colours that also differ by pattern (solid and striped)",
+   "avoid": "Broken or missing axis, red-green only colouring"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "5.4",
+   "use": "Data detective hook",
+   "shows": "A magnifying glass resting on a printed bar graph and a newspaper page of tables on a wooden desk",
+   "view": "From above at a slight angle, warm desk light",
+   "right": "Graph and table generic, numbers not readable as real statistics",
+   "avoid": "Real newspaper mastheads, readable headlines"
+  }
+ ]
+}

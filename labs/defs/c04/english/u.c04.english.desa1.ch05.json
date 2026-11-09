@@ -1,0 +1,649 @@
+{
+ "chapter_key": "u.c04.english.desa1.ch05",
+ "class": 4,
+ "subject_id": "english",
+ "title": "The Old Stag",
+ "source": "https://ncert.nic.in/textbook/pdf/desa105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Story: the old stag",
+   "labs": [
+    "c04-english-desa1-ch05-stag-feelings"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "New words and describing phrases",
+   "labs": [],
+   "why_no_lab": "Descriptive phrases are best drawn as pictures in the notebook."
+  },
+  {
+   "n": "5.3",
+   "title": "Adverbs of manner",
+   "labs": [
+    "c04-english-desa1-ch05-how-adverbs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Thank-you card",
+   "labs": [
+    "c04-english-desa1-ch05-thank-you-note"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c04-english-desa1-ch05-stag-feelings",
+   "topic": "5.1",
+   "template": "reader",
+   "title": {
+    "en": "How does the old stag feel?",
+    "hi": "बूढ़ा हिरण कैसा महसूस करता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "emotion-map",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "The old stag",
+      "hi": "बूढ़ा हिरण"
+     },
+     "lines": [
+      "The old stag greets every animal warmly each day.",
+      "One day he falls ill and cannot walk down the hillock.",
+      "His friends eat the grass, and little is left for him.",
+      "The animals feel sorry and leave the hillock alone.",
+      "They bring fresh leaves for their friend.",
+      "The rain comes, the grass grows and the stag gets well."
+     ]
+    },
+    "emotions": [
+     "joy",
+     "sadness",
+     "worry",
+     "sadness",
+     "love",
+     "joy"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap line 1. Pick how the old stag feels when he greets his friends.",
+      "hi": "पंक्ति 1 दबाओ। चुनो कि दोस्तों का स्वागत करते समय हिरण कैसा महसूस करता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The stag falls ill and cannot meet his friends. How does he feel?",
+      "hi": "हिरण बीमार है और दोस्तों से नहीं मिल पाता। वह कैसा महसूस करता है?"
+     },
+     "options": [
+      {
+       "id": "sad",
+       "en": "Sadness",
+       "hi": "उदासी"
+      },
+      {
+       "id": "joy",
+       "en": "Joy",
+       "hi": "ख़ुशी"
+      }
+     ],
+     "answer": "sad"
+    },
+    {
+     "kind": "do",
+     "target": "line:1",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap line 2 and choose his feeling.",
+      "hi": "पंक्ति 2 दबाओ और उसकी भावना चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "map-done",
+     "say": {
+      "en": "Do all the other lines until the map is complete.",
+      "hi": "बाकी पंक्तियाँ भी करो जब तक नक्शा पूरा न हो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Feelings change as a story moves. The stag is happy, then sad and worried, and at last happy again. The animals learn to share nature wisely: there is enough for everybody if we use it with care.",
+      "hi": "कहानी के साथ भावनाएँ बदलती हैं। हिरण ख़ुश है, फिर उदास और चिंतित, और अंत में फिर ख़ुश। जानवर प्रकृति को समझदारी से बाँटना सीखते हैं: ध्यान से इस्तेमाल करें तो सबके लिए काफ़ी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did the animals feel sorry?",
+        "hi": "जानवरों को अफ़सोस क्यों हुआ?"
+       },
+       "options": [
+        {
+         "en": "They ate the grass the stag needed",
+         "hi": "उन्होंने वह घास खा ली जो हिरण को चाहिए थी"
+        },
+        {
+         "en": "They lost a race",
+         "hi": "वे दौड़ हार गए"
+        },
+        {
+         "en": "The stag shouted at them",
+         "hi": "हिरण उन पर चिल्लाया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Their greed left no food for their sick friend.",
+        "hi": "उनके लालच से बीमार दोस्त के लिए खाना नहीं बचा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The story has no race.",
+         "hi": "कहानी में कोई दौड़ नहीं है।"
+        },
+        {
+         "en": "The stag was kind and weak.",
+         "hi": "हिरण दयालु और कमज़ोर था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change one feeling and say why you chose it. Then say what you would do for a sick friend.",
+      "hi": "कोई एक भावना बदलकर बताओ कि तुमने उसे क्यों चुना। फिर बताओ कि बीमार दोस्त के लिए तुम क्या करते।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c04-english-desa1-ch05-how-adverbs",
+   "topic": "5.3",
+   "template": "sort",
+   "title": {
+    "en": "Words that tell how",
+    "hi": "'कैसे' बताने वाले शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "how",
+      "label": {
+       "en": "Tells how",
+       "hi": "कैसे बताता है"
+      }
+     },
+     {
+      "id": "when",
+      "label": {
+       "en": "Tells when or where",
+       "hi": "कब/कहाँ बताता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cheer",
+      "text": {
+       "en": "cheerfully",
+       "hi": "ख़ुशी से"
+      },
+      "bin": "how",
+      "why": {
+       "en": "Cheerfully tells the way someone does something.",
+       "hi": "Cheerfully बताता है कि कोई काम किस तरह किया गया।"
+      }
+     },
+     {
+      "id": "quiet",
+      "text": {
+       "en": "quietly",
+       "hi": "चुपचाप"
+      },
+      "bin": "how",
+      "why": {
+       "en": "Quietly tells how someone walks or speaks.",
+       "hi": "Quietly बताता है कि कोई कैसे चलता या बोलता है।"
+      }
+     },
+     {
+      "id": "care",
+      "text": {
+       "en": "carefully",
+       "hi": "ध्यान से"
+      },
+      "bin": "how",
+      "why": {
+       "en": "Carefully tells how a thing is done.",
+       "hi": "Carefully बताता है कि काम कैसे किया गया।"
+      }
+     },
+     {
+      "id": "loud",
+      "text": {
+       "en": "loudly",
+       "hi": "ज़ोर से"
+      },
+      "bin": "how",
+      "why": {
+       "en": "Loudly tells how someone shouts.",
+       "hi": "Loudly बताता है कि कोई कैसे चिल्लाता है।"
+      }
+     },
+     {
+      "id": "slow",
+      "text": {
+       "en": "slowly",
+       "hi": "धीरे-धीरे"
+      },
+      "bin": "how",
+      "why": {
+       "en": "Slowly tells how the stag got better.",
+       "hi": "Slowly बताता है कि हिरण कैसे ठीक हुआ।"
+      }
+     },
+     {
+      "id": "soon",
+      "text": {
+       "en": "soon",
+       "hi": "जल्द ही"
+      },
+      "bin": "when",
+      "why": {
+       "en": "Soon tells when, not how.",
+       "hi": "Soon बताता है कब, कैसे नहीं।"
+      }
+     },
+     {
+      "id": "early",
+      "text": {
+       "en": "early",
+       "hi": "जल्दी"
+      },
+      "bin": "when",
+      "why": {
+       "en": "Early tells the time.",
+       "hi": "Early समय बताता है।"
+      }
+     },
+     {
+      "id": "near",
+      "text": {
+       "en": "nearby",
+       "hi": "आसपास"
+      },
+      "bin": "when",
+      "why": {
+       "en": "Nearby tells the place.",
+       "hi": "Nearby जगह बताता है।"
+      }
+     },
+     {
+      "id": "late",
+      "text": {
+       "en": "yesterday",
+       "hi": "कल (बीता हुआ)"
+      },
+      "bin": "when",
+      "why": {
+       "en": "Yesterday tells when.",
+       "hi": "Yesterday बताता है कब।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:cheer",
+     "expect": "correct:cheer",
+     "say": {
+      "en": "Place 'cheerfully' in the right group.",
+      "hi": "'ख़ुशी से' को सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The stag slowly recovered. Does 'slowly' tell how, or when?",
+      "hi": "हिरण धीरे-धीरे ठीक हुआ। 'slowly' कैसे बताता है या कब?"
+     },
+     "options": [
+      {
+       "id": "how",
+       "en": "How",
+       "hi": "कैसे"
+      },
+      {
+       "id": "when",
+       "en": "When",
+       "hi": "कब"
+      }
+     ],
+     "answer": "how"
+    },
+    {
+     "kind": "do",
+     "target": "card:slow",
+     "expect": "correct:slow",
+     "say": {
+      "en": "Now place 'slowly'.",
+      "hi": "अब 'धीरे-धीरे' को रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A word that tells how something is done is an adverb of manner, like warmly, slowly or quietly. It usually ends in -ly. Words like soon and early tell when, so they are different.",
+      "hi": "जो शब्द बताए कि काम कैसे किया गया, उसे manner का adverb कहते हैं, जैसे warmly, slowly या quietly। ये अक्सर -ly पर समाप्त होते हैं। soon और early बताते हैं कब, इसलिए वे अलग हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In 'The rabbit quickly ate the carrots', what does 'quickly' tell?",
+        "hi": "'The rabbit quickly ate the carrots' में 'quickly' क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "How the rabbit ate",
+         "hi": "ख़रगोश ने कैसे खाया"
+        },
+        {
+         "en": "Where it ate",
+         "hi": "कहाँ खाया"
+        },
+        {
+         "en": "When it ate",
+         "hi": "कब खाया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Quickly tells the manner of eating.",
+        "hi": "Quickly खाने का तरीका बताता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Quickly says nothing about the place.",
+         "hi": "Quickly जगह के बारे में कुछ नहीं बताता।"
+        },
+        {
+         "en": "Quickly says how fast, not the time.",
+         "hi": "Quickly बताता है कितनी तेज़ी से, समय नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the other cards. Then write one sentence using 'carefully'.",
+      "hi": "बाकी कार्ड छाँटो। फिर 'carefully' का उपयोग करके एक वाक्य लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c04-english-desa1-ch05-thank-you-note",
+   "topic": "5.4",
+   "template": "writing",
+   "title": {
+    "en": "A thank-you letter from the stag",
+    "hi": "हिरण का धन्यवाद-पत्र"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "kind": "informal-letter",
+    "lang": "en",
+    "task": {
+     "en": "The old stag wants to thank his friends. Put the parts of his letter in the right places.",
+     "hi": "बूढ़ा हिरण अपने दोस्तों को धन्यवाद देना चाहता है। उसके पत्र के भाग सही जगह रखो।"
+    },
+    "parts": [
+     {
+      "id": "addr",
+      "slot": "sender",
+      "text": {
+       "en": "The Green Hillock,\nSundar Forest",
+       "hi": "हरी पहाड़ी,\nसुंदर वन"
+      }
+     },
+     {
+      "id": "date",
+      "slot": "date",
+      "text": {
+       "en": "10 July 2026",
+       "hi": "10 जुलाई 2026"
+      }
+     },
+     {
+      "id": "hello",
+      "slot": "salutation",
+      "text": {
+       "en": "Dear friends,",
+       "hi": "प्रिय दोस्तो,"
+      }
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": {
+       "en": "Thank you for the fresh leaves you brought me when I was ill.",
+       "hi": "जब मैं बीमार था, तब मेरे लिए ताज़े पत्ते लाने का धन्यवाद।"
+      }
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": {
+       "en": "Now I am well and the grass has grown back. Come and visit me soon.",
+       "hi": "अब मैं ठीक हूँ और घास फिर उग आई है। जल्दी मिलने आओ।"
+      }
+     },
+     {
+      "id": "close",
+      "slot": "close",
+      "text": {
+       "en": "Your loving friend,",
+       "hi": "तुम्हारा स्नेही मित्र,"
+      }
+     },
+     {
+      "id": "sign",
+      "slot": "signature",
+      "text": {
+       "en": "The Old Stag",
+       "hi": "बूढ़ा हिरण"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:hello",
+     "expect": "placed:hello",
+     "say": {
+      "en": "Place 'Dear friends,' in the greeting place.",
+      "hi": "'Dear friends,' को संबोधन की जगह रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part comes last in a friendly letter?",
+      "hi": "दोस्ती वाले पत्र में सबसे अंत में कौन-सा भाग आता है?"
+     },
+     "options": [
+      {
+       "id": "sign",
+       "en": "The writer's name",
+       "hi": "लिखने वाले का नाम"
+      },
+      {
+       "id": "date",
+       "en": "The date",
+       "hi": "तारीख़"
+      }
+     ],
+     "answer": "sign"
+    },
+    {
+     "kind": "do",
+     "target": "part:sign",
+     "expect": "placed:sign",
+     "say": {
+      "en": "Put the name at the end.",
+      "hi": "नाम को सबसे अंत में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Place all the parts, then press Check.",
+      "hi": "सब भाग रखकर Check दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A letter to a friend has your address, the date, a greeting, the message, warm closing words and your name. Saying thank you is polite and makes friends happy.",
+      "hi": "दोस्त को पत्र में तुम्हारा पता, तारीख़, संबोधन, संदेश, स्नेह भरे समापन शब्द और नाम होता है। धन्यवाद कहना शिष्टता है और दोस्तों को ख़ुश करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'Dear friends,' do in a letter?",
+        "hi": "पत्र में 'Dear friends,' क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "It greets the readers",
+         "hi": "पढ़ने वालों का अभिवादन करता है"
+        },
+        {
+         "en": "It gives the date",
+         "hi": "तारीख़ बताता है"
+        },
+        {
+         "en": "It ends the letter",
+         "hi": "पत्र समाप्त करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The greeting starts the letter politely.",
+        "hi": "संबोधन पत्र को शिष्टता से शुरू करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The date is a separate part.",
+         "hi": "तारीख़ अलग भाग है।"
+        },
+        {
+         "en": "Closing words like 'Your friend' end it.",
+         "hi": "पत्र को 'Your friend' जैसे शब्द समाप्त करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write a thank-you card to someone who helped you.",
+      "hi": "जिसने तुम्हारी मदद की हो, उसके लिए एक धन्यवाद-कार्ड लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Opening",
+   "shows": "A green hillock in a forest with an old deer lying on soft grass in the evening",
+   "view": "Wide view, golden light",
+   "right": "Real deer with antlers, lush grass",
+   "avoid": "Text, people",
+   "n": 1
+  },
+  {
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Story",
+   "shows": "A group of deer, an elephant and a giraffe near a hillock, seen from far",
+   "view": "Wide eye-level view",
+   "right": "Believable animals together",
+   "avoid": "Cartoon look",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Words",
+   "shows": "Tender green blades of grass with drops of dew",
+   "view": "Macro close view",
+   "right": "Fresh green, soft blades",
+   "avoid": "Insects",
+   "n": 3
+  },
+  {
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Ending",
+   "shows": "Rain falling on a forest and fresh grass growing back",
+   "view": "Wide view, grey-green light",
+   "right": "Visible rain, bright new grass",
+   "avoid": "People",
+   "n": 4
+  },
+  {
+   "kind": "OBJ",
+   "topic": "5.4",
+   "use": "Card",
+   "shows": "A hand-made thank-you card with leaves stuck on it",
+   "view": "Top-down view",
+   "right": "Real paper and real leaves, no writing",
+   "avoid": "Readable text",
+   "n": 5
+  }
+ ]
+}

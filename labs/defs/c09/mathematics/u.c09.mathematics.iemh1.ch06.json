@@ -1,0 +1,1199 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh1.ch06",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "Measuring Space: Perimeter and Area",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Perimeter of a shape",
+   "labs": [],
+   "why_no_lab": "Perimeter of polygons is revision from earlier grades; the reader recalls it before the circle labs."
+  },
+  {
+   "n": "6.2",
+   "title": "Perimeter of a circle: the C/D ratio",
+   "labs": [
+    "c09-mathematics-iemh1-ch06-roll"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "π is irrational",
+   "labs": [],
+   "why_no_lab": "A short historical note best read; the never-ending digits are explored in the √2 zoom lab of Chapter 3."
+  },
+  {
+   "n": "6.4",
+   "title": "Length of an arc of a circle",
+   "labs": [
+    "c09-mathematics-iemh1-ch06-arc"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Problems, puzzles and paradoxes on perimeter",
+   "labs": [],
+   "why_no_lab": "Open-ended puzzles meant for discussion and paper drawing, not a single guided activity."
+  },
+  {
+   "n": "6.6",
+   "title": "Area of a rectangle",
+   "labs": [],
+   "why_no_lab": "Counting unit squares in a rectangle is known from earlier grades; it is the starting point of the next lab."
+  },
+  {
+   "n": "6.7",
+   "title": "Area of a parallelogram",
+   "labs": [
+    "c09-mathematics-iemh1-ch06-parallelogram"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.8",
+   "title": "Area of a triangle and Heron's formula",
+   "labs": [
+    "c09-mathematics-iemh1-ch06-heron"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.9",
+   "title": "Squaring a rectangle",
+   "labs": [
+    "c09-mathematics-iemh1-ch06-square-rectangle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.10",
+   "title": "Area of a circle",
+   "labs": [
+    "c09-mathematics-iemh1-ch06-circle-area"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.10.1",
+   "title": "Area of a sector of a circle",
+   "labs": [
+    "c09-mathematics-iemh1-ch06-sector"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh1-ch06-roll",
+   "topic": "6.2",
+   "template": "shapes",
+   "title": {
+    "en": "Roll a wheel: the C/D ratio",
+    "hi": "पहिया घुमाओ: C/D अनुपात"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "circle",
+    "task": "circumference",
+    "given": {
+     "lengths": [
+      3.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A wheel of diameter 7 cm rolls once round. About how far does it travel?",
+      "hi": "7 सेमी व्यास का पहिया एक पूरा चक्कर घूमता है। वह लगभग कितनी दूर जाएगा?"
+     },
+     "options": [
+      {
+       "id": "22",
+       "en": "About 22 cm",
+       "hi": "लगभग 22 सेमी"
+      },
+      {
+       "id": "14",
+       "en": "About 14 cm",
+       "hi": "लगभग 14 सेमी"
+      },
+      {
+       "id": "7",
+       "en": "About 7 cm",
+       "hi": "लगभग 7 सेमी"
+      }
+     ],
+     "answer": "22"
+    },
+    {
+     "kind": "do",
+     "target": "roll",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap Roll the wheel and watch the track it leaves.",
+      "hi": "पहिया घुमाओ दबाओ और उसके छोड़े निशान को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:radius",
+     "expect": "drawn",
+     "say": {
+      "en": "Change the radius with the slider.",
+      "hi": "स्लाइडर से त्रिज्या बदलो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "roll",
+     "expect": "measured:*",
+     "say": {
+      "en": "Roll the new wheel and compare the distance with its diameter.",
+      "hi": "नया पहिया घुमाओ और दूरी की तुलना उसके व्यास से करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One full turn lays the circumference C flat on the ground. For every wheel, C ÷ D is the same number, a little more than 3: we call it π (about 3.14 or 22/7). So C = πD = 2πr.",
+      "hi": "एक पूरा चक्कर परिधि C को ज़मीन पर सीधा बिछा देता है। हर पहिये के लिए C ÷ D एक ही संख्या है, 3 से थोड़ी ज़्यादा: इसे π कहते हैं (लगभग 3.14 या 22/7)। इसलिए C = πD = 2πr।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bicycle wheel has diameter 70 cm. How far does it go in one turn? (π = 22/7)",
+        "hi": "साइकिल के पहिये का व्यास 70 सेमी है। एक चक्कर में वह कितना जाएगा? (π = 22/7)"
+       },
+       "options": [
+        {
+         "en": "220 cm",
+         "hi": "220 सेमी"
+        },
+        {
+         "en": "140 cm",
+         "hi": "140 सेमी"
+        },
+        {
+         "en": "440 cm",
+         "hi": "440 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "C = πD = 22/7 × 70 = 220 cm.",
+        "hi": "C = πD = 22/7 × 70 = 220 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is 2 × diameter; the ratio is a bit more than 3, not 2.",
+         "hi": "यह 2 × व्यास है; अनुपात 3 से थोड़ा ज़्यादा है, 2 नहीं।"
+        },
+        {
+         "en": "That used 2πD; the formula is 2πr or πD.",
+         "hi": "इसमें 2πD लिया; सूत्र 2πr या πD है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Wrap a thread 10 times round a cotton reel or a steel glass. Divide the length by 10, then by the diameter. How close to 3.14 do you get?",
+      "hi": "किसी धागे की रील या स्टील के गिलास पर धागा 10 बार लपेटो। लंबाई को 10 से, फिर व्यास से भाग दो। 3.14 के कितने पास पहुँचे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch06-arc",
+   "topic": "6.4",
+   "template": "match",
+   "title": {
+    "en": "Length of an arc",
+    "hi": "चाप की लंबाई"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "q",
+      "left": {
+       "en": "Arc of 90° in a circle of radius 7 cm",
+       "hi": "7 सेमी त्रिज्या वाले वृत्त में 90° का चाप"
+      },
+      "right": {
+       "en": "11 cm",
+       "hi": "11 सेमी"
+      },
+      "why": {
+       "en": "90° is a quarter of the circle: 44 ÷ 4 = 11.",
+       "hi": "90° वृत्त का चौथाई है: 44 ÷ 4 = 11।"
+      }
+     },
+     {
+      "id": "h",
+      "left": {
+       "en": "Arc of 180° (a semicircle), radius 7 cm",
+       "hi": "180° का चाप (अर्धवृत्त), त्रिज्या 7 सेमी"
+      },
+      "right": {
+       "en": "22 cm",
+       "hi": "22 सेमी"
+      },
+      "why": {
+       "en": "Half of the whole circumference 44 cm.",
+       "hi": "पूरी परिधि 44 सेमी का आधा।"
+      }
+     },
+     {
+      "id": "s",
+      "left": {
+       "en": "Arc of 60°, radius 7 cm",
+       "hi": "60° का चाप, त्रिज्या 7 सेमी"
+      },
+      "right": {
+       "en": "About 7.33 cm",
+       "hi": "लगभग 7.33 सेमी"
+      },
+      "why": {
+       "en": "60/360 = 1/6, and 44 ÷ 6 ≈ 7.33.",
+       "hi": "60/360 = 1/6, और 44 ÷ 6 ≈ 7.33।"
+      }
+     },
+     {
+      "id": "w",
+      "left": {
+       "en": "The whole circle, radius 7 cm",
+       "hi": "पूरा वृत्त, त्रिज्या 7 सेमी"
+      },
+      "right": {
+       "en": "44 cm",
+       "hi": "44 सेमी"
+      },
+      "why": {
+       "en": "2πr = 2 × 22/7 × 7 = 44.",
+       "hi": "2πr = 2 × 22/7 × 7 = 44।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:w",
+     "expect": "matched:w",
+     "say": {
+      "en": "Start with the whole circle. Match it with its circumference.",
+      "hi": "पूरे वृत्त से शुरू करो। उसे उसकी परिधि से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 90° arc is what part of the whole circle?",
+      "hi": "90° का चाप पूरे वृत्त का कौन-सा भाग है?"
+     },
+     "options": [
+      {
+       "id": "q",
+       "en": "One quarter",
+       "hi": "एक-चौथाई"
+      },
+      {
+       "id": "h",
+       "en": "One half",
+       "hi": "आधा"
+      },
+      {
+       "id": "t",
+       "en": "One third",
+       "hi": "एक-तिहाई"
+      }
+     ],
+     "answer": "q"
+    },
+    {
+     "kind": "do",
+     "target": "left:q",
+     "expect": "matched:q",
+     "say": {
+      "en": "Match the 90° arc.",
+      "hi": "90° वाला चाप मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A full turn is 360°. An arc of θ° is θ/360 of the circle, so its length is θ/360 × 2πr.",
+      "hi": "पूरा चक्कर 360° है। θ° का चाप वृत्त का θ/360 भाग है, इसलिए उसकी लंबाई θ/360 × 2πr है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A clock's minute hand is 14 cm long. How far does its tip move in 15 minutes? (π = 22/7)",
+        "hi": "घड़ी की मिनट की सुई 14 सेमी लंबी है। 15 मिनट में उसकी नोक कितनी चलती है? (π = 22/7)"
+       },
+       "options": [
+        {
+         "en": "22 cm",
+         "hi": "22 सेमी"
+        },
+        {
+         "en": "88 cm",
+         "hi": "88 सेमी"
+        },
+        {
+         "en": "14 cm",
+         "hi": "14 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "15 minutes is a quarter turn: ¼ × 2 × 22/7 × 14 = 22 cm.",
+        "hi": "15 मिनट चौथाई चक्कर है: ¼ × 2 × 22/7 × 14 = 22 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "88 cm is the whole turn, which takes 60 minutes.",
+         "hi": "88 सेमी पूरा चक्कर है, जिसमें 60 मिनट लगते हैं।"
+        },
+        {
+         "en": "14 cm is the length of the hand, not the path of its tip.",
+         "hi": "14 सेमी सुई की लंबाई है, नोक का रास्ता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Measure the arc of a bangle between two marks with a thread, and compare it with θ/360 × πD.",
+      "hi": "धागे से चूड़ी पर दो निशानों के बीच का चाप नापो, और उसकी तुलना θ/360 × πD से करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch06-parallelogram",
+   "topic": "6.7",
+   "template": "sequence",
+   "title": {
+    "en": "Area of a parallelogram by cutting and moving",
+    "hi": "काटकर और खिसकाकर समांतर चतुर्भुज का क्षेत्रफल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "p1",
+      "text": {
+       "en": "Draw a parallelogram with base b and mark its height h",
+       "hi": "आधार b वाला समांतर चतुर्भुज बनाओ और उसकी ऊँचाई h का निशान लगाओ"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "Cut off the right triangle at one end, along the height",
+       "hi": "एक सिरे पर ऊँचाई के साथ-साथ समकोण त्रिभुज काट लो"
+      }
+     },
+     {
+      "id": "p3",
+      "text": {
+       "en": "Slide the triangle to the other end",
+       "hi": "त्रिभुज को दूसरे सिरे पर खिसकाओ"
+      }
+     },
+     {
+      "id": "p4",
+      "text": {
+       "en": "The pieces now form a rectangle b long and h high",
+       "hi": "टुकड़े अब b लंबा और h ऊँचा आयत बनाते हैं"
+      }
+     },
+     {
+      "id": "p5",
+      "text": {
+       "en": "So area of the parallelogram = b × h",
+       "hi": "इसलिए समांतर चतुर्भुज का क्षेत्रफल = b × h"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A parallelogram has base 8 cm, slanting side 5 cm and height 4 cm. What is its area?",
+      "hi": "किसी समांतर चतुर्भुज का आधार 8 सेमी, तिरछी भुजा 5 सेमी और ऊँचाई 4 सेमी है। क्षेत्रफल क्या है?"
+     },
+     "options": [
+      {
+       "id": "32",
+       "en": "32 cm²",
+       "hi": "32 वर्ग सेमी"
+      },
+      {
+       "id": "40",
+       "en": "40 cm²",
+       "hi": "40 वर्ग सेमी"
+      },
+      {
+       "id": "20",
+       "en": "20 cm²",
+       "hi": "20 वर्ग सेमी"
+      }
+     ],
+     "answer": "32"
+    },
+    {
+     "kind": "do",
+     "target": "item:p1",
+     "expect": "placed:p1",
+     "say": {
+      "en": "Put the first step in place.",
+      "hi": "पहला चरण उसकी जगह रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the other steps and tap Check.",
+      "hi": "बाक़ी चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cutting and moving a piece does not change the area. The parallelogram becomes a rectangle with the same base and the same height, so its area is base × height. The slanting side is not used.",
+      "hi": "किसी टुकड़े को काटकर खिसकाने से क्षेत्रफल नहीं बदलता। समांतर चतुर्भुज उसी आधार और उसी ऊँचाई वाला आयत बन जाता है, इसलिए क्षेत्रफल आधार × ऊँचाई है। तिरछी भुजा का उपयोग नहीं होता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is 8 × 5 = 40 cm² wrong for the parallelogram above?",
+        "hi": "ऊपर वाले समांतर चतुर्भुज के लिए 8 × 5 = 40 वर्ग सेमी ग़लत क्यों है?"
+       },
+       "options": [
+        {
+         "en": "5 cm is slanting; area needs the straight-up height",
+         "hi": "5 सेमी तिरछी है; क्षेत्रफल के लिए सीधी ऊँचाई चाहिए"
+        },
+        {
+         "en": "8 should be halved",
+         "hi": "8 को आधा करना चाहिए"
+        },
+        {
+         "en": "It is right",
+         "hi": "यह सही है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The rectangle we made is 4 cm high, not 5 cm.",
+        "hi": "जो आयत बना वह 4 सेमी ऊँचा है, 5 सेमी नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Halving is for a triangle, which is half a parallelogram.",
+         "hi": "आधा करना त्रिभुज के लिए है, जो समांतर चतुर्भुज का आधा है।"
+        },
+        {
+         "en": "A slanting side is longer than the height, so it gives too big an area.",
+         "hi": "तिरछी भुजा ऊँचाई से लंबी होती है, इसलिए क्षेत्रफल ज़्यादा आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Cut a parallelogram from an old card, cut off the triangle, and slide it. Measure to check b × h.",
+      "hi": "पुराने कार्ड से समांतर चतुर्भुज काटो, त्रिभुज अलग करो और खिसकाओ। नापकर b × h जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch06-heron",
+   "topic": "6.8",
+   "template": "shapes",
+   "title": {
+    "en": "Area of a triangle and Heron's formula",
+    "hi": "त्रिभुज का क्षेत्रफल और हीरोन का सूत्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "triangle",
+    "task": "area",
+    "given": {
+     "lengths": [
+      5,
+      6,
+      7
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A triangle has sides 5, 6 and 7 cm. Half the perimeter is s = 9. Heron says area = √(s(s−a)(s−b)(s−c)). About how big is it?",
+      "hi": "त्रिभुज की भुजाएँ 5, 6 और 7 सेमी हैं। आधा परिमाप s = 9। हीरोन कहते हैं क्षेत्रफल = √(s(s−a)(s−b)(s−c))। यह लगभग कितना है?"
+     },
+     "options": [
+      {
+       "id": "14.7",
+       "en": "About 14.7 cm²",
+       "hi": "लगभग 14.7 वर्ग सेमी"
+      },
+      {
+       "id": "21",
+       "en": "21 cm²",
+       "hi": "21 वर्ग सेमी"
+      },
+      {
+       "id": "18",
+       "en": "18 cm²",
+       "hi": "18 वर्ग सेमी"
+      }
+     ],
+     "answer": "14.7"
+    },
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler to show the base, the height and the area.",
+      "hi": "आधार, ऊँचाई और क्षेत्रफल देखने के लिए रूलर छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag corner A and watch how the height and area change.",
+      "hi": "कोना A खिसकाओ और देखो ऊँचाई और क्षेत्रफल कैसे बदलते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Area = ½ × base × height works when you can measure the height. Heron's formula needs only the three sides: s = (5 + 6 + 7) ÷ 2 = 9, and √(9 × 4 × 3 × 2) = √216 ≈ 14.7 cm².",
+      "hi": "क्षेत्रफल = ½ × आधार × ऊँचाई तब काम करता है जब ऊँचाई नापी जा सके। हीरोन के सूत्र को केवल तीन भुजाएँ चाहिए: s = (5 + 6 + 7) ÷ 2 = 9, और √(9 × 4 × 3 × 2) = √216 ≈ 14.7 वर्ग सेमी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Use Heron for sides 3, 4 and 5 cm.",
+        "hi": "3, 4 और 5 सेमी भुजाओं के लिए हीरोन का सूत्र लगाओ।"
+       },
+       "options": [
+        {
+         "en": "6 cm²",
+         "hi": "6 वर्ग सेमी"
+        },
+        {
+         "en": "12 cm²",
+         "hi": "12 वर्ग सेमी"
+        },
+        {
+         "en": "60 cm²",
+         "hi": "60 वर्ग सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "s = 6, so √(6 × 3 × 2 × 1) = √36 = 6. It is a right triangle, and ½ × 3 × 4 = 6 agrees.",
+        "hi": "s = 6, इसलिए √(6 × 3 × 2 × 1) = √36 = 6। यह समकोण त्रिभुज है, और ½ × 3 × 4 = 6 भी यही देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 forgets the ½ in ½ × base × height.",
+         "hi": "12 में ½ × आधार × ऊँचाई का ½ भूल गए।"
+        },
+        {
+         "en": "60 multiplies the sides; area is not a product of all three sides.",
+         "hi": "60 भुजाओं का गुणा है; क्षेत्रफल तीनों भुजाओं का गुणनफल नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pace out a triangular field or park corner at home, measure its sides in steps, and estimate its area with Heron's formula.",
+      "hi": "घर के पास किसी त्रिभुजाकार खेत या पार्क के कोने की भुजाएँ क़दमों से नापो और हीरोन के सूत्र से क्षेत्रफल का अनुमान लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch06-square-rectangle",
+   "topic": "6.9",
+   "template": "sequence",
+   "title": {
+    "en": "Turn a rectangle into a square of the same area",
+    "hi": "आयत को उसी क्षेत्रफल वाले वर्ग में बदलो"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "items": [
+     {
+      "id": "q1",
+      "text": {
+       "en": "Draw the rectangle with sides a and b",
+       "hi": "a और b भुजाओं वाला आयत बनाओ"
+      }
+     },
+     {
+      "id": "q2",
+      "text": {
+       "en": "On a straight line mark AB = a and then BC = b",
+       "hi": "एक सीधी रेखा पर AB = a और फिर BC = b अंकित करो"
+      }
+     },
+     {
+      "id": "q3",
+      "text": {
+       "en": "Draw a semicircle with AC as diameter",
+       "hi": "AC को व्यास मानकर अर्धवृत्त खींचो"
+      }
+     },
+     {
+      "id": "q4",
+      "text": {
+       "en": "Draw a perpendicular at B to meet the semicircle at D",
+       "hi": "B पर लंब खींचो जो अर्धवृत्त को D पर मिले"
+      }
+     },
+     {
+      "id": "q5",
+      "text": {
+       "en": "BD is the side of a square with the same area: BD² = a × b",
+       "hi": "BD उसी क्षेत्रफल वाले वर्ग की भुजा है: BD² = a × b"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A rectangle is 9 cm by 4 cm. What is the side of a square with the same area?",
+      "hi": "एक आयत 9 सेमी × 4 सेमी है। उसी क्षेत्रफल वाले वर्ग की भुजा कितनी होगी?"
+     },
+     "options": [
+      {
+       "id": "6",
+       "en": "6 cm",
+       "hi": "6 सेमी"
+      },
+      {
+       "id": "6.5",
+       "en": "6.5 cm",
+       "hi": "6.5 सेमी"
+      },
+      {
+       "id": "13",
+       "en": "13 cm",
+       "hi": "13 सेमी"
+      }
+     ],
+     "answer": "6"
+    },
+    {
+     "kind": "do",
+     "target": "item:q1",
+     "expect": "placed:q1",
+     "say": {
+      "en": "Put the first step in place.",
+      "hi": "पहला चरण उसकी जगह रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the construction and tap Check.",
+      "hi": "रचना के चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The angle in a semicircle is 90°, so triangle ADC is right-angled at D, and BD is its height. That makes BD² = AB × BC = a × b. With ruler and compass alone we get a square equal in area to any rectangle.",
+      "hi": "अर्धवृत्त में बना कोण 90° होता है, इसलिए त्रिभुज ADC, D पर समकोण है, और BD उसकी ऊँचाई है। इससे BD² = AB × BC = a × b। केवल रूलर और परकार से किसी भी आयत के बराबर क्षेत्रफल वाला वर्ग बन जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is 6.5 cm (the average of 9 and 4) wrong?",
+        "hi": "6.5 सेमी (9 और 4 का औसत) ग़लत क्यों है?"
+       },
+       "options": [
+        {
+         "en": "6.5 × 6.5 = 42.25, more than 36",
+         "hi": "6.5 × 6.5 = 42.25, जो 36 से ज़्यादा है"
+        },
+        {
+         "en": "It is right",
+         "hi": "यह सही है"
+        },
+        {
+         "en": "6.5 is not a whole number",
+         "hi": "6.5 पूर्ण संख्या नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The side must satisfy side² = 36, so it is 6, not the average.",
+        "hi": "भुजा को भुजा² = 36 पूरा करना है, इसलिए वह 6 है, औसत नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The area 9 × 4 = 36 needs side² = 36, which 6.5 does not give.",
+         "hi": "क्षेत्रफल 9 × 4 = 36 के लिए भुजा² = 36 चाहिए, जो 6.5 से नहीं आता।"
+        },
+        {
+         "en": "Sides can be decimals; the problem is that its square is not 36.",
+         "hi": "भुजा दशमलव भी हो सकती है; समस्या यह है कि इसका वर्ग 36 नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw this on paper with a = 9 cm and b = 4 cm. Measure BD with a ruler: is it 6 cm?",
+      "hi": "काग़ज़ पर a = 9 सेमी और b = 4 सेमी लेकर यह बनाओ। रूलर से BD नापो: क्या यह 6 सेमी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch06-circle-area",
+   "topic": "6.10",
+   "template": "shapes",
+   "title": {
+    "en": "Area of a circle: slice and rearrange",
+    "hi": "वृत्त का क्षेत्रफल: काटो और जमाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "circle",
+    "task": "area"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:sectors",
+     "expect": "drawn",
+     "say": {
+      "en": "Use the slider to cut the circle into more sectors.",
+      "hi": "स्लाइडर से वृत्त को और त्रिज्यखंडों में काटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you lay the sectors top-to-tail, what shape will they nearly make?",
+      "hi": "अगर त्रिज्यखंडों को उल्टा-सीधा लगाओ, तो वे लगभग कौन-सी आकृति बनाएँगे?"
+     },
+     "options": [
+      {
+       "id": "rect",
+       "en": "A rectangle",
+       "hi": "आयत"
+      },
+      {
+       "id": "tri",
+       "en": "A triangle",
+       "hi": "त्रिभुज"
+      },
+      {
+       "id": "circ",
+       "en": "A smaller circle",
+       "hi": "छोटा वृत्त"
+      }
+     ],
+     "answer": "rect"
+    },
+    {
+     "kind": "do",
+     "target": "rearrange",
+     "expect": "proved",
+     "say": {
+      "en": "Tap Rearrange.",
+      "hi": "नए ढंग से जमाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sectors make a near-rectangle. Its height is the radius r and its length is half the circumference, πr. So the area is πr × r = πr². More sectors make the edges straighter.",
+      "hi": "त्रिज्यखंड लगभग आयत बनाते हैं। इसकी ऊँचाई त्रिज्या r है और लंबाई परिधि की आधी, πr। इसलिए क्षेत्रफल πr × r = πr² है। ज़्यादा त्रिज्यखंड लेने पर किनारे और सीधे होते जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A round rangoli has radius 7 cm. What is its area? (π = 22/7)",
+        "hi": "एक गोल रंगोली की त्रिज्या 7 सेमी है। उसका क्षेत्रफल क्या है? (π = 22/7)"
+       },
+       "options": [
+        {
+         "en": "154 cm²",
+         "hi": "154 वर्ग सेमी"
+        },
+        {
+         "en": "44 cm²",
+         "hi": "44 वर्ग सेमी"
+        },
+        {
+         "en": "308 cm²",
+         "hi": "308 वर्ग सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "πr² = 22/7 × 7 × 7 = 154.",
+        "hi": "πr² = 22/7 × 7 × 7 = 154।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "44 cm is the circumference 2πr, a length, not an area.",
+         "hi": "44 सेमी परिधि 2πr है, लंबाई, क्षेत्रफल नहीं।"
+        },
+        {
+         "en": "308 uses 2πr², which counts the area twice.",
+         "hi": "308 में 2πr² लिया, जो क्षेत्रफल को दो बार गिनता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set the slider to 4 sectors and then to 32. Which arrangement looks more like a rectangle, and why?",
+      "hi": "स्लाइडर को 4 और फिर 32 त्रिज्यखंडों पर रखो। कौन-सी व्यवस्था आयत जैसी ज़्यादा लगती है, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch06-sector",
+   "topic": "6.10.1",
+   "template": "match",
+   "title": {
+    "en": "Area of a sector",
+    "hi": "त्रिज्यखंड का क्षेत्रफल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "q",
+      "left": {
+       "en": "Sector of 90°, radius 7 cm",
+       "hi": "90° का त्रिज्यखंड, त्रिज्या 7 सेमी"
+      },
+      "right": {
+       "en": "38.5 cm²",
+       "hi": "38.5 वर्ग सेमी"
+      },
+      "why": {
+       "en": "A quarter of 154 cm².",
+       "hi": "154 वर्ग सेमी का चौथाई।"
+      }
+     },
+     {
+      "id": "h",
+      "left": {
+       "en": "Sector of 180°, radius 7 cm",
+       "hi": "180° का त्रिज्यखंड, त्रिज्या 7 सेमी"
+      },
+      "right": {
+       "en": "77 cm²",
+       "hi": "77 वर्ग सेमी"
+      },
+      "why": {
+       "en": "Half the circle's area.",
+       "hi": "वृत्त के क्षेत्रफल का आधा।"
+      }
+     },
+     {
+      "id": "t",
+      "left": {
+       "en": "Sector of 120°, radius 7 cm",
+       "hi": "120° का त्रिज्यखंड, त्रिज्या 7 सेमी"
+      },
+      "right": {
+       "en": "About 51.3 cm²",
+       "hi": "लगभग 51.3 वर्ग सेमी"
+      },
+      "why": {
+       "en": "120/360 = 1/3 of 154.",
+       "hi": "154 का 120/360 = 1/3।"
+      }
+     },
+     {
+      "id": "w",
+      "left": {
+       "en": "The whole circle, radius 7 cm",
+       "hi": "पूरा वृत्त, त्रिज्या 7 सेमी"
+      },
+      "right": {
+       "en": "154 cm²",
+       "hi": "154 वर्ग सेमी"
+      },
+      "why": {
+       "en": "πr² = 22/7 × 49.",
+       "hi": "πr² = 22/7 × 49।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:w",
+     "expect": "matched:w",
+     "say": {
+      "en": "Match the whole circle with its area first.",
+      "hi": "पहले पूरे वृत्त को उसके क्षेत्रफल से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A slice of pizza has angle 120°. What part of the whole pizza is it?",
+      "hi": "पिज़्ज़ा के एक टुकड़े का कोण 120° है। वह पूरे पिज़्ज़ा का कौन-सा भाग है?"
+     },
+     "options": [
+      {
+       "id": "t",
+       "en": "One third",
+       "hi": "एक-तिहाई"
+      },
+      {
+       "id": "q",
+       "en": "One quarter",
+       "hi": "एक-चौथाई"
+      },
+      {
+       "id": "s",
+       "en": "One sixth",
+       "hi": "छठा भाग"
+      }
+     ],
+     "answer": "t"
+    },
+    {
+     "kind": "do",
+     "target": "left:t",
+     "expect": "matched:t",
+     "say": {
+      "en": "Match the 120° sector.",
+      "hi": "120° वाला त्रिज्यखंड मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A sector of angle θ is θ/360 of the circle, so its area is θ/360 × πr², just like an arc is θ/360 of the circumference.",
+      "hi": "θ कोण वाला त्रिज्यखंड वृत्त का θ/360 भाग है, इसलिए उसका क्षेत्रफल θ/360 × πr² है, ठीक वैसे ही जैसे चाप परिधि का θ/360 भाग है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A fan sweeps a 60° sector with blades 7 cm long. What area does it sweep? (π = 22/7)",
+        "hi": "एक पंखा 7 सेमी लंबी पंखुड़ियों से 60° का त्रिज्यखंड घेरता है। कितना क्षेत्रफल? (π = 22/7)"
+       },
+       "options": [
+        {
+         "en": "About 25.7 cm²",
+         "hi": "लगभग 25.7 वर्ग सेमी"
+        },
+        {
+         "en": "About 7.3 cm²",
+         "hi": "लगभग 7.3 वर्ग सेमी"
+        },
+        {
+         "en": "60 cm²",
+         "hi": "60 वर्ग सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "60/360 × 154 = 154 ÷ 6 ≈ 25.7.",
+        "hi": "60/360 × 154 = 154 ÷ 6 ≈ 25.7।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7.3 cm is the arc length; area uses πr², not 2πr.",
+         "hi": "7.3 सेमी चाप की लंबाई है; क्षेत्रफल में πr² लगता है, 2πr नहीं।"
+        },
+        {
+         "en": "The angle in degrees is not an area.",
+         "hi": "डिग्री में कोण क्षेत्रफल नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Cut a paper circle into a 90° sector and roll it into a cone. Which part of the circle became the cone's rim?",
+      "hi": "काग़ज़ के वृत्त से 90° का त्रिज्यखंड काटकर शंकु बनाओ। वृत्त का कौन-सा भाग शंकु का किनारा बना?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Chapter hook: fencing a field",
+   "shows": "A farmer's field in rural India with a fresh bamboo fence along its boundary, seen from a raised bund",
+   "view": "High angle, morning light",
+   "right": "Fence clearly follows the whole boundary",
+   "avoid": "Faces, brand logos on sacks"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "6.2",
+   "use": "Measuring C/D with a cotton reel",
+   "shows": "A cotton reel wrapped with white thread, then the thread unwound and laid straight beside a steel ruler, in three frames",
+   "view": "Straight from above",
+   "right": "Thread laid straight with no slack",
+   "avoid": "Ruler numbers unreadable or wrong"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Wheel and its track",
+   "shows": "A bicycle wheel standing on a strip of wet sand with one full turn of its track marked by a painted dot on the tyre at start and end",
+   "view": "Side view at ground level",
+   "right": "The dot is at the bottom at both ends of one turn",
+   "avoid": "Brand names on the tyre"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "6.7",
+   "use": "Parallelogram becomes a rectangle",
+   "shows": "A coloured card parallelogram, then the triangle cut off along the height, then slid to the other end to make a rectangle",
+   "view": "Straight from above, transparent background",
+   "right": "Pieces fit exactly with no overlap",
+   "avoid": "Labels or arrows baked in"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "6.10",
+   "use": "Circle sliced into sectors",
+   "shows": "A round paper circle in four colours cut into 16 sectors and laid alternately up and down into a near-rectangle, in two frames",
+   "view": "Straight from above",
+   "right": "Sectors equal; the strip's height equals the radius",
+   "avoid": "Gaps between pieces"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.10.1",
+   "use": "Sectors in daily life",
+   "shows": "A cut round cake or a pizza on a plate with one 60° slice pulled out",
+   "view": "Three-quarter view from above",
+   "right": "The slice is a true sector meeting at the centre",
+   "avoid": "Brand boxes"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "6.8",
+   "use": "Triangular plot",
+   "shows": "A triangular corner plot of land with a measuring tape laid along one side",
+   "view": "High angle",
+   "right": "Three straight sides clearly visible",
+   "avoid": "House numbers, faces"
+  }
+ ]
+}

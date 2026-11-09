@@ -1,0 +1,1001 @@
+{
+  "chapter_key": "u.c08.mathematics.hegp2.ch06",
+  "class": 8,
+  "subject_id": "mathematics",
+  "title": "Algebra Play",
+  "source": "https://ncert.nic.in/textbook/pdf/hegp206.pdf",
+  "topics": [
+    {
+      "n": "6.1",
+      "title": "Algebra play: algebra as a tool to explain number games",
+      "labs": [],
+      "why_no_lab": "A short opening page that sets up the chapter; the labs for the sections that follow carry the ideas."
+    },
+    {
+      "n": "6.2",
+      "title": "Thinking about “think of a number” tricks",
+      "labs": [
+        "c08-mathematics-hegp2-ch06-trick"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.3",
+      "title": "Number pyramids",
+      "labs": [
+        "c08-mathematics-hegp2-ch06-pyramid"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.4",
+      "title": "Fun with grids: calendar squares",
+      "labs": [
+        "c08-mathematics-hegp2-ch06-calendar"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.5",
+      "title": "The largest product",
+      "labs": [
+        "c08-mathematics-hegp2-ch06-largest"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.6",
+      "title": "Decoding divisibility tricks",
+      "labs": [
+        "c08-mathematics-hegp2-ch06-decode"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c08-mathematics-hegp2-ch06-trick",
+      "topic": "6.2",
+      "template": "sequence",
+      "title": {
+        "en": "Why the number trick always works",
+        "hi": "संख्या की जादूगरी हमेशा क्यों चलती है"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "s1",
+            "text": {
+              "en": "Think of a number: n",
+              "hi": "कोई संख्या सोचो: n"
+            }
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "Add 4: n + 4",
+              "hi": "4 जोड़ो: n + 4"
+            }
+          },
+          {
+            "id": "s3",
+            "text": {
+              "en": "Double it: 2n + 8",
+              "hi": "दुगुना करो: 2n + 8"
+            }
+          },
+          {
+            "id": "s4",
+            "text": {
+              "en": "Take away 6: 2n + 2",
+              "hi": "6 घटाओ: 2n + 2"
+            }
+          },
+          {
+            "id": "s5",
+            "text": {
+              "en": "Halve it: n + 1",
+              "hi": "आधा करो: n + 1"
+            }
+          },
+          {
+            "id": "s6",
+            "text": {
+              "en": "Take away the number you thought of: 1",
+              "hi": "सोची हुई संख्या घटाओ: 1"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Your friend says: think of a number, add 4, double it, take away 6, halve it, and take away the number you thought of. “Your answer is 1!” Let us see why, using n for the number.",
+            "hi": "तुम्हारा दोस्त कहता है: कोई संख्या सोचो, 4 जोड़ो, दुगुना करो, 6 घटाओ, आधा करो, और सोची हुई संख्या घटाओ। “तुम्हारा उत्तर 1 है!” चलो n लेकर देखें क्यों।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Will the answer be 1 even if you start with 100?",
+            "hi": "अगर 100 से शुरू करो तो भी क्या उत्तर 1 होगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Yes, every time",
+              "hi": "हाँ, हर बार"
+            },
+            {
+              "id": "b",
+              "en": "Only for small numbers",
+              "hi": "सिर्फ़ छोटी संख्याओं के लिए"
+            },
+            {
+              "id": "c",
+              "en": "No",
+              "hi": "नहीं"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:s1",
+          "expect": "placed:s1",
+          "say": {
+            "en": "Put the steps of the trick in order, with the algebra for each. Start with n.",
+            "hi": "जादूगरी के चरण, हर एक के बीजगणित के साथ, क्रम में लगाओ। n से शुरू करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:s3",
+          "expect": "placed:s3",
+          "say": {
+            "en": "Where does “Double it: 2n + 8” go?",
+            "hi": "“दुगुना करो: 2n + 8” कहाँ आएगा?"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place the rest and tap Check.",
+            "hi": "बाक़ी रखो और “जाँचो” दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Writing each step with n shows that the n is removed at the end, so the answer does not depend on the starting number. 100 → 104 → 208 → 202 → 101 → 1. Algebra turns a trick into a proof.",
+            "hi": "हर चरण n से लिखने पर दिखता है कि अंत में n हट जाता है, इसलिए उत्तर शुरुआती संख्या पर निर्भर नहीं। 100 → 104 → 208 → 202 → 101 → 1। बीजगणित जादूगरी को प्रमाण बना देता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Change the trick: add 5 instead of 4 (everything else the same). The final answer becomes …",
+                "hi": "जादूगरी बदलो: 4 की जगह 5 जोड़ो (बाक़ी सब वैसा)। अंतिम उत्तर …"
+              },
+              "options": [
+                "2",
+                "1",
+                {
+                  "en": "It depends on n",
+                  "hi": "n पर निर्भर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "n + 5 → 2n + 10 → 2n + 4 → n + 2 → 2.",
+                "hi": "n + 5 → 2n + 10 → 2n + 4 → n + 2 → 2।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The extra 1 is doubled and then halved, so it stays: the answer goes up by 1.",
+                  "hi": "अतिरिक्त 1 दुगुना फिर आधा होता है, इसलिए बचा रहता है: उत्तर 1 बढ़ता है।"
+                },
+                {
+                  "en": "The n is still taken away at the end, so the answer is the same for every n.",
+                  "hi": "अंत में n फिर भी घटता है, इसलिए हर n के लिए उत्तर एक ही।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Invent your own trick that always ends with your house number. Test it with algebra.",
+            "hi": "अपनी ऐसी जादूगरी बनाओ जो हमेशा तुम्हारे घर के नंबर पर ख़त्म हो। बीजगणित से परखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch06-pyramid",
+      "topic": "6.3",
+      "template": "algebra",
+      "title": {
+        "en": "Solve the number pyramid",
+        "hi": "संख्या पिरामिड हल करो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "balance",
+        "equation": "2x+8=20"
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In a number pyramid each brick is the sum of the two bricks below it. The bottom row is 3, x, 5. The middle row is 3 + x and x + 5. The top is (3 + x) + (x + 5) = 2x + 8, and we are told the top is 20.",
+            "hi": "संख्या पिरामिड में हर ईंट अपने नीचे की दो ईंटों का योग है। नीचे की पंक्ति 3, x, 5 है। बीच की पंक्ति 3 + x और x + 5। ऊपर (3 + x) + (x + 5) = 2x + 8, और बताया गया है कि ऊपर 20 है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Why does x appear twice at the top?",
+            "hi": "ऊपर x दो बार क्यों आता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "The middle brick is under both bricks of the next row",
+              "hi": "बीच की ईंट अगली पंक्ति की दोनों ईंटों के नीचे है"
+            },
+            {
+              "id": "b",
+              "en": "Because 20 is even",
+              "hi": "क्योंकि 20 सम है"
+            },
+            {
+              "id": "c",
+              "en": "It is a mistake",
+              "hi": "यह ग़लती है"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "op:-",
+          "expect": "balanced",
+          "say": {
+            "en": "Choose both sides, type 8 and tap minus.",
+            "hi": "दोनों ओर चुनो, 8 लिखो और माइनस दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "op:÷",
+          "expect": "balanced",
+          "say": {
+            "en": "Now divide both sides by 2.",
+            "hi": "अब दोनों ओर 2 से भाग दो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Type the value of x.",
+            "hi": "x का मान लिखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "2x + 8 = 20, so 2x = 12 and x = 6. Check: bottom 3, 6, 5; middle 9, 11; top 20. The middle brick of the bottom row counts twice in the top because it feeds both middle bricks.",
+            "hi": "2x + 8 = 20, इसलिए 2x = 12 और x = 6। जाँचो: नीचे 3, 6, 5; बीच 9, 11; ऊपर 20। नीचे की बीच वाली ईंट ऊपर दो बार गिनी जाती है क्योंकि वह बीच की दोनों ईंटों में जाती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A pyramid has bottom row a, b, c. The top brick is …",
+                "hi": "किसी पिरामिड की नीचे की पंक्ति a, b, c है। ऊपर की ईंट है …"
+              },
+              "options": [
+                "a + 2b + c",
+                "a + b + c",
+                "2a + b + 2c"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Middle: a + b and b + c. Top: a + 2b + c.",
+                "hi": "बीच: a + b और b + c। ऊपर: a + 2b + c।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "b is counted only once here, but it is under both middle bricks.",
+                  "hi": "यहाँ b एक बार गिना, पर वह बीच की दोनों ईंटों के नीचे है।"
+                },
+                {
+                  "en": "The corner bricks a and c each feed only one middle brick.",
+                  "hi": "कोने की ईंटें a और c हर एक सिर्फ़ एक बीच वाली ईंट में जाती हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Build a 4-row pyramid with bottom row 1, 2, 3, 4. Predict the top first using algebra (a + 3b + 3c + d).",
+            "hi": "नीचे 1, 2, 3, 4 वाला 4 पंक्तियों का पिरामिड बनाओ। पहले बीजगणित (a + 3b + 3c + d) से ऊपर का अनुमान लगाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch06-calendar",
+      "topic": "6.4",
+      "template": "match",
+      "title": {
+        "en": "Algebra hiding in a calendar",
+        "hi": "कैलेंडर में छिपा बीजगणित"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "up",
+            "left": {
+              "en": "The date just above",
+              "hi": "ठीक ऊपर की तारीख़"
+            },
+            "right": {
+              "en": "n − 7",
+              "hi": "n − 7"
+            },
+            "why": {
+              "en": "A week earlier is 7 days less.",
+              "hi": "एक हफ़्ता पहले यानी 7 दिन कम।"
+            }
+          },
+          {
+            "id": "down",
+            "left": {
+              "en": "The date just below",
+              "hi": "ठीक नीचे की तारीख़"
+            },
+            "right": {
+              "en": "n + 7",
+              "hi": "n + 7"
+            },
+            "why": {
+              "en": "A week later is 7 days more.",
+              "hi": "एक हफ़्ता बाद यानी 7 दिन ज़्यादा।"
+            }
+          },
+          {
+            "id": "left",
+            "left": {
+              "en": "The date on the left",
+              "hi": "बाईं ओर की तारीख़"
+            },
+            "right": {
+              "en": "n − 1",
+              "hi": "n − 1"
+            },
+            "why": {
+              "en": "The day before.",
+              "hi": "एक दिन पहले।"
+            }
+          },
+          {
+            "id": "right",
+            "left": {
+              "en": "The date on the right",
+              "hi": "दाईं ओर की तारीख़"
+            },
+            "right": {
+              "en": "n + 1",
+              "hi": "n + 1"
+            },
+            "why": {
+              "en": "The day after.",
+              "hi": "एक दिन बाद।"
+            }
+          },
+          {
+            "id": "ul",
+            "left": {
+              "en": "The date above and to the left",
+              "hi": "ऊपर-बाईं ओर की तारीख़"
+            },
+            "right": {
+              "en": "n − 8",
+              "hi": "n − 8"
+            },
+            "why": {
+              "en": "7 back and 1 back: 8 back.",
+              "hi": "7 पीछे और 1 पीछे: 8 पीछे।"
+            }
+          },
+          {
+            "id": "dr",
+            "left": {
+              "en": "The date below and to the right",
+              "hi": "नीचे-दाईं ओर की तारीख़"
+            },
+            "right": {
+              "en": "n + 8",
+              "hi": "n + 8"
+            },
+            "why": {
+              "en": "7 ahead and 1 ahead: 8 ahead.",
+              "hi": "7 आगे और 1 आगे: 8 आगे।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Draw a 3 × 3 box around any dates on a monthly calendar. Call the centre date n. Every other date in the box can be written using n.",
+            "hi": "महीने के कैलेंडर पर किन्हीं तारीख़ों के चारों ओर 3 × 3 का डिब्बा बनाओ। बीच वाली तारीख़ को n कहो। डिब्बे की हर दूसरी तारीख़ n से लिखी जा सकती है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:up",
+          "expect": "matched:up",
+          "say": {
+            "en": "Tap “The date just above” and its expression.",
+            "hi": "“ठीक ऊपर की तारीख़” और उसका व्यंजक छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is the date above and to the left of n?",
+            "hi": "n के ऊपर-बाईं ओर की तारीख़ क्या है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "n − 8",
+              "hi": "n − 8 वाली तारीख़"
+            },
+            {
+              "id": "b",
+              "en": "n − 6",
+              "hi": "n − 6 वाली तारीख़"
+            },
+            {
+              "id": "c",
+              "en": "n − 7",
+              "hi": "n − 7 वाली तारीख़"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:ul",
+          "expect": "matched:ul",
+          "say": {
+            "en": "Match the date above and to the left.",
+            "hi": "ऊपर-बाईं ओर की तारीख़ मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:dr",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest.",
+            "hi": "बाक़ी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Rows jump by 7 because a week has 7 days; columns jump by 1. Add all nine dates: the + and − parts cancel in pairs, leaving 9n. So the sum of a 3 × 3 calendar box is always 9 times the centre date.",
+            "hi": "पंक्तियाँ 7 से बदलती हैं क्योंकि हफ़्ते में 7 दिन हैं; कॉलम 1 से। सभी नौ तारीख़ें जोड़ो: + और − भाग जोड़ों में कट जाते हैं, 9n बचता है। इसलिए कैलेंडर के 3 × 3 डिब्बे का योग हमेशा बीच वाली तारीख़ का 9 गुना होता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The centre of a 3 × 3 calendar box is 15. What is the sum of all nine dates?",
+                "hi": "कैलेंडर के 3 × 3 डिब्बे का बीच 15 है। सभी नौ तारीख़ों का योग क्या है?"
+              },
+              "options": [
+                "135",
+                "45",
+                "120"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "9 × 15 = 135.",
+                "hi": "9 × 15 = 135।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "45 = 3 × 15 adds only one row's worth.",
+                  "hi": "45 = 3 × 15 सिर्फ़ एक पंक्ति के बराबर है।"
+                },
+                {
+                  "en": "120 misses the centre date itself: 135 − 15.",
+                  "hi": "120 में बीच की तारीख़ ख़ुद छूट गई: 135 − 15।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "In a 2 × 2 box with top-left date n, which two diagonal sums are equal?",
+                "hi": "2 × 2 डिब्बे में ऊपर-बाईं तारीख़ n है। कौन-से दो विकर्ण योग बराबर हैं?"
+              },
+              "options": [
+                {
+                  "en": "n + (n + 8) and (n + 1) + (n + 7)",
+                  "hi": "n + (n + 8) और (n + 1) + (n + 7)"
+                },
+                {
+                  "en": "n + (n + 1) and (n + 7) + (n + 8)",
+                  "hi": "n + (n + 1) और (n + 7) + (n + 8)"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Both diagonals add to 2n + 8.",
+                "hi": "दोनों विकर्ण 2n + 8 बनाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "These are the two rows: 2n + 1 and 2n + 15, not equal.",
+                  "hi": "ये दो पंक्तियाँ हैं: 2n + 1 और 2n + 15, बराबर नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Pick any 3 × 3 box on this month's calendar. Add the dates and check that the sum is 9 times the centre.",
+            "hi": "इस महीने के कैलेंडर पर कोई भी 3 × 3 डिब्बा चुनो। तारीख़ें जोड़ो और जाँचो कि योग बीच वाली का 9 गुना है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch06-largest",
+      "topic": "6.5",
+      "template": "sequence",
+      "title": {
+        "en": "Which arrangement gives the largest product?",
+        "hi": "कौन-सी व्यवस्था सबसे बड़ा गुणनफल देती है?"
+      },
+      "minutes": 7,
+      "level": "stretch",
+      "config": {
+        "items": [
+          {
+            "id": "p1",
+            "text": {
+              "en": "67 × 4 = 268",
+              "hi": "67 × 4 = 268"
+            }
+          },
+          {
+            "id": "p2",
+            "text": {
+              "en": "47 × 6 = 282",
+              "hi": "47 × 6 = 282"
+            }
+          },
+          {
+            "id": "p3",
+            "text": {
+              "en": "76 × 4 = 304",
+              "hi": "76 × 4 = 304"
+            }
+          },
+          {
+            "id": "p4",
+            "text": {
+              "en": "46 × 7 = 322",
+              "hi": "46 × 7 = 322"
+            }
+          },
+          {
+            "id": "p5",
+            "text": {
+              "en": "74 × 6 = 444",
+              "hi": "74 × 6 = 444"
+            }
+          },
+          {
+            "id": "p6",
+            "text": {
+              "en": "64 × 7 = 448",
+              "hi": "64 × 7 = 448"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Use the digits 4, 6 and 7 once each to fill □□ × □. There are six ways. Which gives the largest product?",
+            "hi": "अंक 4, 6 और 7 एक-एक बार इस्तेमाल करके □□ × □ भरो। छह तरीक़े हैं। सबसे बड़ा गुणनफल कौन देता है?"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which looks most promising before you work anything out?",
+            "hi": "हिसाब लगाने से पहले कौन-सा सबसे अच्छा लगता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Put the biggest digit, 7, as the multiplier",
+              "hi": "सबसे बड़ा अंक, 7, गुणक बनाओ"
+            },
+            {
+              "id": "b",
+              "en": "Make the biggest 2-digit number, 76",
+              "hi": "सबसे बड़ी दो अंकों की संख्या, 76, बनाओ"
+            },
+            {
+              "id": "c",
+              "en": "It makes no difference",
+              "hi": "कोई फ़र्क़ नहीं पड़ता"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:p1",
+          "expect": "placed:p1",
+          "say": {
+            "en": "Put the six products in order from smallest to largest. Start with the smallest.",
+            "hi": "छहों गुणनफल सबसे छोटे से सबसे बड़े के क्रम में लगाओ। सबसे छोटे से शुरू करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:p6",
+          "expect": "placed:p6",
+          "say": {
+            "en": "Place the largest one at the end.",
+            "hi": "सबसे बड़े को अंत में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place the rest and tap Check.",
+            "hi": "बाक़ी रखो और “जाँचो” दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The largest is 64 × 7 = 448, not 76 × 4. Compare 64 × 7 and 74 × 6: 64 × 7 = 60 × 7 + 4 × 7 and 74 × 6 = 70 × 6 + 4 × 6. The tens parts are both 420, and 4 × 7 beats 4 × 6. So put the largest digit as the multiplier and the other two in decreasing order.",
+            "hi": "सबसे बड़ा 64 × 7 = 448 है, 76 × 4 नहीं। 64 × 7 और 74 × 6 की तुलना करो: 64 × 7 = 60 × 7 + 4 × 7 और 74 × 6 = 70 × 6 + 4 × 6। दहाई वाले भाग दोनों 420 हैं, और 4 × 7, 4 × 6 से बड़ा है। इसलिए सबसे बड़ा अंक गुणक बनाओ और बाक़ी दो घटते क्रम में।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "With digits 2, 5 and 8, the largest product of □□ × □ is …",
+                "hi": "अंक 2, 5 और 8 से □□ × □ का सबसे बड़ा गुणनफल है …"
+              },
+              "options": [
+                "52 × 8 = 416",
+                "85 × 2 = 170",
+                "82 × 5 = 410"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Largest digit 8 as the multiplier, then 5 and 2 in decreasing order: 52 × 8 = 416.",
+                "hi": "सबसे बड़ा अंक 8 गुणक, फिर 5 और 2 घटते क्रम में: 52 × 8 = 416।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Making the biggest 2-digit number leaves the smallest multiplier.",
+                  "hi": "सबसे बड़ी दो अंकों की संख्या बनाने से गुणक सबसे छोटा रह जाता है।"
+                },
+                {
+                  "en": "82 × 5 = 410 is close, but 52 × 8 = 416 is bigger.",
+                  "hi": "82 × 5 = 410 पास है, पर 52 × 8 = 416 बड़ा है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Try four digits 1, 2, 3, 4 in □□ × □□. Which arrangement gives the largest product?",
+            "hi": "चार अंक 1, 2, 3, 4 को □□ × □□ में आज़माओ। कौन-सी व्यवस्था सबसे बड़ा गुणनफल देती है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch06-decode",
+      "topic": "6.6",
+      "template": "match",
+      "title": {
+        "en": "Decoding divisibility tricks",
+        "hi": "विभाज्यता की तरकीबें खोलो"
+      },
+      "minutes": 6,
+      "level": "stretch",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "a",
+            "left": {
+              "en": "ab + ba (e.g. 47 + 74)",
+              "hi": "ab + ba (जैसे 47 + 74)"
+            },
+            "right": {
+              "en": "11(a + b)",
+              "hi": "11(a + b)"
+            },
+            "why": {
+              "en": "10a + b + 10b + a = 11a + 11b.",
+              "hi": "10a + b + 10b + a = 11a + 11b।"
+            }
+          },
+          {
+            "id": "b",
+            "left": {
+              "en": "ab − ba (e.g. 82 − 28)",
+              "hi": "ab − ba (जैसे 82 − 28)"
+            },
+            "right": {
+              "en": "9(a − b)",
+              "hi": "9(a − b)"
+            },
+            "why": {
+              "en": "10a + b − 10b − a = 9a − 9b.",
+              "hi": "10a + b − 10b − a = 9a − 9b।"
+            }
+          },
+          {
+            "id": "c",
+            "left": {
+              "en": "abc − cba (e.g. 731 − 137)",
+              "hi": "abc − cba (जैसे 731 − 137)"
+            },
+            "right": {
+              "en": "99(a − c)",
+              "hi": "99(a − c)"
+            },
+            "why": {
+              "en": "100a + c − 100c − a = 99a − 99c; the tens cancel.",
+              "hi": "100a + c − 100c − a = 99a − 99c; दहाई कट जाती है।"
+            }
+          },
+          {
+            "id": "d",
+            "left": {
+              "en": "abab (e.g. 3535)",
+              "hi": "abab (जैसे 3535)"
+            },
+            "right": {
+              "en": "101 × ab",
+              "hi": "101 × ab"
+            },
+            "why": {
+              "en": "1000a + 100b + 10a + b = 101 × (10a + b).",
+              "hi": "1000a + 100b + 10a + b = 101 × (10a + b)।"
+            }
+          },
+          {
+            "id": "e",
+            "left": {
+              "en": "abcabc (e.g. 527527)",
+              "hi": "abcabc (जैसे 527527)"
+            },
+            "right": {
+              "en": "1001 × abc",
+              "hi": "1001 × abc"
+            },
+            "why": {
+              "en": "abc × 1000 + abc; and 1001 = 7 × 11 × 13.",
+              "hi": "abc × 1000 + abc; और 1001 = 7 × 11 × 13।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Write a 2-digit number with digits a and b as 10a + b. With this, many surprising divisibility tricks can be explained.",
+            "hi": "अंक a और b वाली दो अंकों की संख्या को 10a + b लिखो। इससे विभाज्यता की कई चौंकाने वाली तरकीबें समझ में आती हैं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:a",
+          "expect": "matched:a",
+          "say": {
+            "en": "Tap “ab + ba” and its algebra form.",
+            "hi": "“ab + ba” और उसका बीजगणितीय रूप छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is 731 − 137 always a multiple of 99?",
+            "hi": "क्या 731 − 137 हमेशा 99 का गुणज है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Yes: 594 = 99 × 6",
+              "hi": "हाँ: 594 = 99 × 6"
+            },
+            {
+              "id": "b",
+              "en": "No, only by chance",
+              "hi": "नहीं, बस संयोग से"
+            },
+            {
+              "id": "c",
+              "en": "It is a multiple of 10",
+              "hi": "यह 10 का गुणज है"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:c",
+          "expect": "matched:c",
+          "say": {
+            "en": "Match abc − cba.",
+            "hi": "abc − cba मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:e",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest.",
+            "hi": "बाक़ी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Place value turns each trick into an expression. A factor in front, like 11, 9, 99, 101 or 1001, shows what always divides the result. Since 1001 = 7 × 11 × 13, any abcabc number divides by 7, 11 and 13.",
+            "hi": "स्थानीय मान हर तरकीब को व्यंजक में बदल देता है। आगे का गुणनखंड, जैसे 11, 9, 99, 101 या 1001, बताता है कि परिणाम को हमेशा कौन काटता है। क्योंकि 1001 = 7 × 11 × 13, कोई भी abcabc संख्या 7, 11 और 13 से कटती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "ab − ba for 92 is 92 − 29. Without working it out, it must be divisible by …",
+                "hi": "92 के लिए ab − ba = 92 − 29। बिना हिसाब लगाए, यह ज़रूर किससे विभाज्य है?"
+              },
+              "options": [
+                "9 and 7",
+                "11",
+                "10"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "9(a − b) = 9 × 7 = 63, divisible by 9 and by 7.",
+                "hi": "9(a − b) = 9 × 7 = 63, जो 9 और 7 से विभाज्य है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "11 divides ab + ba, the sum, not the difference.",
+                  "hi": "11, योग ab + ba को काटता है, अंतर को नहीं।"
+                },
+                {
+                  "en": "63 does not end in 0.",
+                  "hi": "63 के अंत में 0 नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Choose any three digits and write them twice as a 6-digit number. Divide by 7, then 11, then 13. What do you get back?",
+            "hi": "कोई भी तीन अंक चुनो और उन्हें दो बार लिखकर 6 अंकों की संख्या बनाओ। 7, फिर 11, फिर 13 से भाग दो। क्या वापस मिलता है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "6.2",
+      "use": "Chapter hook: a number trick at home",
+      "shows": "Two children at a home table, one hiding a folded chit, slates and chalk beside them (no readable writing)",
+      "view": "Eye level, warm evening light",
+      "right": "Natural home setting; chit clearly folded",
+      "avoid": "Faces in close-up, readable writing"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "6.3",
+      "use": "A number pyramid of bricks",
+      "shows": "A small pyramid of 6 terracotta toy bricks in rows of 3, 2 and 1, blank faces for the app to add numbers",
+      "view": "Front view, slightly from above",
+      "right": "Each brick sits across two below it",
+      "avoid": "Any numbers painted on"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "6.4",
+      "use": "A wall calendar",
+      "shows": "A plain wall calendar page with a blank 7-column grid and one 3 × 3 block outlined in red",
+      "view": "Straight on, even light",
+      "right": "Grid crisp; outline exactly 3 × 3",
+      "avoid": "Brand names, festival pictures, real dates"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "6.5",
+      "use": "Digit cards",
+      "shows": "Three wooden digit cards 4, 6, 7 and blank box cards for □□ × □ on a mat",
+      "view": "Top-down, soft light",
+      "right": "Cards look handmade and real",
+      "avoid": "Extra printed words"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "6.6",
+      "use": "A number and its reverse",
+      "shows": "Two rows of wooden number tiles side by side, the second row in the reverse order of the first, tile faces blank for the app",
+      "view": "Top-down on a cloth mat",
+      "right": "Tiles identical and evenly spaced",
+      "avoid": "Painted digits, printed words"
+    }
+  ]
+}

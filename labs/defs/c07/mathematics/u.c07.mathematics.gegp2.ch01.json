@@ -1,0 +1,859 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp2.ch01",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "Geometric Twins",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp201.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Geometric twins: congruent figures",
+   "labs": [
+    "c07-mathematics-gegp2-ch01-twins"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Congruence of triangles: SSS, SAS, ASA, AAS and RHS; why SSA and AAA are not enough",
+   "labs": [
+    "c07-mathematics-gegp2-ch01-sss",
+    "c07-mathematics-gegp2-ch01-sas",
+    "c07-mathematics-gegp2-ch01-asa",
+    "c07-mathematics-gegp2-ch01-aaa"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Angles of isosceles and equilateral triangles",
+   "labs": [
+    "c07-mathematics-gegp2-ch01-isosceles"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp2-ch01-twins",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "Are they geometric twins?",
+    "hi": "क्या ये ज्यामितीय जुड़वाँ हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Congruent",
+       "hi": "सर्वांगसम"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Not congruent",
+       "hi": "सर्वांगसम नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "coins",
+      "text": {
+       "en": "Two ₹10 coins of the same design",
+       "hi": "एक ही डिज़ाइन के दो ₹10 के सिक्के"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "One fits exactly on the other.",
+       "hi": "एक, दूसरे पर ठीक बैठ जाता है।"
+      }
+     },
+     {
+      "id": "photo",
+      "text": {
+       "en": "A photo and its enlargement",
+       "hi": "एक फ़ोटो और उसकी बड़ी प्रति"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Same shape but a different size, so it does not fit exactly.",
+       "hi": "आकार एक जैसा पर माप अलग, इसलिए ठीक नहीं बैठती।"
+      }
+     },
+     {
+      "id": "pages",
+      "text": {
+       "en": "Two pages from the same notebook",
+       "hi": "एक ही कॉपी के दो पन्ने"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Same shape and same size.",
+       "hi": "एक जैसा आकार और एक जैसा माप।"
+      }
+     },
+     {
+      "id": "squares",
+      "text": {
+       "en": "Squares of side 4 cm and 5 cm",
+       "hi": "4 सेमी और 5 सेमी भुजा के वर्ग"
+      },
+      "bin": "no",
+      "why": {
+       "en": "The sides are different, so one cannot cover the other.",
+       "hi": "भुजाएँ अलग हैं, इसलिए एक दूसरे को ढक नहीं सकता।"
+      }
+     },
+     {
+      "id": "circles",
+      "text": {
+       "en": "Two circles of radius 3 cm",
+       "hi": "3 सेमी त्रिज्या के दो वृत्त"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Circles with the same radius always fit exactly.",
+       "hi": "बराबर त्रिज्या वाले वृत्त हमेशा ठीक बैठते हैं।"
+      }
+     },
+     {
+      "id": "rect",
+      "text": {
+       "en": "Two rectangles with the same area",
+       "hi": "बराबर क्षेत्रफल वाले दो आयत"
+      },
+      "bin": "no",
+      "why": {
+       "en": "A 2 × 8 and a 4 × 4 rectangle have the same area but different shapes.",
+       "hi": "2 × 8 और 4 × 4 के आयत का क्षेत्रफल बराबर है पर आकार अलग।"
+      }
+     },
+     {
+      "id": "tri",
+      "text": {
+       "en": "Two triangles with sides 3, 4 and 5 cm",
+       "hi": "3, 4 और 5 सेमी भुजाओं वाले दो त्रिभुज"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Three equal sides fix the triangle completely.",
+       "hi": "तीन बराबर भुजाएँ त्रिभुज को पूरी तरह तय कर देती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:coins",
+     "expect": "correct:coins",
+     "say": {
+      "en": "Tap the two coins. Would one fit exactly on the other?",
+      "hi": "दोनों सिक्के छुओ। क्या एक, दूसरे पर ठीक बैठेगा?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:photo",
+     "expect": "correct:photo",
+     "say": {
+      "en": "Now the photo and its enlargement.",
+      "hi": "अब फ़ोटो और उसकी बड़ी प्रति।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two rectangles have the same area. Must they be congruent?",
+      "hi": "दो आयतों का क्षेत्रफल बराबर है। क्या उनका सर्वांगसम होना ज़रूरी है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, the sides can differ",
+       "hi": "नहीं, भुजाएँ अलग हो सकती हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, same area means same shape",
+       "hi": "हाँ, बराबर क्षेत्रफल यानी एक जैसा आकार"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two figures are congruent when one fits exactly on top of the other, after sliding, turning or even flipping it. They have the same shape and the same size. Same shape but different size, or same area but different shape, is not enough.",
+      "hi": "दो आकृतियाँ सर्वांगसम होती हैं जब एक को खिसकाकर, घुमाकर या पलटकर भी, वह दूसरी पर ठीक बैठ जाए। उनका आकार और माप दोनों एक जैसे होते हैं। आकार एक जैसा पर माप अलग, या क्षेत्रफल बराबर पर आकार अलग, काफ़ी नहीं है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How can you test at home whether two leaf-shaped cut-outs are congruent?",
+        "hi": "घर पर कैसे जाँचोगे कि दो पत्ती के आकार की कटिंग सर्वांगसम हैं?"
+       },
+       "options": [
+        {
+         "en": "Put one on the other and see if it covers it exactly",
+         "hi": "एक को दूसरे पर रखो और देखो कि वह ठीक ढकती है या नहीं"
+        },
+        {
+         "en": "Check if both are green",
+         "hi": "देखो कि दोनों हरी हैं या नहीं"
+        },
+        {
+         "en": "Weigh them",
+         "hi": "उन्हें तौलो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Placing one on the other, turning or flipping if needed, is the direct test.",
+        "hi": "एक को दूसरे पर रखना, ज़रूरत हो तो घुमाकर या पलटकर, सीधी जाँच है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Colour has nothing to do with shape and size.",
+         "hi": "रंग का आकार और माप से कोई संबंध नहीं।"
+        },
+        {
+         "en": "Equal weight could come from different shapes of the same area.",
+         "hi": "बराबर वज़न बराबर क्षेत्रफल वाली अलग आकृतियों का भी हो सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find two things at home that are congruent, and two that are only the same shape.",
+      "hi": "आज़माओ: घर में दो सर्वांगसम चीज़ें ढूँढो, और दो जो केवल एक जैसे आकार की हों।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch01-sss",
+   "topic": "1.2",
+   "template": "shapes",
+   "title": {
+    "en": "Three equal sides: SSS",
+    "hi": "तीन बराबर भुजाएँ: SSS"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "congruence",
+    "task": "sss",
+    "given": {
+     "lengths": [
+      6,
+      5,
+      4
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The marked parts of triangles ABC and PQR are equal. Will PQR fit exactly on ABC?",
+      "hi": "त्रिभुज ABC और PQR के चिह्नित भाग बराबर हैं। क्या PQR, ABC पर ठीक बैठेगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, exactly",
+       "hi": "हाँ, ठीक-ठीक"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "turn",
+       "en": "Only if it is not turned",
+       "hi": "केवल अगर उसे घुमाया न जाए"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "drag:T2",
+     "expect": "congruent",
+     "say": {
+      "en": "Drag triangle PQR onto triangle ABC. It turns and flips to fit.",
+      "hi": "त्रिभुज PQR को त्रिभुज ABC पर खिसकाओ। वह घूमकर और पलटकर बैठता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now answer: which rule shows the triangles are congruent?",
+      "hi": "अब उत्तर दो: कौन-सा नियम दिखाता है कि त्रिभुज सर्वांगसम हैं?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "If the three sides of one triangle equal the three sides of another, the triangles are congruent. Three lengths can make only one triangle, as the compass construction showed. This is the SSS condition.",
+      "hi": "अगर एक त्रिभुज की तीनों भुजाएँ दूसरे की तीनों भुजाओं के बराबर हों, तो त्रिभुज सर्वांगसम हैं। तीन लंबाइयों से केवल एक ही त्रिभुज बनता है, जैसा परकार की रचना में देखा। यह SSS प्रतिबंध है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "△ABC has sides 5, 6, 7 cm and △XYZ has sides 7, 5, 6 cm. Are they congruent?",
+        "hi": "△ABC की भुजाएँ 5, 6, 7 सेमी और △XYZ की भुजाएँ 7, 5, 6 सेमी हैं। क्या वे सर्वांगसम हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes, by SSS",
+         "hi": "हाँ, SSS से"
+        },
+        {
+         "en": "No, the order is different",
+         "hi": "नहीं, क्रम अलग है"
+        },
+        {
+         "en": "We need an angle too",
+         "hi": "हमें एक कोण भी चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The same three lengths appear in both; only the naming order differs.",
+        "hi": "दोनों में वही तीन लंबाइयाँ हैं; केवल नाम का क्रम अलग है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "We can match sides in any order; we just pair equal lengths.",
+         "hi": "भुजाओं का मिलान किसी भी क्रम में कर सकते हैं; बस बराबर लंबाइयाँ जोड़ते हैं।"
+        },
+        {
+         "en": "Three sides are already enough; no angle is needed.",
+         "hi": "तीन भुजाएँ पहले ही काफ़ी हैं; कोई कोण नहीं चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press \"Move PQR back\" and drag it again. Notice which corner lands on which: the matching order matters.",
+      "hi": "आज़माओ: \"PQR को वापस रखो\" दबाओ और फिर से खिसकाओ। देखो कौन-सा कोना किस पर आता है: मिलान का क्रम मायने रखता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch01-sas",
+   "topic": "1.2",
+   "template": "shapes",
+   "title": {
+    "en": "Two sides and the angle between: SAS",
+    "hi": "दो भुजाएँ और उनके बीच का कोण: SAS"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "congruence",
+    "task": "sas"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The marked parts of triangles ABC and PQR are equal. Will PQR fit exactly on ABC?",
+      "hi": "त्रिभुज ABC और PQR के चिह्नित भाग बराबर हैं। क्या PQR, ABC पर ठीक बैठेगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, exactly",
+       "hi": "हाँ, ठीक-ठीक"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "turn",
+       "en": "Only if it is not turned",
+       "hi": "केवल अगर उसे घुमाया न जाए"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "drag:T2",
+     "expect": "congruent",
+     "say": {
+      "en": "Drag triangle PQR onto triangle ABC. It turns and flips to fit.",
+      "hi": "त्रिभुज PQR को त्रिभुज ABC पर खिसकाओ। वह घूमकर और पलटकर बैठता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now answer: which rule shows the triangles are congruent?",
+      "hi": "अब उत्तर दो: कौन-सा नियम दिखाता है कि त्रिभुज सर्वांगसम हैं?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "If two sides and the angle between them are equal in two triangles, the triangles are congruent. The angle fixes how wide the two sides open, so the third side is fixed too. This is the SAS condition. The angle must be the one between the two sides.",
+      "hi": "अगर दो त्रिभुजों में दो भुजाएँ और उनके बीच का कोण बराबर हों, तो त्रिभुज सर्वांगसम हैं। कोण तय करता है कि दोनों भुजाएँ कितनी खुलेंगी, इसलिए तीसरी भुजा भी तय हो जाती है। यह SAS प्रतिबंध है। कोण दोनों भुजाओं के बीच का होना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "AB = PQ, BC = QR and ∠A = ∠P. Is this the SAS condition?",
+        "hi": "AB = PQ, BC = QR और ∠A = ∠P। क्या यह SAS प्रतिबंध है?"
+       },
+       "options": [
+        {
+         "en": "No, the angle is not between the two sides",
+         "hi": "नहीं, कोण दोनों भुजाओं के बीच नहीं है"
+        },
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        },
+        {
+         "en": "Yes, any angle works",
+         "hi": "हाँ, कोई भी कोण चलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The angle between AB and BC is ∠B, not ∠A. This is SSA, which is not enough.",
+        "hi": "AB और BC के बीच का कोण ∠B है, ∠A नहीं। यह SSA है, जो काफ़ी नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "For SAS the equal angle must be at the corner where the two equal sides meet.",
+         "hi": "SAS के लिए बराबर कोण उस कोने पर होना चाहिए जहाँ दोनों बराबर भुजाएँ मिलती हैं।"
+        },
+        {
+         "en": "With a different angle, two different triangles can sometimes be drawn.",
+         "hi": "दूसरे कोण के साथ कभी-कभी दो अलग त्रिभुज बन सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press \"Move PQR back\" and drag it again. Notice which corner lands on which: the matching order matters.",
+      "hi": "आज़माओ: \"PQR को वापस रखो\" दबाओ और फिर से खिसकाओ। देखो कौन-सा कोना किस पर आता है: मिलान का क्रम मायने रखता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch01-asa",
+   "topic": "1.2",
+   "template": "shapes",
+   "title": {
+    "en": "Two angles and the side between: ASA",
+    "hi": "दो कोण और उनके बीच की भुजा: ASA"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "congruence",
+    "task": "asa"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The marked parts of triangles ABC and PQR are equal. Will PQR fit exactly on ABC?",
+      "hi": "त्रिभुज ABC और PQR के चिह्नित भाग बराबर हैं। क्या PQR, ABC पर ठीक बैठेगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, exactly",
+       "hi": "हाँ, ठीक-ठीक"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "turn",
+       "en": "Only if it is not turned",
+       "hi": "केवल अगर उसे घुमाया न जाए"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "drag:T2",
+     "expect": "congruent",
+     "say": {
+      "en": "Drag triangle PQR onto triangle ABC. It turns and flips to fit.",
+      "hi": "त्रिभुज PQR को त्रिभुज ABC पर खिसकाओ। वह घूमकर और पलटकर बैठता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now answer: which rule shows the triangles are congruent?",
+      "hi": "अब उत्तर दो: कौन-सा नियम दिखाता है कि त्रिभुज सर्वांगसम हैं?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "If two angles and the side between them are equal, the triangles are congruent. The side is fixed, and the two angles fix the directions of the other two sides, which can meet at only one point. This is ASA. Since the angles add to 180°, two angles and any matching side (AAS) also work.",
+      "hi": "अगर दो कोण और उनके बीच की भुजा बराबर हों, तो त्रिभुज सर्वांगसम हैं। भुजा तय है, और दोनों कोण बाक़ी दो भुजाओं की दिशा तय करते हैं, जो केवल एक बिंदु पर मिल सकती हैं। यह ASA है। कोणों का योग 180° होने से दो कोण और कोई भी संगत भुजा (AAS) भी चलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "∠B = ∠Q = 50°, ∠C = ∠R = 70° and BC = QR = 6 cm. What is ∠A?",
+        "hi": "∠B = ∠Q = 50°, ∠C = ∠R = 70° और BC = QR = 6 सेमी। ∠A कितना है?"
+       },
+       "options": [
+        "60°",
+        "120°",
+        "70°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "180° − 50° − 70° = 60°, and ∠P is also 60°.",
+        "hi": "180° − 50° − 70° = 60°, और ∠P भी 60° है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "120° is 50° + 70°; the third angle is what remains of 180°.",
+         "hi": "120° = 50° + 70°; तीसरा कोण 180° में से बचा हुआ है।"
+        },
+        {
+         "en": "70° is ∠C, not ∠A.",
+         "hi": "70° तो ∠C है, ∠A नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press \"Move PQR back\" and drag it again. Notice which corner lands on which: the matching order matters.",
+      "hi": "आज़माओ: \"PQR को वापस रखो\" दबाओ और फिर से खिसकाओ। देखो कौन-सा कोना किस पर आता है: मिलान का क्रम मायने रखता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch01-aaa",
+   "topic": "1.2",
+   "template": "shapes",
+   "title": {
+    "en": "Are three equal angles enough?",
+    "hi": "क्या तीन बराबर कोण काफ़ी हैं?"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "mode": "congruence",
+    "task": "aaa"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "All three angles of △ABC and △PQR are equal. Must the triangles be congruent?",
+      "hi": "△ABC और △PQR के तीनों कोण बराबर हैं। क्या त्रिभुजों का सर्वांगसम होना ज़रूरी है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, one can be bigger",
+       "hi": "नहीं, एक बड़ा हो सकता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, three equal parts are enough",
+       "hi": "हाँ, तीन बराबर भाग काफ़ी हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the two triangles and answer the question.",
+      "hi": "दोनों त्रिभुज देखो और प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Equal angles give the same shape, but not the same size: one triangle can be an enlargement of the other. So AAA is not a congruence condition. In the same way, two sides and an angle that is not between them (SSA) can sometimes give two different triangles.",
+      "hi": "बराबर कोणों से आकार एक जैसा होता है, पर माप नहीं: एक त्रिभुज दूसरे की बड़ी प्रति हो सकता है। इसलिए AAA सर्वांगसमता का प्रतिबंध नहीं है। इसी तरह, दो भुजाएँ और एक ऐसा कोण जो उनके बीच न हो (SSA), कभी-कभी दो अलग त्रिभुज दे सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which information is enough to be sure two triangles are congruent?",
+        "hi": "कौन-सी जानकारी काफ़ी है कि दो त्रिभुज निश्चित रूप से सर्वांगसम हों?"
+       },
+       "options": [
+        {
+         "en": "Two angles and the side between them",
+         "hi": "दो कोण और उनके बीच की भुजा"
+        },
+        {
+         "en": "All three angles",
+         "hi": "तीनों कोण"
+        },
+        {
+         "en": "Two sides only",
+         "hi": "केवल दो भुजाएँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This is ASA: the side fixes the size, the angles fix the shape.",
+        "hi": "यह ASA है: भुजा माप तय करती है, कोण आकार।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Three angles fix only the shape; the size can still differ.",
+         "hi": "तीन कोण केवल आकार तय करते हैं; माप फिर भी अलग हो सकता है।"
+        },
+        {
+         "en": "Two sides can open to any angle, giving many triangles.",
+         "hi": "दो भुजाएँ किसी भी कोण तक खुल सकती हैं, जिससे बहुत-से त्रिभुज बनते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag PQR onto ABC. How do they differ even though the angles match?",
+      "hi": "आज़माओ: PQR को ABC पर खिसकाओ। कोण मिलने पर भी वे कैसे अलग हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch01-isosceles",
+   "topic": "1.3",
+   "template": "shapes",
+   "title": {
+    "en": "Base angles of an isosceles triangle",
+    "hi": "समद्विबाहु त्रिभुज के आधार कोण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "triangle",
+    "task": "classify"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "answered:right",
+     "say": {
+      "en": "Drag corner A to make an isosceles triangle with two equal sides.",
+      "hi": "कोना A खिसकाकर दो बराबर भुजाओं वाला समद्विबाहु त्रिभुज बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will you find about the two angles at the ends of the third side?",
+      "hi": "तीसरी भुजा के सिरों पर बने दोनों कोणों के बारे में क्या पाओगे?"
+     },
+     "options": [
+      {
+       "id": "equal",
+       "en": "They are equal",
+       "hi": "वे बराबर हैं"
+      },
+      {
+       "id": "right",
+       "en": "One is a right angle",
+       "hi": "एक समकोण है"
+      },
+      {
+       "id": "diff",
+       "en": "They are always different",
+       "hi": "वे हमेशा अलग हैं"
+      }
+     ],
+     "answer": "equal"
+    },
+    {
+     "kind": "do",
+     "target": "tool:protractor",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the protractor and read the angles.",
+      "hi": "चाँदा छुओ और कोण पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In an isosceles triangle, the angles opposite the equal sides are equal. Fold the triangle along the line from A to the middle of BC: the two halves are congruent by SSS, so the base angles match. In an equilateral triangle all sides are equal, so all angles are equal: 180° ÷ 3 = 60° each.",
+      "hi": "समद्विबाहु त्रिभुज में बराबर भुजाओं के सामने के कोण बराबर होते हैं। त्रिभुज को A से BC के बीच तक की रेखा पर मोड़ो: दोनों आधे SSS से सर्वांगसम हैं, इसलिए आधार कोण बराबर हैं। समबाहु त्रिभुज में सब भुजाएँ बराबर हैं, इसलिए सब कोण बराबर: हर एक 180° ÷ 3 = 60°।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An isosceles triangle has a top angle of 40°. What is each base angle?",
+        "hi": "एक समद्विबाहु त्रिभुज का शीर्ष कोण 40° है। हर आधार कोण कितना है?"
+       },
+       "options": [
+        "70°",
+        "140°",
+        "40°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The base angles share 180° − 40° = 140° equally: 70° each.",
+        "hi": "आधार कोण 180° − 40° = 140° को बराबर बाँटते हैं: हर एक 70°।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "140° is the total of both base angles, not each one.",
+         "hi": "140° दोनों आधार कोणों का योग है, हर एक का नहीं।"
+        },
+        {
+         "en": "Three angles of 40° would add to only 120°.",
+         "hi": "तीन 40° के कोणों का योग केवल 120° होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: keep going to make a right triangle and an obtuse triangle. Can a triangle be isosceles and right?",
+      "hi": "आज़माओ: आगे बढ़कर समकोण और अधिक कोण त्रिभुज बनाओ। क्या कोई त्रिभुज समद्विबाहु और समकोण दोनों हो सकता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Chapter hook: identical twins in design",
+   "shows": "Two identical carved wooden window panels side by side on an old haveli wall",
+   "view": "Front view, soft daylight",
+   "right": "Panels truly identical in shape and size",
+   "avoid": "People, signboards, modern clutter"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "1.1",
+   "use": "Testing congruence by superimposing",
+   "shows": "A tracing paper copy of a rangoli motif: traced, lifted, then laid exactly on a second motif on the floor",
+   "view": "From above, three frames, same framing",
+   "right": "The traced lines fall exactly on the second figure",
+   "avoid": "Hands hiding the lines"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Card triangles for the lab",
+   "shows": "Two cardboard triangles with sides 6, 5 and 4 cm in different colours, one flipped over",
+   "view": "From above, white background",
+   "right": "Both triangles exactly the same size",
+   "avoid": "Uneven edges, writing"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Congruent triangles in structures",
+   "shows": "A transmission tower or a bridge railing with many identical triangles in a row",
+   "view": "From below at an angle, clear sky",
+   "right": "Triangles repeat exactly",
+   "avoid": "Warning boards, company names"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "1.3",
+   "use": "Folding an isosceles triangle",
+   "shows": "A paper isosceles triangle, folded along its line of symmetry so the base angles lie on each other, then unfolded with the crease",
+   "view": "From above, two frames",
+   "right": "Base corners match exactly when folded",
+   "avoid": "Crooked folds"
+  }
+ ]
+}

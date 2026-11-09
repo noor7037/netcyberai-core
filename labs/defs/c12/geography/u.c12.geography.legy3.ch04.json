@@ -1,0 +1,1056 @@
+{
+  "chapter_key": "u.c12.geography.legy3.ch04",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "Spatial Information Technology",
+  "source": "https://ncert.nic.in/textbook/pdf/legy3ps.pdf",
+  "topics": [
+    {
+      "n": "4.1",
+      "title": "What GIS is: spatial and non-spatial data",
+      "labs": [
+        "c12-geography-legy3-ch04-spatial-data"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.2",
+      "title": "Raster and vector data formats",
+      "labs": [
+        "c12-geography-legy3-ch04-raster-vector"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.3",
+      "title": "Entering attribute data, verification and editing",
+      "labs": [
+        "c12-geography-legy3-ch04-gis-workflow"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.4",
+      "title": "Overlay and buffer operations",
+      "labs": [
+        "c12-geography-legy3-ch04-overlay-buffer"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.5",
+      "title": "Advantages of GIS over manual methods",
+      "labs": [],
+      "why_no_lab": "The chapter's comparison of years of hand-drawn maps against quick digital updates is a story a beaker cannot show; the reader and the chart in the chapter teach it best."
+    },
+    {
+      "n": "4.6",
+      "title": "Making a location map with layers",
+      "labs": [
+        "c12-geography-legy3-ch04-layers-locate"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy3-ch04-spatial-data",
+      "topic": "4.1",
+      "template": "sort",
+      "title": {
+        "en": "Spatial or not? Sorting GIS data",
+        "hi": "स्थानिक या नहीं? GIS आँकड़े छाँटो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "spatial",
+            "label": {
+              "en": "Spatial: has a place on the Earth",
+              "hi": "स्थानिक: पृथ्वी पर इसकी एक जगह है"
+            }
+          },
+          {
+            "id": "nonspatial",
+            "label": {
+              "en": "Non-spatial: describes the place",
+              "hi": "गैर-स्थानिक: जगह का विवरण देता है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "road",
+            "text": {
+              "en": "Route of a national highway drawn as a line on a map",
+              "hi": "मानचित्र पर रेखा के रूप में राष्ट्रीय राजमार्ग"
+            },
+            "bin": "spatial",
+            "why": {
+              "en": "The line has a position and a shape on the Earth, so it is spatial data.",
+              "hi": "इस रेखा की पृथ्वी पर स्थिति और आकार है, इसलिए यह स्थानिक आँकड़ा है।"
+            }
+          },
+          {
+            "id": "pop",
+            "text": {
+              "en": "Population of a village written in a census table",
+              "hi": "जनगणना तालिका में लिखी गाँव की जनसंख्या"
+            },
+            "bin": "nonspatial",
+            "why": {
+              "en": "It is a number about the village. Where the village lies is stored as a separate fact.",
+              "hi": "यह गाँव के बारे में एक संख्या है। गाँव कहाँ है, यह एक अलग तथ्य के रूप में रखा जाता है।"
+            }
+          },
+          {
+            "id": "boundary",
+            "text": {
+              "en": "Boundary of a district drawn as a closed shape",
+              "hi": "बंद आकृति के रूप में खींची गई ज़िले की सीमा"
+            },
+            "bin": "spatial",
+            "why": {
+              "en": "The closed shape shows where the district lies on the map, so it is spatial.",
+              "hi": "बंद आकृति मानचित्र पर बताती है कि ज़िला कहाँ है, इसलिए यह स्थानिक है।"
+            }
+          },
+          {
+            "id": "rain",
+            "text": {
+              "en": "Rainfall of 120 cm recorded for a district last year",
+              "hi": "पिछले साल एक ज़िले में दर्ज 120 सेमी वर्षा"
+            },
+            "bin": "nonspatial",
+            "why": {
+              "en": "It is a measured value. The place where it was measured is kept separately.",
+              "hi": "यह एक मापा हुआ मान है। जिस जगह पर यह मापा गया, वह अलग से रखा जाता है।"
+            }
+          },
+          {
+            "id": "river",
+            "text": {
+              "en": "Course of the river Yamuna drawn as a line",
+              "hi": "रेखा के रूप में खींचा गया यमुना नदी का मार्ग"
+            },
+            "bin": "spatial",
+            "why": {
+              "en": "The course has a place and a shape on the Earth.",
+              "hi": "नदी के मार्ग की पृथ्वी पर जगह और आकार है।"
+            }
+          },
+          {
+            "id": "name",
+            "text": {
+              "en": "The name and phone number of a district office",
+              "hi": "ज़िला कार्यालय का नाम और फ़ोन नंबर"
+            },
+            "bin": "nonspatial",
+            "why": {
+              "en": "Names and numbers describe the office. They do not show where it is.",
+              "hi": "नाम और नंबर कार्यालय का विवरण देते हैं। वे यह नहीं बताते कि वह कहाँ है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:road",
+          "expect": "correct:road",
+          "say": {
+            "en": "Tap the highway card, then tap the bin where it belongs.",
+            "hi": "राजमार्ग वाला कार्ड छुओ, फिर वह खाना छुओ जहाँ वह जाता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A village's population is written in a table. Is that spatial or non-spatial data?",
+            "hi": "किसी गाँव की जनसंख्या एक तालिका में लिखी है। यह स्थानिक आँकड़ा है या गैर-स्थानिक?"
+          },
+          "options": [
+            {
+              "id": "sp",
+              "en": "Spatial, because the village is a place",
+              "hi": "स्थानिक, क्योंकि गाँव एक जगह है"
+            },
+            {
+              "id": "nsp",
+              "en": "Non-spatial, because it is a number that describes the village",
+              "hi": "गैर-स्थानिक, क्योंकि यह गाँव का विवरण देने वाली एक संख्या है"
+            }
+          ],
+          "answer": "nsp"
+        },
+        {
+          "kind": "do",
+          "target": "card:pop",
+          "expect": "correct:pop",
+          "say": {
+            "en": "Now place the population card in its bin.",
+            "hi": "अब जनसंख्या वाला कार्ड उसके खाने में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:boundary",
+          "expect": "correct:boundary",
+          "say": {
+            "en": "Place the district boundary card in the spatial bin.",
+            "hi": "ज़िले की सीमा वाला कार्ड स्थानिक खाने में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Tap Check to see how you sorted.",
+            "hi": "देखने के लिए कि तुमने कैसे छाँटा, जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Spatial data tells where something is, as a point, a line or a shape on the map. Non-spatial data tells what a thing is or how much of it there is: a name, a number or a measure. A GIS links both. The shape of a district is spatial, and its population is the non-spatial data attached to it.",
+            "hi": "स्थानिक आँकड़ा बताता है कि कोई चीज़ कहाँ है, मानचित्र पर बिंदु, रेखा या आकृति के रूप में। गैर-स्थानिक आँकड़ा बताता है कि कोई चीज़ क्या है या उसकी कितनी मात्रा है: नाम, संख्या या माप। GIS दोनों को जोड़ता है। ज़िले की आकृति स्थानिक है, और उससे जुड़ी जनसंख्या गैर-स्थानिक आँकड़ा है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these is spatial data?",
+                "hi": "इनमें से कौन-सा स्थानिक आँकड़ा है?"
+              },
+              "options": [
+                {
+                  "en": "The marks of students in a class register",
+                  "hi": "कक्षा रजिस्टर में छात्रों के अंक"
+                },
+                {
+                  "en": "The course of a canal drawn on a map",
+                  "hi": "मानचित्र पर खींची गई नहर का मार्ग"
+                },
+                {
+                  "en": "The number of teachers in a school",
+                  "hi": "एक स्कूल में शिक्षकों की संख्या"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "A canal drawn on a map has a place and a shape, so it is spatial. Marks and counts describe things but do not show where they are.",
+                "hi": "मानचित्र पर खींची नहर की जगह और आकार है, इसलिए वह स्थानिक है। अंक और गिनती चीज़ों का विवरण देते हैं, पर यह नहीं बतातीं कि वे कहाँ हैं।"
+              },
+              "wrong": [
+                {
+                  "en": "Marks are numbers about students. They do not show a place, so they are non-spatial.",
+                  "hi": "अंक छात्रों के बारे में संख्याएँ हैं। वे कोई जगह नहीं दिखातीं, इसलिए गैर-स्थानिक हैं।"
+                },
+                "",
+                {
+                  "en": "A count of teachers is a number about the school, so it is non-spatial.",
+                  "hi": "शिक्षकों की गिनती स्कूल के बारे में एक संख्या है, इसलिए वह गैर-स्थानिक है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of your own school. Its building is spatial data, and its fee list is not. Name three more things from home and decide for each one which bin it goes to.",
+            "hi": "अपने स्कूल के बारे में सोचो। उसकी इमारत स्थानिक आँकड़ा है, और उसकी फ़ीस की सूची नहीं। घर की तीन और चीज़ें बताओ और हर एक तय करो कि वह किस खाने में जाएगी।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-geography-legy3-ch04-raster-vector",
+      "topic": "4.2",
+      "template": "match",
+      "title": {
+        "en": "Raster or vector? Matching data formats",
+        "hi": "रास्टर या वेक्टर? डेटा प्रारूप मिलाओ"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "raster",
+            "left": {
+              "en": "Raster format",
+              "hi": "रास्टर प्रारूप"
+            },
+            "right": {
+              "en": "A grid of small cells, each with one value, like a digital photo",
+              "hi": "छोटे खानों का ग्रिड, हर खाने में एक मान, जैसे डिजिटल फ़ोटो"
+            },
+            "why": {
+              "en": "Satellite images and scanned maps are stored as grids of cells (pixels).",
+              "hi": "उपग्रह चित्र और स्कैन किए मानचित्र खानों (पिक्सेल) के ग्रिड के रूप में रखे जाते हैं।"
+            }
+          },
+          {
+            "id": "vector",
+            "left": {
+              "en": "Vector format",
+              "hi": "वेक्टर प्रारूप"
+            },
+            "right": {
+              "en": "Points, lines and polygons, each drawn by its coordinates",
+              "hi": "बिंदु, रेखाएँ और बहुभुज, हर एक अपने निर्देशांकों से खींचा गया"
+            },
+            "why": {
+              "en": "A road, a river or a district boundary is drawn exactly by its corner points, so it stays sharp at any zoom.",
+              "hi": "सड़क, नदी या ज़िले की सीमा अपने कोने के बिंदुओं से ठीक खींची जाती है, इसलिए हर ज़ूम पर साफ़ रहती है।"
+            }
+          },
+          {
+            "id": "attr",
+            "left": {
+              "en": "Attribute table",
+              "hi": "विशेषता तालिका"
+            },
+            "right": {
+              "en": "Facts about each feature: name, population, rainfall",
+              "hi": "हर फ़ीचर के तथ्य: नाम, जनसंख्या, वर्षा"
+            },
+            "why": {
+              "en": "The attribute table holds the non-spatial facts linked to each map feature.",
+              "hi": "विशेषता तालिका में हर मानचित्र फ़ीचर से जुड़े गैर-स्थानिक तथ्य रहते हैं।"
+            }
+          },
+          {
+            "id": "cellsize",
+            "left": {
+              "en": "Cell size",
+              "hi": "खाने का आकार"
+            },
+            "right": {
+              "en": "How much ground one cell covers; a smaller cell shows more detail",
+              "hi": "एक खाना कितनी ज़मीन घेरता है; छोटा खाना अधिक बारीकी दिखाता है"
+            },
+            "why": {
+              "en": "A raster with 30 m cells shows more detail than one with 1 km cells.",
+              "hi": "30 मीटर वाले खानों का रास्टर, 1 किमी वाले से अधिक ब्योरा दिखाता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:raster",
+          "expect": "matched:raster",
+          "say": {
+            "en": "Tap Raster format on the left, then tap its matching description on the right.",
+            "hi": "बाईं ओर रास्टर प्रारूप छुओ, फिर दाईं ओर उसका मेल खाने वाला विवरण छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A road is drawn on the map so that it stays sharp when you zoom right in. Which format is it probably stored in?",
+            "hi": "एक सड़क मानचित्र पर ऐसी बनी है कि ज़ूम करने पर भी साफ़ रहती है। वह किस प्रारूप में रखी होगी?"
+          },
+          "options": [
+            {
+              "id": "r",
+              "en": "Raster, because roads are drawn as cells",
+              "hi": "रास्टर, क्योंकि सड़कें खानों में बनाई जाती हैं"
+            },
+            {
+              "id": "v",
+              "en": "Vector, because a road is a line drawn by its coordinates",
+              "hi": "वेक्टर, क्योंकि सड़क निर्देशांकों से खींची गई एक रेखा है"
+            }
+          ],
+          "answer": "v"
+        },
+        {
+          "kind": "do",
+          "target": "left:vector",
+          "expect": "matched:vector",
+          "say": {
+            "en": "Now match Vector format with its description.",
+            "hi": "अब वेक्टर प्रारूप को उसके विवरण से मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:attr",
+          "expect": "matched:attr",
+          "say": {
+            "en": "Match the Attribute table with the facts it holds.",
+            "hi": "विशेषता तालिका को उन तथ्यों से मिलाओ जो वह रखती है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:cellsize",
+          "expect": "matched:cellsize",
+          "say": {
+            "en": "Match Cell size with its description.",
+            "hi": "खाने के आकार को उसके विवरण से मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Tap Check when every pair is matched.",
+            "hi": "सारे जोड़े मिलने पर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A GIS stores spatial data in two main ways. The raster format is a grid of cells, good for satellite pictures and scanned maps. The vector format stores points, lines and polygons by their coordinates, good for roads, rivers and boundaries. Each feature in either format can carry an attribute table with facts about it.",
+            "hi": "GIS स्थानिक आँकड़े दो मुख्य तरीकों से रखता है। रास्टर प्रारूप खानों का ग्रिड है, जो उपग्रह चित्रों और स्कैन मानचित्रों के लिए अच्छा है। वेक्टर प्रारूप बिंदु, रेखाएँ और बहुभुज उनके निर्देशांकों से रखता है, जो सड़कों, नदियों और सीमाओं के लिए अच्छा है। दोनों में हर फ़ीचर के साथ उसके तथ्यों की विशेषता तालिका जुड़ सकती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A satellite picture of a whole state is stored as a grid of tiny squares. Which format is this?",
+                "hi": "पूरे राज्य का उपग्रह चित्र छोटे वर्गों के ग्रिड के रूप में रखा है। यह कौन-सा प्रारूप है?"
+              },
+              "options": [
+                {
+                  "en": "Vector format",
+                  "hi": "वेक्टर प्रारूप"
+                },
+                {
+                  "en": "Raster format",
+                  "hi": "रास्टर प्रारूप"
+                },
+                {
+                  "en": "Attribute table",
+                  "hi": "विशेषता तालिका"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "A grid of small squares, each with one value, is the raster format.",
+                "hi": "छोटे वर्गों का ग्रिड, जिनमें हर एक का एक मान है, रास्टर प्रारूप है।"
+              },
+              "wrong": [
+                {
+                  "en": "Vector stores lines and shapes by coordinates, not by a grid of squares.",
+                  "hi": "वेक्टर रेखाएँ और आकृतियाँ निर्देशांकों से रखता है, वर्गों के ग्रिड से नहीं।"
+                },
+                "",
+                {
+                  "en": "An attribute table holds facts about features. It is not a picture of the ground.",
+                  "hi": "विशेषता तालिका फ़ीचरों के तथ्य रखती है। वह ज़मीन का चित्र नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Zoom a digital map of your city as far as it goes. Which kind of feature stays sharp, a road line or a photo of a field? Explain why in your own words.",
+            "hi": "अपने शहर के डिजिटल मानचित्र को जहाँ तक हो सके ज़ूम करो। कौन-सी चीज़ साफ़ रहती है, सड़क की रेखा या खेत की फ़ोटो? अपने शब्दों में कारण बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-geography-legy3-ch04-gis-workflow",
+      "topic": "4.3",
+      "template": "sequence",
+      "title": {
+        "en": "From survey to map: the GIS work order",
+        "hi": "सर्वेक्षण से मानचित्र तक: GIS कार्य का क्रम"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "collect",
+            "text": {
+              "en": "Collect spatial and non-spatial data from maps, surveys and records",
+              "hi": "मानचित्रों, सर्वेक्षणों और अभिलेखों से स्थानिक और गैर-स्थानिक आँकड़े इकट्ठा करो"
+            }
+          },
+          {
+            "id": "digitise",
+            "text": {
+              "en": "Convert the paper map into digital layers of points, lines and areas",
+              "hi": "कागज़ी मानचित्र को बिंदुओं, रेखाओं और क्षेत्रों की डिजिटल परतों में बदलो"
+            }
+          },
+          {
+            "id": "attributes",
+            "text": {
+              "en": "Enter the attribute data against each feature",
+              "hi": "हर फ़ीचर के सामने उसकी विशेषता का आँकड़ा लिखो"
+            }
+          },
+          {
+            "id": "verify",
+            "text": {
+              "en": "Verify the data and edit the errors, such as a river drawn in the wrong place",
+              "hi": "आँकड़ों की जाँच करो और ग़लतियाँ सुधारो, जैसे नदी का ग़लत जगह बना होना"
+            }
+          },
+          {
+            "id": "analyse",
+            "text": {
+              "en": "Run overlay and buffer operations to answer a question",
+              "hi": "किसी प्रश्न का उत्तर पाने के लिए ओवरले और बफ़र क्रियाएँ चलाओ"
+            }
+          },
+          {
+            "id": "output",
+            "text": {
+              "en": "Print or share the final map and table",
+              "hi": "अंतिम मानचित्र और तालिका छापो या साझा करो"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:collect",
+          "expect": "placed:collect",
+          "say": {
+            "en": "Tap the first step of the work and then tap slot 1.",
+            "hi": "काम का पहला चरण छुओ, फिर खाना 1 छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "After the data is collected, what must happen before any analysis can begin?",
+            "hi": "आँकड़े इकट्ठा होने के बाद विश्लेषण शुरू होने से पहले क्या होना चाहिए?"
+          },
+          "options": [
+            {
+              "id": "output",
+              "en": "Print the final map",
+              "hi": "अंतिम मानचित्र छापो"
+            },
+            {
+              "id": "digitise",
+              "en": "Turn the paper map into digital layers",
+              "hi": "कागज़ी मानचित्र को डिजिटल परतों में बदलो"
+            }
+          ],
+          "answer": "digitise"
+        },
+        {
+          "kind": "do",
+          "target": "item:digitise",
+          "expect": "placed:digitise",
+          "say": {
+            "en": "Place the digitising step in slot 2.",
+            "hi": "डिजिटाइज़ करने वाला चरण खाना 2 में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:attributes",
+          "expect": "placed:attributes",
+          "say": {
+            "en": "Place the attribute entry step in slot 3.",
+            "hi": "विशेषता भरने वाला चरण खाना 3 में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:verify",
+          "expect": "placed:verify",
+          "say": {
+            "en": "Place the verify step in slot 4.",
+            "hi": "जाँच वाला चरण खाना 4 में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place the last two steps, then tap Check.",
+            "hi": "आख़िरी दो चरण रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A GIS job runs in a fixed order. First the data is collected, then the paper map is digitised into layers. Attribute data is entered next, and every error is checked and edited before any analysis. Only then can overlay and buffer answer a question, and the result is printed or shared.",
+            "hi": "GIS का काम एक तय क्रम में चलता है। पहले आँकड़े इकट्ठा होते हैं, फिर कागज़ी मानचित्र परतों में डिजिटाइज़ होता है। इसके बाद विशेषता आँकड़े भरे जाते हैं, और विश्लेषण से पहले हर ग़लती जाँची और सुधारी जाती है। तभी ओवरले और बफ़र किसी प्रश्न का उत्तर दे सकते हैं, और परिणाम छापा या साझा किया जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why must the data be verified and edited before the overlay is run?",
+                "hi": "ओवरले चलाने से पहले आँकड़ों की जाँच और संपादन क्यों ज़रूरी है?"
+              },
+              "options": [
+                {
+                  "en": "Because a wrong point or a missing attribute gives a wrong answer from the analysis",
+                  "hi": "क्योंकि एक ग़लत बिंदु या छूटी विशेषता विश्लेषण से ग़लत उत्तर देती है"
+                },
+                {
+                  "en": "Because the computer cannot store data that has been checked",
+                  "hi": "क्योंकि कंप्यूटर जाँचा हुआ आँकड़ा सहेज नहीं सकता"
+                },
+                {
+                  "en": "Because verification makes the map bigger",
+                  "hi": "क्योंकि जाँच से मानचित्र बड़ा हो जाता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The analysis is only as good as its data. Errors found after the overlay would spoil the answer.",
+                "hi": "विश्लेषण उतना ही सही होता है जितना उसका आँकड़ा। ओवरले के बाद मिली ग़लतियाँ उत्तर बिगाड़ देतीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Computers store any data, checked or not. Checking is for accuracy, not for storage.",
+                  "hi": "कंप्यूटर हर आँकड़ा सहेजता है, जाँचा हो या न हो। जाँच सटीकता के लिए है, सहेजने के लिए नहीं।"
+                },
+                {
+                  "en": "Checking does not change the size of a map. It changes the accuracy of the data.",
+                  "hi": "जाँच से मानचित्र का आकार नहीं बदलता। वह आँकड़े की सटीकता बदलती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Pick a town you know. List the data you would collect for it: spatial data (roads, the river, the market) and attribute data (population, number of shops). Put your list in the order of this lab.",
+            "hi": "अपने जाने-पहचाने एक कस्बे को चुनो। उसके लिए जो आँकड़े इकट्ठा करोगे उनकी सूची बनाओ: स्थानिक आँकड़े (सड़कें, नदी, बाज़ार) और विशेषता आँकड़े (जनसंख्या, दुकानों की संख्या)। सूची को इस लैब के क्रम में रखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-geography-legy3-ch04-overlay-buffer",
+      "topic": "4.4",
+      "template": "sort",
+      "title": {
+        "en": "Overlay or buffer? Choosing the GIS question",
+        "hi": "ओवरले या बफ़र? GIS प्रश्न चुनो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "overlay",
+            "label": {
+              "en": "Overlay: combine two or more layers",
+              "hi": "ओवरले: दो या अधिक परतों को मिलाना"
+            }
+          },
+          {
+            "id": "buffer",
+            "label": {
+              "en": "Buffer: a zone around a feature",
+              "hi": "बफ़र: फ़ीचर के चारों ओर का क्षेत्र"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "forest_slope",
+            "text": {
+              "en": "Find hill slopes that are also under forest cover",
+              "hi": "वे पहाड़ी ढलानें खोजो जो वन-आवरण में भी हैं"
+            },
+            "bin": "overlay",
+            "why": {
+              "en": "Two layers, forest and slope, are laid one over the other to find the common area.",
+              "hi": "दो परतें, वन और ढलान, एक-दूसरे पर रखकर साझा क्षेत्र खोजा जाता है।"
+            }
+          },
+          {
+            "id": "flood",
+            "text": {
+              "en": "Mark land within 2 km of a river as a flood zone",
+              "hi": "नदी के 2 किमी के भीतर की ज़मीन बाढ़-क्षेत्र बनाओ"
+            },
+            "bin": "buffer",
+            "why": {
+              "en": "A band of fixed width is drawn around the river, which is a buffer.",
+              "hi": "नदी के चारों ओर तय चौड़ाई की पट्टी खींची जाती है, यही बफ़र है।"
+            }
+          },
+          {
+            "id": "soil_rain",
+            "text": {
+              "en": "Find areas with black soil and rain above 100 cm",
+              "hi": "काली मिट्टी और 100 सेमी से अधिक वर्षा वाले क्षेत्र"
+            },
+            "bin": "overlay",
+            "why": {
+              "en": "Soil and rainfall maps are overlaid, and the places that match both are kept.",
+              "hi": "मिट्टी और वर्षा के मानचित्र एक-दूसरे पर रखे जाते हैं, और जो जगहें दोनों में मेल खाती हैं वे चुनी जाती हैं।"
+            }
+          },
+          {
+            "id": "school",
+            "text": {
+              "en": "Draw a 500 m zone around each school",
+              "hi": "हर स्कूल के चारों ओर 500 मीटर का क्षेत्र"
+            },
+            "bin": "buffer",
+            "why": {
+              "en": "A distance zone is drawn around each school point, so it is a buffer.",
+              "hi": "हर स्कूल बिंदु के चारों ओर दूरी का क्षेत्र बनाया जाता है, इसलिए यह बफ़र है।"
+            }
+          },
+          {
+            "id": "canal",
+            "text": {
+              "en": "Show a 1 km safety strip along a canal",
+              "hi": "नहर के किनारे 1 किमी की सुरक्षा पट्टी दिखाओ"
+            },
+            "bin": "buffer",
+            "why": {
+              "en": "One feature and one distance make a buffer.",
+              "hi": "एक फ़ीचर और एक दूरी से बफ़र बनता है।"
+            }
+          },
+          {
+            "id": "industry_water",
+            "text": {
+              "en": "Find factories inside areas with poor groundwater",
+              "hi": "कम भूजल वाले क्षेत्रों के भीतर के कारख़ाने"
+            },
+            "bin": "overlay",
+            "why": {
+              "en": "The factory layer and the groundwater layer are laid together to see where they meet.",
+              "hi": "कारख़ाने और भूजल की परतें एक साथ रखकर देखा जाता है कि वे कहाँ मिलती हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:forest_slope",
+          "expect": "correct:forest_slope",
+          "say": {
+            "en": "Tap the forest and slope card, then tap the bin it belongs to.",
+            "hi": "वन और ढलान वाला कार्ड छुओ, फिर वह खाना छुओ जिसका वह है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "You want all land within 500 m of a school. Which operation gives you that zone?",
+            "hi": "तुम्हें किसी स्कूल के 500 मीटर के भीतर की सारी ज़मीन चाहिए। कौन-सी क्रिया वह क्षेत्र देगी?"
+          },
+          "options": [
+            {
+              "id": "ov",
+              "en": "Overlay, because it joins two layers",
+              "hi": "ओवरले, क्योंकि यह दो परतों को जोड़ता है"
+            },
+            {
+              "id": "buf",
+              "en": "Buffer, because it draws a zone of a set distance around a point",
+              "hi": "बफ़र, क्योंकि यह बिंदु के चारों ओर तय दूरी का क्षेत्र बनाता है"
+            }
+          ],
+          "answer": "buf"
+        },
+        {
+          "kind": "do",
+          "target": "card:flood",
+          "expect": "correct:flood",
+          "say": {
+            "en": "Place the river flood zone card in its bin.",
+            "hi": "नदी वाले बाढ़-क्षेत्र का कार्ड उसके खाने में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:soil_rain",
+          "expect": "correct:soil_rain",
+          "say": {
+            "en": "Place the soil and rainfall card in its bin.",
+            "hi": "मिट्टी और वर्षा वाला कार्ड उसके खाने में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Tap Check to see the sorting. Then read the explanation.",
+            "hi": "छँटाई देखने के लिए जाँचो दबाओ। फिर स्पष्टीकरण पढ़ो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Overlay joins two or more layers, such as soil and rainfall, and keeps the places where the conditions meet. A buffer draws a zone of a set distance around a feature, such as a river, a school or a canal. Most GIS questions use one of these two operations, or both together.",
+            "hi": "ओवरले दो या अधिक परतों, जैसे मिट्टी और वर्षा, को जोड़ता है और वे जगहें रखता है जहाँ शर्तें मिलती हैं। बफ़र किसी फ़ीचर, जैसे नदी, स्कूल या नहर, के चारों ओर तय दूरी का क्षेत्र बनाता है। ज़्यादातर GIS प्रश्न इन दोनों में से एक, या दोनों साथ, का उपयोग करते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which operation finds the places where a soil layer and a rainfall layer both match?",
+                "hi": "कौन-सी क्रिया उन जगहों को खोजती है जहाँ मिट्टी और वर्षा दोनों की परतें मेल खाती हैं?"
+              },
+              "options": [
+                {
+                  "en": "Buffer",
+                  "hi": "बफ़र"
+                },
+                {
+                  "en": "Overlay",
+                  "hi": "ओवरले"
+                },
+                {
+                  "en": "Digitising",
+                  "hi": "डिजिटाइज़ करना"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Overlay lays two layers together and keeps the common area.",
+                "hi": "ओवरले दो परतों को एक साथ रखता है और साझा क्षेत्र रखता है।"
+              },
+              "wrong": [
+                {
+                  "en": "A buffer draws a zone around one feature. It does not join two soil and rain layers.",
+                  "hi": "बफ़र एक फ़ीचर के चारों ओर क्षेत्र बनाता है। वह मिट्टी और वर्षा की दो परतों को नहीं जोड़ता।"
+                },
+                "",
+                {
+                  "en": "Digitising turns paper into digital layers. It does not find where two layers meet.",
+                  "hi": "डिजिटाइज़ करना कागज़ को डिजिटल परतों में बदलता है। वह दो परतों के मिलने की जगह नहीं खोजता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Invent one question for your village, such as Which houses lie within 300 m of the well? Decide whether it needs a buffer, an overlay, or both.",
+            "hi": "अपने गाँव के लिए एक प्रश्न बनाओ, जैसे कौन-से घर कुएँ के 300 मीटर के भीतर हैं? तय करो कि उसे बफ़र, ओवरले या दोनों की ज़रूरत है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-geography-legy3-ch04-layers-locate",
+      "topic": "4.6",
+      "template": "map",
+      "title": {
+        "en": "A location map with layers",
+        "hi": "परतों वाला स्थान मानचित्र"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": [
+          "states",
+          "rivers",
+          "mountains"
+        ],
+        "task": "locate",
+        "places": [
+          "jaipur",
+          "ahmedabad"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "layer:states",
+          "expect": "layer:states",
+          "say": {
+            "en": "Switch on the States layer, as a GIS analyst does before a location map.",
+            "hi": "परत 'राज्य' चालू करो, जैसे GIS विश्लेषक स्थान मानचित्र से पहले करता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Jaipur is the capital of Rajasthan. Which way would you look from Ahmedabad to find it?",
+            "hi": "जयपुर राजस्थान की राजधानी है। अहमदाबाद से उसे खोजने के लिए तुम किस दिशा में देखोगे?"
+          },
+          "options": [
+            {
+              "id": "n",
+              "en": "North-east",
+              "hi": "उत्तर-पूर्व"
+            },
+            {
+              "id": "s",
+              "en": "South-east",
+              "hi": "दक्षिण-पूर्व"
+            }
+          ],
+          "answer": "n"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Tap the map where Jaipur lies to drop a pin, then tap Check.",
+            "hi": "जहाँ जयपुर है वहाँ मानचित्र पर टैप करके पिन लगाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Now find Ahmedabad, drop a new pin, and tap Check.",
+            "hi": "अब अहमदाबाद खोजो, नया पिन लगाओ, और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A location map is built from layers. Each layer, such as states, rivers or mountains, is a separate set of data placed on the same base. A GIS user switches layers on and off so that one question shows only what it needs. Here the states and rivers layers help a child find each city.",
+            "hi": "स्थान मानचित्र परतों से बनता है। हर परत, जैसे राज्य, नदियाँ या पर्वत, एक ही आधार पर रखा अलग आँकड़ों का समूह है। GIS उपयोगकर्ता परतें चालू-बंद करता है ताकि एक प्रश्न को केवल वही दिखे जो उसे चाहिए। यहाँ राज्य और नदियों की परतें बच्चे को हर शहर खोजने में मदद करती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why does a GIS user switch layers on and off?",
+                "hi": "GIS उपयोगकर्ता परतें चालू-बंद क्यों करता है?"
+              },
+              "options": [
+                {
+                  "en": "To show only the data needed for the question on hand",
+                  "hi": "ताकि हाथ के प्रश्न के लिए ज़रूरी आँकड़े ही दिखें"
+                },
+                {
+                  "en": "To make the computer faster by deleting the data",
+                  "hi": "आँकड़े मिटाकर कंप्यूटर को तेज़ बनाने के लिए"
+                },
+                {
+                  "en": "To change the Earth's shape on the map",
+                  "hi": "मानचित्र पर पृथ्वी का आकार बदलने के लिए"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Layers let the user focus. Each question uses only the layers it needs.",
+                "hi": "परतें उपयोगकर्ता को केंद्रित रहने देती हैं। हर प्रश्न केवल अपनी ज़रूरी परतें उपयोग करता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Switching a layer off hides the data; it does not delete it. Deleting would lose the map.",
+                  "hi": "परत बंद करने से आँकड़े छिपते हैं, मिटते नहीं। मिटाने से मानचित्र ही खो जाता।"
+                },
+                {
+                  "en": "Layers show data about the Earth's surface. They do not change its shape.",
+                  "hi": "परतें पृथ्वी की सतह के आँकड़े दिखाती हैं। वे उसका आकार नहीं बदलतीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Switch on the Mountains and Rivers layers together. Which rivers start near the mountains you see?",
+            "hi": "पर्वत और नदियों की परतें एक साथ चालू करो। जो नदियाँ तुम्हें पर्वतों के पास से निकलती दिखें, उनके नाम क्या हैं?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "4.1",
+      "use": "Opening scene for GIS: a district planning office",
+      "shows": "Two officers at a desk looking at a large map on a computer screen in a government office in an Indian district town",
+      "view": "16:9, natural window light, a few papers and a tea cup on the desk",
+      "right": "A real-looking Indian district office with a map screen clearly visible",
+      "avoid": "Readable names, logos or faces that can be identified"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "4.2",
+      "use": "Raster and vector compared side by side",
+      "shows": "Left: a square grid of coloured cells forming a river. Right: the same river as a smooth line with dots at its corners",
+      "view": "White background, 4:3, equal size panels",
+      "right": "Cells are equal squares; vector lines are smooth and thin",
+      "avoid": "Any labels or arrows; the app adds the text"
+    },
+    {
+      "n": 3,
+      "kind": "MAP",
+      "topic": "4.6",
+      "use": "Relief base for the location map lab",
+      "shows": "A shaded relief map of India with mountains, plains and the sea, no names or borders",
+      "view": "16:9, soft hill shading, blue sea",
+      "right": "True outline of India with the Himalaya and the Thar desert clearly shaped",
+      "avoid": "State borders, city names and the words India or Bharat"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "4.3",
+      "use": "A paper map being turned into a digital layer",
+      "shows": "Three frames: a paper map on a table, the same map under a scanner, and the map on a laptop as coloured shapes",
+      "view": "Same camera and light in all three frames, 4:3, numbered -f1, -f2, -f3",
+      "right": "Same paper map and table in each frame, so the change is clear",
+      "avoid": "Brand names of scanners or laptops"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "4.4",
+      "use": "A buffer zone around a river",
+      "shows": "A blue river line with a pale band drawn at an equal distance on both sides",
+      "view": "White background, 4:3, bands equally wide",
+      "right": "The band keeps the same width along the whole river",
+      "avoid": "Text, distance numbers or scale bars"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "4.4",
+      "use": "A practical overlay: hills and forest together",
+      "shows": "A hill slope with dense green forest on part of it and bare rock on the rest, seen from a village road",
+      "view": "16:9, morning light",
+      "right": "Forest and bare slope clearly separate in the picture",
+      "avoid": "Any people or signboards"
+    }
+  ]
+}

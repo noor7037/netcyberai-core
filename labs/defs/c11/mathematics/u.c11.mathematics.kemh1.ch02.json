@@ -1,0 +1,1025 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch02",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Relations and Functions",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Introduction: pairing things that belong together",
+   "labs": [],
+   "why_no_lab": "A short reading idea about pairs (a student and a roll number); the labs below put it to work."
+  },
+  {
+   "n": "2.2",
+   "title": "Cartesian products of sets and ordered pairs",
+   "labs": [
+    "c11-mathematics-kemh1-ch02-ordered-pairs",
+    "c11-mathematics-kemh1-ch02-cartesian"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Relations: domain, range and codomain",
+   "labs": [
+    "c11-mathematics-kemh1-ch02-relation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Functions, their graphs and the algebra of real functions",
+   "labs": [
+    "c11-mathematics-kemh1-ch02-is-function",
+    "c11-mathematics-kemh1-ch02-modulus-signum",
+    "c11-mathematics-kemh1-ch02-algebra-of-functions"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch02-ordered-pairs",
+   "topic": "2.2",
+   "template": "grapher",
+   "title": {
+    "en": "Order matters in a pair",
+    "hi": "जोड़ी में क्रम मायने रखता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "points",
+    "points": [
+     [
+      2,
+      3
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One point is already on the grid: the ordered pair (2, 3). The first number says how far to go along the x-axis, the second how far up.",
+      "hi": "ग्रिड पर एक बिंदु पहले से है: क्रमित युग्म (2, 3)। पहली संख्या बताती है x-अक्ष पर कितना चलना है, दूसरी बताती है कितना ऊपर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now think of the pair (3, 2): the same two numbers, swapped. Where will it land?",
+      "hi": "अब युग्म (3, 2) सोचो: वही दो संख्याएँ, जगह बदलकर। यह कहाँ आएगा?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "On top of (2, 3)",
+       "hi": "(2, 3) के ठीक ऊपर"
+      },
+      {
+       "id": "other",
+       "en": "At a different place",
+       "hi": "किसी दूसरी जगह"
+      },
+      {
+       "id": "none",
+       "en": "It cannot be plotted",
+       "hi": "इसे बनाया ही नहीं जा सकता"
+      }
+     ],
+     "answer": "other"
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap the grid at x = 3, y = 2 to plot the point (3, 2).",
+      "hi": "ग्रिड पर x = 3, y = 2 पर टैप करके बिंदु (3, 2) बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "(2, 3) and (3, 2) are two different points. In an ordered pair the order is part of the meaning, so (a, b) = (c, d) only when a = c and b = d. This is why A × B and B × A are usually different sets.",
+      "hi": "(2, 3) और (3, 2) दो अलग बिंदु हैं। क्रमित युग्म में क्रम ही अर्थ का हिस्सा है, इसलिए (a, b) = (c, d) तभी जब a = c और b = d हो। इसी कारण A × B और B × A प्रायः अलग समुच्चय होते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab about the quadrant of the point.",
+      "hi": "लैब में बिंदु के चतुर्थांश वाले प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If (x + 1, 4) = (5, y − 2), what are x and y?",
+        "hi": "यदि (x + 1, 4) = (5, y − 2), तो x और y क्या हैं?"
+       },
+       "options": [
+        "x = 4, y = 6",
+        "x = 6, y = 4",
+        "x = 5, y = 4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal ordered pairs have equal first parts and equal second parts: x + 1 = 5 gives x = 4, and 4 = y − 2 gives y = 6.",
+        "hi": "बराबर क्रमित युग्मों के पहले भाग बराबर और दूसरे भाग बराबर होते हैं: x + 1 = 5 से x = 4, और 4 = y − 2 से y = 6।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This swaps the two answers; match first part with first part and second with second.",
+         "hi": "यह दोनों उत्तर उलट देता है; पहले भाग को पहले से और दूसरे को दूसरे से मिलाओ।"
+        },
+        {
+         "en": "This copies the numbers without solving: x + 1 = 5 means x is one less than 5.",
+         "hi": "यह बिना हल किए संख्याएँ उठा लेता है: x + 1 = 5 का अर्थ है x, 5 से एक कम है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is (2, 3) the same point as (3, 2)?",
+        "hi": "क्या (2, 3) और (3, 2) एक ही बिंदु हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes, they use the same numbers",
+         "hi": "हाँ, इनमें वही संख्याएँ हैं"
+        },
+        {
+         "en": "No, the order is different",
+         "hi": "नहीं, क्रम अलग है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The first number is the x-coordinate and the second the y-coordinate, so swapping them moves the point.",
+        "hi": "पहली संख्या x-निर्देशांक है और दूसरी y-निर्देशांक, इसलिए उन्हें बदलने से बिंदु खिसक जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "Using the same numbers is not enough; the grid showed the two points in different places.",
+         "hi": "वही संख्याएँ होना काफ़ी नहीं; ग्रिड पर दोनों बिंदु अलग जगह दिखे।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Plot (−2, 3), (−3, 2) and (3, −2). Which pairs of points are mirror images of each other in an axis?",
+      "hi": "(−2, 3), (−3, 2) और (3, −2) बनाओ। कौन-से बिंदु किसी अक्ष में एक-दूसरे के दर्पण प्रतिबिंब हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch02-cartesian",
+   "topic": "2.2",
+   "template": "code",
+   "title": {
+    "en": "Build A × B pair by pair",
+    "hi": "A × B को जोड़ी-जोड़ी बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "A = [1, 2, 3]",
+     "B = ['x', 'y']",
+     "count = 0",
+     "for a in A:",
+     "    for b in B:",
+     "        print(a, b)",
+     "        count = count + 1",
+     "print('n(A x B) =', count)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A = {1, 2, 3} and B = {x, y}. The program takes each member a of A and pairs it with each member b of B. Every printed line is one ordered pair (a, b) of A × B.",
+      "hi": "A = {1, 2, 3} और B = {x, y}। प्रोग्राम A के हर सदस्य a को B के हर सदस्य b से जोड़ता है। हर छपी पंक्ति A × B का एक क्रमित युग्म (a, b) है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step a few times and watch the first pairs appear.",
+      "hi": "कुछ बार Step दबाओ और पहली जोड़ियाँ बनते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A has 3 members and B has 2. How many pairs will A × B have?",
+      "hi": "A में 3 सदस्य हैं और B में 2। A × B में कितनी जोड़ियाँ होंगी?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5 pairs (3 + 2)",
+       "hi": "5 जोड़ियाँ (3 + 2)"
+      },
+      {
+       "id": "6",
+       "en": "6 pairs (3 × 2)",
+       "hi": "6 जोड़ियाँ (3 × 2)"
+      },
+      {
+       "id": "9",
+       "en": "9 pairs (3 × 3)",
+       "hi": "9 जोड़ियाँ (3 × 3)"
+      }
+     ],
+     "answer": "6"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to finish the program.",
+      "hi": "प्रोग्राम पूरा करने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For each of the 3 choices of a there are 2 choices of b, so there are 3 × 2 = 6 pairs. In general n(A × B) = n(A) × n(B). If A or B is empty, A × B is empty too.",
+      "hi": "a के 3 विकल्पों में से हर एक के लिए b के 2 विकल्प हैं, इसलिए 3 × 2 = 6 जोड़ियाँ बनती हैं। सामान्य रूप से n(A × B) = n(A) × n(B)। यदि A या B ख़ाली है, तो A × B भी ख़ाली है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab about the final count.",
+      "hi": "अंतिम गिनती वाले प्रश्न का उत्तर लैब में दो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "n(A) = 4 and n(B) = 5. What is n(A × B)?",
+        "hi": "n(A) = 4 और n(B) = 5। n(A × B) क्या है?"
+       },
+       "options": [
+        "9",
+        "20",
+        "45"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Every one of the 4 members of A pairs with every one of the 5 members of B: 4 × 5 = 20.",
+        "hi": "A के 4 में से हर सदस्य B के 5 में से हर सदस्य से जुड़ता है: 4 × 5 = 20।"
+       },
+       "wrong": [
+        {
+         "en": "Adding counts the members, not the pairs; each member of A makes a pair with each member of B.",
+         "hi": "जोड़ने से सदस्य गिने जाते हैं, जोड़ियाँ नहीं; A का हर सदस्य B के हर सदस्य से जोड़ी बनाता है।"
+        },
+        "",
+        {
+         "en": "45 does not come from 4 and 5 by pairing; the rule is n(A) × n(B).",
+         "hi": "45, 4 और 5 की जोड़ियों से नहीं आता; नियम n(A) × n(B) है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is A × B the same set as B × A here?",
+        "hi": "क्या यहाँ A × B और B × A एक ही समुच्चय हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes, always",
+         "hi": "हाँ, हमेशा"
+        },
+        {
+         "en": "No: (1, x) is in A × B but (x, 1) is in B × A",
+         "hi": "नहीं: (1, x) A × B में है पर (x, 1) B × A में"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Both have 6 pairs, but the pairs are in a different order, so the sets are different (unless A = B, or one is empty).",
+        "hi": "दोनों में 6 जोड़ियाँ हैं, पर जोड़ियों का क्रम अलग है, इसलिए समुच्चय अलग हैं (जब तक A = B न हो या कोई ख़ाली न हो)।"
+       },
+       "wrong": [
+        {
+         "en": "Same size does not mean same set; the members of the two sets are different ordered pairs.",
+         "hi": "आकार बराबर होने से समुच्चय बराबर नहीं होते; दोनों के सदस्य अलग क्रमित युग्म हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Reset. Change in your head B to {x, y, z}: how many lines would be printed now? Then think of A × A for A = {1, 2, 3}.",
+      "hi": "Reset दबाओ। मन में B को {x, y, z} बनाओ: अब कितनी पंक्तियाँ छपेंगी? फिर A = {1, 2, 3} के लिए A × A सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch02-relation",
+   "topic": "2.3",
+   "template": "code",
+   "title": {
+    "en": "Pick a relation out of A × B",
+    "hi": "A × B में से संबंध चुनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "A = [1, 2, 3, 4]",
+     "B = [2, 3, 4, 5, 6]",
+     "pairs = 0",
+     "for a in A:",
+     "    for b in B:",
+     "        if b == a + 2:",
+     "            print(a, b)",
+     "            pairs = pairs + 1",
+     "print('pairs in R:', pairs)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A = {1, 2, 3, 4} and B = {2, 3, 4, 5, 6}. A × B has 4 × 5 = 20 pairs. The relation R keeps only the pairs where b = a + 2. A relation is just a chosen part (a subset) of A × B.",
+      "hi": "A = {1, 2, 3, 4} और B = {2, 3, 4, 5, 6}। A × B में 4 × 5 = 20 जोड़ियाँ हैं। संबंध R केवल वे जोड़ियाँ रखता है जिनमें b = a + 2 है। संबंध A × B का एक चुना हुआ भाग (उपसमुच्चय) ही है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many of the 20 pairs will pass the rule b = a + 2?",
+      "hi": "20 में से कितनी जोड़ियाँ नियम b = a + 2 पर खरी उतरेंगी?"
+     },
+     "options": [
+      {
+       "id": "2",
+       "en": "2 pairs",
+       "hi": "2 जोड़ियाँ"
+      },
+      {
+       "id": "4",
+       "en": "4 pairs",
+       "hi": "4 जोड़ियाँ"
+      },
+      {
+       "id": "20",
+       "en": "All 20",
+       "hi": "सभी 20"
+      }
+     ],
+     "answer": "4"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run and watch which pairs are printed.",
+      "hi": "Run दबाओ और देखो कौन-सी जोड़ियाँ छपती हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "R = {(1, 3), (2, 4), (3, 5), (4, 6)}. The first parts {1, 2, 3, 4} form the domain. The second parts {3, 4, 5, 6} form the range. B itself is the codomain, and the range is a subset of it: 2 is in B but no pair reaches it.",
+      "hi": "R = {(1, 3), (2, 4), (3, 5), (4, 6)}। पहले भाग {1, 2, 3, 4} प्रांत बनाते हैं। दूसरे भाग {3, 4, 5, 6} परिसर बनाते हैं। B स्वयं सहप्रांत है, और परिसर उसका उपसमुच्चय है: 2, B में है पर कोई जोड़ी उस तक नहीं पहुँचती।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: how many pairs did R keep?",
+      "hi": "लैब के प्रश्न का उत्तर दो: R ने कितनी जोड़ियाँ रखीं?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the range of R?",
+        "hi": "R का परिसर क्या है?"
+       },
+       "options": [
+        "{1, 2, 3, 4}",
+        "{3, 4, 5, 6}",
+        "{2, 3, 4, 5, 6}"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The range is the set of second parts that actually appear in R: 3, 4, 5 and 6.",
+        "hi": "परिसर उन दूसरे भागों का समुच्चय है जो R में सच में आते हैं: 3, 4, 5 और 6।"
+       },
+       "wrong": [
+        {
+         "en": "These are the first parts: that is the domain.",
+         "hi": "ये पहले भाग हैं: यह प्रांत है।"
+        },
+        "",
+        {
+         "en": "That is all of B, the codomain; 2 is never reached, so it is not in the range.",
+         "hi": "यह पूरा B है, यानी सहप्रांत; 2 तक कोई नहीं पहुँचता, इसलिए वह परिसर में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "n(A) = 2 and n(B) = 3. How many different relations from A to B are there?",
+        "hi": "n(A) = 2 और n(B) = 3। A से B तक कितने अलग संबंध हैं?"
+       },
+       "options": [
+        "6",
+        "64",
+        "12"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A × B has 6 pairs, and a relation is any subset of them. A set of 6 members has 2⁶ = 64 subsets.",
+        "hi": "A × B में 6 जोड़ियाँ हैं, और कोई भी उपसमुच्चय एक संबंध है। 6 सदस्यों वाले समुच्चय के 2⁶ = 64 उपसमुच्चय होते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "6 is the number of pairs in A × B, not the number of ways to choose some of them.",
+         "hi": "6, A × B की जोड़ियों की संख्या है, उनमें से कुछ चुनने के तरीक़ों की नहीं।"
+        },
+        "",
+        {
+         "en": "12 is 6 × 2; but each of the 6 pairs is either in or out, so we multiply 2 six times.",
+         "hi": "12 = 6 × 2; पर 6 में से हर जोड़ी या तो अंदर है या बाहर, इसलिए 2 को छह बार गुणा करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the rule in your head to b = 2a. Which pairs would R keep now? What would its domain be?",
+      "hi": "मन में नियम बदलकर b = 2a करो। अब R कौन-सी जोड़ियाँ रखेगा? उसका प्रांत क्या होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch02-is-function",
+   "topic": "2.4",
+   "template": "code",
+   "title": {
+    "en": "Is this relation a function?",
+    "hi": "क्या यह संबंध फलन है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "R = [[1, 5], [2, 7], [3, 5], [2, 9]]",
+     "seen = []",
+     "clash = 0",
+     "for p in R:",
+     "    if p[0] in seen:",
+     "        print('x =', p[0], 'already has an image')",
+     "        clash = clash + 1",
+     "    seen.append(p[0])",
+     "print('clashes:', clash)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A function is a special relation: every element of the domain has exactly one image. The program walks through R = {(1, 5), (2, 7), (3, 5), (2, 9)} and notes every first part it has seen.",
+      "hi": "फलन एक विशेष संबंध है: प्रांत के हर अवयव का ठीक एक प्रतिबिंब होता है। प्रोग्राम R = {(1, 5), (2, 7), (3, 5), (2, 9)} पर चलता है और देखे गए हर पहले भाग को लिख लेता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "1 and 3 both go to 5. 2 goes to 7 and also to 9. Which of these stops R from being a function?",
+      "hi": "1 और 3 दोनों 5 पर जाते हैं। 2, 7 पर भी जाता है और 9 पर भी। इनमें से क्या R को फलन बनने से रोकता है?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "1 and 3 sharing the image 5",
+       "hi": "1 और 3 का एक ही प्रतिबिंब 5 होना"
+      },
+      {
+       "id": "two",
+       "en": "2 having two images",
+       "hi": "2 के दो प्रतिबिंब होना"
+      },
+      {
+       "id": "both",
+       "en": "Both of them",
+       "hi": "दोनों बातें"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step and follow the list seen as it fills up.",
+      "hi": "Step दबाओ और देखो सूची seen कैसे भरती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Now tap Run to check the rest of the pairs.",
+      "hi": "अब बाक़ी जोड़ियाँ जाँचने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The program found one clash: x = 2 already had the image 7 when (2, 9) came. One input with two outputs breaks the rule, so R is not a function. Two inputs sharing one output, like 1 and 3 going to 5, is allowed.",
+      "hi": "प्रोग्राम को एक टकराव मिला: जब (2, 9) आया तब x = 2 का प्रतिबिंब 7 पहले से था। एक इनपुट के दो आउटपुट नियम तोड़ते हैं, इसलिए R फलन नहीं है। दो इनपुट का एक ही आउटपुट होना, जैसे 1 और 3 का 5 पर जाना, मान्य है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which relation is a function?",
+        "hi": "कौन-सा संबंध फलन है?"
+       },
+       "options": [
+        "{(1, 4), (2, 4), (3, 4)}",
+        "{(1, 2), (1, 3), (2, 4)}",
+        "{(5, 1), (6, 2), (5, 3)}"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each input 1, 2, 3 has exactly one image (4). Sharing one image is fine: this is a constant function.",
+        "hi": "हर इनपुट 1, 2, 3 का ठीक एक प्रतिबिंब (4) है। एक प्रतिबिंब साझा करना ठीक है: यह अचर फलन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 has two images here, 2 and 3, so it is not a function.",
+         "hi": "यहाँ 1 के दो प्रतिबिंब हैं, 2 और 3, इसलिए यह फलन नहीं।"
+        },
+        {
+         "en": "5 has two images here, 1 and 3, so it is not a function.",
+         "hi": "यहाँ 5 के दो प्रतिबिंब हैं, 1 और 3, इसलिए यह फलन नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A school gives each student exactly one roll number. Is \"student → roll number\" a function?",
+        "hi": "स्कूल हर विद्यार्थी को ठीक एक रोल नंबर देता है। क्या \"विद्यार्थी → रोल नंबर\" फलन है?"
+       },
+       "options": [
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        },
+        {
+         "en": "No",
+         "hi": "नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every student (input) has one and only one roll number (output), which is exactly the rule for a function.",
+        "hi": "हर विद्यार्थी (इनपुट) का एक और केवल एक रोल नंबर (आउटपुट) है, यही फलन का नियम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing here gives one student two roll numbers, so the rule for a function holds.",
+         "hi": "यहाँ किसी विद्यार्थी के दो रोल नंबर नहीं, इसलिए फलन का नियम लागू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine removing the pair (2, 9). Would R become a function? What would its domain and range be?",
+      "hi": "सोचो, जोड़ी (2, 9) हटा दी जाए। क्या R फलन बन जाएगा? तब उसका प्रांत और परिसर क्या होंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch02-modulus-signum",
+   "topic": "2.4",
+   "template": "grapher",
+   "title": {
+    "en": "The modulus function and its V",
+    "hi": "मापांक फलन और उसका V"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "abs(x - a)",
+    "params": {
+     "a": [
+      -3,
+      3,
+      0,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The solid curve is f(x) = |x − a|, starting with a = 0, so f(x) = |x|. It gives x when x ≥ 0 and −x when x < 0. The dashed line shows how steep the V is at each x.",
+      "hi": "ठोस वक्र f(x) = |x − a| है, शुरू में a = 0, यानी f(x) = |x|। यह x ≥ 0 पर x देता है और x < 0 पर −x। धराशायी रेखा हर x पर V की ढलान दिखाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the x slider and read f(x) for a few negative and positive values.",
+      "hi": "x स्लाइडर खींचो और कुछ ऋणात्मक और धनात्मक मानों के लिए f(x) पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now a will become 2, so f(x) = |x − 2|. Where will the corner of the V go?",
+      "hi": "अब a = 2 होगा, यानी f(x) = |x − 2|। V का कोना कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "right",
+       "en": "To x = 2",
+       "hi": "x = 2 पर"
+      },
+      {
+       "id": "left",
+       "en": "To x = −2",
+       "hi": "x = −2 पर"
+      },
+      {
+       "id": "up",
+       "en": "Up to y = 2",
+       "hi": "ऊपर y = 2 पर"
+      }
+     ],
+     "answer": "right"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move the slider a to 2.",
+      "hi": "स्लाइडर a को 2 पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "|x − 2| is smallest, 0, when x = 2, so the corner moves right to (2, 0). The range of a modulus function is all y ≥ 0. The dashed line is −1 on the left and +1 on the right: that is the signum function, which gives −1 for negative inputs, 0 at 0 and 1 for positive inputs.",
+      "hi": "|x − 2| सबसे छोटा, 0, तब होता है जब x = 2, इसलिए कोना दाएँ (2, 0) पर जाता है। मापांक फलन का परिसर सभी y ≥ 0 है। धराशायी रेखा बाईं ओर −1 और दाईं ओर +1 है: यही चिह्न फलन (signum) है, जो ऋणात्मक इनपुट पर −1, 0 पर 0 और धनात्मक पर 1 देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the range of f(x) = |x|?",
+        "hi": "f(x) = |x| का परिसर क्या है?"
+       },
+       "options": [
+        {
+         "en": "All real numbers",
+         "hi": "सभी वास्तविक संख्याएँ"
+        },
+        {
+         "en": "All y ≥ 0",
+         "hi": "सभी y ≥ 0"
+        },
+        {
+         "en": "Only y = 0",
+         "hi": "केवल y = 0"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "|x| is never negative and can be any number from 0 upwards, so the range is [0, ∞).",
+        "hi": "|x| कभी ऋणात्मक नहीं होता और 0 से ऊपर कोई भी संख्या हो सकता है, इसलिए परिसर [0, ∞) है।"
+       },
+       "wrong": [
+        {
+         "en": "That is the domain: every x can go in, but the outputs are never below 0.",
+         "hi": "यह प्रांत है: हर x डाला जा सकता है, पर आउटपुट कभी 0 से नीचे नहीं जाते।"
+        },
+        "",
+        {
+         "en": "Only x = 0 gives 0; other inputs give positive outputs like |−3| = 3.",
+         "hi": "केवल x = 0 से 0 मिलता है; बाक़ी इनपुट धनात्मक आउटपुट देते हैं, जैसे |−3| = 3।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the signum function give at x = −5?",
+        "hi": "चिह्न फलन x = −5 पर क्या देता है?"
+       },
+       "options": [
+        "−5",
+        "5",
+        "−1"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Signum keeps only the sign: for every negative x it gives −1.",
+        "hi": "चिह्न फलन केवल चिह्न रखता है: हर ऋणात्मक x के लिए यह −1 देता है।"
+       },
+       "wrong": [
+        {
+         "en": "That is the identity function, which returns x itself.",
+         "hi": "यह तत्समक फलन है, जो x ही लौटाता है।"
+        },
+        {
+         "en": "That is the modulus |−5|, the size without the sign.",
+         "hi": "यह मापांक |−5| है, बिना चिह्न का आकार।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move a to −3. Find the x where |x + 3| = 2. How many answers are there, and why does the V shape explain it?",
+      "hi": "a को −3 पर ले जाओ। वह x खोजो जहाँ |x + 3| = 2 हो। कितने उत्तर हैं, और V आकार इसका कारण कैसे बताता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch02-algebra-of-functions",
+   "topic": "2.4",
+   "template": "code",
+   "title": {
+    "en": "Add, subtract and multiply functions",
+    "hi": "फलनों को जोड़ो, घटाओ और गुणा करो"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "def f(x):",
+     "    return x * x",
+     "def g(x):",
+     "    return 2 * x + 1",
+     "for x in [0, 1, 2, 3]:",
+     "    print(x, f(x) + g(x), f(x) - g(x), f(x) * g(x))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Here f(x) = x² and g(x) = 2x + 1. For each x the program prints x, then (f + g)(x), (f − g)(x) and (f·g)(x). Each new function is made point by point from f and g.",
+      "hi": "यहाँ f(x) = x² और g(x) = 2x + 1 है। हर x के लिए प्रोग्राम x छापता है, फिर (f + g)(x), (f − g)(x) और (f·g)(x)। हर नया फलन f और g से बिंदु-दर-बिंदु बनता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At x = 2, f(2) = 4 and g(2) = 5. What will (f·g)(2) be?",
+      "hi": "x = 2 पर f(2) = 4 और g(2) = 5। (f·g)(2) क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "9",
+       "en": "9, by adding",
+       "hi": "9, जोड़कर"
+      },
+      {
+       "id": "20",
+       "en": "20, by multiplying",
+       "hi": "20, गुणा करके"
+      },
+      {
+       "id": "45",
+       "en": "45, by writing 4 and 5 side by side",
+       "hi": "45, 4 और 5 को साथ-साथ लिखकर"
+      }
+     ],
+     "answer": "20"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to see the functions being defined.",
+      "hi": "फलनों को परिभाषित होते देखने के लिए Step दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to print the whole table.",
+      "hi": "पूरी तालिका छापने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The line for x = 2 reads 2 9 −1 20: f + g = 4 + 5 = 9, f − g = 4 − 5 = −1, f·g = 4 × 5 = 20. So (f + g)(x) = f(x) + g(x), and the same for the other operations. A quotient f/g also works, except where g(x) = 0.",
+      "hi": "x = 2 वाली पंक्ति 2 9 −1 20 है: f + g = 4 + 5 = 9, f − g = 4 − 5 = −1, f·g = 4 × 5 = 20। यानी (f + g)(x) = f(x) + g(x), और बाक़ी संक्रियाएँ भी ऐसे ही। भागफल f/g भी बनता है, सिवाय वहाँ जहाँ g(x) = 0 हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For f(x) = x² and g(x) = 2x + 1, what is (f − g)(3)?",
+        "hi": "f(x) = x² और g(x) = 2x + 1 के लिए (f − g)(3) क्या है?"
+       },
+       "options": [
+        "2",
+        "−2",
+        "16"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "f(3) = 9 and g(3) = 7, so (f − g)(3) = 9 − 7 = 2, as the last line shows.",
+        "hi": "f(3) = 9 और g(3) = 7, इसलिए (f − g)(3) = 9 − 7 = 2, जैसा अंतिम पंक्ति दिखाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This is g(3) − f(3): the order of subtraction is reversed.",
+         "hi": "यह g(3) − f(3) है: घटाने का क्रम उलट गया।"
+        },
+        {
+         "en": "16 is f(3) + g(3), the sum, not the difference.",
+         "hi": "16, f(3) + g(3) है, योग, अंतर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where is (f/g)(x) not defined for g(x) = 2x + 1?",
+        "hi": "g(x) = 2x + 1 के लिए (f/g)(x) कहाँ परिभाषित नहीं है?"
+       },
+       "options": [
+        {
+         "en": "At x = 0",
+         "hi": "x = 0 पर"
+        },
+        {
+         "en": "At x = −1/2",
+         "hi": "x = −1/2 पर"
+        },
+        {
+         "en": "It is defined everywhere",
+         "hi": "यह हर जगह परिभाषित है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "We cannot divide by 0, and g(x) = 0 when 2x + 1 = 0, that is x = −1/2.",
+        "hi": "हम 0 से भाग नहीं दे सकते, और g(x) = 0 तब होता है जब 2x + 1 = 0, यानी x = −1/2।"
+       },
+       "wrong": [
+        {
+         "en": "At x = 0, g(0) = 1, which is fine to divide by; f(0) = 0 on top is allowed.",
+         "hi": "x = 0 पर g(0) = 1, जिससे भाग देना ठीक है; ऊपर f(0) = 0 होना मान्य है।"
+        },
+        "",
+        {
+         "en": "A quotient needs the bottom to be non-zero, and g is zero at one point.",
+         "hi": "भागफल में नीचे का मान शून्य नहीं होना चाहिए, और g एक बिंदु पर शून्य है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Work out (f + g)(x) as one formula. Do you get x² + 2x + 1 = (x + 1)²? Check it against the numbers 1, 4, 9, 16 that were printed.",
+      "hi": "(f + g)(x) को एक सूत्र में लिखो। क्या x² + 2x + 1 = (x + 1)² आता है? छपी संख्याओं 1, 4, 9, 16 से जाँचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Chapter hook: things that come in pairs",
+   "shows": "A school notice board corner with a neat row of student lockers, each with a small blank number plate, and a matching row of keys hanging on hooks below",
+   "view": "Eye level, soft daylight, lockers and keys both in frame",
+   "right": "Exactly one key under each locker, so the one-to-one pairing is visible",
+   "avoid": "Readable names, school names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Cartesian product: every shirt with every pair of trousers",
+   "shows": "Three folded school shirts (white, sky blue, cream) in a row and two pairs of trousers (navy, grey) in a row below, laid on a plain bed sheet",
+   "view": "Top view, even light",
+   "right": "Colours clearly different and also folded differently so they can be told apart without colour",
+   "avoid": "Brand labels, school logos"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Base for plotting ordered pairs",
+   "shows": "A clean square coordinate grid with x- and y-axes through the centre, light grid lines every unit, no numbers",
+   "view": "Flat, centred, thin dark axes on white",
+   "right": "Equal spacing on both axes; axes clearly darker than grid lines",
+   "avoid": "Any numbers, letters or arrows baked in"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "2.3",
+   "use": "Arrow diagram base for a relation",
+   "shows": "Two tall rounded ovals side by side with five small empty circles inside each, no arrows",
+   "view": "Flat, centred, white background",
+   "right": "Ovals the same size, circles evenly spaced so arrows can be drawn between them by the app",
+   "avoid": "Letters, numbers, arrows"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "A function as a machine: one input, one output",
+   "shows": "A railway ticket counter window at an Indian station, one hand passing money in and a single printed ticket coming out",
+   "view": "Close side view through the window, warm indoor light",
+   "right": "One coin or note in, one ticket out, so the idea of one output per input is clear",
+   "avoid": "Readable text on the ticket, railway logos, faces"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "2.4",
+   "use": "Modulus: distance from zero on both sides",
+   "shows": "Frame 1: a child-size toy car on a straight floor tape with a centre mark, 3 tiles to the left; frame 2: the same car 3 tiles to the right of the centre mark",
+   "view": "Same overhead camera and light in both frames",
+   "right": "The same distance from the centre mark in both frames, on opposite sides",
+   "avoid": "Numbers on the floor, faces"
+  }
+ ]
+}

@@ -1,0 +1,576 @@
+{
+ "chapter_key": "u.c07.sanskrit.gsde1.ch01",
+ "class": 7,
+ "subject_id": "sanskrit",
+ "title": "वन्दे भारतमातरम्",
+ "source": "https://ncert.nic.in/textbook.php?gsde1=0-15",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "The song वन्दे मातरम् and its writer",
+   "labs": [],
+   "why_no_lab": "A song is learnt by listening and singing together with the class, not by tapping a screen."
+  },
+  {
+   "n": "1.2",
+   "title": "Bharat Mata: the mountains and rivers",
+   "labs": [
+    "c07-sanskrit-gsde1-ch01-map",
+    "c07-sanskrit-gsde1-ch01-vocab"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Holy places and old cities of India",
+   "labs": [],
+   "why_no_lab": "Names of towns are best met with photographs and the map in the reader."
+  },
+  {
+   "n": "1.4",
+   "title": "Joining words: हिमालय and other ...आलय words",
+   "labs": [
+    "c07-sanskrit-gsde1-ch01-sandhi"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "The national flag and its meaning",
+   "labs": [],
+   "why_no_lab": "The flag is best seen in a photograph and talked about aloud in class."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-sanskrit-gsde1-ch01-map",
+   "topic": "1.2",
+   "template": "map",
+   "title": {
+    "en": "Mountains and rivers of Bharat Mata",
+    "hi": "भारतमाता के पर्वत और नदियाँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "mountains",
+     "rivers"
+    ],
+    "task": "locate",
+    "places": [
+     "himalaya",
+     "ganga",
+     "godavari"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:mountains",
+     "expect": "layer:mountains",
+     "say": {
+      "en": "Switch on the Mountains layer.",
+      "hi": "पर्वत वाली परत चालू करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The lesson says the Himalaya shines on Bharat Mata like a crown. On which side of India does a crown sit?",
+      "hi": "पाठ में हिमालय को भारतमाता के मुकुट जैसा बताया गया है। मुकुट भारत के किस ओर होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "In the north",
+       "hi": "उत्तर में"
+      },
+      {
+       "id": "b",
+       "en": "In the south",
+       "hi": "दक्षिण में"
+      },
+      {
+       "id": "c",
+       "en": "In the middle",
+       "hi": "बीच में"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "located:himalaya",
+     "say": {
+      "en": "Drop a pin where you think the हिमालयः is, then press Check.",
+      "hi": "जहाँ तुम्हें हिमालयः लगता है वहाँ पिन गिराओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:rivers",
+     "expect": "layer:rivers",
+     "say": {
+      "en": "Now switch on the Rivers layer.",
+      "hi": "अब नदियों वाली परत चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "located:ganga",
+     "say": {
+      "en": "Find the river गङ्गा. Drop a pin and press Check.",
+      "hi": "गङ्गा नदी ढूँढो। पिन गिराओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The lesson paints Bharat Mata with the snowy Himalaya as a crown and the sea washing her feet. Great rivers such as Ganga and Godavari flow through her like veins. On the map the mountains stand in the north and the great rivers cross the land.",
+      "hi": "पाठ में भारतमाता के मस्तक पर बर्फ़ीला हिमालय मुकुट है और समुद्र उनके चरण धोता है। गंगा और गोदावरी जैसी बड़ी नदियाँ उनके बीच से बहती हैं। नक्शे पर पर्वत उत्तर में हैं और बड़ी नदियाँ पूरे देश में फैली हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these rivers flows in the south of India?",
+        "hi": "इनमें से कौन-सी नदी भारत के दक्षिण में बहती है?"
+       },
+       "options": [
+        "गोदावरी",
+        "गङ्गा",
+        "ब्रह्मपुत्रः"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Godavari runs across the Deccan in the south.",
+        "hi": "गोदावरी दक्षिण के पठार में बहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ganga flows across the northern plains, so thinking it is southern mixes up the map.",
+         "hi": "गंगा उत्तर के मैदान में बहती है, इसलिए उसे दक्षिण की नदी मानना नक्शा उलझाना है।"
+        },
+        {
+         "en": "Brahmaputra flows in the north-east, far from the south.",
+         "hi": "ब्रह्मपुत्र उत्तर-पूर्व में बहती है, दक्षिण से बहुत दूर।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the layers on and off and say each river and mountain name aloud in Sanskrit.",
+      "hi": "परतें चालू-बंद करो और हर नदी और पर्वत का नाम संस्कृत में ज़ोर से बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-sanskrit-gsde1-ch01-vocab",
+   "topic": "1.2",
+   "template": "reader",
+   "title": {
+    "en": "Words in praise of Bharat Mata",
+    "hi": "भारतमाता की स्तुति के शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "sa",
+    "passage": {
+     "title": {
+      "en": "Bharat Mata",
+      "hi": "भारतमाता"
+     },
+     "lines": [
+      "भारतमाता अस्माकं माता अस्ति ।",
+      "हिमालयः तस्याः मस्तके मुकुटः इव शोभते ।",
+      "समुद्रः तस्याः चरणौ प्रक्षालयति ।",
+      "गङ्गा यमुना च पवित्रे नद्यौ स्तः ।",
+      "अयोध्या काशी च प्राचीने तीर्थक्षेत्रे स्तः ।",
+      "वयं सर्वे भारतमातरं वन्दामहे ।"
+     ]
+    },
+    "words": [
+     {
+      "w": "हिमालयः",
+      "meaning": {
+       "en": "The great snowy mountain in the north",
+       "hi": "उत्तर का बर्फ़ से ढका बड़ा पर्वत"
+      }
+     },
+     {
+      "w": "मुकुटः",
+      "meaning": {
+       "en": "A crown",
+       "hi": "मुकुट, ताज"
+      }
+     },
+     {
+      "w": "समुद्रः",
+      "meaning": {
+       "en": "The sea",
+       "hi": "सागर"
+      }
+     },
+     {
+      "w": "नद्यौ",
+      "meaning": {
+       "en": "Two rivers",
+       "hi": "दो नदियाँ"
+      }
+     },
+     {
+      "w": "तीर्थक्षेत्रे",
+      "meaning": {
+       "en": "Two holy places",
+       "hi": "दो पवित्र स्थान"
+      }
+     },
+     {
+      "w": "वन्दामहे",
+      "meaning": {
+       "en": "We bow with respect",
+       "hi": "हम प्रणाम करते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:हिमालयः",
+     "expect": "found:हिमालयः",
+     "say": {
+      "en": "Tap the word हिमालयः in the story.",
+      "hi": "कहानी में हिमालयः शब्द को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The second line says the Himalaya is like a मुकुटः on Bharat Mata. What is a मुकुटः?",
+      "hi": "दूसरी पंक्ति में हिमालय को भारतमाता के मुकुटः जैसा कहा है। मुकुटः क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "A crown",
+       "hi": "ताज"
+      },
+      {
+       "id": "b",
+       "en": "A shoe",
+       "hi": "जूता"
+      },
+      {
+       "id": "c",
+       "en": "A river",
+       "hi": "नदी"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:मुकुटः",
+     "expect": "found:मुकुटः",
+     "say": {
+      "en": "Find मुकुटः and tap it.",
+      "hi": "मुकुटः शब्द ढूँढकर छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:समुद्रः",
+     "expect": "found:समुद्रः",
+     "say": {
+      "en": "Now tap समुद्रः, the one that washes her feet.",
+      "hi": "अब समुद्रः छुओ, जो उनके चरण धोता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Pick the meaning that matches the word.",
+      "hi": "शब्द का सही अर्थ चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sanskrit words change their ending to tell us how many there are. नद्यौ means two rivers and तीर्थक्षेत्रे means two holy places. The word वन्दामहे means we bow, and the ending -महे tells us that many of us are speaking.",
+      "hi": "संस्कृत में शब्द का अंत बताता है कि संख्या कितनी है। नद्यौ का अर्थ दो नदियाँ और तीर्थक्षेत्रे का अर्थ दो पवित्र स्थान है। वन्दामहे का अर्थ हम प्रणाम करते हैं; -महे बताता है कि बोलने वाले कई हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does नद्यौ mean?",
+        "hi": "नद्यौ का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Two rivers",
+         "hi": "दो नदियाँ"
+        },
+        {
+         "en": "One river",
+         "hi": "एक नदी"
+        },
+        {
+         "en": "Many rivers",
+         "hi": "कई नदियाँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ending -औ shows two, so नद्यौ is two rivers.",
+        "hi": "अंत में -औ दो बताता है, इसलिए नद्यौ का अर्थ दो नदियाँ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One river is नदी; नद्यौ has the ending for two.",
+         "hi": "एक नदी को नदी कहते हैं; नद्यौ में दो वाला अंत है।"
+        },
+        {
+         "en": "Many rivers is नद्यः; नद्यौ is only two.",
+         "hi": "कई नदियों के लिए नद्यः आता है; नद्यौ केवल दो के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Read the six lines aloud, then say the name of your own river or mountain in Sanskrit.",
+      "hi": "छहों पंक्तियाँ ज़ोर से पढ़ो, फिर अपनी नदी या पर्वत का नाम संस्कृत में बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-sanskrit-gsde1-ch01-sandhi",
+   "topic": "1.4",
+   "template": "words",
+   "title": {
+    "en": "Joining words: हिम + आलय",
+    "hi": "शब्द जोड़ना: हिम + आलय"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sandhi",
+    "lang": "sa",
+    "words": [
+     {
+      "w": "हिमालय"
+     },
+     {
+      "w": "देवालय"
+     },
+     {
+      "w": "विद्यालय"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:हिम",
+     "expect": "part:हिम",
+     "say": {
+      "en": "Tap हिम (snow) to start building the word.",
+      "hi": "शब्द बनाने के लिए पहले हिम (बर्फ़) छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "हिम ends in the sound अ and आलय starts with आ. What sound do they make when they join?",
+      "hi": "हिम के अंत में अ है और आलय के शुरू में आ। जुड़ने पर कौन-सा स्वर बनता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "आ (one long sound)",
+       "hi": "आ (एक लंबा स्वर)"
+      },
+      {
+       "id": "b",
+       "en": "अ (one short sound)",
+       "hi": "अ (एक छोटा स्वर)"
+      },
+      {
+       "id": "c",
+       "en": "ऐ",
+       "hi": "ऐ"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "part:आलय",
+     "expect": "joined:हिमालय",
+     "say": {
+      "en": "Now tap आलय (home) to join them.",
+      "hi": "अब आलय (घर) छुओ और दोनों जोड़ दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "next",
+     "say": {
+      "en": "Press next for a new word.",
+      "hi": "नया शब्द पाने के लिए आगे दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:देव",
+     "expect": "part:देव",
+     "say": {
+      "en": "Tap देव, then आलय, to build the next word.",
+      "hi": "देव छुओ, फिर आलय, और अगला शब्द बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:आलय",
+     "expect": "joined:देवालय",
+     "say": {
+      "en": "Tap आलय to finish देवालय.",
+      "hi": "देवालय पूरा करने के लिए आलय छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When अ meets आ, the two sounds melt into one long आ. This is called दीर्घ सन्धि. So हिम + आलय becomes हिमालय, the home of snow, and देव + आलय becomes देवालय, the home of a god.",
+      "hi": "जब अ और आ मिलते हैं, तो दोनों मिलकर एक लंबा आ बन जाते हैं। इसे दीर्घ सन्धि कहते हैं। इसलिए हिम + आलय = हिमालय यानी बर्फ़ का घर, और देव + आलय = देवालय यानी देवता का घर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "विद्या + आलय =",
+        "hi": "विद्या + आलय ="
+       },
+       "options": [
+        "विद्यालय",
+        "विद्याआलय",
+        "विद्यैलय"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "आ + आ melt into one long आ, giving विद्यालय, a school.",
+        "hi": "आ + आ मिलकर एक लंबा आ बनाते हैं, इसलिए विद्यालय बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Writing both vowels side by side is not a real word; the vowels must join.",
+         "hi": "दोनों स्वरों को साथ-साथ लिखने से शब्द नहीं बनता; स्वर जुड़ने चाहिए।"
+        },
+        {
+         "en": "ऐ would come from a + ए, not from आ + आ.",
+         "hi": "ऐ तो अ + ए से बनता है, आ + आ से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of another ...आलय word at home or school, for example पुस्तकालय, and split it into two.",
+      "hi": "घर या विद्यालय का कोई और ...आलय शब्द सोचो, जैसे पुस्तकालय, और उसे दो भागों में तोड़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Opens the lesson on Bharat Mata",
+   "shows": "Snow peaks of the Himalaya at first light, pink and gold, seen from a green valley",
+   "view": "Wide, low angle, peaks fill the upper half",
+   "right": "Real Indian Himalaya, soft sunrise, no tourists or buildings",
+   "avoid": "Any text, a cartoon mountain"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "The Ganga as a holy river",
+   "shows": "The Ganga at an evening ghat, small oil lamps floating on the water, steps in the background",
+   "view": "Wide, from the water level, people far away and unrecognisable",
+   "right": "Warm dusk light, real ghat steps and lamps",
+   "avoid": "Faces, brand signs, fireworks"
+  },
+  {
+   "n": 3,
+   "kind": "MAP",
+   "topic": "1.2",
+   "use": "Base for the mountains and rivers lab",
+   "shows": "A shaded relief map of India showing mountains, plateaus and rivers without any names or borders",
+   "view": "16:9, whole country, north at the top",
+   "right": "True relief and river courses so the app can place labels",
+   "avoid": "Printed names, state lines, arrows"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "The song in school life",
+   "shows": "Morning assembly in an Indian school: rows of children in uniform seen from behind, flag pole ahead",
+   "view": "Medium wide from behind the rows",
+   "right": "Real uniform, sunny morning, flag fluttering",
+   "avoid": "Faces of identifiable children"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "1.5",
+   "use": "The tricolour",
+   "shows": "The Indian tricolour on a pole, cloth waving gently, saffron, white and green with the blue wheel",
+   "view": "Front view, centred, transparent background",
+   "right": "Correct stripe order and a 24-spoke wheel",
+   "avoid": "Wrong shades, creases hiding the wheel"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "The sea at the feet of the mother",
+   "shows": "Waves meeting the rocks at Kanyakumari at morning, golden light",
+   "view": "Wide, low",
+   "right": "Real southern tip of India, calm morning",
+   "avoid": "Crowds, signboards"
+  }
+ ]
+}

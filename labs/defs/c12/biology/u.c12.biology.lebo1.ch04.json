@@ -1,0 +1,1998 @@
+{
+  "chapter_key": "u.c12.biology.lebo1.ch04",
+  "class": 12,
+  "subject_id": "biology",
+  "title": "Principles of Inheritance and Variation",
+  "source": "https://ncert.nic.in/textbook/pdf/lebo104.pdf",
+  "topics": [
+    {
+      "n": "4.1",
+      "title": "Mendel's laws of inheritance: the big picture",
+      "labs": [
+        "c12-biology-lebo1-ch04-monohybrid"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.2",
+      "title": "Inheritance of one gene: dominance, segregation, test cross, incomplete dominance, co-dominance",
+      "labs": [
+        "c12-biology-lebo1-ch04-test-cross",
+        "c12-biology-lebo1-ch04-incomplete-dominance",
+        "c12-biology-lebo1-ch04-blood-groups"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.3.1",
+      "title": "Inheritance of two genes: independent assortment",
+      "labs": [
+        "c12-biology-lebo1-ch04-dihybrid"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.3.2",
+      "title": "Chromosomal theory, linkage and recombination",
+      "labs": [
+        "c12-biology-lebo1-ch04-chromosomes-linkage"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.4",
+      "title": "Sex determination",
+      "labs": [
+        "c12-biology-lebo1-ch04-sex-determination"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.5",
+      "title": "Mutation",
+      "labs": [
+        "c12-biology-lebo1-ch04-mutation-kinds"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.6",
+      "title": "Genetic disorders: Mendelian and chromosomal",
+      "labs": [
+        "c12-biology-lebo1-ch04-recessive-disorder",
+        "c12-biology-lebo1-ch04-disorder-types"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-biology-lebo1-ch04-monohybrid",
+      "topic": "4.2",
+      "template": "cross",
+      "title": {
+        "en": "A monohybrid cross: tall and dwarf",
+        "hi": "एकसंकर संकरण: लंबा और बौना"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "monohybrid",
+        "trait": "height",
+        "parents": [
+          "Tt",
+          "Tt"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "cross",
+          "expect": "crossed",
+          "say": {
+            "en": "Press \"Cross the parents\" to mix their gametes in the Punnett square.",
+            "hi": "\"संकरण कराओ\" दबाओ, ताकि पनेट वर्ग में युग्मक मिलें।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Both parents are tall but carry the dwarf allele (Tt). What fraction of their offspring will be tall?",
+            "hi": "दोनों जनक लंबे हैं पर बौने एलील (Tt) के वाहक हैं। संतति में कितना भाग लंबा होगा?"
+          },
+          "options": [
+            {
+              "id": "all",
+              "en": "All of them",
+              "hi": "सभी"
+            },
+            {
+              "id": "three",
+              "en": "Three out of four",
+              "hi": "चार में से तीन"
+            },
+            {
+              "id": "half",
+              "en": "Half",
+              "hi": "आधे"
+            }
+          ],
+          "answer": "three"
+        },
+        {
+          "kind": "do",
+          "target": "grow",
+          "expect": "grown",
+          "say": {
+            "en": "Press the grow button to see the offspring appear.",
+            "hi": "संतति देखने के लिए बढ़ाओ बटन दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each parent gives T or t with equal chance. The square has TT, Tt, Tt and tt: three tall plants and one dwarf. The phenotypic ratio is 3 : 1 and the genotypic ratio is 1 : 2 : 1. The dwarf trait did not vanish in the F1; it was hidden because T is dominant, and it reappears when two t alleles meet. This is Mendel's law of segregation: the two alleles of a gene separate during gamete formation, so each gamete carries only one.",
+            "hi": "हर जनक T या t बराबर संभावना से देता है। वर्ग में TT, Tt, Tt और tt आते हैं: तीन लंबे और एक बौना। लक्षणप्ररूप अनुपात 3 : 1 और जीनप्ररूप अनुपात 1 : 2 : 1 है। बौना लक्षण गायब नहीं हुआ था, T प्रभावी होने से छिपा था, और दो t मिलने पर फिर दिखता है। यही मेंडल का पृथक्करण का नियम है: एक जीन के दोनों एलील युग्मक बनते समय अलग हो जाते हैं, इसलिए हर युग्मक में एक ही रहता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is the phenotypic ratio of a Tt × Tt cross?",
+                "hi": "Tt × Tt संकरण का लक्षणप्ररूप अनुपात क्या है?"
+              },
+              "options": [
+                {
+                  "en": "3 tall : 1 dwarf",
+                  "hi": "3 लंबे : 1 बौना"
+                },
+                {
+                  "en": "1 tall : 1 dwarf",
+                  "hi": "1 लंबा : 1 बौना"
+                },
+                {
+                  "en": "1 : 2 : 1",
+                  "hi": "1 : 2 : 1 अनुपात"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "TT and Tt both look tall, so three of four are tall.",
+                "hi": "TT और Tt दोनों लंबे दिखते हैं, इसलिए चार में से तीन लंबे।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "1 : 1 comes from a Tt × tt cross.",
+                  "hi": "1 : 1 Tt × tt संकरण से आता है।"
+                },
+                {
+                  "en": "1 : 2 : 1 is the genotypic ratio, not the phenotypic one.",
+                  "hi": "1 : 2 : 1 जीनप्ररूप अनुपात है, लक्षणप्ररूप नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which law says the two alleles of a gene separate in gametes?",
+                "hi": "कौन-सा नियम कहता है कि जीन के दोनों एलील युग्मकों में अलग हो जाते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Law of segregation",
+                  "hi": "पृथक्करण का नियम"
+                },
+                {
+                  "en": "Law of dominance",
+                  "hi": "प्रभाविता का नियम"
+                },
+                {
+                  "en": "Law of independent assortment",
+                  "hi": "स्वतंत्र अपव्यूहन का नियम"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Segregation: alleles separate so a gamete carries just one.",
+                "hi": "पृथक्करण: एलील अलग होते हैं, इसलिए युग्मक में एक ही जाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Dominance says one allele hides the other in the hybrid.",
+                  "hi": "प्रभाविता कहती है कि संकर में एक एलील दूसरे को छिपा देता है।"
+                },
+                {
+                  "en": "Independent assortment is about two different genes.",
+                  "hi": "स्वतंत्र अपव्यूहन दो अलग जीनों के बारे में है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tap a parent to change its genotype to TT or tt and cross again. When do all offspring look tall?",
+            "hi": "किसी जनक को छूकर उसका जीनप्ररूप TT या tt करो और फिर संकरण कराओ। संतति कब पूरी लंबी दिखती है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch04-test-cross",
+      "topic": "4.2",
+      "template": "cross",
+      "title": {
+        "en": "Test cross: is the tall plant pure?",
+        "hi": "परीक्षण संकरण: क्या लंबा पौधा शुद्ध है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "test-cross",
+        "trait": "height",
+        "parents": [
+          "Tt",
+          "tt"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "cross",
+          "expect": "crossed",
+          "say": {
+            "en": "Press \"Cross the parents\" to mix their gametes in the Punnett square.",
+            "hi": "\"संकरण कराओ\" दबाओ, ताकि पनेट वर्ग में युग्मक मिलें।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A tall plant can be TT or Tt. When it is crossed with a dwarf tt plant, half of the offspring come out dwarf. What does this tell you?",
+            "hi": "लंबा पौधा TT या Tt हो सकता है। बौने tt पौधे से संकरण पर आधी संतति बौनी निकले तो इससे क्या पता चलता है?"
+          },
+          "options": [
+            {
+              "id": "tt",
+              "en": "The tall plant is Tt (hybrid)",
+              "hi": "लंबा पौधा Tt (संकर) है"
+            },
+            {
+              "id": "TT",
+              "en": "The tall plant is TT (pure)",
+              "hi": "लंबा पौधा TT (शुद्ध) है"
+            },
+            {
+              "id": "none",
+              "en": "Nothing can be said",
+              "hi": "कुछ नहीं कहा जा सकता"
+            }
+          ],
+          "answer": "tt"
+        },
+        {
+          "kind": "do",
+          "target": "grow",
+          "expect": "grown",
+          "say": {
+            "en": "Press the grow button to see the offspring appear.",
+            "hi": "संतति देखने के लिए बढ़ाओ बटन दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A test cross crosses an individual showing the dominant trait with a homozygous recessive (tt). If the tall plant is TT, all offspring are Tt and look tall. If it is Tt, half are dwarf (tt). So the offspring reveal the hidden genotype. Mendel used this to confirm that his F1 plants were hybrids.",
+            "hi": "परीक्षण संकरण में प्रभावी लक्षण वाले व्यक्ति का समयुग्मजी अप्रभावी (tt) से संकरण कराया जाता है। लंबा पौधा TT हो तो सारी संतति Tt यानी लंबी होगी। Tt हो तो आधी बौनी (tt) होगी। इस तरह संतति छिपे जीनप्ररूप को बता देती है। मेंडल ने इसी से पक्का किया कि उनके F1 पौधे संकर थे।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "If a test cross gives only tall offspring, the unknown tall plant is",
+                "hi": "परीक्षण संकरण में सारी संतति लंबी आए तो अज्ञात लंबा पौधा"
+              },
+              "options": [
+                {
+                  "en": "TT",
+                  "hi": "TT (शुद्ध)"
+                },
+                {
+                  "en": "Tt",
+                  "hi": "Tt (संकर)"
+                },
+                {
+                  "en": "tt",
+                  "hi": "tt (बौना)"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A TT parent can give only T, so every offspring is Tt and tall.",
+                "hi": "TT जनक केवल T देता है, इसलिए हर संतति Tt और लंबी होती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A Tt parent would give some dwarf offspring.",
+                  "hi": "Tt जनक से कुछ बौनी संतति आती।"
+                },
+                {
+                  "en": "A tt plant is dwarf, not tall.",
+                  "hi": "tt पौधा बौना होता है, लंबा नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is the tester always homozygous recessive?",
+                "hi": "परीक्षक हमेशा समयुग्मजी अप्रभावी क्यों होता है?"
+              },
+              "options": [
+                {
+                  "en": "It gives only the recessive allele, so it hides nothing",
+                  "hi": "यह केवल अप्रभावी एलील देता है, इसलिए कुछ नहीं छिपाता"
+                },
+                {
+                  "en": "It is the tallest plant",
+                  "hi": "यह सबसे लंबा पौधा होता है"
+                },
+                {
+                  "en": "It makes more seeds",
+                  "hi": "यह अधिक बीज बनाता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Its gametes are all t, so the other parent's alleles show clearly in the offspring.",
+                "hi": "इसके सब युग्मक t हैं, इसलिए दूसरे जनक के एलील संतति में साफ़ दिखते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The tester is dwarf, not tall.",
+                  "hi": "परीक्षक बौना होता है, लंबा नहीं।"
+                },
+                {
+                  "en": "Seed number has nothing to do with it.",
+                  "hi": "बीजों की संख्या का इससे संबंध नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tap the unknown plant to see another possibility, then cross again. What offspring ratio would show a pure plant?",
+            "hi": "अज्ञात पौधे को छूकर दूसरी संभावना देखो और फिर संकरण कराओ। शुद्ध पौधे को कौन-सा संतति अनुपात बताएगा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch04-incomplete-dominance",
+      "topic": "4.2",
+      "template": "cross",
+      "title": {
+        "en": "Snapdragon: neither colour wins",
+        "hi": "स्नैपड्रैगन: कोई रंग नहीं जीतता"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "incomplete-dominance",
+        "parents": [
+          "Rr",
+          "Rr"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "cross",
+          "expect": "crossed",
+          "say": {
+            "en": "Press \"Cross the parents\" to mix their gametes in the Punnett square.",
+            "hi": "\"संकरण कराओ\" दबाओ, ताकि पनेट वर्ग में युग्मक मिलें।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Two pink snapdragons (Rr) are crossed. Which colours will the offspring show?",
+            "hi": "दो गुलाबी स्नैपड्रैगन (Rr) का संकरण हुआ। संतति में कौन-से रंग दिखेंगे?"
+          },
+          "options": [
+            {
+              "id": "three",
+              "en": "Red, pink and white",
+              "hi": "लाल, गुलाबी और सफ़ेद"
+            },
+            {
+              "id": "pink",
+              "en": "Only pink",
+              "hi": "केवल गुलाबी"
+            },
+            {
+              "id": "two",
+              "en": "Only red and white",
+              "hi": "केवल लाल और सफ़ेद"
+            }
+          ],
+          "answer": "three"
+        },
+        {
+          "kind": "do",
+          "target": "grow",
+          "expect": "grown",
+          "say": {
+            "en": "Press the grow button to see the offspring appear.",
+            "hi": "संतति देखने के लिए बढ़ाओ बटन दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In snapdragon, R is not fully dominant over r. RR is red, rr is white, and Rr is pink: an in-between colour. This is incomplete dominance. A cross of Rr × Rr gives 1 red : 2 pink : 1 white. Here the phenotypic ratio is the same as the genotypic ratio, 1 : 2 : 1, unlike in Mendel's peas where it was 3 : 1. The alleles do not blend away; the red and white come back in the next generation.",
+            "hi": "स्नैपड्रैगन में R, r पर पूरी तरह प्रभावी नहीं है। RR लाल, rr सफ़ेद और Rr गुलाबी, यानी बीच का रंग। इसे अपूर्ण प्रभाविता कहते हैं। Rr × Rr से 1 लाल : 2 गुलाबी : 1 सफ़ेद मिलता है। यहाँ लक्षणप्ररूप अनुपात और जीनप्ररूप अनुपात दोनों 1 : 2 : 1 हैं, जबकि मेंडल के मटर में 3 : 1 था। एलील घुलकर खोते नहीं; लाल और सफ़ेद अगली पीढ़ी में लौट आते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does the pink colour of Rr show?",
+                "hi": "Rr का गुलाबी रंग क्या दिखाता है?"
+              },
+              "options": [
+                {
+                  "en": "Incomplete dominance",
+                  "hi": "अपूर्ण प्रभाविता"
+                },
+                {
+                  "en": "Complete dominance",
+                  "hi": "पूर्ण प्रभाविता"
+                },
+                {
+                  "en": "A mutation",
+                  "hi": "उत्परिवर्तन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Neither allele fully hides the other, so the hybrid is in between.",
+                "hi": "कोई एलील दूसरे को पूरा नहीं छिपाता, इसलिए संकर बीच का दिखता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "In complete dominance the hybrid looks like one parent.",
+                  "hi": "पूर्ण प्रभाविता में संकर एक जनक जैसा दिखता है।"
+                },
+                {
+                  "en": "A mutation is a change in DNA; here the alleles are normal.",
+                  "hi": "उत्परिवर्तन DNA में बदलाव है; यहाँ एलील सामान्य हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "In Rr × Rr, what fraction of the offspring are white?",
+                "hi": "Rr × Rr में कितने भाग की संतति सफ़ेद होगी?"
+              },
+              "options": [
+                {
+                  "en": "One quarter",
+                  "hi": "एक चौथाई"
+                },
+                {
+                  "en": "Half",
+                  "hi": "आधी"
+                },
+                {
+                  "en": "None",
+                  "hi": "कोई नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Only rr is white, which is one square of four.",
+                "hi": "केवल rr सफ़ेद है, जो चार में से एक वर्ग है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Half are pink (Rr), not white.",
+                  "hi": "आधी गुलाबी (Rr) हैं, सफ़ेद नहीं।"
+                },
+                {
+                  "en": "The white allele returns when two r alleles meet.",
+                  "hi": "दो r मिलने पर सफ़ेद एलील फिर लौटता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the parents to RR and rr and cross. What colour is every F1 plant? Now cross two of those F1 plants.",
+            "hi": "जनक RR और rr करके संकरण कराओ। हर F1 पौधे का रंग क्या है? अब उन्हीं F1 में से दो का संकरण कराओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch04-blood-groups",
+      "topic": "4.2",
+      "template": "cross",
+      "title": {
+        "en": "ABO blood groups: co-dominance",
+        "hi": "ABO रक्त समूह: सह-प्रभाविता"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "blood-groups",
+        "parents": [
+          "IAi",
+          "IBi"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "cross",
+          "expect": "crossed",
+          "say": {
+            "en": "Press \"Cross the parents\" to mix their gametes in the Punnett square.",
+            "hi": "\"संकरण कराओ\" दबाओ, ताकि पनेट वर्ग में युग्मक मिलें।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "One parent has blood group A (IAi) and the other group B (IBi). Which blood groups can their children have?",
+            "hi": "एक जनक का रक्त समूह A (IAi) और दूसरे का B (IBi) है। उनके बच्चों के कौन-से रक्त समूह हो सकते हैं?"
+          },
+          "options": [
+            {
+              "id": "all",
+              "en": "A, B, AB and O",
+              "hi": "A, B, AB और O"
+            },
+            {
+              "id": "ab",
+              "en": "Only AB",
+              "hi": "केवल AB"
+            },
+            {
+              "id": "ab2",
+              "en": "Only A and B",
+              "hi": "केवल A और B"
+            }
+          ],
+          "answer": "all"
+        },
+        {
+          "kind": "do",
+          "target": "grow",
+          "expect": "grown",
+          "say": {
+            "en": "Press the grow button to see the offspring appear.",
+            "hi": "संतति देखने के लिए बढ़ाओ बटन दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The ABO gene has three alleles: IA, IB and i. IA and IB are both dominant over i, but when they meet (IAIB) both show: this is co-dominance, giving blood group AB. A child of IAi and IBi parents can be IAIB (AB), IAi (A), IBi (B) or ii (O): each is one of the four squares. This is also an example of multiple alleles, because the gene has more than two forms in the population, although any one person carries only two.",
+            "hi": "ABO जीन के तीन एलील हैं: IA, IB और i। IA और IB दोनों i पर प्रभावी हैं, पर जब दोनों मिलते हैं (IAIB) तो दोनों प्रकट होते हैं: यह सह-प्रभाविता है, जिससे AB समूह बनता है। IAi और IBi जनकों का बच्चा IAIB (AB), IAi (A), IBi (B) या ii (O) हो सकता है: हर एक चार वर्गों में से एक है। यह बहु-एलीलता का उदाहरण भी है, क्योंकि समष्टि में जीन के दो से अधिक रूप हैं, पर किसी एक व्यक्ति में केवल दो होते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What genotype gives blood group O?",
+                "hi": "कौन-सा जीनप्ररूप O रक्त समूह देता है?"
+              },
+              "options": [
+                {
+                  "en": "ii",
+                  "hi": "ii जीनप्ररूप"
+                },
+                {
+                  "en": "IAIB",
+                  "hi": "IAIB जीनप्ररूप"
+                },
+                {
+                  "en": "IAi",
+                  "hi": "IAi जीनप्ररूप"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "O has neither IA nor IB, only two i alleles.",
+                "hi": "O में न IA है न IB, केवल दो i एलील हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "IAIB gives group AB.",
+                  "hi": "IAIB से AB समूह बनता है।"
+                },
+                {
+                  "en": "IAi shows IA, so it is group A.",
+                  "hi": "IAi में IA दिखता है, इसलिए A समूह।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is blood group AB an example of co-dominance?",
+                "hi": "AB रक्त समूह सह-प्रभाविता का उदाहरण क्यों है?"
+              },
+              "options": [
+                {
+                  "en": "IA and IB both show their effect",
+                  "hi": "IA और IB दोनों अपना असर दिखाते हैं"
+                },
+                {
+                  "en": "One allele hides the other",
+                  "hi": "एक एलील दूसरे को छिपाता है"
+                },
+                {
+                  "en": "The colour is in between",
+                  "hi": "रंग बीच का होता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Both sugars A and B appear on the red cell surface.",
+                "hi": "लाल रक्त कोशिका की सतह पर शर्करा A और B दोनों दिखती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is complete dominance.",
+                  "hi": "यह पूर्ण प्रभाविता है।"
+                },
+                {
+                  "en": "An in-between result is incomplete dominance, which is different.",
+                  "hi": "बीच का परिणाम अपूर्ण प्रभाविता है, जो अलग है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the parents to IAIB and ii and cross. Which groups can the children have? Can group O parents have an AB child?",
+            "hi": "जनक IAIB और ii करके संकरण कराओ। बच्चों के कौन-से समूह हो सकते हैं? क्या O समूह के जनकों का बच्चा AB हो सकता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch04-dihybrid",
+      "topic": "4.3.1",
+      "template": "cross",
+      "title": {
+        "en": "Two traits at once: 9 : 3 : 3 : 1",
+        "hi": "एक साथ दो लक्षण: 9 : 3 : 3 : 1"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "dihybrid",
+        "trait": "seed-shape",
+        "parents": [
+          "RrYy",
+          "RrYy"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "cross",
+          "expect": "crossed",
+          "say": {
+            "en": "Press \"Cross the parents\" to mix their gametes in the Punnett square.",
+            "hi": "\"संकरण कराओ\" दबाओ, ताकि पनेट वर्ग में युग्मक मिलें।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Round yellow seed plants carry hidden wrinkled and green alleles (RrYy). Which seed types will appear in the offspring?",
+            "hi": "गोल पीले बीज वाले पौधे में झुर्रीदार और हरे एलील छिपे हैं (RrYy)। संतति में कौन-से बीज दिखेंगे?"
+          },
+          "options": [
+            {
+              "id": "four",
+              "en": "Four types, including new combinations",
+              "hi": "चार प्रकार, नए संयोजनों सहित"
+            },
+            {
+              "id": "one",
+              "en": "Only round yellow",
+              "hi": "केवल गोल पीले"
+            },
+            {
+              "id": "two",
+              "en": "Only the two parent types",
+              "hi": "केवल दो जनक जैसे प्रकार"
+            }
+          ],
+          "answer": "four"
+        },
+        {
+          "kind": "do",
+          "target": "grow",
+          "expect": "grown",
+          "say": {
+            "en": "Press the grow button to see the offspring appear.",
+            "hi": "संतति देखने के लिए बढ़ाओ बटन दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each plant makes four kinds of gametes: RY, Ry, rY and ry, in equal numbers, because the alleles of the two genes separate independently. The 16 squares give 9 round yellow : 3 round green : 3 wrinkled yellow : 1 wrinkled green. Round green and wrinkled yellow are new combinations that neither parent showed. This is Mendel's law of independent assortment, which holds when the two genes are on different chromosomes.",
+            "hi": "हर पौधा चार प्रकार के युग्मक बनाता है: RY, Ry, rY और ry, बराबर संख्या में, क्योंकि दोनों जीनों के एलील स्वतंत्र रूप से अलग होते हैं। 16 वर्ग देते हैं 9 गोल पीले : 3 गोल हरे : 3 झुर्रीदार पीले : 1 झुर्रीदार हरा। गोल हरे और झुर्रीदार पीले नए संयोजन हैं जो किसी जनक में नहीं थे। यह मेंडल का स्वतंत्र अपव्यूहन का नियम है, जो तब लागू होता है जब दोनों जीन अलग गुणसूत्रों पर हों।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is the phenotypic ratio of a dihybrid cross RrYy × RrYy?",
+                "hi": "द्विसंकर संकरण RrYy × RrYy का लक्षणप्ररूप अनुपात क्या है?"
+              },
+              "options": [
+                {
+                  "en": "9 : 3 : 3 : 1",
+                  "hi": "9 : 3 : 3 : 1 अनुपात"
+                },
+                {
+                  "en": "3 : 1",
+                  "hi": "3 : 1 अनुपात"
+                },
+                {
+                  "en": "1 : 1 : 1 : 1",
+                  "hi": "1 : 1 : 1 : 1 अनुपात"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Four phenotypes appear in the proportion 9 : 3 : 3 : 1 out of 16.",
+                "hi": "चार लक्षणप्ररूप 16 में 9 : 3 : 3 : 1 अनुपात में आते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "3 : 1 is for one gene.",
+                  "hi": "3 : 1 एक जीन के लिए है।"
+                },
+                {
+                  "en": "1 : 1 : 1 : 1 would be a test cross of a dihybrid.",
+                  "hi": "1 : 1 : 1 : 1 द्विसंकर के परीक्षण संकरण में मिलता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many kinds of gametes does an RrYy plant make?",
+                "hi": "RrYy पौधा कितने प्रकार के युग्मक बनाता है?"
+              },
+              "options": [
+                {
+                  "en": "Four",
+                  "hi": "चार"
+                },
+                {
+                  "en": "Two",
+                  "hi": "दो"
+                },
+                {
+                  "en": "Sixteen",
+                  "hi": "सोलह"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "R or r pairs with Y or y: RY, Ry, rY, ry.",
+                "hi": "R या r, Y या y के साथ जोड़ी बनाता है: RY, Ry, rY, ry।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Two would be for one gene only.",
+                  "hi": "दो केवल एक जीन के लिए होते।"
+                },
+                {
+                  "en": "Sixteen is the number of squares, not gametes.",
+                  "hi": "सोलह वर्गों की संख्या है, युग्मकों की नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the parents to RRYY and rryy. What does the F1 look like? Cross two F1 plants and compare with the 9 : 3 : 3 : 1 ratio.",
+            "hi": "जनक RRYY और rryy कर दो। F1 कैसा दिखता है? दो F1 का संकरण कराओ और 9 : 3 : 3 : 1 अनुपात से तुलना करो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch04-chromosomes-linkage",
+      "topic": "4.3.2",
+      "template": "match",
+      "title": {
+        "en": "Chromosomes carry the genes",
+        "hi": "गुणसूत्र जीन ले जाते हैं"
+      },
+      "minutes": 6,
+      "level": "stretch",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "sutton",
+            "left": {
+              "en": "Sutton and Boveri",
+              "hi": "सटन और बोवेरी"
+            },
+            "right": {
+              "en": "Showed that chromosomes behave like Mendel's factors, in pairs that separate in gametes",
+              "hi": "दिखाया कि गुणसूत्र मेंडल के कारकों जैसे जोड़ों में रहते हैं और युग्मकों में अलग होते हैं"
+            },
+            "why": {
+              "en": "This is the chromosomal theory of inheritance.",
+              "hi": "यही वंशागति का गुणसूत्र सिद्धांत है।"
+            }
+          },
+          {
+            "id": "morgan",
+            "left": {
+              "en": "Thomas Hunt Morgan",
+              "hi": "थॉमस हंट मॉर्गन"
+            },
+            "right": {
+              "en": "Worked on fruit flies (Drosophila) and found linkage and sex-linked genes",
+              "hi": "फलमक्खी (ड्रोसोफिला) पर काम किया और सहलग्नता तथा लिंग-सहलग्न जीन खोजे"
+            },
+            "why": {
+              "en": "Fruit flies breed fast and have only four pairs of chromosomes.",
+              "hi": "फलमक्खी जल्दी प्रजनन करती है और उसमें केवल चार जोड़ी गुणसूत्र हैं।"
+            }
+          },
+          {
+            "id": "linkage",
+            "left": {
+              "en": "Linkage",
+              "hi": "सहलग्नता"
+            },
+            "right": {
+              "en": "Genes on the same chromosome that tend to be inherited together",
+              "hi": "एक ही गुणसूत्र के जीन जो साथ-साथ वंशागत होते हैं"
+            },
+            "why": {
+              "en": "Linked genes break the 9 : 3 : 3 : 1 ratio because they do not assort independently.",
+              "hi": "सहलग्न जीन 9 : 3 : 3 : 1 अनुपात तोड़ देते हैं क्योंकि वे स्वतंत्र रूप से अलग नहीं होते।"
+            }
+          },
+          {
+            "id": "recomb",
+            "left": {
+              "en": "Recombination",
+              "hi": "पुनर्योजन"
+            },
+            "right": {
+              "en": "New combinations of linked genes caused by crossing over",
+              "hi": "जीनों के नए संयोजन, जो जीन विनिमय से बनते हैं"
+            },
+            "why": {
+              "en": "Crossing over swaps pieces between homologous chromosomes.",
+              "hi": "जीन विनिमय समजात गुणसूत्रों के बीच टुकड़े बदलता है।"
+            }
+          },
+          {
+            "id": "sturt",
+            "left": {
+              "en": "Alfred Sturtevant",
+              "hi": "आल्फ्रेड स्टर्टवेंट"
+            },
+            "right": {
+              "en": "Used the frequency of recombination to map genes along a chromosome",
+              "hi": "पुनर्योजन की आवृत्ति से गुणसूत्र पर जीनों का मानचित्र बनाया"
+            },
+            "why": {
+              "en": "Genes farther apart recombine more often.",
+              "hi": "दूर-दूर स्थित जीन अधिक बार पुनर्योजित होते हैं।"
+            }
+          },
+          {
+            "id": "pea",
+            "left": {
+              "en": "Mendel's seven pea traits",
+              "hi": "मेंडल के मटर के सात लक्षण"
+            },
+            "right": {
+              "en": "Mostly on different chromosomes, so they assorted independently",
+              "hi": "अधिकतर अलग गुणसूत्रों पर, इसलिए स्वतंत्र रूप से अलग हुए"
+            },
+            "why": {
+              "en": "Peas have seven pairs of chromosomes and he studied seven traits.",
+              "hi": "मटर में सात जोड़ी गुणसूत्र हैं और उन्होंने सात लक्षण देखे।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:sutton",
+          "expect": "matched:sutton",
+          "say": {
+            "en": "Match \"Sutton and Boveri\" with their finding.",
+            "hi": "\"सटन और बोवेरी\" को उनकी खोज से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "If two genes sit close together on the same chromosome, will they be inherited together often or rarely?",
+            "hi": "यदि दो जीन एक ही गुणसूत्र पर पास-पास हों तो क्या वे अक्सर साथ वंशागत होंगे या कम?"
+          },
+          "options": [
+            {
+              "id": "often",
+              "en": "Often",
+              "hi": "अक्सर"
+            },
+            {
+              "id": "rarely",
+              "en": "Rarely",
+              "hi": "कम"
+            }
+          ],
+          "answer": "often"
+        },
+        {
+          "kind": "do",
+          "target": "left:linkage",
+          "expect": "matched:linkage",
+          "say": {
+            "en": "Match \"Linkage\".",
+            "hi": "\"सहलग्नता\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:recomb",
+          "expect": "matched:recomb",
+          "say": {
+            "en": "Match \"Recombination\".",
+            "hi": "\"पुनर्योजन\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Genes lie on chromosomes. Two genes on different chromosomes assort independently, as Mendel saw. Genes on the same chromosome are linked and are inherited together, but crossing over can separate them, creating recombinants. The closer two genes are, the less often they recombine. Sturtevant used this to draw the first gene maps. Mendel was lucky that his seven traits were mostly on different chromosomes.",
+            "hi": "जीन गुणसूत्रों पर होते हैं। अलग गुणसूत्रों पर स्थित दो जीन स्वतंत्र रूप से अलग होते हैं, जैसा मेंडल ने देखा। एक ही गुणसूत्र के जीन सहलग्न होते हैं और साथ वंशागत होते हैं, पर जीन विनिमय उन्हें अलग कर सकता है और पुनर्योजक बनते हैं। दो जीन जितने पास, पुनर्योजन उतना कम। स्टर्टवेंट ने इसी से पहले जीन मानचित्र बनाए। मेंडल सौभाग्यशाली थे कि उनके सात लक्षण अधिकतर अलग गुणसूत्रों पर थे।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which genes are more likely to recombine?",
+                "hi": "कौन-से जीन अधिक पुनर्योजित होने की संभावना रखते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Genes far apart on the same chromosome",
+                  "hi": "एक गुणसूत्र पर दूर-दूर स्थित जीन"
+                },
+                {
+                  "en": "Genes right next to each other",
+                  "hi": "बिल्कुल पास-पास स्थित जीन"
+                },
+                {
+                  "en": "Genes that never crossed over",
+                  "hi": "जिनमें जीन विनिमय कभी नहीं हुआ"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "More distance means more room for a crossover between them.",
+                "hi": "दूरी अधिक तो उनके बीच विनिमय के लिए जगह अधिक।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Nearby genes are rarely separated.",
+                  "hi": "पास-पास के जीन कम ही अलग होते हैं।"
+                },
+                {
+                  "en": "Without crossing over there is no recombination.",
+                  "hi": "जीन विनिमय के बिना पुनर्योजन नहीं होता।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why was Drosophila a good choice for Morgan?",
+                "hi": "मॉर्गन के लिए ड्रोसोफिला अच्छा विकल्प क्यों था?"
+              },
+              "options": [
+                {
+                  "en": "It breeds fast and has few chromosomes",
+                  "hi": "वह जल्दी प्रजनन करती है और उसमें गुणसूत्र कम हैं"
+                },
+                {
+                  "en": "It is large and easy to see",
+                  "hi": "वह बड़ी और आसानी से दिखती है"
+                },
+                {
+                  "en": "It lives for many years",
+                  "hi": "वह कई वर्ष जीती है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Many generations in a short time and clear chromosomes make crosses easy to follow.",
+                "hi": "कम समय में कई पीढ़ियाँ और स्पष्ट गुणसूत्र संकरण समझना आसान बनाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Fruit flies are tiny.",
+                  "hi": "फलमक्खी बहुत छोटी होती है।"
+                },
+                {
+                  "en": "Fruit flies live only weeks, which is a plus for studying many generations.",
+                  "hi": "फलमक्खी केवल सप्ताह जीती है, जो कई पीढ़ियाँ देखने में लाभ है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the rest. If recombination frequency between genes A and B is 5% and between A and C is 30%, which is closer to A: B or C?",
+            "hi": "बाकी जोड़ियाँ मिलाओ। जीन A और B के बीच पुनर्योजन आवृत्ति 5% और A व C के बीच 30% हो तो A के अधिक पास कौन है: B या C?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch04-sex-determination",
+      "topic": "4.4",
+      "template": "cross",
+      "title": {
+        "en": "Boy or girl: who decides?",
+        "hi": "लड़का या लड़की: कौन तय करता है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "sex",
+        "parents": [
+          "XX",
+          "XY"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "cross",
+          "expect": "crossed",
+          "say": {
+            "en": "Press \"Cross the parents\" to mix their gametes in the Punnett square.",
+            "hi": "\"संकरण कराओ\" दबाओ, ताकि पनेट वर्ग में युग्मक मिलें।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The mother has XX and the father XY. Which parent decides whether the baby is a boy or a girl?",
+            "hi": "माँ XX और पिता XY हैं। शिशु लड़का होगा या लड़की, यह कौन तय करता है?"
+          },
+          "options": [
+            {
+              "id": "father",
+              "en": "The father",
+              "hi": "पिता"
+            },
+            {
+              "id": "mother",
+              "en": "The mother",
+              "hi": "माँ"
+            },
+            {
+              "id": "both",
+              "en": "Both equally",
+              "hi": "दोनों बराबर"
+            }
+          ],
+          "answer": "father"
+        },
+        {
+          "kind": "do",
+          "target": "grow",
+          "expect": "grown",
+          "say": {
+            "en": "Press the grow button to see the offspring appear.",
+            "hi": "संतति देखने के लिए बढ़ाओ बटन दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The mother can give only an X in the egg. The father makes two kinds of sperms, half with X and half with Y. If an X sperm fertilises the egg the baby is XX, a girl. If a Y sperm does, the baby is XY, a boy. So the chance of a boy or a girl is equal, 50 : 50, and it is the sperm that decides. A mother can never be blamed for the sex of the child.",
+            "hi": "माँ अंड में केवल X दे सकती है। पिता दो प्रकार के शुक्राणु बनाते हैं, आधे X वाले और आधे Y वाले। X वाला शुक्राणु अंड को निषेचित करे तो शिशु XX यानी लड़की होता है। Y वाला करे तो XY यानी लड़का। इसलिए लड़का या लड़की होने की संभावना बराबर, 50 : 50, है और निर्णय शुक्राणु करता है। शिशु के लिंग के लिए माँ को कभी दोषी नहीं ठहराया जा सकता।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What decides the sex of a human child?",
+                "hi": "मनुष्य के शिशु का लिंग क्या तय करता है?"
+              },
+              "options": [
+                {
+                  "en": "The sperm: X or Y",
+                  "hi": "शुक्राणु: X या Y"
+                },
+                {
+                  "en": "The egg",
+                  "hi": "अंड"
+                },
+                {
+                  "en": "The mother's diet",
+                  "hi": "माँ का आहार"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Every egg carries X, so the type of sperm that fertilises it decides.",
+                "hi": "हर अंड में X होता है, इसलिए निषेचित करने वाले शुक्राणु का प्रकार तय करता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "All eggs carry X, so the egg cannot decide.",
+                  "hi": "सब अंडों में X होता है, इसलिए अंड तय नहीं कर सकता।"
+                },
+                {
+                  "en": "Diet does not change the chromosomes.",
+                  "hi": "आहार गुणसूत्र नहीं बदलता।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What is the chance that a baby is a girl?",
+                "hi": "शिशु के लड़की होने की संभावना कितनी है?"
+              },
+              "options": [
+                {
+                  "en": "1 in 2",
+                  "hi": "2 में से 1"
+                },
+                {
+                  "en": "1 in 4",
+                  "hi": "4 में से 1"
+                },
+                {
+                  "en": "Always 1",
+                  "hi": "हमेशा 1"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Half the sperms carry X, so half the babies are XX.",
+                "hi": "आधे शुक्राणुओं में X होता है, इसलिए आधे शिशु XX होते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The square has 2 girls and 2 boys, so the chance is not one in four.",
+                  "hi": "वर्ग में 2 लड़कियाँ और 2 लड़के हैं, इसलिए संभावना चौथाई नहीं।"
+                },
+                {
+                  "en": "The chance is the same for every birth, not fixed.",
+                  "hi": "हर जन्म में संभावना बराबर होती है, तय नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press grow several times. Does a family with two girls have a higher chance of a boy next time? Think about the square.",
+            "hi": "बढ़ाओ बटन कई बार दबाओ। जिस परिवार में दो लड़कियाँ हैं, क्या अगली बार लड़का होने की संभावना बढ़ जाती है? वर्ग को देखकर सोचो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch04-mutation-kinds",
+      "topic": "4.5",
+      "template": "sort",
+      "title": {
+        "en": "Kinds of mutation",
+        "hi": "उत्परिवर्तन के प्रकार"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "point",
+            "label": {
+              "en": "Point mutation",
+              "hi": "बिंदु उत्परिवर्तन"
+            }
+          },
+          {
+            "id": "frame",
+            "label": {
+              "en": "Frame-shift",
+              "hi": "फ्रेम-शिफ्ट"
+            }
+          },
+          {
+            "id": "chromo",
+            "label": {
+              "en": "Chromosomal change",
+              "hi": "गुणसूत्रीय परिवर्तन"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "sickle",
+            "text": {
+              "en": "One base change in the beta-globin gene (sickle-cell)",
+              "hi": "बीटा-ग्लोबिन जीन में एक क्षारक का बदलाव (सिकल सेल)"
+            },
+            "bin": "point",
+            "why": {
+              "en": "A single base pair changes (A replaced by T), so one amino acid in haemoglobin changes.",
+              "hi": "एक क्षार युग्म बदलता है, इसलिए हीमोग्लोबिन का एक अमीनो अम्ल बदल जाता है।"
+            }
+          },
+          {
+            "id": "subst",
+            "text": {
+              "en": "One base replaced by another",
+              "hi": "एक क्षारक की जगह दूसरा क्षारक"
+            },
+            "bin": "point",
+            "why": {
+              "en": "Substitution of a single base is a point mutation.",
+              "hi": "एक क्षारक का प्रतिस्थापन बिंदु उत्परिवर्तन है।"
+            }
+          },
+          {
+            "id": "del",
+            "text": {
+              "en": "One or two bases deleted from a gene",
+              "hi": "जीन से एक-दो क्षारक हट गए"
+            },
+            "bin": "frame",
+            "why": {
+              "en": "Deleting bases shifts the reading frame of the codons.",
+              "hi": "क्षारक हटने से कोडनों का पठन-ढाँचा खिसक जाता है।"
+            }
+          },
+          {
+            "id": "ins",
+            "text": {
+              "en": "An extra base inserted into a gene",
+              "hi": "जीन में एक अतिरिक्त क्षारक जुड़ गया"
+            },
+            "bin": "frame",
+            "why": {
+              "en": "Insertion also shifts the frame, so all later codons change.",
+              "hi": "जोड़ने से भी ढाँचा खिसकता है, इसलिए बाद के सब कोडन बदल जाते हैं।"
+            }
+          },
+          {
+            "id": "extra21",
+            "text": {
+              "en": "An extra copy of chromosome 21 (Down syndrome)",
+              "hi": "गुणसूत्र 21 की एक अतिरिक्त प्रति (डाउन सिंड्रोम)"
+            },
+            "bin": "chromo",
+            "why": {
+              "en": "Gain of a whole chromosome is aneuploidy.",
+              "hi": "पूरा गुणसूत्र बढ़ना असुगुणिता (एन्यूप्लॉइडी) है।"
+            }
+          },
+          {
+            "id": "poly",
+            "text": {
+              "en": "Whole extra sets of chromosomes (polyploidy)",
+              "hi": "गुणसूत्रों के अतिरिक्त पूरे समुच्चय (बहुगुणिता)"
+            },
+            "bin": "chromo",
+            "why": {
+              "en": "Failure of cytokinesis after chromosome duplication gives polyploidy, common in plants.",
+              "hi": "गुणसूत्र द्विगुणन के बाद साइटोकाइनेसिस न होने से बहुगुणिता बनती है, जो पौधों में आम है।"
+            }
+          },
+          {
+            "id": "loss",
+            "text": {
+              "en": "A segment of a chromosome lost",
+              "hi": "गुणसूत्र का एक खंड खो गया"
+            },
+            "bin": "chromo",
+            "why": {
+              "en": "Deletion, duplication or inversion of a chromosome part is a chromosomal aberration.",
+              "hi": "गुणसूत्र के भाग का लोप, द्विगुणन या प्रतिलोमन गुणसूत्र विपथन है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:sickle",
+          "expect": "correct:sickle",
+          "say": {
+            "en": "Sort the sickle-cell card.",
+            "hi": "सिकल सेल वाला कार्ड छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A base is deleted from a gene. Will only one codon be changed, or every codon after it?",
+            "hi": "जीन से एक क्षारक हटा। क्या केवल एक कोडन बदलेगा या उसके बाद के सब?"
+          },
+          "options": [
+            {
+              "id": "one",
+              "en": "Only one codon",
+              "hi": "केवल एक कोडन"
+            },
+            {
+              "id": "all",
+              "en": "Every codon after it",
+              "hi": "उसके बाद के सब कोडन"
+            }
+          ],
+          "answer": "all"
+        },
+        {
+          "kind": "do",
+          "target": "card:del",
+          "expect": "correct:del",
+          "say": {
+            "en": "Sort \"One or two bases deleted\".",
+            "hi": "\"एक-दो क्षारक हट गए\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:extra21",
+          "expect": "correct:extra21",
+          "say": {
+            "en": "Sort \"An extra copy of chromosome 21\".",
+            "hi": "\"गुणसूत्र 21 की एक अतिरिक्त प्रति\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A mutation is a sudden change in DNA or chromosomes that gives new variation. A point mutation changes one base pair, for example the sickle-cell change in haemoglobin. Deletion or insertion of bases shifts the reading frame (frame-shift). Larger changes affect whole chromosomes: losing or gaining a chromosome or a set. Mutations can arise by chance or because of mutagens such as UV rays and chemicals. Most are harmful, but some give useful variation.",
+            "hi": "उत्परिवर्तन DNA या गुणसूत्रों में अचानक होने वाला बदलाव है जो नई विविधता देता है। बिंदु उत्परिवर्तन एक क्षार युग्म बदलता है, जैसे हीमोग्लोबिन में सिकल सेल वाला बदलाव। क्षारकों का लोप या जुड़ना पठन-ढाँचा खिसकाता है (फ्रेम-शिफ्ट)। बड़े बदलाव पूरे गुणसूत्रों को छूते हैं: गुणसूत्र या पूरा समुच्चय घटना-बढ़ना। उत्परिवर्तन संयोग से या उत्परिवर्तजनों जैसे UV किरणों और रसायनों से हो सकते हैं। अधिकतर हानिकारक हैं, पर कुछ उपयोगी विविधता देते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is a frame-shift usually more damaging than a point mutation?",
+                "hi": "फ्रेम-शिफ्ट प्रायः बिंदु उत्परिवर्तन से अधिक हानिकारक क्यों होता है?"
+              },
+              "options": [
+                {
+                  "en": "It changes every codon after the change",
+                  "hi": "यह बदलाव के बाद हर कोडन बदल देता है"
+                },
+                {
+                  "en": "It changes the number of chromosomes",
+                  "hi": "यह गुणसूत्रों की संख्या बदलता है"
+                },
+                {
+                  "en": "It only changes a base in the DNA backbone",
+                  "hi": "यह केवल DNA की रीढ़ का क्षारक बदलता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The codons are read in threes, so the shift scrambles the whole rest of the message.",
+                "hi": "कोडन तीन-तीन के समूह में पढ़े जाते हैं, इसलिए खिसकाव बाकी पूरा संदेश बिगाड़ देता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Chromosome number is changed by chromosomal aberrations, not frame-shifts.",
+                  "hi": "गुणसूत्र संख्या गुणसूत्र विपथन से बदलती है, फ्रेम-शिफ्ट से नहीं।"
+                },
+                {
+                  "en": "The bases are the code; the backbone is not read.",
+                  "hi": "क्षारक कूट हैं; रीढ़ पढ़ी नहीं जाती।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which of these is a mutagen?",
+                "hi": "इनमें से कौन उत्परिवर्तजन है?"
+              },
+              "options": [
+                {
+                  "en": "UV radiation",
+                  "hi": "पराबैंगनी (UV) विकिरण"
+                },
+                {
+                  "en": "Cold water",
+                  "hi": "ठंडा पानी"
+                },
+                {
+                  "en": "A balanced diet",
+                  "hi": "संतुलित आहार"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "UV rays can damage DNA and cause mutations.",
+                "hi": "UV किरणें DNA को हानि पहुँचाकर उत्परिवर्तन कर सकती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Cold water does not change DNA.",
+                  "hi": "ठंडा पानी DNA नहीं बदलता।"
+                },
+                {
+                  "en": "A balanced diet is healthy; it does not mutate genes.",
+                  "hi": "संतुलित आहार स्वास्थ्यकर है; वह जीन नहीं बदलता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the remaining cards. Why is sunscreen or a hat a good idea for DNA?",
+            "hi": "बाकी कार्ड छाँटो। DNA के लिए सनस्क्रीन या टोपी अच्छा विचार क्यों है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch04-recessive-disorder",
+      "topic": "4.6",
+      "template": "cross",
+      "title": {
+        "en": "A recessive disorder in a family",
+        "hi": "परिवार में अप्रभावी रोग"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "pedigree",
+        "parents": [
+          "Aa",
+          "Aa"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "cross",
+          "expect": "crossed",
+          "say": {
+            "en": "Press \"Cross the parents\" to mix their gametes in the Punnett square.",
+            "hi": "\"संकरण कराओ\" दबाओ, ताकि पनेट वर्ग में युग्मक मिलें।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Both parents look healthy but each carries one allele for a recessive disorder (Aa). What is the chance that a child has the disorder (aa)?",
+            "hi": "दोनों जनक स्वस्थ दिखते हैं पर हर एक में अप्रभावी रोग का एक एलील है (Aa)। बच्चे को रोग (aa) होने की संभावना कितनी है?"
+          },
+          "options": [
+            {
+              "id": "quarter",
+              "en": "One in four",
+              "hi": "चार में एक"
+            },
+            {
+              "id": "half",
+              "en": "One in two",
+              "hi": "दो में एक"
+            },
+            {
+              "id": "none",
+              "en": "None",
+              "hi": "शून्य"
+            }
+          ],
+          "answer": "quarter"
+        },
+        {
+          "kind": "do",
+          "target": "grow",
+          "expect": "grown",
+          "say": {
+            "en": "Press the grow button to see the offspring appear.",
+            "hi": "संतति देखने के लिए बढ़ाओ बटन दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Carriers (Aa) look normal because A hides a. When two carriers have a child, each child has a 1 in 4 chance of aa and being affected, a 2 in 4 chance of being a carrier, and a 1 in 4 chance of being clear (AA). Each child is a fresh draw, like tossing a coin. Sickle-cell anaemia, thalassemia and phenylketonuria are recessive Mendelian disorders. They are more likely in families where relatives marry, which is one reason for genetic counselling.",
+            "hi": "वाहक (Aa) सामान्य दिखते हैं क्योंकि A, a को छिपा देता है। दो वाहकों के बच्चे में aa होने और रोगी होने की संभावना 4 में 1, वाहक होने की 4 में 2 और बिल्कुल सामान्य (AA) होने की 4 में 1 है। हर बच्चा नया पासा है, जैसे सिक्का उछालना। सिकल सेल एनीमिया, थैलेसीमिया और फ़ेनिलकीटोनूरिया अप्रभावी मेंडेलीय रोग हैं। रिश्तेदारों में विवाह वाले परिवारों में इनकी संभावना अधिक होती है, इसीलिए आनुवंशिक परामर्श दिया जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Two carriers (Aa × Aa) have four children. What is true?",
+                "hi": "दो वाहकों (Aa × Aa) के चार बच्चे हैं। क्या सही है?"
+              },
+              "options": [
+                {
+                  "en": "Each child has a 1 in 4 chance of being affected",
+                  "hi": "हर बच्चे को रोगी होने की 4 में 1 संभावना है"
+                },
+                {
+                  "en": "Exactly one child must be affected",
+                  "hi": "ठीक एक बच्चा रोगी होना ही चाहिए"
+                },
+                {
+                  "en": "No child can be affected",
+                  "hi": "कोई बच्चा रोगी नहीं हो सकता"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Every birth is independent; the chance is 1 in 4 each time.",
+                "hi": "हर जन्म स्वतंत्र है; हर बार संभावना 4 में 1 है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Chance does not guarantee a fixed count in a small family.",
+                  "hi": "संयोग छोटे परिवार में तय संख्या की गारंटी नहीं देता।"
+                },
+                {
+                  "en": "Two carriers both can pass on the allele a, so an affected child is possible.",
+                  "hi": "दोनों वाहक a एलील दे सकते हैं, इसलिए रोगी बच्चा संभव है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why do carriers look healthy?",
+                "hi": "वाहक स्वस्थ क्यों दिखते हैं?"
+              },
+              "options": [
+                {
+                  "en": "The dominant allele A masks the recessive a",
+                  "hi": "प्रभावी एलील A अप्रभावी a को ढक देता है"
+                },
+                {
+                  "en": "They have no disease allele",
+                  "hi": "उनमें रोग का एलील नहीं होता"
+                },
+                {
+                  "en": "The disease is cured by age",
+                  "hi": "रोग उम्र के साथ ठीक हो जाता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "One normal allele is enough to make the normal protein.",
+                "hi": "सामान्य प्रोटीन बनाने के लिए एक सामान्य एलील काफ़ी है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Carriers do have the disease allele, just one copy.",
+                  "hi": "वाहकों में रोग का एलील होता है, पर एक ही प्रति।"
+                },
+                {
+                  "en": "Genetic disorders are not cured by age.",
+                  "hi": "आनुवंशिक रोग उम्र से ठीक नहीं होते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press grow for four more children. How many are affected? Is it exactly one in four? Why not?",
+            "hi": "चार और बच्चों के लिए बढ़ाओ दबाओ। कितने रोगी हैं? क्या ठीक चार में एक है? क्यों नहीं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch04-disorder-types",
+      "topic": "4.6",
+      "template": "sort",
+      "title": {
+        "en": "Genetic disorders: gene or chromosome?",
+        "hi": "आनुवंशिक रोग: जीन या गुणसूत्र?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "gene",
+            "label": {
+              "en": "Mendelian (one gene)",
+              "hi": "मेंडेलीय (एक जीन)"
+            }
+          },
+          {
+            "id": "chrom",
+            "label": {
+              "en": "Chromosomal (number)",
+              "hi": "गुणसूत्रीय (संख्या)"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "hemo",
+            "text": {
+              "en": "Haemophilia: blood does not clot well",
+              "hi": "हीमोफ़ीलिया: रक्त ठीक से नहीं जमता"
+            },
+            "bin": "gene",
+            "why": {
+              "en": "A recessive X-linked gene; it affects males more often.",
+              "hi": "अप्रभावी X-सहलग्न जीन; पुरुषों में अधिक होता है।"
+            }
+          },
+          {
+            "id": "colour",
+            "text": {
+              "en": "Colour blindness: red-green confusion",
+              "hi": "वर्णांधता: लाल-हरे रंग का भ्रम"
+            },
+            "bin": "gene",
+            "why": {
+              "en": "An X-linked recessive gene defect.",
+              "hi": "X-सहलग्न अप्रभावी जीन दोष।"
+            }
+          },
+          {
+            "id": "sickle",
+            "text": {
+              "en": "Sickle-cell anaemia",
+              "hi": "सिकल सेल एनीमिया"
+            },
+            "bin": "gene",
+            "why": {
+              "en": "Autosomal recessive; one base change in a gene.",
+              "hi": "अलिंगसूत्री अप्रभावी; जीन में एक क्षारक बदलाव।"
+            }
+          },
+          {
+            "id": "thal",
+            "text": {
+              "en": "Thalassemia: too little haemoglobin",
+              "hi": "थैलेसीमिया: हीमोग्लोबिन कम"
+            },
+            "bin": "gene",
+            "why": {
+              "en": "A gene defect in the synthesis of globin chains.",
+              "hi": "ग्लोबिन शृंखला बनाने वाले जीन का दोष।"
+            }
+          },
+          {
+            "id": "pku",
+            "text": {
+              "en": "Phenylketonuria (PKU)",
+              "hi": "फ़ेनिलकीटोनूरिया (PKU)"
+            },
+            "bin": "gene",
+            "why": {
+              "en": "A recessive gene fails to make an enzyme.",
+              "hi": "अप्रभावी जीन एक एंज़ाइम नहीं बना पाता।"
+            }
+          },
+          {
+            "id": "down",
+            "text": {
+              "en": "Down syndrome: trisomy of chromosome 21",
+              "hi": "डाउन सिंड्रोम: गुणसूत्र 21 की त्रिगुणता"
+            },
+            "bin": "chrom",
+            "why": {
+              "en": "Three copies of chromosome 21 give 47 chromosomes.",
+              "hi": "गुणसूत्र 21 की तीन प्रतियाँ 47 गुणसूत्र बनाती हैं।"
+            }
+          },
+          {
+            "id": "klin",
+            "text": {
+              "en": "Klinefelter's syndrome: XXY",
+              "hi": "क्लाइनफ़ेल्टर सिंड्रोम: XXY"
+            },
+            "bin": "chrom",
+            "why": {
+              "en": "An extra X in a male gives 47 chromosomes.",
+              "hi": "पुरुष में एक अतिरिक्त X से 47 गुणसूत्र होते हैं।"
+            }
+          },
+          {
+            "id": "turner",
+            "text": {
+              "en": "Turner's syndrome: XO",
+              "hi": "टर्नर सिंड्रोम: XO"
+            },
+            "bin": "chrom",
+            "why": {
+              "en": "A female with only one X has 45 chromosomes.",
+              "hi": "केवल एक X वाली स्त्री में 45 गुणसूत्र होते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:hemo",
+          "expect": "correct:hemo",
+          "say": {
+            "en": "Sort \"Haemophilia\".",
+            "hi": "\"हीमोफ़ीलिया\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Down syndrome has 47 chromosomes instead of 46. Is it a one-gene or a chromosomal disorder?",
+            "hi": "डाउन सिंड्रोम में 46 की जगह 47 गुणसूत्र हैं। क्या यह एक-जीन का रोग है या गुणसूत्रीय?"
+          },
+          "options": [
+            {
+              "id": "chrom",
+              "en": "Chromosomal",
+              "hi": "गुणसूत्रीय"
+            },
+            {
+              "id": "gene",
+              "en": "One gene",
+              "hi": "एक जीन"
+            }
+          ],
+          "answer": "chrom"
+        },
+        {
+          "kind": "do",
+          "target": "card:down",
+          "expect": "correct:down",
+          "say": {
+            "en": "Sort \"Down syndrome\".",
+            "hi": "\"डाउन सिंड्रोम\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:sickle",
+          "expect": "correct:sickle",
+          "say": {
+            "en": "Sort \"Sickle-cell anaemia\".",
+            "hi": "\"सिकल सेल एनीमिया\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Mendelian disorders come from a change in one gene and follow Mendel's rules: haemophilia and colour blindness (X-linked recessive), sickle-cell anaemia, thalassemia and PKU (autosomal recessive). Chromosomal disorders come from too many or too few chromosomes, usually when chromosomes fail to separate in meiosis: Down syndrome (21), Klinefelter's (XXY) and Turner's (XO). Many of these cannot be cured, so counselling and early care help families. People with these conditions deserve respect and support.",
+            "hi": "मेंडेलीय रोग एक जीन के बदलाव से होते हैं और मेंडल के नियम मानते हैं: हीमोफ़ीलिया और वर्णांधता (X-सहलग्न अप्रभावी), सिकल सेल एनीमिया, थैलेसीमिया और PKU (अलिंगसूत्री अप्रभावी)। गुणसूत्रीय रोग गुणसूत्र अधिक या कम होने से होते हैं, प्रायः अर्धसूत्री विभाजन में गुणसूत्रों के अलग न होने (अविच्छेदन) से: डाउन (21), क्लाइनफ़ेल्टर (XXY) और टर्नर (XO)। इनमें से कई ठीक नहीं होते, इसलिए परामर्श और शुरुआती देखभाल परिवारों की मदद करते हैं। ऐसे लोग सम्मान और सहयोग के हक़दार हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many chromosomes does a person with Turner's syndrome (XO) have?",
+                "hi": "टर्नर सिंड्रोम (XO) वाले व्यक्ति में कितने गुणसूत्र होते हैं?"
+              },
+              "options": [
+                {
+                  "en": "45",
+                  "hi": "45 गुणसूत्र"
+                },
+                {
+                  "en": "46",
+                  "hi": "46 गुणसूत्र"
+                },
+                {
+                  "en": "47",
+                  "hi": "47 गुणसूत्र"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "One X is missing, so 44 autosomes plus one X make 45.",
+                "hi": "एक X कम है, इसलिए 44 अलिंगसूत्र और एक X मिलकर 45।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "46 is the normal number.",
+                  "hi": "46 सामान्य संख्या है।"
+                },
+                {
+                  "en": "47 is for Down syndrome or Klinefelter's, which have an extra chromosome.",
+                  "hi": "47 डाउन या क्लाइनफ़ेल्टर में होता है, जिनमें एक अतिरिक्त गुणसूत्र है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why does haemophilia affect males more often?",
+                "hi": "हीमोफ़ीलिया पुरुषों को अधिक क्यों होता है?"
+              },
+              "options": [
+                {
+                  "en": "The gene is on the X chromosome and males have only one X",
+                  "hi": "जीन X गुणसूत्र पर है और पुरुषों में एक ही X होता है"
+                },
+                {
+                  "en": "It is on the Y chromosome",
+                  "hi": "वह Y गुणसूत्र पर है"
+                },
+                {
+                  "en": "Males eat different food",
+                  "hi": "पुरुष अलग भोजन करते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A son has no second X to cover the faulty allele, while a daughter needs two faulty copies.",
+                "hi": "पुत्र में दोषपूर्ण एलील ढकने वाला दूसरा X नहीं होता, जबकि पुत्री में दो दोषपूर्ण प्रतियाँ चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The gene is X-linked, not Y-linked.",
+                  "hi": "जीन X-सहलग्न है, Y-सहलग्न नहीं।"
+                },
+                {
+                  "en": "Diet does not cause haemophilia.",
+                  "hi": "आहार से हीमोफ़ीलिया नहीं होता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Why is it important that blood for transfusion and family history are shared honestly with a doctor?",
+            "hi": "बाकी कार्ड छाँटो। डॉक्टर को पारिवारिक इतिहास ईमानदारी से बताना क्यों ज़रूरी है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "OBJ",
+      "topic": "4.1",
+      "use": "Mendel's pea plant",
+      "shows": "A flowering pea plant (Pisum sativum) with a pod cut open and round and wrinkled seeds beside it",
+      "view": "Natural light, shallow depth of field",
+      "right": "Flower, pod and both seed shapes visible",
+      "avoid": "Staged or stock-looking plants"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "4.2",
+      "use": "Punnett squares",
+      "shows": "A clean Tt × Tt Punnett square with tall and dwarf pea plants in the four boxes",
+      "view": "Flat vector, bright colours",
+      "right": "3 : 1 and 1 : 2 : 1 ratios marked",
+      "avoid": "Cluttered text"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "4.2",
+      "use": "Snapdragon colours",
+      "shows": "Red, pink and white snapdragon flowers side by side",
+      "view": "Close-up, soft background",
+      "right": "Three distinct colours of the same species",
+      "avoid": "Different species"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "4.3.2",
+      "use": "Chromosomes in a fruit fly",
+      "shows": "Four pairs of Drosophila chromosomes with a crossing-over between two homologues",
+      "view": "Schematic, bold colours for each homologue",
+      "right": "Crossover and recombinant chromatids clear",
+      "avoid": "Photographs"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "4.4",
+      "use": "Sex determination",
+      "shows": "Chromosomes X and Y in a human cell and the gametes that give a boy or a girl",
+      "view": "Schematic, pink and blue used consistently",
+      "right": "Sperm X or Y deciding the sex clear",
+      "avoid": "Stereotyped pink and blue clothing"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "4.6",
+      "use": "A pedigree chart",
+      "shows": "A three-generation family pedigree for a recessive trait with squares, circles and shaded symbols",
+      "view": "Flat vector on white",
+      "right": "Carriers marked with a half-shaded symbol",
+      "avoid": "Real family photos"
+    },
+    {
+      "n": 7,
+      "kind": "DIA",
+      "topic": "4.6",
+      "use": "Human karyotypes",
+      "shows": "A normal karyotype and a Down syndrome karyotype side by side with the extra chromosome 21 circled",
+      "view": "Medical-diagram register",
+      "right": "Extra chromosome 21 clearly highlighted",
+      "avoid": "Photographs of people"
+    }
+  ]
+}

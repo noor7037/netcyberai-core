@@ -1,0 +1,1146 @@
+{
+ "chapter_key": "u.c06.mathematics.fegp1.ch01",
+ "class": 6,
+ "subject_id": "mathematics",
+ "title": "Patterns in Mathematics",
+ "source": "https://ncert.nic.in/textbook/pdf/fegp101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "What is Mathematics? Finding and explaining patterns",
+   "labs": [],
+   "why_no_lab": "An opening idea about what mathematics is; a short reading with photos of patterns around us teaches it better than a lab."
+  },
+  {
+   "n": "1.2",
+   "title": "Patterns in numbers: key number sequences",
+   "labs": [
+    "c06-mathematics-fegp1-ch01-doubling",
+    "c06-mathematics-fegp1-ch01-virahanka"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Visualising number sequences with dots and pictures",
+   "labs": [
+    "c06-mathematics-fegp1-ch01-triangular",
+    "c06-mathematics-fegp1-ch01-squares"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Relations among number sequences",
+   "labs": [
+    "c06-mathematics-fegp1-ch01-odd-squares"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Patterns in shapes: shape sequences",
+   "labs": [
+    "c06-mathematics-fegp1-ch01-koch"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Relation of shape sequences to number sequences",
+   "labs": [
+    "c06-mathematics-fegp1-ch01-complete-graph"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-mathematics-fegp1-ch01-doubling",
+   "topic": "1.2",
+   "template": "pattern",
+   "title": {
+    "en": "Powers of 2: keep doubling",
+    "hi": "2 की घातें: दोगुना करते जाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     1,
+     2,
+     4,
+     8
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at 1, 2, 4, 8. Each number is double the one before. What comes after 8?",
+      "hi": "1, 2, 4, 8 को देखो। हर संख्या पिछली संख्या की दोगुनी है। 8 के बाद क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "16",
+       "en": "16",
+       "hi": "संख्या 16"
+      },
+      {
+       "id": "10",
+       "en": "10",
+       "hi": "संख्या 10"
+      },
+      {
+       "id": "12",
+       "en": "12",
+       "hi": "संख्या 12"
+      }
+     ],
+     "answer": "16"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next number in the box and press the check button.",
+      "hi": "अगली संख्या खाने में लिखो और जाँच वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Great. Now type the number after that one.",
+      "hi": "बढ़िया। अब उसके बाद वाली संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Now pick the rule that makes this pattern.",
+      "hi": "अब वह नियम चुनो जिससे यह पैटर्न बनता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each new number is the one before it multiplied by 2: 8 × 2 = 16, 16 × 2 = 32. These are the powers of 2. They grow very fast, much faster than adding the same number each time.",
+      "hi": "हर नई संख्या पिछली संख्या को 2 से गुणा करके बनती है: 8 × 2 = 16, 16 × 2 = 32। ये 2 की घातें हैं। ये बहुत तेज़ी से बढ़ती हैं, हर बार एक ही संख्या जोड़ने से कहीं ज़्यादा तेज़।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number comes after 32 in this pattern?",
+        "hi": "इस पैटर्न में 32 के बाद कौन-सी संख्या आएगी?"
+       },
+       "options": [
+        "64",
+        "34",
+        "48"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "32 doubled is 64.",
+        "hi": "32 का दोगुना 64 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "34 comes from adding 2, but this pattern doubles each time.",
+         "hi": "34 तो 2 जोड़ने से आता है, पर यह पैटर्न हर बार दोगुना करता है।"
+        },
+        {
+         "en": "48 is 32 plus 16; the pattern multiplies by 2, so it is 32 + 32.",
+         "hi": "48 तो 32 में 16 जोड़ने से आता है; पैटर्न 2 से गुणा करता है, यानी 32 + 32।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A sheet of paper is folded in half again and again. The layers go 1, 2, 4, 8 … Why?",
+        "hi": "एक कागज़ को बार-बार आधा मोड़ा जाता है। परतें 1, 2, 4, 8 … होती जाती हैं। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Each fold doubles the layers",
+         "hi": "हर मोड़ परतों को दोगुना कर देता है"
+        },
+        {
+         "en": "Each fold adds 2 layers",
+         "hi": "हर मोड़ 2 परतें जोड़ता है"
+        },
+        {
+         "en": "Each fold adds 1 layer",
+         "hi": "हर मोड़ 1 परत जोड़ता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every layer is folded onto itself, so the count doubles: a power of 2.",
+        "hi": "हर परत अपने ऊपर मुड़ती है, इसलिए गिनती दोगुनी हो जाती है: 2 की घात।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding 2 would give 1, 3, 5, 7 … but we get 1, 2, 4, 8.",
+         "hi": "2 जोड़ने से 1, 3, 5, 7 … बनता, पर हमें 1, 2, 4, 8 मिलता है।"
+        },
+        {
+         "en": "Adding 1 would give 1, 2, 3, 4 … but after 2 comes 4, not 3.",
+         "hi": "1 जोड़ने से 1, 2, 3, 4 … बनता, पर 2 के बाद 4 आता है, 3 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Keep typing the next terms. How many doublings does it take to pass 1000?",
+      "hi": "अब ख़ुद आज़माओ। अगले पद लिखते जाओ। 1000 पार करने में कितनी बार दोगुना करना पड़ता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch01-virahanka",
+   "topic": "1.2",
+   "template": "pattern",
+   "title": {
+    "en": "Virahanka numbers",
+    "hi": "विरहांक संख्याएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     1,
+     2,
+     3,
+     5
+    ],
+    "rule": "fib"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at 1, 2, 3, 5. Here 3 = 1 + 2 and 5 = 2 + 3. What comes after 5?",
+      "hi": "1, 2, 3, 5 को देखो। यहाँ 3 = 1 + 2 और 5 = 2 + 3 है। 5 के बाद क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "8",
+       "en": "8",
+       "hi": "संख्या 8"
+      },
+      {
+       "id": "7",
+       "en": "7",
+       "hi": "संख्या 7"
+      },
+      {
+       "id": "10",
+       "en": "10",
+       "hi": "संख्या 10"
+      }
+     ],
+     "answer": "8"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next number in the box and check it.",
+      "hi": "अगली संख्या खाने में लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now type the number after that.",
+      "hi": "अब उसके बाद वाली संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Pick the rule that makes this pattern.",
+      "hi": "वह नियम चुनो जिससे यह पैटर्न बनता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each number is the sum of the two numbers just before it: 3 + 5 = 8, 5 + 8 = 13. Virahanka, a scholar of poetry and music in India, found these numbers more than 1300 years ago while counting rhythms made of short and long beats.",
+      "hi": "हर संख्या अपने ठीक पहले की दो संख्याओं का योग है: 3 + 5 = 8, 5 + 8 = 13। भारत के कविता और संगीत के विद्वान विरहांक ने 1300 से भी ज़्यादा साल पहले छोटी और लंबी तालों से बनी लयों को गिनते हुए ये संख्याएँ खोजीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What comes after 8 and 13?",
+        "hi": "8 और 13 के बाद क्या आएगा?"
+       },
+       "options": [
+        "21",
+        "18",
+        "26"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Add the two numbers before it: 8 + 13 = 21.",
+        "hi": "पिछली दो संख्याएँ जोड़ो: 8 + 13 = 21।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "18 adds 5 to 13; the rule adds the two previous numbers, 8 + 13.",
+         "hi": "18 में 13 में 5 जोड़ा गया; नियम पिछली दोनों संख्याओं को जोड़ता है, 8 + 13।"
+        },
+        {
+         "en": "26 doubles 13; the rule is not doubling, it is adding 8 and 13.",
+         "hi": "26 तो 13 का दोगुना है; नियम दोगुना करना नहीं, 8 और 13 जोड़ना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which list follows the same rule?",
+        "hi": "कौन-सी सूची इसी नियम पर चलती है?"
+       },
+       "options": [
+        "2, 3, 5, 8, 13",
+        "2, 4, 6, 8, 10",
+        "1, 3, 9, 27, 81"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each number is the sum of the two before it: 2 + 3 = 5, 3 + 5 = 8, 5 + 8 = 13.",
+        "hi": "हर संख्या पिछली दो का योग है: 2 + 3 = 5, 3 + 5 = 8, 5 + 8 = 13।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This list adds 2 each time; 2 + 4 is 6, but 4 + 6 is 10, not 8.",
+         "hi": "यह सूची हर बार 2 जोड़ती है; 2 + 4 = 6 है, पर 4 + 6 = 10 है, 8 नहीं।"
+        },
+        {
+         "en": "This list multiplies by 3; 1 + 3 is 4, not 9.",
+         "hi": "यह सूची 3 से गुणा करती है; 1 + 3 = 4 होता है, 9 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Keep adding the next terms. Which of them are even? Do you see a pattern in the even ones?",
+      "hi": "अब ख़ुद आज़माओ। अगले पद जोड़ते जाओ। इनमें से कौन-से सम हैं? क्या सम संख्याओं में भी कोई पैटर्न दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch01-triangular",
+   "topic": "1.3",
+   "template": "pattern",
+   "title": {
+    "en": "Triangular numbers with dots",
+    "hi": "बिंदुओं से त्रिभुजाकार संख्याएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "figurate",
+    "rule": "triangular",
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Tap Next to see the next triangle of dots.",
+      "hi": "बिंदुओं का अगला त्रिभुज देखने के लिए अगला दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The triangles have 1, 3, 6, 10, 15 dots. Each new one adds a row that is one dot longer. How many dots will the next triangle have?",
+      "hi": "त्रिभुजों में 1, 3, 6, 10, 15 बिंदु हैं। हर नए त्रिभुज में एक पंक्ति जुड़ती है जो एक बिंदु लंबी होती है। अगले त्रिभुज में कितने बिंदु होंगे?"
+     },
+     "options": [
+      {
+       "id": "21",
+       "en": "21 dots",
+       "hi": "21 बिंदु"
+      },
+      {
+       "id": "20",
+       "en": "20 dots",
+       "hi": "20 बिंदु"
+      },
+      {
+       "id": "18",
+       "en": "18 dots",
+       "hi": "18 बिंदु"
+      }
+     ],
+     "answer": "21"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number of dots in the next triangle and check it.",
+      "hi": "अगले त्रिभुज के बिंदुओं की संख्या लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Which family of numbers is this? Pick its name.",
+      "hi": "यह किस परिवार की संख्याएँ हैं? उसका नाम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every triangle is the one before it with one new row along the bottom. The new row has one more dot each time: 1, then 1 + 2, then 1 + 2 + 3, and so on. That is why 15 + 6 = 21. These are the triangular numbers.",
+      "hi": "हर त्रिभुज पिछले त्रिभुज में नीचे एक नई पंक्ति जोड़कर बनता है। नई पंक्ति में हर बार एक बिंदु ज़्यादा होता है: 1, फिर 1 + 2, फिर 1 + 2 + 3, और ऐसे ही आगे। इसीलिए 15 + 6 = 21। ये त्रिभुजाकार संख्याएँ हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sum gives the 5th triangular number?",
+        "hi": "कौन-सा योग 5वीं त्रिभुजाकार संख्या देता है?"
+       },
+       "options": [
+        "1 + 2 + 3 + 4 + 5",
+        "5 + 5 + 5",
+        "1 + 3 + 5 + 7 + 9"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The 5th triangle has rows of 1, 2, 3, 4 and 5 dots: 15 in all.",
+        "hi": "5वें त्रिभुज की पंक्तियों में 1, 2, 3, 4 और 5 बिंदु हैं: कुल 15।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 + 5 + 5 = 15 by luck, but the rows are not all 5 dots long; the top row has 1 dot.",
+         "hi": "5 + 5 + 5 संयोग से 15 है, पर सारी पंक्तियाँ 5 बिंदुओं की नहीं हैं; सबसे ऊपर की पंक्ति में 1 बिंदु है।"
+        },
+        {
+         "en": "Adding odd numbers makes squares (this sum is 25), not triangles.",
+         "hi": "विषम संख्याएँ जोड़ने से वर्ग बनते हैं (यह योग 25 है), त्रिभुज नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many dots are added to go from 10 to 15?",
+        "hi": "10 से 15 तक पहुँचने में कितने बिंदु जुड़ते हैं?"
+       },
+       "options": [
+        "5",
+        "4",
+        "10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The 5th triangle adds a new row of 5 dots: 10 + 5 = 15.",
+        "hi": "5वाँ त्रिभुज 5 बिंदुओं की नई पंक्ति जोड़ता है: 10 + 5 = 15।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A row of 4 dots made the 4th triangle (6 + 4 = 10); the next row is one longer.",
+         "hi": "4 बिंदुओं की पंक्ति से चौथा त्रिभुज बना था (6 + 4 = 10); अगली पंक्ति एक बिंदु लंबी है।"
+        },
+        {
+         "en": "10 more would make 20, but the new row only has 5 dots.",
+         "hi": "10 और जोड़ने से 20 बनता, पर नई पंक्ति में केवल 5 बिंदु हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Move the slider to see bigger triangles. Can you guess the 10th triangular number before you see it?",
+      "hi": "अब ख़ुद आज़माओ। बड़े त्रिभुज देखने के लिए स्लाइडर खिसकाओ। क्या तुम देखने से पहले 10वीं त्रिभुजाकार संख्या का अनुमान लगा सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch01-squares",
+   "topic": "1.3",
+   "template": "pattern",
+   "title": {
+    "en": "Square numbers with dots",
+    "hi": "बिंदुओं से वर्ग संख्याएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "figurate",
+    "rule": "square",
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The dots make squares: 1, 4, 9. The next square has 4 rows of 4 dots. How many dots is that?",
+      "hi": "बिंदु वर्ग बनाते हैं: 1, 4, 9। अगले वर्ग में 4 बिंदुओं की 4 पंक्तियाँ हैं। ये कितने बिंदु हुए?"
+     },
+     "options": [
+      {
+       "id": "16",
+       "en": "16 dots",
+       "hi": "16 बिंदु"
+      },
+      {
+       "id": "12",
+       "en": "12 dots",
+       "hi": "12 बिंदु"
+      },
+      {
+       "id": "13",
+       "en": "13 dots",
+       "hi": "13 बिंदु"
+      }
+     ],
+     "answer": "16"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number of dots in the next square and check it.",
+      "hi": "अगले वर्ग के बिंदुओं की संख्या लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now type the dots in the square after that.",
+      "hi": "अब उसके बाद वाले वर्ग के बिंदु लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Which family of numbers is this? Pick its name.",
+      "hi": "यह किस परिवार की संख्याएँ हैं? उसका नाम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A square with 4 rows of 4 dots has 4 × 4 = 16 dots. The next has 5 × 5 = 25. A square number is a number multiplied by itself, so the dots can always be arranged as a perfect square.",
+      "hi": "4 बिंदुओं की 4 पंक्तियों वाले वर्ग में 4 × 4 = 16 बिंदु हैं। अगले में 5 × 5 = 25 हैं। वर्ग संख्या वह है जो किसी संख्या को उसी से गुणा करने पर बने, इसलिए उसके बिंदु हमेशा पूरे वर्ग में सजाए जा सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a square number?",
+        "hi": "इनमें से कौन-सी वर्ग संख्या है?"
+       },
+       "options": [
+        "36",
+        "24",
+        "18"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "36 = 6 × 6, so 36 dots make 6 rows of 6.",
+        "hi": "36 = 6 × 6, इसलिए 36 बिंदुओं से 6-6 की 6 पंक्तियाँ बनती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "24 = 4 × 6 makes a rectangle, not a square; no number times itself gives 24.",
+         "hi": "24 = 4 × 6 से आयत बनता है, वर्ग नहीं; कोई संख्या ख़ुद से गुणा होकर 24 नहीं देती।"
+        },
+        {
+         "en": "18 = 3 × 6 makes a rectangle; 4 × 4 is 16 and 5 × 5 is 25, so 18 is between squares.",
+         "hi": "18 = 3 × 6 से आयत बनता है; 4 × 4 = 16 और 5 × 5 = 25, इसलिए 18 दो वर्गों के बीच है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many dots are in a square of 10 rows of 10?",
+        "hi": "10-10 बिंदुओं की 10 पंक्तियों वाले वर्ग में कितने बिंदु हैं?"
+       },
+       "options": [
+        "100",
+        "20",
+        "40"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10 × 10 = 100.",
+        "hi": "10 × 10 = 100।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20 is 10 + 10, only two rows added; there are 10 rows of 10.",
+         "hi": "20 तो 10 + 10 है, केवल दो पंक्तियाँ; यहाँ 10-10 की 10 पंक्तियाँ हैं।"
+        },
+        {
+         "en": "40 counts only the dots round the edge (and some twice); the inside dots count too.",
+         "hi": "40 केवल किनारे के बिंदु गिनता है (कुछ दो बार भी); भीतर के बिंदु भी गिने जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Move the slider. How many dots does each new square add? Do you see the odd numbers 3, 5, 7, 9?",
+      "hi": "अब ख़ुद आज़माओ। स्लाइडर खिसकाओ। हर नया वर्ग कितने बिंदु जोड़ता है? क्या तुम्हें विषम संख्याएँ 3, 5, 7, 9 दिखती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch01-odd-squares",
+   "topic": "1.4",
+   "template": "pattern",
+   "title": {
+    "en": "Adding odd numbers makes squares",
+    "hi": "विषम संख्याएँ जोड़ने से वर्ग बनते हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "ap",
+    "seed": [
+     1,
+     2
+    ],
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "These are the odd numbers 1, 3, 5, 7. What do you get when you add all four?",
+      "hi": "ये विषम संख्याएँ 1, 3, 5, 7 हैं। चारों को जोड़ने पर क्या मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "sq",
+       "en": "16, a square number",
+       "hi": "16, एक वर्ग संख्या"
+      },
+      {
+       "id": "15",
+       "en": "15",
+       "hi": "संख्या 15"
+      },
+      {
+       "id": "20",
+       "en": "20",
+       "hi": "संख्या 20"
+      }
+     ],
+     "answer": "sq"
+    },
+    {
+     "kind": "do",
+     "target": "sum",
+     "expect": "sum",
+     "say": {
+      "en": "Tap the sum button to add the odd numbers shown.",
+      "hi": "दिखाई गई विषम संख्याओं को जोड़ने के लिए योग वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Tap Next to bring in the next odd number.",
+      "hi": "अगली विषम संख्या लाने के लिए अगला दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "sum",
+     "expect": "sum",
+     "say": {
+      "en": "Tap the sum button again. What is the new total?",
+      "hi": "योग वाला बटन फिर दबाओ। नया योग क्या है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "1 + 3 + 5 + 7 = 16 = 4 × 4, and adding 9 gives 25 = 5 × 5. Picture a square of dots: to make the next bigger square you add an L-shape around two sides, and that L always has the next odd number of dots. So the sum of the first n odd numbers is n × n.",
+      "hi": "1 + 3 + 5 + 7 = 16 = 4 × 4, और 9 जोड़ने पर 25 = 5 × 5 मिलता है। बिंदुओं का एक वर्ग सोचो: अगला बड़ा वर्ग बनाने के लिए दो किनारों पर L-आकार जोड़ते हैं, और उस L में हमेशा अगली विषम संख्या जितने बिंदु होते हैं। इसलिए पहली n विषम संख्याओं का योग n × n होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 1 + 3 + 5 + 7 + 9 + 11?",
+        "hi": "1 + 3 + 5 + 7 + 9 + 11 कितना है?"
+       },
+       "options": [
+        "36",
+        "30",
+        "25"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "These are the first 6 odd numbers, so the sum is 6 × 6 = 36.",
+        "hi": "ये पहली 6 विषम संख्याएँ हैं, इसलिए योग 6 × 6 = 36 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "30 is 6 × 5; the sum of 6 odd numbers is 6 × 6.",
+         "hi": "30 तो 6 × 5 है; 6 विषम संख्याओं का योग 6 × 6 होता है।"
+        },
+        {
+         "en": "25 is the sum of only the first 5 odd numbers; 11 is the 6th.",
+         "hi": "25 केवल पहली 5 विषम संख्याओं का योग है; 11 छठी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A 5 × 5 square of tiles is made 6 × 6. How many tiles must be added?",
+        "hi": "टाइलों के 5 × 5 वर्ग को 6 × 6 बनाना है। कितनी टाइलें जोड़नी होंगी?"
+       },
+       "options": [
+        "11",
+        "6",
+        "10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "36 − 25 = 11, the L-shape of 6 + 5 tiles: the 6th odd number.",
+        "hi": "36 − 25 = 11, यानी 6 + 5 टाइलों का L-आकार: छठी विषम संख्या।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 tiles cover only one side; the L goes along two sides.",
+         "hi": "6 टाइलें केवल एक किनारा ढकती हैं; L दो किनारों पर जाता है।"
+        },
+        {
+         "en": "10 is 5 + 5, which misses the corner tile; the L needs 5 + 5 + 1 = 11.",
+         "hi": "10 यानी 5 + 5, जिसमें कोने की टाइल छूट जाती है; L में 5 + 5 + 1 = 11 टाइलें चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Keep tapping Next and the sum button. Is the total always a square number?",
+      "hi": "अब ख़ुद आज़माओ। अगला और योग वाला बटन दबाते रहो। क्या योग हमेशा वर्ग संख्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch01-koch",
+   "topic": "1.5",
+   "template": "pattern",
+   "title": {
+    "en": "The Koch snowflake grows",
+    "hi": "कॉख हिमकण का बढ़ना"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "kind": "gp",
+    "seed": [
+     3,
+     4
+    ],
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The snowflake starts as a triangle with 3 sides. At each step every side is replaced by 4 smaller sides. The counts go 3, 12, 48. What comes next?",
+      "hi": "हिमकण 3 भुजाओं वाले त्रिभुज से शुरू होता है। हर चरण में हर भुजा की जगह 4 छोटी भुजाएँ आ जाती हैं। गिनती 3, 12, 48 चलती है। आगे क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "192",
+       "en": "192 sides",
+       "hi": "192 भुजाएँ"
+      },
+      {
+       "id": "60",
+       "en": "60 sides",
+       "hi": "60 भुजाएँ"
+      },
+      {
+       "id": "96",
+       "en": "96 sides",
+       "hi": "96 भुजाएँ"
+      }
+     ],
+     "answer": "192"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next number of sides and check it.",
+      "hi": "भुजाओं की अगली संख्या लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Pick the rule that takes you from one shape to the next.",
+      "hi": "वह नियम चुनो जो एक आकृति से अगली तक ले जाता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every side turns into 4 sides, so the number of sides is multiplied by 4 each time: 3, 12, 48, 192. This is 3 times the powers of 4. The snowflake gets more and more sides while staying the same size.",
+      "hi": "हर भुजा 4 भुजाओं में बदल जाती है, इसलिए भुजाओं की संख्या हर बार 4 से गुणा होती है: 3, 12, 48, 192। यह 4 की घातों का 3 गुना है। हिमकण का आकार लगभग उतना ही रहता है, पर भुजाएँ बढ़ती जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many sides after the step that gives 192?",
+        "hi": "192 वाले चरण के बाद कितनी भुजाएँ होंगी?"
+       },
+       "options": [
+        "768",
+        "384",
+        "196"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "192 × 4 = 768.",
+        "hi": "192 × 4 = 768।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "384 is 192 × 2; each side becomes 4 sides, not 2.",
+         "hi": "384 तो 192 × 2 है; हर भुजा 4 भुजाएँ बनती है, 2 नहीं।"
+        },
+        {
+         "en": "196 adds 4; the rule multiplies by 4.",
+         "hi": "196 में 4 जोड़ा गया; नियम 4 से गुणा करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the count multiply instead of add?",
+        "hi": "गिनती जुड़ने की जगह गुणा क्यों होती है?"
+       },
+       "options": [
+        {
+         "en": "Every side, old and new, is changed",
+         "hi": "हर भुजा, पुरानी और नई, बदलती है"
+        },
+        {
+         "en": "Only one side changes at a time",
+         "hi": "एक बार में केवल एक भुजा बदलती है"
+        },
+        {
+         "en": "4 sides are added to the shape",
+         "hi": "आकृति में 4 भुजाएँ जुड़ती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All the sides are replaced at once, and each becomes 4, so the total is 4 times bigger.",
+        "hi": "सारी भुजाएँ एक साथ बदलती हैं और हर एक 4 बनती है, इसलिए कुल 4 गुना हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If one side changed at a time, the count would grow by 3 each step, not 3, 12, 48.",
+         "hi": "अगर एक बार में एक भुजा बदलती, तो गिनती हर बार 3 बढ़ती, 3, 12, 48 नहीं।"
+        },
+        {
+         "en": "Adding 4 sides would give 3, 7, 11; we see 3, 12, 48.",
+         "hi": "4 भुजाएँ जोड़ने से 3, 7, 11 बनता; हमें 3, 12, 48 दिखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Change r with the slider and watch how fast the numbers grow when you multiply by 2, 3 or 4.",
+      "hi": "अब ख़ुद आज़माओ। स्लाइडर से r बदलो और देखो कि 2, 3 या 4 से गुणा करने पर संख्याएँ कितनी तेज़ी से बढ़ती हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch01-complete-graph",
+   "topic": "1.6",
+   "template": "shapes",
+   "title": {
+    "en": "Join every corner: lines and triangular numbers",
+    "hi": "हर कोने को जोड़ो: रेखाएँ और त्रिभुजाकार संख्याएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "identify",
+    "task": "polygons"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Count the sides of the shape. Choose its name.",
+      "hi": "आकृति की भुजाएँ गिनो। उसका नाम चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A pentagon has 5 corners. Join every corner to every other corner. How many lines will there be in all, counting the sides?",
+      "hi": "पंचभुज के 5 कोने हैं। हर कोने को बाक़ी हर कोने से जोड़ो। भुजाओं को मिलाकर कुल कितनी रेखाएँ होंगी?"
+     },
+     "options": [
+      {
+       "id": "10",
+       "en": "10 lines",
+       "hi": "10 रेखाएँ"
+      },
+      {
+       "id": "5",
+       "en": "5 lines",
+       "hi": "5 रेखाएँ"
+      },
+      {
+       "id": "20",
+       "en": "20 lines",
+       "hi": "20 रेखाएँ"
+      }
+     ],
+     "answer": "10"
+    },
+    {
+     "kind": "do",
+     "target": "show:diagonals",
+     "expect": "drawn",
+     "say": {
+      "en": "Tap Diagonals to join the corners that are not next to each other.",
+      "hi": "जो कोने पास-पास नहीं हैं उन्हें जोड़ने के लिए विकर्ण दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The pentagon has 5 sides and 5 diagonals, so 10 lines join its 5 corners. A shape with every pair of corners joined is called a complete graph. For 1, 2, 3, 4, 5 corners the lines are 0, 1, 3, 6, 10: the triangular numbers again.",
+      "hi": "पंचभुज में 5 भुजाएँ और 5 विकर्ण हैं, इसलिए उसके 5 कोनों को 10 रेखाएँ जोड़ती हैं। जिस आकृति में हर दो कोने जुड़े हों उसे पूर्ण ग्राफ़ कहते हैं। 1, 2, 3, 4, 5 कोनों के लिए रेखाएँ 0, 1, 3, 6, 10 हैं: फिर से त्रिभुजाकार संख्याएँ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many lines join 4 corners of a square, all to each other?",
+        "hi": "वर्ग के 4 कोनों को आपस में पूरा जोड़ने पर कितनी रेखाएँ होंगी?"
+       },
+       "options": [
+        "6",
+        "4",
+        "8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 sides and 2 diagonals make 6, the triangular number 1 + 2 + 3.",
+        "hi": "4 भुजाएँ और 2 विकर्ण मिलाकर 6, यानी त्रिभुजाकार संख्या 1 + 2 + 3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 counts only the sides; the two diagonals join corners too.",
+         "hi": "4 में केवल भुजाएँ गिनी गईं; दोनों विकर्ण भी कोनों को जोड़ते हैं।"
+        },
+        {
+         "en": "8 counts each diagonal twice, once from each end.",
+         "hi": "8 में हर विकर्ण दो बार गिना गया, दोनों सिरों से।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A 6th corner is added to the 5 corners. How many new lines are needed?",
+        "hi": "5 कोनों में एक छठा कोना जोड़ा गया। कितनी नई रेखाएँ चाहिए?"
+       },
+       "options": [
+        "5",
+        "6",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The new corner must be joined to each of the 5 old corners: 10 + 5 = 15 lines.",
+        "hi": "नए कोने को पुराने पाँचों कोनों से जोड़ना होगा: 10 + 5 = 15 रेखाएँ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A corner is not joined to itself, so it needs 5 lines, not 6.",
+         "hi": "कोना अपने आप से नहीं जुड़ता, इसलिए 5 रेखाएँ चाहिए, 6 नहीं।"
+        },
+        {
+         "en": "One line joins it to only one corner; it must reach all 5.",
+         "hi": "एक रेखा उसे केवल एक कोने से जोड़ती है; उसे पाँचों तक पहुँचना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Next for other polygons. Count sides and diagonals together each time. Are they triangular numbers?",
+      "hi": "अब ख़ुद आज़माओ। दूसरे बहुभुजों के लिए अगला दबाओ। हर बार भुजाएँ और विकर्ण मिलाकर गिनो। क्या ये त्रिभुजाकार संख्याएँ हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Chapter hook: patterns around us",
+   "shows": "A kolam drawn in white rice-flour on a swept doorstep in the early morning, with a repeating grid of loops and dots",
+   "view": "Top-down, the whole kolam in frame, soft morning light",
+   "right": "Lines even and continuous; the dot grid regular",
+   "avoid": "Feet, faces, house numbers"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "1.3",
+   "use": "Triangular numbers lab and reader",
+   "shows": "Tamarind seeds arranged as triangles of 1, 3, 6, 10 and 15 seeds on a dark slate, one triangle per frame",
+   "view": "Top-down, same camera height and light in every frame",
+   "right": "Rows grow by exactly one seed; triangles equal-sided; counts exact",
+   "avoid": "Loose extra seeds in the frame"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "1.3",
+   "use": "Square numbers lab",
+   "shows": "Laddoos in a square steel tray: 1, then 2 by 2, 3 by 3 and 4 by 4, one arrangement per frame",
+   "view": "Top-down, identical framing",
+   "right": "Rows and columns straight; counts 1, 4, 9, 16",
+   "avoid": "Brand names, hands"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Virahanka numbers: rhythm",
+   "shows": "Two hands playing a tabla pair on a cotton durrie, one hand mid-stroke",
+   "view": "Close, three-quarter view from the player’s right, warm indoor light",
+   "right": "Real tabla (dayan and bayan); natural hand position",
+   "avoid": "Faces, logos"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "1.4",
+   "use": "Odd numbers build squares",
+   "shows": "Coloured floor tiles laid as a square that grows: 1 tile, then an L of 3 in a new colour, then an L of 5, then an L of 7",
+   "view": "Top-down, four frames, same position",
+   "right": "Each L a different colour and exactly the next odd number of tiles",
+   "avoid": "Grout lines that hide the tile count"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "1.5",
+   "use": "Koch snowflake stages",
+   "shows": "The Koch snowflake at stages 0, 1, 2 and 3, drawn as clean dark lines on white, same size",
+   "view": "Flat, centred, one stage per panel",
+   "right": "Each side replaced by 4 sides of one third the length; sides 3, 12, 48, 192",
+   "avoid": "Any labels or numbers"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "1.6",
+   "use": "Complete graphs",
+   "shows": "Regular polygons with 2 to 6 corners, every pair of corners joined by a straight line, clean coloured lines on white",
+   "view": "Flat, one figure per panel, same size",
+   "right": "All pairs joined, no line missing or doubled",
+   "avoid": "Labels, numbers"
+  }
+ ]
+}

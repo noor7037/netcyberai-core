@@ -1,0 +1,1001 @@
+{
+ "chapter_key": "u.c02.mathematics.bejm1.ch08",
+ "class": 2,
+ "subject_id": "mathematics",
+ "title": "Grouping and Sharing (Multiplication and Division)",
+ "source": "https://ncert.nic.in/textbook/pdf/bejm108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Grouping: adding the same number again and again",
+   "labs": [
+    "c2-mathematics-bejm1-ch08-bicycle-wheels"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Times: 4 × 2, 2 × 3 and 7 × 4 with wheels, wings and legs",
+   "labs": [
+    "c2-mathematics-bejm1-ch08-bicycle-wheels",
+    "c2-mathematics-bejm1-ch08-car-wheels"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Tables of 2, 3, 5, 7 and 10",
+   "labs": [
+    "c2-mathematics-bejm1-ch08-table-of-seven"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "How many flowers and gulab jamuns: 4 × 3 and 3 × 4",
+   "labs": [
+    "c2-mathematics-bejm1-ch08-same-answer"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Sharing equally",
+   "labs": [
+    "c2-mathematics-bejm1-ch08-share-jamuns"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Project: collect 24 small objects and make groups",
+   "labs": [],
+   "why_no_lab": "Collecting and grouping real beans or pebbles is the project."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c2-mathematics-bejm1-ch08-bicycle-wheels",
+   "topic": "8.1",
+   "template": "number-line",
+   "title": {
+    "en": "Wheels of 4 bicycles",
+    "hi": "4 साइकिलों के पहिये"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 10,
+    "jumps": [
+     2
+    ],
+    "ask": 8
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "There are 4 bicycles. Each bicycle has 2 wheels. How many wheels in all?",
+      "hi": "4 साइकिलें हैं। हर साइकिल में 2 पहिये हैं। कुल कितने पहिये?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "6 wheels",
+       "hi": "6 पहिये"
+      },
+      {
+       "id": "b",
+       "en": "8 wheels",
+       "hi": "8 पहिये"
+      },
+      {
+       "id": "c",
+       "en": "10 wheels",
+       "hi": "10 पहिये"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:8",
+     "say": {
+      "en": "Each hop is one bicycle with 2 wheels. Tap the forward button 4 times and count the hops.",
+      "hi": "हर छलाँग एक साइकिल है जिसमें 2 पहिये हैं। आगे वाला बटन 4 बार दबाओ और छलाँगें गिनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We added 2 four times: 2 + 2 + 2 + 2 = 8. This is 4 groups of 2, which we write as 4 × 2 = 8. The sign × is read as times. Adding the same number again and again is multiplication.",
+      "hi": "हमने 2 को चार बार जोड़ा: 2 + 2 + 2 + 2 = 8। यह 2 के 4 समूह हैं, जिसे हम 4 × 2 = 8 लिखते हैं। चिह्न × को गुणा या बार पढ़ते हैं। एक ही संख्या को बार-बार जोड़ना गुणा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "There are 3 autorickshaws. Each has 3 wheels. How many wheels in all?",
+        "hi": "3 ऑटो-रिक्शा हैं। हर एक में 3 पहिये हैं। कुल कितने पहिये?"
+       },
+       "options": [
+        {
+         "en": "6 wheels",
+         "hi": "6 पहिये"
+        },
+        {
+         "en": "9 wheels",
+         "hi": "9 पहिये"
+        },
+        {
+         "en": "12 wheels",
+         "hi": "12 पहिये"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "3 + 3 + 3 = 9, so 3 × 3 = 9 wheels.",
+        "hi": "3 + 3 + 3 = 9, इसलिए 3 × 3 = 9 पहिये।"
+       },
+       "wrong": [
+        {
+         "en": "6 is 3 + 3, only two autos. There are three.",
+         "hi": "6 तो 3 + 3 है, केवल दो ऑटो। यहाँ तीन हैं।"
+        },
+        "",
+        {
+         "en": "12 is 3 + 3 + 3 + 3, four autos. There are three.",
+         "hi": "12 तो 3 + 3 + 3 + 3 है, चार ऑटो। यहाँ तीन हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and count with 5 hops. How many wheels do 5 bicycles have?",
+      "hi": "फिर से शुरू करो और 5 छलाँगें लगाओ। 5 साइकिलों के कितने पहिये हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch08-car-wheels",
+   "topic": "8.2",
+   "template": "number-line",
+   "title": {
+    "en": "Wheels of 7 cars",
+    "hi": "7 कारों के पहिये"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 28,
+    "jumps": [
+     4
+    ],
+    "ask": 28
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ramya saw 7 cars. Each car has 4 wheels. Is it quicker to add 4 seven times or to say 7 times 4?",
+      "hi": "रम्या ने 7 कारें देखीं। हर कार में 4 पहिये हैं। 4 को सात बार जोड़ना तेज़ है या 7 गुणा 4 कहना?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Adding is quicker",
+       "hi": "जोड़ना तेज़ है"
+      },
+      {
+       "id": "b",
+       "en": "7 times 4 is a quick way",
+       "hi": "7 गुणा 4 तेज़ तरीक़ा है"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:28",
+     "say": {
+      "en": "Tap the forward button 7 times. Each hop is one car with 4 wheels.",
+      "hi": "आगे वाला बटन 7 बार दबाओ। हर छलाँग 4 पहियों वाली एक कार है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "4, 8, 12, 16, 20, 24, 28. Seven hops of 4 land on 28. So 7 × 4 = 28, which is 7 groups of 4 wheels. Multiplication is a short way to add equal groups.",
+      "hi": "4, 8, 12, 16, 20, 24, 28। 4 की सात छलाँगें 28 पर पहुँचती हैं। इसलिए 7 × 4 = 28, यानी 4 पहियों के 7 समूह। गुणा बराबर समूहों को जोड़ने का छोटा तरीक़ा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An octopus has 8 legs. How many legs do 2 octopuses have?",
+        "hi": "एक ऑक्टोपस के 8 पैर होते हैं। 2 ऑक्टोपस के कितने पैर होंगे?"
+       },
+       "options": [
+        {
+         "en": "10 legs",
+         "hi": "10 पैर"
+        },
+        {
+         "en": "16 legs",
+         "hi": "16 पैर"
+        },
+        {
+         "en": "28 legs",
+         "hi": "28 पैर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "2 groups of 8: 8 + 8 = 16, so 2 × 8 = 16.",
+        "hi": "8 के 2 समूह: 8 + 8 = 16, इसलिए 2 × 8 = 16।"
+       },
+       "wrong": [
+        {
+         "en": "10 is 8 + 2. We add 8 two times, not 8 and 2.",
+         "hi": "10 तो 8 + 2 है। हमें 8 को दो बार जोड़ना है, 8 और 2 को नहीं।"
+        },
+        "",
+        {
+         "en": "28 comes from 7 cars with 4 wheels, a different problem.",
+         "hi": "28, 4 पहियों वाली 7 कारों का उत्तर है, यह दूसरा सवाल है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Hop 3 times only. How many wheels do 3 cars have?",
+      "hi": "फिर से शुरू करो। केवल 3 बार छलाँग लगाओ। 3 कारों के कितने पहिये हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch08-table-of-seven",
+   "topic": "8.3",
+   "template": "pattern",
+   "title": {
+    "en": "Make the table of 7",
+    "hi": "7 का पहाड़ा बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     7
+    ],
+    "rule": "+7",
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The table of 7 starts 7, 14, 21. What number comes next?",
+      "hi": "7 का पहाड़ा 7, 14, 21 से शुरू होता है। अगली संख्या क्या होगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "24",
+       "hi": "संख्या 24"
+      },
+      {
+       "id": "b",
+       "en": "28",
+       "hi": "संख्या 28"
+      },
+      {
+       "id": "c",
+       "en": "35",
+       "hi": "संख्या 35"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next number and press Enter.",
+      "hi": "अगली संख्या लिखो और Enter दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number after that.",
+      "hi": "उसके बाद की संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Choose the rule that makes the table of 7.",
+      "hi": "वह नियम चुनो जिससे 7 का पहाड़ा बनता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each number is 7 more than the one before: 7, 14, 21, 28, 35. So 7 ones are 7, 7 twos are 14, 7 threes are 21 and 7 fours are 28. We make a table of any number by adding that number again and again.",
+      "hi": "हर संख्या अपने पहले वाली से 7 ज़्यादा है: 7, 14, 21, 28, 35। इसलिए सात एकम सात, सात दूनी चौदह, सात तिया इक्कीस और सात चौके अट्ठाईस होते हैं। किसी भी संख्या का पहाड़ा उस संख्या को बार-बार जोड़कर बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 7 × 3?",
+        "hi": "7 × 3 कितना होता है?"
+       },
+       "options": [
+        {
+         "en": "21",
+         "hi": "संख्या 21"
+        },
+        {
+         "en": "10",
+         "hi": "संख्या 10"
+        },
+        {
+         "en": "73",
+         "hi": "संख्या 73"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 + 7 + 7 = 21.",
+        "hi": "7 + 7 + 7 = 21।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "10 is 7 + 3. Multiplying 7 × 3 means 7 three times.",
+         "hi": "10 तो 7 + 3 है। 7 × 3 का मतलब है 7 को तीन बार जोड़ना।"
+        },
+        {
+         "en": "73 is just the digits side by side. It is not multiplication.",
+         "hi": "73 तो अंक साथ-साथ लिखना है। यह गुणा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Show the next terms with the Show the next one button. What is 7 × 10?",
+      "hi": "अगला दिखाओ बटन से और पद देखो। 7 × 10 कितना होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch08-same-answer",
+   "topic": "8.4",
+   "template": "sort",
+   "title": {
+    "en": "Same answer, different order",
+    "hi": "उत्तर वही, क्रम अलग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "a12",
+      "label": {
+       "en": "Answer 12",
+       "hi": "उत्तर 12"
+      }
+     },
+     {
+      "id": "a20",
+      "label": {
+       "en": "Answer 20",
+       "hi": "उत्तर 20"
+      }
+     },
+     {
+      "id": "a24",
+      "label": {
+       "en": "Answer 24",
+       "hi": "उत्तर 24"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c43",
+      "text": {
+       "en": "4 × 3",
+       "hi": "4 × 3"
+      },
+      "bin": "a12",
+      "why": {
+       "en": "4 groups of 3 make 12.",
+       "hi": "3 के 4 समूह मिलकर 12 होते हैं।"
+      }
+     },
+     {
+      "id": "c34",
+      "text": {
+       "en": "3 × 4",
+       "hi": "3 × 4"
+      },
+      "bin": "a12",
+      "why": {
+       "en": "3 groups of 4 also make 12.",
+       "hi": "4 के 3 समूह भी 12 होते हैं।"
+      }
+     },
+     {
+      "id": "c26",
+      "text": {
+       "en": "2 × 6",
+       "hi": "2 × 6"
+      },
+      "bin": "a12",
+      "why": {
+       "en": "2 groups of 6 make 12.",
+       "hi": "6 के 2 समूह 12 होते हैं।"
+      }
+     },
+     {
+      "id": "c62",
+      "text": {
+       "en": "6 × 2",
+       "hi": "6 × 2"
+      },
+      "bin": "a12",
+      "why": {
+       "en": "6 groups of 2 make 12.",
+       "hi": "2 के 6 समूह 12 होते हैं।"
+      }
+     },
+     {
+      "id": "c45",
+      "text": {
+       "en": "4 × 5",
+       "hi": "4 × 5"
+      },
+      "bin": "a20",
+      "why": {
+       "en": "4 groups of 5 make 20.",
+       "hi": "5 के 4 समूह 20 होते हैं।"
+      }
+     },
+     {
+      "id": "c54",
+      "text": {
+       "en": "5 × 4",
+       "hi": "5 × 4"
+      },
+      "bin": "a20",
+      "why": {
+       "en": "5 groups of 4 also make 20.",
+       "hi": "4 के 5 समूह भी 20 होते हैं।"
+      }
+     },
+     {
+      "id": "c210",
+      "text": {
+       "en": "2 × 10",
+       "hi": "2 × 10"
+      },
+      "bin": "a20",
+      "why": {
+       "en": "2 groups of 10 make 20.",
+       "hi": "10 के 2 समूह 20 होते हैं।"
+      }
+     },
+     {
+      "id": "c102",
+      "text": {
+       "en": "10 × 2",
+       "hi": "10 × 2"
+      },
+      "bin": "a20",
+      "why": {
+       "en": "10 groups of 2 make 20.",
+       "hi": "2 के 10 समूह 20 होते हैं।"
+      }
+     },
+     {
+      "id": "c64",
+      "text": {
+       "en": "6 × 4",
+       "hi": "6 × 4"
+      },
+      "bin": "a24",
+      "why": {
+       "en": "6 groups of 4 make 24.",
+       "hi": "4 के 6 समूह 24 होते हैं।"
+      }
+     },
+     {
+      "id": "c46",
+      "text": {
+       "en": "4 × 6",
+       "hi": "4 × 6"
+      },
+      "bin": "a24",
+      "why": {
+       "en": "4 groups of 6 also make 24.",
+       "hi": "6 के 4 समूह भी 24 होते हैं।"
+      }
+     },
+     {
+      "id": "c38",
+      "text": {
+       "en": "3 × 8",
+       "hi": "3 × 8"
+      },
+      "bin": "a24",
+      "why": {
+       "en": "3 groups of 8 make 24.",
+       "hi": "8 के 3 समूह 24 होते हैं।"
+      }
+     },
+     {
+      "id": "c83",
+      "text": {
+       "en": "8 × 3",
+       "hi": "8 × 3"
+      },
+      "bin": "a24",
+      "why": {
+       "en": "8 groups of 3 make 24.",
+       "hi": "3 के 8 समूह 24 होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c43",
+     "expect": "correct:c43",
+     "say": {
+      "en": "Tap 4 × 3, then tap the group with its answer.",
+      "hi": "4 × 3 दबाओ, फिर उसके उत्तर वाला समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "4 bouquets with 3 flowers each, and 3 bouquets with 4 flowers each. Do they use the same number of flowers?",
+      "hi": "3-3 फूलों के 4 गुलदस्ते और 4-4 फूलों के 3 गुलदस्ते। क्या दोनों में फूल बराबर हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Yes, 12 flowers both",
+       "hi": "हाँ, दोनों में 12 फूल"
+      },
+      {
+       "id": "b",
+       "en": "No, different",
+       "hi": "नहीं, अलग-अलग"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "card:c34",
+     "expect": "correct:c34",
+     "say": {
+      "en": "Now sort 3 × 4.",
+      "hi": "अब 3 × 4 को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest of the cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Changing the order does not change the answer. 4 × 3 and 3 × 4 both make 12. 5 × 4 and 4 × 5 both make 20. So if you know one fact, you know two. Look at the pairs in each group.",
+      "hi": "क्रम बदलने से उत्तर नहीं बदलता। 4 × 3 और 3 × 4 दोनों 12 होते हैं। 5 × 4 और 4 × 5 दोनों 20 होते हैं। इसलिए एक तथ्य जान लिया तो दो जान लिए। हर समूह के जोड़े देखो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You know 6 × 4 = 24. What is 4 × 6?",
+        "hi": "तुम जानते हो कि 6 × 4 = 24। 4 × 6 कितना होगा?"
+       },
+       "options": [
+        {
+         "en": "10",
+         "hi": "संख्या 10"
+        },
+        {
+         "en": "24",
+         "hi": "संख्या 24"
+        },
+        {
+         "en": "46",
+         "hi": "संख्या 46"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The order does not change the answer, so 4 × 6 is also 24.",
+        "hi": "क्रम बदलने से उत्तर नहीं बदलता, इसलिए 4 × 6 भी 24 है।"
+       },
+       "wrong": [
+        {
+         "en": "10 is 6 + 4. This is multiplication, not addition.",
+         "hi": "10 तो 6 + 4 है। यह गुणा है, जोड़ नहीं।"
+        },
+        "",
+        {
+         "en": "46 puts the digits side by side. It is not 4 times 6.",
+         "hi": "46 में अंक साथ-साथ लिखे हैं। यह 4 गुणा 6 नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of 5 × 3 and 3 × 5. Check on your fingers that they match.",
+      "hi": "5 × 3 और 3 × 5 के बारे में सोचो। उँगलियों पर जाँचो कि वे बराबर हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch08-share-jamuns",
+   "topic": "8.5",
+   "template": "sort",
+   "title": {
+    "en": "Share the gulab jamuns",
+    "hi": "गुलाब जामुन बाँटो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "two",
+      "label": {
+       "en": "Each gets 2",
+       "hi": "हर एक को 2"
+      }
+     },
+     {
+      "id": "three",
+      "label": {
+       "en": "Each gets 3",
+       "hi": "हर एक को 3"
+      }
+     },
+     {
+      "id": "four",
+      "label": {
+       "en": "Each gets 4",
+       "hi": "हर एक को 4"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a12_6",
+      "text": {
+       "en": "12 jamuns, 6 children",
+       "hi": "12 जामुन, 6 बच्चे"
+      },
+      "bin": "two",
+      "why": {
+       "en": "12 shared equally among 6 gives 2 each, because 6 × 2 = 12.",
+       "hi": "12 को 6 बच्चों में बराबर बाँटने पर 2-2 मिलते हैं, क्योंकि 6 × 2 = 12।"
+      }
+     },
+     {
+      "id": "a8_4",
+      "text": {
+       "en": "8 jamuns, 4 children",
+       "hi": "8 जामुन, 4 बच्चे"
+      },
+      "bin": "two",
+      "why": {
+       "en": "8 shared among 4 gives 2 each, because 4 × 2 = 8.",
+       "hi": "8 को 4 बच्चों में बाँटने पर 2-2 मिलते हैं, क्योंकि 4 × 2 = 8।"
+      }
+     },
+     {
+      "id": "a6_3",
+      "text": {
+       "en": "6 jamuns, 3 children",
+       "hi": "6 जामुन, 3 बच्चे"
+      },
+      "bin": "two",
+      "why": {
+       "en": "6 shared among 3 gives 2 each, because 3 × 2 = 6.",
+       "hi": "6 को 3 बच्चों में बाँटने पर 2-2 मिलते हैं, क्योंकि 3 × 2 = 6।"
+      }
+     },
+     {
+      "id": "b12_4",
+      "text": {
+       "en": "12 jamuns, 4 children",
+       "hi": "12 जामुन, 4 बच्चे"
+      },
+      "bin": "three",
+      "why": {
+       "en": "12 shared among 4 gives 3 each, because 4 × 3 = 12.",
+       "hi": "12 को 4 बच्चों में बाँटने पर 3-3 मिलते हैं, क्योंकि 4 × 3 = 12।"
+      }
+     },
+     {
+      "id": "b9_3",
+      "text": {
+       "en": "9 jamuns, 3 children",
+       "hi": "9 जामुन, 3 बच्चे"
+      },
+      "bin": "three",
+      "why": {
+       "en": "9 shared among 3 gives 3 each, because 3 × 3 = 9.",
+       "hi": "9 को 3 बच्चों में बाँटने पर 3-3 मिलते हैं, क्योंकि 3 × 3 = 9।"
+      }
+     },
+     {
+      "id": "b6_2",
+      "text": {
+       "en": "6 jamuns, 2 children",
+       "hi": "6 जामुन, 2 बच्चे"
+      },
+      "bin": "three",
+      "why": {
+       "en": "6 shared between 2 gives 3 each, because 2 × 3 = 6.",
+       "hi": "6 को 2 बच्चों में बाँटने पर 3-3 मिलते हैं, क्योंकि 2 × 3 = 6।"
+      }
+     },
+     {
+      "id": "c12_3",
+      "text": {
+       "en": "12 jamuns, 3 children",
+       "hi": "12 जामुन, 3 बच्चे"
+      },
+      "bin": "four",
+      "why": {
+       "en": "12 shared among 3 gives 4 each, because 3 × 4 = 12.",
+       "hi": "12 को 3 बच्चों में बाँटने पर 4-4 मिलते हैं, क्योंकि 3 × 4 = 12।"
+      }
+     },
+     {
+      "id": "c8_2",
+      "text": {
+       "en": "8 jamuns, 2 children",
+       "hi": "8 जामुन, 2 बच्चे"
+      },
+      "bin": "four",
+      "why": {
+       "en": "8 shared between 2 gives 4 each, because 2 × 4 = 8.",
+       "hi": "8 को 2 बच्चों में बाँटने पर 4-4 मिलते हैं, क्योंकि 2 × 4 = 8।"
+      }
+     },
+     {
+      "id": "c16_4",
+      "text": {
+       "en": "16 jamuns, 4 children",
+       "hi": "16 जामुन, 4 बच्चे"
+      },
+      "bin": "four",
+      "why": {
+       "en": "16 shared among 4 gives 4 each, because 4 × 4 = 16.",
+       "hi": "16 को 4 बच्चों में बाँटने पर 4-4 मिलते हैं, क्योंकि 4 × 4 = 16।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a12_6",
+     "expect": "correct:a12_6",
+     "say": {
+      "en": "Tap 12 jamuns shared by 6 children. Think: how many does each child get?",
+      "hi": "12 जामुन और 6 बच्चे दबाओ। सोचो: हर बच्चे को कितने मिलेंगे?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "12 jamuns are shared equally among 3 children instead of 6. Will each child get more or fewer?",
+      "hi": "12 जामुन 6 की जगह 3 बच्चों में बराबर बाँटे जाएँ। हर बच्चे को ज़्यादा मिलेंगे या कम?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "More",
+       "hi": "ज़्यादा"
+      },
+      {
+       "id": "b",
+       "en": "Fewer",
+       "hi": "कम"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "card:c12_3",
+     "expect": "correct:c12_3",
+     "say": {
+      "en": "Now sort 12 jamuns shared by 3 children.",
+      "hi": "अब 12 जामुन और 3 बच्चों वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest of the cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sharing equally means every child gets the same number. We can find how many each gets by making equal groups. 12 jamuns among 6 children is 2 each. Fewer children means each gets more: 12 among 3 is 4 each. Sharing is the opposite of grouping.",
+      "hi": "बराबर बाँटने का मतलब है कि हर बच्चे को एक-सी संख्या मिले। बराबर समूह बनाकर हम जान सकते हैं कि हर एक को कितने मिलेंगे। 12 जामुन 6 बच्चों में बाँटने पर 2-2 मिलते हैं। बच्चे कम हों तो हर एक को ज़्यादा मिलता है: 12 को 3 बच्चों में बाँटने पर 4-4। बाँटना, समूह बनाने का उलटा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "10 laddoos are shared equally among 5 children. How many does each get?",
+        "hi": "10 लड्डू 5 बच्चों में बराबर बाँटे गए। हर एक को कितने मिलेंगे?"
+       },
+       "options": [
+        {
+         "en": "2 laddoos",
+         "hi": "2 लड्डू"
+        },
+        {
+         "en": "5 laddoos",
+         "hi": "5 लड्डू"
+        },
+        {
+         "en": "15 laddoos",
+         "hi": "15 लड्डू"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 children × 2 = 10, so each child gets 2.",
+        "hi": "5 बच्चे × 2 = 10, इसलिए हर बच्चे को 2 मिलेंगे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 is the number of children, not what each child gets.",
+         "hi": "5 बच्चों की संख्या है, हर एक को मिलने वाली संख्या नहीं।"
+        },
+        {
+         "en": "15 is 10 + 5. Sharing makes smaller groups, so it cannot be more than 10.",
+         "hi": "15 तो 10 + 5 है। बाँटने से छोटे समूह बनते हैं, इसलिए वह 10 से ज़्यादा नहीं हो सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Share some pebbles or beans equally among your friends. Is any left over?",
+      "hi": "कुछ कंकड़ या दाने दोस्तों में बराबर बाँटो। क्या कुछ बच गया?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Chapter opener",
+   "shows": "A busy road with a bicycle, an autorickshaw and a car parked in a line, wheels clearly visible",
+   "view": "Side view at eye level, soft daylight, no people",
+   "right": "Bicycle has 2 wheels, auto has 3 and car has 4 visible",
+   "avoid": "Number plates; faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.2",
+   "use": "Wheel counting objects",
+   "shows": "Cut-outs of a bicycle, an auto-rickshaw, a car, a butterfly, an octopus and a toy soldier",
+   "view": "Side view, transparent background, same size scale",
+   "right": "Butterfly has 4 wings; octopus 8 arms; vehicle wheels countable",
+   "avoid": "Brand marks; shadows"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "8.3",
+   "use": "Groups of 7",
+   "shows": "Seven small groups of 7 identical glass beads laid in rows on a cloth, for the table of 7",
+   "view": "Top view, even light",
+   "right": "Each group has exactly 7",
+   "avoid": "Mixed colours that change the count"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "Bouquets of flowers",
+   "shows": "Four bouquets of 3 roses next to three bouquets of 4 roses on a table, same roses",
+   "view": "Top view, bright light",
+   "right": "Four of 3 and three of 4, both 12 roses",
+   "avoid": "Ribbons that hide the flowers"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "8.5",
+   "use": "Sharing gulab jamuns",
+   "shows": "A plate of 12 gulab jamuns being shared in 3 frames: shared among 6 bowls, among 4 bowls, among 3 bowls",
+   "view": "Same top view each time",
+   "right": "Equal numbers in every bowl in each frame",
+   "avoid": "Hands; branded boxes"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "8.6",
+   "use": "Objects to group",
+   "shows": "24 small objects such as beans, pebbles and buttons spread on a cloth",
+   "view": "Top view, transparent or plain cloth",
+   "right": "Exactly 24 objects",
+   "avoid": "Different counts in different pictures"
+  }
+ ]
+}

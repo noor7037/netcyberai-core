@@ -1,0 +1,1953 @@
+{
+ "chapter_key": "u.c11.informatics_practices.keip1.ch01",
+ "class": 11,
+ "subject_id": "informatics_practices",
+ "title": "Computer System",
+ "source": "https://ncert.nic.in/textbook/pdf/keip101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Introduction to computer system: CPU, input devices, output devices",
+   "labs": [
+    "c11-informatics_practices-keip1-ch01-devices"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Evolution of computer",
+   "labs": [
+    "c11-informatics_practices-keip1-ch01-evolution"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3.1",
+   "title": "Units of memory",
+   "labs": [
+    "c11-informatics_practices-keip1-ch01-units"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3.2",
+   "title": "Types of memory: primary, cache and secondary",
+   "labs": [
+    "c11-informatics_practices-keip1-ch01-memory-types",
+    "c11-informatics_practices-keip1-ch01-memory-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3.3",
+   "title": "Data capturing, storage and retrieval",
+   "labs": [
+    "c11-informatics_practices-keip1-ch01-capture"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3.4",
+   "title": "Data deletion and recovery",
+   "labs": [
+    "c11-informatics_practices-keip1-ch01-recovery"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Software: need, system software, application software and programming tools",
+   "labs": [
+    "c11-informatics_practices-keip1-ch01-software"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4.4",
+   "title": "Proprietary and free and open source software",
+   "labs": [],
+   "why_no_lab": "A short list of facts and licences is learned best from the reader and examples; there is nothing to act on or experiment with."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-informatics_practices-keip1-ch01-devices",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "Input, output or both?",
+    "hi": "इनपुट, आउटपुट या दोनों?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "in",
+      "label": {
+       "en": "Input device",
+       "hi": "इनपुट डिवाइस"
+      }
+     },
+     {
+      "id": "out",
+      "label": {
+       "en": "Output device",
+       "hi": "आउटपुट डिवाइस"
+      }
+     },
+     {
+      "id": "both",
+      "label": {
+       "en": "Both",
+       "hi": "दोनों"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "keyboard",
+      "text": {
+       "en": "Keyboard",
+       "hi": "कीबोर्ड"
+      },
+      "bin": "in",
+      "why": {
+       "en": "You type keys to send letters and numbers into the computer.",
+       "hi": "आप कुंजियाँ दबाकर अक्षर और अंक कंप्यूटर में भेजते हैं।"
+      }
+     },
+     {
+      "id": "mouse",
+      "text": {
+       "en": "Mouse",
+       "hi": "माउस"
+      },
+      "bin": "in",
+      "why": {
+       "en": "Your hand moves it to send the pointer position and clicks into the computer.",
+       "hi": "आपका हाथ इसे चलाकर पॉइंटर की जगह और क्लिक कंप्यूटर में भेजता है।"
+      }
+     },
+     {
+      "id": "mic",
+      "text": {
+       "en": "Microphone",
+       "hi": "माइक्रोफ़ोन"
+      },
+      "bin": "in",
+      "why": {
+       "en": "It captures your voice and sends it into the computer.",
+       "hi": "यह आपकी आवाज़ पकड़कर कंप्यूटर में भेजता है।"
+      }
+     },
+     {
+      "id": "scanner",
+      "text": {
+       "en": "Scanner",
+       "hi": "स्कैनर"
+      },
+      "bin": "in",
+      "why": {
+       "en": "It reads a paper page and sends a picture of it into the computer.",
+       "hi": "यह काग़ज़ का पन्ना पढ़कर उसकी तस्वीर कंप्यूटर में भेजता है।"
+      }
+     },
+     {
+      "id": "monitor",
+      "text": {
+       "en": "Monitor",
+       "hi": "मॉनिटर"
+      },
+      "bin": "out",
+      "why": {
+       "en": "It shows the result of the computer's work on a screen.",
+       "hi": "यह कंप्यूटर के काम का नतीजा पर्दे पर दिखाता है।"
+      }
+     },
+     {
+      "id": "printer",
+      "text": {
+       "en": "Printer",
+       "hi": "प्रिंटर"
+      },
+      "bin": "out",
+      "why": {
+       "en": "It gives you the result on paper, a hard copy.",
+       "hi": "यह नतीजा काग़ज़ पर, यानी हार्ड कॉपी में, देता है।"
+      }
+     },
+     {
+      "id": "speaker",
+      "text": {
+       "en": "Speaker",
+       "hi": "स्पीकर"
+      },
+      "bin": "out",
+      "why": {
+       "en": "It plays sound that the computer sends out.",
+       "hi": "यह कंप्यूटर से निकली आवाज़ बजाता है।"
+      }
+     },
+     {
+      "id": "touch",
+      "text": {
+       "en": "Touchscreen",
+       "hi": "टचस्क्रीन"
+      },
+      "bin": "both",
+      "why": {
+       "en": "You touch it to give input, and it also shows the output on the same glass.",
+       "hi": "आप इसे छूकर इनपुट देते हैं, और यही काँच आउटपुट भी दिखाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:keyboard",
+     "expect": "placed:keyboard",
+     "say": {
+      "en": "Tap the keyboard card, then tap the Input device box.",
+      "hi": "कीबोर्ड वाला कार्ड दबाओ, फिर इनपुट डिवाइस वाला डिब्बा दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The touchscreen of a phone comes next. Where does it belong?",
+      "hi": "अब फ़ोन की टचस्क्रीन है। यह कहाँ जाएगी?"
+     },
+     "options": [
+      {
+       "id": "in",
+       "en": "Input only",
+       "hi": "सिर्फ़ इनपुट"
+      },
+      {
+       "id": "out",
+       "en": "Output only",
+       "hi": "सिर्फ़ आउटपुट"
+      },
+      {
+       "id": "both",
+       "en": "Both input and output",
+       "hi": "इनपुट और आउटपुट दोनों"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "card:touch",
+     "expect": "placed:touch",
+     "say": {
+      "en": "Place the touchscreen card in its box.",
+      "hi": "टचस्क्रीन वाला कार्ड उसके डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाक़ी सारे कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A computer works in three simple parts. Input devices send data in. The CPU processes it. Output devices show the result. A touchscreen is special because the same glass takes your touch in and shows the picture out.",
+      "hi": "कंप्यूटर तीन सरल हिस्सों में काम करता है। इनपुट डिवाइस डेटा अंदर भेजते हैं। सीपीयू उसे प्रोसेस करता है। आउटपुट डिवाइस नतीजा दिखाते हैं। टचस्क्रीन ख़ास है क्योंकि वही काँच आपका स्पर्श अंदर लेता है और तस्वीर बाहर दिखाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which device gives you a hard copy?",
+        "hi": "कौन-सा डिवाइस आपको हार्ड कॉपी देता है?"
+       },
+       "options": [
+        {
+         "en": "Scanner",
+         "hi": "स्कैनर"
+        },
+        {
+         "en": "Printer",
+         "hi": "प्रिंटर"
+        },
+        {
+         "en": "Monitor",
+         "hi": "मॉनिटर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A printer puts the result on paper. That paper is the hard copy.",
+        "hi": "प्रिंटर नतीजा काग़ज़ पर छापता है। वही काग़ज़ हार्ड कॉपी है।"
+       },
+       "wrong": [
+        {
+         "en": "A scanner takes a page in. It does not give paper out.",
+         "hi": "स्कैनर पन्ना अंदर लेता है। वह काग़ज़ बाहर नहीं देता।"
+        },
+        "",
+        {
+         "en": "A monitor shows a soft copy on the screen. Nothing is printed.",
+         "hi": "मॉनिटर पर्दे पर सॉफ़्ट कॉपी दिखाता है। कुछ छपता नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A microphone sends your voice to the computer. What kind of device is it?",
+        "hi": "माइक्रोफ़ोन आपकी आवाज़ कंप्यूटर को भेजता है। यह किस तरह का डिवाइस है?"
+       },
+       "options": [
+        {
+         "en": "Output device",
+         "hi": "आउटपुट डिवाइस"
+        },
+        {
+         "en": "Input device",
+         "hi": "इनपुट डिवाइस"
+        },
+        {
+         "en": "Processing device",
+         "hi": "प्रोसेसिंग डिवाइस"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It captures sound and sends it in, so it is an input device.",
+        "hi": "यह आवाज़ पकड़कर अंदर भेजता है, इसलिए यह इनपुट डिवाइस है।"
+       },
+       "wrong": [
+        {
+         "en": "Output devices bring results out of the computer. The microphone sends sound in.",
+         "hi": "आउटपुट डिवाइस नतीजे कंप्यूटर से बाहर लाते हैं। माइक्रोफ़ोन आवाज़ अंदर भेजता है।"
+        },
+        "",
+        {
+         "en": "Processing is done by the CPU. The microphone only captures sound.",
+         "hi": "प्रोसेसिंग सीपीयू करता है। माइक्रोफ़ोन सिर्फ़ आवाज़ पकड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a smartwatch, a headset with a mic and a game controller that buzzes. Are they input, output or both?",
+      "hi": "स्मार्टवॉच, माइक वाले हेडसेट और काँपने वाले गेम कंट्रोलर के बारे में सोचो। ये इनपुट हैं, आउटपुट हैं या दोनों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch01-evolution",
+   "topic": "1.2",
+   "template": "sequence",
+   "title": {
+    "en": "From the abacus to the smartphone",
+    "hi": "अबेकस से स्मार्टफ़ोन तक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "abacus",
+      "text": {
+       "en": "Abacus: beads on rods help people count",
+       "hi": "अबेकस: छड़ों पर मनके गिनती में मदद करते हैं"
+      }
+     },
+     {
+      "id": "pascal",
+      "text": {
+       "en": "Pascaline: gears add and subtract numbers (1600s)",
+       "hi": "पास्कलीन: गियर संख्याएँ जोड़ते और घटाते हैं (1600 के दशक)"
+      }
+     },
+     {
+      "id": "babbage",
+      "text": {
+       "en": "Babbage designs the Analytical Engine, a machine that can follow programs (1800s)",
+       "hi": "बैबेज ऐनालिटिकल इंजन का डिज़ाइन बनाते हैं, जो प्रोग्राम का पालन कर सके (1800 के दशक)"
+      }
+     },
+     {
+      "id": "eniac",
+      "text": {
+       "en": "ENIAC: a room-sized electronic computer with vacuum tubes (1940s)",
+       "hi": "ENIAC: निर्वात नलियों वाला कमरे जितना बड़ा इलेक्ट्रॉनिक कंप्यूटर (1940 के दशक)"
+      }
+     },
+     {
+      "id": "transistor",
+      "text": {
+       "en": "Transistors replace vacuum tubes: smaller, cooler, faster (1950s)",
+       "hi": "ट्रांज़िस्टर निर्वात नलियों की जगह लेते हैं: छोटे, ठंडे, तेज़ (1950 के दशक)"
+      }
+     },
+     {
+      "id": "micro",
+      "text": {
+       "en": "The microprocessor puts a whole CPU on one chip: personal computers arrive (1970s)",
+       "hi": "माइक्रोप्रोसेसर पूरा सीपीयू एक चिप पर रख देता है: पर्सनल कंप्यूटर आते हैं (1970 के दशक)"
+      }
+     },
+     {
+      "id": "phone",
+      "text": {
+       "en": "Smartphones and AI: a powerful computer in every pocket",
+       "hi": "स्मार्टफ़ोन और एआई: हर जेब में एक शक्तिशाली कंप्यूटर"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:abacus",
+     "expect": "placed:abacus",
+     "say": {
+      "en": "Tap the oldest invention, the abacus, and put it in slot 1.",
+      "hi": "सबसे पुराना आविष्कार, अबेकस, दबाओ और उसे खाना 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which technology made computers smaller and cooler: vacuum tubes or transistors?",
+      "hi": "किस तकनीक ने कंप्यूटर को छोटा और ठंडा बनाया: निर्वात नलियाँ या ट्रांज़िस्टर?"
+     },
+     "options": [
+      {
+       "id": "vt",
+       "en": "Vacuum tubes",
+       "hi": "निर्वात नलियाँ"
+      },
+      {
+       "id": "tr",
+       "en": "Transistors",
+       "hi": "ट्रांज़िस्टर"
+      }
+     ],
+     "answer": "tr"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the cards in time order, then press Check.",
+      "hi": "सारे कार्ड समय के क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Computers changed step by step. First came tools for counting, then gear machines, then electronic machines. Each new part, from tubes to transistors to chips, made computers smaller, faster and cheaper. That is why you can carry one today.",
+      "hi": "कंप्यूटर क़दम-दर-क़दम बदले। पहले गिनती के औज़ार आए, फिर गियर वाली मशीनें, फिर इलेक्ट्रॉनिक मशीनें। नए पुर्ज़ों, यानी नलियों से ट्रांज़िस्टर और फिर चिप, ने कंप्यूटर को छोटा, तेज़ और सस्ता बनाया। इसीलिए आज आप उसे साथ ले जा सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What replaced vacuum tubes in computers?",
+        "hi": "कंप्यूटरों में निर्वात नलियों की जगह किसने ली?"
+       },
+       "options": [
+        {
+         "en": "The abacus",
+         "hi": "अबेकस"
+        },
+        {
+         "en": "Transistors",
+         "hi": "ट्रांज़िस्टर"
+        },
+        {
+         "en": "Gears",
+         "hi": "गियर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Transistors do the same switching job as tubes but are small, cool and use less power.",
+        "hi": "ट्रांज़िस्टर नलियों जैसा ही स्विच का काम करते हैं, पर छोटे, ठंडे और कम बिजली वाले हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The abacus is a counting frame from long before electronics.",
+         "hi": "अबेकस बिजली के उपकरणों से बहुत पहले का गिनती का ढाँचा है।"
+        },
+        "",
+        {
+         "en": "Gears were used in the early mechanical machines, before vacuum tubes.",
+         "hi": "गियर शुरुआती यांत्रिक मशीनों में थे, निर्वात नलियों से पहले।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What did the microprocessor bring?",
+        "hi": "माइक्रोप्रोसेसर क्या लाया?"
+       },
+       "options": [
+        {
+         "en": "A whole CPU on one small chip",
+         "hi": "पूरा सीपीयू एक छोटी चिप पर"
+        },
+        {
+         "en": "Beads on rods for counting",
+         "hi": "गिनती के लिए छड़ों पर मनके"
+        },
+        {
+         "en": "Gears for adding",
+         "hi": "जोड़ने के लिए गियर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With the CPU on one chip, computers became small and cheap enough for homes and schools.",
+        "hi": "सीपीयू एक चिप पर आने से कंप्यूटर इतने छोटे और सस्ते हुए कि घरों और स्कूलों में पहुँच गए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the abacus, the very first step.",
+         "hi": "वह अबेकस है, सबसे पहला क़दम।"
+        },
+        {
+         "en": "Gears belong to the Pascaline, long before chips.",
+         "hi": "गियर पास्कलीन के हैं, चिप से बहुत पहले।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and try again. Can you order them without looking at the years?",
+      "hi": "रीसेट दबाओ और फिर कोशिश करो। क्या तुम सालों को देखे बिना इन्हें क्रम में लगा सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch01-units",
+   "topic": "1.3.1",
+   "template": "logic",
+   "title": {
+    "en": "Bits, bytes and the size ladder",
+    "hi": "बिट, बाइट और आकार की सीढ़ी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "encoding"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tab:size",
+     "expect": "converted",
+     "say": {
+      "en": "Open the Size tab.",
+      "hi": "आकार वाला टैब खोलो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A computer stores everything in 0s and 1s. How many bytes make 1 kilobyte (KB)?",
+      "hi": "कंप्यूटर सब कुछ 0 और 1 में रखता है। 1 किलोबाइट (KB) में कितने बाइट होते हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "1000",
+       "hi": "1000 बाइट"
+      },
+      {
+       "id": "b",
+       "en": "1024",
+       "hi": "1024 बाइट"
+      },
+      {
+       "id": "c",
+       "en": "100",
+       "hi": "100 बाइट"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "unit:KB",
+     "expect": "converted",
+     "say": {
+      "en": "Tap KB to see how many bytes it holds.",
+      "hi": "KB दबाकर देखो कि उसमें कितने बाइट हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "unit:MB",
+     "expect": "converted",
+     "say": {
+      "en": "Now tap MB. Watch the number grow.",
+      "hi": "अब MB दबाओ। संख्या को बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "unit:GB",
+     "expect": "converted",
+     "say": {
+      "en": "Tap GB to climb one more step.",
+      "hi": "एक और सीढ़ी चढ़ने के लिए GB दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A bit is one 0 or 1. Four bits make a nibble. Eight bits make a byte, enough for one letter. Each unit is 1024 times the one below it: 1 KB is 1024 bytes, 1 MB is 1024 KB, and 1 GB is 1024 MB.",
+      "hi": "बिट एक 0 या 1 है। चार बिट मिलकर निबल बनाते हैं। आठ बिट मिलकर एक बाइट बनाते हैं, जो एक अक्षर के लिए काफ़ी है। हर इकाई अपनी नीचे वाली इकाई की 1024 गुनी है: 1 KB = 1024 बाइट, 1 MB = 1024 KB और 1 GB = 1024 MB।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many bits are in one byte?",
+        "hi": "एक बाइट में कितने बिट होते हैं?"
+       },
+       "options": [
+        {
+         "en": "4 bits",
+         "hi": "4 बिट"
+        },
+        {
+         "en": "8 bits",
+         "hi": "8 बिट"
+        },
+        {
+         "en": "1024 bits",
+         "hi": "1024 बिट"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "One byte is a group of 8 bits.",
+        "hi": "एक बाइट 8 बिट का समूह है।"
+       },
+       "wrong": [
+        {
+         "en": "Four bits make only a nibble, half a byte.",
+         "hi": "चार बिट सिर्फ़ एक निबल बनाते हैं, यानी आधा बाइट।"
+        },
+        "",
+        {
+         "en": "1024 is how many bytes make a kilobyte, not how many bits make a byte.",
+         "hi": "1024 वह संख्या है जितने बाइट से किलोबाइट बनता है, एक बाइट के बिट नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is the biggest?",
+        "hi": "सबसे बड़ा कौन है?"
+       },
+       "options": [
+        {
+         "en": "1 MB",
+         "hi": "1 MB (मेगाबाइट)"
+        },
+        {
+         "en": "1 KB",
+         "hi": "1 KB (किलोबाइट)"
+        },
+        {
+         "en": "1 GB",
+         "hi": "1 GB (गीगाबाइट)"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Each step up multiplies by 1024, so GB is bigger than MB, and MB is bigger than KB.",
+        "hi": "हर क़दम ऊपर चढ़ने पर 1024 से गुणा होता है, इसलिए GB, MB से बड़ा है और MB, KB से बड़ा है।"
+       },
+       "wrong": [
+        {
+         "en": "1 MB is 1024 KB, but 1 GB is 1024 times bigger still.",
+         "hi": "1 MB यानी 1024 KB, पर 1 GB उससे 1024 गुना बड़ा है।"
+        },
+        {
+         "en": "1 KB is the smallest of the three here.",
+         "hi": "यहाँ तीनों में 1 KB सबसे छोटा है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch to the Text tab and type your name. How many bytes does it need?",
+      "hi": "टेक्स्ट टैब पर जाओ और अपना नाम लिखो। उसे कितने बाइट चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch01-memory-types",
+   "topic": "1.3.2",
+   "template": "sort",
+   "title": {
+    "en": "Primary or secondary memory?",
+    "hi": "प्राथमिक या द्वितीयक मेमोरी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pri",
+      "label": {
+       "en": "Primary (CPU uses directly)",
+       "hi": "प्राथमिक (सीपीयू सीधे लेता है)"
+      }
+     },
+     {
+      "id": "sec",
+      "label": {
+       "en": "Secondary (permanent storage)",
+       "hi": "द्वितीयक (स्थायी भंडारण)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ram",
+      "text": {
+       "en": "RAM",
+       "hi": "RAM"
+      },
+      "bin": "pri",
+      "why": {
+       "en": "The CPU works with the programs and data kept in RAM while the computer is on.",
+       "hi": "कंप्यूटर चालू रहने तक सीपीयू RAM में रखे प्रोग्राम और डेटा से काम करता है।"
+      }
+     },
+     {
+      "id": "rom",
+      "text": {
+       "en": "ROM",
+       "hi": "ROM"
+      },
+      "bin": "pri",
+      "why": {
+       "en": "It is read-only memory and keeps start-up instructions even when power is off.",
+       "hi": "यह केवल-पढ़ने वाली मेमोरी है और बिजली बंद होने पर भी शुरुआती निर्देश रखती है।"
+      }
+     },
+     {
+      "id": "cache",
+      "text": {
+       "en": "Cache",
+       "hi": "कैश"
+      },
+      "bin": "pri",
+      "why": {
+       "en": "A small, very fast memory placed between the CPU and RAM.",
+       "hi": "सीपीयू और RAM के बीच रखी छोटी, बहुत तेज़ मेमोरी।"
+      }
+     },
+     {
+      "id": "hdd",
+      "text": {
+       "en": "Hard disk drive",
+       "hi": "हार्ड डिस्क ड्राइव"
+      },
+      "bin": "sec",
+      "why": {
+       "en": "It stores files permanently, but the CPU cannot use them until they are brought into RAM.",
+       "hi": "यह फ़ाइलें स्थायी रखती है, पर सीपीयू उन्हें RAM में आने से पहले इस्तेमाल नहीं कर सकता।"
+      }
+     },
+     {
+      "id": "ssd",
+      "text": {
+       "en": "Solid-state drive (SSD)",
+       "hi": "सॉलिड-स्टेट ड्राइव (SSD)"
+      },
+      "bin": "sec",
+      "why": {
+       "en": "A fast permanent storage device with no moving parts.",
+       "hi": "बिना हिलने वाले पुर्ज़ों का तेज़ स्थायी भंडारण डिवाइस।"
+      }
+     },
+     {
+      "id": "pen",
+      "text": {
+       "en": "Pen drive",
+       "hi": "पेन ड्राइव"
+      },
+      "bin": "sec",
+      "why": {
+       "en": "A small portable flash drive that keeps files when unplugged.",
+       "hi": "एक छोटी साथ ले जाने लायक फ़्लैश ड्राइव जो निकालने पर भी फ़ाइलें रखती है।"
+      }
+     },
+     {
+      "id": "card",
+      "text": {
+       "en": "Memory card",
+       "hi": "मेमोरी कार्ड"
+      },
+      "bin": "sec",
+      "why": {
+       "en": "The tiny card in a phone or camera keeps photos permanently.",
+       "hi": "फ़ोन या कैमरे का छोटा कार्ड फ़ोटो स्थायी रूप से रखता है।"
+      }
+     },
+     {
+      "id": "dvd",
+      "text": {
+       "en": "DVD",
+       "hi": "डीवीडी"
+      },
+      "bin": "sec",
+      "why": {
+       "en": "An optical disc that stores data permanently.",
+       "hi": "एक ऑप्टिकल डिस्क जो डेटा स्थायी रूप से रखती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ram",
+     "expect": "placed:ram",
+     "say": {
+      "en": "Place the RAM card in its box.",
+      "hi": "RAM वाला कार्ड उसके डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The CPU is fastest with memory that sits close to it. Which will be placed in the primary box?",
+      "hi": "सीपीयू उस मेमोरी से सबसे तेज़ काम करता है जो उसके पास होती है। प्राथमिक डिब्बे में कौन जाएगा?"
+     },
+     "options": [
+      {
+       "id": "c",
+       "en": "Cache",
+       "hi": "कैश"
+      },
+      {
+       "id": "h",
+       "en": "Hard disk",
+       "hi": "हार्ड डिस्क"
+      },
+      {
+       "id": "d",
+       "en": "DVD",
+       "hi": "डीवीडी"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "card:cache",
+     "expect": "placed:cache",
+     "say": {
+      "en": "Place the Cache card.",
+      "hi": "कैश वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Primary memory (RAM, ROM and cache) is the memory the CPU reaches directly. It is fast but small. Secondary memory is for keeping files for a long time. It is bigger, cheaper and slower, and its contents must first be brought into RAM.",
+      "hi": "प्राथमिक मेमोरी (RAM, ROM और कैश) वह मेमोरी है जिस तक सीपीयू सीधे पहुँचता है। वह तेज़ है पर छोटी। द्वितीयक मेमोरी फ़ाइलें लंबे समय तक रखने के लिए है। वह बड़ी, सस्ती और धीमी है, और उसकी सामग्री पहले RAM में लानी पड़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a hard disk called secondary memory?",
+        "hi": "हार्ड डिस्क को द्वितीयक मेमोरी क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "The CPU reads it directly, faster than RAM",
+         "hi": "सीपीयू इसे सीधे पढ़ता है, RAM से भी तेज़"
+        },
+        {
+         "en": "It keeps data permanently and is bigger, but slower",
+         "hi": "यह डेटा स्थायी रखती है और बड़ी है, पर धीमी"
+        },
+        {
+         "en": "It loses everything when the power is off",
+         "hi": "बिजली बंद होते ही सब कुछ खो देती है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Secondary memory is the permanent store. Data from it is copied to RAM before the CPU uses it.",
+        "hi": "द्वितीयक मेमोरी स्थायी भंडार है। सीपीयू के इस्तेमाल से पहले उसका डेटा RAM में कॉपी होता है।"
+       },
+       "wrong": [
+        {
+         "en": "Reverse: the CPU cannot use it directly, and it is slower than RAM.",
+         "hi": "उल्टा: सीपीयू इसे सीधे इस्तेमाल नहीं कर सकता, और यह RAM से धीमी है।"
+        },
+        "",
+        {
+         "en": "That describes RAM. A hard disk keeps its files.",
+         "hi": "यह RAM के बारे में है। हार्ड डिस्क अपनी फ़ाइलें रखती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which cards are in your phone? Count how many different memories it must have.",
+      "hi": "तुम्हारे फ़ोन में कौन-से कार्ड हैं? गिनो कि उसमें कितनी अलग-अलग मेमोरी होनी चाहिए।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch01-memory-match",
+   "topic": "1.3.2",
+   "template": "match",
+   "title": {
+    "en": "Match the memory to its job",
+    "hi": "मेमोरी को उसके काम से मिलाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "ram",
+      "left": {
+       "en": "RAM",
+       "hi": "RAM"
+      },
+      "right": {
+       "en": "Forgets everything when the power goes off",
+       "hi": "बिजली जाते ही सब कुछ भूल जाती है"
+      },
+      "why": {
+       "en": "RAM is volatile. It holds data only while power is on.",
+       "hi": "RAM अस्थिर है। वह बिजली रहने तक ही डेटा रखती है।"
+      }
+     },
+     {
+      "id": "rom",
+      "left": {
+       "en": "ROM",
+       "hi": "ROM"
+      },
+      "right": {
+       "en": "Keeps the start-up program even when switched off",
+       "hi": "बंद होने पर भी स्टार्ट-अप प्रोग्राम रखती है"
+      },
+      "why": {
+       "en": "ROM is non-volatile. It holds the boot loader that starts the computer.",
+       "hi": "ROM अस्थिर नहीं है। उसमें वह बूट लोडर रहता है जो कंप्यूटर शुरू करता है।"
+      }
+     },
+     {
+      "id": "cache",
+      "left": {
+       "en": "Cache",
+       "hi": "कैश"
+      },
+      "right": {
+       "en": "Very fast copy of data the CPU uses often",
+       "hi": "सीपीयू के बार-बार काम आने वाले डेटा की बहुत तेज़ प्रति"
+      },
+      "why": {
+       "en": "Cache sits between the CPU and RAM and saves time.",
+       "hi": "कैश सीपीयू और RAM के बीच रहती है और समय बचाती है।"
+      }
+     },
+     {
+      "id": "hdd",
+      "left": {
+       "en": "Hard disk",
+       "hi": "हार्ड डिस्क"
+      },
+      "right": {
+       "en": "Large permanent store for files and programs",
+       "hi": "फ़ाइलों और प्रोग्रामों का बड़ा स्थायी भंडार"
+      },
+      "why": {
+       "en": "Secondary storage keeps data for the long term.",
+       "hi": "द्वितीयक भंडारण डेटा को लंबे समय तक रखता है।"
+      }
+     },
+     {
+      "id": "pen",
+      "left": {
+       "en": "Pen drive",
+       "hi": "पेन ड्राइव"
+      },
+      "right": {
+       "en": "Portable flash storage you can carry in a pocket",
+       "hi": "जेब में रखकर ले जाने लायक फ़्लैश भंडारण"
+      },
+      "why": {
+       "en": "A small flash drive moves files from one computer to another.",
+       "hi": "एक छोटी फ़्लैश ड्राइव फ़ाइलों को एक कंप्यूटर से दूसरे में ले जाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ram",
+     "expect": "matched:ram",
+     "say": {
+      "en": "Match RAM with what happens to it when power goes off.",
+      "hi": "RAM को वह चीज़ मिलाओ जो बिजली जाने पर उसके साथ होती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which memory holds the program that starts the computer?",
+      "hi": "कंप्यूटर को शुरू करने वाला प्रोग्राम कौन-सी मेमोरी रखती है?"
+     },
+     "options": [
+      {
+       "id": "rom",
+       "en": "ROM",
+       "hi": "ROM (रोम)"
+      },
+      {
+       "id": "ram",
+       "en": "RAM",
+       "hi": "RAM (रैम)"
+      },
+      {
+       "id": "pen",
+       "en": "Pen drive",
+       "hi": "पेन ड्राइव"
+      }
+     ],
+     "answer": "rom"
+    },
+    {
+     "kind": "do",
+     "target": "left:rom",
+     "expect": "matched:rom",
+     "say": {
+      "en": "Match ROM.",
+      "hi": "ROM को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "RAM is volatile: its contents vanish when power is cut. ROM and secondary storage are non-volatile and keep their contents. That is why unsaved work in RAM is lost in a power cut, but a saved file on the disk is safe.",
+      "hi": "RAM अस्थिर है: बिजली कटते ही उसकी सामग्री मिट जाती है। ROM और द्वितीयक भंडारण स्थिर हैं और अपनी सामग्री रखते हैं। इसीलिए बिजली जाने पर RAM में बिना सेव किया काम चला जाता है, पर डिस्क पर सेव फ़ाइल सुरक्षित रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You typed a long essay but did not save it. The power goes off. Where was the essay?",
+        "hi": "आपने लंबा निबंध लिखा पर सेव नहीं किया। बिजली चली गई। निबंध कहाँ था?"
+       },
+       "options": [
+        {
+         "en": "In RAM, so it is lost",
+         "hi": "RAM में, इसलिए खो गया"
+        },
+        {
+         "en": "On the hard disk, so it is safe",
+         "hi": "हार्ड डिस्क पर, इसलिए सुरक्षित है"
+        },
+        {
+         "en": "In ROM, so it is safe",
+         "hi": "ROM में, इसलिए सुरक्षित है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Work being typed lives in RAM until you save it. RAM forgets when power goes off.",
+        "hi": "टाइप हो रहा काम सेव करने तक RAM में रहता है। बिजली जाने पर RAM भूल जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only a saved file goes to the disk. Yours was not saved.",
+         "hi": "डिस्क पर सिर्फ़ सेव की गई फ़ाइल जाती है। आपकी सेव नहीं हुई थी।"
+        },
+        {
+         "en": "ROM cannot be changed by your typing. It holds fixed start-up instructions.",
+         "hi": "आपके टाइप करने से ROM नहीं बदलती। उसमें तय शुरुआती निर्देश रहते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and match again, but this time cover the right column and say each answer first.",
+      "hi": "रीसेट दबाओ और फिर मिलाओ, पर इस बार दाहिना स्तंभ ढककर पहले ख़ुद उत्तर बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch01-capture",
+   "topic": "1.3.3",
+   "template": "sequence",
+   "title": {
+    "en": "A photo: capture, store, retrieve",
+    "hi": "एक फ़ोटो: पकड़ो, रखो, वापस लाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "capture",
+      "text": {
+       "en": "A camera captures the picture as digital data",
+       "hi": "कैमरा तस्वीर को डिजिटल डेटा के रूप में पकड़ता है"
+      }
+     },
+     {
+      "id": "store",
+      "text": {
+       "en": "The data is stored as a file on the memory card",
+       "hi": "डेटा मेमोरी कार्ड पर फ़ाइल के रूप में रखा जाता है"
+      }
+     },
+     {
+      "id": "ask",
+      "text": {
+       "en": "Later, you tap the photo to open it",
+       "hi": "बाद में आप उसे खोलने के लिए फ़ोटो पर टैप करते हैं"
+      }
+     },
+     {
+      "id": "retrieve",
+      "text": {
+       "en": "The phone fetches the file from storage into RAM",
+       "hi": "फ़ोन फ़ाइल को भंडारण से निकालकर RAM में लाता है"
+      }
+     },
+     {
+      "id": "show",
+      "text": {
+       "en": "The CPU processes it and the screen shows the photo",
+       "hi": "सीपीयू उसे प्रोसेस करता है और स्क्रीन फ़ोटो दिखाती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:capture",
+     "expect": "placed:capture",
+     "say": {
+      "en": "Start with the first step: capturing the data.",
+      "hi": "पहले चरण से शुरू करो: डेटा पकड़ना।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which comes first: storing the photo or capturing it?",
+      "hi": "पहले क्या आता है: फ़ोटो रखना या फ़ोटो पकड़ना?"
+     },
+     "options": [
+      {
+       "id": "cap",
+       "en": "Capturing",
+       "hi": "पकड़ना"
+      },
+      {
+       "id": "sto",
+       "en": "Storing",
+       "hi": "रखना"
+      }
+     ],
+     "answer": "cap"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order, then press Check.",
+      "hi": "सारे चरण क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Data goes through three stages. Capturing gathers it in digital form, for example with a keyboard, a barcode reader or a camera. Storage keeps it in a file or database. Retrieval fetches it again when you want to process or see it.",
+      "hi": "डेटा तीन चरणों से गुज़रता है। पकड़ना उसे डिजिटल रूप में इकट्ठा करता है, जैसे कीबोर्ड, बारकोड रीडर या कैमरे से। भंडारण उसे फ़ाइल या डेटाबेस में रखता है। वापस लाना उसे फिर निकालता है जब आप उसे प्रोसेस करना या देखना चाहें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A shop scans the barcode on a biscuit packet. Which stage is this?",
+        "hi": "दुकान में बिस्कुट के पैकेट का बारकोड स्कैन होता है। यह कौन-सा चरण है?"
+       },
+       "options": [
+        {
+         "en": "Data capturing",
+         "hi": "डेटा पकड़ना"
+        },
+        {
+         "en": "Data storage",
+         "hi": "डेटा भंडारण"
+        },
+        {
+         "en": "Data retrieval",
+         "hi": "डेटा वापस लाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A barcode reader gathers data into the computer, which is capturing.",
+        "hi": "बारकोड रीडर डेटा को कंप्यूटर में इकट्ठा करता है, यानी पकड़ना।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Storage means keeping data for later. Scanning is gathering it.",
+         "hi": "भंडारण यानी बाद के लिए डेटा रखना। स्कैन करना डेटा इकट्ठा करना है।"
+        },
+        {
+         "en": "Retrieval means fetching data that is already stored. The scanner is reading new data.",
+         "hi": "वापस लाना यानी पहले से रखा डेटा निकालना। स्कैनर नया डेटा पढ़ रहा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is data copied into RAM before it is shown?",
+        "hi": "दिखाने से पहले डेटा RAM में क्यों कॉपी होता है?"
+       },
+       "options": [
+        {
+         "en": "Because the CPU works on data in primary memory",
+         "hi": "क्योंकि सीपीयू प्राथमिक मेमोरी के डेटा पर काम करता है"
+        },
+        {
+         "en": "Because RAM keeps it forever",
+         "hi": "क्योंकि RAM उसे हमेशा रखती है"
+        },
+        {
+         "en": "Because the screen cannot show files",
+         "hi": "क्योंकि स्क्रीन फ़ाइलें नहीं दिखा सकती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The CPU reads and writes primary memory directly, so stored data is brought there first.",
+        "hi": "सीपीयू प्राथमिक मेमोरी को सीधे पढ़ता-लिखता है, इसलिए रखा हुआ डेटा पहले वहीं लाया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "RAM is volatile and forgets when power is off.",
+         "hi": "RAM अस्थिर है और बिजली बंद होने पर भूल जाती है।"
+        },
+        {
+         "en": "The screen can show them. The CPU first needs the data in RAM to prepare it.",
+         "hi": "स्क्रीन दिखा सकती है। सीपीयू को तैयार करने के लिए पहले डेटा RAM में चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a bank passbook entry. What is captured, what is stored and what is retrieved?",
+      "hi": "बैंक की पासबुक की एंट्री के बारे में सोचो। क्या पकड़ा जाता है, क्या रखा जाता है और क्या वापस लाया जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch01-recovery",
+   "topic": "1.3.4",
+   "template": "scenario",
+   "title": {
+    "en": "Rescue the deleted project",
+    "hi": "डिलीट हुए प्रोजेक्ट को बचाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "school computer lab",
+    "role": {
+     "en": "A student who deleted a project file",
+     "hi": "प्रोजेक्ट फ़ाइल डिलीट करने वाला विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "You pressed Shift+Delete and your science project vanished from the pen drive. You need it back today. What do you do first?",
+       "hi": "आपने Shift+Delete दबाया और आपका विज्ञान प्रोजेक्ट पेन ड्राइव से ग़ायब हो गया। आज ही चाहिए। सबसे पहले क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "stop",
+        "text": {
+         "en": "Stop using the pen drive and find a recovery tool",
+         "hi": "पेन ड्राइव इस्तेमाल करना रोको और रिकवरी टूल ढूँढ़ो"
+        },
+        "next": "tool",
+        "good": true,
+        "feedback": {
+         "en": "Good thinking. Deleted data stays until something new is written over it.",
+         "hi": "अच्छी सोच। डिलीट डेटा तब तक रहता है जब तक उसके ऊपर कुछ नया न लिख जाए।"
+        }
+       },
+       {
+        "id": "copy",
+        "text": {
+         "en": "Copy a few new files to the pen drive to check it works",
+         "hi": "पेन ड्राइव ठीक है, यह देखने के लिए उसमें कुछ नई फ़ाइलें कॉपी करो"
+        },
+        "next": "over",
+        "feedback": {
+         "en": "Risky. New files may be written on the space marked as free.",
+         "hi": "जोखिम भरा। नई फ़ाइलें उसी जगह लिखी जा सकती हैं जो ख़ाली चिह्नित है।"
+        }
+       },
+       {
+        "id": "format",
+        "text": {
+         "en": "Format the pen drive to fix it",
+         "hi": "इसे ठीक करने के लिए पेन ड्राइव फ़ॉर्मेट करो"
+        },
+        "next": "over",
+        "feedback": {
+         "en": "Formatting prepares the drive for new data and makes recovery harder.",
+         "hi": "फ़ॉर्मेट करने से ड्राइव नए डेटा के लिए तैयार होती है और रिकवरी कठिन हो जाती है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "tool",
+      "text": {
+       "en": "You plug the drive into a computer and run a recovery tool with your teacher. It scans the drive. Nothing new was written on it.",
+       "hi": "आप ड्राइव कंप्यूटर में लगाकर शिक्षक के साथ रिकवरी टूल चलाते हैं। वह ड्राइव स्कैन करता है। उस पर कुछ नया नहीं लिखा गया था।"
+      },
+      "choices": [
+       {
+        "id": "restore",
+        "text": {
+         "en": "Save the found file to the computer, not the pen drive",
+         "hi": "मिली हुई फ़ाइल को पेन ड्राइव पर नहीं, कंप्यूटर में सेव करो"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Your project is back. Saving it to another drive keeps the old space safe.",
+         "hi": "आपका प्रोजेक्ट वापस आ गया। दूसरी ड्राइव में सेव करने से पुरानी जगह सुरक्षित रहती है।"
+        }
+       },
+       {
+        "id": "same",
+        "text": {
+         "en": "Save the found file back onto the same pen drive",
+         "hi": "मिली फ़ाइल को उसी पेन ड्राइव पर वापस सेव करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "It may work, but writing to the same drive can overwrite other files you still want to recover.",
+         "hi": "चल सकता है, पर उसी ड्राइव पर लिखने से दूसरी फ़ाइलें, जिन्हें आप बचाना चाहें, दब सकती हैं।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "over",
+      "text": {
+       "en": "Some of the space was used by new data. The tool finds only a broken part of your project.",
+       "hi": "कुछ जगह नए डेटा ने ले ली। टूल को आपके प्रोजेक्ट का सिर्फ़ टूटा हुआ हिस्सा मिलता है।"
+      },
+      "choices": [
+       {
+        "id": "redo",
+        "text": {
+         "en": "Rebuild the missing part and start taking a backup",
+         "hi": "जो हिस्सा नहीं मिला उसे दोबारा बनाओ और बैकअप लेना शुरू करो"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "A backup copy on another device would have saved all this work.",
+         "hi": "दूसरे डिवाइस पर बैकअप होता तो यह सारा काम बच जाता।"
+        }
+       },
+       {
+        "id": "blame",
+        "text": {
+         "en": "Give up on the project",
+         "hi": "प्रोजेक्ट छोड़ दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Giving up loses the part that was saved. A rebuild is better.",
+         "hi": "छोड़ने से जो हिस्सा बचा था वह भी जाता है। दोबारा बनाना बेहतर है।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When you delete a file, what really happens to its data?",
+      "hi": "फ़ाइल डिलीट करने पर उसके डेटा का असल में क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "gone",
+       "en": "It is wiped at once",
+       "hi": "तुरंत मिट जाता है"
+      },
+      {
+       "id": "free",
+       "en": "Its space is marked free, the data may stay for now",
+       "hi": "जगह ख़ाली चिह्नित होती है, डेटा कुछ समय बना रह सकता है"
+      }
+     ],
+     "answer": "free"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:stop",
+     "expect": "chose:stop",
+     "say": {
+      "en": "Choose the safest first step.",
+      "hi": "सबसे सुरक्षित पहला क़दम चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:tool:restore",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose where to save the recovered file.",
+      "hi": "मिली हुई फ़ाइल कहाँ सेव करनी है, यह चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Deleting only marks the file's space as free. The old data stays until new data is written over it. So recovery is possible only if the space has not been overwritten. Stop using the device, recover to another drive, and keep backups.",
+      "hi": "डिलीट करने से सिर्फ़ फ़ाइल की जगह ख़ाली चिह्नित होती है। पुराना डेटा तब तक रहता है जब तक उसके ऊपर नया डेटा न लिख जाए। इसलिए रिकवरी तभी हो सकती है जब जगह दबी न हो। डिवाइस इस्तेमाल करना रोको, दूसरी ड्राइव में रिकवर करो और बैकअप रखो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When can deleted data be recovered?",
+        "hi": "डिलीट डेटा कब वापस मिल सकता है?"
+       },
+       "options": [
+        {
+         "en": "Only if its space has not been overwritten",
+         "hi": "तभी जब उसकी जगह पर कुछ और न लिखा गया हो"
+        },
+        {
+         "en": "Never, deleting wipes it for ever",
+         "hi": "कभी नहीं, डिलीट करने से वह हमेशा के लिए मिट जाता है"
+        },
+        {
+         "en": "Only if you copy more files onto the drive",
+         "hi": "तभी जब ड्राइव में और फ़ाइलें कॉपी करो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Recovery works only while the old bits are still there.",
+        "hi": "रिकवरी तभी चलती है जब पुराने बिट अभी वहीं हों।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Deleting usually only marks the space as free. The bits stay until overwritten.",
+         "hi": "डिलीट आमतौर पर जगह को ख़ाली चिह्नित करता है। बिट तब तक रहते हैं जब तक ऊपर न लिखा जाए।"
+        },
+        {
+         "en": "Copying more files is the surest way to overwrite it.",
+         "hi": "और फ़ाइलें कॉपी करना उसे दबा देने का पक्का तरीक़ा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You throw away an old disk with private photos. What is the safe way?",
+        "hi": "आप निजी फ़ोटो वाली पुरानी डिस्क फेंक रहे हैं। सुरक्षित तरीक़ा क्या है?"
+       },
+       "options": [
+        {
+         "en": "Just delete the photos",
+         "hi": "बस फ़ोटो डिलीट कर दो"
+        },
+        {
+         "en": "Use a proper tool to shred the data first",
+         "hi": "पहले सही टूल से डेटा श्रेड करो"
+        },
+        {
+         "en": "Nothing, nobody can read old disks",
+         "hi": "कुछ नहीं, पुरानी डिस्क कोई नहीं पढ़ सकता"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Shredding overwrites the data so nobody can recover it.",
+        "hi": "श्रेड करने से डेटा पर दूसरा डेटा लिख जाता है, इसलिए कोई उसे वापस नहीं पा सकता।"
+       },
+       "wrong": [
+        {
+         "en": "Plain delete leaves the data, and others could recover it.",
+         "hi": "सादा डिलीट डेटा छोड़ देता है, और दूसरे उसे वापस पा सकते हैं।"
+        },
+        "",
+        {
+         "en": "Recovery tools can read old disks, so private data can leak.",
+         "hi": "रिकवरी टूल पुरानी डिस्क पढ़ सकते हैं, इसलिए निजी डेटा लीक हो सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and try the other paths. Which path would a backup have made safe?",
+      "hi": "फिर खेलो और दूसरे रास्ते आज़माओ। किस रास्ते को बैकअप सुरक्षित बना देता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch01-software",
+   "topic": "1.4",
+   "template": "sort",
+   "title": {
+    "en": "Sort the software",
+    "hi": "सॉफ़्टवेयर को छाँटो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sys",
+      "label": {
+       "en": "System software",
+       "hi": "सिस्टम सॉफ़्टवेयर"
+      }
+     },
+     {
+      "id": "app",
+      "label": {
+       "en": "Application software",
+       "hi": "एप्लीकेशन सॉफ़्टवेयर"
+      }
+     },
+     {
+      "id": "tool",
+      "label": {
+       "en": "Programming tool",
+       "hi": "प्रोग्रामिंग टूल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "os",
+      "text": {
+       "en": "Operating system (Windows or Ubuntu)",
+       "hi": "ऑपरेटिंग सिस्टम (विंडोज़ या उबंटू)"
+      },
+      "bin": "sys",
+      "why": {
+       "en": "The operating system runs the hardware and manages other programs.",
+       "hi": "ऑपरेटिंग सिस्टम हार्डवेयर चलाता है और दूसरे प्रोग्राम सँभालता है।"
+      }
+     },
+     {
+      "id": "driver",
+      "text": {
+       "en": "Printer driver",
+       "hi": "प्रिंटर ड्राइवर"
+      },
+      "bin": "sys",
+      "why": {
+       "en": "A device driver lets the operating system work with one particular device.",
+       "hi": "डिवाइस ड्राइवर ऑपरेटिंग सिस्टम को एक ख़ास डिवाइस से काम करने देता है।"
+      }
+     },
+     {
+      "id": "antivirus",
+      "text": {
+       "en": "Anti-virus utility",
+       "hi": "एंटी-वायरस यूटिलिटी"
+      },
+      "bin": "sys",
+      "why": {
+       "en": "System utilities look after the computer, so they are system software.",
+       "hi": "सिस्टम यूटिलिटी कंप्यूटर की देखभाल करती हैं, इसलिए वे सिस्टम सॉफ़्टवेयर हैं।"
+      }
+     },
+     {
+      "id": "calc",
+      "text": {
+       "en": "Spreadsheet (LibreOffice Calc)",
+       "hi": "स्प्रेडशीट (लिब्रेऑफ़िस कैल्क)"
+      },
+      "bin": "app",
+      "why": {
+       "en": "General-purpose software that anyone can use for calculations.",
+       "hi": "सामान्य उपयोग का सॉफ़्टवेयर जिसे कोई भी गणना के लिए इस्तेमाल कर सकता है।"
+      }
+     },
+     {
+      "id": "browser",
+      "text": {
+       "en": "Web browser",
+       "hi": "वेब ब्राउज़र"
+      },
+      "bin": "app",
+      "why": {
+       "en": "It helps users browse websites, a job done for the user, so it is an application.",
+       "hi": "यह उपयोगकर्ता को वेबसाइट देखने में मदद करता है, यानी उपयोगकर्ता का काम करता है, इसलिए यह एप्लीकेशन है।"
+      }
+     },
+     {
+      "id": "school",
+      "text": {
+       "en": "School management software",
+       "hi": "स्कूल मैनेजमेंट सॉफ़्टवेयर"
+      },
+      "bin": "app",
+      "why": {
+       "en": "Tailor-made software built for one school's needs: customised application software.",
+       "hi": "एक स्कूल की ज़रूरत के लिए बना सॉफ़्टवेयर: अनुकूलित एप्लीकेशन सॉफ़्टवेयर।"
+      }
+     },
+     {
+      "id": "compiler",
+      "text": {
+       "en": "Compiler",
+       "hi": "कंपाइलर"
+      },
+      "bin": "tool",
+      "why": {
+       "en": "It translates a program written in a language like C into machine code, a tool for programmers.",
+       "hi": "यह C जैसी भाषा में लिखे प्रोग्राम को मशीन कोड में बदलता है, प्रोग्रामरों का औज़ार।"
+      }
+     },
+     {
+      "id": "assembler",
+      "text": {
+       "en": "Assembler",
+       "hi": "असेंबलर"
+      },
+      "bin": "tool",
+      "why": {
+       "en": "It translates assembly language into machine code, a tool for programmers.",
+       "hi": "यह असेंबली भाषा को मशीन कोड में बदलता है, प्रोग्रामरों का औज़ार।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:os",
+     "expect": "placed:os",
+     "say": {
+      "en": "Place the operating system card.",
+      "hi": "ऑपरेटिंग सिस्टम वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A computer has no word processor installed. Can it still start and run?",
+      "hi": "एक कंप्यूटर में वर्ड प्रोसेसर नहीं है। क्या वह फिर भी चालू होकर चल सकता है?"
+     },
+     "options": [
+      {
+       "id": "y",
+       "en": "Yes, application software is optional",
+       "hi": "हाँ, एप्लीकेशन सॉफ़्टवेयर ज़रूरी नहीं"
+      },
+      {
+       "id": "n",
+       "en": "No, it needs every application",
+       "hi": "नहीं, उसे हर एप्लीकेशन चाहिए"
+      }
+     ],
+     "answer": "y"
+    },
+    {
+     "kind": "do",
+     "target": "card:browser",
+     "expect": "placed:browser",
+     "say": {
+      "en": "Place the web browser card.",
+      "hi": "वेब ब्राउज़र वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Hardware cannot work without software. System software, such as the operating system, drivers and utilities, runs the computer. Application software does jobs for users. Programming tools help programmers turn their code into programs. A computer needs system software to work, but not every application.",
+      "hi": "हार्डवेयर सॉफ़्टवेयर के बिना काम नहीं करता। सिस्टम सॉफ़्टवेयर, जैसे ऑपरेटिंग सिस्टम, ड्राइवर और यूटिलिटी, कंप्यूटर चलाता है। एप्लीकेशन सॉफ़्टवेयर उपयोगकर्ता के काम करता है। प्रोग्रामिंग टूल प्रोग्रामरों को कोड को प्रोग्राम बनाने में मदद करते हैं। कंप्यूटर को चलने के लिए सिस्टम सॉफ़्टवेयर चाहिए, हर एप्लीकेशन नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Without which software can a computer NOT work?",
+        "hi": "किस सॉफ़्टवेयर के बिना कंप्यूटर काम नहीं कर सकता?"
+       },
+       "options": [
+        {
+         "en": "A game",
+         "hi": "कोई खेल"
+        },
+        {
+         "en": "The operating system",
+         "hi": "ऑपरेटिंग सिस्टम"
+        },
+        {
+         "en": "A photo editor",
+         "hi": "फ़ोटो एडिटर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The operating system is the most basic system software. Other software needs it.",
+        "hi": "ऑपरेटिंग सिस्टम सबसे बुनियादी सिस्टम सॉफ़्टवेयर है। दूसरे सॉफ़्टवेयर को उसकी ज़रूरत होती है।"
+       },
+       "wrong": [
+        {
+         "en": "A computer works fine without any game.",
+         "hi": "कंप्यूटर किसी खेल के बिना भी ठीक चलता है।"
+        },
+        "",
+        {
+         "en": "Photo editors are applications, and the computer runs without them.",
+         "hi": "फ़ोटो एडिटर एप्लीकेशन हैं, उनके बिना कंप्यूटर चलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A school orders a fee-collection program made only for its own needs. What is it?",
+        "hi": "एक स्कूल अपनी ही ज़रूरत का फ़ीस-वसूली प्रोग्राम बनवाता है। यह क्या है?"
+       },
+       "options": [
+        {
+         "en": "Customised application software",
+         "hi": "अनुकूलित एप्लीकेशन सॉफ़्टवेयर"
+        },
+        {
+         "en": "System software",
+         "hi": "सिस्टम सॉफ़्टवेयर"
+        },
+        {
+         "en": "A device driver",
+         "hi": "डिवाइस ड्राइवर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Software built for one organisation's needs is customised application software.",
+        "hi": "एक संस्था की ज़रूरत के लिए बना सॉफ़्टवेयर अनुकूलित एप्लीकेशन सॉफ़्टवेयर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "System software runs the hardware. A fee program does a user's job.",
+         "hi": "सिस्टम सॉफ़्टवेयर हार्डवेयर चलाता है। फ़ीस प्रोग्राम उपयोगकर्ता का काम करता है।"
+        },
+        {
+         "en": "A driver helps the operating system talk to one device, not collect fees.",
+         "hi": "ड्राइवर ऑपरेटिंग सिस्टम को एक डिवाइस से बात करने में मदद करता है, फ़ीस नहीं लेता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the apps on a phone. Which are applications, and which part is the system software?",
+      "hi": "फ़ोन के ऐप देखो। कौन-से एप्लीकेशन हैं, और सिस्टम सॉफ़्टवेयर कौन-सा हिस्सा है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "Input and output device cut-outs for the sort lab",
+   "shows": "One real keyboard, mouse, microphone, scanner, monitor, printer and speaker, each as a separate cut-out, plus a phone with the screen off",
+   "view": "Front three-quarter view, soft top-left light",
+   "right": "Plain devices with no brand logo, cables tidy, screens dark so no text shows",
+   "avoid": "Brand names, visible text on screens, hands"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Chapter hook: computers around us",
+   "shows": "A school computer room in India in daylight: desktops on tables, a teacher's hand pointing at a monitor, a printout on a desk",
+   "view": "Wide, 16:9, slightly high angle",
+   "right": "Real Indian classroom feel, monitors turned off or showing a plain colour",
+   "avoid": "Faces of identifiable children, readable screen text, logos"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "1.1",
+   "use": "Inside a desktop computer",
+   "shows": "An open desktop cabinet with the CPU under its cooler, one RAM stick, a hard disk, an SSD and the power unit all visible",
+   "view": "Top-down view with side panel removed, even light",
+   "right": "Parts placed as in a real build, RAM stick clearly seated in its slot",
+   "avoid": "Brand stickers, dust, loose wires crossing the CPU"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.3",
+   "use": "Storage devices set",
+   "shows": "A hard disk drive, an SSD, a pen drive, a memory card, a DVD and a RAM stick as separate cut-outs",
+   "view": "Each lying flat and also tilted 45 degrees, same light",
+   "right": "Clear difference in size and shape between the six items",
+   "avoid": "Brand logos, capacity numbers printed on them"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "1.2",
+   "use": "Evolution of computing devices",
+   "shows": "Five frames: an abacus, a mechanical calculator, a vintage room-size computer in a museum, a desktop computer, a smartphone",
+   "view": "Same fixed camera and plain backdrop, one object per frame",
+   "right": "Objects shown in the right historical order of size and complexity",
+   "avoid": "Dates or captions, people"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.3.3",
+   "use": "Capturing data at a kirana store",
+   "shows": "A shop counter where a barcode reader scans a biscuit packet, with a small monitor beside it",
+   "view": "Close side view of the scanner beam on the packet",
+   "right": "The red scanning line is visible on the barcode, the barcode itself is a real pattern",
+   "avoid": "Readable prices, brand names on the packet"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "1.3.4",
+   "use": "Disk blocks base for the recovery idea",
+   "shows": "An empty grid of 40 equal squares standing for the blocks of a storage disk, drawn clean",
+   "view": "Flat top view, white background",
+   "right": "Squares equal in size so the app can colour them used, free or overwritten",
+   "avoid": "Any text, numbers or pictures inside the squares"
+  },
+  {
+   "n": 8,
+   "kind": "DIA",
+   "topic": "1.4",
+   "use": "Layers of a computer system",
+   "shows": "Four empty concentric rings or stacked bars on a white background for hardware, system software, application software and user",
+   "view": "Flat front view",
+   "right": "Equal-height layers so the app can add labels and highlight each in turn",
+   "avoid": "Any words or icons already inside the layers"
+  }
+ ]
+}

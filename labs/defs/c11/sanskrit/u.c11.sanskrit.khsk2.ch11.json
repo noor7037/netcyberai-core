@@ -1,0 +1,574 @@
+{
+ "chapter_key": "u.c11.sanskrit.khsk2.ch11",
+ "class": 11,
+ "subject_id": "sanskrit",
+ "title": "नवद्रव्याणि (The nine substances)",
+ "source": "https://ncert.nic.in/textbook/pdf/khsk211.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Tarkasangraha and the seven padarthas",
+   "labs": [],
+   "why_no_lab": "The framework of seven categories and four proofs is explained in class with the chart; the labs below work on the nine dravyas."
+  },
+  {
+   "n": "11.2",
+   "title": "The nine dravyas and the groups they fall into",
+   "labs": [
+    "c11-sanskrit-khsk2-ch11-nine"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "The special quality of each element",
+   "labs": [
+    "c11-sanskrit-khsk2-ch11-quality"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Reading the definitions aloud",
+   "labs": [],
+   "why_no_lab": "Sanskrit definitions are learnt by reciting and by explaining each one in your own words with the teacher."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-sanskrit-khsk2-ch11-nine",
+   "topic": "11.2",
+   "template": "sort",
+   "title": {
+    "en": "Sort the nine dravyas",
+    "hi": "नौ द्रव्यों को छाँटो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "bh",
+      "label": {
+       "en": "Five elements (पञ्चभूत)",
+       "hi": "पाँच तत्त्व (पञ्चभूत)"
+      }
+     },
+     {
+      "id": "ts",
+      "label": {
+       "en": "Time and space",
+       "hi": "काल और दिशा"
+      }
+     },
+     {
+      "id": "sm",
+      "label": {
+       "en": "Self and mind",
+       "hi": "आत्मा और मन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "e1",
+      "text": {
+       "en": "पृथिवी",
+       "hi": "पृथिवी"
+      },
+      "bin": "bh",
+      "why": {
+       "en": "Earth, with smell as its special quality.",
+       "hi": "पृथ्वी, जिसका विशेष गुण गंध है।"
+      }
+     },
+     {
+      "id": "e2",
+      "text": {
+       "en": "आपः",
+       "hi": "आपः"
+      },
+      "bin": "bh",
+      "why": {
+       "en": "Water, with taste as its special quality.",
+       "hi": "जल, जिसका विशेष गुण रस (स्वाद) है।"
+      }
+     },
+     {
+      "id": "e3",
+      "text": {
+       "en": "तेजः",
+       "hi": "तेजः"
+      },
+      "bin": "bh",
+      "why": {
+       "en": "Fire or light, which feels hot.",
+       "hi": "अग्नि या प्रकाश, जो उष्ण होता है।"
+      }
+     },
+     {
+      "id": "e4",
+      "text": {
+       "en": "वायुः",
+       "hi": "वायुः"
+      },
+      "bin": "bh",
+      "why": {
+       "en": "Air, which can be felt by touch.",
+       "hi": "वायु, जिसका अनुभव स्पर्श से होता है।"
+      }
+     },
+     {
+      "id": "e5",
+      "text": {
+       "en": "आकाशः",
+       "hi": "आकाशः"
+      },
+      "bin": "bh",
+      "why": {
+       "en": "Space or ether, with sound as its special quality.",
+       "hi": "आकाश, जिसका विशेष गुण शब्द है।"
+      }
+     },
+     {
+      "id": "t1",
+      "text": {
+       "en": "कालः",
+       "hi": "कालः"
+      },
+      "bin": "ts",
+      "why": {
+       "en": "Time: before, after, now.",
+       "hi": "काल: पहले, बाद में, अब।"
+      }
+     },
+     {
+      "id": "t2",
+      "text": {
+       "en": "दिक्",
+       "hi": "दिक्"
+      },
+      "bin": "ts",
+      "why": {
+       "en": "Direction or space: east, west, near, far.",
+       "hi": "दिशा: पूरब, पश्चिम, पास, दूर।"
+      }
+     },
+     {
+      "id": "s1",
+      "text": {
+       "en": "आत्मा",
+       "hi": "आत्मा"
+      },
+      "bin": "sm",
+      "why": {
+       "en": "The self, the one who knows and feels.",
+       "hi": "आत्मा, जो जानता और अनुभव करता है।"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "मनः",
+       "hi": "मनः"
+      },
+      "bin": "sm",
+      "why": {
+       "en": "The mind, the inner instrument of thinking.",
+       "hi": "मन, सोचने का आंतरिक साधन।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:e1",
+     "expect": "placed:e1",
+     "say": {
+      "en": "Tap the first card, then tap the group where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर वह समूह छुओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which group does 'time' (काल) belong to in the list of nine?",
+      "hi": "नौ की सूची में 'काल' किस समूह में आता है?"
+     },
+     "options": [
+      {
+       "id": "t",
+       "en": "Time and space",
+       "hi": "काल और दिशा"
+      },
+      {
+       "id": "b",
+       "en": "Five elements",
+       "hi": "पाँच तत्त्व"
+      },
+      {
+       "id": "s",
+       "en": "Self and mind",
+       "hi": "आत्मा और मन"
+      }
+     ],
+     "answer": "t"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Tarkasangraha lists nine basic substances (dravyas): the five elements, time, direction, the self and the mind. They are not all physical: time and direction are the frame in which things happen, and the self and the mind are the one who knows. This is an old way of sorting the whole world.",
+      "hi": "तर्कसंग्रह नौ मूल द्रव्य गिनाता है: पाँच तत्त्व, काल, दिशा, आत्मा और मन। ये सब भौतिक नहीं हैं: काल और दिशा वह ढाँचा हैं जिसमें चीज़ें घटती हैं, और आत्मा और मन जानने वाले हैं। यह पूरे संसार को छाँटने का पुराना तरीका है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is NOT one of the five elements?",
+        "hi": "इनमें पाँच तत्त्वों में कौन नहीं है?"
+       },
+       "options": [
+        {
+         "en": "आकाशः",
+         "hi": "आकाशः"
+        },
+        {
+         "en": "कालः",
+         "hi": "कालः"
+        },
+        {
+         "en": "वायुः",
+         "hi": "वायुः"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Time is a separate dravya, not an element.",
+        "hi": "काल अलग द्रव्य है, तत्त्व नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "आकाशः is one of the five.",
+         "hi": "आकाशः पाँच में से एक है।"
+        },
+        "",
+        {
+         "en": "वायुः is one of the five.",
+         "hi": "वायुः पाँच में से एक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many dravyas are there in all?",
+        "hi": "कुल कितने द्रव्य हैं?"
+       },
+       "options": [
+        {
+         "en": "Five",
+         "hi": "पाँच"
+        },
+        {
+         "en": "Nine",
+         "hi": "नौ"
+        },
+        {
+         "en": "Seven",
+         "hi": "सात"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The chapter's title नवद्रव्याणि means nine dravyas.",
+        "hi": "पाठ का शीर्षक नवद्रव्याणि है, यानी नौ द्रव्य।"
+       },
+       "wrong": [
+        {
+         "en": "Five are only the elements.",
+         "hi": "पाँच केवल तत्त्व हैं।"
+        },
+        "",
+        {
+         "en": "Seven is the number of padarthas, not dravyas.",
+         "hi": "सात पदार्थों की संख्या है, द्रव्यों की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say the nine names in a row, then try to recite them with eyes closed.",
+      "hi": "नौ नाम एक क्रम में बोलो, फिर आँखें बंद करके दोहराओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sanskrit-khsk2-ch11-quality",
+   "topic": "11.3",
+   "template": "match",
+   "title": {
+    "en": "The special quality of each element",
+    "hi": "हर तत्त्व का विशेष गुण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "pr",
+      "left": {
+       "en": "पृथिवी",
+       "hi": "पृथिवी"
+      },
+      "right": {
+       "en": "has smell as its special quality",
+       "hi": "विशेष गुण गंध है"
+      },
+      "why": {
+       "en": "Think of the smell of wet earth after rain.",
+       "hi": "बारिश के बाद गीली मिट्टी की गंध सोचो।"
+      }
+     },
+     {
+      "id": "ap",
+      "left": {
+       "en": "आपः",
+       "hi": "आपः"
+      },
+      "right": {
+       "en": "has taste as its special quality",
+       "hi": "विशेष गुण रस (स्वाद) है"
+      },
+      "why": {
+       "en": "Water carries tastes: sweet, salty, sour.",
+       "hi": "जल में स्वाद घुलते हैं: मीठा, नमकीन, खट्टा।"
+      }
+     },
+     {
+      "id": "te",
+      "left": {
+       "en": "तेजः",
+       "hi": "तेजः"
+      },
+      "right": {
+       "en": "is hot to touch and gives light",
+       "hi": "छूने पर गरम और प्रकाश देने वाला"
+      },
+      "why": {
+       "en": "Fire or the sun's light and heat.",
+       "hi": "अग्नि या सूर्य का प्रकाश और ताप।"
+      }
+     },
+     {
+      "id": "va",
+      "left": {
+       "en": "वायुः",
+       "hi": "वायुः"
+      },
+      "right": {
+       "en": "is felt by touch, but not seen",
+       "hi": "स्पर्श से अनुभव होता है, दिखता नहीं"
+      },
+      "why": {
+       "en": "You feel the wind on your skin.",
+       "hi": "हवा त्वचा पर महसूस होती है।"
+      }
+     },
+     {
+      "id": "ak",
+      "left": {
+       "en": "आकाशः",
+       "hi": "आकाशः"
+      },
+      "right": {
+       "en": "has sound as its special quality",
+       "hi": "विशेष गुण शब्द (ध्वनि) है"
+      },
+      "why": {
+       "en": "Sound travels through space.",
+       "hi": "ध्वनि आकाश में चलती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:pr",
+     "expect": "matched:pr",
+     "say": {
+      "en": "Pick the first word in the list and match it with its meaning.",
+      "hi": "सूची का पहला शब्द चुनो और उसे उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which element has sound as its special quality?",
+      "hi": "किस तत्त्व का विशेष गुण शब्द (ध्वनि) है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "आकाशः",
+       "hi": "आकाशः"
+      },
+      {
+       "id": "p",
+       "en": "पृथिवी",
+       "hi": "पृथिवी"
+      },
+      {
+       "id": "v",
+       "en": "वायुः",
+       "hi": "वायुः"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:ap",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the other pairs.",
+      "hi": "अब बाकी सब जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The nine dravyas are described by their qualities. Earth: smell; water: taste; fire: heat and light; air: touch; space: sound. These five match our five senses: the nose, tongue, eye, skin and ear.",
+      "hi": "नौ द्रव्यों का वर्णन उनके गुणों से होता है। पृथ्वी: गंध; जल: स्वाद; अग्नि: ताप और प्रकाश; वायु: स्पर्श; आकाश: शब्द। ये पाँच हमारी पाँच इन्द्रियों से मेल खाते हैं: नाक, जीभ, आँख, त्वचा और कान।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which element do we know by the sense of smell?",
+        "hi": "गंध की इन्द्रिय से हम किस तत्त्व को जानते हैं?"
+       },
+       "options": [
+        {
+         "en": "पृथिवी",
+         "hi": "पृथिवी"
+        },
+        {
+         "en": "आपः",
+         "hi": "आपः"
+        },
+        {
+         "en": "आकाशः",
+         "hi": "आकाशः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Earth is known by smell, which the nose senses.",
+        "hi": "पृथ्वी गंध से जानी जाती है, जिसे नाक पहचानती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water is known by taste, which the tongue senses.",
+         "hi": "जल स्वाद से जाना जाता है, जिसे जीभ पहचानती है।"
+        },
+        {
+         "en": "Space is known by sound, which the ear senses.",
+         "hi": "आकाश शब्द से जाना जाता है, जिसे कान पहचानते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match each element with one of your five senses in your notebook.",
+      "hi": "अपनी कॉपी में हर तत्त्व को अपनी पाँच इन्द्रियों में से एक से जोड़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.2",
+   "use": "Opens the chapter: the five elements in one landscape",
+   "shows": "A wide landscape: bare earth in front, a river in the middle, a small fire, wind bending trees, and a huge open sky above",
+   "view": "Wide shot, 16:9, soft light",
+   "right": "All five elements visible in one frame",
+   "avoid": "People, text"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "11.3",
+   "use": "Wet earth after rain",
+   "shows": "Close-up of dark wet soil with a few raindrops and a green sprout",
+   "view": "Macro, square, soft light",
+   "right": "Rich dark soil, shining drops",
+   "avoid": "Hands, text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "11.3",
+   "use": "A flame: fire and light",
+   "shows": "Four frames of a diya flame being lit, growing and steady, then a hand held near feeling warmth",
+   "view": "Same camera, same light",
+   "right": "Flame grows; warmth suggested",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "11.3",
+   "use": "Wind in a windsock",
+   "shows": "A cloth windsock blowing straight in a breeze on a pole, cut-out",
+   "view": "Side view, transparent background",
+   "right": "Fabric streaming, pole straight",
+   "avoid": "Text, flags"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "11.2",
+   "use": "The self and the mind: a quiet thinker",
+   "shows": "A child sitting under a tree with closed eyes, a notebook beside, seen from behind",
+   "view": "Back view, soft shade light",
+   "right": "Calm, thoughtful posture",
+   "avoid": "Face, text"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "11.2",
+   "use": "Three-bin base for the dravya sort lab",
+   "shows": "Three wide blank bins, one tall with five small circles on top, one with two arrows crossing, one with a single circle and a spiral",
+   "view": "Flat front view on white",
+   "right": "Distinct shapes and colours",
+   "avoid": "Any text"
+  }
+ ]
+}

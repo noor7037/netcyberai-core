@@ -1,0 +1,821 @@
+{
+ "chapter_key": "u.c10.sanskrit.jhva1.ch10",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "कारक और विभक्ति",
+ "source": "https://ncert.nic.in/textbook/pdf/jhva1ps.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "The six karakas",
+   "labs": [
+    "c10-sanskrit-jhva1-ch10-karakas"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "The seven vibhaktis, prathama to saptami",
+   "labs": [
+    "c10-sanskrit-jhva1-ch10-vibhakti"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Sampradana karaka and the fourth case",
+   "labs": [
+    "c10-sanskrit-jhva1-ch10-sampradana"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jhva1-ch10-karakas",
+   "topic": "10.1",
+   "template": "match",
+   "title": {
+    "en": "The six karakas",
+    "hi": "छह कारक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "karta",
+      "left": {
+       "en": "कर्ता",
+       "hi": "कर्ता"
+      },
+      "right": {
+       "en": "The doer of the action: who? (प्रथमा)",
+       "hi": "काम करने वाला: कौन? (प्रथमा)"
+      },
+      "why": {
+       "en": "In 'बालकः पठति' the boy does the reading.",
+       "hi": "'बालकः पठति' में पढ़ने का काम बालक करता है।"
+      }
+     },
+     {
+      "id": "karma",
+      "left": {
+       "en": "कर्म",
+       "hi": "कर्म"
+      },
+      "right": {
+       "en": "What the action is done to: whom or what? (द्वितीया)",
+       "hi": "जिस पर काम होता है: किसे या क्या? (द्वितीया)"
+      },
+      "why": {
+       "en": "In 'सः फलं खादति' the fruit is eaten.",
+       "hi": "'सः फलं खादति' में फल खाया जाता है।"
+      }
+     },
+     {
+      "id": "karana",
+      "left": {
+       "en": "करण",
+       "hi": "करण"
+      },
+      "right": {
+       "en": "The tool or means: with what? (तृतीया)",
+       "hi": "साधन: किससे? (तृतीया)"
+      },
+      "why": {
+       "en": "In 'हस्तेन लिखति' the hand is the tool.",
+       "hi": "'हस्तेन लिखति' में हाथ साधन है।"
+      }
+     },
+     {
+      "id": "sampradana",
+      "left": {
+       "en": "सम्प्रदान",
+       "hi": "सम्प्रदान"
+      },
+      "right": {
+       "en": "The receiver: for whom? (चतुर्थी)",
+       "hi": "पाने वाला: किसके लिए? (चतुर्थी)"
+      },
+      "why": {
+       "en": "In 'मित्राय ददाति' the friend receives.",
+       "hi": "'मित्राय ददाति' में मित्र पाने वाला है।"
+      }
+     },
+     {
+      "id": "apadana",
+      "left": {
+       "en": "अपादान",
+       "hi": "अपादान"
+      },
+      "right": {
+       "en": "The point of separation: from where? (पञ्चमी)",
+       "hi": "जहाँ से अलग हो: कहाँ से? (पञ्चमी)"
+      },
+      "why": {
+       "en": "In 'वृक्षात् पतति' the tree is what it falls from.",
+       "hi": "'वृक्षात् पतति' में वृक्ष वह है जिससे कुछ गिरता है।"
+      }
+     },
+     {
+      "id": "adhikarana",
+      "left": {
+       "en": "अधिकरण",
+       "hi": "अधिकरण"
+      },
+      "right": {
+       "en": "The place or time: where? when? (सप्तमी)",
+       "hi": "स्थान या समय: कहाँ? कब? (सप्तमी)"
+      },
+      "why": {
+       "en": "In 'गृहे तिष्ठति' the house is the place.",
+       "hi": "'गृहे तिष्ठति' में घर स्थान है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:karta",
+     "expect": "matched:karta",
+     "say": {
+      "en": "Match कर्ता with its job.",
+      "hi": "कर्ता को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "There are six karakas. Which case, shown by 'का, की, के' (of), is NOT a karaka?",
+      "hi": "कारक छह हैं। 'का, की, के' वाली कौन-सी विभक्ति कारक नहीं है?"
+     },
+     "options": [
+      {
+       "id": "sixth",
+       "en": "The sixth case, षष्ठी",
+       "hi": "षष्ठी विभक्ति"
+      },
+      {
+       "id": "third",
+       "en": "The third case, तृतीया",
+       "hi": "तृतीया विभक्ति"
+      },
+      {
+       "id": "seventh",
+       "en": "The seventh case, सप्तमी",
+       "hi": "सप्तमी विभक्ति"
+      }
+     ],
+     "answer": "sixth"
+    },
+    {
+     "kind": "do",
+     "target": "left:adhikarana",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the other karakas.",
+      "hi": "बाकी सब कारक मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A karaka is a word's link with the action (the verb). The six karakas are kartā (doer), karma (object), karaṇa (tool), sampradāna (receiver), apādāna (the place of leaving) and adhikaraṇa (place or time). 'Of' (षष्ठी) only joins one noun to another noun, not to the action, so it is a relation (सम्बन्ध) and not a karaka. A good test: ask the verb a question. Who? What? With what? For whom? From where? Where?",
+      "hi": "कारक शब्द का क्रिया से संबंध है। छह कारक हैं: कर्ता, कर्म, करण, सम्प्रदान, अपादान और अधिकरण। 'का' (षष्ठी) केवल एक संज्ञा को दूसरी संज्ञा से जोड़ती है, क्रिया से नहीं, इसलिए वह कारक नहीं, संबंध है। जाँच का तरीका: क्रिया से प्रश्न पूछो। कौन? क्या? किससे? किसके लिए? कहाँ से? कहाँ?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In 'बालकः फलं खादति', which karaka is बालकः?",
+        "hi": "'बालकः फलं खादति' में बालकः कौन-सा कारक है?"
+       },
+       "options": [
+        {
+         "en": "Karta, the doer",
+         "hi": "कर्ता"
+        },
+        {
+         "en": "Karma, the object",
+         "hi": "कर्म"
+        },
+        {
+         "en": "Karana, the tool",
+         "hi": "करण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The boy does the eating, so he is the doer.",
+        "hi": "खाने का काम बालक करता है, इसलिए वह कर्ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The object is what the action falls on: here the fruit.",
+         "hi": "कर्म वह है जिस पर काम होता है: यहाँ फल।"
+        },
+        {
+         "en": "A tool answers 'with what?'; the boy is not a tool.",
+         "hi": "करण 'किससे?' का उत्तर है; बालक साधन नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which karaka answers 'with what?'",
+        "hi": "'किससे?' का उत्तर कौन-सा कारक देता है?"
+       },
+       "options": [
+        {
+         "en": "Karana",
+         "hi": "करण"
+        },
+        {
+         "en": "Sampradana",
+         "hi": "सम्प्रदान"
+        },
+        {
+         "en": "Adhikarana",
+         "hi": "अधिकरण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Karana is the tool or means, as in हस्तेन (with the hand).",
+        "hi": "करण साधन है, जैसे हस्तेन (हाथ से)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sampradana answers 'for whom?'.",
+         "hi": "सम्प्रदान 'किसके लिए?' का उत्तर देता है।"
+        },
+        {
+         "en": "Adhikarana answers 'where?' or 'when?'.",
+         "hi": "अधिकरण 'कहाँ?' या 'कब?' का उत्तर देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take any sentence you like and ask the verb all six questions. Which ones get an answer?",
+      "hi": "कोई भी वाक्य लो और क्रिया से छहों प्रश्न पूछो। किन प्रश्नों का उत्तर मिलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch10-vibhakti",
+   "topic": "10.2",
+   "template": "grammar",
+   "title": {
+    "en": "Tag the seven cases",
+    "hi": "सात विभक्तियाँ पहचानो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "tag",
+    "lang": "sa",
+    "tagset": [
+     "प्रथमा",
+     "द्वितीया",
+     "तृतीया",
+     "चतुर्थी",
+     "पञ्चमी",
+     "षष्ठी",
+     "सप्तमी"
+    ],
+    "items": [
+     {
+      "id": "t1",
+      "sentence": "बालकः हस्तेन मोदकं मित्राय ददाति",
+      "tags": [
+       "प्रथमा",
+       "तृतीया",
+       "द्वितीया",
+       "चतुर्थी",
+       ""
+      ],
+      "rule": {
+       "en": "बालकः is the doer (1st); हस्तेन is the tool (3rd); मोदकम् is what is given (2nd); मित्राय is the receiver (4th). ददाति is the verb.",
+       "hi": "बालकः कर्ता (प्रथमा); हस्तेन साधन (तृतीया); मोदकम् जो दिया जाता है (द्वितीया); मित्राय पाने वाला (चतुर्थी)। ददाति क्रिया है।"
+      }
+     },
+     {
+      "id": "t2",
+      "sentence": "वृक्षात् शुकः भूमौ पतति",
+      "tags": [
+       "पञ्चमी",
+       "प्रथमा",
+       "सप्तमी",
+       ""
+      ],
+      "rule": {
+       "en": "वृक्षात् is where it falls from (5th); शुकः is the one that falls (1st); भूमौ is the place it lands (7th).",
+       "hi": "वृक्षात् जिससे गिरा (पञ्चमी); शुकः गिरने वाला (प्रथमा); भूमौ जहाँ गिरा (सप्तमी)।"
+      }
+     },
+     {
+      "id": "t3",
+      "sentence": "छात्रः बालकस्य ग्रन्थं पठति",
+      "tags": [
+       "प्रथमा",
+       "षष्ठी",
+       "द्वितीया",
+       ""
+      ],
+      "rule": {
+       "en": "छात्रः is the doer (1st); बालकस्य means 'of the boy' (6th); ग्रन्थम् is what is read (2nd).",
+       "hi": "छात्रः कर्ता (प्रथमा); बालकस्य 'बालक का' (षष्ठी); ग्रन्थम् जो पढ़ा जाता है (द्वितीया)।"
+      }
+     },
+     {
+      "id": "t4",
+      "sentence": "बालिका विद्यालये पाठं पठति",
+      "tags": [
+       "प्रथमा",
+       "सप्तमी",
+       "द्वितीया",
+       ""
+      ],
+      "rule": {
+       "en": "बालिका is the doer (1st); विद्यालये is the place (7th); पाठम् is what is read (2nd).",
+       "hi": "बालिका कर्ता (प्रथमा); विद्यालये स्थान (सप्तमी); पाठम् जो पढ़ा जाता है (द्वितीया)।"
+      }
+     },
+     {
+      "id": "t5",
+      "sentence": "नृपः दण्डेन चोरं ताडयति",
+      "tags": [
+       "प्रथमा",
+       "तृतीया",
+       "द्वितीया",
+       ""
+      ],
+      "rule": {
+       "en": "नृपः is the doer (1st); दण्डेन is the tool, the stick (3rd); चोरम् is the one beaten (2nd).",
+       "hi": "नृपः कर्ता (प्रथमा); दण्डेन साधन, डंडा (तृतीया); चोरम् जिसे मारा जाता है (द्वितीया)।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "tagged:t1",
+     "say": {
+      "en": "Pick प्रथमा, tap the doer. Then tag the other words of the first sentence.",
+      "hi": "प्रथमा चुनो और कर्ता छुओ। फिर पहले वाक्य के बाकी शब्द भी पहचानो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'वृक्षात् शुकः भूमौ पतति', which case shows the place the parrot comes FROM?",
+      "hi": "'वृक्षात् शुकः भूमौ पतति' में तोता जहाँ से गिरा, वह किस विभक्ति में है?"
+     },
+     "options": [
+      {
+       "id": "pancami",
+       "en": "The fifth case, पञ्चमी",
+       "hi": "पञ्चमी"
+      },
+      {
+       "id": "saptami",
+       "en": "The seventh case, सप्तमी",
+       "hi": "सप्तमी"
+      },
+      {
+       "id": "tritiya",
+       "en": "The third case, तृतीया",
+       "hi": "तृतीया"
+      }
+     ],
+     "answer": "pancami"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "tagged:t2",
+     "say": {
+      "en": "Now tag the second sentence.",
+      "hi": "अब दूसरा वाक्य पहचानो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Finish the remaining sentences.",
+      "hi": "बचे हुए वाक्य पूरे करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each case has its own job. प्रथमा: the doer. द्वितीया: the object. तृतीया: by or with. चतुर्थी: to or for. पञ्चमी: from. षष्ठी: of. सप्तमी: in or on. The ending of the word shows its case, not the order of words, so a Sanskrit sentence still makes sense if the words are moved around. When two cases look alike (as in some neuter words), ask what job the word does for the verb.",
+      "hi": "हर विभक्ति का अपना काम है। प्रथमा: कर्ता। द्वितीया: कर्म। तृतीया: से या के द्वारा। चतुर्थी: को या के लिए। पञ्चमी: से (अलग होना)। षष्ठी: का। सप्तमी: में या पर। विभक्ति शब्द के अंत से पता चलती है, शब्दों के क्रम से नहीं, इसलिए संस्कृत में शब्द आगे-पीछे करने पर भी वाक्य का अर्थ बना रहता है। जब दो विभक्तियाँ एक-सी दिखें (जैसे कुछ नपुंसक शब्दों में), तो देखो कि शब्द क्रिया के लिए कौन-सा काम करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which case ending shows the tool, in हस्तेन?",
+        "hi": "हस्तेन में साधन किस विभक्ति से दिखाया गया है?"
+       },
+       "options": [
+        {
+         "en": "The third case, तृतीया",
+         "hi": "तृतीया"
+        },
+        {
+         "en": "The fourth case, चतुर्थी",
+         "hi": "चतुर्थी"
+        },
+        {
+         "en": "The first case, प्रथमा",
+         "hi": "प्रथमा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-एन marks 'by' or 'with', the tool.",
+        "hi": "-एन 'से' या 'के द्वारा' बताता है, यानी साधन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The fourth case gives the receiver, as in मित्राय.",
+         "hi": "चतुर्थी पाने वाले को बताती है, जैसे मित्राय।"
+        },
+        {
+         "en": "The first case names the doer, not the tool.",
+         "hi": "प्रथमा कर्ता को बताती है, साधन को नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In 'बालकस्य ग्रन्थः', what does बालकस्य show?",
+        "hi": "'बालकस्य ग्रन्थः' में बालकस्य क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "Belonging: the boy's",
+         "hi": "संबंध: बालक का"
+        },
+        {
+         "en": "The doer of the action",
+         "hi": "काम करने वाला"
+        },
+        {
+         "en": "The place of the action",
+         "hi": "काम का स्थान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The sixth case shows ownership or relation.",
+        "hi": "षष्ठी स्वामित्व या संबंध बताती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The doer is in the first case.",
+         "hi": "कर्ता प्रथमा में होता है।"
+        },
+        {
+         "en": "The place is in the seventh case.",
+         "hi": "स्थान सप्तमी में होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write your own sentence with a doer, an object and a place. Tag each word.",
+      "hi": "कर्ता, कर्म और स्थान वाला अपना वाक्य लिखो। हर शब्द की विभक्ति बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch10-sampradana",
+   "topic": "10.3",
+   "template": "grammar",
+   "title": {
+    "en": "Giving to someone: the fourth case",
+    "hi": "किसी को देना: चतुर्थी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "b1",
+      "words": [
+       "नृपः",
+       "ब्राह्मणाय",
+       "धनं",
+       "ददाति",
+       "ब्राह्मणम्"
+      ],
+      "answer": [
+       "नृपः ब्राह्मणाय धनं ददाति",
+       "नृपः धनं ब्राह्मणाय ददाति"
+      ],
+      "rule": {
+       "en": "ददाति (gives) needs a receiver in the fourth case: ब्राह्मणाय (to the Brahmin).",
+       "hi": "ददाति (देता है) के साथ पाने वाला चतुर्थी में आता है: ब्राह्मणाय (ब्राह्मण को)।"
+      }
+     },
+     {
+      "id": "b2",
+      "words": [
+       "माता",
+       "पुत्राय",
+       "मोदकं",
+       "ददाति",
+       "पुत्रम्"
+      ],
+      "answer": [
+       "माता पुत्राय मोदकं ददाति",
+       "माता मोदकं पुत्राय ददाति"
+      ],
+      "rule": {
+       "en": "The son receives the sweet, so he takes the fourth case: पुत्राय.",
+       "hi": "पुत्र को मोदक मिलता है, इसलिए वह चतुर्थी में है: पुत्राय।"
+      }
+     },
+     {
+      "id": "b3",
+      "words": [
+       "छात्रः",
+       "पठनाय",
+       "विद्यालयं",
+       "गच्छति",
+       "पठनम्"
+      ],
+      "answer": [
+       "छात्रः पठनाय विद्यालयं गच्छति",
+       "छात्रः विद्यालयं पठनाय गच्छति"
+      ],
+      "rule": {
+       "en": "The fourth case also gives the purpose: he goes for reading, पठनाय.",
+       "hi": "चतुर्थी उद्देश्य भी बताती है: वह पढ़ने के लिए जाता है, पठनाय।"
+      }
+     },
+     {
+      "id": "b4",
+      "words": [
+       "गुरवे",
+       "नमः",
+       "गुरुः",
+       "गुरुम्"
+      ],
+      "answer": "गुरवे नमः",
+      "rule": {
+       "en": "The word नमः (salutation) always takes the fourth case: गुरवे नमः, salutations to the teacher.",
+       "hi": "नमः (नमस्कार) शब्द के साथ सदा चतुर्थी आती है: गुरवे नमः, गुरु को नमस्कार।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:b1",
+     "say": {
+      "en": "Tap the tiles to build the first sentence.",
+      "hi": "टाइल छूकर पहला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'माता ___ मोदकं ददाति', which form of पुत्र names the one who receives the sweet?",
+      "hi": "'माता ___ मोदकं ददाति' में मोदक पाने वाले पुत्र के लिए कौन-सा रूप आएगा?"
+     },
+     "options": [
+      {
+       "id": "putraya",
+       "en": "पुत्राय",
+       "hi": "पुत्राय"
+      },
+      {
+       "id": "putrena",
+       "en": "पुत्रेण",
+       "hi": "पुत्रेण"
+      },
+      {
+       "id": "putram",
+       "en": "पुत्रम्",
+       "hi": "पुत्रम्"
+      }
+     ],
+     "answer": "putraya"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:b2",
+     "say": {
+      "en": "Build the second sentence.",
+      "hi": "दूसरा वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Build the last two sentences.",
+      "hi": "आखिरी दो वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sampradāna is the one to whom something is given. It takes the fourth case (-आय in -अ words like पुत्र, -वे in -उ words like गुरु). It is used with verbs of giving (ददाति), for a purpose (पठनाय) and with the word नमः. The tile with -म् is the object (second case), a different job, so it does not fit as the receiver.",
+      "hi": "सम्प्रदान वह है जिसे कुछ दिया जाए। वह चतुर्थी में आता है (पुत्र जैसे -अ शब्दों में -आय, गुरु जैसे -उ शब्दों में -वे)। यह देने की क्रिया (ददाति) के साथ, उद्देश्य (पठनाय) में और नमः शब्द के साथ आता है। -म् वाला टाइल कर्म (द्वितीया) है, उसका काम अलग है, इसलिए वह पाने वाला नहीं बन सकता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word is the sampradana in 'नृपः ब्राह्मणाय धनं ददाति'?",
+        "hi": "'नृपः ब्राह्मणाय धनं ददाति' में सम्प्रदान कौन-सा शब्द है?"
+       },
+       "options": [
+        {
+         "en": "ब्राह्मणाय",
+         "hi": "ब्राह्मणाय"
+        },
+        {
+         "en": "नृपः",
+         "hi": "नृपः"
+        },
+        {
+         "en": "धनम्",
+         "hi": "धनम्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Brahmin receives the wealth, and the ending -आय is the fourth case.",
+        "hi": "धन ब्राह्मण को मिलता है, और -आय चतुर्थी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The king is the giver, the doer.",
+         "hi": "राजा देने वाला है, यानी कर्ता।"
+        },
+        {
+         "en": "The wealth is the thing given, the object.",
+         "hi": "धन दी जाने वाली वस्तु है, यानी कर्म।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which case goes with नमः?",
+        "hi": "नमः के साथ कौन-सी विभक्ति आती है?"
+       },
+       "options": [
+        {
+         "en": "Fourth, चतुर्थी",
+         "hi": "चतुर्थी"
+        },
+        {
+         "en": "Second, द्वितीया",
+         "hi": "द्वितीया"
+        },
+        {
+         "en": "Third, तृतीया",
+         "hi": "तृतीया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We say गुरवे नमः, देवाय नमः: the person we bow to is in the fourth case.",
+        "hi": "हम गुरवे नमः, देवाय नमः कहते हैं: जिसे नमस्कार करते हैं वह चतुर्थी में होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The second case marks the object of an action, not the one we salute.",
+         "hi": "द्वितीया काम के कर्म को बताती है, जिसे प्रणाम करें उसे नहीं।"
+        },
+        {
+         "en": "The third case means 'by' or 'with'.",
+         "hi": "तृतीया का अर्थ 'से' या 'के द्वारा' है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a sentence about giving a book to your friend: मित्र, पुस्तक, ददाति.",
+      "hi": "मित्र को पुस्तक देने का वाक्य बनाओ: मित्र, पुस्तक, ददाति।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Hook: all the karakas in one scene",
+   "shows": "A farmer cutting a ripe wheat stalk with a sickle in a field in the morning",
+   "view": "From behind and a little to the side so the sickle, the stalks and the field are all visible",
+   "right": "Sickle blade curved and clean, wheat golden, the farmer's face not shown",
+   "avoid": "Faces, signs, machinery"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "Karana, the tool",
+   "shows": "A wooden-handled iron sickle on a transparent background",
+   "view": "Three-quarter view, soft light from the top left",
+   "right": "Curved blade, real wooden handle, no rust on the cutting edge",
+   "avoid": "Hands, text, brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "10.1",
+   "use": "Apadana, the point of leaving",
+   "shows": "The same mango tree branch in three frames: a ripe mango hanging, the mango falling, the mango on the grass",
+   "view": "Identical camera and light in all three frames, branch fixed at the top",
+   "right": "Same mango in all three; the fall is plain to see",
+   "avoid": "Changing the tree or the angle between frames"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "10.2",
+   "use": "Table of cases",
+   "shows": "An empty table frame with eight rows and four columns, plain borders",
+   "view": "Flat front view on white, equal cells",
+   "right": "Eight rows and four columns exactly, no writing",
+   "avoid": "Text, numbers, shading in the cells"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "Sampradana, giving to someone",
+   "shows": "One hand giving a laddu into another open hand, close-up",
+   "view": "Side view, shallow depth, warm light",
+   "right": "Two clearly different hands, the laddu golden-yellow and round",
+   "avoid": "Faces, jewellery with names, packaging"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "Namah takes the fourth case",
+   "shows": "A student seen from behind joining palms in namaste before a teacher whose face is out of frame, at a school door",
+   "view": "Waist-up from behind the student, soft daylight",
+   "right": "Palms joined at chest height, a respectful posture",
+   "avoid": "Faces, school names, badges with text"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "10.1",
+   "use": "Sentence spine with six tags",
+   "shows": "A blank horizontal strip with six blank round tags above it in six logo colours",
+   "view": "Flat front view on white",
+   "right": "Six tags, each a different colour and also a different shape",
+   "avoid": "Text, arrows, numbers"
+  }
+ ]
+}

@@ -1,0 +1,1245 @@
+{
+ "chapter_key": "u.c11.economics.keec1.ch02",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Indian Economy 1950-1990",
+ "source": "https://ncert.nic.in/textbook/pdf/keec102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Introduction: economic systems and India's mixed economy",
+   "labs": [],
+   "why_no_lab": "Comparing capitalist, socialist and mixed systems is best done in the reader; the planner's lab applies the mixed-economy idea."
+  },
+  {
+   "n": "2.2",
+   "title": "The goals of Five Year Plans",
+   "labs": [
+    "c11-economics-keec1-ch02-plan-goals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Agriculture: land reforms, Green Revolution, subsidies",
+   "labs": [
+    "c11-economics-keec1-ch02-green-revolution",
+    "c11-economics-keec1-ch02-subsidy"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Industry and trade: public sector, IPR 1956, small-scale industry",
+   "labs": [
+    "c11-economics-keec1-ch02-licence"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Trade policy: import substitution",
+   "labs": [
+    "c11-economics-keec1-ch02-import-substitution"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Conclusion: achievements and failures, 1950 to 1990",
+   "labs": [],
+   "why_no_lab": "A summing-up best read and discussed in class."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-keec1-ch02-plan-goals",
+   "topic": "2.2",
+   "template": "scenario",
+   "title": {
+    "en": "Planner's desk: the four goals",
+    "hi": "योजनाकार की मेज़: चार लक्ष्य"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "planning office",
+    "role": {
+     "en": "Member of the Planning Commission",
+     "hi": "योजना आयोग का सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "hyv",
+      "text": {
+       "en": "It is the 1960s. A proposal says: \"Give farmers high yielding variety seeds, fertilisers and better irrigation.\" Which goal of the plans does this mainly serve?",
+       "hi": "1960 का दशक है। एक प्रस्ताव है: \"किसानों को अधिक उपज देने वाले बीज, खाद और बेहतर सिंचाई दो।\" यह योजनाओं के किस लक्ष्य को मुख्य रूप से पूरा करता है?"
+      },
+      "choices": [
+       {
+        "id": "hyv-modern",
+        "text": {
+         "en": "Modernisation: using new technology",
+         "hi": "आधुनिकीकरण: नई तकनीक अपनाना"
+        },
+        "next": "steel",
+        "feedback": {
+         "en": "Yes. Adopting new technology to produce more is modernisation; it also raises growth.",
+         "hi": "हाँ। ज़्यादा उत्पादन के लिए नई तकनीक अपनाना आधुनिकीकरण है; इससे संवृद्धि भी बढ़ती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "hyv-equity",
+        "text": {
+         "en": "Equity: sharing benefits fairly",
+         "hi": "समानता: लाभ का उचित बँटवारा"
+        },
+        "next": "steel",
+        "feedback": {
+         "en": "New seeds raise output, but they do not by themselves share benefits fairly. That is modernisation.",
+         "hi": "नए बीज उपज बढ़ाते हैं, पर अपने आप लाभ बराबर नहीं बाँटते। यह आधुनिकीकरण है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "steel",
+      "text": {
+       "en": "Another proposal: \"Make machines and steel in India so that we do not depend on imports.\" Which goal is this?",
+       "hi": "दूसरा प्रस्ताव: \"मशीनें और इस्पात भारत में ही बनाओ ताकि आयात पर निर्भर न रहें।\" यह कौन-सा लक्ष्य है?"
+      },
+      "choices": [
+       {
+        "id": "steel-self",
+        "text": {
+         "en": "Self-reliance",
+         "hi": "आत्मनिर्भरता"
+        },
+        "next": "land",
+        "feedback": {
+         "en": "Correct. Producing at home what we would otherwise import is self-reliance.",
+         "hi": "सही। जो हम आयात करते, उसे देश में बनाना आत्मनिर्भरता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "steel-growth",
+        "text": {
+         "en": "Only equity",
+         "hi": "केवल समानता"
+        },
+        "next": "land",
+        "feedback": {
+         "en": "Making machines at home reduces dependence on other countries: self-reliance.",
+         "hi": "देश में मशीनें बनाने से दूसरे देशों पर निर्भरता घटती है: आत्मनिर्भरता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "land",
+      "text": {
+       "en": "A third proposal: \"Fix a ceiling on how much land one family can own, and give the extra land to landless farmers.\" Which goal?",
+       "hi": "तीसरा प्रस्ताव: \"एक परिवार कितनी ज़मीन रख सकता है उसकी सीमा तय करो, और फ़ालतू ज़मीन भूमिहीन किसानों को दो।\" कौन-सा लक्ष्य?"
+      },
+      "choices": [
+       {
+        "id": "land-equity",
+        "text": {
+         "en": "Equity",
+         "hi": "समानता"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Land ceilings spread ownership more fairly, so growth benefits the poor too.",
+         "hi": "हाँ। भू-सीमा से स्वामित्व बराबरी से बँटता है, ताकि संवृद्धि का लाभ ग़रीबों तक भी पहुँचे।"
+        },
+        "good": true
+       },
+       {
+        "id": "land-modern",
+        "text": {
+         "en": "Modernisation",
+         "hi": "आधुनिकीकरण"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "No new technology here; it is about fair sharing of land: equity.",
+         "hi": "यहाँ कोई नई तकनीक नहीं; यह ज़मीन के उचित बँटवारे के बारे में है: समानता।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "India's Five Year Plans had four goals: growth, modernisation, self-reliance and equity. Which goal means \"a larger GDP\"?",
+      "hi": "भारत की पंचवर्षीय योजनाओं के चार लक्ष्य थे: संवृद्धि, आधुनिकीकरण, आत्मनिर्भरता और समानता। किस लक्ष्य का अर्थ है \"बड़ा जीडीपी\"?"
+     },
+     "options": [
+      {
+       "id": "growth",
+       "en": "Growth",
+       "hi": "संवृद्धि"
+      },
+      {
+       "id": "equity",
+       "en": "Equity",
+       "hi": "समानता"
+      },
+      {
+       "id": "self",
+       "en": "Self-reliance",
+       "hi": "आत्मनिर्भरता"
+      }
+     ],
+     "answer": "growth"
+    },
+    {
+     "kind": "do",
+     "target": "choice:hyv:hyv-modern",
+     "expect": "chose:hyv-modern",
+     "say": {
+      "en": "Tap \"Modernisation\" for the new seeds proposal and read the note.",
+      "hi": "नए बीजों के प्रस्ताव के लिए \"आधुनिकीकरण\" पर टैप करो और टिप्पणी पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India chose a mixed economy and planned its growth through Five Year Plans, starting in 1951. Growth means a rising output of goods and services (GDP). Modernisation means new technology and new social outlooks, such as women working. Self-reliance means not depending on other countries for key goods. Equity means the benefits reach the poor too.",
+      "hi": "भारत ने मिश्रित अर्थव्यवस्था चुनी और 1951 से पंचवर्षीय योजनाओं के ज़रिए विकास की योजना बनाई। संवृद्धि का अर्थ है वस्तुओं और सेवाओं के उत्पादन (जीडीपी) में बढ़ोतरी। आधुनिकीकरण का अर्थ है नई तकनीक और नई सामाजिक सोच, जैसे महिलाओं का काम करना। आत्मनिर्भरता का अर्थ है ज़रूरी चीज़ों के लिए दूसरे देशों पर निर्भर न रहना। समानता का अर्थ है लाभ ग़रीबों तक भी पहुँचे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Women getting the same rights and jobs as men is part of which goal?",
+        "hi": "महिलाओं को पुरुषों जैसे अधिकार और नौकरियाँ मिलना किस लक्ष्य का भाग है?"
+       },
+       "options": [
+        {
+         "en": "Modernisation",
+         "hi": "आधुनिकीकरण"
+        },
+        {
+         "en": "Self-reliance",
+         "hi": "आत्मनिर्भरता"
+        },
+        {
+         "en": "Growth only",
+         "hi": "केवल संवृद्धि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Modernisation includes changing social outlook, such as accepting that women should have the same rights.",
+        "hi": "आधुनिकीकरण में सामाजिक सोच का बदलना भी शामिल है, जैसे यह मानना कि महिलाओं के समान अधिकार हों।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Self-reliance is about not depending on imports, not about social change.",
+         "hi": "आत्मनिर्भरता आयात पर निर्भर न रहने के बारे में है, सामाजिक बदलाव के बारे में नहीं।"
+        },
+        {
+         "en": "Growth is a bigger GDP; this is a change in social outlook.",
+         "hi": "संवृद्धि बड़ा जीडीपी है; यह सामाजिक सोच का बदलाव है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is growth alone not enough?",
+        "hi": "केवल संवृद्धि क्यों काफ़ी नहीं है?"
+       },
+       "options": [
+        {
+         "en": "Its benefits may stay with the rich unless equity is planned",
+         "hi": "समानता की योजना न हो तो इसका लाभ अमीरों तक सीमित रह सकता है"
+        },
+        {
+         "en": "Growth always makes people poorer",
+         "hi": "संवृद्धि हमेशा लोगों को ग़रीब बनाती है"
+        },
+        {
+         "en": "Growth is impossible in a mixed economy",
+         "hi": "मिश्रित अर्थव्यवस्था में संवृद्धि असंभव है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A rising GDP must also improve the lives of the poor; that is why equity was a goal.",
+        "hi": "बढ़ते जीडीपी से ग़रीबों का जीवन भी सुधरना चाहिए; इसीलिए समानता एक लक्ष्य थी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Growth raises output; the worry is only how it is shared.",
+         "hi": "संवृद्धि उत्पादन बढ़ाती है; चिंता केवल इसके बँटवारे की है।"
+        },
+        {
+         "en": "India grew under its mixed economy; growth is possible there.",
+         "hi": "मिश्रित अर्थव्यवस्था में भारत की संवृद्धि हुई; यह संभव है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the planner's desk: decide the goal of the steel plan and the land ceiling. Then try a wrong goal to see the feedback.",
+      "hi": "योजनाकार की मेज़ पूरी करो: इस्पात योजना और भू-सीमा का लक्ष्य तय करो। फिर ग़लत लक्ष्य चुनकर प्रतिक्रिया देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch02-green-revolution",
+   "topic": "2.3",
+   "template": "data",
+   "title": {
+    "en": "Green Revolution on one farm",
+    "hi": "एक खेत पर हरित क्रांति"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "chart": "double-bar",
+    "show": 0,
+    "title": {
+     "en": "Wheat on one farm: old vs HYV seeds (example, quintals)",
+     "hi": "एक खेत का गेहूँ: पुराने बनाम नए बीज (उदाहरण, क्विंटल)"
+    },
+    "series": [
+     {
+      "en": "Old seeds",
+      "hi": "पुराने बीज"
+     },
+     {
+      "en": "HYV seeds",
+      "hi": "अधिक उपज वाले बीज"
+     }
+    ],
+    "xlabel": {
+     "en": "What happens to the wheat",
+     "hi": "गेहूँ का क्या होता है"
+    },
+    "ylabel": {
+     "en": "Quintals",
+     "hi": "क्विंटल"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Total grown",
+       "hi": "कुल उपज"
+      },
+      "value": 20,
+      "value2": 50
+     },
+     {
+      "label": {
+       "en": "Kept for the family",
+       "hi": "परिवार के लिए रखा"
+      },
+      "value": 14,
+      "value2": 15
+     },
+     {
+      "label": {
+       "en": "Sold in the market",
+       "hi": "बाज़ार में बेचा"
+      },
+      "value": 6,
+      "value2": 35
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the total wheat grown with old seeds and with HYV seeds.",
+      "hi": "\"जोड़ो\" पर टैप करो और पुराने बीज और अधिक उपज वाले बीज से कुल उपज का ग्राफ़ बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" again to plot the wheat the family keeps to eat.",
+      "hi": "फिर \"जोड़ो\" पर टैप करो और परिवार के खाने के लिए रखा गेहूँ दिखाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The family eats about the same amount either way. What will happen to the wheat sold in the market with HYV seeds?",
+      "hi": "परिवार दोनों तरह से लगभग उतना ही खाता है। अधिक उपज वाले बीजों से बाज़ार में बिकने वाले गेहूँ का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "Much more is sold",
+       "hi": "बहुत ज़्यादा बिकेगा"
+      },
+      {
+       "id": "same",
+       "en": "About the same",
+       "hi": "लगभग उतना ही"
+      },
+      {
+       "id": "less",
+       "en": "Less is sold",
+       "hi": "कम बिकेगा"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the wheat sold in the market.",
+      "hi": "\"जोड़ो\" पर टैप करो और बाज़ार में बिका गेहूँ दिखाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The part of the crop that farmers sell in the market is called the marketed surplus. With HYV seeds, fertiliser and assured water, output rose a lot, but a family eats only a little more, so the marketed surplus grew much faster. More grain in the market lowered food prices and helped the government build buffer stocks. The Green Revolution first spread in wheat, in states like Punjab and Haryana.",
+      "hi": "फ़सल का जो भाग किसान बाज़ार में बेचते हैं उसे विपणित अधिशेष कहते हैं। अधिक उपज वाले बीज, खाद और पक्की सिंचाई से उपज बहुत बढ़ी, पर परिवार थोड़ा ही ज़्यादा खाता है, इसलिए विपणित अधिशेष बहुत तेज़ी से बढ़ा। बाज़ार में ज़्यादा अनाज से खाने की क़ीमतें घटीं और सरकार बफ़र स्टॉक बना सकी। हरित क्रांति पहले गेहूँ में, पंजाब और हरियाणा जैसे राज्यों में फैली।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In this example, what is the marketed surplus with HYV seeds?",
+        "hi": "इस उदाहरण में अधिक उपज वाले बीजों से विपणित अधिशेष कितना है?"
+       },
+       "options": [
+        {
+         "en": "50 quintals",
+         "hi": "50 क्विंटल"
+        },
+        {
+         "en": "15 quintals",
+         "hi": "15 क्विंटल"
+        },
+        {
+         "en": "35 quintals",
+         "hi": "35 क्विंटल"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Marketed surplus = total grown − kept for the family = 50 − 15 = 35 quintals.",
+        "hi": "विपणित अधिशेष = कुल उपज − परिवार के लिए रखा = 50 − 15 = 35 क्विंटल।"
+       },
+       "wrong": [
+        {
+         "en": "50 is the whole crop; part of it is eaten at home.",
+         "hi": "50 पूरी फ़सल है; इसका एक भाग घर में खाया जाता है।"
+        },
+        {
+         "en": "15 is what the family keeps, not what it sells.",
+         "hi": "15 वह है जो परिवार रखता है, जो बेचता है वह नहीं।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was the government worried that only rich farmers would gain at first?",
+        "hi": "सरकार को डर क्यों था कि शुरू में केवल अमीर किसानों को लाभ होगा?"
+       },
+       "options": [
+        {
+         "en": "HYV seeds needed fertiliser and irrigation that cost money",
+         "hi": "अधिक उपज वाले बीजों के लिए खाद और सिंचाई चाहिए थी, जिनमें पैसा लगता था"
+        },
+        {
+         "en": "Small farmers did not like wheat",
+         "hi": "छोटे किसानों को गेहूँ पसंद नहीं था"
+        },
+        {
+         "en": "HYV seeds were banned for small farms",
+         "hi": "छोटे खेतों के लिए ये बीज प्रतिबंधित थे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The new technology needed inputs that big farmers could afford first; loans and subsidies helped small farmers too.",
+        "hi": "नई तकनीक को ऐसे साधन चाहिए थे जो पहले बड़े किसान ख़रीद पाते; ऋण और सब्सिडी से छोटे किसानों को भी मदद मिली।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Taste was not the issue; cost of inputs was.",
+         "hi": "स्वाद मुद्दा नहीं था; साधनों की लागत थी।"
+        },
+        {
+         "en": "There was no such ban; the barrier was money.",
+         "hi": "ऐसा कोई प्रतिबंध नहीं था; रुकावट पैसा थी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the HYV bars up or down. If the family kept 30 quintals, how big would the marketed surplus be?",
+      "hi": "अधिक उपज वाले बीजों के दंड ऊपर-नीचे खींचो। अगर परिवार 30 क्विंटल रखे, तो विपणित अधिशेष कितना होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch02-subsidy",
+   "topic": "2.3",
+   "template": "scenario",
+   "title": {
+    "en": "The fertiliser subsidy debate",
+    "hi": "खाद सब्सिडी पर बहस"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "setting": "ministry",
+    "role": {
+     "en": "Adviser in the agriculture ministry",
+     "hi": "कृषि मंत्रालय में सलाहकार"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "It is 1965. Farmers are unsure about the new HYV seeds and fertilisers, and they are costly. What do you advise?",
+       "hi": "सन 1965 है। किसान नए बीजों और खाद को लेकर आशंकित हैं, और ये महँगे हैं। तुम क्या सलाह दोगे?"
+      },
+      "choices": [
+       {
+        "id": "give-subsidy",
+        "text": {
+         "en": "Give a subsidy so fertiliser costs farmers less",
+         "hi": "सब्सिडी दो ताकि किसानों को खाद सस्ती मिले"
+        },
+        "next": "later",
+        "feedback": {
+         "en": "Good. A subsidy lowers the risk of trying new technology, especially for small farmers.",
+         "hi": "अच्छा। सब्सिडी नई तकनीक आज़माने का जोखिम घटाती है, ख़ासकर छोटे किसानों के लिए।"
+        },
+        "good": true
+       },
+       {
+        "id": "no-help",
+        "text": {
+         "en": "Do nothing; farmers will learn by themselves",
+         "hi": "कुछ मत करो; किसान अपने आप सीख लेंगे"
+        },
+        "next": "later",
+        "feedback": {
+         "en": "Without help, poor farmers may never risk the new inputs, and food output stays low.",
+         "hi": "मदद के बिना ग़रीब किसान नए साधनों का जोखिम कभी नहीं उठाएँगे, और अनाज उत्पादन कम रहेगा।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "later",
+      "text": {
+       "en": "It is now the 1980s. The technology has spread. Studies show the subsidy mostly helps the fertiliser industry and farmers in richer areas, and it costs the government a lot. What now?",
+       "hi": "अब 1980 का दशक है। तकनीक फैल चुकी है। अध्ययन बताते हैं कि सब्सिडी से ज़्यादातर खाद उद्योग और अमीर क्षेत्रों के किसानों को लाभ होता है, और सरकार का बहुत पैसा लगता है। अब क्या?"
+      },
+      "choices": [
+       {
+        "id": "target",
+        "text": {
+         "en": "Target the subsidy at poor farmers and use savings for irrigation",
+         "hi": "सब्सिडी ग़रीब किसानों पर केंद्रित करो और बचत सिंचाई में लगाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A balanced view: keep help for those who need it, and spend wisely.",
+         "hi": "संतुलित सोच: ज़रूरतमंदों के लिए मदद रखो, और समझदारी से ख़र्च करो।"
+        },
+        "good": true
+       },
+       {
+        "id": "end-all",
+        "text": {
+         "en": "Remove all subsidies for everyone at once",
+         "hi": "सबके लिए सारी सब्सिडी एक साथ हटा दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Some economists say this, but others warn it would hurt poor farmers. The debate is still on.",
+         "hi": "कुछ अर्थशास्त्री यही कहते हैं, पर दूसरे चेतावनी देते हैं कि इससे ग़रीब किसानों को नुक़सान होगा। बहस अब भी जारी है।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why might a government pay part of the price of fertiliser for farmers?",
+      "hi": "सरकार किसानों के लिए खाद की क़ीमत का कुछ भाग क्यों चुका सकती है?"
+     },
+     "options": [
+      {
+       "id": "try",
+       "en": "To encourage farmers to try new technology",
+       "hi": "किसानों को नई तकनीक आज़माने के लिए प्रोत्साहित करने"
+      },
+      {
+       "id": "profit",
+       "en": "To make fertiliser companies lose money",
+       "hi": "खाद कंपनियों को घाटा देने"
+      },
+      {
+       "id": "tax",
+       "en": "To collect more tax",
+       "hi": "ज़्यादा कर वसूलने"
+      }
+     ],
+     "answer": "try"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:give-subsidy",
+     "expect": "chose:give-subsidy",
+     "say": {
+      "en": "Tap \"Give a subsidy\" and read what it does.",
+      "hi": "\"सब्सिडी दो\" पर टैप करो और पढ़ो कि इससे क्या होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A subsidy is money the government pays so that a good costs the buyer less. In the early Green Revolution, subsidies encouraged farmers, especially small ones, to adopt the new technology. Later, many economists argued that the subsidy had done its job and was now a burden that helped the fertiliser industry and richer farmers. Others said removing it would hurt poor farmers. Both sides have reasons.",
+      "hi": "सब्सिडी वह पैसा है जो सरकार चुकाती है ताकि ख़रीदार को चीज़ सस्ती मिले। हरित क्रांति के शुरू में सब्सिडी ने किसानों, ख़ासकर छोटे किसानों, को नई तकनीक अपनाने के लिए प्रेरित किया। बाद में कई अर्थशास्त्रियों ने कहा कि सब्सिडी का काम पूरा हो गया है और अब यह बोझ है, जिससे खाद उद्योग और अमीर किसानों को लाभ होता है। दूसरों ने कहा कि इसे हटाने से ग़रीब किसानों को चोट पहुँचेगी। दोनों पक्षों के अपने तर्क हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a subsidy?",
+        "hi": "सब्सिडी क्या है?"
+       },
+       "options": [
+        {
+         "en": "A tax on farmers",
+         "hi": "किसानों पर कर"
+        },
+        {
+         "en": "A payment by the government so a good costs the buyer less",
+         "hi": "सरकार का भुगतान ताकि ख़रीदार को चीज़ सस्ती मिले"
+        },
+        {
+         "en": "A loan from a moneylender",
+         "hi": "साहूकार से ऋण"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The government pays part of the price, so the market price for the user falls.",
+        "hi": "सरकार क़ीमत का कुछ भाग चुकाती है, इसलिए उपयोगकर्ता के लिए क़ीमत घटती है।"
+       },
+       "wrong": [
+        {
+         "en": "A tax takes money from the buyer; a subsidy gives help.",
+         "hi": "कर ख़रीदार से पैसा लेता है; सब्सिडी मदद देती है।"
+        },
+        "",
+        {
+         "en": "A loan must be repaid with interest; a subsidy is not repaid.",
+         "hi": "ऋण ब्याज के साथ लौटाना पड़ता है; सब्सिडी लौटानी नहीं पड़ती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is an argument AGAINST continuing fertiliser subsidies?",
+        "hi": "खाद सब्सिडी जारी रखने के विरुद्ध कौन-सा तर्क है?"
+       },
+       "options": [
+        {
+         "en": "It helps small farmers try new seeds",
+         "hi": "इससे छोटे किसान नए बीज आज़मा पाते हैं"
+        },
+        {
+         "en": "It keeps food prices low for the poor",
+         "hi": "इससे ग़रीबों के लिए खाना सस्ता रहता है"
+        },
+        {
+         "en": "Much of it goes to the fertiliser industry and richer farmers",
+         "hi": "इसका बड़ा भाग खाद उद्योग और अमीर किसानों को जाता है"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Critics say the subsidy is a large cost that does not reach the target group well.",
+        "hi": "आलोचकों का कहना है कि सब्सिडी एक बड़ा ख़र्च है जो लक्षित लोगों तक ठीक से नहीं पहुँचता।"
+       },
+       "wrong": [
+        {
+         "en": "That is an argument for subsidies, not against.",
+         "hi": "यह सब्सिडी के पक्ष में तर्क है, विरुद्ध नहीं।"
+        },
+        {
+         "en": "That also supports subsidies.",
+         "hi": "यह भी सब्सिडी का समर्थन करता है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Go on to the 1980s scene and try both choices. Which side of the debate do you find stronger, and why?",
+      "hi": "1980 के दशक वाले दृश्य पर जाओ और दोनों विकल्प आज़माओ। बहस का कौन-सा पक्ष तुम्हें ज़्यादा मज़बूत लगता है, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch02-licence",
+   "topic": "2.4",
+   "template": "scenario",
+   "title": {
+    "en": "Starting a factory in 1975",
+    "hi": "1975 में कारख़ाना शुरू करना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "industrial town",
+    "role": {
+     "en": "Young entrepreneur",
+     "hi": "युवा उद्यमी"
+    },
+    "scenes": [
+     {
+      "id": "apply",
+      "text": {
+       "en": "You want to start a cycle factory in 1975. Industrial Policy Resolution 1956 lets private firms make such goods, but under strict rules. What must you do first?",
+       "hi": "तुम 1975 में साइकिल का कारख़ाना शुरू करना चाहते हो। औद्योगिक नीति प्रस्ताव 1956 निजी कंपनियों को ऐसा माल बनाने देता है, पर कड़े नियमों के साथ। पहले तुम्हें क्या करना होगा?"
+      },
+      "choices": [
+       {
+        "id": "get-licence",
+        "text": {
+         "en": "Get a licence from the government",
+         "hi": "सरकार से लाइसेंस लेना"
+        },
+        "next": "where",
+        "feedback": {
+         "en": "Right. No new firm could start, and no firm could expand, without a government licence.",
+         "hi": "सही। सरकारी लाइसेंस के बिना कोई नई कंपनी शुरू नहीं हो सकती थी, न कोई कंपनी बढ़ सकती थी।"
+        },
+        "good": true
+       },
+       {
+        "id": "just-start",
+        "text": {
+         "en": "Just buy land and start",
+         "hi": "बस ज़मीन ख़रीदो और शुरू कर दो"
+        },
+        "next": "where",
+        "feedback": {
+         "en": "That was not allowed then. The licensing system controlled who could produce and how much.",
+         "hi": "तब इसकी अनुमति नहीं थी। लाइसेंस व्यवस्था तय करती थी कि कौन कितना बनाएगा।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "where",
+      "text": {
+       "en": "The officer says a licence is easier if you set up your factory in a backward area. Why?",
+       "hi": "अधिकारी कहता है कि अगर कारख़ाना पिछड़े क्षेत्र में लगाओ तो लाइसेंस आसानी से मिलेगा। क्यों?"
+      },
+      "choices": [
+       {
+        "id": "regional",
+        "text": {
+         "en": "To spread industry and jobs to poorer regions",
+         "hi": "उद्योग और रोज़गार को ग़रीब क्षेत्रों तक फैलाने के लिए"
+        },
+        "next": "ssi",
+        "feedback": {
+         "en": "Yes. Licences and concessions were used to promote regional equality.",
+         "hi": "हाँ। लाइसेंस और रियायतों का उपयोग क्षेत्रीय समानता बढ़ाने के लिए होता था।"
+        },
+        "good": true
+       },
+       {
+        "id": "bribe",
+        "text": {
+         "en": "Because backward areas have no rules",
+         "hi": "क्योंकि पिछड़े क्षेत्रों में कोई नियम नहीं"
+        },
+        "next": "ssi",
+        "feedback": {
+         "en": "The same rules applied; the aim was to help backward regions grow.",
+         "hi": "वही नियम लागू थे; उद्देश्य पिछड़े क्षेत्रों को बढ़ाना था।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "ssi",
+      "text": {
+       "en": "Your friend makes cycle bells in a small workshop. Only small-scale units may make bells. Why did the government reserve such goods for small industry?",
+       "hi": "तुम्हारा दोस्त एक छोटी कार्यशाला में साइकिल की घंटियाँ बनाता है। घंटियाँ केवल लघु उद्योग बना सकते हैं। सरकार ने ऐसी चीज़ें लघु उद्योग के लिए आरक्षित क्यों कीं?"
+      },
+      "choices": [
+       {
+        "id": "ssi-jobs",
+        "text": {
+         "en": "Small units give more jobs and need protection from big firms",
+         "hi": "छोटी इकाइयाँ ज़्यादा रोज़गार देती हैं और बड़ी कंपनियों से सुरक्षा चाहती हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. Small industry is labour intensive, so reservation was meant to protect jobs.",
+         "hi": "सही। लघु उद्योग श्रम-प्रधान होते हैं, इसलिए आरक्षण रोज़गार बचाने के लिए था।"
+        },
+        "good": true
+       },
+       {
+        "id": "ssi-quality",
+        "text": {
+         "en": "Small units always make better quality",
+         "hi": "छोटी इकाइयाँ हमेशा बेहतर गुणवत्ता बनाती हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Quality was not the reason; protecting employment was.",
+         "hi": "गुणवत्ता कारण नहीं थी; रोज़गार बचाना था।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 1975, could a private firm start a new factory freely in India?",
+      "hi": "1975 में क्या कोई निजी कंपनी भारत में खुलकर नया कारख़ाना शुरू कर सकती थी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it needed a government licence",
+       "hi": "नहीं, उसे सरकारी लाइसेंस चाहिए था"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, anyone could start",
+       "hi": "हाँ, कोई भी शुरू कर सकता था"
+      },
+      {
+       "id": "banned",
+       "en": "No, all private industry was banned",
+       "hi": "नहीं, सारा निजी उद्योग प्रतिबंधित था"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:apply:get-licence",
+     "expect": "chose:get-licence",
+     "say": {
+      "en": "Tap \"Get a licence from the government\".",
+      "hi": "\"सरकार से लाइसेंस लेना\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "After 1956, the state controlled the commanding heights of the economy. Industries were in three groups: some only for the public sector, some where the state led and private firms joined, and the rest for the private sector under licences. Licensing was used to guide where and how much firms produced, and to help backward regions. Small-scale industries were protected by reserving some goods for them.",
+      "hi": "1956 के बाद राज्य ने अर्थव्यवस्था के मुख्य शिखरों पर नियंत्रण रखा। उद्योग तीन वर्गों में थे: कुछ केवल सार्वजनिक क्षेत्र के लिए, कुछ जहाँ राज्य आगे रहता और निजी कंपनियाँ साथ आतीं, और बाक़ी लाइसेंस के साथ निजी क्षेत्र के लिए। लाइसेंस से यह तय होता था कि कंपनियाँ कहाँ और कितना बनाएँ, और पिछड़े क्षेत्रों की मदद होती थी। लघु उद्योगों को बचाने के लिए कुछ चीज़ें उनके लिए आरक्षित थीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did the state take charge of heavy industries such as steel after 1950?",
+        "hi": "1950 के बाद राज्य ने इस्पात जैसे भारी उद्योग अपने हाथ में क्यों लिए?"
+       },
+       "options": [
+        {
+         "en": "Private industrialists lacked the capital, and the market was too small",
+         "hi": "निजी उद्योगपतियों के पास पूँजी नहीं थी, और बाज़ार बहुत छोटा था"
+        },
+        {
+         "en": "Steel was not needed",
+         "hi": "इस्पात की ज़रूरत नहीं थी"
+        },
+        {
+         "en": "Foreign firms owned all steel plants",
+         "hi": "सारे इस्पात संयंत्र विदेशी कंपनियों के थे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heavy industry needed huge investment that private firms could not raise then, so the state built it.",
+        "hi": "भारी उद्योग को बड़े निवेश की ज़रूरत थी जो तब निजी कंपनियाँ नहीं जुटा सकती थीं, इसलिए राज्य ने बनाया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Steel was vital for building machines, dams and railways.",
+         "hi": "मशीनें, बाँध और रेलें बनाने के लिए इस्पात बहुत ज़रूरी था।"
+        },
+        {
+         "en": "India had very few steel plants; the issue was lack of capital.",
+         "hi": "भारत में बहुत कम इस्पात संयंत्र थे; मुद्दा पूँजी की कमी था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What was one problem with the licence system?",
+        "hi": "लाइसेंस व्यवस्था की एक समस्या क्या थी?"
+       },
+       "options": [
+        {
+         "en": "It made factories very cheap to start",
+         "hi": "इससे कारख़ाने शुरू करना बहुत सस्ता हो गया"
+        },
+        {
+         "en": "Big firms sometimes got licences only to block rivals, and red tape slowed growth",
+         "hi": "बड़ी कंपनियाँ कभी-कभी केवल प्रतिद्वंद्वियों को रोकने के लिए लाइसेंस लेती थीं, और लालफ़ीताशाही से विकास धीमा हुआ"
+        },
+        {
+         "en": "It removed all control by the state",
+         "hi": "इसने राज्य का सारा नियंत्रण हटा दिया"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Licensing gave power to officials and let some big houses block new competition.",
+        "hi": "लाइसेंस ने अधिकारियों को ताक़त दी और कुछ बड़े घरानों को नई प्रतिस्पर्धा रोकने दी।"
+       },
+       "wrong": [
+        {
+         "en": "Licences added cost and delay; they did not make starting cheap.",
+         "hi": "लाइसेंस से लागत और देरी बढ़ी; शुरुआत सस्ती नहीं हुई।"
+        },
+        "",
+        {
+         "en": "Licensing was state control, not its removal.",
+         "hi": "लाइसेंस राज्य का नियंत्रण था, उसका हटना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the rest of the story: choose where to build, and learn why bells were kept for small units.",
+      "hi": "कहानी का बाक़ी भाग खेलो: तय करो कि कहाँ बनाना है, और जानो कि घंटियाँ छोटी इकाइयों के लिए क्यों रखी गईं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch02-import-substitution",
+   "topic": "2.5",
+   "template": "data",
+   "title": {
+    "en": "Protecting Indian radios",
+    "hi": "भारतीय रेडियो की सुरक्षा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "double-bar",
+    "title": {
+     "en": "Price of a radio, 1970 (example numbers, ₹)",
+     "hi": "एक रेडियो की क़ीमत, 1970 (उदाहरण के अंक, ₹)"
+    },
+    "series": [
+     {
+      "en": "Without a tariff",
+      "hi": "बिना प्रशुल्क"
+     },
+     {
+      "en": "With a 100% tariff",
+      "hi": "100% प्रशुल्क के साथ"
+     }
+    ],
+    "xlabel": {
+     "en": "Radio",
+     "hi": "रेडियो"
+    },
+    "ylabel": {
+     "en": "Price in ₹",
+     "hi": "क़ीमत ₹ में"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Imported radio",
+       "hi": "आयातित रेडियो"
+      },
+      "value": 300,
+      "value2": 600
+     },
+     {
+      "label": {
+       "en": "Radio made in India",
+       "hi": "भारत में बना रेडियो"
+      },
+      "value": 450,
+      "value2": 450
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A foreign radio costs ₹300 and an Indian one ₹450. If there is no protection, which will most people buy?",
+      "hi": "एक विदेशी रेडियो ₹300 का और एक भारतीय ₹450 का है। अगर कोई सुरक्षा न हो, तो ज़्यादातर लोग कौन-सा ख़रीदेंगे?"
+     },
+     "options": [
+      {
+       "id": "foreign",
+       "en": "The foreign radio",
+       "hi": "विदेशी रेडियो"
+      },
+      {
+       "id": "indian",
+       "en": "The Indian radio",
+       "hi": "भारतीय रेडियो"
+      },
+      {
+       "id": "none",
+       "en": "Neither",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "foreign"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the blue bar of the imported radio without a tariff.",
+      "hi": "बिना प्रशुल्क वाले आयातित रेडियो के नीले दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:1",
+     "expect": "selected:1",
+     "say": {
+      "en": "Tap the blue bar of the radio made in India.",
+      "hi": "भारत में बने रेडियो के नीले दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:2",
+     "expect": "selected:2",
+     "say": {
+      "en": "Now tap the orange bar: the imported radio after a 100% tariff, a tax on imports.",
+      "hi": "अब नारंगी दंड पर टैप करो: 100% प्रशुल्क के बाद आयातित रेडियो। प्रशुल्क आयात पर कर है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India followed import substitution: making at home goods that were earlier imported. Two tools protected Indian firms. A tariff is a tax on imported goods, so they become dearer. A quota fixes how much can be imported. With the tariff, the imported radio cost ₹600, so the Indian radio at ₹450 became the cheaper choice, so Indian firms could grow. But with little competition, some firms stayed inefficient for decades.",
+      "hi": "भारत ने आयात प्रतिस्थापन अपनाया: जो चीज़ें पहले आयात होती थीं उन्हें देश में बनाना। दो साधनों से भारतीय कंपनियों को सुरक्षा मिली। प्रशुल्क आयातित माल पर कर है, जिससे वह महँगा हो जाता है। कोटा तय करता है कि कितना आयात हो सकता है। शुल्क के बाद आयातित रेडियो ₹600 का हो गया, इसलिए ₹450 का भारतीय रेडियो सस्ता विकल्प बन गया, इसलिए भारतीय कंपनियाँ बढ़ सकीं। पर कम प्रतिस्पर्धा के कारण कुछ कंपनियाँ दशकों तक अकुशल रहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a quota on imports?",
+        "hi": "आयात पर कोटा क्या है?"
+       },
+       "options": [
+        {
+         "en": "A limit on the quantity that can be imported",
+         "hi": "आयात की जा सकने वाली मात्रा की सीमा"
+        },
+        {
+         "en": "A tax on each imported item",
+         "hi": "हर आयातित चीज़ पर कर"
+        },
+        {
+         "en": "A subsidy to exporters",
+         "hi": "निर्यातकों को सब्सिडी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A quota fixes the amount of a good that may come in.",
+        "hi": "कोटा तय करता है कि किसी चीज़ की कितनी मात्रा अंदर आ सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a tariff, the other tool.",
+         "hi": "वह प्रशुल्क है, दूसरा साधन।"
+        },
+        {
+         "en": "A subsidy to exporters is a different policy, not a limit on imports.",
+         "hi": "निर्यातकों को सब्सिडी एक अलग नीति है, आयात की सीमा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What was a drawback of long protection from imports?",
+        "hi": "आयात से लंबी सुरक्षा का एक नुक़सान क्या था?"
+       },
+       "options": [
+        {
+         "en": "Indian firms had no reason to improve quality or cut costs",
+         "hi": "भारतीय कंपनियों के पास गुणवत्ता सुधारने या लागत घटाने का कारण नहीं रहा"
+        },
+        {
+         "en": "Imports became cheaper",
+         "hi": "आयात सस्ते हो गए"
+        },
+        {
+         "en": "India stopped making anything",
+         "hi": "भारत ने कुछ भी बनाना बंद कर दिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without foreign competition, protected firms often stayed inefficient and buyers paid more.",
+        "hi": "विदेशी प्रतिस्पर्धा के बिना सुरक्षित कंपनियाँ अक्सर अकुशल रहीं और ख़रीदारों ने ज़्यादा दाम चुकाए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Protection made imports dearer, not cheaper.",
+         "hi": "सुरक्षा ने आयात महँगे किए, सस्ते नहीं।"
+        },
+        {
+         "en": "India made more at home; the issue was efficiency.",
+         "hi": "भारत ने देश में ज़्यादा बनाया; मुद्दा कुशलता का था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the bars of the Indian radio. If an Indian maker cut its price to ₹280, would it still need a tariff to compete?",
+      "hi": "भारतीय रेडियो के दंड खींचो। अगर भारतीय निर्माता क़ीमत ₹280 कर दे, तो क्या उसे प्रतिस्पर्धा के लिए अब भी प्रशुल्क चाहिए?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Hook of the chapter: Green Revolution field",
+   "shows": "Ripe, even golden wheat field in Punjab with an irrigation channel full of water running along its edge",
+   "view": "Wide view at low angle, morning sun, 16:9",
+   "right": "Short-stemmed even wheat (HYV look), water in a lined channel",
+   "avoid": "People's faces, brand names on bags or machines"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Inputs of the Green Revolution",
+   "shows": "Three separate cut-outs: a handful of wheat seeds, a plain sack of fertiliser granules opened at the top, a small hand-held sprayer",
+   "view": "Front three-quarter view, transparent background, lit from top left",
+   "right": "Plain sacks with no brand or text; seeds look like real wheat grains",
+   "avoid": "Logos, printed text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Public sector heavy industry",
+   "shows": "Inside a large steel plant: a ladle pouring glowing molten steel, sparks, workers in helmets far in the background",
+   "view": "Wide view from a safe walkway, dramatic glow, 16:9",
+   "right": "Workers wear helmets and protective clothing",
+   "avoid": "Company names, readable signs, close faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Small-scale industry",
+   "shows": "A small workshop where two people assemble bicycle bells and parts on a wooden bench, tools hanging on a wall",
+   "view": "Eye level, warm tube light, 16:9",
+   "right": "Real small-scale workshop, safety-minded, no child labour",
+   "avoid": "Faces, brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.5",
+   "use": "Import substitution: a 1970s radio",
+   "shows": "A boxy 1970s valve radio with a wooden case and cloth speaker grille",
+   "view": "Front three-quarter view, transparent background",
+   "right": "Looks like a real radio of that era",
+   "avoid": "Brand names, dial text"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "2.3",
+   "use": "Marketed surplus in three frames",
+   "shows": "Frame 1: harvested wheat heaped on a threshing floor; frame 2: part of it filled into a home storage bin; frame 3: the rest in jute sacks on a tractor trolley at a mandi gate",
+   "view": "Same light and similar height in all frames, 4:3",
+   "right": "Jute sacks plain; mandi gate generic",
+   "avoid": "Readable text, faces"
+  }
+ ]
+}

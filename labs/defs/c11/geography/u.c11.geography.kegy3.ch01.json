@@ -1,0 +1,818 @@
+{
+ "chapter_key": "u.c11.geography.kegy3.ch01",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Introduction to Maps",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy301.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "What a map is: a selective, symbolised and generalised picture of the earth at a reduced scale",
+   "labs": [
+    "c11-geography-kegy3-ch01-keeps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Essentials of map making: scale, projection, generalisation, symbols and map design",
+   "labs": [
+    "c11-geography-kegy3-ch01-parts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "History of map making",
+   "labs": [],
+   "why_no_lab": "It is a story of people, tools and old maps, best taught through pictures and the reader."
+  },
+  {
+   "n": "1.4",
+   "title": "Uses of maps: finding directions and measuring distance and area",
+   "labs": [
+    "c11-geography-kegy3-ch01-directions",
+    "c11-geography-kegy3-ch01-thread"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy3-ch01-keeps",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "What a map keeps and what it leaves out",
+    "hi": "मानचित्र क्या रखता है, क्या छोड़ता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "kept",
+      "label": {
+       "en": "Shown on a map of India",
+       "hi": "भारत के मानचित्र पर दिखता है"
+      }
+     },
+     {
+      "id": "left",
+      "label": {
+       "en": "Left out (generalised)",
+       "hi": "छोड़ दिया जाता है (सामान्यीकरण)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "rivers",
+      "text": {
+       "en": "The Ganga and other major rivers",
+       "hi": "गंगा और अन्य बड़ी नदियाँ"
+      },
+      "bin": "kept",
+      "why": {
+       "en": "Long, important features are drawn, even when the map is small.",
+       "hi": "लंबी और महत्त्वपूर्ण आकृतियाँ छोटे मानचित्र पर भी बनती हैं।"
+      }
+     },
+     {
+      "id": "cities",
+      "text": {
+       "en": "Big cities such as Delhi and Mumbai",
+       "hi": "दिल्ली और मुंबई जैसे बड़े नगर"
+      },
+      "bin": "kept",
+      "why": {
+       "en": "Large towns are marked with a dot or a circle.",
+       "hi": "बड़े नगर बिंदु या वृत्त से दिखाए जाते हैं।"
+      }
+     },
+     {
+      "id": "state",
+      "text": {
+       "en": "State boundaries",
+       "hi": "राज्यों की सीमाएँ"
+      },
+      "bin": "kept",
+      "why": {
+       "en": "Boundaries help us tell regions apart, so they are shown.",
+       "hi": "सीमाएँ क्षेत्रों में अंतर बताती हैं, इसलिए दिखाई जाती हैं।"
+      }
+     },
+     {
+      "id": "rail",
+      "text": {
+       "en": "Main railway lines",
+       "hi": "मुख्य रेल लाइनें"
+      },
+      "bin": "kept",
+      "why": {
+       "en": "Main routes are shown as lines in a symbol.",
+       "hi": "मुख्य मार्ग प्रतीक की रेखा से दिखाए जाते हैं।"
+      }
+     },
+     {
+      "id": "house",
+      "text": {
+       "en": "Each single house",
+       "hi": "हर एक घर"
+      },
+      "bin": "left",
+      "why": {
+       "en": "At this scale one house is smaller than a dot, so it is left out.",
+       "hi": "इस पैमाने पर एक घर बिंदु से भी छोटा होता है, इसलिए छोड़ दिया जाता है।"
+      }
+     },
+     {
+      "id": "trees",
+      "text": {
+       "en": "Every tree in a field",
+       "hi": "खेत का हर पेड़"
+      },
+      "bin": "left",
+      "why": {
+       "en": "Too small and too many to draw; a green colour shows forest instead.",
+       "hi": "बहुत छोटे और बहुत अधिक हैं; इनकी जगह हरा रंग वन दिखाता है।"
+      }
+     },
+     {
+      "id": "lane",
+      "text": {
+       "en": "Small village lanes",
+       "hi": "गाँव की छोटी गलियाँ"
+      },
+      "bin": "left",
+      "why": {
+       "en": "Tiny lanes cannot be seen at a small scale.",
+       "hi": "छोटे पैमाने पर छोटी गलियाँ दिखाई नहीं देतीं।"
+      }
+     },
+     {
+      "id": "pond",
+      "text": {
+       "en": "A small pond near a school",
+       "hi": "स्कूल के पास का छोटा तालाब"
+      },
+      "bin": "left",
+      "why": {
+       "en": "It is much too small for a map of the whole country.",
+       "hi": "पूरे देश के मानचित्र के लिए यह बहुत छोटा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:rivers",
+     "expect": "correct:rivers",
+     "say": {
+      "en": "A map shows the main things only. Put the Ganga card where it belongs.",
+      "hi": "मानचित्र केवल मुख्य बातें दिखाता है। गंगा वाला कार्ड सही जगह रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Should a map of the whole of India show every single house?",
+      "hi": "क्या पूरे भारत के मानचित्र पर हर एक घर दिखाया जाना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, every house",
+       "hi": "हाँ, हर घर"
+      },
+      {
+       "id": "no",
+       "en": "No, they are too small and too many",
+       "hi": "नहीं, वे बहुत छोटे और बहुत अधिक हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:house",
+     "expect": "correct:house",
+     "say": {
+      "en": "Place the single house card.",
+      "hi": "एक घर वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards, then press Check.",
+      "hi": "सब कार्ड छाँटो, फिर जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A map is drawn smaller than the real land, so it cannot show everything. Mapmakers choose what is important for the purpose of the map and simplify the rest. This is called generalisation. A road map shows roads; a physical map shows relief. The map is selective, symbolised and generalised.",
+      "hi": "मानचित्र असली ज़मीन से छोटा बनता है, इसलिए वह सब कुछ नहीं दिखा सकता। मानचित्रकार मानचित्र के उद्देश्य के हिसाब से ज़रूरी चीज़ें चुनते हैं और बाक़ी को सरल कर देते हैं। इसे सामान्यीकरण कहते हैं। सड़क मानचित्र सड़कें दिखाता है; भौतिक मानचित्र उच्चावच। मानचित्र चयनित, प्रतीकों वाला और सामान्यीकृत होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is generalisation in map making?",
+        "hi": "मानचित्र बनाने में सामान्यीकरण क्या है?"
+       },
+       "options": [
+        {
+         "en": "Simplifying features and leaving out small details",
+         "hi": "आकृतियों को सरल करना और छोटे ब्योरे छोड़ना"
+        },
+        {
+         "en": "Drawing every detail exactly",
+         "hi": "हर ब्योरा ठीक-ठीक बनाना"
+        },
+        {
+         "en": "Colouring the whole map one colour",
+         "hi": "पूरे मानचित्र को एक रंग में रँगना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A map is smaller than the land, so mapmakers keep what matters and simplify the rest.",
+        "hi": "मानचित्र ज़मीन से छोटा है, इसलिए मानचित्रकार ज़रूरी चीज़ें रखते हैं और बाक़ी सरल कर देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Drawing every detail would make a map as crowded and large as the land itself.",
+         "hi": "हर ब्योरा बनाने पर मानचित्र ज़मीन जितना भरा और बड़ा हो जाएगा।"
+        },
+        {
+         "en": "Colours are used for symbols, but one colour for all would hide all information.",
+         "hi": "रंग प्रतीकों में काम आते हैं, पर सब पर एक रंग से सारी जानकारी छिप जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: imagine a map of your school only. Which cards would now move to the kept side?",
+      "hi": "आज़माओ: सोचो कि केवल तुम्हारे स्कूल का मानचित्र है। अब कौन-से कार्ड दिखाई देने वाले समूह में चले जाएँगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch01-parts",
+   "topic": "1.2",
+   "template": "match",
+   "title": {
+    "en": "The parts of a map",
+    "hi": "मानचित्र के अंग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "title",
+      "left": {
+       "en": "Title",
+       "hi": "शीर्षक"
+      },
+      "right": {
+       "en": "Tells what the map shows",
+       "hi": "बताता है कि मानचित्र क्या दिखाता है"
+      },
+      "why": {
+       "en": "Without a title we do not know whether it shows rivers, rainfall or roads.",
+       "hi": "शीर्षक के बिना पता नहीं चलता कि मानचित्र नदियाँ, वर्षा या सड़कें दिखाता है।"
+      }
+     },
+     {
+      "id": "scale",
+      "left": {
+       "en": "Scale",
+       "hi": "पैमाना"
+      },
+      "right": {
+       "en": "Tells how real distances are reduced",
+       "hi": "बताता है कि वास्तविक दूरी कितनी घटाई गई है"
+      },
+      "why": {
+       "en": "Scale links a distance on the map to the distance on the ground.",
+       "hi": "पैमाना मानचित्र की दूरी को धरती की दूरी से जोड़ता है।"
+      }
+     },
+     {
+      "id": "north",
+      "left": {
+       "en": "North arrow",
+       "hi": "उत्तर दिशा का तीर"
+      },
+      "right": {
+       "en": "Shows which way is north",
+       "hi": "दिखाता है कि उत्तर किधर है"
+      },
+      "why": {
+       "en": "With north known, we can find all other directions.",
+       "hi": "उत्तर पता हो तो बाक़ी सब दिशाएँ ढूँढ़ी जा सकती हैं।"
+      }
+     },
+     {
+      "id": "legend",
+      "left": {
+       "en": "Legend or key",
+       "hi": "संकेत-सूची"
+      },
+      "right": {
+       "en": "Explains the symbols and colours",
+       "hi": "प्रतीकों और रंगों का अर्थ बताती है"
+      },
+      "why": {
+       "en": "Each symbol and colour on the map is explained here.",
+       "hi": "मानचित्र का हर प्रतीक और रंग यहाँ समझाया जाता है।"
+      }
+     },
+     {
+      "id": "grid",
+      "left": {
+       "en": "Graticule of latitudes and longitudes",
+       "hi": "अक्षांश-देशांतर का जाल"
+      },
+      "right": {
+       "en": "Helps to find the exact place",
+       "hi": "ठीक स्थान ढूँढ़ने में मदद करता है"
+      },
+      "why": {
+       "en": "Every place has a latitude and a longitude, so the grid gives its address.",
+       "hi": "हर स्थान का एक अक्षांश और देशांतर होता है, इसलिए जाल उसका पता देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:title",
+     "expect": "matched:title",
+     "say": {
+      "en": "Match the title with its job.",
+      "hi": "शीर्षक को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part would you read to find out what a blue wavy line means on the map?",
+      "hi": "नक्शे पर नीली लहरदार रेखा का अर्थ जानने के लिए तुम कौन-सा अंग पढ़ोगे?"
+     },
+     "options": [
+      {
+       "id": "leg",
+       "en": "The legend or key",
+       "hi": "संकेत-सूची"
+      },
+      {
+       "id": "sc",
+       "en": "The scale",
+       "hi": "पैमाना"
+      },
+      {
+       "id": "ti",
+       "en": "The title",
+       "hi": "शीर्षक"
+      }
+     ],
+     "answer": "leg"
+    },
+    {
+     "kind": "do",
+     "target": "left:legend",
+     "expect": "matched:legend",
+     "say": {
+      "en": "Match the legend with its job.",
+      "hi": "संकेत-सूची को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other parts and press Check.",
+      "hi": "बाक़ी अंग मिलाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A good map has a title, a scale, a north arrow and a legend. Many maps also show a grid of latitudes and longitudes. Together these tell the reader what is shown, how big things really are, which way is north, and what each symbol means.",
+      "hi": "अच्छे मानचित्र में शीर्षक, पैमाना, उत्तर का तीर और संकेत-सूची होती है। कई मानचित्रों में अक्षांश-देशांतर का जाल भी होता है। ये मिलकर बताते हैं कि क्या दिखाया गया है, चीज़ें असल में कितनी बड़ी हैं, उत्तर किधर है और हर प्रतीक का अर्थ क्या है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part tells you how many kilometres one centimetre on the map stands for?",
+        "hi": "कौन-सा अंग बताता है कि मानचित्र का एक सेंटीमीटर कितने किलोमीटर के बराबर है?"
+       },
+       "options": [
+        {
+         "en": "The scale",
+         "hi": "पैमाना"
+        },
+        {
+         "en": "The legend",
+         "hi": "संकेत-सूची"
+        },
+        {
+         "en": "The title",
+         "hi": "शीर्षक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The scale connects map length with real length.",
+        "hi": "पैमाना मानचित्र की लंबाई को असली लंबाई से जोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The legend explains symbols and colours, not distances.",
+         "hi": "संकेत-सूची प्रतीकों और रंगों को समझाती है, दूरी को नहीं।"
+        },
+        {
+         "en": "The title names the subject of the map only.",
+         "hi": "शीर्षक केवल मानचित्र का विषय बताता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: open any atlas map and find these five parts on it. Which one is missing, if any?",
+      "hi": "आज़माओ: किसी एटलस का मानचित्र खोलो और उसमें ये पाँचों अंग ढूँढ़ो। कौन-सा नहीं है, यदि कोई हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch01-directions",
+   "topic": "1.4",
+   "template": "globe",
+   "title": {
+    "en": "Finding directions on a map",
+    "hi": "मानचित्र पर दिशाएँ ढूँढ़ना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "directions",
+    "place": "delhi"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:mumbai",
+     "expect": "located",
+     "say": {
+      "en": "You stand in Delhi. Tap Mumbai and see in which direction it lies.",
+      "hi": "तुम दिल्ली में खड़े हो। मुंबई पर टैप करो और देखो वह किस दिशा में है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Kolkata is to the east and a little south of Delhi. Which direction will the compass give?",
+      "hi": "कोलकाता दिल्ली से पूर्व में और थोड़ा दक्षिण में है। कंपास कौन-सी दिशा बताएगा?"
+     },
+     "options": [
+      {
+       "id": "se",
+       "en": "South-east",
+       "hi": "दक्षिण-पूर्व"
+      },
+      {
+       "id": "nw",
+       "en": "North-west",
+       "hi": "उत्तर-पश्चिम"
+      },
+      {
+       "id": "n",
+       "en": "North",
+       "hi": "उत्तर"
+      }
+     ],
+     "answer": "se"
+    },
+    {
+     "kind": "do",
+     "target": "place:kolkata",
+     "expect": "located",
+     "say": {
+      "en": "Tap Kolkata.",
+      "hi": "कोलकाता पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:srinagar",
+     "expect": "located",
+     "say": {
+      "en": "Now tap Srinagar. In which direction is it?",
+      "hi": "अब श्रीनगर पर टैप करो। वह किस दिशा में है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There are four main directions: north, east, south and west. Between them lie the intermediate directions: north-east, south-east, south-west and north-west. From Delhi, Mumbai is towards the south-west, Kolkata towards the south-east, and Srinagar towards the north. A direction always depends on where you stand.",
+      "hi": "चार मुख्य दिशाएँ हैं: उत्तर, पूर्व, दक्षिण और पश्चिम। इनके बीच की दिशाएँ हैं: उत्तर-पूर्व, दक्षिण-पूर्व, दक्षिण-पश्चिम और उत्तर-पश्चिम। दिल्ली से मुंबई दक्षिण-पश्चिम में है, कोलकाता दक्षिण-पूर्व में और श्रीनगर उत्तर में। दिशा हमेशा इस पर निर्भर करती है कि तुम कहाँ खड़े हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "From Delhi, in which direction is Mumbai?",
+        "hi": "दिल्ली से मुंबई किस दिशा में है?"
+       },
+       "options": [
+        {
+         "en": "South-west",
+         "hi": "दक्षिण-पश्चिम"
+        },
+        {
+         "en": "North-east",
+         "hi": "उत्तर-पूर्व"
+        },
+        {
+         "en": "East",
+         "hi": "पूर्व"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mumbai is on the west coast and lies south of Delhi, so it is to the south-west.",
+        "hi": "मुंबई पश्चिमी तट पर है और दिल्ली के दक्षिण में, इसलिए वह दक्षिण-पश्चिम में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "North-east is the opposite way, towards Himalayan towns such as Guwahati.",
+         "hi": "उत्तर-पूर्व उलटी ओर है, गुवाहाटी जैसे पूर्वोत्तर के नगरों की तरफ़।"
+        },
+        {
+         "en": "East would take you towards Patna and Kolkata, not to Mumbai.",
+         "hi": "पूर्व की ओर पटना और कोलकाता हैं, मुंबई नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap other cities and say their direction from Delhi before you read it. Then guess: in which direction is Delhi from Mumbai?",
+      "hi": "आज़माओ: दूसरे शहरों पर टैप करो और पढ़ने से पहले दिल्ली से उनकी दिशा बताओ। फिर अनुमान लगाओ: मुंबई से दिल्ली किस दिशा में है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch01-thread",
+   "topic": "1.4",
+   "template": "sequence",
+   "title": {
+    "en": "Measuring a winding river on a map",
+    "hi": "मानचित्र पर टेढ़ी-मेढ़ी नदी की लंबाई नापना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "lay",
+      "text": {
+       "en": "Lay a thread along the river, following every bend",
+       "hi": "धागे को नदी के हर मोड़ पर बिछाओ"
+      }
+     },
+     {
+      "id": "mark",
+      "text": {
+       "en": "Mark the start and the end on the thread with a pen",
+       "hi": "धागे पर शुरू और अंत की जगह कलम से निशान लगाओ"
+      }
+     },
+     {
+      "id": "straight",
+      "text": {
+       "en": "Straighten the thread beside the bar scale",
+       "hi": "धागे को सीधा करके पट्टी-पैमाने के पास रखो"
+      }
+     },
+     {
+      "id": "read",
+      "text": {
+       "en": "Read how many kilometres the thread covers",
+       "hi": "पढ़ो कि धागा कितने किलोमीटर को ढकता है"
+      }
+     },
+     {
+      "id": "write",
+      "text": {
+       "en": "Write the real length with its unit",
+       "hi": "असली लंबाई इकाई के साथ लिखो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slot:1",
+     "expect": "placed:lay",
+     "say": {
+      "en": "Place the first step in slot 1: what do you do with the thread on the map?",
+      "hi": "पहला चरण खाना 1 में रखो: मानचित्र पर धागे का क्या करोगे?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A ruler can measure a straight line well. Why do we use a thread for a river?",
+      "hi": "सीधी रेखा को पैमाना अच्छी तरह नापता है। नदी के लिए धागा क्यों लेते हैं?"
+     },
+     "options": [
+      {
+       "id": "bend",
+       "en": "A thread can follow the bends of the river",
+       "hi": "धागा नदी के मोड़ों पर चल सकता है"
+      },
+      {
+       "id": "cheap",
+       "en": "Because a thread is cheaper",
+       "hi": "क्योंकि धागा सस्ता है"
+      },
+      {
+       "id": "long",
+       "en": "Because a thread is longer than a ruler",
+       "hi": "क्योंकि धागा पैमाने से लंबा होता है"
+      }
+     ],
+     "answer": "bend"
+    },
+    {
+     "kind": "do",
+     "target": "slot:2",
+     "expect": "placed:mark",
+     "say": {
+      "en": "Place the second step.",
+      "hi": "दूसरा चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other steps in order and press Check.",
+      "hi": "बाक़ी चरण क्रम में लगाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Roads, rivers and railways are curved, so a straight ruler gives too small a length. A thread follows the curves. After straightening it, you compare its length with the bar scale on the map. The result is the true length on the ground, shown with its unit.",
+      "hi": "सड़कें, नदियाँ और रेल लाइनें टेढ़ी होती हैं, इसलिए सीधा पैमाना बहुत कम लंबाई देता है। धागा मोड़ों पर चलता है। उसे सीधा करके मानचित्र की पट्टी-पैमाने से मिलाते हैं। इससे धरती पर असली लंबाई मिलती है, जिसे इकाई के साथ लिखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why must the thread be straightened before reading the scale?",
+        "hi": "पैमाना पढ़ने से पहले धागा सीधा क्यों करना होता है?"
+       },
+       "options": [
+        {
+         "en": "The scale is straight, so the thread must be straight to compare",
+         "hi": "पैमाना सीधा है, इसलिए तुलना के लिए धागा सीधा होना चाहिए"
+        },
+        {
+         "en": "To make the thread look neat",
+         "hi": "धागे को सुंदर दिखाने के लिए"
+        },
+        {
+         "en": "To tear the thread in half",
+         "hi": "धागे को बीच से तोड़ने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bend would hide the true length; a straight thread gives a fair comparison.",
+        "hi": "मोड़ से सही लंबाई छिप जाती है; सीधा धागा ठीक तुलना देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Neatness does not matter; accuracy of measurement does.",
+         "hi": "सुंदरता नहीं, नाप की सटीकता मायने रखती है।"
+        },
+        {
+         "en": "The thread is never torn; we measure its marked length.",
+         "hi": "धागा तोड़ा नहीं जाता; हम उस पर लगे निशानों की लंबाई नापते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: take any atlas and measure the length of a river with a thread. Compare it with the straight line between its start and end.",
+      "hi": "आज़माओ: एटलस लेकर धागे से किसी नदी की लंबाई नापो। उसकी तुलना शुरू और अंत के बीच की सीधी रेखा से करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook: ground and map",
+   "shows": "A school playground seen from a rooftop, with a simple hand-drawn plan of the same playground beside it on a drawing board",
+   "view": "Rooftop view, soft daylight, drawing board in the lower corner",
+   "right": "The plan clearly matches the ground (gate, ground, trees)",
+   "avoid": "Names or text on the plan, faces of children"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "Globe and map",
+   "shows": "A table globe next to a flat atlas opened at a map of India",
+   "view": "Front view, soft top-left light, on a plain desk",
+   "right": "Same shape of India seen on both; globe curved, atlas flat",
+   "avoid": "Brand names on the globe stand, text"
+  },
+  {
+   "n": 3,
+   "kind": "MAP",
+   "topic": "1.2",
+   "use": "Map components",
+   "shows": "A blank map sheet of a small town with a river and roads, a north arrow and empty boxes for title and key, all without words",
+   "view": "Top-down, 4:3, light paper texture",
+   "right": "Clear space for a title, legend and scale bar",
+   "avoid": "Any readable names or numbers"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.4",
+   "use": "Tools of measurement",
+   "shows": "A divider, a ruler, a piece of thread and a map measurer (rotameter) laid out on a map sheet",
+   "view": "From above, even light, tools sharply visible",
+   "right": "Rotameter wheel visible; thread slightly curved",
+   "avoid": "Branded tools, text"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "1.4",
+   "use": "Measuring a river with thread",
+   "shows": "Four frames: a thread laid on a winding river, marked at the ends, straightened beside a bar scale, read against it",
+   "view": "Identical top-down framing in all four frames",
+   "right": "Thread follows the curves in frame 1 and is straight in frame 3",
+   "avoid": "Different maps between frames"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "History of maps",
+   "shows": "An old hand-drawn cloth map of a medieval Indian kingdom on a wooden table, softly lit",
+   "view": "Slight top-down angle, warm light",
+   "right": "Cloth texture; hand-drawn lines; no real script visible",
+   "avoid": "Readable text, any museum label"
+  }
+ ]
+}

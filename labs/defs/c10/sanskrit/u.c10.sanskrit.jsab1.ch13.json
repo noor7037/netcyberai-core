@@ -1,0 +1,895 @@
+{
+ "chapter_key": "u.c10.sanskrit.jsab1.ch13",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "मिश्रिताभ्यास:",
+ "source": "https://ncert.nic.in/textbook/pdf/jsab1ps.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Mixed practice on sandhi, samasa, pratyaya, avyaya and vachya",
+   "labs": [
+    "c10-sanskrit-jsab1-ch13-sort",
+    "c10-sanskrit-jsab1-ch13-tag"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2",
+   "title": "A mixed reading passage with questions",
+   "labs": [
+    "c10-sanskrit-jsab1-ch13-ant"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jsab1-ch13-sort",
+   "topic": "13.1",
+   "template": "sort",
+   "title": {
+    "en": "Which topic is it?",
+    "hi": "यह कौन-सा विषय है?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sa",
+      "label": {
+       "en": "Sandhi",
+       "hi": "सन्धि"
+      }
+     },
+     {
+      "id": "sm",
+      "label": {
+       "en": "Samasa",
+       "hi": "समास"
+      }
+     },
+     {
+      "id": "pr",
+      "label": {
+       "en": "Pratyaya",
+       "hi": "प्रत्यय"
+      }
+     },
+     {
+      "id": "av",
+      "label": {
+       "en": "Avyaya",
+       "hi": "अव्यय"
+      }
+     },
+     {
+      "id": "vc",
+      "label": {
+       "en": "Vachya",
+       "hi": "वाच्य"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "तत्र + अपि = तत्रापि",
+       "hi": "तत्र + अपि = तत्रापि"
+      },
+      "bin": "sa",
+      "why": {
+       "en": "Two sounds join: आ is formed.",
+       "hi": "दो ध्वनियाँ जुड़ीं: आ बना।"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "सत् + जनः = सज्जनः",
+       "hi": "सत् + जनः = सज्जनः"
+      },
+      "bin": "sa",
+      "why": {
+       "en": "The last consonant of the first word changed.",
+       "hi": "पहले शब्द का अंतिम व्यंजन बदला।"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "हरिः + चन्द्रः = हरिश्चन्द्रः",
+       "hi": "हरिः + चन्द्रः = हरिश्चन्द्रः"
+      },
+      "bin": "sa",
+      "why": {
+       "en": "A visarga changed to श्.",
+       "hi": "विसर्ग का श् हुआ।"
+      }
+     },
+     {
+      "id": "m1",
+      "text": {
+       "en": "राज्ञः पुत्रः = राजपुत्रः",
+       "hi": "राज्ञः पुत्रः = राजपुत्रः"
+      },
+      "bin": "sm",
+      "why": {
+       "en": "Words joined into one, endings dropped.",
+       "hi": "शब्द एक में जुड़े, विभक्तियाँ हटीं।"
+      }
+     },
+     {
+      "id": "m2",
+      "text": {
+       "en": "सीता च रामश्च = सीतारामौ",
+       "hi": "सीता च रामश्च = सीतारामौ"
+      },
+      "bin": "sm",
+      "why": {
+       "en": "Two names joined by 'and': dvandva.",
+       "hi": "'और' से जुड़े दो नाम: द्वन्द्व।"
+      }
+     },
+     {
+      "id": "m3",
+      "text": {
+       "en": "पीतम् अम्बरं यस्य सः = पीताम्बरः",
+       "hi": "पीतम् अम्बरं यस्य सः = पीताम्बरः"
+      },
+      "bin": "sm",
+      "why": {
+       "en": "'He whose': bahuvrihi.",
+       "hi": "'जिसका वह': बहुव्रीहि।"
+      }
+     },
+     {
+      "id": "p1",
+      "text": {
+       "en": "पठ् + क्त्वा = पठित्वा",
+       "hi": "पठ् + क्त्वा = पठित्वा"
+      },
+      "bin": "pr",
+      "why": {
+       "en": "A suffix added to a root: having read.",
+       "hi": "धातु में प्रत्यय जुड़ा: पढ़कर।"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "गम् + तुमुन् = गन्तुम्",
+       "hi": "गम् + तुमुन् = गन्तुम्"
+      },
+      "bin": "pr",
+      "why": {
+       "en": "A suffix added to a root: to go.",
+       "hi": "धातु में प्रत्यय जुड़ा: जाने के लिए।"
+      }
+     },
+     {
+      "id": "p3",
+      "text": {
+       "en": "कृ + क्तवतु = कृतवान्",
+       "hi": "कृ + क्तवतु = कृतवान्"
+      },
+      "bin": "pr",
+      "why": {
+       "en": "A suffix added to a root: he did.",
+       "hi": "धातु में प्रत्यय जुड़ा: उसने किया।"
+      }
+     },
+     {
+      "id": "a1",
+      "text": {
+       "en": "सदा",
+       "hi": "सदा"
+      },
+      "bin": "av",
+      "why": {
+       "en": "Always: never changes.",
+       "hi": "हमेशा: कभी नहीं बदलता।"
+      }
+     },
+     {
+      "id": "a2",
+      "text": {
+       "en": "अत्र",
+       "hi": "अत्र"
+      },
+      "bin": "av",
+      "why": {
+       "en": "Here: never changes.",
+       "hi": "यहाँ: कभी नहीं बदलता।"
+      }
+     },
+     {
+      "id": "a3",
+      "text": {
+       "en": "यदा – तदा",
+       "hi": "यदा – तदा"
+      },
+      "bin": "av",
+      "why": {
+       "en": "When – then: a pair that never changes.",
+       "hi": "जब – तब: जोड़ा जो कभी नहीं बदलता।"
+      }
+     },
+     {
+      "id": "v1",
+      "text": {
+       "en": "बालकेन पाठः पठ्यते",
+       "hi": "बालकेन पाठः पठ्यते"
+      },
+      "bin": "vc",
+      "why": {
+       "en": "Third-case doer and -यते verb: karma voice.",
+       "hi": "तृतीया का कर्ता और -यते क्रिया: कर्मवाच्य।"
+      }
+     },
+     {
+      "id": "v2",
+      "text": {
+       "en": "मया गृहं गम्यते",
+       "hi": "मया गृहं गम्यते"
+      },
+      "bin": "vc",
+      "why": {
+       "en": "By me, it is gone to: karma voice.",
+       "hi": "मेरे द्वारा जाया जाता है: कर्मवाच्य।"
+      }
+     },
+     {
+      "id": "v3",
+      "text": {
+       "en": "तेन हस्यते",
+       "hi": "तेन हस्यते"
+      },
+      "bin": "vc",
+      "why": {
+       "en": "By him it is laughed: bhava voice.",
+       "hi": "उसके द्वारा हँसा जाता है: भाववाच्य।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Tap तत्र + अपि = तत्रापि and choose its topic.",
+      "hi": "तत्र + अपि = तत्रापि छुओ और उसका विषय चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which clue tells you a word is made by adding a suffix to a verb root?",
+      "hi": "कौन-सा संकेत बताता है कि शब्द धातु में प्रत्यय जोड़कर बना है?"
+     },
+     "options": [
+      {
+       "id": "root",
+       "en": "A root (like पठ्) plus क्त्वा, तुमुन् or क्तवतु",
+       "hi": "धातु (जैसे पठ्) के साथ क्त्वा, तुमुन् या क्तवतु"
+      },
+      {
+       "id": "and",
+       "en": "The word 'and' (च)",
+       "hi": "'और' (च) शब्द"
+      },
+      {
+       "id": "visarga",
+       "en": "A visarga",
+       "hi": "विसर्ग"
+      }
+     ],
+     "answer": "root"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all fifteen cards, then press Check.",
+      "hi": "सभी पंद्रह कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When a mixed exercise gives you a word or a phrase, ask three quick questions. Does it show two sounds joining (sandhi)? Does it shorten a phrase into one word (samasa)? Does it add a suffix to a verb root (pratyaya)? A word that never changes is an avyaya. A verb with the doer in the third case is in karma or bhava voice (vachya). Naming the topic first tells you which rules to use.",
+      "hi": "मिश्रित अभ्यास में कोई शब्द या वाक्यांश मिले तो तीन प्रश्न पूछो। क्या दो ध्वनियाँ जुड़ रही हैं (सन्धि)? क्या वाक्यांश छोटा होकर एक शब्द बना (समास)? क्या धातु में प्रत्यय जुड़ा (प्रत्यय)? जो शब्द कभी नहीं बदलता वह अव्यय है। जिस क्रिया का कर्ता तृतीया में हो वह कर्म या भाववाच्य (वाच्य) है। पहले विषय पहचानो, फिर पता चलता है कि कौन-से नियम लगेंगे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is a samasa?",
+        "hi": "इनमें समास कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "सीता च रामश्च = सीतारामौ",
+         "hi": "सीता च रामश्च = सीतारामौ"
+        },
+        {
+         "en": "गम् + तुमुन् = गन्तुम्",
+         "hi": "गम् + तुमुन् = गन्तुम्"
+        },
+        {
+         "en": "सत् + जनः = सज्जनः",
+         "hi": "सत् + जनः = सज्जनः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A phrase became one word: this is dvandva, a samasa.",
+        "hi": "एक वाक्यांश एक शब्द बना: यह द्वन्द्व है, यानी समास।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This adds a suffix to a root: pratyaya.",
+         "hi": "इसमें धातु में प्रत्यय जुड़ा: प्रत्यय।"
+        },
+        {
+         "en": "This joins two sounds: sandhi.",
+         "hi": "इसमें दो ध्वनियाँ जुड़ीं: सन्धि।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which one is a vachya example?",
+        "hi": "इनमें वाच्य का उदाहरण कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "बालकेन पाठः पठ्यते",
+         "hi": "बालकेन पाठः पठ्यते"
+        },
+        {
+         "en": "सदा",
+         "hi": "सदा"
+        },
+        {
+         "en": "पठित्वा",
+         "hi": "पठित्वा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The doer is in the third case with a -यते verb: karma voice.",
+        "hi": "कर्ता तृतीया में है और क्रिया -यते: कर्मवाच्य।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "सदा is an avyaya.",
+         "hi": "सदा अव्यय है।"
+        },
+        {
+         "en": "पठित्वा is made with the suffix क्त्वा.",
+         "hi": "पठित्वा क्त्वा प्रत्यय से बना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make one new example for each of the five topics and test a friend.",
+      "hi": "पाँचों विषयों के लिए एक-एक नया उदाहरण बनाओ और मित्र की परीक्षा लो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch13-tag",
+   "topic": "13.1",
+   "template": "grammar",
+   "title": {
+    "en": "Name each word",
+    "hi": "हर शब्द का भेद बताओ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "tag",
+    "lang": "sa",
+    "tagset": [
+     "संज्ञा",
+     "सर्वनाम",
+     "क्रिया",
+     "अव्यय"
+    ],
+    "items": [
+     {
+      "id": "t1",
+      "sentence": "सः सदा सत्यं वदति",
+      "tags": [
+       "सर्वनाम",
+       "अव्यय",
+       "संज्ञा",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "सः (he) is a pronoun; सदा (always) is an avyaya; सत्यम् (truth) is a noun; वदति (speaks) is the verb.",
+       "hi": "सः (वह) सर्वनाम है; सदा (हमेशा) अव्यय है; सत्यम् (सच) संज्ञा है; वदति (बोलता है) क्रिया है।"
+      }
+     },
+     {
+      "id": "t2",
+      "sentence": "अहं तत्र न गच्छामि",
+      "tags": [
+       "सर्वनाम",
+       "अव्यय",
+       "अव्यय",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "अहम् (I) is a pronoun; तत्र (there) and न (not) are avyayas; गच्छामि (go) is the verb.",
+       "hi": "अहम् (मैं) सर्वनाम है; तत्र (वहाँ) और न (नहीं) अव्यय हैं; गच्छामि (जाता हूँ) क्रिया है।"
+      }
+     },
+     {
+      "id": "t3",
+      "sentence": "बालकः पुस्तकं पठति च",
+      "tags": [
+       "संज्ञा",
+       "संज्ञा",
+       "क्रिया",
+       "अव्यय"
+      ],
+      "rule": {
+       "en": "बालकः (boy) and पुस्तकम् (book) are nouns; पठति (reads) is the verb; च (and) is an avyaya.",
+       "hi": "बालकः (लड़का) और पुस्तकम् (किताब) संज्ञाएँ हैं; पठति (पढ़ता है) क्रिया है; च (और) अव्यय है।"
+      }
+     },
+     {
+      "id": "t4",
+      "sentence": "ते यदा आगच्छन्ति तदा वयं गच्छामः",
+      "tags": [
+       "सर्वनाम",
+       "अव्यय",
+       "क्रिया",
+       "अव्यय",
+       "सर्वनाम",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "ते (they) and वयम् (we) are pronouns; यदा and तदा (when, then) are avyayas; आगच्छन्ति and गच्छामः are verbs.",
+       "hi": "ते (वे) और वयम् (हम) सर्वनाम हैं; यदा और तदा (जब, तब) अव्यय हैं; आगच्छन्ति और गच्छामः क्रियाएँ हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "tagged:t1",
+     "say": {
+      "en": "Pick the right tag and tap each word of the first sentence.",
+      "hi": "सही भेद चुनकर पहले वाक्य का हर शब्द छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'सः सदा सत्यं वदति', which word never changes its form?",
+      "hi": "'सः सदा सत्यं वदति' में किस शब्द का रूप कभी नहीं बदलता?"
+     },
+     "options": [
+      {
+       "id": "sada",
+       "en": "सदा",
+       "hi": "सदा"
+      },
+      {
+       "id": "sah",
+       "en": "सः",
+       "hi": "सः"
+      },
+      {
+       "id": "vadati",
+       "en": "वदति",
+       "hi": "वदति"
+      }
+     ],
+     "answer": "sada"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "tagged:t2",
+     "say": {
+      "en": "Tag the second sentence.",
+      "hi": "दूसरा वाक्य पहचानो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Finish all four sentences.",
+      "hi": "चारों वाक्य पूरे करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Four kinds of words explain most sentences. A noun names something (बालकः, पुस्तकम्). A pronoun stands in for a noun (सः, अहम्, ते, वयम्). A verb tells the action (वदति, गच्छामि). An avyaya never changes (सदा, तत्र, न, च, यदा, तदा). Tagging each word first shows you which words must agree with each other (the verb with the doer) and which can be left alone (the avyayas).",
+      "hi": "चार प्रकार के शब्द अधिकतर वाक्यों को समझा देते हैं। संज्ञा किसी का नाम बताती है (बालकः, पुस्तकम्)। सर्वनाम संज्ञा की जगह आता है (सः, अहम्, ते, वयम्)। क्रिया काम बताती है (वदति, गच्छामि)। अव्यय कभी नहीं बदलता (सदा, तत्र, न, च, यदा, तदा)। हर शब्द का भेद पहचानने से पता चलता है कि कौन-से शब्द आपस में मेल खाने चाहिए (क्रिया कर्ता से) और किन्हें अकेला छोड़ा जा सकता है (अव्यय)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word is an avyaya?",
+        "hi": "कौन-सा शब्द अव्यय है?"
+       },
+       "options": [
+        {
+         "en": "तत्र",
+         "hi": "तत्र"
+        },
+        {
+         "en": "बालकः",
+         "hi": "बालकः"
+        },
+        {
+         "en": "गच्छामि",
+         "hi": "गच्छामि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "तत्र means there and never changes.",
+        "hi": "तत्र का अर्थ वहाँ है और वह कभी नहीं बदलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "बालकः is a noun; it changes with number and case.",
+         "hi": "बालकः संज्ञा है; वह वचन और विभक्ति से बदलता है।"
+        },
+        {
+         "en": "गच्छामि is a verb; it changes with the doer.",
+         "hi": "गच्छामि क्रिया है; वह कर्ता के अनुसार बदलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word is a pronoun in 'ते यदा आगच्छन्ति'?",
+        "hi": "'ते यदा आगच्छन्ति' में सर्वनाम कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "ते",
+         "hi": "ते"
+        },
+        {
+         "en": "यदा",
+         "hi": "यदा"
+        },
+        {
+         "en": "आगच्छन्ति",
+         "hi": "आगच्छन्ति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ते means they and stands in for a noun.",
+        "hi": "ते का अर्थ वे है और वह संज्ञा की जगह आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "यदा is an avyaya.",
+         "hi": "यदा अव्यय है।"
+        },
+        {
+         "en": "आगच्छन्ति is a verb.",
+         "hi": "आगच्छन्ति क्रिया है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tag the words of your favourite Sanskrit verse.",
+      "hi": "अपने प्रिय संस्कृत श्लोक के शब्दों का भेद बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch13-ant",
+   "topic": "13.2",
+   "template": "reader",
+   "title": {
+    "en": "The ant that did not give up",
+    "hi": "हार न मानने वाली चींटी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "read-along",
+    "lang": "sa",
+    "passage": {
+     "title": {
+      "en": "The ant that did not give up",
+      "hi": "हार न मानने वाली चींटी"
+     },
+     "lines": [
+      "सुवीरः पठनेन निराशः अभवत्।",
+      "सः एकां पिपीलिकां भित्तिम् आरोहन्तीं पश्यति।",
+      "सा पुनः पुनः पतति, परन्तु प्रयत्नं न त्यजति।",
+      "अन्ते सा भित्तिम् आरुह्य मिष्टान्नं प्राप्नोति।",
+      "सुवीरः शिक्षां गृह्णाति, पुनः पठति च।"
+     ]
+    },
+    "words": [
+     {
+      "w": "निराशः",
+      "meaning": {
+       "en": "disappointed",
+       "hi": "निराश"
+      }
+     },
+     {
+      "w": "प्रयत्नं",
+      "meaning": {
+       "en": "effort",
+       "hi": "प्रयास"
+      }
+     },
+     {
+      "w": "त्यजति",
+      "meaning": {
+       "en": "gives up",
+       "hi": "छोड़ता है"
+      }
+     }
+    ],
+    "question": {
+     "q": {
+      "en": "What does Suvir learn from the ant?",
+      "hi": "सुवीर चींटी से क्या सीखता है?"
+     },
+     "options": [
+      {
+       "en": "To keep trying and not give up",
+       "hi": "प्रयत्न करते रहना और हार न मानना"
+      },
+      {
+       "en": "To stop studying",
+       "hi": "पढ़ना छोड़ देना"
+      },
+      {
+       "en": "To run away from the wall",
+       "hi": "दीवार से भाग जाना"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "The ant falls again and again but never gives up, and Suvir studies again.",
+      "hi": "चींटी बार-बार गिरती है पर हार नहीं मानती, और सुवीर फिर पढ़ने लगता है।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press play and follow the lines.",
+      "hi": "चलाओ दबाओ और पंक्तियाँ साथ-साथ पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A boy is disappointed with his studies and sees an ant climbing a wall. What do you think happens?",
+      "hi": "एक लड़का पढ़ाई से निराश है और एक चींटी को दीवार चढ़ते देखता है। तुम्हें क्या लगता है, आगे क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "learn",
+       "en": "He learns something from the ant",
+       "hi": "वह चींटी से कुछ सीखता है"
+      },
+      {
+       "id": "quit",
+       "en": "He quits school",
+       "hi": "वह विद्यालय छोड़ देता है"
+      },
+      {
+       "id": "angry",
+       "en": "He gets angry at the ant",
+       "hi": "वह चींटी पर क्रोधित होता है"
+      }
+     ],
+     "answer": "learn"
+    },
+    {
+     "kind": "do",
+     "target": "word:प्रयत्नं",
+     "expect": "found:प्रयत्नं",
+     "say": {
+      "en": "Find the word प्रयत्नं in the passage.",
+      "hi": "गद्यांश में प्रयत्नं शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the passage.",
+      "hi": "गद्यांश के बारे में प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This mixed-practice passage lets you spot many topics at once. आरुह्य is a ल्यप् form (having climbed), पतति is a present verb, परन्तु and पुनः पुनः are avyayas, and निराशः is a word that describes Suvir. When you meet an unseen passage, read it for its message first, then look for the grammar you have learned.",
+      "hi": "यह मिश्रित अभ्यास का गद्यांश एक साथ कई विषय पहचानने देता है। आरुह्य ल्यप् रूप है (चढ़कर), पतति वर्तमान काल की क्रिया है, परन्तु और पुनः पुनः अव्यय हैं, और निराशः सुवीर का वर्णन करने वाला शब्द है। अपठित गद्यांश मिले तो पहले उसका संदेश पढ़ो, फिर जो व्याकरण सीखा है उसे ढूँढो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word in the passage is an avyaya?",
+        "hi": "गद्यांश में अव्यय कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "परन्तु",
+         "hi": "परन्तु"
+        },
+        {
+         "en": "पिपीलिकां",
+         "hi": "पिपीलिकां"
+        },
+        {
+         "en": "सुवीरः",
+         "hi": "सुवीरः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "परन्तु means but and never changes.",
+        "hi": "परन्तु का अर्थ किन्तु है और वह कभी नहीं बदलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "पिपीलिकाम् is a noun in the second case.",
+         "hi": "पिपीलिकाम् द्वितीया की संज्ञा है।"
+        },
+        {
+         "en": "सुवीरः is a noun, a name.",
+         "hi": "सुवीरः संज्ञा है, एक नाम।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does 'आरुह्य' mean?",
+        "hi": "'आरुह्य' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Having climbed",
+         "hi": "चढ़कर"
+        },
+        {
+         "en": "To climb",
+         "hi": "चढ़ने के लिए"
+        },
+        {
+         "en": "Climbing now",
+         "hi": "चढ़ता हुआ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ल्यप् is the form of क्त्वा used when a prefix (आ) comes before the root.",
+        "hi": "ल्यप् क्त्वा का वह रूप है जो उपसर्ग (आ) लगने पर आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'To climb' would be आरोढुम्.",
+         "hi": "'चढ़ने के लिए' आरोढुम् होता।"
+        },
+        {
+         "en": "'Climbing now' would be आरोहन्.",
+         "hi": "'अभी चढ़ता हुआ' आरोहन् होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Retell the story in two lines of your own Sanskrit.",
+      "hi": "इस कथा को अपने संस्कृत के दो वाक्यों में सुनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.2",
+   "use": "The ant climbing a wall",
+   "shows": "A small black ant climbing a plain wall, with a drop of sweet syrup near the top",
+   "view": "Macro close-up, side view",
+   "right": "Ant's six legs clear, wall plain",
+   "avoid": "Writing, hands"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "13.2",
+   "use": "Try again: falling and climbing",
+   "shows": "Three frames of the same ant: halfway up, slipping down, climbing again",
+   "view": "Same camera and light in all frames",
+   "right": "Same ant and wall",
+   "avoid": "Changing the angle"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "13.2",
+   "use": "Mithai: an Indian sweet",
+   "shows": "A laddu and a jalebi on a small plate, cut-out",
+   "view": "Three-quarter view",
+   "right": "Real colours, shiny jalebi, round golden laddu",
+   "avoid": "Packaging, writing"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "13.2",
+   "use": "A student at his desk",
+   "shows": "A boy's desk with books and a pencil, the boy in half view from behind, looking tired",
+   "view": "Over the shoulder, evening lamp",
+   "right": "Open books, a lamp, no readable text",
+   "avoid": "Faces, writing"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "13.1",
+   "use": "Five topic boxes",
+   "shows": "Five blank boxes in a row in five logo colours, each with a different small shape on top",
+   "view": "Flat front view on white",
+   "right": "Five boxes distinct in shape and colour",
+   "avoid": "Text, numbers"
+  }
+ ]
+}

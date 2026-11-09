@@ -1,0 +1,2136 @@
+{
+ "chapter_key": "u.c11.chemistry.kech1.ch06",
+ "class": 11,
+ "subject_id": "chemistry",
+ "title": "Equilibrium",
+ "source": "https://ncert.nic.in/textbook/pdf/kech106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Equilibrium in physical processes: solid–liquid, liquid–vapour, dissolution, general features",
+   "labs": [
+    "c11-chemistry-kech1-ch06-physical-eq"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Equilibrium in chemical processes: dynamic equilibrium",
+   "labs": [
+    "c11-chemistry-kech1-ch06-dynamic-eq"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Law of chemical equilibrium and the equilibrium constant; homogeneous and heterogeneous equilibria",
+   "labs": [
+    "c11-chemistry-kech1-ch06-kc-expression"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Applications of equilibrium constants: extent and direction of reaction, equilibrium concentrations",
+   "labs": [
+    "c11-chemistry-kech1-ch06-q-vs-k"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.7",
+   "title": "Relationship between K, Q and Gibbs energy; Kp and Kc",
+   "labs": [],
+   "why_no_lab": "Kp = Kc(RT)^Δn is one formula used with numbers; counting gas moles is practised in the thermodynamics ΔH–ΔU sort, and the reader's worked examples finish the job."
+  },
+  {
+   "n": "6.8",
+   "title": "Factors affecting equilibria: concentration, pressure, inert gas, temperature, catalyst (Le Chatelier)",
+   "labs": [
+    "c11-chemistry-kech1-ch06-le-chatelier"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.10",
+   "title": "Acids, bases and salts: Arrhenius, Brönsted–Lowry and Lewis concepts",
+   "labs": [
+    "c11-chemistry-kech1-ch06-lewis-acids"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.11",
+   "title": "Ionisation of acids and bases: Kw, pH scale, Ka and Kb, conjugate pairs, acid strength",
+   "labs": [
+    "c11-chemistry-kech1-ch06-conjugate-pairs",
+    "c11-chemistry-kech1-ch06-ph-strong-weak"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.12",
+   "title": "Buffer solutions",
+   "labs": [
+    "c11-chemistry-kech1-ch06-buffers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.13",
+   "title": "Solubility equilibria: Ksp and the common ion effect",
+   "labs": [
+    "c11-chemistry-kech1-ch06-ksp-precipitate"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-chemistry-kech1-ch06-physical-eq",
+   "topic": "6.1",
+   "template": "sort",
+   "title": {
+    "en": "Which are at equilibrium?",
+    "hi": "कौन साम्यावस्था में हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "At equilibrium",
+       "hi": "साम्यावस्था में"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Not at equilibrium",
+       "hi": "साम्यावस्था में नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ice",
+      "text": {
+       "en": "Ice and water together in a thermos at 0 °C",
+       "hi": "थर्मस में 0 °C पर बर्फ़ और पानी साथ"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Melting and freezing go on at the same rate, so the amounts stay fixed.",
+       "hi": "पिघलना और जमना एक ही दर से चलते हैं, इसलिए मात्राएँ स्थिर रहती हैं।"
+      }
+     },
+     {
+      "id": "jar",
+      "text": {
+       "en": "Water in a sealed jar with vapour above it",
+       "hi": "बंद जार में पानी और ऊपर उसकी वाष्प"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Evaporation and condensation balance, giving a fixed vapour pressure.",
+       "hi": "वाष्पन और संघनन संतुलित रहते हैं, जिससे वाष्प दाब स्थिर रहता है।"
+      }
+     },
+     {
+      "id": "soda",
+      "text": {
+       "en": "A sealed bottle of soda water",
+       "hi": "सोडा वाटर की बंद बोतल"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "CO₂ dissolves and escapes at equal rates inside the closed bottle.",
+       "hi": "बंद बोतल के अंदर CO₂ बराबर दर से घुलती और निकलती है।"
+      }
+     },
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Sugar solution with extra sugar crystals at the bottom",
+       "hi": "तली में अतिरिक्त चीनी क्रिस्टल वाला चीनी का विलयन"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "A saturated solution: sugar dissolves and crystallises at the same rate.",
+       "hi": "संतृप्त विलयन: चीनी उसी दर से घुलती और क्रिस्टल बनती है।"
+      }
+     },
+     {
+      "id": "pan",
+      "text": {
+       "en": "Water boiling in an open pan",
+       "hi": "खुले बर्तन में उबलता पानी"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Vapour escapes, so the backward change cannot balance the forward one.",
+       "hi": "वाष्प निकल जाती है, इसलिए उलटा परिवर्तन आगे वाले को संतुलित नहीं कर पाता।"
+      }
+     },
+     {
+      "id": "opensoda",
+      "text": {
+       "en": "An open glass of soda going flat",
+       "hi": "खुले गिलास में सोडा का फीका होना"
+      },
+      "bin": "no",
+      "why": {
+       "en": "CO₂ keeps leaving the open glass.",
+       "hi": "CO₂ खुले गिलास से निकलती रहती है।"
+      }
+     },
+     {
+      "id": "cloth",
+      "text": {
+       "en": "Wet clothes drying on a line",
+       "hi": "तार पर सूखते गीले कपड़े"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Water vapour is carried away by the air and does not come back.",
+       "hi": "जलवाष्प हवा के साथ चली जाती है और वापस नहीं आती।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a sealed jar of water, does evaporation stop once the vapour above stops increasing?",
+      "hi": "पानी के बंद जार में जब ऊपर की वाष्प बढ़ना बंद हो जाती है, तो क्या वाष्पन रुक जाता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it goes on, balanced by condensation",
+       "hi": "नहीं, चलता रहता है, संघनन से संतुलित"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, everything stops",
+       "hi": "हाँ, सब रुक जाता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:jar",
+     "expect": "correct:jar",
+     "say": {
+      "en": "Tap the sealed jar card, then its bin.",
+      "hi": "बंद जार वाला कार्ड छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:pan",
+     "expect": "correct:pan",
+     "say": {
+      "en": "Now place the open pan.",
+      "hi": "अब खुला बर्तन रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Equilibrium is reached only in a closed system, when two opposite processes go on at the same rate. Nothing seems to change, but particles keep moving both ways, so the equilibrium is dynamic. In an open pan or on a clothes line the vapour escapes, so there is no backward process to balance.",
+      "hi": "साम्यावस्था केवल बंद तंत्र में आती है, जब दो उलटी प्रक्रियाएँ एक ही दर से चलती हैं। कुछ बदलता नहीं दिखता, पर कण दोनों ओर आते-जाते रहते हैं, इसलिए साम्यावस्था गतिक है। खुले बर्तन या कपड़ों की तार पर वाष्प निकल जाती है, इसलिए संतुलन करने वाली उलटी प्रक्रिया नहीं होती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A soda bottle hisses when opened. Why?",
+        "hi": "सोडा की बोतल खोलने पर सीटी जैसी आवाज़ क्यों आती है?"
+       },
+       "options": [
+        {
+         "en": "The CO₂ pressure falls, so dissolved CO₂ comes out",
+         "hi": "CO₂ का दाब घटता है, इसलिए घुली CO₂ बाहर आती है"
+        },
+        {
+         "en": "Opening adds heat",
+         "hi": "खोलने से ऊष्मा मिलती है"
+        },
+        {
+         "en": "Air rushes in and reacts",
+         "hi": "हवा अंदर जाकर अभिक्रिया करती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The amount of gas dissolved depends on the gas pressure above (Henry's law). Lower pressure means less can stay dissolved.",
+        "hi": "घुली गैस की मात्रा ऊपर के गैस दाब पर निर्भर है (हेनरी का नियम)। कम दाब पर कम गैस घुली रह सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Opening a cap does not heat the drink.",
+         "hi": "ढक्कन खोलने से पेय गर्म नहीं होता।"
+        },
+        {
+         "en": "Air does not react with the soda; the gas comes out of the drink.",
+         "hi": "हवा सोडा से अभिक्रिया नहीं करती; गैस पेय से बाहर आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. For each 'yes' card, name the two opposite processes that balance.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर 'हाँ' वाले कार्ड के लिए संतुलित होने वाली दोनों उलटी प्रक्रियाओं के नाम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch06-dynamic-eq",
+   "topic": "6.2",
+   "template": "sequence",
+   "title": {
+    "en": "How a reaction reaches equilibrium",
+    "hi": "अभिक्रिया साम्यावस्था तक कैसे पहुँचती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "start",
+      "text": {
+       "en": "H₂ and I₂ are sealed in a hot flask. There is no HI yet.",
+       "hi": "H₂ और I₂ एक गर्म फ्लास्क में बंद हैं। अभी HI नहीं है।"
+      }
+     },
+     {
+      "id": "fast",
+      "text": {
+       "en": "The forward reaction is fastest at the start.",
+       "hi": "शुरू में आगे की अभिक्रिया सबसे तेज़ है।"
+      }
+     },
+     {
+      "id": "back",
+      "text": {
+       "en": "HI builds up, and HI starts breaking back into H₂ and I₂.",
+       "hi": "HI बढ़ता है, और HI टूटकर फिर H₂ और I₂ बनने लगता है।"
+      }
+     },
+     {
+      "id": "rates",
+      "text": {
+       "en": "Forward rate falls as H₂ and I₂ are used; backward rate rises.",
+       "hi": "H₂ और I₂ ख़र्च होने से आगे की दर घटती है; पीछे की दर बढ़ती है।"
+      }
+     },
+     {
+      "id": "equal",
+      "text": {
+       "en": "The two rates become equal.",
+       "hi": "दोनों दरें बराबर हो जाती हैं।"
+      }
+     },
+     {
+      "id": "steady",
+      "text": {
+       "en": "Amounts stay constant, while both reactions continue.",
+       "hi": "मात्राएँ स्थिर रहती हैं, जबकि दोनों अभिक्रियाएँ चलती रहती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At equilibrium, are the forward and backward reactions still going on?",
+      "hi": "साम्यावस्था पर क्या आगे और पीछे की अभिक्रियाएँ अब भी चल रही हैं?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Yes, both, at equal rates",
+       "hi": "हाँ, दोनों, बराबर दर से"
+      },
+      {
+       "id": "none",
+       "en": "No, both have stopped",
+       "hi": "नहीं, दोनों रुक गई हैं"
+      },
+      {
+       "id": "fwd",
+       "en": "Only the forward one",
+       "hi": "केवल आगे वाली"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "item:start",
+     "expect": "placed:start",
+     "say": {
+      "en": "Put the starting card in place 1.",
+      "hi": "शुरुआती कार्ड को स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:fast",
+     "expect": "placed:fast",
+     "say": {
+      "en": "Put the next card in place 2.",
+      "hi": "अगला कार्ड स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the rest, then press Check.",
+      "hi": "बाकी को क्रम में लगाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At first only H₂ and I₂ are present, so only the forward reaction runs. As HI forms, the backward reaction starts. The forward rate falls and the backward rate rises until they are equal. From then on the amounts do not change, but molecules keep reacting both ways. The same equilibrium is reached if you start from pure HI.",
+      "hi": "शुरू में केवल H₂ और I₂ होते हैं, इसलिए केवल आगे की अभिक्रिया चलती है। HI बनने पर पीछे की अभिक्रिया शुरू होती है। आगे की दर घटती है और पीछे की दर बढ़ती है, जब तक दोनों बराबर न हों। उसके बाद मात्राएँ नहीं बदलतीं, पर अणु दोनों ओर अभिक्रिया करते रहते हैं। शुद्ध HI से शुरू करने पर भी यही साम्यावस्था आती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the ammonia equilibrium N₂ + 3H₂ ⇌ 2NH₃, how was it shown to be dynamic?",
+        "hi": "अमोनिया के साम्य N₂ + 3H₂ ⇌ 2NH₃ में यह कैसे दिखाया गया कि साम्य गतिक है?"
+       },
+       "options": [
+        {
+         "en": "Adding a little heavy-hydrogen (D₂) at equilibrium: D soon appeared in NH₃ too",
+         "hi": "साम्यावस्था पर थोड़ा भारी हाइड्रोजन (D₂) मिलाया: D जल्दी ही NH₃ में भी आ गया"
+        },
+        {
+         "en": "The colour stopped changing",
+         "hi": "रंग बदलना बंद हो गया"
+        },
+        {
+         "en": "The flask stopped getting warm",
+         "hi": "फ्लास्क गर्म होना बंद हो गया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If the reactions had stopped, D could never get into ammonia. Its spread shows both reactions still run.",
+        "hi": "अगर अभिक्रियाएँ रुक जातीं, तो D कभी अमोनिया में नहीं जाता। इसका फैलना दिखाता है कि दोनों अभिक्रियाएँ चल रही हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A steady colour shows constant amounts, which a stopped reaction would also show.",
+         "hi": "स्थिर रंग स्थिर मात्राएँ दिखाता है, जो रुकी हुई अभिक्रिया भी दिखाती।"
+        },
+        {
+         "en": "Temperature tells nothing about whether molecules still react both ways.",
+         "hi": "ताप से यह पता नहीं चलता कि अणु अब भी दोनों ओर अभिक्रिया कर रहे हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and order the cards for the reverse case: starting with only HI in the flask.",
+      "hi": "'फिर से' दबाओ और उलटी स्थिति के लिए कार्ड लगाओ: जब फ्लास्क में शुरू में केवल HI हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch06-kc-expression",
+   "topic": "6.3",
+   "template": "match",
+   "title": {
+    "en": "Write the equilibrium constant",
+    "hi": "साम्य स्थिरांक लिखो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "hi",
+      "left": {
+       "en": "H₂(g) + I₂(g) ⇌ 2HI(g)",
+       "hi": "H₂(g) + I₂(g) ⇌ 2HI(g)"
+      },
+      "right": {
+       "en": "Kc = [HI]² / ([H₂][I₂])",
+       "hi": "Kc = [HI]² / ([H₂][I₂])"
+      }
+     },
+     {
+      "id": "nh3",
+      "left": {
+       "en": "N₂(g) + 3H₂(g) ⇌ 2NH₃(g)",
+       "hi": "N₂(g) + 3H₂(g) ⇌ 2NH₃(g)"
+      },
+      "right": {
+       "en": "Kc = [NH₃]² / ([N₂][H₂]³)",
+       "hi": "Kc = [NH₃]² / ([N₂][H₂]³)"
+      }
+     },
+     {
+      "id": "pcl5",
+      "left": {
+       "en": "PCl₅(g) ⇌ PCl₃(g) + Cl₂(g)",
+       "hi": "PCl₅(g) ⇌ PCl₃(g) + Cl₂(g)"
+      },
+      "right": {
+       "en": "Kc = [PCl₃][Cl₂] / [PCl₅]",
+       "hi": "Kc = [PCl₃][Cl₂] / [PCl₅]"
+      }
+     },
+     {
+      "id": "caco3",
+      "left": {
+       "en": "CaCO₃(s) ⇌ CaO(s) + CO₂(g)",
+       "hi": "CaCO₃(s) ⇌ CaO(s) + CO₂(g)"
+      },
+      "right": {
+       "en": "Kc = [CO₂]",
+       "hi": "Kc = [CO₂]"
+      },
+      "why": {
+       "en": "Pure solids are left out of K, so only CO₂ remains.",
+       "hi": "शुद्ध ठोस K में नहीं लिखे जाते, इसलिए केवल CO₂ बचती है।"
+      }
+     },
+     {
+      "id": "water",
+      "left": {
+       "en": "H₂O(l) ⇌ H₂O(g)",
+       "hi": "H₂O(l) ⇌ H₂O(g)"
+      },
+      "right": {
+       "en": "Kc = [H₂O(g)]",
+       "hi": "Kc = [H₂O(g)]"
+      },
+      "why": {
+       "en": "A pure liquid is left out, so K is just the vapour.",
+       "hi": "शुद्ध द्रव छोड़ा जाता है, इसलिए K केवल वाष्प है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In N₂ + 3H₂ ⇌ 2NH₃, what power does [H₂] get in Kc?",
+      "hi": "N₂ + 3H₂ ⇌ 2NH₃ में Kc में [H₂] की घात क्या होगी?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "3, its coefficient",
+       "hi": "3, इसका गुणांक"
+      },
+      {
+       "id": "1",
+       "en": "1, always",
+       "hi": "हमेशा 1"
+      },
+      {
+       "id": "2",
+       "en": "2, like NH₃",
+       "hi": "2, NH₃ की तरह"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "left:nh3",
+     "expect": "matched:nh3",
+     "say": {
+      "en": "Match the ammonia reaction with its Kc.",
+      "hi": "अमोनिया की अभिक्रिया को उसके Kc से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:caco3",
+     "expect": "matched:caco3",
+     "say": {
+      "en": "Now match the limestone reaction. Watch the solids.",
+      "hi": "अब चूना पत्थर वाली अभिक्रिया मिलाओ। ठोसों पर ध्यान दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाकी मिलाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The law of chemical equilibrium says that, at a fixed temperature, the product concentrations divided by the reactant concentrations, each raised to its coefficient, is a constant, Kc. In a heterogeneous equilibrium, pure solids and pure liquids are left out because their concentration does not change. Kc changes only when the temperature changes.",
+      "hi": "रासायनिक साम्य का नियम कहता है कि तय ताप पर उत्पादों की सांद्रता को अभिकारकों की सांद्रता से भाग देने पर, हर एक अपने गुणांक की घात में, एक स्थिरांक Kc मिलता है। विषमांगी साम्य में शुद्ध ठोस और शुद्ध द्रव छोड़े जाते हैं क्योंकि उनकी सांद्रता नहीं बदलती। Kc केवल ताप बदलने पर बदलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For 2HI ⇌ H₂ + I₂, Kc is 0.02 at a temperature. What is Kc for H₂ + I₂ ⇌ 2HI there?",
+        "hi": "किसी ताप पर 2HI ⇌ H₂ + I₂ का Kc 0.02 है। वहाँ H₂ + I₂ ⇌ 2HI का Kc क्या है?"
+       },
+       "options": [
+        "50",
+        "0.02",
+        "−0.02"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Reversing a reaction inverts K: 1 ÷ 0.02 = 50.",
+        "hi": "अभिक्रिया उलटने पर K उलट जाता है: 1 ÷ 0.02 = 50।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The reverse reaction has the reciprocal constant, not the same one.",
+         "hi": "उलटी अभिक्रिया का स्थिरांक व्युत्क्रम होता है, वही नहीं।"
+        },
+        {
+         "en": "K is a ratio of concentrations and is never negative.",
+         "hi": "K सांद्रताओं का अनुपात है और कभी ऋणात्मक नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A reaction has Kc = 10⁻³⁰. What does the equilibrium mixture contain?",
+        "hi": "किसी अभिक्रिया का Kc = 10⁻³⁰ है। साम्य मिश्रण में क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "Almost all reactants",
+         "hi": "लगभग सब अभिकारक"
+        },
+        {
+         "en": "Almost all products",
+         "hi": "लगभग सब उत्पाद"
+        },
+        {
+         "en": "Equal amounts of both",
+         "hi": "दोनों बराबर मात्रा में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A tiny K means the reaction hardly goes forward before equilibrium is reached.",
+        "hi": "बहुत छोटा K बताता है कि साम्य आने से पहले अभिक्रिया मुश्किल से आगे बढ़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mostly products needs a large K, above about 10³.",
+         "hi": "ज़्यादातर उत्पाद के लिए बड़ा K चाहिए, लगभग 10³ से ऊपर।"
+        },
+        {
+         "en": "Similar amounts go with K between about 10⁻³ and 10³.",
+         "hi": "लगभग बराबर मात्राएँ तब होती हैं जब K लगभग 10⁻³ और 10³ के बीच हो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and match again. For each, write the matching Kp in partial pressures.",
+      "hi": "फिर से शुरू करो और दोबारा मिलाओ। हर एक के लिए आंशिक दाबों में Kp लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch06-q-vs-k",
+   "topic": "6.6",
+   "template": "sort",
+   "title": {
+    "en": "Which way will it go?",
+    "hi": "यह किस ओर जाएगी?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fwd",
+      "label": {
+       "en": "Qc < Kc: goes forward",
+       "hi": "Qc < Kc: आगे बढ़ेगी"
+      }
+     },
+     {
+      "id": "eq",
+      "label": {
+       "en": "Qc = Kc: at equilibrium",
+       "hi": "Qc = Kc: साम्य पर"
+      }
+     },
+     {
+      "id": "back",
+      "label": {
+       "en": "Qc > Kc: goes backward",
+       "hi": "Qc > Kc: पीछे जाएगी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "Kc = 57, Qc = 10",
+       "hi": "Kc = 57, Qc = 10"
+      },
+      "bin": "fwd",
+      "why": {
+       "en": "Too few products: more will form.",
+       "hi": "उत्पाद बहुत कम हैं: और बनेंगे।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "Kc = 57, Qc = 57",
+       "hi": "Kc = 57, Qc = 57"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "The mixture is already at equilibrium.",
+       "hi": "मिश्रण पहले से साम्य पर है।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "Kc = 57, Qc = 200",
+       "hi": "Kc = 57, Qc = 200"
+      },
+      "bin": "back",
+      "why": {
+       "en": "Too many products: some turn back into reactants.",
+       "hi": "उत्पाद बहुत ज़्यादा हैं: कुछ फिर अभिकारक बनेंगे।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "Kc = 0.5, Qc = 0.001",
+       "hi": "Kc = 0.5, Qc = 0.001"
+      },
+      "bin": "fwd",
+      "why": {
+       "en": "Qc is much smaller than Kc.",
+       "hi": "Qc, Kc से बहुत छोटा है।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "Only reactants in the flask",
+       "hi": "फ्लास्क में केवल अभिकारक"
+      },
+      "bin": "fwd",
+      "why": {
+       "en": "With no products, Qc = 0, smaller than any Kc.",
+       "hi": "उत्पाद न होने पर Qc = 0, किसी भी Kc से छोटा।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "Only products in the flask",
+       "hi": "फ्लास्क में केवल उत्पाद"
+      },
+      "bin": "back",
+      "why": {
+       "en": "With no reactants, Qc is huge, so the reaction runs backward.",
+       "hi": "अभिकारक न होने पर Qc बहुत बड़ा है, इसलिए अभिक्रिया पीछे चलती है।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "Kc = 4.0, Qc = 4.0",
+       "hi": "Kc = 4.0, Qc = 4.0"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "Equal: no net change.",
+       "hi": "बराबर: कोई शुद्ध परिवर्तन नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Qc is worked out like Kc but with the concentrations you have now. If Qc is smaller than Kc, what happens?",
+      "hi": "Qc, Kc की तरह ही निकाला जाता है, पर अभी की सांद्रताओं से। अगर Qc, Kc से छोटा है, तो क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "fwd",
+       "en": "More products form until Qc = Kc",
+       "hi": "Qc = Kc होने तक और उत्पाद बनेंगे"
+      },
+      {
+       "id": "back",
+       "en": "Products turn back into reactants",
+       "hi": "उत्पाद फिर अभिकारक बनेंगे"
+      },
+      {
+       "id": "none",
+       "en": "Nothing happens",
+       "hi": "कुछ नहीं होगा"
+      }
+     ],
+     "answer": "fwd"
+    },
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "correct:a",
+     "say": {
+      "en": "Tap the first card, then its bin.",
+      "hi": "पहला कार्ड छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c",
+     "expect": "correct:c",
+     "say": {
+      "en": "Now place the Qc = 200 card.",
+      "hi": "अब Qc = 200 वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The reaction quotient Qc has the same form as Kc but uses the concentrations at any moment. Comparing it with Kc tells the direction: if Qc is less than Kc, the reaction moves forward; if more, it moves backward; if equal, it is at equilibrium. Either way the mixture moves until Qc becomes equal to Kc.",
+      "hi": "अभिक्रिया भागफल Qc का रूप Kc जैसा है, पर इसमें किसी भी क्षण की सांद्रताएँ लगती हैं। इसकी Kc से तुलना दिशा बताती है: अगर Qc, Kc से कम है, तो अभिक्रिया आगे बढ़ती है; ज़्यादा है, तो पीछे; बराबर है, तो साम्य पर है। हर हाल में मिश्रण तब तक बदलता है जब तक Qc, Kc के बराबर न हो जाए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For H₂ + I₂ ⇌ 2HI, Kc = 57 at 700 K. A flask has [H₂] = [I₂] = 0.1 M and [HI] = 0.4 M. What happens?",
+        "hi": "H₂ + I₂ ⇌ 2HI के लिए 700 K पर Kc = 57। फ्लास्क में [H₂] = [I₂] = 0.1 M और [HI] = 0.4 M है। क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "More HI forms",
+         "hi": "और HI बनेगा"
+        },
+        {
+         "en": "HI breaks up",
+         "hi": "HI टूटेगा"
+        },
+        {
+         "en": "No change",
+         "hi": "कोई परिवर्तन नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Qc = 0.4² ÷ (0.1 × 0.1) = 16, less than 57, so the reaction goes forward.",
+        "hi": "Qc = 0.4² ÷ (0.1 × 0.1) = 16, 57 से कम, इसलिए अभिक्रिया आगे बढ़ेगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "HI breaks up only when Qc > Kc; here Qc = 16.",
+         "hi": "HI तभी टूटता है जब Qc > Kc; यहाँ Qc = 16 है।"
+        },
+        {
+         "en": "No change needs Qc = 57 exactly.",
+         "hi": "कोई परिवर्तन न होने के लिए ठीक Qc = 57 चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. Make up one card of your own for each bin.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर डिब्बे के लिए अपना एक कार्ड बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch06-le-chatelier",
+   "topic": "6.8",
+   "template": "sort",
+   "title": {
+    "en": "Le Chatelier and the Haber process",
+    "hi": "ला-शातेलिए और हेबर प्रक्रम"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "right",
+      "label": {
+       "en": "Shifts right: more NH₃",
+       "hi": "दाईं ओर: ज़्यादा NH₃"
+      }
+     },
+     {
+      "id": "left",
+      "label": {
+       "en": "Shifts left: less NH₃",
+       "hi": "बाईं ओर: कम NH₃"
+      }
+     },
+     {
+      "id": "none",
+      "label": {
+       "en": "No shift",
+       "hi": "कोई खिसकाव नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "addn2",
+      "text": {
+       "en": "Pump in more N₂",
+       "hi": "और N₂ डालो"
+      },
+      "bin": "right",
+      "why": {
+       "en": "The system uses up some of the added N₂ by making NH₃.",
+       "hi": "तंत्र मिलाई गई N₂ का कुछ हिस्सा NH₃ बनाकर ख़र्च करता है।"
+      }
+     },
+     {
+      "id": "remnh3",
+      "text": {
+       "en": "Remove NH₃ as it forms",
+       "hi": "NH₃ बनते ही निकाल लो"
+      },
+      "bin": "right",
+      "why": {
+       "en": "Taking away a product pulls the reaction forward; factories cool NH₃ out as liquid.",
+       "hi": "उत्पाद हटाने से अभिक्रिया आगे खिंचती है; कारख़ाने NH₃ को ठंडा करके द्रव के रूप में निकालते हैं।"
+      }
+     },
+     {
+      "id": "press",
+      "text": {
+       "en": "Raise the pressure",
+       "hi": "दाब बढ़ाओ"
+      },
+      "bin": "right",
+      "why": {
+       "en": "4 mol of gas become 2, so the side with fewer moles is favoured.",
+       "hi": "4 mol गैस 2 बनती है, इसलिए कम मोल वाली ओर को बढ़ावा मिलता है।"
+      }
+     },
+     {
+      "id": "lowp",
+      "text": {
+       "en": "Lower the pressure",
+       "hi": "दाब घटाओ"
+      },
+      "bin": "left",
+      "why": {
+       "en": "The side with more gas moles is favoured.",
+       "hi": "ज़्यादा गैस मोल वाली ओर को बढ़ावा मिलता है।"
+      }
+     },
+     {
+      "id": "heat",
+      "text": {
+       "en": "Raise the temperature",
+       "hi": "ताप बढ़ाओ"
+      },
+      "bin": "left",
+      "why": {
+       "en": "The forward reaction is exothermic (ΔH = −92 kJ), so heating favours the backward one, and K falls.",
+       "hi": "आगे की अभिक्रिया ऊष्माक्षेपी है (ΔH = −92 kJ), इसलिए गर्म करने से पीछे वाली को बढ़ावा मिलता है, और K घटता है।"
+      }
+     },
+     {
+      "id": "cool",
+      "text": {
+       "en": "Lower the temperature",
+       "hi": "ताप घटाओ"
+      },
+      "bin": "right",
+      "why": {
+       "en": "Cooling favours the heat-releasing forward reaction, though it becomes slow.",
+       "hi": "ठंडा करने से ऊष्मा छोड़ने वाली आगे की अभिक्रिया को बढ़ावा मिलता है, पर वह धीमी हो जाती है।"
+      }
+     },
+     {
+      "id": "cat",
+      "text": {
+       "en": "Add an iron catalyst",
+       "hi": "आयरन उत्प्रेरक मिलाओ"
+      },
+      "bin": "none",
+      "why": {
+       "en": "A catalyst speeds up both directions equally; equilibrium is reached sooner, not moved.",
+       "hi": "उत्प्रेरक दोनों दिशाएँ बराबर तेज़ करता है; साम्य जल्दी आता है, खिसकता नहीं।"
+      }
+     },
+     {
+      "id": "argon",
+      "text": {
+       "en": "Add argon at constant volume",
+       "hi": "स्थिर आयतन पर आर्गन मिलाओ"
+      },
+      "bin": "none",
+      "why": {
+       "en": "The partial pressures of N₂, H₂ and NH₃ do not change, so nothing shifts.",
+       "hi": "N₂, H₂ और NH₃ के आंशिक दाब नहीं बदलते, इसलिए कुछ नहीं खिसकता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "N₂ + 3H₂ ⇌ 2NH₃ releases heat. If the factory heats the mixture, does the yield of ammonia go up or down?",
+      "hi": "N₂ + 3H₂ ⇌ 2NH₃ ऊष्मा छोड़ती है। अगर कारख़ाना मिश्रण को गर्म करे, तो अमोनिया की मात्रा बढ़ेगी या घटेगी?"
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "Down",
+       "hi": "घटेगी"
+      },
+      {
+       "id": "up",
+       "en": "Up",
+       "hi": "बढ़ेगी"
+      },
+      {
+       "id": "same",
+       "en": "Stays the same",
+       "hi": "वही रहेगी"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "card:heat",
+     "expect": "correct:heat",
+     "say": {
+      "en": "Tap the temperature card, then its bin.",
+      "hi": "ताप वाला कार्ड छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:press",
+     "expect": "correct:press",
+     "say": {
+      "en": "Now place the pressure card. Count gas moles.",
+      "hi": "अब दाब वाला कार्ड रखो। गैस के मोल गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Le Chatelier's principle: when an equilibrium is disturbed, it shifts to undo the change. Adding a reactant or removing a product drives it forward. More pressure favours fewer gas moles. Heat favours the endothermic direction, and only temperature changes the value of K. A catalyst and an inert gas at fixed volume do not shift it. Fertiliser plants use about 200 atm, about 700 K and an iron catalyst as a balance of yield and speed.",
+      "hi": "ला-शातेलिए का सिद्धांत: जब साम्य बिगाड़ा जाता है, तो वह उस बदलाव को उलटने की दिशा में खिसकता है। अभिकारक जोड़ने या उत्पाद हटाने से वह आगे बढ़ता है। ज़्यादा दाब कम गैस मोल को बढ़ावा देता है। ऊष्मा ऊष्माशोषी दिशा को बढ़ावा देती है, और केवल ताप ही K का मान बदलता है। उत्प्रेरक और स्थिर आयतन पर अक्रिय गैस इसे नहीं खिसकाते। खाद कारख़ाने उपज और गति के संतुलन के लिए लगभग 200 atm, लगभग 700 K और आयरन उत्प्रेरक इस्तेमाल करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For H₂(g) + I₂(g) ⇌ 2HI(g), what does raising the pressure do?",
+        "hi": "H₂(g) + I₂(g) ⇌ 2HI(g) के लिए दाब बढ़ाने से क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "No shift",
+         "hi": "कोई खिसकाव नहीं"
+        },
+        {
+         "en": "Shifts right",
+         "hi": "दाईं ओर खिसकता है"
+        },
+        {
+         "en": "Shifts left",
+         "hi": "बाईं ओर खिसकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both sides have 2 mol of gas, so pressure cannot favour either side.",
+        "hi": "दोनों ओर 2 mol गैस है, इसलिए दाब किसी ओर को बढ़ावा नहीं दे सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A shift needs fewer gas moles on one side; here they are equal.",
+         "hi": "खिसकाव के लिए एक ओर कम गैस मोल चाहिए; यहाँ बराबर हैं।"
+        },
+        {
+         "en": "Neither side has more gas moles than the other.",
+         "hi": "किसी भी ओर दूसरी से ज़्यादा गैस मोल नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. Then decide what a factory should do to make ammonia both fast and in large amounts.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। फिर तय करो कि कारख़ाने को अमोनिया जल्दी और ज़्यादा मात्रा में बनाने के लिए क्या करना चाहिए।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch06-lewis-acids",
+   "topic": "6.10",
+   "template": "sort",
+   "title": {
+    "en": "Lewis acid or Lewis base?",
+    "hi": "लुईस अम्ल या लुईस क्षार?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "acid",
+      "label": {
+       "en": "Lewis acid: accepts a pair",
+       "hi": "लुईस अम्ल: युग्म लेता है"
+      }
+     },
+     {
+      "id": "base",
+      "label": {
+       "en": "Lewis base: donates a pair",
+       "hi": "लुईस क्षार: युग्म देता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "bf3",
+      "text": {
+       "en": "BF₃",
+       "hi": "BF₃"
+      },
+      "bin": "acid",
+      "why": {
+       "en": "Boron has only six electrons and an empty orbital.",
+       "hi": "बोरॉन के पास केवल छह इलेक्ट्रॉन और एक ख़ाली कक्षक है।"
+      }
+     },
+     {
+      "id": "alcl3",
+      "text": {
+       "en": "AlCl₃",
+       "hi": "AlCl₃"
+      },
+      "bin": "acid",
+      "why": {
+       "en": "Aluminium is electron-poor, like boron.",
+       "hi": "ऐलुमिनियम बोरॉन की तरह इलेक्ट्रॉन-न्यून है।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "H⁺",
+       "hi": "H⁺"
+      },
+      "bin": "acid",
+      "why": {
+       "en": "A bare proton has an empty 1s orbital.",
+       "hi": "नंगे प्रोटॉन का 1s कक्षक ख़ाली है।"
+      }
+     },
+     {
+      "id": "cu",
+      "text": {
+       "en": "Cu²⁺",
+       "hi": "Cu²⁺"
+      },
+      "bin": "acid",
+      "why": {
+       "en": "Metal ions accept lone pairs, as in the deep blue copper–ammonia ion.",
+       "hi": "धातु आयन एकाकी युग्म लेते हैं, जैसे गहरे नीले कॉपर-अमोनिया आयन में।"
+      }
+     },
+     {
+      "id": "nh3",
+      "text": {
+       "en": "NH₃",
+       "hi": "NH₃"
+      },
+      "bin": "base",
+      "why": {
+       "en": "Nitrogen's lone pair can be given.",
+       "hi": "नाइट्रोजन का एकाकी युग्म दिया जा सकता है।"
+      }
+     },
+     {
+      "id": "h2o",
+      "text": {
+       "en": "H₂O",
+       "hi": "H₂O"
+      },
+      "bin": "base",
+      "why": {
+       "en": "Oxygen has two lone pairs.",
+       "hi": "ऑक्सीजन के पास दो एकाकी युग्म हैं।"
+      }
+     },
+     {
+      "id": "oh",
+      "text": {
+       "en": "OH⁻",
+       "hi": "OH⁻"
+      },
+      "bin": "base",
+      "why": {
+       "en": "A negative ion with lone pairs to give.",
+       "hi": "देने के लिए एकाकी युग्मों वाला ऋण आयन।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "F⁻",
+       "hi": "F⁻"
+      },
+      "bin": "base",
+      "why": {
+       "en": "Fluoride has four lone pairs.",
+       "hi": "फ्लुओराइड के पास चार एकाकी युग्म हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "BF₃ has no hydrogen to give away, yet it reacts with ammonia. What does BF₃ take from NH₃?",
+      "hi": "BF₃ के पास देने के लिए हाइड्रोजन नहीं है, फिर भी यह अमोनिया से अभिक्रिया करता है। BF₃, NH₃ से क्या लेता है?"
+     },
+     "options": [
+      {
+       "id": "pair",
+       "en": "Its lone pair of electrons",
+       "hi": "उसका एकाकी इलेक्ट्रॉन युग्म"
+      },
+      {
+       "id": "h",
+       "en": "A hydrogen ion",
+       "hi": "एक हाइड्रोजन आयन"
+      },
+      {
+       "id": "n",
+       "en": "A nitrogen atom",
+       "hi": "एक नाइट्रोजन परमाणु"
+      }
+     ],
+     "answer": "pair"
+    },
+    {
+     "kind": "do",
+     "target": "card:bf3",
+     "expect": "correct:bf3",
+     "say": {
+      "en": "Tap BF₃, then its bin.",
+      "hi": "BF₃ छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:nh3",
+     "expect": "correct:nh3",
+     "say": {
+      "en": "Now place NH₃.",
+      "hi": "अब NH₃ रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There are three ideas of acids. Arrhenius: an acid gives H⁺ in water, a base gives OH⁻. Brönsted–Lowry: an acid donates a proton, a base accepts one. Lewis, the widest: an acid accepts an electron pair and a base donates one. So BF₃, AlCl₃ and metal ions are acids even though they have no H⁺ to give.",
+      "hi": "अम्लों के तीन विचार हैं। आरेनियस: अम्ल पानी में H⁺ देता है, क्षार OH⁻ देता है। ब्रॉन्स्टेड–लोरी: अम्ल प्रोटॉन देता है, क्षार प्रोटॉन लेता है। लुईस, सबसे व्यापक: अम्ल इलेक्ट्रॉन युग्म लेता है और क्षार युग्म देता है। इसलिए BF₃, AlCl₃ और धातु आयन अम्ल हैं, भले ही उनके पास देने को H⁺ नहीं है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can't Arrhenius's idea call NH₃ a base?",
+        "hi": "आरेनियस का विचार NH₃ को क्षार क्यों नहीं कह सकता?"
+       },
+       "options": [
+        {
+         "en": "NH₃ has no OH group of its own to release",
+         "hi": "NH₃ के पास छोड़ने के लिए अपना OH समूह नहीं है"
+        },
+        {
+         "en": "NH₃ is an acid",
+         "hi": "NH₃ अम्ल है"
+        },
+        {
+         "en": "NH₃ does not dissolve in water",
+         "hi": "NH₃ पानी में नहीं घुलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ammonia makes OH⁻ only by taking H⁺ from water; the Brönsted–Lowry idea explains this directly.",
+        "hi": "अमोनिया पानी से H⁺ लेकर ही OH⁻ बनाता है; ब्रॉन्स्टेड–लोरी विचार इसे सीधे समझाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ammonia accepts protons, so it is a base.",
+         "hi": "अमोनिया प्रोटॉन लेता है, इसलिए यह क्षार है।"
+        },
+        {
+         "en": "Ammonia is very soluble in water.",
+         "hi": "अमोनिया पानी में बहुत घुलनशील है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. For each acid, say where the donated pair would go.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर अम्ल के लिए बताओ कि दिया गया युग्म कहाँ जाएगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch06-conjugate-pairs",
+   "topic": "6.11",
+   "template": "match",
+   "title": {
+    "en": "Conjugate acid–base pairs",
+    "hi": "संयुग्मी अम्ल–क्षार युग्म"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "hcl",
+      "left": {
+       "en": "HCl",
+       "hi": "HCl"
+      },
+      "right": {
+       "en": "Cl⁻",
+       "hi": "Cl⁻"
+      }
+     },
+     {
+      "id": "h2o",
+      "left": {
+       "en": "H₂O (as an acid)",
+       "hi": "H₂O (अम्ल के रूप में)"
+      },
+      "right": {
+       "en": "OH⁻",
+       "hi": "OH⁻"
+      }
+     },
+     {
+      "id": "h3o",
+      "left": {
+       "en": "H₃O⁺",
+       "hi": "H₃O⁺"
+      },
+      "right": {
+       "en": "H₂O (as a base)",
+       "hi": "H₂O (क्षार के रूप में)"
+      }
+     },
+     {
+      "id": "nh4",
+      "left": {
+       "en": "NH₄⁺",
+       "hi": "NH₄⁺"
+      },
+      "right": {
+       "en": "NH₃",
+       "hi": "NH₃"
+      }
+     },
+     {
+      "id": "ac",
+      "left": {
+       "en": "CH₃COOH",
+       "hi": "CH₃COOH"
+      },
+      "right": {
+       "en": "CH₃COO⁻",
+       "hi": "CH₃COO⁻"
+      }
+     },
+     {
+      "id": "hco3",
+      "left": {
+       "en": "HCO₃⁻",
+       "hi": "HCO₃⁻"
+      },
+      "right": {
+       "en": "CO₃²⁻",
+       "hi": "CO₃²⁻"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the difference between an acid and its conjugate base?",
+      "hi": "किसी अम्ल और उसके संयुग्मी क्षार में क्या अंतर है?"
+     },
+     "options": [
+      {
+       "id": "h",
+       "en": "Exactly one H⁺",
+       "hi": "ठीक एक H⁺"
+      },
+      {
+       "id": "oh",
+       "en": "One OH⁻",
+       "hi": "एक OH⁻"
+      },
+      {
+       "id": "e",
+       "en": "One electron",
+       "hi": "एक इलेक्ट्रॉन"
+      }
+     ],
+     "answer": "h"
+    },
+    {
+     "kind": "do",
+     "target": "left:hcl",
+     "expect": "matched:hcl",
+     "say": {
+      "en": "Match HCl with its conjugate base.",
+      "hi": "HCl को उसके संयुग्मी क्षार से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:nh4",
+     "expect": "matched:nh4",
+     "say": {
+      "en": "Match NH₄⁺.",
+      "hi": "NH₄⁺ मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाकी मिलाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When an acid gives away H⁺, what is left is its conjugate base; when a base takes H⁺, it becomes its conjugate acid. Each pair differs by one proton. A strong acid like HCl has a very weak conjugate base, Cl⁻. Water can act both ways: it is amphoteric.",
+      "hi": "जब अम्ल H⁺ दे देता है, तो जो बचता है वह उसका संयुग्मी क्षार है; जब क्षार H⁺ लेता है, तो वह अपना संयुग्मी अम्ल बन जाता है। हर युग्म में एक प्रोटॉन का अंतर होता है। HCl जैसे प्रबल अम्ल का संयुग्मी क्षार, Cl⁻, बहुत दुर्बल होता है। पानी दोनों तरह काम कर सकता है: यह उभयधर्मी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the conjugate acid of NH₂⁻?",
+        "hi": "NH₂⁻ का संयुग्मी अम्ल क्या है?"
+       },
+       "options": [
+        "NH₃",
+        "NH₄⁺",
+        "N³⁻"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Add one H⁺ to NH₂⁻ and you get NH₃.",
+        "hi": "NH₂⁻ में एक H⁺ जोड़ो तो NH₃ मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "NH₄⁺ has two more protons than NH₂⁻.",
+         "hi": "NH₄⁺ में NH₂⁻ से दो प्रोटॉन ज़्यादा हैं।"
+        },
+        {
+         "en": "N³⁻ has lost protons; that would be a conjugate base.",
+         "hi": "N³⁻ ने प्रोटॉन खोए हैं; वह संयुग्मी क्षार होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and match again. Then find the two species in the list that can act as both acid and base.",
+      "hi": "फिर से शुरू करो और दोबारा मिलाओ। फिर सूची में वे दो कण खोजो जो अम्ल और क्षार दोनों बन सकते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch06-ph-strong-weak",
+   "topic": "6.11",
+   "template": "beaker",
+   "title": {
+    "en": "Strong and weak acids on the pH meter",
+    "hi": "pH मीटर पर प्रबल और दुर्बल अम्ल"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     "hcl",
+     "ethanoic",
+     "naoh",
+     "ammonia",
+     "water"
+    ],
+    "start": [
+     "hcl"
+    ],
+    "tools": [
+     "ph"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:ph",
+     "expect": "tested:ph",
+     "say": {
+      "en": "The beaker holds dilute hydrochloric acid. Dip the pH meter and read the value.",
+      "hi": "बीकर में तनु हाइड्रोक्लोरिक अम्ल है। pH मीटर डुबाओ और मान पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ethanoic acid (in vinegar) at the same strength of solution is a weak acid. Its pH will be:",
+      "hi": "उसी सांद्रता का एथेनॉइक अम्ल (सिरके में) दुर्बल अम्ल है। उसका pH होगा:"
+     },
+     "options": [
+      {
+       "id": "higher",
+       "en": "Higher than HCl's, about 3",
+       "hi": "HCl से ज़्यादा, लगभग 3"
+      },
+      {
+       "id": "lower",
+       "en": "Lower than HCl's",
+       "hi": "HCl से कम"
+      },
+      {
+       "id": "same",
+       "en": "The same as HCl's",
+       "hi": "HCl जितना ही"
+      }
+     ],
+     "answer": "higher"
+    },
+    {
+     "kind": "do",
+     "target": "clean",
+     "expect": "clean",
+     "say": {
+      "en": "Tap Clean to empty the beaker.",
+      "hi": "बीकर ख़ाली करने के लिए 'साफ़ करो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:ethanoic",
+     "expect": "pick:ethanoic",
+     "say": {
+      "en": "Now tap the ethanoic acid bottle.",
+      "hi": "अब एथेनॉइक अम्ल की बोतल छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:ethanoic",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tool:ph",
+     "expect": "tested:ph",
+     "say": {
+      "en": "Test it with the pH meter.",
+      "hi": "pH मीटर से जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "pH = −log[H₃O⁺]. Hydrochloric acid ionises almost completely, so 0.1 M HCl gives [H₃O⁺] = 0.1 M and pH 1. Ethanoic acid ionises only slightly (Ka about 1.8 × 10⁻⁵), so the same solution gives far fewer H₃O⁺ ions and a pH near 3. Each pH unit is a tenfold change, so HCl here has about a hundred times more H₃O⁺.",
+      "hi": "pH = −log[H₃O⁺]। हाइड्रोक्लोरिक अम्ल लगभग पूरा आयनित होता है, इसलिए 0.1 M HCl से [H₃O⁺] = 0.1 M और pH 1 मिलता है। एथेनॉइक अम्ल बहुत थोड़ा आयनित होता है (Ka लगभग 1.8 × 10⁻⁵), इसलिए उसी विलयन में बहुत कम H₃O⁺ आयन होते हैं और pH लगभग 3 होता है। हर pH इकाई दस गुना बदलाव है, इसलिए यहाँ HCl में लगभग सौ गुना ज़्यादा H₃O⁺ है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A solution has pH 11. What is its pOH at 298 K?",
+        "hi": "एक विलयन का pH 11 है। 298 K पर उसका pOH क्या है?"
+       },
+       "options": [
+        "3",
+        "11",
+        "25"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Kw = 10⁻¹⁴ at 298 K, so pH + pOH = 14 and pOH = 3.",
+        "hi": "298 K पर Kw = 10⁻¹⁴, इसलिए pH + pOH = 14 और pOH = 3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "pOH equals pH only for a neutral solution at 7.",
+         "hi": "pOH, pH के बराबर केवल 7 वाले उदासीन विलयन में होता है।"
+        },
+        {
+         "en": "pH and pOH add to 14, not 36.",
+         "hi": "pH और pOH का योग 14 है, 36 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker and test sodium hydroxide, ammonia and water. Which base is weak, and how can you tell?",
+      "hi": "बीकर साफ़ करो और सोडियम हाइड्रॉक्साइड, अमोनिया और पानी जाँचो। कौन-सा क्षार दुर्बल है, और कैसे पता चलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch06-buffers",
+   "topic": "6.12",
+   "template": "sort",
+   "title": {
+    "en": "Buffer or not?",
+    "hi": "बफ़र है या नहीं?"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "A buffer: pH barely changes",
+       "hi": "बफ़र: pH मुश्किल से बदलता"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Not a buffer",
+       "hi": "बफ़र नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "acetate",
+      "text": {
+       "en": "CH₃COOH + CH₃COONa",
+       "hi": "CH₃COOH + CH₃COONa"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "A weak acid with its salt: an acidic buffer near pH 4.76.",
+       "hi": "दुर्बल अम्ल और उसका लवण: लगभग pH 4.76 का अम्लीय बफ़र।"
+      }
+     },
+     {
+      "id": "ammonium",
+      "text": {
+       "en": "NH₄OH + NH₄Cl",
+       "hi": "NH₄OH + NH₄Cl"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "A weak base with its salt: a basic buffer near pH 9.25.",
+       "hi": "दुर्बल क्षार और उसका लवण: लगभग pH 9.25 का क्षारीय बफ़र।"
+      }
+     },
+     {
+      "id": "blood",
+      "text": {
+       "en": "H₂CO₃ + HCO₃⁻ in blood",
+       "hi": "रक्त में H₂CO₃ + HCO₃⁻"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "This pair keeps our blood close to pH 7.4.",
+       "hi": "यह युग्म हमारे रक्त को लगभग pH 7.4 पर रखता है।"
+      }
+     },
+     {
+      "id": "hcl",
+      "text": {
+       "en": "HCl + NaCl",
+       "hi": "HCl + NaCl"
+      },
+      "bin": "no",
+      "why": {
+       "en": "A strong acid: Cl⁻ is too weak a base to mop up added H⁺.",
+       "hi": "प्रबल अम्ल: Cl⁻ इतना दुर्बल क्षार है कि मिलाए H⁺ को सोख नहीं पाता।"
+      }
+     },
+     {
+      "id": "naoh",
+      "text": {
+       "en": "NaOH + NaCl",
+       "hi": "NaOH + NaCl"
+      },
+      "bin": "no",
+      "why": {
+       "en": "A strong base with a neutral salt cannot absorb added OH⁻.",
+       "hi": "प्रबल क्षार और उदासीन लवण मिलाए OH⁻ को नहीं सोख पाते।"
+      }
+     },
+     {
+      "id": "salt",
+      "text": {
+       "en": "NaCl in water",
+       "hi": "पानी में NaCl"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Neutral, but any drop of acid changes its pH a lot.",
+       "hi": "उदासीन है, पर अम्ल की एक बूँद से इसका pH बहुत बदलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A mixture of ethanoic acid and sodium ethanoate gets a few drops of HCl. What happens to its pH?",
+      "hi": "एथेनॉइक अम्ल और सोडियम एथेनोएट के मिश्रण में HCl की कुछ बूँदें डाली जाती हैं। उसके pH का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "small",
+       "en": "It hardly changes",
+       "hi": "मुश्किल से बदलता है"
+      },
+      {
+       "id": "big",
+       "en": "It drops sharply",
+       "hi": "तेज़ी से गिरता है"
+      }
+     ],
+     "answer": "small"
+    },
+    {
+     "kind": "do",
+     "target": "card:acetate",
+     "expect": "correct:acetate",
+     "say": {
+      "en": "Tap the acetate mixture, then its bin.",
+      "hi": "एसीटेट मिश्रण छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:hcl",
+     "expect": "correct:hcl",
+     "say": {
+      "en": "Now place HCl with NaCl.",
+      "hi": "अब HCl और NaCl रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A buffer has a weak acid and its conjugate base (or a weak base and its conjugate acid) in good amounts. Added H⁺ is taken up by the base part, and added OH⁻ by the acid part, so the pH barely moves. Strong acids and bases cannot do this, because their conjugate partners are too weak to react.",
+      "hi": "बफ़र में दुर्बल अम्ल और उसका संयुग्मी क्षार (या दुर्बल क्षार और उसका संयुग्मी अम्ल) अच्छी मात्रा में होते हैं। मिलाया गया H⁺ क्षार वाला हिस्सा ले लेता है, और मिलाया गया OH⁻ अम्ल वाला हिस्सा, इसलिए pH मुश्किल से हिलता है। प्रबल अम्ल और क्षार ऐसा नहीं कर पाते, क्योंकि उनके संयुग्मी साथी अभिक्रिया करने के लिए बहुत दुर्बल हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An acetate buffer has equal concentrations of acid and salt. Its pH equals:",
+        "hi": "एक एसीटेट बफ़र में अम्ल और लवण की सांद्रता बराबर है। उसका pH होगा:"
+       },
+       "options": [
+        {
+         "en": "pKa of ethanoic acid, about 4.76",
+         "hi": "एथेनॉइक अम्ल का pKa, लगभग 4.76"
+        },
+        "7",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "pH = pKa + log([salt] ÷ [acid]); with equal amounts the log term is 0.",
+        "hi": "pH = pKa + log([लवण] ÷ [अम्ल]); बराबर मात्रा पर log वाला पद 0 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ethanoic acid is still an acid; the buffer stays acidic.",
+         "hi": "एथेनॉइक अम्ल फिर भी अम्ल है; बफ़र अम्लीय रहता है।"
+        },
+        {
+         "en": "pH 1 belongs to a strong acid such as 0.1 M HCl.",
+         "hi": "pH 1, 0.1 M HCl जैसे प्रबल अम्ल का होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. For each buffer, name the part that removes added acid.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर बफ़र के लिए वह हिस्सा बताओ जो मिलाया गया अम्ल हटाता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch06-ksp-precipitate",
+   "topic": "6.13",
+   "template": "beaker",
+   "title": {
+    "en": "When does a precipitate form?",
+    "hi": "अवक्षेप कब बनता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "agno3",
+     "saltsol",
+     "ki",
+     "water"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:agno3",
+     "expect": "pick:agno3",
+     "say": {
+      "en": "Tap the silver nitrate bottle.",
+      "hi": "सिल्वर नाइट्रेट की बोतल छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:agno3",
+     "say": {
+      "en": "Tap the beaker to pour it in.",
+      "hi": "इसे डालने के लिए बीकर छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Silver chloride is only very slightly soluble (Ksp = 1.8 × 10⁻¹⁰). What will you see when salt solution is added?",
+      "hi": "सिल्वर क्लोराइड बहुत ही कम घुलनशील है (Ksp = 1.8 × 10⁻¹⁰)। नमक का विलयन मिलाने पर क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "ppt",
+       "en": "A white precipitate",
+       "hi": "सफ़ेद अवक्षेप"
+      },
+      {
+       "id": "clear",
+       "en": "It stays clear",
+       "hi": "साफ़ रहेगा"
+      },
+      {
+       "id": "gas",
+       "en": "Bubbles of gas",
+       "hi": "गैस के बुलबुले"
+      }
+     ],
+     "answer": "ppt"
+    },
+    {
+     "kind": "do",
+     "target": "pick:saltsol",
+     "expect": "pick:saltsol",
+     "say": {
+      "en": "Tap the salt solution bottle.",
+      "hi": "नमक के विलयन की बोतल छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour it in and watch.",
+      "hi": "इसे डालो और देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ksp = [Ag⁺][Cl⁻] is the largest ionic product a saturated solution of AgCl can hold. On mixing, [Ag⁺][Cl⁻] is far above 1.8 × 10⁻¹⁰, so the extra ions come out as solid AgCl until the product falls back to Ksp. If the ionic product is below Ksp, no solid forms. Adding more Cl⁻ makes even less AgCl stay dissolved: the common ion effect.",
+      "hi": "Ksp = [Ag⁺][Cl⁻] वह सबसे बड़ा आयनिक गुणनफल है जो AgCl का संतृप्त विलयन रख सकता है। मिलाने पर [Ag⁺][Cl⁻], 1.8 × 10⁻¹⁰ से बहुत ज़्यादा होता है, इसलिए अतिरिक्त आयन ठोस AgCl के रूप में निकल आते हैं, जब तक गुणनफल वापस Ksp तक न आ जाए। अगर आयनिक गुणनफल Ksp से कम हो, तो ठोस नहीं बनता। और Cl⁻ मिलाने पर AgCl और भी कम घुला रहता है: सम-आयन प्रभाव।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does adding NaCl make less AgCl dissolve in water?",
+        "hi": "NaCl मिलाने से पानी में AgCl कम क्यों घुलता है?"
+       },
+       "options": [
+        {
+         "en": "Extra Cl⁻ pushes the equilibrium towards solid AgCl",
+         "hi": "अतिरिक्त Cl⁻ साम्य को ठोस AgCl की ओर धकेलता है"
+        },
+        {
+         "en": "NaCl reacts with silver to make sodium",
+         "hi": "NaCl चाँदी से अभिक्रिया करके सोडियम बनाता है"
+        },
+        {
+         "en": "NaCl raises Ksp",
+         "hi": "NaCl, Ksp बढ़ाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This is the common ion effect: with [Cl⁻] higher, [Ag⁺] must be lower to keep [Ag⁺][Cl⁻] = Ksp.",
+        "hi": "यह सम-आयन प्रभाव है: [Cl⁻] ज़्यादा होने पर [Ag⁺][Cl⁻] = Ksp बनाए रखने के लिए [Ag⁺] कम होना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sodium is far more reactive than silver; no sodium metal can form.",
+         "hi": "सोडियम चाँदी से कहीं अधिक क्रियाशील है; सोडियम धातु नहीं बन सकती।"
+        },
+        {
+         "en": "Ksp changes only with temperature, not with added salts.",
+         "hi": "Ksp केवल ताप से बदलता है, मिलाए गए लवणों से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker and try silver nitrate with potassium iodide. Silver iodide's Ksp is even smaller. What colour is it?",
+      "hi": "बीकर साफ़ करो और सिल्वर नाइट्रेट के साथ पोटैशियम आयोडाइड आज़माओ। सिल्वर आयोडाइड का Ksp और भी छोटा है। उसका रंग क्या है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Hook of the chapter",
+   "shows": "A sealed glass bottle of soda water with bubbles resting, next to the same drink poured into an open glass and fizzing",
+   "view": "Eye level, backlit for bubbles",
+   "right": "Few still bubbles in the sealed bottle; many rising in the open glass",
+   "avoid": "Brand names, labels, straws"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "6.1",
+   "use": "Liquid–vapour equilibrium for the reader",
+   "shows": "Three frames of a sealed glass jar half full of water on a table: droplets slowly forming on the inside of the lid until they stop increasing",
+   "view": "Same camera and light, macro on the lid",
+   "right": "Droplets grow and then stay about the same",
+   "avoid": "Opened lid; fog that hides the water level"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.8",
+   "use": "Fertiliser plant for the Haber lab",
+   "shows": "An Indian fertiliser factory at dusk with reaction towers, pipes and storage tanks, seen from outside the fence",
+   "view": "Wide shot, golden-hour light",
+   "right": "Real industrial scale; urea bags or tanks visible",
+   "avoid": "Company names, logos, people's faces"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "6.11",
+   "use": "pH in everyday things",
+   "shows": "Separate cut-outs: a halved lemon, a small bowl of vinegar, a glass of milk, a bar of washing soap, a bottle of phenyl-free floor cleaner without its label",
+   "view": "Same scale and light, slightly above",
+   "right": "True colours; no visible brand marks",
+   "avoid": "Labels or logos"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "6.13",
+   "use": "Precipitates up close",
+   "shows": "Two test tubes in a stand: one with a thick white curdy precipitate of silver chloride, one with a pale yellow precipitate of silver iodide",
+   "view": "Macro, side light, white background",
+   "right": "AgCl white and curdy; AgI clearly pale yellow; liquid above partly clear",
+   "avoid": "Labels; dark lighting that turns AgCl grey"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "6.2",
+   "use": "Molecules at equilibrium",
+   "shows": "A 3D render of a sealed flask with H₂, I₂ and HI molecules as coloured spheres, a few shown mid-reaction in both directions",
+   "view": "Three-quarter view, soft studio light",
+   "right": "Molecule sizes and colours consistent; some HI breaking while some forms",
+   "avoid": "Labels and arrows"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "6.11",
+   "use": "Library apparatus reused",
+   "shows": "Library images LIB-CHEM-ph-paper, LIB-CHEM-litmus, LIB-LAB-test-tube-stand and LIB-LAB-dropper (shared cut-outs; do not make again)",
+   "view": "As in the library",
+   "right": "As in the library",
+   "avoid": "Making new copies"
+  }
+ ]
+}

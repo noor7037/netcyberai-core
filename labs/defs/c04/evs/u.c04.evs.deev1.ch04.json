@@ -1,0 +1,905 @@
+{
+ "chapter_key": "u.c04.evs.deev1.ch04",
+ "class": 4,
+ "subject_id": "evs",
+ "title": "Growing up with Nature",
+ "source": "https://ncert.nic.in/textbook/pdf/deev1ps.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "A journey through the forest and local names of flowers (Palash, Kesuda)",
+   "labs": [],
+   "why_no_lab": "Local names change from place to place. The reader and the child's own list of flowers teach this better than a lab."
+  },
+  {
+   "n": "4.2",
+   "title": "Gond art and natural colours",
+   "labs": [
+    "c4-evs-deev1-ch04-gond-art"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Preparing a natural dye",
+   "labs": [
+    "c4-evs-deev1-ch04-natural-dye"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Traditional houses and storing grains",
+   "labs": [
+    "c4-evs-deev1-ch04-natural-materials"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Herbal plants and the first-aid box",
+   "labs": [],
+   "why_no_lab": "Tulsi, ajwain and neem are best learnt from real plants and from stories told by elders at home."
+  },
+  {
+   "n": "4.6",
+   "title": "Sacred groves, festivals and respect for plants and animals",
+   "labs": [],
+   "why_no_lab": "Festivals and sacred groves are best met through photographs, songs and the reader."
+  },
+  {
+   "n": "4.7",
+   "title": "Caring for nature and using it wisely",
+   "labs": [
+    "c4-evs-deev1-ch04-care-or-harm"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c4-evs-deev1-ch04-gond-art",
+   "topic": "4.2",
+   "template": "art",
+   "title": {
+    "en": "Gond art with natural colours",
+    "hi": "प्राकृतिक रंगों से गोंड कला"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "art-form",
+    "art_form": "gond"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Gond artists paint on walls. What do their pictures show most?",
+      "hi": "गोंड कलाकार दीवारों पर चित्र बनाते हैं। उनके चित्रों में सबसे ज़्यादा क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "nature",
+       "en": "Trees, animals, birds and people",
+       "hi": "पेड़, जानवर, पक्षी और लोग"
+      },
+      {
+       "id": "cars",
+       "en": "Cars and aeroplanes",
+       "hi": "कारें और हवाई जहाज़"
+      },
+      {
+       "id": "phones",
+       "en": "Phones and computers",
+       "hi": "फ़ोन और कंप्यूटर"
+      }
+     ],
+     "answer": "nature"
+    },
+    {
+     "kind": "do",
+     "target": "canvas",
+     "expect": "drawn",
+     "say": {
+      "en": "Pick a colour and the tree tool, then tap the picture area to draw a tree.",
+      "hi": "एक रंग और पेड़ का औज़ार चुनो, फिर चित्र की जगह पर छूकर पेड़ बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "canvas",
+     "expect": "drawn",
+     "say": {
+      "en": "Now pick the bird tool and add a bird to your tree.",
+      "hi": "अब पक्षी का औज़ार चुनो और अपने पेड़ पर एक पक्षी बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tool:watch",
+     "expect": "watched",
+     "say": {
+      "en": "Press Watch to see how an artist builds the picture.",
+      "hi": "देखो दबाओ और देखो कि कलाकार चित्र कैसे बनाता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Gond art is a way of painting on walls and cloth that people of the Gond community have made for a very long time. The pictures show trees, birds, animals and people, filled with dots and lines. The colours come from nature: flowers, leaves and powdered coloured stones. So the art, the people and the forest belong together.",
+      "hi": "गोंड कला दीवारों और कपड़े पर चित्र बनाने का तरीका है जिसे गोंड समुदाय के लोग बहुत समय से बनाते आए हैं। चित्रों में पेड़, पक्षी, जानवर और लोग होते हैं जो बिंदुओं और रेखाओं से भरे होते हैं। रंग प्रकृति से आते हैं: फूल, पत्तियाँ और पिसे हुए रंगीन पत्थर। इस तरह कला, लोग और जंगल एक-दूसरे से जुड़े हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where do the colours of Gond paintings come from?",
+        "hi": "गोंड चित्रों के रंग कहाँ से आते हैं?"
+       },
+       "options": [
+        {
+         "en": "From flowers, leaves and coloured stones",
+         "hi": "फूलों, पत्तियों और रंगीन पत्थरों से"
+        },
+        {
+         "en": "From plastic factories",
+         "hi": "प्लास्टिक के कारख़ानों से"
+        },
+        {
+         "en": "From television screens",
+         "hi": "टीवी की स्क्रीन से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gond artists use natural colours.",
+        "hi": "गोंड कलाकार प्राकृतिक रंग इस्तेमाल करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Natural colours are not made from plastic.",
+         "hi": "प्राकृतिक रंग प्लास्टिक से नहीं बनते।"
+        },
+        {
+         "en": "A screen only shows light and cannot give paint.",
+         "hi": "स्क्रीन सिर्फ़ रोशनी दिखाती है, रंग नहीं देती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is a Gond painting about?",
+        "hi": "इनमें से गोंड चित्र किसके बारे में है?"
+       },
+       "options": [
+        {
+         "en": "A busy airport",
+         "hi": "एक व्यस्त हवाई अड्डा"
+        },
+        {
+         "en": "A tree full of birds",
+         "hi": "पक्षियों से भरा पेड़"
+        },
+        {
+         "en": "A new mobile phone",
+         "hi": "एक नया मोबाइल फ़ोन"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Gond paintings show nature and living things.",
+        "hi": "गोंड चित्रों में प्रकृति और जीव दिखते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "An airport is a modern place; Gond art draws forest life.",
+         "hi": "हवाई अड्डा आधुनिक जगह है; गोंड कला जंगल के जीवन को बनाती है।"
+        },
+        "",
+        {
+         "en": "A phone is new and not part of the traditional pictures.",
+         "hi": "फ़ोन नया है और परंपरागत चित्रों का हिस्सा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a Gond-style picture of a peacock using only dots and short lines.",
+      "hi": "सिर्फ़ बिंदुओं और छोटी रेखाओं से मोर का गोंड शैली का चित्र बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch04-natural-dye",
+   "topic": "4.3",
+   "template": "sequence",
+   "title": {
+    "en": "Making a natural dye",
+    "hi": "प्राकृतिक रंग बनाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "collect",
+      "text": {
+       "en": "Collect colourful flowers, leaves, bark or roots, such as marigold, hibiscus or beetroot.",
+       "hi": "रंग वाले फूल, पत्तियाँ, छाल या जड़ें इकट्ठी करो, जैसे गेंदा, गुड़हल या चुकंदर।"
+      }
+     },
+     {
+      "id": "boil",
+      "text": {
+       "en": "With an adult, boil them in 1 to 2 litres of water for 30 to 60 minutes under a lid.",
+       "hi": "किसी बड़े के साथ उन्हें 1 से 2 लीटर पानी में ढककर 30 से 60 मिनट उबालो।"
+      }
+     },
+     {
+      "id": "strain",
+      "text": {
+       "en": "Strain the liquid to remove the plant parts. The coloured liquid is the dye.",
+       "hi": "तरल को छान लो ताकि पौधे के टुकड़े निकल जाएँ। रंगीन तरल ही रंग है।"
+      }
+     },
+     {
+      "id": "soak",
+      "text": {
+       "en": "Soak a light-coloured cloth in the dye overnight.",
+       "hi": "हल्के रंग के कपड़े को रात भर रंग में भिगो दो।"
+      }
+     },
+     {
+      "id": "dry",
+      "text": {
+       "en": "Next morning, squeeze the cloth and let it dry.",
+       "hi": "अगली सुबह कपड़ा निचोड़ो और सूखने दो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:collect",
+     "expect": "placed:collect",
+     "say": {
+      "en": "Put the first step in place: gather the plant parts.",
+      "hi": "पहला क़दम रखो: पौधे के भाग इकट्ठे करना।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why is an adult needed when we boil the plant parts?",
+      "hi": "पौधे के भाग उबालते समय बड़े की ज़रूरत क्यों है?"
+     },
+     "options": [
+      {
+       "id": "hot",
+       "en": "Boiling water is hot and can burn us",
+       "hi": "उबलता पानी गर्म होता है और जला सकता है"
+      },
+      {
+       "id": "cold",
+       "en": "Water is cold",
+       "hi": "पानी ठंडा होता है"
+      },
+      {
+       "id": "none",
+       "en": "There is no reason",
+       "hi": "कोई कारण नहीं"
+      }
+     ],
+     "answer": "hot"
+    },
+    {
+     "kind": "do",
+     "target": "item:boil",
+     "expect": "placed:boil",
+     "say": {
+      "en": "Place the boiling step.",
+      "hi": "उबालने वाला क़दम रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other steps in order, then press Check.",
+      "hi": "बाक़ी क़दम क्रम में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Colour can be taken from plants. Boiling the flowers, leaves or bark in water lets their colour come out into the water. Straining removes the pieces and leaves clear dye. A cloth soaked overnight takes up the colour. Natural dyes are safe to use and have been used on clothes and pots for ages.",
+      "hi": "रंग पौधों से लिया जा सकता है। फूल, पत्तियाँ या छाल पानी में उबालने से उनका रंग पानी में आ जाता है। छानने से टुकड़े निकल जाते हैं और साफ़ रंग रह जाता है। रात भर भीगा कपड़ा रंग सोख लेता है। प्राकृतिक रंग सुरक्षित होते हैं और कपड़ों व मिट्टी के बर्तनों पर बहुत समय से इस्तेमाल हो रहे हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we strain the liquid?",
+        "hi": "हम तरल को छानते क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "To make it hotter",
+         "hi": "इसे और गर्म करने के लिए"
+        },
+        {
+         "en": "To remove the plant pieces and keep the dye",
+         "hi": "पौधे के टुकड़े निकालकर रंग रखने के लिए"
+        },
+        {
+         "en": "To add more water",
+         "hi": "और पानी मिलाने के लिए"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Straining separates the pieces from the coloured liquid.",
+        "hi": "छानने से टुकड़े रंगीन तरल से अलग हो जाते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Straining does not heat anything.",
+         "hi": "छानने से कुछ गर्म नहीं होता।"
+        },
+        "",
+        {
+         "en": "Water is not added when straining; the liquid is just poured through.",
+         "hi": "छानते समय पानी नहीं मिलाया जाता; तरल सिर्फ़ छलनी से डाला जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which plant parts in your kitchen might give a colour: turmeric, spinach, onion skins? Ask an elder to help you try.",
+      "hi": "तुम्हारी रसोई के कौन-से पौधे के भाग रंग दे सकते हैं: हल्दी, पालक, प्याज़ के छिलके? किसी बड़े की मदद से आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch04-natural-materials",
+   "topic": "4.4",
+   "template": "match",
+   "title": {
+    "en": "Natural things and what they do",
+    "hi": "प्राकृतिक चीज़ें और उनका काम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "house",
+      "left": {
+       "en": "Clay, hay and cow dung",
+       "hi": "मिट्टी, भूसा और गोबर"
+      },
+      "right": {
+       "en": "Walls and roofs of village houses",
+       "hi": "गाँव के घरों की दीवारें और छतें"
+      },
+      "why": {
+       "en": "Many village houses are made of natural things found nearby.",
+       "hi": "गाँव के कई घर पास में मिलने वाली प्राकृतिक चीज़ों से बनते हैं।"
+      }
+     },
+     {
+      "id": "neem",
+      "left": {
+       "en": "Neem leaves inside an earthen pot",
+       "hi": "मिट्टी के घड़े में नीम की पत्तियाँ"
+      },
+      "right": {
+       "en": "Keep stored grains safe from insects",
+       "hi": "रखे हुए अनाज को कीड़ों से बचाती हैं"
+      },
+      "why": {
+       "en": "The pot is lined with neem leaves so insects stay away from the grain.",
+       "hi": "घड़े में नीम की पत्तियाँ लगाते हैं ताकि कीड़े अनाज से दूर रहें।"
+      }
+     },
+     {
+      "id": "basket",
+      "left": {
+       "en": "Cow dung on a bamboo basket",
+       "hi": "बाँस की टोकरी पर गोबर की परत"
+      },
+      "right": {
+       "en": "Protects the stored grains from pests",
+       "hi": "रखे हुए अनाज को कीटों से बचाती है"
+      },
+      "why": {
+       "en": "The coating on the outside of the basket keeps pests away from the grain.",
+       "hi": "टोकरी के बाहर की परत अनाज को कीटों से बचाती है।"
+      }
+     },
+     {
+      "id": "flour",
+      "left": {
+       "en": "Rice flour mixed with water",
+       "hi": "चावल का आटा पानी में घोला हुआ"
+      },
+      "right": {
+       "en": "A white colour to paint on walls",
+       "hi": "दीवारों पर चित्र बनाने का सफ़ेद रंग"
+      },
+      "why": {
+       "en": "A paste of rice flour and water makes a dye for wall paintings.",
+       "hi": "चावल के आटे और पानी का घोल दीवार के चित्रों का रंग बनता है।"
+      }
+     },
+     {
+      "id": "stones",
+      "left": {
+       "en": "Flowers, leaves and powdered stones",
+       "hi": "फूल, पत्तियाँ और पिसे हुए पत्थर"
+      },
+      "right": {
+       "en": "Natural colours for Gond paintings",
+       "hi": "गोंड चित्रों के लिए प्राकृतिक रंग"
+      },
+      "why": {
+       "en": "Gond artists make their colours from these natural things.",
+       "hi": "गोंड कलाकार अपने रंग इन्हीं प्राकृतिक चीज़ों से बनाते हैं।"
+      }
+     },
+     {
+      "id": "oil",
+      "left": {
+       "en": "Neem oil",
+       "hi": "नीम का तेल"
+      },
+      "right": {
+       "en": "Rubbed on hands and feet to keep mosquitoes away",
+       "hi": "हाथ-पैरों पर लगाने से मच्छर दूर रहते हैं"
+      },
+      "why": {
+       "en": "A mixture with neem oil is used at home to keep mosquitoes from biting.",
+       "hi": "नीम के तेल का मिश्रण घर में मच्छरों से बचने के लिए लगाया जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:house",
+     "expect": "matched:house",
+     "say": {
+      "en": "Match clay, hay and cow dung with what they build.",
+      "hi": "मिट्टी, भूसा और गोबर को उससे मिलाओ जो वे बनाते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does a neem-lined earthen pot protect?",
+      "hi": "नीम की पत्तियों वाला मिट्टी का घड़ा किसकी रक्षा करता है?"
+     },
+     "options": [
+      {
+       "id": "grain",
+       "en": "The stored grains",
+       "hi": "रखे हुए अनाज की"
+      },
+      {
+       "id": "water",
+       "en": "Only the water",
+       "hi": "सिर्फ़ पानी की"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "किसी की नहीं"
+      }
+     ],
+     "answer": "grain"
+    },
+    {
+     "kind": "do",
+     "target": "left:neem",
+     "expect": "matched:neem",
+     "say": {
+      "en": "Match the neem leaves.",
+      "hi": "नीम की पत्तियों को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the rest, then press Check.",
+      "hi": "बाक़ी सब मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "People have long used what is near them: clay, hay and cow dung for houses, neem leaves and cow dung to keep pests away from grain, rice flour for painting, and neem oil against mosquitoes. These natural materials are cheap, safe and do not leave plastic waste. Passing such knowledge on from elders is part of our heritage.",
+      "hi": "लोग बहुत समय से अपने पास की चीज़ें इस्तेमाल करते आए हैं: घरों के लिए मिट्टी, भूसा और गोबर; अनाज को कीटों से बचाने के लिए नीम की पत्तियाँ और गोबर; चित्र बनाने के लिए चावल का आटा; और मच्छरों के लिए नीम का तेल। ये प्राकृतिक चीज़ें सस्ती, सुरक्षित हैं और प्लास्टिक का कचरा नहीं छोड़तीं। बड़ों से ऐसी जानकारी लेना हमारी विरासत का हिस्सा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are houses of clay, hay and cow dung good for a village?",
+        "hi": "मिट्टी, भूसे और गोबर से बने घर गाँव के लिए अच्छे क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "The materials are found nearby and do not make plastic waste",
+         "hi": "ये चीज़ें पास में मिल जाती हैं और प्लास्टिक का कचरा नहीं बनातीं"
+        },
+        {
+         "en": "They are made in a factory",
+         "hi": "ये कारख़ाने में बनती हैं"
+        },
+        {
+         "en": "They never need any repair",
+         "hi": "इनकी कभी मरम्मत नहीं करनी पड़ती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Local natural materials are easy to get and kind to the environment.",
+        "hi": "स्थानीय प्राकृतिक चीज़ें आसानी से मिलती हैं और पर्यावरण के लिए अच्छी हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "These materials come from the earth and farms, not from a factory.",
+         "hi": "ये चीज़ें धरती और खेतों से आती हैं, कारख़ाने से नहीं।"
+        },
+        {
+         "en": "Every house needs some repair now and then, even a clay house.",
+         "hi": "हर घर की समय-समय पर मरम्मत करनी पड़ती है, मिट्टी के घर की भी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask an elder in your family how grain was stored when they were young.",
+      "hi": "अपने परिवार के किसी बड़े से पूछो कि उनके बचपन में अनाज कैसे रखा जाता था।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch04-care-or-harm",
+   "topic": "4.7",
+   "template": "sort",
+   "title": {
+    "en": "Caring for nature",
+    "hi": "प्रकृति की देखभाल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "care",
+      "label": {
+       "en": "Cares for nature",
+       "hi": "प्रकृति की देखभाल"
+      }
+     },
+     {
+      "id": "harm",
+      "label": {
+       "en": "Harms nature",
+       "hi": "प्रकृति को नुक़सान"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tree",
+      "text": {
+       "en": "Plant a tree and water it",
+       "hi": "पेड़ लगाओ और पानी दो"
+      },
+      "bin": "care",
+      "why": {
+       "en": "Trees give shade, food and homes to birds, and clean the air.",
+       "hi": "पेड़ छाया, भोजन और पक्षियों को घर देते हैं और हवा साफ़ करते हैं।"
+      }
+     },
+     {
+      "id": "birds",
+      "text": {
+       "en": "Keep water and food out for birds",
+       "hi": "पक्षियों के लिए दाना-पानी रखो"
+      },
+      "bin": "care",
+      "why": {
+       "en": "In hot days birds need water. A small bowl helps them.",
+       "hi": "गर्मी में पक्षियों को पानी चाहिए। एक छोटा कटोरा उनकी मदद करता है।"
+      }
+     },
+     {
+      "id": "bag",
+      "text": {
+       "en": "Say no to plastic bags",
+       "hi": "प्लास्टिक की थैली को ना कहो"
+      },
+      "bin": "care",
+      "why": {
+       "en": "Plastic does not rot. Using cloth bags creates less waste.",
+       "hi": "प्लास्टिक सड़ता नहीं। कपड़े की थैली से कम कचरा बनता है।"
+      }
+     },
+     {
+      "id": "paper",
+      "text": {
+       "en": "Use both sides of a paper",
+       "hi": "काग़ज़ के दोनों ओर लिखो"
+      },
+      "bin": "care",
+      "why": {
+       "en": "Less paper used means fewer trees cut.",
+       "hi": "कम काग़ज़ इस्तेमाल हो तो कम पेड़ कटते हैं।"
+      }
+     },
+     {
+      "id": "clean",
+      "text": {
+       "en": "Join a clean-up drive",
+       "hi": "सफ़ाई अभियान में शामिल हो"
+      },
+      "bin": "care",
+      "why": {
+       "en": "Clean surroundings are healthy for people, plants and animals.",
+       "hi": "साफ़ आसपास लोगों, पौधों और जानवरों के लिए स्वास्थ्यकर होता है।"
+      }
+     },
+     {
+      "id": "cut",
+      "text": {
+       "en": "Cut many trees for wood we do not need",
+       "hi": "बिना ज़रूरत के बहुत पेड़ काटो"
+      },
+      "bin": "harm",
+      "why": {
+       "en": "Overusing wood makes forests smaller, and animals lose their homes.",
+       "hi": "लकड़ी का ज़्यादा इस्तेमाल जंगल घटाता है और जानवरों के घर छिन जाते हैं।"
+      }
+     },
+     {
+      "id": "river",
+      "text": {
+       "en": "Throw plastic into a river",
+       "hi": "नदी में प्लास्टिक फेंको"
+      },
+      "bin": "harm",
+      "why": {
+       "en": "Plastic spoils water and can harm the fish and other animals that live there.",
+       "hi": "प्लास्टिक पानी को गंदा करता है और वहाँ रहने वाली मछलियों व दूसरे जानवरों को नुक़सान पहुँचाता है।"
+      }
+     },
+     {
+      "id": "tap",
+      "text": {
+       "en": "Leave a tap running while brushing",
+       "hi": "ब्रश करते समय नल चालू छोड़ो"
+      },
+      "bin": "harm",
+      "why": {
+       "en": "Water is limited. Letting it run wastes it.",
+       "hi": "पानी सीमित है। नल चालू छोड़ने से वह बर्बाद होता है।"
+      }
+     },
+     {
+      "id": "sea",
+      "text": {
+       "en": "Catch far more sea fish than we need",
+       "hi": "ज़रूरत से कहीं ज़्यादा समुद्री मछलियाँ पकड़ो"
+      },
+      "bin": "harm",
+      "why": {
+       "en": "If too many fish are taken, there are fewer left to grow back.",
+       "hi": "बहुत ज़्यादा मछलियाँ पकड़ने पर आगे बढ़ने के लिए कम बचती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:tree",
+     "expect": "correct:tree",
+     "say": {
+      "en": "Tap 'Plant a tree and water it' and place it in the right group.",
+      "hi": "'पेड़ लगाओ और पानी दो' छुओ और सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is better for nature: a cloth bag or a plastic bag?",
+      "hi": "प्रकृति के लिए कौन बेहतर है: कपड़े की थैली या प्लास्टिक की थैली?"
+     },
+     "options": [
+      {
+       "id": "cloth",
+       "en": "A cloth bag",
+       "hi": "कपड़े की थैली"
+      },
+      {
+       "id": "plastic",
+       "en": "A plastic bag",
+       "hi": "प्लास्टिक की थैली"
+      },
+      {
+       "id": "same",
+       "en": "Both are the same",
+       "hi": "दोनों बराबर हैं"
+      }
+     ],
+     "answer": "cloth"
+    },
+    {
+     "kind": "do",
+     "target": "card:bag",
+     "expect": "correct:bag",
+     "say": {
+      "en": "Place 'Say no to plastic bags' in the right group.",
+      "hi": "'प्लास्टिक की थैली को ना कहो' को सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी को छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We take food, clothes, medicine, wood and water from nature. If we use too much or waste, forests shrink, water runs short and animals lose their homes. If we use carefully, plant trees, avoid plastic and help birds, nature keeps giving. In India we also respect plants and animals in festivals and sacred groves.",
+      "hi": "हम प्रकृति से भोजन, कपड़े, दवाएँ, लकड़ी और पानी लेते हैं। ज़्यादा इस्तेमाल या बर्बादी से जंगल घटते हैं, पानी कम पड़ता है और जानवरों के घर छिन जाते हैं। ध्यान से इस्तेमाल करने, पेड़ लगाने, प्लास्टिक से बचने और पक्षियों की मदद करने से प्रकृति देती रहती है। हमारे देश में त्योहारों और पवित्र वनों में भी पेड़-पौधों और जानवरों का सम्मान किया जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one helps nature?",
+        "hi": "इनमें से कौन प्रकृति की मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "Throwing plastic in a field",
+         "hi": "खेत में प्लास्टिक फेंकना"
+        },
+        {
+         "en": "Planting a sapling",
+         "hi": "पौधा लगाना"
+        },
+        {
+         "en": "Wasting water",
+         "hi": "पानी बर्बाद करना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A sapling grows into a tree that gives shade, food and a home to birds.",
+        "hi": "पौधा बड़ा होकर पेड़ बनता है जो छाया, भोजन और पक्षियों को घर देता है।"
+       },
+       "wrong": [
+        {
+         "en": "Plastic stays in the soil for years and harms animals.",
+         "hi": "प्लास्टिक सालों तक मिट्टी में रहता है और जानवरों को नुक़सान पहुँचाता है।"
+        },
+        "",
+        {
+         "en": "Wasting water leaves less for plants, animals and people.",
+         "hi": "पानी बर्बाद करने से पौधों, जानवरों और लोगों के लिए कम बचता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose one action from the 'Cares for nature' group and do it this week at home.",
+      "hi": "'प्रकृति की देखभाल' समूह से एक काम चुनो और इस हफ़्ते घर पर करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Chapter hook for the village near the forest",
+   "shows": "A village at the forest edge with a blooming Palash tree full of orange-red flowers, solar panels on a roof, string lights ready for a festival",
+   "view": "Eye level, golden hour",
+   "right": "Palash flowers bright orange-red on bare branches; mud houses",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.3",
+   "use": "Cut-outs for the natural dye sequence",
+   "shows": "Marigold flowers, hibiscus flowers, a beetroot, a turmeric root, green leaves, a steel pot with a lid, a strainer, a light cotton handkerchief",
+   "view": "Top view for flat things and front view for the pot, soft shadow",
+   "right": "True colours: marigold orange, beetroot deep purple-red",
+   "avoid": "Brand names, text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "4.3",
+   "use": "Frames for dye steps",
+   "shows": "Five frames of the same kitchen counter: plant parts in a bowl, a pot on a stove with a lid and an adult's hand, liquid being strained, a cloth soaking in dye, the dried dyed cloth",
+   "view": "Same camera and light, from above",
+   "right": "Dye colour gets deeper from frame 3 to 5; adult hand only",
+   "avoid": "Faces, flame near children, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Reader picture for Gond art",
+   "shows": "An original Gond-style painting of a tree with birds on a mud wall, an artist's hands applying colour with a thin brush",
+   "view": "Close three-quarter view, soft light",
+   "right": "Dots and lines filled in with natural-looking colours; original artwork only",
+   "avoid": "Copies of real artists' paintings, faces"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.4",
+   "use": "Cut-outs for the natural-materials match",
+   "shows": "An earthen grain pot with neem leaves inside, a bamboo basket coated with cow dung, a round hut with a thatched cone roof, a bowl of rice flour paste",
+   "view": "Front view, soft shadow",
+   "right": "Real rural materials; hut with a cone-shaped roof of hay",
+   "avoid": "Writing, brand names"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.7",
+   "use": "Opening picture for caring for nature",
+   "shows": "Children's hands placing a bowl of water and grain for birds on a terrace wall, birds waiting on a tree nearby",
+   "view": "Eye level, morning light",
+   "right": "Sparrows and a dove drinking; steel bowl, no plastic",
+   "avoid": "Faces, text"
+  }
+ ]
+}

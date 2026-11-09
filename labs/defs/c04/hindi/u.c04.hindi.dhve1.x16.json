@@ -1,0 +1,287 @@
+{
+  "chapter_key": "u.c04.hindi.dhve1.x16",
+  "class": 4,
+  "subject_id": "hindi",
+  "title": "Jalebi (जलेबी)",
+  "source": "https://ncert.nic.in/textbook.php?dhve1=0-13",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Maze: following number names in order",
+      "labs": [
+        "c04-hindi-dhve1-x16-maze"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-hindi-dhve1-x16-maze",
+      "topic": "1",
+      "template": "sequence",
+      "title": {
+        "en": "Jalebi maze: number names in order",
+        "hi": "जलेबी भूल-भुलैया: संख्या-नाम क्रम में"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "n5",
+            "text": {
+              "en": "Five (paanch)",
+              "hi": "पाँच"
+            }
+          },
+          {
+            "id": "n6",
+            "text": {
+              "en": "Six (chhah)",
+              "hi": "छह"
+            }
+          },
+          {
+            "id": "n7",
+            "text": {
+              "en": "Seven (saat)",
+              "hi": "सात"
+            }
+          },
+          {
+            "id": "n8",
+            "text": {
+              "en": "Eight (aath)",
+              "hi": "आठ"
+            }
+          },
+          {
+            "id": "n9",
+            "text": {
+              "en": "Nine (nau)",
+              "hi": "नौ"
+            }
+          },
+          {
+            "id": "n10",
+            "text": {
+              "en": "Ten (das)",
+              "hi": "दस"
+            }
+          },
+          {
+            "id": "n11",
+            "text": {
+              "en": "Eleven (gyaarah)",
+              "hi": "ग्यारह"
+            }
+          },
+          {
+            "id": "n12",
+            "text": {
+              "en": "Twelve (baarah)",
+              "hi": "बारह"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:n5",
+          "expect": "placed:n5",
+          "say": {
+            "en": "Tap the card that happens FIRST, then tap place 1.",
+            "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर जगह 1 छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which card comes LAST?",
+            "hi": "अनुमान लगाओ: सबसे अंत में कौन-सा कार्ड आएगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Twelve (baarah)",
+              "hi": "बारह"
+            },
+            {
+              "id": "b",
+              "en": "Six (chhah)",
+              "hi": "छह"
+            },
+            {
+              "id": "c",
+              "en": "Nine (nau)",
+              "hi": "नौ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:n12",
+          "expect": "placed:n12",
+          "say": {
+            "en": "Now put the LAST card in the last place.",
+            "hi": "अब सबसे अंतिम कार्ड को आखिरी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Fill all the places in order, then press Check.",
+            "hi": "सारी जगहें क्रम से भरो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The jalebi maze is solved by following the number names in order, one step after another. When you know the order of the number words, you can find your way out of the jalebi.",
+            "hi": "जलेबी की भूल-भुलैया संख्या-नामों को क्रम से, एक के बाद एक, चलने से हल होती है। संख्या-शब्दों का क्रम जानो तो जलेबी से बाहर निकलने का रास्ता मिल जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which card comes right after: 'Five (paanch)'?",
+                "hi": "'पाँच' के ठीक बाद कौन-सा कार्ड आता है?"
+              },
+              "options": [
+                {
+                  "en": "Seven (saat)",
+                  "hi": "सात"
+                },
+                {
+                  "en": "Eight (aath)",
+                  "hi": "आठ"
+                },
+                {
+                  "en": "Six (chhah)",
+                  "hi": "छह"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "After step 1 comes step 2: Six (chhah)",
+                "hi": "क्रम 1 के बाद क्रम 2 आता है: छह"
+              },
+              "wrong": [
+                {
+                  "en": "That is step 3, not the step right after step 1.",
+                  "hi": "यह तो क्रम में 3 नंबर पर आता है, 1 के ठीक बाद नहीं।"
+                },
+                {
+                  "en": "That is step 4, not the step right after step 1.",
+                  "hi": "यह तो क्रम में 4 नंबर पर आता है, 1 के ठीक बाद नहीं।"
+                },
+                ""
+              ]
+            },
+            {
+              "q": {
+                "en": "Which card comes right after: 'Eight (aath)'?",
+                "hi": "'आठ' के ठीक बाद कौन-सा कार्ड आता है?"
+              },
+              "options": [
+                {
+                  "en": "Five (paanch)",
+                  "hi": "पाँच"
+                },
+                {
+                  "en": "Nine (nau)",
+                  "hi": "नौ"
+                },
+                {
+                  "en": "Six (chhah)",
+                  "hi": "छह"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "After step 4 comes step 5: Nine (nau)",
+                "hi": "क्रम 4 के बाद क्रम 5 आता है: नौ"
+              },
+              "wrong": [
+                {
+                  "en": "That is step 1, not the step right after step 4.",
+                  "hi": "यह तो क्रम में 1 नंबर पर आता है, 4 के ठीक बाद नहीं।"
+                },
+                "",
+                {
+                  "en": "That is step 2, not the step right after step 4.",
+                  "hi": "यह तो क्रम में 2 नंबर पर आता है, 4 के ठीक बाद नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Count aloud in Hindi from एक to पंद्रह and then backwards.",
+            "hi": "हिंदी में एक से पंद्रह तक ज़ोर से गिनो और फिर उलटा गिनो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "DIA",
+      "topic": "1",
+      "use": "Opens the item",
+      "shows": "A big round jalebi spiral shape drawn as a clean maze with a start and an end, plain background and no numbers",
+      "view": "Flat front, square",
+      "right": "Clear path of one lane width, golden-orange colours",
+      "avoid": "Any text or numbers"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Reader",
+      "shows": "A plate of fresh jalebi, on transparent background",
+      "view": "Three-quarter view",
+      "right": "Golden crispy spirals with syrup shine",
+      "avoid": "Brand mark"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Reader",
+      "shows": "A halwai frying jalebi in a wide iron pan, only hands and pan in frame",
+      "view": "Close, from the side",
+      "right": "Real spiral batter, hot oil, safe distance",
+      "avoid": "Face of halwai"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Reader",
+      "shows": "A child's hands tracing a path with a finger on a printed maze on paper, face out of frame",
+      "view": "Top-down, close",
+      "right": "Clear maze lines and a pencil",
+      "avoid": "Face visible"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sequence card: number tiles",
+      "shows": "Eight plain wooden number tiles with a blank face, in a row",
+      "view": "Top view",
+      "right": "Natural wood, clean surface for the app to print numbers",
+      "avoid": "Printed numbers"
+    }
+  ]
+}

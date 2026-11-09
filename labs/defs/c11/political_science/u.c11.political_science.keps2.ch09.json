@@ -1,0 +1,1265 @@
+{
+ "chapter_key": "u.c11.political_science.keps2.ch09",
+ "class": 11,
+ "subject_id": "political_science",
+ "title": "Constitution as a Living Document",
+ "source": "https://ncert.nic.in/textbook/pdf/keps209.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Are constitutions static?",
+   "labs": [
+    "c11-political_science-keps2-ch09-sort-living"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "How to amend the Constitution",
+   "labs": [
+    "c11-political_science-keps2-ch09-amend",
+    "c11-political_science-keps2-ch09-sort-procedure"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Why have there been so many amendments?",
+   "labs": [
+    "c11-political_science-keps2-ch09-timeline-amendments"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Basic structure and the evolution of the Constitution",
+   "labs": [
+    "c11-political_science-keps2-ch09-sort-basic-structure"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "The Constitution as a living document",
+   "labs": [
+    "c11-political_science-keps2-ch09-sort-living"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-political_science-keps2-ch09-amend",
+   "topic": "9.2",
+   "template": "govern",
+   "title": {
+    "en": "Amending the Constitution",
+    "hi": "संविधान में संशोधन"
+   },
+   "minutes": 9,
+   "level": "core",
+   "config": {
+    "mode": "law-making",
+    "options": {
+     "bill": "amendment",
+     "supportLs": 75,
+     "supportRs": 75
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "stage:introduce",
+     "expect": "advanced:introduce",
+     "say": {
+      "en": "Introduce the amendment bill.",
+      "hi": "संशोधन विधेयक पेश करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:committee",
+     "expect": "advanced:committee",
+     "say": {
+      "en": "Send it to the committee.",
+      "hi": "इसे समिति में भेजो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:ls-debate",
+     "expect": "advanced:ls-debate",
+     "say": {
+      "en": "Let the Lok Sabha debate it.",
+      "hi": "लोक सभा में बहस होने दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:ls-vote",
+     "expect": "passed",
+     "say": {
+      "en": "Hold the Lok Sabha vote. Three-quarters of members support it.",
+      "hi": "लोक सभा में मतदान कराओ। तीन-चौथाई सदस्य पक्ष में हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Will a simple majority be enough to amend the Constitution?",
+      "hi": "क्या संविधान संशोधन के लिए सामान्य बहुमत काफ़ी होगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, a special majority is needed",
+       "hi": "नहीं, विशेष बहुमत चाहिए"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, 272 members are enough",
+       "hi": "हाँ, 272 सदस्य काफ़ी हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "stage:rs-vote",
+     "expect": "passed",
+     "say": {
+      "en": "Hold the vote in the Rajya Sabha.",
+      "hi": "राज्य सभा में मतदान कराओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:assent",
+     "expect": "advanced:assent",
+     "say": {
+      "en": "Send it for the President's assent.",
+      "hi": "इसे राष्ट्रपति की स्वीकृति के लिए भेजो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To amend the Constitution (Article 368), a bill must be passed by each House by a special majority: two-thirds of members present and voting, and also a majority of all the members of the House. For some parts, mainly about federalism, half of the State legislatures must also agree. Then the President gives assent. Both Houses must agree; there is no joint sitting.",
+      "hi": "संविधान संशोधन (अनुच्छेद 368) के लिए विधेयक को हर सदन में विशेष बहुमत से पास होना होता है: उपस्थित और मतदान करने वाले सदस्यों के दो-तिहाई, और सदन की कुल सदस्य संख्या का बहुमत। संघवाद से जुड़े कुछ भागों के लिए आधे राज्य विधानमंडलों की सहमति भी चाहिए। फिर राष्ट्रपति की स्वीकृति मिलती है। दोनों सदनों की सहमति चाहिए; संयुक्त बैठक नहीं होती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What majority is needed in each House to amend most of the Constitution?",
+        "hi": "संविधान के अधिकांश भाग के संशोधन के लिए हर सदन में कौन-सा बहुमत चाहिए?"
+       },
+       "options": [
+        {
+         "en": "A special majority",
+         "hi": "विशेष बहुमत"
+        },
+        {
+         "en": "Any one vote more than half of those present",
+         "hi": "उपस्थित सदस्यों के आधे से एक अधिक"
+        },
+        {
+         "en": "A joint sitting",
+         "hi": "संयुक्त बैठक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two-thirds of those present and voting plus a majority of the whole House: a much higher bar than for an ordinary law.",
+        "hi": "उपस्थित और मतदान करने वालों के दो-तिहाई तथा पूरे सदन का बहुमत: साधारण क़ानून से कहीं ऊँची सीमा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the rule for an ordinary law, not for an amendment.",
+         "hi": "यह साधारण क़ानून का नियम है, संशोधन का नहीं।"
+        },
+        {
+         "en": "An amendment cannot go to a joint sitting; each House must pass it.",
+         "hi": "संशोधन संयुक्त बैठक में नहीं जा सकता; हर सदन को उसे पास करना होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the Constitution make amendment harder than ordinary law-making?",
+        "hi": "संविधान संशोधन को साधारण क़ानून बनाने से कठिन क्यों बनाता है?"
+       },
+       "options": [
+        {
+         "en": "So it can change when needed but not at the whim of one majority",
+         "hi": "ताकि ज़रूरत पर बदल सके पर किसी एक बहुमत की सनक पर नहीं"
+        },
+        {
+         "en": "So it can never change",
+         "hi": "ताकि यह कभी न बदले"
+        },
+        {
+         "en": "So that only the courts can change it",
+         "hi": "ताकि केवल अदालतें बदल सकें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Constitution has to be firm yet flexible, and the special majority needs wide agreement across parties.",
+        "hi": "संविधान दृढ़ भी हो और लचीला भी, और विशेष बहुमत के लिए दलों के बीच व्यापक सहमति चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It has been amended many times, so it can change.",
+         "hi": "इसमें कई बार संशोधन हुए, इसलिए यह बदल सकता है।"
+        },
+        {
+         "en": "Parliament amends it; courts review whether the amendment is valid.",
+         "hi": "संशोधन संसद करती है; अदालतें देखती हैं कि वह वैध है या नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and lower the Rajya Sabha slider. At what support does the amendment fail there?",
+      "hi": "रीसेट करके राज्य सभा का स्लाइडर घटाओ। कितने समर्थन पर संशोधन वहाँ असफल होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch09-sort-procedure",
+   "topic": "9.2",
+   "template": "sort",
+   "title": {
+    "en": "How hard is it to change?",
+    "hi": "बदलना कितना कठिन है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "simple",
+      "label": {
+       "en": "Simple majority",
+       "hi": "साधारण बहुमत"
+      }
+     },
+     {
+      "id": "special",
+      "label": {
+       "en": "Special majority",
+       "hi": "विशेष बहुमत"
+      }
+     },
+     {
+      "id": "states",
+      "label": {
+       "en": "Special + States agree",
+       "hi": "विशेष बहुमत + राज्य"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "newstate",
+      "text": {
+       "en": "Creating a new State",
+       "hi": "नया राज्य बनाना"
+      },
+      "bin": "simple",
+      "why": {
+       "en": "Articles 3 and 4 let Parliament do this by an ordinary law.",
+       "hi": "अनुच्छेद 3 और 4 संसद को यह साधारण क़ानून से करने देते हैं।"
+      }
+     },
+     {
+      "id": "rename",
+      "text": {
+       "en": "Changing the name of a State",
+       "hi": "किसी राज्य का नाम बदलना"
+      },
+      "bin": "simple",
+      "why": {
+       "en": "This too is done by an ordinary law of Parliament.",
+       "hi": "यह भी संसद के साधारण क़ानून से होता है।"
+      }
+     },
+     {
+      "id": "citizen",
+      "text": {
+       "en": "Rules for who is a citizen",
+       "hi": "कौन नागरिक है, इसके नियम"
+      },
+      "bin": "simple",
+      "why": {
+       "en": "Parliament can make laws on citizenship by ordinary law.",
+       "hi": "संसद नागरिकता पर साधारण क़ानून बना सकती है।"
+      }
+     },
+     {
+      "id": "fr",
+      "text": {
+       "en": "Changing Fundamental Rights",
+       "hi": "मौलिक अधिकारों में बदलाव"
+      },
+      "bin": "special",
+      "why": {
+       "en": "These need a special majority in each House.",
+       "hi": "इनके लिए हर सदन में विशेष बहुमत चाहिए।"
+      }
+     },
+     {
+      "id": "dp",
+      "text": {
+       "en": "Adding a Directive Principle",
+       "hi": "नया नीति-निदेशक तत्व जोड़ना"
+      },
+      "bin": "special",
+      "why": {
+       "en": "A special majority in Parliament is enough.",
+       "hi": "संसद में विशेष बहुमत काफ़ी है।"
+      }
+     },
+     {
+      "id": "lists",
+      "text": {
+       "en": "Changing the Union and State Lists",
+       "hi": "संघ और राज्य सूचियों में बदलाव"
+      },
+      "bin": "states",
+      "why": {
+       "en": "It affects the balance between Centre and States, so half the States must agree too.",
+       "hi": "इससे केंद्र-राज्य संतुलन प्रभावित होता है, इसलिए आधे राज्यों की सहमति भी चाहिए।"
+      }
+     },
+     {
+      "id": "president",
+      "text": {
+       "en": "The way the President is elected",
+       "hi": "राष्ट्रपति के चुनाव की विधि"
+      },
+      "bin": "states",
+      "why": {
+       "en": "States take part in this election, so they must agree to changes.",
+       "hi": "इस चुनाव में राज्य भाग लेते हैं, इसलिए बदलाव पर उनकी सहमति चाहिए।"
+      }
+     },
+     {
+      "id": "courts",
+      "text": {
+       "en": "The powers of the Supreme Court and High Courts",
+       "hi": "सर्वोच्च और उच्च न्यायालयों की शक्तियाँ"
+      },
+      "bin": "states",
+      "why": {
+       "en": "The judiciary is shared by Union and States, so States must agree.",
+       "hi": "न्यायपालिका संघ और राज्यों दोनों की साझी है, इसलिए राज्यों की सहमति चाहिए।"
+      }
+     },
+     {
+      "id": "rsseats",
+      "text": {
+       "en": "How many Rajya Sabha seats each State gets",
+       "hi": "हर राज्य को राज्य सभा की कितनी सीटें"
+      },
+      "bin": "states",
+      "why": {
+       "en": "It touches the representation of States, so they must agree.",
+       "hi": "यह राज्यों के प्रतिनिधित्व से जुड़ा है, इसलिए उनकी सहमति चाहिए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:newstate",
+     "expect": "placed:newstate",
+     "say": {
+      "en": "Tap the card about creating a new State and pick how hard it is to change.",
+      "hi": "नया राज्य बनाने वाला कार्ड छुओ और चुनो कि यह कितना कठिन है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Changing the powers of the Supreme Court touches both Union and States. What is needed?",
+      "hi": "सर्वोच्च न्यायालय की शक्तियाँ बदलना संघ और राज्य दोनों को छूता है। क्या चाहिए?"
+     },
+     "options": [
+      {
+       "id": "states",
+       "en": "A special majority and half the States",
+       "hi": "विशेष बहुमत और आधे राज्य"
+      },
+      {
+       "id": "simple",
+       "en": "A simple majority",
+       "hi": "साधारण बहुमत"
+      }
+     ],
+     "answer": "states"
+    },
+    {
+     "kind": "do",
+     "target": "card:courts",
+     "expect": "placed:courts",
+     "say": {
+      "en": "Place the Supreme Court card.",
+      "hi": "सर्वोच्च न्यायालय वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Constitution can be changed in three ways. Some things can change by an ordinary law of Parliament, like the name of a State. Most things need a special majority in each House. A few that affect the balance between Centre and States also need half the State legislatures to agree. The harder the change, the more it protects something basic.",
+      "hi": "संविधान तीन तरह से बदला जा सकता है। कुछ बातें संसद के साधारण क़ानून से बदलती हैं, जैसे राज्य का नाम। अधिकांश के लिए हर सदन में विशेष बहुमत चाहिए। कुछ बातें, जो केंद्र-राज्य संतुलन को छूती हैं, उनके लिए आधे राज्य विधानमंडलों की सहमति भी चाहिए। बदलाव जितना कठिन, उतनी बुनियादी चीज़ की सुरक्षा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why must half of the States agree to some amendments?",
+        "hi": "कुछ संशोधनों पर आधे राज्यों की सहमति क्यों चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Because they change the balance between Centre and States",
+         "hi": "क्योंकि वे केंद्र और राज्यों के संतुलन को बदलते हैं"
+        },
+        {
+         "en": "Because States write the amendments",
+         "hi": "क्योंकि संशोधन राज्य लिखते हैं"
+        },
+        {
+         "en": "Because the President is a State officer",
+         "hi": "क्योंकि राष्ट्रपति राज्य के अधिकारी हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a federation, the Centre alone should not be able to change what concerns the States.",
+        "hi": "संघ में केंद्र अकेले वह नहीं बदल सकता जो राज्यों से जुड़ा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Amendments are introduced in Parliament, not written by States.",
+         "hi": "संशोधन संसद में पेश होते हैं, राज्य नहीं लिखते।"
+        },
+        {
+         "en": "The President is not a State officer; the reason is federal balance.",
+         "hi": "राष्ट्रपति राज्य के अधिकारी नहीं हैं; कारण संघीय संतुलन है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Is it good that some changes are very hard? Think of a change you would want to make easy and one hard.",
+      "hi": "क्या यह अच्छा है कि कुछ बदलाव बहुत कठिन हैं? एक बदलाव सोचो जो आसान हो और एक जो कठिन।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch09-timeline-amendments",
+   "topic": "9.3",
+   "template": "timeline",
+   "title": {
+    "en": "Amendments through the years",
+    "hi": "वर्षों में संशोधन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "range": [
+     1950,
+     2020
+    ],
+    "task": "order",
+    "title": {
+     "en": "Eight turning points",
+     "hi": "आठ मोड़"
+    },
+    "events": [
+     {
+      "id": "first",
+      "year": 1951,
+      "label": {
+       "en": "The First Amendment",
+       "hi": "पहला संशोधन"
+      },
+      "detail": {
+       "en": "Made within a year of the Constitution coming into force, it changed some fundamental rights.",
+       "hi": "संविधान लागू होने के एक साल के भीतर हुआ, इसने कुछ मौलिक अधिकार बदले।"
+      }
+     },
+     {
+      "id": "kesavananda",
+      "year": 1973,
+      "label": {
+       "en": "The basic structure ruling",
+       "hi": "मूल ढाँचे का फ़ैसला"
+      },
+      "detail": {
+       "en": "The Supreme Court held that Parliament cannot destroy the basic structure of the Constitution.",
+       "hi": "सर्वोच्च न्यायालय ने माना कि संसद संविधान का मूल ढाँचा नष्ट नहीं कर सकती।"
+      }
+     },
+     {
+      "id": "a42",
+      "year": 1976,
+      "label": {
+       "en": "The 42nd Amendment",
+       "hi": "42वाँ संशोधन"
+      },
+      "detail": {
+       "en": "A big amendment that added the words socialist and secular to the Preamble.",
+       "hi": "बड़ा संशोधन जिसने प्रस्तावना में समाजवादी और पंथनिरपेक्ष शब्द जोड़े।"
+      }
+     },
+     {
+      "id": "a52",
+      "year": 1985,
+      "label": {
+       "en": "Anti-defection amendment",
+       "hi": "दल-बदल विरोधी संशोधन"
+      },
+      "detail": {
+       "en": "The 52nd Amendment disqualified members who switch parties.",
+       "hi": "52वें संशोधन ने दल बदलने वाले सदस्यों को अयोग्य ठहराने का नियम बनाया।"
+      }
+     },
+     {
+      "id": "a61",
+      "year": 1988,
+      "label": {
+       "en": "Voting age lowered to 18",
+       "hi": "मतदान की आयु 18 वर्ष"
+      },
+      "detail": {
+       "en": "The 61st Amendment lowered the voting age from 21 to 18.",
+       "hi": "61वें संशोधन ने मतदान की आयु 21 से घटाकर 18 की।"
+      }
+     },
+     {
+      "id": "local",
+      "year": 1992,
+      "label": {
+       "en": "73rd and 74th Amendments",
+       "hi": "73वाँ और 74वाँ संशोधन"
+      },
+      "detail": {
+       "en": "Gave local governments constitutional status.",
+       "hi": "स्थानीय सरकारों को संवैधानिक दर्जा दिया।"
+      }
+     },
+     {
+      "id": "rte",
+      "year": 2002,
+      "label": {
+       "en": "Right to education",
+       "hi": "शिक्षा का अधिकार"
+      },
+      "detail": {
+       "en": "The 86th Amendment added Article 21A for free and compulsory education of children aged 6 to 14.",
+       "hi": "86वें संशोधन ने 6 से 14 वर्ष के बच्चों की मुफ़्त और अनिवार्य शिक्षा के लिए अनुच्छेद 21क जोड़ा।"
+      }
+     },
+     {
+      "id": "gst",
+      "year": 2016,
+      "label": {
+       "en": "Goods and Services Tax",
+       "hi": "वस्तु एवं सेवा कर"
+      },
+      "detail": {
+       "en": "The 101st Amendment created the GST, a common tax across the country.",
+       "hi": "101वें संशोधन ने जीएसटी बनाया, जो पूरे देश का साझा कर है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "event:first",
+     "expect": "placed:first",
+     "say": {
+      "en": "Tap the earliest event first.",
+      "hi": "सबसे पहले की घटना सबसे पहले छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which amendment lowered the voting age?",
+      "hi": "किस संशोधन ने मतदान की आयु घटाई?"
+     },
+     "options": [
+      {
+       "id": "a61",
+       "en": "The 61st: from 21 to 18",
+       "hi": "61वाँ: 21 से 18"
+      },
+      {
+       "id": "a52",
+       "en": "The 52nd: anti-defection",
+       "hi": "52वाँ: दल-बदल विरोधी"
+      }
+     ],
+     "answer": "a61"
+    },
+    {
+     "kind": "do",
+     "target": "event:kesavananda",
+     "expect": "placed:kesavananda",
+     "say": {
+      "en": "Tap the next event.",
+      "hi": "अगली घटना छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "ordered",
+     "say": {
+      "en": "Tap the rest in order, then press Check.",
+      "hi": "बाक़ी क्रम से छुओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Constitution has been amended many times, for different reasons. Some changes carried out the intentions of the makers, some followed political agreement among parties, and some were debated and tested in the courts. Together they show a Constitution that grows with the country while keeping its basic structure.",
+      "hi": "संविधान में कई बार संशोधन हुए हैं, अलग-अलग कारणों से। कुछ बदलाव निर्माताओं की मंशा पूरी करने वाले थे, कुछ दलों की राजनीतिक सहमति से हुए और कुछ पर बहस हुई और अदालतों में परख हुई। मिलकर वे दिखाते हैं कि संविधान देश के साथ बढ़ता है और अपना मूल ढाँचा बनाए रखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a good reason to amend a Constitution?",
+        "hi": "संविधान में संशोधन का एक अच्छा कारण क्या है?"
+       },
+       "options": [
+        {
+         "en": "Changing times and new needs of the people",
+         "hi": "बदलता समय और जनता की नई ज़रूरतें"
+        },
+        {
+         "en": "To please one leader",
+         "hi": "किसी एक नेता को खुश करना"
+        },
+        {
+         "en": "To avoid an election",
+         "hi": "चुनाव से बचना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Amendments such as the right to education answered new needs of society.",
+        "hi": "शिक्षा का अधिकार जैसे संशोधन समाज की नई ज़रूरतों का जवाब थे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Changes made for one person's benefit are the very misuse the special majority and the courts guard against.",
+         "hi": "किसी एक के लाभ के लिए बदलाव वही दुरुपयोग है जिससे विशेष बहुमत और अदालतें बचाते हैं।"
+        },
+        {
+         "en": "A Constitution does not exist to avoid elections; it protects them.",
+         "hi": "संविधान चुनावों से बचने के लिए नहीं, उनकी रक्षा के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which amendment on the timeline touches your life most today? Why?",
+      "hi": "समयरेखा का कौन-सा संशोधन आज तुम्हारे जीवन को सबसे अधिक छूता है? क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch09-sort-basic-structure",
+   "topic": "9.4",
+   "template": "sort",
+   "title": {
+    "en": "Can Parliament change this?",
+    "hi": "क्या संसद इसे बदल सकती है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "basic",
+      "label": {
+       "en": "Basic structure: not destroyed",
+       "hi": "मूल ढाँचा: नष्ट नहीं हो सकता"
+      }
+     },
+     {
+      "id": "amend",
+      "label": {
+       "en": "Can be amended",
+       "hi": "संशोधित हो सकता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "federal",
+      "text": {
+       "en": "The federal character of the Constitution",
+       "hi": "संविधान का संघीय स्वरूप"
+      },
+      "bin": "basic",
+      "why": {
+       "en": "The Court has listed federalism among the basic features.",
+       "hi": "न्यायालय ने संघवाद को मूल लक्षणों में गिना है।"
+      }
+     },
+     {
+      "id": "secular",
+      "text": {
+       "en": "The secular character of the State",
+       "hi": "राज्य का पंथनिरपेक्ष स्वरूप"
+      },
+      "bin": "basic",
+      "why": {
+       "en": "Secularism is part of the basic structure.",
+       "hi": "पंथनिरपेक्षता मूल ढाँचे का भाग है।"
+      }
+     },
+     {
+      "id": "elections",
+      "text": {
+       "en": "Free and fair elections",
+       "hi": "स्वतंत्र और निष्पक्ष चुनाव"
+      },
+      "bin": "basic",
+      "why": {
+       "en": "Democracy cannot work without them.",
+       "hi": "इनके बिना लोकतंत्र नहीं चल सकता।"
+      }
+     },
+     {
+      "id": "review",
+      "text": {
+       "en": "Judicial review",
+       "hi": "न्यायिक समीक्षा"
+      },
+      "bin": "basic",
+      "why": {
+       "en": "If Parliament could remove it, no one could test its laws.",
+       "hi": "संसद इसे हटा दे तो उसके क़ानूनों को कोई परख नहीं सकता।"
+      }
+     },
+     {
+      "id": "supremacy",
+      "text": {
+       "en": "The supremacy of the Constitution",
+       "hi": "संविधान की सर्वोच्चता"
+      },
+      "bin": "basic",
+      "why": {
+       "en": "Every law and every organ is below the Constitution.",
+       "hi": "हर क़ानून और हर अंग संविधान से नीचे है।"
+      }
+     },
+     {
+      "id": "votingage",
+      "text": {
+       "en": "The age at which a citizen can vote",
+       "hi": "नागरिक की मतदान आयु"
+      },
+      "bin": "amend",
+      "why": {
+       "en": "Parliament changed it from 21 to 18 (61st Amendment).",
+       "hi": "संसद ने इसे 21 से 18 किया (61वाँ संशोधन)।"
+      }
+     },
+     {
+      "id": "rte",
+      "text": {
+       "en": "Adding a right to education",
+       "hi": "शिक्षा का अधिकार जोड़ना"
+      },
+      "bin": "amend",
+      "why": {
+       "en": "Article 21A was added by the 86th Amendment.",
+       "hi": "अनुच्छेद 21क 86वें संशोधन से जुड़ा।"
+      }
+     },
+     {
+      "id": "local",
+      "text": {
+       "en": "Giving local governments constitutional status",
+       "hi": "स्थानीय सरकारों को संवैधानिक दर्जा"
+      },
+      "bin": "amend",
+      "why": {
+       "en": "The 73rd and 74th Amendments did this.",
+       "hi": "73वें और 74वें संशोधन ने यह किया।"
+      }
+     },
+     {
+      "id": "gst",
+      "text": {
+       "en": "Introducing a national goods and services tax",
+       "hi": "राष्ट्रीय वस्तु एवं सेवा कर लाना"
+      },
+      "bin": "amend",
+      "why": {
+       "en": "The 101st Amendment allowed it.",
+       "hi": "101वें संशोधन ने इसे संभव किया।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:federal",
+     "expect": "placed:federal",
+     "say": {
+      "en": "Tap the card about the federal character and choose its group.",
+      "hi": "संघीय स्वरूप वाला कार्ड छुओ और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can Parliament change the voting age by an amendment?",
+      "hi": "क्या संसद संशोधन से मतदान की आयु बदल सकती है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it did in 1988",
+       "hi": "हाँ, 1988 में बदली"
+      },
+      {
+       "id": "no",
+       "en": "No, it is basic structure",
+       "hi": "नहीं, यह मूल ढाँचा है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:votingage",
+     "expect": "placed:votingage",
+     "say": {
+      "en": "Place the voting age card.",
+      "hi": "मतदान आयु वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Parliament has wide power to amend the Constitution, but in 1973 the Supreme Court held that it cannot destroy its basic structure. Features like federalism, secularism, free and fair elections, judicial review and the supremacy of the Constitution cannot be taken away. Many other things, like the voting age or the GST, can be changed by amendment.",
+      "hi": "संसद के पास संविधान संशोधन की व्यापक शक्ति है, पर 1973 में सर्वोच्च न्यायालय ने कहा कि वह उसका मूल ढाँचा नष्ट नहीं कर सकती। संघवाद, पंथनिरपेक्षता, स्वतंत्र और निष्पक्ष चुनाव, न्यायिक समीक्षा और संविधान की सर्वोच्चता जैसे लक्षण छीने नहीं जा सकते। मतदान की आयु या जीएसटी जैसी अनेक बातें संशोधन से बदली जा सकती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the basic structure ruling say?",
+        "hi": "मूल ढाँचे के फ़ैसले का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Parliament can amend the Constitution but not destroy its basic features",
+         "hi": "संसद संविधान बदल सकती है पर उसके मूल लक्षण नष्ट नहीं कर सकती"
+        },
+        {
+         "en": "Parliament cannot amend anything",
+         "hi": "संसद कुछ भी संशोधित नहीं कर सकती"
+        },
+        {
+         "en": "The courts can amend the Constitution",
+         "hi": "अदालतें संविधान संशोधित कर सकती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It balances change with protection of the Constitution's core values.",
+        "hi": "यह बदलाव और संविधान के मूल मूल्यों की सुरक्षा के बीच संतुलन बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Parliament has amended the Constitution many times.",
+         "hi": "संसद ने संविधान को कई बार संशोधित किया है।"
+        },
+        {
+         "en": "Amendment is Parliament's power; courts only review it.",
+         "hi": "संशोधन संसद की शक्ति है; अदालतें केवल उसकी समीक्षा करती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why might a country want some parts of its constitution to be impossible to take away?",
+      "hi": "किसी देश को अपने संविधान के कुछ भाग छीने न जा सकने वाले क्यों रखने चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch09-sort-living",
+   "topic": "9.5",
+   "template": "sort",
+   "title": {
+    "en": "How the Constitution stays alive",
+    "hi": "संविधान जीवित कैसे रहता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "amend",
+      "label": {
+       "en": "Formal amendment",
+       "hi": "औपचारिक संशोधन"
+      }
+     },
+     {
+      "id": "court",
+      "label": {
+       "en": "Court's interpretation",
+       "hi": "न्यायालय की व्याख्या"
+      }
+     },
+     {
+      "id": "practice",
+      "label": {
+       "en": "Political practice",
+       "hi": "राजनीतिक परंपरा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "age",
+      "text": {
+       "en": "Voting age lowered to 18",
+       "hi": "मतदान आयु घटाकर 18 की गई"
+      },
+      "bin": "amend",
+      "why": {
+       "en": "An amendment changed the text.",
+       "hi": "संशोधन ने पाठ बदला।"
+      }
+     },
+     {
+      "id": "gst",
+      "text": {
+       "en": "A national tax (GST) was introduced",
+       "hi": "राष्ट्रीय कर (जीएसटी) लाया गया"
+      },
+      "bin": "amend",
+      "why": {
+       "en": "The 101st Amendment changed the text.",
+       "hi": "101वें संशोधन ने पाठ बदला।"
+      }
+     },
+     {
+      "id": "livelihood",
+      "text": {
+       "en": "The right to life was held to include livelihood",
+       "hi": "जीवन के अधिकार में आजीविका को भी माना गया"
+      },
+      "bin": "court",
+      "why": {
+       "en": "The Court read the words of Article 21 more broadly.",
+       "hi": "न्यायालय ने अनुच्छेद 21 के शब्दों को व्यापक अर्थ में पढ़ा।"
+      }
+     },
+     {
+      "id": "privacy",
+      "text": {
+       "en": "Privacy was held to be part of the right to life",
+       "hi": "निजता को जीवन के अधिकार का भाग माना गया"
+      },
+      "bin": "court",
+      "why": {
+       "en": "The Court explained what the text means for new times.",
+       "hi": "न्यायालय ने बताया कि नए समय में पाठ का क्या अर्थ है।"
+      }
+     },
+     {
+      "id": "basic",
+      "text": {
+       "en": "Parliament cannot destroy the basic structure",
+       "hi": "संसद मूल ढाँचा नष्ट नहीं कर सकती"
+      },
+      "bin": "court",
+      "why": {
+       "en": "This came from a court ruling, not from a line of the text.",
+       "hi": "यह न्यायालय के फ़ैसले से आया, पाठ की किसी पंक्ति से नहीं।"
+      }
+     },
+     {
+      "id": "coalition",
+      "text": {
+       "en": "Parties learnt to share power in coalitions",
+       "hi": "दलों ने गठबंधन में सत्ता साझा करना सीखा"
+      },
+      "bin": "practice",
+      "why": {
+       "en": "A habit that grew, not a change in the text.",
+       "hi": "एक आदत जो पनपी, पाठ में बदलाव नहीं।"
+      }
+     },
+     {
+      "id": "largest",
+      "text": {
+       "en": "The largest group is first invited to form a government",
+       "hi": "सबसे बड़े समूह को पहले सरकार बनाने बुलाया जाता है"
+      },
+      "bin": "practice",
+      "why": {
+       "en": "A convention followed by Presidents.",
+       "hi": "राष्ट्रपतियों द्वारा अपनाई जाने वाली परंपरा।"
+      }
+     },
+     {
+      "id": "pac",
+      "text": {
+       "en": "An opposition MP often heads the Public Accounts Committee",
+       "hi": "विपक्ष का सदस्य प्रायः लोक लेखा समिति का अध्यक्ष होता है"
+      },
+      "bin": "practice",
+      "why": {
+       "en": "A parliamentary convention that lets the opposition check spending.",
+       "hi": "संसदीय परंपरा जो विपक्ष को ख़र्च पर नज़र रखने देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:age",
+     "expect": "placed:age",
+     "say": {
+      "en": "Tap the card about the voting age and choose how it changed.",
+      "hi": "मतदान आयु वाला कार्ड छुओ और चुनो कि यह कैसे बदली।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A court says the right to life includes a livelihood. Is this an amendment?",
+      "hi": "न्यायालय कहता है कि जीवन के अधिकार में आजीविका शामिल है। क्या यह संशोधन है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is interpretation",
+       "hi": "नहीं, यह व्याख्या है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, a formal amendment",
+       "hi": "हाँ, औपचारिक संशोधन"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:livelihood",
+     "expect": "placed:livelihood",
+     "say": {
+      "en": "Place the livelihood card.",
+      "hi": "आजीविका वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A living document keeps pace with society. The Constitution changes by formal amendments, by courts reading its words for new times, and by political practices and conventions that grow around it. Because of this, a text written long ago can still guide a modern country.",
+      "hi": "जीवंत दस्तावेज़ समाज के साथ चलता है। संविधान औपचारिक संशोधनों से, अदालतों द्वारा नए समय में उसके शब्दों को पढ़ने से, और उसके आसपास पनपी राजनीतिक परंपराओं से बदलता है। इसीलिए बहुत पहले लिखा पाठ आज भी आधुनिक देश का मार्गदर्शन कर पाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these changes the Constitution without changing its text?",
+        "hi": "इनमें कौन संविधान के पाठ को बदले बिना उसे बदलता है?"
+       },
+       "options": [
+        {
+         "en": "A court explaining what a right now means",
+         "hi": "अदालत का यह बताना कि कोई अधिकार अब क्या अर्थ रखता है"
+        },
+        {
+         "en": "The 61st Amendment",
+         "hi": "61वाँ संशोधन"
+        },
+        {
+         "en": "The 101st Amendment",
+         "hi": "101वाँ संशोधन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Interpretation keeps the words but gives them meaning for new situations.",
+        "hi": "व्याख्या शब्द वही रखती है पर नई स्थितियों के लिए अर्थ देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The 61st Amendment changed the text on the voting age.",
+         "hi": "61वें संशोधन ने मतदान आयु पर पाठ बदला।"
+        },
+        {
+         "en": "The 101st Amendment changed the text to allow the GST.",
+         "hi": "101वें संशोधन ने जीएसटी को संभव करने के लिए पाठ बदला।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Can you think of a school rule that works by habit rather than by a written line?",
+      "hi": "क्या तुम्हें स्कूल का ऐसा नियम याद है जो लिखे हुए से नहीं, आदत से चलता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Opens the chapter",
+   "shows": "A grandfather and a young girl reading a newspaper together at a tea stall in the morning, headline blurred",
+   "view": "Wide, 16:9",
+   "right": "Warm, two generations, readable mood but no readable words",
+   "avoid": "Readable text, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "Cut-out for the amendment topic",
+   "shows": "A fountain pen lying on a thick closed book with a green ribbon bookmark",
+   "view": "Three-quarter view, transparent background",
+   "right": "Rich dark cover, clear ribbon",
+   "avoid": "Any text on the book"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "9.2",
+   "use": "Base for the three-door lab",
+   "shows": "A three-step staircase frame, each step higher than the last, all empty",
+   "view": "Side view, white background",
+   "right": "Steps clearly different in height",
+   "avoid": "Any lettering"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "9.3",
+   "use": "Base for the timeline",
+   "shows": "A long horizontal strip with evenly spaced ticks and small round markers, all empty",
+   "view": "16:9, white background",
+   "right": "Plenty of space for labels",
+   "avoid": "Any lettering"
+  },
+  {
+   "n": 5,
+   "kind": "CUT",
+   "topic": "9.4",
+   "use": "Shows what is basic",
+   "shows": "A cut-away of a banyan tree: spreading branches above, deep strong roots below the ground line",
+   "view": "4:3, neutral background",
+   "right": "Roots clearly thicker and deeper than the branches are wide",
+   "avoid": "Labels, human figures"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "9.5",
+   "use": "Shows citizens using their changed rights",
+   "shows": "Young first-time voters aged around 18 and 19 at a registration desk, seen from behind and the side",
+   "view": "Wide, 16:9",
+   "right": "Cheerful, mixed group, inked fingers visible only",
+   "avoid": "Faces close up, party symbols, readable forms"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "9.5",
+   "use": "Cut-out for the living-document idea",
+   "shows": "A green sapling growing from a crack in an old stone step",
+   "view": "Close view, transparent background",
+   "right": "Fresh green leaves, grey stone, soft light",
+   "avoid": "Text, litter"
+  }
+ ]
+}

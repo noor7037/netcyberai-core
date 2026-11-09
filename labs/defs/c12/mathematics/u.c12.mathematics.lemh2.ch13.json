@@ -1,0 +1,1716 @@
+{
+ "chapter_key": "u.c12.mathematics.lemh2.ch13",
+ "class": 12,
+ "subject_id": "mathematics",
+ "title": "Probability",
+ "source": "https://ncert.nic.in/textbook/pdf/lemh207.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Introduction: chance from earlier classes",
+   "labs": [],
+   "why_no_lab": "A short recap of probability from earlier classes; the labs start from 13.2."
+  },
+  {
+   "n": "13.2",
+   "title": "Conditional probability",
+   "labs": [
+    "c12-mathematics-lemh2-ch13-conditional"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2.1",
+   "title": "Properties of conditional probability",
+   "labs": [],
+   "why_no_lab": "Its two key properties are met inside the conditional probability lab and its check questions."
+  },
+  {
+   "n": "13.3",
+   "title": "Multiplication theorem on probability",
+   "labs": [
+    "c12-mathematics-lemh2-ch13-multiply"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4",
+   "title": "Independent events",
+   "labs": [
+    "c12-mathematics-lemh2-ch13-independent-cards",
+    "c12-mathematics-lemh2-ch13-independent-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.5",
+   "title": "Bayes’ theorem",
+   "labs": [
+    "c12-mathematics-lemh2-ch13-bayes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.5.1",
+   "title": "Partition of a sample space",
+   "labs": [
+    "c12-mathematics-lemh2-ch13-partition"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.5.2",
+   "title": "Theorem of total probability",
+   "labs": [
+    "c12-mathematics-lemh2-ch13-bag-a",
+    "c12-mathematics-lemh2-ch13-total-prob"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-mathematics-lemh2-ch13-conditional",
+   "topic": "13.2",
+   "template": "match",
+   "title": {
+    "en": "Conditional probability",
+    "hi": "सप्रतिबंध प्रायिकता"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "q1",
+      "left": {
+       "en": "A die shows more than 3. Chance that it is even?",
+       "hi": "पासा 3 से बड़ा आया। उसके सम होने की प्रायिकता?"
+      },
+      "right": {
+       "en": "2/3",
+       "hi": "2/3"
+      },
+      "why": {
+       "en": "The numbers 4, 5, 6 remain. Two of them are even: 4 and 6.",
+       "hi": "बचे अंक 4, 5, 6 हैं। उनमें दो सम हैं: 4 और 6।"
+      }
+     },
+     {
+      "id": "q2",
+      "left": {
+       "en": "A card is a heart. Chance that it is a king?",
+       "hi": "पत्ता पान का है। उसके बादशाह होने की प्रायिकता?"
+      },
+      "right": {
+       "en": "1/13",
+       "hi": "1/13"
+      },
+      "why": {
+       "en": "13 hearts remain, and only 1 of them is a king.",
+       "hi": "13 पान बचते हैं, और उनमें केवल 1 बादशाह है।"
+      }
+     },
+     {
+      "id": "q3",
+      "left": {
+       "en": "Two coins tossed, at least one is a head. Chance that both are heads?",
+       "hi": "दो सिक्के उछाले, कम से कम एक चित है। दोनों के चित होने की प्रायिकता?"
+      },
+      "right": {
+       "en": "1/3",
+       "hi": "1/3"
+      },
+      "why": {
+       "en": "HH, HT, TH remain. Only HH has two heads.",
+       "hi": "HH, HT, TH बचते हैं। केवल HH में दोनों चित हैं।"
+      }
+     },
+     {
+      "id": "q4",
+      "left": {
+       "en": "Two dice, the first shows 3. Chance that the sum is 8?",
+       "hi": "दो पासे, पहले पर 3 आया। योग 8 होने की प्रायिकता?"
+      },
+      "right": {
+       "en": "1/6",
+       "hi": "1/6"
+      },
+      "why": {
+       "en": "The second die must show 5: one of 6 equal outcomes.",
+       "hi": "दूसरे पासे पर 5 आना चाहिए: 6 बराबर संभावनाओं में से एक।"
+      }
+     },
+     {
+      "id": "q5",
+      "left": {
+       "en": "Two dice, the sum is 8. Chance that both dice show the same number?",
+       "hi": "दो पासे, योग 8 है। दोनों पर एक-सी संख्या होने की प्रायिकता?"
+      },
+      "right": {
+       "en": "1/5",
+       "hi": "1/5"
+      },
+      "why": {
+       "en": "Sum 8 has 5 outcomes: (2,6) (3,5) (4,4) (5,3) (6,2). Only (4,4) is a double.",
+       "hi": "योग 8 की 5 संभावनाएँ हैं: (2,6) (3,5) (4,4) (5,3) (6,2)। केवल (4,4) में दोनों समान हैं।"
+      }
+     },
+     {
+      "id": "q6",
+      "left": {
+       "en": "A card is a face card. Chance that it is red?",
+       "hi": "पत्ता तस्वीर वाला है। उसके लाल होने की प्रायिकता?"
+      },
+      "right": {
+       "en": "1/2",
+       "hi": "1/2"
+      },
+      "why": {
+       "en": "12 face cards, 6 of them red.",
+       "hi": "12 तस्वीर वाले पत्ते हैं, उनमें 6 लाल हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:q3",
+     "expect": "matched:q3",
+     "say": {
+      "en": "Match the two-coin question. List the outcomes that remain after the clue.",
+      "hi": "दो सिक्कों वाला प्रश्न जोड़ो। सुराग के बाद बचने वाली संभावनाएँ लिखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two coins are tossed and at least one is a head. How many equal outcomes are still possible?",
+      "hi": "दो सिक्के उछाले गए और कम से कम एक चित है। कितनी बराबर संभावनाएँ अब भी बचती हैं?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "All 4 outcomes",
+       "hi": "सभी 4 संभावनाएँ"
+      },
+      {
+       "id": "three",
+       "en": "3 outcomes: HH, HT, TH",
+       "hi": "3 संभावनाएँ: HH, HT, TH"
+      },
+      {
+       "id": "one",
+       "en": "Just 1 outcome",
+       "hi": "केवल 1 संभावना"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all six and tap Check.",
+      "hi": "छहों जोड़ो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "P(E | F) is the chance of E when we already know F has happened. The clue F shrinks the list of possible outcomes, so we count only inside F: P(E | F) = P(E ∩ F) / P(F), with P(F) not zero. Nothing outside F matters any more.",
+      "hi": "P(E | F) वह प्रायिकता है कि E घटित हो जब हम पहले से जानते हों कि F घट चुका है। सुराग F संभावनाओं की सूची छोटी कर देता है, इसलिए हम केवल F के अंदर गिनते हैं: P(E | F) = P(E ∩ F) / P(F), जहाँ P(F) शून्य नहीं। F के बाहर का कुछ भी अब मायने नहीं रखता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "P(E | F) = P(E ∩ F) / P(F). If P(E ∩ F) = 1/6 and P(F) = 1/2, then P(E | F) is:",
+        "hi": "P(E | F) = P(E ∩ F) / P(F)। यदि P(E ∩ F) = 1/6 और P(F) = 1/2 हो तो P(E | F) है:"
+       },
+       "options": [
+        "1/3",
+        "1/12",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(1/6) ÷ (1/2) = 1/3.",
+        "hi": "(1/6) ÷ (1/2) = 1/3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1/12 multiplies instead of dividing.",
+         "hi": "1/12 में भाग की जगह गुणा कर दिया।"
+        },
+        {
+         "en": "3 divides the wrong way round; a probability cannot exceed 1.",
+         "hi": "3 में भाग उलटा हो गया; प्रायिकता 1 से अधिक नहीं हो सकती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If P(E | F) = 2/5, then P(not E | F) is:",
+        "hi": "यदि P(E | F) = 2/5 हो तो P(E नहीं | F) है:"
+       },
+       "options": [
+        "3/5",
+        "2/5",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Inside F, the chances of E and not-E add up to 1: 1 − 2/5.",
+        "hi": "F के अंदर E और E-नहीं की प्रायिकताएँ मिलकर 1 होती हैं: 1 − 2/5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the same as E itself.",
+         "hi": "यह स्वयं E के बराबर है।"
+        },
+        {
+         "en": "1 would mean E never happens inside F, which is not true.",
+         "hi": "1 का अर्थ होता कि F के अंदर E कभी नहीं होता, जो सही नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own “given that” question with one die. Count the outcomes that remain after the clue, then give the chance.",
+      "hi": "एक पासे से अपना “दिया गया है कि” प्रश्न बनाओ। सुराग के बाद बची संभावनाएँ गिनो, फिर प्रायिकता बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch13-multiply",
+   "topic": "13.3",
+   "template": "sequence",
+   "title": {
+    "en": "Two cards, one after another",
+    "hi": "एक के बाद एक दो पत्ते"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "q1",
+      "text": {
+       "en": "Let E = first card is an ace, F = second card is an ace (no putting back)",
+       "hi": "मानो E = पहला पत्ता इक्का, F = दूसरा पत्ता इक्का (वापस नहीं रखा)"
+      }
+     },
+     {
+      "id": "q2",
+      "text": {
+       "en": "Chance of E: P(E) = 4/52 = 1/13",
+       "hi": "E की प्रायिकता: P(E) = 4/52 = 1/13"
+      }
+     },
+     {
+      "id": "q3",
+      "text": {
+       "en": "After one ace goes, 3 aces are left in 51 cards: P(F | E) = 3/51",
+       "hi": "एक इक्का निकलने पर 51 पत्तों में 3 इक्के बचते हैं: P(F | E) = 3/51"
+      }
+     },
+     {
+      "id": "q4",
+      "text": {
+       "en": "Multiplication theorem: P(E ∩ F) = P(E) × P(F | E)",
+       "hi": "गुणन प्रमेय: P(E ∩ F) = P(E) × P(F | E)"
+      }
+     },
+     {
+      "id": "q5",
+      "text": {
+       "en": "Multiply: (4/52) × (3/51) = 12/2652",
+       "hi": "गुणा करो: (4/52) × (3/51) = 12/2652"
+      }
+     },
+     {
+      "id": "q6",
+      "text": {
+       "en": "Simplify: the chance of two aces is 1/221",
+       "hi": "सरल करो: दो इक्कों की प्रायिकता 1/221 है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:q3",
+     "expect": "placed:q3",
+     "say": {
+      "en": "Tap the card about the 3 aces left and put it in place 3.",
+      "hi": "बचे 3 इक्कों वाला कार्ड छुओ और उसे स्थान 3 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The first card is not put back. Is the chance of an ace on the second draw still 4/52?",
+      "hi": "पहला पत्ता वापस नहीं रखा गया। क्या दूसरे पत्ते के इक्का होने की प्रायिकता अब भी 4/52 है?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "Yes, still 4/52",
+       "hi": "हाँ, अब भी 4/52"
+      },
+      {
+       "id": "change",
+       "en": "No, it becomes 3/51 if the first was an ace",
+       "hi": "नहीं, यदि पहला इक्का था तो वह 3/51 हो जाती है"
+      }
+     ],
+     "answer": "change"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all six steps in order and tap Check.",
+      "hi": "छहों चरण क्रम में रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When two things happen one after another, the chance of both is P(E ∩ F) = P(E) × P(F | E): the chance of the first, times the chance of the second given the first. Without putting the card back, the second draw depends on the first, so the second factor changes: 3/51 instead of 4/52.",
+      "hi": "जब दो बातें एक के बाद एक होती हैं तो दोनों की प्रायिकता P(E ∩ F) = P(E) × P(F | E) होती है: पहली की प्रायिकता गुणा पहली के घटित होने पर दूसरी की प्रायिकता। पत्ता वापस न रखने पर दूसरा पत्ता पहले पर निर्भर करता है, इसलिए दूसरा गुणनखंड बदल जाता है: 4/52 की जगह 3/51।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two cards are drawn without putting back. The chance that both are red is:",
+        "hi": "बिना वापस रखे दो पत्ते निकाले गए। दोनों के लाल होने की प्रायिकता है:"
+       },
+       "options": [
+        "(26/52) × (25/51)",
+        "(26/52) × (26/52)",
+        "26/52 + 25/51"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After one red card is gone, 25 red cards remain among 51.",
+        "hi": "एक लाल पत्ता निकलने के बाद 51 में 25 लाल बचते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This puts the first card back, which the story does not do.",
+         "hi": "इसमें पहला पत्ता वापस रख दिया गया है, जो कहानी में नहीं है।"
+        },
+        {
+         "en": "“Both” means multiply, not add.",
+         "hi": "“दोनों” का अर्थ गुणा है, जोड़ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A bag has 3 red and 2 blue balls. Two are taken without replacement. P(both red) =",
+        "hi": "एक थैले में 3 लाल और 2 नीली गेंदें हैं। बिना वापस रखे दो निकाली गईं। P(दोनों लाल) ="
+       },
+       "options": [
+        "3/10",
+        "9/25",
+        "3/5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(3/5) × (2/4) = 6/20 = 3/10.",
+        "hi": "(3/5) × (2/4) = 6/20 = 3/10।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9/25 would put the first ball back: (3/5) × (3/5).",
+         "hi": "9/25 में पहली गेंद वापस रख दी गई: (3/5) × (3/5)।"
+        },
+        {
+         "en": "3/5 is only the chance of the first ball being red.",
+         "hi": "3/5 केवल पहली गेंद के लाल होने की प्रायिकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the chance of two kings in a row, without putting back. Which numbers change from the ace case?",
+      "hi": "बिना वापस रखे लगातार दो बादशाह आने की प्रायिकता निकालो। इक्के वाले उदाहरण से कौन-सी संख्याएँ बदलती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch13-independent-cards",
+   "topic": "13.4",
+   "template": "probability",
+   "title": {
+    "en": "Does colour affect a face card?",
+    "hi": "क्या रंग से तस्वीर वाले पत्ते पर फ़र्क पड़ता है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "device": "cards",
+    "ask": "face"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toss:100",
+     "expect": "tossed",
+     "say": {
+      "en": "Draw 100 cards and watch how often a face card (king, queen, jack) comes.",
+      "hi": "100 पत्ते निकालो और देखो तस्वीर वाला पत्ता (बादशाह, बेगम, गुलाम) कितनी बार आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You are told the card is red. Does the chance of a face card change from 12 of 52 (3/13)?",
+      "hi": "तुम्हें बताया गया कि पत्ता लाल है। क्या तस्वीर वाले पत्ते की प्रायिकता 52 में से 12 (3/13) से बदलती है?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "No: among 26 red cards, 6 are faces, again 3/13",
+       "hi": "नहीं: 26 लाल पत्तों में 6 तस्वीर वाले हैं, फिर 3/13"
+      },
+      {
+       "id": "more",
+       "en": "Yes, it grows",
+       "hi": "हाँ, बढ़ती है"
+      },
+      {
+       "id": "less",
+       "en": "Yes, it shrinks",
+       "hi": "हाँ, घटती है"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "toss:10",
+     "expect": "tossed",
+     "say": {
+      "en": "Draw 10 more cards a few times, and watch the frequency settle near 3/13, about 0.23.",
+      "hi": "10-10 पत्ते कुछ बार और निकालो और देखो आवृत्ति 3/13, यानी लगभग 0.23 के पास टिकती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "P(face) = 12/52 = 3/13. Among the 26 red cards, 6 are faces, so P(face | red) = 6/26 = 3/13 as well. Knowing the colour tells us nothing new about the face, so the events “face” and “red” are independent: P(E | F) = P(E), or P(E ∩ F) = P(E) × P(F).",
+      "hi": "P(तस्वीर वाला) = 12/52 = 3/13। 26 लाल पत्तों में 6 तस्वीर वाले हैं, इसलिए P(तस्वीर वाला | लाल) = 6/26 = 3/13 भी। रंग जानने से तस्वीर के बारे में कुछ नया पता नहीं चलता, इसलिए घटनाएँ “तस्वीर वाला” और “लाल” स्वतंत्र हैं: P(E | F) = P(E), या P(E ∩ F) = P(E) × P(F)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "P(ace) = 4/52 = 1/13. Among the 26 black cards there are 2 aces. Are “ace” and “black” independent?",
+        "hi": "P(इक्का) = 4/52 = 1/13। 26 काले पत्तों में 2 इक्के हैं। क्या “इक्का” और “काला” स्वतंत्र हैं?"
+       },
+       "options": [
+        "Yes: 2/26 = 1/13",
+        "No: 2/26 is not 1/13",
+        "Cannot tell"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P(ace | black) = 2/26 = 1/13 = P(ace).",
+        "hi": "P(इक्का | काला) = 2/26 = 1/13 = P(इक्का)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2/26 simplifies to 1/13, so the two chances match.",
+         "hi": "2/26 सरल होकर 1/13 होता है, इसलिए दोनों प्रायिकताएँ मिलती हैं।"
+        },
+        {
+         "en": "We can tell: the numbers are given.",
+         "hi": "हम बता सकते हैं: संख्याएँ दी गई हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Among the 12 face cards, 4 are kings. Are “king” and “face card” independent?",
+        "hi": "12 तस्वीर वाले पत्तों में 4 बादशाह हैं। क्या “बादशाह” और “तस्वीर वाला पत्ता” स्वतंत्र हैं?"
+       },
+       "options": [
+        "No: P(king | face) = 1/3, but P(king) = 1/13",
+        "Yes: both involve kings",
+        "Yes: 4 is a factor of 12"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Knowing it is a face card raises the chance of a king from 1/13 to 1/3.",
+        "hi": "यह जानना कि पत्ता तस्वीर वाला है, बादशाह की प्रायिकता 1/13 से बढ़ाकर 1/3 कर देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sharing a word is not independence; the numbers must match.",
+         "hi": "एक शब्द साझा होना स्वतंत्रता नहीं है; संख्याएँ मिलनी चाहिए।"
+        },
+        {
+         "en": "Factors have nothing to do with independence.",
+         "hi": "गुणनखंडों का स्वतंत्रता से कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change nothing and draw 100 cards again. Is the frequency exactly the same? Why does it still stay close to 3/13?",
+      "hi": "कुछ मत बदलो और फिर 100 पत्ते निकालो। क्या आवृत्ति बिल्कुल वही है? फिर भी वह 3/13 के पास क्यों रहती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch13-independent-sort",
+   "topic": "13.4",
+   "template": "sort",
+   "title": {
+    "en": "Independent or dependent?",
+    "hi": "स्वतंत्र या आश्रित?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ind",
+      "label": {
+       "en": "Independent",
+       "hi": "स्वतंत्र"
+      }
+     },
+     {
+      "id": "dep",
+      "label": {
+       "en": "Dependent",
+       "hi": "आश्रित"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "Two coin tosses: head, then head",
+       "hi": "दो सिक्कों के उछाल: चित, फिर चित"
+      },
+      "bin": "ind",
+      "why": {
+       "en": "The first toss does not affect the second.",
+       "hi": "पहला उछाल दूसरे को प्रभावित नहीं करता।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Two balls from a bag, each put back: red, then red",
+       "hi": "थैले से दो गेंदें, हर बार वापस रखी: लाल, फिर लाल"
+      },
+      "bin": "ind",
+      "why": {
+       "en": "Putting back resets the bag, so the second draw is unaffected.",
+       "hi": "वापस रखने से थैला पहले जैसा हो जाता है, इसलिए दूसरे चयन पर असर नहीं।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "One die: “even” and “multiple of 3”",
+       "hi": "एक पासा: “सम” और “3 का गुणज”"
+      },
+      "bin": "ind",
+      "why": {
+       "en": "P(even) × P(mult 3) = 1/2 × 1/3 = 1/6 = P({6}).",
+       "hi": "P(सम) × P(3 का गुणज) = 1/2 × 1/3 = 1/6 = P({6})।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "One die: “less than 3” and “even”",
+       "hi": "एक पासा: “3 से छोटा” और “सम”"
+      },
+      "bin": "ind",
+      "why": {
+       "en": "1/3 × 1/2 = 1/6 = P({2}).",
+       "hi": "1/3 × 1/2 = 1/6 = P({2})।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "One card: “ace” and “heart”",
+       "hi": "एक पत्ता: “इक्का” और “पान”"
+      },
+      "bin": "ind",
+      "why": {
+       "en": "1/13 × 1/4 = 1/52 = P(ace of hearts).",
+       "hi": "1/13 × 1/4 = 1/52 = P(पान का इक्का)।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "Two cards, not put back: both red",
+       "hi": "दो पत्ते, वापस नहीं रखे: दोनों लाल"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "After one red card is gone, the second chance changes to 25/51.",
+       "hi": "एक लाल पत्ता निकलने पर दूसरी प्रायिकता बदलकर 25/51 हो जाती है।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "One die: “even” and “prime”",
+       "hi": "एक पासा: “सम” और “अभाज्य”"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "1/2 × 1/2 = 1/4, but P({2}) = 1/6. They do not match.",
+       "hi": "1/2 × 1/2 = 1/4, पर P({2}) = 1/6। ये नहीं मिलते।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "One die: “odd” and “greater than 3”",
+       "hi": "एक पासा: “विषम” और “3 से बड़ा”"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "1/2 × 1/2 = 1/4, but P({5}) = 1/6.",
+       "hi": "1/2 × 1/2 = 1/4, पर P({5}) = 1/6।"
+      }
+     },
+     {
+      "id": "c9",
+      "text": {
+       "en": "One card: “king” and “face card”",
+       "hi": "एक पत्ता: “बादशाह” और “तस्वीर वाला”"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "P(king) × P(face) = 1/13 × 3/13, but P(both) = 1/13.",
+       "hi": "P(बादशाह) × P(तस्वीर वाला) = 1/13 × 3/13, पर P(दोनों) = 1/13।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Place the two coin tosses where they belong.",
+      "hi": "दो सिक्कों के उछाल को उनकी जगह रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Events E and F are independent if P(E ∩ F) equals which product?",
+      "hi": "घटनाएँ E और F स्वतंत्र हैं यदि P(E ∩ F) किस गुणनफल के बराबर हो?"
+     },
+     "options": [
+      {
+       "id": "prod",
+       "en": "P(E) × P(F)",
+       "hi": "गुणनफल P(E) × P(F)"
+      },
+      {
+       "id": "sum",
+       "en": "P(E) + P(F)",
+       "hi": "योग P(E) + P(F)"
+      },
+      {
+       "id": "div",
+       "en": "P(E) ÷ P(F)",
+       "hi": "भागफल P(E) ÷ P(F)"
+      }
+     ],
+     "answer": "prod"
+    },
+    {
+     "kind": "do",
+     "target": "card:c6",
+     "expect": "placed:c6",
+     "say": {
+      "en": "Now place the two cards that are not put back.",
+      "hi": "अब वापस न रखे गए दो पत्तों को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort every card and tap Check.",
+      "hi": "हर कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Events E and F are independent when knowing one tells nothing about the other: P(E ∩ F) = P(E) × P(F). Drawing with replacement keeps events independent; drawing without replacement makes them dependent. Do not confuse independent with mutually exclusive: events that cannot happen together are actually dependent, because if one happens the other cannot.",
+      "hi": "घटनाएँ E और F स्वतंत्र हैं जब एक के जानने से दूसरे के बारे में कुछ पता नहीं चलता: P(E ∩ F) = P(E) × P(F)। वापस रखकर चयन करने से घटनाएँ स्वतंत्र रहती हैं; वापस न रखने से आश्रित हो जाती हैं। स्वतंत्र को परस्पर अपवर्जी से मत मिलाओ: जो घटनाएँ साथ नहीं हो सकतीं वे वास्तव में आश्रित हैं, क्योंकि एक के होने पर दूसरी नहीं हो सकती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Events E and F cannot happen together, and both have non-zero chances. They are:",
+        "hi": "घटनाएँ E और F साथ घटित नहीं हो सकतीं, और दोनों की प्रायिकताएँ शून्य नहीं हैं। वे हैं:"
+       },
+       "options": [
+        "dependent",
+        "independent",
+        "the same event"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P(E ∩ F) = 0, but P(E) × P(F) is not 0, so the product rule fails.",
+        "hi": "P(E ∩ F) = 0, पर P(E) × P(F) शून्य नहीं, इसलिए गुणनफल नियम विफल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Independence needs P(E ∩ F) = P(E) P(F), and 0 is not that product.",
+         "hi": "स्वतंत्रता के लिए P(E ∩ F) = P(E) P(F) चाहिए, और 0 वह गुणनफल नहीं।"
+        },
+        {
+         "en": "Different events cannot be the same event.",
+         "hi": "अलग घटनाएँ एक ही घटना नहीं हो सकतीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If P(E) = 0.3, P(F) = 0.5 and E, F are independent, then P(E ∩ F) is:",
+        "hi": "यदि P(E) = 0.3, P(F) = 0.5 और E, F स्वतंत्र हैं तो P(E ∩ F) है:"
+       },
+       "options": [
+        "0.15",
+        "0.8",
+        "0.2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "0.3 × 0.5 = 0.15.",
+        "hi": "0.3 × 0.5 = 0.15।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0.8 adds instead of multiplying.",
+         "hi": "0.8 में गुणा की जगह जोड़ दिया।"
+        },
+        {
+         "en": "0.2 subtracts; independence uses a product.",
+         "hi": "0.2 में घटाया; स्वतंत्रता में गुणनफल लगता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take two events of your own on one die. Test them with P(E ∩ F) = P(E) × P(F). Are they independent?",
+      "hi": "एक पासे पर अपनी दो घटनाएँ लो। उन्हें P(E ∩ F) = P(E) × P(F) से परखो। क्या वे स्वतंत्र हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch13-partition",
+   "topic": "13.5.1",
+   "template": "sort",
+   "title": {
+    "en": "A partition of the sample space",
+    "hi": "प्रतिदर्श समष्टि का विभाजन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "part",
+      "label": {
+       "en": "A partition",
+       "hi": "एक विभाजन"
+      }
+     },
+     {
+      "id": "over",
+      "label": {
+       "en": "Overlap",
+       "hi": "अतिव्यापन"
+      }
+     },
+     {
+      "id": "miss",
+      "label": {
+       "en": "Leaves outcomes out",
+       "hi": "कुछ परिणाम छूटते हैं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "{1, 2}, {3, 4}, {5, 6}",
+       "hi": "{1, 2}, {3, 4}, {5, 6}"
+      },
+      "bin": "part",
+      "why": {
+       "en": "No overlap, nothing left out: all six numbers once.",
+       "hi": "न अतिव्यापन, न कुछ छूटा: छहों संख्याएँ एक-एक बार।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Odd numbers and even numbers",
+       "hi": "विषम संख्याएँ और सम संख्याएँ"
+      },
+      "bin": "part",
+      "why": {
+       "en": "Every number is exactly one of the two.",
+       "hi": "हर संख्या ठीक एक ही समूह में है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "Prime {2, 3, 5} and non-prime {1, 4, 6}",
+       "hi": "अभाज्य {2, 3, 5} और अभाज्य नहीं {1, 4, 6}"
+      },
+      "bin": "part",
+      "why": {
+       "en": "Together they make all six, with no number in both.",
+       "hi": "साथ मिलकर छहों बनते हैं, कोई संख्या दोनों में नहीं।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "{1, 2, 3} and {4, 5, 6}",
+       "hi": "{1, 2, 3} और {4, 5, 6}"
+      },
+      "bin": "part",
+      "why": {
+       "en": "Two halves with nothing shared or missing.",
+       "hi": "दो भाग, न कुछ साझा, न कुछ छूटा।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "{1, 2, 3} and {3, 4, 5, 6}",
+       "hi": "{1, 2, 3} और {3, 4, 5, 6}"
+      },
+      "bin": "over",
+      "why": {
+       "en": "The number 3 is in both groups.",
+       "hi": "संख्या 3 दोनों समूहों में है।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "At most 4 and at least 4",
+       "hi": "अधिकतम 4 और कम से कम 4"
+      },
+      "bin": "over",
+      "why": {
+       "en": "The number 4 is in both: {1, 2, 3, 4} and {4, 5, 6}.",
+       "hi": "संख्या 4 दोनों में है: {1, 2, 3, 4} और {4, 5, 6}।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "{1, 2} and {3, 4}",
+       "hi": "{1, 2} और {3, 4}"
+      },
+      "bin": "miss",
+      "why": {
+       "en": "The numbers 5 and 6 belong to neither group.",
+       "hi": "संख्याएँ 5 और 6 किसी समूह में नहीं।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "{1}, {2}, {3}, {4}, {5}",
+       "hi": "{1}, {2}, {3}, {4}, {5}"
+      },
+      "bin": "miss",
+      "why": {
+       "en": "Number 6 is missing.",
+       "hi": "संख्या 6 छूट गई है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Place {1, 2}, {3, 4}, {5, 6}. Check each number is in exactly one set.",
+      "hi": "{1, 2}, {3, 4}, {5, 6} को रखो। जाँचो कि हर संख्या ठीक एक समुच्चय में है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For events E₁, E₂, E₃ to partition a sample space, what must be true of any two of them?",
+      "hi": "घटनाएँ E₁, E₂, E₃ प्रतिदर्श समष्टि का विभाजन बनाएँ, इसके लिए उनमें से किन्हीं दो के बारे में क्या सही होना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "disjoint",
+       "en": "They share no outcome",
+       "hi": "उनमें कोई परिणाम साझा न हो"
+      },
+      {
+       "id": "equal",
+       "en": "They are equal",
+       "hi": "वे बराबर हों"
+      },
+      {
+       "id": "big",
+       "en": "Each has more than half the outcomes",
+       "hi": "हर एक में आधे से अधिक परिणाम हों"
+      }
+     ],
+     "answer": "disjoint"
+    },
+    {
+     "kind": "do",
+     "target": "card:c5",
+     "expect": "placed:c5",
+     "say": {
+      "en": "Now place {1, 2, 3} and {3, 4, 5, 6}.",
+      "hi": "अब {1, 2, 3} और {3, 4, 5, 6} को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort every card and tap Check.",
+      "hi": "हर कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Events E₁, E₂, …, Eₙ form a partition of the sample space if they are pairwise disjoint (no two overlap), together they make up the whole sample space, and each has a non-zero chance. Then every outcome lands in exactly one of them, and P(E₁) + P(E₂) + … + P(Eₙ) = 1.",
+      "hi": "घटनाएँ E₁, E₂, …, Eₙ प्रतिदर्श समष्टि का विभाजन बनाती हैं यदि वे युग्मशः असंयुक्त हों (कोई दो आपस में न मिलें), मिलकर पूरी प्रतिदर्श समष्टि बनाएँ, और हर एक की प्रायिकता शून्य न हो। तब हर परिणाम ठीक एक में आता है, और P(E₁) + P(E₂) + … + P(Eₙ) = 1।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If E₁, E₂, E₃ partition a sample space, P(E₁) + P(E₂) + P(E₃) is:",
+        "hi": "यदि E₁, E₂, E₃ प्रतिदर्श समष्टि का विभाजन करें तो P(E₁) + P(E₂) + P(E₃) है:"
+       },
+       "options": [
+        "1",
+        "0",
+        "Depends on the events"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Together they cover every outcome exactly once.",
+        "hi": "वे मिलकर हर परिणाम को ठीक एक बार ढकती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0 would mean no outcome at all.",
+         "hi": "0 का अर्थ कोई परिणाम ही नहीं।"
+        },
+        {
+         "en": "Whatever the events, the total is always 1.",
+         "hi": "घटनाएँ कुछ भी हों, कुल सदैव 1 है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is “heart” and “not heart” a partition of a pack of cards?",
+        "hi": "क्या “पान” और “पान नहीं” ताश की गड्डी का विभाजन हैं?"
+       },
+       "options": [
+        "Yes: no card is in both, and every card is in one",
+        "No: they overlap",
+        "No: they leave cards out"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A card is either a heart or not: exactly one.",
+        "hi": "पत्ता या तो पान है या नहीं: ठीक एक।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A card cannot be a heart and not a heart at once.",
+         "hi": "पत्ता एक साथ पान और पान-नहीं नहीं हो सकता।"
+        },
+        {
+         "en": "Every card is either a heart or not, so none is left out.",
+         "hi": "हर पत्ता या तो पान है या नहीं, इसलिए कोई नहीं छूटता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a partition of the 52 cards into three events of your own. Check that their chances add up to 1.",
+      "hi": "52 पत्तों को अपनी तीन घटनाओं में बाँटकर विभाजन बनाओ। जाँचो कि उनकी प्रायिकताओं का योग 1 है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch13-bag-a",
+   "topic": "13.5.2",
+   "template": "probability",
+   "title": {
+    "en": "Red from Bag A",
+    "hi": "थैले A से लाल गेंद"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "device": "bag",
+    "bag": [
+     {
+      "colour": "red",
+      "count": 2
+     },
+     {
+      "colour": "blue",
+      "count": 3
+     }
+    ],
+    "ask": "red"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toss:10",
+     "expect": "tossed",
+     "say": {
+      "en": "Draw 10 balls from Bag A. It has 2 red and 3 blue.",
+      "hi": "थैले A से 10 गेंदें निकालो। इसमें 2 लाल और 3 नीली हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the chance of red from Bag A on any one draw, with the ball put back?",
+      "hi": "थैले A से, गेंद वापस रखकर, एक बार में लाल निकलने की प्रायिकता क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "2/5",
+       "hi": "2/5, यानी पाँच में दो"
+      },
+      {
+       "id": "b",
+       "en": "2/3",
+       "hi": "2/3, यानी तीन में दो"
+      },
+      {
+       "id": "c",
+       "en": "1/2",
+       "hi": "1/2, यानी आधा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "toss:100",
+     "expect": "trend",
+     "say": {
+      "en": "Draw 100 times and watch the frequency of red move towards 2/5 = 0.4.",
+      "hi": "100 बार निकालो और देखो लाल की आवृत्ति 2/5 = 0.4 की ओर बढ़ती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "P(red | Bag A) = 2/5, since 2 of the 5 balls are red. This is a conditional chance: it holds when we know the bag is A. A second bag B with 4 red and 1 blue would give P(red | Bag B) = 4/5. If a coin decides which bag we use, these two chances will be mixed in the next lab.",
+      "hi": "P(लाल | थैला A) = 2/5, क्योंकि 5 में से 2 गेंदें लाल हैं। यह सप्रतिबंध प्रायिकता है: यह तब सही है जब हमें पता हो कि थैला A है। चार लाल और एक नीली वाले दूसरे थैले B से P(लाल | थैला B) = 4/5 मिलेगी। यदि सिक्का तय करे कि कौन-सा थैला लेना है तो ये दोनों प्रायिकताएँ अगले प्रयोग में मिल जाएँगी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Bag B has 4 red and 1 blue ball. P(red | Bag B) is:",
+        "hi": "थैले B में 4 लाल और 1 नीली गेंद है। P(लाल | थैला B) है:"
+       },
+       "options": [
+        "4/5",
+        "4/1",
+        "1/5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 favourable balls out of 5 in all.",
+        "hi": "कुल 5 में से 4 अनुकूल गेंदें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4/1 compares red to blue, not to the whole bag.",
+         "hi": "4/1 लाल की तुलना नीली से करता है, पूरे थैले से नहीं।"
+        },
+        {
+         "en": "1/5 is the chance of blue.",
+         "hi": "1/5 नीली की प्रायिकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Does the frequency after 10 draws have to be exactly 0.4?",
+        "hi": "क्या 10 बार निकालने के बाद आवृत्ति ठीक 0.4 होना ज़रूरी है?"
+       },
+       "options": [
+        "No: it settles near 0.4 only as the draws grow",
+        "Yes, always",
+        "Yes, if the bag is shaken"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chance varies in a few draws and steadies in many.",
+        "hi": "कुछ बार में संयोग बदलता रहता है और बहुत बार में स्थिर हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Small samples wobble.",
+         "hi": "छोटे नमूने डगमगाते हैं।"
+        },
+        {
+         "en": "Shaking does not force an exact count.",
+         "hi": "हिलाने से सटीक गिनती तय नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and draw 100 again. Is the frequency of red the same as before? Compare with a friend’s result.",
+      "hi": "रीसेट करो और फिर 100 बार निकालो। क्या लाल की आवृत्ति पहले जैसी ही है? किसी मित्र के परिणाम से मिलाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch13-total-prob",
+   "topic": "13.5.2",
+   "template": "sequence",
+   "title": {
+    "en": "Total probability: two routes to red",
+    "hi": "संपूर्ण प्रायिकता: लाल तक दो रास्ते"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "t1",
+      "text": {
+       "en": "A coin picks a bag: P(A) = 1/2 and P(B) = 1/2",
+       "hi": "सिक्का थैला चुनता है: P(A) = 1/2 और P(B) = 1/2"
+      }
+     },
+     {
+      "id": "t2",
+      "text": {
+       "en": "Bag A has 2 red in 5 balls: P(red | A) = 2/5",
+       "hi": "थैले A में 5 में 2 लाल: P(लाल | A) = 2/5"
+      }
+     },
+     {
+      "id": "t3",
+      "text": {
+       "en": "Bag B has 4 red in 5 balls: P(red | B) = 4/5",
+       "hi": "थैले B में 5 में 4 लाल: P(लाल | B) = 4/5"
+      }
+     },
+     {
+      "id": "t4",
+      "text": {
+       "en": "Route through A: 1/2 × 2/5 = 1/5",
+       "hi": "A से होकर रास्ता: 1/2 × 2/5 = 1/5"
+      }
+     },
+     {
+      "id": "t5",
+      "text": {
+       "en": "Route through B: 1/2 × 4/5 = 2/5",
+       "hi": "B से होकर रास्ता: 1/2 × 4/5 = 2/5"
+      }
+     },
+     {
+      "id": "t6",
+      "text": {
+       "en": "Add the routes: P(red) = 1/5 + 2/5 = 3/5",
+       "hi": "रास्ते जोड़ो: P(लाल) = 1/5 + 2/5 = 3/5"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:t1",
+     "expect": "placed:t1",
+     "say": {
+      "en": "Tap the card for the coin choosing a bag and put it in place 1.",
+      "hi": "सिक्के द्वारा थैला चुनने वाला कार्ड छुओ और उसे स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A and B are a partition: one of them is always chosen. How do the two routes to red combine?",
+      "hi": "A और B विभाजन हैं: उनमें से एक सदैव चुना जाता है। लाल तक पहुँचने के दो रास्ते कैसे मिलते हैं?"
+     },
+     "options": [
+      {
+       "id": "add",
+       "en": "Add the two route chances",
+       "hi": "दोनों रास्तों की प्रायिकताएँ जोड़ो"
+      },
+      {
+       "id": "mul",
+       "en": "Multiply the two route chances",
+       "hi": "दोनों रास्तों की प्रायिकताएँ गुणा करो"
+      },
+      {
+       "id": "one",
+       "en": "Take the bigger one only",
+       "hi": "केवल बड़ी वाली लो"
+      }
+     ],
+     "answer": "add"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all six steps in order and tap Check.",
+      "hi": "छहों चरण क्रम में रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "If E₁, E₂, … partition the sample space, then for any event A, P(A) = P(E₁) P(A | E₁) + P(E₂) P(A | E₂) + … This is the theorem of total probability. Multiply along each route of the tree, then add the routes, because the routes cannot happen together. Here P(red) = 3/5.",
+      "hi": "यदि E₁, E₂, … प्रतिदर्श समष्टि का विभाजन करें तो किसी भी घटना A के लिए P(A) = P(E₁) P(A | E₁) + P(E₂) P(A | E₂) + … यह संपूर्ण प्रायिकता प्रमेय है। वृक्ष के हर रास्ते पर गुणा करो, फिर रास्ते जोड़ो, क्योंकि रास्ते साथ-साथ नहीं हो सकते। यहाँ P(लाल) = 3/5।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Bag A: 1 red in 4 balls. Bag B: 3 red in 4 balls. A fair coin picks the bag. P(red) is:",
+        "hi": "थैला A: 4 में 1 लाल। थैला B: 4 में 3 लाल। निष्पक्ष सिक्का थैला चुनता है। P(लाल) है:"
+       },
+       "options": [
+        "1/2",
+        "1/4",
+        "3/4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1/2 × 1/4 + 1/2 × 3/4 = 1/8 + 3/8 = 1/2.",
+        "hi": "1/2 × 1/4 + 1/2 × 3/4 = 1/8 + 3/8 = 1/2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1/4 is the chance for Bag A only.",
+         "hi": "1/4 केवल थैले A की प्रायिकता है।"
+        },
+        {
+         "en": "3/4 is the chance for Bag B only.",
+         "hi": "3/4 केवल थैले B की प्रायिकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we add the two routes?",
+        "hi": "हम दोनों रास्तों को क्यों जोड़ते हैं?"
+       },
+       "options": [
+        "The ball comes from A or from B, never both",
+        "Because both bags are chosen together",
+        "To make the total larger"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The routes are mutually exclusive, so their chances add.",
+        "hi": "रास्ते परस्पर अपवर्जी हैं, इसलिए उनकी प्रायिकताएँ जुड़ती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The coin picks only one bag, so they are never chosen together.",
+         "hi": "सिक्का केवल एक थैला चुनता है, इसलिए दोनों साथ नहीं चुने जाते।"
+        },
+        {
+         "en": "Adding is a rule of the situation, not a way to enlarge a number.",
+         "hi": "जोड़ना स्थिति का नियम है, संख्या बड़ी करने का तरीका नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the coin to a die: Bag A is chosen on 1 or 2, Bag B otherwise. What are P(A) and P(B), and what is P(red) now?",
+      "hi": "सिक्के की जगह पासा लो: 1 या 2 पर थैला A, नहीं तो थैला B। P(A) और P(B) क्या हैं, और अब P(लाल) क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch13-bayes",
+   "topic": "13.5",
+   "template": "match",
+   "title": {
+    "en": "Bayes’ theorem: going backwards",
+    "hi": "बेज़ प्रमेय: उलटी दिशा में"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "b1",
+      "left": {
+       "en": "P(A): bag A is picked",
+       "hi": "P(A): थैला A चुना गया"
+      },
+      "right": {
+       "en": "1/2",
+       "hi": "1/2"
+      },
+      "why": {
+       "en": "A fair coin picks the bag.",
+       "hi": "निष्पक्ष सिक्का थैला चुनता है।"
+      }
+     },
+     {
+      "id": "b2",
+      "left": {
+       "en": "P(red | A): red comes, if the bag is A",
+       "hi": "P(लाल | A): थैला A हो तो लाल आना"
+      },
+      "right": {
+       "en": "2/5",
+       "hi": "2/5"
+      },
+      "why": {
+       "en": "2 red balls in 5.",
+       "hi": "5 में 2 लाल गेंदें।"
+      }
+     },
+     {
+      "id": "b3",
+      "left": {
+       "en": "P(A and red): A is picked, and red comes",
+       "hi": "P(A और लाल): A चुना गया और लाल आई"
+      },
+      "right": {
+       "en": "1/5",
+       "hi": "1/5"
+      },
+      "why": {
+       "en": "1/2 × 2/5 = 1/5.",
+       "hi": "1/2 × 2/5 = 1/5।"
+      }
+     },
+     {
+      "id": "b4",
+      "left": {
+       "en": "P(red): red comes by any route",
+       "hi": "P(लाल): किसी भी रास्ते से लाल आना"
+      },
+      "right": {
+       "en": "3/5",
+       "hi": "3/5"
+      },
+      "why": {
+       "en": "1/5 + 2/5 = 3/5, adding both routes.",
+       "hi": "1/5 + 2/5 = 3/5, दोनों रास्ते जोड़कर।"
+      }
+     },
+     {
+      "id": "b5",
+      "left": {
+       "en": "P(A | red): the ball is red; was the bag A?",
+       "hi": "P(A | लाल): गेंद लाल है; क्या थैला A था?"
+      },
+      "right": {
+       "en": "1/3",
+       "hi": "1/3"
+      },
+      "why": {
+       "en": "(1/5) ÷ (3/5) = 1/3: A’s share of all the red routes.",
+       "hi": "(1/5) ÷ (3/5) = 1/3: सारे लाल रास्तों में A का हिस्सा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:b3",
+     "expect": "matched:b3",
+     "say": {
+      "en": "Match P(A and red) first. Multiply along the route through A.",
+      "hi": "पहले P(A और लाल) जोड़ो। A से होकर रास्ते पर गुणा करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You see a red ball. Bag B has more red balls than A. Is it more likely the bag was A or B?",
+      "hi": "तुम्हें लाल गेंद दिखती है। थैले B में A से अधिक लाल गेंदें हैं। थैला A था या B, अधिक संभावना किसकी है?"
+     },
+     "options": [
+      {
+       "id": "B",
+       "en": "Bag B",
+       "hi": "थैला B"
+      },
+      {
+       "id": "A",
+       "en": "Bag A",
+       "hi": "थैला A"
+      },
+      {
+       "id": "eq",
+       "en": "Equally likely",
+       "hi": "बराबर संभावना"
+      }
+     ],
+     "answer": "B"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all five and tap Check.",
+      "hi": "पाँचों जोड़ो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bayes’ theorem turns a chance around. We know P(red | A), but we want P(A | red): given the red ball, how likely is it that the bag was A? The answer is the share of A’s route among all the routes to red: P(A | red) = P(A) P(red | A) / P(red) = (1/5) / (3/5) = 1/3. So Bag B has 2/3.",
+      "hi": "बेज़ प्रमेय प्रायिकता को उलट देता है। हम P(लाल | A) जानते हैं, पर P(A | लाल) चाहिए: लाल गेंद मिलने पर थैला A होने की कितनी संभावना है? उत्तर है लाल तक के सारे रास्तों में A के रास्ते का हिस्सा: P(A | लाल) = P(A) P(लाल | A) / P(लाल) = (1/5) / (3/5) = 1/3। इसलिए थैले B की प्रायिकता 2/3 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The ball is red. P(Bag B | red) is:",
+        "hi": "गेंद लाल है। P(थैला B | लाल) है:"
+       },
+       "options": [
+        "2/3",
+        "4/5",
+        "1/2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(1/2 × 4/5) ÷ (3/5) = (2/5) ÷ (3/5) = 2/3.",
+        "hi": "(1/2 × 4/5) ÷ (3/5) = (2/5) ÷ (3/5) = 2/3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4/5 is P(red | B), the chance in the other direction.",
+         "hi": "4/5 है P(लाल | B), यानी उलटी दिशा की प्रायिकता।"
+        },
+        {
+         "en": "1/2 is the chance of B before seeing the ball.",
+         "hi": "1/2 गेंद देखने से पहले B की प्रायिकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are P(A | red) and P(red | A) different numbers?",
+        "hi": "P(A | लाल) और P(लाल | A) अलग संख्याएँ क्यों हैं?"
+       },
+       "options": [
+        "They answer different questions: one asks about the bag, the other about the ball",
+        "They are never different",
+        "Because red is more common"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each is computed from a different list of outcomes.",
+        "hi": "हर एक अलग संभावनाओं की सूची से निकलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They are equal only in special cases.",
+         "hi": "वे केवल विशेष स्थितियों में बराबर होती हैं।"
+        },
+        {
+         "en": "Here P(red) = 3/5, which does not make them equal.",
+         "hi": "यहाँ P(लाल) = 3/5 है, जिससे वे बराबर नहीं हो जाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Now suppose the ball is blue. Work out P(A | blue). Does it come out larger than P(A | red)?",
+      "hi": "अब मान लो गेंद नीली है। P(A | नीली) निकालो। क्या वह P(A | लाल) से बड़ी आती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "13.1",
+   "use": "Chapter hook: dice and a coin",
+   "shows": "Two plain six-sided dice and a one-rupee coin side by side, soft shadow",
+   "view": "Three-quarter view, white background",
+   "right": "Dice with correct pip patterns; opposite faces add to 7",
+   "avoid": "Brand marks on the coin, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "13.2",
+   "use": "Given that it is cloudy",
+   "shows": "Dark monsoon clouds over a Mumbai seafront promenade just before rain",
+   "view": "Wide view, low angle, dim light",
+   "right": "Heavy clouds clearly visible over the sea",
+   "avoid": "People’s faces, signboards"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "13.3",
+   "use": "Two cards, no putting back",
+   "shows": "Three frames: a face-down pile of cards; the first card lifted and shown face up; the second card lifted beside it",
+   "view": "Same camera from above, same light, plain table",
+   "right": "Cards the same size; the pile shrinks by one card",
+   "avoid": "Brand marks on the card backs, hands’ faces"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "13.5.2",
+   "use": "Two identical bags",
+   "shows": "Two identical cloth drawstring bags, one with 2 red and 3 blue marbles spilled beside it and the other with 4 red and 1 blue beside it",
+   "view": "Front view, white background, even light",
+   "right": "Exact marble counts: 2 red and 3 blue, then 4 red and 1 blue",
+   "avoid": "Text, tags on the bags"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "13.5.2",
+   "use": "Probability tree base",
+   "shows": "A blank tree frame with two branches from one point and two more branches from each end, no numbers or letters",
+   "view": "Flat on white, thin dark lines",
+   "right": "Branches symmetric and evenly spaced",
+   "avoid": "Numbers, letters"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "13.5.1",
+   "use": "Partition picture",
+   "shows": "A rectangle divided into three differently shaded regions meeting along clean edges, no letters",
+   "view": "Flat on white; shapes that differ by pattern as well as colour",
+   "right": "Regions do not overlap and fill the rectangle fully",
+   "avoid": "Letters, numbers"
+  }
+ ]
+}

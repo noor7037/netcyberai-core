@@ -1,0 +1,915 @@
+{
+ "chapter_key": "u.c05.english.eesa1.ch06",
+ "class": 5,
+ "subject_id": "english",
+ "title": "What a Tank!",
+ "source": "https://ncert.nic.in/textbook/pdf/eesa106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Water stores of India, from Ooranis to Punjab's overhead tanks",
+   "labs": [
+    "c05-english-eesa1-ch06-tanks"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Short forms (contractions) with an apostrophe",
+   "labs": [
+    "c05-english-eesa1-ch06-short"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Exclamatory sentences and feelings",
+   "labs": [
+    "c05-english-eesa1-ch06-wow"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Animal families (lion, lioness, cub)",
+   "labs": [],
+   "why_no_lab": "Pairs of animals and their young are learnt best from the pictures and the teacher's examples."
+  },
+  {
+   "n": "6.5",
+   "title": "Let us Speak: saving water",
+   "labs": [
+    "c05-english-eesa1-ch06-save"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Let us Explore: designs of water tanks in your area",
+   "labs": [],
+   "why_no_lab": "This is a field activity of looking at real tanks in the child's own area."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-english-eesa1-ch06-tanks",
+   "topic": "6.1",
+   "template": "match",
+   "title": {
+    "en": "Water stores of India",
+    "hi": "भारत के जल-भंडार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "oorani",
+      "left": {
+       "en": "Oorani",
+       "hi": "Oorani (ऊरानी)"
+      },
+      "right": {
+       "en": "Tamil Nadu: stores rainwater for drinking and farming",
+       "hi": "तमिलनाडु: पीने और खेती के लिए बारिश का पानी जमा करती है"
+      },
+      "why": {
+       "en": "Ooranis in Tamil Nadu store rainwater for drinking and farming.",
+       "hi": "तमिलनाडु की ऊरानी पीने और खेती के लिए बारिश का पानी जमा करती हैं।"
+      }
+     },
+     {
+      "id": "keni",
+      "left": {
+       "en": "Panam Keni",
+       "hi": "Panam Keni (पनम केनी)"
+      },
+      "right": {
+       "en": "Kerala: a well that does not dry up even in the hottest months",
+       "hi": "केरल: ऐसा कुआँ जो सबसे गरम महीनों में भी नहीं सूखता"
+      },
+      "why": {
+       "en": "Panam Keni wells of Kerala keep water even in the hottest months.",
+       "hi": "केरल के पनम केनी कुओं में सबसे गरम महीनों में भी पानी रहता है।"
+      }
+     },
+     {
+      "id": "tanka",
+      "left": {
+       "en": "Tanka",
+       "hi": "Tanka (टांका)"
+      },
+      "right": {
+       "en": "Rajasthan: an underground tank that keeps water for six to seven months",
+       "hi": "राजस्थान: ज़मीन के नीचे का टैंक जो छह-सात महीने पानी रखता है"
+      },
+      "why": {
+       "en": "A tanka in the Thar region is an underground tank that stores water for months.",
+       "hi": "थार क्षेत्र का टांका ज़मीन के नीचे का टैंक है जो महीनों तक पानी रखता है।"
+      }
+     },
+     {
+      "id": "overhead",
+      "left": {
+       "en": "Overhead tank",
+       "hi": "Overhead tank (छत की टंकी)"
+      },
+      "right": {
+       "en": "A tank on the roof that holds hundreds of litres",
+       "hi": "छत पर रखी टंकी जिसमें सैकड़ों लीटर पानी आता है"
+      },
+      "why": {
+       "en": "Many homes keep an overhead tank on the roof.",
+       "hi": "कई घरों की छत पर टंकी रखी होती है।"
+      }
+     },
+     {
+      "id": "punjab",
+      "left": {
+       "en": "Punjab's tanks",
+       "hi": "Punjab's tanks (पंजाब की टंकियाँ)"
+      },
+      "right": {
+       "en": "Rural tanks shaped like a football, a tractor or a rooster",
+       "hi": "गाँव की टंकियाँ जो फ़ुटबॉल, ट्रैक्टर या मुर्गे के आकार की हैं"
+      },
+      "why": {
+       "en": "In rural Punjab the tanks are made in fun shapes that show the family's life.",
+       "hi": "पंजाब के गाँवों में टंकियाँ मज़ेदार आकारों में बनती हैं जो परिवार की ज़िंदगी दिखाती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:oorani",
+     "expect": "matched:oorani",
+     "say": {
+      "en": "Tap 'Oorani'. Then tap what it does.",
+      "hi": "'Oorani' पर टैप करो। फिर टैप करो कि वह क्या करती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tanka stores water under the ground. For how long can it keep the water?",
+      "hi": "टांका पानी ज़मीन के नीचे रखता है। वह कितने समय तक पानी रख सकता है?"
+     },
+     "options": [
+      {
+       "id": "months",
+       "en": "Six to seven months",
+       "hi": "छह-सात महीने"
+      },
+      {
+       "id": "day",
+       "en": "One day only",
+       "hi": "केवल एक दिन"
+      }
+     ],
+     "answer": "months"
+    },
+    {
+     "kind": "do",
+     "target": "left:tanka",
+     "expect": "matched:tanka",
+     "say": {
+      "en": "Match 'Tanka' with its meaning.",
+      "hi": "'Tanka' को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:punjab",
+     "expect": "matched:punjab",
+     "say": {
+      "en": "Now match the tanks of Punjab.",
+      "hi": "अब पंजाब की टंकियों को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then tap Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "People in India have saved water in clever ways for hundreds of years: Ooranis in Tamil Nadu, Panam Keni wells in Kerala and tankas in Rajasthan. Today overhead tanks on roofs do the same job. In Punjab, people build them in shapes that tell about the family. Every method keeps water for the days when it is scarce.",
+      "hi": "भारत में लोग सैकड़ों वर्षों से पानी बचाने के चतुर तरीक़े अपनाते रहे हैं: तमिलनाडु की ऊरानी, केरल के पनम केनी कुएँ और राजस्थान के टांके। आज छतों की टंकियाँ यही काम करती हैं। पंजाब में लोग उन्हें ऐसे आकारों में बनाते हैं जो परिवार के बारे में बताते हैं। हर तरीक़ा उन दिनों के लिए पानी बचाता है जब पानी कम होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where do we find tankas?",
+        "hi": "टांके कहाँ मिलते हैं?"
+       },
+       "options": [
+        {
+         "en": "Rajasthan's Thar region",
+         "hi": "राजस्थान का थार क्षेत्र"
+        },
+        {
+         "en": "Kerala's coast",
+         "hi": "केरल का तट"
+        },
+        {
+         "en": "Punjab's rooftops",
+         "hi": "पंजाब की छतें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Tankas are underground tanks common in the dry Thar region of Rajasthan.",
+        "hi": "टांके थार के सूखे क्षेत्र में आम हैं, जो राजस्थान में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Kerala is known for its Panam Keni wells, not tankas.",
+         "hi": "केरल अपने पनम केनी कुओं के लिए जाना जाता है, टांकों के लिए नहीं।"
+        },
+        {
+         "en": "Punjab's roof tanks are overhead tanks in fun shapes, not underground tankas.",
+         "hi": "पंजाब की छतों की टंकियाँ मज़ेदार आकार की ऊपरी टंकियाँ हैं, ज़मीन के नीचे के टांके नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do some Punjab tanks look like a tractor or a football?",
+        "hi": "पंजाब की कुछ टंकियाँ ट्रैक्टर या फ़ुटबॉल जैसी क्यों दिखती हैं?"
+       },
+       "options": [
+        {
+         "en": "They show what the owner does or likes",
+         "hi": "वे दिखाती हैं कि मालिक क्या करता है या क्या पसंद करता है"
+        },
+        {
+         "en": "Water only stays in round tanks",
+         "hi": "पानी केवल गोल टंकियों में रुकता है"
+        },
+        {
+         "en": "The law says so",
+         "hi": "क़ानून ऐसा कहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A farmer may choose a tractor and a football lover may choose a football. The tank tells about the family.",
+        "hi": "किसान ट्रैक्टर चुन सकता है और फ़ुटबॉल-प्रेमी फ़ुटबॉल। टंकी परिवार के बारे में बताती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water stays in a tank of any shape if it is well built.",
+         "hi": "अच्छी बनी टंकी चाहे किसी भी आकार की हो, पानी रुकता है।"
+        },
+        {
+         "en": "The text says people plan the designs themselves; no law is mentioned.",
+         "hi": "पाठ कहता है कि लोग ख़ुद आकार तय करते हैं; किसी क़ानून का ज़िक्र नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find out how your home stores water. Imagine a fun shape for your own tank and describe it in two sentences.",
+      "hi": "पता करो कि तुम्हारे घर में पानी कैसे जमा होता है। अपनी टंकी के लिए एक मज़ेदार आकार सोचो और दो वाक्यों में बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-english-eesa1-ch06-short",
+   "topic": "6.2",
+   "template": "grammar",
+   "title": {
+    "en": "Short forms with an apostrophe",
+    "hi": "एपॉस्ट्रॉफ़ी वाले छोटे रूप"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "transform",
+    "lang": "en",
+    "items": [
+     {
+      "id": "doesnt",
+      "sentence": "He does not like tea",
+      "answer": "He doesn't like tea",
+      "task": {
+       "en": "Write 'does not' in its short form.",
+       "hi": "'does not' को छोटे रूप में लिखो।"
+      },
+      "rule": {
+       "en": "The apostrophe takes the place of the missing letter: does not becomes doesn't.",
+       "hi": "एपॉस्ट्रॉफ़ी छूटे हुए अक्षर की जगह लेती है: does not बन जाता है doesn't।"
+      }
+     },
+     {
+      "id": "arent",
+      "sentence": "They are not at home",
+      "answer": "They aren't at home",
+      "task": {
+       "en": "Use the short form of 'are not'.",
+       "hi": "'are not' का छोटा रूप लिखो।"
+      },
+      "rule": {
+       "en": "Are not becomes aren't. The apostrophe replaces the 'o'.",
+       "hi": "Are not बन जाता है aren't। एपॉस्ट्रॉफ़ी 'o' की जगह है।"
+      }
+     },
+     {
+      "id": "cant",
+      "sentence": "I cannot swim",
+      "answer": "I can't swim",
+      "task": {
+       "en": "Use the short form of 'cannot'.",
+       "hi": "'cannot' का छोटा रूप लिखो।"
+      },
+      "rule": {
+       "en": "Cannot becomes can't. The apostrophe replaces 'no'.",
+       "hi": "Cannot बन जाता है can't। एपॉस्ट्रॉफ़ी 'no' की जगह है।"
+      }
+     },
+     {
+      "id": "didnt",
+      "sentence": "We did not go out",
+      "answer": "We didn't go out",
+      "task": {
+       "en": "Use the short form of 'did not'.",
+       "hi": "'did not' का छोटा रूप लिखो।"
+      },
+      "rule": {
+       "en": "Did not becomes didn't.",
+       "hi": "Did not बन जाता है didn't।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the short form: 'He doesn't like tea'. Then tap Check.",
+      "hi": "छोटा रूप लिखो: 'He doesn't like tea'। फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'is not', which letter does the apostrophe replace?",
+      "hi": "'is not' में एपॉस्ट्रॉफ़ी किस अक्षर की जगह लेती है?"
+     },
+     "options": [
+      {
+       "id": "o",
+       "en": "The letter 'o'",
+       "hi": "अक्षर 'o'"
+      },
+      {
+       "id": "i",
+       "en": "The letter 'i'",
+       "hi": "अक्षर 'i'"
+      }
+     ],
+     "answer": "o"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now write the short form of 'are not' in the second sentence.",
+      "hi": "अब दूसरे वाक्य में 'are not' का छोटा रूप लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Finish the other two sentences.",
+      "hi": "बाक़ी दोनों वाक्य पूरे करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A short form, or contraction, joins two words and leaves out some letters. An apostrophe (') shows where they went: do not becomes don't, is not becomes isn't, cannot becomes can't. We use short forms when we speak and in friendly writing.",
+      "hi": "छोटा रूप (contraction) दो शब्दों को जोड़कर कुछ अक्षर छोड़ देता है। एपॉस्ट्रॉफ़ी (') दिखाती है कि अक्षर कहाँ गए: do not बन जाता है don't, is not बन जाता है isn't, cannot बन जाता है can't। हम बोलचाल में और दोस्ताना लेखन में छोटे रूप प्रयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the short form of 'would not'?",
+        "hi": "'would not' का छोटा रूप क्या है?"
+       },
+       "options": [
+        {
+         "en": "wouldn't",
+         "hi": "wouldn't (सही छोटा रूप)"
+        },
+        {
+         "en": "would'nt",
+         "hi": "would'nt (ग़लत जगह)"
+        },
+        {
+         "en": "wouldnt",
+         "hi": "wouldnt (एपॉस्ट्रॉफ़ी नहीं)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The apostrophe goes in the place of the missing 'o': would-n't.",
+        "hi": "एपॉस्ट्रॉफ़ी छूटे हुए 'o' की जगह आती है: would-n't।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The apostrophe is put after the 'n', but the missing letter comes before the 't'.",
+         "hi": "एपॉस्ट्रॉफ़ी 'n' के बाद रख दी गई है, पर छूटा अक्षर 't' से पहले का है।"
+        },
+        {
+         "en": "Without the apostrophe we cannot tell a short form from a wrong spelling.",
+         "hi": "एपॉस्ट्रॉफ़ी के बिना हम नहीं जान सकते कि यह छोटा रूप है या ग़लत वर्तनी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write five short forms you hear at home, such as don't, can't and isn't. Write the long form next to each.",
+      "hi": "घर में सुने पाँच छोटे रूप लिखो, जैसे don't, can't और isn't। हर एक के आगे उसका पूरा रूप लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-english-eesa1-ch06-wow",
+   "topic": "6.3",
+   "template": "grammar",
+   "title": {
+    "en": "Wow! Exclamatory sentences",
+    "hi": "वाह! विस्मयादिबोधक वाक्य"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "punctuate",
+    "lang": "en",
+    "items": [
+     {
+      "id": "tank",
+      "sentence": "wow what a funny tank",
+      "answer": [
+       "Wow, what a funny tank!",
+       "Wow! What a funny tank!"
+      ],
+      "task": {
+       "en": "Add a capital letter and the marks.",
+       "hi": "बड़ा अक्षर और चिह्न लगाओ।"
+      },
+      "rule": {
+       "en": "A sentence about a strong feeling ends with an exclamation mark (!).",
+       "hi": "तेज़ भाव वाला वाक्य विस्मयादिबोधक चिह्न (!) पर ख़त्म होता है।"
+      }
+     },
+     {
+      "id": "match",
+      "sentence": "hurrah india has won the match",
+      "answer": [
+       "Hurrah! India has won the match!",
+       "Hurrah, India has won the match!"
+      ],
+      "task": {
+       "en": "Add capital letters and the marks.",
+       "hi": "बड़े अक्षर और चिह्न लगाओ।"
+      },
+      "rule": {
+       "en": "Names such as India start with a capital letter. 'Hurrah' shows joy, so an exclamation mark fits.",
+       "hi": "India जैसे नाम बड़े अक्षर से शुरू होते हैं। 'Hurrah' खुशी दिखाता है, इसलिए ! ठीक बैठता है।"
+      }
+     },
+     {
+      "id": "water",
+      "sentence": "oh no the water is finished",
+      "answer": [
+       "Oh no! The water is finished!",
+       "Oh no, the water is finished!"
+      ],
+      "task": {
+       "en": "Add capital letters and the marks.",
+       "hi": "बड़े अक्षर और चिह्न लगाओ।"
+      },
+      "rule": {
+       "en": "'Oh no' shows worry. Each new sentence starts with a capital letter.",
+       "hi": "'Oh no' चिंता दिखाता है। हर नया वाक्य बड़े अक्षर से शुरू होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Write the first sentence with a capital letter and an exclamation mark. Then tap Check.",
+      "hi": "पहला वाक्य बड़े अक्षर और विस्मयादिबोधक चिह्न के साथ लिखो। फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which mark ends 'Hurrah India has won the match': a full stop or an exclamation mark?",
+      "hi": "'Hurrah India has won the match' किस चिह्न पर ख़त्म होगा: पूर्ण विराम या विस्मयादिबोधक चिह्न?"
+     },
+     "options": [
+      {
+       "id": "excl",
+       "en": "An exclamation mark (!)",
+       "hi": "विस्मयादिबोधक चिह्न (!)"
+      },
+      {
+       "id": "stop",
+       "en": "A full stop (.)",
+       "hi": "पूर्ण विराम (.)"
+      }
+     ],
+     "answer": "excl"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now punctuate the cricket sentence.",
+      "hi": "अब क्रिकेट वाला वाक्य लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Finish the last sentence.",
+      "hi": "आख़िरी वाक्य पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An exclamatory sentence shows a strong feeling such as joy, wonder or worry. It often starts with a word like Wow, Hurrah or Oh and ends with an exclamation mark (!). Capital letters begin each sentence and names.",
+      "hi": "विस्मयादिबोधक वाक्य तेज़ भाव दिखाता है, जैसे खुशी, अचरज या चिंता। यह अक्सर Wow, Hurrah या Oh जैसे शब्द से शुरू होता है और विस्मयादिबोधक चिह्न (!) पर ख़त्म होता है। हर वाक्य और नाम बड़े अक्षर से शुरू होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence shows strong feeling?",
+        "hi": "किस वाक्य में तेज़ भाव है?"
+       },
+       "options": [
+        {
+         "en": "What a lovely tank!",
+         "hi": "What a lovely tank! (कितनी सुंदर टंकी!)"
+        },
+        {
+         "en": "The tank is on the roof.",
+         "hi": "The tank is on the roof. (टंकी छत पर है।)"
+        },
+        {
+         "en": "Is the tank full?",
+         "hi": "Is the tank full? (क्या टंकी भरी है?)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It shows wonder and ends with an exclamation mark.",
+        "hi": "इसमें अचरज है और यह विस्मयादिबोधक चिह्न पर ख़त्म होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It only gives a fact, so it ends with a full stop.",
+         "hi": "यह केवल एक तथ्य बताता है, इसलिए पूर्ण विराम पर ख़त्म होता है।"
+        },
+        {
+         "en": "It asks a question, so it ends with a question mark.",
+         "hi": "यह प्रश्न पूछता है, इसलिए प्रश्नवाचक चिह्न पर ख़त्म होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write three exclamatory sentences about things you saw today. Name the feeling in each one.",
+      "hi": "आज देखी तीन चीज़ों पर तीन विस्मयादिबोधक वाक्य लिखो। हर एक में भाव का नाम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-english-eesa1-ch06-save",
+   "topic": "6.5",
+   "template": "sort",
+   "title": {
+    "en": "Save water or waste water?",
+    "hi": "पानी बचाओ या बर्बाद करो?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "save",
+      "label": {
+       "en": "Saves water",
+       "hi": "पानी बचाता है"
+      }
+     },
+     {
+      "id": "waste",
+      "label": {
+       "en": "Wastes water",
+       "hi": "पानी बर्बाद करता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tap-off",
+      "text": {
+       "en": "Closing the tap while brushing teeth",
+       "hi": "दाँत ब्रश करते समय नल बंद रखना"
+      },
+      "bin": "save",
+      "why": {
+       "en": "Using a mug instead of running water saves many litres.",
+       "hi": "बहते पानी की जगह मग लेने से कई लीटर बचते हैं।"
+      }
+     },
+     {
+      "id": "tap-on",
+      "text": {
+       "en": "Leaving the tap running",
+       "hi": "नल खुला छोड़ देना"
+      },
+      "bin": "waste",
+      "why": {
+       "en": "A tap left running lets good water go down the drain.",
+       "hi": "खुला नल अच्छा पानी नाली में बहा देता है।"
+      }
+     },
+     {
+      "id": "bucket",
+      "text": {
+       "en": "Bathing with a bucket and mug",
+       "hi": "बाल्टी और मग से नहाना"
+      },
+      "bin": "save",
+      "why": {
+       "en": "A bucket bath uses much less water than a long shower.",
+       "hi": "बाल्टी से नहाने में लंबे शावर से बहुत कम पानी लगता है।"
+      }
+     },
+     {
+      "id": "leak",
+      "text": {
+       "en": "Ignoring a leaking tap",
+       "hi": "टपकते नल को अनदेखा करना"
+      },
+      "bin": "waste",
+      "why": {
+       "en": "Drop by drop, a leaking tap wastes many litres in a day.",
+       "hi": "बूँद-बूँद करके टपकता नल एक दिन में कई लीटर बर्बाद करता है।"
+      }
+     },
+     {
+      "id": "plants",
+      "text": {
+       "en": "Watering plants with used rinse water",
+       "hi": "कुल्ला किए पानी से पौधों को सींचना"
+      },
+      "bin": "save",
+      "why": {
+       "en": "Reusing water that is still clean enough gives it a second use.",
+       "hi": "जो पानी काफ़ी साफ़ है उसे दोबारा इस्तेमाल करने से उसका दूसरा उपयोग होता है।"
+      }
+     },
+     {
+      "id": "hose",
+      "text": {
+       "en": "Washing the floor with a running hose",
+       "hi": "बहती पाइप से फ़र्श धोना"
+      },
+      "bin": "waste",
+      "why": {
+       "en": "A running hose uses far more water than a bucket and a mop.",
+       "hi": "बहती पाइप में बाल्टी और पोंछे से कहीं ज़्यादा पानी लगता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:tap-off",
+     "expect": "correct:tap-off",
+     "say": {
+      "en": "Tap 'Closing the tap while brushing teeth'. Then tap the group it belongs to.",
+      "hi": "'दाँत ब्रश करते समय नल बंद रखना' पर टैप करो। फिर उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does leaving a tap running save water or waste it?",
+      "hi": "क्या नल खुला छोड़ने से पानी बचता है या बर्बाद होता है?"
+     },
+     "options": [
+      {
+       "id": "waste",
+       "en": "It wastes water",
+       "hi": "पानी बर्बाद होता है"
+      },
+      {
+       "id": "save",
+       "en": "It saves water",
+       "hi": "पानी बचता है"
+      }
+     ],
+     "answer": "waste"
+    },
+    {
+     "kind": "do",
+     "target": "card:tap-on",
+     "expect": "correct:tap-on",
+     "say": {
+      "en": "Sort 'Leaving the tap running'.",
+      "hi": "'नल खुला छोड़ देना' को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:leak",
+     "expect": "correct:leak",
+     "say": {
+      "en": "Sort 'Ignoring a leaking tap'.",
+      "hi": "'टपकते नल को अनदेखा करना' को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest of the cards, then tap Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Saving water starts with small habits. Closing a tap, using a mug, mending a leak and reusing clean rinse water all keep water for others. Ancient tanks and today's roof tanks keep water, but habits keep it from going to waste.",
+      "hi": "पानी बचाना छोटी आदतों से शुरू होता है। नल बंद करना, मग लेना, टपकन ठीक करना और साफ़ कुल्ले के पानी को दोबारा काम में लाना, सब पानी दूसरों के लिए बचाते हैं। पुराने टांके और आज की छत की टंकियाँ पानी जमा रखती हैं, पर आदतें उसे बर्बाद होने से रोकती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which habit saves the most water?",
+        "hi": "कौन-सी आदत सबसे ज़्यादा पानी बचाती है?"
+       },
+       "options": [
+        {
+         "en": "Fixing a leaking tap at once",
+         "hi": "टपकते नल को तुरंत ठीक करवाना"
+        },
+        {
+         "en": "Washing the car daily with a hose",
+         "hi": "रोज़ पाइप से गाड़ी धोना"
+        },
+        {
+         "en": "Taking very long showers",
+         "hi": "बहुत लंबे शावर लेना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A small drip adds up to many litres every day, so mending it early saves a lot.",
+        "hi": "छोटी टपकन रोज़ कई लीटर बन जाती है, इसलिए जल्दी ठीक करना बहुत बचाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A hose wastes water every day instead of saving it.",
+         "hi": "पाइप हर दिन पानी बचाने की जगह बर्बाद करती है।"
+        },
+        {
+         "en": "Long showers use more water, not less.",
+         "hi": "लंबे शावर में ज़्यादा पानी लगता है, कम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a poster idea: write one water-saving rule for your home in a short sentence. Share it with your family.",
+      "hi": "पोस्टर का विचार बनाओ: अपने घर के लिए पानी बचाने का एक नियम छोटे वाक्य में लिखो। उसे परिवार को बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Opens the chapter",
+   "shows": "An old stepwell in Rajasthan in warm morning light, with geometric stairs going down to green water",
+   "view": "16:9, wide view from the top step",
+   "right": "Stone steps in neat symmetrical lines; water at the bottom",
+   "avoid": "No tourists, no signs"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Punjab tanks",
+   "shows": "An overhead water tank on a rural Punjab house roof built in the shape of a football",
+   "view": "16:9, from the street, bright blue sky",
+   "right": "Black-and-white football panels clearly shaped; tank sits on a flat roof",
+   "avoid": "No house number, no readable faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Punjab tanks",
+   "shows": "A tractor-shaped overhead tank on a farmhouse roof, with fields in the background",
+   "view": "16:9, daylight",
+   "right": "Tractor wheels and cab shape clear in cement and paint",
+   "avoid": "No brand names on the tractor"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "6.1",
+   "use": "Tanka lab",
+   "shows": "A cross-section of a Rajasthan tanka, an underground round tank with a clean catchment slope above and a small cover",
+   "view": "4:3, clean neutral background",
+   "right": "Round tank below ground, catchment area sloping to the inlet, small cover on top",
+   "avoid": "No text, no people"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "6.5",
+   "use": "Sort lab",
+   "shows": "A steel mug, a bucket, a running tap and a dripping tap (four separate cut-outs)",
+   "view": "Each on a transparent background, front view",
+   "right": "Drops visible on the dripping tap; steady stream from the running tap",
+   "avoid": "No brand names"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "6.1",
+   "use": "Map for tank types",
+   "shows": "A plain relief map of India with the four states Tamil Nadu, Kerala, Rajasthan and Punjab marked in different colours",
+   "view": "16:9, no names or labels",
+   "right": "State outlines accurate",
+   "avoid": "No text, no borders of other countries labelled"
+  }
+ ]
+}

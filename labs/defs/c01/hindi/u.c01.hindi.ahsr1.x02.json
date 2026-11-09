@@ -1,0 +1,228 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.x02",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Chanda Mama Door Ke (चंदा मामा दूर के) - game song",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "x.1",
+   "title": "Game song about the moon: beat and rhyme",
+   "labs": [
+    "c01-hindi-ahsr1-x02-moon-song"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-x02-moon-song",
+   "topic": "x.1",
+   "template": "reader",
+   "title": {
+    "en": "Sing a moon song",
+    "hi": "चाँद का गीत गाओ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "rhythm",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Moon uncle",
+      "hi": "चंदा मामा"
+     },
+     "lines": [
+      "चंदा मामा गोल-गोल।",
+      "रात में तारे साथ में।",
+      "रोज़ आसमान में आते हो।",
+      "सबको हँसाकर जाते हो।"
+     ]
+    },
+    "bpm": 70,
+    "question": {
+     "q": {
+      "en": "Who is called 'mama' in our song?",
+      "hi": "हमारे गीत में किसे 'मामा' कहा गया है?"
+     },
+     "options": [
+      {
+       "en": "The moon",
+       "hi": "चाँद"
+      },
+      {
+       "en": "The sun",
+       "hi": "सूरज"
+      },
+      {
+       "en": "A star",
+       "hi": "तारा"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "In Indian songs we lovingly call the moon 'Chanda Mama'.",
+      "hi": "भारतीय गीतों में प्यार से चाँद को 'चंदा मामा' कहते हैं।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line to hear it.",
+      "hi": "पहली पंक्ति छूकर सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When you press Play, you will tap the drum with the words. Will the beats be even or uneven?",
+      "hi": "चलाओ दबाने पर तुम शब्दों के साथ ढोल बजाओगे। क्या बीट बराबर होंगी या ऊँची-नीची?"
+     },
+     "options": [
+      {
+       "id": "even",
+       "en": "Even, like a steady walk",
+       "hi": "बराबर, जैसे आराम से चलना"
+      },
+      {
+       "id": "uneven",
+       "en": "Uneven and jumpy",
+       "hi": "ऊँची-नीची और उछलती हुई"
+      }
+     ],
+     "answer": "even"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play and listen to the song.",
+      "hi": "चलाओ दबाओ और गीत सुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beat",
+     "expect": "beat-ok",
+     "say": {
+      "en": "Tap the big drum when a word part glows.",
+      "hi": "जब शब्द का कोई भाग चमके तो बड़ा ढोल बजाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A song has a beat, like your heart or your steps. When we clap with the beat, the words feel easy and happy. Rhyming words like 'गोल' and 'बोल' make the song sweet to hear.",
+      "hi": "गीत में एक ताल होती है, जैसे दिल की धड़कन या हमारे क़दम। ताल के साथ ताली बजाने से शब्द आसान और मज़ेदार लगते हैं। 'गोल' और 'बोल' जैसे तुक वाले शब्द गीत को मीठा बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What helps us sing together at the same speed?",
+        "hi": "एक साथ एक ही गति से गाने में क्या मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "The beat",
+         "hi": "ताल"
+        },
+        {
+         "en": "The colour of the page",
+         "hi": "पन्ने का रंग"
+        },
+        {
+         "en": "The size of the book",
+         "hi": "किताब का आकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The beat keeps everyone together.",
+        "hi": "ताल सबको साथ रखती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Colour is for the eyes; we sing with our ears and the beat.",
+         "hi": "रंग आँखों के लिए है; गाने में कान और ताल काम आते हैं।"
+        },
+        {
+         "en": "A big or small book does not change how fast we sing.",
+         "hi": "किताब बड़ी हो या छोटी, गाने की गति नहीं बदलती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sing the song with your family and clap on every beat. Can you add one more line about the moon?",
+      "hi": "यह गीत परिवार के साथ गाओ और हर ताल पर ताली बजाओ। चाँद के बारे में एक पंक्ति और जोड़ सकते हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "x.1",
+   "use": "Opening picture",
+   "shows": "A crescent-bright moon over a village rooftop at dusk with a child's hand pointing to it",
+   "view": "Low angle, deep blue sky, gentle glow",
+   "right": "Moon bright but not larger than real",
+   "avoid": "Faces; text",
+   "n": 1
+  },
+  {
+   "kind": "OBJ",
+   "topic": "x.1",
+   "use": "Moon cut-out for the song",
+   "shows": "A round yellow-white full moon with soft craters, as a cut-out",
+   "view": "Straight on",
+   "right": "Natural craters; no face drawn on it",
+   "avoid": "A cartoon face",
+   "n": 2
+  },
+  {
+   "kind": "SEQ",
+   "topic": "x.1",
+   "use": "Moon through the night",
+   "shows": "Four frames: same rooftop at dusk, evening, midnight, dawn with the moon moving",
+   "view": "Fixed camera, same rooftop",
+   "right": "Moon moves across the sky in the same direction each frame",
+   "avoid": "Changing buildings",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "x.1",
+   "use": "Small drum for the beat",
+   "shows": "A small colourful dholak/dhol toy drum cut-out",
+   "view": "Three-quarter view",
+   "right": "Realistic hand drum, bright traditional pattern",
+   "avoid": "Brand names",
+   "n": 4
+  },
+  {
+   "kind": "SCN",
+   "topic": "x.1",
+   "use": "Dusk game",
+   "shows": "Village children sitting in a circle on a terrace at dusk, clapping and singing, backs and side views",
+   "view": "Eye level",
+   "right": "Warm lamp light, moon rising, children clapping",
+   "avoid": "Identifiable faces",
+   "n": 5
+  }
+ ]
+}

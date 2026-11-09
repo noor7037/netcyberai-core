@@ -1,0 +1,589 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch11",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "Fun with Symmetry",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "11.1",
+      "title": "Ink design: blot and fold, the line of symmetry",
+      "labs": [
+        "c04-mathematics-demm1-ch11-fold-the-triangle"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "11.2",
+      "title": "Symmetry in letters and shapes",
+      "labs": [
+        "c04-mathematics-demm1-ch11-letters-mirror"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "11.3",
+      "title": "Folding paper and the mirror line",
+      "labs": [
+        "c04-mathematics-demm1-ch11-mirror-drawing"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "11.4",
+      "title": "Tiling: no gaps and no overlaps",
+      "labs": [],
+      "why_no_lab": "Tiling is understood best by cutting paper tiles and fitting them on a table or a wall; a screen cannot give the feel of gaps and overlaps."
+    },
+    {
+      "n": "11.5",
+      "title": "Symmetric four-digit numbers",
+      "labs": [],
+      "why_no_lab": "Finding numbers whose mirror image is the same is a pencil, paper and small mirror puzzle that children enjoy more on paper."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch11-fold-the-triangle",
+      "topic": "11.1",
+      "template": "shapes",
+      "title": {
+        "en": "Fold along a line of symmetry",
+        "hi": "सममिति रेखा पर मोड़ो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "symmetry",
+        "task": "lines"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A triangle has two equal sides, like a roof gable. If we fold it along the right line, will the two halves fit exactly?",
+            "hi": "एक त्रिभुज की दो भुजाएँ बराबर हैं, छत के सिरे जैसी। सही रेखा पर मोड़ने पर क्या दोनों आधे ठीक मिल जाएँगे?"
+          },
+          "options": [
+            {
+              "id": "yes",
+              "en": "Yes, they fit exactly",
+              "hi": "हाँ, ठीक मिल जाएँगे"
+            },
+            {
+              "id": "no",
+              "en": "No, they never fit",
+              "hi": "नहीं, कभी नहीं मिलेंगे"
+            }
+          ],
+          "answer": "yes"
+        },
+        {
+          "kind": "do",
+          "target": "mirror",
+          "expect": "symmetric",
+          "say": {
+            "en": "Tap the dashed lines one by one to fold the shape. Find the line where the two halves match exactly.",
+            "hi": "बिंदुदार रेखाओं पर एक-एक करके टैप करके आकृति मोड़ो। वह रेखा ढूँढो जिस पर दोनों आधे ठीक मिलते हैं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "How many lines of symmetry does this shape have? Pick the number.",
+            "hi": "इस आकृति में सममिति की कितनी रेखाएँ हैं? संख्या चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A line of symmetry is a fold line where the two halves fit exactly on each other, like an ink blot folded paper. This triangle with two equal sides has just one line of symmetry, from the top corner down to the middle of the base. Other folds do not match, so they are not lines of symmetry.",
+            "hi": "सममिति रेखा वह मोड़ने की रेखा है जिस पर दोनों आधे एक-दूसरे पर ठीक बैठते हैं, जैसे स्याही के धब्बे वाले मुड़े काग़ज़ में। दो बराबर भुजाओं वाले इस त्रिभुज में केवल एक सममिति रेखा है, ऊपर के कोने से आधार के बीच तक। दूसरे मोड़ नहीं मिलते, इसलिए वे सममिति रेखाएँ नहीं हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What do the two halves do when a shape is folded along a line of symmetry?",
+                "hi": "सममिति रेखा पर आकृति मोड़ने पर दोनों आधे क्या करते हैं?"
+              },
+              "options": [
+                {
+                  "en": "They fit exactly on each other",
+                  "hi": "वे एक-दूसरे पर ठीक बैठते हैं"
+                },
+                {
+                  "en": "One half is bigger",
+                  "hi": "एक आधा बड़ा होता है"
+                },
+                {
+                  "en": "They never touch",
+                  "hi": "वे कभी नहीं छूते"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "That is what a line of symmetry means: both sides match exactly.",
+                "hi": "सममिति रेखा का यही मतलब है: दोनों तरफ़ ठीक एक जैसी हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "If one half is bigger the fold is not a line of symmetry.",
+                  "hi": "अगर एक आधा बड़ा हो तो वह मोड़ सममिति रेखा नहीं है।"
+                },
+                {
+                  "en": "Folded halves lie on top of each other, so they do touch and match.",
+                  "hi": "मुड़े हुए आधे एक-दूसरे के ऊपर आ जाते हैं, इसलिए वे छूते भी हैं और मिलते भी हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many lines of symmetry does a square have?",
+                "hi": "वर्ग में सममिति की कितनी रेखाएँ होती हैं?"
+              },
+              "options": [
+                "4",
+                "1",
+                "2"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A square folds in half up-down, left-right and along both diagonals: 4 lines.",
+                "hi": "वर्ग ऊपर-नीचे, बाएँ-दाएँ और दोनों विकर्णों पर मुड़ता है: 4 रेखाएँ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "1 line misses the other folds. A square can be folded in more ways.",
+                  "hi": "1 रेखा से बाक़ी मोड़ छूट जाते हैं। वर्ग को और कई तरीक़ों से मोड़ा जा सकता है।"
+                },
+                {
+                  "en": "2 lines miss the two diagonals. Try folding corner to corner as well.",
+                  "hi": "2 रेखाओं में दोनों विकर्ण छूट गए। कोने से कोने तक भी मोड़कर देखो।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tap Next shape and try a rectangle and a square. How many lines of symmetry does each have?",
+            "hi": "अगली आकृति दबाओ और आयत और वर्ग आज़माओ। हर एक में सममिति की कितनी रेखाएँ हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch11-letters-mirror",
+      "topic": "11.2",
+      "template": "sort",
+      "title": {
+        "en": "Which letters have a mirror line?",
+        "hi": "किन अक्षरों में दर्पण-रेखा होती है?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "yes",
+            "label": {
+              "en": "Has a line of symmetry",
+              "hi": "सममिति रेखा है"
+            }
+          },
+          {
+            "id": "no",
+            "label": {
+              "en": "No line of symmetry",
+              "hi": "सममिति रेखा नहीं है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "A",
+            "text": {
+              "en": "A",
+              "hi": "A"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "Fold A down the middle and the two sides match.",
+              "hi": "A को बीच से मोड़ो तो दोनों तरफ़ मिल जाती हैं।"
+            }
+          },
+          {
+            "id": "H",
+            "text": {
+              "en": "H",
+              "hi": "H"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "H matches itself when folded up-down or left-right.",
+              "hi": "H ऊपर-नीचे या बाएँ-दाएँ मोड़ने पर मिल जाता है।"
+            }
+          },
+          {
+            "id": "M",
+            "text": {
+              "en": "M",
+              "hi": "M"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "M folded down the middle has two matching sides.",
+              "hi": "M को बीच से मोड़ने पर दोनों तरफ़ मिलती हैं।"
+            }
+          },
+          {
+            "id": "T",
+            "text": {
+              "en": "T",
+              "hi": "T"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "T folded down its stem has two matching sides.",
+              "hi": "T को खड़ी रेखा पर मोड़ने पर दोनों तरफ़ मिलती हैं।"
+            }
+          },
+          {
+            "id": "F",
+            "text": {
+              "en": "F",
+              "hi": "F"
+            },
+            "bin": "no",
+            "why": {
+              "en": "No fold makes the two halves of F match.",
+              "hi": "किसी भी मोड़ से F के दोनों आधे नहीं मिलते।"
+            }
+          },
+          {
+            "id": "G",
+            "text": {
+              "en": "G",
+              "hi": "G"
+            },
+            "bin": "no",
+            "why": {
+              "en": "G has a hook on one side only, so no fold matches.",
+              "hi": "G में केवल एक तरफ़ हुक है, इसलिए कोई मोड़ नहीं मिलता।"
+            }
+          },
+          {
+            "id": "L",
+            "text": {
+              "en": "L",
+              "hi": "L"
+            },
+            "bin": "no",
+            "why": {
+              "en": "The two sides of L are different, so no fold matches.",
+              "hi": "L की दोनों तरफ़ें अलग हैं, इसलिए कोई मोड़ नहीं मिलता।"
+            }
+          },
+          {
+            "id": "R",
+            "text": {
+              "en": "R",
+              "hi": "R"
+            },
+            "bin": "no",
+            "why": {
+              "en": "R has a loop on one side only, so no fold matches.",
+              "hi": "R में केवल एक तरफ़ फंदा है, इसलिए कोई मोड़ नहीं मिलता।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Look at the letter A. Would a mirror placed down its middle show the same letter?",
+            "hi": "अक्षर A को देखो। उसके बीच में रखा दर्पण क्या वही अक्षर दिखाएगा?"
+          },
+          "options": [
+            {
+              "id": "yes",
+              "en": "Yes, the same letter",
+              "hi": "हाँ, वही अक्षर"
+            },
+            {
+              "id": "no",
+              "en": "No, a different letter",
+              "hi": "नहीं, कोई और अक्षर"
+            }
+          ],
+          "answer": "yes"
+        },
+        {
+          "kind": "do",
+          "target": "card:A",
+          "expect": "correct:A",
+          "say": {
+            "en": "Tap the card A, then tap the group it belongs to.",
+            "hi": "कार्ड A पर टैप करो, फिर उसके समूह पर।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:F",
+          "expect": "correct:F",
+          "say": {
+            "en": "Now sort the card F. Imagine folding it.",
+            "hi": "अब कार्ड F छाँटो। उसे मोड़ने की कल्पना करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the other cards, then press Check.",
+            "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A letter has a line of symmetry if folding it leaves two sides that match. A, H, M and T match; F, G, L and R do not. Some letters, like H, can be folded in two different ways. Try the same with the letters of your own name.",
+            "hi": "किसी अक्षर में सममिति रेखा तब होती है जब उसे मोड़ने पर दोनों तरफ़ मिल जाएँ। A, H, M और T मिलते हैं; F, G, L और R नहीं मिलते। H जैसे कुछ अक्षर दो अलग तरीक़ों से मोड़े जा सकते हैं। यही अपने नाम के अक्षरों के साथ करके देखो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these letters has a line of symmetry?",
+                "hi": "इनमें से किस अक्षर में सममिति रेखा है?"
+              },
+              "options": [
+                "T",
+                "R",
+                "L"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "T folded down the middle has two matching sides.",
+                "hi": "T को बीच से मोड़ने पर दोनों तरफ़ मिलती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "R has a loop on only one side, so folding does not match.",
+                  "hi": "R में केवल एक तरफ़ फंदा है, इसलिए मोड़ने पर नहीं मिलता।"
+                },
+                {
+                  "en": "L has a foot on only one side, so folding does not match.",
+                  "hi": "L में केवल एक तरफ़ पैर है, इसलिए मोड़ने पर नहीं मिलता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write your name in capital letters. Which of its letters have a line of symmetry?",
+            "hi": "अपना नाम बड़े अक्षरों में लिखो। उसके किन अक्षरों में सममिति रेखा है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch11-mirror-drawing",
+      "topic": "11.3",
+      "template": "art",
+      "title": {
+        "en": "Draw with a mirror line",
+        "hi": "दर्पण-रेखा के साथ चित्र बनाओ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "symmetry",
+        "fold": 1,
+        "mirror": true
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "You draw a shape on one side of the mirror line. What will you see on the other side?",
+            "hi": "तुम दर्पण-रेखा की एक तरफ़ आकृति बनाते हो। दूसरी तरफ़ तुम्हें क्या दिखेगा?"
+          },
+          "options": [
+            {
+              "id": "flip",
+              "en": "The same shape, flipped like a mirror image",
+              "hi": "वही आकृति, दर्पण में दिखने वाले प्रतिबिंब जैसी पलटी हुई"
+            },
+            {
+              "id": "none",
+              "en": "Nothing",
+              "hi": "कुछ नहीं"
+            }
+          ],
+          "answer": "flip"
+        },
+        {
+          "kind": "do",
+          "target": "canvas",
+          "expect": "drawn",
+          "say": {
+            "en": "Draw a flower, a leaf or any shape on one side of the line with your finger.",
+            "hi": "अपनी उँगली से रेखा की एक तरफ़ फूल, पत्ती या कोई भी आकृति बनाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "canvas",
+          "expect": "drawn",
+          "say": {
+            "en": "Draw one more stroke that crosses the line. Watch the picture on the other side.",
+            "hi": "एक और रेखा खींचो जो मध्य-रेखा को पार करे। दूसरी तरफ़ का चित्र देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The mirror line copies everything you draw onto the other side, flipped like a reflection. The two sides match exactly, so the picture has a line of symmetry. A butterfly, a leaf and a rangoli are symmetric in the same way.",
+            "hi": "दर्पण-रेखा तुम्हारी बनाई हर चीज़ को दूसरी तरफ़ पलटकर, प्रतिबिंब की तरह, नक़ल कर देती है। दोनों तरफ़ ठीक मिलती हैं, इसलिए चित्र में सममिति रेखा है। तितली, पत्ती और रंगोली भी इसी तरह सममित होती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "You draw a dot 2 steps to the left of the mirror line. Where does its copy appear?",
+                "hi": "तुम दर्पण-रेखा से बाईं ओर 2 क़दम दूर एक बिंदु बनाते हो। उसकी नक़ल कहाँ दिखेगी?"
+              },
+              "options": [
+                {
+                  "en": "2 steps to the right of the line",
+                  "hi": "रेखा से दाईं ओर 2 क़दम दूर"
+                },
+                {
+                  "en": "On the line",
+                  "hi": "रेखा पर"
+                },
+                {
+                  "en": "2 steps to the left again",
+                  "hi": "फिर बाईं ओर 2 क़दम दूर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A mirror shows the copy at the same distance on the other side.",
+                "hi": "दर्पण नक़ल को दूसरी ओर उतनी ही दूरी पर दिखाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The copy is not on the line unless the dot is on the line.",
+                  "hi": "जब तक बिंदु रेखा पर न हो, उसकी नक़ल रेखा पर नहीं होती।"
+                },
+                {
+                  "en": "The copy appears on the other side of the line, not on the same side.",
+                  "hi": "नक़ल रेखा की दूसरी ओर दिखती है, उसी तरफ़ नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Draw half of a butterfly on one side. Does the other side finish the butterfly?",
+            "hi": "एक तरफ़ आधी तितली बनाओ। क्या दूसरी तरफ़ का चित्र तितली पूरी कर देता है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SEQ",
+      "topic": "11.1",
+      "use": "Ink blot design",
+      "shows": "A sheet of paper with a drop of ink, folded, pressed and opened, in four frames showing the symmetric blot",
+      "view": "Flat lay from above, same light",
+      "right": "The final blot symmetric about the crease; ink colour deep blue or purple",
+      "avoid": "Faces, text"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "11.1",
+      "use": "Symmetric objects",
+      "shows": "A butterfly, a maple-like leaf, a kite and a brass bell as separate transparent cut-outs, each facing the camera with its mirror line vertical",
+      "view": "Straight on, soft light",
+      "right": "Left and right halves visibly matching",
+      "avoid": "Brand names"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "11.2",
+      "use": "Symmetry around the house",
+      "shows": "A rangoli at a doorstep in the morning, flowers arranged in a symmetric pattern with marigold petals",
+      "view": "Straight from above, soft light",
+      "right": "Rangoli with a clear mirror line; natural coloured powders and petals",
+      "avoid": "Faces, footprints"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "11.2",
+      "use": "Mirror and letters",
+      "shows": "A small hand mirror standing upright on a card with the letter A printed on it, half reflected",
+      "view": "Close, slightly above",
+      "right": "The mirror line along the letter's centre so the reflection completes the letter",
+      "avoid": "Brand names, other text"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "11.3",
+      "use": "Folding and cutting paper",
+      "shows": "A folded sheet of paper being cut with scissors in a heart shape, then opened out, in four frames",
+      "view": "Flat lay, same camera and light",
+      "right": "Folded edge on the left; opened paper showing a symmetric heart",
+      "avoid": "Faces, adult hands near blades"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "11.4",
+      "use": "Tiled floor",
+      "shows": "A floor with a pattern of square and hexagonal tiles in a school corridor with no gaps",
+      "view": "Low angle, even light",
+      "right": "Tiles meeting exactly with no gaps and no overlaps",
+      "avoid": "Brand names, people"
+    },
+    {
+      "n": 7,
+      "kind": "OBJ",
+      "topic": "11.5",
+      "use": "Mirror and number cards",
+      "shows": "A hand mirror laid on a card showing the number 1881, its reflection beside it",
+      "view": "Flat lay from above",
+      "right": "Digits large and readable; reflection reads the same",
+      "avoid": "Other numbers"
+    }
+  ]
+}

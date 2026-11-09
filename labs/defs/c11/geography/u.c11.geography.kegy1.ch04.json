@@ -1,0 +1,1041 @@
+{
+ "chapter_key": "u.c11.geography.kegy1.ch04",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Climate",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Monsoon mechanism and the monsoon winds",
+   "labs": [
+    "c11-geography-kegy1-ch04-monsoon"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Seasons of India and their winds and showers",
+   "labs": [
+    "c11-geography-kegy1-ch04-seasons",
+    "c11-geography-kegy1-ch04-season-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Distribution of rainfall and regional climates",
+   "labs": [
+    "c11-geography-kegy1-ch04-rain-map",
+    "c11-geography-kegy1-ch04-climate-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Climatic regions",
+   "labs": [],
+   "why_no_lab": "Climate types and their letter codes are learned better from the reader and the coloured climate map than from an activity."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy1-ch04-monsoon",
+   "topic": "4.1",
+   "template": "earth",
+   "title": {
+    "en": "How the monsoon reaches India",
+    "hi": "मानसून भारत कैसे पहुँचता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "monsoon",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In June, moist winds blow from the Arabian Sea towards the Western Ghats. Which side of the hills will get the heavy rain?",
+      "hi": "जून में नम हवाएँ अरब सागर से पश्चिमी घाट की ओर चलती हैं। पहाड़ों के किस ओर भारी वर्षा होगी?"
+     },
+     "options": [
+      {
+       "id": "w",
+       "en": "The sea-facing western slope",
+       "hi": "समुद्र की ओर वाली पश्चिमी ढलान"
+      },
+      {
+       "id": "e",
+       "en": "The eastern side, away from the sea",
+       "hi": "समुद्र से दूर पूर्वी ओर"
+      },
+      {
+       "id": "b",
+       "en": "Both sides equally",
+       "hi": "दोनों ओर बराबर"
+      }
+     ],
+     "answer": "w"
+    },
+    {
+     "kind": "do",
+     "target": "layer:western-ghats",
+     "expect": "revealed:western-ghats",
+     "say": {
+      "en": "Tap the Western Ghats and watch the moist air climb the slope.",
+      "hi": "पश्चिमी घाट पर टैप करो और देखो नम हवा ढलान पर कैसे चढ़ती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:himalaya",
+     "expect": "revealed:himalaya",
+     "say": {
+      "en": "Tap the Himalaya. See how the mountain wall holds back the rain clouds.",
+      "hi": "हिमालय पर टैप करो। देखो पर्वत की दीवार वर्षा के बादलों को कैसे रोकती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:thar",
+     "expect": "revealed:thar",
+     "say": {
+      "en": "Tap the Thar desert. Why does so little rain reach it?",
+      "hi": "थार मरुस्थल पर टैप करो। वहाँ इतनी कम वर्षा क्यों पहुँचती है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In summer the land becomes much hotter than the sea, so air over north India rises and a low-pressure area forms. Cooler, moist air from the Indian Ocean rushes in. This is the south-west monsoon. When the moist air meets the Western Ghats it is forced to rise, cools, and drops heavy rain on the windward slope. The land on the far side, in the rain shadow, stays much drier.",
+      "hi": "गर्मी में भूमि समुद्र से कहीं अधिक गर्म हो जाती है, इसलिए उत्तर भारत की हवा ऊपर उठती है और कम दाब का क्षेत्र बनता है। हिंद महासागर की ठंडी, नम हवा उसकी ओर दौड़ती है। यही दक्षिण-पश्चिम मानसून है। नम हवा पश्चिमी घाट से टकराकर ऊपर उठने को मजबूर होती है, ठंडी होती है और हवा की ओर वाली ढलान पर भारी वर्षा करती है। दूसरी ओर का वृष्टि-छाया क्षेत्र बहुत सूखा रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the western slope of the Ghats get so much rain?",
+        "hi": "पश्चिमी घाट की पश्चिमी ढलान पर इतनी वर्षा क्यों होती है?"
+       },
+       "options": [
+        {
+         "en": "Moist air is forced up, cools and condenses",
+         "hi": "नम हवा ऊपर उठने को मजबूर होती है, ठंडी होती है और संघनित होती है"
+        },
+        {
+         "en": "The mountains make their own water",
+         "hi": "पर्वत अपना पानी खुद बनाते हैं"
+        },
+        {
+         "en": "The air on that side is dry and cold",
+         "hi": "उस ओर की हवा सूखी और ठंडी होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rising air cools, its vapour condenses into clouds, and rain falls on the windward side.",
+        "hi": "ऊपर उठती हवा ठंडी होती है, उसकी वाष्प बादल बनती है और हवा की ओर वाली ढलान पर वर्षा होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mountains do not make water. The water comes from the sea as vapour in the moist wind.",
+         "hi": "पर्वत पानी नहीं बनाते। पानी समुद्र से नम हवा में वाष्प के रूप में आता है।"
+        },
+        {
+         "en": "The monsoon wind comes from the sea and is full of moisture, not dry.",
+         "hi": "मानसूनी हवा समुद्र से आती है और नमी से भरी होती है, सूखी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The south-west monsoon blows from the ...",
+        "hi": "दक्षिण-पश्चिम मानसून चलता है ..."
+       },
+       "options": [
+        {
+         "en": "sea towards the heated land",
+         "hi": "समुद्र से गर्म भूमि की ओर"
+        },
+        {
+         "en": "land towards the cool sea",
+         "hi": "भूमि से ठंडे समुद्र की ओर"
+        },
+        {
+         "en": "the Himalaya towards the sea",
+         "hi": "हिमालय से समुद्र की ओर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Air always moves from high pressure (sea) to low pressure (hot land).",
+        "hi": "हवा हमेशा उच्च दाब (समुद्र) से निम्न दाब (गर्म भूमि) की ओर चलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the direction of the winter wind. In summer the low pressure is over the hot land, so air flows in from the sea.",
+         "hi": "यह सर्दी की हवा की दिशा है। गर्मी में कम दाब गर्म भूमि पर होता है, इसलिए हवा समुद्र से आती है।"
+        },
+        {
+         "en": "The Himalaya is a mountain wall, not a source of the summer wind.",
+         "hi": "हिमालय पर्वत की दीवार है, गर्मी की हवा का स्रोत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the month slider through the year. When do the winds change direction?",
+      "hi": "महीने का स्लाइडर पूरे साल घुमाओ। हवाओं की दिशा कब बदलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch04-seasons",
+   "topic": "4.2",
+   "template": "sequence",
+   "title": {
+    "en": "The four seasons of India",
+    "hi": "भारत की चार ऋतुएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "cold",
+      "text": {
+       "en": "Cold weather season: December to February, cool and dry in the north",
+       "hi": "शीत ऋतु: दिसंबर से फ़रवरी, उत्तर में ठंडी और शुष्क"
+      }
+     },
+     {
+      "id": "hot",
+      "text": {
+       "en": "Hot weather season: March to May, temperatures climb and loo blows",
+       "hi": "ग्रीष्म ऋतु: मार्च से मई, तापमान बढ़ता है और लू चलती है"
+      }
+     },
+     {
+      "id": "monsoon",
+      "text": {
+       "en": "South-west monsoon season: June to September, most of the yearly rain",
+       "hi": "दक्षिण-पश्चिम मानसून ऋतु: जून से सितंबर, साल की अधिकतर वर्षा"
+      }
+     },
+     {
+      "id": "retreat",
+      "text": {
+       "en": "Retreating monsoon season: October and November, clear skies and winds turn back",
+       "hi": "मानसून की वापसी की ऋतु: अक्तूबर-नवंबर, साफ़ आसमान और हवाओं का लौटना"
+      }
+     }
+    ],
+    "cyclic": true
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After the hot, dry months of April and May, what arrives in June?",
+      "hi": "अप्रैल-मई के गर्म, शुष्क महीनों के बाद जून में क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "m",
+       "en": "The monsoon rains",
+       "hi": "मानसून की वर्षा"
+      },
+      {
+       "id": "c",
+       "en": "Cold winds",
+       "hi": "ठंडी हवाएँ"
+      },
+      {
+       "id": "s",
+       "en": "Snow in the plains",
+       "hi": "मैदानों में बर्फ़"
+      }
+     ],
+     "answer": "m"
+    },
+    {
+     "kind": "do",
+     "target": "item:cold",
+     "expect": "placed:cold",
+     "say": {
+      "en": "Tap the cold weather card and put it in the first place.",
+      "hi": "शीत ऋतु का कार्ड टैप करके पहली जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:hot",
+     "expect": "placed:hot",
+     "say": {
+      "en": "Place the hot weather season next.",
+      "hi": "अब ग्रीष्म ऋतु को अगली जगह रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the other two seasons, then press Check.",
+      "hi": "बाकी दो ऋतुएँ रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has four seasons in a yearly cycle. The cold weather season comes first in the calendar year, then the hot weather season, then the south-west monsoon, then the retreating monsoon, and the cycle turns again. The rain from the monsoon is the most important event of the year for farmers.",
+      "hi": "भारत में साल भर में चार ऋतुओं का चक्र चलता है। कैलेंडर में पहले शीत ऋतु आती है, फिर ग्रीष्म ऋतु, फिर दक्षिण-पश्चिम मानसून, फिर मानसून की वापसी, और चक्र फिर घूमता है। मानसून की वर्षा किसानों के लिए साल की सबसे महत्त्वपूर्ण घटना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which season brings most of India's yearly rain?",
+        "hi": "भारत की अधिकतर वार्षिक वर्षा कौन-सी ऋतु लाती है?"
+       },
+       "options": [
+        {
+         "en": "South-west monsoon",
+         "hi": "दक्षिण-पश्चिम मानसून"
+        },
+        {
+         "en": "Hot weather season",
+         "hi": "ग्रीष्म ऋतु"
+        },
+        {
+         "en": "Cold weather season",
+         "hi": "शीत ऋतु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The south-west monsoon, June to September, gives most of India's rainfall.",
+        "hi": "जून से सितंबर तक का दक्षिण-पश्चिम मानसून भारत की अधिकतर वर्षा देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The hot weather season is dry and hot; only a few pre-monsoon showers fall.",
+         "hi": "ग्रीष्म ऋतु शुष्क और गर्म होती है; केवल कुछ मानसून-पूर्व बौछारें गिरती हैं।"
+        },
+        {
+         "en": "Most of India is dry in the cold weather season; only the north-west gets a little winter rain.",
+         "hi": "शीत ऋतु में भारत का अधिकांश भाग सूखा रहता है; केवल उत्तर-पश्चिम में थोड़ी शीत वर्षा होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say your own month. In which season does it fall, and what is the weather like where you live?",
+      "hi": "अपना महीना सोचो। वह किस ऋतु में आता है और तुम्हारे यहाँ मौसम कैसा रहता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch04-season-sort",
+   "topic": "4.2",
+   "template": "sort",
+   "title": {
+    "en": "Winds and showers: which season?",
+    "hi": "हवाएँ और बौछारें: कौन-सी ऋतु?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "hot",
+      "label": {
+       "en": "Hot weather (Mar-May)",
+       "hi": "ग्रीष्म (मार्च-मई)"
+      }
+     },
+     {
+      "id": "cold",
+      "label": {
+       "en": "Cold weather (Dec-Feb)",
+       "hi": "शीत (दिसंबर-फ़रवरी)"
+      }
+     },
+     {
+      "id": "monsoon",
+      "label": {
+       "en": "Monsoon (Jun-Sep)",
+       "hi": "मानसून (जून-सितंबर)"
+      }
+     },
+     {
+      "id": "retreat",
+      "label": {
+       "en": "Retreating monsoon (Oct-Nov)",
+       "hi": "मानसून की वापसी (अक्तूबर-नवंबर)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "loo",
+      "text": {
+       "en": "Loo, the hot dry wind of the afternoon",
+       "hi": "लू, दोपहर की गर्म सूखी हवा"
+      },
+      "bin": "hot",
+      "why": {
+       "en": "Loo blows over the north-western plains in summer.",
+       "hi": "लू गर्मियों में उत्तर-पश्चिमी मैदानों में चलती है।"
+      }
+     },
+     {
+      "id": "kal",
+      "text": {
+       "en": "Kal Baisakhi, an evening thunderstorm in Bengal",
+       "hi": "काल बैसाखी, बंगाल में शाम की आँधी-वर्षा"
+      },
+      "bin": "hot",
+      "why": {
+       "en": "Kal Baisakhi is a pre-monsoon storm of April-May.",
+       "hi": "काल बैसाखी अप्रैल-मई की मानसून-पूर्व आँधी है।"
+      }
+     },
+     {
+      "id": "mango",
+      "text": {
+       "en": "Mango showers on Kerala and Karnataka coasts",
+       "hi": "केरल और कर्नाटक के तटों पर आम की बौछारें"
+      },
+      "bin": "hot",
+      "why": {
+       "en": "Mango showers fall before the monsoon and help the mangoes ripen.",
+       "hi": "आम की बौछारें मानसून से पहले गिरती हैं और आमों को पकाने में मदद करती हैं।"
+      }
+     },
+     {
+      "id": "wd",
+      "text": {
+       "en": "Western disturbances bring winter rain to the north-west",
+       "hi": "पश्चिमी विक्षोभ उत्तर-पश्चिम में शीत वर्षा लाते हैं"
+      },
+      "bin": "cold",
+      "why": {
+       "en": "Western disturbances come in winter and help the wheat crop.",
+       "hi": "पश्चिमी विक्षोभ सर्दियों में आते हैं और गेहूँ की फ़सल के लिए लाभदायक हैं।"
+      }
+     },
+     {
+      "id": "burst",
+      "text": {
+       "en": "Burst of the monsoon: sudden heavy rain after the dry spell",
+       "hi": "मानसून का फटना: सूखे के बाद अचानक भारी वर्षा"
+      },
+      "bin": "monsoon",
+      "why": {
+       "en": "The monsoon arrives with a burst of rain in June.",
+       "hi": "मानसून जून में वर्षा की झड़ी के साथ आता है।"
+      }
+     },
+     {
+      "id": "oct",
+      "text": {
+       "en": "October heat: clear skies and humid, warm days",
+       "hi": "अक्तूबर की ऊष्मा: साफ़ आसमान और उमस भरे गर्म दिन"
+      },
+      "bin": "retreat",
+      "why": {
+       "en": "As the monsoon withdraws the sky clears but the ground stays moist and warm.",
+       "hi": "मानसून लौटता है तो आसमान साफ़ हो जाता है पर भूमि नम और गर्म रहती है।"
+      }
+     },
+     {
+      "id": "tn",
+      "text": {
+       "en": "Tamil Nadu coast gets rain from the returning winds",
+       "hi": "तमिलनाडु तट को लौटती हवाओं से वर्षा मिलती है"
+      },
+      "bin": "retreat",
+      "why": {
+       "en": "The retreating monsoon picks up moisture over the Bay of Bengal and rains on the Tamil Nadu coast.",
+       "hi": "लौटता मानसून बंगाल की खाड़ी से नमी लेकर तमिलनाडु तट पर वर्षा करता है।"
+      }
+     },
+     {
+      "id": "fog",
+      "text": {
+       "en": "Cold nights and morning mist in the Ganga plain",
+       "hi": "गंगा के मैदान में ठंडी रातें और सुबह की धुंध"
+      },
+      "bin": "cold",
+      "why": {
+       "en": "Cool dry weather and clear nights give frost and mist in winter.",
+       "hi": "ठंडा सूखा मौसम और साफ़ रातें सर्दियों में पाला और धुंध लाती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which season would a thunderstorm in the evening in April belong to?",
+      "hi": "अप्रैल की शाम की आँधी-वर्षा किस ऋतु की होगी?"
+     },
+     "options": [
+      {
+       "id": "h",
+       "en": "Hot weather",
+       "hi": "ग्रीष्म"
+      },
+      {
+       "id": "c",
+       "en": "Cold weather",
+       "hi": "शीत"
+      },
+      {
+       "id": "m",
+       "en": "Monsoon",
+       "hi": "मानसून"
+      }
+     ],
+     "answer": "h"
+    },
+    {
+     "kind": "do",
+     "target": "card:loo",
+     "expect": "correct:loo",
+     "say": {
+      "en": "Pick the Loo card and drop it in the right season.",
+      "hi": "लू का कार्ड उठाकर सही ऋतु में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:wd",
+     "expect": "correct:wd",
+     "say": {
+      "en": "Now place the western disturbances.",
+      "hi": "अब पश्चिमी विक्षोभ को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each season has its own winds and showers. The hot weather has loo and pre-monsoon storms such as Kal Baisakhi and mango showers. The cold weather brings western disturbances to the north-west. The monsoon season starts with a burst of rain. In the retreating monsoon the winds turn back and the south-east coast gets rain.",
+      "hi": "हर ऋतु की अपनी हवाएँ और बौछारें होती हैं। गर्मी में लू और काल बैसाखी तथा आम की बौछारों जैसी मानसून-पूर्व आँधियाँ आती हैं। शीत ऋतु में उत्तर-पश्चिम में पश्चिमी विक्षोभ आते हैं। मानसून ऋतु वर्षा की झड़ी से शुरू होती है। मानसून की वापसी में हवाएँ लौटती हैं और दक्षिण-पूर्वी तट पर वर्षा होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Western disturbances are mostly helpful for which crop?",
+        "hi": "पश्चिमी विक्षोभ मुख्यतः किस फ़सल के लिए लाभदायक हैं?"
+       },
+       "options": [
+        {
+         "en": "Wheat",
+         "hi": "गेहूँ"
+        },
+        {
+         "en": "Jute",
+         "hi": "जूट"
+        },
+        {
+         "en": "Tea",
+         "hi": "चाय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Winter rain in the north-west suits the rabi crop wheat.",
+        "hi": "उत्तर-पश्चिम की शीत वर्षा रबी की फ़सल गेहूँ के लिए उपयुक्त है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Jute grows in hot, humid Bengal in the monsoon months, not in the winter rains of the north-west.",
+         "hi": "जूट मानसून के महीनों में गर्म, नम बंगाल में उगता है, उत्तर-पश्चिम की शीत वर्षा में नहीं।"
+        },
+        {
+         "en": "Tea grows on hill slopes in the north-east and south and does not depend on these winter showers.",
+         "hi": "चाय उत्तर-पूर्व और दक्षिण की पहाड़ी ढलानों पर उगती है और इन शीत वर्षाओं पर निर्भर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again from memory, then think: why does the Tamil Nadu coast get rain when most of India is drying out?",
+      "hi": "स्मृति से फिर छाँटो, फिर सोचो: जब भारत का अधिकांश भाग सूख रहा होता है तब तमिलनाडु तट पर वर्षा क्यों होती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch04-rain-map",
+   "topic": "4.3",
+   "template": "map",
+   "title": {
+    "en": "Where does the rain fall?",
+    "hi": "वर्षा कहाँ गिरती है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "rainfall",
+     "states",
+     "mountains"
+    ],
+    "show": [
+     "rainfall"
+    ],
+    "places": [
+     "mawsynram",
+     "phalodi",
+     "western-ghats",
+     "thar"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which place do you think gets far more rain than all the others: the Western Ghats coast, Mawsynram in Meghalaya, or the Thar desert?",
+      "hi": "तुम्हें क्या लगता है, किस स्थान पर सबसे अधिक वर्षा होती है: पश्चिमी घाट का तट, मेघालय का मॉसिनराम या थार मरुस्थल?"
+     },
+     "options": [
+      {
+       "id": "m",
+       "en": "Mawsynram",
+       "hi": "मॉसिनराम"
+      },
+      {
+       "id": "w",
+       "en": "Western Ghats coast",
+       "hi": "पश्चिमी घाट का तट"
+      },
+      {
+       "id": "t",
+       "en": "Thar desert",
+       "hi": "थार मरुस्थल"
+      }
+     ],
+     "answer": "m"
+    },
+    {
+     "kind": "do",
+     "target": "layer:rainfall",
+     "expect": "layer:rainfall",
+     "say": {
+      "en": "Switch on the rainfall layer and read the colour key.",
+      "hi": "वर्षा की परत चालू करो और रंगों की सूची पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:mawsynram",
+     "expect": "located:mawsynram",
+     "say": {
+      "en": "Tap Mawsynram in the Khasi hills.",
+      "hi": "खासी पहाड़ियों में मॉसिनराम पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:phalodi",
+     "expect": "located:phalodi",
+     "say": {
+      "en": "Now tap Phalodi in the Thar region and compare the rainfall.",
+      "hi": "अब थार क्षेत्र के फलोदी पर टैप करो और वर्षा की तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rainfall in India is very uneven. The windward slopes of the Western Ghats, the north-east hills and Meghalaya receive more than 200 cm. Mawsynram is one of the wettest places on Earth. The Thar desert in Rajasthan and parts of Ladakh get very little, often below 25 cm. The monsoon winds meet hills in the wet areas, but in the dry areas the hills stand in the way, or the winds lose their moisture before they reach.",
+      "hi": "भारत में वर्षा बहुत असमान है। पश्चिमी घाट की हवा की ओर वाली ढलानों, उत्तर-पूर्वी पहाड़ियों और मेघालय में 200 सेमी से अधिक वर्षा होती है। मॉसिनराम पृथ्वी के सबसे अधिक वर्षा वाले स्थानों में से एक है। राजस्थान के थार मरुस्थल और लद्दाख के कुछ भागों में बहुत कम वर्षा होती है, प्रायः 25 सेमी से भी कम। गीले क्षेत्रों में मानसूनी हवाएँ पहाड़ों से टकराती हैं, पर सूखे क्षेत्रों तक पहुँचने से पहले वे नमी खो देती हैं या पहाड़ उनका रास्ता रोक लेते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which area has the lowest rainfall?",
+        "hi": "किस क्षेत्र में सबसे कम वर्षा होती है?"
+       },
+       "options": [
+        {
+         "en": "Thar desert in Rajasthan",
+         "hi": "राजस्थान का थार मरुस्थल"
+        },
+        {
+         "en": "Meghalaya hills",
+         "hi": "मेघालय की पहाड़ियाँ"
+        },
+        {
+         "en": "Western Ghats coast",
+         "hi": "पश्चिमी घाट का तट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Thar is far from the sea and lies in a dry zone, so it gets very little rain.",
+        "hi": "थार समुद्र से दूर है और शुष्क क्षेत्र में है, इसलिए वहाँ बहुत कम वर्षा होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Meghalaya is among the wettest places in the world.",
+         "hi": "मेघालय दुनिया के सबसे अधिक वर्षा वाले स्थानों में है।"
+        },
+        {
+         "en": "The windward Ghats get over 200 cm because the monsoon rises against the slope.",
+         "hi": "पश्चिमी घाट की हवा की ओर वाली ढलान पर 200 सेमी से अधिक वर्षा होती है क्योंकि मानसून ढलान से टकराकर ऊपर उठता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Rainfall in India is ...",
+        "hi": "भारत में वर्षा ..."
+       },
+       "options": [
+        {
+         "en": "very uneven from place to place",
+         "hi": "एक स्थान से दूसरे स्थान पर बहुत असमान है"
+        },
+        {
+         "en": "the same everywhere",
+         "hi": "हर जगह एक-सी है"
+        },
+        {
+         "en": "only in the south",
+         "hi": "केवल दक्षिण में है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Some places get over 200 cm and others less than 25 cm.",
+        "hi": "कुछ स्थानों पर 200 सेमी से अधिक और कुछ पर 25 सेमी से भी कम वर्षा होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The map shows deep blues and pale yellows side by side, so it is not the same.",
+         "hi": "मानचित्र में गहरे नीले और हल्के पीले रंग साथ-साथ हैं, अतः वर्षा एक-सी नहीं है।"
+        },
+        {
+         "en": "Rain falls in the north-east, east and west as well; the south is not the only wet region.",
+         "hi": "वर्षा उत्तर-पूर्व, पूर्व और पश्चिम में भी होती है; केवल दक्षिण ही गीला नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the Western Ghats and the Thar. Which one lies in the rain shadow?",
+      "hi": "पश्चिमी घाट और थार टैप करो। कौन-सा वृष्टि-छाया क्षेत्र में है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch04-climate-match",
+   "topic": "4.3",
+   "template": "match",
+   "title": {
+    "en": "Places and their weather",
+    "hi": "स्थान और उनका मौसम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "maws",
+      "left": {
+       "en": "Mawsynram (Meghalaya)",
+       "hi": "मॉसिनराम (मेघालय)"
+      },
+      "right": {
+       "en": "Among the wettest places on Earth",
+       "hi": "पृथ्वी के सबसे अधिक वर्षा वाले स्थानों में से एक"
+      },
+      "why": {
+       "en": "It lies on the windward side of the Khasi hills.",
+       "hi": "यह खासी पहाड़ियों की हवा की ओर वाली ढलान पर है।"
+      }
+     },
+     {
+      "id": "thar",
+      "left": {
+       "en": "Thar desert (Rajasthan)",
+       "hi": "थार मरुस्थल (राजस्थान)"
+      },
+      "right": {
+       "en": "Very little rain, hot summers",
+       "hi": "बहुत कम वर्षा, गर्म ग्रीष्म"
+      },
+      "why": {
+       "en": "It is far from the sea and the Aravalli hills do not stop rain-bearing winds.",
+       "hi": "यह समुद्र से दूर है और अरावली पर्वत वर्षा वाली हवाओं को नहीं रोकते।"
+      }
+     },
+     {
+      "id": "dras",
+      "left": {
+       "en": "Dras (Ladakh)",
+       "hi": "द्रास (लद्दाख)"
+      },
+      "right": {
+       "en": "Bitterly cold winters with heavy snow",
+       "hi": "कड़ाके की ठंडी सर्दी और भारी हिमपात"
+      },
+      "why": {
+       "en": "High altitude makes the air very cold.",
+       "hi": "अधिक ऊँचाई के कारण हवा बहुत ठंडी रहती है।"
+      }
+     },
+     {
+      "id": "kerala",
+      "left": {
+       "en": "Kerala coast",
+       "hi": "केरल तट"
+      },
+      "right": {
+       "en": "The monsoon arrives here first, about 1 June",
+       "hi": "मानसून यहाँ सबसे पहले पहुँचता है, लगभग 1 जून को"
+      },
+      "why": {
+       "en": "The south-west monsoon first strikes the south-west coast.",
+       "hi": "दक्षिण-पश्चिम मानसून सबसे पहले दक्षिण-पश्चिमी तट से टकराता है।"
+      }
+     },
+     {
+      "id": "chennai",
+      "left": {
+       "en": "Chennai (Tamil Nadu)",
+       "hi": "चेन्नई (तमिलनाडु)"
+      },
+      "right": {
+       "en": "Gets rain mainly in October-November",
+       "hi": "वर्षा मुख्यतः अक्तूबर-नवंबर में"
+      },
+      "why": {
+       "en": "Winds returning over the Bay of Bengal bring rain to this coast.",
+       "hi": "बंगाल की खाड़ी से लौटती हवाएँ इस तट पर वर्षा लाती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these places is known for bitter winter cold?",
+      "hi": "इनमें से कौन-सा स्थान कड़ाके की सर्दी के लिए जाना जाता है?"
+     },
+     "options": [
+      {
+       "id": "d",
+       "en": "Dras",
+       "hi": "द्रास"
+      },
+      {
+       "id": "k",
+       "en": "Kerala coast",
+       "hi": "केरल तट"
+      },
+      {
+       "id": "c",
+       "en": "Chennai",
+       "hi": "चेन्नई"
+      }
+     ],
+     "answer": "d"
+    },
+    {
+     "kind": "do",
+     "target": "left:maws",
+     "expect": "matched:maws",
+     "say": {
+      "en": "Match Mawsynram with its weather fact.",
+      "hi": "मॉसिनराम को उसके मौसम के तथ्य से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:dras",
+     "expect": "matched:dras",
+     "say": {
+      "en": "Now match Dras.",
+      "hi": "अब द्रास को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाकी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Latitude, height, distance from the sea and the direction of the winds together decide a place's weather. High mountains like Ladakh are cold. Coastal places have moderate temperatures and more rain. Inland deserts are hot and dry. That is why two places in the same country can have very different climates.",
+      "hi": "अक्षांश, ऊँचाई, समुद्र से दूरी और हवाओं की दिशा मिलकर किसी स्थान का मौसम तय करते हैं। लद्दाख जैसे ऊँचे पर्वतीय क्षेत्र ठंडे होते हैं। तटीय स्थानों का तापमान सम और वर्षा अधिक होती है। भीतरी मरुस्थल गर्म और शुष्क होते हैं। इसीलिए एक ही देश के दो स्थानों की जलवायु बहुत अलग हो सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is Dras colder than Chennai, even though both are in India?",
+        "hi": "द्रास और चेन्नई दोनों भारत में हैं, फिर भी द्रास अधिक ठंडा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It is much higher above sea level",
+         "hi": "वह समुद्र तल से बहुत अधिक ऊँचाई पर है"
+        },
+        {
+         "en": "It is closer to the sea",
+         "hi": "वह समुद्र के अधिक पास है"
+        },
+        {
+         "en": "It gets more monsoon rain",
+         "hi": "वहाँ मानसून की वर्षा अधिक होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Air gets colder with height, and Dras is on a high mountain plateau.",
+        "hi": "ऊँचाई के साथ हवा ठंडी होती जाती है, और द्रास ऊँचे पर्वतीय पठार पर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chennai is on the coast, but Dras is deep in the mountains, far from the sea.",
+         "hi": "चेन्नई तट पर है, पर द्रास पर्वतों में भीतर, समुद्र से दूर है।"
+        },
+        {
+         "en": "Dras is dry and snowy; height, not rain, makes it cold.",
+         "hi": "द्रास शुष्क और बर्फ़ीला है; उसे ठंडा ऊँचाई बनाती है, वर्षा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match again without the hints. Which pair was easiest, and why?",
+      "hi": "बिना संकेत के फिर जोड़ियाँ मिलाओ। कौन-सी जोड़ी सबसे आसान थी और क्यों?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Hook: the monsoon arrives",
+   "shows": "Dark monsoon clouds over a Kerala coconut-palm coast, first big rain",
+   "view": "Wide, low angle from the beach",
+   "right": "Heavy grey-blue clouds; rain curtain visible; palms bent by wind",
+   "avoid": "People's faces, boards, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "CUT",
+   "topic": "4.1",
+   "use": "Show moist wind rising over hills",
+   "shows": "A cut-away of the Western Ghats with moist air rising, cloud and rain on one side, dry plateau on the other",
+   "view": "Side view, clean neutral background",
+   "right": "Wet green windward slope, dry brown leeward side",
+   "avoid": "Written labels or arrows"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "4.2",
+   "use": "Same field in all four seasons",
+   "shows": "Same wheat or rice field in cold, hot, monsoon and retreating-monsoon seasons",
+   "view": "Same camera position, same light",
+   "right": "Season changes in crop and sky are clear; 4 frames",
+   "avoid": "People, signboards"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Hot weather: loo",
+   "shows": "A dusty north Indian street in an April afternoon, shimmering heat and a covered face",
+   "view": "Wide, bright light",
+   "right": "Heat haze and dust; clothing for protection",
+   "avoid": "Identifiable faces"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "4.3",
+   "use": "Rainfall base for the map lab",
+   "shows": "India relief and sea with no names or borders drawn in, light shading by terrain",
+   "view": "16:9, top-down",
+   "right": "Western Ghats, Himalaya and Thar visible as terrain",
+   "avoid": "Names, borders, colours that look like data"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Contrast: dry and wet",
+   "shows": "Cracked dry earth in the Thar beside lush green Khasi hills",
+   "view": "Two-panel, same height",
+   "right": "Dry brown against dense green; clearly different",
+   "avoid": "Livestock in distress, text"
+  }
+ ]
+}

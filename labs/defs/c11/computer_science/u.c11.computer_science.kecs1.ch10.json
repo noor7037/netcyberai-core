@@ -1,0 +1,2138 @@
+{
+ "chapter_key": "u.c11.computer_science.kecs1.ch10",
+ "class": 11,
+ "subject_id": "computer_science",
+ "title": "Tuples and Dictionaries",
+ "source": "https://ncert.nic.in/textbook/pdf/kecs110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Introduction to tuples",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-tuplelist"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.1.1",
+   "title": "Accessing elements in a tuple",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-tuplebasics"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.1.2",
+   "title": "A tuple is immutable",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-tuplebasics"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Tuple operations: concatenation, repetition, membership, slicing",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-tupleops"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Tuple methods and built-in functions",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-tupleops"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Tuple assignment",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-swap"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Nested tuples",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-nested"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6",
+   "title": "Tuple handling",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-swap"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.7",
+   "title": "Introduction to dictionaries: creating and accessing items",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-dictlookup"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.8",
+   "title": "Dictionaries are mutable: adding and modifying items",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-dictops"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.9",
+   "title": "Dictionary operations: membership",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-dictops"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.10",
+   "title": "Traversing a dictionary",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-wordcount"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.11",
+   "title": "Dictionary methods and built-in functions",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-dictmethods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.12",
+   "title": "Manipulating dictionaries",
+   "labs": [
+    "c11-computer_science-kecs1-ch10-wordcount"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-computer_science-kecs1-ch10-tuplebasics",
+   "topic": "10.1.2",
+   "template": "sort",
+   "title": {
+    "en": "A tuple cannot be changed: what works, what fails",
+    "hi": "टपल बदला नहीं जा सकता: क्या चलता है, क्या नहीं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "works",
+      "label": {
+       "en": "Works",
+       "hi": "चलता है"
+      }
+     },
+     {
+      "id": "error",
+      "label": {
+       "en": "Gives an error",
+       "hi": "एरर देता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "read",
+      "text": {
+       "en": "t[0]",
+       "hi": "t[0]"
+      },
+      "bin": "works",
+      "why": {
+       "en": "Reading an item by its index is allowed. It gives 10.",
+       "hi": "इंडेक्स से वस्तु पढ़ना ठीक है। यह 10 देता है।"
+      }
+     },
+     {
+      "id": "assign",
+      "text": {
+       "en": "t[1] = 99",
+       "hi": "t[1] = 99"
+      },
+      "bin": "error",
+      "why": {
+       "en": "A tuple is immutable, so changing an item is a TypeError.",
+       "hi": "टपल अपरिवर्तनीय है, इसलिए वस्तु बदलना TypeError है।"
+      }
+     },
+     {
+      "id": "len",
+      "text": {
+       "en": "len(t)",
+       "hi": "len(t)"
+      },
+      "bin": "works",
+      "why": {
+       "en": "len only counts the items. It gives 3.",
+       "hi": "len केवल वस्तुएँ गिनता है। यह 3 देता है।"
+      }
+     },
+     {
+      "id": "plus",
+      "text": {
+       "en": "t + (40,)",
+       "hi": "t + (40,)"
+      },
+      "bin": "works",
+      "why": {
+       "en": "Joining makes a new tuple (10, 20, 30, 40); t itself is unchanged.",
+       "hi": "जोड़ने से नया टपल (10, 20, 30, 40) बनता है; t ख़ुद नहीं बदलता।"
+      }
+     },
+     {
+      "id": "append",
+      "text": {
+       "en": "t.append(40)",
+       "hi": "t.append(40)"
+      },
+      "bin": "error",
+      "why": {
+       "en": "A tuple has no append method, because it cannot grow.",
+       "hi": "टपल में append विधि नहीं होती, क्योंकि वह बढ़ नहीं सकता।"
+      }
+     },
+     {
+      "id": "member",
+      "text": {
+       "en": "20 in t",
+       "hi": "20 in t"
+      },
+      "bin": "works",
+      "why": {
+       "en": "Membership just looks inside. It gives True.",
+       "hi": "सदस्यता जाँच बस भीतर देखती है। यह True देती है।"
+      }
+     },
+     {
+      "id": "del",
+      "text": {
+       "en": "del t[0]",
+       "hi": "del t[0]"
+      },
+      "bin": "error",
+      "why": {
+       "en": "Items cannot be deleted one by one from a tuple: TypeError.",
+       "hi": "टपल से वस्तुएँ एक-एक करके मिटाई नहीं जा सकतीं: TypeError।"
+      }
+     },
+     {
+      "id": "times",
+      "text": {
+       "en": "t * 2",
+       "hi": "t * 2"
+      },
+      "bin": "works",
+      "why": {
+       "en": "Repetition makes a new tuple (10, 20, 30, 10, 20, 30).",
+       "hi": "दोहराव से नया टपल (10, 20, 30, 10, 20, 30) बनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:assign",
+     "expect": "correct:assign",
+     "say": {
+      "en": "Here t = (10, 20, 30). Tap the card t[1] = 99, then the group where it belongs.",
+      "hi": "यहाँ t = (10, 20, 30) है। कार्ड t[1] = 99 दबाओ, फिर वह समूह दबाओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A list lets us write marks[1] = 99. What do you think happens with a tuple?",
+      "hi": "सूची में हम marks[1] = 99 लिख सकते हैं। तुम्हारे विचार से टपल के साथ क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "err",
+       "en": "Python refuses: a tuple is immutable",
+       "hi": "पायथन मना कर देगा: टपल अपरिवर्तनीय है"
+      },
+      {
+       "id": "ok",
+       "en": "It works just like a list",
+       "hi": "यह सूची की तरह ही चलेगा"
+      }
+     ],
+     "answer": "err"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards, then tap Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A tuple is an ordered sequence of items written in round brackets, like (10, 20, 30). You read its items by index, just like a list. But a tuple is immutable: once made, its items cannot be changed, added or deleted. Operations that only read or build something new, such as len, in, + and *, work fine because they leave the original tuple alone. A tuple with one item needs a comma, like (5,), or Python sees only a number in brackets.",
+      "hi": "टपल गोल कोष्ठक में लिखी वस्तुओं का क्रमबद्ध अनुक्रम है, जैसे (10, 20, 30)। सूची की तरह इसकी वस्तुएँ इंडेक्स से पढ़ी जाती हैं। पर टपल अपरिवर्तनीय है: बन जाने के बाद उसकी वस्तुएँ बदली, जोड़ी या मिटाई नहीं जा सकतीं। जो संक्रियाएँ केवल पढ़ती हैं या कुछ नया बनाती हैं, जैसे len, in, + और *, वे ठीक चलती हैं क्योंकि मूल टपल को नहीं छूतीं। एक वस्तु वाले टपल में अल्पविराम चाहिए, जैसे (5,), वरना पायथन उसे कोष्ठक में बंद केवल एक संख्या मानता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is a tuple with a single item?",
+        "hi": "एक वस्तु वाला टपल कौन-सा है?"
+       },
+       "options": [
+        "(5,)",
+        "(5)",
+        "[5]"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The comma after 5 is what makes it a tuple.",
+        "hi": "5 के बाद का अल्पविराम ही उसे टपल बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "(5) is just the number 5 in brackets.",
+         "hi": "(5) कोष्ठक में बंद केवल संख्या 5 है।"
+        },
+        {
+         "en": "[5] is a list with one item.",
+         "hi": "[5] एक वस्तु वाली सूची है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does t + (40,) work when t cannot be changed?",
+        "hi": "जब t बदला नहीं जा सकता तो t + (40,) कैसे चलता है?"
+       },
+       "options": [
+        {
+         "en": "It builds a new tuple and leaves t alone",
+         "hi": "यह नया टपल बनाता है और t को नहीं छूता"
+        },
+        {
+         "en": "It changes t in place",
+         "hi": "यह t को उसी जगह बदल देता है"
+        },
+        {
+         "en": "It does not really work",
+         "hi": "यह सचमुच नहीं चलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Immutable means no change in place; making a new tuple is allowed.",
+        "hi": "अपरिवर्तनीय का मतलब है उसी जगह बदलाव नहीं; नया टपल बनाना मना नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "t stays (10, 20, 30); the new tuple must be stored in a name.",
+         "hi": "t (10, 20, 30) ही रहता है; नया टपल किसी नाम में रखना पड़ता है।"
+        },
+        {
+         "en": "It works fine and gives (10, 20, 30, 40).",
+         "hi": "यह ठीक चलता है और (10, 20, 30, 40) देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and sort again quickly. Then think of something that should never change while a program runs, like the days of a week, and say why a tuple suits it.",
+      "hi": "रीसेट दबाकर फिर जल्दी से छाँटो। फिर सोचो कि प्रोग्राम चलते समय कौन-सी चीज़ कभी नहीं बदलनी चाहिए, जैसे सप्ताह के दिन, और बताओ टपल उसके लिए क्यों ठीक है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch10-tuplelist",
+   "topic": "10.1",
+   "template": "sort",
+   "title": {
+    "en": "Tuple or list? Choose the right one",
+    "hi": "टपल या सूची? सही चुनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "list",
+      "label": {
+       "en": "List [ ]",
+       "hi": "सूची [ ]"
+      }
+     },
+     {
+      "id": "tuple",
+      "label": {
+       "en": "Tuple ( )",
+       "hi": "टपल ( )"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "square",
+      "text": {
+       "en": "Written with square brackets [ ]",
+       "hi": "वर्गाकार कोष्ठक [ ] में लिखी जाती है"
+      },
+      "bin": "list",
+      "why": {
+       "en": "A list uses [ ] and a tuple uses ( ).",
+       "hi": "सूची [ ] और टपल ( ) इस्तेमाल करता है।"
+      }
+     },
+     {
+      "id": "round",
+      "text": {
+       "en": "Written with round brackets ( )",
+       "hi": "गोल कोष्ठक ( ) में लिखा जाता है"
+      },
+      "bin": "tuple",
+      "why": {
+       "en": "Round brackets (and commas) make a tuple.",
+       "hi": "गोल कोष्ठक (और अल्पविराम) टपल बनाते हैं।"
+      }
+     },
+     {
+      "id": "change",
+      "text": {
+       "en": "Items can be changed after it is made",
+       "hi": "बनने के बाद वस्तुएँ बदली जा सकती हैं"
+      },
+      "bin": "list",
+      "why": {
+       "en": "Lists are mutable.",
+       "hi": "सूची परिवर्तनीय है।"
+      }
+     },
+     {
+      "id": "fixed",
+      "text": {
+       "en": "Items cannot be changed after it is made",
+       "hi": "बनने के बाद वस्तुएँ बदली नहीं जा सकतीं"
+      },
+      "bin": "tuple",
+      "why": {
+       "en": "Tuples are immutable.",
+       "hi": "टपल अपरिवर्तनीय है।"
+      }
+     },
+     {
+      "id": "append",
+      "text": {
+       "en": "Has append() and remove() methods",
+       "hi": "इसमें append() और remove() विधियाँ हैं"
+      },
+      "bin": "list",
+      "why": {
+       "en": "Only a list can grow and shrink.",
+       "hi": "केवल सूची बढ़ और घट सकती है।"
+      }
+     },
+     {
+      "id": "days",
+      "text": {
+       "en": "Good for the days of the week",
+       "hi": "सप्ताह के दिनों के लिए अच्छा"
+      },
+      "bin": "tuple",
+      "why": {
+       "en": "The seven days never change, so a fixed tuple is safe.",
+       "hi": "सातों दिन कभी नहीं बदलते, इसलिए तय टपल सुरक्षित है।"
+      }
+     },
+     {
+      "id": "cart",
+      "text": {
+       "en": "Good for a shopping list that keeps growing",
+       "hi": "बढ़ती खरीदारी की सूची के लिए अच्छा"
+      },
+      "bin": "list",
+      "why": {
+       "en": "You keep adding and removing items, so you need a list.",
+       "hi": "तुम वस्तुएँ जोड़ते-हटाते रहते हो, इसलिए सूची चाहिए।"
+      }
+     },
+     {
+      "id": "key",
+      "text": {
+       "en": "Can be a dictionary key",
+       "hi": "डिक्शनरी की कुंजी बन सकता है"
+      },
+      "bin": "tuple",
+      "why": {
+       "en": "Keys must be unchangeable, and a tuple of fixed items is.",
+       "hi": "कुंजियाँ न बदलने वाली होनी चाहिए, और पक्की वस्तुओं का टपल वैसा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:square",
+     "expect": "correct:square",
+     "say": {
+      "en": "Tap the card \"Written with square brackets [ ]\", then its group.",
+      "hi": "कार्ड \"वर्गाकार कोष्ठक [ ] में लिखी जाती है\" दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A school stores the three fixed terms of the year as (1, 2, 3). Is a tuple or a list the better choice?",
+      "hi": "एक स्कूल वर्ष के तीन तय सत्र (1, 2, 3) की तरह रखता है। टपल बेहतर है या सूची?"
+     },
+     "options": [
+      {
+       "id": "tuple",
+       "en": "A tuple, because the terms never change",
+       "hi": "टपल, क्योंकि सत्र कभी नहीं बदलते"
+      },
+      {
+       "id": "list",
+       "en": "A list, because lists are better",
+       "hi": "सूची, क्योंकि सूची बेहतर होती है"
+      }
+     ],
+     "answer": "tuple"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाक़ी सभी कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Lists and tuples are both sequences: indexing, slicing, len, in, + and * work on both. The big difference is that a list is mutable and a tuple is not. Choose a list for data that grows, shrinks or is edited, like a shopping list. Choose a tuple for fixed data that must not change by mistake, like the days of the week or the latitude and longitude of a place.",
+      "hi": "सूची और टपल दोनों अनुक्रम हैं: इंडेक्स, स्लाइसिंग, len, in, + और * दोनों पर चलते हैं। बड़ा अंतर यह है कि सूची परिवर्तनीय है और टपल नहीं। जो डेटा बढ़ता, घटता या बदला जाता है उसके लिए सूची चुनो, जैसे खरीदारी की सूची। जो डेटा तय है और ग़लती से बदलना नहीं चाहिए उसके लिए टपल चुनो, जैसे सप्ताह के दिन या किसी जगह का अक्षांश और देशांतर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A program keeps the names of students who joined a club, and new names arrive daily. Which is better?",
+        "hi": "एक प्रोग्राम क्लब में आए विद्यार्थियों के नाम रखता है, और रोज़ नए नाम आते हैं। कौन बेहतर है?"
+       },
+       "options": [
+        {
+         "en": "A list",
+         "hi": "सूची"
+        },
+        {
+         "en": "A tuple",
+         "hi": "टपल"
+        },
+        {
+         "en": "Either, with no difference",
+         "hi": "दोनों, कोई अंतर नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "New names must be added, and only a list can grow.",
+        "hi": "नए नाम जोड़ने पड़ेंगे, और केवल सूची बढ़ सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A tuple cannot take new items after it is made.",
+         "hi": "टपल में बनने के बाद नई वस्तुएँ नहीं जुड़ सकतीं।"
+        },
+        {
+         "en": "The difference matters here: only one of them can add a name.",
+         "hi": "यहाँ अंतर मायने रखता है: उनमें से केवल एक में नाम जुड़ सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and sort again. Then name one thing from your school bag or timetable that suits a tuple and one that suits a list.",
+      "hi": "रीसेट दबाकर फिर छाँटो। फिर अपने स्कूल बैग या समय-सारणी की एक चीज़ बताओ जो टपल के लिए ठीक है और एक जो सूची के लिए।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch10-tupleops",
+   "topic": "10.3",
+   "template": "match",
+   "title": {
+    "en": "Tuple operations, methods and functions",
+    "hi": "टपल की संक्रियाएँ, विधियाँ और फ़ंक्शन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "count",
+      "left": {
+       "en": "t.count(10)",
+       "hi": "t.count(10)"
+      },
+      "right": {
+       "en": "2, how many times 10 appears",
+       "hi": "2, यानी 10 कितनी बार आया"
+      },
+      "why": {
+       "en": "Here t = (10, 20, 30, 10). count counts matches.",
+       "hi": "यहाँ t = (10, 20, 30, 10) है। count मेल गिनता है।"
+      }
+     },
+     {
+      "id": "index",
+      "left": {
+       "en": "t.index(30)",
+       "hi": "t.index(30)"
+      },
+      "right": {
+       "en": "2, the index of the first 30",
+       "hi": "2, यानी पहले 30 का इंडेक्स"
+      },
+      "why": {
+       "en": "index gives the position of the first match; a missing value is a ValueError.",
+       "hi": "index पहले मेल का स्थान देता है; मान न हो तो ValueError आता है।"
+      }
+     },
+     {
+      "id": "slice",
+      "left": {
+       "en": "t[1:3]",
+       "hi": "t[1:3]"
+      },
+      "right": {
+       "en": "(20, 30)",
+       "hi": "(20, 30)"
+      },
+      "why": {
+       "en": "Slicing a tuple gives a tuple: indexes 1 and 2.",
+       "hi": "टपल का स्लाइस टपल देता है: इंडेक्स 1 और 2।"
+      }
+     },
+     {
+      "id": "plus",
+      "left": {
+       "en": "t + (5,)",
+       "hi": "t + (5,)"
+      },
+      "right": {
+       "en": "(10, 20, 30, 10, 5)",
+       "hi": "(10, 20, 30, 10, 5)"
+      },
+      "why": {
+       "en": "Concatenation builds a new, longer tuple.",
+       "hi": "संयोजन नया, लंबा टपल बनाता है।"
+      }
+     },
+     {
+      "id": "sorted",
+      "left": {
+       "en": "sorted(t)",
+       "hi": "sorted(t)"
+      },
+      "right": {
+       "en": "A new sorted list: [10, 10, 20, 30]",
+       "hi": "नई छँटी सूची: [10, 10, 20, 30]"
+      },
+      "why": {
+       "en": "sorted always returns a list, and t is not changed.",
+       "hi": "sorted हमेशा सूची लौटाता है, और t नहीं बदलता।"
+      }
+     },
+     {
+      "id": "max",
+      "left": {
+       "en": "max(t)",
+       "hi": "max(t)"
+      },
+      "right": {
+       "en": "30, the biggest item",
+       "hi": "30, यानी सबसे बड़ी वस्तु"
+      },
+      "why": {
+       "en": "max, min and sum work on a tuple of numbers.",
+       "hi": "max, min और sum संख्याओं के टपल पर चलते हैं।"
+      }
+     },
+     {
+      "id": "one",
+      "left": {
+       "en": "(7,)",
+       "hi": "(7,)"
+      },
+      "right": {
+       "en": "A tuple with one item; the comma makes it a tuple",
+       "hi": "एक वस्तु वाला टपल; अल्पविराम उसे टपल बनाता है"
+      },
+      "why": {
+       "en": "Without the comma, (7) is just the number 7.",
+       "hi": "अल्पविराम के बिना (7) केवल संख्या 7 है।"
+      }
+     },
+     {
+      "id": "make",
+      "left": {
+       "en": "tuple([1, 2])",
+       "hi": "tuple([1, 2])"
+      },
+      "right": {
+       "en": "(1, 2), a tuple made from a list",
+       "hi": "(1, 2), सूची से बना टपल"
+      },
+      "why": {
+       "en": "tuple() turns any sequence into a tuple.",
+       "hi": "tuple() किसी भी अनुक्रम को टपल बना देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:count",
+     "expect": "matched:count",
+     "say": {
+      "en": "Here t = (10, 20, 30, 10). Tap t.count(10), then its answer.",
+      "hi": "यहाँ t = (10, 20, 30, 10) है। t.count(10) दबाओ, फिर उसका उत्तर दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "sorted(t) sorts the tuple. Which kind of value does it give back?",
+      "hi": "sorted(t) टपल को छाँटता है। यह किस प्रकार का मान लौटाता है?"
+     },
+     "options": [
+      {
+       "id": "list",
+       "en": "A list, because tuples cannot be changed",
+       "hi": "सूची, क्योंकि टपल बदले नहीं जा सकते"
+      },
+      {
+       "id": "tuple",
+       "en": "A tuple",
+       "hi": "टपल"
+      }
+     ],
+     "answer": "list"
+    },
+    {
+     "kind": "do",
+     "target": "left:sorted",
+     "expect": "matched:sorted",
+     "say": {
+      "en": "Match sorted(t) with what it gives.",
+      "hi": "sorted(t) को उसके परिणाम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:make",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the remaining tools.",
+      "hi": "बाक़ी औज़ार मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Tuples support the same reading tools as lists: + joins, * repeats, in tests membership and slicing cuts a piece, always giving a new tuple. len, min, max and sum work on tuples of numbers. count and index are the two tuple methods that look for a value. There is no sort or append, because a tuple cannot change; sorted(t) gives a new list instead. And remember the comma for a one-item tuple.",
+      "hi": "टपल में वही पढ़ने के औज़ार हैं जो सूची में: + जोड़ता है, * दोहराता है, in सदस्यता जाँचता है और स्लाइसिंग टुकड़ा काटता है, और हमेशा नया टपल मिलता है। len, min, max और sum संख्याओं के टपल पर चलते हैं। count और index वे दो विधियाँ हैं जो मान ढूँढती हैं। sort या append नहीं हैं, क्योंकि टपल बदल नहीं सकता; sorted(t) इसके बदले नई सूची देता है। और एक वस्तु वाले टपल का अल्पविराम याद रखो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For t = (4, 8, 4, 2), what is t.count(4)?",
+        "hi": "t = (4, 8, 4, 2) हो तो t.count(4) क्या है?"
+       },
+       "options": [
+        "2",
+        "1",
+        "4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 appears twice.",
+        "hi": "4 दो बार आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That counts only one of the two 4s.",
+         "hi": "इसमें दो 4 में से केवल एक गिना गया।"
+        },
+        {
+         "en": "4 is the value being counted, not the answer.",
+         "hi": "4 वह मान है जिसे गिना जा रहा है, उत्तर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does a tuple have no sort() method?",
+        "hi": "टपल में sort() विधि क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "Sorting would change it in place, and a tuple is immutable",
+         "hi": "छाँटना उसे उसी जगह बदलता, और टपल अपरिवर्तनीय है"
+        },
+        {
+         "en": "Tuples cannot hold numbers",
+         "hi": "टपल में संख्याएँ नहीं रह सकतीं"
+        },
+        {
+         "en": "Python forgot to add it",
+         "hi": "पायथन में जोड़ना रह गया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Use sorted(t), which builds a new list instead.",
+        "hi": "sorted(t) लगाओ, जो इसके बदले नई सूची बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Tuples hold numbers happily; the reason is immutability.",
+         "hi": "टपल संख्याएँ आराम से रखते हैं; कारण अपरिवर्तनीयता है।"
+        },
+        {
+         "en": "It is a deliberate design, not a mistake.",
+         "hi": "यह जानबूझकर किया गया डिज़ाइन है, कोई भूल नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and match again, faster. Then say what min(t) and sum(t) give for t = (10, 20, 30, 10).",
+      "hi": "रीसेट दबाओ और फिर तेज़ी से मिलाओ। फिर बताओ कि t = (10, 20, 30, 10) के लिए min(t) और sum(t) क्या देते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch10-swap",
+   "topic": "10.4",
+   "template": "code",
+   "title": {
+    "en": "Swapping two values, the way Python does it",
+    "hi": "दो मानों की अदला-बदली"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "a = 10",
+     "b = 20",
+     "print(\"before: a =\", a, \"b =\", b)",
+     "temp = a",
+     "a = b",
+     "b = temp",
+     "print(\"after: a =\", a, \"b =\", b)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To swap a = 10 and b = 20 we first save a in temp. What will \"after\" show?",
+      "hi": "a = 10 और b = 20 की अदला-बदली के लिए पहले a को temp में रखते हैं। \"after\" क्या दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "swap",
+       "en": "a = 20 and b = 10",
+       "hi": "a = 20 और b = 10"
+      },
+      {
+       "id": "same",
+       "en": "a = 10 and b = 20, no change",
+       "hi": "a = 10 और b = 20, कोई बदलाव नहीं"
+      },
+      {
+       "id": "both",
+       "en": "a = 20 and b = 20",
+       "hi": "a = 20 और b = 20"
+      }
+     ],
+     "answer": "swap"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step through the three swap lines. Watch the three boxes a, b and temp.",
+      "hi": "अदला-बदली की तीन पंक्तियों में \"एक क़दम\" दबाओ। a, b और temp के तीन डिब्बे देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the before and after lines.",
+      "hi": "पहले और बाद की पंक्तियाँ देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To swap two values with ordinary assignment we need a helper box: temp keeps a, then a takes b, then b takes the saved value. Without temp, a = b would destroy the old a. Python offers a shorter way called tuple assignment: a, b = b, a. The right side builds the tuple (b, a) first, with the old values, and then the left side unpacks it into a and b, so no helper is needed. A tuple on the left must have as many names as there are values on the right.",
+      "hi": "साधारण असाइनमेंट से दो मान बदलने के लिए एक सहायक डिब्बा चाहिए: temp a को सँभालता है, फिर a, b को ले लेता है, फिर b सँभाला हुआ मान ले लेता है। temp के बिना a = b पुराने a को नष्ट कर देता। पायथन एक छोटा तरीक़ा देता है जिसे टपल असाइनमेंट कहते हैं: a, b = b, a। दाईं ओर पहले पुराने मानों से टपल (b, a) बनता है, फिर बाईं ओर वह a और b में खुलता है, इसलिए सहायक की ज़रूरत नहीं। बाईं ओर उतने ही नाम होने चाहिए जितने मान दाईं ओर हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which single line swaps a and b in Python?",
+        "hi": "पायथन में कौन-सी एक पंक्ति a और b की अदला-बदली करती है?"
+       },
+       "options": [
+        "a, b = b, a",
+        "a = b; b = a",
+        "a, b = a, b"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The right side (b, a) is made first, then it is unpacked into a and b.",
+        "hi": "दाईं ओर (b, a) पहले बनता है, फिर वह a और b में खुलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "After a = b, the old a is lost, so b = a copies the same value back.",
+         "hi": "a = b के बाद पुराना a खो जाता है, इसलिए b = a वही मान वापस नक़ल करता है।"
+        },
+        {
+         "en": "This puts each value back where it was; nothing is swapped.",
+         "hi": "यह हर मान को वहीं रख देता है जहाँ वह था; कुछ नहीं बदलता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the temp box needed in the long method?",
+        "hi": "लंबे तरीक़े में temp डिब्बा क्यों चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Otherwise the old value of a is overwritten and lost",
+         "hi": "वरना a का पुराना मान मिट जाता और खो जाता"
+        },
+        {
+         "en": "Python cannot store two numbers",
+         "hi": "पायथन दो संख्याएँ नहीं रख सकता"
+        },
+        {
+         "en": "To make the program faster",
+         "hi": "प्रोग्राम तेज़ करने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A variable holds one value at a time, so the old one must be saved first.",
+        "hi": "एक चर एक समय में एक ही मान रखता है, इसलिए पुराना पहले सँभालना पड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Python stores any number of variables.",
+         "hi": "पायथन कितने भी चर रख सकता है।"
+        },
+        {
+         "en": "temp adds a line; it is there for correctness, not speed.",
+         "hi": "temp एक पंक्ति बढ़ाता है; वह सही नतीजे के लिए है, तेज़ी के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then think how a function could return two values, like the smallest and the biggest mark, as a tuple.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर सोचो कि कोई फ़ंक्शन दो मान, जैसे सबसे छोटा और सबसे बड़ा अंक, एक टपल में कैसे लौटा सकता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch10-nested",
+   "topic": "10.5",
+   "template": "match",
+   "title": {
+    "en": "Nested tuples: records inside a tuple",
+    "hi": "नेस्टेड टपल: टपल के अंदर रिकॉर्ड"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "first",
+      "left": {
+       "en": "records[0]",
+       "hi": "records[0]"
+      },
+      "right": {
+       "en": "The whole first record: (1, \"Aman\", 78)",
+       "hi": "पूरा पहला रिकॉर्ड: (1, \"Aman\", 78)"
+      },
+      "why": {
+       "en": "One index picks one inner tuple.",
+       "hi": "एक इंडेक्स एक भीतरी टपल चुनता है।"
+      }
+     },
+     {
+      "id": "name",
+      "left": {
+       "en": "records[1][1]",
+       "hi": "records[1][1]"
+      },
+      "right": {
+       "en": "\"Bhavna\", the name in the second record",
+       "hi": "\"Bhavna\", यानी दूसरे रिकॉर्ड का नाम"
+      },
+      "why": {
+       "en": "The first index picks the record, the second picks the item inside it.",
+       "hi": "पहला इंडेक्स रिकॉर्ड चुनता है, दूसरा उसके भीतर की वस्तु।"
+      }
+     },
+     {
+      "id": "marks",
+      "left": {
+       "en": "records[2][2]",
+       "hi": "records[2][2]"
+      },
+      "right": {
+       "en": "91, the marks in the third record",
+       "hi": "91, यानी तीसरे रिकॉर्ड के अंक"
+      },
+      "why": {
+       "en": "Record 2 is (3, \"Charu\", 91); its item 2 is 91.",
+       "hi": "रिकॉर्ड 2 है (3, \"Charu\", 91); उसकी वस्तु 2 है 91।"
+      }
+     },
+     {
+      "id": "len",
+      "left": {
+       "en": "len(records)",
+       "hi": "len(records)"
+      },
+      "right": {
+       "en": "3, the number of records",
+       "hi": "3, यानी रिकॉर्डों की संख्या"
+      },
+      "why": {
+       "en": "len counts only the outer items, which are whole records.",
+       "hi": "len केवल बाहरी वस्तुएँ गिनता है, जो पूरे रिकॉर्ड हैं।"
+      }
+     },
+     {
+      "id": "sum",
+      "left": {
+       "en": "records[0][2] + records[1][2]",
+       "hi": "records[0][2] + records[1][2]"
+      },
+      "right": {
+       "en": "163, the sum of two marks",
+       "hi": "163, यानी दो अंकों का योग"
+      },
+      "why": {
+       "en": "78 + 85 = 163.",
+       "hi": "78 + 85 = 163।"
+      }
+     },
+     {
+      "id": "roll",
+      "left": {
+       "en": "records[2][0]",
+       "hi": "records[2][0]"
+      },
+      "right": {
+       "en": "3, the roll number of the third record",
+       "hi": "3, यानी तीसरे रिकॉर्ड का रोल नंबर"
+      },
+      "why": {
+       "en": "Item 0 of each record is its roll number.",
+       "hi": "हर रिकॉर्ड की वस्तु 0 उसका रोल नंबर है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:first",
+     "expect": "matched:first",
+     "say": {
+      "en": "Here records = ((1, \"Aman\", 78), (2, \"Bhavna\", 85), (3, \"Charu\", 91)). Tap records[0], then what it gives.",
+      "hi": "यहाँ records = ((1, \"Aman\", 78), (2, \"Bhavna\", 85), (3, \"Charu\", 91)) है। records[0] दबाओ, फिर वह जो देता है उसे दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "records[1][1] uses two indexes. Which index picks the record and which picks the item inside it?",
+      "hi": "records[1][1] में दो इंडेक्स हैं। कौन-सा इंडेक्स रिकॉर्ड चुनता है और कौन-सा उसके भीतर की वस्तु?"
+     },
+     "options": [
+      {
+       "id": "first",
+       "en": "The first picks the record, the second picks the item",
+       "hi": "पहला रिकॉर्ड चुनता है, दूसरा वस्तु"
+      },
+      {
+       "id": "second",
+       "en": "The second picks the record, the first picks the item",
+       "hi": "दूसरा रिकॉर्ड चुनता है, पहला वस्तु"
+      }
+     ],
+     "answer": "first"
+    },
+    {
+     "kind": "do",
+     "target": "left:name",
+     "expect": "matched:name",
+     "say": {
+      "en": "Match records[1][1] with its answer.",
+      "hi": "records[1][1] को उसके उत्तर से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:roll",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the remaining expressions.",
+      "hi": "बाक़ी व्यंजक मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A tuple can hold other tuples, which makes a nested tuple, a neat way to keep a table of records such as roll number, name and marks. Reading goes one level at a time: records[1] is the whole second record, and records[1][1] goes inside it for the name. The outer tuple and every inner tuple are immutable, so a record cannot be edited in place.",
+      "hi": "टपल में दूसरे टपल भी रह सकते हैं, जिससे नेस्टेड टपल बनता है। यह रोल नंबर, नाम और अंक जैसे रिकॉर्ड की तालिका रखने का साफ़ तरीक़ा है। पढ़ना एक-एक परत करके चलता है: records[1] पूरा दूसरा रिकॉर्ड है, और records[1][1] उसके भीतर जाकर नाम देता है। बाहरी टपल और हर भीतरी टपल अपरिवर्तनीय हैं, इसलिए रिकॉर्ड को उसी जगह बदला नहीं जा सकता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which expression gives the marks of Aman, the first record?",
+        "hi": "पहले रिकॉर्ड, अमन, के अंक कौन-सा व्यंजक देता है?"
+       },
+       "options": [
+        "records[0][2]",
+        "records[2][0]",
+        "records[0]"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Record 0 is Aman's tuple, and item 2 of it is the marks, 78.",
+        "hi": "रिकॉर्ड 0 अमन का टपल है, और उसकी वस्तु 2 अंक है, 78।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "records[2][0] is the roll number of the third record.",
+         "hi": "records[2][0] तीसरे रिकॉर्ड का रोल नंबर है।"
+        },
+        {
+         "en": "records[0] is the whole record, not only the marks.",
+         "hi": "records[0] पूरा रिकॉर्ड है, केवल अंक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and match again. Then write the expression for the name of the last student in your head.",
+      "hi": "रीसेट दबाओ और फिर मिलाओ। फिर मन में आख़िरी विद्यार्थी के नाम का व्यंजक लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch10-dictlookup",
+   "topic": "10.7",
+   "template": "table",
+   "title": {
+    "en": "A dictionary looks things up by key",
+    "hi": "डिक्शनरी चीज़ें कुंजी से खोजती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sql",
+    "tables": {
+     "marks": {
+      "columns": [
+       "student",
+       "score"
+      ],
+      "rows": [
+       [
+        "Aman",
+        78
+       ],
+       [
+        "Bhavna",
+        85
+       ],
+       [
+        "Charu",
+        91
+       ],
+       [
+        "Dev",
+        64
+       ],
+       [
+        "Esha",
+        72
+       ]
+      ]
+     }
+    },
+    "task": {
+     "en": "Think of this table as the dictionary marks = {\"Aman\": 78, \"Bhavna\": 85, ...}. Each student (the key) has one score (the value). Look up Charu's score by her key. (Sample data made up for this lab.)",
+     "hi": "इस तालिका को डिक्शनरी marks = {\"Aman\": 78, \"Bhavna\": 85, ...} समझो। हर विद्यार्थी (कुंजी) का एक स्कोर (मान) है। चारू का स्कोर उसकी कुंजी से खोजो। (इस लैब के लिए बनाया गया नमूना डेटा।)"
+    },
+    "query": "SELECT score FROM marks WHERE student = 'Charu'"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A dictionary stores key-value pairs. If marks[\"Charu\"] is the way to ask for Charu's score, what do we give inside the brackets, the key or the value?",
+      "hi": "डिक्शनरी कुंजी-मान जोड़ियाँ रखती है। चारू का स्कोर पूछने के लिए marks[\"Charu\"] लिखते हैं, तो कोष्ठक में हम क्या देते हैं, कुंजी या मान?"
+     },
+     "options": [
+      {
+       "id": "key",
+       "en": "The key, \"Charu\"",
+       "hi": "कुंजी, \"Charu\""
+      },
+      {
+       "id": "value",
+       "en": "The value, 91",
+       "hi": "मान, 91"
+      }
+     ],
+     "answer": "key"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Press Run to look up the score for the key Charu.",
+      "hi": "कुंजी Charu का स्कोर खोजने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A dictionary is a collection of key: value pairs written in curly brackets, like {\"Aman\": 78, \"Bhavna\": 85}. You do not find an item by its position; you ask by the key and get its value: marks[\"Charu\"] gives 91. Keys must be unique and unchangeable (strings, numbers or tuples), while values can be anything and can repeat. Dictionaries are also called mappings because each key maps to a value. The table above works the same way: the student column is the key.",
+      "hi": "डिक्शनरी कुंजी: मान जोड़ियों का संग्रह है जो कर्ली कोष्ठक में लिखा जाता है, जैसे {\"Aman\": 78, \"Bhavna\": 85}। वस्तु को उसकी जगह से नहीं खोजते; कुंजी से पूछते हैं और मान पाते हैं: marks[\"Charu\"] देता है 91। कुंजियाँ अनूठी और न बदलने वाली होनी चाहिए (स्ट्रिंग, संख्याएँ या टपल), जबकि मान कुछ भी हो सकते हैं और दोहराए जा सकते हैं। डिक्शनरी को मैपिंग भी कहते हैं क्योंकि हर कुंजी एक मान से जुड़ी होती है। ऊपर की तालिका भी ऐसे ही चलती है: student स्तंभ कुंजी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In {\"Aman\": 78, \"Bhavna\": 85}, which are the keys?",
+        "hi": "{\"Aman\": 78, \"Bhavna\": 85} में कुंजियाँ कौन-सी हैं?"
+       },
+       "options": [
+        {
+         "en": "\"Aman\" and \"Bhavna\"",
+         "hi": "\"Aman\" और \"Bhavna\""
+        },
+        {
+         "en": "78 and 85",
+         "hi": "78 और 85"
+        },
+        {
+         "en": "Both names and numbers",
+         "hi": "नाम और संख्याएँ दोनों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The key is the part before the colon, and the value is the part after it.",
+        "hi": "कुंजी कोलन से पहले का भाग है, और मान उसके बाद का।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Those are the values.",
+         "hi": "वे मान हैं।"
+        },
+        {
+         "en": "Each pair has one key and one value; they are not both keys.",
+         "hi": "हर जोड़ी में एक कुंजी और एक मान होता है; दोनों कुंजी नहीं होतीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can two different keys in a dictionary be the same?",
+        "hi": "क्या डिक्शनरी में दो अलग कुंजियाँ एक जैसी हो सकती हैं?"
+       },
+       "options": [
+        {
+         "en": "No, keys must be unique",
+         "hi": "नहीं, कुंजियाँ अनूठी होनी चाहिए"
+        },
+        {
+         "en": "Yes, any number of times",
+         "hi": "हाँ, कितनी भी बार"
+        },
+        {
+         "en": "Only for numbers",
+         "hi": "केवल संख्याओं के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If a key repeats, the later value replaces the earlier one.",
+        "hi": "कुंजी दोहराई जाए तो बाद वाला मान पहले वाले को बदल देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Repeated keys would make a lookup unclear, so they are not kept.",
+         "hi": "दोहराई कुंजियाँ खोज को अस्पष्ट बनातीं, इसलिए रखी नहीं जातीं।"
+        },
+        {
+         "en": "The rule is the same for every type of key.",
+         "hi": "नियम हर प्रकार की कुंजी के लिए एक-सा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the query to look up Dev instead and run it again. Then say what happens in a dictionary if you ask for a key that is not there.",
+      "hi": "क्वेरी बदलकर Dev का स्कोर खोजो और फिर चलाओ। फिर बताओ कि डिक्शनरी में ऐसी कुंजी माँगें जो है ही नहीं तो क्या होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch10-dictops",
+   "topic": "10.8",
+   "template": "sort",
+   "title": {
+    "en": "Dictionaries are mutable: add, change or KeyError?",
+    "hi": "डिक्शनरी परिवर्तनीय है: जोड़ो, बदलो या KeyError?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "add",
+      "label": {
+       "en": "Adds a new item",
+       "hi": "नई वस्तु जोड़ता है"
+      }
+     },
+     {
+      "id": "change",
+      "label": {
+       "en": "Changes an item",
+       "hi": "वस्तु बदलता है"
+      }
+     },
+     {
+      "id": "err",
+      "label": {
+       "en": "Gives a KeyError",
+       "hi": "KeyError देता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "charu",
+      "text": {
+       "en": "d[\"Charu\"] = 91",
+       "hi": "d[\"Charu\"] = 91"
+      },
+      "bin": "add",
+      "why": {
+       "en": "Charu is not a key yet, so a new pair is added.",
+       "hi": "Charu अभी कुंजी नहीं है, इसलिए नई जोड़ी जुड़ती है।"
+      }
+     },
+     {
+      "id": "dev",
+      "text": {
+       "en": "d[\"Dev\"] = 64",
+       "hi": "d[\"Dev\"] = 64"
+      },
+      "bin": "add",
+      "why": {
+       "en": "Dev is a new key, so a new pair is added.",
+       "hi": "Dev नई कुंजी है, इसलिए नई जोड़ी जुड़ती है।"
+      }
+     },
+     {
+      "id": "aman",
+      "text": {
+       "en": "d[\"Aman\"] = 80",
+       "hi": "d[\"Aman\"] = 80"
+      },
+      "bin": "change",
+      "why": {
+       "en": "Aman is already a key, so its value changes from 78 to 80.",
+       "hi": "Aman पहले से कुंजी है, इसलिए उसका मान 78 से 80 हो जाता है।"
+      }
+     },
+     {
+      "id": "bonus",
+      "text": {
+       "en": "d[\"Bhavna\"] = d[\"Bhavna\"] + 5",
+       "hi": "d[\"Bhavna\"] = d[\"Bhavna\"] + 5"
+      },
+      "bin": "change",
+      "why": {
+       "en": "The existing key Bhavna gets a new value, 90.",
+       "hi": "मौजूद कुंजी Bhavna को नया मान, 90, मिलता है।"
+      }
+     },
+     {
+      "id": "zoya",
+      "text": {
+       "en": "print(d[\"Zoya\"])",
+       "hi": "print(d[\"Zoya\"])"
+      },
+      "bin": "err",
+      "why": {
+       "en": "Zoya is not a key, so Python raises a KeyError.",
+       "hi": "Zoya कुंजी नहीं है, इसलिए पायथन KeyError देता है।"
+      }
+     },
+     {
+      "id": "value",
+      "text": {
+       "en": "print(d[85])",
+       "hi": "print(d[85])"
+      },
+      "bin": "err",
+      "why": {
+       "en": "85 is a value, not a key. You must ask with a key.",
+       "hi": "85 मान है, कुंजी नहीं। कुंजी से पूछना होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:charu",
+     "expect": "correct:charu",
+     "say": {
+      "en": "Here d = {\"Aman\": 78, \"Bhavna\": 85}. Tap d[\"Charu\"] = 91, then the group it belongs to.",
+      "hi": "यहाँ d = {\"Aman\": 78, \"Bhavna\": 85} है। d[\"Charu\"] = 91 दबाओ, फिर वह समूह दबाओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "d[\"Aman\"] = 80 uses a key that already exists. Will it add a second Aman or change the first?",
+      "hi": "d[\"Aman\"] = 80 ऐसी कुंजी लेता है जो पहले से है। क्या यह दूसरा Aman जोड़ेगा या पहले को बदलेगा?"
+     },
+     "options": [
+      {
+       "id": "change",
+       "en": "Change the first: keys are unique",
+       "hi": "पहले को बदलेगा: कुंजियाँ अनूठी हैं"
+      },
+      {
+       "id": "add",
+       "en": "Add a second Aman",
+       "hi": "दूसरा Aman जोड़ेगा"
+      }
+     ],
+     "answer": "change"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards, then tap Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Dictionaries are mutable. Writing d[key] = value does one of two jobs: if the key is new, a new pair is added; if the key already exists, its value is replaced. Asking for a key that is not there, with d[key], is a KeyError, and so is using a value where a key is needed. To check first, use the membership test: \"Zoya\" in d gives False, and it only looks at keys, never at values.",
+      "hi": "डिक्शनरी परिवर्तनीय है। d[key] = value दो में से एक काम करता है: कुंजी नई हो तो नई जोड़ी जुड़ती है; कुंजी पहले से हो तो उसका मान बदल जाता है। d[key] से ऐसी कुंजी माँगना जो है ही नहीं KeyError है, और जहाँ कुंजी चाहिए वहाँ मान लगाना भी। पहले जाँचना हो तो सदस्यता परीक्षण लगाओ: \"Zoya\" in d False देता है, और यह केवल कुंजियाँ देखता है, मान कभी नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For d = {\"Aman\": 78}, what does \"Aman\" in d give?",
+        "hi": "d = {\"Aman\": 78} हो तो \"Aman\" in d क्या देता है?"
+       },
+       "options": [
+        "True",
+        "False",
+        "78"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Aman is a key of d, and in tests keys.",
+        "hi": "Aman d की कुंजी है, और in कुंजियाँ जाँचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "False would mean the key is missing.",
+         "hi": "False का मतलब होता कि कुंजी नहीं है।"
+        },
+        {
+         "en": "in answers True or False; it does not return the value.",
+         "hi": "in True या False बताता है; मान नहीं लौटाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does 78 in d give for d = {\"Aman\": 78}?",
+        "hi": "d = {\"Aman\": 78} के लिए 78 in d क्या देता है?"
+       },
+       "options": [
+        {
+         "en": "False, because in looks at keys only",
+         "hi": "False, क्योंकि in केवल कुंजियाँ देखता है"
+        },
+        {
+         "en": "True, because 78 is stored",
+         "hi": "True, क्योंकि 78 रखा है"
+        },
+        {
+         "en": "A KeyError",
+         "hi": "KeyError एरर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Membership in a dictionary tests the keys. 78 is a value, not a key.",
+        "hi": "डिक्शनरी में सदस्यता कुंजियाँ जाँचती है। 78 मान है, कुंजी नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "78 is stored as a value, but in does not search the values.",
+         "hi": "78 मान की तरह रखा है, पर in मानों में नहीं खोजता।"
+        },
+        {
+         "en": "The test never raises an error; it just answers True or False.",
+         "hi": "यह जाँच कभी एरर नहीं देती; बस True या False बताती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and sort again. Then say how you would add a new student only if the name is not already in the dictionary.",
+      "hi": "रीसेट दबाकर फिर छाँटो। फिर बताओ कि नाम डिक्शनरी में पहले से न हो तभी नया विद्यार्थी कैसे जोड़ोगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch10-dictmethods",
+   "topic": "10.11",
+   "template": "match",
+   "title": {
+    "en": "Dictionary methods and functions",
+    "hi": "डिक्शनरी की विधियाँ और फ़ंक्शन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "len",
+      "left": {
+       "en": "len(d)",
+       "hi": "len(d)"
+      },
+      "right": {
+       "en": "The number of key-value pairs",
+       "hi": "कुंजी-मान जोड़ियों की संख्या"
+      },
+      "why": {
+       "en": "For d = {\"Aman\": 78, \"Bhavna\": 85} it gives 2.",
+       "hi": "d = {\"Aman\": 78, \"Bhavna\": 85} के लिए यह 2 देता है।"
+      }
+     },
+     {
+      "id": "keys",
+      "left": {
+       "en": "d.keys()",
+       "hi": "d.keys()"
+      },
+      "right": {
+       "en": "All the keys: \"Aman\", \"Bhavna\"",
+       "hi": "सभी कुंजियाँ: \"Aman\", \"Bhavna\""
+      },
+      "why": {
+       "en": "keys gives the keys only, in the order they were added.",
+       "hi": "keys केवल कुंजियाँ देता है, उसी क्रम में जिसमें जोड़ी गई थीं।"
+      }
+     },
+     {
+      "id": "values",
+      "left": {
+       "en": "d.values()",
+       "hi": "d.values()"
+      },
+      "right": {
+       "en": "All the values: 78, 85",
+       "hi": "सभी मान: 78, 85"
+      },
+      "why": {
+       "en": "values gives the values only.",
+       "hi": "values केवल मान देता है।"
+      }
+     },
+     {
+      "id": "items",
+      "left": {
+       "en": "d.items()",
+       "hi": "d.items()"
+      },
+      "right": {
+       "en": "All the pairs as (key, value) tuples",
+       "hi": "सभी जोड़ियाँ (कुंजी, मान) टपल के रूप में"
+      },
+      "why": {
+       "en": "items gives (\"Aman\", 78), (\"Bhavna\", 85): a tuple for each pair.",
+       "hi": "items देता है (\"Aman\", 78), (\"Bhavna\", 85): हर जोड़ी के लिए एक टपल।"
+      }
+     },
+     {
+      "id": "get",
+      "left": {
+       "en": "d.get(\"Zoya\")",
+       "hi": "d.get(\"Zoya\")"
+      },
+      "right": {
+       "en": "None, with no error, when the key is missing",
+       "hi": "कुंजी न हो तो None, बिना एरर के"
+      },
+      "why": {
+       "en": "get is a safe lookup; d[\"Zoya\"] would be a KeyError.",
+       "hi": "get सुरक्षित खोज है; d[\"Zoya\"] KeyError देता।"
+      }
+     },
+     {
+      "id": "update",
+      "left": {
+       "en": "d.update(e)",
+       "hi": "d.update(e)"
+      },
+      "right": {
+       "en": "Adds the pairs of another dictionary e",
+       "hi": "दूसरी डिक्शनरी e की जोड़ियाँ जोड़ता है"
+      },
+      "why": {
+       "en": "Existing keys get their value replaced; new keys are added.",
+       "hi": "मौजूद कुंजियों का मान बदलता है; नई कुंजियाँ जुड़ती हैं।"
+      }
+     },
+     {
+      "id": "del",
+      "left": {
+       "en": "del d[\"Aman\"]",
+       "hi": "del d[\"Aman\"]"
+      },
+      "right": {
+       "en": "Removes the pair with that key",
+       "hi": "उस कुंजी वाली जोड़ी हटा देता है"
+      },
+      "why": {
+       "en": "del removes by key; a missing key is a KeyError.",
+       "hi": "del कुंजी से हटाता है; कुंजी न हो तो KeyError आता है।"
+      }
+     },
+     {
+      "id": "clear",
+      "left": {
+       "en": "d.clear()",
+       "hi": "d.clear()"
+      },
+      "right": {
+       "en": "Empties the dictionary completely",
+       "hi": "डिक्शनरी को पूरी तरह ख़ाली कर देता है"
+      },
+      "why": {
+       "en": "After clear, d is an empty dictionary { }.",
+       "hi": "clear के बाद d ख़ाली डिक्शनरी { } हो जाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:items",
+     "expect": "matched:items",
+     "say": {
+      "en": "Here d = {\"Aman\": 78, \"Bhavna\": 85}. Tap d.items() and then what it gives.",
+      "hi": "यहाँ d = {\"Aman\": 78, \"Bhavna\": 85} है। d.items() दबाओ और फिर वह जो देता है उसे दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "d.get(\"Zoya\") asks for a key that is missing. What does it do?",
+      "hi": "d.get(\"Zoya\") ऐसी कुंजी माँगता है जो है ही नहीं। यह क्या करता है?"
+     },
+     "options": [
+      {
+       "id": "none",
+       "en": "Gives None quietly",
+       "hi": "चुपचाप None देता है"
+      },
+      {
+       "id": "error",
+       "en": "Raises a KeyError",
+       "hi": "KeyError देता है"
+      }
+     ],
+     "answer": "none"
+    },
+    {
+     "kind": "do",
+     "target": "left:get",
+     "expect": "matched:get",
+     "say": {
+      "en": "Match d.get(\"Zoya\") with its result.",
+      "hi": "d.get(\"Zoya\") को उसके परिणाम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:clear",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the tools.",
+      "hi": "बाक़ी औज़ार मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Dictionaries come with handy tools. len counts pairs; keys, values and items give the three views of the contents, and items gives each pair as a (key, value) tuple, which a for loop can unpack. get is the safe lookup that returns None for a missing key instead of crashing. update merges in another dictionary, del removes one pair by its key, and clear empties the whole dictionary.",
+      "hi": "डिक्शनरी के साथ काम के औज़ार आते हैं। len जोड़ियाँ गिनता है; keys, values और items सामग्री के तीन रूप देते हैं, और items हर जोड़ी (कुंजी, मान) टपल के रूप में देता है, जिसे for लूप खोल सकता है। get सुरक्षित खोज है जो कुंजी न होने पर क्रैश होने के बजाय None देती है। update दूसरी डिक्शनरी मिला लेता है, del एक जोड़ी को उसकी कुंजी से हटाता है, और clear पूरी डिक्शनरी ख़ाली कर देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which method would you use to print only the names (keys) of the students?",
+        "hi": "केवल विद्यार्थियों के नाम (कुंजियाँ) छापने के लिए कौन-सी विधि लगाओगे?"
+       },
+       "options": [
+        "d.keys()",
+        "d.values()",
+        "d.items()"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "keys gives just the keys.",
+        "hi": "keys केवल कुंजियाँ देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "values gives the scores, not the names.",
+         "hi": "values स्कोर देता है, नाम नहीं।"
+        },
+        {
+         "en": "items gives names and scores together.",
+         "hi": "items नाम और स्कोर साथ में देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is safer for a key that might be missing?",
+        "hi": "ऐसी कुंजी के लिए कौन-सा अधिक सुरक्षित है जो शायद न हो?"
+       },
+       "options": [
+        "d.get(key)",
+        "d[key]",
+        "del d[key]"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "get returns None when the key is missing, so the program goes on.",
+        "hi": "कुंजी न हो तो get None लौटाता है, इसलिए प्रोग्राम चलता रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "d[key] raises a KeyError for a missing key.",
+         "hi": "कुंजी न हो तो d[key] KeyError देता है।"
+        },
+        {
+         "en": "del also raises a KeyError and removes data too.",
+         "hi": "del भी KeyError देता है और डेटा भी हटा देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and match again from memory. Then say which method you would use to find the number of students in a dictionary.",
+      "hi": "रीसेट दबाओ और याददाश्त से फिर मिलाओ। फिर बताओ कि डिक्शनरी में विद्यार्थियों की संख्या जानने के लिए कौन-सी विधि लगाओगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch10-wordcount",
+   "topic": "10.12",
+   "template": "sequence",
+   "title": {
+    "en": "Count the letters of a word with a dictionary",
+    "hi": "डिक्शनरी से शब्द के अक्षर गिनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "empty",
+      "text": {
+       "en": "Make an empty dictionary: count = { }",
+       "hi": "ख़ाली डिक्शनरी बनाओ: count = { }"
+      }
+     },
+     {
+      "id": "take",
+      "text": {
+       "en": "Take the next letter ch of the word",
+       "hi": "शब्द का अगला अक्षर ch लो"
+      }
+     },
+     {
+      "id": "ask",
+      "text": {
+       "en": "Ask: is ch already a key in count?",
+       "hi": "पूछो: क्या ch पहले से count की कुंजी है?"
+      }
+     },
+     {
+      "id": "update",
+      "text": {
+       "en": "If yes, add 1 to its value; if no, store ch with value 1",
+       "hi": "हाँ तो उसके मान में 1 जोड़ो; नहीं तो ch को मान 1 के साथ रखो"
+      }
+     },
+     {
+      "id": "repeat",
+      "text": {
+       "en": "Repeat for every letter until the word ends",
+       "hi": "शब्द ख़त्म होने तक हर अक्षर के लिए दोहराओ"
+      }
+     },
+     {
+      "id": "print",
+      "text": {
+       "en": "Print every key with its count",
+       "hi": "हर कुंजी को उसकी गिनती के साथ छापो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:empty",
+     "expect": "placed:empty",
+     "say": {
+      "en": "Find the step that creates the empty dictionary and put it first.",
+      "hi": "ख़ाली डिक्शनरी बनाने वाला क़दम ढूँढो और उसे पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For the word BANANA the finished dictionary has keys B, A and N. What is the count of A?",
+      "hi": "शब्द BANANA के लिए पूरी डिक्शनरी में कुंजियाँ B, A और N हैं। A की गिनती क्या होगी?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "3, A appears three times",
+       "hi": "3, A तीन बार आता है"
+      },
+      {
+       "id": "1",
+       "en": "1, one key only",
+       "hi": "1, केवल एक कुंजी"
+      },
+      {
+       "id": "6",
+       "en": "6, the length of the word",
+       "hi": "6, यानी शब्द की लंबाई"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "item:take",
+     "expect": "placed:take",
+     "say": {
+      "en": "Place the step that takes a letter next.",
+      "hi": "वह क़दम रखो जो अगला अक्षर लेता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other steps in order. Then tap Check.",
+      "hi": "बाक़ी क़दम क्रम में लगाओ। फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Counting how often things appear is one of the best uses of a dictionary: the letters are the keys and the counts are the values. For BANANA the loop gives {\"B\": 1, \"A\": 3, \"N\": 2}. Each time a letter comes, we first test whether it is already a key. If it is, we raise its value by one, otherwise we create the key with value 1. At the end we walk through the dictionary with for key in count: and print each key with count[key].",
+      "hi": "कोई चीज़ कितनी बार आई, यह गिनना डिक्शनरी के सबसे अच्छे उपयोगों में से एक है: अक्षर कुंजियाँ हैं और गिनतियाँ मान। BANANA के लिए लूप {\"B\": 1, \"A\": 3, \"N\": 2} देता है। हर अक्षर आने पर पहले जाँचते हैं कि वह पहले से कुंजी है या नहीं। है तो उसका मान एक बढ़ाते हैं, वरना मान 1 के साथ नई कुंजी बनाते हैं। अंत में for key in count: से डिक्शनरी में घूमकर हर कुंजी को count[key] के साथ छापते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For the word LEVEL, what is the finished dictionary?",
+        "hi": "शब्द LEVEL के लिए पूरी डिक्शनरी क्या है?"
+       },
+       "options": [
+        "{\"L\": 2, \"E\": 2, \"V\": 1}",
+        "{\"L\": 1, \"E\": 1, \"V\": 1}",
+        "{\"L\": 2, \"E\": 1, \"V\": 2}"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "L and E appear twice each, V once.",
+        "hi": "L और E दो-दो बार आते हैं, V एक बार।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That counts each letter once, forgetting the repeats.",
+         "hi": "इसमें हर अक्षर एक बार गिना गया, दोहराव छूट गए।"
+        },
+        {
+         "en": "V appears only once, and E twice.",
+         "hi": "V केवल एक बार आता है, और E दो बार।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we test \"is ch already a key\" before adding 1?",
+        "hi": "हम 1 जोड़ने से पहले \"क्या ch पहले से कुंजी है\" क्यों जाँचते हैं?"
+       },
+       "options": [
+        {
+         "en": "Asking for a missing key with count[ch] would be a KeyError",
+         "hi": "count[ch] से ग़ैर-मौजूद कुंजी माँगना KeyError होता"
+        },
+        {
+         "en": "Because Python is slow without it",
+         "hi": "क्योंकि इसके बिना पायथन धीमा है"
+        },
+        {
+         "en": "To remove duplicate letters",
+         "hi": "दोहराए अक्षर हटाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A new letter has no entry yet, so it must be created with value 1 first.",
+        "hi": "नए अक्षर की अभी कोई प्रविष्टि नहीं होती, इसलिए पहले उसे मान 1 के साथ बनाना पड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Speed is not the reason; avoiding the error is.",
+         "hi": "कारण तेज़ी नहीं, एरर से बचना है।"
+        },
+        {
+         "en": "Nothing is removed; every letter is counted.",
+         "hi": "कुछ हटाया नहीं जाता; हर अक्षर गिना जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and put the steps in order again. Then work out the dictionary for the word SCHOOL by hand.",
+      "hi": "रीसेट दबाओ और क़दम फिर क्रम में लगाओ। फिर शब्द SCHOOL की डिक्शनरी हाथ से निकालो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "A tuple as a sealed box of items",
+   "shows": "A small clear acrylic box with a closed lid holding three different coloured wooden beads, lid fixed with a tiny padlock",
+   "view": "Three-quarter view, lit from the top left, transparent background",
+   "right": "Beads visible through the lid; lock clearly closed",
+   "avoid": "Writing on the box, brand marks"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "A list as an open basket",
+   "shows": "A shallow open woven basket with several different coloured wooden beads inside, with room to add more",
+   "view": "Three-quarter view, lit from the top left, transparent background",
+   "right": "Same beads as in the box image so the two can be compared",
+   "avoid": "Writing, brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "10.4",
+   "use": "Swapping two things with a helper",
+   "shows": "Two hands swapping a steel tiffin box and a water bottle over a table, with a third empty tray in the middle",
+   "view": "Top-down, even light",
+   "right": "The helper tray clearly empty and in the middle",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.7",
+   "use": "A dictionary in daily life: a phone contact page",
+   "shows": "A phone held in a hand with a blank contacts-style screen made of plain name bars with a coloured circle beside each",
+   "view": "Slightly angled over-the-shoulder view, soft light",
+   "right": "Name bars blank so the app can write names and numbers",
+   "avoid": "Readable names or numbers, app logos, faces"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "10.7",
+   "use": "Key and value: a locker with a key",
+   "shows": "A row of three small school lockers with a brass key beside the middle one, each locker door closed and plain",
+   "view": "Front view, lit from the top left, transparent background",
+   "right": "One key clearly matching one locker by its tag colour",
+   "avoid": "Numbers on the lockers"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "10.7",
+   "use": "Key-value pairs base",
+   "shows": "Four empty rounded boxes in a left column joined by straight arrows to four empty rounded boxes in a right column, two boxes on the right sharing the same colour",
+   "view": "Flat, white background",
+   "right": "One arrow per left box; the right column may repeat colours",
+   "avoid": "Any text"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "10.12",
+   "use": "Tally of letters as stacked blocks",
+   "shows": "Three frames of a table with coloured toy blocks: unsorted, sorted into three columns by colour, and the three stacks of unequal height side by side",
+   "view": "Same top-down camera and light for all three",
+   "right": "Block counts match a three-letter tally",
+   "avoid": "Letters or numbers on the blocks"
+  }
+ ]
+}

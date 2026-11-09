@@ -1,0 +1,1204 @@
+{
+ "chapter_key": "u.c01.mathematics.aejm1.ch06",
+ "class": 1,
+ "subject_id": "mathematics",
+ "title": "Vegetable Farm (Addition and Subtraction up to 20)",
+ "source": "https://ncert.nic.in/textbook/pdf/aejm106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Two baskets: adding to get more than 10",
+   "labs": [
+    "c01-mathematics-aejm1-ch06-baskets"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Counting on with the bead string",
+   "labs": [
+    "c01-mathematics-aejm1-ch06-count-on"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Add in your own way: make a ten first",
+   "labs": [
+    "c01-mathematics-aejm1-ch06-ten-first"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Subtraction from numbers up to 20",
+   "labs": [
+    "c01-mathematics-aejm1-ch06-take-away"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Hop and jump back to subtract",
+   "labs": [
+    "c01-mathematics-aejm1-ch06-hop-back"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Add, subtract and match",
+   "labs": [
+    "c01-mathematics-aejm1-ch06-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.7",
+   "title": "Problem stories",
+   "labs": [
+    "c01-mathematics-aejm1-ch06-diyas"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.8",
+   "title": "Picnic list and growing a sapling",
+   "labs": [],
+   "why_no_lab": "Drawing a picnic list and caring for a real plant at home are hands-on projects that a screen cannot replace."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-mathematics-aejm1-ch06-baskets",
+   "topic": "6.1",
+   "template": "place-value",
+   "title": {
+    "en": "Two baskets of tomatoes",
+    "hi": "टमाटर की दो टोकरियाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "a": 7,
+    "b": 5,
+    "places": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rumi has 7 tomatoes and Shami has 5. When we put them together we get more than 10 ones. What can we do with 10 ones?",
+      "hi": "रूमी के पास 7 टमाटर हैं और शमी के पास 5। मिलाने पर 10 से ज़्यादा इकाइयाँ हो जाती हैं। 10 इकाइयों का हम क्या कर सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "ten",
+       "en": "Make 1 ten",
+       "hi": "1 दहाई बनाओ"
+      },
+      {
+       "id": "throw",
+       "en": "Throw them away",
+       "hi": "फेंक दो"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "ten"
+    },
+    {
+     "kind": "do",
+     "target": "regroup",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap Regroup. Watch 10 ones join into 1 ten.",
+      "hi": "पुनः समूह बनाओ दबाओ। देखो, 10 इकाइयाँ मिलकर 1 दहाई बन जाती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now count the tens and the ones. Type how many tomatoes there are altogether.",
+      "hi": "अब दहाई और इकाई गिनो। कुल कितने टमाटर हैं, लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "7 tomatoes and 5 tomatoes altogether make 12 tomatoes. 10 ones make 1 ten, and 2 ones are left. So 12 is 1 ten and 2 ones. We write 7 + 5 = 12.",
+      "hi": "7 टमाटर और 5 टमाटर मिलकर कुल 12 टमाटर हुए। 10 इकाइयाँ मिलकर 1 दहाई बनाती हैं और 2 इकाइयाँ बचती हैं। इसलिए 12 यानी 1 दहाई और 2 इकाई। हम लिखते हैं 7 + 5 = 12।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "9 carrots and 4 carrots altogether. How many carrots?",
+        "hi": "9 गाजर और 4 गाजर कुल कितनी?"
+       },
+       "options": [
+        "12",
+        "13",
+        "14"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "9 and 1 make 10, and 3 more make 13. So 9 + 4 = 13.",
+        "hi": "9 और 1 मिलकर 10, और 3 और मिलकर 13। इसलिए 9 + 4 = 13।"
+       },
+       "wrong": [
+        {
+         "en": "12 is 9 + 3. You added one less than 4.",
+         "hi": "12 तो 9 + 3 है। तुमने 4 से एक कम जोड़ा।"
+        },
+        "",
+        {
+         "en": "14 is 9 + 5. You added one more than 4.",
+         "hi": "14 तो 9 + 5 है। तुमने 4 से एक ज़्यादा जोड़ा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In 12, how many tens and how many ones?",
+        "hi": "12 में कितनी दहाई और कितनी इकाई हैं?"
+       },
+       "options": [
+        {
+         "en": "1 ten and 2 ones",
+         "hi": "1 दहाई और 2 इकाई"
+        },
+        {
+         "en": "2 tens and 1 one",
+         "hi": "2 दहाई और 1 इकाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "12 is a ten and 2 more ones.",
+        "hi": "12 यानी एक दहाई और 2 इकाइयाँ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 tens would be 20. In 12 the 1 stands for a ten.",
+         "hi": "2 दहाई तो 20 होता है। 12 में 1 दहाई को बताता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Reset. Try 8 + 8 in your mind first, then count with blocks.",
+      "hi": "अब ख़ुद आज़माओ। रीसेट दबाओ। पहले 8 + 8 मन में सोचो, फिर ब्लॉक से गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch06-count-on",
+   "topic": "6.2",
+   "template": "number-line",
+   "title": {
+    "en": "Count on with the bead string",
+    "hi": "मनकों की माला पर आगे गिनो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 10,
+    "max": 20,
+    "start": 12,
+    "jumps": [
+     1
+    ],
+    "ask": "12+4"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:13",
+     "say": {
+      "en": "Start at 12. We keep 12 in our head and count 4 more. Hop once.",
+      "hi": "12 से शुरू करो। 12 को मन में रखो और 4 और गिनो। एक छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:14",
+     "say": {
+      "en": "Hop again.",
+      "hi": "फिर छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You have hopped 2 times. You need 4 hops in all. Where will you land after the 4th hop?",
+      "hi": "तुम 2 छलाँगें लगा चुके हो। कुल 4 लगानी हैं। चौथी छलाँग के बाद कहाँ पहुँचोगे?"
+     },
+     "options": [
+      {
+       "id": "fifteen",
+       "en": "15",
+       "hi": "15 (पंद्रह)"
+      },
+      {
+       "id": "sixteen",
+       "en": "16",
+       "hi": "16 (सोलह)"
+      },
+      {
+       "id": "seventeen",
+       "en": "17",
+       "hi": "17 (सत्रह)"
+      }
+     ],
+     "answer": "sixteen"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:15",
+     "say": {
+      "en": "Hop the third time.",
+      "hi": "तीसरी छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:16",
+     "say": {
+      "en": "Hop the fourth time.",
+      "hi": "चौथी छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number where you landed.",
+      "hi": "जिस संख्या पर पहुँचे, उसे लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We did not count 12 again from 1. We started at 12 and counted 4 more: 13, 14, 15, 16. So 12 + 4 = 16. This is called counting on.",
+      "hi": "हमने 12 को फिर से 1 से नहीं गिना। हम 12 से शुरू हुए और 4 और गिने: 13, 14, 15, 16। इसलिए 12 + 4 = 16। इसे आगे गिनना कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Start at 13 and count on 5. Where do you stop?",
+        "hi": "13 से शुरू करके 5 आगे गिनो। कहाँ रुकोगे?"
+       },
+       "options": [
+        "17",
+        "18",
+        "19"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "14, 15, 16, 17, 18. Five counts from 13 reach 18.",
+        "hi": "14, 15, 16, 17, 18। 13 से पाँच गिनतियाँ 18 पर पहुँचती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "17 is only four counts from 13.",
+         "hi": "17 पर तो 13 से चार गिनतियों में ही पहुँच जाते हैं।"
+        },
+        "",
+        {
+         "en": "19 is six counts from 13. That is one too many.",
+         "hi": "19 पर 13 से छह गिनतियों में पहुँचते हैं। यह एक ज़्यादा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Reset and try 14 + 5 on the bead string.",
+      "hi": "अब ख़ुद आज़माओ। रीसेट दबाओ और माला पर 14 + 5 करके देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch06-ten-first",
+   "topic": "6.3",
+   "template": "sequence",
+   "title": {
+    "en": "Make a ten first",
+    "hi": "पहले दस बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "We want 8 + 6",
+       "hi": "हमें 8 + 6 निकालना है"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Break 6 into 2 and 4",
+       "hi": "6 को 2 और 4 में तोड़ो"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "8 and 2 make 10",
+       "hi": "8 और 2 मिलकर 10"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "10 and 4 make 14",
+       "hi": "10 और 4 मिलकर 14"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Put the steps of the trick in order. Tap the card 'We want 8 + 6', then tap place 1.",
+      "hi": "चाल के चरण सही क्रम में रखो। कार्ड 'हमें 8 + 6 निकालना है' छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To make 10 from 8, how many do we take from the 6?",
+      "hi": "8 से 10 बनाने के लिए हम 6 में से कितने लेते हैं?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "1",
+       "hi": "1 (एक)"
+      },
+      {
+       "id": "two",
+       "en": "2",
+       "hi": "2 (दो)"
+      },
+      {
+       "id": "three",
+       "en": "3",
+       "hi": "3 (तीन)"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "item:s2",
+     "expect": "placed:s2",
+     "say": {
+      "en": "Tap 'Break 6 into 2 and 4' and put it in place 2.",
+      "hi": "'6 को 2 और 4 में तोड़ो' छुओ और स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the last two cards in order. Then tap Check.",
+      "hi": "आख़िरी दो कार्ड भी क्रम में रखो। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Gauri added 12 + 6 by making 10 first: 10 + 2 + 6 = 10 + 8 = 18. Here we do the same with 8 + 6. 8 needs 2 more to be 10. Take 2 from the 6. What is left is 4. 10 and 4 make 14. There are many ways to add. Pick the way that feels easy to you.",
+      "hi": "गौरी ने 12 + 6 को पहले दस बनाकर जोड़ा: 10 + 2 + 6 = 10 + 8 = 18। यहाँ हम 8 + 6 में वही करते हैं। 8 को 10 बनने के लिए 2 और चाहिए। 6 में से 2 ले लो। बचे 4। 10 और 4 मिलकर 14। जोड़ने के कई तरीक़े हैं। जो तरीक़ा तुम्हें आसान लगे, वही चुनो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "To add 9 + 5, what do we take from the 5 to make 10 with 9?",
+        "hi": "9 + 5 जोड़ने के लिए 9 के साथ 10 बनाने को 5 में से कितना लें?"
+       },
+       "options": [
+        "1",
+        "2",
+        "4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "9 needs 1 more to be 10. The 5 gives 1 and keeps 4. Then 10 + 4 = 14.",
+        "hi": "9 को 10 बनने के लिए 1 चाहिए। 5 में से 1 देने पर 4 बचते हैं। फिर 10 + 4 = 14।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9 and 2 make 11, not 10.",
+         "hi": "9 और 2 मिलकर 11 होते हैं, 10 नहीं।"
+        },
+        {
+         "en": "9 and 4 make 13, not 10.",
+         "hi": "9 और 4 मिलकर 13 होते हैं, 10 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Try the same trick for 7 + 5. How many do you take from the 5 to make 10?",
+      "hi": "अब ख़ुद आज़माओ। 7 + 5 के लिए यही चाल आज़माओ। 10 बनाने के लिए 5 में से कितने लोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch06-take-away",
+   "topic": "6.4",
+   "template": "place-value",
+   "title": {
+    "en": "Taking away 9 from 15",
+    "hi": "15 में से 9 घटाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "subtract",
+    "a": 15,
+    "b": 9,
+    "places": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "15 is 1 ten and 5 ones. You want to take away 9 ones. Can you take 9 ones from only 5 ones?",
+      "hi": "15 यानी 1 दहाई और 5 इकाई। तुम्हें 9 इकाइयाँ घटानी हैं। क्या सिर्फ़ 5 इकाइयों में से 9 घटा सकते हो?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, I must break the ten first",
+       "hi": "नहीं, पहले दहाई को तोड़ना होगा"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "regroup",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap Regroup. Watch 1 ten break into 10 ones.",
+      "hi": "पुनः समूह बनाओ दबाओ। देखो, 1 दहाई टूटकर 10 इकाइयाँ बन जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now take away 9 ones and type how many are left.",
+      "hi": "अब 9 इकाइयाँ हटाओ और बचे हुए की संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We had 5 ones, which are not enough to take away 9. So we broke 1 ten into 10 ones. Now there are 15 ones. Take away 9 and 6 are left. So 15 − 9 = 6.",
+      "hi": "हमारे पास 5 इकाइयाँ थीं, जो 9 घटाने के लिए कम थीं। इसलिए हमने 1 दहाई को तोड़कर 10 इकाइयाँ बना लीं। अब 15 इकाइयाँ हैं। 9 घटाओ तो 6 बचते हैं। इसलिए 15 − 9 = 6।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "12 − 5 = ?",
+        "hi": "12 − 5 = कितना?"
+       },
+       "options": [
+        "6",
+        "7",
+        "8"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Break the ten: 12 ones. Take away 5, and 7 are left.",
+        "hi": "दहाई को तोड़ो: 12 इकाइयाँ। 5 घटाओ तो 7 बचते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "6 is 12 − 6. You took away one too many.",
+         "hi": "6 तो 12 − 6 है। तुमने एक ज़्यादा घटा दिया।"
+        },
+        "",
+        {
+         "en": "8 is 12 − 4. You took away one too few.",
+         "hi": "8 तो 12 − 4 है। तुमने एक कम घटाया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Taking away makes the number...",
+        "hi": "घटाने से संख्या..."
+       },
+       "options": [
+        {
+         "en": "smaller",
+         "hi": "छोटी होती है"
+        },
+        {
+         "en": "bigger",
+         "hi": "बड़ी होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When we take things away, fewer are left.",
+        "hi": "चीज़ें हटाने पर कम बचती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Getting bigger is what adding does.",
+         "hi": "बड़ी होना जोड़ने से होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Reset and think: 14 − 7. Does the ten need to break?",
+      "hi": "अब ख़ुद आज़माओ। रीसेट दबाओ और सोचो: 14 − 7। क्या दहाई को तोड़ना पड़ेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch06-hop-back",
+   "topic": "6.5",
+   "template": "number-line",
+   "title": {
+    "en": "Hop back to subtract",
+    "hi": "पीछे छलाँग लगाकर घटाओ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "subtract",
+    "min": 10,
+    "max": 20,
+    "start": 15,
+    "jumps": [
+     1
+    ],
+    "ask": "15-2"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:14",
+     "say": {
+      "en": "Anjali is on 15. Tap the backward hop once.",
+      "hi": "अंजलि 15 पर है। पीछे की छलाँग एक बार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Anjali jumps back 2 steps from 15. Where will she land?",
+      "hi": "अंजलि 15 से 2 क़दम पीछे कूदती है। वह कहाँ पहुँचेगी?"
+     },
+     "options": [
+      {
+       "id": "twelve",
+       "en": "12",
+       "hi": "12 (बारह)"
+      },
+      {
+       "id": "thirteen",
+       "en": "13",
+       "hi": "13 (तेरह)"
+      },
+      {
+       "id": "sixteen",
+       "en": "16",
+       "hi": "16 (सोलह)"
+      }
+     ],
+     "answer": "thirteen"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:13",
+     "say": {
+      "en": "Hop back once more.",
+      "hi": "एक बार और पीछे कूदो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number where you landed.",
+      "hi": "जिस संख्या पर पहुँचे, उसे लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To subtract we go back. From 15, one step back is 14 and two steps back is 13. So 15 − 2 = 13.",
+      "hi": "घटाने के लिए हम पीछे जाते हैं। 15 से एक क़दम पीछे 14 है और दो क़दम पीछे 13। इसलिए 15 − 2 = 13।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Start on 17 and hop back 2. Where do you land?",
+        "hi": "17 से 2 क़दम पीछे कूदो। कहाँ पहुँचोगे?"
+       },
+       "options": [
+        "15",
+        "16",
+        "19"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "17, then 16, then 15. So 17 − 2 = 15.",
+        "hi": "17, फिर 16, फिर 15। इसलिए 17 − 2 = 15।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "16 is only one step back from 17.",
+         "hi": "16 तो 17 से सिर्फ़ एक क़दम पीछे है।"
+        },
+        {
+         "en": "19 is forward. Going forward is adding.",
+         "hi": "19 आगे है। आगे जाना जोड़ना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Reset and hop back from 15 to find 15 − 5.",
+      "hi": "अब ख़ुद आज़माओ। रीसेट दबाओ और 15 से पीछे कूदकर 15 − 5 ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch06-match",
+   "topic": "6.6",
+   "template": "match",
+   "title": {
+    "en": "Add, subtract and match",
+    "hi": "जोड़ो, घटाओ और मिलाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "8 + 7",
+       "hi": "8 + 7"
+      },
+      "right": {
+       "en": "15",
+       "hi": "15"
+      },
+      "why": {
+       "en": "8 + 7 = 15.",
+       "hi": "8 + 7 = 15।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "19 − 1",
+       "hi": "19 − 1"
+      },
+      "right": {
+       "en": "18",
+       "hi": "18"
+      },
+      "why": {
+       "en": "19 − 1 = 18.",
+       "hi": "19 − 1 = 18।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "10 + 2",
+       "hi": "10 + 2"
+      },
+      "right": {
+       "en": "12",
+       "hi": "12"
+      },
+      "why": {
+       "en": "10 + 2 = 12.",
+       "hi": "10 + 2 = 12।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "16 + 1",
+       "hi": "16 + 1"
+      },
+      "right": {
+       "en": "17",
+       "hi": "17"
+      },
+      "why": {
+       "en": "16 + 1 = 17.",
+       "hi": "16 + 1 = 17।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "17 − 3",
+       "hi": "17 − 3"
+      },
+      "right": {
+       "en": "14",
+       "hi": "14"
+      },
+      "why": {
+       "en": "17 − 3 = 14.",
+       "hi": "17 − 3 = 14।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Work out 8 + 7 in your mind. Tap it, then tap its answer.",
+      "hi": "8 + 7 मन में निकालो। उसे छुओ, फिर उसका उत्तर छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which will give a smaller answer than 17: 17 + 2 or 17 − 3?",
+      "hi": "कौन-सा 17 से छोटा उत्तर देगा: 17 + 2 या 17 − 3?"
+     },
+     "options": [
+      {
+       "id": "plus",
+       "en": "17 + 2",
+       "hi": "17 + 2 (जोड़)"
+      },
+      {
+       "id": "minus",
+       "en": "17 − 3",
+       "hi": "17 − 3 (घटाव)"
+      }
+     ],
+     "answer": "minus"
+    },
+    {
+     "kind": "do",
+     "target": "left:e",
+     "expect": "matched:e",
+     "say": {
+      "en": "Match 17 − 3.",
+      "hi": "17 − 3 को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the rest.",
+      "hi": "बाक़ी सब मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A plus sign means more, so the answer gets bigger. A minus sign means less, so the answer gets smaller. 8 + 7 is 15, but 19 − 1 is 18. Check the sign before you work.",
+      "hi": "जोड़ का चिह्न बताता है कि ज़्यादा होगा, इसलिए उत्तर बड़ा होता है। घटाव का चिह्न बताता है कि कम होगा, इसलिए उत्तर छोटा होता है। 8 + 7 = 15, पर 19 − 1 = 18। काम शुरू करने से पहले चिह्न देख लो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "18 − 2 = ?",
+        "hi": "18 − 2 = कितना?"
+       },
+       "options": [
+        "16",
+        "17",
+        "20"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two steps back from 18 is 17, then 16.",
+        "hi": "18 से दो क़दम पीछे 17, फिर 16।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "17 is only one step back from 18.",
+         "hi": "17 तो 18 से एक ही क़दम पीछे है।"
+        },
+        {
+         "en": "20 is 18 + 2. The sign is minus, so the number must get smaller.",
+         "hi": "20 तो 18 + 2 है। यहाँ चिह्न घटाव का है, इसलिए संख्या छोटी होनी चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make your own question like 12 + 3 and ask your friend to solve it.",
+      "hi": "अब ख़ुद आज़माओ। 12 + 3 जैसा अपना सवाल बनाओ और दोस्त से हल करवाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch06-diyas",
+   "topic": "6.7",
+   "template": "scenario",
+   "title": {
+    "en": "The potter and his diyas",
+    "hi": "कुम्हार और उसके दीये"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "Problem solver",
+     "hi": "सवाल सुलझाने वाले"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "A potter has 9 diyas. He sells 5 of them. How many diyas are left?",
+       "hi": "एक कुम्हार के पास 9 दीये हैं। वह 5 दीये बेच देता है। अब कितने दीये बचे?"
+      },
+      "choices": [
+       {
+        "id": "a-four",
+        "next": "s2",
+        "feedback": {
+         "en": "Yes! 9 − 5 = 4 diyas are left.",
+         "hi": "हाँ! 9 − 5 = 4 दीये बचे।"
+        },
+        "good": true,
+        "text": {
+         "en": "4",
+         "hi": "4"
+        }
+       },
+       {
+        "id": "a-fourteen",
+        "next": "s2",
+        "feedback": {
+         "en": "14 is 9 + 5. He sold the diyas, so the number gets smaller. 9 − 5 = 4.",
+         "hi": "14 तो 9 + 5 है। उसने दीये बेचे, इसलिए संख्या घटेगी। 9 − 5 = 4।"
+        },
+        "good": false,
+        "text": {
+         "en": "14",
+         "hi": "14"
+        }
+       },
+       {
+        "id": "a-five",
+        "next": "s2",
+        "feedback": {
+         "en": "5 is how many he sold. Take 5 away from 9 and 4 are left.",
+         "hi": "5 तो बेचे हुए दीये हैं। 9 में से 5 घटाओ तो 4 बचते हैं।"
+        },
+        "good": false,
+        "text": {
+         "en": "5",
+         "hi": "5"
+        }
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "The potter now has 4 diyas. In the evening he makes 7 more. How many diyas does he have now?",
+       "hi": "कुम्हार के पास अब 4 दीये हैं। शाम को वह 7 दीये और बनाता है। अब उसके पास कितने दीये हैं?"
+      },
+      "choices": [
+       {
+        "id": "b-eleven",
+        "next": "end",
+        "feedback": {
+         "en": "Yes! 4 + 7 = 11 diyas.",
+         "hi": "हाँ! 4 + 7 = 11 दीये।"
+        },
+        "good": true,
+        "text": {
+         "en": "11",
+         "hi": "11"
+        }
+       },
+       {
+        "id": "b-three",
+        "next": "end",
+        "feedback": {
+         "en": "3 is 7 − 4. He made more diyas, so we add. 4 + 7 = 11.",
+         "hi": "3 तो 7 − 4 है। उसने और दीये बनाए, इसलिए जोड़ेंगे। 4 + 7 = 11।"
+        },
+        "good": false,
+        "text": {
+         "en": "3",
+         "hi": "3"
+        }
+       },
+       {
+        "id": "b-sixteen",
+        "next": "end",
+        "feedback": {
+         "en": "16 is 9 + 7. But he sold 5 first, so he began with 4. 4 + 7 = 11.",
+         "hi": "16 तो 9 + 7 है। पर पहले उसने 5 बेचे, इसलिए उसके पास 4 थे। 4 + 7 = 11।"
+        },
+        "good": false,
+        "text": {
+         "en": "16",
+         "hi": "16"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:s1:a-four",
+     "expect": "chose:a-four",
+     "say": {
+      "en": "Read the story. Choose how many diyas are left after he sells 5.",
+      "hi": "कहानी पढ़ो। 5 दीये बिकने के बाद कितने बचे, चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now he makes 7 more diyas. Will the number of diyas go up or down?",
+      "hi": "अब वह 7 दीये और बनाता है। दीयों की संख्या बढ़ेगी या घटेगी?"
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "Go up",
+       "hi": "बढ़ेगी"
+      },
+      {
+       "id": "down",
+       "en": "Go down",
+       "hi": "घटेगी"
+      }
+     ],
+     "answer": "up"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s2:b-eleven",
+     "expect": "ended",
+     "say": {
+      "en": "Choose how many diyas he has now.",
+      "hi": "अब उसके पास कितने दीये हैं, चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This story has two steps. First he sold diyas, so we subtract: 9 − 5 = 4. Then he made more, so we add: 4 + 7 = 11. Read the story slowly and ask: do I get more or less?",
+      "hi": "इस कहानी में दो चरण हैं। पहले उसने दीये बेचे, इसलिए घटाया: 9 − 5 = 4। फिर उसने और बनाए, इसलिए जोड़ा: 4 + 7 = 11। कहानी धीरे-धीरे पढ़ो और पूछो: ज़्यादा हुआ या कम?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Sheena has 12 bangles. She gets 6 more. Do we add or subtract?",
+        "hi": "शीना के पास 12 चूड़ियाँ हैं। उसे 6 और मिलीं। हम जोड़ेंगे या घटाएँगे?"
+       },
+       "options": [
+        {
+         "en": "Add",
+         "hi": "जोड़ेंगे"
+        },
+        {
+         "en": "Subtract",
+         "hi": "घटाएँगे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "She gets more bangles, so we add: 12 + 6 = 18.",
+        "hi": "उसे और चूड़ियाँ मिलीं, इसलिए जोड़ेंगे: 12 + 6 = 18।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Subtracting is for taking away. Nothing was taken away here.",
+         "hi": "घटाना कुछ हटाने के लिए है। यहाँ कुछ हटाया नहीं गया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make a story about toffees or bananas with a friend. Say it aloud and solve it.",
+      "hi": "अब ख़ुद आज़माओ। दोस्त के साथ टॉफ़ियों या केलों की कोई कहानी बनाओ। बोलकर सुनाओ और हल करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Hook of the chapter",
+   "shows": "An Indian vegetable field in the morning with two children carrying baskets of tomatoes, carrots and radishes",
+   "view": "Wide, eye level, soft light",
+   "right": "Real crops in rows; children seen from behind; baskets clearly visible",
+   "avoid": "Identifiable faces; machines; text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Baskets to count",
+   "shows": "A cane basket holding exactly 7 red tomatoes and another holding exactly 5 (each count its own file)",
+   "view": "Slightly above, plain white background",
+   "right": "Exact counts, all tomatoes visible and not stacked",
+   "avoid": "Hidden tomatoes; stems that look like extra items"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Counting on the bead string",
+   "shows": "A ginladi with 20 beads in two groups of 10: ten red, then ten blue",
+   "view": "Straight front view, plain background",
+   "right": "Exactly 20 beads; the two groups of ten easy to see",
+   "avoid": "Different bead sizes; a clasp that looks like a bead"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "6.3",
+   "use": "Make ten first",
+   "shows": "Four frames of a ten-frame tray with yellow buttons: 8 buttons; 2 more added to make ten; 4 more beside it; the total of 14",
+   "view": "Same camera, top view, same light",
+   "right": "Ten-frame has two rows of five; counts exact in every frame",
+   "avoid": "Cropped frames; buttons outside their boxes"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "6.4",
+   "use": "Taking away from 15",
+   "shows": "A full ten-frame and a second frame with 5 counters, then the same with 9 counters taken out and set aside",
+   "view": "Top view, flat light",
+   "right": "15 counters first; 6 remain after 9 are set aside",
+   "avoid": "Unequal counters; hand in the frame"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "6.5",
+   "use": "Hop strip",
+   "shows": "A strip numbered boxes from 10 to 20 with a small clay frog, numbers left blank",
+   "view": "Top view, flat colour",
+   "right": "Eleven equal boxes in one row",
+   "avoid": "Printed numbers; uneven boxes"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "6.7",
+   "use": "Story of the diyas",
+   "shows": "An Indian potter's courtyard with rows of clay diyas drying in the sun",
+   "view": "Wide, slightly raised, warm light",
+   "right": "Rows of plain clay diyas easy to count in groups; potter's wheel at the side",
+   "avoid": "Lit flames; identifiable face"
+  }
+ ]
+}

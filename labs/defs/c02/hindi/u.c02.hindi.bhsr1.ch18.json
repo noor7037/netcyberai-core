@@ -1,0 +1,1176 @@
+{
+  "chapter_key": "u.c02.hindi.bhsr1.ch18",
+  "class": 2,
+  "subject_id": "hindi",
+  "title": "शेर और चूहे की दोस्ती",
+  "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+  "topics": [
+    {
+      "n": "18.1",
+      "title": "The story: the lion, the mouse and the net",
+      "labs": [
+        "c02-hindi-bhsr1-ch18-story"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "18.2",
+      "title": "What a friend can do: animals and their strengths",
+      "labs": [
+        "c02-hindi-bhsr1-ch18-friends"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "18.3",
+      "title": "The joined letter त्र (as in मित्र)",
+      "labs": [
+        "c02-hindi-bhsr1-ch18-tra"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "18.4",
+      "title": "Feeling safe and unsafe",
+      "labs": [
+        "c02-hindi-bhsr1-ch18-safe"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "18.5",
+      "title": "Riddles (पहेली) and the yak maze",
+      "labs": [],
+      "why_no_lab": "Riddles are best spoken aloud with a friend, and the maze is a page puzzle, so the reader and a printed picture serve better than a lab."
+    },
+    {
+      "n": "18.6",
+      "title": "Picture talk: games and how many players they need",
+      "labs": [
+        "c02-hindi-bhsr1-ch18-players"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c02-hindi-bhsr1-ch18-story",
+      "topic": "18.1",
+      "template": "sequence",
+      "title": {
+        "en": "The lion and the mouse",
+        "hi": "शेर और चूहा"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "walk",
+            "text": {
+              "en": "The lion walked proudly through the forest.",
+              "hi": "शेर शान से जंगल में चल रहा था।"
+            }
+          },
+          {
+            "id": "squeak",
+            "text": {
+              "en": "A tiny mouse's tail got under his paw and it squeaked.",
+              "hi": "एक नन्हे चूहे की पूँछ उसके पंजे के नीचे आ गई और वह चीख़ा।"
+            }
+          },
+          {
+            "id": "free",
+            "text": {
+              "en": "The lion lifted his paw and the mouse ran away.",
+              "hi": "शेर ने पंजा हटाया और चूहा भाग गया।"
+            }
+          },
+          {
+            "id": "net",
+            "text": {
+              "en": "A hunter's net caught the lion and he roared.",
+              "hi": "शिकारी के जाल में शेर फँस गया और दहाड़ा।"
+            }
+          },
+          {
+            "id": "nohelp",
+            "text": {
+              "en": "Big animals heard him, but nobody came.",
+              "hi": "बड़े जानवरों ने सुना, पर कोई नहीं आया।"
+            }
+          },
+          {
+            "id": "cut",
+            "text": {
+              "en": "The mouse came running and cut the net with his teeth.",
+              "hi": "चूहा भागकर आया और दाँतों से जाल काट दिया।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:walk",
+          "expect": "placed:walk",
+          "say": {
+            "en": "Which card shows how the story begins? Tap it and put it in slot 1.",
+            "hi": "कौन-सा कार्ड कहानी की शुरुआत बताता है? उसे दबाकर पहली जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Who saved the lion in the end?",
+            "hi": "अंत में शेर को किसने बचाया?"
+          },
+          "options": [
+            {
+              "id": "cut",
+              "en": "The mouse came running and cut the net with his teeth.",
+              "hi": "चूहा भागकर आया और दाँतों से जाल काट दिया।"
+            },
+            {
+              "id": "free",
+              "en": "The lion lifted his paw and the mouse ran away.",
+              "hi": "शेर ने पंजा हटाया और चूहा भाग गया।"
+            },
+            {
+              "id": "nohelp",
+              "en": "Big animals heard him, but nobody came.",
+              "hi": "बड़े जानवरों ने सुना, पर कोई नहीं आया।"
+            }
+          ],
+          "answer": "cut"
+        },
+        {
+          "kind": "do",
+          "target": "item:cut",
+          "expect": "placed:cut",
+          "say": {
+            "en": "Now put the last card in its place.",
+            "hi": "अब आख़िरी कार्ड को उसकी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place all the cards in order, then tap Check.",
+            "hi": "सब कार्ड क्रम से रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The lion was kind to the mouse and let him go. Later the mouse remembered it and saved the lion. A small friend can do a big thing when a friend is in trouble. Kindness comes back.",
+            "hi": "शेर ने चूहे पर दया की और उसे जाने दिया। बाद में चूहे ने यह याद रखा और शेर को बचा लिया। मुसीबत में छोटा दोस्त भी बड़ा काम कर सकता है। भलाई लौटकर आती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why did the mouse come to help the lion?",
+                "hi": "चूहा शेर की मदद करने क्यों आया?"
+              },
+              "options": [
+                {
+                  "en": "The lion had once been kind to him",
+                  "hi": "शेर ने कभी उस पर दया की थी"
+                },
+                {
+                  "en": "He was afraid of the hunter",
+                  "hi": "वह शिकारी से डरता था"
+                },
+                {
+                  "en": "Other animals sent him",
+                  "hi": "दूसरे जानवरों ने उसे भेजा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The mouse remembered the lion lifting his paw and letting him go.",
+                "hi": "चूहे को याद था कि शेर ने पंजा हटाकर उसे जाने दिया था।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The hunter was nowhere near when the mouse cut the net.",
+                  "hi": "जब चूहे ने जाल काटा, शिकारी वहाँ नहीं था।"
+                },
+                {
+                  "en": "In the story nobody else came to help, so nobody sent him.",
+                  "hi": "कहानी में और कोई मदद करने नहीं आया, इसलिए किसी ने उसे नहीं भेजा।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why could the mouse cut the net?",
+                "hi": "चूहा जाल क्यों काट सका?"
+              },
+              "options": [
+                {
+                  "en": "He has sharp teeth",
+                  "hi": "उसके दाँत तेज़ होते हैं"
+                },
+                {
+                  "en": "He is bigger than the lion",
+                  "hi": "वह शेर से बड़ा है"
+                },
+                {
+                  "en": "He had a knife",
+                  "hi": "उसके पास चाकू था"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Mice have sharp front teeth that can gnaw through rope.",
+                "hi": "चूहों के आगे के दाँत तेज़ होते हैं जो रस्सी कुतर सकते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The mouse is much smaller than the lion.",
+                  "hi": "चूहा शेर से बहुत छोटा होता है।"
+                },
+                {
+                  "en": "Animals do not carry knives; he used his teeth.",
+                  "hi": "जानवरों के पास चाकू नहीं होता; उसने दाँतों से काम लिया।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Retell the story in four sentences. Which part do you like best?",
+            "hi": "कहानी चार वाक्यों में सुनाओ। तुम्हें कौन-सा भाग सबसे अच्छा लगा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch18-friends",
+      "topic": "18.2",
+      "template": "match",
+      "title": {
+        "en": "What can a friend do?",
+        "hi": "दोस्त क्या कर सकता है?"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "mouse",
+            "left": {
+              "en": "Mouse",
+              "hi": "चूहा"
+            },
+            "right": {
+              "en": "Can gnaw through a net",
+              "hi": "जाल को कुतर सकता है"
+            },
+            "why": {
+              "en": "Sharp teeth cut thin ropes.",
+              "hi": "तेज़ दाँत पतली रस्सी काट देते हैं।"
+            }
+          },
+          {
+            "id": "bird",
+            "left": {
+              "en": "Sparrow",
+              "hi": "चिड़िया"
+            },
+            "right": {
+              "en": "Can bring grain in her beak",
+              "hi": "चोंच में दाना ला सकती है"
+            },
+            "why": {
+              "en": "A bird carries food in her beak.",
+              "hi": "चिड़िया चोंच में दाना ले आती है।"
+            }
+          },
+          {
+            "id": "elephant",
+            "left": {
+              "en": "Elephant",
+              "hi": "हाथी"
+            },
+            "right": {
+              "en": "Can lift a heavy log with his trunk",
+              "hi": "सूँड़ से भारी लकड़ी उठा सकता है"
+            },
+            "why": {
+              "en": "A trunk is strong and can lift heavy things.",
+              "hi": "सूँड़ ताक़तवर होती है और भारी चीज़ें उठा सकती है।"
+            }
+          },
+          {
+            "id": "monkey",
+            "left": {
+              "en": "Monkey",
+              "hi": "बंदर"
+            },
+            "right": {
+              "en": "Can climb a tree and pluck fruit",
+              "hi": "पेड़ पर चढ़कर फल तोड़ सकता है"
+            },
+            "why": {
+              "en": "Monkeys are good climbers.",
+              "hi": "बंदर अच्छे चढ़ाक होते हैं।"
+            }
+          },
+          {
+            "id": "dog",
+            "left": {
+              "en": "Dog",
+              "hi": "कुत्ता"
+            },
+            "right": {
+              "en": "Can bark to warn of danger",
+              "hi": "भौंककर ख़तरे से सावधान कर सकता है"
+            },
+            "why": {
+              "en": "A dog barks loudly when a stranger comes.",
+              "hi": "अनजान आने पर कुत्ता ज़ोर से भौंकता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:mouse",
+          "expect": "matched:mouse",
+          "say": {
+            "en": "Tap the card Mouse on the left.",
+            "hi": "बाईं ओर से चूहा कार्ड दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What will go with Elephant?",
+            "hi": "हाथी के साथ क्या जाएगा?"
+          },
+          "options": [
+            {
+              "id": "elephant",
+              "en": "Lift a heavy log",
+              "hi": "भारी लकड़ी उठाना"
+            },
+            {
+              "id": "bird",
+              "en": "Bring grain",
+              "hi": "दाना लाना"
+            },
+            {
+              "id": "dog",
+              "en": "Warn of danger",
+              "hi": "ख़तरे से सावधान करना"
+            }
+          ],
+          "answer": "elephant"
+        },
+        {
+          "kind": "do",
+          "target": "right:dog",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest of the pairs.",
+            "hi": "बाक़ी जोड़ियाँ मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Every animal has its own strength. A friend uses that strength to help. You also have something you do well. Your friends can count on it.",
+            "hi": "हर जानवर की अपनी ताक़त होती है। दोस्त उसी ताक़त से मदद करता है। तुम भी कुछ अच्छा कर सकते हो। तुम्हारे दोस्त उस पर भरोसा कर सकते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Who can warn you of danger by barking?",
+                "hi": "भौंककर ख़तरे से कौन सावधान करता है?"
+              },
+              "options": [
+                {
+                  "en": "Dog",
+                  "hi": "कुत्ता"
+                },
+                {
+                  "en": "Elephant",
+                  "hi": "हाथी"
+                },
+                {
+                  "en": "Monkey",
+                  "hi": "बंदर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A dog's bark tells people a stranger is near.",
+                "hi": "कुत्ते के भौंकने से पता चलता है कि कोई अनजान पास है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "An elephant lifts heavy things with its trunk.",
+                  "hi": "हाथी सूँड़ से भारी चीज़ें उठाता है।"
+                },
+                {
+                  "en": "A monkey climbs trees for fruit.",
+                  "hi": "बंदर फल के लिए पेड़ पर चढ़ता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "What can you do for your best friend? Tell three things.",
+            "hi": "तुम अपने सबसे अच्छे दोस्त के लिए क्या कर सकते हो? तीन बातें बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch18-tra",
+      "topic": "18.3",
+      "template": "sort",
+      "title": {
+        "en": "Find the त्र",
+        "hi": "त्र ढूँढो"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "yes",
+            "label": {
+              "en": "Has त्र",
+              "hi": "इसमें त्र है"
+            }
+          },
+          {
+            "id": "no",
+            "label": {
+              "en": "No त्र",
+              "hi": "इसमें त्र नहीं है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "mitra",
+            "text": {
+              "en": "मित्र",
+              "hi": "मित्र"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "मित्र = मि + त्र.",
+              "hi": "मित्र = मि + त्र।"
+            }
+          },
+          {
+            "id": "chitra",
+            "text": {
+              "en": "चित्र",
+              "hi": "चित्र"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "चित्र = चि + त्र.",
+              "hi": "चित्र = चि + त्र।"
+            }
+          },
+          {
+            "id": "patra",
+            "text": {
+              "en": "पत्र",
+              "hi": "पत्र"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "पत्र = प + त्र.",
+              "hi": "पत्र = प + त्र।"
+            }
+          },
+          {
+            "id": "vastra",
+            "text": {
+              "en": "वस्त्र",
+              "hi": "वस्त्र"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "वस्त्र = व + स्त्र; it has त्र inside.",
+              "hi": "वस्त्र = व + स्त्र; इसमें त्र है।"
+            }
+          },
+          {
+            "id": "tara",
+            "text": {
+              "en": "तारा",
+              "hi": "तारा"
+            },
+            "bin": "no",
+            "why": {
+              "en": "तारा has त, but not the joined त्र.",
+              "hi": "तारा में त है, पर जुड़ा हुआ त्र नहीं।"
+            }
+          },
+          {
+            "id": "kamal",
+            "text": {
+              "en": "कमल",
+              "hi": "कमल"
+            },
+            "bin": "no",
+            "why": {
+              "en": "कमल has no त at all.",
+              "hi": "कमल में त है ही नहीं।"
+            }
+          },
+          {
+            "id": "patang",
+            "text": {
+              "en": "पतंग",
+              "hi": "पतंग"
+            },
+            "bin": "no",
+            "why": {
+              "en": "पतंग has a plain त, not त्र.",
+              "hi": "पतंग में सादा त है, त्र नहीं।"
+            }
+          },
+          {
+            "id": "aam",
+            "text": {
+              "en": "आम",
+              "hi": "आम"
+            },
+            "bin": "no",
+            "why": {
+              "en": "आम has no त.",
+              "hi": "आम में त नहीं है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:mitra",
+          "expect": "placed:mitra",
+          "say": {
+            "en": "Tap the card मित्र.",
+            "hi": "मित्र कार्ड दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Does the word चित्र have त्र?",
+            "hi": "क्या चित्र शब्द में त्र है?"
+          },
+          "options": [
+            {
+              "id": "yes",
+              "en": "Yes",
+              "hi": "हाँ"
+            },
+            {
+              "id": "no",
+              "en": "No",
+              "hi": "नहीं"
+            }
+          ],
+          "answer": "yes"
+        },
+        {
+          "kind": "do",
+          "target": "bin:yes",
+          "expect": "correct:mitra",
+          "say": {
+            "en": "Now tap the bin where this card belongs.",
+            "hi": "अब उस डिब्बे को दबाओ जिसमें यह कार्ड जाएगा।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort every card, then tap Check.",
+            "hi": "सब कार्ड छाँटो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "त्र is a joined letter. It is त and र joined together. Look at the end of मित्र, चित्र and पत्र. You will see the same joined shape. A plain त, as in तारा, does not have the र joined to it.",
+            "hi": "त्र एक जुड़ा हुआ अक्षर है। यह त और र को मिलाकर बना है। मित्र, चित्र और पत्र के अंत में वही जुड़ा आकार दिखता है। तारा जैसे सादे त में र नहीं जुड़ा होता।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which word has त्र?",
+                "hi": "किस शब्द में त्र है?"
+              },
+              "options": [
+                {
+                  "en": "पत्र",
+                  "hi": "पत्र"
+                },
+                {
+                  "en": "तारा",
+                  "hi": "तारा"
+                },
+                {
+                  "en": "कमल",
+                  "hi": "कमल"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "पत्र ends with the joined त्र.",
+                "hi": "पत्र के अंत में जुड़ा हुआ त्र है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "तारा has only a plain त.",
+                  "hi": "तारा में केवल सादा त है।"
+                },
+                {
+                  "en": "कमल has no त.",
+                  "hi": "कमल में त नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find two more words with त्र at home or in a book. Show them to a friend.",
+            "hi": "घर में या किताब में त्र वाले दो और शब्द ढूँढो। दोस्त को दिखाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch18-safe",
+      "topic": "18.4",
+      "template": "sort",
+      "title": {
+        "en": "Safe or not safe?",
+        "hi": "सुरक्षित या असुरक्षित?"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "safe",
+            "label": {
+              "en": "I feel safe",
+              "hi": "मैं सुरक्षित हूँ"
+            }
+          },
+          {
+            "id": "unsafe",
+            "label": {
+              "en": "I feel unsafe",
+              "hi": "मैं असुरक्षित हूँ"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "play",
+            "text": {
+              "en": "Playing with Papa",
+              "hi": "पापा के साथ खेलना"
+            },
+            "bin": "safe",
+            "why": {
+              "en": "A loving family member is near, so you are safe.",
+              "hi": "घर का कोई अपना पास है, इसलिए तुम सुरक्षित हो।"
+            }
+          },
+          {
+            "id": "story",
+            "text": {
+              "en": "Hearing a story in Mummy's lap",
+              "hi": "मम्मी की गोद में कहानी सुनना"
+            },
+            "bin": "safe",
+            "why": {
+              "en": "A warm lap and a story are safe.",
+              "hi": "गोद और कहानी सुरक्षित हैं।"
+            }
+          },
+          {
+            "id": "bus",
+            "text": {
+              "en": "Sitting with friends in the school bus",
+              "hi": "स्कूल बस में दोस्तों के साथ बैठना"
+            },
+            "bin": "safe",
+            "why": {
+              "en": "Friends and a teacher are nearby.",
+              "hi": "दोस्त और शिक्षक पास होते हैं।"
+            }
+          },
+          {
+            "id": "hit",
+            "text": {
+              "en": "A big boy hits or scares you",
+              "hi": "कोई बड़ा लड़का मारे या डराए"
+            },
+            "bin": "unsafe",
+            "why": {
+              "en": "Someone is trying to hurt you. Tell a trusted grown-up at once.",
+              "hi": "कोई तुम्हें चोट पहुँचाना चाहता है। तुरंत किसी भरोसेमंद बड़े को बताओ।"
+            }
+          },
+          {
+            "id": "lost",
+            "text": {
+              "en": "Your hand slips from Mummy's in the market",
+              "hi": "बाज़ार में मम्मी का हाथ छूट जाए"
+            },
+            "bin": "unsafe",
+            "why": {
+              "en": "You may get lost. Stay where you are and ask a shopkeeper or police for help.",
+              "hi": "तुम खो सकते हो। वहीं रुको और दुकानदार या पुलिस से मदद माँगो।"
+            }
+          },
+          {
+            "id": "river",
+            "text": {
+              "en": "Going alone near a fast river",
+              "hi": "तेज़ बहती नदी के पास अकेले जाना"
+            },
+            "bin": "unsafe",
+            "why": {
+              "en": "Fast water can pull a child in. Go only with a grown-up.",
+              "hi": "तेज़ पानी बच्चे को खींच सकता है। सिर्फ़ बड़ों के साथ जाओ।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:play",
+          "expect": "placed:play",
+          "say": {
+            "en": "Tap the card Playing with Papa.",
+            "hi": "पापा के साथ खेलना कार्ड दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Where will A big boy hits or scares you go?",
+            "hi": "कोई बड़ा लड़का मारे या डराए, यह कहाँ जाएगा?"
+          },
+          "options": [
+            {
+              "id": "unsafe",
+              "en": "Unsafe",
+              "hi": "असुरक्षित"
+            },
+            {
+              "id": "safe",
+              "en": "Safe",
+              "hi": "सुरक्षित"
+            }
+          ],
+          "answer": "unsafe"
+        },
+        {
+          "kind": "do",
+          "target": "bin:safe",
+          "expect": "correct:play",
+          "say": {
+            "en": "Now tap the bin where this card belongs.",
+            "hi": "अब उस डिब्बे को दबाओ जिसमें यह कार्ड जाएगा।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort every card, then tap Check.",
+            "hi": "सब कार्ड छाँटो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "We feel safe when there is no danger and nobody hurts us. We feel unsafe when someone scares or hurts us, or when we are lost. If you feel unsafe, move away, stay with others and tell a grown-up you trust.",
+            "hi": "जब कोई ख़तरा नहीं होता और कोई हमें चोट नहीं पहुँचाता, तब हम सुरक्षित महसूस करते हैं। जब कोई डराए, चोट पहुँचाए या हम खो जाएँ, तब असुरक्षित महसूस करते हैं। असुरक्षित लगे तो दूर हटो, दूसरों के पास रहो और भरोसेमंद बड़े को बताओ।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What should you do if someone scares you?",
+                "hi": "कोई डराए तो क्या करना चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "Tell a trusted grown-up",
+                  "hi": "किसी भरोसेमंद बड़े को बताओ"
+                },
+                {
+                  "en": "Keep it a secret",
+                  "hi": "इसे राज़ रखो"
+                },
+                {
+                  "en": "Scare them back",
+                  "hi": "उन्हें डराओ"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A grown-up you trust can help and keep you safe.",
+                "hi": "भरोसेमंद बड़ा मदद कर सकता है और तुम्हें सुरक्षित रख सकता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Keeping it secret leaves you alone with the problem.",
+                  "hi": "राज़ रखने से तुम समस्या में अकेले रह जाते हो।"
+                },
+                {
+                  "en": "Scaring back can lead to a bigger fight.",
+                  "hi": "बदले में डराने से बड़ा झगड़ा हो सकता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Who are the grown-ups you trust? Tell their names to a friend.",
+            "hi": "तुम किन बड़ों पर भरोसा करते हो? उनके नाम दोस्त को बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch18-players",
+      "topic": "18.6",
+      "template": "sort",
+      "title": {
+        "en": "How many players?",
+        "hi": "कितने खिलाड़ी?"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "one",
+            "label": {
+              "en": "One player",
+              "hi": "एक खिलाड़ी"
+            }
+          },
+          {
+            "id": "two",
+            "label": {
+              "en": "Two players",
+              "hi": "दो खिलाड़ी"
+            }
+          },
+          {
+            "id": "many",
+            "label": {
+              "en": "A big group",
+              "hi": "बड़ा समूह"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "rope",
+            "text": {
+              "en": "Skipping rope",
+              "hi": "रस्सी कूदना"
+            },
+            "bin": "one",
+            "why": {
+              "en": "You can skip alone.",
+              "hi": "रस्सी तुम अकेले भी कूद सकते हो।"
+            }
+          },
+          {
+            "id": "top",
+            "text": {
+              "en": "Spinning a top",
+              "hi": "लट्टू घुमाना"
+            },
+            "bin": "one",
+            "why": {
+              "en": "One child can spin a top.",
+              "hi": "लट्टू एक बच्चा भी घुमा सकता है।"
+            }
+          },
+          {
+            "id": "badminton",
+            "text": {
+              "en": "Badminton singles",
+              "hi": "बैडमिंटन (सिंगल्स)"
+            },
+            "bin": "two",
+            "why": {
+              "en": "Singles needs one player on each side.",
+              "hi": "सिंगल्स में दोनों ओर एक-एक खिलाड़ी होता है।"
+            }
+          },
+          {
+            "id": "posham",
+            "text": {
+              "en": "Posham Pa",
+              "hi": "पोषम पा"
+            },
+            "bin": "two",
+            "why": {
+              "en": "Two children make the arch with their hands.",
+              "hi": "दो बच्चे हाथों से मेहराब बनाते हैं।"
+            }
+          },
+          {
+            "id": "hide",
+            "text": {
+              "en": "Hide and seek",
+              "hi": "छुपन-छुपाई"
+            },
+            "bin": "many",
+            "why": {
+              "en": "More friends make it more fun.",
+              "hi": "ज़्यादा दोस्त हों तो मज़ा बढ़ता है।"
+            }
+          },
+          {
+            "id": "kabaddi",
+            "text": {
+              "en": "Kabaddi",
+              "hi": "कबड्डी"
+            },
+            "bin": "many",
+            "why": {
+              "en": "It is played by two teams.",
+              "hi": "यह दो टीमों के बीच खेला जाता है।"
+            }
+          },
+          {
+            "id": "kho",
+            "text": {
+              "en": "Kho-kho",
+              "hi": "खो-खो"
+            },
+            "bin": "many",
+            "why": {
+              "en": "Many players sit and chase in turns.",
+              "hi": "इसमें कई खिलाड़ी बैठते और बारी-बारी दौड़ते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:rope",
+          "expect": "placed:rope",
+          "say": {
+            "en": "Tap the card Skipping rope.",
+            "hi": "रस्सी कूदना कार्ड दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which group will Kabaddi go in?",
+            "hi": "कबड्डी किस समूह में जाएगी?"
+          },
+          "options": [
+            {
+              "id": "many",
+              "en": "A big group",
+              "hi": "बड़ा समूह"
+            },
+            {
+              "id": "one",
+              "en": "One player",
+              "hi": "एक खिलाड़ी"
+            }
+          ],
+          "answer": "many"
+        },
+        {
+          "kind": "do",
+          "target": "bin:one",
+          "expect": "correct:rope",
+          "say": {
+            "en": "Now tap the bin where this card belongs.",
+            "hi": "अब उस डिब्बे को दबाओ जिसमें यह कार्ड जाएगा।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort every card, then tap Check.",
+            "hi": "सब कार्ड छाँटो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Some games can be played alone, some need a friend, and some need a big group. Playing together teaches us to take turns, to share and to cheer for others.",
+            "hi": "कुछ खेल अकेले खेले जाते हैं, कुछ में एक दोस्त चाहिए और कुछ में बड़ा समूह। साथ खेलने से हम बारी लेना, बाँटना और दूसरों का उत्साह बढ़ाना सीखते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which game needs a big group?",
+                "hi": "किस खेल में बड़ा समूह चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "Kho-kho",
+                  "hi": "खो-खो"
+                },
+                {
+                  "en": "Skipping rope",
+                  "hi": "रस्सी कूदना"
+                },
+                {
+                  "en": "Spinning a top",
+                  "hi": "लट्टू घुमाना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Kho-kho needs many players.",
+                "hi": "खो-खो में कई खिलाड़ी चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "You can skip rope alone.",
+                  "hi": "रस्सी अकेले कूदी जा सकती है।"
+                },
+                {
+                  "en": "A top can be spun by one child.",
+                  "hi": "लट्टू एक बच्चा भी घुमा सकता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Which game do you like to play most? How many friends do you need?",
+            "hi": "तुम्हें कौन-सा खेल सबसे ज़्यादा पसंद है? उसके लिए कितने दोस्त चाहिए?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "18.1",
+      "use": "Opens the story",
+      "shows": "A male lion standing in tall dry grass in a forest clearing",
+      "view": "Eye level, golden hour",
+      "right": "Real Asiatic lion, calm look, mane clear",
+      "avoid": "Any roaring face or blood"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "18.1",
+      "use": "The story in frames",
+      "shows": "Four frames: lion walking, small mouse near a paw, lion held in a rope net, net cut open",
+      "view": "Same forest, same light",
+      "right": "A rope net; a field mouse with big ears; no harm to animals",
+      "avoid": "Hunter shown with weapons"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "18.2",
+      "use": "Match-card animals",
+      "shows": "Mouse, sparrow, elephant, monkey and dog, each alone",
+      "view": "Side view, centre",
+      "right": "True colours and sizes, transparent background",
+      "avoid": "Cartoon look"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "18.4",
+      "use": "Safe and unsafe",
+      "shows": "A parent and child holding hands at a busy market crossing",
+      "view": "Wide, from behind",
+      "right": "Clear that the child is held; crowd and stalls around",
+      "avoid": "Faces of identifiable children"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "18.6",
+      "use": "Games picture",
+      "shows": "Children playing rope skipping, kabaddi, kho-kho and spinning tops in a school ground",
+      "view": "Wide, afternoon light",
+      "right": "Distant figures, different games in different corners",
+      "avoid": "Faces and school names"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "18.3",
+      "use": "Letter strip",
+      "shows": "An empty strip where त, र and त्र can be shown joining",
+      "view": "Flat, front",
+      "right": "Big blank boxes in three sizes",
+      "avoid": "Any letters drawn in"
+    }
+  ]
+}

@@ -1,0 +1,1604 @@
+{
+ "chapter_key": "u.c09.science.iesc1.ch12",
+ "class": 9,
+ "subject_id": "science",
+ "title": "Patterns in Life: Diversity and Classification",
+ "source": "https://ncert.nic.in/textbook/pdf/iesc112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "India as a biodiversity hotspot",
+   "labs": [],
+   "why_no_lab": "A real relief map of India's four hotspot regions with photos of their endemic species teaches this best; the threats lab revisits the idea."
+  },
+  {
+   "n": "12.2",
+   "title": "How biodiversity has evolved",
+   "labs": [],
+   "why_no_lab": "Evolution over millions of years is an idea to read and discuss with pictures; it cannot be shown in a short lab."
+  },
+  {
+   "n": "12.3",
+   "title": "How to classify organisms",
+   "labs": [
+    "c09-science-iesc1-ch12-classify"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "The need for classification",
+   "labs": [
+    "c09-science-iesc1-ch12-classify"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.5",
+   "title": "Classification systems over time",
+   "labs": [],
+   "why_no_lab": "The journey from Aristotle to Whittaker is a timeline story, told by the reader and a timeline picture."
+  },
+  {
+   "n": "12.6",
+   "title": "Five kingdom classification",
+   "labs": [
+    "c09-science-iesc1-ch12-kingdoms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.6.1",
+   "title": "Kingdom Monera",
+   "labs": [
+    "c09-science-iesc1-ch12-bacteria"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.6.2",
+   "title": "Kingdom Protista",
+   "labs": [
+    "c09-science-iesc1-ch12-amoeba"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.6.3",
+   "title": "Kingdom Fungi",
+   "labs": [
+    "c09-science-iesc1-ch12-fungi"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.6.4",
+   "title": "Kingdom Plantae",
+   "labs": [
+    "c09-science-iesc1-ch12-leaves"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.6.5",
+   "title": "Kingdom Animalia",
+   "labs": [],
+   "why_no_lab": "The reader's photo gallery of animal groups teaches this; the kingdoms and classifying labs practise the features."
+  },
+  {
+   "n": "12.7.1",
+   "title": "The hierarchical nature of classification",
+   "labs": [
+    "c09-science-iesc1-ch12-binomial"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.8",
+   "title": "Scientific naming: the binomial system",
+   "labs": [
+    "c09-science-iesc1-ch12-binomial"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.9",
+   "title": "Fossils as evidence",
+   "labs": [],
+   "why_no_lab": "Fossils are best seen as real photographs of stromatolites and fossil leaves, not simulated."
+  },
+  {
+   "n": "12.10",
+   "title": "Biodiversity under threat",
+   "labs": [
+    "c09-science-iesc1-ch12-threats"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-science-iesc1-ch12-classify",
+   "topic": "12.3",
+   "template": "scenario",
+   "title": {
+    "en": "Group living things by their features",
+    "hi": "जीवों को उनके लक्षणों से समूहों में बाँटो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "forest",
+    "role": {
+     "en": "A young naturalist in a forest",
+     "hi": "जंगल में एक नन्हा प्रकृतिविद्"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "You see a peacock, a lizard, an earthworm and a butterfly. You want to split them into two groups by one clear feature. Which feature works best?",
+       "hi": "तुम मोर, छिपकली, केंचुआ और तितली देखते हो। तुम उन्हें एक साफ़ लक्षण से दो समूहों में बाँटना चाहते हो। कौन-सा लक्षण सबसे अच्छा है?"
+      },
+      "choices": [
+       {
+        "id": "backbone",
+        "text": {
+         "en": "Whether it has a backbone",
+         "hi": "उसमें रीढ़ की हड्डी है या नहीं"
+        },
+        "next": "next",
+        "feedback": {
+         "en": "Yes. The peacock and lizard have a backbone; the earthworm and butterfly do not. It is clear and fixed.",
+         "hi": "हाँ। मोर और छिपकली में रीढ़ है; केंचुए और तितली में नहीं। यह साफ़ और स्थिर लक्षण है।"
+        },
+        "good": true
+       },
+       {
+        "id": "colour",
+        "text": {
+         "en": "Whether it is colourful",
+         "hi": "वह रंगीन है या नहीं"
+        },
+        "next": "next",
+        "feedback": {
+         "en": "Colour varies even within one kind and is a matter of opinion. It does not show true relationships.",
+         "hi": "रंग एक ही प्रकार में भी बदलता है और राय का विषय है। यह असली संबंध नहीं दिखाता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "next",
+      "text": {
+       "en": "Inside the group with a backbone, how can you separate the peacock from the lizard?",
+       "hi": "रीढ़ वाले समूह के अंदर मोर को छिपकली से कैसे अलग करोगे?"
+      },
+      "choices": [
+       {
+        "id": "feathers",
+        "text": {
+         "en": "Feathers and warm blood versus dry scales",
+         "hi": "पंख और गर्म रक्त बनाम सूखे शल्क"
+        },
+        "next": "why",
+        "feedback": {
+         "en": "Right. Each level of grouping uses more detailed features.",
+         "hi": "सही। समूह बनाने के हर स्तर पर अधिक बारीक लक्षण लिए जाते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "size",
+        "text": {
+         "en": "The bigger one versus the smaller one",
+         "hi": "बड़ा बनाम छोटा"
+        },
+        "next": "why",
+        "feedback": {
+         "en": "Size changes with age and is not a reliable feature for classification.",
+         "hi": "आकार उम्र के साथ बदलता है और वर्गीकरण के लिए भरोसेमंद लक्षण नहीं है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "why",
+      "text": {
+       "en": "Why do scientists classify living things at all?",
+       "hi": "वैज्ञानिक जीवों का वर्गीकरण क्यों करते हैं?"
+      },
+      "choices": [
+       {
+        "id": "study",
+        "text": {
+         "en": "To study huge diversity in an organised way and see how organisms are related",
+         "hi": "विशाल विविधता को व्यवस्थित ढंग से पढ़ने और जीवों के संबंध देखने के लिए"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. Grouping makes millions of species easier to study, name and protect.",
+         "hi": "सही। समूहों में बाँटने से लाखों प्रजातियों को पढ़ना, नाम देना और बचाना आसान होता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "rank",
+        "text": {
+         "en": "To decide which animals are better than others",
+         "hi": "यह तय करने के लिए कि कौन-से जंतु दूसरों से बेहतर हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Classification groups by shared features; it does not rank organisms as better or worse.",
+         "hi": "वर्गीकरण साझा लक्षणों से समूह बनाता है; जीवों को बेहतर या बदतर नहीं आँकता।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What makes a good feature for classifying organisms?",
+      "hi": "जीवों के वर्गीकरण के लिए अच्छा लक्षण कैसा होता है?"
+     },
+     "options": [
+      {
+       "id": "fixed",
+       "en": "One that is clear, fixed and shared by a group",
+       "hi": "जो साफ़, स्थिर और समूह में साझा हो"
+      },
+      {
+       "id": "pretty",
+       "en": "One that looks pretty",
+       "hi": "जो सुंदर दिखे"
+      },
+      {
+       "id": "where",
+       "en": "Where we happened to see it",
+       "hi": "जहाँ हमने उसे देखा"
+      }
+     ],
+     "answer": "fixed"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:backbone",
+     "expect": "chose:backbone",
+     "say": {
+      "en": "Read about the four animals and tap the best feature to split them.",
+      "hi": "चारों जंतुओं के बारे में पढ़ो और उन्हें बाँटने का सबसे अच्छा लक्षण टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Classification groups organisms by shared features: cell type, number of cells, body design, mode of nutrition, presence of a backbone. Broad features make big groups; finer features split them into smaller ones. This makes diversity easier to study and shows which organisms are closely related.",
+      "hi": "वर्गीकरण साझा लक्षणों से जीवों के समूह बनाता है: कोशिका का प्रकार, कोशिकाओं की संख्या, शरीर की बनावट, पोषण की विधि, रीढ़ का होना। व्यापक लक्षण बड़े समूह बनाते हैं; बारीक लक्षण उन्हें छोटे समूहों में बाँटते हैं। इससे विविधता पढ़ना आसान होता है और पता चलता है कि कौन-से जीव निकट संबंधी हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which feature would place a bat with mammals rather than birds?",
+        "hi": "कौन-सा लक्षण चमगादड़ को पक्षियों के बजाय स्तनधारियों में रखेगा?"
+       },
+       "options": [
+        {
+         "en": "It feeds its young on milk and has fur",
+         "hi": "वह बच्चों को दूध पिलाता है और उसके बाल होते हैं"
+        },
+        {
+         "en": "It can fly",
+         "hi": "वह उड़ सकता है"
+        },
+        {
+         "en": "It is active at night",
+         "hi": "वह रात में सक्रिय होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Milk glands and hair are features of all mammals.",
+        "hi": "दूध ग्रंथियाँ और बाल सभी स्तनधारियों के लक्षण हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Flying is shared with birds and insects; it does not show the bat's true group.",
+         "hi": "उड़ना पक्षियों और कीटों में भी है; यह चमगादड़ का असली समूह नहीं दिखाता।"
+        },
+        {
+         "en": "Many birds, like owls, are active at night too.",
+         "hi": "उल्लू जैसे कई पक्षी भी रात में सक्रिय होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again with the other answers. Then group ten animals from your school garden using two features.",
+      "hi": "दूसरे उत्तरों के साथ फिर से खेलो। फिर स्कूल के बगीचे के दस जंतुओं को दो लक्षणों से समूहों में बाँटो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch12-kingdoms",
+   "topic": "12.6",
+   "template": "scenario",
+   "title": {
+    "en": "Which of the five kingdoms?",
+    "hi": "पाँच जगतों में से कौन-सा?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "lab",
+    "role": {
+     "en": "A classifier with a microscope",
+     "hi": "सूक्ष्मदर्शी वाला वर्गीकरणकर्ता"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "A mushroom grows on a rotting log. It has no chlorophyll, its cell walls contain chitin, and it absorbs food from dead matter. Which kingdom?",
+       "hi": "सड़ते लट्ठे पर एक मशरूम उगता है। इसमें पर्णहरित नहीं है, इसकी कोशिका भित्ति में काइटिन है, और यह मृत पदार्थ से भोजन सोखता है। कौन-सा जगत?"
+      },
+      "choices": [
+       {
+        "id": "fungi",
+        "text": {
+         "en": "Fungi",
+         "hi": "कवक"
+        },
+        "next": "amoeba",
+        "feedback": {
+         "en": "Yes. Fungi are heterotrophs with chitin walls that absorb food, often as decomposers.",
+         "hi": "हाँ। कवक काइटिन भित्ति वाले विषमपोषी हैं जो भोजन सोखते हैं, अक्सर अपघटक के रूप में।"
+        },
+        "good": true
+       },
+       {
+        "id": "plantae",
+        "text": {
+         "en": "Plantae",
+         "hi": "पादप"
+        },
+        "next": "amoeba",
+        "feedback": {
+         "en": "Plants make their own food with chlorophyll and have cellulose walls; the mushroom does neither.",
+         "hi": "पौधे पर्णहरित से अपना भोजन बनाते हैं और उनकी भित्ति सेल्युलोज़ की होती है; मशरूम ऐसा नहीं करता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "amoeba",
+      "text": {
+       "en": "Amoeba is one cell with a true nucleus inside a membrane. Which kingdom?",
+       "hi": "अमीबा एक कोशिका है जिसमें झिल्ली से घिरा सच्चा केंद्रक है। कौन-सा जगत?"
+      },
+      "choices": [
+       {
+        "id": "protista",
+        "text": {
+         "en": "Protista",
+         "hi": "प्रोटिस्टा"
+        },
+        "next": "bact",
+        "feedback": {
+         "en": "Right. Protista are single-celled eukaryotes.",
+         "hi": "सही। प्रोटिस्टा एककोशिकीय यूकैरियोट हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "monera",
+        "text": {
+         "en": "Monera",
+         "hi": "मोनेरा"
+        },
+        "next": "bact",
+        "feedback": {
+         "en": "Monera have no true nucleus; Amoeba does.",
+         "hi": "मोनेरा में सच्चा केंद्रक नहीं होता; अमीबा में होता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "bact",
+      "text": {
+       "en": "Curd bacteria (Lactobacillus) are single cells with no membrane around their genetic material. Which kingdom?",
+       "hi": "दही के जीवाणु (लैक्टोबैसिलस) एककोशिकीय हैं और उनके आनुवंशिक पदार्थ के चारों ओर झिल्ली नहीं है। कौन-सा जगत?"
+      },
+      "choices": [
+       {
+        "id": "monera2",
+        "text": {
+         "en": "Monera",
+         "hi": "मोनेरा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. Bacteria and cyanobacteria are prokaryotes, placed in Monera.",
+         "hi": "सही। जीवाणु और सायनोबैक्टीरिया प्रोकैरियोट हैं, जिन्हें मोनेरा में रखा जाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "animalia",
+        "text": {
+         "en": "Animalia",
+         "hi": "जंतु"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Animals are many-celled eukaryotes; bacteria are single prokaryotic cells.",
+         "hi": "जंतु बहुकोशिकीय यूकैरियोट हैं; जीवाणु अकेली प्रोकैरियोटिक कोशिकाएँ हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which four features does the five-kingdom system use?",
+      "hi": "पाँच-जगत प्रणाली किन चार लक्षणों का उपयोग करती है?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "Cell type, cell wall, number of cells, mode of nutrition",
+       "hi": "कोशिका का प्रकार, कोशिका भित्ति, कोशिकाओं की संख्या, पोषण की विधि"
+      },
+      {
+       "id": "size",
+       "en": "Size, colour, smell and habitat",
+       "hi": "आकार, रंग, गंध और आवास"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:fungi",
+     "expect": "chose:fungi",
+     "say": {
+      "en": "Read about the mushroom and tap its kingdom.",
+      "hi": "मशरूम के बारे में पढ़ो और उसका जगत टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Whittaker's five kingdoms (1969): Monera (prokaryotes such as bacteria), Protista (single-celled eukaryotes such as Amoeba), Fungi (heterotrophs with chitin walls), Plantae (many-celled autotrophs with cellulose walls) and Animalia (many-celled heterotrophs without cell walls). The system grew over time from two kingdoms as microscopes revealed more.",
+      "hi": "व्हिटेकर के पाँच जगत (1969): मोनेरा (जीवाणु जैसे प्रोकैरियोट), प्रोटिस्टा (अमीबा जैसे एककोशिकीय यूकैरियोट), कवक (काइटिन भित्ति वाले विषमपोषी), पादप (सेल्युलोज़ भित्ति वाले बहुकोशिकीय स्वपोषी) और जंतु (बिना कोशिका भित्ति वाले बहुकोशिकीय विषमपोषी)। सूक्ष्मदर्शी से अधिक दिखने पर यह प्रणाली समय के साथ दो जगतों से बढ़कर बनी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Yeast is single-celled, has a nucleus and a chitin wall, and cannot make its own food. Which kingdom is it in?",
+        "hi": "यीस्ट एककोशिकीय है, उसमें केंद्रक और काइटिन भित्ति है, और वह अपना भोजन नहीं बना सकता। वह किस जगत में है?"
+       },
+       "options": [
+        {
+         "en": "Fungi",
+         "hi": "कवक"
+        },
+        {
+         "en": "Protista",
+         "hi": "प्रोटिस्टा"
+        },
+        {
+         "en": "Monera",
+         "hi": "मोनेरा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Yeast is a single-celled fungus.",
+        "hi": "यीस्ट एक एककोशिकीय कवक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Protists have no wall or a cellulose wall; yeast's chitin wall places it with the fungi.",
+         "hi": "प्रोटिस्टों में भित्ति नहीं या सेल्युलोज़ भित्ति होती है; यीस्ट की काइटिन भित्ति उसे कवकों में रखती है।"
+        },
+        {
+         "en": "Yeast has a true nucleus, so it is not a prokaryote.",
+         "hi": "यीस्ट में सच्चा केंद्रक है, इसलिए वह प्रोकैरियोट नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again with the other answers. Then place a fern, a cow and a cyanobacterium in their kingdoms.",
+      "hi": "दूसरे उत्तरों के साथ फिर से खेलो। फिर फ़र्न, गाय और सायनोबैक्टीरियम को उनके जगतों में रखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch12-bacteria",
+   "topic": "12.6.1",
+   "template": "scope",
+   "title": {
+    "en": "Kingdom Monera: the shapes of bacteria",
+    "hi": "मोनेरा जगत: जीवाणुओं के आकार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "bacteria"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Tap the 10× lens.",
+      "hi": "10× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Focus with the coarse knob.",
+      "hi": "मोटे नॉब से फ़ोकस करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Will you find a nucleus inside these bacteria?",
+      "hi": "क्या इन जीवाणुओं के अंदर तुम्हें केंद्रक मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, bacteria have no true nucleus",
+       "hi": "नहीं, जीवाणुओं में सच्चा केंद्रक नहीं होता"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, a big round one",
+       "hi": "हाँ, एक बड़ा गोल"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "part:bacillus",
+     "expect": "identified:bacillus",
+     "say": {
+      "en": "Tap \"bacillus\", the rod-shaped bacteria.",
+      "hi": "छड़ जैसे जीवाणु, \"बैसिलस\", पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:coccus",
+     "expect": "identified:coccus",
+     "say": {
+      "en": "Tap \"coccus\", the round bacteria.",
+      "hi": "गोल जीवाणु, \"कोकस\", पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:spirillum",
+     "expect": "identified:spirillum",
+     "say": {
+      "en": "Tap \"spirillum\", the spiral bacteria.",
+      "hi": "सर्पिल जीवाणु, \"स्पाइरिलम\", पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bacteria are single-celled prokaryotes: their genetic material is not wrapped in a membrane. They come in rods, spheres and spirals and live everywhere, even in hot springs and our gut. Some cause disease, but many are useful: Lactobacillus makes curd, Rhizobium adds nitrogen to soil, and some break down pollutants or make biogas.",
+      "hi": "जीवाणु एककोशिकीय प्रोकैरियोट हैं: उनका आनुवंशिक पदार्थ झिल्ली में लिपटा नहीं होता। वे छड़, गोले और सर्पिल आकार के होते हैं और हर जगह रहते हैं, गर्म झरनों और हमारी आँत तक में। कुछ रोग फैलाते हैं, पर कई उपयोगी हैं: लैक्टोबैसिलस दही बनाता है, राइज़ोबियम मिट्टी में नाइट्रोजन जोड़ता है, और कुछ प्रदूषकों को तोड़ते या बायोगैस बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a useful job done by bacteria?",
+        "hi": "इनमें से कौन-सा काम जीवाणु करते हैं जो उपयोगी है?"
+       },
+       "options": [
+        {
+         "en": "Turning milk into curd",
+         "hi": "दूध को दही बनाना"
+        },
+        {
+         "en": "Making chlorophyll for plants",
+         "hi": "पौधों के लिए पर्णहरित बनाना"
+        },
+        {
+         "en": "Making bones stronger",
+         "hi": "हड्डियाँ मज़बूत करना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Lactobacillus changes milk sugar into an acid that sets the curd.",
+        "hi": "लैक्टोबैसिलस दूध की शर्करा को अम्ल में बदलता है जिससे दही जमता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Plants make their own chlorophyll.",
+         "hi": "पौधे अपना पर्णहरित ख़ुद बनाते हैं।"
+        },
+        {
+         "en": "Bones get their strength from calcium in food, not from bacteria.",
+         "hi": "हड्डियों को मज़बूती भोजन के कैल्शियम से मिलती है, जीवाणुओं से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: zoom to 40× and refocus. How much smaller are bacteria than the onion cells you saw?",
+      "hi": "आज़माओ: 40× पर ज़ूम करो और फिर फ़ोकस करो। जीवाणु प्याज़ की कोशिकाओं से कितने छोटे हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch12-amoeba",
+   "topic": "12.6.2",
+   "template": "scope",
+   "title": {
+    "en": "Kingdom Protista: Amoeba",
+    "hi": "प्रोटिस्टा जगत: अमीबा"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "slide": "amoeba"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Tap the 10× lens to look at a drop of pond water.",
+      "hi": "तालाब के पानी की एक बूँद देखने के लिए 10× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Focus with the coarse knob.",
+      "hi": "मोटे नॉब से फ़ोकस करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:pseudopodium",
+     "expect": "identified:pseudopodium",
+     "say": {
+      "en": "Tap \"pseudopodium\", the finger-like bulge Amoeba uses to move.",
+      "hi": "अमीबा के चलने वाले उँगली जैसे उभार, \"कूटपाद\", पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Amoeba lives in fresh water, which keeps seeping into it. How does it avoid bursting?",
+      "hi": "अमीबा मीठे पानी में रहता है, जो उसमें रिसता रहता है। वह फटने से कैसे बचता है?"
+     },
+     "options": [
+      {
+       "id": "vacuole",
+       "en": "A contractile vacuole pumps out the extra water",
+       "hi": "संकुचनशील रिक्तिका अतिरिक्त पानी बाहर पंप करती है"
+      },
+      {
+       "id": "wall",
+       "en": "A thick cell wall holds it",
+       "hi": "मोटी कोशिका भित्ति उसे थामती है"
+      },
+      {
+       "id": "nothing",
+       "en": "It does nothing and bursts",
+       "hi": "वह कुछ नहीं करता और फट जाता है"
+      }
+     ],
+     "answer": "vacuole"
+    },
+    {
+     "kind": "do",
+     "target": "lens:40x",
+     "expect": "zoomed:40x",
+     "say": {
+      "en": "Tap the 40× lens.",
+      "hi": "40× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:fine",
+     "expect": "focused",
+     "say": {
+      "en": "Sharpen with the fine knob.",
+      "hi": "बारीक नॉब से साफ़ करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:contractile-vacuole",
+     "expect": "identified:contractile-vacuole",
+     "say": {
+      "en": "Tap \"contractile vacuole\".",
+      "hi": "\"संकुचनशील रिक्तिका\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Protists are single-celled eukaryotes: they have a true nucleus and organelles. Amoeba has no cell wall, changes shape, moves and catches food with pseudopodia, digests it in food vacuoles and pumps out extra water with a contractile vacuole. Paramecium, Euglena and Chlamydomonas are other protists found in a hay infusion.",
+      "hi": "प्रोटिस्ट एककोशिकीय यूकैरियोट हैं: उनमें सच्चा केंद्रक और कोशिकांग होते हैं। अमीबा में कोशिका भित्ति नहीं होती, वह आकार बदलता है, कूटपादों से चलता और भोजन पकड़ता है, उसे खाद्य रिक्तिकाओं में पचाता है और संकुचनशील रिक्तिका से अतिरिक्त पानी बाहर निकालता है। पैरामीशियम, यूग्लीना और क्लैमाइडोमोनास दूसरे प्रोटिस्ट हैं जो घास के अर्क में मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How is Amoeba different from a bacterium?",
+        "hi": "अमीबा जीवाणु से कैसे अलग है?"
+       },
+       "options": [
+        {
+         "en": "It has a true nucleus inside a membrane",
+         "hi": "उसमें झिल्ली से घिरा सच्चा केंद्रक है"
+        },
+        {
+         "en": "It has many cells",
+         "hi": "उसमें कई कोशिकाएँ हैं"
+        },
+        {
+         "en": "It makes its own food",
+         "hi": "वह अपना भोजन बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both are single cells, but Amoeba is a eukaryote and a bacterium is a prokaryote.",
+        "hi": "दोनों एककोशिकीय हैं, पर अमीबा यूकैरियोट है और जीवाणु प्रोकैरियोट।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Amoeba is a single cell, like a bacterium.",
+         "hi": "अमीबा एक ही कोशिका है, जीवाणु की तरह।"
+        },
+        {
+         "en": "Amoeba catches food; it cannot photosynthesise.",
+         "hi": "अमीबा भोजन पकड़ता है; प्रकाश-संश्लेषण नहीं कर सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find the nucleus and a food vacuole. Watch how the pseudopodia change shape.",
+      "hi": "आज़माओ: केंद्रक और एक खाद्य रिक्तिका ढूँढो। देखो कूटपाद कैसे आकार बदलते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch12-fungi",
+   "topic": "12.6.3",
+   "template": "scope",
+   "title": {
+    "en": "Kingdom Fungi: threads that feed on dead matter",
+    "hi": "कवक जगत: मृत पदार्थ पर पलने वाले धागे"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "bread-mould"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Focus on the bread mould with the coarse knob.",
+      "hi": "मोटे नॉब से ब्रेड के फफूँद पर फ़ोकस करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The mould has no chlorophyll. How does it get food?",
+      "hi": "फफूँद में पर्णहरित नहीं है। वह भोजन कैसे पाता है?"
+     },
+     "options": [
+      {
+       "id": "absorb",
+       "en": "Its threads absorb food from the bread",
+       "hi": "उसके धागे ब्रेड से भोजन सोखते हैं"
+      },
+      {
+       "id": "sun",
+       "en": "From sunlight",
+       "hi": "धूप से"
+      },
+      {
+       "id": "eat",
+       "en": "It swallows bread crumbs",
+       "hi": "वह ब्रेड के टुकड़े निगलता है"
+      }
+     ],
+     "answer": "absorb"
+    },
+    {
+     "kind": "do",
+     "target": "part:hypha",
+     "expect": "identified:hypha",
+     "say": {
+      "en": "Tap \"hypha\", the fine white threads.",
+      "hi": "बारीक सफ़ेद धागों, \"कवकतंतु\", पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:sporangiophore",
+     "expect": "identified:sporangiophore",
+     "say": {
+      "en": "Tap \"sporangiophore\", the upright stalk.",
+      "hi": "सीधे डंठल, \"बीजाणुधानीधर\", पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Fungi are mostly many-celled heterotrophs whose cell walls contain chitin. Their body is a network of threads (hyphae) that spread through food and absorb nutrients, usually from dead and decaying matter. As decomposers they return nutrients to the soil. Mushrooms, yeast and Aspergillus are fungi; some live with plants, and a few cause disease.",
+      "hi": "कवक अधिकतर बहुकोशिकीय विषमपोषी हैं जिनकी कोशिका भित्ति में काइटिन होता है। उनका शरीर धागों (कवकतंतुओं) का जाल है जो भोजन में फैलकर पोषक तत्व सोखता है, आमतौर पर मृत और सड़ते पदार्थ से। अपघटक के रूप में वे पोषक तत्व मिट्टी को लौटाते हैं। मशरूम, यीस्ट और एस्परजिलस कवक हैं; कुछ पौधों के साथ रहते हैं, और कुछ रोग फैलाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are fungi not placed in the plant kingdom?",
+        "hi": "कवकों को पादप जगत में क्यों नहीं रखा जाता?"
+       },
+       "options": [
+        {
+         "en": "They have no chlorophyll and their walls are made of chitin",
+         "hi": "उनमें पर्णहरित नहीं है और उनकी भित्ति काइटिन की है"
+        },
+        {
+         "en": "They move from place to place",
+         "hi": "वे एक जगह से दूसरी जगह चलते हैं"
+        },
+        {
+         "en": "They are always single-celled",
+         "hi": "वे हमेशा एककोशिकीय होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Plants make food and have cellulose walls; fungi absorb food and have chitin walls.",
+        "hi": "पौधे भोजन बनाते हैं और उनकी भित्ति सेल्युलोज़ की होती है; कवक भोजन सोखते हैं और उनकी भित्ति काइटिन की।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fungi do not move about.",
+         "hi": "कवक इधर-उधर नहीं चलते।"
+        },
+        {
+         "en": "Most fungi, like mushrooms and moulds, are many-celled.",
+         "hi": "मशरूम और फफूँद जैसे अधिकतर कवक बहुकोशिकीय हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: zoom in on a sporangium and find the spores. Which part of the mould spreads it to new food?",
+      "hi": "आज़माओ: एक बीजाणुधानी पर ज़ूम करो और बीजाणु ढूँढो। फफूँद का कौन-सा भाग उसे नए भोजन तक फैलाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch12-leaves",
+   "topic": "12.6.4",
+   "template": "plant",
+   "title": {
+    "en": "Kingdom Plantae: monocot and dicot leaves",
+    "hi": "पादप जगत: एकबीजपत्री और द्विबीजपत्री पत्तियाँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "leaf-types",
+    "plant": "mango"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A maize leaf and a mango leaf are in front of you. Which has veins running side by side?",
+      "hi": "तुम्हारे सामने मक्का और आम की पत्ती है। किसमें शिराएँ साथ-साथ चलती हैं?"
+     },
+     "options": [
+      {
+       "id": "maize",
+       "en": "Maize",
+       "hi": "मक्का"
+      },
+      {
+       "id": "mango",
+       "en": "Mango",
+       "hi": "आम"
+      },
+      {
+       "id": "both",
+       "en": "Both",
+       "hi": "दोनों"
+      }
+     ],
+     "answer": "maize"
+    },
+    {
+     "kind": "do",
+     "target": "pot:3",
+     "expect": "picked:3",
+     "say": {
+      "en": "Pick the maize plant.",
+      "hi": "मक्का का पौधा चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:veins",
+     "expect": "identified:veins",
+     "say": {
+      "en": "Tap the veins of the maize leaf.",
+      "hi": "मक्का की पत्ती की शिराओं पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pot:7",
+     "expect": "picked:7",
+     "say": {
+      "en": "Now pick the mango plant.",
+      "hi": "अब आम का पौधा चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:veins",
+     "expect": "identified:veins",
+     "say": {
+      "en": "Tap the veins of the mango leaf.",
+      "hi": "आम की पत्ती की शिराओं पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Flowering plants are split into two groups by their seeds and leaves. Monocots, such as maize, wheat and grasses, have one cotyledon in the seed and parallel veins. Dicots, such as mango, bean and hibiscus, have two cotyledons and net-like (reticulate) veins. Plantae also includes mosses, ferns and conifers that have no flowers.",
+      "hi": "फूल वाले पौधे अपने बीजों और पत्तियों से दो समूहों में बँटते हैं। मक्का, गेहूँ और घास जैसे एकबीजपत्री पौधों के बीज में एक बीजपत्र और पत्तियों में समानांतर शिराएँ होती हैं। आम, सेम और गुड़हल जैसे द्विबीजपत्री पौधों में दो बीजपत्र और जाल जैसी (जालिकावत) शिराएँ होती हैं। पादप जगत में बिना फूल वाले मॉस, फ़र्न और शंकुधारी भी आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A leaf has a net of veins. Its seed most likely has…",
+        "hi": "एक पत्ती में शिराओं का जाल है। उसके बीज में सबसे संभवतः होंगे…"
+       },
+       "options": [
+        {
+         "en": "Two cotyledons",
+         "hi": "दो बीजपत्र"
+        },
+        {
+         "en": "One cotyledon",
+         "hi": "एक बीजपत्र"
+        },
+        {
+         "en": "No seed at all",
+         "hi": "कोई बीज नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Net venation is a dicot feature, and dicots have two cotyledons.",
+        "hi": "जालिकावत शिराविन्यास द्विबीजपत्री का लक्षण है, और उनमें दो बीजपत्र होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One cotyledon goes with parallel veins, as in maize.",
+         "hi": "एक बीजपत्र समानांतर शिराओं के साथ होता है, जैसे मक्का में।"
+        },
+        {
+         "en": "Net veins are a feature of dicot flowering plants, which make seeds.",
+         "hi": "जालीदार शिराएँ द्विबीजपत्री फूल वाले पौधों का लक्षण हैं, जो बीज बनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: pick the other plants and sort them into monocots and dicots by their veins.",
+      "hi": "आज़माओ: दूसरे पौधे चुनो और शिराओं से उन्हें एकबीजपत्री और द्विबीजपत्री में बाँटो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch12-binomial",
+   "topic": "12.8",
+   "template": "scenario",
+   "title": {
+    "en": "Scientific names: the binomial system",
+    "hi": "वैज्ञानिक नाम: द्विनाम पद्धति"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "garden",
+    "role": {
+     "en": "A label-writer at a botanical garden",
+     "hi": "वनस्पति उद्यान में नाम-पट्टी लिखने वाला"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "The mango tree is called aam, amba and mamidi in different Indian languages. Why do scientists give it one scientific name, Mangifera indica?",
+       "hi": "आम के पेड़ को अलग-अलग भारतीय भाषाओं में आम, अंबा और मामिडी कहते हैं। वैज्ञानिक इसे एक वैज्ञानिक नाम, Mangifera indica, क्यों देते हैं?"
+      },
+      "choices": [
+       {
+        "id": "same",
+        "text": {
+         "en": "So that everyone in the world means exactly the same plant",
+         "hi": "ताकि दुनिया में हर कोई ठीक उसी पौधे को समझे"
+        },
+        "next": "parts",
+        "feedback": {
+         "en": "Yes. One agreed name avoids confusion between languages and regions.",
+         "hi": "हाँ। एक सहमत नाम भाषाओं और क्षेत्रों के बीच भ्रम से बचाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "fancy",
+        "text": {
+         "en": "To make it sound important",
+         "hi": "ताकि यह महत्वपूर्ण लगे"
+        },
+        "next": "parts",
+        "feedback": {
+         "en": "The purpose is clarity, not to sound grand.",
+         "hi": "उद्देश्य स्पष्टता है, भव्य लगना नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "parts",
+      "text": {
+       "en": "In Panthera tigris (the tiger), what does each word stand for?",
+       "hi": "Panthera tigris (बाघ) में हर शब्द क्या दर्शाता है?"
+      },
+      "choices": [
+       {
+        "id": "gs",
+        "text": {
+         "en": "Panthera is the genus; tigris is the species",
+         "hi": "Panthera वंश है; tigris जाति है"
+        },
+        "next": "write",
+        "feedback": {
+         "en": "Right. The lion, Panthera leo, shares the genus but is a different species.",
+         "hi": "सही। शेर, Panthera leo, उसी वंश का है पर अलग जाति है।"
+        },
+        "good": true
+       },
+       {
+        "id": "sg",
+        "text": {
+         "en": "Panthera is the species; tigris is the genus",
+         "hi": "Panthera जाति है; tigris वंश है"
+        },
+        "next": "write",
+        "feedback": {
+         "en": "The genus always comes first, with a capital letter.",
+         "hi": "वंश हमेशा पहले आता है, बड़े अक्षर से।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "write",
+      "text": {
+       "en": "Which is the correct way to write the scientific name of humans?",
+       "hi": "मनुष्य का वैज्ञानिक नाम लिखने का सही तरीक़ा कौन-सा है?"
+      },
+      "choices": [
+       {
+        "id": "right",
+        "text": {
+         "en": "Homo sapiens (genus capital, species small, in italics)",
+         "hi": "Homo sapiens (वंश बड़े अक्षर से, जाति छोटे से, तिरछे अक्षरों में)"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. Printed in italics, or underlined separately when handwritten.",
+         "hi": "सही। छापने पर तिरछे अक्षरों में, हाथ से लिखने पर दोनों शब्दों के नीचे अलग रेखा।"
+        },
+        "good": true
+       },
+       {
+        "id": "wrong",
+        "text": {
+         "en": "homo Sapiens",
+         "hi": "homo Sapiens"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The capital belongs to the genus, not the species.",
+         "hi": "बड़ा अक्षर वंश का होता है, जाति का नहीं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many words does a scientific name have?",
+      "hi": "वैज्ञानिक नाम में कितने शब्द होते हैं?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "Two: genus and species",
+       "hi": "दो: वंश और जाति"
+      },
+      {
+       "id": "one",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "three",
+       "en": "Three",
+       "hi": "तीन"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:same",
+     "expect": "chose:same",
+     "say": {
+      "en": "Read about the mango tree and tap why it has one scientific name.",
+      "hi": "आम के पेड़ के बारे में पढ़ो और टैप करो कि उसका एक वैज्ञानिक नाम क्यों है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Carolus Linnaeus gave us binomial nomenclature: every species has a two-part name, the genus followed by the species, such as Mangifera indica or Panthera tigris. The genus starts with a capital letter, the species with a small one, and the name is printed in italics. It sits at the bottom of the ladder kingdom, phylum, class, order, family, genus, species.",
+      "hi": "कैरोलस लिनियस ने द्विनाम पद्धति दी: हर जाति का दो भागों वाला नाम होता है, पहले वंश फिर जाति, जैसे Mangifera indica या Panthera tigris। वंश बड़े अक्षर से और जाति छोटे अक्षर से शुरू होती है, और नाम तिरछे अक्षरों में छपता है। यह जगत, संघ, वर्ग, गण, कुल, वंश, जाति की सीढ़ी के सबसे निचले भाग पर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which group contains the most kinds of organisms?",
+        "hi": "किस समूह में जीवों के सबसे अधिक प्रकार होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Kingdom",
+         "hi": "जगत"
+        },
+        {
+         "en": "Genus",
+         "hi": "वंश"
+        },
+        {
+         "en": "Species",
+         "hi": "जाति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The higher the level, the bigger and more varied the group.",
+        "hi": "स्तर जितना ऊँचा, समूह उतना बड़ा और विविध।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A genus is a small group of closely related species.",
+         "hi": "वंश निकट संबंधी जातियों का छोटा समूह है।"
+        },
+        {
+         "en": "A species is a single kind of organism.",
+         "hi": "जाति जीव का एक ही प्रकार है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again with the other answers. Then find the scientific names of the neem and the peacock.",
+      "hi": "दूसरे उत्तरों के साथ फिर से खेलो। फिर नीम और मोर के वैज्ञानिक नाम खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch12-threats",
+   "topic": "12.10",
+   "template": "scenario",
+   "title": {
+    "en": "Protect a biodiversity hotspot",
+    "hi": "जैव विविधता हॉटस्पॉट की रक्षा करो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "forest",
+    "role": {
+     "en": "A member of a village forest committee in the Western Ghats",
+     "hi": "पश्चिमी घाट में ग्राम वन समिति का सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "A company wants to clear part of the forest near your village for a big plantation of one kind of tree. What is the biggest risk?",
+       "hi": "एक कंपनी तुम्हारे गाँव के पास जंगल का हिस्सा साफ़ करके एक ही तरह के पेड़ों का बड़ा बागान लगाना चाहती है। सबसे बड़ा ख़तरा क्या है?"
+      },
+      "choices": [
+       {
+        "id": "habitat",
+        "text": {
+         "en": "Many species lose their habitat and may die out",
+         "hi": "कई जातियों का आवास छिनता है और वे विलुप्त हो सकती हैं"
+        },
+        "next": "hunt",
+        "feedback": {
+         "en": "Yes. Habitat loss is the main threat to biodiversity in hotspots.",
+         "hi": "हाँ। हॉटस्पॉट में जैव विविधता के लिए सबसे बड़ा ख़तरा आवास का नष्ट होना है।"
+        },
+        "good": true
+       },
+       {
+        "id": "fine",
+        "text": {
+         "en": "No risk, because trees are still being planted",
+         "hi": "कोई ख़तरा नहीं, क्योंकि पेड़ तो लगाए जा रहे हैं"
+        },
+        "next": "hunt",
+        "feedback": {
+         "en": "A one-tree plantation cannot replace a forest of thousands of species.",
+         "hi": "एक ही पेड़ का बागान हज़ारों जातियों वाले जंगल की जगह नहीं ले सकता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "hunt",
+      "text": {
+       "en": "Some people catch rare frogs and orchids to sell. What should the committee do?",
+       "hi": "कुछ लोग दुर्लभ मेंढक और ऑर्किड बेचने के लिए पकड़ते हैं। समिति को क्या करना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "protect",
+        "text": {
+         "en": "Report it to the forest department and help guard the area",
+         "hi": "वन विभाग को सूचना दे और क्षेत्र की रखवाली में मदद करे"
+        },
+        "next": "local",
+        "feedback": {
+         "en": "Right. Illegal collection pushes rare species towards extinction; local guarding helps a lot.",
+         "hi": "सही। अवैध संग्रह दुर्लभ जातियों को विलुप्ति की ओर धकेलता है; स्थानीय रखवाली बहुत मदद करती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "ignore",
+        "text": {
+         "en": "Ignore it, because there are plenty left",
+         "hi": "अनदेखा करे, क्योंकि बहुत बचे हैं"
+        },
+        "next": "local",
+        "feedback": {
+         "en": "Endemic species may live only here; once gone, they are gone forever.",
+         "hi": "स्थानिक जातियाँ केवल यहीं रह सकती हैं; एक बार गईं तो हमेशा के लिए गईं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "local",
+      "text": {
+       "en": "How can the village keep both its income and its forest?",
+       "hi": "गाँव अपनी आय और अपना जंगल दोनों कैसे बचाए?"
+      },
+      "choices": [
+       {
+        "id": "wise",
+        "text": {
+         "en": "Collect forest produce sustainably and welcome careful eco-tourism",
+         "hi": "वन उपज का टिकाऊ संग्रह करे और सावधान पर्यावरण-पर्यटन अपनाए"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Good. Community care, as in many protected areas, helps people and wildlife together.",
+         "hi": "बढ़िया। सामुदायिक देखभाल, जैसे कई संरक्षित क्षेत्रों में, लोगों और वन्यजीवों दोनों की मदद करती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "cutall",
+        "text": {
+         "en": "Cut all the trees once and sell the wood",
+         "hi": "सारे पेड़ एक बार काटकर लकड़ी बेच दे"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "That gives money once and destroys the forest, water and soil for good.",
+         "hi": "इससे एक बार पैसा मिलता है और जंगल, पानी और मिट्टी हमेशा के लिए नष्ट हो जाते हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What makes a region a biodiversity hotspot?",
+      "hi": "किसी क्षेत्र को जैव विविधता हॉटस्पॉट क्या बनाता है?"
+     },
+     "options": [
+      {
+       "id": "rich",
+       "en": "It is very rich in species found nowhere else and is under threat",
+       "hi": "वह कहीं और न मिलने वाली जातियों से बहुत समृद्ध है और ख़तरे में है"
+      },
+      {
+       "id": "hot",
+       "en": "It is very hot",
+       "hi": "वह बहुत गर्म है"
+      },
+      {
+       "id": "big",
+       "en": "It is very large",
+       "hi": "वह बहुत बड़ा है"
+      }
+     ],
+     "answer": "rich"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:habitat",
+     "expect": "chose:habitat",
+     "say": {
+      "en": "Read about the plan and tap the biggest risk.",
+      "hi": "योजना के बारे में पढ़ो और सबसे बड़े ख़तरे पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A biodiversity hotspot has a very large number of endemic species and has already lost much of its natural habitat. India has parts of four: the Himalaya, the Western Ghats, Indo-Burma (the North-East) and Sundaland (the Nicobar Islands). Habitat loss, pollution, illegal trade, invasive species and climate change threaten biodiversity; protected areas and community care help save it.",
+      "hi": "जैव विविधता हॉटस्पॉट में बहुत अधिक स्थानिक जातियाँ होती हैं और उसका काफ़ी प्राकृतिक आवास पहले ही नष्ट हो चुका होता है। भारत में चार के भाग हैं: हिमालय, पश्चिमी घाट, इंडो-बर्मा (पूर्वोत्तर) और सुंडालैंड (निकोबार द्वीप)। आवास का नष्ट होना, प्रदूषण, अवैध व्यापार, आक्रामक जातियाँ और जलवायु परिवर्तन जैव विविधता के लिए ख़तरा हैं; संरक्षित क्षेत्र और सामुदायिक देखभाल इसे बचाने में मदद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a biodiversity hotspot in India?",
+        "hi": "इनमें से कौन भारत में जैव विविधता हॉटस्पॉट है?"
+       },
+       "options": [
+        {
+         "en": "The Western Ghats",
+         "hi": "पश्चिमी घाट"
+        },
+        {
+         "en": "The Thar desert",
+         "hi": "थार मरुस्थल"
+        },
+        {
+         "en": "The Deccan plateau",
+         "hi": "दक्कन का पठार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Western Ghats are home to many endemic frogs, plants and fish.",
+        "hi": "पश्चिमी घाट में कई स्थानिक मेंढक, पौधे और मछलियाँ रहती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Thar has unique life, but it is not one of the global hotspots.",
+         "hi": "थार में अनोखा जीवन है, पर यह वैश्विक हॉटस्पॉट में नहीं है।"
+        },
+        {
+         "en": "The Deccan plateau is not listed as a global hotspot.",
+         "hi": "दक्कन का पठार वैश्विक हॉटस्पॉट में नहीं गिना जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again with the other answers. Then find out which protected area is closest to your home.",
+      "hi": "दूसरे उत्तरों के साथ फिर से खेलो। फिर पता करो कि तुम्हारे घर के सबसे पास कौन-सा संरक्षित क्षेत्र है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Hook of the chapter",
+   "shows": "A misty evergreen forest slope in the Western Ghats in the monsoon with a waterfall and blooming Neelakurinji on the hills above",
+   "view": "Wide landscape, soft light",
+   "right": "Dense evergreen forest; purple-blue Neelakurinji flowers",
+   "avoid": "People, roads"
+  },
+  {
+   "n": 2,
+   "kind": "MAP",
+   "topic": "12.1",
+   "use": "Base map of India's hotspot regions",
+   "shows": "A relief map of India and its neighbours with the Himalaya, the Western Ghats, the North-East hills and the Nicobar Islands visible, no names or borders",
+   "view": "16:9, top-down shaded relief",
+   "right": "Geography accurate; islands included",
+   "avoid": "Text, borders"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "12.6",
+   "use": "One organism from each kingdom",
+   "shows": "Each a separate file: a bacterium colony on a Petri dish, an Amoeba (render), a mushroom, a fern, a frog",
+   "view": "Front views, transparent background",
+   "right": "True colours and shapes",
+   "avoid": "Labels"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "12.6.1",
+   "use": "Bacteria and cyanobacteria (Activity 12.4)",
+   "shows": "A stained slide of rod, round and spiral bacteria beside a filament of blue-green cyanobacteria, about 1000×",
+   "view": "Two circles, same scale, square crop",
+   "right": "Bacteria tiny compared with cyanobacteria cells",
+   "avoid": "Labels"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "12.6.2",
+   "use": "Hay infusion (Activity 12.5)",
+   "shows": "A jar of pond water with dry grass: day 1 clear, day 4 cloudy, day 7 with a scum on top",
+   "view": "Front view, same framing, three frames",
+   "right": "Water gets cloudier as protists grow",
+   "avoid": "Brand labels"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "12.6.4",
+   "use": "Monocot and dicot leaves (Activity 12.8)",
+   "shows": "A maize leaf and a mango leaf side by side",
+   "view": "From above on a light box so the veins show, transparent background",
+   "right": "Maize veins parallel; mango veins net-like",
+   "avoid": "Damaged leaves"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "12.9",
+   "use": "Stromatolites",
+   "shows": "Layered rock formations of ancient stromatolites in Rajasthan or Madhya Pradesh, with a hammer for scale",
+   "view": "Close view of the rock face, side light",
+   "right": "Wavy layers clearly visible",
+   "avoid": "Text, people"
+  },
+  {
+   "n": 8,
+   "kind": "DIA",
+   "topic": "12.7.1",
+   "use": "Classification ladder base",
+   "shows": "Seven nested rounded boxes from largest to smallest for kingdom down to species, empty",
+   "view": "Flat, soft colours, white background",
+   "right": "Each box sits inside the one above",
+   "avoid": "Text"
+  }
+ ]
+}

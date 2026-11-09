@@ -1,0 +1,698 @@
+{
+ "chapter_key": "u.c03.evs.ceev1.ch01",
+ "class": 3,
+ "subject_id": "evs",
+ "title": "Family and Friends",
+ "source": "https://ncert.nic.in/textbook/pdf/ceev101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Playing together: family, neighbours and what we call our relatives",
+   "labs": [
+    "c3-evs-ceev1-ch01-relations"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Singing together: rain songs and games taught by grandparents",
+   "labs": [],
+   "why_no_lab": "Songs and family stories are best sung and shared aloud; the reader and the class discussion teach this better than a lab."
+  },
+  {
+   "n": "1.3",
+   "title": "Types of families: big and small, joint and single-parent",
+   "labs": [
+    "c3-evs-ceev1-ch01-tree"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Pets and friends are part of the family",
+   "labs": [
+    "c3-evs-ceev1-ch01-pets"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-evs-ceev1-ch01-tree",
+   "topic": "1.3",
+   "template": "society",
+   "title": {
+    "en": "Build a family tree",
+    "hi": "परिवार का वंश-वृक्ष बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "family-tree"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap Dadaji, then Papa, then press \"Link them\". They are father and son.",
+      "hi": "दादाजी को छुओ, फिर पापा को, फिर \"इन्हें जोड़ो\" दबाओ। वे पिता और पुत्र हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chacha is Papa's younger brother. Chacha's child is my cousin. Which row of the tree will my cousin sit in?",
+      "hi": "चाचा पापा के छोटे भाई हैं। चाचा की संतान मेरा चचेरा भाई या बहन है। वंश-वृक्ष की किस पंक्ति में वह बैठेगा या बैठेगी?"
+     },
+     "options": [
+      {
+       "id": "kids",
+       "en": "The same row as me",
+       "hi": "मेरी ही पंक्ति में"
+      },
+      {
+       "id": "elders",
+       "en": "The row of Dadaji and Dadiji",
+       "hi": "दादाजी और दादीजी की पंक्ति में"
+      },
+      {
+       "id": "parents",
+       "en": "The row of Papa and Mummy",
+       "hi": "पापा और मम्मी की पंक्ति में"
+      }
+     ],
+     "answer": "kids"
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "complete",
+     "say": {
+      "en": "Keep linking people who are related until the whole family is joined.",
+      "hi": "जो लोग रिश्तेदार हैं उन्हें तब तक जोड़ते रहो जब तक पूरा परिवार जुड़ न जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A family tree shows how people in a family are joined. Grandparents are at the top, their children are below them, and the grandchildren are below again. Brothers, sisters and cousins sit in the same row. A big family can have many people, and every one of them is special.",
+      "hi": "वंश-वृक्ष दिखाता है कि परिवार के लोग आपस में कैसे जुड़े हैं। सबसे ऊपर दादा-दादी होते हैं, उनके नीचे उनके बच्चे और उनके भी नीचे पोते-पोतियाँ। भाई-बहन और चचेरे भाई-बहन एक ही पंक्ति में होते हैं। बड़े परिवार में कई लोग हो सकते हैं और हर कोई ख़ास होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who are Dadaji and Dadiji to Papa?",
+        "hi": "दादाजी और दादीजी पापा के क्या लगते हैं?"
+       },
+       "options": [
+        {
+         "en": "His parents",
+         "hi": "उसके माता-पिता"
+        },
+        {
+         "en": "His brother and sister",
+         "hi": "उसके भाई और बहन"
+        },
+        {
+         "en": "His children",
+         "hi": "उसके बच्चे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dadaji and Dadiji are Papa's father and mother, so they are above him in the tree.",
+        "hi": "दादाजी और दादीजी पापा के पिता और माँ हैं, इसलिए वंश-वृक्ष में वे उनसे ऊपर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Brothers and sisters sit in the same row as Papa. Dadaji and Dadiji sit one row above, because Papa is their child.",
+         "hi": "भाई-बहन तो पापा की ही पंक्ति में बैठते हैं। दादाजी और दादीजी एक पंक्ति ऊपर बैठते हैं, क्योंकि पापा उनकी संतान हैं।"
+        },
+        {
+         "en": "Papa's children are in the row below him, not above. Dadaji and Dadiji are the older people.",
+         "hi": "पापा के बच्चे उनके नीचे की पंक्ति में होते हैं, ऊपर नहीं। दादाजी और दादीजी बड़े हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Chacha's child is my...",
+        "hi": "चाचा की संतान मेरी क्या लगती है?"
+       },
+       "options": [
+        {
+         "en": "Brother or sister who lives in my house",
+         "hi": "मेरे घर में रहने वाला भाई या बहन"
+        },
+        {
+         "en": "Cousin",
+         "hi": "चचेरा भाई या बहन"
+        },
+        {
+         "en": "Grandchild of Dadaji only for Chacha",
+         "hi": "केवल चाचा की पोती"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Chacha is Papa's brother. His child and I have different parents but the same grandparents, so we are cousins.",
+        "hi": "चाचा पापा के भाई हैं। उनकी संतान और मेरे माता-पिता अलग हैं पर दादा-दादी एक ही हैं, इसलिए हम चचेरे भाई-बहन हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A brother or sister is a child of my own parents. Chacha is Papa's brother, so his child is a cousin.",
+         "hi": "भाई या बहन मेरे अपने माता-पिता की संतान होती है। चाचा पापा के भाई हैं, इसलिए उनकी संतान चचेरा भाई या बहन है।"
+        },
+        "",
+        {
+         "en": "Chacha's child is also Dadaji's grandchild, just like me, so the child is my cousin.",
+         "hi": "चाचा की संतान दादाजी की पोती या पोता भी है, ठीक मेरी तरह, इसलिए वह मेरी चचेरी बहन या भाई है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw your own family tree in your notebook. Start with your grandparents at the top. Add your pet too!",
+      "hi": "अपनी कॉपी में अपने परिवार का वंश-वृक्ष बनाओ। सबसे ऊपर दादा-दादी या नाना-नानी रखो। अपने पालतू को भी जोड़ो!"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch01-relations",
+   "topic": "1.1",
+   "template": "match",
+   "title": {
+    "en": "Who is who in my family?",
+    "hi": "मेरे परिवार में कौन क्या है?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "mausi",
+      "left": {
+       "en": "Mausi",
+       "hi": "मौसी"
+      },
+      "right": {
+       "en": "Mother's sister",
+       "hi": "माँ की बहन"
+      },
+      "why": {
+       "en": "Mausi is your mother's sister.",
+       "hi": "मौसी आपकी माँ की बहन होती हैं।"
+      }
+     },
+     {
+      "id": "chacha",
+      "left": {
+       "en": "Chacha",
+       "hi": "चाचा"
+      },
+      "right": {
+       "en": "Father's younger brother",
+       "hi": "पिता के छोटे भाई"
+      },
+      "why": {
+       "en": "Chacha is Papa's younger brother.",
+       "hi": "चाचा पापा के छोटे भाई होते हैं।"
+      }
+     },
+     {
+      "id": "mama",
+      "left": {
+       "en": "Mama",
+       "hi": "मामा"
+      },
+      "right": {
+       "en": "Mother's brother",
+       "hi": "माँ के भाई"
+      },
+      "why": {
+       "en": "Mama is your mother's brother.",
+       "hi": "मामा आपकी माँ के भाई होते हैं।"
+      }
+     },
+     {
+      "id": "mami",
+      "left": {
+       "en": "Mami",
+       "hi": "मामी"
+      },
+      "right": {
+       "en": "Mama's wife",
+       "hi": "मामा की पत्नी"
+      },
+      "why": {
+       "en": "Mami is the wife of your Mama.",
+       "hi": "मामी आपके मामा की पत्नी होती हैं।"
+      }
+     },
+     {
+      "id": "dadaji",
+      "left": {
+       "en": "Dadaji",
+       "hi": "दादाजी"
+      },
+      "right": {
+       "en": "Father's father",
+       "hi": "पिता के पिता"
+      },
+      "why": {
+       "en": "Dadaji is Papa's father.",
+       "hi": "दादाजी पापा के पिता होते हैं।"
+      }
+     },
+     {
+      "id": "nani",
+      "left": {
+       "en": "Nani",
+       "hi": "नानी"
+      },
+      "right": {
+       "en": "Mother's mother",
+       "hi": "माँ की माँ"
+      },
+      "why": {
+       "en": "Nani is your mother's mother.",
+       "hi": "नानी आपकी माँ की माँ होती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:mausi",
+     "expect": "matched:mausi",
+     "say": {
+      "en": "Tap Mausi on the left, then tap who she is on the right.",
+      "hi": "बाएँ से मौसी को छुओ, फिर दाएँ से उनका रिश्ता छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who is Mama's wife?",
+      "hi": "मामा की पत्नी कौन हैं?"
+     },
+     "options": [
+      {
+       "id": "mami",
+       "en": "Mami",
+       "hi": "मामी"
+      },
+      {
+       "id": "mausi",
+       "en": "Mausi",
+       "hi": "मौसी"
+      },
+      {
+       "id": "nani",
+       "en": "Nani",
+       "hi": "नानी"
+      }
+     ],
+     "answer": "mami"
+    },
+    {
+     "kind": "do",
+     "target": "left:nani",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the relatives until every card is joined.",
+      "hi": "बाक़ी रिश्तेदारों को तब तक जोड़ो जब तक सारे कार्ड जुड़ न जाएँ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each relative has a name that tells us whose relative they are. Relatives on your mother's side and your father's side have different names. Mausi and Mama are from Mummy's side. Chacha and Dadaji are from Papa's side. Ask at home what you call them in your own language.",
+      "hi": "हर रिश्तेदार के नाम से पता चलता है कि वह किस तरफ़ का रिश्तेदार है। माँ की तरफ़ और पिता की तरफ़ के रिश्तेदारों के नाम अलग होते हैं। मौसी और मामा मम्मी की तरफ़ के हैं। चाचा और दादाजी पापा की तरफ़ के हैं। घर पर पूछो कि अपनी भाषा में उन्हें क्या कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which relative is on Mummy's side?",
+        "hi": "कौन-सा रिश्तेदार मम्मी की तरफ़ का है?"
+       },
+       "options": [
+        {
+         "en": "Chacha",
+         "hi": "चाचा"
+        },
+        {
+         "en": "Dadaji",
+         "hi": "दादाजी"
+        },
+        {
+         "en": "Mama",
+         "hi": "मामा"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Mama is Mummy's brother, so he is on Mummy's side of the family.",
+        "hi": "मामा मम्मी के भाई हैं, इसलिए वे मम्मी की तरफ़ के हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Chacha is Papa's younger brother, so he is on Papa's side.",
+         "hi": "चाचा पापा के छोटे भाई हैं, इसलिए वे पापा की तरफ़ के हैं।"
+        },
+        {
+         "en": "Dadaji is Papa's father, so he is on Papa's side.",
+         "hi": "दादाजी पापा के पिता हैं, इसलिए वे पापा की तरफ़ के हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask your grandparents what they call their own brothers and sisters. Do the names sound the same in your language?",
+      "hi": "अपने दादा-दादी से पूछो कि वे अपने भाई-बहनों को क्या कहकर बुलाते हैं। क्या आपकी भाषा में ये नाम वैसे ही हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch01-pets",
+   "topic": "1.4",
+   "template": "sort",
+   "title": {
+    "en": "Being kind to our dog",
+    "hi": "अपने कुत्ते के साथ अच्छा व्यवहार"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "kind",
+      "label": {
+       "en": "Kind to a pet",
+       "hi": "पालतू के साथ अच्छा व्यवहार"
+      }
+     },
+     {
+      "id": "notkind",
+      "label": {
+       "en": "Not kind",
+       "hi": "अच्छा व्यवहार नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "water",
+      "text": {
+       "en": "Give him fresh water",
+       "hi": "उसे ताज़ा पानी दो"
+      },
+      "bin": "kind",
+      "why": {
+       "en": "A pet needs clean water every day, just like us.",
+       "hi": "पालतू को हमारी तरह रोज़ साफ़ पानी चाहिए।"
+      }
+     },
+     {
+      "id": "share",
+      "text": {
+       "en": "Share your food with him",
+       "hi": "अपना खाना उसके साथ बाँटो"
+      },
+      "bin": "kind",
+      "why": {
+       "en": "Sharing food with a hungry friend is kind. Give him food that is safe for dogs.",
+       "hi": "भूखे दोस्त के साथ खाना बाँटना अच्छी बात है। उसे वही चीज़ दो जो कुत्ते के लिए सुरक्षित हो।"
+      }
+     },
+     {
+      "id": "pat",
+      "text": {
+       "en": "Pat him gently",
+       "hi": "उसे प्यार से सहलाओ"
+      },
+      "bin": "kind",
+      "why": {
+       "en": "A gentle pat tells him he is loved.",
+       "hi": "प्यार से सहलाने पर उसे लगता है कि हम उससे प्यार करते हैं।"
+      }
+     },
+     {
+      "id": "rest",
+      "text": {
+       "en": "Give him a dry, shady place to rest",
+       "hi": "उसे आराम के लिए सूखी, छायादार जगह दो"
+      },
+      "bin": "kind",
+      "why": {
+       "en": "Animals need shelter from heat and rain.",
+       "hi": "जानवरों को गर्मी और बारिश से बचने की जगह चाहिए।"
+      }
+     },
+     {
+      "id": "doctor",
+      "text": {
+       "en": "Take him to the animal doctor when he is ill",
+       "hi": "बीमार होने पर उसे पशु-डॉक्टर के पास ले जाओ"
+      },
+      "bin": "kind",
+      "why": {
+       "en": "An animal doctor knows how to make a sick pet well.",
+       "hi": "पशु-डॉक्टर जानता है कि बीमार पालतू को कैसे ठीक करना है।"
+      }
+     },
+     {
+      "id": "tail",
+      "text": {
+       "en": "Pull his tail",
+       "hi": "उसकी पूँछ खींचो"
+      },
+      "bin": "notkind",
+      "why": {
+       "en": "Pulling hurts him and he may get scared or snap.",
+       "hi": "इससे उसे दर्द होता है और वह डर सकता है या काट सकता है।"
+      }
+     },
+     {
+      "id": "stones",
+      "text": {
+       "en": "Throw stones at him",
+       "hi": "उस पर पत्थर फेंको"
+      },
+      "bin": "notkind",
+      "why": {
+       "en": "Stones can hurt him badly. We never hurt animals.",
+       "hi": "पत्थर से उसे गहरी चोट लग सकती है। हम जानवरों को कभी नहीं मारते।"
+      }
+     },
+     {
+      "id": "shout",
+      "text": {
+       "en": "Shout at him to scare him",
+       "hi": "चिल्लाकर उसे डराओ"
+      },
+      "bin": "notkind",
+      "why": {
+       "en": "Animals feel fear too. A scared animal may hurt someone.",
+       "hi": "जानवर भी डरते हैं। डरा हुआ जानवर किसी को चोट पहुँचा सकता है।"
+      }
+     },
+     {
+      "id": "hungry",
+      "text": {
+       "en": "Keep him hungry as a punishment",
+       "hi": "सज़ा में उसे भूखा रखो"
+      },
+      "bin": "notkind",
+      "why": {
+       "en": "Food is a need, not a prize. A pet must never be kept hungry.",
+       "hi": "भोजन ज़रूरत है, इनाम नहीं। पालतू को कभी भूखा नहीं रखना चाहिए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:water",
+     "expect": "placed:water",
+     "say": {
+      "en": "Tap a card, then tap the group where it belongs.",
+      "hi": "एक कार्ड को छुओ, फिर वह समूह छुओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A dog is a member of the family. Which of these will make him unhappy?",
+      "hi": "कुत्ता परिवार का सदस्य है। इनमें से कौन-सी बात उसे दुखी करेगी?"
+     },
+     "options": [
+      {
+       "id": "tail",
+       "en": "Pulling his tail",
+       "hi": "उसकी पूँछ खींचना"
+      },
+      {
+       "id": "pat",
+       "en": "A gentle pat",
+       "hi": "प्यार से सहलाना"
+      },
+      {
+       "id": "water",
+       "en": "Fresh water",
+       "hi": "ताज़ा पानी"
+      }
+     ],
+     "answer": "tail"
+    },
+    {
+     "kind": "do",
+     "target": "card:hungry",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards until each one is in the right group.",
+      "hi": "सारे कार्ड तब तक छाँटो जब तक हर कार्ड सही समूह में न आ जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Pets and other animals feel hunger, thirst, pain and fear, just like us. We show kindness by giving them food, water and shelter, and by never hurting them. A kind child makes the animal a true friend.",
+      "hi": "पालतू और दूसरे जानवर भी हमारी तरह भूख, प्यास, दर्द और डर महसूस करते हैं। हम उन्हें भोजन, पानी और आश्रय देकर और कभी चोट न पहुँचाकर दया दिखाते हैं। दयालु बच्चे का जानवर सच्चा दोस्त बन जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why should we never throw stones at a dog?",
+        "hi": "हमें कुत्ते पर पत्थर क्यों नहीं फेंकना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Stones are expensive",
+         "hi": "पत्थर महँगे होते हैं"
+        },
+        {
+         "en": "It hurts him and makes him afraid",
+         "hi": "इससे उसे चोट लगती है और वह डर जाता है"
+        },
+        {
+         "en": "Dogs like stones",
+         "hi": "कुत्तों को पत्थर पसंद हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A stone can hurt a dog. Animals feel pain and fear, so we must always be gentle.",
+        "hi": "पत्थर से कुत्ते को चोट लग सकती है। जानवर दर्द और डर महसूस करते हैं, इसलिए हमें हमेशा नरमी से पेश आना चाहिए।"
+       },
+       "wrong": [
+        {
+         "en": "The problem is not the cost. The problem is that stones hurt the dog.",
+         "hi": "समस्या कीमत की नहीं है। समस्या यह है कि पत्थर से कुत्ते को चोट लगती है।"
+        },
+        "",
+        {
+         "en": "Dogs do not like stones thrown at them. They run away or may bite from fear.",
+         "hi": "कुत्तों को अपने ऊपर पत्थर फेंकना पसंद नहीं। वे भाग जाते हैं या डरकर काट सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of an animal near your home. Write one kind thing you can do for it this week, and then do it.",
+      "hi": "अपने घर के पास के किसी जानवर के बारे में सोचो। इस हफ़्ते उसके लिए एक अच्छा काम लिखो और फिर करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Chapter hook: family evening in the garden",
+   "shows": "An Indian family spread over a small garden at dusk: grandparents on a charpai, parents on chairs, two children playing hide and seek behind flowering shrubs",
+   "view": "Eye level from the garden gate, warm evening light",
+   "right": "People of different ages shown mostly from behind or at a distance; real flowering shrubs such as hibiscus and marigold",
+   "avoid": "Faces of identifiable children, text, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Rainy day shelter scene",
+   "shows": "A small cloth shelter in a garden in the rain; a grandmother, children and adults sit under it with a plate of hot pakoras and a board game on the floor",
+   "view": "Slightly above eye level, grey-green monsoon light",
+   "right": "Pakoras, cups of tea, a carrom or snakes-and-ladders board; no phones or screens",
+   "avoid": "Faces towards the camera, brand names on packets"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "Games lab: games families play together",
+   "shows": "Snakes and ladders board, a carrom board with striker and coins, and a set of five stones (gutte) on a cloth, each a separate cut-out",
+   "view": "Top view for boards, three-quarter view for the stones",
+   "right": "Real boards with usual colours, no brand logos, no numbers added",
+   "avoid": "Visible brand names or text on boards"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "Pet lab: a dog is part of the family",
+   "shows": "A friendly village street dog wagging its tail near a doorstep, a steel bowl of water beside it and a child's hand reaching out gently",
+   "view": "Low, at the dog's eye level, soft daylight",
+   "right": "Healthy dog with a calm face, clean water in a steel bowl",
+   "avoid": "A child's face, any hint of hitting or teasing"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "1.3",
+   "use": "Family tree lab: empty frame",
+   "shows": "A clean three-row family-tree frame with rounded empty circles joined by thin lines, for the app to label with relationships",
+   "view": "Straight on, flat, white or transparent background",
+   "right": "Three clear rows (grandparents, parents, children) with room for cousins on the lowest row",
+   "avoid": "Any names, words or arrows baked in"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Reader and relations: grandfather teaching a game",
+   "shows": "A grandfather's hands and a grandchild's hands setting up a game of gutte on a verandah floor",
+   "view": "Close three-quarter view from above, side light",
+   "right": "Old hands with a wedding ring or thread, small child's hand, five small stones",
+   "avoid": "Faces, text, bright toys from shops"
+  }
+ ]
+}

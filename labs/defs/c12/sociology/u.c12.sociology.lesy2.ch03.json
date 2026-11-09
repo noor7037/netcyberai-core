@@ -1,0 +1,68 @@
+{
+  "chapter_key": "u.c12.sociology.lesy2.ch03",
+  "class": 12,
+  "subject_id": "sociology",
+  "title": "The Constitution and Social Change",
+  "source": "https://ncert.nic.in/textbook/pdf/lesy203.pdf",
+  "topics": [
+    { "n": "3.1", "title": "The Panchayati Raj and its challenges", "labs": ["c12-sociology-lesy2-ch03-panchayat"], "why_no_lab": null },
+    { "n": "3.2", "title": "Political parties, pressure and interest groups", "labs": ["c12-sociology-lesy2-ch03-groups"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-sociology-lesy2-ch03-panchayat",
+      "topic": "3.1",
+      "template": "govern",
+      "title": { "en": "Build the panchayat from the village up", "hi": "गाँव से ऊपर तक पंचायत बनाओ" },
+      "minutes": 6,
+      "level": "core",
+      "config": { "mode": "panchayat" },
+      "steps": [
+        { "kind": "do", "target": "stage:gram-sabha", "expect": "opened:gram-sabha", "say": { "en": "Tap 'Gram Sabha', the meeting of all adult voters of the village.", "hi": "'ग्राम सभा' छुओ, जो गाँव के सभी वयस्क मतदाताओं की बैठक है।" } },
+        { "kind": "do", "target": "stage:gram-panchayat", "expect": "opened:gram-panchayat", "say": { "en": "Now tap 'Gram Panchayat', the elected body of the village.", "hi": "अब 'ग्राम पंचायत' छुओ, जो गाँव की चुनी हुई संस्था है।" } },
+        { "kind": "predict", "say": { "en": "Which tier covers a block, which is a group of villages?", "hi": "कौन-सा स्तर खंड, यानी कई गाँवों के समूह, को देखता है?" }, "options": [ { "id": "gp", "en": "Gram Panchayat", "hi": "ग्राम पंचायत" }, { "id": "ps", "en": "Panchayat Samiti", "hi": "पंचायत समिति" }, { "id": "zp", "en": "Zila Parishad", "hi": "ज़िला परिषद" } ], "answer": "ps" },
+        { "kind": "do", "target": "stage:panchayat-samiti", "expect": "opened:panchayat-samiti", "say": { "en": "Tap 'Panchayat Samiti' to see the block level.", "hi": "खंड स्तर देखने के लिए 'पंचायत समिति' छुओ।" } },
+        { "kind": "explain", "say": { "en": "Panchayati Raj is a three-tier system of local self-government. The Gram Sabha is the village meeting of all adult voters. The Gram Panchayat is the elected body for the village, with ward members. The Panchayat Samiti works at block level, and the Zila Parishad at district level. The Constitution gave local government this place, and the book asks what challenges it still faces, such as women's participation and the real power given to local bodies.", "hi": "पंचायती राज स्थानीय स्वशासन की तीन-स्तरीय व्यवस्था है। ग्राम सभा गाँव के सभी वयस्क मतदाताओं की बैठक है। ग्राम पंचायत वार्ड सदस्यों के साथ गाँव की चुनी हुई संस्था है। पंचायत समिति खंड स्तर पर और ज़िला परिषद ज़िला स्तर पर काम करती है। संविधान ने स्थानीय शासन को यह दर्जा दिया, और पुस्तक पूछती है कि उसे अब भी कौन-सी चुनौतियाँ हैं, जैसे महिलाओं की भागीदारी और स्थानीय संस्थाओं को मिलने वाली असली शक्ति।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Who attends the Gram Sabha?", "hi": "ग्राम सभा में कौन आता है?" }, "options": [ { "en": "All adult voters of the village", "hi": "गाँव के सभी वयस्क मतदाता" }, { "en": "Only the district officers", "hi": "केवल ज़िला अधिकारी" }, { "en": "Only the members of the Zila Parishad", "hi": "केवल ज़िला परिषद के सदस्य" } ], "answer": 0, "why": { "en": "The Gram Sabha is the village assembly of all adult voters, which makes it the most direct tier.", "hi": "ग्राम सभा गाँव के सभी वयस्क मतदाताओं की सभा है, इसलिए यह सबसे सीधा स्तर है।" }, "wrong": [ "", { "en": "District officers do not form the Gram Sabha; it is the village's own assembly.", "hi": "ज़िला अधिकारी ग्राम सभा नहीं बनाते; वह गाँव की अपनी सभा है।" }, { "en": "The Zila Parishad works at district level and does not meet as the Gram Sabha.", "hi": "ज़िला परिषद ज़िला स्तर पर काम करती है और ग्राम सभा के रूप में नहीं बैठती।" } ] },
+          { "q": { "en": "Which tier works at district level?", "hi": "कौन-सा स्तर ज़िला स्तर पर काम करता है?" }, "options": [ { "en": "Gram Sabha", "hi": "ग्राम सभा" }, { "en": "Panchayat Samiti", "hi": "पंचायत समिति" }, { "en": "Zila Parishad", "hi": "ज़िला परिषद" } ], "answer": 2, "why": { "en": "The Zila Parishad is the district tier of Panchayati Raj.", "hi": "ज़िला परिषद पंचायती राज का ज़िला स्तर है।" }, "wrong": [ { "en": "The Gram Sabha is the village assembly, not a district body.", "hi": "ग्राम सभा गाँव की सभा है, ज़िला संस्था नहीं।" }, { "en": "The Panchayat Samiti works at block level, a group of villages.", "hi": "पंचायत समिति खंड स्तर पर काम करती है, जो कई गाँवों का समूह है।" }, "" ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Tap the tiers in any order and read each card. Then think: what would help more women and young people take part in the Gram Sabha?", "hi": "स्तरों को किसी भी क्रम में छुओ और हर कार्ड पढ़ो। फिर सोचो: ग्राम सभा में अधिक महिलाओं और युवाओं की भागीदारी के लिए क्या मदद करेगा?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy2-ch03-groups",
+      "topic": "3.2",
+      "template": "match",
+      "title": { "en": "Parties, pressure and interest groups", "hi": "दल, दबाव और हित समूह" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          { "id": "p1", "left": { "en": "Political party", "hi": "राजनीतिक दल" }, "right": { "en": "Contests elections to win power and form the government", "hi": "चुनाव लड़कर सत्ता पाने और सरकार बनाने के लिए चुनाव लड़ता है" }, "why": { "en": "A political party seeks power through elections, and this is what sets it apart from other groups.", "hi": "राजनीतिक दल चुनाव से सत्ता चाहता है, और यही उसे दूसरे समूहों से अलग करता है।" } },
+          { "id": "p2", "left": { "en": "Pressure group", "hi": "दबाव समूह" }, "right": { "en": "Tries to influence government decisions, often without contesting elections", "hi": "सरकार के फ़ैसलों को प्रभावित करने की कोशिश करता है, अक्सर बिना चुनाव लड़े" }, "why": { "en": "A pressure group makes its case to government, the media and the public, without seeking office itself.", "hi": "दबाव समूह अपनी बात सरकार, मीडिया और जनता तक पहुँचाता है, खुद सत्ता पाने के लिए नहीं।" } },
+          { "id": "p3", "left": { "en": "Farmers' organisation", "hi": "किसान संगठन" }, "right": { "en": "Presses the government for better prices and fair conditions for farmers", "hi": "किसानों के लिए बेहतर दाम और उचित परिस्थितियों के लिए सरकार पर दबाव डालता है" }, "why": { "en": "The book gives farmers' organisations as examples of interest groups that act for a section of society.", "hi": "पुस्तक किसान संगठनों को उन हित समूहों के उदाहरण के रूप में देती है जो समाज के एक वर्ग के लिए काम करते हैं।" } },
+          { "id": "p4", "left": { "en": "Trade union", "hi": "श्रमिक संघ" }, "right": { "en": "Organises workers to bargain for wages and working conditions", "hi": "कामगारों को संगठित करता है ताकि वे वेतन और काम की परिस्थितियों पर मोल-भाव कर सकें" }, "why": { "en": "Trade unions speak for workers, and the book discusses their role in bargaining and strikes.", "hi": "श्रमिक संघ कामगारों की ओर से बोलते हैं, और पुस्तक उनकी मोल-भाव और हड़ताल की भूमिका पर चर्चा करती है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "right:p1", "expect": "matched:p1", "say": { "en": "Tap 'Political party' on the left, then its meaning on the right.", "hi": "बायीं ओर 'राजनीतिक दल' छुओ, फिर दायीं ओर उसका अर्थ छुओ।" } },
+        { "kind": "predict", "say": { "en": "Which kind of group tries to influence government without itself seeking election?", "hi": "कौन-सा समूह सरकार को प्रभावित करने की कोशिश करता है, बिना खुद चुनाव लड़े?" }, "options": [ { "id": "party", "en": "Political party", "hi": "राजनीतिक दल" }, { "id": "pressure", "en": "Pressure group", "hi": "दबाव समूह" }, { "id": "govt", "en": "Government department", "hi": "सरकारी विभाग" } ], "answer": "pressure" },
+        { "kind": "do", "target": "right:p2", "expect": "matched:p2", "say": { "en": "Tap 'Pressure group' on the left, then its meaning on the right.", "hi": "बायीं ओर 'दबाव समूह' छुओ, फिर दायीं ओर उसका अर्थ छुओ।" } },
+        { "kind": "explain", "say": { "en": "A political party competes in elections to form the government. A pressure group tries to influence the government's decisions. Interest groups, such as farmers' organisations and trade unions, act for a particular section of society. Democracy works best when many such voices can speak, so that the government hears more than one side.", "hi": "राजनीतिक दल सरकार बनाने के लिए चुनाव लड़ता है। दबाव समूह सरकार के फ़ैसलों को प्रभावित करने की कोशिश करता है। किसान संगठन और श्रमिक संघ जैसे हित समूह समाज के किसी खास वर्ग के लिए काम करते हैं। लोकतंत्र तब सबसे अच्छा चलता है जब ऐसी कई आवाज़ें बोल सकें, ताकि सरकार एक से अधिक पक्ष सुने।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which of these groups seeks power through elections?", "hi": "इनमें से कौन-सा समूह चुनाव से सत्ता चाहता है?" }, "options": [ { "en": "A political party", "hi": "एक राजनीतिक दल" }, { "en": "A pressure group", "hi": "एक दबाव समूह" }, { "en": "A trade union", "hi": "एक श्रमिक संघ" } ], "answer": 0, "why": { "en": "A political party contests elections to form the government, which the other two do not do.", "hi": "राजनीतिक दल सरकार बनाने के लिए चुनाव लड़ता है, जो बाकी दो नहीं करते।" }, "wrong": [ "", { "en": "A pressure group influences government without seeking to govern itself.", "hi": "दबाव समूह सरकार को प्रभावित करता है, खुद शासन करने के लिए नहीं।" }, { "en": "A trade union bargains for workers and does not contest elections as a party.", "hi": "श्रमिक संघ कामगारों के लिए मोल-भाव करता है, दल के रूप में चुनाव नहीं लड़ता।" } ] },
+          { "q": { "en": "What does a trade union mainly do?", "hi": "श्रमिक संघ मुख्य रूप से क्या करता है?" }, "options": [ { "en": "Bargains for workers' wages and working conditions", "hi": "कामगारों के वेतन और काम की परिस्थितियों पर मोल-भाव करता है" }, { "en": "Runs the government of a state", "hi": "किसी राज्य की सरकार चलाता है" }, { "en": "Sets the rules for elections", "hi": "चुनाव के नियम तय करता है" } ], "answer": 0, "why": { "en": "Trade unions organise workers to bargain for wages and conditions.", "hi": "श्रमिक संघ कामगारों को वेतन और परिस्थितियों पर मोल-भाव के लिए संगठित करते हैं।" }, "wrong": [ "", { "en": "Running a government is the work of parties and elected bodies, not unions.", "hi": "सरकार चलाना दलों और चुनी हुई संस्थाओं का काम है, संघों का नहीं।" }, { "en": "Election rules are made by law and the election bodies, not by trade unions.", "hi": "चुनाव के नियम कानून और चुनाव संस्थाएँ बनाती हैं, श्रमिक संघ नहीं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Match the last pair, 'Trade union', yourself. Then think of one group in your area that presses for a cause. Is it a pressure group, an interest group, or both?", "hi": "आख़िरी जोड़ी 'श्रमिक संघ' खुद मिलाओ। फिर अपने इलाके का एक ऐसा समूह सोचो जो किसी मुद्दे के लिए दबाव डालता है। वह दबाव समूह है, हित समूह है, या दोनों?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "3.1", "use": "Opening picture: a Gram Sabha meeting", "shows": "Villagers, women and men, sitting on mats in an open space under a tree, a simple table with a register, afternoon light", "view": "Medium wide, eye level, warm light", "right": "Real village gathering; mixed ages and both sexes; plain register with no readable text", "avoid": "Identifiable children; readable names or party symbols" },
+    { "n": 2, "kind": "DIA", "topic": "3.1", "use": "Base for the three-tier panchayat lab", "shows": "A clean white diagram of three stacked rounded levels, the lowest wide and the top narrow, no words", "view": "Straight front view, flat, even light", "right": "Three levels clearly stacked; no labels baked in", "avoid": "Any words or arrows that rank one level as more important" },
+    { "n": 3, "kind": "SCN", "topic": "3.2", "use": "Pressure group in action", "shows": "A group of farmers at a district office with a folder of papers, one of them speaking, others listening", "view": "Medium shot, eye level, natural light", "right": "Real Indian district office; farmers in plain clothes; folder without readable names", "avoid": "Party flags or symbols; identifiable faces without consent" },
+    { "n": 4, "kind": "SCN", "topic": "3.2", "use": "Trade union at a factory gate", "shows": "Workers at a factory gate in a line, one person holding a simple notice board, blank", "view": "Wide, eye level, soft morning light", "right": "Plain factory gate; blank notice board; mixed dress", "avoid": "Readable union names or slogans; any violence shown" },
+    { "n": 5, "kind": "DIA", "topic": "3.2", "use": "Base for the groups match lab", "shows": "A clean white board with four blank cards in two columns, no text", "view": "Straight front view, flat, even light", "right": "Four equal cards in two columns; space for labels", "avoid": "Any colours or words that rank the groups" }
+  ]
+}

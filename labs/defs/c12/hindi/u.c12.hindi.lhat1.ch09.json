@@ -1,0 +1,435 @@
+{
+  "chapter_key": "u.c12.hindi.lhat1.ch09",
+  "class": 12,
+  "subject_id": "hindi",
+  "title": "कवित्त",
+  "source": "https://ncert.nic.in/textbook.php?lhat1=0-21",
+  "topics": [
+    {
+      "n": "9.1",
+      "title": "सीधा और सच्चा प्रेम: चतुराई नहीं, सच्चा मन",
+      "labs": [
+        "c12-hindi-lhat1-ch09-sidha-sort"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "9.2",
+      "title": "सुजान से पुकार: विरह, आस और कवि का मन",
+      "labs": [
+        "c12-hindi-lhat1-ch09-sujan-feel"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-hindi-lhat1-ch09-sidha-sort",
+      "topic": "9.1",
+      "template": "sort",
+      "title": {
+        "en": "The straight path of love",
+        "hi": "प्रेम का सीधा मार्ग"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "sachcha",
+            "label": {
+              "en": "Straight, honest love",
+              "hi": "सीधा, सच्चा प्रेम"
+            }
+          },
+          {
+            "id": "chatur",
+            "label": {
+              "en": "Clever, crooked tricks",
+              "hi": "चालाकी और टेढ़े दाँव"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "mann",
+            "text": {
+              "en": "Hearts joining heart to heart",
+              "hi": "मन से मन का सच्चा मेल"
+            },
+            "bin": "sachcha",
+            "why": {
+              "en": "Real love joins two hearts. It needs no trick.",
+              "hi": "सच्चा प्रेम दो मन जोड़ता है। उसमें कोई चाल नहीं चाहिए।"
+            }
+          },
+          {
+            "id": "jeet",
+            "text": {
+              "en": "Winning a game of words by being clever",
+              "hi": "बातों की होशियारी से दाँव जीतना"
+            },
+            "bin": "chatur",
+            "why": {
+              "en": "Winning by cleverness is a contest, not love.",
+              "hi": "चतुराई से जीतना एक होड़ है, प्रेम नहीं।"
+            }
+          },
+          {
+            "id": "bina",
+            "text": {
+              "en": "Giving affection without asking for anything back",
+              "hi": "बिना कुछ माँगे अपनापन देना"
+            },
+            "bin": "sachcha",
+            "why": {
+              "en": "Honest love gives freely, without a bargain.",
+              "hi": "सच्चा प्रेम बिना सौदे के खुले मन से देता है।"
+            }
+          },
+          {
+            "id": "dikhava",
+            "text": {
+              "en": "Show and deceit in every word",
+              "hi": "हर बात में दिखावा और छल"
+            },
+            "bin": "chatur",
+            "why": {
+              "en": "This is the crooked path that the poet rejects.",
+              "hi": "यह वही टेढ़ा रास्ता है जिसे कवि ठुकराता है।"
+            }
+          },
+          {
+            "id": "saaf",
+            "text": {
+              "en": "An honest call from the heart",
+              "hi": "मन से निकली सीधी और सच्ची पुकार"
+            },
+            "bin": "sachcha",
+            "why": {
+              "en": "An honest call is the straight path of love.",
+              "hi": "सच्ची पुकार ही प्रेम का सीधा रास्ता है।"
+            }
+          },
+          {
+            "id": "daav",
+            "text": {
+              "en": "Using tactics to defeat the other person",
+              "hi": "सामने वाले को हराने के लिए दाँव-पेंच"
+            },
+            "bin": "chatur",
+            "why": {
+              "en": "That is strategy, not love.",
+              "hi": "यह रणनीति है, प्रेम नहीं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:mann",
+          "expect": "placed:mann",
+          "say": {
+            "en": "Tap the card about hearts joining, then tap the group it belongs to.",
+            "hi": "मन से मन मिलने वाला कार्ड छुओ, फिर वह समूह छुओ जहाँ वह जाता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "According to the poet, what kind of path is love?",
+            "hi": "कवि के अनुसार प्रेम का रास्ता कैसा है?"
+          },
+          "options": [
+            {
+              "id": "straight",
+              "en": "Straight and honest",
+              "hi": "सीधा और सच्चा"
+            },
+            {
+              "id": "crooked",
+              "en": "Crooked, full of clever tricks",
+              "hi": "टेढ़ा, चालाकी भरा"
+            },
+            {
+              "id": "hard",
+              "en": "Steep and hard like a mountain",
+              "hi": "पहाड़ जैसा ऊँचा और कठिन"
+            }
+          ],
+          "answer": "straight"
+        },
+        {
+          "kind": "do",
+          "target": "card:jeet",
+          "expect": "placed:jeet",
+          "say": {
+            "en": "Now tap the card about winning by cleverness, then its group.",
+            "hi": "अब चतुराई से जीतने वाला कार्ड छुओ, फिर उसका समूह।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Press Check after you have placed all the cards.",
+            "hi": "सभी कार्ड रखने के बाद जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The poet says the path of love is straight. There is no room for cleverness or crooked ways in it. Honest hearts, free giving and a plain call from the heart all belong to love. Winning by tricks, show and strategy belong to the other side.",
+            "hi": "कवि कहता है कि प्रेम का मार्ग सीधा है। उसमें चतुराई या टेढ़े रास्ते की जगह नहीं। सच्चे मन, बिना सौदे के देना और मन की सीधी पुकार प्रेम के हिस्से हैं। चाल से जीतना, दिखावा और दाँव-पेंच प्रेम के नहीं हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these does the poet NOT place on the path of love?",
+                "hi": "कवि इनमें से किसे प्रेम के रास्ते पर नहीं रखता?"
+              },
+              "options": [
+                {
+                  "en": "Honest, free giving",
+                  "hi": "सच्चा, बिना सौदे का देना"
+                },
+                {
+                  "en": "A plain call from the heart",
+                  "hi": "मन की सीधी पुकार"
+                },
+                {
+                  "en": "Clever tricks and tactics",
+                  "hi": "चालाकी और दाँव-पेंच"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "Cleverness and tricks are the crooked ways that love does not need.",
+                "hi": "चतुराई और दाँव-पेंच वे टेढ़े रास्ते हैं जिनकी प्रेम को ज़रूरत नहीं।"
+              },
+              "wrong": [
+                {
+                  "en": "Free giving is the honest way, so it belongs to love.",
+                  "hi": "बिना सौदे का देना सच्चा तरीक़ा है, इसलिए वह प्रेम का है।"
+                },
+                {
+                  "en": "A plain call from the heart is the straight path, so it belongs to love.",
+                  "hi": "मन की सीधी पुकार सीधा रास्ता है, इसलिए वह प्रेम का है।"
+                },
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make one more card of your own, either honest love or a crooked trick. Put it in the right group and say why.",
+            "hi": "अपना एक कार्ड बनाओ, सच्चे प्रेम का या चालाकी का। उसे सही समूह में रखो और कारण बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-hindi-lhat1-ch09-sujan-feel",
+      "topic": "9.2",
+      "template": "reader",
+      "title": {
+        "en": "A call to Sujan, line by line",
+        "hi": "सुजान से पुकार, पंक्ति-दर-पंक्ति"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "emotion-map",
+        "lang": "hi",
+        "passage": {
+          "title": {
+            "en": "A call to Sujan",
+            "hi": "सुजान से पुकार"
+          },
+          "lines": [
+            "कवि अपने प्रिय सुजान को याद करता है, और मन भर आता है।",
+            "वह कहता है कि प्रेम की राह सीधी है, उसमें बनावट की जगह नहीं।",
+            "पर सुजान ने उसकी सुध नहीं ली, और यह बात उसे भीतर तक चुभती है।",
+            "विरह की आग मन को जलाती है, फिर भी वह प्रेम छोड़ नहीं पाता।",
+            "अंत में वह सुजान से बस एक सच्ची दृष्टि की आस रखता है।"
+          ]
+        },
+        "emotions": [
+          "love",
+          "pride",
+          "sadness",
+          "worry",
+          "love"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "line:0",
+          "expect": "line:0",
+          "say": {
+            "en": "Tap the first line to read the poet's memory of Sujan.",
+            "hi": "पहली पंक्ति पर टैप करो और सुजान की याद पढ़ो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which feeling fits the first line?",
+            "hi": "पहली पंक्ति में कौन-सा भाव ठीक बैठता है?"
+          },
+          "options": [
+            {
+              "id": "love",
+              "en": "Love",
+              "hi": "प्रेम"
+            },
+            {
+              "id": "anger",
+              "en": "Anger",
+              "hi": "ग़ुस्सा"
+            },
+            {
+              "id": "joy",
+              "en": "Joy",
+              "hi": "ख़ुशी"
+            }
+          ],
+          "answer": "love"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Give the first line its feeling and press Answer.",
+            "hi": "पहली पंक्ति का भाव चुनो और उत्तर दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "map-done",
+          "say": {
+            "en": "Finish the feelings for all five lines.",
+            "hi": "पाँचों पंक्तियों के भाव पूरे करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The poet begins with love and memory. He is proud that his path is honest and straight. But he feels hurt that Sujan has not cared for him. The fire of separation burns, yet he does not give up love. In the end he asks only for one true look of hope.",
+            "hi": "कवि प्रेम और याद से शुरू करता है। उसे गर्व है कि उसका रास्ता सच्चा और सीधा है। पर सुजान की बेरुखी उसे चुभती है। विरह की आग जलाती है, फिर भी वह प्रेम नहीं छोड़ता। अंत में वह बस एक सच्ची नज़र की आस रखता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does the poet ask for at the end?",
+                "hi": "अंत में कवि किस चीज़ की आस रखता है?"
+              },
+              "options": [
+                {
+                  "en": "One true look of hope from Sujan",
+                  "hi": "सुजान की ओर से एक सच्ची दृष्टि की आस"
+                },
+                {
+                  "en": "Revenge for the hurt",
+                  "hi": "चोट का बदला"
+                },
+                {
+                  "en": "Wealth and a palace",
+                  "hi": "धन और महल"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Even after the pain, he wants a true look that keeps hope alive.",
+                "hi": "दर्द के बाद भी वह ऐसी सच्ची नज़र चाहता है जो आशा जिलाए रखे।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "He feels hurt, but the poem does not speak of revenge.",
+                  "hi": "उसे चोट लगी है, पर कविता में बदले की बात नहीं है।"
+                },
+                {
+                  "en": "The poem is about love and longing, not wealth or a palace.",
+                  "hi": "कविता प्रेम और चाह की है, धन या महल की नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Read the five lines aloud, once tender and once hurt. Which line sounds most like a plea?",
+            "hi": "पाँचों पंक्तियाँ एक बार कोमल स्वर में और एक बार आहत स्वर में पढ़ो। कौन-सी पंक्ति सबसे ज़्यादा विनती जैसी लगती है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "9.1",
+      "use": "Hook: two people speaking plainly under a tree",
+      "shows": "Two people sit face to face under a tree, one with open hands, the other listening; a clear path behind them",
+      "view": "Medium, eye level, soft morning light",
+      "right": "Plain clothes, simple setting, open gestures",
+      "avoid": "Faces in close-up, modern clothes, text"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "9.1",
+      "use": "A straight path and a crooked one",
+      "shows": "A straight stone path and a winding path side by side, drawn as a simple flat illustration",
+      "view": "Flat, side by side",
+      "right": "Clean lines, two clear colours",
+      "avoid": "Text, clutter"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "9.2",
+      "use": "The poet alone with a letter at night",
+      "shows": "A man sits alone at a low table with an oil lamp, looking at a blank paper, a window open to the night sky",
+      "view": "Medium, low lamp light",
+      "right": "Simple cotton clothes, bare room, warm lamp",
+      "avoid": "Face in full view, modern objects, text"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "9.2",
+      "use": "Feeling curve of the five lines",
+      "shows": "A simple curve of five points: love, pride, sadness, worry and love again",
+      "view": "Flat, five labelled points",
+      "right": "Clear labels in Devanagari, soft colours",
+      "avoid": "More than five points, jargon"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "9.1",
+      "use": "Four cards of the straight path as a strip",
+      "shows": "Four small cards in a row: two hearts meeting, a clever trick, an open hand, a crooked map",
+      "view": "Strip, 4 panels",
+      "right": "Clean icons, one colour per idea",
+      "avoid": "Text inside panels, faces in close-up"
+    }
+  ]
+}

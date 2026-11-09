@@ -1,0 +1,913 @@
+{
+ "chapter_key": "u.c11.economics.kest1.ch03",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Organisation of Data",
+ "source": "https://ncert.nic.in/textbook/pdf/kest103.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "Explains why raw data must be organised; best read."
+  },
+  {
+   "n": "2",
+   "title": "Raw data and the frequency array",
+   "labs": [
+    "c11-economics-kest1-ch03-family-size"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "Classification of data: chronological, spatial, qualitative, quantitative",
+   "labs": [
+    "c11-economics-kest1-ch03-classify"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4",
+   "title": "Variables: continuous and discrete",
+   "labs": [
+    "c11-economics-kest1-ch03-variables"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5",
+   "title": "Frequency distribution: class limits, class marks, exclusive and inclusive methods, tally",
+   "labs": [
+    "c11-economics-kest1-ch03-frequency"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6",
+   "title": "Bivariate frequency distribution",
+   "labs": [],
+   "why_no_lab": "A two-way table is best read and filled on paper; the reader shows one."
+  },
+  {
+   "n": "7",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary best read."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-kest1-ch03-family-size",
+   "topic": "2",
+   "template": "data",
+   "title": {
+    "en": "From raw data to a tally",
+    "hi": "कच्चे आँकड़ों से मिलान चिह्न तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "tally",
+    "views": [
+     "tally",
+     "bar"
+    ],
+    "ask": "max",
+    "title": {
+     "en": "Members per family in 30 houses of one lane (sample)",
+     "hi": "एक गली के 30 घरों में प्रति परिवार सदस्य (नमूना)"
+    },
+    "xlabel": {
+     "en": "Family size",
+     "hi": "परिवार का आकार"
+    },
+    "ylabel": {
+     "en": "Number of families",
+     "hi": "परिवारों की संख्या"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "2 members",
+       "hi": "2 सदस्य"
+      },
+      "value": 4
+     },
+     {
+      "label": {
+       "en": "3 members",
+       "hi": "3 सदस्य"
+      },
+      "value": 7
+     },
+     {
+      "label": {
+       "en": "4 members",
+       "hi": "4 सदस्य"
+      },
+      "value": 10
+     },
+     {
+      "label": {
+       "en": "5 members",
+       "hi": "5 सदस्य"
+      },
+      "value": 6
+     },
+     {
+      "label": {
+       "en": "6 members",
+       "hi": "6 सदस्य"
+      },
+      "value": 3
+     }
+    ],
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to tally the families with 5 members.",
+      "hi": "\"जोड़ो\" पर टैप करो और 5 सदस्यों वाले परिवारों का मिलान चिह्न बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" again for families with 6 members.",
+      "hi": "फिर \"जोड़ो\" पर टैप करो और 6 सदस्यों वाले परिवार जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which family size is the most common in this lane?",
+      "hi": "इस गली में कौन-सा परिवार आकार सबसे आम है?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "4 members",
+       "hi": "4 सदस्य"
+      },
+      {
+       "id": "three",
+       "en": "3 members",
+       "hi": "3 सदस्य"
+      },
+      {
+       "id": "six",
+       "en": "6 members",
+       "hi": "6 सदस्य"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "chart:bar",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Bar graph\" to see the same counts as bars.",
+      "hi": "\"दंड आलेख\" पर टैप करो और वही गिनती दंडों में देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer below: which family size has the most families?",
+      "hi": "नीचे उत्तर दो: किस परिवार आकार में सबसे ज़्यादा परिवार हैं?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A long list of family sizes as you collected them is raw data, hard to read. Tally marks group each count in fives, so you can count quickly. The result is a frequency array: each value of a discrete variable and how often it occurs, its frequency. Here 4 members is the most common size. The frequencies add up to 30 families.",
+      "hi": "जैसे इकट्ठा किए वैसे ही परिवार के आकारों की लंबी सूची कच्चे आँकड़े हैं, जिन्हें पढ़ना कठिन है। मिलान चिह्न हर गिनती को पाँच-पाँच में समूहित करते हैं, ताकि जल्दी गिन सको। नतीजा एक बारंबारता सारणी है: विविक्त चर का हर मान और वह कितनी बार आता है, यानी उसकी बारंबारता। यहाँ 4 सदस्य सबसे आम आकार है। बारंबारताओं का योग 30 परिवार है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many families have 3 or fewer members?",
+        "hi": "कितने परिवारों में 3 या कम सदस्य हैं?"
+       },
+       "options": [
+        "11",
+        "7",
+        "21"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 families of 2 + 7 families of 3 = 11.",
+        "hi": "2 सदस्यों वाले 4 + 3 सदस्यों वाले 7 = 11।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7 is only the families with exactly 3 members.",
+         "hi": "7 केवल ठीक 3 सदस्यों वाले परिवार हैं।"
+        },
+        {
+         "en": "21 includes the families of 4 as well.",
+         "hi": "21 में 4 सदस्यों वाले परिवार भी जुड़ गए हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does a tally mark \"||||\" with a line across it stand for?",
+        "hi": "एक आड़ी रेखा वाला मिलान चिह्न \"||||\" किसे दर्शाता है?"
+       },
+       "options": [
+        "5",
+        "4",
+        "10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Four upright strokes and a fifth across them make a bundle of 5.",
+        "hi": "चार खड़ी रेखाएँ और उन पर पाँचवीं आड़ी रेखा मिलकर 5 का समूह बनाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The crossing stroke is the fifth one, so it is 5, not 4.",
+         "hi": "आड़ी रेखा पाँचवीं है, इसलिए यह 5 है, 4 नहीं।"
+        },
+        {
+         "en": "One bundle is 5; two bundles make 10.",
+         "hi": "एक समूह 5 है; दो समूह 10 बनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the counts with the sliders and watch the tally update. Make 3 members the most common size.",
+      "hi": "स्लाइडरों से गिनती बदलो और मिलान चिह्न बदलते देखो। 3 सदस्यों को सबसे आम आकार बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch03-classify",
+   "topic": "3",
+   "template": "scenario",
+   "title": {
+    "en": "Four ways to classify data",
+    "hi": "आँकड़ों के वर्गीकरण के चार तरीक़े"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "statistics office",
+    "role": {
+     "en": "Junior statistician",
+     "hi": "कनिष्ठ सांख्यिकीविद"
+    },
+    "scenes": [
+     {
+      "id": "years",
+      "text": {
+       "en": "A table shows India's population in 1951, 1961, 1971 and so on. How is it classified?",
+       "hi": "एक तालिका 1951, 1961, 1971 आदि में भारत की जनसंख्या दिखाती है। इसका वर्गीकरण कैसे हुआ है?"
+      },
+      "choices": [
+       {
+        "id": "chrono",
+        "text": {
+         "en": "Chronological: by time",
+         "hi": "कालानुक्रमिक: समय के अनुसार"
+        },
+        "next": "states",
+        "feedback": {
+         "en": "Yes. Data arranged by years or months are chronological.",
+         "hi": "हाँ। सालों या महीनों के अनुसार लगे आँकड़े कालानुक्रमिक हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "spatial",
+        "text": {
+         "en": "Spatial: by place",
+         "hi": "स्थानिक: स्थान के अनुसार"
+        },
+        "next": "states",
+        "feedback": {
+         "en": "The table changes by year, not by place.",
+         "hi": "तालिका साल के अनुसार बदलती है, स्थान के अनुसार नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "states",
+      "text": {
+       "en": "Another table shows rice output of West Bengal, Punjab, Uttar Pradesh and Andhra Pradesh in one year. How is it classified?",
+       "hi": "दूसरी तालिका एक साल में पश्चिम बंगाल, पंजाब, उत्तर प्रदेश और आंध्र प्रदेश का चावल उत्पादन दिखाती है। इसका वर्गीकरण कैसे हुआ है?"
+      },
+      "choices": [
+       {
+        "id": "spatial2",
+        "text": {
+         "en": "Spatial: by place",
+         "hi": "स्थानिक: स्थान के अनुसार"
+        },
+        "next": "gender",
+        "feedback": {
+         "en": "Right. Data arranged by states, cities or countries are spatial.",
+         "hi": "सही। राज्यों, शहरों या देशों के अनुसार लगे आँकड़े स्थानिक हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "qual2",
+        "text": {
+         "en": "Qualitative",
+         "hi": "गुणात्मक"
+        },
+        "next": "gender",
+        "feedback": {
+         "en": "States are places; this is spatial classification.",
+         "hi": "राज्य स्थान हैं; यह स्थानिक वर्गीकरण है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "gender",
+      "text": {
+       "en": "A third table counts workers as men and women, and as literate and illiterate. How is it classified?",
+       "hi": "तीसरी तालिका श्रमिकों को पुरुष और महिला, और साक्षर और निरक्षर के रूप में गिनती है। इसका वर्गीकरण कैसे हुआ है?"
+      },
+      "choices": [
+       {
+        "id": "qual3",
+        "text": {
+         "en": "Qualitative: by attributes",
+         "hi": "गुणात्मक: गुणों के अनुसार"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Gender and literacy are qualities, not numbers.",
+         "hi": "हाँ। लिंग और साक्षरता गुण हैं, अंक नहीं।"
+        },
+        "good": true
+       },
+       {
+        "id": "quant3",
+        "text": {
+         "en": "Quantitative",
+         "hi": "मात्रात्मक"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Quantitative classes use measured values such as income or marks.",
+         "hi": "मात्रात्मक वर्ग आय या अंक जैसे मापे गए मानों से बनते हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Marks of students grouped as 0–10, 10–20, 20–30 are classified in which way?",
+      "hi": "0–10, 10–20, 20–30 में समूहित विद्यार्थियों के अंक किस तरह वर्गीकृत हैं?"
+     },
+     "options": [
+      {
+       "id": "quant",
+       "en": "Quantitative",
+       "hi": "मात्रात्मक"
+      },
+      {
+       "id": "chrono",
+       "en": "Chronological",
+       "hi": "कालानुक्रमिक"
+      },
+      {
+       "id": "spatial",
+       "en": "Spatial",
+       "hi": "स्थानिक"
+      }
+     ],
+     "answer": "quant"
+    },
+    {
+     "kind": "do",
+     "target": "choice:years:chrono",
+     "expect": "chose:chrono",
+     "say": {
+      "en": "Tap how the population table is classified.",
+      "hi": "जनसंख्या तालिका का वर्गीकरण कैसे हुआ है, उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Classification arranges raw data into groups so they are easy to compare. Chronological classification is by time, spatial by place, qualitative by attributes such as gender or literacy, and quantitative by measured values such as marks or income. Classifying is the first step from a heap of numbers to useful information.",
+      "hi": "वर्गीकरण कच्चे आँकड़ों को समूहों में लगाता है ताकि उनकी तुलना आसान हो। कालानुक्रमिक वर्गीकरण समय के अनुसार, स्थानिक स्थान के अनुसार, गुणात्मक लिंग या साक्षरता जैसे गुणों के अनुसार, और मात्रात्मक अंक या आय जैसे मापे गए मानों के अनुसार होता है। वर्गीकरण अंकों के ढेर से उपयोगी जानकारी तक पहला कदम है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Monthly price of onions from January to December is classified…",
+        "hi": "जनवरी से दिसंबर तक प्याज़ का मासिक दाम वर्गीकृत है…"
+       },
+       "options": [
+        {
+         "en": "Chronologically",
+         "hi": "कालानुक्रमिक रूप से"
+        },
+        {
+         "en": "Spatially",
+         "hi": "स्थानिक रूप से"
+        },
+        {
+         "en": "Qualitatively",
+         "hi": "गुणात्मक रूप से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The groups are months, which are units of time.",
+        "hi": "समूह महीने हैं, जो समय की इकाइयाँ हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One place is used; it is the time that changes.",
+         "hi": "एक ही स्थान है; समय बदल रहा है।"
+        },
+        {
+         "en": "Price is a number, and the groups are months, not qualities.",
+         "hi": "दाम एक अंक है, और समूह महीने हैं, गुण नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Classify the other two tables. Then think of one table from your school that is spatial.",
+      "hi": "बाक़ी दो तालिकाओं का वर्गीकरण करो। फिर अपने स्कूल की एक ऐसी तालिका सोचो जो स्थानिक हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch03-variables",
+   "topic": "4",
+   "template": "scenario",
+   "title": {
+    "en": "Discrete or continuous?",
+    "hi": "विविक्त या संतत?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "class survey",
+    "role": {
+     "en": "Student sorting variables",
+     "hi": "चरों को छाँटता विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "kids",
+      "text": {
+       "en": "Number of children in a family: 1, 2, 3… Can it be 2.5?",
+       "hi": "परिवार में बच्चों की संख्या: 1, 2, 3… क्या यह 2.5 हो सकती है?"
+      },
+      "choices": [
+       {
+        "id": "discrete",
+        "text": {
+         "en": "No, it jumps in whole numbers: a discrete variable",
+         "hi": "नहीं, यह पूर्ण संख्याओं में बढ़ती है: विविक्त चर"
+        },
+        "next": "height",
+        "feedback": {
+         "en": "Right. A discrete variable takes only certain values, with gaps between them.",
+         "hi": "सही। विविक्त चर केवल कुछ निश्चित मान लेता है, जिनके बीच अंतर होता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "cont",
+        "text": {
+         "en": "Yes, a continuous variable",
+         "hi": "हाँ, संतत चर"
+        },
+        "next": "height",
+        "feedback": {
+         "en": "You cannot have half a child; the count jumps from 2 to 3.",
+         "hi": "आधा बच्चा नहीं हो सकता; गिनती 2 से सीधे 3 पर जाती है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "height",
+      "text": {
+       "en": "Height of a student can be 152 cm, 152.4 cm, 152.43 cm… What kind of variable is it?",
+       "hi": "विद्यार्थी की लंबाई 152 सेमी, 152.4 सेमी, 152.43 सेमी… हो सकती है। यह किस तरह का चर है?"
+      },
+      "choices": [
+       {
+        "id": "cont2",
+        "text": {
+         "en": "Continuous: it can take any value in a range",
+         "hi": "संतत: यह किसी दायरे में कोई भी मान ले सकता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Height, weight and time are continuous.",
+         "hi": "हाँ। लंबाई, वज़न और समय संतत हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "disc2",
+        "text": {
+         "en": "Discrete",
+         "hi": "विविक्त"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Height can take fractional values, so it is continuous.",
+         "hi": "लंबाई भिन्नात्मक मान ले सकती है, इसलिए यह संतत है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is a continuous variable?",
+      "hi": "कौन-सा संतत चर है?"
+     },
+     "options": [
+      {
+       "id": "weight",
+       "en": "Weight of a baby",
+       "hi": "शिशु का वज़न"
+      },
+      {
+       "id": "cars",
+       "en": "Number of cars in a lane",
+       "hi": "एक गली में कारों की संख्या"
+      },
+      {
+       "id": "books",
+       "en": "Number of books in a bag",
+       "hi": "बस्ते में किताबों की संख्या"
+      }
+     ],
+     "answer": "weight"
+    },
+    {
+     "kind": "do",
+     "target": "choice:kids:discrete",
+     "expect": "chose:discrete",
+     "say": {
+      "en": "Tap your answer about the number of children.",
+      "hi": "बच्चों की संख्या के बारे में अपना उत्तर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A variable is a quantity that changes from one unit to another. A discrete variable changes in jumps and takes only certain values, usually whole numbers, such as the number of children or rooms. A continuous variable can take any value in a range, including fractions, such as height, weight, time or income. Continuous data are grouped into class intervals.",
+      "hi": "चर वह मात्रा है जो एक इकाई से दूसरी इकाई में बदलती है। विविक्त चर छलाँगों में बदलता है और केवल कुछ मान लेता है, आमतौर पर पूर्ण संख्याएँ, जैसे बच्चों या कमरों की संख्या। संतत चर किसी दायरे में कोई भी मान ले सकता है, भिन्न भी, जैसे लंबाई, वज़न, समय या आय। संतत आँकड़ों को वर्ग अंतरालों में समूहित किया जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The time taken to run 100 metres is…",
+        "hi": "100 मीटर दौड़ने में लगा समय है…"
+       },
+       "options": [
+        {
+         "en": "A continuous variable",
+         "hi": "संतत चर"
+        },
+        {
+         "en": "A discrete variable",
+         "hi": "विविक्त चर"
+        },
+        {
+         "en": "Not a variable",
+         "hi": "चर नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Time can be 12.3 or 12.34 seconds, any value in a range.",
+        "hi": "समय 12.3 या 12.34 सेकंड, किसी दायरे में कोई भी मान हो सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Time does not jump in whole steps.",
+         "hi": "समय पूर्ण छलाँगों में नहीं बदलता।"
+        },
+        {
+         "en": "It changes from runner to runner, so it is a variable.",
+         "hi": "यह हर धावक के लिए बदलता है, इसलिए यह चर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the height scene. Then list two discrete and two continuous variables about your family.",
+      "hi": "लंबाई वाला दृश्य आज़माओ। फिर अपने परिवार के बारे में दो विविक्त और दो संतत चर लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch03-frequency",
+   "topic": "5",
+   "template": "data",
+   "title": {
+    "en": "Building a frequency distribution",
+    "hi": "बारंबारता बंटन बनाना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "chart": "histogram",
+    "views": [
+     "histogram",
+     "frequency-polygon"
+    ],
+    "show": 2,
+    "title": {
+     "en": "Marks of 40 students in an economics test (sample)",
+     "hi": "अर्थशास्त्र परीक्षा में 40 विद्यार्थियों के अंक (नमूना)"
+    },
+    "xlabel": {
+     "en": "Marks (class interval)",
+     "hi": "अंक (वर्ग अंतराल)"
+    },
+    "ylabel": {
+     "en": "Number of students",
+     "hi": "विद्यार्थियों की संख्या"
+    },
+    "data": [
+     {
+      "label": "0-10",
+      "value": 3
+     },
+     {
+      "label": "10-20",
+      "value": 6
+     },
+     {
+      "label": "20-30",
+      "value": 13
+     },
+     {
+      "label": "30-40",
+      "value": 11
+     },
+     {
+      "label": "40-50",
+      "value": 7
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the class 20–30.",
+      "hi": "\"जोड़ो\" पर टैप करो और वर्ग 20–30 दिखाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which class interval do you think will have the most students?",
+      "hi": "तुम्हें क्या लगता है, किस वर्ग अंतराल में सबसे ज़्यादा विद्यार्थी होंगे?"
+     },
+     "options": [
+      {
+       "id": "c20",
+       "en": "20–30",
+       "hi": "वर्ग 20–30"
+      },
+      {
+       "id": "c40",
+       "en": "40–50",
+       "hi": "वर्ग 40–50"
+      },
+      {
+       "id": "c0",
+       "en": "0–10",
+       "hi": "वर्ग 0–10"
+      }
+     ],
+     "answer": "c20"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the class 30–40.",
+      "hi": "\"जोड़ो\" पर टैप करो और वर्ग 30–40 दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the class 40–50.",
+      "hi": "\"जोड़ो\" पर टैप करो और वर्ग 40–50 दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "chart:frequency-polygon",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Frequency polygon\" to join the middle points of the bars.",
+      "hi": "\"बारंबारता बहुभुज\" पर टैप करो और दंडों के मध्य बिंदुओं को जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A frequency distribution groups continuous data into class intervals and shows how many values fall in each. Each class has a lower and an upper class limit; the difference is the class width, here 10. The class mark is the middle value: (lower + upper) ÷ 2. Here the classes are exclusive: a mark of exactly 20 goes in 20–30, not 10–20. The class 20–30 has the highest frequency, 13.",
+      "hi": "बारंबारता बंटन संतत आँकड़ों को वर्ग अंतरालों में समूहित करता है और दिखाता है कि हर एक में कितने मान आते हैं। हर वर्ग की एक निम्न और एक उच्च वर्ग सीमा होती है; इनका अंतर वर्ग विस्तार है, यहाँ 10। वर्ग चिह्न बीच का मान है: (निम्न + उच्च) ÷ 2। यहाँ वर्ग अपवर्जी हैं: ठीक 20 अंक 20–30 में जाते हैं, 10–20 में नहीं। वर्ग 20–30 की बारंबारता सबसे ज़्यादा, 13, है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the class mark of 30–40?",
+        "hi": "30–40 का वर्ग चिह्न क्या है?"
+       },
+       "options": [
+        "35",
+        "10",
+        "70"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(30 + 40) ÷ 2 = 35.",
+        "hi": "(30 + 40) ÷ 2 = 35।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "10 is the class width, not the class mark.",
+         "hi": "10 वर्ग विस्तार है, वर्ग चिह्न नहीं।"
+        },
+        {
+         "en": "70 is the sum of the limits; divide it by 2.",
+         "hi": "70 सीमाओं का योग है; इसे 2 से भाग दो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In the exclusive method, where does a mark of exactly 30 go?",
+        "hi": "अपवर्जी विधि में ठीक 30 अंक कहाँ जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "In 30–40",
+         "hi": "30–40 में"
+        },
+        {
+         "en": "In 20–30",
+         "hi": "20–30 में"
+        },
+        {
+         "en": "In both",
+         "hi": "दोनों में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The upper limit is excluded, so 30 belongs to the class that starts at 30.",
+        "hi": "उच्च सीमा शामिल नहीं होती, इसलिए 30 उस वर्ग में जाता है जो 30 से शुरू होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20–30 does not include its upper limit, 30.",
+         "hi": "20–30 अपनी उच्च सीमा 30 को शामिल नहीं करता।"
+        },
+        {
+         "en": "Each value must be counted only once.",
+         "hi": "हर मान केवल एक बार गिना जाना चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the bars to make a different class the most common. Does the frequency polygon follow?",
+      "hi": "दंड खींचकर किसी दूसरे वर्ग को सबसे आम बनाओ। क्या बारंबारता बहुभुज भी बदलता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2",
+   "use": "Hook of the chapter: a pile of raw data",
+   "shows": "A desk covered with untidy handwritten survey slips beside a neat ruled register",
+   "view": "Top-down view, soft light, 16:9",
+   "right": "Writing on slips blurred and unreadable",
+   "avoid": "Readable names or numbers"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5",
+   "use": "Tally marks on a board",
+   "shows": "A small chalkboard with groups of chalk tally marks in bundles of five",
+   "view": "Front view, transparent background around the board",
+   "right": "Each bundle has four upright strokes and one across",
+   "avoid": "Words, numbers"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4",
+   "use": "Discrete and continuous",
+   "shows": "Left: a row of school bags to count; right: a child's height being measured against a wall chart with a pencil mark, only the head and hand visible",
+   "view": "Two-panel layout, 16:9",
+   "right": "Measuring tape with true centimetre marks",
+   "avoid": "Faces, readable text"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "5",
+   "use": "Base for class intervals",
+   "shows": "A plain horizontal ruler from 0 to 50 with tick marks every 10, soft blue on white",
+   "view": "Flat, 16:9",
+   "right": "Equal spacing of ticks",
+   "avoid": "Numbers or labels baked in"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Spatial data: a map on a wall",
+   "shows": "A plain wall map of India in an office, with coloured pins placed on states",
+   "view": "Eye level, 4:3",
+   "right": "Map outline as officially depicted by the Government of India; no names readable",
+   "avoid": "Readable labels, faces"
+  }
+ ]
+}

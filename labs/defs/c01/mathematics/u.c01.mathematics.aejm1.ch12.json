@@ -1,0 +1,1006 @@
+{
+ "chapter_key": "u.c01.mathematics.aejm1.ch12",
+ "class": 1,
+ "subject_id": "mathematics",
+ "title": "How Much Can We Spend? (Money)",
+ "source": "https://ncert.nic.in/textbook/pdf/aejm112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Coins and notes: knowing and counting them",
+   "labs": [
+    "c01-mathematics-aejm1-ch12-count-money"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Paying a price with coins and notes",
+   "labs": [
+    "c01-mathematics-aejm1-ch12-pay-ball"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "What can be bought for a given amount",
+   "labs": [
+    "c01-mathematics-aejm1-ch12-toys-for-ten"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "How much more is needed, and money put together",
+   "labs": [
+    "c01-mathematics-aejm1-ch12-toy-shop"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.5",
+   "title": "The same amount in different ways",
+   "labs": [
+    "c01-mathematics-aejm1-ch12-same-amount"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.6",
+   "title": "Saving money in a gullak",
+   "labs": [],
+   "why_no_lab": "Saving is a habit the family builds with a real gullak at home, not something to do on a screen."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-mathematics-aejm1-ch12-count-money",
+   "topic": "12.1",
+   "template": "money",
+   "title": {
+    "en": "Count the coins and notes",
+    "hi": "सिक्के और नोट गिनो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "budget": 17
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Riya counts coins and Sahil counts notes. A note of ₹10 is worth more than a coin of ₹5. Is a ₹10 note worth the same as two ₹5 coins?",
+      "hi": "रिया सिक्के गिन रही है और साहिल नोट। ₹10 का नोट ₹5 के सिक्के से ज़्यादा क़ीमत का है। क्या ₹10 का नोट ₹5 के दो सिक्कों के बराबर है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, the same",
+       "hi": "हाँ, बराबर"
+      },
+      {
+       "id": "no",
+       "en": "No, it is worth more",
+       "hi": "नहीं, ज़्यादा क़ीमत का है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the money on the table. Count the notes first, then the coins. Type the total amount in rupees.",
+      "hi": "मेज़ पर रखे पैसे देखो। पहले नोट गिनो, फिर सिक्के। रुपयों में कुल राशि लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In India our money has coins of ₹1, ₹2, ₹5 and ₹10 and notes of ₹10, ₹20, ₹50 and ₹100. Count the biggest first and then add the smaller ones. ₹10 and ₹5 and ₹2 make ₹17.",
+      "hi": "भारत में हमारे पैसों में ₹1, ₹2, ₹5 और ₹10 के सिक्के और ₹10, ₹20, ₹50 और ₹100 के नोट होते हैं। पहले सबसे बड़े को गिनो, फिर छोटे जोड़ो। ₹10, ₹5 और ₹2 मिलकर ₹17 बनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A ₹10 note and a ₹5 coin. How much money?",
+        "hi": "₹10 का एक नोट और ₹5 का एक सिक्का। कुल कितने रुपये?"
+       },
+       "options": [
+        "₹5",
+        "₹15",
+        "₹105"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "10 and 5 make 15.",
+        "hi": "10 और 5 मिलकर 15।"
+       },
+       "wrong": [
+        {
+         "en": "₹5 is only the coin. The note is also money.",
+         "hi": "₹5 तो सिर्फ़ सिक्का है। नोट भी पैसे हैं।"
+        },
+        "",
+        {
+         "en": "₹105 is writing 10 and 5 side by side. We must add them.",
+         "hi": "₹105 तो 10 और 5 को पास-पास लिखना है। हमें उन्हें जोड़ना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is worth the most?",
+        "hi": "किसकी क़ीमत सबसे ज़्यादा है?"
+       },
+       "options": [
+        {
+         "en": "₹20 note",
+         "hi": "₹20 का नोट"
+        },
+        {
+         "en": "₹5 coin",
+         "hi": "₹5 का सिक्का"
+        },
+        {
+         "en": "₹2 coin",
+         "hi": "₹2 का सिक्का"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "20 is bigger than 5 and 2.",
+        "hi": "20, 5 और 2 से बड़ा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹5 is smaller than ₹20.",
+         "hi": "₹5, ₹20 से कम है।"
+        },
+        {
+         "en": "₹2 is the smallest of the three.",
+         "hi": "₹2 तीनों में सबसे कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Reset to get another amount and count it.",
+      "hi": "अब ख़ुद आज़माओ। दूसरी राशि पाने के लिए रीसेट दबाओ और उसे गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch12-pay-ball",
+   "topic": "12.2",
+   "template": "money",
+   "title": {
+    "en": "Paying ₹20 for a ball",
+    "hi": "गेंद के ₹20 चुकाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "pay",
+    "items": [
+     {
+      "name": {
+       "en": "Ball",
+       "hi": "गेंद"
+      },
+      "price": 20
+     }
+    ],
+    "pick": [
+     0
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "note:10",
+     "expect": "placed:note:10",
+     "say": {
+      "en": "The ball costs ₹20. Sahil gives a note of ₹10 first. Tap the ₹10 note.",
+      "hi": "गेंद के दाम ₹20 हैं। साहिल पहले ₹10 का नोट देता है। ₹10 का नोट छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you need ₹10 more. Riya gives ₹5 coins. How many coins?",
+      "hi": "अब ₹10 और चाहिए। रिया ₹5 के सिक्के देती है। कितने सिक्के?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "1",
+       "hi": "1 (एक)"
+      },
+      {
+       "id": "two",
+       "en": "2",
+       "hi": "2 (दो)"
+      },
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 (चार)"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "coin:5",
+     "expect": "placed:coin:5",
+     "say": {
+      "en": "Tap a ₹5 coin.",
+      "hi": "₹5 का सिक्का छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "coin:5",
+     "expect": "placed:coin:5",
+     "say": {
+      "en": "Tap another ₹5 coin.",
+      "hi": "एक और ₹5 का सिक्का छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pay",
+     "expect": "paid",
+     "say": {
+      "en": "Now tap Pay.",
+      "hi": "अब पैसे दो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "₹10 and ₹5 and ₹5 make ₹20, the price of the ball. We can pay the same price in different ways. Riya could pay with four ₹5 coins. Sahil could pay with a ₹10 note and two ₹5 coins.",
+      "hi": "₹10, ₹5 और ₹5 मिलकर ₹20 बनते हैं, यानी गेंद का दाम। एक ही दाम हम अलग-अलग तरीक़ों से चुका सकते हैं। रिया ₹5 के चार सिक्के दे सकती है। साहिल ₹10 का नोट और ₹5 के दो सिक्के दे सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many ₹5 coins make ₹20?",
+        "hi": "₹5 के कितने सिक्के मिलकर ₹20 बनाते हैं?"
+       },
+       "options": [
+        "2",
+        "4",
+        "5"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "5, 10, 15, 20. That is 4 coins.",
+        "hi": "5, 10, 15, 20। यानी 4 सिक्के।"
+       },
+       "wrong": [
+        {
+         "en": "2 coins make only ₹10.",
+         "hi": "2 सिक्के तो सिर्फ़ ₹10 बनाते हैं।"
+        },
+        "",
+        {
+         "en": "5 coins make ₹25, which is too much.",
+         "hi": "5 सिक्के ₹25 बनाते हैं, जो ज़्यादा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "One ₹10 note and one ₹10 coin make...",
+        "hi": "₹10 का एक नोट और ₹10 का एक सिक्का मिलकर..."
+       },
+       "options": [
+        "₹10",
+        "₹20",
+        "₹100"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "10 and 10 make 20.",
+        "hi": "10 और 10 मिलकर 20।"
+       },
+       "wrong": [
+        {
+         "en": "₹10 is only one of them.",
+         "hi": "₹10 तो उनमें से सिर्फ़ एक की क़ीमत है।"
+        },
+        "",
+        {
+         "en": "₹100 is a much bigger amount. 10 and 10 only make 20.",
+         "hi": "₹100 बहुत बड़ी राशि है। 10 और 10 सिर्फ़ 20 बनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Reset and pay ₹20 in a new way, for example with a ₹10 note and a ₹10 coin.",
+      "hi": "अब ख़ुद आज़माओ। रीसेट दबाओ और ₹20 किसी नए तरीक़े से दो, जैसे ₹10 का नोट और ₹10 का सिक्का।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch12-toys-for-ten",
+   "topic": "12.3",
+   "template": "sort",
+   "title": {
+    "en": "What can you buy for ₹10?",
+    "hi": "₹10 में क्या ख़रीद सकते हो?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "can",
+      "label": {
+       "en": "I can buy it with ₹10",
+       "hi": "₹10 में ख़रीद सकता हूँ"
+      }
+     },
+     {
+      "id": "cannot",
+      "label": {
+       "en": "It costs more than ₹10",
+       "hi": "इसका दाम ₹10 से ज़्यादा है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "balloon",
+      "text": {
+       "en": "Balloon, ₹2",
+       "hi": "गुब्बारा, ₹2"
+      },
+      "bin": "can",
+      "why": {
+       "en": "₹2 is less than ₹10, so ₹10 is enough.",
+       "hi": "₹2, ₹10 से कम है, इसलिए ₹10 काफ़ी हैं।"
+      }
+     },
+     {
+      "id": "top",
+      "text": {
+       "en": "Top, ₹5",
+       "hi": "लट्टू, ₹5"
+      },
+      "bin": "can",
+      "why": {
+       "en": "₹5 is less than ₹10, so ₹10 is enough.",
+       "hi": "₹5, ₹10 से कम है, इसलिए ₹10 काफ़ी हैं।"
+      }
+     },
+     {
+      "id": "whistle",
+      "text": {
+       "en": "Whistle, ₹8",
+       "hi": "सीटी, ₹8"
+      },
+      "bin": "can",
+      "why": {
+       "en": "₹8 is less than ₹10, so ₹10 is enough.",
+       "hi": "₹8, ₹10 से कम है, इसलिए ₹10 काफ़ी हैं।"
+      }
+     },
+     {
+      "id": "marbles",
+      "text": {
+       "en": "Marbles, ₹10",
+       "hi": "कंचे, ₹10"
+      },
+      "bin": "can",
+      "why": {
+       "en": "₹10 is exactly the money you have.",
+       "hi": "₹10 ठीक उतने ही हैं जितने तुम्हारे पास हैं।"
+      }
+     },
+     {
+      "id": "car",
+      "text": {
+       "en": "Toy car, ₹14",
+       "hi": "खिलौना कार, ₹14"
+      },
+      "bin": "cannot",
+      "why": {
+       "en": "₹14 is more than ₹10. You need ₹4 more.",
+       "hi": "₹14, ₹10 से ज़्यादा है। तुम्हें ₹4 और चाहिए।"
+      }
+     },
+     {
+      "id": "kite",
+      "text": {
+       "en": "Kite, ₹15",
+       "hi": "पतंग, ₹15"
+      },
+      "bin": "cannot",
+      "why": {
+       "en": "₹15 is more than ₹10.",
+       "hi": "₹15, ₹10 से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "ball",
+      "text": {
+       "en": "Ball, ₹20",
+       "hi": "गेंद, ₹20"
+      },
+      "bin": "cannot",
+      "why": {
+       "en": "₹20 is more than ₹10.",
+       "hi": "₹20, ₹10 से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "doll",
+      "text": {
+       "en": "Doll, ₹25",
+       "hi": "गुड़िया, ₹25"
+      },
+      "bin": "cannot",
+      "why": {
+       "en": "₹25 is more than ₹10.",
+       "hi": "₹25, ₹10 से ज़्यादा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:balloon",
+     "expect": "correct:balloon",
+     "say": {
+      "en": "Rahim Kaka sells toys. You have ₹10. Tap the balloon (₹2) and put it where it belongs.",
+      "hi": "रहीम काका खिलौने बेचते हैं। तुम्हारे पास ₹10 हैं। गुब्बारा (₹2) छुओ और सही जगह रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The toy car costs ₹14. Can you buy it with ₹10?",
+      "hi": "खिलौना कार ₹14 की है। क्या तुम ₹10 में उसे ख़रीद सकते हो?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:car",
+     "expect": "correct:car",
+     "say": {
+      "en": "Sort the toy car.",
+      "hi": "खिलौना कार को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:can",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other toys.",
+      "hi": "बाक़ी खिलौने छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "You can buy a toy if its price is the same as your money or less. ₹2, ₹5, ₹8 and ₹10 are not more than ₹10, so you can buy those toys. ₹14, ₹15, ₹20 and ₹25 are more than ₹10, so you need more money.",
+      "hi": "अगर खिलौने का दाम तुम्हारे पैसों के बराबर या उनसे कम है, तो तुम उसे ख़रीद सकते हो। ₹2, ₹5, ₹8 और ₹10, ₹10 से ज़्यादा नहीं हैं, इसलिए वे खिलौने ख़रीद सकते हो। ₹14, ₹15, ₹20 और ₹25, ₹10 से ज़्यादा हैं, इसलिए और पैसे चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You have ₹10. A toy costs ₹8. Can you buy it?",
+        "hi": "तुम्हारे पास ₹10 हैं। एक खिलौना ₹8 का है। क्या ख़रीद सकते हो?"
+       },
+       "options": [
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        },
+        {
+         "en": "No",
+         "hi": "नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10 is more than 8, so you have enough.",
+        "hi": "10, 8 से ज़्यादा है, इसलिए पैसे काफ़ी हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "You have more money than the price, so you can buy it.",
+         "hi": "तुम्हारे पास दाम से ज़्यादा पैसे हैं, इसलिए ख़रीद सकते हो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Ask a friend how many toys they can buy with ₹20.",
+      "hi": "अब ख़ुद आज़माओ। दोस्त से पूछो कि वह ₹20 में कौन-कौन से खिलौने ख़रीद सकता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch12-toy-shop",
+   "topic": "12.4",
+   "template": "scenario",
+   "title": {
+    "en": "At Rahim Kaka's toy shop",
+    "hi": "रहीम काका की खिलौनों की दुकान पर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "shop",
+    "role": {
+     "en": "Buyer",
+     "hi": "ख़रीदार"
+    },
+    "scenes": [
+     {
+      "id": "car",
+      "text": {
+       "en": "The toy car costs ₹14. Riya has ₹10. How much more money does she need?",
+       "hi": "खिलौना कार ₹14 की है। रिया के पास ₹10 हैं। उसे और कितने रुपये चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "car-4",
+        "next": "doll",
+        "feedback": {
+         "en": "Yes! From 10 count on to 14: 11, 12, 13, 14. That is ₹4 more.",
+         "hi": "हाँ! 10 से 14 तक गिनो: 11, 12, 13, 14। यानी ₹4 और।"
+        },
+        "good": true,
+        "text": {
+         "en": "₹4",
+         "hi": "₹4"
+        }
+       },
+       {
+        "id": "car-24",
+        "next": "doll",
+        "feedback": {
+         "en": "₹24 is 14 + 10. Riya already has ₹10. She only needs the rest.",
+         "hi": "₹24 तो 14 + 10 है। रिया के पास ₹10 पहले से हैं। उसे सिर्फ़ बाक़ी चाहिए।"
+        },
+        "good": false,
+        "text": {
+         "en": "₹24",
+         "hi": "₹24"
+        }
+       },
+       {
+        "id": "car-10",
+        "next": "doll",
+        "feedback": {
+         "en": "₹10 is what she already has. ₹10 and ₹4 more make ₹14.",
+         "hi": "₹10 तो उसके पास पहले से हैं। ₹10 और ₹4 मिलकर ₹14 होते हैं।"
+        },
+        "good": false,
+        "text": {
+         "en": "₹10",
+         "hi": "₹10"
+        }
+       }
+      ]
+     },
+     {
+      "id": "doll",
+      "text": {
+       "en": "Riya and Sahil together have ₹30. A doll costs ₹25. Can they buy the doll?",
+       "hi": "रिया और साहिल के पास मिलाकर ₹30 हैं। गुड़िया ₹25 की है। क्या वे गुड़िया ख़रीद सकते हैं?"
+      },
+      "choices": [
+       {
+        "id": "doll-yes",
+        "next": "end",
+        "feedback": {
+         "en": "Yes! ₹30 is more than ₹25. They will even have ₹5 left.",
+         "hi": "हाँ! ₹30, ₹25 से ज़्यादा हैं। उनके पास ₹5 भी बचेंगे।"
+        },
+        "good": true,
+        "text": {
+         "en": "Yes, ₹30 is more than ₹25",
+         "hi": "हाँ, ₹30, ₹25 से ज़्यादा हैं"
+        }
+       },
+       {
+        "id": "doll-no",
+        "next": "end",
+        "feedback": {
+         "en": "₹25 is less than ₹30, so they have enough.",
+         "hi": "₹25, ₹30 से कम है, इसलिए उनके पास काफ़ी पैसे हैं।"
+        },
+        "good": false,
+        "text": {
+         "en": "No, ₹25 is too much",
+         "hi": "नहीं, ₹25 बहुत ज़्यादा हैं"
+        }
+       },
+       {
+        "id": "doll-more",
+        "next": "end",
+        "feedback": {
+         "en": "They do not need more. They already have ₹5 extra.",
+         "hi": "उन्हें और की ज़रूरत नहीं। उनके पास ₹5 ज़्यादा ही हैं।"
+        },
+        "good": false,
+        "text": {
+         "en": "Only if they get ₹5 more",
+         "hi": "तभी जब ₹5 और मिलें"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:car:car-4",
+     "expect": "chose:car-4",
+     "say": {
+      "en": "Read about the toy car. Choose how much more money Riya needs.",
+      "hi": "खिलौना कार के बारे में पढ़ो। चुनो कि रिया को और कितने रुपये चाहिए।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Riya and Sahil put their money together. Do they have more money, or less?",
+      "hi": "रिया और साहिल अपने पैसे मिलाते हैं। उनके पास ज़्यादा पैसे होंगे या कम?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More",
+       "hi": "ज़्यादा"
+      },
+      {
+       "id": "less",
+       "en": "Less",
+       "hi": "कम"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "choice:doll:doll-yes",
+     "expect": "ended",
+     "say": {
+      "en": "Choose if they can buy the doll.",
+      "hi": "चुनो कि क्या वे गुड़िया ख़रीद सकते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To find how much more we need, count on from what we have to the price: from 10 to 14 is 4. When two children put money together, they have more to spend. ₹30 is more than ₹25, so they can buy the doll.",
+      "hi": "और कितने चाहिए, यह जानने के लिए जितने पैसे हैं वहाँ से दाम तक गिनो: 10 से 14 तक 4। जब दो बच्चे अपने पैसे मिलाते हैं, तो ख़र्च के लिए ज़्यादा पैसे होते हैं। ₹30, ₹25 से ज़्यादा हैं, इसलिए वे गुड़िया ख़रीद सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A kite costs ₹15. You have ₹10. How much more do you need?",
+        "hi": "पतंग ₹15 की है। तुम्हारे पास ₹10 हैं। और कितने चाहिए?"
+       },
+       "options": [
+        "₹5",
+        "₹15",
+        "₹25"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "From 10 count on to 15: 11, 12, 13, 14, 15. That is 5 more.",
+        "hi": "10 से 15 तक गिनो: 11, 12, 13, 14, 15। यानी 5 और।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹15 is the whole price. You already have ₹10.",
+         "hi": "₹15 तो पूरा दाम है। तुम्हारे पास ₹10 पहले से हैं।"
+        },
+        {
+         "en": "₹25 is 15 and 10 added. We want only what is missing.",
+         "hi": "₹25 तो 15 और 10 जोड़ने से आया। हमें सिर्फ़ वही चाहिए जो कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Play a shop game with friends. One is the shopkeeper. Use paper slips as money.",
+      "hi": "अब ख़ुद आज़माओ। दोस्तों के साथ दुकान का खेल खेलो। एक दुकानदार बने। काग़ज़ की पर्चियों को पैसे मानो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch12-same-amount",
+   "topic": "12.5",
+   "template": "match",
+   "title": {
+    "en": "Match the same amount",
+    "hi": "बराबर राशि मिलाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "₹10 note and ₹5 coin",
+       "hi": "₹10 का नोट और ₹5 का सिक्का"
+      },
+      "right": {
+       "en": "₹15",
+       "hi": "₹15"
+      },
+      "why": {
+       "en": "10 and 5 make 15.",
+       "hi": "10 और 5 मिलकर 15।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "Two ₹5 coins and one ₹2 coin",
+       "hi": "₹5 के दो सिक्के और ₹2 का एक सिक्का"
+      },
+      "right": {
+       "en": "₹12",
+       "hi": "₹12"
+      },
+      "why": {
+       "en": "5 and 5 make 10, and 2 more make 12.",
+       "hi": "5 और 5 मिलकर 10, और 2 जोड़ो तो 12।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "₹20 note and ₹2 coin",
+       "hi": "₹20 का नोट और ₹2 का सिक्का"
+      },
+      "right": {
+       "en": "₹22",
+       "hi": "₹22"
+      },
+      "why": {
+       "en": "20 and 2 make 22.",
+       "hi": "20 और 2 मिलकर 22।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "₹50 note and ₹10 note",
+       "hi": "₹50 का नोट और ₹10 का नोट"
+      },
+      "right": {
+       "en": "₹60",
+       "hi": "₹60"
+      },
+      "why": {
+       "en": "50 and 10 make 60.",
+       "hi": "50 और 10 मिलकर 60।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Add the money in the first card. Tap it, then tap the amount.",
+      "hi": "पहले कार्ड के पैसे जोड़ो। उसे छुओ, फिर राशि छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two ₹5 coins and one ₹2 coin. Is the total more or less than ₹10?",
+      "hi": "₹5 के दो सिक्के और ₹2 का एक सिक्का। कुल ₹10 से ज़्यादा है या कम?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More than ₹10",
+       "hi": "₹10 से ज़्यादा"
+      },
+      {
+       "id": "less",
+       "en": "Less than ₹10",
+       "hi": "₹10 से कम"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Match the two ₹5 coins and the ₹2 coin.",
+      "hi": "₹5 के दो सिक्के और ₹2 का सिक्का मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest.",
+      "hi": "बाक़ी को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We add the value of every coin and note to find the total. The same amount can be made in many ways. ₹15 can be a ₹10 note and a ₹5 coin, or three ₹5 coins.",
+      "hi": "कुल पता करने के लिए हम हर सिक्के और नोट की क़ीमत जोड़ते हैं। एक ही राशि कई तरीक़ों से बन सकती है। ₹15 एक ₹10 का नोट और एक ₹5 का सिक्का हो सकता है, या ₹5 के तीन सिक्के।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which makes ₹15?",
+        "hi": "कौन-सा ₹15 बनाता है?"
+       },
+       "options": [
+        {
+         "en": "Three ₹5 coins",
+         "hi": "₹5 के तीन सिक्के"
+        },
+        {
+         "en": "Two ₹5 coins",
+         "hi": "₹5 के दो सिक्के"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 + 5 + 5 = 15.",
+        "hi": "5 + 5 + 5 = 15।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 + 5 = 10 only.",
+         "hi": "5 + 5 = 10 ही होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make ₹13 in two different ways with play money.",
+      "hi": "अब ख़ुद आज़माओ। खेल के पैसों से ₹13 दो अलग तरीक़ों से बनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "12.1",
+   "use": "Coins",
+   "shows": "Front and back of the Indian ₹1, ₹2, ₹5 and ₹10 coins (eight files)",
+   "view": "Top view, transparent background, soft shadow",
+   "right": "True sizes relative to each other; correct designs",
+   "avoid": "Coins of other countries; edited designs"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "12.1",
+   "use": "Notes",
+   "shows": "The Indian ₹10, ₹20, ₹50 and ₹100 notes shown as the law allows for pictures of money (or neutral play-money notes in the same colours)",
+   "view": "Flat, straight on",
+   "right": "Correct colours and sizes; use only in the way the Reserve Bank allows",
+   "avoid": "Full-size sharp copies of real notes; torn notes"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "12.2",
+   "use": "Rahim Kaka's toy cart",
+   "shows": "A toy seller with a cart of balls, tops, whistles, kites, cars and dolls, price tags left blank",
+   "view": "Eye level, village market light",
+   "right": "Toys easy to tell apart; seller seen from the side",
+   "avoid": "Faces; price numbers"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "12.3",
+   "use": "Toys to buy",
+   "shows": "Balloon, top, whistle, marbles, toy car, kite, ball and doll (each its own file)",
+   "view": "Front view on transparent background",
+   "right": "True colours; common Indian toys",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "12.6",
+   "use": "Gullak",
+   "shows": "A terracotta piggy bank with a coin slot, and a hand dropping a coin in",
+   "view": "Three-quarter view, even light",
+   "right": "Real earthen gullak; hand only",
+   "avoid": "A face; a plastic toy look"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "12.5",
+   "use": "Shop game in class",
+   "shows": "Children playing shop in a classroom with paper-slip money and a few items on a desk",
+   "view": "Eye level, classroom light",
+   "right": "Paper slips with plain numbers; items easy to see",
+   "avoid": "Identifiable faces; real notes"
+  }
+ ]
+}

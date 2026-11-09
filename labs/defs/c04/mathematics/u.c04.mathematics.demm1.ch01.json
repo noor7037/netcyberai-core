@@ -1,0 +1,778 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch01",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "Shapes Around Us",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "1.1",
+      "title": "Prisms and pyramids: models of buildings from 3D shapes",
+      "labs": [
+        "c04-mathematics-demm1-ch01-prism-faces",
+        "c04-mathematics-demm1-ch01-pyramid-edges"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.2",
+      "title": "Sorting shapes",
+      "labs": [
+        "c04-mathematics-demm1-ch01-prism-or-pyramid"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.3",
+      "title": "Acute and obtuse angles",
+      "labs": [
+        "c04-mathematics-demm1-ch01-angles"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.4",
+      "title": "Making shapes with straws and clay",
+      "labs": [],
+      "why_no_lab": "Building a straw-and-clay triangle and rectangle with your own hands, and feeling which one stays firm, teaches more than any screen can."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch01-prism-faces",
+      "topic": "1.1",
+      "template": "solids",
+      "title": {
+        "en": "Faces of a triangular prism",
+        "hi": "त्रिभुजाकार प्रिज़्म के फलक"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "solid": "prism",
+        "sides": 3,
+        "mode": "count"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "rotate",
+          "expect": "rotated",
+          "say": {
+            "en": "Drag the prism, or tap Turn, to look at it from every side.",
+            "hi": "प्रिज़्म को खींचो, या घुमाओ दबाओ, और उसे हर तरफ़ से देखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A tent shaped like this has two triangle ends. How many flat faces does the whole shape have?",
+            "hi": "इस आकार के तंबू के दो सिरे त्रिभुज हैं। पूरे आकार में कुल कितने समतल फलक हैं?"
+          },
+          "options": [
+            {
+              "id": "f3",
+              "en": "3 faces",
+              "hi": "3 फलक"
+            },
+            {
+              "id": "f5",
+              "en": "5 faces",
+              "hi": "5 फलक"
+            },
+            {
+              "id": "f6",
+              "en": "6 faces",
+              "hi": "6 फलक"
+            }
+          ],
+          "answer": "f5"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Turn the prism and count its edges, the lines where two faces meet. Then pick the number.",
+            "hi": "प्रिज़्म को घुमाओ और उसके किनारे गिनो, यानी वे रेखाएँ जहाँ दो फलक मिलते हैं। फिर संख्या चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "This prism has 2 triangle faces and 3 rectangle faces, so 5 faces in all. It has 9 edges and 6 corners. A prism has two same-shaped ends, and rectangles join them. That is why a tent, with two triangle ends, is a triangular prism.",
+            "hi": "इस प्रिज़्म में 2 त्रिभुज फलक और 3 आयत फलक हैं, यानी कुल 5 फलक। इसमें 9 किनारे और 6 कोने हैं। प्रिज़्म के दो सिरे एक जैसे होते हैं और आयत उन्हें जोड़ते हैं। इसीलिए दो त्रिभुज सिरों वाला तंबू त्रिभुजाकार प्रिज़्म है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which faces are the two same-shaped ends of this prism?",
+                "hi": "इस प्रिज़्म के दो एक जैसे सिरे कौन-से फलक हैं?"
+              },
+              "options": [
+                {
+                  "en": "Triangles",
+                  "hi": "त्रिभुज"
+                },
+                {
+                  "en": "Rectangles",
+                  "hi": "आयत"
+                },
+                {
+                  "en": "Circles",
+                  "hi": "वृत्त"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The two ends are triangles. That gives the prism its name: triangular prism.",
+                "hi": "दोनों सिरे त्रिभुज हैं। इसी से प्रिज़्म का नाम पड़ा: त्रिभुजाकार प्रिज़्म।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The rectangles are the sides that join the two ends, not the ends themselves.",
+                  "hi": "आयत बगल के फलक हैं जो दोनों सिरों को जोड़ते हैं, खुद सिरे नहीं हैं।"
+                },
+                {
+                  "en": "This prism has no flat circle at all. All its faces are flat triangles and rectangles.",
+                  "hi": "इस प्रिज़्म में कोई गोल फलक नहीं है। इसके सारे फलक समतल त्रिभुज और आयत हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many rectangle faces does a triangular prism have?",
+                "hi": "त्रिभुजाकार प्रिज़्म में कितने आयत फलक होते हैं?"
+              },
+              "options": [
+                "2",
+                "3",
+                "5"
+              ],
+              "answer": 1,
+              "why": {
+                "en": "One rectangle for each side of the triangle, and a triangle has 3 sides. So 3 rectangles.",
+                "hi": "त्रिभुज की हर भुजा के लिए एक आयत, और त्रिभुज की 3 भुजाएँ होती हैं। इसलिए 3 आयत।"
+              },
+              "wrong": [
+                {
+                  "en": "2 is the number of triangle faces, not rectangles.",
+                  "hi": "2 त्रिभुज फलकों की संख्या है, आयतों की नहीं।"
+                },
+                "",
+                {
+                  "en": "5 is the number of all faces together. Two of them are triangles.",
+                  "hi": "5 सारे फलकों की कुल संख्या है। उनमें दो त्रिभुज हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press Count again and tap every face once, turning the prism to find the faces at the back. Do you get 5? Then look around for a prism today: a tent, a wedge of cheese. Can you find the two triangle ends?",
+            "hi": "फिर से गिनो दबाओ और हर फलक पर एक बार टैप करो, पीछे के फलक ढूँढने के लिए प्रिज़्म घुमाते रहो। क्या तुम्हें 5 मिले? फिर आज आसपास कोई प्रिज़्म ढूँढो: तंबू, पनीर का टुकड़ा। क्या तुम्हें दो त्रिभुज सिरे मिले?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch01-pyramid-edges",
+      "topic": "1.1",
+      "template": "solids",
+      "title": {
+        "en": "Counting a square pyramid",
+        "hi": "वर्गाकार पिरामिड की गिनती"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "solid": "pyramid",
+        "sides": 4,
+        "mode": "count"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "rotate",
+          "expect": "rotated",
+          "say": {
+            "en": "Turn the pyramid and see where its sloping sides meet at the top.",
+            "hi": "पिरामिड को घुमाओ और देखो कि उसकी ढलवाँ सतहें ऊपर कहाँ मिलती हैं।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A pyramid with a square base has sloping faces that meet at one point on top. What shape are those sloping faces?",
+            "hi": "वर्गाकार आधार वाले पिरामिड की ढलवाँ सतहें ऊपर एक बिंदु पर मिलती हैं। वे ढलवाँ फलक किस आकार के हैं?"
+          },
+          "options": [
+            {
+              "id": "tri",
+              "en": "Triangles",
+              "hi": "त्रिभुज"
+            },
+            {
+              "id": "rect",
+              "en": "Rectangles",
+              "hi": "आयत"
+            },
+            {
+              "id": "circ",
+              "en": "Circles",
+              "hi": "वृत्त"
+            }
+          ],
+          "answer": "tri"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Turn the pyramid and count its edges, the lines where two faces meet. Then pick the number.",
+            "hi": "पिरामिड को घुमाओ और उसके किनारे गिनो, यानी वे रेखाएँ जहाँ दो फलक मिलते हैं। फिर संख्या चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A square pyramid has 1 square base and 4 triangle faces that meet at the top point. That is 5 faces, 8 edges and 5 corners. A prism has two same ends. A pyramid has one base and its other faces are all triangles that meet at a point.",
+            "hi": "वर्गाकार पिरामिड में 1 वर्गाकार आधार और 4 त्रिभुज फलक होते हैं जो ऊपर एक बिंदु पर मिलते हैं। यानी 5 फलक, 8 किनारे और 5 कोने। प्रिज़्म के दो सिरे एक जैसे होते हैं। पिरामिड का एक आधार होता है और बाक़ी सारे फलक त्रिभुज होते हैं जो एक बिंदु पर मिलते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many triangle faces does a square pyramid have?",
+                "hi": "वर्गाकार पिरामिड में कितने त्रिभुज फलक होते हैं?"
+              },
+              "options": [
+                "4",
+                "5",
+                "1"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The square base has 4 sides, and each side has one triangle on it. So 4 triangles.",
+                "hi": "वर्गाकार आधार की 4 भुजाएँ हैं और हर भुजा पर एक त्रिभुज है। इसलिए 4 त्रिभुज।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "5 is all the faces together, and one of them is the square base.",
+                  "hi": "5 सारे फलक मिलाकर हैं, और उनमें एक वर्गाकार आधार है।"
+                },
+                {
+                  "en": "1 is the number of square faces, the base. The triangles are the other faces.",
+                  "hi": "1 वर्गाकार फलक यानी आधार की संख्या है। त्रिभुज बाक़ी फलक हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What is special about the top of every pyramid?",
+                "hi": "हर पिरामिड के ऊपरी भाग की ख़ास बात क्या है?"
+              },
+              "options": [
+                {
+                  "en": "All the sloping faces meet at one point",
+                  "hi": "सारे ढलवाँ फलक एक बिंदु पर मिलते हैं"
+                },
+                {
+                  "en": "It has a second base",
+                  "hi": "उसका एक दूसरा आधार होता है"
+                },
+                {
+                  "en": "It is a flat square",
+                  "hi": "वह एक समतल वर्ग होता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A pyramid narrows to a single point called the apex, where all its triangle faces meet.",
+                "hi": "पिरामिड सँकरा होते-होते एक बिंदु पर पहुँचता है जिसे शीर्ष कहते हैं, जहाँ उसके सारे त्रिभुज फलक मिलते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A second base on top belongs to a prism. A pyramid has only one base.",
+                  "hi": "ऊपर दूसरा आधार प्रिज़्म में होता है। पिरामिड का केवल एक ही आधार होता है।"
+                },
+                {
+                  "en": "A flat top would make the shape a box or a cut-off pyramid. A real pyramid comes to a point.",
+                  "hi": "समतल ऊपरी भाग वाला आकार डिब्बा या कटा हुआ पिरामिड होता है। असली पिरामिड एक बिंदु पर ख़त्म होता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tap every face once, turning the pyramid to find the faces at the back. Do you get 5? A prism has two same ends. Does a pyramid have two same ends?",
+            "hi": "हर फलक पर एक बार टैप करो और पीछे के फलक ढूँढने के लिए पिरामिड घुमाओ। क्या तुम्हें 5 मिले? प्रिज़्म के दो सिरे एक जैसे होते हैं। क्या पिरामिड के भी दो एक जैसे सिरे होते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch01-prism-or-pyramid",
+      "topic": "1.2",
+      "template": "sort",
+      "title": {
+        "en": "Prism or pyramid?",
+        "hi": "प्रिज़्म या पिरामिड?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "prism",
+            "label": {
+              "en": "Prism",
+              "hi": "प्रिज़्म"
+            }
+          },
+          {
+            "id": "pyramid",
+            "label": {
+              "en": "Pyramid",
+              "hi": "पिरामिड"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "tent",
+            "text": {
+              "en": "A tent with two triangle ends",
+              "hi": "दो त्रिभुज सिरों वाला तंबू"
+            },
+            "bin": "prism",
+            "why": {
+              "en": "Its two ends are the same triangle, and rectangles join them. That is a prism.",
+              "hi": "इसके दोनों सिरे एक जैसे त्रिभुज हैं और आयत उन्हें जोड़ते हैं। यह प्रिज़्म है।"
+            }
+          },
+          {
+            "id": "box",
+            "text": {
+              "en": "A matchbox",
+              "hi": "माचिस की डिब्बी"
+            },
+            "bin": "prism",
+            "why": {
+              "en": "A box has two same rectangle ends joined by rectangles. It is a prism.",
+              "hi": "डिब्बे के दो एक जैसे आयत सिरे होते हैं जिन्हें आयत जोड़ते हैं। यह प्रिज़्म है।"
+            }
+          },
+          {
+            "id": "pencil",
+            "text": {
+              "en": "A six-sided pencil",
+              "hi": "छह किनारों वाली पेंसिल"
+            },
+            "bin": "prism",
+            "why": {
+              "en": "Both ends are the same six-sided shape. It is a hexagonal prism.",
+              "hi": "दोनों सिरे एक जैसे छह भुजाओं वाले आकार के हैं। यह षट्भुजाकार प्रिज़्म है।"
+            }
+          },
+          {
+            "id": "two-ends",
+            "text": {
+              "en": "Two same ends, sides are rectangles",
+              "hi": "दो एक जैसे सिरे, बगल आयत"
+            },
+            "bin": "prism",
+            "why": {
+              "en": "Two same ends with rectangle sides is the rule for a prism.",
+              "hi": "दो एक जैसे सिरे और आयताकार बगल प्रिज़्म की पहचान है।"
+            }
+          },
+          {
+            "id": "paperweight",
+            "text": {
+              "en": "A pyramid paperweight",
+              "hi": "पिरामिड वाला पेपरवेट"
+            },
+            "bin": "pyramid",
+            "why": {
+              "en": "It has one base and sloping triangle faces that meet at a point on top.",
+              "hi": "इसका एक आधार है और ढलवाँ त्रिभुज फलक ऊपर एक बिंदु पर मिलते हैं।"
+            }
+          },
+          {
+            "id": "egypt",
+            "text": {
+              "en": "The pyramids of Egypt",
+              "hi": "मिस्र के पिरामिड"
+            },
+            "bin": "pyramid",
+            "why": {
+              "en": "They have a square base and four triangle faces meeting at the top.",
+              "hi": "इनका आधार वर्गाकार है और चार त्रिभुज फलक ऊपर मिलते हैं।"
+            }
+          },
+          {
+            "id": "one-point",
+            "text": {
+              "en": "Triangle faces meeting at a point",
+              "hi": "त्रिभुज फलक जो एक बिंदु पर मिलें"
+            },
+            "bin": "pyramid",
+            "why": {
+              "en": "Triangle faces meeting at one point on top is the rule for a pyramid.",
+              "hi": "त्रिभुज फलकों का ऊपर एक बिंदु पर मिलना पिरामिड की पहचान है।"
+            }
+          },
+          {
+            "id": "one-base",
+            "text": {
+              "en": "Only one base, no second end",
+              "hi": "केवल एक आधार, दूसरा सिरा नहीं"
+            },
+            "bin": "pyramid",
+            "why": {
+              "en": "A pyramid has one base. A prism has two same ends.",
+              "hi": "पिरामिड का एक ही आधार होता है। प्रिज़्म के दो एक जैसे सिरे होते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:tent",
+          "expect": "correct:tent",
+          "say": {
+            "en": "Tap the tent card, then tap the group it belongs to. Does it have two same ends?",
+            "hi": "तंबू वाले कार्ड पर टैप करो, फिर उसके समूह पर टैप करो। क्या उसके दो एक जैसे सिरे हैं?"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Look at the card 'Only one base, no second end'. Which group will it go in?",
+            "hi": "'केवल एक आधार, दूसरा सिरा नहीं' वाले कार्ड को देखो। वह किस समूह में जाएगा?"
+          },
+          "options": [
+            {
+              "id": "prism",
+              "en": "Prism",
+              "hi": "प्रिज़्म"
+            },
+            {
+              "id": "pyramid",
+              "en": "Pyramid",
+              "hi": "पिरामिड"
+            }
+          ],
+          "answer": "pyramid"
+        },
+        {
+          "kind": "do",
+          "target": "card:one-base",
+          "expect": "correct:one-base",
+          "say": {
+            "en": "Sort the 'only one base' card now.",
+            "hi": "अब 'केवल एक आधार' वाला कार्ड छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the rest of the cards, then press Check.",
+            "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Count the ends. Two same ends joined by rectangles make a prism: the tent, the matchbox and the pencil. One base with triangle faces meeting at a point makes a pyramid: the paperweight and the pyramids of Egypt.",
+            "hi": "सिरे गिनो। आयतों से जुड़े दो एक जैसे सिरे प्रिज़्म बनाते हैं: तंबू, माचिस की डिब्बी और पेंसिल। एक आधार और एक बिंदु पर मिलते त्रिभुज फलक पिरामिड बनाते हैं: पेपरवेट और मिस्र के पिरामिड।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A shape has two same triangle ends and three rectangle sides. What is it?",
+                "hi": "एक आकार के दो एक जैसे त्रिभुज सिरे और तीन आयताकार बगल हैं। वह क्या है?"
+              },
+              "options": [
+                {
+                  "en": "A triangular prism",
+                  "hi": "त्रिभुजाकार प्रिज़्म"
+                },
+                {
+                  "en": "A triangular pyramid",
+                  "hi": "त्रिभुजाकार पिरामिड"
+                },
+                {
+                  "en": "A cuboid",
+                  "hi": "घनाभ"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Two same ends joined by rectangles is a prism, and the ends are triangles.",
+                "hi": "आयतों से जुड़े दो एक जैसे सिरे प्रिज़्म होते हैं, और यहाँ सिरे त्रिभुज हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A pyramid has only one base and all its other faces are triangles. This shape has rectangle sides.",
+                  "hi": "पिरामिड का एक ही आधार होता है और बाक़ी सारे फलक त्रिभुज होते हैं। इस आकार के बगल आयत हैं।"
+                },
+                {
+                  "en": "A cuboid has six rectangle faces. This shape has two triangles.",
+                  "hi": "घनाभ के छह आयत फलक होते हैं। इस आकार में दो त्रिभुज हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Hunt for one prism and one pyramid in your home or school. What are the faces of each?",
+            "hi": "अपने घर या स्कूल में एक प्रिज़्म और एक पिरामिड ढूँढो। हर एक के फलक कैसे हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch01-angles",
+      "topic": "1.3",
+      "template": "shapes",
+      "title": {
+        "en": "Acute and obtuse angles",
+        "hi": "न्यून और अधिक कोण"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "angle",
+        "task": "types"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The two arms are open wide, wider than the corner of a book. Is this angle acute or obtuse?",
+            "hi": "दोनों भुजाएँ किताब के कोने से ज़्यादा खुली हैं। यह कोण न्यून है या अधिक?"
+          },
+          "options": [
+            {
+              "id": "acute",
+              "en": "Acute",
+              "hi": "न्यून"
+            },
+            {
+              "id": "obtuse",
+              "en": "Obtuse",
+              "hi": "अधिक"
+            }
+          ],
+          "answer": "obtuse"
+        },
+        {
+          "kind": "do",
+          "target": "drag:B",
+          "expect": "answered:right",
+          "say": {
+            "en": "Drag point B to close the arms until you make an acute angle, smaller than the corner of a book.",
+            "hi": "बिंदु B को खींचकर भुजाएँ तब तक पास लाओ जब तक न्यून कोण, यानी किताब के कोने से छोटा कोण, न बन जाए।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "drag:B",
+          "expect": "answered:right",
+          "say": {
+            "en": "Now open the arms to make a right angle, exactly like the corner of a book.",
+            "hi": "अब भुजाएँ खोलकर समकोण बनाओ, ठीक किताब के कोने जैसा।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "drag:B",
+          "expect": "answered:right",
+          "say": {
+            "en": "Open the arms more to make an obtuse angle, wider than the corner of a book.",
+            "hi": "भुजाएँ और खोलकर अधिक कोण बनाओ, किताब के कोने से बड़ा।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "An angle smaller than the corner of a book is acute. An angle exactly like the corner of a book is a right angle, 90 degrees. An angle bigger than a right angle but smaller than a straight line is obtuse.",
+            "hi": "किताब के कोने से छोटा कोण न्यून कोण होता है। ठीक किताब के कोने जैसा कोण समकोण है, 90 अंश का। समकोण से बड़ा पर सीधी रेखा से छोटा कोण अधिक कोण होता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The hands of a clock at 3 o'clock make a corner like a book's. What angle is it?",
+                "hi": "तीन बजे घड़ी की सुइयाँ किताब के कोने जैसा कोण बनाती हैं। यह कौन-सा कोण है?"
+              },
+              "options": [
+                {
+                  "en": "A right angle",
+                  "hi": "समकोण"
+                },
+                {
+                  "en": "An acute angle",
+                  "hi": "न्यून कोण"
+                },
+                {
+                  "en": "An obtuse angle",
+                  "hi": "अधिक कोण"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "At 3 o'clock the hands make exactly the corner of a book, a right angle.",
+                "hi": "तीन बजे सुइयाँ ठीक किताब का कोना बनाती हैं, यानी समकोण।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "An acute angle is smaller than the corner of a book. At 3 o'clock the hands are not closer than that.",
+                  "hi": "न्यून कोण किताब के कोने से छोटा होता है। तीन बजे सुइयाँ उससे पास नहीं होतीं।"
+                },
+                {
+                  "en": "An obtuse angle is wider than the corner of a book. At 3 o'clock the hands are not wider than that.",
+                  "hi": "अधिक कोण किताब के कोने से चौड़ा होता है। तीन बजे सुइयाँ उससे ज़्यादा नहीं खुलतीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A door opened a little makes a small gap. Is the angle acute or obtuse?",
+                "hi": "थोड़ा-सा खुला दरवाज़ा छोटी दरार बनाता है। यह कोण न्यून है या अधिक?"
+              },
+              "options": [
+                {
+                  "en": "Acute",
+                  "hi": "न्यून"
+                },
+                {
+                  "en": "Obtuse",
+                  "hi": "अधिक"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A small opening is smaller than a right angle, so it is acute.",
+                "hi": "छोटा खुलाव समकोण से छोटा है, इसलिए यह न्यून है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Obtuse is wider than a book's corner. A door opened only a little is much narrower.",
+                  "hi": "अधिक कोण किताब के कोने से चौड़ा होता है। थोड़ा खुला दरवाज़ा उससे बहुत कम खुला है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make a right angle, then open the arms a little more and a little less. Say each time: acute, right or obtuse?",
+            "hi": "समकोण बनाओ, फिर भुजाएँ थोड़ी ज़्यादा और थोड़ी कम खोलो। हर बार बोलो: न्यून, समकोण या अधिक?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1.1",
+      "use": "Chapter hook: a model city",
+      "shows": "A table-top model city made of cardboard boxes, tubes, a tent-shaped roof and a pyramid-shaped tower on a school desk, a child's hands placing a roof",
+      "view": "Slightly above, three-quarter angle, soft window light",
+      "right": "Each block clearly a cuboid, a cylinder, a triangular prism or a pyramid; hands only",
+      "avoid": "Any face of a child, printed words, brand names on boxes"
+    },
+    {
+      "n": 2,
+      "kind": "3DM",
+      "topic": "1.1",
+      "use": "Models for the count labs",
+      "shows": "A clean triangular prism, a square pyramid, a hexagonal prism and a pentagonal pyramid as plain painted wooden models, one model per set, five fixed angles each",
+      "view": "Front, side, top, three-quarter left, three-quarter right; same size and centre",
+      "right": "Edges sharp, faces flat and evenly coloured so the faces can be counted",
+      "avoid": "Patterns, text, shadows baked in"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "1.2",
+      "use": "Sorting cards: real prisms",
+      "shows": "A cut-out of a small tent, a matchbox and an unsharpened six-sided pencil, each on a transparent background",
+      "view": "Three-quarter view so both ends and the sides show",
+      "right": "True colours; the two same ends of each object clearly visible",
+      "avoid": "Brand names, writing on the matchbox"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "1.2",
+      "use": "Sorting cards: real pyramids",
+      "shows": "A cut-out of a pyramid-shaped paperweight and a small model of an Egyptian pyramid",
+      "view": "Slightly above so the apex and base both show",
+      "right": "Apex a single point; base clearly square",
+      "avoid": "Text, tourist logos"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "1.3",
+      "use": "Angles in daily life: the opening door",
+      "shows": "A classroom door seen from above in four frames: nearly closed, quarter open, wide open, fully back against the wall",
+      "view": "Same fixed camera above the hinge, same light, doorframe the same in every frame",
+      "right": "The gap between door and frame grows from small to wide so acute, right and obtuse angles can be seen",
+      "avoid": "People in the frames, labels, degree marks"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "1.3",
+      "use": "Angle frame the app measures",
+      "shows": "Two long arms joined at a point with a small curved mark between them, no numbers",
+      "view": "Flat, white or transparent background, arms thick and clear",
+      "right": "Arms exactly straight; corner point visible",
+      "avoid": "Degree numbers, words, shading"
+    },
+    {
+      "n": 7,
+      "kind": "SCN",
+      "topic": "1.4",
+      "use": "Straws and clay",
+      "shows": "A straw-and-clay triangle and a straw-and-clay rectangle on a table; a hand pushes the rectangle so it leans over while the triangle stays firm",
+      "view": "Close, slightly above, even light",
+      "right": "The rectangle visibly leaning and the triangle visibly unchanged",
+      "avoid": "Faces, scissors left on the table"
+    }
+  ]
+}

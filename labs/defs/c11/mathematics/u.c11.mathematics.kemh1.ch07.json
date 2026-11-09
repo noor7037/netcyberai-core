@@ -1,0 +1,685 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch07",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Binomial Theorem",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Introduction: expanding (a + b)² and (a + b)³ and the pattern of coefficients",
+   "labs": [
+    "c11-mathematics-kemh1-ch07-square-area"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Binomial theorem for positive integral indices, Pascal's triangle, the general theorem and special cases",
+   "labs": [
+    "c11-mathematics-kemh1-ch07-pascal",
+    "c11-mathematics-kemh1-ch07-general-term",
+    "c11-mathematics-kemh1-ch07-special-cases"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch07-square-area",
+   "topic": "7.1",
+   "template": "algebra",
+   "title": {
+    "en": "(x + 3)² as an area",
+    "hi": "(x + 3)² एक क्षेत्रफल के रूप में"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "expand",
+    "equation": "(x+3)^2"
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A square of side x + 3 is cut into four parts: an x by x square, two x by 3 strips and a 3 by 3 square. Their areas added together give (x + 3)².",
+      "hi": "x + 3 भुजा वाला वर्ग चार भागों में कटा है: x गुणा x का वर्ग, x गुणा 3 की दो पट्टियाँ और 3 गुणा 3 का वर्ग। इनके क्षेत्रफल जोड़ने पर (x + 3)² मिलता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Many people write (x + 3)² = x² + 9. What is missing?",
+      "hi": "बहुत लोग (x + 3)² = x² + 9 लिखते हैं। क्या छूट गया?"
+     },
+     "options": [
+      {
+       "id": "6x",
+       "en": "The two strips, 6x",
+       "hi": "दो पट्टियाँ, 6x"
+      },
+      {
+       "id": "3x",
+       "en": "One strip, 3x",
+       "hi": "एक पट्टी, 3x"
+      },
+      {
+       "id": "none",
+       "en": "Nothing is missing",
+       "hi": "कुछ नहीं छूटा"
+      }
+     ],
+     "answer": "6x"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "expanded",
+     "say": {
+      "en": "Tap the cells to see each area, then type the full expansion and check.",
+      "hi": "हर क्षेत्रफल देखने के लिए ख़ानों पर टैप करो, फिर पूरा विस्तार लिखकर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "(x + 3)² = x² + 3x + 3x + 9 = x² + 6x + 9. In general (a + b)² = a² + 2ab + b², with coefficients 1, 2, 1. For (a + b)³ the coefficients are 1, 3, 3, 1. The binomial theorem gives these numbers for every power without multiplying out.",
+      "hi": "(x + 3)² = x² + 3x + 3x + 9 = x² + 6x + 9। सामान्यतः (a + b)² = a² + 2ab + b², गुणांक 1, 2, 1। (a + b)³ के गुणांक 1, 3, 3, 1 हैं। द्विपद प्रमेय हर घात के लिए ये संख्याएँ बिना गुणा किए देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is (2x + 1)²?",
+        "hi": "(2x + 1)² क्या है?"
+       },
+       "options": [
+        "4x² + 4x + 1",
+        "2x² + 4x + 1",
+        "4x² + 1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(2x)² + 2(2x)(1) + 1² = 4x² + 4x + 1.",
+        "hi": "(2x)² + 2(2x)(1) + 1² = 4x² + 4x + 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The whole 2x is squared: (2x)² = 4x², not 2x².",
+         "hi": "पूरा 2x वर्ग होता है: (2x)² = 4x², 2x² नहीं।"
+        },
+        {
+         "en": "The middle term 2ab = 4x is missing.",
+         "hi": "बीच का पद 2ab = 4x छूट गया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many terms does (a + b)³ have when expanded?",
+        "hi": "(a + b)³ के विस्तार में कितने पद हैं?"
+       },
+       "options": [
+        "3",
+        "4",
+        "8"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "a³ + 3a²b + 3ab² + b³: four terms. (a + b)ⁿ always has n + 1 terms.",
+        "hi": "a³ + 3a²b + 3ab² + b³: चार पद। (a + b)ⁿ में हमेशा n + 1 पद होते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "3 is the power; the number of terms is one more than the power.",
+         "hi": "3 तो घात है; पदों की संख्या घात से एक ज़्यादा होती है।"
+        },
+        "",
+        {
+         "en": "8 = 2³ counts the products before like terms are joined; after joining there are 4.",
+         "hi": "8 = 2³ समान पद मिलाने से पहले के गुणनफल गिनता है; मिलाने पर 4 बचते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the slider to put a number in for x, say x = 2. Check that (2 + 3)² = 25 and that 4 + 12 + 9 = 25 too.",
+      "hi": "स्लाइडर से x में कोई संख्या रखो, जैसे x = 2। जाँचो कि (2 + 3)² = 25 और 4 + 12 + 9 = 25 भी।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch07-pascal",
+   "topic": "7.2",
+   "template": "code",
+   "title": {
+    "en": "Pascal's triangle, row by row",
+    "hi": "पास्कल त्रिभुज, पंक्ति-दर-पंक्ति"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "row = [1]",
+     "n = 0",
+     "print(row)",
+     "while n < 5:",
+     "    new = [1]",
+     "    for k in range(len(row) - 1):",
+     "        new.append(row[k] + row[k + 1])",
+     "    new.append(1)",
+     "    row = new",
+     "    n = n + 1",
+     "    print(row)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each new row starts and ends with 1. Every number inside is the sum of the two numbers just above it. Row n gives the coefficients of (a + b)ⁿ.",
+      "hi": "हर नई पंक्ति 1 से शुरू और 1 पर ख़त्म होती है। अंदर की हर संख्या उसके ठीक ऊपर की दो संख्याओं का योग है। पंक्ति n, (a + b)ⁿ के गुणांक देती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step a few times to see the first rows made.",
+      "hi": "पहली पंक्तियाँ बनते देखने के लिए कुछ बार Step दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Row 3 is 1 3 3 1. What will row 4 be?",
+      "hi": "पंक्ति 3 है 1 3 3 1। पंक्ति 4 क्या होगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Row 4: 1 4 6 4 1",
+       "hi": "पंक्ति 4: 1 4 6 4 1"
+      },
+      {
+       "id": "b",
+       "en": "Row 4: 1 4 4 4 1",
+       "hi": "पंक्ति 4: 1 4 4 4 1"
+      },
+      {
+       "id": "c",
+       "en": "Row 4: 1 3 6 3 1",
+       "hi": "पंक्ति 4: 1 3 6 3 1"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to finish the triangle up to row 5.",
+      "hi": "पंक्ति 5 तक त्रिभुज पूरा करने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "1 + 3 = 4, 3 + 3 = 6, 3 + 1 = 4, so row 4 is 1 4 6 4 1, and (a + b)⁴ = a⁴ + 4a³b + 6a²b² + 4ab³ + b⁴. Row 5 is 1 5 10 10 5 1. The numbers in row n are ⁿC₀, ⁿC₁, …, ⁿCₙ; the adding rule is ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ₊₁.",
+      "hi": "1 + 3 = 4, 3 + 3 = 6, 3 + 1 = 4, इसलिए पंक्ति 4 है 1 4 6 4 1, और (a + b)⁴ = a⁴ + 4a³b + 6a²b² + 4ab³ + b⁴। पंक्ति 5 है 1 5 10 10 5 1। पंक्ति n की संख्याएँ ⁿC₀, ⁿC₁, …, ⁿCₙ हैं; जोड़ने का नियम ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ₊₁ है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the coefficient of a³b² in (a + b)⁵?",
+        "hi": "(a + b)⁵ में a³b² का गुणांक क्या है?"
+       },
+       "options": [
+        "5",
+        "10",
+        "3"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Row 5 is 1 5 10 10 5 1. The term with b² is the third term: ⁵C₂ = 10.",
+        "hi": "पंक्ति 5 है 1 5 10 10 5 1। b² वाला पद तीसरा पद है: ⁵C₂ = 10।"
+       },
+       "wrong": [
+        {
+         "en": "5 belongs to a⁴b, the second term.",
+         "hi": "5 तो a⁴b, दूसरे पद, का है।"
+        },
+        "",
+        {
+         "en": "The powers are not coefficients; the coefficient comes from the triangle.",
+         "hi": "घातें गुणांक नहीं हैं; गुणांक त्रिभुज से आता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Row 6 begins 1 6 15 … What is the next number?",
+        "hi": "पंक्ति 6 शुरू होती है 1 6 15 … अगली संख्या क्या है?"
+       },
+       "options": [
+        "20",
+        "15",
+        "25"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is the sum of the two middle numbers of row 5: 10 + 10 = 20 (that is ⁶C₃).",
+        "hi": "यह पंक्ति 5 की दो बीच वाली संख्याओं का योग है: 10 + 10 = 20 (यानी ⁶C₃)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "15 comes again later, on the other side; the triangle is symmetric about the middle 20.",
+         "hi": "15 बाद में दूसरी ओर फिर आता है; त्रिभुज बीच के 20 के चारों ओर सममित है।"
+        },
+        {
+         "en": "25 is 10 + 15, which mixes two different rows.",
+         "hi": "25 = 10 + 15 दो अलग पंक्तियों को मिलाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look along each row: it reads the same forwards and backwards. Which fact about ⁿCᵣ does that show?",
+      "hi": "हर पंक्ति देखो: आगे से और पीछे से एक जैसी पढ़ी जाती है। यह ⁿCᵣ के बारे में कौन-सा तथ्य दिखाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch07-general-term",
+   "topic": "7.2",
+   "template": "code",
+   "title": {
+    "en": "Every term of (x + 2)⁵",
+    "hi": "(x + 2)⁵ का हर पद"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "def fact(n):",
+     "    p = 1",
+     "    for k in range(1, n + 1):",
+     "        p = p * k",
+     "    return p",
+     "def C(n, r):",
+     "    return fact(n) // (fact(r) * fact(n - r))",
+     "n = 5",
+     "for r in range(n + 1):",
+     "    coef = C(n, r) * 2 ** r",
+     "    print('T' + str(r + 1), ': coefficient', coef, ', power of x', n - r)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "By the binomial theorem the (r + 1)th term of (a + b)ⁿ is Tᵣ₊₁ = ⁿCᵣ aⁿ⁻ʳ bʳ. Here a = x, b = 2 and n = 5, so each coefficient is ⁵Cᵣ × 2ʳ and the power of x is 5 − r.",
+      "hi": "द्विपद प्रमेय से (a + b)ⁿ का (r + 1)वाँ पद Tᵣ₊₁ = ⁿCᵣ aⁿ⁻ʳ bʳ है। यहाँ a = x, b = 2 और n = 5, इसलिए हर गुणांक ⁵Cᵣ × 2ʳ है और x की घात 5 − r।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which term will have x²?",
+      "hi": "किस पद में x² होगा?"
+     },
+     "options": [
+      {
+       "id": "t3",
+       "en": "T3, the third term",
+       "hi": "T3, तीसरा पद"
+      },
+      {
+       "id": "t4",
+       "en": "T4, the fourth term",
+       "hi": "T4, चौथा पद"
+      },
+      {
+       "id": "t2",
+       "en": "T2, the second term",
+       "hi": "T2, दूसरा पद"
+      }
+     ],
+     "answer": "t4"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to see the functions fact and C defined.",
+      "hi": "फ़ंक्शन fact और C को परिभाषित होते देखने के लिए Step दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to print all six terms.",
+      "hi": "सभी छह पद छापने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "x² needs 5 − r = 2, so r = 3 and it is T₄ = ⁵C₃ × 2³ x² = 10 × 8 x² = 80x². The full expansion is x⁵ + 10x⁴ + 40x³ + 80x² + 80x + 32. The last term, 2⁵ = 32, is the term free of x.",
+      "hi": "x² के लिए 5 − r = 2, यानी r = 3, और यह T₄ = ⁵C₃ × 2³ x² = 10 × 8 x² = 80x² है। पूरा विस्तार x⁵ + 10x⁴ + 40x³ + 80x² + 80x + 32 है। अंतिम पद, 2⁵ = 32, x से मुक्त पद है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: what is coef at the end?",
+      "hi": "लैब के प्रश्न का उत्तर दो: अंत में coef कितना है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the coefficient of x in (x + 2)⁵?",
+        "hi": "(x + 2)⁵ में x का गुणांक क्या है?"
+       },
+       "options": [
+        "80",
+        "10",
+        "32"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "x¹ needs r = 4: ⁵C₄ × 2⁴ = 5 × 16 = 80.",
+        "hi": "x¹ के लिए r = 4: ⁵C₄ × 2⁴ = 5 × 16 = 80।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "10 belongs to x⁴ (r = 1: 5 × 2).",
+         "hi": "10 तो x⁴ का है (r = 1: 5 × 2)।"
+        },
+        {
+         "en": "32 is the constant term, with no x at all.",
+         "hi": "32 अचर पद है, जिसमें x है ही नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In the expansion of (1 + x)⁸, which term is the middle term?",
+        "hi": "(1 + x)⁸ के विस्तार में मध्य पद कौन-सा है?"
+       },
+       "options": [
+        "T4",
+        "T5",
+        "T8"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "There are 8 + 1 = 9 terms, so the middle one is the 5th: T₅ = ⁸C₄ x⁴ = 70x⁴.",
+        "hi": "8 + 1 = 9 पद हैं, इसलिए बीच वाला 5वाँ है: T₅ = ⁸C₄ x⁴ = 70x⁴।"
+       },
+       "wrong": [
+        {
+         "en": "T4 has 3 terms before it and 5 after; the middle needs 4 on each side.",
+         "hi": "T4 से पहले 3 और बाद में 5 पद हैं; बीच वाले के दोनों ओर 4 चाहिए।"
+        },
+        "",
+        {
+         "en": "T8 is near the end; the middle of 9 terms is the 5th.",
+         "hi": "T8 अंत के पास है; 9 पदों का बीच 5वाँ है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change b from 2 to −2 in your head. Which coefficients change sign? Compare with (x − 2)⁵.",
+      "hi": "मन में b को 2 से −2 करो। किन गुणांकों का चिह्न बदलेगा? (x − 2)⁵ से तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch07-special-cases",
+   "topic": "7.2",
+   "template": "code",
+   "title": {
+    "en": "Put a = b = 1: the sum of a row",
+    "hi": "a = b = 1 रखो: पंक्ति का योग"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "row = [1, 5, 10, 10, 5, 1]",
+     "total = 0",
+     "alt = 0",
+     "sign = 1",
+     "for c in row:",
+     "    total = total + c",
+     "    alt = alt + sign * c",
+     "    sign = -sign",
+     "print('sum =', total)",
+     "print('alternating sum =', alt)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Put a = 1 and b = 1 in (a + b)⁵. The left side is 2⁵. The right side becomes the sum of the coefficients of row 5. The program adds the row, and also adds it with signs + − + − … (that is b = −1).",
+      "hi": "(a + b)⁵ में a = 1 और b = 1 रखो। बायाँ पक्ष 2⁵ है। दायाँ पक्ष पंक्ति 5 के गुणांकों का योग बन जाता है। प्रोग्राम पंक्ति जोड़ता है, और + − + − … चिह्नों के साथ भी जोड़ता है (यानी b = −1)।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will the alternating sum 1 − 5 + 10 − 10 + 5 − 1 be?",
+      "hi": "एकांतर योग 1 − 5 + 10 − 10 + 5 − 1 क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "0",
+       "en": "0, because (1 − 1)⁵ = 0",
+       "hi": "0, क्योंकि (1 − 1)⁵ = 0"
+      },
+      {
+       "id": "32",
+       "en": "32, the same as the sum",
+       "hi": "32, योग जितना"
+      },
+      {
+       "id": "2",
+       "en": "2, only the first and last count",
+       "hi": "2, केवल पहला और आख़िरी गिनकर"
+      }
+     ],
+     "answer": "0"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to add the row both ways.",
+      "hi": "पंक्ति को दोनों तरह जोड़ने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sum is 32 = 2⁵: ⁵C₀ + ⁵C₁ + … + ⁵C₅ = 2⁵. The alternating sum is (1 − 1)⁵ = 0. Putting simple values like 1 or −1 into the theorem gives facts about the coefficients without adding them by hand.",
+      "hi": "योग 32 = 2⁵ है: ⁵C₀ + ⁵C₁ + … + ⁵C₅ = 2⁵। एकांतर योग (1 − 1)⁵ = 0 है। प्रमेय में 1 या −1 जैसे सरल मान रखने से गुणांकों के बारे में तथ्य मिलते हैं, बिना हाथ से जोड़े।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: what is total at the end?",
+      "hi": "लैब के प्रश्न का उत्तर दो: अंत में total कितना है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the sum of all the coefficients in (a + b)⁸?",
+        "hi": "(a + b)⁸ के सभी गुणांकों का योग क्या है?"
+       },
+       "options": [
+        "16",
+        "64",
+        "256"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Put a = b = 1: 2⁸ = 256.",
+        "hi": "a = b = 1 रखो: 2⁸ = 256।"
+       },
+       "wrong": [
+        {
+         "en": "16 = 2 × 8 multiplies instead of raising 2 to the power 8.",
+         "hi": "16 = 2 × 8 गुणा करता है, 2 की घात 8 नहीं लेता।"
+        },
+        {
+         "en": "64 = 2⁶ uses the wrong power.",
+         "hi": "64 = 2⁶ ग़लत घात लेता है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Using the theorem, about how much is (1.01)⁵?",
+        "hi": "प्रमेय से (1.01)⁵ लगभग कितना है?"
+       },
+       "options": [
+        {
+         "en": "About 1.05",
+         "hi": "लगभग 1.05"
+        },
+        {
+         "en": "About 5.05",
+         "hi": "लगभग 5.05"
+        },
+        {
+         "en": "About 1.5",
+         "hi": "लगभग 1.5"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(1 + 0.01)⁵ = 1 + 5(0.01) + 10(0.0001) + … ≈ 1.051; the later terms are tiny.",
+        "hi": "(1 + 0.01)⁵ = 1 + 5(0.01) + 10(0.0001) + … ≈ 1.051; बाद के पद बहुत छोटे हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5.05 multiplies 1.01 by 5; a power multiplies 1.01 by itself.",
+         "hi": "5.05 तो 1.01 को 5 से गुणा करता है; घात 1.01 को ख़ुद से गुणा करती है।"
+        },
+        {
+         "en": "The second term is 5 × 0.01 = 0.05, not 0.5.",
+         "hi": "दूसरा पद 5 × 0.01 = 0.05 है, 0.5 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add every other number in row 5: 1 + 10 + 5 and 5 + 10 + 1. Why are both 16, half of 32?",
+      "hi": "पंक्ति 5 की एक छोड़ एक संख्याएँ जोड़ो: 1 + 10 + 5 और 5 + 10 + 1। दोनों 16, यानी 32 का आधा, क्यों हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Area model of (a + b)²",
+   "shows": "A square wooden puzzle cut into four pieces: a large square, two equal long rectangles and a small square, slightly pulled apart",
+   "view": "Top view, soft light, transparent background",
+   "right": "The two rectangles exactly equal; pieces fit back into one perfect square",
+   "avoid": "Markings, letters, numbers"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "7.1",
+   "use": "Cube model of (a + b)³",
+   "shows": "A wooden cube built from 8 blocks (one big cube, three slabs, three rods, one small cube), shown assembled and slightly exploded",
+   "view": "Front, side, top and three-quarter views, same size and centre",
+   "right": "Three equal slabs and three equal rods, matching the 1, 3, 3, 1 pattern",
+   "avoid": "Any writing on the blocks"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Pascal's triangle as a stack",
+   "shows": "Brass diyas stacked in a triangle on a temple step during Diwali, one on top, then two, three, four and five in rows",
+   "view": "Straight-on view, warm evening light",
+   "right": "Each row exactly one more than the row above, rows centred",
+   "avoid": "Faces, readable signs, smoke hiding the rows"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "7.2",
+   "use": "Triangle base for Pascal's numbers",
+   "shows": "Empty hexagon cells arranged in a triangle of six rows, each cell touching the two cells above it",
+   "view": "Flat, centred, white background",
+   "right": "Six rows from one to six cells, evenly spaced",
+   "avoid": "Numbers or letters baked in"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "7.2",
+   "use": "Growth by small steps: (1.01)ⁿ",
+   "shows": "Four frames of the same glass jar of coins, filling slightly more each frame",
+   "view": "Same front camera and light in every frame",
+   "right": "Only the coin level changes, by a small amount each time",
+   "avoid": "Brand marks, notes with readable serial numbers"
+  }
+ ]
+}

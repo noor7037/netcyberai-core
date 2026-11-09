@@ -1,0 +1,1413 @@
+{
+ "chapter_key": "u.c11.sociology.kesy1.ch03",
+ "class": 11,
+ "subject_id": "sociology",
+ "title": "Understanding Social Institutions",
+ "source": "https://ncert.nic.in/textbook/pdf/kesy103.pdf",
+ "topics": [
+  {
+   "n": "3.0",
+   "title": "Introduction: social institutions",
+   "labs": [
+    "c11-sociology-kesy1-ch03-institutions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.1",
+   "title": "Family, marriage and kinship",
+   "labs": [
+    "c11-sociology-kesy1-ch03-kinship",
+    "c11-sociology-kesy1-ch03-marriage-forms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Work and economic life",
+   "labs": [
+    "c11-sociology-kesy1-ch03-work-ages"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Politics",
+   "labs": [],
+   "why_no_lab": "The overview lab names politics as the rule-making institution; power and the state return in the social order chapter labs."
+  },
+  {
+   "n": "3.4",
+   "title": "Religion",
+   "labs": [
+    "c11-sociology-kesy1-ch03-sacred"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Education",
+   "labs": [],
+   "why_no_lab": "Best taught by classroom photographs and the reader's discussion questions rather than a click activity."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-sociology-kesy1-ch03-kinship",
+   "topic": "3.1",
+   "template": "society",
+   "title": {
+    "en": "Kinship: a family tree",
+    "hi": "नातेदारी: एक वंश-वृक्ष"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "family-tree",
+    "title": {
+     "en": "Who is who in the family?",
+     "hi": "परिवार में कौन क्या लगता है?"
+    },
+    "intro": {
+     "en": "Link people who are related. Parents go above their children.",
+     "hi": "जो लोग संबंधी हैं उन्हें जोड़ो। माता-पिता अपने बच्चों के ऊपर रहते हैं।"
+    },
+    "nodes": [
+     {
+      "id": "dada",
+      "label": {
+       "en": "Dada (grandfather)",
+       "hi": "दादा"
+      }
+     },
+     {
+      "id": "dadi",
+      "label": {
+       "en": "Dadi (grandmother)",
+       "hi": "दादी"
+      }
+     },
+     {
+      "id": "papa",
+      "label": {
+       "en": "Papa",
+       "hi": "पापा"
+      }
+     },
+     {
+      "id": "mummy",
+      "label": {
+       "en": "Mummy",
+       "hi": "मम्मी"
+      }
+     },
+     {
+      "id": "chacha",
+      "label": {
+       "en": "Chacha (Papa's brother)",
+       "hi": "चाचा (पापा के भाई)"
+      }
+     },
+     {
+      "id": "you",
+      "label": {
+       "en": "You",
+       "hi": "तुम"
+      }
+     },
+     {
+      "id": "sister",
+      "label": {
+       "en": "Your sister",
+       "hi": "तुम्हारी बहन"
+      }
+     },
+     {
+      "id": "cousin",
+      "label": {
+       "en": "Your cousin",
+       "hi": "तुम्हारा चचेरा भाई या बहन"
+      }
+     }
+    ],
+    "links": [
+     [
+      "dada",
+      "dadi",
+      {
+       "en": "Husband and wife, your grandparents",
+       "hi": "पति-पत्नी, तुम्हारे दादा-दादी"
+      },
+      "couple"
+     ],
+     [
+      "dada",
+      "papa",
+      {
+       "en": "Dada is Papa's father",
+       "hi": "दादा पापा के पिता हैं"
+      }
+     ],
+     [
+      "dada",
+      "chacha",
+      {
+       "en": "Dada is Chacha's father too",
+       "hi": "दादा चाचा के भी पिता हैं"
+      }
+     ],
+     [
+      "papa",
+      "mummy",
+      {
+       "en": "Your parents are husband and wife",
+       "hi": "तुम्हारे माता-पिता पति-पत्नी हैं"
+      },
+      "couple"
+     ],
+     [
+      "papa",
+      "you",
+      {
+       "en": "Papa is your father",
+       "hi": "पापा तुम्हारे पिता हैं"
+      }
+     ],
+     [
+      "you",
+      "sister",
+      {
+       "en": "You and your sister share the same parents",
+       "hi": "तुम और तुम्हारी बहन के माता-पिता एक ही हैं"
+      },
+      "sibling"
+     ],
+     [
+      "chacha",
+      "cousin",
+      {
+       "en": "Chacha is the cousin's father",
+       "hi": "चाचा चचेरे भाई-बहन के पिता हैं"
+      }
+     ],
+     [
+      "you",
+      "cousin",
+      {
+       "en": "Chacha's child is your cousin",
+       "hi": "चाचा की संतान तुम्हारी चचेरी बहन या भाई है"
+      },
+      "cousin"
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"Dada (grandfather)\" and \"Papa\", then press Link.",
+      "hi": "\"दादा\" और \"पापा\" छुओ, फिर जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Papa's brother's child is your…",
+      "hi": "पापा के भाई की संतान तुम्हारी… है"
+     },
+     "options": [
+      {
+       "id": "cousin",
+       "en": "cousin",
+       "hi": "चचेरी बहन या भाई"
+      },
+      {
+       "id": "brother",
+       "en": "brother",
+       "hi": "सगा भाई"
+      },
+      {
+       "id": "uncle",
+       "en": "uncle",
+       "hi": "चाचा"
+      }
+     ],
+     "answer": "cousin"
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"Papa\" and \"You\", then press Link.",
+      "hi": "\"पापा\" और \"तुम\" छुओ, फिर जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "complete",
+     "say": {
+      "en": "Finish the tree by linking the rest.",
+      "hi": "बाक़ी लोगों को जोड़कर वृक्ष पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Kinship is the web of relatives we are born into or gain by marriage. Relatives by blood come from a common ancestor, like grandfather and father. Relatives by marriage come through a husband or wife. A family tree shows who stands in which generation.",
+      "hi": "नातेदारी रिश्तेदारों का वह जाल है जिसमें हम जन्म लेते हैं या विवाह से जुड़ते हैं। रक्त-संबंधी एक साझे पूर्वज से आते हैं, जैसे दादा और पिता। विवाह के संबंधी पति या पत्नी के ज़रिए जुड़ते हैं। वंश-वृक्ष दिखाता है कि कौन किस पीढ़ी में है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Dada's wife is your…",
+        "hi": "दादा की पत्नी तुम्हारी… हैं"
+       },
+       "options": [
+        {
+         "en": "Dadi, father's mother",
+         "hi": "दादी, पिता की माँ"
+        },
+        {
+         "en": "Nani, mother's mother",
+         "hi": "नानी, माँ की माँ"
+        },
+        {
+         "en": "Bua, father's sister",
+         "hi": "बुआ, पिता की बहन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Your father's mother is Dadi.",
+        "hi": "पिता की माँ दादी होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nani is the mother of your mother, not of your father.",
+         "hi": "नानी तुम्हारी माँ की माँ हैं, पिता की नहीं।"
+        },
+        {
+         "en": "Bua is a sister of your father, one generation up.",
+         "hi": "बुआ तुम्हारे पिता की बहन हैं, एक पीढ़ी ऊपर।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which pair are in the same generation?",
+        "hi": "कौन-सी जोड़ी एक ही पीढ़ी की है?"
+       },
+       "options": [
+        {
+         "en": "You and your cousin",
+         "hi": "तुम और तुम्हारा चचेरा भाई या बहन"
+        },
+        {
+         "en": "You and Papa",
+         "hi": "तुम और पापा"
+        },
+        {
+         "en": "You and Dada",
+         "hi": "तुम और दादा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cousins are children of two brothers or sisters, so they are the same generation.",
+        "hi": "चचेरे भाई-बहन दो भाइयों या बहनों की संतान हैं, इसलिए एक ही पीढ़ी के हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Papa is one generation above you.",
+         "hi": "पापा तुमसे एक पीढ़ी ऊपर हैं।"
+        },
+        {
+         "en": "Dada is two generations above you.",
+         "hi": "दादा तुमसे दो पीढ़ी ऊपर हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw the family tree of a friend or neighbour. Do you see the same pattern or a different one?",
+      "hi": "अपने किसी दोस्त या पड़ोसी का वंश-वृक्ष बनाओ। क्या वही ढाँचा दिखता है या अलग?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy1-ch03-marriage-forms",
+   "topic": "3.1",
+   "template": "match",
+   "title": {
+    "en": "Forms of marriage",
+    "hi": "विवाह के रूप"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "mono",
+      "left": {
+       "en": "Monogamy",
+       "hi": "एकविवाह"
+      },
+      "right": {
+       "en": "A person has only one spouse at a time",
+       "hi": "एक समय में व्यक्ति का एक ही जीवनसाथी होता है"
+      },
+      "why": {
+       "en": "Mono means one.",
+       "hi": "मोनो का अर्थ है एक।"
+      }
+     },
+     {
+      "id": "polygyny",
+      "left": {
+       "en": "Polygyny",
+       "hi": "बहुपत्नी विवाह"
+      },
+      "right": {
+       "en": "One man married to more than one woman at the same time",
+       "hi": "एक पुरुष का एक ही समय कई स्त्रियों से विवाह"
+      },
+      "why": {
+       "en": "Gyny refers to women.",
+       "hi": "गाइनी का संबंध स्त्रियों से है।"
+      }
+     },
+     {
+      "id": "polyandry",
+      "left": {
+       "en": "Polyandry",
+       "hi": "बहुपति विवाह"
+      },
+      "right": {
+       "en": "One woman married to more than one man at the same time",
+       "hi": "एक स्त्री का एक ही समय कई पुरुषों से विवाह"
+      },
+      "why": {
+       "en": "Andry refers to men.",
+       "hi": "एंड्री का संबंध पुरुषों से है।"
+      }
+     },
+     {
+      "id": "endogamy",
+      "left": {
+       "en": "Endogamy",
+       "hi": "अंतर्विवाह"
+      },
+      "right": {
+       "en": "Marrying within a group such as a caste or community",
+       "hi": "अपने ही समूह, जैसे जाति या समुदाय, में विवाह"
+      },
+      "why": {
+       "en": "Endo means within.",
+       "hi": "एंडो का अर्थ है भीतर।"
+      }
+     },
+     {
+      "id": "exogamy",
+      "left": {
+       "en": "Exogamy",
+       "hi": "बहिर्विवाह"
+      },
+      "right": {
+       "en": "Marrying outside a group such as one's own gotra or village",
+       "hi": "अपने गोत्र या गाँव जैसे समूह के बाहर विवाह"
+      },
+      "why": {
+       "en": "Exo means outside.",
+       "hi": "एक्सो का अर्थ है बाहर।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:mono",
+     "expect": "matched:mono",
+     "say": {
+      "en": "Tap \"Monogamy\" on the left, then its partner on the right.",
+      "hi": "बाईं ओर \"एकविवाह\" छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these matches polyandry?",
+      "hi": "इनमें से कौन बहुपति विवाह से मेल खाता है?"
+     },
+     "options": [
+      {
+       "id": "polyandry",
+       "en": "One woman married to more than one man at the same time",
+       "hi": "एक स्त्री का एक ही समय कई पुरुषों से विवाह"
+      },
+      {
+       "id": "mono",
+       "en": "A person has only one spouse at a time",
+       "hi": "एक समय में व्यक्ति का एक ही जीवनसाथी होता है"
+      },
+      {
+       "id": "polygyny",
+       "en": "One man married to more than one woman at the same time",
+       "hi": "एक पुरुष का एक ही समय कई स्त्रियों से विवाह"
+      }
+     ],
+     "answer": "polyandry"
+    },
+    {
+     "kind": "do",
+     "target": "left:polyandry",
+     "expect": "matched:polyandry",
+     "say": {
+      "en": "Now match \"Polyandry\".",
+      "hi": "अब \"बहुपति विवाह\" का जोड़ा बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the cards.",
+      "hi": "बाक़ी सारे कार्ड जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Societies arrange marriage in different ways. Monogamy, one spouse, is most common. Polygyny and polyandry mean more than one wife or husband. Endogamy means marrying inside a group, exogamy outside it. Rules about whom one may marry shape families and kinship.",
+      "hi": "समाज विवाह को अलग-अलग ढंग से तय करते हैं। एकविवाह, यानी एक जीवनसाथी, सबसे आम है। बहुपत्नी और बहुपति विवाह में एक से ज़्यादा पत्नी या पति होते हैं। अंतर्विवाह समूह के भीतर, बहिर्विवाह समूह के बाहर होता है। किससे विवाह हो सकता है, यह नियम परिवार और नातेदारी को ढालते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A man has two wives at the same time. This is…",
+        "hi": "एक पुरुष की एक ही समय दो पत्नियाँ हैं। यह है…"
+       },
+       "options": [
+        {
+         "en": "monogamy",
+         "hi": "एकविवाह"
+        },
+        {
+         "en": "polygyny",
+         "hi": "बहुपत्नी विवाह"
+        },
+        {
+         "en": "polyandry",
+         "hi": "बहुपति विवाह"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "More than one wife for one man is polygyny.",
+        "hi": "एक पुरुष की एक से अधिक पत्नियाँ बहुपत्नी विवाह है।"
+       },
+       "wrong": [
+        {
+         "en": "Monogamy means only one spouse.",
+         "hi": "एकविवाह में सिर्फ़ एक जीवनसाथी होता है।"
+        },
+        "",
+        {
+         "en": "Polyandry is one woman with several husbands.",
+         "hi": "बहुपति विवाह में एक स्त्री के कई पति होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A rule says you must marry outside your own village. This is…",
+        "hi": "एक नियम कहता है कि अपने गाँव के बाहर विवाह करना है। यह है…"
+       },
+       "options": [
+        {
+         "en": "exogamy",
+         "hi": "बहिर्विवाह"
+        },
+        {
+         "en": "endogamy",
+         "hi": "अंतर्विवाह"
+        },
+        {
+         "en": "monogamy",
+         "hi": "एकविवाह"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Marrying outside a named group is exogamy.",
+        "hi": "किसी नामित समूह के बाहर विवाह बहिर्विवाह है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Endogamy is marrying inside a group.",
+         "hi": "अंतर्विवाह समूह के भीतर विवाह है।"
+        },
+        {
+         "en": "Monogamy is about the number of spouses, not the group.",
+         "hi": "एकविवाह जीवनसाथियों की संख्या की बात है, समूह की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Marriage customs and songs differ across India. Ask an elder about one custom in your family and what it tells about the rules of marriage.",
+      "hi": "भारत में विवाह की रीतियाँ और गीत अलग-अलग हैं। किसी बड़े से अपने परिवार की एक रीति पूछो और देखो वह विवाह के नियमों के बारे में क्या बताती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy1-ch03-work-ages",
+   "topic": "3.2",
+   "template": "sequence",
+   "title": {
+    "en": "How work has changed",
+    "hi": "काम का बदलता रूप"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "hunt",
+      "text": {
+       "en": "Hunting and gathering: food from forests and rivers",
+       "hi": "शिकार और संग्रह: जंगल और नदियों से भोजन"
+      }
+     },
+     {
+      "id": "farm",
+      "text": {
+       "en": "Settled farming and herding: villages and crafts grow",
+       "hi": "बसी खेती और पशुपालन: गाँव और दस्तकारी बढ़ती है"
+      }
+     },
+     {
+      "id": "factory",
+      "text": {
+       "en": "Factory work: machines and wages draw workers to towns",
+       "hi": "कारख़ाने का काम: मशीनें और मज़दूरी मज़दूरों को शहर लाती हैं"
+      }
+     },
+     {
+      "id": "service",
+      "text": {
+       "en": "Service and information work: banks, schools, software",
+       "hi": "सेवा और सूचना का काम: बैंक, स्कूल, सॉफ़्टवेयर"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:hunt",
+     "expect": "placed:hunt",
+     "say": {
+      "en": "Put \"Hunting and gathering: food from forests and rivers\" in place 1.",
+      "hi": "\"शिकार और संग्रह: जंगल और नदियों से भोजन\" को स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which kind of work came last in this story?",
+      "hi": "इस कहानी में किस तरह का काम सबसे बाद में आया?"
+     },
+     "options": [
+      {
+       "id": "service",
+       "en": "Service and information work",
+       "hi": "सेवा और सूचना का काम"
+      },
+      {
+       "id": "hunt",
+       "en": "Hunting and gathering",
+       "hi": "शिकार और संग्रह"
+      },
+      {
+       "id": "farm",
+       "en": "Farming",
+       "hi": "खेती"
+      }
+     ],
+     "answer": "service"
+    },
+    {
+     "kind": "do",
+     "target": "item:farm",
+     "expect": "placed:farm",
+     "say": {
+      "en": "Put \"Settled farming and herding: villages and crafts grow\" in place 2.",
+      "hi": "\"बसी खेती और पशुपालन: गाँव और दस्तकारी बढ़ती है\" को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the rest, then press Check.",
+      "hi": "बाक़ी को क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "People first found food by hunting and gathering. Farming allowed villages and crafts. Factories brought machine work and wages. Today many people do service work such as teaching, banking and software. Each change reorganised the division of labour.",
+      "hi": "लोग पहले शिकार और संग्रह से भोजन जुटाते थे। खेती से गाँव और दस्तकारी बढ़ी। कारख़ानों ने मशीन का काम और मज़दूरी दी। आज बहुत से लोग सेवा का काम करते हैं, जैसे पढ़ाना, बैंकिंग और सॉफ़्टवेयर। हर बदलाव ने श्रम-विभाजन को नया रूप दिया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What drew many workers to towns during industrialisation?",
+        "hi": "औद्योगीकरण के दौरान कई मज़दूर शहरों की ओर क्यों खिंचे?"
+       },
+       "options": [
+        {
+         "en": "Wage work in factories",
+         "hi": "कारख़ानों में मज़दूरी का काम"
+        },
+        {
+         "en": "Free land in towns",
+         "hi": "शहरों में मुफ़्त ज़मीन"
+        },
+        {
+         "en": "Fewer people in towns",
+         "hi": "शहरों में कम लोग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Factories offered paid jobs that villages could not.",
+        "hi": "कारख़ाने वेतन वाले काम देते थे जो गाँव नहीं दे सकते थे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Town land was costly and crowded, not free.",
+         "hi": "शहर की ज़मीन महँगी और भीड़ भरी थी, मुफ़्त नहीं।"
+        },
+        {
+         "en": "Towns became more crowded, not emptier.",
+         "hi": "शहर और भीड़ भरे हुए, खाली नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A bank clerk does…",
+        "hi": "बैंक क्लर्क करता है…"
+       },
+       "options": [
+        {
+         "en": "hunting and gathering",
+         "hi": "शिकार और संग्रह"
+        },
+        {
+         "en": "service work",
+         "hi": "सेवा का काम"
+        },
+        {
+         "en": "farming",
+         "hi": "खेती"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A bank sells a service, not a made good or a crop.",
+        "hi": "बैंक सेवा देता है, कोई बना माल या फ़सल नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "Hunting is a very old way of getting food.",
+         "hi": "शिकार भोजन जुटाने का बहुत पुराना तरीक़ा है।"
+        },
+        "",
+        {
+         "en": "Farming grows crops; a bank does not.",
+         "hi": "खेती फ़सल उगाती है; बैंक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask a grandparent what work people in your area did when they were young. How many of those jobs still exist?",
+      "hi": "किसी दादा-दादी से पूछो कि उनके बचपन में तुम्हारे इलाक़े में लोग क्या काम करते थे। उनमें से कितने काम आज भी हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy1-ch03-institutions",
+   "topic": "3.0",
+   "template": "society",
+   "title": {
+    "en": "Five social institutions",
+    "hi": "पाँच सामाजिक संस्थाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "institutions",
+    "title": {
+     "en": "What does each institution do?",
+     "hi": "हर संस्था क्या काम करती है?"
+    },
+    "intro": {
+     "en": "Link each institution to its main job.",
+     "hi": "हर संस्था को उसके मुख्य काम से जोड़ो।"
+    },
+    "columns": [
+     {
+      "en": "Institution",
+      "hi": "संस्था"
+     },
+     {
+      "en": "Its main job",
+      "hi": "उसका मुख्य काम"
+     }
+    ],
+    "nodes": [
+     {
+      "id": "fam",
+      "label": {
+       "en": "Family",
+       "hi": "परिवार"
+      }
+     },
+     {
+      "id": "eco",
+      "label": {
+       "en": "Economy",
+       "hi": "अर्थव्यवस्था"
+      }
+     },
+     {
+      "id": "pol",
+      "label": {
+       "en": "Politics",
+       "hi": "राजनीति"
+      }
+     },
+     {
+      "id": "rel",
+      "label": {
+       "en": "Religion",
+       "hi": "धर्म"
+      }
+     },
+     {
+      "id": "edu",
+      "label": {
+       "en": "Education",
+       "hi": "शिक्षा"
+      }
+     },
+     {
+      "id": "r1",
+      "label": {
+       "en": "Raising children and first care",
+       "hi": "बच्चों का पालन और पहली देखभाल"
+      }
+     },
+     {
+      "id": "r2",
+      "label": {
+       "en": "Producing and sharing goods",
+       "hi": "वस्तुएँ बनाना और बाँटना"
+      }
+     },
+     {
+      "id": "r3",
+      "label": {
+       "en": "Making rules for everyone",
+       "hi": "सबके लिए नियम बनाना"
+      }
+     },
+     {
+      "id": "r4",
+      "label": {
+       "en": "Beliefs and rituals about the sacred",
+       "hi": "पवित्र से जुड़ी आस्था और अनुष्ठान"
+      }
+     },
+     {
+      "id": "r5",
+      "label": {
+       "en": "Passing on knowledge and skills",
+       "hi": "ज्ञान और कौशल आगे देना"
+      }
+     }
+    ],
+    "links": [
+     [
+      "fam",
+      "r1",
+      {
+       "en": "The family is the child's first home of care",
+       "hi": "परिवार बच्चे का देखभाल का पहला घर है"
+      }
+     ],
+     [
+      "eco",
+      "r2",
+      {
+       "en": "Farms, factories and shops make and sell things",
+       "hi": "खेत, कारख़ाने और दुकानें चीज़ें बनाते-बेचते हैं"
+      }
+     ],
+     [
+      "pol",
+      "r3",
+      {
+       "en": "Governments and courts set and enforce rules",
+       "hi": "सरकार और अदालतें नियम बनाती और लागू करती हैं"
+      }
+     ],
+     [
+      "rel",
+      "r4",
+      {
+       "en": "Religion gives meaning, prayer and ritual",
+       "hi": "धर्म अर्थ, प्रार्थना और अनुष्ठान देता है"
+      }
+     ],
+     [
+      "edu",
+      "r5",
+      {
+       "en": "Schools teach what a society wants to hand on",
+       "hi": "स्कूल वह सिखाते हैं जो समाज आगे देना चाहता है"
+      }
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"Family\" and \"Raising children and first care\", then press Link.",
+      "hi": "\"परिवार\" और \"बच्चों का पालन और पहली देखभाल\" छुओ, फिर जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which institution makes and enforces rules for the whole country?",
+      "hi": "कौन-सी संस्था पूरे देश के लिए नियम बनाती और लागू करती है?"
+     },
+     "options": [
+      {
+       "id": "pol",
+       "en": "Politics",
+       "hi": "राजनीति"
+      },
+      {
+       "id": "fam",
+       "en": "Family",
+       "hi": "परिवार"
+      },
+      {
+       "id": "rel",
+       "en": "Religion",
+       "hi": "धर्म"
+      }
+     ],
+     "answer": "pol"
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"Politics\" and \"Making rules for everyone\", then press Link.",
+      "hi": "\"राजनीति\" और \"सबके लिए नियम बनाना\" छुओ, फिर जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "complete",
+     "say": {
+      "en": "Link the other three institutions.",
+      "hi": "बाक़ी तीन संस्थाओं को जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A social institution is an organised, lasting way in which a society meets a need shared by many people. Family raises children, the economy provides goods, politics makes rules, religion gives beliefs and rituals, and education passes on knowledge. They depend on one another.",
+      "hi": "सामाजिक संस्था वह संगठित और टिकाऊ तरीक़ा है जिससे समाज बहुत से लोगों की साझी ज़रूरत पूरी करता है। परिवार बच्चों को पालता है, अर्थव्यवस्था वस्तुएँ देती है, राजनीति नियम बनाती है, धर्म आस्था और अनुष्ठान देता है और शिक्षा ज्ञान आगे देती है। ये एक-दूसरे पर निर्भर हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are institutions called social?",
+        "hi": "संस्थाओं को सामाजिक क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "They are lasting ways of meeting needs shared by many",
+         "hi": "वे बहुतों की साझी ज़रूरतें पूरी करने के टिकाऊ तरीक़े हैं"
+        },
+        {
+         "en": "They are buildings only",
+         "hi": "वे सिर्फ़ इमारतें हैं"
+        },
+        {
+         "en": "They belong to one family",
+         "hi": "वे एक परिवार की हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An institution is a pattern of life, not just a place.",
+        "hi": "संस्था जीवन का एक ढर्रा है, सिर्फ़ जगह नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A school is a building, but the institution is the whole system of teaching.",
+         "hi": "स्कूल एक इमारत है, पर संस्था पढ़ाने की पूरी व्यवस्था है।"
+        },
+        {
+         "en": "Institutions serve whole societies, not one family.",
+         "hi": "संस्थाएँ पूरे समाज की सेवा करती हैं, एक परिवार की नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A child learns letters and numbers in school. Which institution is at work?",
+        "hi": "बच्चा स्कूल में अक्षर और गिनती सीखता है। कौन-सी संस्था काम कर रही है?"
+       },
+       "options": [
+        {
+         "en": "Economy",
+         "hi": "अर्थव्यवस्था"
+        },
+        {
+         "en": "Education",
+         "hi": "शिक्षा"
+        },
+        {
+         "en": "Politics",
+         "hi": "राजनीति"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Teaching knowledge and skills is the work of education.",
+        "hi": "ज्ञान और कौशल सिखाना शिक्षा का काम है।"
+       },
+       "wrong": [
+        {
+         "en": "The economy produces and shares goods; it does not mainly teach.",
+         "hi": "अर्थव्यवस्था वस्तुएँ बनाती और बाँटती है; वह मुख्यतः पढ़ाती नहीं।"
+        },
+        "",
+        {
+         "en": "Politics makes rules; it is not the main teacher here.",
+         "hi": "राजनीति नियम बनाती है; यहाँ वह मुख्य शिक्षक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick one thing you did today. Which institutions were involved in it?",
+      "hi": "आज की कोई एक बात चुनो जो तुमने की। उसमें कौन-सी संस्थाएँ शामिल थीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy1-ch03-sacred",
+   "topic": "3.4",
+   "template": "sort",
+   "title": {
+    "en": "Sacred and ordinary",
+    "hi": "पवित्र और साधारण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sacred",
+      "label": {
+       "en": "Sacred (set apart)",
+       "hi": "पवित्र (अलग माना गया)"
+      }
+     },
+     {
+      "id": "ordinary",
+      "label": {
+       "en": "Ordinary (everyday)",
+       "hi": "साधारण (रोज़मर्रा का)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "book",
+      "text": {
+       "en": "A holy book wrapped and bowed to",
+       "hi": "पवित्र ग्रंथ, जिसे लपेटकर रखते और नमन करते हैं"
+      },
+      "bin": "sacred",
+      "why": {
+       "en": "Believers treat it with awe and special care.",
+       "hi": "श्रद्धालु इसे आदर और विशेष सावधानी से रखते हैं।"
+      }
+     },
+     {
+      "id": "hall",
+      "text": {
+       "en": "A prayer hall where shoes are taken off",
+       "hi": "प्रार्थना-स्थल जहाँ जूते उतारे जाते हैं"
+      },
+      "bin": "sacred",
+      "why": {
+       "en": "Special rules mark it as set apart.",
+       "hi": "विशेष नियम इसे अलग स्थान बनाते हैं।"
+      }
+     },
+     {
+      "id": "prayer",
+      "text": {
+       "en": "A festival prayer said with the family",
+       "hi": "परिवार के साथ त्योहार की प्रार्थना"
+      },
+      "bin": "sacred",
+      "why": {
+       "en": "A ritual shared by believers.",
+       "hi": "आस्थावानों का साझा अनुष्ठान।"
+      }
+     },
+     {
+      "id": "river",
+      "text": {
+       "en": "A river where people take a holy dip",
+       "hi": "नदी, जहाँ लोग पवित्र स्नान करते हैं"
+      },
+      "bin": "sacred",
+      "why": {
+       "en": "For believers the river is holy, not just water.",
+       "hi": "आस्थावानों के लिए नदी पवित्र है, सिर्फ़ पानी नहीं।"
+      }
+     },
+     {
+      "id": "market",
+      "text": {
+       "en": "A vegetable market",
+       "hi": "सब्ज़ी मंडी"
+      },
+      "bin": "ordinary",
+      "why": {
+       "en": "It is for daily buying and selling.",
+       "hi": "यह रोज़ की ख़रीद-बिक्री की जगह है।"
+      }
+     },
+     {
+      "id": "bus",
+      "text": {
+       "en": "A school bus",
+       "hi": "स्कूल बस"
+      },
+      "bin": "ordinary",
+      "why": {
+       "en": "It is for travel and has no special rituals.",
+       "hi": "यह सफ़र के लिए है, कोई विशेष अनुष्ठान नहीं।"
+      }
+     },
+     {
+      "id": "notebook",
+      "text": {
+       "en": "A notebook used for sums",
+       "hi": "गणित की कॉपी"
+      },
+      "bin": "ordinary",
+      "why": {
+       "en": "An everyday tool.",
+       "hi": "रोज़ का औज़ार।"
+      }
+     },
+     {
+      "id": "ground",
+      "text": {
+       "en": "A cricket ground on a Sunday",
+       "hi": "रविवार का क्रिकेट मैदान"
+      },
+      "bin": "ordinary",
+      "why": {
+       "en": "A place for play, with no sacred rules.",
+       "hi": "खेल की जगह, कोई पवित्र नियम नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:book",
+     "expect": "placed:book",
+     "say": {
+      "en": "Tap the card \"A holy book wrapped and bowed to\", then tap the group where it belongs.",
+      "hi": "कार्ड \"पवित्र ग्रंथ, जिसे लपेटकर रखते और नमन करते हैं\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:market",
+     "expect": "placed:market",
+     "say": {
+      "en": "Tap the card \"A vegetable market\", then tap the group where it belongs.",
+      "hi": "कार्ड \"सब्ज़ी मंडी\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before you place the next card, think: where does \"A river where people take a holy dip\" belong?",
+      "hi": "अगला कार्ड रखने से पहले सोचो: \"नदी, जहाँ लोग पवित्र स्नान करते हैं\" किस समूह में आता है?"
+     },
+     "options": [
+      {
+       "id": "sacred",
+       "en": "Sacred (set apart)",
+       "hi": "पवित्र (अलग माना गया)"
+      },
+      {
+       "id": "ordinary",
+       "en": "Ordinary (everyday)",
+       "hi": "साधारण (रोज़मर्रा का)"
+      }
+     ],
+     "answer": "sacred"
+    },
+    {
+     "kind": "do",
+     "target": "card:river",
+     "expect": "placed:river",
+     "say": {
+      "en": "Now place \"A river where people take a holy dip\" and see if you were right.",
+      "hi": "अब \"नदी, जहाँ लोग पवित्र स्नान करते हैं\" रखो और देखो तुम सही थे या नहीं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाक़ी सारे कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Religion sorts the world into sacred things, which are set apart and treated with awe, and ordinary things of daily life. What counts as sacred depends on the beliefs of a group. A river that is holy to some may be ordinary water to others. Shared rituals bind believers together.",
+      "hi": "धर्म दुनिया को पवित्र चीज़ों में बाँटता है, जिन्हें अलग रखकर आदर से देखा जाता है, और रोज़मर्रा की साधारण चीज़ों में। क्या पवित्र है, यह समूह की आस्था पर निर्भर है। जो नदी कुछ के लिए पवित्र है, वह दूसरों के लिए सिर्फ़ पानी हो सकती है। साझे अनुष्ठान आस्थावानों को जोड़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What makes something sacred in a religion?",
+        "hi": "किसी धर्म में कोई चीज़ पवित्र कैसे बनती है?"
+       },
+       "options": [
+        {
+         "en": "People set it apart and treat it with awe",
+         "hi": "लोग उसे अलग रखकर आदर से बरतते हैं"
+        },
+        {
+         "en": "It is very costly",
+         "hi": "वह बहुत महँगी है"
+        },
+        {
+         "en": "It is very old",
+         "hi": "वह बहुत पुरानी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is the group's belief and behaviour that make it sacred.",
+        "hi": "समूह की आस्था और व्यवहार उसे पवित्र बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Many cheap things are sacred and many costly things are not.",
+         "hi": "कई सस्ती चीज़ें पवित्र हैं और कई महँगी नहीं।"
+        },
+        {
+         "en": "Age alone does not make a thing sacred.",
+         "hi": "सिर्फ़ पुरानापन किसी चीज़ को पवित्र नहीं बनाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do religions have shared rituals?",
+        "hi": "धर्मों में साझे अनुष्ठान क्यों होते हैं?"
+       },
+       "options": [
+        {
+         "en": "To stop people from learning",
+         "hi": "लोगों को सीखने से रोकने के लिए"
+        },
+        {
+         "en": "To bind believers together through common practice",
+         "hi": "साझे अभ्यास से आस्थावानों को जोड़ने के लिए"
+        },
+        {
+         "en": "To fill the markets",
+         "hi": "बाज़ार भरने के लिए"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Doing things together strengthens a feeling of belonging.",
+        "hi": "साथ मिलकर करने से अपनेपन की भावना मज़बूत होती है।"
+       },
+       "wrong": [
+        {
+         "en": "Rituals have nothing to do with stopping learning.",
+         "hi": "अनुष्ठानों का सीखने से रोकने से कोई संबंध नहीं।"
+        },
+        "",
+        {
+         "en": "Markets are not the purpose of rituals.",
+         "hi": "अनुष्ठानों का उद्देश्य बाज़ार नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Many faiths share India. Name one festival of a friend's faith and what the people do to mark it as special.",
+      "hi": "भारत में कई आस्थाएँ साथ रहती हैं। किसी मित्र की आस्था का एक त्योहार बताओ और यह कि लोग उसे विशेष कैसे बनाते हैं।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Joint family",
+   "shows": "A courtyard in the morning where three generations do small chores together: sweeping, shelling peas, reading the paper",
+   "view": "Eye level, wide, soft morning light",
+   "right": "Different ages shown from behind or in profile; real utensils and a charpai",
+   "avoid": "Identifiable faces, brand packaging"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Marriage rituals",
+   "shows": "A decorated empty wedding mandap with marigold garlands and rangoli before the ceremony",
+   "view": "Eye level, wide, warm light",
+   "right": "No couple shown; flowers and cloth in true colours",
+   "avoid": "Faces, religious symbols that single out one community"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "3.1",
+   "use": "Family tree base",
+   "shows": "A clean tree frame with four rows of empty round nodes joined by plain lines, no text",
+   "view": "Straight on, white background",
+   "right": "Rows clearly for 3 generations",
+   "avoid": "Words, icons, names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Craft work",
+   "shows": "A handloom weaver's hands passing a shuttle across threads in a village home",
+   "view": "Close-up, three-quarter, window light",
+   "right": "Real warp threads, wooden loom, hands only",
+   "avoid": "Faces, brand labels"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Service work",
+   "shows": "A modern office desk with headset, monitor and notebook at a call centre seen from behind",
+   "view": "Eye level, soft indoor light",
+   "right": "Screen shows no readable text; a worker seen from behind",
+   "avoid": "Readable screens, logos, faces"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.4",
+   "use": "Many faiths in India",
+   "shows": "Four equal-sized exteriors set side by side: a temple tower, a mosque dome, a church spire, a gurdwara gate",
+   "view": "Eye level, clear sky, matching light",
+   "right": "Each building recognisable and respectful, same camera height",
+   "avoid": "Crowds, signboards, any one given more prominence"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "3.5",
+   "use": "Education",
+   "shows": "An empty Indian classroom with rows of desks, a blackboard with no writing and sunlight through the windows",
+   "view": "Eye level, wide, morning light",
+   "right": "Clean board, real wooden desks, a map on the wall",
+   "avoid": "School names, faces, readable posters"
+  }
+ ]
+}

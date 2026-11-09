@@ -1,0 +1,1328 @@
+{
+ "chapter_key": "u.c06.science.fecu1.ch06",
+ "class": 6,
+ "subject_id": "science",
+ "title": "Materials Around Us",
+ "source": "https://ncert.nic.in/textbook/pdf/fecu106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Observing objects around us and what they are made of",
+   "labs": [],
+   "why_no_lab": "Taught by a photo of an Indian kitchen full of objects and a hunt at home; the sorting lab of 6.2 then does the grouping."
+  },
+  {
+   "n": "6.2",
+   "title": "How to group materials",
+   "labs": [
+    "c06-science-fecu1-ch06-materials"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3.1",
+   "title": "Appearance: lustrous and non-lustrous",
+   "labs": [
+    "c06-science-fecu1-ch06-lustre"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3.2",
+   "title": "Hard and soft materials",
+   "labs": [],
+   "why_no_lab": "Hardness is felt by scratching and pressing real things; a screen cannot let a child feel it."
+  },
+  {
+   "n": "6.3.3",
+   "title": "Transparent, translucent and opaque materials",
+   "labs": [
+    "c06-science-fecu1-ch06-seethrough"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3.4",
+   "title": "Soluble and insoluble materials",
+   "labs": [
+    "c06-science-fecu1-ch06-dissolve"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3.5",
+   "title": "How heavy or light: same space, different mass",
+   "labs": [],
+   "why_no_lab": "Best done for real by lifting three cups of water, sand and pebbles; the photo sequence shows it."
+  },
+  {
+   "n": "6.3.6",
+   "title": "Space and volume",
+   "labs": [],
+   "why_no_lab": "Pouring and measuring real water in a measuring cylinder teaches volume best; the photo shows the reading."
+  },
+  {
+   "n": "6.4",
+   "title": "What is matter?",
+   "labs": [
+    "c06-science-fecu1-ch06-matter"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-science-fecu1-ch06-materials",
+   "topic": "6.2",
+   "template": "sort",
+   "title": {
+    "en": "What is it made of?",
+    "hi": "यह किससे बना है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "wood",
+      "label": {
+       "en": "Wood",
+       "hi": "लकड़ी"
+      }
+     },
+     {
+      "id": "metal",
+      "label": {
+       "en": "Metal",
+       "hi": "धातु"
+      }
+     },
+     {
+      "id": "plastic",
+      "label": {
+       "en": "Plastic",
+       "hi": "प्लास्टिक"
+      }
+     },
+     {
+      "id": "glass",
+      "label": {
+       "en": "Glass",
+       "hi": "काँच"
+      }
+     },
+     {
+      "id": "cloth",
+      "label": {
+       "en": "Cotton or cloth",
+       "hi": "सूती या कपड़ा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "chair",
+      "text": {
+       "en": "Wooden chair",
+       "hi": "लकड़ी की कुर्सी"
+      },
+      "bin": "wood",
+      "why": {
+       "en": "It is made of wood from trees.",
+       "hi": "यह पेड़ों की लकड़ी से बनी है।"
+      }
+     },
+     {
+      "id": "pencil",
+      "text": {
+       "en": "Pencil body",
+       "hi": "पेंसिल का बाहरी भाग"
+      },
+      "bin": "wood",
+      "why": {
+       "en": "The outside of a pencil is wood.",
+       "hi": "पेंसिल का बाहरी भाग लकड़ी का है।"
+      }
+     },
+     {
+      "id": "spoon",
+      "text": {
+       "en": "Steel spoon",
+       "hi": "स्टील का चम्मच"
+      },
+      "bin": "metal",
+      "why": {
+       "en": "Steel is a metal.",
+       "hi": "स्टील एक धातु है।"
+      }
+     },
+     {
+      "id": "lota",
+      "text": {
+       "en": "Copper lota",
+       "hi": "ताँबे का लोटा"
+      },
+      "bin": "metal",
+      "why": {
+       "en": "Copper is a metal.",
+       "hi": "ताँबा एक धातु है।"
+      }
+     },
+     {
+      "id": "bucket",
+      "text": {
+       "en": "Plastic bucket",
+       "hi": "प्लास्टिक की बाल्टी"
+      },
+      "bin": "plastic",
+      "why": {
+       "en": "It is moulded from plastic.",
+       "hi": "यह प्लास्टिक से ढली है।"
+      }
+     },
+     {
+      "id": "pen",
+      "text": {
+       "en": "Ball pen body",
+       "hi": "बॉल पेन का बाहरी भाग"
+      },
+      "bin": "plastic",
+      "why": {
+       "en": "Most pen bodies are plastic.",
+       "hi": "ज़्यादातर पेन का बाहरी भाग प्लास्टिक का होता है।"
+      }
+     },
+     {
+      "id": "tumbler",
+      "text": {
+       "en": "Drinking glass",
+       "hi": "पानी का गिलास"
+      },
+      "bin": "glass",
+      "why": {
+       "en": "It is made of glass, which we can see through.",
+       "hi": "यह काँच का है, जिसके आर-पार देख सकते हैं।"
+      }
+     },
+     {
+      "id": "mirror",
+      "text": {
+       "en": "Mirror",
+       "hi": "दर्पण"
+      },
+      "bin": "glass",
+      "why": {
+       "en": "A mirror is glass with a shiny coat behind.",
+       "hi": "दर्पण काँच है जिसके पीछे चमकीली परत होती है।"
+      }
+     },
+     {
+      "id": "towel",
+      "text": {
+       "en": "Towel",
+       "hi": "तौलिया"
+      },
+      "bin": "cloth",
+      "why": {
+       "en": "A towel is woven from cotton.",
+       "hi": "तौलिया कपास से बुना होता है।"
+      }
+     },
+     {
+      "id": "kurta",
+      "text": {
+       "en": "Cotton kurta",
+       "hi": "सूती कुर्ता"
+      },
+      "bin": "cloth",
+      "why": {
+       "en": "It is sewn from cotton cloth.",
+       "hi": "यह सूती कपड़े से सिला है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tumbler can be made of glass, steel or plastic. What does this tell us?",
+      "hi": "गिलास काँच, स्टील या प्लास्टिक का बन सकता है। इससे क्या पता चलता है?"
+     },
+     "options": [
+      {
+       "id": "many",
+       "en": "One object can be made of different materials",
+       "hi": "एक वस्तु अलग-अलग पदार्थों से बन सकती है"
+      },
+      {
+       "id": "one",
+       "en": "Every object has only one possible material",
+       "hi": "हर वस्तु केवल एक ही पदार्थ से बन सकती है"
+      }
+     ],
+     "answer": "many"
+    },
+    {
+     "kind": "do",
+     "target": "card:spoon",
+     "expect": "correct:spoon",
+     "say": {
+      "en": "Tap the steel spoon, then the material it is made of.",
+      "hi": "स्टील का चम्मच छुओ, फिर वह पदार्थ जिससे वह बना है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:towel",
+     "expect": "correct:towel",
+     "say": {
+      "en": "Now sort the towel.",
+      "hi": "अब तौलिया छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी को छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Objects are made of materials such as wood, metal, plastic, glass and cloth. One material can make many objects, and one object can be made of different materials. Grouping by material helps us find, study and use things.",
+      "hi": "वस्तुएँ लकड़ी, धातु, प्लास्टिक, काँच और कपड़े जैसे पदार्थों से बनती हैं। एक पदार्थ से कई वस्तुएँ बनती हैं, और एक वस्तु अलग-अलग पदार्थों से बन सकती है। पदार्थ के आधार पर समूह बनाने से चीज़ें ढूँढना, समझना और उपयोग करना आसान होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which group shares the same material?",
+        "hi": "किस समूह की सभी चीज़ें एक ही पदार्थ की हैं?"
+       },
+       "options": [
+        {
+         "en": "Steel spoon, copper lota, iron nail",
+         "hi": "स्टील का चम्मच, ताँबे का लोटा, लोहे की कील"
+        },
+        {
+         "en": "Towel, mirror, chair",
+         "hi": "तौलिया, दर्पण, कुर्सी"
+        },
+        {
+         "en": "Pen, kurta, tumbler",
+         "hi": "पेन, कुर्ता, गिलास"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All three are made of metal.",
+        "hi": "तीनों धातु से बने हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "These are cloth, glass and wood: three different materials.",
+         "hi": "ये कपड़ा, काँच और लकड़ी हैं: तीन अलग पदार्थ।"
+        },
+        {
+         "en": "These are plastic, cloth and glass.",
+         "hi": "ये प्लास्टिक, कपड़ा और काँच हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Then pick five things in your school bag and say what each is made of.",
+      "hi": "\"फिर से शुरू\" दबाओ। फिर अपने बस्ते से पाँच चीज़ें निकालकर बताओ कि हर एक किससे बनी है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch06-lustre",
+   "topic": "6.3.1",
+   "template": "sort",
+   "title": {
+    "en": "Shiny or dull?",
+    "hi": "चमकीला या धुँधला?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "lus",
+      "label": {
+       "en": "Lustrous (shiny)",
+       "hi": "चमकीला (द्युतिमान)"
+      }
+     },
+     {
+      "id": "dull",
+      "label": {
+       "en": "Non-lustrous (dull)",
+       "hi": "धुँधला (अद्युतिमान)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "copper",
+      "text": {
+       "en": "New copper wire",
+       "hi": "नया ताँबे का तार"
+      },
+      "bin": "lus",
+      "why": {
+       "en": "Metals like copper have a shine called lustre.",
+       "hi": "ताँबे जैसी धातुओं में चमक होती है जिसे द्युति कहते हैं।"
+      }
+     },
+     {
+      "id": "foil",
+      "text": {
+       "en": "Aluminium foil",
+       "hi": "ऐलुमिनियम की पन्नी"
+      },
+      "bin": "lus",
+      "why": {
+       "en": "Aluminium is a metal with a bright lustre.",
+       "hi": "ऐलुमिनियम चमकीली द्युति वाली धातु है।"
+      }
+     },
+     {
+      "id": "gold",
+      "text": {
+       "en": "Gold earring",
+       "hi": "सोने की बाली"
+      },
+      "bin": "lus",
+      "why": {
+       "en": "Gold keeps its shine for a very long time.",
+       "hi": "सोना बहुत लंबे समय तक चमकीला रहता है।"
+      }
+     },
+     {
+      "id": "steel",
+      "text": {
+       "en": "Steel plate",
+       "hi": "स्टील की थाली"
+      },
+      "bin": "lus",
+      "why": {
+       "en": "Steel is shiny when clean.",
+       "hi": "साफ़ स्टील चमकीला होता है।"
+      }
+     },
+     {
+      "id": "wood",
+      "text": {
+       "en": "Wooden block",
+       "hi": "लकड़ी का गुटका"
+      },
+      "bin": "dull",
+      "why": {
+       "en": "Wood has no metallic shine.",
+       "hi": "लकड़ी में धातु जैसी चमक नहीं होती।"
+      }
+     },
+     {
+      "id": "chalk",
+      "text": {
+       "en": "Chalk",
+       "hi": "चॉक"
+      },
+      "bin": "dull",
+      "why": {
+       "en": "Chalk looks dull.",
+       "hi": "चॉक धुँधला दिखता है।"
+      }
+     },
+     {
+      "id": "cloth",
+      "text": {
+       "en": "Cotton cloth",
+       "hi": "सूती कपड़ा"
+      },
+      "bin": "dull",
+      "why": {
+       "en": "Cotton cloth is non-lustrous.",
+       "hi": "सूती कपड़ा अद्युतिमान है।"
+      }
+     },
+     {
+      "id": "clay",
+      "text": {
+       "en": "Clay pot (matka)",
+       "hi": "मिट्टी का मटका"
+      },
+      "bin": "dull",
+      "why": {
+       "en": "Baked clay is dull.",
+       "hi": "पकी मिट्टी धुँधली होती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An old copper lota looks dull. What will you see if you scrub one spot with tamarind?",
+      "hi": "एक पुराना ताँबे का लोटा धुँधला दिखता है। इमली से एक जगह रगड़ने पर क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "shine",
+       "en": "A shiny surface",
+       "hi": "चमकीली सतह"
+      },
+      {
+       "id": "dull",
+       "en": "It stays dull",
+       "hi": "धुँधला ही रहेगा"
+      }
+     ],
+     "answer": "shine"
+    },
+    {
+     "kind": "do",
+     "target": "card:copper",
+     "expect": "correct:copper",
+     "say": {
+      "en": "Tap the copper wire, then its group.",
+      "hi": "ताँबे का तार छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:chalk",
+     "expect": "correct:chalk",
+     "say": {
+      "en": "Now sort the chalk.",
+      "hi": "अब चॉक को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी को छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Materials with a shine are called lustrous; most metals are lustrous. Metals often lose their shine in air and look dull, but a freshly cut or scrubbed surface shines again. Wood, chalk, cloth and clay are non-lustrous.",
+      "hi": "जिन पदार्थों में चमक होती है उन्हें द्युतिमान कहते हैं; ज़्यादातर धातुएँ द्युतिमान होती हैं। हवा में धातुएँ अक्सर अपनी चमक खोकर धुँधली दिखती हैं, पर ताज़ा कटी या रगड़ी सतह फिर चमकती है। लकड़ी, चॉक, कपड़ा और मिट्टी अद्युतिमान हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does an old iron gate look dull though iron is a metal?",
+        "hi": "लोहा धातु है, फिर भी पुराना लोहे का गेट धुँधला क्यों दिखता है?"
+       },
+       "options": [
+        {
+         "en": "Air and moisture have formed a layer on it",
+         "hi": "हवा और नमी ने उस पर परत बना दी है"
+        },
+        {
+         "en": "Iron was never shiny",
+         "hi": "लोहा कभी चमकीला था ही नहीं"
+        },
+        {
+         "en": "Paint makes iron dull from inside",
+         "hi": "पेंट लोहे को अंदर से धुँधला कर देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A layer forms on the surface over time; a fresh cut shows the shine below.",
+        "hi": "समय के साथ सतह पर परत बन जाती है; ताज़ा कटी सतह नीचे की चमक दिखाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Freshly cut iron is shiny, like other metals.",
+         "hi": "ताज़ा कटा लोहा दूसरी धातुओं की तरह चमकीला होता है।"
+        },
+        {
+         "en": "Paint only covers the outside; the metal below can still shine.",
+         "hi": "पेंट केवल बाहर ढकता है; नीचे की धातु अब भी चमक सकती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Look at objects in your kitchen: which are lustrous and which are not?",
+      "hi": "\"फिर से शुरू\" दबाओ। रसोई की चीज़ें देखो: कौन-सी चमकीली हैं और कौन-सी नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch06-seethrough",
+   "topic": "6.3.3",
+   "template": "sort",
+   "title": {
+    "en": "Can you see through it?",
+    "hi": "क्या इसके आर-पार दिखता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "clear",
+      "label": {
+       "en": "Transparent",
+       "hi": "पारदर्शी"
+      }
+     },
+     {
+      "id": "part",
+      "label": {
+       "en": "Translucent",
+       "hi": "पारभासी"
+      }
+     },
+     {
+      "id": "none",
+      "label": {
+       "en": "Opaque",
+       "hi": "अपारदर्शी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "glass",
+      "text": {
+       "en": "Window glass",
+       "hi": "खिड़की का काँच"
+      },
+      "bin": "clear",
+      "why": {
+       "en": "We can see clearly through clear glass.",
+       "hi": "साफ़ काँच के आर-पार साफ़ दिखता है।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Clean water",
+       "hi": "साफ़ पानी"
+      },
+      "bin": "clear",
+      "why": {
+       "en": "Clean water lets us see clearly through it.",
+       "hi": "साफ़ पानी के आर-पार साफ़ दिखता है।"
+      }
+     },
+     {
+      "id": "cello",
+      "text": {
+       "en": "Cellophane sheet",
+       "hi": "सेलोफ़ेन की शीट"
+      },
+      "bin": "clear",
+      "why": {
+       "en": "Clear cellophane is transparent.",
+       "hi": "साफ़ सेलोफ़ेन पारदर्शी है।"
+      }
+     },
+     {
+      "id": "butter",
+      "text": {
+       "en": "Butter paper",
+       "hi": "बटर पेपर"
+      },
+      "bin": "part",
+      "why": {
+       "en": "Some light passes, but things behind look hazy.",
+       "hi": "कुछ प्रकाश निकलता है, पर पीछे की चीज़ें धुँधली दिखती हैं।"
+      }
+     },
+     {
+      "id": "frosted",
+      "text": {
+       "en": "Frosted glass",
+       "hi": "घिसा हुआ काँच"
+      },
+      "bin": "part",
+      "why": {
+       "en": "Bathroom frosted glass lets light in but hides what is behind.",
+       "hi": "बाथरूम का घिसा काँच प्रकाश आने देता है पर पीछे की चीज़ छिपा देता है।"
+      }
+     },
+     {
+      "id": "oiled",
+      "text": {
+       "en": "Paper with oil on it",
+       "hi": "तेल लगा काग़ज़"
+      },
+      "bin": "part",
+      "why": {
+       "en": "Oil makes paper let some light through.",
+       "hi": "तेल से काग़ज़ में से कुछ प्रकाश निकलने लगता है।"
+      }
+     },
+     {
+      "id": "wood",
+      "text": {
+       "en": "Wooden door",
+       "hi": "लकड़ी का दरवाज़ा"
+      },
+      "bin": "none",
+      "why": {
+       "en": "No light passes through wood.",
+       "hi": "लकड़ी में से प्रकाश नहीं निकलता।"
+      }
+     },
+     {
+      "id": "cardboard",
+      "text": {
+       "en": "Cardboard",
+       "hi": "गत्ता"
+      },
+      "bin": "none",
+      "why": {
+       "en": "Cardboard blocks light completely.",
+       "hi": "गत्ता प्रकाश को पूरी तरह रोक देता है।"
+      }
+     },
+     {
+      "id": "steel",
+      "text": {
+       "en": "Steel plate",
+       "hi": "स्टील की थाली"
+      },
+      "bin": "none",
+      "why": {
+       "en": "Metals are opaque.",
+       "hi": "धातुएँ अपारदर्शी होती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You hold butter paper in front of a torch. What will you see?",
+      "hi": "तुम टॉर्च के सामने बटर पेपर रखते हो। क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "hazy",
+       "en": "Some light, but not clearly",
+       "hi": "कुछ प्रकाश, पर साफ़ नहीं"
+      },
+      {
+       "id": "clear",
+       "en": "The torch, very clearly",
+       "hi": "टॉर्च, बिल्कुल साफ़"
+      },
+      {
+       "id": "dark",
+       "en": "No light at all",
+       "hi": "कोई प्रकाश नहीं"
+      }
+     ],
+     "answer": "hazy"
+    },
+    {
+     "kind": "do",
+     "target": "card:butter",
+     "expect": "correct:butter",
+     "say": {
+      "en": "Tap the butter paper, then its group.",
+      "hi": "बटर पेपर छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:glass",
+     "expect": "correct:glass",
+     "say": {
+      "en": "Now sort the window glass.",
+      "hi": "अब खिड़की का काँच छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी को छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Transparent materials let us see clearly through them. Translucent materials let some light pass but we cannot see clearly. Opaque materials do not let light pass at all.",
+      "hi": "पारदर्शी पदार्थों के आर-पार साफ़ दिखता है। पारभासी पदार्थ कुछ प्रकाश जाने देते हैं पर साफ़ नहीं दिखता। अपारदर्शी पदार्थ प्रकाश को बिल्कुल नहीं जाने देते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which material would you use for a bathroom window, to let light in but keep privacy?",
+        "hi": "बाथरूम की खिड़की के लिए, जिससे प्रकाश आए पर अंदर दिखे नहीं, कौन-सा पदार्थ लोगे?"
+       },
+       "options": [
+        {
+         "en": "Frosted glass",
+         "hi": "घिसा हुआ काँच"
+        },
+        {
+         "en": "Clear glass",
+         "hi": "साफ़ काँच"
+        },
+        {
+         "en": "A wooden plank",
+         "hi": "लकड़ी का तख़्ता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Frosted glass is translucent: light comes in, but people outside cannot see clearly.",
+        "hi": "घिसा काँच पारभासी है: प्रकाश आता है, पर बाहर वाले साफ़ नहीं देख पाते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Clear glass is transparent, so everyone could see inside.",
+         "hi": "साफ़ काँच पारदर्शी है, तो सब अंदर देख सकते।"
+        },
+        {
+         "en": "Wood is opaque, so no light would come in.",
+         "hi": "लकड़ी अपारदर्शी है, तो प्रकाश नहीं आएगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. At home, hold different things in front of a torch (never look straight into a bright light). Sort them the same way.",
+      "hi": "\"फिर से शुरू\" दबाओ। घर पर अलग-अलग चीज़ें टॉर्च के सामने रखो (तेज़ रोशनी में सीधे कभी मत देखो)। उन्हें इसी तरह छाँटो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch06-dissolve",
+   "topic": "6.3.4",
+   "template": "beaker",
+   "title": {
+    "en": "What dissolves in water?",
+    "hi": "पानी में क्या घुलता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "water",
+     "salt",
+     "sand",
+     "sugar",
+     "chalk",
+     "oil"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:water",
+     "expect": "pick:water",
+     "say": {
+      "en": "Pick up the jug of water.",
+      "hi": "पानी का जग उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:water",
+     "say": {
+      "en": "Pour water into the beaker.",
+      "hi": "बीकर में पानी डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:salt",
+     "expect": "pick:salt",
+     "say": {
+      "en": "Pick up the salt.",
+      "hi": "नमक उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Add the salt to the water and stir. Watch what happens.",
+      "hi": "नमक पानी में डालकर हिलाओ। देखो क्या होता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will add sand. Will it disappear like the salt?",
+      "hi": "अब तुम रेत डालोगे। क्या वह नमक की तरह ग़ायब हो जाएगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it stays at the bottom",
+       "hi": "नहीं, वह तली में रहेगी"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it disappears",
+       "hi": "हाँ, वह ग़ायब हो जाएगी"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "pick:sand",
+     "expect": "pick:sand",
+     "say": {
+      "en": "Pick up the sand.",
+      "hi": "रेत उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Add the sand and stir.",
+      "hi": "रेत डालकर हिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Salt dissolved: it spread evenly through the water and we cannot see it, though it is still there. Materials that dissolve in water are soluble. Sand stayed at the bottom: it is insoluble.",
+      "hi": "नमक घुल गया: वह पूरे पानी में बराबर फैल गया और दिखता नहीं, पर वह अब भी मौजूद है। जो पदार्थ पानी में घुल जाते हैं वे घुलनशील हैं। रेत तली में रह गई: वह अघुलनशील है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How can you show that the salt is still in the water?",
+        "hi": "कैसे दिखाओगे कि नमक अब भी पानी में है?"
+       },
+       "options": [
+        {
+         "en": "Boil the water away and look for white crystals",
+         "hi": "पानी को उबालकर उड़ा दो और सफ़ेद क्रिस्टल देखो"
+        },
+        {
+         "en": "Look for it at the bottom",
+         "hi": "तली में ढूँढो"
+        },
+        {
+         "en": "You cannot; it is gone",
+         "hi": "नहीं दिखा सकते; वह ख़त्म हो गया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When the water evaporates, the dissolved salt is left behind as crystals.",
+        "hi": "पानी के वाष्पित होने पर घुला नमक क्रिस्टल के रूप में बच जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dissolved salt does not settle at the bottom; it is spread through the water.",
+         "hi": "घुला नमक तली में नहीं बैठता; वह पूरे पानी में फैला रहता है।"
+        },
+        {
+         "en": "Dissolving does not destroy salt; the water would still taste salty.",
+         "hi": "घुलने से नमक नष्ट नहीं होता; पानी फिर भी खारा लगेगा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is insoluble in water?",
+        "hi": "इनमें से कौन पानी में अघुलनशील है?"
+       },
+       "options": [
+        {
+         "en": "Sugar",
+         "hi": "चीनी"
+        },
+        {
+         "en": "Chalk powder",
+         "hi": "चॉक का पाउडर"
+        },
+        {
+         "en": "Salt",
+         "hi": "नमक"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Chalk makes the water cloudy for a while and then settles: it does not dissolve.",
+        "hi": "चॉक पानी को कुछ देर धुँधला करता है और फिर बैठ जाता है: वह घुलता नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "Sugar dissolves completely in water.",
+         "hi": "चीनी पानी में पूरी तरह घुल जाती है।"
+        },
+        "",
+        {
+         "en": "Salt dissolves, as you just saw.",
+         "hi": "नमक घुल जाता है, जैसा तुमने अभी देखा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker. Try sugar, chalk and oil in water, one at a time. Which are soluble? What does oil do?",
+      "hi": "बीकर साफ़ करो। चीनी, चॉक और तेल को एक-एक करके पानी में आज़माओ। कौन घुलनशील हैं? तेल क्या करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch06-matter",
+   "topic": "6.4",
+   "template": "sort",
+   "title": {
+    "en": "Is it matter?",
+    "hi": "क्या यह द्रव्य है?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Matter",
+       "hi": "द्रव्य"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Not matter",
+       "hi": "द्रव्य नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "air",
+      "text": {
+       "en": "Air in a balloon",
+       "hi": "गुब्बारे में हवा"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Air has mass and fills up space: it blows up the balloon.",
+       "hi": "हवा में द्रव्यमान है और वह जगह घेरती है: वह गुब्बारा फुला देती है।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Water in a glass",
+       "hi": "गिलास में पानी"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Water has mass and takes up space.",
+       "hi": "पानी में द्रव्यमान है और वह जगह घेरता है।"
+      }
+     },
+     {
+      "id": "stone",
+      "text": {
+       "en": "A stone",
+       "hi": "एक पत्थर"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "A stone has mass and takes up space.",
+       "hi": "पत्थर में द्रव्यमान है और वह जगह घेरता है।"
+      }
+     },
+     {
+      "id": "smoke",
+      "text": {
+       "en": "Smoke from an agarbatti",
+       "hi": "अगरबत्ती का धुआँ"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Smoke is made of tiny particles and gases: it is matter.",
+       "hi": "धुआँ छोटे कणों और गैसों से बना है: वह द्रव्य है।"
+      }
+     },
+     {
+      "id": "light",
+      "text": {
+       "en": "Sunlight",
+       "hi": "सूर्य का प्रकाश"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Light has no mass and does not take up space.",
+       "hi": "प्रकाश में द्रव्यमान नहीं होता और वह जगह नहीं घेरता।"
+      }
+     },
+     {
+      "id": "sound",
+      "text": {
+       "en": "The sound of a bell",
+       "hi": "घंटी की आवाज़"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Sound is not a thing with mass; it travels through matter.",
+       "hi": "आवाज़ द्रव्यमान वाली चीज़ नहीं है; वह द्रव्य से होकर चलती है।"
+      }
+     },
+     {
+      "id": "happy",
+      "text": {
+       "en": "Feeling happy",
+       "hi": "ख़ुशी महसूस करना"
+      },
+      "bin": "no",
+      "why": {
+       "en": "A feeling has no mass and fills no space.",
+       "hi": "भावना में न द्रव्यमान है, न वह जगह घेरती है।"
+      }
+     },
+     {
+      "id": "heat",
+      "text": {
+       "en": "Warmth of the Sun",
+       "hi": "सूर्य की गर्मी"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Heat is energy, not matter.",
+       "hi": "गर्मी ऊर्जा है, द्रव्य नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is air matter?",
+      "hi": "क्या हवा द्रव्य है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes: it has mass and takes up space",
+       "hi": "हाँ: इसमें द्रव्यमान है और यह जगह घेरती है"
+      },
+      {
+       "id": "no",
+       "en": "No: we cannot see it",
+       "hi": "नहीं: यह दिखती नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:air",
+     "expect": "correct:air",
+     "say": {
+      "en": "Tap \"Air in a balloon\", then its group.",
+      "hi": "\"गुब्बारे में हवा\" छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:light",
+     "expect": "correct:light",
+     "say": {
+      "en": "Now sort Sunlight.",
+      "hi": "अब सूर्य का प्रकाश छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी को छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Matter is anything that has mass and takes up space. Solids, liquids and gases, even air we cannot see, are matter. Light, sound, heat and feelings are not matter.",
+      "hi": "द्रव्य वह सब है जिसमें द्रव्यमान हो और जो जगह घेरे। ठोस, द्रव और गैसें, यहाँ तक कि न दिखने वाली हवा भी, द्रव्य हैं। प्रकाश, आवाज़, गर्मी और भावनाएँ द्रव्य नहीं हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An \"empty\" bottle is pushed upside down into a bucket of water. Water does not fill it fully. Why?",
+        "hi": "एक \"खाली\" बोतल को उल्टा करके पानी की बाल्टी में दबाया। पानी उसमें पूरा नहीं भरता। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Air inside takes up space",
+         "hi": "अंदर की हवा जगह घेरती है"
+        },
+        {
+         "en": "Water cannot enter plastic",
+         "hi": "पानी प्लास्टिक में नहीं जा सकता"
+        },
+        {
+         "en": "The bottle is too cold",
+         "hi": "बोतल बहुत ठंडी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bottle is full of air, and air is matter that takes up space.",
+        "hi": "बोतल हवा से भरी है, और हवा जगह घेरने वाला द्रव्य है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water enters easily when you tilt the bottle and let the air bubble out.",
+         "hi": "बोतल तिरछी करने पर हवा बुलबुलों में निकलती है और पानी आसानी से भर जाता है।"
+        },
+        {
+         "en": "Temperature is not the reason; the trapped air is.",
+         "hi": "कारण तापमान नहीं है; अंदर फँसी हवा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Think of three more things around you and decide: matter or not matter?",
+      "hi": "\"फिर से शुरू\" दबाओ। अपने आसपास की तीन और चीज़ें सोचो और तय करो: द्रव्य है या नहीं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Chapter opener: objects around us",
+   "shows": "An Indian kitchen shelf with a steel tumbler, a glass jar of dal, a plastic box, a wooden rolling pin, a clay matka and a cotton cloth",
+   "view": "Eye level, daylight, 16:9",
+   "right": "Each material clearly different in look",
+   "avoid": "Brand names, labels"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Cards for the material sort",
+   "shows": "Separate cut-outs: wooden chair, pencil, steel spoon, copper lota, plastic bucket, ball pen, drinking glass, small mirror, folded towel, cotton kurta",
+   "view": "Three-quarter view, soft shadow",
+   "right": "True materials and colours",
+   "avoid": "Logos, prints with words"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "6.3.1",
+   "use": "Lustre",
+   "shows": "Two frames of an old dull copper lota: before, and after one patch is scrubbed with tamarind and shines",
+   "view": "Same framing, side view",
+   "right": "Scrubbed patch bright reddish metal",
+   "avoid": "Polish products"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.3.3",
+   "use": "Transparent, translucent, opaque",
+   "shows": "A torch shining at three sheets side by side: clear glass, butter paper and cardboard, with light passing, glowing hazily, and blocked",
+   "view": "Side view, dim room",
+   "right": "Light behaviour true for each sheet",
+   "avoid": "A child looking into the torch"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "6.3.4",
+   "use": "Dissolving",
+   "shows": "Two glasses of water: salt being stirred in and then the clear water; sand stirred in and then settled at the bottom",
+   "view": "Front view, white background, same framing",
+   "right": "Salt water clear; sand settled",
+   "avoid": "Spoons with logos"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "6.3.5",
+   "use": "Heavy or light",
+   "shows": "Three identical paper cups half filled with water, sand and pebbles, then a beam balance showing the pebble cup heaviest",
+   "view": "Front view, table top",
+   "right": "Equal fill levels; balance pans level only when equal",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 7,
+   "kind": "MAC",
+   "topic": "6.3.6",
+   "use": "Volume",
+   "shows": "A 100 mL measuring cylinder with water at 60 mL, close-up of the curved surface at eye level",
+   "view": "Eye level, square",
+   "right": "Bottom of the curve on the 60 mark",
+   "avoid": "Coloured water that hides the curve"
+  }
+ ]
+}

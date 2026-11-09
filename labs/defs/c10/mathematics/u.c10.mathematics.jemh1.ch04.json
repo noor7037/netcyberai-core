@@ -1,0 +1,661 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch04",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Quadratic Equations",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Introduction: where quadratic equations come from, and a little history",
+   "labs": [],
+   "why_no_lab": "A story-led opening; the reader tells it and the first lab follows straight after."
+  },
+  {
+   "n": "4.2",
+   "title": "Quadratic equations: the standard form ax² + bx + c = 0, a ≠ 0",
+   "labs": [
+    "c10-mathematics-jemh1-ch04-is-quadratic"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Solution of a quadratic equation by factorisation",
+   "labs": [
+    "c10-mathematics-jemh1-ch04-factorise",
+    "c10-mathematics-jemh1-ch04-split-middle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Nature of roots: the discriminant b² − 4ac",
+   "labs": [
+    "c10-mathematics-jemh1-ch04-discriminant"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch04-is-quadratic",
+   "topic": "4.2",
+   "template": "grapher",
+   "title": {
+    "en": "When is an equation quadratic?",
+    "hi": "समीकरण द्विघात कब होता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "quadratic",
+    "expr": "a*x^2 - 4*x + 3",
+    "params": {
+     "a": [
+      0,
+      2,
+      1,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "root",
+     "say": {
+      "en": "Slide x along the curve y = x² − 4x + 3 until the point sits on the x-axis.",
+      "hi": "x को वक्र y = x² − 4x + 3 पर तब तक खिसकाओ जब तक बिंदु x-अक्ष पर न आ जाए।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now make a = 0, so the x² term disappears. What will the graph become?",
+      "hi": "अब a = 0 करो, ताकि x² वाला पद हट जाए। ग्राफ़ कैसा हो जाएगा?"
+     },
+     "options": [
+      {
+       "id": "line",
+       "en": "A straight line",
+       "hi": "एक सीधी रेखा"
+      },
+      {
+       "id": "narrow",
+       "en": "A narrower parabola",
+       "hi": "एक पतला परवलय"
+      },
+      {
+       "id": "gone",
+       "en": "Nothing at all",
+       "hi": "कुछ भी नहीं"
+      }
+     ],
+     "answer": "line"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move the a slider down to 0.",
+      "hi": "a स्लाइडर को नीचे 0 पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the quick check: is this graph a parabola?",
+      "hi": "झटपट जाँच का उत्तर दो: क्या यह ग्राफ़ परवलय है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A quadratic equation can be written as ax² + bx + c = 0 with a ≠ 0. The x² term is what bends the graph into a parabola. With a = 0, −4x + 3 = 0 is only a linear equation with one root. Always simplify both sides before you decide.",
+      "hi": "द्विघात समीकरण को ax² + bx + c = 0 के रूप में लिखा जा सकता है, जहाँ a ≠ 0 हो। x² वाला पद ही ग्राफ़ को परवलय में मोड़ता है। a = 0 होने पर −4x + 3 = 0 केवल एक रैखिक समीकरण है, जिसका एक ही मूल है। निर्णय लेने से पहले हमेशा दोनों पक्ष सरल करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a quadratic equation?",
+        "hi": "इनमें से कौन-सा द्विघात समीकरण है?"
+       },
+       "options": [
+        "x(x − 3) = 10",
+        "(x + 1)² = x² + 5",
+        "3x + 7 = 2x − 1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "x(x − 3) = 10 becomes x² − 3x − 10 = 0, and the x² term stays.",
+        "hi": "x(x − 3) = 10 से x² − 3x − 10 = 0 बनता है, और x² वाला पद बना रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Open the bracket: x² + 2x + 1 = x² + 5. The x² terms cancel and you get 2x = 4, a linear equation.",
+         "hi": "कोष्ठक खोलो: x² + 2x + 1 = x² + 5। x² वाले पद कट जाते हैं और 2x = 4 बचता है, जो रैखिक है।"
+        },
+        {
+         "en": "There is no x² term at all, so it is linear.",
+         "hi": "इसमें x² वाला पद है ही नहीं, इसलिए यह रैखिक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A rectangle's length is 3 m more than its width x, and its area is 40 m². Which equation fits?",
+        "hi": "एक आयत की लंबाई उसकी चौड़ाई x से 3 मी ज़्यादा है, और क्षेत्रफल 40 मी² है। कौन-सा समीकरण सही है?"
+       },
+       "options": [
+        "x² + 3x − 40 = 0",
+        "2x + 3 = 40",
+        "x² + 3 = 40"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Area = length × width = (x + 3)x = 40, so x² + 3x − 40 = 0.",
+        "hi": "क्षेत्रफल = लंबाई × चौड़ाई = (x + 3)x = 40, इसलिए x² + 3x − 40 = 0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That adds the length and the width; area needs them multiplied.",
+         "hi": "यह लंबाई और चौड़ाई जोड़ना है; क्षेत्रफल के लिए गुणा चाहिए।"
+        },
+        {
+         "en": "The 3 must be multiplied by x too: (x + 3) × x = x² + 3x.",
+         "hi": "3 को भी x से गुणा करना है: (x + 3) × x = x² + 3x।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: set a to 2. Where does the curve meet the x-axis now? Do the roots move closer together or further apart?",
+      "hi": "आज़माओ: a को 2 करो। अब वक्र x-अक्ष से कहाँ मिलता है? मूल पास आते हैं या दूर जाते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch04-factorise",
+   "topic": "4.3",
+   "template": "algebra",
+   "title": {
+    "en": "Solve by factorisation",
+    "hi": "गुणनखंड विधि से हल करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "factorise",
+    "equation": "x^2-7x+12"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To factorise x² − 7x + 12, which two numbers multiply to 12 and add to −7?",
+      "hi": "x² − 7x + 12 के गुणनखंड के लिए कौन-सी दो संख्याएँ गुणा में 12 और जोड़ में −7 देती हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "−3 and −4",
+       "hi": "−3 और −4"
+      },
+      {
+       "id": "b",
+       "en": "3 and 4",
+       "hi": "3 और 4"
+      },
+      {
+       "id": "c",
+       "en": "−2 and −6",
+       "hi": "−2 और −6"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "factorised",
+     "say": {
+      "en": "Set the two brackets with the steppers until the area model matches, then press Check.",
+      "hi": "स्टेपर से दोनों कोष्ठक बनाओ जब तक क्षेत्रफल मॉडल मेल न खाए, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "x² − 7x + 12 = (x − 3)(x − 4). If a product of two numbers is 0, one of them must be 0. So x − 3 = 0 or x − 4 = 0, and the roots are 3 and 4. Each root is a zero of the polynomial.",
+      "hi": "x² − 7x + 12 = (x − 3)(x − 4)। यदि दो संख्याओं का गुणनफल 0 हो, तो उनमें से एक 0 होनी चाहिए। इसलिए x − 3 = 0 या x − 4 = 0, और मूल 3 और 4 हैं। हर मूल बहुपद का एक शून्यक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What are the roots of x² + x − 6 = 0?",
+        "hi": "x² + x − 6 = 0 के मूल क्या हैं?"
+       },
+       "options": [
+        {
+         "en": "2 and −3",
+         "hi": "2 और −3"
+        },
+        {
+         "en": "−2 and 3",
+         "hi": "−2 और 3"
+        },
+        {
+         "en": "1 and −6",
+         "hi": "1 और −6"
+        },
+        {
+         "en": "6 and −1",
+         "hi": "6 और −1"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "x² + x − 6 = (x − 2)(x + 3), so x = 2 or x = −3.",
+        "hi": "x² + x − 6 = (x − 2)(x + 3), इसलिए x = 2 या x = −3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "(x + 2)(x − 3) = x² − x − 6: the middle term has the wrong sign.",
+         "hi": "(x + 2)(x − 3) = x² − x − 6: बीच के पद का चिह्न ग़लत है।"
+        },
+        {
+         "en": "1 × (−6) = −6, but 1 + (−6) = −5, not 1.",
+         "hi": "1 × (−6) = −6, पर 1 + (−6) = −5 है, 1 नहीं।"
+        },
+        {
+         "en": "6 × (−1) = −6, but 6 + (−1) = 5, not 1.",
+         "hi": "6 × (−1) = −6, पर 6 + (−1) = 5 है, 1 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "After (x − 5)(x + 2) = 0, why can we say x = 5 or x = −2?",
+        "hi": "(x − 5)(x + 2) = 0 के बाद हम x = 5 या x = −2 क्यों कह सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "A product is 0 only if a factor is 0",
+         "hi": "गुणनफल 0 तभी होता है जब कोई गुणनखंड 0 हो"
+        },
+        {
+         "en": "Because 5 − 2 = 3",
+         "hi": "क्योंकि 5 − 2 = 3"
+        },
+        {
+         "en": "Both brackets must equal 1",
+         "hi": "दोनों कोष्ठक 1 के बराबर होने चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If neither bracket were 0, their product could not be 0.",
+        "hi": "यदि कोई भी कोष्ठक 0 न हो, तो उनका गुणनफल 0 नहीं हो सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The difference of the roots plays no part here.",
+         "hi": "यहाँ मूलों के अंतर की कोई भूमिका नहीं है।"
+        },
+        {
+         "en": "1 × 1 = 1, not 0; the product is 0 only when one bracket is 0.",
+         "hi": "1 × 1 = 1 होता है, 0 नहीं; गुणनफल 0 तभी होगा जब एक कोष्ठक 0 हो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: use the Test slider. Put x = 3 and x = 4: does the target become 0? Try x = 5 and see what you get.",
+      "hi": "आज़माओ: परखने वाले स्लाइडर में x = 3 और x = 4 रखो: क्या लक्ष्य 0 बनता है? x = 5 पर क्या आता है, देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch04-split-middle",
+   "topic": "4.3",
+   "template": "algebra",
+   "title": {
+    "en": "Split the middle term",
+    "hi": "बीच का पद तोड़ो"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "factorise",
+    "equation": "2x^2+7x+3"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For 2x² + 7x + 3, a × c = 6. Which pair of numbers splits 7x?",
+      "hi": "2x² + 7x + 3 में a × c = 6 है। कौन-सी जोड़ी 7x को तोड़ती है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "6x and x",
+       "hi": "6x और x"
+      },
+      {
+       "id": "b",
+       "en": "3x and 4x",
+       "hi": "3x और 4x"
+      },
+      {
+       "id": "c",
+       "en": "5x and 2x",
+       "hi": "5x और 2x"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "factorised",
+     "say": {
+      "en": "Build the two brackets with the steppers and press Check. Use Hint if you are stuck.",
+      "hi": "स्टेपर से दोनों कोष्ठक बनाओ और जाँचो दबाओ। अटक जाओ तो संकेत लो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "2x² + 7x + 3 = 2x² + 6x + x + 3 = 2x(x + 3) + 1(x + 3) = (2x + 1)(x + 3). So 2x + 1 = 0 or x + 3 = 0, giving x = −1/2 or x = −3. Splitting the middle term with two numbers whose product is ac and sum is b always lets us group.",
+      "hi": "2x² + 7x + 3 = 2x² + 6x + x + 3 = 2x(x + 3) + 1(x + 3) = (2x + 1)(x + 3)। इसलिए 2x + 1 = 0 या x + 3 = 0, यानी x = −1/2 या x = −3। बीच के पद को ऐसी दो संख्याओं में तोड़ना, जिनका गुणनफल ac और योग b हो, हमेशा समूह बनाने देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "To factorise 3x² − 10x + 8, the middle term should be split as",
+        "hi": "3x² − 10x + 8 के गुणनखंड के लिए बीच का पद कैसे तोड़ें?"
+       },
+       "options": [
+        "−6x − 4x",
+        "−8x − 2x",
+        "−5x − 5x"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ac = 24: −6 × −4 = 24 and −6 + −4 = −10. Then 3x² − 6x − 4x + 8 = (3x − 4)(x − 2).",
+        "hi": "ac = 24: −6 × −4 = 24 और −6 + −4 = −10। फिर 3x² − 6x − 4x + 8 = (3x − 4)(x − 2)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "−8 × −2 = 16, not 24, so grouping will not work.",
+         "hi": "−8 × −2 = 16 है, 24 नहीं, इसलिए समूह नहीं बनेगा।"
+        },
+        {
+         "en": "−5 × −5 = 25, not 24.",
+         "hi": "−5 × −5 = 25 है, 24 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: put x = −3 on the Test slider. Is the target 0? Can the slider show the other root, −1/2? Why not?",
+      "hi": "आज़माओ: परखने वाले स्लाइडर पर x = −3 रखो। क्या लक्ष्य 0 है? क्या स्लाइडर दूसरा मूल −1/2 दिखा सकता है? क्यों नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch04-discriminant",
+   "topic": "4.4",
+   "template": "grapher",
+   "title": {
+    "en": "How many roots? Ask the discriminant",
+    "hi": "कितने मूल? विविक्तकर से पूछो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadratic",
+    "expr": "x^2 - 4*x + c",
+    "params": {
+     "c": [
+      0,
+      8,
+      3,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "root",
+     "say": {
+      "en": "Slide x until the point snaps onto a place where the curve meets the x-axis.",
+      "hi": "x को तब तक खिसकाओ जब तक बिंदु वहाँ न टिके जहाँ वक्र x-अक्ष से मिलता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now c = 3, so b² − 4ac = 16 − 12 = 4. If you make c = 4, then b² − 4ac = 0. How many roots will there be?",
+      "hi": "अभी c = 3, तो b² − 4ac = 16 − 12 = 4। यदि c = 4 करो, तो b² − 4ac = 0। कितने मूल होंगे?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "One (two equal roots)",
+       "hi": "एक (दो बराबर मूल)"
+      },
+      {
+       "id": "two",
+       "en": "Two different roots",
+       "hi": "दो अलग मूल"
+      },
+      {
+       "id": "none",
+       "en": "No real roots",
+       "hi": "कोई वास्तविक मूल नहीं"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "slider:c",
+     "expect": "changed",
+     "say": {
+      "en": "Move the c slider to 4 and watch the curve touch the axis.",
+      "hi": "c स्लाइडर को 4 पर ले जाओ और वक्र को अक्ष छूते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the quick check: how many times does the graph meet the x-axis?",
+      "hi": "झटपट जाँच का उत्तर दो: ग्राफ़ x-अक्ष से कितनी बार मिलता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For ax² + bx + c = 0, the discriminant D = b² − 4ac decides the roots. D > 0: two different real roots (the curve crosses twice). D = 0: two equal roots (it just touches). D < 0: no real roots (it stays above or below the axis). The roots are x = (−b ± √D) / 2a.",
+      "hi": "ax² + bx + c = 0 के लिए विविक्तकर D = b² − 4ac मूलों का स्वभाव तय करता है। D > 0: दो अलग वास्तविक मूल (वक्र दो बार काटता है)। D = 0: दो बराबर मूल (बस छूता है)। D < 0: कोई वास्तविक मूल नहीं (वक्र अक्ष के ऊपर या नीचे रहता है)। मूल x = (−b ± √D) / 2a होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the nature of the roots of 2x² + 3x + 5 = 0?",
+        "hi": "2x² + 3x + 5 = 0 के मूलों का स्वभाव क्या है?"
+       },
+       "options": [
+        {
+         "en": "No real roots",
+         "hi": "कोई वास्तविक मूल नहीं"
+        },
+        {
+         "en": "Two different real roots",
+         "hi": "दो अलग वास्तविक मूल"
+        },
+        {
+         "en": "Two equal real roots",
+         "hi": "दो बराबर वास्तविक मूल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "D = 3² − 4 × 2 × 5 = 9 − 40 = −31, which is less than 0.",
+        "hi": "D = 3² − 4 × 2 × 5 = 9 − 40 = −31, जो 0 से कम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That needs D > 0, but D = −31 here.",
+         "hi": "इसके लिए D > 0 चाहिए, पर यहाँ D = −31 है।"
+        },
+        {
+         "en": "That needs D = 0 exactly, but D = −31.",
+         "hi": "इसके लिए D ठीक 0 होना चाहिए, पर D = −31 है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For which k does x² + 6x + k = 0 have two equal roots?",
+        "hi": "k के किस मान पर x² + 6x + k = 0 के दो बराबर मूल होंगे?"
+       },
+       "options": [
+        "9",
+        "6",
+        "36",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal roots need D = 0: 36 − 4k = 0, so k = 9. Then x² + 6x + 9 = (x + 3)².",
+        "hi": "बराबर मूलों के लिए D = 0: 36 − 4k = 0, इसलिए k = 9। तब x² + 6x + 9 = (x + 3)²।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "With k = 6, D = 36 − 24 = 12 > 0: two different roots.",
+         "hi": "k = 6 पर D = 36 − 24 = 12 > 0: दो अलग मूल।"
+        },
+        {
+         "en": "That forgets the 4 in 4ac: with k = 36, D = 36 − 144 < 0.",
+         "hi": "इसमें 4ac का 4 भूल गए: k = 36 पर D = 36 − 144 < 0।"
+        },
+        {
+         "en": "3 is half of 6; the equal root is −3, but k must be 3² = 9.",
+         "hi": "3, 6 का आधा है; बराबर मूल −3 है, पर k को 3² = 9 होना चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: set c = 6. Work out D = 16 − 24. Does the graph agree that there are no real roots?",
+      "hi": "आज़माओ: c = 6 करो। D = 16 − 24 निकालो। क्या ग्राफ़ भी दिखाता है कि कोई वास्तविक मूल नहीं है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Chapter hook: a prayer hall with a carpet",
+   "shows": "An empty rectangular prayer hall or community hall in India with a large plain carpet whose length is clearly longer than its width",
+   "view": "High corner view, soft daylight",
+   "right": "Carpet a clear rectangle, edges straight",
+   "avoid": "People, text, religious symbols that dominate"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "A rectangular garden plot",
+   "shows": "A rectangular kitchen-garden plot in an Indian backyard, edged with bricks, with a measuring tape lying along one side",
+   "view": "From a first-floor window, looking down",
+   "right": "Plot a true rectangle; tape visible but unreadable",
+   "avoid": "Readable numbers, people"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.3",
+   "use": "Algebra tiles for factorisation",
+   "shows": "A tray of algebra tiles: two large blue squares, seven green strips and twelve small yellow squares, loose",
+   "view": "From above, transparent background",
+   "right": "Strip length equals the big square's side; small square side equals strip width",
+   "avoid": "Printed symbols"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.4",
+   "use": "A ball that just touches",
+   "shows": "A ball rolling up a gentle slope and stopping exactly at its top before rolling back, shown with a soft motion blur",
+   "view": "Side view, plain background",
+   "right": "One smooth path that just touches the highest line",
+   "avoid": "Faces, logos"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "4.4",
+   "use": "Three parabolas and the ground",
+   "shows": "Three frames of a water fountain jet in a park: one whose arc lands well past a low wall, one that just grazes the top of the wall, one that falls short of reaching the wall's height",
+   "view": "Same camera, same light, side view",
+   "right": "The wall is in the same place in all three frames",
+   "avoid": "People, signs"
+  }
+ ]
+}

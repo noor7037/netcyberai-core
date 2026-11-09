@@ -1,0 +1,786 @@
+{
+ "chapter_key": "u.c11.geography.kegy1.ch02",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Structure and Physiography",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Geological structure: plate tectonics and the making of the Himalaya",
+   "labs": [
+    "c11-geography-kegy1-ch02-plates"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "The Northern and Himalayan mountains and the Peninsular Block",
+   "labs": [
+    "c11-geography-kegy1-ch02-regions",
+    "c11-geography-kegy1-ch02-peaks"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Himalayan divisions, the Northern Plains and the Peninsular Plateau",
+   "labs": [
+    "c11-geography-kegy1-ch02-divisions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "The Indian Desert, coastal plains and islands",
+   "labs": [],
+   "why_no_lab": "Best learnt from the atlas map and photographs of dunes, backwaters, beaches and islands."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy1-ch02-plates",
+   "topic": "2.1",
+   "template": "earth",
+   "title": {
+    "en": "How the Himalaya were born",
+    "hi": "हिमालय कैसे बना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "plates",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Indian plate is moving north by about 5 cm a year and pushing into Asia. What will two continents do when they collide?",
+      "hi": "भारतीय प्लेट प्रति वर्ष लगभग 5 सेमी उत्तर की ओर बढ़ती है और एशिया से टकराती है। दो महाद्वीप टकराएँगे तो क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "f",
+       "en": "The crust crumples up into fold mountains",
+       "hi": "भूपर्पटी मुड़कर वलित पर्वत बनाएगी"
+      },
+      {
+       "id": "s",
+       "en": "One will sink like in a trench",
+       "hi": "एक खाई की तरह धँस जाएगा"
+      },
+      {
+       "id": "n",
+       "en": "Nothing will happen",
+       "hi": "कुछ नहीं होगा"
+      }
+     ],
+     "answer": "f"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "revealed:himalaya",
+     "say": {
+      "en": "Press Play and watch the Tethys Sea close and the mountains rise.",
+      "hi": "चलाओ दबाओ और देखो टेथिस सागर कैसे बंद होता है और पर्वत उठते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Indian plate once lay far to the south. As it drifted north, the Tethys Sea between it and Asia closed. Neither continental plate is heavy enough to sink, so the crust and the sea sediments were crumpled and pushed up into the young fold mountains of the Himalaya. The plate is still moving about 5 cm a year, so the Himalaya are still rising and earthquakes are common there.",
+      "hi": "भारतीय प्लेट कभी बहुत दक्षिण में थी। उत्तर की ओर खिसकते हुए उसके और एशिया के बीच का टेथिस सागर बंद हो गया। कोई महाद्वीपीय प्लेट इतनी भारी नहीं कि धँसे, इसलिए भूपर्पटी और समुद्री तलछट मुड़कर हिमालय के नए वलित पर्वतों के रूप में ऊपर उठ गए। प्लेट आज भी लगभग 5 सेमी प्रति वर्ष बढ़ रही है, इसलिए हिमालय अब भी उठ रहा है और वहाँ भूकंप आम हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do the Himalaya have fold mountains rather than a deep trench?",
+        "hi": "हिमालय में गहरी खाई के बजाय वलित पर्वत क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "Two continental plates collided and neither sank",
+         "hi": "दो महाद्वीपीय प्लेटें टकराईं और कोई नहीं धँसी"
+        },
+        {
+         "en": "A volcano erupted there",
+         "hi": "वहाँ ज्वालामुखी फटा"
+        },
+        {
+         "en": "Water washed the land away",
+         "hi": "पानी ने भूमि को बहा दिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Continental crust is light, so when two meet, the crust folds upward.",
+        "hi": "महाद्वीपीय भूपर्पटी हल्की होती है, इसलिए दो के मिलने पर वह ऊपर की ओर मुड़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Himalaya are fold mountains, not volcanoes.",
+         "hi": "हिमालय वलित पर्वत हैं, ज्वालामुखी नहीं।"
+        },
+        {
+         "en": "Water erodes mountains; it did not make them.",
+         "hi": "पानी पर्वतों को घिसता है, बनाता नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the Himalaya region have many earthquakes?",
+        "hi": "हिमालय क्षेत्र में भूकंप अधिक क्यों आते हैं?"
+       },
+       "options": [
+        {
+         "en": "The plates are still pushing and building stress",
+         "hi": "प्लेटें अब भी धक्का दे रही हैं और तनाव बन रहा है"
+        },
+        {
+         "en": "Because the mountains are too high",
+         "hi": "क्योंकि पर्वत बहुत ऊँचे हैं"
+        },
+        {
+         "en": "Because rivers are flowing",
+         "hi": "क्योंकि नदियाँ बह रही हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Indian plate keeps moving north, so stress builds up and is released as earthquakes.",
+        "hi": "भारतीय प्लेट उत्तर की ओर बढ़ती रहती है, इसलिए तनाव बनता है और भूकंप के रूप में निकलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Height alone does not cause quakes; plate movement does.",
+         "hi": "केवल ऊँचाई भूकंप नहीं लाती; प्लेटों की गति लाती है।"
+        },
+        {
+         "en": "Rivers wear the land slowly; they do not shake it.",
+         "hi": "नदियाँ भूमि को धीरे-धीरे काटती हैं, हिलाती नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Play again and slow it down with the time slider. How many million years does it take for the Himalaya to appear?",
+      "hi": "आज़माओ: फिर से चलाओ और समय स्लाइडर से धीमा करो। हिमालय बनने में कितने लाख या करोड़ वर्ष लगते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch02-regions",
+   "topic": "2.2",
+   "template": "map",
+   "title": {
+    "en": "Mountains and plateaus of India",
+    "hi": "भारत के पर्वत और पठार"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "mountains",
+     "plateaus",
+     "rivers"
+    ],
+    "show": [
+     "mountains"
+    ],
+    "places": [
+     "himalaya",
+     "aravalli",
+     "western-ghats",
+     "deccan",
+     "thar"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:himalaya",
+     "expect": "located:himalaya",
+     "say": {
+      "en": "Tap the Himalaya in the north. They are young fold mountains.",
+      "hi": "उत्तर में हिमालय टैप करो। ये नए वलित पर्वत हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Aravalli is one of the oldest mountains in the world. Will it be taller or lower than the Himalaya?",
+      "hi": "अरावली दुनिया के सबसे पुराने पर्वतों में से एक है। वह हिमालय से ऊँची होगी या नीची?"
+     },
+     "options": [
+      {
+       "id": "lo",
+       "en": "Lower, because old mountains have been worn down",
+       "hi": "नीची, क्योंकि पुराने पर्वत घिस चुके हैं"
+      },
+      {
+       "id": "hi",
+       "en": "Taller, because it is older",
+       "hi": "ऊँची, क्योंकि वह पुरानी है"
+      }
+     ],
+     "answer": "lo"
+    },
+    {
+     "kind": "do",
+     "target": "place:aravalli",
+     "expect": "located:aravalli",
+     "say": {
+      "en": "Tap the Aravalli range in the north-west.",
+      "hi": "उत्तर-पश्चिम में अरावली श्रेणी टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:plateaus",
+     "expect": "layer:plateaus",
+     "say": {
+      "en": "Switch on the Plateaus layer.",
+      "hi": "पठार परत चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:deccan",
+     "expect": "located:deccan",
+     "say": {
+      "en": "Tap the Deccan Plateau. It slopes gently to the east.",
+      "hi": "दक्कन का पठार टैप करो। वह पूर्व की ओर हल्का ढलता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:western-ghats",
+     "expect": "located:western-ghats",
+     "say": {
+      "en": "Tap the Western Ghats along the west coast.",
+      "hi": "पश्चिमी तट के साथ पश्चिमी घाट टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has three great physical units: the young, high Himalayan mountains in the north, the old, stable Peninsular Plateau in the south, and the Northern Plains between them. The Aravalli and the hills of the plateau are very old and worn down. The Deccan Plateau slopes towards the east, so the big peninsular rivers flow that way. The Western Ghats form a high wall along the west coast.",
+      "hi": "भारत में तीन बड़ी भौतिक इकाइयाँ हैं: उत्तर में नए और ऊँचे हिमालय पर्वत, दक्षिण में पुराना और स्थिर प्रायद्वीपीय पठार, और उनके बीच उत्तरी मैदान। अरावली और पठार की पहाड़ियाँ बहुत पुरानी और घिसी हुई हैं। दक्कन का पठार पूर्व की ओर ढलता है, इसलिए बड़ी प्रायद्वीपीय नदियाँ उसी ओर बहती हैं। पश्चिमी घाट पश्चिमी तट पर ऊँची दीवार बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement fits the Peninsular Plateau?",
+        "hi": "प्रायद्वीपीय पठार पर कौन-सा कथन ठीक बैठता है?"
+       },
+       "options": [
+        {
+         "en": "It is an old, stable block of hard rock",
+         "hi": "यह कठोर चट्टान का पुराना और स्थिर खंड है"
+        },
+        {
+         "en": "It is a young fold mountain",
+         "hi": "यह एक नया वलित पर्वत है"
+        },
+        {
+         "en": "It is made of new river mud",
+         "hi": "यह नदी की नई मिट्टी से बना है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The plateau is one of the oldest land masses, made of hard, ancient rocks.",
+        "hi": "पठार सबसे पुराने भू-खंडों में से है और कठोर प्राचीन चट्टानों से बना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Young fold mountains are the Himalaya, not the plateau.",
+         "hi": "नए वलित पर्वत हिमालय हैं, पठार नहीं।"
+        },
+        {
+         "en": "River mud forms the plains, not the plateau.",
+         "hi": "नदी की मिट्टी मैदान बनाती है, पठार नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: switch on the Rivers layer and look at where rivers start. Which side of the Western Ghats do they flow towards?",
+      "hi": "आज़माओ: नदी परत चालू करो और देखो नदियाँ कहाँ से निकलती हैं। वे पश्चिमी घाट के किस ओर बहती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch02-peaks",
+   "topic": "2.2",
+   "template": "map",
+   "title": {
+    "en": "Which peak is highest in India?",
+    "hi": "भारत की सबसे ऊँची चोटी कौन-सी है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "mountains",
+     "states"
+    ],
+    "show": [
+     "mountains"
+    ],
+    "task": "compare",
+    "ask": "higher",
+    "places": [
+     "kangchenjunga",
+     "nanda-devi",
+     "anamudi"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Of the three peaks, one is in the Himalaya of Sikkim, one in Uttarakhand and one in the Western Ghats. Which is highest?",
+      "hi": "तीन चोटियों में से एक सिक्किम के हिमालय में, एक उत्तराखंड में और एक पश्चिमी घाट में है। सबसे ऊँची कौन-सी है?"
+     },
+     "options": [
+      {
+       "id": "k",
+       "en": "Kangchenjunga",
+       "hi": "कंचनजंगा"
+      },
+      {
+       "id": "n",
+       "en": "Nanda Devi",
+       "hi": "नंदा देवी"
+      },
+      {
+       "id": "a",
+       "en": "Anamudi",
+       "hi": "अनामुदी"
+      }
+     ],
+     "answer": "k"
+    },
+    {
+     "kind": "do",
+     "target": "place:kangchenjunga",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap the peak you think is the highest.",
+      "hi": "जिस चोटी को सबसे ऊँची समझते हो, उसे टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Kangchenjunga (about 8,586 m) in Sikkim is the highest peak within India. Nanda Devi (about 7,816 m) in Uttarakhand is lower, and Anamudi (about 2,695 m) in the Western Ghats is the highest peak of Peninsular India. The great height of the Himalaya comes from their recent, still-rising folding, while the old plateau hills have been worn low.",
+      "hi": "सिक्किम की कंचनजंगा (लगभग 8,586 मी) भारत के भीतर सबसे ऊँची चोटी है। उत्तराखंड की नंदा देवी (लगभग 7,816 मी) उससे कम और पश्चिमी घाट की अनामुदी (लगभग 2,695 मी) प्रायद्वीपीय भारत की सबसे ऊँची चोटी है। हिमालय की भारी ऊँचाई उनके नए, अब भी उठते वलन से आती है, जबकि पुराने पठार की पहाड़ियाँ घिसकर नीची हो गई हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the highest peak of Peninsular India?",
+        "hi": "प्रायद्वीपीय भारत की सबसे ऊँची चोटी कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "Anamudi",
+         "hi": "अनामुदी"
+        },
+        {
+         "en": "Nanda Devi",
+         "hi": "नंदा देवी"
+        },
+        {
+         "en": "Kangchenjunga",
+         "hi": "कंचनजंगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Anamudi, about 2,695 m, in the Western Ghats of Kerala.",
+        "hi": "अनामुदी, लगभग 2,695 मी, केरल के पश्चिमी घाट में।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nanda Devi is in the Himalaya of Uttarakhand, not in the peninsula.",
+         "hi": "नंदा देवी उत्तराखंड के हिमालय में है, प्रायद्वीप में नहीं।"
+        },
+        {
+         "en": "Kangchenjunga is in the Himalaya of Sikkim.",
+         "hi": "कंचनजंगा सिक्किम के हिमालय में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: reset and compare other peaks in the atlas. Why is no peak of the plateau as tall as those of the Himalaya?",
+      "hi": "आज़माओ: एटलस में दूसरी चोटियों की तुलना करो। पठार की कोई चोटी हिमालय जितनी ऊँची क्यों नहीं है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch02-divisions",
+   "topic": "2.3",
+   "template": "sort",
+   "title": {
+    "en": "Himalaya, plains or plateau?",
+    "hi": "हिमालय, मैदान या पठार?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "him",
+      "label": {
+       "en": "Himalayan mountains",
+       "hi": "हिमालय पर्वत"
+      }
+     },
+     {
+      "id": "plain",
+      "label": {
+       "en": "Northern plains",
+       "hi": "उत्तरी मैदान"
+      }
+     },
+     {
+      "id": "plat",
+      "label": {
+       "en": "Peninsular plateau",
+       "hi": "प्रायद्वीपीय पठार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "himadri",
+      "text": {
+       "en": "Himadri, the Great Himalaya",
+       "hi": "हिमाद्रि, महान हिमालय"
+      },
+      "bin": "him",
+      "why": {
+       "en": "The highest and most continuous range, with peaks like Kangchenjunga.",
+       "hi": "सबसे ऊँची और सतत श्रेणी, जिसमें कंचनजंगा जैसी चोटियाँ हैं।"
+      }
+     },
+     {
+      "id": "shiwalik",
+      "text": {
+       "en": "Shiwalik hills",
+       "hi": "शिवालिक की पहाड़ियाँ"
+      },
+      "bin": "him",
+      "why": {
+       "en": "The outermost and lowest range of the Himalaya.",
+       "hi": "हिमालय की सबसे बाहरी और सबसे नीची श्रेणी।"
+      }
+     },
+     {
+      "id": "himachal",
+      "text": {
+       "en": "Himachal, the Lesser Himalaya",
+       "hi": "हिमाचल, लघु हिमालय"
+      },
+      "bin": "him",
+      "why": {
+       "en": "The middle range with hill stations such as Shimla.",
+       "hi": "बीच की श्रेणी, जिसमें शिमला जैसे पर्वतीय स्थल हैं।"
+      }
+     },
+     {
+      "id": "bhabar",
+      "text": {
+       "en": "Bhabar, the pebbly strip",
+       "hi": "भाबर, कंकड़ की पट्टी"
+      },
+      "bin": "plain",
+      "why": {
+       "en": "A narrow belt of pebbles at the foot of the Shiwaliks, in the plains.",
+       "hi": "शिवालिक की तलहटी में कंकड़ों की संकरी पट्टी, मैदान में।"
+      }
+     },
+     {
+      "id": "terai",
+      "text": {
+       "en": "Terai, the damp marshy belt",
+       "hi": "तराई, नम दलदली पट्टी"
+      },
+      "bin": "plain",
+      "why": {
+       "en": "South of the Bhabar, where streams come out and the land is marshy.",
+       "hi": "भाबर के दक्षिण में जहाँ धाराएँ फिर निकलती हैं और भूमि दलदली है।"
+      }
+     },
+     {
+      "id": "khadar",
+      "text": {
+       "en": "Khadar, new flood-plain soil",
+       "hi": "खादर, बाढ़ के मैदान की नई मिट्टी"
+      },
+      "bin": "plain",
+      "why": {
+       "en": "New alluvium laid down by rivers almost every year.",
+       "hi": "नदियों द्वारा लगभग हर साल बिछाई गई नई जलोढ़ मिट्टी।"
+      }
+     },
+     {
+      "id": "deccan",
+      "text": {
+       "en": "Deccan Plateau",
+       "hi": "दक्कन का पठार"
+      },
+      "bin": "plat",
+      "why": {
+       "en": "The large triangular plateau south of the Narmada.",
+       "hi": "नर्मदा के दक्षिण का बड़ा त्रिभुजाकार पठार।"
+      }
+     },
+     {
+      "id": "malwa",
+      "text": {
+       "en": "Malwa Plateau",
+       "hi": "मालवा का पठार"
+      },
+      "bin": "plat",
+      "why": {
+       "en": "Part of the Central Highlands of the peninsula.",
+       "hi": "प्रायद्वीप की मध्य उच्चभूमि का भाग।"
+      }
+     },
+     {
+      "id": "chota",
+      "text": {
+       "en": "Chota Nagpur Plateau",
+       "hi": "छोटा नागपुर का पठार"
+      },
+      "bin": "plat",
+      "why": {
+       "en": "The mineral-rich north-eastern part of the peninsula.",
+       "hi": "प्रायद्वीप का खनिज-समृद्ध उत्तर-पूर्वी भाग।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:himadri",
+     "expect": "correct:himadri",
+     "say": {
+      "en": "Place the card of the Great Himalaya.",
+      "hi": "महान हिमालय का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Terai is a damp, marshy belt at the foot of the mountains. Is it part of the plains or of the plateau?",
+      "hi": "तराई पर्वतों की तलहटी की नम, दलदली पट्टी है। वह मैदान का भाग है या पठार का?"
+     },
+     "options": [
+      {
+       "id": "pl",
+       "en": "The plains",
+       "hi": "मैदान"
+      },
+      {
+       "id": "pt",
+       "en": "The plateau",
+       "hi": "पठार"
+      }
+     ],
+     "answer": "pl"
+    },
+    {
+     "kind": "do",
+     "target": "card:terai",
+     "expect": "correct:terai",
+     "say": {
+      "en": "Place the Terai card.",
+      "hi": "तराई का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards and press Check.",
+      "hi": "बाक़ी कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Himalaya in the north have three parallel ranges: Himadri (greater), Himachal (lesser) and Shiwalik (outer). Below them the Northern Plains were built by the Indus, Ganga and Brahmaputra rivers from the Bhabar and Terai at the foot of the hills to the new Khadar and old Bhangar alluvium. South of the plains lies the old Peninsular Plateau, with the Malwa, Deccan and Chota Nagpur plateaus.",
+      "hi": "उत्तर में हिमालय की तीन समानांतर श्रेणियाँ हैं: हिमाद्रि (बृहत्), हिमाचल (लघु) और शिवालिक (बाह्य)। इनके नीचे उत्तरी मैदान सिंधु, गंगा और ब्रह्मपुत्र नदियों ने बनाए, पहाड़ियों की तलहटी के भाबर और तराई से लेकर नई खादर और पुरानी भांगर जलोढ़ तक। मैदानों के दक्षिण में पुराना प्रायद्वीपीय पठार है, जिसमें मालवा, दक्कन और छोटा नागपुर पठार आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is the oldest and most stable part of India?",
+        "hi": "इनमें भारत का सबसे पुराना और स्थिर भाग कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "The Peninsular Plateau",
+         "hi": "प्रायद्वीपीय पठार"
+        },
+        {
+         "en": "The Himalaya",
+         "hi": "हिमालय"
+        },
+        {
+         "en": "The Khadar plains",
+         "hi": "खादर के मैदान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The plateau is a block of ancient hard rock that has stayed stable for a very long time.",
+        "hi": "पठार प्राचीन कठोर चट्टान का खंड है जो बहुत लंबे समय से स्थिर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Himalaya are young and still rising.",
+         "hi": "हिमालय नए हैं और अब भी उठ रहे हैं।"
+        },
+        {
+         "en": "The Khadar is new soil laid down by recent floods.",
+         "hi": "खादर हाल की बाढ़ों से बिछी नई मिट्टी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: sort again and, for each card, say which river or rock built it.",
+      "hi": "आज़माओ: फिर से छाँटो और हर कार्ड के लिए बताओ कि उसे किस नदी या चट्टान ने बनाया।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Hook: the Himalaya",
+   "shows": "The Great Himalayan range with snow peaks seen across a green foothill valley in clear morning light",
+   "view": "Wide landscape from a hill ridge",
+   "right": "Snow peaks sharp; foothills dark green",
+   "avoid": "People, tents, signs"
+  },
+  {
+   "n": 2,
+   "kind": "CUT",
+   "topic": "2.1",
+   "use": "Fold mountains",
+   "shows": "A cutaway of layered rock folded into waves like crumpled cloth, with a small figure to show scale not included",
+   "view": "4:3, neutral grey background",
+   "right": "Layers clearly bent in folds",
+   "avoid": "Text, arrows"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Aravalli hills",
+   "shows": "The low, worn Aravalli hills near Udaipur in the dry season",
+   "view": "Eye level across a valley, soft light",
+   "right": "Rounded low hills; dry scrub",
+   "avoid": "Buildings in focus, vehicles"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "The Northern Plains",
+   "shows": "A wide green plain of wheat fields stretching to the horizon in the Ganga plain",
+   "view": "Low drone-style view, golden hour",
+   "right": "Flat land to the horizon; wheat green",
+   "avoid": "Power lines, text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Deccan Plateau",
+   "shows": "A black-soil plateau landscape in Maharashtra with flat-topped hills and cotton fields",
+   "view": "Wide view, clear light",
+   "right": "Flat tops and dark soil",
+   "avoid": "People, billboards"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Thar Desert",
+   "shows": "Sand dunes near Jaisalmer with camels walking in a line far away",
+   "view": "Wide dune landscape, low sun",
+   "right": "Wind ripples on the dunes; camels small",
+   "avoid": "Close people, tourist tents"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Coast and islands",
+   "shows": "The Kerala backwaters with a palm-lined coast and a narrow canal",
+   "view": "Eye level from a boat, soft morning light",
+   "right": "Palms, still water, no signage",
+   "avoid": "Boat names, faces"
+  },
+  {
+   "n": 8,
+   "kind": "MAP",
+   "topic": "2.2",
+   "use": "Relief base of India",
+   "shows": "A relief map of India without names, showing the Himalaya, plains, plateau and coasts in natural colours",
+   "view": "Top-down, 16:9, soft shading",
+   "right": "Three physical units clearly distinguishable",
+   "avoid": "Names, borders"
+  }
+ ]
+}

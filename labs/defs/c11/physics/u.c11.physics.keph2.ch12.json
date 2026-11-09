@@ -1,0 +1,553 @@
+{
+ "chapter_key": "u.c11.physics.keph2.ch12",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "Kinetic Theory",
+ "source": "https://ncert.nic.in/textbook/pdf/keph205.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "A short history from Boyle to Maxwell; the reader's timeline sets the scene."
+  },
+  {
+   "n": "12.2",
+   "title": "Molecular nature of matter",
+   "labs": [
+    "c11-physics-keph2-ch12-diffusion-ink"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Behaviour of gases: Boyle's law, Charles's law and the ideal gas",
+   "labs": [
+    "c11-physics-keph2-ch12-boyle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "Kinetic theory of an ideal gas: pressure of an ideal gas",
+   "labs": [],
+   "why_no_lab": "The pressure P = ⅓ n m v̄² is derived on paper in the reader; the rigid-container gas lab of Chapter 11 already shows pressure rising as the molecules speed up."
+  },
+  {
+   "n": "12.4.2",
+   "title": "Kinetic interpretation of temperature",
+   "labs": [
+    "c11-physics-keph2-ch12-hot-cold-ink"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.5",
+   "title": "Law of equipartition of energy",
+   "labs": [],
+   "why_no_lab": "Sharing energy among degrees of freedom is counting on paper, taught by the reader's pictures of a single atom and a dumb-bell molecule."
+  },
+  {
+   "n": "12.6",
+   "title": "Specific heat capacity of monatomic, diatomic and polyatomic gases and of solids",
+   "labs": [],
+   "why_no_lab": "The values come from equipartition in a worked table in the reader; there is nothing new to experiment with."
+  },
+  {
+   "n": "12.7",
+   "title": "Mean free path",
+   "labs": [],
+   "why_no_lab": "The zig-zag path of one molecule is shown best by the reader's diagram and the worked estimate for air."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph2-ch12-diffusion-ink",
+   "topic": "12.2",
+   "template": "particles",
+   "title": {
+    "en": "A drop of ink spreads by itself",
+    "hi": "स्याही की बूँद अपने आप फैलती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "diffusion",
+    "substance": "ink"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A drop of ink is placed gently in still water and nobody stirs. What happens?",
+      "hi": "शांत पानी में स्याही की एक बूँद धीरे से डाली जाती है और कोई नहीं हिलाता। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "spreads",
+       "en": "It slowly spreads through all the water",
+       "hi": "यह धीरे-धीरे पूरे पानी में फैल जाती है"
+      },
+      {
+       "id": "stays",
+       "en": "It stays as a drop",
+       "hi": "यह बूँद ही बनी रहती है"
+      },
+      {
+       "id": "sinks",
+       "en": "It sinks and stays at the bottom",
+       "hi": "यह डूबकर तली पर रहती है"
+      }
+     ],
+     "answer": "spreads"
+    },
+    {
+     "kind": "do",
+     "target": "add",
+     "expect": "spread",
+     "say": {
+      "en": "Press Add a drop and watch the coloured particles.",
+      "hi": "\"एक बूँद डालो\" दबाओ और रंगीन कणों को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Matter is made of molecules that are always moving and bumping into one another. The water molecules keep knocking the ink particles in random directions, so the ink spreads out by itself: this is diffusion. It is strong evidence that matter is not continuous but made of tiny moving particles.",
+      "hi": "पदार्थ अणुओं से बना है जो हमेशा चलते रहते हैं और एक-दूसरे से टकराते रहते हैं। पानी के अणु स्याही के कणों को लगातार यादृच्छिक दिशाओं में धक्का देते हैं, इसलिए स्याही अपने आप फैल जाती है: यही विसरण है। यह इस बात का पक्का प्रमाण है कि पदार्थ सतत नहीं, बल्कि छोटे-छोटे चलते कणों से बना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You smell agarbatti across a still room after a while. This happens because:",
+        "hi": "कुछ देर बाद शांत कमरे के दूसरे छोर पर भी अगरबत्ती की ख़ुशबू आती है। ऐसा इसलिए होता है क्योंकि:"
+       },
+       "options": [
+        {
+         "en": "Scent molecules diffuse through the moving air molecules",
+         "hi": "ख़ुशबू के अणु चलते हवा के अणुओं के बीच से विसरित होते हैं"
+        },
+        {
+         "en": "Smell travels as light",
+         "hi": "गंध प्रकाश की तरह चलती है"
+        },
+        {
+         "en": "The scent molecules stay at the stick",
+         "hi": "ख़ुशबू के अणु अगरबत्ती पर ही रहते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Random molecular motion carries the scent molecules outward, even with no wind.",
+        "hi": "अणुओं की यादृच्छिक गति ख़ुशबू के अणुओं को बाहर ले जाती है, बिना हवा चले भी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Smell needs molecules to reach your nose; light carries no scent.",
+         "hi": "गंध के लिए अणुओं का नाक तक पहुँचना ज़रूरी है; प्रकाश गंध नहीं ले जाता।"
+        },
+        {
+         "en": "If they stayed, you could smell it only very close to the stick.",
+         "hi": "अगर वे वहीं रहते तो ख़ुशबू केवल अगरबत्ती के बहुत पास आती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does diffusion in a gas happen faster than in a liquid?",
+        "hi": "गैस में विसरण द्रव से तेज़ क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "Gas molecules are far apart and move freely between collisions",
+         "hi": "गैस के अणु दूर-दूर होते हैं और टक्करों के बीच आज़ादी से चलते हैं"
+        },
+        {
+         "en": "Gas molecules do not move",
+         "hi": "गैस के अणु नहीं चलते"
+        },
+        {
+         "en": "Liquids have no molecules",
+         "hi": "द्रवों में अणु नहीं होते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a gas the gaps are large, so a molecule travels further before each bump (a longer mean free path).",
+        "hi": "गैस में दूरी ज़्यादा होती है, इसलिए हर टक्कर से पहले अणु ज़्यादा दूर चलता है (लंबा माध्य मुक्त पथ)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Gas molecules move fastest of all, which is why gases fill any container.",
+         "hi": "गैस के अणु सबसे तेज़ चलते हैं, इसीलिए गैसें कोई भी बर्तन भर देती हैं।"
+        },
+        {
+         "en": "Liquids are made of molecules too, just packed closer.",
+         "hi": "द्रव भी अणुओं से बने हैं, बस पास-पास।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the water temperature with the slider and add another drop. Try perfume in air as well.",
+      "hi": "स्लाइडर से पानी का तापमान बदलकर एक और बूँद डालो। हवा में इत्र भी आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch12-boyle",
+   "topic": "12.3",
+   "template": "particles",
+   "title": {
+    "en": "Boyle's law: squeeze a gas, its volume shrinks",
+    "hi": "बॉयल का नियम: गैस दबाओ, आयतन घटता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "gaslaw",
+    "hold": "temperature"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The gas is at 101.3 kPa and about 24.6 L, and its temperature is kept fixed. If the pressure is doubled to about 203 kPa, the volume becomes:",
+      "hi": "गैस 101.3 kPa और लगभग 24.6 L पर है, और इसका तापमान स्थिर रखा गया है। अगर दाब दुगुना, लगभग 203 kPa, कर दिया जाए, तो आयतन होगा:"
+     },
+     "options": [
+      {
+       "id": "half",
+       "en": "About 12.3 L, half",
+       "hi": "लगभग 12.3 L, आधा"
+      },
+      {
+       "id": "double",
+       "en": "About 49 L, double",
+       "hi": "लगभग 49 L, दुगुना"
+      },
+      {
+       "id": "same",
+       "en": "Still 24.6 L",
+       "hi": "अब भी 24.6 L"
+      }
+     ],
+     "answer": "half"
+    },
+    {
+     "kind": "do",
+     "target": "slider:pressure",
+     "expect": "changed:pressure",
+     "say": {
+      "en": "Move the pressure slider up to about 203 kPa and read the volume.",
+      "hi": "दाब का स्लाइडर लगभग 203 kPa तक ले जाओ और आयतन पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At a fixed temperature the molecules keep the same average speed. Squeezing them into half the space makes them hit each part of the wall twice as often, so the pressure doubles. So P × V stays constant: Boyle's law, and the P-V graph is a curve called a hyperbola. A real gas follows it well at low pressures and high temperatures.",
+      "hi": "स्थिर तापमान पर अणुओं की औसत चाल वही रहती है। उन्हें आधी जगह में दबाने से वे दीवार के हर भाग से दुगुनी बार टकराते हैं, इसलिए दाब दुगुना हो जाता है। इसलिए P × V स्थिर रहता है: यही बॉयल का नियम है, और P-V ग्राफ़ एक वक्र है जिसे अतिपरवलय कहते हैं। असली गैसें कम दाब और ऊँचे तापमान पर इसे अच्छी तरह मानती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An air bubble rises from the bottom of a deep pond (pressure 2 atm) to the surface (1 atm). Its volume:",
+        "hi": "एक हवा का बुलबुला गहरे तालाब की तली (दाब 2 atm) से सतह (1 atm) तक उठता है। उसका आयतन:"
+       },
+       "options": [
+        {
+         "en": "About doubles",
+         "hi": "लगभग दुगुना हो जाता है"
+        },
+        {
+         "en": "Halves",
+         "hi": "आधा हो जाता है"
+        },
+        {
+         "en": "Stays the same",
+         "hi": "वही रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P₁V₁ = P₂V₂: halving the pressure doubles the volume (if the temperature is the same).",
+        "hi": "P₁V₁ = P₂V₂: दाब आधा होने पर आयतन दुगुना होता है (अगर तापमान वही रहे)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Volume shrinks only when pressure rises; here it falls.",
+         "hi": "आयतन तभी घटता है जब दाब बढ़े; यहाँ वह घटता है।"
+        },
+        {
+         "en": "The pressure changes, so by Boyle's law the volume must change too.",
+         "hi": "दाब बदलता है, इसलिए बॉयल के नियम से आयतन भी बदलना चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In kinetic theory, why does squeezing a gas at fixed temperature raise its pressure?",
+        "hi": "गतिज सिद्धांत में, स्थिर तापमान पर गैस दबाने से दाब क्यों बढ़ता है?"
+       },
+       "options": [
+        {
+         "en": "The same molecules hit the walls more often",
+         "hi": "वही अणु दीवारों से ज़्यादा बार टकराते हैं"
+        },
+        {
+         "en": "Each molecule moves faster",
+         "hi": "हर अणु तेज़ चलने लगता है"
+        },
+        {
+         "en": "The molecules get bigger",
+         "hi": "अणु बड़े हो जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Speed depends on temperature, which is fixed; only the rate of hits on each square metre goes up.",
+        "hi": "चाल तापमान पर निर्भर है, जो स्थिर है; केवल हर वर्ग मीटर पर टक्करों की दर बढ़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Faster molecules need a higher temperature, which is held fixed here.",
+         "hi": "तेज़ अणुओं के लिए ऊँचा तापमान चाहिए, जो यहाँ स्थिर रखा है।"
+        },
+        {
+         "en": "Molecules keep their size; only the space between them shrinks.",
+         "hi": "अणुओं का आकार वही रहता है; केवल उनके बीच की जगह घटती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try several pressures and check the line P × V each time. Watch the point move along the curve on the graph.",
+      "hi": "कई दाब आज़माओ और हर बार P × V वाली पंक्ति जाँचो। ग्राफ़ पर बिंदु को वक्र के साथ चलते देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch12-hot-cold-ink",
+   "topic": "12.4.2",
+   "template": "particles",
+   "title": {
+    "en": "Temperature is the speed of molecules",
+    "hi": "तापमान अणुओं की चाल है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "diffusion",
+    "compare": true
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The same drop of ink goes into a glass of cold water and a glass of hot water. Where does it spread faster?",
+      "hi": "स्याही की एक-सी बूँद ठंडे पानी के गिलास और गर्म पानी के गिलास में डाली जाती है। यह कहाँ जल्दी फैलेगी?"
+     },
+     "options": [
+      {
+       "id": "hot",
+       "en": "In the hot water",
+       "hi": "गर्म पानी में"
+      },
+      {
+       "id": "cold",
+       "en": "In the cold water",
+       "hi": "ठंडे पानी में"
+      },
+      {
+       "id": "same",
+       "en": "At the same rate in both",
+       "hi": "दोनों में बराबर दर से"
+      }
+     ],
+     "answer": "hot"
+    },
+    {
+     "kind": "do",
+     "target": "add",
+     "expect": "spread",
+     "say": {
+      "en": "Press Add a drop to put ink in both glasses at once.",
+      "hi": "\"एक बूँद डालो\" दबाकर दोनों गिलासों में एक साथ स्याही डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Kinetic theory links temperature to motion: the average kinetic energy of a molecule is (3/2) k_B T, with T in kelvin. Hotter water has faster molecules, so they knock the ink particles about harder and more often, and the ink spreads sooner. Temperature is a measure of the average kinetic energy of the molecules.",
+      "hi": "गतिज सिद्धांत तापमान को गति से जोड़ता है: एक अणु की औसत गतिज ऊर्जा (3/2) k_B T है, जहाँ T केल्विन में है। गर्म पानी के अणु तेज़ होते हैं, इसलिए वे स्याही के कणों को ज़्यादा ज़ोर से और ज़्यादा बार धकेलते हैं, और स्याही जल्दी फैलती है। तापमान अणुओं की औसत गतिज ऊर्जा का माप है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the kelvin temperature of a gas is doubled, the average kinetic energy of its molecules:",
+        "hi": "अगर किसी गैस का केल्विन तापमान दुगुना कर दिया जाए, तो उसके अणुओं की औसत गतिज ऊर्जा:"
+       },
+       "options": [
+        {
+         "en": "Doubles",
+         "hi": "दुगुनी हो जाती है"
+        },
+        {
+         "en": "Becomes four times",
+         "hi": "चार गुनी हो जाती है"
+        },
+        {
+         "en": "Stays the same",
+         "hi": "वही रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Average KE = (3/2) k_B T is proportional to T.",
+        "hi": "औसत KE = (3/2) k_B T, T के समानुपाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Four times would need KE ∝ T²; it is directly proportional to T.",
+         "hi": "चार गुना के लिए KE ∝ T² चाहिए; यह सीधे T के समानुपाती है।"
+        },
+        {
+         "en": "A hotter gas has faster molecules, so its KE must grow.",
+         "hi": "गर्म गैस के अणु तेज़ होते हैं, इसलिए उसकी KE बढ़नी चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Doubling the kelvin temperature makes the rms speed of the molecules:",
+        "hi": "केल्विन तापमान दुगुना करने पर अणुओं की वर्ग-माध्य-मूल (rms) चाल:"
+       },
+       "options": [
+        {
+         "en": "About 1.41 times (√2)",
+         "hi": "लगभग 1.41 गुनी (√2)"
+        },
+        {
+         "en": "Twice",
+         "hi": "दुगुनी"
+        },
+        {
+         "en": "Half",
+         "hi": "आधी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "KE ∝ v² and KE ∝ T, so v ∝ √T: doubling T multiplies v by √2.",
+        "hi": "KE ∝ v² और KE ∝ T, इसलिए v ∝ √T: T दुगुना करने पर v, √2 से गुणा होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Energy doubles, but energy goes as v², so speed grows by √2.",
+         "hi": "ऊर्जा दुगुनी होती है, पर ऊर्जा v² की तरह है, इसलिए चाल √2 गुना बढ़ती है।"
+        },
+        {
+         "en": "Heating speeds molecules up; it never slows them.",
+         "hi": "गर्म करने से अणु तेज़ होते हैं; कभी धीमे नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add drops again and compare how long each glass takes to become evenly coloured.",
+      "hi": "फिर से बूँदें डालो और तुलना करो कि हर गिलास को पूरा एक-सा रंगीन होने में कितना समय लगता है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "12.2",
+   "use": "Diffusion of ink",
+   "shows": "Four frames of one drop of blue ink spreading in a still glass of water: just added, 1 minute, 5 minutes, 20 minutes",
+   "view": "Fixed camera, side view against white, same light",
+   "right": "Colour spreads slowly with no stirring; the glass undisturbed",
+   "avoid": "Hands, ripples from stirring"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "12.4.2",
+   "use": "Hot and cold diffusion",
+   "shows": "Two glasses side by side, cold and hot water, ink added at the same moment; three frames at 0, 30 and 90 seconds",
+   "view": "Fixed camera, both glasses in frame, labels \"cold\" and \"hot\" left blank for the app",
+   "right": "The hot glass evenly coloured first",
+   "avoid": "Steam hiding the hot glass"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "12.3",
+   "use": "Boyle's law around us",
+   "shows": "A bicycle hand pump with its outlet blocked by a thumb, the handle pushed half way",
+   "view": "Side view, plain background",
+   "right": "The handle partly pressed; the barrel visible",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "12.4",
+   "use": "Molecules hitting a wall",
+   "shows": "A cube of gas with many small molecules and one molecule's path drawn bouncing off a wall, its velocity before and after shown",
+   "view": "Flat diagram, the chosen molecule in a bright colour",
+   "right": "Only the component normal to the wall reverses",
+   "avoid": "Molecules drawn overlapping"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "12.5",
+   "use": "Degrees of freedom",
+   "shows": "A single atom (3 ways to move) beside a dumb-bell molecule (3 to move, 2 to rotate), with arrows for each",
+   "view": "Flat diagram, one arrow colour for moving and another for turning",
+   "right": "Rotation about the bond axis not counted",
+   "avoid": "Too many arrows"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "12.7",
+   "use": "Mean free path",
+   "shows": "The zig-zag path of one molecule through a crowd of others, the straight bits between collisions marked l",
+   "view": "Flat diagram, the path in a bright colour",
+   "right": "Path segments of varying length",
+   "avoid": "A path that passes through other molecules"
+  }
+ ]
+}

@@ -1,0 +1,1118 @@
+{
+ "chapter_key": "u.c03.mathematics.cemm1.ch11",
+ "class": 3,
+ "subject_id": "mathematics",
+ "title": "Filling and Lifting",
+ "source": "https://ncert.nic.in/textbook/pdf/cemm111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Whose glass holds more? Comparing by pouring",
+   "labs": [
+    "c3-mathematics-cemm1-ch11-holds-most"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Filling big vessels with small ones: jug, glass and ladle",
+   "labs": [
+    "c3-mathematics-cemm1-ch11-jug-glasses"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "The litre, half a litre and a quarter litre; more or less than a litre",
+   "labs": [
+    "c3-mathematics-cemm1-ch11-litre-jar",
+    "c3-mathematics-cemm1-ch11-litre-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Heavy and light: the kilogram and the pan balance",
+   "labs": [
+    "c3-mathematics-cemm1-ch11-kg-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5",
+   "title": "Making a weight with a matchbox and weighing with a toy pan balance",
+   "labs": [],
+   "why_no_lab": "Making a weight from sand and balancing real objects on a homemade balance is a hands-on craft; the photo and the reader guide it."
+  },
+  {
+   "n": "11.6",
+   "title": "Tricky balls: finding the heavy ball with a pan balance",
+   "labs": [],
+   "why_no_lab": "This puzzle needs a real balance and three balls to try, and talking through the thinking; the reader teaches it better than a lab."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-mathematics-cemm1-ch11-holds-most",
+   "topic": "11.1",
+   "template": "sequence",
+   "title": {
+    "en": "Which vessel holds more?",
+    "hi": "कौन-सा बरतन ज़्यादा भरता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "spoon",
+      "text": {
+       "en": "Tea spoon",
+       "hi": "चाय का चम्मच"
+      }
+     },
+     {
+      "id": "bowl",
+      "text": {
+       "en": "Small bowl",
+       "hi": "छोटी कटोरी"
+      }
+     },
+     {
+      "id": "glass",
+      "text": {
+       "en": "Glass",
+       "hi": "गिलास"
+      }
+     },
+     {
+      "id": "jug",
+      "text": {
+       "en": "Jug",
+       "hi": "जग"
+      }
+     },
+     {
+      "id": "bucket",
+      "text": {
+       "en": "Bucket",
+       "hi": "बाल्टी"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ritu pours the milk of a big glass into three small glasses of the same size. Does this help to find who has more milk?",
+      "hi": "रितु बड़े गिलास का दूध तीन एक-जैसे छोटे गिलासों में उड़ेलती है। क्या इससे पता चलता है कि किसके पास ज़्यादा दूध है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, we can count the small glasses",
+       "hi": "हाँ, हम छोटे गिलास गिन सकते हैं"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "item:spoon",
+     "expect": "placed:spoon",
+     "say": {
+      "en": "Tap the vessel that holds the least, then tap the first empty place.",
+      "hi": "जो बरतन सबसे कम भरता है उस पर टैप करो, फिर पहली ख़ाली जगह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other vessels in order from holds the least to holds the most. Tap Check.",
+      "hi": "बाकी बरतन कम से ज़्यादा भरने के क्रम में रखो। जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We can find which vessel holds more by pouring. If a jug fills 4 glasses, the jug holds more than one glass. The amount a vessel can hold is its capacity. A bucket holds more than a jug, a jug holds more than a glass, and a glass holds more than a spoon.",
+      "hi": "कौन-सा बरतन ज़्यादा भरता है, यह उड़ेलकर पता चलता है। अगर जग से 4 गिलास भरते हैं तो जग एक गिलास से ज़्यादा भरता है। बरतन जितना भर सकता है, वह उसकी धारिता है। बाल्टी जग से ज़्यादा भरती है, जग गिलास से ज़्यादा और गिलास चम्मच से ज़्यादा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A jug can fill 4 glasses. Which holds more?",
+        "hi": "एक जग से 4 गिलास भरते हैं। कौन ज़्यादा भरता है?"
+       },
+       "options": [
+        {
+         "en": "The jug",
+         "hi": "जग"
+        },
+        {
+         "en": "One glass",
+         "hi": "एक गिलास"
+        },
+        {
+         "en": "Both the same",
+         "hi": "दोनों बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The jug fills 4 glasses, so it holds more than one glass.",
+        "hi": "जग 4 गिलास भरता है, इसलिए वह एक गिलास से ज़्यादा भरता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One glass is only a part of the jug.",
+         "hi": "एक गिलास तो जग का सिर्फ़ एक भाग है।"
+        },
+        {
+         "en": "The jug fills 4 glasses, so it is not the same as one glass.",
+         "hi": "जग 4 गिलास भरता है, इसलिए वह एक गिलास के बराबर नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You pour a full glass into a bowl and it does not fill the bowl. What do you know?",
+        "hi": "तुम एक भरा गिलास कटोरे में उड़ेलते हो और कटोरा नहीं भरता। तुम्हें क्या पता चला?"
+       },
+       "options": [
+        {
+         "en": "The bowl holds more than the glass",
+         "hi": "कटोरा गिलास से ज़्यादा भरता है"
+        },
+        {
+         "en": "The glass holds more than the bowl",
+         "hi": "गिलास कटोरे से ज़्यादा भरता है"
+        },
+        {
+         "en": "They hold the same",
+         "hi": "दोनों बराबर भरते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One glass could not fill the bowl, so the bowl holds more.",
+        "hi": "एक गिलास से कटोरा नहीं भरा, इसलिए कटोरा ज़्यादा भरता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If the glass held more, the water would overflow.",
+         "hi": "अगर गिलास ज़्यादा भरता, तो पानी छलक जाता।"
+        },
+        {
+         "en": "If they held the same, the bowl would be exactly full.",
+         "hi": "अगर बराबर भरते, तो कटोरा ठीक भर जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. At home, guess and then check: how many small bowls fill a glass? How many glasses fill a bottle?",
+      "hi": "अब ख़ुद आज़माओ। घर पर पहले अंदाज़ा लगाओ, फिर जाँचो: कितनी छोटी कटोरियों से एक गिलास भरता है? कितने गिलासों से एक बोतल भरती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch11-jug-glasses",
+   "topic": "11.2",
+   "template": "number-line",
+   "title": {
+    "en": "Lemonade: jugs and glasses",
+    "hi": "नींबू पानी: जग और गिलास"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 12,
+    "start": 0,
+    "jumps": [
+     4
+    ],
+    "ask": 12
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One jug of lemonade fills 4 glasses. Will 3 jugs fill more than 10 glasses?",
+      "hi": "एक जग नींबू पानी से 4 गिलास भरते हैं। क्या 3 जगों से 10 से ज़्यादा गिलास भरेंगे?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, more than 10",
+       "hi": "हाँ, 10 से ज़्यादा"
+      },
+      {
+       "id": "no",
+       "en": "No, 10 or fewer",
+       "hi": "नहीं, 10 या उससे कम"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:4",
+     "say": {
+      "en": "Each hop is one jug that fills 4 glasses. Hop forward once.",
+      "hi": "हर छलाँग एक जग है जिससे 4 गिलास भरते हैं। एक बार आगे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:12",
+     "say": {
+      "en": "Hop two more times for the other 2 jugs.",
+      "hi": "बाकी 2 जगों के लिए दो छलाँगें और लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "3 jugs fill 4 + 4 + 4 = 12 glasses. A big vessel fills many small vessels, and the small vessels together hold the same amount as the big one. The quantity stays the same, only the vessel changes.",
+      "hi": "3 जगों से 4 + 4 + 4 = 12 गिलास भरते हैं। बड़ा बरतन कई छोटे बरतन भरता है और छोटे बरतन मिलकर उतना ही पानी रखते हैं जितना बड़ा रखता है। मात्रा वही रहती है, सिर्फ़ बरतन बदलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A ladle fills a glass in 3 pours. How many ladles fill 4 glasses?",
+        "hi": "एक करछी को 3 बार उड़ेलने पर एक गिलास भरता है। 4 गिलास भरने के लिए कितनी बार करछी उड़ेलनी होगी?"
+       },
+       "options": [
+        "7",
+        "12",
+        "34"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "4 glasses × 3 ladles each = 12 ladles.",
+        "hi": "4 गिलास × हर गिलास में 3 करछी = 12 करछी।"
+       },
+       "wrong": [
+        {
+         "en": "7 is 4 + 3. We need 4 groups of 3.",
+         "hi": "7 तो 4 + 3 है। हमें 3 के 4 समूह चाहिए।"
+        },
+        "",
+        {
+         "en": "34 just puts the digits side by side.",
+         "hi": "34 में अंक बस साथ-साथ रख दिए गए हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which can fill a jug faster: a glass or a ladle?",
+        "hi": "जग कौन तेज़ भरेगा: गिलास या करछी?"
+       },
+       "options": [
+        {
+         "en": "A glass, because it holds more",
+         "hi": "गिलास, क्योंकि वह ज़्यादा भरता है"
+        },
+        {
+         "en": "A ladle, because it holds more",
+         "hi": "करछी, क्योंकि वह ज़्यादा भरती है"
+        },
+        {
+         "en": "Both are equally fast",
+         "hi": "दोनों बराबर तेज़ हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A glass holds more than a ladle, so fewer pours are needed.",
+        "hi": "गिलास करछी से ज़्यादा भरता है, इसलिए कम बार उड़ेलना पड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A ladle holds less, so more pours are needed.",
+         "hi": "करछी कम भरती है, इसलिए ज़्यादा बार उड़ेलना पड़ता है।"
+        },
+        {
+         "en": "Vessels of different sizes need a different number of pours.",
+         "hi": "अलग माप के बरतनों में उड़ेलने की संख्या अलग होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. If 1 jug fills 4 glasses, how many glasses will 2 jugs fill? Hop to check, then try 5 jugs on paper.",
+      "hi": "अब ख़ुद आज़माओ। अगर 1 जग से 4 गिलास भरते हैं तो 2 जगों से कितने? छलाँग लगाकर जाँचो, फिर 5 जगों के लिए कॉपी में कोशिश करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch11-litre-jar",
+   "topic": "11.3",
+   "template": "fractions",
+   "title": {
+    "en": "A litre, half a litre and a quarter",
+    "hi": "एक लीटर, आधा लीटर और चौथाई"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "object": "jar",
+    "bars": [
+     {
+      "n": 4
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The jar holds 1 litre of juice. It has 4 equal layers. How many layers make half a litre?",
+      "hi": "जार में 1 लीटर जूस आता है। उसमें 4 बराबर परतें हैं। आधा लीटर कितनी परतों से बनता है?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "2",
+       "hi": "2 (दो)"
+      },
+      {
+       "id": "one",
+       "en": "1",
+       "hi": "1 (एक)"
+      },
+      {
+       "id": "three",
+       "en": "3",
+       "hi": "3 (तीन)"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "piece:0",
+     "expect": "shade:0:1/4",
+     "say": {
+      "en": "Tap the bottom layer to fill the jar with a quarter of a litre.",
+      "hi": "जार में चौथाई लीटर भरने के लिए सबसे नीचे की परत पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "piece:0",
+     "expect": "shade:0:2/4",
+     "say": {
+      "en": "Tap the second layer to fill half a litre.",
+      "hi": "आधा लीटर भरने के लिए दूसरी परत पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "piece:0",
+     "expect": "shade:0:4/4",
+     "say": {
+      "en": "Tap the top layer to fill the whole jar. That is 1 litre.",
+      "hi": "पूरा जार भरने के लिए सबसे ऊपर की परत पर टैप करो। यह 1 लीटर है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The jar holds 1 litre. One layer is a quarter of a litre, two layers are half a litre, and four layers are 1 litre. Milk sellers use a measuring cup of 1 litre so everyone gets the same amount.",
+      "hi": "जार में 1 लीटर आता है। एक परत चौथाई लीटर है, दो परतें आधा लीटर हैं और चार परतें 1 लीटर। दूधवाले 1 लीटर का नापने वाला कप इस्तेमाल करते हैं ताकि सबको एक-सी मात्रा मिले।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many quarter litres make 1 litre?",
+        "hi": "कितने चौथाई लीटर मिलकर 1 लीटर बनते हैं?"
+       },
+       "options": [
+        "2",
+        "3",
+        "4"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "4 quarters make 1 litre.",
+        "hi": "4 चौथाई मिलकर 1 लीटर बनते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "2 quarters make half a litre.",
+         "hi": "2 चौथाई आधा लीटर बनाते हैं।"
+        },
+        {
+         "en": "3 quarters are not a full litre.",
+         "hi": "3 चौथाई पूरा लीटर नहीं हैं।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "A mug holds half a litre. How many mugs fill a 1 litre bottle?",
+        "hi": "एक मग में आधा लीटर आता है। 1 लीटर की बोतल भरने के लिए कितने मग चाहिए?"
+       },
+       "options": [
+        "1",
+        "2",
+        "4"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Two halves make one whole, so 2 mugs.",
+        "hi": "दो आधे मिलकर एक पूरा बनाते हैं, इसलिए 2 मग।"
+       },
+       "wrong": [
+        {
+         "en": "1 mug fills only half the bottle.",
+         "hi": "1 मग से बोतल आधी ही भरती है।"
+        },
+        "",
+        {
+         "en": "4 mugs would make 2 litres.",
+         "hi": "4 मग से 2 लीटर हो जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap different layers and read how much is in the jar. Find 3 quarters of a litre.",
+      "hi": "अब ख़ुद आज़माओ। अलग-अलग परतों पर टैप करो और पढ़ो कि जार में कितना है। तीन चौथाई लीटर ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch11-litre-sort",
+   "topic": "11.3",
+   "template": "sort",
+   "title": {
+    "en": "More, less or exactly 1 litre?",
+    "hi": "1 लीटर से ज़्यादा, कम या ठीक 1 लीटर?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "more",
+      "label": {
+       "en": "More than 1 litre",
+       "hi": "1 लीटर से ज़्यादा"
+      }
+     },
+     {
+      "id": "less",
+      "label": {
+       "en": "Less than 1 litre",
+       "hi": "1 लीटर से कम"
+      }
+     },
+     {
+      "id": "exact",
+      "label": {
+       "en": "Exactly 1 litre",
+       "hi": "ठीक 1 लीटर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "bucket",
+      "text": {
+       "en": "Bucket",
+       "hi": "बाल्टी"
+      },
+      "bin": "more",
+      "why": {
+       "en": "A bucket holds many litres of water.",
+       "hi": "बाल्टी में कई लीटर पानी आता है।"
+      }
+     },
+     {
+      "id": "milk",
+      "text": {
+       "en": "Milk packet marked 1 litre",
+       "hi": "1 लीटर लिखा दूध का पैकेट"
+      },
+      "bin": "exact",
+      "why": {
+       "en": "It is marked 1 litre, so it holds exactly 1 litre.",
+       "hi": "उस पर 1 लीटर लिखा है, इसलिए उसमें ठीक 1 लीटर आता है।"
+      }
+     },
+     {
+      "id": "glass",
+      "text": {
+       "en": "Drinking glass",
+       "hi": "पीने का गिलास"
+      },
+      "bin": "less",
+      "why": {
+       "en": "A glass holds only a small part of a litre.",
+       "hi": "गिलास में लीटर का थोड़ा-सा भाग ही आता है।"
+      }
+     },
+     {
+      "id": "spoon",
+      "text": {
+       "en": "Tea spoon",
+       "hi": "चाय का चम्मच"
+      },
+      "bin": "less",
+      "why": {
+       "en": "A spoon holds a very small amount.",
+       "hi": "चम्मच में बहुत थोड़ा आता है।"
+      }
+     },
+     {
+      "id": "matka",
+      "text": {
+       "en": "Earthen water pot (matka)",
+       "hi": "मिट्टी का मटका"
+      },
+      "bin": "more",
+      "why": {
+       "en": "A matka holds many litres.",
+       "hi": "मटके में कई लीटर आते हैं।"
+      }
+     },
+     {
+      "id": "cup",
+      "text": {
+       "en": "Small tea cup",
+       "hi": "चाय का छोटा कप"
+      },
+      "bin": "less",
+      "why": {
+       "en": "A cup holds less than a litre.",
+       "hi": "कप में एक लीटर से कम आता है।"
+      }
+     },
+     {
+      "id": "drum",
+      "text": {
+       "en": "Water drum",
+       "hi": "पानी का ड्रम"
+      },
+      "bin": "more",
+      "why": {
+       "en": "A drum holds far more than a litre.",
+       "hi": "ड्रम में एक लीटर से बहुत ज़्यादा आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Nita pours water from a 1 litre bottle into a bucket. Does the bucket hold more than 1 litre?",
+      "hi": "नीता 1 लीटर की बोतल का पानी बाल्टी में डालती है। क्या बाल्टी में 1 लीटर से ज़्यादा आता है?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "Yes, more than 1 litre",
+       "hi": "हाँ, 1 लीटर से ज़्यादा"
+      },
+      {
+       "id": "less",
+       "en": "No, less",
+       "hi": "नहीं, कम"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "card:bucket",
+     "expect": "placed:bucket",
+     "say": {
+      "en": "Tap the bucket card, then tap the group where it belongs.",
+      "hi": "बाल्टी वाले कार्ड पर टैप करो, फिर उस समूह पर जहाँ वह रहेगी।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:drum",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards. Tap Check when they are all placed.",
+      "hi": "बाकी सब कार्ड छाँटो। सब रख देने पर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We can guess if a vessel holds more or less than a litre by comparing it with a 1 litre bottle. Buckets, pots and drums hold more than a litre. Glasses, cups and spoons hold less. A packet marked 1 litre holds exactly 1 litre.",
+      "hi": "हम किसी बरतन की तुलना 1 लीटर की बोतल से करके अंदाज़ा लगा सकते हैं कि उसमें लीटर से ज़्यादा आता है या कम। बाल्टी, मटके और ड्रम में एक लीटर से ज़्यादा आता है। गिलास, कप और चम्मच में कम। जिस पैकेट पर 1 लीटर लिखा हो, उसमें ठीक 1 लीटर आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which holds less than 1 litre?",
+        "hi": "किसमें 1 लीटर से कम आता है?"
+       },
+       "options": [
+        {
+         "en": "A bucket",
+         "hi": "बाल्टी"
+        },
+        {
+         "en": "A tea cup",
+         "hi": "चाय का कप"
+        },
+        {
+         "en": "A water drum",
+         "hi": "पानी का ड्रम"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A cup is small, so it holds less than a litre.",
+        "hi": "कप छोटा होता है, इसलिए उसमें एक लीटर से कम आता है।"
+       },
+       "wrong": [
+        {
+         "en": "A bucket holds more than a litre.",
+         "hi": "बाल्टी में एक लीटर से ज़्यादा आता है।"
+        },
+        "",
+        {
+         "en": "A drum holds far more than a litre.",
+         "hi": "ड्रम में एक लीटर से बहुत ज़्यादा आता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You pour 1 litre of water into a jug and it fills exactly. How much does the jug hold?",
+        "hi": "तुम जग में 1 लीटर पानी डालते हो और वह ठीक भर जाता है। जग में कितना आता है?"
+       },
+       "options": [
+        {
+         "en": "More than 1 litre",
+         "hi": "1 लीटर से ज़्यादा"
+        },
+        {
+         "en": "Exactly 1 litre",
+         "hi": "ठीक 1 लीटर"
+        },
+        {
+         "en": "Less than 1 litre",
+         "hi": "1 लीटर से कम"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "1 litre fills it exactly, so it holds exactly 1 litre.",
+        "hi": "1 लीटर से वह ठीक भरा, इसलिए उसमें ठीक 1 लीटर आता है।"
+       },
+       "wrong": [
+        {
+         "en": "If it held more, 1 litre would not fill it.",
+         "hi": "अगर उसमें ज़्यादा आता, तो 1 लीटर से वह नहीं भरता।"
+        },
+        "",
+        {
+         "en": "If it held less, the water would overflow.",
+         "hi": "अगर उसमें कम आता, तो पानी छलक जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Find 3 vessels at home. Guess if each holds more or less than a litre, then check with a 1 litre bottle.",
+      "hi": "अब ख़ुद आज़माओ। घर में 3 बरतन ढूँढो। अंदाज़ा लगाओ कि हर एक में एक लीटर से ज़्यादा आता है या कम, फिर 1 लीटर की बोतल से जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch11-kg-sort",
+   "topic": "11.4",
+   "template": "sort",
+   "title": {
+    "en": "Heavier or lighter than 1 kg?",
+    "hi": "1 किग्रा से भारी या हल्का?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "more",
+      "label": {
+       "en": "Heavier than 1 kg",
+       "hi": "1 किग्रा से भारी"
+      }
+     },
+     {
+      "id": "less",
+      "label": {
+       "en": "Lighter than 1 kg",
+       "hi": "1 किग्रा से हल्का"
+      }
+     },
+     {
+      "id": "exact",
+      "label": {
+       "en": "About 1 kg",
+       "hi": "लगभग 1 किग्रा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "rice",
+      "text": {
+       "en": "Sack of rice, 5 kg",
+       "hi": "चावल की बोरी, 5 किग्रा"
+      },
+      "bin": "more",
+      "why": {
+       "en": "5 kg is more than 1 kg.",
+       "hi": "5 किग्रा, 1 किग्रा से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "salt",
+      "text": {
+       "en": "Packet of salt marked 1 kg",
+       "hi": "1 किग्रा लिखा नमक का पैकेट"
+      },
+      "bin": "exact",
+      "why": {
+       "en": "It is marked 1 kg.",
+       "hi": "उस पर 1 किग्रा लिखा है।"
+      }
+     },
+     {
+      "id": "pencil",
+      "text": {
+       "en": "Pencil",
+       "hi": "पेंसिल"
+      },
+      "bin": "less",
+      "why": {
+       "en": "A pencil is very light.",
+       "hi": "पेंसिल बहुत हल्की होती है।"
+      }
+     },
+     {
+      "id": "bag",
+      "text": {
+       "en": "School bag full of books",
+       "hi": "किताबों से भरा स्कूल का बस्ता"
+      },
+      "bin": "more",
+      "why": {
+       "en": "A full bag of books is heavier than 1 kg.",
+       "hi": "किताबों से भरा बस्ता 1 किग्रा से भारी होता है।"
+      }
+     },
+     {
+      "id": "mango",
+      "text": {
+       "en": "One mango",
+       "hi": "एक आम"
+      },
+      "bin": "less",
+      "why": {
+       "en": "One mango is lighter than 1 kg.",
+       "hi": "एक आम 1 किग्रा से हल्का होता है।"
+      }
+     },
+     {
+      "id": "brick",
+      "text": {
+       "en": "Brick",
+       "hi": "ईंट"
+      },
+      "bin": "more",
+      "why": {
+       "en": "A brick weighs about 2 kg.",
+       "hi": "एक ईंट लगभग 2 किग्रा की होती है।"
+      }
+     },
+     {
+      "id": "notebook",
+      "text": {
+       "en": "Notebook",
+       "hi": "कॉपी"
+      },
+      "bin": "less",
+      "why": {
+       "en": "A notebook is much lighter than 1 kg.",
+       "hi": "कॉपी 1 किग्रा से बहुत हल्की होती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You hold a packet of salt marked 1 kg in one hand and a school bag full of books in the other. Which feels heavier?",
+      "hi": "तुम एक हाथ में 1 किग्रा नमक का पैकेट और दूसरे हाथ में किताबों से भरा बस्ता पकड़ते हो। कौन-सा भारी लगता है?"
+     },
+     "options": [
+      {
+       "id": "bag",
+       "en": "The bag",
+       "hi": "बस्ता"
+      },
+      {
+       "id": "salt",
+       "en": "The salt packet",
+       "hi": "नमक का पैकेट"
+      },
+      {
+       "id": "same",
+       "en": "They feel the same",
+       "hi": "दोनों एक-से लगते हैं"
+      }
+     ],
+     "answer": "bag"
+    },
+    {
+     "kind": "do",
+     "target": "card:rice",
+     "expect": "placed:rice",
+     "say": {
+      "en": "Tap the sack of rice, then tap the group where it belongs.",
+      "hi": "चावल की बोरी पर टैप करो, फिर उस समूह पर जहाँ वह रहेगी।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:notebook",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards. Tap Check when all are placed.",
+      "hi": "सब कार्ड छाँटो। सब रख देने पर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A kilogram is a unit of weight. A packet of salt or sugar marked 1 kg is a good weight to compare with. A pan balance tells us which side is heavier: the heavier side goes down. Rice sacks, bricks and a bag full of books are heavier than 1 kg. A pencil, a notebook and a mango are lighter.",
+      "hi": "किलोग्राम वज़न की इकाई है। 1 किग्रा लिखा नमक या चीनी का पैकेट तुलना के लिए अच्छा वज़न है। पलड़े वाला तराज़ू बताता है कि कौन-सी तरफ़ भारी है: भारी तरफ़ नीचे जाती है। चावल की बोरी, ईंट और किताबों से भरा बस्ता 1 किग्रा से भारी हैं। पेंसिल, कॉपी और आम हल्के हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On a pan balance, one pan goes down. What does that tell you?",
+        "hi": "पलड़े वाले तराज़ू में एक पलड़ा नीचे चला जाता है। इससे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "That side is heavier",
+         "hi": "वह तरफ़ भारी है"
+        },
+        {
+         "en": "That side is lighter",
+         "hi": "वह तरफ़ हल्की है"
+        },
+        {
+         "en": "Both are equal",
+         "hi": "दोनों बराबर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The heavier side pulls its pan down.",
+        "hi": "भारी तरफ़ अपना पलड़ा नीचे खींचती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The lighter side goes up, not down.",
+         "hi": "हल्की तरफ़ ऊपर जाती है, नीचे नहीं।"
+        },
+        {
+         "en": "If they were equal, the pans would stay level.",
+         "hi": "अगर बराबर होते तो पलड़े बराबर रहते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is heavier than 1 kg?",
+        "hi": "कौन 1 किग्रा से भारी है?"
+       },
+       "options": [
+        {
+         "en": "A pencil",
+         "hi": "पेंसिल"
+        },
+        {
+         "en": "A brick",
+         "hi": "ईंट"
+        },
+        {
+         "en": "A notebook",
+         "hi": "कॉपी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A brick weighs about 2 kg.",
+        "hi": "एक ईंट लगभग 2 किग्रा की होती है।"
+       },
+       "wrong": [
+        {
+         "en": "A pencil is very light.",
+         "hi": "पेंसिल बहुत हल्की होती है।"
+        },
+        "",
+        {
+         "en": "A notebook is light.",
+         "hi": "कॉपी हल्की होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. At home, hold a 1 kg packet in one hand and another thing in the other. Guess which is heavier, then check with a pan balance if you can.",
+      "hi": "अब ख़ुद आज़माओ। घर पर एक हाथ में 1 किग्रा का पैकेट और दूसरे में कोई और चीज़ पकड़ो। अंदाज़ा लगाओ कौन भारी है; हो सके तो पलड़े वाले तराज़ू से जाँचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Chapter hook",
+   "shows": "A juice stall poster with two glass sizes: a small glass and a big glass of orange juice side by side on a counter",
+   "view": "Eye level, bright market light",
+   "right": "Glasses clearly different in size, juice orange and fresh",
+   "avoid": "Brand names, readable prices"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Vessels of different sizes",
+   "shows": "A tea spoon, a small bowl, a drinking glass, a jug and a bucket in a row, each a separate file too",
+   "view": "Straight on, transparent background",
+   "right": "Sizes in believable proportion; steel or glass, no brand names",
+   "avoid": "Printed logos"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "11.2",
+   "use": "Pouring a jug into glasses",
+   "shows": "A jug of lemonade poured into 4 glasses in four frames until the jug is empty",
+   "view": "Same camera in each frame, side view",
+   "right": "Glasses identical, same level each time",
+   "avoid": "Splashes that hide the level"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "11.3",
+   "use": "Measuring cup and a 1 litre bottle",
+   "shows": "A steel 1 litre milkman's measure and a clear 1 litre bottle full of water side by side",
+   "view": "Straight on, soft light",
+   "right": "Both clearly hold the same amount",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "11.4",
+   "use": "Pan balance",
+   "shows": "A simple pan balance with a 1 kg salt packet on one pan and a bag of books on the other, the bag side down",
+   "view": "Front view, even light",
+   "right": "Balance beam tilted the right way",
+   "avoid": "Brand logos on the packet"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "11.5",
+   "use": "Homemade weights",
+   "shows": "A matchbox filled with sand, a small packet of coins and an eraser used as weights next to a toy pan balance",
+   "view": "Top-down, plain table",
+   "right": "Weights look improvised and safe",
+   "avoid": "Real matches"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "11.4",
+   "use": "Heavy and light objects",
+   "shows": "A pencil, a notebook, a mango, a brick, a school bag, a rice sack as separate files",
+   "view": "Three-quarter view, transparent background",
+   "right": "Each clearly readable at card size",
+   "avoid": "Brand names"
+  }
+ ]
+}

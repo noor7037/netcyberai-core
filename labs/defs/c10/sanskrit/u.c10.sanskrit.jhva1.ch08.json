@@ -1,0 +1,1411 @@
+{
+ "chapter_key": "u.c10.sanskrit.jhva1.ch08",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "प्रत्यय",
+ "source": "https://ncert.nic.in/textbook.php?jhva1=0-12",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "कृत् प्रत्यय: क्त्वा, ल्यप्, तुमुन् and how they join two actions",
+   "labs": [
+    "c10-sanskrit-jhva1-ch08-krit-forms",
+    "c10-sanskrit-jhva1-ch08-krit-sort",
+    "c10-sanskrit-jhva1-ch08-build"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "तद्धित प्रत्यय: मतुप्, वतुप्, इनि, तरप्, तमप्, मयट्, त्व, अण्",
+   "labs": [
+    "c10-sanskrit-jhva1-ch08-taddhita"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "स्त्री प्रत्यय: आ (टाप्) and ई (ङीप्)",
+   "labs": [
+    "c10-sanskrit-jhva1-ch08-stri"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "शतृ, शानच्, क्त, क्तवतु, तव्यत्, अनीयर्: the other कृत् endings",
+   "labs": [],
+   "why_no_lab": "These endings need the full verb tables first, so they are taught with the teacher through examples in this class."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jhva1-ch08-krit-forms",
+   "topic": "8.1",
+   "template": "match",
+   "title": {
+    "en": "Root + ending: what word is made?",
+    "hi": "धातु + प्रत्यय: कौन-सा शब्द बना?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "p1",
+      "left": {
+       "en": "कृ + क्त्वा",
+       "hi": "कृ + क्त्वा"
+      },
+      "right": {
+       "en": "कृत्वा: having done",
+       "hi": "कृत्वा: करके"
+      },
+      "why": {
+       "en": "क्त्वा makes a word that means 'after doing'.",
+       "hi": "क्त्वा 'करके' के अर्थ वाला शब्द बनाता है।"
+      }
+     },
+     {
+      "id": "p2",
+      "left": {
+       "en": "गम् + क्त्वा",
+       "hi": "गम् + क्त्वा"
+      },
+      "right": {
+       "en": "गत्वा: having gone",
+       "hi": "गत्वा: जाकर"
+      },
+      "why": {
+       "en": "गम् + क्त्वा gives गत्वा.",
+       "hi": "गम् + क्त्वा से गत्वा बनता है।"
+      }
+     },
+     {
+      "id": "p3",
+      "left": {
+       "en": "दृश् + क्त्वा",
+       "hi": "दृश् + क्त्वा"
+      },
+      "right": {
+       "en": "दृष्ट्वा: having seen",
+       "hi": "दृष्ट्वा: देखकर"
+      },
+      "why": {
+       "en": "The root दृश् changes to दृष्ट्वा.",
+       "hi": "धातु दृश् का रूप दृष्ट्वा हो जाता है।"
+      }
+     },
+     {
+      "id": "p4",
+      "left": {
+       "en": "पठ् + क्त्वा",
+       "hi": "पठ् + क्त्वा"
+      },
+      "right": {
+       "en": "पठित्वा: having read",
+       "hi": "पठित्वा: पढ़कर"
+      },
+      "why": {
+       "en": "An इ comes in between: पठ् + इ + त्वा.",
+       "hi": "बीच में इ आता है: पठ् + इ + त्वा।"
+      }
+     },
+     {
+      "id": "p5",
+      "left": {
+       "en": "आ + गम् + ल्यप्",
+       "hi": "आ + गम् + ल्यप्"
+      },
+      "right": {
+       "en": "आगत्य: having come",
+       "hi": "आगत्य: आकर"
+      },
+      "why": {
+       "en": "With an upasarga in front, ल्यप् is used and the ending is -त्य.",
+       "hi": "आगे उपसर्ग होने पर ल्यप् लगता है और अंत -त्य होता है।"
+      }
+     },
+     {
+      "id": "p6",
+      "left": {
+       "en": "प्र + नम् + ल्यप्",
+       "hi": "प्र + नम् + ल्यप्"
+      },
+      "right": {
+       "en": "प्रणम्य: having bowed",
+       "hi": "प्रणम्य: प्रणाम करके"
+      },
+      "why": {
+       "en": "प्र is an upasarga, so ल्यप् is used: प्रणम्य.",
+       "hi": "प्र उपसर्ग है, इसलिए ल्यप् लगता है: प्रणम्य।"
+      }
+     },
+     {
+      "id": "p7",
+      "left": {
+       "en": "पठ् + तुमुन्",
+       "hi": "पठ् + तुमुन्"
+      },
+      "right": {
+       "en": "पठितुम्: to read",
+       "hi": "पठितुम्: पढ़ने के लिए"
+      },
+      "why": {
+       "en": "तुमुन् gives the meaning 'in order to'.",
+       "hi": "तुमुन् 'के लिए' का अर्थ देता है।"
+      }
+     },
+     {
+      "id": "p8",
+      "left": {
+       "en": "गम् + तुमुन्",
+       "hi": "गम् + तुमुन्"
+      },
+      "right": {
+       "en": "गन्तुम्: to go",
+       "hi": "गन्तुम्: जाने के लिए"
+      },
+      "why": {
+       "en": "गम् changes to गन्तुम् before तुमुन्.",
+       "hi": "गम् तुमुन् से पहले गन्तुम् बन जाता है।"
+      }
+     },
+     {
+      "id": "p9",
+      "left": {
+       "en": "कृ + तुमुन्",
+       "hi": "कृ + तुमुन्"
+      },
+      "right": {
+       "en": "कर्तुम्: to do",
+       "hi": "कर्तुम्: करने के लिए"
+      },
+      "why": {
+       "en": "कृ becomes कर् before तुमुन्.",
+       "hi": "कृ तुमुन् से पहले कर् बन जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p1",
+     "expect": "matched:p1",
+     "say": {
+      "en": "Tap the first term on the left, then tap its match.",
+      "hi": "बाईं ओर का पहला शब्द छुओ, फिर उसका जोड़ा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'मयूरः मेघं दृष्ट्वा नृत्यति' there are two actions. Which came first?",
+      "hi": "'मयूरः मेघं दृष्ट्वा नृत्यति' में दो क्रियाएँ हैं। पहले कौन-सी हुई?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Seeing the cloud (दृष्ट्वा)",
+       "hi": "बादल को देखना (दृष्ट्वा)"
+      },
+      {
+       "id": "b",
+       "en": "Dancing (नृत्यति)",
+       "hi": "नाचना (नृत्यति)"
+      },
+      {
+       "id": "c",
+       "en": "Both at once",
+       "hi": "दोनों साथ"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:p2",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the remaining pairs.",
+      "hi": "अब बाकी सभी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A प्रत्यय is a small part added after a root or a word to build a new word. Those added to roots are called कृत् प्रत्यय. क्त्वा makes 'having done' words like गत्वा. When the verb already has an upasarga, ल्यप् is used instead: आगत्य, प्रणम्य. तुमुन् gives the 'in order to' word: पठितुम्, गन्तुम्, कर्तुम्. These words never change with gender or number, so they are all avyayas.",
+      "hi": "प्रत्यय वह छोटा अंश है जो धातु या शब्द के बाद जुड़कर नया शब्द बनाता है। धातुओं में जुड़ने वाले प्रत्यय कृत् प्रत्यय कहलाते हैं। क्त्वा से गत्वा जैसे 'करके' वाले शब्द बनते हैं। जब धातु के आगे उपसर्ग हो तो उसकी जगह ल्यप् लगता है: आगत्य, प्रणम्य। तुमुन् 'के लिए' वाला शब्द देता है: पठितुम्, गन्तुम्, कर्तुम्। ये शब्द लिंग या वचन से नहीं बदलते, इसलिए सब अव्यय हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'गत्वा' mean?",
+        "hi": "'गत्वा' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Having gone",
+         "hi": "जाकर"
+        },
+        {
+         "en": "To go",
+         "hi": "जाने के लिए"
+        },
+        {
+         "en": "Is going",
+         "hi": "जा रहा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "गम् + क्त्वा = गत्वा: after going.",
+        "hi": "गम् + क्त्वा = गत्वा: जाने के बाद।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'To go' is गन्तुम्, with तुमुन्.",
+         "hi": "'जाने के लिए' गन्तुम् है, तुमुन् के साथ।"
+        },
+        {
+         "en": "'Is going' is गच्छति.",
+         "hi": "'जा रहा है' गच्छति है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which ending is used when an upasarga is in front, as in आगत्य?",
+        "hi": "जब आगे उपसर्ग हो, जैसे आगत्य में, तब कौन-सा प्रत्यय लगता है?"
+       },
+       "options": [
+        {
+         "en": "ल्यप्",
+         "hi": "ल्यप्"
+        },
+        {
+         "en": "क्त्वा",
+         "hi": "क्त्वा"
+        },
+        {
+         "en": "तुमुन्",
+         "hi": "तुमुन्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "आ is an upasarga, so ल्यप् replaces क्त्वा.",
+        "hi": "आ उपसर्ग है, इसलिए ल्यप् क्त्वा की जगह लेता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "क्त्वा is used when there is no upasarga.",
+         "hi": "क्त्वा तब लगता है जब उपसर्ग न हो।"
+        },
+        {
+         "en": "तुमुन् gives 'in order to', not 'having done'.",
+         "hi": "तुमुन् 'के लिए' देता है, 'करके' नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write three things you did in order today using क्त्वा words, such as 'उत्थाय, स्नात्वा, पठित्वा'.",
+      "hi": "आज के अपने तीन कामों को क्त्वा वाले शब्दों से क्रम में लिखो, जैसे 'उत्थाय, स्नात्वा, पठित्वा'।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch08-krit-sort",
+   "topic": "8.1",
+   "template": "sort",
+   "title": {
+    "en": "Which ending made the word?",
+    "hi": "किस प्रत्यय से शब्द बना?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ktva",
+      "label": {
+       "en": "क्त्वा: -त्वा",
+       "hi": "क्त्वा: -त्वा"
+      }
+     },
+     {
+      "id": "lyap",
+      "label": {
+       "en": "ल्यप्: -य",
+       "hi": "ल्यप्: -य"
+      }
+     },
+     {
+      "id": "tumun",
+      "label": {
+       "en": "तुमुन्: -तुम्",
+       "hi": "तुमुन्: -तुम्"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "k1",
+      "text": {
+       "en": "कृत्वा (having done)",
+       "hi": "कृत्वा (करके)"
+      },
+      "bin": "ktva",
+      "why": {
+       "en": "A plain root with क्त्वा: -त्वा at the end.",
+       "hi": "बिना उपसर्ग की धातु में क्त्वा: अंत में -त्वा।"
+      }
+     },
+     {
+      "id": "k2",
+      "text": {
+       "en": "गत्वा (having gone)",
+       "hi": "गत्वा (जाकर)"
+      },
+      "bin": "ktva",
+      "why": {
+       "en": "A plain root with क्त्वा: -त्वा at the end.",
+       "hi": "बिना उपसर्ग की धातु में क्त्वा: अंत में -त्वा।"
+      }
+     },
+     {
+      "id": "k3",
+      "text": {
+       "en": "पठित्वा (having read)",
+       "hi": "पठित्वा (पढ़कर)"
+      },
+      "bin": "ktva",
+      "why": {
+       "en": "A plain root with क्त्वा: -त्वा at the end.",
+       "hi": "बिना उपसर्ग की धातु में क्त्वा: अंत में -त्वा।"
+      }
+     },
+     {
+      "id": "k4",
+      "text": {
+       "en": "आगत्य (having come)",
+       "hi": "आगत्य (आकर)"
+      },
+      "bin": "lyap",
+      "why": {
+       "en": "An upasarga in front, so ल्यप्: -य at the end.",
+       "hi": "आगे उपसर्ग है, इसलिए ल्यप्: अंत में -य।"
+      }
+     },
+     {
+      "id": "k5",
+      "text": {
+       "en": "प्रणम्य (having bowed)",
+       "hi": "प्रणम्य (प्रणाम करके)"
+      },
+      "bin": "lyap",
+      "why": {
+       "en": "An upasarga in front, so ल्यप्: -य at the end.",
+       "hi": "आगे उपसर्ग है, इसलिए ल्यप्: अंत में -य।"
+      }
+     },
+     {
+      "id": "k6",
+      "text": {
+       "en": "विजित्य (having conquered)",
+       "hi": "विजित्य (जीतकर)"
+      },
+      "bin": "lyap",
+      "why": {
+       "en": "An upasarga in front, so ल्यप्: -य at the end.",
+       "hi": "आगे उपसर्ग है, इसलिए ल्यप्: अंत में -य।"
+      }
+     },
+     {
+      "id": "k7",
+      "text": {
+       "en": "गन्तुम् (to go)",
+       "hi": "गन्तुम् (जाने के लिए)"
+      },
+      "bin": "tumun",
+      "why": {
+       "en": "तुमुन् gives 'in order to': -तुम् at the end.",
+       "hi": "तुमुन् 'के लिए' देता है: अंत में -तुम्।"
+      }
+     },
+     {
+      "id": "k8",
+      "text": {
+       "en": "पठितुम् (to read)",
+       "hi": "पठितुम् (पढ़ने के लिए)"
+      },
+      "bin": "tumun",
+      "why": {
+       "en": "तुमुन् gives 'in order to': -तुम् at the end.",
+       "hi": "तुमुन् 'के लिए' देता है: अंत में -तुम्।"
+      }
+     },
+     {
+      "id": "k9",
+      "text": {
+       "en": "कर्तुम् (to do)",
+       "hi": "कर्तुम् (करने के लिए)"
+      },
+      "bin": "tumun",
+      "why": {
+       "en": "तुमुन् gives 'in order to': -तुम् at the end.",
+       "hi": "तुमुन् 'के लिए' देता है: अंत में -तुम्।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:k1",
+     "expect": "placed:k1",
+     "say": {
+      "en": "Tap the first card, then tap the bin where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर उसके सही डिब्बे को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "प्रणम्य ends in -य and has प्र in front. Which ending made it?",
+      "hi": "प्रणम्य -य पर समाप्त होता है और आगे प्र है। इसे किस प्रत्यय ने बनाया?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "ल्यप्",
+       "hi": "ल्यप्"
+      },
+      {
+       "id": "b",
+       "en": "क्त्वा",
+       "hi": "क्त्वा"
+      },
+      {
+       "id": "c",
+       "en": "तुमुन्",
+       "hi": "तुमुन्"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then tap Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Look at the end of the word, and at the front. If the word ends in -त्वा and has no upasarga in front, it was made by क्त्वा. If it ends in -य and has an upasarga, it was made by ल्यप्. If it ends in -तुम् it was made by तुमुन् and means 'in order to'. These three give the commonest words that join two actions in a Sanskrit sentence.",
+      "hi": "शब्द का अंत और आगे का भाग दोनों देखो। यदि अंत -त्वा है और आगे उपसर्ग नहीं तो क्त्वा से बना है। यदि अंत -य है और आगे उपसर्ग है तो ल्यप् से। यदि अंत -तुम् है तो तुमुन् से बना है और 'के लिए' का अर्थ देता है। संस्कृत वाक्य में दो क्रियाओं को जोड़ने वाले सबसे अधिक शब्द इन्हीं तीन से बनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word was made with तुमुन्?",
+        "hi": "कौन-सा शब्द तुमुन् से बना है?"
+       },
+       "options": [
+        {
+         "en": "कर्तुम्",
+         "hi": "कर्तुम्"
+        },
+        {
+         "en": "कृत्वा",
+         "hi": "कृत्वा"
+        },
+        {
+         "en": "आगत्य",
+         "hi": "आगत्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "कर्तुम् ends in -तुम् and means 'to do'.",
+        "hi": "कर्तुम् -तुम् पर समाप्त होता है और अर्थ 'करने के लिए' है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "कृत्वा is from क्त्वा.",
+         "hi": "कृत्वा क्त्वा से है।"
+        },
+        {
+         "en": "आगत्य is from ल्यप्.",
+         "hi": "आगत्य ल्यप् से है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are these words called avyayas?",
+        "hi": "इन शब्दों को अव्यय क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "They never change with gender or number",
+         "hi": "ये लिंग या वचन से नहीं बदलते"
+        },
+        {
+         "en": "They are very long",
+         "hi": "ये बहुत लंबे हैं"
+        },
+        {
+         "en": "They are always capital letters",
+         "hi": "ये हमेशा बड़े अक्षरों में हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A क्त्वा, ल्यप् or तुमुन् word has one fixed form.",
+        "hi": "क्त्वा, ल्यप् या तुमुन् वाले शब्द का एक ही रूप रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Length has nothing to do with it.",
+         "hi": "लंबाई का इससे कोई संबंध नहीं।"
+        },
+        {
+         "en": "Devanagari has no capital letters.",
+         "hi": "देवनागरी में बड़े अक्षर होते ही नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a krit word with each of the three endings for the root लिख् and say them aloud.",
+      "hi": "तीनों प्रत्ययों से धातु लिख् के कृदन्त शब्द बनाओ और बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch08-build",
+   "topic": "8.1",
+   "template": "grammar",
+   "title": {
+    "en": "Build sentences with two actions",
+    "hi": "दो क्रियाओं वाले वाक्य बनाओ"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "b1",
+      "task": {
+       "en": "After going home, the boy reads.",
+       "hi": "घर जाकर बालक पढ़ता है।"
+      },
+      "words": [
+       "बालकः",
+       "गृहं",
+       "गत्वा",
+       "पठति",
+       "गच्छति"
+      ],
+      "answer": "बालकः गृहं गत्वा पठति",
+      "rule": {
+       "en": "गत्वा (having gone) is the first action, and पठति (reads) is the main action.",
+       "hi": "गत्वा (जाकर) पहला कार्य है और पठति (पढ़ता है) मुख्य कार्य।"
+      }
+     },
+     {
+      "id": "b2",
+      "task": {
+       "en": "The peacock dances on seeing the cloud.",
+       "hi": "बादल देखकर मोर नाचता है।"
+      },
+      "words": [
+       "मयूरः",
+       "मेघं",
+       "दृष्ट्वा",
+       "नृत्यति",
+       "पश्यति"
+      ],
+      "answer": "मयूरः मेघं दृष्ट्वा नृत्यति",
+      "rule": {
+       "en": "दृष्ट्वा (having seen) comes before नृत्यति (dances).",
+       "hi": "दृष्ट्वा (देखकर) नृत्यति (नाचता है) से पहले की क्रिया है।"
+      }
+     },
+     {
+      "id": "b3",
+      "task": {
+       "en": "I want to read the book.",
+       "hi": "मैं पुस्तक पढ़ना चाहता हूँ।"
+      },
+      "words": [
+       "अहं",
+       "पुस्तकं",
+       "पठितुम्",
+       "इच्छामि",
+       "पठित्वा"
+      ],
+      "answer": "अहं पुस्तकं पठितुम् इच्छामि",
+      "rule": {
+       "en": "पठितुम् (to read) shows the aim of the wish. पठित्वा would mean 'having read'.",
+       "hi": "पठितुम् (पढ़ने के लिए) इच्छा का उद्देश्य बताता है। पठित्वा का अर्थ 'पढ़कर' होता।"
+      }
+     },
+     {
+      "id": "b4",
+      "task": {
+       "en": "The pupil bows to the teacher and reads.",
+       "hi": "शिष्य गुरु को प्रणाम करके पढ़ता है।"
+      },
+      "words": [
+       "शिष्यः",
+       "गुरुं",
+       "प्रणम्य",
+       "पठति",
+       "प्रणमति"
+      ],
+      "answer": "शिष्यः गुरुं प्रणम्य पठति",
+      "rule": {
+       "en": "प्रणम्य has the upasarga प्र, so the word ends in -य (ल्यप्).",
+       "hi": "प्रणम्य में उपसर्ग प्र है, इसलिए शब्द -य (ल्यप्) पर समाप्त होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:b1",
+     "say": {
+      "en": "Tap the word tiles in the right order to build the first sentence.",
+      "hi": "शब्द-टाइलों को सही क्रम में छूकर पहला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'बालकः गृहं गत्वा पठति', which happens first: going or reading?",
+      "hi": "'बालकः गृहं गत्वा पठति' में पहले क्या होता है: जाना या पढ़ना?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Going",
+       "hi": "जाना"
+      },
+      {
+       "id": "b",
+       "en": "Reading",
+       "hi": "पढ़ना"
+      },
+      {
+       "id": "c",
+       "en": "Both together",
+       "hi": "दोनों साथ"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Build the remaining sentences.",
+      "hi": "बाकी वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a sentence with two actions, the first action is a क्त्वा, ल्यप् or तुमुन् word and the main verb comes last. The क्त्वा/ल्यप् word shows what was done before: गत्वा, दृष्ट्वा, प्रणम्य. The तुमुन् word shows what the main action is for: पठितुम् इच्छामि. This makes Sanskrit sentences short and clear.",
+      "hi": "दो क्रियाओं वाले वाक्य में पहली क्रिया क्त्वा, ल्यप् या तुमुन् वाला शब्द होती है और मुख्य क्रिया अंत में आती है। क्त्वा/ल्यप् वाला शब्द पहले किया गया कार्य दिखाता है: गत्वा, दृष्ट्वा, प्रणम्य। तुमुन् वाला शब्द बताता है कि मुख्य कार्य किसलिए है: पठितुम् इच्छामि। इससे संस्कृत वाक्य छोटे और स्पष्ट होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence means 'I want to go'?",
+        "hi": "कौन-सा वाक्य 'मैं जाना चाहता हूँ' का अर्थ देता है?"
+       },
+       "options": [
+        {
+         "en": "अहं गन्तुम् इच्छामि",
+         "hi": "अहं गन्तुम् इच्छामि"
+        },
+        {
+         "en": "अहं गत्वा इच्छामि",
+         "hi": "अहं गत्वा इच्छामि"
+        },
+        {
+         "en": "अहं गच्छामि इच्छति",
+         "hi": "अहं गच्छामि इच्छति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "गन्तुम् is 'to go', the aim of the wish.",
+        "hi": "गन्तुम् 'जाने के लिए' है, इच्छा का उद्देश्य।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "गत्वा means having gone, not 'to go'.",
+         "hi": "गत्वा का अर्थ जाकर है, 'जाना' नहीं।"
+        },
+        {
+         "en": "इच्छति does not agree with अहं; it should be इच्छामि.",
+         "hi": "इच्छति अहं के साथ मेल नहीं खाता; इच्छामि चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make one sentence of your own with a क्त्वा word and one with a तुमुन् word, about your morning.",
+      "hi": "अपनी सुबह के बारे में एक वाक्य क्त्वा शब्द से और एक तुमुन् शब्द से बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch08-taddhita",
+   "topic": "8.2",
+   "template": "match",
+   "title": {
+    "en": "Endings added to nouns: तद्धित",
+    "hi": "संज्ञाओं में जुड़ने वाले प्रत्यय: तद्धित"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "t1",
+      "left": {
+       "en": "शक्ति + मतुप्",
+       "hi": "शक्ति + मतुप्"
+      },
+      "right": {
+       "en": "शक्तिमान्: one who has strength",
+       "hi": "शक्तिमान्: शक्ति वाला"
+      },
+      "why": {
+       "en": "मतुप् means 'having' (वाला).",
+       "hi": "मतुप् का अर्थ 'वाला' है।"
+      }
+     },
+     {
+      "id": "t2",
+      "left": {
+       "en": "धन + वतुप्",
+       "hi": "धन + वतुप्"
+      },
+      "right": {
+       "en": "धनवान्: one who has wealth",
+       "hi": "धनवान्: धन वाला"
+      },
+      "why": {
+       "en": "After a word ending in अ or आ, वतुप् is used for 'having'.",
+       "hi": "अ या आ पर समाप्त शब्द के बाद 'वाला' के लिए वतुप् लगता है।"
+      }
+     },
+     {
+      "id": "t3",
+      "left": {
+       "en": "रथ + इनि",
+       "hi": "रथ + इनि"
+      },
+      "right": {
+       "en": "रथी: one who has a chariot",
+       "hi": "रथी: रथ वाला"
+      },
+      "why": {
+       "en": "इनि is another ending for 'having'.",
+       "hi": "इनि 'वाला' का एक और प्रत्यय है।"
+      }
+     },
+     {
+      "id": "t4",
+      "left": {
+       "en": "गुरु + तरप्",
+       "hi": "गुरु + तरप्"
+      },
+      "right": {
+       "en": "गुरुतरः: heavier, more important (of two)",
+       "hi": "गुरुतरः: दो में अधिक भारी या महत्त्वपूर्ण"
+      },
+      "why": {
+       "en": "तरप् compares two things.",
+       "hi": "तरप् दो की तुलना करता है।"
+      }
+     },
+     {
+      "id": "t5",
+      "left": {
+       "en": "गुरु + तमप्",
+       "hi": "गुरु + तमप्"
+      },
+      "right": {
+       "en": "गुरुतमः: the heaviest, most important of all",
+       "hi": "गुरुतमः: सबसे भारी या महत्त्वपूर्ण"
+      },
+      "why": {
+       "en": "तमप् picks the best of many.",
+       "hi": "तमप् बहुतों में सर्वश्रेष्ठ चुनता है।"
+      }
+     },
+     {
+      "id": "t6",
+      "left": {
+       "en": "शान्ति + मयट्",
+       "hi": "शान्ति + मयट्"
+      },
+      "right": {
+       "en": "शान्तिमयः: full of peace",
+       "hi": "शान्तिमयः: शांति से भरा"
+      },
+      "why": {
+       "en": "मयट् means 'full of'.",
+       "hi": "मयट् का अर्थ 'से भरा' है।"
+      }
+     },
+     {
+      "id": "t7",
+      "left": {
+       "en": "मूर्ख + त्व",
+       "hi": "मूर्ख + त्व"
+      },
+      "right": {
+       "en": "मूर्खत्वम्: foolishness",
+       "hi": "मूर्खत्वम्: मूर्खता"
+      },
+      "why": {
+       "en": "त्व makes a word for a quality or state.",
+       "hi": "त्व गुण या अवस्था का शब्द बनाता है।"
+      }
+     },
+     {
+      "id": "t8",
+      "left": {
+       "en": "वसुदेव + अण्",
+       "hi": "वसुदेव + अण्"
+      },
+      "right": {
+       "en": "वासुदेवः: son of Vasudeva",
+       "hi": "वासुदेवः: वसुदेव का पुत्र"
+      },
+      "why": {
+       "en": "अण् gives the child of someone; the first vowel grows (व to वा).",
+       "hi": "अण् किसी की संतान का अर्थ देता है; पहला स्वर बढ़ जाता है (व से वा)।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:t1",
+     "expect": "matched:t1",
+     "say": {
+      "en": "Tap the first term on the left, then tap its match.",
+      "hi": "बाईं ओर का पहला शब्द छुओ, फिर उसका जोड़ा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does the ending मतुप् add to 'शक्ति' (strength)?",
+      "hi": "शक्ति (बल) में मतुप् क्या अर्थ जोड़ता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "'having', so one who has strength",
+       "hi": "'वाला', यानी बल वाला"
+      },
+      {
+       "id": "b",
+       "en": "'without', so one with no strength",
+       "hi": "'रहित', यानी बलहीन"
+      },
+      {
+       "id": "c",
+       "en": "'little'",
+       "hi": "'थोड़ा'"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:t2",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the remaining pairs.",
+      "hi": "अब बाकी सभी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The endings added to nouns, adjectives and other words (not to roots) are called तद्धित प्रत्यय. They give new meanings: मतुप्, वतुप्, इनि mean 'having'; तरप् compares two, तमप् picks the best of many; मयट् means 'full of'; त्व and ता make words of quality; अण् shows a descendant. A single ending can change a word from a thing to a person, a quality or a comparison.",
+      "hi": "संज्ञा, विशेषण और अन्य शब्दों में (धातु में नहीं) जुड़ने वाले प्रत्यय तद्धित प्रत्यय कहलाते हैं। वे नए अर्थ देते हैं: मतुप्, वतुप्, इनि का अर्थ 'वाला'; तरप् दो की तुलना करता है, तमप् बहुतों में श्रेष्ठ चुनता है; मयट् का अर्थ 'से भरा'; त्व और ता गुणवाचक शब्द बनाते हैं; अण् संतान दिखाता है। एक प्रत्यय शब्द को वस्तु से व्यक्ति, गुण या तुलना में बदल सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is बुद्धि + मतुप्?",
+        "hi": "बुद्धि + मतुप् क्या बनता है?"
+       },
+       "options": [
+        {
+         "en": "बुद्धिमान्",
+         "hi": "बुद्धिमान्"
+        },
+        {
+         "en": "बुद्धितरः",
+         "hi": "बुद्धितरः"
+        },
+        {
+         "en": "बुद्धिमयः",
+         "hi": "बुद्धिमयः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "मतुप् means 'having': बुद्धिमान्, one with intelligence.",
+        "hi": "मतुप् का अर्थ 'वाला': बुद्धिमान्, बुद्धि वाला।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "तरप् would compare two.",
+         "hi": "तरप् दो की तुलना करता।"
+        },
+        {
+         "en": "मयट् would mean 'full of', for things like शान्ति.",
+         "hi": "मयट् 'से भरा' का अर्थ देता, शान्ति जैसे शब्दों के लिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which ending picks the best of many?",
+        "hi": "बहुतों में सर्वश्रेष्ठ कौन-सा प्रत्यय चुनता है?"
+       },
+       "options": [
+        {
+         "en": "तमप्",
+         "hi": "तमप्"
+        },
+        {
+         "en": "तरप्",
+         "hi": "तरप्"
+        },
+        {
+         "en": "त्व",
+         "hi": "त्व"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "तमप् gives the superlative: गुरुतमः.",
+        "hi": "तमप् श्रेष्ठता देता है: गुरुतमः।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "तरप् compares only two.",
+         "hi": "तरप् केवल दो की तुलना करता है।"
+        },
+        {
+         "en": "त्व gives a quality word.",
+         "hi": "त्व गुणवाचक शब्द देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a sentence about your class using one 'having' word such as बुद्धिमान् and one comparing word such as पटुतमः.",
+      "hi": "अपनी कक्षा के बारे में एक 'वाला' शब्द, जैसे बुद्धिमान्, और एक तुलना वाला शब्द, जैसे पटुतमः, से वाक्य बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch08-stri",
+   "topic": "8.3",
+   "template": "match",
+   "title": {
+    "en": "Male to female: स्त्री प्रत्यय",
+    "hi": "पुंलिंग से स्त्रीलिंग: स्त्री प्रत्यय"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "s1",
+      "left": {
+       "en": "अश्व → ?",
+       "hi": "अश्व → ?"
+      },
+      "right": {
+       "en": "अश्वा (टाप्): a mare",
+       "hi": "अश्वा (टाप्): घोड़ी"
+      },
+      "why": {
+       "en": "टाप् turns an अ-ending word into आ-ending feminine.",
+       "hi": "टाप् अ पर समाप्त शब्द को आ पर समाप्त स्त्रीलिंग बनाता है।"
+      }
+     },
+     {
+      "id": "s2",
+      "left": {
+       "en": "सुत → ?",
+       "hi": "सुत → ?"
+      },
+      "right": {
+       "en": "सुता (टाप्): a daughter",
+       "hi": "सुता (टाप्): पुत्री"
+      },
+      "why": {
+       "en": "सुत is son; सुता is daughter.",
+       "hi": "सुत पुत्र है; सुता पुत्री।"
+      }
+     },
+     {
+      "id": "s3",
+      "left": {
+       "en": "सरल → ?",
+       "hi": "सरल → ?"
+      },
+      "right": {
+       "en": "सरला (टाप्): simple, feminine",
+       "hi": "सरला (टाप्): सरल, स्त्रीलिंग"
+      },
+      "why": {
+       "en": "An adjective takes the same ending.",
+       "hi": "विशेषण भी यही अंत लेता है।"
+      }
+     },
+     {
+      "id": "s4",
+      "left": {
+       "en": "बालक → ?",
+       "hi": "बालक → ?"
+      },
+      "right": {
+       "en": "बालिका: a girl",
+       "hi": "बालिका: लड़की"
+      },
+      "why": {
+       "en": "When a word ends in -अक, the अ before क becomes इ.",
+       "hi": "जब शब्द -अक पर समाप्त हो तो क से पहले का अ इ हो जाता है।"
+      }
+     },
+     {
+      "id": "s5",
+      "left": {
+       "en": "नद → ?",
+       "hi": "नद → ?"
+      },
+      "right": {
+       "en": "नदी (ङीप्): a river",
+       "hi": "नदी (ङीप्): नदी"
+      },
+      "why": {
+       "en": "ङीप् adds the long ई.",
+       "hi": "ङीप् दीर्घ ई जोड़ता है।"
+      }
+     },
+     {
+      "id": "s6",
+      "left": {
+       "en": "देव → ?",
+       "hi": "देव → ?"
+      },
+      "right": {
+       "en": "देवी (ङीप्): a goddess",
+       "hi": "देवी (ङीप्): देवी"
+      },
+      "why": {
+       "en": "देव + ई = देवी.",
+       "hi": "देव + ई = देवी।"
+      }
+     },
+     {
+      "id": "s7",
+      "left": {
+       "en": "कर्तृ → ?",
+       "hi": "कर्तृ → ?"
+      },
+      "right": {
+       "en": "कर्त्री (ङीप्): a woman doer",
+       "hi": "कर्त्री (ङीप्): कर्ता (स्त्री)"
+      },
+      "why": {
+       "en": "A word ending in ऋ takes ई, and ऋ turns into त्र्.",
+       "hi": "ऋ पर समाप्त शब्द ई लेता है और ऋ का त्र् हो जाता है।"
+      }
+     },
+     {
+      "id": "s8",
+      "left": {
+       "en": "गच्छत् → ?",
+       "hi": "गच्छत् → ?"
+      },
+      "right": {
+       "en": "गच्छन्ती: a woman going",
+       "hi": "गच्छन्ती: जाती हुई"
+      },
+      "why": {
+       "en": "A शतृ word takes ई and adds न्.",
+       "hi": "शतृ वाला शब्द ई लेता है और न् जुड़ जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:s1",
+     "expect": "matched:s1",
+     "say": {
+      "en": "Tap the first term on the left, then tap its match.",
+      "hi": "बाईं ओर का पहला शब्द छुओ, फिर उसका जोड़ा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To turn सुत (son) into 'daughter', which long vowel is added at the end?",
+      "hi": "सुत (पुत्र) को 'पुत्री' बनाने के लिए अंत में कौन-सा दीर्घ स्वर जोड़ा जाता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "आ",
+       "hi": "आ"
+      },
+      {
+       "id": "b",
+       "en": "ई",
+       "hi": "ई"
+      },
+      {
+       "id": "c",
+       "en": "ऊ",
+       "hi": "ऊ"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:s2",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the remaining pairs.",
+      "hi": "अब बाकी सभी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "स्त्री प्रत्यय make a feminine word from a masculine one. There are two main kinds: आ (टाप्), which is added to words ending in अ: अश्व → अश्वा, सुत → सुता; and ई (ङीप्), which is added to some other words: नद → नदी, देव → देवी, कर्तृ → कर्त्री, and to शतृ words: गच्छत् → गच्छन्ती. Words ending in -अक change to -इका: बालक → बालिका.",
+      "hi": "स्त्री प्रत्यय पुंलिंग शब्द से स्त्रीलिंग शब्द बनाते हैं। मुख्य दो प्रकार हैं: आ (टाप्), जो अ पर समाप्त शब्दों में लगता है: अश्व → अश्वा, सुत → सुता; और ई (ङीप्), जो कुछ अन्य शब्दों में लगता है: नद → नदी, देव → देवी, कर्तृ → कर्त्री, और शतृ वाले शब्दों में: गच्छत् → गच्छन्ती। -अक पर समाप्त शब्द -इका बन जाते हैं: बालक → बालिका।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the feminine of बालक?",
+        "hi": "बालक का स्त्रीलिंग रूप क्या है?"
+       },
+       "options": [
+        {
+         "en": "बालिका",
+         "hi": "बालिका"
+        },
+        {
+         "en": "बाला",
+         "hi": "बाला"
+        },
+        {
+         "en": "बालकी",
+         "hi": "बालकी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Words ending in -अक change to -इका: बालिका.",
+        "hi": "-अक पर समाप्त शब्द -इका बनते हैं: बालिका।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "बाला is also a word, but the textbook rule for -अक words gives बालिका.",
+         "hi": "बाला भी एक शब्द है, पर -अक वाले शब्दों का नियम बालिका देता है।"
+        },
+        {
+         "en": "The ई ending is not used for बालक.",
+         "hi": "बालक के लिए ई अंत नहीं लगता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the feminine of नद?",
+        "hi": "नद का स्त्रीलिंग क्या है?"
+       },
+       "options": [
+        {
+         "en": "नदी",
+         "hi": "नदी"
+        },
+        {
+         "en": "नदा",
+         "hi": "नदा"
+        },
+        {
+         "en": "नदिका",
+         "hi": "नदिका"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ङीप् adds ई: नद + ई = नदी.",
+        "hi": "ङीप् ई जोड़ता है: नद + ई = नदी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The आ ending is for words like अश्व and सुत.",
+         "hi": "आ अंत अश्व और सुत जैसे शब्दों के लिए है।"
+        },
+        {
+         "en": "इका is only for words ending in -अक.",
+         "hi": "इका केवल -अक पर समाप्त शब्दों के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of three more masculine words and try to make their feminine forms. Check with your teacher.",
+      "hi": "तीन और पुंलिंग शब्द सोचो और उनके स्त्रीलिंग रूप बनाने का प्रयास करो। शिक्षक से जाँच करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "8.1",
+   "use": "Two actions in order: a peacock sees a cloud and dances",
+   "shows": "Five frames: a peacock on a roof, the sky darkening, looking up, spreading its tail, dancing",
+   "view": "Same roof, same camera",
+   "right": "Sky and peacock change only",
+   "avoid": "People"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Having gone: a boy walking home from school",
+   "shows": "A boy seen from behind walking down a village lane with a bag, evening light",
+   "view": "Wide, long shadows",
+   "right": "Real lane, dust, a few trees",
+   "avoid": "Face"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "The book for the wish to read",
+   "shows": "A closed notebook and a textbook as separate cut-outs",
+   "view": "Three-quarter, top-left light",
+   "right": "Plain covers, no title",
+   "avoid": "Readable text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "8.2",
+   "use": "Wealth and strength",
+   "shows": "A bag of coins and a pair of dumbbells as separate cut-outs",
+   "view": "Front view, top-left light",
+   "right": "Old-style coin bag and plain dumbbells",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "8.2",
+   "use": "The comparison ladder: more and most",
+   "shows": "A ladder with three rungs and a small figure of increasing height at each",
+   "view": "Flat, white",
+   "right": "Three figures, short, taller, tallest",
+   "avoid": "Letters"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "8.3",
+   "use": "A river and a goddess image for the ई forms",
+   "shows": "A calm river at dawn with a small shrine on the bank, no people",
+   "view": "Wide, mist",
+   "right": "Real river light, stone shrine",
+   "avoid": "People, readable text"
+  }
+ ]
+}

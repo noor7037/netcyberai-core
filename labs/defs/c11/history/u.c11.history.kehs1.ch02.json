@@ -1,0 +1,1562 @@
+{
+ "chapter_key": "u.c11.history.kehs1.ch02",
+ "class": 11,
+ "subject_id": "history",
+ "title": "An Empire Across Three Continents",
+ "source": "https://ncert.nic.in/textbook/pdf/kehs1ps.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "The Roman and Iranian empires: where and how large",
+   "labs": [
+    "c11-history-kehs1-ch02-frontiers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Emperor, Senate and army: how Rome was ruled",
+   "labs": [
+    "c11-history-kehs1-ch02-powers",
+    "c11-history-kehs1-ch02-timeline"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Economic expansion, trade and the evidence of amphorae",
+   "labs": [
+    "c11-history-kehs1-ch02-goods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Gender, literacy and culture",
+   "labs": [
+    "c11-history-kehs1-ch02-women"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "The third-century crisis and the late empire",
+   "labs": [
+    "c11-history-kehs1-ch02-early-late"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Slavery, labour and social ranks",
+   "labs": [],
+   "why_no_lab": "Best taught by reading primary extracts and class discussion; there is no hands-on way to show slavery fairly."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-history-kehs1-ch02-frontiers",
+   "topic": "2.1",
+   "template": "map",
+   "title": {
+    "en": "The edges of the Roman Empire",
+    "hi": "रोमन साम्राज्य की सीमाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "world",
+    "layers": [
+     "rivers",
+     "mountains",
+     "deserts"
+    ],
+    "task": "label",
+    "places": [
+     "danube",
+     "sahara",
+     "euphrates",
+     "alps"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "label:danube",
+     "expect": "located:danube",
+     "say": {
+      "en": "Tap the name Danube, then tap the river on the map.",
+      "hi": "\"डैन्यूब\" नाम छुओ, फिर मानचित्र पर वह नदी छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rome's northern boundary ran along two great rivers. What marked its southern boundary?",
+      "hi": "रोम की उत्तरी सीमा दो बड़ी नदियों के साथ-साथ थी। उसकी दक्षिणी सीमा क्या थी?"
+     },
+     "options": [
+      {
+       "id": "sahara",
+       "en": "The huge Sahara desert",
+       "hi": "विशाल सहारा मरुस्थल"
+      },
+      {
+       "id": "alps",
+       "en": "The Alps",
+       "hi": "आल्प्स पर्वत"
+      },
+      {
+       "id": "sea",
+       "en": "The Indian Ocean",
+       "hi": "हिंद महासागर"
+      }
+     ],
+     "answer": "sahara"
+    },
+    {
+     "kind": "do",
+     "target": "label:sahara",
+     "expect": "located:sahara",
+     "say": {
+      "en": "Place the name Sahara on the great desert.",
+      "hi": "\"सहारा\" नाम उस विशाल मरुस्थल पर लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:euphrates",
+     "expect": "located:euphrates",
+     "say": {
+      "en": "Place the name Euphrates. Rome's rival Iran lay just beyond it.",
+      "hi": "\"फ़रात\" नाम लगाओ। रोम का प्रतिद्वंद्वी ईरान इसके ठीक पार था।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:alps",
+     "expect": "labelled",
+     "say": {
+      "en": "Finally, place the name Alps on the mountains of southern Europe.",
+      "hi": "आख़िर में \"आल्प्स\" नाम दक्षिणी यूरोप के पहाड़ों पर लगाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Roman Empire spread over three continents: Europe, North Africa and West Asia. Its heart was the Mediterranean Sea. The Rhine and the Danube formed its northern boundary and the Sahara its southern one. In the east the Euphrates separated it from its rival, the Iranian empire.",
+      "hi": "रोमन साम्राज्य तीन महाद्वीपों में फैला था: यूरोप, उत्तरी अफ़्रीका और पश्चिमी एशिया। उसका केंद्र भूमध्य सागर था। राइन और डैन्यूब नदियाँ उसकी उत्तरी सीमा थीं और सहारा दक्षिणी। पूर्व में फ़रात नदी उसे उसके प्रतिद्वंद्वी ईरानी साम्राज्य से अलग करती थी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sea was the heart of the Roman Empire?",
+        "hi": "रोमन साम्राज्य का केंद्र कौन-सा सागर था?"
+       },
+       "options": [
+        {
+         "en": "The Mediterranean",
+         "hi": "भूमध्य सागर"
+        },
+        {
+         "en": "The Arabian Sea",
+         "hi": "अरब सागर"
+        },
+        {
+         "en": "The Black Sea only",
+         "hi": "केवल काला सागर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rome dominated the Mediterranean and the lands on all sides of it.",
+        "hi": "रोम का भूमध्य सागर और उसके चारों ओर की भूमि पर प्रभुत्व था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Arabian Sea lies next to India, far from Rome's lands.",
+         "hi": "अरब सागर भारत के पास है, रोम की भूमि से दूर।"
+        },
+        {
+         "en": "The Black Sea was only on the edge. The empire was built around the Mediterranean.",
+         "hi": "काला सागर तो किनारे पर था। साम्राज्य भूमध्य सागर के चारों ओर बसा था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which empire was Rome's great rival?",
+        "hi": "रोम का बड़ा प्रतिद्वंद्वी कौन-सा साम्राज्य था?"
+       },
+       "options": [
+        {
+         "en": "Iran (the Parthians, later the Sasanians)",
+         "hi": "ईरान (पार्थियाई, बाद में सासानी)"
+        },
+        {
+         "en": "Egypt",
+         "hi": "मिस्र"
+        },
+        {
+         "en": "China",
+         "hi": "चीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rome and Iran were the two superpowers, separated by a strip of land along the Euphrates.",
+        "hi": "रोम और ईरान दो महाशक्तियाँ थीं, जिन्हें फ़रात के साथ ज़मीन की एक संकरी पट्टी अलग करती थी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Egypt was a province inside the Roman Empire.",
+         "hi": "मिस्र रोमन साम्राज्य का ही एक प्रांत था।"
+        },
+        {
+         "en": "The Chinese called the west Ta Ch'in, but China was not Rome's neighbour or rival.",
+         "hi": "चीनी पश्चिम को ता-छिन कहते थे, पर चीन रोम का पड़ोसी या प्रतिद्वंद्वी नहीं था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the three layers on one by one. Which natural boundary do you think was hardest for an army to cross?",
+      "hi": "तीनों परतें एक-एक करके चालू करो। तुम्हें किस प्राकृतिक सीमा को पार करना सेना के लिए सबसे कठिन लगता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch02-powers",
+   "topic": "2.2",
+   "template": "sort",
+   "title": {
+    "en": "Emperor, Senate or army?",
+    "hi": "सम्राट, सीनेट या सेना?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "emperor",
+      "label": {
+       "en": "The emperor",
+       "hi": "सम्राट"
+      }
+     },
+     {
+      "id": "senate",
+      "label": {
+       "en": "The Senate",
+       "hi": "सीनेट"
+      }
+     },
+     {
+      "id": "army",
+      "label": {
+       "en": "The army",
+       "hi": "सेना"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "augustus",
+      "text": {
+       "en": "The first ruler, Augustus, began in 27 BCE",
+       "hi": "पहले शासक ऑगस्टस ने 27 ई.पू. में शुरू किया"
+      },
+      "bin": "emperor",
+      "why": {
+       "en": "Augustus founded the Principate in 27 BCE and became the sole ruler.",
+       "hi": "ऑगस्टस ने 27 ई.पू. में प्रिंसिपेट की स्थापना की और अकेले शासक बने।"
+      }
+     },
+     {
+      "id": "leading",
+      "text": {
+       "en": "Called himself only the \"leading citizen\"",
+       "hi": "खुद को केवल \"प्रमुख नागरिक\" कहता था"
+      },
+      "bin": "emperor",
+      "why": {
+       "en": "Augustus kept up the fiction that he was only the princeps, the leading citizen.",
+       "hi": "ऑगस्टस यह दिखावा बनाए रखते थे कि वे केवल प्रिंसेप्स, यानी प्रमुख नागरिक हैं।"
+      }
+     },
+     {
+      "id": "family",
+      "text": {
+       "en": "The next ruler came from the family if possible",
+       "hi": "उत्तराधिकारी यथासंभव परिवार से चुना जाता था"
+      },
+      "bin": "emperor",
+      "why": {
+       "en": "Succession followed family descent, natural or adoptive, as far as possible.",
+       "hi": "उत्तराधिकार यथासंभव पारिवारिक वंश से चलता था, जन्म से या गोद लेने से।"
+      }
+     },
+     {
+      "id": "rich",
+      "text": {
+       "en": "Members were wealthy landowners, for life",
+       "hi": "सदस्य धनी भूस्वामी थे, आजीवन"
+      },
+      "bin": "senate",
+      "why": {
+       "en": "The Senate represented the wealthiest families, and membership was for life.",
+       "hi": "सीनेट सबसे धनी परिवारों का प्रतिनिधित्व करती थी और सदस्यता आजीवन थी।"
+      }
+     },
+     {
+      "id": "history",
+      "text": {
+       "en": "Wrote most of the histories that survive",
+       "hi": "बची हुई अधिकतर इतिहास-पुस्तकें इसी वर्ग ने लिखीं"
+      },
+      "bin": "senate",
+      "why": {
+       "en": "Most Greek and Latin histories were written by people from a senatorial background.",
+       "hi": "अधिकांश यूनानी और लातिनी इतिहास सीनेट के पृष्ठभूमि वाले लोगों ने लिखे।"
+      }
+     },
+     {
+      "id": "judged",
+      "text": {
+       "en": "Judged emperors by how they treated it",
+       "hi": "सम्राट को इस पर परखती थी कि वह उससे कैसा बरतता है"
+      },
+      "bin": "senate",
+      "why": {
+       "en": "The worst emperors were those who were hostile to the senatorial class.",
+       "hi": "सबसे बुरे सम्राट वे माने गए जो सीनेटर वर्ग के विरोधी थे।"
+      }
+     },
+     {
+      "id": "paid",
+      "text": {
+       "en": "Paid soldiers serving 25 years or more",
+       "hi": "25 वर्ष या अधिक सेवा करने वाले वेतनभोगी सैनिक"
+      },
+      "bin": "army",
+      "why": {
+       "en": "Rome had a paid professional army, with a minimum of 25 years of service.",
+       "hi": "रोम की वेतनभोगी पेशेवर सेना थी, जिसमें न्यूनतम सेवा 25 वर्ष थी।"
+      }
+     },
+     {
+      "id": "mutiny",
+      "text": {
+       "en": "Mutinied when let down over pay and service",
+       "hi": "वेतन और सेवा-शर्तों पर निराश होने पर बग़ावत करती थी"
+      },
+      "bin": "army",
+      "why": {
+       "en": "Soldiers constantly agitated for better wages, and sometimes mutinied.",
+       "hi": "सैनिक बेहतर वेतन के लिए लगातार आंदोलन करते थे और कभी-कभी बग़ावत कर देते थे।"
+      }
+     },
+     {
+      "id": "big",
+      "text": {
+       "en": "About 600,000 strong by the fourth century",
+       "hi": "चौथी सदी तक लगभग 6,00,000 की संख्या"
+      },
+      "bin": "army",
+      "why": {
+       "en": "The army was the largest organised body in the empire and could decide emperors' fates.",
+       "hi": "सेना साम्राज्य की सबसे बड़ी संगठित शक्ति थी और सम्राटों का भाग्य तय कर सकती थी।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:augustus",
+     "expect": "placed:augustus",
+     "say": {
+      "en": "Tap the card about Augustus in 27 BCE and choose its group.",
+      "hi": "27 ई.पू. वाले ऑगस्टस का कार्ड छुओ और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of the three could most easily decide an emperor's fate with force?",
+      "hi": "तीनों में कौन बल से सम्राट का भाग्य सबसे आसानी से तय कर सकता था?"
+     },
+     "options": [
+      {
+       "id": "army",
+       "en": "The army",
+       "hi": "सेना"
+      },
+      {
+       "id": "senate",
+       "en": "The Senate",
+       "hi": "सीनेट"
+      },
+      {
+       "id": "neither",
+       "en": "None of them",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "army"
+    },
+    {
+     "kind": "do",
+     "target": "card:paid",
+     "expect": "placed:paid",
+     "say": {
+      "en": "Place the card about paid soldiers.",
+      "hi": "वेतनभोगी सैनिकों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाकी कार्ड छाँटो और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The emperor, the Senate and the army were the three main players in Roman politics. Augustus ruled alone but kept up the pretence that he was only the leading citizen out of respect for the Senate. The army was paid, professional and very powerful, and when the armies were divided the result was usually civil war. Apart from the year 69 CE, the first two centuries were relatively stable.",
+      "hi": "सम्राट, सीनेट और सेना रोमन राजनीति के तीन मुख्य खिलाड़ी थे। ऑगस्टस अकेले शासन करते थे, पर सीनेट के सम्मान में यह दिखाते थे कि वे केवल प्रमुख नागरिक हैं। सेना वेतनभोगी, पेशेवर और बहुत शक्तिशाली थी, और जब सेनाएँ बँट जाती थीं तो प्रायः गृहयुद्ध होता था। 69 ई. के वर्ष को छोड़कर पहली दो शताब्दियाँ अपेक्षाकृत स्थिर रहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did Augustus call himself only the \"leading citizen\"?",
+        "hi": "ऑगस्टस ने खुद को केवल \"प्रमुख नागरिक\" क्यों कहा?"
+       },
+       "options": [
+        {
+         "en": "Out of respect for the Senate, which had ruled in the Republic",
+         "hi": "सीनेट के सम्मान में, जिसने गणराज्य में शासन किया था"
+        },
+        {
+         "en": "Because he had no real power",
+         "hi": "क्योंकि उसके पास कोई वास्तविक शक्ति नहीं थी"
+        },
+        {
+         "en": "Because the army had banned the word emperor",
+         "hi": "क्योंकि सेना ने सम्राट शब्द पर रोक लगा दी थी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He was the sole ruler in fact, but he kept up the fiction of respect for the old body.",
+        "hi": "वास्तव में वही अकेला शासक था, पर उसने पुरानी संस्था के सम्मान का दिखावा बनाए रखा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "He was the only real source of authority, so he did have power.",
+         "hi": "वास्तविक अधिकार का एकमात्र स्रोत वही था, इसलिए शक्ति उसके पास थी।"
+        },
+        {
+         "en": "The chapter does not say the army banned any word.",
+         "hi": "अध्याय में नहीं लिखा कि सेना ने कोई शब्द वर्जित किया था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How long did a Roman soldier have to serve at least?",
+        "hi": "रोमन सैनिक को कम से कम कितने वर्ष सेवा करनी होती थी?"
+       },
+       "options": [
+        {
+         "en": "25 years",
+         "hi": "25 वर्ष"
+        },
+        {
+         "en": "2 years",
+         "hi": "2 वर्ष"
+        },
+        {
+         "en": "One campaign",
+         "hi": "एक अभियान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Roman army was paid and professional, unlike the conscripted army of Iran.",
+        "hi": "रोमन सेना वेतनभोगी और पेशेवर थी, ईरान की अनिवार्य भर्ती वाली सेना के विपरीत।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two years would be a short conscript term, not a career army.",
+         "hi": "दो वर्ष तो अनिवार्य भर्ती की छोटी अवधि है, पेशेवर सेना की नहीं।"
+        },
+        {
+         "en": "Soldiers signed up for years, not for a single campaign.",
+         "hi": "सैनिक वर्षों के लिए भर्ती होते थे, एक अभियान के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and sort the cards without help. Which group was easiest to recognise?",
+      "hi": "फिर से शुरू करके बिना मदद कार्ड छाँटो। कौन-सा समूह पहचानना सबसे आसान रहा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch02-timeline",
+   "topic": "2.2",
+   "template": "timeline",
+   "title": {
+    "en": "Rome from Augustus to the sack of Rome",
+    "hi": "ऑगस्टस से रोम की लूट तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "range": [
+     -30,
+     420
+    ],
+    "task": "order",
+    "title": {
+     "en": "Milestones of the Roman Empire",
+     "hi": "रोमन साम्राज्य के पड़ाव"
+    },
+    "events": [
+     {
+      "id": "augustus",
+      "year": -27,
+      "label": {
+       "en": "Augustus founds the Principate",
+       "hi": "ऑगस्टस ने प्रिंसिपेट की स्थापना की"
+      },
+      "detail": {
+       "en": "Octavian took the name Augustus and became the first emperor.",
+       "hi": "ऑक्टेवियन ने ऑगस्टस नाम लिया और पहले सम्राट बने।"
+      }
+     },
+     {
+      "id": "vesuvius",
+      "year": 79,
+      "label": {
+       "en": "Vesuvius buries Pompeii",
+       "hi": "वेसुवियस ने पोम्पेई को दबा दिया"
+      },
+      "detail": {
+       "en": "The volcanic eruption buried the Roman town of Pompeii.",
+       "hi": "ज्वालामुखी विस्फोट ने रोमन नगर पोम्पेई को दबा दिया।"
+      }
+     },
+     {
+      "id": "trajan",
+      "year": 115,
+      "label": {
+       "en": "The empire at its greatest extent",
+       "hi": "साम्राज्य अपने सबसे बड़े विस्तार पर"
+      },
+      "detail": {
+       "en": "Trajan's conquests in the East stretched the empire furthest.",
+       "hi": "ट्रॉजन की पूर्वी विजयों से साम्राज्य सबसे दूर तक फैला।"
+      }
+     },
+     {
+      "id": "citizens",
+      "year": 212,
+      "label": {
+       "en": "All free people become citizens",
+       "hi": "सभी स्वतंत्र लोग नागरिक बने"
+      },
+      "detail": {
+       "en": "All free inhabitants of the empire were made Roman citizens.",
+       "hi": "साम्राज्य के सभी स्वतंत्र निवासी रोमन नागरिक बना दिए गए।"
+      }
+     },
+     {
+      "id": "constantine",
+      "year": 312,
+      "label": {
+       "en": "Constantine becomes a Christian",
+       "hi": "कॉन्स्टैंटाइन ईसाई बना"
+      },
+      "detail": {
+       "en": "The emperor's conversion helped Christianity spread through the empire.",
+       "hi": "सम्राट के धर्म-परिवर्तन से साम्राज्य में ईसाई धर्म फैलने में सहायता मिली।"
+      }
+     },
+     {
+      "id": "city",
+      "year": 324,
+      "label": {
+       "en": "Constantinople is founded",
+       "hi": "कॉन्स्टैंटिनोपल की स्थापना"
+      },
+      "detail": {
+       "en": "Constantine became sole ruler and founded a new city in the east.",
+       "hi": "कॉन्स्टैंटाइन अकेले शासक बने और पूर्व में नया नगर बसाया।"
+      }
+     },
+     {
+      "id": "sack",
+      "year": 410,
+      "label": {
+       "en": "The Visigoths sack Rome",
+       "hi": "विसिगोथों ने रोम को लूटा"
+      },
+      "detail": {
+       "en": "In the west the empire was breaking down under attacks from tribes.",
+       "hi": "पश्चिम में कबीलों के हमलों से साम्राज्य बिखर रहा था।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "event:augustus",
+     "expect": "placed:augustus",
+     "say": {
+      "en": "Tap \"Augustus founds the Principate\" and place it on the time line.",
+      "hi": "\"ऑगस्टस ने प्रिंसिपेट की स्थापना की\" छुओ और उसे समय-रेखा पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which came first: Constantinople founded, or the Visigoths sacking Rome?",
+      "hi": "पहले क्या हुआ: कॉन्स्टैंटिनोपल की स्थापना या विसिगोथों द्वारा रोम की लूट?"
+     },
+     "options": [
+      {
+       "id": "city",
+       "en": "Constantinople founded",
+       "hi": "कॉन्स्टैंटिनोपल की स्थापना"
+      },
+      {
+       "id": "sack",
+       "en": "Rome sacked",
+       "hi": "रोम की लूट"
+      }
+     ],
+     "answer": "city"
+    },
+    {
+     "kind": "do",
+     "target": "event:city",
+     "expect": "placed:city",
+     "say": {
+      "en": "Place \"Constantinople is founded\".",
+      "hi": "\"कॉन्स्टैंटिनोपल की स्थापना\" को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:sack",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the other events. The last one finishes the line.",
+      "hi": "बाकी घटनाएँ रखो। आख़िरी घटना रेखा पूरी कर देगी।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The empire grew for about a hundred and fifty years after Augustus and was biggest around 115 CE. In 212 all free people became citizens. In the fourth century Constantine turned to Christianity and founded Constantinople in the east. In the west, tribes such as the Goths attacked, and Rome itself was sacked in 410.",
+      "hi": "ऑगस्टस के बाद लगभग डेढ़ सौ वर्ष साम्राज्य बढ़ता रहा और लगभग 115 ई. में सबसे बड़ा था। 212 में सभी स्वतंत्र लोग नागरिक बन गए। चौथी सदी में कॉन्स्टैंटाइन ने ईसाई धर्म अपनाया और पूर्व में कॉन्स्टैंटिनोपल बसाया। पश्चिम में गोथ जैसे कबीलों ने हमले किए और 410 में रोम स्वयं लूटा गया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When was the empire at its greatest extent?",
+        "hi": "साम्राज्य अपने सबसे बड़े विस्तार पर कब था?"
+       },
+       "options": [
+        {
+         "en": "About 115 CE, after Trajan's conquests",
+         "hi": "लगभग 115 ई., ट्रॉजन की विजयों के बाद"
+        },
+        {
+         "en": "In 27 BCE, under Augustus",
+         "hi": "27 ई.पू. में, ऑगस्टस के समय"
+        },
+        {
+         "en": "In 410 CE, after the sack of Rome",
+         "hi": "410 ई. में, रोम की लूट के बाद"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Trajan's conquests in the East gave the empire its widest reach.",
+        "hi": "पूर्व में ट्रॉजन की विजयों से साम्राज्य की सबसे चौड़ी सीमा बनी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Augustus founded the Principate. The empire grew a lot more after him.",
+         "hi": "ऑगस्टस ने प्रिंसिपेट शुरू किया। उसके बाद साम्राज्य और बढ़ा।"
+        },
+        {
+         "en": "By 410 the western empire was breaking up, not growing.",
+         "hi": "410 तक पश्चिमी साम्राज्य टूट रहा था, बढ़ नहीं रहा था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which event on the line would you most like to see in a picture? Read its detail again.",
+      "hi": "रेखा की कौन-सी घटना तुम सबसे ज़्यादा चित्र में देखना चाहोगे? उसका विवरण फिर पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch02-goods",
+   "topic": "2.3",
+   "template": "match",
+   "title": {
+    "en": "Places, goods and clues",
+    "hi": "स्थान, सामान और सुराग़"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "baetica",
+      "left": {
+       "en": "Baetica (southern Spain)",
+       "hi": "बेटिका (दक्षिणी स्पेन)"
+      },
+      "right": {
+       "en": "Olive oil from many estates on the Guadalquivir",
+       "hi": "गुआडालकिविर के किनारे की कई जागीरों का जैतून का तेल"
+      },
+      "why": {
+       "en": "Spanish olive oil came mainly from estates along the Guadalquivir.",
+       "hi": "स्पेन का जैतून का तेल मुख्यतः गुआडालकिविर के किनारे की जागीरों से आता था।"
+      }
+     },
+     {
+      "id": "campania",
+      "left": {
+       "en": "Campania (Italy)",
+       "hi": "कैम्पानिया (इटली)"
+      },
+      "right": {
+       "en": "The best kinds of wine",
+       "hi": "सबसे अच्छी क़िस्मों की शराब"
+      },
+      "why": {
+       "en": "Writers such as Strabo and Pliny noted the wine of Campania as the best.",
+       "hi": "स्ट्रैबो और प्लिनी जैसे लेखकों ने कैम्पानिया की शराब को सर्वोत्तम बताया।"
+      }
+     },
+     {
+      "id": "sicily",
+      "left": {
+       "en": "Sicily and Byzacium",
+       "hi": "सिसिली और बाइज़ेशियम"
+      },
+      "right": {
+       "en": "Wheat sent in large quantities to Rome",
+       "hi": "रोम को बड़ी मात्रा में भेजा गया गेहूँ"
+      },
+      "why": {
+       "en": "These fertile regions exported large amounts of wheat to the capital.",
+       "hi": "ये उपजाऊ क्षेत्र राजधानी को बड़ी मात्रा में गेहूँ भेजते थे।"
+      }
+     },
+     {
+      "id": "amphora",
+      "left": {
+       "en": "Amphora",
+       "hi": "ऐम्फ़ोरा"
+      },
+      "right": {
+       "en": "A container for wine and olive oil",
+       "hi": "शराब और जैतून के तेल का पात्र"
+      },
+      "why": {
+       "en": "Amphorae carried liquids, and their clay shows where they were made.",
+       "hi": "ऐम्फ़ोरा में तरल पदार्थ ढोए जाते थे और उनकी मिट्टी बताती है कि वे कहाँ बने।"
+      }
+     },
+     {
+      "id": "papyrus",
+      "left": {
+       "en": "Papyrus",
+       "hi": "पैपाइरस"
+      },
+      "right": {
+       "en": "A Nile reed made into a common writing material",
+       "hi": "नील की एक सरकंडा-जैसी घास, जिससे आम लेखन-सामग्री बनती थी"
+      },
+      "why": {
+       "en": "Thousands of contracts, accounts and letters survive on papyrus.",
+       "hi": "पैपाइरस पर हज़ारों अनुबंध, हिसाब और चिट्ठियाँ बची हैं।"
+      }
+     },
+     {
+      "id": "pompeii",
+      "left": {
+       "en": "Pompeii",
+       "hi": "पोम्पेई"
+      },
+      "right": {
+       "en": "Walls full of advertisements and graffiti, showing casual literacy",
+       "hi": "विज्ञापनों और दीवार-लेखन से भरी दीवारें, जो आम साक्षरता दिखाती हैं"
+      },
+      "why": {
+       "en": "Buried in 79 CE, Pompeii shows many people could read and write.",
+       "hi": "79 ई. में दबे पोम्पेई से पता चलता है कि बहुत लोग पढ़-लिख सकते थे।"
+      }
+     },
+     {
+      "id": "numidia",
+      "left": {
+       "en": "Numidia (Algeria)",
+       "hi": "न्यूमिडिया (अल्जीरिया)"
+      },
+      "right": {
+       "en": "Herders who moved with their oven-shaped huts",
+       "hi": "चरवाहे जो अपनी तंदूर जैसी झोपड़ियों के साथ घूमते थे"
+      },
+      "why": {
+       "en": "Roman estates in North Africa shrank their pastures.",
+       "hi": "उत्तरी अफ़्रीका में रोमन जागीरों ने उनके चरागाह घटा दिए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:baetica",
+     "expect": "matched:baetica",
+     "say": {
+      "en": "Tap \"Baetica (southern Spain)\", then tap its product.",
+      "hi": "\"बेटिका (दक्षिणी स्पेन)\" छुओ, फिर उसका उत्पाद छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If many Spanish amphorae turn up all around the Mediterranean, what does that suggest?",
+      "hi": "अगर भूमध्य सागर के चारों ओर स्पेन के बहुत ऐम्फ़ोरा मिलें, तो इससे क्या संकेत मिलता है?"
+     },
+     "options": [
+      {
+       "id": "trade",
+       "en": "Spanish oil was traded very widely",
+       "hi": "स्पेन का तेल बहुत दूर-दूर तक बिकता था"
+      },
+      {
+       "id": "war",
+       "en": "A war was fought there",
+       "hi": "वहाँ युद्ध हुआ था"
+      }
+     ],
+     "answer": "trade"
+    },
+    {
+     "kind": "do",
+     "target": "left:amphora",
+     "expect": "matched:amphora",
+     "say": {
+      "en": "Match the amphora with what it carried.",
+      "hi": "ऐम्फ़ोरा को उसमें ढोई जाने वाली चीज़ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाकी मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Archaeologists work like detectives on broken pots. The clay of an amphora shows where it was made, and finds spread over a map show how far a product travelled. They show that Spanish olive oil beat Italian oil in many markets in the second century, and that North Africa later dominated and then lost ground to the East. The Roman economy was also much more sophisticated than people often imagine, with banking, mines and water-powered mills.",
+      "hi": "पुरातत्वविद् टूटे बर्तनों पर जासूसों की तरह काम करते हैं। ऐम्फ़ोरा की मिट्टी बताती है कि वह कहाँ बना, और मानचित्र पर मिले अवशेष दिखाते हैं कि माल कितनी दूर गया। इनसे पता चलता है कि दूसरी सदी में स्पेन के जैतून के तेल ने कई बाज़ारों में इटली के तेल को हरा दिया, और बाद में उत्तरी अफ़्रीका छा गया और फिर पूर्व से पिछड़ गया। रोमन अर्थव्यवस्था लोगों की कल्पना से कहीं अधिक उन्नत थी, जिसमें बैंक, खानें और पन-चक्कियाँ थीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What can the clay of an amphora tell archaeologists?",
+        "hi": "ऐम्फ़ोरा की मिट्टी पुरातत्वविदों को क्या बताती है?"
+       },
+       "options": [
+        {
+         "en": "Where it was made",
+         "hi": "वह कहाँ बना था"
+        },
+        {
+         "en": "Who the emperor was",
+         "hi": "उस समय सम्राट कौन था"
+        },
+        {
+         "en": "What the weather was on the day it broke",
+         "hi": "जिस दिन वह टूटा उस दिन मौसम कैसा था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "By matching the clay with clay pits across the Mediterranean, experts can say where an amphora came from.",
+        "hi": "भूमध्य सागर के चारों ओर की मिट्टी की खानों से मिलान करके विशेषज्ञ बता सकते हैं कि ऐम्फ़ोरा कहाँ से आया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Pots do not name emperors. Stamps may help, but the clay tells the place.",
+         "hi": "बर्तन सम्राटों के नाम नहीं बताते। मोहरें सहायक हो सकती हैं, पर मिट्टी स्थान बताती है।"
+        },
+        {
+         "en": "Nothing about the weather can be learned from a pot's clay.",
+         "hi": "बर्तन की मिट्टी से मौसम का पता नहीं चलता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which was true of the Roman economy?",
+        "hi": "रोमन अर्थव्यवस्था के बारे में कौन-सी बात सही थी?"
+       },
+       "options": [
+        {
+         "en": "It had banking, large mines and water-powered mills",
+         "hi": "उसमें बैंक, बड़ी खानें और पन-चक्कियाँ थीं"
+        },
+        {
+         "en": "It used no money at all",
+         "hi": "उसमें धन का उपयोग बिल्कुल नहीं होता था"
+        },
+        {
+         "en": "It depended only on tiny farms",
+         "hi": "वह केवल छोटे खेतों पर निर्भर थी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Money, banking, hydraulic mining and water-milling were widespread.",
+        "hi": "धन, बैंकिंग, जलचालित खनन और पन-चक्कियाँ आम थीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Money was widely used.",
+         "hi": "धन का व्यापक उपयोग होता था।"
+        },
+        {
+         "en": "There were big estates, industrial mines and long-distance trade, not only tiny farms.",
+         "hi": "बड़ी जागीरें, औद्योगिक खानें और लंबी दूरी का व्यापार भी था, केवल छोटे खेत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Which two places make goods that people in the same Roman town might have bought?",
+      "hi": "फिर से शुरू करो। किन दो स्थानों का माल एक ही रोमन नगर के लोग ख़रीद सकते थे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch02-early-late",
+   "topic": "2.5",
+   "template": "sort",
+   "title": {
+    "en": "Early empire or late empire?",
+    "hi": "आरंभिक साम्राज्य या उत्तरकालीन साम्राज्य?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "early",
+      "label": {
+       "en": "Early empire (to the 3rd century)",
+       "hi": "आरंभिक (तीसरी सदी तक)"
+      }
+     },
+     {
+      "id": "late",
+      "label": {
+       "en": "Late empire (3rd century on)",
+       "hi": "उत्तरकालीन (तीसरी सदी के बाद)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "principate",
+      "text": {
+       "en": "Augustus founds the Principate",
+       "hi": "ऑगस्टस प्रिंसिपेट की स्थापना करता है"
+      },
+      "bin": "early",
+      "why": {
+       "en": "This happened in 27 BCE, at the start of the empire.",
+       "hi": "यह 27 ई.पू. में, साम्राज्य के आरंभ में हुआ।"
+      }
+     },
+     {
+      "id": "vesuvius",
+      "text": {
+       "en": "Vesuvius buries Pompeii",
+       "hi": "वेसुवियस पोम्पेई को दबाता है"
+      },
+      "bin": "early",
+      "why": {
+       "en": "The eruption was in 79 CE, in the peaceful first century.",
+       "hi": "विस्फोट 79 ई. में हुआ, शांत पहली शताब्दी में।"
+      }
+     },
+     {
+      "id": "trajan",
+      "text": {
+       "en": "Trajan's conquests extend the empire",
+       "hi": "ट्रॉजन की विजयें साम्राज्य बढ़ाती हैं"
+      },
+      "bin": "early",
+      "why": {
+       "en": "The empire was largest about 115 CE.",
+       "hi": "साम्राज्य लगभग 115 ई. में सबसे बड़ा था।"
+      }
+     },
+     {
+      "id": "citizens",
+      "text": {
+       "en": "All free inhabitants become citizens",
+       "hi": "सभी स्वतंत्र निवासी नागरिक बनते हैं"
+      },
+      "bin": "early",
+      "why": {
+       "en": "This came in 212 CE.",
+       "hi": "यह 212 ई. में हुआ।"
+      }
+     },
+     {
+      "id": "diocletian",
+      "text": {
+       "en": "Diocletian reorganises 100 provinces",
+       "hi": "डायोक्लीशियन 100 प्रांत बनाता है"
+      },
+      "bin": "late",
+      "why": {
+       "en": "Diocletian (284-305) cut back, fortified frontiers and reorganised the empire.",
+       "hi": "डायोक्लीशियन (284-305) ने साम्राज्य सिकोड़ा, सीमाएँ सुदृढ़ कीं और उसका पुनर्गठन किया।"
+      }
+     },
+     {
+      "id": "solidus",
+      "text": {
+       "en": "Constantine issues a new gold coin",
+       "hi": "कॉन्स्टैंटाइन नया सोने का सिक्का चलाता है"
+      },
+      "bin": "late",
+      "why": {
+       "en": "The solidus was issued around 310 CE.",
+       "hi": "सोलिडस सिक्का लगभग 310 ई. में चलाया गया।"
+      }
+     },
+     {
+      "id": "constantinople",
+      "text": {
+       "en": "Constantinople is founded in the east",
+       "hi": "पूर्व में कॉन्स्टैंटिनोपल बसाया जाता है"
+      },
+      "bin": "late",
+      "why": {
+       "en": "Constantine founded the city in 324 CE.",
+       "hi": "कॉन्स्टैंटाइन ने यह नगर 324 ई. में बसाया।"
+      }
+     },
+     {
+      "id": "adrianople",
+      "text": {
+       "en": "Goths defeat Roman armies at Adrianople",
+       "hi": "एड्रियानोपल में गोथ रोमन सेनाओं को हराते हैं"
+      },
+      "bin": "late",
+      "why": {
+       "en": "This crushing defeat was in 378 CE.",
+       "hi": "यह करारी हार 378 ई. में हुई।"
+      }
+     },
+     {
+      "id": "split",
+      "text": {
+       "en": "The empire is split into east and west",
+       "hi": "साम्राज्य पूर्व और पश्चिम में बँटता है"
+      },
+      "bin": "late",
+      "why": {
+       "en": "The division into two halves came in the fourth century.",
+       "hi": "दो हिस्सों में बँटवारा चौथी सदी में हुआ।"
+      }
+     },
+     {
+      "id": "sack",
+      "text": {
+       "en": "The Visigoths sack Rome",
+       "hi": "विसिगोथ रोम को लूटते हैं"
+      },
+      "bin": "late",
+      "why": {
+       "en": "This was in 410 CE, as the west fell apart.",
+       "hi": "यह 410 ई. में हुआ, जब पश्चिम बिखर रहा था।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:principate",
+     "expect": "placed:principate",
+     "say": {
+      "en": "Tap the card \"Augustus founds the Principate\" and choose its group.",
+      "hi": "\"ऑगस्टस प्रिंसिपेट की स्थापना करता है\" कार्ड छुओ और समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does \"The empire is split into east and west\" belong?",
+      "hi": "\"साम्राज्य पूर्व और पश्चिम में बँटता है\" किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "early",
+       "en": "The early empire",
+       "hi": "आरंभिक साम्राज्य"
+      },
+      {
+       "id": "late",
+       "en": "The late empire",
+       "hi": "उत्तरकालीन साम्राज्य"
+      }
+     ],
+     "answer": "late"
+    },
+    {
+     "kind": "do",
+     "target": "card:split",
+     "expect": "placed:split",
+     "say": {
+      "en": "Place the card about the split into east and west.",
+      "hi": "पूर्व-पश्चिम बँटवारे वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards and press Check.",
+      "hi": "बाकी कार्ड छाँटो और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The first two centuries were mostly peaceful and prosperous. In the third century the empire faced strain on many fronts: a more aggressive Sasanian dynasty rose in Iran and Germanic tribes pressed on the Rhine and the Danube. There were 25 emperors in 47 years. Diocletian and Constantine then rebuilt the state, but the west gave way to the tribes by the fifth century, while the east stayed rich.",
+      "hi": "पहली दो शताब्दियाँ अधिकतर शांत और समृद्ध थीं। तीसरी सदी में साम्राज्य पर कई मोर्चों से दबाव पड़ा: ईरान में अधिक आक्रामक सासानी वंश उभरा और जर्मन कबीलों ने राइन व डैन्यूब पर ज़ोर डाला। 47 वर्षों में 25 सम्राट बने। फिर डायोक्लीशियन और कॉन्स्टैंटाइन ने राज्य को सँवारा, पर पाँचवीं सदी तक पश्चिम कबीलों के आगे झुक गया, जबकि पूर्व समृद्ध बना रहा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What sign of strain shows in the third century?",
+        "hi": "तीसरी सदी में दबाव का क्या संकेत दिखता है?"
+       },
+       "options": [
+        {
+         "en": "25 emperors in 47 years",
+         "hi": "47 वर्षों में 25 सम्राट"
+        },
+        {
+         "en": "One emperor ruled for fifty years",
+         "hi": "एक सम्राट ने पचास वर्ष शासन किया"
+        },
+        {
+         "en": "No wars at all",
+         "hi": "कोई युद्ध नहीं हुआ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Such rapid change of emperors was a symptom of the strains the empire faced.",
+        "hi": "सम्राटों का इतनी तेज़ी से बदलना साम्राज्य पर पड़ रहे दबावों का लक्षण था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would show stability, not strain.",
+         "hi": "यह तो स्थिरता दिखाता, दबाव नहीं।"
+        },
+        {
+         "en": "The empire was fighting on several fronts at once.",
+         "hi": "साम्राज्य एक साथ कई मोर्चों पर लड़ रहा था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What happened to the eastern half of the empire?",
+        "hi": "साम्राज्य के पूर्वी भाग का क्या हुआ?"
+       },
+       "options": [
+        {
+         "en": "It stayed intact and exceptionally prosperous",
+         "hi": "वह सुरक्षित और अत्यंत समृद्ध बना रहा"
+        },
+        {
+         "en": "It fell to the tribes in the fifth century",
+         "hi": "वह पाँचवीं सदी में कबीलों के हाथ चला गया"
+        },
+        {
+         "en": "It was given up by Constantine",
+         "hi": "कॉन्स्टैंटाइन ने उसे छोड़ दिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "From the fifth century the empire fell apart in the west but remained prosperous in the east.",
+        "hi": "पाँचवीं सदी से साम्राज्य पश्चिम में बिखर गया, पर पूर्व में समृद्ध बना रहा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It was the west that gave way to tribes in the fifth century.",
+         "hi": "पाँचवीं सदी में कबीलों के आगे पश्चिम झुका था।"
+        },
+        {
+         "en": "Constantine founded Constantinople in the east, so he did not give it up.",
+         "hi": "कॉन्स्टैंटाइन ने पूर्व में कॉन्स्टैंटिनोपल बसाया, उसे छोड़ा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and sort quickly. Which cards do you think many people would put in the wrong group?",
+      "hi": "फिर से शुरू करके जल्दी छाँटो। कौन-से कार्ड तुम्हें लगता है कि लोग ग़लत समूह में रखेंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch02-women",
+   "topic": "2.4",
+   "template": "sort",
+   "title": {
+    "en": "Women in the Roman family",
+    "hi": "रोमन परिवार में महिलाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "rights",
+      "label": {
+       "en": "Rights women had",
+       "hi": "महिलाओं के अधिकार"
+      }
+     },
+     {
+      "id": "limits",
+      "label": {
+       "en": "Inequalities they faced",
+       "hi": "उनकी असमानताएँ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "property",
+      "text": {
+       "en": "A wife kept rights to her father's property",
+       "hi": "पत्नी पिता की संपत्ति पर अधिकार रखती थी"
+      },
+      "bin": "rights",
+      "why": {
+       "en": "By the late Republic, a wife did not pass under her husband's authority and kept her natal family's property rights.",
+       "hi": "गणराज्य के अंत तक पत्नी पति के अधिकार में नहीं जाती थी और मायके की संपत्ति पर उसका अधिकार बना रहता था।"
+      }
+     },
+     {
+      "id": "owner",
+      "text": {
+       "en": "She could become an independent owner of property",
+       "hi": "वह संपत्ति की स्वतंत्र मालिक बन सकती थी"
+      },
+      "bin": "rights",
+      "why": {
+       "en": "A daughter was a primary heir of her father and owned property independently after his death.",
+       "hi": "बेटी पिता की मुख्य उत्तराधिकारी होती थी और उनकी मृत्यु के बाद स्वतंत्र रूप से संपत्ति की मालिक बनती थी।"
+      }
+     },
+     {
+      "id": "divorce",
+      "text": {
+       "en": "Either partner could end the marriage by notice",
+       "hi": "कोई भी साथी नोटिस देकर विवाह तोड़ सकता था"
+      },
+      "bin": "rights",
+      "why": {
+       "en": "Divorce was relatively easy and needed only a notice of intent to dissolve the marriage.",
+       "hi": "तलाक़ अपेक्षाकृत आसान था; विवाह तोड़ने की इच्छा का नोटिस भर काफ़ी था।"
+      }
+     },
+     {
+      "id": "age",
+      "text": {
+       "en": "Brides were in their teens, husbands in their thirties",
+       "hi": "दुल्हनें किशोरावस्था की, दूल्हे तीस के आसपास के"
+      },
+      "bin": "limits",
+      "why": {
+       "en": "The age gap between husband and wife encouraged a certain inequality.",
+       "hi": "पति-पत्नी की उम्र का अंतर एक प्रकार की असमानता को बढ़ावा देता था।"
+      }
+     },
+     {
+      "id": "arranged",
+      "text": {
+       "en": "Marriages were generally arranged",
+       "hi": "विवाह प्रायः तय किए जाते थे"
+      },
+      "bin": "limits",
+      "why": {
+       "en": "Marriages were generally arranged, and women were often dominated by their husbands.",
+       "hi": "विवाह प्रायः तय किए जाते थे और महिलाएँ अक्सर पतियों के दबाव में रहती थीं।"
+      }
+     },
+     {
+      "id": "beaten",
+      "text": {
+       "en": "Some husbands beat their wives",
+       "hi": "कुछ पति अपनी पत्नियों को पीटते थे"
+      },
+      "bin": "limits",
+      "why": {
+       "en": "Augustine wrote that his mother was regularly beaten and that other wives in his town had bruises.",
+       "hi": "ऑगस्टीन ने लिखा कि उनकी माँ को नियमित पीटा जाता था और उनके क़स्बे की दूसरी पत्नियों पर भी चोटों के निशान थे।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:property",
+     "expect": "placed:property",
+     "say": {
+      "en": "Tap the card about the wife's property rights and place it.",
+      "hi": "पत्नी के संपत्ति-अधिकार वाला कार्ड छुओ और रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Could a Roman wife end a marriage easily?",
+      "hi": "क्या रोमन पत्नी आसानी से विवाह तोड़ सकती थी?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, a notice was enough",
+       "hi": "हाँ, नोटिस काफ़ी था"
+      },
+      {
+       "id": "no",
+       "en": "No, only the husband could",
+       "hi": "नहीं, केवल पति तोड़ सकता था"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:divorce",
+     "expect": "placed:divorce",
+     "say": {
+      "en": "Place the card about ending a marriage.",
+      "hi": "विवाह तोड़ने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards and press Check.",
+      "hi": "बाकी कार्ड छाँटो और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Roman women had strong legal rights over property, and divorce was easy. But marriage was often arranged, wives were younger than husbands, and some husbands dominated or beat their wives. The empire also had slaves, who were counted as part of the household in the Roman understanding. Its law gave fathers great control over their children.",
+      "hi": "रोमन महिलाओं के पास संपत्ति के बड़े क़ानूनी अधिकार थे और तलाक़ आसान था। पर विवाह प्रायः तय होते थे, पत्नियाँ पतियों से छोटी होती थीं और कुछ पति उन पर हावी रहते या उन्हें पीटते थे। साम्राज्य में दास भी थे, जिन्हें रोमन समझ में परिवार का हिस्सा माना जाता था। क़ानून पिता को संतान पर बहुत नियंत्रण देता था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these was a legal right of a Roman married woman?",
+        "hi": "रोमन विवाहित स्त्री का कौन-सा क़ानूनी अधिकार था?"
+       },
+       "options": [
+        {
+         "en": "To own and manage property independently",
+         "hi": "संपत्ति की स्वतंत्र मालिक होना और उसे सँभालना"
+        },
+        {
+         "en": "To vote in the Senate",
+         "hi": "सीनेट में मतदान करना"
+        },
+        {
+         "en": "To command the army",
+         "hi": "सेना की कमान सँभालना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In law the married couple were two financial persons, and the wife kept her independence in property.",
+        "hi": "क़ानून में पति-पत्नी दो अलग आर्थिक इकाइयाँ थे और पत्नी संपत्ति में स्वतंत्र रहती थी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Senate was a body of wealthy men. The chapter does not give women a vote in it.",
+         "hi": "सीनेट धनी पुरुषों की संस्था थी। अध्याय में महिलाओं को उसमें मत देने का अधिकार नहीं बताया गया।"
+        },
+        {
+         "en": "The army was a paid professional force, with no mention of women commanding it.",
+         "hi": "सेना वेतनभोगी पेशेवर बल थी; उसकी कमान महिलाओं के पास होने का उल्लेख नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare this with the rights women have in India today. Write one difference and one similarity.",
+      "hi": "इसकी तुलना आज भारत में महिलाओं के अधिकारों से करो। एक अंतर और एक समानता लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "MAP",
+   "topic": "2.1",
+   "use": "Opening of the chapter and the frontiers lab",
+   "shows": "Relief base of the Mediterranean world, from Spain to the Euphrates and from the Rhine to the Sahara, sea in deep blue, land in soft greens and browns",
+   "view": "Top-down relief, 16:9, soft shading, rivers as thin blue lines",
+   "right": "The Mediterranean at the centre; the Alps, the Danube valley and the Sahara visible; the Nile delta and the Euphrates clearly drawn",
+   "avoid": "Names, modern borders, text, ships"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Goods match lab and trade topic",
+   "shows": "Three clay amphorae of different shapes: a fat round-bellied oil jar with two small handles, a tall narrow wine jar with a pointed base, and a grain jar (three files)",
+   "view": "Straight-on, transparent background, lit from top left, 1500 px or more",
+   "right": "Terracotta colour; two handles; pointed base on the wine jar so it can be stacked in a ship",
+   "avoid": "Stamps with readable letters, text, modern labels"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Hook of the Gender, literacy and culture topic",
+   "shows": "A sunlit street of a Roman town in the first century with painted wall panels, shop counters and a wine shop, in the style of Pompeii",
+   "view": "Eye level, 16:9, warm afternoon light",
+   "right": "Painted plaster walls, stone-paved street with stepping stones, shop fronts open to the road; panels left blank so the app can add words",
+   "avoid": "Readable words, modern objects, tourists"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Powers sort lab and army reader",
+   "shows": "A Roman legionary's kit as separate files: curved rectangular shield, iron helmet, short sword, and a heavy javelin",
+   "view": "Straight-on, transparent background, 1500 px or more",
+   "right": "Shield is rectangular and curved; helmet has a neck guard and cheek plates; sword is short and broad",
+   "avoid": "Names, emblems with text, people"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Match lab (papyrus) and reader",
+   "shows": "A papyrus scroll partly unrolled, with faint ink lines and no readable words",
+   "view": "Straight-on, transparent background, lit from top left",
+   "right": "Pale golden-brown reed fibres visible in a crossed pattern; rolled around a thin stick",
+   "avoid": "Any readable alphabet, stamps"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Timeline lab and chapter summary",
+   "shows": "A blank horizontal time-strip from 30 BCE to 420 CE with a thicker tick at every hundred years",
+   "view": "Clean white background, thin dark line, 16:9",
+   "right": "Even spacing; the year 0 marked only as a break between BCE and CE, not as a year",
+   "avoid": "Dates, event words, decoration"
+  }
+ ]
+}

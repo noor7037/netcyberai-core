@@ -1,0 +1,195 @@
+{
+  "chapter_key": "u.c12.history.lehs3.ch12",
+  "class": 12,
+  "subject_id": "history",
+  "title": "Framing the Constitution",
+  "source": "https://ncert.nic.in/textbook/pdf/lehs3ps.pdf",
+  "topics": [
+    { "n": "1", "title": "A tumultuous time: the making of the Constituent Assembly", "labs": ["c12-history-lehs3-ch12-timeline"], "why_no_lab": null },
+    { "n": "2", "title": "The vision of the Constitution: the will of the people", "labs": ["c12-history-lehs3-ch12-terms"], "why_no_lab": null },
+    { "n": "3", "title": "Defining rights: the problem of separate electorates", "labs": ["c12-history-lehs3-ch12-rights"], "why_no_lab": null },
+    { "n": "4", "title": "The powers of the state", "labs": [], "why_no_lab": "The division of powers needs the full legal text and debate; a lab would reduce it to a slogan." },
+    { "n": "5", "title": "The language of the nation: Hindi and the fear of domination", "labs": [], "why_no_lab": "A debate between different views, best read and discussed rather than sorted." }
+  ],
+  "labs": [
+    {
+      "id": "c12-history-lehs3-ch12-timeline",
+      "topic": "1",
+      "template": "timeline",
+      "title": { "en": "From assembly to constitution", "hi": "सभा से संविधान तक" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1940, 1955],
+        "task": "order",
+        "title": { "en": "Making the Constitution", "hi": "संविधान बनने का क्रम" },
+        "events": [
+          { "id": "assembly", "year": 1946, "label": { "en": "The Constituent Assembly first meets", "hi": "संविधान सभा की पहली बैठक होती है" } },
+          { "id": "independence", "year": 1947, "label": { "en": "India becomes independent", "hi": "भारत स्वतंत्र होता है" } },
+          { "id": "adopted", "year": 1949, "label": { "en": "The Assembly adopts the Constitution", "hi": "सभा संविधान को अपनाती है" } },
+          { "id": "force", "year": 1950, "label": { "en": "The Constitution comes into force", "hi": "संविधान लागू होता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Four steps built the Constitution. Which one do you think came first?", "hi": "चार चरणों से संविधान बना। तुम्हें लगता है पहला चरण कौन-सा था?" },
+          "options": [
+            { "id": "assembly", "en": "The Constituent Assembly first meets", "hi": "संविधान सभा की पहली बैठक" },
+            { "id": "force", "en": "The Constitution comes into force", "hi": "संविधान का लागू होना" }
+          ],
+          "answer": "assembly"
+        },
+        { "kind": "do", "target": "event:assembly", "expect": "placed:assembly", "say": { "en": "Tap the first meeting of the Constituent Assembly.", "hi": "संविधान सभा की पहली बैठक वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:independence", "expect": "placed:independence", "say": { "en": "Next, tap India's independence.", "hi": "अब भारत की स्वतंत्रता वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:adopted", "expect": "placed:adopted", "say": { "en": "Next, tap the adoption of the Constitution.", "hi": "अब संविधान को अपनाने वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:force", "expect": "placed:force", "say": { "en": "Last, tap the Constitution coming into force, then press Check.", "hi": "आख़िर में संविधान के लागू होने वाली घटना टैप करो, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to see your order.", "hi": "अपना क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Constituent Assembly first met in December 1946, while the country was moving towards independence. India became independent in 1947. The Assembly adopted the Constitution in November 1949, and it came into force on 26 January 1950.", "hi": "संविधान सभा की पहली बैठक दिसंबर 1946 में हुई, जब देश स्वतंत्रता की ओर बढ़ रहा था। भारत 1947 में स्वतंत्र हुआ। सभा ने नवंबर 1949 में संविधान अपनाया, और वह 26 जनवरी 1950 को लागू हुआ।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "In which year did the Constitution come into force?", "hi": "संविधान किस वर्ष लागू हुआ?" },
+              "options": [
+                { "en": "1946", "hi": "१९४६" },
+                { "en": "1947", "hi": "१९४७" },
+                { "en": "1950", "hi": "१९५०" }
+              ],
+              "answer": 2,
+              "why": { "en": "The Constitution came into force on 26 January 1950, after the Assembly adopted it in 1949.", "hi": "संविधान 26 जनवरी 1950 को लागू हुआ, सभा द्वारा 1949 में अपनाए जाने के बाद।" },
+              "wrong": [
+                { "en": "1946 was the year the Assembly first met, not when the Constitution took force.", "hi": "1946 में सभा की पहली बैठक हुई थी, संविधान के लागू होने का वर्ष नहीं।" },
+                { "en": "1947 was when India became independent, a year before the Constitution was adopted.", "hi": "1947 में भारत स्वतंत्र हुआ, संविधान अपनाए जाने से दो साल पहले।" },
+                ""
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Zoom in on the strip. How many years passed between the first meeting and the Constitution coming into force?", "hi": "पट्टी पर ज़ूम करो। पहली बैठक और संविधान के लागू होने के बीच कितने साल बीते?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs3-ch12-terms",
+      "topic": "2",
+      "template": "match",
+      "title": { "en": "Key ideas of the Constitution", "hi": "संविधान के मुख्य विचार" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "sovereign", "left": { "en": "Sovereign", "hi": "संप्रभु" }, "right": { "en": "Final power rests with the people, not a foreign ruler", "hi": "अंतिम सत्ता जनता के पास है, किसी विदेशी शासक के पास नहीं" }, "why": { "en": "Sovereignty means the final power rests with the people of India, and not with an outside ruler.", "hi": "संप्रभुता का अर्थ है कि अंतिम सत्ता भारत की जनता के पास है, किसी बाहरी शासक के पास नहीं।" } },
+          { "id": "republic", "left": { "en": "Republic", "hi": "गणराज्य" }, "right": { "en": "The head of state is elected, not a hereditary ruler", "hi": "राज्य का प्रमुख चुना जाता है, वंशानुगत शासक नहीं" }, "why": { "en": "In a republic the head of state is chosen, not inherited by birth.", "hi": "गणराज्य में राज्य का प्रमुख चुना जाता है, जन्म से विरासत में नहीं मिलता।" } },
+          { "id": "justice", "left": { "en": "Justice", "hi": "न्याय" }, "right": { "en": "Social, economic and political justice promised to all citizens", "hi": "सभी नागरिकों से सामाजिक, आर्थिक और राजनीतिक न्याय का वादा" }, "why": { "en": "The Preamble promises justice in its social, economic and political forms to all citizens.", "hi": "प्रस्तावना सभी नागरिकों को सामाजिक, आर्थिक और राजनीतिक न्याय का वादा करती है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "The Constitution begins with a statement of its aims. Who do you think it gives the final power to?", "hi": "संविधान अपने उद्देश्यों के कथन से शुरू होता है। तुम्हें लगता है वह अंतिम सत्ता किसे देता है?" },
+          "options": [
+            { "id": "people", "en": "To the people of India", "hi": "भारत की जनता को" },
+            { "id": "ruler", "en": "To one ruler", "hi": "एक शासक को" }
+          ],
+          "answer": "people"
+        },
+        { "kind": "do", "target": "right:sovereign", "expect": "matched:sovereign", "say": { "en": "Tap 'Sovereign' on the left, then its meaning on the right.", "hi": "बाईं ओर 'संप्रभु' टैप करो, फिर दाईं ओर उसका अर्थ टैप करो।" } },
+        { "kind": "do", "target": "right:republic", "expect": "matched:republic", "say": { "en": "Now match 'Republic' with its meaning.", "hi": "अब 'गणराज्य' को उसके अर्थ से मिलाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Constitution's opening words state the aims of the nation. Sovereignty lies with the people, the country is a republic with an elected head, and justice in several forms is promised to every citizen. These ideas were debated at length in the Constituent Assembly.", "hi": "संविधान के शुरुआती शब्द राष्ट्र के उद्देश्य बताते हैं। संप्रभुता जनता के पास है, देश एक गणराज्य है जिसका प्रमुख चुना जाता है, और हर नागरिक को कई रूपों में न्याय का वादा है। इन विचारों पर संविधान सभा में लंबी बहस हुई।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What does 'Sovereign' mean in the Constitution's aims?", "hi": "संविधान के उद्देश्यों में 'संप्रभु' का क्या अर्थ है?" },
+              "options": [
+                { "en": "Ruled by a hereditary king", "hi": "वंशानुगत राजा द्वारा शासित" },
+                { "en": "Final power rests with the people", "hi": "अंतिम सत्ता जनता के पास है" },
+                { "en": "Ruled by a foreign power", "hi": "विदेशी सत्ता द्वारा शासित" }
+              ],
+              "answer": 1,
+              "why": { "en": "Sovereignty means the final power rests with the people of India.", "hi": "संप्रभुता का अर्थ है कि अंतिम सत्ता भारत की जनता के पास है।" },
+              "wrong": [
+                { "en": "A hereditary king is the opposite of a republic, and not what sovereign means here.", "hi": "वंशानुगत राजा गणराज्य का उल्टा है, और यहाँ संप्रभु का यह अर्थ नहीं है।" },
+                "",
+                { "en": "A foreign power would take away sovereignty, so this is the opposite meaning.", "hi": "विदेशी सत्ता संप्रभुता छीन लेती, इसलिए यह उल्टा अर्थ है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Try the justice card on the sovereign pair and read the note. Why does a constitution state its aims at the start?", "hi": "न्याय वाला कार्ड संप्रभु वाली जोड़ी पर रखकर नोट पढ़ो। संविधान शुरू में ही अपने उद्देश्य क्यों बताता है?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs3-ch12-rights",
+      "topic": "3",
+      "template": "sort",
+      "title": { "en": "Rights you can claim, and guidance for the state", "hi": "जो अधिकार तुम माँग सकते हो, और राज्य के लिए मार्गदर्शन" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "fundamental", "label": { "en": "Fundamental rights, enforceable in court", "hi": "मौलिक अधिकार, अदालत में लागू योग्य" } },
+          { "id": "directive", "label": { "en": "Directive principles: state guidance", "hi": "नीति-निदेशक तत्व: राज्य का मार्गदर्शन" } }
+        ],
+        "cards": [
+          { "id": "equality", "text": { "en": "The right to equality before the law", "hi": "कानून के सामने समानता का अधिकार" }, "bin": "fundamental", "why": { "en": "Equality before the law is a fundamental right, which a citizen can claim in court.", "hi": "कानून के सामने समानता मौलिक अधिकार है, जिसे नागरिक अदालत में माँग सकता है।" } },
+          { "id": "speech", "text": { "en": "The right to freedom of speech and expression", "hi": "बोलने और अभिव्यक्ति की स्वतंत्रता का अधिकार" }, "bin": "fundamental", "why": { "en": "Freedom of speech is a fundamental right, guaranteed to citizens and enforceable.", "hi": "बोलने की स्वतंत्रता मौलिक अधिकार है, नागरिकों को दी गई और लागू योग्य।" } },
+          { "id": "welfare", "text": { "en": "The state should work for the welfare of all people", "hi": "राज्य को सभी लोगों के कल्याण के लिए काम करना चाहिए" }, "bin": "directive", "why": { "en": "Directive principles guide the state towards welfare; they are not enforced by courts in the same way.", "hi": "नीति-निदेशक तत्व राज्य को कल्याण की ओर मार्गदर्शन देते हैं; उन्हें अदालत उसी तरह लागू नहीं करवाती।" } },
+          { "id": "inequality", "text": { "en": "The state should reduce inequality of income", "hi": "राज्य को आय की असमानता घटानी चाहिए" }, "bin": "directive", "why": { "en": "Reducing inequality is a directive principle, a goal for the state rather than a right a citizen can claim in court.", "hi": "असमानता घटाना नीति-निदेशक तत्व है, राज्य के लिए लक्ष्य, नागरिक का अदालत में माँगा जा सकने वाला अधिकार नहीं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Some promises in the Constitution can be claimed in court, and others guide the government. Which do you think a court can enforce?", "hi": "संविधान के कुछ वादे अदालत में माँगे जा सकते हैं, और कुछ सरकार का मार्गदर्शन करते हैं। तुम्हें लगता है अदालत किसे लागू करवा सकती है?" },
+          "options": [
+            { "id": "fundamental", "en": "Fundamental rights", "hi": "मौलिक अधिकार" },
+            { "id": "all", "en": "Every promise, always", "hi": "हर वादा, हमेशा" }
+          ],
+          "answer": "fundamental"
+        },
+        { "kind": "do", "target": "bin:fundamental", "expect": "correct:equality", "say": { "en": "Pick the equality before the law card and tap 'Fundamental rights'.", "hi": "कानून के सामने समानता वाला कार्ड उठाकर 'मौलिक अधिकार' टैप करो।" } },
+        { "kind": "do", "target": "bin:directive", "expect": "correct:welfare", "say": { "en": "Pick the welfare card and tap 'Directive principles'.", "hi": "कल्याण वाला कार्ड उठाकर 'नीति-निदेशक तत्व' टैप करो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Constitution has two kinds of promises. Fundamental rights, such as equality and free speech, can be enforced in court. Directive principles guide the state towards welfare and reduced inequality, and they shape the laws the government makes. The Constituent Assembly debated how to balance the two.", "hi": "संविधान में दो तरह के वादे हैं। समानता और बोलने की स्वतंत्रता जैसे मौलिक अधिकार अदालत में लागू करवाए जा सकते हैं। नीति-निदेशक तत्व राज्य को कल्याण और असमानता घटाने की ओर मार्गदर्शन देते हैं, और सरकार के बनाए कानूनों को आकार देते हैं। संविधान सभा में दोनों का संतुलन इस पर बहस हुई कि कैसे बनाया जाए।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which kind of promise can a citizen take to court?", "hi": "किस तरह के वादे को नागरिक अदालत में ले जा सकता है?" },
+              "options": [
+                { "en": "A fundamental right such as equality", "hi": "समानता जैसा मौलिक अधिकार" },
+                { "en": "A directive principle on welfare", "hi": "कल्याण पर नीति-निदेशक तत्व" },
+                { "en": "A general goal of the government", "hi": "सरकार का सामान्य लक्ष्य" }
+              ],
+              "answer": 0,
+              "why": { "en": "Fundamental rights, such as equality before the law, are enforceable in court.", "hi": "कानून के सामने समानता जैसे मौलिक अधिकार अदालत में लागू करवाए जा सकते हैं।" },
+              "wrong": [
+                "",
+                { "en": "Directive principles guide the state; they are not enforced by courts in the same way.", "hi": "नीति-निदेशक तत्व राज्य का मार्गदर्शन करते हैं; अदालत उन्हें उसी तरह लागू नहीं करवाती।" },
+                { "en": "A general goal of the government is an aim, not a right a citizen can claim in court.", "hi": "सरकार का सामान्य लक्ष्य एक उद्देश्य है, वह अधिकार नहीं जिसे नागरिक अदालत में माँग सके।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Put the inequality card in the fundamental bin and read why it is off. Why do you think the framers placed it differently?", "hi": "असमानता वाला कार्ड मौलिक अधिकार वाले खाने में रखकर पढ़ो कि वह क्यों ठीक नहीं है। तुम्हें लगता है संविधान निर्माताओं ने इसे अलग क्यों रखा?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "OBJ", "topic": "1", "use": "Opening object: a closed book, the Constitution as a document", "shows": "A closed leather-bound book with a blank cover, placed on a wooden table, no lettering", "view": "Three-quarter view, cut-out on transparent background, soft light from top-left", "right": "Leather in a warm brown, edges of pages visible, true proportions", "avoid": "Any printed title, emblem, logo, brand" },
+    { "n": 2, "kind": "SCN", "topic": "1", "use": "The assembly hall where the members met", "shows": "An old assembly hall with tall windows, wooden benches in rows and a plain raised platform, empty, morning light", "view": "Eye level, 16:9, soft light from the windows, the rows receding", "right": "Warm wood and plaster, tall windows letting in natural light, true proportions", "avoid": "People, visitor signs, modern screens, text" },
+    { "n": 3, "kind": "DIA", "topic": "3", "use": "Two-column frame for the rights sort lab, without words", "shows": "A clean two-column frame, each column a box with a rounded top, and a row of blank cards in the top area", "view": "Flat, white background, dark thin lines, 4:3", "right": "Two columns equal in size, cards aligned, no words", "avoid": "Labels, numbers, colour that alone separates the columns" },
+    { "n": 4, "kind": "MAC", "topic": "2", "use": "Close-up of a handwritten draft page, the making of the text", "shows": "Close-up of an old handwritten draft page with crossed-out lines and no readable words, replica", "view": "Square crop, close, side light to show the paper and ink", "right": "Paper in cream tone, ink with a slight sheen, the crossings clear", "avoid": "Readable script, modern printing, signature" },
+    { "n": 5, "kind": "DIA", "topic": "2", "use": "A blank parchment-style frame for the opening words", "shows": "A plain page with a decorative border and an empty central space, no words", "view": "Flat, white background, thin border in a muted tone, 4:3", "right": "Border even, centre clear for words to be added later", "avoid": "Words, crests, emblems, text" }
+  ]
+}

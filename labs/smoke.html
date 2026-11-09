@@ -1,0 +1,25 @@
+<meta charset="utf-8">
+<title>Template smoke test</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Mukta:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<main class="wrap" style="padding-block:16px"><section class="stagewrap" id="stagewrap"><div id="stage"></div></section><pre id="log" style="white-space:pre-wrap"></pre></main>
+<script src="lib.js"></script>
+<script>
+// Mounts one template with its demo config (or ?lab=<id>&file=<path> for a lab's own config) and a recording api.
+(async () => {
+  const p = new URLSearchParams(location.search);
+  const id = p.get('t'), lang = p.get('lang') || 'en';
+  const out = { events: [], errors: [], keys: null };
+  window.__smoke = out;
+  try {
+    await NCA_LIB.loadScript(`templates/${id}.js`);
+    const T = NCA_T.get(id);
+    let config = T.demo;
+    if (p.get('file')) { const ch = await (await fetch(p.get('file'))).json(); config = ch.labs.find((l) => l.id === p.get('lab')).config; }
+    out.keys = T.keys(config);
+    const api = { t: (x) => NCA_LIB.tx(x, lang), lang: () => lang, allowed: () => true, nudge() {}, emit: (e) => out.events.push(e), speak() {}, record() {}, toast() {}, celebrate() {}, asset: () => null };
+    window.__inst = T.mount(document.getElementById('stage'), config, api);
+    out.mounted = true;
+  } catch (e) { out.errors.push(String(e && e.stack || e)); }
+})();
+</script>

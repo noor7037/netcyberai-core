@@ -1,0 +1,883 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch05",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "Sharing and Measuring",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "5.1",
+      "title": "Parts and wholes: halves",
+      "labs": [
+        "c04-mathematics-demm1-ch05-halves"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.2",
+      "title": "Quarters: cutting a whole into four equal parts",
+      "labs": [
+        "c04-mathematics-demm1-ch05-quarters"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.3",
+      "title": "Many ways to make halves and quarters",
+      "labs": [],
+      "why_no_lab": "Folding paper in different ways and seeing that every half covers the same amount is learnt best with real paper and scissors in your hands."
+    },
+    {
+      "n": "5.4",
+      "title": "Equal sharing: dhokla and dosa",
+      "labs": [
+        "c04-mathematics-demm1-ch05-fair-share"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.5",
+      "title": "Comparing halves and quarters",
+      "labs": [
+        "c04-mathematics-demm1-ch05-half-is-two-quarters",
+        "c04-mathematics-demm1-ch05-half-or-quarter"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch05-halves",
+      "topic": "5.1",
+      "template": "fractions",
+      "title": {
+        "en": "Cut a roti into halves",
+        "hi": "रोटी के दो बराबर भाग"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "object": "roti",
+        "bars": [
+          {
+            "n": 1
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "You will cut this whole roti into 2 equal pieces to share with a friend. What is each piece called?",
+            "hi": "तुम इस पूरी रोटी को दोस्त के साथ बाँटने के लिए 2 बराबर टुकड़ों में काटोगे। हर टुकड़ा क्या कहलाता है?"
+          },
+          "options": [
+            {
+              "id": "half",
+              "en": "A half",
+              "hi": "आधा"
+            },
+            {
+              "id": "quarter",
+              "en": "A quarter",
+              "hi": "चौथाई"
+            },
+            {
+              "id": "whole",
+              "en": "A whole",
+              "hi": "पूरा"
+            }
+          ],
+          "answer": "half"
+        },
+        {
+          "kind": "do",
+          "target": "cut:0",
+          "expect": "cut:0:2",
+          "say": {
+            "en": "Tap + once to cut the roti into 2 equal parts.",
+            "hi": "रोटी को 2 बराबर भागों में काटने के लिए एक बार + दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "piece:0",
+          "expect": "shade:0:1/2",
+          "say": {
+            "en": "Tap one piece to colour it. That piece is your share.",
+            "hi": "एक टुकड़े पर टैप करके उसे रंगो। यही तुम्हारा हिस्सा है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "When one whole is cut into 2 equal parts, each part is one half. We write one half as 1/2. Two halves make one whole again. The parts must be equal. If one piece is bigger, it is not a half.",
+            "hi": "जब एक पूरे को 2 बराबर भागों में काटा जाता है तो हर भाग आधा होता है। आधे को हम 1/2 लिखते हैं। दो आधे मिलकर फिर पूरा बनते हैं। भाग बराबर होने चाहिए। अगर एक टुकड़ा बड़ा है तो वह आधा नहीं है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many halves make one whole roti?",
+                "hi": "कितने आधे मिलकर एक पूरी रोटी बनाते हैं?"
+              },
+              "options": [
+                "2",
+                "4",
+                "1"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Two halves, put together, make the whole roti.",
+                "hi": "दो आधे मिलाने पर पूरी रोटी बन जाती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "4 is the number of quarters in a whole. A half is bigger than a quarter, so fewer halves are needed.",
+                  "hi": "4 एक पूरे में चौथाइयों की संख्या है। आधा, चौथाई से बड़ा होता है, इसलिए कम आधे चाहिए।"
+                },
+                {
+                  "en": "1 half is only half of the roti. You need another half to make the whole.",
+                  "hi": "1 आधा केवल आधी रोटी है। पूरी रोटी के लिए एक आधा और चाहिए।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Ravi cut a roti into a big piece and a small piece. Is the big piece a half?",
+                "hi": "रवि ने रोटी को एक बड़े और एक छोटे टुकड़े में काटा। क्या बड़ा टुकड़ा आधा है?"
+              },
+              "options": [
+                {
+                  "en": "No, the two pieces are not equal",
+                  "hi": "नहीं, दोनों टुकड़े बराबर नहीं हैं"
+                },
+                {
+                  "en": "Yes, any piece is a half",
+                  "hi": "हाँ, कोई भी टुकड़ा आधा होता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A half must be one of two equal parts. Unequal pieces are not halves.",
+                "hi": "आधा दो बराबर भागों में से एक होता है। असमान टुकड़े आधे नहीं होते।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Any piece is not a half. Only one of two equal parts is a half.",
+                  "hi": "कोई भी टुकड़ा आधा नहीं होता। दो बराबर भागों में से एक ही आधा होता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Try the chocolate bar or the pizza in your mind. How would you cut each into halves?",
+            "hi": "मन में चॉकलेट या पिज़्ज़ा को सोचो। तुम उन्हें आधे-आधे कैसे काटोगे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch05-quarters",
+      "topic": "5.2",
+      "template": "fractions",
+      "title": {
+        "en": "Cut a roti into quarters",
+        "hi": "रोटी के चार बराबर भाग"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "object": "roti",
+        "bars": [
+          {
+            "n": 1
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Four friends want to share one roti equally. Into how many equal pieces should you cut it?",
+            "hi": "चार दोस्त एक रोटी बराबर बाँटना चाहते हैं। तुम उसे कितने बराबर टुकड़ों में काटोगे?"
+          },
+          "options": [
+            {
+              "id": "two",
+              "en": "2 pieces",
+              "hi": "2 टुकड़े"
+            },
+            {
+              "id": "four",
+              "en": "4 pieces",
+              "hi": "4 टुकड़े"
+            },
+            {
+              "id": "three",
+              "en": "3 pieces",
+              "hi": "3 टुकड़े"
+            }
+          ],
+          "answer": "four"
+        },
+        {
+          "kind": "do",
+          "target": "cut:0",
+          "expect": "cut:0:4",
+          "say": {
+            "en": "Tap + three times to cut the roti into 4 equal parts.",
+            "hi": "रोटी को 4 बराबर भागों में काटने के लिए तीन बार + दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "piece:0",
+          "expect": "shade:0:1/4",
+          "say": {
+            "en": "Tap one piece to colour it. That is one quarter.",
+            "hi": "एक टुकड़े पर टैप करके उसे रंगो। यह एक चौथाई है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "piece:0",
+          "expect": "shade:0:2/4",
+          "say": {
+            "en": "Tap one more piece. Two quarters are shaded.",
+            "hi": "एक और टुकड़े पर टैप करो। अब दो चौथाई रंगे हैं।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "When a whole is cut into 4 equal parts, each part is one quarter, written 1/4. Four quarters make one whole. Two quarters make the same amount as one half, because a half is 2 of the 4 parts.",
+            "hi": "जब एक पूरे को 4 बराबर भागों में काटा जाता है तो हर भाग एक चौथाई होता है, जिसे 1/4 लिखते हैं। चार चौथाई मिलकर एक पूरा बनते हैं। दो चौथाई उतने ही होते हैं जितना एक आधा, क्योंकि आधा 4 में से 2 भाग होता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many quarters make one whole?",
+                "hi": "कितनी चौथाइयाँ मिलकर एक पूरा बनाती हैं?"
+              },
+              "options": [
+                "4",
+                "2",
+                "1"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Four equal quarters make a whole.",
+                "hi": "चार बराबर चौथाइयाँ मिलकर एक पूरा बनाती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "2 quarters make only a half. You need 2 more.",
+                  "hi": "2 चौथाई मिलकर केवल आधा बनाती हैं। 2 और चाहिए।"
+                },
+                {
+                  "en": "1 quarter is only one part of four. The whole needs all four.",
+                  "hi": "1 चौथाई चार में से केवल एक भाग है। पूरे के लिए चारों चाहिए।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "You shaded 2 of the 4 equal parts. What part of the roti is shaded?",
+                "hi": "तुमने 4 बराबर भागों में से 2 रंगे। रोटी का कितना भाग रंगा है?"
+              },
+              "options": [
+                {
+                  "en": "One half",
+                  "hi": "आधा"
+                },
+                {
+                  "en": "One quarter",
+                  "hi": "एक चौथाई"
+                },
+                {
+                  "en": "The whole",
+                  "hi": "पूरा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "2 out of 4 equal parts is the same as one half.",
+                "hi": "4 बराबर भागों में से 2 भाग आधे के बराबर होते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "One quarter is only 1 of the 4 parts. You shaded 2.",
+                  "hi": "एक चौथाई 4 में से केवल 1 भाग है। तुमने 2 रंगे हैं।"
+                },
+                {
+                  "en": "The whole would mean all 4 parts are shaded. Two are still white.",
+                  "hi": "पूरा तब होता जब चारों भाग रंगे होते। दो अभी सफ़ेद हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Cut the roti into 4 parts again and shade 3. What do we call 3 of 4 equal parts?",
+            "hi": "रोटी को फिर 4 भागों में काटो और 3 रंगो। 4 बराबर भागों में से 3 को क्या कहते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch05-fair-share",
+      "topic": "5.4",
+      "template": "sort",
+      "title": {
+        "en": "Is it a fair share?",
+        "hi": "क्या यह बराबर हिस्सा है?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "fair",
+            "label": {
+              "en": "Equal parts: fair share",
+              "hi": "बराबर भाग: उचित हिस्सा"
+            }
+          },
+          {
+            "id": "unfair",
+            "label": {
+              "en": "Unequal parts: not fair",
+              "hi": "असमान भाग: उचित नहीं"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "dosa",
+            "text": {
+              "en": "A dosa folded exactly in the middle",
+              "hi": "ठीक बीच से मोड़ा गया डोसा"
+            },
+            "bin": "fair",
+            "why": {
+              "en": "The two folded sides match exactly, so each is a half. That is fair.",
+              "hi": "मोड़ने पर दोनों तरफ़ ठीक मिलती हैं, इसलिए हर तरफ़ आधा है। यह उचित है।"
+            }
+          },
+          {
+            "id": "bar4",
+            "text": {
+              "en": "A chocolate bar broken into 4 same pieces",
+              "hi": "चॉकलेट 4 एक जैसे टुकड़ों में टूटी"
+            },
+            "bin": "fair",
+            "why": {
+              "en": "Four same-size pieces are four equal quarters. That is fair.",
+              "hi": "चार एक माप के टुकड़े चार बराबर चौथाइयाँ हैं। यह उचित है।"
+            }
+          },
+          {
+            "id": "paper",
+            "text": {
+              "en": "Paper folded corner to corner exactly",
+              "hi": "कोने से कोने तक ठीक मोड़ा काग़ज़"
+            },
+            "bin": "fair",
+            "why": {
+              "en": "A careful fold gives two parts that fit on each other. That is fair.",
+              "hi": "ध्यान से मोड़ने पर दोनों भाग एक-दूसरे पर ठीक बैठते हैं। यह उचित है।"
+            }
+          },
+          {
+            "id": "dhokla4",
+            "text": {
+              "en": "A dhokla cut into 4 same-size pieces",
+              "hi": "ढोकला 4 एक माप के टुकड़ों में कटा"
+            },
+            "bin": "fair",
+            "why": {
+              "en": "Same-size pieces mean every friend gets the same amount.",
+              "hi": "एक माप के टुकड़े हों तो हर दोस्त को बराबर मिलता है।"
+            }
+          },
+          {
+            "id": "roti-big",
+            "text": {
+              "en": "A roti torn into a big and a small piece",
+              "hi": "रोटी एक बड़े और एक छोटे टुकड़े में फटी"
+            },
+            "bin": "unfair",
+            "why": {
+              "en": "The pieces are not equal, so one friend gets more. That is not fair.",
+              "hi": "टुकड़े बराबर नहीं हैं, इसलिए एक दोस्त को ज़्यादा मिलता है। यह उचित नहीं है।"
+            }
+          },
+          {
+            "id": "dhokla3",
+            "text": {
+              "en": "A dhokla cut in 3, one piece much bigger",
+              "hi": "ढोकला 3 टुकड़ों में, एक बहुत बड़ा"
+            },
+            "bin": "unfair",
+            "why": {
+              "en": "One piece is much bigger, so the sharing is not equal.",
+              "hi": "एक टुकड़ा बहुत बड़ा है, इसलिए बँटवारा बराबर नहीं है।"
+            }
+          },
+          {
+            "id": "pizza",
+            "text": {
+              "en": "A pizza cut so one slice is tiny",
+              "hi": "पिज़्ज़ा ऐसा कटा कि एक टुकड़ा बहुत छोटा"
+            },
+            "bin": "unfair",
+            "why": {
+              "en": "A tiny slice next to big slices is not an equal share.",
+              "hi": "बड़े टुकड़ों के पास बहुत छोटा टुकड़ा बराबर हिस्सा नहीं है।"
+            }
+          },
+          {
+            "id": "bar-uneven",
+            "text": {
+              "en": "A bar broken so one end is longer",
+              "hi": "चॉकलेट ऐसी टूटी कि एक सिरा लंबा"
+            },
+            "bin": "unfair",
+            "why": {
+              "en": "A longer piece holds more chocolate, so the share is unequal.",
+              "hi": "लंबे टुकड़े में ज़्यादा चॉकलेट होती है, इसलिए हिस्सा असमान है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Two friends share a dosa. One folds it in the middle exactly. The other tears it anywhere. Which way is fair?",
+            "hi": "दो दोस्त डोसा बाँटते हैं। एक उसे ठीक बीच से मोड़ता है। दूसरा कहीं से भी फाड़ देता है। कौन-सा तरीक़ा उचित है?"
+          },
+          "options": [
+            {
+              "id": "fold",
+              "en": "Folding exactly in the middle",
+              "hi": "ठीक बीच से मोड़ना"
+            },
+            {
+              "id": "tear",
+              "en": "Tearing anywhere",
+              "hi": "कहीं से भी फाड़ना"
+            }
+          ],
+          "answer": "fold"
+        },
+        {
+          "kind": "do",
+          "target": "card:dosa",
+          "expect": "correct:dosa",
+          "say": {
+            "en": "Tap the dosa card, then tap the group it belongs to.",
+            "hi": "डोसा वाले कार्ड पर टैप करो, फिर उसके समूह पर।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:roti-big",
+          "expect": "correct:roti-big",
+          "say": {
+            "en": "Now sort the torn roti card.",
+            "hi": "अब फटी रोटी वाला कार्ड छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the other cards, then press Check.",
+            "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Sharing is fair only when the parts are equal. Equal parts fit exactly on each other, like the two sides of a dosa folded in the middle. If one part is bigger, one friend gets more food.",
+            "hi": "बँटवारा तभी उचित होता है जब भाग बराबर हों। बराबर भाग एक-दूसरे पर ठीक बैठते हैं, जैसे बीच से मोड़े डोसे की दोनों तरफ़। अगर एक भाग बड़ा हो तो एक दोस्त को ज़्यादा खाना मिलता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "3 friends share a dhokla fairly. Into how many equal pieces is it cut?",
+                "hi": "3 दोस्त ढोकला बराबर बाँटते हैं। वह कितने बराबर टुकड़ों में कटेगा?"
+              },
+              "options": [
+                "3",
+                "2",
+                "4"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "One equal piece for each friend: 3 friends need 3 equal pieces.",
+                "hi": "हर दोस्त के लिए एक बराबर टुकड़ा: 3 दोस्तों के लिए 3 बराबर टुकड़े।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "2 pieces would leave one friend without a piece.",
+                  "hi": "2 टुकड़ों में एक दोस्त बिना टुकड़े के रह जाएगा।"
+                },
+                {
+                  "en": "4 pieces is more than the number of friends, so some friends would get two pieces and others one.",
+                  "hi": "4 टुकड़े दोस्तों की संख्या से ज़्यादा हैं, इसलिए किसी को दो और किसी को एक टुकड़ा मिलेगा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Share a piece of paper among 2 friends and then among 4. How do you fold it each time?",
+            "hi": "एक काग़ज़ को पहले 2 दोस्तों में और फिर 4 दोस्तों में बाँटो। हर बार उसे कैसे मोड़ोगे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch05-half-is-two-quarters",
+      "topic": "5.5",
+      "template": "fractions",
+      "title": {
+        "en": "A half is two quarters",
+        "hi": "एक आधा दो चौथाई के बराबर"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "object": "roti",
+        "bars": [
+          {
+            "n": 2,
+            "k": 1
+          },
+          {
+            "n": 4,
+            "k": 0
+          }
+        ],
+        "op": "equivalent"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The top roti has one half shaded. The bottom roti is cut in 4 equal parts. How many quarters must you shade to cover the same amount?",
+            "hi": "ऊपर की रोटी में आधा रंगा है। नीचे की रोटी 4 बराबर भागों में कटी है। उतना ही भाग ढकने के लिए कितनी चौथाइयाँ रंगनी होंगी?"
+          },
+          "options": [
+            {
+              "id": "one",
+              "en": "1 quarter",
+              "hi": "1 चौथाई"
+            },
+            {
+              "id": "two",
+              "en": "2 quarters",
+              "hi": "2 चौथाई"
+            },
+            {
+              "id": "three",
+              "en": "3 quarters",
+              "hi": "3 चौथाई"
+            }
+          ],
+          "answer": "two"
+        },
+        {
+          "kind": "do",
+          "target": "piece:1",
+          "expect": "shade:1:1/4",
+          "say": {
+            "en": "Tap one quarter of the bottom roti to colour it.",
+            "hi": "नीचे की रोटी की एक चौथाई पर टैप करके उसे रंगो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "piece:1",
+          "expect": "equal",
+          "say": {
+            "en": "Tap one more quarter. Do the two rotis match now?",
+            "hi": "एक और चौथाई पर टैप करो। क्या अब दोनों रोटियाँ बराबर हैं?"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Two quarters shade exactly the same amount as one half. So 1/2 and 2/4 are two names for the same part of the roti. A half is bigger than one quarter but equal to two quarters.",
+            "hi": "दो चौथाई ठीक उतना ही भाग रंगती हैं जितना एक आधा। इसलिए 1/2 और 2/4 रोटी के उसी भाग के दो नाम हैं। आधा एक चौथाई से बड़ा है पर दो चौथाई के बराबर है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these is the same amount as one half?",
+                "hi": "इनमें से कौन आधे के बराबर है?"
+              },
+              "options": [
+                {
+                  "en": "Two quarters",
+                  "hi": "दो चौथाई"
+                },
+                {
+                  "en": "One quarter",
+                  "hi": "एक चौथाई"
+                },
+                {
+                  "en": "Three quarters",
+                  "hi": "तीन चौथाई"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Two out of four equal parts is the same as one half.",
+                "hi": "चार बराबर भागों में से दो आधे के बराबर होते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "One quarter is smaller than a half. You need one more quarter.",
+                  "hi": "एक चौथाई आधे से छोटी है। एक चौथाई और चाहिए।"
+                },
+                {
+                  "en": "Three quarters is more than a half. It is one quarter too many.",
+                  "hi": "तीन चौथाई आधे से ज़्यादा है। यह एक चौथाई अधिक है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "If you eat two quarters of a roti, your friend eats one half. Who eats more?",
+            "hi": "तुम रोटी की दो चौथाई खाते हो और दोस्त आधी रोटी खाता है। कौन ज़्यादा खाता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch05-half-or-quarter",
+      "topic": "5.5",
+      "template": "fractions",
+      "title": {
+        "en": "Which is more: a half or a quarter?",
+        "hi": "कौन ज़्यादा है: आधा या चौथाई?"
+      },
+      "minutes": 5,
+      "level": "stretch",
+      "config": {
+        "object": "bar",
+        "bars": [
+          {
+            "n": 2,
+            "k": 1,
+            "lock": true
+          },
+          {
+            "n": 1,
+            "k": 0
+          }
+        ],
+        "op": "compare"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The top chocolate bar shows one half. You will cut the bottom bar into 4 equal pieces and shade one. Which is bigger, one half or one quarter?",
+            "hi": "ऊपर की चॉकलेट में आधा दिखाया गया है। तुम नीचे की चॉकलेट को 4 बराबर टुकड़ों में काटकर एक रंगोगे। कौन बड़ा है, आधा या एक चौथाई?"
+          },
+          "options": [
+            {
+              "id": "half",
+              "en": "One half",
+              "hi": "आधा"
+            },
+            {
+              "id": "quarter",
+              "en": "One quarter",
+              "hi": "एक चौथाई"
+            }
+          ],
+          "answer": "half"
+        },
+        {
+          "kind": "do",
+          "target": "cut:1",
+          "expect": "cut:1:4",
+          "say": {
+            "en": "Tap + three times to cut the bottom bar into 4 equal pieces.",
+            "hi": "नीचे की चॉकलेट को 4 बराबर टुकड़ों में काटने के लिए तीन बार + दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "piece:1",
+          "expect": "shade:1:1/4",
+          "say": {
+            "en": "Tap one piece to shade one quarter. Compare it with the half above.",
+            "hi": "एक टुकड़े पर टैप करके एक चौथाई रंगो। ऊपर के आधे से तुलना करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The more equal parts a whole is cut into, the smaller each part is. One half is bigger than one quarter. Cutting a whole into 2 pieces gives bigger pieces than cutting it into 4 pieces.",
+            "hi": "किसी पूरे को जितने ज़्यादा बराबर भागों में काटा जाए, हर भाग उतना छोटा होता है। आधा एक चौथाई से बड़ा होता है। पूरे को 2 टुकड़ों में काटने पर टुकड़े 4 टुकड़ों में काटने से बड़े होते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A whole is cut into 2 equal pieces or into 4 equal pieces. In which case is each piece bigger?",
+                "hi": "एक पूरे को 2 बराबर टुकड़ों में या 4 बराबर टुकड़ों में काटा गया। किस स्थिति में हर टुकड़ा बड़ा है?"
+              },
+              "options": [
+                {
+                  "en": "Cut into 2 pieces",
+                  "hi": "2 टुकड़ों में काटने पर"
+                },
+                {
+                  "en": "Cut into 4 pieces",
+                  "hi": "4 टुकड़ों में काटने पर"
+                },
+                {
+                  "en": "Both are the same size",
+                  "hi": "दोनों बराबर हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Fewer pieces means each piece is bigger: a half is bigger than a quarter.",
+                "hi": "टुकड़े कम हों तो हर टुकड़ा बड़ा होता है: आधा चौथाई से बड़ा है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Cutting into more pieces makes each one smaller, so 4 pieces are smaller.",
+                  "hi": "ज़्यादा टुकड़े करने पर हर टुकड़ा छोटा हो जाता है, इसलिए 4 टुकड़े छोटे होते हैं।"
+                },
+                {
+                  "en": "The pieces are not the same. A half covers twice as much as a quarter.",
+                  "hi": "टुकड़े एक जैसे नहीं हैं। आधा, चौथाई से दुगना ढकता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Cut the bottom bar into 8 pieces. Is one piece now bigger or smaller than a quarter?",
+            "hi": "नीचे की चॉकलेट को 8 टुकड़ों में काटो। अब एक टुकड़ा चौथाई से बड़ा है या छोटा?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "5.1",
+      "use": "Chapter hook: sharing food",
+      "shows": "A family sharing a plate of dhokla and a stack of dosas on a table, hands reaching to pick pieces, steam rising",
+      "view": "Slightly above, warm indoor light",
+      "right": "Food cut into clearly equal pieces on the plate; hands only",
+      "avoid": "Faces, brand packaging"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "5.1",
+      "use": "Roti cut-outs for the fraction labs",
+      "shows": "A whole roti, a roti cut into two halves and a roti cut into four quarters, three separate cut-outs",
+      "view": "Straight from above, even light",
+      "right": "Equal pieces with a visible cut line; real toasted brown spots",
+      "avoid": "Anything on top of the roti"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "5.2",
+      "use": "Chocolate bar, pizza and juice jar looks",
+      "shows": "A chocolate bar with four rows of squares, a whole pizza and a glass jar of juice as three cut-outs",
+      "view": "Three-quarter view, soft top-left light",
+      "right": "Bar squares equal; pizza round with toppings; jar with a clear level",
+      "avoid": "Brand names, wrappers"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "5.3",
+      "use": "Folding paper into halves and quarters",
+      "shows": "A square sheet of coloured paper folded in half, then in half again, shown in four frames with the final unfolded creases",
+      "view": "Flat lay from above, same camera and light",
+      "right": "Creases straight and exactly meeting; the last frame showing four equal parts",
+      "avoid": "Scissors, pencil marks"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "5.4",
+      "use": "Equal sharing",
+      "shows": "Four sets of hands each holding an equal piece of dhokla on small plates around a table",
+      "view": "Close, slightly above, warm light",
+      "right": "All four pieces visibly the same size",
+      "avoid": "Faces, text on plates"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "5.4",
+      "use": "Unfair sharing",
+      "shows": "Two plates, one with a big piece of dosa and the other with a small torn piece",
+      "view": "Straight on, even light",
+      "right": "Difference in size obvious at a glance",
+      "avoid": "Faces, hands in a hurry"
+    },
+    {
+      "n": 7,
+      "kind": "DIA",
+      "topic": "5.5",
+      "use": "Fraction strip frames",
+      "shows": "A set of empty strips of equal length cut into 1, 2 and 4 equal parts, one under another, no numbers",
+      "view": "Flat, white background",
+      "right": "Strips aligned at the left edge so the halves and quarters line up",
+      "avoid": "Fractions written on the strips"
+    }
+  ]
+}

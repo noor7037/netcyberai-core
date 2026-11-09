@@ -1,0 +1,1179 @@
+{
+ "chapter_key": "u.c11.political_science.keps2.ch07",
+ "class": 11,
+ "subject_id": "political_science",
+ "title": "Federalism",
+ "source": "https://ncert.nic.in/textbook/pdf/keps207.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "The idea of federalism as a rainbow of colours is shown best through the opening photo and the reader."
+  },
+  {
+   "n": "7.2",
+   "title": "What is federalism? Division of powers",
+   "labs": [
+    "c11-political_science-keps2-ch07-lists"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Federalism with a strong central government",
+   "labs": [
+    "c11-political_science-keps2-ch07-sort-features",
+    "c11-political_science-keps2-ch07-match-terms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Conflicts in India's federal system: States, borders and water",
+   "labs": [
+    "c11-political_science-keps2-ch07-timeline-states",
+    "c11-political_science-keps2-ch07-scenario-river"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "Special provisions for some States",
+   "labs": [
+    "c11-political_science-keps2-ch07-match-terms"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-political_science-keps2-ch07-lists",
+   "topic": "7.2",
+   "template": "govern",
+   "title": {
+    "en": "Union, State or Concurrent?",
+    "hi": "संघ, राज्य या समवर्ती?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "federalism",
+    "options": {
+     "cards": [
+      "f-defence",
+      "f-foreign",
+      "f-currency",
+      "f-police",
+      "f-agri",
+      "f-education",
+      "f-forests",
+      "f-marriage"
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:f-defence",
+     "expect": "picked:f-defence",
+     "say": {
+      "en": "Tap the card \"Defence\".",
+      "hi": "\"रक्षा\" वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:union",
+     "expect": "placed",
+     "say": {
+      "en": "Place it in the list that belongs to the Centre alone.",
+      "hi": "इसे उस सूची में रखो जो केवल केंद्र की है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who can make laws on agriculture, the Centre or the State?",
+      "hi": "कृषि पर क़ानून कौन बना सकता है, केंद्र या राज्य?"
+     },
+     "options": [
+      {
+       "id": "state",
+       "en": "The State",
+       "hi": "राज्य"
+      },
+      {
+       "id": "union",
+       "en": "The Centre alone",
+       "hi": "अकेले केंद्र"
+      }
+     ],
+     "answer": "state"
+    },
+    {
+     "kind": "do",
+     "target": "card:f-agri",
+     "expect": "picked:f-agri",
+     "say": {
+      "en": "Tap \"Agriculture\".",
+      "hi": "\"कृषि\" छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:state",
+     "expect": "placed",
+     "say": {
+      "en": "Place it in the State List.",
+      "hi": "इसे राज्य सूची में रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Constitution lists subjects in three lists. The Union List (like defence and currency) is for Parliament. The State List (like police and agriculture) is mainly for the States. The Concurrent List (like education and forests) is for both, and if the two laws clash, the Union law prevails. This division of powers is the heart of federalism.",
+      "hi": "संविधान विषयों को तीन सूचियों में बाँटता है। संघ सूची (जैसे रक्षा और मुद्रा) संसद के लिए है। राज्य सूची (जैसे पुलिस और कृषि) मुख्यतः राज्यों के लिए है। समवर्ती सूची (जैसे शिक्षा और वन) दोनों के लिए है, और टकराव हो तो संघ का क़ानून चलता है। शक्तियों का यह बँटवारा संघवाद का मूल है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who can make laws on a Concurrent List subject?",
+        "hi": "समवर्ती सूची के विषय पर क़ानून कौन बना सकता है?"
+       },
+       "options": [
+        {
+         "en": "Both Parliament and the State legislature",
+         "hi": "संसद और राज्य विधानमंडल दोनों"
+        },
+        {
+         "en": "Only the State",
+         "hi": "केवल राज्य"
+        },
+        {
+         "en": "Only the courts",
+         "hi": "केवल अदालतें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both can legislate; if the laws conflict, the Union law prevails.",
+        "hi": "दोनों क़ानून बना सकते हैं; टकराव हो तो संघ का क़ानून चलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would be the State List.",
+         "hi": "वह राज्य सूची होती।"
+        },
+        {
+         "en": "Courts interpret and apply laws; they do not make them.",
+         "hi": "अदालतें क़ानून समझती और लागू करती हैं, बनाती नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who has the power over subjects not in any list (residuary powers)?",
+        "hi": "जो विषय किसी सूची में नहीं (अवशिष्ट शक्तियाँ) उन पर अधिकार किसका है?"
+       },
+       "options": [
+        {
+         "en": "The Union",
+         "hi": "संघ"
+        },
+        {
+         "en": "The States",
+         "hi": "राज्य"
+        },
+        {
+         "en": "The panchayats",
+         "hi": "पंचायतें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In India the residuary powers go to the Union, unlike in some federations where they go to the units.",
+        "hi": "भारत में अवशिष्ट शक्तियाँ संघ को मिलती हैं, कुछ अन्य संघों की तरह राज्यों को नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "States have the State List, but leftover subjects go to the Union.",
+         "hi": "राज्यों की अपनी सूची है, पर बचे हुए विषय संघ को मिलते हैं।"
+        },
+        {
+         "en": "Panchayats get powers from State law and are not named here.",
+         "hi": "पंचायतों को शक्तियाँ राज्य के क़ानून से मिलती हैं; यहाँ उनका उल्लेख नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the remaining cards. Which one surprised you?",
+      "hi": "बाक़ी कार्ड रखो। कौन-सा तुम्हें चौंकाया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch07-sort-features",
+   "topic": "7.3",
+   "template": "sort",
+   "title": {
+    "en": "Federal sharing or a strong Centre?",
+    "hi": "संघीय बँटवारा या मज़बूत केंद्र?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fed",
+      "label": {
+       "en": "Federal feature",
+       "hi": "संघीय विशेषता"
+      }
+     },
+     {
+      "id": "centre",
+      "label": {
+       "en": "Gives the Centre extra strength",
+       "hi": "केंद्र को अधिक बल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "two",
+      "text": {
+       "en": "Two levels of government with their own powers",
+       "hi": "दो स्तर की सरकारें, अपनी-अपनी शक्तियों के साथ"
+      },
+      "bin": "fed",
+      "why": {
+       "en": "Both the Union and the States have governments of their own.",
+       "hi": "संघ और राज्य दोनों की अपनी सरकारें हैं।"
+      }
+     },
+     {
+      "id": "lists",
+      "text": {
+       "en": "Powers divided in three lists by the Constitution",
+       "hi": "संविधान ने शक्तियाँ तीन सूचियों में बाँटी हैं"
+      },
+      "bin": "fed",
+      "why": {
+       "en": "A written division of powers is a mark of federalism.",
+       "hi": "लिखित शक्ति-विभाजन संघवाद की पहचान है।"
+      }
+     },
+     {
+      "id": "courts",
+      "text": {
+       "en": "Courts settle disputes between the Centre and States",
+       "hi": "अदालतें केंद्र-राज्य विवाद सुलझाती हैं"
+      },
+      "bin": "fed",
+      "why": {
+       "en": "An independent umpire is needed in a federation.",
+       "hi": "संघ में स्वतंत्र निर्णायक चाहिए।"
+      }
+     },
+     {
+      "id": "rs",
+      "text": {
+       "en": "The Rajya Sabha represents the States",
+       "hi": "राज्य सभा राज्यों का प्रतिनिधित्व करती है"
+      },
+      "bin": "fed",
+      "why": {
+       "en": "It gives States a voice in making national laws.",
+       "hi": "यह राष्ट्रीय क़ानूनों में राज्यों को आवाज़ देती है।"
+      }
+     },
+     {
+      "id": "residue",
+      "text": {
+       "en": "Leftover (residuary) powers belong to the Union",
+       "hi": "बची हुई (अवशिष्ट) शक्तियाँ संघ की हैं"
+      },
+      "bin": "centre",
+      "why": {
+       "en": "This leans the balance towards the Centre.",
+       "hi": "इससे पलड़ा केंद्र की ओर झुकता है।"
+      }
+     },
+     {
+      "id": "governor",
+      "text": {
+       "en": "The Governor is appointed by the President",
+       "hi": "राज्यपाल की नियुक्ति राष्ट्रपति करते हैं"
+      },
+      "bin": "centre",
+      "why": {
+       "en": "So the Union has a representative in each State.",
+       "hi": "इस तरह हर राज्य में संघ का प्रतिनिधि होता है।"
+      }
+     },
+     {
+      "id": "newstates",
+      "text": {
+       "en": "Parliament can form new States or change borders",
+       "hi": "संसद नए राज्य बना या सीमाएँ बदल सकती है"
+      },
+      "bin": "centre",
+      "why": {
+       "en": "States do not have the right to keep their borders unchanged.",
+       "hi": "राज्यों को अपनी सीमाएँ अपरिवर्तित रखने का अधिकार नहीं।"
+      }
+     },
+     {
+      "id": "rule",
+      "text": {
+       "en": "President's Rule can be imposed on a State",
+       "hi": "राज्य में राष्ट्रपति शासन लग सकता है"
+      },
+      "bin": "centre",
+      "why": {
+       "en": "Under Article 356 the Union can take over a State's government when the constitutional machinery fails.",
+       "hi": "अनुच्छेद 356 में संवैधानिक तंत्र विफल होने पर संघ राज्य की सरकार सँभाल सकता है।"
+      }
+     },
+     {
+      "id": "ias",
+      "text": {
+       "en": "All-India services serve both Union and States",
+       "hi": "अखिल भारतीय सेवाएँ संघ और राज्य दोनों में काम करती हैं"
+      },
+      "bin": "centre",
+      "why": {
+       "en": "These officers are recruited by the Union but work in the States.",
+       "hi": "इन अधिकारियों की भर्ती संघ करता है पर वे राज्यों में काम करते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:two",
+     "expect": "placed:two",
+     "say": {
+      "en": "Tap the card about two levels of government and pick its group.",
+      "hi": "दो स्तर की सरकार वाला कार्ड छुओ और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Governor of a State is appointed by the President. Does this strengthen the Centre?",
+      "hi": "राज्य के राज्यपाल की नियुक्ति राष्ट्रपति करते हैं। क्या इससे केंद्र मज़बूत होता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it gives the Union a say in the State",
+       "hi": "हाँ, राज्य में संघ की पकड़ बनती है"
+      },
+      {
+       "id": "no",
+       "en": "No, it makes no difference",
+       "hi": "नहीं, कोई फ़र्क़ नहीं पड़ता"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:governor",
+     "expect": "placed:governor",
+     "say": {
+      "en": "Place the Governor card.",
+      "hi": "राज्यपाल वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India is a federation with a strong Centre. Federal features include two levels of government, a written division of powers, an independent judiciary and a Rajya Sabha for the States. The Constitution also gives the Centre extra strength, such as residuary powers, the Governor and President's Rule, because the makers wanted unity in a diverse and newly independent country.",
+      "hi": "भारत मज़बूत केंद्र वाला संघ है। संघीय विशेषताओं में दो स्तर की सरकार, लिखित शक्ति-विभाजन, स्वतंत्र न्यायपालिका और राज्यों के लिए राज्य सभा हैं। संविधान केंद्र को अवशिष्ट शक्तियाँ, राज्यपाल और राष्ट्रपति शासन जैसी अतिरिक्त ताक़त भी देता है, क्योंकि निर्माता नए आज़ाद और विविध देश में एकता चाहते थे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did the Constitution makers give the Centre extra strength?",
+        "hi": "संविधान निर्माताओं ने केंद्र को अतिरिक्त ताक़त क्यों दी?"
+       },
+       "options": [
+        {
+         "en": "To protect the unity of a new and diverse country",
+         "hi": "नए और विविध देश की एकता की रक्षा के लिए"
+        },
+        {
+         "en": "To make States powerless",
+         "hi": "राज्यों को शक्तिहीन करने के लिए"
+        },
+        {
+         "en": "Because there were no States",
+         "hi": "क्योंकि राज्य थे ही नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They feared that a weak Centre could break the country apart.",
+        "hi": "उन्हें डर था कि कमज़ोर केंद्र देश को बाँट सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "States are essential in a federation; the aim was balance, not their removal.",
+         "hi": "संघ में राज्य ज़रूरी हैं; उद्देश्य संतुलन था, उन्हें हटाना नहीं।"
+        },
+        {
+         "en": "States already existed, with their own governments.",
+         "hi": "राज्य पहले से थे, अपनी सरकारों के साथ।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Is a strong Centre good for a country as diverse as India? Give one reason for and one against.",
+      "hi": "क्या भारत जैसे विविध देश के लिए मज़बूत केंद्र अच्छा है? एक पक्ष और एक विपक्ष का कारण दो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch07-match-terms",
+   "topic": "7.3",
+   "template": "match",
+   "title": {
+    "en": "Words of the federal system",
+    "hi": "संघीय व्यवस्था के शब्द"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "residuary",
+      "left": {
+       "en": "Residuary powers",
+       "hi": "अवशिष्ट शक्तियाँ"
+      },
+      "right": {
+       "en": "Subjects in no list; they belong to the Union",
+       "hi": "जो विषय किसी सूची में नहीं; वे संघ के हैं"
+      },
+      "why": {
+       "en": "They go to the Union under the Constitution.",
+       "hi": "संविधान में ये संघ को मिलती हैं।"
+      }
+     },
+     {
+      "id": "governor",
+      "left": {
+       "en": "Governor",
+       "hi": "राज्यपाल"
+      },
+      "right": {
+       "en": "Head of a State, appointed by the President",
+       "hi": "राज्य के प्रमुख, राष्ट्रपति द्वारा नियुक्त"
+      },
+      "why": {
+       "en": "The elected Council of Ministers holds the real power in the State.",
+       "hi": "राज्य में असली शक्ति निर्वाचित मंत्रिपरिषद के पास है।"
+      }
+     },
+     {
+      "id": "rule",
+      "left": {
+       "en": "President's Rule",
+       "hi": "राष्ट्रपति शासन"
+      },
+      "right": {
+       "en": "Union takes over a State's government when the constitutional machinery fails",
+       "hi": "संवैधानिक तंत्र विफल होने पर संघ राज्य की सरकार सँभालता है"
+      },
+      "why": {
+       "en": "Article 356 has sometimes been misused, so the courts have set limits.",
+       "hi": "अनुच्छेद 356 का कभी-कभी दुरुपयोग हुआ, इसलिए अदालतों ने सीमाएँ तय की हैं।"
+      }
+     },
+     {
+      "id": "finance",
+      "left": {
+       "en": "Finance Commission",
+       "hi": "वित्त आयोग"
+      },
+      "right": {
+       "en": "Recommends how tax money is shared between the Union and States",
+       "hi": "सुझाव देता है कि कर का धन संघ और राज्यों में कैसे बँटे"
+      },
+      "why": {
+       "en": "It is set up every five years.",
+       "hi": "यह हर पाँच वर्ष में गठित होता है।"
+      }
+     },
+     {
+      "id": "special",
+      "left": {
+       "en": "Special provisions (Article 371)",
+       "hi": "विशेष प्रावधान (अनुच्छेद 371)"
+      },
+      "right": {
+       "en": "Extra safeguards for some States, such as in the north-east",
+       "hi": "कुछ राज्यों, जैसे पूर्वोत्तर के लिए अतिरिक्त सुरक्षा-उपाय"
+      },
+      "why": {
+       "en": "They respect local customs and history.",
+       "hi": "ये स्थानीय रीति-रिवाजों और इतिहास का सम्मान करते हैं।"
+      }
+     },
+     {
+      "id": "judiciary",
+      "left": {
+       "en": "Integrated judiciary",
+       "hi": "एकीकृत न्यायपालिका"
+      },
+      "right": {
+       "en": "One connected system of courts for the Union and the States",
+       "hi": "संघ और राज्यों के लिए अदालतों की एक जुड़ी व्यवस्था"
+      },
+      "why": {
+       "en": "India does not have separate courts for the Union and each State.",
+       "hi": "भारत में संघ और राज्यों की अलग-अलग अदालतें नहीं हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:governor",
+     "expect": "matched:governor",
+     "say": {
+      "en": "Tap \"Governor\" and match what the Governor is.",
+      "hi": "\"राज्यपाल\" छुओ और उसका अर्थ मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who decides how tax money is shared between the Union and the States?",
+      "hi": "संघ और राज्यों के बीच कर का धन कैसे बँटे, यह सुझाव कौन देता है?"
+     },
+     "options": [
+      {
+       "id": "fc",
+       "en": "The Finance Commission",
+       "hi": "वित्त आयोग"
+      },
+      {
+       "id": "gov",
+       "en": "The Governor",
+       "hi": "राज्यपाल"
+      }
+     ],
+     "answer": "fc"
+    },
+    {
+     "kind": "do",
+     "target": "left:finance",
+     "expect": "matched:finance",
+     "say": {
+      "en": "Match \"Finance Commission\".",
+      "hi": "\"वित्त आयोग\" मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A federation needs rules for sharing power and money. The lists divide powers, the Finance Commission advises on sharing taxes, the Governor links the Union and the State, and special provisions respect the needs of some regions. India also has one connected court system.",
+      "hi": "संघ में शक्ति और धन बाँटने के नियम चाहिए। सूचियाँ शक्तियाँ बाँटती हैं, वित्त आयोग कर-बँटवारे पर सलाह देता है, राज्यपाल संघ और राज्य को जोड़ते हैं और विशेष प्रावधान कुछ क्षेत्रों की ज़रूरतों का सम्मान करते हैं। भारत में अदालतों की एक जुड़ी व्यवस्था भी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is President's Rule?",
+        "hi": "राष्ट्रपति शासन क्या है?"
+       },
+       "options": [
+        {
+         "en": "The Union takes over a State's government when the constitutional machinery fails",
+         "hi": "संवैधानिक तंत्र विफल होने पर संघ राज्य की सरकार सँभालता है"
+        },
+        {
+         "en": "The President becomes the Chief Minister forever",
+         "hi": "राष्ट्रपति सदा के लिए मुख्यमंत्री बन जाते हैं"
+        },
+        {
+         "en": "Elections are cancelled for ever",
+         "hi": "चुनाव हमेशा के लिए रद्द हो जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is meant to be a temporary, last-resort measure, and the courts can examine whether it was justified.",
+        "hi": "यह अस्थायी, अंतिम उपाय होना चाहिए, और अदालतें जाँच सकती हैं कि वह उचित था या नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is not a permanent arrangement and it needs Parliament's approval.",
+         "hi": "यह स्थायी व्यवस्था नहीं है और इसे संसद की मंज़ूरी चाहिए।"
+        },
+        {
+         "en": "Elections are held again after a limited time.",
+         "hi": "सीमित समय के बाद फिर चुनाव होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why is a neutral umpire, like the Supreme Court, important when the Centre and a State disagree?",
+      "hi": "केंद्र और राज्य में असहमति हो तो सर्वोच्च न्यायालय जैसा निष्पक्ष निर्णायक क्यों ज़रूरी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch07-timeline-states",
+   "topic": "7.4",
+   "template": "timeline",
+   "title": {
+    "en": "How India's States were formed",
+    "hi": "भारत के राज्य कैसे बने"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "range": [
+     1950,
+     2020
+    ],
+    "task": "order",
+    "title": {
+     "en": "Making and changing States",
+     "hi": "राज्यों का बनना और बदलना"
+    },
+    "events": [
+     {
+      "id": "andhra",
+      "year": 1953,
+      "label": {
+       "en": "Andhra State formed",
+       "hi": "आंध्र राज्य का गठन"
+      },
+      "detail": {
+       "en": "Andhra State was formed out of the Madras State, the first State made mainly on the basis of language.",
+       "hi": "आंध्र राज्य मद्रास राज्य से बना, जो मुख्यतः भाषा के आधार पर बना पहला राज्य था।"
+      }
+     },
+     {
+      "id": "sra",
+      "year": 1956,
+      "label": {
+       "en": "States Reorganisation Act",
+       "hi": "राज्य पुनर्गठन अधिनियम"
+      },
+      "detail": {
+       "en": "State boundaries were redrawn, largely on the basis of language.",
+       "hi": "राज्यों की सीमाएँ बड़े पैमाने पर भाषा के आधार पर फिर से तय हुईं।"
+      }
+     },
+     {
+      "id": "bombay",
+      "year": 1960,
+      "label": {
+       "en": "Maharashtra and Gujarat formed",
+       "hi": "महाराष्ट्र और गुजरात का गठन"
+      },
+      "detail": {
+       "en": "The Bombay State was divided into Maharashtra and Gujarat.",
+       "hi": "बंबई राज्य को बाँटकर महाराष्ट्र और गुजरात बने।"
+      }
+     },
+     {
+      "id": "haryana",
+      "year": 1966,
+      "label": {
+       "en": "Haryana formed",
+       "hi": "हरियाणा का गठन"
+      },
+      "detail": {
+       "en": "Haryana was formed out of Punjab.",
+       "hi": "पंजाब से हरियाणा बना।"
+      }
+     },
+     {
+      "id": "three",
+      "year": 2000,
+      "label": {
+       "en": "Chhattisgarh, Uttarakhand and Jharkhand formed",
+       "hi": "छत्तीसगढ़, उत्तराखंड और झारखंड का गठन"
+      },
+      "detail": {
+       "en": "Three new States were carved out of Madhya Pradesh, Uttar Pradesh and Bihar.",
+       "hi": "मध्य प्रदेश, उत्तर प्रदेश और बिहार से तीन नए राज्य बने।"
+      }
+     },
+     {
+      "id": "telangana",
+      "year": 2014,
+      "label": {
+       "en": "Telangana formed",
+       "hi": "तेलंगाना का गठन"
+      },
+      "detail": {
+       "en": "Telangana was formed out of Andhra Pradesh.",
+       "hi": "आंध्र प्रदेश से तेलंगाना बना।"
+      }
+     },
+     {
+      "id": "jk",
+      "year": 2019,
+      "label": {
+       "en": "Jammu and Kashmir reorganised",
+       "hi": "जम्मू-कश्मीर का पुनर्गठन"
+      },
+      "detail": {
+       "en": "The State was reorganised into two Union Territories, Jammu and Kashmir and Ladakh.",
+       "hi": "राज्य का पुनर्गठन दो केंद्रशासित प्रदेशों, जम्मू-कश्मीर और लद्दाख, में हुआ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "event:andhra",
+     "expect": "placed:andhra",
+     "say": {
+      "en": "Tap the earliest event first.",
+      "hi": "सबसे पहले की घटना सबसे पहले छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On what basis were most State boundaries redrawn in 1956?",
+      "hi": "1956 में अधिकतर राज्यों की सीमाएँ किस आधार पर फिर से बनीं?"
+     },
+     "options": [
+      {
+       "id": "lang",
+       "en": "Mainly language",
+       "hi": "मुख्यतः भाषा"
+      },
+      {
+       "id": "river",
+       "en": "Rivers only",
+       "hi": "केवल नदियाँ"
+      },
+      {
+       "id": "size",
+       "en": "Equal size",
+       "hi": "बराबर आकार"
+      }
+     ],
+     "answer": "lang"
+    },
+    {
+     "kind": "do",
+     "target": "event:sra",
+     "expect": "placed:sra",
+     "say": {
+      "en": "Tap the next event.",
+      "hi": "अगली घटना छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "ordered",
+     "say": {
+      "en": "Tap the other events in order, then press Check.",
+      "hi": "बाक़ी घटनाएँ क्रम से छुओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "States in India have been formed and changed over time. In 1956 boundaries were redrawn mainly by language, showing that the Constitution lets unity and diversity live together. Later, new States such as Maharashtra, Gujarat, Haryana, Chhattisgarh and Telangana came up, and in 2019 Jammu and Kashmir was reorganised into two Union Territories.",
+      "hi": "भारत में राज्य समय के साथ बने और बदले हैं। 1956 में सीमाएँ मुख्यतः भाषा के आधार पर बनीं, जो दिखाता है कि संविधान एकता और विविधता दोनों को साथ रखता है। बाद में महाराष्ट्र, गुजरात, हरियाणा, छत्तीसगढ़ और तेलंगाना जैसे नए राज्य बने, और 2019 में जम्मू-कश्मीर का पुनर्गठन दो केंद्रशासित प्रदेशों में हुआ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who can create a new State in India?",
+        "hi": "भारत में नया राज्य कौन बना सकता है?"
+       },
+       "options": [
+        {
+         "en": "Parliament, by law",
+         "hi": "संसद, क़ानून द्वारा"
+        },
+        {
+         "en": "The Governor alone",
+         "hi": "अकेले राज्यपाल"
+        },
+        {
+         "en": "The Supreme Court",
+         "hi": "सर्वोच्च न्यायालय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Parliament can form new States and change boundaries and names by a law, after consulting the State concerned.",
+        "hi": "संसद संबंधित राज्य से परामर्श के बाद क़ानून बनाकर नए राज्य बना सकती है और सीमाएँ-नाम बदल सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A Governor does not have this power.",
+         "hi": "राज्यपाल के पास यह शक्ति नहीं।"
+        },
+        {
+         "en": "Courts do not create States.",
+         "hi": "अदालतें राज्य नहीं बनातीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which State do you live in? Find out in which year it got its present form.",
+      "hi": "तुम किस राज्य में रहते हो? पता करो कि उसे मौजूदा रूप किस वर्ष मिला।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch07-scenario-river",
+   "topic": "7.4",
+   "template": "scenario",
+   "title": {
+    "en": "A river and two States",
+    "hi": "एक नदी और दो राज्य"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "river",
+    "role": {
+     "en": "Chief Minister of a State",
+     "hi": "एक राज्य के मुख्यमंत्री"
+    },
+    "scenes": [
+     {
+      "id": "dam",
+      "text": {
+       "en": "Your State and its neighbour share a river. The neighbour builds a dam upstream and the canals of your farmers run low. Farmers want you to act.",
+       "hi": "आपके राज्य और पड़ोसी राज्य की साझा नदी है। पड़ोसी ऊपर की ओर बाँध बनाता है और आपके किसानों की नहरों में पानी कम हो जाता है। किसान आपसे कार्रवाई चाहते हैं।"
+      },
+      "choices": [
+       {
+        "id": "send-police",
+        "text": {
+         "en": "Send your police to stop the dam work",
+         "hi": "बाँध का काम रोकने अपनी पुलिस भेजो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A State cannot send its police into another State to stop its work. That would break the federal order and can lead to violence.",
+         "hi": "एक राज्य अपनी पुलिस दूसरे राज्य में काम रोकने नहीं भेज सकता। इससे संघीय व्यवस्था टूटती है और हिंसा हो सकती है।"
+        },
+        "good": false
+       },
+       {
+        "id": "talk-union",
+        "text": {
+         "en": "Talk to the neighbouring State and involve the Union Government",
+         "hi": "पड़ोसी राज्य से बात करो और केंद्र सरकार को शामिल करो"
+        },
+        "next": "tribunal",
+        "feedback": {
+         "en": "Good. In a federation States first try talks, with the Union helping to bring them together.",
+         "hi": "अच्छा। संघ में राज्य पहले बातचीत करते हैं और केंद्र उन्हें साथ लाने में मदद करता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "ignore",
+        "text": {
+         "en": "Ignore the problem",
+         "hi": "समस्या अनदेखी करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Farmers depend on the water. A government that does nothing fails them.",
+         "hi": "किसान पानी पर निर्भर हैं। कुछ न करने वाली सरकार उन्हें निराश करती है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "tribunal",
+      "text": {
+       "en": "The talks fail. The two States still disagree on each one's share of the water. What next?",
+       "hi": "बातचीत विफल रही। दोनों राज्य अपने-अपने हिस्से के पानी पर असहमत हैं। आगे क्या?"
+      },
+      "choices": [
+       {
+        "id": "stop-trade",
+        "text": {
+         "en": "Stop all trade with the neighbouring State",
+         "hi": "पड़ोसी राज्य से सारा व्यापार बंद कर दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Trade between States must stay free. This would hurt ordinary people on both sides without solving the dispute.",
+         "hi": "राज्यों के बीच व्यापार स्वतंत्र रहना चाहिए। इससे विवाद नहीं सुलझेगा और दोनों ओर के आम लोग परेशान होंगे।"
+        },
+        "good": false
+       },
+       {
+        "id": "cut-water",
+        "text": {
+         "en": "Cut the water that flows to them",
+         "hi": "उनकी ओर बहने वाला पानी रोक दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Two wrongs do not make a right, and it would deepen the quarrel.",
+         "hi": "दो ग़लतियाँ मिलकर सही नहीं बनतीं, और इससे झगड़ा बढ़ेगा।"
+        },
+        "good": false
+       },
+       {
+        "id": "tribunal-court",
+        "text": {
+         "en": "Ask for a river water tribunal, or take the dispute to the Supreme Court",
+         "hi": "नदी जल अधिकरण माँगो या विवाद सर्वोच्च न्यायालय ले जाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Disputes between States are settled by neutral bodies: Parliament can set up tribunals for river waters, and the Supreme Court decides disputes between States.",
+         "hi": "सही। राज्यों के विवाद तटस्थ संस्थाएँ सुलझाती हैं: संसद नदी-जल अधिकरण बना सकती है और सर्वोच्च न्यायालय राज्यों के विवाद तय करता है।"
+        },
+        "good": true
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which court can hear a dispute between two State governments?",
+      "hi": "दो राज्य सरकारों के विवाद की सुनवाई कौन-सी अदालत कर सकती है?"
+     },
+     "options": [
+      {
+       "id": "sc",
+       "en": "The Supreme Court",
+       "hi": "सर्वोच्च न्यायालय"
+      },
+      {
+       "id": "dc",
+       "en": "A District Court",
+       "hi": "ज़िला न्यायालय"
+      }
+     ],
+     "answer": "sc"
+    },
+    {
+     "kind": "do",
+     "target": "choice:dam:talk-union",
+     "expect": "chose:talk-union",
+     "say": {
+      "en": "Choose to talk to the neighbour and bring in the Union.",
+      "hi": "पड़ोसी से बात करने और केंद्र को शामिल करने वाला विकल्प चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:tribunal:tribunal-court",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose the neutral way to settle the dispute.",
+      "hi": "विवाद सुलझाने का तटस्थ तरीक़ा चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a federation, States will sometimes disagree, over water, borders or money. The Constitution gives peaceful ways to settle them: talks, tribunals for river waters, the Inter-State Council, and the Supreme Court. Force or revenge would break the unity that federalism protects.",
+      "hi": "संघ में राज्यों के बीच पानी, सीमा या धन पर असहमति हो सकती है। संविधान शांतिपूर्ण तरीक़े देता है: बातचीत, नदी-जल अधिकरण, अंतर-राज्य परिषद और सर्वोच्च न्यायालय। बल या बदला उस एकता को तोड़ता है जिसकी रक्षा संघवाद करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How should two States settle a quarrel over river water?",
+        "hi": "नदी के पानी पर दो राज्य अपना झगड़ा कैसे सुलझाएँ?"
+       },
+       "options": [
+        {
+         "en": "Through talks, a tribunal or the Supreme Court",
+         "hi": "बातचीत, अधिकरण या सर्वोच्च न्यायालय से"
+        },
+        {
+         "en": "By using force",
+         "hi": "बल प्रयोग से"
+        },
+        {
+         "en": "By blocking each other's roads",
+         "hi": "एक-दूसरे की सड़कें रोककर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Peaceful and lawful methods respect both States and the Constitution.",
+        "hi": "शांतिपूर्ण और वैध तरीक़े दोनों राज्यों और संविधान का सम्मान करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Force breaks the law and the unity of the country.",
+         "hi": "बल क़ानून और देश की एकता तोड़ता है।"
+        },
+        {
+         "en": "Blocking roads harms ordinary people and does not settle the share of water.",
+         "hi": "सड़कें रोकने से आम लोग परेशान होते हैं और पानी का बँटवारा नहीं सुलझता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name a river that flows through more than one State. Which States share it?",
+      "hi": "ऐसी कोई नदी बताओ जो एक से अधिक राज्यों से बहती हो। कौन-से राज्य उसे साझा करते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Opens the chapter",
+   "shows": "A rainbow over green fields and a river in an Indian landscape after rain, no people",
+   "view": "Wide, 16:9",
+   "right": "Full clear rainbow, soft light, calm",
+   "avoid": "Buildings with names, power lines"
+  },
+  {
+   "n": 2,
+   "kind": "MAP",
+   "topic": "7.4",
+   "use": "Base for the States lab",
+   "shows": "A relief view of the Indian subcontinent from above, land in soft greens and browns, no borders or names",
+   "view": "16:9",
+   "right": "Clear rivers and mountains",
+   "avoid": "State borders, labels"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "7.4",
+   "use": "Shows a shared river",
+   "shows": "A wide river with a dam in the distance and irrigation canals running into fields on both banks",
+   "view": "Wide, 16:9, high angle",
+   "right": "Clear water, healthy fields, scale of the dam visible",
+   "avoid": "Readable names, people close up"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.2",
+   "use": "Cut-out for the three lists",
+   "shows": "Three plain file folders in blue, orange and green fanned out, with no writing",
+   "view": "Three-quarter view, transparent background",
+   "right": "Colours clearly distinct, also shown by different tab shapes",
+   "avoid": "Any text or logo"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "7.2",
+   "use": "Base for the concurrent list",
+   "shows": "Two overlapping circles, a blue one and an orange one, with the overlap in green, all empty",
+   "view": "Front view, white background",
+   "right": "Clean shapes, overlap clearly visible",
+   "avoid": "Any lettering"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "7.3",
+   "use": "Shows a State's government",
+   "shows": "The outside of a State secretariat building with the national flag, trees and an empty forecourt, morning light",
+   "view": "Wide, 16:9",
+   "right": "Dignified, no people, flag clear",
+   "avoid": "Readable name boards, vehicle numbers"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "7.5",
+   "use": "Cut-out for local identity",
+   "shows": "A hand-woven traditional shawl, folded, with a simple border pattern",
+   "view": "Top view, transparent background",
+   "right": "Rich colour, visible weave, regional but not tied to one named community",
+   "avoid": "Brand labels, text"
+  }
+ ]
+}

@@ -1,0 +1,524 @@
+{
+ "chapter_key": "u.c11.english.kehb1.ch01.s2",
+ "class": 11,
+ "subject_id": "english",
+ "title": "Note-making",
+ "source": "https://ncert.nic.in/textbook/pdf/kehb111.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "What good notes look like",
+   "labs": [
+    "c11-english-kehb1-ch01-note-features"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "The steps of making notes",
+   "labs": [
+    "c11-english-kehb1-ch01-note-steps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Practice passages",
+   "labs": [],
+   "why_no_lab": "Making notes from a fresh passage on paper is the real practice."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-english-kehb1-ch01-note-features",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "What belongs in notes?",
+    "hi": "नोट्स में क्या होना चाहिए?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Good in notes",
+       "hi": "नोट्स में अच्छा"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Not for notes",
+       "hi": "नोट्स के लिए नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "n1",
+      "text": {
+       "en": "A clear heading and sub-headings",
+       "hi": "साफ़ शीर्षक और उप-शीर्षक"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "They show at a glance what the notes are about.",
+       "hi": "इनसे एक नज़र में पता चलता है कि नोट्स किस बारे में हैं।"
+      }
+     },
+     {
+      "id": "n2",
+      "text": {
+       "en": "Short phrases, not full sentences",
+       "hi": "छोटे वाक्यांश, पूरे वाक्य नहीं"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Notes drop full verbs to save time and space.",
+       "hi": "नोट्स में समय और जगह बचाने के लिए पूरी क्रियाएँ छोड़ी जाती हैं।"
+      }
+     },
+     {
+      "id": "n3",
+      "text": {
+       "en": "Abbreviations such as govt. and approx.",
+       "hi": "govt. और approx. जैसे संक्षिप्त रूप"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "They make notes quick to write.",
+       "hi": "इनसे नोट्स जल्दी लिखे जाते हैं।"
+      }
+     },
+     {
+      "id": "n4",
+      "text": {
+       "en": "A key explaining your abbreviations",
+       "hi": "संक्षिप्त रूपों को समझाने वाली सूची"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Without it you may forget what you meant.",
+       "hi": "इसके बिना तुम भूल सकते हो कि तुमने क्या सोचा था।"
+      }
+     },
+     {
+      "id": "n5",
+      "text": {
+       "en": "Numbered points that follow the passage's order",
+       "hi": "अनुच्छेद के क्रम में गिने हुए बिंदु"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Numbers make the points easy to find and revise.",
+       "hi": "संख्याओं से बिंदु ढूँढना और दोहराना आसान होता है।"
+      }
+     },
+     {
+      "id": "n6",
+      "text": {
+       "en": "Copying every sentence word for word",
+       "hi": "हर वाक्य शब्दशः उतारना"
+      },
+      "bin": "no",
+      "why": {
+       "en": "That is copying, not note-making.",
+       "hi": "यह नकल है, नोट बनाना नहीं।"
+      }
+     },
+     {
+      "id": "n7",
+      "text": {
+       "en": "Long examples written out in full",
+       "hi": "लंबे उदाहरण पूरे लिखना"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Examples are left out or shortened.",
+       "hi": "उदाहरण छोड़े या छोटे किए जाते हैं।"
+      }
+     },
+     {
+      "id": "n8",
+      "text": {
+       "en": "No heading at all",
+       "hi": "कोई शीर्षक न होना"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Notes without a heading are hard to use later.",
+       "hi": "बिना शीर्षक वाले नोट्स बाद में काम नहीं आते।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Should notes be written in full sentences?",
+      "hi": "क्या नोट्स पूरे वाक्यों में लिखने चाहिए?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, short phrases are better",
+       "hi": "नहीं, छोटे वाक्यांश बेहतर हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:n2",
+     "expect": "placed:n2",
+     "say": {
+      "en": "Tap 'Short phrases…', then its group.",
+      "hi": "'छोटे वाक्यांश…' कार्ड पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Notes are for your own use, so they are short and quick. A good set of notes has a heading, sub-headings, numbered points in short phrases and a key to the abbreviations. It leaves out examples and repeated ideas. A page of copied sentences is not notes; it is a smaller copy of the passage.",
+      "hi": "नोट्स तुम्हारे अपने काम के लिए हैं, इसलिए छोटे और तेज़ होते हैं। अच्छे नोट्स में शीर्षक, उप-शीर्षक, छोटे वाक्यांशों वाले गिने हुए बिंदु और संक्षिप्त रूपों की सूची होती है। उनमें उदाहरण और दोहराई बातें नहीं होतीं। नकल किए वाक्यों का पन्ना नोट्स नहीं, अनुच्छेद की छोटी प्रति है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we give a key to abbreviations?",
+        "hi": "संक्षिप्त रूपों की सूची क्यों देते हैं?"
+       },
+       "options": [
+        {
+         "en": "So we remember what each one stands for",
+         "hi": "ताकि याद रहे कि हर एक का क्या मतलब है"
+        },
+        {
+         "en": "To make notes longer",
+         "hi": "नोट्स लंबे करने के लिए"
+        },
+        {
+         "en": "Because the teacher likes it",
+         "hi": "क्योंकि शिक्षक को अच्छा लगता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A key lets you or anyone else read the notes later without guessing.",
+        "hi": "सूची से तुम या कोई और बाद में बिना अनुमान लगाए नोट्स पढ़ सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The key helps clarity; it is not meant to lengthen the notes.",
+         "hi": "सूची स्पष्टता के लिए है; नोट्स लंबे करने के लिए नहीं।"
+        },
+        {
+         "en": "The reason is practical: to understand your own notes.",
+         "hi": "कारण व्यावहारिक है: अपने नोट्स समझना।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which one is a better note?",
+        "hi": "कौन-सा बेहतर नोट है?"
+       },
+       "options": [
+        {
+         "en": "The peacock is the national bird of India and is known as the best member.",
+         "hi": "मोर भारत का राष्ट्रीय पक्षी है और सबसे प्रसिद्ध सदस्य के रूप में जाना जाता है।"
+        },
+        {
+         "en": "Peacock — India's national bird",
+         "hi": "मोर — भारत का राष्ट्रीय पक्षी"
+        },
+        {
+         "en": "Peacocks are birds.",
+         "hi": "मोर पक्षी हैं।"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It is short, carries the main fact and drops the extra words.",
+        "hi": "यह छोटा है, मुख्य तथ्य रखता है और फालतू शब्द हटाता है।"
+       },
+       "wrong": [
+        {
+         "en": "This is a full sentence, which is too long for a note.",
+         "hi": "यह पूरा वाक्य है, जो नोट के लिए लंबा है।"
+        },
+        "",
+        {
+         "en": "This is too thin and misses the main point.",
+         "hi": "यह बहुत छोटा है और मुख्य बात छोड़ देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make notes on today's lesson in four lines with a heading. Compare with a friend.",
+      "hi": "आज के पाठ के चार पंक्तियों में शीर्षक सहित नोट्स बनाओ। दोस्त से मिलाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-english-kehb1-ch01-note-steps",
+   "topic": "1.2",
+   "template": "sequence",
+   "title": {
+    "en": "Steps in making notes",
+    "hi": "नोट्स बनाने के चरण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "m1",
+      "text": {
+       "en": "Read the passage and underline the important information.",
+       "hi": "अनुच्छेद पढ़ो और महत्वपूर्ण जानकारी रेखांकित करो।"
+      }
+     },
+     {
+      "id": "m2",
+      "text": {
+       "en": "Read again, asking and answering questions about it.",
+       "hi": "फिर पढ़ो, उसके बारे में प्रश्न पूछते और उत्तर देते हुए।"
+      }
+     },
+     {
+      "id": "m3",
+      "text": {
+       "en": "Write the main points without full verbs.",
+       "hi": "मुख्य बिंदु पूरी क्रियाओं के बिना लिखो।"
+      }
+     },
+     {
+      "id": "m4",
+      "text": {
+       "en": "Number the points and group them under sub-headings.",
+       "hi": "बिंदुओं को गिनो और उप-शीर्षकों के नीचे रखो।"
+      }
+     },
+     {
+      "id": "m5",
+      "text": {
+       "en": "Add a heading and a key to your abbreviations.",
+       "hi": "शीर्षक और संक्षिप्त रूपों की सूची जोड़ो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the first thing to do when making notes?",
+      "hi": "नोट्स बनाते समय पहला काम क्या है?"
+     },
+     "options": [
+      {
+       "id": "read",
+       "en": "Read and underline the key information",
+       "hi": "पढ़कर मुख्य जानकारी रेखांकित करना"
+      },
+      {
+       "id": "write",
+       "en": "Write the answer at once",
+       "hi": "तुरंत उत्तर लिखना"
+      }
+     ],
+     "answer": "read"
+    },
+    {
+     "kind": "do",
+     "target": "item:m1",
+     "expect": "placed:m1",
+     "say": {
+      "en": "Put the first step in its place.",
+      "hi": "पहला चरण उसकी जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange all the steps and press Check.",
+      "hi": "सारे चरण लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Good notes grow in stages. First you find what matters, then you test your understanding with questions, then you shorten what you found, and at last you organise it with numbers, a heading and a key. With practice, the middle steps happen in your head and you reach the notes quickly.",
+      "hi": "अच्छे नोट्स चरणों में बनते हैं। पहले तुम देखते हो क्या ज़रूरी है, फिर प्रश्नों से अपनी समझ परखते हो, फिर जो मिला उसे छोटा करते हो और अंत में संख्याओं, शीर्षक और सूची से सजाते हो। अभ्यास से बीच के चरण मन में हो जाते हैं और तुम जल्दी नोट्स तक पहुँचते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we ask questions while reading a second time?",
+        "hi": "दूसरी बार पढ़ते समय प्रश्न क्यों पूछते हैं?"
+       },
+       "options": [
+        {
+         "en": "To find the key facts the passage gives",
+         "hi": "पाठ जो मुख्य तथ्य देता है उन्हें खोजने के लिए"
+        },
+        {
+         "en": "To waste time",
+         "hi": "समय बर्बाद करने के लिए"
+        },
+        {
+         "en": "To add our own stories",
+         "hi": "अपनी कहानियाँ जोड़ने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Questions like 'What?', 'Where?', 'How many?' pull out the facts.",
+        "hi": "'क्या?', 'कहाँ?', 'कितने?' जैसे प्रश्न तथ्य बाहर निकालते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Questions help; they do not waste time.",
+         "hi": "प्रश्न मदद करते हैं; समय नहीं बिगाड़ते।"
+        },
+        {
+         "en": "Notes should hold the passage's facts, not our own stories.",
+         "hi": "नोट्स में पाठ के तथ्य होने चाहिए, हमारी कहानियाँ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When do we add the heading and the key?",
+        "hi": "शीर्षक और सूची कब जोड़ते हैं?"
+       },
+       "options": [
+        {
+         "en": "At the very start",
+         "hi": "बिलकुल शुरू में"
+        },
+        {
+         "en": "At the end, after organising the points",
+         "hi": "अंत में, बिंदु सजाने के बाद"
+        },
+        {
+         "en": "Never",
+         "hi": "कभी नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Once you know the points, the heading and key come easily.",
+        "hi": "बिंदु पता हों तो शीर्षक और सूची आसानी से बन जाते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "You cannot name notes well before you have made them.",
+         "hi": "नोट्स बनाने से पहले उनका सही नाम नहीं रखा जा सकता।"
+        },
+        "",
+        {
+         "en": "A heading and key are part of good notes.",
+         "hi": "शीर्षक और सूची अच्छे नोट्स का हिस्सा हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick a paragraph from any textbook. Go through the five steps and make notes in your notebook.",
+      "hi": "किसी पाठ्यपुस्तक से एक अनुच्छेद चुनो। पाँचों चरण पूरे करके अपनी कॉपी में नोट्स बनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "Notes page",
+   "shows": "A student's notebook page with a clear heading, numbered short points and a boxed key, fully blurred text",
+   "view": "Top-down, transparent background",
+   "right": "Heading, numbers, key box",
+   "avoid": "Readable words"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "Underlining",
+   "shows": "A passage printed on paper with two lines highlighted in yellow and one in pink",
+   "view": "Top-down",
+   "right": "Neat highlights",
+   "avoid": "Readable text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "1.2",
+   "use": "Five steps",
+   "shows": "Five frames of the same desk: passage, underlined passage, question cards, short points, final neat notes",
+   "view": "Same camera",
+   "right": "Progress only",
+   "avoid": "Faces"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "1.1",
+   "use": "Notes format",
+   "shows": "A frame showing space for heading, sub-heading, points and key",
+   "view": "Flat, white",
+   "right": "Boxes only",
+   "avoid": "Words"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Study corner",
+   "shows": "A tidy study desk by a window with a lamp, books and a notebook",
+   "view": "Eye level",
+   "right": "Warm light, order",
+   "avoid": "Faces, brands"
+  }
+ ]
+}

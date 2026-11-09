@@ -1,0 +1,2189 @@
+{
+ "chapter_key": "u.c11.informatics_practices.keip1.ch06",
+ "class": 11,
+ "subject_id": "informatics_practices",
+ "title": "Introduction to NumPy",
+ "source": "https://ncert.nic.in/textbook/pdf/keip106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Introduction to NumPy",
+   "labs": [],
+   "why_no_lab": "This opening only names the library and why we need it; the next topics show it at work."
+  },
+  {
+   "n": "6.2",
+   "title": "Array",
+   "labs": [],
+   "why_no_lab": "The idea of an array as a row or table of values is built up in the creation and attribute labs that follow."
+  },
+  {
+   "n": "6.3.1",
+   "title": "Difference between a list and an array",
+   "labs": [
+    "c11-informatics_practices-keip1-ch06-list-vs-array"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3.2",
+   "title": "Creating NumPy arrays from lists and other ways",
+   "labs": [
+    "c11-informatics_practices-keip1-ch06-creation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3.3",
+   "title": "Attributes of a NumPy array",
+   "labs": [
+    "c11-informatics_practices-keip1-ch06-attributes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Indexing and slicing",
+   "labs": [
+    "c11-informatics_practices-keip1-ch06-indexing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5.1",
+   "title": "Arithmetic operations on arrays",
+   "labs": [
+    "c11-informatics_practices-keip1-ch06-array-add"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5.2",
+   "title": "Transpose and sorting",
+   "labs": [
+    "c11-informatics_practices-keip1-ch06-transpose-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Concatenating and splitting arrays",
+   "labs": [
+    "c11-informatics_practices-keip1-ch06-join-split"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.7",
+   "title": "Reshaping arrays",
+   "labs": [
+    "c11-informatics_practices-keip1-ch06-reshape"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.9",
+   "title": "Statistical operations on arrays",
+   "labs": [
+    "c11-informatics_practices-keip1-ch06-stats"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.10",
+   "title": "Loading arrays from files",
+   "labs": [
+    "c11-informatics_practices-keip1-ch06-load-files"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-informatics_practices-keip1-ch06-list-vs-array",
+   "topic": "6.3.1",
+   "template": "sort",
+   "title": {
+    "en": "List or NumPy array?",
+    "hi": "सूची या NumPy ऐरे?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "list",
+      "label": {
+       "en": "Python list",
+       "hi": "Python सूची"
+      }
+     },
+     {
+      "id": "arr",
+      "label": {
+       "en": "NumPy array",
+       "hi": "NumPy ऐरे"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "mixed",
+      "text": {
+       "en": "Can mix numbers and text: [1, 'a', 2.5]",
+       "hi": "संख्या और पाठ मिला सकती है: [1, 'a', 2.5]"
+      },
+      "bin": "list",
+      "why": {
+       "en": "A list may hold items of different types.",
+       "hi": "सूची में अलग-अलग प्रकार की चीज़ें हो सकती हैं।"
+      }
+     },
+     {
+      "id": "ladd",
+      "text": {
+       "en": "[1, 2] + [3, 4] gives [1, 2, 3, 4]",
+       "hi": "[1, 2] + [3, 4] से [1, 2, 3, 4] बनता है"
+      },
+      "bin": "list",
+      "why": {
+       "en": "On lists, + joins the lists end to end.",
+       "hi": "सूचियों पर + उन्हें आगे-पीछे जोड़ता है।"
+      }
+     },
+     {
+      "id": "lrep",
+      "text": {
+       "en": "L * 2 repeats the list",
+       "hi": "L * 2 सूची को दोहराता है"
+      },
+      "bin": "list",
+      "why": {
+       "en": "On a list, * repeats it; the numbers are not doubled.",
+       "hi": "सूची पर * उसे दोहराता है; संख्याएँ दुगुनी नहीं होतीं।"
+      }
+     },
+     {
+      "id": "lbuilt",
+      "text": {
+       "en": "Built into Python, no import needed",
+       "hi": "Python में पहले से है, import नहीं करना"
+      },
+      "bin": "list",
+      "why": {
+       "en": "Lists are part of core Python.",
+       "hi": "सूचियाँ Python का मूल हिस्सा हैं।"
+      }
+     },
+     {
+      "id": "same",
+      "text": {
+       "en": "All items have the same data type",
+       "hi": "सभी चीज़ों का डेटा प्रकार एक ही होता है"
+      },
+      "bin": "arr",
+      "why": {
+       "en": "This is what makes fast number work possible.",
+       "hi": "यही तेज़ संख्या-कार्य को संभव बनाता है।"
+      }
+     },
+     {
+      "id": "aadd",
+      "text": {
+       "en": "a + b adds element by element",
+       "hi": "a + b तत्व-दर-तत्व जोड़ता है"
+      },
+      "bin": "arr",
+      "why": {
+       "en": "On arrays, + adds matching positions.",
+       "hi": "ऐरे पर + मिलते-जुलते स्थानों को जोड़ता है।"
+      }
+     },
+     {
+      "id": "amul",
+      "text": {
+       "en": "a * 2 doubles every element",
+       "hi": "a * 2 हर तत्व को दुगुना करता है"
+      },
+      "bin": "arr",
+      "why": {
+       "en": "Arithmetic on an array works on all its elements at once.",
+       "hi": "ऐरे पर अंकगणित उसके सब तत्वों पर एक साथ चलता है।"
+      }
+     },
+     {
+      "id": "imp",
+      "text": {
+       "en": "Needs import numpy as np first",
+       "hi": "पहले import numpy as np चाहिए"
+      },
+      "bin": "arr",
+      "why": {
+       "en": "NumPy is a library; it must be imported.",
+       "hi": "NumPy एक लाइब्रेरी है; उसे import करना पड़ता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ladd",
+     "expect": "placed:ladd",
+     "say": {
+      "en": "Place the card about [1, 2] + [3, 4].",
+      "hi": "[1, 2] + [3, 4] वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For NumPy arrays a and b, what does a + b do?",
+      "hi": "NumPy ऐरे a और b के लिए a + b क्या करता है?"
+     },
+     "options": [
+      {
+       "id": "e",
+       "en": "Adds matching elements",
+       "hi": "मिलते-जुलते तत्व जोड़ता है"
+      },
+      {
+       "id": "j",
+       "en": "Joins them end to end",
+       "hi": "उन्हें आगे-पीछे जोड़ता है"
+      }
+     ],
+     "answer": "e"
+    },
+    {
+     "kind": "do",
+     "target": "card:aadd",
+     "expect": "placed:aadd",
+     "say": {
+      "en": "Place the card about a + b on arrays.",
+      "hi": "ऐरे पर a + b वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A NumPy array holds items of one data type, so it can do arithmetic on whole sets of numbers quickly. The same symbol behaves differently: on lists + joins and * repeats, but on arrays + adds and * multiplies element by element. NumPy is a library, so it must be imported.",
+      "hi": "NumPy ऐरे एक ही डेटा प्रकार की चीज़ें रखता है, इसलिए पूरे संख्या-समूहों पर तेज़ी से अंकगणित कर सकता है। वही चिह्न अलग व्यवहार करता है: सूची पर + जोड़ता और * दोहराता है, पर ऐरे पर + जोड़ता और * तत्व-दर-तत्व गुणा करता है। NumPy लाइब्रेरी है, इसलिए उसे import करना पड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If a is a NumPy array [1, 2, 3], what is a * 2 ?",
+        "hi": "अगर a NumPy ऐरे [1, 2, 3] है तो a * 2 क्या है?"
+       },
+       "options": [
+        {
+         "en": "[2, 4, 6]",
+         "hi": "उत्तर: [2, 4, 6]"
+        },
+        {
+         "en": "[1, 2, 3, 1, 2, 3]",
+         "hi": "उत्तर: [1, 2, 3, 1, 2, 3]"
+        },
+        {
+         "en": "[3, 4, 5]",
+         "hi": "उत्तर: [3, 4, 5]"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every element is multiplied by 2.",
+        "hi": "हर तत्व 2 से गुणा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is what a list would give. An array multiplies each element.",
+         "hi": "सूची यह देती। ऐरे हर तत्व को गुणा करता है।"
+        },
+        {
+         "en": "That is adding 2, not multiplying by 2.",
+         "hi": "यह 2 जोड़ना है, 2 से गुणा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is a reason to choose a NumPy array over a list for marks?",
+        "hi": "अंकों के लिए सूची की जगह NumPy ऐरे चुनने का कारण कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Fast arithmetic on all marks at once",
+         "hi": "सब अंकों पर एक साथ तेज़ अंकगणित"
+        },
+        {
+         "en": "Arrays can hold text and numbers mixed",
+         "hi": "ऐरे में पाठ और संख्याएँ मिलाकर रख सकते हैं"
+        },
+        {
+         "en": "Arrays need no import",
+         "hi": "ऐरे को import नहीं करना पड़ता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Same type and fast whole-array arithmetic are the strengths of arrays.",
+        "hi": "एक प्रकार और पूरे ऐरे पर तेज़ अंकगणित ऐरे की ताक़त हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Arrays are meant for one data type; lists are the mixed container.",
+         "hi": "ऐरे एक ही डेटा प्रकार के लिए हैं; मिली-जुली चीज़ों का कंटेनर सूची है।"
+        },
+        {
+         "en": "NumPy must be imported.",
+         "hi": "NumPy को import करना पड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think: how would you double every mark in a plain list? Is that as short as in an array?",
+      "hi": "सोचो: साधारण सूची में हर अंक को दुगुना कैसे करोगे? क्या वह ऐरे जितना छोटा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch06-array-add",
+   "topic": "6.5.1",
+   "template": "matrix",
+   "title": {
+    "en": "Arithmetic on whole arrays",
+    "hi": "पूरे ऐरे पर अंकगणित"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "matrix-add",
+    "a": [
+     [
+      2,
+      4
+     ],
+     [
+      6,
+      8
+     ]
+    ],
+    "b": [
+     [
+      1,
+      3
+     ],
+     [
+      5,
+      7
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:add",
+     "expect": "computed",
+     "say": {
+      "en": "Press A + B to add the two tables.",
+      "hi": "दोनों तालिकाओं को जोड़ने के लिए A + B दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Adding element by element, what will the top-left box of A + B be (2 + 1)?",
+      "hi": "तत्व-दर-तत्व जोड़ने पर A + B का ऊपर-बायाँ खाना क्या होगा (2 + 1)?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "3",
+       "hi": "उत्तर: 3"
+      },
+      {
+       "id": "b",
+       "en": "2",
+       "hi": "उत्तर: 2"
+      },
+      {
+       "id": "c",
+       "en": "21",
+       "hi": "उत्तर: 21"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "op:step",
+     "expect": "computed",
+     "say": {
+      "en": "Press the button to work out one box.",
+      "hi": "एक खाना निकालने के लिए बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:show",
+     "expect": "computed",
+     "say": {
+      "en": "Press Show answer to see the whole result.",
+      "hi": "पूरा नतीजा देखने के लिए उत्तर दिखाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When two NumPy arrays have the same shape, a + b adds the elements in matching positions: 2 + 1, 4 + 3, 6 + 5, 8 + 7, which gives 3, 7, 11, 15. a - b, a * b and a / b work the same way, element by element. The a * b of NumPy is not the matrix product.",
+      "hi": "जब दो NumPy ऐरे की आकृति एक जैसी हो, तो a + b मिलते-जुलते स्थानों के तत्व जोड़ता है: 2 + 1, 4 + 3, 6 + 5, 8 + 7, यानी 3, 7, 11, 15। a - b, a * b और a / b भी इसी तरह तत्व-दर-तत्व चलते हैं। NumPy का a * b आव्यूह-गुणनफल नहीं है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A = [[2, 4], [6, 8]] and B = [[1, 3], [5, 7]]. What is the bottom-right box of A + B?",
+        "hi": "A = [[2, 4], [6, 8]] और B = [[1, 3], [5, 7]] है। A + B का नीचे-दायाँ खाना क्या है?"
+       },
+       "options": [
+        {
+         "en": "15",
+         "hi": "उत्तर: 15"
+        },
+        {
+         "en": "8",
+         "hi": "उत्तर: 8"
+        },
+        {
+         "en": "87",
+         "hi": "उत्तर: 87"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "8 + 7 = 15.",
+        "hi": "8 + 7 = 15।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is only the box of A. Add the matching box of B too.",
+         "hi": "यह तो सिर्फ़ A का खाना है। B का मिलता खाना भी जोड़ो।"
+        },
+        {
+         "en": "The numbers are added, not written side by side.",
+         "hi": "संख्याएँ जोड़ी जाती हैं, बग़ल-बग़ल नहीं लिखी जातीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can you add arrays of shapes (2, 2) and (3, 3) element by element?",
+        "hi": "क्या आकृति (2, 2) और (3, 3) के ऐरे तत्व-दर-तत्व जोड़े जा सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "No, the shapes do not match",
+         "hi": "नहीं, आकृतियाँ मेल नहीं खातीं"
+        },
+        {
+         "en": "Yes, NumPy fills the missing boxes with 0",
+         "hi": "हाँ, NumPy ख़ाली खाने 0 से भर देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Element-wise operations need matching shapes (or a rule such as a single number).",
+        "hi": "तत्व-दर-तत्व क्रियाओं के लिए आकृतियाँ मिलनी चाहिए (या कोई नियम, जैसे एक अकेली संख्या)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "NumPy does not guess; it reports a shape error.",
+         "hi": "NumPy अंदाज़ा नहीं लगाता; वह आकृति की त्रुटि बताता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press New problem and try A − B. What do you notice about the signs?",
+      "hi": "नया सवाल दबाओ और A − B आज़माओ। चिह्नों के बारे में तुमने क्या देखा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch06-creation",
+   "topic": "6.3.2",
+   "template": "match",
+   "title": {
+    "en": "Which code makes which array?",
+    "hi": "कौन-सा कोड कौन-सा ऐरे बनाता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "arr",
+      "left": {
+       "en": "np.array([1, 2, 3])",
+       "hi": "np.array([1, 2, 3])"
+      },
+      "right": {
+       "en": "[1 2 3]",
+       "hi": "[1 2 3]"
+      },
+      "why": {
+       "en": "array() turns a list into an array.",
+       "hi": "array() सूची को ऐरे बना देता है।"
+      }
+     },
+     {
+      "id": "zeros",
+      "left": {
+       "en": "np.zeros(3)",
+       "hi": "np.zeros(3)"
+      },
+      "right": {
+       "en": "[0. 0. 0.]",
+       "hi": "[0. 0. 0.]"
+      },
+      "why": {
+       "en": "zeros(n) makes n zeros (as decimal numbers).",
+       "hi": "zeros(n) n शून्य बनाता है (दशमलव संख्या के रूप में)।"
+      }
+     },
+     {
+      "id": "ones",
+      "left": {
+       "en": "np.ones(2)",
+       "hi": "np.ones(2)"
+      },
+      "right": {
+       "en": "[1. 1.]",
+       "hi": "[1. 1.]"
+      },
+      "why": {
+       "en": "ones(n) makes n ones (as decimal numbers).",
+       "hi": "ones(n) n इकाइयाँ बनाता है (दशमलव संख्या के रूप में)।"
+      }
+     },
+     {
+      "id": "arange",
+      "left": {
+       "en": "np.arange(0, 10, 3)",
+       "hi": "np.arange(0, 10, 3)"
+      },
+      "right": {
+       "en": "[0 3 6 9]",
+       "hi": "[0 3 6 9]"
+      },
+      "why": {
+       "en": "arange(start, stop, step) counts up in steps and never reaches stop.",
+       "hi": "arange(start, stop, step) क़दमों में गिनता है और stop तक नहीं पहुँचता।"
+      }
+     },
+     {
+      "id": "linspace",
+      "left": {
+       "en": "np.linspace(0, 1, 3)",
+       "hi": "np.linspace(0, 1, 3)"
+      },
+      "right": {
+       "en": "[0.  0.5 1. ]",
+       "hi": "[0.  0.5 1. ]"
+      },
+      "why": {
+       "en": "linspace(a, b, n) gives n evenly spaced numbers from a to b, both included.",
+       "hi": "linspace(a, b, n) a से b तक बराबर दूरी की n संख्याएँ देता है, दोनों शामिल।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:arr",
+     "expect": "matched:arr",
+     "say": {
+      "en": "Match np.array([1, 2, 3]).",
+      "hi": "np.array([1, 2, 3]) को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "np.arange(0, 10, 3) counts 0, 3, 6, 9. Does it include 10?",
+      "hi": "np.arange(0, 10, 3) गिनता है 0, 3, 6, 9। क्या उसमें 10 शामिल है?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, it stops before 10",
+       "hi": "नहीं, वह 10 से पहले रुकता है"
+      },
+      {
+       "id": "y",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "left:arange",
+     "expect": "matched:arange",
+     "say": {
+      "en": "Match np.arange(0, 10, 3).",
+      "hi": "np.arange(0, 10, 3) को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There are many ways to make an array. array() converts a list. zeros() and ones() fill a new array with 0 or 1. arange() is like range(): it steps from start and stops before the stop value. linspace() spreads a given number of points evenly, and includes both ends.",
+      "hi": "ऐरे बनाने के कई तरीक़े हैं। array() सूची को बदलता है। zeros() और ones() नया ऐरे 0 या 1 से भरते हैं। arange() range() जैसा है: शुरू से क़दम चलता है और stop मान से पहले रुकता है। linspace() दिए गए संख्या के बिंदु बराबर दूरी पर फैलाता है और दोनों सिरे शामिल करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does np.zeros(4) make?",
+        "hi": "np.zeros(4) क्या बनाता है?"
+       },
+       "options": [
+        {
+         "en": "[0. 0. 0. 0.]",
+         "hi": "उत्तर: [0. 0. 0. 0.]"
+        },
+        {
+         "en": "[4]",
+         "hi": "उत्तर: [4]"
+        },
+        {
+         "en": "[0. 0. 0.]",
+         "hi": "उत्तर: [0. 0. 0.]"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Four zeros, shown as decimal numbers.",
+        "hi": "चार शून्य, दशमलव संख्या के रूप में।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The 4 is how many zeros, not the value.",
+         "hi": "4 शून्यों की संख्या है, मान नहीं।"
+        },
+        {
+         "en": "That has only three zeros.",
+         "hi": "इसमें केवल तीन शून्य हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which function gives 5 evenly spaced numbers from 0 to 1, both included?",
+        "hi": "कौन-सा फ़ंक्शन 0 से 1 तक, दोनों शामिल, 5 बराबर दूरी की संख्याएँ देता है?"
+       },
+       "options": [
+        {
+         "en": "np.arange(0, 1, 5)",
+         "hi": "उत्तर: np.arange(0, 1, 5)"
+        },
+        {
+         "en": "np.linspace(0, 1, 5)",
+         "hi": "उत्तर: np.linspace(0, 1, 5)"
+        },
+        {
+         "en": "np.ones(5)",
+         "hi": "उत्तर: np.ones(5)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "linspace takes how many points, then spaces them evenly.",
+        "hi": "linspace बिंदुओं की संख्या लेकर उन्हें बराबर दूरी पर रखता है।"
+       },
+       "wrong": [
+        {
+         "en": "Here 5 is a step size, not a count.",
+         "hi": "यहाँ 5 क़दम का आकार है, गिनती नहीं।"
+        },
+        "",
+        {
+         "en": "That gives five ones.",
+         "hi": "यह पाँच इकाइयाँ देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "How would you get an array [10, 20, 30, 40] using arange?",
+      "hi": "arange से ऐरे [10, 20, 30, 40] कैसे पाओगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch06-attributes",
+   "topic": "6.3.3",
+   "template": "match",
+   "title": {
+    "en": "Describe an array",
+    "hi": "ऐरे का वर्णन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "ndim",
+      "left": {
+       "en": "arr.ndim",
+       "hi": "arr.ndim"
+      },
+      "right": {
+       "en": "2: the number of axes (dimensions)",
+       "hi": "2: अक्षों (विमाओं) की संख्या"
+      },
+      "why": {
+       "en": "A table with rows and columns has two axes.",
+       "hi": "पंक्तियों और स्तंभों वाली तालिका के दो अक्ष होते हैं।"
+      }
+     },
+     {
+      "id": "shape",
+      "left": {
+       "en": "arr.shape",
+       "hi": "arr.shape"
+      },
+      "right": {
+       "en": "(2, 3): 2 rows and 3 columns",
+       "hi": "(2, 3): 2 पंक्तियाँ और 3 स्तंभ"
+      },
+      "why": {
+       "en": "shape lists the length of each axis.",
+       "hi": "shape हर अक्ष की लंबाई बताता है।"
+      }
+     },
+     {
+      "id": "size",
+      "left": {
+       "en": "arr.size",
+       "hi": "arr.size"
+      },
+      "right": {
+       "en": "6: the total number of elements",
+       "hi": "6: कुल तत्वों की संख्या"
+      },
+      "why": {
+       "en": "2 rows × 3 columns = 6 elements.",
+       "hi": "2 पंक्तियाँ × 3 स्तंभ = 6 तत्व।"
+      }
+     },
+     {
+      "id": "dtype",
+      "left": {
+       "en": "arr.dtype",
+       "hi": "arr.dtype"
+      },
+      "right": {
+       "en": "The data type of the elements, such as an integer type",
+       "hi": "तत्वों का डेटा प्रकार, जैसे पूर्णांक प्रकार"
+      },
+      "why": {
+       "en": "Every element of an array has this one type.",
+       "hi": "ऐरे के हर तत्व का यही एक प्रकार होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ndim",
+     "expect": "matched:ndim",
+     "say": {
+      "en": "Take arr = [[1, 2, 3], [4, 5, 6]]. Match arr.ndim.",
+      "hi": "मान लो arr = [[1, 2, 3], [4, 5, 6]]। arr.ndim को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "arr has 2 rows and 3 columns. What is arr.size?",
+      "hi": "arr में 2 पंक्तियाँ और 3 स्तंभ हैं। arr.size क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "6",
+       "hi": "उत्तर: 6"
+      },
+      {
+       "id": "b",
+       "en": "5",
+       "hi": "उत्तर: 5"
+      },
+      {
+       "id": "c",
+       "en": "(2, 3)",
+       "hi": "उत्तर: (2, 3)"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:size",
+     "expect": "matched:size",
+     "say": {
+      "en": "Match arr.size.",
+      "hi": "arr.size को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Attributes describe an array without changing it. ndim is the number of axes, shape gives the length of every axis, size is the count of all elements and dtype is their data type. Notice size is the product of the numbers in shape.",
+      "hi": "एट्रीब्यूट ऐरे को बदले बिना उसका वर्णन करते हैं। ndim अक्षों की संख्या है, shape हर अक्ष की लंबाई देता है, size सब तत्वों की गिनती है और dtype उनका डेटा प्रकार है। ध्यान दो कि size, shape की संख्याओं का गुणनफल है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An array has shape (3, 4). What is its size?",
+        "hi": "एक ऐरे की आकृति (3, 4) है। उसका size क्या है?"
+       },
+       "options": [
+        {
+         "en": "7",
+         "hi": "उत्तर: 7"
+        },
+        {
+         "en": "12",
+         "hi": "उत्तर: 12"
+        },
+        {
+         "en": "2",
+         "hi": "उत्तर: 2"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "3 rows × 4 columns = 12 elements.",
+        "hi": "3 पंक्तियाँ × 4 स्तंभ = 12 तत्व।"
+       },
+       "wrong": [
+        {
+         "en": "7 is 3 + 4. Size is the product.",
+         "hi": "7 है 3 + 4। size गुणनफल है।"
+        },
+        "",
+        {
+         "en": "2 would be ndim, the number of axes.",
+         "hi": "2 ndim होता, यानी अक्षों की संख्या।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What would be the shape of an array with 5 numbers in a single line?",
+      "hi": "एक पंक्ति में 5 संख्याओं वाले ऐरे की आकृति क्या होगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch06-indexing",
+   "topic": "6.4",
+   "template": "match",
+   "title": {
+    "en": "Indexing and slicing a 2-D array",
+    "hi": "2-D ऐरे में इंडेक्सिंग और स्लाइसिंग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "i1",
+      "left": {
+       "en": "arr[0, 1]",
+       "hi": "arr[0, 1]"
+      },
+      "right": {
+       "en": "20",
+       "hi": "20"
+      },
+      "why": {
+       "en": "Row 0, column 1.",
+       "hi": "पंक्ति 0, स्तंभ 1।"
+      }
+     },
+     {
+      "id": "i2",
+      "left": {
+       "en": "arr[1, 2]",
+       "hi": "arr[1, 2]"
+      },
+      "right": {
+       "en": "60",
+       "hi": "60"
+      },
+      "why": {
+       "en": "Row 1, column 2: the last box.",
+       "hi": "पंक्ति 1, स्तंभ 2: आख़िरी खाना।"
+      }
+     },
+     {
+      "id": "i3",
+      "left": {
+       "en": "arr[1]",
+       "hi": "arr[1]"
+      },
+      "right": {
+       "en": "[40 50 60]",
+       "hi": "[40 50 60]"
+      },
+      "why": {
+       "en": "One index picks a whole row.",
+       "hi": "एक इंडेक्स पूरी पंक्ति चुनता है।"
+      }
+     },
+     {
+      "id": "i4",
+      "left": {
+       "en": "arr[:, 1]",
+       "hi": "arr[:, 1]"
+      },
+      "right": {
+       "en": "[20 50]",
+       "hi": "[20 50]"
+      },
+      "why": {
+       "en": "All rows, column 1: the whole second column.",
+       "hi": "सब पंक्तियाँ, स्तंभ 1: पूरा दूसरा स्तंभ।"
+      }
+     },
+     {
+      "id": "i5",
+      "left": {
+       "en": "arr[0, :2]",
+       "hi": "arr[0, :2]"
+      },
+      "right": {
+       "en": "[10 20]",
+       "hi": "[10 20]"
+      },
+      "why": {
+       "en": "Row 0, columns 0 and 1.",
+       "hi": "पंक्ति 0, स्तंभ 0 और 1।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:i1",
+     "expect": "matched:i1",
+     "say": {
+      "en": "Take arr = [[10, 20, 30], [40, 50, 60]]. Match arr[0, 1].",
+      "hi": "मान लो arr = [[10, 20, 30], [40, 50, 60]]। arr[0, 1] को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In arr[:, 1] the colon means all rows. Which numbers come out?",
+      "hi": "arr[:, 1] में कोलन का मतलब सब पंक्तियाँ है। कौन-सी संख्याएँ निकलेंगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "20 and 50",
+       "hi": "20 और 50"
+      },
+      {
+       "id": "b",
+       "en": "10 and 40",
+       "hi": "10 और 40"
+      },
+      {
+       "id": "c",
+       "en": "40, 50 and 60",
+       "hi": "40, 50 और 60"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:i4",
+     "expect": "matched:i4",
+     "say": {
+      "en": "Match arr[:, 1].",
+      "hi": "arr[:, 1] को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a 2-D array a box is picked with two indexes, arr[row, column], counted from 0. A colon : means \"all\". So arr[:, 1] takes column 1 from every row, and arr[1] alone takes row 1 completely. Slices use start:stop like lists, and stop is not included.",
+      "hi": "2-D ऐरे में खाना दो इंडेक्स से चुना जाता है, arr[पंक्ति, स्तंभ], 0 से गिनकर। कोलन : का मतलब \"सब\" है। इसलिए arr[:, 1] हर पंक्ति से स्तंभ 1 लेता है, और अकेला arr[1] पूरी पंक्ति 1 लेता है। स्लाइस सूचियों की तरह start:stop होती हैं, और stop शामिल नहीं होता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is arr[1, 0] for the same array?",
+        "hi": "उसी ऐरे के लिए arr[1, 0] क्या है?"
+       },
+       "options": [
+        {
+         "en": "40",
+         "hi": "उत्तर: 40"
+        },
+        {
+         "en": "20",
+         "hi": "उत्तर: 20"
+        },
+        {
+         "en": "10",
+         "hi": "उत्तर: 10"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Row 1 is the second row, column 0 is its first box: 40.",
+        "hi": "पंक्ति 1 दूसरी पंक्ति है, स्तंभ 0 उसका पहला खाना: 40।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20 is arr[0, 1]. The row index comes first.",
+         "hi": "20 है arr[0, 1]। पंक्ति का इंडेक्स पहले आता है।"
+        },
+        {
+         "en": "10 is arr[0, 0], the first row.",
+         "hi": "10 है arr[0, 0], पहली पंक्ति।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write the index for the number 30 and for the numbers 30 and 60 together.",
+      "hi": "संख्या 30 और संख्याएँ 30 व 60 एक साथ पाने के इंडेक्स लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch06-transpose-sort",
+   "topic": "6.5.2",
+   "template": "match",
+   "title": {
+    "en": "Transpose and sort",
+    "hi": "ट्रांसपोज़ और सॉर्ट"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "t1",
+      "left": {
+       "en": "arr.T for [[1, 2], [3, 4]]",
+       "hi": "[[1, 2], [3, 4]] का arr.T"
+      },
+      "right": {
+       "en": "[[1 3] [2 4]]",
+       "hi": "[[1 3] [2 4]]"
+      },
+      "why": {
+       "en": "Transpose swaps rows and columns.",
+       "hi": "ट्रांसपोज़ पंक्तियों और स्तंभों को बदल देता है।"
+      }
+     },
+     {
+      "id": "t2",
+      "left": {
+       "en": "Shape of arr.T when arr has shape (2, 3)",
+       "hi": "arr की आकृति (2, 3) हो तो arr.T की आकृति"
+      },
+      "right": {
+       "en": "(3, 2)",
+       "hi": "(3, 2)"
+      },
+      "why": {
+       "en": "The row count and the column count swap places.",
+       "hi": "पंक्तियों और स्तंभों की गिनती जगह बदल लेती है।"
+      }
+     },
+     {
+      "id": "s1",
+      "left": {
+       "en": "np.sort([3, 1, 2])",
+       "hi": "np.sort([3, 1, 2])"
+      },
+      "right": {
+       "en": "[1 2 3]",
+       "hi": "[1 2 3]"
+      },
+      "why": {
+       "en": "A one-line array is sorted smallest to largest.",
+       "hi": "एक-पंक्ति वाला ऐरे छोटे से बड़े क्रम में लगता है।"
+      }
+     },
+     {
+      "id": "s2",
+      "left": {
+       "en": "np.sort([[3, 1], [2, 0]])",
+       "hi": "np.sort([[3, 1], [2, 0]])"
+      },
+      "right": {
+       "en": "[[1 3] [0 2]]",
+       "hi": "[[1 3] [0 2]]"
+      },
+      "why": {
+       "en": "By default each row is sorted on its own.",
+       "hi": "डिफ़ॉल्ट रूप से हर पंक्ति अलग-अलग क्रम में लगती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:t1",
+     "expect": "matched:t1",
+     "say": {
+      "en": "Match arr.T for [[1, 2], [3, 4]].",
+      "hi": "[[1, 2], [3, 4]] के arr.T को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A (2, 3) array is transposed. What is the new shape?",
+      "hi": "एक (2, 3) ऐरे का ट्रांसपोज़ लिया गया। नई आकृति क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "(3, 2)",
+       "hi": "उत्तर: (3, 2)"
+      },
+      {
+       "id": "b",
+       "en": "(2, 3)",
+       "hi": "उत्तर: (2, 3)"
+      },
+      {
+       "id": "c",
+       "en": "(6, 1)",
+       "hi": "उत्तर: (6, 1)"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:t2",
+     "expect": "matched:t2",
+     "say": {
+      "en": "Match the shape.",
+      "hi": "आकृति को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Transpose flips an array over its diagonal: rows become columns and columns become rows, so shape (2, 3) turns into (3, 2). Sorting arranges the values smallest to largest. For a 2-D array, each row is sorted on its own unless you ask otherwise.",
+      "hi": "ट्रांसपोज़ ऐरे को उसके विकर्ण पर पलट देता है: पंक्तियाँ स्तंभ और स्तंभ पंक्तियाँ बन जाते हैं, इसलिए आकृति (2, 3), (3, 2) हो जाती है। सॉर्ट मानों को छोटे से बड़े क्रम में लगाता है। 2-D ऐरे में हर पंक्ति अलग से लगती है जब तक कुछ और न कहा जाए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the transpose of [[1, 2, 3]] (shape (1, 3))?",
+        "hi": "[[1, 2, 3]] (आकृति (1, 3)) का ट्रांसपोज़ क्या है?"
+       },
+       "options": [
+        {
+         "en": "A column of 1, 2, 3, shape (3, 1)",
+         "hi": "1, 2, 3 का एक स्तंभ, आकृति (3, 1)"
+        },
+        {
+         "en": "The same row, shape (1, 3)",
+         "hi": "वही पंक्ति, आकृति (1, 3)"
+        },
+        {
+         "en": "The numbers reversed, 3, 2, 1",
+         "hi": "संख्याएँ उलटी, 3, 2, 1"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The one row becomes one column.",
+        "hi": "एक पंक्ति एक स्तंभ बन जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rows and columns swap, so the shape changes to (3, 1).",
+         "hi": "पंक्तियाँ और स्तंभ बदलते हैं, इसलिए आकृति (3, 1) हो जाती है।"
+        },
+        {
+         "en": "Transpose does not reverse the order; it swaps rows and columns.",
+         "hi": "ट्रांसपोज़ क्रम उलटता नहीं; वह पंक्तियाँ और स्तंभ बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw a 2 by 3 table on paper and transpose it by hand.",
+      "hi": "कागज़ पर 2 गुणा 3 की तालिका बनाओ और हाथ से उसका ट्रांसपोज़ लो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch06-join-split",
+   "topic": "6.6",
+   "template": "match",
+   "title": {
+    "en": "Joining and splitting arrays",
+    "hi": "ऐरे जोड़ना और तोड़ना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "c1",
+      "left": {
+       "en": "np.concatenate((a, b)) for a = [1, 2], b = [3, 4]",
+       "hi": "a = [1, 2], b = [3, 4] के लिए np.concatenate((a, b))"
+      },
+      "right": {
+       "en": "[1 2 3 4]",
+       "hi": "[1 2 3 4]"
+      },
+      "why": {
+       "en": "One-line arrays join end to end.",
+       "hi": "एक-पंक्ति वाले ऐरे आगे-पीछे जुड़ते हैं।"
+      }
+     },
+     {
+      "id": "c2",
+      "left": {
+       "en": "Shapes (2, 3) and (1, 3) joined with axis=0",
+       "hi": "आकृति (2, 3) और (1, 3) को axis=0 से जोड़ा"
+      },
+      "right": {
+       "en": "Shape (3, 3)",
+       "hi": "आकृति (3, 3)"
+      },
+      "why": {
+       "en": "axis=0 stacks rows, so the rows add up: 2 + 1.",
+       "hi": "axis=0 पंक्तियाँ ऊपर-नीचे रखता है, इसलिए पंक्तियाँ जुड़ती हैं: 2 + 1।"
+      }
+     },
+     {
+      "id": "c3",
+      "left": {
+       "en": "Shapes (2, 3) and (2, 1) joined with axis=1",
+       "hi": "आकृति (2, 3) और (2, 1) को axis=1 से जोड़ा"
+      },
+      "right": {
+       "en": "Shape (2, 4)",
+       "hi": "आकृति (2, 4)"
+      },
+      "why": {
+       "en": "axis=1 puts columns side by side, so the columns add up: 3 + 1.",
+       "hi": "axis=1 स्तंभ बग़ल-बग़ल रखता है, इसलिए स्तंभ जुड़ते हैं: 3 + 1।"
+      }
+     },
+     {
+      "id": "sp1",
+      "left": {
+       "en": "np.split([1, 2, 3, 4, 5, 6], 3)",
+       "hi": "np.split([1, 2, 3, 4, 5, 6], 3)"
+      },
+      "right": {
+       "en": "[1 2] [3 4] [5 6]",
+       "hi": "[1 2] [3 4] [5 6]"
+      },
+      "why": {
+       "en": "Three equal parts of two elements each.",
+       "hi": "दो-दो तत्वों के तीन बराबर भाग।"
+      }
+     },
+     {
+      "id": "sp2",
+      "left": {
+       "en": "np.split([1, 2, 3, 4, 5, 6], [2])",
+       "hi": "np.split([1, 2, 3, 4, 5, 6], [2])"
+      },
+      "right": {
+       "en": "[1 2] [3 4 5 6]",
+       "hi": "[1 2] [3 4 5 6]"
+      },
+      "why": {
+       "en": "The list [2] says \"cut at index 2\".",
+       "hi": "सूची [2] कहती है \"इंडेक्स 2 पर काटो\"।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:c1",
+     "expect": "matched:c1",
+     "say": {
+      "en": "Match the joining of two one-line arrays.",
+      "hi": "दो एक-पंक्ति वाले ऐरे के जोड़ने को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You join a (2, 3) array and a (1, 3) array with axis=0. How many rows will the result have?",
+      "hi": "तुम (2, 3) और (1, 3) ऐरे को axis=0 से जोड़ते हो। नतीजे में कितनी पंक्तियाँ होंगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "3",
+       "hi": "उत्तर: 3"
+      },
+      {
+       "id": "b",
+       "en": "2",
+       "hi": "उत्तर: 2"
+      },
+      {
+       "id": "c",
+       "en": "1",
+       "hi": "उत्तर: 1"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:c2",
+     "expect": "matched:c2",
+     "say": {
+      "en": "Match the axis=0 joining.",
+      "hi": "axis=0 वाले जोड़ को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "concatenate joins arrays along an axis. axis=0 stacks rows (the rows add up), axis=1 puts columns side by side (the columns add up). The other sizes must match. split does the reverse: a number cuts into equal parts, and a list of indexes cuts at those places.",
+      "hi": "concatenate ऐरे को किसी अक्ष की दिशा में जोड़ता है। axis=0 पंक्तियाँ ऊपर-नीचे रखता है (पंक्तियाँ जुड़ती हैं), axis=1 स्तंभ बग़ल-बग़ल रखता है (स्तंभ जुड़ते हैं)। बाक़ी माप मिलने चाहिए। split उलटा करता है: एक संख्या बराबर भाग काटती है, और इंडेक्स की सूची उन जगहों पर काटती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Can you join shapes (2, 3) and (2, 2) with axis=0?",
+        "hi": "क्या आकृति (2, 3) और (2, 2) को axis=0 से जोड़ सकते हो?"
+       },
+       "options": [
+        {
+         "en": "No, the number of columns must match",
+         "hi": "नहीं, स्तंभों की संख्या मिलनी चाहिए"
+        },
+        {
+         "en": "Yes, the result is (4, 3)",
+         "hi": "हाँ, नतीजा (4, 3) होगा"
+        },
+        {
+         "en": "Yes, the result is (2, 5)",
+         "hi": "हाँ, नतीजा (2, 5) होगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rows stack only when each row has the same length.",
+        "hi": "पंक्तियाँ तभी ऊपर-नीचे रखी जा सकती हैं जब हर पंक्ति की लंबाई बराबर हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Stacking rows needs the same number of columns; 3 and 2 differ.",
+         "hi": "पंक्तियाँ रखने के लिए स्तंभों की संख्या वही चाहिए; 3 और 2 अलग हैं।"
+        },
+        {
+         "en": "That would be axis=1, not axis=0.",
+         "hi": "यह axis=1 होता, axis=0 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try to find a way to join a (2, 3) and a (2, 2) array so that it does work.",
+      "hi": "(2, 3) और (2, 2) ऐरे को जोड़ने का ऐसा तरीक़ा ढूँढ़ो जो चल जाए।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch06-reshape",
+   "topic": "6.7",
+   "template": "sort",
+   "title": {
+    "en": "Does the reshape work?",
+    "hi": "क्या रीशेप चलेगा?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ok",
+      "label": {
+       "en": "Works",
+       "hi": "चलता है"
+      }
+     },
+     {
+      "id": "bad",
+      "label": {
+       "en": "Error",
+       "hi": "त्रुटि आती है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "r1",
+      "text": {
+       "en": "12 numbers: reshape(3, 4)",
+       "hi": "12 संख्याएँ: reshape(3, 4)"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "3 × 4 = 12, so all numbers fit.",
+       "hi": "3 × 4 = 12, इसलिए सब संख्याएँ समा जाती हैं।"
+      }
+     },
+     {
+      "id": "r2",
+      "text": {
+       "en": "12 numbers: reshape(2, 6)",
+       "hi": "12 संख्याएँ: reshape(2, 6)"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "2 × 6 = 12.",
+       "hi": "2 × 6 = 12।"
+      }
+     },
+     {
+      "id": "r3",
+      "text": {
+       "en": "12 numbers: reshape(2, 3, 2)",
+       "hi": "12 संख्याएँ: reshape(2, 3, 2)"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "2 × 3 × 2 = 12 in three axes.",
+       "hi": "तीन अक्षों में 2 × 3 × 2 = 12।"
+      }
+     },
+     {
+      "id": "r4",
+      "text": {
+       "en": "12 numbers: reshape(-1, 6)",
+       "hi": "12 संख्याएँ: reshape(-1, 6)"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "-1 lets NumPy work out the missing size: 12 ÷ 6 = 2.",
+       "hi": "-1 से NumPy छूटा माप ख़ुद निकालता है: 12 ÷ 6 = 2।"
+      }
+     },
+     {
+      "id": "r5",
+      "text": {
+       "en": "12 numbers: reshape(5, 3)",
+       "hi": "12 संख्याएँ: reshape(5, 3)"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "5 × 3 = 15, but there are only 12 numbers.",
+       "hi": "5 × 3 = 15, पर संख्याएँ सिर्फ़ 12 हैं।"
+      }
+     },
+     {
+      "id": "r6",
+      "text": {
+       "en": "12 numbers: reshape(2, 5)",
+       "hi": "12 संख्याएँ: reshape(2, 5)"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "2 × 5 = 10, which leaves 2 numbers with no place.",
+       "hi": "2 × 5 = 10, जिससे 2 संख्याओं के लिए जगह नहीं बचती।"
+      }
+     },
+     {
+      "id": "r7",
+      "text": {
+       "en": "12 numbers: reshape(4, 4)",
+       "hi": "12 संख्याएँ: reshape(4, 4)"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "4 × 4 = 16, more boxes than numbers.",
+       "hi": "4 × 4 = 16, संख्याओं से ज़्यादा खाने।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:r1",
+     "expect": "placed:r1",
+     "say": {
+      "en": "Place the reshape(3, 4) card.",
+      "hi": "reshape(3, 4) वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "12 numbers into a 5 by 3 table. Will it work?",
+      "hi": "12 संख्याएँ 5 गुणा 3 की तालिका में। क्या यह चलेगा?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, 5 × 3 is not 12",
+       "hi": "नहीं, 5 × 3, 12 नहीं है"
+      },
+      {
+       "id": "y",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "card:r5",
+     "expect": "placed:r5",
+     "say": {
+      "en": "Place the reshape(5, 3) card.",
+      "hi": "reshape(5, 3) वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Reshaping changes the shape but never the numbers or how many there are. The new shape must hold exactly the same count: the product of its numbers has to equal the size. With 12 numbers, 3 × 4 and 2 × 6 work, but 5 × 3 does not. -1 means \"work this one out for me\".",
+      "hi": "रीशेप आकृति बदलता है, संख्याएँ या उनकी गिनती नहीं। नई आकृति में ठीक उतनी ही संख्याएँ आनी चाहिए: उसकी संख्याओं का गुणनफल size के बराबर होना चाहिए। 12 संख्याओं में 3 × 4 और 2 × 6 चलते हैं, पर 5 × 3 नहीं। -1 का मतलब है \"इसे मेरे लिए निकाल दो\"।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An array has 20 elements. Which reshape is possible?",
+        "hi": "एक ऐरे में 20 तत्व हैं। कौन-सा रीशेप संभव है?"
+       },
+       "options": [
+        {
+         "en": "reshape(4, 5)",
+         "hi": "उत्तर: reshape(4, 5)"
+        },
+        {
+         "en": "reshape(3, 7)",
+         "hi": "उत्तर: reshape(3, 7)"
+        },
+        {
+         "en": "reshape(6, 3)",
+         "hi": "उत्तर: reshape(6, 3)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 × 5 = 20.",
+        "hi": "4 × 5 = 20।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 × 7 = 21, which is not 20.",
+         "hi": "3 × 7 = 21, जो 20 नहीं है।"
+        },
+        {
+         "en": "6 × 3 = 18, which is not 20.",
+         "hi": "6 × 3 = 18, जो 20 नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does reshape(2, -1) do for 10 numbers?",
+        "hi": "10 संख्याओं के लिए reshape(2, -1) क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Makes shape (2, 5)",
+         "hi": "आकृति (2, 5) बनाता है"
+        },
+        {
+         "en": "Gives an error because of the minus",
+         "hi": "ऋण चिह्न के कारण त्रुटि देता है"
+        },
+        {
+         "en": "Makes shape (2, 10)",
+         "hi": "आकृति (2, 10) बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10 ÷ 2 = 5, so the missing size is 5.",
+        "hi": "10 ÷ 2 = 5, इसलिए छूटा माप 5 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-1 is allowed and means \"work out this size\".",
+         "hi": "-1 मान्य है और कहता है \"यह माप निकाल लो\"।"
+        },
+        {
+         "en": "That would need 20 numbers.",
+         "hi": "उसके लिए 20 संख्याएँ चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List all pairs that can reshape an array of 6 numbers.",
+      "hi": "6 संख्याओं वाले ऐरे के लिए सारी जोड़ियाँ लिखो जो रीशेप कर सकें।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch06-stats",
+   "topic": "6.9",
+   "template": "code",
+   "title": {
+    "en": "Statistics on a whole array",
+    "hi": "पूरे ऐरे पर आँकड़े"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "scores = [4, 8, 6, 2]",
+     "print(sum(scores))",
+     "print(sum(scores) / len(scores))",
+     "print(max(scores), min(scores))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step. Think of scores as a NumPy array.",
+      "hi": "क़दम दबाओ। scores को NumPy ऐरे समझो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "np.sum, np.mean, np.max and np.min give the total, average, highest and lowest. What is the mean of 4, 8, 6, 2?",
+      "hi": "np.sum, np.mean, np.max और np.min कुल, औसत, सबसे ज़्यादा और सबसे कम देते हैं। 4, 8, 6, 2 का औसत क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "5.0",
+       "hi": "उत्तर: 5.0"
+      },
+      {
+       "id": "b",
+       "en": "20",
+       "hi": "उत्तर: 20"
+      },
+      {
+       "id": "c",
+       "en": "6.0",
+       "hi": "उत्तर: 6.0"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and check the average.",
+      "hi": "चलाओ दबाओ और औसत जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "NumPy has ready-made statistics: np.sum(a) or a.sum() adds everything, np.mean(a) finds the average, np.max(a) and np.min(a) find the extremes. Here the same ideas are shown with a list: the total is 20, the mean is 20 ÷ 4 = 5.0 and the extremes are 8 and 2. For 2-D arrays you can also ask for results along axis=0 (per column) or axis=1 (per row).",
+      "hi": "NumPy में बने-बनाए आँकड़े हैं: np.sum(a) या a.sum() सब जोड़ता है, np.mean(a) औसत निकालता है, np.max(a) और np.min(a) अति मान निकालते हैं। यहाँ वही विचार सूची से दिखाए गए हैं: कुल 20, औसत 20 ÷ 4 = 5.0 और अति मान 8 और 2। 2-D ऐरे में नतीजे axis=0 (हर स्तंभ के लिए) या axis=1 (हर पंक्ति के लिए) के हिसाब से भी माँग सकते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For a 2-D array, what does a.sum(axis=0) give?",
+        "hi": "2-D ऐरे के लिए a.sum(axis=0) क्या देता है?"
+       },
+       "options": [
+        {
+         "en": "The sum of each column",
+         "hi": "हर स्तंभ का योग"
+        },
+        {
+         "en": "The sum of each row",
+         "hi": "हर पंक्ति का योग"
+        },
+        {
+         "en": "The sum of the first row only",
+         "hi": "सिर्फ़ पहली पंक्ति का योग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "axis=0 runs down the rows, combining each column into one value.",
+        "hi": "axis=0 पंक्तियों में नीचे चलता है और हर स्तंभ को एक मान में बदलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is axis=1.",
+         "hi": "वह axis=1 है।"
+        },
+        {
+         "en": "axis=0 works down all the rows for every column.",
+         "hi": "axis=0 हर स्तंभ के लिए सब पंक्तियों के नीचे चलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which NumPy function would you use to find the average mark?",
+        "hi": "औसत अंक निकालने के लिए तुम कौन-सा NumPy फ़ंक्शन इस्तेमाल करोगे?"
+       },
+       "options": [
+        {
+         "en": "np.mean",
+         "hi": "उत्तर: np.mean"
+        },
+        {
+         "en": "np.max",
+         "hi": "उत्तर: np.max"
+        },
+        {
+         "en": "np.zeros",
+         "hi": "उत्तर: np.zeros"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The mean is the average.",
+        "hi": "mean का अर्थ औसत है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "np.max finds the highest mark, not the average.",
+         "hi": "np.max सबसे ज़्यादा अंक निकालता है, औसत नहीं।"
+        },
+        {
+         "en": "np.zeros makes an array of zeros.",
+         "hi": "np.zeros शून्यों का ऐरे बनाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try to guess the mean if the 8 were changed to 18.",
+      "hi": "अंदाज़ा लगाओ अगर 8 की जगह 18 हो तो औसत क्या होगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch06-load-files",
+   "topic": "6.10",
+   "template": "match",
+   "title": {
+    "en": "Loading numbers from a file",
+    "hi": "फ़ाइल से संख्याएँ लोड करना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "lt",
+      "left": {
+       "en": "np.loadtxt()",
+       "hi": "np.loadtxt()"
+      },
+      "right": {
+       "en": "Reads a clean text file where every value is present",
+       "hi": "साफ़ टेक्स्ट फ़ाइल पढ़ता है जिसमें हर मान मौजूद हो"
+      },
+      "why": {
+       "en": "Use it when nothing is missing.",
+       "hi": "जब कुछ छूटा न हो तब इसका उपयोग करो।"
+      }
+     },
+     {
+      "id": "gt",
+      "left": {
+       "en": "np.genfromtxt()",
+       "hi": "np.genfromtxt()"
+      },
+      "right": {
+       "en": "Reads a file that may have missing values",
+       "hi": "ऐसी फ़ाइल पढ़ता है जिसमें कुछ मान छूटे हो सकते हैं"
+      },
+      "why": {
+       "en": "Missing entries become nan (not a number).",
+       "hi": "छूटी प्रविष्टियाँ nan (संख्या नहीं) बन जाती हैं।"
+      }
+     },
+     {
+      "id": "dl",
+      "left": {
+       "en": "delimiter=','",
+       "hi": "delimiter=','"
+      },
+      "right": {
+       "en": "Says that commas separate the values",
+       "hi": "बताता है कि मानों को अल्पविराम अलग करते हैं"
+      },
+      "why": {
+       "en": "Without it NumPy would not know where one value ends.",
+       "hi": "इसके बिना NumPy को पता नहीं चलेगा कि एक मान कहाँ ख़त्म होता है।"
+      }
+     },
+     {
+      "id": "dt",
+      "left": {
+       "en": "dtype=int",
+       "hi": "dtype=int"
+      },
+      "right": {
+       "en": "Asks for whole numbers instead of decimals",
+       "hi": "दशमलव की जगह पूर्ण संख्याएँ माँगता है"
+      },
+      "why": {
+       "en": "dtype chooses the data type of the array.",
+       "hi": "dtype ऐरे का डेटा प्रकार चुनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:lt",
+     "expect": "matched:lt",
+     "say": {
+      "en": "Match np.loadtxt().",
+      "hi": "np.loadtxt() को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A marks file has some blank boxes. Which function copes with missing values?",
+      "hi": "एक अंक-फ़ाइल में कुछ खाने ख़ाली हैं। कौन-सा फ़ंक्शन छूटे मानों को सँभालता है?"
+     },
+     "options": [
+      {
+       "id": "g",
+       "en": "genfromtxt",
+       "hi": "उत्तर: genfromtxt"
+      },
+      {
+       "id": "l",
+       "en": "loadtxt",
+       "hi": "उत्तर: loadtxt"
+      }
+     ],
+     "answer": "g"
+    },
+    {
+     "kind": "do",
+     "target": "left:gt",
+     "expect": "matched:gt",
+     "say": {
+      "en": "Match np.genfromtxt().",
+      "hi": "np.genfromtxt() को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Data is often stored in a text or CSV file. loadtxt() reads such a file into an array when every value is present. genfromtxt() copes with missing values by putting nan in their place. Because a CSV separates values with commas, you tell NumPy with delimiter.",
+      "hi": "डेटा अक्सर टेक्स्ट या CSV फ़ाइल में रखा होता है। जब हर मान मौजूद हो तो loadtxt() ऐसी फ़ाइल को ऐरे में पढ़ता है। genfromtxt() छूटे मानों की जगह nan रखकर उन्हें सँभालता है। CSV मानों को अल्पविराम से अलग करती है, इसलिए NumPy को delimiter से बताते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does nan stand for in an array?",
+        "hi": "ऐरे में nan का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Not a number: a missing or invalid value",
+         "hi": "Not a number: छूटा या अमान्य मान"
+        },
+        {
+         "en": "The number zero",
+         "hi": "संख्या शून्य"
+        },
+        {
+         "en": "A very large number",
+         "hi": "बहुत बड़ी संख्या"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "nan fills the place where a value is missing.",
+        "hi": "nan उस जगह को भरता है जहाँ मान छूटा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zero is a real number; nan marks a missing value.",
+         "hi": "शून्य असली संख्या है; nan छूटा मान दिखाता है।"
+        },
+        {
+         "en": "nan is not about size at all.",
+         "hi": "nan का आकार से कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "A file uses semicolons between values. What would you change in the call?",
+      "hi": "एक फ़ाइल में मानों के बीच अर्धविराम है। कॉल में तुम क्या बदलोगे?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Chapter hook: numbers in rows and columns",
+   "shows": "A school exam hall seating plan laid out on a table as a grid of small paper slips in 5 rows and 6 columns, seen from above",
+   "view": "Top-down view, soft daylight",
+   "right": "The grid is perfectly regular so rows and columns can be counted",
+   "avoid": "Names, numbers or writing on the slips"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.3.1",
+   "use": "Egg tray as a 2-D array",
+   "shows": "A two-row, six-column egg tray with some eggs in it, as a single cut-out",
+   "view": "Top-down, even light",
+   "right": "Rows and columns are clear and equal",
+   "avoid": "Brand marks on the tray"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "6.4",
+   "use": "2-D grid for indexing",
+   "shows": "An empty 2 by 3 grid of equal boxes drawn clean with a bold outline",
+   "view": "Flat front view on white",
+   "right": "Boxes equal so the app can mark row and column indexes and highlight slices",
+   "avoid": "Numbers or letters"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "6.5.2",
+   "use": "Transpose on a card table",
+   "shows": "Three frames of six coloured cards laid in a 2 by 3 grid, then lifted, then laid again as a 3 by 2 grid with the same cards in the turned order",
+   "view": "Same fixed top view and light",
+   "right": "Card colours help the viewer see where each one moved",
+   "avoid": "Hands in the last frame, writing on cards"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "6.7",
+   "use": "Shape frames for reshape",
+   "shows": "Three outline frames of 12 equal squares each: a 3 by 4 grid, a 2 by 6 grid and a single row of 12",
+   "view": "Flat front view on white",
+   "right": "Each frame has exactly 12 squares so the idea of equal count is clear",
+   "avoid": "Numbers or colours inside"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "6.10",
+   "use": "A CSV file as a paper printout",
+   "shows": "A single printed sheet of a table with commas visible between plain made-up values, as a cut-out",
+   "view": "Straight top view",
+   "right": "Looks like a real printout; text is made-up numbers only, no names",
+   "avoid": "Real names or school data, brand headers"
+  }
+ ]
+}

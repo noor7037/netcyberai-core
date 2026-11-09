@@ -1,0 +1,682 @@
+{
+ "chapter_key": "u.c06.social_science.fees1.ch12",
+ "class": 6,
+ "subject_id": "social_science",
+ "title": "Grassroots Democracy — Part 3: Local Government in Urban Areas",
+ "source": "https://ncert.nic.in/textbook/pdf/fees112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Urban local bodies: Council and Corporation",
+   "labs": [
+    "c06-social_science-fees1-ch12-bodies",
+    "c06-social_science-fees1-ch12-villagecity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Responsible citizens and city waste",
+   "labs": [
+    "c06-social_science-fees1-ch12-waste"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Governance in cities: Kolkata, Chennai, Mumbai",
+   "labs": [
+    "c06-social_science-fees1-ch12-cities"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-social_science-fees1-ch12-bodies",
+   "topic": "12.1",
+   "template": "sort",
+   "title": {
+    "en": "Council or Corporation?",
+    "hi": "नगरपरिषद या नगर निगम?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "council",
+      "label": {
+       "en": "Municipal Council",
+       "hi": "नगरपरिषद"
+      }
+     },
+     {
+      "id": "corp",
+      "label": {
+       "en": "Municipal Corporation",
+       "hi": "नगर निगम"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "small",
+      "text": {
+       "en": "A small town",
+       "hi": "एक छोटा नगर"
+      },
+      "bin": "council",
+      "why": {
+       "en": "Smaller towns are looked after by a Municipal Council.",
+       "hi": "छोटे नगरों की देखभाल नगरपरिषद करती है।"
+      }
+     },
+     {
+      "id": "chair",
+      "text": {
+       "en": "Headed by a chairperson",
+       "hi": "अध्यक्ष इसके प्रमुख होते हैं"
+      },
+      "bin": "council",
+      "why": {
+       "en": "A Municipal Council has a chairperson as its head.",
+       "hi": "नगरपरिषद के प्रमुख अध्यक्ष होते हैं।"
+      }
+     },
+     {
+      "id": "big",
+      "text": {
+       "en": "A large city like Mumbai or Chennai",
+       "hi": "मुंबई या चेन्नई जैसा बड़ा शहर"
+      },
+      "bin": "corp",
+      "why": {
+       "en": "Large cities have a Municipal Corporation.",
+       "hi": "बड़े शहरों में नगर निगम होता है।"
+      }
+     },
+     {
+      "id": "mayor",
+      "text": {
+       "en": "Headed by a Mayor",
+       "hi": "महापौर (मेयर) इसके प्रमुख होते हैं"
+      },
+      "bin": "corp",
+      "why": {
+       "en": "The head of a Municipal Corporation is the Mayor.",
+       "hi": "नगर निगम के प्रमुख महापौर होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which body looks after a big city?",
+      "hi": "बड़े शहर की देखभाल कौन-सी संस्था करती है?"
+     },
+     "options": [
+      {
+       "id": "corp",
+       "en": "A Municipal Corporation",
+       "hi": "नगर निगम"
+      },
+      {
+       "id": "council",
+       "en": "A Municipal Council",
+       "hi": "नगरपरिषद"
+      }
+     ],
+     "answer": "corp"
+    },
+    {
+     "kind": "do",
+     "target": "card:big",
+     "expect": "correct:big",
+     "say": {
+      "en": "Place 'A large city' with the right body.",
+      "hi": "'एक बड़ा शहर' को सही संस्था के साथ रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press check.",
+      "hi": "बाक़ी छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Towns and cities have their own elected local bodies. A small town has a Municipal Council and a large city has a Municipal Corporation. A city is divided into wards, and each ward elects a councillor. These bodies look after cleaning, roads, water, street lights and markets.",
+      "hi": "नगरों और शहरों की अपनी चुनी हुई स्थानीय संस्थाएँ होती हैं। छोटे नगर में नगरपरिषद और बड़े शहर में नगर निगम होता है। शहर वार्डों में बँटा होता है और हर वार्ड एक पार्षद चुनता है। ये संस्थाएँ सफ़ाई, सड़क, पानी, बत्तियों और बाज़ारों की देखभाल करती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who is the head of a Municipal Corporation?",
+        "hi": "नगर निगम का प्रमुख कौन होता है?"
+       },
+       "options": [
+        {
+         "en": "The Mayor",
+         "hi": "महापौर"
+        },
+        {
+         "en": "The Sarpanch",
+         "hi": "सरपंच"
+        },
+        {
+         "en": "The chairperson of a council",
+         "hi": "नगरपरिषद का अध्यक्ष"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A Mayor heads a Municipal Corporation.",
+        "hi": "नगर निगम का प्रमुख महापौर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A Sarpanch heads a village Gram Panchayat.",
+         "hi": "सरपंच गाँव की ग्राम पंचायत का प्रमुख होता है।"
+        },
+        {
+         "en": "A chairperson heads a Municipal Council, not a Corporation.",
+         "hi": "अध्यक्ष नगरपरिषद का प्रमुख होता है, निगम का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find out what your own town or city has: a Council or a Corporation.",
+      "hi": "पता करो कि तुम्हारे नगर या शहर में नगरपरिषद है या नगर निगम।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch12-villagecity",
+   "topic": "12.2",
+   "template": "sort",
+   "title": {
+    "en": "Village or city body?",
+    "hi": "गाँव या शहर की संस्था?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "village",
+      "label": {
+       "en": "Village (Panchayat)",
+       "hi": "गाँव (पंचायत)"
+      }
+     },
+     {
+      "id": "city",
+      "label": {
+       "en": "City (Corporation)",
+       "hi": "शहर (निगम)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sarpanch",
+      "text": {
+       "en": "Sarpanch",
+       "hi": "सरपंच"
+      },
+      "bin": "village",
+      "why": {
+       "en": "The Sarpanch heads the Gram Panchayat.",
+       "hi": "सरपंच ग्राम पंचायत का प्रमुख है।"
+      }
+     },
+     {
+      "id": "sabha",
+      "text": {
+       "en": "Gram Sabha meeting",
+       "hi": "ग्राम सभा की बैठक"
+      },
+      "bin": "village",
+      "why": {
+       "en": "The Gram Sabha is a village body.",
+       "hi": "ग्राम सभा गाँव की संस्था है।"
+      }
+     },
+     {
+      "id": "mayor",
+      "text": {
+       "en": "Mayor",
+       "hi": "महापौर"
+      },
+      "bin": "city",
+      "why": {
+       "en": "The Mayor heads a city Corporation.",
+       "hi": "महापौर शहर के निगम का प्रमुख है।"
+      }
+     },
+     {
+      "id": "councillor",
+      "text": {
+       "en": "Ward councillor",
+       "hi": "वार्ड पार्षद"
+      },
+      "bin": "city",
+      "why": {
+       "en": "Each city ward elects a councillor.",
+       "hi": "शहर का हर वार्ड एक पार्षद चुनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who is chosen for a city ward: a Sarpanch or a councillor?",
+      "hi": "शहर के वार्ड के लिए कौन चुना जाता है: सरपंच या पार्षद?"
+     },
+     "options": [
+      {
+       "id": "councillor",
+       "en": "A councillor",
+       "hi": "पार्षद"
+      },
+      {
+       "id": "sarpanch",
+       "en": "A Sarpanch",
+       "hi": "सरपंच"
+      }
+     ],
+     "answer": "councillor"
+    },
+    {
+     "kind": "do",
+     "target": "card:mayor",
+     "expect": "correct:mayor",
+     "say": {
+      "en": "Place the Mayor with the right body.",
+      "hi": "महापौर को सही संस्था के साथ रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press check.",
+      "hi": "बाक़ी छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rural and urban areas have different local bodies but the same idea: people elect those who look after their daily needs. Villages have Panchayats and a Sarpanch. Cities have Corporations, a Mayor and ward councillors.",
+      "hi": "गाँव और शहर की स्थानीय संस्थाएँ अलग हैं, पर विचार वही है: लोग उन्हें चुनते हैं जो उनकी रोज़ की ज़रूरतें देखते हैं। गाँवों में पंचायत और सरपंच होते हैं। शहरों में निगम, महापौर और वार्ड पार्षद होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is common to both a Panchayat and a Corporation?",
+        "hi": "पंचायत और निगम में क्या एक जैसा है?"
+       },
+       "options": [
+        {
+         "en": "People elect them",
+         "hi": "लोग उन्हें चुनते हैं"
+        },
+        {
+         "en": "Both are in cities",
+         "hi": "दोनों शहर में हैं"
+        },
+        {
+         "en": "Both are run by the Army",
+         "hi": "दोनों सेना चलाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both are elected local bodies.",
+        "hi": "दोनों चुनी हुई स्थानीय संस्थाएँ हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A Panchayat is rural, a Corporation urban.",
+         "hi": "पंचायत ग्रामीण है, निगम शहरी।"
+        },
+        {
+         "en": "The Army has no role in running local bodies.",
+         "hi": "स्थानीय संस्थाएँ चलाने में सेना की कोई भूमिका नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare Fig. 12.2 of your book with your own area. What is similar and what is different?",
+      "hi": "अपनी पुस्तक के चित्र 12.2 की तुलना अपने क्षेत्र से करो। क्या समान है और क्या अलग?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch12-waste",
+   "topic": "12.2",
+   "template": "eco",
+   "title": {
+    "en": "Sort the city's waste",
+    "hi": "शहर का कचरा छाँटो"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "waste"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does a banana peel go in the green (wet) bin or the blue (dry) bin?",
+      "hi": "केले का छिलका हरे (गीले) डिब्बे में जाएगा या नीले (सूखे) में?"
+     },
+     "options": [
+      {
+       "id": "green",
+       "en": "Green (wet)",
+       "hi": "हरा (गीला)"
+      },
+      {
+       "id": "blue",
+       "en": "Blue (dry)",
+       "hi": "नीला (सूखा)"
+      }
+     ],
+     "answer": "green"
+    },
+    {
+     "kind": "do",
+     "target": "card:banana",
+     "expect": "picked:banana",
+     "say": {
+      "en": "Tap the banana peel card.",
+      "hi": "केले के छिलके के कार्ड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:green",
+     "expect": "sorted",
+     "say": {
+      "en": "Tap the bin where it belongs.",
+      "hi": "जिस डिब्बे में वह जाता है उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Municipal bodies collect and deal with the city's waste, but citizens help most by sorting at home. Wet waste like peels can become compost. Dry waste like paper, glass and cans can be recycled. A responsible citizen also keeps the street clean and saves water.",
+      "hi": "नगर संस्थाएँ शहर का कचरा इकट्ठा करती और निपटाती हैं, पर नागरिक घर पर छँटाई करके सबसे ज़्यादा मदद करते हैं। गीला कचरा, जैसे छिलके, खाद बन सकता है। सूखा कचरा, जैसे काग़ज़, काँच और डिब्बे, दोबारा इस्तेमाल हो सकता है। ज़िम्मेदार नागरिक सड़क साफ़ रखता है और पानी बचाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why should we sort waste at home?",
+        "hi": "हमें घर पर कचरा क्यों छाँटना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Wet waste can become compost and dry waste can be recycled",
+         "hi": "गीले कचरे से खाद बनती है और सूखा कचरा दोबारा काम आता है"
+        },
+        {
+         "en": "It makes no difference",
+         "hi": "कोई फ़र्क़ नहीं पड़ता"
+        },
+        {
+         "en": "It is only for the municipality",
+         "hi": "यह केवल नगर संस्था का काम है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sorting makes both composting and recycling possible.",
+        "hi": "छँटाई से खाद बनाना और दोबारा उपयोग दोनों संभव होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sorted waste is far easier to reuse. It does make a difference.",
+         "hi": "छँटा कचरा दोबारा उपयोग करना बहुत आसान है। फ़र्क़ पड़ता है।"
+        },
+        {
+         "en": "Citizens and the municipality share the work.",
+         "hi": "नागरिक और नगर संस्था दोनों मिलकर काम करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the other cards too. Which waste from your home goes to which bin?",
+      "hi": "बाक़ी कार्ड भी छाँटो। तुम्हारे घर का कौन-सा कचरा किस डिब्बे में जाएगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch12-cities",
+   "topic": "12.3",
+   "template": "map",
+   "title": {
+    "en": "Three great cities",
+    "hi": "तीन बड़े शहर"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "ports"
+    ],
+    "task": "label",
+    "places": [
+     "kolkata",
+     "chennai",
+     "mumbai"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "label:mumbai",
+     "expect": "located:mumbai",
+     "say": {
+      "en": "Tap the name 'Mumbai', then tap its pin on the west coast.",
+      "hi": "'मुंबई' नाम पर टैप करो, फिर पश्चिमी तट पर उसके पिन पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Kolkata and Chennai are on the east coast. Which one is further north?",
+      "hi": "कोलकाता और चेन्नई पूर्वी तट पर हैं। कौन-सा अधिक उत्तर में है?"
+     },
+     "options": [
+      {
+       "id": "kol",
+       "en": "Kolkata",
+       "hi": "कोलकाता"
+      },
+      {
+       "id": "che",
+       "en": "Chennai",
+       "hi": "चेन्नई"
+      }
+     ],
+     "answer": "kol"
+    },
+    {
+     "kind": "do",
+     "target": "label:kolkata",
+     "expect": "located:kolkata",
+     "say": {
+      "en": "Label Kolkata.",
+      "hi": "कोलकाता का नाम लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:chennai",
+     "expect": "labelled",
+     "say": {
+      "en": "Label Chennai.",
+      "hi": "चेन्नई का नाम लगाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mumbai, Kolkata and Chennai are big port cities, and each is governed by a Municipal Corporation. A city with millions of people needs a local body for roads, water, waste and markets. These three cities grew along the coast because ships could reach them.",
+      "hi": "मुंबई, कोलकाता और चेन्नई बड़े बंदरगाह शहर हैं और हर एक का शासन नगर निगम करता है। लाखों लोगों वाले शहर को सड़क, पानी, कचरे और बाज़ार के लिए स्थानीय संस्था चाहिए। ये तीनों शहर तट पर इसलिए बढ़े क्योंकि जहाज़ वहाँ पहुँच सकते थे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is on India's west coast?",
+        "hi": "इनमें से कौन-सा भारत के पश्चिमी तट पर है?"
+       },
+       "options": [
+        {
+         "en": "Mumbai",
+         "hi": "मुंबई"
+        },
+        {
+         "en": "Kolkata",
+         "hi": "कोलकाता"
+        },
+        {
+         "en": "Chennai",
+         "hi": "चेन्नई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mumbai is on the Arabian Sea.",
+        "hi": "मुंबई अरब सागर पर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Kolkata is in the east, near the Bay of Bengal.",
+         "hi": "कोलकाता पूर्व में, बंगाल की खाड़ी के पास है।"
+        },
+        {
+         "en": "Chennai is on the east coast too.",
+         "hi": "चेन्नई भी पूर्वी तट पर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick a city of your own state. Which local body governs it?",
+      "hi": "अपने राज्य का कोई शहर चुनो। उसका शासन कौन-सी स्थानीय संस्था करती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Opens the chapter",
+   "shows": "A busy Indian city street with a municipal truck cleaning the road in morning light",
+   "view": "Wide, 16:9",
+   "right": "Real traffic, clear truck",
+   "avoid": "Plates, signs"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "City ward",
+   "shows": "A narrow neighbourhood lane with street lights and a notice board, no readable text",
+   "view": "Wide",
+   "right": "Typical Indian ward",
+   "avoid": "Names"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "12.2",
+   "use": "Card: green bin",
+   "shows": "A green dustbin for wet waste, cut out",
+   "view": "Three-quarter",
+   "right": "Plain green bin",
+   "avoid": "Logos"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "12.2",
+   "use": "Card: blue bin",
+   "shows": "A blue dustbin for dry waste, cut out",
+   "view": "Three-quarter",
+   "right": "Plain blue bin",
+   "avoid": "Logos"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "12.3",
+   "use": "Port city",
+   "shows": "Mumbai sea front at dusk",
+   "view": "Wide",
+   "right": "True coast and skyline",
+   "avoid": "Ads"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "12.3",
+   "use": "Coast map",
+   "shows": "India's coastline map showing only land and sea",
+   "view": "16:9",
+   "right": "Correct coastlines",
+   "avoid": "Names, borders"
+  }
+ ]
+}

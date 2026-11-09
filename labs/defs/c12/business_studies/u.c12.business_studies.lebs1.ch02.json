@@ -1,0 +1,715 @@
+{
+  "chapter_key": "u.c12.business_studies.lebs1.ch02",
+  "class": 12,
+  "subject_id": "business_studies",
+  "title": "Principles of Management",
+  "source": "https://ncert.nic.in/textbook/pdf/lebs1ps.pdf",
+  "topics": [
+    {
+      "n": "2.1",
+      "title": "Early perspectives",
+      "labs": [],
+      "why_no_lab": "A history of ideas is best read as a short story in the lesson; no action to test."
+    },
+    {
+      "n": "2.2",
+      "title": "Classical management theory: scientific management and its techniques",
+      "labs": [
+        "c12-business_studies-lebs1-ch02-scientific"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.3",
+      "title": "Taylor’s principles of scientific management",
+      "labs": [],
+      "why_no_lab": "The four principles are covered by the matching lab in 2.2 and by the sort lab in 2.5."
+    },
+    {
+      "n": "2.4",
+      "title": "Administrative theory: Henri Fayol’s principles",
+      "labs": [
+        "c12-business_studies-lebs1-ch02-fayol"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.5",
+      "title": "Modern management: nature and significance of principles",
+      "labs": [
+        "c12-business_studies-lebs1-ch02-schools"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-business_studies-lebs1-ch02-scientific",
+      "topic": "2.2",
+      "template": "match",
+      "title": {
+        "en": "Taylor’s tools for the one best way",
+        "hi": "टेलर के औज़ार: सबसे अच्छा तरीका"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "p1",
+            "left": {
+              "en": "Functional foremanship",
+              "hi": "कार्यात्मक फ़ोरमैनशिप"
+            },
+            "right": {
+              "en": "Several expert supervisors, each guiding one kind of task.",
+              "hi": "कई विशेषज्ञ पर्यवेक्षक, हर एक एक प्रकार के काम का मार्गदर्शन करता है।"
+            },
+            "why": {
+              "en": "Each expert specialises in one part of the job.",
+              "hi": "हर विशेषज्ञ काम के एक भाग में माहिर होता है।"
+            }
+          },
+          {
+            "id": "p2",
+            "left": {
+              "en": "Standardisation of work",
+              "hi": "कार्य का मानकीकरण"
+            },
+            "right": {
+              "en": "Every worker uses the same best method and tools.",
+              "hi": "हर कर्मचारी एक ही सर्वोत्तम तरीका और औज़ार लगाता है।"
+            },
+            "why": {
+              "en": "Standard methods and tools make work uniform.",
+              "hi": "मानक तरीके और औज़ार काम को एक-सा बनाते हैं।"
+            }
+          },
+          {
+            "id": "p3",
+            "left": {
+              "en": "Method study",
+              "hi": "विधि अध्ययन"
+            },
+            "right": {
+              "en": "Finding the fastest way to pack 100 boxes.",
+              "hi": "100 डिब्बे पैक करने का सबसे तेज़ तरीका खोजना।"
+            },
+            "why": {
+              "en": "Method study looks at how a job is done, to improve it.",
+              "hi": "विधि अध्ययन यह देखता है कि काम कैसे होता है, ताकि उसे सुधारा जा सके।"
+            }
+          },
+          {
+            "id": "p4",
+            "left": {
+              "en": "Time study",
+              "hi": "समय अध्ययन"
+            },
+            "right": {
+              "en": "Timing each step to set a fair time for the task.",
+              "hi": "हर चरण का समय नापकर काम का उचित समय तय करना।"
+            },
+            "why": {
+              "en": "Time study measures how long each step takes.",
+              "hi": "समय अध्ययन नापता है कि हर चरण में कितना समय लगता है।"
+            }
+          },
+          {
+            "id": "p5",
+            "left": {
+              "en": "Differential piece wage",
+              "hi": "अंतर-खंड मज़दूरी प्रणाली"
+            },
+            "right": {
+              "en": "Workers who make more pieces get a higher rate per piece.",
+              "hi": "जो कर्मचारी ज़्यादा टुकड़े बनाता है, उसे प्रति टुकड़ा ऊँची दर मिलती है।"
+            },
+            "why": {
+              "en": "A higher rate for more output rewards efficient workers.",
+              "hi": "ज़्यादा उत्पादन पर ऊँची दर कुशल कर्मचारी को इनाम देती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A factory wants the quickest way to pack 100 boxes. Which technique is this?",
+            "hi": "एक कारख़ाना 100 डिब्बे पैक करने का सबसे तेज़ तरीका चाहता है। यह कौन-सी तकनीक है?"
+          },
+          "options": [
+            {
+              "id": "ms",
+              "en": "Method study",
+              "hi": "विधि अध्ययन"
+            },
+            {
+              "id": "dpw",
+              "en": "Differential piece wage",
+              "hi": "अंतर-खंड मज़दूरी"
+            },
+            {
+              "id": "ff",
+              "en": "Functional foremanship",
+              "hi": "कार्यात्मक फ़ोरमैनशिप"
+            }
+          ],
+          "answer": "ms"
+        },
+        {
+          "kind": "do",
+          "target": "right:p3",
+          "expect": "matched:p3",
+          "say": {
+            "en": "Tap a technique on the left, then its match on the right. Start with method study.",
+            "hi": "बाईं ओर कोई तकनीक दबाओ, फिर दाईं ओर उसका मेल। विधि अध्ययन से शुरू करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "right:p5",
+          "expect": "matched:p5",
+          "say": {
+            "en": "Now match the pay plan that rewards more output.",
+            "hi": "अब उस मज़दूरी प्रणाली से मेल करो जो ज़्यादा उत्पादन पर इनाम देती है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Taylor wanted to replace guesswork with study. He timed each step, found the best method, set standard work and paid more to those who produced more. The aim was higher output with fair pay for workers.",
+            "hi": "टेलर अनुमान की जगह अध्ययन चाहते थे। उन्होंने हर चरण का समय नापा, सबसे अच्छा तरीका खोजा, मानक काम तय किया और ज़्यादा उत्पादन करने वालों को अधिक मज़दूरी दी। उद्देश्य था कर्मचारियों को उचित मज़दूरी के साथ ज़्यादा उत्पादन।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A worker who packs twice as many boxes earns more per box. Which pay plan does this?",
+                "hi": "एक कर्मचारी दोगुने डिब्बे पैक करता है और प्रति डिब्बा ज़्यादा कमाता है। यह कौन-सी मज़दूरी प्रणाली है?"
+              },
+              "options": [
+                {
+                  "en": "Differential piece wage",
+                  "hi": "अंतर-खंड मज़दूरी प्रणाली"
+                },
+                {
+                  "en": "Flat monthly salary for all",
+                  "hi": "सबके लिए एक जैसा मासिक वेतन"
+                },
+                {
+                  "en": "Pay by the length of service only",
+                  "hi": "केवल सेवा की अवधि पर वेतन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The rate per piece rises with output, so the efficient worker earns more. That is the differential piece wage.",
+                "hi": "प्रति टुकड़ा दर उत्पादन के साथ बढ़ती है, इसलिए कुशल कर्मचारी अधिक कमाता है। यही अंतर-खंड मज़दूरी प्रणाली है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A flat salary does not change with output, so it does not reward more boxes.",
+                  "hi": "एक जैसा वेतन उत्पादन के साथ नहीं बदलता, इसलिए ज़्यादा डिब्बों का इनाम नहीं देता।"
+                },
+                {
+                  "en": "Length of service does not depend on how many boxes a worker packs.",
+                  "hi": "सेवा की अवधि इस पर निर्भर नहीं करती कि कर्मचारी कितने डिब्बे पैक करता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the last three pairs. Then think: which of these tools would help a school canteen serve lunch faster?",
+            "hi": "आख़िरी तीन जोड़ियाँ मिलाओ। फिर सोचो: इनमें से कौन-सा औज़ार स्कूल की कैंटीन में दोपहर का खाना तेज़ परोसने में मदद करेगा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs1-ch02-fayol",
+      "topic": "2.4",
+      "template": "match",
+      "title": {
+        "en": "Fayol’s principles at work",
+        "hi": "फ़ायोल के सिद्धांत काम पर"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "p1",
+            "left": {
+              "en": "Unity of command",
+              "hi": "आदेश की एकता"
+            },
+            "right": {
+              "en": "A clerk takes orders from only one boss.",
+              "hi": "एक लिपिक केवल एक ही बॉस से आदेश लेता है।"
+            },
+            "why": {
+              "en": "One worker, one boss: no confusion about orders.",
+              "hi": "एक कर्मचारी, एक बॉस: आदेशों में भ्रम नहीं।"
+            }
+          },
+          {
+            "id": "p2",
+            "left": {
+              "en": "Division of work",
+              "hi": "कार्य का विभाजन"
+            },
+            "right": {
+              "en": "In a bakery, one person kneads and another bakes.",
+              "hi": "बेकरी में एक आटा गूँधता है और दूसरा सेंकता है।"
+            },
+            "why": {
+              "en": "Specialisation makes work faster and better.",
+              "hi": "विशेषीकरण से काम तेज़ और बेहतर होता है।"
+            }
+          },
+          {
+            "id": "p3",
+            "left": {
+              "en": "Unity of direction",
+              "hi": "दिशा की एकता"
+            },
+            "right": {
+              "en": "All shops of one chain follow one plan and one head.",
+              "hi": "एक चेन की सभी दुकानें एक योजना और एक मुखिया के अधीन चलती हैं।"
+            },
+            "why": {
+              "en": "One plan for one set of activities keeps all moving together.",
+              "hi": "एक जैसे कामों की एक योजना सबको एक साथ चलाती है।"
+            }
+          },
+          {
+            "id": "p4",
+            "left": {
+              "en": "Remuneration",
+              "hi": "पारिश्रमिक"
+            },
+            "right": {
+              "en": "Pay that is fair to both workers and the firm.",
+              "hi": "ऐसा वेतन जो कर्मचारी और संस्था दोनों के लिए उचित हो।"
+            },
+            "why": {
+              "en": "Fair pay motivates workers and keeps the firm sound.",
+              "hi": "उचित वेतन कर्मचारियों को प्रेरित करता है और संस्था को मज़बूत रखता है।"
+            }
+          },
+          {
+            "id": "p5",
+            "left": {
+              "en": "Equity",
+              "hi": "न्याय और समानता"
+            },
+            "right": {
+              "en": "Equal, kind and fair treatment of workers doing the same job.",
+              "hi": "एक ही काम करने वाले कर्मचारियों से एक-सा, दयालु और न्यायपूर्ण व्यवहार।"
+            },
+            "why": {
+              "en": "Fairness builds trust among workers.",
+              "hi": "न्याय कर्मचारियों में भरोसा बनाता है।"
+            }
+          },
+          {
+            "id": "p6",
+            "left": {
+              "en": "Order",
+              "hi": "व्यवस्था"
+            },
+            "right": {
+              "en": "Each tool and person is in the right place at the right time.",
+              "hi": "हर औज़ार और व्यक्ति सही जगह और सही समय पर हो।"
+            },
+            "why": {
+              "en": "A place for everything keeps work smooth.",
+              "hi": "हर चीज़ की जगह तय हो तो काम सुचारु चलता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A cook takes orders from both the owner and the manager, and gets confused. Which principle is broken?",
+            "hi": "एक रसोइये को मालिक और प्रबंधक दोनों से आदेश मिलते हैं और वह उलझन में पड़ता है। कौन-सा सिद्धांत टूटा है?"
+          },
+          "options": [
+            {
+              "id": "uc",
+              "en": "Unity of command",
+              "hi": "आदेश की एकता"
+            },
+            {
+              "id": "dw",
+              "en": "Division of work",
+              "hi": "कार्य का विभाजन"
+            },
+            {
+              "id": "eq",
+              "en": "Equity",
+              "hi": "न्याय और समानता"
+            }
+          ],
+          "answer": "uc"
+        },
+        {
+          "kind": "do",
+          "target": "right:p1",
+          "expect": "matched:p1",
+          "say": {
+            "en": "Tap Unity of command on the left, then its example on the right.",
+            "hi": "बाईं ओर आदेश की एकता दबाओ, फिर दाईं ओर उसका उदाहरण।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "right:p2",
+          "expect": "matched:p2",
+          "say": {
+            "en": "Now match Division of work with the bakery.",
+            "hi": "अब कार्य के विभाजन को बेकरी वाले उदाहरण से मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Fayol gave general principles for managers to guide their decisions. They are guides, not strict rules. Unity of command, unity of direction and division of work make the firm orderly; equity and fair pay make the workers trust it.",
+            "hi": "फ़ायोल ने प्रबंधकों के फ़ैसलों के लिए सामान्य सिद्धांत दिए। ये मार्गदर्शक हैं, कठोर नियम नहीं। आदेश की एकता, दिशा की एकता और कार्य का विभाजन संस्था को व्यवस्थित रखते हैं; न्याय और उचित वेतन कर्मचारियों का भरोसा बनाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A shop pays the same wage for the same work to every employee, whatever the employee’s background. Which principle is shown?",
+                "hi": "एक दुकान हर कर्मचारी को एक ही काम के लिए एक-सा वेतन देती है, उसकी पृष्ठभूमि चाहे जो हो। कौन-सा सिद्धांत दिखता है?"
+              },
+              "options": [
+                {
+                  "en": "Equity",
+                  "hi": "न्याय और समानता"
+                },
+                {
+                  "en": "Division of work",
+                  "hi": "कार्य का विभाजन"
+                },
+                {
+                  "en": "Order",
+                  "hi": "व्यवस्था"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Equal pay and fair treatment for the same work is equity.",
+                "hi": "एक ही काम के लिए समान वेतन और न्यायपूर्ण व्यवहार ही न्याय और समानता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Division of work is about splitting tasks by skill. It does not decide pay.",
+                  "hi": "कार्य का विभाजन कामों को कौशल के अनुसार बाँटने की बात है। वह वेतन तय नहीं करता।"
+                },
+                {
+                  "en": "Order is about putting tools and people in the right place. It is not about pay.",
+                  "hi": "व्यवस्था औज़ारों और लोगों को सही जगह पर रखने की बात है। यह वेतन की बात नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the last four pairs. Then pick one principle and say where you see it in a school or a shop near you.",
+            "hi": "आख़िरी चार जोड़ियाँ मिलाओ। फिर कोई एक सिद्धांत चुनो और बताओ कि अपने पास के स्कूल या दुकान में वह कहाँ दिखता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs1-ch02-schools",
+      "topic": "2.5",
+      "template": "sort",
+      "title": {
+        "en": "Which school of thought?",
+        "hi": "कौन-सी विचारधारा?"
+      },
+      "minutes": 5,
+      "level": "stretch",
+      "config": {
+        "bins": [
+          {
+            "id": "sci",
+            "label": {
+              "en": "Scientific: Taylor",
+              "hi": "वैज्ञानिक: टेलर"
+            }
+          },
+          {
+            "id": "admin",
+            "label": {
+              "en": "Administrative: Fayol",
+              "hi": "प्रशासनिक: फ़ायोल"
+            }
+          },
+          {
+            "id": "modern",
+            "label": {
+              "en": "Modern: flexible guides",
+              "hi": "आधुनिक: लचीले मार्गदर्शक"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "c1",
+            "bin": "sci",
+            "text": {
+              "en": "Study each job with a stopwatch to set a fair day’s work.",
+              "hi": "स्टॉपवॉच से हर काम का अध्ययन करके उचित दिन का काम तय करो।"
+            },
+            "why": {
+              "en": "Taylor used time and method study on the shop floor.",
+              "hi": "टेलर ने कारख़ाने के फ़र्श पर समय और विधि अध्ययन किया।"
+            }
+          },
+          {
+            "id": "c2",
+            "bin": "modern",
+            "text": {
+              "en": "Principles are flexible guides, not fixed laws.",
+              "hi": "सिद्धांत लचीले मार्गदर्शक हैं, पक्के नियम नहीं।"
+            },
+            "why": {
+              "en": "Modern thinkers say principles change with the place and time.",
+              "hi": "आधुनिक विचारक कहते हैं कि सिद्धांत जगह और समय के साथ बदलते हैं।"
+            }
+          },
+          {
+            "id": "c3",
+            "bin": "admin",
+            "text": {
+              "en": "Unity of command: one boss for each worker.",
+              "hi": "आदेश की एकता: हर कर्मचारी का एक ही बॉस।"
+            },
+            "why": {
+              "en": "Fayol wrote principles for the whole administration.",
+              "hi": "फ़ायोल ने पूरे प्रशासन के लिए सिद्धांत लिखे।"
+            }
+          },
+          {
+            "id": "c4",
+            "bin": "sci",
+            "text": {
+              "en": "Choose the best worker for each task and train him.",
+              "hi": "हर काम के लिए सबसे अच्छा कर्मचारी चुनो और प्रशिक्षण दो।"
+            },
+            "why": {
+              "en": "This is the scientific selection and training of workers.",
+              "hi": "यह कर्मचारियों का वैज्ञानिक चयन और प्रशिक्षण है।"
+            }
+          },
+          {
+            "id": "c5",
+            "bin": "modern",
+            "text": {
+              "en": "Adjust principles to the place and time you work in.",
+              "hi": "सिद्धांतों को जगह और समय के अनुसार ढालो।"
+            },
+            "why": {
+              "en": "Good managers adapt general rules to the situation.",
+              "hi": "अच्छे प्रबंधक सामान्य नियमों को स्थिति के अनुसार ढालते हैं।"
+            }
+          },
+          {
+            "id": "c6",
+            "bin": "admin",
+            "text": {
+              "en": "Plan, organise, command, coordinate and control work.",
+              "hi": "काम की योजना, संगठन, आदेश, समन्वय और नियंत्रण।"
+            },
+            "why": {
+              "en": "These are the functions of management in Fayol’s view.",
+              "hi": "फ़ायोल के अनुसार ये प्रबंधन के कार्य हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Taylor said: time each step with a stopwatch and find the one best way. Which school is this?",
+            "hi": "टेलर ने कहा: स्टॉपवॉच से हर चरण का समय नापो और सबसे अच्छा तरीका खोजो। यह कौन-सी विचारधारा है?"
+          },
+          "options": [
+            {
+              "id": "sci",
+              "en": "Scientific",
+              "hi": "वैज्ञानिक"
+            },
+            {
+              "id": "admin",
+              "en": "Administrative",
+              "hi": "प्रशासनिक"
+            },
+            {
+              "id": "modern",
+              "en": "Modern",
+              "hi": "आधुनिक"
+            }
+          ],
+          "answer": "sci"
+        },
+        {
+          "kind": "do",
+          "target": "bin:sci",
+          "expect": "placed:c1",
+          "say": {
+            "en": "Tap the stopwatch card, then the Scientific group.",
+            "hi": "स्टॉपवॉच वाला कार्ड दबाओ, फिर वैज्ञानिक समूह दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:admin",
+          "expect": "placed:c3",
+          "say": {
+            "en": "Place the unity of command card with Fayol.",
+            "hi": "आदेश की एकता वाला कार्ड फ़ायोल के समूह में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:modern",
+          "expect": "placed:c2",
+          "say": {
+            "en": "Place the flexible guides card in the Modern group.",
+            "hi": "लचीले मार्गदर्शक वाला कार्ड आधुनिक समूह में रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Taylor focused on the work on the shop floor. Fayol looked at the whole management. Modern thinkers see principles as flexible guides that change with the situation.",
+            "hi": "टेलर का ध्यान कारख़ाने के काम पर था। फ़ायोल ने पूरे प्रबंधन को देखा। आधुनिक विचारक सिद्धांतों को लचीले मार्गदर्शक मानते हैं जो स्थिति के साथ बदलते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A manager says: the same rule works in every town, every time. Which view is this?",
+                "hi": "एक प्रबंधक कहता है: एक ही नियम हर शहर में, हर समय चलता है। यह कौन-सा दृष्टिकोण है?"
+              },
+              "options": [
+                {
+                  "en": "A fixed universal rule view, like the classical schools",
+                  "hi": "शास्त्रीय विचारधारा जैसा पक्का सार्वभौमिक नियम वाला दृष्टिकोण"
+                },
+                {
+                  "en": "A flexible guide view of modern management",
+                  "hi": "आधुनिक प्रबंधन का लचीले मार्गदर्शक वाला दृष्टिकोण"
+                },
+                {
+                  "en": "A rule that nobody needs to follow",
+                  "hi": "ऐसा नियम जिसे किसी को मानना नहीं पड़ता"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Saying one rule works everywhere, always, is the fixed-law view of the classical thinkers.",
+                "hi": "यह कहना कि एक नियम हर जगह और हमेशा चलता है, शास्त्रीय विचारकों का पक्का नियम वाला दृष्टिकोण है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Modern thinkers say principles change with place and time, which this manager denies.",
+                  "hi": "आधुनिक विचारक कहते हैं कि सिद्धांत जगह और समय के साथ बदलते हैं, जिसे यह प्रबंधक नहीं मानता।"
+                },
+                {
+                  "en": "A principle that nobody needs to follow is not a principle at all.",
+                  "hi": "जिस सिद्धांत को कोई मानने की ज़रूरत न हो, वह सिद्धांत ही नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last three cards. Then think of one place where a rule must change, not stay fixed.",
+            "hi": "बाक़ी तीन कार्ड रखो। फिर सोचो कि किस जगह कोई नियम बदलना चाहिए, पक्का नहीं रहना चाहिए।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "2.1",
+      "use": "Early workshops before rules were studied",
+      "shows": "A small Indian workshop where a craftsperson works at a bench with tools laid out in order",
+      "view": "Wide, eye level, 16:9, warm daylight through a door",
+      "right": "Tools in a neat row; real wood and metal; no identifiable face",
+      "avoid": "Brand names, readable signs"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "2.2",
+      "use": "Stopwatch study of one job (lab 1)",
+      "shows": "A worker packing boxes in five stages, shown as five frames of the same task",
+      "view": "Fixed camera, same light and framing in all five frames, numbered",
+      "right": "Same box and bench in every frame; hands only, no face",
+      "avoid": "Changing the camera angle, identifiable faces"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "2.2",
+      "use": "Tools of study (lab 1)",
+      "shows": "A clipboard, a stopwatch and a measuring tape on a wooden bench",
+      "view": "Top-down, 1:1, soft top-left light, separate cut-outs",
+      "right": "Clear stopwatch face, clean tape, no logos",
+      "avoid": "Brand logos, price tags"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "2.4",
+      "use": "Unity of command as a chart (lab 2)",
+      "shows": "A clean organisation chart base: one box at the top and one line down to one box",
+      "view": "Flat, 16:9, white background",
+      "right": "Single line from one boss to one worker",
+      "avoid": "Words, names, icons with text"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "2.5",
+      "use": "Modern flexible workplace (lab 3)",
+      "shows": "A small Indian office where a team stands around a whiteboard with a laptop, planning together",
+      "view": "Eye level, 16:9, daylight",
+      "right": "Relaxed team, flexible layout, no readable screens",
+      "avoid": "Brand logos, identifiable faces of children"
+    }
+  ]
+}

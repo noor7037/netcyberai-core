@@ -1,0 +1,969 @@
+{
+ "chapter_key": "u.c10.science.jesc1.ch03",
+ "class": 10,
+ "subject_id": "science",
+ "title": "Metals and Non-metals",
+ "source": "https://ncert.nic.in/textbook/pdf/jesc103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Physical properties of metals and non-metals",
+   "labs": [
+    "c10-science-jesc1-ch03-conductors"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Chemical properties of metals: with air, water, acids and other metals' salts; the reactivity series",
+   "labs": [
+    "c10-science-jesc1-ch03-metal-oxide",
+    "c10-science-jesc1-ch03-metal-acid",
+    "c10-science-jesc1-ch03-reactivity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "How metals and non-metals react: ionic compounds and their properties",
+   "labs": [
+    "c10-science-jesc1-ch03-ionic-bond"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Occurrence and extraction of metals; enrichment, reduction and refining",
+   "labs": [],
+   "why_no_lab": "Mining, roasting and refining happen in industry, so the ore photos and the electrolytic refining cutaway teach them better than a bench lab."
+  },
+  {
+   "n": "3.5",
+   "title": "Corrosion and its prevention",
+   "labs": [],
+   "why_no_lab": "Corrosion takes days to weeks, so the photo sequences of rusting and of painted and galvanised iron teach it better than a quick lab."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-science-jesc1-ch03-conductors",
+   "topic": "3.1",
+   "template": "circuit",
+   "title": {
+    "en": "Which materials conduct electricity?",
+    "hi": "कौन-से पदार्थ विद्युत का चालन करते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "conductors",
+    "preset": "solids"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "material:copper",
+     "expect": "conducts",
+     "say": {
+      "en": "Tap the copper wire to put it in the gap of the tester.",
+      "hi": "ताँबे के तार पर टैप करके उसे परीक्षक के खाली स्थान में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "material:plastic",
+     "expect": "insulates",
+     "say": {
+      "en": "Now tap the plastic strip.",
+      "hi": "अब प्लास्टिक की पट्टी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Graphite (pencil lead) is a form of carbon, a non-metal. Will the bulb glow with graphite?",
+      "hi": "ग्रेफ़ाइट (पेंसिल की लीड) कार्बन का एक रूप है, जो अधातु है। क्या ग्रेफ़ाइट के साथ बल्ब जलेगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it glows",
+       "hi": "हाँ, जलेगा"
+      },
+      {
+       "id": "no",
+       "en": "No, non-metals never conduct",
+       "hi": "नहीं, अधातु कभी चालन नहीं करते"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "material:graphite",
+     "expect": "conducts",
+     "say": {
+      "en": "Test the graphite.",
+      "hi": "ग्रेफ़ाइट की जाँच करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Metals such as copper, iron and aluminium are good conductors: they let current pass. Most non-metals, such as sulphur, do not. Graphite is the one non-metal that conducts well. Wires are made of copper and covered with plastic, which does not conduct and keeps us safe.",
+      "hi": "ताँबा, लोहा और ऐलुमिनियम जैसी धातुएँ विद्युत की अच्छी चालक हैं: ये धारा को बहने देती हैं। सल्फ़र जैसे अधिकतर अधातु चालन नहीं करते। ग्रेफ़ाइट अकेला ऐसा अधातु है जो अच्छा चालन करता है। तार ताँबे के बनते हैं और उन पर प्लास्टिक चढ़ा होता है, जो चालन नहीं करता और हमें सुरक्षित रखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which non-metal conducts electricity?",
+        "hi": "कौन-सा अधातु विद्युत का चालन करता है?"
+       },
+       "options": [
+        {
+         "en": "Graphite",
+         "hi": "ग्रेफ़ाइट"
+        },
+        {
+         "en": "Sulphur",
+         "hi": "सल्फ़र"
+        },
+        {
+         "en": "Iodine",
+         "hi": "आयोडीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Graphite is the exception: a non-metal that is a good conductor.",
+        "hi": "ग्रेफ़ाइट अपवाद है: एक अधातु जो अच्छा चालक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sulphur is a non-metal that does not conduct.",
+         "hi": "सल्फ़र एक अधातु है जो चालन नहीं करता।"
+        },
+        {
+         "en": "Iodine is shiny like a metal but does not conduct.",
+         "hi": "आयोडीन धातु की तरह चमकता है, पर चालन नहीं करता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are wires made of copper and covered with plastic?",
+        "hi": "तार ताँबे के क्यों बनते हैं और उन पर प्लास्टिक क्यों चढ़ा होता है?"
+       },
+       "options": [
+        {
+         "en": "Copper conducts well; plastic does not, so it protects us",
+         "hi": "ताँबा अच्छा चालक है; प्लास्टिक नहीं, इसलिए वह हमें बचाता है"
+        },
+        {
+         "en": "Plastic conducts better than copper",
+         "hi": "प्लास्टिक ताँबे से अच्छा चालक है"
+        },
+        {
+         "en": "Copper is a non-metal",
+         "hi": "ताँबा एक अधातु है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The metal carries the current; the insulator stops it reaching our hands.",
+        "hi": "धातु धारा ले जाती है; कुचालक उसे हमारे हाथों तक पहुँचने से रोकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Plastic did not light the bulb, so it is an insulator.",
+         "hi": "प्लास्टिक से बल्ब नहीं जला, इसलिए वह कुचालक है।"
+        },
+        {
+         "en": "Copper is a metal: shiny, ductile and a good conductor.",
+         "hi": "ताँबा धातु है: चमकीला, तन्य और अच्छा चालक।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: test the iron nail, the key, the coin, the eraser, wood and glass. Group the conductors and the insulators.",
+      "hi": "आज़माओ: लोहे की कील, चाबी, सिक्का, रबड़, लकड़ी और काँच की जाँच करो। चालकों और कुचालकों के समूह बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch03-metal-oxide",
+   "topic": "3.2",
+   "template": "beaker",
+   "title": {
+    "en": "Metal oxides are basic",
+    "hi": "धातु ऑक्साइड क्षारकीय होते हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "water",
+     "redlitmus",
+     "mg",
+     "sulphur",
+     "bluelitmus"
+    ],
+    "start": [
+     "mgo"
+    ],
+    "tools": [
+     "lamp"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:water",
+     "expect": "pick:water",
+     "say": {
+      "en": "The beaker holds white magnesium oxide, the ash left when magnesium burns in air. Pick up the water.",
+      "hi": "बीकर में सफ़ेद मैग्नीशियम ऑक्साइड है, जो मैग्नीशियम के हवा में जलने पर बची राख है। पानी उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour the water on the ash.",
+      "hi": "राख पर पानी डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will add red litmus to this liquid. What colour will it show?",
+      "hi": "तुम इस द्रव में लाल लिटमस डालोगे। यह कौन-सा रंग दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "blue",
+       "en": "Blue",
+       "hi": "नीला"
+      },
+      {
+       "id": "red",
+       "en": "It stays red",
+       "hi": "लाल ही रहेगा"
+      }
+     ],
+     "answer": "blue"
+    },
+    {
+     "kind": "do",
+     "target": "pick:redlitmus",
+     "expect": "pick:redlitmus",
+     "say": {
+      "en": "Pick up the red litmus solution.",
+      "hi": "लाल लिटमस विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Add a few drops.",
+      "hi": "इसकी कुछ बूँदें डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Magnesium oxide dissolved a little and made magnesium hydroxide, which turned red litmus blue. Metal oxides are basic. Oxides of non-metals, such as sulphur dioxide, dissolve to make acids. Some oxides, like aluminium oxide and zinc oxide, react with both acids and bases: they are amphoteric.",
+      "hi": "मैग्नीशियम ऑक्साइड थोड़ा घुला और मैग्नीशियम हाइड्रॉक्साइड बना, जिसने लाल लिटमस को नीला किया। धातु ऑक्साइड क्षारकीय होते हैं। सल्फ़र डाइऑक्साइड जैसे अधातु ऑक्साइड घुलकर अम्ल बनाते हैं। ऐलुमिनियम ऑक्साइड और ज़िंक ऑक्साइड जैसे कुछ ऑक्साइड अम्ल और क्षारक दोनों से अभिक्रिया करते हैं: ये उभयधर्मी हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A metal is burnt and its ash dissolved in water. The solution will…",
+        "hi": "एक धातु को जलाकर उसकी राख पानी में घोली जाती है। विलयन…"
+       },
+       "options": [
+        {
+         "en": "Turn red litmus blue",
+         "hi": "लाल लिटमस को नीला करेगा"
+        },
+        {
+         "en": "Turn blue litmus red",
+         "hi": "नीले लिटमस को लाल करेगा"
+        },
+        {
+         "en": "Not change any litmus",
+         "hi": "किसी लिटमस को नहीं बदलेगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Metal oxides make bases in water.",
+        "hi": "धातु ऑक्साइड पानी में क्षारक बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Turning blue litmus red happens with oxides of non-metals, which make acids.",
+         "hi": "नीला लिटमस लाल करना अधातु ऑक्साइड का काम है, जो अम्ल बनाते हैं।"
+        },
+        {
+         "en": "The magnesium hydroxide we made did change red litmus.",
+         "hi": "हमने जो मैग्नीशियम हाइड्रॉक्साइड बनाया, उसने लाल लिटमस बदला।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "An oxide reacts with both hydrochloric acid and sodium hydroxide. It is…",
+        "hi": "एक ऑक्साइड हाइड्रोक्लोरिक अम्ल और सोडियम हाइड्रॉक्साइड दोनों से अभिक्रिया करता है। यह है…"
+       },
+       "options": [
+        {
+         "en": "Amphoteric",
+         "hi": "उभयधर्मी"
+        },
+        {
+         "en": "Only acidic",
+         "hi": "केवल अम्लीय"
+        },
+        {
+         "en": "Only basic",
+         "hi": "केवल क्षारकीय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Oxides such as Al2O3 and ZnO behave as both: amphoteric.",
+        "hi": "Al2O3 और ZnO जैसे ऑक्साइड दोनों तरह व्यवहार करते हैं: उभयधर्मी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An acidic oxide would not react with an acid.",
+         "hi": "अम्लीय ऑक्साइड अम्ल से अभिक्रिया नहीं करेगा।"
+        },
+        {
+         "en": "A basic oxide would not react with a base.",
+         "hi": "क्षारकीय ऑक्साइड क्षारक से अभिक्रिया नहीं करेगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker and burn the magnesium ribbon yourself; then burn sulphur and test with blue litmus. (For real, only a teacher burns sulphur: its gas chokes.)",
+      "hi": "आज़माओ: बीकर साफ़ करो और ख़ुद मैग्नीशियम रिबन जलाओ; फिर सल्फ़र जलाकर नीले लिटमस से जाँचो। (असल में सल्फ़र केवल शिक्षक जलाते हैं: इसकी गैस से दम घुटता है।)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch03-metal-acid",
+   "topic": "3.2",
+   "template": "beaker",
+   "title": {
+    "en": "Which metals react with acid?",
+    "hi": "कौन-सी धातुएँ अम्ल से अभिक्रिया करती हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "copperwire",
+     "hcl",
+     "mg",
+     "zinc"
+    ],
+    "tools": [
+     "splint"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:copperwire",
+     "expect": "pick:copperwire",
+     "say": {
+      "en": "Pick up the copper wire.",
+      "hi": "ताँबे का तार उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:copperwire",
+     "say": {
+      "en": "Put it in the beaker.",
+      "hi": "इसे बीकर में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will pour dilute hydrochloric acid on the copper. What will you see?",
+      "hi": "तुम ताँबे पर तनु हाइड्रोक्लोरिक अम्ल डालोगे। क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "none",
+       "en": "Nothing happens",
+       "hi": "कुछ नहीं होगा"
+      },
+      {
+       "id": "fast",
+       "en": "Fast bubbles of gas",
+       "hi": "गैस के तेज़ बुलबुले"
+      },
+      {
+       "id": "blue",
+       "en": "It turns blue at once",
+       "hi": "तुरंत नीला हो जाएगा"
+      }
+     ],
+     "answer": "none"
+    },
+    {
+     "kind": "do",
+     "target": "pick:hcl",
+     "expect": "pick:hcl",
+     "say": {
+      "en": "Pick up the dilute hydrochloric acid.",
+      "hi": "तनु हाइड्रोक्लोरिक अम्ल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour it on the copper.",
+      "hi": "इसे ताँबे पर डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Nothing happened. Copper is below hydrogen in the reactivity series, so it cannot push hydrogen out of the acid. Magnesium, aluminium, zinc and iron are above hydrogen: they give hydrogen gas and a salt, magnesium fastest of all.",
+      "hi": "कुछ नहीं हुआ। सक्रियता श्रेणी में ताँबा हाइड्रोजन से नीचे है, इसलिए वह अम्ल से हाइड्रोजन को नहीं हटा सकता। मैग्नीशियम, ऐलुमिनियम, ज़िंक और लोहा हाइड्रोजन से ऊपर हैं: ये हाइड्रोजन गैस और लवण देते हैं, सबसे तेज़ मैग्नीशियम।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which metal bubbles fastest in dilute hydrochloric acid?",
+        "hi": "तनु हाइड्रोक्लोरिक अम्ल में कौन-सी धातु सबसे तेज़ बुलबुले देती है?"
+       },
+       "options": [
+        {
+         "en": "Magnesium",
+         "hi": "मैग्नीशियम"
+        },
+        {
+         "en": "Iron",
+         "hi": "लोहा"
+        },
+        {
+         "en": "Copper",
+         "hi": "ताँबा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Magnesium is the most reactive of these, so it reacts fastest.",
+        "hi": "इनमें मैग्नीशियम सबसे अधिक अभिक्रियाशील है, इसलिए सबसे तेज़ अभिक्रिया करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Iron reacts, but slowly; it is lower in the series than magnesium.",
+         "hi": "लोहा अभिक्रिया करता है, पर धीरे; वह श्रेणी में मैग्नीशियम से नीचे है।"
+        },
+        {
+         "en": "Copper did not react at all.",
+         "hi": "ताँबे ने कोई अभिक्रिया नहीं की।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is curd not kept in a copper or brass pot?",
+        "hi": "दही ताँबे या पीतल के बर्तन में क्यों नहीं रखा जाता?"
+       },
+       "options": [
+        {
+         "en": "The acid in curd reacts slowly with the metal and spoils the food",
+         "hi": "दही का अम्ल धातु से धीरे-धीरे अभिक्रिया करके भोजन बिगाड़ देता है"
+        },
+        {
+         "en": "Curd turns into a base in metal",
+         "hi": "धातु में दही क्षारक बन जाता है"
+        },
+        {
+         "en": "Copper makes curd too sweet",
+         "hi": "ताँबा दही को बहुत मीठा कर देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Curd and other sour foods contain acids, which slowly react with copper and brass and make poisonous compounds.",
+        "hi": "दही और खट्टे भोजन में अम्ल होते हैं, जो ताँबे और पीतल से धीरे-धीरे अभिक्रिया करके विषैले यौगिक बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Curd stays acidic; the metal does not turn it into a base.",
+         "hi": "दही अम्लीय ही रहता है; धातु उसे क्षारक नहीं बनाती।"
+        },
+        {
+         "en": "Copper adds no sweetness; the worry is a harmful reaction.",
+         "hi": "ताँबा मिठास नहीं देता; चिंता हानिकारक अभिक्रिया की है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, add magnesium ribbon and the acid, and test the gas with the splint. Then try zinc and compare the bubbles.",
+      "hi": "आज़माओ: बीकर साफ़ करो, मैग्नीशियम रिबन और अम्ल डालो, और तीली से गैस जाँचो। फिर ज़िंक आज़माओ और बुलबुलों की तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch03-reactivity",
+   "topic": "3.2",
+   "template": "beaker",
+   "title": {
+    "en": "Building the reactivity series",
+    "hi": "सक्रियता श्रेणी बनाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "agno3",
+     "copperwire",
+     "znso4",
+     "cuso4",
+     "zinc"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:agno3",
+     "expect": "pick:agno3",
+     "say": {
+      "en": "Pick up the silver nitrate solution.",
+      "hi": "सिल्वर नाइट्रेट विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:agno3",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A copper wire goes into the silver nitrate solution. What will happen?",
+      "hi": "ताँबे का तार सिल्वर नाइट्रेट विलयन में डाला जाता है। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "silver",
+       "en": "Silver coats the wire and the liquid turns blue",
+       "hi": "तार पर चाँदी चढ़ेगी और द्रव नीला होगा"
+      },
+      {
+       "id": "none",
+       "en": "Nothing happens",
+       "hi": "कुछ नहीं होगा"
+      },
+      {
+       "id": "gas",
+       "en": "It fizzes",
+       "hi": "झाग उठेगा"
+      }
+     ],
+     "answer": "silver"
+    },
+    {
+     "kind": "do",
+     "target": "pick:copperwire",
+     "expect": "pick:copperwire",
+     "say": {
+      "en": "Pick up the copper wire.",
+      "hi": "ताँबे का तार उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Put it in the solution and watch.",
+      "hi": "इसे विलयन में डालो और देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Copper is more reactive than silver, so it pushed silver out: shiny silver coated the wire and blue copper nitrate formed. A more reactive metal displaces a less reactive metal from its salt solution. Tests like this give the reactivity series: K, Na, Ca, Mg, Al, Zn, Fe, Pb, (H), Cu, Hg, Ag, Au.",
+      "hi": "ताँबा चाँदी से अधिक अभिक्रियाशील है, इसलिए उसने चाँदी को हटा दिया: तार पर चमकीली चाँदी चढ़ी और नीला कॉपर नाइट्रेट बना। अधिक अभिक्रियाशील धातु कम अभिक्रियाशील धातु को उसके लवण के विलयन से विस्थापित कर देती है। ऐसे प्रयोगों से सक्रियता श्रेणी बनती है: K, Na, Ca, Mg, Al, Zn, Fe, Pb, (H), Cu, Hg, Ag, Au।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A copper wire is put in zinc sulphate solution. What happens?",
+        "hi": "ताँबे का तार ज़िंक सल्फ़ेट विलयन में डाला जाता है। क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "Nothing",
+         "hi": "कुछ नहीं"
+        },
+        {
+         "en": "Zinc coats the wire",
+         "hi": "तार पर ज़िंक चढ़ेगा"
+        },
+        {
+         "en": "The solution turns blue",
+         "hi": "विलयन नीला हो जाएगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Copper is less reactive than zinc, so it cannot displace zinc.",
+        "hi": "ताँबा ज़िंक से कम अभिक्रियाशील है, इसलिए ज़िंक को विस्थापित नहीं कर सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would need copper to be more reactive than zinc; it is not.",
+         "hi": "इसके लिए ताँबे को ज़िंक से अधिक अभिक्रियाशील होना चाहिए; ऐसा नहीं है।"
+        },
+        {
+         "en": "Blue copper sulphate forms only if copper reacts, and it does not.",
+         "hi": "नीला कॉपर सल्फ़ेट तभी बनेगा जब ताँबा अभिक्रिया करे, जो नहीं होती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Metal A displaces B from its salt, but does not displace C. Which order is right, most reactive first?",
+        "hi": "धातु A, धातु B को उसके लवण से हटाती है, पर C को नहीं। सबसे अभिक्रियाशील पहले रखें तो सही क्रम क्या है?"
+       },
+       "options": [
+        "C, A, B",
+        "A, B, C",
+        "B, A, C"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A beats B, so A is above B; A cannot beat C, so C is above A.",
+        "hi": "A ने B को हराया, इसलिए A, B से ऊपर है; A, C को नहीं हरा सका, इसलिए C, A से ऊपर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If A were above C, it would displace C too.",
+         "hi": "अगर A, C से ऊपर होती, तो वह C को भी हटा देती।"
+        },
+        {
+         "en": "B was pushed out by A, so B cannot be above A.",
+         "hi": "B को A ने हटाया, इसलिए B, A से ऊपर नहीं हो सकती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, pour zinc sulphate and put in the copper wire. Then try zinc in copper sulphate. Which of the two metals is more reactive?",
+      "hi": "आज़माओ: बीकर साफ़ करो, ज़िंक सल्फ़ेट डालो और ताँबे का तार डालो। फिर कॉपर सल्फ़ेट में ज़िंक आज़माओ। दोनों में कौन-सी धातु अधिक अभिक्रियाशील है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch03-ionic-bond",
+   "topic": "3.3",
+   "template": "molecule",
+   "title": {
+    "en": "Making an ionic bond: sodium chloride",
+    "hi": "आयनिक आबंध बनाना: सोडियम क्लोराइड"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "ionic",
+    "atoms": [
+     "Na",
+     "Mg",
+     "Cl",
+     "O"
+    ],
+    "target": "NaCl"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:Na",
+     "expect": "added:Na",
+     "say": {
+      "en": "Tap sodium (Na) to put a sodium atom on the board.",
+      "hi": "सोडियम (Na) पर टैप करके बोर्ड पर सोडियम परमाणु रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:Cl",
+     "expect": "added:Cl",
+     "say": {
+      "en": "Now tap chlorine (Cl).",
+      "hi": "अब क्लोरीन (Cl) पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sodium has 1 electron in its outer shell and chlorine has 7. How can both get a full outer shell of 8?",
+      "hi": "सोडियम के बाहरी कोश में 1 इलेक्ट्रॉन है और क्लोरीन में 7। दोनों का बाहरी कोश 8 से पूरा कैसे होगा?"
+     },
+     "options": [
+      {
+       "id": "give",
+       "en": "Sodium gives its 1 electron to chlorine",
+       "hi": "सोडियम अपना 1 इलेक्ट्रॉन क्लोरीन को देगा"
+      },
+      {
+       "id": "take",
+       "en": "Chlorine gives 7 electrons to sodium",
+       "hi": "क्लोरीन 7 इलेक्ट्रॉन सोडियम को देगी"
+      },
+      {
+       "id": "none",
+       "en": "They cannot",
+       "hi": "नहीं हो सकता"
+      }
+     ],
+     "answer": "give"
+    },
+    {
+     "kind": "do",
+     "target": "transfer",
+     "expect": "built:NaCl",
+     "say": {
+      "en": "Tap Transfer to move the electron.",
+      "hi": "इलेक्ट्रॉन ले जाने के लिए ट्रांसफ़र पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sodium lost one electron and became Na+; chlorine gained it and became Cl-. Both now have full outer shells. Opposite charges attract strongly: this is an ionic bond. Ionic compounds form hard crystals, have high melting points, dissolve in water and conduct electricity when melted or dissolved.",
+      "hi": "सोडियम ने एक इलेक्ट्रॉन खोया और Na+ बन गया; क्लोरीन ने उसे लिया और Cl- बन गई। अब दोनों के बाहरी कोश पूरे हैं। विपरीत आवेश एक-दूसरे को ज़ोर से खींचते हैं: यह आयनिक आबंध है। आयनिक यौगिक कठोर क्रिस्टल बनाते हैं, उनके गलनांक ऊँचे होते हैं, वे पानी में घुलते हैं और पिघलने या घुलने पर विद्युत का चालन करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What charge does the sodium ion carry?",
+        "hi": "सोडियम आयन पर कौन-सा आवेश है?"
+       },
+       "options": [
+        "+1",
+        "-1",
+        "0"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It lost one negative electron, so it is left with one extra positive charge.",
+        "hi": "इसने एक ऋणात्मक इलेक्ट्रॉन खोया, इसलिए एक धनात्मक आवेश ज़्यादा बचा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-1 is the charge of chloride, which gained the electron.",
+         "hi": "-1 क्लोराइड का आवेश है, जिसने इलेक्ट्रॉन लिया।"
+        },
+        {
+         "en": "An atom that loses an electron is no longer neutral.",
+         "hi": "जो परमाणु इलेक्ट्रॉन खोता है, वह उदासीन नहीं रहता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does salt water conduct electricity but dry solid salt does not?",
+        "hi": "नमक का पानी विद्युत का चालन क्यों करता है, पर सूखा ठोस नमक क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "In water the ions are free to move",
+         "hi": "पानी में आयन चलने के लिए मुक्त होते हैं"
+        },
+        {
+         "en": "Solid salt has no ions",
+         "hi": "ठोस नमक में आयन नहीं होते"
+        },
+        {
+         "en": "Water itself is a metal",
+         "hi": "पानी स्वयं धातु है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In the solid the ions are held in place; in water they move and carry charge.",
+        "hi": "ठोस में आयन अपनी जगह जकड़े रहते हैं; पानी में वे चलते हैं और आवेश ले जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Solid salt is made of ions too; they just cannot move.",
+         "hi": "ठोस नमक भी आयनों से बना है; बस वे हिल नहीं सकते।"
+        },
+        {
+         "en": "Pure water hardly conducts, and it is not a metal.",
+         "hi": "शुद्ध पानी बहुत कम चालन करता है, और वह धातु नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap 3D to see the salt crystal. Then start again with magnesium and chlorine: how many chlorine atoms does one magnesium need?",
+      "hi": "आज़माओ: नमक का क्रिस्टल देखने के लिए 3D पर टैप करो। फिर मैग्नीशियम और क्लोरीन से दोबारा शुरू करो: एक मैग्नीशियम को कितने क्लोरीन परमाणु चाहिए?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook: metals at home",
+   "shows": "Indian kitchen utensils: a steel plate, a copper lota, a brass diya, an aluminium pressure cooker, an iron tawa",
+   "view": "Arranged on a wooden table, from slightly above, warm light",
+   "right": "Each metal's real colour and shine",
+   "avoid": "Brands"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Samples for the sorting lab",
+   "shows": "Separate cut-outs: iron, copper, aluminium, zinc, magnesium ribbon, a sulphur lump, a piece of coal (carbon), iodine crystals, a graphite pencil lead",
+   "view": "Each from slightly above, same scale",
+   "right": "Iodine dark violet-grey crystals; sulphur yellow",
+   "avoid": "Labels"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "3.1.1",
+   "use": "Sodium is soft and kept under kerosene",
+   "shows": "A piece of sodium stored in a bottle of kerosene; then a fresh cut surface, shiny, being sliced with a knife on a tile by an adult wearing gloves",
+   "view": "Close-up, two frames",
+   "right": "Fresh cut silvery and shiny, dulling quickly",
+   "avoid": "Sodium near water"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "3.2.2",
+   "use": "Metals and water",
+   "shows": "Calcium in a beaker of water, bubbles making it float",
+   "view": "Front view, white background",
+   "right": "Small bubbles clinging to the metal",
+   "avoid": "Flames (calcium does not catch fire)"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "3.4",
+   "use": "Ores",
+   "shows": "Separate cut-outs of real ore samples: bauxite, haematite, cinnabar, zinc blende",
+   "view": "Each from slightly above",
+   "right": "Bauxite reddish-brown; haematite dark red-grey; cinnabar bright red",
+   "avoid": "Labels"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "3.4.6",
+   "use": "Electrolytic refining of copper",
+   "shows": "A tank of copper sulphate solution with a thick impure copper anode, a thin pure copper cathode and anode mud at the bottom",
+   "view": "Side cut-away, realistic render, white background",
+   "right": "Anode thicker and impure, cathode thin and pure, mud below the anode",
+   "avoid": "Labels and charge signs"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "3.4.5",
+   "use": "Thermite welding of rails",
+   "shows": "Railway workers in protective gear joining two rail tracks with a thermite reaction, bright molten metal and sparks",
+   "view": "Wide side view at track level",
+   "right": "Workers at a safe distance with face shields",
+   "avoid": "Railway logos"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "3.5.1",
+   "use": "Preventing corrosion",
+   "shows": "Three separate photos: a freshly painted iron railway bridge, a galvanised iron bucket, a chrome-plated tap",
+   "view": "Each a clear single subject",
+   "right": "Galvanised surface dull grey with spangle pattern",
+   "avoid": "Brands"
+  },
+  {
+   "n": 9,
+   "kind": "3DM",
+   "topic": "3.3.1",
+   "use": "Ionic crystal",
+   "shows": "A ball model of a sodium chloride crystal (alternating larger green chloride and smaller purple sodium spheres in a cube)",
+   "view": "Front, top, three-quarter",
+   "right": "Each sodium surrounded by six chlorides",
+   "avoid": "Text"
+  }
+ ]
+}

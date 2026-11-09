@@ -1,0 +1,652 @@
+{
+ "chapter_key": "u.c03.hindi.chve1.ch03",
+ "class": 3,
+ "subject_id": "hindi",
+ "title": "How many legs? (कितने पैर?)",
+ "source": "https://ncert.nic.in/textbook.php?chve1=0-18",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Animals, birds and insects: how many legs?",
+   "labs": [
+    "c03-hindi-chve1-ch03-legs-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Numerals and number names from zero to eight",
+   "labs": [
+    "c03-hindi-chve1-ch03-legs-numbers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Leg-counting puzzles (buffaloes, spiders, ants) and the riddles",
+   "labs": [],
+   "why_no_lab": "These are counting and number puzzles, which belong to the Maths class; the lesson reads best as a talk and a pencil activity."
+  },
+  {
+   "n": "3.4",
+   "title": "Imagine a talk between a centipede, an earthworm, a bird and you",
+   "labs": [],
+   "why_no_lab": "Imaginative writing with no fixed answer; best done in the notebook."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-hindi-chve1-ch03-legs-sort",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "How many legs?",
+    "hi": "कितने पैर?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "zero",
+      "label": {
+       "en": "No legs",
+       "hi": "बिना पैर"
+      }
+     },
+     {
+      "id": "two",
+      "label": {
+       "en": "Two legs",
+       "hi": "दो पैर"
+      }
+     },
+     {
+      "id": "four",
+      "label": {
+       "en": "Four legs",
+       "hi": "चार पैर"
+      }
+     },
+     {
+      "id": "six",
+      "label": {
+       "en": "Six legs",
+       "hi": "छह पैर"
+      }
+     },
+     {
+      "id": "eight",
+      "label": {
+       "en": "Eight legs",
+       "hi": "आठ पैर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "worm",
+      "text": {
+       "en": "Earthworm",
+       "hi": "केंचुआ"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "An earthworm has no legs. It moves on its belly.",
+       "hi": "केंचुए के पैर नहीं होते। वह पेट के बल सरकता है।"
+      }
+     },
+     {
+      "id": "snake",
+      "text": {
+       "en": "Snake",
+       "hi": "साँप"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "A snake has no legs and slides along the ground.",
+       "hi": "साँप के पैर नहीं होते। वह ज़मीन पर रेंगता है।"
+      }
+     },
+     {
+      "id": "hen",
+      "text": {
+       "en": "Hen",
+       "hi": "मुर्गी"
+      },
+      "bin": "two",
+      "why": {
+       "en": "A hen is a bird. All birds have two legs.",
+       "hi": "मुर्गी एक पक्षी है। सभी पक्षियों के दो पैर होते हैं।"
+      }
+     },
+     {
+      "id": "sparrow",
+      "text": {
+       "en": "Sparrow",
+       "hi": "गौरैया"
+      },
+      "bin": "two",
+      "why": {
+       "en": "A sparrow is a bird with two legs.",
+       "hi": "गौरैया एक पक्षी है और उसके दो पैर होते हैं।"
+      }
+     },
+     {
+      "id": "cow",
+      "text": {
+       "en": "Cow",
+       "hi": "गाय"
+      },
+      "bin": "four",
+      "why": {
+       "en": "A cow walks on four legs.",
+       "hi": "गाय चार पैरों पर चलती है।"
+      }
+     },
+     {
+      "id": "goat",
+      "text": {
+       "en": "Goat",
+       "hi": "बकरी"
+      },
+      "bin": "four",
+      "why": {
+       "en": "A goat has four legs.",
+       "hi": "बकरी के चार पैर होते हैं।"
+      }
+     },
+     {
+      "id": "ant",
+      "text": {
+       "en": "Ant",
+       "hi": "चींटी"
+      },
+      "bin": "six",
+      "why": {
+       "en": "All insects have six legs, and an ant is an insect.",
+       "hi": "सभी कीटों के छह पैर होते हैं और चींटी एक कीट है।"
+      }
+     },
+     {
+      "id": "butterfly",
+      "text": {
+       "en": "Butterfly",
+       "hi": "तितली"
+      },
+      "bin": "six",
+      "why": {
+       "en": "A butterfly is an insect, so it has six legs.",
+       "hi": "तितली एक कीट है, इसलिए उसके छह पैर होते हैं।"
+      }
+     },
+     {
+      "id": "spider",
+      "text": {
+       "en": "Spider",
+       "hi": "मकड़ी"
+      },
+      "bin": "eight",
+      "why": {
+       "en": "A spider has eight legs; it is not an insect.",
+       "hi": "मकड़ी के आठ पैर होते हैं; वह कीट नहीं है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:worm",
+     "expect": "placed:worm",
+     "say": {
+      "en": "Tap the card 'केंचुआ', then tap the box where it belongs.",
+      "hi": "'केंचुआ' का कार्ड छुओ, फिर सही डिब्बा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many legs does an ant have?",
+      "hi": "चींटी के कितने पैर होते हैं?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "Four",
+       "hi": "चार"
+      },
+      {
+       "id": "six",
+       "en": "Six",
+       "hi": "छह"
+      },
+      {
+       "id": "eight",
+       "en": "Eight",
+       "hi": "आठ"
+      }
+     ],
+     "answer": "six"
+    },
+    {
+     "kind": "do",
+     "target": "card:ant",
+     "expect": "placed:ant",
+     "say": {
+      "en": "Now place the ant.",
+      "hi": "अब चींटी को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:spider",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the remaining creatures.",
+      "hi": "बाकी सारे जीवों को भी छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Different creatures have different numbers of legs. Worms and snakes have none. Birds have two. Most animals like cow and goat have four. Insects like ants and butterflies have six, and a spider has eight.",
+      "hi": "अलग-अलग जीवों के पैरों की संख्या अलग-अलग होती है। केंचुए और साँप के पैर नहीं होते। पक्षियों के दो पैर होते हैं। गाय और बकरी जैसे ज़्यादातर पशुओं के चार पैर होते हैं। चींटी और तितली जैसे कीटों के छह और मकड़ी के आठ पैर होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which creature has eight legs?",
+        "hi": "किस जीव के आठ पैर होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Ant",
+         "hi": "चींटी"
+        },
+        {
+         "en": "Spider",
+         "hi": "मकड़ी"
+        },
+        {
+         "en": "Hen",
+         "hi": "मुर्गी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A spider has eight legs, two more than an insect.",
+        "hi": "मकड़ी के आठ पैर होते हैं, यानी कीट से दो ज़्यादा।"
+       },
+       "wrong": [
+        {
+         "en": "An ant has six legs, not eight.",
+         "hi": "चींटी के छह पैर होते हैं, आठ नहीं।"
+        },
+        "",
+        {
+         "en": "A hen has two legs.",
+         "hi": "मुर्गी के दो पैर होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does an earthworm have no legs?",
+        "hi": "केंचुए के पैर क्यों नहीं होते?"
+       },
+       "options": [
+        {
+         "en": "It moves by sliding on its belly",
+         "hi": "वह पेट के बल सरककर चलता है"
+        },
+        {
+         "en": "It has eight legs hidden inside",
+         "hi": "उसके आठ पैर अंदर छिपे होते हैं"
+        },
+        {
+         "en": "It only flies",
+         "hi": "वह केवल उड़ता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An earthworm moves by stretching and sliding its body, so it does not need legs.",
+        "hi": "केंचुआ अपने शरीर को खींचकर और सरकाकर चलता है, इसलिए उसे पैरों की ज़रूरत नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It has no hidden legs; its body simply slides.",
+         "hi": "उसके अंदर कोई छिपे पैर नहीं होते; उसका शरीर बस सरकता है।"
+        },
+        {
+         "en": "An earthworm does not fly at all.",
+         "hi": "केंचुआ बिल्कुल नहीं उड़ता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look around your home and school. Find one creature for each number: none, two, four, six. Write their names.",
+      "hi": "अपने घर और स्कूल में देखो। हर संख्या के लिए एक जीव ढूँढ़ो: शून्य, दो, चार, छह। उनके नाम लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-hindi-chve1-ch03-legs-numbers",
+   "topic": "3.2",
+   "template": "match",
+   "title": {
+    "en": "Numerals and number words",
+    "hi": "अंक और संख्या के नाम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "zero",
+      "left": {
+       "en": "0 (earthworm's legs)",
+       "hi": "० (केंचुए के पैर)"
+      },
+      "right": {
+       "en": "Shoonya (zero)",
+       "hi": "शून्य"
+      },
+      "why": {
+       "en": "Count the legs: this number is written as a numeral and as a word.",
+       "hi": "पैर गिनो: यह संख्या अंक में भी लिखी जाती है और शब्द में भी।"
+      }
+     },
+     {
+      "id": "two",
+      "left": {
+       "en": "2 (hen's legs)",
+       "hi": "२ (मुर्गी के पैर)"
+      },
+      "right": {
+       "en": "Do (two)",
+       "hi": "दो"
+      },
+      "why": {
+       "en": "Count the legs: this number is written as a numeral and as a word.",
+       "hi": "पैर गिनो: यह संख्या अंक में भी लिखी जाती है और शब्द में भी।"
+      }
+     },
+     {
+      "id": "four",
+      "left": {
+       "en": "4 (cow's legs)",
+       "hi": "४ (गाय के पैर)"
+      },
+      "right": {
+       "en": "Chaar (four)",
+       "hi": "चार"
+      },
+      "why": {
+       "en": "Count the legs: this number is written as a numeral and as a word.",
+       "hi": "पैर गिनो: यह संख्या अंक में भी लिखी जाती है और शब्द में भी।"
+      }
+     },
+     {
+      "id": "six",
+      "left": {
+       "en": "6 (ant's legs)",
+       "hi": "६ (चींटी के पैर)"
+      },
+      "right": {
+       "en": "Chhah (six)",
+       "hi": "छह"
+      },
+      "why": {
+       "en": "Count the legs: this number is written as a numeral and as a word.",
+       "hi": "पैर गिनो: यह संख्या अंक में भी लिखी जाती है और शब्द में भी।"
+      }
+     },
+     {
+      "id": "eight",
+      "left": {
+       "en": "8 (spider's legs)",
+       "hi": "८ (मकड़ी के पैर)"
+      },
+      "right": {
+       "en": "Aath (eight)",
+       "hi": "आठ"
+      },
+      "why": {
+       "en": "Count the legs: this number is written as a numeral and as a word.",
+       "hi": "पैर गिनो: यह संख्या अंक में भी लिखी जाती है और शब्द में भी।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:six",
+     "expect": "matched:six",
+     "say": {
+      "en": "Tap '६ (चींटी के पैर)' and then tap its number name.",
+      "hi": "'६ (चींटी के पैर)' छुओ, फिर उसका संख्या-नाम छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How is the number 8 written in words?",
+      "hi": "संख्या ८ को शब्दों में कैसे लिखते हैं?"
+     },
+     "options": [
+      {
+       "id": "aath",
+       "en": "आठ",
+       "hi": "आठ"
+      },
+      {
+       "id": "chhah",
+       "en": "छह",
+       "hi": "छह"
+      },
+      {
+       "id": "do",
+       "en": "दो",
+       "hi": "दो"
+      }
+     ],
+     "answer": "aath"
+    },
+    {
+     "kind": "do",
+     "target": "left:eight",
+     "expect": "matched:eight",
+     "say": {
+      "en": "Match the spider's legs with its number name.",
+      "hi": "मकड़ी के पैरों की संख्या को उसके नाम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:zero",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining numbers.",
+      "hi": "बाकी सारी संख्याएँ भी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each number can be written in two ways: as a numeral like ६ and as a word like छह. Counting legs gives us the number, and the number has a name.",
+      "hi": "हर संख्या दो तरह से लिखी जा सकती है: अंक में, जैसे ६ और शब्द में, जैसे छह। पैर गिनने से हमें संख्या मिलती है और उस संख्या का एक नाम होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many legs does a cow have, in words?",
+        "hi": "गाय के पैरों की संख्या शब्दों में क्या है?"
+       },
+       "options": [
+        {
+         "en": "चार",
+         "hi": "चार"
+        },
+        {
+         "en": "छह",
+         "hi": "छह"
+        },
+        {
+         "en": "दो",
+         "hi": "दो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A cow has four legs, written as ४ or चार.",
+        "hi": "गाय के चार पैर होते हैं, जिसे ४ या चार लिखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "छह (6) is the number of legs of an insect.",
+         "hi": "छह (६) कीट के पैरों की संख्या है।"
+        },
+        {
+         "en": "दो (2) is the number of legs of a bird.",
+         "hi": "दो (२) पक्षी के पैरों की संख्या है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which numeral is 'आठ'?",
+        "hi": "'आठ' कौन-सा अंक है?"
+       },
+       "options": [
+        {
+         "en": "४",
+         "hi": "४"
+        },
+        {
+         "en": "८",
+         "hi": "८"
+        },
+        {
+         "en": "६",
+         "hi": "६"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "आठ is written ८. A spider has ८ legs.",
+        "hi": "आठ को ८ लिखते हैं। मकड़ी के ८ पैर होते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "४ is read as चार.",
+         "hi": "४ को चार पढ़ते हैं।"
+        },
+        "",
+        {
+         "en": "६ is read as छह.",
+         "hi": "६ को छह पढ़ते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Count the legs of your chair, your table and your own legs. Write the answers as numerals and as number names.",
+      "hi": "अपनी कुर्सी, मेज़ और अपने पैरों को गिनो। उत्तर अंक में भी लिखो और संख्या-नाम में भी।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Opens the lesson",
+   "shows": "A small Indian school garden after rain with an earthworm on wet soil, a hen, a goat and a butterfly all in one tidy frame",
+   "view": "Wide, eye level",
+   "right": "Every creature is clearly visible with its legs",
+   "avoid": "People, labels"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Sort card: hen",
+   "shows": "A brown Indian hen standing, on transparent background",
+   "view": "Side view",
+   "right": "Two legs clearly seen",
+   "avoid": "Chick lines or text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Sort card: cow",
+   "shows": "An Indian cow standing, on transparent background",
+   "view": "Side view, full body",
+   "right": "All four legs visible, natural colour",
+   "avoid": "Rope, ornaments"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "3.1",
+   "use": "Sort card: ant",
+   "shows": "A black ant from the top with six legs clearly separate",
+   "view": "Top-down macro",
+   "right": "Exactly six legs from the middle body part",
+   "avoid": "Cartoon face"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "3.1",
+   "use": "Sort card: spider",
+   "shows": "A garden spider on its web with eight legs clearly visible",
+   "view": "Slightly above, macro",
+   "right": "Eight legs, two body parts",
+   "avoid": "Large scary close-ups; keep it friendly"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "3.1",
+   "use": "Story: the centipede",
+   "shows": "A centipede on a damp log with its many pairs of legs",
+   "view": "Top-down macro",
+   "right": "One pair of legs on each segment",
+   "avoid": "Frightening framing, human hand"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Sort card: earthworm",
+   "shows": "An earthworm moving on wet brown soil",
+   "view": "Low macro",
+   "right": "Moist skin, ringed body, no legs",
+   "avoid": "Hooks, fishing"
+  }
+ ]
+}

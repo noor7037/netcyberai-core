@@ -1,0 +1,601 @@
+{
+ "chapter_key": "u.c12.hindi.lhar1.ch15",
+ "class": 12,
+ "subject_id": "hindi",
+ "title": "श्रम विभाजन और जाति-प्रथा / मेरी कल्पना का आदर्श समाज",
+ "source": "https://ncert.nic.in/textbook/pdf/lhar115.pdf",
+ "topics": [
+  {
+   "n": "15.1",
+   "title": "श्रम विभाजन और जाति-प्रथा में फ़र्क",
+   "labs": [
+    "c12-hindi-lhar1-ch15-shram"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "15.2",
+   "title": "आदर्श समाज के तीन मूल्य",
+   "labs": [
+    "c12-hindi-lhar1-ch15-mulya"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "15.3",
+   "title": "समाज बदलने की राह",
+   "labs": [
+    "c12-hindi-lhar1-ch15-raah"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-hindi-lhar1-ch15-shram",
+   "topic": "15.1",
+   "template": "sort",
+   "title": {
+    "en": "Division of work or bond of birth?",
+    "hi": "काम का बँटवारा या जन्म का बंधन?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "shram",
+      "label": {
+       "en": "Work divided by skill and choice",
+       "hi": "कौशल और रुचि पर आधारित काम का बँटवारा"
+      }
+     },
+     {
+      "id": "jati",
+      "label": {
+       "en": "Caste: work fixed by birth",
+       "hi": "जाति-प्रथा: जन्म से तय हुआ काम"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "A girl chooses to become a doctor by interest",
+       "hi": "एक लड़की अपनी रुचि से डॉक्टर बनने का चुनाव करे"
+      },
+      "bin": "shram",
+      "why": {
+       "en": "Work chosen by ability and interest can change with effort.",
+       "hi": "योग्यता और रुचि से चुना गया काम मेहनत से बदल भी सकता है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "A child is given a job at birth, whatever he wants",
+       "hi": "जन्म से ही किसी बच्चे को उसका काम सौंप दिया जाए"
+      },
+      "bin": "jati",
+      "why": {
+       "en": "Birth decides the job, and the person cannot choose or move up.",
+       "hi": "जन्म काम तय करता है, और इंसान न चुन सकता है न आगे बढ़ सकता है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "A tailor and a farmer use skill and help each other",
+       "hi": "दर्ज़ी और किसान अपने हुनर से काम करें, मदद लें"
+      },
+      "bin": "shram",
+      "why": {
+       "en": "Division by skill makes society work together, as the essay explains.",
+       "hi": "हुनर के आधार पर बँटवारा समाज को मिल-जुलकर चलाता है, जैसा निबंध समझाता है।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "A family must keep its trade, skill or not",
+       "hi": "परिवार को पेशा बदलने की मनाही हो, हुनर हो या न हो"
+      },
+      "bin": "jati",
+      "why": {
+       "en": "A fixed trade by birth blocks freedom and choice.",
+       "hi": "जन्म से तय पेशा आज़ादी और चुनाव को रोकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Tap the first card, the girl who chooses her work.",
+      "hi": "पहला कार्ड छुओ, वह लड़की जो अपना काम चुनती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:shram",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap the bin where this card belongs.",
+      "hi": "वह डिब्बा छुओ जहाँ यह कार्ड जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does \"a child is given a job at birth\" go?",
+      "hi": "\"जन्म से काम सौंप देना\" कार्ड किस डिब्बे में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "shram",
+       "en": "Work divided by skill",
+       "hi": "हुनर पर आधारित बँटवारा"
+      },
+      {
+       "id": "jati",
+       "en": "Caste: work fixed by birth",
+       "hi": "जाति-प्रथा: जन्म से तय काम"
+      }
+     ],
+     "answer": "jati"
+    },
+    {
+     "kind": "do",
+     "target": "card:c2",
+     "expect": "placed:c2",
+     "say": {
+      "en": "Tap the card about the job given at birth.",
+      "hi": "जन्म से काम सौंपने वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:jati",
+     "expect": "correct:c2",
+     "say": {
+      "en": "Put it in the right bin.",
+      "hi": "इसे सही डिब्बे में डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Division of labour means people divide tasks by skill and interest, and the work can change. Caste is different: it fixes a person's work by birth, not by ability, and blocks freedom of choice. The essay asks us to see this difference clearly.",
+      "hi": "काम का बँटवारा यानी हुनर और रुचि के आधार पर काम बाँटना, और वह बदल सकता है। जाति-प्रथा अलग है: वह जन्म से काम तय करती है, योग्यता से नहीं, और चुनाव की आज़ादी रोकती है। निबंध इस फ़र्क को साफ़ देखने को कहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the main difference between division of labour and caste as the essay sees it?",
+        "hi": "निबंध के अनुसार काम के बँटवारे और जाति-प्रथा में मुख्य फ़र्क क्या है?"
+       },
+       "options": [
+        {
+         "en": "Division uses skill and choice; caste fixes work by birth",
+         "hi": "बँटवारा हुनर और चुनाव से होता है; जाति जन्म से काम तय करती है"
+        },
+        {
+         "en": "Both fix work by birth",
+         "hi": "दोनों जन्म से काम तय करते हैं"
+        },
+        {
+         "en": "Caste gives freedom, division does not",
+         "hi": "जाति आज़ादी देती है, बँटवारा नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Division follows ability and interest; caste ties the job to birth.",
+        "hi": "बँटवारा योग्यता और रुचि पर चलता है; जाति काम को जन्म से बाँध देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Division does not fix work by birth; that is what caste does.",
+         "hi": "बँटवारा जन्म से काम तय नहीं करता; यह काम जाति करती है।"
+        },
+        {
+         "en": "Caste blocks freedom; it does not give it.",
+         "hi": "जाति आज़ादी रोकती है, देती नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List three jobs in your family or village. For each, ask: was it chosen, or fixed by birth?",
+      "hi": "अपने परिवार या गाँव के तीन कामों की सूची बनाओ। हर एक के लिए सोचो: क्या वह चुना गया था, या जन्म से तय हुआ?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhar1-ch15-mulya",
+   "topic": "15.2",
+   "template": "match",
+   "title": {
+    "en": "Three values of the ideal society",
+    "hi": "आदर्श समाज के तीन मूल्य"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "swatantrata",
+      "left": {
+       "en": "Liberty",
+       "hi": "स्वतंत्रता"
+      },
+      "right": {
+       "en": "Freedom to choose one's path and to speak one's mind",
+       "hi": "अपनी राह चुनने और अपनी बात कहने की आज़ादी"
+      },
+      "why": {
+       "en": "Liberty means no one can fix your path by birth or force.",
+       "hi": "स्वतंत्रता का अर्थ है कि कोई जन्म या ज़ोर से तुम्हारी राह तय न करे।"
+      }
+     },
+     {
+      "id": "samata",
+      "left": {
+       "en": "Equality",
+       "hi": "समता"
+      },
+      "right": {
+       "en": "Equal chance and equal dignity for every person",
+       "hi": "हर इंसान को बराबर अवसर और बराबर सम्मान"
+      },
+      "why": {
+       "en": "Equality means no one is treated as lower or higher by birth.",
+       "hi": "समता का अर्थ है कि जन्म से कोई ऊँचा या नीचा न माना जाए।"
+      }
+     },
+     {
+      "id": "bandhutva",
+      "left": {
+       "en": "Fraternity",
+       "hi": "बंधुत्व"
+      },
+      "right": {
+       "en": "People treat each other as family, beyond division",
+       "hi": "लोग एक-दूसरे को अपना परिवार मानें, भेद से परे"
+      },
+      "why": {
+       "en": "Fraternity is the bond that keeps liberty and equality humane.",
+       "hi": "बंधुत्व वह बंधन है जो स्वतंत्रता और समता को मानवीय रखता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:swatantrata",
+     "expect": "matched:swatantrata",
+     "say": {
+      "en": "Match Liberty first.",
+      "hi": "पहले स्वतंत्रता का जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which value asks people to treat each other as brothers and sisters?",
+      "hi": "कौन-सा मूल्य लोगों से एक-दूसरे को भाई-बहन जैसा मानने को कहता है?"
+     },
+     "options": [
+      {
+       "id": "samata",
+       "en": "Equality",
+       "hi": "समता"
+      },
+      {
+       "id": "bandhutva",
+       "en": "Fraternity",
+       "hi": "बंधुत्व"
+      }
+     ],
+     "answer": "bandhutva"
+    },
+    {
+     "kind": "do",
+     "target": "left:bandhutva",
+     "expect": "matched:bandhutva",
+     "say": {
+      "en": "Match Fraternity.",
+      "hi": "बंधुत्व का जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match Equality and tap Check.",
+      "hi": "समता का जोड़ा मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ambedkar's ideal society rests on three values: liberty to choose one's life, equality of chance and dignity, and fraternity that binds people as one family. Each value needs the others; liberty without equality favours the strong, and equality without fraternity is cold.",
+      "hi": "आंबेडकर का आदर्श समाज तीन मूल्यों पर टिका है: अपना जीवन चुनने की स्वतंत्रता, अवसर और गरिमा की समता, और बंधुत्व जो लोगों को एक परिवार बाँधता है। हर मूल्य को दूसरों की ज़रूरत है; स्वतंत्रता बिना समता के ताक़तवर का साथ देती है, और समता बिना बंधुत्व के रूखी रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the essay need all three values together?",
+        "hi": "निबंध को तीनों मूल्य एक साथ क्यों चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Each one needs the others to be fair and human",
+         "hi": "हर मूल्य को न्यायपूर्ण और मानवीय बनने के लिए दूसरों की ज़रूरत है"
+        },
+        {
+         "en": "Only liberty is needed",
+         "hi": "सिर्फ़ स्वतंत्रता चाहिए"
+        },
+        {
+         "en": "Equality means no freedom",
+         "hi": "समता का अर्थ है कोई आज़ादी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Liberty without equality favours the strong, and equality without fraternity turns cold.",
+        "hi": "समता के बिना स्वतंत्रता ताक़तवर का साथ देती है, और बंधुत्व के बिना समता रूखी हो जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The essay says liberty alone is not enough.",
+         "hi": "निबंध कहता है कि अकेली स्वतंत्रता काफ़ी नहीं है।"
+        },
+        {
+         "en": "Equality does not remove freedom; the essay joins them.",
+         "hi": "समता आज़ादी नहीं छीनती; निबंध दोनों को जोड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose one value and find one rule in your school that supports it. Write it in your notebook.",
+      "hi": "कोई एक मूल्य चुनो और अपने स्कूल का एक नियम खोजो जो उसे सहारा देता है। उसे अपनी कॉपी में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhar1-ch15-raah",
+   "topic": "15.3",
+   "template": "sequence",
+   "title": {
+    "en": "The route to change",
+    "hi": "समाज बदलने की राह"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "shiksha",
+      "text": {
+       "en": "Education reaches every child equally",
+       "hi": "हर बच्चे तक शिक्षा बराबर पहुँचे"
+      }
+     },
+     {
+      "id": "kanun",
+      "text": {
+       "en": "Unfair customs are challenged with reason and law",
+       "hi": "अन्यायपूर्ण रीतियों को तर्क और कानून से चुनौती मिले"
+      }
+     },
+     {
+      "id": "soch",
+      "text": {
+       "en": "People learn that no work is high or low by birth",
+       "hi": "लोग समझें कि कोई काम जन्म से ऊँचा या नीचा नहीं होता"
+      }
+     },
+     {
+      "id": "vyavhar",
+      "text": {
+       "en": "Everyone practises equality and brotherhood in daily life",
+       "hi": "सब अपने रोज़ के व्यवहार में बराबरी और भाईचारा उतारें"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:shiksha",
+     "expect": "placed:shiksha",
+     "say": {
+      "en": "Tap the card that starts the change: equal education.",
+      "hi": "बदलाव की शुरुआत वाला कार्ड छुओ: बराबर शिक्षा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which step should come second, once children have equal education?",
+      "hi": "बराबर शिक्षा के बाद दूसरा क़दम कौन-सा होना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "kanun",
+       "en": "Challenge unfair customs with reason and law",
+       "hi": "अन्यायपूर्ण रीतियों को तर्क और कानून से चुनौती"
+      },
+      {
+       "id": "vyavhar",
+       "en": "Practise brotherhood in daily life",
+       "hi": "रोज़ के व्यवहार में भाईचारा"
+      }
+     ],
+     "answer": "kanun"
+    },
+    {
+     "kind": "do",
+     "target": "item:vyavhar",
+     "expect": "placed:vyavhar",
+     "say": {
+      "en": "Place the last card: daily practice of equality.",
+      "hi": "आख़िरी कार्ड रखो: बराबरी का रोज़ का व्यवहार।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the rest in order and tap Check.",
+      "hi": "बाकी कार्ड क्रम से लगाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Social change is a route, not one act. Education gives every child a fair start, reason and law challenge the unfair customs, a changed way of thinking makes work dignified, and daily behaviour makes equality real. This order is one way to read the essay's hope, not a fixed rule from the text.",
+      "hi": "सामाजिक बदलाव एक रास्ता है, एक काम नहीं। शिक्षा हर बच्चे को बराबर शुरुआत देती है, तर्क और कानून अन्यायी रीतियों को चुनौती देते हैं, सोच बदलने से हर काम का सम्मान होता है, और रोज़ का व्यवहार बराबरी को असली बनाता है। यह क्रम निबंध की उम्मीद को समझने का एक तरीका है, पाठ का तय नियम नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which change does the essay place at the start of the route?",
+        "hi": "निबंध बदलाव के रास्ते की शुरुआत किससे रखता है?"
+       },
+       "options": [
+        {
+         "en": "Equal education for every child",
+         "hi": "हर बच्चे के लिए बराबर शिक्षा"
+        },
+        {
+         "en": "A new fashion in clothes",
+         "hi": "कपड़ों का नया फ़ैशन"
+        },
+        {
+         "en": "Keeping old customs as they are",
+         "hi": "पुरानी रीतियों को वैसा ही रखना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Education gives everyone a fair start, so it comes first in this route.",
+        "hi": "शिक्षा सबको बराबर शुरुआत देती है, इसलिए इस रास्ते में वह पहले आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Clothes do not change the order of social change in the essay.",
+         "hi": "निबंध में कपड़े का फ़ैशन सामाजिक बदलाव का क्रम नहीं बदलता।"
+        },
+        {
+         "en": "Keeping old customs blocks change; it does not start it.",
+         "hi": "पुरानी रीतियाँ बदलाव को रोकती हैं, उसकी शुरुआत नहीं करतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these four steps can you take at your own school this week? Tell one friend.",
+      "hi": "इन चार क़दमों में से कौन-सा तुम अपने स्कूल में इस हफ़्ते उठा सकते हो? एक दोस्त को बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "15.1",
+   "use": "Indian village workshop with varied craft",
+   "shows": "A village workshop with a carpenter at a bench and a potter at a wheel, both at work, warm light",
+   "view": "Wide, 16:9",
+   "right": "Real tools and workshop setting",
+   "avoid": "Faces identifiable, text on signs"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "15.1",
+   "use": "Carpenter tools as skill objects",
+   "shows": "A set of wooden-handled carpenter tools laid out neatly, cut-out",
+   "view": "Top view, transparent background",
+   "right": "Real wear on handles",
+   "avoid": "Labels, stands"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "15.2",
+   "use": "A village school courtyard",
+   "shows": "A simple school courtyard with children at a shady wall, books open, no uniforms identifiable",
+   "view": "Wide, 16:9",
+   "right": "Real rural school setting",
+   "avoid": "Identifiable children, logos"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "15.2",
+   "use": "Three-value balance frame",
+   "shows": "A simple balance scale drawn in a clean diagram base, two pans level, no words",
+   "view": "PNG or SVG, white background",
+   "right": "Clean balance lines",
+   "avoid": "Words, icons"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "15.3",
+   "use": "India base map without borders",
+   "shows": "A plain map of the Indian subcontinent in soft relief, no names or borders drawn",
+   "view": "16:9",
+   "right": "Real coastline and relief",
+   "avoid": "Labels, borders"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "15.3",
+   "use": "A community learning group over three days",
+   "shows": "Three frames of the same village room with a group gathered around a table, same camera and light",
+   "view": "Same camera, 4:3, numbered",
+   "right": "Same room and light in all frames",
+   "avoid": "Identifiable faces, text"
+  }
+ ]
+}

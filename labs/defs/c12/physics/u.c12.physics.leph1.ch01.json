@@ -1,0 +1,1302 @@
+{
+ "chapter_key": "u.c12.physics.leph1.ch01",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Electric Charges and Fields",
+ "source": "https://ncert.nic.in/textbook/pdf/leph101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Introduction: static electricity around us",
+   "labs": [],
+   "why_no_lab": "An opening story about sparks, lightning and a rubbed comb; the reader's photos set the scene before any lab."
+  },
+  {
+   "n": "1.2",
+   "title": "Electric charge: two kinds, like charges repel and unlike attract",
+   "labs": [
+    "c12-physics-leph1-ch01-like-unlike"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Conductors and insulators; earthing",
+   "labs": [
+    "c12-physics-leph1-ch01-conductors"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Basic properties of charge: additivity, conservation and quantisation (q = ne)",
+   "labs": [],
+   "why_no_lab": "These are counting rules for charge, best learned from the reader's worked examples and the check questions rather than a simulation."
+  },
+  {
+   "n": "1.5",
+   "title": "Coulomb's law",
+   "labs": [
+    "c12-physics-leph1-ch01-coulomb"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Forces between multiple charges: the superposition principle",
+   "labs": [
+    "c12-physics-leph1-ch01-superposition"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.7",
+   "title": "Electric field, field of a system of charges and its physical meaning",
+   "labs": [
+    "c12-physics-leph1-ch01-neutral-point"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.8",
+   "title": "Electric field lines",
+   "labs": [
+    "c12-physics-leph1-ch01-field-lines"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.9",
+   "title": "Electric flux",
+   "labs": [],
+   "why_no_lab": "Flux is the field passing through a surface, an idea best shown by the reader's drawing of a tilted surface in a field."
+  },
+  {
+   "n": "1.10",
+   "title": "Electric dipole: its field and physical significance",
+   "labs": [
+    "c12-physics-leph1-ch01-dipole"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.11",
+   "title": "Dipole in a uniform external field: torque",
+   "labs": [],
+   "why_no_lab": "The torque p × E on a dipole needs a uniform field between plates, which the reader's diagram and a worked example teach clearly."
+  },
+  {
+   "n": "1.12",
+   "title": "Continuous charge distribution: line, surface and volume charge density",
+   "labs": [],
+   "why_no_lab": "This is the step from single charges to charge densities, a calculus idea best learned from the reader."
+  },
+  {
+   "n": "1.13",
+   "title": "Gauss's law",
+   "labs": [],
+   "why_no_lab": "Gauss's law is about total flux through a closed surface, best taught with the reader's diagrams and worked proofs."
+  },
+  {
+   "n": "1.14",
+   "title": "Applications of Gauss's law: infinite wire, plane sheet, spherical shell",
+   "labs": [],
+   "why_no_lab": "Each result is a short derivation with a chosen Gaussian surface; the reader's step-by-step diagrams teach it best."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph1-ch01-like-unlike",
+   "topic": "1.2",
+   "template": "field",
+   "title": {
+    "en": "Like and unlike charges",
+    "hi": "समान और असमान आवेश"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "source": "charges",
+    "show": "vectors",
+    "charges": [
+     {
+      "q": 1,
+      "x": 25,
+      "y": 35
+     },
+     {
+      "q": 1,
+      "x": 75,
+      "y": 35
+     },
+     {
+      "q": -1,
+      "x": 50,
+      "y": 80
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before you touch anything: what will two positive charges do to each other?",
+      "hi": "कुछ छूने से पहले सोचो: दो धनात्मक आवेश एक-दूसरे के साथ क्या करेंगे?"
+     },
+     "options": [
+      {
+       "id": "push",
+       "en": "Push each other away",
+       "hi": "एक-दूसरे को दूर धकेलेंगे"
+      },
+      {
+       "id": "pull",
+       "en": "Pull each other closer",
+       "hi": "एक-दूसरे को पास खींचेंगे"
+      },
+      {
+       "id": "none",
+       "en": "Do nothing to each other",
+       "hi": "एक-दूसरे पर कोई असर नहीं डालेंगे"
+      }
+     ],
+     "answer": "push"
+    },
+    {
+     "kind": "do",
+     "target": "charge:1",
+     "expect": "repel",
+     "say": {
+      "en": "Drag the + charge on the right close to the + charge on the left.",
+      "hi": "दाईं ओर वाले + आवेश को खींचकर बाईं ओर वाले + आवेश के पास ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "charge:2",
+     "expect": "attract",
+     "say": {
+      "en": "Now drag the − charge up, close to one of the + charges.",
+      "hi": "अब − आवेश को ऊपर खींचकर किसी एक + आवेश के पास ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Like charges repel and unlike charges attract. The white arrows show the force on each charge: the two forces in a pair are equal in size and opposite in direction, as Newton's third law says. A plastic comb run through dry hair picks up bits of paper in the same way, because it has gained extra charge by rubbing.",
+      "hi": "समान आवेश एक-दूसरे को प्रतिकर्षित करते हैं और असमान आवेश आकर्षित करते हैं। सफ़ेद तीर हर आवेश पर लगे बल को दिखाते हैं: एक जोड़ी के दोनों बल बराबर और विपरीत दिशा में होते हैं, जैसा न्यूटन का तीसरा नियम कहता है। सूखे बालों में फेरी गई प्लास्टिक की कंघी इसी तरह काग़ज़ के टुकड़े उठाती है, क्योंकि रगड़ से उस पर अतिरिक्त आवेश आ जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A glass rod rubbed with silk becomes positive. What charge does the silk get?",
+        "hi": "रेशम से रगड़ने पर काँच की छड़ धनात्मक हो जाती है। रेशम पर कौन-सा आवेश आता है?"
+       },
+       "options": [
+        {
+         "en": "Negative, equal in size",
+         "hi": "ऋणात्मक, उतना ही"
+        },
+        {
+         "en": "Positive, equal in size",
+         "hi": "धनात्मक, उतना ही"
+        },
+        {
+         "en": "No charge at all",
+         "hi": "कोई आवेश नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rubbing only moves electrons from the glass to the silk. The glass loses electrons and the silk gains exactly as many, so the silk becomes equally negative.",
+        "hi": "रगड़ने से बस इलेक्ट्रॉन काँच से रेशम पर चले जाते हैं। काँच इलेक्ट्रॉन खोता है और रेशम ठीक उतने ही पाता है, इसलिए रेशम उतना ही ऋणात्मक हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Thinking both rubbed things get the same charge forgets that electrons leave one and arrive on the other.",
+         "hi": "यह सोचना कि रगड़ी गई दोनों चीज़ों पर एक-सा आवेश आता है, यह भूल जाता है कि इलेक्ट्रॉन एक से निकलकर दूसरी पर पहुँचते हैं।"
+        },
+        {
+         "en": "If the silk had no charge, the electrons that left the glass would have vanished; charge cannot disappear.",
+         "hi": "अगर रेशम पर कोई आवेश न होता, तो काँच से निकले इलेक्ट्रॉन ग़ायब हो जाते; आवेश ग़ायब नहीं हो सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A charged balloon pulls an uncharged bit of paper. Why?",
+        "hi": "आवेशित गुब्बारा एक अनावेशित काग़ज़ के टुकड़े को खींचता है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "The paper is secretly charged",
+         "hi": "काग़ज़ पहले से छिपा हुआ आवेशित है"
+        },
+        {
+         "en": "The balloon pulls the opposite charges in the paper nearer and pushes like charges farther away",
+         "hi": "गुब्बारा काग़ज़ के विपरीत आवेशों को पास खींचता है और समान आवेशों को दूर धकेलता है"
+        },
+        {
+         "en": "Air carries the force",
+         "hi": "हवा बल को ले जाती है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The paper stays neutral overall, but its charges shift a little. The nearer opposite charge is pulled more strongly than the farther like charge is pushed, so the net force is a pull.",
+        "hi": "काग़ज़ कुल मिलाकर उदासीन रहता है, पर उसके आवेश थोड़ा खिसक जाते हैं। पास वाला विपरीत आवेश ज़्यादा ज़ोर से खिंचता है और दूर वाला समान आवेश कम धकेला जाता है, इसलिए कुल बल खिंचाव होता है।"
+       },
+       "wrong": [
+        {
+         "en": "The paper was neutral before the balloon came near; it does not need its own charge to be pulled.",
+         "hi": "गुब्बारे के पास आने से पहले काग़ज़ उदासीन था; खिंचने के लिए उसे अपने आवेश की ज़रूरत नहीं।"
+        },
+        "",
+        {
+         "en": "The same pull happens in vacuum, so air is not what carries the force.",
+         "hi": "यही खिंचाव निर्वात में भी होता है, इसलिए बल हवा से नहीं पहुँचता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore freely: drag the three charges into a triangle and watch how each arrow is the sum of two pushes and pulls.",
+      "hi": "अब ख़ुद आज़माओ: तीनों आवेशों को त्रिभुज में रखो और देखो कि हर तीर दो धक्कों और खिंचावों का योग कैसे है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch01-conductors",
+   "topic": "1.3",
+   "template": "circuit",
+   "title": {
+    "en": "Conductors and insulators",
+    "hi": "चालक और विद्युतरोधी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "conductors",
+    "preset": "solids"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "material:copper",
+     "expect": "conducts",
+     "say": {
+      "en": "Tap Copper to put a copper strip in the gap of the tester.",
+      "hi": "टेस्टर के खाली स्थान में ताँबे की पट्टी रखने के लिए ताँबा पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next you will test a plastic strip. What will the bulb do?",
+      "hi": "अब तुम प्लास्टिक की पट्टी जाँचोगे। बल्ब क्या करेगा?"
+     },
+     "options": [
+      {
+       "id": "off",
+       "en": "Stay off",
+       "hi": "बुझा रहेगा"
+      },
+      {
+       "id": "dim",
+       "en": "Glow dimly",
+       "hi": "धीमा जलेगा"
+      },
+      {
+       "id": "bright",
+       "en": "Glow brightly",
+       "hi": "तेज़ जलेगा"
+      }
+     ],
+     "answer": "off"
+    },
+    {
+     "kind": "do",
+     "target": "material:plastic",
+     "expect": "insulates",
+     "say": {
+      "en": "Tap Plastic to test it.",
+      "hi": "प्लास्टिक पर टैप करके उसे जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "material:graphite",
+     "expect": "conducts",
+     "say": {
+      "en": "Now test the pencil lead (graphite).",
+      "hi": "अब पेंसिल की लीड (ग्रेफ़ाइट) जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In metals and graphite some electrons are free to move through the whole solid, so charge flows and the bulb glows: these are conductors. In plastic, rubber, glass and dry wood the electrons are held tightly by their atoms, so charge cannot move: these are insulators. A charge placed on an insulator stays where it is put; on a conductor it spreads over the whole surface.",
+      "hi": "धातुओं और ग्रेफ़ाइट में कुछ इलेक्ट्रॉन पूरे ठोस में घूमने के लिए मुक्त होते हैं, इसलिए आवेश बहता है और बल्ब जलता है: ये चालक हैं। प्लास्टिक, रबड़, काँच और सूखी लकड़ी में इलेक्ट्रॉन अपने परमाणुओं से कसकर बँधे रहते हैं, इसलिए आवेश नहीं चल पाता: ये विद्युतरोधी हैं। विद्युतरोधी पर रखा आवेश वहीं टिका रहता है; चालक पर वह पूरी सतह पर फैल जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can you charge a plastic comb by rubbing it while holding it, but not a steel spoon?",
+        "hi": "हाथ में पकड़कर रगड़ने से प्लास्टिक की कंघी आवेशित हो जाती है, पर स्टील का चम्मच नहीं। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Steel lets the charge flow away through your body to the earth",
+         "hi": "स्टील आवेश को तुम्हारे शरीर से होकर धरती में बह जाने देता है"
+        },
+        {
+         "en": "Steel has no electrons",
+         "hi": "स्टील में इलेक्ट्रॉन नहीं होते"
+        },
+        {
+         "en": "Steel is too heavy to charge",
+         "hi": "स्टील आवेशित होने के लिए बहुत भारी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Steel is a conductor and your body conducts too, so any charge made by rubbing leaks to the earth at once. The plastic comb is an insulator and keeps the charge where it was made.",
+        "hi": "स्टील चालक है और तुम्हारा शरीर भी चालक है, इसलिए रगड़ से बना आवेश तुरंत धरती में चला जाता है। प्लास्टिक की कंघी विद्युतरोधी है और आवेश को वहीं रखती है जहाँ वह बना।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Every material has electrons; steel has many free ones, which is exactly why it conducts.",
+         "hi": "हर पदार्थ में इलेक्ट्रॉन होते हैं; स्टील में बहुत से मुक्त इलेक्ट्रॉन हैं, इसीलिए वह चालक है।"
+        },
+        {
+         "en": "Mass has nothing to do with charging; a light aluminium foil also loses its charge through your hand.",
+         "hi": "द्रव्यमान का आवेशित होने से कोई लेना-देना नहीं; हल्की ऐलुमिनियम पन्नी भी हाथ से अपना आवेश खो देती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does \"earthing\" an appliance do?",
+        "hi": "किसी उपकरण का \"भू-संपर्कण\" (अर्थिंग) क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Gives extra charge a safe path into the ground",
+         "hi": "अतिरिक्त आवेश को धरती में जाने का सुरक्षित रास्ता देता है"
+        },
+        {
+         "en": "Stores charge for later",
+         "hi": "आवेश को बाद के लिए जमा करता है"
+        },
+        {
+         "en": "Stops the appliance from working",
+         "hi": "उपकरण को काम करने से रोकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The earth is a huge conductor. A thick wire from the metal body to the ground carries any leaked charge away, so touching the body is safe.",
+        "hi": "धरती एक विशाल चालक है। धातु के ढाँचे से धरती तक का मोटा तार किसी भी रिसे हुए आवेश को बहा ले जाता है, इसलिए ढाँचे को छूना सुरक्षित रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An earth wire does not store anything; it lets charge flow away, the opposite of storing.",
+         "hi": "अर्थ तार कुछ जमा नहीं करता; वह आवेश को बहा देता है, जो जमा करने का उल्टा है।"
+        },
+        {
+         "en": "The appliance works normally through its live and neutral wires; the earth wire only matters when something goes wrong.",
+         "hi": "उपकरण अपने फेज़ और न्यूट्रल तारों से सामान्य रूप से चलता है; अर्थ तार तभी काम आता है जब कुछ गड़बड़ हो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore freely: test every item in the tray and sort them in your head into conductors and insulators. Which surprised you?",
+      "hi": "अब ख़ुद आज़माओ: ट्रे की हर चीज़ जाँचो और मन में उन्हें चालक और विद्युतरोधी में बाँटो। किसने तुम्हें चौंकाया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch01-coulomb",
+   "topic": "1.5",
+   "template": "field",
+   "title": {
+    "en": "Coulomb's law: force and distance",
+    "hi": "कूलॉम का नियम: बल और दूरी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "source": "charges",
+    "show": "vectors",
+    "charges": [
+     {
+      "q": 2,
+      "x": 20,
+      "y": 50
+     },
+     {
+      "q": -2,
+      "x": 80,
+      "y": 50
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "charge:1",
+     "expect": "moved",
+     "say": {
+      "en": "Read the force F in the panel. Then drag the −2 µC charge until it is about 30 cm from the +2 µC charge.",
+      "hi": "पैनल में बल F पढ़ो। फिर −2 µC आवेश को खींचकर +2 µC आवेश से लगभग 30 cm दूर ले आओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You halved the distance and the force became about four times bigger. If you halve it again, to about 15 cm, the force will become…",
+      "hi": "तुमने दूरी आधी की और बल लगभग चार गुना हो गया। अगर दूरी फिर आधी करके लगभग 15 cm करो, तो बल हो जाएगा…"
+     },
+     "options": [
+      {
+       "id": "x2",
+       "en": "Twice as big",
+       "hi": "दोगुना"
+      },
+      {
+       "id": "x4",
+       "en": "Four times as big",
+       "hi": "चार गुना"
+      },
+      {
+       "id": "half",
+       "en": "Half as big",
+       "hi": "आधा"
+      }
+     ],
+     "answer": "x4"
+    },
+    {
+     "kind": "do",
+     "target": "charge:1",
+     "expect": "attract",
+     "say": {
+      "en": "Drag the −2 µC charge to about 15 cm from the other one and read F again.",
+      "hi": "−2 µC आवेश को दूसरे से लगभग 15 cm दूर ले जाओ और F फिर से पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Coulomb's law: F = k q₁q₂ / r², with k = 9 × 10⁹ N m² C⁻². The force falls as the square of the distance, so halving r makes F four times bigger and doubling r makes it a quarter. The force acts along the line joining the two charges: a pull here, because the charges are unlike.",
+      "hi": "कूलॉम का नियम: F = k q₁q₂ / r², जहाँ k = 9 × 10⁹ N m² C⁻² है। बल दूरी के वर्ग के अनुपात में घटता है, इसलिए r आधी करने पर F चार गुना और r दोगुनी करने पर एक-चौथाई हो जाता है। बल दोनों आवेशों को जोड़ने वाली रेखा के अनुदिश लगता है: यहाँ खिंचाव, क्योंकि आवेश असमान हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two charges are 1 m apart. They are moved to 3 m apart. The force becomes…",
+        "hi": "दो आवेश 1 m दूर हैं। उन्हें 3 m दूर कर दिया जाता है। बल हो जाता है…"
+       },
+       "options": [
+        {
+         "en": "One third",
+         "hi": "एक-तिहाई"
+        },
+        {
+         "en": "One ninth",
+         "hi": "नौवाँ भाग"
+        },
+        {
+         "en": "Three times",
+         "hi": "तीन गुना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "F depends on 1/r². Three times the distance gives 1/3² = 1/9 of the force.",
+        "hi": "F, 1/r² पर निर्भर है। तीन गुनी दूरी पर बल 1/3² = 1/9 हो जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "One third would be true if F went as 1/r, but it goes as 1/r².",
+         "hi": "एक-तिहाई तब सही होता जब F, 1/r के अनुसार बदलता, पर यह 1/r² के अनुसार बदलता है।"
+        },
+        "",
+        {
+         "en": "Moving charges apart weakens the force; it never grows with distance.",
+         "hi": "आवेशों को दूर करने से बल कमज़ोर होता है; दूरी बढ़ने पर वह कभी नहीं बढ़ता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "One of the two charges is doubled, the distance stays the same. The force…",
+        "hi": "दोनों में से एक आवेश दोगुना कर दिया, दूरी वही रही। बल…"
+       },
+       "options": [
+        {
+         "en": "Doubles",
+         "hi": "दोगुना हो जाता है"
+        },
+        {
+         "en": "Becomes four times",
+         "hi": "चार गुना हो जाता है"
+        },
+        {
+         "en": "Stays the same",
+         "hi": "वही रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "F is proportional to the product q₁q₂. Doubling one of them doubles the product, so F doubles.",
+        "hi": "F गुणनफल q₁q₂ के अनुपाती है। इनमें से एक को दोगुना करने पर गुणनफल दोगुना होता है, इसलिए F दोगुना होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Four times would need both charges doubled, or the distance halved.",
+         "hi": "चार गुना के लिए दोनों आवेश दोगुने करने पड़ते, या दूरी आधी।"
+        },
+        {
+         "en": "The force depends on how big each charge is, so changing one must change F.",
+         "hi": "बल हर आवेश के आकार पर निर्भर है, इसलिए एक बदलने पर F बदलेगा ही।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore freely: pull the charges back to 60 cm and check that F returns to the first value. Try 20 cm and 40 cm: is the ratio 4?",
+      "hi": "अब ख़ुद आज़माओ: आवेशों को फिर 60 cm पर ले जाओ और देखो कि F पहले वाले मान पर लौटता है। 20 cm और 40 cm आज़माओ: क्या अनुपात 4 आता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch01-superposition",
+   "topic": "1.6",
+   "template": "field",
+   "title": {
+    "en": "Adding forces from many charges",
+    "hi": "कई आवेशों के बलों को जोड़ना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "source": "charges",
+    "show": "vectors",
+    "charges": [
+     {
+      "q": 1,
+      "x": 50,
+      "y": 50
+     },
+     {
+      "q": 2,
+      "x": 20,
+      "y": 50
+     },
+     {
+      "q": -2,
+      "x": 80,
+      "y": 50
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "charge:2",
+     "expect": "moved",
+     "say": {
+      "en": "The +1 µC in the middle is pushed right by the +2 µC and pulled right by the −2 µC, so its arrow is long. Now drag the −2 µC so it sits straight above the +1 µC.",
+      "hi": "बीच वाले +1 µC को +2 µC दाईं ओर धकेलता है और −2 µC दाईं ओर खींचता है, इसलिए उसका तीर लंबा है। अब −2 µC को खींचकर +1 µC के ठीक ऊपर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now one force on the +1 µC points right and the other points up. Which way will its total force point?",
+      "hi": "अब +1 µC पर एक बल दाईं ओर है और दूसरा ऊपर की ओर। उस पर कुल बल किस ओर होगा?"
+     },
+     "options": [
+      {
+       "id": "right",
+       "en": "Only to the right",
+       "hi": "केवल दाईं ओर"
+      },
+      {
+       "id": "up",
+       "en": "Only upwards",
+       "hi": "केवल ऊपर"
+      },
+      {
+       "id": "diag",
+       "en": "At a slant, between right and up",
+       "hi": "तिरछा, दाएँ और ऊपर के बीच"
+      }
+     ],
+     "answer": "diag"
+    },
+    {
+     "kind": "do",
+     "target": "charge:1",
+     "expect": "moved",
+     "say": {
+      "en": "Drag the +2 µC charge farther away to the left and watch the arrow on the +1 µC turn.",
+      "hi": "+2 µC आवेश को बाईं ओर और दूर ले जाओ और +1 µC पर तीर को घूमते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This is the superposition principle: each pair of charges pushes or pulls exactly as if the others were not there, and the total force on a charge is the vector sum of all these forces. Moving the +2 µC away weakens its push, so the sum swings towards the pull of the −2 µC.",
+      "hi": "यह अध्यारोपण का सिद्धांत है: हर जोड़ी के आवेश ठीक वैसे ही धकेलते या खींचते हैं जैसे बाक़ी आवेश हों ही नहीं, और किसी आवेश पर कुल बल इन सभी बलों का सदिश योग होता है। +2 µC को दूर करने से उसका धक्का कमज़ोर होता है, इसलिए योग −2 µC के खिंचाव की ओर घूम जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two forces of 3 N and 4 N act on a charge at right angles. The total force is…",
+        "hi": "किसी आवेश पर 3 N और 4 N के दो बल समकोण पर लगते हैं। कुल बल है…"
+       },
+       "options": [
+        "7 N",
+        "5 N",
+        "1 N"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Forces at right angles add like the sides of a right triangle: √(3² + 4²) = 5 N.",
+        "hi": "समकोण पर लगे बल समकोण त्रिभुज की भुजाओं की तरह जुड़ते हैं: √(3² + 4²) = 5 N।"
+       },
+       "wrong": [
+        {
+         "en": "7 N is the sum only when both forces point the same way; at right angles they partly work in different directions.",
+         "hi": "7 N तभी आता है जब दोनों बल एक ही दिशा में हों; समकोण पर वे अलग-अलग दिशाओं में काम करते हैं।"
+        },
+        "",
+        {
+         "en": "1 N is the difference, which is right only when the forces point in opposite directions.",
+         "hi": "1 N अंतर है, जो तभी सही है जब बल विपरीत दिशाओं में हों।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Does the presence of a third charge change the force between the first two?",
+        "hi": "क्या तीसरे आवेश के होने से पहले दो आवेशों के बीच का बल बदलता है?"
+       },
+       "options": [
+        {
+         "en": "No, each pair force stays the same",
+         "hi": "नहीं, हर जोड़ी का बल वही रहता है"
+        },
+        {
+         "en": "Yes, it halves the force",
+         "hi": "हाँ, बल आधा हो जाता है"
+        },
+        {
+         "en": "Yes, it blocks the force",
+         "hi": "हाँ, वह बल को रोक देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "By superposition the force between two charges depends only on those two and their distance. The third charge only adds its own force to the total.",
+        "hi": "अध्यारोपण के अनुसार दो आवेशों के बीच का बल केवल उन दोनों और उनकी दूरी पर निर्भर है। तीसरा आवेश बस कुल में अपना बल जोड़ देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing in Coulomb's law for a pair mentions other charges, so the pair force cannot halve.",
+         "hi": "एक जोड़ी के लिए कूलॉम के नियम में दूसरे आवेशों का ज़िक्र ही नहीं है, इसलिए जोड़ी का बल आधा नहीं हो सकता।"
+        },
+        {
+         "en": "A charge does not act as a shield in empty space; the forces simply add up.",
+         "hi": "ख़ाली स्थान में कोई आवेश ढाल का काम नहीं करता; बल बस जुड़ जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore freely: find a spot for the +1 µC where the two forces on it cancel and its arrow disappears.",
+      "hi": "अब ख़ुद आज़माओ: +1 µC के लिए ऐसी जगह ढूँढो जहाँ उस पर दोनों बल रद्द हो जाएँ और उसका तीर ग़ायब हो जाए।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch01-neutral-point",
+   "topic": "1.7",
+   "template": "field",
+   "title": {
+    "en": "The electric field and a neutral point",
+    "hi": "विद्युत क्षेत्र और उदासीन बिंदु"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "source": "charges",
+    "show": "vectors",
+    "charges": [
+     {
+      "q": 2,
+      "x": 30,
+      "y": 50
+     },
+     {
+      "q": 2,
+      "x": 70,
+      "y": 50
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The small arrows show the electric field E: the force on a tiny test charge divided by its charge. What is E exactly midway between two equal positive charges?",
+      "hi": "छोटे तीर विद्युत क्षेत्र E दिखाते हैं: एक बहुत छोटे परीक्षण आवेश पर बल, उसके आवेश से भाग देकर। दो बराबर धनात्मक आवेशों के ठीक बीच में E कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "zero",
+       "en": "Zero",
+       "hi": "शून्य"
+      },
+      {
+       "id": "double",
+       "en": "Twice the field of one charge",
+       "hi": "एक आवेश के क्षेत्र का दोगुना"
+      },
+      {
+       "id": "up",
+       "en": "Pointing straight up",
+       "hi": "सीधा ऊपर की ओर"
+      }
+     ],
+     "answer": "zero"
+    },
+    {
+     "kind": "do",
+     "target": "sprinkle",
+     "expect": "lines",
+     "say": {
+      "en": "Tap Sprinkle seeds to see how tiny seeds in oil line up along the field.",
+      "hi": "तेल में छोटे बीज क्षेत्र के अनुदिश कैसे सजते हैं, यह देखने के लिए बीज छिड़को पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:lines",
+     "expect": "lines",
+     "say": {
+      "en": "Now tap Lines to draw the field lines.",
+      "hi": "अब क्षेत्र रेखाएँ बनाने के लिए रेखाएँ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At the midpoint each charge makes a field of the same size, but in opposite directions, so they cancel: E = 0. This is a neutral point. A field line shows the direction of E at every point; the lines bend away from each other here and none passes through the neutral point.",
+      "hi": "बीच के बिंदु पर हर आवेश बराबर क्षेत्र बनाता है, पर विपरीत दिशाओं में, इसलिए वे रद्द हो जाते हैं: E = 0। यह उदासीन बिंदु है। क्षेत्र रेखा हर बिंदु पर E की दिशा दिखाती है; यहाँ रेखाएँ एक-दूसरे से दूर मुड़ जाती हैं और कोई भी रेखा उदासीन बिंदु से नहीं गुज़रती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The SI unit of electric field is…",
+        "hi": "विद्युत क्षेत्र का SI मात्रक है…"
+       },
+       "options": [
+        "N/C",
+        "C/N",
+        "N C"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "E = F/q, force per unit charge, so its unit is newton per coulomb.",
+        "hi": "E = F/q, प्रति एकांक आवेश बल, इसलिए इसका मात्रक न्यूटन प्रति कूलॉम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "C/N is upside down: the field is force divided by charge, not charge divided by force.",
+         "hi": "C/N उल्टा है: क्षेत्र बल को आवेश से भाग देकर मिलता है, आवेश को बल से नहीं।"
+        },
+        {
+         "en": "N C would be force times charge, which is not how the field is defined.",
+         "hi": "N C बल गुणा आवेश होगा, जो क्षेत्र की परिभाषा नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "An electron is placed where the field points to the right. Which way is the force on it?",
+        "hi": "एक इलेक्ट्रॉन ऐसी जगह रखा है जहाँ क्षेत्र दाईं ओर है। उस पर बल किस ओर होगा?"
+       },
+       "options": [
+        {
+         "en": "To the right",
+         "hi": "दाईं ओर"
+        },
+        {
+         "en": "To the left",
+         "hi": "बाईं ओर"
+        },
+        {
+         "en": "No force",
+         "hi": "कोई बल नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "F = qE. The electron's charge is negative, so its force points opposite to E: to the left.",
+        "hi": "F = qE। इलेक्ट्रॉन का आवेश ऋणात्मक है, इसलिए उस पर बल E के विपरीत होता है: बाईं ओर।"
+       },
+       "wrong": [
+        {
+         "en": "The field direction is the force on a positive charge; a negative charge feels the opposite.",
+         "hi": "क्षेत्र की दिशा धनात्मक आवेश पर बल की दिशा है; ऋणात्मक आवेश उल्टी दिशा महसूस करता है।"
+        },
+        "",
+        {
+         "en": "Any charge in a non-zero field feels a force; only at a neutral point is there none.",
+         "hi": "शून्य से अलग क्षेत्र में हर आवेश पर बल लगता है; केवल उदासीन बिंदु पर बल नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore freely: drag one charge nearer to the other and watch where the gap in the lines (the neutral point) goes.",
+      "hi": "अब ख़ुद आज़माओ: एक आवेश को दूसरे के पास ले जाओ और देखो कि रेखाओं के बीच की ख़ाली जगह (उदासीन बिंदु) कहाँ जाती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch01-field-lines",
+   "topic": "1.8",
+   "template": "field",
+   "title": {
+    "en": "Field lines of unequal charges",
+    "hi": "असमान आवेशों की क्षेत्र रेखाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "source": "charges",
+    "show": "vectors",
+    "charges": [
+     {
+      "q": 3,
+      "x": 35,
+      "y": 50
+     },
+     {
+      "q": -1,
+      "x": 65,
+      "y": 50
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "view:lines",
+     "expect": "lines",
+     "say": {
+      "en": "Tap Lines to draw the field lines of a +3 µC and a −1 µC charge.",
+      "hi": "+3 µC और −1 µC आवेश की क्षेत्र रेखाएँ बनाने के लिए रेखाएँ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Lines start on + charges and end on − charges. The +3 µC sends out three times as many lines as the −1 µC can take in. What happens to the extra lines?",
+      "hi": "रेखाएँ + आवेश से शुरू होकर − आवेश पर ख़त्म होती हैं। +3 µC से तीन गुना रेखाएँ निकलती हैं, जितनी −1 µC ले सकता है। बची हुई रेखाओं का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "end",
+       "en": "They all end on the −1 µC anyway",
+       "hi": "वे फिर भी सब −1 µC पर ही ख़त्म होती हैं"
+      },
+      {
+       "id": "far",
+       "en": "They go off far away",
+       "hi": "वे बहुत दूर चली जाती हैं"
+      },
+      {
+       "id": "stop",
+       "en": "They stop in mid-air",
+       "hi": "वे बीच हवा में रुक जाती हैं"
+      }
+     ],
+     "answer": "far"
+    },
+    {
+     "kind": "do",
+     "target": "sprinkle",
+     "expect": "lines",
+     "say": {
+      "en": "Tap Sprinkle seeds and compare the seed pattern with the lines.",
+      "hi": "बीज छिड़को पर टैप करो और बीजों के पैटर्न की रेखाओं से तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The number of lines from a charge is proportional to its size. Only one third of the lines from the +3 µC can end on the −1 µC; the rest bend away and go off to great distances. Where lines crowd together the field is strong; where they spread out it is weak. Two field lines never cross, because the field has only one direction at each point.",
+      "hi": "किसी आवेश से निकलने वाली रेखाओं की संख्या उसके आकार के अनुपाती होती है। +3 µC की केवल एक-तिहाई रेखाएँ −1 µC पर ख़त्म हो सकती हैं; बाक़ी मुड़कर बहुत दूर तक चली जाती हैं। जहाँ रेखाएँ घनी हैं वहाँ क्षेत्र प्रबल है; जहाँ फैली हैं वहाँ कमज़ोर। दो क्षेत्र रेखाएँ कभी एक-दूसरे को नहीं काटतीं, क्योंकि हर बिंदु पर क्षेत्र की एक ही दिशा होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can two electric field lines never cross?",
+        "hi": "दो विद्युत क्षेत्र रेखाएँ कभी एक-दूसरे को क्यों नहीं काटतीं?"
+       },
+       "options": [
+        {
+         "en": "At a crossing the field would have two directions at once",
+         "hi": "काटने वाले बिंदु पर क्षेत्र की एक साथ दो दिशाएँ हो जातीं"
+        },
+        {
+         "en": "The lines repel each other",
+         "hi": "रेखाएँ एक-दूसरे को प्रतिकर्षित करती हैं"
+        },
+        {
+         "en": "Lines are too thin to meet",
+         "hi": "रेखाएँ मिलने के लिए बहुत पतली हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The tangent to a line gives the direction of E. At a crossing there would be two tangents, but a charge placed there can feel only one force.",
+        "hi": "रेखा की स्पर्शरेखा E की दिशा बताती है। काटने वाले बिंदु पर दो स्पर्शरेखाएँ होतीं, पर वहाँ रखा आवेश केवल एक ही बल महसूस कर सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Field lines are a picture of the field, not real objects, so they cannot push one another.",
+         "hi": "क्षेत्र रेखाएँ क्षेत्र का चित्र हैं, असली वस्तुएँ नहीं, इसलिए वे एक-दूसरे को धकेल नहीं सकतीं।"
+        },
+        {
+         "en": "Thickness has nothing to do with it; even an ideal thin line has one direction at each point.",
+         "hi": "मोटाई से इसका कोई संबंध नहीं; आदर्श पतली रेखा की भी हर बिंदु पर एक ही दिशा होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In a picture of field lines, where is the field strongest?",
+        "hi": "क्षेत्र रेखाओं के चित्र में क्षेत्र सबसे प्रबल कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "Where the lines are far apart",
+         "hi": "जहाँ रेखाएँ दूर-दूर हैं"
+        },
+        {
+         "en": "Where the lines are close together",
+         "hi": "जहाँ रेखाएँ पास-पास हैं"
+        },
+        {
+         "en": "Where the lines are straight",
+         "hi": "जहाँ रेखाएँ सीधी हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The closeness of lines measures the strength of the field: crowded lines mean a large E.",
+        "hi": "रेखाओं का पास-पास होना क्षेत्र की प्रबलता बताता है: घनी रेखाओं का मतलब बड़ा E।"
+       },
+       "wrong": [
+        {
+         "en": "Lines that spread far apart show where the field has become weak, far from the charges.",
+         "hi": "दूर-दूर फैली रेखाएँ बताती हैं कि आवेशों से दूर क्षेत्र कमज़ोर हो गया है।"
+        },
+        "",
+        {
+         "en": "A straight line only shows a steady direction; it can be weak or strong.",
+         "hi": "सीधी रेखा केवल एक जैसी दिशा दिखाती है; क्षेत्र कमज़ोर भी हो सकता है और प्रबल भी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore freely: drag the −1 µC far away and close again. Watch how many lines from the +3 µC reach it.",
+      "hi": "अब ख़ुद आज़माओ: −1 µC को दूर और फिर पास ले जाओ। देखो +3 µC की कितनी रेखाएँ उस तक पहुँचती हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch01-dipole",
+   "topic": "1.10",
+   "template": "field",
+   "title": {
+    "en": "The electric dipole",
+    "hi": "विद्युत द्विध्रुव"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "source": "charges",
+    "show": "vectors",
+    "charges": [
+     {
+      "q": 1,
+      "x": 40,
+      "y": 50
+     },
+     {
+      "q": -1,
+      "x": 60,
+      "y": 50
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "sprinkle",
+     "expect": "lines",
+     "say": {
+      "en": "Here is a +1 µC and a −1 µC charge close together: an electric dipole. Tap Sprinkle seeds.",
+      "hi": "यहाँ एक +1 µC और एक −1 µC आवेश पास-पास हैं: एक विद्युत द्विध्रुव। बीज छिड़को पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On the line that cuts the dipole in half at right angles (the equatorial line), which way does the field point?",
+      "hi": "उस रेखा पर जो द्विध्रुव को बीच से समकोण पर काटती है (निरक्ष रेखा), क्षेत्र किस ओर होता है?"
+     },
+     "options": [
+      {
+       "id": "anti",
+       "en": "Parallel to the dipole, from the + side towards the − side",
+       "hi": "द्विध्रुव के समांतर, + की ओर से − की ओर"
+      },
+      {
+       "id": "away",
+       "en": "Straight away from the dipole",
+       "hi": "द्विध्रुव से सीधा दूर"
+      },
+      {
+       "id": "zero",
+       "en": "It is zero everywhere on that line",
+       "hi": "उस रेखा पर हर जगह शून्य"
+      }
+     ],
+     "answer": "anti"
+    },
+    {
+     "kind": "do",
+     "target": "view:lines",
+     "expect": "lines",
+     "say": {
+      "en": "Tap Lines and follow a line that crosses the middle.",
+      "hi": "रेखाएँ पर टैप करो और बीच से गुज़रने वाली किसी रेखा को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The dipole moment p = q × 2a points from the − charge to the + charge. On the equatorial line the field points opposite to p, from the + side to the − side. Far away the two fields almost cancel, so a dipole's field falls as 1/r³, faster than the 1/r² of a single charge. A water molecule is a natural dipole, which is why a microwave oven can make it spin and heat food.",
+      "hi": "द्विध्रुव आघूर्ण p = q × 2a, − आवेश से + आवेश की ओर होता है। निरक्ष रेखा पर क्षेत्र p के विपरीत होता है, + की ओर से − की ओर। दूर जाकर दोनों क्षेत्र लगभग रद्द हो जाते हैं, इसलिए द्विध्रुव का क्षेत्र 1/r³ के अनुसार घटता है, एक आवेश के 1/r² से तेज़। पानी का अणु एक प्राकृतिक द्विध्रुव है, इसीलिए माइक्रोवेव ओवन उसे घुमाकर खाना गर्म कर पाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A dipole has charges ±2 µC, 1 cm apart. Its dipole moment is…",
+        "hi": "किसी द्विध्रुव पर ±2 µC आवेश हैं, जो 1 cm दूर हैं। उसका द्विध्रुव आघूर्ण है…"
+       },
+       "options": [
+        "2 × 10⁻⁸ C m",
+        "4 × 10⁻⁸ C m",
+        "2 × 10⁻⁶ C m"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "p = q × separation = 2 × 10⁻⁶ C × 0.01 m = 2 × 10⁻⁸ C m.",
+        "hi": "p = q × दूरी = 2 × 10⁻⁶ C × 0.01 m = 2 × 10⁻⁸ C m।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Doubling to 4 × 10⁻⁸ adds the two charges together; p uses the size of one charge only.",
+         "hi": "4 × 10⁻⁸ में दोनों आवेश जोड़ दिए गए; p में केवल एक आवेश का आकार लिया जाता है।"
+        },
+        {
+         "en": "2 × 10⁻⁶ forgets to multiply by the separation of 0.01 m.",
+         "hi": "2 × 10⁻⁶ में 0.01 m की दूरी से गुणा करना भूल गए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does a dipole's field get weak faster with distance than a single charge's field?",
+        "hi": "दूरी बढ़ने पर द्विध्रुव का क्षेत्र एक आवेश के क्षेत्र से तेज़ी से कमज़ोर क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "From far away the + and − look almost at the same place, so their fields nearly cancel",
+         "hi": "दूर से + और − लगभग एक ही जगह दिखते हैं, इसलिए उनके क्षेत्र लगभग रद्द हो जाते हैं"
+        },
+        {
+         "en": "The charges leak away",
+         "hi": "आवेश रिस जाते हैं"
+        },
+        {
+         "en": "Air absorbs the field",
+         "hi": "हवा क्षेत्र को सोख लेती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The total charge of a dipole is zero. Only the small difference between the two fields survives far away, and that difference falls as 1/r³.",
+        "hi": "द्विध्रुव का कुल आवेश शून्य है। दूर जाकर केवल दोनों क्षेत्रों का छोटा-सा अंतर बचता है, और वह अंतर 1/r³ के अनुसार घटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing leaks here; the charges stay the same and the effect comes from geometry alone.",
+         "hi": "यहाँ कुछ नहीं रिसता; आवेश वही रहते हैं और यह असर केवल ज्यामिति से आता है।"
+        },
+        {
+         "en": "The same 1/r³ law holds in vacuum, so air is not the reason.",
+         "hi": "यही 1/r³ नियम निर्वात में भी लागू है, इसलिए हवा कारण नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore freely: drag the two charges a little apart and back. Watch the lines between them thin out as they separate.",
+      "hi": "अब ख़ुद आज़माओ: दोनों आवेशों को थोड़ा दूर करो और फिर पास लाओ। देखो अलग होने पर उनके बीच की रेखाएँ कैसे विरल होती हैं।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Chapter hook: charge from rubbing",
+   "shows": "A plastic comb, just run through dry hair, held a few centimetres above small torn bits of newspaper on a wooden table; several bits jump up to the comb",
+   "view": "Close side view at table height, winter afternoon light from a window",
+   "right": "Bits of paper clearly lifting towards the comb; dry, clean comb",
+   "avoid": "Faces, brand names on the comb, printed text readable on the paper"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "1.2",
+   "use": "Like charges repel, unlike attract",
+   "shows": "Two blue balloons hanging from threads on a wooden rod: frame 1 hanging straight and touching; frame 2 both rubbed with a woollen shawl, pushed apart; frame 3 one balloon pulling a thin strip of paper towards it",
+   "view": "Same straight front view and plain pale wall in all three frames",
+   "right": "Threads tilt outwards in frame 2; balloons the same size and colour",
+   "avoid": "Changing the camera or the balloons between frames"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "1.3",
+   "use": "Detecting charge",
+   "shows": "A school gold-leaf electroscope in a glass jar, two thin metal leaves hanging together; second file with the leaves spread apart",
+   "view": "Front view at eye level",
+   "right": "Leaves thin and metallic, rod with a metal disc on top, glass jar clear",
+   "avoid": "Labels or scale marks on the jar"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Earthing in real life",
+   "shows": "A copper lightning conductor rod on the top of a tall school building, its thick strip running down the wall into the ground, against a dark monsoon sky",
+   "view": "Low angle from the ground, rod sharp against the clouds",
+   "right": "Strip continuous from rod to the ground",
+   "avoid": "Real lightning bolts touching people, school names"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "1.8",
+   "use": "Field lines made visible",
+   "shows": "Semolina grains floating in castor oil in a glass dish, lined up in curved chains between a small round electrode and a second electrode (3D render, or a photo made by an adult with a proper high-voltage kit)",
+   "view": "Straight down from above, dark background under the dish",
+   "right": "Grains form smooth curves from one electrode to the other; none crossing",
+   "avoid": "Hands or a live high-voltage set-up near a child"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "1.10",
+   "use": "A natural dipole",
+   "shows": "A water molecule as a glossy 3D model: one red oxygen sphere and two white hydrogen spheres at about 104°, with a soft transparent charge cloud, denser near the oxygen",
+   "view": "Three-quarter view, studio light from the top left",
+   "right": "Bond angle about 104.5°; oxygen larger than hydrogen",
+   "avoid": "Plus or minus signs or any text baked in"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "1.13",
+   "use": "Base for Gauss's law",
+   "shows": "A clean drawing of a point charge at the centre of a transparent sphere, with evenly spaced straight field lines passing out through the surface",
+   "view": "Flat, front-on, white background",
+   "right": "Lines radial and evenly spaced, all crossing the surface once",
+   "avoid": "Labels, arrows with text, or numbers"
+  }
+ ]
+}

@@ -1,0 +1,1400 @@
+{
+ "chapter_key": "u.c11.political_science.keps2.ch03",
+ "class": 11,
+ "subject_id": "political_science",
+ "title": "Election and Representation",
+ "source": "https://ncert.nic.in/textbook/pdf/keps203.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Introduction: why elections matter",
+   "labs": [],
+   "why_no_lab": "The idea of choosing rulers is best opened by a polling-day photo and the chapter's reading."
+  },
+  {
+   "n": "3.2",
+   "title": "Elections and democracy: direct and indirect representation",
+   "labs": [],
+   "why_no_lab": "Comparing how groups choose leaders is best done by the class mock election activity with real ballots."
+  },
+  {
+   "n": "3.3",
+   "title": "Election system in India: first past the post and proportional representation",
+   "labs": [
+    "c11-political_science-keps2-ch03-fptp",
+    "c11-political_science-keps2-ch03-pr",
+    "c11-political_science-keps2-ch03-sort-systems"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Reservation of constituencies",
+   "labs": [
+    "c11-political_science-keps2-ch03-match-terms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Free and fair elections",
+   "labs": [
+    "c11-political_science-keps2-ch03-sequence-election",
+    "c11-political_science-keps2-ch03-sort-fair"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Electoral reforms",
+   "labs": [],
+   "why_no_lab": "Whether and how to reform elections is an open debate, best discussed in class with the chapter's reading."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-political_science-keps2-ch03-fptp",
+   "topic": "3.3",
+   "template": "govern",
+   "title": {
+    "en": "Vote and count: first past the post",
+    "hi": "वोट दो और गिनती करो: सर्वाधिक वोट वाला जीतता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "election",
+    "options": {
+     "candidates": [
+      "asha",
+      "imran",
+      "gurpreet",
+      "ravi"
+     ],
+     "voters": 1200,
+     "turnout": 65
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "vote:imran",
+     "expect": "voted:imran",
+     "say": {
+      "en": "Pick a candidate on the voting machine and cast your vote.",
+      "hi": "वोटिंग मशीन पर एक उम्मीदवार चुनो और अपना वोट दो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In this constituency the leading candidate may get only about a third of the votes. Can that candidate still win?",
+      "hi": "इस क्षेत्र में सबसे आगे वाले उम्मीदवार को शायद सिर्फ़ एक-तिहाई वोट मिलें। क्या वह फिर भी जीत सकता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, the one with the most votes wins",
+       "hi": "हाँ, जिसे सबसे अधिक वोट मिलें वह जीतता है"
+      },
+      {
+       "id": "no",
+       "en": "No, a winner needs more than half",
+       "hi": "नहीं, जीतने के लिए आधे से अधिक चाहिए"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "counted",
+     "say": {
+      "en": "Press the button to count the votes.",
+      "hi": "वोटों की गिनती का बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India elects the Lok Sabha and the State Assemblies by the First Past the Post system. The country is divided into constituencies and the candidate with the most votes in each wins, even without half the votes. It is simple and gives clear results, but a winner may have fewer than half the voters behind them.",
+      "hi": "भारत लोक सभा और विधान सभाओं को सर्वाधिक वोट पाने वाले की जीत (फ़र्स्ट पास्ट द पोस्ट) प्रणाली से चुनता है। देश निर्वाचन क्षेत्रों में बँटा है और हर क्षेत्र में सबसे अधिक वोट पाने वाला जीतता है, चाहे आधे वोट न मिलें। यह सरल है और साफ़ नतीजा देती है, पर जीतने वाले के साथ आधे से कम मतदाता हो सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who wins in the First Past the Post system?",
+        "hi": "फ़र्स्ट पास्ट द पोस्ट प्रणाली में कौन जीतता है?"
+       },
+       "options": [
+        {
+         "en": "The candidate with the most votes",
+         "hi": "जिसे सबसे अधिक वोट मिलें"
+        },
+        {
+         "en": "The candidate with more than half of all votes",
+         "hi": "जिसे कुल के आधे से अधिक वोट मिलें"
+        },
+        {
+         "en": "The oldest candidate",
+         "hi": "सबसे बड़ी उम्र का उम्मीदवार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Whoever is ahead of every other candidate wins, whether or not that is half the votes.",
+        "hi": "जो हर दूसरे उम्मीदवार से आगे है वह जीतता है, चाहे वह आधे वोट हों या न हों।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More than half is not required; the lead matters.",
+         "hi": "आधे से अधिक वोट ज़रूरी नहीं; आगे होना ज़रूरी है।"
+        },
+        {
+         "en": "Age plays no part in winning an election.",
+         "hi": "चुनाव जीतने में उम्र की कोई भूमिका नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does a vote for NOTA mean?",
+        "hi": "नोटा को वोट देने का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "The voter chooses none of the candidates",
+         "hi": "मतदाता किसी भी उम्मीदवार को नहीं चुनता"
+        },
+        {
+         "en": "The voter likes every candidate",
+         "hi": "मतदाता को हर उम्मीदवार पसंद है"
+        },
+        {
+         "en": "The vote is added to the winner",
+         "hi": "वोट विजेता में जुड़ जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "NOTA lets a voter say \"none of the above\" while still taking part in the election.",
+        "hi": "नोटा मतदाता को चुनाव में भाग लेते हुए \"इनमें से कोई नहीं\" कहने देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "NOTA is the opposite of liking all of them.",
+         "hi": "नोटा का अर्थ सब पसंद होना नहीं है।"
+        },
+        {
+         "en": "NOTA votes are counted separately and do not go to any candidate.",
+         "hi": "नोटा वोट अलग गिने जाते हैं, किसी उम्मीदवार को नहीं जाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and vote for another candidate. Does the result change? Look at the gap between the first two.",
+      "hi": "रीसेट दबाओ और किसी और को वोट दो। क्या नतीजा बदला? पहले दो के बीच का अंतर देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch03-pr",
+   "topic": "3.3",
+   "template": "govern",
+   "title": {
+    "en": "Seats by share of votes",
+    "hi": "वोट के अनुपात में सीटें"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "election",
+    "options": {
+     "system": "pr",
+     "seats": 10,
+     "candidates": [
+      "asha",
+      "imran",
+      "gurpreet"
+     ],
+     "shares": {
+      "asha": 42,
+      "imran": 35,
+      "gurpreet": 23
+     },
+     "voters": 1200,
+     "turnout": 65
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "vote:gurpreet",
+     "expect": "voted:gurpreet",
+     "say": {
+      "en": "Cast your vote for any candidate.",
+      "hi": "किसी भी उम्मीदवार को अपना वोट दो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One party gets about 23 of every 100 votes. How many of the 10 seats should it get under proportional representation?",
+      "hi": "एक दल को हर 100 में लगभग 23 वोट मिलते हैं। समानुपातिक प्रतिनिधित्व में 10 सीटों में से उसे कितनी मिलनी चाहिए?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "About 2",
+       "hi": "लगभग 2"
+      },
+      {
+       "id": "zero",
+       "en": "None, it did not win",
+       "hi": "कोई नहीं, वह जीता नहीं"
+      },
+      {
+       "id": "five",
+       "en": "5, half the seats",
+       "hi": "5, आधी सीटें"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "counted",
+     "say": {
+      "en": "Press the button to count the votes and share the seats.",
+      "hi": "वोट गिनने और सीटें बाँटने का बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In proportional representation each party gets seats in line with its share of votes. A party with about a quarter of the votes gets about a quarter of the seats. Every party is represented, but results can need coalitions. India uses this idea for elections like the Rajya Sabha and the President, not for the Lok Sabha.",
+      "hi": "समानुपातिक प्रतिनिधित्व में हर दल को उसके वोट के हिस्से के अनुसार सीटें मिलती हैं। लगभग चौथाई वोट पाने वाले दल को लगभग चौथाई सीटें मिलती हैं। हर दल को प्रतिनिधित्व मिलता है, पर सरकार के लिए गठबंधन चाहिए हो सकते हैं। भारत यह विचार राज्य सभा और राष्ट्रपति के चुनाव में अपनाता है, लोक सभा में नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In proportional representation, a party with a quarter of the votes gets about…",
+        "hi": "समानुपातिक प्रतिनिधित्व में चौथाई वोट पाने वाले दल को लगभग कितनी सीटें मिलती हैं?"
+       },
+       "options": [
+        {
+         "en": "A quarter of the seats",
+         "hi": "चौथाई सीटें"
+        },
+        {
+         "en": "No seats",
+         "hi": "कोई सीट नहीं"
+        },
+        {
+         "en": "Half of the seats",
+         "hi": "आधी सीटें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Seats follow votes closely, so a quarter of the votes gives about a quarter of the seats.",
+        "hi": "सीटें वोट के अनुसार चलती हैं, इसलिए चौथाई वोट पर लगभग चौथाई सीटें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Giving no seats is what can happen in first past the post, not here.",
+         "hi": "कोई सीट न देना फ़र्स्ट पास्ट द पोस्ट में हो सकता है, यहाँ नहीं।"
+        },
+        {
+         "en": "Half the seats would be more than the party's share of votes.",
+         "hi": "आधी सीटें दल के वोट-हिस्से से अधिक होंगी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which system do we use for the Lok Sabha?",
+        "hi": "लोक सभा के लिए हम कौन-सी प्रणाली अपनाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Proportional representation",
+         "hi": "समानुपातिक प्रतिनिधित्व"
+        },
+        {
+         "en": "First Past the Post",
+         "hi": "फ़र्स्ट पास्ट द पोस्ट"
+        },
+        {
+         "en": "Selection by lottery",
+         "hi": "लॉटरी से चयन"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The Lok Sabha and State Assemblies are elected constituency by constituency by First Past the Post.",
+        "hi": "लोक सभा और विधान सभाएँ क्षेत्र-दर-क्षेत्र फ़र्स्ट पास्ट द पोस्ट से चुनी जाती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Proportional representation is used for some other elections, such as the Rajya Sabha.",
+         "hi": "समानुपातिक प्रतिनिधित्व कुछ अन्य चुनावों, जैसे राज्य सभा, में प्रयोग होता है।"
+        },
+        "",
+        {
+         "en": "No Indian election uses a lottery.",
+         "hi": "भारत का कोई चुनाव लॉटरी से नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare with the first past the post lab. Which system gives small parties a fairer share? Which gives a clearer winner?",
+      "hi": "पिछली प्रयोगशाला से तुलना करो। कौन-सी प्रणाली छोटे दलों को ज़्यादा उचित हिस्सा देती है? कौन साफ़ विजेता देती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch03-sort-systems",
+   "topic": "3.3",
+   "template": "sort",
+   "title": {
+    "en": "Two ways to count an election",
+    "hi": "चुनाव गिनने के दो तरीक़े"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fptp",
+      "label": {
+       "en": "First Past the Post",
+       "hi": "फ़र्स्ट पास्ट द पोस्ट"
+      }
+     },
+     {
+      "id": "pr",
+      "label": {
+       "en": "Proportional representation",
+       "hi": "समानुपातिक प्रतिनिधित्व"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "most",
+      "text": {
+       "en": "The candidate with the most votes in an area wins",
+       "hi": "क्षेत्र में सबसे अधिक वोट पाने वाला जीतता है"
+      },
+      "bin": "fptp",
+      "why": {
+       "en": "This is the rule of first past the post.",
+       "hi": "यह फ़र्स्ट पास्ट द पोस्ट का नियम है।"
+      }
+     },
+     {
+      "id": "share",
+      "text": {
+       "en": "Parties get seats in line with their share of votes",
+       "hi": "दलों को वोट के हिस्से के अनुसार सीटें मिलती हैं"
+      },
+      "bin": "pr",
+      "why": {
+       "en": "This is how proportional representation works.",
+       "hi": "समानुपातिक प्रतिनिधित्व ऐसे काम करता है।"
+      }
+     },
+     {
+      "id": "ls",
+      "text": {
+       "en": "Used for Lok Sabha and State Assembly elections",
+       "hi": "लोक सभा और विधान सभा चुनावों में प्रयुक्त"
+      },
+      "bin": "fptp",
+      "why": {
+       "en": "India elects these by constituencies and first past the post.",
+       "hi": "भारत इन्हें निर्वाचन क्षेत्रों और फ़र्स्ट पास्ट द पोस्ट से चुनता है।"
+      }
+     },
+     {
+      "id": "rs",
+      "text": {
+       "en": "Used to elect Rajya Sabha members by MLAs",
+       "hi": "राज्य सभा के सदस्यों के चुनाव में (विधायकों द्वारा)"
+      },
+      "bin": "pr",
+      "why": {
+       "en": "Rajya Sabha members are elected by MLAs using proportional representation (single transferable vote).",
+       "hi": "राज्य सभा सदस्य विधायकों द्वारा समानुपातिक प्रतिनिधित्व (एकल संक्रमणीय मत) से चुने जाते हैं।"
+      }
+     },
+     {
+      "id": "president",
+      "text": {
+       "en": "Used to elect the President of India",
+       "hi": "भारत के राष्ट्रपति के चुनाव में प्रयुक्त"
+      },
+      "bin": "pr",
+      "why": {
+       "en": "The President is elected by an electoral college using proportional representation.",
+       "hi": "राष्ट्रपति निर्वाचक मंडल द्वारा समानुपातिक प्रतिनिधित्व से चुने जाते हैं।"
+      }
+     },
+     {
+      "id": "fewer",
+      "text": {
+       "en": "A winner may have fewer than half of the votes",
+       "hi": "विजेता को आधे से कम वोट मिल सकते हैं"
+      },
+      "bin": "fptp",
+      "why": {
+       "en": "With many candidates, the leader can win with a minority of the votes.",
+       "hi": "कई उम्मीदवार हों तो आगे वाला कम वोट लेकर भी जीत सकता है।"
+      }
+     },
+     {
+      "id": "small",
+      "text": {
+       "en": "Small parties win seats near their vote share",
+       "hi": "छोटे दलों को वोट के आसपास सीटें मिलती हैं"
+      },
+      "bin": "pr",
+      "why": {
+       "en": "Seats follow votes, so even small parties are represented.",
+       "hi": "सीटें वोट के अनुसार चलती हैं, इसलिए छोटे दल भी प्रतिनिधित्व पाते हैं।"
+      }
+     },
+     {
+      "id": "bigger",
+      "text": {
+       "en": "A party with 35% of votes can win far more seats",
+       "hi": "35% वोट वाला दल कहीं अधिक सीटें जीत सकता है"
+      },
+      "bin": "fptp",
+      "why": {
+       "en": "Winning narrow leads in many constituencies can turn a minority of votes into a big share of seats.",
+       "hi": "कई क्षेत्रों में थोड़े अंतर से जीतकर कम वोट भी बहुत सीटों में बदल सकते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:most",
+     "expect": "placed:most",
+     "say": {
+      "en": "Tap the card about the most votes in an area, then pick its system.",
+      "hi": "क्षेत्र में सबसे अधिक वोट वाला कार्ड छुओ, फिर उसकी प्रणाली चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which system is used to elect the Lok Sabha?",
+      "hi": "लोक सभा किस प्रणाली से चुनी जाती है?"
+     },
+     "options": [
+      {
+       "id": "fp",
+       "en": "First Past the Post",
+       "hi": "फ़र्स्ट पास्ट द पोस्ट"
+      },
+      {
+       "id": "pr",
+       "en": "Proportional representation",
+       "hi": "समानुपातिक प्रतिनिधित्व"
+      }
+     ],
+     "answer": "fp"
+    },
+    {
+     "kind": "do",
+     "target": "card:share",
+     "expect": "placed:share",
+     "say": {
+      "en": "Place the card about seats following the share of votes.",
+      "hi": "वोट के हिस्से के अनुसार सीट वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "First past the post is simple: one winner per constituency. Proportional representation matches seats to votes. India uses the first for the Lok Sabha and Assemblies, and proportional representation for indirect elections such as the Rajya Sabha and the President. Each system gives something and loses something.",
+      "hi": "फ़र्स्ट पास्ट द पोस्ट सरल है: हर क्षेत्र में एक विजेता। समानुपातिक प्रतिनिधित्व सीटों को वोट के अनुसार रखता है। भारत पहले को लोक सभा और विधान सभाओं के लिए अपनाता है और समानुपातिक प्रतिनिधित्व को राज्य सभा व राष्ट्रपति जैसे अप्रत्यक्ष चुनावों के लिए। हर प्रणाली कुछ देती है और कुछ खोती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement is true of First Past the Post?",
+        "hi": "फ़र्स्ट पास्ट द पोस्ट के बारे में कौन-सा कथन सही है?"
+       },
+       "options": [
+        {
+         "en": "A party can win many seats with fewer than half of the votes",
+         "hi": "दल आधे से कम वोट लेकर भी कई सीटें जीत सकता है"
+        },
+        {
+         "en": "Every party always gets seats equal to its votes",
+         "hi": "हर दल को हमेशा वोट के बराबर सीटें मिलती हैं"
+        },
+        {
+         "en": "Voters do not choose a candidate",
+         "hi": "मतदाता उम्मीदवार नहीं चुनते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Narrow wins in many constituencies can add up to a large share of seats.",
+        "hi": "कई क्षेत्रों की मामूली जीतें मिलकर बड़ा सीट-हिस्सा बन सकती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That describes proportional representation, not first past the post.",
+         "hi": "यह समानुपातिक प्रतिनिधित्व की बात है, फ़र्स्ट पास्ट द पोस्ट की नहीं।"
+        },
+        {
+         "en": "In this system voters do choose one candidate in their constituency.",
+         "hi": "इस प्रणाली में मतदाता अपने क्षेत्र में एक उम्मीदवार चुनते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which system would you pick for choosing your class representatives, and why?",
+      "hi": "अपनी कक्षा के प्रतिनिधि चुनने के लिए तुम कौन-सी प्रणाली चुनोगे, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch03-sequence-election",
+   "topic": "3.5",
+   "template": "sequence",
+   "title": {
+    "en": "From schedule to result",
+    "hi": "कार्यक्रम से नतीजे तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "sched",
+      "text": {
+       "en": "Election Commission announces the election dates",
+       "hi": "निर्वाचन आयोग चुनाव की तारीख़ें घोषित करता है"
+      }
+     },
+     {
+      "id": "code",
+      "text": {
+       "en": "Model Code of Conduct comes into force",
+       "hi": "आदर्श आचार संहिता लागू हो जाती है"
+      }
+     },
+     {
+      "id": "nominate",
+      "text": {
+       "en": "Candidates file their nomination papers",
+       "hi": "उम्मीदवार नामांकन पत्र भरते हैं"
+      }
+     },
+     {
+      "id": "scrutiny",
+      "text": {
+       "en": "Papers are checked and some candidates withdraw",
+       "hi": "पत्रों की जाँच होती है और कुछ उम्मीदवार नाम वापस लेते हैं"
+      }
+     },
+     {
+      "id": "campaign",
+      "text": {
+       "en": "Parties and candidates campaign",
+       "hi": "दल और उम्मीदवार प्रचार करते हैं"
+      }
+     },
+     {
+      "id": "poll",
+      "text": {
+       "en": "Voters cast their votes on polling day",
+       "hi": "मतदान के दिन मतदाता वोट डालते हैं"
+      }
+     },
+     {
+      "id": "count",
+      "text": {
+       "en": "Votes are counted",
+       "hi": "वोटों की गिनती होती है"
+      }
+     },
+     {
+      "id": "result",
+      "text": {
+       "en": "The winner in each constituency is declared",
+       "hi": "हर क्षेत्र का विजेता घोषित होता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:sched",
+     "expect": "placed:sched",
+     "say": {
+      "en": "Pick the card that starts the whole process and place it first.",
+      "hi": "वह कार्ड चुनो जो पूरी प्रक्रिया शुरू करता है और उसे पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which comes just before the counting of votes?",
+      "hi": "वोटों की गिनती से ठीक पहले क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "poll",
+       "en": "Polling day",
+       "hi": "मतदान का दिन"
+      },
+      {
+       "id": "nom",
+       "en": "Filing nominations",
+       "hi": "नामांकन भरना"
+      },
+      {
+       "id": "ann",
+       "en": "Announcing the dates",
+       "hi": "तारीख़ों की घोषणा"
+      }
+     ],
+     "answer": "poll"
+    },
+    {
+     "kind": "do",
+     "target": "item:poll",
+     "expect": "placed:poll",
+     "say": {
+      "en": "Place the polling day card where it belongs.",
+      "hi": "मतदान के दिन वाला कार्ड सही जगह रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An election follows a fixed order. The Election Commission announces dates and the Model Code of Conduct starts. Candidates are nominated, papers are checked, campaigning follows, then voting, counting and the result. Fixed steps and an independent Commission help keep it free and fair.",
+      "hi": "चुनाव एक तय क्रम से चलता है। निर्वाचन आयोग तारीख़ें घोषित करता है और आदर्श आचार संहिता लागू हो जाती है। उम्मीदवार नामांकन भरते हैं, पत्रों की जाँच होती है, फिर प्रचार, मतदान, गिनती और नतीजा। तय क्रम और स्वतंत्र आयोग चुनाव को स्वतंत्र और निष्पक्ष रखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the Model Code of Conduct do?",
+        "hi": "आदर्श आचार संहिता क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "Sets rules that parties and governments follow during elections",
+         "hi": "चुनाव के दौरान दलों और सरकारों के पालन के नियम तय करती है"
+        },
+        {
+         "en": "Counts the votes",
+         "hi": "वोटों की गिनती करती है"
+        },
+        {
+         "en": "Chooses the candidates",
+         "hi": "उम्मीदवार चुनती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "For example, a government should not announce new schemes to win votes once the code is in force.",
+        "hi": "जैसे, संहिता लागू होने पर सरकार वोट पाने के लिए नई योजनाएँ घोषित नहीं करती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Counting is done by election officials, not by the code.",
+         "hi": "गिनती चुनाव अधिकारी करते हैं, संहिता नहीं।"
+        },
+        {
+         "en": "Parties choose their own candidates; the code only sets the rules of fair play.",
+         "hi": "दल अपने उम्मीदवार स्वयं चुनते हैं; संहिता केवल निष्पक्षता के नियम बनाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a recent election notice or news report. Find which step of the process it describes.",
+      "hi": "किसी हाल के चुनाव की सूचना या ख़बर देखो। पता करो कि वह प्रक्रिया के किस चरण की है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch03-match-terms",
+   "topic": "3.4",
+   "template": "match",
+   "title": {
+    "en": "Election words and their meanings",
+    "hi": "चुनाव के शब्द और उनके अर्थ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "constituency",
+      "left": {
+       "en": "Constituency",
+       "hi": "निर्वाचन क्षेत्र"
+      },
+      "right": {
+       "en": "An area whose voters elect one representative",
+       "hi": "ऐसा क्षेत्र जिसके मतदाता एक प्रतिनिधि चुनते हैं"
+      },
+      "why": {
+       "en": "There are 543 Lok Sabha constituencies.",
+       "hi": "लोक सभा के 543 निर्वाचन क्षेत्र हैं।"
+      }
+     },
+     {
+      "id": "roll",
+      "left": {
+       "en": "Voters' list",
+       "hi": "मतदाता सूची"
+      },
+      "right": {
+       "en": "The list of eligible voters; you must be on it to vote",
+       "hi": "पात्र मतदाताओं की सूची; वोट देने को उसमें नाम होना ज़रूरी है"
+      },
+      "why": {
+       "en": "Every citizen aged 18 or above can be on it.",
+       "hi": "18 वर्ष या अधिक आयु का हर नागरिक इसमें हो सकता है।"
+      }
+     },
+     {
+      "id": "delimit",
+      "left": {
+       "en": "Delimitation Commission",
+       "hi": "परिसीमन आयोग"
+      },
+      "right": {
+       "en": "Draws the boundaries of constituencies",
+       "hi": "निर्वाचन क्षेत्रों की सीमाएँ तय करता है"
+      },
+      "why": {
+       "en": "It works so that constituencies have about equal population.",
+       "hi": "यह इस तरह काम करता है कि क्षेत्रों की जनसंख्या लगभग बराबर रहे।"
+      }
+     },
+     {
+      "id": "reserved",
+      "left": {
+       "en": "Reserved constituency",
+       "hi": "आरक्षित निर्वाचन क्षेत्र"
+      },
+      "right": {
+       "en": "A seat where only SC or ST candidates can contest, but all voters there vote",
+       "hi": "ऐसी सीट जहाँ केवल अनुसूचित जाति या जनजाति के उम्मीदवार लड़ सकते हैं, पर सब मतदाता वोट देते हैं"
+      },
+      "why": {
+       "en": "It gives these groups a sure place in the legislature.",
+       "hi": "यह इन वर्गों को विधायिका में निश्चित स्थान देता है।"
+      }
+     },
+     {
+      "id": "mcc",
+      "left": {
+       "en": "Model Code of Conduct",
+       "hi": "आदर्श आचार संहिता"
+      },
+      "right": {
+       "en": "Rules for parties and governments during an election",
+       "hi": "चुनाव के समय दलों और सरकारों के लिए नियम"
+      },
+      "why": {
+       "en": "It keeps the contest level for all.",
+       "hi": "यह सबके लिए मुक़ाबला बराबर रखती है।"
+      }
+     },
+     {
+      "id": "ec",
+      "left": {
+       "en": "Election Commission",
+       "hi": "निर्वाचन आयोग"
+      },
+      "right": {
+       "en": "An independent body that conducts elections",
+       "hi": "चुनाव कराने वाली स्वतंत्र संस्था"
+      },
+      "why": {
+       "en": "It does not take orders from the government of the day.",
+       "hi": "यह तत्कालीन सरकार के आदेश नहीं मानता।"
+      }
+     },
+     {
+      "id": "nota",
+      "left": {
+       "en": "NOTA",
+       "hi": "नोटा"
+      },
+      "right": {
+       "en": "The option for a voter who chooses none of the candidates",
+       "hi": "उस मतदाता का विकल्प जो किसी उम्मीदवार को नहीं चुनता"
+      },
+      "why": {
+       "en": "It means None of the Above.",
+       "hi": "इसका अर्थ है इनमें से कोई नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:constituency",
+     "expect": "matched:constituency",
+     "say": {
+      "en": "Tap \"Constituency\" and its meaning.",
+      "hi": "\"निर्वाचन क्षेत्र\" और उसका अर्थ छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a reserved constituency, who is allowed to vote?",
+      "hi": "आरक्षित निर्वाचन क्षेत्र में वोट कौन दे सकता है?"
+     },
+     "options": [
+      {
+       "id": "all",
+       "en": "Every voter of the area",
+       "hi": "क्षेत्र का हर मतदाता"
+      },
+      {
+       "id": "sc",
+       "en": "Only SC or ST voters",
+       "hi": "केवल अनुसूचित जाति या जनजाति के मतदाता"
+      }
+     ],
+     "answer": "all"
+    },
+    {
+     "kind": "do",
+     "target": "left:reserved",
+     "expect": "matched:reserved",
+     "say": {
+      "en": "Match \"Reserved constituency\".",
+      "hi": "\"आरक्षित निर्वाचन क्षेत्र\" मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a reserved constituency only candidates from the Scheduled Castes or Scheduled Tribes can stand, but every voter of the area votes. This makes sure these groups are represented in the Lok Sabha and Assemblies. The Delimitation Commission draws constituency boundaries, and the Election Commission runs the election.",
+      "hi": "आरक्षित क्षेत्र में केवल अनुसूचित जाति या जनजाति के उम्मीदवार खड़े हो सकते हैं, पर क्षेत्र का हर मतदाता वोट देता है। इससे लोक सभा और विधान सभाओं में इन वर्गों का प्रतिनिधित्व पक्का होता है। परिसीमन आयोग क्षेत्र की सीमाएँ तय करता है और निर्वाचन आयोग चुनाव कराता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who can vote in a reserved constituency?",
+        "hi": "आरक्षित निर्वाचन क्षेत्र में कौन वोट दे सकता है?"
+       },
+       "options": [
+        {
+         "en": "Every eligible voter of the constituency",
+         "hi": "क्षेत्र का हर पात्र मतदाता"
+        },
+        {
+         "en": "Only SC and ST voters",
+         "hi": "केवल अनुसूचित जाति और जनजाति के मतदाता"
+        },
+        {
+         "en": "Only candidates",
+         "hi": "केवल उम्मीदवार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the candidates are limited to the reserved group; the voters are everyone.",
+        "hi": "केवल उम्मीदवार आरक्षित वर्ग के होते हैं; मतदाता सब होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Voters are not limited by group; that would break the equal vote.",
+         "hi": "मतदाता वर्ग से सीमित नहीं होते; इससे समान वोट टूट जाता।"
+        },
+        {
+         "en": "Candidates stand for election; the voters decide.",
+         "hi": "उम्मीदवार चुनाव लड़ते हैं; मतदाता फ़ैसला करते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who draws the boundaries of constituencies?",
+        "hi": "निर्वाचन क्षेत्रों की सीमाएँ कौन तय करता है?"
+       },
+       "options": [
+        {
+         "en": "The Delimitation Commission",
+         "hi": "परिसीमन आयोग"
+        },
+        {
+         "en": "The voters",
+         "hi": "मतदाता"
+        },
+        {
+         "en": "The party in power",
+         "hi": "सत्ता में बैठा दल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An independent commission does it so no party can draw lines to suit itself.",
+        "hi": "स्वतंत्र आयोग यह करता है ताकि कोई दल अपने लाभ की रेखाएँ न खींचे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Voters elect representatives; they do not draw the map.",
+         "hi": "मतदाता प्रतिनिधि चुनते हैं; नक़्शा नहीं बनाते।"
+        },
+        {
+         "en": "If the ruling party drew lines, it could favour itself unfairly.",
+         "hi": "सत्ताधारी दल रेखाएँ खींचे तो अपने पक्ष में अनुचित लाभ ले सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which constituency do you live in? Find out its name and whether it is general or reserved.",
+      "hi": "तुम किस निर्वाचन क्षेत्र में रहते हो? उसका नाम और वह सामान्य है या आरक्षित, पता करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch03-sort-fair",
+   "topic": "3.5",
+   "template": "sort",
+   "title": {
+    "en": "Free and fair, or not?",
+    "hi": "स्वतंत्र और निष्पक्ष या नहीं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "help",
+      "label": {
+       "en": "Helps a fair election",
+       "hi": "निष्पक्ष चुनाव में मददगार"
+      }
+     },
+     {
+      "id": "harm",
+      "label": {
+       "en": "Harms a fair election",
+       "hi": "निष्पक्ष चुनाव को हानि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "onevote",
+      "text": {
+       "en": "One person, one vote for every adult",
+       "hi": "हर वयस्क को एक व्यक्ति, एक वोट"
+      },
+      "bin": "help",
+      "why": {
+       "en": "Universal adult franchise makes every vote equal.",
+       "hi": "सार्वभौमिक वयस्क मताधिकार हर वोट को बराबर बनाता है।"
+      }
+     },
+     {
+      "id": "secret",
+      "text": {
+       "en": "A secret vote: nobody knows whom you chose",
+       "hi": "गुप्त मतदान: किसी को पता नहीं आपने किसे चुना"
+      },
+      "bin": "help",
+      "why": {
+       "en": "Secrecy lets voters choose without fear.",
+       "hi": "गोपनीयता मतदाता को बिना डर चुनने देती है।"
+      }
+     },
+     {
+      "id": "ec",
+      "text": {
+       "en": "An independent Election Commission runs the poll",
+       "hi": "स्वतंत्र निर्वाचन आयोग चुनाव कराता है"
+      },
+      "bin": "help",
+      "why": {
+       "en": "An independent referee keeps the contest fair.",
+       "hi": "स्वतंत्र निर्णायक मुक़ाबले को निष्पक्ष रखता है।"
+      }
+     },
+     {
+      "id": "mcc",
+      "text": {
+       "en": "All parties follow the Model Code of Conduct",
+       "hi": "सभी दल आदर्श आचार संहिता मानते हैं"
+      },
+      "bin": "help",
+      "why": {
+       "en": "Common rules give every party a level field.",
+       "hi": "साझा नियम हर दल को बराबर मैदान देते हैं।"
+      }
+     },
+     {
+      "id": "security",
+      "text": {
+       "en": "Police keep order so voters reach the booth safely",
+       "hi": "पुलिस व्यवस्था रखती है ताकि मतदाता सुरक्षित पहुँचें"
+      },
+      "bin": "help",
+      "why": {
+       "en": "Safety lets people vote without fear.",
+       "hi": "सुरक्षा लोगों को बिना डर वोट देने देती है।"
+      }
+     },
+     {
+      "id": "money",
+      "text": {
+       "en": "A candidate gives money to buy votes",
+       "hi": "उम्मीदवार वोट ख़रीदने को पैसे बाँटता है"
+      },
+      "bin": "harm",
+      "why": {
+       "en": "Buying votes takes away the voter's free choice.",
+       "hi": "वोट ख़रीदना मतदाता की स्वतंत्र पसंद छीन लेता है।"
+      }
+     },
+     {
+      "id": "capture",
+      "text": {
+       "en": "A gang drives voters away from the booth",
+       "hi": "एक गिरोह मतदाताओं को बूथ से भगा देता है"
+      },
+      "bin": "harm",
+      "why": {
+       "en": "Force and fear defeat a free vote.",
+       "hi": "ज़ोर और डर स्वतंत्र वोट को हरा देते हैं।"
+      }
+     },
+     {
+      "id": "cars",
+      "text": {
+       "en": "A government uses official cars for its campaign",
+       "hi": "सरकार प्रचार में सरकारी गाड़ियाँ उपयोग करती है"
+      },
+      "bin": "harm",
+      "why": {
+       "en": "It gives the party in power an unfair advantage.",
+       "hi": "इससे सत्ताधारी दल को अनुचित लाभ मिलता है।"
+      }
+     },
+     {
+      "id": "caste",
+      "text": {
+       "en": "A candidate asks for votes in the name of caste or religion",
+       "hi": "उम्मीदवार जाति या धर्म के नाम पर वोट माँगता है"
+      },
+      "bin": "harm",
+      "why": {
+       "en": "The law forbids appeals on caste or religion; voters should judge on issues.",
+       "hi": "क़ानून जाति-धर्म के नाम पर अपील रोकता है; मतदाता मुद्दों पर फ़ैसला करें।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:secret",
+     "expect": "placed:secret",
+     "say": {
+      "en": "Tap the card about the secret vote and pick its group.",
+      "hi": "गुप्त मतदान वाला कार्ड छुओ और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A candidate hands out money before the vote. Does this help or harm a fair election?",
+      "hi": "एक उम्मीदवार वोट से पहले पैसे बाँटता है। इससे निष्पक्ष चुनाव को मदद मिलती है या हानि?"
+     },
+     "options": [
+      {
+       "id": "harm",
+       "en": "Harms it",
+       "hi": "हानि होती है"
+      },
+      {
+       "id": "help",
+       "en": "Helps it",
+       "hi": "मदद मिलती है"
+      }
+     ],
+     "answer": "harm"
+    },
+    {
+     "kind": "do",
+     "target": "card:money",
+     "expect": "placed:money",
+     "say": {
+      "en": "Place the card about buying votes.",
+      "hi": "वोट ख़रीदने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A free and fair election needs equal votes, a secret ballot, no force or bribes, and an independent referee, the Election Commission. When money, fear or the power of the government tilt the contest, voters cannot really choose. Democracy depends on voters who are free.",
+      "hi": "स्वतंत्र और निष्पक्ष चुनाव के लिए बराबर वोट, गुप्त मतदान, ज़ोर-ज़बरदस्ती और रिश्वत से मुक्ति, और निर्वाचन आयोग जैसा स्वतंत्र निर्णायक चाहिए। जब पैसा, डर या सरकार की ताक़त मुक़ाबले को झुका दे तो मतदाता सचमुच नहीं चुन पाते। लोकतंत्र स्वतंत्र मतदाताओं पर टिका है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a secret ballot important?",
+        "hi": "गुप्त मतदान क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "Voters can choose without fear of pressure",
+         "hi": "मतदाता दबाव के डर के बिना चुन सकते हैं"
+        },
+        {
+         "en": "It makes counting faster",
+         "hi": "इससे गिनती तेज़ होती है"
+        },
+        {
+         "en": "It lets parties see who voted for them",
+         "hi": "दल देख पाते हैं कि किसने वोट दिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If nobody knows how you voted, no one can punish or reward you for it.",
+        "hi": "अगर किसी को पता नहीं कि आपने किसे वोट दिया तो कोई आपको सज़ा या इनाम नहीं दे सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Speed is not the aim; free choice is.",
+         "hi": "उद्देश्य गति नहीं, स्वतंत्र पसंद है।"
+        },
+        {
+         "en": "That is exactly what secrecy prevents.",
+         "hi": "गोपनीयता ठीक यही रोकती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why should a government not use official cars for campaigning?",
+        "hi": "सरकार को प्रचार में सरकारी गाड़ियाँ क्यों नहीं लगानी चाहिए?"
+       },
+       "options": [
+        {
+         "en": "It gives the ruling party an unfair advantage",
+         "hi": "इससे सत्ताधारी दल को अनुचित लाभ मिलता है"
+        },
+        {
+         "en": "Cars cause noise",
+         "hi": "गाड़ियाँ शोर करती हैं"
+        },
+        {
+         "en": "Candidates cannot drive",
+         "hi": "उम्मीदवार गाड़ी नहीं चला सकते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Public resources belong to everyone; using them for one party tilts the contest.",
+        "hi": "सार्वजनिक संसाधन सबके हैं; एक दल के लिए उनका उपयोग मुक़ाबले को झुका देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The issue is fairness, not noise.",
+         "hi": "मुद्दा निष्पक्षता है, शोर नहीं।"
+        },
+        {
+         "en": "Candidates may drive their own vehicles; the rule is about using public property.",
+         "hi": "उम्मीदवार अपनी गाड़ी चला सकते हैं; नियम सार्वजनिक संपत्ति के उपयोग का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of the harmful cards do you think is hardest to stop? What could voters do about it?",
+      "hi": "हानिकारक कार्डों में कौन-सा रोकना सबसे कठिन लगता है? मतदाता क्या कर सकते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Opens the chapter",
+   "shows": "Adult voters of different ages queuing patiently outside a polling station in the morning, seen from behind with only inked fingers visible",
+   "view": "Wide, 16:9",
+   "right": "Real queue, people of different ages and dress, calm mood",
+   "avoid": "Party symbols, posters, faces close up"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Cut-out for the voting lab",
+   "shows": "A generic electronic voting machine with ballot unit and a separate paper-slip printer unit, buttons beside blank panels",
+   "view": "Three-quarter view, transparent background",
+   "right": "Realistic buttons and cables, panels left blank",
+   "avoid": "Any party names, symbols or candidate photos"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Shows a simple vote by hand",
+   "shows": "Students in a classroom raising hands to choose a class representative, a student counting at the board",
+   "view": "Wide, 16:9",
+   "right": "Natural light, mixed students, board with plain tally marks",
+   "avoid": "Readable words, faces close up"
+  },
+  {
+   "n": 4,
+   "kind": "MAP",
+   "topic": "3.4",
+   "use": "Base for constituencies",
+   "shows": "An aerial view of a district with farmland, a town and a river, no boundaries drawn",
+   "view": "16:9, high angle",
+   "right": "Clear land and town areas for labelling in the app",
+   "avoid": "Names, borders, roads with signs"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "3.3",
+   "use": "Base for the voting machine view",
+   "shows": "An empty ballot-unit panel with five blank rows and round blank symbol areas",
+   "view": "Front view, white background",
+   "right": "Plain shapes the app can fill with candidate names and symbols",
+   "avoid": "Any lettering, real symbols"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.5",
+   "use": "Shows fair polling",
+   "shows": "Inside a polling booth: officers checking a voters' list at a table, a bottle of indelible ink and a cardboard voting screen",
+   "view": "Wide, 16:9",
+   "right": "Orderly, bright, officers seen from behind or at a distance",
+   "avoid": "Readable names on the list, faces close up"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "3.5",
+   "use": "Cut-out for the ink step",
+   "shows": "A small bottle of indelible ink with a brush, and a forefinger with a dark ink mark on the nail",
+   "view": "Close, transparent background",
+   "right": "True dark violet-black ink, clean hand",
+   "avoid": "Brand labels, readable text"
+  }
+ ]
+}

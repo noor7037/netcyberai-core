@@ -1,0 +1,474 @@
+{
+ "chapter_key": "u.c02.hindi.bhsr1.ch12",
+ "class": 2,
+ "subject_id": "hindi",
+ "title": "Toshia's Dream (तोसिया का सपना)",
+ "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Story: a dream of lost colours and a real morning of colours",
+   "labs": [
+    "c02-hindi-bhsr1-ch12-toshia-dream",
+    "c02-hindi-bhsr1-ch12-toshia-places"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Talk about dreams and colourless things",
+   "labs": [],
+   "why_no_lab": "Talking about dreams is a personal sharing activity for the class."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c02-hindi-bhsr1-ch12-toshia-places",
+   "topic": "12.1",
+   "template": "sort",
+   "title": {
+    "en": "Where does Toshia find colours?",
+    "hi": "तोसिया को रंग कहाँ-कहाँ दिखे?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "kitchen",
+      "label": {
+       "en": "Kitchen",
+       "hi": "रसोई"
+      }
+     },
+     {
+      "id": "garden",
+      "label": {
+       "en": "Garden",
+       "hi": "बगीचा"
+      }
+     },
+     {
+      "id": "market",
+      "label": {
+       "en": "Market",
+       "hi": "बाज़ार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "chilli",
+      "text": {
+       "en": "Red chilli",
+       "hi": "लाल मिर्च"
+      },
+      "bin": "kitchen",
+      "why": {
+       "en": "Spices like chilli are kept in the kitchen.",
+       "hi": "मिर्च जैसे मसाले रसोई में रखे जाते हैं।"
+      }
+     },
+     {
+      "id": "haldi",
+      "text": {
+       "en": "Turmeric",
+       "hi": "हल्दी"
+      },
+      "bin": "kitchen",
+      "why": {
+       "en": "Turmeric is a yellow spice for cooking.",
+       "hi": "हल्दी खाना बनाने का पीला मसाला है।"
+      }
+     },
+     {
+      "id": "dhaniya",
+      "text": {
+       "en": "Coriander seeds",
+       "hi": "धनिया"
+      },
+      "bin": "kitchen",
+      "why": {
+       "en": "Coriander is a spice used in cooking.",
+       "hi": "धनिया खाने में डाला जाने वाला मसाला है।"
+      }
+     },
+     {
+      "id": "genda",
+      "text": {
+       "en": "Marigold",
+       "hi": "गेंदा"
+      },
+      "bin": "garden",
+      "why": {
+       "en": "Marigolds grow in the garden.",
+       "hi": "गेंदा बगीचे में उगता है।"
+      }
+     },
+     {
+      "id": "chameli",
+      "text": {
+       "en": "Jasmine",
+       "hi": "चमेली"
+      },
+      "bin": "garden",
+      "why": {
+       "en": "Jasmine blooms in the garden.",
+       "hi": "चमेली बगीचे में खिलती है।"
+      }
+     },
+     {
+      "id": "sunflower",
+      "text": {
+       "en": "Sunflower",
+       "hi": "सूरजमुखी"
+      },
+      "bin": "garden",
+      "why": {
+       "en": "Sunflowers grow in gardens and fields.",
+       "hi": "सूरजमुखी बगीचों में उगता है।"
+      }
+     },
+     {
+      "id": "gajar",
+      "text": {
+       "en": "Carrot",
+       "hi": "गाजर"
+      },
+      "bin": "market",
+      "why": {
+       "en": "We buy vegetables like carrots in the market.",
+       "hi": "गाजर जैसी सब्ज़ियाँ बाज़ार में मिलती हैं।"
+      }
+     },
+     {
+      "id": "baingan",
+      "text": {
+       "en": "Brinjal",
+       "hi": "बैंगन"
+      },
+      "bin": "market",
+      "why": {
+       "en": "We buy brinjal from the vegetable market.",
+       "hi": "बैंगन हम सब्ज़ी की दुकान से लेते हैं।"
+      }
+     },
+     {
+      "id": "patang",
+      "text": {
+       "en": "Kite",
+       "hi": "पतंग"
+      },
+      "bin": "market",
+      "why": {
+       "en": "Kites are sold in a kite shop at the market.",
+       "hi": "पतंग बाज़ार की पतंग की दुकान में मिलती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:chilli",
+     "expect": "placed:chilli",
+     "say": {
+      "en": "Tap 'लाल मिर्च' and place it where Toshia found it.",
+      "hi": "'लाल मिर्च' छुओ और उसे वहाँ रखो जहाँ तोसिया ने उसे पाया।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where will Toshia find the kite?",
+      "hi": "तोसिया को पतंग कहाँ मिलेगी?"
+     },
+     "options": [
+      {
+       "id": "m",
+       "en": "बाज़ार",
+       "hi": "बाज़ार"
+      },
+      {
+       "id": "k",
+       "en": "रसोई",
+       "hi": "रसोई"
+      },
+      {
+       "id": "g",
+       "en": "बगीचा",
+       "hi": "बगीचा"
+      }
+     ],
+     "answer": "m"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Toshia dreamt that colours had flown away. When she woke, she looked and found colours in the kitchen, the garden and the market. Every place we know is full of colours; we only have to look.",
+      "hi": "तोसिया ने सपना देखा कि रंग उड़ गए हैं। जागकर उसने देखा तो रसोई, बगीचे और बाज़ार में रंग ही रंग थे। हमारी हर जानी-पहचानी जगह रंगों से भरी है; बस देखना होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where is turmeric kept at home?",
+        "hi": "हल्दी घर में कहाँ रखी जाती है?"
+       },
+       "options": [
+        {
+         "en": "रसोई में",
+         "hi": "रसोई में"
+        },
+        {
+         "en": "बगीचे में",
+         "hi": "बगीचे में"
+        },
+        {
+         "en": "बाज़ार में",
+         "hi": "बाज़ार में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Spices are kept in the kitchen.",
+        "hi": "मसाले रसोई में रखे जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Gardens have plants and flowers, not spice boxes.",
+         "hi": "बगीचे में पौधे-फूल होते हैं, मसालों के डिब्बे नहीं।"
+        },
+        {
+         "en": "The market sells it, but we keep it in the kitchen.",
+         "hi": "बाज़ार में बिकती है, पर रखी रसोई में जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Count how many colours you can find in your kitchen in one minute.",
+      "hi": "एक मिनट में अपनी रसोई में कितने रंग मिले, गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-hindi-bhsr1-ch12-toshia-dream",
+   "topic": "12.1",
+   "template": "sequence",
+   "title": {
+    "en": "Toshia's morning of colours",
+    "hi": "तोसिया की रंग-भरी सुबह"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "dream",
+      "text": {
+       "en": "Toshia dreams that all the colours have flown away.",
+       "hi": "तोसिया सपना देखती है कि सारे रंग उड़ गए हैं।"
+      }
+     },
+     {
+      "id": "scared",
+      "text": {
+       "en": "She wakes up and feels scared.",
+       "hi": "वह जागकर घबरा जाती है।"
+      }
+     },
+     {
+      "id": "kitchen",
+      "text": {
+       "en": "She goes to the kitchen and sees red, yellow and green spices.",
+       "hi": "वह रसोई में लाल, पीले और हरे मसाले देखती है।"
+      }
+     },
+     {
+      "id": "garden",
+      "text": {
+       "en": "She goes out and sees flowers of many colours.",
+       "hi": "वह बाहर जाकर रंग-बिरंगे फूल देखती है।"
+      }
+     },
+     {
+      "id": "market",
+      "text": {
+       "en": "In the market she sees vegetables and kites in many colours.",
+       "hi": "बाज़ार में उसे रंग-बिरंगी सब्ज़ियाँ और पतंगें दिखती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:dream",
+     "expect": "placed:dream",
+     "say": {
+      "en": "Place the card about the dream first.",
+      "hi": "सपने वाला कार्ड पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does Toshia feel when she wakes up?",
+      "hi": "जागने पर तोसिया को कैसा लगता है?"
+     },
+     "options": [
+      {
+       "id": "s",
+       "en": "Scared",
+       "hi": "घबराहट"
+      },
+      {
+       "id": "a",
+       "en": "Angry",
+       "hi": "गुस्सा"
+      },
+      {
+       "id": "b",
+       "en": "Sleepy and bored",
+       "hi": "नींद और ऊब"
+      }
+     ],
+     "answer": "s"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all five cards in order and press Check.",
+      "hi": "पाँचों कार्ड क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Toshia's dream was white and empty, so she got scared. The real world was full of colours, and this made her happy. A dream is not real, and we can check.",
+      "hi": "तोसिया का सपना सफ़ेद और खाली था, इसलिए वह डर गई। असली दुनिया रंगों से भरी थी, यह देखकर वह खुश हुई। सपना सच नहीं होता, और हम जाँचकर देख सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does Toshia go after the kitchen?",
+        "hi": "रसोई के बाद तोसिया कहाँ जाती है?"
+       },
+       "options": [
+        {
+         "en": "बगीचे में",
+         "hi": "बगीचे में"
+        },
+        {
+         "en": "स्कूल",
+         "hi": "स्कूल"
+        },
+        {
+         "en": "तालाब",
+         "hi": "तालाब"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After the kitchen she goes out to the garden.",
+        "hi": "रसोई के बाद वह बाहर बगीचे में जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The story does not take her to school.",
+         "hi": "कहानी में वह स्कूल नहीं जाती।"
+        },
+        {
+         "en": "The pond comes in a later chapter, not here.",
+         "hi": "तालाब अगले पाठ में है, यहाँ नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw a dream where one colour goes missing. Which colour would you miss most?",
+      "hi": "ऐसा सपना बनाओ जिसमें एक रंग खो जाए। तुम्हें कौन-सा रंग सबसे ज़्यादा याद आएगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "White dream",
+   "shows": "A white misty room with a bed, seen from above",
+   "view": "Top view, high-key light",
+   "right": "Subtle pale tones, no colour",
+   "avoid": "Scary look"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "12.1",
+   "use": "Spice boxes",
+   "shows": "A round steel spice box with red chilli, turmeric, coriander, cumin, fenugreek",
+   "view": "Top view",
+   "right": "Seven small bowls visible",
+   "avoid": "Brand packets"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Garden flowers",
+   "shows": "A small home garden with marigold, jasmine, hibiscus and sunflower",
+   "view": "Wide",
+   "right": "Natural sunlight",
+   "avoid": "Chemical sprays"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Vegetable market",
+   "shows": "A vegetable stall with carrots, brinjals, tomatoes, beans and peas",
+   "view": "Eye level",
+   "right": "Neat baskets, bright colours",
+   "avoid": "Shop names"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "12.1",
+   "use": "Kites",
+   "shows": "Five colourful paper kites, cut-outs",
+   "view": "Front view",
+   "right": "Black, yellow, blue, green, orange",
+   "avoid": "Brand marks"
+  }
+ ]
+}

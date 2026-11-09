@@ -1,0 +1,2339 @@
+{
+  "chapter_key": "u.c12.accountancy.leac2.ch01",
+  "class": 12,
+  "subject_id": "accountancy",
+  "title": "Accounting for Share Capital",
+  "source": "https://ncert.nic.in/textbook/pdf/leac201.pdf",
+  "topics": [
+    {
+      "n": "1.2",
+      "title": "Kinds of companies",
+      "labs": [
+        "c12-accountancy-leac2-ch01-company-kinds"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.3",
+      "title": "Share capital of a company",
+      "labs": [],
+      "why_no_lab": "The meaning of share capital is a short definition; the labs on its kinds and on issuing shares show it better."
+    },
+    {
+      "n": "1.3.1",
+      "title": "Categories of share capital",
+      "labs": [
+        "c12-accountancy-leac2-ch01-capital-kinds"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.4",
+      "title": "Nature and classes of shares",
+      "labs": [
+        "c12-accountancy-leac2-ch01-pref-equity"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.5",
+      "title": "Issue of shares",
+      "labs": [
+        "c12-accountancy-leac2-ch01-issue-par"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.6",
+      "title": "Accounting treatment of the issue of shares",
+      "labs": [
+        "c12-accountancy-leac2-ch01-issue-par"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.6.5",
+      "title": "Issue of shares at a premium",
+      "labs": [
+        "c12-accountancy-leac2-ch01-issue-premium"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.6.3",
+      "title": "Over subscription",
+      "labs": [
+        "c12-accountancy-leac2-ch01-oversubscribed"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.6.4",
+      "title": "Under subscription",
+      "labs": [],
+      "why_no_lab": "A short rule about shares not fully taken up (the 90% minimum subscription); the reader and the issue labs explain it better than a game."
+    },
+    {
+      "n": "1.6.1",
+      "title": "Calls in arrears",
+      "labs": [
+        "c12-accountancy-leac2-ch01-arrears-advance"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.6.2",
+      "title": "Calls in advance",
+      "labs": [
+        "c12-accountancy-leac2-ch01-arrears-advance"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.6.6",
+      "title": "Issue of shares at a discount",
+      "labs": [
+        "c12-accountancy-leac2-ch01-discount-rule"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.6.7",
+      "title": "Issue of shares for consideration other than cash",
+      "labs": [
+        "c12-accountancy-leac2-ch01-non-cash"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.7",
+      "title": "Forfeiture of shares",
+      "labs": [
+        "c12-accountancy-leac2-ch01-forfeiture-path"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.7.1",
+      "title": "Reissue of forfeited shares",
+      "labs": [
+        "c12-accountancy-leac2-ch01-reissue-gain"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-accountancy-leac2-ch01-company-kinds",
+      "topic": "1.2",
+      "template": "sort",
+      "title": {
+        "en": "Private or public company?",
+        "hi": "निजी या सार्वजनिक कंपनी?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "private",
+            "label": {
+              "en": "Private company",
+              "hi": "निजी कंपनी"
+            }
+          },
+          {
+            "id": "public",
+            "label": {
+              "en": "Public company",
+              "hi": "सार्वजनिक कंपनी"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "min2",
+            "text": {
+              "en": "At least 2 members to start",
+              "hi": "शुरू करने के लिए कम से कम 2 सदस्य"
+            },
+            "bin": "private",
+            "why": {
+              "en": "A private company can start with just two members.",
+              "hi": "निजी कंपनी केवल दो सदस्यों से शुरू हो सकती है।"
+            }
+          },
+          {
+            "id": "max200",
+            "text": {
+              "en": "At most 200 members",
+              "hi": "अधिकतम 200 सदस्य"
+            },
+            "bin": "private",
+            "why": {
+              "en": "The number of members of a private company is limited to 200.",
+              "hi": "निजी कंपनी के सदस्यों की संख्या 200 तक सीमित है।"
+            }
+          },
+          {
+            "id": "restrict",
+            "text": {
+              "en": "Limits the transfer of its shares",
+              "hi": "अपने शेयरों का हस्तांतरण सीमित करती है"
+            },
+            "bin": "private",
+            "why": {
+              "en": "A private company restricts the right to transfer shares, so they stay among known people.",
+              "hi": "निजी कंपनी शेयर हस्तांतरण का अधिकार सीमित करती है, इसलिए शेयर जाने-पहचाने लोगों में रहते हैं।"
+            }
+          },
+          {
+            "id": "nopublic",
+            "text": {
+              "en": "Cannot invite the public to buy shares",
+              "hi": "जनता को शेयर ख़रीदने का न्योता नहीं दे सकती"
+            },
+            "bin": "private",
+            "why": {
+              "en": "Private companies raise money from the owners and friends, not by inviting the public.",
+              "hi": "निजी कंपनियाँ पैसा स्वामियों और परिचितों से जुटाती हैं, जनता को न्योता देकर नहीं।"
+            }
+          },
+          {
+            "id": "min7",
+            "text": {
+              "en": "At least 7 members to start",
+              "hi": "शुरू करने के लिए कम से कम 7 सदस्य"
+            },
+            "bin": "public",
+            "why": {
+              "en": "A public company needs at least seven members.",
+              "hi": "सार्वजनिक कंपनी में कम से कम सात सदस्य चाहिए।"
+            }
+          },
+          {
+            "id": "nolimit",
+            "text": {
+              "en": "No upper limit on members",
+              "hi": "सदस्यों की कोई ऊपरी सीमा नहीं"
+            },
+            "bin": "public",
+            "why": {
+              "en": "A public company may have any number of members above the minimum.",
+              "hi": "सार्वजनिक कंपनी के सदस्य न्यूनतम से ऊपर कितने भी हो सकते हैं।"
+            }
+          },
+          {
+            "id": "free",
+            "text": {
+              "en": "Shares can be freely transferred",
+              "hi": "शेयर खुलकर हस्तांतरित हो सकते हैं"
+            },
+            "bin": "public",
+            "why": {
+              "en": "Shares of a public company can be sold to others freely, as long as the law is followed.",
+              "hi": "सार्वजनिक कंपनी के शेयर क़ानून मानते हुए दूसरों को खुलकर बेचे जा सकते हैं।"
+            }
+          },
+          {
+            "id": "invite",
+            "text": {
+              "en": "Can invite the public to buy shares",
+              "hi": "जनता को शेयर ख़रीदने का न्योता दे सकती है"
+            },
+            "bin": "public",
+            "why": {
+              "en": "A public company can ask the public to subscribe to its shares through a prospectus.",
+              "hi": "सार्वजनिक कंपनी विवरण-पत्रिका द्वारा जनता से शेयर लेने को कह सकती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A tea-stall chain owned by two friends wants to raise money from anyone in the city. Which kind of company can ask the public for money?",
+            "hi": "दो दोस्तों की चाय-दुकानों की शृंखला शहर में किसी से भी पैसा जुटाना चाहती है। कौन-सी कंपनी जनता से पैसा माँग सकती है?"
+          },
+          "options": [
+            {
+              "id": "pub",
+              "en": "Public company",
+              "hi": "सार्वजनिक कंपनी"
+            },
+            {
+              "id": "pri",
+              "en": "Private company",
+              "hi": "निजी कंपनी"
+            },
+            {
+              "id": "both",
+              "en": "Both can",
+              "hi": "दोनों माँग सकती हैं"
+            }
+          ],
+          "answer": "pub"
+        },
+        {
+          "kind": "do",
+          "target": "card:min2",
+          "expect": "correct:min2",
+          "say": {
+            "en": "Tap the card “At least 2 members to start”, then tap the group it belongs to.",
+            "hi": "कार्ड “शुरू करने के लिए कम से कम 2 सदस्य” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:max200",
+          "expect": "correct:max200",
+          "say": {
+            "en": "Tap the card “At most 200 members”, then tap the group it belongs to.",
+            "hi": "कार्ड “अधिकतम 200 सदस्य” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A company is a separate legal person made by law. A private company stays small and closed: two to 200 members and shares that are hard to transfer. A public company is open: at least seven members, no upper limit, and it may invite the public to buy its shares.",
+            "hi": "कंपनी क़ानून से बना अलग क़ानूनी व्यक्ति है। निजी कंपनी छोटी और बंद रहती है: दो से 200 सदस्य और शेयर आसानी से हस्तांतरित नहीं होते। सार्वजनिक कंपनी खुली होती है: कम से कम सात सदस्य, कोई ऊपरी सीमा नहीं, और यह जनता को शेयर ख़रीदने का न्योता दे सकती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A company with 350 members that sells shares on the market is most likely:",
+                "hi": "350 सदस्यों वाली और बाज़ार में शेयर बेचने वाली कंपनी संभवतः है:"
+              },
+              "options": [
+                {
+                  "en": "A public company",
+                  "hi": "सार्वजनिक कंपनी"
+                },
+                {
+                  "en": "A private company",
+                  "hi": "निजी कंपनी"
+                },
+                {
+                  "en": "A partnership firm",
+                  "hi": "साझेदारी फ़र्म"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A private company cannot have more than 200 members and cannot invite the public, so this must be public.",
+                "hi": "निजी कंपनी में 200 से अधिक सदस्य नहीं हो सकते और वह जनता को न्योता नहीं दे सकती, इसलिए यह सार्वजनिक है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Private companies stop at 200 members.",
+                  "hi": "निजी कंपनी 200 सदस्यों पर रुक जाती है।"
+                },
+                {
+                  "en": "A firm is not a company; it has no separate legal existence and is not sold in shares.",
+                  "hi": "फ़र्म कंपनी नहीं है; उसका अलग क़ानूनी अस्तित्व नहीं होता और उसके शेयर नहीं बिकते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the cards' groups in your mind: what would a family business gain by staying private?",
+            "hi": "सोचो: कोई पारिवारिक कारोबार निजी रहकर क्या फ़ायदा पाएगा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch01-capital-kinds",
+      "topic": "1.3.1",
+      "template": "match",
+      "title": {
+        "en": "The kinds of share capital",
+        "hi": "अंश पूँजी के प्रकार"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "auth",
+            "left": {
+              "en": "Authorised capital",
+              "hi": "अधिकृत पूँजी"
+            },
+            "right": {
+              "en": "The most capital a company may issue, as stated in its Memorandum",
+              "hi": "अधिकतम पूँजी जो कंपनी जारी कर सकती है, जैसा उसके ज्ञापन में लिखा है"
+            },
+            "why": {
+              "en": "The Memorandum of Association fixes this ceiling.",
+              "hi": "पूँजी की यह सीमा कंपनी का ज्ञापन तय करता है।"
+            }
+          },
+          {
+            "id": "issued",
+            "left": {
+              "en": "Issued capital",
+              "hi": "निर्गमित पूँजी"
+            },
+            "right": {
+              "en": "The part of authorised capital actually offered to the public",
+              "hi": "अधिकृत पूँजी का वह भाग जो सचमुच जनता को प्रस्तावित हुआ"
+            },
+            "why": {
+              "en": "Not all authorised capital is offered at once.",
+              "hi": "पूरी अधिकृत पूँजी एक साथ प्रस्तावित नहीं होती।"
+            }
+          },
+          {
+            "id": "subs",
+            "left": {
+              "en": "Subscribed capital",
+              "hi": "अभिदत्त पूँजी"
+            },
+            "right": {
+              "en": "The part of issued capital that the public agreed to take",
+              "hi": "निर्गमित पूँजी का वह भाग जिसे जनता ने लेना स्वीकार किया"
+            },
+            "why": {
+              "en": "People may take all or only some of the shares offered.",
+              "hi": "लोग प्रस्तावित अंश पूरे या कुछ ही ले सकते हैं।"
+            }
+          },
+          {
+            "id": "called",
+            "left": {
+              "en": "Called-up capital",
+              "hi": "याचित पूँजी"
+            },
+            "right": {
+              "en": "The part of subscribed capital the company has asked shareholders to pay",
+              "hi": "अभिदत्त पूँजी का वह भाग जिसे कंपनी ने अंशधारकों से चुकाने को कहा"
+            },
+            "why": {
+              "en": "A company asks for the money in instalments, called application, allotment and calls.",
+              "hi": "कंपनी पैसा किस्तों में माँगती है: आवेदन, आबंटन और याचनाएँ।"
+            }
+          },
+          {
+            "id": "paid",
+            "left": {
+              "en": "Paid-up capital",
+              "hi": "चुकता पूँजी"
+            },
+            "right": {
+              "en": "The called-up money the shareholders have actually paid",
+              "hi": "याचित राशि जो अंशधारकों ने सचमुच चुका दी"
+            },
+            "why": {
+              "en": "This is the money really in the company's bank.",
+              "hi": "यही पैसा सचमुच कंपनी के बैंक में है।"
+            }
+          },
+          {
+            "id": "reserve",
+            "left": {
+              "en": "Reserve capital",
+              "hi": "आरक्षित पूँजी"
+            },
+            "right": {
+              "en": "Uncalled capital kept to be called only if the company is wound up",
+              "hi": "अनाहूत पूँजी जो केवल कंपनी के बंद होने पर ही माँगी जाएगी"
+            },
+            "why": {
+              "en": "It protects creditors if the company closes.",
+              "hi": "यह कंपनी बंद होने पर लेनदारों की रक्षा करती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A company may issue ₹10 lakh of shares. It offers ₹8 lakh and the public takes ₹6 lakh. Which is the largest of these three figures?",
+            "hi": "एक कंपनी ₹10 लाख के शेयर जारी कर सकती है। वह ₹8 लाख प्रस्तावित करती है और जनता ₹6 लाख लेती है। इन तीनों में सबसे बड़ा आँकड़ा कौन-सा है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Authorised ₹10 lakh",
+              "hi": "अधिकृत ₹10 लाख"
+            },
+            {
+              "id": "b",
+              "en": "Issued ₹8 lakh",
+              "hi": "निर्गमित ₹8 लाख"
+            },
+            {
+              "id": "c",
+              "en": "Subscribed ₹6 lakh",
+              "hi": "अभिदत्त ₹6 लाख"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:auth",
+          "expect": "matched:auth",
+          "say": {
+            "en": "Tap “Authorised capital”, then tap the meaning that goes with it.",
+            "hi": "“अधिकृत पूँजी” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:issued",
+          "expect": "matched:issued",
+          "say": {
+            "en": "Tap “Issued capital”, then tap the meaning that goes with it.",
+            "hi": "“निर्गमित पूँजी” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the pairs, then press Check.",
+            "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Share capital narrows step by step: authorised, then issued, then subscribed, then called-up, then paid-up. Each is the same or smaller than the one before. Reserve capital is the odd one: it is uncalled money kept for the day a company is wound up.",
+            "hi": "शेयर पूँजी कदम-दर-कदम घटती जाती है: अधिकृत, फिर निर्गमित, फिर अभिदत्त, फिर याचित, फिर चुकता। हर एक पिछले के बराबर या उससे छोटा होता है। आरक्षित पूँजी अलग है: यह वह अनाहूत राशि है जो कंपनी बंद होने के दिन के लिए रखी जाती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A company has subscribed capital of ₹6 lakh and has called ₹4 lakh. The money actually received is ₹3.5 lakh. What is the paid-up capital?",
+                "hi": "एक कंपनी की अभिदत्त पूँजी ₹6 लाख है और उसने ₹4 लाख माँगे। सचमुच मिले ₹3.5 लाख। चुकता पूँजी कितनी है?"
+              },
+              "options": [
+                {
+                  "en": "₹3.5 lakh",
+                  "hi": "₹3.5 लाख"
+                },
+                {
+                  "en": "₹4 lakh",
+                  "hi": "₹4 लाख"
+                },
+                {
+                  "en": "₹6 lakh",
+                  "hi": "₹6 लाख"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Paid-up capital is what has actually been paid, ₹3.5 lakh. The rest of the called amount is unpaid, in arrears.",
+                "hi": "चुकता पूँजी वह है जो सचमुच चुकाई गई, ₹3.5 लाख। माँगी गई बाक़ी राशि बकाया है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is the called-up capital, what was asked for, not what was paid.",
+                  "hi": "यह याचित पूँजी है, यानी जो माँगा गया, जो चुकाया गया वह नहीं।"
+                },
+                {
+                  "en": "That is the subscribed capital, the total the public agreed to take.",
+                  "hi": "यह अभिदत्त पूँजी है, यानी जनता ने कुल जितना लेना माना।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Draw five boxes inside each other and write a number in each for a company you imagine.",
+            "hi": "एक-दूसरे के अंदर पाँच डिब्बे बनाओ और अपनी सोची हुई कंपनी के लिए हर में एक संख्या लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch01-pref-equity",
+      "topic": "1.4",
+      "template": "sort",
+      "title": {
+        "en": "Preference or equity share?",
+        "hi": "पूर्वाधिकार या समता अंश?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "pref",
+            "label": {
+              "en": "Preference shares",
+              "hi": "पूर्वाधिकार अंश"
+            }
+          },
+          {
+            "id": "eq",
+            "label": {
+              "en": "Equity shares",
+              "hi": "समता अंश"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "fixed",
+            "text": {
+              "en": "Dividend at a fixed rate",
+              "hi": "निश्चित दर से लाभांश"
+            },
+            "bin": "pref",
+            "why": {
+              "en": "Preference shareholders get a fixed rate of dividend, such as 9%.",
+              "hi": "पूर्वाधिकार अंशधारकों को निश्चित दर से लाभांश मिलता है, जैसे 9%।"
+            }
+          },
+          {
+            "id": "first",
+            "text": {
+              "en": "Paid dividend before others",
+              "hi": "दूसरों से पहले लाभांश मिलता है"
+            },
+            "bin": "pref",
+            "why": {
+              "en": "They have the first claim on profit that is shared out.",
+              "hi": "बाँटे जाने वाले लाभ पर उनका पहला दावा होता है।"
+            }
+          },
+          {
+            "id": "refundfirst",
+            "text": {
+              "en": "Capital returned first on closing",
+              "hi": "बंद होने पर पूँजी पहले लौटती है"
+            },
+            "bin": "pref",
+            "why": {
+              "en": "In winding up, they are repaid before equity shareholders.",
+              "hi": "कंपनी बंद होने पर उन्हें समता अंशधारकों से पहले चुकाया जाता है।"
+            }
+          },
+          {
+            "id": "novote",
+            "text": {
+              "en": "Usually no ordinary voting right",
+              "hi": "आम तौर पर सामान्य मतदान अधिकार नहीं"
+            },
+            "bin": "pref",
+            "why": {
+              "en": "Preference shareholders usually cannot vote on ordinary company matters.",
+              "hi": "पूर्वाधिकार अंशधारक सामान्यतः कंपनी के आम मामलों में मत नहीं देते।"
+            }
+          },
+          {
+            "id": "varies",
+            "text": {
+              "en": "Dividend rises and falls with profit",
+              "hi": "लाभांश लाभ के साथ घटता-बढ़ता है"
+            },
+            "bin": "eq",
+            "why": {
+              "en": "Equity dividend depends on how much profit is left, so it can be high, low or nothing.",
+              "hi": "समता लाभांश इस पर निर्भर है कि कितना लाभ बचा, इसलिए यह ज़्यादा, कम या शून्य हो सकता है।"
+            }
+          },
+          {
+            "id": "vote",
+            "text": {
+              "en": "Has the right to vote",
+              "hi": "मतदान का अधिकार होता है"
+            },
+            "bin": "eq",
+            "why": {
+              "en": "Equity shareholders are the owners who vote on the company's affairs.",
+              "hi": "समता अंशधारक स्वामी हैं जो कंपनी के कामकाज पर मत देते हैं।"
+            }
+          },
+          {
+            "id": "last",
+            "text": {
+              "en": "Repaid last on closing",
+              "hi": "बंद होने पर सबसे अंत में चुकाए जाते हैं"
+            },
+            "bin": "eq",
+            "why": {
+              "en": "Equity shareholders get what is left after everyone else is paid.",
+              "hi": "सबको चुकाने के बाद जो बचे, वह समता अंशधारकों को मिलता है।"
+            }
+          },
+          {
+            "id": "risk",
+            "text": {
+              "en": "Highest risk, highest possible reward",
+              "hi": "सबसे अधिक जोखिम, सबसे अधिक संभावित लाभ"
+            },
+            "bin": "eq",
+            "why": {
+              "en": "They bear the main risk, so they gain most when the company does well.",
+              "hi": "मुख्य जोखिम वही उठाते हैं, इसलिए कंपनी अच्छा करे तो सबसे अधिक पाते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A company earns very little this year. Who is more likely to still get a dividend?",
+            "hi": "इस साल कंपनी की कमाई बहुत कम है। किसे फिर भी लाभांश मिलने की ज़्यादा संभावना है?"
+          },
+          "options": [
+            {
+              "id": "p",
+              "en": "Preference shareholders",
+              "hi": "पूर्वाधिकार अंशधारक"
+            },
+            {
+              "id": "e",
+              "en": "Equity shareholders",
+              "hi": "समता अंशधारक"
+            }
+          ],
+          "answer": "p"
+        },
+        {
+          "kind": "do",
+          "target": "card:fixed",
+          "expect": "correct:fixed",
+          "say": {
+            "en": "Tap the card “Dividend at a fixed rate”, then tap the group it belongs to.",
+            "hi": "कार्ड “निश्चित दर से लाभांश” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:first",
+          "expect": "correct:first",
+          "say": {
+            "en": "Tap the card “Paid dividend before others”, then tap the group it belongs to.",
+            "hi": "कार्ड “दूसरों से पहले लाभांश मिलता है” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Preference shares are the safer share: a fixed dividend, paid first, and repaid first on closing. In return, their holders usually do not vote. Equity shares carry the risk: the dividend depends on profit and capital is repaid last, but these holders vote and gain most if the business grows.",
+            "hi": "पूर्वाधिकार अंश अधिक सुरक्षित हैं: निश्चित लाभांश, पहले मिलता है और बंद होने पर पहले लौटता है। बदले में इनके धारक प्रायः मत नहीं देते। समता अंश में जोखिम है: लाभांश लाभ पर निर्भर है और पूँजी अंत में लौटती है, पर धारक मत देते हैं और व्यवसाय बढ़े तो सबसे अधिक पाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which kind of investor would choose preference shares?",
+                "hi": "कौन-सा निवेशक पूर्वाधिकार अंश चुनेगा?"
+              },
+              "options": [
+                {
+                  "en": "Someone who wants steady income with less risk",
+                  "hi": "जो कम जोखिम में स्थिर आय चाहता है"
+                },
+                {
+                  "en": "Someone who wants a vote and a share of big profits",
+                  "hi": "जो मतदान का हक़ और बड़े लाभ में हिस्सा चाहता है"
+                },
+                {
+                  "en": "Someone who wants to own the business",
+                  "hi": "जो व्यवसाय का स्वामी बनना चाहता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A fixed dividend paid first suits a steady, low-risk investor.",
+                "hi": "पहले मिलने वाला निश्चित लाभांश स्थिर, कम जोखिम वाले निवेशक को ठीक बैठता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That describes equity shares: voting and a share of any big profit.",
+                  "hi": "यह समता अंश का वर्णन है: मतदान और बड़े लाभ में हिस्सा।"
+                },
+                {
+                  "en": "Ownership with control comes from equity shares, not preference shares.",
+                  "hi": "नियंत्रण वाला स्वामित्व समता अंश से आता है, पूर्वाधिकार अंश से नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Ask an adult who invests: why do they hold the shares they hold?",
+            "hi": "किसी निवेश करने वाले बड़े से पूछो: वे जो शेयर रखते हैं, क्यों रखते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch01-issue-par",
+      "topic": "1.5",
+      "template": "ledger",
+      "title": {
+        "en": "Issue of shares at par: stage by stage",
+        "hi": "सममूल्य पर अंशों का निर्गमन: चरण दर चरण"
+      },
+      "minutes": 8,
+      "level": "core",
+      "config": {
+        "mode": "shares",
+        "business": {
+          "en": "Sunrise Foods Ltd",
+          "hi": "सनराइज़ फ़ूड्स लिमिटेड"
+        },
+        "transactions": [],
+        "issue": {
+          "shares": 10000,
+          "face": 10,
+          "calls": [
+            2,
+            3,
+            5
+          ]
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Each share is ₹10 and 10,000 shares are offered. Money is collected as ₹2, ₹3 and ₹5. How much will the bank receive in all?",
+            "hi": "हर अंश ₹10 का है और 10,000 अंश प्रस्तावित हैं। पैसा ₹2, ₹3 और ₹5 में लिया जाएगा। बैंक को कुल कितना मिलेगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "₹1,00,000",
+              "hi": "1,00,000 रुपये"
+            },
+            {
+              "id": "b",
+              "en": "₹20,000",
+              "hi": "20,000 रुपये"
+            },
+            {
+              "id": "c",
+              "en": "₹10,000",
+              "hi": "10,000 रुपये"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "posted:application",
+          "say": {
+            "en": "Press the button to collect the application money.",
+            "hi": "आवेदन राशि लेने के लिए बटन दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "posted:allotment",
+          "say": {
+            "en": "Collect the allotment money. Watch the journal grow.",
+            "hi": "आबंटन राशि लो। रोज़नामचा को बढ़ते देखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "posted:call",
+          "say": {
+            "en": "Collect the final call.",
+            "hi": "अंतिम याचना की राशि लो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "balance",
+          "expect": "tallied",
+          "say": {
+            "en": "Show the balance sheet.",
+            "hi": "तुलन पत्र दिखाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about share capital.",
+            "hi": "अंश पूँजी वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Money comes in stages. At application the bank is debited and Share Application is credited. At allotment the application money moves into Share Capital and the new amount due is booked as Share Allotment. Each call works the same way. When every stage is paid, bank equals share capital.",
+            "hi": "पैसा चरणों में आता है। आवेदन पर बैंक नामे और अंश आवेदन जमा होता है। आबंटन पर आवेदन राशि अंश पूँजी में चली जाती है और नई देय राशि अंश आबंटन में दर्ज होती है। हर याचना ऐसे ही चलती है। हर चरण चुक जाए तो बैंक और अंश पूँजी बराबर होते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "At which stage is the application money moved into Share Capital?",
+                "hi": "आवेदन राशि को अंश पूँजी में कब ले जाया जाता है?"
+              },
+              "options": [
+                {
+                  "en": "When the shares are allotted",
+                  "hi": "जब अंश आबंटित होते हैं"
+                },
+                {
+                  "en": "The day the form is sold",
+                  "hi": "जिस दिन फ़ॉर्म बिकता है"
+                },
+                {
+                  "en": "When the company is closed",
+                  "hi": "जब कंपनी बंद होती है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Until allotment the money is only an application deposit. Allotment makes the applicant a shareholder, so it goes to Share Capital.",
+                "hi": "आबंटन तक यह केवल आवेदन जमा है। आबंटन से आवेदक अंशधारक बनता है, इसलिए यह अंश पूँजी में जाती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A form sale is not share money; the application money comes with the filled form.",
+                  "hi": "फ़ॉर्म की बिक्री अंश राशि नहीं है; आवेदन राशि भरे फ़ॉर्म के साथ आती है।"
+                },
+                {
+                  "en": "Share capital is recorded long before closing, at allotment.",
+                  "hi": "अंश पूँजी बहुत पहले, आबंटन पर ही दर्ज हो जाती है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "If the company issues 10,000 shares of ₹10 at par, what is the share capital?",
+                "hi": "10,000 अंश ₹10 के सममूल्य पर जारी हों तो अंश पूँजी कितनी है?"
+              },
+              "options": [
+                {
+                  "en": "₹1,00,000",
+                  "hi": "1,00,000 रुपये"
+                },
+                {
+                  "en": "₹10,000",
+                  "hi": "10,000 रुपये"
+                },
+                {
+                  "en": "₹2,00,000",
+                  "hi": "2,00,000 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "10,000 × ₹10 = ₹1,00,000.",
+                "hi": "10,000 × ₹10 = ₹1,00,000।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹10,000 is only the number of shares, not the money.",
+                  "hi": "₹10,000 अंशों की संख्या जैसी है, राशि नहीं।"
+                },
+                {
+                  "en": "That doubles the money; each share is ₹10, not ₹20.",
+                  "hi": "यह राशि को दुगुना कर देता है; हर अंश ₹10 का है, ₹20 का नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Reset and look at the journal again. Which account is credited in each stage?",
+            "hi": "फिर से शुरू करो और रोज़नामचा देखो। हर चरण में कौन-सा खाता जमा हुआ?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch01-issue-premium",
+      "topic": "1.6.5",
+      "template": "ledger",
+      "title": {
+        "en": "Shares issued at a premium",
+        "hi": "प्रीमियम पर जारी अंश"
+      },
+      "minutes": 8,
+      "level": "core",
+      "config": {
+        "mode": "shares",
+        "business": {
+          "en": "Greenleaf Tea Ltd",
+          "hi": "ग्रीनलीफ़ टी लिमिटेड"
+        },
+        "transactions": [],
+        "issue": {
+          "shares": 10000,
+          "face": 10,
+          "premium": 2,
+          "calls": [
+            3,
+            5,
+            4
+          ]
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Each ₹10 share is issued at ₹12, so ₹2 is premium. Where does the premium go in the books?",
+            "hi": "हर ₹10 का अंश ₹12 में जारी होता है, यानी ₹2 प्रीमियम है। बही में प्रीमियम कहाँ जाता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Securities Premium, apart from share capital",
+              "hi": "प्रतिभूति प्रीमियम में, अंश पूँजी से अलग"
+            },
+            {
+              "id": "b",
+              "en": "Into share capital",
+              "hi": "अंश पूँजी में"
+            },
+            {
+              "id": "c",
+              "en": "Into profit",
+              "hi": "लाभ में"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "posted:application",
+          "say": {
+            "en": "Collect the application money.",
+            "hi": "आवेदन राशि लो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "posted:allotment",
+          "say": {
+            "en": "Collect the allotment money. It includes the premium.",
+            "hi": "आबंटन राशि लो। इसमें प्रीमियम शामिल है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "posted:call",
+          "say": {
+            "en": "Collect the final call.",
+            "hi": "अंतिम याचना की राशि लो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "balance",
+          "expect": "tallied",
+          "say": {
+            "en": "Show the balance sheet.",
+            "hi": "तुलन पत्र दिखाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about share capital.",
+            "hi": "अंश पूँजी वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A premium is the extra a company charges above the face value because buyers trust it. It is not capital that makes shares; it is a gain from issuing them. So the bank receives ₹1,20,000 but share capital is only ₹1,00,000. The ₹20,000 premium is kept in Securities Premium under Reserves and Surplus, and may be used only for the purposes the Companies Act allows, such as bonus shares or writing off preliminary expenses.",
+            "hi": "प्रीमियम वह अतिरिक्त राशि है जो कंपनी अंकित मूल्य से ऊपर लेती है क्योंकि ख़रीदार उस पर भरोसा करते हैं। यह अंश बनाने वाली पूँजी नहीं, अंश जारी करने से मिला लाभ है। इसलिए बैंक को ₹1,20,000 मिलते हैं पर अंश पूँजी केवल ₹1,00,000 है। ₹20,000 प्रीमियम 'आरक्षित और अधिशेष' के अंतर्गत प्रतिभूति प्रीमियम में रहता है, और केवल उन्हीं कामों में लगाया जा सकता है जो कंपनी अधिनियम अनुमति देता है, जैसे बोनस अंश या प्रारंभिक व्यय मिटाना।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Premium of ₹2 on each of 10,000 shares. What is the total securities premium?",
+                "hi": "10,000 अंशों में से हर पर ₹2 प्रीमियम। कुल प्रतिभूति प्रीमियम कितना है?"
+              },
+              "options": [
+                {
+                  "en": "₹20,000",
+                  "hi": "20,000 रुपये"
+                },
+                {
+                  "en": "₹2,000",
+                  "hi": "2,000 रुपये"
+                },
+                {
+                  "en": "₹1,20,000",
+                  "hi": "1,20,000 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "10,000 × ₹2 = ₹20,000.",
+                "hi": "10,000 × ₹2 = ₹20,000।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is 1,000 shares' worth; check the number of shares.",
+                  "hi": "यह 1,000 अंशों का है; अंशों की संख्या फिर देखो।"
+                },
+                {
+                  "en": "That is the total money received, including the face value.",
+                  "hi": "यह अंकित मूल्य सहित कुल प्राप्त धन है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which of these is a permitted use of the securities premium?",
+                "hi": "इनमें से प्रतिभूति प्रीमियम का अनुमत उपयोग कौन-सा है?"
+              },
+              "options": [
+                {
+                  "en": "Issuing fully paid bonus shares",
+                  "hi": "पूरे चुकता बोनस अंश जारी करना"
+                },
+                {
+                  "en": "Paying the directors' salary",
+                  "hi": "निदेशकों का वेतन देना"
+                },
+                {
+                  "en": "Paying the ordinary dividend",
+                  "hi": "साधारण लाभांश देना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The Act allows the premium to be used for bonus shares, preliminary expenses, share issue costs, premium on redemption and buy-back.",
+                "hi": "अधिनियम प्रीमियम को बोनस अंश, प्रारंभिक व्यय, निर्गमन ख़र्च, मोचन पर प्रीमियम और अंश वापसी ख़रीद के लिए प्रयोग करने देता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Salaries are a revenue expense, paid from profit, not from the premium.",
+                  "hi": "वेतन राजस्व व्यय है, जो लाभ से दिया जाता है, प्रीमियम से नहीं।"
+                },
+                {
+                  "en": "Dividends are paid out of profits; the premium is a protected reserve.",
+                  "hi": "लाभांश लाभ से दिया जाता है; प्रीमियम एक सुरक्षित संचिति है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Reset and change nothing, but list which stages carry the premium and why it is taken with allotment.",
+            "hi": "फिर शुरू करो और देखो कि प्रीमियम किस चरण में लिया गया और क्यों।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch01-oversubscribed",
+      "topic": "1.6.3",
+      "template": "ledger",
+      "title": {
+        "en": "Over-subscription: more applications than shares",
+        "hi": "अधिक-अभिदान: अंशों से ज़्यादा आवेदन"
+      },
+      "minutes": 8,
+      "level": "core",
+      "config": {
+        "mode": "shares",
+        "business": {
+          "en": "Malabar Spices Ltd",
+          "hi": "मालाबार स्पाइसेज़ लिमिटेड"
+        },
+        "transactions": [],
+        "issue": {
+          "shares": 10000,
+          "face": 10,
+          "calls": [
+            2,
+            3,
+            5
+          ],
+          "applied": 15000
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The company offers 10,000 shares but gets applications for 15,000 at ₹2 each. How much application money is received?",
+            "hi": "कंपनी 10,000 अंश प्रस्तावित करती है पर 15,000 के लिए ₹2 प्रति अंश के आवेदन आते हैं। आवेदन राशि कितनी मिलेगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "₹30,000",
+              "hi": "30,000 रुपये"
+            },
+            {
+              "id": "b",
+              "en": "₹20,000",
+              "hi": "20,000 रुपये"
+            },
+            {
+              "id": "c",
+              "en": "₹10,000",
+              "hi": "10,000 रुपये"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "posted:application",
+          "say": {
+            "en": "Collect the application money and see what happens to the extra.",
+            "hi": "आवेदन राशि लो और देखो अतिरिक्त राशि का क्या होता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "posted:allotment",
+          "say": {
+            "en": "Collect the allotment money.",
+            "hi": "आबंटन राशि लो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "posted:call",
+          "say": {
+            "en": "Collect the final call.",
+            "hi": "अंतिम याचना की राशि लो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "balance",
+          "expect": "tallied",
+          "say": {
+            "en": "Show the balance sheet.",
+            "hi": "तुलन पत्र दिखाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about share capital.",
+            "hi": "अंश पूँजी वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Applications for 15,000 shares brought in ₹30,000, but only 10,000 shares can be allotted. The money for the 5,000 shares not allotted, ₹10,000, is sent back to the applicants. In some cases it is instead adjusted against the allotment money due, which is the usual way when a pro-rata allotment is made. Only the money for allotted shares becomes share capital.",
+            "hi": "15,000 अंशों के आवेदनों से ₹30,000 आए, पर केवल 10,000 अंश आबंटित हो सकते हैं। न आबंटित हुए 5,000 अंशों की राशि, ₹10,000, आवेदकों को लौटा दी जाती है। कभी-कभी इसे देय आबंटन राशि में समायोजित कर दिया जाता है, जो आनुपातिक आबंटन में सामान्य है। केवल आबंटित अंशों की राशि अंश पूँजी बनती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is over-subscription?",
+                "hi": "अधिक-अभिदान क्या है?"
+              },
+              "options": [
+                {
+                  "en": "Applications for more shares than are offered",
+                  "hi": "प्रस्तावित अंशों से अधिक के लिए आवेदन आना"
+                },
+                {
+                  "en": "Applications for fewer shares than are offered",
+                  "hi": "प्रस्तावित अंशों से कम के लिए आवेदन आना"
+                },
+                {
+                  "en": "Applications that are all rejected",
+                  "hi": "सारे आवेदन अस्वीकार होना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Over means more: more shares are applied for than the company offered.",
+                "hi": "अधिक का अर्थ ज़्यादा: कंपनी ने जितने अंश दिए, उनसे ज़्यादा के आवेदन आए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is under-subscription.",
+                  "hi": "यह अल्प-अभिदान है।"
+                },
+                {
+                  "en": "Rejecting everything is not a kind of subscription at all.",
+                  "hi": "सब कुछ अस्वीकार करना अभिदान का प्रकार ही नहीं है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "With the 5,000 extra shares applied for at ₹2, how much is refunded (or adjusted)?",
+                "hi": "अतिरिक्त 5,000 अंशों पर ₹2 के हिसाब से कितना लौटाया (या समायोजित) जाएगा?"
+              },
+              "options": [
+                {
+                  "en": "₹10,000",
+                  "hi": "10,000 रुपये"
+                },
+                {
+                  "en": "₹30,000",
+                  "hi": "30,000 रुपये"
+                },
+                {
+                  "en": "Nothing",
+                  "hi": "कुछ नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "5,000 × ₹2 = ₹10,000 belongs to applicants who got no shares.",
+                "hi": "5,000 × ₹2 = ₹10,000 उन आवेदकों का है जिन्हें अंश नहीं मिले।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is the whole application money, including the shares that were allotted.",
+                  "hi": "यह पूरी आवेदन राशि है, आबंटित अंशों की भी।"
+                },
+                {
+                  "en": "The company has no right to keep money for shares it did not allot.",
+                  "hi": "जो अंश आबंटित नहीं हुए, उनकी राशि रखने का कंपनी को अधिकार नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at the journal for the application stage: find the line that refunds the extra money.",
+            "hi": "आवेदन चरण का रोज़नामचा देखो: वह पंक्ति खोजो जो अतिरिक्त राशि लौटाती है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch01-arrears-advance",
+      "topic": "1.6.1",
+      "template": "sort",
+      "title": {
+        "en": "Calls in arrears or calls in advance?",
+        "hi": "बकाया या अग्रिम याचनाएँ?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "arr",
+            "label": {
+              "en": "Calls in arrears",
+              "hi": "बकाया याचनाएँ"
+            }
+          },
+          {
+            "id": "adv",
+            "label": {
+              "en": "Calls in advance",
+              "hi": "अग्रिम याचनाएँ"
+            }
+          },
+          {
+            "id": "nei",
+            "label": {
+              "en": "Neither",
+              "hi": "इनमें से कोई नहीं"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "late",
+            "text": {
+              "en": "Allotment money not paid on due date",
+              "hi": "आबंटन राशि देय तिथि पर नहीं चुकाई"
+            },
+            "bin": "arr",
+            "why": {
+              "en": "Money called but not paid by the due date is in arrears.",
+              "hi": "माँगी गई पर देय तिथि तक न चुकाई राशि बकाया होती है।"
+            }
+          },
+          {
+            "id": "int10",
+            "text": {
+              "en": "Interest up to 10% a year on the unpaid call",
+              "hi": "बकाया याचना पर साल का 10% तक ब्याज"
+            },
+            "bin": "arr",
+            "why": {
+              "en": "If the Articles allow, interest not above 10% a year can be charged on calls in arrears.",
+              "hi": "यदि अंतर्नियम अनुमति दें, तो बकाया याचनाओं पर साल का 10% से अधिक न होने वाला ब्याज लिया जा सकता है।"
+            }
+          },
+          {
+            "id": "early",
+            "text": {
+              "en": "₹2 paid with the first call for the final call",
+              "hi": "अंतिम याचना का ₹2 पहली याचना के साथ चुकाया"
+            },
+            "bin": "adv",
+            "why": {
+              "en": "Money paid before it is called is a call in advance.",
+              "hi": "माँगे जाने से पहले चुकाई गई राशि अग्रिम याचना है।"
+            }
+          },
+          {
+            "id": "int12",
+            "text": {
+              "en": "Interest up to 12% a year, if the company agrees",
+              "hi": "साल का 12% तक ब्याज, यदि कंपनी मान ले"
+            },
+            "bin": "adv",
+            "why": {
+              "en": "A company may pay interest up to 12% a year on calls received in advance.",
+              "hi": "कंपनी अग्रिम प्राप्त याचनाओं पर साल का 12% तक ब्याज दे सकती है।"
+            }
+          },
+          {
+            "id": "liab",
+            "text": {
+              "en": "Shown as a liability, not as capital",
+              "hi": "पूँजी नहीं, देयता के रूप में दिखता है"
+            },
+            "bin": "adv",
+            "why": {
+              "en": "Advance money is not yet due, so it is a liability till the call is made.",
+              "hi": "अग्रिम राशि अभी देय नहीं, इसलिए याचना होने तक देयता है।"
+            }
+          },
+          {
+            "id": "less",
+            "text": {
+              "en": "Deducted from called-up capital",
+              "hi": "याचित पूँजी में से घटाई जाती है"
+            },
+            "bin": "arr",
+            "why": {
+              "en": "Arrears are not received, so they reduce the paid-up capital.",
+              "hi": "बकाया प्राप्त नहीं हुआ, इसलिए यह चुकता पूँजी घटाता है।"
+            }
+          },
+          {
+            "id": "paidfull",
+            "text": {
+              "en": "Paid exactly on the date it was called",
+              "hi": "माँगने की तिथि पर ही पूरा चुकाया"
+            },
+            "bin": "nei",
+            "why": {
+              "en": "Paid in full and on time: neither late nor early.",
+              "hi": "पूरा और समय पर चुकाया: न देर से, न पहले।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Rina owes ₹3 per share on the first call and does not pay on the due date. What is her unpaid amount called?",
+            "hi": "रीना पर पहली याचना के ₹3 प्रति अंश बाक़ी हैं और वह देय तिथि पर नहीं चुकाती। उस बाक़ी राशि को क्या कहते हैं?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Calls in arrears",
+              "hi": "बकाया याचनाएँ"
+            },
+            {
+              "id": "b",
+              "en": "Calls in advance",
+              "hi": "अग्रिम याचनाएँ"
+            },
+            {
+              "id": "c",
+              "en": "Reserve capital",
+              "hi": "आरक्षित पूँजी"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:late",
+          "expect": "correct:late",
+          "say": {
+            "en": "Tap the card “Allotment money not paid on due date”, then tap the group it belongs to.",
+            "hi": "कार्ड “आबंटन राशि देय तिथि पर नहीं चुकाई” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:early",
+          "expect": "correct:early",
+          "say": {
+            "en": "Tap the card “₹2 paid with the first call for the final call”, then tap the group it belongs to.",
+            "hi": "कार्ड “अंतिम याचना का ₹2 पहली याचना के साथ चुकाया” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Calls in arrears are money called but not paid by a shareholder. Calls in advance are money paid before it is called. Both are noted in the books, and the Articles can allow interest on them: up to 10% a year charged on arrears, up to 12% a year paid on advance.",
+            "hi": "बकाया याचनाएँ वह राशि हैं जो माँगी गई पर अंशधारक ने नहीं चुकाई। अग्रिम याचनाएँ वह राशि हैं जो माँगे जाने से पहले चुकाई गई। दोनों बही में दर्ज होती हैं और अंतर्नियम उन पर ब्याज की अनुमति दे सकते हैं: बकाया पर साल का 10% तक लिया जाता है, अग्रिम पर साल का 12% तक दिया जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is a call in advance a liability?",
+                "hi": "अग्रिम याचना देयता क्यों है?"
+              },
+              "options": [
+                {
+                  "en": "The company holds money it has not yet called and may have to repay or adjust it",
+                  "hi": "कंपनी ने जो राशि अभी माँगी नहीं थी वह उसके पास है और उसे लौटाना या समायोजित करना पड़ सकता है"
+                },
+                {
+                  "en": "It is an expense of the company",
+                  "hi": "यह कंपनी का व्यय है"
+                },
+                {
+                  "en": "It is a gain of the company",
+                  "hi": "यह कंपनी का लाभ है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Until the call is made the company owes this money back or against later calls.",
+                "hi": "याचना होने तक कंपनी यह राशि लौटाने या आगे की याचनाओं में समायोजित करने को बाध्य है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Receiving money from owners is not an expense.",
+                  "hi": "स्वामियों से पैसा मिलना व्यय नहीं है।"
+                },
+                {
+                  "en": "It is the shareholder's money, not the company's earning, so it is not a gain.",
+                  "hi": "यह अंशधारक का पैसा है, कंपनी की कमाई नहीं, इसलिए लाभ नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of a school fee: paid late is arrears, paid for next term early is advance. Find another everyday example.",
+            "hi": "स्कूल की फ़ीस सोचो: देर से भरी तो बकाया, अगले सत्र की पहले भरी तो अग्रिम। रोज़ की ज़िंदगी से एक और उदाहरण खोजो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch01-discount-rule",
+      "topic": "1.6.6",
+      "template": "scenario",
+      "title": {
+        "en": "Can a company issue shares at a discount?",
+        "hi": "क्या कंपनी अंश बट्टे पर जारी कर सकती है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "setting": "office",
+        "role": {
+          "en": "Company accountant",
+          "hi": "कंपनी का लेखाकार"
+        },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": {
+              "en": "Your company's ₹10 shares trade at ₹9 in the market. A director says: issue the new shares at ₹9 each to attract buyers. What do you say?",
+              "hi": "आपकी कंपनी के ₹10 के अंश बाज़ार में ₹9 पर बिक रहे हैं। एक निदेशक कहता है: ख़रीदार लाने को नए अंश ₹9 में जारी करो। आप क्या कहेंगे?"
+            },
+            "choices": [
+              {
+                "id": "allow",
+                "text": {
+                  "en": "Go ahead, a small discount is harmless",
+                  "hi": "चलिए, थोड़ी छूट से कोई नुकसान नहीं"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Not right. As a general rule a company cannot issue shares at a discount. It is allowed only for reissue of forfeited shares and for sweat equity shares.",
+                  "hi": "ठीक नहीं। सामान्य नियम है कि कंपनी अंश बट्टे पर जारी नहीं कर सकती। यह केवल जब्त अंशों के पुनर्निर्गमन और स्वेट इक्विटी अंशों में ही मान्य है।"
+                },
+                "good": false
+              },
+              {
+                "id": "no",
+                "text": {
+                  "en": "Not allowed: issue at ₹10 or at a premium",
+                  "hi": "अनुमत नहीं: ₹10 पर या प्रीमियम पर जारी करें"
+                },
+                "next": "s2",
+                "feedback": {
+                  "en": "Right. The law does not let a company issue ordinary shares below face value.",
+                  "hi": "सही। क़ानून कंपनी को साधारण अंश अंकित मूल्य से कम पर जारी नहीं करने देता।"
+                },
+                "good": true
+              }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "The director asks: is there any case where shares are given at less than face value? Pick the best answer.",
+              "hi": "निदेशक पूछता है: क्या कभी अंश अंकित मूल्य से कम पर दिए जाते हैं? सबसे अच्छा उत्तर चुनो।"
+            },
+            "choices": [
+              {
+                "id": "forf",
+                "text": {
+                  "en": "Yes, when forfeited shares are reissued, and for sweat equity",
+                  "hi": "हाँ, जब्त अंशों के पुनर्निर्गमन में और स्वेट इक्विटी में"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Right. These are the two cases, and for reissue the discount can be no more than the amount forfeited on those shares.",
+                  "hi": "सही। ये दो ही स्थितियाँ हैं, और पुनर्निर्गमन में बट्टा उन अंशों पर जब्त राशि से अधिक नहीं हो सकता।"
+                },
+                "good": true
+              },
+              {
+                "id": "any",
+                "text": {
+                  "en": "Yes, whenever the market price is low",
+                  "hi": "हाँ, जब भी बाज़ार भाव कम हो"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "No. A low market price is not a reason; the law allows only the special cases.",
+                  "hi": "नहीं। बाज़ार भाव कम होना कारण नहीं; क़ानून केवल विशेष स्थितियाँ मानता है।"
+                },
+                "good": false
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Can a company freely sell its ₹10 shares for ₹9 each?",
+            "hi": "क्या कंपनी अपने ₹10 के अंश खुलेआम ₹9 में बेच सकती है?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No, not as a general rule",
+              "hi": "नहीं, सामान्य नियम से नहीं"
+            },
+            {
+              "id": "yes",
+              "en": "Yes",
+              "hi": "हाँ"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "choice:s1:no",
+          "expect": "chose:no",
+          "say": {
+            "en": "Choose what you would tell the director.",
+            "hi": "चुनो कि आप निदेशक से क्या कहेंगे।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A share issued at a discount means the company gets less than the face value, so its capital is not truly paid. The law therefore blocks it, apart from reissue of forfeited shares and sweat equity. A company whose shares trade below face value must use a premium-free issue at par or wait.",
+            "hi": "बट्टे पर जारी अंश का अर्थ है कि कंपनी को अंकित मूल्य से कम मिलता है, यानी उसकी पूँजी सचमुच चुकता नहीं होती। इसलिए क़ानून इसे रोकता है, केवल जब्त अंशों के पुनर्निर्गमन और स्वेट इक्विटी को छोड़कर। जिस कंपनी के अंश अंकित मूल्य से नीचे बिकते हैं, उसे सममूल्य पर जारी करना होगा या प्रतीक्षा करनी होगी।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A company reissues forfeited shares of ₹10 at ₹8, fully paid. The shareholders had paid ₹6 per share before forfeiture. Is this reissue allowed?",
+                "hi": "कंपनी जब्त हुए ₹10 के अंशों को ₹8 पर पूरे चुकता मानकर फिर जारी करती है। जब्ती से पहले अंशधारकों ने ₹6 प्रति अंश चुकाए थे। क्या यह पुनर्निर्गमन मान्य है?"
+              },
+              "options": [
+                {
+                  "en": "Yes: the ₹2 discount is less than the ₹6 forfeited",
+                  "hi": "हाँ: ₹2 का बट्टा जब्त हुए ₹6 से कम है"
+                },
+                {
+                  "en": "No: reissue at a discount is never allowed",
+                  "hi": "नहीं: बट्टे पर पुनर्निर्गमन कभी मान्य नहीं"
+                },
+                {
+                  "en": "No: the discount must be exactly ₹6",
+                  "hi": "नहीं: बट्टा ठीक ₹6 होना चाहिए"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A reissue discount is allowed, so long as it does not exceed the amount forfeited on those shares.",
+                "hi": "पुनर्निर्गमन पर बट्टा मान्य है, बशर्ते वह उन अंशों पर जब्त राशि से अधिक न हो।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Reissue is one of the two cases where a discount is permitted.",
+                  "hi": "पुनर्निर्गमन उन दो स्थितियों में से एक है जहाँ बट्टा मान्य है।"
+                },
+                {
+                  "en": "The discount can be anything up to the forfeited amount, not exactly equal to it.",
+                  "hi": "बट्टा जब्त राशि तक कुछ भी हो सकता है, ठीक उतना ही होना ज़रूरी नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Replay and choose the other answers to read what each one teaches.",
+            "hi": "फिर खेलो और दूसरे उत्तर चुनकर पढ़ो कि हर एक क्या सिखाता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch01-non-cash",
+      "topic": "1.6.7",
+      "template": "ledger",
+      "title": {
+        "en": "Shares given for a building, not for cash",
+        "hi": "नकद नहीं, भवन के बदले अंश"
+      },
+      "minutes": 8,
+      "level": "core",
+      "config": {
+        "mode": "journal",
+        "business": {
+          "en": "Rahul Ltd",
+          "hi": "राहुल लिमिटेड"
+        },
+        "rules": "modern",
+        "accounts": [
+          {
+            "id": "handa",
+            "name": {
+              "en": "Handa Ltd (vendor)",
+              "hi": "हांडा लिमिटेड (विक्रेता)"
+            },
+            "kind": "creditor"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "t1",
+            "date": "2025-04-01",
+            "text": {
+              "en": "Bought a building from Handa Ltd for ₹5,40,000, payable in shares",
+              "hi": "हांडा लिमिटेड से ₹5,40,000 में भवन ख़रीदा, भुगतान अंशों में"
+            },
+            "amount": 540000,
+            "debit": "building",
+            "credit": "handa"
+          },
+          {
+            "id": "t2",
+            "date": "2025-04-01",
+            "text": {
+              "en": "Issued 5,400 shares of ₹100 each at par to Handa Ltd in payment",
+              "hi": "भुगतान में हांडा लिमिटेड को ₹100 के 5,400 अंश सममूल्य पर जारी किए"
+            },
+            "amount": 540000,
+            "debit": "handa",
+            "credit": "share-capital"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "txn:t1",
+          "expect": "selected:t1",
+          "say": {
+            "en": "Tap the first transaction: the building is bought.",
+            "hi": "पहला लेन-देन चुनो: भवन ख़रीदा गया।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Rahul Ltd gets a building. Which side does the building account take?",
+            "hi": "राहुल लिमिटेड को भवन मिलता है। भवन खाता किस ओर आएगा?"
+          },
+          "options": [
+            {
+              "id": "dr",
+              "en": "Debit, because an asset comes in",
+              "hi": "नाम, क्योंकि परिसंपत्ति आई"
+            },
+            {
+              "id": "cr",
+              "en": "Credit",
+              "hi": "जमा"
+            }
+          ],
+          "answer": "dr"
+        },
+        {
+          "kind": "do",
+          "target": "account:building",
+          "expect": "chose:building",
+          "say": {
+            "en": "Tap the Building account.",
+            "hi": "भवन खाता चुनो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "debit",
+          "expect": "side:debit",
+          "say": {
+            "en": "Put it on the debit side.",
+            "hi": "इसे नाम पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "account:handa",
+          "expect": "chose:handa",
+          "say": {
+            "en": "Tap Handa Ltd, the seller who is owed the money.",
+            "hi": "हांडा लिमिटेड चुनो, जिसे पैसा देना है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "credit",
+          "expect": "side:credit",
+          "say": {
+            "en": "Put it on the credit side.",
+            "hi": "इसे जमा पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "journalised:t1",
+          "say": {
+            "en": "Record the entry.",
+            "hi": "प्रविष्टि दर्ज करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The seller is a creditor first: the company owes ₹5,40,000. Then the shares are issued to clear that debt: Handa Ltd is debited and Share Capital credited. No cash moves, but both entries are real. The number of shares is the amount payable divided by the issue price: ₹5,40,000 ÷ ₹100 = 5,400 shares at par. At a premium of 20% the issue price is ₹120, so 4,500 shares.",
+            "hi": "विक्रेता पहले लेनदार बनता है: कंपनी पर ₹5,40,000 देय हैं। फिर यह ऋण चुकाने को अंश जारी होते हैं: हांडा लिमिटेड नामे और अंश पूँजी जमा। कोई नकदी नहीं चलती पर दोनों प्रविष्टियाँ असली हैं। अंशों की संख्या = देय राशि ÷ निर्गमन मूल्य: ₹5,40,000 ÷ ₹100 = 5,400 अंश सममूल्य पर। 20% प्रीमियम पर निर्गमन मूल्य ₹120 होगा, इसलिए 4,500 अंश।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The seller agrees to take shares of ₹100 issued at ₹120 for a ₹5,40,000 debt. How many shares are issued?",
+                "hi": "विक्रेता ₹5,40,000 के ऋण के बदले ₹120 पर जारी ₹100 के अंश लेने को राज़ी है। कितने अंश जारी होंगे?"
+              },
+              "options": [
+                {
+                  "en": "4,500 shares",
+                  "hi": "4,500 अंश"
+                },
+                {
+                  "en": "5,400 shares",
+                  "hi": "5,400 अंश"
+                },
+                {
+                  "en": "6,480 shares",
+                  "hi": "6,480 अंश"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "₹5,40,000 ÷ ₹120 = 4,500 shares. The issue price, not the face value, is the divisor.",
+                "hi": "₹5,40,000 ÷ ₹120 = 4,500 अंश। भाजक निर्गमन मूल्य है, अंकित मूल्य नहीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "5,400 uses the face value ₹100; the shares are issued at ₹120.",
+                  "hi": "5,400 में अंकित मूल्य ₹100 लिया गया; अंश ₹120 पर जारी हैं।"
+                },
+                {
+                  "en": "6,480 multiplies instead of dividing.",
+                  "hi": "6,480 में भाग देने की जगह गुणा किया गया।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Record the second entry yourself and watch the vendor account clear to nil.",
+            "hi": "दूसरी प्रविष्टि ख़ुद दर्ज करो और देखो विक्रेता का खाता शून्य हो जाता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch01-forfeiture-path",
+      "topic": "1.7",
+      "template": "sequence",
+      "title": {
+        "en": "How a share is forfeited",
+        "hi": "अंश कैसे जब्त होता है"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "call",
+            "text": {
+              "en": "A call is made and a shareholder does not pay it",
+              "hi": "याचना की जाती है और एक अंशधारक उसे नहीं चुकाता"
+            }
+          },
+          {
+            "id": "notice",
+            "text": {
+              "en": "A notice gives at least 14 days to pay, with a warning",
+              "hi": "कम से कम 14 दिन में चुकाने का नोटिस और चेतावनी दी जाती है"
+            }
+          },
+          {
+            "id": "still",
+            "text": {
+              "en": "The shareholder still does not pay",
+              "hi": "अंशधारक फिर भी नहीं चुकाता"
+            }
+          },
+          {
+            "id": "forfeit",
+            "text": {
+              "en": "The Board forfeits the shares by resolution",
+              "hi": "निदेशक मंडल प्रस्ताव द्वारा अंश जब्त करता है"
+            }
+          },
+          {
+            "id": "entry",
+            "text": {
+              "en": "Books: Share Capital is debited; Calls in Arrears and Share Forfeiture are credited",
+              "hi": "बही: अंश पूँजी नामे; बकाया याचना और अंश जब्ती जमा"
+            }
+          },
+          {
+            "id": "reissue",
+            "text": {
+              "en": "Later the shares are reissued to a new buyer",
+              "hi": "बाद में अंश नए ख़रीदार को पुनः जारी होते हैं"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is the shortest notice period a company must give before forfeiting shares for non-payment?",
+            "hi": "अंश जब्त करने से पहले कंपनी को कम से कम कितने दिन का नोटिस देना होता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "14 days",
+              "hi": "14 दिन"
+            },
+            {
+              "id": "b",
+              "en": "3 days",
+              "hi": "3 दिन"
+            },
+            {
+              "id": "c",
+              "en": "90 days",
+              "hi": "90 दिन"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:notice",
+          "expect": "placed:notice",
+          "say": {
+            "en": "Tap the card “A notice gives at least 14 days to pay, with a warning”, then tap the numbered place where it belongs.",
+            "hi": "कार्ड “कम से कम 14 दिन में चुकाने का नोटिस और चेतावनी दी जाती है” पर टैप करो, फिर उस क्रमांक वाली जगह पर टैप करो जहाँ यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Put all the cards in order, then press Check.",
+            "hi": "सारे कार्ड क्रम में लगाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Forfeiture is the last step, not the first. The Articles must allow it, a proper call must have been made, and the shareholder gets a notice of at least 14 days. If still unpaid, the Board forfeits the shares: they are cancelled, and the money already paid stays with the company in the Share Forfeiture account.",
+            "hi": "जब्ती अंतिम क़दम है, पहला नहीं। अंतर्नियम इसकी अनुमति दें, उचित याचना की गई हो, और अंशधारक को कम से कम 14 दिन का नोटिस मिले। फिर भी न चुकाए तो निदेशक मंडल अंश जब्त करता है: वे रद्द हो जाते हैं और पहले चुकाई राशि अंश जब्ती खाते में कंपनी के पास रहती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What happens to the money a shareholder had already paid on forfeited shares?",
+                "hi": "जब्त अंशों पर अंशधारक की पहले चुकाई राशि का क्या होता है?"
+              },
+              "options": [
+                {
+                  "en": "The company keeps it in the Share Forfeiture account",
+                  "hi": "कंपनी इसे अंश जब्ती खाते में रखती है"
+                },
+                {
+                  "en": "It is returned in full at once",
+                  "hi": "यह तुरंत पूरी लौटा दी जाती है"
+                },
+                {
+                  "en": "It is added to the next dividend",
+                  "hi": "यह अगले लाभांश में जुड़ जाती है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Forfeiture is a penalty: what was paid is kept and shown as Share Forfeiture till the shares are reissued.",
+                "hi": "जब्ती एक दंड है: जो चुकाया गया वह रखा जाता है और अंशों के पुनर्निर्गमन तक अंश जब्ती के रूप में दिखता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A full refund would remove the penalty that gives forfeiture its force.",
+                  "hi": "पूरा लौटाने से वह दंड ही ख़त्म हो जाता है जो जब्ती को असर देता है।"
+                },
+                {
+                  "en": "Dividends are paid to current shareholders from profit, not from forfeited money.",
+                  "hi": "लाभांश वर्तमान अंशधारकों को लाभ से दिया जाता है, जब्त राशि से नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Why do you think a notice of at least 14 days is demanded before a share is taken away?",
+            "hi": "तुम्हें क्या लगता है, अंश छीनने से पहले कम से कम 14 दिन का नोटिस क्यों ज़रूरी है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch01-reissue-gain",
+      "topic": "1.7.1",
+      "template": "table",
+      "title": {
+        "en": "Forfeited shares reissued: where does the gain go?",
+        "hi": "जब्त अंश फिर जारी: लाभ कहाँ जाता है?"
+      },
+      "minutes": 8,
+      "level": "stretch",
+      "config": {
+        "mode": "spreadsheet",
+        "tables": {
+          "forfeited": {
+            "columns": [
+              "Stage",
+              "Received"
+            ],
+            "rows": [
+              [
+                "Application",
+                200
+              ],
+              [
+                "Allotment",
+                300
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "Ravi held 100 shares of ₹10 and paid only ₹2 on application and ₹3 on allotment; the ₹5 first call was never paid. The shares are forfeited and reissued at ₹8 each as fully paid. Find the forfeited amount, then the gain that goes to capital reserve.",
+          "hi": "रवि के पास ₹10 के 100 अंश थे और उसने आवेदन पर ₹2 और आबंटन पर ₹3 ही चुकाए; ₹5 की पहली याचना कभी नहीं चुकाई। अंश जब्त होकर ₹8 पर पूरे चुकता मानकर पुनः जारी हुए। जब्त राशि निकालो, फिर पूँजी संचिति में जाने वाला लाभ।"
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =SUM(B2:B3) to add what Ravi had paid, then tap Calculate.",
+            "hi": "=SUM(B2:B3) लिखो ताकि रवि की चुकाई राशि जुड़े, फिर गणना करो दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The shares are reissued at ₹8 as fully paid, a discount of ₹2 on 100 shares. After that discount is met from the forfeited amount, how much is left?",
+            "hi": "अंश ₹8 पर पूरे चुकता मानकर पुनः जारी हुए, यानी 100 अंशों पर ₹2 का बट्टा। जब्त राशि से बट्टा चुकाने के बाद कितना बचेगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "₹300",
+              "hi": "300 रुपये"
+            },
+            {
+              "id": "b",
+              "en": "₹500",
+              "hi": "500 रुपये"
+            },
+            {
+              "id": "c",
+              "en": "₹200",
+              "hi": "200 रुपये"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =SUM(B2:B3)-2*100 and calculate.",
+            "hi": "=SUM(B2:B3)-2*100 लिखो और गणना करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the sheet.",
+            "hi": "शीट के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "When shares are forfeited, the money already received, ₹500, is credited to the Share Forfeiture account. On reissue the discount of ₹2 × 100 = ₹200 is debited to that account. What remains, ₹300, is a capital profit and is transferred to Capital Reserve. The discount can never be more than the amount forfeited.",
+            "hi": "जब अंश जब्त होते हैं तो पहले मिली ₹500 की राशि अंश जब्ती खाते में जमा होती है। पुनर्निर्गमन पर बट्टा ₹2 × 100 = ₹200 इसी खाते में नामे होता है। जो बचा, ₹300, पूँजीगत लाभ है और पूँजी संचिति में जाता है। बट्टा कभी जब्त राशि से अधिक नहीं हो सकता।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The same shares are reissued at ₹9 fully paid. What goes to capital reserve?",
+                "hi": "वही अंश ₹9 पर पूरे चुकता मानकर पुनः जारी हों तो पूँजी संचिति में क्या जाएगा?"
+              },
+              "options": [
+                {
+                  "en": "₹400",
+                  "hi": "400 रुपये"
+                },
+                {
+                  "en": "₹300",
+                  "hi": "300 रुपये"
+                },
+                {
+                  "en": "₹500",
+                  "hi": "500 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Discount = ₹1 × 100 = ₹100. ₹500 − ₹100 = ₹400.",
+                "hi": "बट्टा = ₹1 × 100 = ₹100। ₹500 − ₹100 = ₹400।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹300 was the answer for a reissue at ₹8, a bigger discount.",
+                  "hi": "₹300 ₹8 पर पुनर्निर्गमन का उत्तर था, जहाँ बट्टा अधिक था।"
+                },
+                {
+                  "en": "₹500 would mean there was no discount at all, but ₹9 is below ₹10.",
+                  "hi": "₹500 का अर्थ है कोई बट्टा नहीं, पर ₹9, ₹10 से कम है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the amounts in the sheet and check the capital reserve each time. Can it ever be negative?",
+            "hi": "शीट की राशियाँ बदलो और हर बार पूँजी संचिति देखो। क्या यह कभी ऋणात्मक हो सकती है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1.2",
+      "use": "Hook: a company with many owners",
+      "shows": "A busy Indian factory floor making packaged snacks, workers in caps and aprons in the background, boxes stacked ready to ship",
+      "view": "Eye level, bright daylight, 16:9",
+      "right": "Looks like a real mid-sized plant, clean and orderly",
+      "avoid": "Readable brand names, faces, logos"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "1.3.1",
+      "use": "The capital funnel: authorised to paid-up",
+      "shows": "Five rectangles nested one inside another, each a little smaller, on a plain white background, in five calm colours",
+      "view": "Straight front view, flat, 4:3, transparent background",
+      "right": "Clear edges so the app can label each layer; the smallest is in the centre",
+      "avoid": "Any text or numbers, drop shadows that hide the edges"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "1.5",
+      "use": "The stages of a share issue",
+      "shows": "A blank horizontal strip with four connected boxes in a row, with small arrows, for application, allotment and two calls",
+      "view": "Flat, 16:9, white background",
+      "right": "Equal boxes with room for an app label above each",
+      "avoid": "Words, rupee signs, logos"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "1.6.3",
+      "use": "Over-subscription: more people than shares",
+      "shows": "A long queue of ordinary Indian people with forms in their hands outside a bank branch in the morning, seen from behind or far away",
+      "view": "Wide, from slightly above, morning light, 16:9",
+      "right": "People of different ages, calm and orderly, bank door visible",
+      "avoid": "Faces, readable bank names or signs"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "1.7",
+      "use": "The notice before forfeiture",
+      "shows": "A white official letter lying on a wooden desk beside a pen and a rubber stamp, lines of text blurred or left blank",
+      "view": "Top-three-quarter view, soft light, PNG with transparent background",
+      "right": "Looks like a formal notice; text lines are only grey bars",
+      "avoid": "Any readable words, brand or school names"
+    },
+    {
+      "n": 6,
+      "kind": "SEQ",
+      "topic": "1.7.1",
+      "use": "Forfeited, then reissued",
+      "shows": "Four frames of one share certificate: lying on a desk, a red cancelled stamp pressed on it, placed in a drawer, and a fresh certificate handed to a new hand",
+      "view": "Same camera and light in all four frames, top-down, 4:3",
+      "right": "Same desk and pen in every frame; only the certificate changes",
+      "avoid": "Names or numbers on the certificate, faces"
+    }
+  ]
+}

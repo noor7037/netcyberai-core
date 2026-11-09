@@ -1,0 +1,344 @@
+{
+ "chapter_key": "u.c03.hindi.chve1.x12",
+ "class": 3,
+ "subject_id": "hindi",
+ "title": "Listen, friends, a tall tale (सुनो भई गप्प)",
+ "source": "https://ncert.nic.in/textbook.php?chve1=0-18",
+ "topics": [
+  {
+   "n": "x12.1",
+   "title": "Reading rhyme: true things and funny gapp",
+   "labs": [
+    "c03-hindi-chve1-x12-true-or-gapp"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "x12.2",
+   "title": "Make your own gapp rhyme",
+   "labs": [],
+   "why_no_lab": "Making up a rhyme is a creative speaking and writing task with no fixed answer."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-hindi-chve1-x12-true-or-gapp",
+   "topic": "x12.1",
+   "template": "sort",
+   "title": {
+    "en": "True or gapp?",
+    "hi": "सच या गप्प?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "true",
+      "label": {
+       "en": "It can really happen",
+       "hi": "सचमुच हो सकता है"
+      }
+     },
+     {
+      "id": "gapp",
+      "label": {
+       "en": "A funny gapp (make-believe)",
+       "hi": "मज़ेदार गप्प"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cow",
+      "text": {
+       "en": "A cow eats grass",
+       "hi": "गाय घास खाती है"
+      },
+      "bin": "true",
+      "why": {
+       "en": "This really happens. Cows eat grass.",
+       "hi": "यह सचमुच होता है। गाय घास खाती है।"
+      }
+     },
+     {
+      "id": "horse",
+      "text": {
+       "en": "A horse runs fast",
+       "hi": "घोड़ा तेज़ दौड़ता है"
+      },
+      "bin": "true",
+      "why": {
+       "en": "Horses are fast runners.",
+       "hi": "घोड़े तेज़ दौड़ते हैं।"
+      }
+     },
+     {
+      "id": "ant",
+      "text": {
+       "en": "An ant carries a grain",
+       "hi": "चींटी दाना ले जाती है"
+      },
+      "bin": "true",
+      "why": {
+       "en": "Ants carry grains to their homes.",
+       "hi": "चींटियाँ दाने अपने घर ले जाती हैं।"
+      }
+     },
+     {
+      "id": "cat",
+      "text": {
+       "en": "A cat drinks milk",
+       "hi": "बिल्ली दूध पीती है"
+      },
+      "bin": "true",
+      "why": {
+       "en": "Cats like to drink milk.",
+       "hi": "बिल्लियाँ दूध पीना पसंद करती हैं।"
+      }
+     },
+     {
+      "id": "donkey",
+      "text": {
+       "en": "A donkey climbs a date palm",
+       "hi": "गधा खजूर के पेड़ पर चढ़ता है"
+      },
+      "bin": "gapp",
+      "why": {
+       "en": "A donkey cannot climb a tree. This is a funny make-believe.",
+       "hi": "गधा पेड़ पर नहीं चढ़ सकता। यह मज़ेदार गप्प है।"
+      }
+     },
+     {
+      "id": "elephant",
+      "text": {
+       "en": "An elephant plays the drum",
+       "hi": "हाथी ढोल बजाता है"
+      },
+      "bin": "gapp",
+      "why": {
+       "en": "Elephants do not play drums. It is a funny make-believe.",
+       "hi": "हाथी ढोल नहीं बजाता। यह मज़ेदार गप्प है।"
+      }
+     },
+     {
+      "id": "camel",
+      "text": {
+       "en": "A camel sleeps on a cot",
+       "hi": "ऊँट खाट पर सोता है"
+      },
+      "bin": "gapp",
+      "why": {
+       "en": "A camel is too big for a cot. It is just a joke.",
+       "hi": "ऊँट खाट पर नहीं समा सकता। यह बस मज़ाक है।"
+      }
+     },
+     {
+      "id": "horsewash",
+      "text": {
+       "en": "A horse washes clothes",
+       "hi": "घोड़ा कपड़े धोता है"
+      },
+      "bin": "gapp",
+      "why": {
+       "en": "Horses cannot wash clothes. It is a funny make-believe.",
+       "hi": "घोड़े कपड़े नहीं धो सकते। यह मज़ेदार गप्प है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:cow",
+     "expect": "placed:cow",
+     "say": {
+      "en": "Tap the card 'गाय घास खाती है', then tap the box where it belongs.",
+      "hi": "'गाय घास खाती है' का कार्ड छुओ, फिर सही डिब्बा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can an elephant really play the drum?",
+      "hi": "क्या हाथी सचमुच ढोल बजा सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is a funny gapp",
+       "hi": "नहीं, यह मज़ेदार गप्प है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, all elephants do",
+       "hi": "हाँ, सभी हाथी बजाते हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:elephant",
+     "expect": "placed:elephant",
+     "say": {
+      "en": "Place the elephant card in the right box.",
+      "hi": "हाथी वाला कार्ड सही डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:horsewash",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards.",
+      "hi": "बाकी सारे कार्ड भी छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The rhyme 'Suno bhai gapp' is full of funny, impossible things like a donkey on a palm tree. A gapp is fun to say, but we must know what can really happen and what is only make-believe.",
+      "hi": "'सुनो भई गप्प' कविता में गधे का खजूर पर चढ़ना जैसी मज़ेदार, नामुमकिन बातें हैं। गप्प सुनाने में मज़ा आता है, पर हमें पता होना चाहिए कि क्या सच में हो सकता है और क्या केवल कल्पना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is a funny gapp?",
+        "hi": "कौन-सा वाक्य मज़ेदार गप्प है?"
+       },
+       "options": [
+        {
+         "en": "गाय दूध देती है।",
+         "hi": "गाय दूध देती है।"
+        },
+        {
+         "en": "ऊँट खाट पर सोता है।",
+         "hi": "ऊँट खाट पर सोता है।"
+        },
+        {
+         "en": "चींटी चलती है।",
+         "hi": "चींटी चलती है।"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A camel sleeping on a cot cannot be true, so it is a gapp.",
+        "hi": "ऊँट का खाट पर सोना सच नहीं हो सकता, इसलिए यह गप्प है।"
+       },
+       "wrong": [
+        {
+         "en": "Cows really give milk.",
+         "hi": "गाय सचमुच दूध देती है।"
+        },
+        "",
+        {
+         "en": "Ants really walk.",
+         "hi": "चींटियाँ सचमुच चलती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a rhyme with gapp fun?",
+        "hi": "गप्प वाली कविता मज़ेदार क्यों लगती है?"
+       },
+       "options": [
+        {
+         "en": "It has silly, impossible things",
+         "hi": "उसमें अटपटी, नामुमकिन बातें होती हैं"
+        },
+        {
+         "en": "It teaches maths",
+         "hi": "वह गणित सिखाती है"
+        },
+        {
+         "en": "It is about real news",
+         "hi": "वह असली समाचार है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We laugh because the things cannot happen in real life.",
+        "hi": "हम इसलिए हँसते हैं कि ये बातें असली ज़िंदगी में नहीं हो सकतीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is meant for fun, not for maths.",
+         "hi": "यह मज़े के लिए है, गणित के लिए नहीं।"
+        },
+        {
+         "en": "It is make-believe, not news.",
+         "hi": "यह कल्पना है, समाचार नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up your own funny gapp sentence, such as 'A cow flies a kite'. Tell it to a friend.",
+      "hi": "अपनी तरफ़ से कोई मज़ेदार गप्प बनाओ, जैसे 'गाय पतंग उड़ाती है'। अपने दोस्त को सुनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "x12.1",
+   "use": "Opens the rhyme",
+   "shows": "A bright picture-book style village scene with a donkey on a date palm and an elephant with a drum (render only)",
+   "view": "Wide, playful",
+   "right": "Clearly funny and impossible, friendly colours",
+   "avoid": "Realistic animal harm"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "x12.1",
+   "use": "Sort card: donkey",
+   "shows": "An Indian donkey standing, on transparent background",
+   "view": "Side view",
+   "right": "Gentle look, correct ears",
+   "avoid": "Saddle"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "x12.1",
+   "use": "Sort card: camel",
+   "shows": "An Indian camel standing, on transparent background",
+   "view": "Side view",
+   "right": "One hump, long legs",
+   "avoid": "Ornaments with text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "x12.1",
+   "use": "Sort card: horse",
+   "shows": "A brown horse standing, on transparent background",
+   "view": "Side view",
+   "right": "Correct proportions, no saddle",
+   "avoid": "Rider"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "x12.1",
+   "use": "Props: drum and cot",
+   "shows": "A dhol drum and a rope cot (khat) side by side on transparent background",
+   "view": "Front, slightly above",
+   "right": "Real Indian textures",
+   "avoid": "Brand names"
+  }
+ ]
+}

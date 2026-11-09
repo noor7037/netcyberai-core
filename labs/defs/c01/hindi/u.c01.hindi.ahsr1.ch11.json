@@ -1,0 +1,508 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.ch11",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Bhutte (भुट्टे)",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Story: Nina's grandfather brings corn",
+   "labs": [
+    "c01-hindi-ahsr1-ch11-corn"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Foods eaten raw and cooked foods",
+   "labs": [
+    "c01-hindi-ahsr1-ch11-raw-or-cooked"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Vowel signs ु and ू in words (गेहूँ, दूध, आलू)",
+   "labs": [],
+   "why_no_lab": "The same ु/ू lab is already in the previous chapter 10 and is reused there."
+  },
+  {
+   "n": "11.4",
+   "title": "Group writing of answers",
+   "labs": [],
+   "why_no_lab": "Writing short answers in small groups is done on paper with the teacher."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-ch11-corn",
+   "topic": "11.1",
+   "template": "sequence",
+   "title": {
+    "en": "Nina's grandfather and the corn",
+    "hi": "नीना के नाना और भुट्टे"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "market",
+      "text": {
+       "en": "Nina's grandfather goes to the market",
+       "hi": "नीना के नाना बाज़ार जाते हैं"
+      }
+     },
+     {
+      "id": "bring",
+      "text": {
+       "en": "He brings home a lot of corn cobs",
+       "hi": "वह घर में खूब सारे भुट्टे लाते हैं"
+      }
+     },
+     {
+      "id": "roast",
+      "text": {
+       "en": "He roasts corn for Nina",
+       "hi": "वह नीना के लिए भुट्टे भूनते हैं"
+      }
+     },
+     {
+      "id": "eat",
+      "text": {
+       "en": "Nina eats corn happily",
+       "hi": "नीना जी भरकर भुट्टे खाती है"
+      }
+     },
+     {
+      "id": "boil",
+      "text": {
+       "en": "Nani boils some corn",
+       "hi": "नानी भुट्टे उबालती हैं"
+      }
+     },
+     {
+      "id": "both",
+      "text": {
+       "en": "Nana and Nani eat the boiled corn",
+       "hi": "नाना और नानी उबले भुट्टे खाते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:market",
+     "expect": "placed:market",
+     "say": {
+      "en": "Tap the card that happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What happens LAST in the story?",
+      "hi": "कहानी में सबसे आख़िर में क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Nana and Nani eat the boiled corn",
+       "hi": "नाना और नानी उबले भुट्टे खाते हैं"
+      },
+      {
+       "id": "market",
+       "en": "Nina's grandfather goes to the market",
+       "hi": "नीना के नाना बाज़ार जाते हैं"
+      },
+      {
+       "id": "roast",
+       "en": "He roasts corn for Nina",
+       "hi": "वह नीना के लिए भुट्टे भूनते हैं"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "item:both",
+     "expect": "placed:both",
+     "say": {
+      "en": "Now put the LAST card in the last place.",
+      "hi": "अब सबसे आख़िरी कार्ड को आख़िरी स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the story corn is cooked in two ways: roasted over fire and boiled in water. The same food can taste different when it is cooked differently.",
+      "hi": "कहानी में भुट्टे दो तरह से पकाए जाते हैं: आग पर भूनकर और पानी में उबालकर। एक ही चीज़ अलग ढंग से पकाने पर अलग स्वाद देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What did Nina's grandfather bring from the market?",
+        "hi": "नीना के नाना बाज़ार से क्या लाए?"
+       },
+       "options": [
+        {
+         "en": "Corn cobs",
+         "hi": "भुट्टे"
+        },
+        {
+         "en": "Mangoes",
+         "hi": "आम"
+        },
+        {
+         "en": "Toys",
+         "hi": "खिलौने"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He brought many bhutte.",
+        "hi": "वह खूब सारे भुट्टे लाए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mangoes are not in the story.",
+         "hi": "आम इस कहानी में नहीं हैं।"
+        },
+        {
+         "en": "The grandfather brought food, not toys.",
+         "hi": "नाना खाने की चीज़ लाए थे, खिलौने नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How did Nani cook the corn?",
+        "hi": "नानी ने भुट्टे कैसे पकाए?"
+       },
+       "options": [
+        {
+         "en": "She boiled them",
+         "hi": "उन्हें उबाला"
+        },
+        {
+         "en": "She roasted them",
+         "hi": "उन्हें भूना"
+        },
+        {
+         "en": "She fried them",
+         "hi": "उन्हें तला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Nani put the corn in water and boiled it.",
+        "hi": "नानी ने भुट्टे पानी में उबाले।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Grandfather roasted them for Nina; Nani boiled them.",
+         "hi": "नाना ने नीना के लिए भूने थे; नानी ने उबाले।"
+        },
+        {
+         "en": "Frying is not in this story.",
+         "hi": "तलने की बात इस कहानी में नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What happens next? Make a new part of the story: what did Nina do after she ate?",
+      "hi": "आगे क्या हुआ? कहानी का नया हिस्सा बनाओ: खाने के बाद नीना ने क्या किया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch11-raw-or-cooked",
+   "topic": "11.2",
+   "template": "sort",
+   "title": {
+    "en": "Raw or cooked?",
+    "hi": "कच्चा या पकाकर?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "raw",
+      "label": {
+       "en": "Can be eaten raw",
+       "hi": "कच्चा भी खा सकते हैं"
+      }
+     },
+     {
+      "id": "cooked",
+      "label": {
+       "en": "Eaten after cooking",
+       "hi": "पकाकर खाते हैं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "gajar",
+      "text": {
+       "en": "Gajar (carrot)",
+       "hi": "गाजर"
+      },
+      "bin": "raw",
+      "why": {
+       "en": "Carrots are crunchy and safe to eat raw when clean.",
+       "hi": "साफ़ धुली गाजर कच्ची खाई जा सकती है।"
+      }
+     },
+     {
+      "id": "kheera",
+      "text": {
+       "en": "Kheera (cucumber)",
+       "hi": "खीरा"
+      },
+      "bin": "raw",
+      "why": {
+       "en": "Cucumber is eaten raw as salad.",
+       "hi": "खीरा सलाद के रूप में कच्चा खाया जाता है।"
+      }
+     },
+     {
+      "id": "tamatar",
+      "text": {
+       "en": "Tamatar (tomato)",
+       "hi": "टमाटर"
+      },
+      "bin": "raw",
+      "why": {
+       "en": "Tomatoes are often eaten raw in salad.",
+       "hi": "टमाटर अक्सर सलाद में कच्चा खाया जाता है।"
+      }
+     },
+     {
+      "id": "mooli",
+      "text": {
+       "en": "Mooli (radish)",
+       "hi": "मूली"
+      },
+      "bin": "raw",
+      "why": {
+       "en": "Radish is eaten raw with salt.",
+       "hi": "मूली नमक के साथ कच्ची खाई जाती है।"
+      }
+     },
+     {
+      "id": "chawal",
+      "text": {
+       "en": "Chawal (rice)",
+       "hi": "चावल"
+      },
+      "bin": "cooked",
+      "why": {
+       "en": "Rice is hard and must be boiled in water.",
+       "hi": "चावल सख़्त होता है, उसे पानी में उबालना पड़ता है।"
+      }
+     },
+     {
+      "id": "roti",
+      "text": {
+       "en": "Roti",
+       "hi": "रोटी"
+      },
+      "bin": "cooked",
+      "why": {
+       "en": "Roti is made by cooking atta dough on a tawa.",
+       "hi": "रोटी आटे को तवे पर सेंककर बनती है।"
+      }
+     },
+     {
+      "id": "dal",
+      "text": {
+       "en": "Daal (lentils)",
+       "hi": "दाल"
+      },
+      "bin": "cooked",
+      "why": {
+       "en": "Dal is boiled until it is soft.",
+       "hi": "दाल को गलने तक उबालते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:gajar",
+     "expect": "placed:gajar",
+     "say": {
+      "en": "Tap a card, then tap the group where it belongs.",
+      "hi": "कोई कार्ड छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which food needs cooking before we eat it?",
+      "hi": "किस चीज़ को खाने से पहले पकाना पड़ता है?"
+     },
+     "options": [
+      {
+       "id": "rice",
+       "en": "Rice",
+       "hi": "चावल"
+      },
+      {
+       "id": "carrot",
+       "en": "Carrot",
+       "hi": "गाजर"
+      },
+      {
+       "id": "cucumber",
+       "en": "Cucumber",
+       "hi": "खीरा"
+      }
+     ],
+     "answer": "rice"
+    },
+    {
+     "kind": "do",
+     "target": "card:dal",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards until every one is in a group.",
+      "hi": "सारे कार्ड तब तक छाँटो जब तक हर कार्ड किसी समूह में न चला जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Some foods like carrot and cucumber can be eaten raw. Others like rice, roti and dal become soft and tasty only after cooking. We cook by roasting, boiling or frying.",
+      "hi": "गाजर और खीरा जैसी कुछ चीज़ें कच्ची खाई जा सकती हैं। चावल, रोटी और दाल जैसी चीज़ें पकने के बाद ही नरम और स्वादिष्ट बनती हैं। हम भूनकर, उबालकर या तलकर पकाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one can we eat without cooking?",
+        "hi": "इनमें से किसे बिना पकाए खा सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "दाल",
+         "hi": "दाल"
+        },
+        {
+         "en": "खीरा",
+         "hi": "खीरा"
+        },
+        {
+         "en": "चावल",
+         "hi": "चावल"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Cucumber is soft and juicy and can be eaten raw.",
+        "hi": "खीरा नरम और रसीला होता है; उसे कच्चा खा सकते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Dal is hard and must be cooked.",
+         "hi": "दाल सख़्त होती है, उसे पकाना पड़ता है।"
+        },
+        "",
+        {
+         "en": "Rice needs boiling.",
+         "hi": "चावल को उबालना पड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these foods do you eat raw at home? Ask your mother how she cooks the others.",
+      "hi": "इनमें से घर पर कौन-सी चीज़ें कच्ची खाते हो? माँ से पूछो कि बाकी कैसे पकाती हैं।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Opening picture",
+   "shows": "An elderly man at a vegetable market buying a heap of corn cobs, with a girl by his side",
+   "view": "Eye level, busy market",
+   "right": "Green corn husks and yellow kernels visible",
+   "avoid": "Prices and shop names",
+   "n": 1
+  },
+  {
+   "kind": "SEQ",
+   "topic": "11.1",
+   "use": "Cooking corn",
+   "shows": "Four frames: raw cob, roasting on a coal fire, boiled in a pot, eaten with lemon and salt",
+   "view": "Same cob, same background",
+   "right": "Charred kernels on fire-roasted cob; bright yellow when boiled",
+   "avoid": "Burnt black cob",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Corn cobs",
+   "shows": "Three corn cobs: green husk, peeled raw, roasted",
+   "view": "Front view",
+   "right": "True yellow kernels; husk green",
+   "avoid": "Plastic look",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "11.2",
+   "use": "Raw and cooked foods",
+   "shows": "Cut-outs: carrot, cucumber, tomato, radish, rice in a bowl, roti, dal in a bowl",
+   "view": "Front or top view",
+   "right": "Steam from dal and rice; fresh vegetables",
+   "avoid": "Packaging",
+   "n": 4
+  },
+  {
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Grandmother boiling",
+   "shows": "A grandmother lifting boiled cobs from a steel pot in a kitchen",
+   "view": "Slight high angle",
+   "right": "Steam, steel pot, cobs in water",
+   "avoid": "Unsafe handling",
+   "n": 5
+  }
+ ]
+}

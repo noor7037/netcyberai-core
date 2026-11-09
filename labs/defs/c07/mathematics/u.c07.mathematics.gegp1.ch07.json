@@ -1,0 +1,811 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp1.ch07",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "A Tale of Three Intersecting Lines",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Equilateral triangles: constructing with a compass",
+   "labs": [
+    "c07-mathematics-gegp1-ch07-equilateral"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Constructing a triangle when its sides are given; the triangle inequality",
+   "labs": [
+    "c07-mathematics-gegp1-ch07-inequality"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Triangles from two sides and an angle, or two angles and a side; the angle sum property",
+   "labs": [
+    "c07-mathematics-gegp1-ch07-angle-sum"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Constructions related to altitudes of triangles",
+   "labs": [
+    "c07-mathematics-gegp1-ch07-altitudes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "Types of triangles",
+   "labs": [
+    "c07-mathematics-gegp1-ch07-types"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp1-ch07-equilateral",
+   "topic": "7.1",
+   "template": "sequence",
+   "title": {
+    "en": "Construct an equilateral triangle",
+    "hi": "समबाहु त्रिभुज की रचना करो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "e1",
+      "text": {
+       "en": "Draw a line segment AB of 5 cm with the ruler",
+       "hi": "रूलर से 5 सेमी का रेखाखंड AB खींचो"
+      }
+     },
+     {
+      "id": "e2",
+      "text": {
+       "en": "Open the compass to exactly 5 cm, the length of AB",
+       "hi": "परकार को ठीक 5 सेमी, यानी AB की लंबाई, तक खोलो"
+      }
+     },
+     {
+      "id": "e3",
+      "text": {
+       "en": "With the point on A, draw an arc above AB",
+       "hi": "नोक A पर रखकर AB के ऊपर एक चाप खींचो"
+      }
+     },
+     {
+      "id": "e4",
+      "text": {
+       "en": "With the same opening and the point on B, draw an arc cutting the first one at C",
+       "hi": "उसी खुलाव से, नोक B पर रखकर, ऐसा चाप खींचो जो पहले चाप को C पर काटे"
+      }
+     },
+     {
+      "id": "e5",
+      "text": {
+       "en": "Join CA and CB",
+       "hi": "CA और CB को मिलाओ"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:e1",
+     "expect": "placed:e1",
+     "say": {
+      "en": "Put the first step of the construction in place 1.",
+      "hi": "रचना का पहला चरण स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why is C exactly 5 cm from both A and B?",
+      "hi": "C, A और B दोनों से ठीक 5 सेमी दूर क्यों है?"
+     },
+     "options": [
+      {
+       "id": "arcs",
+       "en": "It lies on both 5 cm arcs",
+       "hi": "वह दोनों 5 सेमी वाले चापों पर है"
+      },
+      {
+       "id": "look",
+       "en": "Because it looks right",
+       "hi": "क्योंकि वह सही दिखता है"
+      },
+      {
+       "id": "ruler",
+       "en": "Because we measured it with the ruler",
+       "hi": "क्योंकि हमने रूलर से नापा"
+      }
+     ],
+     "answer": "arcs"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order and tap Check.",
+      "hi": "सारे चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every point on an arc of radius 5 cm around A is 5 cm from A. C is on the arc around A and on the arc around B, so CA = 5 cm and CB = 5 cm. With AB = 5 cm, all three sides are equal: the triangle is equilateral.",
+      "hi": "A के चारों ओर 5 सेमी त्रिज्या वाले चाप का हर बिंदु A से 5 सेमी दूर है। C, A वाले चाप पर भी है और B वाले चाप पर भी, इसलिए CA = 5 सेमी और CB = 5 सेमी। AB = 5 सेमी होने से तीनों भुजाएँ बराबर हैं: त्रिभुज समबाहु है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The arcs from A and B meet at two points, one above AB and one below. Which can be C?",
+        "hi": "A और B के चाप दो बिंदुओं पर मिलते हैं, एक AB के ऊपर और एक नीचे। C कौन-सा हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "Either one",
+         "hi": "कोई भी एक"
+        },
+        {
+         "en": "Only the top one",
+         "hi": "केवल ऊपर वाला"
+        },
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both points are 5 cm from A and from B, so each gives an equilateral triangle.",
+        "hi": "दोनों बिंदु A और B से 5 सेमी दूर हैं, इसलिए हर एक से समबाहु त्रिभुज बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The point below is also on both arcs; the triangle is just flipped.",
+         "hi": "नीचे वाला बिंदु भी दोनों चापों पर है; त्रिभुज बस उलटा है।"
+        },
+        {
+         "en": "Both points are on both arcs, so both work.",
+         "hi": "दोनों बिंदु दोनों चापों पर हैं, इसलिए दोनों चलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: construct one on paper with sides 6 cm. Measure its angles. What do you find?",
+      "hi": "आज़माओ: काग़ज़ पर 6 सेमी भुजाओं वाला त्रिभुज बनाओ। उसके कोण नापो। क्या पाते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch07-inequality",
+   "topic": "7.2",
+   "template": "shapes",
+   "title": {
+    "en": "Can these sides make a triangle?",
+    "hi": "क्या इन भुजाओं से त्रिभुज बनेगा?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "triangle",
+    "task": "inequality",
+    "given": {
+     "lengths": [
+      3,
+      4,
+      8
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sides of 3 cm, 4 cm and 8 cm. Can they make a triangle?",
+      "hi": "3 सेमी, 4 सेमी और 8 सेमी की भुजाएँ। क्या इनसे त्रिभुज बनेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, 3 + 4 is less than 8",
+       "hi": "नहीं, 3 + 4, 8 से कम है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, any three lengths work",
+       "hi": "हाँ, कोई भी तीन लंबाइयाँ चलती हैं"
+      },
+      {
+       "id": "maybe",
+       "en": "Only if we draw carefully",
+       "hi": "केवल ध्यान से खींचें तो"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "slider:c",
+     "expect": "drawn",
+     "say": {
+      "en": "Look: the two short sides cannot reach. Move the slider of the long side c a little.",
+      "hi": "देखो: दोनों छोटी भुजाएँ मिल नहीं पातीं। लंबी भुजा c का स्लाइडर थोड़ा खिसकाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:c",
+     "expect": "constructed",
+     "say": {
+      "en": "Make c shorter until a triangle forms.",
+      "hi": "c को तब तक छोटा करो जब तक त्रिभुज न बन जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A triangle forms only when each side is shorter than the other two together. This is the triangle inequality. With 3 cm and 4 cm, the third side must be less than 7 cm (and more than 1 cm). At exactly 7 cm, the sides lie flat on one line.",
+      "hi": "त्रिभुज तभी बनता है जब हर भुजा बाक़ी दो के योग से छोटी हो। इसे त्रिभुज असमिका कहते हैं। 3 सेमी और 4 सेमी के साथ तीसरी भुजा 7 सेमी से कम (और 1 सेमी से ज़्यादा) होनी चाहिए। ठीक 7 सेमी पर भुजाएँ एक ही रेखा पर लेट जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which set of lengths can make a triangle?",
+        "hi": "लंबाइयों के किस समूह से त्रिभुज बन सकता है?"
+       },
+       "options": [
+        {
+         "en": "5 cm, 6 cm, 10 cm",
+         "hi": "5 सेमी, 6 सेमी, 10 सेमी"
+        },
+        {
+         "en": "2 cm, 3 cm, 6 cm",
+         "hi": "2 सेमी, 3 सेमी, 6 सेमी"
+        },
+        {
+         "en": "4 cm, 4 cm, 8 cm",
+         "hi": "4 सेमी, 4 सेमी, 8 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 + 6 = 11 is more than 10, so the longest side is short enough.",
+        "hi": "5 + 6 = 11, 10 से ज़्यादा है, इसलिए सबसे लंबी भुजा काफ़ी छोटी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 + 3 = 5 is less than 6, so the short sides cannot meet.",
+         "hi": "2 + 3 = 5, 6 से कम है, इसलिए छोटी भुजाएँ नहीं मिल सकतीं।"
+        },
+        {
+         "en": "4 + 4 = 8 exactly: the sides lie flat on one line, with no triangle.",
+         "hi": "4 + 4 = ठीक 8: भुजाएँ एक रेखा पर लेट जाती हैं, त्रिभुज नहीं बनता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "To check three lengths quickly, what do you need to test?",
+        "hi": "तीन लंबाइयाँ जल्दी जाँचने के लिए क्या परखना है?"
+       },
+       "options": [
+        {
+         "en": "The two shorter sides add to more than the longest",
+         "hi": "दो छोटी भुजाओं का योग सबसे लंबी से ज़्यादा हो"
+        },
+        {
+         "en": "All three are different",
+         "hi": "तीनों अलग हों"
+        },
+        {
+         "en": "The longest is less than 10 cm",
+         "hi": "सबसे लंबी 10 सेमी से कम हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If the longest side passes the test, the other two always do.",
+        "hi": "अगर सबसे लंबी भुजा यह परख पास कर ले, तो बाक़ी दो हमेशा करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An equilateral triangle has all sides equal and still exists.",
+         "hi": "समबाहु त्रिभुज की सारी भुजाएँ बराबर होती हैं और वह बनता है।"
+        },
+        {
+         "en": "Size alone does not matter; 2, 3 and 9 cm are all small but fail.",
+         "hi": "केवल आकार से फ़र्क नहीं पड़ता; 2, 3 और 9 सेमी सब छोटी हैं पर नहीं बनतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: set the sides to 5, 5 and 5, then 2, 6 and 7. Predict each time before you look.",
+      "hi": "आज़माओ: भुजाएँ 5, 5 और 5, फिर 2, 6 और 7 करो। हर बार देखने से पहले अनुमान लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch07-angle-sum",
+   "topic": "7.3",
+   "template": "shapes",
+   "title": {
+    "en": "The angles of a triangle add up to 180°",
+    "hi": "त्रिभुज के कोणों का योग 180°"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "triangle",
+    "task": "angle-sum"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:protractor",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the protractor to measure all three angles.",
+      "hi": "तीनों कोण नापने के लिए चाँदा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you drag corner A to change the triangle, what happens to the sum of the angles?",
+      "hi": "अगर कोना A खिसकाकर त्रिभुज बदलो, तो कोणों के योग का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "It stays 180°",
+       "hi": "वह 180° ही रहेगा"
+      },
+      {
+       "id": "more",
+       "en": "It grows for a bigger triangle",
+       "hi": "बड़े त्रिभुज में बढ़ेगा"
+      },
+      {
+       "id": "change",
+       "en": "It changes every time",
+       "hi": "हर बार बदलेगा"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag corner A and read the angles again.",
+      "hi": "कोना A खिसकाओ और कोण फिर पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "prove",
+     "expect": "proved",
+     "say": {
+      "en": "Tap Prove: the three corners move together.",
+      "hi": "उपपत्ति दबाओ: तीनों कोने साथ आते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The three angles fit together exactly on a straight line, so they add up to 180°. A line through one corner parallel to the opposite side shows why: the two other angles appear there again as alternate angles. This is true for every triangle, big or small.",
+      "hi": "तीनों कोण साथ रखने पर ठीक एक सीधी रेखा पर आ जाते हैं, इसलिए उनका योग 180° है। एक कोने से सामने की भुजा के समांतर रेखा खींचने पर कारण दिखता है: बाक़ी दो कोण वहाँ एकांतर कोणों के रूप में फिर आते हैं। यह हर त्रिभुज के लिए सच है, बड़ा हो या छोटा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two angles of a triangle are 50° and 60°. What is the third?",
+        "hi": "त्रिभुज के दो कोण 50° और 60° हैं। तीसरा कितना है?"
+       },
+       "options": [
+        "70°",
+        "110°",
+        "90°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "180° − 50° − 60° = 70°.",
+        "hi": "180° − 50° − 60° = 70°।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "110° is just 50° + 60°; the third angle is what is left of 180°.",
+         "hi": "110° बस 50° + 60° है; तीसरा कोण 180° में से बचा हुआ है।"
+        },
+        {
+         "en": "90° would make the sum 200°, too much.",
+         "hi": "90° से योग 200° हो जाता, बहुत ज़्यादा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can a triangle have two right angles?",
+        "hi": "क्या किसी त्रिभुज में दो समकोण हो सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "No",
+         "hi": "नहीं"
+        },
+        {
+         "en": "Yes, if it is big",
+         "hi": "हाँ, अगर वह बड़ा हो"
+        },
+        {
+         "en": "Yes, a square can",
+         "hi": "हाँ, वर्ग में हो सकते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "90° + 90° = 180° already, leaving 0° for the third angle.",
+        "hi": "90° + 90° = पहले ही 180°, तीसरे कोण के लिए 0° बचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size does not change the angle sum.",
+         "hi": "आकार से कोणों का योग नहीं बदलता।"
+        },
+        {
+         "en": "A square has four sides; it is not a triangle.",
+         "hi": "वर्ग की चार भुजाएँ होती हैं; वह त्रिभुज नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag the corners to make a very flat triangle. What happens to the angles? Is the sum still 180°?",
+      "hi": "आज़माओ: कोने खिसकाकर बहुत चपटा त्रिभुज बनाओ। कोणों का क्या होता है? क्या योग अब भी 180° है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch07-altitudes",
+   "topic": "7.4",
+   "template": "shapes",
+   "title": {
+    "en": "Altitudes of a triangle",
+    "hi": "त्रिभुज के शीर्षलंब"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "triangle",
+    "task": "median-altitude"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "show:altitudes",
+     "expect": "drawn",
+     "say": {
+      "en": "Tap \"Altitudes\" to show them.",
+      "hi": "उन्हें दिखाने के लिए \"शीर्षलंब\" छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you drag A far to one side so one angle becomes obtuse, where will some altitudes fall?",
+      "hi": "अगर A को एक ओर दूर खिसकाओ ताकि एक कोण अधिक कोण बन जाए, तो कुछ शीर्षलंब कहाँ गिरेंगे?"
+     },
+     "options": [
+      {
+       "id": "out",
+       "en": "Outside the triangle",
+       "hi": "त्रिभुज के बाहर"
+      },
+      {
+       "id": "in",
+       "en": "Still inside",
+       "hi": "फिर भी भीतर"
+      },
+      {
+       "id": "gone",
+       "en": "They disappear",
+       "hi": "वे ग़ायब हो जाएँगे"
+      }
+     ],
+     "answer": "out"
+    },
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag corner A far to the side and watch.",
+      "hi": "कोना A एक ओर दूर खिसकाओ और देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An altitude is the perpendicular line from a corner to the opposite side. Every triangle has three. In an acute triangle they all lie inside. In an obtuse triangle two of them fall outside, so the opposite side must be extended to meet them. The three altitudes, extended, always meet at one point.",
+      "hi": "शीर्षलंब किसी कोने से सामने की भुजा पर खींची गई लंब रेखा है। हर त्रिभुज के तीन होते हैं। न्यूनकोण त्रिभुज में सब भीतर होते हैं। अधिक कोण त्रिभुज में दो बाहर गिरते हैं, इसलिए सामने की भुजा बढ़ानी पड़ती है। तीनों शीर्षलंब, बढ़ाने पर, हमेशा एक बिंदु पर मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a right triangle, what are two of its altitudes?",
+        "hi": "समकोण त्रिभुज में उसके दो शीर्षलंब क्या हैं?"
+       },
+       "options": [
+        {
+         "en": "The two sides that make the right angle",
+         "hi": "समकोण बनाने वाली दोनों भुजाएँ"
+        },
+        {
+         "en": "The two longest sides",
+         "hi": "दो सबसे लंबी भुजाएँ"
+        },
+        {
+         "en": "It has no altitudes",
+         "hi": "उसके कोई शीर्षलंब नहीं होते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each of those sides is already perpendicular to the other.",
+        "hi": "उनमें से हर भुजा पहले से ही दूसरी पर लंब है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The longest side is the one opposite the right angle; it is not perpendicular to the others.",
+         "hi": "सबसे लंबी भुजा समकोण के सामने है; वह बाक़ियों पर लंब नहीं है।"
+        },
+        {
+         "en": "Every triangle has three altitudes.",
+         "hi": "हर त्रिभुज के तीन शीर्षलंब होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap Medians too. How is a median different from an altitude?",
+      "hi": "आज़माओ: माध्यिकाएँ भी छुओ। माध्यिका शीर्षलंब से कैसे अलग है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch07-types",
+   "topic": "7.5",
+   "template": "shapes",
+   "title": {
+    "en": "Make each kind of triangle",
+    "hi": "हर प्रकार का त्रिभुज बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "triangle",
+    "task": "classify"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "answered:right",
+     "say": {
+      "en": "Drag corner A to make an isosceles triangle: two equal sides.",
+      "hi": "कोना A खिसकाकर समद्विबाहु त्रिभुज बनाओ: दो बराबर भुजाएँ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where must A be to make a right triangle with corner B?",
+      "hi": "B पर समकोण वाला त्रिभुज बनाने के लिए A कहाँ होना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "above",
+       "en": "Straight above B",
+       "hi": "B के ठीक ऊपर"
+      },
+      {
+       "id": "middle",
+       "en": "Above the middle of BC",
+       "hi": "BC के बीच के ऊपर"
+      },
+      {
+       "id": "far",
+       "en": "Far beyond C",
+       "hi": "C से बहुत आगे"
+      }
+     ],
+     "answer": "above"
+    },
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now make a right triangle.",
+      "hi": "अब समकोण त्रिभुज बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now make an obtuse triangle: one angle more than 90°.",
+      "hi": "अब अधिक कोण त्रिभुज बनाओ: एक कोण 90° से ज़्यादा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "By angles, a triangle is acute (all angles less than 90°), right (one angle 90°) or obtuse (one angle more than 90°). It can have at most one right or obtuse angle, because the sum is 180°. By sides, it is equilateral, isosceles or scalene.",
+      "hi": "कोणों के आधार पर त्रिभुज न्यूनकोण (सब कोण 90° से कम), समकोण (एक कोण 90°) या अधिक कोण (एक कोण 90° से ज़्यादा) होता है। इसमें अधिकतम एक समकोण या अधिक कोण हो सकता है, क्योंकि योग 180° है। भुजाओं के आधार पर यह समबाहु, समद्विबाहु या विषमबाहु होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A triangle has angles 30°, 60° and 90°. What type is it?",
+        "hi": "एक त्रिभुज के कोण 30°, 60° और 90° हैं। यह किस प्रकार का है?"
+       },
+       "options": [
+        {
+         "en": "Right triangle",
+         "hi": "समकोण त्रिभुज"
+        },
+        {
+         "en": "Acute triangle",
+         "hi": "न्यूनकोण त्रिभुज"
+        },
+        {
+         "en": "Obtuse triangle",
+         "hi": "अधिक कोण त्रिभुज"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One angle is exactly 90°.",
+        "hi": "एक कोण ठीक 90° है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Acute needs all three angles less than 90°.",
+         "hi": "न्यूनकोण के लिए तीनों कोण 90° से कम चाहिए।"
+        },
+        {
+         "en": "No angle is more than 90°.",
+         "hi": "कोई कोण 90° से ज़्यादा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try to make an equilateral triangle. Use the ruler and the protractor to check.",
+      "hi": "आज़माओ: समबाहु त्रिभुज बनाने की कोशिश करो। जाँचने के लिए रूलर और चाँदा लो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Chapter hook: triangles that hold things up",
+   "shows": "A steel railway bridge truss made of many triangles, seen against the sky",
+   "view": "From below at an angle, clear daylight",
+   "right": "Real riveted triangles in the frame",
+   "avoid": "Trains, people, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Construction tools",
+   "shows": "A metal school compass with a pencil fitted, opened to about 5 cm, and a plastic protractor, separate cut-outs",
+   "view": "Three-quarter view, top-left light",
+   "right": "Compass needle sharp and pencil tip level with it; protractor with clear degree marks",
+   "avoid": "Brand names, cracked plastic"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "7.2",
+   "use": "Triangle inequality with sticks",
+   "shows": "Three ice-cream sticks cut to 3, 4 and 8 units laid as a triangle that cannot close; then 3, 4 and 6 units closing into a triangle",
+   "view": "From above, white background, same framing in two frames",
+   "right": "Gap clearly visible in the first frame, closed corners in the second",
+   "avoid": "Hands in the frame"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "7.3",
+   "use": "Tearing the corners of a triangle",
+   "shows": "A paper triangle with its three corners coloured, then torn off, then the three corners placed together on a straight line",
+   "view": "From above, white table, three frames",
+   "right": "Corners fit exactly along a straight edge",
+   "avoid": "Ragged tears that hide the angles"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "7.4",
+   "use": "An altitude in real life",
+   "shows": "A tent with a straight central pole standing upright from the ground to the top of a triangular face",
+   "view": "Front view, outdoors, soft light",
+   "right": "Pole clearly at right angles to the ground",
+   "avoid": "People, brand logos on the tent"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "7.5",
+   "use": "Different triangles around us",
+   "shows": "A collection of real objects: a triangular samosa, a set square, a coat hanger and a slice of watermelon on a table",
+   "view": "From above, flat lay",
+   "right": "Each object's triangle shape clear",
+   "avoid": "Text, packaging"
+  }
+ ]
+}

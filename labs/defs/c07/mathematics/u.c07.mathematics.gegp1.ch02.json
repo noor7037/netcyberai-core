@@ -1,0 +1,1155 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp1.ch02",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "Arithmetic Expressions",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Simple expressions: value, and comparing expressions",
+   "labs": [
+    "c07-mathematics-gegp1-ch02-same-value",
+    "c07-mathematics-gegp1-ch02-compare"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Reading and evaluating complex expressions: terms, brackets, swapping, grouping and the distributive property",
+   "labs": [
+    "c07-mathematics-gegp1-ch02-steps-order",
+    "c07-mathematics-gegp1-ch02-terms-swap",
+    "c07-mathematics-gegp1-ch02-distribute"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp1-ch02-same-value",
+   "topic": "2.1",
+   "template": "sort",
+   "title": {
+    "en": "Different expressions, same value",
+    "hi": "अलग व्यंजक, एक मान"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "v12",
+      "label": {
+       "en": "Value 12",
+       "hi": "मान 12"
+      }
+     },
+     {
+      "id": "v20",
+      "label": {
+       "en": "Value 20",
+       "hi": "मान 20"
+      }
+     },
+     {
+      "id": "v30",
+      "label": {
+       "en": "Value 30",
+       "hi": "मान 30"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "3 × 4",
+       "hi": "3 × 4"
+      },
+      "bin": "v12",
+      "why": {
+       "en": "3 groups of 4 make 12.",
+       "hi": "4 के 3 समूह मिलकर 12।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "15 − 3",
+       "hi": "15 − 3"
+      },
+      "bin": "v12",
+      "why": {
+       "en": "15 take away 3 leaves 12.",
+       "hi": "15 में से 3 घटाने पर 12 बचते हैं।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "48 ÷ 4",
+       "hi": "48 ÷ 4"
+      },
+      "bin": "v12",
+      "why": {
+       "en": "48 shared among 4 gives 12 each.",
+       "hi": "48 को 4 में बाँटने पर हर एक को 12।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "4 × 5",
+       "hi": "4 × 5"
+      },
+      "bin": "v20",
+      "why": {
+       "en": "4 fives make 20.",
+       "hi": "4 पंजे मिलकर 20।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "25 − 5",
+       "hi": "25 − 5"
+      },
+      "bin": "v20",
+      "why": {
+       "en": "25 minus 5 is 20.",
+       "hi": "25 घटा 5 = 20।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "100 ÷ 5",
+       "hi": "100 ÷ 5"
+      },
+      "bin": "v20",
+      "why": {
+       "en": "5 × 20 = 100, so 100 ÷ 5 = 20.",
+       "hi": "5 × 20 = 100, इसलिए 100 ÷ 5 = 20।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "6 × 5",
+       "hi": "6 × 5"
+      },
+      "bin": "v30",
+      "why": {
+       "en": "6 fives make 30.",
+       "hi": "6 पंजे मिलकर 30।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "18 + 12",
+       "hi": "18 + 12"
+      },
+      "bin": "v30",
+      "why": {
+       "en": "18 and 12 together make 30.",
+       "hi": "18 और 12 मिलकर 30।"
+      }
+     },
+     {
+      "id": "i",
+      "text": {
+       "en": "45 − 15",
+       "hi": "45 − 15"
+      },
+      "bin": "v30",
+      "why": {
+       "en": "45 minus 15 is 30.",
+       "hi": "45 घटा 15 = 30।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "correct:a",
+     "say": {
+      "en": "Tap the card 3 × 4 and put it with its value.",
+      "hi": "3 × 4 वाला कार्ड छुओ और उसे उसके मान के साथ रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:f",
+     "expect": "correct:f",
+     "say": {
+      "en": "Now sort 100 ÷ 5.",
+      "hi": "अब 100 ÷ 5 छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where would 60 ÷ 2 go?",
+      "hi": "60 ÷ 2 कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "v12",
+       "en": "Value 12",
+       "hi": "मान 12"
+      },
+      {
+       "id": "v20",
+       "en": "Value 20",
+       "hi": "मान 20"
+      },
+      {
+       "id": "v30",
+       "en": "Value 30",
+       "hi": "मान 30"
+      }
+     ],
+     "answer": "v30"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and tap Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An expression is a way of writing a number with numbers and operations. Its value is the number we get when we work it out. Many different expressions have the same value, so we can write 3 × 4 = 15 − 3, because both sides are 12.",
+      "hi": "व्यंजक संख्याओं और संक्रियाओं से किसी संख्या को लिखने का तरीक़ा है। हल करने पर जो संख्या मिलती है, वह उसका मान है। बहुत-से अलग व्यंजकों का मान एक ही होता है, इसलिए हम 3 × 4 = 15 − 3 लिख सकते हैं, क्योंकि दोनों ओर 12 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which expression has the value 24?",
+        "hi": "किस व्यंजक का मान 24 है?"
+       },
+       "options": [
+        "4 × 6",
+        "20 − 6",
+        "30 ÷ 5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 groups of 6 make 24.",
+        "hi": "6 के 4 समूह मिलकर 24।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20 − 6 = 14; subtraction makes it smaller than 20.",
+         "hi": "20 − 6 = 14; घटाने से यह 20 से भी छोटा हो जाता है।"
+        },
+        {
+         "en": "30 ÷ 5 = 6, because 5 × 6 = 30.",
+         "hi": "30 ÷ 5 = 6, क्योंकि 5 × 6 = 30।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is \"13 + 7 = 10 + 10\" a true statement?",
+        "hi": "क्या \"13 + 7 = 10 + 10\" सही कथन है?"
+       },
+       "options": [
+        {
+         "en": "Yes, both sides are 20",
+         "hi": "हाँ, दोनों ओर 20 है"
+        },
+        {
+         "en": "No, an answer must be one number",
+         "hi": "नहीं, उत्तर एक ही संख्या होना चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The = sign means both sides have the same value. Both are 20.",
+        "hi": "= का अर्थ है दोनों ओर का मान बराबर है। दोनों 20 हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "= does not mean \"the answer comes next\"; it means \"has the same value as\".",
+         "hi": "= का अर्थ \"आगे उत्तर आएगा\" नहीं; इसका अर्थ है \"का मान बराबर है\"।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: reset and, before sorting each card, make up one more expression with the same value.",
+      "hi": "आज़माओ: रीसेट करो और हर कार्ड छाँटने से पहले उसी मान का एक और व्यंजक बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch02-compare",
+   "topic": "2.1",
+   "template": "sort",
+   "title": {
+    "en": "Which side is bigger, without working it out?",
+    "hi": "बिना हल किए बताओ, कौन-सा पक्ष बड़ा है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "left",
+      "label": {
+       "en": "Left is bigger",
+       "hi": "बायाँ बड़ा"
+      }
+     },
+     {
+      "id": "right",
+      "label": {
+       "en": "Right is bigger",
+       "hi": "दायाँ बड़ा"
+      }
+     },
+     {
+      "id": "equal",
+      "label": {
+       "en": "Both are equal",
+       "hi": "दोनों बराबर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "67 + 19  ?  67 + 25",
+       "hi": "67 + 19  ?  67 + 25"
+      },
+      "bin": "right",
+      "why": {
+       "en": "Both start with 67; 25 is more than 19.",
+       "hi": "दोनों 67 से शुरू; 25, 19 से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "83 − 27  ?  83 − 31",
+       "hi": "83 − 27  ?  83 − 31"
+      },
+      "bin": "left",
+      "why": {
+       "en": "Taking away less leaves more: 27 is less than 31.",
+       "hi": "कम घटाने पर ज़्यादा बचता है: 27, 31 से कम है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "45 × 6  ?  44 × 6",
+       "hi": "45 × 6  ?  44 × 6"
+      },
+      "bin": "left",
+      "why": {
+       "en": "45 sixes are one six more than 44 sixes.",
+       "hi": "45 छक्के, 44 छक्कों से एक छक्का ज़्यादा हैं।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "120 + 35  ?  121 + 34",
+       "hi": "120 + 35  ?  121 + 34"
+      },
+      "bin": "equal",
+      "why": {
+       "en": "One number goes up by 1 and the other goes down by 1, so the sum stays the same.",
+       "hi": "एक संख्या 1 बढ़ी और दूसरी 1 घटी, इसलिए योग वही रहा।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "56 − 18  ?  58 − 20",
+       "hi": "56 − 18  ?  58 − 20"
+      },
+      "bin": "equal",
+      "why": {
+       "en": "Both numbers went up by 2, so the difference stays the same.",
+       "hi": "दोनों संख्याएँ 2 बढ़ीं, इसलिए अंतर वही रहा।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "39 + 41  ?  38 + 43",
+       "hi": "39 + 41  ?  38 + 43"
+      },
+      "bin": "right",
+      "why": {
+       "en": "38 is 1 less than 39, but 43 is 2 more than 41: the right side gains 1.",
+       "hi": "38, 39 से 1 कम है, पर 43, 41 से 2 ज़्यादा: दाएँ पक्ष में 1 ज़्यादा।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "200 − 99  ?  200 − 101",
+       "hi": "200 − 99  ?  200 − 101"
+      },
+      "bin": "left",
+      "why": {
+       "en": "Subtracting 99 takes away less than subtracting 101.",
+       "hi": "99 घटाने में 101 घटाने से कम घटता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap the first card. Do not add; just compare the parts.",
+      "hi": "पहला कार्ड छुओ। जोड़ो मत; बस भागों की तुलना करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c2",
+     "expect": "correct:c2",
+     "say": {
+      "en": "Now the subtraction card 83 − 27 ? 83 − 31.",
+      "hi": "अब घटाने वाला कार्ड 83 − 27 ? 83 − 31।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at 120 + 35 ? 121 + 34. What do you think?",
+      "hi": "120 + 35 ? 121 + 34 देखो। तुम्हें क्या लगता है?"
+     },
+     "options": [
+      {
+       "id": "left",
+       "en": "Left is bigger",
+       "hi": "बायाँ बड़ा"
+      },
+      {
+       "id": "right",
+       "en": "Right is bigger",
+       "hi": "दायाँ बड़ा"
+      },
+      {
+       "id": "equal",
+       "en": "Both are equal",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "equal"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort every card and tap Check.",
+      "hi": "हर कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We can compare two expressions by seeing how their parts change. In a sum, if one number grows and the other shrinks by the same amount, the sum stays the same. In a difference, if both numbers grow by the same amount, the difference stays the same.",
+      "hi": "दो व्यंजकों की तुलना हम उनके भागों में बदलाव देखकर कर सकते हैं। योग में एक संख्या जितनी बढ़े और दूसरी उतनी ही घटे, तो योग वही रहता है। अंतर में दोनों संख्याएँ बराबर बढ़ें, तो अंतर वही रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Without working it out: 75 − 28 ? 77 − 30",
+        "hi": "बिना हल किए: 75 − 28 ? 77 − 30"
+       },
+       "options": [
+        {
+         "en": "Left is bigger",
+         "hi": "बायाँ बड़ा"
+        },
+        {
+         "en": "Right is bigger",
+         "hi": "दायाँ बड़ा"
+        },
+        {
+         "en": "Equal",
+         "hi": "बराबर"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Both numbers went up by 2, so the difference is the same (47).",
+        "hi": "दोनों संख्याएँ 2 बढ़ीं, इसलिए अंतर वही है (47)।"
+       },
+       "wrong": [
+        {
+         "en": "Subtracting 28 is less, but 75 is also less than 77; the two changes balance out.",
+         "hi": "28 घटाना कम है, पर 75 भी 77 से कम है; दोनों बदलाव बराबर हो जाते हैं।"
+        },
+        {
+         "en": "77 is bigger, but we also subtract 2 more, so nothing is gained.",
+         "hi": "77 बड़ा है, पर 2 ज़्यादा घटाते भी हैं, इसलिए कुछ नहीं बढ़ता।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: write your own pair of sums that look different but are equal, and test it.",
+      "hi": "आज़माओ: दो ऐसे योग लिखो जो अलग दिखें पर बराबर हों, और उन्हें जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch02-steps-order",
+   "topic": "2.2",
+   "template": "sequence",
+   "title": {
+    "en": "Evaluate step by step: 50 − 3 × (4 + 6)",
+    "hi": "क्रम से हल करो: 50 − 3 × (4 + 6)"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Work out the bracket first: 4 + 6 = 10",
+       "hi": "पहले कोष्ठक हल करो: 4 + 6 = 10"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Now the expression is 50 − 3 × 10",
+       "hi": "अब व्यंजक है 50 − 3 × 10"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Find the value of the term 3 × 10 = 30",
+       "hi": "पद 3 × 10 का मान निकालो = 30"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Now it is 50 − 30",
+       "hi": "अब यह है 50 − 30"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Subtract: 50 − 30 = 20",
+       "hi": "घटाओ: 50 − 30 = 20"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Put \"Work out the bracket first\" in the first place.",
+      "hi": "\"पहले कोष्ठक हल करो\" को पहले स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What if someone wrongly works out 50 − 3 first and then multiplies by 10?",
+      "hi": "अगर कोई ग़लती से पहले 50 − 3 करे और फिर 10 से गुणा करे, तो क्या मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "470",
+       "en": "470",
+       "hi": "470 मिलेगा"
+      },
+      {
+       "id": "20",
+       "en": "20",
+       "hi": "20 मिलेगा"
+      },
+      {
+       "id": "30",
+       "en": "30",
+       "hi": "30 मिलेगा"
+      }
+     ],
+     "answer": "470"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other steps in order and tap Check.",
+      "hi": "बाक़ी चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "50 − 3 × (4 + 6) has two terms: 50 and −3 × (4 + 6). We first find the value of each term, working out brackets inside it, and then add the terms. So the answer is 20. Working left to right would wrongly give (50 − 3) × 10 = 470.",
+      "hi": "50 − 3 × (4 + 6) में दो पद हैं: 50 और −3 × (4 + 6)। पहले हर पद का मान निकालते हैं, उसके अंदर के कोष्ठक हल करके, फिर पदों को जोड़ते हैं। इसलिए उत्तर 20 है। बाएँ से दाएँ हल करने पर ग़लती से (50 − 3) × 10 = 470 मिलता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the value of 8 + 2 × 5?",
+        "hi": "8 + 2 × 5 का मान क्या है?"
+       },
+       "options": [
+        "18",
+        "50",
+        "15"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The terms are 8 and 2 × 5 = 10, so 8 + 10 = 18.",
+        "hi": "पद हैं 8 और 2 × 5 = 10, इसलिए 8 + 10 = 18।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "50 comes from adding 8 + 2 first; but 2 × 5 is one term and must be found first.",
+         "hi": "50 पहले 8 + 2 जोड़ने से आता है; पर 2 × 5 एक पद है और पहले निकालना होता है।"
+        },
+        {
+         "en": "15 adds 8 + 2 + 5, ignoring the multiplication.",
+         "hi": "15, गुणा को छोड़कर 8 + 2 + 5 जोड़ने से आता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many terms does 12 − 4 × 2 + 6 have?",
+        "hi": "12 − 4 × 2 + 6 में कितने पद हैं?"
+       },
+       "options": [
+        "3",
+        "4",
+        "2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The terms are 12, −4 × 2 and 6. A product counts as one term.",
+        "hi": "पद हैं 12, −4 × 2 और 6। गुणनफल एक पद गिना जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 × 2 is joined by ×, so 4 and 2 are inside one term.",
+         "hi": "4 × 2 गुणा से जुड़े हैं, इसलिए 4 और 2 एक ही पद में हैं।"
+        },
+        {
+         "en": "+ and − separate terms, and there are two such signs, so three terms.",
+         "hi": "+ और − पदों को अलग करते हैं, और ऐसे दो चिह्न हैं, इसलिए तीन पद।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: shuffle the steps again and try to break the order on purpose. Which steps can never swap?",
+      "hi": "आज़माओ: चरण फिर से मिलाओ और जानबूझकर क्रम बिगाड़ो। कौन-से चरण कभी आपस में नहीं बदल सकते?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch02-terms-swap",
+   "topic": "2.2",
+   "template": "sort",
+   "title": {
+    "en": "Swapping and grouping: does the value change?",
+    "hi": "अदला-बदली और समूह: क्या मान बदलता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "same",
+      "label": {
+       "en": "Same value",
+       "hi": "मान वही"
+      }
+     },
+     {
+      "id": "diff",
+      "label": {
+       "en": "Value changes",
+       "hi": "मान बदल जाता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "t1",
+      "text": {
+       "en": "12 − 5 + 3  →  12 + 3 − 5",
+       "hi": "12 − 5 + 3  →  12 + 3 − 5"
+      },
+      "bin": "same",
+      "why": {
+       "en": "The terms 12, −5 and +3 just moved, each with its own sign. Both are 10.",
+       "hi": "पद 12, −5 और +3 अपने चिह्न के साथ बस जगह बदलते हैं। दोनों 10 हैं।"
+      }
+     },
+     {
+      "id": "t2",
+      "text": {
+       "en": "12 − 5 + 3  →  12 − 3 + 5",
+       "hi": "12 − 5 + 3  →  12 − 3 + 5"
+      },
+      "bin": "diff",
+      "why": {
+       "en": "The signs did not travel with their numbers: 10 became 14.",
+       "hi": "चिह्न अपनी संख्याओं के साथ नहीं गए: 10 का 14 हो गया।"
+      }
+     },
+     {
+      "id": "t3",
+      "text": {
+       "en": "(9 + 4) + 6  →  9 + (4 + 6)",
+       "hi": "(9 + 4) + 6  →  9 + (4 + 6)"
+      },
+      "bin": "same",
+      "why": {
+       "en": "In adding, grouping does not matter: both are 19.",
+       "hi": "जोड़ में समूह बनाने से फ़र्क नहीं पड़ता: दोनों 19 हैं।"
+      }
+     },
+     {
+      "id": "t4",
+      "text": {
+       "en": "(9 − 4) − 2  →  9 − (4 − 2)",
+       "hi": "(9 − 4) − 2  →  9 − (4 − 2)"
+      },
+      "bin": "diff",
+      "why": {
+       "en": "The left is 3 but the right is 7. Grouping in subtraction changes the value.",
+       "hi": "बायाँ 3 है पर दायाँ 7। घटाने में समूह बदलने से मान बदलता है।"
+      }
+     },
+     {
+      "id": "t5",
+      "text": {
+       "en": "7 × 8  →  8 × 7",
+       "hi": "7 × 8  →  8 × 7"
+      },
+      "bin": "same",
+      "why": {
+       "en": "Multiplication can be swapped: both are 56.",
+       "hi": "गुणा में अदला-बदली हो सकती है: दोनों 56 हैं।"
+      }
+     },
+     {
+      "id": "t6",
+      "text": {
+       "en": "20 ÷ 4  →  4 ÷ 20",
+       "hi": "20 ÷ 4  →  4 ÷ 20"
+      },
+      "bin": "diff",
+      "why": {
+       "en": "20 ÷ 4 is 5, but 4 ÷ 20 is less than 1.",
+       "hi": "20 ÷ 4 = 5, पर 4 ÷ 20 तो 1 से भी कम है।"
+      }
+     },
+     {
+      "id": "t7",
+      "text": {
+       "en": "30 − 10 − 5  →  30 − (10 + 5)",
+       "hi": "30 − 10 − 5  →  30 − (10 + 5)"
+      },
+      "bin": "same",
+      "why": {
+       "en": "Taking away 10 and then 5 is the same as taking away 15. Both are 15.",
+       "hi": "10 और फिर 5 घटाना, 15 घटाने जैसा है। दोनों 15 हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:t1",
+     "expect": "correct:t1",
+     "say": {
+      "en": "Tap the first card and decide: same value or not?",
+      "hi": "पहला कार्ड छुओ और तय करो: मान वही या नहीं?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:t2",
+     "expect": "correct:t2",
+     "say": {
+      "en": "Now try the second card. Watch the signs.",
+      "hi": "अब दूसरा कार्ड। चिह्नों पर ध्यान दो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What about (9 − 4) − 2 → 9 − (4 − 2)?",
+      "hi": "(9 − 4) − 2 → 9 − (4 − 2) के बारे में क्या सोचते हो?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "Same value",
+       "hi": "मान वही"
+      },
+      {
+       "id": "diff",
+       "en": "Value changes",
+       "hi": "मान बदल जाता है"
+      }
+     ],
+     "answer": "diff"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Think of an expression as a sum of terms, each with its sign: 12 − 5 + 3 is 12 + (−5) + 3. Terms can be swapped and grouped in any way, as long as each sign stays with its number. Brackets with a minus in front change things: 9 − (4 − 2) is 9 − 4 + 2.",
+      "hi": "व्यंजक को पदों का योग समझो, हर पद अपने चिह्न के साथ: 12 − 5 + 3 यानी 12 + (−5) + 3। पदों को किसी भी तरह बदल और समूह में रख सकते हैं, बस हर चिह्न अपनी संख्या के साथ रहे। आगे घटा वाले कोष्ठक से बात बदलती है: 9 − (4 − 2) = 9 − 4 + 2।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is equal to 40 − 15 + 5?",
+        "hi": "इनमें से कौन 40 − 15 + 5 के बराबर है?"
+       },
+       "options": [
+        "40 + 5 − 15",
+        "40 − 5 + 15",
+        "40 − (15 + 5)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The terms 40, −15 and +5 are only rearranged. Both are 30.",
+        "hi": "पद 40, −15 और +5 केवल दोबारा लगाए गए हैं। दोनों 30 हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Here −15 became +15 and +5 became −5; this gives 50.",
+         "hi": "यहाँ −15 का +15 और +5 का −5 हो गया; इससे 50 मिलता है।"
+        },
+        {
+         "en": "This subtracts the 5 too, giving 20; but in the original the 5 is added.",
+         "hi": "इसमें 5 भी घटता है, जिससे 20 आता है; पर मूल में 5 जुड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make your own card pair where swapping two numbers changes the value, and one where it does not.",
+      "hi": "आज़माओ: ऐसी जोड़ी बनाओ जिसमें दो संख्याओं की अदला-बदली से मान बदले, और एक जिसमें न बदले।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch02-distribute",
+   "topic": "2.2",
+   "template": "match",
+   "title": {
+    "en": "Break it up: the distributive property",
+    "hi": "तोड़कर गुणा करो: वितरण गुण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "d1",
+      "left": {
+       "en": "6 × 102",
+       "hi": "6 × 102"
+      },
+      "right": {
+       "en": "6 × 100 + 6 × 2 = 612",
+       "hi": "6 × 100 + 6 × 2 = 612"
+      },
+      "why": {
+       "en": "102 = 100 + 2, so multiply each part by 6 and add.",
+       "hi": "102 = 100 + 2, इसलिए हर भाग को 6 से गुणा करके जोड़ो।"
+      }
+     },
+     {
+      "id": "d2",
+      "left": {
+       "en": "7 × 98",
+       "hi": "7 × 98"
+      },
+      "right": {
+       "en": "7 × 100 − 7 × 2 = 686",
+       "hi": "7 × 100 − 7 × 2 = 686"
+      },
+      "why": {
+       "en": "98 = 100 − 2, so 700 − 14 = 686.",
+       "hi": "98 = 100 − 2, इसलिए 700 − 14 = 686।"
+      }
+     },
+     {
+      "id": "d3",
+      "left": {
+       "en": "5 × (8 + 3)",
+       "hi": "5 × (8 + 3)"
+      },
+      "right": {
+       "en": "5 × 8 + 5 × 3 = 55",
+       "hi": "5 × 8 + 5 × 3 = 55"
+      },
+      "why": {
+       "en": "5 groups of (8 + 3) is 5 eights and 5 threes.",
+       "hi": "(8 + 3) के 5 समूह यानी 5 आठ और 5 तीन।"
+      }
+     },
+     {
+      "id": "d4",
+      "left": {
+       "en": "4 × 25 + 4 × 75",
+       "hi": "4 × 25 + 4 × 75"
+      },
+      "right": {
+       "en": "4 × (25 + 75) = 400",
+       "hi": "4 × (25 + 75) = 400"
+      },
+      "why": {
+       "en": "Both terms have 4, so take it out: 4 × 100.",
+       "hi": "दोनों पदों में 4 है, उसे बाहर निकालो: 4 × 100।"
+      }
+     },
+     {
+      "id": "d5",
+      "left": {
+       "en": "9 × 13 − 9 × 3",
+       "hi": "9 × 13 − 9 × 3"
+      },
+      "right": {
+       "en": "9 × (13 − 3) = 90",
+       "hi": "9 × (13 − 3) = 90"
+      },
+      "why": {
+       "en": "9 thirteens minus 9 threes is 9 tens.",
+       "hi": "9 तेरह में से 9 तीन घटाने पर 9 दस बचते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:d1",
+     "expect": "matched:d1",
+     "say": {
+      "en": "Tap 6 × 102 and find its broken-up form.",
+      "hi": "6 × 102 छुओ और उसका तोड़ा हुआ रूप ढूँढो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How can you find 8 × 99 quickly?",
+      "hi": "8 × 99 झटपट कैसे निकालोगे?"
+     },
+     "options": [
+      {
+       "id": "sub",
+       "en": "8 × 100 − 8 = 792",
+       "hi": "8 × 100 − 8 = 792 से"
+      },
+      {
+       "id": "wrong",
+       "en": "800 − 99 = 701",
+       "hi": "800 − 99 = 701 से"
+      },
+      {
+       "id": "swap",
+       "en": "8 × 9 + 9 = 81",
+       "hi": "8 × 9 + 9 = 81 से"
+      }
+     ],
+     "answer": "sub"
+    },
+    {
+     "kind": "do",
+     "target": "left:d2",
+     "expect": "matched:d2",
+     "say": {
+      "en": "Now match 7 × 98.",
+      "hi": "अब 7 × 98 की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Multiplying a sum (or difference) is the same as multiplying each part and then adding (or subtracting): a × (b + c) = a × b + a × c. It works both ways, so we can break numbers up or take a common number out.",
+      "hi": "किसी योग (या अंतर) से गुणा करना, हर भाग से अलग-अलग गुणा करके जोड़ने (या घटाने) जैसा है: a × (b + c) = a × b + a × c। यह दोनों ओर चलता है, इसलिए हम संख्याएँ तोड़ भी सकते हैं और साझी संख्या बाहर भी निकाल सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A pen costs ₹15 and a notebook ₹25. What do 6 pens and 6 notebooks cost?",
+        "hi": "एक पेन ₹15 का और एक कॉपी ₹25 की है। 6 पेन और 6 कॉपियों का दाम क्या है?"
+       },
+       "options": [
+        "6 × (15 + 25) = ₹240",
+        "6 × 15 + 25 = ₹115",
+        "15 + 25 × 6 = ₹165"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each set costs ₹40 and there are 6 sets: 6 × 40 = ₹240.",
+        "hi": "हर जोड़ा ₹40 का है और 6 जोड़े हैं: 6 × 40 = ₹240।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This counts only one notebook; the 6 must multiply both prices.",
+         "hi": "इसमें एक ही कॉपी गिनी गई; 6 से दोनों दामों का गुणा होना चाहिए।"
+        },
+        {
+         "en": "This counts only one pen; brackets are needed around 15 + 25.",
+         "hi": "इसमें एक ही पेन गिना गया; 15 + 25 के चारों ओर कोष्ठक चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: use the same idea for 12 × 21 and 15 × 19 in your head, then check on paper.",
+      "hi": "आज़माओ: यही तरीक़ा 12 × 21 और 15 × 19 पर मन में लगाओ, फिर काग़ज़ पर जाँचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Chapter hook: a snack order",
+   "shows": "A small Indian sweet-and-snack stall with a tray of vegetable cutlets and a bowl of rasgullas, a child paying at the counter",
+   "view": "Eye level, the counter in front, warm evening light",
+   "right": "Cutlets golden and round, rasgullas white in syrup; child seen from the back",
+   "avoid": "Price boards, shop name, identifiable faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Items for building money expressions in the reader",
+   "shows": "One plate with 3 vegetable cutlets and one small bowl with 2 rasgullas, each a separate cut-out",
+   "view": "Three-quarter view, top-left light, transparent background",
+   "right": "Plates plain steel, food real and appetising",
+   "avoid": "Logos on plates, extra items"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Expression cards the app writes on",
+   "shows": "A set of blank square wooden tiles in five bright colours, some round tiles for signs",
+   "view": "From above, scattered neatly on white",
+   "right": "Tiles clearly blank so the app can print numbers and signs",
+   "avoid": "Printed digits, wood knots that look like marks"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Distributive property in real life",
+   "shows": "A stationery shop counter with six identical bundles, each a pen tied with a notebook",
+   "view": "From slightly above, counter edge in front",
+   "right": "Exactly six bundles, all the same",
+   "avoid": "Brand names on notebooks"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "2.1",
+   "use": "Base for the \"which side is bigger\" game",
+   "shows": "A clean two-pan balance drawing with empty card slots on each pan, flat colours",
+   "view": "Front view, white background",
+   "right": "Pans level and equal in size",
+   "avoid": "Any words or numbers"
+  }
+ ]
+}

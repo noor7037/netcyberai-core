@@ -1,0 +1,1343 @@
+{
+ "chapter_key": "u.c07.science.gecu1.ch10",
+ "class": 7,
+ "subject_id": "science",
+ "title": "Life Processes in Plants",
+ "source": "https://ncert.nic.in/textbook/pdf/gecu110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "How do plants grow? Sunlight and water",
+   "labs": [
+    "c07-science-gecu1-ch10-three-pots"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "How do plants get food for their growth?",
+   "labs": [],
+   "why_no_lab": "An opening question; the labs of 10.2.1 to 10.2.4 answer it step by step."
+  },
+  {
+   "n": "10.2.1",
+   "title": "Leaves: the food factories of plants (the starch test)",
+   "labs": [
+    "c07-science-gecu1-ch10-starch-test"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2.2",
+   "title": "Role of air (carbon dioxide) in making food",
+   "labs": [
+    "c07-science-gecu1-ch10-co2"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2.3",
+   "title": "Photosynthesis",
+   "labs": [
+    "c07-science-gecu1-ch10-photosynthesis"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2.4",
+   "title": "How leaves exchange gases: stomata",
+   "labs": [
+    "c07-science-gecu1-ch10-stomata"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3.1",
+   "title": "Transport of water and minerals: xylem",
+   "labs": [
+    "c07-science-gecu1-ch10-water-up"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3.2",
+   "title": "Transport of food: phloem",
+   "labs": [
+    "c07-science-gecu1-ch10-xylem-phloem"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Do plants respire?",
+   "labs": [
+    "c07-science-gecu1-ch10-respire"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-science-gecu1-ch10-three-pots",
+   "topic": "10.1",
+   "template": "plant",
+   "title": {
+    "en": "What does a plant need to grow?",
+    "hi": "पौधे को बढ़ने के लिए क्या चाहिए?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "grow",
+    "plant": "bean",
+    "variables": [
+     "light",
+     "water"
+    ],
+    "pots": 3
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pot:2",
+     "expect": "picked:2",
+     "say": {
+      "en": "Tap Pot 2 and look at its settings.",
+      "hi": "'गमला 2' पर टैप करो और उसकी सेटिंग देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pot:3",
+     "expect": "picked:3",
+     "say": {
+      "en": "Now tap Pot 3. Pot 1 has both light and water.",
+      "hi": "अब 'गमला 3' पर टैप करो। गमला 1 को प्रकाश और पानी दोनों मिलते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Pot 2 gets no light and Pot 3 gets almost no water. Which plant will grow best in three weeks?",
+      "hi": "गमला 2 को प्रकाश नहीं मिलता और गमला 3 को लगभग पानी नहीं। तीन हफ़्तों में कौन-सा पौधा सबसे अच्छा बढ़ेगा?"
+     },
+     "options": [
+      {
+       "id": "p1",
+       "en": "Pot 1, with light and water",
+       "hi": "गमला 1, प्रकाश और पानी वाला"
+      },
+      {
+       "id": "p2",
+       "en": "Pot 2, in the dark",
+       "hi": "गमला 2, अँधेरे वाला"
+      },
+      {
+       "id": "p3",
+       "en": "Pot 3, with little water",
+       "hi": "गमला 3, कम पानी वाला"
+      }
+     ],
+     "answer": "p1"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play and watch the three weeks pass.",
+      "hi": "'चलाओ' दबाओ और तीन हफ़्ते बीतते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Only the plant with both sunlight and water stayed green and grew well. The plant in the dark turned pale and weak, and the plant without water wilted. Plants need sunlight and water to make their food and grow. Changing one thing at a time showed us which one matters.",
+      "hi": "केवल वही पौधा हरा रहा और अच्छा बढ़ा जिसे धूप और पानी दोनों मिले। अँधेरे वाला पौधा पीला और कमज़ोर हो गया, और बिना पानी वाला मुरझा गया। पौधों को भोजन बनाने और बढ़ने के लिए धूप और पानी चाहिए। एक बार में एक ही चीज़ बदलने से पता चला कि कौन-सी ज़रूरी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why was each pot changed in only one way?",
+        "hi": "हर गमले में केवल एक ही चीज़ क्यों बदली गई?"
+       },
+       "options": [
+        {
+         "en": "So we know which change caused the result",
+         "hi": "ताकि पता चले कि परिणाम किस बदलाव से आया"
+        },
+        {
+         "en": "To save water",
+         "hi": "पानी बचाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A fair test changes one thing and keeps the rest the same.",
+        "hi": "उचित परीक्षण में एक चीज़ बदली जाती है और बाक़ी वैसी ही रखी जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Saving water is not the reason; the pots compare light and water fairly.",
+         "hi": "कारण पानी बचाना नहीं; गमले प्रकाश और पानी की उचित तुलना करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick a pot and change its light or water with the sliders, then play again. Can you make all three plants healthy?",
+      "hi": "कोई गमला चुनो और स्लाइडर से उसका प्रकाश या पानी बदलो, फिर दोबारा चलाओ। क्या तुम तीनों पौधों को स्वस्थ बना सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch10-starch-test",
+   "topic": "10.2.1",
+   "template": "beaker",
+   "title": {
+    "en": "Testing for starch",
+    "hi": "मंड की जाँच"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "potato",
+     "iodine",
+     "water"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:potato",
+     "expect": "pick:potato",
+     "say": {
+      "en": "Pick up the potato slice.",
+      "hi": "आलू का टुकड़ा उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:potato",
+     "say": {
+      "en": "Put it in the dish.",
+      "hi": "इसे डिश में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Iodine is brown. What will it show on the potato?",
+      "hi": "आयोडीन भूरा होता है। आलू पर यह क्या दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "blueblack",
+       "en": "A blue-black colour",
+       "hi": "नीला-काला रंग"
+      },
+      {
+       "id": "none",
+       "en": "No change",
+       "hi": "कोई बदलाव नहीं"
+      },
+      {
+       "id": "green",
+       "en": "Green",
+       "hi": "हरा"
+      }
+     ],
+     "answer": "blueblack"
+    },
+    {
+     "kind": "do",
+     "target": "pick:iodine",
+     "expect": "pick:iodine",
+     "say": {
+      "en": "Pick up the iodine solution.",
+      "hi": "आयोडीन का घोल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:iodine",
+     "say": {
+      "en": "Add a few drops and watch.",
+      "hi": "कुछ बूँदें डालो और देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Iodine turns blue-black where there is starch. Leaves make food as glucose and store it as starch; the potato holds starch sent down from the leaves. In class, the teacher boils a leaf in alcohol to remove its green colour, then adds iodine: the leaf turns blue-black, so it has made food. In a variegated leaf, only the green parts turn blue-black.",
+      "hi": "जहाँ मंड होता है वहाँ आयोडीन नीला-काला हो जाता है। पत्तियाँ भोजन ग्लूकोज़ के रूप में बनाती हैं और उसे मंड के रूप में जमा करती हैं; आलू में पत्तियों से भेजा गया मंड जमा होता है। कक्षा में शिक्षक पत्ती को ऐल्कोहॉल में उबालकर उसका हरा रंग हटाते हैं, फिर आयोडीन डालते हैं: पत्ती नीली-काली होती है, यानी उसने भोजन बनाया। चितकबरी पत्ती में केवल हरे भाग नीले-काले होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A leaf has green and white patches. After the starch test, which parts turn blue-black?",
+        "hi": "एक पत्ती में हरे और सफ़ेद धब्बे हैं। मंड-परीक्षण के बाद कौन-से भाग नीले-काले होंगे?"
+       },
+       "options": [
+        {
+         "en": "Only the green parts",
+         "hi": "केवल हरे भाग"
+        },
+        {
+         "en": "Only the white parts",
+         "hi": "केवल सफ़ेद भाग"
+        },
+        {
+         "en": "The whole leaf",
+         "hi": "पूरी पत्ती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Food is made only where there is green chlorophyll.",
+        "hi": "भोजन केवल वहीं बनता है जहाँ हरा पर्णहरित होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "White parts have no chlorophyll, so they make no starch.",
+         "hi": "सफ़ेद भागों में पर्णहरित नहीं, इसलिए वहाँ मंड नहीं बनता।"
+        },
+        {
+         "en": "Without chlorophyll the white parts cannot make food, so not all of the leaf turns blue-black.",
+         "hi": "पर्णहरित के बिना सफ़ेद भाग भोजन नहीं बना सकते, इसलिए पूरी पत्ती नीली-काली नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the dish and test plain water with iodine. Then think: which foods in your kitchen would turn blue-black?",
+      "hi": "डिश साफ़ करो और सादे पानी को आयोडीन से जाँचो। फिर सोचो: तुम्हारी रसोई के कौन-से भोजन नीले-काले होंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch10-co2",
+   "topic": "10.2.2",
+   "template": "plant",
+   "title": {
+    "en": "Air for food: carbon dioxide",
+    "hi": "भोजन के लिए हवा: कार्बन डाइऑक्साइड"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "photosynthesis",
+    "variables": [
+     "light",
+     "air"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "bubbles",
+     "say": {
+      "en": "Press Play. The water plant is in bright light with carbon dioxide.",
+      "hi": "'चलाओ' दबाओ। जलीय पौधा तेज़ प्रकाश और कार्बन डाइऑक्साइड के साथ है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now take away the carbon dioxide. What will happen to the bubbles?",
+      "hi": "अब कार्बन डाइऑक्साइड हटा दो। बुलबुलों का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "stop",
+       "en": "They stop",
+       "hi": "रुक जाएँगे"
+      },
+      {
+       "id": "more",
+       "en": "More bubbles come",
+       "hi": "और बुलबुले आएँगे"
+      },
+      {
+       "id": "same",
+       "en": "No change",
+       "hi": "कोई बदलाव नहीं"
+      }
+     ],
+     "answer": "stop"
+    },
+    {
+     "kind": "do",
+     "target": "slider:air",
+     "expect": "set:air",
+     "say": {
+      "en": "Slide the carbon dioxide down to zero.",
+      "hi": "कार्बन डाइऑक्साइड की स्लाइडर शून्य तक खिसकाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play again and watch.",
+      "hi": "फिर से 'चलाओ' दबाओ और देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The bubbles are oxygen given out while the plant makes food. With no carbon dioxide, food-making stopped and so did the bubbles. Plants take carbon dioxide from the air (or from water) through their leaves to make food. In class, a leaf kept in a bottle with caustic soda, which absorbs carbon dioxide, makes no starch.",
+      "hi": "बुलबुले ऑक्सीजन के हैं जो पौधा भोजन बनाते समय छोड़ता है। कार्बन डाइऑक्साइड न होने पर भोजन बनना रुका और बुलबुले भी। पौधे भोजन बनाने के लिए पत्तियों से हवा (या पानी) की कार्बन डाइऑक्साइड लेते हैं। कक्षा में कास्टिक सोडा वाली बोतल में रखी पत्ती, जो कार्बन डाइऑक्साइड सोख लेता है, मंड नहीं बनाती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which gas from the air does a plant need to make food?",
+        "hi": "भोजन बनाने के लिए पौधे को हवा की कौन-सी गैस चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Carbon dioxide",
+         "hi": "कार्बन डाइऑक्साइड"
+        },
+        {
+         "en": "Oxygen",
+         "hi": "ऑक्सीजन"
+        },
+        {
+         "en": "Nitrogen",
+         "hi": "नाइट्रोजन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Carbon dioxide is one of the raw materials of photosynthesis.",
+        "hi": "कार्बन डाइऑक्साइड प्रकाश संश्लेषण का एक कच्चा माल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Oxygen is given out by photosynthesis; it is not used to make the food.",
+         "hi": "प्रकाश संश्लेषण में ऑक्सीजन निकलती है; भोजन बनाने में इसका उपयोग नहीं होता।"
+        },
+        {
+         "en": "Most air is nitrogen, but plants do not use it to make food in their leaves.",
+         "hi": "हवा का अधिकांश भाग नाइट्रोजन है, पर पौधे पत्तियों में भोजन बनाने में इसका उपयोग नहीं करते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Bring the carbon dioxide back and dim the lamp. Which change slows the bubbles more?",
+      "hi": "कार्बन डाइऑक्साइड वापस लाओ और लैंप धीमा करो। कौन-सा बदलाव बुलबुलों को ज़्यादा धीमा करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch10-photosynthesis",
+   "topic": "10.2.3",
+   "template": "plant",
+   "title": {
+    "en": "Photosynthesis: what goes in, what comes out",
+    "hi": "प्रकाश संश्लेषण: क्या अंदर, क्या बाहर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "photosynthesis",
+    "variables": [
+     "light",
+     "air"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:light",
+     "expect": "identified:light",
+     "say": {
+      "en": "Tap Light to see what it does.",
+      "hi": "'प्रकाश' पर टैप करके देखो कि वह क्या करता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:chloroplast",
+     "expect": "identified:chloroplast",
+     "say": {
+      "en": "Tap the chloroplast, where the green chlorophyll is.",
+      "hi": "हरितलवक पर टैप करो, जहाँ हरा पर्णहरित होता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Water, carbon dioxide and light go in. What comes out?",
+      "hi": "पानी, कार्बन डाइऑक्साइड और प्रकाश अंदर जाते हैं। बाहर क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "glucose",
+       "en": "Glucose (food) and oxygen",
+       "hi": "ग्लूकोज़ (भोजन) और ऑक्सीजन"
+      },
+      {
+       "id": "co2",
+       "en": "Carbon dioxide and water",
+       "hi": "कार्बन डाइऑक्साइड और पानी"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "glucose"
+    },
+    {
+     "kind": "do",
+     "target": "part:oxygen",
+     "expect": "identified:oxygen",
+     "say": {
+      "en": "Tap Oxygen.",
+      "hi": "'ऑक्सीजन' पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:light",
+     "expect": "set:light",
+     "say": {
+      "en": "Slide the lamp down to zero light.",
+      "hi": "लैंप की स्लाइडर शून्य प्रकाश तक खिसकाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play and watch for bubbles.",
+      "hi": "'चलाओ' दबाओ और बुलबुले देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In green leaves, chlorophyll traps sunlight. With its energy, the plant joins carbon dioxide and water to make glucose, its food, and gives out oxygen. This is photosynthesis: carbon dioxide + water, in sunlight with chlorophyll, gives glucose + oxygen. With no light, no food is made and no bubbles come.",
+      "hi": "हरी पत्तियों में पर्णहरित धूप को पकड़ता है। उसकी ऊर्जा से पौधा कार्बन डाइऑक्साइड और पानी को जोड़कर ग्लूकोज़, यानी अपना भोजन, बनाता है और ऑक्सीजन छोड़ता है। यही प्रकाश संश्लेषण है: कार्बन डाइऑक्साइड + पानी, धूप और पर्णहरित की उपस्थिति में, देते हैं ग्लूकोज़ + ऑक्सीजन। प्रकाश न हो तो न भोजन बनता है, न बुलबुले आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are leaves called the food factories of a plant?",
+        "hi": "पत्तियों को पौधे का भोजन-कारख़ाना क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "They make food by photosynthesis",
+         "hi": "वे प्रकाश संश्लेषण से भोजन बनाती हैं"
+        },
+        {
+         "en": "They store all the water",
+         "hi": "वे सारा पानी जमा करती हैं"
+        },
+        {
+         "en": "They take food from the soil",
+         "hi": "वे मिट्टी से भोजन लेती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Green leaves have chlorophyll and make glucose using sunlight.",
+        "hi": "हरी पत्तियों में पर्णहरित होता है और वे धूप से ग्लूकोज़ बनाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water comes from the roots and is used, not stored, by leaves.",
+         "hi": "पानी जड़ों से आता है और पत्तियाँ उसका उपयोग करती हैं, जमा नहीं।"
+        },
+        {
+         "en": "Plants take water and minerals from the soil, not ready-made food.",
+         "hi": "पौधे मिट्टी से पानी और खनिज लेते हैं, बना-बनाया भोजन नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn the light back up and change the temperature too. Count how many bubbles come each time.",
+      "hi": "प्रकाश फिर बढ़ाओ और तापमान भी बदलो। हर बार गिनो कि कितने बुलबुले आते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch10-stomata",
+   "topic": "10.2.4",
+   "template": "scope",
+   "title": {
+    "en": "Stomata: tiny doors in a leaf",
+    "hi": "रंध्र: पत्ती के नन्हे दरवाज़े"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "slide": "stomata",
+    "task": "identify"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Choose the 10x lens.",
+      "hi": "10x लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob until the picture is sharp.",
+      "hi": "मोटे नॉब को तब तक घुमाओ जब तक चित्र साफ़ न हो जाए।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A leaf exchanges gases through tiny pores. What surrounds each pore?",
+      "hi": "पत्ती नन्हे छिद्रों से गैसों का आदान-प्रदान करती है। हर छिद्र को कौन घेरे रहता है?"
+     },
+     "options": [
+      {
+       "id": "guard",
+       "en": "Two bean-shaped guard cells",
+       "hi": "दो सेम जैसी द्वार कोशिकाएँ"
+      },
+      {
+       "id": "root",
+       "en": "Root hairs",
+       "hi": "मूल रोम"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing at all",
+       "hi": "कुछ भी नहीं"
+      }
+     ],
+     "answer": "guard"
+    },
+    {
+     "kind": "do",
+     "target": "part:*",
+     "expect": "identified:guard-cell",
+     "say": {
+      "en": "Tap a guard cell beside a pore.",
+      "hi": "किसी छिद्र के पास की द्वार कोशिका पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The tiny pores on a leaf are stomata. Each is surrounded by two guard cells that open and close it. Through the stomata, carbon dioxide enters the leaf for photosynthesis and oxygen goes out. Water vapour also leaves through them.",
+      "hi": "पत्ती पर नन्हे छिद्र रंध्र हैं। हर रंध्र को दो द्वार कोशिकाएँ घेरती हैं जो उसे खोलती-बंद करती हैं। रंध्रों से प्रकाश संश्लेषण के लिए कार्बन डाइऑक्साइड पत्ती में आती है और ऑक्सीजन बाहर जाती है। जलवाष्प भी इन्हीं से निकलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which gas enters a leaf through the stomata for photosynthesis?",
+        "hi": "प्रकाश संश्लेषण के लिए रंध्रों से पत्ती में कौन-सी गैस आती है?"
+       },
+       "options": [
+        {
+         "en": "Carbon dioxide",
+         "hi": "कार्बन डाइऑक्साइड"
+        },
+        {
+         "en": "Oxygen",
+         "hi": "ऑक्सीजन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Carbon dioxide goes in; oxygen made in photosynthesis comes out.",
+        "hi": "कार्बन डाइऑक्साइड अंदर जाती है; प्रकाश संश्लेषण में बनी ऑक्सीजन बाहर आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "During photosynthesis oxygen leaves the leaf; carbon dioxide comes in.",
+         "hi": "प्रकाश संश्लेषण के समय ऑक्सीजन पत्ती से बाहर जाती है; कार्बन डाइऑक्साइड अंदर आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the 40x lens and focus with the fine knob. Can you find a stoma, an ordinary skin cell and a chloroplast?",
+      "hi": "40x लेंस आज़माओ और बारीक नॉब से फ़ोकस करो। क्या तुम एक रंध्र, एक साधारण त्वचा कोशिका और एक हरितलवक ढूँढ सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch10-water-up",
+   "topic": "10.3.1",
+   "template": "plant",
+   "title": {
+    "en": "How water travels up a plant",
+    "hi": "पानी पौधे में ऊपर कैसे जाता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "transpiration"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:xylem",
+     "expect": "identified:xylem",
+     "say": {
+      "en": "Tap the xylem in the stem.",
+      "hi": "तने में जाइलम पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The plant stands in a flask of water in sunlight. What will happen to the water level?",
+      "hi": "पौधा धूप में पानी भरे फ़्लास्क में खड़ा है। पानी के स्तर का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "It goes down",
+       "hi": "नीचे जाएगा"
+      },
+      {
+       "id": "up",
+       "en": "It goes up",
+       "hi": "ऊपर जाएगा"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वैसा ही रहेगा"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "transpired",
+     "say": {
+      "en": "Press Play and watch the flask.",
+      "hi": "'चलाओ' दबाओ और फ़्लास्क देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:stoma",
+     "expect": "identified:stoma",
+     "say": {
+      "en": "Tap a stoma on the leaf.",
+      "hi": "पत्ती पर किसी रंध्र पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The roots take in water and minerals. Thin tubes called xylem carry them up the stem to the leaves, just as red ink travels up a white flower's stem. Some water is used in photosynthesis, and much of it evaporates through the stomata. Food made in the leaves goes to the rest of the plant through other tubes, the phloem.",
+      "hi": "जड़ें पानी और खनिज लेती हैं। जाइलम नाम की पतली नलियाँ उन्हें तने से पत्तियों तक ले जाती हैं, जैसे सफ़ेद फूल के तने में लाल स्याही ऊपर चढ़ती है। कुछ पानी प्रकाश संश्लेषण में लगता है, और बहुत-सा रंध्रों से वाष्प बनकर उड़ जाता है। पत्तियों में बना भोजन दूसरी नलियों, फ्लोएम, से पौधे के बाक़ी भागों तक जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A white flower stands in red-coloured water for a day. Its petals get red streaks. What carried the colour up?",
+        "hi": "एक सफ़ेद फूल एक दिन लाल रंग वाले पानी में रखा गया। उसकी पंखुड़ियों पर लाल धारियाँ आ गईं। रंग को ऊपर कौन ले गया?"
+       },
+       "options": [
+        {
+         "en": "The xylem",
+         "hi": "जाइलम"
+        },
+        {
+         "en": "The phloem",
+         "hi": "फ्लोएम"
+        },
+        {
+         "en": "The air",
+         "hi": "हवा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Xylem carries water and anything dissolved in it up from the roots.",
+        "hi": "जाइलम जड़ों से पानी और उसमें घुली चीज़ों को ऊपर ले जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Phloem carries food made in the leaves, not water from below.",
+         "hi": "फ्लोएम पत्तियों में बना भोजन ले जाता है, नीचे से पानी नहीं।"
+        },
+        {
+         "en": "The colour moved inside the stem, through tubes, not through the air.",
+         "hi": "रंग तने के अंदर नलियों से गया, हवा से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the sunlight, the wind and the temperature, and play again. When does the plant lose water fastest?",
+      "hi": "धूप, हवा और तापमान बदलो और फिर चलाओ। पौधा सबसे तेज़ पानी कब खोता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch10-xylem-phloem",
+   "topic": "10.3.2",
+   "template": "sort",
+   "title": {
+    "en": "Xylem or phloem?",
+    "hi": "जाइलम या फ्लोएम?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "xylem",
+      "label": {
+       "en": "Xylem carries it",
+       "hi": "जाइलम ले जाता है"
+      }
+     },
+     {
+      "id": "phloem",
+      "label": {
+       "en": "Phloem carries it",
+       "hi": "फ्लोएम ले जाता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "water",
+      "text": {
+       "en": "Water from the roots to the leaves",
+       "hi": "जड़ों से पत्तियों तक पानी"
+      },
+      "bin": "xylem",
+      "why": {
+       "en": "Xylem carries water up from the roots.",
+       "hi": "जाइलम जड़ों से पानी ऊपर ले जाता है।"
+      }
+     },
+     {
+      "id": "minerals",
+      "text": {
+       "en": "Minerals dissolved in water",
+       "hi": "पानी में घुले खनिज"
+      },
+      "bin": "xylem",
+      "why": {
+       "en": "Minerals travel up with the water in the xylem.",
+       "hi": "खनिज पानी के साथ जाइलम में ऊपर जाते हैं।"
+      }
+     },
+     {
+      "id": "ink",
+      "text": {
+       "en": "Red ink rising in a white flower's stem",
+       "hi": "सफ़ेद फूल के तने में चढ़ती लाल स्याही"
+      },
+      "bin": "xylem",
+      "why": {
+       "en": "Ink moves with the water, so it rises in the xylem.",
+       "hi": "स्याही पानी के साथ चलती है, इसलिए जाइलम में चढ़ती है।"
+      }
+     },
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Food made in the leaves",
+       "hi": "पत्तियों में बना भोजन"
+      },
+      "bin": "phloem",
+      "why": {
+       "en": "Phloem carries food from the leaves.",
+       "hi": "फ्लोएम पत्तियों से भोजन ले जाता है।"
+      }
+     },
+     {
+      "id": "roots",
+      "text": {
+       "en": "Food sent down to the roots to be stored",
+       "hi": "जड़ों में जमा करने के लिए भेजा गया भोजन"
+      },
+      "bin": "phloem",
+      "why": {
+       "en": "Roots like carrot and radish store food that came through the phloem.",
+       "hi": "गाजर और मूली जैसी जड़ें फ्लोएम से आया भोजन जमा करती हैं।"
+      }
+     },
+     {
+      "id": "seeds",
+      "text": {
+       "en": "Food going to growing seeds and fruits",
+       "hi": "बढ़ते बीजों और फलों तक जाता भोजन"
+      },
+      "bin": "phloem",
+      "why": {
+       "en": "Seeds and fruits get food from the leaves through the phloem.",
+       "hi": "बीज और फल फ्लोएम से पत्तियों का भोजन पाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:water",
+     "expect": "correct:water",
+     "say": {
+      "en": "Tap the water card, then the tubes that carry it.",
+      "hi": "पानी वाले कार्ड पर टैप करो, फिर उन नलियों पर जो उसे ले जाती हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which tubes carry food made in the leaves to the roots?",
+      "hi": "कौन-सी नलियाँ पत्तियों में बना भोजन जड़ों तक ले जाती हैं?"
+     },
+     "options": [
+      {
+       "id": "phloem",
+       "en": "Phloem",
+       "hi": "फ्लोएम"
+      },
+      {
+       "id": "xylem",
+       "en": "Xylem",
+       "hi": "जाइलम"
+      }
+     ],
+     "answer": "phloem"
+    },
+    {
+     "kind": "do",
+     "target": "card:roots",
+     "expect": "correct:roots",
+     "say": {
+      "en": "Place the card about food going to the roots.",
+      "hi": "जड़ों तक जाने वाले भोजन का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A plant has two sets of thin tubes. Xylem carries water and minerals up from the roots. Phloem carries food from the leaves to every part, including roots, seeds and fruits where it may be stored.",
+      "hi": "पौधे में पतली नलियों के दो समूह होते हैं। जाइलम जड़ों से पानी और खनिज ऊपर ले जाता है। फ्लोएम पत्तियों से भोजन को हर भाग तक ले जाता है, जड़ों, बीजों और फलों तक भी, जहाँ वह जमा हो सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A potato stores starch. How did the food reach it?",
+        "hi": "आलू में मंड जमा है। भोजन वहाँ तक कैसे पहुँचा?"
+       },
+       "options": [
+        {
+         "en": "Through the phloem from the leaves",
+         "hi": "पत्तियों से फ्लोएम द्वारा"
+        },
+        {
+         "en": "Through the xylem from the soil",
+         "hi": "मिट्टी से जाइलम द्वारा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Food is made in leaves and carried down by the phloem.",
+        "hi": "भोजन पत्तियों में बनता है और फ्लोएम से नीचे आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Xylem brings water and minerals, not food; soil has no ready food for the plant.",
+         "hi": "जाइलम पानी और खनिज लाता है, भोजन नहीं; मिट्टी में पौधे के लिए बना-बनाया भोजन नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and sort once more. Which vegetables that we eat are roots that store food?",
+      "hi": "'फिर से शुरू' दबाओ और फिर छाँटो। हम जो सब्ज़ियाँ खाते हैं, उनमें से कौन-सी भोजन जमा करने वाली जड़ें हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch10-respire",
+   "topic": "10.4",
+   "template": "sort",
+   "title": {
+    "en": "Photosynthesis or respiration?",
+    "hi": "प्रकाश संश्लेषण या श्वसन?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "photo",
+      "label": {
+       "en": "Photosynthesis",
+       "hi": "प्रकाश संश्लेषण"
+      }
+     },
+     {
+      "id": "resp",
+      "label": {
+       "en": "Respiration",
+       "hi": "श्वसन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "usesco2",
+      "text": {
+       "en": "Takes in carbon dioxide",
+       "hi": "कार्बन डाइऑक्साइड लेता है"
+      },
+      "bin": "photo",
+      "why": {
+       "en": "Carbon dioxide is a raw material for making food.",
+       "hi": "कार्बन डाइऑक्साइड भोजन बनाने का कच्चा माल है।"
+      }
+     },
+     {
+      "id": "givesO2",
+      "text": {
+       "en": "Gives out oxygen",
+       "hi": "ऑक्सीजन छोड़ता है"
+      },
+      "bin": "photo",
+      "why": {
+       "en": "Oxygen is given out while food is made.",
+       "hi": "भोजन बनते समय ऑक्सीजन निकलती है।"
+      }
+     },
+     {
+      "id": "light",
+      "text": {
+       "en": "Needs sunlight",
+       "hi": "धूप चाहिए"
+      },
+      "bin": "photo",
+      "why": {
+       "en": "Light gives the energy to make glucose.",
+       "hi": "प्रकाश ग्लूकोज़ बनाने की ऊर्जा देता है।"
+      }
+     },
+     {
+      "id": "green",
+      "text": {
+       "en": "Happens only in green parts",
+       "hi": "केवल हरे भागों में होता है"
+      },
+      "bin": "photo",
+      "why": {
+       "en": "Only parts with chlorophyll make food.",
+       "hi": "केवल पर्णहरित वाले भाग भोजन बनाते हैं।"
+      }
+     },
+     {
+      "id": "useso2",
+      "text": {
+       "en": "Uses oxygen",
+       "hi": "ऑक्सीजन का उपयोग करता है"
+      },
+      "bin": "resp",
+      "why": {
+       "en": "Glucose is broken down using oxygen.",
+       "hi": "ग्लूकोज़ ऑक्सीजन की मदद से टूटता है।"
+      }
+     },
+     {
+      "id": "energy",
+      "text": {
+       "en": "Releases energy from glucose",
+       "hi": "ग्लूकोज़ से ऊर्जा मुक्त करता है"
+      },
+      "bin": "resp",
+      "why": {
+       "en": "Respiration gives the energy for life.",
+       "hi": "श्वसन जीवन के लिए ऊर्जा देता है।"
+      }
+     },
+     {
+      "id": "night",
+      "text": {
+       "en": "Goes on day and night",
+       "hi": "दिन-रात चलता रहता है"
+      },
+      "bin": "resp",
+      "why": {
+       "en": "Cells respire all the time, even in the dark.",
+       "hi": "कोशिकाएँ हर समय श्वसन करती हैं, अँधेरे में भी।"
+      }
+     },
+     {
+      "id": "seeds",
+      "text": {
+       "en": "Germinating seeds turn lime water milky",
+       "hi": "अंकुरित बीज चूने के पानी को दूधिया करते हैं"
+      },
+      "bin": "resp",
+      "why": {
+       "en": "Respiring seeds give out carbon dioxide.",
+       "hi": "श्वसन करते बीज कार्बन डाइऑक्साइड छोड़ते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:usesco2",
+     "expect": "correct:usesco2",
+     "say": {
+      "en": "Tap the first card, then its process.",
+      "hi": "पहले कार्ड पर टैप करो, फिर उसकी प्रक्रिया पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Germinating seeds in a closed flask turn lime water milky. Which process is that?",
+      "hi": "बंद फ़्लास्क में अंकुरित बीज चूने के पानी को दूधिया करते हैं। यह कौन-सी प्रक्रिया है?"
+     },
+     "options": [
+      {
+       "id": "resp",
+       "en": "Respiration",
+       "hi": "श्वसन"
+      },
+      {
+       "id": "photo",
+       "en": "Photosynthesis",
+       "hi": "प्रकाश संश्लेषण"
+      }
+     ],
+     "answer": "resp"
+    },
+    {
+     "kind": "do",
+     "target": "card:seeds",
+     "expect": "correct:seeds",
+     "say": {
+      "en": "Place the seeds card.",
+      "hi": "बीजों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Plants respire like animals: glucose is broken down with oxygen, giving carbon dioxide, water and energy. Respiration goes on in every living cell, day and night. Photosynthesis happens only in green parts and only in light. The two together keep the balance of oxygen and carbon dioxide in the air.",
+      "hi": "पौधे जंतुओं की तरह श्वसन करते हैं: ग्लूकोज़ ऑक्सीजन के साथ टूटकर कार्बन डाइऑक्साइड, पानी और ऊर्जा देता है। श्वसन हर जीवित कोशिका में दिन-रात चलता है। प्रकाश संश्लेषण केवल हरे भागों में और केवल प्रकाश में होता है। दोनों मिलकर हवा में ऑक्सीजन और कार्बन डाइऑक्साइड का संतुलन बनाए रखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Do plants respire at night?",
+        "hi": "क्या पौधे रात में श्वसन करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes, respiration never stops",
+         "hi": "हाँ, श्वसन कभी नहीं रुकता"
+        },
+        {
+         "en": "No, plants only respire in sunlight",
+         "hi": "नहीं, पौधे केवल धूप में श्वसन करते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cells need energy all the time, so they respire day and night.",
+        "hi": "कोशिकाओं को हर समय ऊर्जा चाहिए, इसलिए वे दिन-रात श्वसन करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is photosynthesis that needs sunlight; respiration does not.",
+         "hi": "धूप की ज़रूरत प्रकाश संश्लेषण को है; श्वसन को नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and sort once more. Write the two word equations side by side. What do you notice?",
+      "hi": "'फिर से शुरू' दबाओ और फिर छाँटो। दोनों शब्द-समीकरण साथ-साथ लिखो। तुम्हें क्या दिखता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "10.1",
+   "use": "The three pots",
+   "shows": "Three identical pots of bean seedlings on a windowsill after three weeks: one green and tall (light and water), one pale and thin from a dark cupboard (no light), one wilted (no water)",
+   "view": "Front view, same framing, daylight",
+   "right": "Differences clear and true: pale yellow without light, drooping without water",
+   "avoid": "Labels baked in"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "10.2.1",
+   "use": "The leaf starch test (teacher demonstration)",
+   "shows": "Frame 1: a green leaf; frame 2: the same leaf, colourless after boiling in alcohol (water bath); frame 3: the leaf on a white tile turned blue-black with iodine",
+   "view": "From above, white tile, same framing",
+   "right": "Leaf pale after alcohol; blue-black only after iodine",
+   "avoid": "Open flame under alcohol, children handling it"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "10.2.1",
+   "use": "Variegated leaf",
+   "shows": "A croton or money-plant leaf with green and white patches; second frame: after the starch test, only the green parts blue-black",
+   "view": "From above, white background",
+   "right": "Pattern of blue-black matches the green parts exactly",
+   "avoid": "Labels"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.2.3",
+   "use": "Oxygen from a water plant",
+   "shows": "A glass jar with a hydrilla plant under water in sunlight, tiny bubbles rising from the leaves",
+   "view": "Side view, bright window light",
+   "right": "Bubbles small and steady from the leaves",
+   "avoid": "Brand jars, labels"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "10.2.4",
+   "use": "Stomata under a microscope",
+   "shows": "A peel of leaf epidermis at 400x showing open stomata with bean-shaped guard cells (microscope: reuse LIB-BIO-microscope)",
+   "view": "Square micrograph, even light",
+   "right": "Guard cells bean-shaped with green chloroplasts; skin cells without",
+   "avoid": "Labels, scale bars"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "10.3.1",
+   "use": "Water moves up the xylem",
+   "shows": "Two white sadabahar twigs in tumblers A (plain water) and B (red ink water); next day the B flowers have red streaks; frame 3: the cut stem of B under a lens showing red dots",
+   "view": "Front view, same framing; macro for frame 3",
+   "right": "Only twig B shows red; red dots in a ring in the stem",
+   "avoid": "Text on tumblers"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "10.4",
+   "use": "Plants respire too",
+   "shows": "A conical flask of germinating moong seeds on wet cotton connected by a tube to lime water that has turned milky, beside a control tube of clear lime water (flask: reuse LIB-LAB-conical-flask)",
+   "view": "Front view, white background, two frames: start and after 24 hours",
+   "right": "Only the lime water joined to the seeds turns milky",
+   "avoid": "Labels A and B baked in"
+  }
+ ]
+}

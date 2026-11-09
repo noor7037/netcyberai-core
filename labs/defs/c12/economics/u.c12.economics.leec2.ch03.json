@@ -1,0 +1,1725 @@
+{
+ "chapter_key": "u.c12.economics.leec2.ch03",
+ "class": 12,
+ "subject_id": "economics",
+ "title": "Production and Costs",
+ "source": "https://ncert.nic.in/textbook/pdf/leec203.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Production function",
+   "labs": [
+    "c12-economics-leec2-ch03-inputs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "The short run and the long run",
+   "labs": [
+    "c12-economics-leec2-ch03-inputs",
+    "c12-economics-leec2-ch03-longrun"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Total product, average product and marginal product",
+   "labs": [
+    "c12-economics-leec2-ch03-tpmpap"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "The law of diminishing marginal product",
+   "labs": [
+    "c12-economics-leec2-ch03-diminishing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Shapes of total product, average product and marginal product curves",
+   "labs": [
+    "c12-economics-leec2-ch03-diminishing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Returns to scale",
+   "labs": [
+    "c12-economics-leec2-ch03-returns"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.7.1",
+   "title": "Short run costs",
+   "labs": [
+    "c12-economics-leec2-ch03-costs",
+    "c12-economics-leec2-ch03-mc",
+    "c12-economics-leec2-ch03-terms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.7.2",
+   "title": "Long run costs",
+   "labs": [
+    "c12-economics-leec2-ch03-longrun"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-economics-leec2-ch03-inputs",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "Fixed or variable input?",
+    "hi": "स्थिर या परिवर्ती साधन?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fixed",
+      "label": {
+       "en": "Fixed input (short run)",
+       "hi": "स्थिर साधन (अल्पकाल)"
+      }
+     },
+     {
+      "id": "var",
+      "label": {
+       "en": "Variable input (short run)",
+       "hi": "परिवर्ती साधन (अल्पकाल)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "i1",
+      "text": {
+       "en": "The oven and shop building",
+       "hi": "ओवन और दुकान की इमारत"
+      },
+      "bin": "fixed",
+      "why": {
+       "en": "They cannot be changed quickly.",
+       "hi": "इन्हें जल्दी बदला नहीं जा सकता।"
+      }
+     },
+     {
+      "id": "i2",
+      "text": {
+       "en": "Flour used each day",
+       "hi": "रोज़ इस्तेमाल हुआ आटा"
+      },
+      "bin": "var",
+      "why": {
+       "en": "More or less flour can be bought tomorrow.",
+       "hi": "कल ज़्यादा या कम आटा ख़रीदा जा सकता है।"
+      }
+     },
+     {
+      "id": "i3",
+      "text": {
+       "en": "Bakers hired for a shift",
+       "hi": "एक पाली के लिए रखे कारीगर"
+      },
+      "bin": "var",
+      "why": {
+       "en": "Workers can be added or sent home fast.",
+       "hi": "मज़दूर जल्दी बढ़ाए या घटाए जा सकते हैं।"
+      }
+     },
+     {
+      "id": "i4",
+      "text": {
+       "en": "Shop space rented for the year",
+       "hi": "साल भर के लिए किराये की दुकान"
+      },
+      "bin": "fixed",
+      "why": {
+       "en": "The rent is the same whatever is baked.",
+       "hi": "चाहे जितना पके, किराया वही रहता है।"
+      }
+     },
+     {
+      "id": "i5",
+      "text": {
+       "en": "Gas used for baking",
+       "hi": "पकाने में लगी गैस"
+      },
+      "bin": "var",
+      "why": {
+       "en": "It rises and falls with the bread baked.",
+       "hi": "यह पकी ब्रेड के साथ घटती-बढ़ती है।"
+      }
+     },
+     {
+      "id": "i6",
+      "text": {
+       "en": "A big machine needing a year to install",
+       "hi": "बड़ी मशीन, जिसे लगाने में साल लगता है"
+      },
+      "bin": "fixed",
+      "why": {
+       "en": "It cannot be changed within the short run.",
+       "hi": "इसे अल्पकाल में बदला नहीं जा सकता।"
+      }
+     },
+     {
+      "id": "i7",
+      "text": {
+       "en": "Packing bags",
+       "hi": "पैकिंग के थैले"
+      },
+      "bin": "var",
+      "why": {
+       "en": "Bought as needed.",
+       "hi": "ज़रूरत के हिसाब से ख़रीदे जाते हैं।"
+      }
+     },
+     {
+      "id": "i8",
+      "text": {
+       "en": "The plot of land the bakery stands on",
+       "hi": "ज़मीन का वह टुकड़ा जिस पर बेकरी खड़ी है"
+      },
+      "bin": "fixed",
+      "why": {
+       "en": "Land is fixed in the short run.",
+       "hi": "ज़मीन अल्पकाल में स्थिर रहती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the short run, a firm can easily change which input?",
+      "hi": "अल्पकाल में फ़र्म आसानी से किस साधन को बदल सकती है?"
+     },
+     "options": [
+      {
+       "id": "w",
+       "en": "The number of workers",
+       "hi": "मज़दूरों की संख्या"
+      },
+      {
+       "id": "f",
+       "en": "The size of the factory",
+       "hi": "कारख़ाने का आकार"
+      }
+     ],
+     "answer": "w"
+    },
+    {
+     "kind": "do",
+     "target": "card:i1",
+     "expect": "placed:i1",
+     "say": {
+      "en": "Tap \"The oven and shop building\", then its group.",
+      "hi": "\"ओवन और दुकान की इमारत\" दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A production function gives the largest output that can be made from each mix of inputs. In the short run at least one input, like the factory, is fixed. Others, like workers and raw materials, are variable. In the long run all inputs can change.",
+      "hi": "उत्पादन फलन साधनों के हर मेल से बनने वाला अधिकतम उत्पादन बताता है। अल्पकाल में कम से कम एक साधन, जैसे कारख़ाना, स्थिर रहता है। दूसरे, जैसे मज़दूर और कच्चा माल, परिवर्ती होते हैं। दीर्घकाल में सभी साधन बदल सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The long run is a time in which...",
+        "hi": "दीर्घकाल वह समय है जिसमें..."
+       },
+       "options": [
+        {
+         "en": "all inputs can be changed",
+         "hi": "सभी साधन बदले जा सकते हैं"
+        },
+        {
+         "en": "no input can be changed",
+         "hi": "कोई साधन बदला नहीं जा सकता"
+        },
+        {
+         "en": "only labour can be changed",
+         "hi": "केवल श्रम बदला जा सकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In the long run, nothing is fixed: land, machines and workers can all change.",
+        "hi": "दीर्घकाल में कुछ भी स्थिर नहीं: ज़मीन, मशीन और मज़दूर सब बदल सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is not true of any period: at least workers or materials can always change.",
+         "hi": "यह किसी अवधि के लिए सही नहीं: कम से कम मज़दूर या सामग्री हमेशा बदल सकती है।"
+        },
+        {
+         "en": "Changing only labour describes the short run.",
+         "hi": "केवल श्रम बदलना अल्पकाल का वर्णन है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A production function shows the relation between...",
+        "hi": "उत्पादन फलन किसके बीच संबंध दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "inputs used and the maximum output",
+         "hi": "लगाए साधन और अधिकतम उत्पादन"
+        },
+        {
+         "en": "price and demand",
+         "hi": "कीमत और माँग"
+        },
+        {
+         "en": "profit and tax",
+         "hi": "लाभ और कर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It tells the most output possible from each combination of inputs.",
+        "hi": "यह बताता है कि साधनों के हर मेल से अधिकतम कितना उत्पादन हो सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a demand relation.",
+         "hi": "यह माँग का संबंध है।"
+        },
+        {
+         "en": "Profit and tax are not what a production function connects.",
+         "hi": "उत्पादन फलन लाभ और कर को नहीं जोड़ता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List the fixed and variable inputs of a tea stall.",
+      "hi": "चाय की दुकान के स्थिर और परिवर्ती साधनों की सूची बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch03-tpmpap",
+   "topic": "3.3",
+   "template": "economy",
+   "title": {
+    "en": "Adding workers to one field",
+    "hi": "एक खेत में मज़दूर जोड़ना"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "production",
+    "params": {
+     "a": 10,
+     "b": 1,
+     "labour": 3
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A field and its tools stay the same. More workers are added one by one. The extra grain from each new worker will...",
+      "hi": "खेत और औज़ार वही रहते हैं। एक-एक करके मज़दूर जुड़ते हैं। हर नए मज़दूर से मिला अतिरिक्त अनाज..."
+     },
+     "options": [
+      {
+       "id": "updown",
+       "en": "first rise, then fall",
+       "hi": "पहले बढ़ेगा, फिर घटेगा"
+      },
+      {
+       "id": "up",
+       "en": "always rise",
+       "hi": "हमेशा बढ़ेगा"
+      },
+      {
+       "id": "same",
+       "en": "stay the same",
+       "hi": "वही रहेगा"
+      }
+     ],
+     "answer": "updown"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "computed",
+     "say": {
+      "en": "Press \"Hire workers one by one\" and watch total product, MP and AP.",
+      "hi": "\"एक-एक करके मज़दूर रखो\" दबाओ और कुल उत्पाद, MP और AP देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:table",
+     "expect": "computed",
+     "say": {
+      "en": "Switch on \"Show the table\" to read the numbers.",
+      "hi": "संख्याएँ पढ़ने के लिए \"तालिका दिखाओ\" चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:labour",
+     "expect": "computed",
+     "say": {
+      "en": "Set the workers to 5 and read TP, MP and AP.",
+      "hi": "मज़दूर 5 पर रखो और TP, MP, AP पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Total product (TP) is all the output. Average product (AP) is TP ÷ workers. Marginal product (MP) is the extra output from one more worker. With 4 workers TP is 96; with 5 it is 125, so the fifth worker adds 29 and AP is 125 ÷ 5 = 25. The numbers are an example.",
+      "hi": "कुल उत्पाद (TP) सारा उत्पादन है। औसत उत्पाद (AP) = TP ÷ मज़दूर। सीमांत उत्पाद (MP) एक और मज़दूर से मिला अतिरिक्त उत्पादन है। 4 मज़दूरों से TP 96 है; 5 से 125, इसलिए पाँचवाँ मज़दूर 29 जोड़ता है और AP = 125 ÷ 5 = 25। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Marginal product is...",
+        "hi": "सीमांत उत्पाद है..."
+       },
+       "options": [
+        {
+         "en": "the extra output from one more worker",
+         "hi": "एक और मज़दूर से मिला अतिरिक्त उत्पादन"
+        },
+        {
+         "en": "total output divided by workers",
+         "hi": "कुल उत्पादन ÷ मज़दूर"
+        },
+        {
+         "en": "the highest output possible",
+         "hi": "सबसे ज़्यादा संभव उत्पादन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Marginal means the extra one.",
+        "hi": "सीमांत का अर्थ है एक और इकाई।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is average product.",
+         "hi": "वह औसत उत्पाद है।"
+        },
+        {
+         "en": "The highest output is where TP peaks, not MP.",
+         "hi": "सबसे ज़्यादा उत्पादन वहाँ है जहाँ TP शिखर पर हो, MP नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "TP is 96 with 4 workers and 125 with 5. What is the MP of the 5th worker?",
+        "hi": "4 मज़दूरों पर TP 96 और 5 पर 125 है। पाँचवें मज़दूर का MP क्या है?"
+       },
+       "options": [
+        {
+         "en": "29 units",
+         "hi": "29 इकाई"
+        },
+        {
+         "en": "25 units",
+         "hi": "25 इकाई"
+        },
+        {
+         "en": "125 units",
+         "hi": "125 इकाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "125 − 96 = 29 units.",
+        "hi": "125 − 96 = 29 इकाई।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "25 is the average product, 125 ÷ 5.",
+         "hi": "25 औसत उत्पाद है, 125 ÷ 5।"
+        },
+        {
+         "en": "125 is the total product.",
+         "hi": "125 कुल उत्पाद है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Hire all the workers. After which worker does the total product start to fall?",
+      "hi": "सारे मज़दूर रख लो। किस मज़दूर के बाद कुल उत्पाद घटने लगता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch03-diminishing",
+   "topic": "3.4",
+   "template": "economy",
+   "title": {
+    "en": "When more workers add less",
+    "hi": "जब ज़्यादा मज़दूर कम जोड़ें"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "production",
+    "params": {
+     "a": 10,
+     "b": 1,
+     "labour": 7
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When the marginal product is zero, total product is...",
+      "hi": "जब सीमांत उत्पाद शून्य हो, तब कुल उत्पाद..."
+     },
+     "options": [
+      {
+       "id": "max",
+       "en": "at its highest",
+       "hi": "सबसे ज़्यादा होता है"
+      },
+      {
+       "id": "zero",
+       "en": "zero",
+       "hi": "शून्य होता है"
+      },
+      {
+       "id": "falling",
+       "en": "falling fast",
+       "hi": "तेज़ी से घट रहा होता है"
+      }
+     ],
+     "answer": "max"
+    },
+    {
+     "kind": "do",
+     "target": "slider:labour",
+     "expect": "computed",
+     "say": {
+      "en": "Move the worker slider to 4. This is where MP is highest.",
+      "hi": "मज़दूर स्लाइडर 4 पर ले जाओ। यहाँ MP सबसे ज़्यादा है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:labour",
+     "expect": "computed",
+     "say": {
+      "en": "Now move it to 7, where MP is almost zero and TP is highest.",
+      "hi": "अब इसे 7 पर ले जाओ, जहाँ MP लगभग शून्य और TP सबसे ज़्यादा है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:labour",
+     "expect": "computed",
+     "say": {
+      "en": "Go to 8 workers. What happens to MP and TP?",
+      "hi": "8 मज़दूरों पर जाओ। MP और TP का क्या होता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "After the fourth worker each extra worker adds less than the one before: this is the law of diminishing marginal product. MP cuts AP from above at AP's highest point (near 5 workers). When MP reaches zero, TP is at its peak. Beyond that, extra workers crowd the field and MP is negative, so TP falls.",
+      "hi": "चौथे मज़दूर के बाद हर नया मज़दूर पिछले से कम जोड़ता है: यही ह्रासमान सीमांत उत्पाद का नियम है। MP, AP को उसके सबसे ऊँचे बिंदु (लगभग 5 मज़दूर) पर ऊपर से काटता है। MP शून्य होने पर TP अपने शिखर पर होता है। उसके बाद अतिरिक्त मज़दूर खेत में भीड़ करते हैं, MP ऋणात्मक हो जाता है और TP घटता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "MP is above AP. Then AP is...",
+        "hi": "MP, AP से ऊपर है। तब AP..."
+       },
+       "options": [
+        {
+         "en": "rising",
+         "hi": "बढ़ रहा है"
+        },
+        {
+         "en": "falling",
+         "hi": "घट रहा है"
+        },
+        {
+         "en": "at its peak",
+         "hi": "शिखर पर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A new value above the average pulls the average up.",
+        "hi": "औसत से ऊपर की नई संख्या औसत को ऊपर खींचती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "AP falls only when MP is below it.",
+         "hi": "AP तब घटता है जब MP उससे नीचे हो।"
+        },
+        {
+         "en": "AP peaks where MP equals AP.",
+         "hi": "AP वहाँ शिखर पर होता है जहाँ MP = AP।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When does total product fall?",
+        "hi": "कुल उत्पाद कब घटता है?"
+       },
+       "options": [
+        {
+         "en": "when MP is negative",
+         "hi": "जब MP ऋणात्मक हो"
+        },
+        {
+         "en": "when MP is positive but small",
+         "hi": "जब MP धनात्मक पर छोटा हो"
+        },
+        {
+         "en": "when AP is rising",
+         "hi": "जब AP बढ़ रहा हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A negative extra output makes the total smaller.",
+        "hi": "ऋणात्मक अतिरिक्त उत्पादन कुल को छोटा कर देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A positive MP, even small, still raises TP.",
+         "hi": "धनात्मक MP, छोटा भी हो, TP को बढ़ाता ही है।"
+        },
+        {
+         "en": "AP can rise while TP rises; it says nothing about TP falling.",
+         "hi": "TP बढ़ते समय भी AP बढ़ सकता है; इससे TP के घटने का पता नहीं चलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tick the table and find the worker count where AP is highest. Does MP equal AP there?",
+      "hi": "तालिका दिखाओ और वह मज़दूर संख्या ढूँढ़ो जहाँ AP सबसे ज़्यादा है। क्या वहाँ MP = AP के क़रीब है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch03-returns",
+   "topic": "3.6",
+   "template": "sort",
+   "title": {
+    "en": "Returns to scale",
+    "hi": "पैमाने के प्रतिफल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "irs",
+      "label": {
+       "en": "Increasing returns",
+       "hi": "बढ़ते प्रतिफल"
+      }
+     },
+     {
+      "id": "crs",
+      "label": {
+       "en": "Constant returns",
+       "hi": "स्थिर प्रतिफल"
+      }
+     },
+     {
+      "id": "drs",
+      "label": {
+       "en": "Decreasing returns",
+       "hi": "घटते प्रतिफल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "r1",
+      "text": {
+       "en": "All inputs double, output becomes 3 times",
+       "hi": "सारे साधन दोगुने, उत्पादन 3 गुना"
+      },
+      "bin": "irs",
+      "why": {
+       "en": "Output grows more than inputs: increasing returns.",
+       "hi": "उत्पादन साधनों से ज़्यादा बढ़ा: बढ़ते प्रतिफल।"
+      }
+     },
+     {
+      "id": "r2",
+      "text": {
+       "en": "All inputs double, output doubles",
+       "hi": "सारे साधन दोगुने, उत्पादन दोगुना"
+      },
+      "bin": "crs",
+      "why": {
+       "en": "Output grows in the same proportion: constant returns.",
+       "hi": "उत्पादन उसी अनुपात में बढ़ा: स्थिर प्रतिफल।"
+      }
+     },
+     {
+      "id": "r3",
+      "text": {
+       "en": "All inputs double, output rises 1.5 times",
+       "hi": "सारे साधन दोगुने, उत्पादन 1.5 गुना"
+      },
+      "bin": "drs",
+      "why": {
+       "en": "Output grows less than inputs: decreasing returns.",
+       "hi": "उत्पादन साधनों से कम बढ़ा: घटते प्रतिफल।"
+      }
+     },
+     {
+      "id": "r4",
+      "text": {
+       "en": "Inputs up 10%, output up 15%",
+       "hi": "साधन 10% बढ़े, उत्पादन 15% बढ़ा"
+      },
+      "bin": "irs",
+      "why": {
+       "en": "15% is more than 10%.",
+       "hi": "15%, 10% से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "r5",
+      "text": {
+       "en": "Inputs up 10%, output up 10%",
+       "hi": "साधन 10% बढ़े, उत्पादन 10% बढ़ा"
+      },
+      "bin": "crs",
+      "why": {
+       "en": "Same percentage.",
+       "hi": "प्रतिशत वही है।"
+      }
+     },
+     {
+      "id": "r6",
+      "text": {
+       "en": "Inputs up 10%, output up 6%",
+       "hi": "साधन 10% बढ़े, उत्पादन 6% बढ़ा"
+      },
+      "bin": "drs",
+      "why": {
+       "en": "6% is less than 10%.",
+       "hi": "6%, 10% से कम है।"
+      }
+     },
+     {
+      "id": "r7",
+      "text": {
+       "en": "All inputs triple, output triples",
+       "hi": "सारे साधन तिगुने, उत्पादन तिगुना"
+      },
+      "bin": "crs",
+      "why": {
+       "en": "Output rises exactly 3 times.",
+       "hi": "उत्पादन ठीक 3 गुना बढ़ा।"
+      }
+     },
+     {
+      "id": "r8",
+      "text": {
+       "en": "All inputs halve, output falls to a quarter",
+       "hi": "सारे साधन आधे, उत्पादन चौथाई"
+      },
+      "bin": "irs",
+      "why": {
+       "en": "Output falls more than inputs; so output rises more than inputs when scaling up.",
+       "hi": "उत्पादन साधनों से ज़्यादा घटा; इसलिए बढ़ाने पर उत्पादन साधनों से ज़्यादा बढ़ेगा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bakery doubles ALL its inputs. Output rises 2.5 times. This is...",
+      "hi": "एक बेकरी अपने सारे साधन दोगुने करती है। उत्पादन 2.5 गुना होता है। यह है..."
+     },
+     "options": [
+      {
+       "id": "irs",
+       "en": "increasing returns to scale",
+       "hi": "बढ़ते प्रतिफल"
+      },
+      {
+       "id": "crs",
+       "en": "constant returns to scale",
+       "hi": "स्थिर प्रतिफल"
+      },
+      {
+       "id": "drs",
+       "en": "decreasing returns to scale",
+       "hi": "घटते प्रतिफल"
+      }
+     ],
+     "answer": "irs"
+    },
+    {
+     "kind": "do",
+     "target": "card:r1",
+     "expect": "placed:r1",
+     "say": {
+      "en": "Tap the first card, then tap the group it belongs to.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Returns to scale ask what happens to output when ALL inputs change by the same proportion. If output rises by a bigger proportion, returns are increasing; the same proportion, constant; a smaller proportion, decreasing.",
+      "hi": "पैमाने के प्रतिफल पूछते हैं कि जब सभी साधन एक ही अनुपात में बदलें तो उत्पादन का क्या होता है। उत्पादन ज़्यादा अनुपात में बढ़े तो प्रतिफल बढ़ते हैं; उसी अनुपात में बढ़े तो स्थिर; कम अनुपात में बढ़े तो घटते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How is returns to scale different from diminishing marginal product?",
+        "hi": "पैमाने के प्रतिफल और ह्रासमान सीमांत उत्पाद में क्या अंतर है?"
+       },
+       "options": [
+        {
+         "en": "Returns to scale changes ALL inputs; marginal product changes one",
+         "hi": "पैमाने के प्रतिफल में सभी साधन बदलते हैं; सीमांत उत्पाद में एक"
+        },
+        {
+         "en": "There is no difference",
+         "hi": "कोई अंतर नहीं"
+        },
+        {
+         "en": "Returns to scale is about price",
+         "hi": "पैमाने के प्रतिफल का संबंध कीमत से है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Returns to scale is a long-run idea: every input is scaled up together.",
+        "hi": "पैमाने के प्रतिफल दीर्घकाल का विचार है: सभी साधन एक साथ बढ़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They are different: one is long-run, the other short-run.",
+         "hi": "दोनों अलग हैं: एक दीर्घकाल का है, दूसरा अल्पकाल का।"
+        },
+        {
+         "en": "Neither is about price; both are about output and inputs.",
+         "hi": "दोनों का संबंध कीमत से नहीं, उत्पादन और साधनों से है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make two new cards of your own for each group.",
+      "hi": "हर समूह के लिए अपने दो नए कार्ड बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch03-costs",
+   "topic": "3.7.1",
+   "template": "economy",
+   "title": {
+    "en": "The cost of baking loaves",
+    "hi": "पाव बनाने की लागत"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "costs",
+    "params": {
+     "q": 5,
+     "tfc": 60
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bakery pays ₹60 rent a day, whether it bakes 1 loaf or 100. Rent is a... cost.",
+      "hi": "एक बेकरी रोज़ ₹60 किराया देती है, चाहे 1 पाव बनाए या 100। किराया... लागत है।"
+     },
+     "options": [
+      {
+       "id": "fixed",
+       "en": "fixed",
+       "hi": "स्थिर"
+      },
+      {
+       "id": "var",
+       "en": "variable",
+       "hi": "परिवर्ती"
+      },
+      {
+       "id": "marg",
+       "en": "marginal",
+       "hi": "सीमांत"
+      }
+     ],
+     "answer": "fixed"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:totals",
+     "expect": "computed",
+     "say": {
+      "en": "Switch on \"Show total costs\" to see TFC, TVC and TC.",
+      "hi": "TFC, TVC और TC देखने के लिए \"कुल लागतें दिखाओ\" चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:q",
+     "expect": "computed",
+     "say": {
+      "en": "Raise the output slider. Which cost stays flat and which rises?",
+      "hi": "उत्पादन स्लाइडर बढ़ाओ। कौन-सी लागत समतल रहती है और कौन-सी बढ़ती है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:tfc",
+     "expect": "computed",
+     "say": {
+      "en": "Raise the rent. Watch what changes and what does not.",
+      "hi": "किराया बढ़ाओ। देखो क्या बदलता है और क्या नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Total fixed cost (TFC) stays the same at every output. Total variable cost (TVC) rises with output. Total cost is TFC + TVC. At 5 loaves TVC is ₹100 and TFC ₹60, so TC is ₹160. Average fixed cost (TFC ÷ output) keeps falling as output rises, because the rent is spread over more loaves. The numbers are an example.",
+      "hi": "कुल स्थिर लागत (TFC) हर उत्पादन स्तर पर वही रहती है। कुल परिवर्ती लागत (TVC) उत्पादन के साथ बढ़ती है। कुल लागत = TFC + TVC। 5 पाव पर TVC ₹100 और TFC ₹60 है, इसलिए TC ₹160 है। औसत स्थिर लागत (TFC ÷ उत्पादन) उत्पादन बढ़ने पर घटती जाती है, क्योंकि किराया ज़्यादा पावों में बँट जाता है। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If output doubles, what happens to total fixed cost?",
+        "hi": "उत्पादन दोगुना हो तो कुल स्थिर लागत का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It stays the same",
+         "hi": "वही रहती है"
+        },
+        {
+         "en": "It doubles",
+         "hi": "दोगुनी हो जाती है"
+        },
+        {
+         "en": "It halves",
+         "hi": "आधी हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fixed means it does not move with output.",
+        "hi": "स्थिर का मतलब है कि वह उत्पादन के साथ नहीं बदलती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That describes variable cost, roughly.",
+         "hi": "यह मोटे तौर पर परिवर्ती लागत का वर्णन है।"
+        },
+        {
+         "en": "The average fixed cost halves, not the total.",
+         "hi": "औसत स्थिर लागत आधी होती है, कुल नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Total cost is...",
+        "hi": "कुल लागत है..."
+       },
+       "options": [
+        {
+         "en": "TFC + TVC",
+         "hi": "TFC जमा TVC"
+        },
+        {
+         "en": "TFC − TVC",
+         "hi": "TFC घटा TVC"
+        },
+        {
+         "en": "TFC × TVC",
+         "hi": "TFC गुणा TVC"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every cost is either fixed or variable, so we add them.",
+        "hi": "हर लागत या तो स्थिर है या परिवर्ती, इसलिए हम उन्हें जोड़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Subtracting would leave less than either part.",
+         "hi": "घटाने पर किसी भी भाग से कम बचेगा।"
+        },
+        {
+         "en": "Multiplying costs has no meaning here.",
+         "hi": "लागतों को गुणा करने का यहाँ कोई अर्थ नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set output to 1, then to 10. Compare the average fixed cost. What do you see?",
+      "hi": "उत्पादन 1 करो, फिर 10। औसत स्थिर लागत की तुलना करो। क्या दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch03-mc",
+   "topic": "3.7.1",
+   "template": "economy",
+   "title": {
+    "en": "Marginal cost meets average cost",
+    "hi": "सीमांत लागत औसत लागत से मिलती है"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "costs",
+    "params": {
+     "q": 3,
+     "tfc": 60
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Marginal cost (MC) is the extra cost of one more loaf. As the bakery bakes more, MC first...",
+      "hi": "सीमांत लागत (MC) एक और पाव की अतिरिक्त लागत है। जैसे बेकरी ज़्यादा बनाती है, MC पहले..."
+     },
+     "options": [
+      {
+       "id": "fallrise",
+       "en": "falls, then rises",
+       "hi": "घटती है, फिर बढ़ती है"
+      },
+      {
+       "id": "rise",
+       "en": "only rises",
+       "hi": "केवल बढ़ती है"
+      },
+      {
+       "id": "fall",
+       "en": "only falls",
+       "hi": "केवल घटती है"
+      }
+     ],
+     "answer": "fallrise"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "computed",
+     "say": {
+      "en": "Press \"Raise output step by step\" and follow the MC curve.",
+      "hi": "\"उत्पादन धीरे-धीरे बढ़ाओ\" दबाओ और MC वक्र को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:q",
+     "expect": "computed",
+     "say": {
+      "en": "Move output to 7.5 loaves. See where MC crosses average variable cost (AVC).",
+      "hi": "उत्पादन 7.5 पाव पर ले जाओ। देखो MC औसत परिवर्ती लागत (AVC) को कहाँ काटती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "MC first falls (at 5 loaves it is ₹15), then rises. When MC is below the average, the average falls; when MC is above, the average rises. So MC cuts AVC at AVC's lowest point (₹18.75 at 7.5 loaves) and cuts average cost (AC) at its lowest point (about ₹25.9 near 9 loaves). The numbers are an example.",
+      "hi": "MC पहले घटती है (5 पाव पर ₹15), फिर बढ़ती है। MC औसत से नीचे हो तो औसत घटता है; ऊपर हो तो औसत बढ़ता है। इसलिए MC, AVC को उसके सबसे निचले बिंदु (7.5 पाव पर ₹18.75) पर काटती है और औसत लागत (AC) को उसके सबसे निचले बिंदु (लगभग 9 पाव पर ₹25.9) पर। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "MC is below AVC. Then AVC is...",
+        "hi": "MC, AVC से नीचे है। तब AVC..."
+       },
+       "options": [
+        {
+         "en": "falling",
+         "hi": "घट रही है"
+        },
+        {
+         "en": "rising",
+         "hi": "बढ़ रही है"
+        },
+        {
+         "en": "constant",
+         "hi": "स्थिर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A new cost below the average pulls the average down.",
+        "hi": "औसत से नीचे की नई लागत औसत को नीचे खींचती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "AVC rises when MC is above it.",
+         "hi": "MC ऊपर हो तो AVC बढ़ती है।"
+        },
+        {
+         "en": "AVC is constant only when MC equals it.",
+         "hi": "AVC तभी स्थिर होती है जब MC उसके बराबर हो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "MC cuts AC at AC's...",
+        "hi": "MC, AC को AC के... पर काटती है।"
+       },
+       "options": [
+        {
+         "en": "lowest point",
+         "hi": "सबसे निचले बिंदु"
+        },
+        {
+         "en": "highest point",
+         "hi": "सबसे ऊँचे बिंदु"
+        },
+        {
+         "en": "starting point",
+         "hi": "शुरुआती बिंदु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At the bottom the average stops falling and starts rising, and MC equals AC.",
+        "hi": "तल पर औसत घटना छोड़कर बढ़ने लगता है और MC = AC होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "AC has no highest point on this curve; it is U-shaped.",
+         "hi": "इस वक्र पर AC का कोई सबसे ऊँचा बिंदु नहीं; यह U आकार का है।"
+        },
+        {
+         "en": "The curves meet where the average turns, not at a start.",
+         "hi": "वक्र वहाँ मिलते हैं जहाँ औसत मुड़ता है, शुरुआत में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn on the totals. Look at how TC changes slope as MC changes.",
+      "hi": "कुल लागतें चालू करो। देखो MC बदलने से TC की ढलान कैसे बदलती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch03-terms",
+   "topic": "3.7.1",
+   "template": "match",
+   "title": {
+    "en": "Name that cost",
+    "hi": "उस लागत का नाम बताओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "tfc",
+      "left": {
+       "en": "TFC",
+       "hi": "कुल स्थिर लागत (TFC)"
+      },
+      "right": {
+       "en": "Cost that does not change with output, like rent",
+       "hi": "वह लागत जो उत्पादन से नहीं बदलती, जैसे किराया"
+      },
+      "why": {
+       "en": "Fixed costs stay put.",
+       "hi": "स्थिर लागतें टिकी रहती हैं।"
+      }
+     },
+     {
+      "id": "tvc",
+      "left": {
+       "en": "TVC",
+       "hi": "कुल परिवर्ती लागत (TVC)"
+      },
+      "right": {
+       "en": "Cost that rises with output, like flour and wages",
+       "hi": "वह लागत जो उत्पादन से बढ़ती है, जैसे आटा और मज़दूरी"
+      },
+      "why": {
+       "en": "Variable costs follow output.",
+       "hi": "परिवर्ती लागतें उत्पादन के साथ चलती हैं।"
+      }
+     },
+     {
+      "id": "tc",
+      "left": {
+       "en": "TC",
+       "hi": "कुल लागत (TC)"
+      },
+      "right": {
+       "en": "TFC + TVC",
+       "hi": "TFC + TVC"
+      },
+      "why": {
+       "en": "All costs together.",
+       "hi": "सब लागतें मिलाकर।"
+      }
+     },
+     {
+      "id": "afc",
+      "left": {
+       "en": "AFC",
+       "hi": "औसत स्थिर लागत (AFC)"
+      },
+      "right": {
+       "en": "TFC ÷ output",
+       "hi": "TFC ÷ उत्पादन"
+      },
+      "why": {
+       "en": "Fixed cost per unit.",
+       "hi": "प्रति इकाई स्थिर लागत।"
+      }
+     },
+     {
+      "id": "avc",
+      "left": {
+       "en": "AVC",
+       "hi": "औसत परिवर्ती लागत (AVC)"
+      },
+      "right": {
+       "en": "TVC ÷ output",
+       "hi": "TVC ÷ उत्पादन"
+      },
+      "why": {
+       "en": "Variable cost per unit.",
+       "hi": "प्रति इकाई परिवर्ती लागत।"
+      }
+     },
+     {
+      "id": "ac",
+      "left": {
+       "en": "AC",
+       "hi": "औसत लागत (AC)"
+      },
+      "right": {
+       "en": "TC ÷ output, also AFC + AVC",
+       "hi": "TC ÷ उत्पादन, यानी AFC + AVC"
+      },
+      "why": {
+       "en": "Total cost per unit.",
+       "hi": "प्रति इकाई कुल लागत।"
+      }
+     },
+     {
+      "id": "mc",
+      "left": {
+       "en": "MC",
+       "hi": "सीमांत लागत (MC)"
+      },
+      "right": {
+       "en": "Extra cost of making one more unit",
+       "hi": "एक और इकाई बनाने की अतिरिक्त लागत"
+      },
+      "why": {
+       "en": "The change in total cost for one more unit.",
+       "hi": "एक और इकाई से कुल लागत में आया बदलाव।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which cost per unit is made of two parts, one for fixed and one for variable cost?",
+      "hi": "प्रति इकाई कौन-सी लागत दो भागों से बनी है, एक स्थिर और एक परिवर्ती लागत का?"
+     },
+     "options": [
+      {
+       "id": "ac",
+       "en": "Average cost",
+       "hi": "औसत लागत"
+      },
+      {
+       "id": "mc",
+       "en": "Marginal cost",
+       "hi": "सीमांत लागत"
+      },
+      {
+       "id": "afc",
+       "en": "Average fixed cost",
+       "hi": "औसत स्थिर लागत"
+      }
+     ],
+     "answer": "ac"
+    },
+    {
+     "kind": "do",
+     "target": "left:tc",
+     "expect": "matched:tc",
+     "say": {
+      "en": "Tap \"TC\" on the left, then the meaning that matches it.",
+      "hi": "बाईं ओर \"TC\" दबाओ, फिर उससे मेल खाता अर्थ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all seven and press Check.",
+      "hi": "सातों मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Costs come in totals and per-unit forms. TC = TFC + TVC. Dividing by output gives AFC, AVC and AC (AC = AFC + AVC). MC is the extra cost of one more unit.",
+      "hi": "लागतें कुल और प्रति इकाई, दोनों रूपों में होती हैं। TC = TFC + TVC। उत्पादन से भाग देने पर AFC, AVC और AC मिलती हैं (AC = AFC + AVC)। MC एक और इकाई की अतिरिक्त लागत है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which average cost keeps falling as output rises?",
+        "hi": "उत्पादन बढ़ने पर कौन-सी औसत लागत लगातार घटती है?"
+       },
+       "options": [
+        {
+         "en": "AFC",
+         "hi": "औसत स्थिर लागत (AFC)"
+        },
+        {
+         "en": "AVC",
+         "hi": "औसत परिवर्ती लागत (AVC)"
+        },
+        {
+         "en": "MC",
+         "hi": "सीमांत लागत (MC)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The same fixed cost is shared by more units.",
+        "hi": "वही स्थिर लागत ज़्यादा इकाइयों में बँटती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "AVC falls and then rises.",
+         "hi": "AVC पहले घटती है, फिर बढ़ती है।"
+        },
+        {
+         "en": "MC is not an average, and it also rises later.",
+         "hi": "MC औसत नहीं है, और वह भी बाद में बढ़ती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Cover the right side and say each meaning aloud.",
+      "hi": "दाईं ओर ढको और हर अर्थ ज़ोर से बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch03-longrun",
+   "topic": "3.7.2",
+   "template": "sort",
+   "title": {
+    "en": "Short-run or long-run cost?",
+    "hi": "अल्पकालीन या दीर्घकालीन लागत?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sr",
+      "label": {
+       "en": "Short-run cost",
+       "hi": "अल्पकालीन लागत"
+      }
+     },
+     {
+      "id": "lr",
+      "label": {
+       "en": "Long-run cost",
+       "hi": "दीर्घकालीन लागत"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "l1",
+      "text": {
+       "en": "Rent of a factory fixed for a year",
+       "hi": "साल भर के लिए तय कारख़ाने का किराया"
+      },
+      "bin": "sr",
+      "why": {
+       "en": "A fixed cost exists only in the short run.",
+       "hi": "स्थिर लागत केवल अल्पकाल में होती है।"
+      }
+     },
+     {
+      "id": "l2",
+      "text": {
+       "en": "The firm can build a second factory",
+       "hi": "फ़र्म दूसरा कारख़ाना बना सकती है"
+      },
+      "bin": "lr",
+      "why": {
+       "en": "Changing the size of the plant needs the long run.",
+       "hi": "संयंत्र का आकार बदलने के लिए दीर्घकाल चाहिए।"
+      }
+     },
+     {
+      "id": "l3",
+      "text": {
+       "en": "Every input can be changed",
+       "hi": "हर साधन बदला जा सकता है"
+      },
+      "bin": "lr",
+      "why": {
+       "en": "In the long run no input is fixed.",
+       "hi": "दीर्घकाल में कोई साधन स्थिर नहीं।"
+      }
+     },
+     {
+      "id": "l4",
+      "text": {
+       "en": "Only workers and raw material can be added",
+       "hi": "केवल मज़दूर और कच्चा माल बढ़ाए जा सकते हैं"
+      },
+      "bin": "sr",
+      "why": {
+       "en": "The rest are fixed.",
+       "hi": "बाक़ी स्थिर हैं।"
+      }
+     },
+     {
+      "id": "l5",
+      "text": {
+       "en": "There is no fixed cost at all",
+       "hi": "कोई स्थिर लागत है ही नहीं"
+      },
+      "bin": "lr",
+      "why": {
+       "en": "All costs are variable in the long run.",
+       "hi": "दीर्घकाल में सभी लागतें परिवर्ती होती हैं।"
+      }
+     },
+     {
+      "id": "l6",
+      "text": {
+       "en": "Total cost = fixed cost + variable cost",
+       "hi": "कुल लागत = स्थिर लागत + परिवर्ती लागत"
+      },
+      "bin": "sr",
+      "why": {
+       "en": "This split needs a fixed part.",
+       "hi": "इस बँटवारे के लिए एक स्थिर भाग चाहिए।"
+      }
+     },
+     {
+      "id": "l7",
+      "text": {
+       "en": "Choosing the cheapest plant size",
+       "hi": "सबसे सस्ता संयंत्र आकार चुनना"
+      },
+      "bin": "lr",
+      "why": {
+       "en": "Plant size is chosen in the long run.",
+       "hi": "संयंत्र का आकार दीर्घकाल में चुना जाता है।"
+      }
+     },
+     {
+      "id": "l8",
+      "text": {
+       "en": "The big machine cannot be changed now",
+       "hi": "बड़ी मशीन अभी बदली नहीं जा सकती"
+      },
+      "bin": "sr",
+      "why": {
+       "en": "A fixed machine marks the short run.",
+       "hi": "स्थिर मशीन अल्पकाल की पहचान है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the long run, a firm's total fixed cost is...",
+      "hi": "दीर्घकाल में फ़र्म की कुल स्थिर लागत..."
+     },
+     "options": [
+      {
+       "id": "zero",
+       "en": "zero, since nothing is fixed",
+       "hi": "शून्य, क्योंकि कुछ भी स्थिर नहीं"
+      },
+      {
+       "id": "same",
+       "en": "the same as in the short run",
+       "hi": "अल्पकाल जितनी ही"
+      },
+      {
+       "id": "up",
+       "en": "always higher",
+       "hi": "हमेशा ज़्यादा"
+      }
+     ],
+     "answer": "zero"
+    },
+    {
+     "kind": "do",
+     "target": "card:l1",
+     "expect": "placed:l1",
+     "say": {
+      "en": "Tap the first card, then its group.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the short run some inputs are fixed, so there are fixed and variable costs. In the long run all inputs can change, so all costs are variable and the firm can pick the cheapest plant size for the output it wants.",
+      "hi": "अल्पकाल में कुछ साधन स्थिर होते हैं, इसलिए स्थिर और परिवर्ती लागतें होती हैं। दीर्घकाल में सभी साधन बदल सकते हैं, इसलिए सभी लागतें परिवर्ती हैं और फ़र्म चाहे उत्पादन के लिए सबसे सस्ता संयंत्र आकार चुन सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which has a fixed cost: short run or long run?",
+        "hi": "किसमें स्थिर लागत होती है: अल्पकाल या दीर्घकाल?"
+       },
+       "options": [
+        {
+         "en": "Short run",
+         "hi": "अल्पकाल"
+        },
+        {
+         "en": "Long run",
+         "hi": "दीर्घकाल"
+        },
+        {
+         "en": "Both",
+         "hi": "दोनों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fixed costs belong to inputs that cannot change quickly.",
+        "hi": "स्थिर लागतें उन साधनों की होती हैं जो जल्दी बदल नहीं सकते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In the long run every input can change, so no cost is fixed.",
+         "hi": "दीर्घकाल में हर साधन बदल सकता है, इसलिए कोई लागत स्थिर नहीं।"
+        },
+        {
+         "en": "Only the short run has a fixed part.",
+         "hi": "केवल अल्पकाल में स्थिर भाग होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a school that runs more buses. What can it change this month and what only in a year?",
+      "hi": "सोचो एक स्कूल ज़्यादा बसें चलाता है। इस महीने वह क्या बदल सकता है और क्या केवल साल भर में?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook: a small bakery, inputs at work",
+   "shows": "A small Indian bakery: a brick oven, shelves of flour sacks, two bakers kneading dough, trays of loaves",
+   "view": "Eye level, warm daylight, 16:9",
+   "right": "Real flour sacks, steel trays, oven; hands and backs only",
+   "avoid": "Faces, readable brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Workers on one field",
+   "shows": "A wheat field with 2, then 5, then 8 workers harvesting in three frames, same camera",
+   "view": "Same wide view for all three frames, morning light, 16:9",
+   "right": "Same plot; the number of workers is the only change",
+   "avoid": "Faces, readable text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "3.3",
+   "use": "Crowding: too many workers in a small workspace",
+   "shows": "Four frames of a small workshop bench with 1, 2, 4 and 7 people around it",
+   "view": "Fixed top-oblique camera, even light, same size",
+   "right": "Same bench; people shown from the back",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "3.7",
+   "use": "Cost items in the bakery lab",
+   "shows": "Cut-outs of a flour sack, a rolling pin, a gas cylinder, a stack of ₹100 notes and a coin purse, each separate",
+   "view": "Straight front view, soft top-left light, transparent background",
+   "right": "True colours and sizes; ₹ notes real",
+   "avoid": "Labels, brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "3.7",
+   "use": "Base for the cost curves",
+   "shows": "A clean empty graph frame with quantity on the horizontal and cost in rupees on the vertical axis",
+   "view": "Flat, white or transparent background, 4:3",
+   "right": "Light grid, axis arrows",
+   "avoid": "Numbers, words or curves inside"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.6",
+   "use": "Scaling up a factory",
+   "shows": "A small garment workshop next to the same workshop expanded to a large hall with many machines",
+   "view": "Same side view, even daylight, 16:9",
+   "right": "Same product (stitched shirts), same style of machines",
+   "avoid": "Brand names, faces"
+  }
+ ]
+}

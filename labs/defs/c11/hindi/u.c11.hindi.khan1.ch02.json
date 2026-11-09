@@ -1,0 +1,780 @@
+{
+ "chapter_key": "u.c11.hindi.khan1.ch02",
+ "class": 11,
+ "subject_id": "hindi",
+ "title": "आवारा मसीहा",
+ "source": "https://ncert.nic.in/textbook/pdf/khan102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Sarat and his family (पात्र)",
+   "labs": [
+    "c11-hindi-khan1-ch02-people"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "The last day in the garden (डायरी लेखन)",
+   "labs": [
+    "c11-hindi-khan1-ch02-diary"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Words about Sarat's nature (शब्द)",
+   "labs": [
+    "c11-hindi-khan1-ch02-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "How a writer is made (संदेश)",
+   "labs": [],
+   "why_no_lab": "A class talk on how childhood shapes a writer, with the reader, works better than a game."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-hindi-khan1-ch02-people",
+   "topic": "2.1",
+   "template": "reader",
+   "title": {
+    "en": "Sarat and his family",
+    "hi": "शरत् और उसका परिवार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Sarat in his grandfather's house",
+      "hi": "नाना के घर में शरत्"
+     },
+     "lines": [
+      "शरत् अपने नाना केदारनाथ के घर रहता है, जहाँ मामा और मौसियाँ बहुत हैं।",
+      "पिता मोतीलाल घुमक्कड़ और स्वप्नदर्शी हैं, जो कहानियाँ और नाटक शुरू करते हैं पर पूरा कभी नहीं कर पाते।",
+      "नाना केदारनाथ स्कूल के मंत्री भी हैं, इसलिए घर में उनका अनुशासन कड़ा है।",
+      "छोटा मामा सुरेंद्र शरत् का दोस्त जैसा है, और दोनों पुराने बाग में घूमते हैं।",
+      "शरत् शरारती है, फिर भी पढ़ाई में परिश्रम करता है और साथियों का दलपति बन जाता है।"
+     ]
+    },
+    "characters": [
+     {
+      "id": "sarat",
+      "name": {
+       "en": "Sarat",
+       "hi": "शरत्"
+      },
+      "traits": [
+       {
+        "en": "naughty but hardworking",
+        "hi": "शरारती पर परिश्रमी"
+       },
+       {
+        "en": "a leader among friends, starting games like the butterfly business",
+        "hi": "साथियों का नेता, जो तितली-उद्योग जैसे खेल चलाता है"
+       }
+      ]
+     },
+     {
+      "id": "motilal",
+      "name": {
+       "en": "Motilal",
+       "hi": "मोतीलाल"
+      },
+      "traits": [
+       {
+        "en": "a wandering dreamer, Sarat's father",
+        "hi": "घुमक्कड़ और स्वप्नदर्शी, शरत् के पिता"
+       },
+       {
+        "en": "leaves his stories unfinished",
+        "hi": "अपनी कहानियाँ अधूरी छोड़ देते हैं"
+       }
+      ]
+     },
+     {
+      "id": "kedar",
+      "name": {
+       "en": "Kedarnath",
+       "hi": "केदारनाथ"
+      },
+      "traits": [
+       {
+        "en": "the maternal grandfather, strict head of the household and school secretary",
+        "hi": "नाना, कड़क मुखिया और स्कूल के मंत्री"
+       }
+      ]
+     },
+     {
+      "id": "surendra",
+      "name": {
+       "en": "Surendra",
+       "hi": "सुरेंद्र"
+      },
+      "traits": [
+       {
+        "en": "Sarat's young uncle who goes to the old garden with him",
+        "hi": "शरत् का छोटा मामा जो उसके साथ पुराने बाग में जाता है"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of Sarat's family members do you think is the dreamer who never finishes his stories?",
+      "hi": "तुम्हें क्या लगता है, शरत् के परिवार में वह सपनों वाला कौन है जो अपनी कहानियाँ कभी पूरी नहीं करता?"
+     },
+     "options": [
+      {
+       "id": "motilal",
+       "en": "His father Motilal",
+       "hi": "उसके पिता मोतीलाल"
+      },
+      {
+       "id": "kedar",
+       "en": "His grandfather Kedarnath",
+       "hi": "उसके नाना केदारनाथ"
+      },
+      {
+       "id": "surendra",
+       "en": "His uncle Surendra",
+       "hi": "उसके मामा सुरेंद्र"
+      }
+     ],
+     "answer": "motilal"
+    },
+    {
+     "kind": "do",
+     "target": "character:sarat",
+     "expect": "picked:sarat",
+     "say": {
+      "en": "Tap Sarat, the boy of the story.",
+      "hi": "शरत् को छुओ, जो कहानी का लड़का है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:motilal",
+     "expect": "picked:motilal",
+     "say": {
+      "en": "Now tap Motilal, his father.",
+      "hi": "अब उसके पिता मोतीलाल को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the clue about one character.",
+      "hi": "किसी एक पात्र के संकेत का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This part of Vishnu Prabhakar's life of Sarat shows the home that shaped the writer: a strict grandfather, a dreamer father, a friendly uncle, and a naughty clever boy. Sarat's father's unfinished stories and his grandfather's rules together form the world from which a great storyteller grows.",
+      "hi": "विष्णु प्रभाकर की शरत् की जीवनी का यह अंश उस घर को दिखाता है जिसने लेखक को गढ़ा: कड़क नाना, सपनों में खोए पिता, दोस्त जैसा मामा और शरारती तेज़ लड़का। पिता की अधूरी कहानियाँ और नाना के नियम मिलकर वह दुनिया बनाते हैं जिससे एक महान कथाकार निकलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who is Sarat's father?",
+        "hi": "शरत् के पिता कौन हैं?"
+       },
+       "options": [
+        {
+         "en": "Motilal",
+         "hi": "मोतीलाल"
+        },
+        {
+         "en": "Kedarnath",
+         "hi": "केदारनाथ"
+        },
+        {
+         "en": "Surendra",
+         "hi": "सुरेंद्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Motilal is a dreamer who writes but cannot finish.",
+        "hi": "मोतीलाल सपनों में खोए रहते हैं और लिखते हैं पर पूरा नहीं कर पाते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Kedarnath is the maternal grandfather.",
+         "hi": "केदारनाथ नाना हैं।"
+        },
+        {
+         "en": "Surendra is Sarat's uncle.",
+         "hi": "सुरेंद्र शरत् के मामा हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is Kedarnath's role in the school?",
+        "hi": "स्कूल में केदारनाथ की भूमिका क्या है?"
+       },
+       "options": [
+        {
+         "en": "He is the school's secretary",
+         "hi": "वे स्कूल के मंत्री (सचिव) हैं"
+        },
+        {
+         "en": "He is a student",
+         "hi": "वे विद्यार्थी हैं"
+        },
+        {
+         "en": "He sells sweets",
+         "hi": "वे मिठाई बेचते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "That is one reason the house follows strict rules.",
+        "hi": "यही एक कारण है कि घर में कड़े नियम चलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "He is an elder, not a student.",
+         "hi": "वे बड़े हैं, विद्यार्थी नहीं।"
+        },
+        {
+         "en": "Sweets are not his business.",
+         "hi": "मिठाई बेचना उनका काम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a family member in the story and say what you learn about Sarat from that person.",
+      "hi": "कहानी का कोई परिवार-सदस्य चुनो और बताओ कि उससे तुम शरत् के बारे में क्या जानते हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khan1-ch02-diary",
+   "topic": "2.2",
+   "template": "writing",
+   "title": {
+    "en": "Sarat's last day in the garden",
+    "hi": "बाग में शरत् का आख़िरी दिन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "kind": "diary",
+    "lang": "hi",
+    "task": {
+     "en": "Imagine you are Sarat on the day you must leave your grandfather's house. Put the parts of your diary page in the right places.",
+     "hi": "सोचो तुम शरत् हो और आज नाना का घर छोड़ने का दिन है। अपनी डायरी के पन्ने के भाग सही जगह रखो।"
+    },
+    "parts": [
+     {
+      "id": "date",
+      "slot": "date",
+      "text": {
+       "en": "The last evening",
+       "hi": "आख़िरी शाम"
+      }
+     },
+     {
+      "id": "hello",
+      "slot": "greeting",
+      "text": {
+       "en": "Dear Diary,",
+       "hi": "प्रिय डायरी,"
+      }
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": {
+       "en": "Today I went to the old garden with Uncle Surendra. The thought of leaving this place made my heart very heavy.",
+       "hi": "आज मैं मामा सुरेंद्र के साथ पुराने बाग में गया। यहाँ से जाने की बात सोचकर मन बहुत भारी था।"
+      }
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": {
+       "en": "We talked for hours. I said that this garden would call me and I would never be able to forget it.",
+       "hi": "हम घंटों बातें करते रहे। मैंने कहा कि यह बाग मुझे पुकारेगा और मैं इसे कभी नहीं भूल सकूँगा।"
+      }
+     },
+     {
+      "id": "b3",
+      "slot": "body",
+      "text": {
+       "en": "Climbing the trees, I remembered all my old mischief. I wished that time would stop right here.",
+       "hi": "पेड़ों पर चढ़ते हुए मुझे अपनी सारी पुरानी शरारतें याद आईं। मन किया कि समय यहीं रुक जाए।"
+      }
+     },
+     {
+      "id": "sign",
+      "slot": "signoff",
+      "text": {
+       "en": "Yours, Sarat",
+       "hi": "तुम्हारा, शरत्"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:date",
+     "expect": "placed:date",
+     "say": {
+      "en": "Pick the date line and place it at the top.",
+      "hi": "दिनांक वाली पंक्ति चुनकर सबसे ऊपर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Diaries record feelings as well as events. What feeling is strongest in this page?",
+      "hi": "डायरी में घटनाओं के साथ भावनाएँ भी लिखी जाती हैं। इस पन्ने में कौन-सी भावना सबसे गहरी है?"
+     },
+     "options": [
+      {
+       "id": "sad",
+       "en": "Sorrow of parting from a loved place",
+       "hi": "प्यारी जगह से बिछड़ने का दुख"
+      },
+      {
+       "id": "anger",
+       "en": "Anger at his uncle",
+       "hi": "मामा पर क्रोध"
+      },
+      {
+       "id": "boredom",
+       "en": "Boredom",
+       "hi": "ऊब"
+      }
+     ],
+     "answer": "sad"
+    },
+    {
+     "kind": "do",
+     "target": "part:hello",
+     "expect": "placed:hello",
+     "say": {
+      "en": "Place the greeting “प्रिय डायरी,” after the date.",
+      "hi": "“प्रिय डायरी,” संबोधन को दिनांक के बाद रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Press Check when the diary page is complete.",
+      "hi": "डायरी का पन्ना पूरा होने पर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A diary page makes a feeling real: the heavy heart, the long talk with a friendly uncle, the climbing of trees for one last time. A writer like Sarat grew from such small, true moments, and learned to put them into words.",
+      "hi": "डायरी का पन्ना किसी भावना को सच्चा बना देता है: भारी मन, दोस्त जैसे मामा से लंबी बातें, आख़िरी बार पेड़ों पर चढ़ना। शरत् जैसे लेखक ऐसे ही छोटे और सच्चे क्षणों से बने, और उन्हें शब्दों में ढालना सीखा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Whom does Sarat go to the old garden with?",
+        "hi": "शरत् पुराने बाग में किसके साथ जाता है?"
+       },
+       "options": [
+        {
+         "en": "His uncle Surendra",
+         "hi": "अपने मामा सुरेंद्र के साथ"
+        },
+        {
+         "en": "His father Motilal",
+         "hi": "अपने पिता मोतीलाल के साथ"
+        },
+        {
+         "en": "His teacher",
+         "hi": "अपने शिक्षक के साथ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The two are friends as much as uncle and nephew.",
+        "hi": "दोनों मामा-भांजे से ज़्यादा दोस्त हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "His father is a wandering dreamer elsewhere.",
+         "hi": "पिता घुमक्कड़ हैं और कहीं और रहते हैं।"
+        },
+        {
+         "en": "No teacher goes with him in this scene.",
+         "hi": "इस दृश्य में कोई शिक्षक साथ नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the diary line “the garden will call me” show?",
+        "hi": "डायरी की पंक्ति “यह बाग मुझे पुकारेगा” क्या दिखाती है?"
+       },
+       "options": [
+        {
+         "en": "A deep bond with a place he loves",
+         "hi": "प्यारी जगह से गहरा लगाव"
+        },
+        {
+         "en": "Fear of ghosts",
+         "hi": "भूतों का डर"
+        },
+        {
+         "en": "A wish to go away",
+         "hi": "दूर जाने की इच्छा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sarat feels the garden as a living friend.",
+        "hi": "शरत् बाग को जीवित मित्र की तरह महसूस करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The line is tender, not scary.",
+         "hi": "पंक्ति कोमल है, डरावनी नहीं।"
+        },
+        {
+         "en": "He does not want to leave; that is the pain.",
+         "hi": "वह जाना नहीं चाहता; यही उसकी पीड़ा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write two lines about a place you love and would miss, in the voice of your own diary.",
+      "hi": "किसी ऐसी जगह के बारे में दो पंक्तियाँ लिखो जिसे तुम प्यार करते हो और जिसे याद करोगे, अपनी डायरी की आवाज़ में।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khan1-ch02-words",
+   "topic": "2.3",
+   "template": "reader",
+   "title": {
+    "en": "Words about Sarat's nature",
+    "hi": "शरत् के स्वभाव के शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "A restless childhood",
+      "hi": "एक अशांत बचपन"
+     },
+     "lines": [
+      "मोतीलाल यायावर प्रकृति के थे और एक जगह बँधकर नहीं रह पाते थे।",
+      "वे स्वप्नदर्शी थे और कहानियाँ अधूरी छोड़ देते थे।",
+      "शरत् अपने साथियों का दलपति बनकर नई-नई शरारतें और खेल रचता था।",
+      "नाना का अनुशासन कड़ा था, और घर में सब उसका पालन करते थे।",
+      "पढ़ाई में शरत् ने परिश्रम से अपनी जगह बनाई।"
+     ]
+    },
+    "words": [
+     {
+      "w": "यायावर",
+      "meaning": {
+       "en": "a wanderer who never settles",
+       "hi": "घुमक्कड़ जो कहीं टिकता नहीं"
+      }
+     },
+     {
+      "w": "स्वप्नदर्शी",
+      "meaning": {
+       "en": "one who sees dreams, a dreamer",
+       "hi": "सपने देखने वाला"
+      }
+     },
+     {
+      "w": "दलपति",
+      "meaning": {
+       "en": "the leader of a group",
+       "hi": "दल का नेता"
+      }
+     },
+     {
+      "w": "अनुशासन",
+      "meaning": {
+       "en": "discipline, order by rules",
+       "hi": "नियमों से चलने की अनुशासित व्यवस्था"
+      }
+     },
+     {
+      "w": "परिश्रम",
+      "meaning": {
+       "en": "hard work",
+       "hi": "कड़ी मेहनत"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press play and listen to the short passage.",
+      "hi": "चलाने वाला बटन दबाकर छोटा अंश सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word describes someone who dreams a lot but may not finish what he starts?",
+      "hi": "ऐसे व्यक्ति के लिए कौन-सा शब्द है जो बहुत सपने देखता है पर शुरू किया काम पूरा नहीं करता?"
+     },
+     "options": [
+      {
+       "id": "dream",
+       "en": "स्वप्नदर्शी",
+       "hi": "स्वप्नदर्शी"
+      },
+      {
+       "id": "leader",
+       "en": "दलपति",
+       "hi": "दलपति"
+      },
+      {
+       "id": "work",
+       "en": "परिश्रम",
+       "hi": "परिश्रम"
+      }
+     ],
+     "answer": "dream"
+    },
+    {
+     "kind": "do",
+     "target": "word:स्वप्नदर्शी",
+     "expect": "found:स्वप्नदर्शी",
+     "say": {
+      "en": "Find and tap the word स्वप्नदर्शी.",
+      "hi": "स्वप्नदर्शी शब्द ढूँढकर उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:दलपति",
+     "expect": "found:दलपति",
+     "say": {
+      "en": "Find the word for the leader of a group.",
+      "hi": "दल के नेता का शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:यायावर",
+     "expect": "found:यायावर",
+     "say": {
+      "en": "Find the word for a wanderer.",
+      "hi": "घुमक्कड़ का शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about a word.",
+      "hi": "शब्द के बारे में सवाल का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "These five words capture the home Sarat grew up in: a यायावर, स्वप्नदर्शी father, a grandfather of strict अनुशासन, a boy who becomes the दलपति of friends, and the परिश्रम by which he made his place. Each is a trait that shaped the writer.",
+      "hi": "ये पाँच शब्द उस घर को पकड़ते हैं जिसमें शरत् पला: यायावर, स्वप्नदर्शी पिता, कड़े अनुशासन वाले नाना, साथियों का दलपति बनता लड़का, और वह परिश्रम जिससे उसने अपनी जगह बनाई। हर शब्द लेखक को गढ़ने वाला एक गुण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does अनुशासन mean?",
+        "hi": "अनुशासन का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Order and discipline by rules",
+         "hi": "नियमों से चलने का क्रम और अनुशासन"
+        },
+        {
+         "en": "Wandering",
+         "hi": "घूमना-फिरना"
+        },
+        {
+         "en": "Dreaming",
+         "hi": "सपने देखना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Kedarnath ran the house with strict अनुशासन.",
+        "hi": "केदारनाथ घर को कड़े अनुशासन से चलाते थे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wandering is यायावर.",
+         "hi": "घुमक्कड़ी यायावर से जुड़ी है।"
+        },
+        {
+         "en": "Dreaming is the quality of a स्वप्नदर्शी.",
+         "hi": "सपने देखना स्वप्नदर्शी का गुण है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is a दलपति?",
+        "hi": "दलपति कौन होता है?"
+       },
+       "options": [
+        {
+         "en": "The leader of a group",
+         "hi": "किसी दल का नेता"
+        },
+        {
+         "en": "A tired person",
+         "hi": "थका हुआ व्यक्ति"
+        },
+        {
+         "en": "A teacher",
+         "hi": "एक शिक्षक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sarat led his friends in his games and mischief.",
+        "hi": "शरत् अपने खेल और शरारतों में साथियों का नेता था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A tired person has no word like this.",
+         "hi": "थके हुए आदमी के लिए यह शब्द नहीं है।"
+        },
+        {
+         "en": "A teacher is a शिक्षक or गुरु.",
+         "hi": "शिक्षक को शिक्षक या गुरु कहते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a word and say a sentence about someone in your own life who is like that.",
+      "hi": "कोई शब्द चुनो और अपने जीवन के किसी ऐसे व्यक्ति के बारे में एक वाक्य बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Hook of the chapter",
+   "shows": "An old overgrown garden of mango and jamun trees on a small town outskirts in the late afternoon",
+   "view": "Eye level, wide",
+   "right": "Dappled sun, tall trees, a mossy wall",
+   "avoid": "People, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "The grandfather's house",
+   "shows": "An old two-storey house of a Bengali town with a courtyard and a veranda",
+   "view": "Eye level from the courtyard",
+   "right": "Whitewashed walls, wooden shutters, tulsi plant",
+   "avoid": "Faces, readable boards"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "The butterfly business",
+   "shows": "Hands holding a net over a bright flower garden, a small box with coloured butterflies",
+   "view": "Close, shallow depth",
+   "right": "Real butterflies, bright petals; not harmed",
+   "avoid": "Faces, pinned or dead insects"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "School of the time",
+   "shows": "A wooden slate frame with a slate pencil and an old schoolbag of cloth",
+   "view": "Three-quarter view, transparent background",
+   "right": "Grey slate, light wood, cotton bag",
+   "avoid": "Writing on the slate"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "2.2",
+   "use": "Climbing a tree",
+   "shows": "Four frames of a boy's hands and feet climbing a tree trunk with a rope around his waist, seen from behind",
+   "view": "Same angle at the tree",
+   "right": "The boy moves up in each frame; his body is turned away",
+   "avoid": "Face, unsafe poses"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "A wandering father",
+   "shows": "A man's back as he walks a long country road with a cloth bundle, early morning mist",
+   "view": "Wide, from behind",
+   "right": "Long road, mist, a cloth bundle and a stick",
+   "avoid": "Face, vehicles"
+  }
+ ]
+}

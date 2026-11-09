@@ -1,0 +1,1124 @@
+{
+ "chapter_key": "u.c11.economics.keec1.ch01",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Indian Economy on the Eve of Independence",
+ "source": "https://ncert.nic.in/textbook/pdf/keec101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Introduction: the colonial economy",
+   "labs": [],
+   "why_no_lab": "A short overview that the reader introduces; the labs below build each part."
+  },
+  {
+   "n": "1.2",
+   "title": "Low level of economic development under colonial rule",
+   "labs": [],
+   "why_no_lab": "The idea is the sum of the next sections; the detective lab and the reader show it together."
+  },
+  {
+   "n": "1.3",
+   "title": "Agricultural sector: stagnation, zamindari, commercialisation",
+   "labs": [
+    "c11-economics-keec1-ch01-detective"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Industrial sector: deindustrialisation and few modern industries",
+   "labs": [
+    "c11-economics-keec1-ch01-detective"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Foreign trade under colonial rule",
+   "labs": [
+    "c11-economics-keec1-ch01-port-clerk"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Demographic condition",
+   "labs": [],
+   "why_no_lab": "A few figures on literacy, life span and infant deaths are best read in the reader with photos; the timeline marks the 1921 divide."
+  },
+  {
+   "n": "1.7",
+   "title": "Occupational structure",
+   "labs": [
+    "c11-economics-keec1-ch01-occupations"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.8",
+   "title": "Infrastructure",
+   "labs": [
+    "c11-economics-keec1-ch01-timeline"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.9",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary of the chapter, best read and discussed."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-keec1-ch01-occupations",
+   "topic": "1.7",
+   "template": "data",
+   "title": {
+    "en": "Where Indians worked in 1947",
+    "hi": "1947 में भारतीय कहाँ काम करते थे"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "views": [
+     "pie",
+     "bar"
+    ],
+    "ask": "max",
+    "title": {
+     "en": "Share of workers by sector, about 1947 (per cent)",
+     "hi": "क्षेत्रक के अनुसार श्रमिक, लगभग 1947 (प्रतिशत)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Agriculture",
+       "hi": "कृषि"
+      },
+      "value": 72
+     },
+     {
+      "label": {
+       "en": "Manufacturing",
+       "hi": "विनिर्माण"
+      },
+      "value": 10
+     },
+     {
+      "label": {
+       "en": "Services",
+       "hi": "सेवाएँ"
+      },
+      "value": 18
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At Independence, which sector gave work to the most Indians?",
+      "hi": "स्वतंत्रता के समय किस क्षेत्रक ने सबसे ज़्यादा भारतीयों को काम दिया?"
+     },
+     "options": [
+      {
+       "id": "agri",
+       "en": "Agriculture",
+       "hi": "कृषि"
+      },
+      {
+       "id": "manu",
+       "en": "Manufacturing (factories)",
+       "hi": "विनिर्माण (कारख़ाने)"
+      },
+      {
+       "id": "serv",
+       "en": "Services (trade, transport, offices)",
+       "hi": "सेवाएँ (व्यापार, परिवहन, दफ़्तर)"
+      }
+     ],
+     "answer": "agri"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the biggest slice of the pie to read its share.",
+      "hi": "पाई के सबसे बड़े हिस्से पर टैप करो और उसका प्रतिशत पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "chart:bar",
+     "expect": "plotted",
+     "say": {
+      "en": "Now tap \"Bar graph\" to see the same numbers as bars.",
+      "hi": "अब \"दंड आलेख\" पर टैप करो और वही अंक दंडों के रूप में देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question below the graph: pick the sector with the largest share.",
+      "hi": "ग्राफ़ के नीचे के प्रश्न का उत्तर दो: सबसे बड़े हिस्से वाला क्षेत्रक चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "About 7 out of every 10 workers depended on farming, only about 1 in 10 worked in manufacturing, and the rest in services. When most people work on farms that produce little, the whole country stays poor. This is the occupational structure of a backward, colonial economy. In a few regions, such as parts of Madras, Bombay and Bengal, the share of farm workers was falling, while in others it was rising.",
+      "hi": "हर 10 में से लगभग 7 श्रमिक खेती पर निर्भर थे, केवल लगभग 1 विनिर्माण में था, और बाक़ी सेवाओं में। जब ज़्यादातर लोग कम उपज वाले खेतों में काम करते हैं, तो पूरा देश ग़रीब रहता है। यही एक पिछड़ी, औपनिवेशिक अर्थव्यवस्था की व्यावसायिक संरचना है। मद्रास, बंबई और बंगाल के कुछ भागों में खेतिहर श्रमिकों का हिस्सा घट रहा था, जबकि कुछ दूसरे क्षेत्रों में बढ़ रहा था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does \"occupational structure\" mean?",
+        "hi": "\"व्यावसायिक संरचना\" का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "How workers are spread across different sectors",
+         "hi": "श्रमिक अलग-अलग क्षेत्रकों में कैसे बँटे हैं"
+        },
+        {
+         "en": "The number of factories in a country",
+         "hi": "किसी देश में कारख़ानों की संख्या"
+        },
+        {
+         "en": "The buildings where people work",
+         "hi": "वे इमारतें जहाँ लोग काम करते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is the share of workers in agriculture, industry and services.",
+        "hi": "यह कृषि, उद्योग और सेवाओं में श्रमिकों का हिस्सा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Factories are only one part; the structure is about where all workers are employed.",
+         "hi": "कारख़ाने केवल एक भाग हैं; संरचना इस बारे में है कि सभी श्रमिक कहाँ काम करते हैं।"
+        },
+        {
+         "en": "\"Structure\" here is not a building; it is the pattern of jobs.",
+         "hi": "यहाँ \"संरचना\" कोई इमारत नहीं; यह कामों का ढाँचा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a 72 per cent share of agriculture a sign of a backward economy?",
+        "hi": "कृषि का 72 प्रतिशत हिस्सा पिछड़ी अर्थव्यवस्था का संकेत क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Farming is bad work",
+         "hi": "खेती बुरा काम है"
+        },
+        {
+         "en": "Too many people depended on low-productivity farming, with few other jobs",
+         "hi": "बहुत लोग कम उत्पादकता वाली खेती पर निर्भर थे, दूसरे काम कम थे"
+        },
+        {
+         "en": "Indian farms were too big",
+         "hi": "भारतीय खेत बहुत बड़े थे"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Farm output per worker was low, and industry and services were too small to give other work.",
+        "hi": "प्रति श्रमिक खेती की उपज कम थी, और उद्योग व सेवाएँ इतनी छोटी थीं कि दूसरा काम नहीं दे सकती थीं।"
+       },
+       "wrong": [
+        {
+         "en": "Farming is useful work; the problem was low productivity and lack of other jobs.",
+         "hi": "खेती उपयोगी काम है; समस्या कम उत्पादकता और दूसरे कामों की कमी थी।"
+        },
+        "",
+        {
+         "en": "Most farms were small; size is not the reason here.",
+         "hi": "ज़्यादातर खेत छोटे थे; यहाँ आकार कारण नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the sliders to imagine a developed country where only about 10 per cent work on farms. Which sectors must grow to give everyone else a job?",
+      "hi": "स्लाइडर खिसकाकर एक विकसित देश की कल्पना करो जहाँ केवल लगभग 10 प्रतिशत लोग खेती करते हैं। बाक़ी सबको काम देने के लिए किन क्षेत्रकों को बढ़ना होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch01-timeline",
+   "topic": "1.8",
+   "template": "timeline",
+   "title": {
+    "en": "Milestones of the colonial economy",
+    "hi": "औपनिवेशिक अर्थव्यवस्था के पड़ाव"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "range": [
+     1840,
+     1950
+    ],
+    "task": "order",
+    "title": {
+     "en": "Put the events in order, earliest first",
+     "hi": "घटनाओं को क्रम में लगाओ, सबसे पहली पहले"
+    },
+    "events": [
+     {
+      "id": "rail",
+      "year": 1850,
+      "label": {
+       "en": "Railways begin in India",
+       "hi": "भारत में रेलवे की शुरुआत"
+      },
+      "detail": {
+       "en": "Railways let the British carry raw materials to ports and sell British goods inland.",
+       "hi": "रेलवे से अंग्रेज़ कच्चा माल बंदरगाहों तक ले जाते और अंदरूनी इलाक़ों में ब्रिटिश माल बेचते।"
+      }
+     },
+     {
+      "id": "suez",
+      "year": 1869,
+      "label": {
+       "en": "Suez Canal opens",
+       "hi": "स्वेज़ नहर खुली"
+      },
+      "detail": {
+       "en": "A shorter sea route to Britain made trade cheaper and tightened British control of India's trade.",
+       "hi": "ब्रिटेन तक छोटे समुद्री मार्ग से व्यापार सस्ता हुआ और भारत के व्यापार पर ब्रिटिश नियंत्रण कड़ा हुआ।"
+      }
+     },
+     {
+      "id": "census",
+      "year": 1881,
+      "label": {
+       "en": "First official census",
+       "hi": "पहली आधिकारिक जनगणना"
+      },
+      "detail": {
+       "en": "The first count of India's whole population by the colonial government.",
+       "hi": "औपनिवेशिक सरकार द्वारा भारत की पूरी जनसंख्या की पहली गिनती।"
+      }
+     },
+     {
+      "id": "divide",
+      "year": 1921,
+      "label": {
+       "en": "The \"great divide\" in population",
+       "hi": "जनसंख्या का \"महान विभाजन\""
+      },
+      "detail": {
+       "en": "After this year India entered the second stage of the demographic transition: deaths fell, births stayed high.",
+       "hi": "इस वर्ष के बाद भारत जनांकिकीय संक्रमण के दूसरे चरण में पहुँचा: मृत्यु दर घटी, जन्म दर ऊँची रही।"
+      }
+     },
+     {
+      "id": "free",
+      "year": 1947,
+      "label": {
+       "en": "India becomes independent",
+       "hi": "भारत स्वतंत्र हुआ"
+      },
+      "detail": {
+       "en": "India inherited a poor, stagnant economy shaped for Britain's needs.",
+       "hi": "भारत को ब्रिटेन की ज़रूरतों के लिए बनी एक ग़रीब, ठहरी हुई अर्थव्यवस्था मिली।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which came first: the opening of the Suez Canal or India's first official census?",
+      "hi": "पहले क्या हुआ: स्वेज़ नहर का खुलना या भारत की पहली आधिकारिक जनगणना?"
+     },
+     "options": [
+      {
+       "id": "suez",
+       "en": "The Suez Canal",
+       "hi": "स्वेज़ नहर"
+      },
+      {
+       "id": "census",
+       "en": "The first census",
+       "hi": "पहली जनगणना"
+      },
+      {
+       "id": "same",
+       "en": "Both in the same year",
+       "hi": "दोनों एक ही वर्ष"
+      }
+     ],
+     "answer": "suez"
+    },
+    {
+     "kind": "do",
+     "target": "event:rail",
+     "expect": "placed:rail",
+     "say": {
+      "en": "Tap \"Railways begin in India\" to put it first.",
+      "hi": "\"भारत में रेलवे की शुरुआत\" पर टैप करो, ताकि यह पहले आए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:suez",
+     "expect": "placed:suez",
+     "say": {
+      "en": "Tap \"Suez Canal opens\" next.",
+      "hi": "अब \"स्वेज़ नहर खुली\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:census",
+     "expect": "placed:census",
+     "say": {
+      "en": "Tap \"First official census\".",
+      "hi": "\"पहली आधिकारिक जनगणना\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:divide",
+     "expect": "placed:divide",
+     "say": {
+      "en": "Tap \"The great divide in population\".",
+      "hi": "\"जनसंख्या का महान विभाजन\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:free",
+     "expect": "placed:free",
+     "say": {
+      "en": "Tap \"India becomes independent\".",
+      "hi": "\"भारत स्वतंत्र हुआ\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "ordered",
+     "say": {
+      "en": "Tap \"Check\" to see if the order is right.",
+      "hi": "\"जाँचो\" पर टैप करो और देखो क्रम सही है या नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Railways (1850) and the Suez Canal (1869) were built mainly to move raw materials out of India and British goods in. The census of 1881 and the turn after 1921 show that the population began to grow faster, while health and literacy stayed very poor. By 1947 India had some roads, railways, ports and posts, but they served colonial trade more than the people.",
+      "hi": "रेलवे (1850) और स्वेज़ नहर (1869) मुख्य रूप से भारत से कच्चा माल बाहर ले जाने और ब्रिटिश माल अंदर लाने के लिए थे। 1881 की जनगणना और 1921 के बाद का मोड़ दिखाते हैं कि जनसंख्या तेज़ी से बढ़ने लगी, जबकि स्वास्थ्य और साक्षरता बहुत ख़राब रहे। 1947 तक भारत में कुछ सड़कें, रेलें, बंदरगाह और डाक थे, पर वे लोगों से ज़्यादा औपनिवेशिक व्यापार के काम आते थे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did the British build railways in India?",
+        "hi": "अंग्रेज़ों ने भारत में रेलवे क्यों बनाई?"
+       },
+       "options": [
+        {
+         "en": "Mainly to serve their own trade and rule",
+         "hi": "मुख्य रूप से अपने व्यापार और शासन के लिए"
+        },
+        {
+         "en": "Mainly to give Indians cheap holidays",
+         "hi": "मुख्य रूप से भारतीयों को सस्ती छुट्टियाँ देने के लिए"
+        },
+        {
+         "en": "Because Indian farmers asked for them",
+         "hi": "क्योंकि भारतीय किसानों ने इन्हें माँगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Railways carried raw cotton, jute and grain to ports and British goods inland; they also moved troops.",
+        "hi": "रेलें कच्ची कपास, जूट और अनाज बंदरगाहों तक और ब्रिटिश माल अंदर ले जाती थीं; सेना भी इन्हीं से जाती थी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Railways did let people travel, but that was a side effect, not the main aim.",
+         "hi": "रेलों से लोग यात्रा भी करते थे, पर यह मुख्य उद्देश्य नहीं, एक साथ का असर था।"
+        },
+        {
+         "en": "Farmers had no say in colonial policy; the decision served British interests.",
+         "hi": "औपनिवेशिक नीति में किसानों की कोई आवाज़ नहीं थी; यह निर्णय ब्रिटिश हितों के लिए था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "After 1921, deaths fell but births stayed high. What happened to population?",
+        "hi": "1921 के बाद मृत्यु दर घटी पर जन्म दर ऊँची रही। जनसंख्या का क्या हुआ?"
+       },
+       "options": [
+        {
+         "en": "It fell",
+         "hi": "घटी"
+        },
+        {
+         "en": "It stayed the same",
+         "hi": "उतनी ही रही"
+        },
+        {
+         "en": "It grew faster",
+         "hi": "तेज़ी से बढ़ी"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "More births than deaths every year means the population grows faster.",
+        "hi": "हर साल मृत्यु से ज़्यादा जन्म होने का अर्थ है जनसंख्या तेज़ी से बढ़ती है।"
+       },
+       "wrong": [
+        {
+         "en": "Population falls only when deaths are more than births.",
+         "hi": "जनसंख्या तभी घटती है जब मृत्यु जन्म से ज़्यादा हों।"
+        },
+        {
+         "en": "It stays the same only when births and deaths are equal.",
+         "hi": "यह तभी उतनी रहती है जब जन्म और मृत्यु बराबर हों।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap each card to read its detail. Then tap \"Start again\" and try to order the events from memory.",
+      "hi": "हर कार्ड पर टैप करके उसका विवरण पढ़ो। फिर \"फिर से शुरू करो\" दबाओ और याद से घटनाओं को क्रम में लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch01-port-clerk",
+   "topic": "1.5",
+   "template": "scenario",
+   "title": {
+    "en": "A day at Bombay port, 1900",
+    "hi": "बंबई बंदरगाह पर एक दिन, 1900"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "port",
+    "role": {
+     "en": "Clerk at the customs house",
+     "hi": "सीमा-शुल्क दफ़्तर का क्लर्क"
+    },
+    "scenes": [
+     {
+      "id": "cotton",
+      "text": {
+       "en": "It is 1900. Ships crowd Bombay port. Workers load huge bales of raw cotton onto a ship going to Britain. You must write the cargo in the register. What is it?",
+       "hi": "सन 1900 है। बंबई बंदरगाह पर जहाज़ों की भीड़ है। मज़दूर कच्ची कपास की बड़ी गाँठें ब्रिटेन जाने वाले जहाज़ पर लाद रहे हैं। तुम्हें रजिस्टर में माल लिखना है। यह क्या है?"
+      },
+      "choices": [
+       {
+        "id": "cotton-export",
+        "text": {
+         "en": "An export of a raw material",
+         "hi": "कच्चे माल का निर्यात"
+        },
+        "next": "cloth",
+        "feedback": {
+         "en": "Right. India sent out raw cotton, jute, silk, indigo and sugar. British mills turned them into finished goods.",
+         "hi": "सही। भारत कच्ची कपास, जूट, रेशम, नील और चीनी बाहर भेजता था। ब्रिटिश मिलें इनसे तैयार माल बनाती थीं।"
+        },
+        "good": true
+       },
+       {
+        "id": "cotton-import",
+        "text": {
+         "en": "An import of finished goods",
+         "hi": "तैयार माल का आयात"
+        },
+        "next": "cloth",
+        "feedback": {
+         "en": "The bales are leaving India, and raw cotton is not finished. It is an export of raw material.",
+         "hi": "गाँठें भारत से बाहर जा रही हैं, और कच्ची कपास तैयार माल नहीं है। यह कच्चे माल का निर्यात है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "cloth",
+      "text": {
+       "en": "The next ship comes from Manchester. It unloads rolls of cheap machine-made cotton cloth for Indian shops. How do you write it?",
+       "hi": "अगला जहाज़ मैनचेस्टर से आया है। वह भारतीय दुकानों के लिए सस्ते, मशीन से बने सूती कपड़े के थान उतारता है। तुम इसे कैसे लिखोगे?"
+      },
+      "choices": [
+       {
+        "id": "cloth-import",
+        "text": {
+         "en": "An import of finished goods",
+         "hi": "तैयार माल का आयात"
+        },
+        "next": "surplus",
+        "feedback": {
+         "en": "Yes. India became a market for British cloth, woollens and machinery. This hurt Indian handicrafts.",
+         "hi": "हाँ। भारत ब्रिटिश कपड़े, ऊनी सामान और मशीनों का बाज़ार बन गया। इससे भारतीय दस्तकारी को चोट पहुँची।"
+        },
+        "good": true
+       },
+       {
+        "id": "cloth-export",
+        "text": {
+         "en": "An export of a raw material",
+         "hi": "कच्चे माल का निर्यात"
+        },
+        "next": "surplus",
+        "feedback": {
+         "en": "The cloth is coming in, and it is already finished. It is an import.",
+         "hi": "कपड़ा अंदर आ रहा है, और यह पहले से तैयार है। यह आयात है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "surplus",
+      "text": {
+       "en": "At the end of the year, India's exports are worth more than its imports. Where does this export surplus go?",
+       "hi": "साल के अंत में भारत के निर्यात का मूल्य आयात से ज़्यादा है। यह निर्यात अधिशेष कहाँ जाता है?"
+      },
+      "choices": [
+       {
+        "id": "surplus-drain",
+        "text": {
+         "en": "To pay for British offices, wars and the costs of ruling India",
+         "hi": "ब्रिटिश दफ़्तरों, युद्धों और भारत पर शासन के ख़र्चों में"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. The surplus did not bring gold or machines into India. It paid for the colonial government's expenses: a drain of India's wealth.",
+         "hi": "सही। अधिशेष से भारत में सोना या मशीनें नहीं आईं। यह औपनिवेशिक सरकार के ख़र्चे चुकाने में गया: भारत की संपत्ति की निकासी।"
+        },
+        "good": true
+       },
+       {
+        "id": "surplus-factories",
+        "text": {
+         "en": "To build new Indian factories",
+         "hi": "नए भारतीय कारख़ाने बनाने में"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Sadly not. Very little was invested in Indian industry; the surplus left the country.",
+         "hi": "दुःख की बात है, नहीं। भारतीय उद्योग में बहुत कम लगा; अधिशेष देश से बाहर चला गया।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Under British rule, what did India mostly send out to Britain?",
+      "hi": "ब्रिटिश शासन में भारत मुख्य रूप से ब्रिटेन को क्या भेजता था?"
+     },
+     "options": [
+      {
+       "id": "raw",
+       "en": "Raw materials like cotton and jute",
+       "hi": "कपास और जूट जैसा कच्चा माल"
+      },
+      {
+       "id": "machines",
+       "en": "Machines and tools",
+       "hi": "मशीनें और औज़ार"
+      },
+      {
+       "id": "cloth",
+       "en": "Fine factory cloth",
+       "hi": "कारख़ाने का बढ़िया कपड़ा"
+      }
+     ],
+     "answer": "raw"
+    },
+    {
+     "kind": "do",
+     "target": "choice:cotton:cotton-export",
+     "expect": "chose:cotton-export",
+     "say": {
+      "en": "Tap \"An export of a raw material\" to write the cotton in the register.",
+      "hi": "कपास को रजिस्टर में लिखने के लिए \"कच्चे माल का निर्यात\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Colonial trade had a fixed pattern. India exported raw materials and imported finished goods made in British factories. Britain kept more than half of India's trade to itself. The export surplus was used to pay for the colonial government, so India gained little from its own trade.",
+      "hi": "औपनिवेशिक व्यापार का एक तय ढाँचा था। भारत कच्चा माल निर्यात करता और ब्रिटिश कारख़ानों में बना तैयार माल आयात करता। भारत के आधे से ज़्यादा व्यापार पर ब्रिटेन का क़ब्ज़ा था। निर्यात अधिशेष औपनिवेशिक सरकार के ख़र्च में जाता था, इसलिए भारत को अपने ही व्यापार से बहुत कम मिला।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these did India mostly import during British rule?",
+        "hi": "ब्रिटिश शासन में भारत मुख्य रूप से इनमें से क्या आयात करता था?"
+       },
+       "options": [
+        {
+         "en": "Raw jute",
+         "hi": "कच्चा जूट"
+        },
+        {
+         "en": "Indigo",
+         "hi": "नील"
+        },
+        {
+         "en": "Machine-made cotton cloth",
+         "hi": "मशीन से बना सूती कपड़ा"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Finished goods such as mill cloth and woollens came in from Britain.",
+        "hi": "मिल का कपड़ा और ऊनी सामान जैसा तैयार माल ब्रिटेन से आता था।"
+       },
+       "wrong": [
+        {
+         "en": "Jute grew in Bengal and was sent out, so it was an export.",
+         "hi": "जूट बंगाल में उगता था और बाहर भेजा जाता था, इसलिए यह निर्यात था।"
+        },
+        {
+         "en": "Indigo was grown in India for British buyers; it was an export.",
+         "hi": "नील भारत में ब्रिटिश ख़रीदारों के लिए उगाया जाता था; यह निर्यात था।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did the export surplus not make India richer?",
+        "hi": "निर्यात अधिशेष से भारत अमीर क्यों नहीं हुआ?"
+       },
+       "options": [
+        {
+         "en": "It was spent on the costs of British rule and left India",
+         "hi": "यह ब्रिटिश शासन के ख़र्चों पर लगा और भारत से बाहर गया"
+        },
+        {
+         "en": "There was no surplus at all",
+         "hi": "कोई अधिशेष था ही नहीं"
+        },
+        {
+         "en": "Indians saved it in banks",
+         "hi": "भारतीयों ने इसे बैंकों में बचाया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The surplus paid for war expenses, offices and other costs of the colonial government.",
+        "hi": "अधिशेष युद्ध के ख़र्चों, दफ़्तरों और औपनिवेशिक सरकार की दूसरी लागतों में गया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There was a large export surplus; the problem was how it was used.",
+         "hi": "बड़ा निर्यात अधिशेष था; समस्या यह थी कि उसका उपयोग कैसे हुआ।"
+        },
+        {
+         "en": "The surplus did not reach ordinary Indians to save.",
+         "hi": "अधिशेष आम भारतीयों तक बचाने के लिए पहुँचा ही नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the whole day at the port: write the cloth ship and decide where the surplus goes. Then try the other answers to read why they are wrong.",
+      "hi": "बंदरगाह का पूरा दिन खेलो: कपड़े वाले जहाज़ को लिखो और तय करो कि अधिशेष कहाँ जाता है। फिर दूसरे उत्तर आज़माकर पढ़ो कि वे ग़लत क्यों हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch01-detective",
+   "topic": "1.3",
+   "template": "scenario",
+   "title": {
+    "en": "Detective: why was the economy stuck?",
+    "hi": "जासूस: अर्थव्यवस्था रुकी क्यों थी?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "Young economist, 1946",
+     "hi": "युवा अर्थशास्त्री, 1946"
+    },
+    "scenes": [
+     {
+      "id": "farm",
+      "text": {
+       "en": "You visit a village in 1946. Harvests are poor year after year. The farmer must still pay a fixed revenue to the zamindar, who spends nothing on the land. What is the main cause of stagnant farming?",
+       "hi": "तुम 1946 में एक गाँव जाते हो। साल-दर-साल फ़सल कम होती है। किसान को फिर भी ज़मींदार को तय लगान देना पड़ता है, जो ज़मीन पर कुछ ख़र्च नहीं करता। खेती के ठहराव का मुख्य कारण क्या है?"
+      },
+      "choices": [
+       {
+        "id": "farm-system",
+        "text": {
+         "en": "The land system, low technology and little irrigation or fertiliser",
+         "hi": "भू-व्यवस्था, पुरानी तकनीक और कम सिंचाई या खाद"
+        },
+        "next": "craft",
+        "feedback": {
+         "en": "Yes. Zamindars only wanted rent, farmers had no money to improve land, and there was little irrigation or fertiliser.",
+         "hi": "हाँ। ज़मींदार केवल लगान चाहते थे, किसानों के पास ज़मीन सुधारने को पैसा नहीं था, और सिंचाई या खाद बहुत कम थी।"
+        },
+        "good": true
+       },
+       {
+        "id": "farm-lazy",
+        "text": {
+         "en": "Indian farmers did not work hard",
+         "hi": "भारतीय किसान मेहनत नहीं करते थे"
+        },
+        "next": "craft",
+        "feedback": {
+         "en": "Farmers worked very hard. The system took their surplus and gave them no means to improve.",
+         "hi": "किसान बहुत मेहनत करते थे। व्यवस्था उनका अधिशेष ले लेती थी और सुधार का कोई साधन नहीं देती थी।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "craft",
+      "text": {
+       "en": "In the town, the famous handloom weavers have lost their buyers. Cheap cloth from British machines fills the shops. What has happened?",
+       "hi": "शहर में मशहूर हथकरघा बुनकरों के ख़रीदार ख़त्म हो गए हैं। ब्रिटिश मशीनों का सस्ता कपड़ा दुकानों में भरा है। क्या हुआ है?"
+      },
+      "choices": [
+       {
+        "id": "craft-deind",
+        "text": {
+         "en": "Deindustrialisation: handicrafts declined and nothing modern replaced them",
+         "hi": "वि-औद्योगीकरण: दस्तकारी घटी और उसकी जगह कोई आधुनिक उद्योग नहीं आया"
+        },
+        "next": "industry",
+        "feedback": {
+         "en": "Right. India's handicrafts collapsed, but few modern factories grew, so many artisans became farm labourers.",
+         "hi": "सही। भारत की दस्तकारी टूट गई, पर आधुनिक कारख़ाने बहुत कम बने, इसलिए कई कारीगर खेत मज़दूर बन गए।"
+        },
+        "good": true
+       },
+       {
+        "id": "craft-fashion",
+        "text": {
+         "en": "People simply stopped liking cloth",
+         "hi": "लोगों को कपड़ा पसंद आना बंद हो गया"
+        },
+        "next": "industry",
+        "feedback": {
+         "en": "People still bought cloth; they bought the cheaper British mill cloth instead.",
+         "hi": "लोग अब भी कपड़ा ख़रीदते थे; बस सस्ता ब्रिटिश मिल का कपड़ा ख़रीदने लगे।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "industry",
+      "text": {
+       "en": "A few modern industries exist: cotton mills in the west, jute mills in Bengal, and the Tata iron and steel company set up in 1907. What is still missing?",
+       "hi": "कुछ आधुनिक उद्योग हैं: पश्चिम में सूती मिलें, बंगाल में जूट मिलें, और 1907 में बनी टाटा लोहा और इस्पात कंपनी। अब भी क्या कमी है?"
+      },
+      "choices": [
+       {
+        "id": "industry-capital",
+        "text": {
+         "en": "Capital goods industries that make machines",
+         "hi": "मशीनें बनाने वाले पूँजीगत वस्तु उद्योग"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. India had almost no industries making machine tools, so it depended on imports to build factories.",
+         "hi": "सही। भारत में मशीनी औज़ार बनाने वाले उद्योग लगभग नहीं थे, इसलिए कारख़ाने बनाने के लिए आयात पर निर्भरता थी।"
+        },
+        "good": true
+       },
+       {
+        "id": "industry-shops",
+        "text": {
+         "en": "More shops selling British goods",
+         "hi": "ब्रिटिश माल बेचने वाली और दुकानें"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "More shops would not build Indian industry; the missing piece was machine-making.",
+         "hi": "और दुकानों से भारतीय उद्योग नहीं बनता; कमी मशीन बनाने की थी।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 1946, why do you think farm output was so low?",
+      "hi": "1946 में खेती की उपज इतनी कम क्यों थी, तुम्हें क्या लगता है?"
+     },
+     "options": [
+      {
+       "id": "system",
+       "en": "The land system and lack of investment in land",
+       "hi": "भू-व्यवस्था और ज़मीन में निवेश की कमी"
+      },
+      {
+       "id": "rain",
+       "en": "Only because of bad rain",
+       "hi": "केवल ख़राब बारिश के कारण"
+      },
+      {
+       "id": "people",
+       "en": "Farmers did not want to grow more",
+       "hi": "किसान ज़्यादा उगाना नहीं चाहते थे"
+      }
+     ],
+     "answer": "system"
+    },
+    {
+     "kind": "do",
+     "target": "choice:farm:farm-system",
+     "expect": "chose:farm-system",
+     "say": {
+      "en": "Tap the cause you think is right: the land system, low technology and little irrigation.",
+      "hi": "जो कारण सही लगे उस पर टैप करो: भू-व्यवस्था, पुरानी तकनीक और कम सिंचाई।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Under the zamindari system, revenue went to the zamindar and the colonial government, not into the land. With little irrigation, fertiliser or new tools, output per acre stayed low. Some farmers were pushed to grow cash crops for British industry. Together these kept Indian farming stagnant.",
+      "hi": "ज़मींदारी व्यवस्था में लगान ज़मींदार और औपनिवेशिक सरकार को जाता था, ज़मीन में नहीं लगता था। कम सिंचाई, खाद और नए औज़ारों के कारण प्रति एकड़ उपज कम रही। कुछ किसानों को ब्रिटिश उद्योग के लिए नक़दी फ़सलें उगाने पर मजबूर किया गया। इन सबने भारतीय खेती को ठहरा हुआ रखा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is \"commercialisation of agriculture\" under colonial rule?",
+        "hi": "औपनिवेशिक शासन में \"कृषि का व्यावसायीकरण\" क्या है?"
+       },
+       "options": [
+        {
+         "en": "Growing cash crops for sale, often for British industry",
+         "hi": "बेचने के लिए नक़दी फ़सलें उगाना, अक्सर ब्रिटिश उद्योग के लिए"
+        },
+        {
+         "en": "Opening shops in villages",
+         "hi": "गाँवों में दुकानें खोलना"
+        },
+        {
+         "en": "Using tractors on every farm",
+         "hi": "हर खेत में ट्रैक्टर चलाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Farmers shifted from food crops to crops like indigo, cotton and jute that were sold.",
+        "hi": "किसान खाद्य फ़सलों से हटकर नील, कपास और जूट जैसी बिकने वाली फ़सलें उगाने लगे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Shops are trade, not a change in what farmers grow.",
+         "hi": "दुकानें व्यापार हैं, किसान क्या उगाते हैं उसमें बदलाव नहीं।"
+        },
+        {
+         "en": "Technology hardly improved; tractors were almost absent.",
+         "hi": "तकनीक में मुश्किल से सुधार हुआ; ट्रैक्टर लगभग नहीं थे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did deindustrialisation push more people into farming?",
+        "hi": "वि-औद्योगीकरण ने ज़्यादा लोगों को खेती में क्यों धकेला?"
+       },
+       "options": [
+        {
+         "en": "Artisans lost work and had no factory jobs to go to",
+         "hi": "कारीगरों का काम छिना और जाने के लिए कारख़ाने की नौकरियाँ नहीं थीं"
+        },
+        {
+         "en": "Farming paid much better than crafts",
+         "hi": "खेती में दस्तकारी से बहुत ज़्यादा कमाई थी"
+        },
+        {
+         "en": "The government gave artisans free land",
+         "hi": "सरकार ने कारीगरों को मुफ़्त ज़मीन दी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When handicrafts collapsed and modern industry did not grow, the land was the only place left to work.",
+        "hi": "जब दस्तकारी टूटी और आधुनिक उद्योग नहीं बढ़ा, तो काम के लिए केवल ज़मीन बची।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Farming paid little; people went there because nothing else was available.",
+         "hi": "खेती में कमाई कम थी; लोग वहाँ इसलिए गए क्योंकि कुछ और नहीं था।"
+        },
+        {
+         "en": "No such policy existed; most became landless labourers.",
+         "hi": "ऐसी कोई नीति नहीं थी; ज़्यादातर भूमिहीन मज़दूर बने।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which industry did India lack almost completely in 1947?",
+        "hi": "1947 में भारत में लगभग कौन-सा उद्योग बिल्कुल नहीं था?"
+       },
+       "options": [
+        {
+         "en": "Jute mills",
+         "hi": "जूट मिलें"
+        },
+        {
+         "en": "Capital goods (machine tools)",
+         "hi": "पूँजीगत वस्तुएँ (मशीनी औज़ार)"
+        },
+        {
+         "en": "Cotton mills",
+         "hi": "सूती मिलें"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Machines to build factories had to be imported, which slowed industry.",
+        "hi": "कारख़ाने बनाने की मशीनें आयात करनी पड़ती थीं, जिससे उद्योग धीमा रहा।"
+       },
+       "wrong": [
+        {
+         "en": "Jute mills existed, mostly in Bengal.",
+         "hi": "जूट मिलें थीं, ज़्यादातर बंगाल में।"
+        },
+        "",
+        {
+         "en": "Cotton mills existed in Maharashtra and Gujarat.",
+         "hi": "सूती मिलें महाराष्ट्र और गुजरात में थीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Continue the case: visit the weavers and the new factories. Try the wrong answers too and read the feedback.",
+      "hi": "जाँच आगे बढ़ाओ: बुनकरों और नए कारख़ानों के पास जाओ। ग़लत उत्तर भी आज़माओ और प्रतिक्रिया पढ़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "Hook of the chapter: a handloom weaver at work",
+   "shows": "An old wooden pit loom in a village house, a weaver's hands passing the shuttle through white cotton threads, soft daylight from a doorway",
+   "view": "Close three-quarter view of the hands and loom, 16:9",
+   "right": "A real Indian pit loom with warp threads; plain cotton, no modern machine",
+   "avoid": "Faces, logos, modern synthetic fabric"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Colonial trade: bales leaving the port",
+   "shows": "Heritage-style render of a 1900 Indian dockside: jute-wrapped cotton bales stacked beside a steamship, porters carrying bales up a plank",
+   "view": "Wide view from the quay, warm hazy morning light, 16:9",
+   "right": "Steamship and dress of about 1900; bales of raw cotton in jute wrapping",
+   "avoid": "Modern containers, cranes, flags, readable text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "1.4",
+   "use": "Deindustrialisation in three frames",
+   "shows": "Frame 1: a busy weaver's shop full of handloom cloth; frame 2: a shop shelf of machine-made printed cloth bolts; frame 3: the same loom covered with dust, unused",
+   "view": "Same room height and light in frames 1 and 3; 4:3",
+   "right": "The loom in frames 1 and 3 is the same; mill cloth looks uniform and printed",
+   "avoid": "Faces, brand marks on cloth"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Agriculture: a dry, poorly irrigated field",
+   "shows": "A small cracked field with thin wheat plants, a wooden plough and two bullocks resting at the edge, a dry canal ditch",
+   "view": "Eye level from the field edge, harsh afternoon light, 16:9",
+   "right": "Wooden plough, no tractor or pump; plants thin and patchy",
+   "avoid": "People's faces, modern machines, plastic"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "1.8",
+   "use": "Infrastructure: a steam locomotive model",
+   "shows": "A clean model of a late-1800s Indian steam locomotive with tender",
+   "view": "Three-quarter side view on transparent background",
+   "right": "Proportions of a broad-gauge steam engine of that era",
+   "avoid": "Railway logos, numbers, modern trains"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "1.7",
+   "use": "Base for the occupational structure graphic",
+   "shows": "Three plain icons on white: a farmer's sickle and wheat, a factory gear, a shop counter with a ledger",
+   "view": "Flat, evenly spaced in a row, 16:9, white background",
+   "right": "Icons simple, no numbers or labels",
+   "avoid": "Text, arrows, percentages"
+  }
+ ]
+}

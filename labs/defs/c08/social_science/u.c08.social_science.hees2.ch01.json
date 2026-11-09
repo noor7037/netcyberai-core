@@ -1,0 +1,1173 @@
+{
+ "chapter_key": "u.c08.social_science.hees2.ch01",
+ "class": 8,
+ "subject_id": "social_science",
+ "title": "World Geography: Some Glimpses",
+ "source": "https://ncert.nic.in/textbook/pdf/hees201.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "The complexity of mapping the Earth",
+   "labs": [],
+   "why_no_lab": "Best shown by the photo sequence of flattening an orange peel; a lab on a flat screen cannot show the stretching honestly."
+  },
+  {
+   "n": "1.2",
+   "title": "The oceans",
+   "labs": [
+    "c08-social_science-hees2-ch01-blue"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Seas, straits and the Suez Canal",
+   "labs": [
+    "c08-social_science-hees2-ch01-facts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "The continents: variety on land",
+   "labs": [
+    "c08-social_science-hees2-ch01-oceans"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Mountains, deserts and plains",
+   "labs": [
+    "c08-social_science-hees2-ch01-features",
+    "c08-social_science-hees2-ch01-landforms",
+    "c08-social_science-hees2-ch01-facts"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-social_science-hees2-ch01-blue",
+   "topic": "1.2",
+   "template": "data",
+   "title": {
+    "en": "The blue planet",
+    "hi": "नीला ग्रह"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "ask": "max",
+    "title": {
+     "en": "Share of Earth's surface (per cent)",
+     "hi": "पृथ्वी की सतह का हिस्सा (प्रतिशत)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Oceans",
+       "hi": "महासागर"
+      },
+      "value": 71
+     },
+     {
+      "label": {
+       "en": "Land",
+       "hi": "भूमि"
+      },
+      "value": 29
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the 'Oceans' slice to read its share.",
+      "hi": "'महासागर' वाले टुकड़े पर छुओ और उसका हिस्सा पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is more of the Earth's surface covered by water or by land?",
+      "hi": "पृथ्वी की सतह का अधिक भाग पानी से ढका है या भूमि से?"
+     },
+     "options": [
+      {
+       "id": "water",
+       "en": "Water",
+       "hi": "पानी"
+      },
+      {
+       "id": "land",
+       "en": "Land",
+       "hi": "भूमि"
+      },
+      {
+       "id": "same",
+       "en": "Exactly half each",
+       "hi": "ठीक आधा-आधा"
+      }
+     ],
+     "answer": "water"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which slice is the biggest?",
+      "hi": "प्रश्न का उत्तर दो: सबसे बड़ा टुकड़ा कौन-सा है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Oceans cover about 71 per cent of the Earth's surface and hold 97 per cent of all its water. That is why the Earth looks blue from space and is called the 'blue planet'. Land is only about 29 per cent. The oceans are home to plankton, whales and coral reefs, and they help to balance the climate.",
+      "hi": "महासागर पृथ्वी की सतह का लगभग 71 प्रतिशत ढकते हैं और उसके कुल पानी का 97 प्रतिशत रखते हैं। इसीलिए अंतरिक्ष से पृथ्वी नीली दिखती है और 'नीला ग्रह' कहलाती है। भूमि केवल लगभग 29 प्रतिशत है। महासागरों में प्लवक, व्हेल और प्रवाल भित्तियाँ बसती हैं और वे जलवायु का संतुलन बनाए रखने में मदद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "About what share of the Earth is covered by oceans?",
+        "hi": "पृथ्वी का लगभग कितना भाग महासागरों से ढका है?"
+       },
+       "options": [
+        {
+         "en": "About 29 per cent",
+         "hi": "लगभग 29 प्रतिशत"
+        },
+        {
+         "en": "About 71 per cent",
+         "hi": "लगभग 71 प्रतिशत"
+        },
+        {
+         "en": "About 97 per cent",
+         "hi": "लगभग 97 प्रतिशत"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Oceans cover roughly 71 per cent; land covers the other 29 per cent.",
+        "hi": "महासागर लगभग 71 प्रतिशत ढकते हैं; शेष 29 प्रतिशत भूमि है।"
+       },
+       "wrong": [
+        {
+         "en": "29 per cent is the share of land.",
+         "hi": "29 प्रतिशत भूमि का हिस्सा है।"
+        },
+        "",
+        {
+         "en": "97 per cent is the share of Earth's water found in the oceans, not of its surface.",
+         "hi": "97 प्रतिशत पृथ्वी के पानी में महासागरों का हिस्सा है, सतह का नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the Earth called the 'blue planet'?",
+        "hi": "पृथ्वी को 'नीला ग्रह' क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Oceans cover most of its surface",
+         "hi": "महासागर उसकी अधिकतर सतह ढकते हैं"
+        },
+        {
+         "en": "Its sky is painted blue",
+         "hi": "उसका आसमान नीला रंगा गया है"
+        },
+        {
+         "en": "It has no land",
+         "hi": "उस पर कोई भूमि नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "From space the large oceans make the Earth look blue.",
+        "hi": "अंतरिक्ष से बड़े महासागर पृथ्वी को नीला दिखाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The blue is the oceans, not paint.",
+         "hi": "नीला रंग महासागरों का है, रंग-रोगन का नहीं।"
+        },
+        {
+         "en": "There is land too, about 29 per cent.",
+         "hi": "भूमि भी है, लगभग 29 प्रतिशत।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the Land slice too. Where on the globe would you find the land? Find the five oceans in your atlas.",
+      "hi": "भूमि वाले टुकड़े को भी छुओ। भूमि ग्लोब पर कहाँ मिलेगी? अपने एटलस में पाँचों महासागर खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch01-oceans",
+   "topic": "1.4",
+   "template": "map",
+   "title": {
+    "en": "Oceans and continents",
+    "hi": "महासागर और महाद्वीप"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "world",
+    "layers": [
+     "latitude"
+    ],
+    "task": "label",
+    "places": [
+     "pacific-ocean",
+     "indian-ocean",
+     "asia",
+     "europe",
+     "africa",
+     "north-america",
+     "south-america",
+     "australia"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "label:asia",
+     "expect": "located:asia",
+     "say": {
+      "en": "Tap the name 'Asia', then tap the pin on the largest continent, where India is.",
+      "hi": "'एशिया' नाम चुनो, फिर सबसे बड़े महाद्वीप के पिन पर छुओ, जहाँ भारत है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is bigger: the Pacific Ocean or the whole of Asia?",
+      "hi": "कौन बड़ा है: प्रशांत महासागर या पूरा एशिया?"
+     },
+     "options": [
+      {
+       "id": "pac",
+       "en": "The Pacific Ocean",
+       "hi": "प्रशांत महासागर"
+      },
+      {
+       "id": "asia",
+       "en": "Asia",
+       "hi": "एशिया"
+      }
+     ],
+     "answer": "pac"
+    },
+    {
+     "kind": "do",
+     "target": "label:pacific-ocean",
+     "expect": "located:pacific-ocean",
+     "say": {
+      "en": "Label the Pacific Ocean and compare its size with the continents.",
+      "hi": "प्रशांत महासागर को नाम दो और उसके आकार की महाद्वीपों से तुलना करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:australia",
+     "expect": "labelled",
+     "say": {
+      "en": "Label the remaining names on the map.",
+      "hi": "बाक़ी नाम भी मानचित्र पर लगाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A continent is a very large, continuous piece of land. We name seven: Asia, Africa, North America, South America, Antarctica, Europe and Australia. Asia is the biggest, and India lies in it. The oceans cover more of the Earth than all the land together. The Pacific is the largest of the five oceans.",
+      "hi": "महाद्वीप भूमि का बहुत बड़ा, निरंतर टुकड़ा होता है। हम सात महाद्वीप गिनते हैं: एशिया, अफ़्रीका, उत्तर अमेरिका, दक्षिण अमेरिका, अंटार्कटिका, यूरोप और ऑस्ट्रेलिया। एशिया सबसे बड़ा है और भारत उसी में है। महासागर सारी भूमि से अधिक भाग ढकते हैं। पाँच महासागरों में प्रशांत सबसे बड़ा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which continent does India lie?",
+        "hi": "भारत किस महाद्वीप में है?"
+       },
+       "options": [
+        {
+         "en": "Africa",
+         "hi": "अफ़्रीका"
+        },
+        {
+         "en": "Asia",
+         "hi": "एशिया"
+        },
+        {
+         "en": "Europe",
+         "hi": "यूरोप"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "India is in Asia, the largest continent.",
+        "hi": "भारत एशिया में है, जो सबसे बड़ा महाद्वीप है।"
+       },
+       "wrong": [
+        {
+         "en": "Africa lies west of the Indian Ocean.",
+         "hi": "अफ़्रीका हिंद महासागर के पश्चिम में है।"
+        },
+        "",
+        {
+         "en": "Europe lies north-west of Asia.",
+         "hi": "यूरोप एशिया के उत्तर-पश्चिम में है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is the largest ocean?",
+        "hi": "सबसे बड़ा महासागर कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Indian Ocean",
+         "hi": "हिंद महासागर"
+        },
+        {
+         "en": "Pacific Ocean",
+         "hi": "प्रशांत महासागर"
+        },
+        {
+         "en": "Arctic Ocean",
+         "hi": "आर्कटिक महासागर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The Pacific is the largest and deepest ocean.",
+        "hi": "प्रशांत सबसे बड़ा और सबसे गहरा महासागर है।"
+       },
+       "wrong": [
+        {
+         "en": "The Indian Ocean is smaller and washes India's south.",
+         "hi": "हिंद महासागर छोटा है और भारत के दक्षिण को छूता है।"
+        },
+        "",
+        {
+         "en": "The Arctic is the smallest ocean, around the North Pole.",
+         "hi": "आर्कटिक सबसे छोटा महासागर है, उत्तरी ध्रुव के आसपास।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch on the latitude layer. Which continents does the Equator cross?",
+      "hi": "अक्षांश की परत चालू करो। भूमध्य रेखा किन महाद्वीपों को पार करती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch01-features",
+   "topic": "1.5",
+   "template": "map",
+   "title": {
+    "en": "Mountains, deserts and rivers",
+    "hi": "पर्वत, मरुस्थल और नदियाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "world",
+    "layers": [
+     "mountains",
+     "deserts"
+    ],
+    "task": "label",
+    "places": [
+     "tibet",
+     "gobi",
+     "urals",
+     "alps",
+     "sahara",
+     "nile"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "label:urals",
+     "expect": "located:urals",
+     "say": {
+      "en": "Tap 'Urals', then tap the pin on the mountain range that divides Europe and Asia.",
+      "hi": "'यूराल' चुनो, फिर यूरोप और एशिया को बाँटने वाली पर्वतमाला के पिन पर छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these is the biggest hot desert of the world?",
+      "hi": "इनमें से दुनिया का सबसे बड़ा गर्म मरुस्थल कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "sahara",
+       "en": "The Sahara",
+       "hi": "सहारा"
+      },
+      {
+       "id": "gobi",
+       "en": "The Gobi",
+       "hi": "गोबी"
+      }
+     ],
+     "answer": "sahara"
+    },
+    {
+     "kind": "do",
+     "target": "label:sahara",
+     "expect": "located:sahara",
+     "say": {
+      "en": "Label the Sahara in northern Africa.",
+      "hi": "उत्तरी अफ़्रीका के सहारा को नाम दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:nile",
+     "expect": "labelled",
+     "say": {
+      "en": "Label the rest: Tibetan Plateau, Gobi, Alps and the Nile.",
+      "hi": "बाक़ी नाम लगाओ: तिब्बत का पठार, गोबी, आल्प्स और नील।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The world has great landforms. The Urals are an old range that mark the boundary of Europe and Asia. The Alps rise in Europe. The Tibetan Plateau is very high, over 4,500 metres on average. The Gobi is a cold desert in Mongolia and the Sahara is a huge hot desert in Africa. The Nile flows along the eastern edge of the Sahara to the sea.",
+      "hi": "दुनिया में बड़ी-बड़ी भू-आकृतियाँ हैं। यूराल एक पुरानी पर्वतमाला है जो यूरोप और एशिया की सीमा है। आल्प्स यूरोप में उठते हैं। तिब्बत का पठार बहुत ऊँचा है, औसतन 4,500 मीटर से अधिक। गोबी मंगोलिया का ठंडा मरुस्थल है और सहारा अफ़्रीका का विशाल गर्म मरुस्थल। नील सहारा के पूर्वी किनारे के साथ-साथ बहकर समुद्र तक जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which range separates Europe from Asia?",
+        "hi": "कौन-सी पर्वतमाला यूरोप को एशिया से अलग करती है?"
+       },
+       "options": [
+        {
+         "en": "The Urals",
+         "hi": "यूराल"
+        },
+        {
+         "en": "The Alps",
+         "hi": "आल्प्स"
+        },
+        {
+         "en": "The Himalaya",
+         "hi": "हिमालय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Ural Mountains form a natural boundary between the two continents.",
+        "hi": "यूराल पर्वत दोनों महाद्वीपों के बीच प्राकृतिक सीमा बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Alps are in the middle of Europe.",
+         "hi": "आल्प्स यूरोप के बीच में हैं।"
+        },
+        {
+         "en": "The Himalaya lie in southern Asia.",
+         "hi": "हिमालय दक्षिणी एशिया में है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A desert gets less than how much rain in a year?",
+        "hi": "मरुस्थल में वर्ष में कितनी से कम वर्षा होती है?"
+       },
+       "options": [
+        {
+         "en": "25 cm",
+         "hi": "25 सेमी"
+        },
+        {
+         "en": "250 cm",
+         "hi": "250 सेमी"
+        },
+        {
+         "en": "2,500 cm",
+         "hi": "2,500 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Deserts are very dry areas with less than 25 cm of rain a year.",
+        "hi": "मरुस्थल बहुत शुष्क क्षेत्र हैं जहाँ वर्ष में 25 सेमी से कम वर्षा होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "250 cm is heavy rain, like a rainforest.",
+         "hi": "250 सेमी भारी वर्षा है, वर्षावन जैसी।"
+        },
+        {
+         "en": "2,500 cm is far more than any place receives.",
+         "hi": "2,500 सेमी तो किसी स्थान की वर्षा से कहीं अधिक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the layers on and off. Which of these places has snow in winter? Which is always hot?",
+      "hi": "परतों को चालू-बंद करो। इनमें से किस जगह सर्दियों में बर्फ़ गिरती है? कौन-सी हमेशा गर्म रहती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch01-landforms",
+   "topic": "1.5",
+   "template": "sort",
+   "title": {
+    "en": "What kind of landform?",
+    "hi": "कौन-सी भू-आकृति?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mtn",
+      "label": {
+       "en": "Mountains",
+       "hi": "पर्वत"
+      }
+     },
+     {
+      "id": "plt",
+      "label": {
+       "en": "Plateaus",
+       "hi": "पठार"
+      }
+     },
+     {
+      "id": "des",
+      "label": {
+       "en": "Deserts",
+       "hi": "मरुस्थल"
+      }
+     },
+     {
+      "id": "pln",
+      "label": {
+       "en": "Plains",
+       "hi": "मैदान"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "urals",
+      "text": {
+       "en": "The Ural range",
+       "hi": "यूराल पर्वतमाला"
+      },
+      "bin": "mtn",
+      "why": {
+       "en": "The Urals are an ancient mountain range of about 2,500 km.",
+       "hi": "यूराल लगभग 2,500 किमी लंबी प्राचीन पर्वतमाला है।"
+      }
+     },
+     {
+      "id": "alps",
+      "text": {
+       "en": "The Alps",
+       "hi": "आल्प्स"
+      },
+      "bin": "mtn",
+      "why": {
+       "en": "The crescent-shaped Alps are mountains of Europe.",
+       "hi": "अर्धचंद्राकार आल्प्स यूरोप के पर्वत हैं।"
+      }
+     },
+     {
+      "id": "andes",
+      "text": {
+       "en": "The Andes",
+       "hi": "एंडीज़"
+      },
+      "bin": "mtn",
+      "why": {
+       "en": "The Andes are a very long range along South America.",
+       "hi": "एंडीज़ दक्षिण अमेरिका के साथ-साथ फैली बहुत लंबी पर्वतमाला है।"
+      }
+     },
+     {
+      "id": "tibet",
+      "text": {
+       "en": "The Tibetan Plateau",
+       "hi": "तिब्बत का पठार"
+      },
+      "bin": "plt",
+      "why": {
+       "en": "A high, flat-topped land with an average height of over 4,500 m.",
+       "hi": "ऊँची, समतल सतह वाली भूमि, औसत ऊँचाई 4,500 मी से अधिक।"
+      }
+     },
+     {
+      "id": "deccan",
+      "text": {
+       "en": "The Deccan Plateau",
+       "hi": "दक्कन का पठार"
+      },
+      "bin": "plt",
+      "why": {
+       "en": "A raised, mostly flat table of land in peninsular India.",
+       "hi": "प्रायद्वीपीय भारत की ऊँची, अधिकतर समतल भूमि।"
+      }
+     },
+     {
+      "id": "gobi",
+      "text": {
+       "en": "The Gobi Desert",
+       "hi": "गोबी मरुस्थल"
+      },
+      "bin": "des",
+      "why": {
+       "en": "A cold desert of Mongolia with very little rain.",
+       "hi": "मंगोलिया का ठंडा मरुस्थल जहाँ बहुत कम वर्षा होती है।"
+      }
+     },
+     {
+      "id": "sahara",
+      "text": {
+       "en": "The Sahara",
+       "hi": "सहारा"
+      },
+      "bin": "des",
+      "why": {
+       "en": "The largest hot desert, in Africa.",
+       "hi": "अफ़्रीका का सबसे बड़ा गर्म मरुस्थल।"
+      }
+     },
+     {
+      "id": "thar",
+      "text": {
+       "en": "The Thar Desert",
+       "hi": "थार मरुस्थल"
+      },
+      "bin": "des",
+      "why": {
+       "en": "India's desert in Rajasthan.",
+       "hi": "राजस्थान में भारत का मरुस्थल।"
+      }
+     },
+     {
+      "id": "euro",
+      "text": {
+       "en": "The European Plain",
+       "hi": "यूरोप का मैदान"
+      },
+      "bin": "pln",
+      "why": {
+       "en": "A vast flat land with good soil, where big cities grew.",
+       "hi": "विशाल समतल भूमि, अच्छी मिट्टी, जहाँ बड़े नगर बसे।"
+      }
+     },
+     {
+      "id": "steppe",
+      "text": {
+       "en": "The Eurasian Steppes",
+       "hi": "यूरेशिया के स्टेपी"
+      },
+      "bin": "pln",
+      "why": {
+       "en": "Grassy plains stretching more than 8,000 km from west to east.",
+       "hi": "घास के मैदान जो पश्चिम से पूर्व 8,000 किमी से अधिक फैले हैं।"
+      }
+     },
+     {
+      "id": "ganga",
+      "text": {
+       "en": "The Ganga plain",
+       "hi": "गंगा का मैदान"
+      },
+      "bin": "pln",
+      "why": {
+       "en": "A flat, fertile plain built by river deposits.",
+       "hi": "नदी के जमाव से बना समतल, उपजाऊ मैदान।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:urals",
+     "expect": "placed:urals",
+     "say": {
+      "en": "Tap 'The Ural range' and choose its landform.",
+      "hi": "'यूराल पर्वतमाला' चुनो और उसकी भू-आकृति चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which landform is high but has a mostly flat top?",
+      "hi": "कौन-सी भू-आकृति ऊँची है पर उसका ऊपरी भाग प्रायः समतल है?"
+     },
+     "options": [
+      {
+       "id": "plt",
+       "en": "A plateau",
+       "hi": "पठार"
+      },
+      {
+       "id": "pln",
+       "en": "A plain",
+       "hi": "मैदान"
+      },
+      {
+       "id": "des",
+       "en": "A desert",
+       "hi": "मरुस्थल"
+      }
+     ],
+     "answer": "plt"
+    },
+    {
+     "kind": "do",
+     "target": "card:tibet",
+     "expect": "placed:tibet",
+     "say": {
+      "en": "Place the Tibetan Plateau.",
+      "hi": "तिब्बत का पठार रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the others and press check.",
+      "hi": "बाक़ी सब रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mountains rise high with steep slopes. A plateau is high land with a flat top. A desert is a very dry region with less than 25 cm of rain a year, hot like the Sahara or cold like the Gobi. A plain is low, flat land where soil is often rich and cities grow. A desert can sit on a plateau or a plain, so the groups depend on the main feature.",
+      "hi": "पर्वत ऊँचे और तीखी ढलानों वाले होते हैं। पठार ऊँची भूमि है जिसका ऊपरी भाग समतल होता है। मरुस्थल बहुत शुष्क क्षेत्र है जहाँ वर्ष में 25 सेमी से कम वर्षा होती है, सहारा जैसा गर्म या गोबी जैसा ठंडा। मैदान नीची, समतल भूमि है जहाँ मिट्टी अक्सर उपजाऊ होती है और नगर बसते हैं। मरुस्थल पठार या मैदान पर भी हो सकता है, इसलिए समूह मुख्य विशेषता पर निर्भर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a plateau?",
+        "hi": "इनमें से पठार कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "The Deccan",
+         "hi": "दक्कन"
+        },
+        {
+         "en": "The Ganga plain",
+         "hi": "गंगा का मैदान"
+        },
+        {
+         "en": "The Sahara",
+         "hi": "सहारा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Deccan is a raised table of land.",
+        "hi": "दक्कन ऊँची समतल भूमि है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Ganga plain is low, flat land.",
+         "hi": "गंगा का मैदान नीची, समतल भूमि है।"
+        },
+        {
+         "en": "The Sahara is a desert.",
+         "hi": "सहारा मरुस्थल है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did big cities grow on the European Plain?",
+        "hi": "यूरोप के मैदान पर बड़े नगर क्यों बसे?"
+       },
+       "options": [
+        {
+         "en": "Flat land and a good climate suit farming and travel",
+         "hi": "समतल भूमि और अच्छी जलवायु खेती और आवागमन के अनुकूल हैं"
+        },
+        {
+         "en": "It is covered with ice",
+         "hi": "वह बर्फ़ से ढका है"
+        },
+        {
+         "en": "It is a desert",
+         "hi": "वह मरुस्थल है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Easy farming and easy movement helped people to settle and cities such as Paris and Berlin to grow.",
+        "hi": "आसान खेती और आवागमन से लोग बसे और पेरिस, बर्लिन जैसे नगर बढ़े।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ice-covered land is hard to live on.",
+         "hi": "बर्फ़ से ढकी भूमि पर रहना कठिन है।"
+        },
+        {
+         "en": "The plain is green and fertile, not a desert.",
+         "hi": "मैदान हरा और उपजाऊ है, मरुस्थल नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one mountain, one plateau, one desert and one plain in India.",
+      "hi": "भारत में एक पर्वत, एक पठार, एक मरुस्थल और एक मैदान का नाम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch01-facts",
+   "topic": "1.3",
+   "template": "match",
+   "title": {
+    "en": "Places and their facts",
+    "hi": "स्थान और उनकी विशेषताएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "tibet",
+      "left": {
+       "en": "Tibetan Plateau",
+       "hi": "तिब्बत का पठार"
+      },
+      "right": {
+       "en": "Average height of over 4,500 m above sea level",
+       "hi": "समुद्र तल से औसत ऊँचाई 4,500 मी से अधिक"
+      }
+     },
+     {
+      "id": "gobi",
+      "left": {
+       "en": "Gobi Desert",
+       "hi": "गोबी मरुस्थल"
+      },
+      "right": {
+       "en": "A cold desert in Mongolia, winters of minus 30 °C",
+       "hi": "मंगोलिया का ठंडा मरुस्थल, सर्दी में माइनस 30 °C"
+      }
+     },
+     {
+      "id": "urals",
+      "left": {
+       "en": "Ural Mountains",
+       "hi": "यूराल पर्वत"
+      },
+      "right": {
+       "en": "An old range of about 2,500 km between Europe and Asia",
+       "hi": "यूरोप और एशिया के बीच लगभग 2,500 किमी की पुरानी पर्वतमाला"
+      }
+     },
+     {
+      "id": "suez",
+      "left": {
+       "en": "Suez Canal",
+       "hi": "स्वेज़ नहर"
+      },
+      "right": {
+       "en": "A human-made waterway joining the Red Sea and the Mediterranean",
+       "hi": "मानव-निर्मित जलमार्ग जो लाल सागर और भूमध्य सागर को जोड़ता है"
+      }
+     },
+     {
+      "id": "reef",
+      "left": {
+       "en": "Great Barrier Reef",
+       "hi": "ग्रेट बैरियर रीफ़"
+      },
+      "right": {
+       "en": "A coral reef off north-eastern Australia, about 2,000 km long",
+       "hi": "ऑस्ट्रेलिया के उत्तर-पूर्व में लगभग 2,000 किमी लंबी प्रवाल भित्ति"
+      }
+     },
+     {
+      "id": "steppe",
+      "left": {
+       "en": "Steppes",
+       "hi": "स्टेपी"
+      },
+      "right": {
+       "en": "Grasslands over 8,000 km long that store carbon",
+       "hi": "8,000 किमी से लंबे घास के मैदान जो कार्बन सोखते हैं"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:suez",
+     "expect": "matched:suez",
+     "say": {
+      "en": "Tap 'Suez Canal', then tap its fact.",
+      "hi": "'स्वेज़ नहर' चुनो, फिर उसकी विशेषता चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ships from Mumbai to London can go through the Suez Canal. Does it make the trip shorter?",
+      "hi": "मुंबई से लंदन जाने वाले जहाज़ स्वेज़ नहर से जा सकते हैं। क्या इससे यात्रा छोटी होती है?"
+     },
+     "options": [
+      {
+       "id": "short",
+       "en": "Yes, it saves a long trip around Africa",
+       "hi": "हाँ, अफ़्रीका का लंबा चक्कर बच जाता है"
+      },
+      {
+       "id": "long",
+       "en": "No, it makes it longer",
+       "hi": "नहीं, यह लंबी कर देती है"
+      }
+     ],
+     "answer": "short"
+    },
+    {
+     "kind": "do",
+     "target": "left:tibet",
+     "expect": "matched:tibet",
+     "say": {
+      "en": "Match the Tibetan Plateau.",
+      "hi": "तिब्बत के पठार को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Suez Canal, opened in 1869, joins the Red Sea to the Mediterranean, so ships between India and Europe do not have to go all the way round Africa. The Great Barrier Reef is made by tiny sea animals called corals and is home to a quarter of ocean species. The Steppes, the Urals and the Tibetan Plateau show how land shapes climate, life and human settlement.",
+      "hi": "1869 में खुली स्वेज़ नहर लाल सागर को भूमध्य सागर से जोड़ती है, इसलिए भारत और यूरोप के बीच जहाज़ों को पूरे अफ़्रीका का चक्कर नहीं लगाना पड़ता। ग्रेट बैरियर रीफ़ प्रवाल नामक छोटे समुद्री जीवों ने बनाई है और यह समुद्री प्रजातियों के एक-चौथाई का घर है। स्टेपी, यूराल और तिब्बत का पठार दिखाते हैं कि भूमि जलवायु, जीवन और मानव बस्तियों को कैसे ढालती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which two seas does the Suez Canal join?",
+        "hi": "स्वेज़ नहर किन दो समुद्रों को जोड़ती है?"
+       },
+       "options": [
+        {
+         "en": "Red Sea and Mediterranean Sea",
+         "hi": "लाल सागर और भूमध्य सागर"
+        },
+        {
+         "en": "Arabian Sea and Bay of Bengal",
+         "hi": "अरब सागर और बंगाल की खाड़ी"
+        },
+        {
+         "en": "Black Sea and Caspian Sea",
+         "hi": "काला सागर और कैस्पियन सागर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is a human-made passage from the Red Sea to the Mediterranean.",
+        "hi": "यह लाल सागर से भूमध्य सागर तक का मानव-निर्मित मार्ग है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Those two lie on India's coasts and are not joined by the canal.",
+         "hi": "वे दोनों भारत के तटों पर हैं और नहर से नहीं जुड़ते।"
+        },
+        {
+         "en": "The canal is in Egypt, not near the Black Sea.",
+         "hi": "नहर मिस्र में है, काला सागर के पास नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Corals build reefs. What are corals?",
+        "hi": "प्रवाल भित्तियाँ बनाते हैं। प्रवाल क्या हैं?"
+       },
+       "options": [
+        {
+         "en": "Tiny sea animals",
+         "hi": "छोटे समुद्री जीव"
+        },
+        {
+         "en": "Rocks that grow by themselves",
+         "hi": "अपने आप बढ़ने वाले पत्थर"
+        },
+        {
+         "en": "Ships",
+         "hi": "जहाज़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Colonies of tiny animals build reefs that shelter many fish and sea creatures.",
+        "hi": "छोटे जीवों की बस्तियाँ भित्तियाँ बनाती हैं जो कई मछलियों और समुद्री जीवों को आश्रय देती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Corals are living animals, not rocks that grow.",
+         "hi": "प्रवाल जीवित जीव हैं, अपने आप बढ़ने वाले पत्थर नहीं।"
+        },
+        {
+         "en": "Ships are made by people.",
+         "hi": "जहाज़ मनुष्य बनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "In an atlas, find the Suez Canal. Estimate how much shorter the sea route from Mumbai to London becomes.",
+      "hi": "एटलस में स्वेज़ नहर खोजो। मुंबई से लंदन का समुद्री मार्ग कितना छोटा हो जाता है, अनुमान लगाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "1.1",
+   "use": "Why maps stretch",
+   "shows": "An orange peel being flattened in four frames: whole orange with a line drawn, peel removed, peel pressed flat, peel torn at the edges",
+   "view": "Same camera and light, 4 files, 4:3",
+   "right": "Drawn lines visibly stretch and tear when flattened",
+   "avoid": "Text, brand marks"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "The blue planet",
+   "shows": "A view of the Earth from space showing oceans and white cloud over the Indian Ocean",
+   "view": "Square, 1:1",
+   "right": "Mostly blue with clouds; this may be a licensed render",
+   "avoid": "Text, borders"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Coral reef",
+   "shows": "A shallow coral reef with fish and sea turtle, underwater, sunlight from above",
+   "view": "Wide, 16:9",
+   "right": "Many coral shapes, clear water",
+   "avoid": "Divers' faces, text"
+  },
+  {
+   "n": 4,
+   "kind": "MAP",
+   "topic": "1.4",
+   "use": "World physical map base",
+   "shows": "A relief map of the world with oceans in blue and no names, no borders",
+   "view": "16:9, no text",
+   "right": "Mountains, deserts and plains clear",
+   "avoid": "Any text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Suez Canal",
+   "shows": "A large cargo ship passing along a straight canal bordered by desert sand",
+   "view": "Wide, 16:9",
+   "right": "Straight canal, sandy banks, ship",
+   "avoid": "Brand names on the ship"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Tibetan Plateau",
+   "shows": "A high, dry plateau with snow peaks on the horizon and a yak herd, late afternoon",
+   "view": "Wide, 16:9",
+   "right": "Wide dry land, low light, snow peaks",
+   "avoid": "Faces, buildings"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Grassland steppe",
+   "shows": "A rolling grassy steppe with a pale horizon and a few grazing horses",
+   "view": "Wide, 16:9",
+   "right": "Vast green-yellow grass, few trees",
+   "avoid": "Fences, modern objects"
+  }
+ ]
+}

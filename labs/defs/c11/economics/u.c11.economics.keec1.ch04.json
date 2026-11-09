@@ -1,0 +1,991 @@
+{
+ "chapter_key": "u.c11.economics.keec1.ch04",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Human Capital Formation in India",
+ "source": "https://ncert.nic.in/textbook/pdf/keec104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "Introduces the idea; the labs that follow make it concrete."
+  },
+  {
+   "n": "4.2",
+   "title": "What is human capital?",
+   "labs": [
+    "c11-economics-keec1-ch04-returns"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Sources of human capital",
+   "labs": [
+    "c11-economics-keec1-ch04-sources"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Human capital and human development",
+   "labs": [
+    "c11-economics-keec1-ch04-hc-hd"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "State of human capital formation in India",
+   "labs": [],
+   "why_no_lab": "Built on official reports and the roles of ministries; best read in the reader."
+  },
+  {
+   "n": "4.6",
+   "title": "Education sector in India",
+   "labs": [
+    "c11-economics-keec1-ch04-enrolment"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.7",
+   "title": "Future prospects: education for all, gender equity, higher education",
+   "labs": [
+    "c11-economics-keec1-ch04-enrolment"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.8",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary best read and discussed."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-keec1-ch04-returns",
+   "topic": "4.2",
+   "template": "data",
+   "title": {
+    "en": "Does education pay?",
+    "hi": "क्या शिक्षा का फल मिलता है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "chart": "double-bar",
+    "show": 1,
+    "title": {
+     "en": "Monthly earnings by age (example numbers, ₹ thousand)",
+     "hi": "उम्र के अनुसार मासिक कमाई (उदाहरण के अंक, ₹ हज़ार)"
+    },
+    "series": [
+     {
+      "en": "Studied up to Class 10",
+      "hi": "कक्षा 10 तक पढ़ा"
+     },
+     {
+      "en": "College graduate",
+      "hi": "कॉलेज स्नातक"
+     }
+    ],
+    "xlabel": {
+     "en": "Age",
+     "hi": "उम्र"
+    },
+    "ylabel": {
+     "en": "₹ thousand a month",
+     "hi": "₹ हज़ार प्रति माह"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Age 25",
+       "hi": "उम्र 25"
+      },
+      "value": 12,
+      "value2": 18
+     },
+     {
+      "label": {
+       "en": "Age 35",
+       "hi": "उम्र 35"
+      },
+      "value": 15,
+      "value2": 30
+     },
+     {
+      "label": {
+       "en": "Age 45",
+       "hi": "उम्र 45"
+      },
+      "value": 17,
+      "value2": 42
+     },
+     {
+      "label": {
+       "en": "Age 55",
+       "hi": "उम्र 55"
+      },
+      "value": 18,
+      "value2": 50
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:4",
+     "expect": "selected:4",
+     "say": {
+      "en": "Tap the orange bar at age 25 to read a graduate's earnings.",
+      "hi": "उम्र 25 पर नारंगी दंड पर टैप करो और स्नातक की कमाई पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As both people grow older, what will happen to the gap between their earnings?",
+      "hi": "जैसे-जैसे दोनों की उम्र बढ़ेगी, उनकी कमाई के अंतर का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "wider",
+       "en": "It grows wider",
+       "hi": "बढ़ता जाएगा"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "उतना ही रहेगा"
+      },
+      {
+       "id": "closes",
+       "en": "It closes",
+       "hi": "ख़त्म हो जाएगा"
+      }
+     ],
+     "answer": "wider"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot age 35.",
+      "hi": "\"जोड़ो\" पर टैप करो और उम्र 35 दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" again to plot age 45.",
+      "hi": "फिर \"जोड़ो\" पर टैप करो और उम्र 45 दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" once more to plot age 55.",
+      "hi": "एक बार और \"जोड़ो\" पर टैप करो और उम्र 55 दिखाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Spending on education is an investment. The extra years of study cost fees and lost earnings, but they raise a person's skills, so future earnings are higher. Economists compare this extra income with the cost, just as for a machine. A stock of skill and knowledge in people is called human capital. These numbers are only an example.",
+      "hi": "शिक्षा पर ख़र्च एक निवेश है। पढ़ाई के अतिरिक्त सालों में फ़ीस लगती है और कमाई छूटती है, पर इनसे व्यक्ति का कौशल बढ़ता है, इसलिए आगे की कमाई ज़्यादा होती है। अर्थशास्त्री इस अतिरिक्त आय की तुलना लागत से करते हैं, जैसे किसी मशीन के लिए। लोगों में कौशल और ज्ञान के भंडार को मानव पूँजी कहते हैं। ये अंक केवल उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In this example, how much more does the graduate earn at age 45?",
+        "hi": "इस उदाहरण में 45 की उम्र में स्नातक कितना ज़्यादा कमाता है?"
+       },
+       "options": [
+        {
+         "en": "₹25 thousand a month",
+         "hi": "₹25 हज़ार प्रति माह"
+        },
+        {
+         "en": "₹42 thousand a month",
+         "hi": "₹42 हज़ार प्रति माह"
+        },
+        {
+         "en": "₹17 thousand a month",
+         "hi": "₹17 हज़ार प्रति माह"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "42 − 17 = 25 thousand rupees a month more.",
+        "hi": "42 − 17 = 25 हज़ार रुपये प्रति माह ज़्यादा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "42 is the graduate's whole earning, not the extra.",
+         "hi": "42 स्नातक की पूरी कमाई है, अतिरिक्त नहीं।"
+        },
+        {
+         "en": "17 is what the Class 10 worker earns.",
+         "hi": "17 कक्षा 10 तक पढ़े व्यक्ति की कमाई है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How is human capital different from physical capital?",
+        "hi": "मानव पूँजी भौतिक पूँजी से कैसे अलग है?"
+       },
+       "options": [
+        {
+         "en": "It cannot be separated from the person who owns it",
+         "hi": "इसे उसके मालिक व्यक्ति से अलग नहीं किया जा सकता"
+        },
+        {
+         "en": "It can be sold in the market like a machine",
+         "hi": "इसे मशीन की तरह बाज़ार में बेचा जा सकता है"
+        },
+        {
+         "en": "It never needs any spending",
+         "hi": "इस पर कभी कोई ख़र्च नहीं करना पड़ता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A machine can be sold; a doctor's skill stays with the doctor. Only its services are sold.",
+        "hi": "मशीन बेची जा सकती है; डॉक्टर का कौशल डॉक्टर के साथ ही रहता है। केवल उसकी सेवाएँ बिकती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "You cannot sell your knowledge itself, only its services.",
+         "hi": "तुम अपना ज्ञान नहीं बेच सकते, केवल उसकी सेवाएँ।"
+        },
+        {
+         "en": "Human capital needs spending on education, health and training.",
+         "hi": "मानव पूँजी के लिए शिक्षा, स्वास्थ्य और प्रशिक्षण पर ख़र्च चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the bars to imagine a person who also learns new skills at work after 35. How does on-the-job training change the line?",
+      "hi": "दंड खींचकर ऐसे व्यक्ति की कल्पना करो जो 35 के बाद काम पर भी नया कौशल सीखता है। काम पर प्रशिक्षण से तस्वीर कैसे बदलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch04-sources",
+   "topic": "4.3",
+   "template": "scenario",
+   "title": {
+    "en": "Five ways to build human capital",
+    "hi": "मानव पूँजी बनाने के पाँच तरीक़े"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "family",
+    "role": {
+     "en": "Head of a family in Bihar",
+     "hi": "बिहार के एक परिवार की मुखिया"
+    },
+    "scenes": [
+     {
+      "id": "health",
+      "text": {
+       "en": "Your son keeps falling ill and misses school and work. You spend on vaccines, clean water and a doctor. Which source of human capital is this?",
+       "hi": "तुम्हारा बेटा बार-बार बीमार पड़ता है और स्कूल व काम से छूट जाता है। तुम टीकों, साफ़ पानी और डॉक्टर पर ख़र्च करती हो। यह मानव पूँजी का कौन-सा स्रोत है?"
+      },
+      "choices": [
+       {
+        "id": "health-yes",
+        "text": {
+         "en": "Health",
+         "hi": "स्वास्थ्य"
+        },
+        "next": "train",
+        "feedback": {
+         "en": "Yes. A healthy worker can work longer and better, so health spending builds human capital.",
+         "hi": "हाँ। स्वस्थ श्रमिक ज़्यादा देर और बेहतर काम कर सकता है, इसलिए स्वास्थ्य पर ख़र्च मानव पूँजी बनाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "health-mig",
+        "text": {
+         "en": "Migration",
+         "hi": "प्रवास"
+        },
+        "next": "train",
+        "feedback": {
+         "en": "No one is moving here; this spending keeps the person healthy.",
+         "hi": "यहाँ कोई कहीं नहीं जा रहा; यह ख़र्च व्यक्ति को स्वस्थ रखता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "train",
+      "text": {
+       "en": "Your daughter gets a job in a garment factory. The factory teaches her to use a new machine under a senior worker. What is this?",
+       "hi": "तुम्हारी बेटी को एक कपड़ा कारख़ाने में नौकरी मिलती है। कारख़ाना एक वरिष्ठ कर्मचारी की देखरेख में उसे नई मशीन चलाना सिखाता है। यह क्या है?"
+      },
+      "choices": [
+       {
+        "id": "train-ojt",
+        "text": {
+         "en": "On-the-job training",
+         "hi": "काम पर प्रशिक्षण"
+        },
+        "next": "move",
+        "feedback": {
+         "en": "Right. Firms train workers because skilled workers produce more.",
+         "hi": "सही। कंपनियाँ कर्मचारियों को प्रशिक्षण देती हैं क्योंकि कुशल कर्मचारी ज़्यादा उत्पादन करते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "train-info",
+        "text": {
+         "en": "Spending on information",
+         "hi": "जानकारी पर ख़र्च"
+        },
+        "next": "move",
+        "feedback": {
+         "en": "She is learning a skill at her workplace: on-the-job training.",
+         "hi": "वह अपने कार्यस्थल पर कौशल सीख रही है: काम पर प्रशिक्षण।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "move",
+      "text": {
+       "en": "Your nephew moves to Pune for a better-paid job. The move costs money for travel and a room. Why is this human capital formation?",
+       "hi": "तुम्हारा भतीजा बेहतर वेतन वाली नौकरी के लिए पुणे जाता है। यात्रा और कमरे में पैसा लगता है। यह मानव पूँजी निर्माण क्यों है?"
+      },
+      "choices": [
+       {
+        "id": "move-yes",
+        "text": {
+         "en": "Migration lets his skills earn more where they are needed",
+         "hi": "प्रवास से उसका कौशल वहाँ ज़्यादा कमाता है जहाँ उसकी ज़रूरत है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. The cost of migration is worth it if the higher earnings are larger than the cost.",
+         "hi": "हाँ। प्रवास की लागत तभी ठीक है जब बढ़ी हुई कमाई लागत से ज़्यादा हो।"
+        },
+        "good": true
+       },
+       {
+        "id": "move-no",
+        "text": {
+         "en": "It is not, it is only travel",
+         "hi": "यह नहीं है, यह बस यात्रा है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Economists count it because it raises the return on his skills.",
+         "hi": "अर्थशास्त्री इसे गिनते हैं क्योंकि इससे उसके कौशल का प्रतिफल बढ़ता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these is NOT a source of human capital?",
+      "hi": "इनमें से कौन-सा मानव पूँजी का स्रोत नहीं है?"
+     },
+     "options": [
+      {
+       "id": "car",
+       "en": "Buying a new car for fun",
+       "hi": "मज़े के लिए नई कार ख़रीदना"
+      },
+      {
+       "id": "edu",
+       "en": "Education",
+       "hi": "शिक्षा"
+      },
+      {
+       "id": "health",
+       "en": "Health care",
+       "hi": "स्वास्थ्य सेवा"
+      }
+     ],
+     "answer": "car"
+    },
+    {
+     "kind": "do",
+     "target": "choice:health:health-yes",
+     "expect": "chose:health-yes",
+     "say": {
+      "en": "Tap \"Health\" as the source of human capital in this scene.",
+      "hi": "इस दृश्य में मानव पूँजी के स्रोत के रूप में \"स्वास्थ्य\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Human capital is built in five main ways: education, health, on-the-job training, migration, and spending on information about jobs, schools and health. Each costs money now and raises earnings or productivity later. Governments and families both invest in it, and the Constitution gives children the right to free and compulsory education.",
+      "hi": "मानव पूँजी पाँच मुख्य तरीक़ों से बनती है: शिक्षा, स्वास्थ्य, काम पर प्रशिक्षण, प्रवास, और नौकरियों, स्कूलों व स्वास्थ्य के बारे में जानकारी पर ख़र्च। हर एक में अभी पैसा लगता है और बाद में कमाई या उत्पादकता बढ़ती है। सरकार और परिवार दोनों इसमें निवेश करते हैं, और संविधान बच्चों को मुफ़्त और अनिवार्य शिक्षा का अधिकार देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Looking up job openings on a government job portal is which source?",
+        "hi": "सरकारी नौकरी पोर्टल पर रिक्तियाँ देखना कौन-सा स्रोत है?"
+       },
+       "options": [
+        {
+         "en": "Spending on information",
+         "hi": "जानकारी पर ख़र्च"
+        },
+        {
+         "en": "Health",
+         "hi": "स्वास्थ्य"
+        },
+        {
+         "en": "On-the-job training",
+         "hi": "काम पर प्रशिक्षण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Information about jobs and wages helps people use their skills where they earn most.",
+        "hi": "नौकरियों और वेतन की जानकारी से लोग अपना कौशल वहाँ लगाते हैं जहाँ सबसे ज़्यादा कमाई हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Health spending keeps the body fit; this is about finding work.",
+         "hi": "स्वास्थ्य ख़र्च शरीर को स्वस्थ रखता है; यह काम ढूँढने के बारे में है।"
+        },
+        {
+         "en": "Training happens at work; here the person is still searching.",
+         "hi": "प्रशिक्षण काम पर होता है; यहाँ व्यक्ति अभी खोज रहा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do firms spend on training their workers?",
+        "hi": "कंपनियाँ अपने कर्मचारियों के प्रशिक्षण पर ख़र्च क्यों करती हैं?"
+       },
+       "options": [
+        {
+         "en": "Trained workers produce more, so the firm gains",
+         "hi": "प्रशिक्षित कर्मचारी ज़्यादा उत्पादन करते हैं, इसलिए कंपनी को लाभ होता है"
+        },
+        {
+         "en": "The law bans untrained workers",
+         "hi": "क़ानून अप्रशिक्षित कर्मचारियों पर रोक लगाता है"
+        },
+        {
+         "en": "To make work slower",
+         "hi": "काम धीमा करने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The extra output from a skilled worker is worth more than the cost of training; firms may ask workers to stay some years.",
+        "hi": "कुशल कर्मचारी का अतिरिक्त उत्पादन प्रशिक्षण की लागत से ज़्यादा होता है; कंपनियाँ कर्मचारियों से कुछ साल रुकने को कह सकती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is no such ban; training is a business choice.",
+         "hi": "ऐसी कोई रोक नहीं; प्रशिक्षण कारोबार का फ़ैसला है।"
+        },
+        {
+         "en": "Training makes work faster and better, not slower.",
+         "hi": "प्रशिक्षण काम को तेज़ और बेहतर बनाता है, धीमा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the other scenes: the daughter's factory training and the nephew's move. Which source matters most in your family?",
+      "hi": "बाक़ी दृश्य खेलो: बेटी का कारख़ाने में प्रशिक्षण और भतीजे का प्रवास। तुम्हारे परिवार में कौन-सा स्रोत सबसे ज़्यादा मायने रखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch04-hc-hd",
+   "topic": "4.4",
+   "template": "scenario",
+   "title": {
+    "en": "Human capital or human development?",
+    "hi": "मानव पूँजी या मानव विकास?"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "setting": "debate",
+    "role": {
+     "en": "Speaker in a class debate",
+     "hi": "कक्षा की बहस में वक्ता"
+    },
+    "scenes": [
+     {
+      "id": "view",
+      "text": {
+       "en": "Speaker A says: \"Educate girls because educated workers raise GDP.\" Speaker B says: \"Educate girls because education is part of a good life, whatever it earns.\" Which speaker takes the human development view?",
+       "hi": "वक्ता A कहता है: \"लड़कियों को पढ़ाओ क्योंकि पढ़े-लिखे श्रमिक जीडीपी बढ़ाते हैं।\" वक्ता B कहता है: \"लड़कियों को पढ़ाओ क्योंकि शिक्षा अच्छे जीवन का हिस्सा है, चाहे उससे कितनी भी कमाई हो।\" कौन-सा वक्ता मानव विकास का दृष्टिकोण रखता है?"
+      },
+      "choices": [
+       {
+        "id": "view-b",
+        "text": {
+         "en": "Speaker B",
+         "hi": "वक्ता B"
+        },
+        "next": "both",
+        "feedback": {
+         "en": "Yes. Human development sees education and health as valuable in themselves, part of well-being.",
+         "hi": "हाँ। मानव विकास शिक्षा और स्वास्थ्य को अपने आप में मूल्यवान, भलाई का हिस्सा मानता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "view-a",
+        "text": {
+         "en": "Speaker A",
+         "hi": "वक्ता A"
+        },
+        "next": "both",
+        "feedback": {
+         "en": "Speaker A treats education as a means to raise output: that is the human capital view.",
+         "hi": "वक्ता A शिक्षा को उत्पादन बढ़ाने का साधन मानता है: यह मानव पूँजी का दृष्टिकोण है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "both",
+      "text": {
+       "en": "Your teacher asks: \"Can both views be true together?\"",
+       "hi": "तुम्हारे शिक्षक पूछते हैं: \"क्या दोनों दृष्टिकोण एक साथ सही हो सकते हैं?\""
+      },
+      "choices": [
+       {
+        "id": "both-yes",
+        "text": {
+         "en": "Yes: education raises output and is also good in itself",
+         "hi": "हाँ: शिक्षा उत्पादन भी बढ़ाती है और अपने आप में भी अच्छी है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. The two views overlap; human development is the broader one.",
+         "hi": "सही। दोनों दृष्टिकोण आपस में मिलते हैं; मानव विकास ज़्यादा व्यापक है।"
+        },
+        "good": true
+       },
+       {
+        "id": "both-no",
+        "text": {
+         "en": "No, only one can be right",
+         "hi": "नहीं, केवल एक ही सही हो सकता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "They answer different questions, so both can hold at once.",
+         "hi": "वे अलग-अलग सवालों के जवाब देते हैं, इसलिए दोनों एक साथ सही हो सकते हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is education worth it only if it raises a person's income?",
+      "hi": "क्या शिक्षा तभी सार्थक है जब उससे व्यक्ति की आय बढ़े?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is also valuable in itself",
+       "hi": "नहीं, यह अपने आप में भी मूल्यवान है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, only for income",
+       "hi": "हाँ, केवल आय के लिए"
+      },
+      {
+       "id": "never",
+       "en": "Education is never worth it",
+       "hi": "शिक्षा कभी सार्थक नहीं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:view:view-b",
+     "expect": "chose:view-b",
+     "say": {
+      "en": "Tap the speaker who takes the human development view.",
+      "hi": "उस वक्ता पर टैप करो जो मानव विकास का दृष्टिकोण रखता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The human capital view treats education and health as means to raise labour productivity and growth. The human development view sees them as ends in themselves: a person who can read, write and live a long, healthy life is better off, even if the extra earning is small. Human development is the broader idea.",
+      "hi": "मानव पूँजी का दृष्टिकोण शिक्षा और स्वास्थ्य को श्रम उत्पादकता और संवृद्धि बढ़ाने का साधन मानता है। मानव विकास का दृष्टिकोण उन्हें अपने आप में लक्ष्य मानता है: जो व्यक्ति पढ़-लिख सकता है और लंबा, स्वस्थ जीवन जीता है, वह बेहतर स्थिति में है, चाहे अतिरिक्त कमाई कम हो। मानव विकास ज़्यादा व्यापक विचार है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement fits the human capital view?",
+        "hi": "कौन-सा कथन मानव पूँजी के दृष्टिकोण से मेल खाता है?"
+       },
+       "options": [
+        {
+         "en": "Healthy, skilled workers raise the nation's output",
+         "hi": "स्वस्थ, कुशल श्रमिक देश का उत्पादन बढ़ाते हैं"
+        },
+        {
+         "en": "Reading poems is good for its own sake",
+         "hi": "कविता पढ़ना अपने आप में अच्छा है"
+        },
+        {
+         "en": "A long life is valuable even without work",
+         "hi": "लंबा जीवन काम के बिना भी मूल्यवान है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The human capital view values education and health for the output they produce.",
+        "hi": "मानव पूँजी का दृष्टिकोण शिक्षा और स्वास्थ्य को उनसे होने वाले उत्पादन के लिए महत्व देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Valuing something for its own sake is the human development view.",
+         "hi": "किसी चीज़ को अपने आप में महत्व देना मानव विकास का दृष्टिकोण है।"
+        },
+        {
+         "en": "That values life itself, not output: human development.",
+         "hi": "यह जीवन को ही महत्व देता है, उत्पादन को नहीं: मानव विकास।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Go to the teacher's question. Then write one sentence on why educating girls matters in both views.",
+      "hi": "शिक्षक के सवाल पर जाओ। फिर एक वाक्य लिखो कि दोनों दृष्टिकोणों में लड़कियों को पढ़ाना क्यों महत्वपूर्ण है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch04-enrolment",
+   "topic": "4.6",
+   "template": "data",
+   "title": {
+    "en": "Who keeps studying?",
+    "hi": "पढ़ाई कौन जारी रखता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "min",
+    "title": {
+     "en": "Students at each stage in one district (sample numbers)",
+     "hi": "एक ज़िले में हर स्तर के विद्यार्थी (नमूने के अंक)"
+    },
+    "xlabel": {
+     "en": "Stage of education",
+     "hi": "शिक्षा का स्तर"
+    },
+    "ylabel": {
+     "en": "Number of students",
+     "hi": "विद्यार्थियों की संख्या"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Elementary (1 to 8)",
+       "hi": "प्रारंभिक (1 से 8)"
+      },
+      "value": 1000
+     },
+     {
+      "label": {
+       "en": "Secondary (9 and 10)",
+       "hi": "माध्यमिक (9 और 10)"
+      },
+      "value": 640
+     },
+     {
+      "label": {
+       "en": "Higher secondary (11, 12)",
+       "hi": "उच्चतर माध्यमिक (11, 12)"
+      },
+      "value": 420
+     },
+     {
+      "label": {
+       "en": "College",
+       "hi": "कॉलेज"
+      },
+      "value": 210
+     }
+    ],
+    "show": 1
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In this district 1,000 children are in Classes 1 to 8. How many do you think reach college?",
+      "hi": "इस ज़िले में कक्षा 1 से 8 में 1,000 बच्चे हैं। तुम्हें क्या लगता है, कितने कॉलेज तक पहुँचते हैं?"
+     },
+     "options": [
+      {
+       "id": "fifth",
+       "en": "About one in five",
+       "hi": "लगभग पाँच में से एक"
+      },
+      {
+       "id": "all",
+       "en": "Almost all of them",
+       "hi": "लगभग सभी"
+      },
+      {
+       "id": "half",
+       "en": "About nine in ten",
+       "hi": "लगभग दस में से नौ"
+      }
+     ],
+     "answer": "fifth"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the secondary stage.",
+      "hi": "\"जोड़ो\" पर टैप करो और माध्यमिक स्तर दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the higher secondary stage.",
+      "hi": "\"जोड़ो\" पर टैप करो और उच्चतर माध्यमिक स्तर दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot college.",
+      "hi": "\"जोड़ो\" पर टैप करो और कॉलेज दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer below: at which stage are there the fewest students?",
+      "hi": "नीचे उत्तर दो: किस स्तर पर सबसे कम विद्यार्थी हैं?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has nearly reached the goal of every child in elementary school, but many drop out at each later stage. Fewer students in higher education means fewer skilled workers later. That is why policy now aims at keeping children in school, spending more on education (a goal of 6 per cent of GDP), equal education for girls and more places in higher education. These sample numbers show the pattern only.",
+      "hi": "भारत लगभग हर बच्चे को प्रारंभिक स्कूल तक पहुँचाने के लक्ष्य पर पहुँच गया है, पर हर अगले स्तर पर कई बच्चे पढ़ाई छोड़ देते हैं। उच्च शिक्षा में कम विद्यार्थी होने का अर्थ है आगे कम कुशल श्रमिक। इसीलिए अब नीति का लक्ष्य बच्चों को स्कूल में बनाए रखना, शिक्षा पर ज़्यादा ख़र्च (जीडीपी का 6 प्रतिशत लक्ष्य), लड़कियों के लिए बराबर शिक्षा और उच्च शिक्षा में ज़्यादा स्थान है। ये नमूने के अंक केवल ढाँचा दिखाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In this sample, what share of elementary pupils reach college?",
+        "hi": "इस नमूने में प्रारंभिक स्तर के कितने विद्यार्थी कॉलेज तक पहुँचते हैं?"
+       },
+       "options": [
+        {
+         "en": "21 per cent",
+         "hi": "21 प्रतिशत"
+        },
+        {
+         "en": "64 per cent",
+         "hi": "64 प्रतिशत"
+        },
+        {
+         "en": "42 per cent",
+         "hi": "42 प्रतिशत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "210 out of 1,000 = 21 per cent.",
+        "hi": "1,000 में से 210 = 21 प्रतिशत।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "64 per cent reach secondary school, not college.",
+         "hi": "64 प्रतिशत माध्यमिक तक पहुँचते हैं, कॉलेज तक नहीं।"
+        },
+        {
+         "en": "42 per cent reach higher secondary, not college.",
+         "hi": "42 प्रतिशत उच्चतर माध्यमिक तक पहुँचते हैं, कॉलेज तक नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does educating girls matter for human capital?",
+        "hi": "मानव पूँजी के लिए लड़कियों की शिक्षा क्यों मायने रखती है?"
+       },
+       "options": [
+        {
+         "en": "It raises women's skills and also improves family health and children's education",
+         "hi": "इससे महिलाओं का कौशल बढ़ता है और परिवार का स्वास्थ्य व बच्चों की शिक्षा भी सुधरती है"
+        },
+        {
+         "en": "It has no effect on the economy",
+         "hi": "इसका अर्थव्यवस्था पर कोई असर नहीं"
+        },
+        {
+         "en": "Only boys can become workers",
+         "hi": "केवल लड़के श्रमिक बन सकते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Educated women earn more and make better choices about health and schooling for the next generation.",
+        "hi": "पढ़ी-लिखी महिलाएँ ज़्यादा कमाती हैं और अगली पीढ़ी के स्वास्थ्य और पढ़ाई के बारे में बेहतर फ़ैसले लेती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Educated women add skills and better family outcomes; the effect is large.",
+         "hi": "पढ़ी-लिखी महिलाएँ कौशल और बेहतर पारिवारिक नतीजे जोड़ती हैं; असर बड़ा है।"
+        },
+        {
+         "en": "Women and men are both workers; leaving girls out wastes half the talent.",
+         "hi": "महिलाएँ और पुरुष दोनों श्रमिक हैं; लड़कियों को छोड़ना आधी प्रतिभा गँवाना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the college bar up to 500. What would that mean for the skilled workers the district has in ten years?",
+      "hi": "कॉलेज के दंड को 500 तक खींचो। दस साल बाद ज़िले के कुशल श्रमिकों के लिए इसका क्या अर्थ होगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Hook of the chapter: a classroom in a government school",
+   "shows": "A bright Indian government-school classroom from the back: rows of girls and boys in uniform facing a blackboard, a teacher's hand pointing",
+   "view": "Eye level from the back of the room, morning light, 16:9",
+   "right": "Equal numbers of girls and boys; real Indian classroom",
+   "avoid": "Faces, school names, readable writing on the board"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Health as a source of human capital",
+   "shows": "A primary health centre in a village: a nurse's gloved hands giving a vaccine to an adult's arm, a clean steel tray",
+   "view": "Close view of hands and arm, soft clinic light, 4:3",
+   "right": "Gloves, a fresh syringe, clean setting",
+   "avoid": "Faces, brand names on medicines"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "On-the-job training",
+   "shows": "A senior worker guiding a young woman's hands on an industrial sewing machine in a garment unit",
+   "view": "Close three-quarter view of hands on the machine, 16:9",
+   "right": "Real sewing machine, fabric under the needle",
+   "avoid": "Faces, logos"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Migration for work",
+   "shows": "A railway platform at dawn with travellers and luggage boarding a long-distance train",
+   "view": "Wide view along the platform, people seen from behind, 16:9",
+   "right": "Indian railway platform and coaches",
+   "avoid": "Readable train names, faces"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "4.6",
+   "use": "Base for the education ladder graphic",
+   "shows": "Four plain stair steps rising left to right, each slightly narrower, in soft blue on white",
+   "view": "Flat front view, 16:9",
+   "right": "Steps clean with even spacing",
+   "avoid": "Text, numbers, people"
+  }
+ ]
+}

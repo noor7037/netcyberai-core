@@ -1,0 +1,504 @@
+{
+ "chapter_key": "u.c11.english.kehb1.x06",
+ "class": 11,
+ "subject_id": "english",
+ "title": "The Voice of the Rain",
+ "source": "https://ncert.nic.in/textbook/pdf/kehb103.pdf",
+ "topics": [
+  {
+   "n": "x06.1",
+   "title": "The journey of the rain: the cycle",
+   "labs": [
+    "c11-english-kehb1-x06-rain-cycle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "x06.2",
+   "title": "Two voices and the hard words",
+   "labs": [
+    "c11-english-kehb1-x06-rain-poem-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "x06.3",
+   "title": "Compare with other rain poems",
+   "labs": [],
+   "why_no_lab": "Reading two poems side by side in class does this better than a toy."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-english-kehb1-x06-rain-cycle",
+   "topic": "x06.1",
+   "template": "sequence",
+   "title": {
+    "en": "The journey of the rain",
+    "hi": "बारिश का सफ़र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "r1",
+      "text": {
+       "en": "Water rises as invisible vapour from land and sea.",
+       "hi": "पानी अदृश्य भाप बनकर ज़मीन और समुद्र से उठता है।"
+      }
+     },
+     {
+      "id": "r2",
+      "text": {
+       "en": "High in the sky the vapour gathers into clouds.",
+       "hi": "आसमान में भाप जमा होकर बादल बन जाती है।"
+      }
+     },
+     {
+      "id": "r3",
+      "text": {
+       "en": "The clouds send rain falling on the dry earth.",
+       "hi": "बादल सूखी धरती पर बारिश बरसाते हैं।"
+      }
+     },
+     {
+      "id": "r4",
+      "text": {
+       "en": "The rain washes the dust and wakes the sleeping seeds.",
+       "hi": "बारिश धूल धोती है और सोए बीजों को जगाती है।"
+      }
+     },
+     {
+      "id": "r5",
+      "text": {
+       "en": "The water flows back to the sea, and the journey begins again.",
+       "hi": "पानी फिर समुद्र में लौटता है, और सफ़र दोबारा शुरू होता है।"
+      }
+     }
+    ],
+    "cyclic": true
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the poem, where does the rain come from first?",
+      "hi": "कविता में बारिश सबसे पहले कहाँ से आती है?"
+     },
+     "options": [
+      {
+       "id": "land",
+       "en": "From land and sea, rising up",
+       "hi": "ज़मीन और समुद्र से ऊपर उठकर"
+      },
+      {
+       "id": "sky",
+       "en": "It was always in the sky",
+       "hi": "वह हमेशा आसमान में थी"
+      }
+     ],
+     "answer": "land"
+    },
+    {
+     "kind": "do",
+     "target": "item:r1",
+     "expect": "placed:r1",
+     "say": {
+      "en": "Put the card about water rising in its place. You can start the circle anywhere.",
+      "hi": "पानी के उठने वाला कार्ड उसकी जगह पर रखो। तुम चक्र कहीं से भी शुरू कर सकते हो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange all the cards and press Check.",
+      "hi": "सारे कार्ड लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the poem the rain says it rises from land and sea, changes in the sky and comes back down to wash and feed the earth. Science calls this the water cycle: evaporation, cloud formation, rainfall and flow back to the sea. Because the last step leads to the first, the cards form a circle and any card can start the circle.",
+      "hi": "कविता में बारिश कहती है कि वह ज़मीन और समुद्र से उठती है, आसमान में रूप बदलती है और धरती को धोने और पोषण देने नीचे लौटती है। विज्ञान इसे जल चक्र कहता है: वाष्पीकरण, बादल बनना, वर्षा और फिर समुद्र में बहाव। आख़िरी कदम पहले की ओर ले जाता है, इसलिए कार्ड एक वृत्त बनाते हैं और चक्र किसी भी कार्ड से शुरू हो सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'impalpable' mean?",
+        "hi": "'impalpable' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Heavy",
+         "hi": "भारी"
+        },
+        {
+         "en": "Too faint to be touched",
+         "hi": "इतना हल्का कि छुआ न जा सके"
+        },
+        {
+         "en": "Very noisy",
+         "hi": "बहुत शोर वाला"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The rising vapour cannot be touched or felt.",
+        "hi": "ऊपर उठती भाप को छुआ या पकड़ा नहीं जा सकता।"
+       },
+       "wrong": [
+        {
+         "en": "Vapour is light, not heavy.",
+         "hi": "भाप हल्की होती है, भारी नहीं।"
+        },
+        "",
+        {
+         "en": "The word is about touch, not sound.",
+         "hi": "शब्द स्पर्श के बारे में है, ध्वनि के नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which science idea does the poem match?",
+        "hi": "कविता विज्ञान के किस विचार से मेल खाती है?"
+       },
+       "options": [
+        {
+         "en": "The water cycle",
+         "hi": "जल चक्र"
+        },
+        {
+         "en": "The food chain",
+         "hi": "आहार शृंखला"
+        },
+        {
+         "en": "The rock cycle",
+         "hi": "शैल चक्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rising vapour, clouds, rain and return to the sea make the water cycle.",
+        "hi": "भाप का उठना, बादल, बारिश और समुद्र में लौटना जल चक्र बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A food chain is about who eats whom.",
+         "hi": "आहार शृंखला इस बारे में है कि कौन किसे खाता है।"
+        },
+        {
+         "en": "The rock cycle is about rocks changing over millions of years.",
+         "hi": "शैल चक्र चट्टानों के लाखों सालों में बदलने के बारे में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw the water cycle as a circle with five pictures. Add one line of the poem's idea on each.",
+      "hi": "पाँच चित्रों के साथ जल चक्र का वृत्त बनाओ। हर चित्र पर कविता का एक विचार लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-english-kehb1-x06-rain-poem-words",
+   "topic": "x06.2",
+   "template": "match",
+   "title": {
+    "en": "Two voices and some hard words",
+    "hi": "दो आवाज़ें और कुछ कठिन शब्द"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "poet",
+      "left": {
+       "en": "'And who art thou?'",
+       "hi": "'तुम कौन हो?'"
+      },
+      "right": {
+       "en": "The poet speaks to the rain",
+       "hi": "कवि बारिश से बोलता है"
+      },
+      "why": {
+       "en": "The poet asks, and the rain answers.",
+       "hi": "कवि पूछता है और बारिश उत्तर देती है।"
+      }
+     },
+     {
+      "id": "rain",
+      "left": {
+       "en": "'I am the Poem of Earth'",
+       "hi": "'मैं धरती की कविता हूँ'"
+      },
+      "right": {
+       "en": "The rain answers",
+       "hi": "बारिश उत्तर देती है"
+      },
+      "why": {
+       "en": "The second voice is the voice of the rain.",
+       "hi": "दूसरी आवाज़ बारिश की आवाज़ है।"
+      }
+     },
+     {
+      "id": "impalpable",
+      "left": {
+       "en": "Impalpable",
+       "hi": "अस्पृश्य (न छुआ जाने वाला)"
+      },
+      "right": {
+       "en": "Too faint to be touched",
+       "hi": "इतना हल्का कि छुआ न जा सके"
+      },
+      "why": {
+       "en": "Rising vapour cannot be felt.",
+       "hi": "ऊपर उठती भाप महसूस नहीं होती।"
+      }
+     },
+     {
+      "id": "lave",
+      "left": {
+       "en": "Lave",
+       "hi": "धोना"
+      },
+      "right": {
+       "en": "To wash or bathe",
+       "hi": "नहलाना या धोना"
+      },
+      "why": {
+       "en": "The rain washes the dry earth.",
+       "hi": "बारिश सूखी धरती को धोती है।"
+      }
+     },
+     {
+      "id": "latent",
+      "left": {
+       "en": "Latent",
+       "hi": "सुप्त"
+      },
+      "right": {
+       "en": "Hidden, not yet grown",
+       "hi": "छिपा हुआ, अभी उगा नहीं"
+      },
+      "why": {
+       "en": "Seeds lie hidden till the rain wakes them.",
+       "hi": "बीज बारिश के जगाने तक छिपे रहते हैं।"
+      }
+     },
+     {
+      "id": "atomies",
+      "left": {
+       "en": "Atomies",
+       "hi": "कण"
+      },
+      "right": {
+       "en": "Tiny particles",
+       "hi": "बहुत छोटे कण"
+      },
+      "why": {
+       "en": "Specks of dust in the soil.",
+       "hi": "मिट्टी के धूल के कण।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who answers 'And who art thou?' in the poem?",
+      "hi": "'तुम कौन हो?' का उत्तर कविता में कौन देता है?"
+     },
+     "options": [
+      {
+       "id": "rain",
+       "en": "The rain",
+       "hi": "बारिश"
+      },
+      {
+       "id": "poet",
+       "en": "The poet himself",
+       "hi": "स्वयं कवि"
+      }
+     ],
+     "answer": "rain"
+    },
+    {
+     "kind": "do",
+     "target": "left:poet",
+     "expect": "matched:poet",
+     "say": {
+      "en": "Match the poet's question with the speaker.",
+      "hi": "कवि के प्रश्न को बोलने वाले से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the pairs and press Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There are two voices in the poem: the poet who asks and the rain who answers. Hard words such as 'lave' and 'latent' are easy once you match them to meanings: the rain washes the earth and wakes the hidden seeds. Calling the rain 'the Poem of Earth' shows that rain, like a song, comes from the earth and returns to it.",
+      "hi": "कविता में दो आवाज़ें हैं: प्रश्न पूछता कवि और उत्तर देती बारिश। 'lave' और 'latent' जैसे कठिन शब्द अर्थों से मिलाने पर आसान हो जाते हैं: बारिश धरती को धोती है और छिपे बीजों को जगाती है। बारिश को 'धरती की कविता' कहना दिखाता है कि बारिश, गीत की तरह, धरती से आती है और उसी में लौटती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'latent' describe in the poem?",
+        "hi": "कविता में 'latent' किसका वर्णन करता है?"
+       },
+       "options": [
+        {
+         "en": "Seeds waiting to grow",
+         "hi": "उगने की प्रतीक्षा में बीज"
+        },
+        {
+         "en": "Loud thunder",
+         "hi": "तेज़ गर्जन"
+        },
+        {
+         "en": "The poet's voice",
+         "hi": "कवि की आवाज़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Latent means hidden, waiting for the right time, like seeds before the rain.",
+        "hi": "'लेटेंट' यानी छिपा, सही समय की प्रतीक्षा में, जैसे बारिश से पहले बीज।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Thunder is not in the poem; 'latent' means hidden.",
+         "hi": "कविता में गर्जन नहीं है; 'latent' का अर्थ छिपा हुआ है।"
+        },
+        {
+         "en": "The poet's voice is clear, not hidden.",
+         "hi": "कवि की आवाज़ साफ़ है, छिपी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the rain do to the dry earth?",
+        "hi": "बारिश सूखी धरती के साथ क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "It washes and wakes it",
+         "hi": "उसे धोती और जगाती है"
+        },
+        {
+         "en": "It buries it",
+         "hi": "उसे दबाती है"
+        },
+        {
+         "en": "It runs away from it",
+         "hi": "उससे भागती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The rain washes the dust and brings the sleeping seeds to life.",
+        "hi": "बारिश धूल धोती है और सोए बीजों को जीवन देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rain does not bury the earth in the poem; it gives life.",
+         "hi": "कविता में बारिश धरती को दबाती नहीं; जीवन देती है।"
+        },
+        {
+         "en": "The rain returns to its origin; it does not run away.",
+         "hi": "बारिश अपने मूल में लौटती है; भागती नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find another poem about rain in any language. Does it have one voice or two?",
+      "hi": "किसी भी भाषा में बारिश पर कोई और कविता ढूँढो। उसमें एक आवाज़ है या दो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "x06.1",
+   "use": "Opens the poem",
+   "shows": "A monsoon shower falling on a dry brown field with a farmer's hut, rain streaks visible, soft light",
+   "view": "Wide",
+   "right": "Rain streaks, wet earth, first green",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "x06.1",
+   "use": "Water cycle in a pot",
+   "shows": "Four frames of a sealed glass jar with a little water: clear, mist on lid, droplets on lid, drops falling back",
+   "view": "Same camera, same light",
+   "right": "Real condensation",
+   "avoid": "Text, hands"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "x06.2",
+   "use": "A raindrop on a leaf",
+   "shows": "A single raindrop on a green leaf, very close",
+   "view": "Square",
+   "right": "Round bead, leaf veins visible",
+   "avoid": "Insects"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "x06.1",
+   "use": "Seeds waking",
+   "shows": "Sprouts pushing through dry cracked soil after rain",
+   "view": "Low, close",
+   "right": "Fresh green shoots, wet soil",
+   "avoid": "Plastic, people"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "x06.1",
+   "use": "Land and sea",
+   "shows": "A coastline from above with clouds forming over sea and rain over land",
+   "view": "16:9, no names",
+   "right": "Clouds, coast, rivers back to sea",
+   "avoid": "Names"
+  }
+ ]
+}

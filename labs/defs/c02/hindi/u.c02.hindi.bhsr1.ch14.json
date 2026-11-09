@@ -1,0 +1,457 @@
+{
+ "chapter_key": "u.c02.hindi.bhsr1.ch14",
+ "class": 2,
+ "subject_id": "hindi",
+ "title": "The Seed (बीज)",
+ "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "Poem-story 'Beej': steps of a seed becoming a plant",
+   "labs": [
+    "c02-hindi-bhsr1-ch14-seed-grows"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.2",
+   "title": "What a seed and plant need",
+   "labs": [
+    "c02-hindi-bhsr1-ch14-seed-needs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.3",
+   "title": "Colouring the seed and plant",
+   "labs": [],
+   "why_no_lab": "Colouring is done on paper."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c02-hindi-bhsr1-ch14-seed-grows",
+   "topic": "14.1",
+   "template": "sequence",
+   "title": {
+    "en": "How a seed grows",
+    "hi": "बीज कैसे उगता है"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "sow",
+      "text": {
+       "en": "Put the seed in the soil of a pot.",
+       "hi": "बीज को गमले की मिट्टी में डालो।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Give it water.",
+       "hi": "उसे पानी दो।"
+      }
+     },
+     {
+      "id": "sun",
+      "text": {
+       "en": "Keep it where it gets sunlight.",
+       "hi": "उसे ऐसी जगह रखो जहाँ धूप आए।"
+      }
+     },
+     {
+      "id": "sprout",
+      "text": {
+       "en": "After some days a tiny sprout comes out.",
+       "hi": "कुछ दिनों में छोटा अंकुर निकलता है।"
+      }
+     },
+     {
+      "id": "plant",
+      "text": {
+       "en": "The sprout grows into a plant.",
+       "hi": "अंकुर बढ़कर पौधा बन जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:sow",
+     "expect": "placed:sow",
+     "say": {
+      "en": "Place the card that tells what to do first.",
+      "hi": "पहले क्या करना है, वह कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes out of the seed first?",
+      "hi": "बीज से सबसे पहले क्या निकलता है?"
+     },
+     "options": [
+      {
+       "id": "s",
+       "en": "A tiny sprout",
+       "hi": "छोटा अंकुर"
+      },
+      {
+       "id": "f",
+       "en": "A big fruit",
+       "hi": "बड़ा फल"
+      },
+      {
+       "id": "t",
+       "en": "A tall tree",
+       "hi": "ऊँचा पेड़"
+      }
+     ],
+     "answer": "s"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all five in order and press Check.",
+      "hi": "पाँचों को क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A seed needs soil, water and sunlight to grow. First a small sprout comes out. Then it grows into a plant. We do not know if it will be a tree or a bush, but we wait and care for it.",
+      "hi": "बीज को उगने के लिए मिट्टी, पानी और धूप चाहिए। पहले एक छोटा अंकुर निकलता है। फिर वह बढ़कर पौधा बनता है। हमें नहीं पता कि वह पेड़ बनेगा या झाड़ी, पर हम इंतज़ार करते हैं और देखभाल करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do we give the seed after putting it in the soil?",
+        "hi": "बीज को मिट्टी में डालने के बाद हम उसे क्या देते हैं?"
+       },
+       "options": [
+        {
+         "en": "पानी",
+         "hi": "पानी"
+        },
+        {
+         "en": "किताब",
+         "hi": "किताब"
+        },
+        {
+         "en": "जूते",
+         "hi": "जूते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water helps the seed wake up and grow.",
+        "hi": "पानी से बीज जागकर उगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A book is of no use to a seed.",
+         "hi": "किताब का बीज के लिए कोई काम नहीं।"
+        },
+        {
+         "en": "Shoes are not needed by a seed.",
+         "hi": "बीज को जूतों की ज़रूरत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Plant a few black gram (chana) seeds in an old pot. Water them and watch each day.",
+      "hi": "किसी पुराने गमले में काले चने बोओ। रोज़ पानी दो और देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-hindi-bhsr1-ch14-seed-needs",
+   "topic": "14.2",
+   "template": "sort",
+   "title": {
+    "en": "What does a seed need?",
+    "hi": "बीज को क्या चाहिए?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "needs",
+      "label": {
+       "en": "A seed and plant need it",
+       "hi": "बीज और पौधे को चाहिए"
+      }
+     },
+     {
+      "id": "noneed",
+      "label": {
+       "en": "Not needed",
+       "hi": "नहीं चाहिए"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "water",
+      "text": {
+       "en": "Water",
+       "hi": "पानी"
+      },
+      "bin": "needs",
+      "why": {
+       "en": "Water helps the seed sprout.",
+       "hi": "पानी से बीज अंकुरित होता है।"
+      }
+     },
+     {
+      "id": "soil",
+      "text": {
+       "en": "Soil",
+       "hi": "मिट्टी"
+      },
+      "bin": "needs",
+      "why": {
+       "en": "Roots hold in the soil and take food from it.",
+       "hi": "जड़ें मिट्टी में टिकती हैं और उससे भोजन लेती हैं।"
+      }
+     },
+     {
+      "id": "sun",
+      "text": {
+       "en": "Sunlight",
+       "hi": "धूप"
+      },
+      "bin": "needs",
+      "why": {
+       "en": "A young plant needs sunlight to grow well.",
+       "hi": "छोटे पौधे को बढ़ने के लिए धूप चाहिए।"
+      }
+     },
+     {
+      "id": "air",
+      "text": {
+       "en": "Air",
+       "hi": "हवा"
+      },
+      "bin": "needs",
+      "why": {
+       "en": "Seeds and plants need air.",
+       "hi": "बीज और पौधों को हवा चाहिए।"
+      }
+     },
+     {
+      "id": "shoes",
+      "text": {
+       "en": "Shoes",
+       "hi": "जूते"
+      },
+      "bin": "noneed",
+      "why": {
+       "en": "A plant does not wear shoes.",
+       "hi": "पौधे जूते नहीं पहनते।"
+      }
+     },
+     {
+      "id": "book",
+      "text": {
+       "en": "Book",
+       "hi": "किताब"
+      },
+      "bin": "noneed",
+      "why": {
+       "en": "A book does not help a seed grow.",
+       "hi": "किताब से बीज नहीं उगता।"
+      }
+     },
+     {
+      "id": "tv",
+      "text": {
+       "en": "Television",
+       "hi": "टीवी"
+      },
+      "bin": "noneed",
+      "why": {
+       "en": "A television is not needed by a plant.",
+       "hi": "पौधे को टीवी नहीं चाहिए।"
+      }
+     },
+     {
+      "id": "toffee",
+      "text": {
+       "en": "Toffee",
+       "hi": "टॉफ़ी"
+      },
+      "bin": "noneed",
+      "why": {
+       "en": "A plant cannot eat toffee.",
+       "hi": "पौधा टॉफ़ी नहीं खाता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:water",
+     "expect": "placed:water",
+     "say": {
+      "en": "Tap 'पानी' and put it in the right group.",
+      "hi": "'पानी' छुओ और सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does a seed need soil?",
+      "hi": "क्या बीज को मिट्टी चाहिए?"
+     },
+     "options": [
+      {
+       "id": "y",
+       "en": "हाँ",
+       "hi": "हाँ"
+      },
+      {
+       "id": "n",
+       "en": "नहीं",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "y"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water, soil, sunlight and air help a seed to grow. Toys, books and sweets are useful to us but not to the plant. Knowing what a plant needs helps us look after it.",
+      "hi": "पानी, मिट्टी, धूप और हवा बीज को उगने में मदद करते हैं। खिलौने, किताबें और मिठाइयाँ हमारे काम की हैं, पौधे के नहीं। पौधे की ज़रूरत जानकर हम उसकी देखभाल कर पाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one does a plant NOT need?",
+        "hi": "पौधे को क्या नहीं चाहिए?"
+       },
+       "options": [
+        {
+         "en": "टीवी",
+         "hi": "टीवी"
+        },
+        {
+         "en": "पानी",
+         "hi": "पानी"
+        },
+        {
+         "en": "धूप",
+         "hi": "धूप"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A plant gets food from soil, water and sun, not from TV.",
+        "hi": "पौधा मिट्टी, पानी और धूप से भोजन पाता है, टीवी से नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water is needed.",
+         "hi": "पानी चाहिए।"
+        },
+        {
+         "en": "Sunlight is needed.",
+         "hi": "धूप चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put one bean seed in a wet cloth and another in a dry cloth. After two days, which has grown?",
+      "hi": "एक सेम का बीज गीले कपड़े में और दूसरा सूखे कपड़े में रखो। दो दिन बाद किसमें अंकुर आया?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "14.1",
+   "use": "Seed growth",
+   "shows": "Five frames of a bean seed in a clear glass: dry seed, swollen seed, root, shoot, small plant",
+   "view": "Same angle, window light",
+   "right": "Same glass, damp cotton, clear root",
+   "avoid": "Plastic bag look"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "14.1",
+   "use": "Seeds",
+   "shows": "Cut-outs: bean, chickpea, sunflower seed, mango stone",
+   "view": "Top view",
+   "right": "Real sizes and colours",
+   "avoid": "Packet brands"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Child watering a pot",
+   "shows": "A child's hands watering a pot with a small plant, steel mug",
+   "view": "Close, side view",
+   "right": "Water drops visible",
+   "avoid": "Face"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "14.1",
+   "use": "Sprouting seed",
+   "shows": "Close-up of a seed with a white root coming out",
+   "view": "Square, macro",
+   "right": "Fine root hairs seen",
+   "avoid": "Mould"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "14.2",
+   "use": "Window plants",
+   "shows": "A small window ledge with pots in sun",
+   "view": "Eye level",
+   "right": "Healthy leaves",
+   "avoid": "Plastic trays"
+  }
+ ]
+}

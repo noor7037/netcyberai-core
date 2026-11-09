@@ -1,0 +1,996 @@
+{
+ "chapter_key": "u.c08.english.hepr1.ch08",
+ "class": 8,
+ "subject_id": "english",
+ "title": "The Magic Brush of Dreams",
+ "source": "https://ncert.nic.in/textbook.php?hepr1=0-5",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Gopi's choices: courage and kindness",
+   "labs": [
+    "c08-english-hepr1-ch08-brush"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Words with many meanings: draw",
+   "labs": [
+    "c08-english-hepr1-ch08-draw"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Interjections",
+   "labs": [
+    "c08-english-hepr1-ch08-interjections"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Imaginative essay (Let us write)",
+   "labs": [
+    "c08-english-hepr1-ch08-essay"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Crossword on poem words and the Hindi tale link",
+   "labs": [],
+   "why_no_lab": "A crossword is a pen-and-paper puzzle; the clues are best solved in the textbook."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-english-hepr1-ch08-brush",
+   "topic": "8.1",
+   "template": "scenario",
+   "title": {
+    "en": "Gopi and the magic brush",
+    "hi": "गोपी और जादुई तूलिका"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "Gopi, who holds the magic brush",
+     "hi": "गोपी, जिसके पास जादुई तूलिका है"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "A stranger gives you a magic brush: 'Paint only for the poor.' Your neighbours are hungry. What do you paint first?",
+       "hi": "एक अजनबी तुम्हें जादुई तूलिका देता है: 'केवल ग़रीबों के लिए रँगना।' तुम्हारे पड़ोसी भूखे हैं। तुम सबसे पहले क्या रँगोगी?"
+      },
+      "choices": [
+       {
+        "id": "khichdi",
+        "text": {
+         "en": "A big bowl of hot khichdi",
+         "hi": "गरमागरम खिचड़ी का बड़ा कटोरा"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "The bowl is real and warm. The hungry villagers are amazed.",
+         "hi": "कटोरा असली और गरम है। भूखे गाँव वाले हैरान रह जाते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "necklace",
+        "text": {
+         "en": "A jewelled necklace for myself",
+         "hi": "अपने लिए रत्नजड़ित हार"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "You promised to paint only for the poor. The brush is for helping others.",
+         "hi": "तुमने वादा किया था कि केवल ग़रीबों के लिए रँगोगी। तूलिका दूसरों की मदद के लिए है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "News spreads. The Zamindar orders you to paint a fortress and heaps of gold for him. What do you say?",
+       "hi": "खबर फैल जाती है। ज़मींदार हुक्म देता है कि उसके लिए किला और सोने के ढेर रँगो। तुम क्या कहती हो?"
+      },
+      "choices": [
+       {
+        "id": "refuse",
+        "text": {
+         "en": "'My lord, I cannot. I promised to help the needy.'",
+         "hi": "'हुज़ूर, मैं नहीं रँग सकती। मैंने ज़रूरतमंदों की मदद का वादा किया है।'"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "You are brave and keep your promise. The Zamindar is furious.",
+         "hi": "तुम बहादुर हो और अपना वादा निभाती हो। ज़मींदार आगबबूला हो जाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "obey",
+        "text": {
+         "en": "Paint the gold and the fortress",
+         "hi": "सोना और किला रँग दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "You break your promise and the brush is used for greed.",
+         "hi": "तुम अपना वादा तोड़ देती हो और तूलिका लालच के लिए काम आती है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "You are thrown into a cold cell. You must escape and warn the villagers. What do you paint?",
+       "hi": "तुम्हें ठंडी कोठरी में डाल दिया जाता है। तुम्हें बच निकलकर गाँववालों को बताना है। तुम क्या रँगोगी?"
+      },
+      "choices": [
+       {
+        "id": "horse",
+        "text": {
+         "en": "A winding road and a strong horse",
+         "hi": "एक घुमावदार सड़क और एक मज़बूत घोड़ा"
+        },
+        "next": "s4",
+        "feedback": {
+         "en": "The road leads out of the prison gates and the horse gallops fast.",
+         "hi": "सड़क कैद के फाटकों से बाहर जाती है और घोड़ा तेज़ दौड़ता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "gold",
+        "text": {
+         "en": "A mountain of gold to please the Zamindar",
+         "hi": "ज़मींदार को खुश करने के लिए सोने का पहाड़"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Giving in to greed does not free you, and you lose the brush's purpose.",
+         "hi": "लालच के आगे झुकने से तुम आज़ाद नहीं होती, और तूलिका का उद्देश्य खो जाता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "The Zamindar's men chase you through the fields. How do you stop them?",
+       "hi": "ज़मींदार के आदमी खेतों में तुम्हारा पीछा करते हैं। तुम उन्हें कैसे रोकोगी?"
+      },
+      "choices": [
+       {
+        "id": "river",
+        "text": {
+         "en": "Paint a wide, deep river across their path",
+         "hi": "उनके रास्ते में एक चौड़ी, गहरी नदी रँगो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "They stop short and cannot cross. The villagers cheer and celebrate.",
+         "hi": "वे रुक जाते हैं और पार नहीं कर पाते। गाँव वाले खुशी से झूम उठते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "hide",
+        "text": {
+         "en": "Run away and forget the village",
+         "hi": "गाँव को भूलकर भाग जाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The villagers still need you. Courage means standing up for them.",
+         "hi": "गाँव वालों को अब भी तुम्हारी ज़रूरत है। साहस का अर्थ उनके लिए खड़े होना है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Zamindar wants gold and a fortress. What will Gopi do?",
+      "hi": "ज़मींदार सोना और किला चाहता है। गोपी क्या करेगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Refuse, because she promised to help the poor",
+       "hi": "मना कर देगी, क्योंकि उसने ग़रीबों की मदद का वादा किया है"
+      },
+      {
+       "id": "b",
+       "en": "Paint them for the reward",
+       "hi": "इनाम के लिए रँग देगी"
+      },
+      {
+       "id": "c",
+       "en": "Give the brush away",
+       "hi": "तूलिका दे देगी"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:khichdi",
+     "expect": "chose:khichdi",
+     "say": {
+      "en": "Paint a hot bowl of khichdi for the villagers.",
+      "hi": "गाँव वालों के लिए गरम खिचड़ी रँगो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:s2:refuse",
+     "expect": "chose:refuse",
+     "say": {
+      "en": "Stand up to the Zamindar.",
+      "hi": "ज़मींदार के सामने डटकर खड़ी हो जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:s4:river",
+     "expect": "chose:river",
+     "say": {
+      "en": "Stop the chase with a river.",
+      "hi": "नदी रँगकर पीछा रोको।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the poem Gopi uses a magical gift only for those in need. She is clever and brave: she keeps her promise even in prison and uses the brush to escape. A gift is valuable when it is used for kindness.",
+      "hi": "कविता में गोपी अपना जादुई उपहार केवल ज़रूरतमंदों के लिए इस्तेमाल करती है। वह चतुर और बहादुर है: कैद में भी अपना वादा निभाती है और तूलिका से बच निकलती है। उपहार तब कीमती होता है जब उसे दया के लिए उपयोग किया जाए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What was the one rule of the magic brush?",
+        "hi": "जादुई तूलिका का एक नियम क्या था?"
+       },
+       "options": [
+        {
+         "en": "Paint only for the poor",
+         "hi": "केवल ग़रीबों के लिए रँगो"
+        },
+        {
+         "en": "Paint only at night",
+         "hi": "केवल रात को रँगो"
+        },
+        {
+         "en": "Paint only animals",
+         "hi": "केवल जानवर रँगो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The man tells Gopi to paint not for the wealthy, but only for the poor.",
+        "hi": "आदमी गोपी से कहता है कि अमीरों के लिए नहीं, केवल ग़रीबों के लिए रँगना।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The poem sets no time of day.",
+         "hi": "कविता में दिन का कोई समय तय नहीं है।"
+        },
+        {
+         "en": "Gopi paints food, tools and clothes, not only animals.",
+         "hi": "गोपी भोजन, औज़ार और कपड़े भी रँगती है, केवल जानवर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What would you paint with a magic brush to help your neighbourhood? Draw it.",
+      "hi": "जादुई तूलिका से अपने मोहल्ले की मदद के लिए तुम क्या रँगोगे? चित्र बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-english-hepr1-ch08-draw",
+   "topic": "8.2",
+   "template": "sort",
+   "title": {
+    "en": "Many meanings of 'draw'",
+    "hi": "'draw' के कई अर्थ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pull",
+      "label": {
+       "en": "Pull in or pull out",
+       "hi": "खींचना या निकालना"
+      }
+     },
+     {
+      "id": "attract",
+      "label": {
+       "en": "Attract or get a reaction",
+       "hi": "आकर्षित करना या प्रतिक्रिया पाना"
+      }
+     },
+     {
+      "id": "picture",
+      "label": {
+       "en": "Make a picture",
+       "hi": "चित्र बनाना"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a1",
+      "text": {
+       "en": "Plants draw water from the soil.",
+       "hi": "पौधे मिट्टी से पानी खींचते हैं।"
+      },
+      "bin": "pull",
+      "why": {
+       "en": "The plant pulls water in through its roots.",
+       "hi": "पौधा जड़ों से पानी खींचता है।"
+      }
+     },
+     {
+      "id": "a2",
+      "text": {
+       "en": "She drew a card from the pack.",
+       "hi": "उसने गड्डी से एक पत्ता निकाला।"
+      },
+      "bin": "pull",
+      "why": {
+       "en": "She pulled one card out.",
+       "hi": "उसने एक पत्ता बाहर खींचा।"
+      }
+     },
+     {
+      "id": "a3",
+      "text": {
+       "en": "He drew the curtains to let in light.",
+       "hi": "उसने रोशनी के लिए पर्दे खींचे।"
+      },
+      "bin": "pull",
+      "why": {
+       "en": "Drawing curtains means pulling them open or closed.",
+       "hi": "पर्दे खींचने का अर्थ उन्हें खोलना या बंद करना है।"
+      }
+     },
+     {
+      "id": "a4",
+      "text": {
+       "en": "The fair draws huge crowds every year.",
+       "hi": "मेला हर साल भारी भीड़ खींचता है।"
+      },
+      "bin": "attract",
+      "why": {
+       "en": "The fair attracts many people.",
+       "hi": "मेला बहुत लोगों को आकर्षित करता है।"
+      }
+     },
+     {
+      "id": "a5",
+      "text": {
+       "en": "His joke drew loud laughter.",
+       "hi": "उसके चुटकुले पर ज़ोर की हँसी उठी।"
+      },
+      "bin": "attract",
+      "why": {
+       "en": "The joke got a reaction from people.",
+       "hi": "चुटकुले पर लोगों की प्रतिक्रिया मिली।"
+      }
+     },
+     {
+      "id": "a6",
+      "text": {
+       "en": "Gopi draws pictures in the sand.",
+       "hi": "गोपी रेत पर चित्र बनाती है।"
+      },
+      "bin": "picture",
+      "why": {
+       "en": "Here draw is to make a picture.",
+       "hi": "यहाँ draw का अर्थ चित्र बनाना है।"
+      }
+     },
+     {
+      "id": "a7",
+      "text": {
+       "en": "I drew a map of our village.",
+       "hi": "मैंने अपने गाँव का नक्शा बनाया।"
+      },
+      "bin": "picture",
+      "why": {
+       "en": "Drawing a map means making it with lines.",
+       "hi": "नक्शा बनाना यानी रेखाओं से उसे बनाना।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a6",
+     "expect": "placed:a6",
+     "say": {
+      "en": "Place the card about Gopi.",
+      "hi": "गोपी वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "'The fair draws huge crowds.' Here 'draws' means…",
+      "hi": "'The fair draws huge crowds.' यहाँ 'draws' का अर्थ है…"
+     },
+     "options": [
+      {
+       "id": "attract",
+       "en": "attracts",
+       "hi": "आकर्षित करता है"
+      },
+      {
+       "id": "picture",
+       "en": "makes a picture of",
+       "hi": "चित्र बनाता है"
+      },
+      {
+       "id": "pull",
+       "en": "pulls out",
+       "hi": "निकालता है"
+      }
+     ],
+     "answer": "attract"
+    },
+    {
+     "kind": "do",
+     "target": "card:a4",
+     "expect": "placed:a4",
+     "say": {
+      "en": "Place the fair card.",
+      "hi": "मेले वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाकी छाँटकर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many English words change meaning with the sentence around them. 'Draw' can mean to pull, to attract, to get a reaction, or to make a picture. To choose the right meaning, ask: what is the sentence about?",
+      "hi": "अंग्रेज़ी के कई शब्द आसपास के वाक्य के अनुसार अर्थ बदलते हैं। 'Draw' का अर्थ खींचना, आकर्षित करना, प्रतिक्रिया पाना या चित्र बनाना हो सकता है। सही अर्थ चुनने के लिए पूछो: वाक्य किस बारे में है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which sentence does 'draw' mean to make a picture?",
+        "hi": "किस वाक्य में 'draw' का अर्थ चित्र बनाना है?"
+       },
+       "options": [
+        {
+         "en": "Draw a rangoli on the floor.",
+         "hi": "फ़र्श पर रंगोली बनाओ। (पहला: Draw a rangoli on the floor.)"
+        },
+        {
+         "en": "Draw the curtains, please.",
+         "hi": "कृपया पर्दे खींचो। (दूसरा: Draw the curtains, please.)"
+        },
+        {
+         "en": "The film drew big crowds.",
+         "hi": "फ़िल्म ने भारी भीड़ खींची। (तीसरा: The film drew big crowds.)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A rangoli is made as a design, so draw means to make a picture or pattern.",
+        "hi": "रंगोली एक आकृति के रूप में बनाई जाती है, इसलिए draw का अर्थ चित्र या आकृति बनाना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Curtains are pulled; that is the 'pull' meaning.",
+         "hi": "पर्दे खींचे जाते हैं; यह 'खींचना' अर्थ है।"
+        },
+        {
+         "en": "Crowds are attracted; that is the 'attract' meaning.",
+         "hi": "भीड़ आकर्षित होती है; यह 'आकर्षित करना' अर्थ है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find two more meanings of 'draw' in a dictionary, such as draw a conclusion.",
+      "hi": "शब्दकोश में 'draw' के दो और अर्थ ढूँढो, जैसे draw a conclusion।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-english-hepr1-ch08-interjections",
+   "topic": "8.3",
+   "template": "match",
+   "title": {
+    "en": "What do these cries mean?",
+    "hi": "ये पुकारें क्या बताती हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "hush",
+      "left": {
+       "en": "Hush!",
+       "hi": "हश!"
+      },
+      "right": {
+       "en": "Asks for silence",
+       "hi": "चुप रहने को कहता है"
+      },
+      "why": {
+       "en": "An interjection is a short word that shows a sudden feeling.",
+       "hi": "विस्मयादिबोधक एक छोटा शब्द है जो अचानक भावना दिखाता है।"
+      }
+     },
+     {
+      "id": "wow",
+      "left": {
+       "en": "Wow!",
+       "hi": "वाह!"
+      },
+      "right": {
+       "en": "Shows amazement",
+       "hi": "अचरज दिखाता है"
+      },
+      "why": {
+       "en": "An interjection is a short word that shows a sudden feeling.",
+       "hi": "विस्मयादिबोधक एक छोटा शब्द है जो अचानक भावना दिखाता है।"
+      }
+     },
+     {
+      "id": "ouch",
+      "left": {
+       "en": "Ouch!",
+       "hi": "आउच!"
+      },
+      "right": {
+       "en": "Shows sudden pain",
+       "hi": "अचानक दर्द दिखाता है"
+      },
+      "why": {
+       "en": "An interjection is a short word that shows a sudden feeling.",
+       "hi": "विस्मयादिबोधक एक छोटा शब्द है जो अचानक भावना दिखाता है।"
+      }
+     },
+     {
+      "id": "hurray",
+      "left": {
+       "en": "Hurray!",
+       "hi": "हुर्रे!"
+      },
+      "right": {
+       "en": "Shows joy at a success",
+       "hi": "सफलता पर खुशी दिखाता है"
+      },
+      "why": {
+       "en": "An interjection is a short word that shows a sudden feeling.",
+       "hi": "विस्मयादिबोधक एक छोटा शब्द है जो अचानक भावना दिखाता है।"
+      }
+     },
+     {
+      "id": "alas",
+      "left": {
+       "en": "Alas!",
+       "hi": "हाय!"
+      },
+      "right": {
+       "en": "Shows sadness or regret",
+       "hi": "दुख या पछतावा दिखाता है"
+      },
+      "why": {
+       "en": "An interjection is a short word that shows a sudden feeling.",
+       "hi": "विस्मयादिबोधक एक छोटा शब्द है जो अचानक भावना दिखाता है।"
+      }
+     },
+     {
+      "id": "oops",
+      "left": {
+       "en": "Oops!",
+       "hi": "उफ़!"
+      },
+      "right": {
+       "en": "Shows a small mistake",
+       "hi": "छोटी भूल दिखाता है"
+      },
+      "why": {
+       "en": "An interjection is a short word that shows a sudden feeling.",
+       "hi": "विस्मयादिबोधक एक छोटा शब्द है जो अचानक भावना दिखाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:hush",
+     "expect": "matched:hush",
+     "say": {
+      "en": "Match 'Hush!' with its feeling.",
+      "hi": "'Hush!' को उसकी भावना से जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You stub your toe. Which cry comes out?",
+      "hi": "तुम्हारे पैर की उँगली टकरा जाती है। कौन-सी पुकार निकलती है?"
+     },
+     "options": [
+      {
+       "id": "ouch",
+       "en": "Ouch!",
+       "hi": "आउच!"
+      },
+      {
+       "id": "hurray",
+       "en": "Hurray!",
+       "hi": "हुर्रे!"
+      },
+      {
+       "id": "wow",
+       "en": "Wow!",
+       "hi": "वाह!"
+      }
+     ],
+     "answer": "ouch"
+    },
+    {
+     "kind": "do",
+     "target": "left:ouch",
+     "expect": "matched:ouch",
+     "say": {
+      "en": "Match 'Ouch!'.",
+      "hi": "'Ouch!' जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाकी जोड़कर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Words like Hush, Wow and Ouch are interjections. They stand alone, are followed by an exclamation mark, and show a sudden feeling. In the poem 'Hush!' tells Gopi to be quiet about the secret brush.",
+      "hi": "Hush, Wow और Ouch जैसे शब्द विस्मयादिबोधक हैं। ये अकेले आते हैं, इनके बाद विस्मयादिबोधक चिह्न लगता है, और ये अचानक भावना दिखाते हैं। कविता में 'Hush!' गोपी को जादुई तूलिका का रहस्य चुपचाप रखने को कहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which interjection fits: 'The cake fell on the floor. ___!'",
+        "hi": "कौन-सा विस्मयादिबोधक सही है: 'केक फ़र्श पर गिर गया। ___!'"
+       },
+       "options": [
+        {
+         "en": "Oops",
+         "hi": "Oops (उफ़)"
+        },
+        {
+         "en": "Hurray",
+         "hi": "Hurray (हुर्रे)"
+        },
+        {
+         "en": "Hush",
+         "hi": "Hush (हश)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "'Oops' shows a small mistake or accident.",
+        "hi": "'Oops' छोटी भूल या दुर्घटना दिखाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'Hurray' is for joy; a fallen cake is not a success.",
+         "hi": "'Hurray' खुशी के लिए है; गिरा हुआ केक सफलता नहीं है।"
+        },
+        {
+         "en": "'Hush' asks for silence; nobody asked for quiet here.",
+         "hi": "'Hush' चुप कराने के लिए है; यहाँ किसी ने चुप रहने को नहीं कहा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up a short dialogue that uses at least three interjections.",
+      "hi": "तीन विस्मयादिबोधक वाला छोटा संवाद बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-english-hepr1-ch08-essay",
+   "topic": "8.4",
+   "template": "writing",
+   "title": {
+    "en": "If I had a magic brush",
+    "hi": "काश मेरे पास जादुई तूलिका होती"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "kind": "essay",
+    "lang": "en",
+    "task": {
+     "en": "Write an imaginative essay about what you would do with a magic brush.",
+     "hi": "जादुई तूलिका से तुम क्या करोगे, इस पर कल्पनाशील निबंध लिखो।"
+    },
+    "parts": [
+     {
+      "id": "t",
+      "slot": "title",
+      "text": {
+       "en": "If I Had a Magic Brush",
+       "hi": "काश मेरे पास जादुई तूलिका होती"
+      }
+     },
+     {
+      "id": "i",
+      "slot": "introduction",
+      "text": {
+       "en": "Imagine a brush that makes whatever I paint come alive. I would be the happiest girl in the world, and I know how I would use it.",
+       "hi": "एक ऐसी तूलिका की कल्पना करो जो मेरी रँगी हर चीज़ को जीवित कर दे। मैं दुनिया की सबसे खुश लड़की होती, और मुझे पता है कि मैं उसका कैसे उपयोग करती।"
+      }
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": {
+       "en": "First, I would paint clean water taps for villages that have none, so no child has to walk miles for water.",
+       "hi": "सबसे पहले मैं उन गाँवों के लिए साफ़ पानी के नल रँगती जहाँ नल नहीं हैं, ताकि किसी बच्चे को पानी के लिए मीलों न चलना पड़े।"
+      }
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": {
+       "en": "Next, I would paint books and a small library for every school corner, and trees around the playground for shade.",
+       "hi": "फिर मैं हर स्कूल के कोने के लिए किताबें और छोटा पुस्तकालय रँगती, और खेल के मैदान के पास छाया के लिए पेड़।"
+      }
+     },
+     {
+      "id": "c",
+      "slot": "conclusion",
+      "text": {
+       "en": "A magic brush is a great gift, but it is useful only when it makes life better for others.",
+       "hi": "जादुई तूलिका एक बड़ा उपहार है, पर वह तभी उपयोगी है जब वह दूसरों का जीवन बेहतर बनाए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:t",
+     "expect": "placed:t",
+     "say": {
+      "en": "Place the title.",
+      "hi": "शीर्षक रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An essay has…",
+      "hi": "निबंध में होता है…"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "An introduction, a body and a conclusion",
+       "hi": "प्रस्तावना, मुख्य भाग और निष्कर्ष"
+      },
+      {
+       "id": "b",
+       "en": "Only a conclusion",
+       "hi": "केवल निष्कर्ष"
+      },
+      {
+       "id": "c",
+       "en": "Only questions",
+       "hi": "केवल प्रश्न"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "part:i",
+     "expect": "placed:i",
+     "say": {
+      "en": "Place the introduction.",
+      "hi": "प्रस्तावना रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Place all parts and press Check.",
+      "hi": "सभी भाग रखकर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An imaginative essay starts with a hook, develops two or three clear ideas in the body, and ends with a message. Even a dream needs order: opening, ideas, closing.",
+      "hi": "कल्पनाशील निबंध रोचक शुरुआत से आरंभ होता है, मुख्य भाग में दो-तीन स्पष्ट विचार रखता है, और एक संदेश पर समाप्त होता है। कल्पना को भी क्रम चाहिए: शुरुआत, विचार, समापन।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the conclusion of this essay do?",
+        "hi": "इस निबंध का निष्कर्ष क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Gives the message that the brush matters when it helps others",
+         "hi": "संदेश देता है कि तूलिका तब मायने रखती है जब वह दूसरों की मदद करे"
+        },
+        {
+         "en": "Introduces a new character",
+         "hi": "नया पात्र लाता है"
+        },
+        {
+         "en": "Lists the writer's address",
+         "hi": "लेखक का पता लिखता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The conclusion states the lesson of the essay.",
+        "hi": "निष्कर्ष निबंध की सीख बताता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "New characters belong in the body, not the end.",
+         "hi": "नए पात्र मुख्य भाग में आते हैं, अंत में नहीं।"
+        },
+        {
+         "en": "An essay has no address; that is for letters.",
+         "hi": "निबंध में पता नहीं होता; वह पत्र में होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write your own essay: 'My Life as a Superhero for the Environment'.",
+      "hi": "अपना निबंध लिखो: 'पर्यावरण का महानायक: मेरा जीवन'।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Opens the poem",
+   "shows": "A banyan tree at the edge of a village with a girl's twig and sand drawings below, seen from behind; no face",
+   "view": "Low, from behind the child",
+   "right": "Sand drawings visible, long roots, warm light",
+   "avoid": "Face, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "The magic brush",
+   "shows": "A slender paint brush with a golden handle and a soft tip, glowing slightly, cut-out",
+   "view": "Three-quarter view",
+   "right": "Real brush bristles; a soft gold glow, not a sparkler",
+   "avoid": "Cartoon sparkles, brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "Gopi's first painting",
+   "shows": "A steel bowl of steaming khichdi with a spoon, cut-out",
+   "view": "Slightly from above",
+   "right": "Real yellow khichdi with steam",
+   "avoid": "Plastic look, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "The Zamindar's fortress",
+   "shows": "A grand stone fort on a hill at sunset, no people",
+   "view": "Wide, from the valley",
+   "right": "Real Indian fort architecture",
+   "avoid": "Flags, signboards"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "The river that stops the chase",
+   "shows": "A wide river across a green plain at dusk with a wooden boat tied at the bank; no people",
+   "view": "Wide, low",
+   "right": "Deep blue water, wide bank, warm sky",
+   "avoid": "People, vehicles"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "8.2",
+   "use": "'Draw' meanings",
+   "shows": "A pack of playing cards, a rolled curtain tie and a pencil sketch pad, cut-out",
+   "view": "Top-down",
+   "right": "Real cards, clear pencil lines",
+   "avoid": "Brand marks, readable text"
+  }
+ ]
+}

@@ -1,0 +1,402 @@
+{
+  "chapter_key": "u.c12.hindi.lhat1.ch01.s2",
+  "class": 12,
+  "subject_id": "hindi",
+  "title": "प्रेमघन की छाया–स्मृति",
+  "source": "https://ncert.nic.in/textbook.php?lhat1=0-21",
+  "topics": [
+    {
+      "n": "1.1",
+      "title": "संस्मरण क्या है: किसी व्यक्ति की याद में लिखा गद्य",
+      "labs": [
+        "c12-hindi-lhat1-ch01-premghan-genres"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.2",
+      "title": "स्मृति में सजीव छवि: प्रेमघन का व्यक्तित्व और लेखक का मन",
+      "labs": [
+        "c12-hindi-lhat1-ch01-premghan-memory"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-hindi-lhat1-ch01-premghan-genres",
+      "topic": "1.1",
+      "template": "match",
+      "title": {
+        "en": "Kinds of prose about a person",
+        "hi": "किसी व्यक्ति पर लिखे गद्य के प्रकार"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "sansmaran",
+            "left": {
+              "en": "Sansmaran (memoir)",
+              "hi": "संस्मरण"
+            },
+            "right": {
+              "en": "A writer's memories of a person or time he knew well",
+              "hi": "लेखक की वे यादें जो किसी जाने-पहचाने व्यक्ति या समय से जुड़ी हों"
+            },
+            "why": {
+              "en": "A memoir is written from memory, with feeling, about what the writer saw and knew.",
+              "hi": "संस्मरण स्मृति से, भाव के साथ, उस बात पर लिखा जाता है जो लेखक ने देखी और जानी।"
+            }
+          },
+          {
+            "id": "jivani",
+            "left": {
+              "en": "Jivani (biography)",
+              "hi": "जीवनी"
+            },
+            "right": {
+              "en": "The full life story of a person, told in order",
+              "hi": "किसी व्यक्ति की पूरी जीवन-कथा, क्रम से"
+            },
+            "why": {
+              "en": "A biography tells a whole life, often from birth to death.",
+              "hi": "जीवनी किसी का पूरा जीवन बताती है, प्रायः जन्म से मृत्यु तक।"
+            }
+          },
+          {
+            "id": "rekhachitra",
+            "left": {
+              "en": "Rekhachitra (sketch)",
+              "hi": "रेखाचित्र"
+            },
+            "right": {
+              "en": "A short word-picture of a person or scene, drawn in few lines",
+              "hi": "किसी व्यक्ति या दृश्य का कम शब्दों में खींचा गया छोटा चित्र"
+            },
+            "why": {
+              "en": "A sketch catches a person or scene in a few vivid strokes.",
+              "hi": "रेखाचित्र कुछ सजीव रेखाओं में किसी व्यक्ति या दृश्य को पकड़ता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:sansmaran",
+          "expect": "matched:sansmaran",
+          "say": {
+            "en": "Tap Sansmaran, then tap its meaning on the right.",
+            "hi": "संस्मरण छुओ, फिर दाईं ओर उसका अर्थ छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Shukla writes about a poet he remembers well. Which kind of prose is that?",
+            "hi": "शुक्ल एक ऐसे कवि के बारे में लिखते हैं जिसे वे अच्छी तरह याद करते हैं। यह किस प्रकार का गद्य है?"
+          },
+          "options": [
+            {
+              "id": "sansmaran",
+              "en": "A memoir (Sansmaran)",
+              "hi": "संस्मरण"
+            },
+            {
+              "id": "jivani",
+              "en": "A full biography",
+              "hi": "पूरी जीवनी"
+            },
+            {
+              "id": "news",
+              "en": "A news report",
+              "hi": "समाचार-रिपोर्ट"
+            }
+          ],
+          "answer": "sansmaran"
+        },
+        {
+          "kind": "do",
+          "target": "left:jivani",
+          "expect": "matched:jivani",
+          "say": {
+            "en": "Match Jivani with its meaning.",
+            "hi": "जीवनी को उसके अर्थ से जोड़ो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:rekhachitra",
+          "expect": "matched:rekhachitra",
+          "say": {
+            "en": "Match Rekhachitra with its meaning.",
+            "hi": "रेखाचित्र को उसके अर्थ से जोड़ो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Press Check to see that all three kinds are joined.",
+            "hi": "जाँचो दबाओ और देखो कि तीनों प्रकार सही जुड़े हैं।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Shukla's piece is a memoir. The writer does not tell a whole life in order. He recalls a poet he knew, with his looks, habits and charm, and with real feeling. A biography would give dates and a full life. A sketch would be shorter. A memoir is what remembers a person warmly.",
+            "hi": "शुक्ल का यह लेख संस्मरण है। लेखक किसी का पूरा जीवन क्रम से नहीं बताता। वह अपने जाने-पहचाने कवि को उसकी छवि, आदतों और आकर्षण के साथ, सच्चे भाव से याद करता है। जीवनी तिथियों और पूरे जीवन की बात करती। रेखाचित्र छोटा होता। संस्मरण वह है जो किसी को गर्म मन से याद करता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which kind of prose is a memory written with feeling about a person the writer knew?",
+                "hi": "किसी जाने-पहचाने व्यक्ति की भाव भरी याद कौन-सी गद्य-विधा है?"
+              },
+              "options": [
+                {
+                  "en": "Sansmaran",
+                  "hi": "संस्मरण"
+                },
+                {
+                  "en": "Jivani",
+                  "hi": "जीवनी"
+                },
+                {
+                  "en": "Samachar",
+                  "hi": "समाचार"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A memoir is written from memory, with feeling, about what the writer knew.",
+                "hi": "संस्मरण स्मृति से, भाव के साथ, लेखक की जानी हुई बातों पर लिखा जाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A biography covers a whole life in order, which is wider than a single memory.",
+                  "hi": "जीवनी पूरे जीवन को क्रम से कहती है, जो एक याद से बड़ी होती है।"
+                },
+                {
+                  "en": "A news report gives facts of the day, not personal memories.",
+                  "hi": "समाचार उस दिन की घटनाएँ बताता है, निजी यादें नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of one person you remember well. Write two lines of a memoir about that person.",
+            "hi": "एक ऐसे व्यक्ति को सोचो जिसे तुम अच्छी तरह याद करते हो। उसके बारे में संस्मरण की दो पंक्तियाँ लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-hindi-lhat1-ch01-premghan-memory",
+      "topic": "1.2",
+      "template": "reader",
+      "title": {
+        "en": "A memory that stays warm",
+        "hi": "एक याद जो मन को गर्म रखती है"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "emotion-map",
+        "lang": "hi",
+        "passage": {
+          "title": {
+            "en": "The shadow of a memory",
+            "hi": "स्मृति की छाया"
+          },
+          "lines": [
+            "लेखक को अपने प्रिय कवि की याद आती है, और उसकी बातचीत का रंग आँखों में उभर आता है।",
+            "उस व्यक्ति की सादगी और मस्ती में एक अलग-सा आकर्षण था।",
+            "समय बीत गया, पर उसकी छवि मन में धुँधली नहीं हुई।",
+            "आज लेखक को लगता है कि ऐसे लोग अब कम मिलते हैं, और यह बात मन को उदास कर देती है।",
+            "फिर भी याद उसे हिम्मत और सुकून देती है।"
+          ]
+        },
+        "emotions": [
+          "love",
+          "joy",
+          "wonder",
+          "sadness",
+          "calm"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "line:0",
+          "expect": "line:0",
+          "say": {
+            "en": "Tap the first line to meet the writer's memory.",
+            "hi": "पहली पंक्ति पर टैप करो और लेखक की याद से मिलो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is the writer's first feeling about the poet?",
+            "hi": "कवि के बारे में लेखक का पहला भाव क्या है?"
+          },
+          "options": [
+            {
+              "id": "love",
+              "en": "Warm affection",
+              "hi": "स्नेह भरा लगाव"
+            },
+            {
+              "id": "anger",
+              "en": "Anger",
+              "hi": "ग़ुस्सा"
+            },
+            {
+              "id": "fear",
+              "en": "Fear",
+              "hi": "डर"
+            }
+          ],
+          "answer": "love"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Give the first line its feeling and press Answer.",
+            "hi": "पहली पंक्ति का भाव चुनो और उत्तर दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "map-done",
+          "say": {
+            "en": "Finish the feelings for all five lines.",
+            "hi": "पाँचों पंक्तियों के भाव पूरे करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The memoir begins with warm affection. The writer is charmed by the poet's simple and lively nature. Time passes, yet the picture stays clear. At the end, he feels sad that such people are rare now. Still, the memory brings him courage and peace.",
+            "hi": "संस्मरण स्नेह भरे भाव से शुरू होता है। लेखक कवि के सरल और जीवंत स्वभाव से मोहित है। समय बीत गया, पर वह छवि साफ़ बनी रहती है। अंत में उसे उदासी होती है कि ऐसे लोग अब कम हैं। फिर भी वह याद हिम्मत और सुकून देती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does the memory give the writer at the end?",
+                "hi": "अंत में वह याद लेखक को क्या देती है?"
+              },
+              "options": [
+                {
+                  "en": "Courage and peace",
+                  "hi": "हिम्मत और सुकून"
+                },
+                {
+                  "en": "Money",
+                  "hi": "पैसा"
+                },
+                {
+                  "en": "A new job",
+                  "hi": "नई नौकरी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The memory is a source of strength, not of worldly gain.",
+                "hi": "वह याद ताक़त का स्रोत है, सांसारिक लाभ का नहीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The memoir never talks about money as the gift of memory.",
+                  "hi": "संस्मरण में याद का उपहार धन के रूप में नहीं है।"
+                },
+                {
+                  "en": "The piece does not mention a new job; it speaks of inner peace.",
+                  "hi": "लेख में नई नौकरी का ज़िक्र नहीं है; उसमें मन की शांति की बात है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Read the five lines aloud, first with warmth and then with sadness. Where does your voice change most?",
+            "hi": "पाँचों पंक्तियाँ पहले स्नेह से और फिर उदासी से पढ़ो। तुम्हारी आवाज़ कहाँ सबसे ज़्यादा बदलती है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1.1",
+      "use": "Hook: an old room full of books and a memory",
+      "shows": "A writer sits at a wooden desk with an open book and a pen, a window with evening light, a framed photo turned to face him",
+      "view": "Medium, warm evening light",
+      "right": "Simple wooden desk, old books, cotton clothes, a single lamp",
+      "avoid": "Face in full view, modern devices, text"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1.1",
+      "use": "An open old book and a pen",
+      "shows": "An old hardback book with a worn cover, open to a blank page, and a fountain pen beside it, cut-out",
+      "view": "Three-quarter view, soft top-left light",
+      "right": "Real paper texture, simple pen",
+      "avoid": "Brand names, modern print"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "1.2",
+      "use": "A small town street at dusk, remembered",
+      "shows": "A narrow old town street of Mirzapur-style houses at dusk, a few people walking, a single lamp",
+      "view": "Wide, dusk light",
+      "right": "Simple houses, warm lamplight, quiet street",
+      "avoid": "Real named landmarks, modern signs, text"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "1.2",
+      "use": "Five feelings of the memory as a strip",
+      "shows": "Five small panels in a row: warm glow, lively talk, a faded frame, a sigh at dusk, a steady lamp",
+      "view": "Strip, 5 panels, left to right",
+      "right": "Clear change of mood, same figure",
+      "avoid": "Text inside panels, faces in close-up"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "1.2",
+      "use": "A lamp kept lit beside an old photo",
+      "shows": "A brass oil lamp (diya) with a steady flame beside an empty photo frame, cut-out",
+      "view": "Three-quarter view, soft top-left light",
+      "right": "Real flame, warm brass",
+      "avoid": "Electric bulb, identifiable faces"
+    }
+  ]
+}

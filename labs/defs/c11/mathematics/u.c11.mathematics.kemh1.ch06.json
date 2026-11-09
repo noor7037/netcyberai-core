@@ -1,0 +1,883 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch06",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Permutations and Combinations",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Introduction: counting without listing",
+   "labs": [],
+   "why_no_lab": "A short reading idea (how many lock codes?); the counting labs below answer it."
+  },
+  {
+   "n": "6.2",
+   "title": "Fundamental principle of counting",
+   "labs": [
+    "c11-mathematics-kemh1-ch06-outfits"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Permutations: distinct objects, factorial notation, the formula for nPr, objects not all distinct",
+   "labs": [
+    "c11-mathematics-kemh1-ch06-arrangements",
+    "c11-mathematics-kemh1-ch06-factorial",
+    "c11-mathematics-kemh1-ch06-repeated-letters"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Combinations",
+   "labs": [
+    "c11-mathematics-kemh1-ch06-teams"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch06-outfits",
+   "topic": "6.2",
+   "template": "code",
+   "title": {
+    "en": "Shirts and trousers: multiply the choices",
+    "hi": "कमीज़ और पतलून: विकल्पों का गुणा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "shirts = ['red', 'blue', 'white']",
+     "pants = ['black', 'grey']",
+     "ways = 0",
+     "for s in shirts:",
+     "    for p in pants:",
+     "        ways = ways + 1",
+     "        print(ways, s, 'shirt +', p, 'pants')",
+     "print('total:', ways)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Meera has 3 shirts and 2 pairs of trousers for the school trip. The program pairs every shirt with every pair of trousers and counts the outfits.",
+      "hi": "मीरा के पास स्कूल ट्रिप के लिए 3 कमीज़ और 2 पतलून हैं। प्रोग्राम हर कमीज़ को हर पतलून के साथ जोड़ता है और पोशाकें गिनता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many different outfits can she make?",
+      "hi": "वह कितनी अलग पोशाकें बना सकती है?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5 outfits",
+       "hi": "5 पोशाकें"
+      },
+      {
+       "id": "6",
+       "en": "6 outfits",
+       "hi": "6 पोशाकें"
+      },
+      {
+       "id": "8",
+       "en": "8 outfits",
+       "hi": "8 पोशाकें"
+      }
+     ],
+     "answer": "6"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step a few times to see the first outfits.",
+      "hi": "पहली पोशाकें देखने के लिए कुछ बार Step दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to list them all.",
+      "hi": "सबकी सूची के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For each of the 3 shirts there are 2 trousers, so there are 3 × 2 = 6 outfits. This is the fundamental principle of counting: if one event can happen in m ways and then a second in n ways, both can happen in m × n ways. It works for more steps too: add 4 pairs of shoes and you get 3 × 2 × 4 = 24.",
+      "hi": "3 कमीज़ों में से हर एक के लिए 2 पतलून हैं, इसलिए 3 × 2 = 6 पोशाकें बनती हैं। यह गणना का आधारभूत सिद्धांत है: यदि एक घटना m तरीक़ों से हो सकती है और उसके बाद दूसरी n तरीक़ों से, तो दोनों m × n तरीक़ों से हो सकती हैं। यह और क़दमों पर भी लागू है: 4 जोड़ी जूते जोड़ो तो 3 × 2 × 4 = 24।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab about the final count.",
+      "hi": "अंतिम गिनती वाले प्रश्न का उत्तर लैब में दो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bicycle lock has 3 rings, each with the digits 0 to 9. How many codes are possible?",
+        "hi": "साइकिल के ताले में 3 छल्ले हैं, हर एक पर 0 से 9 तक अंक। कितने कोड संभव हैं?"
+       },
+       "options": [
+        "30",
+        "1000",
+        "720"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Each ring has 10 choices and the rings are independent: 10 × 10 × 10 = 1000.",
+        "hi": "हर छल्ले के 10 विकल्प हैं और छल्ले स्वतंत्र हैं: 10 × 10 × 10 = 1000।"
+       },
+       "wrong": [
+        {
+         "en": "Adding 10 + 10 + 10 counts choices, not combined codes; the principle multiplies.",
+         "hi": "10 + 10 + 10 जोड़ने से विकल्प गिने जाते हैं, कोड नहीं; सिद्धांत गुणा करता है।"
+        },
+        "",
+        {
+         "en": "720 = 10 × 9 × 8 forbids repeated digits, but a lock code may repeat digits like 557.",
+         "hi": "720 = 10 × 9 × 8 अंकों को दोहराने नहीं देता, पर ताले के कोड में 557 जैसे दोहराव हो सकते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we multiply and not add here?",
+        "hi": "यहाँ हम जोड़ते क्यों नहीं, गुणा क्यों करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Because one shirt AND one pair of trousers are chosen together",
+         "hi": "क्योंकि एक कमीज़ और एक पतलून दोनों साथ चुनी जाती हैं"
+        },
+        {
+         "en": "Because 3 is bigger than 2",
+         "hi": "क्योंकि 3, 2 से बड़ा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When one choice follows another, each first choice opens all the second choices, so the counts multiply.",
+        "hi": "जब एक चुनाव के बाद दूसरा होता है, तो पहले का हर विकल्प दूसरे के सारे विकल्प खोलता है, इसलिए गिनतियाँ गुणा होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sizes do not matter; what matters is that both choices are made together.",
+         "hi": "आकार मायने नहीं रखते; मायने यह रखता है कि दोनों चुनाव साथ होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add a third list in your head, 2 caps. How many outfits now? Then think of a choice where you would add instead, like choosing either one shirt or one cap.",
+      "hi": "मन में तीसरी सूची जोड़ो, 2 टोपियाँ। अब कितनी पोशाकें? फिर ऐसा चुनाव सोचो जहाँ जोड़ना पड़े, जैसे या तो एक कमीज़ या एक टोपी चुनना।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch06-arrangements",
+   "topic": "6.3",
+   "template": "code",
+   "title": {
+    "en": "Three-digit numbers with no digit repeated",
+    "hi": "बिना दोहराए अंकों वाली तीन अंकों की संख्याएँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "count = 0",
+     "for a in range(1, 6):",
+     "    for b in range(1, 6):",
+     "        for c in range(1, 6):",
+     "            if a != b and b != c and a != c:",
+     "                count = count + 1",
+     "print('3-digit numbers:', count)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "How many 3-digit numbers can be made from the digits 1, 2, 3, 4, 5 if no digit is used twice? The program tries every choice of hundreds a, tens b and units c, and counts only those with three different digits.",
+      "hi": "अंकों 1, 2, 3, 4, 5 से कितनी तीन अंकों की संख्याएँ बन सकती हैं यदि कोई अंक दो बार न आए? प्रोग्राम सैकड़े a, दहाई b और इकाई c का हर चुनाव आज़माता है और केवल तीन अलग अंकों वाली संख्याएँ गिनता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Count with the principle: 5 choices first, then 4, then 3. What do you get?",
+      "hi": "सिद्धांत से गिनो: पहले 5 विकल्प, फिर 4, फिर 3। क्या मिलता है?"
+     },
+     "options": [
+      {
+       "id": "60",
+       "en": "60 numbers",
+       "hi": "60 संख्याएँ"
+      },
+      {
+       "id": "125",
+       "en": "125 numbers",
+       "hi": "125 संख्याएँ"
+      },
+      {
+       "id": "12",
+       "en": "12 numbers",
+       "hi": "12 संख्याएँ"
+      }
+     ],
+     "answer": "60"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run and wait for the count.",
+      "hi": "Run दबाओ और गिनती की प्रतीक्षा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The program checked 5 × 5 × 5 = 125 triples and kept 60. That is 5 × 4 × 3 = 60, the number of permutations of 5 things taken 3 at a time: ⁵P₃ = 5!/(5 − 3)! = 120/2 = 60. Order matters: 123 and 321 are different numbers.",
+      "hi": "प्रोग्राम ने 5 × 5 × 5 = 125 तिकड़ियाँ जाँचीं और 60 रखीं। यह 5 × 4 × 3 = 60 है, 5 वस्तुओं में से 3 लेकर क्रमचय की संख्या: ⁵P₃ = 5!/(5 − 3)! = 120/2 = 60। क्रम मायने रखता है: 123 और 321 अलग संख्याएँ हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: what is count at the end?",
+      "hi": "लैब के प्रश्न का उत्तर दो: अंत में count कितना है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Six runners race. In how many ways can the first, second and third places be filled?",
+        "hi": "छह धावक दौड़ते हैं। पहला, दूसरा और तीसरा स्थान कितने तरीक़ों से भरा जा सकता है?"
+       },
+       "options": [
+        "120",
+        "20",
+        "216"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "⁶P₃ = 6 × 5 × 4 = 120: 6 can be first, then 5 are left for second, then 4 for third.",
+        "hi": "⁶P₃ = 6 × 5 × 4 = 120: पहले के लिए 6, फिर दूसरे के लिए 5 बचे, फिर तीसरे के लिए 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20 is ⁶C₃, which ignores the order of the medals; here first and second are different.",
+         "hi": "20 तो ⁶C₃ है, जो पदकों का क्रम नहीं देखता; यहाँ पहला और दूसरा अलग हैं।"
+        },
+        {
+         "en": "6 × 6 × 6 lets one runner win two places, which cannot happen.",
+         "hi": "6 × 6 × 6 एक धावक को दो स्थान जीतने देता है, जो संभव नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the value of ⁷P₂?",
+        "hi": "⁷P₂ का मान क्या है?"
+       },
+       "options": [
+        "14",
+        "42",
+        "21"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "⁷P₂ = 7!/5! = 7 × 6 = 42.",
+        "hi": "⁷P₂ = 7!/5! = 7 × 6 = 42।"
+       },
+       "wrong": [
+        {
+         "en": "7 × 2 multiplies by r; nPr multiplies r numbers counting down from n.",
+         "hi": "7 × 2 तो r से गुणा है; nPr, n से नीचे की ओर r संख्याओं का गुणा है।"
+        },
+        "",
+        {
+         "en": "21 is ⁷C₂, which divides out the 2! orders.",
+         "hi": "21 तो ⁷C₂ है, जिसमें 2! क्रमों से भाग दिया जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the question in your head: digits may repeat now. How many 3-digit numbers? Compare with the 125 the program tried.",
+      "hi": "मन में प्रश्न बदलो: अब अंक दोहरा सकते हैं। कितनी तीन अंकों की संख्याएँ? प्रोग्राम द्वारा आज़माई 125 से तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch06-factorial",
+   "topic": "6.3",
+   "template": "code",
+   "title": {
+    "en": "n! by a function that calls itself",
+    "hi": "n! एक ऐसे फ़ंक्शन से जो ख़ुद को बुलाता है"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "recursion",
+    "program": [
+     "def fact(n):",
+     "    if n == 0:",
+     "        return 1",
+     "    return n * fact(n - 1)",
+     "print(fact(5))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "n! (n factorial) is 1 × 2 × 3 × … × n, and 0! = 1. Notice that n! = n × (n − 1)!. The function fact uses exactly this: to find fact(5) it asks for fact(4), and so on down to fact(0) = 1.",
+      "hi": "n! (n क्रमगुणित) = 1 × 2 × 3 × … × n, और 0! = 1। ध्यान दो कि n! = n × (n − 1)!। फ़ंक्शन fact ठीक यही करता है: fact(5) के लिए वह fact(4) माँगता है, और ऐसे ही नीचे fact(0) = 1 तक।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many calls of fact will be made in all for fact(5)?",
+      "hi": "fact(5) के लिए कुल कितनी बार fact बुलाया जाएगा?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5 calls",
+       "hi": "5 बार"
+      },
+      {
+       "id": "6",
+       "en": "6 calls",
+       "hi": "6 बार"
+      },
+      {
+       "id": "120",
+       "en": "120 calls",
+       "hi": "120 बार"
+      }
+     ],
+     "answer": "6"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step and watch the calls pile up on the stack.",
+      "hi": "Step दबाओ और कॉल्स को स्टैक पर जमा होते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to finish and see the answer.",
+      "hi": "पूरा करने और उत्तर देखने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There are 6 calls: fact(5), fact(4), fact(3), fact(2), fact(1), fact(0). fact(0) gives 1, then each waiting call multiplies: 1, 1, 2, 6, 24, 120. So 5! = 120. Factorials grow very fast: 10! is already 3628800.",
+      "hi": "6 कॉल होती हैं: fact(5), fact(4), fact(3), fact(2), fact(1), fact(0)। fact(0) से 1 मिलता है, फिर हर रुकी हुई कॉल गुणा करती है: 1, 1, 2, 6, 24, 120। यानी 5! = 120। क्रमगुणित बहुत तेज़ी से बढ़ते हैं: 10! ही 3628800 है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: what does fact(5) give back?",
+      "hi": "लैब के प्रश्न का उत्तर दो: fact(5) क्या लौटाता है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 8!/6!?",
+        "hi": "8!/6! क्या है?"
+       },
+       "options": [
+        "56",
+        "2",
+        "4/3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "8! = 8 × 7 × 6!, so 8!/6! = 8 × 7 = 56.",
+        "hi": "8! = 8 × 7 × 6!, इसलिए 8!/6! = 8 × 7 = 56।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Factorials do not divide like plain numbers: 8!/6! is not 8/6 or (8 − 6)!.",
+         "hi": "क्रमगुणित सामान्य संख्याओं की तरह नहीं बँटते: 8!/6!, न 8/6 है न (8 − 6)!।"
+        },
+        {
+         "en": "4/3 = 8/6 divides the numbers, not their factorials.",
+         "hi": "4/3 = 8/6 संख्याओं को बाँटता है, उनके क्रमगुणित को नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why must fact(0) return 1 and stop?",
+        "hi": "fact(0) को 1 लौटाकर रुकना क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "Otherwise the calls would never end",
+         "hi": "वरना कॉल कभी ख़त्म नहीं होतीं"
+        },
+        {
+         "en": "Because 0 × anything is 1",
+         "hi": "क्योंकि 0 × कुछ भी = 1"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "fact(0) is the base case. Without it, fact would keep calling fact(−1), fact(−2), … for ever.",
+        "hi": "fact(0) आधार स्थिति है। उसके बिना fact, fact(−1), fact(−2), … को हमेशा बुलाता रहता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0 × anything is 0, not 1. 0! = 1 is a rule chosen so that formulas like nPr work for r = n.",
+         "hi": "0 × कुछ भी = 0 होता है, 1 नहीं। 0! = 1 एक नियम है ताकि nPr जैसे सूत्र r = n पर भी चलें।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use n! = n × (n − 1)! in your head to get 6! and 7! from 5! = 120.",
+      "hi": "मन में n! = n × (n − 1)! से 5! = 120 से 6! और 7! निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch06-repeated-letters",
+   "topic": "6.3",
+   "template": "code",
+   "title": {
+    "en": "Arranging BOOK: when letters repeat",
+    "hi": "BOOK को सजाना: जब अक्षर दोहराते हैं"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "L = ['B', 'O', 'O', 'K']",
+     "found = []",
+     "count = 0",
+     "for i in range(4):",
+     "    for j in range(4):",
+     "        for k in range(4):",
+     "            for m in range(4):",
+     "                if i != j and i != k and i != m:",
+     "                    if j != k and j != m and k != m:",
+     "                        w = L[i] + L[j] + L[k] + L[m]",
+     "                        if w not in found:",
+     "                            found.append(w)",
+     "                            count = count + 1",
+     "print(found)",
+     "print('different words:', count)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The word BOOK has 4 letters, but two of them are O. The program tries every order of the 4 letter cards and keeps a word only if it has not been seen before.",
+      "hi": "शब्द BOOK में 4 अक्षर हैं, पर उनमें दो O हैं। प्रोग्राम 4 अक्षर-पत्तियों का हर क्रम आज़माता है और कोई शब्द तभी रखता है जब वह पहले न देखा गया हो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "4 different letters can be arranged in 4! = 24 ways. How many different words does BOOK give?",
+      "hi": "4 अलग अक्षर 4! = 24 तरीक़ों से सजते हैं। BOOK से कितने अलग शब्द बनते हैं?"
+     },
+     "options": [
+      {
+       "id": "24",
+       "en": "24 words",
+       "hi": "24 शब्द"
+      },
+      {
+       "id": "12",
+       "en": "12 words",
+       "hi": "12 शब्द"
+      },
+      {
+       "id": "6",
+       "en": "6 words",
+       "hi": "6 शब्द"
+      }
+     ],
+     "answer": "12"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run and look at the list of words.",
+      "hi": "Run दबाओ और शब्दों की सूची देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each word appears twice among the 24 orders, once with the two O cards one way round and once swapped. So the count is 4!/2! = 24/2 = 12. In general, n objects with p alike can be arranged in n!/p! ways.",
+      "hi": "24 क्रमों में हर शब्द दो बार आता है, एक बार दोनों O पत्तियाँ एक तरह, एक बार अदला-बदली करके। इसलिए गिनती 4!/2! = 24/2 = 12 है। सामान्यतः n वस्तुएँ जिनमें p एक जैसी हों, n!/p! तरीक़ों से सजती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: what is count at the end?",
+      "hi": "लैब के प्रश्न का उत्तर दो: अंत में count कितना है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many different arrangements do the letters of PAPA have?",
+        "hi": "PAPA के अक्षरों की कितनी अलग व्यवस्थाएँ हैं?"
+       },
+       "options": [
+        "24",
+        "12",
+        "6"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "4 letters with 2 P alike and 2 A alike: 4!/(2! × 2!) = 24/4 = 6.",
+        "hi": "4 अक्षर, 2 P एक जैसे और 2 A एक जैसे: 4!/(2! × 2!) = 24/4 = 6।"
+       },
+       "wrong": [
+        {
+         "en": "24 treats all four letters as different.",
+         "hi": "24 चारों अक्षरों को अलग मानता है।"
+        },
+        {
+         "en": "12 divides only for the repeated P; the two A are alike too.",
+         "hi": "12 केवल दोहराए P के लिए भाग देता है; दोनों A भी एक जैसे हैं।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we divide by 2! for the two O?",
+        "hi": "दो O के लिए 2! से भाग क्यों देते हैं?"
+       },
+       "options": [
+        {
+         "en": "Swapping the two O does not make a new word",
+         "hi": "दोनों O की अदला-बदली से नया शब्द नहीं बनता"
+        },
+        {
+         "en": "Because O is a vowel",
+         "hi": "क्योंकि O स्वर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The 2! orders of the alike O cards all spell the same word, so each word was counted 2! times.",
+        "hi": "एक जैसी O पत्तियों के 2! क्रम एक ही शब्द बनाते हैं, इसलिए हर शब्द 2! बार गिना गया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Being a vowel does not matter; any repeated letter, like the P in PAPA, is treated the same way.",
+         "hi": "स्वर होना मायने नहीं रखता; कोई भी दोहराया अक्षर, जैसे PAPA का P, ऐसे ही गिना जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Predict the count for the word MAMA, then for the 5 letters of ASSAM. Use n!/(p! q!).",
+      "hi": "शब्द MAMA की गिनती का अनुमान लगाओ, फिर ASSAM के 5 अक्षरों की। n!/(p! q!) लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch06-teams",
+   "topic": "6.4",
+   "template": "code",
+   "title": {
+    "en": "Choosing a team: order does not matter",
+    "hi": "टीम चुनना: क्रम मायने नहीं रखता"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "friends = ['Asha', 'Bilal', 'Chetan', 'Divya', 'Esha']",
+     "teams = 0",
+     "for i in range(5):",
+     "    for j in range(i + 1, 5):",
+     "        print(friends[i], '+', friends[j])",
+     "        teams = teams + 1",
+     "print('teams of 2:', teams)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Five friends want to send 2 of them to a quiz. A team {Asha, Bilal} is the same as {Bilal, Asha}. The program only pairs each friend with friends further down the list, so each team is listed once.",
+      "hi": "पाँच दोस्तों को क्विज़ के लिए अपने में से 2 भेजने हैं। टीम {आशा, बिलाल} वही है जो {बिलाल, आशा}। प्रोग्राम हर दोस्त को सूची में उसके बाद वाले दोस्तों से ही जोड़ता है, इसलिए हर टीम एक बार आती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "⁵P₂ = 20 counts ordered pairs. How many teams of 2 are there?",
+      "hi": "⁵P₂ = 20 क्रमित जोड़ियाँ गिनता है। 2 की कितनी टीमें हैं?"
+     },
+     "options": [
+      {
+       "id": "20",
+       "en": "20 teams",
+       "hi": "20 टीमें"
+      },
+      {
+       "id": "10",
+       "en": "10 teams",
+       "hi": "10 टीमें"
+      },
+      {
+       "id": "25",
+       "en": "25 teams",
+       "hi": "25 टीमें"
+      }
+     ],
+     "answer": "10"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to see the list of friends set up.",
+      "hi": "दोस्तों की सूची बनते देखने के लिए Step दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to list all the teams.",
+      "hi": "सारी टीमों की सूची के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There are 10 teams. Each team of 2 can be put in order in 2! = 2 ways, so 20 ordered pairs make 10 teams: ⁵C₂ = ⁵P₂ / 2! = 5!/(2! 3!) = 10. A combination is a selection; a permutation is a selection put in order.",
+      "hi": "10 टीमें हैं। 2 की हर टीम को 2! = 2 तरीक़ों से क्रम में रखा जा सकता है, इसलिए 20 क्रमित जोड़ियाँ 10 टीमें बनाती हैं: ⁵C₂ = ⁵P₂ / 2! = 5!/(2! 3!) = 10। संचय एक चयन है; क्रमचय वही चयन क्रम में रखकर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: what is teams at the end?",
+      "hi": "लैब के प्रश्न का उत्तर दो: अंत में teams कितना है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In how many ways can 3 books be chosen from 7?",
+        "hi": "7 किताबों में से 3 कितने तरीक़ों से चुनी जा सकती हैं?"
+       },
+       "options": [
+        "35",
+        "210",
+        "21"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "⁷C₃ = 7!/(3! 4!) = (7 × 6 × 5)/(3 × 2 × 1) = 35.",
+        "hi": "⁷C₃ = 7!/(3! 4!) = (7 × 6 × 5)/(3 × 2 × 1) = 35।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "210 = ⁷P₃ counts the books in order; a pile of chosen books has no order.",
+         "hi": "210 = ⁷P₃ किताबों को क्रम में गिनता है; चुनी गई किताबों के ढेर का कोई क्रम नहीं।"
+        },
+        {
+         "en": "21 is ⁷C₂, choosing 2 books, not 3.",
+         "hi": "21 तो ⁷C₂ है, 2 किताबें चुनना, 3 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is ⁵C₂ equal to ⁵C₃?",
+        "hi": "⁵C₂, ⁵C₃ के बराबर क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Choosing 2 to go is the same as choosing 3 to stay",
+         "hi": "2 भेजने के लिए चुनना, 3 को रोकने के लिए चुनने जैसा ही है"
+        },
+        {
+         "en": "It is a coincidence",
+         "hi": "यह संयोग है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every choice of 2 leaves exactly one group of 3 behind, so nCr = nC(n − r).",
+        "hi": "2 का हर चुनाव पीछे ठीक 3 का एक समूह छोड़ता है, इसलिए nCr = nC(n − r)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It always happens: nCr = nC(n − r) for every n and r, because each selection leaves a matching group behind.",
+         "hi": "यह हमेशा होता है: हर n और r के लिए nCr = nC(n − r), क्योंकि हर चयन पीछे एक मेल खाता समूह छोड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "How many handshakes happen if 5 friends each shake hands once with every other friend? Is it the same count as the teams?",
+      "hi": "यदि 5 दोस्त हर दूसरे दोस्त से एक बार हाथ मिलाएँ तो कितने हाथ मिलेंगे? क्या यह टीमों जितनी ही गिनती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Chapter hook: how many codes?",
+   "shows": "A three-ring number lock on a school bag zip, rings set to random digits",
+   "view": "Close-up from the front, soft side light",
+   "right": "Three rings clearly separate, each with digits around it",
+   "avoid": "Brand names, readable bag labels"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Outfits from shirts and trousers",
+   "shows": "Three shirts on hangers in a row (white, sky blue, cream) above two folded trousers (navy, grey), arranged like a choice board",
+   "view": "Front view, even light, transparent background",
+   "right": "Each item clearly different in colour and in pattern or fold",
+   "avoid": "Brand labels, school logos"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.3",
+   "use": "Digit cards for arrangements",
+   "shows": "Five wooden tiles with raised digits 1, 2, 3, 4, 5 in a loose row, plus three empty slots in a wooden tray",
+   "view": "Top view, soft light, transparent background",
+   "right": "Exactly three empty slots and five tiles, digits all different",
+   "avoid": "Printed words, stickers"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "6.3",
+   "use": "Letter tiles with repeats",
+   "shows": "Four letter tiles spelling B, O, O, K, the two O tiles identical",
+   "view": "Top view, even light, transparent background",
+   "right": "The two O tiles exactly alike so swapping them changes nothing",
+   "avoid": "Brand names on the tiles"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Choosing a team without order",
+   "shows": "Five children seen from behind in a line on a school ground, two of them stepping forward with a quiz trophy shape on a table ahead",
+   "view": "Wide back view, morning light",
+   "right": "Clearly two chosen out of five, no ranking shown",
+   "avoid": "Faces, school names, logos"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "6.4",
+   "use": "Base for selection versus arrangement",
+   "shows": "A clean two-column frame: left column with three empty boxes in a row joined by arrows, right column with three empty boxes inside one loop",
+   "view": "Flat, white background",
+   "right": "Left shows order (arrows), right shows a group (one loop), same box size",
+   "avoid": "Letters, numbers, words"
+  }
+ ]
+}

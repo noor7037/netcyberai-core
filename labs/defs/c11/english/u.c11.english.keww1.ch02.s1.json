@@ -1,0 +1,597 @@
+{
+ "chapter_key": "u.c11.english.keww1.ch02.s1",
+ "class": 11,
+ "subject_id": "english",
+ "title": "A Pair of Mustachios",
+ "source": "https://ncert.nic.in/textbook/pdf/keww1ps.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Moustaches as signs of class: the opening of the story",
+   "labs": [
+    "c11-english-keww1-ch02s1-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "The quarrel between Khan Azam Khan and Seth Ramanand",
+   "labs": [
+    "c11-english-keww1-ch02s1-quarrel"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Words about money and pride",
+   "labs": [
+    "c11-english-keww1-ch02s1-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Irony and satire: what the writer says about pride",
+   "labs": [],
+   "why_no_lab": "Satire is best discussed in class; a card game cannot show a writer's attitude."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-english-keww1-ch02s1-types",
+   "topic": "2.1",
+   "template": "match",
+   "title": {
+    "en": "Which moustache for which class?",
+    "hi": "कौन-सी मूँछ किस वर्ग की?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "lion",
+      "left": {
+       "en": "Lion moustache",
+       "hi": "शेर जैसी मूँछ"
+      },
+      "right": {
+       "en": "Rajas, maharajas, nawabs and army generals",
+       "hi": "राजा, महाराजा, नवाब और सेनापति"
+      },
+      "why": {
+       "en": "In the story, the proud lion moustache belongs to the highest rulers.",
+       "hi": "कहानी में गर्वीली शेर-मूँछ सबसे ऊँचे शासकों की है।"
+      }
+     },
+     {
+      "id": "tiger",
+      "left": {
+       "en": "Tiger moustache",
+       "hi": "बाघ जैसी मूँछ"
+      },
+      "right": {
+       "en": "Old noble families who now have only pride left",
+       "hi": "पुराने कुलीन परिवार जिनके पास अब सिर्फ़ शान बची है"
+      },
+      "why": {
+       "en": "Khan Azam Khan wears this one, though he has lost his land.",
+       "hi": "खान आज़म खान यही मूँछ रखता है, हालाँकि उसकी ज़मीन जा चुकी है।"
+      }
+     },
+     {
+      "id": "goat",
+      "left": {
+       "en": "Goat moustache",
+       "hi": "बकरी जैसी मूँछ"
+      },
+      "right": {
+       "en": "Shopkeepers and the newly rich",
+       "hi": "दुकानदार और नए-नए अमीर"
+      },
+      "why": {
+       "en": "Seth Ramanand, the grocer and moneylender, should wear this one.",
+       "hi": "किराने वाले और साहूकार सेठ रामानंद को यही मूँछ रखनी चाहिए।"
+      }
+     },
+     {
+      "id": "chaplin",
+      "left": {
+       "en": "Charlie Chaplin moustache",
+       "hi": "चार्ली चैपलिन जैसी मूँछ"
+      },
+      "right": {
+       "en": "Clerks and other office workers",
+       "hi": "क्लर्क और दफ़्तर में काम करने वाले"
+      },
+      "why": {
+       "en": "A small compromise between the full moustache and no moustache.",
+       "hi": "पूरी मूँछ और बिना मूँछ के बीच का एक छोटा समझौता।"
+      }
+     },
+     {
+      "id": "mouse",
+      "left": {
+       "en": "Mouse moustache",
+       "hi": "चूहे जैसी मूँछ"
+      },
+      "right": {
+       "en": "Village peasants",
+       "hi": "गाँव के किसान"
+      },
+      "why": {
+       "en": "The peasants in the story owe money to the moneylender.",
+       "hi": "कहानी के किसान साहूकार के कर्ज़दार हैं।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The narrator says moustaches mark a person's class. Which one is worn by peasants?",
+      "hi": "कथावाचक कहता है कि मूँछें इंसान का वर्ग बताती हैं। किसान कौन-सी मूँछ रखते हैं?"
+     },
+     "options": [
+      {
+       "id": "mouse",
+       "en": "Mouse moustache",
+       "hi": "चूहे जैसी मूँछ"
+      },
+      {
+       "id": "lion",
+       "en": "Lion moustache",
+       "hi": "शेर जैसी मूँछ"
+      },
+      {
+       "id": "tiger",
+       "en": "Tiger moustache",
+       "hi": "बाघ जैसी मूँछ"
+      }
+     ],
+     "answer": "mouse"
+    },
+    {
+     "kind": "do",
+     "target": "left:tiger",
+     "expect": "matched:tiger",
+     "say": {
+      "en": "Tap 'Tiger moustache', then tap the group that wears it.",
+      "hi": "'बाघ जैसी मूँछ' पर टैप करो, फिर उस समूह पर जो इसे रखता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाक़ी जोड़ियाँ मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The writer jokes about a society that reads a person's class from the style of a moustache. The joke has a point: people can care more about a sign of status than about the person.",
+      "hi": "लेखक ऐसे समाज पर चुटकी लेता है जो मूँछ के ढंग से इंसान का वर्ग पहचानता है। इस मज़ाक की एक बात है: लोग इंसान से ज़्यादा उसकी शान के चिह्न की परवाह करने लगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does Khan Azam Khan get angry at Ramanand's moustache?",
+        "hi": "खान आज़म खान को रामानंद की मूँछ पर ग़ुस्सा क्यों आता है?"
+       },
+       "options": [
+        {
+         "en": "Ramanand's goat moustache is turning up like a tiger moustache",
+         "hi": "रामानंद की बकरी-मूँछ बाघ-मूँछ जैसी ऊपर मुड़ रही है"
+        },
+        {
+         "en": "Ramanand has refused to lend money",
+         "hi": "रामानंद ने कर्ज़ देने से मना कर दिया है"
+        },
+        {
+         "en": "Ramanand has shaved it off",
+         "hi": "रामानंद ने उसे मुँड़वा दिया है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "For the Khan, a tiger moustache is his family's mark of honour, so an 'imitation' by a moneylender is an insult.",
+        "hi": "खान के लिए बाघ-मूँछ उसके खानदान की इज़्ज़त का निशान है, इसलिए साहूकार का उसकी नक़ल करना अपमान है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ramanand actually does business with him. The quarrel is only about the moustache.",
+         "hi": "रामानंद तो उसके साथ लेन-देन करता है। झगड़ा सिर्फ़ मूँछ का है।"
+        },
+        {
+         "en": "The moustache is still there. That is the whole problem.",
+         "hi": "मूँछ तो वहीं है, और यही पूरी परेशानी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Invent one more moustache style and say which kind of person might wear it. Do you think a sign of status matters?",
+      "hi": "एक और मूँछ-शैली सोचो और बताओ कि उसे कौन रख सकता है। क्या तुम्हें लगता है कि शान के निशान मायने रखते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-english-keww1-ch02s1-quarrel",
+   "topic": "2.2",
+   "template": "sequence",
+   "title": {
+    "en": "The quarrel over the moustache",
+    "hi": "मूँछ का झगड़ा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "twist",
+      "text": {
+       "en": "Seth Ramanand twists the tips of his goat moustache upward, almost like a tiger's.",
+       "hi": "सेठ रामानंद अपनी बकरी-मूँछ के सिरे ऊपर मोड़ लेता है, लगभग बाघ-मूँछ की तरह।"
+      }
+     },
+     {
+      "id": "nosering",
+      "text": {
+       "en": "Khan Azam Khan comes to pawn his wife's nose-ring and demands the tip be brought down.",
+       "hi": "खान आज़म खान पत्नी की नथ गिरवी रखने आता है और माँग करता है कि सिरा नीचे किया जाए।"
+      }
+     },
+     {
+      "id": "one",
+      "text": {
+       "en": "After the deal, Ramanand lowers only one tip. The other stays up.",
+       "hi": "सौदे के बाद रामानंद सिर्फ़ एक सिरा नीचे करता है। दूसरा ऊपर ही रहता है।"
+      }
+     },
+     {
+      "id": "neck",
+      "text": {
+       "en": "The Khan brings a family necklace of seven generations, and again a tip goes up.",
+       "hi": "खान सात पीढ़ियों का पुराना हार लाता है, और फिर एक सिरा ऊपर उठ जाता है।"
+      }
+     },
+     {
+      "id": "deed",
+      "text": {
+       "en": "The Khan offers all his goods, and a deed is drawn up before the village elders.",
+       "hi": "खान अपना सारा सामान देने को तैयार हो जाता है, और गाँव के बड़ों के सामने दस्तावेज़ लिखा जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each time the Khan pays, does his problem get solved for good?",
+      "hi": "हर बार पैसे देने पर क्या खान की समस्या हमेशा के लिए हल हो जाती है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it ends at once",
+       "hi": "हाँ, तुरंत ख़त्म हो जाती है"
+      },
+      {
+       "id": "no",
+       "en": "No, a new tip goes up again",
+       "hi": "नहीं, फिर कोई नया सिरा ऊपर हो जाता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "item:twist",
+     "expect": "placed:twist",
+     "say": {
+      "en": "Place the card that starts the trouble in slot 1.",
+      "hi": "जिस कार्ड से परेशानी शुरू होती है उसे खाना 1 में लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the other cards and press Check.",
+      "hi": "बाक़ी कार्ड क्रम से लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ramanand is clever. Every time he lowers one tip the Khan pays and then spots the other. The Khan's pride is so great that he loses his belongings one after another for something that is only a shape of hair.",
+      "hi": "रामानंद चालाक है। जब भी वह एक सिरा नीचे करता है, खान पैसे देता है और फिर दूसरे सिरे पर नज़र जाती है। खान का अभिमान इतना बड़ा है कि वह बाल के एक आकार के लिए अपनी चीज़ें एक-एक करके गँवाता जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the story show about the Khan's pride?",
+        "hi": "कहानी खान के अभिमान के बारे में क्या दिखाती है?"
+       },
+       "options": [
+        {
+         "en": "It makes him give up what he truly needs",
+         "hi": "यह उससे वह भी छुड़वा देता है जो उसे सचमुच चाहिए"
+        },
+        {
+         "en": "It makes him rich",
+         "hi": "यह उसे अमीर बना देता है"
+        },
+        {
+         "en": "It makes the village respect him more",
+         "hi": "इससे गाँव में उसकी इज़्ज़त बढ़ जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He is in need of food and money, yet he spends his last possessions on a symbol.",
+        "hi": "उसे खाने और पैसे की ज़रूरत है, फिर भी वह अपनी आख़िरी चीज़ें एक निशान पर लुटा देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "He becomes poorer, not richer.",
+         "hi": "वह और ग़रीब होता है, अमीर नहीं।"
+        },
+        {
+         "en": "The story makes his pride look foolish; no one respects him more.",
+         "hi": "कहानी उसके अभिमान को मूर्खतापूर्ण दिखाती है; उसकी इज़्ज़त नहीं बढ़ती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why does the narrator write 'mustachios make the man'? Say it in your own words.",
+      "hi": "कथावाचक यह क्यों लिखता है कि 'मूँछें आदमी की पहचान हैं'? अपने शब्दों में बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-english-keww1-ch02s1-words",
+   "topic": "2.3",
+   "template": "reader",
+   "title": {
+    "en": "Words about money and pride",
+    "hi": "धन और अभिमान के शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "The moneylender and the noble: a short retelling",
+      "hi": "साहूकार और नवाब: संक्षिप्त पुनर्कथन"
+     },
+     "lines": [
+      "Khan Azam Khan was a proud man from an old noble family, but he had lost his land.",
+      "Seth Ramanand was a moneylender who lent money to poor peasants and pawned their jewellery.",
+      "The Khan went to pawn a nose-ring, and the two men argued about a moustache.",
+      "Finally a deed was written, and the Khan, a victim of his own pride, agreed to give away his goods."
+     ]
+    },
+    "words": [
+     {
+      "w": "noble",
+      "meaning": {
+       "en": "from a high family with an old name",
+       "hi": "ऊँचे पुराने खानदान का"
+      }
+     },
+     {
+      "w": "moneylender",
+      "meaning": {
+       "en": "a person who lends money and takes interest",
+       "hi": "जो ब्याज पर पैसे उधार देता है"
+      }
+     },
+     {
+      "w": "pawn",
+      "meaning": {
+       "en": "to leave something valuable as a promise for a loan",
+       "hi": "कर्ज़ के बदले कोई कीमती चीज़ गिरवी रखना"
+      }
+     },
+     {
+      "w": "deed",
+      "meaning": {
+       "en": "a written agreement signed by people",
+       "hi": "लोगों के हस्ताक्षर वाला लिखित समझौता"
+      }
+     },
+     {
+      "w": "pride",
+      "meaning": {
+       "en": "a strong feeling of one's own importance",
+       "hi": "अपनी महत्ता का तेज़ एहसास"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you pawn your watch to a moneylender, do you keep it?",
+      "hi": "यदि तुम अपनी घड़ी साहूकार के पास गिरवी रखो, तो क्या वह तुम्हारे पास रहेगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, he holds it until you repay",
+       "hi": "नहीं, जब तक चुकाओ नहीं, वह रखेगा"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, you wear it as before",
+       "hi": "हाँ, तुम पहले की तरह पहनते रहोगे"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play to hear the retelling.",
+      "hi": "चलाओ दबाकर पुनर्कथन सुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:pawn",
+     "expect": "found:pawn",
+     "say": {
+      "en": "Tap the word 'pawn'.",
+      "hi": "'pawn' शब्द पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:deed",
+     "expect": "found:deed",
+     "say": {
+      "en": "Now find 'deed'.",
+      "hi": "अब 'deed' ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Money words show who has power in the story. The Khan pawns, the moneylender lends, and the deed turns the Khan's loss into a legal paper.",
+      "hi": "धन के शब्द दिखाते हैं कि कहानी में ताक़त किसके पास है। खान गिरवी रखता है, साहूकार उधार देता है, और दस्तावेज़ खान की हानि को क़ानूनी काग़ज़ बना देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a deed?",
+        "hi": "deed क्या है?"
+       },
+       "options": [
+        {
+         "en": "A signed written agreement",
+         "hi": "हस्ताक्षर वाला लिखित समझौता"
+        },
+        {
+         "en": "A noble title",
+         "hi": "कुलीन उपाधि"
+        },
+        {
+         "en": "A kind of moustache",
+         "hi": "एक तरह की मूँछ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A deed is a paper that records an agreement, signed before witnesses.",
+        "hi": "deed ऐसा काग़ज़ है जिसमें समझौता दर्ज होता है और गवाहों के सामने हस्ताक्षर होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A title like Nawab is a rank, not a paper.",
+         "hi": "नवाब जैसी उपाधि पद होती है, काग़ज़ नहीं।"
+        },
+        {
+         "en": "A moustache is on a face; a deed is a document.",
+         "hi": "मूँछ चेहरे पर होती है; deed एक दस्तावेज़ है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a sentence about a fair or an unfair deed that you can imagine in your village.",
+      "hi": "अपने गाँव में किसी उचित या अनुचित समझौते की कल्पना करके एक वाक्य लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Opens the chapter",
+   "shows": "A dusty north Indian village square in the 1930s style, a banyan tree, a moneylender's shop front with grain sacks, a landlord asleep under the tree",
+   "view": "Wide, eye level, morning light",
+   "right": "Mud houses, grain sacks, a simple shop counter, no modern objects",
+   "avoid": "Wires, plastic, signboards with text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Cards for the moustache types",
+   "shows": "Six men's faces cropped to the upper lip only, each with a different moustache: full lion style, pointed tiger style, thin goat style, small toothbrush style, thin sparse style, a fine thin line",
+   "view": "Straight front, same lighting, same crop",
+   "right": "Distinct shapes you can tell apart in black and white",
+   "avoid": "Full faces, text, identifiable people"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "The pawned things",
+   "shows": "A brass nose-ring and an old heavy silver necklace on dark cloth",
+   "view": "Top-down, soft light",
+   "right": "Real old Indian jewellery, patina visible",
+   "avoid": "Brand marks, text"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Background of the deed scene",
+   "shows": "A blank handwritten deed paper on a wooden desk with an inkpot and reed pen",
+   "view": "Top-down, text areas left blank",
+   "right": "Clean empty lines, folded edges",
+   "avoid": "Any real writing"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Word card for 'moneylender'",
+   "shows": "An old moneylender's wooden counter with an account book, a brass weighing scale and a small iron box",
+   "view": "Three-quarter, warm light",
+   "right": "Worn wood, brass scale, no readable writing",
+   "avoid": "People's faces, readable text"
+  }
+ ]
+}

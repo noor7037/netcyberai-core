@@ -1,0 +1,167 @@
+{
+  "chapter_key": "u.c12.geography.legy2.ch03",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "Land Resources and Agriculture",
+  "source": "https://ncert.nic.in/textbook/pdf/legy2ps.pdf",
+  "topics": [
+    { "n": "3.1", "title": "Land use categories", "labs": ["c12-geography-legy2-ch03-land-use"], "why_no_lab": null },
+    { "n": "3.2", "title": "Land-use changes in India over time", "labs": [], "why_no_lab": "The change over decades is a story told by the chapter's tables and the reader; a lab would only repeat the numbers." },
+    { "n": "3.3", "title": "Soils: the base of farming", "labs": ["c12-geography-legy2-ch03-soil-types"], "why_no_lab": null },
+    { "n": "3.4", "title": "Agriculture and the needs of crops", "labs": ["c12-geography-legy2-ch03-crop-needs"], "why_no_lab": null },
+    { "n": "3.5", "title": "Problems of agriculture and farmers' lives", "labs": [], "why_no_lab": "Farmers' debts, small holdings and their daily choices are read and discussed in the chapter; no lab can show a farm family's life." }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy2-ch03-land-use",
+      "topic": "3.1",
+      "template": "sort",
+      "title": { "en": "Where does the land go? Land use", "hi": "ज़मीन कहाँ जाती है? भूमि उपयोग" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "forest", "label": { "en": "Forest land", "hi": "वन भूमि" } },
+          { "id": "nonagri", "label": { "en": "Land for buildings and roads", "hi": "इमारतों और सड़कों की भूमि" } },
+          { "id": "unsown", "label": { "en": "Waste or pasture: not sown", "hi": "बंजर या चारागाह: बोई नहीं गई" } },
+          { "id": "sown", "label": { "en": "Net sown area: ploughed and sown", "hi": "शुद्ध बोया क्षेत्र: जोता और बोया गया" } }
+        ],
+        "cards": [
+          { "id": "sal", "text": { "en": "Sal and teak forests on the hill slopes", "hi": "पहाड़ी ढलानों पर साल और सागौन के वन" }, "bin": "forest", "why": { "en": "Recorded as forest land, even when no crop is grown there.", "hi": "वन भूमि दर्ज है, भले ही वहाँ कोई फ़सल न हो।" } },
+          { "id": "roads", "text": { "en": "Roads, houses and factories built on farmland", "hi": "खेतों पर बने सड़कें, घर और कारख़ाने" }, "bin": "nonagri", "why": { "en": "Once farmland is built on, it leaves the net sown area.", "hi": "खेत पर निर्माण होते ही वह शुद्ध बोए क्षेत्र से बाहर हो जाता है।" } },
+          { "id": "desert", "text": { "en": "Rocky wasteland in the Thar desert", "hi": "थार में चट्टानी बंजर भूमि" }, "bin": "unsown", "why": { "en": "Barren land is not sown, so it does not count as net sown area.", "hi": "बंजर ज़मीन बोई नहीं जाती, इसलिए वह शुद्ध बोए क्षेत्र में नहीं गिनी जाती।" } },
+          { "id": "wheat", "text": { "en": "Wheat grown on the Ganga plain in winter", "hi": "सर्दियों में गंगा मैदान में उगाया गेहूँ" }, "bin": "sown", "why": { "en": "Ploughed and sown land is net sown area.", "hi": "जोती और बोई गई भूमि शुद्ध बोया क्षेत्र है।" } },
+          { "id": "pasture", "text": { "en": "Grassland where cattle graze and are not ploughed", "hi": "चारागाह जहाँ पशु चरते हैं और जो जोती नहीं जाती" }, "bin": "unsown", "why": { "en": "Pasture is not sown with crops, so it goes in the unsown group.", "hi": "चारागाह में फ़सल नहीं बोई जाती, इसलिए वह बोई न गई भूमि में आती है।" } },
+          { "id": "rice", "text": { "en": "Rice fields in Kerala's coastal plain", "hi": "केरल के तटीय मैदान में धान के खेत" }, "bin": "sown", "why": { "en": "Rice fields are ploughed and sown in every season.", "hi": "धान के खेत हर मौसम में जोते और बोए जाते हैं।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "card:sal", "expect": "correct:sal", "say": { "en": "Tap the forest card, then tap the bin it belongs to.", "hi": "वन वाला कार्ड छुओ, फिर वह खाना छुओ जिसका वह है।" } },
+        { "kind": "predict", "say": { "en": "Grassland where cattle graze is never ploughed. Which group does it belong to?", "hi": "चारागाह जहाँ पशु चरते हैं, वह कभी नहीं जोता जाता। वह किस समूह में है?" }, "options": [ { "id": "sown", "en": "Net sown area", "hi": "शुद्ध बोया क्षेत्र" }, { "id": "unsown", "en": "Waste or pasture, not sown", "hi": "बंजर या चारागाह, बोया नहीं गया" } ], "answer": "unsown" },
+        { "kind": "do", "target": "card:wheat", "expect": "correct:wheat", "say": { "en": "Place the wheat card in its bin.", "hi": "गेहूँ वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:roads", "expect": "correct:roads", "say": { "en": "Place the roads and houses card in its bin.", "hi": "सड़क और घरों वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:pasture", "expect": "correct:pasture", "say": { "en": "Place the pasture card in its bin.", "hi": "चारागाह वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Sort the last cards and tap Check.", "hi": "बाकी कार्ड छाँटो और जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Land use shows what each piece of land is used for. Some is forest. Some is built on for homes, roads and factories. Some is waste or pasture. The rest is net sown area, the land that is ploughed and sown. Net sown area is the farmland that feeds people, so building on farmland shrinks the food-growing land.", "hi": "भूमि उपयोग बताता है कि हर ज़मीन का क्या उपयोग है। कुछ वन है। कुछ पर घर, सड़कें और कारख़ाने बने हैं। कुछ बंजर या चारागाह है। बाकी शुद्ध बोया क्षेत्र है, यानी वह ज़मीन जो जोती और बोई जाती है। शुद्ध बोया क्षेत्र वह खेती है जो लोगों का पेट भरती है, इसलिए खेत पर निर्माण से अन्न उगाने की ज़मीन घटती है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which land is counted as net sown area?", "hi": "कौन-सी भूमि शुद्ध बोए क्षेत्र में गिनी जाती है?" },
+              "options": [
+                { "en": "A hill covered with trees", "hi": "पेड़ों से ढकी एक पहाड़ी" },
+                { "en": "Rice fields that are ploughed and sown", "hi": "जोते और बोए गए धान के खेत" },
+                { "en": "A road built across farmland", "hi": "खेत के बीच से बनी सड़क" }
+              ],
+              "answer": 1,
+              "why": { "en": "Net sown area is land that is ploughed and sown with crops.", "hi": "शुद्ध बोया क्षेत्र वह ज़मीन है जो जोती और फ़सलों के लिए बोई जाती है।" },
+              "wrong": [
+                { "en": "Forest land is counted as forest, not as net sown area.", "hi": "वन भूमि वन ही गिनी जाती है, शुद्ध बोए क्षेत्र में नहीं।" },
+                "",
+                { "en": "A road is land for non-farm use, so it is not net sown area.", "hi": "सड़क गैर-कृषि उपयोग की भूमि है, इसलिए वह शुद्ध बोया क्षेत्र नहीं है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Walk past a field near you. Is it sown, pasture, or built up? Which bin does it go in?", "hi": "अपने पास के किसी खेत के पास से गुज़रो। वह बोया गया है, चारागाह है या बना हुआ है? वह किस खाने में जाएगा?" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch03-soil-types",
+      "topic": "3.3",
+      "template": "earth",
+      "title": { "en": "The soils that feed India", "hi": "भारत की मिट्टियाँ जो अन्न देती हैं" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "soil",
+        "region": "india"
+      },
+      "steps": [
+        { "kind": "do", "target": "toggle:alluvial", "expect": "revealed:alluvial", "say": { "en": "Tap Alluvial soil to see where it lies.", "hi": "जलोढ़ मिट्टी छुओ और देखो वह कहाँ है।" } },
+        { "kind": "predict", "say": { "en": "Which soil lies in the Ganga and Brahmaputra plains and suits wheat and rice?", "hi": "गंगा और ब्रह्मपुत्र के मैदानों में कौन-सी मिट्टी है जो गेहूँ और धान के लिए अच्छी है?" }, "options": [ { "id": "black", "en": "Black soil", "hi": "काली मिट्टी" }, { "id": "alluvial", "en": "Alluvial soil", "hi": "जलोढ़ मिट्टी" }, { "id": "laterite", "en": "Laterite soil", "hi": "लेटेराइट मिट्टी" } ], "answer": "alluvial" },
+        { "kind": "do", "target": "toggle:black", "expect": "revealed:black", "say": { "en": "Now tap Black soil and see where it spreads.", "hi": "अब काली मिट्टी छुओ और देखो वह कहाँ फैली है।" } },
+        { "kind": "do", "target": "toggle:laterite", "expect": "revealed:laterite", "say": { "en": "Tap Laterite soil to compare it with the others.", "hi": "लेटेराइट मिट्टी छुओ और दूसरी मिट्टियों से तुलना करो।" } },
+        { "kind": "explain", "say": { "en": "Soil is the base of farming. Alluvial soil is brought down by rivers and is very fertile, so it feeds dense farming. Black soil, formed from lava rock, holds moisture well and suits cotton. Laterite forms in hot, wet areas with heavy rain. It is rich in iron and aluminium but poor in plant food, and it hardens like brick when it dries.", "hi": "मिट्टी खेती की नींव है। जलोढ़ मिट्टी नदियाँ लाती हैं और वह बहुत उपजाऊ है, इसलिए घनी खेती को सहारा देती है। लावा चट्टान से बनी काली मिट्टी नमी अच्छी रखती है और कपास के लिए अच्छी है। लेटेराइट मिट्टी गर्म, नम और भारी वर्षा वाले इलाकों में बनती है। इसमें लोहा और एल्युमिनियम अधिक है पर पौधों का पोषण कम, और सूखने पर वह ईंट जैसी सख़्त हो जाती है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which soil is rich in iron and aluminium, forms under heavy rain and hardens like brick when dry?", "hi": "कौन-सी मिट्टी लोहे और एल्युमिनियम से भरपूर है, भारी वर्षा में बनती है और सूखने पर ईंट जैसी सख़्त होती है?" },
+              "options": [
+                { "en": "Alluvial soil", "hi": "जलोढ़ मिट्टी" },
+                { "en": "Laterite soil", "hi": "लेटेराइट मिट्टी" },
+                { "en": "Black soil", "hi": "काली मिट्टी" }
+              ],
+              "answer": 1,
+              "why": { "en": "Heavy rain washes away lighter material and leaves iron and aluminium behind. That is laterite.", "hi": "भारी वर्षा हल्की सामग्री बहा ले जाती है और लोहा व एल्युमिनियम पीछे छोड़ देती है। यही लेटेराइट है।" },
+              "wrong": [
+                { "en": "Alluvial soil is young and fertile. It does not harden into brick.", "hi": "जलोढ़ मिट्टी नई और उपजाऊ है। वह ईंट जैसी सख़्त नहीं होती।" },
+                "",
+                { "en": "Black soil holds moisture and suits cotton. It is not the soil that hardens like brick.", "hi": "काली मिट्टी नमी रखती है और कपास के लिए अच्छी है। ईंट जैसी सख़्त होने वाली मिट्टी यह नहीं है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Turn on each soil one by one. Which colour surprised you most? For each soil, think about which crop a farmer would grow there.", "hi": "हर मिट्टी को एक-एक करके चालू करो। कौन-सा रंग सबसे अलग लगा? हर मिट्टी के लिए सोचो कि वहाँ किसान कौन-सी फ़सल उगाएगा।" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch03-crop-needs",
+      "topic": "3.4",
+      "template": "match",
+      "title": { "en": "Which crop, which land?", "hi": "कौन-सी फ़सल, कैसी ज़मीन?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "rice", "left": { "en": "Rice", "hi": "धान" }, "right": { "en": "Needs hot, humid weather and plenty of water, from rain or irrigation", "hi": "गर्म, नम मौसम और भरपूर पानी, वर्षा या सिंचाई से" }, "why": { "en": "A kharif crop. It needs heat and water during the growing season.", "hi": "खरीफ़ फ़सल। उगने के मौसम में इसे गर्मी और पानी चाहिए।" } },
+          { "id": "wheat", "left": { "en": "Wheat", "hi": "गेहूँ" }, "right": { "en": "A winter crop that needs cool growing weather and sunshine at ripening", "hi": "सर्दी की फ़सल: बढ़ते समय ठंडा मौसम, पकते समय धूप" }, "why": { "en": "Sown in winter, a rabi crop of the north and north-west.", "hi": "सर्दियों में बोई जाती है, उत्तर और उत्तर-पश्चिम की रबी फ़सल।" } },
+          { "id": "cotton", "left": { "en": "Cotton", "hi": "कपास" }, "right": { "en": "Grows well on black soil and needs a long frost-free season", "hi": "काली मिट्टी में अच्छी उगती है, लंबा पाला-रहित मौसम चाहिए" }, "why": { "en": "The Deccan's black soil suits cotton, which needs about 210 frost-free days.", "hi": "दक्कन की काली मिट्टी कपास के लिए अच्छी है, जिसे लगभग 210 पाला-रहित दिन चाहिए।" } },
+          { "id": "tea", "left": { "en": "Tea", "hi": "चाय" }, "right": { "en": "Grows on hill slopes with good drainage and frequent showers", "hi": "अच्छे जल-निकास वाली पहाड़ी ढलानों पर, बार-बार बौछारों में" }, "why": { "en": "Water must drain away quickly, because standing water harms the bushes.", "hi": "पानी जल्दी बहना चाहिए, क्योंकि रुका पानी झाड़ियों को नुकसान पहुँचाता है।" } },
+          { "id": "millets", "left": { "en": "Millets", "hi": "मोटे अनाज" }, "right": { "en": "Hardy grains that grow with little rain and on poor soil", "hi": "कम वर्षा और कम उपजाऊ मिट्टी में भी उगने वाले कठोर अनाज" }, "why": { "en": "Jowar, bajra and ragi are nutritious grains of dry areas.", "hi": "ज्वार, बाजरा और रागी सूखे इलाकों के पौष्टिक अनाज हैं।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "left:rice", "expect": "matched:rice", "say": { "en": "Tap Rice, then tap its description on the right.", "hi": "धान छुओ, फिर दाईं ओर उसका विवरण छुओ।" } },
+        { "kind": "predict", "say": { "en": "Which crop grows best on the black soil of the Deccan?", "hi": "दक्कन की काली मिट्टी पर कौन-सी फ़सल सबसे अच्छी उगती है?" }, "options": [ { "id": "tea", "en": "Tea", "hi": "चाय" }, { "id": "cotton", "en": "Cotton", "hi": "कपास" }, { "id": "wheat", "en": "Wheat", "hi": "गेहूँ" } ], "answer": "cotton" },
+        { "kind": "do", "target": "left:wheat", "expect": "matched:wheat", "say": { "en": "Match Wheat with its description.", "hi": "गेहूँ का विवरण मिलाओ।" } },
+        { "kind": "do", "target": "left:tea", "expect": "matched:tea", "say": { "en": "Match Tea with its description.", "hi": "चाय का विवरण मिलाओ।" } },
+        { "kind": "do", "target": "left:cotton", "expect": "matched:cotton", "say": { "en": "Match Cotton with its description.", "hi": "कपास का विवरण मिलाओ।" } },
+        { "kind": "do", "target": "left:millets", "expect": "matched:millets", "say": { "en": "Match Millets with its description.", "hi": "मोटे अनाज का विवरण मिलाओ।" } },
+        { "kind": "do", "target": "check", "expect": "all-matched", "say": { "en": "When all five pairs are matched, tap Check.", "hi": "पाँचों जोड़े मिल जाएँ तो जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Every crop needs a certain climate and soil. Rice needs heat, humidity and water. Wheat needs a cool growing season and sun at harvest. Cotton needs black soil and a long frost-free season. Tea needs well-drained hill slopes. Millets grow where rain is low. Matching a crop to its land is the first lesson of farming.", "hi": "हर फ़सल को एक खास जलवायु और मिट्टी चाहिए। धान को गर्मी, नमी और पानी चाहिए। गेहूँ को ठंडा बढ़ने का मौसम और कटाई पर धूप चाहिए। कपास को काली मिट्टी और लंबा पाला-रहित मौसम चाहिए। चाय को अच्छे जल-निकास वाली पहाड़ी ढलानें चाहिए। मोटे अनाज कम वर्षा में उगते हैं। फ़सल को ज़मीन से मिलाना खेती का पहला सबक है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Tea grows on slopes, not on flat plains. Why?", "hi": "चाय ढलानों पर उगती है, समतल मैदानों पर नहीं। क्यों?" },
+              "options": [
+                { "en": "Hill slopes drain water well, so the tea roots do not stay wet", "hi": "पहाड़ी ढलानें पानी अच्छी तरह बहाती हैं, इसलिए चाय की जड़ें गीली नहीं रहतीं" },
+                { "en": "Tea has to be planted in deserts", "hi": "चाय को रेगिस्तान में लगाना पड़ता है" },
+                { "en": "Slopes get more sunlight than any other land", "hi": "ढलानों को किसी भी दूसरी ज़मीन से अधिक धूप मिलती है" }
+              ],
+              "answer": 0,
+              "why": { "en": "Good drainage keeps the roots healthy, and that is the main reason for hill slopes.", "hi": "अच्छा जल-निकास जड़ों को स्वस्थ रखता है, और पहाड़ी ढलानों का यही मुख्य कारण है।" },
+              "wrong": [
+                "",
+                { "en": "Tea does not grow in deserts. It needs wet, well-drained land.", "hi": "चाय रेगिस्तान में नहीं उगती। उसे नम, अच्छे जल-निकास वाली ज़मीन चाहिए।" },
+                { "en": "Slopes do not get more sunlight than other land. Drainage is the reason.", "hi": "ढलानों को दूसरी ज़मीन से अधिक धूप नहीं मिलती। कारण जल-निकास है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Name one crop grown near you. Tell which season it is sown in and which kind of land and weather it needs.", "hi": "अपने पास में उगाई जाने वाली एक फ़सल का नाम लो। बताओ वह किस मौसम में बोई जाती है और उसे किस तरह की ज़मीन और मौसम चाहिए।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "3.4", "use": "Winter wheat field on the Ganga plain", "shows": "A green wheat field in winter on a flat plain, with a row of trees and a farmer's path, seen in soft morning light", "view": "16:9, low sun, field in mid-ground", "right": "Golden-green wheat rows and flat land, true winter colours", "avoid": "Identifiable faces, tractor brand logos" },
+    { "n": 2, "kind": "CUT", "topic": "3.3", "use": "Cut-away of alluvial soil layers", "shows": "A soil profile cut open, showing fine light-brown alluvial layers with a river-deposited look", "view": "4:3, side view of the cut face, neutral background", "right": "Fine layered soil, light to brown, no stones of different colour", "avoid": "Labels, depth numbers or arrows" },
+    { "n": 3, "kind": "CUT", "topic": "3.3", "use": "Laterite soil cut open", "shows": "A block of red laterite soil cut open, with hard nodules and a rough red-brown texture", "view": "4:3, close view of the cut face, neutral background", "right": "Deep red-brown colour with hard, rough nodules", "avoid": "Labels or text" },
+    { "n": 4, "kind": "OBJ", "topic": "3.3", "use": "A handful of black soil", "shows": "Clumps of dark black soil on a white cloth, with a few small cracks showing moisture", "view": "Top view, soft light, transparent background if cut out", "right": "Dark black, slightly sticky clumps", "avoid": "Packaging or brand names" },
+    { "n": 5, "kind": "SCN", "topic": "3.4", "use": "Tea estate on a hill slope", "shows": "Rows of green tea bushes on a hill slope with a few shade trees and a clear hill view behind", "view": "16:9, morning mist, slope in the middle", "right": "Neat rows of dark-green bushes on a steep slope", "avoid": "Readable signs, workers' faces in close view" },
+    { "n": 6, "kind": "MAP", "topic": "3.1", "use": "Land-use base map of a district", "shows": "An aerial-style map of a district with patches of fields, forest, barren ground and built-up blocks, no names", "view": "16:9, flat colours, no labels", "right": "Field patches, green forest and grey built-up areas clearly different", "avoid": "Names, roads with route numbers, borders" }
+  ]
+}

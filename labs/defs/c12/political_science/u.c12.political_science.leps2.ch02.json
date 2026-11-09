@@ -1,0 +1,202 @@
+{
+  "chapter_key": "u.c12.political_science.leps2.ch02",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "Era of One-party Dominance",
+  "source": "https://ncert.nic.in/textbook/pdf/leps202.pdf",
+  "topics": [
+    { "n": "2.1", "title": "The challenge of building democracy: the first elections", "labs": ["c12-political_science-leps2-ch02-era-timeline"], "why_no_lab": null },
+    { "n": "2.2", "title": "Changing methods of voting", "labs": [], "why_no_lab": "Explained through the photograph and the text; this series does not build labs around machines." },
+    { "n": "2.3", "title": "The nature of Congress dominance and how a seat is won", "labs": ["c12-political_science-leps2-ch02-seat-election"], "why_no_lab": null },
+    { "n": "2.4", "title": "Socialist, Communist, Jana Sangh and other opposition parties", "labs": ["c12-political_science-leps2-ch02-parties-match"], "why_no_lab": null },
+    { "n": "2.5", "title": "The emergence of opposition parties and their states", "labs": [], "why_no_lab": "Shown by the timeline lab; the rest is a reading and research task for the class." }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps2-ch02-era-timeline",
+      "topic": "2.1",
+      "template": "timeline",
+      "title": { "en": "Early elections and the first opposition wins", "hi": "शुरुआती चुनाव और विपक्ष की पहली जीतें" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1950, 1970],
+        "task": "order",
+        "title": { "en": "The one-party era, in order", "hi": "एक-दलीय प्रभुत्व का दौर, क्रम से" },
+        "events": [
+          { "id": "elec51", "year": 1951, "label": { "en": "India holds its first general election, from 1951 to 1952", "hi": "भारत अपना पहला आम चुनाव करता है, 1951 से 1952 तक" } },
+          { "id": "kerala", "year": 1957, "label": { "en": "A Communist-led government is formed in Kerala after an election", "hi": "चुनाव के बाद केरल में कम्युनिस्ट नेतृत्व वाली सरकार बनती है" } },
+          { "id": "swatantra", "year": 1959, "label": { "en": "The Swatantra Party is founded to favour free markets", "hi": "मुक्त बाज़ार के पक्ष में स्वतंत्र पार्टी बनती है" } },
+          { "id": "fourth", "year": 1967, "label": { "en": "Congress keeps a majority in the Lok Sabha but loses several states", "hi": "कांग्रेस लोक सभा में बहुमत रखती है, पर कई राज्य खो देती है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these came first?", "hi": "इनमें से सबसे पहले कौन-सी घटना हुई?" },
+          "options": [
+            { "id": "elec51", "en": "The first general election, 1951", "hi": "पहला आम चुनाव, 1951" },
+            { "id": "swatantra", "en": "The Swatantra Party, 1959", "hi": "स्वतंत्र पार्टी, 1959" },
+            { "id": "fourth", "en": "Congress loses states, 1967", "hi": "कांग्रेस का कई राज्य खोना, 1967" }
+          ],
+          "answer": "elec51"
+        },
+        { "kind": "do", "target": "event:elec51", "expect": "placed:elec51", "say": { "en": "Tap the first general election of 1951.", "hi": "1951 का पहला आम चुनाव छुओ।" } },
+        { "kind": "do", "target": "event:kerala", "expect": "placed:kerala", "say": { "en": "Tap the Communist-led government in Kerala, 1957.", "hi": "1957 में केरल की कम्युनिस्ट नेतृत्व वाली सरकार छुओ।" } },
+        { "kind": "do", "target": "event:swatantra", "expect": "placed:swatantra", "say": { "en": "Tap the founding of the Swatantra Party in 1959.", "hi": "1959 में स्वतंत्र पार्टी के बनने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "event:fourth", "expect": "placed:fourth", "say": { "en": "Tap the 1967 election results.", "hi": "1967 के चुनाव परिणाम वाली घटना छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to test the order.", "hi": "क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The first general election of 1951-52 was won by Congress. In 1957 Kerala chose a Communist-led government, so an opposition party could win power in a state. The Swatantra Party was founded in 1959. In 1967 Congress still held the Lok Sabha but lost several states, so its dominance was not total.", "hi": "1951-52 का पहला आम चुनाव कांग्रेस ने जीता। 1957 में केरल ने कम्युनिस्ट नेतृत्व वाली सरकार चुनी, यानी विपक्ष राज्य में सत्ता जीत सकता था। 1959 में स्वतंत्र पार्टी बनी। 1967 में कांग्रेस के पास लोक सभा का बहुमत था, पर उसने कई राज्य खो दिए, यानी उसका प्रभुत्व पूरा नहीं था।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "In which year did Congress keep a Lok Sabha majority but lose several states?", "hi": "किस वर्ष कांग्रेस ने लोक सभा का बहुमत रखा, पर कई राज्य खोए?" },
+              "options": [
+                { "en": "1951", "hi": "उन्नीस सौ इक्यावन (1951)" },
+                { "en": "1957", "hi": "उन्नीस सौ सत्तावन (1957)" },
+                { "en": "1967", "hi": "उन्नीस सौ सड़सठ (1967)" }
+              ],
+              "answer": 2,
+              "why": { "en": "The 1967 election kept Congress at the Centre but cost it several state governments.", "hi": "1967 के चुनाव ने केंद्र में कांग्रेस को बनाए रखा, पर उसे कई राज्य सरकारें खोनी पड़ीं।" },
+              "wrong": [
+                { "en": "In 1951 the first election was held, and Congress had not yet lost states.", "hi": "1951 में पहला चुनाव हुआ था, और कांग्रेस ने तब तक राज्य नहीं खोए थे।" },
+                { "en": "In 1957 a Communist government formed in Kerala, but the broader loss came in 1967.", "hi": "1957 में केरल में कम्युनिस्ट सरकार बनी, पर व्यापक नुकसान 1967 में हुआ।" },
+                ""
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Write one reason why a democracy with many parties is stronger than one where only one party wins every time.", "hi": "एक कारण लिखो कि बहुदलीय लोकतंत्र उस व्यवस्था से मज़बूत क्यों है जिसमें हर बार एक ही दल जीते।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch02-seat-election",
+      "topic": "2.3",
+      "template": "govern",
+      "title": { "en": "How one seat is won: most votes, not half", "hi": "एक सीट कैसे जीती जाती है: सबसे ज़्यादा वोट, आधे नहीं" },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "election",
+        "options": {
+          "candidates": ["asha", "imran", "gurpreet"],
+          "shares": { "asha": 41, "imran": 31, "gurpreet": 28 },
+          "nota": false,
+          "voters": 1000,
+          "turnout": 60,
+          "system": "fptp"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "In a seat, Asha gets 41 percent of the votes. Does she win the seat?", "hi": "एक सीट पर आशा को 41 प्रतिशत वोट मिलते हैं। क्या वह सीट जीतेगी?" },
+          "options": [
+            { "id": "yes", "en": "Yes, the most votes is enough", "hi": "हाँ, सबसे ज़्यादा वोट काफ़ी हैं" },
+            { "id": "no", "en": "No, she needs more than half", "hi": "नहीं, उसे आधे से ज़्यादा चाहिए" },
+            { "id": "tie", "en": "Every seat is a tie", "hi": "हर सीट पर बराबरी होती है" }
+          ],
+          "answer": "yes"
+        },
+        { "kind": "do", "target": "vote:asha", "expect": "voted:asha", "say": { "en": "Tap Asha Verma's card to cast your vote. (Fictional candidates.)", "hi": "अपना वोट डालने के लिए आशा वर्मा का कार्ड छुओ। (काल्पनिक उम्मीदवार।)" } },
+        { "kind": "do", "target": "play", "expect": "counted", "say": { "en": "Press Count to count all the votes.", "hi": "सारे वोट गिनने के लिए गिनती दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "In a first-past-the-post seat, the candidate with the most votes wins, even without a majority. Asha needs only more votes than each rival. Many party wins in India's early decades were of this kind, so a party could win many seats with less than half the votes in each.", "hi": "सर्वाधिक वोट पाने वाली (फ़र्स्ट-पास्ट-द-पोस्ट) सीट पर सबसे ज़्यादा वोट पाने वाला उम्मीदवार जीतता है, भले ही बहुमत न हो। आशा को हर प्रतिद्वंद्वी से ज़्यादा वोट चाहिए, आधे से ज़्यादा नहीं। शुरुआती दशकों में ऐसी कई जीतें इसी तरह हुईं, इसलिए एक दल हर सीट पर आधे से कम वोट लेकर भी कई सीटें जीत सकता था।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why did Asha win with only 41 percent of the votes?", "hi": "सिर्फ़ 41 प्रतिशत वोट पाकर आशा क्यों जीती?" },
+              "options": [
+                { "en": "She had more votes than each rival", "hi": "उसके हर प्रतिद्वंद्वी से ज़्यादा वोट थे" },
+                { "en": "She needed 50 percent to win", "hi": "जीतने के लिए उसे 50 प्रतिशत चाहिए थे" },
+                { "en": "The votes for no one were counted for her", "hi": "किसी के लिए न डाले गए वोट उसके खाते में जुड़े" }
+              ],
+              "answer": 0,
+              "why": { "en": "Under first past the post, the candidate with the most votes wins the seat.", "hi": "फ़र्स्ट-पास्ट-द-पोस्ट में सबसे ज़्यादा वोट वाला उम्मीदवार सीट जीतता है।" },
+              "wrong": [
+                "",
+                { "en": "A majority of more than half is not needed in this system.", "hi": "इस व्यवस्था में आधे से ज़्यादा वोट की ज़रूरत नहीं होती।" },
+                { "en": "Votes for no candidate do not add to anyone's total.", "hi": "किसी के लिए न डाले गए वोट किसी के भी कुल में नहीं जुड़ते।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Press Reset, vote for another candidate, count again and see whether the winner changes.", "hi": "रीसेट दबाओ, किसी और उम्मीदवार को वोट दो, फिर गिनो और देखो विजेता बदलता है या नहीं।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch02-parties-match",
+      "topic": "2.4",
+      "template": "match",
+      "title": { "en": "Who is who among the opposition parties", "hi": "विपक्षी दलों में कौन कौन है" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "sp", "left": { "en": "Socialist Party", "hi": "सोशलिस्ट पार्टी" }, "right": { "en": "Pressed for socialist ideas and drew support from Congress's left-wing critics", "hi": "समाजवादी विचारों की माँग करती थी और कांग्रेस के वामपंथी आलोचकों से समर्थन पाती थी" }, "why": { "en": "It was one of the early opposition parties after independence.", "hi": "स्वतंत्रता के बाद के शुरुआती विपक्षी दलों में से एक।" } },
+          { "id": "cpi", "left": { "en": "Communist Party of India", "hi": "भारतीय कम्युनिस्ट पार्टी" }, "right": { "en": "Won an election and formed a state government in Kerala in 1957", "hi": "1957 में केरल में चुनाव जीतकर राज्य सरकार बनाई" }, "why": { "en": "Its government in Kerala showed that a left party could win power by elections.", "hi": "केरल की इसकी सरकार ने दिखाया कि चुनाव से वामपंथी दल भी सत्ता जीत सकता है।" } },
+          { "id": "bjs", "left": { "en": "Bharatiya Jana Sangh", "hi": "भारतीय जनसंघ" }, "right": { "en": "Founded in 1951 with a Hindu nationalist outlook", "hi": "1951 में बना, जिसका विचार हिंदू राष्ट्रवादी था" }, "why": { "en": "It was founded in 1951 and later became part of the history of the BJP.", "hi": "यह 1951 में बना और बाद में भारतीय जनता पार्टी के इतिहास का हिस्सा बना।" } },
+          { "id": "rss", "left": { "en": "Rashtriya Swayamsevak Sangh", "hi": "राष्ट्रीय स्वयंसेवक संघ" }, "right": { "en": "A voluntary organisation for social and cultural work, not a political party", "hi": "सामाजिक और सांस्कृतिक काम करने वाला स्वैच्छिक संगठन, राजनीतिक दल नहीं" }, "why": { "en": "It is a social organisation, so it differs from the parties in this list.", "hi": "यह एक सामाजिक संगठन है, इसलिए इस सूची के दलों से अलग है।" } },
+          { "id": "swatantra", "left": { "en": "Swatantra Party", "hi": "स्वतंत्र पार्टी" }, "right": { "en": "Founded in 1959 to favour free markets and less state control", "hi": "1959 में बनी, जो मुक्त बाज़ार और कम सरकारी नियंत्रण की पक्षधर थी" }, "why": { "en": "It opposed heavy government control over the economy.", "hi": "इसने अर्थव्यवस्था पर भारी सरकारी नियंत्रण का विरोध किया।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which party formed a state government through an election in 1957?", "hi": "किस दल ने 1957 में चुनाव के ज़रिए राज्य सरकार बनाई?" },
+          "options": [
+            { "id": "cpi", "en": "Communist Party of India", "hi": "भारतीय कम्युनिस्ट पार्टी" },
+            { "id": "bjs", "en": "Bharatiya Jana Sangh", "hi": "भारतीय जनसंघ" },
+            { "id": "swatantra", "en": "Swatantra Party", "hi": "स्वतंत्र पार्टी" }
+          ],
+          "answer": "cpi"
+        },
+        { "kind": "do", "target": "right:sp", "expect": "matched:sp", "say": { "en": "Tap 'Socialist Party' on the left, then its description on the right.", "hi": "बाईं ओर 'सोशलिस्ट पार्टी' छुओ, फिर दाईं ओर उसका विवरण छुओ।" } },
+        { "kind": "do", "target": "right:cpi", "expect": "matched:cpi", "say": { "en": "Match the Communist Party of India with its description.", "hi": "भारतीय कम्युनिस्ट पार्टी का उसके विवरण से मिलान करो।" } },
+        { "kind": "do", "target": "right:bjs", "expect": "matched:bjs", "say": { "en": "Match the Bharatiya Jana Sangh with its description.", "hi": "भारतीय जनसंघ का उसके विवरण से मिलान करो।" } },
+        { "kind": "do", "target": "right:rss", "expect": "matched:rss", "say": { "en": "Match the Rashtriya Swayamsevak Sangh with its description.", "hi": "राष्ट्रीय स्वयंसेवक संघ का उसके विवरण से मिलान करो।" } },
+        { "kind": "do", "target": "right:swatantra", "expect": "matched:swatantra", "say": { "en": "Match the Swatantra Party. The last match completes the set.", "hi": "स्वतंत्र पार्टी का मिलान करो। आख़िरी मिलान से सेट पूरा होगा।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Congress dominated the early decades, but opposition came from many directions: the left, the right, the free-market side and social movements. Each drew its support from different ideas and groups, and this variety later made coalitions possible.", "hi": "शुरुआती दशकों में कांग्रेस का प्रभुत्व रहा, पर विरोध कई दिशाओं से आया: वामपंथ, दक्षिणपंथ, मुक्त बाज़ार के पक्षधर और सामाजिक आंदोलन। हर एक ने अलग विचारों और समूहों से समर्थन पाया, और इसी विविधता ने आगे चलकर गठबंधनों का रास्ता बनाया।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these is not a political party?", "hi": "इनमें से कौन-सा राजनीतिक दल नहीं है?" },
+              "options": [
+                { "en": "Socialist Party", "hi": "सोशलिस्ट पार्टी" },
+                { "en": "Rashtriya Swayamsevak Sangh", "hi": "राष्ट्रीय स्वयंसेवक संघ" },
+                { "en": "Swatantra Party", "hi": "स्वतंत्र पार्टी" }
+              ],
+              "answer": 1,
+              "why": { "en": "The RSS is a voluntary social and cultural organisation. It does not contest elections as a party.", "hi": "RSS एक स्वैच्छिक सामाजिक और सांस्कृतिक संगठन है। वह दल के रूप में चुनाव नहीं लड़ता।" },
+              "wrong": [
+                { "en": "The Socialist Party contested elections as a party.", "hi": "सोशलिस्ट पार्टी दल के रूप में चुनाव लड़ती थी।" },
+                "",
+                { "en": "The Swatantra Party contested elections from 1959 onwards.", "hi": "स्वतंत्र पार्टी 1959 से चुनाव लड़ती थी।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick one party and find out, in the reader, which state or idea it was strongest in.", "hi": "एक दल चुनो और रीडर में देखो कि वह किस राज्य या विचार में सबसे मज़बूत थी।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "2.1", "use": "Opening picture of the first elections", "shows": "An old polling station on a school verandah, a table with an empty ballot box, no people in frame", "view": "Eye level, wide 16:9, soft morning light", "right": "Real school building, worn wood, true light", "avoid": "Readable party names, faces, posters with text" },
+    { "n": 2, "kind": "OBJ", "topic": "2.3", "use": "A ballot box as the object of the vote", "shows": "A small empty wooden ballot box with a paper slot on top, cut-out on a transparent background", "view": "Three-quarter view from slightly above, object fills about 80 percent", "right": "Real wood and metal, plain finish, soft shadow", "avoid": "Party symbols, labels, numbers" },
+    { "n": 3, "kind": "MAP", "topic": "2.3", "use": "The country where the seats were contested", "shows": "Plain relief map of India with plains and mountains shaded, no names and no borders", "view": "Top-down, 16:9, centred on the subcontinent", "right": "Soft earth colours, true relief, pale sea", "avoid": "State borders, names, capitals" },
+    { "n": 4, "kind": "SEQ", "topic": "2.5", "use": "The growing choice of voters over the years", "shows": "Three frames of a polling queue at the same school door in three elections, seen from behind, no faces", "view": "Same camera position and size, morning light, numbered files", "right": "Real queue shapes, true clothes, quiet crowd", "avoid": "Faces, readable posters, party flags" },
+    { "n": 5, "kind": "DIA", "topic": "2.3", "use": "Blank chart base for vote share and seats", "shows": "Two blank chart bases side by side, a bar chart and a pie chart, with empty axes", "view": "Flat, 16:9, straight-on", "right": "Clean lines, soft tints, no numbers or words", "avoid": "Any text or figures" }
+  ]
+}

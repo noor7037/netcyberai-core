@@ -1,0 +1,329 @@
+{
+  "chapter_key": "u.c04.hindi.dhve1.x06",
+  "class": 4,
+  "subject_id": "hindi",
+  "title": "Leaves of many kinds (भाँति-भाँति की पत्तियाँ)",
+  "source": "https://ncert.nic.in/textbook.php?dhve1=0-13",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Shapes and sizes of leaves",
+      "labs": [
+        "c04-hindi-dhve1-x06-leaves"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Look at the plants around us",
+      "labs": [],
+      "why_no_lab": "Going outside and looking at real leaves is a walk with the teacher or family, not a lab."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-hindi-dhve1-x06-leaves",
+      "topic": "1",
+      "template": "match",
+      "title": {
+        "en": "Leaves of all shapes",
+        "hi": "भाँति-भाँति की पत्तियाँ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "peepal",
+            "left": {
+              "en": "Peepal leaf",
+              "hi": "पीपल की पत्ती"
+            },
+            "right": {
+              "en": "Shaped like a heart",
+              "hi": "हृदय के आकार की"
+            },
+            "why": {
+              "en": "The peepal leaf has a broad base and a pointed tip, like a heart.",
+              "hi": "पीपल की पत्ती आधार पर चौड़ी और ऊपर से नुकीली होती है, दिल जैसी।"
+            }
+          },
+          {
+            "id": "papaya",
+            "left": {
+              "en": "Papaya leaf",
+              "hi": "पपीते की पत्ती"
+            },
+            "right": {
+              "en": "Shaped like a star",
+              "hi": "तारे के आकार की"
+            },
+            "why": {
+              "en": "The papaya leaf has deep cuts that look like the points of a star.",
+              "hi": "पपीते की पत्ती में गहरे कटाव होते हैं जो तारे की नोकों जैसे दिखते हैं।"
+            }
+          },
+          {
+            "id": "semal",
+            "left": {
+              "en": "Semal leaf",
+              "hi": "सेमल की पत्ती"
+            },
+            "right": {
+              "en": "Like the fingers of a hand",
+              "hi": "हाथ के पंजे जैसी"
+            },
+            "why": {
+              "en": "The semal leaf spreads out in several leaflets, like fingers.",
+              "hi": "सेमल की पत्ती कई पत्तियों में फैली होती है, उँगलियों जैसी।"
+            }
+          },
+          {
+            "id": "coconut",
+            "left": {
+              "en": "Coconut leaf",
+              "hi": "नारियल की पत्ती"
+            },
+            "right": {
+              "en": "Like a paper feather",
+              "hi": "कागज़ी पंख जैसी"
+            },
+            "why": {
+              "en": "The long coconut leaf has thin leaflets on both sides like a feather.",
+              "hi": "नारियल की लंबी पत्ती के दोनों ओर पतले हिस्से होते हैं, पंख जैसे।"
+            }
+          },
+          {
+            "id": "banana",
+            "left": {
+              "en": "Banana leaf",
+              "hi": "केले की पत्ती"
+            },
+            "right": {
+              "en": "So big that it is used as a plate",
+              "hi": "इतनी बड़ी कि थाली की तरह काम आती है"
+            },
+            "why": {
+              "en": "The banana leaf is large and smooth, so food can be served on it.",
+              "hi": "केले की पत्ती बड़ी और चिकनी होती है, इसमें खाना परोसा जा सकता है।"
+            }
+          },
+          {
+            "id": "tamarind",
+            "left": {
+              "en": "Tamarind leaf",
+              "hi": "इमली की पत्ती"
+            },
+            "right": {
+              "en": "Too small to cover a fingernail",
+              "hi": "नाखून को भी न ढँकने वाली छोटी"
+            },
+            "why": {
+              "en": "The tamarind leaflets are very tiny, much smaller than a little fingernail.",
+              "hi": "इमली की पत्तियाँ बहुत छोटी होती हैं, छोटी उँगली के नाखून से भी छोटी।"
+            }
+          }
+        ],
+        "style": "cards"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:peepal",
+          "expect": "matched:peepal",
+          "say": {
+            "en": "Tap the card 'Peepal leaf', then tap its partner.",
+            "hi": "'पीपल की पत्ती' का कार्ड छुओ, फिर उसकी जोड़ी छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which partner goes with 'Papaya leaf'?",
+            "hi": "अनुमान लगाओ: 'पपीते की पत्ती' की जोड़ी कौन-सी होगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Shaped like a heart",
+              "hi": "हृदय के आकार की"
+            },
+            {
+              "id": "b",
+              "en": "Shaped like a star",
+              "hi": "तारे के आकार की"
+            },
+            {
+              "id": "c",
+              "en": "Like the fingers of a hand",
+              "hi": "हाथ के पंजे जैसी"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "left:tamarind",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the remaining cards until every pair is joined.",
+            "hi": "बाकी सारे कार्ड तब तक मिलाओ जब तक सब जोड़ियाँ बन जाएँ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Leaves come in many shapes and sizes: big, small, round, star-like or feather-like. Look at the leaves around you and see how different they are.",
+            "hi": "पत्तियाँ कई आकार और माप की होती हैं: बड़ी, छोटी, गोल, तारे जैसी या पंख जैसी। अपने आस-पास की पत्तियों को देखो, वे कितनी अलग हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which partner belongs to 'Peepal leaf'?",
+                "hi": "'पीपल की पत्ती' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "Shaped like a star",
+                  "hi": "तारे के आकार की"
+                },
+                {
+                  "en": "Like the fingers of a hand",
+                  "hi": "हाथ के पंजे जैसी"
+                },
+                {
+                  "en": "Shaped like a heart",
+                  "hi": "हृदय के आकार की"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "The peepal leaf has a broad base and a pointed tip, like a heart.",
+                "hi": "पीपल की पत्ती आधार पर चौड़ी और ऊपर से नुकीली होती है, दिल जैसी।"
+              },
+              "wrong": [
+                {
+                  "en": "That goes with 'Papaya leaf'. The papaya leaf has deep cuts that look like the points of a star.",
+                  "hi": "यह तो 'पपीते की पत्ती' की जोड़ी है। पपीते की पत्ती में गहरे कटाव होते हैं जो तारे की नोकों जैसे दिखते हैं।"
+                },
+                {
+                  "en": "That goes with 'Semal leaf'. The semal leaf spreads out in several leaflets, like fingers.",
+                  "hi": "यह तो 'सेमल की पत्ती' की जोड़ी है। सेमल की पत्ती कई पत्तियों में फैली होती है, उँगलियों जैसी।"
+                },
+                ""
+              ]
+            },
+            {
+              "q": {
+                "en": "Which partner belongs to 'Coconut leaf'?",
+                "hi": "'नारियल की पत्ती' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "Shaped like a heart",
+                  "hi": "हृदय के आकार की"
+                },
+                {
+                  "en": "Shaped like a star",
+                  "hi": "तारे के आकार की"
+                },
+                {
+                  "en": "Like a paper feather",
+                  "hi": "कागज़ी पंख जैसी"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "The long coconut leaf has thin leaflets on both sides like a feather.",
+                "hi": "नारियल की लंबी पत्ती के दोनों ओर पतले हिस्से होते हैं, पंख जैसे।"
+              },
+              "wrong": [
+                {
+                  "en": "That goes with 'Peepal leaf'. The peepal leaf has a broad base and a pointed tip, like a heart.",
+                  "hi": "यह तो 'पीपल की पत्ती' की जोड़ी है। पीपल की पत्ती आधार पर चौड़ी और ऊपर से नुकीली होती है, दिल जैसी।"
+                },
+                {
+                  "en": "That goes with 'Papaya leaf'. The papaya leaf has deep cuts that look like the points of a star.",
+                  "hi": "यह तो 'पपीते की पत्ती' की जोड़ी है। पपीते की पत्ती में गहरे कटाव होते हैं जो तारे की नोकों जैसे दिखते हैं।"
+                },
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Collect three fallen leaves. Draw their shapes and compare their sizes.",
+            "hi": "तीन गिरी हुई पत्तियाँ इकट्ठी करो। उनके आकार बनाओ और माप की तुलना करो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the item",
+      "shows": "A garden bed with many different leaves close together: banana, papaya, peepal, coconut frond",
+      "view": "Eye level, wide",
+      "right": "True greens, different sizes visible",
+      "avoid": "Flowers dominating, any text"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: peepal leaf",
+      "shows": "One fresh peepal leaf with its long tip, on transparent background",
+      "view": "Top view",
+      "right": "True heart shape and veins",
+      "avoid": "Shadow baked in"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: papaya leaf",
+      "shows": "One papaya leaf with a long stalk and star-like cuts",
+      "view": "Top view",
+      "right": "True lobes and colour",
+      "avoid": "Torn edges"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: coconut frond",
+      "shows": "A coconut frond with leaflets on both sides",
+      "view": "Top view",
+      "right": "True feather pattern",
+      "avoid": "Dry brown edges"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: banana leaf",
+      "shows": "A clean banana leaf, with a plain steel plate beside it for scale",
+      "view": "Top view",
+      "right": "Smooth green surface",
+      "avoid": "Food with brand names"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: tamarind leaf",
+      "shows": "A tamarind twig next to a human little-finger fingernail for scale",
+      "view": "Top view, macro",
+      "right": "Tiny leaflets clearly smaller than the nail",
+      "avoid": "Face visible"
+    }
+  ]
+}

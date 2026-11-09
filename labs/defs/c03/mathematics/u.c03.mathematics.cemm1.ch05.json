@@ -1,0 +1,941 @@
+{
+ "chapter_key": "u.c03.mathematics.cemm1.ch05",
+ "class": 3,
+ "subject_id": "mathematics",
+ "title": "Fun with Shapes",
+ "source": "https://ncert.nic.in/textbook/pdf/cemm105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Shapes in Amma's rangoli: naming flat shapes",
+   "labs": [
+    "c3-mathematics-cemm1-ch05-name-shapes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Straight lines and curved lines in shapes",
+   "labs": [
+    "c3-mathematics-cemm1-ch05-sort-lines"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Opening up boxes: faces of a cuboid are rectangles",
+   "labs": [
+    "c3-mathematics-cemm1-ch05-box-net"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "The rectangle: 4 sides, 4 corners, facing sides equal",
+   "labs": [
+    "c3-mathematics-cemm1-ch05-rectangle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "The square: all sides equal",
+   "labs": [
+    "c3-mathematics-cemm1-ch05-square"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "Making a rangoli, objects and an envelope from paper cut-outs; joining squares",
+   "labs": [],
+   "why_no_lab": "Cutting, folding and pasting real paper shapes is the whole activity; the photo steps and the reader teach it better than a screen."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-mathematics-cemm1-ch05-name-shapes",
+   "topic": "5.1",
+   "template": "shapes",
+   "title": {
+    "en": "Name the shapes in the rangoli",
+    "hi": "रंगोली की आकृतियों के नाम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "identify",
+    "task": "2d"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Amma's rangoli has a round shape like a bangle. It has no corners at all. What do we call it?",
+      "hi": "अम्मा की रंगोली में चूड़ी जैसी एक गोल आकृति है। उसमें कोई कोना नहीं है। उसे क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "circle",
+       "en": "Circle",
+       "hi": "वृत्त"
+      },
+      {
+       "id": "square",
+       "en": "Square",
+       "hi": "वर्ग"
+      },
+      {
+       "id": "triangle",
+       "en": "Triangle",
+       "hi": "त्रिभुज"
+      }
+     ],
+     "answer": "circle"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the shape on the screen. Count its sides and corners, then tap its name.",
+      "hi": "स्क्रीन पर आकृति देखो। उसकी भुजाएँ और कोने गिनो, फिर उसके नाम पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A circle is round and has no corners and no straight sides. A triangle has 3 sides and 3 corners. A square and a rectangle have 4 sides and 4 corners each. To name a shape, count its sides and corners and look for curved lines.",
+      "hi": "वृत्त गोल होता है, उसमें न कोने होते हैं, न सीधी भुजाएँ। त्रिभुज में 3 भुजाएँ और 3 कोने होते हैं। वर्ग और आयत में 4 भुजाएँ और 4 कोने होते हैं। आकृति का नाम बताने के लिए उसकी भुजाएँ और कोने गिनो और देखो कि कोई टेढ़ी रेखा है या नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A shape has 3 straight sides and 3 corners. What is it?",
+        "hi": "एक आकृति में 3 सीधी भुजाएँ और 3 कोने हैं। वह क्या है?"
+       },
+       "options": [
+        {
+         "en": "Circle",
+         "hi": "वृत्त"
+        },
+        {
+         "en": "Triangle",
+         "hi": "त्रिभुज"
+        },
+        {
+         "en": "Rectangle",
+         "hi": "आयत"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "3 sides and 3 corners make a triangle, like a samosa.",
+        "hi": "3 भुजाएँ और 3 कोने त्रिभुज बनाते हैं, जैसे समोसा।"
+       },
+       "wrong": [
+        {
+         "en": "A circle has no corners and no straight sides.",
+         "hi": "वृत्त में न कोने होते हैं, न सीधी भुजाएँ।"
+        },
+        "",
+        {
+         "en": "A rectangle has 4 sides and 4 corners, one more than here.",
+         "hi": "आयत में 4 भुजाएँ और 4 कोने होते हैं, यहाँ से एक ज़्यादा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which shape has no corners?",
+        "hi": "किस आकृति में कोने नहीं होते?"
+       },
+       "options": [
+        {
+         "en": "Square",
+         "hi": "वर्ग"
+        },
+        {
+         "en": "Circle",
+         "hi": "वृत्त"
+        },
+        {
+         "en": "Rectangle",
+         "hi": "आयत"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A circle is smooth all round, so it has no corners.",
+        "hi": "वृत्त चारों ओर से चिकना होता है, इसलिए उसमें कोने नहीं होते।"
+       },
+       "wrong": [
+        {
+         "en": "A square has 4 corners.",
+         "hi": "वर्ग में 4 कोने होते हैं।"
+        },
+        "",
+        {
+         "en": "A rectangle has 4 corners.",
+         "hi": "आयत में 4 कोने होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Next and name each new shape. Count its sides and corners before you choose. Which shape has the most sides?",
+      "hi": "अब ख़ुद आज़माओ। आगे दबाओ और हर नई आकृति का नाम बताओ। चुनने से पहले उसकी भुजाएँ और कोने गिनो। किस आकृति में सबसे ज़्यादा भुजाएँ हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch05-sort-lines",
+   "topic": "5.2",
+   "template": "sort",
+   "title": {
+    "en": "Curved lines and straight lines",
+    "hi": "टेढ़ी रेखाएँ और सीधी रेखाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "curved",
+      "label": {
+       "en": "Only curved lines",
+       "hi": "सिर्फ़ टेढ़ी रेखाएँ"
+      }
+     },
+     {
+      "id": "straight",
+      "label": {
+       "en": "Only straight lines",
+       "hi": "सिर्फ़ सीधी रेखाएँ"
+      }
+     },
+     {
+      "id": "both",
+      "label": {
+       "en": "Both kinds of lines",
+       "hi": "दोनों तरह की रेखाएँ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "circle",
+      "text": {
+       "en": "Circle",
+       "hi": "वृत्त"
+      },
+      "bin": "curved",
+      "why": {
+       "en": "A circle is round all the way, so it has only a curved line.",
+       "hi": "वृत्त चारों ओर गोल होता है, इसलिए उसमें सिर्फ़ टेढ़ी रेखा होती है।"
+      }
+     },
+     {
+      "id": "oval",
+      "text": {
+       "en": "Oval (egg shape)",
+       "hi": "अंडाकार"
+      },
+      "bin": "curved",
+      "why": {
+       "en": "An oval is a stretched circle with only a curved line.",
+       "hi": "अंडाकार खिंचा हुआ गोल होता है और उसमें सिर्फ़ टेढ़ी रेखा होती है।"
+      }
+     },
+     {
+      "id": "halfcircle",
+      "text": {
+       "en": "Half circle",
+       "hi": "आधा वृत्त"
+      },
+      "bin": "both",
+      "why": {
+       "en": "A half circle has one curved edge and one straight edge.",
+       "hi": "आधे वृत्त में एक टेढ़ा किनारा और एक सीधा किनारा होता है।"
+      }
+     },
+     {
+      "id": "triangle",
+      "text": {
+       "en": "Triangle",
+       "hi": "त्रिभुज"
+      },
+      "bin": "straight",
+      "why": {
+       "en": "All 3 sides of a triangle are straight.",
+       "hi": "त्रिभुज की तीनों भुजाएँ सीधी होती हैं।"
+      }
+     },
+     {
+      "id": "square",
+      "text": {
+       "en": "Square",
+       "hi": "वर्ग"
+      },
+      "bin": "straight",
+      "why": {
+       "en": "All 4 sides of a square are straight.",
+       "hi": "वर्ग की चारों भुजाएँ सीधी होती हैं।"
+      }
+     },
+     {
+      "id": "rectangle",
+      "text": {
+       "en": "Rectangle",
+       "hi": "आयत"
+      },
+      "bin": "straight",
+      "why": {
+       "en": "All 4 sides of a rectangle are straight.",
+       "hi": "आयत की चारों भुजाएँ सीधी होती हैं।"
+      }
+     },
+     {
+      "id": "hexagon",
+      "text": {
+       "en": "Hexagon (honeycomb cell)",
+       "hi": "षट्भुज (छत्ते का खाना)"
+      },
+      "bin": "straight",
+      "why": {
+       "en": "All 6 sides of a hexagon are straight.",
+       "hi": "षट्भुज की छहों भुजाएँ सीधी होती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Amma's rangoli is made with curved lines and straight lines. A half circle has a round edge and a flat edge. Which group will it go in?",
+      "hi": "अम्मा की रंगोली टेढ़ी और सीधी रेखाओं से बनी है। आधे वृत्त में एक गोल किनारा और एक सपाट किनारा होता है। वह किस समूह में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Both kinds of lines",
+       "hi": "दोनों तरह की रेखाएँ"
+      },
+      {
+       "id": "curved",
+       "en": "Only curved lines",
+       "hi": "सिर्फ़ टेढ़ी रेखाएँ"
+      },
+      {
+       "id": "straight",
+       "en": "Only straight lines",
+       "hi": "सिर्फ़ सीधी रेखाएँ"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "card:circle",
+     "expect": "placed:circle",
+     "say": {
+      "en": "Tap the circle card, then tap the group where it belongs.",
+      "hi": "वृत्त वाले कार्ड पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह रहेगा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:hexagon",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards the same way. Tap Check when every card is in a group.",
+      "hi": "बाकी सभी कार्ड भी इसी तरह छाँटो। जब हर कार्ड किसी समूह में हो जाए तो जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A circle and an oval have only curved lines. A triangle, a square, a rectangle and a hexagon have only straight lines. A half circle has both. We can say how a shape is made by looking at its lines.",
+      "hi": "वृत्त और अंडाकार में सिर्फ़ टेढ़ी रेखाएँ होती हैं। त्रिभुज, वर्ग, आयत और षट्भुज में सिर्फ़ सीधी रेखाएँ होती हैं। आधे वृत्त में दोनों होती हैं। रेखाओं को देखकर हम बता सकते हैं कि आकृति कैसे बनी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which shape has only straight lines?",
+        "hi": "किस आकृति में सिर्फ़ सीधी रेखाएँ होती हैं?"
+       },
+       "options": [
+        {
+         "en": "Circle",
+         "hi": "वृत्त"
+        },
+        {
+         "en": "Oval",
+         "hi": "अंडाकार"
+        },
+        {
+         "en": "Rectangle",
+         "hi": "आयत"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "A rectangle has 4 straight sides and no curved line.",
+        "hi": "आयत की 4 भुजाएँ सीधी होती हैं और कोई टेढ़ी रेखा नहीं होती।"
+       },
+       "wrong": [
+        {
+         "en": "A circle is all curved.",
+         "hi": "वृत्त पूरा टेढ़ा होता है।"
+        },
+        {
+         "en": "An oval is all curved.",
+         "hi": "अंडाकार पूरा टेढ़ा होता है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "A shape has one curved line and one straight line. What could it be?",
+        "hi": "एक आकृति में एक टेढ़ी रेखा और एक सीधी रेखा है। वह क्या हो सकती है?"
+       },
+       "options": [
+        {
+         "en": "Half circle",
+         "hi": "आधा वृत्त"
+        },
+        {
+         "en": "Triangle",
+         "hi": "त्रिभुज"
+        },
+        {
+         "en": "Square",
+         "hi": "वर्ग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only a half circle has a round edge and a flat edge together.",
+        "hi": "सिर्फ़ आधे वृत्त में गोल किनारा और सपाट किनारा साथ-साथ होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A triangle has no curved line.",
+         "hi": "त्रिभुज में कोई टेढ़ी रेखा नहीं होती।"
+        },
+        {
+         "en": "A square has no curved line.",
+         "hi": "वर्ग में कोई टेढ़ी रेखा नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Look at a rangoli, a plate and a window at home. Which shapes have curved lines? Which have only straight lines?",
+      "hi": "अब ख़ुद आज़माओ। घर में रंगोली, थाली और खिड़की को देखो। किन आकृतियों में टेढ़ी रेखाएँ हैं? किनमें सिर्फ़ सीधी रेखाएँ हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch05-box-net",
+   "topic": "5.3",
+   "template": "solids",
+   "title": {
+    "en": "Open a box and see its faces",
+    "hi": "डिब्बा खोलकर उसके फलक देखो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "solid": "cuboid",
+    "mode": "net",
+    "dims": {
+     "l": 4,
+     "b": 3,
+     "h": 2
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will open out a sweet box (a cuboid) to lie flat. What shapes will you see on the flat sheet?",
+      "hi": "तुम मिठाई का डिब्बा (घनाभ) खोलकर समतल करोगे। समतल चादर पर कौन-सी आकृतियाँ दिखेंगी?"
+     },
+     "options": [
+      {
+       "id": "rect",
+       "en": "Rectangles",
+       "hi": "आयत"
+      },
+      {
+       "id": "circles",
+       "en": "Circles",
+       "hi": "वृत्त"
+      },
+      {
+       "id": "triangles",
+       "en": "Triangles",
+       "hi": "त्रिभुज"
+      }
+     ],
+     "answer": "rect"
+    },
+    {
+     "kind": "do",
+     "target": "unfold",
+     "expect": "unfolded",
+     "say": {
+      "en": "Tap Unfold to open the box flat.",
+      "hi": "खोलो दबाओ ताकि डिब्बा खुलकर समतल हो जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Count the flat pieces and tap the answer that tells what shapes they are.",
+      "hi": "समतल टुकड़े गिनो और वह उत्तर चुनो जो बताता है कि वे कौन-सी आकृतियाँ हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When you open a cuboid box, you see 6 flat faces. Each face is a rectangle. Faces that face each other are the same size. A box face can be a square only if two of its sides are equal.",
+      "hi": "घनाभ डिब्बा खोलने पर 6 समतल फलक दिखते हैं। हर फलक आयत है। आमने-सामने के फलक एक ही माप के होते हैं। डिब्बे का फलक वर्ग तभी होता है जब उसकी दो भुजाएँ बराबर हों।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many faces does a cuboid box have?",
+        "hi": "घनाभ डिब्बे के कितने फलक होते हैं?"
+       },
+       "options": [
+        "4",
+        "6",
+        "8"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A cuboid has 6 faces: top, bottom, front, back and two sides.",
+        "hi": "घनाभ के 6 फलक होते हैं: ऊपर, नीचे, आगे, पीछे और दो बग़ल।"
+       },
+       "wrong": [
+        {
+         "en": "4 faces are only the walls. We forgot top and bottom.",
+         "hi": "4 फलक सिर्फ़ दीवारें हैं। हम ऊपर और नीचे भूल गए।"
+        },
+        "",
+        {
+         "en": "8 is the number of corners, not faces.",
+         "hi": "8 तो कोनों की संख्या है, फलकों की नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You trace a face of a matchbox on paper. What shape do you get?",
+        "hi": "तुम माचिस की डिब्बी का एक फलक कागज़ पर उतारते हो। कौन-सी आकृति बनेगी?"
+       },
+       "options": [
+        {
+         "en": "Circle",
+         "hi": "वृत्त"
+        },
+        {
+         "en": "Rectangle",
+         "hi": "आयत"
+        },
+        {
+         "en": "Triangle",
+         "hi": "त्रिभुज"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Every face of a matchbox is a rectangle.",
+        "hi": "माचिस की डिब्बी का हर फलक आयत होता है।"
+       },
+       "wrong": [
+        {
+         "en": "A circle has no corners. A box face has 4 corners.",
+         "hi": "वृत्त में कोने नहीं होते। डिब्बे के फलक में 4 कोने होते हैं।"
+        },
+        "",
+        {
+         "en": "A triangle has 3 sides. A box face has 4.",
+         "hi": "त्रिभुज में 3 भुजाएँ होती हैं। डिब्बे के फलक में 4।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Turn the cuboid, then fold and unfold it again. Which faces are exactly the same size?",
+      "hi": "अब ख़ुद आज़माओ। घनाभ को घुमाओ, फिर उसे मोड़ो और खोलो। कौन-से फलक बिलकुल एक ही माप के हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch05-rectangle",
+   "topic": "5.4",
+   "template": "shapes",
+   "title": {
+    "en": "The rectangle: sides and corners",
+    "hi": "आयत: भुजाएँ और कोने"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "rectangle"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at a door or a book. A rectangle has 4 sides. Are all 4 sides the same length?",
+      "hi": "दरवाज़े या किताब को देखो। आयत की 4 भुजाएँ होती हैं। क्या चारों भुजाएँ एक-सी लंबाई की होती हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, only the opposite sides match",
+       "hi": "नहीं, सिर्फ़ आमने-सामने वाली भुजाएँ बराबर होती हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, all four match",
+       "hi": "हाँ, चारों बराबर होती हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:6.5",
+     "say": {
+      "en": "Tap the ruler to measure every side of the rectangle. Read the four lengths.",
+      "hi": "आयत की हर भुजा नापने के लिए पैमाने पर टैप करो। चारों लंबाइयाँ पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The two long sides are equal and the two short sides are equal, but a long side is not the same as a short side. A rectangle has 4 sides and 4 corners. Sides that face each other are equal in length. All its corners are square corners.",
+      "hi": "दोनों लंबी भुजाएँ बराबर हैं और दोनों छोटी भुजाएँ बराबर हैं, पर लंबी भुजा छोटी के बराबर नहीं है। आयत में 4 भुजाएँ और 4 कोने होते हैं। आमने-सामने की भुजाएँ बराबर लंबाई की होती हैं। इसके सारे कोने चौकोर कोने होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many sides and corners does a rectangle have?",
+        "hi": "आयत में कितनी भुजाएँ और कितने कोने होते हैं?"
+       },
+       "options": [
+        {
+         "en": "3 sides, 3 corners",
+         "hi": "3 भुजाएँ, 3 कोने"
+        },
+        {
+         "en": "4 sides, 4 corners",
+         "hi": "4 भुजाएँ, 4 कोने"
+        },
+        {
+         "en": "4 sides, 6 corners",
+         "hi": "4 भुजाएँ, 6 कोने"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A rectangle has 4 sides and 4 corners.",
+        "hi": "आयत में 4 भुजाएँ और 4 कोने होते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "That is a triangle.",
+         "hi": "यह त्रिभुज है।"
+        },
+        "",
+        {
+         "en": "The number of corners is always the same as the number of sides.",
+         "hi": "कोनों की संख्या हमेशा भुजाओं की संख्या के बराबर होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "One side of a rectangle is 8 cm. The side facing it is…",
+        "hi": "आयत की एक भुजा 8 सेमी की है। उसके सामने वाली भुजा है…"
+       },
+       "options": [
+        "4 cm",
+        "8 cm",
+        "16 cm"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Sides that face each other in a rectangle are equal.",
+        "hi": "आयत में आमने-सामने की भुजाएँ बराबर होती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "4 cm is half of it. Facing sides are not half.",
+         "hi": "4 सेमी उसका आधा है। सामने की भुजा आधी नहीं होती।"
+        },
+        "",
+        {
+         "en": "16 cm is double. Facing sides are not double.",
+         "hi": "16 सेमी उसका दुगुना है। सामने की भुजा दुगुनी नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Drag a corner of the rectangle to make it taller or wider. Does it stay a rectangle? Do the facing sides stay equal?",
+      "hi": "अब ख़ुद आज़माओ। आयत का कोना खींचकर उसे ऊँचा या चौड़ा बनाओ। क्या वह आयत ही रहता है? क्या आमने-सामने की भुजाएँ बराबर रहती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch05-square",
+   "topic": "5.5",
+   "template": "shapes",
+   "title": {
+    "en": "The square: all sides equal",
+    "hi": "वर्ग: सब भुजाएँ बराबर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "square"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A chess board is a square. Will all 4 sides of this square be the same length?",
+      "hi": "शतरंज का बोर्ड वर्ग है। क्या इस वर्ग की चारों भुजाएँ एक-सी लंबाई की होंगी?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, all four are equal",
+       "hi": "हाँ, चारों बराबर हैं"
+      },
+      {
+       "id": "no",
+       "en": "No, only two are equal",
+       "hi": "नहीं, सिर्फ़ दो बराबर हैं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:4.5",
+     "say": {
+      "en": "Tap the ruler to measure the four sides of the square.",
+      "hi": "वर्ग की चारों भुजाएँ नापने के लिए पैमाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every side of the square is 4.5 units long. A square has 4 equal sides and 4 square corners. A rectangle only needs facing sides to be equal. So every square is also a rectangle, but a rectangle with a long side and a short side is not a square.",
+      "hi": "वर्ग की हर भुजा 4.5 इकाई लंबी है। वर्ग में 4 बराबर भुजाएँ और 4 चौकोर कोने होते हैं। आयत में सिर्फ़ आमने-सामने की भुजाओं का बराबर होना काफ़ी है। इसलिए हर वर्ग एक आयत भी है, पर लंबी और छोटी भुजा वाला आयत वर्ग नहीं होता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is special about a square?",
+        "hi": "वर्ग की ख़ास बात क्या है?"
+       },
+       "options": [
+        {
+         "en": "All 4 sides are equal",
+         "hi": "चारों भुजाएँ बराबर हैं"
+        },
+        {
+         "en": "It has 3 corners",
+         "hi": "उसके 3 कोने हैं"
+        },
+        {
+         "en": "It has a curved side",
+         "hi": "उसकी एक भुजा टेढ़ी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All four sides of a square have the same length.",
+        "hi": "वर्ग की चारों भुजाएँ एक ही लंबाई की होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A square has 4 corners.",
+         "hi": "वर्ग के 4 कोने होते हैं।"
+        },
+        {
+         "en": "A square has only straight sides.",
+         "hi": "वर्ग की सभी भुजाएँ सीधी होती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A ludo board has 4 equal sides of 6 cm. What shape is it?",
+        "hi": "लूडो बोर्ड की 4 बराबर भुजाएँ 6 सेमी की हैं। यह कौन-सी आकृति है?"
+       },
+       "options": [
+        {
+         "en": "Rectangle with a long side",
+         "hi": "लंबी भुजा वाला आयत"
+        },
+        {
+         "en": "Square",
+         "hi": "वर्ग"
+        },
+        {
+         "en": "Triangle",
+         "hi": "त्रिभुज"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "4 equal sides and 4 square corners make a square.",
+        "hi": "4 बराबर भुजाएँ और 4 चौकोर कोने वर्ग बनाते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A long-side rectangle has two different lengths.",
+         "hi": "लंबी भुजा वाले आयत में दो अलग लंबाइयाँ होती हैं।"
+        },
+        "",
+        {
+         "en": "A triangle has only 3 sides.",
+         "hi": "त्रिभुज में सिर्फ़ 3 भुजाएँ होती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Drag a corner of the square. It grows bigger or smaller but its sides stay equal. Can you make it into a rectangle that is not a square?",
+      "hi": "अब ख़ुद आज़माओ। वर्ग का कोना खींचो। वह बड़ा या छोटा होता है पर भुजाएँ बराबर रहती हैं। क्या तुम इसे ऐसा आयत बना सकते हो जो वर्ग न हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Chapter hook and the name-the-shapes lab",
+   "shows": "A colourful rangoli on a courtyard floor made of dots, circles, triangles and squares in coloured powder",
+   "view": "Top-down, even morning light",
+   "right": "Shapes crisp and symmetrical: at least one circle, one triangle, one square and one rectangle clearly separate",
+   "avoid": "People, text, shoes"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Sorting by lines",
+   "shows": "Everyday things with one clear flat shape each, as separate files: a bangle, a coin, an egg, a half-moon papad, a samosa, a chess board, a book, a honeycomb cell",
+   "view": "Top-down or front on, transparent background",
+   "right": "Shapes easy to tell apart; the half-moon papad clearly half a circle",
+   "avoid": "Brand names, patterns on the objects"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "5.3",
+   "use": "Opening a box",
+   "shows": "A cardboard sweet box shown closed, half open and fully opened flat, six rectangular faces visible in the last frame",
+   "view": "Same camera and light in all three frames, top-down",
+   "right": "Plain brown cardboard, six clear rectangle faces, fold lines visible",
+   "avoid": "Brand names, printed pictures on the box"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "5.3",
+   "use": "Tracing a face",
+   "shows": "A matchbox standing next to a tracing of its face on white paper with a pencil beside it",
+   "view": "Top-down, soft light",
+   "right": "Tracing is a true rectangle with sharp corners",
+   "avoid": "Brand printing on the matchbox"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "5.4",
+   "use": "Rectangles around us",
+   "shows": "A door, a notebook, a window, a brick and a smartphone-sized card shown as separate rectangles",
+   "view": "Straight on, transparent background",
+   "right": "Each is clearly a rectangle, not a square",
+   "avoid": "Distorted perspective"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "5.5",
+   "use": "Squares around us",
+   "shows": "A carrom board, a chess board, a ludo board, a floor tile, a handkerchief",
+   "view": "Top-down, transparent background",
+   "right": "Each clearly a square with equal sides",
+   "avoid": "Printed brand names"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "5.6",
+   "use": "Paper envelope fold",
+   "shows": "A square sheet of paper folded step by step into an envelope for a Diwali card in four frames",
+   "view": "Top-down, same camera in all frames, hands only",
+   "right": "Each fold clearly visible",
+   "avoid": "Faces, text"
+  }
+ ]
+}

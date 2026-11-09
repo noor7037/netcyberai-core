@@ -1,0 +1,900 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch01",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "We the Travellers - I",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Travelling, now and then",
+   "labs": [],
+   "why_no_lab": "A photo story of carts, trains and boats teaches this better than a screen task; it sets up the large numbers of the chapter."
+  },
+  {
+   "n": "1.2",
+   "title": "Reading and writing large numbers: ten thousand and beyond",
+   "labs": [
+    "c05-mathematics-eemm1-ch01-ten-thousand"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Place value chart and comparing large numbers",
+   "labs": [
+    "c05-mathematics-eemm1-ch01-compare"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Finding large numbers around us",
+   "labs": [
+    "c05-mathematics-eemm1-ch01-digits-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Nearest tens, hundreds and thousands",
+   "labs": [
+    "c05-mathematics-eemm1-ch01-nearest-ten"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Pastime mathematics: the river crossing puzzle",
+   "labs": [
+    "c05-mathematics-eemm1-ch01-river-crossing"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch01-ten-thousand",
+   "topic": "1.2",
+   "template": "place-value",
+   "title": {
+    "en": "Make a ten-thousand",
+    "hi": "दस हज़ार बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "target": 10000,
+    "places": 5
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add:thousands",
+     "expect": "built:9000",
+     "say": {
+      "en": "Tap the Thousands add button 9 times. Watch the blue blocks pile up to 9,000.",
+      "hi": "हज़ार का जोड़ने वाला बटन 9 बार दबाओ। ब्लॉक बढ़कर 9,000 तक पहुँचते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You have 9 thousands. What will happen when you add one more thousand?",
+      "hi": "तुम्हारे पास 9 हज़ार हैं। एक हज़ार और जोड़ने पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "trade",
+       "en": "10 thousands trade for 1 ten-thousand",
+       "hi": "10 हज़ार मिलकर 1 दस हज़ार बन जाएँगे"
+      },
+      {
+       "id": "tall",
+       "en": "The thousands column just gets taller",
+       "hi": "हज़ार का खाना बस और ऊँचा हो जाएगा"
+      },
+      {
+       "id": "nine",
+       "en": "The chart shows 9,010",
+       "hi": "चार्ट में 9,010 दिखेगा"
+      }
+     ],
+     "answer": "trade"
+    },
+    {
+     "kind": "do",
+     "target": "add:thousands",
+     "expect": "built:10000",
+     "say": {
+      "en": "Tap Thousands once more and watch what happens.",
+      "hi": "हज़ार का बटन एक बार और दबाओ और देखो क्या होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ten thousands joined to make one ten-thousand. It moved to a new column on the left, TTh. We write it 10,000: a 1 followed by four zeros. A comma helps us read big numbers.",
+      "hi": "दस हज़ार मिलकर एक दस हज़ार बन गया। वह बाईं ओर के नए खाने TTh में चला गया। हम इसे 10,000 लिखते हैं: एक के बाद चार शून्य। कॉमा बड़ी संख्या पढ़ने में मदद करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many thousands make one ten-thousand?",
+        "hi": "कितने हज़ार मिलकर एक दस हज़ार बनाते हैं?"
+       },
+       "options": [
+        "10",
+        "100",
+        "5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10 thousands = 10,000, which is 1 ten-thousand. Each place is 10 times the place on its right.",
+        "hi": "10 हज़ार = 10,000, यानी 1 दस हज़ार। हर स्थान अपने दाएँ वाले स्थान का 10 गुना होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "You may be thinking of 100 tens making a thousand. Ten thousand needs only 10 thousands: 10 × 1,000 = 10,000.",
+         "hi": "शायद तुम 100 दहाई से हज़ार बनने की बात सोच रहे हो। दस हज़ार के लिए केवल 10 हज़ार चाहिए: 10 × 1,000 = 10,000।"
+        },
+        {
+         "en": "5 thousands is only 5,000, half of the way. Count: 5,000 is less than 10,000.",
+         "hi": "5 हज़ार तो केवल 5,000 है, आधा रास्ता। गिनो: 5,000, 10,000 से कम है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is the correct way to write ten thousand?",
+        "hi": "दस हज़ार लिखने का सही तरीका कौन-सा है?"
+       },
+       "options": [
+        "10,000",
+        "1,000",
+        "10,00"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ten thousand is 1 in the TTh place and 0 in the four places after it: 10,000.",
+        "hi": "दस हज़ार में TTh के स्थान पर 1 और उसके बाद के चार स्थानों पर 0 होता है: 10,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1,000 has only four digits. That is one thousand, ten times smaller.",
+         "hi": "1,000 में केवल चार अंक हैं। यह एक हज़ार है, दस गुना छोटा।"
+        },
+        {
+         "en": "The comma goes after the thousands, so three digits stand to its right. 10,00 breaks that rule.",
+         "hi": "कॉमा हज़ार के बाद लगता है, इसलिए उसके दाएँ तीन अंक होते हैं। 10,00 इस नियम को तोड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clear the chart. Build 25,000 and then 45,867. Then fill all places with 9 and add one more at the ones place. What happens?",
+      "hi": "चार्ट साफ़ करो। 25,000 और फिर 45,867 बनाओ। फिर सब स्थानों पर 9 भरो और इकाई में एक और जोड़ो। क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch01-digits-sort",
+   "topic": "1.4",
+   "template": "sort",
+   "title": {
+    "en": "How many digits?",
+    "hi": "कितने अंक?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "four",
+      "label": {
+       "en": "4 digits: thousands",
+       "hi": "4 अंक: हज़ार"
+      }
+     },
+     {
+      "id": "five",
+      "label": {
+       "en": "5 digits: ten-thousands",
+       "hi": "5 अंक: दस हज़ार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "4,205",
+       "hi": "4,205"
+      },
+      "bin": "four",
+      "why": {
+       "en": "It has 4 digits: 4 thousands, 2 hundreds, 0 tens and 5 ones.",
+       "hi": "इसमें 4 अंक हैं: 4 हज़ार, 2 सैकड़े, 0 दहाई और 5 इकाई।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "9,999",
+       "hi": "9,999"
+      },
+      "bin": "four",
+      "why": {
+       "en": "The biggest 4-digit number. One more makes 10,000.",
+       "hi": "सबसे बड़ी 4 अंकों की संख्या। एक और जोड़ने पर 10,000 बनता है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "10,000",
+       "hi": "10,000"
+      },
+      "bin": "five",
+      "why": {
+       "en": "The smallest 5-digit number: 1 ten-thousand.",
+       "hi": "सबसे छोटी 5 अंकों की संख्या: 1 दस हज़ार।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "87,450",
+       "hi": "87,450"
+      },
+      "bin": "five",
+      "why": {
+       "en": "8 ten-thousands and 7 thousands make this a 5-digit number.",
+       "hi": "8 दस हज़ार और 7 हज़ार के कारण यह 5 अंकों की संख्या है।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "1,000",
+       "hi": "1,000"
+      },
+      "bin": "four",
+      "why": {
+       "en": "1 thousand, 0 hundreds, 0 tens, 0 ones: four digits.",
+       "hi": "1 हज़ार, 0 सैकड़ा, 0 दहाई, 0 इकाई: चार अंक।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "56,321",
+       "hi": "56,321"
+      },
+      "bin": "five",
+      "why": {
+       "en": "There are 5 digits, so the first one stands for ten-thousands.",
+       "hi": "इसमें 5 अंक हैं, इसलिए पहला अंक दस हज़ार का है।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "7,802",
+       "hi": "7,802"
+      },
+      "bin": "four",
+      "why": {
+       "en": "Count the digits: 7, 8, 0, 2. Four digits.",
+       "hi": "अंक गिनो: 7, 8, 0, 2। चार अंक।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "12,000",
+       "hi": "12,000"
+      },
+      "bin": "five",
+      "why": {
+       "en": "One ten-thousand and two thousands: five digits in all.",
+       "hi": "एक दस हज़ार और दो हज़ार: कुल पाँच अंक।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap the card 4,205, then tap the box where it belongs.",
+      "hi": "कार्ड 4,205 पर टैप करो, फिर उस डिब्बे पर टैप करो जहाँ वह जाएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "10,000 is only one more than 9,999. Which box will it go in?",
+      "hi": "10,000, 9,999 से केवल एक ज़्यादा है। वह किस डिब्बे में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "4 digits",
+       "hi": "4 अंक"
+      },
+      {
+       "id": "five",
+       "en": "5 digits",
+       "hi": "5 अंक"
+      }
+     ],
+     "answer": "five"
+    },
+    {
+     "kind": "do",
+     "target": "card:c3",
+     "expect": "correct:c3",
+     "say": {
+      "en": "Now sort 10,000.",
+      "hi": "अब 10,000 को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सभी कार्ड छाँटो, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A number with 4 digits is in the thousands: from 1,000 to 9,999. When the thousands fill up, we reach 10,000, which needs a fifth place, ten-thousands.",
+      "hi": "4 अंकों की संख्या हज़ार में होती है: 1,000 से 9,999 तक। हज़ार भर जाने पर हम 10,000 पर पहुँचते हैं, जिसके लिए पाँचवाँ स्थान, दस हज़ार, चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A cyclist rides 15 km in one hour. A jet flies 920 km in one hour. Which number has more digits?",
+        "hi": "एक साइकिल सवार एक घंटे में 15 किमी चलता है। एक जेट एक घंटे में 920 किमी उड़ता है। किसमें अधिक अंक हैं?"
+       },
+       "options": [
+        "920",
+        "15",
+        {
+         "en": "They have the same number of digits",
+         "hi": "दोनों में अंक बराबर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "920 has 3 digits and 15 has 2 digits.",
+        "hi": "920 में 3 अंक हैं और 15 में 2 अंक।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "15 is the smaller number, with only two digits.",
+         "hi": "15 छोटी संख्या है, उसमें केवल दो अंक हैं।"
+        },
+        {
+         "en": "Count again: 9, 2, 0 are three digits; 1 and 5 are two.",
+         "hi": "फिर से गिनो: 9, 2, 0 तीन अंक हैं; 1 और 5 दो अंक।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look around your home or school. Find something you can count whose number has 4 digits, and something with 5 digits.",
+      "hi": "अपने घर या स्कूल में देखो। कोई ऐसी चीज़ खोजो जिसकी गिनती 4 अंकों की हो, और कोई जिसकी 5 अंकों की हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch01-compare",
+   "topic": "1.3",
+   "template": "place-value",
+   "title": {
+    "en": "Which number is bigger?",
+    "hi": "कौन-सी संख्या बड़ी है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "compare",
+    "a": 8975,
+    "b": 12304,
+    "places": 5
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One number has 4 digits and the other has 5 digits. Without any sums, which do you think is bigger?",
+      "hi": "एक संख्या में 4 अंक हैं और दूसरी में 5 अंक। बिना जोड़-घटाने के, तुम्हें कौन-सी बड़ी लगती है?"
+     },
+     "options": [
+      {
+       "id": "big",
+       "en": "The 5-digit number",
+       "hi": "5 अंकों वाली संख्या"
+      },
+      {
+       "id": "small",
+       "en": "The 4-digit number, because 9 is a big digit",
+       "hi": "4 अंकों वाली, क्योंकि 9 बड़ा अंक है"
+      },
+      {
+       "id": "same",
+       "en": "They are equal",
+       "hi": "दोनों बराबर हैं"
+      }
+     ],
+     "answer": "big"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the two place value charts. Tap the sign that is true for 8,975 and 12,304.",
+      "hi": "दोनों स्थानीय मान चार्ट देखो। 8,975 और 12,304 के लिए जो चिह्न सही है उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "First count the digits. 12,304 has 5 digits and 8,975 has only 4, so 12,304 is greater. When the number of digits is the same, compare from the left: the first place that is different decides.",
+      "hi": "पहले अंक गिनो। 12,304 में 5 अंक हैं और 8,975 में केवल 4, इसलिए 12,304 बड़ी है। अंक बराबर हों तो बाईं ओर से तुलना करो: पहला अलग स्थान फ़ैसला करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A student says 9,990 is greater than 49,014 because 9 is greater than 4. Is the student right?",
+        "hi": "एक विद्यार्थी कहता है कि 9,990, 49,014 से बड़ी है क्योंकि 9, 4 से बड़ा है। क्या वह सही है?"
+       },
+       "options": [
+        {
+         "en": "No. 49,014 has more digits, so it is greater",
+         "hi": "नहीं। 49,014 में अधिक अंक हैं, इसलिए वह बड़ी है"
+        },
+        {
+         "en": "Yes. The first digit decides",
+         "hi": "हाँ। पहला अंक फ़ैसला करता है"
+        },
+        {
+         "en": "They are equal",
+         "hi": "दोनों बराबर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "49,014 is a 5-digit number and 9,990 is a 4-digit number. More digits means a bigger number. The first digits are compared only when both numbers have the same number of digits.",
+        "hi": "49,014 पाँच अंकों की संख्या है और 9,990 चार अंकों की। अंक ज़्यादा हों तो संख्या बड़ी होती है। पहले अंकों की तुलना तब करते हैं जब दोनों संख्याओं में अंक बराबर हों।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The first digits are compared only when the digit counts match. Here they do not: 4 digits against 5.",
+         "hi": "पहले अंकों की तुलना तभी होती है जब अंकों की गिनती बराबर हो। यहाँ नहीं है: 4 अंक बनाम 5 अंक।"
+        },
+        {
+         "en": "Look at the charts: they have different digits in different places, so the numbers cannot be equal.",
+         "hi": "चार्ट देखो: अलग स्थानों पर अलग अंक हैं, इसलिए संख्याएँ बराबर नहीं हो सकतीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is greater: 38,502 or 38,052?",
+        "hi": "कौन-सी बड़ी है: 38,502 या 38,052?"
+       },
+       "options": [
+        "38,502",
+        "38,052"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both have 5 digits, and 3, 8 match. At hundreds, 5 is bigger than 0, so 38,502 is greater.",
+        "hi": "दोनों में 5 अंक हैं और 3, 8 मिलते हैं। सैकड़े पर 5, 0 से बड़ा है, इसलिए 38,502 बड़ी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Compare the hundreds place: 38,052 has 0 hundreds and 38,502 has 5 hundreds. The tens digit does not matter yet.",
+         "hi": "सैकड़े का स्थान देखो: 38,052 में 0 सैकड़े हैं और 38,502 में 5 सैकड़े। दहाई का अंक अभी मायने नहीं रखता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Start again and compare once more. Say the answer aloud before you tap. Which place did you look at first?",
+      "hi": "फिर से शुरू करो पर टैप करो और एक बार और तुलना करो। टैप करने से पहले उत्तर ज़ोर से बोलो। तुमने सबसे पहले कौन-सा स्थान देखा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch01-nearest-ten",
+   "topic": "1.5",
+   "template": "number-line",
+   "title": {
+    "en": "The hungry rabbit: nearest ten",
+    "hi": "भूखा खरगोश: सबसे पास की दहाई"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 2340,
+    "max": 2350,
+    "start": 2346,
+    "jumps": [
+     1
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A rabbit sits at 2,346. Food is kept at 2,340 and at 2,350. Which food is nearer?",
+      "hi": "एक खरगोश 2,346 पर बैठा है। खाना 2,340 और 2,350 पर रखा है। कौन-सा खाना पास है?"
+     },
+     "options": [
+      {
+       "id": "e2350",
+       "en": "The food at 2,350",
+       "hi": "2,350 वाला खाना"
+      },
+      {
+       "id": "e2340",
+       "en": "The food at 2,340",
+       "hi": "2,340 वाला खाना"
+      },
+      {
+       "id": "equal",
+       "en": "Both are the same distance",
+       "hi": "दोनों बराबर दूरी पर हैं"
+      }
+     ],
+     "answer": "e2350"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:2350",
+     "say": {
+      "en": "Make the rabbit hop +1 again and again until it reaches 2,350. Count the hops.",
+      "hi": "खरगोश को बार-बार +1 की छलाँग लगवाओ जब तक वह 2,350 पर न पहुँचे। छलाँगें गिनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The rabbit needed 4 hops to reach 2,350. Going down to 2,340 needs 6 hops. So 2,350 is the nearest ten of 2,346. The nearest ten is the one with the fewer hops.",
+      "hi": "खरगोश को 2,350 तक पहुँचने के लिए 4 छलाँगें लगानी पड़ीं। 2,340 तक नीचे जाने में 6 छलाँगें लगतीं। इसलिए 2,346 की सबसे पास की दहाई 2,350 है। कम छलाँगों वाली दहाई सबसे पास होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the nearest ten of 6,583?",
+        "hi": "6,583 की सबसे पास की दहाई कौन-सी है?"
+       },
+       "options": [
+        "6,580",
+        "6,590",
+        "6,500"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6,583 is 3 steps above 6,580 and 7 steps below 6,590. The nearer one is 6,580.",
+        "hi": "6,583, 6,580 से 3 कदम ऊपर और 6,590 से 7 कदम नीचे है। पास वाली 6,580 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6,590 is 7 steps away. 6,580 is only 3 steps away, so it is nearer.",
+         "hi": "6,590 सात कदम दूर है। 6,580 केवल 3 कदम दूर है, इसलिए वह पास है।"
+        },
+        {
+         "en": "6,500 is the nearest hundred side, not the nearest ten. It is 83 steps away.",
+         "hi": "6,500 सैकड़े की ओर है, सबसे पास की दहाई नहीं। वह 83 कदम दूर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the nearest hundred of 7,238?",
+        "hi": "7,238 का सबसे पास का सैकड़ा कौन-सा है?"
+       },
+       "options": [
+        "7,200",
+        "7,300",
+        "7,000"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7,238 is 38 above 7,200 and 62 below 7,300. So 7,200 is the nearest hundred.",
+        "hi": "7,238, 7,200 से 38 ऊपर और 7,300 से 62 नीचे है। इसलिए सबसे पास का सैकड़ा 7,200 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7,300 is 62 away, which is more than the 38 steps to 7,200.",
+         "hi": "7,300 बासठ दूर है, जो 7,200 के 38 कदमों से ज़्यादा है।"
+        },
+        {
+         "en": "7,000 is the nearest thousand side, 238 steps away. Hundreds are 7,200 or 7,300.",
+         "hi": "7,000 हज़ार की ओर है, 238 कदम दूर। सैकड़े 7,200 या 7,300 हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset. Hop down from 2,346 to 2,340 and count the hops. Then think: if a number ends in 5, like 2,345, which ten is nearer?",
+      "hi": "रीसेट दबाओ। 2,346 से 2,340 तक नीचे छलाँग लगाओ और गिनो। फिर सोचो: अगर संख्या 5 पर खत्म हो, जैसे 2,345, तो कौन-सी दहाई पास है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch01-river-crossing",
+   "topic": "1.6",
+   "template": "sequence",
+   "title": {
+    "en": "Lion, sheep and grass",
+    "hi": "शेर, भेड़ और घास"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "The boatman takes the sheep to the far bank",
+       "hi": "नाविक भेड़ को दूसरे किनारे ले जाता है"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "He rows back alone",
+       "hi": "वह अकेला वापस आता है"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "He takes the lion across",
+       "hi": "वह शेर को पार ले जाता है"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "He brings the sheep back with him",
+       "hi": "वह भेड़ को अपने साथ वापस लाता है"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "He leaves the sheep and takes the grass across",
+       "hi": "वह भेड़ को छोड़कर घास को पार ले जाता है"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "He rows back alone again",
+       "hi": "वह फिर अकेला वापस आता है"
+      }
+     },
+     {
+      "id": "s7",
+      "text": {
+       "en": "He takes the sheep across the last time",
+       "hi": "वह आख़िरी बार भेड़ को पार ले जाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The boat carries the boatman and one thing. The lion eats the sheep and the sheep eats the grass if left alone together. What should he take across first?",
+      "hi": "नाव में नाविक और एक ही चीज़ आ सकती है। अकेले छोड़ने पर शेर भेड़ को और भेड़ घास को खा जाएगी। उसे सबसे पहले क्या ले जाना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "sheep",
+       "en": "The sheep",
+       "hi": "भेड़"
+      },
+      {
+       "id": "lion",
+       "en": "The lion",
+       "hi": "शेर"
+      },
+      {
+       "id": "grass",
+       "en": "The grass",
+       "hi": "घास"
+      }
+     ],
+     "answer": "sheep"
+    },
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Put the first trip in place: the sheep goes across.",
+      "hi": "पहला फेरा लगाओ: भेड़ पार जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:s2",
+     "expect": "placed:s2",
+     "say": {
+      "en": "Now put the boatman's return trip in the second place.",
+      "hi": "अब दूसरे स्थान पर नाविक का लौटना रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all seven trips in order, then tap Check.",
+      "hi": "सातों फेरे क्रम में लगाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sheep goes first because the lion and the grass can safely wait together. The trick is to bring the sheep back once. Then the lion and the grass can be ferried one by one. It takes 7 trips, the least possible.",
+      "hi": "भेड़ पहले जाती है क्योंकि शेर और घास साथ-साथ सुरक्षित रह सकते हैं। चाल यह है कि भेड़ को एक बार वापस लाना है। फिर शेर और घास एक-एक करके पार जाते हैं। इसमें 7 फेरे लगते हैं, जो सबसे कम हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the boatman bring the sheep back on trip 4?",
+        "hi": "फेरा 4 में नाविक भेड़ को वापस क्यों लाता है?"
+       },
+       "options": [
+        {
+         "en": "Otherwise the lion would be left alone with the sheep",
+         "hi": "वरना शेर भेड़ के साथ अकेला रह जाता"
+        },
+        {
+         "en": "The sheep wants to go home",
+         "hi": "भेड़ घर जाना चाहती है"
+        },
+        {
+         "en": "The boat is too heavy",
+         "hi": "नाव बहुत भारी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "On the far bank the sheep and the lion would be together once he leaves to fetch the grass. Taking the sheep back avoids that.",
+        "hi": "घास लाने जाने पर दूसरे किनारे भेड़ और शेर साथ रह जाते। भेड़ को वापस लाने से यह बच जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The puzzle is about who can be left together, not about what the sheep wants.",
+         "hi": "पहेली इस बारे में है कि किन्हें साथ छोड़ा जा सकता है, भेड़ की इच्छा के बारे में नहीं।"
+        },
+        {
+         "en": "The boat carries the boatman and one thing, so weight is never the problem in this puzzle.",
+         "hi": "नाव में नाविक और एक चीज़ आती है, इसलिए इस पहेली में वज़न कभी समस्या नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try it with your friends using a coin, a pencil and an eraser as the three things. Can you do it in 7 trips?",
+      "hi": "अपने दोस्तों के साथ एक सिक्का, एक पेंसिल और एक रबर को तीन चीज़ें मानकर करो। क्या तुम इसे 7 फेरों में कर सकते हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Chapter hook: long journeys",
+   "shows": "A busy Indian railway platform in the morning with a train arriving, travellers with bags and a tea stall, seen from the platform's end",
+   "view": "Wide, eye level, soft morning light",
+   "right": "Real platform details; people as backs and distant figures; no station name",
+   "avoid": "Readable station boards, faces of identifiable children, brand logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Blocks for the build lab and the reader",
+   "shows": "Five plain place-value tokens: a single small cube (ones), a ten rod, a hundred flat, a thousand cube, and a ten-thousand block shown as ten thousand-cubes joined, each a separate file",
+   "view": "Three-quarter view, top-left light, same scale ratio of 1 to 10 to 100",
+   "right": "Each token clearly ten times the previous one, flat even colours so they can be counted",
+   "avoid": "Printed numbers on the tokens, shadows baked in"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "1.3",
+   "use": "Place value chart frame",
+   "shows": "An empty chart with five columns for TTh, Th, H, T, O, soft coloured headers and one blank row",
+   "view": "Flat, straight on, white background",
+   "right": "Five equal columns, clear gaps for the app to write numbers and labels",
+   "avoid": "Any digits or words baked in"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.6",
+   "use": "River crossing puzzle hook",
+   "shows": "A small wooden boat at a calm river bank with a toy lion, a toy sheep and a bundle of grass on the shore",
+   "view": "Slightly above, three-quarter view, golden afternoon light",
+   "right": "The three things clearly different and separate; water looks like a real river",
+   "avoid": "Real wild animals near children, text, signs"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "1.6",
+   "use": "Pieces for the sequence lab",
+   "shows": "A wooden toy lion, a wooden toy sheep, a bundle of dry grass and a small wooden boat, each as a separate cut-out",
+   "view": "Side view, top-left light, same scale",
+   "right": "Simple recognisable shapes, friendly colours",
+   "avoid": "Words, scary faces"
+  }
+ ]
+}

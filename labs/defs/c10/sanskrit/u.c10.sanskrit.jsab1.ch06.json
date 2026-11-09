@@ -1,0 +1,1295 @@
+{
+ "chapter_key": "u.c10.sanskrit.jsab1.ch06",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "सन्धि:",
+ "source": "https://ncert.nic.in/textbook/pdf/jsab1ps.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Svara sandhi: the five vowel rules",
+   "labs": [
+    "c10-sanskrit-jsab1-ch06-join",
+    "c10-sanskrit-jsab1-ch06-rules"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Vyanjana sandhi: consonants joining",
+   "labs": [
+    "c10-sanskrit-jsab1-ch06-hal",
+    "c10-sanskrit-jsab1-ch06-kinds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Visarga sandhi",
+   "labs": [
+    "c10-sanskrit-jsab1-ch06-visarga",
+    "c10-sanskrit-jsab1-ch06-kinds"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jsab1-ch06-join",
+   "topic": "6.1",
+   "template": "words",
+   "title": {
+    "en": "Joining vowels",
+    "hi": "स्वरों का मेल"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "sandhi",
+    "lang": "sa",
+    "words": [
+     {
+      "w": "विद्यालयः",
+      "parts": [
+       "विद्या",
+       "आलयः"
+      ],
+      "meaning": {
+       "en": "a school, the house of learning",
+       "hi": "विद्या का घर, विद्यालय"
+      }
+     },
+     {
+      "w": "गणेशः",
+      "parts": [
+       "गण",
+       "ईशः"
+      ],
+      "meaning": {
+       "en": "Ganesha, lord of the troops",
+       "hi": "गणेश, गणों के स्वामी"
+      }
+     },
+     {
+      "w": "सदैव",
+      "parts": [
+       "सदा",
+       "एव"
+      ],
+      "meaning": {
+       "en": "always indeed",
+       "hi": "सदा ही"
+      }
+     },
+     {
+      "w": "इत्यादि",
+      "parts": [
+       "इति",
+       "आदि"
+      ],
+      "meaning": {
+       "en": "and so on",
+       "hi": "और इसी प्रकार"
+      }
+     },
+     {
+      "w": "पवनः",
+      "parts": [
+       "पो",
+       "अनः"
+      ],
+      "meaning": {
+       "en": "the wind",
+       "hi": "वायु"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:विद्या",
+     "expect": "part:विद्या",
+     "say": {
+      "en": "Tap the first word, विद्या.",
+      "hi": "पहला शब्द विद्या छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "विद्या ends in the vowel आ and आलयः begins with आ. When two such vowels meet, what comes out?",
+      "hi": "विद्या का अंत आ से होता है और आलयः का आरंभ आ से। ऐसे दो स्वर मिलें तो क्या बनता है?"
+     },
+     "options": [
+      {
+       "id": "long",
+       "en": "One long आ",
+       "hi": "एक दीर्घ आ"
+      },
+      {
+       "id": "e",
+       "en": "ए",
+       "hi": "ए"
+      },
+      {
+       "id": "ai",
+       "en": "ऐ",
+       "hi": "ऐ"
+      }
+     ],
+     "answer": "long"
+    },
+    {
+     "kind": "do",
+     "target": "part:आलयः",
+     "expect": "joined:विद्यालयः",
+     "say": {
+      "en": "Tap आलयः to join the two words.",
+      "hi": "आलयः छुओ और दोनों शब्द जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:ईशः",
+     "expect": "joined:गणेशः",
+     "say": {
+      "en": "Move on: join गण and ईशः (tap गण first, then ईशः).",
+      "hi": "आगे बढ़ो: गण और ईशः जोड़ो (पहले गण, फिर ईशः)।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sandhi is the joining of two sounds that meet. In vowel sandhi (स्वर सन्धि) the last vowel of the first word and the first vowel of the second word melt into one. Same-type vowels make one long vowel (विद्या + आलयः = विद्यालयः). अ or आ with इ or ई make ए (गण + ईशः = गणेशः). अ or आ with ए make ऐ (सदा + एव = सदैव). इ with a different vowel turns into य् (इति + आदि = इत्यादि). ओ with a vowel turns into अव् (पो + अनः = पवनः).",
+      "hi": "सन्धि मिलने वाली दो ध्वनियों का जुड़ना है। स्वर सन्धि में पहले शब्द का अंतिम स्वर और दूसरे शब्द का पहला स्वर मिलकर एक हो जाते हैं। एक-से स्वर मिलकर दीर्घ स्वर बनाते हैं (विद्या + आलयः = विद्यालयः)। अ या आ के साथ इ या ई मिलकर ए बनाते हैं (गण + ईशः = गणेशः)। अ या आ के साथ ए मिलकर ऐ बनाते हैं (सदा + एव = सदैव)। इ के बाद दूसरा स्वर आए तो इ का य् हो जाता है (इति + आदि = इत्यादि)। ओ के बाद स्वर आए तो ओ का अव् हो जाता है (पो + अनः = पवनः)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does गण + ईशः become?",
+        "hi": "गण + ईशः क्या बनता है?"
+       },
+       "options": [
+        {
+         "en": "गणेशः",
+         "hi": "गणेशः"
+        },
+        {
+         "en": "गणीशः",
+         "hi": "गणीशः"
+        },
+        {
+         "en": "गणैशः",
+         "hi": "गणैशः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "अ and ई join to make ए: this is guna sandhi.",
+        "hi": "अ और ई मिलकर ए बनाते हैं: यह गुण सन्धि है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The long ई would stay only if the first vowel were also इ or ई.",
+         "hi": "दीर्घ ई तब रहता जब पहला स्वर भी इ या ई होता।"
+        },
+        {
+         "en": "ऐ comes from अ or आ with ए or ऐ, not with ई.",
+         "hi": "ऐ अ या आ के ए या ऐ से मिलने पर बनता है, ई से नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which pair makes इत्यादि?",
+        "hi": "इत्यादि किस जोड़ी से बनता है?"
+       },
+       "options": [
+        {
+         "en": "इति + आदि",
+         "hi": "इति + आदि"
+        },
+        {
+         "en": "इत + आदि",
+         "hi": "इत + आदि"
+        },
+        {
+         "en": "इति + इदि",
+         "hi": "इति + इदि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "इ before a different vowel changes to य्: this is yan sandhi.",
+        "hi": "इ के बाद भिन्न स्वर आने पर इ का य् हो जाता है: यह यण् सन्धि है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "इत is not the word in इत्यादि; इति (thus) is.",
+         "hi": "इत्यादि में इत नहीं, इति (इस प्रकार) है।"
+        },
+        {
+         "en": "इदि is not a word; the second word is आदि (and so on).",
+         "hi": "इदि कोई शब्द नहीं; दूसरा शब्द आदि है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Join the other words. For each one, say which kind of sandhi it is.",
+      "hi": "बाकी शब्द जोड़ो। हर एक के लिए बताओ कि वह कौन-सी सन्धि है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch06-rules",
+   "topic": "6.1",
+   "template": "match",
+   "title": {
+    "en": "Five vowel rules",
+    "hi": "स्वर सन्धि के पाँच नियम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "dirgha",
+      "left": {
+       "en": "Dirgha: a or ā with a or ā",
+       "hi": "दीर्घ: अ/आ + अ/आ"
+      },
+      "right": {
+       "en": "विद्या + आलयः = विद्यालयः",
+       "hi": "विद्या + आलयः = विद्यालयः"
+      },
+      "why": {
+       "en": "Two same-type vowels make one long आ.",
+       "hi": "एक-से दो स्वर मिलकर एक दीर्घ आ बनाते हैं।"
+      }
+     },
+     {
+      "id": "guna",
+      "left": {
+       "en": "Guna: a or ā with i or ī",
+       "hi": "गुण: अ/आ + इ/ई"
+      },
+      "right": {
+       "en": "गण + ईशः = गणेशः",
+       "hi": "गण + ईशः = गणेशः"
+      },
+      "why": {
+       "en": "अ with ई makes ए.",
+       "hi": "अ और ई मिलकर ए बनाते हैं।"
+      }
+     },
+     {
+      "id": "vriddhi",
+      "left": {
+       "en": "Vriddhi: a or ā with e",
+       "hi": "वृद्धि: अ/आ + ए"
+      },
+      "right": {
+       "en": "सदा + एव = सदैव",
+       "hi": "सदा + एव = सदैव"
+      },
+      "why": {
+       "en": "आ with ए makes ऐ.",
+       "hi": "आ और ए मिलकर ऐ बनाते हैं।"
+      }
+     },
+     {
+      "id": "yan",
+      "left": {
+       "en": "Yan: i with a different vowel",
+       "hi": "यण्: इ + भिन्न स्वर"
+      },
+      "right": {
+       "en": "इति + आदि = इत्यादि",
+       "hi": "इति + आदि = इत्यादि"
+      },
+      "why": {
+       "en": "इ turns into य्.",
+       "hi": "इ का य् हो जाता है।"
+      }
+     },
+     {
+      "id": "ayadi",
+      "left": {
+       "en": "Ayadi: o with a vowel",
+       "hi": "अयादि: ओ + स्वर"
+      },
+      "right": {
+       "en": "पो + अनः = पवनः",
+       "hi": "पो + अनः = पवनः"
+      },
+      "why": {
+       "en": "ओ turns into अव्.",
+       "hi": "ओ का अव् हो जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:dirgha",
+     "expect": "matched:dirgha",
+     "say": {
+      "en": "Match the dirgha rule with its example.",
+      "hi": "दीर्घ नियम को उसके उदाहरण से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In सदा + एव, an आ meets ए. Is the result ए, ऐ or आ?",
+      "hi": "सदा + एव में आ और ए मिलते हैं। परिणाम ए, ऐ या आ में से क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "ai",
+       "en": "ऐ",
+       "hi": "ऐ"
+      },
+      {
+       "id": "e",
+       "en": "ए",
+       "hi": "ए"
+      },
+      {
+       "id": "aa",
+       "en": "आ",
+       "hi": "आ"
+      }
+     ],
+     "answer": "ai"
+    },
+    {
+     "kind": "do",
+     "target": "left:ayadi",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all five rules.",
+      "hi": "पाँचों नियम मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The five vowel-sandhi rules: dirgha (same vowels become one long vowel), guna (अ/आ + इ/ई = ए; अ/आ + उ/ऊ = ओ), vriddhi (अ/आ + ए/ऐ = ऐ; अ/आ + ओ/औ = औ), yan (इ, उ, ऋ turn into य्, व्, र् before another vowel) and ayadi (ए, ऐ, ओ, औ turn into अय्, आय्, अव्, आव्). To split a word, look for the changed sound and ask which two vowels would produce it.",
+      "hi": "स्वर सन्धि के पाँच नियम: दीर्घ (एक-से स्वर मिलकर एक दीर्घ स्वर), गुण (अ/आ + इ/ई = ए; अ/आ + उ/ऊ = ओ), वृद्धि (अ/आ + ए/ऐ = ऐ; अ/आ + ओ/औ = औ), यण् (इ, उ, ऋ दूसरा स्वर आने पर य्, व्, र् बन जाते हैं) और अयादि (ए, ऐ, ओ, औ के अय्, आय्, अव्, आव् हो जाते हैं)। शब्द को तोड़ने के लिए बदली हुई ध्वनि देखो और पूछो कि कौन-से दो स्वर मिलकर उसे बना सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sandhi turns इ into य्?",
+        "hi": "कौन-सी सन्धि इ को य् कर देती है?"
+       },
+       "options": [
+        {
+         "en": "Yan sandhi",
+         "hi": "यण् सन्धि"
+        },
+        {
+         "en": "Dirgha sandhi",
+         "hi": "दीर्घ सन्धि"
+        },
+        {
+         "en": "Vriddhi sandhi",
+         "hi": "वृद्धि सन्धि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Yan means the changes to य्, व्, र्.",
+        "hi": "यण् का अर्थ है य्, व्, र् में परिवर्तन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dirgha only lengthens a vowel.",
+         "hi": "दीर्घ केवल स्वर को लंबा करती है।"
+        },
+        {
+         "en": "Vriddhi makes ऐ or औ.",
+         "hi": "वृद्धि से ऐ या औ बनता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "पो + अनः = पवनः is which sandhi?",
+        "hi": "पो + अनः = पवनः कौन-सी सन्धि है?"
+       },
+       "options": [
+        {
+         "en": "Ayadi",
+         "hi": "अयादि"
+        },
+        {
+         "en": "Guna",
+         "hi": "गुण"
+        },
+        {
+         "en": "Dirgha",
+         "hi": "दीर्घ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ओ became अव्, which is the ayadi rule.",
+        "hi": "ओ का अव् हुआ, यही अयादि नियम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Guna makes ए or ओ from अ/आ with other vowels.",
+         "hi": "गुण में अ/आ से मिलकर ए या ओ बनता है।"
+        },
+        {
+         "en": "Dirgha joins two same vowels into one long vowel.",
+         "hi": "दीर्घ में दो एक-से स्वर मिलकर दीर्घ बनते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Split हिमालयः and महेशः into two words and name the rule used.",
+      "hi": "हिमालयः और महेशः के दो-दो शब्द करो और नियम का नाम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch06-hal",
+   "topic": "6.2",
+   "template": "match",
+   "title": {
+    "en": "Consonant sandhi",
+    "hi": "व्यञ्जन सन्धि"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "tanmatram",
+      "left": {
+       "en": "तत् + मात्रम्",
+       "hi": "तत् + मात्रम्"
+      },
+      "right": {
+       "en": "तन्मात्रम्",
+       "hi": "तन्मात्रम्"
+      },
+      "why": {
+       "en": "त् before a nasal म becomes न्.",
+       "hi": "म जैसे अनुनासिक के पहले त् का न् हो जाता है।"
+      }
+     },
+     {
+      "id": "sajjanah",
+      "left": {
+       "en": "सत् + जनः",
+       "hi": "सत् + जनः"
+      },
+      "right": {
+       "en": "सज्जनः",
+       "hi": "सज्जनः"
+      },
+      "why": {
+       "en": "त् before ज becomes ज्.",
+       "hi": "ज के पहले त् का ज् हो जाता है।"
+      }
+     },
+     {
+      "id": "vagdanam",
+      "left": {
+       "en": "वाक् + दानम्",
+       "hi": "वाक् + दानम्"
+      },
+      "right": {
+       "en": "वाग्दानम्",
+       "hi": "वाग्दानम्"
+      },
+      "why": {
+       "en": "क् before a soft sound becomes ग्.",
+       "hi": "कोमल ध्वनि के पहले क् का ग् हो जाता है।"
+      }
+     },
+     {
+      "id": "jagadisha",
+      "left": {
+       "en": "जगत् + ईशः",
+       "hi": "जगत् + ईशः"
+      },
+      "right": {
+       "en": "जगदीशः",
+       "hi": "जगदीशः"
+      },
+      "why": {
+       "en": "त् before a vowel becomes द्.",
+       "hi": "स्वर के पहले त् का द् हो जाता है।"
+      }
+     },
+     {
+      "id": "tallinah",
+      "left": {
+       "en": "तत् + लीनः",
+       "hi": "तत् + लीनः"
+      },
+      "right": {
+       "en": "तल्लीनः",
+       "hi": "तल्लीनः"
+      },
+      "why": {
+       "en": "त् before ल becomes ल्.",
+       "hi": "ल के पहले त् का ल् हो जाता है।"
+      }
+     },
+     {
+      "id": "sangamah",
+      "left": {
+       "en": "सम् + गमः",
+       "hi": "सम् + गमः"
+      },
+      "right": {
+       "en": "सङ्गमः",
+       "hi": "सङ्गमः"
+      },
+      "why": {
+       "en": "म् before ग becomes ङ्.",
+       "hi": "ग के पहले म् का ङ् हो जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:tanmatram",
+     "expect": "matched:tanmatram",
+     "say": {
+      "en": "Match तत् + मात्रम् with the joined word.",
+      "hi": "तत् + मात्रम् को जुड़े शब्द से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In सत् + जनः the last sound त् meets ज. Which sound does it turn into?",
+      "hi": "सत् + जनः में अंतिम ध्वनि त् ज से मिलती है। वह किसमें बदलती है?"
+     },
+     "options": [
+      {
+       "id": "j",
+       "en": "ज्",
+       "hi": "ज्"
+      },
+      {
+       "id": "n",
+       "en": "न्",
+       "hi": "न्"
+      },
+      {
+       "id": "t",
+       "en": "त् stays",
+       "hi": "त् ही रहता है"
+      }
+     ],
+     "answer": "j"
+    },
+    {
+     "kind": "do",
+     "target": "left:sangamah",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the pairs.",
+      "hi": "सब जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In consonant sandhi (व्यञ्जन सन्धि) the last consonant of the first word changes to suit the first sound of the second word, so that the joined word is easy to say. त् becomes ज् before ज, ल् before ल, द् before a vowel or a soft consonant, and न् before a nasal. क् becomes ग् before a soft sound. म् becomes the nasal of the next group. The meaning does not change; only the sound is smoothed.",
+      "hi": "व्यञ्जन सन्धि में पहले शब्द का अंतिम व्यंजन दूसरे शब्द की पहली ध्वनि के अनुसार बदल जाता है, ताकि जुड़ा हुआ शब्द बोलने में सरल हो। त् ज के पहले ज्, ल के पहले ल्, स्वर या कोमल व्यंजन के पहले द्, और अनुनासिक के पहले न् हो जाता है। क् कोमल ध्वनि के पहले ग् हो जाता है। म् अगले वर्ग के अनुनासिक में बदल जाता है। अर्थ नहीं बदलता, केवल ध्वनि सरल हो जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do तत् + लीनः make?",
+        "hi": "तत् + लीनः क्या बनता है?"
+       },
+       "options": [
+        {
+         "en": "तल्लीनः",
+         "hi": "तल्लीनः"
+        },
+        {
+         "en": "तत्लीनः",
+         "hi": "तत्लीनः"
+        },
+        {
+         "en": "तन्लीनः",
+         "hi": "तन्लीनः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "त् becomes ल् before ल, so two ल come together.",
+        "hi": "ल के पहले त् का ल् हो जाता है, इसलिए दो ल मिलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Leaving त् unchanged is hard to say; sandhi changes it.",
+         "hi": "त् को बिना बदले बोलना कठिन है; सन्धि उसे बदल देती है।"
+        },
+        {
+         "en": "त् turns into न् only before a nasal like म or न.",
+         "hi": "त् का न् केवल म या न जैसे अनुनासिक के पहले होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What happens to the last sound of जगत् in जगदीशः?",
+        "hi": "जगदीशः में जगत् की अंतिम ध्वनि का क्या हुआ?"
+       },
+       "options": [
+        {
+         "en": "त् became द्",
+         "hi": "त् का द् हो गया"
+        },
+        {
+         "en": "त् became न्",
+         "hi": "त् का न् हो गया"
+        },
+        {
+         "en": "त् disappeared",
+         "hi": "त् लुप्त हो गया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A vowel follows, and त् softens to द् before a vowel.",
+        "hi": "आगे स्वर है, और स्वर के पहले त् कोमल होकर द् हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "न् appears only before a nasal.",
+         "hi": "न् केवल अनुनासिक के पहले आता है।"
+        },
+        {
+         "en": "The sound does not disappear; you can hear द् in जगदीशः.",
+         "hi": "ध्वनि लुप्त नहीं हुई; जगदीशः में द् सुनाई देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say each joined word aloud and notice how smooth it is compared with the two words said separately.",
+      "hi": "हर जुड़ा शब्द बोलो और देखो कि अलग-अलग शब्दों की तुलना में वह कितना सरल है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch06-visarga",
+   "topic": "6.3",
+   "template": "match",
+   "title": {
+    "en": "Visarga sandhi",
+    "hi": "विसर्ग सन्धि"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "harishchandrah",
+      "left": {
+       "en": "हरिः + चन्द्रः",
+       "hi": "हरिः + चन्द्रः"
+      },
+      "right": {
+       "en": "हरिश्चन्द्रः",
+       "hi": "हरिश्चन्द्रः"
+      },
+      "why": {
+       "en": "The visarga turns into श् before च.",
+       "hi": "च के पहले विसर्ग का श् हो जाता है।"
+      }
+     },
+     {
+      "id": "nishchalah",
+      "left": {
+       "en": "निः + चलः",
+       "hi": "निः + चलः"
+      },
+      "right": {
+       "en": "निश्चलः",
+       "hi": "निश्चलः"
+      },
+      "why": {
+       "en": "Again visarga becomes श् before च.",
+       "hi": "फिर च के पहले विसर्ग का श् हुआ।"
+      }
+     },
+     {
+      "id": "manoharah",
+      "left": {
+       "en": "मनः + हरः",
+       "hi": "मनः + हरः"
+      },
+      "right": {
+       "en": "मनोहरः",
+       "hi": "मनोहरः"
+      },
+      "why": {
+       "en": "अः before a soft sound becomes ओ.",
+       "hi": "कोमल ध्वनि के पहले अः का ओ हो जाता है।"
+      }
+     },
+     {
+      "id": "tapovanam",
+      "left": {
+       "en": "तपः + वनम्",
+       "hi": "तपः + वनम्"
+      },
+      "right": {
+       "en": "तपोवनम्",
+       "hi": "तपोवनम्"
+      },
+      "why": {
+       "en": "अः before व becomes ओ.",
+       "hi": "व के पहले अः का ओ हो जाता है।"
+      }
+     },
+     {
+      "id": "ramopi",
+      "left": {
+       "en": "रामः + अपि",
+       "hi": "रामः + अपि"
+      },
+      "right": {
+       "en": "रामोऽपि",
+       "hi": "रामोऽपि"
+      },
+      "why": {
+       "en": "अः before अ becomes ओ and the अ is shown by the sign ऽ.",
+       "hi": "अ के पहले अः का ओ हो जाता है और अ का चिह्न ऽ लगता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:harishchandrah",
+     "expect": "matched:harishchandrah",
+     "say": {
+      "en": "Match हरिः + चन्द्रः with the joined word.",
+      "hi": "हरिः + चन्द्रः को जुड़े शब्द से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In मनः + हरः, the visarga meets the soft sound ह. What does अः turn into?",
+      "hi": "मनः + हरः में विसर्ग कोमल ध्वनि ह से मिलता है। अः किसमें बदलता है?"
+     },
+     "options": [
+      {
+       "id": "o",
+       "en": "ओ",
+       "hi": "ओ"
+      },
+      {
+       "id": "sh",
+       "en": "श्",
+       "hi": "श्"
+      },
+      {
+       "id": "same",
+       "en": "It stays",
+       "hi": "वैसा ही रहता है"
+      }
+     ],
+     "answer": "o"
+    },
+    {
+     "kind": "do",
+     "target": "left:ramopi",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the pairs.",
+      "hi": "सब जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The visarga (ः) is a sound at the end of many words. In visarga sandhi it changes with the sound that follows. Before च it becomes श्. Before a soft sound (like ह, व, ग, द), अः becomes ओ. Before अ, अः becomes ओ and the अ is shortened to the sign ऽ (avagraha), as in रामोऽपि. Before a vowel such as आ, the visarga of अः may be dropped. The rule always depends on the vowel before the visarga and the sound after it.",
+      "hi": "विसर्ग (ः) बहुत-से शब्दों के अंत में आने वाली ध्वनि है। विसर्ग सन्धि में वह आगे की ध्वनि के अनुसार बदलता है। च के पहले वह श् हो जाता है। कोमल ध्वनि (जैसे ह, व, ग, द) के पहले अः का ओ हो जाता है। अ के पहले अः का ओ होता है और अ की जगह ऽ (अवग्रह) लगता है, जैसे रामोऽपि। नियम इस बात पर निर्भर है कि विसर्ग से पहले कौन-सा स्वर है और बाद में कौन-सी ध्वनि।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do रामः + अपि make?",
+        "hi": "रामः + अपि क्या बनता है?"
+       },
+       "options": [
+        {
+         "en": "रामोऽपि",
+         "hi": "रामोऽपि"
+        },
+        {
+         "en": "रामश्अपि",
+         "hi": "रामश्अपि"
+        },
+        {
+         "en": "रामःअपि",
+         "hi": "रामःअपि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "अः becomes ओ and the following अ becomes the sign ऽ.",
+        "hi": "अः का ओ होता है और आगे का अ ऽ चिह्न बन जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "श् appears only before च, छ.",
+         "hi": "श् केवल च, छ के पहले आता है।"
+        },
+        {
+         "en": "Leaving the visarga as it is would not be sandhi.",
+         "hi": "विसर्ग को वैसा ही छोड़ना सन्धि नहीं होगी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "हरिः + चन्द्रः makes हरिश्चन्द्रः. Why श्?",
+        "hi": "हरिः + चन्द्रः से हरिश्चन्द्रः बनता है। श् क्यों?"
+       },
+       "options": [
+        {
+         "en": "The visarga becomes श् before च",
+         "hi": "च के पहले विसर्ग श् बन जाता है"
+        },
+        {
+         "en": "Because हरिः has an इ",
+         "hi": "क्योंकि हरिः में इ है"
+        },
+        {
+         "en": "Because चन्द्र is a name",
+         "hi": "क्योंकि चन्द्र नाम है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This is the rule: visarga + च becomes श् + च.",
+        "hi": "नियम यही है: विसर्ग + च का श् + च हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The इ is not the reason; the next sound च is.",
+         "hi": "इ कारण नहीं है; अगली ध्वनि च कारण है।"
+        },
+        {
+         "en": "Being a name has no effect on sandhi.",
+         "hi": "नाम होने का सन्धि पर कोई प्रभाव नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Split निश्चलः and तपोवनम् yourself and say the rule.",
+      "hi": "निश्चलः और तपोवनम् को स्वयं तोड़ो और नियम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch06-kinds",
+   "topic": "6.3",
+   "template": "sort",
+   "title": {
+    "en": "Which sandhi is it?",
+    "hi": "यह कौन-सी सन्धि है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sv",
+      "label": {
+       "en": "Vowel sandhi",
+       "hi": "स्वर सन्धि"
+      }
+     },
+     {
+      "id": "hl",
+      "label": {
+       "en": "Consonant sandhi",
+       "hi": "व्यञ्जन सन्धि"
+      }
+     },
+     {
+      "id": "vs",
+      "label": {
+       "en": "Visarga sandhi",
+       "hi": "विसर्ग सन्धि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "विद्यालयः",
+       "hi": "विद्यालयः"
+      },
+      "bin": "sv",
+      "why": {
+       "en": "विद्या + आलयः: two vowels join.",
+       "hi": "विद्या + आलयः: दो स्वर जुड़ते हैं।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "इत्यादि",
+       "hi": "इत्यादि"
+      },
+      "bin": "sv",
+      "why": {
+       "en": "इति + आदि: इ changes to य् before a vowel.",
+       "hi": "इति + आदि: स्वर के पहले इ का य् हुआ।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "सदैव",
+       "hi": "सदैव"
+      },
+      "bin": "sv",
+      "why": {
+       "en": "सदा + एव: आ and ए make ऐ.",
+       "hi": "सदा + एव: आ और ए से ऐ बना।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "तन्मात्रम्",
+       "hi": "तन्मात्रम्"
+      },
+      "bin": "hl",
+      "why": {
+       "en": "तत् + मात्रम्: a consonant changed.",
+       "hi": "तत् + मात्रम्: व्यंजन बदला।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "सज्जनः",
+       "hi": "सज्जनः"
+      },
+      "bin": "hl",
+      "why": {
+       "en": "सत् + जनः: त् became ज्.",
+       "hi": "सत् + जनः: त् का ज् हुआ।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "वाग्दानम्",
+       "hi": "वाग्दानम्"
+      },
+      "bin": "hl",
+      "why": {
+       "en": "वाक् + दानम्: क् became ग्.",
+       "hi": "वाक् + दानम्: क् का ग् हुआ।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "हरिश्चन्द्रः",
+       "hi": "हरिश्चन्द्रः"
+      },
+      "bin": "vs",
+      "why": {
+       "en": "हरिः + चन्द्रः: the visarga became श्.",
+       "hi": "हरिः + चन्द्रः: विसर्ग का श् हुआ।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "रामोऽपि",
+       "hi": "रामोऽपि"
+      },
+      "bin": "vs",
+      "why": {
+       "en": "रामः + अपि: अः became ओ.",
+       "hi": "रामः + अपि: अः का ओ हुआ।"
+      }
+     },
+     {
+      "id": "c9",
+      "text": {
+       "en": "निश्चलः",
+       "hi": "निश्चलः"
+      },
+      "bin": "vs",
+      "why": {
+       "en": "निः + चलः: the visarga became श्.",
+       "hi": "निः + चलः: विसर्ग का श् हुआ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Tap विद्यालयः and choose its sandhi.",
+      "hi": "विद्यालयः छुओ और उसकी सन्धि चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A quick test: what is the last sound of the first word? If it is a vowel it is vowel sandhi. If it is ः, what is it?",
+      "hi": "एक जाँच: पहले शब्द की अंतिम ध्वनि क्या है? यदि स्वर है तो स्वर सन्धि। यदि ः है तो क्या?"
+     },
+     "options": [
+      {
+       "id": "visarga",
+       "en": "Visarga sandhi",
+       "hi": "विसर्ग सन्धि"
+      },
+      {
+       "id": "vowel",
+       "en": "Vowel sandhi",
+       "hi": "स्वर सन्धि"
+      },
+      {
+       "id": "hal",
+       "en": "Consonant sandhi",
+       "hi": "व्यञ्जन सन्धि"
+      }
+     ],
+     "answer": "visarga"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all nine words, then press Check.",
+      "hi": "सभी नौ शब्द रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To know which sandhi, look at the end of the first word. If it ends in a vowel and the second word begins with a vowel, it is vowel sandhi. If the first word ends in a consonant (त्, क्, म्), it is consonant sandhi. If it ends in a visarga ः, it is visarga sandhi. Then split the word back into two and say what changed.",
+      "hi": "कौन-सी सन्धि है, यह जानने के लिए पहले शब्द का अंत देखो। यदि वह स्वर पर समाप्त होता है और दूसरा शब्द स्वर से शुरू होता है, तो स्वर सन्धि। यदि पहला शब्द व्यंजन (त्, क्, म्) पर समाप्त हो तो व्यञ्जन सन्धि। यदि विसर्ग ः पर समाप्त हो तो विसर्ग सन्धि। फिर शब्द को दो में तोड़ो और बताओ कि क्या बदला।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a consonant sandhi?",
+        "hi": "इनमें व्यञ्जन सन्धि कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "सज्जनः",
+         "hi": "सज्जनः"
+        },
+        {
+         "en": "सदैव",
+         "hi": "सदैव"
+        },
+        {
+         "en": "मनोहरः",
+         "hi": "मनोहरः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "सत् + जनः: the first word ends in the consonant त्.",
+        "hi": "सत् + जनः: पहला शब्द व्यंजन त् पर समाप्त होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "सदैव joins two vowels, आ and ए.",
+         "hi": "सदैव में दो स्वर आ और ए जुड़ते हैं।"
+        },
+        {
+         "en": "मनोहरः comes from मनः, which ends in a visarga.",
+         "hi": "मनोहरः मनः से बना है, जो विसर्ग पर समाप्त होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word ends its first part with a visarga?",
+        "hi": "किस शब्द का पहला भाग विसर्ग पर समाप्त होता है?"
+       },
+       "options": [
+        {
+         "en": "निश्चलः (निः + चलः)",
+         "hi": "निश्चलः (निः + चलः)"
+        },
+        {
+         "en": "इत्यादि (इति + आदि)",
+         "hi": "इत्यादि (इति + आदि)"
+        },
+        {
+         "en": "वाग्दानम् (वाक् + दानम्)",
+         "hi": "वाग्दानम् (वाक् + दानम्)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "निः ends in the visarga ः.",
+        "hi": "निः विसर्ग ः पर समाप्त होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "इति ends in the vowel इ.",
+         "hi": "इति स्वर इ पर समाप्त होता है।"
+        },
+        {
+         "en": "वाक् ends in the consonant क्.",
+         "hi": "वाक् व्यंजन क् पर समाप्त होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find three sandhi words in a Sanskrit verse you know and name each kind.",
+      "hi": "किसी जाने हुए संस्कृत श्लोक में तीन सन्धि वाले शब्द ढूँढो और उनके प्रकार बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "DIA",
+   "topic": "6.1",
+   "use": "Two words becoming one",
+   "shows": "Two blank word cards on the left that overlap in the middle into one longer card on the right, the overlap in a different colour",
+   "view": "Flat front view on white",
+   "right": "Overlap is clearly a separate colour, only two cards",
+   "avoid": "Text, arrows, numbers"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Vidyalaya, a school building",
+   "shows": "A school building with a plain front and a tree in the yard, no children",
+   "view": "Eye level, soft morning light",
+   "right": "Simple building, no sign board",
+   "avoid": "Names, flags, writing"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Himalaya: the abode of snow",
+   "shows": "A snow peak against blue sky as a clean cut-out of the mountain, without sky",
+   "view": "Front view, strong light from the top left",
+   "right": "True mountain shape, snow clear",
+   "avoid": "Text, clouds covering the peak"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Sajjana, a good person (hands in namaste)",
+   "shows": "A pair of hands joined in namaste, close-up on transparent background",
+   "view": "Front view, soft light",
+   "right": "Palms joined, fingers together",
+   "avoid": "Faces, rings with writing"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.3",
+   "use": "Tapovana, a forest hermitage",
+   "shows": "A forest clearing with a small thatched hut and a banyan tree, early morning mist",
+   "view": "Wide shot, soft light",
+   "right": "Clear hut, tall trees, no people",
+   "avoid": "People, signs"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "6.3",
+   "use": "Sandhi family tree",
+   "shows": "A blank tree frame: one root box splitting into three boxes, the first of which splits again into five small boxes",
+   "view": "Flat front view on white",
+   "right": "Three main boxes, five small boxes under the first",
+   "avoid": "Text, numbers"
+  }
+ ]
+}

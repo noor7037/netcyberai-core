@@ -1,0 +1,710 @@
+{
+ "chapter_key": "u.c08.english.hepr1.ch09",
+ "class": 8,
+ "subject_id": "english",
+ "title": "Spectacular Wonders",
+ "source": "https://ncert.nic.in/textbook.php?hepr1=0-5",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Five wonders of India",
+   "labs": [
+    "c08-english-hepr1-ch09-wonders"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Present and past participles used as adjectives",
+   "labs": [
+    "c08-english-hepr1-ch09-participles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Descriptive essay (Let us write)",
+   "labs": [
+    "c08-english-hepr1-ch09-essay"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Gerunds: verbs used as nouns",
+   "labs": [],
+   "why_no_lab": "A short rule; the tutor's sentences with the child's own examples teach it better than a drill."
+  },
+  {
+   "n": "9.5",
+   "title": "Binomials such as odds and ends",
+   "labs": [],
+   "why_no_lab": "Idiom pairs are best learned in sentences from reading, not in isolation."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-english-hepr1-ch09-wonders",
+   "topic": "9.1",
+   "template": "match",
+   "title": {
+    "en": "Five wonders of India",
+    "hi": "भारत के पाँच अद्भुत स्थान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "vof",
+      "left": {
+       "en": "Valley of Flowers (Uttarakhand)",
+       "hi": "फूलों की घाटी (उत्तराखंड)"
+      },
+      "right": {
+       "en": "Hundreds of kinds of flowers bloom here from May to October",
+       "hi": "यहाँ मई से अक्टूबर तक सैकड़ों किस्म के फूल खिलते हैं"
+      },
+      "why": {
+       "en": "Each wonder in the chapter has one special feature; this is the one for this place.",
+       "hi": "अध्याय के हर अद्भुत स्थान की एक ख़ास बात है; यह इस स्थान की है।"
+      }
+     },
+     {
+      "id": "root",
+      "left": {
+       "en": "Living Root Bridges (Meghalaya)",
+       "hi": "जीवित जड़ों के पुल (मेघालय)"
+      },
+      "right": {
+       "en": "Bridges made of living tree roots, grown by local people",
+       "hi": "पेड़ों की जीवित जड़ों से बने पुल, स्थानीय लोगों द्वारा उगाए गए"
+      },
+      "why": {
+       "en": "Each wonder in the chapter has one special feature; this is the one for this place.",
+       "hi": "अध्याय के हर अद्भुत स्थान की एक ख़ास बात है; यह इस स्थान की है।"
+      }
+     },
+     {
+      "id": "lonar",
+      "left": {
+       "en": "Lonar Lake (Maharashtra)",
+       "hi": "लोनार झील (महाराष्ट्र)"
+      },
+      "right": {
+       "en": "A round crater lake made when a meteorite hit the Earth",
+       "hi": "एक गोल गड्ढे वाली झील जो उल्कापिंड के टकराने से बनी"
+      },
+      "why": {
+       "en": "Each wonder in the chapter has one special feature; this is the one for this place.",
+       "hi": "अध्याय के हर अद्भुत स्थान की एक ख़ास बात है; यह इस स्थान की है।"
+      }
+     },
+     {
+      "id": "magnet",
+      "left": {
+       "en": "Magnetic Hill (Ladakh)",
+       "hi": "चुंबकीय पहाड़ी (लद्दाख)"
+      },
+      "right": {
+       "en": "Cars seem to roll uphill: an illusion made by the slopes",
+       "hi": "गाड़ियाँ ऊपर चढ़ती दिखती हैं: ढलानों से बना दृष्टि-भ्रम"
+      },
+      "why": {
+       "en": "Each wonder in the chapter has one special feature; this is the one for this place.",
+       "hi": "अध्याय के हर अद्भुत स्थान की एक ख़ास बात है; यह इस स्थान की है।"
+      }
+     },
+     {
+      "id": "glow",
+      "left": {
+       "en": "Glowing waters (Kerala)",
+       "hi": "चमकता पानी (केरल)"
+      },
+      "right": {
+       "en": "Water that glows at night because of tiny plankton",
+       "hi": "पानी जो रात में नन्हे प्लवकों के कारण चमकता है"
+      },
+      "why": {
+       "en": "Each wonder in the chapter has one special feature; this is the one for this place.",
+       "hi": "अध्याय के हर अद्भुत स्थान की एक ख़ास बात है; यह इस स्थान की है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:vof",
+     "expect": "matched:vof",
+     "say": {
+      "en": "Match the Valley of Flowers with its feature.",
+      "hi": "फूलों की घाटी को उसकी विशेषता से जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Cars on the Magnetic Hill seem to roll uphill. Why?",
+      "hi": "चुंबकीय पहाड़ी पर गाड़ियाँ ऊपर चढ़ती दिखती हैं। क्यों?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "An optical illusion caused by the slopes and horizon",
+       "hi": "ढलानों और क्षितिज से बना दृष्टि-भ्रम"
+      },
+      {
+       "id": "b",
+       "en": "A giant magnet under the road",
+       "hi": "सड़क के नीचे विशाल चुंबक"
+      },
+      {
+       "id": "c",
+       "en": "A strong wind",
+       "hi": "तेज़ हवा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:magnet",
+     "expect": "matched:magnet",
+     "say": {
+      "en": "Match the Magnetic Hill.",
+      "hi": "चुंबकीय पहाड़ी जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other places and press Check.",
+      "hi": "बाकी स्थान जोड़कर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has wonders made by nature (flowers, a meteorite lake, glowing plankton), by people working with nature (root bridges grown by hand), and by tricks of the eye (the Magnetic Hill). Each one teaches us to look closely and ask why.",
+      "hi": "भारत में प्रकृति के बनाए अजूबे हैं (फूल, उल्कापिंड वाली झील, चमकते प्लवक), प्रकृति के साथ मिलकर लोगों के बनाए अजूबे हैं (हाथ से उगाए गए जड़ों के पुल), और आँखों के धोखे भी हैं (चुंबकीय पहाड़ी)। हर एक हमें ध्यान से देखना और कारण पूछना सिखाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What makes the water glow at night in Kerala's backwaters?",
+        "hi": "केरल के बैकवॉटर में पानी रात में क्यों चमकता है?"
+       },
+       "options": [
+        {
+         "en": "Tiny plankton that produce light",
+         "hi": "नन्हे प्लवक जो प्रकाश पैदा करते हैं"
+        },
+        {
+         "en": "Lamps under the water",
+         "hi": "पानी के नीचे लगे लैंप"
+        },
+        {
+         "en": "Moonlight on salt",
+         "hi": "नमक पर चाँदनी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Bioluminescence: tiny organisms called plankton make light.",
+        "hi": "जैव-प्रकाश: प्लवक नामक नन्हे जीव प्रकाश बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No lamps are used; the light comes from living things.",
+         "hi": "कोई लैंप नहीं है; प्रकाश जीवों से आता है।"
+        },
+        {
+         "en": "The glow is made inside the plankton, not by the moon.",
+         "hi": "चमक प्लवकों के भीतर बनती है, चाँद से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find one wonder near your town. What would you tell visitors about it?",
+      "hi": "अपने शहर के पास का कोई अजूबा ढूँढो। आगंतुकों को उसके बारे में क्या बताओगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-english-hepr1-ch09-participles",
+   "topic": "9.2",
+   "template": "sort",
+   "title": {
+    "en": "-ing or -ed? Participles as adjectives",
+    "hi": "-ing या -ed? विशेषण बनी क्रियाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ing",
+      "label": {
+       "en": "-ing: the thing is doing it",
+       "hi": "-ing: चीज़ खुद कर रही है"
+      }
+     },
+     {
+      "id": "ed",
+      "label": {
+       "en": "-ed/-en: done to the thing",
+       "hi": "-ed/-en: चीज़ पर किया गया"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "p1",
+      "text": {
+       "en": "a glowing lamp",
+       "hi": "एक चमकता दीपक"
+      },
+      "bin": "ing",
+      "why": {
+       "en": "The lamp is giving light now: present participle.",
+       "hi": "दीपक अभी प्रकाश दे रहा है: वर्तमान कृदंत।"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "a carved pillar",
+       "hi": "एक नक्काशीदार स्तंभ"
+      },
+      "bin": "ed",
+      "why": {
+       "en": "Someone carved the pillar: past participle.",
+       "hi": "किसी ने स्तंभ पर नक्काशी की: भूतकालिक कृदंत।"
+      }
+     },
+     {
+      "id": "p3",
+      "text": {
+       "en": "a flowing river",
+       "hi": "एक बहती नदी"
+      },
+      "bin": "ing",
+      "why": {
+       "en": "The river is doing the flowing.",
+       "hi": "नदी स्वयं बह रही है।"
+      }
+     },
+     {
+      "id": "p4",
+      "text": {
+       "en": "a broken window",
+       "hi": "एक टूटी खिड़की"
+      },
+      "bin": "ed",
+      "why": {
+       "en": "The window was broken by something.",
+       "hi": "खिड़की किसी कारण से टूटी।"
+      }
+     },
+     {
+      "id": "p5",
+      "text": {
+       "en": "a rolling ball",
+       "hi": "एक लुढ़कती गेंद"
+      },
+      "bin": "ing",
+      "why": {
+       "en": "The ball is rolling on its own.",
+       "hi": "गेंद अपने आप लुढ़क रही है।"
+      }
+     },
+     {
+      "id": "p6",
+      "text": {
+       "en": "scattered islands",
+       "hi": "बिखरे द्वीप"
+      },
+      "bin": "ed",
+      "why": {
+       "en": "The islands lie spread out; they were scattered.",
+       "hi": "द्वीप फैले पड़े हैं; वे बिखरे हुए हैं।"
+      }
+     },
+     {
+      "id": "p7",
+      "text": {
+       "en": "a fallen leaf",
+       "hi": "एक गिरा पत्ता"
+      },
+      "bin": "ed",
+      "why": {
+       "en": "The leaf has fallen: -en past participle.",
+       "hi": "पत्ता गिर चुका है: -en वाला भूतकालिक रूप।"
+      }
+     },
+     {
+      "id": "p8",
+      "text": {
+       "en": "a smiling child",
+       "hi": "एक मुस्कुराता बच्चा"
+      },
+      "bin": "ing",
+      "why": {
+       "en": "The child is smiling now.",
+       "hi": "बच्चा अभी मुस्कुरा रहा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:p1",
+     "expect": "placed:p1",
+     "say": {
+      "en": "Place the glowing lamp.",
+      "hi": "चमकता दीपक रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "'A carved pillar': did the pillar carve, or was it carved?",
+      "hi": "'A carved pillar': क्या स्तंभ ने नक्काशी की, या उस पर नक्काशी हुई?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "It was carved by someone",
+       "hi": "उस पर किसी ने नक्काशी की"
+      },
+      {
+       "id": "b",
+       "en": "It is carving",
+       "hi": "वह नक्काशी कर रहा है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "card:p2",
+     "expect": "placed:p2",
+     "say": {
+      "en": "Place the carved pillar.",
+      "hi": "नक्काशीदार स्तंभ रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाकी छाँटकर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A verb can work as an adjective. The -ing form (glowing, flowing) says the thing is doing the action. The -ed or -en form (carved, broken, fallen) says the action was done to the thing. Both describe nouns.",
+      "hi": "क्रिया विशेषण का काम कर सकती है। -ing रूप (glowing, flowing) बताता है कि चीज़ खुद वह काम कर रही है। -ed या -en रूप (carved, broken, fallen) बताता है कि चीज़ पर वह काम हुआ है। दोनों संज्ञा का वर्णन करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which phrase uses a past participle?",
+        "hi": "किस वाक्यांश में भूतकालिक कृदंत है?"
+       },
+       "options": [
+        {
+         "en": "a shining star",
+         "hi": "एक चमकता तारा (a shining star)"
+        },
+        {
+         "en": "a painted wall",
+         "hi": "एक रंगी हुई दीवार (a painted wall)"
+        },
+        {
+         "en": "a falling leaf",
+         "hi": "एक गिरता पत्ता (a falling leaf)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "'Painted' is the -ed form: the wall was painted.",
+        "hi": "'Painted' -ed रूप है: दीवार रंगी गई है।"
+       },
+       "wrong": [
+        {
+         "en": "'Shining' is the -ing form; the star is doing the shining.",
+         "hi": "'Shining' -ing रूप है; तारा स्वयं चमक रहा है।"
+        },
+        "",
+        {
+         "en": "'Falling' is the -ing form; the leaf is falling now.",
+         "hi": "'Falling' -ing रूप है; पत्ता अभी गिर रहा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look around you and name five things using a participle, such as 'a ticking clock'.",
+      "hi": "आसपास देखो और कृदंत से पाँच चीज़ों के नाम बताओ, जैसे 'a ticking clock'।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-english-hepr1-ch09-essay",
+   "topic": "9.3",
+   "template": "writing",
+   "title": {
+    "en": "A descriptive essay: after the rain",
+    "hi": "वर्णनात्मक निबंध: बारिश के बाद"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "kind": "essay",
+    "lang": "en",
+    "task": {
+     "en": "Describe a place in nature that caught your eye. Give your essay a title.",
+     "hi": "प्रकृति के किसी ऐसे स्थान का वर्णन करो जिसने तुम्हारा ध्यान खींचा। निबंध को शीर्षक दो।"
+    },
+    "parts": [
+     {
+      "id": "t",
+      "slot": "title",
+      "text": {
+       "en": "The Waterfall After the Rain",
+       "hi": "बारिश के बाद झरना"
+      }
+     },
+     {
+      "id": "i",
+      "slot": "introduction",
+      "text": {
+       "en": "Last monsoon, my family visited a waterfall near our town. After two days of heavy rain, it looked like a different place.",
+       "hi": "पिछली बरसात में हमारा परिवार शहर के पास के एक झरने पर गया। दो दिन की भारी बारिश के बाद वह बिलकुल अलग लग रहा था।"
+      }
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": {
+       "en": "White water thundered down the dark rocks, and a fine mist cooled our faces. The trees around it were bright green and dripping.",
+       "hi": "सफ़ेद पानी काली चट्टानों से गड़गड़ाता नीचे गिर रहा था, और हल्की फुहार हमारे चेहरों को ठंडक दे रही थी। चारों ओर के पेड़ हरे और भीगे थे।"
+      }
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": {
+       "en": "A rainbow shimmered in the spray, and the air smelt of wet earth. Birds sang from every branch, as if they were celebrating.",
+       "hi": "फुहार में इंद्रधनुष झिलमिला रहा था, और हवा में गीली मिट्टी की महक थी। हर डाल पर पक्षी ऐसे गा रहे थे मानो उत्सव मना रहे हों।"
+      }
+     },
+     {
+      "id": "c",
+      "slot": "conclusion",
+      "text": {
+       "en": "I left with wet shoes and a happy heart. Nature shows its best when we stop to look.",
+       "hi": "मैं गीले जूतों और खुश दिल के साथ लौटा। जब हम रुककर देखते हैं तब प्रकृति सबसे सुंदर दिखती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:t",
+     "expect": "placed:t",
+     "say": {
+      "en": "Place the title.",
+      "hi": "शीर्षक रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A descriptive essay should use…",
+      "hi": "वर्णनात्मक निबंध में प्रयोग होने चाहिए…"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Details for sight, sound, smell and touch",
+       "hi": "देखने, सुनने, सूँघने और छूने के ब्योरे"
+      },
+      {
+       "id": "b",
+       "en": "Only numbers",
+       "hi": "केवल संख्याएँ"
+      },
+      {
+       "id": "c",
+       "en": "Only questions",
+       "hi": "केवल प्रश्न"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "part:b1",
+     "expect": "placed:b1",
+     "say": {
+      "en": "Place the first body paragraph.",
+      "hi": "पहला मुख्य अनुच्छेद रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Place all parts and press Check.",
+      "hi": "सभी भाग रखकर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A descriptive essay paints a picture with words. It has a title, one introduction paragraph, two or three body paragraphs full of details, and a one-paragraph conclusion. Using the five senses makes it vivid.",
+      "hi": "वर्णनात्मक निबंध शब्दों से तस्वीर बनाता है। इसमें शीर्षक, एक प्रस्तावना अनुच्छेद, ब्योरों से भरे दो-तीन मुख्य अनुच्छेद, और एक निष्कर्ष अनुच्छेद होता है। पाँचों इंद्रियों का उपयोग इसे जीवंत बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is the most descriptive?",
+        "hi": "कौन-सा वाक्य सबसे अधिक वर्णनात्मक है?"
+       },
+       "options": [
+        {
+         "en": "The waterfall was nice.",
+         "hi": "झरना अच्छा था। (The waterfall was nice.)"
+        },
+        {
+         "en": "White water thundered down the dark rocks.",
+         "hi": "सफ़ेद पानी काली चट्टानों से गड़गड़ाता गिर रहा था। (White water thundered down the dark rocks.)"
+        },
+        {
+         "en": "I went to the waterfall.",
+         "hi": "मैं झरने पर गया। (I went to the waterfall.)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It shows colour, sound and movement with strong words.",
+        "hi": "इसमें रंग, आवाज़ और गति सशक्त शब्दों में दिखते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "'Nice' is vague; it paints no picture.",
+         "hi": "'Nice' अस्पष्ट है; इससे कोई चित्र नहीं बनता।"
+        },
+        "",
+        {
+         "en": "This only states a fact; it has no details.",
+         "hi": "यह केवल तथ्य बताता है; इसमें कोई ब्योरा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write a descriptive paragraph about a place you love, using at least three participles.",
+      "hi": "अपने प्रिय स्थान पर वर्णनात्मक अनुच्छेद लिखो, जिसमें कम से कम तीन कृदंत हों।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Valley of Flowers",
+   "shows": "A high-altitude valley in bloom: pink, white and yellow wildflowers, a mountain stream, snow peaks beyond; no people",
+   "view": "Wide, from a trail",
+   "right": "Meadow flowers true to the Himalayan species mix, clear mountain light",
+   "avoid": "People, tents, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Living root bridge",
+   "shows": "A bridge of living tree roots over a rainforest stream in Meghalaya, with moss and ferns; hands-only if any",
+   "view": "Low, along the bridge",
+   "right": "Roots woven into a bridge, wet leaves, green light",
+   "avoid": "Faces, readable boards"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Lonar Lake",
+   "shows": "A round crater lake seen from the rim with scrub forest and a greenish saline lake; no people",
+   "view": "Wide, from the rim",
+   "right": "Circular crater, olive-green water, basalt rock",
+   "avoid": "Temples with signboards, people"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "9.1",
+   "use": "Magnetic Hill illusion",
+   "shows": "Three frames of a parked car on a gentle road with a hill behind, slowly rolling forward as if uphill, same camera",
+   "view": "Same viewpoint in each frame",
+   "right": "Correct slope lines and horizon so the illusion shows",
+   "avoid": "Faces, number plates"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "9.1",
+   "use": "Glowing waters",
+   "shows": "A dark night-time backwater scene with blue glowing water ripples around an oar; no people",
+   "view": "Low, close to the water",
+   "right": "True blue-green bioluminescent glow, black background",
+   "avoid": "People, boats with names"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "Participle cards",
+   "shows": "A carved wooden pillar and a glowing oil lamp, cut-out",
+   "view": "Three-quarter view",
+   "right": "Real carved detail, steady flame",
+   "avoid": "Text, brand marks"
+  }
+ ]
+}

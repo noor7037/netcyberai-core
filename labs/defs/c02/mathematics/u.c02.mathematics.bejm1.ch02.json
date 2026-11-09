@@ -1,0 +1,1124 @@
+{
+ "chapter_key": "u.c02.mathematics.bejm1.ch02",
+ "class": 2,
+ "subject_id": "mathematics",
+ "title": "Shapes Around Us (3D Shapes)",
+ "source": "https://ncert.nic.in/textbook/pdf/bejm102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Shapes of things we use: drum, matka, shehnai, box",
+   "labs": [
+    "c2-mathematics-bejm1-ch02-match-shapes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Faces, edges and corners of solids; rolling and sliding",
+   "labs": [
+    "c2-mathematics-bejm1-ch02-decorate-box",
+    "c2-mathematics-bejm1-ch02-matchbox-views",
+    "c2-mathematics-bejm1-ch02-roll-or-slide"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Touch and tell: who am I?",
+   "labs": [
+    "c2-mathematics-bejm1-ch02-touch-and-tell"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Project: make an object with four faces from cardboard",
+   "labs": [],
+   "why_no_lab": "Folding and sticking real cardboard teaches this better than a screen can."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c2-mathematics-bejm1-ch02-match-shapes",
+   "topic": "2.1",
+   "template": "match",
+   "title": {
+    "en": "Match objects to solid shapes",
+    "hi": "चीज़ों को ठोस आकार से मिलाओ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "ball",
+      "left": {
+       "en": "Cricket ball",
+       "hi": "क्रिकेट की गेंद"
+      },
+      "right": {
+       "en": "Sphere",
+       "hi": "गोला"
+      },
+      "why": {
+       "en": "A ball is round all over, like a sphere.",
+       "hi": "गेंद चारों ओर से गोल होती है, गोले जैसी।"
+      }
+     },
+     {
+      "id": "dice",
+      "left": {
+       "en": "Dice (pasa)",
+       "hi": "पासा"
+      },
+      "right": {
+       "en": "Cube",
+       "hi": "घन"
+      },
+      "why": {
+       "en": "A dice has 6 equal square faces: a cube.",
+       "hi": "पासे के 6 बराबर वर्ग फलक होते हैं: घन।"
+      }
+     },
+     {
+      "id": "box",
+      "left": {
+       "en": "Matchbox",
+       "hi": "माचिस की डिब्बी"
+      },
+      "right": {
+       "en": "Cuboid",
+       "hi": "घनाभ"
+      },
+      "why": {
+       "en": "A matchbox has 6 flat faces that are rectangles: a cuboid.",
+       "hi": "माचिस की डिब्बी के 6 समतल फलक आयताकार होते हैं: घनाभ।"
+      }
+     },
+     {
+      "id": "tin",
+      "left": {
+       "en": "Tin of ghee",
+       "hi": "घी का डिब्बा"
+      },
+      "right": {
+       "en": "Cylinder",
+       "hi": "बेलन"
+      },
+      "why": {
+       "en": "A tin has two flat round faces and a curved side: a cylinder.",
+       "hi": "डिब्बे के दो समतल गोल फलक और एक मुड़ी हुई दीवार होती है: बेलन।"
+      }
+     },
+     {
+      "id": "cap",
+      "left": {
+       "en": "Birthday cap",
+       "hi": "जन्मदिन की टोपी"
+      },
+      "right": {
+       "en": "Cone",
+       "hi": "शंकु"
+      },
+      "why": {
+       "en": "A cap has one round flat bottom and a pointed top: a cone.",
+       "hi": "टोपी का नीचे एक गोल समतल फलक और ऊपर नुकीला सिरा होता है: शंकु।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ball",
+     "expect": "matched:ball",
+     "say": {
+      "en": "Tap the cricket ball, then tap its solid name on the right.",
+      "hi": "क्रिकेट की गेंद पर दबाओ, फिर दाईं ओर उसके ठोस का नाम दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A dice and a matchbox both have 6 flat faces. Are they the same solid?",
+      "hi": "पासे और माचिस की डिब्बी दोनों के 6 समतल फलक हैं। क्या वे एक ही ठोस हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Yes, exactly the same",
+       "hi": "हाँ, बिलकुल एक-से"
+      },
+      {
+       "id": "b",
+       "en": "No, a dice has equal square faces",
+       "hi": "नहीं, पासे के फलक बराबर वर्ग होते हैं"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "left:dice",
+     "expect": "matched:dice",
+     "say": {
+      "en": "Match the dice.",
+      "hi": "पासे को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:box",
+     "expect": "matched:box",
+     "say": {
+      "en": "Match the matchbox.",
+      "hi": "माचिस की डिब्बी को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:tin",
+     "expect": "matched:tin",
+     "say": {
+      "en": "Match the tin of ghee.",
+      "hi": "घी के डिब्बे को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:cap",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the birthday cap.",
+      "hi": "जन्मदिन की टोपी को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Everyday things have solid shapes. A ball is a sphere, a dice is a cube, a matchbox is a cuboid, a tin is a cylinder and a birthday cap is a cone. Looking at the faces tells them apart.",
+      "hi": "रोज़ की चीज़ों के ठोस आकार होते हैं। गेंद गोला है, पासा घन है, माचिस की डिब्बी घनाभ है, डिब्बा बेलन है और जन्मदिन की टोपी शंकु है। फलकों को देखकर इन्हें पहचानते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which solid has 2 flat round faces and 1 curved side?",
+        "hi": "किस ठोस के 2 समतल गोल फलक और 1 मुड़ी हुई दीवार होती है?"
+       },
+       "options": [
+        {
+         "en": "Cone",
+         "hi": "शंकु"
+        },
+        {
+         "en": "Cylinder",
+         "hi": "बेलन"
+        },
+        {
+         "en": "Sphere",
+         "hi": "गोला"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A cylinder, like a tin or a candle, has two round flat faces and a curved side.",
+        "hi": "बेलन, जैसे डिब्बा या मोमबत्ती, के दो गोल समतल फलक और एक मुड़ी हुई दीवार होती है।"
+       },
+       "wrong": [
+        {
+         "en": "A cone has only one flat face and a pointed top.",
+         "hi": "शंकु का केवल एक समतल फलक और ऊपर नुकीला सिरा होता है।"
+        },
+        "",
+        {
+         "en": "A sphere has no flat face at all.",
+         "hi": "गोले का कोई समतल फलक नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look around your home. Find one thing for each solid and say its name.",
+      "hi": "अपने घर में देखो। हर ठोस की एक चीज़ ढूँढो और उसका नाम बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch02-decorate-box",
+   "topic": "2.2",
+   "template": "solids",
+   "title": {
+    "en": "Decorate the gift box",
+    "hi": "उपहार का डिब्बा सजाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "solid": "cube",
+    "dims": {
+     "l": 4
+    },
+    "mode": "count",
+    "ask": false
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Heena wants one star on every face of a gift box shaped like a cube. How many faces does a cube have?",
+      "hi": "हीना घन जैसे उपहार के डिब्बे की हर सतह पर एक तारा लगाना चाहती है। घन के कितने फलक होते हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "4 faces",
+       "hi": "4 फलक"
+      },
+      {
+       "id": "b",
+       "en": "6 faces",
+       "hi": "6 फलक"
+      },
+      {
+       "id": "c",
+       "en": "8 faces",
+       "hi": "8 फलक"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "face:0",
+     "expect": "face:0",
+     "say": {
+      "en": "Tap the glowing face to count it as face 1.",
+      "hi": "चमकते हुए फलक को दबाकर उसे फलक 1 गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "face:1",
+     "expect": "face:1",
+     "say": {
+      "en": "Tap the next glowing face.",
+      "hi": "अगला चमकता फलक दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "face:2",
+     "expect": "face:2",
+     "say": {
+      "en": "Tap the next glowing face.",
+      "hi": "अगला चमकता फलक दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "face:3",
+     "expect": "face:3",
+     "say": {
+      "en": "Tap the next glowing face.",
+      "hi": "अगला चमकता फलक दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "face:4",
+     "expect": "face:4",
+     "say": {
+      "en": "Tap the next glowing face.",
+      "hi": "अगला चमकता फलक दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "face:5",
+     "expect": "face:5",
+     "say": {
+      "en": "Tap the last glowing face.",
+      "hi": "आख़िरी चमकता फलक दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cube has 6 faces, 12 edges and 8 corners. So Heena needs 6 stars for the faces, 12 pieces of ribbon for the edges and 8 pompom balls for the corners.",
+      "hi": "घन के 6 फलक, 12 किनारे और 8 कोने होते हैं। इसलिए हीना को फलकों के लिए 6 तारे, किनारों के लिए फीते के 12 टुकड़े और कोनों के लिए 8 पोम-पोम गेंदें चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Ribbons go along the edges, where two faces meet. How many edges does a cube have?",
+        "hi": "फीते किनारों पर लगते हैं, जहाँ दो फलक मिलते हैं। घन के कितने किनारे होते हैं?"
+       },
+       "options": [
+        {
+         "en": "8 edges",
+         "hi": "8 किनारे"
+        },
+        {
+         "en": "12 edges",
+         "hi": "12 किनारे"
+        },
+        {
+         "en": "6 edges",
+         "hi": "6 किनारे"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A cube has 4 edges on top, 4 on the bottom and 4 standing up: 12 edges.",
+        "hi": "घन के ऊपर 4, नीचे 4 और खड़े 4 किनारे होते हैं: कुल 12 किनारे।"
+       },
+       "wrong": [
+        {
+         "en": "8 is the number of corners, not edges.",
+         "hi": "8 कोनों की संख्या है, किनारों की नहीं।"
+        },
+        "",
+        {
+         "en": "6 is the number of faces. An edge is a line where two faces meet.",
+         "hi": "6 फलकों की संख्या है। किनारा वह रेखा है जहाँ दो फलक मिलते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many corners does a cube have?",
+        "hi": "घन के कितने कोने होते हैं?"
+       },
+       "options": [
+        {
+         "en": "6 corners",
+         "hi": "6 कोने"
+        },
+        {
+         "en": "8 corners",
+         "hi": "8 कोने"
+        },
+        {
+         "en": "12 corners",
+         "hi": "12 कोने"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A cube has 8 corners: 4 on the top and 4 on the bottom.",
+        "hi": "घन के 8 कोने होते हैं: ऊपर 4 और नीचे 4।"
+       },
+       "wrong": [
+        {
+         "en": "6 is the number of faces, not corners.",
+         "hi": "6 फलकों की संख्या है, कोनों की नहीं।"
+        },
+        "",
+        {
+         "en": "12 is the number of edges. A corner is a point where edges meet.",
+         "hi": "12 किनारों की संख्या है। कोना वह बिंदु है जहाँ किनारे मिलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn the cube around. Can you see all 8 corners at once? Why not?",
+      "hi": "घन को घुमाओ। क्या सारे 8 कोने एक साथ दिखते हैं? क्यों नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch02-matchbox-views",
+   "topic": "2.2",
+   "template": "solids",
+   "title": {
+    "en": "Turn the matchbox",
+    "hi": "माचिस की डिब्बी घुमाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "solid": "cuboid",
+    "dims": {
+     "l": 6,
+     "b": 4,
+     "h": 3
+    },
+    "mode": "turn"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "rotate",
+     "expect": "rotated",
+     "say": {
+      "en": "Drag the solid to turn it. Look at all its faces.",
+      "hi": "ठोस को खींचकर घुमाओ। उसके सारे फलक देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at the matchbox from the top. What flat shape will you see?",
+      "hi": "माचिस की डिब्बी को ऊपर से देखो। तुम्हें कौन-सी समतल आकृति दिखेगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "A rectangle",
+       "hi": "आयत"
+      },
+      {
+       "id": "b",
+       "en": "A circle",
+       "hi": "वृत्त"
+      },
+      {
+       "id": "c",
+       "en": "A triangle",
+       "hi": "त्रिभुज"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "view:top",
+     "expect": "viewed:top",
+     "say": {
+      "en": "Tap Top view.",
+      "hi": "ऊपर से देखो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the everyday thing that has the same shape.",
+      "hi": "वह रोज़ की चीज़ चुनो जिसका आकार ऐसा ही है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cuboid has 6 flat faces. Each face is a rectangle, and from the top you see one rectangle. A brick, a matchbox and a chalk box are all cuboids.",
+      "hi": "घनाभ के 6 समतल फलक होते हैं। हर फलक आयत होता है, और ऊपर से एक आयत दिखता है। ईंट, माचिस की डिब्बी और चॉक का डिब्बा सब घनाभ हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What shape is the top of a cuboid?",
+        "hi": "घनाभ का ऊपरी भाग कौन-सी आकृति का होता है?"
+       },
+       "options": [
+        {
+         "en": "A circle",
+         "hi": "वृत्त"
+        },
+        {
+         "en": "A rectangle",
+         "hi": "आयत"
+        },
+        {
+         "en": "A pointed tip",
+         "hi": "नुकीला सिरा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The faces of a cuboid are rectangles, so its top is a rectangle.",
+        "hi": "घनाभ के फलक आयत होते हैं, इसलिए उसका ऊपरी भाग आयत है।"
+       },
+       "wrong": [
+        {
+         "en": "A circle is the flat face of a cylinder or a cone.",
+         "hi": "वृत्त बेलन या शंकु का समतल फलक होता है।"
+        },
+        "",
+        {
+         "en": "A pointed tip belongs to a cone.",
+         "hi": "नुकीला सिरा शंकु का होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn it to the front and the side. Do all the views look the same?",
+      "hi": "इसे सामने और बगल से घुमाकर देखो। क्या सारे दृश्य एक-से लगते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch02-roll-or-slide",
+   "topic": "2.2",
+   "template": "sort",
+   "title": {
+    "en": "Does it roll or slide?",
+    "hi": "लुढ़कता है या फिसलता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "roll",
+      "label": {
+       "en": "Only rolls",
+       "hi": "केवल लुढ़कता है"
+      }
+     },
+     {
+      "id": "slide",
+      "label": {
+       "en": "Only slides",
+       "hi": "केवल फिसलता है"
+      }
+     },
+     {
+      "id": "both",
+      "label": {
+       "en": "Rolls and slides",
+       "hi": "लुढ़कता और फिसलता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ball",
+      "text": {
+       "en": "Football",
+       "hi": "फ़ुटबॉल"
+      },
+      "bin": "roll",
+      "why": {
+       "en": "A sphere has no flat face. It can only roll.",
+       "hi": "गोले का कोई समतल फलक नहीं होता। वह केवल लुढ़क सकता है।"
+      }
+     },
+     {
+      "id": "laddoo",
+      "text": {
+       "en": "Laddoo",
+       "hi": "लड्डू"
+      },
+      "bin": "roll",
+      "why": {
+       "en": "A laddoo is round like a sphere, so it rolls.",
+       "hi": "लड्डू गोल है, गोले जैसा, इसलिए लुढ़कता है।"
+      }
+     },
+     {
+      "id": "dice",
+      "text": {
+       "en": "Dice",
+       "hi": "पासा"
+      },
+      "bin": "slide",
+      "why": {
+       "en": "All faces of a cube are flat, so it slides but does not roll.",
+       "hi": "घन के सारे फलक समतल हैं, इसलिए वह फिसलता है, लुढ़कता नहीं।"
+      }
+     },
+     {
+      "id": "matchbox",
+      "text": {
+       "en": "Matchbox",
+       "hi": "माचिस की डिब्बी"
+      },
+      "bin": "slide",
+      "why": {
+       "en": "A cuboid has only flat faces. It slides.",
+       "hi": "घनाभ के केवल समतल फलक होते हैं। वह फिसलता है।"
+      }
+     },
+     {
+      "id": "brick",
+      "text": {
+       "en": "Brick",
+       "hi": "ईंट"
+      },
+      "bin": "slide",
+      "why": {
+       "en": "A brick is a cuboid with flat faces. It slides.",
+       "hi": "ईंट घनाभ है जिसके फलक समतल हैं। वह फिसलती है।"
+      }
+     },
+     {
+      "id": "tin",
+      "text": {
+       "en": "Tin of ghee",
+       "hi": "घी का डिब्बा"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Stand it on its flat face and it slides. Lay it on its curved side and it rolls.",
+       "hi": "इसे समतल फलक पर खड़ा करो तो फिसलता है। मुड़ी दीवार पर लिटाओ तो लुढ़कता है।"
+      }
+     },
+     {
+      "id": "candle",
+      "text": {
+       "en": "Candle",
+       "hi": "मोमबत्ती"
+      },
+      "bin": "both",
+      "why": {
+       "en": "A candle is a cylinder. It slides on its flat end and rolls on its side.",
+       "hi": "मोमबत्ती बेलन है। समतल सिरे पर फिसलती है और बगल से लुढ़कती है।"
+      }
+     },
+     {
+      "id": "cone",
+      "text": {
+       "en": "Ice-cream cone",
+       "hi": "आइसक्रीम कोन"
+      },
+      "bin": "both",
+      "why": {
+       "en": "A cone slides on its flat base and rolls round on its curved side.",
+       "hi": "शंकु अपने समतल आधार पर फिसलता है और मुड़ी दीवार पर गोल घूमकर लुढ़कता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ball",
+     "expect": "correct:ball",
+     "say": {
+      "en": "Tap the football, then tap the group where it belongs.",
+      "hi": "फ़ुटबॉल पर दबाओ, फिर वह समूह दबाओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tin of ghee has flat faces and a curved side. What can it do?",
+      "hi": "घी के डिब्बे के समतल फलक भी हैं और मुड़ी दीवार भी। वह क्या कर सकता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Only slide",
+       "hi": "केवल फिसलना"
+      },
+      {
+       "id": "b",
+       "en": "Only roll",
+       "hi": "केवल लुढ़कना"
+      },
+      {
+       "id": "c",
+       "en": "Roll and slide",
+       "hi": "लुढ़कना और फिसलना"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "card:tin",
+     "expect": "correct:tin",
+     "say": {
+      "en": "Now sort the tin of ghee.",
+      "hi": "अब घी के डिब्बे को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest of the cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Flat faces let a solid slide. A curved surface lets it roll. A sphere is all curved, so it only rolls. A cube and a cuboid are all flat, so they only slide. A cylinder and a cone have both, so they do both.",
+      "hi": "समतल फलक से ठोस फिसल सकता है। मुड़ी हुई सतह से वह लुढ़क सकता है। गोला पूरा मुड़ा है, इसलिए केवल लुढ़कता है। घन और घनाभ पूरे समतल हैं, इसलिए केवल फिसलते हैं। बेलन और शंकु में दोनों हैं, इसलिए दोनों करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a football roll but a brick does not?",
+        "hi": "फ़ुटबॉल क्यों लुढ़कती है पर ईंट नहीं?"
+       },
+       "options": [
+        {
+         "en": "A football has a curved surface",
+         "hi": "फ़ुटबॉल की सतह मुड़ी हुई है"
+        },
+        {
+         "en": "A brick is heavier",
+         "hi": "ईंट भारी है"
+        },
+        {
+         "en": "A football is bigger",
+         "hi": "फ़ुटबॉल बड़ी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rolling needs a curved surface. A brick has only flat faces.",
+        "hi": "लुढ़कने के लिए मुड़ी सतह चाहिए। ईंट के केवल समतल फलक हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Weight is not the reason. A heavy round stone still rolls.",
+         "hi": "भार कारण नहीं है। भारी गोल पत्थर भी लुढ़कता है।"
+        },
+        {
+         "en": "Size is not the reason. A small marble also rolls.",
+         "hi": "आकार कारण नहीं है। छोटी कंचा भी लुढ़कती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try your own things: a bangle, a glass, a pencil box. Where would they go?",
+      "hi": "अपनी चीज़ें आज़माओ: चूड़ी, गिलास, पेंसिल-बॉक्स। वे किस समूह में जाएँगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch02-touch-and-tell",
+   "topic": "2.3",
+   "template": "sort",
+   "title": {
+    "en": "Touch and tell: how many corners?",
+    "hi": "छूकर बताओ: कितने कोने?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "zero",
+      "label": {
+       "en": "No corner",
+       "hi": "कोई कोना नहीं"
+      }
+     },
+     {
+      "id": "one",
+      "label": {
+       "en": "One corner",
+       "hi": "एक कोना"
+      }
+     },
+     {
+      "id": "eight",
+      "label": {
+       "en": "Eight corners",
+       "hi": "आठ कोने"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ball",
+      "text": {
+       "en": "Ball",
+       "hi": "गेंद"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "A sphere is smooth all over. It has no corner.",
+       "hi": "गोला चारों ओर से चिकना होता है। उसमें कोई कोना नहीं।"
+      }
+     },
+     {
+      "id": "tin",
+      "text": {
+       "en": "Tin",
+       "hi": "डिब्बा"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "A cylinder has round edges and no pointed corner.",
+       "hi": "बेलन के किनारे गोल होते हैं, कोई नुकीला कोना नहीं।"
+      }
+     },
+     {
+      "id": "pot",
+      "text": {
+       "en": "Round matka",
+       "hi": "गोल मटका"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "A matka is round like a sphere. It has no corner.",
+       "hi": "मटका गोले जैसा गोल होता है। उसमें कोई कोना नहीं।"
+      }
+     },
+     {
+      "id": "cap",
+      "text": {
+       "en": "Birthday cap",
+       "hi": "जन्मदिन की टोपी"
+      },
+      "bin": "one",
+      "why": {
+       "en": "A cone has a single pointed tip, its one corner.",
+       "hi": "शंकु का एक नुकीला सिरा होता है, वही उसका एक कोना है।"
+      }
+     },
+     {
+      "id": "icecream",
+      "text": {
+       "en": "Ice-cream cone",
+       "hi": "आइसक्रीम कोन"
+      },
+      "bin": "one",
+      "why": {
+       "en": "The pointed end of the cone is its one corner.",
+       "hi": "कोन का नुकीला सिरा उसका एक कोना है।"
+      }
+     },
+     {
+      "id": "dice",
+      "text": {
+       "en": "Dice",
+       "hi": "पासा"
+      },
+      "bin": "eight",
+      "why": {
+       "en": "A cube has 4 corners on top and 4 below: 8 in all.",
+       "hi": "घन के ऊपर 4 और नीचे 4 कोने होते हैं: कुल 8।"
+      }
+     },
+     {
+      "id": "matchbox",
+      "text": {
+       "en": "Matchbox",
+       "hi": "माचिस की डिब्बी"
+      },
+      "bin": "eight",
+      "why": {
+       "en": "A cuboid has 8 corners, like a cube.",
+       "hi": "घनाभ के भी घन की तरह 8 कोने होते हैं।"
+      }
+     },
+     {
+      "id": "brick",
+      "text": {
+       "en": "Brick",
+       "hi": "ईंट"
+      },
+      "bin": "eight",
+      "why": {
+       "en": "A brick is a cuboid, so it has 8 corners.",
+       "hi": "ईंट घनाभ है, इसलिए उसके 8 कोने हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ball",
+     "expect": "correct:ball",
+     "say": {
+      "en": "Tap the ball, then tap the group for it.",
+      "hi": "गेंद पर दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A birthday cap is shaped like a cone. How many pointed corners does it have?",
+      "hi": "जन्मदिन की टोपी शंकु जैसी है। उसमें कितने नुकीले कोने हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "No corner",
+       "hi": "कोई कोना नहीं"
+      },
+      {
+       "id": "b",
+       "en": "One corner",
+       "hi": "एक कोना"
+      },
+      {
+       "id": "c",
+       "en": "Eight corners",
+       "hi": "आठ कोने"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:cap",
+     "expect": "correct:cap",
+     "say": {
+      "en": "Now sort the birthday cap.",
+      "hi": "अब जन्मदिन की टोपी को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी को छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A corner is a pointed place where edges meet. A sphere and a cylinder have none. A cone has one at its tip. A cube and a cuboid have eight.",
+      "hi": "कोना वह नुकीली जगह है जहाँ किनारे मिलते हैं। गोले और बेलन में कोई कोना नहीं होता। शंकु के सिरे पर एक कोना होता है। घन और घनाभ में आठ कोने होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which solid has no corner at all?",
+        "hi": "किस ठोस में कोई कोना नहीं होता?"
+       },
+       "options": [
+        {
+         "en": "Cube",
+         "hi": "घन"
+        },
+        {
+         "en": "Cone",
+         "hi": "शंकु"
+        },
+        {
+         "en": "Sphere",
+         "hi": "गोला"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "A sphere is smooth all round, so it has no corner.",
+        "hi": "गोला चारों ओर से चिकना होता है, इसलिए उसमें कोई कोना नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "A cube has 8 corners.",
+         "hi": "घन के 8 कोने होते हैं।"
+        },
+        {
+         "en": "A cone has one corner at its tip.",
+         "hi": "शंकु के सिरे पर एक कोना होता है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Blindfold game: a friend holds a solid behind you and says how many corners it has. Can you guess which one?",
+      "hi": "आँखें बंद करने का खेल: दोस्त किसी ठोस को पीछे पकड़कर उसके कोने बताए। क्या तुम पहचान सकते हो कि वह कौन-सा है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Chapter opener",
+   "shows": "A table of Indian musical instruments seen together: a dholak, a tabla pair, a matka, a flute and a shehnai",
+   "view": "Slightly above the table, soft daylight, no people",
+   "right": "Each instrument is clearly one solid shape: the drum a cylinder, the matka nearly a sphere, the shehnai a long cone",
+   "avoid": "People, brand marks, text on the instruments"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "2.2",
+   "use": "Solid-shape lab objects (shared)",
+   "shows": "Five plain solids: a cube, a cuboid, a cylinder, a cone and a sphere in plain wood or card colour",
+   "view": "Front, side, top and three-quarter views, same size and centre, transparent background",
+   "right": "Edges and corners sharp, faces flat or curved exactly as in the real solid",
+   "avoid": "Printed numbers, dots like a dice, shiny glare"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Gift-box decoration lab",
+   "shows": "A gift box shaped like a cube with a ribbon along one edge, a star sticker on one face and a pompom ball on one corner",
+   "view": "Three-quarter view from above, transparent background",
+   "right": "One star on a face, one ribbon on an edge, one pompom on a corner, so the three parts are clear",
+   "avoid": "Gift tags with writing; wrapping paper with patterns that hide the edges"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "2.2",
+   "use": "Roll or slide",
+   "shows": "A steel tin: frame 1 standing on its flat base sliding on a table, frame 2 lying on its side rolling, frame 3 a football rolling on the same table",
+   "view": "Identical side view in all frames",
+   "right": "The tin rolls only when it lies on its curved side",
+   "avoid": "Hands in the frame; moving camera"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Touch and tell objects",
+   "shows": "Eight real objects each cut out on transparent background: a ball, a steel tin, a matka, a party cap, an ice-cream cone, a dice, a matchbox, a brick",
+   "view": "Straight front view, even soft light",
+   "right": "Each object matches its solid shape; the cone has one pointed tip",
+   "avoid": "Brand names on the tin or the matchbox"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Blindfold game",
+   "shows": "Two children seen from behind in a classroom; one wears a scarf over the eyes and holds a ball, the other holds a cube behind their back",
+   "view": "Waist height from the side, bright classroom",
+   "right": "Only hands, scarf and the objects tell the story",
+   "avoid": "Faces; text on the board"
+  }
+ ]
+}

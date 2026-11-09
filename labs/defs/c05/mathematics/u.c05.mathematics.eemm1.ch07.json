@@ -1,0 +1,977 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch07",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "Shapes and Patterns",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Weaving mats: patterns on a grid",
+   "labs": [
+    "c05-mathematics-eemm1-ch07-weaving-rows"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Tiling and tessellation",
+   "labs": [
+    "c05-mathematics-eemm1-ch07-tiles-fit"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Triangles by their sides",
+   "labs": [
+    "c05-mathematics-eemm1-ch07-triangle-sides"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Quadrilaterals and their properties",
+   "labs": [
+    "c05-mathematics-eemm1-ch07-which-shape"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "Tangram",
+   "labs": [
+    "c05-mathematics-eemm1-ch07-tangram"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch07-weaving-rows",
+   "topic": "7.1",
+   "template": "pattern",
+   "title": {
+    "en": "Weave the mat: over and under",
+    "hi": "चटाई बुनो: ऊपर और नीचे"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "colours",
+    "seed": [
+     "red",
+     "blue"
+    ],
+    "rule": "ab",
+    "show": 6
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a mat, the first row goes 1 over, 1 under. The next row goes 1 under, 1 over. Each row uses a different colour strip: red, blue, red, blue... What colour is the 7th row?",
+      "hi": "चटाई में पहली कतार 1 ऊपर, 1 नीचे चलती है। अगली कतार 1 नीचे, 1 ऊपर। हर कतार में अलग रंग की पट्टी है: लाल, नीली, लाल, नीली... सातवीं कतार किस रंग की होगी?"
+     },
+     "options": [
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल"
+      },
+      {
+       "id": "blue",
+       "en": "Blue",
+       "hi": "नीली"
+      }
+     ],
+     "answer": "red"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the colour that comes next in the pattern.",
+      "hi": "पैटर्न में अगला रंग चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the colour after that.",
+      "hi": "उसके बाद का रंग चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Say the repeating part of the pattern.",
+      "hi": "पैटर्न का दोहराया जाने वाला भाग बताओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The strips go red, blue, red, blue. The part 'red, blue' repeats again and again. Odd rows are red and even rows are blue. In weaving, rows alternate their over-and-under steps, so the pattern repeats after 2 rows.",
+      "hi": "पट्टियाँ लाल, नीली, लाल, नीली चलती हैं। 'लाल, नीली' वाला भाग बार-बार दोहराया जाता है। विषम कतारें लाल और सम कतारें नीली हैं। बुनाई में कतारें अपने ऊपर-नीचे के कदम बारी-बारी से बदलती हैं, इसलिए पैटर्न 2 कतारों के बाद दोहराता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The pattern repeats every 2 rows. What colour is row 10?",
+        "hi": "पैटर्न हर 2 कतारों पर दोहराता है। कतार 10 किस रंग की है?"
+       },
+       "options": [
+        {
+         "en": "Blue",
+         "hi": "नीली"
+        },
+        {
+         "en": "Red",
+         "hi": "लाल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Even rows are blue: 2, 4, 6, 8, 10.",
+        "hi": "सम कतारें नीली हैं: 2, 4, 6, 8, 10।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Odd rows 1, 3, 5, 7, 9 are red. Row 10 is even.",
+         "hi": "विषम कतारें 1, 3, 5, 7, 9 लाल हैं। कतार 10 सम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try to weave a mat with strips in a 3-step pattern at home: 2 over, 1 under, repeat. Write the steps of each row until the pattern repeats.",
+      "hi": "घर पर 3 कदम वाले पैटर्न की चटाई बुनकर देखो: 2 ऊपर, 1 नीचे, दोहराओ। हर कतार के कदम लिखो जब तक पैटर्न दोहराए नहीं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch07-tiles-fit",
+   "topic": "7.2",
+   "template": "sort",
+   "title": {
+    "en": "Do they tile without gaps?",
+    "hi": "क्या ये बिना खाली जगह के जुड़ते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fit",
+      "label": {
+       "en": "Fit together, no gaps",
+       "hi": "बिना खाली जगह के जुड़ते हैं"
+      }
+     },
+     {
+      "id": "gap",
+      "label": {
+       "en": "Leave gaps",
+       "hi": "खाली जगह छोड़ते हैं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "t1",
+      "text": {
+       "en": "Squares",
+       "hi": "वर्ग"
+      },
+      "bin": "fit",
+      "why": {
+       "en": "Four squares meet at a point and fill the space exactly.",
+       "hi": "चार वर्ग एक बिंदु पर मिलकर जगह को ठीक भर देते हैं।"
+      }
+     },
+     {
+      "id": "t2",
+      "text": {
+       "en": "Equilateral triangles",
+       "hi": "समबाहु त्रिभुज"
+      },
+      "bin": "fit",
+      "why": {
+       "en": "Six triangles fit around a point with no gap and no overlap.",
+       "hi": "छह त्रिभुज एक बिंदु के चारों ओर बिना खाली जगह और बिना ऊपर-नीचे चढ़े फिट होते हैं।"
+      }
+     },
+     {
+      "id": "t3",
+      "text": {
+       "en": "Regular hexagons",
+       "hi": "सम षट्भुज"
+      },
+      "bin": "fit",
+      "why": {
+       "en": "Three hexagons meet at a point and fill it exactly, like a honeycomb.",
+       "hi": "तीन षट्भुज एक बिंदु पर मिलकर उसे ठीक भर देते हैं, छत्ते की तरह।"
+      }
+     },
+     {
+      "id": "t4",
+      "text": {
+       "en": "Rectangles",
+       "hi": "आयत"
+      },
+      "bin": "fit",
+      "why": {
+       "en": "Rectangles have right angles, so four meet at a point, like floor tiles.",
+       "hi": "आयतों के कोने समकोण होते हैं, इसलिए फ़र्श की टाइलों की तरह चार एक बिंदु पर मिलते हैं।"
+      }
+     },
+     {
+      "id": "t5",
+      "text": {
+       "en": "Regular pentagons",
+       "hi": "सम पंचभुज"
+      },
+      "bin": "gap",
+      "why": {
+       "en": "Three pentagons around a point leave a gap, and a fourth does not fit.",
+       "hi": "तीन पंचभुजों के बीच खाली जगह रह जाती है और चौथा फिट नहीं होता।"
+      }
+     },
+     {
+      "id": "t6",
+      "text": {
+       "en": "Regular octagons",
+       "hi": "सम अष्टभुज"
+      },
+      "bin": "gap",
+      "why": {
+       "en": "Octagons alone leave gaps between them.",
+       "hi": "अकेले अष्टभुज आपस में खाली जगह छोड़ देते हैं।"
+      }
+     },
+     {
+      "id": "t7",
+      "text": {
+       "en": "Circles",
+       "hi": "वृत्त"
+      },
+      "bin": "gap",
+      "why": {
+       "en": "Circles are round, so there are always gaps between them.",
+       "hi": "वृत्त गोल होते हैं, इसलिए उनके बीच हमेशा खाली जगह रहती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:t1",
+     "expect": "correct:t1",
+     "say": {
+      "en": "Tap 'Squares' and drop them in the right box.",
+      "hi": "'वर्ग' पर टैप करो और सही डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Regular pentagons have 5 equal sides. Will they tile a floor without gaps?",
+      "hi": "सम पंचभुज की 5 भुजाएँ बराबर होती हैं। क्या वे बिना खाली जगह के फ़र्श भर सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, there will be gaps",
+       "hi": "नहीं, खाली जगह रहेगी"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, no gaps",
+       "hi": "हाँ, खाली जगह नहीं रहेगी"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:t5",
+     "expect": "correct:t5",
+     "say": {
+      "en": "Place 'Regular pentagons'.",
+      "hi": "'सम पंचभुज' को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाकी को छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A shape tiles, or tessellates, when copies of it fit around a point with no gap and no overlap. Squares, equilateral triangles and regular hexagons do this. Regular pentagons, octagons and circles do not. Rectangles tile too.",
+      "hi": "कोई आकृति टेसलेट करती है, यानी तल भरती है, जब उसकी नकलें एक बिंदु के चारों ओर बिना खाली जगह और बिना ऊपर चढ़े फिट हों। वर्ग, समबाहु त्रिभुज और सम षट्भुज ऐसा करते हैं। सम पंचभुज, अष्टभुज और वृत्त नहीं करते। आयत भी तल भरते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do bathroom floors use square or rectangle tiles, not circles?",
+        "hi": "स्नानघर के फ़र्श पर वर्ग या आयत की टाइलें क्यों लगती हैं, वृत्त की क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "Circles leave gaps",
+         "hi": "वृत्त के बीच खाली जगह रह जाती है"
+        },
+        {
+         "en": "Circles are too heavy",
+         "hi": "वृत्त बहुत भारी होते हैं"
+        },
+        {
+         "en": "Squares are always bigger",
+         "hi": "वर्ग हमेशा बड़े होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Squares and rectangles fill the floor completely. Round tiles would leave gaps between them.",
+        "hi": "वर्ग और आयत फ़र्श को पूरा भर देते हैं। गोल टाइलों के बीच खाली जगह रहती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The weight of a tile has nothing to do with whether it fits without gaps.",
+         "hi": "टाइल के वज़न का इससे कोई संबंध नहीं कि वह बिना खाली जगह के बैठती है या नहीं।"
+        },
+        {
+         "en": "A square can be small or big. What matters is how it fits next to others.",
+         "hi": "वर्ग छोटा भी हो सकता है और बड़ा भी। मायने यह रखता है कि वह दूसरों के पास कैसे बैठता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at floors, walls and honeycombs around you. Which shapes do you find? Draw one pattern with two shapes.",
+      "hi": "अपने आसपास फ़र्श, दीवारें और शहद के छत्ते देखो। कौन-से आकार मिलते हैं? दो आकारों से एक पैटर्न बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch07-triangle-sides",
+   "topic": "7.3",
+   "template": "sort",
+   "title": {
+    "en": "Equal sides: triangle names",
+    "hi": "बराबर भुजाएँ: त्रिभुज के नाम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "eq",
+      "label": {
+       "en": "Equilateral: all 3 equal",
+       "hi": "समबाहु: तीनों बराबर"
+      }
+     },
+     {
+      "id": "iso",
+      "label": {
+       "en": "Isosceles: 2 equal",
+       "hi": "समद्विबाहु: दो बराबर"
+      }
+     },
+     {
+      "id": "sc",
+      "label": {
+       "en": "Scalene: none equal",
+       "hi": "विषमबाहु: कोई बराबर नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a1",
+      "text": {
+       "en": "Sides 3 cm, 3 cm, 3 cm",
+       "hi": "भुजाएँ 3 सेमी, 3 सेमी, 3 सेमी"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "All three sides are equal.",
+       "hi": "तीनों भुजाएँ बराबर हैं।"
+      }
+     },
+     {
+      "id": "a2",
+      "text": {
+       "en": "Sides 7 cm, 7 cm, 7 cm",
+       "hi": "भुजाएँ 7 सेमी, 7 सेमी, 7 सेमी"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "All three sides are 7 cm.",
+       "hi": "तीनों भुजाएँ 7 सेमी हैं।"
+      }
+     },
+     {
+      "id": "a3",
+      "text": {
+       "en": "Sides 5 cm, 5 cm, 3 cm",
+       "hi": "भुजाएँ 5 सेमी, 5 सेमी, 3 सेमी"
+      },
+      "bin": "iso",
+      "why": {
+       "en": "Two sides are 5 cm, the third is different.",
+       "hi": "दो भुजाएँ 5 सेमी हैं, तीसरी अलग।"
+      }
+     },
+     {
+      "id": "a4",
+      "text": {
+       "en": "Sides 6 cm, 6 cm, 9 cm",
+       "hi": "भुजाएँ 6 सेमी, 6 सेमी, 9 सेमी"
+      },
+      "bin": "iso",
+      "why": {
+       "en": "Exactly two sides are equal.",
+       "hi": "ठीक दो भुजाएँ बराबर हैं।"
+      }
+     },
+     {
+      "id": "a5",
+      "text": {
+       "en": "Sides 8 cm, 4 cm, 8 cm",
+       "hi": "भुजाएँ 8 सेमी, 4 सेमी, 8 सेमी"
+      },
+      "bin": "iso",
+      "why": {
+       "en": "Two sides are 8 cm.",
+       "hi": "दो भुजाएँ 8 सेमी हैं।"
+      }
+     },
+     {
+      "id": "a6",
+      "text": {
+       "en": "Sides 3 cm, 4 cm, 5 cm",
+       "hi": "भुजाएँ 3 सेमी, 4 सेमी, 5 सेमी"
+      },
+      "bin": "sc",
+      "why": {
+       "en": "All three sides are different.",
+       "hi": "तीनों भुजाएँ अलग-अलग हैं।"
+      }
+     },
+     {
+      "id": "a7",
+      "text": {
+       "en": "Sides 4 cm, 5 cm, 6 cm",
+       "hi": "भुजाएँ 4 सेमी, 5 सेमी, 6 सेमी"
+      },
+      "bin": "sc",
+      "why": {
+       "en": "No two sides are equal.",
+       "hi": "कोई दो भुजाएँ बराबर नहीं हैं।"
+      }
+     },
+     {
+      "id": "a8",
+      "text": {
+       "en": "Sides 6 cm, 8 cm, 10 cm",
+       "hi": "भुजाएँ 6 सेमी, 8 सेमी, 10 सेमी"
+      },
+      "bin": "sc",
+      "why": {
+       "en": "All three sides are different.",
+       "hi": "तीनों भुजाएँ अलग-अलग हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a1",
+     "expect": "correct:a1",
+     "say": {
+      "en": "Place 'Sides 3 cm, 3 cm, 3 cm' in its box.",
+      "hi": "'भुजाएँ 3 सेमी, 3 सेमी, 3 सेमी' को उसके डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A triangle has two equal sides. Do you think two of its angles are also equal?",
+      "hi": "एक त्रिभुज की दो भुजाएँ बराबर हैं। क्या तुम्हें लगता है कि उसके दो कोण भी बराबर हैं?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, two angles are equal",
+       "hi": "हाँ, दो कोण बराबर हैं"
+      },
+      {
+       "id": "no",
+       "en": "No, angles are all different",
+       "hi": "नहीं, सब कोण अलग हैं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:a3",
+     "expect": "correct:a3",
+     "say": {
+      "en": "Place 'Sides 5 cm, 5 cm, 3 cm'.",
+      "hi": "'भुजाएँ 5 सेमी, 5 सेमी, 3 सेमी' को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards and tap Check.",
+      "hi": "बाकी कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A triangle with all three sides equal is equilateral. With exactly two equal sides it is isosceles. With no equal sides it is scalene. If you fold an isosceles triangle in half, the two equal angles at the base match each other.",
+      "hi": "तीनों भुजाएँ बराबर हों तो समबाहु त्रिभुज। ठीक दो भुजाएँ बराबर हों तो समद्विबाहु। कोई भुजा बराबर न हो तो विषमबाहु। समद्विबाहु त्रिभुज को बीच से मोड़ने पर आधार के दोनों बराबर कोण एक-दूसरे पर बैठ जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A triangle has sides 9 cm, 9 cm and 2 cm. What kind is it?",
+        "hi": "एक त्रिभुज की भुजाएँ 9 सेमी, 9 सेमी और 2 सेमी हैं। यह कौन-सा त्रिभुज है?"
+       },
+       "options": [
+        {
+         "en": "Isosceles",
+         "hi": "समद्विबाहु"
+        },
+        {
+         "en": "Equilateral",
+         "hi": "समबाहु"
+        },
+        {
+         "en": "Scalene",
+         "hi": "विषमबाहु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two sides are equal (9 and 9), and the third (2) is different: isosceles.",
+        "hi": "दो भुजाएँ बराबर हैं (9 और 9) और तीसरी (2) अलग है: समद्विबाहु।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equilateral needs all three sides equal. Here one side is only 2 cm.",
+         "hi": "समबाहु में तीनों भुजाएँ बराबर होनी चाहिए। यहाँ एक भुजा केवल 2 सेमी है।"
+        },
+        {
+         "en": "Scalene means no sides are equal, but two sides are 9 cm here.",
+         "hi": "विषमबाहु में कोई भुजा बराबर नहीं होती, पर यहाँ दो भुजाएँ 9 सेमी हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Cut three straws of lengths 3, 4 and 5 and make a triangle. Can you make a triangle with straws 2, 3 and 8?",
+      "hi": "3, 4 और 5 लंबाई की तीन स्ट्रॉ काटकर त्रिभुज बनाओ। क्या 2, 3 और 8 की स्ट्रॉ से त्रिभुज बन सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch07-which-shape",
+   "topic": "7.4",
+   "template": "match",
+   "title": {
+    "en": "Which four-sided shape am I?",
+    "hi": "मैं कौन-सी चार भुजा वाली आकृति हूँ?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "sq",
+      "left": {
+       "en": "All sides equal, all angles right angles",
+       "hi": "सब भुजाएँ बराबर, सब कोण समकोण"
+      },
+      "right": {
+       "en": "Square",
+       "hi": "वर्ग"
+      },
+      "why": {
+       "en": "A square is the only shape that has equal sides and four right angles.",
+       "hi": "वर्ग ही वह आकृति है जिसमें भुजाएँ बराबर और चारों कोण समकोण होते हैं।"
+      }
+     },
+     {
+      "id": "re",
+      "left": {
+       "en": "Opposite sides equal, all angles right angles, sides not all equal",
+       "hi": "आमने-सामने की भुजाएँ बराबर, सब कोण समकोण, पर सब भुजाएँ बराबर नहीं"
+      },
+      "right": {
+       "en": "Rectangle",
+       "hi": "आयत"
+      },
+      "why": {
+       "en": "A rectangle has four right angles but its sides are of two different lengths.",
+       "hi": "आयत के चारों कोण समकोण होते हैं पर भुजाएँ दो अलग लंबाइयों की होती हैं।"
+      }
+     },
+     {
+      "id": "rh",
+      "left": {
+       "en": "All four sides equal, angles not right angles",
+       "hi": "चारों भुजाएँ बराबर, कोण समकोण नहीं"
+      },
+      "right": {
+       "en": "Rhombus",
+       "hi": "समचतुर्भुज"
+      },
+      "why": {
+       "en": "Equal sides but slanted angles make a rhombus.",
+       "hi": "बराबर भुजाएँ पर तिरछे कोण समचतुर्भुज बनाते हैं।"
+      }
+     },
+     {
+      "id": "pa",
+      "left": {
+       "en": "Opposite sides and opposite angles equal, no right angle",
+       "hi": "आमने-सामने की भुजाएँ और कोण बराबर, कोई समकोण नहीं"
+      },
+      "right": {
+       "en": "Parallelogram",
+       "hi": "समांतर चतुर्भुज"
+      },
+      "why": {
+       "en": "A parallelogram has equal opposite sides and angles, but its angles are not right angles.",
+       "hi": "समांतर चतुर्भुज में आमने-सामने की भुजाएँ और कोण बराबर होते हैं पर कोण समकोण नहीं होते।"
+      }
+     },
+     {
+      "id": "ki",
+      "left": {
+       "en": "Two pairs of equal sides that sit next to each other",
+       "hi": "बराबर भुजाओं के दो जोड़े जो पास-पास हैं"
+      },
+      "right": {
+       "en": "Kite",
+       "hi": "पतंग"
+      },
+      "why": {
+       "en": "In a kite the equal sides are adjacent, side by side.",
+       "hi": "पतंग में बराबर भुजाएँ पास-पास होती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:sq",
+     "expect": "matched:sq",
+     "say": {
+      "en": "Match the statement about a shape with equal sides and four right angles.",
+      "hi": "बराबर भुजाओं और चारों समकोण वाली आकृति के कथन को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A rectangle has four right angles. Is a square also a rectangle?",
+      "hi": "आयत के चारों कोण समकोण होते हैं। क्या वर्ग भी आयत है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, a square is a special rectangle",
+       "hi": "हाँ, वर्ग एक विशेष आयत है"
+      },
+      {
+       "id": "no",
+       "en": "No, never",
+       "hi": "नहीं, कभी नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "left:re",
+     "expect": "matched:re",
+     "say": {
+      "en": "Now match the rectangle.",
+      "hi": "अब आयत को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाकी मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Look at sides and angles. A square has 4 equal sides and 4 right angles. A rectangle has 4 right angles and equal opposite sides. A rhombus has 4 equal sides but slanted angles. A parallelogram has equal opposite sides and angles. A kite has equal adjacent sides. A square is special: it is also a rectangle, a rhombus and a parallelogram.",
+      "hi": "भुजाओं और कोणों को देखो। वर्ग की 4 भुजाएँ बराबर और 4 कोण समकोण होते हैं। आयत के 4 कोण समकोण और आमने-सामने की भुजाएँ बराबर होती हैं। समचतुर्भुज की 4 भुजाएँ बराबर पर कोण तिरछे। समांतर चतुर्भुज की आमने-सामने की भुजाएँ और कोण बराबर। पतंग की पास-पास की भुजाएँ बराबर। वर्ग विशेष है: वह आयत, समचतुर्भुज और समांतर चतुर्भुज भी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which shape has all four sides equal but is not a square?",
+        "hi": "कौन-सी आकृति की चारों भुजाएँ बराबर हैं पर वह वर्ग नहीं है?"
+       },
+       "options": [
+        {
+         "en": "Rhombus",
+         "hi": "समचतुर्भुज"
+        },
+        {
+         "en": "Rectangle",
+         "hi": "आयत"
+        },
+        {
+         "en": "Kite",
+         "hi": "पतंग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A rhombus has four equal sides, but its angles are not right angles.",
+        "hi": "समचतुर्भुज की चारों भुजाएँ बराबर होती हैं पर उसके कोण समकोण नहीं होते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A rectangle has equal opposite sides, but its sides are of two lengths.",
+         "hi": "आयत की आमने-सामने की भुजाएँ बराबर होती हैं, पर भुजाएँ दो लंबाइयों की होती हैं।"
+        },
+        {
+         "en": "A kite has only adjacent pairs of equal sides, not all four.",
+         "hi": "पतंग में केवल पास-पास के जोड़े बराबर होते हैं, चारों नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Cut a square piece of paper along one diagonal. Which two shapes can you make by joining the two triangles in different ways?",
+      "hi": "वर्गाकार कागज़ को एक विकर्ण पर काटो। दोनों त्रिभुजों को अलग-अलग तरह से जोड़कर कौन-सी दो आकृतियाँ बना सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch07-tangram",
+   "topic": "7.5",
+   "template": "shapes",
+   "title": {
+    "en": "Tangram: seven pieces, one shape",
+    "hi": "टैनग्राम: सात टुकड़े, एक आकृति"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "tangram",
+    "task": "square"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tangram has 7 flat pieces cut from a square. Which shapes do you think are inside?",
+      "hi": "टैनग्राम में एक वर्ग से कटे 7 समतल टुकड़े होते हैं। तुम्हें इनमें कौन-से आकार लगते हैं?"
+     },
+     "options": [
+      {
+       "id": "mix",
+       "en": "Triangles, a square and a parallelogram",
+       "hi": "त्रिभुज, एक वर्ग और एक समांतर चतुर्भुज"
+      },
+      {
+       "id": "circles",
+       "en": "Circles and ovals",
+       "hi": "वृत्त और अंडाकार"
+      },
+      {
+       "id": "same",
+       "en": "7 squares",
+       "hi": "7 वर्ग"
+      }
+     ],
+     "answer": "mix"
+    },
+    {
+     "kind": "do",
+     "target": "piece:*",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag any tangram piece into the outline. Tap a piece to turn it a little.",
+      "hi": "कोई भी टैनग्राम टुकड़ा रूपरेखा में खिसकाओ। उसे थोड़ा घुमाने के लिए उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "piece:*",
+     "expect": "drawn",
+     "say": {
+      "en": "Move another piece next to it so that the corners fit together.",
+      "hi": "दूसरा टुकड़ा उसके पास ऐसे रखो कि कोने आपस में मिलें।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A tangram has 5 triangles (2 big, 1 medium and 2 small), 1 square and 1 parallelogram. All seven pieces together make a square. Pieces have right angles and 45 degree turns, so edges can lie along each other.",
+      "hi": "टैनग्राम में 5 त्रिभुज (2 बड़े, 1 मध्यम और 2 छोटे), 1 वर्ग और 1 समांतर चतुर्भुज होते हैं। सातों टुकड़े मिलकर एक वर्ग बनाते हैं। टुकड़ों में समकोण होते हैं और वे 45 अंश के कदमों में घूमते हैं, इसलिए उनकी किनारियाँ एक-दूसरे पर बैठ जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many triangles are there in a tangram set?",
+        "hi": "टैनग्राम के सेट में कितने त्रिभुज होते हैं?"
+       },
+       "options": [
+        "5",
+        "2",
+        "7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two big, one medium and two small triangles make 5.",
+        "hi": "दो बड़े, एक मध्यम और दो छोटे त्रिभुज मिलाकर 5 होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 is only the number of big triangles. Count the medium and small ones too.",
+         "hi": "2 केवल बड़े त्रिभुजों की संख्या है। मध्यम और छोटे भी गिनो।"
+        },
+        {
+         "en": "There are 7 pieces in all, but not all are triangles: one is a square and one a parallelogram.",
+         "hi": "कुल 7 टुकड़े हैं, पर सब त्रिभुज नहीं हैं: एक वर्ग और एक समांतर चतुर्भुज है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep moving the pieces until the whole square is filled. Then press Next to try another outline, such as a triangle or a rectangle.",
+      "hi": "टुकड़े तब तक खिसकाओ जब तक पूरा वर्ग न भर जाए। फिर किसी दूसरी रूपरेखा, जैसे त्रिभुज या आयत, के लिए अगला दबाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Chapter hook: woven baskets and mats",
+   "shows": "A woven bamboo basket and a cotton mat with a clear over-and-under weave on a village courtyard floor",
+   "view": "Close three-quarter view, soft daylight",
+   "right": "Weave pattern sharp and countable",
+   "avoid": "Brand tags, faces"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Paper weaving steps",
+   "shows": "Coloured paper mat with slits, then strips woven in across, 4 frames: slits cut, first strip, second strip, finished mat",
+   "view": "Top-down, same framing and light",
+   "right": "Over-under pattern consistent frame to frame",
+   "avoid": "Pen marks, words"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Tessellations in real life",
+   "shows": "A honeycomb frame, a tiled floor and a brick wall side by side in one clean collage of three separate photographs",
+   "view": "Straight on, even light",
+   "right": "Hexagons, squares and rectangles clear in each",
+   "avoid": "Text, logos"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.5",
+   "use": "Tangram set",
+   "shows": "A seven-piece wooden tangram, pieces in seven different colours, separate cut-outs and also assembled as a square",
+   "view": "Top-down, even light",
+   "right": "All 7 pieces exact shapes, angles true",
+   "avoid": "Printed marks"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "7.4",
+   "use": "Quadrilateral models",
+   "shows": "A square, rectangle, rhombus, parallelogram and kite as flat coloured paper cut-outs, separate files",
+   "view": "Top-down, even light",
+   "right": "Sides and angles accurate for each shape",
+   "avoid": "Labels, shading"
+  }
+ ]
+}

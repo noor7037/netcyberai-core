@@ -1,0 +1,1901 @@
+{
+  "chapter_key": "u.c12.informatics_practices.leip1.ch03",
+  "class": 12,
+  "subject_id": "informatics_practices",
+  "title": "Data Handling using Pandas - II",
+  "source": "https://ncert.nic.in/textbook/pdf/leip103.pdf",
+  "topics": [
+    {
+      "n": "3.2",
+      "title": "Descriptive statistics: mean, median, mode, spread and quartiles",
+      "labs": [
+        "c12-informatics_practices-leip1-ch03-stats-mean",
+        "c12-informatics_practices-leip1-ch03-stats-median",
+        "c12-informatics_practices-leip1-ch03-stats-mode",
+        "c12-informatics_practices-leip1-ch03-stats-spread"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.3",
+      "title": "Data aggregations with groupby",
+      "labs": [
+        "c12-informatics_practices-leip1-ch03-groupby"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.4",
+      "title": "Sorting a DataFrame",
+      "labs": [
+        "c12-informatics_practices-leip1-ch03-sort-df"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.6",
+      "title": "Altering the index",
+      "labs": [
+        "c12-informatics_practices-leip1-ch03-index-reshape"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.7",
+      "title": "Other DataFrame operations: reshaping data",
+      "labs": [
+        "c12-informatics_practices-leip1-ch03-index-reshape"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.8",
+      "title": "Handling missing values: checking, dropping, estimating",
+      "labs": [
+        "c12-informatics_practices-leip1-ch03-missing-count",
+        "c12-informatics_practices-leip1-ch03-fill-gaps"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.9",
+      "title": "Import and export of data between Pandas and MySQL",
+      "labs": [
+        "c12-informatics_practices-leip1-ch03-mysql-flow"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-informatics_practices-leip1-ch03-stats-mean",
+      "topic": "3.2",
+      "template": "data",
+      "title": {
+        "en": "Mean: the fair share",
+        "hi": "माध्य: बराबर हिस्सा"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "bar",
+        "ask": "mean",
+        "show": 3,
+        "title": {
+          "en": "Marks of five friends in a quiz",
+          "hi": "पाँच दोस्तों के क्विज़ के अंक"
+        },
+        "xlabel": {
+          "en": "Friend",
+          "hi": "दोस्त"
+        },
+        "ylabel": {
+          "en": "Marks",
+          "hi": "अंक"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Asha",
+              "hi": "आशा"
+            },
+            "value": 14
+          },
+          {
+            "label": {
+              "en": "Bilal",
+              "hi": "बिलाल"
+            },
+            "value": 18
+          },
+          {
+            "label": {
+              "en": "Chitra",
+              "hi": "चित्रा"
+            },
+            "value": 12
+          },
+          {
+            "label": {
+              "en": "Deepak",
+              "hi": "दीपक"
+            },
+            "value": 20
+          },
+          {
+            "label": {
+              "en": "Esha",
+              "hi": "ईशा"
+            },
+            "value": 16
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Tap Add to plot the next friend's marks on the bar chart.",
+            "hi": "अगले दोस्त के अंक दंड आलेख पर दिखाने के लिए \"जोड़ो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Add the last friend as well.",
+            "hi": "आख़िरी दोस्त को भी जोड़ो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "If the five friends shared all their marks equally, each would get the same number. Will it be nearer 12, 16 or 20?",
+            "hi": "अगर पाँचों दोस्त अपने सारे अंक बराबर बाँट लें तो हर एक को एक ही संख्या मिलेगी। वह 12, 16 या 20 में से किसके पास होगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Near 12",
+              "hi": "12 के पास"
+            },
+            {
+              "id": "b",
+              "en": "Near 16",
+              "hi": "16 के पास"
+            },
+            {
+              "id": "c",
+              "en": "Near 20",
+              "hi": "20 के पास"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about the mean under the chart.",
+            "hi": "चार्ट के नीचे माध्य वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The mean is the total divided by the number of values: (14 + 18 + 12 + 20 + 16) / 5 = 80 / 5 = 16. It is the fair share. In Pandas, s.mean() or df[\"Marks\"].mean() does this, and it leaves out missing values. Because it uses every value, one very large or very small mark pulls it up or down.",
+            "hi": "माध्य कुल जोड़ को मानों की संख्या से भाग देने पर मिलता है: (14 + 18 + 12 + 20 + 16) / 5 = 80 / 5 = 16। यह बराबर हिस्सा है। Pandas में s.mean() या df[\"Marks\"].mean() यही करता है, और वह ग़ायब मानों को छोड़ देता है। यह हर मान का उपयोग करता है, इसलिए एक बहुत बड़ा या बहुत छोटा अंक इसे ऊपर या नीचे खींच देता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Marks 10, 10, 10, 10, 60 have a mean of 20. Why is 20 not a good picture of a \"typical\" mark?",
+                "hi": "अंक 10, 10, 10, 10, 60 का माध्य 20 है। 20 \"सामान्य\" अंक की अच्छी तस्वीर क्यों नहीं है?"
+              },
+              "options": [
+                {
+                  "en": "One big value 60 pulls the mean up",
+                  "hi": "एक बड़ा मान 60 माध्य को ऊपर खींच लेता है"
+                },
+                {
+                  "en": "The mean ignores the number 10",
+                  "hi": "माध्य संख्या 10 को अनदेखा करता है"
+                },
+                {
+                  "en": "Means can only be 16",
+                  "hi": "माध्य सिर्फ़ 16 हो सकता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The mean uses every value, so an extreme value drags it away from where most of the data sits.",
+                "hi": "माध्य हर मान का उपयोग करता है, इसलिए चरम मान उसे वहाँ से दूर खींच लेता है जहाँ ज़्यादातर डेटा है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The mean does count the 10s. They are just outnumbered in effect by one huge value.",
+                  "hi": "माध्य 10 को गिनता है। बस एक बहुत बड़ा मान उनके असर को दबा देता है।"
+                },
+                {
+                  "en": "The mean depends on the data; it is not fixed at 16.",
+                  "hi": "माध्य डेटा पर निर्भर है; वह 16 पर तय नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag a bar up or down and watch the mean change. Which single bar changes it the most?",
+            "hi": "किसी दंड को ऊपर-नीचे खींचो और माध्य को बदलते देखो। कौन-सा अकेला दंड उसे सबसे ज़्यादा बदलता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch03-stats-median",
+      "topic": "3.2",
+      "template": "data",
+      "title": {
+        "en": "Median: the middle value",
+        "hi": "माध्यिका: बीच का मान"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "bar",
+        "ask": "median",
+        "show": 4,
+        "title": {
+          "en": "Books read by five children",
+          "hi": "पाँच बच्चों की पढ़ी किताबें"
+        },
+        "xlabel": {
+          "en": "Child",
+          "hi": "बच्चा"
+        },
+        "ylabel": {
+          "en": "Books",
+          "hi": "किताबें"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Asha",
+              "hi": "आशा"
+            },
+            "value": 34
+          },
+          {
+            "label": {
+              "en": "Bilal",
+              "hi": "बिलाल"
+            },
+            "value": 12
+          },
+          {
+            "label": {
+              "en": "Chitra",
+              "hi": "चित्रा"
+            },
+            "value": 25
+          },
+          {
+            "label": {
+              "en": "Deepak",
+              "hi": "दीपक"
+            },
+            "value": 40
+          },
+          {
+            "label": {
+              "en": "Esha",
+              "hi": "ईशा"
+            },
+            "value": 18
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Add the last child to the bar chart.",
+            "hi": "आख़िरी बच्चे को दंड आलेख में जोड़ो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The median is the middle value after sorting from small to large. Which bar do you think will be in the middle?",
+            "hi": "माध्यिका छोटे से बड़े क्रम में लगाने के बाद बीच का मान है। तुम्हें क्या लगता है कौन-सा दंड बीच में आएगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "25 books",
+              "hi": "25 किताबें"
+            },
+            {
+              "id": "b",
+              "en": "34 books",
+              "hi": "34 किताबें"
+            },
+            {
+              "id": "c",
+              "en": "12 books",
+              "hi": "12 किताबें"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "sort",
+          "expect": "sorted",
+          "say": {
+            "en": "Tap Sort to line the bars up from small to large.",
+            "hi": "दंडों को छोटे से बड़े क्रम में लगाने के लिए \"छाँटो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about the median.",
+            "hi": "माध्यिका वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "After sorting 12, 18, 25, 34, 40, the middle one is 25, so the median is 25. With an even number of values, the median is the mean of the two middle values. In Pandas it is s.median(). Unlike the mean, the median is not pulled by one extreme value, so it is a better \"typical\" value when the data has outliers.",
+            "hi": "12, 18, 25, 34, 40 को छाँटने पर बीच का मान 25 है, इसलिए माध्यिका 25 है। मानों की संख्या सम हो तो माध्यिका बीच के दो मानों का माध्य होती है। Pandas में यह s.median() है। माध्य के उलट, माध्यिका को एक चरम मान खींचता नहीं, इसलिए जब डेटा में असामान्य मान हों तब यह \"सामान्य\" मान का बेहतर रूप है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is the median of 7, 3, 9, 5?",
+                "hi": "7, 3, 9, 5 की माध्यिका क्या है?"
+              },
+              "options": [
+                {
+                  "en": "6, the mean of 5 and 7",
+                  "hi": "6, 5 और 7 का माध्य"
+                },
+                {
+                  "en": "3",
+                  "hi": "उत्तर 3"
+                },
+                {
+                  "en": "9",
+                  "hi": "उत्तर 9"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Sorted: 3, 5, 7, 9. There are four values, so the median is the mean of the two middle ones: (5 + 7) / 2 = 6.",
+                "hi": "छाँटने पर: 3, 5, 7, 9। चार मान हैं, इसलिए माध्यिका बीच के दो मानों का माध्य है: (5 + 7) / 2 = 6।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "3 is only the smallest value. The median sits in the middle.",
+                  "hi": "3 सबसे छोटा मान है। माध्यिका बीच में होती है।"
+                },
+                {
+                  "en": "9 is the biggest value. The median is not an end value.",
+                  "hi": "9 सबसे बड़ा मान है। माध्यिका कोई सिरे का मान नहीं होती।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag the largest bar even higher. Does the median move? Now compare that with what the mean would do.",
+            "hi": "सबसे बड़े दंड को और ऊँचा खींचो। क्या माध्यिका हिलती है? अब सोचो माध्य क्या करता।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch03-stats-mode",
+      "topic": "3.2",
+      "template": "data",
+      "title": {
+        "en": "Mode: the most common value",
+        "hi": "बहुलक: सबसे आम मान"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "chart": "bar",
+        "ask": "mode",
+        "show": 4,
+        "title": {
+          "en": "Books read by six children this month",
+          "hi": "इस महीने छह बच्चों की पढ़ी किताबें"
+        },
+        "xlabel": {
+          "en": "Child",
+          "hi": "बच्चा"
+        },
+        "ylabel": {
+          "en": "Books",
+          "hi": "किताबें"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Asha",
+              "hi": "आशा"
+            },
+            "value": 3
+          },
+          {
+            "label": {
+              "en": "Bilal",
+              "hi": "बिलाल"
+            },
+            "value": 5
+          },
+          {
+            "label": {
+              "en": "Chitra",
+              "hi": "चित्रा"
+            },
+            "value": 3
+          },
+          {
+            "label": {
+              "en": "Deepak",
+              "hi": "दीपक"
+            },
+            "value": 4
+          },
+          {
+            "label": {
+              "en": "Esha",
+              "hi": "ईशा"
+            },
+            "value": 3
+          },
+          {
+            "label": {
+              "en": "Farid",
+              "hi": "फ़रीद"
+            },
+            "value": 5
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Add the next child.",
+            "hi": "अगले बच्चे को जोड़ो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Add the last child.",
+            "hi": "आख़िरी बच्चे को जोड़ो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Look at the six bars. Which number of books appears most often?",
+            "hi": "छहों दंड देखो। किताबों की कौन-सी संख्या सबसे ज़्यादा बार आती है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "3 books",
+              "hi": "3 किताबें"
+            },
+            {
+              "id": "b",
+              "en": "5 books",
+              "hi": "5 किताबें"
+            },
+            {
+              "id": "c",
+              "en": "4 books",
+              "hi": "4 किताबें"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about the mode.",
+            "hi": "बहुलक वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The mode is the value that occurs most often. Here 3 appears three times, 5 twice and 4 once, so the mode is 3. In Pandas, s.mode() returns a Series, because a column can have more than one mode when two values tie. The mode is the only one of the three that also works for words, such as the most common favourite colour.",
+            "hi": "बहुलक वह मान है जो सबसे ज़्यादा बार आता है। यहाँ 3 तीन बार, 5 दो बार और 4 एक बार आता है, इसलिए बहुलक 3 है। Pandas में s.mode() एक Series लौटाता है, क्योंकि दो मान बराबर बार आएँ तो एक स्तंभ के एक से ज़्यादा बहुलक हो सकते हैं। तीनों में बहुलक अकेला है जो शब्दों पर भी चलता है, जैसे सबसे आम पसंदीदा रंग।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why does s.mode() give a Series and not one number?",
+                "hi": "s.mode() एक संख्या की जगह Series क्यों देता है?"
+              },
+              "options": [
+                {
+                  "en": "Two or more values can tie for most frequent",
+                  "hi": "दो या ज़्यादा मान सबसे आम होने में बराबर हो सकते हैं"
+                },
+                {
+                  "en": "Because mode always has two values",
+                  "hi": "क्योंकि बहुलक के हमेशा दो मान होते हैं"
+                },
+                {
+                  "en": "Because mean is also a Series",
+                  "hi": "क्योंकि माध्य भी Series होता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "If 3 and 5 both appear twice, both are modes, so Pandas returns all of them in a Series.",
+                "hi": "अगर 3 और 5 दोनों दो-दो बार आएँ तो दोनों बहुलक हैं, इसलिए Pandas सब को एक Series में लौटाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Mode may have one value, two or more; the count is not fixed at two.",
+                  "hi": "बहुलक का एक मान भी हो सकता है, दो या ज़्यादा भी; संख्या दो पर तय नहीं है।"
+                },
+                {
+                  "en": "The mean of a column is a single number, not a Series.",
+                  "hi": "स्तंभ का माध्य एक अकेली संख्या होता है, Series नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag one of the 3-bars up to 5. How many modes does the data have now?",
+            "hi": "3 वाले एक दंड को 5 तक खींचो। अब डेटा के कितने बहुलक हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch03-stats-spread",
+      "topic": "3.2",
+      "template": "code",
+      "title": {
+        "en": "Variance and standard deviation: how spread out?",
+        "hi": "प्रसरण और मानक विचलन: कितना बिखरा हुआ?"
+      },
+      "minutes": 8,
+      "level": "stretch",
+      "config": {
+        "mode": "trace",
+        "program": [
+          "marks = [4, 6, 8, 10]",
+          "n = len(marks)",
+          "mean = sum(marks) / n",
+          "total = 0",
+          "for m in marks:",
+          "    total = total + (m - mean) ** 2",
+          "var = total / (n - 1)",
+          "std = var ** 0.5",
+          "print(mean, var, round(std, 2))"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The mean of 4, 6, 8, 10 is 7. Each mark is some distance from 7. Will squaring those distances and adding them give a small or a big number?",
+            "hi": "4, 6, 8, 10 का माध्य 7 है। हर अंक 7 से कुछ दूरी पर है। उन दूरियों का वर्ग करके जोड़ने पर छोटी संख्या आएगी या बड़ी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "The total of squares is 20",
+              "hi": "वर्गों का जोड़ 20 है"
+            },
+            {
+              "id": "b",
+              "en": "The total of squares is 0",
+              "hi": "वर्गों का जोड़ 0 है"
+            },
+            {
+              "id": "c",
+              "en": "The total of squares is 2",
+              "hi": "वर्गों का जोड़ 2 है"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "step",
+          "expect": "stepped",
+          "say": {
+            "en": "Press Step. Watch total grow by (mark - mean) squared for each mark.",
+            "hi": "\"एक क़दम\" दबाओ। देखो total में हर अंक के लिए (अंक - माध्य) का वर्ग जुड़ता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "done",
+          "say": {
+            "en": "Press Run to finish and read the three printed numbers.",
+            "hi": "पूरा करने के लिए \"चलाओ\" दबाओ और छपी तीनों संख्याएँ पढ़ो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The distances from the mean are -3, -1, 1 and 3, and their squares are 9, 1, 1 and 9, which add to 20. The variance divides by n - 1 = 3, which gives about 6.67. The standard deviation is its square root, about 2.58, and it is in the same unit as the marks, so it says \"marks are usually about 2.6 away from the mean\". Pandas gives these with s.var() and s.std(), and both divide by n - 1. A bigger spread gives a bigger number. Quartiles, from s.quantile(0.25) and s.quantile(0.75), mark the values below which a quarter and three quarters of the data lie.",
+            "hi": "माध्य से दूरियाँ -3, -1, 1 और 3 हैं, और उनके वर्ग 9, 1, 1 और 9 हैं, जिनका जोड़ 20 है। प्रसरण इसे n - 1 = 3 से भाग देता है, जो लगभग 6.67 आता है। मानक विचलन उसका वर्गमूल है, लगभग 2.58, और वह अंकों वाली ही इकाई में है, इसलिए कहता है \"अंक आम तौर पर माध्य से लगभग 2.6 दूर हैं\"। Pandas इन्हें s.var() और s.std() से देता है, और दोनों n - 1 से भाग देते हैं। बिखराव जितना ज़्यादा, संख्या उतनी बड़ी। चतुर्थक s.quantile(0.25) और s.quantile(0.75) से मिलते हैं, जिनके नीचे डेटा का चौथाई और तीन चौथाई भाग आता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Marks A: 7, 7, 7, 7 and marks B: 1, 5, 9, 13. Which has the bigger standard deviation?",
+                "hi": "अंक A: 7, 7, 7, 7 और अंक B: 1, 5, 9, 13। किसका मानक विचलन बड़ा है?"
+              },
+              "options": [
+                {
+                  "en": "B, because its values are spread out",
+                  "hi": "B, क्योंकि उसके मान दूर-दूर बिखरे हैं"
+                },
+                {
+                  "en": "A, because 7 is bigger than 1",
+                  "hi": "A, क्योंकि 7, 1 से बड़ा है"
+                },
+                {
+                  "en": "They are equal",
+                  "hi": "दोनों बराबर हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Both have mean 7, but B's values lie far from 7, while A's lie exactly on it (standard deviation 0).",
+                "hi": "दोनों का माध्य 7 है, पर B के मान 7 से दूर हैं, जबकि A के मान ठीक 7 पर हैं (मानक विचलन 0)।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The size of a number does not matter. Spread around the mean does.",
+                  "hi": "संख्या के आकार से फ़र्क नहीं पड़ता। माध्य के आसपास बिखराव से पड़ता है।"
+                },
+                {
+                  "en": "They have the same mean but a different spread, so their standard deviations differ.",
+                  "hi": "दोनों का माध्य एक है पर बिखराव अलग है, इसलिए उनके मानक विचलन अलग हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of marks 2, 6, 10, 14 instead. Is the spread bigger or smaller than for 4, 6, 8, 10? Why?",
+            "hi": "अब अंक 2, 6, 10, 14 सोचो। बिखराव 4, 6, 8, 10 से बड़ा है या छोटा? क्यों?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch03-groupby",
+      "topic": "3.3",
+      "template": "table",
+      "title": {
+        "en": "Aggregation: group, then summarise",
+        "hi": "समग्रण: समूह बनाओ, फिर सार निकालो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "group",
+        "tables": {
+          "MARKS": {
+            "columns": [
+              "Student",
+              "Section",
+              "Subject",
+              "Score"
+            ],
+            "rows": [
+              [
+                "Aman",
+                "A",
+                "Maths",
+                72
+              ],
+              [
+                "Bela",
+                "A",
+                "Maths",
+                65
+              ],
+              [
+                "Chirag",
+                "A",
+                "Maths",
+                80
+              ],
+              [
+                "Disha",
+                "A",
+                "Maths",
+                59
+              ],
+              [
+                "Eklavya",
+                "B",
+                "Maths",
+                88
+              ],
+              [
+                "Fiza",
+                "B",
+                "Maths",
+                91
+              ],
+              [
+                "Gautam",
+                "B",
+                "Maths",
+                70
+              ],
+              [
+                "Hira",
+                "B",
+                "Maths",
+                85
+              ],
+              [
+                "Imran",
+                "C",
+                "Maths",
+                60
+              ],
+              [
+                "Jaya",
+                "C",
+                "Maths",
+                78
+              ],
+              [
+                "Kabir",
+                "C",
+                "Maths",
+                66
+              ],
+              [
+                "Lata",
+                "C",
+                "Maths",
+                52
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "Twelve students from sections A, B and C took a Maths test. Group the scores by Section and find the total, then the average of each section. (Sample data made up for this lab.)",
+          "hi": "A, B और C अनुभाग के बारह विद्यार्थियों ने गणित का टेस्ट दिया। अंकों को Section से बाँटकर हर अनुभाग का जोड़ निकालो, फिर औसत। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Each section has four students. If you add up the scores of each section, which do you expect to be the biggest total?",
+            "hi": "हर अनुभाग में चार विद्यार्थी हैं। हर अनुभाग के अंक जोड़ो तो तुम्हें कौन-सा जोड़ सबसे बड़ा लगता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Section A",
+              "hi": "अनुभाग A"
+            },
+            {
+              "id": "b",
+              "en": "Section B",
+              "hi": "अनुभाग B"
+            },
+            {
+              "id": "c",
+              "en": "Section C",
+              "hi": "अनुभाग C"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Choose Section for the groups, SUM, and Score. Then press Run.",
+            "hi": "समूहों के लिए Section, जोड़ के लिए SUM और संख्या के लिए Score चुनो। फिर \"चलाओ\" दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Now choose AVG instead of SUM and press Run again.",
+            "hi": "अब SUM की जगह AVG चुनो और फिर \"चलाओ\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Aggregation follows three steps: split the rows into groups, apply a function (sum, mean, count, min, max) to each group, and combine the answers into a small table. In Pandas this is df.groupby(\"Section\")[\"Score\"].sum(), or .mean() for the average. Section B has total 334 and average 83.5, the highest; A has 276 and 69; C has 256 and 64. When groups have the same size, the biggest total also has the biggest average. When they differ, always check the average.",
+            "hi": "समग्रण के तीन चरण हैं: पंक्तियों को समूहों में बाँटो, हर समूह पर फ़ंक्शन (sum, mean, count, min, max) लगाओ, और उत्तरों को एक छोटी तालिका में जोड़ो। Pandas में यह df.groupby(\"Section\")[\"Score\"].sum() है, या औसत के लिए .mean()। अनुभाग B का जोड़ 334 और औसत 83.5 है, सबसे ऊँचा; A का 276 और 69; C का 256 और 64। जब समूहों का आकार बराबर हो, तब सबसे बड़ा जोड़ सबसे बड़ा औसत भी देता है। आकार अलग हों तो हमेशा औसत जाँचो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does df.groupby(\"Section\")[\"Score\"].mean() return?",
+                "hi": "df.groupby(\"Section\")[\"Score\"].mean() क्या लौटाता है?"
+              },
+              "options": [
+                {
+                  "en": "One average score for each Section",
+                  "hi": "हर Section का एक औसत अंक"
+                },
+                {
+                  "en": "The mean of all 12 scores",
+                  "hi": "सभी 12 अंकों का माध्य"
+                },
+                {
+                  "en": "The mean of the Section names",
+                  "hi": "Section नामों का माध्य"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "groupby makes one group per section, and mean() is then worked out inside each group.",
+                "hi": "groupby हर अनुभाग का एक समूह बनाता है, और फिर mean() हर समूह के अंदर निकलता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That would be df[\"Score\"].mean() with no groupby. Here the groups stay separate.",
+                  "hi": "वह बिना groupby के df[\"Score\"].mean() होता। यहाँ समूह अलग रहते हैं।"
+                },
+                {
+                  "en": "Section names are text, and the mean works on the Score numbers.",
+                  "hi": "Section के नाम पाठ हैं, और माध्य Score की संख्याओं पर चलता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Choose COUNT, MIN and MAX in turn. Which section has the lowest single score?",
+            "hi": "COUNT, MIN और MAX बारी-बारी चुनो। किस अनुभाग में सबसे कम अकेला अंक है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch03-sort-df",
+      "topic": "3.4",
+      "template": "table",
+      "title": {
+        "en": "Sorting a DataFrame",
+        "hi": "DataFrame को छाँटना"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "sort-filter",
+        "tables": {
+          "CLUB": {
+            "columns": [
+              "Student",
+              "Section",
+              "Books",
+              "Pages"
+            ],
+            "rows": [
+              [
+                "Aman",
+                "A",
+                12,
+                3400
+              ],
+              [
+                "Bela",
+                "B",
+                9,
+                2100
+              ],
+              [
+                "Chirag",
+                "A",
+                15,
+                4100
+              ],
+              [
+                "Disha",
+                "C",
+                7,
+                1500
+              ],
+              [
+                "Eklavya",
+                "B",
+                11,
+                2900
+              ],
+              [
+                "Fiza",
+                "C",
+                18,
+                5200
+              ],
+              [
+                "Gautam",
+                "A",
+                5,
+                980
+              ],
+              [
+                "Hira",
+                "B",
+                14,
+                3800
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "A reading club keeps a table of books and pages read. Sort it to find the top reader, then the lowest reader. (Sample data made up for this lab.)",
+          "hi": "एक पठन-क्लब किताबों और पढ़े पन्नों की तालिका रखता है। इसे छाँटकर सबसे ज़्यादा पढ़ने वाले और फिर सबसे कम पढ़ने वाले को ढूँढो। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "If you sort the Books column from high to low, which student will be at the top?",
+            "hi": "अगर Books स्तंभ को बड़े से छोटे क्रम में लगाओ तो ऊपर कौन-सा विद्यार्थी होगा?"
+          },
+          "options": [
+            {
+              "id": "fiza",
+              "en": "Fiza (18 books)",
+              "hi": "फ़िज़ा (18 किताबें)"
+            },
+            {
+              "id": "chirag",
+              "en": "Chirag (15 books)",
+              "hi": "चिराग (15 किताबें)"
+            },
+            {
+              "id": "aman",
+              "en": "Aman (12 books)",
+              "hi": "अमन (12 किताबें)"
+            }
+          ],
+          "answer": "fiza"
+        },
+        {
+          "kind": "do",
+          "target": "column:Books",
+          "expect": "result",
+          "say": {
+            "en": "Tap the Books heading once to sort low to high.",
+            "hi": "छोटे से बड़े के लिए Books शीर्षक को एक बार छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "column:Books",
+          "expect": "result",
+          "say": {
+            "en": "Tap Books again to flip to high to low.",
+            "hi": "बड़े से छोटे के लिए Books को फिर छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "column:Student",
+          "expect": "result",
+          "say": {
+            "en": "Now tap Student to sort the names A to Z.",
+            "hi": "अब नाम A से Z में लगाने के लिए Student छुओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "sort_values() sorts the rows of a DataFrame by one column: df.sort_values(\"Books\") goes low to high, and df.sort_values(\"Books\", ascending=False) goes high to low. Text columns sort alphabetically. You can also give several columns, like by=[\"Section\", \"Books\"], to sort by the first and break ties with the next. The whole row moves together, and the old index labels travel with their rows.",
+            "hi": "sort_values() DataFrame की पंक्तियों को एक स्तंभ से छाँटता है: df.sort_values(\"Books\") छोटे से बड़ा करता है, और df.sort_values(\"Books\", ascending=False) बड़े से छोटा। पाठ वाले स्तंभ वर्णानुक्रम में छँटते हैं। कई स्तंभ भी दे सकते हो, जैसे by=[\"Section\", \"Books\"], जिसमें पहले स्तंभ से छाँटा जाता है और बराबरी में अगले से। पूरी पंक्ति साथ हिलती है, और पुराने index लेबल अपनी पंक्तियों के साथ चलते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which Pandas call sorts the club by Pages, biggest first?",
+                "hi": "कौन-सा Pandas कॉल क्लब को Pages से, सबसे बड़ा पहले, छाँटता है?"
+              },
+              "options": [
+                {
+                  "en": "df.sort_values(\"Pages\", ascending=False)",
+                  "hi": "कोड: df.sort_values(\"Pages\", ascending=False)"
+                },
+                {
+                  "en": "df.sort_values(\"Pages\")",
+                  "hi": "कोड: df.sort_values(\"Pages\")"
+                },
+                {
+                  "en": "df.sort_values(\"Student\", ascending=False)",
+                  "hi": "कोड: df.sort_values(\"Student\", ascending=False)"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "ascending=False reverses the default low-to-high order, so the biggest value comes first.",
+                "hi": "ascending=False सामान्य छोटे-से-बड़े क्रम को उलट देता है, इसलिए सबसे बड़ा मान पहले आता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Without ascending=False the order is low to high, so the smallest Pages would be first.",
+                  "hi": "ascending=False के बिना क्रम छोटे से बड़ा होता है, इसलिए सबसे कम Pages पहले आते।"
+                },
+                {
+                  "en": "That sorts by Student names from Z to A, not by Pages.",
+                  "hi": "यह Student के नामों को Z से A में छाँटता है, Pages से नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort Pages from high to low. Is the student with the most pages also the one with the most books?",
+            "hi": "Pages को बड़े से छोटे क्रम में लगाओ। क्या सबसे ज़्यादा पन्ने वाला विद्यार्थी ही सबसे ज़्यादा किताबों वाला भी है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch03-missing-count",
+      "topic": "3.8",
+      "template": "table",
+      "title": {
+        "en": "Finding missing values",
+        "hi": "ग़ायब मान ढूँढना"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "sql",
+        "tables": {
+          "TEST": {
+            "columns": [
+              "Name",
+              "Maths",
+              "Science"
+            ],
+            "rows": [
+              [
+                "Asha",
+                72,
+                65
+              ],
+              [
+                "Bilal",
+                null,
+                58
+              ],
+              [
+                "Chitra",
+                81,
+                null
+              ],
+              [
+                "Deepak",
+                64,
+                70
+              ],
+              [
+                "Esha",
+                null,
+                null
+              ],
+              [
+                "Farid",
+                90,
+                84
+              ]
+            ]
+          }
+        },
+        "query": "SELECT Name, Maths, Science FROM TEST WHERE Maths IS NULL OR Science IS NULL",
+        "task": {
+          "en": "Some children missed a test, so their marks are empty (NULL in SQL, NaN in Pandas). Find which rows have a gap. (Sample data made up for this lab.)",
+          "hi": "कुछ बच्चों का टेस्ट छूट गया, इसलिए उनके अंक ख़ाली हैं (SQL में NULL, Pandas में NaN)। पता करो किन पंक्तियों में ख़ाली जगह है। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "There are 6 children. Bilal has no Maths mark, Chitra has no Science mark, and Esha has neither. How many rows have at least one gap?",
+            "hi": "बच्चे 6 हैं। बिलाल का Maths अंक नहीं है, चित्रा का Science अंक नहीं है, और ईशा के दोनों नहीं हैं। कितनी पंक्तियों में कम से कम एक ख़ाली जगह है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "2 rows",
+              "hi": "2 पंक्तियाँ"
+            },
+            {
+              "id": "b",
+              "en": "3 rows",
+              "hi": "3 पंक्तियाँ"
+            },
+            {
+              "id": "c",
+              "en": "4 rows",
+              "hi": "4 पंक्तियाँ"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Press Run to list the rows with a gap. This is what df.isnull() helps you spot.",
+            "hi": "ख़ाली जगह वाली पंक्तियाँ देखने के लिए \"चलाओ\" दबाओ। df.isnull() यही पहचानने में मदद करता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Change the query to: SELECT COUNT(*) FROM TEST WHERE Maths IS NOT NULL AND Science IS NOT NULL  and Run. These are the rows dropna() would keep.",
+            "hi": "क्वेरी बदलकर लिखो: SELECT COUNT(*) FROM TEST WHERE Maths IS NOT NULL AND Science IS NOT NULL  और चलाओ। dropna() इन्हीं पंक्तियों को रखता है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A missing value is not zero; it means \"no information\". IS NULL finds the gaps, as df.isnull() does in Pandas, and df.isnull().sum() counts them per column. Keeping only the complete rows, IS NOT NULL on every column, is what df.dropna() does: 3 of the 6 rows survive. Dropping is simple but throws away real data, such as Chitra's Maths mark, so many analysts fill the gaps instead.",
+            "hi": "ग़ायब मान शून्य नहीं है; उसका अर्थ है \"कोई जानकारी नहीं\"। IS NULL ख़ाली जगह ढूँढता है, जैसे Pandas में df.isnull(), और df.isnull().sum() हर स्तंभ में उन्हें गिनता है। सिर्फ़ पूरी पंक्तियाँ रखना, यानी हर स्तंभ पर IS NOT NULL, वही है जो df.dropna() करता है: 6 में से 3 पंक्तियाँ बचती हैं। हटाना आसान है पर असली डेटा, जैसे चित्रा का Maths अंक, भी फेंक देता है, इसलिए कई विश्लेषक ख़ाली जगह को भरते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does df.dropna() do to this table?",
+                "hi": "df.dropna() इस तालिका पर क्या करता है?"
+              },
+              "options": [
+                {
+                  "en": "Removes every row that has any missing value",
+                  "hi": "जिस पंक्ति में कोई भी ग़ायब मान हो उसे हटा देता है"
+                },
+                {
+                  "en": "Fills the gaps with 0",
+                  "hi": "ख़ाली जगह को 0 से भर देता है"
+                },
+                {
+                  "en": "Deletes the Name column",
+                  "hi": "Name स्तंभ मिटा देता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "dropna() keeps only complete rows. Here Bilal, Chitra and Esha would go.",
+                "hi": "dropna() सिर्फ़ पूरी पंक्तियाँ रखता है। यहाँ बिलाल, चित्रा और ईशा हट जाते।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Filling is done by fillna(), a different method.",
+                  "hi": "भरने का काम fillna() करता है, जो अलग विधि है।"
+                },
+                {
+                  "en": "dropna works on rows with gaps; it never removes a complete column like Name.",
+                  "hi": "dropna ख़ाली जगह वाली पंक्तियों पर चलता है; Name जैसे पूरे स्तंभ को नहीं हटाता।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "The average of Maths ignores the empty cells. Why is that a sensible rule?",
+                "hi": "Maths का औसत ख़ाली खानों को अनदेखा करता है। यह नियम समझदारी भरा क्यों है?"
+              },
+              "options": [
+                {
+                  "en": "A missing mark is unknown, not zero, and zero would unfairly drag the average down",
+                  "hi": "ग़ायब अंक अज्ञात है, शून्य नहीं, और शून्य औसत को अनुचित रूप से नीचे खींच देता"
+                },
+                {
+                  "en": "Because empty cells are always small",
+                  "hi": "क्योंकि ख़ाली खाने हमेशा छोटे होते हैं"
+                },
+                {
+                  "en": "Because Pandas cannot read empty cells",
+                  "hi": "क्योंकि Pandas ख़ाली खाने पढ़ नहीं सकता"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Treating a missed test as 0 marks would say the child scored nothing, which is untrue.",
+                "hi": "छूटे टेस्ट को 0 अंक मानना यह कहता कि बच्चे ने कुछ नहीं पाया, जो सच नहीं है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Empty cells have no size at all; they are simply not there for the calculation.",
+                  "hi": "ख़ाली खानों का कोई आकार नहीं होता; गणना के लिए वे बस होते ही नहीं।"
+                },
+                {
+                  "en": "Pandas reads them fine and marks them NaN. It is a choice, not a limit.",
+                  "hi": "Pandas उन्हें ठीक से पढ़ता है और NaN चिह्नित करता है। यह चुनाव है, सीमा नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Run SELECT AVG(Maths) FROM TEST. Four marks give 76.75. What would the average be if the two empty cells were counted as 0?",
+            "hi": "SELECT AVG(Maths) FROM TEST चलाओ। चार अंकों से 76.75 आता है। अगर दो ख़ाली खाने 0 गिने जाते तो औसत क्या होता?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch03-fill-gaps",
+      "topic": "3.8",
+      "template": "code",
+      "title": {
+        "en": "Filling the gaps with the mean",
+        "hi": "ख़ाली जगह को माध्य से भरना"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "trace",
+        "program": [
+          "m = [60, None, 40, None, 80]",
+          "vals = []",
+          "for x in m:",
+          "    if x != None:",
+          "        vals.append(x)",
+          "avg = sum(vals) / len(vals)",
+          "filled = []",
+          "for x in m:",
+          "    if x == None:",
+          "        filled.append(avg)",
+          "    else:",
+          "        filled.append(x)",
+          "print(filled)"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The marks are 60, missing, 40, missing, 80. The mean of the three known marks is (60 + 40 + 80) / 3. Each missing mark will be filled with it. What will that value be?",
+            "hi": "अंक हैं 60, ग़ायब, 40, ग़ायब, 80। तीनों ज्ञात अंकों का माध्य (60 + 40 + 80) / 3 है। हर ग़ायब अंक इसी से भरा जाएगा। वह मान क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "60",
+              "hi": "उत्तर 60"
+            },
+            {
+              "id": "b",
+              "en": "45",
+              "hi": "उत्तर 45"
+            },
+            {
+              "id": "c",
+              "en": "36",
+              "hi": "उत्तर 36"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "step",
+          "expect": "stepped",
+          "say": {
+            "en": "Press Step. First the loop collects the known marks in vals.",
+            "hi": "\"एक क़दम\" दबाओ। पहले लूप ज्ञात अंकों को vals में इकट्ठा करता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "done",
+          "say": {
+            "en": "Press Run to finish and see the filled list.",
+            "hi": "पूरा करने के लिए \"चलाओ\" दबाओ और भरी हुई सूची देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The program leaves out the None values, works out the mean of the rest (60), and writes that mean wherever a mark was missing. In Pandas this is a single line: df[\"Maths\"].fillna(df[\"Maths\"].mean()). fillna() can also fill with 0, a fixed word, or the value just before (method=\"ffill\"). Which fill is right depends on the story of the data: 0 is fine for \"no purchases\", but not for \"missed the test\".",
+            "hi": "प्रोग्राम None मानों को छोड़कर बाकी का माध्य (60) निकालता है, और जहाँ अंक ग़ायब था वहाँ वही माध्य लिख देता है। Pandas में यह एक पंक्ति है: df[\"Maths\"].fillna(df[\"Maths\"].mean())। fillna() 0, कोई तय शब्द, या ठीक पिछला मान (method=\"ffill\") भी भर सकता है। कौन-सा भराव सही है यह डेटा की कहानी पर निर्भर करता है: \"कोई ख़रीद नहीं\" के लिए 0 ठीक है, पर \"टेस्ट छूटा\" के लिए नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which Pandas method fills the missing values with a chosen value?",
+                "hi": "ग़ायब मानों को चुने हुए मान से कौन-सी Pandas विधि भरती है?"
+              },
+              "options": [
+                {
+                  "en": "fillna()",
+                  "hi": "कोड: fillna()"
+                },
+                {
+                  "en": "dropna()",
+                  "hi": "कोड: dropna()"
+                },
+                {
+                  "en": "isnull()",
+                  "hi": "कोड: isnull()"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "fillna() replaces every NaN with the value you give it.",
+                "hi": "fillna() हर NaN को तुम्हारे दिए मान से बदल देता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "dropna() removes rows with gaps instead of filling them.",
+                  "hi": "dropna() ख़ाली जगह भरने की जगह उन पंक्तियों को हटा देता है।"
+                },
+                {
+                  "en": "isnull() only tells you where the gaps are. It changes nothing.",
+                  "hi": "isnull() सिर्फ़ बताता है कि ख़ाली जगह कहाँ है। वह कुछ नहीं बदलता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "If the data were daily rainfall and one day is missing, would you fill with the mean, with 0, or leave it? Give a reason.",
+            "hi": "अगर डेटा रोज़ की वर्षा का हो और एक दिन ग़ायब हो, तो तुम माध्य से भरोगे, 0 से, या ऐसे ही छोड़ दोगे? कारण बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch03-index-reshape",
+      "topic": "3.6",
+      "template": "match",
+      "title": {
+        "en": "Index, reshape and clean-up methods",
+        "hi": "Index, रूप-परिवर्तन और सफ़ाई की विधियाँ"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "setindex",
+            "left": {
+              "en": "df.set_index(\"Name\")",
+              "hi": "df.set_index(\"Name\")"
+            },
+            "right": {
+              "en": "Makes the Name column the row labels",
+              "hi": "Name स्तंभ को पंक्तियों के लेबल बना देता है"
+            },
+            "why": {
+              "en": "set_index moves a column into the index, so you can use loc[\"Asha\"].",
+              "hi": "set_index एक स्तंभ को index में ले जाता है, जिससे तुम loc[\"Asha\"] लिख सकते हो।"
+            }
+          },
+          {
+            "id": "reset",
+            "left": {
+              "en": "df.reset_index()",
+              "hi": "df.reset_index()"
+            },
+            "right": {
+              "en": "Brings the row labels back as a column and restores 0, 1, 2...",
+              "hi": "पंक्ति-लेबलों को स्तंभ के रूप में लौटाता है और 0, 1, 2... वापस लाता है"
+            },
+            "why": {
+              "en": "reset_index undoes set_index and gives fresh numbered row labels.",
+              "hi": "reset_index, set_index को पलट देता है और नए क्रमांक वाले पंक्ति-लेबल देता है।"
+            }
+          },
+          {
+            "id": "transpose",
+            "left": {
+              "en": "df.T",
+              "hi": "df.T"
+            },
+            "right": {
+              "en": "Swaps rows and columns",
+              "hi": "पंक्तियों और स्तंभों की अदला-बदली"
+            },
+            "why": {
+              "en": "Transpose turns each row into a column and each column into a row.",
+              "hi": "ट्रांसपोज़ हर पंक्ति को स्तंभ और हर स्तंभ को पंक्ति बना देता है।"
+            }
+          },
+          {
+            "id": "pivot",
+            "left": {
+              "en": "df.pivot(index, columns, values)",
+              "hi": "df.pivot(index, columns, values)"
+            },
+            "right": {
+              "en": "Reshapes long data into a wide table, one column per category",
+              "hi": "लंबे डेटा को चौड़ी तालिका में बदलता है, हर श्रेणी का एक स्तंभ"
+            },
+            "why": {
+              "en": "pivot spreads the values of one column across new columns.",
+              "hi": "pivot एक स्तंभ के मानों को नए स्तंभों में फैला देता है।"
+            }
+          },
+          {
+            "id": "sortidx",
+            "left": {
+              "en": "df.sort_index()",
+              "hi": "df.sort_index()"
+            },
+            "right": {
+              "en": "Sorts the rows by their labels",
+              "hi": "पंक्तियों को उनके लेबलों से छाँटता है"
+            },
+            "why": {
+              "en": "sort_index orders by the row labels, while sort_values orders by a column.",
+              "hi": "sort_index पंक्ति-लेबलों से क्रम लगाता है, जबकि sort_values किसी स्तंभ से।"
+            }
+          },
+          {
+            "id": "dropna",
+            "left": {
+              "en": "df.dropna()",
+              "hi": "df.dropna()"
+            },
+            "right": {
+              "en": "Removes rows that have missing values",
+              "hi": "ग़ायब मान वाली पंक्तियाँ हटाता है"
+            },
+            "why": {
+              "en": "dropna throws away incomplete rows.",
+              "hi": "dropna अधूरी पंक्तियाँ फेंक देता है।"
+            }
+          },
+          {
+            "id": "fillna",
+            "left": {
+              "en": "df.fillna(0)",
+              "hi": "df.fillna(0)"
+            },
+            "right": {
+              "en": "Replaces missing values with 0",
+              "hi": "ग़ायब मानों को 0 से बदलता है"
+            },
+            "why": {
+              "en": "fillna puts the value you give wherever there is a gap.",
+              "hi": "fillna जहाँ ख़ाली जगह है वहाँ तुम्हारा दिया मान रख देता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:setindex",
+          "expect": "matched:setindex",
+          "say": {
+            "en": "Match set_index with what it does.",
+            "hi": "set_index को उसके काम से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which method undoes set_index and gives the plain 0, 1, 2... row labels back?",
+            "hi": "कौन-सी विधि set_index को पलटकर सीधे 0, 1, 2... पंक्ति-लेबल लौटाती है?"
+          },
+          "options": [
+            {
+              "id": "reset",
+              "en": "reset_index()",
+              "hi": "कोड: reset_index()"
+            },
+            {
+              "id": "sort",
+              "en": "sort_index()",
+              "hi": "कोड: sort_index()"
+            },
+            {
+              "id": "t",
+              "en": "T",
+              "hi": "उत्तर: T"
+            }
+          ],
+          "answer": "reset"
+        },
+        {
+          "kind": "do",
+          "target": "left:reset",
+          "expect": "matched:reset",
+          "say": {
+            "en": "Match reset_index.",
+            "hi": "reset_index को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:fillna",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest. Finish with fillna(0).",
+            "hi": "बाकी जोड़ियाँ मिलाओ। fillna(0) पर ख़त्म करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The index is the set of row labels. set_index picks a meaningful column for it, and reset_index puts it back as a column. pivot reshapes: if each row says (student, subject, marks), pivot gives one row per student and one column per subject. df.T flips the whole table. Most of these methods return a new DataFrame and leave the old one alone, unless you ask them to change it in place.",
+            "hi": "index पंक्ति-लेबलों का समूह है। set_index उसके लिए कोई अर्थपूर्ण स्तंभ चुनता है, और reset_index उसे वापस स्तंभ बना देता है। pivot आकार बदलता है: अगर हर पंक्ति (विद्यार्थी, विषय, अंक) कहती है, तो pivot हर विद्यार्थी की एक पंक्ति और हर विषय का एक स्तंभ देता है। df.T पूरी तालिका पलट देता है। इनमें से ज़्यादातर विधियाँ नया DataFrame लौटाती हैं और पुराने को वैसा ही छोड़ देती हैं, जब तक तुम उन्हें उसी में बदलने को न कहो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A table has rows (Asha, Maths, 72), (Asha, Science, 65), (Bilal, Maths, 80), (Bilal, Science, 58). What does a pivot with index = student and columns = subject give?",
+                "hi": "एक तालिका में पंक्तियाँ हैं (आशा, गणित, 72), (आशा, विज्ञान, 65), (बिलाल, गणित, 80), (बिलाल, विज्ञान, 58)। index = विद्यार्थी और columns = विषय वाला pivot क्या देता है?"
+              },
+              "options": [
+                {
+                  "en": "2 rows (one per student) and 2 subject columns",
+                  "hi": "2 पंक्तियाँ (हर विद्यार्थी की एक) और 2 विषय स्तंभ"
+                },
+                {
+                  "en": "4 rows and 1 column",
+                  "hi": "4 पंक्तियाँ और 1 स्तंभ"
+                },
+                {
+                  "en": "The same table, unchanged",
+                  "hi": "वही तालिका, बिना बदलाव"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "pivot gives each student one row and spreads the subjects into their own columns.",
+                "hi": "pivot हर विद्यार्थी को एक पंक्ति देता है और विषयों को उनके अपने स्तंभों में फैला देता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is the long form you started with. Pivot makes it wide, not tall.",
+                  "hi": "वह तो लंबा रूप है जिससे तुमने शुरू किया था। pivot उसे चौड़ा करता है, लंबा नहीं।"
+                },
+                {
+                  "en": "The table changes shape: fewer rows, more columns.",
+                  "hi": "तालिका का आकार बदलता है: पंक्तियाँ कम, स्तंभ ज़्यादा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Pick a method card and invent a mini-example of your own to explain it to a friend.",
+            "hi": "कोई विधि चुनो और उसे किसी दोस्त को समझाने के लिए अपना एक छोटा उदाहरण बनाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch03-mysql-flow",
+      "topic": "3.9",
+      "template": "sequence",
+      "title": {
+        "en": "Pandas and a MySQL database",
+        "hi": "Pandas और MySQL डेटाबेस"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "imp",
+            "text": {
+              "en": "Import Pandas and the database connector",
+              "hi": "Pandas और डेटाबेस कनेक्टर आयात करो"
+            }
+          },
+          {
+            "id": "conn",
+            "text": {
+              "en": "Connect to the MySQL database",
+              "hi": "MySQL डेटाबेस से जुड़ो"
+            }
+          },
+          {
+            "id": "read",
+            "text": {
+              "en": "Read a table into a DataFrame with read_sql()",
+              "hi": "read_sql() से तालिका को DataFrame में पढ़ो"
+            }
+          },
+          {
+            "id": "work",
+            "text": {
+              "en": "Clean and analyse the DataFrame in Pandas",
+              "hi": "Pandas में DataFrame को साफ़ करो और विश्लेषण करो"
+            }
+          },
+          {
+            "id": "write",
+            "text": {
+              "en": "Write the result back with to_sql()",
+              "hi": "to_sql() से परिणाम डेटाबेस में लिखो"
+            }
+          },
+          {
+            "id": "close",
+            "text": {
+              "en": "Close the connection",
+              "hi": "कनेक्शन बंद करो"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:imp",
+          "expect": "placed:imp",
+          "say": {
+            "en": "Tap the first step and place it at slot 1.",
+            "hi": "पहला चरण छुओ और उसे स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Why do we keep the connection password out of the program file we share with friends?",
+            "hi": "जो प्रोग्राम फ़ाइल हम दोस्तों से साझा करते हैं उसमें कनेक्शन का पासवर्ड क्यों नहीं रखते?"
+          },
+          "options": [
+            {
+              "id": "safe",
+              "en": "Anyone with the password could read or change the database",
+              "hi": "पासवर्ड वाला कोई भी डेटाबेस पढ़ या बदल सकता है"
+            },
+            {
+              "id": "slow",
+              "en": "The program would run slower",
+              "hi": "प्रोग्राम धीमा चलेगा"
+            }
+          ],
+          "answer": "safe"
+        },
+        {
+          "kind": "do",
+          "target": "item:read",
+          "expect": "placed:read",
+          "say": {
+            "en": "Place the step that brings the table into Pandas.",
+            "hi": "वह चरण रखो जो तालिका को Pandas में लाता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Arrange all six steps and press Check.",
+            "hi": "छहों चरण लगाओ और \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "SQL is good at storing and filtering large tables safely. Pandas is good at analysis. Together: read_sql() runs a SELECT query and gives back a DataFrame, and df.to_sql() writes a DataFrame as a table. You connect first and close at the end. Never write a real password in code you share; keep it out of the file, for example in a protected setting.",
+            "hi": "SQL बड़ी तालिकाओं को सुरक्षित रखने और छाँटने में अच्छा है। Pandas विश्लेषण में अच्छा है। साथ में: read_sql() SELECT क्वेरी चलाकर DataFrame लौटाता है, और df.to_sql() DataFrame को तालिका के रूप में लिखता है। पहले जुड़ते हैं और अंत में बंद करते हैं। जो कोड साझा करो उसमें असली पासवर्ड कभी मत लिखो; उसे फ़ाइल से बाहर, जैसे किसी सुरक्षित सेटिंग में, रखो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which method turns the result of a SELECT query into a DataFrame?",
+                "hi": "SELECT क्वेरी के परिणाम को DataFrame में कौन-सी विधि बदलती है?"
+              },
+              "options": [
+                {
+                  "en": "pd.read_sql()",
+                  "hi": "कोड: pd.read_sql()"
+                },
+                {
+                  "en": "df.to_sql()",
+                  "hi": "कोड: df.to_sql()"
+                },
+                {
+                  "en": "df.to_csv()",
+                  "hi": "कोड: df.to_csv()"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "read_sql() reads from the database into Pandas.",
+                "hi": "read_sql() डेटाबेस से Pandas में पढ़ता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "to_sql() goes the other way: from a DataFrame into a database table.",
+                  "hi": "to_sql() उल्टी दिशा में जाता है: DataFrame से डेटाबेस तालिका में।"
+                },
+                {
+                  "en": "to_csv() writes a file, not a database table.",
+                  "hi": "to_csv() फ़ाइल लिखता है, डेटाबेस तालिका नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Shuffle with Reset and rebuild the order. Which two steps are the only places where data crosses between SQL and Pandas?",
+            "hi": "\"फिर से\" दबाओ और क्रम दोबारा बनाओ। वे कौन-से दो चरण हैं जहाँ डेटा SQL और Pandas के बीच आता-जाता है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "3.2",
+      "use": "Opens the chapter: class test marks as data",
+      "shows": "A teacher's desk in an Indian school with a stack of marked answer sheets, a calculator and a notebook with columns of handwritten marks",
+      "view": "Slightly above, 16:9, warm light",
+      "right": "Handwriting is blurred and unreadable; calculator is plain with no brand",
+      "avoid": "Readable marks or names, brand logos, student faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "3.2",
+      "use": "Mean as the fair share",
+      "shows": "Five stacks of coins of different heights on the left and five equal stacks on the right, same total coins, on transparent background",
+      "view": "Front view at eye level, soft top-left light",
+      "right": "Left and right sides clearly contain the same number of coins",
+      "avoid": "Currency details that can be read, brand marks"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "3.2",
+      "use": "Median as the middle value",
+      "shows": "Five wooden blocks of increasing height standing in a neat row, the middle block painted a different colour",
+      "view": "Front view, same light for all, transparent background",
+      "right": "Heights clearly rise left to right; middle block clearly marked by colour and a dotted texture",
+      "avoid": "Numbers or letters on the blocks"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "3.3",
+      "use": "Split, apply, combine in groupby",
+      "shows": "3 frames: a mixed heap of 12 coloured counters; the counters split into 3 trays by colour; one small tower of counters on each tray showing the totals",
+      "view": "Top-down, same camera and light in all frames",
+      "right": "Same counters in all frames; each tray holds one colour only",
+      "avoid": "Text, brand marks"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "3.4",
+      "use": "Sorting rows keeps each row together",
+      "shows": "Two tall coloured strips side by side shown as a table; arrows-free pictures of the strips before and after, with rows reordered but matching colours still side by side",
+      "view": "Flat front view, white background",
+      "right": "Each row pair keeps matching colour in both strips after sorting",
+      "avoid": "Words or numbers"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "3.8",
+      "use": "A table with a hole: a missing value",
+      "shows": "A clean table frame of 5 rows and 3 columns where two cells are shown as dotted empty squares",
+      "view": "Flat front view, white background",
+      "right": "Missing cells distinct by dotted outline and pale fill, not by colour alone",
+      "avoid": "Words or numbers in the cells"
+    },
+    {
+      "n": 7,
+      "kind": "OBJ",
+      "topic": "3.9",
+      "use": "Pandas and a database working together",
+      "shows": "A small laptop on the left and a stylised stack of three database disks on the right, joined by a single neat cable, on transparent background",
+      "view": "Three-quarter view, soft top-left light",
+      "right": "The cable clearly connects laptop to disks",
+      "avoid": "Brand logos, readable screen text"
+    }
+  ]
+}

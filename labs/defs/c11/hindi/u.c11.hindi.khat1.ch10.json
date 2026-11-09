@@ -1,0 +1,625 @@
+{
+ "chapter_key": "u.c11.hindi.khat1.ch10",
+ "class": 11,
+ "subject_id": "hindi",
+ "title": "खेलन में को काको गुसैयाँ; मुरली तऊ गुपालहिं भावति",
+ "source": "https://ncert.nic.in/textbook/pdf/khat110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "The players and the flute (पात्र)",
+   "labs": [
+    "c11-hindi-khat1-ch10-people"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Fair play (निष्पक्ष खेल)",
+   "labs": [
+    "c11-hindi-khat1-ch10-fair"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "The gopi's jealousy (गोपी की जलन)",
+   "labs": [
+    "c11-hindi-khat1-ch10-jealous"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Surdas and Braj Bhasha (सूरदास और ब्रजभाषा)",
+   "labs": [],
+   "why_no_lab": "The sound of Braj Bhasha is best heard when the poem is sung or read aloud, not played as a game."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-hindi-khat1-ch10-people",
+   "topic": "10.1",
+   "template": "reader",
+   "title": {
+    "en": "The players and the flute",
+    "hi": "खिलाड़ी और मुरली"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Game, and a gopi's complaint",
+      "hi": "खेल और एक गोपी की शिकायत"
+     },
+     "lines": [
+      "खेल में हारने पर कृष्ण रूठ गए और दाँव देने से मना करने लगे।",
+      "श्रीदामा ने कहा कि खेल में कोई किसी का मालिक नहीं होता, सबको बराबर बारी देनी होगी।",
+      "साथी बच्चों ने भी हामी भरी कि न कोई ऊँचा है, न कोई नीचा।",
+      "दूसरी ओर एक गोपी कहती है कि मुरली हर समय कृष्ण के होंठों पर बजती है।",
+      "गोपी को लगता है कि कृष्ण मुरली से इतना प्रेम करते हैं कि हमें भूल जाते हैं।"
+     ]
+    },
+    "characters": [
+     {
+      "id": "krishna",
+      "name": "कृष्ण",
+      "traits": [
+       {
+        "en": "A playful boy who sulks when he loses",
+        "hi": "खेल में हारकर रूठने वाला नटखट बालक"
+       }
+      ]
+     },
+     {
+      "id": "sridama",
+      "name": "श्रीदामा",
+      "traits": [
+       {
+        "en": "A friend who speaks bravely for fairness",
+        "hi": "निष्पक्षता के लिए निडर होकर बोलने वाला साथी"
+       }
+      ]
+     },
+     {
+      "id": "gopi",
+      "name": "गोपी",
+      "traits": [
+       {
+        "en": "A girl who envies the flute for Krishna's love",
+        "hi": "जो कृष्ण के प्रेम के कारण मुरली से ईर्ष्या करती है"
+       }
+      ]
+     },
+     {
+      "id": "murali",
+      "name": "मुरली",
+      "traits": [
+       {
+        "en": "The flute that always stays close to Krishna's lips",
+        "hi": "वह बाँसुरी जो हमेशा कृष्ण के होंठों के पास रहती है"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:sridama",
+     "expect": "picked:sridama",
+     "say": {
+      "en": "Pick the friend who speaks up for fairness.",
+      "hi": "उस साथी को चुनो जो निष्पक्षता के लिए बोलता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who envies the flute?",
+      "hi": "बाँसुरी से ईर्ष्या कौन करता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The gopi",
+       "hi": "गोपी"
+      },
+      {
+       "id": "b",
+       "en": "Shridama",
+       "hi": "श्रीदामा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "character:gopi",
+     "expect": "picked:gopi",
+     "say": {
+      "en": "Pick the one who envies the flute.",
+      "hi": "उसे चुनो जो बाँसुरी से ईर्ष्या करती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:krishna",
+     "expect": "picked:krishna",
+     "say": {
+      "en": "Pick the one who sulks in the game.",
+      "hi": "उसे चुनो जो खेल में रूठ जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:murali",
+     "expect": "picked:murali",
+     "say": {
+      "en": "Pick what stays beside Krishna's lips.",
+      "hi": "उसे चुनो जो कृष्ण के होंठों के पास रहती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Surdas shows God as a child among children: he plays, sulks and is told the rules of fair play. In the second poem the gopi's jealous words show how deeply she loves.",
+      "hi": "सूरदास ईश्वर को बच्चों के बीच एक बच्चे की तरह दिखाते हैं: वे खेलते हैं, रूठते हैं और निष्पक्षता के नियम सुनते हैं। दूसरे पद में गोपी की जलन-भरी बातें उसके गहरे प्रेम को दिखाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does Shridama stand for in the first poem?",
+        "hi": "पहले पद में श्रीदामा किसका प्रतीक है?"
+       },
+       "options": [
+        {
+         "en": "Equal rights in play",
+         "hi": "खेल में समान अधिकार"
+        },
+        {
+         "en": "Anger",
+         "hi": "क्रोध"
+        },
+        {
+         "en": "Laziness",
+         "hi": "आलस्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In play no one is master; every child gets a turn.",
+        "hi": "खेल में कोई मालिक नहीं; हर बच्चे की बारी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "He speaks calmly about rules, not out of anger.",
+         "hi": "वह नियमों की बात शांति से करता है, क्रोध से नहीं।"
+        },
+        {
+         "en": "He is eager for the game and fairness.",
+         "hi": "वह खेल और न्याय के लिए उत्साही है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Remember a game where someone refused a turn. What did you do?",
+      "hi": "कोई खेल याद करो जिसमें किसी ने बारी देने से मना किया था। तुमने क्या किया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khat1-ch10-fair",
+   "topic": "10.2",
+   "template": "sort",
+   "title": {
+    "en": "Fair play or foul play",
+    "hi": "निष्पक्ष खेल या अनुचित खेल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fair",
+      "label": {
+       "en": "Fair play",
+       "hi": "निष्पक्ष खेल"
+      }
+     },
+     {
+      "id": "foul",
+      "label": {
+       "en": "Unfair play",
+       "hi": "अनुचित खेल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "turn",
+      "text": {
+       "en": "Giving every child a turn",
+       "hi": "हर बच्चे को बारी देना"
+      },
+      "bin": "fair",
+      "why": {
+       "en": "Everyone is equal in play.",
+       "hi": "खेल में सब बराबर हैं।"
+      }
+     },
+     {
+      "id": "rules",
+      "text": {
+       "en": "Following the rules even when losing",
+       "hi": "हारते हुए भी नियम मानना"
+      },
+      "bin": "fair",
+      "why": {
+       "en": "A good player respects the rules.",
+       "hi": "अच्छा खिलाड़ी नियमों का सम्मान करता है।"
+      }
+     },
+     {
+      "id": "smile",
+      "text": {
+       "en": "Congratulating the winner",
+       "hi": "जीतने वाले को बधाई देना"
+      },
+      "bin": "fair",
+      "why": {
+       "en": "It keeps friendship above the game.",
+       "hi": "इससे दोस्ती खेल से ऊपर रहती है।"
+      }
+     },
+     {
+      "id": "sulk",
+      "text": {
+       "en": "Sulking and refusing to play after losing",
+       "hi": "हारकर रूठ जाना और खेलने से मना करना"
+      },
+      "bin": "foul",
+      "why": {
+       "en": "It spoils the game for all.",
+       "hi": "इससे सबका खेल बिगड़ता है।"
+      }
+     },
+     {
+      "id": "boss",
+      "text": {
+       "en": "Acting like the boss of the game",
+       "hi": "खेल का मालिक बनकर रौब जमाना"
+      },
+      "bin": "foul",
+      "why": {
+       "en": "In play no one is anyone's master.",
+       "hi": "खेल में कोई किसी का स्वामी नहीं होता।"
+      }
+     },
+     {
+      "id": "cheat",
+      "text": {
+       "en": "Taking another's turn",
+       "hi": "दूसरे की बारी छीन लेना"
+      },
+      "bin": "foul",
+      "why": {
+       "en": "It is unfair to the other child.",
+       "hi": "यह दूसरे बच्चे के साथ अन्याय है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:turn",
+     "expect": "placed:turn",
+     "say": {
+      "en": "Put the first card in the right group.",
+      "hi": "पहला कार्ड सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is sulking after a loss fair play?",
+      "hi": "क्या हारकर रूठ जाना निष्पक्ष खेल है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Yes",
+       "hi": "हाँ"
+      },
+      {
+       "id": "b",
+       "en": "No",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:sulk",
+     "expect": "placed:sulk",
+     "say": {
+      "en": "Place the card about sulking.",
+      "hi": "रूठने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Surdas turns a children's game into a lesson on equality: nobody is a master, everyone has a turn. A game is a small copy of a fair society.",
+      "hi": "सूरदास बच्चों के खेल को समानता का पाठ बना देते हैं: कोई मालिक नहीं, सबकी बारी है। खेल एक न्यायपूर्ण समाज की छोटी प्रतिलिपि है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'in play no one is anyone's master' teach?",
+        "hi": "'खेल में कोई किसी का मालिक नहीं' से क्या सीख मिलती है?"
+       },
+       "options": [
+        {
+         "en": "Everyone should be treated equally",
+         "hi": "सबके साथ समान व्यवहार होना चाहिए"
+        },
+        {
+         "en": "Play is silly",
+         "hi": "खेल मूर्खतापूर्ण है"
+        },
+        {
+         "en": "Only winners matter",
+         "hi": "केवल जीतने वाले मायने रखते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Respect for equal rights is the heart of the line.",
+        "hi": "समान अधिकारों का सम्मान इस पंक्ति का मूल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Play is a place where character grows.",
+         "hi": "खेल में चरित्र बनता है।"
+        },
+        {
+         "en": "Even the loser's turn matters.",
+         "hi": "हारने वाले की बारी भी मायने रखती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own game rule that keeps play fair.",
+      "hi": "खेल को निष्पक्ष रखने का अपना एक नियम बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khat1-ch10-jealous",
+   "topic": "10.3",
+   "template": "reader",
+   "title": {
+    "en": "The gopi and the flute",
+    "hi": "गोपी और बाँसुरी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "emotion-map",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Why the flute is envied",
+      "hi": "बाँसुरी से जलन क्यों"
+     },
+     "lines": [
+      "गोपी कृष्ण की बाँसुरी की मीठी धुन सुनकर मोहित हो जाती है।",
+      "उसे ध्यान आता है कि बाँसुरी तो हर क्षण कृष्ण के होंठों पर टिकी रहती है।",
+      "वह चिढ़कर कहती है कि हमें तो उनके दर्शन भी कभी-कभी मिलते हैं।",
+      "फिर मुस्कुराकर मान लेती है कि यह जलन असल में प्रेम की गहराई है।"
+     ]
+    },
+    "emotions": [
+     "wonder",
+     "worry",
+     "anger",
+     "love"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line and think how the gopi feels.",
+      "hi": "पहली पंक्ति छुओ और सोचो कि गोपी क्या महसूस करती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "She says: 'We see him only now and then.' Which feeling is it?",
+      "hi": "वह कहती है: 'हमें तो कभी-कभी दर्शन मिलते हैं।' यह कौन-सी भावना है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Calm",
+       "hi": "शांति"
+      },
+      {
+       "id": "b",
+       "en": "Jealous anger",
+       "hi": "जलन भरा ग़ुस्सा"
+      },
+      {
+       "id": "c",
+       "en": "Pride",
+       "hi": "गर्व"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Pick the feeling that fits the line shown.",
+      "hi": "दिखाई गई पंक्ति के लिए सही भावना चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "map-done",
+     "say": {
+      "en": "Finish the map for every line.",
+      "hi": "हर पंक्ति के लिए मानचित्र पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In Sur's poem jealousy is a form of love. The gopi complains about the flute because she wants to be near Krishna, and her complaint ends in smiling love.",
+      "hi": "सूर के पद में जलन भी प्रेम का एक रूप है। गोपी बाँसुरी की शिकायत इसलिए करती है कि वह कृष्ण के पास रहना चाहती है, और शिकायत मुस्कुराते प्रेम में बदल जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the gopi complain about the flute?",
+        "hi": "गोपी बाँसुरी की शिकायत क्यों करती है?"
+       },
+       "options": [
+        {
+         "en": "The flute stays near Krishna all the time",
+         "hi": "बाँसुरी हर समय कृष्ण के पास रहती है"
+        },
+        {
+         "en": "It is too loud",
+         "hi": "वह बहुत तेज़ बजती है"
+        },
+        {
+         "en": "It is broken",
+         "hi": "वह टूटी हुई है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "She envies the flute's closeness to Krishna.",
+        "hi": "उसे बाँसुरी के कृष्ण से निकट होने से ईर्ष्या है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The poem calls the sound sweet.",
+         "hi": "पद में स्वर को मधुर कहा गया है।"
+        },
+        {
+         "en": "The flute is a joy, not broken.",
+         "hi": "बाँसुरी आनंद है, टूटी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a time you were jealous of a friend. What did it really mean?",
+      "hi": "याद करो जब तुम्हें अपने दोस्त से जलन हुई थी। उसका असली अर्थ क्या था?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Hook of the chapter",
+   "shows": "Village children playing in a dusty courtyard at sunset, one boy sitting apart sulking (seen from behind)",
+   "view": "Eye level, warm backlight",
+   "right": "Backs only, simple clothes, clay pots in the corner",
+   "avoid": "Faces, modern toys"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.3",
+   "use": "Word card: बाँसुरी",
+   "shows": "A bamboo flute with a little peacock feather, cut-out",
+   "view": "Three-quarter view",
+   "right": "Real bamboo and feather colours",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "Evening at Braj",
+   "shows": "A calm riverbank with cows returning at dusk and a distant flute-player silhouette",
+   "view": "Wide, golden hour",
+   "right": "Silhouettes, cow dust, soft glow",
+   "avoid": "Faces"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "10.2",
+   "use": "Word card: गेंद",
+   "shows": "A small ragged cloth ball for a street game, cut-out",
+   "view": "Top view",
+   "right": "Handmade look",
+   "avoid": "Brands"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "10.2",
+   "use": "Turn by turn",
+   "shows": "Four frames of kids' hands taking turns to throw a ball in a circle",
+   "view": "Same camera, same ground",
+   "right": "Hands and feet only",
+   "avoid": "Faces"
+  }
+ ]
+}

@@ -1,0 +1,1436 @@
+{
+ "chapter_key": "u.c12.economics.leec1.ch03",
+ "class": 12,
+ "subject_id": "economics",
+ "title": "Money and Banking",
+ "source": "https://ncert.nic.in/textbook/pdf/leec103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Functions of money",
+   "labs": [
+    "c12-economics-leec1-ch03-functions",
+    "c12-economics-leec1-ch03-barter"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Demand for money and supply of money",
+   "labs": [
+    "c12-economics-leec1-ch03-demand"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3.1",
+   "title": "Money creation by the banking system: balance sheet of a fictional bank",
+   "labs": [
+    "c12-economics-leec1-ch03-creation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3.2",
+   "title": "Limits to credit creation and the money multiplier",
+   "labs": [
+    "c12-economics-leec1-ch03-reserve"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Policy tools to control the money supply",
+   "labs": [
+    "c12-economics-leec1-ch03-tools",
+    "c12-economics-leec1-ch03-rbi"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-economics-leec1-ch03-functions",
+   "topic": "3.1",
+   "template": "match",
+   "title": {
+    "en": "What money does",
+    "hi": "मुद्रा क्या काम करती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "exchange",
+      "left": {
+       "en": "Medium of exchange",
+       "hi": "विनिमय का माध्यम"
+      },
+      "right": {
+       "en": "Paying ₹10 for a cup of tea",
+       "hi": "चाय के प्याले के लिए ₹10 देना"
+      },
+      "why": {
+       "en": "Everyone accepts money in exchange for goods.",
+       "hi": "वस्तुओं के बदले सब मुद्रा स्वीकार करते हैं।"
+      }
+     },
+     {
+      "id": "account",
+      "left": {
+       "en": "Unit of account",
+       "hi": "लेखा की इकाई"
+      },
+      "right": {
+       "en": "Writing prices in rupees: pen ₹10, book ₹60",
+       "hi": "कीमतें रुपयों में लिखना: पेन ₹10, किताब ₹60"
+      },
+      "why": {
+       "en": "Money lets us compare the value of different things.",
+       "hi": "मुद्रा से अलग-अलग चीज़ों का मूल्य तुलना करना संभव होता है।"
+      }
+     },
+     {
+      "id": "store",
+      "left": {
+       "en": "Store of value",
+       "hi": "मूल्य का भंडार"
+      },
+      "right": {
+       "en": "Keeping ₹500 aside to spend next month",
+       "hi": "अगले महीने ख़र्च के लिए ₹500 अलग रखना"
+      },
+      "why": {
+       "en": "Money carries purchasing power into the future.",
+       "hi": "मुद्रा क्रय शक्ति को भविष्य तक ले जाती है।"
+      }
+     },
+     {
+      "id": "deferred",
+      "left": {
+       "en": "Standard of deferred payment",
+       "hi": "आस्थगित भुगतान का मानक"
+      },
+      "right": {
+       "en": "Borrowing now and repaying in rupees later",
+       "hi": "अभी उधार लेना और बाद में रुपयों में चुकाना"
+      },
+      "why": {
+       "en": "Money is the measure for debts to be settled later.",
+       "hi": "मुद्रा बाद में चुकाए जाने वाले क़र्ज़ का माप है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these is a function of money?",
+      "hi": "इनमें से कौन मुद्रा का कार्य है?"
+     },
+     "options": [
+      {
+       "id": "exch",
+       "en": "Medium of exchange",
+       "hi": "विनिमय का माध्यम"
+      },
+      {
+       "id": "tax",
+       "en": "Collecting taxes",
+       "hi": "कर वसूलना"
+      },
+      {
+       "id": "prod",
+       "en": "Producing goods",
+       "hi": "वस्तुएँ बनाना"
+      }
+     ],
+     "answer": "exch"
+    },
+    {
+     "kind": "do",
+     "target": "left:exchange",
+     "expect": "matched:exchange",
+     "say": {
+      "en": "Tap \"Medium of exchange\", then its example.",
+      "hi": "\"विनिमय का माध्यम\" दबाओ, फिर उसका उदाहरण दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all four functions and press Check.",
+      "hi": "चारों कार्य मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Money has four functions. As a medium of exchange it buys goods and services. As a unit of account it gives prices a common measure. As a store of value it holds purchasing power for later. As a standard of deferred payment it lets us borrow and repay later.",
+      "hi": "मुद्रा के चार कार्य हैं। विनिमय के माध्यम के रूप में वह वस्तुएँ और सेवाएँ ख़रीदती है। लेखा की इकाई के रूप में वह कीमतों को साझा माप देती है। मूल्य के भंडार के रूप में वह क्रय शक्ति को बाद के लिए रखती है। आस्थगित भुगतान के मानक के रूप में वह उधार लेने और बाद में चुकाने देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A shopkeeper marks every item with a price in rupees. This is money as a...",
+        "hi": "दुकानदार हर चीज़ पर रुपयों में कीमत लिखता है। यह मुद्रा का कार्य है..."
+       },
+       "options": [
+        {
+         "en": "unit of account",
+         "hi": "लेखा की इकाई"
+        },
+        {
+         "en": "store of value",
+         "hi": "मूल्य का भंडार"
+        },
+        {
+         "en": "medium of exchange",
+         "hi": "विनिमय का माध्यम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Prices in a common unit make values comparable.",
+        "hi": "एक साझा इकाई में कीमतें मूल्यों की तुलना संभव बनाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Saving for later is storing value.",
+         "hi": "बाद के लिए बचाना मूल्य का भंडारण है।"
+        },
+        {
+         "en": "Handing over money to buy is exchange.",
+         "hi": "ख़रीदने के लिए पैसे देना विनिमय है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a time you used money in each of the four ways today.",
+      "hi": "आज चारों तरह से मुद्रा का इस्तेमाल करने का कोई मौक़ा सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch03-barter",
+   "topic": "3.1",
+   "template": "scenario",
+   "title": {
+    "en": "The weekly haat before money",
+    "hi": "मुद्रा से पहले का साप्ताहिक हाट"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "haat",
+    "role": {
+     "en": "A weaver at a barter haat",
+     "hi": "वस्तु-विनिमय हाट की एक बुनकर"
+    },
+    "scenes": [
+     {
+      "id": "b1",
+      "text": {
+       "en": "You are a weaver with cloth, and you want wheat. The wheat farmer does not want cloth; she wants a plough. There is no money at the haat. What can you do?",
+       "hi": "आप बुनकर हैं, आपके पास कपड़ा है और आपको गेहूँ चाहिए। गेहूँ वाली किसान को कपड़ा नहीं चाहिए; उसे हल चाहिए। हाट में कोई मुद्रा नहीं है। आप क्या कर सकती हैं?"
+      },
+      "choices": [
+       {
+        "id": "b1-hunt",
+        "text": {
+         "en": "Search for a plough owner who wants cloth, then swap with the farmer",
+         "hi": "ऐसा हलवाला ढूँढ़ो जिसे कपड़ा चाहिए, फिर किसान से अदला-बदली करो"
+        },
+        "next": "b2",
+        "good": true,
+        "feedback": {
+         "en": "It can work, but it takes a long search through a chain of swaps. This is the problem of the double coincidence of wants.",
+         "hi": "यह चल सकता है, पर अदला-बदली की लंबी कड़ी में बहुत खोज करनी पड़ती है। इसे दोहरे संयोग की समस्या कहते हैं।"
+        }
+       },
+       {
+        "id": "b1-force",
+        "text": {
+         "en": "Insist the farmer takes the cloth",
+         "hi": "किसान से ज़िद करो कि वह कपड़ा ले ले"
+        },
+        "next": "b2",
+        "good": false,
+        "feedback": {
+         "en": "She can refuse. Trade needs both sides to want what the other has.",
+         "hi": "वह मना कर सकती है। व्यापार में दोनों को दूसरे की चीज़ चाहिए होनी चाहिए।"
+        }
+       },
+       {
+        "id": "b1-quit",
+        "text": {
+         "en": "Go home with no wheat",
+         "hi": "बिना गेहूँ के घर लौट जाओ"
+        },
+        "next": "b2",
+        "good": false,
+        "feedback": {
+         "en": "That means no trade at all, and your family goes hungry.",
+         "hi": "इसका मतलब कोई व्यापार नहीं, और परिवार भूखा रहेगा।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "b2",
+      "text": {
+       "en": "The next week, the haat starts using rupees. Everyone sells for rupees and buys with rupees. Which feature of money solves your problem?",
+       "hi": "अगले हफ़्ते हाट में रुपये चलने लगते हैं। सब रुपयों में बेचते और रुपयों से ख़रीदते हैं। मुद्रा की कौन-सी विशेषता आपकी समस्या हल करती है?"
+      },
+      "choices": [
+       {
+        "id": "b2-medium",
+        "text": {
+         "en": "It is a medium of exchange everyone accepts",
+         "hi": "यह विनिमय का माध्यम है जिसे सब स्वीकार करते हैं"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Yes. You sell the cloth to anyone for rupees and buy wheat with the same rupees. Money removes the need for a double coincidence of wants.",
+         "hi": "हाँ। आप कपड़ा किसी को भी रुपयों में बेचती हैं और उन्हीं रुपयों से गेहूँ ख़रीदती हैं। मुद्रा दोहरे संयोग की ज़रूरत मिटा देती है।"
+        }
+       },
+       {
+        "id": "b2-tax",
+        "text": {
+         "en": "It lets the government collect tax",
+         "hi": "इससे सरकार कर वसूल पाती है"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "That may be true, but it does not solve your swapping problem.",
+         "hi": "यह सही हो सकता है, पर आपकी अदला-बदली की समस्या हल नहीं करता।"
+        }
+       },
+       {
+        "id": "b2-gold",
+        "text": {
+         "en": "It is made of shiny metal",
+         "hi": "यह चमकीली धातु की बनी है"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Notes are paper. What matters is that everyone accepts them.",
+         "hi": "नोट काग़ज़ के हैं। मायने यह रखता है कि सब उन्हें स्वीकार करते हैं।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In barter, trade works only if each side wants what the other has. This is called...",
+      "hi": "वस्तु-विनिमय में व्यापार तभी चलता है जब हर पक्ष को दूसरे की चीज़ चाहिए हो। इसे कहते हैं..."
+     },
+     "options": [
+      {
+       "id": "dcw",
+       "en": "double coincidence of wants",
+       "hi": "आवश्यकताओं का दोहरा संयोग"
+      },
+      {
+       "id": "sav",
+       "en": "saving",
+       "hi": "बचत"
+      },
+      {
+       "id": "inf",
+       "en": "inflation",
+       "hi": "मुद्रास्फीति"
+      }
+     ],
+     "answer": "dcw"
+    },
+    {
+     "kind": "do",
+     "target": "choice:b1:b1-hunt",
+     "expect": "chose:b1-hunt",
+     "say": {
+      "en": "Pick what the weaver can do at the haat.",
+      "hi": "चुनो कि बुनकर हाट में क्या कर सकती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a barter economy you must find someone who has what you want and wants what you have: a double coincidence of wants. That is slow and costly. Money solves it. Everyone accepts it, so you can sell to one person and buy from another.",
+      "hi": "वस्तु-विनिमय अर्थव्यवस्था में आपको ऐसा व्यक्ति ढूँढ़ना पड़ता है जिसके पास आपकी चाही चीज़ हो और जिसे आपकी चीज़ चाहिए: आवश्यकताओं का दोहरा संयोग। यह धीमा और महँगा है। मुद्रा इसे हल करती है। सब उसे स्वीकार करते हैं, इसलिए आप एक को बेच सकती हैं और दूसरे से ख़रीद सकती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Money removes the problem of barter by acting as...",
+        "hi": "मुद्रा वस्तु-विनिमय की समस्या हटाती है, क्योंकि वह..."
+       },
+       "options": [
+        {
+         "en": "a medium of exchange",
+         "hi": "विनिमय का माध्यम है"
+        },
+        {
+         "en": "a luxury good",
+         "hi": "विलासिता की वस्तु है"
+        },
+        {
+         "en": "a store of cloth",
+         "hi": "कपड़े का भंडार है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Selling for money and buying with money needs no double coincidence.",
+        "hi": "मुद्रा लेकर बेचने और मुद्रा से ख़रीदने में दोहरे संयोग की ज़रूरत नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Money is not a luxury, and that does not solve the problem.",
+         "hi": "मुद्रा विलासिता नहीं है और उससे समस्या हल नहीं होती।"
+        },
+        {
+         "en": "Money has nothing to do with cloth.",
+         "hi": "मुद्रा का कपड़े से कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and find which choice gives the quickest trade. Count how many swaps barter needed.",
+      "hi": "फिर से खेलो और देखो कौन-सा चुनाव सबसे तेज़ व्यापार देता है। गिनो वस्तु-विनिमय में कितनी अदला-बदली लगी।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch03-demand",
+   "topic": "3.2",
+   "template": "sort",
+   "title": {
+    "en": "Why do people hold money?",
+    "hi": "लोग मुद्रा क्यों रखते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "trans",
+      "label": {
+       "en": "Transactions motive",
+       "hi": "लेन-देन का उद्देश्य"
+      }
+     },
+     {
+      "id": "spec",
+      "label": {
+       "en": "Speculative motive",
+       "hi": "सट्टा उद्देश्य"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "d1",
+      "text": {
+       "en": "Cash kept for this week's groceries",
+       "hi": "इस हफ़्ते के राशन के लिए रखी नकदी"
+      },
+      "bin": "trans",
+      "why": {
+       "en": "Money for regular purchases is a transactions demand.",
+       "hi": "नियमित ख़रीद के लिए पैसा लेन-देन की माँग है।"
+      }
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "Money ready for the monthly electricity bill",
+       "hi": "महीने के बिजली बिल के लिए तैयार पैसा"
+      },
+      "bin": "trans",
+      "why": {
+       "en": "A planned payment.",
+       "hi": "पहले से तय भुगतान।"
+      }
+     },
+     {
+      "id": "d3",
+      "text": {
+       "en": "Cash held as bond prices are expected to fall",
+       "hi": "बॉन्ड की कीमतें गिरने की आशा से रखी नकदी"
+      },
+      "bin": "spec",
+      "why": {
+       "en": "People avoid bonds, which would lose value, and keep money.",
+       "hi": "लोग बॉन्ड से बचते हैं जो मूल्य खोएँगे, और पैसा रखते हैं।"
+      }
+     },
+     {
+      "id": "d4",
+      "text": {
+       "en": "A trader waiting for bonds to become cheaper",
+       "hi": "बॉन्ड सस्ते होने की प्रतीक्षा में बैठा व्यापारी"
+      },
+      "bin": "spec",
+      "why": {
+       "en": "Holding money to buy bonds at a better price.",
+       "hi": "बेहतर कीमत पर बॉन्ड ख़रीदने के लिए पैसा रखना।"
+      }
+     },
+     {
+      "id": "d5",
+      "text": {
+       "en": "Money kept for school bus fares",
+       "hi": "स्कूल बस के किराये के लिए रखा पैसा"
+      },
+      "bin": "trans",
+      "why": {
+       "en": "A regular spending need.",
+       "hi": "नियमित ख़र्च की ज़रूरत।"
+      }
+     },
+     {
+      "id": "d6",
+      "text": {
+       "en": "Cash held because interest rates may rise",
+       "hi": "ब्याज दरें बढ़ने की आशंका से रखी नकदी"
+      },
+      "bin": "spec",
+      "why": {
+       "en": "Rising rates mean falling bond prices, so people prefer money.",
+       "hi": "बढ़ती दरों का मतलब गिरती बॉन्ड कीमतें, इसलिए लोग पैसा पसंद करते हैं।"
+      }
+     },
+     {
+      "id": "d7",
+      "text": {
+       "en": "A shopkeeper keeps change for customers",
+       "hi": "दुकानदार ग्राहकों के लिए खुले पैसे रखता है"
+      },
+      "bin": "trans",
+      "why": {
+       "en": "Needed for daily trade.",
+       "hi": "रोज़ के व्यापार के लिए ज़रूरी।"
+      }
+     },
+     {
+      "id": "d8",
+      "text": {
+       "en": "Holding money to profit from a change in bond prices",
+       "hi": "बॉन्ड कीमतें बदलने से लाभ के लिए पैसा रखना"
+      },
+      "bin": "spec",
+      "why": {
+       "en": "Holding money as an asset to take advantage of price changes.",
+       "hi": "कीमतों के बदलाव का फ़ायदा उठाने के लिए पैसे को संपत्ति की तरह रखना।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When prices of goods rise, people need more money for the same purchases. This raises the... demand for money.",
+      "hi": "वस्तुओं की कीमतें बढ़ने पर उन्हीं ख़रीदों के लिए ज़्यादा पैसा चाहिए। इससे... माँग बढ़ती है।"
+     },
+     "options": [
+      {
+       "id": "trans",
+       "en": "transactions",
+       "hi": "लेन-देन की"
+      },
+      {
+       "id": "spec",
+       "en": "speculative",
+       "hi": "सट्टा"
+      }
+     ],
+     "answer": "trans"
+    },
+    {
+     "kind": "do",
+     "target": "card:d1",
+     "expect": "placed:d1",
+     "say": {
+      "en": "Tap the first card, then its group.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "People hold money for two main reasons. The transactions motive is to pay for daily purchases; it rises with income and prices. The speculative motive is to hold money as an asset when bond prices may fall; it is higher when the interest rate is low.",
+      "hi": "लोग मुद्रा दो मुख्य कारणों से रखते हैं। लेन-देन का उद्देश्य रोज़ की ख़रीद के भुगतान के लिए है; यह आय और कीमतों के साथ बढ़ता है। सट्टा उद्देश्य बॉन्ड की कीमतें गिरने की आशा में पैसे को संपत्ति की तरह रखना है; ब्याज दर कम हो तो यह ज़्यादा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The speculative demand for money rises when...",
+        "hi": "मुद्रा की सट्टा माँग बढ़ती है जब..."
+       },
+       "options": [
+        {
+         "en": "the interest rate falls",
+         "hi": "ब्याज दर घटती है"
+        },
+        {
+         "en": "the interest rate rises",
+         "hi": "ब्याज दर बढ़ती है"
+        },
+        {
+         "en": "wages fall",
+         "hi": "मज़दूरी घटती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A low interest rate means little is lost by holding money instead of bonds.",
+        "hi": "कम ब्याज दर का अर्थ है बॉन्ड की जगह पैसा रखने में कम नुक़सान।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A high rate makes bonds attractive, so people hold less money.",
+         "hi": "ऊँची दर बॉन्ड को आकर्षक बनाती है, इसलिए लोग कम पैसा रखते हैं।"
+        },
+        {
+         "en": "Wages affect transactions demand, not this motive.",
+         "hi": "मज़दूरी लेन-देन की माँग को प्रभावित करती है, इस उद्देश्य को नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which motive do you use more for your pocket money?",
+      "hi": "अपने जेब ख़र्च के लिए तुम कौन-सा उद्देश्य ज़्यादा इस्तेमाल करते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch03-creation",
+   "topic": "3.3.1",
+   "template": "economy",
+   "title": {
+    "en": "How banks create money",
+    "hi": "बैंक मुद्रा कैसे बनाते हैं"
+   },
+   "minutes": 9,
+   "level": "core",
+   "config": {
+    "mode": "money-creation",
+    "params": {
+     "deposit": 1000,
+     "rr": 20
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Someone deposits ₹1,000. The bank keeps 20% as reserve and lends the rest. The borrower spends it and it is deposited in another bank, and so on. In the end, total deposits can grow to...",
+      "hi": "कोई ₹1,000 जमा करता है। बैंक 20% आरक्षित रखकर बाक़ी उधार देता है। उधार लेने वाला उसे ख़र्च करता है, वह दूसरे बैंक में जमा होता है, और आगे भी ऐसा ही। अंत में कुल जमा बढ़ सकती है..."
+     },
+     "options": [
+      {
+       "id": "5000",
+       "en": "₹5,000",
+       "hi": "₹5,000 तक"
+      },
+      {
+       "id": "1200",
+       "en": "₹1,200",
+       "hi": "₹1,200 तक"
+      },
+      {
+       "id": "1000",
+       "en": "₹1,000 only",
+       "hi": "केवल ₹1,000 तक"
+      }
+     ],
+     "answer": "5000"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "computed",
+     "say": {
+      "en": "Press the play button and watch the deposits grow round by round.",
+      "hi": "चलाने का बटन दबाओ और जमा को दौर-दर-दौर बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:deposit",
+     "expect": "computed",
+     "say": {
+      "en": "Change the first deposit and see how the total changes.",
+      "hi": "पहली जमा बदलो और देखो कुल कैसे बदलता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In round 1 the bank keeps ₹200 (20% of ₹1,000) as reserve and lends ₹800. That ₹800 is deposited in another bank, which keeps ₹160 and lends ₹640, and so on. Each round the new deposit is 80% of the last. The deposits add up to ₹1,000 × 1/0.2 = ₹5,000, and this limit is never passed. The money multiplier is 1 ÷ reserve ratio = 5. The numbers are an example.",
+      "hi": "पहले दौर में बैंक ₹200 (₹1,000 का 20%) आरक्षित रखता है और ₹800 उधार देता है। वह ₹800 दूसरे बैंक में जमा होता है, जो ₹160 रखकर ₹640 उधार देता है, और आगे यही क्रम। हर दौर में नई जमा पिछली की 80% होती है। जमा का योग ₹1,000 × 1/0.2 = ₹5,000 होता है और यह सीमा पार नहीं होती। मुद्रा गुणक = 1 ÷ आरक्षित अनुपात = 5। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the reserve ratio is 20%, the money multiplier is...",
+        "hi": "आरक्षित अनुपात 20% हो तो मुद्रा गुणक है..."
+       },
+       "options": [
+        {
+         "en": "5",
+         "hi": "5 गुना"
+        },
+        {
+         "en": "20",
+         "hi": "20 गुना"
+        },
+        {
+         "en": "0.2",
+         "hi": "0.2 गुना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1 ÷ 0.20 = 5.",
+        "hi": "1 ÷ 0.20 = 5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20 is the percentage, not the multiplier.",
+         "hi": "20 प्रतिशत है, गुणक नहीं।"
+        },
+        {
+         "en": "0.2 is the reserve ratio itself.",
+         "hi": "0.2 स्वयं आरक्षित अनुपात है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can total deposits never go beyond the limit?",
+        "hi": "कुल जमा सीमा से आगे क्यों नहीं जा सकती?"
+       },
+       "options": [
+        {
+         "en": "Each round some money stays back as reserve",
+         "hi": "हर दौर में कुछ पैसा आरक्षित रह जाता है"
+        },
+        {
+         "en": "Banks refuse to lend",
+         "hi": "बैंक उधार देने से मना कर देते हैं"
+        },
+        {
+         "en": "The RBI prints less",
+         "hi": "RBI कम छापता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The lendable amount keeps shrinking by the reserve share.",
+        "hi": "उधार देने योग्य रक़म आरक्षित हिस्से के हिसाब से घटती जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The model assumes banks lend all they can.",
+         "hi": "मॉडल मानता है कि बैंक जितना दे सकते हैं देते हैं।"
+        },
+        {
+         "en": "Printing is not part of this process.",
+         "hi": "छपाई इस प्रक्रिया का हिस्सा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the number of rounds you watch. How close to the limit are you after 5 rounds?",
+      "hi": "जितने दौर देखते हो वह बदलो। 5 दौर के बाद तुम सीमा के कितने पास हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch03-reserve",
+   "topic": "3.3.2",
+   "template": "economy",
+   "title": {
+    "en": "A bigger reserve, less money",
+    "hi": "बड़ा आरक्षित अनुपात, कम मुद्रा"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "money-creation",
+    "params": {
+     "deposit": 2000,
+     "rr": 10
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If banks must keep a larger share of deposits as reserve, the money that banks can create will...",
+      "hi": "यदि बैंकों को जमा का बड़ा हिस्सा आरक्षित रखना पड़े, तो बैंक जितनी मुद्रा बना सकते हैं वह..."
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "be less",
+       "hi": "कम होगी"
+      },
+      {
+       "id": "more",
+       "en": "be more",
+       "hi": "ज़्यादा होगी"
+      },
+      {
+       "id": "same",
+       "en": "stay the same",
+       "hi": "वही रहेगी"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "slider:rr",
+     "expect": "computed",
+     "say": {
+      "en": "Raise the reserve ratio to 25%. Read the new limit.",
+      "hi": "आरक्षित अनुपात 25% करो। नई सीमा पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "computed",
+     "say": {
+      "en": "Now press play and watch the deposits stop at the smaller limit.",
+      "hi": "अब चलाओ और जमा को छोटी सीमा पर रुकते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "With a ₹2,000 deposit and a 10% reserve ratio, deposits can grow to 2,000 × 10 = ₹20,000. At 25% the multiplier is 1 ÷ 0.25 = 4 and the limit falls to ₹8,000. A higher reserve ratio means banks have less to lend, so less money is created. A lower ratio does the opposite. This is why the central bank can control the money supply through the reserve ratio.",
+      "hi": "₹2,000 की जमा और 10% आरक्षित अनुपात से जमा 2,000 × 10 = ₹20,000 तक बढ़ सकती है। 25% पर गुणक 1 ÷ 0.25 = 4 है और सीमा घटकर ₹8,000 हो जाती है। ऊँचे आरक्षित अनुपात का अर्थ है बैंकों के पास उधार देने को कम, इसलिए कम मुद्रा बनती है। कम अनुपात इसका उलटा करता है। इसीलिए केंद्रीय बैंक आरक्षित अनुपात से मुद्रा आपूर्ति नियंत्रित कर सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A fall in the reserve ratio makes the money multiplier...",
+        "hi": "आरक्षित अनुपात घटने से मुद्रा गुणक..."
+       },
+       "options": [
+        {
+         "en": "bigger",
+         "hi": "बड़ा हो जाता है"
+        },
+        {
+         "en": "smaller",
+         "hi": "छोटा हो जाता है"
+        },
+        {
+         "en": "zero",
+         "hi": "शून्य हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The multiplier is 1 ÷ ratio, so a smaller ratio gives a bigger multiplier.",
+        "hi": "गुणक = 1 ÷ अनुपात, इसलिए छोटा अनुपात बड़ा गुणक देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A rise in the ratio makes it smaller.",
+         "hi": "अनुपात बढ़ने से गुणक छोटा होता है।"
+        },
+        {
+         "en": "It would become zero only if the ratio were infinite.",
+         "hi": "गुणक शून्य तब होता जब अनुपात अनंत होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "With a reserve ratio of 10%, a deposit of ₹2,000 can lead to total deposits of up to...",
+        "hi": "10% आरक्षित अनुपात पर ₹2,000 की जमा से कुल जमा अधिकतम कितनी हो सकती है?"
+       },
+       "options": [
+        {
+         "en": "₹20,000",
+         "hi": "₹20,000 तक"
+        },
+        {
+         "en": "₹2,200",
+         "hi": "₹2,200 तक"
+        },
+        {
+         "en": "₹200",
+         "hi": "₹200 तक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2,000 × 10 = 20,000.",
+        "hi": "2,000 × 10 = 20,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹2,200 adds just 10% once.",
+         "hi": "₹2,200 में 10% केवल एक बार जोड़ा गया है।"
+        },
+        {
+         "en": "₹200 is the reserve itself.",
+         "hi": "₹200 स्वयं आरक्षित रक़म है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a reserve ratio at which the money multiplier is exactly 2.",
+      "hi": "वह आरक्षित अनुपात ढूँढ़ो जिस पर मुद्रा गुणक ठीक 2 हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch03-tools",
+   "topic": "3.4",
+   "template": "match",
+   "title": {
+    "en": "The central bank's toolbox",
+    "hi": "केंद्रीय बैंक के औज़ार"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "crr",
+      "left": {
+       "en": "Cash reserve ratio (CRR)",
+       "hi": "नकद आरक्षित अनुपात (CRR)"
+      },
+      "right": {
+       "en": "Share of deposits banks must keep as cash with the RBI",
+       "hi": "जमा का वह हिस्सा जो बैंकों को RBI के पास नकद रखना होता है"
+      },
+      "why": {
+       "en": "Raising it leaves banks less to lend.",
+       "hi": "इसे बढ़ाने पर बैंकों के पास उधार देने को कम बचता है।"
+      }
+     },
+     {
+      "id": "slr",
+      "left": {
+       "en": "Statutory liquidity ratio (SLR)",
+       "hi": "सांविधिक तरलता अनुपात (SLR)"
+      },
+      "right": {
+       "en": "Share of deposits banks must hold in safe liquid assets like government bonds",
+       "hi": "जमा का वह हिस्सा जो बैंकों को सरकारी बॉन्ड जैसी सुरक्षित तरल संपत्ति में रखना होता है"
+      },
+      "why": {
+       "en": "It too limits how much banks can lend.",
+       "hi": "यह भी बैंकों के उधार देने को सीमित करता है।"
+      }
+     },
+     {
+      "id": "repo",
+      "left": {
+       "en": "Repo rate",
+       "hi": "रेपो दर"
+      },
+      "right": {
+       "en": "Interest rate at which banks borrow from the RBI",
+       "hi": "वह ब्याज दर जिस पर बैंक RBI से उधार लेते हैं"
+      },
+      "why": {
+       "en": "A higher repo rate makes borrowing dearer.",
+       "hi": "ऊँची रेपो दर उधार महँगा बनाती है।"
+      }
+     },
+     {
+      "id": "reverse",
+      "left": {
+       "en": "Reverse repo rate",
+       "hi": "रिवर्स रेपो दर"
+      },
+      "right": {
+       "en": "Interest rate the RBI pays when banks park money with it",
+       "hi": "वह ब्याज दर जो बैंकों के RBI के पास पैसा रखने पर RBI देता है"
+      },
+      "why": {
+       "en": "A higher rate tempts banks to keep money with the RBI.",
+       "hi": "ऊँची दर बैंकों को RBI के पास पैसा रखने को लुभाती है।"
+      }
+     },
+     {
+      "id": "omo",
+      "left": {
+       "en": "Open market operations",
+       "hi": "खुले बाज़ार की क्रियाएँ"
+      },
+      "right": {
+       "en": "The RBI buys or sells government securities in the market",
+       "hi": "RBI बाज़ार में सरकारी प्रतिभूतियाँ ख़रीदता या बेचता है"
+      },
+      "why": {
+       "en": "Buying puts money into the system; selling takes it out.",
+       "hi": "ख़रीदने से व्यवस्था में पैसा आता है; बेचने से निकलता है।"
+      }
+     },
+     {
+      "id": "margin",
+      "left": {
+       "en": "Margin requirement",
+       "hi": "मार्जिन की आवश्यकता"
+      },
+      "right": {
+       "en": "The gap between the loan given and the value of the asset pledged",
+       "hi": "दिए गए ऋण और गिरवी रखी संपत्ति के मूल्य का अंतर"
+      },
+      "why": {
+       "en": "A bigger gap means a smaller loan for the same asset.",
+       "hi": "बड़े अंतर का मतलब उसी संपत्ति पर छोटा ऋण।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The RBI wants to reduce the money supply. It should...",
+      "hi": "RBI मुद्रा आपूर्ति घटाना चाहता है। उसे करना चाहिए..."
+     },
+     "options": [
+      {
+       "id": "crr",
+       "en": "raise the CRR",
+       "hi": "CRR बढ़ाना"
+      },
+      {
+       "id": "lower",
+       "en": "lower the CRR",
+       "hi": "CRR घटाना"
+      },
+      {
+       "id": "buy",
+       "en": "buy government securities",
+       "hi": "सरकारी प्रतिभूतियाँ ख़रीदना"
+      }
+     ],
+     "answer": "crr"
+    },
+    {
+     "kind": "do",
+     "target": "left:repo",
+     "expect": "matched:repo",
+     "say": {
+      "en": "Tap \"Repo rate\", then its meaning.",
+      "hi": "\"रेपो दर\" दबाओ, फिर उसका अर्थ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all six tools and press Check.",
+      "hi": "छहों औज़ार मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To tighten the money supply the RBI raises the CRR or SLR, raises the repo rate, or sells securities in the open market. To loosen it, it does the opposite: lowers the ratios and rates or buys securities. These tools change how much banks can lend, and so the money supply.",
+      "hi": "मुद्रा आपूर्ति कसने के लिए RBI CRR या SLR बढ़ाता है, रेपो दर बढ़ाता है, या खुले बाज़ार में प्रतिभूतियाँ बेचता है। ढीली करने के लिए वह उलटा करता है: अनुपात और दरें घटाता है या प्रतिभूतियाँ ख़रीदता है। ये औज़ार बैंकों के उधार देने की क्षमता और इस तरह मुद्रा आपूर्ति बदलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The RBI buys government securities in the open market. The money supply...",
+        "hi": "RBI खुले बाज़ार में सरकारी प्रतिभूतियाँ ख़रीदता है। मुद्रा आपूर्ति..."
+       },
+       "options": [
+        {
+         "en": "rises",
+         "hi": "बढ़ती है"
+        },
+        {
+         "en": "falls",
+         "hi": "घटती है"
+        },
+        {
+         "en": "does not change",
+         "hi": "वही रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The RBI pays money out to buy them, so more money is in the system.",
+        "hi": "RBI उन्हें ख़रीदने के लिए पैसा देता है, इसलिए व्यवस्था में ज़्यादा पैसा आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Selling securities takes money out.",
+         "hi": "प्रतिभूतियाँ बेचने से पैसा निकलता है।"
+        },
+        {
+         "en": "Buying definitely injects money.",
+         "hi": "ख़रीदने से पैसा निश्चित रूप से आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "For each tool, say whether raising it tightens or loosens the money supply.",
+      "hi": "हर औज़ार के लिए बताओ कि उसे बढ़ाने से मुद्रा आपूर्ति कसती है या ढीली होती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch03-rbi",
+   "topic": "3.4",
+   "template": "scenario",
+   "title": {
+    "en": "The RBI governor's adviser",
+    "hi": "RBI गवर्नर के सलाहकार"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "setting": "central bank",
+    "role": {
+     "en": "Adviser at the central bank",
+     "hi": "केंद्रीय बैंक की सलाहकार"
+    },
+    "scenes": [
+     {
+      "id": "i1",
+      "text": {
+       "en": "Prices are rising fast and people borrow heavily to spend. The central bank wants to bring down the money supply. What should it do?",
+       "hi": "कीमतें तेज़ी से बढ़ रही हैं और लोग ख़र्च करने के लिए ख़ूब उधार ले रहे हैं। केंद्रीय बैंक मुद्रा आपूर्ति घटाना चाहता है। उसे क्या करना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "i1-repo",
+        "text": {
+         "en": "Raise the repo rate and the CRR",
+         "hi": "रेपो दर और CRR बढ़ाओ"
+        },
+        "next": "i2",
+        "good": true,
+        "feedback": {
+         "en": "Right. Banks borrow less and have less to lend, so the money supply and spending cool down.",
+         "hi": "सही। बैंक कम उधार लेते हैं और उनके पास देने को कम होता है, इसलिए मुद्रा आपूर्ति और ख़र्च ठंडे पड़ते हैं।"
+        }
+       },
+       {
+        "id": "i1-buy",
+        "text": {
+         "en": "Buy government securities from the market",
+         "hi": "बाज़ार से सरकारी प्रतिभूतियाँ ख़रीदो"
+        },
+        "next": "i2",
+        "good": false,
+        "feedback": {
+         "en": "That pours more money into the system and feeds the price rise.",
+         "hi": "इससे व्यवस्था में और पैसा आता है और कीमतों की बढ़त को बल मिलता है।"
+        }
+       },
+       {
+        "id": "i1-cut",
+        "text": {
+         "en": "Lower the CRR",
+         "hi": "CRR घटाओ"
+        },
+        "next": "i2",
+        "good": false,
+        "feedback": {
+         "en": "Banks would lend more, adding to the money supply.",
+         "hi": "बैंक ज़्यादा उधार देंगे, जिससे मुद्रा आपूर्ति बढ़ेगी।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "i2",
+      "text": {
+       "en": "A year later the economy is in a slump. Firms cannot get loans and spending is low. Now what?",
+       "hi": "एक साल बाद अर्थव्यवस्था मंदी में है। फ़र्मों को ऋण नहीं मिल रहे और ख़र्च कम है। अब क्या?"
+      },
+      "choices": [
+       {
+        "id": "i2-ease",
+        "text": {
+         "en": "Lower the repo rate and the CRR",
+         "hi": "रेपो दर और CRR घटाओ"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Yes. Cheaper loans and more lendable money encourage spending and investment.",
+         "hi": "हाँ। सस्ते ऋण और उधार देने योग्य ज़्यादा पैसा ख़र्च और निवेश को बढ़ावा देते हैं।"
+        }
+       },
+       {
+        "id": "i2-sell",
+        "text": {
+         "en": "Sell government securities",
+         "hi": "सरकारी प्रतिभूतियाँ बेचो"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "That drains money out of the system, making the slump worse.",
+         "hi": "इससे व्यवस्था से पैसा निकलता है और मंदी और बिगड़ती है।"
+        }
+       },
+       {
+        "id": "i2-raise",
+        "text": {
+         "en": "Raise the CRR again",
+         "hi": "CRR फिर बढ़ाओ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Banks would have even less to lend.",
+         "hi": "बैंकों के पास उधार देने को और कम होगा।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To fight a price rise, the central bank should make money...",
+      "hi": "कीमतों की बढ़त से लड़ने के लिए केंद्रीय बैंक को मुद्रा को... बनाना चाहिए।"
+     },
+     "options": [
+      {
+       "id": "tight",
+       "en": "tighter, so loans cost more",
+       "hi": "तंग, ताकि ऋण महँगे हों"
+      },
+      {
+       "id": "loose",
+       "en": "easier, so loans cost less",
+       "hi": "ढीली, ताकि ऋण सस्ते हों"
+      }
+     ],
+     "answer": "tight"
+    },
+    {
+     "kind": "do",
+     "target": "choice:i1:i1-repo",
+     "expect": "chose:i1-repo",
+     "say": {
+      "en": "Choose the step that cools down a price rise.",
+      "hi": "वह क़दम चुनो जो कीमतों की बढ़त को ठंडा करे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The central bank uses its tools to steer the economy. To cool inflation it tightens the money supply with higher rates and ratios. To fight a slump it eases it, with lower rates and ratios or by buying securities.",
+      "hi": "केंद्रीय बैंक अपने औज़ारों से अर्थव्यवस्था को दिशा देता है। महँगाई ठंडी करने के लिए वह ऊँची दरों और अनुपातों से मुद्रा आपूर्ति कसता है। मंदी से लड़ने के लिए वह नीची दरों और अनुपातों या प्रतिभूतियाँ ख़रीदकर उसे ढीला करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A higher repo rate means banks...",
+        "hi": "ऊँची रेपो दर का मतलब है कि बैंक..."
+       },
+       "options": [
+        {
+         "en": "borrow less from the central bank",
+         "hi": "केंद्रीय बैंक से कम उधार लेते हैं"
+        },
+        {
+         "en": "borrow more",
+         "hi": "ज़्यादा उधार लेते हैं"
+        },
+        {
+         "en": "pay no interest",
+         "hi": "कोई ब्याज नहीं देते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Borrowing costs more, so banks borrow less and lend less.",
+        "hi": "उधार महँगा होता है, इसलिए बैंक कम उधार लेते और कम उधार देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cheaper borrowing would increase borrowing.",
+         "hi": "सस्ता उधार, उधार लेना बढ़ाता।"
+        },
+        {
+         "en": "Repo is a borrowing rate, so interest is paid.",
+         "hi": "रेपो उधार की दर है, इसलिए ब्याज दिया जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Replay and note one extra tool that could help in each scene.",
+      "hi": "फिर खेलो और हर दृश्य में मदद करने वाला एक और औज़ार लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Barter haat: a swap of cloth for wheat",
+   "shows": "A village haat where a weaver holds out folded cloth to a wheat seller, a plough stands beside the seller, nobody has coins out",
+   "view": "Eye level, warm daylight, 16:9",
+   "right": "Real handloom cloth, a wooden plough, sacks of wheat",
+   "avoid": "Faces, readable signs"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Money cut-outs: coins and notes",
+   "shows": "Indian ₹1, ₹5, ₹10 coins and ₹10, ₹50, ₹100, ₹500 notes, each as a separate cut-out",
+   "view": "Flat top view, even light, transparent background",
+   "right": "Current designs, both sides if possible",
+   "avoid": "Crumpled notes, hands"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "A bank counter: deposit and loan",
+   "shows": "A bank counter with a clerk seen from behind, a customer paying in notes through the window, a stamp pad and a passbook on the counter",
+   "view": "Eye level from the customer side, even light, 16:9",
+   "right": "Plain passbook with unreadable writing; rupee notes",
+   "avoid": "Readable bank names or logos, faces"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "3.3",
+   "use": "Base for a bank balance sheet",
+   "shows": "A two-column empty balance sheet frame: left column for assets, right for liabilities, rows blank",
+   "view": "Flat vector style, white or transparent, 4:3",
+   "right": "Clear column split and row lines",
+   "avoid": "Words or numbers inside"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "3.4",
+   "use": "Government securities and a safe",
+   "shows": "A cut-out of a certificate roll tied with a ribbon and a small steel safe, each separate",
+   "view": "Front view, soft top-left light, transparent background",
+   "right": "Plain certificate with blurred lines; closed steel safe",
+   "avoid": "Readable text, official seals"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.4",
+   "use": "Central bank building as a symbol of policy",
+   "shows": "A large civic building with columns seen from the opposite pavement under a clear sky",
+   "view": "Low front view, daylight, 16:9",
+   "right": "Neutral grand building, no sign or flag showing a real name",
+   "avoid": "Readable signage, emblems, real identifiable buildings"
+  }
+ ]
+}

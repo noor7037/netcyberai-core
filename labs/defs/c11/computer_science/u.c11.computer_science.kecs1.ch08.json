@@ -1,0 +1,1477 @@
+{
+ "chapter_key": "u.c11.computer_science.kecs1.ch08",
+ "class": 11,
+ "subject_id": "computer_science",
+ "title": "Strings",
+ "source": "https://ncert.nic.in/textbook/pdf/kecs108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Introduction: text in programs",
+   "labs": [],
+   "why_no_lab": "The idea that text is stored as a string is simple enough for the reader; the labs below use strings straight away."
+  },
+  {
+   "n": "8.2.1",
+   "title": "Accessing characters in a string",
+   "labs": [
+    "c11-computer_science-kecs1-ch08-index"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2.2",
+   "title": "A string is immutable",
+   "labs": [
+    "c11-computer_science-kecs1-ch08-immutable"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3.1",
+   "title": "String operations: concatenation",
+   "labs": [
+    "c11-computer_science-kecs1-ch08-ops"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3.2",
+   "title": "String operations: repetition",
+   "labs": [
+    "c11-computer_science-kecs1-ch08-ops"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3.3",
+   "title": "String operations: membership",
+   "labs": [
+    "c11-computer_science-kecs1-ch08-ops"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3.4",
+   "title": "String operations: slicing",
+   "labs": [
+    "c11-computer_science-kecs1-ch08-slice"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Traversing a string",
+   "labs": [
+    "c11-computer_science-kecs1-ch08-traverse"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "String methods and built-in functions",
+   "labs": [
+    "c11-computer_science-kecs1-ch08-methods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Handling strings",
+   "labs": [
+    "c11-computer_science-kecs1-ch08-reverse"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-computer_science-kecs1-ch08-index",
+   "topic": "8.2.1",
+   "template": "code",
+   "title": {
+    "en": "Index numbers: counting the letters from 0",
+    "hi": "इंडेक्स संख्या: अक्षरों को 0 से गिनना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "word = \"CHENNAI\"",
+     "print(len(word))",
+     "print(word[0])",
+     "print(word[3])",
+     "print(word[-1])",
+     "print(word[len(word) - 1])"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "word is \"CHENNAI\". Counting from 0, which letter is word[3]?",
+      "hi": "word = \"CHENNAI\" है। 0 से गिनने पर word[3] कौन-सा अक्षर है?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "N, the fourth letter",
+       "hi": "N, यानी चौथा अक्षर"
+      },
+      {
+       "id": "e",
+       "en": "E, the third letter",
+       "hi": "E, यानी तीसरा अक्षर"
+      },
+      {
+       "id": "c",
+       "en": "C, the first letter",
+       "hi": "C, यानी पहला अक्षर"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first answer is printed. It is the length of the word.",
+      "hi": "पहला उत्तर छपने तक \"एक क़दम\" दबाते रहो। यह शब्द की लंबाई है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see every letter that was picked.",
+      "hi": "चुने गए सभी अक्षर देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A string is a sequence of characters, and every character has a position called an index. Counting starts at 0, so word[0] is C, word[1] is H, word[2] is E and word[3] is N. len(word) tells the length, 7, so the last index is 6. A negative index counts from the end: word[-1] is the last letter I, which is the same as word[len(word) - 1].",
+      "hi": "स्ट्रिंग अक्षरों (कैरेक्टर) का अनुक्रम है और हर अक्षर की एक जगह होती है जिसे इंडेक्स कहते हैं। गिनती 0 से शुरू होती है, इसलिए word[0] C है, word[1] H, word[2] E और word[3] N। len(word) लंबाई बताता है, 7, इसलिए आख़िरी इंडेक्स 6 है। ऋणात्मक इंडेक्स अंत से गिनता है: word[-1] आख़िरी अक्षर I है, जो word[len(word) - 1] के बराबर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A string has 10 characters. What is the index of its last character?",
+        "hi": "एक स्ट्रिंग में 10 अक्षर हैं। उसके आख़िरी अक्षर का इंडेक्स क्या है?"
+       },
+       "options": [
+        "9",
+        "10",
+        "11"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Indexes run from 0 to 9, which is 10 positions.",
+        "hi": "इंडेक्स 0 से 9 तक चलते हैं, यानी 10 जगहें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Index 10 does not exist; it is outside the string and gives an IndexError.",
+         "hi": "इंडेक्स 10 मौजूद नहीं है; वह स्ट्रिंग से बाहर है और IndexError देता है।"
+        },
+        {
+         "en": "11 is even further out.",
+         "hi": "11 तो और भी बाहर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which index always gives the last character, whatever the length?",
+        "hi": "लंबाई कुछ भी हो, आख़िरी अक्षर कौन-सा इंडेक्स देता है?"
+       },
+       "options": [
+        "-1",
+        "0",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-1 counts from the end, so it is always the last character.",
+        "hi": "-1 अंत से गिनता है, इसलिए वह हमेशा आख़िरी अक्षर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0 is the first character.",
+         "hi": "0 पहला अक्षर है।"
+        },
+        {
+         "en": "1 is the second character.",
+         "hi": "1 दूसरा अक्षर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then work out word[-2] and word[1] for \"CHENNAI\" in your head.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर मन में \"CHENNAI\" के लिए word[-2] और word[1] निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch08-immutable",
+   "topic": "8.2.2",
+   "template": "sort",
+   "title": {
+    "en": "Strings are immutable: what works and what fails",
+    "hi": "स्ट्रिंग अपरिवर्तनीय है: क्या चलता है और क्या नहीं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "works",
+      "label": {
+       "en": "Works",
+       "hi": "चलता है"
+      }
+     },
+     {
+      "id": "error",
+      "label": {
+       "en": "Gives an error",
+       "hi": "एरर देता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "read0",
+      "text": {
+       "en": "print(s[0])",
+       "hi": "print(s[0])"
+      },
+      "bin": "works",
+      "why": {
+       "en": "Reading a character is allowed. It prints I.",
+       "hi": "अक्षर पढ़ना ठीक है। यह I छापता है।"
+      }
+     },
+     {
+      "id": "assign",
+      "text": {
+       "en": "s[0] = \"B\"",
+       "hi": "s[0] = \"B\""
+      },
+      "bin": "error",
+      "why": {
+       "en": "A string cannot be changed in place, so this is a TypeError.",
+       "hi": "स्ट्रिंग को उसी जगह बदला नहीं जा सकता, इसलिए यह TypeError है।"
+      }
+     },
+     {
+      "id": "rebind",
+      "text": {
+       "en": "s = \"Bharat\"",
+       "hi": "s = \"Bharat\""
+      },
+      "bin": "works",
+      "why": {
+       "en": "The name s now points to a new string. The old string was not changed.",
+       "hi": "नाम s अब नई स्ट्रिंग की ओर इशारा करता है। पुरानी स्ट्रिंग बदली नहीं गई।"
+      }
+     },
+     {
+      "id": "plus",
+      "text": {
+       "en": "t = s + \"!\"",
+       "hi": "t = s + \"!\""
+      },
+      "bin": "works",
+      "why": {
+       "en": "Joining makes a brand-new string, India!, and leaves s as it was.",
+       "hi": "जोड़ने से बिल्कुल नई स्ट्रिंग India! बनती है और s जैसा था वैसा रहता है।"
+      }
+     },
+     {
+      "id": "outside",
+      "text": {
+       "en": "print(s[9])",
+       "hi": "print(s[9])"
+      },
+      "bin": "error",
+      "why": {
+       "en": "s has 5 characters (index 0 to 4), so index 9 is outside: IndexError.",
+       "hi": "s में 5 अक्षर हैं (इंडेक्स 0 से 4), इसलिए इंडेक्स 9 बाहर है: IndexError।"
+      }
+     },
+     {
+      "id": "neg",
+      "text": {
+       "en": "print(s[-1])",
+       "hi": "print(s[-1])"
+      },
+      "bin": "works",
+      "why": {
+       "en": "A negative index counts from the end. It prints a.",
+       "hi": "ऋणात्मक इंडेक्स अंत से गिनता है। यह a छापता है।"
+      }
+     },
+     {
+      "id": "delete",
+      "text": {
+       "en": "del s[1]",
+       "hi": "del s[1]"
+      },
+      "bin": "error",
+      "why": {
+       "en": "Characters cannot be removed one by one from a string: TypeError.",
+       "hi": "स्ट्रिंग से अक्षर एक-एक करके हटाए नहीं जा सकते: TypeError।"
+      }
+     },
+     {
+      "id": "upper",
+      "text": {
+       "en": "print(s.upper())",
+       "hi": "print(s.upper())"
+      },
+      "bin": "works",
+      "why": {
+       "en": "upper() builds a new string INDIA. s itself stays India.",
+       "hi": "upper() नई स्ट्रिंग INDIA बनाता है। s ख़ुद India रहता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:assign",
+     "expect": "correct:assign",
+     "say": {
+      "en": "Here s = \"India\". Tap the card s[0] = \"B\", then tap the group where it belongs.",
+      "hi": "यहाँ s = \"India\" है। कार्ड s[0] = \"B\" दबाओ, फिर वह समूह दबाओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "s[0] = \"B\" tries to change the I of \"India\" to B. What do you expect Python to do?",
+      "hi": "s[0] = \"B\" \"India\" के I को B में बदलने की कोशिश करता है। तुम्हारे अनुसार पायथन क्या करेगा?"
+     },
+     "options": [
+      {
+       "id": "err",
+       "en": "Refuse with an error: strings cannot be changed in place",
+       "hi": "एरर देकर मना करेगा: स्ट्रिंग को उसी जगह बदला नहीं जा सकता"
+      },
+      {
+       "id": "ok",
+       "en": "Change it to \"Bndia\"",
+       "hi": "\"Bndia\" में बदल देगा"
+      }
+     ],
+     "answer": "err"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards, then tap Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A string is immutable: its characters cannot be changed after it is made. You can read them, join strings, or point a name at a new string, but you cannot overwrite one letter. To \"change\" a string you build a new one: for example join the letters you want to keep with the new letter. Every string method, like upper(), also returns a new string and leaves the original alone.",
+      "hi": "स्ट्रिंग अपरिवर्तनीय (immutable) है: बन जाने के बाद उसके अक्षर बदले नहीं जा सकते। तुम अक्षर पढ़ सकते हो, स्ट्रिंग जोड़ सकते हो या किसी नाम को नई स्ट्रिंग की ओर मोड़ सकते हो, पर एक अक्षर को मिटाकर नया नहीं लिख सकते। स्ट्रिंग \"बदलने\" के लिए नई बनाते हैं, जैसे रखने वाले अक्षरों को नए अक्षर से जोड़कर। upper() जैसी हर स्ट्रिंग विधि भी नई स्ट्रिंग लौटाती है और मूल को छोड़ देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does \"immutable\" mean for a string?",
+        "hi": "स्ट्रिंग के लिए \"अपरिवर्तनीय\" का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Its characters cannot be changed after it is made",
+         "hi": "बन जाने के बाद उसके अक्षर बदले नहीं जा सकते"
+        },
+        {
+         "en": "It cannot be printed",
+         "hi": "उसे छापा नहीं जा सकता"
+        },
+        {
+         "en": "It cannot be joined with another string",
+         "hi": "उसे दूसरी स्ट्रिंग से जोड़ा नहीं जा सकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Immutable means unchangeable in place.",
+        "hi": "अपरिवर्तनीय का मतलब है कि उसी जगह बदला नहीं जा सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Strings are printed all the time.",
+         "hi": "स्ट्रिंग तो हर समय छापी जाती हैं।"
+        },
+        {
+         "en": "Joining works, but it makes a new string; the old one is unchanged.",
+         "hi": "जोड़ना चलता है, पर वह नई स्ट्रिंग बनाता है; पुरानी अपरिवर्तित रहती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "After t = s.upper() with s = \"India\", what is s?",
+        "hi": "s = \"India\" के साथ t = s.upper() के बाद s क्या है?"
+       },
+       "options": [
+        {
+         "en": "\"India\" still",
+         "hi": "अब भी \"India\""
+        },
+        "\"INDIA\"",
+        {
+         "en": "An error",
+         "hi": "एरर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "upper() returns a new string and does not change s.",
+        "hi": "upper() नई स्ट्रिंग लौटाता है और s को नहीं बदलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The capital letters are in t, not in s.",
+         "hi": "बड़े अक्षर t में हैं, s में नहीं।"
+        },
+        {
+         "en": "The call is valid, so there is no error.",
+         "hi": "यह बुलावा सही है, इसलिए कोई एरर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and sort again as fast as you can. Then say in your own words why s = \"Bharat\" is allowed but s[0] = \"B\" is not.",
+      "hi": "रीसेट दबाकर जितनी तेज़ी से हो सके फिर छाँटो। फिर अपने शब्दों में बताओ कि s = \"Bharat\" क्यों चलता है पर s[0] = \"B\" क्यों नहीं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch08-ops",
+   "topic": "8.3.1",
+   "template": "code",
+   "title": {
+    "en": "String operations: join, repeat and look inside",
+    "hi": "स्ट्रिंग संक्रियाएँ: जोड़ना, दोहराना और भीतर खोजना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "first = \"Net\"",
+     "second = \"Cyber\"",
+     "name = first + second",
+     "print(name)",
+     "print(\"-\" * 10)",
+     "print(first * 2)",
+     "print(\"Cy\" in name)",
+     "print(\"cy\" in name)",
+     "print(\"x\" not in name)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "name is \"NetCyber\". Will \"cy\" in name be True?",
+      "hi": "name = \"NetCyber\" है। क्या \"cy\" in name का उत्तर True होगा?"
+     },
+     "options": [
+      {
+       "id": "false",
+       "en": "No, False: the capital C is different from a small c",
+       "hi": "नहीं, False: बड़ा C और छोटा c अलग हैं"
+      },
+      {
+       "id": "true",
+       "en": "Yes, True",
+       "hi": "हाँ, True"
+      }
+     ],
+     "answer": "false"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first line, NetCyber, is printed.",
+      "hi": "पहली पंक्ति NetCyber छपने तक \"एक क़दम\" दबाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the other operations.",
+      "hi": "बाक़ी संक्रियाएँ देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "+ joins two strings (concatenation): \"Net\" + \"Cyber\" is \"NetCyber\"; no space is added unless you write one. * repeats a string: \"-\" * 10 gives ten dashes, and first * 2 gives NetNet. in checks whether a smaller string is inside a bigger one and gives True or False (membership); not in is the opposite. Python is case-sensitive, so \"Cy\" is inside \"NetCyber\" but \"cy\" is not.",
+      "hi": "+ दो स्ट्रिंग जोड़ता है (संयोजन): \"Net\" + \"Cyber\" बनता है \"NetCyber\"; ख़ुद लिखे बिना खाली जगह नहीं जुड़ती। * स्ट्रिंग को दोहराता है: \"-\" * 10 दस डैश देता है और first * 2 से NetNet बनता है। in जाँचता है कि छोटी स्ट्रिंग बड़ी के भीतर है या नहीं और True या False देता है (सदस्यता); not in उसका उलटा है। पायथन बड़े-छोटे अक्षरों में फ़र्क करता है, इसलिए \"Cy\" \"NetCyber\" के भीतर है पर \"cy\" नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does \"Ha\" * 3 give?",
+        "hi": "\"Ha\" * 3 क्या देता है?"
+       },
+       "options": [
+        "HaHaHa",
+        "Ha3",
+        "Ha Ha Ha"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "* repeats the string, with nothing added between the copies.",
+        "hi": "* स्ट्रिंग को दोहराता है, प्रतियों के बीच कुछ नहीं जुड़ता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Python does not add the number to the text; it repeats the text that many times.",
+         "hi": "पायथन संख्या को पाठ में नहीं जोड़ता; वह पाठ को उतनी बार दोहराता है।"
+        },
+        {
+         "en": "No spaces appear unless you put them in the string yourself.",
+         "hi": "खाली जगहें तब तक नहीं आतीं जब तक तुम उन्हें स्ट्रिंग में ख़ुद न डालो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which line gives a TypeError?",
+        "hi": "कौन-सी पंक्ति TypeError देती है?"
+       },
+       "options": [
+        "\"Age: \" + 16",
+        "\"Age: \" + \"16\"",
+        "\"Age: \" * 2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "+ cannot join a string and a number. Use \"Age: \" + str(16).",
+        "hi": "+ स्ट्रिंग और संख्या को नहीं जोड़ सकता। \"Age: \" + str(16) लिखो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two strings can be joined without any problem.",
+         "hi": "दो स्ट्रिंग बिना किसी दिक़्क़त के जुड़ सकती हैं।"
+        },
+        {
+         "en": "A string times a whole number repeats the string.",
+         "hi": "स्ट्रिंग को पूर्ण संख्या से गुणा करने पर वह दोहराई जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then guess what \"ab\" * 0 gives, and what \"abc\" in \"abcd\" gives.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर अनुमान लगाओ कि \"ab\" * 0 क्या देता है और \"abc\" in \"abcd\" क्या देता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch08-slice",
+   "topic": "8.3.4",
+   "template": "match",
+   "title": {
+    "en": "Slicing: cut a piece out of a string",
+    "hi": "स्लाइसिंग: स्ट्रिंग का एक टुकड़ा काटो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "s[0:3]",
+       "hi": "s[0:3]"
+      },
+      "right": {
+       "en": "COM",
+       "hi": "COM"
+      },
+      "why": {
+       "en": "Start at index 0 and stop before 3: the letters at 0, 1 and 2.",
+       "hi": "इंडेक्स 0 से शुरू करके 3 से पहले रुको: इंडेक्स 0, 1 और 2 के अक्षर।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "s[1:4]",
+       "hi": "s[1:4]"
+      },
+      "right": {
+       "en": "OMP",
+       "hi": "OMP"
+      },
+      "why": {
+       "en": "Indexes 1, 2 and 3: O, M and P.",
+       "hi": "इंडेक्स 1, 2 और 3: O, M और P।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "s[-3:]",
+       "hi": "s[-3:]"
+      },
+      "right": {
+       "en": "TER",
+       "hi": "TER"
+      },
+      "why": {
+       "en": "-3 starts at the third letter from the end and the empty stop means go to the end.",
+       "hi": "-3 अंत से तीसरे अक्षर से शुरू होता है और ख़ाली अंत का मतलब है आख़िर तक जाओ।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "s[2:7:2]",
+       "hi": "s[2:7:2]"
+      },
+      "right": {
+       "en": "MUE",
+       "hi": "MUE"
+      },
+      "why": {
+       "en": "From index 2 to before 7, taking every second letter: indexes 2, 4, 6.",
+       "hi": "इंडेक्स 2 से 7 से पहले तक, हर दूसरा अक्षर: इंडेक्स 2, 4, 6।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "s[::2]",
+       "hi": "s[::2]"
+      },
+      "right": {
+       "en": "CMUE",
+       "hi": "CMUE"
+      },
+      "why": {
+       "en": "The whole string, every second letter: indexes 0, 2, 4, 6.",
+       "hi": "पूरी स्ट्रिंग, हर दूसरा अक्षर: इंडेक्स 0, 2, 4, 6।"
+      }
+     },
+     {
+      "id": "f",
+      "left": {
+       "en": "s[::-1]",
+       "hi": "s[::-1]"
+      },
+      "right": {
+       "en": "RETUPMOC",
+       "hi": "RETUPMOC"
+      },
+      "why": {
+       "en": "A step of -1 walks backwards, so the string comes out reversed.",
+       "hi": "-1 का क़दम पीछे की ओर चलता है, इसलिए स्ट्रिंग उलटी निकलती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Here s = \"COMPUTER\". Tap s[0:3], then the piece it cuts out.",
+      "hi": "यहाँ s = \"COMPUTER\" है। s[0:3] दबाओ, फिर वह टुकड़ा दबाओ जो वह काटता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In s[0:3], which index is NOT included in the piece?",
+      "hi": "s[0:3] में कौन-सा इंडेक्स टुकड़े में शामिल नहीं है?"
+     },
+     "options": [
+      {
+       "id": "three",
+       "en": "Index 3, the stop index",
+       "hi": "इंडेक्स 3, यानी अंतिम इंडेक्स"
+      },
+      {
+       "id": "zero",
+       "en": "Index 0, the start index",
+       "hi": "इंडेक्स 0, यानी शुरुआती इंडेक्स"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "left:f",
+     "expect": "matched:f",
+     "say": {
+      "en": "Match s[::-1] with its piece. It walks backwards.",
+      "hi": "s[::-1] को उसके टुकड़े से मिलाओ। यह पीछे की ओर चलता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:d",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the remaining slices.",
+      "hi": "बाक़ी स्लाइस मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A slice s[start:stop:step] takes a piece of a string. It begins at start, stops before stop (the stop index is never included), and moves by step. If start is left empty it means the beginning, if stop is empty it means the end, and a negative step walks backwards. A slice builds a new string and never changes the original, so s is still COMPUTER.",
+      "hi": "स्लाइस s[start:stop:step] स्ट्रिंग का एक टुकड़ा लेता है। यह start से शुरू होता है, stop से पहले रुकता है (stop इंडेक्स कभी शामिल नहीं होता) और step के हिसाब से आगे बढ़ता है। start ख़ाली हो तो मतलब शुरुआत से, stop ख़ाली हो तो आख़िर तक, और ऋणात्मक step पीछे की ओर चलता है। स्लाइस नई स्ट्रिंग बनाता है और मूल को नहीं बदलता, इसलिए s अब भी COMPUTER है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "With s = \"COMPUTER\", what is s[:4]?",
+        "hi": "s = \"COMPUTER\" हो तो s[:4] क्या है?"
+       },
+       "options": [
+        "COMP",
+        "COMPU",
+        "OMPU"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An empty start means index 0, and the piece stops before index 4.",
+        "hi": "ख़ाली start का मतलब इंडेक्स 0 है, और टुकड़ा इंडेक्स 4 से पहले रुकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Index 4 is U, and the stop index is not included.",
+         "hi": "इंडेक्स 4 U है, और stop इंडेक्स शामिल नहीं होता।"
+        },
+        {
+         "en": "The piece starts at the beginning, not at index 1.",
+         "hi": "टुकड़ा शुरुआत से शुरू होता है, इंडेक्स 1 से नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How do you get a reversed copy of s in one slice?",
+        "hi": "एक स्लाइस में s की उलटी प्रति कैसे पाते हैं?"
+       },
+       "options": [
+        "s[::-1]",
+        "s[-1]",
+        "s[1::]"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A step of -1 over the whole string walks from the end to the start.",
+        "hi": "पूरी स्ट्रिंग पर -1 का क़दम अंत से शुरुआत की ओर चलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "s[-1] is only the last character.",
+         "hi": "s[-1] केवल आख़िरी अक्षर है।"
+        },
+        {
+         "en": "s[1::] drops the first letter and keeps the order.",
+         "hi": "s[1::] पहला अक्षर हटाता है और क्रम वही रखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and match again with the answers hidden in your mind. Then work out s[3:6] yourself.",
+      "hi": "रीसेट दबाओ और उत्तरों को मन में छिपाकर फिर मिलाओ। फिर s[3:6] ख़ुद निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch08-traverse",
+   "topic": "8.4",
+   "template": "code",
+   "title": {
+    "en": "Traversing a string: count the vowels",
+    "hi": "स्ट्रिंग में घूमना: स्वर गिनो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "word = \"EDUCATION\"",
+     "vowels = 0",
+     "for ch in word:",
+     "    if ch in \"AEIOU\":",
+     "        vowels = vowels + 1",
+     "        print(ch, \"is a vowel\")",
+     "print(\"Vowels:\", vowels)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The loop visits the letters of EDUCATION one by one. How many vowels (A, E, I, O, U) will it count?",
+      "hi": "लूप EDUCATION के अक्षरों पर एक-एक करके जाता है। वह कितने स्वर (A, E, I, O, U) गिनेगा?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5",
+       "hi": "5 (पाँच)"
+      },
+      {
+       "id": "4",
+       "en": "4",
+       "hi": "4 (चार)"
+      },
+      {
+       "id": "9",
+       "en": "9",
+       "hi": "9 (नौ)"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first vowel is announced. Watch ch take each letter in turn.",
+      "hi": "पहले स्वर की घोषणा होने तक \"एक क़दम\" दबाओ। देखो ch हर बार अगला अक्षर कैसे लेता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the full count.",
+      "hi": "पूरी गिनती देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To traverse a string means to visit its characters one by one. for ch in word: gives ch each letter in order, from the first to the last, and the indented lines run once for each letter. Inside, the membership test ch in \"AEIOU\" asks whether the letter is a vowel, and a counter adds 1 each time. EDUCATION has the vowels E, U, A, I and O, so the count is 5.",
+      "hi": "स्ट्रिंग में घूमने (ट्रैवर्स) का अर्थ है उसके अक्षरों पर एक-एक करके जाना। for ch in word: ch को पहले से आख़िरी तक हर अक्षर क्रम से देता है और इंडेंट की हुई पंक्तियाँ हर अक्षर के लिए एक बार चलती हैं। भीतर सदस्यता जाँच ch in \"AEIOU\" पूछती है कि अक्षर स्वर है या नहीं, और गिनती हर बार 1 बढ़ती है। EDUCATION में स्वर E, U, A, I और O हैं, इसलिए गिनती 5 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does ch hold in the second round of for ch in \"CODE\":?",
+        "hi": "for ch in \"CODE\": के दूसरे चक्कर में ch में क्या होता है?"
+       },
+       "options": [
+        "\"O\"",
+        "\"C\"",
+        "\"D\""
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Round 1 gives C, round 2 gives O, round 3 gives D and round 4 gives E.",
+        "hi": "पहला चक्कर C देता है, दूसरा O, तीसरा D और चौथा E।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "\"C\" is the first round.",
+         "hi": "\"C\" पहला चक्कर है।"
+        },
+        {
+         "en": "\"D\" is the third round.",
+         "hi": "\"D\" तीसरा चक्कर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which loop line visits the characters by their index numbers instead?",
+        "hi": "कौन-सी लूप पंक्ति अक्षरों पर उनके इंडेक्स से जाती है?"
+       },
+       "options": [
+        "for i in range(len(word)):",
+        "for ch in word:",
+        "while word:"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "i takes the values 0 to len(word) - 1, and word[i] is each letter.",
+        "hi": "i को 0 से len(word) - 1 तक के मान मिलते हैं, और word[i] हर अक्षर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This one gives the letters themselves, not their index numbers.",
+         "hi": "यह अक्षर ख़ुद देता है, उनके इंडेक्स नहीं।"
+        },
+        {
+         "en": "This is not a valid way to walk through a string.",
+         "hi": "स्ट्रिंग में घूमने का यह सही तरीक़ा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then imagine counting only the consonants. Which one word in the if line would you change?",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर सोचो कि केवल व्यंजन गिनने हों तो if वाली पंक्ति में कौन-सा एक शब्द बदलोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch08-reverse",
+   "topic": "8.6",
+   "template": "code",
+   "title": {
+    "en": "Handling strings: reverse a word and test a palindrome",
+    "hi": "स्ट्रिंग सँभालना: शब्द उलटो और पैलिंड्रोम जाँचो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "word = \"MADAM\"",
+     "rev = \"\"",
+     "for ch in word:",
+     "    rev = ch + rev",
+     "    print(ch, \"->\", rev)",
+     "if word == rev:",
+     "    print(word, \"is a palindrome\")",
+     "else:",
+     "    print(word, \"is not a palindrome\")"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each new letter is put in front of rev. After the last letter of MADAM, what is rev?",
+      "hi": "हर नया अक्षर rev के आगे लगता है। MADAM के आख़िरी अक्षर के बाद rev क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "madam",
+       "en": "MADAM",
+       "hi": "MADAM (वही शब्द)"
+      },
+      {
+       "id": "mada",
+       "en": "MADA",
+       "hi": "MADA (आख़िरी अक्षर के बिना)"
+      },
+      {
+       "id": "empty",
+       "en": "An empty string",
+       "hi": "ख़ाली स्ट्रिंग"
+      }
+     ],
+     "answer": "madam"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first arrow line is printed. See which side the new letter joins.",
+      "hi": "पहली तीर वाली पंक्ति छपने तक \"एक क़दम\" दबाओ। देखो नया अक्षर किस ओर जुड़ता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the verdict.",
+      "hi": "फ़ैसला देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Because each letter is added in front of the letters before it, the first letter ends at the back and the string comes out reversed. A palindrome reads the same forwards and backwards, like MADAM or NITIN. The program builds the reversed word and compares it with the original using ==. Here they are equal, so MADAM is a palindrome. Since strings cannot be changed in place, rev = ch + rev makes a new string each time.",
+      "hi": "हर अक्षर पहले के अक्षरों के आगे जुड़ता है, इसलिए पहला अक्षर पीछे पहुँच जाता है और स्ट्रिंग उलटी बनती है। पैलिंड्रोम वह शब्द है जो आगे से और पीछे से एक-सा पढ़ा जाए, जैसे MADAM या NITIN। प्रोग्राम उलटा शब्द बनाकर उसे मूल से == द्वारा मिलाता है। यहाँ वे बराबर हैं, इसलिए MADAM पैलिंड्रोम है। स्ट्रिंग उसी जगह बदली नहीं जा सकती, इसलिए rev = ch + rev हर बार नई स्ट्रिंग बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word is a palindrome?",
+        "hi": "कौन-सा शब्द पैलिंड्रोम है?"
+       },
+       "options": [
+        "NITIN",
+        "INDIA",
+        "SCHOOL"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "NITIN reversed is NITIN.",
+        "hi": "NITIN को उलटने पर NITIN ही मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "INDIA reversed is AIDNI.",
+         "hi": "INDIA उलटने पर AIDNI बनता है।"
+        },
+        {
+         "en": "SCHOOL reversed is LOOHCS.",
+         "hi": "SCHOOL उलटने पर LOOHCS बनता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If we wrote rev = rev + ch instead, what would rev become for the word INDIA?",
+        "hi": "अगर rev = rev + ch लिखते, तो शब्द INDIA के लिए rev क्या बनता?"
+       },
+       "options": [
+        {
+         "en": "INDIA, an exact copy",
+         "hi": "INDIA, हूबहू नक़ल"
+        },
+        "AIDNI",
+        {
+         "en": "An empty string",
+         "hi": "ख़ाली स्ट्रिंग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Adding each letter at the back keeps the original order, so the loop only copies the word.",
+        "hi": "हर अक्षर पीछे जोड़ने से मूल क्रम बना रहता है, इसलिए लूप केवल शब्द की नक़ल करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "AIDNI is the reversed word; that needs each letter put in front, as ch + rev does.",
+         "hi": "AIDNI उलटा शब्द है; उसके लिए हर अक्षर आगे लगाना पड़ता है, जैसा ch + rev करता है।"
+        },
+        {
+         "en": "rev grows by one letter every round, so it cannot stay empty.",
+         "hi": "rev हर चक्कर में एक अक्षर बढ़ता है, इसलिए ख़ाली नहीं रह सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then test the word LEVEL by hand: write its reverse and compare.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर शब्द LEVEL को हाथ से जाँचो: उसका उलटा लिखो और मिलाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch08-methods",
+   "topic": "8.5",
+   "template": "match",
+   "title": {
+    "en": "String methods: what each one returns",
+    "hi": "स्ट्रिंग विधियाँ: हर एक क्या लौटाती है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "title",
+      "left": {
+       "en": "s.title()",
+       "hi": "s.title()"
+      },
+      "right": {
+       "en": "A capital at the start of each word",
+       "hi": "हर शब्द के शुरू में बड़ा अक्षर"
+      },
+      "why": {
+       "en": "title() makes the first letter of every word a capital.",
+       "hi": "title() हर शब्द का पहला अक्षर बड़ा कर देता है।"
+      }
+     },
+     {
+      "id": "upper",
+      "left": {
+       "en": "s.upper()",
+       "hi": "s.upper()"
+      },
+      "right": {
+       "en": "Every letter a capital",
+       "hi": "हर अक्षर बड़ा"
+      },
+      "why": {
+       "en": "upper() makes every letter a capital.",
+       "hi": "upper() हर अक्षर को बड़ा कर देता है।"
+      }
+     },
+     {
+      "id": "count",
+      "left": {
+       "en": "s.count(\"a\")",
+       "hi": "s.count(\"a\")"
+      },
+      "right": {
+       "en": "3, how many times a appears",
+       "hi": "3, यानी a कितनी बार आता है"
+      },
+      "why": {
+       "en": "There is an a in namaste twice and once in india.",
+       "hi": "namaste में दो बार और india में एक बार a है।"
+      }
+     },
+     {
+      "id": "find",
+      "left": {
+       "en": "s.find(\"india\")",
+       "hi": "s.find(\"india\")"
+      },
+      "right": {
+       "en": "8, the index where it starts",
+       "hi": "8, यानी वह इंडेक्स जहाँ से शुरू होता है"
+      },
+      "why": {
+       "en": "find gives the starting index of the first match, or -1 if there is none.",
+       "hi": "find पहले मेल का शुरुआती इंडेक्स देता है, और न मिले तो -1।"
+      }
+     },
+     {
+      "id": "replace",
+      "left": {
+       "en": "s.replace(\"india\", \"world\")",
+       "hi": "s.replace(\"india\", \"world\")"
+      },
+      "right": {
+       "en": "namaste world",
+       "hi": "namaste world"
+      },
+      "why": {
+       "en": "replace swaps the old piece for the new one, in a new string.",
+       "hi": "replace पुराने टुकड़े की जगह नया रखता है, नई स्ट्रिंग में।"
+      }
+     },
+     {
+      "id": "split",
+      "left": {
+       "en": "s.split()",
+       "hi": "s.split()"
+      },
+      "right": {
+       "en": "A list of the words: [\"namaste\", \"india\"]",
+       "hi": "शब्दों की सूची: [\"namaste\", \"india\"]"
+      },
+      "why": {
+       "en": "split cuts the string at the spaces and returns a list.",
+       "hi": "split स्ट्रिंग को खाली जगहों पर काटकर सूची लौटाता है।"
+      }
+     },
+     {
+      "id": "starts",
+      "left": {
+       "en": "s.startswith(\"nam\")",
+       "hi": "s.startswith(\"nam\")"
+      },
+      "right": {
+       "en": "True",
+       "hi": "True"
+      },
+      "why": {
+       "en": "The string really begins with nam, so the answer is True.",
+       "hi": "स्ट्रिंग सचमुच nam से शुरू होती है, इसलिए उत्तर True है।"
+      }
+     },
+     {
+      "id": "strip",
+      "left": {
+       "en": "\"  hi  \".strip()",
+       "hi": "\"  hi  \".strip()"
+      },
+      "right": {
+       "en": "hi, with the spaces at both ends removed",
+       "hi": "hi, दोनों सिरों की खाली जगहें हटाकर"
+      },
+      "why": {
+       "en": "strip removes spaces from the start and the end.",
+       "hi": "strip शुरू और अंत की खाली जगहें हटाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:title",
+     "expect": "matched:title",
+     "say": {
+      "en": "Here s = \"namaste india\". Tap s.title(), then what it returns.",
+      "hi": "यहाँ s = \"namaste india\" है। s.title() दबाओ, फिर वह जो लौटाता है उसे दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "s.find(\"india\") gives the index where \"india\" starts. Counting from 0 in \"namaste india\", which number is it?",
+      "hi": "s.find(\"india\") वह इंडेक्स देता है जहाँ \"india\" शुरू होता है। \"namaste india\" में 0 से गिनने पर वह कौन-सी संख्या है?"
+     },
+     "options": [
+      {
+       "id": "8",
+       "en": "8",
+       "hi": "8 (आठ)"
+      },
+      {
+       "id": "7",
+       "en": "7",
+       "hi": "7 (सात)"
+      },
+      {
+       "id": "9",
+       "en": "9",
+       "hi": "9 (नौ)"
+      }
+     ],
+     "answer": "8"
+    },
+    {
+     "kind": "do",
+     "target": "left:find",
+     "expect": "matched:find",
+     "say": {
+      "en": "Match s.find(\"india\") with its answer.",
+      "hi": "s.find(\"india\") को उसके उत्तर से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:strip",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the methods.",
+      "hi": "बाक़ी विधियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A method is a function that belongs to a value, called with a dot: s.upper(). String methods never change s, because strings are immutable; they return a new string, a number, a True or False, or a list. Some give back text (title, upper, replace, strip), some give a number (count, find) and some give a yes or no (startswith). Choose the method by what you need back.",
+      "hi": "विधि (मेथड) वह फ़ंक्शन है जो किसी मान से जुड़ा होता है और बिंदु के साथ बुलाया जाता है: s.upper()। स्ट्रिंग विधियाँ कभी s को नहीं बदलतीं, क्योंकि स्ट्रिंग अपरिवर्तनीय है; वे नई स्ट्रिंग, संख्या, True या False, या सूची लौटाती हैं। कुछ पाठ लौटाती हैं (title, upper, replace, strip), कुछ संख्या (count, find) और कुछ हाँ या नहीं (startswith)। जो चाहिए उसी के हिसाब से विधि चुनो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does \"10 20 30\".split() return?",
+        "hi": "\"10 20 30\".split() क्या लौटाता है?"
+       },
+       "options": [
+        {
+         "en": "A list of three strings",
+         "hi": "तीन स्ट्रिंग की सूची"
+        },
+        {
+         "en": "The number 60",
+         "hi": "संख्या 60"
+        },
+        {
+         "en": "The same string",
+         "hi": "वही स्ट्रिंग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "split cuts at the spaces: [\"10\", \"20\", \"30\"]. They are still strings, not numbers.",
+        "hi": "split खाली जगहों पर काटता है: [\"10\", \"20\", \"30\"]। ये अब भी स्ट्रिंग हैं, संख्याएँ नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "split does not add the numbers; it only cuts the text.",
+         "hi": "split संख्याएँ नहीं जोड़ता; वह केवल पाठ काटता है।"
+        },
+        {
+         "en": "The text is cut into pieces, so a list comes back.",
+         "hi": "पाठ टुकड़ों में कटता है, इसलिए सूची लौटती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "s = \"hello\". After s.upper(), what is s?",
+        "hi": "s = \"hello\" है। s.upper() के बाद s क्या है?"
+       },
+       "options": [
+        {
+         "en": "\"hello\" still",
+         "hi": "अब भी \"hello\""
+        },
+        "\"HELLO\"",
+        "None"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "upper() returns a new string; you must store it, like s = s.upper(), to keep it.",
+        "hi": "upper() नई स्ट्रिंग लौटाता है; उसे रखना हो तो s = s.upper() की तरह सँभालना होगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The capitals went into the returned value, not into s.",
+         "hi": "बड़े अक्षर लौटाए गए मान में गए, s में नहीं।"
+        },
+        {
+         "en": "s is still a string; None is not involved.",
+         "hi": "s अब भी स्ट्रिंग है; None का इससे कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and match again, faster. Then say which method you would use to find out whether a mobile number string has only digits.",
+      "hi": "रीसेट दबाओ और फिर तेज़ी से मिलाओ। फिर बताओ कि मोबाइल नंबर की स्ट्रिंग में केवल अंक हैं या नहीं यह जानने के लिए तुम कौन-सी विधि लगाओगे।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "8.2.1",
+   "use": "A string as a row of letter tiles",
+   "shows": "Seven plain wooden letter tiles in a row spelling a word, evenly spaced, each tile slightly raised",
+   "view": "Top-down, lit from the top left, transparent background",
+   "right": "Tiles of equal size and spacing so the app can number each one",
+   "avoid": "Any numbers or marks on the tiles, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.2.2",
+   "use": "Immutable: a stamped nameplate",
+   "shows": "A brass school nameplate screwed to a wooden board, its letters cut into the metal",
+   "view": "Front view, soft side light, transparent background",
+   "right": "Letters clearly fixed in the metal",
+   "avoid": "Readable real school names or logos"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "8.3.4",
+   "use": "Slicing: a ribbon of letters cut in pieces",
+   "shows": "Four frames of the same plain paper strip of letters: whole strip, a window frame over the first three, over the last three, then every second letter marked with small clips",
+   "view": "Same top-down camera and light for all four",
+   "right": "Same strip in every frame; only the frame or clips move",
+   "avoid": "Readable text beyond the plain letters"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "8.2.1",
+   "use": "Index ruler base",
+   "shows": "A row of eight empty rounded boxes with a thin number line above them (starting at 0) and a second number line below (ending at -1)",
+   "view": "Flat, white background",
+   "right": "Boxes evenly spaced so the app can add letters and numbers",
+   "avoid": "Any numbers or letters baked in"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "8.6",
+   "use": "Palindrome: the same from both ends",
+   "shows": "A necklace of wooden beads laid straight, with the bead colours and sizes in the same order from the left end and the right end",
+   "view": "Top-down, lit from the top left, transparent background",
+   "right": "Pattern truly mirror-symmetric around the middle bead",
+   "avoid": "Any letters or numbers on the beads"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "8.4",
+   "use": "Visiting letters one by one",
+   "shows": "A magnifying glass moving over a line of printed letters, one letter sharp and the rest soft",
+   "view": "Square, from above, soft light",
+   "right": "One letter in focus",
+   "avoid": "Readable full words"
+  }
+ ]
+}

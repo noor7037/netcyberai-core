@@ -1,0 +1,656 @@
+{
+  "chapter_key": "u.c12.political_science.leps2.ch08",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "Recent Developments in Indian Politics",
+  "source": "https://ncert.nic.in/textbook/pdf/leps208.pdf",
+  "topics": [
+    {
+      "n": "8.1",
+      "title": "The era of coalitions: key dates from 1984 to 2014",
+      "labs": [
+        "c12-political_science-leps2-ch08-coalition-timeline"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "8.2",
+      "title": "The decline of Congress and the rise of other parties",
+      "labs": [],
+      "why_no_lab": "Shown by the timeline lab and the reader's party table; a separate lab would repeat it."
+    },
+    {
+      "n": "8.3",
+      "title": "The political rise of Other Backward Classes and the Mandal Commission",
+      "labs": [
+        "c12-political_science-leps2-ch08-obc-match"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "8.4",
+      "title": "Vote share and seats: how votes become seats",
+      "labs": [
+        "c12-political_science-leps2-ch08-seat-share-election"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "8.5",
+      "title": "Communalism, secularism and democracy",
+      "labs": [],
+      "why_no_lab": "A debate about values and their meaning; the reader's cases and class discussion suit it better than a lab."
+    },
+    {
+      "n": "8.6",
+      "title": "The party position in the latest Lok Sabha",
+      "labs": [],
+      "why_no_lab": "Seat numbers change after every election, so a lab would go out of date; the teacher uses the latest official data in class."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps2-ch08-coalition-timeline",
+      "topic": "8.1",
+      "template": "timeline",
+      "title": {
+        "en": "The coalition era, in order",
+        "hi": "गठबंधन का दौर, क्रम से"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [
+          1980,
+          2020
+        ],
+        "task": "order",
+        "title": {
+          "en": "From a big majority to coalitions and back",
+          "hi": "भारी बहुमत से गठबंधन तक और फिर"
+        },
+        "events": [
+          {
+            "id": "cong84",
+            "year": 1984,
+            "label": {
+              "en": "Congress wins a huge majority in the Lok Sabha after Indira Gandhi's assassination",
+              "hi": "इंदिरा गांधी की हत्या के बाद लोक सभा चुनाव में कांग्रेस को भारी बहुमत मिलता है"
+            }
+          },
+          {
+            "id": "nf89",
+            "year": 1989,
+            "label": {
+              "en": "A coalition government, the National Front, takes office at the Centre",
+              "hi": "केंद्र में गठबंधन सरकार, नेशनल फ़्रंट, सत्ता सँभालती है"
+            }
+          },
+          {
+            "id": "mandal",
+            "year": 1990,
+            "label": {
+              "en": "The government announces OBC reservation based on the Mandal Commission",
+              "hi": "मंडल आयोग के आधार पर सरकार OBC आरक्षण की घोषणा करती है"
+            }
+          },
+          {
+            "id": "nda98",
+            "year": 1998,
+            "label": {
+              "en": "The National Democratic Alliance, a coalition of many parties, forms the government",
+              "hi": "कई दलों का गठबंधन, NDA, सरकार बनाता है"
+            }
+          },
+          {
+            "id": "major14",
+            "year": 2014,
+            "label": {
+              "en": "A single party wins a majority in the Lok Sabha on its own, the first time since 1984",
+              "hi": "एक दल लोक सभा में अपने बल पर बहुमत जीतता है, 1984 के बाद पहली बार"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which of these three came first?",
+            "hi": "इन तीनों में से सबसे पहले कौन-सी घटना हुई?"
+          },
+          "options": [
+            {
+              "id": "nf89",
+              "en": "The National Front government, 1989",
+              "hi": "नेशनल फ़्रंट सरकार, 1989"
+            },
+            {
+              "id": "nda98",
+              "en": "The NDA government, 1998",
+              "hi": "NDA सरकार, 1998"
+            },
+            {
+              "id": "major14",
+              "en": "A single-party majority, 2014",
+              "hi": "एक दल का बहुमत, 2014"
+            }
+          ],
+          "answer": "nf89"
+        },
+        {
+          "kind": "do",
+          "target": "event:cong84",
+          "expect": "placed:cong84",
+          "say": {
+            "en": "Tap the Congress majority of 1984.",
+            "hi": "1984 का कांग्रेस बहुमत छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "event:nf89",
+          "expect": "placed:nf89",
+          "say": {
+            "en": "Tap the National Front government of 1989.",
+            "hi": "1989 की नेशनल फ़्रंट सरकार छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "event:mandal",
+          "expect": "placed:mandal",
+          "say": {
+            "en": "Tap the OBC reservation announcement of 1990.",
+            "hi": "1990 की OBC आरक्षण की घोषणा छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "event:nda98",
+          "expect": "placed:nda98",
+          "say": {
+            "en": "Tap the NDA government of 1998.",
+            "hi": "1998 की NDA सरकार छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "event:major14",
+          "expect": "placed:major14",
+          "say": {
+            "en": "Tap the single-party majority of 2014.",
+            "hi": "2014 का एक दल का बहुमत छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "ordered",
+          "say": {
+            "en": "Press Check to test the order.",
+            "hi": "क्रम जाँचने के लिए जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "After 1984, one party rarely won a majority on its own for a long time. Coalitions became the norm: the National Front in 1989 and the NDA in 1998. The OBC reservation based on the Mandal Commission changed caste and party politics. In 2014 a single party again won a majority on its own.",
+            "hi": "1984 के बाद लंबे समय तक किसी एक दल को अपने बल पर बहुमत कम मिला। गठबंधन आम हो गए: 1989 में नेशनल फ़्रंट और 1998 में NDA। मंडल आयोग पर आधारित OBC आरक्षण ने जाति और दलीय राजनीति को बदला। 2014 में फिर एक दल ने अपने बल पर बहुमत जीता।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In which year did a single party win a majority in the Lok Sabha on its own, after 1984?",
+                "hi": "1984 के बाद किस वर्ष एक दल ने लोक सभा में अपने बल पर बहुमत जीता?"
+              },
+              "options": [
+                {
+                  "en": "1989 (उन्नीस सौ नवासी)",
+                  "hi": "1989 (उन्नीस सौ नवासी)"
+                },
+                {
+                  "en": "1998 (उन्नीस सौ अट्ठानवे)",
+                  "hi": "1998 (उन्नीस सौ अट्ठानवे)"
+                },
+                {
+                  "en": "2014 (दो हज़ार चौदह)",
+                  "hi": "2014 (दो हज़ार चौदह)"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "In 2014 a single party won a majority on its own, the first time since 1984.",
+                "hi": "2014 में एक दल ने अपने बल पर बहुमत जीता, 1984 के बाद पहली बार।"
+              },
+              "wrong": [
+                {
+                  "en": "The National Front in 1989 was a coalition, not a single-party majority.",
+                  "hi": "1989 का नेशनल फ़्रंट गठबंधन था, एक दल का बहुमत नहीं।"
+                },
+                {
+                  "en": "The NDA in 1998 was a coalition of many parties.",
+                  "hi": "1998 का NDA कई दलों का गठबंधन था।"
+                },
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write one reason a coalition government needs more care than a single-party government. Use the 1989 and 1998 dates.",
+            "hi": "एक कारण लिखो कि गठबंधन सरकार को एक-दलीय सरकार से ज़्यादा सावधानी क्यों चाहिए। 1989 और 1998 की तारीखें इस्तेमाल करो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch08-obc-match",
+      "topic": "8.3",
+      "template": "match",
+      "title": {
+        "en": "Match the key words of recent Indian politics",
+        "hi": "हाल की भारतीय राजनीति के मुख्य शब्दों को मिलाओ"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "mandal",
+            "left": {
+              "en": "Mandal Commission",
+              "hi": "मंडल आयोग"
+            },
+            "right": {
+              "en": "Recommended reservations for Other Backward Classes in government jobs and education",
+              "hi": "सरकारी नौकरियों और शिक्षा में अन्य पिछड़े वर्गों (OBC) के लिए आरक्षण की सिफ़ारिश की"
+            },
+            "why": {
+              "en": "Its report became central to the politics of backward classes in the 1990s.",
+              "hi": "इसकी रिपोर्ट 1990 के दशक में पिछड़े वर्गों की राजनीति का केंद्र बनी।"
+            }
+          },
+          {
+            "id": "obc",
+            "left": {
+              "en": "Other Backward Classes (OBC)",
+              "hi": "अन्य पिछड़ा वर्ग (OBC)"
+            },
+            "right": {
+              "en": "Castes and communities that are socially and educationally backward",
+              "hi": "वे जातियाँ और समुदाय जो सामाजिक और शैक्षिक रूप से पिछड़े हैं"
+            },
+            "why": {
+              "en": "Reservation is one way to give them a fair chance.",
+              "hi": "आरक्षण उन्हें उचित अवसर देने का एक तरीका है।"
+            }
+          },
+          {
+            "id": "alliance",
+            "left": {
+              "en": "Alliance",
+              "hi": "चुनावी गठबंधन"
+            },
+            "right": {
+              "en": "Parties agree to contest elections together and share power",
+              "hi": "दल साथ चुनाव लड़ने और सत्ता बाँटने पर सहमत होते हैं"
+            },
+            "why": {
+              "en": "Pre-poll alliances help parties add their votes together.",
+              "hi": "चुनाव से पहले के गठबंधन दलों के वोट साथ जोड़ने में मदद करते हैं।"
+            }
+          },
+          {
+            "id": "coalition",
+            "left": {
+              "en": "Coalition government",
+              "hi": "गठबंधन सरकार"
+            },
+            "right": {
+              "en": "Several parties together form the government",
+              "hi": "कई दल मिलकर सरकार बनाते हैं"
+            },
+            "why": {
+              "en": "A coalition needs agreement among its partners to run the government.",
+              "hi": "गठबंधन सरकार चलाने के लिए साथी दलों के बीच सहमति चाहिए।"
+            }
+          },
+          {
+            "id": "voteshare",
+            "left": {
+              "en": "Vote share",
+              "hi": "वोट प्रतिशत"
+            },
+            "right": {
+              "en": "The percentage of all valid votes that a party wins",
+              "hi": "कुल वैध वोटों में से किसी दल को मिले वोटों का प्रतिशत"
+            },
+            "why": {
+              "en": "Vote share and seats are not the same, as the seat lab in this chapter shows.",
+              "hi": "वोट प्रतिशत और सीटें एक नहीं होतीं, जैसा इस अध्याय की सीट वाली लैब दिखाती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which term means the share of all valid votes that a party gets?",
+            "hi": "कौन-सा शब्द बताता है कि किसी दल को कुल वैध वोटों में से कितना हिस्सा मिला?"
+          },
+          "options": [
+            {
+              "id": "voteshare",
+              "en": "Vote share",
+              "hi": "वोट प्रतिशत"
+            },
+            {
+              "id": "alliance",
+              "en": "Alliance",
+              "hi": "चुनावी गठबंधन"
+            },
+            {
+              "id": "obc",
+              "en": "Other Backward Classes",
+              "hi": "अन्य पिछड़ा वर्ग"
+            }
+          ],
+          "answer": "voteshare"
+        },
+        {
+          "kind": "do",
+          "target": "right:mandal",
+          "expect": "matched:mandal",
+          "say": {
+            "en": "Tap 'Mandal Commission' on the left, then its recommendation on the right.",
+            "hi": "बाईं ओर 'मंडल आयोग' छुओ, फिर दाईं ओर उसकी सिफ़ारिश छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "right:obc",
+          "expect": "matched:obc",
+          "say": {
+            "en": "Match OBC with its description.",
+            "hi": "OBC का उसके विवरण से मिलान करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "right:alliance",
+          "expect": "matched:alliance",
+          "say": {
+            "en": "Match alliance with its meaning.",
+            "hi": "चुनावी गठबंधन का उसके अर्थ से मिलान करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "right:coalition",
+          "expect": "matched:coalition",
+          "say": {
+            "en": "Match the coalition government with its meaning.",
+            "hi": "गठबंधन सरकार का उसके अर्थ से मिलान करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "right:voteshare",
+          "expect": "matched:voteshare",
+          "say": {
+            "en": "Match vote share. The last match completes the set.",
+            "hi": "वोट प्रतिशत का मिलान करो। आख़िरी मिलान से सेट पूरा होगा।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Mandal's recommendation for OBC reservation changed the politics of caste and backward classes. Alliances and coalitions became the way parties gathered support, and vote share is only one step toward seats.",
+            "hi": "OBC आरक्षण पर मंडल की सिफ़ारिश ने जाति और पिछड़े वर्गों की राजनीति को बदला। गठबंधन और चुनावी मेल दलों के समर्थन जुटाने का तरीका बने, और वोट प्रतिशत सीटों की ओर का सिर्फ़ एक कदम है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What was the main recommendation of the Mandal Commission?",
+                "hi": "मंडल आयोग की मुख्य सिफ़ारिश क्या थी?"
+              },
+              "options": [
+                {
+                  "en": "Reservation for OBCs in government jobs and education",
+                  "hi": "सरकारी नौकरियों और शिक्षा में OBC के लिए आरक्षण"
+                },
+                {
+                  "en": "A new national party",
+                  "hi": "एक नया राष्ट्रीय दल"
+                },
+                {
+                  "en": "The end of all coalitions",
+                  "hi": "सभी गठबंधनों का अंत"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The Mandal Commission recommended reservation for OBCs in government jobs and education.",
+                "hi": "मंडल आयोग ने सरकारी नौकरियों और शिक्षा में OBC के लिए आरक्षण की सिफ़ारिश की।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The commission did not create a national party.",
+                  "hi": "आयोग ने कोई राष्ट्रीय दल नहीं बनाया।"
+                },
+                {
+                  "en": "The commission did not end coalitions.",
+                  "hi": "आयोग ने गठबंधनों का अंत नहीं किया।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write one way a party could build support beyond its own votes. Use the word alliance in your answer.",
+            "hi": "एक तरीका लिखो जिससे दल अपने वोटों से आगे समर्थन बना सके। अपने जवाब में गठबंधन शब्द इस्तेमाल करो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch08-seat-share-election",
+      "topic": "8.4",
+      "template": "govern",
+      "title": {
+        "en": "From votes to seats: a proportional split",
+        "hi": "वोटों से सीटों तक: आनुपातिक बँटवारा"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "election",
+        "options": {
+          "candidates": [
+            "asha",
+            "imran",
+            "gurpreet",
+            "ravi"
+          ],
+          "shares": {
+            "asha": 38,
+            "imran": 27,
+            "gurpreet": 22,
+            "ravi": 13
+          },
+          "nota": false,
+          "voters": 1000,
+          "turnout": 60,
+          "system": "pr",
+          "seats": 10
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "If 10 seats are shared by vote share, how many seats should Asha's party get?",
+            "hi": "अगर वोट प्रतिशत से 10 सीटें बाँटी जाएँ, तो आशा के दल को कितनी सीटें मिलनी चाहिए?"
+          },
+          "options": [
+            {
+              "id": "two",
+              "en": "2 seats",
+              "hi": "दो सीटें"
+            },
+            {
+              "id": "four",
+              "en": "4 seats",
+              "hi": "चार सीटें"
+            },
+            {
+              "id": "nine",
+              "en": "9 seats",
+              "hi": "नौ सीटें"
+            }
+          ],
+          "answer": "four"
+        },
+        {
+          "kind": "do",
+          "target": "vote:asha",
+          "expect": "voted:asha",
+          "say": {
+            "en": "Tap Asha's card to cast your vote. (Fictional candidates.)",
+            "hi": "अपना वोट डालने के लिए आशा का कार्ड छुओ। (काल्पनिक उम्मीदवार।)"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "play",
+          "expect": "counted",
+          "say": {
+            "en": "Press Count and see how the seats are shared.",
+            "hi": "गिनती दबाओ और देखो सीटें कैसे बँटती हैं।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Under proportional representation, seats follow votes. A party with 38 percent of the votes gets about 4 of 10 seats. India's Lok Sabha uses first past the post in each constituency, so vote share and seat share can differ much more. Coalitions are formed to reach a majority of seats.",
+            "hi": "आनुपातिक प्रतिनिधित्व में सीटें वोटों के साथ बँटती हैं। 38 प्रतिशत वोट वाले दल को 10 में से लगभग 4 सीटें मिलती हैं। भारत की लोक सभा हर चुनाव-क्षेत्र में फ़र्स्ट-पास्ट-द-पोस्ट से चलती है, इसलिए वोट प्रतिशत और सीट प्रतिशत में बड़ा फ़र्क हो सकता है। सीटों का बहुमत पाने के लिए गठबंधन बनाए जाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which system does India use for Lok Sabha seats?",
+                "hi": "भारत लोक सभा की सीटों के लिए कौन-सी व्यवस्था अपनाता है?"
+              },
+              "options": [
+                {
+                  "en": "First past the post in each constituency",
+                  "hi": "हर चुनाव-क्षेत्र में फ़र्स्ट-पास्ट-द-पोस्ट"
+                },
+                {
+                  "en": "Proportional representation across the whole country",
+                  "hi": "पूरे देश में आनुपातिक प्रतिनिधित्व"
+                },
+                {
+                  "en": "Seats shared equally among all parties",
+                  "hi": "सभी दलों में सीटें बराबर बाँटी जाती हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "India's Lok Sabha elects one member per constituency, the candidate with the most votes there.",
+                "hi": "भारत की लोक सभा में हर चुनाव-क्षेत्र से एक सदस्य चुना जाता है, जिसे वहाँ सबसे ज़्यादा वोट मिलते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Proportional representation is a contrast in this lab, not India's Lok Sabha system.",
+                  "hi": "आनुपातिक प्रतिनिधित्व इस लैब में तुलना के लिए है, भारत की लोक सभा व्यवस्था नहीं।"
+                },
+                {
+                  "en": "Seats are not shared equally in any system used for the Lok Sabha.",
+                  "hi": "लोक सभा की किसी भी व्यवस्था में सीटें बराबर नहीं बाँटी जातीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press Reset, vote for another candidate, count again and see how the seat split moves.",
+            "hi": "रीसेट दबाओ, किसी और उम्मीदवार को वोट दो, फिर गिनो और देखो सीटों का बँटवारा कैसे बदलता है।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "8.1",
+      "use": "Opening picture of democracy in everyday life",
+      "shows": "A town square on market day with people far in the background and no readable signs",
+      "view": "Eye level, wide 16:9, bright daylight",
+      "right": "Real market colours, true town life, no close faces",
+      "avoid": "Readable posters, party symbols, faces in close-up"
+    },
+    {
+      "n": 2,
+      "kind": "MAP",
+      "topic": "8.1",
+      "use": "The country where the coalitions were formed",
+      "shows": "Plain relief map of India with plains and mountains shaded, no names and no borders",
+      "view": "Top-down, 16:9, centred on the subcontinent",
+      "right": "Soft earth colours, true relief, pale sea",
+      "avoid": "State borders, names, capitals"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "8.4",
+      "use": "A folded paper ballot as the unit of a vote",
+      "shows": "A single folded plain paper ballot on a table, cut-out on a transparent background",
+      "view": "Three-quarter view from above, object fills about 80 percent",
+      "right": "Real paper texture, crisp fold, soft shadow",
+      "avoid": "Printed symbols, names, party marks"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "8.4",
+      "use": "A blank ring for dividing seats",
+      "shows": "A white ring divided into ten equal blank segments, ready for labels added by the app",
+      "view": "Flat, 1:1, straight-on",
+      "right": "Clean lines, equal segments, soft tints, no numbers",
+      "avoid": "Any text or figures"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "8.5",
+      "use": "Opening picture of everyday talk about democracy",
+      "shows": "A tea stall bench in a small town at dusk with two empty glasses on a wooden table, no people in frame",
+      "view": "Eye level, wide 16:9, warm dusk light",
+      "right": "Real stall wood, glass shine, true evening light",
+      "avoid": "Readable posters, party symbols, faces in close-up"
+    }
+  ]
+}

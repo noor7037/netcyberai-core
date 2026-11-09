@@ -1,0 +1,1213 @@
+{
+ "chapter_key": "u.c12.mathematics.lemh2.ch07",
+ "class": 12,
+ "subject_id": "mathematics",
+ "title": "Integrals",
+ "source": "https://ncert.nic.in/textbook/pdf/lemh201.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Introduction: integration as the reverse of differentiation and as a sum",
+   "labs": [],
+   "why_no_lab": "An opening note; the antiderivative family lab of 7.2 begins the doing."
+  },
+  {
+   "n": "7.2",
+   "title": "Integration as an inverse process of differentiation; properties of indefinite integrals",
+   "labs": [
+    "c12-mathematics-lemh2-ch07-family"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Methods of integration: substitution and trigonometric identities",
+   "labs": [
+    "c12-mathematics-lemh2-ch07-methods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Integrals of some particular functions",
+   "labs": [
+    "c12-mathematics-lemh2-ch07-methods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "Integration by partial fractions",
+   "labs": [
+    "c12-mathematics-lemh2-ch07-methods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6",
+   "title": "Integration by parts",
+   "labs": [
+    "c12-mathematics-lemh2-ch07-by-parts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.7",
+   "title": "Definite integral",
+   "labs": [
+    "c12-mathematics-lemh2-ch07-riemann"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.8",
+   "title": "Fundamental theorem of calculus",
+   "labs": [
+    "c12-mathematics-lemh2-ch07-ftc"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.9",
+   "title": "Evaluation of definite integrals by substitution",
+   "labs": [],
+   "why_no_lab": "Changing the limits with the new variable is a written skill; the method sort and the area labs give the ideas it uses."
+  },
+  {
+   "n": "7.10",
+   "title": "Some properties of definite integrals",
+   "labs": [
+    "c12-mathematics-lemh2-ch07-odd-property"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-mathematics-lemh2-ch07-family",
+   "topic": "7.2",
+   "template": "grapher",
+   "title": {
+    "en": "A whole family of antiderivatives",
+    "hi": "प्रतिअवकलजों का पूरा परिवार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "x^2 + c",
+    "params": {
+     "c": [
+      -4,
+      4,
+      0,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tangent",
+     "expect": "plotted",
+     "say": {
+      "en": "This is y = x² + c. Tap Tangent to see its slope at the moving point.",
+      "hi": "यह y = x² + c है। चलते बिंदु पर ढाल देखने के लिए स्पर्श रेखा दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Drag x to 1 and read the slope.",
+      "hi": "x को 1 पर लाओ और ढाल पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will change c. What will happen to the slope at x = 1?",
+      "hi": "अब तुम c बदलोगे। x = 1 पर ढाल का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "It stays 2",
+       "hi": "वह 2 ही रहेगी"
+      },
+      {
+       "id": "up",
+       "en": "It grows with c",
+       "hi": "c के साथ बढ़ेगी"
+      },
+      {
+       "id": "zero",
+       "en": "It becomes 0",
+       "hi": "वह 0 हो जाएगी"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "slider:c",
+     "expect": "changed",
+     "say": {
+      "en": "Slide c up and down.",
+      "hi": "c को ऊपर-नीचे खिसकाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Changing c only lifts or lowers the curve; its shape and slopes stay the same. So x² + 1, x² − 3 and every x² + c all have derivative 2x. That is why ∫ 2x dx = x² + C: integration finds a whole family, and C picks one member.",
+      "hi": "c बदलने से वक्र केवल ऊपर या नीचे खिसकता है; उसका आकार और ढालें वही रहती हैं। इसलिए x² + 1, x² − 3 और हर x² + c का अवकलज 2x है। इसीलिए ∫ 2x dx = x² + C: समाकलन पूरा परिवार देता है, और C उसमें से एक सदस्य चुनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is an antiderivative of cos x?",
+        "hi": "cos x का प्रतिअवकलज कौन-सा है?"
+       },
+       "options": [
+        "sin x + 7",
+        "−sin x",
+        "cos x + 7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The derivative of sin x + 7 is cos x; the 7 disappears.",
+        "hi": "sin x + 7 का अवकलज cos x है; 7 मिट जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The derivative of −sin x is −cos x, the wrong sign.",
+         "hi": "−sin x का अवकलज −cos x है, चिह्न ग़लत।"
+        },
+        {
+         "en": "The derivative of cos x is −sin x, not cos x.",
+         "hi": "cos x का अवकलज −sin x है, cos x नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A curve has slope 2x everywhere and passes through (1, 5). What is it?",
+        "hi": "एक वक्र की ढाल हर जगह 2x है और वह (1, 5) से गुज़रता है। वह क्या है?"
+       },
+       "options": [
+        "y = x² + 4",
+        "y = x² + 5",
+        "y = 2x + 3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "y = x² + C and 5 = 1 + C, so C = 4.",
+        "hi": "y = x² + C और 5 = 1 + C, इसलिए C = 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At x = 1 that gives 6, not 5.",
+         "hi": "x = 1 पर यह 6 देता है, 5 नहीं।"
+        },
+        {
+         "en": "2x + 3 has slope 2, not 2x.",
+         "hi": "2x + 3 की ढाल 2 है, 2x नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the value of c that makes the curve pass through the point (2, 1).",
+      "hi": "c का वह मान ढूँढो जिससे वक्र बिंदु (2, 1) से गुज़रे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch07-methods",
+   "topic": "7.3",
+   "template": "sort",
+   "title": {
+    "en": "Choose the method of integration",
+    "hi": "समाकलन की विधि चुनो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "std",
+      "label": {
+       "en": "Standard formula",
+       "hi": "मानक सूत्र"
+      }
+     },
+     {
+      "id": "sub",
+      "label": {
+       "en": "Substitution",
+       "hi": "प्रतिस्थापन"
+      }
+     },
+     {
+      "id": "trig",
+      "label": {
+       "en": "Trig identity first",
+       "hi": "पहले त्रिकोणमितीय सर्वसमिका"
+      }
+     },
+     {
+      "id": "pf",
+      "label": {
+       "en": "Partial fractions",
+       "hi": "आंशिक भिन्न"
+      }
+     },
+     {
+      "id": "parts",
+      "label": {
+       "en": "By parts",
+       "hi": "खंडशः"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "∫ dx/(x² + 9)",
+       "hi": "∫ dx/(x² + 9)"
+      },
+      "bin": "std",
+      "why": {
+       "en": "A known form: (1/3) tan⁻¹(x/3) + C.",
+       "hi": "ज्ञात रूप: (1/3) tan⁻¹(x/3) + C।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "∫ dx/√(1 − x²)",
+       "hi": "∫ dx/√(1 − x²)"
+      },
+      "bin": "std",
+      "why": {
+       "en": "A known form: sin⁻¹ x + C.",
+       "hi": "ज्ञात रूप: sin⁻¹ x + C।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "∫ 2x cos(x²) dx",
+       "hi": "∫ 2x cos(x²) dx"
+      },
+      "bin": "sub",
+      "why": {
+       "en": "2x is the derivative of x², so put t = x².",
+       "hi": "2x, x² का अवकलज है, इसलिए t = x² रखो।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "∫ (3x² + 1)/(x³ + x) dx",
+       "hi": "∫ (3x² + 1)/(x³ + x) dx"
+      },
+      "bin": "sub",
+      "why": {
+       "en": "The top is the derivative of the bottom: put t = x³ + x.",
+       "hi": "अंश, हर का अवकलज है: t = x³ + x रखो।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "∫ sin²x dx",
+       "hi": "∫ sin²x dx"
+      },
+      "bin": "trig",
+      "why": {
+       "en": "Rewrite sin²x = (1 − cos 2x)/2 first.",
+       "hi": "पहले sin²x = (1 − cos 2x)/2 लिखो।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "∫ sin 2x cos 3x dx",
+       "hi": "∫ sin 2x cos 3x dx"
+      },
+      "bin": "trig",
+      "why": {
+       "en": "Turn the product into a sum: ½[sin 5x − sin x].",
+       "hi": "गुणनफल को योग में बदलो: ½[sin 5x − sin x]।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "∫ dx/((x + 1)(x + 2))",
+       "hi": "∫ dx/((x + 1)(x + 2))"
+      },
+      "bin": "pf",
+      "why": {
+       "en": "Split into 1/(x + 1) − 1/(x + 2).",
+       "hi": "1/(x + 1) − 1/(x + 2) में बाँटो।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "∫ x/((x − 1)(x − 2)) dx",
+       "hi": "∫ x/((x − 1)(x − 2)) dx"
+      },
+      "bin": "pf",
+      "why": {
+       "en": "Split into −1/(x − 1) + 2/(x − 2).",
+       "hi": "−1/(x − 1) + 2/(x − 2) में बाँटो।"
+      }
+     },
+     {
+      "id": "c9",
+      "text": {
+       "en": "∫ x eˣ dx",
+       "hi": "∫ x eˣ dx"
+      },
+      "bin": "parts",
+      "why": {
+       "en": "A product of an algebraic and an exponential function: take x as the first function.",
+       "hi": "बीजीय और घातांकी फलन का गुणनफल: x को पहला फलन लो।"
+      }
+     },
+     {
+      "id": "c10",
+      "text": {
+       "en": "∫ x log x dx",
+       "hi": "∫ x log x dx"
+      },
+      "bin": "parts",
+      "why": {
+       "en": "Take log x as the first function (L comes before A in ILATE).",
+       "hi": "log x को पहला फलन लो (ILATE में L, A से पहले)।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c3",
+     "expect": "placed:c3",
+     "say": {
+      "en": "Tap ∫ 2x cos(x²) dx and choose its method.",
+      "hi": "∫ 2x cos(x²) dx पर टैप करो और उसकी विधि चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "∫ x eˣ dx is a product, but neither part is the derivative of the other. Which method fits?",
+      "hi": "∫ x eˣ dx एक गुणनफल है, पर कोई भाग दूसरे का अवकलज नहीं। कौन-सी विधि ठीक है?"
+     },
+     "options": [
+      {
+       "id": "parts",
+       "en": "By parts",
+       "hi": "खंडशः"
+      },
+      {
+       "id": "sub",
+       "en": "Substitution",
+       "hi": "प्रतिस्थापन"
+      },
+      {
+       "id": "pf",
+       "en": "Partial fractions",
+       "hi": "आंशिक भिन्न"
+      }
+     ],
+     "answer": "parts"
+    },
+    {
+     "kind": "do",
+     "target": "card:c9",
+     "expect": "placed:c9",
+     "say": {
+      "en": "Place ∫ x eˣ dx.",
+      "hi": "∫ x eˣ dx रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort every card and tap Check.",
+      "hi": "हर कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Look before you integrate. If one part is the derivative of another, substitute. If it is a fraction of polynomials that factorises, split into partial fractions. Powers and products of sines and cosines need an identity first. A product of two different kinds of function suggests integration by parts.",
+      "hi": "समाकलन से पहले देखो। अगर एक भाग दूसरे का अवकलज है, तो प्रतिस्थापन करो। अगर बहुपदों का भिन्न है जिसका हर गुणनखंडित होता है, तो आंशिक भिन्नों में बाँटो। साइन-कोसाइन की घातों और गुणनफलों में पहले सर्वसमिका लगाओ। दो अलग तरह के फलनों का गुणनफल खंडशः समाकलन की ओर इशारा करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which method fits ∫ eˣ (sin x + cos x) dx best?",
+        "hi": "∫ eˣ (sin x + cos x) dx के लिए कौन-सी विधि सबसे ठीक है?"
+       },
+       "options": [
+        {
+         "en": "The form eˣ[f(x) + f′(x)]",
+         "hi": "eˣ[f(x) + f′(x)] का रूप"
+        },
+        {
+         "en": "Partial fractions",
+         "hi": "आंशिक भिन्न"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "cos x is the derivative of sin x, so the answer is eˣ sin x + C.",
+        "hi": "cos x, sin x का अवकलज है, इसलिए उत्तर eˣ sin x + C है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is no fraction of polynomials here to split.",
+         "hi": "यहाँ बाँटने के लिए बहुपदों का कोई भिन्न नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For ∫ tan x dx, write tan x = sin x/cos x. Then use:",
+        "hi": "∫ tan x dx में tan x = sin x/cos x लिखो। फिर:"
+       },
+       "options": [
+        {
+         "en": "Substitution t = cos x",
+         "hi": "प्रतिस्थापन t = cos x"
+        },
+        {
+         "en": "By parts",
+         "hi": "खंडशः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "dt = −sin x dx, so the integral becomes −∫ dt/t = −log|cos x| + C.",
+        "hi": "dt = −sin x dx, इसलिए समाकल −∫ dt/t = −log|cos x| + C बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The top is (minus) the derivative of the bottom, so substitution is quicker.",
+         "hi": "अंश, हर का (ऋण) अवकलज है, इसलिए प्रतिस्थापन जल्दी होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick one card from each group and work it out fully on paper. Then differentiate your answer to check it.",
+      "hi": "हर समूह से एक कार्ड लो और कागज़ पर पूरा हल करो। फिर अपने उत्तर का अवकलन करके जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch07-by-parts",
+   "topic": "7.6",
+   "template": "sequence",
+   "title": {
+    "en": "Integration by parts, in order",
+    "hi": "खंडशः समाकलन, क्रम से"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "p1",
+      "text": {
+       "en": "For ∫ x eˣ dx, choose the first function u = x (A comes before E in ILATE)",
+       "hi": "∫ x eˣ dx में पहला फलन u = x चुनो (ILATE में A, E से पहले)"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "The second function is eˣ; its integral is eˣ",
+       "hi": "दूसरा फलन eˣ है; उसका समाकल eˣ है"
+      }
+     },
+     {
+      "id": "p3",
+      "text": {
+       "en": "Write u × ∫eˣ dx − ∫(du/dx × ∫eˣ dx) dx",
+       "hi": "u × ∫eˣ dx − ∫(du/dx × ∫eˣ dx) dx लिखो"
+      }
+     },
+     {
+      "id": "p4",
+      "text": {
+       "en": "This gives x eˣ − ∫ 1 × eˣ dx",
+       "hi": "इससे x eˣ − ∫ 1 × eˣ dx मिलता है"
+      }
+     },
+     {
+      "id": "p5",
+      "text": {
+       "en": "Integrate the easy part: x eˣ − eˣ",
+       "hi": "आसान भाग का समाकलन: x eˣ − eˣ"
+      }
+     },
+     {
+      "id": "p6",
+      "text": {
+       "en": "Add the constant: eˣ(x − 1) + C",
+       "hi": "अचर जोड़ो: eˣ(x − 1) + C"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:p1",
+     "expect": "placed:p1",
+     "say": {
+      "en": "Tap the first step and put it in slot 1.",
+      "hi": "पहले चरण पर टैप करो और खाने 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What would go wrong if you chose u = eˣ instead?",
+      "hi": "अगर u = eˣ चुनते तो क्या गड़बड़ होती?"
+     },
+     "options": [
+      {
+       "id": "harder",
+       "en": "The new integral gets harder, with x²",
+       "hi": "नया समाकल x² के साथ और कठिन हो जाता"
+      },
+      {
+       "id": "same",
+       "en": "Nothing, it is the same work",
+       "hi": "कुछ नहीं, उतना ही काम"
+      },
+      {
+       "id": "wrong",
+       "en": "The answer would change",
+       "hi": "उत्तर बदल जाता"
+      }
+     ],
+     "answer": "harder"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other steps in order and tap Check.",
+      "hi": "बाक़ी चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "By parts trades one integral for another. Choose u so that its derivative is simpler: here x becomes 1. If you pick u = eˣ, you must integrate x to x²/2, and the new integral is harder. Differentiating eˣ(x − 1) gives back x eˣ, which checks the answer.",
+      "hi": "खंडशः एक समाकल को दूसरे से बदलता है। u ऐसा चुनो कि उसका अवकलज सरल हो: यहाँ x, 1 बन जाता है। अगर u = eˣ लो, तो x का समाकल x²/2 करना पड़ता है, और नया समाकल कठिन होता है। eˣ(x − 1) का अवकलन x eˣ वापस देता है, जिससे उत्तर की जाँच होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In ∫ x sin x dx, which is the first function?",
+        "hi": "∫ x sin x dx में पहला फलन कौन-सा है?"
+       },
+       "options": [
+        "x",
+        "sin x"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Algebraic comes before trigonometric in ILATE, and x differentiates to 1.",
+        "hi": "ILATE में बीजीय, त्रिकोणमितीय से पहले आता है, और x का अवकलज 1 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Then you would integrate x to x²/2 and make it harder.",
+         "hi": "तब x का समाकलन x²/2 करना पड़ता और कठिन हो जाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is ∫ x sin x dx?",
+        "hi": "∫ x sin x dx क्या है?"
+       },
+       "options": [
+        "−x cos x + sin x + C",
+        "x cos x − sin x + C",
+        "−x cos x + C"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "x(−cos x) − ∫(−cos x) dx = −x cos x + sin x + C.",
+        "hi": "x(−cos x) − ∫(−cos x) dx = −x cos x + sin x + C।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "∫ sin x dx = −cos x, so the signs are the other way round.",
+         "hi": "∫ sin x dx = −cos x, इसलिए चिह्न उलटे हैं।"
+        },
+        {
+         "en": "The second integral, ∫ cos x dx = sin x, has been left out.",
+         "hi": "दूसरा समाकल, ∫ cos x dx = sin x, छूट गया है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try ∫ log x dx by taking u = log x and the second function as 1. What do you get?",
+      "hi": "u = log x और दूसरा फलन 1 लेकर ∫ log x dx आज़माओ। क्या मिलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch07-riemann",
+   "topic": "7.7",
+   "template": "grapher",
+   "title": {
+    "en": "A definite integral as a limit of a sum",
+    "hi": "योगफल की सीमा के रूप में निश्चित समाकल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "integral",
+    "expr": "x^2/4 + c"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "area",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Area to shade the region under y = x²/4 + 1 from a = 0 to b = 3.",
+      "hi": "a = 0 से b = 3 तक y = x²/4 + 1 के नीचे का भाग रंगने के लिए क्षेत्रफल दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "area",
+     "expect": "changed",
+     "say": {
+      "en": "Tap + next to Rectangles to fill the area with 2 rectangles.",
+      "hi": "आयत के पास + दबाकर क्षेत्रफल को 2 आयतों से भरो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As you add more and thinner rectangles, what happens to their total area?",
+      "hi": "जब तुम ज़्यादा और पतले आयत जोड़ोगे, तो उनके कुल क्षेत्रफल का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "closer",
+       "en": "It gets closer to the true area",
+       "hi": "वह असली क्षेत्रफल के पास आएगा"
+      },
+      {
+       "id": "bigger",
+       "en": "It keeps growing without limit",
+       "hi": "बिना सीमा बढ़ता जाएगा"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वही रहेगा"
+      }
+     ],
+     "answer": "closer"
+    },
+    {
+     "kind": "do",
+     "target": "area",
+     "expect": "changed",
+     "say": {
+      "en": "Keep tapping + up to 64 rectangles.",
+      "hi": "64 आयतों तक + दबाते रहो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each rectangle uses the height at its left edge, so on this rising curve the sum is a little too small. With more rectangles the gap shrinks, and the sums approach one number: the definite integral, here 5.25. ∫ from a to b of f(x) dx is the limit of these sums as the widths go to 0.",
+      "hi": "हर आयत अपने बाएँ किनारे की ऊँचाई लेता है, इसलिए इस चढ़ते वक्र पर योग थोड़ा कम रहता है। ज़्यादा आयतों से अंतर घटता है, और योग एक संख्या के पास पहुँचते हैं: निश्चित समाकल, यहाँ 5.25। a से b तक ∫ f(x) dx इन योगों की सीमा है जब चौड़ाइयाँ 0 की ओर जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On a falling curve, left-edge rectangles give a sum that is:",
+        "hi": "उतरते वक्र पर बाएँ-किनारे वाले आयत ऐसा योग देते हैं जो:"
+       },
+       "options": [
+        {
+         "en": "Too large",
+         "hi": "ज़्यादा है"
+        },
+        {
+         "en": "Too small",
+         "hi": "कम है"
+        },
+        {
+         "en": "Exact",
+         "hi": "बिल्कुल सही है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The left edge is the highest point of each strip on a falling curve.",
+        "hi": "उतरते वक्र पर हर पट्टी का बायाँ किनारा सबसे ऊँचा बिंदु है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That happens on a rising curve, as in this lab.",
+         "hi": "ऐसा चढ़ते वक्र पर होता है, जैसे इस प्रयोग में।"
+        },
+        {
+         "en": "Rectangles fit exactly only under a flat line.",
+         "hi": "आयत केवल सपाट रेखा के नीचे बिल्कुल फिट होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Water flows into a tank at a changing rate r(t) litres per minute. The total that flows in from t = 0 to t = 10 is:",
+        "hi": "एक टंकी में पानी बदलती दर r(t) लीटर प्रति मिनट से आता है। t = 0 से t = 10 तक कुल पानी है:"
+       },
+       "options": [
+        "∫₀¹⁰ r(t) dt",
+        "r(10) − r(0)",
+        "10 × r(0)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Adding rate × small time over the whole interval is exactly a definite integral.",
+        "hi": "पूरे अंतराल पर दर × छोटा समय जोड़ना ठीक निश्चित समाकल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is only the change in the rate, not the amount of water.",
+         "hi": "यह केवल दर में बदलाव है, पानी की मात्रा नहीं।"
+        },
+        {
+         "en": "That assumes the rate never changes, but it does.",
+         "hi": "यह मानता है कि दर कभी नहीं बदलती, पर बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move b to 5 and repeat with more and more rectangles. What number do they approach now?",
+      "hi": "b को 5 पर ले जाओ और ज़्यादा से ज़्यादा आयतों से दोहराओ। अब वे किस संख्या के पास पहुँचते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch07-ftc",
+   "topic": "7.8",
+   "template": "grapher",
+   "title": {
+    "en": "The area function grows at the rate f(x)",
+    "hi": "क्षेत्रफल फलन f(x) की दर से बढ़ता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "integral",
+    "expr": "x/2 + 1",
+    "params": {
+     "a": [
+      -2,
+      6,
+      0,
+      0.5
+     ],
+     "b": [
+      -2,
+      6,
+      2,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "area",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Area to shade under y = x/2 + 1 from a = 0 to b.",
+      "hi": "a = 0 से b तक y = x/2 + 1 के नीचे रंगने के लिए क्षेत्रफल दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Move b from 2 to 3 and watch how much area is added.",
+      "hi": "b को 2 से 3 पर ले जाओ और देखो कितना क्षेत्रफल जुड़ता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "From b = 4 to b = 5, will the added area be more or less than from 2 to 3?",
+      "hi": "b = 4 से 5 तक, जुड़ने वाला क्षेत्रफल 2 से 3 की तुलना में ज़्यादा होगा या कम?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More, because the curve is higher there",
+       "hi": "ज़्यादा, क्योंकि वहाँ वक्र ऊँचा है"
+      },
+      {
+       "id": "less",
+       "en": "Less",
+       "hi": "कम"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "बराबर"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Move b from 4 to 5.",
+      "hi": "b को 4 से 5 पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Call the shaded area A(b). A thin strip added at b has height f(b), so A grows at the rate f(b): A′(b) = f(b). That is the first fundamental theorem. Here A(b) = b²/4 + b, and ∫ from a to b of f(x) dx = F(b) − F(a) for any antiderivative F: the second theorem.",
+      "hi": "रंगे भाग को A(b) कहो। b पर जुड़ी पतली पट्टी की ऊँचाई f(b) है, इसलिए A, f(b) की दर से बढ़ता है: A′(b) = f(b)। यह पहला मूलभूत प्रमेय है। यहाँ A(b) = b²/4 + b, और किसी भी प्रतिअवकलज F के लिए a से b तक ∫ f(x) dx = F(b) − F(a): दूसरा प्रमेय।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Using F(x) = x²/4 + x, what is ∫ from 0 to 2 of (x/2 + 1) dx?",
+        "hi": "F(x) = x²/4 + x लेकर 0 से 2 तक ∫ (x/2 + 1) dx क्या है?"
+       },
+       "options": [
+        "3",
+        "2",
+        "5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "F(2) − F(0) = (1 + 2) − 0 = 3.",
+        "hi": "F(2) − F(0) = (1 + 2) − 0 = 3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is f(2), the height at 2, not the area up to 2.",
+         "hi": "यह f(2) है, 2 पर ऊँचाई, 2 तक का क्षेत्रफल नहीं।"
+        },
+        {
+         "en": "Check F(2) = 4/4 + 2 = 3, not 5.",
+         "hi": "जाँचो F(2) = 4/4 + 2 = 3, 5 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the constant C not needed in a definite integral?",
+        "hi": "निश्चित समाकल में अचर C की ज़रूरत क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "It cancels in F(b) − F(a)",
+         "hi": "F(b) − F(a) में कट जाता है"
+        },
+        {
+         "en": "It is always 0",
+         "hi": "यह हमेशा 0 होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(F(b) + C) − (F(a) + C) = F(b) − F(a).",
+        "hi": "(F(b) + C) − (F(a) + C) = F(b) − F(a)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "C can be any number; it simply cancels out.",
+         "hi": "C कोई भी संख्या हो सकता है; बस कट जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move a instead of b. What happens to the area when a goes past b?",
+      "hi": "b के बजाय a को खिसकाओ। जब a, b से आगे जाता है तो क्षेत्रफल का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch07-odd-property",
+   "topic": "7.10",
+   "template": "grapher",
+   "title": {
+    "en": "Odd functions on a balanced interval",
+    "hi": "संतुलित अंतराल पर विषम फलन"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "mode": "integral",
+    "expr": "x^3",
+    "params": {
+     "a": [
+      -3,
+      3,
+      -2,
+      0.5
+     ],
+     "b": [
+      -3,
+      3,
+      2,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "area",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Area to shade y = x³ from −2 to 2.",
+      "hi": "−2 से 2 तक y = x³ रंगने के लिए क्षेत्रफल दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do you think ∫ from −2 to 2 of x³ dx is?",
+      "hi": "तुम्हें क्या लगता है, −2 से 2 तक ∫ x³ dx क्या है?"
+     },
+     "options": [
+      {
+       "id": "zero",
+       "en": "Zero",
+       "hi": "शून्य"
+      },
+      {
+       "id": "eight",
+       "en": "Eight",
+       "hi": "आठ"
+      },
+      {
+       "id": "sixteen",
+       "en": "Sixteen",
+       "hi": "सोलह"
+      }
+     ],
+     "answer": "zero"
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Now move b from 2 to 3 and see the value change.",
+      "hi": "अब b को 2 से 3 पर ले जाओ और मान बदलते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "x³ is odd: f(−x) = −f(x). The part from −2 to 0 lies below the axis and counts as negative; it is the exact mirror of the part from 0 to 2. They cancel, so the integral is 0. This is the property ∫ from −a to a of f(x) dx = 0 for odd f; for even f it is twice ∫ from 0 to a.",
+      "hi": "x³ विषम है: f(−x) = −f(x)। −2 से 0 तक का भाग अक्ष के नीचे है और ऋणात्मक गिना जाता है; यह 0 से 2 वाले भाग का ठीक दर्पण है। दोनों कट जाते हैं, इसलिए समाकल 0 है। यही गुण है: विषम f के लिए −a से a तक ∫ f(x) dx = 0; सम f के लिए यह 0 से a तक के ∫ का दुगुना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is ∫ from −π to π of sin x dx?",
+        "hi": "−π से π तक ∫ sin x dx क्या है?"
+       },
+       "options": [
+        "0",
+        "2",
+        "4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "sin x is odd and the interval is balanced around 0.",
+        "hi": "sin x विषम है और अंतराल 0 के चारों ओर संतुलित है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 is the integral from 0 to π only; the left half cancels it.",
+         "hi": "2 केवल 0 से π तक का समाकल है; बायाँ आधा उसे काट देता है।"
+        },
+        {
+         "en": "4 is the total shaded area, but the integral counts the lower half as negative.",
+         "hi": "4 कुल रंगा क्षेत्रफल है, पर समाकल नीचे वाले आधे को ऋणात्मक गिनता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "∫ from −1 to 1 of x² dx equals:",
+        "hi": "−1 से 1 तक ∫ x² dx बराबर है:"
+       },
+       "options": [
+        {
+         "en": "2 × ∫ from 0 to 1 of x² dx",
+         "hi": "2 × 0 से 1 तक ∫ x² dx"
+        },
+        "0"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "x² is even, so both halves are equal and above the axis.",
+        "hi": "x² सम है, इसलिए दोनों आधे बराबर हैं और अक्ष के ऊपर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only odd functions cancel; x² is never negative.",
+         "hi": "केवल विषम फलन कटते हैं; x² कभी ऋणात्मक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep b = 2 and move a to −1. Is the integral still 0? Why not?",
+      "hi": "b = 2 रखो और a को −1 पर ले जाओ। क्या समाकल अब भी 0 है? क्यों नहीं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.7",
+   "use": "Chapter hook: adding up thin strips",
+   "shows": "Terraced rice fields in the hills of Uttarakhand, step after step down the slope",
+   "view": "From across the valley, soft morning light",
+   "right": "Each terrace a thin flat strip; together they follow the curve of the hill",
+   "avoid": "People, houses with names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.7",
+   "use": "Thinner strips fill a shape better",
+   "shows": "A curved bowl outline on a table filled with 4, then 8, then 16 equal-width wooden ice-cream sticks standing side by side",
+   "view": "Same camera from the front, same light",
+   "right": "Stick widths equal in each frame; gaps at the curve shrink",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Antiderivative family: same shape, different heights",
+   "shows": "Several identical curved bamboo poles leaning against a wall at different heights, all the same bend",
+   "view": "Front view, even light",
+   "right": "Poles truly identical in shape",
+   "avoid": "People, writing on the wall"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "7.8",
+   "use": "Area function: water filling up",
+   "shows": "A rain gauge in a school weather station at four times during a shower",
+   "view": "Same camera, eye level, same light",
+   "right": "Water level rises faster when the rain is heavier",
+   "avoid": "School name, readable scale numbers"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "7.10",
+   "use": "Symmetric areas base",
+   "shows": "A clean coordinate base with a wavy curve, one hump above the axis on the right and its mirror below the axis on the left, shaded teal and coral",
+   "view": "Flat, front view, transparent background",
+   "right": "The two shaded parts exact mirror images through the origin",
+   "avoid": "Any numbers or letters"
+  }
+ ]
+}

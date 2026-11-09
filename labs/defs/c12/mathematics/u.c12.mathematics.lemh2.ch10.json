@@ -1,0 +1,1807 @@
+{
+ "chapter_key": "u.c12.mathematics.lemh2.ch10",
+ "class": 12,
+ "subject_id": "mathematics",
+ "title": "Vector Algebra",
+ "source": "https://ncert.nic.in/textbook/pdf/lemh204.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Introduction: quantities with direction",
+   "labs": [],
+   "why_no_lab": "A short opening note on scalars and vectors; the labs from 10.2 make each idea visible."
+  },
+  {
+   "n": "10.2",
+   "title": "Some basic concepts: magnitude, direction, position",
+   "labs": [
+    "c12-mathematics-lemh2-ch10-magnitude"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Types of vectors",
+   "labs": [
+    "c12-mathematics-lemh2-ch10-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Addition of vectors",
+   "labs": [
+    "c12-mathematics-lemh2-ch10-add"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Multiplication of a vector by a scalar",
+   "labs": [
+    "c12-mathematics-lemh2-ch10-scalar"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5.2",
+   "title": "Vector joining two points",
+   "labs": [
+    "c12-mathematics-lemh2-ch10-subtract"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5.3",
+   "title": "Section formula",
+   "labs": [
+    "c12-mathematics-lemh2-ch10-section"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6.1",
+   "title": "Scalar (dot) product",
+   "labs": [
+    "c12-mathematics-lemh2-ch10-dot"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6.2",
+   "title": "Projection of a vector on a line",
+   "labs": [
+    "c12-mathematics-lemh2-ch10-projection"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6.3",
+   "title": "Vector (cross) product",
+   "labs": [
+    "c12-mathematics-lemh2-ch10-cross"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-mathematics-lemh2-ch10-magnitude",
+   "topic": "10.2",
+   "template": "match",
+   "title": {
+    "en": "Magnitude of a vector",
+    "hi": "सदिश का परिमाण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "m1",
+      "left": {
+       "en": "3i + 4j",
+       "hi": "3i + 4j"
+      },
+      "right": {
+       "en": "5",
+       "hi": "5"
+      },
+      "why": {
+       "en": "√(3² + 4²) = √25 = 5.",
+       "hi": "√(3² + 4²) = √25 = 5।"
+      }
+     },
+     {
+      "id": "m2",
+      "left": {
+       "en": "i + 2j + 2k",
+       "hi": "i + 2j + 2k"
+      },
+      "right": {
+       "en": "3",
+       "hi": "3"
+      },
+      "why": {
+       "en": "√(1 + 4 + 4) = √9 = 3.",
+       "hi": "√(1 + 4 + 4) = √9 = 3।"
+      }
+     },
+     {
+      "id": "m3",
+      "left": {
+       "en": "2i + 3j + 6k",
+       "hi": "2i + 3j + 6k"
+      },
+      "right": {
+       "en": "7",
+       "hi": "7"
+      },
+      "why": {
+       "en": "√(4 + 9 + 36) = √49 = 7.",
+       "hi": "√(4 + 9 + 36) = √49 = 7।"
+      }
+     },
+     {
+      "id": "m4",
+      "left": {
+       "en": "5i + 12j",
+       "hi": "5i + 12j"
+      },
+      "right": {
+       "en": "13",
+       "hi": "13"
+      },
+      "why": {
+       "en": "√(25 + 144) = √169 = 13.",
+       "hi": "√(25 + 144) = √169 = 13।"
+      }
+     },
+     {
+      "id": "m5",
+      "left": {
+       "en": "4i + 4j + 2k",
+       "hi": "4i + 4j + 2k"
+      },
+      "right": {
+       "en": "6",
+       "hi": "6"
+      },
+      "why": {
+       "en": "√(16 + 16 + 4) = √36 = 6.",
+       "hi": "√(16 + 16 + 4) = √36 = 6।"
+      }
+     },
+     {
+      "id": "m6",
+      "left": {
+       "en": "i + 4j + 8k",
+       "hi": "i + 4j + 8k"
+      },
+      "right": {
+       "en": "9",
+       "hi": "9"
+      },
+      "why": {
+       "en": "√(1 + 16 + 64) = √81 = 9.",
+       "hi": "√(1 + 16 + 64) = √81 = 9।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:m1",
+     "expect": "matched:m1",
+     "say": {
+      "en": "Tap 3i + 4j, then its magnitude. Picture a ladder 3 m out and 4 m up the wall.",
+      "hi": "3i + 4j छुओ, फिर उसका परिमाण। सोचो एक सीढ़ी दीवार से 3 मी दूर और 4 मी ऊँची है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A vector 2i + 3j + 6k has parts 2, 3 and 6. Which rule gives its length?",
+      "hi": "सदिश 2i + 3j + 6k के भाग 2, 3 और 6 हैं। उसकी लंबाई किस नियम से मिलती है?"
+     },
+     "options": [
+      {
+       "id": "sum",
+       "en": "Add the parts: 2 + 3 + 6",
+       "hi": "भागों का योग: 2 + 3 + 6"
+      },
+      {
+       "id": "root",
+       "en": "Square root of the sum of squares",
+       "hi": "वर्गों के योग का वर्गमूल"
+      },
+      {
+       "id": "prod",
+       "en": "Multiply the parts",
+       "hi": "भागों का गुणनफल"
+      }
+     ],
+     "answer": "root"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all six vectors and tap Check.",
+      "hi": "छहों सदिश जोड़ो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The magnitude of ai + bj + ck is √(a² + b² + c²). It is the Pythagoras rule, used once in a plane and twice in space. A magnitude is never negative and is zero only for the zero vector. Dividing a vector by its magnitude gives a unit vector (length 1) in the same direction.",
+      "hi": "ai + bj + ck का परिमाण √(a² + b² + c²) होता है। यह पाइथागोरस का नियम है: समतल में एक बार, अंतरिक्ष में दो बार। परिमाण कभी ऋणात्मक नहीं होता और केवल शून्य सदिश का ही शून्य होता है। सदिश को उसके परिमाण से भाग देने पर उसी दिशा में इकाई सदिश (लंबाई 1) मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The unit vector in the direction of 3i + 4j is:",
+        "hi": "3i + 4j की दिशा में इकाई सदिश है:"
+       },
+       "options": [
+        "(3i + 4j)/5",
+        "3i + 4j",
+        "(3i + 4j)/25"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Divide by the magnitude 5, so the new length is 5/5 = 1.",
+        "hi": "परिमाण 5 से भाग दो, तब नई लंबाई 5/5 = 1 होगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This has length 5, not 1.",
+         "hi": "इसकी लंबाई 5 है, 1 नहीं।"
+        },
+        {
+         "en": "25 is the square of the magnitude; dividing by it gives length 1/5.",
+         "hi": "25 परिमाण का वर्ग है; उससे भाग देने पर लंबाई 1/5 होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The magnitude of −2i + 6j − 3k is:",
+        "hi": "−2i + 6j − 3k का परिमाण है:"
+       },
+       "options": [
+        "7",
+        "1",
+        "−7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "√(4 + 36 + 9) = √49 = 7. The minus signs vanish when squared.",
+        "hi": "√(4 + 36 + 9) = √49 = 7। वर्ग करने पर ऋण चिह्न मिट जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding the parts with signs gives 1 but that is not a length.",
+         "hi": "चिह्नों के साथ भाग जोड़ने पर 1 मिलता है, पर वह लंबाई नहीं है।"
+        },
+        {
+         "en": "A length cannot be negative.",
+         "hi": "लंबाई ऋणात्मक नहीं हो सकती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a vector in the plane with whole-number parts and magnitude 10. (Think of 6 and 8.)",
+      "hi": "समतल में पूर्णांक भागों वाला ऐसा सदिश खोजो जिसका परिमाण 10 हो। (6 और 8 के बारे में सोचो।)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch10-types",
+   "topic": "10.3",
+   "template": "sort",
+   "title": {
+    "en": "Types of vectors",
+    "hi": "सदिशों के प्रकार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "unit",
+      "label": {
+       "en": "Unit vector",
+       "hi": "इकाई सदिश"
+      }
+     },
+     {
+      "id": "zero",
+      "label": {
+       "en": "Zero vector",
+       "hi": "शून्य सदिश"
+      }
+     },
+     {
+      "id": "neg",
+      "label": {
+       "en": "Negative of a vector",
+       "hi": "ऋणात्मक सदिश"
+      }
+     },
+     {
+      "id": "col",
+      "label": {
+       "en": "Collinear (parallel)",
+       "hi": "सरेख (समांतर)"
+      }
+     },
+     {
+      "id": "eq",
+      "label": {
+       "en": "Equal vectors",
+       "hi": "समान सदिश"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "Magnitude 1, like the vector i",
+       "hi": "परिमाण 1, जैसे सदिश i"
+      },
+      "bin": "unit",
+      "why": {
+       "en": "A vector of length exactly 1.",
+       "hi": "वह सदिश जिसकी लंबाई ठीक 1 है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "(3i + 4j)/5",
+       "hi": "(3i + 4j)/5"
+      },
+      "bin": "unit",
+      "why": {
+       "en": "Its magnitude is 5/5 = 1.",
+       "hi": "इसका परिमाण 5/5 = 1 है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "A start point and end point that coincide",
+       "hi": "आरंभ और अंत बिंदु एक ही"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "Length 0 and no direction: the zero vector.",
+       "hi": "लंबाई 0 और कोई दिशा नहीं: शून्य सदिश।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "0i + 0j + 0k",
+       "hi": "0i + 0j + 0k"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "All parts are 0.",
+       "hi": "सारे भाग 0 हैं।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "−a, when a = 2i + 3j",
+       "hi": "−a, जब a = 2i + 3j"
+      },
+      "bin": "neg",
+      "why": {
+       "en": "Same length as a, but pointing the opposite way.",
+       "hi": "a जितनी ही लंबाई, पर उलटी दिशा।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "Same length as a, opposite direction",
+       "hi": "a जितनी लंबाई, उलटी दिशा"
+      },
+      "bin": "neg",
+      "why": {
+       "en": "This is exactly the negative of a.",
+       "hi": "यही ठीक-ठीक a का ऋणात्मक सदिश है।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "2i + 4j and i + 2j",
+       "hi": "2i + 4j और i + 2j"
+      },
+      "bin": "col",
+      "why": {
+       "en": "The first is 2 times the second, so they lie along parallel lines.",
+       "hi": "पहला दूसरे का 2 गुना है, इसलिए वे समांतर रेखाओं पर हैं।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "3i − 6j and −i + 2j",
+       "hi": "3i − 6j और −i + 2j"
+      },
+      "bin": "col",
+      "why": {
+       "en": "The first is −3 times the second: parallel, pointing opposite ways.",
+       "hi": "पहला दूसरे का −3 गुना है: समांतर, पर उलटी दिशाओं में।"
+      }
+     },
+     {
+      "id": "c9",
+      "text": {
+       "en": "Same length and direction, drawn in two places",
+       "hi": "एक-सी लंबाई और दिशा, दो अलग जगह बने तीर"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "Position does not matter for a vector, only length and direction.",
+       "hi": "सदिश में स्थान मायने नहीं रखता, केवल लंबाई और दिशा।"
+      }
+     },
+     {
+      "id": "c10",
+      "text": {
+       "en": "Opposite sides AB and DC of a parallelogram ABCD",
+       "hi": "समांतर चतुर्भुज ABCD की सम्मुख भुजाएँ AB और DC"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "They have the same length and the same direction.",
+       "hi": "उनकी लंबाई और दिशा दोनों समान हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c2",
+     "expect": "placed:c2",
+     "say": {
+      "en": "Place (3i + 4j)/5 in its group.",
+      "hi": "(3i + 4j)/5 को उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two arrows have the same length, but one points east and the other west. Are they equal vectors?",
+      "hi": "दो तीरों की लंबाई समान है, पर एक पूर्व और दूसरा पश्चिम की ओर है। क्या ये समान सदिश हैं?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, the length is the same",
+       "hi": "हाँ, लंबाई समान है"
+      },
+      {
+       "id": "no",
+       "en": "No, direction must match too",
+       "hi": "नहीं, दिशा भी मिलनी चाहिए"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:c8",
+     "expect": "placed:c8",
+     "say": {
+      "en": "Now place 3i − 6j and −i + 2j.",
+      "hi": "अब 3i − 6j और −i + 2j को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort every card and tap Check.",
+      "hi": "हर कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two vectors are equal only when both the length and the direction match; where they are drawn does not matter. Collinear vectors lie along the same line or parallel lines: one is a number times the other. A unit vector has length 1, the zero vector has length 0, and the negative of a vector has the same length but the opposite direction.",
+      "hi": "दो सदिश तभी समान हैं जब लंबाई और दिशा दोनों मिलें; वे कहाँ बने हैं, इससे फ़र्क नहीं पड़ता। सरेख सदिश एक ही रेखा या समांतर रेखाओं पर होते हैं: एक दूसरे का कोई गुणज होता है। इकाई सदिश की लंबाई 1, शून्य सदिश की लंबाई 0 होती है, और ऋणात्मक सदिश की लंबाई वही पर दिशा उलटी होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Vectors a and b are collinear if:",
+        "hi": "सदिश a और b सरेख हैं यदि:"
+       },
+       "options": [
+        "b = λa for some number λ",
+        "|a| = |b|",
+        "a and b meet at a point"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One is a scaled copy of the other, so they run along parallel lines.",
+        "hi": "एक, दूसरे की बड़ी या छोटी प्रति है, इसलिए वे समांतर रेखाओं पर चलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equal lengths say nothing about direction: they may point anywhere.",
+         "hi": "समान लंबाई दिशा के बारे में कुछ नहीं बताती: वे कहीं भी जा सकते हैं।"
+        },
+        {
+         "en": "Meeting at a point is true for any two vectors drawn from the same start.",
+         "hi": "एक बिंदु पर मिलना तो एक ही आरंभ से बने किन्हीं भी दो सदिशों के लिए सही है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is the zero vector a unit vector?",
+        "hi": "क्या शून्य सदिश इकाई सदिश है?"
+       },
+       "options": [
+        "No, its length is 0, not 1",
+        "Yes, it is the smallest vector",
+        "Yes, it points everywhere"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A unit vector needs length 1.",
+        "hi": "इकाई सदिश की लंबाई 1 होनी चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Smallest does not mean length 1.",
+         "hi": "सबसे छोटा होने का अर्थ लंबाई 1 नहीं है।"
+        },
+        {
+         "en": "It has no direction, and its length is 0.",
+         "hi": "इसकी कोई दिशा नहीं, और लंबाई 0 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take any card. Can you write one more vector that belongs in the same group?",
+      "hi": "कोई भी कार्ड लो। क्या तुम उसी समूह का एक और सदिश लिख सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch10-add",
+   "topic": "10.4",
+   "template": "matrix",
+   "title": {
+    "en": "Adding vectors: triangle and parallelogram",
+    "hi": "सदिशों का योग: त्रिभुज और समांतर चतुर्भुज"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "vector-add",
+    "u": [
+     4,
+     1,
+     0
+    ],
+    "v": [
+     1,
+     3,
+     0
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:triangle",
+     "expect": "resultant",
+     "say": {
+      "en": "Tap Triangle. Watch v slide to the tip of u.",
+      "hi": "त्रिभुज दबाओ। देखो v सरककर u के सिरे पर पहुँचता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The arrow from the start of u to the tip of the moved v is u + v. What are its parts if u = (4, 1) and v = (1, 3)?",
+      "hi": "u के आरंभ से सरके हुए v के सिरे तक का तीर u + v है। u = (4, 1) और v = (1, 3) हो तो उसके भाग क्या हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "(5, 4)",
+       "hi": "भाग (5, 4)"
+      },
+      {
+       "id": "b",
+       "en": "(3, −2)",
+       "hi": "भाग (3, −2)"
+      },
+      {
+       "id": "c",
+       "en": "(4, 3)",
+       "hi": "भाग (4, 3)"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "op:parallelogram",
+     "expect": "resultant",
+     "say": {
+      "en": "Now tap Parallelogram. The diagonal is the same arrow.",
+      "hi": "अब समांतर चतुर्भुज दबाओ। विकर्ण वही तीर है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To add vectors, place them head to tail (triangle law), or draw both from the same point and complete the parallelogram: the diagonal from that point is the sum (parallelogram law). Both give the same arrow. In parts: add x with x and y with y, so (4, 1) + (1, 3) = (5, 4).",
+      "hi": "सदिश जोड़ने के लिए उन्हें सिर से पूँछ मिलाकर रखो (त्रिभुज नियम), या दोनों को एक ही बिंदु से बनाकर समांतर चतुर्भुज पूरा करो: उस बिंदु से जाता विकर्ण योग है (समांतर चतुर्भुज नियम)। दोनों से वही तीर मिलता है। भागों में: x में x और y में y जोड़ो, अतः (4, 1) + (1, 3) = (5, 4)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If |a| = 3 and |b| = 4, which value is impossible for |a + b|?",
+        "hi": "यदि |a| = 3 और |b| = 4 हो तो |a + b| का कौन-सा मान असंभव है?"
+       },
+       "options": [
+        "8",
+        "7",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The sum of two sides of a triangle can never exceed 3 + 4 = 7.",
+        "hi": "त्रिभुज की दो भुजाओं का योग 3 + 4 = 7 से अधिक नहीं हो सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7 happens when a and b point the same way.",
+         "hi": "7 तब मिलता है जब a और b एक ही दिशा में हों।"
+        },
+        {
+         "en": "1 happens when they point opposite ways: 4 − 3.",
+         "hi": "1 तब मिलता है जब वे उलटी दिशाओं में हों: 4 − 3।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is a + b always equal to b + a?",
+        "hi": "क्या a + b हमेशा b + a के बराबर होता है?"
+       },
+       "options": [
+        "Yes, the parallelogram diagonal is the same",
+        "No, the order changes the arrow",
+        "Only when a = b"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Vector addition is commutative: the diagonal does not depend on which side you start from.",
+        "hi": "सदिश योग क्रम-विनिमेय है: विकर्ण इस पर निर्भर नहीं करता कि तुम किस ओर से शुरू करते हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Walking 4 east then 3 north reaches the same place as 3 north then 4 east.",
+         "hi": "4 पूर्व फिर 3 उत्तर चलना, 3 उत्तर फिर 4 पूर्व चलने जैसी ही जगह पहुँचाता है।"
+        },
+        {
+         "en": "It holds for any two vectors.",
+         "hi": "यह किन्हीं भी दो सदिशों के लिए सही है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the tip of u or v to a new place. Does the diagonal of the parallelogram still equal the triangle’s closing arrow?",
+      "hi": "u या v का सिरा कहीं और खींचो। क्या समांतर चतुर्भुज का विकर्ण अब भी त्रिभुज के बंद करने वाले तीर के बराबर है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch10-subtract",
+   "topic": "10.5.2",
+   "template": "matrix",
+   "title": {
+    "en": "The vector joining two points",
+    "hi": "दो बिंदुओं को जोड़ने वाला सदिश"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "vector-add",
+    "u": [
+     5,
+     4,
+     0
+    ],
+    "v": [
+     2,
+     1,
+     0
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:subtract",
+     "expect": "resultant",
+     "say": {
+      "en": "Tap Use u − v. Think of u as the position of Q and v as the position of P.",
+      "hi": "u − v लो दबाओ। u को Q की स्थिति और v को P की स्थिति सोचो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "P is at (2, 1) and Q is at (5, 4). The arrow from P to Q has which parts?",
+      "hi": "P (2, 1) पर और Q (5, 4) पर है। P से Q तक के तीर के भाग क्या हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "(3, 3)",
+       "hi": "भाग (3, 3)"
+      },
+      {
+       "id": "b",
+       "en": "(7, 5)",
+       "hi": "भाग (7, 5)"
+      },
+      {
+       "id": "c",
+       "en": "(−3, −3)",
+       "hi": "भाग (−3, −3)"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "op:triangle",
+     "expect": "resultant",
+     "say": {
+      "en": "Tap Triangle with the minus on, to see the arrow PQ closing the triangle OPQ.",
+      "hi": "माइनस चालू रखकर त्रिभुज दबाओ और देखो तीर PQ त्रिभुज OPQ को कैसे बंद करता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "If the position vectors of P and Q are p and q, then the vector from P to Q is PQ = q − p: end point minus starting point. It joins the two tips of the position vectors. Here (5, 4) − (2, 1) = (3, 3), and its length is √(9 + 9) = 3√2.",
+      "hi": "यदि P और Q के स्थिति सदिश p और q हैं तो P से Q तक का सदिश PQ = q − p है: अंतिम बिंदु में से आरंभ बिंदु घटाओ। यह स्थिति सदिशों के दोनों सिरों को जोड़ता है। यहाँ (5, 4) − (2, 1) = (3, 3), और उसकी लंबाई √(9 + 9) = 3√2 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A(1, 5) and B(4, 1). The vector AB is:",
+        "hi": "A(1, 5) और B(4, 1) हैं। सदिश AB है:"
+       },
+       "options": [
+        "3i − 4j",
+        "−3i + 4j",
+        "5i + 6j"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "B − A = (4 − 1, 1 − 5) = (3, −4).",
+        "hi": "B − A = (4 − 1, 1 − 5) = (3, −4)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This is BA, the arrow from B back to A.",
+         "hi": "यह BA है, B से वापस A तक का तीर।"
+        },
+        {
+         "en": "This adds the points instead of subtracting.",
+         "hi": "यह बिंदुओं को घटाने की जगह जोड़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The distance between A(1, 5) and B(4, 1) is:",
+        "hi": "A(1, 5) और B(4, 1) के बीच की दूरी है:"
+       },
+       "options": [
+        "5",
+        "7",
+        "√7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "|AB| = √(3² + 4²) = 5.",
+        "hi": "|AB| = √(3² + 4²) = 5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7 adds 3 and 4; distance uses the square root of the sum of squares.",
+         "hi": "7, 3 और 4 को जोड़ता है; दूरी के लिए वर्गों के योग का वर्गमूल लेते हैं।"
+        },
+        {
+         "en": "√7 forgets to square the parts.",
+         "hi": "√7 में भागों का वर्ग करना भूल गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the minus off and on. How do u + v and u − v differ in the picture?",
+      "hi": "माइनस बंद और चालू करो। चित्र में u + v और u − v कैसे अलग दिखते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch10-scalar",
+   "topic": "10.5",
+   "template": "match",
+   "title": {
+    "en": "Multiplying a vector by a number",
+    "hi": "सदिश को संख्या से गुणा करना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "k1",
+      "left": {
+       "en": "3a",
+       "hi": "3a"
+      },
+      "right": {
+       "en": "6i − 12j + 12k",
+       "hi": "6i − 12j + 12k"
+      },
+      "why": {
+       "en": "Multiply every part by 3.",
+       "hi": "हर भाग को 3 से गुणा करो।"
+      }
+     },
+     {
+      "id": "k2",
+      "left": {
+       "en": "−a",
+       "hi": "−a"
+      },
+      "right": {
+       "en": "−2i + 4j − 4k",
+       "hi": "−2i + 4j − 4k"
+      },
+      "why": {
+       "en": "Multiply every part by −1: the arrow flips.",
+       "hi": "हर भाग को −1 से गुणा करो: तीर उलट जाता है।"
+      }
+     },
+     {
+      "id": "k3",
+      "left": {
+       "en": "½a",
+       "hi": "½a"
+      },
+      "right": {
+       "en": "i − 2j + 2k",
+       "hi": "i − 2j + 2k"
+      },
+      "why": {
+       "en": "Half of every part: same direction, half the length.",
+       "hi": "हर भाग का आधा: दिशा वही, लंबाई आधी।"
+      }
+     },
+     {
+      "id": "k4",
+      "left": {
+       "en": "Unit vector along a",
+       "hi": "a की दिशा में इकाई सदिश"
+      },
+      "right": {
+       "en": "i/3 − 2j/3 + 2k/3",
+       "hi": "i/3 − 2j/3 + 2k/3"
+      },
+      "why": {
+       "en": "|a| = 6, so divide every part by 6.",
+       "hi": "|a| = 6, इसलिए हर भाग को 6 से भाग दो।"
+      }
+     },
+     {
+      "id": "k5",
+      "left": {
+       "en": "Vector of length 12 along a",
+       "hi": "a की दिशा में लंबाई 12 का सदिश"
+      },
+      "right": {
+       "en": "4i − 8j + 8k",
+       "hi": "4i − 8j + 8k"
+      },
+      "why": {
+       "en": "12 times the unit vector: 12 × (1/3, −2/3, 2/3).",
+       "hi": "इकाई सदिश का 12 गुना: 12 × (1/3, −2/3, 2/3)।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:k1",
+     "expect": "matched:k1",
+     "say": {
+      "en": "Here a = 2i − 4j + 4k. Match 3a with its value.",
+      "hi": "यहाँ a = 2i − 4j + 4k है। 3a को उसके मान से जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What happens to the length of a vector when you multiply it by −2?",
+      "hi": "सदिश को −2 से गुणा करने पर उसकी लंबाई का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "x2",
+       "en": "It becomes 2 times as long; direction reverses",
+       "hi": "2 गुनी हो जाती है; दिशा उलट जाती है"
+      },
+      {
+       "id": "x-2",
+       "en": "It becomes negative",
+       "hi": "ऋणात्मक हो जाती है"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वही रहती है"
+      }
+     ],
+     "answer": "x2"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all five and tap Check.",
+      "hi": "पाँचों जोड़ो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Multiplying a by a number λ multiplies every part by λ. The length becomes |λ| times as long. The direction stays the same if λ is positive and reverses if λ is negative. Dividing a by |a| gives the unit vector, and multiplying that by m gives a vector of length m along a.",
+      "hi": "a को संख्या λ से गुणा करने पर हर भाग λ से गुणा होता है। लंबाई |λ| गुनी हो जाती है। λ धनात्मक हो तो दिशा वही रहती है, ऋणात्मक हो तो उलट जाती है। a को |a| से भाग देने पर इकाई सदिश मिलता है, और उसे m से गुणा करने पर a की दिशा में लंबाई m का सदिश।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If a = 3i − 4j, the vector of length 10 along a is:",
+        "hi": "यदि a = 3i − 4j हो तो a की दिशा में लंबाई 10 का सदिश है:"
+       },
+       "options": [
+        "6i − 8j",
+        "30i − 40j",
+        "3i − 4j"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "|a| = 5, so multiply a by 10/5 = 2.",
+        "hi": "|a| = 5, इसलिए a को 10/5 = 2 से गुणा करो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This has length 50, ten times a.",
+         "hi": "इसकी लंबाई 50 है, a की दस गुनी।"
+        },
+        {
+         "en": "This is a itself, with length 5.",
+         "hi": "यह स्वयं a है, लंबाई 5।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which vector is parallel to 2i + 3j?",
+        "hi": "2i + 3j के समांतर कौन-सा सदिश है?"
+       },
+       "options": [
+        "−4i − 6j",
+        "3i + 2j",
+        "2i − 3j"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It equals −2 times 2i + 3j.",
+        "hi": "यह 2i + 3j का −2 गुना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The parts are swapped: not a multiple.",
+         "hi": "भाग आपस में बदल गए: यह गुणज नहीं है।"
+        },
+        {
+         "en": "The sign of the second part differs, so it is not a multiple.",
+         "hi": "दूसरे भाग का चिह्न अलग है, इसलिए यह गुणज नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose any vector, multiply by 0. What do you get, and what is its direction?",
+      "hi": "कोई भी सदिश लो, उसे 0 से गुणा करो। क्या मिलता है, और उसकी दिशा क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch10-section",
+   "topic": "10.5.3",
+   "template": "match",
+   "title": {
+    "en": "The section formula",
+    "hi": "विभाजन सूत्र"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "r1",
+      "left": {
+       "en": "Midpoint of A(2, 4, 6) and B(8, 2, 0)",
+       "hi": "A(2, 4, 6) और B(8, 2, 0) का मध्य बिंदु"
+      },
+      "right": {
+       "en": "(5, 3, 3)",
+       "hi": "(5, 3, 3)"
+      },
+      "why": {
+       "en": "Midpoint = half the sum: (10/2, 6/2, 6/2).",
+       "hi": "मध्य बिंदु = योग का आधा: (10/2, 6/2, 6/2)।"
+      }
+     },
+     {
+      "id": "r2",
+      "left": {
+       "en": "A(0, 0, 0), B(6, 9, 12): point dividing AB internally 1 : 2",
+       "hi": "A(0, 0, 0), B(6, 9, 12): AB को अंतः 1 : 2 में बाँटने वाला बिंदु"
+      },
+      "right": {
+       "en": "(2, 3, 4)",
+       "hi": "(2, 3, 4)"
+      },
+      "why": {
+       "en": "(2·A + 1·B)/3 = (6, 9, 12)/3.",
+       "hi": "(2·A + 1·B)/3 = (6, 9, 12)/3।"
+      }
+     },
+     {
+      "id": "r3",
+      "left": {
+       "en": "A(1, 1, 1), B(5, 5, 5): point dividing AB internally 3 : 1",
+       "hi": "A(1, 1, 1), B(5, 5, 5): AB को अंतः 3 : 1 में बाँटने वाला बिंदु"
+      },
+      "right": {
+       "en": "(4, 4, 4)",
+       "hi": "(4, 4, 4)"
+      },
+      "why": {
+       "en": "(1·A + 3·B)/4 = (1 + 15)/4 = 4.",
+       "hi": "(1·A + 3·B)/4 = (1 + 15)/4 = 4।"
+      }
+     },
+     {
+      "id": "r4",
+      "left": {
+       "en": "A(1, 2, 3), B(2, 3, 4): point dividing AB externally 2 : 1",
+       "hi": "A(1, 2, 3), B(2, 3, 4): AB को बाह्य 2 : 1 में बाँटने वाला बिंदु"
+      },
+      "right": {
+       "en": "(3, 4, 5)",
+       "hi": "(3, 4, 5)"
+      },
+      "why": {
+       "en": "(2·B − 1·A)/(2 − 1) = (4 − 1, 6 − 2, 8 − 3).",
+       "hi": "(2·B − 1·A)/(2 − 1) = (4 − 1, 6 − 2, 8 − 3)।"
+      }
+     },
+     {
+      "id": "r5",
+      "left": {
+       "en": "Midpoint of A(−1, 2, 0) and B(5, −4, 6)",
+       "hi": "A(−1, 2, 0) और B(5, −4, 6) का मध्य बिंदु"
+      },
+      "right": {
+       "en": "(2, −1, 3)",
+       "hi": "(2, −1, 3)"
+      },
+      "why": {
+       "en": "(−1 + 5)/2, (2 − 4)/2, (0 + 6)/2.",
+       "hi": "(−1 + 5)/2, (2 − 4)/2, (0 + 6)/2।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:r1",
+     "expect": "matched:r1",
+     "say": {
+      "en": "Match the midpoint of A and B first. It divides AB in the ratio 1 : 1.",
+      "hi": "पहले A और B का मध्य बिंदु जोड़ो। यह AB को 1 : 1 में बाँटता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A point R divides AB internally in the ratio m : n. Which end gets the larger weight when m is large?",
+      "hi": "बिंदु R, AB को अंतः m : n में बाँटता है। m बड़ा हो तो किस सिरे का भार अधिक होता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "R moves close to B",
+       "hi": "R, B के पास चला जाता है"
+      },
+      {
+       "id": "b",
+       "en": "R moves close to A",
+       "hi": "R, A के पास चला जाता है"
+      },
+      {
+       "id": "c",
+       "en": "R stays at the middle",
+       "hi": "R बीच में ही रहता है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all five and tap Check.",
+      "hi": "पाँचों जोड़ो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For position vectors a and b, the point dividing AB internally in the ratio m : n is (n a + m b)/(m + n). Externally it is (m b − n a)/(m − n). The midpoint is (a + b)/2. In each case, take the matching parts of the coordinates: x with x, y with y, z with z.",
+      "hi": "स्थिति सदिश a और b के लिए AB को अंतः m : n में बाँटने वाला बिंदु (n a + m b)/(m + n) है। बाह्य रूप से यह (m b − n a)/(m − n) है। मध्य बिंदु (a + b)/2 है। हर बार संगत निर्देशांक लो: x के साथ x, y के साथ y, z के साथ z।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A point divides PQ internally in the ratio 1 : 1. It is the:",
+        "hi": "कोई बिंदु PQ को अंतः 1 : 1 में बाँटता है। वह है:"
+       },
+       "options": [
+        "midpoint of PQ",
+        "point P itself",
+        "point Q itself"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal parts means the middle.",
+        "hi": "बराबर भाग का अर्थ है बीच का बिंदु।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "R would sit on P only if the ratio were 0 : n.",
+         "hi": "R, P पर तभी होता जब अनुपात 0 : n होता।"
+        },
+        {
+         "en": "R would sit on Q only if the ratio were m : 0.",
+         "hi": "R, Q पर तभी होता जब अनुपात m : 0 होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "P(0, 0, 0) and Q(10, 5, 0). The point that divides PQ internally 2 : 3 is:",
+        "hi": "P(0, 0, 0) और Q(10, 5, 0)। PQ को अंतः 2 : 3 में बाँटने वाला बिंदु है:"
+       },
+       "options": [
+        "(4, 2, 0)",
+        "(6, 3, 0)",
+        "(5, 2.5, 0)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(3·P + 2·Q)/5 = (20, 10, 0)/5.",
+        "hi": "(3·P + 2·Q)/5 = (20, 10, 0)/5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This is the point dividing 3 : 2; the ratio is reversed.",
+         "hi": "यह 3 : 2 वाला बिंदु है; अनुपात उलट गया।"
+        },
+        {
+         "en": "This is the midpoint, ratio 1 : 1.",
+         "hi": "यह मध्य बिंदु है, अनुपात 1 : 1।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take A(0, 0, 0) and B(9, 0, 0). Find the two points that divide AB into three equal parts.",
+      "hi": "A(0, 0, 0) और B(9, 0, 0) लो। AB को तीन बराबर भागों में बाँटने वाले दो बिंदु खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch10-dot",
+   "topic": "10.6.1",
+   "template": "matrix",
+   "title": {
+    "en": "The dot product and the angle",
+    "hi": "अदिश गुणनफल और कोण"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "dot",
+    "u": [
+     3,
+     2,
+     0
+    ],
+    "v": [
+     1,
+     4,
+     0
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:project",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Show the shadow to see how much of v lies along u.",
+      "hi": "छाया दिखाओ दबाओ और देखो v का कितना भाग u के अनुदिश है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now u · v = 3 × 1 + 2 × 4 = 11. If you turn v until it stands at right angles to u, what will u · v become?",
+      "hi": "अभी u · v = 3 × 1 + 2 × 4 = 11 है। v को घुमाकर u के लंबवत कर दें तो u · v क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "zero",
+       "en": "0",
+       "hi": "शून्य, 0"
+      },
+      {
+       "id": "pos",
+       "en": "A bigger positive number",
+       "hi": "बड़ी धनात्मक संख्या"
+      },
+      {
+       "id": "neg",
+       "en": "A negative number",
+       "hi": "ऋणात्मक संख्या"
+      }
+     ],
+     "answer": "zero"
+    },
+    {
+     "kind": "do",
+     "target": "drag:v",
+     "expect": "computed",
+     "say": {
+      "en": "Drag the tip of v until it is at right angles to u.",
+      "hi": "v का सिरा तब तक खींचो जब तक वह u के लंबवत न हो जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The dot product of two vectors is a number, u · v = |u| |v| cos θ, or in parts u₁v₁ + u₂v₂ + u₃v₃. It is positive for an angle below 90°, zero at 90° (perpendicular vectors) and negative above 90°. It is the length of u times the shadow of v on u.",
+      "hi": "दो सदिशों का अदिश गुणनफल एक संख्या है, u · v = |u| |v| cos θ, या भागों में u₁v₁ + u₂v₂ + u₃v₃। कोण 90° से कम हो तो यह धनात्मक, 90° पर शून्य (लंबवत सदिश) और 90° से अधिक पर ऋणात्मक होता है। यह u की लंबाई गुणा u पर v की छाया है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For a = (1, 2, 3) and b = (2, −1, 0), a · b is:",
+        "hi": "a = (1, 2, 3) और b = (2, −1, 0) के लिए a · b है:"
+       },
+       "options": [
+        "0, so they are perpendicular",
+        "4",
+        "−4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1 × 2 + 2 × (−1) + 3 × 0 = 0.",
+        "hi": "1 × 2 + 2 × (−1) + 3 × 0 = 0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 forgets the minus sign of −1.",
+         "hi": "4, −1 का ऋण चिह्न भूल गया।"
+        },
+        {
+         "en": "−4 uses the wrong sign on the first product.",
+         "hi": "−4 में पहले गुणनफल का चिह्न ग़लत है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "|a| = 3, |b| = 4 and the angle between them is 60°. Then a · b is:",
+        "hi": "|a| = 3, |b| = 4 और उनके बीच का कोण 60° है। तब a · b है:"
+       },
+       "options": [
+        "6",
+        "12",
+        "6√3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 × 4 × cos 60° = 12 × ½ = 6.",
+        "hi": "3 × 4 × cos 60° = 12 × ½ = 6।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 forgets to multiply by cos 60° = ½.",
+         "hi": "12 में cos 60° = ½ से गुणा करना भूल गए।"
+        },
+        {
+         "en": "6√3 uses sin 60° instead of cos 60°.",
+         "hi": "6√3 में cos 60° की जगह sin 60° लिया गया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make u · v negative. What is the angle between the arrows now?",
+      "hi": "u · v को ऋणात्मक बनाओ। अब तीरों के बीच का कोण कितना है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch10-projection",
+   "topic": "10.6.2",
+   "template": "matrix",
+   "title": {
+    "en": "Projection: the shadow of a vector",
+    "hi": "प्रक्षेप: सदिश की छाया"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "dot",
+    "u": [
+     5,
+     5,
+     0
+    ],
+    "v": [
+     3,
+     4,
+     0
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:project",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Show the shadow: the shadow of u falls on the line of v.",
+      "hi": "छाया दिखाओ दबाओ: u की छाया v की रेखा पर पड़ती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Here u · v = 35 and |v| = 5. How long is the shadow of u on v?",
+      "hi": "यहाँ u · v = 35 और |v| = 5 है। v पर u की छाया कितनी लंबी है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "7",
+       "hi": "लंबाई 7"
+      },
+      {
+       "id": "b",
+       "en": "35",
+       "hi": "लंबाई 35"
+      },
+      {
+       "id": "c",
+       "en": "175",
+       "hi": "लंबाई 175"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "op:show",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Show answer to see the numbers.",
+      "hi": "संख्याएँ देखने के लिए उत्तर दिखाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The projection (shadow) of u on v is the length (u · v)/|v|. Here 35/5 = 7. As a vector it is that length times the unit vector along v. The shadow is positive when the angle is acute, zero at 90° and negative when the angle is obtuse.",
+      "hi": "v पर u का प्रक्षेप (छाया) (u · v)/|v| लंबाई का होता है। यहाँ 35/5 = 7। सदिश के रूप में वह इस लंबाई गुणा v की दिशा के इकाई सदिश है। न्यून कोण पर छाया धनात्मक, 90° पर शून्य और अधिक कोण पर ऋणात्मक होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The projection of a = 2i + 3j + 6k on b = i + 2j + 2k is:",
+        "hi": "a = 2i + 3j + 6k का b = i + 2j + 2k पर प्रक्षेप है:"
+       },
+       "options": [
+        "20/3",
+        "20",
+        "20/9"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "a · b = 2 + 6 + 12 = 20 and |b| = 3, so 20/3.",
+        "hi": "a · b = 2 + 6 + 12 = 20 और |b| = 3, अतः 20/3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20 is a · b; the division by |b| is missing.",
+         "hi": "20 तो a · b है; |b| से भाग देना छूट गया।"
+        },
+        {
+         "en": "20/9 divides by |b|², not |b|.",
+         "hi": "20/9 में |b| की जगह |b|² से भाग दिया गया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When a is perpendicular to b, the projection of a on b is:",
+        "hi": "जब a, b के लंबवत हो तो b पर a का प्रक्षेप है:"
+       },
+       "options": [
+        "0",
+        "|a|",
+        "|b|"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "a · b = 0, so the shadow has no length.",
+        "hi": "a · b = 0, इसलिए छाया की कोई लंबाई नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "|a| would be the projection only if a were along b.",
+         "hi": "|a| प्रक्षेप तब होता जब a, b के अनुदिश होता।"
+        },
+        {
+         "en": "|b| has nothing to do with the shadow of a.",
+         "hi": "|b| का a की छाया से कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of the sun directly overhead and a ladder leaning on a wall. Which vector is the ladder, and where does its shadow fall?",
+      "hi": "सोचो सूरज ठीक सिर के ऊपर है और एक सीढ़ी दीवार से टिकी है। सीढ़ी कौन-सा सदिश है, और उसकी छाया कहाँ पड़ती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch10-cross",
+   "topic": "10.6.3",
+   "template": "matrix",
+   "title": {
+    "en": "The cross product",
+    "hi": "सदिश गुणनफल"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "cross",
+    "u": [
+     2,
+     0,
+     0
+    ],
+    "v": [
+     0,
+     3,
+     0
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:parallelogram",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Shade the area. The parallelogram of u and v is coloured.",
+      "hi": "क्षेत्रफल रंगो दबाओ। u और v का समांतर चतुर्भुज रंग जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Swap u and v. What happens to the arrow u × v?",
+      "hi": "u और v की अदला-बदली करो। तीर u × v का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "flip",
+       "en": "It points the opposite way, same length",
+       "hi": "उलटी दिशा में, वही लंबाई"
+      },
+      {
+       "id": "same",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलता"
+      },
+      {
+       "id": "long",
+       "en": "It gets longer",
+       "hi": "लंबा हो जाता है"
+      }
+     ],
+     "answer": "flip"
+    },
+    {
+     "kind": "do",
+     "target": "op:swap",
+     "expect": "resultant",
+     "say": {
+      "en": "Tap Swap u and v and watch the arrow turn.",
+      "hi": "u और v बदलो दबाओ और तीर को पलटते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The cross product u × v is a vector at right angles to both u and v, in the direction given by the right-hand rule. Its length |u||v| sin θ is the area of the parallelogram on u and v. Here u × v = (0, 0, 6): length 6, the area 2 × 3. Swapping gives v × u = −(u × v).",
+      "hi": "सदिश गुणनफल u × v एक ऐसा सदिश है जो u और v दोनों के लंबवत है, दिशा दाएँ हाथ के नियम से मिलती है। उसकी लंबाई |u||v| sin θ, u और v पर बने समांतर चतुर्भुज का क्षेत्रफल है। यहाँ u × v = (0, 0, 6): लंबाई 6, यानी क्षेत्रफल 2 × 3। अदला-बदली से v × u = −(u × v) मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "i × j equals:",
+        "hi": "i × j बराबर है:"
+       },
+       "options": [
+        "k",
+        "−k",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "By the right-hand rule, turning from x towards y points along z.",
+        "hi": "दाएँ हाथ के नियम से x से y की ओर घुमाने पर z की दिशा मिलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is j × i: the other order flips the sign.",
+         "hi": "यह j × i है: उलटे क्रम में चिह्न बदल जाता है।"
+        },
+        {
+         "en": "A cross product is a vector, not the number 1.",
+         "hi": "सदिश गुणनफल सदिश होता है, संख्या 1 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The area of the triangle with sides u = (2, 0, 0) and v = (0, 3, 0) is:",
+        "hi": "भुजाओं u = (2, 0, 0) और v = (0, 3, 0) वाले त्रिभुज का क्षेत्रफल है:"
+       },
+       "options": [
+        "3",
+        "6",
+        "12"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The triangle is half the parallelogram: ½ |u × v| = ½ × 6.",
+        "hi": "त्रिभुज समांतर चतुर्भुज का आधा है: ½ |u × v| = ½ × 6।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 is the parallelogram, not the triangle.",
+         "hi": "6 समांतर चतुर्भुज है, त्रिभुज नहीं।"
+        },
+        {
+         "en": "12 is double the parallelogram.",
+         "hi": "12, समांतर चतुर्भुज का दुगुना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make u and v parallel (for example both along x). What is u × v, and what is the parallelogram’s area?",
+      "hi": "u और v को समांतर बनाओ (जैसे दोनों x के अनुदिश)। u × v क्या है, और समांतर चतुर्भुज का क्षेत्रफल कितना है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Chapter hook: speed with a direction",
+   "shows": "A motorboat crossing a wide river in Kerala, its wake bent sideways by the current",
+   "view": "From the bank, slightly above water, bright morning light",
+   "right": "The wake clearly slanted downstream while the bow points across",
+   "avoid": "People, boat names, brand marks"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Position vector: a kite on a string",
+   "shows": "A kite high in a blue sky pulled by a taut string held at the bottom of the frame by a hand",
+   "view": "Low view looking up along the string, clear day",
+   "right": "The string straight and taut from the hand to the kite",
+   "avoid": "Faces, writing on the kite"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "10.3",
+   "use": "Parallel and opposite vectors",
+   "shows": "Five bamboo sticks of different lengths lying side by side on a plain table, all pointing the same way, and one pointing the opposite way",
+   "view": "Top view, white table, soft light",
+   "right": "Sticks truly parallel; one clearly reversed",
+   "avoid": "Text, ruler marks"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.4",
+   "use": "Parallelogram law: two ropes",
+   "shows": "A wooden boat held at a river ghat by two ropes pulling at an angle from two posts on the bank",
+   "view": "High angle from the ghat steps, afternoon light",
+   "right": "Both ropes taut; angle between them clearly visible",
+   "avoid": "People, boat names, writing"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "10.5.3",
+   "use": "Section formula base",
+   "shows": "A straight segment between two dots on a clean square grid, with a third dot one third of the way along, no numbers",
+   "view": "Flat view on white with thin grid lines",
+   "right": "Third dot exactly one third from the first",
+   "avoid": "Numbers, letters, arrows"
+  },
+  {
+   "n": 6,
+   "kind": "3DM",
+   "topic": "10.6.3",
+   "use": "Cross product: a spanner on a nut",
+   "shows": "A steel spanner fitted on a hex nut, shown from front, side, top and three-quarter views",
+   "view": "Same size and centre in each view, white background",
+   "right": "Handle length clear; spanner perpendicular to the bolt axis",
+   "avoid": "Brand marks stamped on the spanner, text"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "10.6.1",
+   "use": "Dot product: a slanted pull",
+   "shows": "A boy’s back view pulling a loaded handcart on a flat lane with a rope held at a slant",
+   "view": "Side view, low sun",
+   "right": "Rope clearly slanted at an angle to the lane",
+   "avoid": "Faces, signboards, vehicle numbers"
+  }
+ ]
+}

@@ -1,0 +1,95 @@
+{
+  "chapter_key": "u.c12.sociology.lesy2.ch07",
+  "class": 12,
+  "subject_id": "sociology",
+  "title": "Mass Media and Communications",
+  "source": "https://ncert.nic.in/textbook/pdf/lesy207.pdf",
+  "topics": [
+    { "n": "7.1", "title": "The beginnings of modern mass media", "labs": ["c12-sociology-lesy2-ch07-timeline"], "why_no_lab": null },
+    { "n": "7.2", "title": "Mass media in independent India", "labs": ["c12-sociology-lesy2-ch07-timeline"], "why_no_lab": null },
+    { "n": "7.3", "title": "Globalisation and the media", "labs": ["c12-sociology-lesy2-ch07-institutions"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-sociology-lesy2-ch07-timeline",
+      "topic": "7.1",
+      "template": "timeline",
+      "title": { "en": "The first newspapers and the media's story", "hi": "पहले अख़बार और मीडिया की कहानी" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1815, 1980],
+        "task": "order",
+        "title": { "en": "From the first Indian papers to the Emergency", "hi": "पहले भारतीय अख़बारों से आपातकाल तक" },
+        "events": [
+          { "id": "m1821", "year": 1821, "label": { "en": "Sambad Kaumudi, a Bengali paper, is published", "hi": "बांग्ला अख़बार 'संवाद कौमुदी' प्रकाशित होता है" } },
+          { "id": "m1822", "year": 1822, "label": { "en": "Mirat-ul-Akbar, a Persian paper, is published", "hi": "फ़ारसी अख़बार 'मिरात-उल-अख़बार' प्रकाशित होता है" } },
+          { "id": "m1861", "year": 1861, "label": { "en": "The Times of India is founded in Bombay", "hi": "बॉम्बे में 'टाइम्स ऑफ़ इंडिया' की स्थापना होती है" } },
+          { "id": "m1883", "year": 1883, "label": { "en": "The Ilbert Bill agitation brings censorship debates", "hi": "इल्बर्ट बिल आंदोलन में सेंसरशिप पर बहस होती है" } },
+          { "id": "m1975", "year": 1975, "label": { "en": "The Emergency brings censorship of the media", "hi": "आपातकाल में मीडिया पर सेंसरशिप लगती है" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "event:m1821", "expect": "placed:m1821", "say": { "en": "Tap the 1821 card first. It is the earliest event on this strip.", "hi": "पहले 1821 वाला कार्ड छुओ। यह इस पट्टी की सबसे पुरानी घटना है।" } },
+        { "kind": "predict", "say": { "en": "Which of these is the latest event on the strip?", "hi": "इनमें से कौन-सी घटना पट्टी पर सबसे नई है?" }, "options": [ { "id": "ilbert", "en": "The Ilbert Bill agitation, 1883", "hi": "इल्बर्ट बिल आंदोलन, 1883" }, { "id": "mirat", "en": "Mirat-ul-Akbar, 1822", "hi": "मिरात-उल-अख़बार, 1822" }, { "id": "emergency", "en": "The Emergency, 1975", "hi": "आपातकाल, 1975" } ], "answer": "emergency" },
+        { "kind": "do", "target": "event:m1822", "expect": "placed:m1822", "say": { "en": "Tap the 1822 card next.", "hi": "अब 1822 वाला कार्ड छुओ।" } },
+        { "kind": "do", "target": "event:m1861", "expect": "placed:m1861", "say": { "en": "Tap the 1861 card next.", "hi": "अब 1861 वाला कार्ड छुओ।" } },
+        { "kind": "do", "target": "event:m1883", "expect": "placed:m1883", "say": { "en": "Tap the 1883 card next.", "hi": "अब 1883 वाला कार्ड छुओ।" } },
+        { "kind": "do", "target": "event:m1975", "expect": "placed:m1975", "say": { "en": "Tap the 1975 card last, then press Answer.", "hi": "आख़िर में 1975 वाला कार्ड छुओ, फिर 'जवाब दो' दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Indian newspapers began in the early nineteenth century, some in Bengali and some in Persian. Papers spread across cities, and by 1883 the colonial state was debating censorship. Much later, during the Emergency of 1975, the media itself was censored. The book traces how the media moved from print to a wider public, and how the State has tried to control it.", "hi": "भारत के अख़बार उन्नीसवीं सदी की शुरुआत में शुरू हुए, कुछ बांग्ला में और कुछ फ़ारसी में। अख़बार शहरों में फैले, और 1883 तक औपनिवेशिक शासन सेंसरशिप पर बहस कर रहा था। बाद में 1975 के आपातकाल में मीडिया पर खुद सेंसरशिप लगी। पुस्तक दिखाती है कि मीडिया छपाई से व्यापक जनता तक कैसे पहुँचा, और राज्य ने उसे कैसे नियंत्रित करने की कोशिश की।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which paper was published in 1822 in the strip?", "hi": "पट्टी में 1822 में कौन-सा अख़बार प्रकाशित हुआ?" }, "options": [ { "en": "Mirat-ul-Akbar, a Persian paper", "hi": "फ़ारसी अख़बार 'मिरात-उल-अख़बार'" }, { "en": "The Times of India", "hi": "'टाइम्स ऑफ़ इंडिया'" }, { "en": "Doordarshan's first broadcast", "hi": "दूरदर्शन का पहला प्रसारण" } ], "answer": 0, "why": { "en": "Mirat-ul-Akbar, a Persian paper, is the 1822 event on the strip.", "hi": "पट्टी पर 1822 की घटना फ़ारसी अख़बार 'मिरात-उल-अख़बार' है।" }, "wrong": [ "", { "en": "The Times of India was founded in 1861, not 1822.", "hi": "'टाइम्स ऑफ़ इंडिया' 1822 में नहीं, 1861 में स्थापित हुआ।" }, { "en": "This strip does not show Doordarshan; it is not an event in this timeline.", "hi": "इस पट्टी में दूरदर्शन नहीं है; यह इस समयरेखा की घटना नहीं है।" } ] },
+          { "q": { "en": "What did the Emergency of 1975 do to the media?", "hi": "1975 के आपातकाल ने मीडिया के साथ क्या किया?" }, "options": [ { "en": "It brought censorship of the media", "hi": "इसने मीडिया पर सेंसरशिप लगाई" }, { "en": "It banned all newspapers in India for ever", "hi": "इसने भारत के सभी अख़बारों पर हमेशा के लिए रोक लगा दी" }, { "en": "It made the media fully free", "hi": "इसने मीडिया को पूरी तरह आज़ाद कर दिया" } ], "answer": 0, "why": { "en": "The book notes censorship of the media during the Emergency of 1975.", "hi": "पुस्तक 1975 के आपातकाल में मीडिया पर सेंसरशिप का उल्लेख करती है।" }, "wrong": [ "", { "en": "The book says censorship, not a permanent ban of all papers.", "hi": "पुस्तक सेंसरशिप की बात करती है, सभी अख़बारों पर स्थायी रोक की नहीं।" }, { "en": "The Emergency was a time of censorship, not of full freedom for the media.", "hi": "आपातकाल सेंसरशिप का समय था, मीडिया की पूरी आज़ादी का नहीं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Press Answer after a wrong order to see the message. Then think: why would a government want to control newspapers, and why do citizens want them free?", "hi": "गलत क्रम रखकर 'जवाब दो' दबाओ और संदेश देखो। फिर सोचो: सरकार अख़बारों को नियंत्रित क्यों करना चाहती है, और नागरिक उन्हें आज़ाद क्यों चाहते हैं?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy2-ch07-institutions",
+      "topic": "7.3",
+      "template": "society",
+      "title": { "en": "Which medium does what?", "hi": "कौन-सा माध्यम क्या करता है?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "institutions",
+        "title": { "en": "Newspaper, radio and television", "hi": "अख़बार, रेडियो और टेलीविज़न" },
+        "intro": { "en": "Link each medium to what it does best. A medium can link to more than one job.", "hi": "हर माध्यम को उसके काम से जोड़ो। एक माध्यम एक से अधिक काम से जुड़ सकता है।" },
+        "columns": [ { "en": "Medium", "hi": "माध्यम" }, { "en": "What it does", "hi": "यह क्या करता है" } ],
+        "nodes": [
+          { "id": "n_paper", "label": { "en": "Newspaper", "hi": "समाचार पत्र" }, "icon": "letter" },
+          { "id": "n_radio", "label": { "en": "Radio", "hi": "रेडियो" }, "icon": "speech" },
+          { "id": "n_tv", "label": { "en": "Television", "hi": "टेलीविज़न" }, "icon": "phone" },
+          { "id": "r_news", "label": { "en": "Reports news and public issues", "hi": "समाचार और सार्वजनिक मुद्दों की ख़बरें" } },
+          { "id": "r_sound", "label": { "en": "Teaches and entertains through sound alone", "hi": "केवल आवाज़ से सिखाता और मनोरंजन करता है" } },
+          { "id": "r_pic", "label": { "en": "Shows news and drama with pictures and sound", "hi": "चित्र और आवाज़ के साथ ख़बरें और नाटक दिखाता है" } }
+        ],
+        "links": [
+          ["n_paper", "r_news", { "en": "Gives daily reports and public information", "hi": "रोज़ की ख़बरें और सार्वजनिक जानकारी देता है" }],
+          ["n_radio", "r_sound", { "en": "Reaches people through sound programmes", "hi": "आवाज़ के कार्यक्रमों से लोगों तक पहुँचता है" }],
+          ["n_radio", "r_news", { "en": "Broadcasts news bulletins", "hi": "समाचार बुलेटिन प्रसारित करता है" }],
+          ["n_tv", "r_pic", { "en": "Shows news, films and serials with pictures", "hi": "ख़बरें, फ़िल्में और धारावाहिक चित्रों के साथ दिखाता है" }],
+          ["n_tv", "r_news", { "en": "Carries live news from around the country", "hi": "देश भर की लाइव ख़बरें दिखाता है" }]
+        ]
+      },
+      "steps": [
+        { "kind": "predict", "say": { "en": "Which medium adds pictures to its news and drama?", "hi": "कौन-सा माध्यम अपनी ख़बरों और नाटकों में चित्र जोड़ता है?" }, "options": [ { "id": "paper", "en": "Newspaper", "hi": "समाचार पत्र" }, { "id": "radio", "en": "Radio", "hi": "रेडियो" }, { "id": "tv", "en": "Television", "hi": "टेलीविज़न" } ], "answer": "tv" },
+        { "kind": "do", "target": "link", "expect": "linked", "say": { "en": "Tap 'Radio', then 'Teaches and entertains through sound alone', then press Link.", "hi": "'रेडियो' छुओ, फिर 'केवल आवाज़ से सिखाता और मनोरंजन करता है' छुओ, फिर 'जोड़ो' दबाओ।" } },
+        { "kind": "do", "target": "link", "expect": "linked", "say": { "en": "Now tap 'Television', then 'Shows news and drama with pictures and sound', then press Link.", "hi": "अब 'टेलीविज़न' छुओ, फिर 'चित्र और आवाज़ के साथ ख़बरें और नाटक दिखाता है' छुओ, फिर 'जोड़ो' दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Each medium has its own strength. Newspapers give daily reports and public information to readers. Radio reaches people through sound, and its programmes and bulletins work without pictures. Television adds pictures to news, films and serials. Globalisation has brought satellite channels and the internet, which carry news and culture across borders.", "hi": "हर माध्यम की अपनी ताक़त है। समाचार पत्र पाठकों को रोज़ की ख़बरें और सार्वजनिक जानकारी देते हैं। रेडियो आवाज़ से लोगों तक पहुँचता है, और उसके कार्यक्रम व बुलेटिन बिना चित्रों के चलते हैं। टेलीविज़न ख़बरों, फ़िल्मों और धारावाहिकों में चित्र जोड़ता है। वैश्वीकरण ने सैटेलाइट चैनल और इंटरनेट लाए हैं, जो ख़बरें और संस्कृति सीमाओं के पार ले जाते हैं।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which medium works through sound programmes without pictures?", "hi": "कौन-सा माध्यम बिना चित्रों के आवाज़ के कार्यक्रमों से काम करता है?" }, "options": [ { "en": "Radio", "hi": "रेडियो" }, { "en": "Television", "hi": "टेलीविज़न" }, { "en": "A newspaper", "hi": "समाचार पत्र" } ], "answer": 0, "why": { "en": "Radio reaches listeners through sound alone, which is why it links to sound programmes.", "hi": "रेडियो केवल आवाज़ से श्रोताओं तक पहुँचता है, इसीलिए वह आवाज़ के कार्यक्रमों से जुड़ता है।" }, "wrong": [ "", { "en": "Television adds pictures to its programmes, so it does not work through sound alone.", "hi": "टेलीविज़न अपने कार्यक्रमों में चित्र जोड़ता है, इसलिए वह केवल आवाज़ से नहीं चलता।" }, { "en": "A newspaper works through print, not sound.", "hi": "समाचार पत्र छपाई से चलता है, आवाज़ से नहीं।" } ] },
+          { "q": { "en": "What does globalisation add to the media?", "hi": "वैश्वीकरण मीडिया में क्या जोड़ता है?" }, "options": [ { "en": "Satellite channels and the internet that cross borders", "hi": "सैटेलाइट चैनल और इंटरनेट जो सीमाएँ पार करते हैं" }, { "en": "An end to all news", "hi": "सभी ख़बरों का अंत" }, { "en": "Only printed letters", "hi": "केवल छपे हुए पत्र" } ], "answer": 0, "why": { "en": "The book links globalisation with satellite channels and the internet, which carry news and culture across borders.", "hi": "पुस्तक वैश्वीकरण को सैटेलाइट चैनल और इंटरनेट से जोड़ती है, जो ख़बरें और संस्कृति सीमाओं के पार ले जाते हैं।" }, "wrong": [ "", { "en": "Globalisation spread the news, not ended it.", "hi": "वैश्वीकरण ने ख़बरें फैलाईं, उन्हें खत्म नहीं किया।" }, { "en": "Printed letters are old media, not the new reach that globalisation brings.", "hi": "छपे पत्र पुराना माध्यम हैं, वैश्वीकरण से आई नई पहुँच नहीं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Try a link that does not fit, such as a newspaper with sound programmes, and read the message. Then think of the medium you used today and what it did best.", "hi": "एक ऐसा जोड़ा बनाओ जो ठीक न हो, जैसे समाचार पत्र और आवाज़ के कार्यक्रम, और संदेश पढ़ो। फिर सोचो आज तुमने कौन-सा माध्यम इस्तेमाल किया और उसने सबसे अच्छा क्या किया।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "OBJ", "topic": "7.1", "use": "Old newspaper press as a cut-out", "shows": "A small old flatbed printing press with an inked roller, plain metal, no text", "view": "Three-quarter view, centred, transparent background, soft shadow on a separate layer", "right": "Plain metal press with no brand names or readable text", "avoid": "Readable newspaper titles; brand plates" },
+    { "n": 2, "kind": "SCN", "topic": "7.2", "use": "Radio in a village home", "shows": "A family in a village courtyard listening to a radio set on a stool, two adults and a child, evening light", "view": "Medium wide, eye level, warm lamp light", "right": "Plain radio set with no brand; real village courtyard; faces of children not identifiable", "avoid": "Brand names on the radio; identifiable children without consent" },
+    { "n": 3, "kind": "SEQ", "topic": "7.2", "use": "The screen in one home over decades", "shows": "Three frames of one room's corner: a radio on a shelf, a black-and-white television, a colour television on a stand", "view": "Identical camera height, framing and light in all three frames", "right": "The same corner in all frames; the change is in the set; no brand names", "avoid": "Changing the camera angle; readable channel names" },
+    { "n": 4, "kind": "DIA", "topic": "7.3", "use": "Base for the media institutions lab", "shows": "A clean white board with two columns of blank rounded boxes linked by faint lines, no words", "view": "Straight front view, flat, even light", "right": "Two equal columns, space for labels", "avoid": "Any words or colours that rank the media" },
+    { "n": 5, "kind": "SCN", "topic": "7.3", "use": "Global media in a city", "shows": "A small tea stall in a city lane with a television screen showing a blurred picture, customers watching from the bench", "view": "Medium shot, eye level, evening light", "right": "Real city lane; screen content blurred; no channel logos", "avoid": "Readable channel logos; identifiable children" }
+  ]
+}

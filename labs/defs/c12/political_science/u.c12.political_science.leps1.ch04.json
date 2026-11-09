@@ -1,0 +1,212 @@
+{
+  "chapter_key": "u.c12.political_science.leps1.ch04",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "International Organisations",
+  "source": "https://ncert.nic.in/textbook/pdf/leps104.pdf",
+  "topics": [
+    { "n": "4.1", "title": "Why international organisations matter, even when they are criticised", "labs": [], "why_no_lab": "A question of opinion, shown by two cartoons and a quote; the reader's debate teaches it, and no lab can settle it." },
+    { "n": "4.2", "title": "The evolution of the United Nations", "labs": ["c12-political_science-leps1-ch04-un-timeline"], "why_no_lab": null },
+    { "n": "4.3", "title": "The Security Council: permanent and elected members", "labs": ["c12-political_science-leps1-ch04-council-sort"], "why_no_lab": null },
+    { "n": "4.4", "title": "Calls for reform of the Security Council", "labs": [], "why_no_lab": "The reform debate is covered by the Security Council sorting lab and by class discussion." },
+    { "n": "4.5", "title": "India and the UN reform debate", "labs": [], "why_no_lab": "A contested policy question; students weigh the arguments from the text rather than from a lab." },
+    { "n": "4.6", "title": "UN agencies and other organisations at work", "labs": ["c12-political_science-leps1-ch04-agencies-match"], "why_no_lab": null },
+    { "n": "4.7", "title": "Can the UN work in a world dominated by one power?", "labs": [], "why_no_lab": "A judgement question for debate; the reader's cases are the right material." }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps1-ch04-un-timeline",
+      "topic": "4.2",
+      "template": "timeline",
+      "title": { "en": "Put the UN's big moments in order", "hi": "संयुक्त राष्ट्र के बड़े पड़ावों को क्रम से लगाओ" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1940, 2020],
+        "task": "order",
+        "title": { "en": "From 1945 to the Sustainable Development Goals", "hi": "1945 से सतत विकास लक्ष्यों तक" },
+        "events": [
+          { "id": "un", "year": 1945, "label": { "en": "The United Nations is founded after the Second World War", "hi": "द्वितीय विश्व युद्ध के बाद संयुक्त राष्ट्र की स्थापना होती है" } },
+          { "id": "udhr", "year": 1948, "label": { "en": "The Universal Declaration of Human Rights is adopted", "hi": "सार्वभौमिक मानवाधिकार घोषणा अपनाई जाती है" } },
+          { "id": "china", "year": 1971, "label": { "en": "China's seat in the UN passes to the People's Republic", "hi": "UN में चीन की सीट जनवादी गणराज्य को मिलती है" } },
+          { "id": "earth", "year": 1992, "label": { "en": "The Earth Summit in Rio de Janeiro takes up environment and development", "hi": "रियो दे जनेरो के पृथ्वी शिखर सम्मेलन में पर्यावरण और विकास पर बात होती है" } },
+          { "id": "sdg", "year": 2015, "label": { "en": "The world adopts 17 Sustainable Development Goals at the UN", "hi": "दुनिया UN में 17 सतत विकास लक्ष्य अपनाती है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these five moments came first?", "hi": "इन पाँच पड़ावों में सबसे पहले कौन-सा आया?" },
+          "options": [
+            { "id": "un", "en": "The United Nations is founded", "hi": "संयुक्त राष्ट्र की स्थापना" },
+            { "id": "udhr", "en": "The Universal Declaration of Human Rights", "hi": "सार्वभौमिक मानवाधिकार घोषणा" },
+            { "id": "sdg", "en": "The Sustainable Development Goals", "hi": "सतत विकास लक्ष्य" }
+          ],
+          "answer": "un"
+        },
+        { "kind": "do", "target": "event:un", "expect": "placed:un", "say": { "en": "Tap the founding of the UN in 1945.", "hi": "1945 में संयुक्त राष्ट्र की स्थापना छुओ।" } },
+        { "kind": "do", "target": "event:udhr", "expect": "placed:udhr", "say": { "en": "Tap the Universal Declaration of 1948.", "hi": "1948 की सार्वभौमिक घोषणा छुओ।" } },
+        { "kind": "do", "target": "event:china", "expect": "placed:china", "say": { "en": "Tap China's seat change of 1971.", "hi": "1971 में चीन की सीट बदलने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "event:earth", "expect": "placed:earth", "say": { "en": "Tap the Earth Summit of 1992.", "hi": "1992 का पृथ्वी शिखर सम्मेलन छुओ।" } },
+        { "kind": "do", "target": "event:sdg", "expect": "placed:sdg", "say": { "en": "Tap the adoption of the goals in 2015.", "hi": "2015 में लक्ष्यों को अपनाने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to test the order.", "hi": "क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The UN was founded in 1945 to keep peace after a terrible war. It then set out human rights standards, admitted China's government to its seat, and in later decades held summits on the environment and development. In 2015 it set 17 goals for the world to reach.", "hi": "भयानक युद्ध के बाद शांति बनाए रखने के लिए 1945 में UN बना। फिर उसने मानवाधिकार के मानक तय किए, चीन की सरकार को उसकी सीट दी, और बाद के दशकों में पर्यावरण और विकास पर शिखर सम्मेलन किए। 2015 में उसने दुनिया के लिए 17 लक्ष्य तय किए।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which declaration was adopted in 1948 for human rights?", "hi": "मानवाधिकार के लिए 1948 में कौन-सी घोषणा अपनाई गई?" },
+              "options": [
+                { "en": "The Universal Declaration of Human Rights", "hi": "सार्वभौमिक मानवाधिकार घोषणा" },
+                { "en": "The Earth Summit declaration", "hi": "पृथ्वी शिखर सम्मेलन की घोषणा" },
+                { "en": "The Sustainable Development Goals", "hi": "सतत विकास लक्ष्य" }
+              ],
+              "answer": 0,
+              "why": { "en": "The Universal Declaration of Human Rights was adopted in 1948.", "hi": "सार्वभौमिक मानवाधिकार घोषणा 1948 में अपनाई गई।" },
+              "wrong": [
+                "",
+                { "en": "The Earth Summit was held in 1992, not 1948.", "hi": "पृथ्वी शिखर सम्मेलन 1992 में हुआ, 1948 में नहीं।" },
+                { "en": "The development goals were adopted in 2015, not 1948.", "hi": "विकास लक्ष्य 2015 में अपनाए गए, 1948 में नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick one moment and write one sentence on why the world needed it.", "hi": "एक पड़ाव चुनो और एक वाक्य लिखो कि दुनिया को उसकी ज़रूरत क्यों थी।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch04-council-sort",
+      "topic": "4.3",
+      "template": "sort",
+      "title": { "en": "Who holds the power in the Security Council?", "hi": "सुरक्षा परिषद में ताक़त किसके पास है?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "perm", "label": { "en": "Permanent members with veto", "hi": "वीटो वाले स्थायी सदस्य" } },
+          { "id": "elected", "label": { "en": "Elected for two years", "hi": "दो साल के लिए चुने गए" } }
+        ],
+        "cards": [
+          { "id": "us", "text": { "en": "The United States is a permanent member", "hi": "अमेरिका स्थायी सदस्य है" }, "bin": "perm", "why": { "en": "The USA is one of five permanent members and can veto a decision.", "hi": "अमेरिका पाँच स्थायी सदस्यों में से एक है और किसी फ़ैसले पर वीटो कर सकता है।" } },
+          { "id": "china", "text": { "en": "China is a permanent member", "hi": "चीन स्थायी सदस्य है" }, "bin": "perm", "why": { "en": "China took its UN seat in 1971 and is a permanent member with a veto.", "hi": "चीन ने 1971 में अपनी UN सीट ली और वह वीटो वाला स्थायी सदस्य है।" } },
+          { "id": "veto", "text": { "en": "A permanent member can block a decision with its veto", "hi": "स्थायी सदस्य अपने वीटो से फ़ैसला रोक सकता है" }, "bin": "perm", "why": { "en": "Only the five permanent members have this power.", "hi": "यह शक्ति केवल पाँच स्थायी सदस्यों के पास है।" } },
+          { "id": "elected10", "text": { "en": "Ten members are elected for a two-year term", "hi": "दस सदस्य दो साल के कार्यकाल के लिए चुने जाते हैं" }, "bin": "elected", "why": { "en": "The General Assembly elects ten non-permanent members, each for two years.", "hi": "महासभा दस अस्थायी सदस्यों को हर बार दो साल के लिए चुनती है।" } },
+          { "id": "noveto", "text": { "en": "An elected member cannot veto a decision", "hi": "चुना गया सदस्य किसी फ़ैसले पर वीटो नहीं कर सकता" }, "bin": "elected", "why": { "en": "Elected members vote, but they cannot block a decision alone.", "hi": "चुने गए सदस्य वोट देते हैं, पर अकेले फ़ैसला नहीं रोक सकते।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "How many members does the Security Council have in all?", "hi": "सुरक्षा परिषद में कुल कितने सदस्य होते हैं?" },
+          "options": [
+            { "id": "ten", "en": "10", "hi": "दस" },
+            { "id": "fifteen", "en": "15", "hi": "पंद्रह" },
+            { "id": "twenty", "en": "20", "hi": "बीस" }
+          ],
+          "answer": "fifteen"
+        },
+        { "kind": "do", "target": "bin:perm", "expect": "placed:us", "say": { "en": "Tap the United States card, then the Permanent members box.", "hi": "अमेरिका वाला कार्ड छुओ, फिर वीटो वाले स्थायी सदस्य बक्से पर टैप करो।" } },
+        { "kind": "do", "target": "bin:perm", "expect": "placed:china", "say": { "en": "Tap the China card, then the Permanent members box.", "hi": "चीन वाला कार्ड छुओ, फिर वीटो वाले स्थायी सदस्य बक्से पर टैप करो।" } },
+        { "kind": "do", "target": "bin:perm", "expect": "placed:veto", "say": { "en": "Tap the veto card, then the Permanent members box.", "hi": "वीटो वाला कार्ड छुओ, फिर वीटो वाले स्थायी सदस्य बक्से पर टैप करो।" } },
+        { "kind": "do", "target": "bin:elected", "expect": "placed:elected10", "say": { "en": "Tap the ten-members card, then the Elected box.", "hi": "दस सदस्यों वाला कार्ड छुओ, फिर चुने गए सदस्य बक्से पर टैप करो।" } },
+        { "kind": "do", "target": "bin:elected", "expect": "placed:noveto", "say": { "en": "Tap the elected member card, then the Elected box.", "hi": "चुने गए सदस्य वाला कार्ड छुओ, फिर चुने गए सदस्य बक्से पर टैप करो।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Press Check to see the sorting.", "hi": "छँटाई देखने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Security Council has fifteen members. Five are permanent and can veto, and ten are elected for two years. Many countries say this reflects the world of 1945, and they want new permanent seats. That is why the reform of the Council is debated.", "hi": "सुरक्षा परिषद में पंद्रह सदस्य होते हैं। पाँच स्थायी हैं और वीटो कर सकते हैं, और दस दो साल के लिए चुने जाते हैं। कई देश कहते हैं कि यह ढाँचा 1945 की दुनिया को दिखाता है, और वे नई स्थायी सीटें चाहते हैं। इसीलिए परिषद के सुधार पर बहस होती है।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which member can block a decision with a veto?", "hi": "कौन-सा सदस्य वीटो से फ़ैसला रोक सकता है?" },
+              "options": [
+                { "en": "Any elected member", "hi": "कोई भी चुना गया सदस्य" },
+                { "en": "A permanent member such as the USA", "hi": "अमेरिका जैसा स्थायी सदस्य" },
+                { "en": "The Secretary-General", "hi": "महासचिव" }
+              ],
+              "answer": 1,
+              "why": { "en": "Only the permanent members hold the veto.", "hi": "वीटो केवल स्थायी सदस्यों के पास है।" },
+              "wrong": [
+                { "en": "Elected members cannot veto. They serve for two years and vote.", "hi": "चुने गए सदस्य वीटो नहीं कर सकते। वे दो साल सेवा करते हैं और वोट देते हैं।" },
+                "",
+                { "en": "The Secretary-General leads the UN secretariat and does not vote in the Council.", "hi": "महासचिव UN सचिवालय का नेतृत्व करते हैं और परिषद में वोट नहीं देते।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Imagine a new permanent seat. Which country or region would you give it to, and what reason would you give?", "hi": "कल्पना करो कि एक नई स्थायी सीट है। तुम उसे किस देश या क्षेत्र को दोगे, और क्या कारण बताओगे?" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch04-agencies-match",
+      "topic": "4.6",
+      "template": "match",
+      "title": { "en": "Match each UN body with its work", "hi": "हर UN संस्था को उसके काम से मिलाओ" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "ga", "left": { "en": "General Assembly", "hi": "महासभा" }, "right": { "en": "All member countries meet, and each has one vote", "hi": "सभी सदस्य देश मिलते हैं, और हर देश का एक वोट होता है" }, "why": { "en": "The General Assembly discusses most issues, but most of its decisions are recommendations.", "hi": "महासभा ज़्यादातर मुद्दों पर चर्चा करती है, पर उसके अधिकांश फ़ैसले सिफ़ारिश होते हैं।" } },
+          { "id": "unesco", "left": { "en": "UNESCO", "hi": "यूनेस्को" }, "right": { "en": "Works on education, science and culture", "hi": "शिक्षा, विज्ञान और संस्कृति पर काम करता है" }, "why": { "en": "It lists World Heritage Sites, including ancient monuments in India.", "hi": "यह विश्व धरोहर स्थलों की सूची बनाता है, जिनमें भारत के प्राचीन स्मारक भी हैं।" } },
+          { "id": "who", "left": { "en": "WHO", "hi": "विश्व स्वास्थ्य संगठन" }, "right": { "en": "Works on health, including fighting disease", "hi": "स्वास्थ्य पर काम करता है, जिसमें बीमारियों से लड़ना शामिल है" }, "why": { "en": "It coordinated the fight against smallpox, which was wiped out by 1980.", "hi": "इसने चेचक के विरुद्ध लड़ाई में तालमेल किया, जो 1980 तक दुनिया से ख़त्म हो गई।" } },
+          { "id": "icj", "left": { "en": "International Court of Justice", "hi": "अंतरराष्ट्रीय न्यायालय" }, "right": { "en": "Settles legal disputes between countries", "hi": "देशों के बीच कानूनी विवाद सुलझाता है" }, "why": { "en": "It sits at The Hague, in the Netherlands.", "hi": "यह नीदरलैंड के हेग शहर में बैठता है।" } },
+          { "id": "unicef", "left": { "en": "UNICEF", "hi": "यूनिसेफ" }, "right": { "en": "Works for children's health, nutrition and rights", "hi": "बच्चों की सेहत, पोषण और अधिकारों के लिए काम करता है" }, "why": { "en": "It works in many countries to help children survive and learn.", "hi": "यह कई देशों में बच्चों के जीवन और पढ़ाई के लिए काम करता है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these bodies settles legal disputes between countries?", "hi": "इनमें से कौन-सी संस्था देशों के बीच कानूनी विवाद सुलझाती है?" },
+          "options": [
+            { "id": "icj", "en": "International Court of Justice", "hi": "अंतरराष्ट्रीय न्यायालय" },
+            { "id": "unesco", "en": "UNESCO", "hi": "यूनेस्को" },
+            { "id": "who", "en": "WHO", "hi": "विश्व स्वास्थ्य संगठन" }
+          ],
+          "answer": "icj"
+        },
+        { "kind": "do", "target": "right:ga", "expect": "matched:ga", "say": { "en": "Tap 'General Assembly' on the left, then its work on the right.", "hi": "बाईं ओर 'महासभा' छुओ, फिर दाईं ओर उसका काम छुओ।" } },
+        { "kind": "do", "target": "right:unesco", "expect": "matched:unesco", "say": { "en": "Match UNESCO with its work.", "hi": "यूनेस्को का उसके काम से मिलान करो।" } },
+        { "kind": "do", "target": "right:who", "expect": "matched:who", "say": { "en": "Match the WHO with its work.", "hi": "विश्व स्वास्थ्य संगठन का उसके काम से मिलान करो।" } },
+        { "kind": "do", "target": "right:icj", "expect": "matched:icj", "say": { "en": "Match the International Court of Justice with its work.", "hi": "अंतरराष्ट्रीय न्यायालय का उसके काम से मिलान करो।" } },
+        { "kind": "do", "target": "right:unicef", "expect": "matched:unicef", "say": { "en": "Match UNICEF. The last match completes the set.", "hi": "यूनिसेफ का मिलान करो। आख़िरी मिलान से सेट पूरा होगा।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The UN is a family of bodies, each with its own job. The General Assembly is the forum where all members meet. The Court settles disputes between states. Agencies such as UNESCO, WHO and UNICEF work on culture, health and children in many countries.", "hi": "UN संस्थाओं का एक परिवार है, और हर एक का अपना काम है। महासभा वह मंच है जहाँ सभी सदस्य मिलते हैं। न्यायालय देशों के विवाद सुलझाता है। यूनेस्को, WHO और यूनिसेफ जैसी एजेंसियाँ कई देशों में संस्कृति, स्वास्थ्य और बच्चों पर काम करती हैं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which agency works on education, science and culture?", "hi": "कौन-सी एजेंसी शिक्षा, विज्ञान और संस्कृति पर काम करती है?" },
+              "options": [
+                { "en": "UNICEF", "hi": "यूनिसेफ" },
+                { "en": "UNESCO", "hi": "यूनेस्को" },
+                { "en": "WHO", "hi": "विश्व स्वास्थ्य संगठन" }
+              ],
+              "answer": 1,
+              "why": { "en": "UNESCO's work covers education, science and culture.", "hi": "यूनेस्को का काम शिक्षा, विज्ञान और संस्कृति को छूता है।" },
+              "wrong": [
+                { "en": "UNICEF works mainly for children's health and rights.", "hi": "यूनिसेफ मुख्य रूप से बच्चों की सेहत और अधिकारों पर काम करता है।" },
+                "",
+                { "en": "The WHO works on health, not on culture.", "hi": "WHO स्वास्थ्य पर काम करता है, संस्कृति पर नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Find one agency whose work you have seen in your own town. Describe what it does there.", "hi": "एक ऐसी एजेंसी खोजो जिसका काम तुमने अपने शहर में देखा हो। बताओ वहाँ वह क्या करती है।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "4.1", "use": "Opening picture of a world body at work", "shows": "A large conference hall with rows of empty seats and a long table at the front, soft daylight from tall windows", "view": "Eye level, wide 16:9, no people in frame", "right": "Real hall proportions, neutral colours, soft light", "avoid": "Readable name plates, flags, screens with text" },
+    { "n": 2, "kind": "MAP", "topic": "4.2", "use": "The world that the UN was built for", "shows": "Plain world map with oceans and continents, shaded relief, no borders and no names", "view": "Top-down, 16:9, centred on the Atlantic", "right": "Soft earth colours, true relief, pale oceans", "avoid": "Country names, borders, flags" },
+    { "n": 3, "kind": "DIA", "topic": "4.3", "use": "Plan of the Security Council table", "shows": "A top-down plan of a horseshoe table with fifteen small plain seat markers, five drawn larger, on white", "view": "Flat, 4:3, straight-on", "right": "Clean lines, equal markers, soft grey", "avoid": "Names, flags, numbers" },
+    { "n": 4, "kind": "OBJ", "topic": "4.6", "use": "A symbol of law and justice for the Court", "shows": "A wooden judge's gavel beside a closed book on a plain cloth, cut-out on a transparent background", "view": "Three-quarter view from slightly above, object fills about 80 percent", "right": "Real wood grain, worn leather book, soft shadow", "avoid": "Logos, readable titles" },
+    { "n": 5, "kind": "DIA", "topic": "4.2", "use": "Blank timeline strip for the UN's story", "shows": "A horizontal white strip with five evenly spaced marks, ready for dates and labels added by the app", "view": "Flat, 16:9, straight-on", "right": "Clean line, round marks, no words", "avoid": "Any text" }
+  ]
+}

@@ -1,0 +1,483 @@
+{
+ "chapter_key": "u.c10.english.jeff1.ch04",
+ "class": 10,
+ "subject_id": "english",
+ "title": "From the Diary of Anne Frank",
+ "source": "https://ncert.nic.in/textbook/pdf/jeff104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Writing a diary page: Anne Frank and Kitty",
+   "labs": [
+    "c10-english-jeff1-ch04-diarypage"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Words about personal records: diary, journal, log, memoir",
+   "labs": [
+    "c10-english-jeff1-ch04-terms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Anne's life in hiding and the Holocaust",
+   "labs": [],
+   "why_no_lab": "This is a sensitive history. It is best read with the teacher, not played as a game."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-english-jeff1-ch04-diarypage",
+   "topic": "4.1",
+   "template": "writing",
+   "title": {
+    "en": "Build a diary page",
+    "hi": "डायरी का पन्ना बनाओ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "kind": "diary",
+    "lang": "en",
+    "task": {
+     "en": "Asha has no close friend to share her feelings with, so she starts a diary. Put her page in the right order.",
+     "hi": "आशा के पास अपने मन की बात कहने को कोई करीबी दोस्त नहीं है, इसलिए वह डायरी लिखने लगती है। उसका पन्ना सही क्रम में लगाओ।"
+    },
+    "parts": [
+     {
+      "id": "date",
+      "slot": "date",
+      "text": {
+       "en": "Friday, 6 November 2026\n9:30 p.m.",
+       "hi": "शुक्रवार, 6 नवंबर 2026\nरात 9:30 बजे"
+      }
+     },
+     {
+      "id": "hello",
+      "slot": "greeting",
+      "text": {
+       "en": "Dear Diary,",
+       "hi": "प्रिय डायरी,"
+      }
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": {
+       "en": "Today I felt lonely, though my classmates were all around me. We laughed and played, but I could not tell anyone how I really felt.",
+       "hi": "आज मैं अकेलापन महसूस करती रही, जबकि सहपाठी मेरे चारों ओर थे। हमने हँसी-खेल किया, पर मैं किसी को अपने मन की बात नहीं बता पाई।"
+      }
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": {
+       "en": "So I opened this notebook that Papa gave me. Writing here feels easy, because you will never laugh or interrupt.",
+       "hi": "तब मैंने पापा की दी हुई यह कॉपी खोली। यहाँ लिखना आसान लगता है, क्योंकि तुम न हँसोगी, न बीच में टोकोगी।"
+      }
+     },
+     {
+      "id": "b3",
+      "slot": "body",
+      "text": {
+       "en": "From now on I will tell you everything: my fears, my dreams and the small things that make me happy.",
+       "hi": "आज से मैं तुम्हें सब कुछ बताऊँगी: मेरे डर, मेरे सपने और वे छोटी बातें जो मुझे ख़ुश करती हैं।"
+      }
+     },
+     {
+      "id": "sign",
+      "slot": "signoff",
+      "text": {
+       "en": "Asha",
+       "hi": "आशा"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does the date go in a diary entry: at the top or at the bottom?",
+      "hi": "डायरी के पन्ने में दिनांक कहाँ आता है: ऊपर या नीचे?"
+     },
+     "options": [
+      {
+       "id": "top",
+       "en": "At the top",
+       "hi": "सबसे ऊपर"
+      },
+      {
+       "id": "bottom",
+       "en": "At the bottom",
+       "hi": "सबसे नीचे"
+      }
+     ],
+     "answer": "top"
+    },
+    {
+     "kind": "do",
+     "target": "part:date",
+     "expect": "placed:date",
+     "say": {
+      "en": "Place the date in its slot.",
+      "hi": "दिनांक को उसके खाने में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:hello",
+     "expect": "placed:hello",
+     "say": {
+      "en": "Place the greeting.",
+      "hi": "संबोधन रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Fill all the slots and press Check.",
+      "hi": "सारे खाने भरो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A diary page has a date, a greeting to the diary (Anne Frank called hers 'Kitty'), the day's happenings and feelings in the order they came, and your name at the end. A diary is private, so you can be honest. Anne wrote to Kitty as to a true friend because she needed someone to confide in.",
+      "hi": "डायरी के पन्ने में दिनांक, डायरी के लिए संबोधन (ऐनी फ़्रैंक ने अपनी डायरी को 'किट्टी' कहा), दिन की बातें और भावनाएँ उसी क्रम में, और अंत में तुम्हारा नाम होता है। डायरी निजी होती है, इसलिए तुम ईमानदारी से लिख सकते हो। ऐनी किट्टी को सच्चे दोस्त की तरह लिखती थी क्योंकि उसे अपनी बात कहने के लिए किसी की ज़रूरत थी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did Anne Frank want to keep a diary?",
+        "hi": "ऐनी फ़्रैंक डायरी क्यों रखना चाहती थी?"
+       },
+       "options": [
+        {
+         "en": "She had no one she could truly confide in",
+         "hi": "उसके पास कोई ऐसा नहीं था जिससे वह मन की बात कह सके"
+        },
+        {
+         "en": "Her teacher asked her to",
+         "hi": "उसकी शिक्षिका ने कहा था"
+        },
+        {
+         "en": "She wanted to become famous",
+         "hi": "वह मशहूर होना चाहती थी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Anne had a family and many friends, but not one true friend with whom she could share deep feelings.",
+        "hi": "ऐनी का परिवार और बहुत-से दोस्त थे, पर कोई ऐसा सच्चा दोस्त नहीं जिससे वह गहरी भावनाएँ बाँट सके।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing says a teacher asked. It was her own need.",
+         "hi": "कहीं नहीं लिखा कि शिक्षिका ने कहा था। यह उसकी अपनी ज़रूरत थी।"
+        },
+        {
+         "en": "She wrote for herself. She thought no one would be interested.",
+         "hi": "वह अपने लिए लिखती थी। उसे लगता था किसी को दिलचस्पी नहीं होगी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write three lines in your own diary tonight. Start with 'Dear Diary,'.",
+      "hi": "आज रात अपनी डायरी में तीन पंक्तियाँ लिखो। 'प्रिय डायरी,' से शुरू करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-english-jeff1-ch04-terms",
+   "topic": "4.2",
+   "template": "match",
+   "title": {
+    "en": "Diary words and their meanings",
+    "hi": "डायरी से जुड़े शब्द और उनके अर्थ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "diary",
+      "left": {
+       "en": "diary",
+       "hi": "diary"
+      },
+      "right": {
+       "en": "A book with a page for each day, for your own thoughts and feelings",
+       "hi": "हर दिन के लिए एक पन्ने वाली किताब, अपने विचारों और भावनाओं के लिए"
+      },
+      "why": {
+       "en": "Anne Frank's diary was her closest friend.",
+       "hi": "ऐनी फ़्रैंक की डायरी उसकी सबसे करीबी दोस्त थी।"
+      }
+     },
+     {
+      "id": "journal",
+      "left": {
+       "en": "journal",
+       "hi": "journal"
+      },
+      "right": {
+       "en": "A daily record of a trip, a period or an event",
+       "hi": "किसी यात्रा, अवधि या घटना का रोज़ का लेखा"
+      },
+      "why": {
+       "en": "It is a fuller account than a diary.",
+       "hi": "यह डायरी से ज़्यादा विस्तृत विवरण होता है।"
+      }
+     },
+     {
+      "id": "log",
+      "left": {
+       "en": "log",
+       "hi": "log"
+      },
+      "right": {
+       "en": "An official record of events with times and dates",
+       "hi": "समय और तारीख़ के साथ घटनाओं का आधिकारिक रिकॉर्ड"
+      },
+      "why": {
+       "en": "A ship's captain keeps a log.",
+       "hi": "जहाज़ का कप्तान लॉग रखता है।"
+      }
+     },
+     {
+      "id": "memoir",
+      "left": {
+       "en": "memoir",
+       "hi": "memoir"
+      },
+      "right": {
+       "en": "A written account of a person's own life and experiences",
+       "hi": "किसी व्यक्ति के अपने जीवन और अनुभवों का लिखा हुआ वर्णन"
+      },
+      "why": {
+       "en": "Many famous people write memoirs.",
+       "hi": "कई मशहूर लोग संस्मरण लिखते हैं।"
+      }
+     },
+     {
+      "id": "confide",
+      "left": {
+       "en": "confide",
+       "hi": "confide"
+      },
+      "right": {
+       "en": "To tell private things to someone you trust",
+       "hi": "किसी भरोसेमंद को निजी बातें बताना"
+      },
+      "why": {
+       "en": "Anne could confide in her diary.",
+       "hi": "ऐनी अपनी डायरी में मन की बात कह सकती थी।"
+      }
+     },
+     {
+      "id": "listless",
+      "left": {
+       "en": "listless",
+       "hi": "listless"
+      },
+      "right": {
+       "en": "Having no energy or interest in anything",
+       "hi": "किसी बात में न ऊर्जा, न दिलचस्पी होना"
+      },
+      "why": {
+       "en": "Anne sat listless, bored and low.",
+       "hi": "ऐनी सुस्त, ऊबी और उदास बैठी थी।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word means 'to tell private things to someone you trust'?",
+      "hi": "'किसी भरोसेमंद को निजी बातें बताना' के लिए कौन-सा शब्द है?"
+     },
+     "options": [
+      {
+       "id": "confide",
+       "en": "confide",
+       "hi": "confide (भरोसे से बताना)"
+      },
+      {
+       "id": "listless",
+       "en": "listless",
+       "hi": "listless (सुस्त)"
+      },
+      {
+       "id": "log",
+       "en": "log",
+       "hi": "log (लॉग)"
+      }
+     ],
+     "answer": "confide"
+    },
+    {
+     "kind": "do",
+     "target": "left:diary",
+     "expect": "matched:diary",
+     "say": {
+      "en": "Tap 'diary', then tap its meaning.",
+      "hi": "'diary' पर टैप करो, फिर उसका अर्थ चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:log",
+     "expect": "matched:log",
+     "say": {
+      "en": "Match 'log' with its meaning.",
+      "hi": "'log' को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all and press Check.",
+      "hi": "सब मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A diary, a journal, a log and a memoir are all written records, but they differ. A diary is private and daily. A journal records a trip or event. A log is official and timed. A memoir tells one's life story, often years later. Knowing the difference helps you choose the right form for what you want to write.",
+      "hi": "डायरी, जर्नल, लॉग और संस्मरण सब लिखित रिकॉर्ड हैं, पर अलग-अलग हैं। डायरी निजी और रोज़ की होती है। जर्नल किसी यात्रा या घटना का लेखा रखता है। लॉग आधिकारिक और समय-सहित होता है। संस्मरण अपने जीवन की कहानी है, अक्सर सालों बाद लिखी हुई। फ़र्क़ जानने से तुम तय कर पाते हो कि जो लिखना है उसके लिए कौन-सा रूप ठीक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A captain writes 'Left port 6:00 a.m., wind east, calm sea.' What is this?",
+        "hi": "एक कप्तान लिखता है 'सुबह 6:00 बजे बंदरगाह छोड़ा, पूर्व की हवा, शांत समुद्र।' यह क्या है?"
+       },
+       "options": [
+        {
+         "en": "A log",
+         "hi": "लॉग"
+        },
+        {
+         "en": "A diary",
+         "hi": "डायरी"
+        },
+        {
+         "en": "A memoir",
+         "hi": "संस्मरण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It lists times and facts in an official way, which is what a log does.",
+        "hi": "इसमें समय और तथ्य आधिकारिक ढंग से दर्ज हैं, यही लॉग का काम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A diary would speak of feelings, not only wind and time.",
+         "hi": "डायरी में भावनाएँ होतीं, केवल हवा और समय नहीं।"
+        },
+        {
+         "en": "A memoir tells a life story, not one morning's facts.",
+         "hi": "संस्मरण जीवन की कहानी होता है, एक सुबह के तथ्य नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of the four would you like to write: diary, journal, log or memoir? Say why.",
+      "hi": "चारों में से तुम कौन-सा लिखना चाहोगे: डायरी, जर्नल, लॉग या संस्मरण? कारण बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "The diary",
+   "shows": "A closed red-and-cream checked cloth diary with a small lock and a pen beside it",
+   "view": "Top-down on transparent background",
+   "right": "Checked cover, small brass lock, a fountain pen",
+   "avoid": "Names, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Writing at night",
+   "shows": "A girl's hands writing in a diary at a small wooden desk by a lamp",
+   "view": "Over the shoulder, no face",
+   "right": "Warm lamp light, handwriting blurred",
+   "avoid": "Face, readable text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "The hiding place",
+   "shows": "A narrow canal-side house in Amsterdam with tall windows at dusk",
+   "view": "Street view, calm",
+   "right": "Tall narrow brick houses, canal, bicycles",
+   "avoid": "People, signs"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "4.3",
+   "use": "Inside a hidden room",
+   "shows": "A cross-section of a narrow house with a bookcase that swings aside to show hidden stairs",
+   "view": "3/4 cut-away, clean background",
+   "right": "Bookcase doorway and stairs, plain rooms",
+   "avoid": "People, text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Four kinds of record",
+   "shows": "A diary, a ship's logbook, a travel journal and a memoir book, four cut-outs",
+   "view": "Top-down, each on transparent",
+   "right": "Visibly different covers",
+   "avoid": "Titles, text"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "4.1",
+   "use": "Diary page frame",
+   "shows": "A blank lined diary page with a date line at the top and space for a greeting",
+   "view": "Flat, white",
+   "right": "Clear spaces without printed words",
+   "avoid": "Text"
+  }
+ ]
+}

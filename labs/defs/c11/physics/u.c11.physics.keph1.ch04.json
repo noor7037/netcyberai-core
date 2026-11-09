@@ -1,0 +1,809 @@
+{
+ "chapter_key": "u.c11.physics.keph1.ch04",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "Laws of Motion",
+ "source": "https://ncert.nic.in/textbook/pdf/keph1ps.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "An overview of what causes motion; the reader's photos of a football kick and a braking bus set the scene."
+  },
+  {
+   "n": "4.2",
+   "title": "Aristotle's fallacy",
+   "labs": [],
+   "why_no_lab": "A piece of history best told as a story in the reader; the inertia lab right after tests the idea."
+  },
+  {
+   "n": "4.3",
+   "title": "The law of inertia",
+   "labs": [
+    "c11-physics-keph1-ch04-inertia-ice"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Newton's first law of motion",
+   "labs": [],
+   "why_no_lab": "It states the inertia lab's result as a law; the reader's bus and carrom examples complete it."
+  },
+  {
+   "n": "4.5",
+   "title": "Newton's second law of motion and impulse",
+   "labs": [
+    "c11-physics-keph1-ch04-newton2"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Newton's third law of motion",
+   "labs": [],
+   "why_no_lab": "The equal and opposite pair is felt in the momentum lab of 4.7 and shown by the reader's photos of rowing and a rocket launch."
+  },
+  {
+   "n": "4.7",
+   "title": "Conservation of momentum",
+   "labs": [
+    "c11-physics-keph1-ch04-momentum-sticky"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.8",
+   "title": "Equilibrium of a particle",
+   "labs": [],
+   "why_no_lab": "Adding concurrent forces to zero is vector work on paper, taught by the reader's worked example."
+  },
+  {
+   "n": "4.9",
+   "title": "Common forces in mechanics: friction",
+   "labs": [
+    "c11-physics-keph1-ch04-static-kinetic",
+    "c11-physics-keph1-ch04-incline-slip"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.10",
+   "title": "Circular motion: cars on level and banked roads",
+   "labs": [],
+   "why_no_lab": "The whirling lab of 3.10 shows the needed centripetal force; banking is taught with the reader's ghat-road photo and a worked example."
+  },
+  {
+   "n": "4.11",
+   "title": "Solving problems in mechanics",
+   "labs": [],
+   "why_no_lab": "A method of free-body diagrams practised through the reader's worked problems."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph1-ch04-inertia-ice",
+   "topic": "4.3",
+   "template": "forces",
+   "title": {
+    "en": "Inertia: one push on ice",
+    "hi": "जड़त्व: बर्फ़ पर एक धक्का"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "push",
+    "surface": "ice",
+    "object": "box"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You give a wooden crate one short push. On which floor will it slide farther: ice or carpet?",
+      "hi": "तुम लकड़ी के बक्से को एक छोटा धक्का देते हो। वह किस फ़र्श पर ज़्यादा दूर फिसलेगा: बर्फ़ या कालीन?"
+     },
+     "options": [
+      {
+       "id": "ice",
+       "en": "Ice, because it has much less friction",
+       "hi": "बर्फ़, क्योंकि उस पर घर्षण बहुत कम है"
+      },
+      {
+       "id": "carpet",
+       "en": "Carpet, because it grips the crate",
+       "hi": "कालीन, क्योंकि वह बक्से को पकड़ता है"
+      },
+      {
+       "id": "same",
+       "en": "The same on both",
+       "hi": "दोनों पर बराबर"
+      }
+     ],
+     "answer": "ice"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "stopped",
+     "say": {
+      "en": "Press Push to give the crate on ice one shove, and watch until it stops.",
+      "hi": "धक्का दो दबाकर बर्फ़ पर रखे बक्से को एक धक्का दो, और रुकने तक देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The push lasts only a moment, yet the crate keeps sliding a long way. Nothing is needed to keep it moving; it is friction, an outside force, that slowly stops it. This tendency to keep the same velocity is inertia. Galileo saw that with no friction at all it would go on for ever.",
+      "hi": "धक्का एक पल का ही है, फिर भी बक्सा बहुत दूर तक फिसलता है। उसे चलाए रखने के लिए कुछ नहीं चाहिए; बाहरी बल, घर्षण, उसे धीरे-धीरे रोकता है। वेग बनाए रखने की इसी प्रवृत्ति को जड़त्व कहते हैं। गैलीलियो ने समझा कि घर्षण बिल्कुल न हो तो वह हमेशा चलता रहेगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bus brakes suddenly and the standing passengers lurch forward. Why?",
+        "hi": "बस अचानक ब्रेक लगाती है और खड़े यात्री आगे की ओर झुक जाते हैं। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Their bodies tend to keep moving forward",
+         "hi": "उनके शरीर आगे चलते रहने की प्रवृत्ति रखते हैं"
+        },
+        {
+         "en": "A force pushes them forward",
+         "hi": "कोई बल उन्हें आगे धकेलता है"
+        },
+        {
+         "en": "The bus pulls them forward",
+         "hi": "बस उन्हें आगे खींचती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bus slows, but the passengers' bodies keep their forward velocity by inertia until their feet and the handles slow them.",
+        "hi": "बस धीमी होती है, पर जड़त्व के कारण यात्रियों के शरीर आगे का वेग बनाए रखते हैं, जब तक पैर और हैंडल उन्हें धीमा न करें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No forward force acts on them; they simply keep the velocity they already had.",
+         "hi": "उन पर आगे की ओर कोई बल नहीं लगता; वे बस पहले वाला वेग बनाए रखते हैं।"
+        },
+        {
+         "en": "The braking bus actually pulls their feet backward, which is why the top of the body tips forward.",
+         "hi": "ब्रेक लगती बस उनके पैरों को पीछे खींचती है, इसीलिए शरीर का ऊपरी भाग आगे झुकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the crate stop sooner on carpet than on ice?",
+        "hi": "कालीन पर बक्सा बर्फ़ से जल्दी क्यों रुकता है?"
+       },
+       "options": [
+        {
+         "en": "Carpet gives more friction, a larger opposing force",
+         "hi": "कालीन ज़्यादा घर्षण, यानी बड़ा विरोधी बल देता है"
+        },
+        {
+         "en": "The crate has less inertia on carpet",
+         "hi": "कालीन पर बक्से का जड़त्व कम हो जाता है"
+        },
+        {
+         "en": "Moving things always stop by themselves",
+         "hi": "चलती चीज़ें हमेशा अपने-आप रुक जाती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A larger friction force gives a larger deceleration, so the crate loses its speed faster.",
+        "hi": "बड़ा घर्षण बल बड़ा मंदन देता है, इसलिए बक्सा जल्दी अपनी चाल खो देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Inertia depends on mass, and the crate's mass is the same on both floors.",
+         "hi": "जड़त्व द्रव्यमान पर निर्भर करता है, और बक्से का द्रव्यमान दोनों फ़र्शों पर एक-सा है।"
+        },
+        {
+         "en": "That was Aristotle's idea; things stop only because a force such as friction acts on them.",
+         "hi": "यह अरस्तू का विचार था; चीज़ें केवल तब रुकती हैं जब घर्षण जैसा कोई बल उन पर लगे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the same push on glass, wood, carpet and sand. Then try the trolley and the football.",
+      "hi": "यही धक्का काँच, लकड़ी, कालीन और रेत पर आज़माओ। फिर ट्रॉली और फ़ुटबॉल आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch04-newton2",
+   "topic": "4.5",
+   "template": "forces",
+   "title": {
+    "en": "F = ma on a smooth track",
+    "hi": "चिकने पथ पर F = ma"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "newton2",
+    "mass": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A steady 10 N pull acts on a 2 kg cart on a smooth track. What will its acceleration be?",
+      "hi": "चिकने पथ पर 2 kg की गाड़ी पर 10 N का एक-सा खिंचाव लगता है। उसका त्वरण कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5 m/s²",
+       "hi": "5 m/s² होगा"
+      },
+      {
+       "id": "20",
+       "en": "20 m/s²",
+       "hi": "20 m/s² होगा"
+      },
+      {
+       "id": "0.2",
+       "en": "0.2 m/s²",
+       "hi": "0.2 m/s² होगा"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "measured",
+     "say": {
+      "en": "Press Go and watch the dots on the tape spread out as the cart speeds up.",
+      "hi": "चलो दबाओ और गाड़ी के तेज़ होने के साथ टेप पर बिंदुओं को फैलते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The dots get farther apart because the speed rises steadily. Newton's second law says the net force equals the rate of change of momentum, and for a fixed mass F = ma. So a = F ÷ m = 10 ÷ 2 = 5 m/s². Double the mass and the same force gives half the acceleration.",
+      "hi": "बिंदु दूर-दूर होते जाते हैं क्योंकि चाल लगातार बढ़ती है। न्यूटन का दूसरा नियम कहता है कि कुल बल संवेग के बदलने की दर के बराबर है, और स्थिर द्रव्यमान के लिए F = ma। इसलिए a = F ÷ m = 10 ÷ 2 = 5 m/s²। द्रव्यमान दोगुना करो तो उसी बल से आधा त्वरण मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The same 10 N pulls a 4 kg cart. What is the acceleration?",
+        "hi": "वही 10 N का बल 4 kg की गाड़ी को खींचता है। त्वरण कितना है?"
+       },
+       "options": [
+        "2.5 m/s²",
+        "5 m/s²",
+        "40 m/s²"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "a = F ÷ m = 10 ÷ 4 = 2.5 m/s²: twice the mass, half the acceleration.",
+        "hi": "a = F ÷ m = 10 ÷ 4 = 2.5 m/s²: दोगुना द्रव्यमान, आधा त्वरण।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 m/s² is the answer for 2 kg; more mass resists the change in motion more.",
+         "hi": "5 m/s² तो 2 kg का उत्तर है; ज़्यादा द्रव्यमान गति के बदलाव का ज़्यादा विरोध करता है।"
+        },
+        {
+         "en": "Multiplying force and mass gives N·kg, not an acceleration; divide instead.",
+         "hi": "बल और द्रव्यमान का गुणा N·kg देता है, त्वरण नहीं; भाग देना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Newton's second law, in its general form, says force equals the rate of change of:",
+        "hi": "न्यूटन का दूसरा नियम, अपने सामान्य रूप में, कहता है कि बल बराबर है किसके बदलने की दर के:"
+       },
+       "options": [
+        {
+         "en": "Momentum",
+         "hi": "संवेग"
+        },
+        {
+         "en": "Velocity",
+         "hi": "वेग"
+        },
+        {
+         "en": "Position",
+         "hi": "स्थिति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "F = dp/dt, with p = mv. When m is constant this becomes F = m dv/dt = ma.",
+        "hi": "F = dp/dt, जहाँ p = mv। m स्थिर हो तो यह F = m dv/dt = ma बन जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rate of change of velocity is acceleration, which still needs the mass to give force.",
+         "hi": "वेग के बदलने की दर त्वरण है, बल पाने के लिए उसमें द्रव्यमान भी चाहिए।"
+        },
+        {
+         "en": "Rate of change of position is velocity; a body can move with no force at all.",
+         "hi": "स्थिति के बदलने की दर वेग है; कोई वस्तु बिना बल के भी चल सकती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the force and the mass and press Go again. Can you find two different pairs that give the same acceleration?",
+      "hi": "बल और द्रव्यमान बदलकर फिर चलो दबाओ। क्या तुम ऐसी दो अलग जोड़ियाँ खोज सकते हो जो एक-सा त्वरण दें?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch04-momentum-sticky",
+   "topic": "4.7",
+   "template": "forces",
+   "title": {
+    "en": "Carts that stick: momentum is conserved",
+    "hi": "चिपकने वाली गाड़ियाँ: संवेग संरक्षित रहता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "collision",
+    "object": "sticky",
+    "mass": 1
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Cart A (1 kg) rolls at 2 m/s into cart B (1 kg) at rest, and they stick together. How fast do they move afterwards?",
+      "hi": "गाड़ी A (1 kg) 2 m/s से रुकी हुई गाड़ी B (1 kg) से टकराती है, और दोनों चिपक जाती हैं। बाद में वे कितनी तेज़ चलेंगी?"
+     },
+     "options": [
+      {
+       "id": "1",
+       "en": "1 m/s",
+       "hi": "1 m/s से"
+      },
+      {
+       "id": "2",
+       "en": "2 m/s",
+       "hi": "2 m/s से"
+      },
+      {
+       "id": "0",
+       "en": "They stop",
+       "hi": "दोनों रुक जाएँगी"
+      }
+     ],
+     "answer": "1"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "collided",
+     "say": {
+      "en": "Press Release and watch the carts meet.",
+      "hi": "छोड़ो दबाओ और गाड़ियों को टकराते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Before: momentum = 1 × 2 = 2 kg·m/s. After: the joined 2 kg must carry the same 2 kg·m/s, so v = 1 m/s. During the bump, A pushes B and B pushes A back with an equal and opposite force for the same time (Newton's third law), so the momentum one gains the other loses.",
+      "hi": "पहले: संवेग = 1 × 2 = 2 kg·m/s। बाद में: जुड़ी हुई 2 kg गाड़ियों का संवेग भी 2 kg·m/s होना चाहिए, इसलिए v = 1 m/s। टक्कर के समय A, B को धकेलता है और B, A को उतने ही समय तक बराबर और उलटे बल से धकेलता है (न्यूटन का तीसरा नियम), इसलिए एक जितना संवेग पाता है, दूसरा उतना खोता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "During the collision, how does the force of A on B compare with the force of B on A?",
+        "hi": "टक्कर के समय A का B पर बल, B के A पर बल से कैसा है?"
+       },
+       "options": [
+        {
+         "en": "Equal in size, opposite in direction",
+         "hi": "परिमाण में बराबर, दिशा में उलटा"
+        },
+        {
+         "en": "A's force is bigger, since A was moving",
+         "hi": "A का बल बड़ा, क्योंकि A चल रहा था"
+        },
+        {
+         "en": "B's force is bigger, since B was at rest",
+         "hi": "B का बल बड़ा, क्योंकि B रुका था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Action and reaction are always equal and opposite, whichever body was moving.",
+        "hi": "क्रिया और प्रतिक्रिया हमेशा बराबर और उलटी होती हैं, चाहे कोई भी वस्तु चल रही हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Being in motion does not make a force bigger; the pair of forces is always equal.",
+         "hi": "चलते रहने से बल बड़ा नहीं होता; बलों का जोड़ा हमेशा बराबर होता है।"
+        },
+        {
+         "en": "Being at rest does not let B push harder; the third law holds for every pair.",
+         "hi": "रुके होने से B ज़्यादा ज़ोर से नहीं धकेलता; तीसरा नियम हर जोड़े पर लागू है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If cart A were 2 kg (still at 2 m/s) and B 1 kg, the joined carts would move at:",
+        "hi": "अगर गाड़ी A 2 kg की होती (2 m/s से) और B 1 kg की, तो जुड़ी गाड़ियाँ चलतीं:"
+       },
+       "options": [
+        "About 1.33 m/s",
+        "2 m/s",
+        "1 m/s"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Momentum 2 × 2 = 4 kg·m/s is shared by 3 kg, so v = 4 ÷ 3 ≈ 1.33 m/s.",
+        "hi": "संवेग 2 × 2 = 4 kg·m/s अब 3 kg में बँटता है, इसलिए v = 4 ÷ 3 ≈ 1.33 m/s।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Keeping 2 m/s would mean more momentum after than before, because the mass grew.",
+         "hi": "2 m/s बनाए रखने का अर्थ होगा कि बाद में संवेग पहले से ज़्यादा, क्योंकि द्रव्यमान बढ़ गया।"
+        },
+        {
+         "en": "1 m/s is the equal-mass answer; a heavier A brings more momentum.",
+         "hi": "1 m/s बराबर द्रव्यमान का उत्तर है; भारी A ज़्यादा संवेग लाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the masses of A and B and release again. Check that the total momentum before and after is always the same.",
+      "hi": "A और B के द्रव्यमान बदलकर फिर छोड़ो। जाँचो कि पहले और बाद का कुल संवेग हमेशा एक-सा रहता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch04-static-kinetic",
+   "topic": "4.9",
+   "template": "forces",
+   "title": {
+    "en": "Static and kinetic friction",
+    "hi": "स्थैतिक और गतिक घर्षण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "friction",
+    "surface": "wood",
+    "mass": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You pull a 2 kg block on a wooden table with a spring balance, harder and harder. What happens to the reading just as the block starts to slide?",
+      "hi": "तुम लकड़ी की मेज़ पर 2 kg के गुटके को कमानीदार तुला से धीरे-धीरे ज़्यादा ज़ोर से खींचते हो। ठीक जब गुटका फिसलना शुरू करता है, तुला के पाठ्यांक का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "drop",
+       "en": "It drops a little",
+       "hi": "थोड़ा कम हो जाता है"
+      },
+      {
+       "id": "jump",
+       "en": "It jumps up",
+       "hi": "अचानक बढ़ जाता है"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वही रहता है"
+      }
+     ],
+     "answer": "drop"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "measured",
+     "say": {
+      "en": "Press Pull slowly and watch the spring balance until the block slides.",
+      "hi": "धीरे खींचो दबाओ और गुटका फिसलने तक कमानीदार तुला देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "While the block is still, static friction grows to match your pull, up to a limit μs N = 0.45 × 2 × 9.8 ≈ 8.8 N. Once it slides, kinetic friction takes over, μk N = 0.30 × 19.6 ≈ 5.9 N, which is less. That is why it is harder to start pushing a heavy almirah than to keep it moving.",
+      "hi": "जब तक गुटका रुका है, स्थैतिक घर्षण तुम्हारे खिंचाव के बराबर बढ़ता है, एक सीमा μs N = 0.45 × 2 × 9.8 ≈ 8.8 N तक। फिसलने के बाद गतिक घर्षण लगता है, μk N = 0.30 × 19.6 ≈ 5.9 N, जो कम है। इसीलिए भारी अलमारी को खिसकाना शुरू करना, उसे खिसकाते रहने से कठिन है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You pull the still block with only 3 N and it does not move. How big is the friction on it?",
+        "hi": "तुम रुके गुटके को केवल 3 N से खींचते हो और वह नहीं हिलता। उस पर घर्षण कितना है?"
+       },
+       "options": [
+        "3 N",
+        "8.8 N",
+        "Zero"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Static friction is only as large as it needs to be: it balances the 3 N pull exactly.",
+        "hi": "स्थैतिक घर्षण उतना ही होता है जितना ज़रूरी हो: वह 3 N के खिंचाव को ठीक संतुलित करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8.8 N is the most static friction can give, reached only when the block is about to slide.",
+         "hi": "8.8 N स्थैतिक घर्षण की अधिकतम सीमा है, जो केवल फिसलने की कगार पर पहुँचती है।"
+        },
+        {
+         "en": "If friction were zero, the 3 N would make the block move; it stays still because friction balances it.",
+         "hi": "घर्षण शून्य होता तो 3 N से गुटका चल पड़ता; वह इसलिए रुका है क्योंकि घर्षण संतुलन करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If the block's mass is doubled, the limiting friction:",
+        "hi": "अगर गुटके का द्रव्यमान दोगुना कर दें, तो सीमांत घर्षण:"
+       },
+       "options": [
+        {
+         "en": "Doubles",
+         "hi": "दोगुना होता है"
+        },
+        {
+         "en": "Stays the same",
+         "hi": "वही रहता है"
+        },
+        {
+         "en": "Halves",
+         "hi": "आधा होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Friction is μ times the normal force N = mg, so twice the mass gives twice the friction.",
+        "hi": "घर्षण, अभिलंब बल N = mg का μ गुना है, इसलिए दोगुना द्रव्यमान दोगुना घर्षण देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "μ stays the same for the surfaces, but N doubles, so friction does too.",
+         "hi": "सतहों के लिए μ वही रहता है, पर N दोगुना होता है, इसलिए घर्षण भी।"
+        },
+        {
+         "en": "A heavier block presses harder on the table, which increases friction, not decreases it.",
+         "hi": "भारी गुटका मेज़ को ज़्यादा दबाता है, जिससे घर्षण बढ़ता है, घटता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try ice, glass, carpet and sand, and change the mass. Which surface needs the biggest pull to start?",
+      "hi": "बर्फ़, काँच, कालीन और रेत आज़माओ, और द्रव्यमान बदलो। किस सतह पर शुरू करने के लिए सबसे बड़ा खिंचाव चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch04-incline-slip",
+   "topic": "4.9",
+   "template": "forces",
+   "title": {
+    "en": "When does a block slip down a ramp?",
+    "hi": "गुटका ढलान से कब फिसलता है?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "inclined",
+    "surface": "wood",
+    "mass": 5
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A block rests on a wooden ramp tilted at 30°. For wood, μs = 0.45, and tan 30° ≈ 0.58. Will it slide when you let go?",
+      "hi": "एक गुटका 30° झुकी लकड़ी की ढलान पर रखा है। लकड़ी के लिए μs = 0.45, और tan 30° ≈ 0.58। छोड़ने पर क्या वह फिसलेगा?"
+     },
+     "options": [
+      {
+       "id": "slide",
+       "en": "Yes, it slides down",
+       "hi": "हाँ, वह नीचे फिसलेगा"
+      },
+      {
+       "id": "stay",
+       "en": "No, it stays put",
+       "hi": "नहीं, वहीं रहेगा"
+      },
+      {
+       "id": "push",
+       "en": "Only if pushed",
+       "hi": "केवल धक्का देने पर"
+      }
+     ],
+     "answer": "slide"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "moved",
+     "say": {
+      "en": "Press Let go and watch the block.",
+      "hi": "छोड़ो दबाओ और गुटके को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Gravity pulls the block down the slope with mg sin θ, while the most friction can hold is μs mg cos θ. It slides when mg sin θ > μs mg cos θ, that is when tan θ > μs. Since 0.58 > 0.45, it slips. The angle where tan θ = μs (about 24° for wood) is the angle of repose.",
+      "hi": "गुरुत्व गुटके को ढलान के नीचे mg sin θ से खींचता है, जबकि घर्षण अधिक-से-अधिक μs mg cos θ तक रोक सकता है। वह तब फिसलता है जब mg sin θ > μs mg cos θ, यानी जब tan θ > μs। 0.58 > 0.45 है, इसलिए वह फिसलता है। जिस कोण पर tan θ = μs हो (लकड़ी के लिए लगभग 24°), उसे विराम कोण कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The same block on a carpet ramp (μs = 0.65) at 30° will:",
+        "hi": "वही गुटका 30° पर कालीन की ढलान (μs = 0.65) पर:"
+       },
+       "options": [
+        {
+         "en": "Stay put",
+         "hi": "वहीं रहेगा"
+        },
+        {
+         "en": "Slide down",
+         "hi": "नीचे फिसलेगा"
+        },
+        {
+         "en": "Slide faster than on wood",
+         "hi": "लकड़ी से तेज़ फिसलेगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "tan 30° ≈ 0.58 is less than 0.65, so friction can hold it.",
+        "hi": "tan 30° ≈ 0.58, 0.65 से कम है, इसलिए घर्षण उसे रोक सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It would slide only if tan θ were more than μs, but 0.58 is less than 0.65.",
+         "hi": "वह तभी फिसलता जब tan θ, μs से ज़्यादा होता, पर 0.58, 0.65 से कम है।"
+        },
+        {
+         "en": "More friction cannot make it faster; carpet grips more than wood.",
+         "hi": "ज़्यादा घर्षण उसे तेज़ नहीं कर सकता; कालीन लकड़ी से ज़्यादा पकड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the angle and the surface. Find the smallest angle at which the block slips on each surface, and compare it with tan θ = μs.",
+      "hi": "कोण और सतह बदलो। हर सतह पर वह सबसे छोटा कोण खोजो जिस पर गुटका फिसलता है, और उसकी तुलना tan θ = μs से करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "4.3",
+   "use": "Inertia hook: the carrom trick",
+   "shows": "Three frames: a stack of carrom coins with the striker flicked at the bottom coin; the bottom coin shoots out; the rest drop straight down",
+   "view": "Fixed side view at board level, same light",
+   "right": "The upper coins fall straight down, they do not fly sideways",
+   "avoid": "Hands blocking the stack, brand marks on the board"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Passengers and inertia",
+   "shows": "Inside a city bus, standing passengers holding the overhead handles and leaning forward as the bus brakes",
+   "view": "From behind the passengers, faces not visible, warm interior light",
+   "right": "Bodies lean forward together; feet stay on the floor",
+   "avoid": "Faces, route numbers, advertisements"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.6",
+   "use": "Action and reaction",
+   "shows": "A shikara being rowed on a calm lake, the oar pushing water backward and ripples spreading",
+   "view": "Side view, low angle near the water",
+   "right": "Water pushed back by the oar, boat moving forward",
+   "avoid": "Faces of rowers, signboards"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.6",
+   "use": "Rocket recoil",
+   "shows": "A plain white rocket lifting off a launch pad with bright exhaust and smoke",
+   "view": "Wide, from a distance, rocket centred",
+   "right": "Exhaust pushed down, rocket going up",
+   "avoid": "Any agency logos, flags or writing"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.9",
+   "use": "Friction lab apparatus",
+   "shows": "A wooden block with a hook, a spring balance (0–20 N) hooked to it, on a wooden plank",
+   "view": "Side view, cut-out on transparent background, top-left light",
+   "right": "Spring balance scale visible, hook straight",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.10",
+   "use": "Banked roads",
+   "shows": "A curve on a hill highway clearly tilted inward, with a truck taking the turn",
+   "view": "From the outer side of the curve, slightly above",
+   "right": "Outer edge of the road higher than the inner edge",
+   "avoid": "Number plates, signboards with text"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "4.7",
+   "use": "Momentum frames",
+   "shows": "Three frames of two lab trolleys on a track: one rolling towards the other, the moment of contact with Velcro pads, both moving together slower",
+   "view": "Fixed side view, track parallel to the image edge",
+   "right": "After joining they move together, clearly slower than before",
+   "avoid": "Hands in the frame after release"
+  }
+ ]
+}

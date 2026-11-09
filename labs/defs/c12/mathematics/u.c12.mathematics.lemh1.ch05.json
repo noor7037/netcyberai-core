@@ -1,0 +1,1051 @@
+{
+ "chapter_key": "u.c12.mathematics.lemh1.ch05",
+ "class": 12,
+ "subject_id": "mathematics",
+ "title": "Continuity and Differentiability",
+ "source": "https://ncert.nic.in/textbook/pdf/lemh105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Introduction: from Class 11 limits and derivatives to continuity",
+   "labs": [],
+   "why_no_lab": "A short recap; the continuity sort of 5.2 begins the work."
+  },
+  {
+   "n": "5.2",
+   "title": "Continuity and the algebra of continuous functions",
+   "labs": [
+    "c12-mathematics-lemh1-ch05-continuity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Differentiability; derivatives of composite, implicit and inverse trigonometric functions",
+   "labs": [
+    "c12-mathematics-lemh1-ch05-corner",
+    "c12-mathematics-lemh1-ch05-chain-rule",
+    "c12-mathematics-lemh1-ch05-which-method"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Exponential and logarithmic functions",
+   "labs": [
+    "c12-mathematics-lemh1-ch05-exp-log"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Logarithmic differentiation",
+   "labs": [
+    "c12-mathematics-lemh1-ch05-which-method"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "Derivatives of functions in parametric forms",
+   "labs": [
+    "c12-mathematics-lemh1-ch05-which-method"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.7",
+   "title": "Second order derivative",
+   "labs": [
+    "c12-mathematics-lemh1-ch05-which-method"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-mathematics-lemh1-ch05-continuity",
+   "topic": "5.2",
+   "template": "sort",
+   "title": {
+    "en": "Does the graph break here?",
+    "hi": "क्या ग्राफ़ यहाँ टूटता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cont",
+      "label": {
+       "en": "Continuous at the point",
+       "hi": "उस बिंदु पर संतत"
+      }
+     },
+     {
+      "id": "brk",
+      "label": {
+       "en": "Breaks at the point",
+       "hi": "उस बिंदु पर टूटता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "p1",
+      "text": {
+       "en": "f(x) = x + 1 for x ≤ 1, 2x for x > 1; at x = 1",
+       "hi": "x ≤ 1 पर x + 1, x > 1 पर 2x; x = 1 पर"
+      },
+      "bin": "cont",
+      "why": {
+       "en": "Left side gives 2, right side tends to 2, and f(1) = 2. All three agree.",
+       "hi": "बाईं ओर 2, दाईं ओर 2 की ओर, और f(1) = 2। तीनों मेल खाते हैं।"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "f(x) = x + 1 for x ≤ 1, 3 for x > 1; at x = 1",
+       "hi": "x ≤ 1 पर x + 1, x > 1 पर 3; x = 1 पर"
+      },
+      "bin": "brk",
+      "why": {
+       "en": "From the left the value is 2, from the right it is 3: a jump.",
+       "hi": "बाईं ओर से मान 2, दाईं ओर से 3: एक छलाँग।"
+      }
+     },
+     {
+      "id": "p3",
+      "text": {
+       "en": "f(x) = |x| at x = 0",
+       "hi": "x = 0 पर f(x) = |x|"
+      },
+      "bin": "cont",
+      "why": {
+       "en": "Both sides tend to 0 and f(0) = 0. A sharp corner is still unbroken.",
+       "hi": "दोनों ओर 0 की ओर, और f(0) = 0। नुकीला कोना भी टूटा नहीं है।"
+      }
+     },
+     {
+      "id": "p4",
+      "text": {
+       "en": "f(x) = x² + 3x − 5 at x = 2",
+       "hi": "x = 2 पर f(x) = x² + 3x − 5"
+      },
+      "bin": "cont",
+      "why": {
+       "en": "Every polynomial is continuous everywhere.",
+       "hi": "हर बहुपद हर जगह संतत होता है।"
+      }
+     },
+     {
+      "id": "p5",
+      "text": {
+       "en": "Greatest integer [x] at x = 2",
+       "hi": "x = 2 पर महत्तम पूर्णांक [x]"
+      },
+      "bin": "brk",
+      "why": {
+       "en": "Just left of 2 the value is 1; at 2 and just right it is 2: a step.",
+       "hi": "2 के ठीक बाईं ओर मान 1; 2 पर और दाईं ओर 2: एक सीढ़ी।"
+      }
+     },
+     {
+      "id": "p6",
+      "text": {
+       "en": "f(x) = (x² − 4)/(x − 2) for x ≠ 2, f(2) = 1; at x = 2",
+       "hi": "x ≠ 2 पर (x² − 4)/(x − 2), f(2) = 1; x = 2 पर"
+      },
+      "bin": "brk",
+      "why": {
+       "en": "Near 2 the values tend to 4, but f(2) is set to 1: a single missing point.",
+       "hi": "2 के पास मान 4 की ओर जाते हैं, पर f(2) = 1 रखा है: एक बिंदु अलग।"
+      }
+     },
+     {
+      "id": "p7",
+      "text": {
+       "en": "f(x) = sin x + cos x at x = π",
+       "hi": "x = π पर f(x) = sin x + cos x"
+      },
+      "bin": "cont",
+      "why": {
+       "en": "A sum of continuous functions is continuous.",
+       "hi": "संतत फलनों का योग संतत होता है।"
+      }
+     },
+     {
+      "id": "p8",
+      "text": {
+       "en": "Auto fare: ₹30 up to 2 km, then ₹45; at 2 km",
+       "hi": "ऑटो किराया: 2 km तक ₹30, फिर ₹45; 2 km पर"
+      },
+      "bin": "brk",
+      "why": {
+       "en": "The fare jumps from ₹30 to ₹45 the moment you pass 2 km.",
+       "hi": "2 km पार करते ही किराया ₹30 से ₹45 पर छलाँग लगाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:p8",
+     "expect": "placed:p8",
+     "say": {
+      "en": "Start with real life. Tap the auto fare card and decide.",
+      "hi": "असल ज़िंदगी से शुरू करो। ऑटो किराए के कार्ड पर टैप करो और तय करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "f(x) = |x| has a sharp corner at 0. Is it continuous there?",
+      "hi": "f(x) = |x| में 0 पर नुकीला कोना है। क्या वह वहाँ संतत है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, the graph does not break",
+       "hi": "हाँ, ग्राफ़ नहीं टूटता"
+      },
+      {
+       "id": "no",
+       "en": "No, corners break it",
+       "hi": "नहीं, कोना उसे तोड़ता है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:p3",
+     "expect": "placed:p3",
+     "say": {
+      "en": "Place the |x| card.",
+      "hi": "|x| वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then tap Check.",
+      "hi": "सारे कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "f is continuous at c when three things agree: the limit from the left, the limit from the right and the value f(c). A jump, a step or one misplaced point breaks it. A corner, like |x| at 0, does not: you can draw it without lifting the pen.",
+      "hi": "f, c पर संतत है जब तीन चीज़ें मेल खाएँ: बाईं ओर की सीमा, दाईं ओर की सीमा और मान f(c)। छलाँग, सीढ़ी या एक अलग बिंदु इसे तोड़ देते हैं। |x| के 0 जैसा कोना नहीं तोड़ता: उसे क़लम उठाए बिना खींच सकते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For f(x) = kx + 1 when x ≤ 2 and 3x − 1 when x > 2, which k makes f continuous at 2?",
+        "hi": "x ≤ 2 पर kx + 1 और x > 2 पर 3x − 1 के लिए कौन-सा k, f को 2 पर संतत बनाता है?"
+       },
+       "options": [
+        "k = 2",
+        "k = 3",
+        "k = 5/2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The right side tends to 3 × 2 − 1 = 5, so 2k + 1 = 5 gives k = 2.",
+        "hi": "दाईं ओर 3 × 2 − 1 = 5, इसलिए 2k + 1 = 5 से k = 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "k = 3 gives 7 on the left but 5 on the right.",
+         "hi": "k = 3 पर बाईं ओर 7 और दाईं ओर 5।"
+        },
+        {
+         "en": "2 × 5/2 + 1 = 6, which still does not match 5.",
+         "hi": "2 × 5/2 + 1 = 6, जो अब भी 5 से मेल नहीं खाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "f and g are continuous. Which might fail to be continuous at some point?",
+        "hi": "f और g संतत हैं। कौन किसी बिंदु पर असंतत हो सकता है?"
+       },
+       "options": [
+        "f/g",
+        "f + g",
+        "f × g"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "f/g breaks where g(x) = 0, because it is not defined there.",
+        "hi": "f/g वहाँ टूटता है जहाँ g(x) = 0, क्योंकि वहाँ परिभाषित नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sums of continuous functions are always continuous.",
+         "hi": "संतत फलनों का योग हमेशा संतत है।"
+        },
+        {
+         "en": "Products of continuous functions are always continuous.",
+         "hi": "संतत फलनों का गुणनफल हमेशा संतत है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find two more things in daily life that jump: a postage charge, a mobile data pack, a parking fee. Where are their breaks?",
+      "hi": "रोज़ की ज़िंदगी में छलाँग लगाने वाली दो और चीज़ें ढूँढो: डाक शुल्क, मोबाइल डेटा पैक, पार्किंग शुल्क। उनके टूटने के बिंदु कहाँ हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch05-corner",
+   "topic": "5.3",
+   "template": "grapher",
+   "title": {
+    "en": "Continuous but not differentiable",
+    "hi": "संतत पर अवकलनीय नहीं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "abs(x)"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tangent",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Tangent to show the slope line at the moving point on y = |x|.",
+      "hi": "y = |x| पर चलते बिंदु की ढाल रेखा देखने के लिए स्पर्श रेखा दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Drag x on the right side of 0. Read the slope.",
+      "hi": "0 के दाईं ओर x खींचो। ढाल पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What happens to the slope as the point crosses 0 to the left side?",
+      "hi": "जब बिंदु 0 पार करके बाईं ओर जाएगा, तो ढाल का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "jump",
+       "en": "It jumps from 1 to −1",
+       "hi": "यह 1 से −1 पर कूदेगा"
+      },
+      {
+       "id": "smooth",
+       "en": "It changes smoothly",
+       "hi": "यह धीरे-धीरे बदलेगा"
+      },
+      {
+       "id": "same",
+       "en": "It stays 1",
+       "hi": "यह 1 ही रहेगा"
+      }
+     ],
+     "answer": "jump"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "min",
+     "say": {
+      "en": "Drag the point to the corner at x = 0.",
+      "hi": "बिंदु को x = 0 के कोने पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On the right of 0 the slope is 1, on the left it is −1. At the corner the two one-sided slopes disagree, so no single tangent fits and |x| has no derivative at 0. Yet the graph is unbroken there. Differentiable implies continuous, but continuous does not imply differentiable.",
+      "hi": "0 के दाईं ओर ढाल 1 है, बाईं ओर −1। कोने पर दोनों एकतरफ़ा ढाल अलग हैं, इसलिए कोई एक स्पर्श रेखा नहीं बैठती और 0 पर |x| का अवकलज नहीं। फिर भी वहाँ ग्राफ़ टूटा नहीं। अवकलनीय होना संतत होना दिखाता है, पर संतत होना अवकलनीय होना नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A function is differentiable at a point. Then it must be:",
+        "hi": "एक फलन किसी बिंदु पर अवकलनीय है। तब वह अवश्य:"
+       },
+       "options": [
+        {
+         "en": "Continuous there",
+         "hi": "वहाँ संतत है"
+        },
+        {
+         "en": "Zero there",
+         "hi": "वहाँ शून्य है"
+        },
+        {
+         "en": "A polynomial",
+         "hi": "एक बहुपद है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A break would make the slope impossible, so differentiable means continuous.",
+        "hi": "टूटन होने पर ढाल असंभव होती, इसलिए अवकलनीय का अर्थ संतत।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Its value can be anything; only the graph must be smooth there.",
+         "hi": "उसका मान कुछ भी हो सकता है; केवल ग्राफ़ वहाँ चिकना होना चाहिए।"
+        },
+        {
+         "en": "sin x and eˣ are differentiable but are not polynomials.",
+         "hi": "sin x और eˣ अवकलनीय हैं पर बहुपद नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where is f(x) = |x − 3| not differentiable?",
+        "hi": "f(x) = |x − 3| कहाँ अवकलनीय नहीं है?"
+       },
+       "options": [
+        "x = 3",
+        "x = 0",
+        "x = −3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The corner moves to where x − 3 = 0.",
+        "hi": "कोना वहाँ जाता है जहाँ x − 3 = 0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At x = 0 the inside x − 3 is −3, not 0, so the graph is smooth there.",
+         "hi": "x = 0 पर अंदर का x − 3, −3 है, 0 नहीं, इसलिए वहाँ ग्राफ़ चिकना है।"
+        },
+        {
+         "en": "At x = −3 the inside is −6; the corner is where it is 0.",
+         "hi": "x = −3 पर अंदर −6 है; कोना वहाँ है जहाँ वह 0 हो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Zoom in near the corner. A smooth curve looks straight when you zoom in. Does the corner ever look straight?",
+      "hi": "कोने के पास ज़ूम करो। चिकना वक्र ज़ूम करने पर सीधा दिखता है। क्या कोना कभी सीधा दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch05-chain-rule",
+   "topic": "5.3",
+   "template": "sequence",
+   "title": {
+    "en": "The chain rule, step by step",
+    "hi": "शृंखला नियम, चरण दर चरण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Spot the outer and inner parts of y = (2x + 1)⁵",
+       "hi": "y = (2x + 1)⁵ में बाहरी और अंदरूनी भाग पहचानो"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Name the inner part: t = 2x + 1, so y = t⁵",
+       "hi": "अंदरूनी भाग को नाम दो: t = 2x + 1, तो y = t⁵"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Differentiate the outer part: dy/dt = 5t⁴",
+       "hi": "बाहरी भाग का अवकलन: dy/dt = 5t⁴"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Differentiate the inner part: dt/dx = 2",
+       "hi": "अंदरूनी भाग का अवकलन: dt/dx = 2"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Multiply: dy/dx = dy/dt × dt/dx = 10t⁴",
+       "hi": "गुणा करो: dy/dx = dy/dt × dt/dx = 10t⁴"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "Put t back: dy/dx = 10(2x + 1)⁴",
+       "hi": "t वापस रखो: dy/dx = 10(2x + 1)⁴"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Tap the step that comes first and place it in slot 1.",
+      "hi": "जो चरण पहले आता है उस पर टैप करो और उसे खाने 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part is differentiated first, the outer t⁵ or the inner 2x + 1?",
+      "hi": "पहले किसका अवकलन होता है, बाहरी t⁵ का या अंदरूनी 2x + 1 का?"
+     },
+     "options": [
+      {
+       "id": "either",
+       "en": "Either order; then we multiply",
+       "hi": "कोई भी क्रम; फिर गुणा करते हैं"
+      },
+      {
+       "id": "inner",
+       "en": "Only the inner can come first",
+       "hi": "केवल अंदरूनी पहले आ सकता है"
+      }
+     ],
+     "answer": "either"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the rest in order and tap Check.",
+      "hi": "बाक़ी चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A composite function is a chain of two machines. The chain rule says the rates multiply: dy/dx = (dy/dt)(dt/dx). The two derivatives can be found in any order, but both are needed. The last step writes the answer in x again.",
+      "hi": "संयुक्त फलन दो मशीनों की श्रृंखला है। शृंखला नियम कहता है कि दरें गुणा होती हैं: dy/dx = (dy/dt)(dt/dx)। दोनों अवकलज किसी भी क्रम में निकाल सकते हैं, पर दोनों चाहिए। आख़िरी चरण उत्तर को फिर x में लिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the derivative of sin(x²)?",
+        "hi": "sin(x²) का अवकलज क्या है?"
+       },
+       "options": [
+        "2x cos(x²)",
+        "cos(x²)",
+        "cos(2x)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Outer: cos(t) with t = x². Inner: 2x. Multiply them.",
+        "hi": "बाहरी: cos(t), t = x²। अंदरूनी: 2x। दोनों गुणा करो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That forgets to multiply by the inner derivative 2x.",
+         "hi": "इसमें अंदरूनी अवकलज 2x से गुणा करना छूट गया।"
+        },
+        {
+         "en": "The inner part stays x² inside the cosine; 2x multiplies outside.",
+         "hi": "कोसाइन के अंदर x² ही रहता है; 2x बाहर गुणा होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A balloon's radius grows at 2 cm/s, and its volume depends on its radius. To find how fast the volume grows you use:",
+        "hi": "गुब्बारे की त्रिज्या 2 cm/s से बढ़ती है, और आयतन त्रिज्या पर निर्भर है। आयतन की वृद्धि दर निकालने के लिए:"
+       },
+       "options": [
+        "dV/dt = dV/dr × dr/dt",
+        "dV/dt = dV/dr + dr/dt"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Volume depends on radius, and radius on time: a chain, so the rates multiply.",
+        "hi": "आयतन त्रिज्या पर और त्रिज्या समय पर निर्भर है: एक श्रृंखला, इसलिए दरें गुणा होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rates in a chain multiply; adding them gives the wrong units.",
+         "hi": "श्रृंखला में दरें गुणा होती हैं; जोड़ने से इकाइयाँ ग़लत हो जाती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try y = e^(3x) on paper with the same six steps. What are the outer and inner parts?",
+      "hi": "कागज़ पर y = e^(3x) को इन्हीं छह चरणों से करो। बाहरी और अंदरूनी भाग क्या हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch05-exp-log",
+   "topic": "5.4",
+   "template": "grapher",
+   "title": {
+    "en": "Exponential curves and their base",
+    "hi": "घातांकी वक्र और उनका आधार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "exp-log",
+    "expr": "a^x",
+    "params": {
+     "a": [
+      0.2,
+      4,
+      2,
+      0.1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "This is y = aˣ. Slide a from 2 up to 3 and watch the curve.",
+      "hi": "यह y = aˣ है। a को 2 से 3 तक खिसकाओ और वक्र देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which point do you think stays on the curve for every value of a?",
+      "hi": "तुम्हें कौन-सा बिंदु लगता है जो a के हर मान पर वक्र पर रहता है?"
+     },
+     "options": [
+      {
+       "id": "01",
+       "en": "The point (0, 1)",
+       "hi": "बिंदु (0, 1)"
+      },
+      {
+       "id": "00",
+       "en": "The origin (0, 0)",
+       "hi": "मूल बिंदु (0, 0)"
+      },
+      {
+       "id": "10",
+       "en": "The point (1, 0)",
+       "hi": "बिंदु (1, 0)"
+      }
+     ],
+     "answer": "01"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Now slide a below 1, to about 0.5.",
+      "hi": "अब a को 1 से नीचे, लगभग 0.5 तक खिसकाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every curve y = aˣ passes through (0, 1), because a⁰ = 1. For a > 1 it rises; for 0 < a < 1 it falls. The curve never touches the x-axis, since aˣ is always positive. Its mirror image in y = x is the logarithm, so log x is defined only for x > 0.",
+      "hi": "हर वक्र y = aˣ, (0, 1) से गुज़रता है, क्योंकि a⁰ = 1। a > 1 पर यह चढ़ता है; 0 < a < 1 पर उतरता है। वक्र कभी x-अक्ष को नहीं छूता, क्योंकि aˣ हमेशा धनात्मक है। y = x में इसका दर्पण प्रतिबिंब लघुगणक है, इसलिए log x केवल x > 0 पर परिभाषित है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the derivative of eˣ?",
+        "hi": "eˣ का अवकलज क्या है?"
+       },
+       "options": [
+        "eˣ",
+        "x eˣ⁻¹",
+        "1/x"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "eˣ is the special exponential whose slope at each point equals its height.",
+        "hi": "eˣ वह विशेष घातांकी है जिसकी हर बिंदु पर ढाल उसकी ऊँचाई के बराबर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The power rule is for xⁿ with a fixed power, not for a variable power.",
+         "hi": "घात नियम स्थिर घात वाले xⁿ के लिए है, चर घात के लिए नहीं।"
+        },
+        {
+         "en": "1/x is the derivative of log x, not of eˣ.",
+         "hi": "1/x, log x का अवकलज है, eˣ का नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is log(−2) not defined?",
+        "hi": "log(−2) परिभाषित क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "No power of e is negative",
+         "hi": "e की कोई घात ऋणात्मक नहीं"
+        },
+        {
+         "en": "−2 is too small",
+         "hi": "−2 बहुत छोटा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "log x asks \"e to what power gives x?\" and eˣ is always positive.",
+        "hi": "log x पूछता है \"e की किस घात से x मिलेगा?\" और eˣ हमेशा धनात्मक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size is not the issue: log(0.001) exists. Only the sign matters.",
+         "hi": "आकार समस्या नहीं: log(0.001) होता है। केवल चिह्न मायने रखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a to exactly 1. What does the curve become, and why is a = 1 never used as a base?",
+      "hi": "a को ठीक 1 करो। वक्र क्या बन जाता है, और a = 1 को आधार क्यों नहीं लेते?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch05-which-method",
+   "topic": "5.5",
+   "template": "match",
+   "title": {
+    "en": "Which way to differentiate?",
+    "hi": "अवकलन का कौन-सा तरीका?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "chain",
+      "left": {
+       "en": "y = sin(x³)",
+       "hi": "y = sin(x³)"
+      },
+      "right": {
+       "en": "Chain rule",
+       "hi": "शृंखला नियम"
+      },
+      "why": {
+       "en": "A function inside a function: outer sine, inner x³.",
+       "hi": "फलन के अंदर फलन: बाहर साइन, अंदर x³।"
+      }
+     },
+     {
+      "id": "impl",
+      "left": {
+       "en": "x² + y² = 25",
+       "hi": "x² + y² = 25"
+      },
+      "right": {
+       "en": "Implicit differentiation",
+       "hi": "अस्पष्ट अवकलन"
+      },
+      "why": {
+       "en": "y is not given alone, so differentiate both sides, treating y as a function of x.",
+       "hi": "y अकेला नहीं दिया, इसलिए दोनों ओर अवकलन करो, y को x का फलन मानकर।"
+      }
+     },
+     {
+      "id": "log",
+      "left": {
+       "en": "y = xˣ",
+       "hi": "y = xˣ"
+      },
+      "right": {
+       "en": "Logarithmic differentiation",
+       "hi": "लघुगणकीय अवकलन"
+      },
+      "why": {
+       "en": "Both base and power vary; taking log brings the power down.",
+       "hi": "आधार और घात दोनों बदलते हैं; लघुगणक लेने से घात नीचे आ जाती है।"
+      }
+     },
+     {
+      "id": "param",
+      "left": {
+       "en": "x = 3cos t, y = 3sin t",
+       "hi": "x = 3cos t, y = 3sin t"
+      },
+      "right": {
+       "en": "Parametric: dy/dx = (dy/dt) ÷ (dx/dt)",
+       "hi": "प्राचलिक: dy/dx = (dy/dt) ÷ (dx/dt)"
+      },
+      "why": {
+       "en": "x and y are both given through t.",
+       "hi": "x और y दोनों t के द्वारा दिए हैं।"
+      }
+     },
+     {
+      "id": "invt",
+      "left": {
+       "en": "y = tan⁻¹ x",
+       "hi": "y = tan⁻¹ x"
+      },
+      "right": {
+       "en": "Standard result 1/(1 + x²)",
+       "hi": "मानक परिणाम 1/(1 + x²)"
+      },
+      "why": {
+       "en": "A known derivative of an inverse trigonometric function.",
+       "hi": "प्रतिलोम त्रिकोणमितीय फलन का ज्ञात अवकलज।"
+      }
+     },
+     {
+      "id": "second",
+      "left": {
+       "en": "d²y/dx² of y = x⁴",
+       "hi": "y = x⁴ का d²y/dx²"
+      },
+      "right": {
+       "en": "Differentiate twice: 12x²",
+       "hi": "दो बार अवकलन: 12x²"
+      },
+      "why": {
+       "en": "The second derivative is the derivative of the derivative 4x³.",
+       "hi": "द्वितीय अवकलज, अवकलज 4x³ का अवकलज है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:log",
+     "expect": "matched:log",
+     "say": {
+      "en": "Tap y = xˣ and match it to its method.",
+      "hi": "y = xˣ पर टैप करो और उसकी विधि से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For the circle x² + y² = 25, what will dy/dx come out as?",
+      "hi": "वृत्त x² + y² = 25 के लिए dy/dx क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "mxy",
+       "en": "Minus x over y",
+       "hi": "ऋण x बटा y"
+      },
+      {
+       "id": "2x",
+       "en": "Two x",
+       "hi": "दो x"
+      },
+      {
+       "id": "zero",
+       "en": "Zero",
+       "hi": "शून्य"
+      }
+     ],
+     "answer": "mxy"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the others.",
+      "hi": "बाक़ी सब मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Pick the method from the shape of the function. For x² + y² = 25, differentiating gives 2x + 2y(dy/dx) = 0, so dy/dx = −x/y. For xˣ, log y = x log x gives dy/dx = xˣ(1 + log x). For a parametric pair, divide the two t-rates.",
+      "hi": "फलन के रूप से विधि चुनो। x² + y² = 25 के अवकलन से 2x + 2y(dy/dx) = 0, इसलिए dy/dx = −x/y। xˣ के लिए log y = x log x से dy/dx = xˣ(1 + log x)। प्राचलिक जोड़ी में दोनों t-दरों का भाग दो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For x = 3cos t, y = 3sin t, what is dy/dx?",
+        "hi": "x = 3cos t, y = 3sin t के लिए dy/dx क्या है?"
+       },
+       "options": [
+        "−cot t",
+        "cot t",
+        "−tan t"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "dy/dt = 3cos t and dx/dt = −3sin t; dividing gives −cos t/sin t.",
+        "hi": "dy/dt = 3cos t और dx/dt = −3sin t; भाग देने पर −cos t/sin t।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The derivative of cos t is −sin t, so a minus sign appears.",
+         "hi": "cos t का अवकलज −sin t है, इसलिए ऋण चिह्न आता है।"
+        },
+        {
+         "en": "That divides the wrong way: it is (dy/dt) ÷ (dx/dt).",
+         "hi": "यह उलटा भाग है: यह (dy/dt) ÷ (dx/dt) है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is log taken before differentiating y = xˣ?",
+        "hi": "y = xˣ का अवकलन करने से पहले log क्यों लेते हैं?"
+       },
+       "options": [
+        {
+         "en": "To bring the variable power down",
+         "hi": "चर घात को नीचे लाने के लिए"
+        },
+        {
+         "en": "Because xˣ is always negative",
+         "hi": "क्योंकि xˣ हमेशा ऋणात्मक है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "log(xˣ) = x log x, a product we can differentiate.",
+        "hi": "log(xˣ) = x log x, एक गुणनफल जिसका अवकलन कर सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "For x > 0, xˣ is positive; that is why log can be taken at all.",
+         "hi": "x > 0 पर xˣ धनात्मक है; इसीलिए log लिया जा सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up one function of your own for each method and write which method you would use first.",
+      "hi": "हर विधि के लिए अपना एक फलन बनाओ और लिखो कि पहले कौन-सी विधि लगाओगे।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Chapter hook: a smooth path and a jump",
+   "shows": "An auto-rickshaw meter beside a smooth rising road at dusk, the meter display blank",
+   "view": "Side view of the road with the meter in the foreground, warm light",
+   "right": "Road rises smoothly with no break",
+   "avoid": "Number plates, driver's face, readable meter digits"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "5.2",
+   "use": "Step function: a fare that jumps",
+   "shows": "Three frames of the same parking-fee board area with 1, 2 and 3 coins stacked beside a ticket, showing the fee rising in steps",
+   "view": "Same camera above, same light",
+   "right": "Each frame adds a whole coin, no in-between amounts",
+   "avoid": "Readable signs, brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "A corner on a path: continuous but not smooth",
+   "shows": "A village footpath that meets a field boundary and turns sharply at a right-angle corner",
+   "view": "From above, early morning",
+   "right": "Path unbroken, the turn sharp",
+   "avoid": "People, buildings with names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.4",
+   "use": "Exponential growth in life",
+   "shows": "A lotus pond where the leaves cover more of the water each week, shown as three photos",
+   "view": "Same position above the pond, same light",
+   "right": "Leaf cover grows faster each week",
+   "avoid": "People, trash"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "5.3",
+   "use": "Chain rule base: two linked gears",
+   "shows": "Two meshing gears of different sizes, one turning the other, in royal blue and tangerine",
+   "view": "3D render, front view, transparent background",
+   "right": "Teeth truly mesh; sizes clearly different",
+   "avoid": "Any text"
+  }
+ ]
+}

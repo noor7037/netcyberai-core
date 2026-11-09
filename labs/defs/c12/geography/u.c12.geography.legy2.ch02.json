@@ -1,0 +1,163 @@
+{
+  "chapter_key": "u.c12.geography.legy2.ch02",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "Human Settlements",
+  "source": "https://ncert.nic.in/textbook/pdf/legy2ps.pdf",
+  "topics": [
+    { "n": "2.1", "title": "Types of rural settlements: clustered, semi-clustered, hamleted and dispersed", "labs": ["c12-geography-legy2-ch02-rural-types"], "why_no_lab": null },
+    { "n": "2.2", "title": "Urban settlements and urban agglomerations", "labs": ["c12-geography-legy2-ch02-city-map"], "why_no_lab": null },
+    { "n": "2.3", "title": "Evolution of towns in India: ancient, medieval and modern", "labs": ["c12-geography-legy2-ch02-town-evolution"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy2-ch02-rural-types",
+      "topic": "2.1",
+      "template": "match",
+      "title": { "en": "Village shapes: the four rural settlements", "hi": "गाँवों के आकार: चार ग्रामीण बस्तियाँ" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "clustered", "left": { "en": "Clustered settlement", "hi": "संगठित (क्लस्टर्ड) बस्ती" }, "right": { "en": "Houses packed close together, often on fertile land", "hi": "घर पास-पास सटे हुए, अक्सर उपजाऊ ज़मीन पर" }, "why": { "en": "A compact village around a common centre, common on the fertile Ganga plain.", "hi": "एक सघन गाँव जो एक केंद्र के चारों ओर बसा है, उपजाऊ गंगा मैदान में आम है।" } },
+          { "id": "semi", "left": { "en": "Semi-clustered settlement", "hi": "अर्ध-संगठित बस्ती" }, "right": { "en": "Clusters in some parts of the village, scattered houses in others", "hi": "गाँव के कुछ भागों में झुंड, कुछ में बिखरे घर" }, "why": { "en": "Part compact and part spread out, often along a road, river or canal.", "hi": "कुछ हिस्सा सघन और कुछ फैला हुआ, अक्सर सड़क, नदी या नहर के साथ।" } },
+          { "id": "hamleted", "left": { "en": "Hamleted settlement", "hi": "टोला-बस्ती (हैमलेटेड)" }, "right": { "en": "A village split into small hamlets separated by fields", "hi": "एक गाँव जो खेतों से अलग छोटे टोलों में बँटा है" }, "why": { "en": "Each hamlet is a small group of houses, yet all belong to one village.", "hi": "हर टोला घरों का एक छोटा समूह है, फिर भी सब एक ही गाँव के हैं।" } },
+          { "id": "dispersed", "left": { "en": "Dispersed settlement", "hi": "बिखरी बस्ती" }, "right": { "en": "Scattered farms or houses, far apart, often on hills and in forests", "hi": "दूर-दूर बिखरे खेत या घर, अक्सर पहाड़ियों और जंगलों में" }, "why": { "en": "Each house sits near its own fields; hill and forest areas often have this.", "hi": "हर घर अपने खेतों के पास है; पहाड़ी और वन क्षेत्रों में यह आम है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "left:clustered", "expect": "matched:clustered", "say": { "en": "Tap Clustered settlement, then tap its description on the right.", "hi": "संगठित बस्ती छुओ, फिर दाईं ओर उसका विवरण छुओ।" } },
+        { "kind": "predict", "say": { "en": "A village has houses far apart on hill slopes, with forest between them. Which type is it?", "hi": "एक गाँव में पहाड़ी ढलानों पर घर दूर-दूर हैं और बीच में जंगल है। यह कौन-सी बस्ती है?" }, "options": [ { "id": "clustered", "en": "Clustered", "hi": "संगठित" }, { "id": "dispersed", "en": "Dispersed", "hi": "बिखरी" }, { "id": "hamleted", "en": "Hamleted", "hi": "टोला-बस्ती" } ], "answer": "dispersed" },
+        { "kind": "do", "target": "left:semi", "expect": "matched:semi", "say": { "en": "Match the Semi-clustered settlement.", "hi": "अर्ध-संगठित बस्ती का मेल करो।" } },
+        { "kind": "do", "target": "left:hamleted", "expect": "matched:hamleted", "say": { "en": "Match the Hamleted settlement.", "hi": "टोला-बस्ती का मेल करो।" } },
+        { "kind": "do", "target": "left:dispersed", "expect": "matched:dispersed", "say": { "en": "Match the Dispersed settlement.", "hi": "बिखरी बस्ती का मेल करो।" } },
+        { "kind": "do", "target": "check", "expect": "all-matched", "say": { "en": "When all four pairs are matched, tap Check.", "hi": "चारों जोड़े मिल जाएँ तो जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Rural settlements take different shapes. Where land is level and fertile, houses cluster together. Where hills and forests separate the farms, houses are dispersed. Hamleted villages are spread into small groups that are joined into one village. The shape of a settlement reflects land, water and history.", "hi": "ग्रामीण बस्तियों के आकार अलग-अलग होते हैं। जहाँ ज़मीन समतल और उपजाऊ है, वहाँ घर पास-पास बसते हैं। जहाँ पहाड़ियाँ और जंगल खेतों को अलग करते हैं, वहाँ घर बिखरे होते हैं। टोला-बस्तियाँ छोटे समूहों में फैली होती हैं जो एक गाँव बनाती हैं। बस्ती का आकार ज़मीन, पानी और इतिहास को दिखाता है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "A village's houses lie in small groups separated by fields, but all belong to one village. What type of settlement is this?", "hi": "एक गाँव के घर खेतों से अलग छोटे समूहों में हैं, पर सब एक ही गाँव के हैं। यह कौन-सी बस्ती है?" },
+              "options": [
+                { "en": "Dispersed", "hi": "बिखरी" },
+                { "en": "Hamleted", "hi": "टोला-बस्ती" },
+                { "en": "Clustered", "hi": "संगठित" }
+              ],
+              "answer": 1,
+              "why": { "en": "Hamleted villages are small groups of houses separated by fields, under one village.", "hi": "टोला-बस्तियाँ खेतों से अलग घरों के छोटे समूह हैं, जो एक ही गाँव के अंतर्गत हैं।" },
+              "wrong": [
+                { "en": "A dispersed settlement has single farms far apart, not small groups of houses.", "hi": "बिखरी बस्ती में अलग-अलग खेत या घर दूर-दूर होते हैं, छोटे समूह नहीं।" },
+                "",
+                { "en": "A clustered village has its houses packed together, not split into groups by fields.", "hi": "संगठित गाँव में घर सटे होते हैं, खेतों से बँटे समूहों में नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Look out of a window, or think of the nearest village. Is it clustered, dispersed or hamleted? Give one reason from the land around it.", "hi": "खिड़की से बाहर देखो, या सबसे पास के गाँव के बारे में सोचो। वह संगठित, बिखरी या टोला-बस्ती है? आसपास की ज़मीन से एक कारण बताओ।" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch02-city-map",
+      "topic": "2.2",
+      "template": "map",
+      "title": { "en": "Two big cities on the coasts", "hi": "तटों पर दो बड़े शहर" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["states", "rivers"],
+        "task": "locate",
+        "places": ["mumbai", "kolkata"]
+      },
+      "steps": [
+        { "kind": "do", "target": "layer:states", "expect": "layer:states", "say": { "en": "Switch on the States layer so the state boundaries show.", "hi": "'राज्य' परत चालू करो ताकि राज्य की सीमाएँ दिखें।" } },
+        { "kind": "predict", "say": { "en": "Which of these cities lies on the Arabian Sea coast?", "hi": "इनमें से कौन-सा शहर अरब सागर के तट पर है?" }, "options": [ { "id": "kolkata", "en": "Kolkata, on the Hooghly river in the east", "hi": "कोलकाता, पूर्व में हुगली नदी पर" }, { "id": "mumbai", "en": "Mumbai, on the west coast", "hi": "मुंबई, पश्चिमी तट पर" } ], "answer": "mumbai" },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Drop a pin on Mumbai by tapping the map, then tap Check.", "hi": "मानचित्र छूकर मुंबई पर पिन लगाओ, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Now find Kolkata, drop a pin, and tap Check.", "hi": "अब कोलकाता खोजो, पिन लगाओ, और जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Large urban agglomerations grew around ports, trade and industry. Mumbai on the west coast and Kolkata on the Hooghly in the east both became major ports and big cities. A city together with the towns around it, linked by jobs and roads, forms an urban agglomeration.", "hi": "बड़े नगर समूह बंदरगाहों, व्यापार और उद्योग के आसपास बढ़े। पश्चिमी तट का मुंबई और पूर्व में हुगली पर बसा कोलकाता, दोनों बड़े बंदरगाह और बड़े शहर बने। शहर और उसके आसपास के कस्बे, जो नौकरियों और सड़कों से जुड़े हैं, मिलकर नगर समूह बनाते हैं।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why did Mumbai and Kolkata grow into very large cities?", "hi": "मुंबई और कोलकाता इतने बड़े शहर क्यों बने?" },
+              "options": [
+                { "en": "They are the hottest places in India", "hi": "वे भारत के सबसे गर्म स्थान हैं" },
+                { "en": "Ports, trade and industry brought jobs and people", "hi": "बंदरगाह, व्यापार और उद्योग ने नौकरियाँ और लोग लाए" },
+                { "en": "The government banned people from living in other towns", "hi": "सरकार ने अन्य कस्बों में रहने पर रोक लगाई" }
+              ],
+              "answer": 1,
+              "why": { "en": "Ports and trade bring jobs, and jobs draw people to the city.", "hi": "बंदरगाह और व्यापार नौकरियाँ लाते हैं, और नौकरियाँ लोगों को शहर की ओर खींचती हैं।" },
+              "wrong": [
+                { "en": "Heat does not make cities grow. Many hot places have very few people.", "hi": "गर्मी से शहर नहीं बढ़ते। कई गर्म जगहों पर बहुत कम लोग रहते हैं।" },
+                "",
+                { "en": "Government bans do not create cities. Ports and jobs do.", "hi": "सरकारी रोक शहर नहीं बनाती। बंदरगाह और नौकरियाँ बनाती हैं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Turn on the Rivers layer and find the river near Kolkata. Why would a river help a city grow?", "hi": "'नदियाँ' परत चालू करो और कोलकाता के पास की नदी खोजो। कोई नदी शहर को बढ़ने में कैसे मदद करती है?" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch02-town-evolution",
+      "topic": "2.3",
+      "template": "sort",
+      "title": { "en": "Old, medieval or modern towns?", "hi": "प्राचीन, मध्यकालीन या आधुनिक नगर?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "ancient", "label": { "en": "Ancient towns (Harappan and early)", "hi": "प्राचीन नगर (हड़प्पा और प्रारंभिक)" } },
+          { "id": "medieval", "label": { "en": "Medieval: Sultanate and Mughal times", "hi": "मध्यकालीन: सल्तनत और मुग़ल काल" } },
+          { "id": "modern", "label": { "en": "Modern: planned and industrial towns", "hi": "आधुनिक: योजनाबद्ध और औद्योगिक नगर" } }
+        ],
+        "cards": [
+          { "id": "lothal", "text": { "en": "Lothal, a port town on the Gujarat coast", "hi": "लोथल, गुजरात तट का बंदरगाह-नगर" }, "bin": "ancient", "why": { "en": "A Harappan town with docks and workshops, over 4,000 years old.", "hi": "हड़प्पा काल का नगर, जिसमें गोदियाँ और कारख़ाने थे; यह 4,000 वर्ष से अधिक पुराना है।" } },
+          { "id": "patna", "text": { "en": "Pataliputra, the old capital on the Ganga", "hi": "पाटलिपुत्र, गंगा किनारे की प्राचीन राजधानी" }, "bin": "ancient", "why": { "en": "A great capital of ancient kingdoms, on the banks of the Ganga.", "hi": "गंगा तट पर प्राचीन राज्यों की एक बड़ी राजधानी।" } },
+          { "id": "fatehpur", "text": { "en": "Fatehpur Sikri, a capital built by Akbar", "hi": "फ़तेहपुर सीकरी, अकबर द्वारा बसाई राजधानी" }, "bin": "medieval", "why": { "en": "Built in the 16th century and later left; its palace city shows Mughal design.", "hi": "16वीं सदी में बसी और बाद में छोड़ी गई; इसका महल-नगर मुग़ल शैली दिखाता है।" } },
+          { "id": "hampi", "text": { "en": "Hampi, capital of the Vijayanagara empire", "hi": "हम्पी, विजयनगर साम्राज्य की राजधानी" }, "bin": "medieval", "why": { "en": "A royal city of a Hindu empire in Karnataka, with temples and markets.", "hi": "कर्नाटक में एक हिंदू साम्राज्य की राजधानी, जिसमें मंदिर और बाज़ार थे।" } },
+          { "id": "chandigarh", "text": { "en": "Chandigarh, planned after 1947 with sectors", "hi": "चंडीगढ़, 1947 के बाद सेक्टरों में योजनाबद्ध" }, "bin": "modern", "why": { "en": "Designed as a planned city with sectors, roads and parks for a new capital.", "hi": "नई राजधानी के लिए सेक्टरों, सड़कों और उद्यानों वाला योजनाबद्ध नगर।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "card:lothal", "expect": "correct:lothal", "say": { "en": "Tap the Lothal card, then tap the bin of its age.", "hi": "लोथल वाला कार्ड छुओ, फिर उसकी आयु वाला खाना छुओ।" } },
+        { "kind": "predict", "say": { "en": "Which of these towns belongs to the medieval period?", "hi": "इनमें से कौन-सा नगर मध्यकाल का है?" }, "options": [ { "id": "lothal", "en": "Lothal", "hi": "लोथल" }, { "id": "fatehpur", "en": "Fatehpur Sikri", "hi": "फ़तेहपुर सीकरी" }, { "id": "chandigarh", "en": "Chandigarh", "hi": "चंडीगढ़" } ], "answer": "fatehpur" },
+        { "kind": "do", "target": "card:fatehpur", "expect": "correct:fatehpur", "say": { "en": "Place Fatehpur Sikri in the medieval bin.", "hi": "फ़तेहपुर सीकरी को मध्यकालीन खाने में रखो।" } },
+        { "kind": "do", "target": "card:chandigarh", "expect": "correct:chandigarh", "say": { "en": "Place Chandigarh in its bin.", "hi": "चंडीगढ़ को उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:patna", "expect": "correct:patna", "say": { "en": "Place Pataliputra in its bin.", "hi": "पाटलिपुत्र को उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:hampi", "expect": "correct:hampi", "say": { "en": "Place Hampi, then tap Check.", "hi": "हम्पी को रखो, फिर जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Towns grow in stages. Ancient towns such as Lothal were planned for trade and crafts. Medieval towns grew around royal courts, forts and trade routes, as Fatehpur Sikri and Hampi did. Modern towns came up with planning, factories and new capitals, such as Chandigarh. Many old towns still carry the marks of their earlier periods.", "hi": "नगर चरणों में बढ़ते हैं। लोथल जैसे प्राचीन नगर व्यापार और शिल्प के लिए बसे थे। मध्यकालीन नगर राजदरबारों, किलों और व्यापार-मार्गों के चारों ओर बढ़े, जैसे फ़तेहपुर सीकरी और हम्पी। आधुनिक नगर योजना, कारख़ानों और नई राजधानियों के साथ बने, जैसे चंडीगढ़। कई पुराने नगर आज भी अपने पिछले दौर के निशान रखते हैं।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What mainly made many medieval towns grow?", "hi": "कौन-सी चीज़ मुख्य रूप से कई मध्यकालीन नगरों को बढ़ाती थी?" },
+              "options": [
+                { "en": "Royal courts, forts and trade routes", "hi": "राजदरबार, किले और व्यापार-मार्ग" },
+                { "en": "Steel and car factories built after 1947", "hi": "1947 के बाद बने इस्पात और कार कारख़ाने" },
+                { "en": "Floods that drove people away from every river", "hi": "बाढ़ें जिन्होंने हर नदी से लोगों को हटा दिया" }
+              ],
+              "answer": 0,
+              "why": { "en": "Royal courts, forts and trade routes drew officials, soldiers, craftsmen and traders to a town.", "hi": "राजदरबार, किले और व्यापार-मार्ग अधिकारियों, सैनिकों, शिल्पियों और व्यापारियों को नगर की ओर खींचते थे।" },
+              "wrong": [
+                "",
+                { "en": "Factories of the modern period came later. They did not make medieval towns grow.", "hi": "आधुनिक कारख़ाने बाद में आए। उन्होंने मध्यकालीन नगरों को नहीं बढ़ाया।" },
+                { "en": "Floods push people away from towns. They do not make a town grow.", "hi": "बाढ़ लोगों को नगरों से दूर धकेलती है। वह नगर को नहीं बढ़ाती।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Choose a town near you. Find out whether it is old, medieval or modern, and what made it grow. Tell one friend the reason in two sentences.", "hi": "अपने पास के एक नगर को चुनो। पता करो कि वह प्राचीन, मध्यकालीन या आधुनिक है, और उसे किस चीज़ ने बढ़ाया। किसी दोस्त को दो वाक्यों में कारण बताओ।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "2.1", "use": "A clustered village on a level plain", "shows": "A compact village of close houses with courtyards on a flat, green plain, with fields around the edge", "view": "16:9, morning light, slightly raised view", "right": "Houses packed close, fields all around, flat land", "avoid": "Readable signs, identifiable faces" },
+    { "n": 2, "kind": "SCN", "topic": "2.1", "use": "A dispersed farmhouse settlement on a hill", "shows": "Separate farmhouses on a forested hill slope, each with its own small field and a path between them", "view": "16:9, soft afternoon light", "right": "Houses far apart, forest and steep fields visible", "avoid": "People close up, brand names" },
+    { "n": 3, "kind": "SCN", "topic": "2.3", "use": "Ruins of an ancient town", "shows": "Excavated brick walls and a neat brick drain of an old planned town, with dusty earth and a clear sky", "view": "16:9, low sun across the ruins for texture", "right": "Straight brick walls and an orderly drain pattern, true to Harappan-style brickwork", "avoid": "Any signboard, tourist text or modern objects" },
+    { "n": 4, "kind": "SCN", "topic": "2.3", "use": "A planned modern city street", "shows": "A wide, tree-lined road in a planned city with equal blocks, parks and a few cars", "view": "16:9, morning, road leading into the distance", "right": "Straight roads in a grid, green strips and even blocks", "avoid": "Readable shop names, number plates or logos" },
+    { "n": 5, "kind": "MAP", "topic": "2.2", "use": "Coastal base map for city locations", "shows": "The western coastline of India with a river mouth and a harbour bay, no names or borders", "view": "16:9, soft shading, sea in blue", "right": "True coastline shape with a clear harbour bay", "avoid": "City names, state borders or labels" },
+    { "n": 6, "kind": "SCN", "topic": "2.3", "use": "A medieval royal town with a fort gate", "shows": "A sandstone palace gate and wall of a medieval royal city, with an open courtyard in front", "view": "16:9, warm late light", "right": "Sandstone walls and arches in a royal style", "avoid": "Tourist signboards, ticket booths or people in close view" }
+  ]
+}

@@ -1,0 +1,682 @@
+{
+  "chapter_key": "u.c05.hindi.ehve1.ch01",
+  "class": 5,
+  "subject_id": "hindi",
+  "title": "किरन",
+  "source": "https://ncert.nic.in/textbook/pdf/ehve1ps.pdf",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Poem: the sunbeam and the girl talk at dawn",
+      "labs": [
+        "c05-hindi-ehve1-ch01-story"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Words with the same meaning (synonyms)",
+      "labs": [
+        "c05-hindi-ehve1-ch01-synonyms"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3",
+      "title": "Words with the opposite meaning (antonyms)",
+      "labs": [
+        "c05-hindi-ehve1-ch01-opposites"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4",
+      "title": "Know more: how day and night happen",
+      "labs": [],
+      "why_no_lab": "A torch and a ball in a dark room show day and night far better than a screen; the photo sequence and the reader carry it."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c05-hindi-ehve1-ch01-story",
+      "topic": "1",
+      "template": "reader",
+      "title": {
+        "en": "The sunbeam's morning talk",
+        "hi": "किरन की सुबह की बातचीत"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "panels",
+        "lang": "hi",
+        "passage": {
+          "title": {
+            "en": "The sunbeam's morning talk",
+            "hi": "किरन की सुबह की बातचीत"
+          },
+          "lines": [
+            "सुबह-सुबह किरन उस बालिका के पास पहुँच गई।",
+            "बालिका अभी तक बिस्तर से उठ नहीं पाई थी।",
+            "रात को वह परी-कथाएँ पढ़ते-पढ़ते देर से सोई थी।",
+            "किरन ने बताया कि वह खुद भी चैन से नहीं सो पाती।",
+            "वह सोए हुए बच्चों को जगाने दूसरी दुनिया में जाती है।",
+            "वहाँ शाम होते ही वह फिर यहाँ लौट आती है।"
+          ]
+        },
+        "question": {
+          "q": {
+            "en": "What is the sunbeam's main work?",
+            "hi": "किरन का मुख्य काम क्या है?"
+          },
+          "options": [
+            {
+              "en": "Waking sleeping children",
+              "hi": "सोते हुए बच्चों को जगाना"
+            },
+            {
+              "en": "Singing lullabies to children",
+              "hi": "बच्चों को लोरी सुनाना"
+            },
+            {
+              "en": "Teaching children stories",
+              "hi": "बच्चों को कहानियाँ पढ़ाना"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "The sunbeam wakes sleeping children, world after world.",
+            "hi": "किरन सोते हुए बच्चों को जगाती है, एक दुनिया के बाद दूसरी दुनिया में।"
+          }
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "play",
+          "expect": "played",
+          "say": {
+            "en": "Press Play. Listen to the poem's story and watch each picture panel appear.",
+            "hi": "चलाओ बटन दबाओ। कविता की कहानी सुनो और हर चित्र-पट्टी को आते देखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "line:4",
+          "expect": "line:4",
+          "say": {
+            "en": "Tap the fifth panel, where the sunbeam goes to the other world.",
+            "hi": "पाँचवीं पट्टी पर टैप करो, जहाँ किरन दूसरी दुनिया में जाती है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "When it is evening in our world, where do you think the sunbeam is?",
+            "hi": "जब हमारी दुनिया में शाम होती है, तब तुम्हारे हिसाब से किरन कहाँ होती है?"
+          },
+          "options": [
+            {
+              "id": "wake",
+              "en": "Waking children in another world",
+              "hi": "किसी दूसरी दुनिया के बच्चों को जगाती हुई"
+            },
+            {
+              "id": "sleep",
+              "en": "Sleeping like us",
+              "hi": "हमारी तरह सोई हुई"
+            },
+            {
+              "id": "stay",
+              "en": "Staying here all night",
+              "hi": "रात भर यहीं रुकी हुई"
+            }
+          ],
+          "answer": "wake"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Now answer the question under the panels.",
+            "hi": "अब पट्टियों के नीचे दिए प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The poet imagines the sunbeam as a girl who never rests. She wakes children here in the morning. When night falls here, she goes to another part of the world, where morning is just beginning. That is how the same Sun brings day to one place and night to another.",
+            "hi": "कवि ने किरन को एक ऐसी बालिका की तरह सोचा है जो कभी आराम नहीं करती। वह सुबह यहाँ के बच्चों को जगाती है। यहाँ रात होती है तो वह दुनिया के दूसरे हिस्से में जाती है, जहाँ सुबह शुरू हो रही होती है। इसी तरह एक ही सूरज कहीं दिन लाता है और कहीं रात।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why was the girl late in waking up?",
+                "hi": "बालिका देर से क्यों उठी?"
+              },
+              "options": [
+                {
+                  "en": "She slept late after reading fairy tales",
+                  "hi": "वह परी-कथाएँ पढ़ते हुए देर से सोई थी"
+                },
+                {
+                  "en": "The sunbeam did not come",
+                  "hi": "किरन आई ही नहीं थी"
+                },
+                {
+                  "en": "She was ill",
+                  "hi": "वह बीमार थी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "She read fairy tales for a long time at night, so sleep came late.",
+                "hi": "वह रात को बहुत देर तक परी-कथाएँ पढ़ती रही, इसलिए नींद देर से आई।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The sunbeam came early; it was the girl who was late.",
+                  "hi": "किरन तो जल्दी आ गई थी; देर तो बालिका को हुई।"
+                },
+                {
+                  "en": "The poem never says she was ill; it gives the reason of the late night.",
+                  "hi": "कविता में बीमारी की बात नहीं है; कारण रात की देर है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "In the poem, what is 'the other world' in real life?",
+                "hi": "कविता में 'दूसरी दुनिया' असल में क्या है?"
+              },
+              "options": [
+                {
+                  "en": "The part of the Earth where it is morning now",
+                  "hi": "पृथ्वी का वह भाग जहाँ अभी सुबह है"
+                },
+                {
+                  "en": "A land inside the Moon",
+                  "hi": "चाँद के अंदर की कोई जगह"
+                },
+                {
+                  "en": "A fairy land under the sea",
+                  "hi": "समुद्र के नीचे की परियों की दुनिया"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "When it is night here, the Sun is shining on another part of the Earth, so a sunbeam can wake children there.",
+                "hi": "जब यहाँ रात होती है, तब पृथ्वी के दूसरे भाग पर सूरज चमक रहा होता है, इसलिए वहाँ किरन बच्चों को जगा सकती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The Moon does not hold a world of children; the poem talks about the Earth's other side.",
+                  "hi": "चाँद के भीतर कोई बच्चों की दुनिया नहीं है; कविता पृथ्वी के दूसरे भाग की बात करती है।"
+                },
+                {
+                  "en": "Fairy tales are what the girl read; the sunbeam goes to real children in another place.",
+                  "hi": "परी-कथाएँ बालिका ने पढ़ी थीं; किरन तो दूसरी जगह के असली बच्चों के पास जाती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Retell the poem to a friend in your own words. Then think of one question you would ask the sunbeam.",
+            "hi": "कविता को अपने शब्दों में किसी दोस्त को सुनाओ। फिर सोचो कि तुम किरन से कौन-सा एक सवाल पूछोगे।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-ch01-synonyms",
+      "topic": "2",
+      "template": "match",
+      "title": {
+        "en": "Same-meaning words",
+        "hi": "एक-से अर्थ वाले शब्द"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "sun",
+            "left": {
+              "en": "Sooraj (sun)",
+              "hi": "सूरज"
+            },
+            "right": {
+              "en": "Ravi",
+              "hi": "रवि"
+            },
+            "why": {
+              "en": "Sooraj and ravi both name the Sun.",
+              "hi": "सूरज और रवि दोनों सूर्य के नाम हैं।"
+            }
+          },
+          {
+            "id": "moon",
+            "left": {
+              "en": "Chaand (moon)",
+              "hi": "चाँद"
+            },
+            "right": {
+              "en": "Chandrama",
+              "hi": "चंद्रमा"
+            },
+            "why": {
+              "en": "Chaand and chandrama both mean the Moon.",
+              "hi": "चाँद और चंद्रमा दोनों का अर्थ एक ही है।"
+            }
+          },
+          {
+            "id": "water",
+            "left": {
+              "en": "Paani (water)",
+              "hi": "पानी"
+            },
+            "right": {
+              "en": "Jal",
+              "hi": "जल"
+            },
+            "why": {
+              "en": "Paani and jal are two words for water.",
+              "hi": "पानी और जल, दोनों पानी के लिए शब्द हैं।"
+            }
+          },
+          {
+            "id": "earth",
+            "left": {
+              "en": "Dharti (earth)",
+              "hi": "धरती"
+            },
+            "right": {
+              "en": "Prithvi",
+              "hi": "पृथ्वी"
+            },
+            "why": {
+              "en": "Dharti and prithvi both mean the Earth.",
+              "hi": "धरती और पृथ्वी का अर्थ एक है।"
+            }
+          },
+          {
+            "id": "morning",
+            "left": {
+              "en": "Subah (morning)",
+              "hi": "सुबह"
+            },
+            "right": {
+              "en": "Prabhat",
+              "hi": "प्रभात"
+            },
+            "why": {
+              "en": "Subah and prabhat both mean early morning.",
+              "hi": "सुबह और प्रभात दोनों का अर्थ भोर का समय है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:sun",
+          "expect": "matched:sun",
+          "say": {
+            "en": "Tap सूरज, then tap the word that means the same.",
+            "hi": "सूरज पर टैप करो, फिर वह शब्द चुनो जिसका अर्थ वही है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which word means the same as पानी?",
+            "hi": "'पानी' का समान अर्थ वाला शब्द कौन-सा है?"
+          },
+          "options": [
+            {
+              "id": "jal",
+              "en": "जल",
+              "hi": "जल"
+            },
+            {
+              "id": "jalna",
+              "en": "जलना",
+              "hi": "जलना"
+            },
+            {
+              "id": "jaal",
+              "en": "जाल",
+              "hi": "जाल"
+            }
+          ],
+          "answer": "jal"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the other words, then press Check.",
+            "hi": "बाकी शब्दों की जोड़ियाँ बनाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Words that mean the same are called synonyms (समानार्थी शब्द). We use them to make our speech and poems more beautiful, just as the poem uses शाम, संध्या and साँझ for the same time.",
+            "hi": "जिन शब्दों का अर्थ एक-सा होता है, उन्हें समानार्थी शब्द कहते हैं। इनसे हमारी बात और कविता सुंदर बनती है, जैसे शाम, संध्या और साँझ एक ही समय के नाम हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which word means the same as सुबह?",
+                "hi": "'सुबह' का समानार्थी शब्द कौन-सा है?"
+              },
+              "options": [
+                {
+                  "en": "संध्या",
+                  "hi": "संध्या"
+                },
+                {
+                  "en": "प्रभात",
+                  "hi": "प्रभात"
+                },
+                {
+                  "en": "निशा",
+                  "hi": "निशा"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Prabhat means the early morning, the same as subah.",
+                "hi": "प्रभात का अर्थ भोर का समय है, यानी सुबह।"
+              },
+              "wrong": [
+                {
+                  "en": "Sandhya is the evening, the opposite end of the day.",
+                  "hi": "संध्या शाम को कहते हैं, यानी दिन का दूसरा सिरा।"
+                },
+                "",
+                {
+                  "en": "Nisha means night.",
+                  "hi": "निशा का अर्थ रात है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of two more names for the Sun or the sky. Ask someone at home for old Hindi words for them.",
+            "hi": "सूरज या आकाश के दो और नाम सोचो। घर पर किसी से उनके पुराने हिंदी शब्द पूछो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-ch01-opposites",
+      "topic": "3",
+      "template": "match",
+      "title": {
+        "en": "Opposite words",
+        "hi": "विपरीत अर्थ वाले शब्द"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "day",
+            "left": {
+              "en": "Din (day)",
+              "hi": "दिन"
+            },
+            "right": {
+              "en": "Raat",
+              "hi": "रात"
+            },
+            "why": {
+              "en": "Day and night are opposites.",
+              "hi": "दिन और रात एक-दूसरे के उलटे हैं।"
+            }
+          },
+          {
+            "id": "come",
+            "left": {
+              "en": "Aana (to come)",
+              "hi": "आना"
+            },
+            "right": {
+              "en": "Jaana",
+              "hi": "जाना"
+            },
+            "why": {
+              "en": "Coming and going are opposite actions.",
+              "hi": "आना और जाना उलटे काम हैं।"
+            }
+          },
+          {
+            "id": "light",
+            "left": {
+              "en": "Ujaala (light)",
+              "hi": "उजाला"
+            },
+            "right": {
+              "en": "Andhera",
+              "hi": "अँधेरा"
+            },
+            "why": {
+              "en": "Light is the opposite of darkness.",
+              "hi": "उजाला अँधेरे का उलटा है।"
+            }
+          },
+          {
+            "id": "sleep",
+            "left": {
+              "en": "Sona (to sleep)",
+              "hi": "सोना"
+            },
+            "right": {
+              "en": "Jaagna",
+              "hi": "जागना"
+            },
+            "why": {
+              "en": "Sleeping and waking are opposites.",
+              "hi": "सोना और जागना उलटे हैं।"
+            }
+          },
+          {
+            "id": "morn",
+            "left": {
+              "en": "Subah (morning)",
+              "hi": "सुबह"
+            },
+            "right": {
+              "en": "Shaam",
+              "hi": "शाम"
+            },
+            "why": {
+              "en": "Morning and evening are the two ends of the day.",
+              "hi": "सुबह और शाम दिन के दो सिरे हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:day",
+          "expect": "matched:day",
+          "say": {
+            "en": "Tap दिन, then tap its opposite.",
+            "hi": "दिन पर टैप करो, फिर उसका उलटा शब्द चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is the opposite of उजाला?",
+            "hi": "'उजाला' का विलोम क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "dark",
+              "en": "अँधेरा",
+              "hi": "अँधेरा"
+            },
+            {
+              "id": "light2",
+              "en": "रोशनी",
+              "hi": "रोशनी"
+            },
+            {
+              "id": "sun",
+              "en": "धूप",
+              "hi": "धूप"
+            }
+          ],
+          "answer": "dark"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Finish the other pairs and press Check.",
+            "hi": "बाकी जोड़ियाँ पूरी करो और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Opposite words are called antonyms (विलोम शब्द). The poem is full of them: here and there, to come and to go, sleeping and waking.",
+            "hi": "उलटे अर्थ वाले शब्दों को विलोम शब्द कहते हैं। कविता में भी ऐसे जोड़े हैं: यहाँ-वहाँ, आना-जाना, सोना-जागना।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is the opposite of जल्दी (early)?",
+                "hi": "'जल्दी' का विलोम क्या है?"
+              },
+              "options": [
+                {
+                  "en": "तेज़",
+                  "hi": "तेज़"
+                },
+                {
+                  "en": "देर",
+                  "hi": "देर"
+                },
+                {
+                  "en": "जल्द",
+                  "hi": "जल्द"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Der (late) is the opposite of jaldi (early).",
+                "hi": "देर जल्दी का उलटा है।"
+              },
+              "wrong": [
+                {
+                  "en": "Tez means fast, which is close to jaldi, not opposite.",
+                  "hi": "तेज़ का अर्थ फुर्तीला है, जो जल्दी के पास है, उलटा नहीं।"
+                },
+                "",
+                {
+                  "en": "Jald means quickly, the same as jaldi.",
+                  "hi": "जल्द का अर्थ भी जल्दी ही है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write two sentences about your day, using one pair of opposites in each.",
+            "hi": "अपने दिन के बारे में दो वाक्य लिखो, हर वाक्य में एक विलोम जोड़ी रखो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the poem: the first light of day",
+      "shows": "Sunbeams slanting through a house window onto a sleeping child's bed, small village morning outside",
+      "view": "Wide 16:9 from the foot of the bed, warm low light",
+      "right": "Soft golden light coming from the correct side (east window), child seen only as a sleeping shape",
+      "avoid": "Faces of identifiable children, text"
+    },
+    {
+      "n": 2,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Reader panel: the girl reading fairy tales at night",
+      "shows": "A lamp-lit bedside with an open picture book and a glass of water",
+      "view": "Close three-quarter view, warm lamp, dark room",
+      "right": "Open book with no readable text, calm night mood",
+      "avoid": "Readable page text"
+    },
+    {
+      "n": 3,
+      "kind": "SEQ",
+      "topic": "1",
+      "use": "Poem to science: the Sun rising over a village",
+      "shows": "Four frames of the same village roof line: dark, first glow, sunrise, full morning",
+      "view": "Same camera and spot, frames 1-4",
+      "right": "The glow starts at one horizon point and the sun rises on that same side",
+      "avoid": "Different camera spots"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Lab prop: a small globe lit by a torch to show day and night",
+      "shows": "A school globe in a dark room with a torch lighting one half",
+      "view": "Front view, torch from the left",
+      "right": "Lit half and dark half clearly separate, equator visible",
+      "avoid": "Labels on the globe"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "2",
+      "use": "Synonyms warm-up: Indian sky at different times",
+      "shows": "One rooftop sky photographed at dawn, noon and dusk",
+      "view": "Same view, three tones",
+      "right": "Natural colours of each hour"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "3",
+      "use": "Opposites strip for the match lab",
+      "shows": "An empty two-column card frame with a thin centre arrow",
+      "view": "Flat, white background",
+      "right": "Clean, no text, room for the app to place words"
+    }
+  ]
+}

@@ -1,0 +1,886 @@
+{
+ "chapter_key": "u.c08.science.hecu1.ch07",
+ "class": 8,
+ "subject_id": "science",
+ "title": "Particulate Nature of Matter",
+ "source": "https://ncert.nic.in/textbook/pdf/hecu107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "What is matter composed of? Tiny particles with spaces between them",
+   "labs": [
+    "c08-science-hecu1-ch07-sugar"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "What decides the state of matter? Attraction and spaces between particles",
+   "labs": [
+    "c08-science-hecu1-ch07-states"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2.1",
+   "title": "Solid state: fixed shape and volume",
+   "labs": [
+    "c08-science-hecu1-ch07-properties"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2.2",
+   "title": "Liquid state: fixed volume, flows; diffusion in liquids",
+   "labs": [
+    "c08-science-hecu1-ch07-diffusion"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2.3",
+   "title": "Gaseous state: no fixed shape or volume; compressible; diffusion in air",
+   "labs": [
+    "c08-science-hecu1-ch07-syringe"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-science-hecu1-ch07-sugar",
+   "topic": "7.1",
+   "template": "particles",
+   "title": {
+    "en": "Where does the sugar go?",
+    "hi": "चीनी कहाँ चली जाती है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "dissolve",
+    "substance": "sugar",
+    "temp": 25
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add",
+     "expect": "dissolved",
+     "say": {
+      "en": "Add a spoonful of sugar to the water and wait.",
+      "hi": "पानी में एक चम्मच चीनी डालो और रुको।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The sugar has vanished from sight. Is it still in the water?",
+      "hi": "चीनी आँखों से ग़ायब हो गई। क्या वह अब भी पानी में है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, as tiny particles between the water particles",
+       "hi": "हाँ, पानी के कणों के बीच छोटे कणों के रूप में"
+      },
+      {
+       "id": "no",
+       "en": "No, it is destroyed",
+       "hi": "नहीं, वह नष्ट हो गई"
+      },
+      {
+       "id": "air",
+       "en": "It flew into the air",
+       "hi": "वह हवा में उड़ गई"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "add",
+     "expect": "dissolved",
+     "say": {
+      "en": "Add one more spoonful and watch it disappear too.",
+      "hi": "एक चम्मच और डालो और उसे भी ग़ायब होते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sugar is made of particles far too small to see. When it dissolves, its particles move into the spaces between the water particles and spread evenly; that is why the water tastes sweet everywhere and its level hardly rises. Stirring and warm water make it happen faster. Matter is made of tiny particles with spaces between them.",
+      "hi": "चीनी ऐसे कणों से बनी है जो दिखने के लिए बहुत छोटे हैं। घुलने पर उसके कण पानी के कणों के बीच की जगहों में चले जाते हैं और बराबर फैल जाते हैं; इसीलिए पानी हर जगह मीठा लगता है और उसका तल मुश्किल से बढ़ता है। चलाने और गर्म पानी से यह जल्दी होता है। पदार्थ छोटे कणों से बना है जिनके बीच जगह होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the water level hardly rise when sugar dissolves?",
+        "hi": "चीनी घुलने पर पानी का तल मुश्किल से क्यों बढ़ता है?"
+       },
+       "options": [
+        {
+         "en": "Sugar particles fit into spaces between water particles",
+         "hi": "चीनी के कण पानी के कणों के बीच की जगहों में समा जाते हैं"
+        },
+        {
+         "en": "The sugar is destroyed",
+         "hi": "चीनी नष्ट हो जाती है"
+        },
+        {
+         "en": "Water particles shrink",
+         "hi": "पानी के कण सिकुड़ जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "There are spaces between water particles, and the sugar particles fill them.",
+        "hi": "पानी के कणों के बीच जगहें हैं, और चीनी के कण उन्हें भरते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The water tastes sweet, so the sugar is still there.",
+         "hi": "पानी मीठा लगता है, यानी चीनी अब भी वहाँ है।"
+        },
+        {
+         "en": "Particles do not shrink; they only share space.",
+         "hi": "कण सिकुड़ते नहीं; वे बस जगह बाँटते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You break a piece of chalk again and again. What does this suggest?",
+        "hi": "तुम चॉक के टुकड़े को बार-बार तोड़ते हो। इससे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "Matter is made of very small particles",
+         "hi": "पदार्थ बहुत छोटे कणों से बना है"
+        },
+        {
+         "en": "Chalk is made of water",
+         "hi": "चॉक पानी से बनी है"
+        },
+        {
+         "en": "Chalk cannot be broken",
+         "hi": "चॉक तोड़ी नहीं जा सकती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each piece is still chalk, made of smaller and smaller bits, down to particles too small to see.",
+        "hi": "हर टुकड़ा अब भी चॉक है, छोटे से छोटे कणों से बना, जो दिखते भी नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chalk is a solid; breaking it shows nothing about water.",
+         "hi": "चॉक ठोस है; तोड़ने से पानी के बारे में कुछ पता नहीं चलता।"
+        },
+        {
+         "en": "You just broke it many times; it can be broken until the bits are too small to handle.",
+         "hi": "तुमने इसे कई बार तोड़ा; इसे तब तक तोड़ सकते हो जब तक टुकड़े पकड़ने लायक न रहें।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add a spoonful and press Stir: does it dissolve faster? Keep adding, then heat the water. When does it stop dissolving more?",
+      "hi": "एक चम्मच डालकर चलाओ दबाओ: क्या यह जल्दी घुलती है? डालते रहो, फिर पानी गर्म करो। यह कब और घुलना बंद करती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch07-states",
+   "topic": "7.2",
+   "template": "particles",
+   "title": {
+    "en": "Ice, water and steam",
+    "hi": "बर्फ़, पानी और भाप"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "states",
+    "substance": "water",
+    "temp": -10
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:temp",
+     "expect": "state:liquid",
+     "say": {
+      "en": "Drag the temperature up to about 25 °C and watch the particles.",
+      "hi": "तापमान को लगभग 25 °C तक खींचो और कणों को देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you heat the water past 100 °C, what will the particles do?",
+      "hi": "पानी को 100 °C से ऊपर गर्म करोगे तो कण क्या करेंगे?"
+     },
+     "options": [
+      {
+       "id": "free",
+       "en": "Break free and fly far apart",
+       "hi": "आज़ाद होकर दूर-दूर उड़ेंगे"
+      },
+      {
+       "id": "stop",
+       "en": "Stop moving",
+       "hi": "चलना बंद कर देंगे"
+      },
+      {
+       "id": "stick",
+       "en": "Pack closer together",
+       "hi": "और पास सट जाएँगे"
+      }
+     ],
+     "answer": "free"
+    },
+    {
+     "kind": "do",
+     "target": "slider:temp",
+     "expect": "state:gas",
+     "say": {
+      "en": "Drag the temperature above 100 °C.",
+      "hi": "तापमान को 100 °C से ऊपर खींचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:temp",
+     "expect": "state:solid",
+     "say": {
+      "en": "Now drag it below 0 °C.",
+      "hi": "अब इसे 0 °C से नीचे खींचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In ice the particles are held tightly by strong attractions and only vibrate in place. Heating gives them energy: in water they slide past each other, and in steam they break free and move fast with large spaces between them. Cooling reverses this. The strength of the attraction and the space between particles decide the state.",
+      "hi": "बर्फ़ में कण मज़बूत आकर्षण से कसकर बँधे रहते हैं और अपनी जगह पर केवल कंपन करते हैं। गर्म करने से उन्हें ऊर्जा मिलती है: पानी में वे एक-दूसरे पर फिसलते हैं, और भाप में वे आज़ाद होकर बीच में बड़ी जगह के साथ तेज़ चलते हैं। ठंडा करने से उल्टा होता है। आकर्षण की ताक़त और कणों के बीच की जगह से अवस्था तय होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which state are the attractions between particles the weakest?",
+        "hi": "किस अवस्था में कणों के बीच आकर्षण सबसे कमज़ोर होता है?"
+       },
+       "options": [
+        {
+         "en": "Gas",
+         "hi": "गैस"
+        },
+        {
+         "en": "Liquid",
+         "hi": "द्रव"
+        },
+        {
+         "en": "Solid",
+         "hi": "ठोस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gas particles are almost free, with the biggest spaces.",
+        "hi": "गैस के कण लगभग आज़ाद होते हैं, सबसे बड़ी जगहों के साथ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In a liquid the attraction is weaker than in a solid but still holds the particles close.",
+         "hi": "द्रव में आकर्षण ठोस से कमज़ोर है पर कणों को पास रखता है।"
+        },
+        {
+         "en": "Solid particles have the strongest attraction; they are locked in place.",
+         "hi": "ठोस के कणों में सबसे मज़बूत आकर्षण होता है; वे जगह पर जकड़े रहते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Heat and watch the graph: why does the temperature stay flat at 0 °C and 100 °C for a while? Then try wax.",
+      "hi": "गर्म करो दबाकर ग्राफ़ देखो: 0 °C और 100 °C पर तापमान कुछ देर एक जैसा क्यों रहता है? फिर मोम आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch07-properties",
+   "topic": "7.2.1",
+   "template": "sort",
+   "title": {
+    "en": "Solid, liquid or gas?",
+    "hi": "ठोस, द्रव या गैस?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "solid",
+      "label": {
+       "en": "Solid",
+       "hi": "ठोस"
+      }
+     },
+     {
+      "id": "liquid",
+      "label": {
+       "en": "Liquid",
+       "hi": "द्रव"
+      }
+     },
+     {
+      "id": "gas",
+      "label": {
+       "en": "Gas",
+       "hi": "गैस"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "shape",
+      "text": {
+       "en": "Has a fixed shape",
+       "hi": "निश्चित आकार होता है"
+      },
+      "bin": "solid",
+      "why": {
+       "en": "Strong attractions lock solid particles in place, so the shape stays.",
+       "hi": "मज़बूत आकर्षण ठोस के कणों को जगह पर जकड़ते हैं, इसलिए आकार बना रहता है।"
+      }
+     },
+     {
+      "id": "nosqueeze",
+      "text": {
+       "en": "Very hard to squeeze",
+       "hi": "दबाना बहुत कठिन"
+      },
+      "bin": "solid",
+      "why": {
+       "en": "Its particles are packed with almost no space.",
+       "hi": "इसके कण लगभग बिना जगह के सटे होते हैं।"
+      }
+     },
+     {
+      "id": "brick",
+      "text": {
+       "en": "A brick, a coin, an ice cube",
+       "hi": "ईंट, सिक्का, बर्फ़ का टुकड़ा"
+      },
+      "bin": "solid",
+      "why": {
+       "en": "They keep their own shape on any table.",
+       "hi": "ये किसी भी मेज़ पर अपना आकार बनाए रखते हैं।"
+      }
+     },
+     {
+      "id": "flow",
+      "text": {
+       "en": "Flows and takes the shape of the vessel",
+       "hi": "बहता है और बर्तन का आकार ले लेता है"
+      },
+      "bin": "liquid",
+      "why": {
+       "en": "Particles can slide past each other, so it flows.",
+       "hi": "कण एक-दूसरे पर फिसल सकते हैं, इसलिए यह बहता है।"
+      }
+     },
+     {
+      "id": "volume",
+      "text": {
+       "en": "Fixed volume but no fixed shape",
+       "hi": "निश्चित आयतन पर निश्चित आकार नहीं"
+      },
+      "bin": "liquid",
+      "why": {
+       "en": "200 mL of milk stays 200 mL in a glass or a bowl.",
+       "hi": "200 mL दूध गिलास में हो या कटोरी में, 200 mL ही रहता है।"
+      }
+     },
+     {
+      "id": "milk",
+      "text": {
+       "en": "Milk, oil, water",
+       "hi": "दूध, तेल, पानी"
+      },
+      "bin": "liquid",
+      "why": {
+       "en": "All of these pour and fill the bottom of a container.",
+       "hi": "ये सब उड़ेले जा सकते हैं और बर्तन की तली भरते हैं।"
+      }
+     },
+     {
+      "id": "fill",
+      "text": {
+       "en": "Fills the whole container",
+       "hi": "पूरे बर्तन में भर जाती है"
+      },
+      "bin": "gas",
+      "why": {
+       "en": "Gas particles move freely in all directions.",
+       "hi": "गैस के कण हर दिशा में आज़ादी से चलते हैं।"
+      }
+     },
+     {
+      "id": "squeeze",
+      "text": {
+       "en": "Easy to squeeze into less space",
+       "hi": "कम जगह में आसानी से दबाई जा सकती है"
+      },
+      "bin": "gas",
+      "why": {
+       "en": "There are large spaces between gas particles.",
+       "hi": "गैस के कणों के बीच बड़ी जगहें होती हैं।"
+      }
+     },
+     {
+      "id": "smoke",
+      "text": {
+       "en": "Incense smoke, air in a balloon",
+       "hi": "अगरबत्ती का धुआँ, गुब्बारे की हवा"
+      },
+      "bin": "gas",
+      "why": {
+       "en": "They spread out to fill any space they get.",
+       "hi": "ये जितनी जगह मिले, उसमें फैल जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:shape",
+     "expect": "correct:shape",
+     "say": {
+      "en": "Tap \"Has a fixed shape\", then its group.",
+      "hi": "\"निश्चित आकार होता है\" छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:flow",
+     "expect": "correct:flow",
+     "say": {
+      "en": "Place the card about flowing.",
+      "hi": "बहने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which state can be squeezed into much less space?",
+      "hi": "किस अवस्था को बहुत कम जगह में दबाया जा सकता है?"
+     },
+     "options": [
+      {
+       "id": "gas",
+       "en": "Gas",
+       "hi": "गैस"
+      },
+      {
+       "id": "solid",
+       "en": "Solid",
+       "hi": "ठोस"
+      },
+      {
+       "id": "liquid",
+       "en": "Liquid",
+       "hi": "द्रव"
+      }
+     ],
+     "answer": "gas"
+    },
+    {
+     "kind": "do",
+     "target": "card:squeeze",
+     "expect": "correct:squeeze",
+     "say": {
+      "en": "Place the card about squeezing.",
+      "hi": "दबाने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Solids have a fixed shape and volume because their particles are held tightly with very little space. Liquids have a fixed volume but take the shape of their container, because particles can move within a space. Gases have neither a fixed shape nor a fixed volume; their particles are free and far apart, so gases are easy to compress.",
+      "hi": "ठोस का आकार और आयतन निश्चित होता है क्योंकि उसके कण बहुत कम जगह के साथ कसकर बँधे होते हैं। द्रव का आयतन निश्चित होता है पर आकार बर्तन जैसा हो जाता है, क्योंकि कण एक जगह में घूम सकते हैं। गैस का न आकार निश्चित होता है न आयतन; उसके कण आज़ाद और दूर-दूर होते हैं, इसलिए गैस आसानी से दबती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can you pour water but not a brick?",
+        "hi": "पानी उड़ेला जा सकता है पर ईंट नहीं, क्यों?"
+       },
+       "options": [
+        {
+         "en": "Water particles can slide past each other",
+         "hi": "पानी के कण एक-दूसरे पर फिसल सकते हैं"
+        },
+        {
+         "en": "Water is lighter",
+         "hi": "पानी हल्का है"
+        },
+        {
+         "en": "Bricks have no particles",
+         "hi": "ईंट में कण नहीं होते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a liquid the attractions are weaker, so the particles move and the liquid flows.",
+        "hi": "द्रव में आकर्षण कमज़ोर होते हैं, इसलिए कण चलते हैं और द्रव बहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A bucket of water can weigh more than a brick and still pour. It is about particles.",
+         "hi": "एक बाल्टी पानी ईंट से भारी होकर भी उड़ेला जा सकता है। बात कणों की है।"
+        },
+        {
+         "en": "All matter, including bricks, is made of particles.",
+         "hi": "ईंट समेत सारा पदार्थ कणों से बना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again without mistakes. Then think about sand: it pours like a liquid, but is it one? Look at a single grain.",
+      "hi": "बिना ग़लती के फिर छाँटो। फिर रेत के बारे में सोचो: यह द्रव जैसी उड़ेली जाती है, पर क्या यह द्रव है? एक अकेला दाना देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch07-diffusion",
+   "topic": "7.2.2",
+   "template": "particles",
+   "title": {
+    "en": "Colour spreading in water",
+    "hi": "पानी में फैलता रंग"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "diffusion",
+    "substance": "ink",
+    "compare": true
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You put a drop of ink into cold water and into hot water, without stirring. Where will it spread out first?",
+      "hi": "तुम बिना चलाए ठंडे और गर्म पानी में स्याही की एक बूँद डालते हो। यह पहले कहाँ फैलेगी?"
+     },
+     "options": [
+      {
+       "id": "hot",
+       "en": "In the hot water",
+       "hi": "गर्म पानी में"
+      },
+      {
+       "id": "cold",
+       "en": "In the cold water",
+       "hi": "ठंडे पानी में"
+      },
+      {
+       "id": "same",
+       "en": "At the same time",
+       "hi": "एक साथ"
+      }
+     ],
+     "answer": "hot"
+    },
+    {
+     "kind": "do",
+     "target": "add",
+     "expect": "spread",
+     "say": {
+      "en": "Add a drop of ink to both and watch.",
+      "hi": "दोनों में स्याही की एक बूँद डालो और देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The colour spreads by itself, even with no stirring. This mixing of particles is called diffusion. It happens because the particles of a liquid are always moving and there are spaces between them. In hot water the particles move faster, so diffusion is quicker. Potassium permanganate crystals in water show the same.",
+      "hi": "रंग बिना चलाए अपने आप फैलता है। कणों के इस मिलने को विसरण कहते हैं। यह इसलिए होता है क्योंकि द्रव के कण हमेशा चलते रहते हैं और उनके बीच जगह होती है। गर्म पानी में कण तेज़ चलते हैं, इसलिए विसरण जल्दी होता है। पानी में पोटैशियम परमैंगनेट के दाने भी यही दिखाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the colour spread faster in hot water?",
+        "hi": "गर्म पानी में रंग जल्दी क्यों फैलता है?"
+       },
+       "options": [
+        {
+         "en": "Its particles move faster",
+         "hi": "उसके कण तेज़ चलते हैं"
+        },
+        {
+         "en": "Hot water is thicker",
+         "hi": "गर्म पानी गाढ़ा होता है"
+        },
+        {
+         "en": "The ink is heavier",
+         "hi": "स्याही भारी होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heat gives particles more energy, so they move and mix faster.",
+        "hi": "ऊष्मा कणों को ज़्यादा ऊर्जा देती है, इसलिए वे तेज़ चलकर जल्दी मिलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hot water is runnier, not thicker; the key is particle speed.",
+         "hi": "गर्म पानी पतला होता है, गाढ़ा नहीं; असली बात कणों की चाल है।"
+        },
+        {
+         "en": "The same ink went into both glasses, so its weight is not the difference.",
+         "hi": "दोनों गिलासों में वही स्याही गई, इसलिए भार अंतर नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Go to explore mode and try perfume in air. Why does a smell spread across a room faster than ink spreads in water?",
+      "hi": "एक्सप्लोर में जाकर हवा में इत्र आज़माओ। कमरे में गंध पानी में स्याही से तेज़ क्यों फैलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch07-syringe",
+   "topic": "7.2.3",
+   "template": "particles",
+   "title": {
+    "en": "Squeeze the air",
+    "hi": "हवा को दबाओ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "gaslaw",
+    "hold": "temperature"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You close the tip of a syringe full of air and push the plunger. What will happen?",
+      "hi": "तुम हवा से भरी सिरिंज का मुँह बंद करके प्लंजर दबाते हो। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "in",
+       "en": "The plunger goes in: air squeezes into less space",
+       "hi": "प्लंजर अंदर जाएगा: हवा कम जगह में दब जाएगी"
+      },
+      {
+       "id": "stuck",
+       "en": "It will not move at all",
+       "hi": "यह बिल्कुल नहीं हिलेगा"
+      },
+      {
+       "id": "out",
+       "en": "The air leaks out",
+       "hi": "हवा बाहर निकल जाएगी"
+      }
+     ],
+     "answer": "in"
+    },
+    {
+     "kind": "do",
+     "target": "slider:pressure",
+     "expect": "changed:pressure",
+     "say": {
+      "en": "Raise the pressure, like pushing the plunger.",
+      "hi": "दाब बढ़ाओ, जैसे प्लंजर दबाते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:pressure",
+     "expect": "changed:pressure",
+     "say": {
+      "en": "Now lower the pressure, like letting the plunger go.",
+      "hi": "अब दाब घटाओ, जैसे प्लंजर छोड़ते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There are large spaces between gas particles, so pushing them closer is easy: the air takes up less volume. Release the push and the moving particles spread out again. Solids and liquids hardly squeeze because their particles are already close. This is why cooking gas can be packed into a cylinder.",
+      "hi": "गैस के कणों के बीच बड़ी जगहें होती हैं, इसलिए उन्हें पास करना आसान है: हवा कम आयतन घेरती है। धक्का हटाओ तो चलते कण फिर फैल जाते हैं। ठोस और द्रव मुश्किल से दबते हैं क्योंकि उनके कण पहले से पास होते हैं। इसीलिए रसोई गैस को सिलिंडर में भरा जा सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The same syringe is filled with water and its tip closed. Can you push the plunger in?",
+        "hi": "वही सिरिंज पानी से भरकर उसका मुँह बंद किया गया। क्या प्लंजर दबाया जा सकता है?"
+       },
+       "options": [
+        {
+         "en": "Hardly at all",
+         "hi": "लगभग नहीं"
+        },
+        {
+         "en": "Easily, like air",
+         "hi": "आसानी से, हवा की तरह"
+        },
+        {
+         "en": "Yes, all the way",
+         "hi": "हाँ, पूरा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water particles are close together with little space, so liquids barely compress.",
+        "hi": "पानी के कण कम जगह के साथ पास-पास होते हैं, इसलिए द्रव मुश्किल से दबते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Air squeezes because of big spaces; water has very little space.",
+         "hi": "हवा बड़ी जगहों के कारण दबती है; पानी में बहुत कम जगह है।"
+        },
+        {
+         "en": "Pushing it all the way would need the water to vanish; it cannot.",
+         "hi": "पूरा दबाने के लिए पानी को ग़ायब होना पड़ेगा; ऐसा नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Watch the particles and the numbers as you move the slider. What happens to the volume when the pressure doubles?",
+      "hi": "स्लाइडर चलाते हुए कणों और संख्याओं को देखो। दाब दोगुना होने पर आयतन का क्या होता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Hook of the chapter",
+   "shows": "A cup of hot chai on a kitchen counter, steam rising, a spoon of sugar being stirred in, a jar of sugar beside it",
+   "view": "Close side view, warm morning light",
+   "right": "Steam visible; sugar crystals on the spoon",
+   "avoid": "Brand names on jars or cups"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Breaking chalk",
+   "shows": "A stick of chalk broken into two, then four, then many tiny bits, then powder",
+   "view": "From above on a dark slate, same framing",
+   "right": "Each frame smaller pieces of the same chalk",
+   "avoid": "Coloured chalk mixed in"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Sugar in water, level marked",
+   "shows": "A glass of water with the level marked by a rubber band; two spoons of sugar added and stirred; the level almost unchanged",
+   "view": "Front view at eye level with the mark",
+   "right": "Water clear after dissolving; mark at the same place",
+   "avoid": "Steel glasses (must be clear glass)"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "7.2.2",
+   "use": "Potassium permanganate diffusing",
+   "shows": "A few purple crystals dropped into a still glass of water: frame 1 just dropped, frame 2 purple streaks, frame 3 the whole glass light purple",
+   "view": "Front view, white background, same framing",
+   "right": "No stirring; colour spreads slowly from the bottom",
+   "avoid": "Fingers touching the crystals (use a spatula)"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "7.2",
+   "use": "Three states of water",
+   "shows": "An ice cube melting on a steel plate beside a glass of water and a kettle spout giving off steam",
+   "view": "Side view, soft light, dark background so the steam shows",
+   "right": "Ice, water and steam all visible together",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "7.2.3",
+   "use": "Syringe and air",
+   "shows": "A plastic syringe (no needle) full of air, thumb sealing the tip: frame 1 plunger out, frame 2 plunger pushed partway in",
+   "view": "Side view with a scale behind the syringe",
+   "right": "Plunger moves in with the tip sealed; no needle",
+   "avoid": "Any needle"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "7.2.3",
+   "use": "Incense spreads",
+   "shows": "A lit incense stick in a corner of a room, a thin line of smoke spreading out towards the far side",
+   "view": "Wide room view, side light from a window",
+   "right": "Smoke spreading and thinning with distance",
+   "avoid": "Fire near curtains"
+  }
+ ]
+}

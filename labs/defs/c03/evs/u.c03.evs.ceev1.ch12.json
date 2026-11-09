@@ -1,0 +1,763 @@
+{
+ "chapter_key": "u.c03.evs.ceev1.ch12",
+ "class": 3,
+ "subject_id": "evs",
+ "title": "Taking Charge of Waste",
+ "source": "https://ncert.nic.in/textbook/pdf/ceev112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Waste around us and the trouble it causes",
+   "labs": [],
+   "why_no_lab": "Seeing garbage, smoke and dirty water in real photographs, and talking about them, teaches the problem better than a lab."
+  },
+  {
+   "n": "12.2",
+   "title": "Reduce, reuse and recycle",
+   "labs": [
+    "c3-evs-ceev1-ch12-three-rs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Zero-waste villages and clean cities",
+   "labs": [],
+   "why_no_lab": "Stories of Silluk, Chhota Narena, Indore and Mysuru are best told with a map, photos and the reader."
+  },
+  {
+   "n": "12.4",
+   "title": "Two dustbins: green for wet waste and blue for dry waste",
+   "labs": [
+    "c3-evs-ceev1-ch12-bins"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.5",
+   "title": "Keeping our surroundings clean: a zero-waste party and the cleanliness pledge",
+   "labs": [
+    "c3-evs-ceev1-ch12-party"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-evs-ceev1-ch12-bins",
+   "topic": "12.4",
+   "template": "eco",
+   "title": {
+    "en": "Green bin and blue bin",
+    "hi": "हरा डिब्बा और नीला डिब्बा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "waste",
+    "organisms": [
+     "veg",
+     "leaves",
+     "rice",
+     "flowers",
+     "newspaper",
+     "bottle",
+     "glass",
+     "can"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:veg",
+     "expect": "picked:veg",
+     "say": {
+      "en": "Tap the vegetable scraps.",
+      "hi": "सब्ज़ी के छिलके छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which bin do vegetable scraps go into?",
+      "hi": "सब्ज़ी के छिलके किस डिब्बे में जाते हैं?"
+     },
+     "options": [
+      {
+       "id": "green",
+       "en": "Green bin (wet waste)",
+       "hi": "हरा डिब्बा (गीला कचरा)"
+      },
+      {
+       "id": "blue",
+       "en": "Blue bin (dry waste)",
+       "hi": "नीला डिब्बा (सूखा कचरा)"
+      }
+     ],
+     "answer": "green"
+    },
+    {
+     "kind": "do",
+     "target": "bin:green",
+     "expect": "sorted",
+     "say": {
+      "en": "Tap the bin you think is right.",
+      "hi": "वह डिब्बा छुओ जो तुम्हें सही लगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:bottle",
+     "expect": "picked:bottle",
+     "say": {
+      "en": "Now tap the plastic bottle.",
+      "hi": "अब प्लास्टिक की बोतल छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:blue",
+     "expect": "sorted",
+     "say": {
+      "en": "Tap the bin where the bottle belongs.",
+      "hi": "वह डिब्बा छुओ जिसमें बोतल जाती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Wet waste like vegetable peels, rice, leaves and flowers rots easily and goes in the green bin. It can become compost, which feeds plants. Dry waste like paper, plastic, glass and metal goes in the blue bin so it can be recycled and made into new things.",
+      "hi": "सब्ज़ी के छिलके, चावल, पत्तियाँ और फूल जैसा गीला कचरा आसानी से सड़ता है और हरे डिब्बे में जाता है। उससे खाद बन सकती है, जो पौधों को पोषण देती है। काग़ज़, प्लास्टिक, काँच और धातु जैसा सूखा कचरा नीले डिब्बे में जाता है ताकि उसका पुनर्चक्रण करके नई चीज़ें बनाई जा सकें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where do leftover rice and fruit peels go?",
+        "hi": "बचा हुआ चावल और फलों के छिलके कहाँ डालते हैं?"
+       },
+       "options": [
+        {
+         "en": "Blue bin",
+         "hi": "नीला डिब्बा"
+        },
+        {
+         "en": "Green bin",
+         "hi": "हरा डिब्बा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Food waste rots and is wet waste. It goes in the green bin and can become compost.",
+        "hi": "खाने का कचरा सड़ता है और गीला कचरा है। वह हरे डिब्बे में जाता है और खाद बन सकता है।"
+       },
+       "wrong": [
+        {
+         "en": "Blue is for dry waste like paper and glass. Rice and peels are wet waste.",
+         "hi": "नीला डिब्बा काग़ज़ और काँच जैसे सूखे कचरे के लिए है। चावल और छिलके गीला कचरा हैं।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we put paper, glass and metal in the blue bin?",
+        "hi": "काग़ज़, काँच और धातु नीले डिब्बे में क्यों डालते हैं?"
+       },
+       "options": [
+        {
+         "en": "They can be recycled into new things",
+         "hi": "उनसे दोबारा नई चीज़ें बनाई जा सकती हैं"
+        },
+        {
+         "en": "They rot into compost",
+         "hi": "वे सड़कर खाद बन जाते हैं"
+        },
+        {
+         "en": "They are food for plants",
+         "hi": "वे पौधों का भोजन हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Recycling means making new objects from old paper, glass, metal and plastic.",
+        "hi": "पुनर्चक्रण का मतलब है पुराने काग़ज़, काँच, धातु और प्लास्टिक से नई चीज़ें बनाना।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Paper, glass and metal do not become compost quickly. They are recycled.",
+         "hi": "काग़ज़, काँच और धातु जल्दी खाद नहीं बनते। उनका पुनर्चक्रण होता है।"
+        },
+        {
+         "en": "They are not food for plants. Compost from wet waste feeds plants.",
+         "hi": "वे पौधों का भोजन नहीं हैं। गीले कचरे की खाद पौधों को पोषण देती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the other waste items too. Then look at the bins at your school. Are the two kinds of waste kept apart?",
+      "hi": "दूसरी कचरे की चीज़ें भी आज़माओ। फिर अपने स्कूल के डिब्बे देखो। क्या दोनों तरह का कचरा अलग-अलग रखा जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch12-three-rs",
+   "topic": "12.2",
+   "template": "sort",
+   "title": {
+    "en": "Reduce, reuse, recycle",
+    "hi": "कम करो, दोबारा उपयोग करो, पुनर्चक्रण करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "reduce",
+      "label": {
+       "en": "Reduce",
+       "hi": "कम करो"
+      }
+     },
+     {
+      "id": "reuse",
+      "label": {
+       "en": "Reuse",
+       "hi": "दोबारा उपयोग करो"
+      }
+     },
+     {
+      "id": "recycle",
+      "label": {
+       "en": "Recycle",
+       "hi": "पुनर्चक्रण करो"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cloth",
+      "text": {
+       "en": "Take a cloth bag to the market",
+       "hi": "बाज़ार में कपड़े का थैला ले जाओ"
+      },
+      "bin": "reduce",
+      "why": {
+       "en": "A cloth bag means we do not need plastic bags. Less waste is made.",
+       "hi": "कपड़े के थैले से प्लास्टिक की थैलियाँ नहीं चाहिए। कम कचरा बनता है।"
+      }
+     },
+     {
+      "id": "need",
+      "text": {
+       "en": "Buy only what you need",
+       "hi": "उतना ही ख़रीदो जितनी ज़रूरत हो"
+      },
+      "bin": "reduce",
+      "why": {
+       "en": "The less we buy, the less we throw away.",
+       "hi": "जितना कम ख़रीदेंगे, उतना कम फेंकेंगे।"
+      }
+     },
+     {
+      "id": "noplastic",
+      "text": {
+       "en": "Say no to extra plastic wrappers",
+       "hi": "ज़्यादा प्लास्टिक के आवरण को मना करो"
+      },
+      "bin": "reduce",
+      "why": {
+       "en": "Fewer wrappers mean less waste.",
+       "hi": "कम आवरण का मतलब कम कचरा।"
+      }
+     },
+     {
+      "id": "bottle",
+      "text": {
+       "en": "Refill a steel water bottle",
+       "hi": "स्टील की बोतल दोबारा भरो"
+      },
+      "bin": "reuse",
+      "why": {
+       "en": "One bottle can be filled again and again.",
+       "hi": "एक बोतल बार-बार भरी जा सकती है।"
+      }
+     },
+     {
+      "id": "paper",
+      "text": {
+       "en": "Use the blank side of used paper",
+       "hi": "इस्तेमाल हुए काग़ज़ का ख़ाली पन्ना काम में लो"
+      },
+      "bin": "reuse",
+      "why": {
+       "en": "Used paper is still good on its empty side.",
+       "hi": "इस्तेमाल हुए काग़ज़ का ख़ाली पीछे का हिस्सा अब भी काम का है।"
+      }
+     },
+     {
+      "id": "sari",
+      "text": {
+       "en": "Make a bag or quilt from an old saree",
+       "hi": "पुरानी साड़ी से थैला या रज़ाई बनाओ"
+      },
+      "bin": "reuse",
+      "why": {
+       "en": "Old cloth gets a second life, like our grandparents did.",
+       "hi": "पुराना कपड़ा नया जीवन पाता है, जैसा हमारे दादा-दादी करते थे।"
+      }
+     },
+     {
+      "id": "toys",
+      "text": {
+       "en": "Give old toys and books to those who need them",
+       "hi": "पुराने खिलौने और किताबें ज़रूरतमंदों को दे दो"
+      },
+      "bin": "reuse",
+      "why": {
+       "en": "Someone else can use what you have outgrown.",
+       "hi": "जो चीज़ें तुम्हारे काम की नहीं रहीं, कोई और उनका उपयोग कर सकता है।"
+      }
+     },
+     {
+      "id": "news",
+      "text": {
+       "en": "Send old newspapers to be made into new paper",
+       "hi": "पुराने अख़बार नया काग़ज़ बनाने के लिए दो"
+      },
+      "bin": "recycle",
+      "why": {
+       "en": "Old paper can be turned into new paper.",
+       "hi": "पुराने काग़ज़ से नया काग़ज़ बन सकता है।"
+      }
+     },
+     {
+      "id": "cans",
+      "text": {
+       "en": "Put tin cans and glass bottles in the blue bin",
+       "hi": "टिन के डिब्बे और काँच की बोतलें नीले डिब्बे में डालो"
+      },
+      "bin": "recycle",
+      "why": {
+       "en": "Metal and glass can be melted and made into new things.",
+       "hi": "धातु और काँच को पिघलाकर नई चीज़ें बनाई जा सकती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:cloth",
+     "expect": "placed:cloth",
+     "say": {
+      "en": "Tap a card, then tap the group: Reduce, Reuse or Recycle.",
+      "hi": "कार्ड छुओ, फिर समूह चुनो: कम करो, दोबारा उपयोग करो या पुनर्चक्रण करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Refilling a steel water bottle is an example of which?",
+      "hi": "स्टील की बोतल को दोबारा भरना किसका उदाहरण है?"
+     },
+     "options": [
+      {
+       "id": "reuse",
+       "en": "Reuse",
+       "hi": "दोबारा उपयोग"
+      },
+      {
+       "id": "reduce",
+       "en": "Reduce",
+       "hi": "कम करना"
+      },
+      {
+       "id": "recycle",
+       "en": "Recycle",
+       "hi": "पुनर्चक्रण"
+      }
+     ],
+     "answer": "reuse"
+    },
+    {
+     "kind": "do",
+     "target": "card:cans",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the habits.",
+      "hi": "सारी आदतें छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Reduce means making less waste, for example buying only what we need. Reuse means using a thing again instead of throwing it away. Recycle means sending old paper, glass, metal and plastic to be made into new things. Reduce comes first, because the best waste is the waste we never make.",
+      "hi": "कम करने का मतलब है कम कचरा बनाना, जैसे उतना ही ख़रीदना जितनी ज़रूरत हो। दोबारा उपयोग का मतलब है किसी चीज़ को फेंकने की जगह फिर से काम में लेना। पुनर्चक्रण का मतलब है पुराने काग़ज़, काँच, धातु और प्लास्टिक से नई चीज़ें बनवाना। कम करना सबसे पहले आता है, क्योंकि सबसे अच्छा कचरा वह है जो बना ही नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which action reduces waste?",
+        "hi": "कौन-सा काम कचरा कम करता है?"
+       },
+       "options": [
+        {
+         "en": "Using a cloth bag instead of many plastic bags",
+         "hi": "बहुत सी प्लास्टिक की थैलियों की जगह कपड़े का थैला उपयोग करना"
+        },
+        {
+         "en": "Throwing a bottle after one use",
+         "hi": "बोतल को एक बार उपयोग करके फेंक देना"
+        },
+        {
+         "en": "Buying many things you do not need",
+         "hi": "बहुत सी बिना ज़रूरत की चीज़ें ख़रीदना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A cloth bag can be used hundreds of times, so we need far fewer plastic bags.",
+        "hi": "कपड़े का थैला सैकड़ों बार इस्तेमाल हो सकता है, इसलिए प्लास्टिक की थैलियाँ बहुत कम लगती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That makes more waste, not less.",
+         "hi": "इससे कचरा कम नहीं, ज़्यादा बनता है।"
+        },
+        {
+         "en": "The more we buy, the more we throw away.",
+         "hi": "जितना ज़्यादा ख़रीदेंगे, उतना ज़्यादा फेंकेंगे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find one thing at home that you can reuse instead of throwing away. Make something new from it, such as a paper bag, and thank the person who keeps your locality clean.",
+      "hi": "घर में एक ऐसी चीज़ ढूँढो जिसे फेंकने की जगह दोबारा उपयोग कर सको। उससे कुछ नया बनाओ, जैसे काग़ज़ का थैला, और अपने मोहल्ले को साफ़ रखने वाले को धन्यवाद दो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch12-party",
+   "topic": "12.5",
+   "template": "scenario",
+   "title": {
+    "en": "A zero-waste birthday party",
+    "hi": "बिना कचरे वाला जन्मदिन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "home",
+    "role": {
+     "en": "A child planning a birthday",
+     "hi": "जन्मदिन की योजना बनाता बच्चा"
+    },
+    "scenes": [
+     {
+      "id": "invite",
+      "text": {
+       "en": "Your birthday is coming. You want to invite your friends but make as little waste as you can. How will you invite them?",
+       "hi": "तुम्हारा जन्मदिन आ रहा है। तुम दोस्तों को बुलाना चाहते हो पर कम से कम कचरा बनाना चाहते हो। तुम उन्हें कैसे बुलाओगे?"
+      },
+      "choices": [
+       {
+        "id": "call",
+        "text": {
+         "en": "Tell them in person or draw cards on used paper",
+         "hi": "उन्हें मिलकर बताऊँ या इस्तेमाल हुए काग़ज़ पर कार्ड बनाऊँ"
+        },
+        "next": "decor",
+        "good": true,
+        "feedback": {
+         "en": "Great! Used paper gets a new life and nothing new is wasted.",
+         "hi": "बहुत अच्छा! इस्तेमाल हुए काग़ज़ को नया जीवन मिलता है और कुछ नया बर्बाद नहीं होता।"
+        }
+       },
+       {
+        "id": "buy",
+        "text": {
+         "en": "Buy fancy invitation cards in plastic covers",
+         "hi": "प्लास्टिक के आवरण में महँगे निमंत्रण कार्ड ख़रीदूँ"
+        },
+        "next": "decor",
+        "feedback": {
+         "en": "Cards and plastic covers will become waste after one day. A hand-made card is better.",
+         "hi": "कार्ड और प्लास्टिक के आवरण एक दिन बाद कचरा बन जाएँगे। हाथ से बना कार्ड बेहतर है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "decor",
+      "text": {
+       "en": "Now you want to decorate the house. What will you use?",
+       "hi": "अब तुम घर सजाना चाहते हो। तुम क्या इस्तेमाल करोगे?"
+      },
+      "choices": [
+       {
+        "id": "paper",
+        "text": {
+         "en": "Paper chains from old newspaper and fresh flowers",
+         "hi": "पुराने अख़बार की झालर और ताज़े फूल"
+        },
+        "next": "food",
+        "good": true,
+        "feedback": {
+         "en": "Flowers rot into compost and paper chains can be reused or recycled. Beautiful and kind to the Earth.",
+         "hi": "फूल सड़कर खाद बन जाते हैं और काग़ज़ की झालर दोबारा काम आ सकती है या उसका पुनर्चक्रण हो सकता है। सुंदर और धरती के लिए अच्छा।"
+        }
+       },
+       {
+        "id": "plastic",
+        "text": {
+         "en": "Lots of plastic streamers and balloons",
+         "hi": "खूब प्लास्टिक की झालरें और गुब्बारे"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Plastic decorations are thrown away after the party and stay for hundreds of years.",
+         "hi": "प्लास्टिक की सजावट पार्टी के बाद फेंक दी जाती है और सैकड़ों साल रहती है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "food",
+      "text": {
+       "en": "It is time to serve food and drinks to the guests. What will you use?",
+       "hi": "अब मेहमानों को खाना और पीना परोसने का समय है। तुम क्या इस्तेमाल करोगे?"
+      },
+      "choices": [
+       {
+        "id": "steel",
+        "text": {
+         "en": "Steel plates and glasses from home, and leftover food saved for the next day",
+         "hi": "घर की स्टील की थालियाँ और गिलास, और बचा खाना अगले दिन के लिए रख लूँ"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Perfect! Plates are washed and reused, and no food is wasted.",
+         "hi": "बिल्कुल सही! थालियाँ धोकर दोबारा इस्तेमाल होंगी और खाना बर्बाद नहीं होगा।"
+        }
+       },
+       {
+        "id": "disposable",
+        "text": {
+         "en": "Plastic plates and cups that I throw away",
+         "hi": "प्लास्टिक की थालियाँ और कप जिन्हें मैं फेंक दूँ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Plastic plates make a heap of waste that will not rot.",
+         "hi": "प्लास्टिक की थालियाँ कचरे का ऐसा ढेर बनाती हैं जो सड़ता नहीं।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which decoration makes the least lasting waste?",
+      "hi": "किस सजावट से सबसे कम टिकाऊ कचरा बनता है?"
+     },
+     "options": [
+      {
+       "id": "flowers",
+       "en": "Fresh flowers and paper chains",
+       "hi": "ताज़े फूल और काग़ज़ की झालर"
+      },
+      {
+       "id": "plastic",
+       "en": "Plastic streamers",
+       "hi": "प्लास्टिक की झालरें"
+      },
+      {
+       "id": "balloons",
+       "en": "Many balloons",
+       "hi": "बहुत सारे गुब्बारे"
+      }
+     ],
+     "answer": "flowers"
+    },
+    {
+     "kind": "do",
+     "target": "choice:invite:call",
+     "expect": "chose:call",
+     "say": {
+      "en": "Choose a way to invite friends with little waste.",
+      "hi": "कम कचरे में दोस्तों को बुलाने का तरीका चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:decor:paper",
+     "expect": "chose:paper",
+     "say": {
+      "en": "Choose decorations that do not stay as waste.",
+      "hi": "ऐसी सजावट चुनो जो कचरे के रूप में न रहे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:food:steel",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose how to serve the food.",
+      "hi": "खाना परोसने का तरीका चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A party can be fun and still make very little waste. We can reduce by not buying things we do not need, reuse plates and paper, and keep flowers and food scraps for compost. Our motto is: want not, waste not.",
+      "hi": "पार्टी मज़ेदार भी हो सकती है और कम कचरा भी बना सकती है। जो ज़रूरी नहीं उसे न ख़रीदकर हम कम कर सकते हैं, थालियों और काग़ज़ को दोबारा काम में ले सकते हैं और फूल व खाने के बचे हिस्से को खाद के लिए रख सकते हैं। हमारा मंत्र है: ज़रूरत से ज़्यादा नहीं, कुछ बर्बाद नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are plastic plates a bad choice for a party?",
+        "hi": "पार्टी के लिए प्लास्टिक की थालियाँ बुरा विकल्प क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "They make waste that does not rot",
+         "hi": "वे ऐसा कचरा बनाती हैं जो सड़ता नहीं"
+        },
+        {
+         "en": "They are too beautiful",
+         "hi": "वे बहुत सुंदर होती हैं"
+        },
+        {
+         "en": "They taste bad",
+         "hi": "वे बेस्वाद होती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Plastic does not rot, so plates thrown away stay on the Earth for a very long time.",
+        "hi": "प्लास्टिक सड़ता नहीं, इसलिए फेंकी गई थालियाँ बहुत लंबे समय तक धरती पर पड़ी रहती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Beauty is not the problem. Plastic stays as waste for hundreds of years.",
+         "hi": "सुंदरता समस्या नहीं है। प्लास्टिक सैकड़ों साल कचरे के रूप में रहता है।"
+        },
+        {
+         "en": "Plates do not have a taste. The problem is the waste they leave.",
+         "hi": "थालियों का कोई स्वाद नहीं होता। समस्या उनसे बनने वाला कचरा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Restart and try the other choices. Plan a zero-waste party for your own birthday and list what you will use.",
+      "hi": "फिर से शुरू करो और दूसरे विकल्प आज़माओ। अपने जन्मदिन के लिए बिना कचरे वाली पार्टी की योजना बनाओ और लिखो कि तुम क्या इस्तेमाल करोगे।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Chapter hook: waste on a roadside",
+   "shows": "A roadside with scattered plastic bags and wrappers, a cow nosing in a heap of garbage and a drain with dirty water",
+   "view": "Eye level, hazy light",
+   "right": "Real Indian setting, clearly harmful",
+   "avoid": "Children, brand names, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "12.3",
+   "use": "A clean village",
+   "shows": "A clean village lane lined with trees, a green and a blue bin at a tea shop, a sweeper smiling",
+   "view": "Eye level, bright light",
+   "right": "Clean road, no litter, two bins in correct colours",
+   "avoid": "Faces towards camera, text on bins"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "12.4",
+   "use": "Waste sorting cut-outs",
+   "shows": "Cut-outs of vegetable peels, rice in a bowl, dry leaves, flowers, a newspaper, a plastic bottle, a glass bottle and a tin can",
+   "view": "Three-quarter view, light from top left",
+   "right": "True materials and colours",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "12.4",
+   "use": "Two dustbins",
+   "shows": "A green dustbin and a blue dustbin standing side by side, empty, lids open",
+   "view": "Front view",
+   "right": "Green and blue exactly as used in India",
+   "avoid": "Words, symbols"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "12.2",
+   "use": "Paper bag from newspaper",
+   "shows": "Five frames of hands folding a sheet of newspaper into a paper bag",
+   "view": "Same camera, top-down",
+   "right": "Folds clear, no glue or scissors",
+   "avoid": "Faces, scissors"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "12.2",
+   "use": "Reuse in the home",
+   "shows": "A quilt made from old sarees, a bag made from old clothes and a flower pot made from an old can, shown together",
+   "view": "Three-quarter view",
+   "right": "Real home objects",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "12.5",
+   "use": "Zero-waste party table",
+   "shows": "A birthday table with steel plates, glasses, a cake, paper chains and fresh flowers",
+   "view": "Eye level, warm light",
+   "right": "No plastic, simple and festive",
+   "avoid": "Plastic items, faces"
+  }
+ ]
+}

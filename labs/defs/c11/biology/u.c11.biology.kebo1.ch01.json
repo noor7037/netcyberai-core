@@ -1,0 +1,1005 @@
+{
+  "chapter_key": "u.c11.biology.kebo1.ch01",
+  "class": 11,
+  "subject_id": "biology",
+  "title": "The Living World",
+  "source": "https://ncert.nic.in/textbook/pdf/kebo101.pdf",
+  "topics": [
+    {
+      "n": "1.1",
+      "title": "Diversity in the living world: identification, nomenclature and binomial names",
+      "labs": [
+        "c11-biology-kebo1-ch01-binomial"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.2",
+      "title": "Taxonomic categories: species, genus, family, order, class, phylum, kingdom",
+      "labs": [
+        "c11-biology-kebo1-ch01-hierarchy",
+        "c11-biology-kebo1-ch01-relatives",
+        "c11-biology-kebo1-ch01-families"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c11-biology-kebo1-ch01-binomial",
+      "topic": "1.1",
+      "template": "sort",
+      "title": {
+        "en": "Write a scientific name correctly",
+        "hi": "वैज्ञानिक नाम सही ढंग से लिखो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "right",
+            "label": {
+              "en": "Written correctly",
+              "hi": "सही लिखा है"
+            }
+          },
+          {
+            "id": "wrong",
+            "label": {
+              "en": "Written wrongly",
+              "hi": "ग़लत लिखा है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "mango",
+            "text": {
+              "en": "Mangifera indica",
+              "hi": "Mangifera indica (आम)"
+            },
+            "bin": "right",
+            "why": {
+              "en": "Genus first with a capital letter, species epithet second with a small letter.",
+              "hi": "पहले वंश का नाम बड़े अक्षर से, फिर जाति का नाम छोटे अक्षर से।"
+            }
+          },
+          {
+            "id": "lower",
+            "text": {
+              "en": "panthera leo",
+              "hi": "panthera leo"
+            },
+            "bin": "wrong",
+            "why": {
+              "en": "The genus name must begin with a capital letter: Panthera leo.",
+              "hi": "वंश का नाम बड़े (कैपिटल) अक्षर से शुरू होना चाहिए: Panthera leo।"
+            }
+          },
+          {
+            "id": "capital",
+            "text": {
+              "en": "Solanum Tuberosum",
+              "hi": "Solanum Tuberosum"
+            },
+            "bin": "wrong",
+            "why": {
+              "en": "The species epithet begins with a small letter: Solanum tuberosum (potato).",
+              "hi": "जाति का नाम छोटे अक्षर से शुरू होता है: Solanum tuberosum (आलू)।"
+            }
+          },
+          {
+            "id": "human",
+            "text": {
+              "en": "Homo sapiens",
+              "hi": "Homo sapiens (मनुष्य)"
+            },
+            "bin": "right",
+            "why": {
+              "en": "Two Latin words: genus Homo, species sapiens.",
+              "hi": "लैटिन के दो शब्द: वंश Homo, जाति sapiens।"
+            }
+          },
+          {
+            "id": "reverse",
+            "text": {
+              "en": "indica Mangifera",
+              "hi": "indica Mangifera"
+            },
+            "bin": "wrong",
+            "why": {
+              "en": "The order is fixed: genus first, then the species epithet.",
+              "hi": "क्रम तय है: पहले वंश, फिर जाति का नाम।"
+            }
+          },
+          {
+            "id": "wheat",
+            "text": {
+              "en": "Triticum aestivum",
+              "hi": "Triticum aestivum (गेहूँ)"
+            },
+            "bin": "right",
+            "why": {
+              "en": "Correct binomial name of wheat.",
+              "hi": "गेहूँ का सही द्विनाम।"
+            }
+          },
+          {
+            "id": "onlygenus",
+            "text": {
+              "en": "Musca",
+              "hi": "Musca"
+            },
+            "bin": "wrong",
+            "why": {
+              "en": "Only one word: a binomial name needs both the genus and the species epithet (Musca domestica).",
+              "hi": "केवल एक शब्द: द्विनाम में वंश और जाति दोनों चाहिए (Musca domestica)।"
+            }
+          },
+          {
+            "id": "author",
+            "text": {
+              "en": "Mangifera indica Linn.",
+              "hi": "Mangifera indica Linn."
+            },
+            "bin": "right",
+            "why": {
+              "en": "Correct. The short name after it tells who first described the species (Linnaeus).",
+              "hi": "सही। अंत का छोटा नाम बताता है कि इस जाति का पहला वर्णन किसने किया (लिनियस)।"
+            }
+          },
+          {
+            "id": "common",
+            "text": {
+              "en": "Aam indica",
+              "hi": "Aam indica"
+            },
+            "bin": "wrong",
+            "why": {
+              "en": "Aam is a local common name, not a Latin genus name. Scientific names are in Latin or Latinised.",
+              "hi": "आम एक स्थानीय नाम है, लैटिन वंश का नाम नहीं। वैज्ञानिक नाम लैटिन में होते हैं।"
+            }
+          },
+          {
+            "id": "housefly",
+            "text": {
+              "en": "Musca domestica",
+              "hi": "Musca domestica (घरेलू मक्खी)"
+            },
+            "bin": "right",
+            "why": {
+              "en": "Correct binomial name of the housefly.",
+              "hi": "घरेलू मक्खी का सही द्विनाम।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:mango",
+          "expect": "correct:mango",
+          "say": {
+            "en": "Tap the card \"Mangifera indica\", then tap the group where it belongs.",
+            "hi": "\"Mangifera indica\" कार्ड छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:lower",
+          "expect": "correct:lower",
+          "say": {
+            "en": "Now tap \"panthera leo\" and put it in its group.",
+            "hi": "अब \"panthera leo\" छुओ और इसे इसके समूह में रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Look at \"Solanum Tuberosum\". Is it written correctly?",
+            "hi": "\"Solanum Tuberosum\" को देखो। क्या यह सही लिखा है?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No: the second word should start with a small letter",
+              "hi": "नहीं: दूसरा शब्द छोटे अक्षर से शुरू होना चाहिए"
+            },
+            {
+              "id": "yes",
+              "en": "Yes: both words start with a capital",
+              "hi": "हाँ: दोनों शब्द बड़े अक्षर से शुरू हैं"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "card:capital",
+          "expect": "correct:capital",
+          "say": {
+            "en": "Tap \"Solanum Tuberosum\" and sort it.",
+            "hi": "\"Solanum Tuberosum\" छुओ और इसे छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Every species has one scientific name made of two parts: the genus name and the species epithet. This is binomial nomenclature, given by Carolus Linnaeus. The genus begins with a capital letter, the epithet with a small letter. Printed names are in italics; handwritten names are underlined, each word separately.",
+            "hi": "हर जाति का एक वैज्ञानिक नाम होता है जिसके दो भाग हैं: वंश का नाम और जाति का नाम। इसे द्विनाम पद्धति कहते हैं, जो कैरोलस लिनियस ने दी। वंश का नाम बड़े अक्षर से और जाति का नाम छोटे अक्षर से शुरू होता है। छपे नाम तिरछे (इटैलिक) अक्षरों में होते हैं; हाथ से लिखते समय दोनों शब्दों के नीचे अलग-अलग रेखा खींचते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why do scientists use scientific names instead of local names like \"aam\"?",
+                "hi": "वैज्ञानिक \"आम\" जैसे स्थानीय नामों की जगह वैज्ञानिक नाम क्यों इस्तेमाल करते हैं?"
+              },
+              "options": [
+                {
+                  "en": "One plant has many local names; one scientific name is understood everywhere",
+                  "hi": "एक पौधे के कई स्थानीय नाम होते हैं; एक वैज्ञानिक नाम हर जगह समझा जाता है"
+                },
+                {
+                  "en": "Scientific names are shorter",
+                  "hi": "वैज्ञानिक नाम छोटे होते हैं"
+                },
+                {
+                  "en": "Local names are always wrong",
+                  "hi": "स्थानीय नाम हमेशा ग़लत होते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Mango is aam, mavu, amba in different languages. Mangifera indica means the same plant to every scientist in the world.",
+                "hi": "आम को अलग-अलग भाषाओं में आम, मावु, अंबा कहते हैं। Mangifera indica दुनिया के हर वैज्ञानिक के लिए एक ही पौधा है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Many scientific names are longer than the local name; length is not the reason.",
+                  "hi": "कई वैज्ञानिक नाम स्थानीय नाम से लंबे होते हैं; लंबाई कारण नहीं है।"
+                },
+                {
+                  "en": "Local names are fine for daily life; the trouble is that they differ from place to place.",
+                  "hi": "रोज़ के जीवन में स्थानीय नाम ठीक हैं; मुश्किल यह है कि वे जगह-जगह बदलते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "In \"Panthera leo\", what is \"leo\"?",
+                "hi": "\"Panthera leo\" में \"leo\" क्या है?"
+              },
+              "options": [
+                {
+                  "en": "The genus",
+                  "hi": "वंश"
+                },
+                {
+                  "en": "The species epithet",
+                  "hi": "जाति का नाम (जातीय संकेत पद)"
+                },
+                {
+                  "en": "The family",
+                  "hi": "कुल"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "The second word, starting with a small letter, is the specific epithet.",
+                "hi": "दूसरा शब्द, जो छोटे अक्षर से शुरू होता है, जाति का नाम है।"
+              },
+              "wrong": [
+                {
+                  "en": "The genus is the first word, Panthera, with a capital letter.",
+                  "hi": "वंश पहला शब्द है, Panthera, जो बड़े अक्षर से शुरू होता है।"
+                },
+                "",
+                {
+                  "en": "The family (Felidae) is not part of the binomial name at all.",
+                  "hi": "कुल (Felidae) द्विनाम का हिस्सा ही नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort all the other cards. Then write the scientific names of three plants in your kitchen garden the correct way.",
+            "hi": "बाकी सब कार्ड छाँटो। फिर अपनी रसोई-बगीची के तीन पौधों के वैज्ञानिक नाम सही ढंग से लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c11-biology-kebo1-ch01-hierarchy",
+      "topic": "1.2",
+      "template": "sequence",
+      "title": {
+        "en": "Climb the taxonomic ladder",
+        "hi": "वर्गिकी की सीढ़ी चढ़ो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "species",
+            "text": {
+              "en": "Species: Mangifera indica",
+              "hi": "जाति: Mangifera indica"
+            }
+          },
+          {
+            "id": "genus",
+            "text": {
+              "en": "Genus: Mangifera",
+              "hi": "वंश: Mangifera"
+            }
+          },
+          {
+            "id": "family",
+            "text": {
+              "en": "Family: Anacardiaceae",
+              "hi": "कुल: Anacardiaceae"
+            }
+          },
+          {
+            "id": "order",
+            "text": {
+              "en": "Order: Sapindales",
+              "hi": "गण: Sapindales"
+            }
+          },
+          {
+            "id": "class",
+            "text": {
+              "en": "Class: Dicotyledonae",
+              "hi": "वर्ग: Dicotyledonae (द्विबीजपत्री)"
+            }
+          },
+          {
+            "id": "division",
+            "text": {
+              "en": "Division: Angiospermae",
+              "hi": "प्रभाग: Angiospermae (आवृतबीजी)"
+            }
+          },
+          {
+            "id": "kingdom",
+            "text": {
+              "en": "Kingdom: Plantae",
+              "hi": "जगत: Plantae (पादप)"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:species",
+          "expect": "placed:species",
+          "say": {
+            "en": "Tap the card \"Species\", then tap place 1. The lowest rank comes first.",
+            "hi": "\"जाति\" कार्ड छुओ, फिर स्थान 1 छुओ। सबसे निचली श्रेणी पहले आती है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:genus",
+          "expect": "placed:genus",
+          "say": {
+            "en": "Now tap \"Genus\" and put it in place 2.",
+            "hi": "अब \"वंश\" छुओ और इसे स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which rank comes right after genus as we go up?",
+            "hi": "ऊपर जाते हुए वंश के ठीक बाद कौन-सी श्रेणी आती है?"
+          },
+          "options": [
+            {
+              "id": "family",
+              "en": "Family",
+              "hi": "कुल"
+            },
+            {
+              "id": "class",
+              "en": "Class",
+              "hi": "वर्ग"
+            },
+            {
+              "id": "order",
+              "en": "Order",
+              "hi": "गण"
+            }
+          ],
+          "answer": "family"
+        },
+        {
+          "kind": "do",
+          "target": "item:family",
+          "expect": "placed:family",
+          "say": {
+            "en": "Tap \"Family\" and put it in place 3.",
+            "hi": "\"कुल\" छुओ और इसे स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Taxonomic categories are ranks, from species at the bottom to kingdom at the top: species, genus, family, order, class, phylum (division for plants), kingdom. Each higher rank holds more organisms, and they share fewer common features. Mango and wheat are both in kingdom Plantae, but they split at class: dicot and monocot.",
+            "hi": "वर्गिकी श्रेणियाँ एक क्रम हैं: नीचे जाति से ऊपर जगत तक। जाति, वंश, कुल, गण, वर्ग, संघ (पौधों में प्रभाग), जगत। हर ऊँची श्रेणी में ज़्यादा जीव आते हैं, और उनके साझे लक्षण कम होते हैं। आम और गेहूँ दोनों पादप जगत में हैं, पर वर्ग पर अलग हो जाते हैं: द्विबीजपत्री और एकबीजपत्री।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "As we go from species to kingdom, the number of common features among members...",
+                "hi": "जाति से जगत की ओर जाते हुए सदस्यों के साझे लक्षण..."
+              },
+              "options": [
+                {
+                  "en": "decreases",
+                  "hi": "कम होते जाते हैं"
+                },
+                {
+                  "en": "increases",
+                  "hi": "बढ़ते जाते हैं"
+                },
+                {
+                  "en": "stays the same",
+                  "hi": "एक जैसे रहते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A kingdom holds very different organisms, so they share only a few broad features.",
+                "hi": "जगत में बहुत अलग-अलग जीव होते हैं, इसलिए उनमें कुछ ही मोटे लक्षण साझे होते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is the other way round: members of one species are the most alike.",
+                  "hi": "यह उल्टा है: एक जाति के सदस्य सबसे ज़्यादा मिलते-जुलते हैं।"
+                },
+                {
+                  "en": "Higher ranks hold more kinds of organisms, so shared features must drop.",
+                  "hi": "ऊँची श्रेणियों में ज़्यादा तरह के जीव होते हैं, इसलिए साझे लक्षण घटते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "For plants, which word is used in place of \"phylum\"?",
+                "hi": "पौधों में \"संघ\" की जगह कौन-सा शब्द इस्तेमाल होता है?"
+              },
+              "options": [
+                {
+                  "en": "Order",
+                  "hi": "गण"
+                },
+                {
+                  "en": "Division",
+                  "hi": "प्रभाग"
+                },
+                {
+                  "en": "Family",
+                  "hi": "कुल"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Plant classes are grouped into divisions; animal classes into phyla.",
+                "hi": "पौधों के वर्ग प्रभागों में और जंतुओं के वर्ग संघों में रखे जाते हैं।"
+              },
+              "wrong": [
+                {
+                  "en": "Order is a lower rank, between family and class.",
+                  "hi": "गण निचली श्रेणी है, कुल और वर्ग के बीच।"
+                },
+                "",
+                {
+                  "en": "Family is below order; it is used for both plants and animals.",
+                  "hi": "कुल गण से नीचे है; पौधों और जंतुओं दोनों में इस्तेमाल होता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Finish the ladder. Then try it for wheat: Triticum aestivum, Poaceae, Poales, Monocotyledonae, Angiospermae, Plantae.",
+            "hi": "सीढ़ी पूरी करो। फिर गेहूँ के लिए सोचो: Triticum aestivum, Poaceae, Poales, Monocotyledonae, Angiospermae, Plantae।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c11-biology-kebo1-ch01-relatives",
+      "topic": "1.2",
+      "template": "sort",
+      "title": {
+        "en": "Who are close relatives?",
+        "hi": "कौन नज़दीकी रिश्तेदार हैं?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "panthera",
+            "label": {
+              "en": "Genus Panthera",
+              "hi": "वंश Panthera"
+            }
+          },
+          {
+            "id": "felis",
+            "label": {
+              "en": "Genus Felis",
+              "hi": "वंश Felis"
+            }
+          },
+          {
+            "id": "canidae",
+            "label": {
+              "en": "Family Canidae (dog family)",
+              "hi": "कुल Canidae (कुत्ता कुल)"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "lion",
+            "text": {
+              "en": "Lion (Panthera leo)",
+              "hi": "शेर (Panthera leo)"
+            },
+            "bin": "panthera",
+            "why": {
+              "en": "Lion, tiger and leopard share the genus Panthera.",
+              "hi": "शेर, बाघ और तेंदुआ एक ही वंश Panthera में हैं।"
+            }
+          },
+          {
+            "id": "tiger",
+            "text": {
+              "en": "Tiger (Panthera tigris)",
+              "hi": "बाघ (Panthera tigris)"
+            },
+            "bin": "panthera",
+            "why": {
+              "en": "Its first name is Panthera, the same genus as the lion.",
+              "hi": "इसका पहला नाम Panthera है, शेर वाला वंश।"
+            }
+          },
+          {
+            "id": "leopard",
+            "text": {
+              "en": "Leopard (Panthera pardus)",
+              "hi": "तेंदुआ (Panthera pardus)"
+            },
+            "bin": "panthera",
+            "why": {
+              "en": "Same genus Panthera, different species pardus.",
+              "hi": "वही वंश Panthera, अलग जाति pardus।"
+            }
+          },
+          {
+            "id": "cat",
+            "text": {
+              "en": "Domestic cat (Felis catus)",
+              "hi": "पालतू बिल्ली (Felis catus)"
+            },
+            "bin": "felis",
+            "why": {
+              "en": "The cat is in another genus, Felis, but in the same family Felidae as the big cats.",
+              "hi": "बिल्ली दूसरे वंश Felis में है, पर बड़ी बिल्लियों वाले कुल Felidae में ही।"
+            }
+          },
+          {
+            "id": "dog",
+            "text": {
+              "en": "Dog (Canis familiaris)",
+              "hi": "कुत्ता (Canis familiaris)"
+            },
+            "bin": "canidae",
+            "why": {
+              "en": "The dog is not a cat at all: it belongs to a different family, Canidae.",
+              "hi": "कुत्ता बिल्ली नहीं है: यह अलग कुल Canidae में आता है।"
+            }
+          },
+          {
+            "id": "wolf",
+            "text": {
+              "en": "Wolf (Canis lupus)",
+              "hi": "भेड़िया (Canis lupus)"
+            },
+            "bin": "canidae",
+            "why": {
+              "en": "Same genus Canis as the dog, so it is in the dog family.",
+              "hi": "कुत्ते वाला वंश Canis, इसलिए यह कुत्ता कुल में है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:lion",
+          "expect": "correct:lion",
+          "say": {
+            "en": "Tap the lion card, then tap its group.",
+            "hi": "शेर वाला कार्ड छुओ, फिर उसका समूह छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The cat looks like a small tiger. Is it in genus Panthera?",
+            "hi": "बिल्ली छोटे बाघ जैसी दिखती है। क्या यह वंश Panthera में है?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No: another genus, Felis, in the same family",
+              "hi": "नहीं: दूसरा वंश Felis, पर उसी कुल में"
+            },
+            {
+              "id": "yes",
+              "en": "Yes: it looks like one",
+              "hi": "हाँ: यह वैसी ही दिखती है"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "card:cat",
+          "expect": "correct:cat",
+          "say": {
+            "en": "Tap the cat card and sort it.",
+            "hi": "बिल्ली वाला कार्ड छुओ और इसे छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:dog",
+          "expect": "correct:dog",
+          "say": {
+            "en": "Now sort the dog.",
+            "hi": "अब कुत्ते को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A genus groups closely related species: lion, tiger and leopard are all Panthera. A family groups related genera: Panthera and Felis are both in the cat family, Felidae. The dog is further away, in the family Canidae. Both families are in the order Carnivora.",
+            "hi": "वंश नज़दीकी जातियों का समूह है: शेर, बाघ और तेंदुआ सब Panthera हैं। कुल नज़दीकी वंशों का समूह है: Panthera और Felis दोनों बिल्ली कुल Felidae में हैं। कुत्ता और दूर है, कुल Canidae में। दोनों कुल गण Carnivora में आते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Lion and cat are in the same...",
+                "hi": "शेर और बिल्ली एक ही... में हैं"
+              },
+              "options": [
+                {
+                  "en": "genus",
+                  "hi": "वंश"
+                },
+                {
+                  "en": "family",
+                  "hi": "कुल"
+                },
+                {
+                  "en": "species",
+                  "hi": "जाति"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "They are in different genera (Panthera, Felis) but the same family, Felidae.",
+                "hi": "वे अलग वंशों (Panthera, Felis) में हैं पर एक ही कुल Felidae में।"
+              },
+              "wrong": [
+                {
+                  "en": "Their first names differ, Panthera and Felis, so the genus is not the same.",
+                  "hi": "उनके पहले नाम अलग हैं, Panthera और Felis, इसलिए वंश एक नहीं है।"
+                },
+                "",
+                {
+                  "en": "Different genus means different species too; they cannot breed together.",
+                  "hi": "अलग वंश का मतलब अलग जाति भी; वे आपस में प्रजनन नहीं कर सकते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Then think: in which rank would a lion and a dog first come together?",
+            "hi": "बाकी कार्ड छाँटो। फिर सोचो: शेर और कुत्ता पहली बार किस श्रेणी में साथ आते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c11-biology-kebo1-ch01-families",
+      "topic": "1.2",
+      "template": "match",
+      "title": {
+        "en": "Match the organism to its family",
+        "hi": "जीव को उसके कुल से मिलाओ"
+      },
+      "minutes": 5,
+      "level": "stretch",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "man",
+            "left": {
+              "en": "Man (Homo sapiens)",
+              "hi": "मनुष्य (Homo sapiens)"
+            },
+            "right": {
+              "en": "Hominidae",
+              "hi": "Hominidae"
+            },
+            "why": {
+              "en": "Humans are in the family Hominidae, order Primata, class Mammalia.",
+              "hi": "मनुष्य कुल Hominidae, गण Primata, वर्ग Mammalia में है।"
+            }
+          },
+          {
+            "id": "housefly",
+            "left": {
+              "en": "Housefly (Musca domestica)",
+              "hi": "घरेलू मक्खी (Musca domestica)"
+            },
+            "right": {
+              "en": "Muscidae",
+              "hi": "Muscidae"
+            },
+            "why": {
+              "en": "Housefly: family Muscidae, order Diptera, class Insecta.",
+              "hi": "घरेलू मक्खी: कुल Muscidae, गण Diptera, वर्ग Insecta।"
+            }
+          },
+          {
+            "id": "mango",
+            "left": {
+              "en": "Mango (Mangifera indica)",
+              "hi": "आम (Mangifera indica)"
+            },
+            "right": {
+              "en": "Anacardiaceae",
+              "hi": "Anacardiaceae"
+            },
+            "why": {
+              "en": "Mango: family Anacardiaceae, order Sapindales.",
+              "hi": "आम: कुल Anacardiaceae, गण Sapindales।"
+            }
+          },
+          {
+            "id": "wheat",
+            "left": {
+              "en": "Wheat (Triticum aestivum)",
+              "hi": "गेहूँ (Triticum aestivum)"
+            },
+            "right": {
+              "en": "Poaceae (grass family)",
+              "hi": "Poaceae (घास कुल)"
+            },
+            "why": {
+              "en": "Wheat is a grass: family Poaceae, order Poales.",
+              "hi": "गेहूँ एक घास है: कुल Poaceae, गण Poales।"
+            }
+          },
+          {
+            "id": "potato",
+            "left": {
+              "en": "Potato (Solanum tuberosum)",
+              "hi": "आलू (Solanum tuberosum)"
+            },
+            "right": {
+              "en": "Solanaceae",
+              "hi": "Solanaceae"
+            },
+            "why": {
+              "en": "Potato, brinjal and tomato are in the family Solanaceae.",
+              "hi": "आलू, बैंगन और टमाटर कुल Solanaceae में हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:wheat",
+          "expect": "matched:wheat",
+          "say": {
+            "en": "Tap \"Wheat\" on the left, then its family on the right.",
+            "hi": "बाईं ओर \"गेहूँ\" छुओ, फिर दाईं ओर उसका कुल।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which family has a name ending in -idae, and so is an animal family?",
+            "hi": "किस कुल का नाम -idae पर ख़त्म होता है, यानी वह जंतु कुल है?"
+          },
+          "options": [
+            {
+              "id": "homin",
+              "en": "Hominidae",
+              "hi": "Hominidae (होमिनिडी)"
+            },
+            {
+              "id": "poa",
+              "en": "Poaceae",
+              "hi": "Poaceae (पोएसी)"
+            },
+            {
+              "id": "sol",
+              "en": "Solanaceae",
+              "hi": "Solanaceae (सोलेनेसी)"
+            }
+          ],
+          "answer": "homin"
+        },
+        {
+          "kind": "do",
+          "target": "left:man",
+          "expect": "matched:man",
+          "say": {
+            "en": "Tap \"Man\" and match it.",
+            "hi": "\"मनुष्य\" छुओ और इसे मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:mango",
+          "expect": "matched:mango",
+          "say": {
+            "en": "Now match the mango.",
+            "hi": "अब आम को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Animal family names end in -idae (Hominidae, Muscidae); plant family names end in -aceae (Anacardiaceae, Solanaceae, Poaceae). A family groups genera that share many features of flowers or body plan.",
+            "hi": "जंतु कुलों के नाम -idae पर ख़त्म होते हैं (Hominidae, Muscidae); पादप कुलों के नाम -aceae पर (Anacardiaceae, Solanaceae, Poaceae)। कुल उन वंशों का समूह है जिनके फूल या शरीर-रचना के बहुत लक्षण मिलते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "\"Felidae\" is the family of...",
+                "hi": "\"Felidae\" किसका कुल है?"
+              },
+              "options": [
+                {
+                  "en": "A plant",
+                  "hi": "पौधा"
+                },
+                {
+                  "en": "An animal",
+                  "hi": "जंतु"
+                },
+                {
+                  "en": "A fungus",
+                  "hi": "कवक"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "The ending -idae is used for animal families; Felidae is the cat family.",
+                "hi": "-idae अंत जंतु कुलों के लिए है; Felidae बिल्ली कुल है।"
+              },
+              "wrong": [
+                {
+                  "en": "Plant families end in -aceae, like Solanaceae.",
+                  "hi": "पादप कुलों के नाम -aceae पर ख़त्म होते हैं, जैसे Solanaceae।"
+                },
+                "",
+                {
+                  "en": "Fungi are named by botanical rules, with -aceae endings, not -idae.",
+                  "hi": "कवकों के नाम वनस्पति नियमों से -aceae वाले होते हैं, -idae नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the last pair. Then guess: brinjal (Solanum melongena) goes in which family?",
+            "hi": "आख़िरी जोड़ी मिलाओ। फिर अनुमान लगाओ: बैंगन (Solanum melongena) किस कुल में जाएगा?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1.1",
+      "use": "Hook: the diversity of life",
+      "shows": "A busy Indian sabzi mandi stall with many kinds of vegetables, fruits and leafy greens heaped side by side",
+      "view": "Eye level, wide, morning light",
+      "right": "At least 12 clearly different plant products; true colours",
+      "avoid": "Brand names, price boards with text, identifiable faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1.1",
+      "use": "Same plant, many names: mango card",
+      "shows": "One ripe Indian mango with two leaves on its stalk, cut-out",
+      "view": "Three-quarter view, lit from top left",
+      "right": "A real Indian variety (e.g. Alphonso or Dasheri look), leaves dark green and lance-shaped",
+      "avoid": "Stickers, labels"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "1.2",
+      "use": "Panthera sort cards",
+      "shows": "Four separate cut-outs: an Indian lion (Gir), a Bengal tiger, an Indian leopard, a domestic cat, each standing side-on",
+      "view": "Side view, same scale feel, plain background",
+      "right": "Gir lion with a short mane; true coat patterns: rosettes on the leopard, stripes on the tiger",
+      "avoid": "Zoo bars, fences, people"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "1.2",
+      "use": "Dog family cards",
+      "shows": "Two cut-outs: an Indian pariah dog (desi dog) and an Indian grey wolf, side-on",
+      "view": "Side view, plain background",
+      "right": "Desi dog with a curled tail and short coat; wolf greyish-brown",
+      "avoid": "Collars with tags, text"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "1.2",
+      "use": "Base for the taxonomic ladder",
+      "shows": "A clean empty ladder of seven rungs, widening upward like a pyramid, in soft gradient colours",
+      "view": "Front view, white background",
+      "right": "Seven levels, each wider than the one below",
+      "avoid": "Any words or numbers (the app adds them)"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "1.1",
+      "use": "Where specimens are kept: a herbarium visit",
+      "shows": "A row of pressed, dried plant specimens mounted on white sheets in a college herbarium cabinet",
+      "view": "Slight angle, cabinet door open, soft light",
+      "right": "Real pressed plants with roots, leaves and flowers flattened",
+      "avoid": "Readable labels or institute names"
+    }
+  ]
+}

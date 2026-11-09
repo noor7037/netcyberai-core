@@ -1,0 +1,224 @@
+{
+  "chapter_key": "u.c12.geography.legy1.ch01",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "Human Geography",
+  "source": "https://ncert.nic.in/textbook/pdf/legy1ps.pdf",
+  "topics": [
+    { "n": "1.1", "title": "Human geography defined", "labs": ["c12-geography-legy1-ch01-human-or-physical"], "why_no_lab": null },
+    { "n": "1.2", "title": "Nature of human geography", "labs": [], "why_no_lab": "The scope of the subject is read in the definitions and talked through in class; the two sort labs show the same scope with everyday examples." },
+    { "n": "1.3", "title": "Naturalisation of humans and humanisation of nature", "labs": ["c12-geography-legy1-ch01-humanise-naturalise"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy1-ch01-human-or-physical",
+      "topic": "1.1",
+      "template": "sort",
+      "title": { "en": "Human or physical? Sort the scene", "hi": "मानव या भौतिक? दृश्य छाँटो" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "human", "label": { "en": "Human geography", "hi": "मानव भूगोल" } },
+          { "id": "physical", "label": { "en": "Physical geography", "hi": "भौतिक भूगोल" } }
+        ],
+        "cards": [
+          { "id": "terrace", "text": { "en": "Terrace fields cut into a hillside", "hi": "पहाड़ी ढलान पर काटे गए सीढ़ीदार खेत" }, "bin": "human", "why": { "en": "People cut the hill into flat steps to grow food. Human geography studies such activities.", "hi": "लोगों ने भोजन उगाने के लिए पहाड़ी को समतल सीढ़ियों में काटा। मानव भूगोल ऐसी गतिविधियों को पढ़ता है।" } },
+          { "id": "delta", "text": { "en": "A delta built by a river at its mouth", "hi": "नदी के मुहाने पर उसकी गाद से बना डेल्टा" }, "bin": "physical", "why": { "en": "The river deposits silt on its own, with no human hand. That is a natural landform.", "hi": "नदी अपनी गाद अपने आप जमा करती है, इसमें किसी इंसान का हाथ नहीं। यह एक प्राकृतिक भू-आकृति है।" } },
+          { "id": "market", "text": { "en": "A weekly market where villagers sell vegetables", "hi": "गाँव का साप्ताहिक बाज़ार, जहाँ लोग सब्ज़ियाँ बेचते हैं" }, "bin": "human", "why": { "en": "Buying and selling is a human activity, so the market belongs to human geography.", "hi": "खरीदना-बेचना मानवीय गतिविधि है, इसलिए बाज़ार मानव भूगोल का विषय है।" } },
+          { "id": "monsoon", "text": { "en": "Monsoon winds that bring rain to the plains", "hi": "मानसूनी हवाएँ जो मैदानों में वर्षा लाती हैं" }, "bin": "physical", "why": { "en": "Winds are made by the heating of land and sea by the sun. People do not make them.", "hi": "हवाएँ सूरज से जमीन और समुद्र के गरम होने से बनती हैं। इन्हें लोग नहीं बनाते।" } },
+          { "id": "town", "text": { "en": "A town planned beside a river for water and trade", "hi": "पानी और व्यापार के लिए नदी के किनारे बसाया गया कस्बा" }, "bin": "human", "why": { "en": "People chose the site and built the town. The river only made the place attractive.", "hi": "लोगों ने जगह चुनकर कस्बा बसाया। नदी ने केवल जगह को आकर्षक बनाया।" } },
+          { "id": "caves", "text": { "en": "Limestone caves hollowed out by water", "hi": "पानी से खोखली हुई चूने-पत्थर की गुफ़ाएँ" }, "bin": "physical", "why": { "en": "Water dissolves limestone over thousands of years. Caves are natural landforms.", "hi": "पानी हज़ारों वर्षों में चूने-पत्थर को घोलता है। गुफ़ाएँ प्राकृतिक भू-आकृतियाँ हैं।" } }
+        ]
+          },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "bin:human",
+          "expect": "correct:terrace",
+          "say": { "en": "Tap the card 'Terrace fields', then tap the bin 'Human geography'.", "hi": "'सीढ़ीदार खेत' वाले कार्ड पर टैप करो, फिर 'मानव भूगोल' वाले खाने पर टैप करो।" }
+        },
+        {
+          "kind": "do",
+          "target": "bin:physical",
+          "expect": "correct:delta",
+          "say": { "en": "Now tap the 'Delta' card, then the bin 'Physical geography'.", "hi": "अब 'डेल्टा' वाले कार्ड पर टैप करो, फिर 'भौतिक भूगोल' वाले खाने पर।" }
+        },
+        {
+          "kind": "predict",
+          "say": { "en": "Next are the monsoon winds. Which bin do you think they belong to?", "hi": "अगले हैं मानसूनी हवाएँ। तुम्हें क्या लगता है, ये किस खाने में जाएँगी?" },
+          "options": [
+            { "id": "human", "en": "Human geography, because farmers need the rain", "hi": "मानव भूगोल, क्योंकि किसानों को बारिश चाहिए" },
+            { "id": "physical", "en": "Physical geography, because the sun and air make them", "hi": "भौतिक भूगोल, क्योंकि सूरज और हवा इन्हें बनाते हैं" },
+            { "id": "both", "en": "Both, equally", "hi": "दोनों बराबर" }
+          ],
+          "answer": "physical"
+        },
+        {
+          "kind": "do",
+          "target": "bin:physical",
+          "expect": "correct:monsoon",
+          "say": { "en": "Tap the 'Monsoon winds' card, then the bin that matches your answer.", "hi": "'मानसूनी हवाएँ' वाला कार्ड चुनो, फिर अपने उत्तर वाला खाना चुनो।" }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Human geography studies what people do and make on the Earth: farms, markets, towns and roads. Physical geography studies natural processes such as rivers, winds, deltas and caves. People change the land, but the natural processes come first and shape where people can live.",
+            "hi": "मानव भूगोल पढ़ता है कि लोग धरती पर क्या करते और बनाते हैं: खेत, बाज़ार, कस्बे और सड़कें। भौतिक भूगोल नदियों, हवाओं, डेल्टा और गुफ़ाओं जैसी प्राकृतिक प्रक्रियाओं को पढ़ता है। इंसान ज़मीन को बदलता है, पर प्राकृतिक प्रक्रियाएँ पहले से मौजूद रहती हैं और बताती हैं कि लोग कहाँ रह सकते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which card belongs to human geography?", "hi": "कौन-सा कार्ड मानव भूगोल का है?" },
+              "options": [
+                { "en": "A delta at a river mouth", "hi": "नदी के मुहाने पर डेल्टा" },
+                { "en": "Limestone caves", "hi": "चूने-पत्थर की गुफ़ाएँ" },
+                { "en": "A weekly village market", "hi": "गाँव का साप्ताहिक बाज़ार" }
+              ],
+              "answer": 2,
+              "why": { "en": "A market is set up by people to buy and sell. The other two are natural processes made by the river and by water.", "hi": "बाज़ार लोग खरीदने-बेचने के लिए लगाते हैं। बाकी दोनों नदी और पानी की प्राकृतिक रचनाएँ हैं।" },
+              "wrong": [
+                { "en": "A delta is built by the river itself, with no people involved, so it is physical geography.", "hi": "डेल्टा नदी खुद बनाती है, इसमें लोग शामिल नहीं होते, इसलिए यह भौतिक भूगोल है।" },
+                { "en": "Caves formed by water are a natural landform, so they are physical geography.", "hi": "पानी से बनी गुफ़ाएँ प्राकृतिक भू-आकृति हैं, इसलिए वे भौतिक भूगोल हैं।" },
+                ""
+              ]
+            },
+            {
+              "q": { "en": "Which reason shows that monsoon winds are physical geography?", "hi": "कौन-सा कारण बताता है कि मानसूनी हवाएँ भौतिक भूगोल हैं?" },
+              "options": [
+                { "en": "They are made by the sun heating land and sea, not by people", "hi": "ये सूरज द्वारा ज़मीन और समुद्र को गरम करने से बनती हैं, लोगों से नहीं" },
+                { "en": "They blow only over towns", "hi": "ये केवल शहरों के ऊपर चलती हैं" },
+                { "en": "People can switch them on and off", "hi": "लोग इन्हें चालू और बंद कर सकते हैं" }
+              ],
+              "answer": 0,
+              "why": { "en": "The sun heats the land and the sea unevenly, and that difference sets the winds moving. No person creates the monsoon.", "hi": "सूरज ज़मीन और समुद्र को असमान रूप से गरम करता है, और इसी अंतर से हवाएँ चलती हैं। मानसून कोई इंसान नहीं बनाता।" },
+              "wrong": [
+                "",
+                { "en": "Winds do not blow only over towns; they cover large regions, so this reason is wrong.", "hi": "हवाएँ केवल शहरों पर नहीं चलतीं; वे बड़े इलाकों में चलती हैं, इसलिए यह कारण ग़लत है।" },
+                { "en": "No person can control the monsoon, so this option is false.", "hi": "कोई इंसान मानसून को नियंत्रित नहीं कर सकता, इसलिए यह विकल्प ग़लत है।" }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": { "en": "Tap any card and move it to the other bin to see its reason. Then make up one new card for each bin.", "hi": "कोई भी कार्ड चुनकर दूसरे खाने में रखो और उसका कारण पढ़ो। फिर हर खाने के लिए एक नया कार्ड सोचो।" }
+        }
+      ]
+    },
+    {
+      "id": "c12-geography-legy1-ch01-humanise-naturalise",
+      "topic": "1.3",
+      "template": "sort",
+      "title": { "en": "Changing nature or adapting to it?", "hi": "प्रकृति को बदलना या उसके अनुकूल होना?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "humanise", "label": { "en": "People change nature", "hi": "इंसान प्रकृति को बदलता है" } },
+          { "id": "naturalise", "label": { "en": "People adapt to nature", "hi": "इंसान प्रकृति से ढलता है" } }
+        ],
+        "cards": [
+          { "id": "dam", "text": { "en": "A dam built across a river to store water", "hi": "पानी जमा करने के लिए नदी पर बना बाँध" }, "bin": "humanise", "why": { "en": "People reshape the river and its flow to suit their needs. That is humanisation of nature.", "hi": "लोग नदी और उसके बहाव को अपनी ज़रूरत के हिसाब से बदलते हैं। यह प्रकृति का मानवीकरण है।" } },
+          { "id": "woollen", "text": { "en": "Thick woollen clothes worn in the cold of Ladakh", "hi": "लद्दाख की ठंड में पहने जाने वाले मोटे ऊनी कपड़े" }, "bin": "naturalise", "why": { "en": "People change their clothing to survive the cold. Humans adapt to nature.", "hi": "ठंड से बचने के लिए लोग अपने कपड़े बदलते हैं। इंसान प्रकृति के अनुकूल होता है।" } },
+          { "id": "drain", "text": { "en": "A swamp drained to make farmland", "hi": "खेत बनाने के लिए सुखाया गया दलदल" }, "bin": "humanise", "why": { "en": "Draining changes the land itself, so people have humanised the landscape.", "hi": "सुखाने से ज़मीन ही बदल जाती है, इसलिए लोगों ने भू-दृश्य को मानव-रूप दिया।" } },
+          { "id": "stilts", "text": { "en": "Houses built on stilts in a flood-prone area of Assam", "hi": "असम के बाढ़-प्रवण इलाके में खंभों पर बने घर" }, "bin": "naturalise", "why": { "en": "The house is lifted above floodwater, so the people adapt their homes to the river's flood.", "hi": "घर को बाढ़ के पानी से ऊपर उठाया गया है, यानी लोगों ने घर को नदी की बाढ़ के अनुकूल बनाया।" } },
+          { "id": "hill-road", "text": { "en": "A road cut through a hill for traffic", "hi": "यातायात के लिए पहाड़ी को काटकर बनाई गई सड़क" }, "bin": "humanise", "why": { "en": "The hill is cut to make a path. People have changed the landform.", "hi": "रास्ता बनाने के लिए पहाड़ी काटी गई। लोगों ने भू-आकृति बदली है।" } },
+          { "id": "steep-roof", "text": { "en": "Steeply sloped roofs in a place where heavy rain falls", "hi": "ऐसी जगह जहाँ भारी बारिश होती है, वहाँ तेज़ ढलान वाली छतें" }, "bin": "naturalise", "why": { "en": "The steep roof lets rain run off quickly. People design houses to suit the rain.", "hi": "तेज़ ढलान वाली छत पर पानी जल्दी बह जाता है। लोग घर को बारिश के हिसाब से बनाते हैं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "bin:humanise",
+          "expect": "correct:dam",
+          "say": { "en": "Tap the card 'A dam built across a river', then tap the bin 'People change nature'.", "hi": "'नदी पर बना बाँध' वाला कार्ड चुनो, फिर 'इंसान प्रकृति को बदलता है' वाला खाना चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "bin:naturalise",
+          "expect": "correct:woollen",
+          "say": { "en": "Now tap the 'Woollen clothes' card, then the bin 'People adapt to nature'.", "hi": "अब 'ऊनी कपड़े' वाला कार्ड चुनो, फिर 'इंसान प्रकृति के अनुकूल होता है' वाला खाना चुनो।" }
+        },
+        {
+          "kind": "predict",
+          "say": { "en": "Houses on stilts in a flood area: do they change the land or adapt to the land?", "hi": "बाढ़ वाले इलाके में खंभों पर बने घर: ये ज़मीन को बदलते हैं या ज़मीन के अनुकूल होते हैं?" },
+          "options": [
+            { "id": "humanise", "en": "They change the land", "hi": "ये ज़मीन को बदलते हैं" },
+            { "id": "naturalise", "en": "They adapt to the flood", "hi": "ये बाढ़ के अनुकूल होते हैं" },
+            { "id": "neither", "en": "Neither, they are not related to nature", "hi": "दोनों में से कोई नहीं, इनका प्रकृति से कोई संबंध नहीं" }
+          ],
+          "answer": "naturalise"
+        },
+        {
+          "kind": "do",
+          "target": "bin:naturalise",
+          "expect": "correct:stilts",
+          "say": { "en": "Tap the 'Stilts' card, then the bin that matches your answer.", "hi": "'खंभों वाले घर' वाला कार्ड चुनो, फिर अपने उत्तर वाला खाना चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "bin:humanise",
+          "expect": "correct:drain",
+          "say": { "en": "Tap the 'Swamp drained' card, then the bin 'People change nature'.", "hi": "'सुखाया गया दलदल' वाला कार्ड चुनो, फिर 'इंसान प्रकृति को बदलता है' वाला खाना चुनो।" }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Humanisation of nature means people change the land, rivers and forests to suit their needs. Naturalisation of humans means people adapt their food, clothes and homes to the natural conditions they live in. Both happen together in most places.",
+            "hi": "प्रकृति का मानवीकरण का अर्थ है कि लोग अपनी ज़रूरत के लिए ज़मीन, नदियों और जंगलों को बदलते हैं। इंसान का प्राकृतिकीकरण का अर्थ है कि लोग अपने खाने, कपड़ों और घरों को वहाँ की प्राकृतिक परिस्थितियों के अनुकूल बनाते हैं। अधिकतर जगहों पर दोनों साथ-साथ होते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "People dig a canal to carry river water to fields. Which idea does it show?", "hi": "लोग खेतों तक नदी का पानी ले जाने के लिए नहर खोदते हैं। यह कौन-सा विचार दिखाता है?" },
+              "options": [
+                { "en": "Humanisation of nature: people change the land to suit themselves", "hi": "प्रकृति का मानवीकरण: लोग अपनी ज़रूरत के लिए ज़मीन बदलते हैं" },
+                { "en": "Naturalisation of humans: people change their bodies to suit the land", "hi": "इंसान का प्राकृतिकीकरण: लोग अपने शरीर को ज़मीन के अनुकूल बदलते हैं" },
+                { "en": "Neither: nature built the canal alone", "hi": "दोनों नहीं: प्रकृति ने अकेले नहर बनाई" }
+              ],
+              "answer": 0,
+              "why": { "en": "People dug the canal and changed the flow of water, so nature has been humanised.", "hi": "लोगों ने नहर खोदी और पानी का बहाव बदला, इसलिए प्रकृति का मानवीकरण हुआ।" },
+              "wrong": [
+                "",
+                { "en": "People did not change their bodies here; they changed the land, so this is not naturalisation.", "hi": "यहाँ लोगों ने अपने शरीर नहीं बदले; उन्होंने ज़मीन बदली, इसलिए यह प्राकृतिकीकरण नहीं है।" },
+                { "en": "People dug the canal, so nature did not act alone. This is a human change.", "hi": "लोगों ने नहर खोदी, इसलिए प्रकृति अकेले नहीं थी। यह इंसानी बदलाव है।" }
+              ]
+            },
+            {
+              "q": { "en": "Why do people in flood-prone areas build houses on stilts?", "hi": "बाढ़-प्रवण इलाकों में लोग खंभों पर घर क्यों बनाते हैं?" },
+              "options": [
+                { "en": "To live above the floodwater, which is adapting to nature", "hi": "बाढ़ के पानी से ऊपर रहने के लिए, जो प्रकृति के अनुकूल होना है" },
+                { "en": "To make the land flatter", "hi": "ज़मीन को और समतल करने के लिए" },
+                { "en": "To stop rain from falling", "hi": "बारिश को गिरने से रोकने के लिए" }
+              ],
+              "answer": 0,
+              "why": { "en": "The stilts lift the living floor above the water, so the house suits the flood.", "hi": "खंभे रहने की जगह को पानी से ऊपर उठाते हैं, इसलिए घर बाढ़ के अनुकूल होता है।" },
+              "wrong": [
+                "",
+                { "en": "Stilts do not flatten land. They lift the house off the ground to keep it dry.", "hi": "खंभे ज़मीन को समतल नहीं करते। वे घर को ज़मीन से ऊपर उठाते हैं ताकि वह सूखा रहे।" },
+                { "en": "No house can stop rain. The stilts only keep the floor dry.", "hi": "कोई घर बारिश नहीं रोक सकता। खंभे केवल फ़र्श को सूखा रखते हैं।" }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": { "en": "Sort the cards again and find one example from your own village or city for each idea.", "hi": "कार्ड दोबारा छाँटो और अपने गाँव या शहर से हर विचार का एक उदाहरण सोचो।" }
+        }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "1.1", "use": "Hook: people and land in one frame", "shows": "A busy weekly village market on a river plain in India, with vegetable stalls and a river visible at the edge", "view": "Wide 16:9 at eye level, soft morning light", "right": "Stalls and people are clearly human activity; the river and sky are natural", "avoid": "Readable shop signs, brand names, identifiable faces of children" },
+    { "n": 2, "kind": "SCN", "topic": "1.1", "use": "Terrace fields for the human-or-physical sort", "shows": "Terraced fields cut into a hillside in a Himalayan valley, with a farmer small in the distance", "view": "Eye level, hill fills the frame, late afternoon light", "right": "Clean flat steps of terraces, green crop, natural hill behind", "avoid": "Litter, power lines, buildings that date the scene" },
+    { "n": 3, "kind": "DIA", "topic": "1.1", "use": "Blank two-column board for sort labels", "shows": "A plain white board split into two equal columns, with no words", "view": "Flat top view, even light", "right": "Clean edges, two equal columns, space at the top for the app's labels", "avoid": "Any printed words, shadows, decorations" },
+    { "n": 4, "kind": "SCN", "topic": "1.3", "use": "Naturalisation: adapting clothes to cold", "shows": "A shepherd in a thick woollen cloak standing on a snowy high-altitude plateau in Ladakh, seen from the side", "view": "Mid-distance, eye level, cold blue light", "right": "Thick woollen cloak and snow are clearly visible; the shepherd is an adult", "avoid": "Identifiable faces, mountain signs, tourist litter" },
+    { "n": 5, "kind": "SCN", "topic": "1.3", "use": "Naturalisation: stilt houses in a flood area", "shows": "A row of houses on tall bamboo stilts in a village in Assam, with floodwater reaching the stilts", "view": "Eye level, slightly wide, grey monsoon sky", "right": "Stilts clearly lift the house above water; wet ground and green trees", "avoid": "Modern concrete buildings, readable signs, people's faces" },
+    { "n": 6, "kind": "SEQ", "topic": "1.3", "use": "Humanisation: a swamp turned into farmland", "shows": "Three frames of the same marshy field: a wet swamp, the same field being drained by a channel, and the same field later as green farmland", "view": "Same camera position and height in all frames, same light level", "right": "Water visibly leaves the field; the land changes from wet to dry", "avoid": "Changing camera angle, people working in unsafe water" }
+  ]
+}

@@ -1,0 +1,2374 @@
+{
+ "chapter_key": "u.c07.social_science.gees2.ch08",
+ "class": 7,
+ "subject_id": "social_science",
+ "title": "Banks and the Magic of Finance",
+ "source": "https://ncert.nic.in/textbook/pdf/gees208.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Why we need banks: deposits and loans",
+   "labs": [
+    "c07-social_science-gees2-ch08-deploan"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Types of bank accounts",
+   "labs": [
+    "c07-social_science-gees2-ch08-accounts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Interest and the magic of compounding",
+   "labs": [
+    "c07-social_science-gees2-ch08-compound"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "How banks earn",
+   "labs": [
+    "c07-social_science-gees2-ch08-spread"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "The passbook: debit and credit",
+   "labs": [
+    "c07-social_science-gees2-ch08-passbook"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Jan Dhan Yojana, post offices and other financial institutions",
+   "labs": [],
+   "why_no_lab": "A short reading with a few photographs and class talk on who has a bank account near you teaches this better than a game."
+  },
+  {
+   "n": "8.7",
+   "title": "The Reserve Bank of India: banker to banks",
+   "labs": [
+    "c07-social_science-gees2-ch08-rbi"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.8",
+   "title": "Cash, ATM, debit card and cheque",
+   "labs": [
+    "c07-social_science-gees2-ch08-cheque"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.9",
+   "title": "Internet banking and UPI",
+   "labs": [
+    "c07-social_science-gees2-ch08-upi"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.10",
+   "title": "The stock market",
+   "labs": [
+    "c07-social_science-gees2-ch08-shares"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.11",
+   "title": "Staying safe: OTP, fraud and the 1930 helpline",
+   "labs": [
+    "c07-social_science-gees2-ch08-safe"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.12",
+   "title": "Temple banks of ancient India",
+   "labs": [],
+   "why_no_lab": "The copper-plate story is best read and discussed; there is nothing to move or test."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-social_science-gees2-ch08-deploan",
+   "topic": "8.1",
+   "template": "sort",
+   "title": {
+    "en": "Deposit or loan?",
+    "hi": "जमा या ऋण?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "dep",
+      "label": {
+       "en": "Deposit (saving)",
+       "hi": "जमा (बचत)"
+      }
+     },
+     {
+      "id": "loan",
+      "label": {
+       "en": "Loan (borrowing)",
+       "hi": "ऋण (उधार)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "navdeep",
+      "text": {
+       "en": "Navdeep puts Rs 3,000 of his salary in the bank each month",
+       "hi": "नवदीप हर महीने वेतन के 3,000 रुपये बैंक में रखता है"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "Keeping money in the bank is a deposit; it is safer than a cupboard.",
+       "hi": "बैंक में पैसा रखना जमा है; यह अलमारी से अधिक सुरक्षित है।"
+      }
+     },
+     {
+      "id": "interest",
+      "text": {
+       "en": "The bank pays you interest on your money",
+       "hi": "बैंक तुम्हें तुम्हारे पैसे पर ब्याज देता है"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "Banks pay depositors interest so their savings grow.",
+       "hi": "बैंक जमाकर्ताओं को ब्याज देते हैं ताकि बचत बढ़े।"
+      }
+     },
+     {
+      "id": "kept",
+      "text": {
+       "en": "A farmer keeps savings in the bank, not at home",
+       "hi": "किसान बचत घर पर नहीं, बैंक में रखता है"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "The bank keeps the money safe and lets it earn.",
+       "hi": "बैंक पैसा सुरक्षित रखता है और उसे बढ़ने देता है।"
+      }
+     },
+     {
+      "id": "machine",
+      "text": {
+       "en": "A business owner borrows to buy new machinery",
+       "hi": "व्यवसायी नई मशीन ख़रीदने के लिए उधार लेता है"
+      },
+      "bin": "loan",
+      "why": {
+       "en": "Businesses borrow for machines, raw materials and new products.",
+       "hi": "व्यवसाय मशीनों, कच्चे माल और नए उत्पादों के लिए उधार लेते हैं।"
+      }
+     },
+     {
+      "id": "house",
+      "text": {
+       "en": "A family borrows money to buy a house",
+       "hi": "परिवार घर ख़रीदने के लिए उधार लेता है"
+      },
+      "bin": "loan",
+      "why": {
+       "en": "Banks lend for specific purposes like buying a house or vehicle.",
+       "hi": "बैंक घर या वाहन ख़रीदने जैसे ख़ास कामों के लिए उधार देते हैं।"
+      }
+     },
+     {
+      "id": "study",
+      "text": {
+       "en": "A student borrows to pay for education",
+       "hi": "विद्यार्थी पढ़ाई के लिए उधार लेता है"
+      },
+      "bin": "loan",
+      "why": {
+       "en": "Funding education is another purpose of a loan.",
+       "hi": "शिक्षा के लिए पैसा जुटाना ऋण का एक और उद्देश्य है।"
+      }
+     },
+     {
+      "id": "repay",
+      "text": {
+       "en": "Pays back the amount plus interest after some time",
+       "hi": "कुछ समय बाद रक़म ब्याज सहित लौटाता है"
+      },
+      "bin": "loan",
+      "why": {
+       "en": "A borrower repays the loan along with interest.",
+       "hi": "उधार लेने वाला ऋण ब्याज सहित लौटाता है।"
+      }
+     },
+     {
+      "id": "bamboo",
+      "text": {
+       "en": "Rima borrows to buy material for her bamboo products",
+       "hi": "रीमा बाँस के उत्पादों के लिए सामान ख़रीदने उधार लेती है"
+      },
+      "bin": "loan",
+      "why": {
+       "en": "Small businesses borrow so they can make and sell more.",
+       "hi": "छोटे व्यवसाय उधार लेते हैं ताकि ज़्यादा बना और बेच सकें।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is it safer to keep your savings in a cupboard or in a bank?",
+      "hi": "बचत अलमारी में रखना ज़्यादा सुरक्षित है या बैंक में?"
+     },
+     "options": [
+      {
+       "id": "bank",
+       "en": "In a bank",
+       "hi": "बैंक में"
+      },
+      {
+       "id": "cupboard",
+       "en": "In a cupboard",
+       "hi": "अलमारी में"
+      }
+     ],
+     "answer": "bank"
+    },
+    {
+     "kind": "do",
+     "target": "card:navdeep",
+     "expect": "correct:navdeep",
+     "say": {
+      "en": "Place Navdeep's card.",
+      "hi": "नवदीप का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:machine",
+     "expect": "correct:machine",
+     "say": {
+      "en": "Place the machinery card.",
+      "hi": "मशीन वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A bank collects money from people as deposits and lends it to others as loans. Depositors get interest, which helps their savings grow. Borrowers use loans for homes, education and business, and repay with interest. In this way the bank connects people who save with people who need money.",
+      "hi": "बैंक लोगों से जमा के रूप में पैसा लेता है और दूसरों को ऋण के रूप में उधार देता है। जमाकर्ताओं को ब्याज मिलता है, जिससे बचत बढ़ती है। उधार लेने वाले घर, शिक्षा और व्यवसाय के लिए ऋण लेते हैं और ब्याज सहित लौटाते हैं। इस तरह बैंक बचाने वालों को ज़रूरतमंदों से जोड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does a bank do with the money people deposit?",
+        "hi": "लोगों के जमा किए पैसे का बैंक क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Keeps it safe and lends part of it as loans",
+         "hi": "उसे सुरक्षित रखता और उसका कुछ भाग ऋण देता है"
+        },
+        {
+         "en": "Burns it",
+         "hi": "उसे जला देता है"
+        },
+        {
+         "en": "Gives it all to the RBI",
+         "hi": "सारा आरबीआई को दे देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Banks lend, but they also keep some reserve money and do not lend all the deposits.",
+        "hi": "बैंक उधार देते हैं पर कुछ रिज़र्व भी रखते हैं और सारी जमा रक़म उधार नहीं देते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Banks use deposits to earn and to lend.",
+         "hi": "बैंक जमा पैसे का उपयोग कमाने और उधार देने में करते हैं।"
+        },
+        {
+         "en": "Banks keep their own accounts and lend to people and businesses.",
+         "hi": "बैंक अपने खाते रखते हैं और लोगों व व्यवसायों को उधार देते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask your family if they have borrowed from a bank or kept savings in one. What was the reason?",
+      "hi": "परिवार से पूछो कि क्या उन्होंने बैंक से उधार लिया या बचत रखी। कारण क्या था?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees2-ch08-accounts",
+   "topic": "8.2",
+   "template": "sort",
+   "title": {
+    "en": "Which account suits whom?",
+    "hi": "किसके लिए कौन-सा खाता?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sav",
+      "label": {
+       "en": "Savings account",
+       "hi": "बचत खाता"
+      }
+     },
+     {
+      "id": "cur",
+      "label": {
+       "en": "Current account",
+       "hi": "चालू खाता"
+      }
+     },
+     {
+      "id": "fd",
+      "label": {
+       "en": "Fixed deposit",
+       "hi": "सावधि जमा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "student",
+      "text": {
+       "en": "A student who saves a little every month",
+       "hi": "हर महीने थोड़ा बचाने वाला विद्यार्थी"
+      },
+      "bin": "sav",
+      "why": {
+       "en": "Savings accounts are for people who save regularly and earn interest.",
+       "hi": "बचत खाते नियमित बचत करने वालों के लिए हैं और उन पर ब्याज मिलता है।"
+      }
+     },
+     {
+      "id": "limits",
+      "text": {
+       "en": "Money can be added or taken out, with limits on withdrawals",
+       "hi": "पैसा जमा या निकाल सकते हैं, निकासी की सीमा के साथ"
+      },
+      "bin": "sav",
+      "why": {
+       "en": "Savings accounts limit how often you can withdraw each month.",
+       "hi": "बचत खाते में हर महीने निकासी की संख्या सीमित होती है।"
+      }
+     },
+     {
+      "id": "trader",
+      "text": {
+       "en": "A trader who pays and receives money many times a day",
+       "hi": "व्यापारी जो दिन में कई बार पैसा देता और पाता है"
+      },
+      "bin": "cur",
+      "why": {
+       "en": "Current accounts are for businesses and traders with many transactions.",
+       "hi": "चालू खाते व्यवसायियों और व्यापारियों के लिए हैं जिनके लेन-देन बहुत होते हैं।"
+      }
+     },
+     {
+      "id": "nolimit",
+      "text": {
+       "en": "No limit on deposits or withdrawals; no interest",
+       "hi": "जमा-निकासी की सीमा नहीं; ब्याज नहीं"
+      },
+      "bin": "cur",
+      "why": {
+       "en": "Current accounts usually earn no interest.",
+       "hi": "चालू खाते पर आम तौर पर ब्याज नहीं मिलता।"
+      }
+     },
+     {
+      "id": "shop",
+      "text": {
+       "en": "A small shop that gets payments all day",
+       "hi": "छोटी दुकान जिसे दिन भर भुगतान मिलता है"
+      },
+      "bin": "cur",
+      "why": {
+       "en": "A shop needs an account that allows frequent transactions.",
+       "hi": "दुकान को ऐसा खाता चाहिए जिसमें बार-बार लेन-देन हो सके।"
+      }
+     },
+     {
+      "id": "lump",
+      "text": {
+       "en": "A one-time deposit kept for 3 or 5 years",
+       "hi": "3 या 5 साल के लिए रखी एकमुश्त जमा"
+      },
+      "bin": "fd",
+      "why": {
+       "en": "A fixed deposit is kept for a fixed period.",
+       "hi": "सावधि जमा तय अवधि के लिए रखी जाती है।"
+      }
+     },
+     {
+      "id": "higher",
+      "text": {
+       "en": "Interest is usually higher than a savings account",
+       "hi": "ब्याज आम तौर पर बचत खाते से अधिक"
+      },
+      "bin": "fd",
+      "why": {
+       "en": "Money is locked in for a fixed time, so the bank pays more.",
+       "hi": "पैसा तय समय के लिए बँधा रहता है, इसलिए बैंक अधिक ब्याज देता है।"
+      }
+     },
+     {
+      "id": "back",
+      "text": {
+       "en": "Bank returns the original amount plus interest at the end",
+       "hi": "अवधि पूरी होने पर बैंक मूलधन ब्याज सहित लौटाता है"
+      },
+      "bin": "fd",
+      "why": {
+       "en": "You get your deposit and its interest at the end of the term.",
+       "hi": "अवधि के अंत में जमा रक़म और उसका ब्याज मिलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which account would usually give the highest interest?",
+      "hi": "किस खाते पर आम तौर पर सबसे अधिक ब्याज मिलता है?"
+     },
+     "options": [
+      {
+       "id": "fd",
+       "en": "Fixed deposit",
+       "hi": "सावधि जमा"
+      },
+      {
+       "id": "cur",
+       "en": "Current account",
+       "hi": "चालू खाता"
+      }
+     ],
+     "answer": "fd"
+    },
+    {
+     "kind": "do",
+     "target": "card:student",
+     "expect": "correct:student",
+     "say": {
+      "en": "Place the student card.",
+      "hi": "विद्यार्थी का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:lump",
+     "expect": "correct:lump",
+     "say": {
+      "en": "Place the one-time deposit card.",
+      "hi": "एकमुश्त जमा वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There are three common accounts. A savings account is for regular savers and earns interest. A current account is for traders and businesses who make many payments; it usually earns no interest. A fixed deposit holds money for a fixed time and pays higher interest.",
+      "hi": "तीन आम खाते हैं। बचत खाता नियमित बचत करने वालों के लिए है और उस पर ब्याज मिलता है। चालू खाता व्यापारियों और व्यवसायों के लिए है जो कई भुगतान करते हैं; उस पर आम तौर पर ब्याज नहीं मिलता। सावधि जमा पैसा तय समय के लिए रखती है और अधिक ब्याज देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a fixed deposit usually pay higher interest than a savings account?",
+        "hi": "सावधि जमा पर बचत खाते से अधिक ब्याज क्यों मिलता है?"
+       },
+       "options": [
+        {
+         "en": "The money stays with the bank for a fixed period",
+         "hi": "पैसा तय अवधि तक बैंक के पास रहता है"
+        },
+        {
+         "en": "Because the bank likes the depositor",
+         "hi": "क्योंकि बैंक को जमाकर्ता पसंद है"
+        },
+        {
+         "en": "Because you can withdraw it anytime",
+         "hi": "क्योंकि कभी भी निकाल सकते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bank can use the money for the whole period, so it rewards you with more interest.",
+        "hi": "बैंक पूरी अवधि तक पैसा इस्तेमाल कर सकता है, इसलिए अधिक ब्याज देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Interest follows rules, not likes.",
+         "hi": "ब्याज नियमों से तय होता है, पसंद से नहीं।"
+        },
+        {
+         "en": "Easy withdrawal is a feature of savings accounts, which pay less.",
+         "hi": "आसान निकासी बचत खाते की ख़ूबी है, जो कम ब्याज देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which account suits a vegetable trader who deals with money all day?",
+        "hi": "दिन भर पैसे का लेन-देन करने वाले सब्ज़ी व्यापारी के लिए कौन-सा खाता ठीक है?"
+       },
+       "options": [
+        {
+         "en": "A current account",
+         "hi": "चालू खाता"
+        },
+        {
+         "en": "A fixed deposit",
+         "hi": "सावधि जमा"
+        },
+        {
+         "en": "None",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Current accounts have no limit on how often money is deposited or withdrawn.",
+        "hi": "चालू खाते में जमा-निकासी की संख्या की सीमा नहीं होती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Money in a fixed deposit stays locked for the period.",
+         "hi": "सावधि जमा का पैसा अवधि तक बँधा रहता है।"
+        },
+        {
+         "en": "An account keeps business money safe and recorded.",
+         "hi": "खाता व्यवसाय के पैसे को सुरक्षित और दर्ज रखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which account would you open for yourself, and which for your uncle's shop? Say why.",
+      "hi": "अपने लिए कौन-सा खाता खोलोगे, और चाचा की दुकान के लिए कौन-सा? कारण बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees2-ch08-compound",
+   "topic": "8.3",
+   "template": "money",
+   "title": {
+    "en": "The magic of compounding",
+    "hi": "चक्रवृद्धि का जादू"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "compound-interest",
+    "budget": 1000,
+    "rate": 6,
+    "years": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You deposit Rs 1,000 at 6 per cent a year. Will the interest in the second year be exactly the same as in the first?",
+      "hi": "तुम 1,000 रुपये 6 प्रतिशत वार्षिक पर जमा करते हो। क्या दूसरे वर्ष का ब्याज पहले वर्ष जितना ही होगा?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "No, it will be more",
+       "hi": "नहीं, वह अधिक होगा"
+      },
+      {
+       "id": "same",
+       "en": "Yes, exactly the same",
+       "hi": "हाँ, बिल्कुल उतना ही"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "slider:years",
+     "expect": "moved:years",
+     "say": {
+      "en": "Move the years slider and watch the money grow.",
+      "hi": "वर्ष वाला स्लाइडर चलाओ और पैसे को बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:rate",
+     "expect": "moved:rate",
+     "say": {
+      "en": "Now change the rate and see the difference.",
+      "hi": "अब दर बदलो और अंतर देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Interest in the first year on Rs 1,000 at 6 per cent is Rs 60, giving Rs 1,060. In the second year interest is 6 per cent of Rs 1,060, which is Rs 63.60, so the total is Rs 1,123.60. Earning interest on the earlier interest is called compounding. The longer you wait, the faster the money grows.",
+      "hi": "6 प्रतिशत पर 1,000 रुपये का पहले वर्ष का ब्याज 60 रुपये है, कुल 1,060 रुपये। दूसरे वर्ष का ब्याज 1,060 रुपये का 6 प्रतिशत यानी 63.60 रुपये है, इसलिए कुल 1,123.60 रुपये। पहले के ब्याज पर भी ब्याज मिलना चक्रवृद्धि कहलाता है। जितना लंबा इंतज़ार, पैसा उतनी तेज़ी से बढ़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the second year's interest larger than the first year's?",
+        "hi": "दूसरे वर्ष का ब्याज पहले वर्ष से अधिक क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It is earned on the original amount and the first year's interest",
+         "hi": "यह मूलधन और पहले वर्ष के ब्याज दोनों पर मिलता है"
+        },
+        {
+         "en": "The bank forgot to count the first year",
+         "hi": "बैंक पहले वर्ष को गिनना भूल गया"
+        },
+        {
+         "en": "The rate rises by itself",
+         "hi": "दर अपने आप बढ़ जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The base grows to Rs 1,060, so 6 per cent of it is more than 6 per cent of Rs 1,000.",
+        "hi": "आधार बढ़कर 1,060 रुपये हो जाता है, इसलिए उसका 6 प्रतिशत 1,000 रुपये के 6 प्रतिशत से अधिक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both years are counted; the first year's interest is part of the new base.",
+         "hi": "दोनों वर्ष गिने जाते हैं; पहले वर्ष का ब्याज नए आधार में जुड़ता है।"
+        },
+        {
+         "en": "The rate stays at 6 per cent; the amount it is applied to grows.",
+         "hi": "दर 6 प्रतिशत ही रहती है; जिस रक़म पर लगती है वह बढ़ती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the total after 2 years for Rs 1,000 at 6 per cent a year?",
+        "hi": "6 प्रतिशत वार्षिक पर 1,000 रुपये का 2 वर्ष बाद कुल कितना होगा?"
+       },
+       "options": [
+        {
+         "en": "Rs 1,123.60",
+         "hi": "1,123.60 रुपये"
+        },
+        {
+         "en": "Rs 1,120",
+         "hi": "1,120 रुपये"
+        },
+        {
+         "en": "Rs 1,060",
+         "hi": "1,060 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1,060 plus 63.60 gives 1,123.60.",
+        "hi": "1,060 और 63.60 मिलकर 1,123.60 होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rs 1,120 comes from adding Rs 60 twice, forgetting interest on interest.",
+         "hi": "1,120 रुपये दो बार 60 जोड़ने से आता है, ब्याज पर ब्याज भूलकर।"
+        },
+        {
+         "en": "Rs 1,060 is the total after only one year.",
+         "hi": "1,060 रुपये केवल एक वर्ष बाद का कुल है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide years to 12. How much does Rs 1,000 grow to? Why does the book tell the chessboard rice story?",
+      "hi": "वर्ष 12 तक ले जाओ। 1,000 रुपये कितने हो जाते हैं? पुस्तक शतरंज और चावल की कहानी क्यों सुनाती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees2-ch08-spread",
+   "topic": "8.4",
+   "template": "money",
+   "title": {
+    "en": "How a bank earns",
+    "hi": "बैंक कैसे कमाता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "simple-interest",
+    "budget": 200,
+    "rate": 5,
+    "years": 1
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bank pays a depositor a lower rate than it charges a borrower. Where does the bank's income come from?",
+      "hi": "बैंक जमाकर्ता को कम दर देता है और उधार लेने वाले से ज़्यादा लेता है। बैंक की कमाई कहाँ से आती है?"
+     },
+     "options": [
+      {
+       "id": "diff",
+       "en": "From the difference between the two rates",
+       "hi": "दोनों दरों के अंतर से"
+      },
+      {
+       "id": "free",
+       "en": "It gets money free from the government",
+       "hi": "उसे सरकार से मुफ़्त पैसा मिलता है"
+      }
+     ],
+     "answer": "diff"
+    },
+    {
+     "kind": "do",
+     "target": "slider:rate",
+     "expect": "moved:rate",
+     "say": {
+      "en": "Set the rate to 2 per cent. This is what Anand earns on Rs 200.",
+      "hi": "दर 2 प्रतिशत करो। आनंद को 200 रुपये पर इतना मिलता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:rate",
+     "expect": "moved:rate",
+     "say": {
+      "en": "Now set it to 5 per cent. This is what Shreya pays on a loan of Rs 200.",
+      "hi": "अब 5 प्रतिशत करो। श्रेया 200 रुपये के ऋण पर इतना देती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Anand deposits Rs 200 and earns 2 per cent, which is Rs 4. The bank lends the Rs 200 to Shreya at 5 per cent, so she pays Rs 10. The bank pays Rs 4 and receives Rs 10, so it earns Rs 6. This gap between interest on loans and on deposits is a main income of banks.",
+      "hi": "आनंद 200 रुपये जमा करता है और 2 प्रतिशत यानी 4 रुपये कमाता है। बैंक वही 200 रुपये श्रेया को 5 प्रतिशत पर देता है, इसलिए वह 10 रुपये देती है। बैंक 4 रुपये देता है और 10 रुपये पाता है, यानी 6 रुपये कमाता है। ऋण और जमा के ब्याज का यह अंतर बैंकों की मुख्य आय है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How much does the bank earn in the example of Anand and Shreya?",
+        "hi": "आनंद और श्रेया के उदाहरण में बैंक कितना कमाता है?"
+       },
+       "options": [
+        {
+         "en": "Rs 6",
+         "hi": "6 रुपये"
+        },
+        {
+         "en": "Rs 10",
+         "hi": "10 रुपये"
+        },
+        {
+         "en": "Rs 4",
+         "hi": "4 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bank receives Rs 10 and pays Rs 4, so the gain is Rs 6.",
+        "hi": "बैंक को 10 रुपये मिलते हैं और वह 4 रुपये देता है, इसलिए कमाई 6 रुपये है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rs 10 is what the bank receives, before it pays Anand.",
+         "hi": "10 रुपये बैंक को मिलते हैं, आनंद को देने से पहले।"
+        },
+        {
+         "en": "Rs 4 is what the bank pays Anand, not what it earns.",
+         "hi": "4 रुपये बैंक आनंद को देता है, यह उसकी कमाई नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which rate is higher in a bank?",
+        "hi": "बैंक में कौन-सी दर ऊँची होती है?"
+       },
+       "options": [
+        {
+         "en": "The rate on loans",
+         "hi": "ऋण की दर"
+        },
+        {
+         "en": "The rate on deposits",
+         "hi": "जमा की दर"
+        },
+        {
+         "en": "They are always equal",
+         "hi": "दोनों हमेशा बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Banks charge borrowers more than they pay depositors; that is how they earn.",
+        "hi": "बैंक उधार लेने वालों से जमाकर्ताओं को दिए गए ब्याज से अधिक लेते हैं; इसी से कमाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The deposit rate is lower.",
+         "hi": "जमा की दर कम होती है।"
+        },
+        {
+         "en": "If they were equal the bank would earn nothing from lending.",
+         "hi": "बराबर होने पर बैंक को उधार देने से कुछ नहीं मिलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try different years and rates. If a bank paid 6 per cent to depositors and charged 5 per cent on loans, what would happen?",
+      "hi": "अलग-अलग वर्ष और दर आज़माओ। अगर बैंक जमा पर 6 और ऋण पर 5 प्रतिशत देता तो क्या होता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees2-ch08-passbook",
+   "topic": "8.5",
+   "template": "sort",
+   "title": {
+    "en": "Reading a passbook: debit or credit?",
+    "hi": "पासबुक पढ़ना: डेबिट या क्रेडिट?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "debit",
+      "label": {
+       "en": "Debit (money out)",
+       "hi": "डेबिट (पैसा बाहर)"
+      }
+     },
+     {
+      "id": "credit",
+      "label": {
+       "en": "Credit (money in)",
+       "hi": "क्रेडिट (पैसा अंदर)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "salary",
+      "text": {
+       "en": "Salary arrives in the account",
+       "hi": "वेतन खाते में आया"
+      },
+      "bin": "credit",
+      "why": {
+       "en": "Money coming in is a credit.",
+       "hi": "आने वाला पैसा क्रेडिट है।"
+      }
+     },
+     {
+      "id": "atm",
+      "text": {
+       "en": "Cash taken out at an ATM",
+       "hi": "एटीएम से नकद निकाला"
+      },
+      "bin": "debit",
+      "why": {
+       "en": "Money going out is a debit.",
+       "hi": "जाने वाला पैसा डेबिट है।"
+      }
+     },
+     {
+      "id": "interest",
+      "text": {
+       "en": "The bank adds interest",
+       "hi": "बैंक ने ब्याज जोड़ा"
+      },
+      "bin": "credit",
+      "why": {
+       "en": "Interest paid by the bank is money coming in.",
+       "hi": "बैंक का दिया ब्याज आने वाला पैसा है।"
+      }
+     },
+     {
+      "id": "rent",
+      "text": {
+       "en": "Rent paid by cheque",
+       "hi": "चेक से किराया दिया"
+      },
+      "bin": "debit",
+      "why": {
+       "en": "A cheque payment takes money out of your account.",
+       "hi": "चेक का भुगतान खाते से पैसा निकालता है।"
+      }
+     },
+     {
+      "id": "scholar",
+      "text": {
+       "en": "A scholarship is paid into the account",
+       "hi": "छात्रवृत्ति खाते में आई"
+      },
+      "bin": "credit",
+      "why": {
+       "en": "Scholarships come as direct credits.",
+       "hi": "छात्रवृत्ति सीधे क्रेडिट के रूप में आती है।"
+      }
+     },
+     {
+      "id": "bill",
+      "text": {
+       "en": "Electricity bill paid online",
+       "hi": "बिजली का बिल ऑनलाइन चुकाया"
+      },
+      "bin": "debit",
+      "why": {
+       "en": "Paying a bill sends money out.",
+       "hi": "बिल चुकाने से पैसा बाहर जाता है।"
+      }
+     },
+     {
+      "id": "cashin",
+      "text": {
+       "en": "Cash deposited at the counter",
+       "hi": "काउंटर पर नकद जमा किया"
+      },
+      "bin": "credit",
+      "why": {
+       "en": "A deposit adds money to the account.",
+       "hi": "जमा करने से खाते में पैसा बढ़ता है।"
+      }
+     },
+     {
+      "id": "upi",
+      "text": {
+       "en": "Money sent to a friend through UPI",
+       "hi": "यूपीआई से दोस्त को पैसे भेजे"
+      },
+      "bin": "debit",
+      "why": {
+       "en": "Your account is debited when you send money.",
+       "hi": "पैसे भेजने पर तुम्हारा खाता डेबिट होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When money is taken out of an account, is it called a debit or a credit?",
+      "hi": "खाते से पैसा निकलने को डेबिट कहते हैं या क्रेडिट?"
+     },
+     "options": [
+      {
+       "id": "debit",
+       "en": "Debit",
+       "hi": "डेबिट"
+      },
+      {
+       "id": "credit",
+       "en": "Credit",
+       "hi": "क्रेडिट"
+      }
+     ],
+     "answer": "debit"
+    },
+    {
+     "kind": "do",
+     "target": "card:salary",
+     "expect": "correct:salary",
+     "say": {
+      "en": "Place the salary card.",
+      "hi": "वेतन वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:atm",
+     "expect": "correct:atm",
+     "say": {
+      "en": "Place the ATM card.",
+      "hi": "एटीएम वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A passbook is a diary of the account that records every receipt and payment. Taking money out is a debit and receiving money is a credit. Keeping such records helps you know your balance, plan spending and spot mistakes or fraud.",
+      "hi": "पासबुक खाते की डायरी है जिसमें हर प्राप्ति और भुगतान दर्ज होता है। पैसा निकालना डेबिट और पैसा पाना क्रेडिट है। ऐसे रिकॉर्ड से शेष राशि पता चलती है, ख़र्च की योजना बनती है और ग़लती या धोखाधड़ी पकड़ी जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Your pocket money comes into your account. In the passbook it appears as:",
+        "hi": "तुम्हारा जेब-ख़र्च खाते में आता है। पासबुक में वह क्या दिखेगा?"
+       },
+       "options": [
+        {
+         "en": "A credit",
+         "hi": "क्रेडिट"
+        },
+        {
+         "en": "A debit",
+         "hi": "डेबिट"
+        },
+        {
+         "en": "Nothing",
+         "hi": "कुछ नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Money received into an account is a credit.",
+        "hi": "खाते में पाया गया पैसा क्रेडिट है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A debit is money going out.",
+         "hi": "डेबिट जाने वाला पैसा है।"
+        },
+        {
+         "en": "Every receipt is recorded.",
+         "hi": "हर प्राप्ति दर्ज होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is keeping a record of transactions important?",
+        "hi": "लेन-देन का रिकॉर्ड रखना क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "To know the balance and notice mistakes",
+         "hi": "शेष राशि जानने और ग़लतियाँ पकड़ने के लिए"
+        },
+        {
+         "en": "To hide spending",
+         "hi": "ख़र्च छिपाने के लिए"
+        },
+        {
+         "en": "It is not important",
+         "hi": "यह ज़रूरी नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A clear record lets you check that every entry is right.",
+        "hi": "साफ़ रिकॉर्ड से तुम जाँच सकते हो कि हर प्रविष्टि सही है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Records make spending visible.",
+         "hi": "रिकॉर्ड ख़र्च को दिखाते हैं।"
+        },
+        {
+         "en": "Without records you cannot spot errors or fraud.",
+         "hi": "रिकॉर्ड के बिना ग़लती या धोखा नहीं पकड़ सकते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a tiny passbook of your own pocket money for one week, with credits and debits.",
+      "hi": "एक हफ़्ते के अपने जेब-ख़र्च की छोटी पासबुक बनाओ, क्रेडिट और डेबिट के साथ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees2-ch08-rbi",
+   "topic": "8.7",
+   "template": "sort",
+   "title": {
+    "en": "RBI or your local bank?",
+    "hi": "आरबीआई या तुम्हारा स्थानीय बैंक?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "rbi",
+      "label": {
+       "en": "Reserve Bank of India",
+       "hi": "भारतीय रिज़र्व बैंक"
+      }
+     },
+     {
+      "id": "bank",
+      "label": {
+       "en": "A bank near you",
+       "hi": "तुम्हारे पास का बैंक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "notes",
+      "text": {
+       "en": "Prints and distributes Indian banknotes",
+       "hi": "भारतीय नोट छापता और बँटवाता है"
+      },
+      "bin": "rbi",
+      "why": {
+       "en": "Only the RBI has the sole right to issue currency.",
+       "hi": "मुद्रा जारी करने का एकमात्र अधिकार केवल आरबीआई के पास है।"
+      }
+     },
+     {
+      "id": "rate",
+      "text": {
+       "en": "Fixes the benchmark interest rate",
+       "hi": "मानक ब्याज दर तय करता है"
+      },
+      "bin": "rbi",
+      "why": {
+       "en": "The RBI sets the base rate at which it lends to banks.",
+       "hi": "आरबीआई वह आधार दर तय करता है जिस पर वह बैंकों को उधार देता है।"
+      }
+     },
+     {
+      "id": "bankers",
+      "text": {
+       "en": "Keeps accounts of other banks",
+       "hi": "दूसरे बैंकों के खाते रखता है"
+      },
+      "bin": "rbi",
+      "why": {
+       "en": "It is the banker to banks.",
+       "hi": "यह बैंकों का बैंक है।"
+      }
+     },
+     {
+      "id": "rules",
+      "text": {
+       "en": "Supervises banks and sets rules for them",
+       "hi": "बैंकों की निगरानी करता और उनके नियम बनाता है"
+      },
+      "bin": "rbi",
+      "why": {
+       "en": "As the central bank, it supervises the banking system.",
+       "hi": "केंद्रीय बैंक के रूप में यह बैंकिंग व्यवस्था की निगरानी करता है।"
+      }
+     },
+     {
+      "id": "open",
+      "text": {
+       "en": "Opens a savings account for you",
+       "hi": "तुम्हारे लिए बचत खाता खोलता है"
+      },
+      "bin": "bank",
+      "why": {
+       "en": "People and businesses open accounts at banks.",
+       "hi": "लोग और व्यवसाय बैंकों में खाते खोलते हैं।"
+      }
+     },
+     {
+      "id": "homeloan",
+      "text": {
+       "en": "Gives a family a home loan",
+       "hi": "परिवार को गृह ऋण देता है"
+      },
+      "bin": "bank",
+      "why": {
+       "en": "Banks lend to people and businesses.",
+       "hi": "बैंक लोगों और व्यवसायों को उधार देते हैं।"
+      }
+     },
+     {
+      "id": "debit",
+      "text": {
+       "en": "Issues a debit card to a customer",
+       "hi": "ग्राहक को डेबिट कार्ड जारी करता है"
+      },
+      "bin": "bank",
+      "why": {
+       "en": "Debit cards come from the customer's own bank.",
+       "hi": "डेबिट कार्ड ग्राहक के अपने बैंक से मिलता है।"
+      }
+     },
+     {
+      "id": "deposit",
+      "text": {
+       "en": "Accepts a child's savings",
+       "hi": "बच्चे की बचत जमा लेता है"
+      },
+      "bin": "bank",
+      "why": {
+       "en": "Banks take deposits from the public.",
+       "hi": "बैंक आम जनता से जमा लेते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who do you think is the 'banker to banks' in India?",
+      "hi": "भारत में 'बैंकों का बैंक' कौन है?"
+     },
+     "options": [
+      {
+       "id": "rbi",
+       "en": "The Reserve Bank of India",
+       "hi": "भारतीय रिज़र्व बैंक"
+      },
+      {
+       "id": "shop",
+       "en": "The nearest shop",
+       "hi": "सबसे पास की दुकान"
+      }
+     ],
+     "answer": "rbi"
+    },
+    {
+     "kind": "do",
+     "target": "card:notes",
+     "expect": "correct:notes",
+     "say": {
+      "en": "Place the banknotes card.",
+      "hi": "नोट छापने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:open",
+     "expect": "correct:open",
+     "say": {
+      "en": "Place the card about opening your account.",
+      "hi": "तुम्हारा खाता खोलने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Reserve Bank of India, set up in 1935, is India's central bank. It prints currency, fixes the benchmark interest rate, supervises and makes rules for banks, keeps their accounts and lends to banks and to the government. Ordinary banks take deposits, give loans and serve people like you.",
+      "hi": "भारतीय रिज़र्व बैंक की स्थापना 1935 में हुई; यह भारत का केंद्रीय बैंक है। यह मुद्रा छापता है, मानक ब्याज दर तय करता है, बैंकों की निगरानी करता और नियम बनाता है, उनके खाते रखता है और बैंकों व सरकार को उधार देता है। आम बैंक जमा लेते हैं, ऋण देते हैं और तुम जैसे लोगों की सेवा करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who has the sole right to issue Indian currency notes?",
+        "hi": "भारतीय नोट जारी करने का एकमात्र अधिकार किसके पास है?"
+       },
+       "options": [
+        {
+         "en": "The RBI",
+         "hi": "आरबीआई"
+        },
+        {
+         "en": "Every bank",
+         "hi": "हर बैंक"
+        },
+        {
+         "en": "Any shopkeeper",
+         "hi": "कोई भी दुकानदार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One central authority issues notes so that money is trusted everywhere.",
+        "hi": "एक ही केंद्रीय संस्था नोट जारी करती है ताकि मुद्रा पर हर जगह भरोसा रहे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Commercial banks keep and lend notes but do not print them.",
+         "hi": "सामान्य बैंक नोट रखते और उधार देते हैं, छापते नहीं।"
+        },
+        {
+         "en": "Shopkeepers only accept notes.",
+         "hi": "दुकानदार केवल नोट लेते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a banknote. Find the signature and promise printed on it, and the name of the issuer.",
+      "hi": "किसी नोट को देखो। उस पर छपे हस्ताक्षर और वचन तथा जारीकर्ता का नाम ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees2-ch08-cheque",
+   "topic": "8.8",
+   "template": "match",
+   "title": {
+    "en": "Filling in a cheque",
+    "hi": "चेक भरना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "date",
+      "left": {
+       "en": "Date",
+       "hi": "तारीख़"
+      },
+      "right": {
+       "en": "The day on which you wish to issue the cheque",
+       "hi": "वह दिन जब तुम चेक जारी करना चाहते हो"
+      },
+      "why": {
+       "en": "The date shows when the cheque is issued.",
+       "hi": "तारीख़ बताती है कि चेक कब जारी हुआ।"
+      }
+     },
+     {
+      "id": "payee",
+      "left": {
+       "en": "Pay (payee)",
+       "hi": "भुगतान पाने वाले का नाम"
+      },
+      "right": {
+       "en": "The name of the person you want to pay",
+       "hi": "जिस व्यक्ति को भुगतान करना है उसका नाम"
+      },
+      "why": {
+       "en": "Only that person can receive the money.",
+       "hi": "पैसा वही व्यक्ति पा सकता है।"
+      }
+     },
+     {
+      "id": "words",
+      "left": {
+       "en": "Amount in words",
+       "hi": "शब्दों में रक़म"
+      },
+      "right": {
+       "en": "The sum written in words, such as five thousand rupees",
+       "hi": "शब्दों में लिखी रक़म, जैसे पाँच हज़ार रुपये"
+      },
+      "why": {
+       "en": "Writing it twice helps avoid mistakes.",
+       "hi": "दो बार लिखने से ग़लती से बचाव होता है।"
+      }
+     },
+     {
+      "id": "figures",
+      "left": {
+       "en": "Amount in figures",
+       "hi": "अंकों में रक़म"
+      },
+      "right": {
+       "en": "The same sum written in numbers",
+       "hi": "वही रक़म अंकों में"
+      },
+      "why": {
+       "en": "It must match the words exactly.",
+       "hi": "यह शब्दों से ठीक मिलनी चाहिए।"
+      }
+     },
+     {
+      "id": "sign",
+      "left": {
+       "en": "Signature",
+       "hi": "हस्ताक्षर"
+      },
+      "right": {
+       "en": "Where the account holder signs to approve the payment",
+       "hi": "जहाँ खाताधारक भुगतान की मंज़ूरी के लिए हस्ताक्षर करता है"
+      },
+      "why": {
+       "en": "The signature shows that the account holder agreed.",
+       "hi": "हस्ताक्षर दिखाता है कि खाताधारक ने सहमति दी है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To pay Rs 5,000 to a friend by cheque, what must you write besides the amount?",
+      "hi": "चेक से दोस्त को 5,000 रुपये देने के लिए रक़म के अलावा क्या लिखना होगा?"
+     },
+     "options": [
+      {
+       "id": "name",
+       "en": "Date, your friend's name and your signature",
+       "hi": "तारीख़, दोस्त का नाम और तुम्हारे हस्ताक्षर"
+      },
+      {
+       "id": "none",
+       "en": "Nothing else",
+       "hi": "और कुछ नहीं"
+      }
+     ],
+     "answer": "name"
+    },
+    {
+     "kind": "do",
+     "target": "left:payee",
+     "expect": "matched:payee",
+     "say": {
+      "en": "Match the payee line.",
+      "hi": "भुगतान पाने वाले की पंक्ति को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:sign",
+     "expect": "matched:sign",
+     "say": {
+      "en": "Match the signature.",
+      "hi": "हस्ताक्षर को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cheque is a paper order to the bank to pay money from your account. You write the date, the payee's name, the amount in words and in numbers, and sign. The receiver deposits it, and the amount is debited from your account and credited to theirs. It takes time because it needs a visit to the bank, while electronic payments are instant.",
+      "hi": "चेक बैंक को लिखित आदेश है कि तुम्हारे खाते से पैसा दिया जाए। तुम तारीख़, पाने वाले का नाम, शब्दों और अंकों में रक़म लिखते हो और हस्ताक्षर करते हो। पाने वाला उसे जमा करता है और रक़म तुम्हारे खाते से डेबिट होकर उसके खाते में क्रेडिट होती है। इसमें समय लगता है क्योंकि बैंक जाना पड़ता है, जबकि इलेक्ट्रॉनिक भुगतान तुरंत होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why should the amount in words and in figures match?",
+        "hi": "शब्दों और अंकों की रक़म क्यों मिलनी चाहिए?"
+       },
+       "options": [
+        {
+         "en": "To avoid mistakes or tampering",
+         "hi": "ग़लती या हेरफेर से बचने के लिए"
+        },
+        {
+         "en": "Only for decoration",
+         "hi": "केवल सजावट के लिए"
+        },
+        {
+         "en": "Because the bank likes long cheques",
+         "hi": "क्योंकि बैंक को लंबा चेक पसंद है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two matching entries make it hard to change the amount or make an error.",
+        "hi": "दो मेल खाती प्रविष्टियाँ रक़म बदलना या ग़लती करना कठिन बनाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It has a real safety purpose.",
+         "hi": "इसका असली सुरक्षा-उद्देश्य है।"
+        },
+        {
+         "en": "Banks care about accuracy, not length.",
+         "hi": "बैंक को सटीकता चाहिए, लंबाई नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When Rohan deposits your cheque, what happens to the money?",
+        "hi": "जब रोहन तुम्हारा चेक जमा करता है तो पैसे का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It is debited from your account and credited to his",
+         "hi": "तुम्हारे खाते से डेबिट होकर उसके खाते में क्रेडिट होता है"
+        },
+        {
+         "en": "It disappears",
+         "hi": "ग़ायब हो जाता है"
+        },
+        {
+         "en": "It is added to both accounts",
+         "hi": "दोनों खातों में जुड़ जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The amount moves from the payer's account to the receiver's.",
+        "hi": "रक़म देने वाले के खाते से पाने वाले के खाते में जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Money is transferred, not destroyed.",
+         "hi": "पैसा स्थानांतरित होता है, नष्ट नहीं।"
+        },
+        {
+         "en": "It leaves one account and enters the other.",
+         "hi": "वह एक खाते से निकलकर दूसरे में जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Practise filling in a cheque for Rs 2,500 on paper. Check that words and numbers match.",
+      "hi": "काग़ज़ पर 2,500 रुपये का चेक भरने का अभ्यास करो। जाँचो कि शब्द और अंक मिलते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees2-ch08-upi",
+   "topic": "8.9",
+   "template": "sequence",
+   "title": {
+    "en": "A UPI payment, step by step",
+    "hi": "यूपीआई भुगतान, चरण दर चरण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "scan",
+      "text": {
+       "en": "Kumar scans Piyush's QR code, types the amount and his UPI PIN",
+       "hi": "कुमार पीयूष का क्यूआर कोड स्कैन करता है, रक़म और अपना यूपीआई पिन डालता है"
+      }
+     },
+     {
+      "id": "app",
+      "text": {
+       "en": "The app sends a payment request to Kumar's bank",
+       "hi": "ऐप कुमार के बैंक को भुगतान का अनुरोध भेजता है"
+      }
+     },
+     {
+      "id": "npci",
+      "text": {
+       "en": "The bank forwards the request to NPCI",
+       "hi": "बैंक अनुरोध एनपीसीआई को भेजता है"
+      }
+     },
+     {
+      "id": "check",
+      "text": {
+       "en": "NPCI checks the PIN and processes the transfer",
+       "hi": "एनपीसीआई पिन जाँचता है और लेन-देन पूरा करता है"
+      }
+     },
+     {
+      "id": "bank2",
+      "text": {
+       "en": "Piyush's bank receives the funds",
+       "hi": "पीयूष के बैंक को रक़म मिलती है"
+      }
+     },
+     {
+      "id": "done",
+      "text": {
+       "en": "Piyush sees the money in his account",
+       "hi": "पीयूष को अपने खाते में पैसे दिखते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a UPI payment, who checks that the PIN is right before the money moves?",
+      "hi": "यूपीआई भुगतान में पैसा जाने से पहले पिन सही है, यह कौन जाँचता है?"
+     },
+     "options": [
+      {
+       "id": "npci",
+       "en": "NPCI",
+       "hi": "एनपीसीआई"
+      },
+      {
+       "id": "shop",
+       "en": "The shopkeeper",
+       "hi": "दुकानदार"
+      }
+     ],
+     "answer": "npci"
+    },
+    {
+     "kind": "do",
+     "target": "item:scan",
+     "expect": "placed:scan",
+     "say": {
+      "en": "Place the first step: Kumar scans the QR code.",
+      "hi": "पहला चरण रखो: कुमार क्यूआर कोड स्कैन करता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order and press check.",
+      "hi": "सारे चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "UPI, launched in 2016 by NPCI, lets money move from one bank account to another in seconds using a phone number or QR code. The buyer's app asks the buyer's bank, the request goes to NPCI which verifies the PIN, and the seller's bank receives the money. It reduced cash use and works in many languages.",
+      "hi": "यूपीआई 2016 में एनपीसीआई ने शुरू किया; इससे फ़ोन नंबर या क्यूआर कोड से कुछ सेकंड में एक बैंक खाते से दूसरे में पैसा जाता है। ख़रीदार का ऐप उसके बैंक से अनुरोध करता है, अनुरोध एनपीसीआई तक जाता है जो पिन जाँचता है, और विक्रेता के बैंक को पैसा मिलता है। इससे नकद का उपयोग घटा और यह कई भाषाओं में चलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is UPI called convenient compared with a cheque?",
+        "hi": "चेक की तुलना में यूपीआई सुविधाजनक क्यों कहलाता है?"
+       },
+       "options": [
+        {
+         "en": "The transfer is instant and needs no visit to the bank",
+         "hi": "लेन-देन तुरंत होता है और बैंक जाने की ज़रूरत नहीं"
+        },
+        {
+         "en": "It needs paper and a pen",
+         "hi": "इसमें काग़ज़ और क़लम चाहिए"
+        },
+        {
+         "en": "It takes several days",
+         "hi": "इसमें कई दिन लगते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A cheque must be physically deposited and cleared. UPI moves money at once.",
+        "hi": "चेक को ख़ुद जमा कराना और पास कराना पड़ता है। यूपीआई पैसा तुरंत भेजता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Paper is for cheques, not UPI.",
+         "hi": "काग़ज़-क़लम चेक के लिए हैं, यूपीआई के लिए नहीं।"
+        },
+        {
+         "en": "UPI is quick; slowness belongs to cheques.",
+         "hi": "यूपीआई तेज़ है; धीमापन चेक में है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Whom should you share your UPI PIN with?",
+        "hi": "अपना यूपीआई पिन तुम किसे बताओगे?"
+       },
+       "options": [
+        {
+         "en": "Nobody",
+         "hi": "किसी को नहीं"
+        },
+        {
+         "en": "A caller from 'the bank'",
+         "hi": "'बैंक' से आए फ़ोन करने वाले को"
+        },
+        {
+         "en": "Any friend who asks",
+         "hi": "माँगने वाले किसी भी दोस्त को"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The PIN is a secret that protects your money; no genuine bank asks for it.",
+        "hi": "पिन तुम्हारे पैसे की रक्षा करने वाला रहस्य है; असली बैंक उसे कभी नहीं माँगता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fraudsters pretend to be from the bank to get your PIN.",
+         "hi": "ठग बैंक वाले बनकर तुम्हारा पिन लेना चाहते हैं।"
+        },
+        {
+         "en": "Even friends should not know your PIN.",
+         "hi": "दोस्तों को भी तुम्हारा पिन नहीं पता होना चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Trace a UPI payment at a vegetable stall near you. Which banks and which systems are involved?",
+      "hi": "अपने पास की सब्ज़ी की दुकान पर यूपीआई भुगतान को ध्यान से देखो। कौन-से बैंक और कौन-सी व्यवस्थाएँ जुड़ी हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees2-ch08-shares",
+   "topic": "8.10",
+   "template": "match",
+   "title": {
+    "en": "Shares and the stock market",
+    "hi": "शेयर और शेयर बाज़ार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "share",
+      "left": {
+       "en": "Share",
+       "hi": "शेयर"
+      },
+      "right": {
+       "en": "A part-ownership in a company",
+       "hi": "किसी कंपनी में आंशिक स्वामित्व"
+      },
+      "why": {
+       "en": "If a company is a big chapati, a share is one piece.",
+       "hi": "यदि कंपनी बड़ी रोटी है तो शेयर उसका एक टुकड़ा है।"
+      }
+     },
+     {
+      "id": "exchange",
+      "left": {
+       "en": "Stock exchange",
+       "hi": "शेयर बाज़ार (स्टॉक एक्सचेंज)"
+      },
+      "right": {
+       "en": "A marketplace where shares are bought and sold",
+       "hi": "वह बाज़ार जहाँ शेयर ख़रीदे-बेचे जाते हैं"
+      },
+      "why": {
+       "en": "The Bombay Stock Exchange began in 1875.",
+       "hi": "बॉम्बे स्टॉक एक्सचेंज 1875 में शुरू हुआ।"
+      }
+     },
+     {
+      "id": "boom",
+      "left": {
+       "en": "Market boom",
+       "hi": "बाज़ार में उछाल"
+      },
+      "right": {
+       "en": "Prices of many companies' shares rise together",
+       "hi": "कई कंपनियों के शेयरों के दाम साथ बढ़ते हैं"
+      },
+      "why": {
+       "en": "A broad rise in share prices is called a boom.",
+       "hi": "शेयर दामों में व्यापक वृद्धि को उछाल कहते हैं।"
+      }
+     },
+     {
+      "id": "crash",
+      "left": {
+       "en": "Market crash",
+       "hi": "बाज़ार में गिरावट"
+      },
+      "right": {
+       "en": "Prices of many companies' shares fall together",
+       "hi": "कई कंपनियों के शेयरों के दाम साथ गिरते हैं"
+      },
+      "why": {
+       "en": "A broad fall in share prices is a crash.",
+       "hi": "शेयर दामों में व्यापक गिरावट को गिरावट या क्रैश कहते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You buy a share of a company. What do you become?",
+      "hi": "तुम किसी कंपनी का शेयर ख़रीदते हो। तुम क्या बन जाते हो?"
+     },
+     "options": [
+      {
+       "id": "owner",
+       "en": "A part-owner of the company",
+       "hi": "कंपनी के आंशिक मालिक"
+      },
+      {
+       "id": "worker",
+       "en": "Its permanent manager",
+       "hi": "उसके स्थायी प्रबंधक"
+      }
+     ],
+     "answer": "owner"
+    },
+    {
+     "kind": "do",
+     "target": "left:share",
+     "expect": "matched:share",
+     "say": {
+      "en": "Match 'Share' to its meaning.",
+      "hi": "'शेयर' को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:exchange",
+     "expect": "matched:exchange",
+     "say": {
+      "en": "Match the stock exchange.",
+      "hi": "शेयर बाज़ार को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A share is a part-ownership in a company. Companies issue shares to raise money, and people buy them hoping the price will rise. Shares are bought and sold at the stock exchange, and prices can go up or down, so trading can bring gains or losses.",
+      "hi": "शेयर कंपनी में आंशिक स्वामित्व है। कंपनियाँ पैसा जुटाने के लिए शेयर जारी करती हैं, और लोग दाम बढ़ने की आशा में उन्हें ख़रीदते हैं। शेयर स्टॉक एक्सचेंज में ख़रीदे-बेचे जाते हैं, और दाम चढ़-उतर सकते हैं, इसलिए व्यापार से लाभ या हानि हो सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do companies issue shares?",
+        "hi": "कंपनियाँ शेयर क्यों जारी करती हैं?"
+       },
+       "options": [
+        {
+         "en": "To raise money for their work",
+         "hi": "अपने काम के लिए पैसा जुटाने के लिए"
+        },
+        {
+         "en": "To give away their buildings",
+         "hi": "अपनी इमारतें बाँटने के लिए"
+        },
+        {
+         "en": "To stop people investing",
+         "hi": "लोगों को निवेश से रोकने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Selling shares brings in funds that a company can use to grow.",
+        "hi": "शेयर बेचने से मिला धन कंपनी बढ़ने के लिए इस्तेमाल करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Shares do not give away buildings; they give part-ownership.",
+         "hi": "शेयर इमारतें नहीं देते; वे आंशिक स्वामित्व देते हैं।"
+        },
+        {
+         "en": "They invite investment, not stop it.",
+         "hi": "वे निवेश को बुलाते हैं, रोकते नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can share prices fall?",
+        "hi": "शेयरों के दाम क्यों गिर सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "The company has problems, or there are economic shocks or policy changes",
+         "hi": "कंपनी में समस्या हो, या आर्थिक झटके या नीतिगत बदलाव हों"
+        },
+        {
+         "en": "Because prices must always rise",
+         "hi": "क्योंकि दाम हमेशा बढ़ने ही चाहिए"
+        },
+        {
+         "en": "Because shares are free",
+         "hi": "क्योंकि शेयर मुफ़्त हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Bad news about a company, wars, disasters or new tax rules can reduce what people will pay.",
+        "hi": "कंपनी की बुरी ख़बर, युद्ध, आपदाएँ या नए कर-नियम लोगों की चुकाने की इच्छा घटा सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Prices move both ways, which is why investing has risk.",
+         "hi": "दाम दोनों तरफ़ चलते हैं, इसीलिए निवेश में जोखिम है।"
+        },
+        {
+         "en": "Shares have prices set by buyers and sellers.",
+         "hi": "शेयरों के दाम ख़रीदार और विक्रेता तय करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why might it be risky to put all your savings in shares of just one company?",
+      "hi": "सारी बचत एक ही कंपनी के शेयरों में लगाना जोखिम भरा क्यों हो सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees2-ch08-safe",
+   "topic": "8.11",
+   "template": "scenario",
+   "title": {
+    "en": "Spot the digital fraud",
+    "hi": "डिजिटल धोखाधड़ी पहचानो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "your phone",
+    "role": {
+     "en": "A UPI user",
+     "hi": "यूपीआई उपयोगकर्ता"
+    },
+    "scenes": [
+     {
+      "id": "call",
+      "text": {
+       "en": "A caller says, 'I am from your bank. Your account will close. Tell me the OTP you just got.' What do you do?",
+       "hi": "एक फ़ोन करने वाला कहता है, 'मैं आपके बैंक से हूँ। आपका खाता बंद हो जाएगा। अभी आया ओटीपी बताइए।' तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "share",
+        "text": {
+         "en": "Read out the OTP",
+         "hi": "ओटीपी बता दो"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Sharing an OTP lets the fraudster take money from your account.",
+         "hi": "ओटीपी बताने से ठग तुम्हारे खाते से पैसा निकाल सकता है।"
+        }
+       },
+       {
+        "id": "refuse",
+        "text": {
+         "en": "Refuse and hang up",
+         "hi": "मना करके फ़ोन काट दो"
+        },
+        "next": "link",
+        "good": true,
+        "feedback": {
+         "en": "Correct. A bank never asks for your OTP or PIN.",
+         "hi": "सही। बैंक कभी ओटीपी या पिन नहीं माँगता।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "link",
+      "text": {
+       "en": "Later a message says, 'Your KYC has expired. Click this link to update.' You do not know the sender.",
+       "hi": "बाद में एक संदेश आता है, 'आपका केवाईसी समाप्त हो गया है। अपडेट के लिए इस लिंक पर क्लिक करें।' भेजने वाले को तुम नहीं जानते।"
+      },
+      "choices": [
+       {
+        "id": "click",
+        "text": {
+         "en": "Click the link quickly",
+         "hi": "जल्दी से लिंक पर क्लिक करो"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Unknown links can install harmful apps and steal data.",
+         "hi": "अनजान लिंक हानिकारक ऐप डालकर डेटा चुरा सकते हैं।"
+        }
+       },
+       {
+        "id": "delete",
+        "text": {
+         "en": "Do not click; delete it and tell a trusted adult",
+         "hi": "क्लिक मत करो; मिटा दो और किसी भरोसेमंद बड़े को बताओ"
+        },
+        "next": "report",
+        "good": true,
+        "feedback": {
+         "en": "Right. Avoid clicking unknown links and ask someone you trust.",
+         "hi": "सही। अनजान लिंक पर क्लिक न करो और भरोसेमंद व्यक्ति से पूछो।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "report",
+      "text": {
+       "en": "Your neighbour says she lost money to a similar scam. What should she do?",
+       "hi": "तुम्हारी पड़ोसन कहती हैं कि ऐसे ही ठगी में उनका पैसा चला गया। उन्हें क्या करना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "helpline",
+        "text": {
+         "en": "Report at once on helpline 1930 or the cybercrime portal",
+         "hi": "तुरंत हेल्पलाइन 1930 या साइबर अपराध पोर्टल पर शिकायत करें"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Quick reporting gives the best chance of stopping the fraud.",
+         "hi": "जल्दी शिकायत करने से ठगी रोकने की सबसे अच्छी संभावना रहती है।"
+        }
+       },
+       {
+        "id": "silent",
+        "text": {
+         "en": "Stay silent out of shame",
+         "hi": "शर्म से चुप रहें"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Silence helps the fraudster. Reporting protects others too.",
+         "hi": "चुप रहना ठग की मदद करता है। शिकायत से दूसरे भी बचते हैं।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:call:refuse",
+     "expect": "chose:refuse",
+     "say": {
+      "en": "Refuse to share the OTP and hang up.",
+      "hi": "ओटीपी बताने से मना करो और फ़ोन काट दो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A message with a link asks you to update your bank details. Is it safe to click?",
+      "hi": "एक संदेश में लिंक देकर बैंक विवरण अपडेट करने को कहा गया है। क्या क्लिक करना सुरक्षित है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, do not click unknown links",
+       "hi": "नहीं, अनजान लिंक पर क्लिक न करो"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it is always genuine",
+       "hi": "हाँ, वह हमेशा असली होता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:link:delete",
+     "expect": "chose:delete",
+     "say": {
+      "en": "Delete the message and tell a trusted adult.",
+      "hi": "संदेश मिटाओ और किसी भरोसेमंद बड़े को बताओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:report:helpline",
+     "expect": "chose:helpline",
+     "say": {
+      "en": "Advise your neighbour to report to 1930.",
+      "hi": "पड़ोसन को 1930 पर शिकायत करने की सलाह दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Digital payments are convenient, but fraudsters trick people through fake calls and messages to get OTPs, PINs and bank details. Never share these, avoid unknown links, do not store sensitive details on your phone, and report fraud on helpline 1930 or the National Cybercrime Reporting Portal.",
+      "hi": "डिजिटल भुगतान सुविधाजनक हैं, पर ठग नक़ली फ़ोन और संदेशों से ओटीपी, पिन और बैंक विवरण निकलवाते हैं। ये कभी साझा न करो, अनजान लिंक से बचो, संवेदनशील जानकारी फ़ोन में न रखो, और ठगी की शिकायत हेल्पलाइन 1930 या राष्ट्रीय साइबर अपराध रिपोर्टिंग पोर्टल पर करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does OTP stand for?",
+        "hi": "ओटीपी का पूरा नाम क्या है?"
+       },
+       "options": [
+        {
+         "en": "One-Time Password",
+         "hi": "वन-टाइम पासवर्ड (एक बार का पासवर्ड)"
+        },
+        {
+         "en": "Only Tap Payment",
+         "hi": "ओनली टैप पेमेंट"
+        },
+        {
+         "en": "Online Transfer Plan",
+         "hi": "ऑनलाइन ट्रांसफ़र प्लान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is a temporary code that proves it is you. Sharing it gives your access away.",
+        "hi": "यह अस्थायी कोड है जो साबित करता है कि तुम ही हो। इसे बताने से तुम्हारी पहुँच दूसरे को मिल जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is not what OTP means.",
+         "hi": "ओटीपी का यह अर्थ नहीं है।"
+        },
+        {
+         "en": "That is not what OTP means.",
+         "hi": "ओटीपी का यह अर्थ नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which habit is safe?",
+        "hi": "कौन-सी आदत सुरक्षित है?"
+       },
+       "options": [
+        {
+         "en": "Never sharing your PIN or OTP",
+         "hi": "पिन या ओटीपी कभी साझा न करना"
+        },
+        {
+         "en": "Saving your PIN in your phone notes",
+         "hi": "पिन फ़ोन के नोट्स में सहेजना"
+        },
+        {
+         "en": "Clicking every link you receive",
+         "hi": "मिले हर लिंक पर क्लिक करना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Keeping secrets secret is the best protection.",
+        "hi": "रहस्य को रहस्य रखना सबसे अच्छा बचाव है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A stolen phone would then give away your PIN.",
+         "hi": "फ़ोन चोरी होने पर पिन भी चला जाएगा।"
+        },
+        {
+         "en": "Unknown links can steal your data.",
+         "hi": "अनजान लिंक डेटा चुरा सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a safety poster with three 'don'ts' and the helpline number 1930.",
+      "hi": "तीन 'क्या न करें' और हेल्पलाइन नंबर 1930 के साथ सुरक्षा पोस्टर बनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.5",
+   "use": "Passbook entries",
+   "shows": "An open bank passbook with a pen beside it on a desk (sample entries only)",
+   "view": "Top-down, 4:3, soft light",
+   "right": "Clearly printed columns for debit, credit and balance, no real numbers",
+   "avoid": "Real names, account numbers, bank logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.8",
+   "use": "A cheque",
+   "shows": "A blank sample cheque of a made-up bank, laid flat, with each part clear",
+   "view": "Top-down, 16:9",
+   "right": "Every box visible for date, payee, words, figures, signature",
+   "avoid": "A real bank's name, MICR numbers of a real account"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "8.8",
+   "use": "Cash from an ATM",
+   "shows": "An ATM kiosk at a bus depot, a hand inserting a debit card",
+   "view": "Medium shot, 4:3",
+   "right": "Clean ATM, card in a hand, calm light",
+   "avoid": "Faces, bank brand colours, screen with details"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "8.9",
+   "use": "UPI at a vegetable stall",
+   "shows": "A QR code stand on a vegetable cart with fresh vegetables, no people",
+   "view": "Close, 4:3",
+   "right": "Plain QR stand, bright vegetables",
+   "avoid": "App logos, people's faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.7",
+   "use": "The Reserve Bank of India",
+   "shows": "The RBI building with its entrance in clear light",
+   "view": "Wide, 16:9",
+   "right": "Real building, true colours, calm sky",
+   "avoid": "Crowds, vehicles, signboards of other firms"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "8.10",
+   "use": "The stock exchange",
+   "shows": "The Bombay Stock Exchange building in daylight",
+   "view": "Wide, 16:9, eye level",
+   "right": "Real building, tall tower visible",
+   "avoid": "People's faces, advertisements"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "8.6",
+   "use": "Post office banking",
+   "shows": "A small village post office counter with a savings-scheme poster blurred behind",
+   "view": "Medium shot, 4:3",
+   "right": "Counter, ledger and stamp pad, warm light",
+   "avoid": "Staff faces, real names"
+  }
+ ]
+}

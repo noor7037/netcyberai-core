@@ -1,0 +1,868 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch11",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "Grandmother's Quilt",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Perimeter: lace around the quilt border",
+   "labs": [
+    "c05-mathematics-eemm1-ch11-lace-border"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Tiling a region: the idea of area",
+   "labs": [
+    "c05-mathematics-eemm1-ch11-tiles-cover"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Comparing areas on a square grid",
+   "labs": [
+    "c05-mathematics-eemm1-ch11-garden-areas",
+    "c05-mathematics-eemm1-ch11-square-numbers"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch11-lace-border",
+   "topic": "11.1",
+   "template": "scenario",
+   "title": {
+    "en": "Lace for the quilt border",
+    "hi": "रज़ाई की किनारी के लिए लेस"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "home",
+    "role": {
+     "en": "Grandmother's helper",
+     "hi": "दादी की मददगार"
+    },
+    "scenes": [
+     {
+      "id": "whole",
+      "text": {
+       "en": "Grandmother's quilt is a rectangle, 10 units long and 6 units wide. She wants one lace strip to go all around the border, with nothing left over. Which lace should she pick?",
+       "hi": "दादी की रज़ाई आयताकार है, 10 इकाई लंबी और 6 इकाई चौड़ी। वह चाहती है कि पूरी किनारी पर एक लेस लगे और कुछ बचे नहीं। वह कौन-सी लेस चुने?"
+      },
+      "choices": [
+       {
+        "id": "l32",
+        "text": {
+         "en": "A lace of 32 units",
+         "hi": "32 इकाई की लेस"
+        },
+        "next": "split",
+        "good": true,
+        "feedback": {
+         "en": "Yes! The border is 10 + 6 + 10 + 6 = 32 units. This length is called the perimeter.",
+         "hi": "हाँ! किनारी 10 + 6 + 10 + 6 = 32 इकाई है। इस लंबाई को परिमाप कहते हैं।"
+        }
+       },
+       {
+        "id": "l16",
+        "text": {
+         "en": "A lace of 16 units",
+         "hi": "16 इकाई की लेस"
+        },
+        "next": "split",
+        "good": false,
+        "feedback": {
+         "en": "16 is only 10 + 6, two of the four sides. The border has four sides.",
+         "hi": "16 तो केवल 10 + 6 है, यानी चार में से दो भुजाएँ। किनारी में चार भुजाएँ हैं।"
+        }
+       },
+       {
+        "id": "l60",
+        "text": {
+         "en": "A lace of 60 units",
+         "hi": "60 इकाई की लेस"
+        },
+        "next": "split",
+        "good": false,
+        "feedback": {
+         "en": "60 is 10 × 6, which counts squares inside, not the length around the edge.",
+         "hi": "60 तो 10 × 6 है, जो अंदर के वर्ग गिनता है, किनारे के चारों ओर की लंबाई नहीं।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "split",
+      "text": {
+       "en": "Now she uses red lace along the two long sides and blue lace along the two short sides. How much red lace and how much blue lace does she need?",
+       "hi": "अब वह दोनों लंबी भुजाओं पर लाल लेस और दोनों छोटी भुजाओं पर नीली लेस लगाती है। उसे कितनी लाल और कितनी नीली लेस चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "rb",
+        "text": {
+         "en": "Red 20 units, blue 12 units",
+         "hi": "लाल 20 इकाई, नीली 12 इकाई"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Yes! Two long sides: 10 + 10 = 20. Two short sides: 6 + 6 = 12. And 20 + 12 = 32, the whole border.",
+         "hi": "हाँ! दो लंबी भुजाएँ: 10 + 10 = 20। दो छोटी भुजाएँ: 6 + 6 = 12। और 20 + 12 = 32, पूरी किनारी।"
+        }
+       },
+       {
+        "id": "rb2",
+        "text": {
+         "en": "Red 10 units, blue 6 units",
+         "hi": "लाल 10 इकाई, नीली 6 इकाई"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "That counts only one long side and one short side. Each colour is used on two sides.",
+         "hi": "इसमें केवल एक लंबी और एक छोटी भुजा गिनी गई। हर रंग दो भुजाओं पर लगता है।"
+        }
+       },
+       {
+        "id": "rb3",
+        "text": {
+         "en": "Red 12 units, blue 20 units",
+         "hi": "लाल 12 इकाई, नीली 20 इकाई"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "The red lace goes on the long sides, so red is the bigger amount: 20.",
+         "hi": "लाल लेस लंबी भुजाओं पर लगती है, इसलिए लाल ज़्यादा है: 20।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:whole:l32",
+     "expect": "chose:l32",
+     "say": {
+      "en": "Add all four sides of the quilt and choose the right lace.",
+      "hi": "रज़ाई की चारों भुजाएँ जोड़ो और सही लेस चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Red lace goes on the two long sides (10 each). Will the red lace be more or less than the blue lace for the short sides?",
+      "hi": "लाल लेस दोनों लंबी भुजाओं (10-10) पर लगेगी। लाल लेस नीली लेस से, जो छोटी भुजाओं पर लगेगी, ज़्यादा होगी या कम?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More",
+       "hi": "ज़्यादा"
+      },
+      {
+       "id": "less",
+       "en": "Less",
+       "hi": "कम"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "choice:split:rb",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose the correct amounts of red and blue lace.",
+      "hi": "लाल और नीली लेस की सही मात्रा चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The length of the border of a shape is called its perimeter. For a rectangle, add all four sides: 10 + 6 + 10 + 6 = 32. Or add the two different sides and double: (10 + 6) × 2 = 32.",
+      "hi": "किसी आकृति की किनारी की लंबाई को परिमाप कहते हैं। आयत के लिए चारों भुजाएँ जोड़ो: 10 + 6 + 10 + 6 = 32। या दो अलग भुजाएँ जोड़कर दुगुना करो: (10 + 6) × 2 = 32।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A square rug has sides of 5 cm. What is the perimeter?",
+        "hi": "वर्गाकार दरी की भुजाएँ 5 सेमी हैं। परिमाप कितना है?"
+       },
+       "options": [
+        {
+         "en": "20 cm",
+         "hi": "20 सेमी"
+        },
+        {
+         "en": "25 cm",
+         "hi": "25 सेमी"
+        },
+        {
+         "en": "10 cm",
+         "hi": "10 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A square has 4 equal sides: 5 + 5 + 5 + 5 = 20 cm.",
+        "hi": "वर्ग की 4 भुजाएँ बराबर होती हैं: 5 + 5 + 5 + 5 = 20 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "25 is 5 × 5, the number of unit squares inside, not the length around.",
+         "hi": "25 तो 5 × 5 है, यानी अंदर के इकाई वर्गों की संख्या, चारों ओर की लंबाई नहीं।"
+        },
+        {
+         "en": "10 counts only two sides. There are four.",
+         "hi": "10 में केवल दो भुजाएँ गिनी गईं। भुजाएँ चार हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A rectangle has perimeter 18 cm and one side is 5 cm. What is the side next to it?",
+        "hi": "एक आयत का परिमाप 18 सेमी है और एक भुजा 5 सेमी है। उसके पास वाली भुजा कितनी है?"
+       },
+       "options": [
+        {
+         "en": "4 cm",
+         "hi": "4 सेमी"
+        },
+        {
+         "en": "13 cm",
+         "hi": "13 सेमी"
+        },
+        {
+         "en": "9 cm",
+         "hi": "9 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Half the perimeter is 9 cm, which is the two different sides together. 9 − 5 = 4 cm.",
+        "hi": "आधा परिमाप 9 सेमी है, जो दो अलग भुजाओं का योग है। 9 − 5 = 4 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "13 is 18 − 5. But two sides of 5 are on the border, so take 5 twice: 18 − 10 = 8, and half of 8 is 4.",
+         "hi": "13 तो 18 − 5 है। पर 5 की दो भुजाएँ किनारी पर हैं, इसलिए 5 दो बार घटाओ: 18 − 10 = 8, और 8 का आधा 4 है।"
+        },
+        {
+         "en": "9 is half the perimeter, the sum of both sides. Subtract the 5 to get the other side.",
+         "hi": "9 आधा परिमाप है, यानी दोनों भुजाओं का योग। दूसरी भुजा पाने के लिए 5 घटाओ।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw two different rectangles that both have a perimeter of 18 cm. Measure with a ruler. Do they look equally big?",
+      "hi": "18 सेमी परिमाप वाले दो अलग आयत बनाओ। पैमाने से नापो। क्या वे बराबर बड़े दिखते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch11-tiles-cover",
+   "topic": "11.2",
+   "template": "sort",
+   "title": {
+    "en": "Which shapes cover a table?",
+    "hi": "कौन-सी आकृतियाँ मेज़ को ढकती हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cover",
+      "label": {
+       "en": "Cover with no gaps",
+       "hi": "बिना खाली जगह के ढकती हैं"
+      }
+     },
+     {
+      "id": "gap",
+      "label": {
+       "en": "Leave gaps",
+       "hi": "खाली जगह छोड़ती हैं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "Square tiles",
+       "hi": "वर्गाकार टाइलें"
+      },
+      "bin": "cover",
+      "why": {
+       "en": "Squares fit edge to edge with no gaps or overlaps. They are the best for measuring area.",
+       "hi": "वर्ग किनारे से किनारा जुड़कर बिना खाली जगह के बैठते हैं। क्षेत्रफल नापने के लिए ये सबसे अच्छे हैं।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Rectangle tiles",
+       "hi": "आयताकार टाइलें"
+      },
+      "bin": "cover",
+      "why": {
+       "en": "Rectangles also fit edge to edge.",
+       "hi": "आयत भी किनारे से किनारा जुड़कर बैठते हैं।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "Triangle tiles",
+       "hi": "त्रिभुजाकार टाइलें"
+      },
+      "bin": "cover",
+      "why": {
+       "en": "Triangles of the same size cover a surface without gaps.",
+       "hi": "एक ही आकार के त्रिभुज सतह को बिना खाली जगह के ढकते हैं।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "Notebooks of the same size",
+       "hi": "एक-से आकार की कॉपियाँ"
+      },
+      "bin": "cover",
+      "why": {
+       "en": "Notebooks are rectangles, so they cover the table with no gaps.",
+       "hi": "कॉपियाँ आयत हैं, इसलिए मेज़ को बिना खाली जगह के ढकती हैं।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "Round coasters",
+       "hi": "गोल कोस्टर"
+      },
+      "bin": "gap",
+      "why": {
+       "en": "Circles always leave gaps between them.",
+       "hi": "वृत्तों के बीच हमेशा खाली जगह रहती है।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "Round plates",
+       "hi": "गोल थालियाँ"
+      },
+      "bin": "gap",
+      "why": {
+       "en": "Round plates leave gaps, however you place them.",
+       "hi": "गोल थालियाँ कैसे भी रखो, खाली जगह छोड़ती हैं।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "Five-sided tiles of the same size",
+       "hi": "एक-से आकार की पाँच भुजा वाली टाइलें"
+      },
+      "bin": "gap",
+      "why": {
+       "en": "Regular pentagons leave gaps around a point.",
+       "hi": "सम पंचभुज एक बिंदु के चारों ओर खाली जगह छोड़ते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Place 'Square tiles'.",
+      "hi": "'वर्गाकार टाइलें' रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The region covered by tiles is called the area. Will round coasters give a true area of a table?",
+      "hi": "टाइलों से ढका हुआ क्षेत्र क्षेत्रफल कहलाता है। क्या गोल कोस्टर से मेज़ का सही क्षेत्रफल निकलेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, they leave gaps",
+       "hi": "नहीं, खाली जगह रह जाएगी"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, they cover it fully",
+       "hi": "हाँ, वे पूरा ढक देंगे"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:c5",
+     "expect": "correct:c5",
+     "say": {
+      "en": "Place 'Round coasters'.",
+      "hi": "'गोल कोस्टर' रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाकी को छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To measure area we cover a region with shapes that fit edge to edge, with no gaps and no overlaps: squares, rectangles and triangles do this. The number of shapes needed is the area, in those shape units. Circles leave gaps, so they cannot measure area.",
+      "hi": "क्षेत्रफल नापने के लिए हम सतह को ऐसी आकृतियों से ढकते हैं जो किनारे से किनारा जुड़ें, बिना खाली जगह और बिना ऊपर चढ़े: वर्ग, आयत और त्रिभुज ऐसा करते हैं। जितनी आकृतियाँ लगें वही क्षेत्रफल है, उन्हीं आकृतियों की इकाई में। वृत्त खाली जगह छोड़ते हैं, इसलिए उनसे क्षेत्रफल नहीं नापा जा सकता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we use square units to measure area?",
+        "hi": "क्षेत्रफल नापने के लिए हम वर्ग इकाइयाँ क्यों इस्तेमाल करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Squares fit together with no gaps and are easy to count in rows",
+         "hi": "वर्ग बिना खाली जगह के जुड़ते हैं और कतारों में गिनना आसान होता है"
+        },
+        {
+         "en": "Squares are the only shape",
+         "hi": "वर्ग ही एकमात्र आकृति है"
+        },
+        {
+         "en": "Squares are always red",
+         "hi": "वर्ग हमेशा लाल होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A square grid is easy to count, row by row, and it leaves no gaps.",
+        "hi": "वर्गों की जाली को कतार-दर-कतार गिनना आसान है और उसमें खाली जगह नहीं रहती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Triangles and rectangles also tile; squares are just the most convenient.",
+         "hi": "त्रिभुज और आयत भी तल भरते हैं; वर्ग बस सबसे सुविधाजनक हैं।"
+        },
+        {
+         "en": "Colour does not matter. What matters is that the shapes fit with no gaps.",
+         "hi": "रंग मायने नहीं रखता। मायने यह रखता है कि आकृतियाँ बिना खाली जगह के जुड़ें।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Cover your table top or a book with notebooks or pencil boxes. How many cover it? Which object covers it exactly?",
+      "hi": "अपनी मेज़ या किताब को कॉपियों या पेंसिल-बक्सों से ढको। कितने लगे? कौन-सी वस्तु उसे ठीक-ठीक ढकती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch11-garden-areas",
+   "topic": "11.3",
+   "template": "scenario",
+   "title": {
+    "en": "Which garden is bigger?",
+    "hi": "कौन-सा बगीचा बड़ा है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "school garden",
+    "role": {
+     "en": "Gardener",
+     "hi": "माली"
+    },
+    "scenes": [
+     {
+      "id": "p",
+      "text": {
+       "en": "On a square grid, Garden P covers a rectangle 6 squares long and 3 squares wide. How many unit squares does it cover?",
+       "hi": "वर्गों वाली जाली पर बगीचा P एक आयत है, 6 वर्ग लंबा और 3 वर्ग चौड़ा। वह कितने इकाई वर्ग ढकता है?"
+      },
+      "choices": [
+       {
+        "id": "p18",
+        "text": {
+         "en": "18 squares",
+         "hi": "18 वर्ग"
+        },
+        "next": "q",
+        "good": true,
+        "feedback": {
+         "en": "Yes! 3 rows of 6 squares: 6 × 3 = 18 unit squares. Area = 18 square units.",
+         "hi": "हाँ! 6-6 वर्गों की 3 कतारें: 6 × 3 = 18 इकाई वर्ग। क्षेत्रफल = 18 वर्ग इकाई।"
+        }
+       },
+       {
+        "id": "p9",
+        "text": {
+         "en": "9 squares",
+         "hi": "9 वर्ग"
+        },
+        "next": "q",
+        "good": false,
+        "feedback": {
+         "en": "9 is 6 + 3, the length and width added. Area counts the squares inside: 6 × 3.",
+         "hi": "9 तो 6 + 3 है, लंबाई और चौड़ाई का योग। क्षेत्रफल अंदर के वर्ग गिनता है: 6 × 3।"
+        }
+       },
+       {
+        "id": "p15",
+        "text": {
+         "en": "15 squares",
+         "hi": "15 वर्ग"
+        },
+        "next": "q",
+        "good": false,
+        "feedback": {
+         "en": "Count again: 3 full rows of 6 squares make 18.",
+         "hi": "फिर गिनो: 6 वर्गों की 3 पूरी कतारें 18 होती हैं।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "q",
+      "text": {
+       "en": "Garden Q is a rectangle 5 squares long and 4 squares wide. Which garden has the larger area, P or Q?",
+       "hi": "बगीचा Q एक आयत है, 5 वर्ग लंबा और 4 वर्ग चौड़ा। किस बगीचे का क्षेत्रफल बड़ा है, P का या Q का?"
+      },
+      "choices": [
+       {
+        "id": "q20",
+        "text": {
+         "en": "Q: 20 squares, more than P",
+         "hi": "Q: 20 वर्ग, P से ज़्यादा"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Yes! 5 × 4 = 20, which is more than 18. P is longer, but Q is wider, and Q covers more squares.",
+         "hi": "हाँ! 5 × 4 = 20, जो 18 से ज़्यादा है। P ज़्यादा लंबा है, पर Q ज़्यादा चौड़ा है और Q ज़्यादा वर्ग ढकता है।"
+        }
+       },
+       {
+        "id": "pq",
+        "text": {
+         "en": "P, because it is longer",
+         "hi": "P, क्योंकि वह ज़्यादा लंबा है"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Length alone does not decide the area. Count both: P has 18 squares and Q has 20.",
+         "hi": "केवल लंबाई से क्षेत्रफल तय नहीं होता। दोनों गिनो: P में 18 वर्ग हैं और Q में 20।"
+        }
+       },
+       {
+        "id": "eq",
+        "text": {
+         "en": "They are equal",
+         "hi": "दोनों बराबर हैं"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "P covers 6 × 3 = 18 squares and Q covers 5 × 4 = 20 squares. They are not equal.",
+         "hi": "P, 6 × 3 = 18 वर्ग ढकता है और Q, 5 × 4 = 20 वर्ग। वे बराबर नहीं हैं।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:p:p18",
+     "expect": "chose:p18",
+     "say": {
+      "en": "Find the area of Garden P by counting rows and columns of squares.",
+      "hi": "वर्गों की कतारें और स्तंभ गिनकर बगीचे P का क्षेत्रफल निकालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Garden P is 6 squares long. Garden Q is shorter (5 squares) but wider (4 squares). Which do you think is bigger?",
+      "hi": "बगीचा P 6 वर्ग लंबा है। बगीचा Q छोटा (5 वर्ग) पर ज़्यादा चौड़ा (4 वर्ग) है। तुम्हें कौन-सा बड़ा लगता है?"
+     },
+     "options": [
+      {
+       "id": "p",
+       "en": "Garden P",
+       "hi": "बगीचा P"
+      },
+      {
+       "id": "q",
+       "en": "Garden Q",
+       "hi": "बगीचा Q"
+      },
+      {
+       "id": "same",
+       "en": "They look equal",
+       "hi": "दोनों बराबर लगते हैं"
+      }
+     ],
+     "answer": "q"
+    },
+    {
+     "kind": "do",
+     "target": "choice:q:q20",
+     "expect": "ended:good",
+     "say": {
+      "en": "Work out the area of Q and choose the right answer.",
+      "hi": "Q का क्षेत्रफल निकालो और सही उत्तर चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The area of a rectangle on a grid is the number of rows times the number of squares in each row. P: 3 × 6 = 18. Q: 4 × 5 = 20. The square unit used here is one square of the grid. A bigger length does not always mean a bigger area.",
+      "hi": "जाली पर आयत का क्षेत्रफल कतारों की संख्या गुणा हर कतार के वर्गों की संख्या है। P: 3 × 6 = 18। Q: 4 × 5 = 20। यहाँ वर्ग इकाई जाली का एक वर्ग है। लंबाई ज़्यादा होने का मतलब हमेशा क्षेत्रफल ज़्यादा नहीं होता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A rectangle covers 7 rows of 8 squares. What is its area?",
+        "hi": "एक आयत 8 वर्गों की 7 कतारें ढकता है। उसका क्षेत्रफल कितना है?"
+       },
+       "options": [
+        {
+         "en": "56 square units",
+         "hi": "56 वर्ग इकाई"
+        },
+        {
+         "en": "15 square units",
+         "hi": "15 वर्ग इकाई"
+        },
+        {
+         "en": "30 square units",
+         "hi": "30 वर्ग इकाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 × 8 = 56 unit squares.",
+        "hi": "7 × 8 = 56 इकाई वर्ग।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "15 is 7 + 8. Area is rows times squares in a row.",
+         "hi": "15 तो 7 + 8 है। क्षेत्रफल कतारें गुणा हर कतार के वर्ग है।"
+        },
+        {
+         "en": "30 is the perimeter, 7 + 8 + 7 + 8, the border and not the area inside.",
+         "hi": "30 परिमाप है, 7 + 8 + 7 + 8, यानी किनारी, अंदर का क्षेत्रफल नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw on squared paper two rectangles that have the same area but different shapes, for example 12 squares. How many can you find?",
+      "hi": "वर्गों वाले कागज़ पर बराबर क्षेत्रफल पर अलग आकार वाले दो आयत बनाओ, जैसे 12 वर्ग वाले। कितने मिलते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch11-square-numbers",
+   "topic": "11.3",
+   "template": "pattern",
+   "title": {
+    "en": "Squares that grow",
+    "hi": "बढ़ते हुए वर्ग"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "kind": "figurate",
+    "rule": "square",
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A square of side 1 covers 1 grid square. A square of side 2 covers 4. A square of side 3 covers 9. How many grid squares does a square of side 5 cover?",
+      "hi": "भुजा 1 का वर्ग जाली का 1 वर्ग ढकता है। भुजा 2 का वर्ग 4 ढकता है। भुजा 3 का वर्ग 9। भुजा 5 का वर्ग जाली के कितने वर्ग ढकेगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "It covers 25 squares",
+       "hi": "यह 25 वर्ग ढकेगा"
+      },
+      {
+       "id": "b",
+       "en": "It covers 10 squares",
+       "hi": "यह 10 वर्ग ढकेगा"
+      },
+      {
+       "id": "c",
+       "en": "It covers 15 squares",
+       "hi": "यह 15 वर्ग ढकेगा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at how the squares of dots grow, then answer the question about the next square.",
+      "hi": "देखो कि बिंदुओं के वर्ग कैसे बढ़ते हैं, फिर अगले वर्ग के बारे में पूछे गए सवाल का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A square with side n covers n rows of n squares, so its area is n × n. Sides 1, 2, 3, 4, 5 give areas 1, 4, 9, 16, 25. These are called square numbers.",
+      "hi": "भुजा n वाला वर्ग n वर्गों की n कतारें ढकता है, इसलिए उसका क्षेत्रफल n × n है। भुजा 1, 2, 3, 4, 5 पर क्षेत्रफल 1, 4, 9, 16, 25 मिलते हैं। इन्हें वर्ग संख्याएँ कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the area of a square of side 7?",
+        "hi": "भुजा 7 वाले वर्ग का क्षेत्रफल कितना है?"
+       },
+       "options": [
+        "49",
+        "14",
+        "28"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 rows of 7 squares: 7 × 7 = 49.",
+        "hi": "7-7 वर्गों की 7 कतारें: 7 × 7 = 49।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "14 is 7 + 7. That would be the distance along two sides.",
+         "hi": "14 तो 7 + 7 है। यह दो भुजाओं की लंबाई होती।"
+        },
+        {
+         "en": "28 is 7 × 4, the perimeter. Area is 7 × 7.",
+         "hi": "28 तो 7 × 4 है, यानी परिमाप। क्षेत्रफल 7 × 7 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the slider to grow the square one step at a time. Notice how many new dots are added each time: 3, 5, 7, 9... Why?",
+      "hi": "स्लाइडर से वर्ग को एक-एक कदम बढ़ाओ। देखो हर बार कितने नए बिंदु जुड़ते हैं: 3, 5, 7, 9... क्यों?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Chapter hook: grandmother's quilt",
+   "shows": "A patchwork quilt made from old clothes spread on a bed, with a lace border being stitched at one corner, a grandmother's hands only",
+   "view": "Slightly above, warm window light",
+   "right": "Patchwork of many cloth pieces; clear rectangular border",
+   "avoid": "Faces, brand labels"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Lace rolls",
+   "shows": "Three rolls of lace in red, green and blue, each partly unrolled to show different lengths, separate cut-outs",
+   "view": "Top-down, even light",
+   "right": "Lengths clearly different; lace pattern simple",
+   "avoid": "Text, price tags"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "11.2",
+   "use": "Tiles on a table and a floor",
+   "shows": "A kitchen table partly covered with square tiles, and a courtyard floor in rectangular tiles, in two separate photographs",
+   "view": "Top-down, even light",
+   "right": "Tiles edge to edge with no gaps",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "11.3",
+   "use": "Square grid base",
+   "shows": "A clean square grid sheet of 12 by 10 squares on white background with faint blue lines",
+   "view": "Flat, straight on",
+   "right": "Squares equal, lines thin",
+   "avoid": "Numbers or shapes baked in"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "11.3",
+   "use": "School garden beds",
+   "shows": "Two rectangular vegetable beds in a school garden with string around their edges, one long and narrow, the other short and wide",
+   "view": "Slightly raised, daylight",
+   "right": "Beds clearly different shapes; soil and small plants visible",
+   "avoid": "Children's faces"
+  }
+ ]
+}

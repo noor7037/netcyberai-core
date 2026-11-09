@@ -1,0 +1,788 @@
+{
+ "chapter_key": "u.c01.english.aemr1.ch05",
+ "class": 1,
+ "subject_id": "english",
+ "title": "A Farm",
+ "source": "https://ncert.nic.in/textbook/pdf/aemr1ps.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "The farm song: animal sounds",
+   "labs": [
+    "c01-english-aemr1-ch05-animal-sounds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Animals and birds: telling them apart",
+   "labs": [
+    "c01-english-aemr1-ch05-animals-or-birds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Animals and Birds: Jaggu's street (verandah, cow, rat, sparrow, crow)",
+   "labs": [
+    "c01-english-aemr1-ch05-jaggus-street"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Colouring the farm and naming its animals; making your own animal sound verses",
+   "labs": [],
+   "why_no_lab": "The colouring is done on paper and the sound verses are sung aloud with the class."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-english-aemr1-ch05-animal-sounds",
+   "topic": "5.1",
+   "template": "match",
+   "title": {
+    "en": "Which animal makes this sound?",
+    "hi": "यह आवाज़ किस जानवर की है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "cow",
+      "left": {
+       "en": "Cow",
+       "hi": "गाय"
+      },
+      "right": {
+       "en": "moo-moo",
+       "hi": "मूँ-मूँ"
+      },
+      "why": {
+       "en": "A cow says moo.",
+       "hi": "गाय मूँ-मूँ करती है।"
+      }
+     },
+     {
+      "id": "hen",
+      "left": {
+       "en": "Hen",
+       "hi": "मुर्गी"
+      },
+      "right": {
+       "en": "cluck-cluck",
+       "hi": "कुक-कुक"
+      },
+      "why": {
+       "en": "A hen says cluck.",
+       "hi": "मुर्गी कुक-कुक करती है।"
+      }
+     },
+     {
+      "id": "cat",
+      "left": {
+       "en": "Cat",
+       "hi": "बिल्ली"
+      },
+      "right": {
+       "en": "meow",
+       "hi": "म्याऊँ"
+      },
+      "why": {
+       "en": "A cat says meow.",
+       "hi": "बिल्ली म्याऊँ कहती है।"
+      }
+     },
+     {
+      "id": "dog",
+      "left": {
+       "en": "Dog",
+       "hi": "कुत्ता"
+      },
+      "right": {
+       "en": "bow-wow",
+       "hi": "भौं-भौं"
+      },
+      "why": {
+       "en": "A dog says bow-wow.",
+       "hi": "कुत्ता भौं-भौं करता है।"
+      }
+     },
+     {
+      "id": "goat",
+      "left": {
+       "en": "Goat",
+       "hi": "बकरी"
+      },
+      "right": {
+       "en": "meh-meh",
+       "hi": "में-में"
+      },
+      "why": {
+       "en": "A goat says meh.",
+       "hi": "बकरी में-में करती है।"
+      }
+     },
+     {
+      "id": "cock",
+      "left": {
+       "en": "Cock",
+       "hi": "मुर्गा"
+      },
+      "right": {
+       "en": "cock-a-doodle-doo",
+       "hi": "कुकड़ूँ-कूँ"
+      },
+      "why": {
+       "en": "A cock crows in the morning.",
+       "hi": "मुर्गा सुबह बाँग देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:cow",
+     "expect": "matched:cow",
+     "say": {
+      "en": "Tap 'Cow'. Then tap the sound it makes.",
+      "hi": "'गाय' पर टैप करो। फिर उसकी आवाज़ दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which animal says 'meow'?",
+      "hi": "कौन-सा जानवर 'म्याऊँ' कहता है?"
+     },
+     "options": [
+      {
+       "id": "cat",
+       "en": "Cat",
+       "hi": "बिल्ली (Cat)"
+      },
+      {
+       "id": "dog",
+       "en": "Dog",
+       "hi": "कुत्ता (Dog)"
+      },
+      {
+       "id": "goat",
+       "en": "Goat",
+       "hi": "बकरी (Goat)"
+      }
+     ],
+     "answer": "cat"
+    },
+    {
+     "kind": "do",
+     "target": "left:cat",
+     "expect": "matched:cat",
+     "say": {
+      "en": "Match 'Cat' with its sound.",
+      "hi": "'बिल्ली' को उसकी आवाज़ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:hen",
+     "expect": "matched:hen",
+     "say": {
+      "en": "Match 'Hen'.",
+      "hi": "'मुर्गी' को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:dog",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest: dog, goat and cock.",
+      "hi": "बाकी भी मिलाओ: कुत्ता, बकरी और मुर्गा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every farm animal has its own sound: a cow says moo, a hen says cluck, a cat says meow, a dog says bow-wow, a goat says meh and a cock crows. In other languages the sounds are written differently, but the animals are the same.",
+      "hi": "खेत के हर जानवर की अपनी आवाज़ होती है: गाय मूँ, मुर्गी कुक, बिल्ली म्याऊँ, कुत्ता भौं-भौं, बकरी में-में और मुर्गा बाँग देता है। अलग भाषाओं में ये आवाज़ें अलग तरह से लिखी जाती हैं, पर जानवर वही हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which animal says 'cluck-cluck'?",
+        "hi": "'कुक-कुक' कौन-सा जानवर करता है?"
+       },
+       "options": [
+        {
+         "en": "Hen",
+         "hi": "मुर्गी (Hen)"
+        },
+        {
+         "en": "Cow",
+         "hi": "गाय (Cow)"
+        },
+        {
+         "en": "Dog",
+         "hi": "कुत्ता (Dog)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A hen clucks.",
+        "hi": "मुर्गी कुक-कुक करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cow says moo.",
+         "hi": "गाय मूँ-मूँ करती है।"
+        },
+        {
+         "en": "A dog says bow-wow.",
+         "hi": "कुत्ता भौं-भौं करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make the sound of a farm animal and let your friend guess it. Then swap.",
+      "hi": "किसी जानवर की आवाज़ निकालो और दोस्त को पहचानने दो। फिर बारी बदलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch05-animals-or-birds",
+   "topic": "5.2",
+   "template": "sort",
+   "title": {
+    "en": "Animals or birds?",
+    "hi": "जानवर या पक्षी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "a",
+      "label": {
+       "en": "Animals",
+       "hi": "जानवर"
+      }
+     },
+     {
+      "id": "b",
+      "label": {
+       "en": "Birds",
+       "hi": "पक्षी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cow",
+      "text": {
+       "en": "cow",
+       "hi": "गाय (cow)"
+      },
+      "bin": "a",
+      "why": {
+       "en": "A cow is an animal. It walks, runs or climbs and has fur.",
+       "hi": "यह एक जानवर है। यह चलता, दौड़ता या चढ़ता है और इसके रोएँ होते हैं।"
+      }
+     },
+     {
+      "id": "cat",
+      "text": {
+       "en": "cat",
+       "hi": "बिल्ली (cat)"
+      },
+      "bin": "a",
+      "why": {
+       "en": "A cat is an animal. It walks, runs or climbs and has fur.",
+       "hi": "यह एक जानवर है। यह चलता, दौड़ता या चढ़ता है और इसके रोएँ होते हैं।"
+      }
+     },
+     {
+      "id": "dog",
+      "text": {
+       "en": "dog",
+       "hi": "कुत्ता (dog)"
+      },
+      "bin": "a",
+      "why": {
+       "en": "A dog is an animal. It walks, runs or climbs and has fur.",
+       "hi": "यह एक जानवर है। यह चलता, दौड़ता या चढ़ता है और इसके रोएँ होते हैं।"
+      }
+     },
+     {
+      "id": "rat",
+      "text": {
+       "en": "rat",
+       "hi": "चूहा (rat)"
+      },
+      "bin": "a",
+      "why": {
+       "en": "A rat is an animal. It walks, runs or climbs and has fur.",
+       "hi": "यह एक जानवर है। यह चलता, दौड़ता या चढ़ता है और इसके रोएँ होते हैं।"
+      }
+     },
+     {
+      "id": "monkey",
+      "text": {
+       "en": "monkey",
+       "hi": "बंदर (monkey)"
+      },
+      "bin": "a",
+      "why": {
+       "en": "A monkey is an animal. It walks, runs or climbs and has fur.",
+       "hi": "यह एक जानवर है। यह चलता, दौड़ता या चढ़ता है और इसके रोएँ होते हैं।"
+      }
+     },
+     {
+      "id": "crow",
+      "text": {
+       "en": "crow",
+       "hi": "कौआ (crow)"
+      },
+      "bin": "b",
+      "why": {
+       "en": "A crow is a bird. It has wings and feathers and it can fly.",
+       "hi": "यह एक पक्षी है। इसके पंख और पर होते हैं और यह उड़ सकता है।"
+      }
+     },
+     {
+      "id": "pigeon",
+      "text": {
+       "en": "pigeon",
+       "hi": "कबूतर (pigeon)"
+      },
+      "bin": "b",
+      "why": {
+       "en": "A pigeon is a bird. It has wings and feathers and it can fly.",
+       "hi": "यह एक पक्षी है। इसके पंख और पर होते हैं और यह उड़ सकता है।"
+      }
+     },
+     {
+      "id": "sparrow",
+      "text": {
+       "en": "sparrow",
+       "hi": "गौरैया (sparrow)"
+      },
+      "bin": "b",
+      "why": {
+       "en": "A sparrow is a bird. It has wings and feathers and it can fly.",
+       "hi": "यह एक पक्षी है। इसके पंख और पर होते हैं और यह उड़ सकता है।"
+      }
+     },
+     {
+      "id": "parrot",
+      "text": {
+       "en": "parrot",
+       "hi": "तोता (parrot)"
+      },
+      "bin": "b",
+      "why": {
+       "en": "A parrot is a bird. It has wings and feathers and it can fly.",
+       "hi": "यह एक पक्षी है। इसके पंख और पर होते हैं और यह उड़ सकता है।"
+      }
+     },
+     {
+      "id": "peacock",
+      "text": {
+       "en": "peacock",
+       "hi": "मोर (peacock)"
+      },
+      "bin": "b",
+      "why": {
+       "en": "A peacock is a bird. It has wings and feathers and it can fly.",
+       "hi": "यह एक पक्षी है। इसके पंख और पर होते हैं और यह उड़ सकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:cow",
+     "expect": "correct:cow",
+     "say": {
+      "en": "Tap the card 'cow'. Then tap the group it belongs to.",
+      "hi": "'cow' वाला कार्ड दबाओ। फिर उसका सही समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A crow has wings and feathers. Is it an animal or a bird?",
+      "hi": "कौए के पंख और पर होते हैं। वह जानवर है या पक्षी?"
+     },
+     "options": [
+      {
+       "id": "bird",
+       "en": "A bird",
+       "hi": "पक्षी"
+      },
+      {
+       "id": "animal",
+       "en": "An animal",
+       "hi": "जानवर"
+      }
+     ],
+     "answer": "bird"
+    },
+    {
+     "kind": "do",
+     "target": "card:crow",
+     "expect": "correct:crow",
+     "say": {
+      "en": "Put 'crow' in its group.",
+      "hi": "'crow' को उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards. Then tap Check.",
+      "hi": "बाकी कार्ड भी छाँटो। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Birds have wings and feathers and most of them fly: crow, pigeon, sparrow, parrot and peacock. The animals here, such as cow, cat, dog, rat and monkey, have fur and walk or climb.",
+      "hi": "पक्षियों के पंख और पर होते हैं और ज़्यादातर उड़ते हैं: कौआ, कबूतर, गौरैया, तोता और मोर। यहाँ के जानवर, जैसे गाय, बिल्ली, कुत्ता, चूहा और बंदर, रोएँदार होते हैं और चलते या चढ़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is a bird?",
+        "hi": "इनमें से पक्षी कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "parrot",
+         "hi": "तोता (parrot)"
+        },
+        {
+         "en": "rat",
+         "hi": "चूहा (rat)"
+        },
+        {
+         "en": "dog",
+         "hi": "कुत्ता (dog)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A parrot has wings and feathers.",
+        "hi": "तोते के पंख और पर होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A rat has fur and four legs, so it is an animal.",
+         "hi": "चूहे के रोएँ और चार पैर होते हैं, इसलिए वह जानवर है।"
+        },
+        {
+         "en": "A dog has fur and four legs, so it is an animal.",
+         "hi": "कुत्ते के रोएँ और चार पैर होते हैं, इसलिए वह जानवर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look out of the window. Can you see an animal or a bird near your home?",
+      "hi": "खिड़की से बाहर देखो। क्या तुम्हारे घर के पास कोई जानवर या पक्षी दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch05-jaggus-street",
+   "topic": "5.3",
+   "template": "reader",
+   "title": {
+    "en": "Jaggu's animals and birds",
+    "hi": "जग्गू के जानवर और पक्षी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "Near Jaggu's house",
+      "hi": "जग्गू के घर के पास"
+     },
+     "lines": [
+      "Jaggu lives in Nagpur. He sees many animals near his house.",
+      "A dog sits near the gate. Two cats play in the verandah.",
+      "A cow eats grass. A small rat runs away from the cat.",
+      "In the trees, monkeys swing and jump.",
+      "He sees birds too. A black crow sits on the roof.",
+      "A grey pigeon rests by the window. A small sparrow hops on the wall.",
+      "A green parrot has a red beak. A peacock shows its many colours."
+     ]
+    },
+    "words": [
+     {
+      "w": "verandah",
+      "meaning": {
+       "en": "A covered place in front of a house.",
+       "hi": "घर के आगे की ढकी हुई जगह।"
+      }
+     },
+     {
+      "w": "cow",
+      "meaning": {
+       "en": "An animal that eats grass and gives milk.",
+       "hi": "घास खाने वाला और दूध देने वाला जानवर।"
+      }
+     },
+     {
+      "w": "rat",
+      "meaning": {
+       "en": "A small animal that cats chase.",
+       "hi": "छोटा जानवर जिसके पीछे बिल्ली दौड़ती है।"
+      }
+     },
+     {
+      "w": "crow",
+      "meaning": {
+       "en": "A black bird.",
+       "hi": "एक काला पक्षी।"
+      }
+     },
+     {
+      "w": "pigeon",
+      "meaning": {
+       "en": "A grey bird that sits on roofs.",
+       "hi": "छतों पर बैठने वाला भूरा-सलेटी पक्षी।"
+      }
+     },
+     {
+      "w": "sparrow",
+      "meaning": {
+       "en": "A small brown bird.",
+       "hi": "एक छोटी भूरी चिड़िया।"
+      }
+     },
+     {
+      "w": "parrot",
+      "meaning": {
+       "en": "A green bird with a red beak.",
+       "hi": "लाल चोंच वाला हरा पक्षी।"
+      }
+     },
+     {
+      "w": "peacock",
+      "meaning": {
+       "en": "A bird with many bright colours.",
+       "hi": "बहुत से चटक रंगों वाला पक्षी।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Listen to hear about Jaggu's street.",
+      "hi": "'सुनो' दबाकर जग्गू की गली के बारे में सुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:cow",
+     "expect": "found:cow",
+     "say": {
+      "en": "Find the word 'cow' in the story and tap it.",
+      "hi": "कहानी में 'cow' शब्द ढूँढकर उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which bird has a red beak and green feathers?",
+      "hi": "किस पक्षी की चोंच लाल और पर हरे होते हैं?"
+     },
+     "options": [
+      {
+       "id": "parrot",
+       "en": "Parrot",
+       "hi": "तोता (Parrot)"
+      },
+      {
+       "id": "crow",
+       "en": "Crow",
+       "hi": "कौआ (Crow)"
+      },
+      {
+       "id": "pigeon",
+       "en": "Pigeon",
+       "hi": "कबूतर (Pigeon)"
+      }
+     ],
+     "answer": "parrot"
+    },
+    {
+     "kind": "do",
+     "target": "word:parrot",
+     "expect": "found:parrot",
+     "say": {
+      "en": "Find 'parrot'.",
+      "hi": "'parrot' ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:crow",
+     "expect": "found:crow",
+     "say": {
+      "en": "Find 'crow'.",
+      "hi": "'crow' ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Jaggu sees animals like a dog, a cat, a cow, a rat and monkeys, and birds like a crow, a pigeon, a sparrow, a parrot and a peacock. Each bird has its own colour and size, and that helps us name it.",
+      "hi": "जग्गू कुत्ता, बिल्ली, गाय, चूहा और बंदर जैसे जानवर देखता है, और कौआ, कबूतर, गौरैया, तोता और मोर जैसे पक्षी भी। हर पक्षी का अपना रंग और आकार होता है, जिससे हम उसका नाम पहचानते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which bird is black?",
+        "hi": "कौन-सा पक्षी काला होता है?"
+       },
+       "options": [
+        {
+         "en": "crow",
+         "hi": "कौआ (crow)"
+        },
+        {
+         "en": "parrot",
+         "hi": "तोता (parrot)"
+        },
+        {
+         "en": "peacock",
+         "hi": "मोर (peacock)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A crow is black.",
+        "hi": "कौआ काला होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A parrot is green with a red beak.",
+         "hi": "तोता हरा होता है और उसकी चोंच लाल होती है।"
+        },
+        {
+         "en": "A peacock has many bright colours.",
+         "hi": "मोर के बहुत से चटक रंग होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these birds have you seen near your home? Say its colour.",
+      "hi": "इनमें से कौन-से पक्षी तुमने अपने घर के पास देखे हैं? उसका रंग बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Opens the chapter",
+   "shows": "A sunny Indian farm with a cow, hens, a goat and a cock near a small farmhouse",
+   "view": "16:9 wide shot, all five animals clear",
+   "right": "A cow, hens, a goat, a cock, no people",
+   "avoid": "No signboards or text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Sound matching",
+   "shows": "Cut-outs of a cow, a hen, a cat, a dog, a goat and a cock",
+   "view": "Each side view, soft light from top left",
+   "right": "Real Indian breeds, calm poses",
+   "avoid": "No cartoon faces"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Animals or birds",
+   "shows": "Cut-outs of a rat, a monkey, a crow, a pigeon, a sparrow, a parrot and a peacock",
+   "view": "Each side or three-quarter view",
+   "right": "Wings and feathers visible on every bird",
+   "avoid": "No text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "Jaggu's street",
+   "shows": "A narrow street in Nagpur with a gate, a verandah, a cow, a dog, a monkey on a wall and a crow on a roof",
+   "view": "16:9 wide shot, morning light",
+   "right": "All listed animals clearly visible, calm",
+   "avoid": "No readable shop names"
+  },
+  {
+   "n": 5,
+   "kind": "CUT",
+   "topic": "5.2",
+   "use": "Wings and feathers",
+   "shows": "One feather and an open bird's wing, close up on a clean background",
+   "view": "Close up, 4:3",
+   "right": "Feather vanes clearly visible",
+   "avoid": "No whole bird in distress"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "Peacock display",
+   "shows": "A peacock with its tail opened in a garden",
+   "view": "16:9",
+   "right": "Many colours in the tail",
+   "avoid": "No text"
+  }
+ ]
+}

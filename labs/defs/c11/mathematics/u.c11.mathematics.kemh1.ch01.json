@@ -1,0 +1,1048 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch01",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Sets",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Introduction: why sets are the language of mathematics",
+   "labs": [],
+   "why_no_lab": "A short reading idea; the labs that follow put it to work."
+  },
+  {
+   "n": "1.2",
+   "title": "Sets and their representations: roster and set-builder form",
+   "labs": [
+    "c11-mathematics-kemh1-ch01-set-builder"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "The empty set",
+   "labs": [],
+   "why_no_lab": "One definition with everyday examples; the subsets lab shows φ as the all-OFF pattern and the finite-sets lab counts its 0 members."
+  },
+  {
+   "n": "1.4",
+   "title": "Finite and infinite sets",
+   "labs": [
+    "c11-mathematics-kemh1-ch01-finite-infinite"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Equal sets",
+   "labs": [],
+   "why_no_lab": "Equal sets means the same members in any order; the set-builder lab and the reader cover it."
+  },
+  {
+   "n": "1.6",
+   "title": "Subsets, subsets of R and intervals",
+   "labs": [
+    "c11-mathematics-kemh1-ch01-subsets-bits",
+    "c11-mathematics-kemh1-ch01-intervals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.7",
+   "title": "Universal set",
+   "labs": [],
+   "why_no_lab": "Explained with the class as U in the complement lab; no separate activity needed."
+  },
+  {
+   "n": "1.8",
+   "title": "Venn diagrams",
+   "labs": [],
+   "why_no_lab": "A Venn diagram is a picture to read; the drawn diagrams in the reader and the gate labs that model its regions teach it."
+  },
+  {
+   "n": "1.9",
+   "title": "Operations on sets: union, intersection, difference",
+   "labs": [
+    "c11-mathematics-kemh1-ch01-union-intersection"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.10",
+   "title": "Complement of a set and De Morgan's laws",
+   "labs": [
+    "c11-mathematics-kemh1-ch01-complement-de-morgan"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch01-set-builder",
+   "topic": "1.2",
+   "template": "code",
+   "title": {
+    "en": "From a rule to a list: set-builder and roster form",
+    "hi": "नियम से सूची तक: समुच्चय-निर्माण और सारणी रूप"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "A = []",
+     "for x in range(1, 10):",
+     "    if x * x < 30:",
+     "        A.append(x)",
+     "print(A)",
+     "n = len(A)",
+     "print(n)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step once. A starts as an empty list: no members yet.",
+      "hi": "एक बार Step दबाओ। A एक ख़ाली सूची से शुरू होता है: अभी कोई सदस्य नहीं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The program keeps every x from 1 to 9 with x × x less than 30. Which set will A become?",
+      "hi": "प्रोग्राम 1 से 9 तक हर वह x रखता है जिसका x × x, 30 से कम है। A कौन-सा समुच्चय बनेगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "A = {1, 2, 3, 4, 5}",
+       "hi": "A = {1, 2, 3, 4, 5} बनेगा"
+      },
+      {
+       "id": "b",
+       "en": "A = {1, 2, 3, 4, 5, 6}",
+       "hi": "A = {1, 2, 3, 4, 5, 6} बनेगा"
+      },
+      {
+       "id": "c",
+       "en": "A = {1, 4, 9, 16, 25}",
+       "hi": "A = {1, 4, 9, 16, 25} बनेगा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run and watch A collect its members one by one.",
+      "hi": "Run दबाओ और देखो कि A एक-एक करके अपने सदस्य कैसे जोड़ता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The rule \"x is a natural number and x² < 30\" is the set-builder form: {x : x ∈ N, x² < 30}. The list the program printed, {1, 2, 3, 4, 5}, is the roster form of the same set. 6 is left out because 6 × 6 = 36 is not less than 30. A rule must be well defined, so for every x we can say yes or no.",
+      "hi": "नियम \"x एक प्राकृत संख्या है और x² < 30\" समुच्चय-निर्माण रूप है: {x : x ∈ N, x² < 30}। प्रोग्राम ने जो सूची छापी, {1, 2, 3, 4, 5}, वही समुच्चय सारणी रूप में है। 6 बाहर रह गया क्योंकि 6 × 6 = 36, 30 से कम नहीं है। नियम सुपरिभाषित होना चाहिए, ताकि हर x के लिए हाँ या ना कह सकें।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab.",
+      "hi": "लैब के प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the set-builder form of {2, 4, 6, 8}?",
+        "hi": "{2, 4, 6, 8} का समुच्चय-निर्माण रूप कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "{x : x is an even natural number, x < 10}",
+         "hi": "{x : x एक सम प्राकृत संख्या है, x < 10}"
+        },
+        {
+         "en": "{x : x is an even natural number, x ≤ 10}",
+         "hi": "{x : x एक सम प्राकृत संख्या है, x ≤ 10}"
+        },
+        {
+         "en": "{x : x is a natural number, x < 10}",
+         "hi": "{x : x एक प्राकृत संख्या है, x < 10}"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Even natural numbers below 10 are exactly 2, 4, 6 and 8.",
+        "hi": "10 से छोटी सम प्राकृत संख्याएँ ठीक 2, 4, 6 और 8 हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "\"≤ 10\" lets 10 in too, so the set would be {2, 4, 6, 8, 10}.",
+         "hi": "\"≤ 10\" से 10 भी आ जाता है, तब समुच्चय {2, 4, 6, 8, 10} होता।"
+        },
+        {
+         "en": "Without \"even\", odd numbers like 1, 3, 5 also get in.",
+         "hi": "\"सम\" के बिना 1, 3, 5 जैसी विषम संख्याएँ भी आ जातीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In roster form, how is the set of letters of the word \"KANPUR\" written?",
+        "hi": "सारणी रूप में \"KANPUR\" शब्द के अक्षरों का समुच्चय कैसे लिखते हैं?"
+       },
+       "options": [
+        "{K, A, N, P, U, R}",
+        "{K, A, N, P, U, R, K}",
+        "{KANPUR}"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each different letter is listed once, separated by commas, inside braces.",
+        "hi": "हर अलग अक्षर एक बार, अल्पविराम से अलग करके, कोष्ठक { } के अंदर लिखा जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A member is never repeated in a set; K appears in the word only once anyway.",
+         "hi": "समुच्चय में कोई सदस्य दोहराया नहीं जाता; और K शब्द में एक ही बार है।"
+        },
+        {
+         "en": "That is a set with one member, the whole word, not its letters.",
+         "hi": "यह एक ही सदस्य वाला समुच्चय है, पूरा शब्द, अक्षर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Reset and Step slowly. Before each line runs, say whether x will join A. Then think: what would change if the rule were x² < 50?",
+      "hi": "Reset दबाओ और धीरे-धीरे Step करो। हर पंक्ति से पहले बोलो कि x, A में जुड़ेगा या नहीं। फिर सोचो: नियम x² < 50 होता तो क्या बदलता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch01-finite-infinite",
+   "topic": "1.4",
+   "template": "code",
+   "title": {
+    "en": "Can you finish listing it? Finite and infinite sets",
+    "hi": "क्या सूची पूरी होगी? परिमित और अपरिमित समुच्चय"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "n = 1",
+     "while n > 0:",
+     "    n = n + 1"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This tiny program tries to list the natural numbers N = {1, 2, 3, …}. Each time round the loop, n becomes the next natural number.",
+      "hi": "यह छोटा प्रोग्राम प्राकृत संख्याओं N = {1, 2, 3, …} की सूची बनाने की कोशिश करता है। लूप के हर चक्कर में n अगली प्राकृत संख्या बन जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step and watch n in the variables box.",
+      "hi": "Step दबाओ और वेरिएबल वाले डिब्बे में n देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step again. The loop checks: is n > 0?",
+      "hi": "फिर Step दबाओ। लूप जाँचता है: क्या n > 0 है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "One more Step: n grows by 1.",
+      "hi": "एक और Step: n में 1 जुड़ जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Will n > 0 ever become false?",
+      "hi": "क्या n > 0 कभी ग़लत होगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, n only gets bigger",
+       "hi": "नहीं, n बस बड़ा होता जाता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, after 100 rounds",
+       "hi": "हाँ, 100 चक्करों के बाद"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: will this program stop on its own?",
+      "hi": "लैब के प्रश्न का उत्तर दो: क्या यह प्रोग्राम अपने-आप रुकेगा?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A set is finite when counting its members comes to an end, like the days of a week (7) or the states of India. N never ends, so it is infinite: we write it as {1, 2, 3, …}, and the dots mean \"and so on for ever\". The empty set φ is finite, with 0 members.",
+      "hi": "समुच्चय परिमित होता है जब उसके सदस्यों की गिनती कहीं ख़त्म हो जाती है, जैसे सप्ताह के दिन (7) या भारत के राज्य। N कभी ख़त्म नहीं होता, इसलिए अपरिमित है: हम इसे {1, 2, 3, …} लिखते हैं, और बिंदुओं का अर्थ है \"इसी तरह हमेशा\"। रिक्त समुच्चय φ परिमित है, उसमें 0 सदस्य हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which set is infinite?",
+        "hi": "कौन-सा समुच्चय अपरिमित है?"
+       },
+       "options": [
+        {
+         "en": "The set of points on a straight line",
+         "hi": "एक सरल रेखा के बिंदुओं का समुच्चय"
+        },
+        {
+         "en": "The set of students in your school",
+         "hi": "तुम्हारे विद्यालय के छात्रों का समुच्चय"
+        },
+        {
+         "en": "The set of months in a year",
+         "hi": "वर्ष के महीनों का समुच्चय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Between any two points of a line there is always another, so the points never run out.",
+        "hi": "रेखा के किन्हीं दो बिंदुओं के बीच हमेशा एक और बिंदु होता है, इसलिए बिंदु कभी ख़त्म नहीं होते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A school may be big, but its students can be counted to the end.",
+         "hi": "विद्यालय बड़ा हो सकता है, पर उसके छात्र पूरे गिने जा सकते हैं।"
+        },
+        {
+         "en": "There are exactly 12 months, so this set is finite.",
+         "hi": "ठीक 12 महीने हैं, इसलिए यह समुच्चय परिमित है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of three sets from your home or town: one finite, one infinite, and one that is empty. Say why each is so.",
+      "hi": "अपने घर या शहर से तीन समुच्चय सोचो: एक परिमित, एक अपरिमित और एक रिक्त। हर एक का कारण बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch01-subsets-bits",
+   "topic": "1.6",
+   "template": "logic",
+   "title": {
+    "en": "Every subset is a row of switches",
+    "hi": "हर उपसमुच्चय स्विचों की एक पंक्ति है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "binary",
+    "value": 13
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Think of the set A = {a, b, c, d}. Give each member one switch: ON means the member is in the subset, OFF means it is out. The four switches on the right stand for a, b, c and d.",
+      "hi": "समुच्चय A = {a, b, c, d} सोचो। हर सदस्य को एक स्विच दो: ON मतलब सदस्य उपसमुच्चय में है, OFF मतलब बाहर है। दाईं ओर के चार स्विच a, b, c और d हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bit:0",
+     "expect": "toggled",
+     "say": {
+      "en": "Turn on the rightmost switch. That subset is {a}.",
+      "hi": "सबसे दाएँ वाला स्विच चालू करो। यह उपसमुच्चय {a} है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bit:2",
+     "expect": "toggled",
+     "say": {
+      "en": "Now turn on the third switch from the right as well. The subset is {a, c}.",
+      "hi": "अब दाएँ से तीसरा स्विच भी चालू करो। उपसमुच्चय {a, c} है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each of the 4 switches can be ON or OFF. How many different subsets can A = {a, b, c, d} have?",
+      "hi": "4 में से हर स्विच ON या OFF हो सकता है। A = {a, b, c, d} के कितने अलग उपसमुच्चय हो सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "8 subsets",
+       "hi": "8 उपसमुच्चय"
+      },
+      {
+       "id": "b",
+       "en": "16 subsets",
+       "hi": "16 उपसमुच्चय"
+      },
+      {
+       "id": "c",
+       "en": "4 subsets",
+       "hi": "4 उपसमुच्चय"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "bit:3",
+     "expect": "toggled",
+     "say": {
+      "en": "Turn on the fourth switch too. Now the subset is {a, c, d}.",
+      "hi": "चौथा स्विच भी चालू करो। अब उपसमुच्चय {a, c, d} है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "The switches now make the number 13. Tap Check: 13 is the code of the subset {a, c, d}.",
+      "hi": "अब स्विच संख्या 13 बनाते हैं। Check दबाओ: 13, उपसमुच्चय {a, c, d} का कोड है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "With 4 switches the patterns run from 0000 to 1111, that is 0 to 15: 16 patterns. All OFF is the empty set φ, all ON is A itself, and both count as subsets. So a set with n members has 2ⁿ subsets, and the set of all of them is the power set P(A).",
+      "hi": "4 स्विचों से पैटर्न 0000 से 1111 तक, यानी 0 से 15 तक बनते हैं: 16 पैटर्न। सब OFF रिक्त समुच्चय φ है, सब ON स्वयं A है, और दोनों उपसमुच्चय गिने जाते हैं। इसलिए n सदस्यों वाले समुच्चय के 2ⁿ उपसमुच्चय होते हैं, और इन सबका समुच्चय घात समुच्चय P(A) है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many subsets does {1, 2, 3} have?",
+        "hi": "{1, 2, 3} के कितने उपसमुच्चय हैं?"
+       },
+       "options": [
+        "8",
+        "6",
+        "3",
+        "7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 members, so 2³ = 8 subsets: φ, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}.",
+        "hi": "3 सदस्य, इसलिए 2³ = 8 उपसमुच्चय: φ, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 forgets φ and the whole set {1, 2, 3}, which are subsets too.",
+         "hi": "6 में φ और पूरा समुच्चय {1, 2, 3} छूट गए, जो भी उपसमुच्चय हैं।"
+        },
+        {
+         "en": "3 counts only the one-member subsets.",
+         "hi": "3 केवल एक सदस्य वाले उपसमुच्चय गिनता है।"
+        },
+        {
+         "en": "7 leaves out the empty set; φ is a subset of every set.",
+         "hi": "7 में रिक्त समुच्चय छूट गया; φ हर समुच्चय का उपसमुच्चय है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is {a, e} a subset of {a, b, c, d}?",
+        "hi": "क्या {a, e}, {a, b, c, d} का उपसमुच्चय है?"
+       },
+       "options": [
+        {
+         "en": "No",
+         "hi": "नहीं"
+        },
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "For B ⊂ A every member of B must be in A; e is not in A.",
+        "hi": "B ⊂ A के लिए B का हर सदस्य A में होना चाहिए; e, A में नहीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sharing one member (a) is not enough; every member must be inside A.",
+         "hi": "एक सदस्य (a) साझा होना काफ़ी नहीं; हर सदस्य A में होना चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Reset, then tap + 1 again and again. Each press gives the next subset, from φ (0) to the whole set (15). How many of them have exactly two members?",
+      "hi": "Reset दबाओ, फिर बार-बार + 1 दबाओ। हर बार अगला उपसमुच्चय मिलता है, φ (0) से पूरे समुच्चय (15) तक। इनमें से कितनों में ठीक दो सदस्य हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch01-intervals",
+   "topic": "1.6",
+   "template": "grapher",
+   "title": {
+    "en": "Intervals: which end is in?",
+    "hi": "अंतराल: कौन-सा सिरा अंदर है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "inequality",
+    "expr": "x >= a; x < b",
+    "params": {
+     "a": [
+      -5,
+      5,
+      -2
+     ],
+     "b": [
+      -5,
+      5,
+      3
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The shaded strip is every point whose x obeys −2 ≤ x < 3. Read only the x of a point: here the y does not matter. In interval notation this is [−2, 3): the square bracket keeps −2 in, the round bracket leaves 3 out.",
+      "hi": "रंगी हुई पट्टी वे सारे बिंदु हैं जिनका x, −2 ≤ x < 3 मानता है। बिंदु का केवल x देखो: यहाँ y से फ़र्क नहीं पड़ता। अंतराल रूप में यह [−2, 3) है: वर्गाकार कोष्ठक −2 को अंदर रखता है, गोल कोष्ठक 3 को बाहर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap a point inside the strip to test it.",
+      "hi": "पट्टी के अंदर किसी बिंदु पर टैप करके उसे जाँचो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is a point with x = 3 in the interval [−2, 3)?",
+      "hi": "क्या x = 3 वाला बिंदु अंतराल [−2, 3) में है?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, 3 is left out",
+       "hi": "नहीं, 3 बाहर है"
+      },
+      {
+       "id": "y",
+       "en": "Yes, 3 is the end, so it is in",
+       "hi": "हाँ, 3 सिरा है, इसलिए अंदर है"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Now tap a point on the right edge, where x = 3, and see what the lab says.",
+      "hi": "अब दाएँ किनारे पर, जहाँ x = 3 है, किसी बिंदु पर टैप करो और देखो लैब क्या कहती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Move the slider b to make the interval longer.",
+      "hi": "स्लाइडर b खिसकाकर अंतराल लंबा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A closed end like −2 is drawn as a solid boundary: x = −2 passes the test −2 ≥ −2. An open end like 3 is dashed: 3 < 3 is false. So [a, b) = {x : a ≤ x < b}. [a, b] keeps both ends, (a, b) keeps neither. Every interval is a subset of the real numbers R.",
+      "hi": "−2 जैसा बंद सिरा ठोस सीमा से दिखता है: x = −2, −2 ≥ −2 की जाँच में पास है। 3 जैसा खुला सिरा टूटी रेखा से: 3 < 3 ग़लत है। इसलिए [a, b) = {x : a ≤ x < b}। [a, b] दोनों सिरे रखता है, (a, b) कोई नहीं। हर अंतराल वास्तविक संख्याओं R का उपसमुच्चय है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which interval is {x : 4 < x ≤ 9}?",
+        "hi": "{x : 4 < x ≤ 9} कौन-सा अंतराल है?"
+       },
+       "options": [
+        "(4, 9]",
+        "[4, 9)",
+        "[4, 9]",
+        "(4, 9)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 is not included (round bracket), 9 is included (square bracket).",
+        "hi": "4 शामिल नहीं (गोल कोष्ठक), 9 शामिल है (वर्गाकार कोष्ठक)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This swaps the ends: it keeps 4 and drops 9.",
+         "hi": "यह सिरे उलट देता है: 4 रखता है और 9 हटाता है।"
+        },
+        {
+         "en": "This keeps 4, but 4 < x means x can never be 4.",
+         "hi": "यह 4 रखता है, पर 4 < x का अर्थ है x कभी 4 नहीं हो सकता।"
+        },
+        {
+         "en": "This drops 9, but x ≤ 9 allows x = 9.",
+         "hi": "यह 9 हटाता है, पर x ≤ 9 में x = 9 चलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move a and b. Can you make the strip vanish? What does it mean when a is bigger than b?",
+      "hi": "a और b खिसकाओ। क्या पट्टी गायब कर सकते हो? जब a, b से बड़ा हो तो इसका क्या अर्थ है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch01-union-intersection",
+   "topic": "1.9",
+   "template": "logic",
+   "title": {
+    "en": "Union and intersection as OR and AND",
+    "hi": "सम्मिलन और सर्वनिष्ठ: OR और AND की तरह"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "gates",
+    "gates": [
+     "AND",
+     "OR"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Pick any student x in your class. Let A be the set of students who play cricket and B those who play kabaddi. Switch A = 1 means \"x is in A\", switch B = 1 means \"x is in B\".",
+      "hi": "अपनी कक्षा का कोई छात्र x चुनो। A उन छात्रों का समुच्चय है जो क्रिकेट खेलते हैं, B उनका जो कबड्डी खेलते हैं। स्विच A = 1 का अर्थ \"x, A में है\", स्विच B = 1 का अर्थ \"x, B में है\"।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "gate:OR",
+     "expect": "output:0",
+     "say": {
+      "en": "Tap the OR gate to look at it.",
+      "hi": "OR गेट पर टैप करके उसे देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "input:A",
+     "expect": "toggled",
+     "say": {
+      "en": "Turn switch A on: x plays cricket but not kabaddi.",
+      "hi": "स्विच A चालू करो: x क्रिकेट खेलता है पर कबड्डी नहीं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "x plays cricket only. Is x in A ∪ B? Is x in A ∩ B?",
+      "hi": "x केवल क्रिकेट खेलता है। क्या x, A ∪ B में है? क्या x, A ∩ B में है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "In A ∪ B, not in A ∩ B",
+       "hi": "A ∪ B में, A ∩ B में नहीं"
+      },
+      {
+       "id": "b",
+       "en": "In both",
+       "hi": "दोनों में"
+      },
+      {
+       "id": "c",
+       "en": "In neither",
+       "hi": "किसी में नहीं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "gate:AND",
+     "expect": "output:0",
+     "say": {
+      "en": "Now tap the AND gate and compare its output.",
+      "hi": "अब AND गेट पर टैप करो और उसका आउटपुट मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "input:B",
+     "expect": "output:1",
+     "say": {
+      "en": "Turn switch B on too: x plays both games.",
+      "hi": "स्विच B भी चालू करो: x दोनों खेल खेलता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "x is in A ∪ B when x is in A OR in B (or both): that is the OR gate. x is in A ∩ B only when x is in A AND in B: the AND gate. So A ∩ B ⊂ A ∪ B always. If A ∩ B = φ, the sets are disjoint.",
+      "hi": "x, A ∪ B में तब है जब x, A में या B में है (या दोनों में): यही OR गेट है। x, A ∩ B में तभी है जब x, A में और B में दोनों में है: AND गेट। इसलिए हमेशा A ∩ B ⊂ A ∪ B। यदि A ∩ B = φ हो, तो समुच्चय असंयुक्त हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A = {1, 2, 3, 4}, B = {3, 4, 5}. What is A ∩ B?",
+        "hi": "A = {1, 2, 3, 4}, B = {3, 4, 5}। A ∩ B क्या है?"
+       },
+       "options": [
+        "{3, 4}",
+        "{1, 2, 3, 4, 5}",
+        "{1, 2}"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only 3 and 4 are in both sets.",
+        "hi": "केवल 3 और 4 दोनों समुच्चयों में हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is A ∪ B: everything in either set.",
+         "hi": "यह A ∪ B है: किसी भी समुच्चय में जो कुछ है।"
+        },
+        {
+         "en": "That is A − B: in A but not in B.",
+         "hi": "यह A − B है: A में पर B में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For the same sets, what is A − B?",
+        "hi": "उन्हीं समुच्चयों के लिए A − B क्या है?"
+       },
+       "options": [
+        "{1, 2}",
+        "{5}",
+        "{3, 4}"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A − B keeps the members of A that are not in B: 1 and 2.",
+        "hi": "A − B, A के वे सदस्य रखता है जो B में नहीं हैं: 1 और 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "{5} is B − A; the order of the difference matters.",
+         "hi": "{5}, B − A है; अंतर में क्रम मायने रखता है।"
+        },
+        {
+         "en": "{3, 4} is what A and B share, the part A − B removes.",
+         "hi": "{3, 4} वह है जो A और B में साझा है, जिसे A − B हटाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try all four switch settings (0 0, 0 1, 1 0, 1 1) on both gates. In how many settings is x in A ∪ B but not in A ∩ B?",
+      "hi": "दोनों गेटों पर चारों स्थितियाँ (0 0, 0 1, 1 0, 1 1) आज़माओ। कितनी स्थितियों में x, A ∪ B में है पर A ∩ B में नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch01-complement-de-morgan",
+   "topic": "1.10",
+   "template": "logic",
+   "title": {
+    "en": "Complement and De Morgan's law",
+    "hi": "पूरक और डी मॉर्गन का नियम"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "gates",
+    "gates": [
+     "OR",
+     "NOR"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The universal set U is the whole class. The complement A′ is everyone in U who is not in A. The OR gate answers \"is x in A ∪ B?\". The NOR gate is NOT-OR: it answers \"is x in (A ∪ B)′?\"",
+      "hi": "सार्वत्रिक समुच्चय U पूरी कक्षा है। पूरक A′, U के वे सब हैं जो A में नहीं। OR गेट बताता है \"क्या x, A ∪ B में है?\"। NOR गेट NOT-OR है: वह बताता है \"क्या x, (A ∪ B)′ में है?\""
+     }
+    },
+    {
+     "kind": "do",
+     "target": "gate:NOR",
+     "expect": "output:1",
+     "say": {
+      "en": "Tap the NOR gate. Both switches are 0: x is in neither A nor B.",
+      "hi": "NOR गेट पर टैप करो। दोनों स्विच 0 हैं: x न A में है, न B में।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now x joins A (switch A = 1). What will the NOR gate show?",
+      "hi": "अब x, A में आ जाता है (स्विच A = 1)। NOR गेट क्या दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "0",
+       "en": "0: x is no longer in (A ∪ B)′",
+       "hi": "0: x अब (A ∪ B)′ में नहीं है"
+      },
+      {
+       "id": "1",
+       "en": "1: x is still in (A ∪ B)′",
+       "hi": "1: x अब भी (A ∪ B)′ में है"
+      }
+     ],
+     "answer": "0"
+    },
+    {
+     "kind": "do",
+     "target": "input:A",
+     "expect": "toggled",
+     "say": {
+      "en": "Turn switch A on and watch the NOR output.",
+      "hi": "स्विच A चालू करो और NOR का आउटपुट देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "gate:OR",
+     "expect": "output:1",
+     "say": {
+      "en": "Tap the OR gate. Compare its output with NOR for the same switches.",
+      "hi": "OR गेट पर टैप करो। उन्हीं स्विचों पर उसका आउटपुट NOR से मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For every setting, NOR gives the opposite of OR: (A ∪ B)′ holds exactly the members of U that A ∪ B leaves out. Look at its truth table: NOR is 1 only in the row A = 0, B = 0, which is where x is in A′ AND in B′. So (A ∪ B)′ = A′ ∩ B′. In the same way (A ∩ B)′ = A′ ∪ B′. These are De Morgan's laws. Also A ∪ A′ = U and A ∩ A′ = φ.",
+      "hi": "हर स्थिति में NOR, OR का उल्टा देता है: (A ∪ B)′ में ठीक U के वे सदस्य हैं जिन्हें A ∪ B छोड़ देता है। उसकी सत्य सारणी देखो: NOR केवल A = 0, B = 0 वाली पंक्ति में 1 है, जहाँ x, A′ में और B′ में दोनों में है। इसलिए (A ∪ B)′ = A′ ∩ B′। इसी तरह (A ∩ B)′ = A′ ∪ B′। ये डी मॉर्गन के नियम हैं। साथ ही A ∪ A′ = U और A ∩ A′ = φ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "U = {1, 2, …, 10} and A = {1, 3, 5, 7, 9}. What is A′?",
+        "hi": "U = {1, 2, …, 10} और A = {1, 3, 5, 7, 9}। A′ क्या है?"
+       },
+       "options": [
+        "{2, 4, 6, 8, 10}",
+        "{1, 3, 5, 7, 9}",
+        "φ"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A′ keeps the members of U that are not in A: the even numbers.",
+        "hi": "A′, U के वे सदस्य रखता है जो A में नहीं: सम संख्याएँ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is A itself, not its complement.",
+         "hi": "यह स्वयं A है, उसका पूरक नहीं।"
+        },
+        {
+         "en": "φ would be the complement of U, not of A.",
+         "hi": "φ, U का पूरक होगा, A का नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is always equal to (A ∩ B)′?",
+        "hi": "(A ∩ B)′ हमेशा किसके बराबर है?"
+       },
+       "options": [
+        "A′ ∪ B′",
+        "A′ ∩ B′",
+        "A ∪ B"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Not in both means not in A, or not in B.",
+        "hi": "\"दोनों में नहीं\" का अर्थ है A में नहीं, या B में नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A′ ∩ B′ is (A ∪ B)′: in neither set, which is stricter.",
+         "hi": "A′ ∩ B′, (A ∪ B)′ है: किसी में नहीं, जो ज़्यादा सख़्त है।"
+        },
+        {
+         "en": "A ∪ B contains A ∩ B, so it cannot be its complement.",
+         "hi": "A ∪ B में A ∩ B शामिल है, इसलिए वह उसका पूरक नहीं हो सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try all four switch settings on both gates. Check that OR and NOR always disagree, and find the only setting where x is in (A ∪ B)′.",
+      "hi": "दोनों गेटों पर चारों स्विच स्थितियाँ आज़माओ। जाँचो कि OR और NOR हमेशा उल्टे रहते हैं, और वह अकेली स्थिति खोजो जहाँ x, (A ∪ B)′ में है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Chapter hook: collections around us",
+   "shows": "A school library shelf in an Indian school with a neat row of mathematics books and a separate row of Hindi storybooks",
+   "view": "Eye level, the two rows clearly apart, soft daylight from a window",
+   "right": "Two clearly different groups of books, so \"a well-defined collection\" is visible",
+   "avoid": "Readable titles, publisher logos, children's faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Roster form: the members of a set",
+   "shows": "Five wooden number tiles 1, 2, 3, 4, 5 lying loose inside a drawn loop of cotton string on a plain table",
+   "view": "Top view, even light, transparent or plain white background",
+   "right": "Tiles all different, none repeated; the string loop closed",
+   "avoid": "Any printed brace symbols or text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1.8",
+   "use": "Venn diagram base: two overlapping groups",
+   "shows": "Two hula hoops lying on a school ground, overlapping, with a few cricket balls in one, kabaddi-style knee pads in the other and both in the overlap",
+   "view": "From directly above, early morning light, short soft shadows",
+   "right": "Hoops clearly overlapping; the shared region holds items of both kinds",
+   "avoid": "Children, logos, chalk writing"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "1.9",
+   "use": "Base for union, intersection and difference",
+   "shows": "A clean drawing of a rectangle (U) with two overlapping circles, no shading and no letters",
+   "view": "Flat, centred, thin dark lines on white",
+   "right": "Circles of equal size overlapping by about a third",
+   "avoid": "Any letters, numbers or shading baked in"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "1.6",
+   "use": "Subsets as switches",
+   "shows": "A row of four real wall switches on a white switchboard, two ON and two OFF",
+   "view": "Front view, slight top-left light, transparent background",
+   "right": "ON and OFF clearly different in shape (lever up or down), not only by a colour light",
+   "avoid": "Brand names, wiring visible"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "1.10",
+   "use": "Complement: the whole class and those left out",
+   "shows": "Frame 1: a class of school bags on hooks along a wall; frame 2: the same wall with the blue bags taken away; frame 3: only the blue bags",
+   "view": "Identical camera and light in all three frames",
+   "right": "Same hooks and wall in every frame; the bag colours also differ in pattern",
+   "avoid": "Name tags, faces, school name"
+  }
+ ]
+}

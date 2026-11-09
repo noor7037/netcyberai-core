@@ -1,0 +1,1819 @@
+{
+ "chapter_key": "u.c12.computer_science.lecs1.ch11",
+ "class": 12,
+ "subject_id": "computer_science",
+ "title": "Data Communication",
+ "source": "https://ncert.nic.in/textbook/pdf/lecs111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Concept of communication",
+   "labs": [],
+   "why_no_lab": "Everyday messaging is familiar; the labs start from the parts of a communication."
+  },
+  {
+   "n": "11.2",
+   "title": "Components of data communication",
+   "labs": [
+    "c12-computer_science-lecs1-ch11-components"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Measuring capacity: bandwidth and data transfer rate",
+   "labs": [
+    "c12-computer_science-lecs1-ch11-rate"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Types of data communication: simplex, half-duplex, full-duplex",
+   "labs": [
+    "c12-computer_science-lecs1-ch11-duplex"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5",
+   "title": "Switching: circuit and packet",
+   "labs": [
+    "c12-computer_science-lecs1-ch11-switching",
+    "c12-computer_science-lecs1-ch11-packets"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.6",
+   "title": "Transmission media: wired and wireless",
+   "labs": [
+    "c12-computer_science-lecs1-ch11-media"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.7",
+   "title": "Mobile telecommunication technologies",
+   "labs": [
+    "c12-computer_science-lecs1-ch11-generations"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.8",
+   "title": "Protocols: HTTP, FTP, PPP, SMTP, TCP/IP",
+   "labs": [
+    "c12-computer_science-lecs1-ch11-protocols"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-computer_science-lecs1-ch11-components",
+   "topic": "11.2",
+   "template": "match",
+   "title": {
+    "en": "Five parts of every communication",
+    "hi": "हर संचार के पाँच हिस्से"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "sender",
+      "left": {
+       "en": "Sender: Priya's phone",
+       "hi": "प्रेषक: प्रिया का फ़ोन"
+      },
+      "right": {
+       "en": "The device that sends the data",
+       "hi": "डेटा भेजने वाला उपकरण"
+      },
+      "why": {
+       "en": "The sender creates and sends the message.",
+       "hi": "प्रेषक संदेश बनाता और भेजता है।"
+      }
+     },
+     {
+      "id": "message",
+      "left": {
+       "en": "Message: her voice note",
+       "hi": "संदेश: उसका वॉइस नोट"
+      },
+      "right": {
+       "en": "The data being sent",
+       "hi": "जो डेटा भेजा जा रहा है"
+      },
+      "why": {
+       "en": "It can be text, voice, a picture or a video.",
+       "hi": "यह टेक्स्ट, आवाज़, चित्र या वीडियो हो सकता है।"
+      }
+     },
+     {
+      "id": "medium",
+      "left": {
+       "en": "Medium: mobile signals and cables",
+       "hi": "माध्यम: मोबाइल संकेत और केबल"
+      },
+      "right": {
+       "en": "The path the data travels along",
+       "hi": "वह रास्ता जिस पर डेटा चलता है"
+      },
+      "why": {
+       "en": "A medium may be a wire, a fibre or radio waves.",
+       "hi": "माध्यम तार, फ़ाइबर या रेडियो तरंगें हो सकता है।"
+      }
+     },
+     {
+      "id": "receiver",
+      "left": {
+       "en": "Receiver: her friend's phone",
+       "hi": "प्राप्तकर्ता: उसकी सहेली का फ़ोन"
+      },
+      "right": {
+       "en": "The device that receives the data",
+       "hi": "डेटा पाने वाला उपकरण"
+      },
+      "why": {
+       "en": "The receiver turns the data back into a message.",
+       "hi": "प्राप्तकर्ता डेटा को फिर संदेश बना देता है।"
+      }
+     },
+     {
+      "id": "protocol",
+      "left": {
+       "en": "Protocol: the agreed rules of the app",
+       "hi": "प्रोटोकॉल: ऐप के तय नियम"
+      },
+      "right": {
+       "en": "The set of rules both sides follow",
+       "hi": "वे नियम जिन्हें दोनों पक्ष मानते हैं"
+      },
+      "why": {
+       "en": "Without common rules the receiver could not understand the sender.",
+       "hi": "साझा नियमों के बिना प्राप्तकर्ता प्रेषक को समझ नहीं पाता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:sender",
+     "expect": "matched:sender",
+     "say": {
+      "en": "Match Priya's phone with its role.",
+      "hi": "प्रिया के फ़ोन को उसकी भूमिका से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Priya sends a voice note. Which part is the voice note itself?",
+      "hi": "प्रिया एक वॉइस नोट भेजती है। वॉइस नोट ख़ुद कौन-सा हिस्सा है?"
+     },
+     "options": [
+      {
+       "id": "msg",
+       "en": "The message",
+       "hi": "संदेश"
+      },
+      {
+       "id": "med",
+       "en": "The medium",
+       "hi": "माध्यम"
+      },
+      {
+       "id": "prot",
+       "en": "The protocol",
+       "hi": "प्रोटोकॉल"
+      }
+     ],
+     "answer": "msg"
+    },
+    {
+     "kind": "do",
+     "target": "left:message",
+     "expect": "matched:message",
+     "say": {
+      "en": "Match the voice note.",
+      "hi": "वॉइस नोट को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:protocol",
+     "expect": "matched:protocol",
+     "say": {
+      "en": "Match the agreed rules.",
+      "hi": "तय नियमों को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every communication has five parts. The sender starts it, the message is the data, the medium carries it, the receiver gets it, and the protocol is the set of rules that both sides follow. If any part is missing, communication fails: for example, two devices with different protocols cannot understand each other even though the medium works.",
+      "hi": "हर संचार के पाँच हिस्से होते हैं। प्रेषक उसे शुरू करता है, संदेश डेटा है, माध्यम उसे ले जाता है, प्राप्तकर्ता उसे पाता है, और प्रोटोकॉल वे नियम हैं जो दोनों पक्ष मानते हैं। कोई भी हिस्सा न हो तो संचार नहीं होता: जैसे अलग प्रोटोकॉल वाले दो उपकरण एक-दूसरे को नहीं समझ पाते, भले माध्यम ठीक चल रहा हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part is the set of agreed rules?",
+        "hi": "तय नियमों का समूह कौन-सा हिस्सा है?"
+       },
+       "options": [
+        "Medium",
+        "Protocol",
+        "Receiver"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A protocol is the rulebook both sides follow.",
+        "hi": "प्रोटोकॉल वह नियमपुस्तिका है जिसे दोनों पक्ष मानते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The medium only carries the data.",
+         "hi": "माध्यम केवल डेटा ले जाता है।"
+        },
+        "",
+        {
+         "en": "The receiver is the device that gets the data.",
+         "hi": "प्राप्तकर्ता डेटा पाने वाला उपकरण है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A laptop and a printer are joined by a USB cable. What is the medium?",
+        "hi": "एक लैपटॉप और प्रिंटर USB केबल से जुड़े हैं। माध्यम क्या है?"
+       },
+       "options": [
+        "The laptop",
+        "The USB cable",
+        "The printed page"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The cable is the path along which the data travels.",
+        "hi": "केबल वह रास्ता है जिस पर डेटा चलता है।"
+       },
+       "wrong": [
+        {
+         "en": "The laptop is the sender.",
+         "hi": "लैपटॉप प्रेषक है।"
+        },
+        "",
+        {
+         "en": "The printed page is the result for the user.",
+         "hi": "छपा पन्ना उपयोगकर्ता के लिए नतीजा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the last pair. Then name the five parts when you make a phone call to your grandmother.",
+      "hi": "आख़िरी जोड़ी मिलाओ। फिर दादी को फ़ोन करने पर पाँचों हिस्से बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch11-duplex",
+   "topic": "11.4",
+   "template": "sort",
+   "title": {
+    "en": "Simplex, half-duplex or full-duplex?",
+    "hi": "सिम्प्लेक्स, हाफ़-डुप्लेक्स या फ़ुल-डुप्लेक्स?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "simplex",
+      "label": {
+       "en": "Simplex (one way only)",
+       "hi": "सिम्प्लेक्स (केवल एक दिशा)"
+      }
+     },
+     {
+      "id": "half",
+      "label": {
+       "en": "Half-duplex (both ways, one at a time)",
+       "hi": "हाफ़-डुप्लेक्स (दोनों दिशाएँ, बारी-बारी)"
+      }
+     },
+     {
+      "id": "full",
+      "label": {
+       "en": "Full-duplex (both ways at once)",
+       "hi": "फ़ुल-डुप्लेक्स (दोनों दिशाएँ साथ-साथ)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tv",
+      "text": {
+       "en": "A TV station broadcasting a programme",
+       "hi": "टीवी चैनल का प्रसारण"
+      },
+      "bin": "simplex",
+      "why": {
+       "en": "The station sends and your TV only receives.",
+       "hi": "चैनल भेजता है और तुम्हारा टीवी केवल पाता है।"
+      }
+     },
+     {
+      "id": "keyboard",
+      "text": {
+       "en": "A keyboard sending keys to the computer",
+       "hi": "कीबोर्ड से कंप्यूटर को जाती कुंजियाँ"
+      },
+      "bin": "simplex",
+      "why": {
+       "en": "Data flows only from the keyboard to the computer.",
+       "hi": "डेटा केवल कीबोर्ड से कंप्यूटर की ओर बहता है।"
+      }
+     },
+     {
+      "id": "walkie",
+      "text": {
+       "en": "A walkie-talkie: press to talk, release to listen",
+       "hi": "वॉकी-टॉकी: बोलने को दबाओ, सुनने को छोड़ो"
+      },
+      "bin": "half",
+      "why": {
+       "en": "Both can talk, but only one at a time.",
+       "hi": "दोनों बोल सकते हैं, पर एक समय में एक ही।"
+      }
+     },
+     {
+      "id": "radio",
+      "text": {
+       "en": "Two police radios taking turns with \"over\"",
+       "hi": "पुलिस के दो रेडियो जो \"ओवर\" कहकर बारी लेते हैं"
+      },
+      "bin": "half",
+      "why": {
+       "en": "Taking turns is half-duplex.",
+       "hi": "बारी-बारी बोलना हाफ़-डुप्लेक्स है।"
+      }
+     },
+     {
+      "id": "call",
+      "text": {
+       "en": "A mobile phone call",
+       "hi": "मोबाइल फ़ोन कॉल"
+      },
+      "bin": "full",
+      "why": {
+       "en": "Both people can talk and listen at the same moment.",
+       "hi": "दोनों लोग एक ही क्षण में बोल और सुन सकते हैं।"
+      }
+     },
+     {
+      "id": "video",
+      "text": {
+       "en": "A video call with a friend",
+       "hi": "दोस्त से वीडियो कॉल"
+      },
+      "bin": "full",
+      "why": {
+       "en": "Sound and video go both ways at once.",
+       "hi": "आवाज़ और वीडियो एक साथ दोनों दिशाओं में जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:tv",
+     "expect": "correct:tv",
+     "say": {
+      "en": "Place the TV broadcast card.",
+      "hi": "टीवी प्रसारण वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On a walkie-talkie can both people talk at the very same time?",
+      "hi": "वॉकी-टॉकी पर क्या दोनों लोग ठीक एक ही समय में बोल सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, one at a time",
+       "hi": "नहीं, एक समय में एक"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, both together",
+       "hi": "हाँ, दोनों साथ-साथ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:walkie",
+     "expect": "correct:walkie",
+     "say": {
+      "en": "Place the walkie-talkie card.",
+      "hi": "वॉकी-टॉकी वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:call",
+     "expect": "correct:call",
+     "say": {
+      "en": "Place the phone call card.",
+      "hi": "फ़ोन कॉल वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Simplex communication goes one way only: a TV broadcast or a keyboard. Half-duplex goes both ways, but not at the same time: a walkie-talkie. Full-duplex goes both ways at once: a phone call. The more freely data can flow, the more capacity the connection needs.",
+      "hi": "सिम्प्लेक्स संचार केवल एक दिशा में चलता है: टीवी प्रसारण या कीबोर्ड। हाफ़-डुप्लेक्स दोनों दिशाओं में चलता है, पर एक साथ नहीं: वॉकी-टॉकी। फ़ुल-डुप्लेक्स दोनों दिशाओं में एक साथ चलता है: फ़ोन कॉल। डेटा जितनी खुलकर बहे, कनेक्शन को उतनी ही क्षमता चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is full-duplex?",
+        "hi": "इनमें से फ़ुल-डुप्लेक्स कौन-सा है?"
+       },
+       "options": [
+        "A TV broadcast",
+        "A walkie-talkie",
+        "A telephone call"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "On a phone call both can talk and hear at the same time.",
+        "hi": "फ़ोन कॉल पर दोनों एक साथ बोल और सुन सकते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A TV broadcast is one way only.",
+         "hi": "टीवी प्रसारण केवल एक दिशा का है।"
+        },
+        {
+         "en": "A walkie-talkie lets only one person talk at a time.",
+         "hi": "वॉकी-टॉकी में एक समय में एक ही व्यक्ति बोलता है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a keyboard simplex?",
+        "hi": "कीबोर्ड सिम्प्लेक्स क्यों है?"
+       },
+       "options": [
+        "Data goes only from it to the computer",
+        "It has too many keys",
+        "It needs a mouse"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The computer does not send typed data back to the keyboard.",
+        "hi": "कंप्यूटर टाइप किया डेटा कीबोर्ड को वापस नहीं भेजता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The number of keys has nothing to do with direction.",
+         "hi": "कुंजियों की संख्या का दिशा से कोई संबंध नहीं।"
+        },
+        {
+         "en": "A mouse is a separate device.",
+         "hi": "माउस अलग उपकरण है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest. Is a game of chess played by post simplex, half-duplex or full-duplex? Why?",
+      "hi": "बाकी रखो। डाक से खेला गया शतरंज का खेल सिम्प्लेक्स, हाफ़-डुप्लेक्स या फ़ुल-डुप्लेक्स है? क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch11-rate",
+   "topic": "11.3",
+   "template": "code",
+   "title": {
+    "en": "Bandwidth and the time to send a file",
+    "hi": "बैंडविड्थ और फ़ाइल भेजने का समय"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "file_mb = 100",
+     "speed_mbps = 20",
+     "bits = file_mb * 8",
+     "seconds = bits / speed_mbps",
+     "print(\"Time in seconds:\", seconds)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A file of 100 megabytes is sent on a line that carries 20 megabits per second. One byte is 8 bits. Will it take about 4 seconds, or more?",
+      "hi": "100 मेगाबाइट की फ़ाइल उस लाइन पर भेजी जाती है जो 20 मेगाबिट प्रति सेकंड ले जाती है। एक बाइट 8 बिट का होता है। क्या इसमें लगभग 4 सेकंड लगेंगे, या ज़्यादा?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More, about 40 seconds",
+       "hi": "ज़्यादा, लगभग 40 सेकंड"
+      },
+      {
+       "id": "four",
+       "en": "About 4 seconds",
+       "hi": "लगभग 4 सेकंड"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch the file size change from bytes to bits.",
+      "hi": "\"एक क़दम\" दबाओ और देखो फ़ाइल का आकार बाइट से बिट में कैसे बदलता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to read the time.",
+      "hi": "समय पढ़ने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bandwidth is the capacity of a channel, how much data it can carry. The data transfer rate is how fast data actually moves, measured in bits per second (bps), or in Kbps, Mbps and Gbps. Because file sizes are in bytes and speeds are in bits, we convert first: 100 MB is 800 megabits. Time = size in bits divided by speed: 800 / 20 = 40 seconds. Doubling the speed halves the time.",
+      "hi": "बैंडविड्थ चैनल की क्षमता है, यानी वह कितना डेटा ले जा सकता है। डेटा अंतरण दर यह है कि डेटा असल में कितनी तेज़ी से चलता है, जो बिट प्रति सेकंड (bps) में, या Kbps, Mbps और Gbps में मापी जाती है। फ़ाइल का आकार बाइट में और गति बिट में होती है, इसलिए पहले बदलते हैं: 100 MB यानी 800 मेगाबिट। समय = बिट में आकार भाग गति: 800 / 20 = 40 सेकंड। गति दोगुनी करने पर समय आधा हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The same file is sent at 40 Mbps. How long does it take?",
+        "hi": "वही फ़ाइल 40 Mbps पर भेजी जाए। कितना समय लगेगा?"
+       },
+       "options": [
+        "20 seconds",
+        "40 seconds",
+        "80 seconds"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "800 megabits / 40 = 20 seconds. Double speed, half time.",
+        "hi": "800 मेगाबिट / 40 = 20 सेकंड। दोगुनी गति, आधा समय।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "40 seconds was for 20 Mbps.",
+         "hi": "40 सेकंड 20 Mbps के लिए थे।"
+        },
+        {
+         "en": "A faster line cannot take longer.",
+         "hi": "तेज़ लाइन में ज़्यादा समय नहीं लग सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many bits are there in one byte?",
+        "hi": "एक बाइट में कितने बिट होते हैं?"
+       },
+       "options": [
+        "4",
+        "8",
+        "16"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "One byte is 8 bits.",
+        "hi": "एक बाइट 8 बिट का होता है।"
+       },
+       "wrong": [
+        {
+         "en": "4 bits is a nibble.",
+         "hi": "4 बिट को निबल कहते हैं।"
+        },
+        "",
+        {
+         "en": "16 bits is two bytes.",
+         "hi": "16 बिट दो बाइट होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "How long would 50 megabytes take at 20 megabits per second? Work it out first, then think how long a film of 2000 MB would take.",
+      "hi": "50 मेगाबाइट को 20 मेगाबिट प्रति सेकंड पर कितना समय लगेगा? पहले हल करो, फिर सोचो 2000 MB की फ़िल्म में कितना लगेगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch11-switching",
+   "topic": "11.5",
+   "template": "sort",
+   "title": {
+    "en": "Circuit switching or packet switching?",
+    "hi": "सर्किट स्विचिंग या पैकेट स्विचिंग?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "circuit",
+      "label": {
+       "en": "Circuit switching",
+       "hi": "सर्किट स्विचिंग"
+      }
+     },
+     {
+      "id": "packet",
+      "label": {
+       "en": "Packet switching",
+       "hi": "पैकेट स्विचिंग"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "path",
+      "text": {
+       "en": "A dedicated path is set up before the talk begins",
+       "hi": "बातचीत शुरू होने से पहले एक समर्पित रास्ता बनता है"
+      },
+      "bin": "circuit",
+      "why": {
+       "en": "The whole path is reserved for the two users, like a private road.",
+       "hi": "पूरा रास्ता दोनों उपयोगकर्ताओं के लिए आरक्षित रहता है, निजी सड़क की तरह।"
+      }
+     },
+     {
+      "id": "landline",
+      "text": {
+       "en": "An old landline telephone call",
+       "hi": "पुराना लैंडलाइन टेलीफ़ोन कॉल"
+      },
+      "bin": "circuit",
+      "why": {
+       "en": "Traditional telephone exchanges reserved a line for each call.",
+       "hi": "पारंपरिक टेलीफ़ोन एक्सचेंज हर कॉल के लिए एक लाइन आरक्षित करते थे।"
+      }
+     },
+     {
+      "id": "idle",
+      "text": {
+       "en": "The line stays reserved even when nobody speaks",
+       "hi": "कोई न बोले तब भी लाइन आरक्षित रहती है"
+      },
+      "bin": "circuit",
+      "why": {
+       "en": "Reserved capacity can be wasted when the line is idle.",
+       "hi": "लाइन ख़ाली हो तो आरक्षित क्षमता बेकार जाती है।"
+      }
+     },
+     {
+      "id": "split",
+      "text": {
+       "en": "The message is cut into small numbered packets",
+       "hi": "संदेश छोटे क्रमांकित पैकेटों में काटा जाता है"
+      },
+      "bin": "packet",
+      "why": {
+       "en": "Packets carry a number and an address.",
+       "hi": "पैकेटों पर क्रम-संख्या और पता होता है।"
+      }
+     },
+     {
+      "id": "routes",
+      "text": {
+       "en": "Different packets may take different routes",
+       "hi": "अलग पैकेट अलग रास्तों से जा सकते हैं"
+      },
+      "bin": "packet",
+      "why": {
+       "en": "Each packet finds its own way across the network.",
+       "hi": "हर पैकेट नेटवर्क में अपना रास्ता ख़ुद खोजता है।"
+      }
+     },
+     {
+      "id": "share",
+      "text": {
+       "en": "Many users share the same lines at once",
+       "hi": "कई उपयोगकर्ता एक ही लाइनें एक साथ बाँटते हैं"
+      },
+      "bin": "packet",
+      "why": {
+       "en": "Because lines are shared, capacity is used well. This is how the Internet works.",
+       "hi": "लाइनें साझा होती हैं, इसलिए क्षमता का अच्छा इस्तेमाल होता है। इंटरनेट ऐसे ही चलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:path",
+     "expect": "correct:path",
+     "say": {
+      "en": "Place the card about the dedicated path.",
+      "hi": "समर्पित रास्ते वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Internet shares its lines among millions of users. Which switching does it use?",
+      "hi": "इंटरनेट अपनी लाइनें करोड़ों उपयोगकर्ताओं में बाँटता है। वह कौन-सी स्विचिंग इस्तेमाल करता है?"
+     },
+     "options": [
+      {
+       "id": "packet",
+       "en": "Packet switching",
+       "hi": "पैकेट स्विचिंग"
+      },
+      {
+       "id": "circuit",
+       "en": "Circuit switching",
+       "hi": "सर्किट स्विचिंग"
+      }
+     ],
+     "answer": "packet"
+    },
+    {
+     "kind": "do",
+     "target": "card:share",
+     "expect": "correct:share",
+     "say": {
+      "en": "Place the card about sharing the lines.",
+      "hi": "लाइनें बाँटने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:landline",
+     "expect": "correct:landline",
+     "say": {
+      "en": "Place the landline card.",
+      "hi": "लैंडलाइन वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Circuit switching sets up a dedicated path between two users before they talk and keeps it for the whole call, like an old telephone call. It is steady but wastes capacity when nobody speaks. Packet switching cuts the message into packets that travel separately, maybe by different routes, and are put together again at the end. Lines are shared by everyone, which is why the Internet is built on it.",
+      "hi": "सर्किट स्विचिंग बातचीत से पहले दो उपयोगकर्ताओं के बीच एक समर्पित रास्ता बनाती है और पूरी कॉल में उसे रखती है, पुराने टेलीफ़ोन कॉल की तरह। यह स्थिर है पर कोई न बोले तो क्षमता बेकार जाती है। पैकेट स्विचिंग संदेश को पैकेटों में काटती है जो अलग-अलग, शायद अलग रास्तों से, चलते हैं और अंत में फिर जोड़े जाते हैं। लाइनें सबमें बँटी रहती हैं, इसीलिए इंटरनेट इसी पर बना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a packet?",
+        "hi": "पैकेट क्या है?"
+       },
+       "options": [
+        "A small piece of a message with an address and number",
+        "A type of cable",
+        "A virus"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A packet is a small chunk of data that carries addressing information.",
+        "hi": "पैकेट डेटा का छोटा टुकड़ा है जिसमें पते की जानकारी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cable is a medium, not data.",
+         "hi": "केबल माध्यम है, डेटा नहीं।"
+        },
+        {
+         "en": "A packet is a normal part of network data.",
+         "hi": "पैकेट नेटवर्क डेटा का सामान्य हिस्सा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is an advantage of packet switching?",
+        "hi": "पैकेट स्विचिंग का एक फ़ायदा कौन-सा है?"
+       },
+       "options": [
+        "Lines are shared, so capacity is used well",
+        "It needs a private road for each user",
+        "It always keeps packets in order on arrival"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sharing means no line sits idle and reserved for nothing.",
+        "hi": "साझा होने से कोई लाइन बेकार आरक्षित नहीं पड़ी रहती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A private path for each user is circuit switching.",
+         "hi": "हर उपयोगकर्ता के लिए निजी रास्ता सर्किट स्विचिंग है।"
+        },
+        {
+         "en": "Packets may arrive in any order and are reassembled at the end.",
+         "hi": "पैकेट किसी भी क्रम में पहुँच सकते हैं और अंत में फिर जोड़े जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest. Then explain to a friend why a video call can still work when some packets take a longer way.",
+      "hi": "बाकी रखो। फिर दोस्त को समझाओ कि कुछ पैकेट लंबा रास्ता लें तब भी वीडियो कॉल कैसे चल जाती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch11-packets",
+   "topic": "11.5",
+   "template": "sequence",
+   "title": {
+    "en": "A message travels as packets",
+    "hi": "संदेश पैकेटों में सफ़र करता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "cut",
+      "text": {
+       "en": "The message is cut into small pieces",
+       "hi": "संदेश छोटे टुकड़ों में काटा जाता है"
+      }
+     },
+     {
+      "id": "label",
+      "text": {
+       "en": "Each piece gets a number and the receiver's address",
+       "hi": "हर टुकड़े को क्रम-संख्या और प्राप्तकर्ता का पता मिलता है"
+      }
+     },
+     {
+      "id": "travel",
+      "text": {
+       "en": "The packets travel through routers, maybe by different routes",
+       "hi": "पैकेट राउटरों से होकर चलते हैं, शायद अलग रास्तों से"
+      }
+     },
+     {
+      "id": "arrive",
+      "text": {
+       "en": "The packets reach the receiver, in any order",
+       "hi": "पैकेट प्राप्तकर्ता तक पहुँचते हैं, किसी भी क्रम में"
+      }
+     },
+     {
+      "id": "order",
+      "text": {
+       "en": "The receiver puts them in order by their numbers",
+       "hi": "प्राप्तकर्ता उन्हें क्रम-संख्या से क्रम में लगाता है"
+      }
+     },
+     {
+      "id": "whole",
+      "text": {
+       "en": "The whole message is ready to read",
+       "hi": "पूरा संदेश पढ़ने के लिए तैयार है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Packet 3 of a message arrives before packet 2. Is the message lost?",
+      "hi": "किसी संदेश का पैकेट 3 पैकेट 2 से पहले पहुँचा। क्या संदेश खो गया?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, numbers let the receiver reorder them",
+       "hi": "नहीं, क्रम-संख्या से प्राप्तकर्ता उन्हें क्रम में लगा लेता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it is spoiled",
+       "hi": "हाँ, वह बिगड़ गया"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "item:cut",
+     "expect": "placed:cut",
+     "say": {
+      "en": "Put the first step in slot 1.",
+      "hi": "पहला चरण स्थान 1 में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:order",
+     "expect": "placed:order",
+     "say": {
+      "en": "Place the step where the receiver sorts the packets.",
+      "hi": "वह चरण रखो जहाँ प्राप्तकर्ता पैकेट क्रम में लगाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the rest and press Check.",
+      "hi": "बाकी को क्रम में लगाओ और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A long message is cut into packets. Each packet is numbered and addressed, then sent into the network, where routers pass it on by the best available route. Packets can arrive in any order, even late, so the numbers are used to put them back together. This is why the Internet keeps working even if one route is busy or broken.",
+      "hi": "लंबा संदेश पैकेटों में कटता है। हर पैकेट पर क्रम-संख्या और पता लगता है, फिर उसे नेटवर्क में भेजा जाता है, जहाँ राउटर उसे सबसे अच्छे उपलब्ध रास्ते से आगे बढ़ाते हैं। पैकेट किसी भी क्रम में, देर से भी, पहुँच सकते हैं, इसलिए क्रम-संख्या से उन्हें फिर जोड़ा जाता है। इसीलिए एक रास्ता व्यस्त या टूटा हो तब भी इंटरनेट चलता रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What lets the receiver rebuild the message in the right order?",
+        "hi": "प्राप्तकर्ता को संदेश सही क्रम में बनाने में क्या मदद करता है?"
+       },
+       "options": [
+        "The number on each packet",
+        "The colour of the cable",
+        "The size of the router"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sequence numbers tell the order of the packets.",
+        "hi": "क्रम-संख्याएँ पैकेटों का क्रम बताती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cable colour carries no information.",
+         "hi": "केबल के रंग में कोई जानकारी नहीं होती।"
+        },
+        {
+         "en": "The size of a router has no role here.",
+         "hi": "राउटर के आकार का यहाँ कोई रोल नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who chooses the route of each packet?",
+        "hi": "हर पैकेट का रास्ता कौन चुनता है?"
+       },
+       "options": [
+        "Routers",
+        "The user by hand",
+        "The keyboard"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Routers pass each packet toward its destination along a suitable path.",
+        "hi": "राउटर हर पैकेट को उचित रास्ते से उसके गंतव्य की ओर बढ़ाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nobody picks routes by hand; it is automatic.",
+         "hi": "रास्ते हाथ से कोई नहीं चुनता; यह अपने-आप होता है।"
+        },
+        {
+         "en": "A keyboard only types.",
+         "hi": "कीबोर्ड केवल टाइप करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine you send a long letter by posting each page in a separate envelope. How is that like packet switching?",
+      "hi": "सोचो एक लंबा पत्र तुम हर पन्ना अलग लिफ़ाफ़े में डाक से भेजते हो। यह पैकेट स्विचिंग जैसा कैसे है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch11-media",
+   "topic": "11.6",
+   "template": "sort",
+   "title": {
+    "en": "Wired or wireless media?",
+    "hi": "तार वाले या बेतार माध्यम?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "wired",
+      "label": {
+       "en": "Wired media",
+       "hi": "तार वाले माध्यम"
+      }
+     },
+     {
+      "id": "wireless",
+      "label": {
+       "en": "Wireless media",
+       "hi": "बेतार माध्यम"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "twisted",
+      "text": {
+       "en": "Twisted pair cable (Ethernet)",
+       "hi": "ट्विस्टेड पेयर केबल (ईथरनेट)"
+      },
+      "bin": "wired",
+      "why": {
+       "en": "Pairs of copper wires twisted together carry signals in LANs.",
+       "hi": "आपस में बटे ताँबे के तारों के जोड़े LAN में संकेत ले जाते हैं।"
+      }
+     },
+     {
+      "id": "coax",
+      "text": {
+       "en": "Coaxial cable of cable TV",
+       "hi": "केबल टीवी का कोएक्सियल केबल"
+      },
+      "bin": "wired",
+      "why": {
+       "en": "A copper core with shielding, used for cable TV and broadband.",
+       "hi": "ढाल वाला ताँबे का कोर, जो केबल टीवी और ब्रॉडबैंड में लगता है।"
+      }
+     },
+     {
+      "id": "fibre",
+      "text": {
+       "en": "Optical fibre",
+       "hi": "ऑप्टिकल फ़ाइबर"
+      },
+      "bin": "wired",
+      "why": {
+       "en": "Light pulses in thin glass fibres give very high speed over long distances.",
+       "hi": "पतले काँच के फ़ाइबर में प्रकाश की स्पंदें बहुत ज़्यादा गति देती हैं, लंबी दूरी तक।"
+      }
+     },
+     {
+      "id": "wifi",
+      "text": {
+       "en": "Wi-Fi at home",
+       "hi": "घर का Wi-Fi"
+      },
+      "bin": "wireless",
+      "why": {
+       "en": "Radio waves carry the data with no cable.",
+       "hi": "रेडियो तरंगें बिना केबल डेटा ले जाती हैं।"
+      }
+     },
+     {
+      "id": "bluetooth",
+      "text": {
+       "en": "Bluetooth earphones",
+       "hi": "ब्लूटूथ ईयरफ़ोन"
+      },
+      "bin": "wireless",
+      "why": {
+       "en": "A short-range radio link.",
+       "hi": "कम दूरी की रेडियो कड़ी।"
+      }
+     },
+     {
+      "id": "micro",
+      "text": {
+       "en": "Microwave towers",
+       "hi": "माइक्रोवेव टावर"
+      },
+      "bin": "wireless",
+      "why": {
+       "en": "Towers beam microwaves in straight lines between each other.",
+       "hi": "टावर एक-दूसरे को सीधी रेखा में माइक्रोवेव भेजते हैं।"
+      }
+     },
+     {
+      "id": "sat",
+      "text": {
+       "en": "Satellite link",
+       "hi": "उपग्रह कड़ी"
+      },
+      "bin": "wireless",
+      "why": {
+       "en": "Signals go up to a satellite and come down again through the air and space.",
+       "hi": "संकेत उपग्रह तक जाते हैं और हवा व अंतरिक्ष से होकर वापस आते हैं।"
+      }
+     },
+     {
+      "id": "ir",
+      "text": {
+       "en": "TV remote using infrared",
+       "hi": "इन्फ़्रारेड वाला टीवी रिमोट"
+      },
+      "bin": "wireless",
+      "why": {
+       "en": "Infrared light carries the signal over a very short distance.",
+       "hi": "इन्फ़्रारेड प्रकाश संकेत को बहुत कम दूरी तक ले जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:fibre",
+     "expect": "correct:fibre",
+     "say": {
+      "en": "Place the optical fibre card.",
+      "hi": "ऑप्टिकल फ़ाइबर वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A TV remote does not need a cable. Is infrared wired or wireless?",
+      "hi": "टीवी रिमोट को केबल नहीं चाहिए। इन्फ़्रारेड तार वाला है या बेतार?"
+     },
+     "options": [
+      {
+       "id": "wireless",
+       "en": "Wireless",
+       "hi": "बेतार"
+      },
+      {
+       "id": "wired",
+       "en": "Wired",
+       "hi": "तार वाला"
+      }
+     ],
+     "answer": "wireless"
+    },
+    {
+     "kind": "do",
+     "target": "card:ir",
+     "expect": "correct:ir",
+     "say": {
+      "en": "Place the infrared remote card.",
+      "hi": "इन्फ़्रारेड रिमोट वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:twisted",
+     "expect": "correct:twisted",
+     "say": {
+      "en": "Place the twisted pair card.",
+      "hi": "ट्विस्टेड पेयर वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Wired media guide the signal along a cable: twisted pair, coaxial cable, and optical fibre, which uses light and is the fastest. Wireless media send the signal through the air: radio waves (Wi-Fi, Bluetooth), microwaves between towers, infrared over short distances, and satellite links over very long ones. Cables are steadier and more secure; wireless is more convenient and mobile.",
+      "hi": "तार वाले माध्यम संकेत को केबल के साथ-साथ चलाते हैं: ट्विस्टेड पेयर, कोएक्सियल केबल और ऑप्टिकल फ़ाइबर, जो प्रकाश इस्तेमाल करता है और सबसे तेज़ है। बेतार माध्यम संकेत हवा से भेजते हैं: रेडियो तरंगें (Wi-Fi, ब्लूटूथ), टावरों के बीच माइक्रोवेव, कम दूरी पर इन्फ़्रारेड, और बहुत दूर के लिए उपग्रह। केबल ज़्यादा स्थिर और सुरक्षित हैं; बेतार ज़्यादा सुविधाजनक और चलता-फिरता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which wired medium carries data as light?",
+        "hi": "कौन-सा तार वाला माध्यम डेटा को प्रकाश के रूप में ले जाता है?"
+       },
+       "options": [
+        "Twisted pair",
+        "Optical fibre",
+        "Coaxial cable"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Optical fibre sends pulses of light through glass.",
+        "hi": "ऑप्टिकल फ़ाइबर काँच में प्रकाश की स्पंदें भेजता है।"
+       },
+       "wrong": [
+        {
+         "en": "Twisted pair carries electrical signals in copper.",
+         "hi": "ट्विस्टेड पेयर ताँबे में विद्युत संकेत ले जाता है।"
+        },
+        "",
+        {
+         "en": "Coaxial cable also uses electrical signals.",
+         "hi": "कोएक्सियल केबल भी विद्युत संकेत इस्तेमाल करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is an advantage of wireless media?",
+        "hi": "बेतार माध्यम का एक फ़ायदा कौन-सा है?"
+       },
+       "options": [
+        "Devices can move around freely",
+        "It never has interference",
+        "It is always faster than fibre"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With no cable, devices can connect from anywhere in range.",
+        "hi": "केबल न होने से उपकरण दायरे में कहीं से भी जुड़ सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wireless signals can suffer interference.",
+         "hi": "बेतार संकेतों में व्यवधान आ सकता है।"
+        },
+        {
+         "en": "Fibre is usually faster.",
+         "hi": "फ़ाइबर आमतौर पर ज़्यादा तेज़ है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest. Which medium would you choose to connect two buildings 500 metres apart, and why?",
+      "hi": "बाकी रखो। 500 मीटर दूर की दो इमारतों को जोड़ने के लिए तुम कौन-सा माध्यम चुनोगे, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch11-generations",
+   "topic": "11.7",
+   "template": "match",
+   "title": {
+    "en": "From 1G to 5G",
+    "hi": "1G से 5G तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "g1",
+      "left": {
+       "en": "1G",
+       "hi": "1G"
+      },
+      "right": {
+       "en": "Analogue voice calls only",
+       "hi": "केवल एनालॉग आवाज़ कॉल"
+      },
+      "why": {
+       "en": "The first mobile phones could only make calls.",
+       "hi": "पहले मोबाइल फ़ोन केवल कॉल कर सकते थे।"
+      }
+     },
+     {
+      "id": "g2",
+      "left": {
+       "en": "2G",
+       "hi": "2G"
+      },
+      "right": {
+       "en": "Digital voice and SMS text messages",
+       "hi": "डिजिटल आवाज़ और SMS संदेश"
+      },
+      "why": {
+       "en": "Calls became clearer and texting started.",
+       "hi": "कॉल साफ़ हुईं और संदेश भेजना शुरू हुआ।"
+      }
+     },
+     {
+      "id": "g3",
+      "left": {
+       "en": "3G",
+       "hi": "3G"
+      },
+      "right": {
+       "en": "Mobile Internet, email and video calls",
+       "hi": "मोबाइल इंटरनेट, ईमेल और वीडियो कॉल"
+      },
+      "why": {
+       "en": "The phone began to browse the web.",
+       "hi": "फ़ोन वेब ब्राउज़ करने लगा।"
+      }
+     },
+     {
+      "id": "g4",
+      "left": {
+       "en": "4G",
+       "hi": "4G"
+      },
+      "right": {
+       "en": "Fast broadband for streaming and apps",
+       "hi": "स्ट्रीमिंग और ऐप के लिए तेज़ ब्रॉडबैंड"
+      },
+      "why": {
+       "en": "Videos and online maps became smooth.",
+       "hi": "वीडियो और ऑनलाइन नक़्शे सहज चलने लगे।"
+      }
+     },
+     {
+      "id": "g5",
+      "left": {
+       "en": "5G",
+       "hi": "5G"
+      },
+      "right": {
+       "en": "Very high speed and very low delay",
+       "hi": "बहुत ऊँची गति और बहुत कम विलंब"
+      },
+      "why": {
+       "en": "It suits smart factories, self-driving vehicles and many connected devices.",
+       "hi": "यह स्मार्ट कारख़ानों, स्वचालित वाहनों और कई जुड़े उपकरणों के लिए ठीक है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:g1",
+     "expect": "matched:g1",
+     "say": {
+      "en": "Match 1G with what it offered.",
+      "hi": "1G को उससे मिलाओ जो उसने दिया।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which generation first let a phone send SMS text messages?",
+      "hi": "किस पीढ़ी ने पहली बार फ़ोन को SMS संदेश भेजने दिए?"
+     },
+     "options": [
+      {
+       "id": "g2",
+       "en": "2G",
+       "hi": "2G है"
+      },
+      {
+       "id": "g1",
+       "en": "1G",
+       "hi": "1G है"
+      },
+      {
+       "id": "g4",
+       "en": "4G",
+       "hi": "4G है"
+      }
+     ],
+     "answer": "g2"
+    },
+    {
+     "kind": "do",
+     "target": "left:g2",
+     "expect": "matched:g2",
+     "say": {
+      "en": "Match 2G.",
+      "hi": "2G को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:g5",
+     "expect": "matched:g5",
+     "say": {
+      "en": "Match 5G.",
+      "hi": "5G को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each generation of mobile technology added something new. 1G gave voice calls, 2G made them digital and added SMS, 3G brought the Internet, 4G made it fast enough for video and apps, and 5G adds very high speed and very low delay, so many devices can talk at the same time. Each step used new radio methods and more of the radio spectrum.",
+      "hi": "मोबाइल तकनीक की हर पीढ़ी ने कुछ नया जोड़ा। 1G ने आवाज़ कॉल दीं, 2G ने उन्हें डिजिटल किया और SMS जोड़ा, 3G इंटरनेट लाई, 4G ने उसे वीडियो और ऐप लायक तेज़ बनाया, और 5G बहुत ऊँची गति और बहुत कम विलंब जोड़ती है, ताकि कई उपकरण एक साथ बात कर सकें। हर क़दम में नए रेडियो तरीके और रेडियो स्पेक्ट्रम का ज़्यादा इस्तेमाल हुआ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which generation brought mobile Internet to ordinary phones?",
+        "hi": "किस पीढ़ी ने आम फ़ोनों में मोबाइल इंटरनेट पहुँचाया?"
+       },
+       "options": [
+        "2G",
+        "3G",
+        "1G"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "3G began real mobile browsing and email.",
+        "hi": "3G से असली मोबाइल ब्राउज़िंग और ईमेल शुरू हुए।"
+       },
+       "wrong": [
+        {
+         "en": "2G was mostly voice and SMS.",
+         "hi": "2G ज़्यादातर आवाज़ और SMS थी।"
+        },
+        "",
+        {
+         "en": "1G was voice only.",
+         "hi": "1G केवल आवाज़ थी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is special about 5G?",
+        "hi": "5G की ख़ास बात क्या है?"
+       },
+       "options": [
+        "Very high speed and very low delay",
+        "Only voice calls",
+        "It works without any radio"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5G is built for speed, low delay and many connected devices.",
+        "hi": "5G गति, कम विलंब और कई जुड़े उपकरणों के लिए बनी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Voice-only was 1G.",
+         "hi": "केवल आवाज़ 1G थी।"
+        },
+        {
+         "en": "5G still uses radio waves.",
+         "hi": "5G अब भी रेडियो तरंगें इस्तेमाल करती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the others. Which generation is your phone using now? Look in its settings.",
+      "hi": "बाकी मिलाओ। तुम्हारा फ़ोन अभी कौन-सी पीढ़ी इस्तेमाल कर रहा है? उसकी सेटिंग में देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch11-protocols",
+   "topic": "11.8",
+   "template": "match",
+   "title": {
+    "en": "Protocols: the languages of the Internet",
+    "hi": "प्रोटोकॉल: इंटरनेट की भाषाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "http",
+      "left": {
+       "en": "HTTP",
+       "hi": "HTTP"
+      },
+      "right": {
+       "en": "Fetches web pages for a browser",
+       "hi": "ब्राउज़र के लिए वेब पेज लाता है"
+      },
+      "why": {
+       "en": "HyperText Transfer Protocol: your browser speaks it to web servers.",
+       "hi": "हाइपरटेक्स्ट ट्रांसफ़र प्रोटोकॉल: तुम्हारा ब्राउज़र वेब सर्वरों से इसी में बात करता है।"
+      }
+     },
+     {
+      "id": "ftp",
+      "left": {
+       "en": "FTP",
+       "hi": "FTP"
+      },
+      "right": {
+       "en": "Transfers files between computers",
+       "hi": "कंप्यूटरों के बीच फ़ाइलें भेजता है"
+      },
+      "why": {
+       "en": "File Transfer Protocol: uploading or downloading large files.",
+       "hi": "फ़ाइल ट्रांसफ़र प्रोटोकॉल: बड़ी फ़ाइलें अपलोड या डाउनलोड करना।"
+      }
+     },
+     {
+      "id": "smtp",
+      "left": {
+       "en": "SMTP",
+       "hi": "SMTP"
+      },
+      "right": {
+       "en": "Sends email",
+       "hi": "ईमेल भेजता है"
+      },
+      "why": {
+       "en": "Simple Mail Transfer Protocol: carries your mail to the mail server.",
+       "hi": "सिंपल मेल ट्रांसफ़र प्रोटोकॉल: तुम्हारा ईमेल मेल सर्वर तक ले जाता है।"
+      }
+     },
+     {
+      "id": "ppp",
+      "left": {
+       "en": "PPP",
+       "hi": "PPP"
+      },
+      "right": {
+       "en": "Connects a computer to the Internet over a direct link",
+       "hi": "कंप्यूटर को सीधी कड़ी से इंटरनेट से जोड़ता है"
+      },
+      "why": {
+       "en": "Point-to-Point Protocol: used for dial-up and some direct links.",
+       "hi": "पॉइंट-टू-पॉइंट प्रोटोकॉल: डायल-अप और कुछ सीधी कड़ियों में इस्तेमाल होता है।"
+      }
+     },
+     {
+      "id": "tcpip",
+      "left": {
+       "en": "TCP/IP",
+       "hi": "TCP/IP"
+      },
+      "right": {
+       "en": "Breaks data into packets, addresses and delivers them",
+       "hi": "डेटा को पैकेटों में बाँटता, पता लगाता और पहुँचाता है"
+      },
+      "why": {
+       "en": "The basic rules of the Internet: IP addresses and routes packets, TCP checks they all arrive.",
+       "hi": "इंटरनेट के बुनियादी नियम: IP पते लगाता और पैकेट पहुँचाता है, TCP जाँचता है कि सब पहुँचे।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:http",
+     "expect": "matched:http",
+     "say": {
+      "en": "Match HTTP with its job.",
+      "hi": "HTTP को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You send an email to a friend. Which protocol carries your mail to the mail server?",
+      "hi": "तुम दोस्त को ईमेल भेजते हो। कौन-सा प्रोटोकॉल तुम्हारा मेल मेल सर्वर तक ले जाता है?"
+     },
+     "options": [
+      {
+       "id": "smtp",
+       "en": "SMTP",
+       "hi": "SMTP है"
+      },
+      {
+       "id": "http",
+       "en": "HTTP",
+       "hi": "HTTP है"
+      },
+      {
+       "id": "ftp",
+       "en": "FTP",
+       "hi": "FTP है"
+      }
+     ],
+     "answer": "smtp"
+    },
+    {
+     "kind": "do",
+     "target": "left:smtp",
+     "expect": "matched:smtp",
+     "say": {
+      "en": "Match SMTP.",
+      "hi": "SMTP को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:tcpip",
+     "expect": "matched:tcpip",
+     "say": {
+      "en": "Match TCP/IP.",
+      "hi": "TCP/IP को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A protocol is an agreed set of rules for communication. HTTP lets browsers and web servers exchange web pages. FTP moves files. SMTP sends email. PPP sets up a direct link to the Internet. TCP/IP is the foundation: IP gives addresses and routes packets, while TCP makes sure the packets all arrive and in the right order. The Internet works because every device follows the same protocols.",
+      "hi": "प्रोटोकॉल संचार के लिए तय नियमों का समूह है। HTTP से ब्राउज़र और वेब सर्वर वेब पेज का आदान-प्रदान करते हैं। FTP फ़ाइलें भेजता है। SMTP ईमेल भेजता है। PPP इंटरनेट से सीधी कड़ी बनाता है। TCP/IP नींव है: IP पते लगाता और पैकेट पहुँचाता है, जबकि TCP पक्का करता है कि सारे पैकेट सही क्रम में पहुँचें। इंटरनेट इसलिए चलता है कि हर उपकरण वही प्रोटोकॉल मानता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which protocol is used to download a large file from a file server?",
+        "hi": "फ़ाइल सर्वर से बड़ी फ़ाइल डाउनलोड करने के लिए कौन-सा प्रोटोकॉल इस्तेमाल होता है?"
+       },
+       "options": [
+        "SMTP",
+        "FTP",
+        "PPP"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "FTP is made for transferring files.",
+        "hi": "FTP फ़ाइलें भेजने के लिए बना है।"
+       },
+       "wrong": [
+        {
+         "en": "SMTP sends email.",
+         "hi": "SMTP ईमेल भेजता है।"
+        },
+        "",
+        {
+         "en": "PPP sets up a direct link.",
+         "hi": "PPP सीधी कड़ी बनाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why must all devices follow the same protocol?",
+        "hi": "सभी उपकरणों को एक ही प्रोटोकॉल क्यों मानना चाहिए?"
+       },
+       "options": [
+        "So that they can understand each other",
+        "So that they look the same",
+        "To use less electricity"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A shared protocol is a shared language: without it the data could not be understood.",
+        "hi": "साझा प्रोटोकॉल साझा भाषा है: इसके बिना डेटा समझा नहीं जा सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Looks are not the reason.",
+         "hi": "दिखावट कारण नहीं है।"
+        },
+        {
+         "en": "Power saving is not what protocols are for.",
+         "hi": "बिजली बचाना प्रोटोकॉल का काम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the last one. Look at the address bar of your browser: which protocol does the web address begin with?",
+      "hi": "आख़िरी मिलाओ। अपने ब्राउज़र की एड्रेस बार देखो: वेब पता किस प्रोटोकॉल से शुरू होता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.2",
+   "use": "Sender, medium and receiver: two friends on a call",
+   "shows": "Two phones on a wooden table with a thin coloured cable between them (toy telephone style), nothing written",
+   "view": "Eye level, 16:9, warm light",
+   "right": "Both phones and the link are clear",
+   "avoid": "Brand logos, readable screen"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "11.6",
+   "use": "Twisted pair, coaxial and optical fibre cables",
+   "shows": "Three short cable pieces laid side by side with their ends stripped to show the inside",
+   "view": "Top-down, light from top left, transparent background",
+   "right": "Inner structure clearly different: twisted copper pairs, shielded core, glass fibres",
+   "avoid": "Printed text on the cables"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "11.6",
+   "use": "Optical fibre glowing",
+   "shows": "Close-up of thin optical fibres with light shining out of their ends",
+   "view": "Macro, square, dark neutral background",
+   "right": "Light points clear and evenly spread",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "11.7",
+   "use": "Mobile tower on a hill in India",
+   "shows": "A lattice mobile tower on a green hillside with a village below",
+   "view": "Wide, 16:9, golden hour",
+   "right": "Antennas on the tower clearly visible",
+   "avoid": "Operator logos"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "11.5",
+   "use": "Packets travelling: letter pages in separate envelopes",
+   "shows": "Four frames: a letter of four pages, each page in its own envelope numbered, envelopes on different trays, pages put together",
+   "view": "Same camera and light, top-down, 16:9",
+   "right": "Page numbers readable as small digits only on the envelopes",
+   "avoid": "Real addresses, faces"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "11.4",
+   "use": "A walkie-talkie",
+   "shows": "A plain handheld walkie-talkie with a short antenna and a push button on the side",
+   "view": "Three-quarter view, light from top left, transparent background",
+   "right": "Antenna and push button clear, unbranded",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "11.6",
+   "use": "Satellite dish on a roof",
+   "shows": "A white satellite dish on a flat Indian rooftop with a water tank behind",
+   "view": "Low angle, 16:9, sunny",
+   "right": "The dish faces the sky clearly",
+   "avoid": "Company logos"
+  }
+ ]
+}

@@ -1,0 +1,1558 @@
+{
+  "chapter_key": "u.c12.informatics_practices.leip1.ch02",
+  "class": 12,
+  "subject_id": "informatics_practices",
+  "title": "Data Handling using Pandas - I",
+  "source": "https://ncert.nic.in/textbook/pdf/leip102.pdf",
+  "topics": [
+    {
+      "n": "2.1",
+      "title": "Introduction to Python libraries: NumPy, Pandas, Matplotlib",
+      "labs": [
+        "c12-informatics_practices-leip1-ch02-libraries"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.2",
+      "title": "Series: creation, accessing elements, attributes, methods and arithmetic",
+      "labs": [
+        "c12-informatics_practices-leip1-ch02-series-lookup",
+        "c12-informatics_practices-leip1-ch02-series-attrs",
+        "c12-informatics_practices-leip1-ch02-series-math"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.3",
+      "title": "DataFrame: creation, rows and columns, slicing, attributes",
+      "labs": [
+        "c12-informatics_practices-leip1-ch02-df-table",
+        "c12-informatics_practices-leip1-ch02-df-select",
+        "c12-informatics_practices-leip1-ch02-df-newcol"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.4",
+      "title": "Importing and exporting data between CSV files and DataFrames",
+      "labs": [
+        "c12-informatics_practices-leip1-ch02-csv-flow"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-informatics_practices-leip1-ch02-libraries",
+      "topic": "2.1",
+      "template": "match",
+      "title": {
+        "en": "Python libraries and their jobs",
+        "hi": "पायथन लाइब्रेरी और उनके काम"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "numpy",
+            "left": {
+              "en": "NumPy",
+              "hi": "NumPy"
+            },
+            "right": {
+              "en": "Fast work on arrays of numbers",
+              "hi": "संख्याओं के ऐरे पर तेज़ काम"
+            },
+            "why": {
+              "en": "NumPy stores numbers in arrays and does maths on all of them at once.",
+              "hi": "NumPy संख्याओं को ऐरे में रखता है और सब पर एक साथ गणित करता है।"
+            }
+          },
+          {
+            "id": "pandas",
+            "left": {
+              "en": "Pandas",
+              "hi": "Pandas"
+            },
+            "right": {
+              "en": "Series and DataFrames for table-like data",
+              "hi": "तालिका जैसे डेटा के लिए Series और DataFrame"
+            },
+            "why": {
+              "en": "Pandas holds labelled data in one-column Series and many-column DataFrames.",
+              "hi": "Pandas नाम-लगे डेटा को एक स्तंभ वाली Series और कई स्तंभ वाले DataFrame में रखता है।"
+            }
+          },
+          {
+            "id": "mpl",
+            "left": {
+              "en": "Matplotlib",
+              "hi": "Matplotlib"
+            },
+            "right": {
+              "en": "Draws charts and graphs",
+              "hi": "चार्ट और ग्राफ़ बनाता है"
+            },
+            "why": {
+              "en": "Matplotlib turns numbers into line, bar, pie and other charts.",
+              "hi": "Matplotlib संख्याओं को रेखा, दंड, पाई और दूसरे चार्ट में बदल देता है।"
+            }
+          },
+          {
+            "id": "import",
+            "left": {
+              "en": "import pandas as pd",
+              "hi": "import pandas as pd"
+            },
+            "right": {
+              "en": "Loads Pandas and gives it the short name pd",
+              "hi": "Pandas लाता है और उसे छोटा नाम pd देता है"
+            },
+            "why": {
+              "en": "import brings the library in. as pd lets you type pd instead of pandas every time.",
+              "hi": "import लाइब्रेरी को लाता है। as pd से हर बार pandas की जगह pd लिखना काफ़ी होता है।"
+            }
+          },
+          {
+            "id": "csv",
+            "left": {
+              "en": "pd.read_csv(\"marks.csv\")",
+              "hi": "pd.read_csv(\"marks.csv\")"
+            },
+            "right": {
+              "en": "Reads a CSV file into a DataFrame",
+              "hi": "CSV फ़ाइल को DataFrame में पढ़ता है"
+            },
+            "why": {
+              "en": "read_csv opens the file and builds a DataFrame from its rows and columns.",
+              "hi": "read_csv फ़ाइल खोलकर उसकी पंक्तियों और स्तंभों से DataFrame बनाता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:pandas",
+          "expect": "matched:pandas",
+          "say": {
+            "en": "Tap Pandas on the left, then tap its job on the right.",
+            "hi": "बाईं ओर Pandas छुओ, फिर दाईं ओर उसका काम छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which library would you use to draw a bar chart of class marks?",
+            "hi": "कक्षा के अंकों का दंड आलेख बनाने के लिए कौन-सी लाइब्रेरी लोगे?"
+          },
+          "options": [
+            {
+              "id": "np",
+              "en": "NumPy",
+              "hi": "उत्तर: NumPy"
+            },
+            {
+              "id": "mpl",
+              "en": "Matplotlib",
+              "hi": "उत्तर: Matplotlib"
+            },
+            {
+              "id": "pd",
+              "en": "Pandas alone",
+              "hi": "अकेला Pandas"
+            }
+          ],
+          "answer": "mpl"
+        },
+        {
+          "kind": "do",
+          "target": "left:mpl",
+          "expect": "matched:mpl",
+          "say": {
+            "en": "Match Matplotlib with its job.",
+            "hi": "Matplotlib को उसके काम से मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:csv",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest. Finish with read_csv.",
+            "hi": "बाकी जोड़ियाँ मिलाओ। read_csv पर ख़त्म करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A library is a ready-made box of tools. You do not write them yourself; you import them. NumPy is the base for fast number work. Pandas builds on it to handle labelled table data. Matplotlib draws pictures of data. Giving a library a short name, as in import pandas as pd, saves typing and is what almost every data programmer does.",
+            "hi": "लाइब्रेरी औज़ारों का बना-बनाया डिब्बा है। उन्हें तुम खुद नहीं लिखते; आयात (import) करते हो। NumPy तेज़ संख्या-कार्य का आधार है। Pandas उसी पर बनकर नाम-लगे तालिका डेटा को संभालता है। Matplotlib डेटा के चित्र बनाता है। लाइब्रेरी को छोटा नाम देना, जैसे import pandas as pd, लिखने की मेहनत बचाता है और लगभग हर डेटा प्रोग्रामर यही करता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In import pandas as pd, what does \"as pd\" do?",
+                "hi": "import pandas as pd में \"as pd\" क्या करता है?"
+              },
+              "options": [
+                {
+                  "en": "Gives Pandas the short name pd",
+                  "hi": "Pandas को छोटा नाम pd देता है"
+                },
+                {
+                  "en": "Installs Pandas on the computer",
+                  "hi": "Pandas को कंप्यूटर में स्थापित करता है"
+                },
+                {
+                  "en": "Turns Pandas into a Series",
+                  "hi": "Pandas को Series में बदल देता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The alias pd is just a nickname, so you can write pd.Series instead of pandas.Series.",
+                "hi": "pd बस एक उपनाम है, ताकि तुम pandas.Series की जगह pd.Series लिख सको।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Installing is done before the program, with a separate command. import only loads what is installed.",
+                  "hi": "स्थापना प्रोग्राम से पहले अलग कमांड से होती है। import सिर्फ़ उसे लाता है जो स्थापित है।"
+                },
+                {
+                  "en": "Pandas is a library; a Series is one of the things it provides. Naming does not change one into the other.",
+                  "hi": "Pandas लाइब्रेरी है; Series उसकी दी हुई चीज़ों में से एक है। नाम देने से एक दूसरी नहीं बन जाती।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at the jobs again. Which two libraries would you need together to read marks from a file and then draw a chart?",
+            "hi": "काम फिर देखो। फ़ाइल से अंक पढ़कर चार्ट बनाने के लिए कौन-सी दो लाइब्रेरी साथ चाहिए?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch02-series-lookup",
+      "topic": "2.2",
+      "template": "code",
+      "title": {
+        "en": "A Series: values with labels",
+        "hi": "Series: नाम-लगे मान"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "trace",
+        "program": [
+          "days = [\"Mon\", \"Tue\", \"Wed\", \"Thu\"]",
+          "sales = [120, 90, 150, 110]",
+          "i = days.index(\"Wed\")",
+          "print(sales[i])",
+          "print(sales[0], sales[3])",
+          "print(sum(sales) / len(sales))"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A Series keeps values together with labels. Here the labels are the days and the values are the sales. Which line below finds the sale of Wednesday?",
+            "hi": "Series मानों को लेबलों के साथ रखती है। यहाँ लेबल दिन हैं और मान बिक्री। नीचे की कौन-सी पंक्ति बुधवार की बिक्री ढूँढेगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Find the position of \"Wed\", then use it on sales",
+              "hi": "\"Wed\" की स्थिति ढूँढो, फिर उसे sales पर लगाओ"
+            },
+            {
+              "id": "b",
+              "en": "Add all the sales",
+              "hi": "सारी बिक्री जोड़ो"
+            },
+            {
+              "id": "c",
+              "en": "Print the first sale",
+              "hi": "पहली बिक्री छापो"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "step",
+          "expect": "stepped",
+          "say": {
+            "en": "Press Step to run one line at a time and watch the variables.",
+            "hi": "एक-एक पंक्ति चलाने के लिए \"एक क़दम\" दबाओ और चरों पर नज़र रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "done",
+          "say": {
+            "en": "Press Run to finish the program.",
+            "hi": "प्रोग्राम पूरा करने के लिए \"चलाओ\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In Pandas a Series is like this pair of lists joined together: an index of labels (days) and the values (sales). days.index(\"Wed\") plays the part of the label lookup and gives position 2; sales[2] then gives 150. In Pandas you would write s[\"Wed\"] to ask by label, or s[2] to ask by position. The mean of the four values is 117.5. Pandas calculates these with s.mean() in one go.",
+            "hi": "Pandas में Series इन्हीं दो सूचियों को जोड़कर बनती है: लेबलों (दिनों) का सूचकांक (index) और मान (बिक्री)। days.index(\"Wed\") लेबल से ढूँढने का काम करता है और स्थिति 2 देता है; फिर sales[2] से 150 मिलता है। Pandas में लेबल से पूछने के लिए s[\"Wed\"] और स्थिति से पूछने के लिए s[2] लिखते हैं। चारों मानों का माध्य 117.5 है। Pandas इसे s.mean() से एक बार में निकाल देता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In this lab, what is sales[0]?",
+                "hi": "इस लैब में sales[0] क्या है?"
+              },
+              "options": [
+                {
+                  "en": "120, the first value",
+                  "hi": "120, पहला मान"
+                },
+                {
+                  "en": "90, the second value",
+                  "hi": "90, दूसरा मान"
+                },
+                {
+                  "en": "\"Mon\"",
+                  "hi": "उत्तर: \"Mon\""
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Positions count from 0, so position 0 is the first value, 120.",
+                "hi": "स्थिति 0 से गिनी जाती है, इसलिए स्थिति 0 पहला मान, 120, है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "90 is at position 1. Position counting starts at 0, not 1.",
+                  "hi": "90 स्थिति 1 पर है। स्थिति की गिनती 0 से शुरू होती है, 1 से नहीं।"
+                },
+                {
+                  "en": "\"Mon\" is a label in the days list, not a value in sales.",
+                  "hi": "\"Mon\" days सूची का लेबल है, sales का मान नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change days.index(\"Wed\") to \"Thu\" in your mind. Which value will print? Then press Reset and check by running.",
+            "hi": "मन में days.index(\"Wed\") को \"Thu\" कर दो। कौन-सा मान छपेगा? फिर \"फिर से\" दबाकर चलाओ और जाँचो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch02-series-attrs",
+      "topic": "2.2",
+      "template": "match",
+      "title": {
+        "en": "Series attributes and methods",
+        "hi": "Series के गुण और विधियाँ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "index",
+            "left": {
+              "en": "s.index",
+              "hi": "s.index"
+            },
+            "right": {
+              "en": "The labels of the Series",
+              "hi": "Series के लेबल"
+            },
+            "why": {
+              "en": "index holds the labels, such as Mon, Tue, Wed.",
+              "hi": "index में लेबल रहते हैं, जैसे Mon, Tue, Wed।"
+            }
+          },
+          {
+            "id": "values",
+            "left": {
+              "en": "s.values",
+              "hi": "s.values"
+            },
+            "right": {
+              "en": "The data values as an array",
+              "hi": "डेटा के मान, ऐरे के रूप में"
+            },
+            "why": {
+              "en": "values gives only the numbers, without their labels.",
+              "hi": "values सिर्फ़ संख्याएँ देता है, लेबल के बिना।"
+            }
+          },
+          {
+            "id": "size",
+            "left": {
+              "en": "s.size",
+              "hi": "s.size"
+            },
+            "right": {
+              "en": "Number of elements",
+              "hi": "तत्वों की संख्या"
+            },
+            "why": {
+              "en": "size counts all the elements, including empty ones.",
+              "hi": "size सभी तत्व गिनता है, ख़ाली वाले भी।"
+            }
+          },
+          {
+            "id": "dtype",
+            "left": {
+              "en": "s.dtype",
+              "hi": "s.dtype"
+            },
+            "right": {
+              "en": "The data type of the values",
+              "hi": "मानों का डेटा प्रकार"
+            },
+            "why": {
+              "en": "dtype tells whether the values are integers, decimals or text.",
+              "hi": "dtype बताता है कि मान पूर्णांक हैं, दशमलव हैं या पाठ।"
+            }
+          },
+          {
+            "id": "head",
+            "left": {
+              "en": "s.head(2)",
+              "hi": "s.head(2)"
+            },
+            "right": {
+              "en": "The first two elements",
+              "hi": "पहले दो तत्व"
+            },
+            "why": {
+              "en": "head(n) shows the first n elements, handy for a quick look.",
+              "hi": "head(n) पहले n तत्व दिखाता है, जल्दी झलक पाने के लिए काम का।"
+            }
+          },
+          {
+            "id": "tail",
+            "left": {
+              "en": "s.tail(2)",
+              "hi": "s.tail(2)"
+            },
+            "right": {
+              "en": "The last two elements",
+              "hi": "आख़िरी दो तत्व"
+            },
+            "why": {
+              "en": "tail(n) shows the last n elements.",
+              "hi": "tail(n) आख़िरी n तत्व दिखाता है।"
+            }
+          },
+          {
+            "id": "count",
+            "left": {
+              "en": "s.count()",
+              "hi": "s.count()"
+            },
+            "right": {
+              "en": "Number of values that are not missing",
+              "hi": "उन मानों की संख्या जो ग़ायब नहीं हैं"
+            },
+            "why": {
+              "en": "count() leaves out NaN (missing) values, so it can be smaller than size.",
+              "hi": "count() NaN (ग़ायब) मानों को छोड़ देता है, इसलिए वह size से छोटा हो सकता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:index",
+          "expect": "matched:index",
+          "say": {
+            "en": "Match s.index with what it gives.",
+            "hi": "s.index को मिलाओ कि वह क्या देता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A Series has 5 elements and one of them is missing (NaN). s.size and s.count() will not be equal. Which one is smaller?",
+            "hi": "एक Series में 5 तत्व हैं और उनमें से एक ग़ायब (NaN) है। s.size और s.count() बराबर नहीं होंगे। कौन-सा छोटा है?"
+          },
+          "options": [
+            {
+              "id": "size",
+              "en": "s.size = 4",
+              "hi": "उत्तर: s.size = 4"
+            },
+            {
+              "id": "count",
+              "en": "s.count() = 4",
+              "hi": "कोड: s.count() = 4"
+            },
+            {
+              "id": "same",
+              "en": "They are equal",
+              "hi": "दोनों बराबर हैं"
+            }
+          ],
+          "answer": "count"
+        },
+        {
+          "kind": "do",
+          "target": "left:count",
+          "expect": "matched:count",
+          "say": {
+            "en": "Match s.count() with its meaning.",
+            "hi": "s.count() को उसके अर्थ से मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:tail",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the remaining ones. Finish with s.tail(2).",
+            "hi": "बाकी जोड़ियाँ मिलाओ। s.tail(2) पर ख़त्म करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Attributes describe a Series without any brackets: index, values, size, dtype. Methods do something and need brackets: head(), tail(), count(). size counts every place, even a missing one, but count() counts only real values. With 5 places and 1 missing, size is 5 and count() is 4.",
+            "hi": "गुण (attributes) Series का वर्णन करते हैं और कोष्ठक नहीं लेते: index, values, size, dtype। विधियाँ (methods) कुछ करती हैं और कोष्ठक लेती हैं: head(), tail(), count()। size हर जगह गिनता है, ग़ायब वाली भी, पर count() सिर्फ़ असली मान गिनता है। 5 जगह और 1 ग़ायब होने पर size 5 होता है और count() 4।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these needs brackets when you write it?",
+                "hi": "इनमें से कौन-सा लिखते समय कोष्ठक माँगता है?"
+              },
+              "options": [
+                {
+                  "en": "s.head(3)",
+                  "hi": "कोड: s.head(3)"
+                },
+                {
+                  "en": "s.size",
+                  "hi": "उत्तर: s.size"
+                },
+                {
+                  "en": "s.dtype",
+                  "hi": "उत्तर: s.dtype"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "head is a method, an action, so it is called with brackets and an argument. size and dtype are attributes.",
+                "hi": "head विधि है, यानी क्रिया, इसलिए उसे कोष्ठक और तर्क के साथ बुलाते हैं। size और dtype गुण हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "size is an attribute. Writing s.size() causes an error.",
+                  "hi": "size गुण है। s.size() लिखने से गलती आती है।"
+                },
+                {
+                  "en": "dtype is also an attribute and is written without brackets.",
+                  "hi": "dtype भी गुण है और बिना कोष्ठक के लिखा जाता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Say each match aloud in a full sentence, like \"s.dtype tells me the type of the values\". Do this for all seven.",
+            "hi": "हर जोड़ी को पूरे वाक्य में बोलो, जैसे \"s.dtype मुझे मानों का प्रकार बताता है\"। सातों के लिए करो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch02-series-math",
+      "topic": "2.2",
+      "template": "code",
+      "title": {
+        "en": "Arithmetic on a whole Series",
+        "hi": "पूरी Series पर गणित"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "trace",
+        "program": [
+          "marks = [42, 55, 38, 61]",
+          "grace = []",
+          "for m in marks:",
+          "    grace.append(m + 5)",
+          "print(marks)",
+          "print(grace)"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The teacher gives 5 grace marks to every student. After the program, will the original list marks change?",
+            "hi": "अध्यापक हर विद्यार्थी को 5 कृपांक देते हैं। प्रोग्राम के बाद क्या मूल सूची marks बदल जाएगी?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No, a new list grace is made",
+              "hi": "नहीं, नई सूची grace बनती है"
+            },
+            {
+              "id": "yes",
+              "en": "Yes, marks also changes",
+              "hi": "हाँ, marks भी बदल जाती है"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "step",
+          "expect": "stepped",
+          "say": {
+            "en": "Press Step a few times. See grace grow by one value each time the loop runs.",
+            "hi": "कुछ बार \"एक क़दम\" दबाओ। देखो हर बार लूप चलने पर grace में एक मान बढ़ता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "done",
+          "say": {
+            "en": "Press Run to finish.",
+            "hi": "पूरा करने के लिए \"चलाओ\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Here a loop adds 5 to each mark one by one. In Pandas you do not need the loop: if s is a Series, then s + 5 adds 5 to every element at once and gives a new Series, and s itself stays the same. The same works with -, *, / and with two Series of the same labels, like s1 + s2, which adds element by element. If a label is missing from one of them, the answer for it is NaN.",
+            "hi": "यहाँ एक लूप हर अंक में एक-एक करके 5 जोड़ता है। Pandas में लूप की ज़रूरत नहीं: अगर s कोई Series है, तो s + 5 हर तत्व में एक साथ 5 जोड़कर नई Series देता है और s खुद वैसी ही रहती है। यही -, *, / के साथ और एक जैसे लेबल वाली दो Series के साथ, जैसे s1 + s2, चलता है, जो तत्व-दर-तत्व जोड़ता है। अगर किसी एक में कोई लेबल न हो तो उसका उत्तर NaN आता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "If s is a Series of marks, what does s * 2 give?",
+                "hi": "अगर s अंकों की Series है, तो s * 2 क्या देता है?"
+              },
+              "options": [
+                {
+                  "en": "A new Series with every mark doubled",
+                  "hi": "हर अंक दोगुना वाली नई Series"
+                },
+                {
+                  "en": "Only the first mark doubled",
+                  "hi": "सिर्फ़ पहला अंक दोगुना"
+                },
+                {
+                  "en": "One number, the total",
+                  "hi": "एक संख्या, कुल जोड़"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Arithmetic on a Series is applied to every element and returns a Series of the same length.",
+                "hi": "Series पर गणित हर तत्व पर लागू होता है और उतनी ही लंबी Series लौटाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The operation does not stop at the first element; it goes through all of them.",
+                  "hi": "क्रिया पहले तत्व पर नहीं रुकती; वह सब पर चलती है।"
+                },
+                {
+                  "en": "A total comes from s.sum(). s * 2 keeps one answer for each element.",
+                  "hi": "कुल जोड़ s.sum() से आता है। s * 2 हर तत्व का अलग उत्तर रखता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Two Series s1 and s2 are added. A label appears in s1 but not in s2. What is the result for that label?",
+                "hi": "दो Series s1 और s2 जोड़ी जाती हैं। एक लेबल s1 में है पर s2 में नहीं। उस लेबल का परिणाम क्या होगा?"
+              },
+              "options": [
+                {
+                  "en": "NaN, a missing value",
+                  "hi": "NaN, ग़ायब मान"
+                },
+                {
+                  "en": "0",
+                  "hi": "उत्तर 0"
+                },
+                {
+                  "en": "The value from s1",
+                  "hi": "s1 का मान"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Pandas matches by label. With no partner to add, the answer cannot be worked out, so it shows NaN.",
+                "hi": "Pandas लेबल से मिलान करता है। जोड़ने के लिए जोड़ीदार न हो तो उत्तर निकल नहीं सकता, इसलिए NaN दिखता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Pandas does not guess zero. A missing value stays missing and shows as NaN.",
+                  "hi": "Pandas शून्य का अंदाज़ा नहीं लगाता। ग़ायब मान ग़ायब ही रहता है और NaN दिखता है।"
+                },
+                {
+                  "en": "Copying s1 would hide the fact that s2 had nothing there. The result is NaN.",
+                  "hi": "s1 का मान नकल करने से यह छिप जाता कि s2 में कुछ नहीं था। परिणाम NaN आता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change 5 to 10 in your mind and predict the last printed list. Then try it with Reset and a new run if the lab lets you edit.",
+            "hi": "मन में 5 को 10 कर दो और आख़िरी छपी सूची का अनुमान लगाओ। फिर परखो कि अनुमान सही था या नहीं।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch02-df-table",
+      "topic": "2.3",
+      "template": "table",
+      "title": {
+        "en": "A DataFrame: rows, columns, sort and filter",
+        "hi": "DataFrame: पंक्तियाँ, स्तंभ, छँटाई और फ़िल्टर"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "sort-filter",
+        "tables": {
+          "STUDENTS": {
+            "columns": [
+              "RollNo",
+              "Name",
+              "Section",
+              "Maths",
+              "Science"
+            ],
+            "rows": [
+              [
+                1,
+                "Anil",
+                "A",
+                72,
+                65
+              ],
+              [
+                2,
+                "Bina",
+                "B",
+                88,
+                91
+              ],
+              [
+                3,
+                "Chetan",
+                "A",
+                54,
+                60
+              ],
+              [
+                4,
+                "Divya",
+                "C",
+                95,
+                89
+              ],
+              [
+                5,
+                "Eshan",
+                "B",
+                67,
+                72
+              ],
+              [
+                6,
+                "Farah",
+                "C",
+                81,
+                78
+              ],
+              [
+                7,
+                "Girish",
+                "A",
+                59,
+                48
+              ],
+              [
+                8,
+                "Hema",
+                "B",
+                90,
+                94
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "Think of this table as a DataFrame called df. Each column is a Series, and each row is one student. Sort it by Maths and filter the rows. (Sample data made up for this lab.)",
+          "hi": "इस तालिका को df नाम का DataFrame समझो। हर स्तंभ एक Series है और हर पंक्ति एक विद्यार्थी। इसे Maths से छाँटो और पंक्तियाँ फ़िल्टर करो। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "This DataFrame has 8 students and 5 columns, so df.shape is (8, 5). If you sort the Maths column from high to low, who will be on the top row?",
+            "hi": "इस DataFrame में 8 विद्यार्थी और 5 स्तंभ हैं, इसलिए df.shape (8, 5) है। Maths स्तंभ को बड़े से छोटे क्रम में लगाओ तो ऊपर की पंक्ति में कौन होगा?"
+          },
+          "options": [
+            {
+              "id": "divya",
+              "en": "Divya (95)",
+              "hi": "दिव्या (95)"
+            },
+            {
+              "id": "hema",
+              "en": "Hema (90)",
+              "hi": "हेमा (90)"
+            },
+            {
+              "id": "anil",
+              "en": "Anil (72)",
+              "hi": "अनिल (72)"
+            }
+          ],
+          "answer": "divya"
+        },
+        {
+          "kind": "do",
+          "target": "column:Maths",
+          "expect": "result",
+          "say": {
+            "en": "Tap the Maths heading to sort low to high.",
+            "hi": "छोटे से बड़े क्रम के लिए Maths शीर्षक छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "column:Maths",
+          "expect": "result",
+          "say": {
+            "en": "Tap Maths again to flip to high to low.",
+            "hi": "बड़े से छोटे क्रम के लिए Maths को फिर छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "filter",
+          "expect": "result",
+          "say": {
+            "en": "Use the filter: Maths is greater than 80, then press Apply.",
+            "hi": "फ़िल्टर लगाओ: Maths 80 से बड़ा, फिर \"लगाओ\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each column is a Series with its own name, and the whole table is a DataFrame, where every row has an index label. Sorting changes the order of whole rows, not just one column, so each student keeps their own marks. In Pandas, df.sort_values(\"Maths\", ascending=False) does what you did. The filter is df[df[\"Maths\"] > 80]: Pandas checks every row and keeps only those where the condition is True.",
+            "hi": "हर स्तंभ अपने नाम वाली Series है, और पूरी तालिका DataFrame, जिसमें हर पंक्ति का एक index लेबल होता है। छँटाई पूरी पंक्तियों का क्रम बदलती है, अकेले एक स्तंभ का नहीं, इसलिए हर विद्यार्थी के अपने ही अंक साथ रहते हैं। Pandas में df.sort_values(\"Maths\", ascending=False) वही करता है जो तुमने किया। फ़िल्टर df[df[\"Maths\"] > 80] है: Pandas हर पंक्ति जाँचता है और सिर्फ़ वे रखता है जिनमें शर्त True हो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "While sorting by Maths, Divya's Science mark stays with her row. Why?",
+                "hi": "Maths से छाँटते समय दिव्या का Science अंक उसकी पंक्ति के साथ रहता है। क्यों?"
+              },
+              "options": [
+                {
+                  "en": "Sorting moves whole rows, not single columns",
+                  "hi": "छँटाई पूरी पंक्तियाँ हिलाती है, अकेले स्तंभ नहीं"
+                },
+                {
+                  "en": "Science is sorted separately later",
+                  "hi": "Science बाद में अलग से छाँटा जाता है"
+                },
+                {
+                  "en": "The table forgets the other columns",
+                  "hi": "तालिका बाकी स्तंभ भूल जाती है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A row is one record. Sorting reorders the records, so every value of a student travels together.",
+                "hi": "पंक्ति एक अभिलेख (रिकॉर्ड) है। छँटाई अभिलेखों का क्रम बदलती है, इसलिए विद्यार्थी के सारे मान साथ चलते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "If columns were sorted separately, marks would get mixed between students. That never happens.",
+                  "hi": "अगर स्तंभ अलग-अलग छाँटे जाते तो विद्यार्थियों के अंक आपस में मिल जाते। ऐसा कभी नहीं होता।"
+                },
+                {
+                  "en": "No column is forgotten; all five stay in the table.",
+                  "hi": "कोई स्तंभ नहीं भूलता; पाँचों तालिका में रहते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "After the filter Maths > 80, how many students remain?",
+                "hi": "फ़िल्टर Maths > 80 के बाद कितने विद्यार्थी बचते हैं?"
+              },
+              "options": [
+                {
+                  "en": "4: Bina, Divya, Farah, Hema",
+                  "hi": "4: बीना, दिव्या, फ़राह, हेमा"
+                },
+                {
+                  "en": "3",
+                  "hi": "उत्तर 3"
+                },
+                {
+                  "en": "8",
+                  "hi": "उत्तर 8"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Marks above 80 are 88, 95, 81 and 90. Four rows pass.",
+                "hi": "80 से ऊपर के अंक 88, 95, 81 और 90 हैं। चार पंक्तियाँ पास होती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Three would leave out one of them; 81 is above 80 too, so Farah stays.",
+                  "hi": "तीन में एक छूट जाएगा; 81 भी 80 से ऊपर है, इसलिए फ़राह रहती है।"
+                },
+                {
+                  "en": "8 would mean the filter kept everyone. The condition removes the rest.",
+                  "hi": "8 का मतलब होता कि फ़िल्टर ने सबको रखा। शर्त बाकी को हटाती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Filter Science above 70 as well. Which students are good in both Maths and Science?",
+            "hi": "Science 70 से ऊपर का फ़िल्टर भी लगाओ। कौन-से विद्यार्थी Maths और Science दोनों में अच्छे हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch02-df-select",
+      "topic": "2.3",
+      "template": "sort",
+      "title": {
+        "en": "Which part of the DataFrame do you get?",
+        "hi": "DataFrame का कौन-सा भाग मिलता है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "col",
+            "label": {
+              "en": "One column",
+              "hi": "एक स्तंभ"
+            }
+          },
+          {
+            "id": "row",
+            "label": {
+              "en": "Some rows",
+              "hi": "कुछ पंक्तियाँ"
+            }
+          },
+          {
+            "id": "both",
+            "label": {
+              "en": "Rows and columns",
+              "hi": "पंक्तियाँ और स्तंभ"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "c1",
+            "text": {
+              "en": "df[\"Name\"]",
+              "hi": "df[\"Name\"]"
+            },
+            "bin": "col",
+            "why": {
+              "en": "Square brackets with a column name give that whole column as a Series.",
+              "hi": "वर्ग कोष्ठक में स्तंभ का नाम पूरा वह स्तंभ Series के रूप में देता है।"
+            }
+          },
+          {
+            "id": "c2",
+            "text": {
+              "en": "df.Maths",
+              "hi": "df.Maths"
+            },
+            "bin": "col",
+            "why": {
+              "en": "A column name after the dot also gives that column (when the name has no spaces).",
+              "hi": "बिंदु के बाद स्तंभ का नाम भी वह स्तंभ देता है (जब नाम में रिक्त स्थान न हो)।"
+            }
+          },
+          {
+            "id": "c3",
+            "text": {
+              "en": "df.loc[:, \"Science\"]",
+              "hi": "df.loc[:, \"Science\"]"
+            },
+            "bin": "col",
+            "why": {
+              "en": "In loc, the part before the comma picks rows. A colon means all rows, and Science is the only column.",
+              "hi": "loc में कॉमा से पहले का भाग पंक्तियाँ चुनता है। कोलन का मतलब सभी पंक्तियाँ है, और स्तंभ सिर्फ़ Science है।"
+            }
+          },
+          {
+            "id": "r1",
+            "text": {
+              "en": "df.head(3)",
+              "hi": "df.head(3)"
+            },
+            "bin": "row",
+            "why": {
+              "en": "head(3) gives the first three rows with all their columns.",
+              "hi": "head(3) पहली तीन पंक्तियाँ सभी स्तंभों के साथ देता है।"
+            }
+          },
+          {
+            "id": "r2",
+            "text": {
+              "en": "df.loc[2]",
+              "hi": "df.loc[2]"
+            },
+            "bin": "row",
+            "why": {
+              "en": "loc[2] picks the row whose index label is 2, with all its columns.",
+              "hi": "loc[2] वह पंक्ति चुनता है जिसका index लेबल 2 है, सभी स्तंभों के साथ।"
+            }
+          },
+          {
+            "id": "r3",
+            "text": {
+              "en": "df[df.Maths > 80]",
+              "hi": "df[df.Maths > 80]"
+            },
+            "bin": "row",
+            "why": {
+              "en": "A condition inside the brackets keeps the rows where it is true, with every column.",
+              "hi": "कोष्ठक के अंदर शर्त उन पंक्तियाँ को रखती है जहाँ वह सही है, सभी स्तंभों के साथ।"
+            }
+          },
+          {
+            "id": "b1",
+            "text": {
+              "en": "df.loc[1:3, [\"Name\", \"Maths\"]]",
+              "hi": "df.loc[1:3, [\"Name\", \"Maths\"]]"
+            },
+            "bin": "both",
+            "why": {
+              "en": "Before the comma are rows 1 to 3, after it are two named columns.",
+              "hi": "कॉमा से पहले पंक्तियाँ 1 से 3 हैं, बाद में दो नाम वाले स्तंभ।"
+            }
+          },
+          {
+            "id": "b2",
+            "text": {
+              "en": "df.iloc[0:2, 1:3]",
+              "hi": "df.iloc[0:2, 1:3]"
+            },
+            "bin": "both",
+            "why": {
+              "en": "iloc uses positions: rows at positions 0 and 1, columns at positions 1 and 2.",
+              "hi": "iloc स्थितियों का उपयोग करता है: स्थिति 0 और 1 की पंक्तियाँ, स्थिति 1 और 2 के स्तंभ।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:c1",
+          "expect": "placed:c1",
+          "say": {
+            "en": "Tap df[\"Name\"] and place it in its group.",
+            "hi": "df[\"Name\"] छुओ और उसे उसके समूह में रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In df.loc[rows, columns], what comes before the comma?",
+            "hi": "df.loc[पंक्तियाँ, स्तंभ] में कॉमा से पहले क्या आता है?"
+          },
+          "options": [
+            {
+              "id": "rows",
+              "en": "The rows to pick",
+              "hi": "चुनी जाने वाली पंक्तियाँ"
+            },
+            {
+              "id": "cols",
+              "en": "The columns to pick",
+              "hi": "चुने जाने वाले स्तंभ"
+            }
+          ],
+          "answer": "rows"
+        },
+        {
+          "kind": "do",
+          "target": "card:b1",
+          "expect": "placed:b1",
+          "say": {
+            "en": "Place df.loc[1:3, [\"Name\", \"Maths\"]] in its group.",
+            "hi": "df.loc[1:3, [\"Name\", \"Maths\"]] को उसके समूह में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the remaining cards, then press Check.",
+            "hi": "बाकी कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Square brackets with a name pick a column. loc picks by labels and iloc picks by positions, and both read as [rows, columns]. A colon alone means \"all of them\". A condition such as Maths > 80 picks rows. A detail worth remembering: loc includes the last label of a range (1:3 gives rows 1, 2 and 3), but iloc stops before the last position (0:2 gives positions 0 and 1).",
+            "hi": "नाम के साथ वर्ग कोष्ठक स्तंभ चुनते हैं। loc लेबल से चुनता है और iloc स्थिति से, और दोनों [पंक्तियाँ, स्तंभ] की तरह पढ़े जाते हैं। अकेला कोलन \"सभी\" का मतलब रखता है। Maths > 80 जैसी शर्त पंक्तियाँ चुनती है। याद रखने की बात: loc सीमा का आख़िरी लेबल शामिल करता है (1:3 पंक्तियाँ 1, 2 और 3 देता है), पर iloc आख़िरी स्थिति से पहले रुक जाता है (0:2 स्थितियाँ 0 और 1 देता है)।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many rows does df.iloc[0:2] give?",
+                "hi": "df.iloc[0:2] कितनी पंक्तियाँ देता है?"
+              },
+              "options": [
+                {
+                  "en": "2 rows: positions 0 and 1",
+                  "hi": "2 पंक्तियाँ: स्थिति 0 और 1"
+                },
+                {
+                  "en": "3 rows: positions 0, 1 and 2",
+                  "hi": "3 पंक्तियाँ: स्थिति 0, 1 और 2"
+                },
+                {
+                  "en": "1 row",
+                  "hi": "1 पंक्ति"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "iloc follows the usual Python rule: the end position is not included.",
+                "hi": "iloc पायथन का सामान्य नियम मानता है: अंतिम स्थिति शामिल नहीं होती।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That would be the answer for loc[0:2], which includes the end label.",
+                  "hi": "यह loc[0:2] का उत्तर होता, जो अंतिम लेबल शामिल करता है।"
+                },
+                {
+                  "en": "A range from 0 to 2 covers two positions, so one row is too few.",
+                  "hi": "0 से 2 की सीमा दो स्थितियाँ घेरती है, इसलिए एक पंक्ति कम है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tap a card to read its reason again. Write one expression of your own that picks the Name and Science of the last two students.",
+            "hi": "कोई कार्ड छूकर उसका कारण फिर पढ़ो। आख़िरी दो विद्यार्थियों का Name और Science चुनने वाला अपना एक व्यंजक लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch02-df-newcol",
+      "topic": "2.3",
+      "template": "code",
+      "title": {
+        "en": "Adding a new column to a DataFrame",
+        "hi": "DataFrame में नया स्तंभ जोड़ना"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "trace",
+        "program": [
+          "maths = [72, 88, 54]",
+          "science = [65, 91, 60]",
+          "total = []",
+          "for i in range(len(maths)):",
+          "    total.append(maths[i] + science[i])",
+          "print(total)"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A new column Total must hold Maths + Science for each student. The first student has 72 and 65. What will the first Total be?",
+            "hi": "नए स्तंभ Total में हर विद्यार्थी का Maths + Science होना चाहिए। पहले विद्यार्थी के 72 और 65 हैं। पहला Total क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "137",
+              "hi": "उत्तर 137"
+            },
+            {
+              "id": "b",
+              "en": "72",
+              "hi": "उत्तर 72"
+            },
+            {
+              "id": "c",
+              "en": "65",
+              "hi": "उत्तर 65"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "step",
+          "expect": "stepped",
+          "say": {
+            "en": "Press Step and watch the loop build the Total list one student at a time.",
+            "hi": "\"एक क़दम\" दबाओ और देखो लूप एक-एक विद्यार्थी का Total सूची में बनाता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "done",
+          "say": {
+            "en": "Press Run to finish the program.",
+            "hi": "प्रोग्राम पूरा करने के लिए \"चलाओ\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "This loop walks down the rows and adds the two marks of each student. In Pandas the new column needs only one line: df[\"Total\"] = df[\"Maths\"] + df[\"Science\"]. Assigning to a column name that does not exist creates a new column; assigning to an existing one replaces it. A new row is added with df.loc[label] = [values], and a row or column is removed with drop(). Always check df.shape afterwards.",
+            "hi": "यह लूप पंक्तियों में नीचे चलता है और हर विद्यार्थी के दो अंक जोड़ता है। Pandas में नया स्तंभ बस एक पंक्ति में बन जाता है: df[\"Total\"] = df[\"Maths\"] + df[\"Science\"]। जो स्तंभ नाम मौजूद नहीं है उसमें मान रखने से नया स्तंभ बनता है; मौजूद नाम में रखने से वह बदल जाता है। नई पंक्ति df.loc[लेबल] = [मान] से जुड़ती है, और पंक्ति या स्तंभ drop() से हटता है। बाद में df.shape ज़रूर देखो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does df[\"Total\"] = df[\"Maths\"] + df[\"Science\"] do if there is no Total column yet?",
+                "hi": "अगर Total स्तंभ अभी नहीं है तो df[\"Total\"] = df[\"Maths\"] + df[\"Science\"] क्या करता है?"
+              },
+              "options": [
+                {
+                  "en": "Creates a new column Total",
+                  "hi": "नया स्तंभ Total बनाता है"
+                },
+                {
+                  "en": "Gives an error",
+                  "hi": "गलती बताता है"
+                },
+                {
+                  "en": "Changes the Maths column",
+                  "hi": "Maths स्तंभ बदल देता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Pandas creates the column the moment you assign to a new name.",
+                "hi": "नए नाम में मान रखते ही Pandas वह स्तंभ बना देता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Assigning to a new column name is the normal way to add a column, not a mistake.",
+                  "hi": "नए स्तंभ नाम में मान रखना स्तंभ जोड़ने का सामान्य तरीका है, गलती नहीं।"
+                },
+                {
+                  "en": "Only the name on the left of = is written to. Maths is only read on the right.",
+                  "hi": "= के बाईं ओर का नाम ही लिखा जाता है। Maths दाईं ओर सिर्फ़ पढ़ा जाता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Try to write the program line for the Average of the two marks (total divided by 2). What would the Pandas line be?",
+            "hi": "दोनों अंकों का औसत (कुल को 2 से भाग) निकालने की प्रोग्राम पंक्ति लिखने की कोशिश करो। Pandas की पंक्ति क्या होगी?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch02-csv-flow",
+      "topic": "2.4",
+      "template": "sequence",
+      "title": {
+        "en": "From a CSV file to a DataFrame and back",
+        "hi": "CSV फ़ाइल से DataFrame और वापस"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "imp",
+            "text": {
+              "en": "Import the Pandas library",
+              "hi": "Pandas लाइब्रेरी आयात करो"
+            }
+          },
+          {
+            "id": "read",
+            "text": {
+              "en": "Read the CSV file into a DataFrame",
+              "hi": "CSV फ़ाइल को DataFrame में पढ़ो"
+            }
+          },
+          {
+            "id": "look",
+            "text": {
+              "en": "Look at the first rows with head()",
+              "hi": "head() से पहली पंक्तियाँ देखो"
+            }
+          },
+          {
+            "id": "work",
+            "text": {
+              "en": "Add a column or filter the rows",
+              "hi": "स्तंभ जोड़ो या पंक्तियाँ फ़िल्टर करो"
+            }
+          },
+          {
+            "id": "save",
+            "text": {
+              "en": "Save the result with to_csv()",
+              "hi": "to_csv() से परिणाम सहेजो"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:imp",
+          "expect": "placed:imp",
+          "say": {
+            "en": "Tap the card that must come first, then tap place 1.",
+            "hi": "जो कार्ड सबसे पहले आना चाहिए उसे छुओ, फिर स्थान 1 छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Why must the import come before read_csv?",
+            "hi": "import, read_csv से पहले क्यों आना चाहिए?"
+          },
+          "options": [
+            {
+              "id": "lib",
+              "en": "read_csv belongs to Pandas, which must be loaded first",
+              "hi": "read_csv Pandas का है, जिसे पहले लाना पड़ता है"
+            },
+            {
+              "id": "order",
+              "en": "Python likes alphabetical order",
+              "hi": "पायथन को वर्णमाला क्रम पसंद है"
+            }
+          ],
+          "answer": "lib"
+        },
+        {
+          "kind": "do",
+          "target": "item:read",
+          "expect": "placed:read",
+          "say": {
+            "en": "Place the card for reading the file.",
+            "hi": "फ़ाइल पढ़ने वाला कार्ड रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Arrange all five steps, then press Check.",
+            "hi": "पाँचों चरण लगाओ, फिर \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A CSV file keeps a table as plain text, one row per line, with values separated by commas. pd.read_csv(\"marks.csv\") turns it into a DataFrame, and the first line becomes the column names. After your work, df.to_csv(\"result.csv\", index=False) writes it back; index=False stops Pandas from adding an extra column of row numbers. If the file is in another folder, give the full path.",
+            "hi": "CSV फ़ाइल तालिका को सादे पाठ में रखती है, हर पंक्ति एक लाइन में और मान अल्पविराम से अलग। pd.read_csv(\"marks.csv\") उसे DataFrame बना देता है, और पहली लाइन स्तंभों के नाम बनती है। काम के बाद df.to_csv(\"result.csv\", index=False) उसे वापस लिख देता है; index=False Pandas को पंक्ति-संख्याओं का अतिरिक्त स्तंभ जोड़ने से रोकता है। फ़ाइल दूसरे फ़ोल्डर में हो तो पूरा पथ दो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why do we often write index=False in to_csv()?",
+                "hi": "to_csv() में हम अक्सर index=False क्यों लिखते हैं?"
+              },
+              "options": [
+                {
+                  "en": "So the row numbers are not saved as an extra column",
+                  "hi": "ताकि पंक्ति-संख्याएँ अतिरिक्त स्तंभ के रूप में न सहेजी जाएँ"
+                },
+                {
+                  "en": "To delete the DataFrame",
+                  "hi": "DataFrame मिटाने के लिए"
+                },
+                {
+                  "en": "To sort the file",
+                  "hi": "फ़ाइल छाँटने के लिए"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "By default Pandas writes the index too. index=False leaves it out, keeping the file like the original.",
+                "hi": "Pandas सामान्यतः index भी लिखता है। index=False उसे छोड़ देता है, जिससे फ़ाइल मूल जैसी रहती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "to_csv only writes a file; it does not delete the DataFrame in memory.",
+                  "hi": "to_csv सिर्फ़ फ़ाइल लिखता है; याद में रखे DataFrame को नहीं मिटाता।"
+                },
+                {
+                  "en": "Sorting is done by sort_values. Index settings have nothing to do with order.",
+                  "hi": "छँटाई sort_values करता है। index की सेटिंग का क्रम से कोई संबंध नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Shuffle the cards (Reset) and put them in order again without looking. Then explain each step in your own words.",
+            "hi": "कार्ड मिलाओ (\"फिर से\") और बिना देखे फिर क्रम में लगाओ। फिर हर चरण अपने शब्दों में समझाओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "2.1",
+      "use": "Opens the chapter: data all around a school",
+      "shows": "A Class 12 student at a school computer lab desk, seen from behind, laptop open to a spreadsheet-like screen of rows and columns of blurred coloured cells, a notebook of handwritten marks beside it",
+      "view": "Over-the-shoulder, 16:9, soft classroom light",
+      "right": "Screen shows only blurred coloured cells, no readable words; Indian school lab",
+      "avoid": "Readable text or numbers, brand logos, a visible face"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "2.2",
+      "use": "A Series as labels joined to values",
+      "shows": "A tall narrow strip of 5 cells with a column of small tag shapes on its left (the labels) and a column of coloured value blocks on its right, a thin line joining each pair",
+      "view": "Flat front view, white background",
+      "right": "Labels and values are visibly two separate columns joined row by row",
+      "avoid": "Words, numbers, logos"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "2.3",
+      "use": "A DataFrame as many Series side by side",
+      "shows": "Four tall coloured strips standing side by side like columns, with a shared left strip of tags as the row labels, forming one table",
+      "view": "Flat front view, white background",
+      "right": "Each column is a different colour; the row labels are shared by all",
+      "avoid": "Any text, numbers or logos"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "2.3",
+      "use": "Row and column in a real object",
+      "shows": "A paper school attendance register open flat, with a ruler laid along one row and a pencil laid along one column",
+      "view": "Top-down, soft left light, transparent background",
+      "right": "Ruler follows a row exactly; pencil follows a column exactly",
+      "avoid": "Readable names, brand marks"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "2.3",
+      "use": "Sort a DataFrame by one column",
+      "shows": "3 frames of a physical set of 6 name-cards with coloured number tags clipped on; frame 1 shuffled, frame 2 being rearranged by hand, frame 3 in neat order",
+      "view": "Top-down, same camera and light in all frames",
+      "right": "The same six cards in every frame; the number tags rise in order in frame 3",
+      "avoid": "Readable names or numbers, faces"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "2.4",
+      "use": "A CSV file as plain text on a screen",
+      "shows": "A laptop with a plain white text window showing lines of short blurred words separated by commas, beside a small stack of printed sheets",
+      "view": "Three-quarter view, soft top-left light, transparent background",
+      "right": "Commas between blurred items are visible as the only sharp marks",
+      "avoid": "Readable words, logos"
+    }
+  ]
+}

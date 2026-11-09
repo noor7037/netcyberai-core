@@ -1,0 +1,1552 @@
+{
+ "chapter_key": "u.c09.science.iesc1.ch05",
+ "class": 9,
+ "subject_id": "science",
+ "title": "Exploring Mixtures and their Separation",
+ "source": "https://ncert.nic.in/textbook/pdf/iesc105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "How we classify mixtures: homogeneous and heterogeneous",
+   "labs": [
+    "c09-science-iesc1-ch05-classify"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Solutions: solute and solvent",
+   "labs": [
+    "c09-science-iesc1-ch05-concentration"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2.1",
+   "title": "Concentration of a solution",
+   "labs": [
+    "c09-science-iesc1-ch05-concentration"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2.2",
+   "title": "Expressing concentration as a percentage",
+   "labs": [
+    "c09-science-iesc1-ch05-concentration"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2.3",
+   "title": "Solubility and saturated solutions",
+   "labs": [
+    "c09-science-iesc1-ch05-solubility",
+    "c09-science-iesc1-ch05-curve"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3.1",
+   "title": "Crystallisation",
+   "labs": [
+    "c09-science-iesc1-ch05-seasalt"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3.2",
+   "title": "Distillation",
+   "labs": [
+    "c09-science-iesc1-ch05-distil"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3.3",
+   "title": "Paper chromatography",
+   "labs": [
+    "c09-science-iesc1-ch05-chroma"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4.1",
+   "title": "Separating two immiscible liquids",
+   "labs": [
+    "c09-science-iesc1-ch05-funnel"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4.2",
+   "title": "Sublimation",
+   "labs": [
+    "c09-science-iesc1-ch05-sublime"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4.3",
+   "title": "Suspensions",
+   "labs": [
+    "c09-science-iesc1-ch05-suspension"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4.4",
+   "title": "Colloids",
+   "labs": [
+    "c09-science-iesc1-ch05-colloid"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Tyndall effect",
+   "labs": [],
+   "why_no_lab": "A real photograph of a torch beam through dilute milk beside salt water shows the effect better than any simulation; the colloid lab asks about it."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-science-iesc1-ch05-classify",
+   "topic": "5.1",
+   "template": "scenario",
+   "title": {
+    "en": "Same all through, or not? Classify mixtures",
+    "hi": "हर जगह एक जैसा या नहीं? मिश्रणों को पहचानो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "kitchen",
+    "role": {
+     "en": "A young scientist in the kitchen",
+     "hi": "रसोई में एक नन्हा वैज्ञानिक"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "You stir a spoon of sugar into a glass of water until you cannot see it. Every sip tastes equally sweet. What kind of mixture is it?",
+       "hi": "तुम एक गिलास पानी में एक चम्मच चीनी तब तक घोलते हो जब तक वह दिखना बंद न हो। हर घूँट उतना ही मीठा लगता है। यह किस प्रकार का मिश्रण है?"
+      },
+      "choices": [
+       {
+        "id": "homo",
+        "text": {
+         "en": "Homogeneous: the same all through",
+         "hi": "समांगी: हर जगह एक जैसा"
+        },
+        "next": "sand",
+        "feedback": {
+         "en": "Right. Sugar water is a solution, a homogeneous mixture.",
+         "hi": "सही। चीनी का पानी एक विलयन है, समांगी मिश्रण।"
+        },
+        "good": true
+       },
+       {
+        "id": "hetero",
+        "text": {
+         "en": "Heterogeneous: different in different parts",
+         "hi": "विषमांगी: अलग-अलग भागों में अलग"
+        },
+        "next": "sand",
+        "feedback": {
+         "en": "You cannot see separate parts and every sip is the same, so it is not heterogeneous.",
+         "hi": "अलग भाग नहीं दिखते और हर घूँट एक जैसा है, इसलिए यह विषमांगी नहीं है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "sand",
+      "text": {
+       "en": "Now you stir sand into water. After a minute the sand sinks to the bottom. What kind of mixture is this?",
+       "hi": "अब तुम पानी में रेत मिलाते हो। एक मिनट बाद रेत तली में बैठ जाती है। यह कौन-सा मिश्रण है?"
+      },
+      "choices": [
+       {
+        "id": "het2",
+        "text": {
+         "en": "Heterogeneous",
+         "hi": "विषमांगी"
+        },
+        "next": "air",
+        "feedback": {
+         "en": "Yes. You can see the sand and the water as separate parts.",
+         "hi": "हाँ। रेत और पानी अलग-अलग भाग दिखते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "hom2",
+        "text": {
+         "en": "Homogeneous",
+         "hi": "समांगी"
+        },
+        "next": "air",
+        "feedback": {
+         "en": "The bottom is sandy and the top is clear, so it is not the same all through.",
+         "hi": "नीचे रेत है और ऊपर साफ़ पानी, इसलिए यह हर जगह एक जैसा नहीं है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "air",
+      "text": {
+       "en": "Air is a mixture of nitrogen, oxygen and other gases. Which kind is it?",
+       "hi": "हवा नाइट्रोजन, ऑक्सीजन और दूसरी गैसों का मिश्रण है। यह किस प्रकार का है?"
+      },
+      "choices": [
+       {
+        "id": "airhomo",
+        "text": {
+         "en": "Homogeneous, a solution of gases",
+         "hi": "समांगी, गैसों का विलयन"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. The gases are evenly mixed, so air is a gaseous solution.",
+         "hi": "सही। गैसें बराबर मिली हैं, इसलिए हवा गैसीय विलयन है।"
+        },
+        "good": true
+       },
+       {
+        "id": "airhet",
+        "text": {
+         "en": "Heterogeneous, because it has many gases",
+         "hi": "विषमांगी, क्योंकि इसमें कई गैसें हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Having many parts does not make a mixture heterogeneous; how evenly they are mixed does.",
+         "hi": "कई घटक होने से मिश्रण विषमांगी नहीं होता; यह इस पर निर्भर है कि वे कितनी बराबरी से मिले हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is a solution always a liquid?",
+      "hi": "क्या विलयन हमेशा द्रव होता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, solutions can be solid, liquid or gas",
+       "hi": "नहीं, विलयन ठोस, द्रव या गैस हो सकता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always a liquid",
+       "hi": "हाँ, हमेशा द्रव"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:homo",
+     "expect": "chose:homo",
+     "say": {
+      "en": "Read about the sugar water and tap the kind of mixture it is.",
+      "hi": "चीनी के पानी के बारे में पढ़ो और मिश्रण के प्रकार पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A homogeneous mixture has the same composition all through, like sugar water, air or brass. A heterogeneous mixture has parts you can tell apart, like sand in water or a fruit salad. Solutions are homogeneous mixtures and can be solid (alloys), liquid or gas.",
+      "hi": "समांगी मिश्रण की संरचना हर जगह एक जैसी होती है, जैसे चीनी का पानी, हवा या पीतल। विषमांगी मिश्रण में अलग पहचाने जाने वाले भाग होते हैं, जैसे पानी में रेत या फलों का सलाद। विलयन समांगी मिश्रण हैं और ठोस (मिश्रधातु), द्रव या गैस हो सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Brass is made of copper and zinc mixed evenly. What is it?",
+        "hi": "पीतल ताँबे और जस्ते को बराबर मिलाकर बनता है। यह क्या है?"
+       },
+       "options": [
+        {
+         "en": "A solid solution (homogeneous)",
+         "hi": "एक ठोस विलयन (समांगी)"
+        },
+        {
+         "en": "A heterogeneous mixture",
+         "hi": "एक विषमांगी मिश्रण"
+        },
+        {
+         "en": "A pure element",
+         "hi": "एक शुद्ध तत्व"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An alloy like brass is a homogeneous mixture: a solid solution.",
+        "hi": "पीतल जैसी मिश्रधातु समांगी मिश्रण है: एक ठोस विलयन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Its two metals cannot be told apart anywhere in it.",
+         "hi": "इसकी दोनों धातुएँ इसमें कहीं अलग नहीं पहचानी जातीं।"
+        },
+        {
+         "en": "It contains two metals, so it is a mixture, not one element.",
+         "hi": "इसमें दो धातुएँ हैं, इसलिए यह मिश्रण है, एक तत्व नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again with the other answers. Then look around your kitchen: find two homogeneous and two heterogeneous mixtures.",
+      "hi": "दूसरे उत्तरों के साथ फिर से खेलो। फिर अपनी रसोई में दो समांगी और दो विषमांगी मिश्रण ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch05-concentration",
+   "topic": "5.2.1",
+   "template": "particles",
+   "title": {
+    "en": "Make a salt solution and find its concentration",
+    "hi": "नमक का विलयन बनाओ और उसकी सांद्रता निकालो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "dissolve",
+    "substance": "salt",
+    "temp": 25
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You add 5 g of salt to 50 g of water. What is the mass of the solution?",
+      "hi": "तुम 50 g पानी में 5 g नमक डालते हो। विलयन का द्रव्यमान क्या है?"
+     },
+     "options": [
+      {
+       "id": "55",
+       "en": "55 g",
+       "hi": "55 ग्राम"
+      },
+      {
+       "id": "50",
+       "en": "50 g",
+       "hi": "50 ग्राम"
+      },
+      {
+       "id": "45",
+       "en": "45 g",
+       "hi": "45 ग्राम"
+      }
+     ],
+     "answer": "55"
+    },
+    {
+     "kind": "do",
+     "target": "add",
+     "expect": "dissolved",
+     "say": {
+      "en": "Tap \"add a spoonful\" to add 5 g of salt. Stir and watch it dissolve.",
+      "hi": "5 g नमक डालने के लिए \"एक चम्मच डालो\" पर टैप करो। चलाओ और घुलते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The salt is the solute and the water is the solvent. Concentration tells how much solute is in the solution. As a mass percentage: mass of solute ÷ mass of solution × 100 = 5 ÷ 55 × 100, about 9.1 per cent. Adding more salt to the same water makes the solution more concentrated.",
+      "hi": "नमक विलेय है और पानी विलायक। सांद्रता बताती है कि विलयन में कितना विलेय है। द्रव्यमान प्रतिशत के रूप में: विलेय का द्रव्यमान ÷ विलयन का द्रव्यमान × 100 = 5 ÷ 55 × 100, लगभग 9.1 प्रतिशत। उसी पानी में और नमक डालने से विलयन अधिक सांद्र होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "20 g of sugar is dissolved in 80 g of water. What is the mass percentage of sugar?",
+        "hi": "80 g पानी में 20 g चीनी घोली जाती है। चीनी का द्रव्यमान प्रतिशत क्या है?"
+       },
+       "options": [
+        {
+         "en": "20 per cent",
+         "hi": "20 प्रतिशत"
+        },
+        {
+         "en": "25 per cent",
+         "hi": "25 प्रतिशत"
+        },
+        {
+         "en": "80 per cent",
+         "hi": "80 प्रतिशत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "20 ÷ (20 + 80) × 100 = 20 per cent.",
+        "hi": "20 ÷ (20 + 80) × 100 = 20 प्रतिशत।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20 ÷ 80 uses the water only; divide by the whole solution, 100 g.",
+         "hi": "20 ÷ 80 में केवल पानी लिया गया; पूरे विलयन, 100 g, से भाग दो।"
+        },
+        {
+         "en": "That is the share of water, not of sugar.",
+         "hi": "यह पानी का हिस्सा है, चीनी का नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In salt water, which is the solvent?",
+        "hi": "नमक के पानी में विलायक कौन है?"
+       },
+       "options": [
+        {
+         "en": "Salt",
+         "hi": "नमक"
+        },
+        {
+         "en": "Water",
+         "hi": "पानी"
+        },
+        {
+         "en": "Both",
+         "hi": "दोनों"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The solvent is usually the part present in larger amount, which dissolves the solute.",
+        "hi": "विलायक आमतौर पर अधिक मात्रा वाला घटक है, जो विलेय को घोलता है।"
+       },
+       "wrong": [
+        {
+         "en": "Salt is dissolved, so it is the solute.",
+         "hi": "नमक घुला है, इसलिए वह विलेय है।"
+        },
+        "",
+        {
+         "en": "The solvent is the one that does the dissolving, here the water.",
+         "hi": "विलायक वह है जो घोलता है, यहाँ पानी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: keep adding spoonfuls. When does salt stop dissolving? Read the \"most that can dissolve now\" box.",
+      "hi": "आज़माओ: चम्मच डालते जाओ। नमक कब घुलना बंद करता है? \"अभी अधिकतम कितना घुल सकता है\" वाला खाना पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch05-solubility",
+   "topic": "5.2.3",
+   "template": "particles",
+   "title": {
+    "en": "Does hot water dissolve more sugar?",
+    "hi": "क्या गर्म पानी अधिक चीनी घोलता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "dissolve",
+    "substance": "sugar",
+    "temp": 20
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add",
+     "expect": "dissolved",
+     "say": {
+      "en": "Add a spoonful of sugar and stir. Watch it dissolve.",
+      "hi": "एक चम्मच चीनी डालो और चलाओ। उसे घुलते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Soon the water is saturated: no more sugar dissolves. What will heating the water do?",
+      "hi": "जल्द ही पानी संतृप्त हो जाता है: और चीनी नहीं घुलती। पानी गर्म करने से क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More sugar will dissolve",
+       "hi": "और चीनी घुलेगी"
+      },
+      {
+       "id": "less",
+       "en": "Less sugar will stay dissolved",
+       "hi": "कम चीनी घुली रहेगी"
+      },
+      {
+       "id": "same",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "changed:temp",
+     "say": {
+      "en": "Tap \"heat\" to warm the water by 20 °C.",
+      "hi": "पानी को 20 °C गर्म करने के लिए \"गर्म करो\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A saturated solution holds as much solute as it can at that temperature. Solubility is the mass of solute that saturates 100 g of solvent. For sugar, solubility rises a lot with temperature: hot water dissolves more than twice as much as cold. For common salt it hardly changes.",
+      "hi": "संतृप्त विलयन उस तापमान पर जितना हो सके उतना विलेय रखता है। विलेयता विलेय का वह द्रव्यमान है जो 100 g विलायक को संतृप्त करता है। चीनी की विलेयता तापमान के साथ बहुत बढ़ती है: गर्म पानी ठंडे से दोगुने से भी अधिक घोलता है। साधारण नमक के लिए यह मुश्किल से बदलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A hot, saturated sugar solution is cooled. What happens?",
+        "hi": "गर्म, संतृप्त चीनी का विलयन ठंडा किया जाता है। क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "Some sugar comes out as crystals",
+         "hi": "कुछ चीनी क्रिस्टल बनकर बाहर आती है"
+        },
+        {
+         "en": "More sugar dissolves",
+         "hi": "और चीनी घुलती है"
+        },
+        {
+         "en": "The sugar turns into salt",
+         "hi": "चीनी नमक बन जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The cooler water can hold less, so the extra sugar crystallises out.",
+        "hi": "ठंडा पानी कम रख पाता है, इसलिए अतिरिक्त चीनी क्रिस्टल बनकर निकलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cold water holds less sugar, not more.",
+         "hi": "ठंडा पानी कम चीनी रखता है, अधिक नहीं।"
+        },
+        {
+         "en": "Cooling does not change one substance into another.",
+         "hi": "ठंडा करने से एक पदार्थ दूसरे में नहीं बदलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: heat to 100 °C and keep adding sugar. Then try salt in a new lab run: does heating help as much?",
+      "hi": "आज़माओ: 100 °C तक गर्म करो और चीनी डालते रहो। फिर नमक के साथ आज़माओ: क्या गर्म करने से उतना ही फ़ायदा होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch05-curve",
+   "topic": "5.2.3",
+   "template": "data",
+   "title": {
+    "en": "Read a solubility curve",
+    "hi": "विलेयता वक्र पढ़ो"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "chart": "line",
+    "show": 3,
+    "title": {
+     "en": "Solubility of potassium nitrate in water (rounded values)",
+     "hi": "पानी में पोटैशियम नाइट्रेट की विलेयता (पूर्णांकित मान)"
+    },
+    "xlabel": {
+     "en": "Temperature (°C)",
+     "hi": "तापमान (°C)"
+    },
+    "ylabel": {
+     "en": "Grams that dissolve in 100 g of water",
+     "hi": "100 g पानी में घुलने वाले ग्राम"
+    },
+    "data": {
+     "rows": [
+      [
+       0,
+       13
+      ],
+      [
+       20,
+       32
+      ],
+      [
+       40,
+       64
+      ],
+      [
+       60,
+       110
+      ],
+      [
+       80,
+       169
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The curve so far rises from 13 g at 0 °C to 64 g at 40 °C. What happens at 60 °C?",
+      "hi": "अब तक वक्र 0 °C पर 13 g से 40 °C पर 64 g तक उठता है। 60 °C पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "Even more dissolves",
+       "hi": "और भी अधिक घुलेगा"
+      },
+      {
+       "id": "less",
+       "en": "Less dissolves",
+       "hi": "कम घुलेगा"
+      },
+      {
+       "id": "flat",
+       "en": "It stays at 64 g",
+       "hi": "64 g पर ही रहेगा"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"add a row\" to plot the value at 60 °C.",
+      "hi": "60 °C का मान लगाने के लिए \"पंक्ति जोड़ो\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the value at 80 °C.",
+      "hi": "80 °C का मान जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A solubility curve shows how much solute saturates 100 g of water at each temperature. For potassium nitrate it climbs steeply. If a saturated solution at 80 °C (169 g) is cooled to 20 °C (32 g), about 137 g comes out as crystals. This is how crystallisation purifies substances.",
+      "hi": "विलेयता वक्र दिखाता है कि हर तापमान पर कितना विलेय 100 g पानी को संतृप्त करता है। पोटैशियम नाइट्रेट के लिए यह तेज़ी से चढ़ता है। अगर 80 °C (169 g) के संतृप्त विलयन को 20 °C (32 g) तक ठंडा करें, तो लगभग 137 g क्रिस्टल बनकर निकलता है। इसी तरह क्रिस्टलीकरण से पदार्थ शुद्ध किए जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "About how much potassium nitrate dissolves in 100 g of water at 40 °C?",
+        "hi": "40 °C पर 100 g पानी में लगभग कितना पोटैशियम नाइट्रेट घुलता है?"
+       },
+       "options": [
+        "13 g",
+        "64 g",
+        "110 g"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Read up from 40 °C to the curve, then across: about 64 g.",
+        "hi": "40 °C से ऊपर वक्र तक, फिर बगल में पढ़ो: लगभग 64 g।"
+       },
+       "wrong": [
+        {
+         "en": "That is the value at 0 °C.",
+         "hi": "यह 0 °C का मान है।"
+        },
+        "",
+        {
+         "en": "That is the value at 60 °C.",
+         "hi": "यह 60 °C का मान है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: switch to a bar chart and compare. Which picture shows the trend more clearly?",
+      "hi": "आज़माओ: दंड आलेख पर बदलो और तुलना करो। कौन-सा चित्र प्रवृत्ति को अधिक साफ़ दिखाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch05-seasalt",
+   "topic": "5.3.1",
+   "template": "particles",
+   "title": {
+    "en": "Salt from sea water",
+    "hi": "समुद्र के पानी से नमक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "salt-water",
+    "method": "evaporate"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sea water is salt dissolved in water. What will be left in the dish when the water evaporates?",
+      "hi": "समुद्र का पानी, पानी में घुला नमक है। पानी के वाष्पित होने पर प्याली में क्या बचेगा?"
+     },
+     "options": [
+      {
+       "id": "salt",
+       "en": "Salt crystals",
+       "hi": "नमक के क्रिस्टल"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing at all",
+       "hi": "कुछ नहीं"
+      },
+      {
+       "id": "water",
+       "en": "Pure water",
+       "hi": "शुद्ध पानी"
+      }
+     ],
+     "answer": "salt"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Press run to heat the salt water gently and let the water evaporate.",
+      "hi": "नमक के पानी को धीरे गर्म करके पानी को वाष्पित करने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water turns to vapour and leaves; the dissolved salt cannot, so crystals are left. In salt pans on the coasts of Gujarat and Tamil Nadu, the Sun and wind evaporate sea water in the same way. Crystallisation goes further: a hot saturated solution is cooled slowly so that pure crystals form and impurities stay in the liquid.",
+      "hi": "पानी वाष्प बनकर चला जाता है; घुला नमक नहीं जा सकता, इसलिए क्रिस्टल बचते हैं। गुजरात और तमिलनाडु के तटों पर नमक की क्यारियों में सूर्य और हवा इसी तरह समुद्र का पानी वाष्पित करते हैं। क्रिस्टलीकरण इससे आगे जाता है: गर्म संतृप्त विलयन को धीरे ठंडा किया जाता है ताकि शुद्ध क्रिस्टल बनें और अशुद्धियाँ द्रव में रह जाएँ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is crystallisation better than plain evaporation for getting pure copper sulphate?",
+        "hi": "शुद्ध कॉपर सल्फेट पाने के लिए सादे वाष्पीकरण से क्रिस्टलीकरण बेहतर क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Impurities stay dissolved and are left behind in the liquid",
+         "hi": "अशुद्धियाँ घुली रहकर द्रव में पीछे रह जाती हैं"
+        },
+        {
+         "en": "It is faster",
+         "hi": "यह जल्दी होता है"
+        },
+        {
+         "en": "It uses no water",
+         "hi": "इसमें पानी नहीं लगता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Evaporating to dryness leaves every impurity in the solid; crystals grow pure.",
+        "hi": "सूखने तक वाष्पित करने पर हर अशुद्धि ठोस में रह जाती है; क्रिस्टल शुद्ध बनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Crystallisation is usually slower; its advantage is purity.",
+         "hi": "क्रिस्टलीकरण आमतौर पर धीमा है; इसका लाभ शुद्धता है।"
+        },
+        {
+         "en": "Crystallisation starts from a solution in water.",
+         "hi": "क्रिस्टलीकरण पानी के विलयन से ही शुरू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: choose filtration for the same salt water. Does it give you salt? Read why not.",
+      "hi": "आज़माओ: उसी नमक के पानी के लिए छानना चुनो। क्या इससे नमक मिलता है? पढ़ो क्यों नहीं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch05-distil",
+   "topic": "5.3.2",
+   "template": "particles",
+   "title": {
+    "en": "Distillation: get the water back",
+    "hi": "आसवन: पानी वापस पाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "salt-water",
+    "method": "distil"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In distillation the salt water is boiled and the steam is cooled in a condenser. What collects in the beaker?",
+      "hi": "आसवन में नमक का पानी उबाला जाता है और भाप को संघनित्र में ठंडा किया जाता है। बीकर में क्या इकट्ठा होता है?"
+     },
+     "options": [
+      {
+       "id": "pure",
+       "en": "Pure water",
+       "hi": "शुद्ध पानी"
+      },
+      {
+       "id": "salty",
+       "en": "Salty water",
+       "hi": "नमकीन पानी"
+      },
+      {
+       "id": "salt",
+       "en": "Salt",
+       "hi": "नमक"
+      }
+     ],
+     "answer": "pure"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Press run to start the distillation.",
+      "hi": "आसवन शुरू करने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Distillation separates a liquid from a solid dissolved in it by boiling and condensing. Only water turns to steam at 100 °C; the salt stays in the flask. The steam cools in the condenser and drips into the beaker as pure, distilled water. Unlike evaporation, both parts are kept.",
+      "hi": "आसवन उबालने और संघनित करने से द्रव को उसमें घुले ठोस से अलग करता है। 100 °C पर केवल पानी भाप बनता है; नमक फ्लास्क में रह जाता है। भाप संघनित्र में ठंडी होकर शुद्ध, आसुत जल के रूप में बीकर में टपकती है। वाष्पीकरण के विपरीत, दोनों भाग बच जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which property of water and salt makes distillation work?",
+        "hi": "पानी और नमक का कौन-सा गुण आसवन को संभव बनाता है?"
+       },
+       "options": [
+        {
+         "en": "Their very different boiling points",
+         "hi": "उनके बहुत अलग क्वथनांक"
+        },
+        {
+         "en": "Their colours",
+         "hi": "उनके रंग"
+        },
+        {
+         "en": "Their smell",
+         "hi": "उनकी गंध"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water boils at 100 °C while salt needs over 1400 °C, so only water leaves as vapour.",
+        "hi": "पानी 100 °C पर उबलता है जबकि नमक को 1400 °C से अधिक चाहिए, इसलिए केवल पानी वाष्प बनकर निकलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both are colourless; colour plays no part.",
+         "hi": "दोनों रंगहीन हैं; रंग की कोई भूमिका नहीं।"
+        },
+        {
+         "en": "Smell does not separate them; heat does.",
+         "hi": "गंध उन्हें अलग नहीं करती; ऊष्मा करती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: choose decantation for the same salt water. Why does pouring off the top not work?",
+      "hi": "आज़माओ: उसी नमक के पानी के लिए निथारना चुनो। ऊपर से उड़ेलना क्यों काम नहीं करता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch05-chroma",
+   "topic": "5.3.3",
+   "template": "particles",
+   "title": {
+    "en": "Paper chromatography: the colours in black ink",
+    "hi": "काग़ज़ वर्णलेखन: काली स्याही के रंग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "black-ink",
+    "method": "chromatography"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A black sketch-pen dot sits above water on a strip of paper. As water climbs the paper, what will you see?",
+      "hi": "काग़ज़ की पट्टी पर पानी के ऊपर काले स्केच पेन का बिंदु है। पानी के काग़ज़ पर चढ़ने पर क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "colours",
+       "en": "Several colours moving to different heights",
+       "hi": "कई रंग अलग-अलग ऊँचाई तक जाते हुए"
+      },
+      {
+       "id": "black",
+       "en": "One black spot moving up",
+       "hi": "एक काला धब्बा ऊपर जाता हुआ"
+      },
+      {
+       "id": "none",
+       "en": "Nothing moves",
+       "hi": "कुछ नहीं हिलता"
+      }
+     ],
+     "answer": "colours"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Press run and watch the water climb the paper.",
+      "hi": "\"चलाओ\" दबाओ और पानी को काग़ज़ पर चढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The ink is a mixture of dyes. Water climbs the paper and carries each dye along. A dye that dissolves well and sticks little to the paper travels far; one that sticks more stays low. So the dyes separate into bands. Chromatography is used to check food colours and to find substances in tests.",
+      "hi": "स्याही कई डाई का मिश्रण है। पानी काग़ज़ पर चढ़ता है और हर डाई को साथ ले जाता है। जो डाई अच्छी तरह घुलती है और काग़ज़ से कम चिपकती है, वह दूर जाती है; जो अधिक चिपकती है, वह नीचे रहती है। इसलिए डाई पट्टियों में अलग हो जाती हैं। वर्णलेखन खाने के रंगों की जाँच और परीक्षणों में पदार्थ पहचानने में काम आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did the dyes stop at different heights?",
+        "hi": "डाई अलग-अलग ऊँचाई पर क्यों रुकीं?"
+       },
+       "options": [
+        {
+         "en": "Each dye dissolves and sticks to paper differently",
+         "hi": "हर डाई अलग तरह से घुलती और काग़ज़ से चिपकती है"
+        },
+        {
+         "en": "The paper had coloured lines on it",
+         "hi": "काग़ज़ पर रंगीन रेखाएँ थीं"
+        },
+        {
+         "en": "Heavy dyes float to the top",
+         "hi": "भारी डाई ऊपर तैर जाती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Different solubility and attraction to the paper make each dye travel a different distance.",
+        "hi": "अलग विलेयता और काग़ज़ से अलग आकर्षण के कारण हर डाई अलग दूरी तय करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The paper was plain; all the colours came from the ink.",
+         "hi": "काग़ज़ सादा था; सारे रंग स्याही से आए।"
+        },
+        {
+         "en": "Weight is not what separates them; it is solubility and how strongly they stick.",
+         "hi": "उन्हें भार अलग नहीं करता; विलेयता और चिपकने की ताक़त करती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try filtering the ink instead. Why do all the dyes pass through together?",
+      "hi": "आज़माओ: स्याही को छानकर देखो। सारी डाई एक साथ क्यों निकल जाती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch05-funnel",
+   "topic": "5.4.1",
+   "template": "particles",
+   "title": {
+    "en": "Separate oil and water",
+    "hi": "तेल और पानी अलग करो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "oil-water",
+    "method": "decant"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Mustard oil and water are poured into a separating funnel. What happens after they stand?",
+      "hi": "सरसों का तेल और पानी पृथक्कारी कीप में डाले जाते हैं। कुछ देर रखने पर क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "layers",
+       "en": "Two layers form: oil on top, water below",
+       "hi": "दो परतें बनती हैं: ऊपर तेल, नीचे पानी"
+      },
+      {
+       "id": "mix",
+       "en": "They mix into one liquid",
+       "hi": "वे मिलकर एक द्रव बन जाते हैं"
+      },
+      {
+       "id": "oilbottom",
+       "en": "Oil sinks to the bottom",
+       "hi": "तेल नीचे बैठ जाता है"
+      }
+     ],
+     "answer": "layers"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Press run to let the layers settle and separate them.",
+      "hi": "परतें बैठने देने और उन्हें अलग करने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Oil and water are immiscible: they do not mix. Oil is lighter, so it floats as a separate layer. In a separating funnel you open the tap and let the lower water layer run out, then close it when the oil reaches the tap. The same idea separates crude oil from water and iron from slag in a furnace.",
+      "hi": "तेल और पानी अमिश्रणीय हैं: वे नहीं मिलते। तेल हल्का है, इसलिए अलग परत बनकर तैरता है। पृथक्कारी कीप में टोंटी खोलकर नीचे की पानी की परत निकाल देते हैं, और तेल टोंटी तक पहुँचने पर उसे बंद कर देते हैं। यही विचार कच्चे तेल को पानी से और भट्टी में लोहे को धातुमल से अलग करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which liquids can be separated with a separating funnel?",
+        "hi": "कौन-से द्रव पृथक्कारी कीप से अलग किए जा सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "Kerosene and water",
+         "hi": "मिट्टी का तेल और पानी"
+        },
+        {
+         "en": "Sugar dissolved in water",
+         "hi": "पानी में घुली चीनी"
+        },
+        {
+         "en": "Milk and water",
+         "hi": "दूध और पानी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only liquids that do not mix, and so form layers, can be drained apart.",
+        "hi": "केवल न मिलने वाले द्रव, जो परतें बनाते हैं, अलग निकाले जा सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sugar water is one homogeneous layer; there is nothing to drain off.",
+         "hi": "चीनी का पानी एक समांगी परत है; निकालने को अलग कुछ नहीं है।"
+        },
+        {
+         "en": "Milk mixes with water, so no separate layers form.",
+         "hi": "दूध पानी में मिल जाता है, इसलिए अलग परतें नहीं बनतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try the centrifuge on the same mixture. Does spinning make the layers faster or sharper?",
+      "hi": "आज़माओ: उसी मिश्रण पर अपकेंद्रित्र आज़माओ। क्या घुमाने से परतें जल्दी या साफ़ बनती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch05-sublime",
+   "topic": "5.4.2",
+   "template": "particles",
+   "title": {
+    "en": "Sublimation: camphor from salt",
+    "hi": "ऊर्ध्वपातन: नमक से कपूर अलग करो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "camphor-salt",
+    "method": "sublimation"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A mixture of camphor and salt is heated in a china dish under an upside-down funnel. What do you expect on the cool funnel?",
+      "hi": "कपूर और नमक के मिश्रण को उलटी कीप के नीचे चीनी मिट्टी की प्याली में गर्म किया जाता है। ठंडी कीप पर क्या मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "camphor",
+       "en": "Solid camphor",
+       "hi": "ठोस कपूर"
+      },
+      {
+       "id": "salt",
+       "en": "Salt",
+       "hi": "नमक"
+      },
+      {
+       "id": "water",
+       "en": "Drops of water",
+       "hi": "पानी की बूँदें"
+      }
+     ],
+     "answer": "camphor"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Press run to heat the dish. An adult does this with a small flame.",
+      "hi": "प्याली गर्म करने के लिए \"चलाओ\" दबाओ। यह काम कोई बड़ा छोटी लौ पर करता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Camphor sublimes: on heating it turns straight from solid to vapour without melting, and on the cool funnel the vapour turns straight back into solid. Salt does not sublime, so it stays in the dish. Ammonium chloride, naphthalene and iodine also sublime.",
+      "hi": "कपूर ऊर्ध्वपातित होता है: गर्म करने पर वह पिघले बिना सीधे ठोस से वाष्प बनता है, और ठंडी कीप पर वाष्प सीधे फिर ठोस बन जाती है। नमक ऊर्ध्वपातित नहीं होता, इसलिए प्याली में रह जाता है। अमोनियम क्लोराइड, नेफ़थलीन और आयोडीन भी ऊर्ध्वपातित होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Naphthalene balls in a cupboard get smaller over weeks without leaving a liquid. Why?",
+        "hi": "अलमारी में नेफ़थलीन की गोलियाँ हफ़्तों में बिना कोई द्रव छोड़े छोटी हो जाती हैं। क्यों?"
+       },
+       "options": [
+        {
+         "en": "They sublime into vapour",
+         "hi": "वे ऊर्ध्वपातित होकर वाष्प बन जाती हैं"
+        },
+        {
+         "en": "They melt and soak into the wood",
+         "hi": "वे पिघलकर लकड़ी में सोख जाती हैं"
+        },
+        {
+         "en": "Insects eat them",
+         "hi": "कीड़े उन्हें खा जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Naphthalene changes from solid to vapour at room temperature: sublimation.",
+        "hi": "नेफ़थलीन कमरे के तापमान पर ठोस से वाष्प बनती है: ऊर्ध्वपातन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No liquid is ever seen; they go straight to vapour.",
+         "hi": "कोई द्रव कभी नहीं दिखता; वे सीधे वाष्प बनती हैं।"
+        },
+        {
+         "en": "Naphthalene keeps insects away; they do not eat it.",
+         "hi": "नेफ़थलीन कीड़ों को दूर रखती है; वे इसे नहीं खाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: the lab also has ammonium chloride and salt. Separate them the same way.",
+      "hi": "आज़माओ: इस लैब में अमोनियम क्लोराइड और नमक भी है। उन्हें भी इसी तरह अलग करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch05-suspension",
+   "topic": "5.4.3",
+   "template": "particles",
+   "title": {
+    "en": "A suspension: chalk in water",
+    "hi": "निलंबन: पानी में चॉक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "chalk-water",
+    "method": "filter"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chalk powder is stirred into water and the water looks cloudy. Can filter paper catch the chalk?",
+      "hi": "पानी में चॉक का पाउडर मिलाया जाता है और पानी धुंधला दिखता है। क्या फ़िल्टर पेपर चॉक को रोक सकता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, the particles are big enough to be caught",
+       "hi": "हाँ, कण इतने बड़े हैं कि रुक जाएँ"
+      },
+      {
+       "id": "no",
+       "en": "No, chalk dissolves in water",
+       "hi": "नहीं, चॉक पानी में घुल जाता है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Press run to pour the cloudy water through the filter paper.",
+      "hi": "धुंधले पानी को फ़िल्टर पेपर से डालने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Chalk in water is a suspension: a heterogeneous mixture whose particles are big enough to see, settle down on standing and be caught by filter paper. Light cannot pass straight through it, so it looks cloudy. Muddy river water and some medicines labelled \"shake well before use\" are suspensions.",
+      "hi": "पानी में चॉक एक निलंबन है: विषमांगी मिश्रण जिसके कण दिखने लायक बड़े होते हैं, रखने पर नीचे बैठ जाते हैं और फ़िल्टर पेपर पर रुक जाते हैं। प्रकाश इससे सीधा पार नहीं हो पाता, इसलिए यह धुंधला दिखता है। नदी का मटमैला पानी और \"प्रयोग से पहले हिलाएँ\" लिखी कुछ दवाएँ निलंबन हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a bottle say \"shake well before use\"?",
+        "hi": "बोतल पर \"प्रयोग से पहले अच्छी तरह हिलाएँ\" क्यों लिखा होता है?"
+       },
+       "options": [
+        {
+         "en": "It is a suspension and its particles settle",
+         "hi": "यह निलंबन है और इसके कण बैठ जाते हैं"
+        },
+        {
+         "en": "Shaking makes it a solution forever",
+         "hi": "हिलाने से यह हमेशा के लिए विलयन बन जाता है"
+        },
+        {
+         "en": "To make it warm",
+         "hi": "इसे गर्म करने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Suspended particles settle on standing, so the dose would be uneven without shaking.",
+        "hi": "निलंबित कण रखने पर बैठ जाते हैं, इसलिए बिना हिलाए ख़ुराक बराबर नहीं होगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The particles settle again later; shaking only spreads them for a while.",
+         "hi": "कण बाद में फिर बैठ जाते हैं; हिलाना उन्हें बस कुछ देर के लिए फैलाता है।"
+        },
+        {
+         "en": "Shaking does not heat it; it mixes the settled particles back in.",
+         "hi": "हिलाने से यह गर्म नहीं होता; बैठे कण फिर मिल जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try the centrifuge on the chalk water. Which is quicker, filtering or spinning?",
+      "hi": "आज़माओ: चॉक के पानी पर अपकेंद्रित्र आज़माओ। कौन जल्दी है, छानना या घुमाना?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch05-colloid",
+   "topic": "5.4.4",
+   "template": "particles",
+   "title": {
+    "en": "Milk is a colloid: spin out the cream",
+    "hi": "दूध एक कोलॉइड है: मलाई घुमाकर निकालो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "separate",
+    "mixture": "cream-milk",
+    "method": "centrifuge"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Fat drops in milk are too small to settle or be filtered. What can separate the cream quickly?",
+      "hi": "दूध में वसा की बूँदें इतनी छोटी हैं कि न बैठती हैं, न छनती हैं। मलाई को जल्दी कौन अलग कर सकता है?"
+     },
+     "options": [
+      {
+       "id": "spin",
+       "en": "Spinning it very fast in a centrifuge",
+       "hi": "अपकेंद्रित्र में बहुत तेज़ घुमाना"
+      },
+      {
+       "id": "filter",
+       "en": "Filter paper",
+       "hi": "फ़िल्टर पेपर"
+      },
+      {
+       "id": "wait",
+       "en": "Waiting for one minute",
+       "hi": "एक मिनट इंतज़ार करना"
+      }
+     ],
+     "answer": "spin"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "separated",
+     "say": {
+      "en": "Press run to spin the milk in the centrifuge.",
+      "hi": "दूध को अपकेंद्रित्र में घुमाने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Milk is a colloid: tiny fat drops spread through water. They are larger than the particles of a solution but too small to see, to settle or to be filtered. Fast spinning in a centrifuge pushes the denser skimmed milk outward and the lighter cream to the centre. Dairies separate cream this way.",
+      "hi": "दूध एक कोलॉइड है: पानी में फैली वसा की बहुत छोटी बूँदें। ये विलयन के कणों से बड़ी हैं पर इतनी छोटी हैं कि न दिखती हैं, न बैठती हैं, न छनती हैं। अपकेंद्रित्र में तेज़ घुमाने से घना मलाई रहित दूध बाहर की ओर और हल्की मलाई बीच में आ जाती है। डेयरी इसी तरह मलाई अलग करती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A torch beam passes through a glass of very dilute milk and you can see the beam's path. Through salt water you cannot. Why?",
+        "hi": "टॉर्च की किरण बहुत पतले दूध के गिलास से गुज़रती है और उसका रास्ता दिखता है। नमक के पानी में नहीं दिखता। क्यों?"
+       },
+       "options": [
+        {
+         "en": "The colloid particles scatter light; dissolved salt particles are too small",
+         "hi": "कोलॉइड के कण प्रकाश बिखेरते हैं; घुले नमक के कण बहुत छोटे हैं"
+        },
+        {
+         "en": "Milk gives out its own light",
+         "hi": "दूध अपना प्रकाश देता है"
+        },
+        {
+         "en": "Salt water absorbs all the light",
+         "hi": "नमक का पानी सारा प्रकाश सोख लेता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This scattering by colloid particles is the Tyndall effect, also seen in sunbeams through a dusty room.",
+        "hi": "कोलॉइड कणों द्वारा यह बिखराव टिंडल प्रभाव है, जो धूल भरे कमरे में धूप की किरणों में भी दिखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Milk does not glow; it scatters the torch light.",
+         "hi": "दूध चमकता नहीं; वह टॉर्च के प्रकाश को बिखेरता है।"
+        },
+        {
+         "en": "Salt water is clear; light passes straight through it.",
+         "hi": "नमक का पानी साफ़ है; प्रकाश सीधा पार हो जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try filtering the milk instead. What passes through?",
+      "hi": "आज़माओ: दूध को छानकर देखो। क्या पार निकलता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Hook of the chapter",
+   "shows": "A kitchen counter with a glass of nimbu pani, a bowl of fruit salad, a glass of muddy water and a glass of milk in a row",
+   "view": "Front view at counter height, soft daylight",
+   "right": "Nimbu pani clear, muddy water cloudy with sediment at the bottom",
+   "avoid": "Brand labels"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "5.3.1",
+   "use": "Salt pans",
+   "shows": "Rectangular salt pans on the coast of Gujarat with heaps of white salt and shallow sea water evaporating in the sun",
+   "view": "High wide view, bright afternoon",
+   "right": "Salt bright white; pans shallow and flat",
+   "avoid": "Workers' faces, company names"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "5.3.1",
+   "use": "Growing copper sulphate crystals (Activity 5.3)",
+   "shows": "A hot saturated blue copper sulphate solution in a china dish; next day blue crystals in the dish (copper sulphate: reuse LIB-CHEM-copper-sulphate)",
+   "view": "From slightly above, same framing, two frames",
+   "right": "Crystals deep blue with flat faces",
+   "avoid": "Bare hands near hot liquid"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "5.3.2",
+   "use": "Distillation apparatus base",
+   "shows": "A flask on a tripod and gauze, a thermometer in the cork, a water-cooled condenser sloping down to a beaker",
+   "view": "Side view, clean realistic render, white background (beaker: reuse LIB-LAB-beaker-250ml)",
+   "right": "Water enters the condenser at the bottom and leaves at the top",
+   "avoid": "Labels, flames touching glass directly"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "5.3.3",
+   "use": "Chromatography of sketch-pen ink (Activity 5.5)",
+   "shows": "A strip of filter paper with a black ink dot just above water in a glass: start, middle, end with blue, yellow and pink bands",
+   "view": "Front view, same framing in three frames, white background",
+   "right": "Dot above the water line; bands spread upward",
+   "avoid": "Brand names on pens"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "5.4.1",
+   "use": "A separating funnel with two layers",
+   "shows": "A glass separating funnel on a stand holding a yellow mustard-oil layer above a clear water layer, tap closed",
+   "view": "Front view, transparent background",
+   "right": "Oil on top with a sharp boundary",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "5.4.2",
+   "use": "Sublimation of camphor (Activity 5.7)",
+   "shows": "A china dish of camphor and sand under an inverted glass funnel with cotton in its stem, heated gently; then white camphor deposit inside the funnel (china dish: reuse LIB-LAB-china-dish)",
+   "view": "Side view, same framing, two frames",
+   "right": "White solid on the cool funnel walls; sand left in the dish",
+   "avoid": "Large flames"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "5.5",
+   "use": "Tyndall effect",
+   "shows": "Sunbeams entering a dusty room through a gap in a window, the light paths visible as bright bands",
+   "view": "Inside the room looking towards the window",
+   "right": "Beams straight and sharp-edged",
+   "avoid": "People"
+  }
+ ]
+}

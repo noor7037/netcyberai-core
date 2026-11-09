@@ -1,0 +1,869 @@
+{
+ "chapter_key": "u.c10.science.jesc1.ch07",
+ "class": 10,
+ "subject_id": "science",
+ "title": "How do Organisms Reproduce?",
+ "source": "https://ncert.nic.in/textbook/pdf/jesc107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Do organisms create exact copies of themselves? The importance of variation",
+   "labs": [],
+   "why_no_lab": "Why offspring are similar but not identical is an idea, best shown by the kitten photo and the reader rather than an experiment."
+  },
+  {
+   "n": "7.2",
+   "title": "Asexual modes: fission, fragmentation, regeneration, budding, vegetative propagation, spore formation",
+   "labs": [
+    "c10-science-jesc1-ch07-yeast-budding",
+    "c10-science-jesc1-ch07-bread-mould"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Sexual reproduction: why it matters; in flowering plants; in human beings; reproductive health",
+   "labs": [
+    "c10-science-jesc1-ch07-flower",
+    "c10-science-jesc1-ch07-germination",
+    "c10-science-jesc1-ch07-pollen"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-science-jesc1-ch07-yeast-budding",
+   "topic": "7.2",
+   "template": "scope",
+   "title": {
+    "en": "Budding in yeast",
+    "hi": "यीस्ट में मुकुलन"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "slide": "yeast"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Yeast cells are tiny. Change to the 10× lens.",
+      "hi": "यीस्ट की कोशिकाएँ बहुत छोटी हैं। 10× लेंस लगाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Some cells have a small bump growing out of them. What is it?",
+      "hi": "कुछ कोशिकाओं से एक छोटा उभार निकल रहा है। यह क्या है?"
+     },
+     "options": [
+      {
+       "id": "bud",
+       "en": "A bud: a new yeast cell growing",
+       "hi": "मुकुल: बढ़ती हुई नई यीस्ट कोशिका"
+      },
+      {
+       "id": "spore",
+       "en": "A spore case",
+       "hi": "बीजाणुधानी"
+      },
+      {
+       "id": "dirt",
+       "en": "A speck of dirt",
+       "hi": "धूल का कण"
+      }
+     ],
+     "answer": "bud"
+    },
+    {
+     "kind": "do",
+     "target": "part:bud",
+     "expect": "identified:bud",
+     "say": {
+      "en": "Tap Bud to find one.",
+      "hi": "एक मुकुल ढूँढने के लिए मुकुल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A yeast cell grows a small bud. The bud gets a copy of the DNA, grows, and breaks off as a new cell, or stays on and makes a chain. One parent gives offspring alone, so this is asexual reproduction, called budding. Hydra also reproduces by budding.",
+      "hi": "यीस्ट की कोशिका से एक छोटा मुकुल निकलता है। मुकुल को DNA की प्रतिलिपि मिलती है, वह बढ़ता है और नई कोशिका बनकर अलग हो जाता है, या जुड़ा रहकर शृंखला बनाता है। अकेला एक जनक संतति देता है, इसलिए यह अलैंगिक जनन है, जिसे मुकुलन कहते हैं। हाइड्रा भी मुकुलन से जनन करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is budding called asexual reproduction?",
+        "hi": "मुकुलन को अलैंगिक जनन क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Only one parent is needed",
+         "hi": "केवल एक जनक चाहिए"
+        },
+        {
+         "en": "It needs two parents",
+         "hi": "इसके लिए दो जनक चाहिए"
+        },
+        {
+         "en": "It makes seeds",
+         "hi": "इससे बीज बनते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bud comes from a single parent cell, with no joining of gametes.",
+        "hi": "मुकुल अकेली जनक कोशिका से आता है, युग्मकों का मिलन नहीं होता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two parents and gametes mean sexual reproduction.",
+         "hi": "दो जनक और युग्मक लैंगिक जनन का संकेत हैं।"
+        },
+        {
+         "en": "Seeds come from flowers after sexual reproduction.",
+         "hi": "बीज लैंगिक जनन के बाद फूलों से बनते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Amoeba splits into two equal halves. That is called…",
+        "hi": "अमीबा दो बराबर हिस्सों में बँट जाता है। इसे कहते हैं…"
+       },
+       "options": [
+        {
+         "en": "Binary fission",
+         "hi": "द्विखंडन"
+        },
+        {
+         "en": "Budding",
+         "hi": "मुकुलन"
+        },
+        {
+         "en": "Spore formation",
+         "hi": "बीजाणु बनना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two equal daughter cells form from one: binary fission.",
+        "hi": "एक से दो बराबर संतति कोशिकाएँ बनती हैं: द्विखंडन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In budding the new cell starts small and unequal.",
+         "hi": "मुकुलन में नई कोशिका छोटी और असमान शुरू होती है।"
+        },
+        {
+         "en": "Spores are tiny cells released from a spore case.",
+         "hi": "बीजाणु बीजाणुधानी से निकलने वाली छोटी कोशिकाएँ हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try the 40× lens with the fine knob, and stain with methylene blue. Do the living cells stay pale?",
+      "hi": "आज़माओ: बारीक नॉब के साथ 40× लेंस आज़माओ और मेथिलीन ब्लू से रंगो। क्या जीवित कोशिकाएँ हल्की रहती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch07-bread-mould",
+   "topic": "7.2",
+   "template": "scope",
+   "title": {
+    "en": "Spores of bread mould",
+    "hi": "ब्रेड की फफूँद के बीजाणु"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "slide": "bread-mould"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:hypha",
+     "expect": "identified:hypha",
+     "say": {
+      "en": "Tap Hypha to find the fine threads.",
+      "hi": "महीन धागे ढूँढने के लिए कवकतंतु पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Some threads stand up with a round black blob on top. What is inside the blob?",
+      "hi": "कुछ धागे सीधे खड़े हैं और उनके ऊपर गोल काला गोला है। उस गोले में क्या है?"
+     },
+     "options": [
+      {
+       "id": "spores",
+       "en": "Thousands of spores",
+       "hi": "हज़ारों बीजाणु"
+      },
+      {
+       "id": "seeds",
+       "en": "Seeds",
+       "hi": "बीज"
+      },
+      {
+       "id": "water",
+       "en": "Water",
+       "hi": "पानी"
+      }
+     ],
+     "answer": "spores"
+    },
+    {
+     "kind": "do",
+     "target": "part:sporangium",
+     "expect": "identified:sporangium",
+     "say": {
+      "en": "Tap Sporangium.",
+      "hi": "बीजाणुधानी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bread mould (Rhizopus) is a fungus. Its threads, the hyphae, spread over the bread and feed on it. Upright threads carry round spore cases, the sporangia. When a case bursts, thousands of light spores float away; each one that lands on moist food grows into new mould. This is spore formation, a kind of asexual reproduction.",
+      "hi": "ब्रेड की फफूँद (राइज़ोपस) एक कवक है। इसके धागे, कवकतंतु, ब्रेड पर फैलकर उससे पोषण लेते हैं। सीधे धागों पर गोल बीजाणुधानियाँ होती हैं। बीजाणुधानी फटने पर हज़ारों हल्के बीजाणु उड़ जाते हैं; जो नम भोजन पर गिरता है, वह नई फफूँद बन जाता है। यह बीजाणु द्वारा जनन है, एक तरह का अलैंगिक जनन।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does mould grow faster on moist bread than on dry bread?",
+        "hi": "फफूँद सूखी ब्रेड से ज़्यादा नम ब्रेड पर तेज़ी से क्यों उगती है?"
+       },
+       "options": [
+        {
+         "en": "Spores need moisture to grow",
+         "hi": "बीजाणुओं को उगने के लिए नमी चाहिए"
+        },
+        {
+         "en": "Dry bread has no food in it",
+         "hi": "सूखी ब्रेड में भोजन नहीं होता"
+        },
+        {
+         "en": "Water makes the spores heavier",
+         "hi": "पानी बीजाणुओं को भारी कर देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Spores have thick walls that protect them until they reach a moist surface.",
+        "hi": "बीजाणुओं की मोटी दीवार उन्हें नम सतह मिलने तक बचाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dry bread still has food; it lacks the water spores need.",
+         "hi": "सूखी ब्रेड में भोजन होता है; उसमें बीजाणुओं के लिए पानी नहीं होता।"
+        },
+        {
+         "en": "Weight is not the point; spores need water to germinate.",
+         "hi": "भार की बात नहीं; बीजाणुओं को अंकुरित होने के लिए पानी चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A Bryophyllum leaf on wet soil grows tiny plants from its edges. This is…",
+        "hi": "गीली मिट्टी पर रखी ब्रायोफ़िलम की पत्ती के किनारों से छोटे पौधे उगते हैं। यह है…"
+       },
+       "options": [
+        {
+         "en": "Vegetative propagation",
+         "hi": "कायिक प्रवर्धन"
+        },
+        {
+         "en": "Spore formation",
+         "hi": "बीजाणु बनना"
+        },
+        {
+         "en": "Fertilisation",
+         "hi": "निषेचन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "New plants grow from a leaf, a part of the body: vegetative propagation.",
+        "hi": "पत्ती, यानी शरीर के एक भाग, से नए पौधे बनते हैं: कायिक प्रवर्धन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No spores are involved; buds in the leaf notches grow.",
+         "hi": "इसमें बीजाणु नहीं होते; पत्ती के खाँचों की कलियाँ बढ़ती हैं।"
+        },
+        {
+         "en": "Fertilisation needs a male and a female gamete.",
+         "hi": "निषेचन के लिए नर और मादा युग्मक चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change to the 40× lens, focus with the fine knob, and find the spores near a broken case.",
+      "hi": "आज़माओ: 40× लेंस लगाओ, बारीक नॉब से फ़ोकस करो और टूटी बीजाणुधानी के पास बीजाणु ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch07-flower",
+   "topic": "7.3",
+   "template": "plant",
+   "title": {
+    "en": "From flower to fruit",
+    "hi": "फूल से फल तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flower"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:anther",
+     "expect": "identified:anther",
+     "say": {
+      "en": "Tap the anther, where pollen is made.",
+      "hi": "परागकोश पर टैप करो, जहाँ पराग बनता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:stigma",
+     "expect": "identified:stigma",
+     "say": {
+      "en": "Tap the stigma, the sticky top of the pistil.",
+      "hi": "वर्तिकाग्र पर टैप करो, स्त्रीकेसर का चिपचिपा सिरा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After pollen reaches the stigma and fertilisation happens, which part becomes the fruit?",
+      "hi": "पराग के वर्तिकाग्र तक पहुँचने और निषेचन के बाद कौन-सा भाग फल बनता है?"
+     },
+     "options": [
+      {
+       "id": "ovary",
+       "en": "The ovary",
+       "hi": "अंडाशय"
+      },
+      {
+       "id": "petal",
+       "en": "The petals",
+       "hi": "पंखुड़ियाँ"
+      },
+      {
+       "id": "anther",
+       "en": "The anther",
+       "hi": "परागकोश"
+      }
+     ],
+     "answer": "ovary"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "grew",
+     "say": {
+      "en": "Press play and watch pollination, fertilisation and the fruit forming.",
+      "hi": "प्ले दबाओ और परागण, निषेचन और फल बनना देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Pollen moves from the anther to the stigma: pollination, by insects, wind or water. A pollen tube grows down the style to the ovule, and the male cell joins the egg: fertilisation. The zygote grows into an embryo inside the ovule, which becomes the seed. The ovary swells into the fruit, while the petals and sepals fall off.",
+      "hi": "पराग परागकोश से वर्तिकाग्र तक पहुँचता है: यह परागण है, जो कीटों, हवा या पानी से होता है। एक परागनलिका वर्तिका से होकर बीजांड तक बढ़ती है, और नर कोशिका अंड से मिलती है: यह निषेचन है। युग्मनज बीजांड के अंदर भ्रूण बनता है, और बीजांड बीज बनता है। अंडाशय फूलकर फल बनता है, जबकि पंखुड़ियाँ और बाह्यदल झड़ जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the ovule become after fertilisation?",
+        "hi": "निषेचन के बाद बीजांड क्या बनता है?"
+       },
+       "options": [
+        {
+         "en": "The seed",
+         "hi": "बीज"
+        },
+        {
+         "en": "The fruit",
+         "hi": "फल"
+        },
+        {
+         "en": "The flower",
+         "hi": "फूल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ovule holds the embryo and grows a tough coat: it is the seed.",
+        "hi": "बीजांड में भ्रूण होता है और उस पर कड़ा आवरण बनता है: यही बीज है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The fruit comes from the ovary, which holds the ovules.",
+         "hi": "फल अंडाशय से बनता है, जिसमें बीजांड होते हैं।"
+        },
+        {
+         "en": "The flower came first; it does not form after fertilisation.",
+         "hi": "फूल पहले से था; यह निषेचन के बाद नहीं बनता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Pollen from one flower lands on the stigma of another flower of the same kind. This is…",
+        "hi": "एक फूल का पराग उसी प्रकार के दूसरे फूल के वर्तिकाग्र पर गिरता है। यह है…"
+       },
+       "options": [
+        {
+         "en": "Cross-pollination",
+         "hi": "पर-परागण"
+        },
+        {
+         "en": "Self-pollination",
+         "hi": "स्व-परागण"
+        },
+        {
+         "en": "Budding",
+         "hi": "मुकुलन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pollen moving between two flowers is cross-pollination.",
+        "hi": "दो फूलों के बीच पराग का जाना पर-परागण है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Self-pollination is pollen landing on the same flower.",
+         "hi": "स्व-परागण में पराग उसी फूल पर गिरता है।"
+        },
+        {
+         "en": "Budding is asexual and has no pollen.",
+         "hi": "मुकुलन अलैंगिक है और उसमें पराग नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap the sepal, petal, filament, style, ovary and ovule. Which are the male parts and which are the female parts?",
+      "hi": "आज़माओ: बाह्यदल, पंखुड़ी, पुतंतु, वर्तिका, अंडाशय और बीजांड पर टैप करो। कौन-से नर भाग हैं और कौन-से मादा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch07-germination",
+   "topic": "7.3",
+   "template": "plant",
+   "title": {
+    "en": "What does a seed need to sprout?",
+    "hi": "बीज को अंकुरित होने के लिए क्या चाहिए?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "germination"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pot:1",
+     "expect": "picked:1",
+     "say": {
+      "en": "Tap jar 1. It has water, air and warmth.",
+      "hi": "जार 1 पर टैप करो। इसमें पानी, हवा और गर्मी है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pot:2",
+     "expect": "picked:2",
+     "say": {
+      "en": "Tap jar 2 and read what it is missing.",
+      "hi": "जार 2 पर टैप करो और पढ़ो कि इसमें क्या कमी है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which jars will have sprouting seeds after a few days?",
+      "hi": "कुछ दिनों बाद किन जारों में बीज अंकुरित होंगे?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "Only jar 1, which has water, air and warmth",
+       "hi": "केवल जार 1, जिसमें पानी, हवा और गर्मी है"
+      },
+      {
+       "id": "all",
+       "en": "All of them",
+       "hi": "सभी में"
+      },
+      {
+       "id": "none",
+       "en": "None, seeds need soil",
+       "hi": "किसी में नहीं, बीज को मिट्टी चाहिए"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "germinated",
+     "say": {
+      "en": "Press play and watch the jars.",
+      "hi": "प्ले दबाओ और जारों को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A seed holds a tiny plant, the embryo, with food stored in the cotyledons. It sprouts only with water, air (oxygen) and the right warmth. First the radicle grows down into a root, then the plumule grows up into the shoot. Soil and light are not needed to start.",
+      "hi": "बीज में एक छोटा पौधा, भ्रूण, होता है, और बीजपत्रों में भोजन जमा रहता है। यह केवल पानी, हवा (ऑक्सीजन) और सही गर्मी मिलने पर अंकुरित होता है। पहले मूलांकुर नीचे बढ़कर जड़ बनता है, फिर प्रांकुर ऊपर बढ़कर तना बनता है। शुरुआत के लिए मिट्टी और प्रकाश ज़रूरी नहीं हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part of the seed grows into the root?",
+        "hi": "बीज का कौन-सा भाग जड़ बनता है?"
+       },
+       "options": [
+        {
+         "en": "Radicle",
+         "hi": "मूलांकुर"
+        },
+        {
+         "en": "Plumule",
+         "hi": "प्रांकुर"
+        },
+        {
+         "en": "Seed coat",
+         "hi": "बीज आवरण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The radicle comes out first and grows down.",
+        "hi": "मूलांकुर सबसे पहले निकलता है और नीचे बढ़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The plumule becomes the shoot.",
+         "hi": "प्रांकुर तना बनता है।"
+        },
+        {
+         "en": "The seed coat only protects the seed and splits open.",
+         "hi": "बीज आवरण केवल बीज की रक्षा करता है और फट जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Seeds kept in boiled, cooled water with oil on top do not sprout. What is missing?",
+        "hi": "उबालकर ठंडे किए पानी में, ऊपर तेल की परत के साथ रखे बीज अंकुरित नहीं होते। किसकी कमी है?"
+       },
+       "options": [
+        {
+         "en": "Air (oxygen)",
+         "hi": "हवा (ऑक्सीजन)"
+        },
+        {
+         "en": "Water",
+         "hi": "पानी"
+        },
+        {
+         "en": "Light",
+         "hi": "प्रकाश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Boiling drives out the air and the oil stops new air dissolving.",
+        "hi": "उबालने से हवा निकल जाती है और तेल नई हवा घुलने नहीं देता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The seeds are in water, so water is not missing.",
+         "hi": "बीज पानी में हैं, इसलिए पानी की कमी नहीं है।"
+        },
+        {
+         "en": "Seeds can sprout in the dark; light is not needed to start.",
+         "hi": "बीज अँधेरे में भी अंकुरित हो सकते हैं; शुरुआत में प्रकाश ज़रूरी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap jars 3 and 4 to see what they lack, then change the sliders and play again. Tap the radicle, plumule and cotyledon.",
+      "hi": "आज़माओ: जार 3 और 4 पर टैप करके देखो कि उनमें क्या कमी है, फिर स्लाइडर बदलकर दोबारा प्ले करो। मूलांकुर, प्रांकुर और बीजपत्र पर टैप करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch07-pollen",
+   "topic": "7.3",
+   "template": "scope",
+   "title": {
+    "en": "Pollen grains and the pollen tube",
+    "hi": "परागकण और परागनलिका"
+   },
+   "minutes": 4,
+   "level": "stretch",
+   "config": {
+    "slide": "pollen"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:pollen-grain",
+     "expect": "identified:pollen-grain",
+     "say": {
+      "en": "Tap Pollen grain.",
+      "hi": "परागकण पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Pollen has landed on a stigma. What grows out of a grain to reach the ovule?",
+      "hi": "पराग वर्तिकाग्र पर गिरा है। बीजांड तक पहुँचने के लिए दाने से क्या निकलता है?"
+     },
+     "options": [
+      {
+       "id": "tube",
+       "en": "A long pollen tube",
+       "hi": "एक लंबी परागनलिका"
+      },
+      {
+       "id": "root",
+       "en": "A root",
+       "hi": "एक जड़"
+      },
+      {
+       "id": "leaf",
+       "en": "A tiny leaf",
+       "hi": "एक छोटी पत्ती"
+      }
+     ],
+     "answer": "tube"
+    },
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Change to the 10× lens.",
+      "hi": "10× लेंस लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:pollen-tube",
+     "expect": "identified:pollen-tube",
+     "say": {
+      "en": "Tap Pollen tube.",
+      "hi": "परागनलिका पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each pollen grain carries male cells inside a tough outer wall. On a stigma of the right kind, it grows a pollen tube through a thin spot in the wall, the germ pore. The tube grows down the style and carries the male cells to the ovule, where one joins the egg.",
+      "hi": "हर परागकण के कड़े बाहरी आवरण के अंदर नर कोशिकाएँ होती हैं। सही प्रकार के वर्तिकाग्र पर यह दीवार के एक पतले स्थान, जनन छिद्र, से परागनलिका निकालता है। नलिका वर्तिका से नीचे बढ़कर नर कोशिकाओं को बीजांड तक ले जाती है, जहाँ एक कोशिका अंड से मिलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the pollen tube carry to the ovule?",
+        "hi": "परागनलिका बीजांड तक क्या ले जाती है?"
+       },
+       "options": [
+        {
+         "en": "The male cells",
+         "hi": "नर कोशिकाएँ"
+        },
+        {
+         "en": "Water and minerals",
+         "hi": "पानी और खनिज"
+        },
+        {
+         "en": "The egg",
+         "hi": "अंड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The tube is the road for the male gametes to reach the egg.",
+        "hi": "नलिका नर युग्मकों के अंड तक पहुँचने का रास्ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water and minerals travel in the xylem.",
+         "hi": "पानी और खनिज ज़ाइलम में चलते हैं।"
+        },
+        {
+         "en": "The egg is already inside the ovule.",
+         "hi": "अंड पहले से बीजांड के अंदर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change to the 40× lens, focus with the fine knob, and find the exine and a germ pore.",
+      "hi": "आज़माओ: 40× लेंस लगाओ, बारीक नॉब से फ़ोकस करो और बाह्यचोल व जनन छिद्र ढूँढो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1.1",
+   "use": "Hook: variation",
+   "shows": "A litter of kittens of different coat colours with their mother",
+   "view": "Eye level, soft light",
+   "right": "Clearly different coats from one litter",
+   "avoid": "Text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.2.1",
+   "use": "Binary fission of Amoeba",
+   "shows": "Microscope frames of one amoeba dividing into two",
+   "view": "Circular microscope field, four frames",
+   "right": "Nucleus divides first, then the cytoplasm",
+   "avoid": "Cartoon style"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "7.2.4",
+   "use": "Budding in yeast",
+   "shows": "Yeast cells under a microscope with buds forming chains",
+   "view": "Circular microscope field, three frames",
+   "right": "Small buds on larger cells",
+   "avoid": "Labels"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "7.2.6",
+   "use": "Spore formation",
+   "shows": "Bread mould (Rhizopus) on a slice of bread, and a close-up of its black sporangia on thin threads",
+   "view": "Two images: whole slice; macro",
+   "right": "Black dots are sporangia on white threads",
+   "avoid": "Food that looks appetising"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "7.2.5",
+   "use": "Vegetative propagation",
+   "shows": "A Bryophyllum leaf on moist soil with tiny plantlets growing from its notches; a potato with sprouting eyes",
+   "view": "From above, two subjects",
+   "right": "Plantlets at the leaf margin notches",
+   "avoid": "Labels"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "7.2.3",
+   "use": "Regeneration in Planaria",
+   "shows": "A planarian cut into pieces, each piece growing into a whole animal",
+   "view": "Realistic microscope-style render, three frames",
+   "right": "Each piece regrows head and tail",
+   "avoid": "Gore"
+  },
+  {
+   "n": 7,
+   "kind": "CUT",
+   "topic": "7.3.2",
+   "use": "Parts of a flower",
+   "shows": "A hibiscus flower cut lengthwise: sepals, petals, stamens with anthers, pistil with stigma, style and ovary with ovules",
+   "view": "Side section, white background",
+   "right": "Ovules inside the ovary at the base",
+   "avoid": "Labels"
+  },
+  {
+   "n": 8,
+   "kind": "SEQ",
+   "topic": "7.3.2",
+   "use": "Germination",
+   "shows": "A soaked gram (chana) seed on day 1, 3, 5 and 7: radicle, then plumule and first leaves",
+   "view": "On moist cotton, same framing, four frames",
+   "right": "Root emerges first",
+   "avoid": "Different seeds"
+  },
+  {
+   "n": 9,
+   "kind": "CUT",
+   "topic": "7.3.3",
+   "use": "Human reproductive systems",
+   "shows": "Medical-illustration renders of the male and female reproductive systems as separate front views on neutral body outlines",
+   "view": "Front view, neutral grey and soft pink tones, textbook register",
+   "right": "Anatomically correct, calm and factual",
+   "avoid": "Nudity, realistic skin, labels"
+  }
+ ]
+}

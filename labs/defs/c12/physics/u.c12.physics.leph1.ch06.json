@@ -1,0 +1,890 @@
+{
+ "chapter_key": "u.c12.physics.leph1.ch06",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Electromagnetic Induction",
+ "source": "https://ncert.nic.in/textbook/pdf/leph106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "An opening about Faraday and Henry; photos and the reader set the scene."
+  },
+  {
+   "n": "6.2",
+   "title": "The experiments of Faraday and Henry",
+   "labs": [
+    "c12-physics-leph1-ch06-faraday"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Magnetic flux",
+   "labs": [
+    "c12-physics-leph1-ch06-flux-angle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Faraday's law of induction",
+   "labs": [
+    "c12-physics-leph1-ch06-faraday"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Lenz's law and conservation of energy",
+   "labs": [
+    "c12-physics-leph1-ch06-lenz"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Motional electromotive force",
+   "labs": [
+    "c12-physics-leph1-ch06-motional-emf"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.7",
+   "title": "Inductance (mutual and self)",
+   "labs": [
+    "c12-physics-leph1-ch06-self-inductance"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.8",
+   "title": "AC generator",
+   "labs": [
+    "c12-physics-leph1-ch06-ac-generator"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph1-ch06-faraday",
+   "topic": "6.2",
+   "template": "field",
+   "title": {
+    "en": "Faraday's magnet-and-coil experiment",
+    "hi": "फ़ैराडे का चुंबक और कुंडली वाला प्रयोग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "source": "induction",
+    "turns": 6
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bar magnet is held still inside a coil connected to a galvanometer. The galvanometer will show",
+      "hi": "गैल्वेनोमीटर से जुड़ी कुंडली के भीतर दंड चुंबक स्थिर रखा है। गैल्वेनोमीटर दिखाएगा"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "no current",
+       "hi": "कोई धारा नहीं"
+      },
+      {
+       "id": "o1",
+       "en": "a steady current",
+       "hi": "स्थिर धारा"
+      },
+      {
+       "id": "o2",
+       "en": "a growing current",
+       "hi": "बढ़ती हुई धारा"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "induced",
+     "say": {
+      "en": "Push the magnet quickly towards the coil. The needle kicks.",
+      "hi": "चुंबक को तेज़ी से कुंडली की ओर धकेलो। सुई उछलती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "moved",
+     "say": {
+      "en": "Now stop and hold the magnet still. The needle returns to zero.",
+      "hi": "अब रुक जाओ और चुंबक को स्थिर पकड़ो। सुई शून्य पर लौट आती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "induced",
+     "say": {
+      "en": "Pull the magnet back out quickly. The needle kicks the other way.",
+      "hi": "चुंबक को तेज़ी से बाहर खींचो। सुई दूसरी ओर उछलती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A current is induced only while the magnet is moving, that is while the magnetic flux through the coil is changing. A still magnet gives nothing, even a strong one. Moving it in or out gives opposite kicks, and moving it faster gives a bigger kick. Faraday found that a changing magnetic field makes an emf, and this idea runs every power station.",
+      "hi": "धारा तभी प्रेरित होती है जब चुंबक गतिमान हो, यानी कुंडली से गुज़रता चुंबकीय फ़्लक्स बदल रहा हो। स्थिर चुंबक कुछ नहीं देता, चाहे प्रबल क्यों न हो। चुंबक को अंदर और बाहर करने पर विपरीत झटके मिलते हैं, और तेज़ चलाने पर झटका बड़ा होता है। फ़ैराडे ने पाया कि बदलता चुंबकीय क्षेत्र विद्युत वाहक बल पैदा करता है, और यही विचार हर बिजलीघर को चलाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When does the galvanometer show a current?",
+        "hi": "गैल्वेनोमीटर में धारा कब दिखती है?"
+       },
+       "options": [
+        {
+         "en": "only while the flux through the coil changes",
+         "hi": "केवल तब जब कुंडली से गुज़रता फ़्लक्स बदलता है"
+        },
+        {
+         "en": "whenever a magnet is near the coil",
+         "hi": "जब भी चुंबक कुंडली के पास हो"
+        },
+        {
+         "en": "only when the magnet touches the coil",
+         "hi": "केवल जब चुंबक कुंडली को छुए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Induced emf needs a changing flux.",
+        "hi": "प्रेरित विद्युत वाहक बल के लिए बदलता फ़्लक्स चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A still magnet gives no change in flux, so nothing is induced.",
+         "hi": "स्थिर चुंबक से फ़्लक्स नहीं बदलता, इसलिए कुछ प्रेरित नहीं होता।"
+        },
+        {
+         "en": "Touching is not needed. What matters is the change of flux.",
+         "hi": "छूना आवश्यक नहीं है। महत्त्व फ़्लक्स के बदलने का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the magnet slowly and then quickly. Compare the kicks. Then try more turns in the coil.",
+      "hi": "चुंबक को धीरे और फिर तेज़ चलाओ। झटकों की तुलना करो। फिर कुंडली में फेरे बढ़ाकर देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch06-flux-angle",
+   "topic": "6.3",
+   "template": "grapher",
+   "title": {
+    "en": "Magnetic flux and the angle of a coil",
+    "hi": "चुंबकीय फ़्लक्स और कुंडली का कोण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "trig",
+    "expr": "a*cos(x)",
+    "params": {
+     "a": [
+      1,
+      5,
+      3
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A flat coil faces the field head-on (the field is along its normal). Turn it until its plane is along the field. The flux through it",
+      "hi": "समतल कुंडली क्षेत्र के सामने सीधी है (क्षेत्र उसके अभिलंब के अनुदिश है)। उसे इतना घुमाओ कि उसका तल क्षेत्र के अनुदिश हो जाए। फ़्लक्स"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "stays the same",
+       "hi": "वही रहता है"
+      },
+      {
+       "id": "o0",
+       "en": "falls to zero",
+       "hi": "शून्य हो जाता है"
+      },
+      {
+       "id": "o1",
+       "en": "doubles",
+       "hi": "दोगुना हो जाता है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the angle between the coil's normal and the field. Slide it from 0 to π/2.",
+      "hi": "x कुंडली के अभिलंब और क्षेत्र के बीच का कोण है। उसे 0 से π/2 तक चलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a stands for B × A. A stronger field or a bigger coil lifts the whole curve.",
+      "hi": "a का अर्थ B × A है। प्रबल क्षेत्र या बड़ी कुंडली पूरे वक्र को ऊपर उठाती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The magnetic flux is Φ = BA cos θ, where θ is the angle between the field and the normal to the coil. It is largest when the coil faces the field and zero when the field slides along its plane. The unit is the weber. EMI happens whenever B, A or θ change in time.",
+      "hi": "चुंबकीय फ़्लक्स Φ = BA cos θ है, जहाँ θ क्षेत्र और कुंडली के अभिलंब के बीच का कोण है। जब कुंडली क्षेत्र के सामने हो तब यह सबसे अधिक और जब क्षेत्र उसके तल के अनुदिश फिसले तब शून्य होता है। इसकी इकाई वेबर है। प्रेरण तब होता है जब B, A या θ समय के साथ बदलें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these changes the flux through a coil?",
+        "hi": "इनमें से कौन कुंडली से गुज़रता फ़्लक्स बदलता है?"
+       },
+       "options": [
+        {
+         "en": "turning the coil in the field",
+         "hi": "कुंडली को क्षेत्र में घुमाना"
+        },
+        {
+         "en": "painting the coil",
+         "hi": "कुंडली पर रंग करना"
+        },
+        {
+         "en": "keeping the coil still in a steady field",
+         "hi": "कुंडली को स्थिर क्षेत्र में स्थिर रखना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Turning changes θ, so cos θ and the flux change.",
+        "hi": "घुमाने से θ बदलता है, इसलिए cos θ और फ़्लक्स बदलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Paint has no effect on B, A or the angle.",
+         "hi": "रंग का B, A या कोण पर कोई प्रभाव नहीं पड़ता।"
+        },
+        {
+         "en": "Nothing in BA cos θ changes, so the flux is steady.",
+         "hi": "BA cos θ में कुछ नहीं बदलता, इसलिए फ़्लक्स स्थिर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "At what angle is the flux exactly half of its maximum? Slide x to find it.",
+      "hi": "किस कोण पर फ़्लक्स अपने अधिकतम का ठीक आधा होता है? x चलाकर खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch06-lenz",
+   "topic": "6.5",
+   "template": "field",
+   "title": {
+    "en": "Lenz's law: nature opposes the change",
+    "hi": "लेंज़ का नियम: प्रकृति परिवर्तन का विरोध करती है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "source": "induction",
+    "turns": 8
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As you push a north pole towards a coil, the coil's induced current makes its near face a",
+      "hi": "जब तुम उत्तरी ध्रुव को कुंडली की ओर धकेलते हो तो कुंडली की प्रेरित धारा उसके पास वाले फलक को बनाती है"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "south pole, pulling in",
+       "hi": "दक्षिणी ध्रुव, जो अंदर खींचता है"
+      },
+      {
+       "id": "o2",
+       "en": "nothing",
+       "hi": "कुछ नहीं"
+      },
+      {
+       "id": "o0",
+       "en": "north pole, pushing back",
+       "hi": "उत्तरी ध्रुव, जो पीछे धकेलता है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "induced",
+     "say": {
+      "en": "Push the north pole towards the coil. Feel how the picture resists.",
+      "hi": "उत्तरी ध्रुव को कुंडली की ओर धकेलो। देखो चित्र कैसे विरोध दिखाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "reverse",
+     "expect": "reversed",
+     "say": {
+      "en": "Flip the magnet so the south pole leads. The kick reverses.",
+      "hi": "चुंबक पलटो ताकि दक्षिणी ध्रुव आगे हो। झटका उलट जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "induced",
+     "say": {
+      "en": "Push it in again. The needle kicks the other way.",
+      "hi": "इसे फिर अंदर धकेलो। सुई दूसरी ओर उछलती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Lenz's law: the induced current flows in the direction that opposes the change that produced it. A north pole coming in meets a north-facing coil which repels it, so you must do work to push it in. That work becomes the electrical energy. If the opposite were true, the magnet would speed up by itself and give free energy, which would break conservation of energy.",
+      "hi": "लेंज़ का नियम: प्रेरित धारा उस दिशा में बहती है जो उसे उत्पन्न करने वाले परिवर्तन का विरोध करे। आता हुआ उत्तरी ध्रुव उत्तर की ओर मुख वाली कुंडली से प्रतिकर्षित होता है, इसलिए उसे अंदर धकेलने में कार्य करना पड़ता है। वही कार्य विद्युत ऊर्जा बन जाता है। यदि उल्टा होता तो चुंबक अपने आप तेज़ होकर मुफ़्त ऊर्जा देता, जो ऊर्जा संरक्षण के विरुद्ध है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A magnet is pulled away from a coil. The induced current makes the coil's near face",
+        "hi": "चुंबक को कुंडली से दूर खींचा जाता है। प्रेरित धारा कुंडली के पास वाले फलक को बनाती है"
+       },
+       "options": [
+        {
+         "en": "opposite to the magnet's pole, pulling it back",
+         "hi": "चुंबक के ध्रुव से विपरीत, जो उसे वापस खींचता है"
+        },
+        {
+         "en": "the same as the magnet's pole, pushing it away",
+         "hi": "चुंबक के ध्रुव जैसा, जो उसे और दूर धकेलता है"
+        },
+        {
+         "en": "no pole at all",
+         "hi": "कोई ध्रुव नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Moving away is the change, so the coil tries to hold the magnet back.",
+        "hi": "दूर जाना ही परिवर्तन है, इसलिए कुंडली चुंबक को रोकने का प्रयास करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would help the motion and make energy from nothing. Lenz's law says it opposes.",
+         "hi": "यह गति में मदद करता और शून्य से ऊर्जा बनाता। लेंज़ का नियम कहता है कि वह विरोध करती है।"
+        },
+        {
+         "en": "A current in a coil always makes it a small magnet.",
+         "hi": "कुंडली में धारा हमेशा उसे छोटा चुंबक बना देती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why does a magnet fall more slowly through a copper pipe than through a plastic pipe? Think about Lenz's law.",
+      "hi": "चुंबक ताँबे की नली में प्लास्टिक की नली से अधिक धीरे क्यों गिरता है? लेंज़ के नियम से सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch06-motional-emf",
+   "topic": "6.6",
+   "template": "grapher",
+   "title": {
+    "en": "Motional emf: a rod moving in a field",
+    "hi": "गतिक विद्युत वाहक बल: क्षेत्र में चलती छड़"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "a*x",
+    "params": {
+     "a": [
+      0.5,
+      5,
+      2
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A metal rod moves across a magnetic field. If it moves twice as fast the emf across its ends",
+      "hi": "चुंबकीय क्षेत्र में धातु की छड़ चल रही है। यदि वह दोगुनी तेज़ चले तो उसके सिरों पर विद्युत वाहक बल"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "doubles",
+       "hi": "दोगुना हो जाता है"
+      },
+      {
+       "id": "o1",
+       "en": "halves",
+       "hi": "आधा हो जाता है"
+      },
+      {
+       "id": "o2",
+       "en": "stays the same",
+       "hi": "वही रहता है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the speed v. Slide it and read the emf (height of the line).",
+      "hi": "x चाल v है। उसे चलाओ और विद्युत वाहक बल (रेखा की ऊँचाई) पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a stands for B × l: a stronger field or a longer rod gives a steeper line.",
+      "hi": "a का अर्थ B × l है: प्रबल क्षेत्र या लंबी छड़ से रेखा तीखी होती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The free electrons in the rod feel a magnetic force as the rod moves, and they pile up at one end. This makes the emf ε = Blv. It grows with the field B, the length l and the speed v. If the rod is part of a closed circuit, a current flows and Lenz's law says a force opposes the motion. Train wheels and aircraft wings cutting the Earth's field also have a small motional emf.",
+      "hi": "छड़ चलने पर उसके मुक्त इलेक्ट्रॉनों पर चुंबकीय बल लगता है और वे एक सिरे पर जमा हो जाते हैं। इससे विद्युत वाहक बल ε = Blv बनता है। यह क्षेत्र B, लंबाई l और चाल v के साथ बढ़ता है। यदि छड़ बंद परिपथ का भाग हो तो धारा बहती है और लेंज़ का नियम कहता है कि गति का विरोध करता बल लगता है। रेल के पहिये और पृथ्वी के क्षेत्र को काटते वायुयान के पंख भी थोड़ा गतिक विद्युत वाहक बल पैदा करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 0.5 m rod moves at 4 m/s at right angles to a field of 0.2 T. The emf is",
+        "hi": "0.5 मीटर की छड़ 0.2 टेसला के क्षेत्र के लंबवत 4 मीटर/सेकंड से चलती है। विद्युत वाहक बल है"
+       },
+       "options": [
+        {
+         "en": "0.4 V",
+         "hi": "0.4 वोल्ट"
+        },
+        {
+         "en": "0.1 V",
+         "hi": "0.1 वोल्ट"
+        },
+        {
+         "en": "4 V",
+         "hi": "4 वोल्ट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ε = 0.2 × 0.5 × 4 = 0.4 V.",
+        "hi": "ε = 0.2 × 0.5 × 4 = 0.4 वोल्ट।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That divides instead of multiplying: emf = B × l × v.",
+         "hi": "यह गुणा की जगह भाग है: विद्युत वाहक बल = B × l × v।"
+        },
+        {
+         "en": "This ignores B and l. Use ε = Blv = 0.2 × 0.5 × 4.",
+         "hi": "इसमें B और l छूट गए। ε = Blv = 0.2 × 0.5 × 4 लो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set the speed to zero. What is the emf? What does that say about a rod that stands still in a magnetic field?",
+      "hi": "चाल शून्य करो। विद्युत वाहक बल कितना है? स्थिर रखी छड़ के बारे में इससे क्या पता चलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch06-self-inductance",
+   "topic": "6.7",
+   "template": "grapher",
+   "title": {
+    "en": "Inductance: current grows slowly",
+    "hi": "प्रेरकत्व: धारा धीरे-धीरे बढ़ती है"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "exp-log",
+    "expr": "a*(1-exp(-x/b))",
+    "params": {
+     "a": [
+      1,
+      5,
+      3
+     ],
+     "b": [
+      0.5,
+      3,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When a coil with an iron core is connected to a battery, the current reaches its final value",
+      "hi": "बैटरी से जुड़ने पर लोहे की क्रोड वाली कुंडली में धारा अपने अंतिम मान पर पहुँचती है"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "never",
+       "hi": "कभी नहीं"
+      },
+      {
+       "id": "o0",
+       "en": "slowly, over some time",
+       "hi": "धीरे-धीरे, कुछ समय में"
+      },
+      {
+       "id": "o1",
+       "en": "instantly",
+       "hi": "तुरंत"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is time. Slide it and watch the current grow towards its final value.",
+      "hi": "x समय है। उसे चलाओ और धारा को अंतिम मान की ओर बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "b is the time constant L/R. A bigger inductance L gives a larger b and a slower rise.",
+      "hi": "b समय-नियतांक L/R है। बड़ा प्रेरकत्व L बड़ा b और धीमी वृद्धि देता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A changing current makes a changing flux in its own coil, which induces an emf that opposes the change (self-induction). So the current cannot jump; it rises as I = I0(1 − e^(−t/τ)) with τ = L/R. The unit of inductance is the henry. This is why switching off a motor or a heavy coil can cause a spark: the coil tries to keep its current going.",
+      "hi": "बदलती धारा अपनी ही कुंडली में बदलता फ़्लक्स बनाती है, जो परिवर्तन का विरोध करता विद्युत वाहक बल प्रेरित करता है (स्व-प्रेरण)। इसलिए धारा छलाँग नहीं लगा सकती; वह I = I0(1 − e^(−t/τ)) की तरह बढ़ती है, जहाँ τ = L/R। प्रेरकत्व की इकाई हेनरी है। इसीलिए मोटर या भारी कुंडली बंद करने पर चिंगारी निकल सकती है: कुंडली अपनी धारा को चलाए रखना चाहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A coil with larger inductance L (same R) makes the current rise",
+        "hi": "समान R पर अधिक प्रेरकत्व L वाली कुंडली धारा को बढ़ने देती है"
+       },
+       "options": [
+        {
+         "en": "more slowly",
+         "hi": "अधिक धीरे"
+        },
+        {
+         "en": "more quickly",
+         "hi": "अधिक तेज़ी से"
+        },
+        {
+         "en": "at the same speed",
+         "hi": "उसी गति से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "τ = L/R is larger when L is larger.",
+        "hi": "L बड़ा हो तो τ = L/R बड़ा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A larger L opposes the change more, so the rise is slower.",
+         "hi": "अधिक L परिवर्तन का अधिक विरोध करता है, इसलिए वृद्धि धीमी होती है।"
+        },
+        {
+         "en": "The time constant L/R depends on L, so the speed changes.",
+         "hi": "समय-नियतांक L/R, L पर निर्भर है, इसलिए गति बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make b very small. How close does the curve come to a sudden jump?",
+      "hi": "b को बहुत छोटा करो। वक्र अचानक छलाँग के कितना पास आ जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph1-ch06-ac-generator",
+   "topic": "6.8",
+   "template": "grapher",
+   "title": {
+    "en": "The AC generator makes a sine wave",
+    "hi": "प्रत्यावर्ती धारा जनित्र ज्या तरंग बनाता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trig",
+    "expr": "a*sin(b*x)",
+    "params": {
+     "a": [
+      1,
+      5,
+      3
+     ],
+     "b": [
+      1,
+      4,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A coil spins steadily in a magnetic field. The emf it produces",
+      "hi": "चुंबकीय क्षेत्र में कुंडली एकसमान घूमती है। उससे बनने वाला विद्युत वाहक बल"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "is steady in one direction",
+       "hi": "एक दिशा में स्थिर रहता है"
+      },
+      {
+       "id": "o2",
+       "en": "is zero",
+       "hi": "शून्य रहता है"
+      },
+      {
+       "id": "o0",
+       "en": "keeps changing direction in a wave",
+       "hi": "तरंग की तरह दिशा बदलता रहता है"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is time. Slide it and watch the emf rise, fall, and reverse.",
+      "hi": "x समय है। उसे चलाओ और विद्युत वाहक बल को बढ़ते, घटते और उलटते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "b is the angular speed ω. Spinning faster makes the waves closer together.",
+      "hi": "b कोणीय चाल ω है। तेज़ घुमाने पर तरंगें पास-पास आती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a is the peak emf, NBAω. More turns or a stronger field give a taller wave.",
+      "hi": "a शिखर विद्युत वाहक बल NBAω है। अधिक फेरे या प्रबल क्षेत्र से तरंग ऊँची होती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "As the coil rotates, the flux through it follows cos ωt, and the induced emf is ε = NBAω sin ωt. It changes direction twice in each turn. In India the supply frequency is 50 Hz: the emf completes 50 full cycles every second. This sine-shaped output is alternating current.",
+      "hi": "कुंडली घूमते समय उससे गुज़रता फ़्लक्स cos ωt के अनुसार बदलता है और प्रेरित विद्युत वाहक बल ε = NBAω sin ωt होता है। यह हर चक्कर में दो बार दिशा बदलता है। भारत में आपूर्ति की आवृत्ति 50 हर्ट्ज़ है: विद्युत वाहक बल प्रति सेकंड 50 पूर्ण चक्र पूरे करता है। यह ज्या के आकार का निर्गत ही प्रत्यावर्ती धारा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many times does the emf of an AC generator turning 50 times a second reverse every second?",
+        "hi": "सेकंड में 50 बार घूमने वाले AC जनित्र का विद्युत वाहक बल हर सेकंड कितनी बार उलटता है?"
+       },
+       "options": [
+        {
+         "en": "100 times",
+         "hi": "100 बार"
+        },
+        {
+         "en": "50 times",
+         "hi": "50 बार"
+        },
+        {
+         "en": "once",
+         "hi": "एक बार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two reversals per turn × 50 turns = 100 reversals per second.",
+        "hi": "प्रति चक्कर दो उलटाव × 50 चक्कर = प्रति सेकंड 100 उलटाव।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The emf reverses twice in each turn, so the count is double the turns.",
+         "hi": "विद्युत वाहक बल हर चक्कर में दो बार उलटता है, इसलिए गिनती चक्करों की दुगुनी होती है।"
+        },
+        {
+         "en": "It reverses repeatedly, not once.",
+         "hi": "वह बार-बार उलटता है, एक बार नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set b so that exactly two waves fit on the screen. What does that tell you about the frequency?",
+      "hi": "b ऐसा रखो कि पर्दे पर ठीक दो तरंगें समाएँ। इससे आवृत्ति के बारे में क्या पता चलता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Chapter hook: bicycle dynamo",
+   "shows": "A bicycle's front wheel with a dynamo touching the tyre and the headlight glowing at dusk",
+   "view": "Close side view, dusk light",
+   "right": "Dynamo wheel visible and lamp lit",
+   "avoid": "Faces, brand logos, readable number plates"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "6.2",
+   "use": "Magnet in and out of a coil",
+   "shows": "Three frames: magnet outside the coil (needle at zero), magnet moving in (needle right), magnet moving out (needle left), with a centre-zero galvanometer",
+   "view": "Same front view and bench in all frames",
+   "right": "Needle positions clearly different",
+   "avoid": "Changing the coil between frames"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.7",
+   "use": "Inductor coils",
+   "shows": "Three coils: an air-core coil, one wound on an iron core and a ferrite ring coil, on white",
+   "view": "Overhead, equal light",
+   "right": "Different cores clear",
+   "avoid": "Brand marks, writing"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "6.8",
+   "use": "An AC generator model",
+   "shows": "Cutaway of a simple AC generator: a rectangular coil between two magnet poles with slip rings and brushes, in clear colours",
+   "view": "Three-quarter cutaway",
+   "right": "Slip rings and brushes visible",
+   "avoid": "Text labels"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.8",
+   "use": "A hydro power station",
+   "shows": "A hydroelectric dam in India with water falling through the penstock and the generator hall in the cutaway view (illustration)",
+   "view": "Wide view from the side",
+   "right": "Water and turbine clear",
+   "avoid": "People close up"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "6.5",
+   "use": "Magnet falling in a copper pipe",
+   "shows": "A strong magnet slowly falling through a thick copper pipe, next to a plastic pipe where an identical magnet falls fast",
+   "view": "Side view, same height, plain backdrop",
+   "right": "Magnets at clearly different heights after the same time",
+   "avoid": "Text, cluttered backgrounds"
+  }
+ ]
+}

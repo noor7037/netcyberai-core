@@ -1,0 +1,678 @@
+{
+ "chapter_key": "u.c09.social_science.iest1.ch06",
+ "class": 9,
+ "subject_id": "social_science",
+ "title": "Democracy",
+ "source": "https://ncert.nic.in/textbook/pdf/iest106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Rights, the Constitution and separation of powers",
+   "labs": [
+    "c09-social_science-iest1-ch06-organs",
+    "c09-social_science-iest1-ch06-rights"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Popular sovereignty, rule of law and multi-party system",
+   "labs": [
+    "c09-social_science-iest1-ch06-principles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Democratic traditions in early India",
+   "labs": [],
+   "why_no_lab": "Best taught by the reader and primary sources such as the Rigveda verse and sangha records; it is a story, not an experiment."
+  },
+  {
+   "n": "6.4",
+   "title": "Accountability, media and types of democracy",
+   "labs": [],
+   "why_no_lab": "Best taught by discussion of news and the reader; the types are definitions with examples."
+  },
+  {
+   "n": "6.5",
+   "title": "Safeguarding the rights of vulnerable groups",
+   "labs": [],
+   "why_no_lab": "Best taught by case stories and class discussion; it is about fairness and care, not a process to simulate."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-social_science-iest1-ch06-organs",
+   "topic": "6.1",
+   "template": "govern",
+   "title": {
+    "en": "Who does what in government?",
+    "hi": "सरकार में कौन क्या करता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "organs",
+    "options": {
+     "cards": [
+      "debate-bill",
+      "question-hour",
+      "run-scheme",
+      "district-officer",
+      "settle-dispute",
+      "judicial-review"
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If one group made the laws, carried them out and also judged every case, what could go wrong?",
+      "hi": "अगर एक ही समूह क़ानून बनाए, उन्हें लागू करे और हर मुक़दमे का फ़ैसला भी करे, तो क्या गड़बड़ हो सकती है?"
+     },
+     "options": [
+      {
+       "id": "abuse",
+       "en": "That group could misuse its power",
+       "hi": "वह समूह अपनी शक्ति का दुरुपयोग कर सकता है"
+      },
+      {
+       "id": "fine",
+       "en": "Nothing, it would be quicker",
+       "hi": "कुछ नहीं, काम और जल्दी होगा"
+      },
+      {
+       "id": "rain",
+       "en": "It would stop the rain",
+       "hi": "वर्षा रुक जाएगी"
+      }
+     ],
+     "answer": "abuse"
+    },
+    {
+     "kind": "do",
+     "target": "card:debate-bill",
+     "expect": "picked:debate-bill",
+     "say": {
+      "en": "Tap the job 'Debates a bill and votes on it'.",
+      "hi": "काम 'विधेयक पर बहस करके मतदान करती है' को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:legislature",
+     "expect": "placed",
+     "say": {
+      "en": "Now tap the organ that does this job.",
+      "hi": "अब उस अंग को छुओ जो यह काम करता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:settle-dispute",
+     "expect": "picked:settle-dispute",
+     "say": {
+      "en": "Tap the job about settling disputes.",
+      "hi": "विवाद सुलझाने वाला काम छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:judiciary",
+     "expect": "placed",
+     "say": {
+      "en": "Place it with the organ that does it.",
+      "hi": "इसे उस अंग के साथ रखो जो यह करता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The legislature makes laws, the executive carries them out, and the judiciary interprets them and settles disputes. Each organ checks the others, so power is not concentrated in one place. This separation of powers is a key feature of democracy.",
+      "hi": "विधायिका क़ानून बनाती है, कार्यपालिका उन्हें लागू करती है, और न्यायपालिका उनकी व्याख्या करती और विवाद सुलझाती है। हर अंग दूसरे पर नज़र रखता है, इसलिए शक्ति एक जगह जमा नहीं होती। शक्तियों का यह पृथक्करण लोकतंत्र की प्रमुख विशेषता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If a law goes against the Constitution, who can declare it invalid?",
+        "hi": "अगर कोई क़ानून संविधान के विरुद्ध हो, तो उसे अवैध कौन घोषित कर सकता है?"
+       },
+       "options": [
+        {
+         "en": "The judiciary",
+         "hi": "न्यायपालिका"
+        },
+        {
+         "en": "A shopkeeper",
+         "hi": "एक दुकानदार"
+        },
+        {
+         "en": "The weather office",
+         "hi": "मौसम विभाग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The judiciary upholds the Constitution and can declare an inconsistent law unconstitutional.",
+        "hi": "न्यायपालिका संविधान की रक्षा करती है और असंगत क़ानून को असंवैधानिक घोषित कर सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A shopkeeper has no power to judge laws.",
+         "hi": "दुकानदार को क़ानूनों के बारे में फ़ैसला करने का अधिकार नहीं।"
+        },
+        {
+         "en": "The weather office forecasts weather. It does not judge laws.",
+         "hi": "मौसम विभाग मौसम का पूर्वानुमान देता है, क़ानूनों का फ़ैसला नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the other job cards. For each, say which organ does it and what would go wrong if two organs were joined.",
+      "hi": "बाकी काम वाले कार्ड आज़माओ। हर एक के लिए बताओ कि कौन-सा अंग उसे करता है और दो अंग मिल जाएँ तो क्या बिगड़ेगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch06-rights",
+   "topic": "6.1",
+   "template": "govern",
+   "title": {
+    "en": "Six groups of fundamental rights",
+    "hi": "मौलिक अधिकारों के छह समूह"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "rights",
+    "options": {
+     "cards": [
+      "r-merit",
+      "r-child",
+      "r-festival",
+      "r-court",
+      "r-speech",
+      "r-script"
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A child of ten is working in a factory. Which fundamental right protects the child?",
+      "hi": "दस साल का बच्चा कारख़ाने में काम कर रहा है। कौन-सा मौलिक अधिकार बच्चे की रक्षा करता है?"
+     },
+     "options": [
+      {
+       "id": "expl",
+       "en": "Right against Exploitation",
+       "hi": "शोषण के विरुद्ध अधिकार"
+      },
+      {
+       "id": "rel",
+       "en": "Freedom of Religion",
+       "hi": "धार्मिक स्वतंत्रता का अधिकार"
+      },
+      {
+       "id": "cult",
+       "en": "Cultural and Educational Rights",
+       "hi": "संस्कृति और शिक्षा संबंधी अधिकार"
+      }
+     ],
+     "answer": "expl"
+    },
+    {
+     "kind": "do",
+     "target": "card:r-child",
+     "expect": "picked:r-child",
+     "say": {
+      "en": "Tap the card about a factory and a child of ten.",
+      "hi": "दस साल के बच्चे और कारख़ाने वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:exploitation",
+     "expect": "placed",
+     "say": {
+      "en": "Tap the right that protects the child.",
+      "hi": "वह अधिकार छुओ जो बच्चे की रक्षा करता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:r-court",
+     "expect": "picked:r-court",
+     "say": {
+      "en": "Now tap the card about going to the Supreme Court.",
+      "hi": "अब सर्वोच्च न्यायालय जाने वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:remedies",
+     "expect": "placed",
+     "say": {
+      "en": "Place it with the right that lets people go to court.",
+      "hi": "इसे उस अधिकार के साथ रखो जो अदालत जाने देता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Constitution gives six groups of Fundamental Rights: equality, freedom, protection from exploitation, freedom of religion, cultural and educational rights, and constitutional remedies. If any right is denied, a citizen can go to the Supreme Court under Article 32, or to a High Court.",
+      "hi": "संविधान छह प्रकार के मौलिक अधिकार देता है: समता, स्वतंत्रता, शोषण से रक्षा, धार्मिक स्वतंत्रता, संस्कृति और शिक्षा संबंधी अधिकार तथा संवैधानिक उपचार। किसी अधिकार का हनन हो तो नागरिक अनुच्छेद 32 के तहत सर्वोच्च न्यायालय या उच्च न्यायालय जा सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which Article lets a citizen go to the Supreme Court when a fundamental right is denied?",
+        "hi": "मौलिक अधिकार छीने जाने पर कौन-सा अनुच्छेद नागरिक को सर्वोच्च न्यायालय जाने देता है?"
+       },
+       "options": [
+        {
+         "en": "Article 32",
+         "hi": "अनुच्छेद 32"
+        },
+        {
+         "en": "Article 14",
+         "hi": "अनुच्छेद 14"
+        },
+        {
+         "en": "Article 25",
+         "hi": "अनुच्छेद 25"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Article 32 gives the right to constitutional remedies.",
+        "hi": "अनुच्छेद 32 संवैधानिक उपचारों का अधिकार देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Article 14 is about equality before the law.",
+         "hi": "अनुच्छेद 14 क़ानून के सामने समानता का है।"
+        },
+        {
+         "en": "Article 25 is about freedom of religion.",
+         "hi": "अनुच्छेद 25 धार्मिक स्वतंत्रता का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the other cards. Can you think of a story from your own life for each of the six rights?",
+      "hi": "बाकी कार्ड रखो। क्या तुम छहों अधिकारों में से हर एक के लिए अपने जीवन की कोई कहानी सोच सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch06-principles",
+   "topic": "6.2",
+   "template": "sort",
+   "title": {
+    "en": "Principles of democracy",
+    "hi": "लोकतंत्र के सिद्धांत"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pop",
+      "label": {
+       "en": "Popular sovereignty",
+       "hi": "लोक संप्रभुता"
+      }
+     },
+     {
+      "id": "law",
+      "label": {
+       "en": "Rule of law",
+       "hi": "विधि का शासन"
+      }
+     },
+     {
+      "id": "sep",
+      "label": {
+       "en": "Separation of powers",
+       "hi": "शक्तियों का पृथक्करण"
+      }
+     },
+     {
+      "id": "multi",
+      "label": {
+       "en": "Multi-party system",
+       "hi": "बहुदलीय व्यवस्था"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "vote",
+      "bin": "pop",
+      "text": {
+       "en": "Every citizen of 18 or above can vote by secret ballot",
+       "hi": "18 वर्ष या अधिक आयु का हर नागरिक गुप्त मतदान कर सकता है"
+      },
+      "why": {
+       "en": "Power rests with the people, who use it through the vote: Universal Adult Franchise.",
+       "hi": "शक्ति जनता में निहित है, जो वोट से उसका उपयोग करती है: सार्वभौमिक वयस्क मताधिकार।"
+      }
+     },
+     {
+      "id": "elected",
+      "bin": "pop",
+      "text": {
+       "en": "The government is chosen in free and fair elections",
+       "hi": "सरकार स्वतंत्र और निष्पक्ष चुनाव में चुनी जाती है"
+      },
+      "why": {
+       "en": "The state gets its authority from the people.",
+       "hi": "राज्य को अपना अधिकार जनता से मिलता है।"
+      }
+     },
+     {
+      "id": "equal",
+      "bin": "law",
+      "text": {
+       "en": "Nobody is above the law, however powerful",
+       "hi": "कोई भी क़ानून से ऊपर नहीं, चाहे कितना ही शक्तिशाली हो"
+      },
+      "why": {
+       "en": "Equality before the law is the heart of the rule of law.",
+       "hi": "क़ानून के सामने समानता विधि के शासन का मूल है।"
+      }
+     },
+     {
+      "id": "procedure",
+      "bin": "law",
+      "text": {
+       "en": "A person is punished only by the procedure fixed by law",
+       "hi": "किसी को सज़ा केवल क़ानून द्वारा तय प्रक्रिया से मिलती है"
+      },
+      "why": {
+       "en": "Disputes are settled by courts under law, not by force or influence.",
+       "hi": "विवाद अदालतों में क़ानून के अनुसार सुलझते हैं, बल या प्रभाव से नहीं।"
+      }
+     },
+     {
+      "id": "review",
+      "bin": "sep",
+      "text": {
+       "en": "Courts can declare a law unconstitutional",
+       "hi": "अदालतें किसी क़ानून को असंवैधानिक घोषित कर सकती हैं"
+      },
+      "why": {
+       "en": "The judiciary checks the legislature: checks and balances.",
+       "hi": "न्यायपालिका विधायिका पर नियंत्रण रखती है: नियंत्रण और संतुलन।"
+      }
+     },
+     {
+      "id": "three",
+      "bin": "sep",
+      "text": {
+       "en": "Three organs: one makes, one applies, one judges",
+       "hi": "तीन अंग: एक बनाता, एक लागू करता, एक न्याय करता है"
+      },
+      "why": {
+       "en": "Each organ has its own work, so power is not in one hand.",
+       "hi": "हर अंग का अपना काम है, इसलिए शक्ति एक हाथ में नहीं रहती।"
+      }
+     },
+     {
+      "id": "many",
+      "bin": "multi",
+      "text": {
+       "en": "Many parties with different ideas contest elections",
+       "hi": "अलग-अलग विचारों वाले अनेक दल चुनाव लड़ते हैं"
+      },
+      "why": {
+       "en": "Voters get a real choice among different voices and interests.",
+       "hi": "मतदाताओं को अलग-अलग आवाज़ों और हितों में से असली चुनाव मिलता है।"
+      }
+     },
+     {
+      "id": "oppose",
+      "bin": "multi",
+      "text": {
+       "en": "The largest group outside government becomes the opposition",
+       "hi": "सरकार से बाहर का सबसे बड़ा समूह विपक्ष बनता है"
+      },
+      "why": {
+       "en": "In a multi-party system the opposition questions the government.",
+       "hi": "बहुदलीय व्यवस्था में विपक्ष सरकार से प्रश्न करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:vote",
+     "expect": "placed:vote",
+     "say": {
+      "en": "Pick the first card and put it under the right feature of democracy.",
+      "hi": "पहला कार्ड उठाओ और उसे लोकतंत्र की सही विशेषता में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Courts can cancel a law that breaks the Constitution. Which feature is this?",
+      "hi": "अदालतें संविधान तोड़ने वाले क़ानून को रद्द कर सकती हैं। यह कौन-सी विशेषता है?"
+     },
+     "options": [
+      {
+       "id": "sep",
+       "en": "Separation of powers (checks and balances)",
+       "hi": "शक्तियों का पृथक्करण (नियंत्रण और संतुलन)"
+      },
+      {
+       "id": "multi",
+       "en": "Multi-party system",
+       "hi": "बहुदलीय व्यवस्था"
+      },
+      {
+       "id": "pop",
+       "en": "Popular sovereignty",
+       "hi": "लोक संप्रभुता"
+      }
+     ],
+     "answer": "sep"
+    },
+    {
+     "kind": "do",
+     "target": "card:review",
+     "expect": "placed:review",
+     "say": {
+      "en": "Place the card about courts and laws.",
+      "hi": "अदालतों और क़ानूनों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A strong democracy rests on principles: the people hold the final power, nobody is above the law, power is divided among organs that check each other, and many parties give voters a real choice. Citizens' honest participation keeps all these alive.",
+      "hi": "मज़बूत लोकतंत्र कुछ सिद्धांतों पर टिका है: अंतिम शक्ति जनता के पास है, कोई क़ानून से ऊपर नहीं, शक्ति ऐसे अंगों में बँटी है जो एक-दूसरे पर नज़र रखते हैं, और अनेक दल मतदाताओं को असली चुनाव देते हैं। नागरिकों की ईमानदार भागीदारी इन सबको जीवित रखती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a multi-party system, who forms the government?",
+        "hi": "बहुदलीय व्यवस्था में सरकार कौन बनाता है?"
+       },
+       "options": [
+        {
+         "en": "The party or coalition with more than half the seats",
+         "hi": "आधी से अधिक सीटों वाला दल या गठबंधन"
+        },
+        {
+         "en": "The party with the most posters",
+         "hi": "सबसे अधिक पोस्टर लगाने वाला दल"
+        },
+        {
+         "en": "The oldest party",
+         "hi": "सबसे पुराना दल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The party or coalition that wins more than 50 per cent of the seats forms the government.",
+        "hi": "जो दल या गठबंधन 50 प्रतिशत से अधिक सीटें जीतता है वह सरकार बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Posters do not decide who governs. Seats won in the election do.",
+         "hi": "पोस्टर यह तय नहीं करते कि शासन कौन करेगा। चुनाव में जीती सीटें करती हैं।"
+        },
+        {
+         "en": "Age does not matter. Parties must win the people's support.",
+         "hi": "आयु मायने नहीं रखती। दलों को जनता का समर्थन जीतना होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is 'the ultimate power rests with the people' important?",
+        "hi": "'अंतिम शक्ति जनता के पास है' क्यों महत्वपूर्ण है?"
+       },
+       "options": [
+        {
+         "en": "The government gets its authority from the people",
+         "hi": "सरकार को अपना अधिकार जनता से मिलता है"
+        },
+        {
+         "en": "The people never need to vote",
+         "hi": "जनता को कभी वोट देने की ज़रूरत नहीं"
+        },
+        {
+         "en": "Only officials make decisions",
+         "hi": "केवल अधिकारी निर्णय लेते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It means a government can rule only because the people have chosen it.",
+        "hi": "इसका अर्थ है कि सरकार इसलिए शासन कर सकती है क्योंकि जनता ने उसे चुना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Voting is how people use their power, so it is needed regularly.",
+         "hi": "वोट देना ही जनता की शक्ति के उपयोग का तरीका है, इसलिए यह नियमित रूप से ज़रूरी है।"
+        },
+        {
+         "en": "In a democracy citizens take part through elected representatives, not only officials.",
+         "hi": "लोकतंत्र में नागरिक निर्वाचित प्रतिनिधियों के माध्यम से भाग लेते हैं, केवल अधिकारी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a rule in your school. Which of these four principles does it use?",
+      "hi": "अपने स्कूल का कोई नियम सोचो। वह इन चार सिद्धांतों में से किसे अपनाता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Opens the chapter",
+   "shows": "A long queue of Indian voters of all ages waiting outside a polling station on a bright morning, seen from behind and the side",
+   "view": "Wide, 16:9",
+   "right": "Different ages and clothes; calm, orderly mood",
+   "avoid": "Faces of identifiable people, party symbols, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Parliament and courts",
+   "shows": "Cut-outs of the Parliament building and the Supreme Court building in separate files, daytime",
+   "view": "Straight front, PNG with transparency",
+   "right": "True architecture and colours",
+   "avoid": "Flags with legible text, people"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Constitution book",
+   "shows": "A thick hand-written Constitution of India volume closed on a desk, soft light",
+   "view": "Three-quarter view, PNG with transparency",
+   "right": "Real binding and gold edging",
+   "avoid": "Readable pages"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Gram Sabha meeting",
+   "shows": "Villagers sitting on mats under a banyan tree, discussing in a Gram Sabha",
+   "view": "Wide, 16:9, from behind or far",
+   "right": "Women and men present, relaxed mood",
+   "avoid": "Faces, banners with legible text"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "6.1",
+   "use": "Three organs diagram base",
+   "shows": "Three empty pillars on a base labelled by blank cards, a balance in the middle",
+   "view": "Square, white or transparent",
+   "right": "Equal pillars, space for labels",
+   "avoid": "Any words"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Free press",
+   "shows": "A newspaper stand with many newspapers and a person reading, photographed from behind",
+   "view": "Wide, 16:9",
+   "right": "Many papers visible, language scripts varied",
+   "avoid": "Readable headlines, brand names"
+  }
+ ]
+}

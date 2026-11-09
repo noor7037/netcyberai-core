@@ -1,0 +1,1115 @@
+{
+ "chapter_key": "u.c08.social_science.hees2.ch04",
+ "class": 8,
+ "subject_id": "social_science",
+ "title": "The Role of the Judiciary in Our Society",
+ "source": "https://ncert.nic.in/textbook/pdf/hees204.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Law and justice: why we need courts",
+   "labs": [],
+   "why_no_lab": "A conversation about fairness in daily life, with the reader's stories, teaches this best; no practice task adds to it."
+  },
+  {
+   "n": "4.2",
+   "title": "The judicial system and courts of India",
+   "labs": [
+    "c08-social_science-hees2-ch04-courts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "High Courts and District Courts",
+   "labs": [
+    "c08-social_science-hees2-ch04-courts",
+    "c08-social_science-hees2-ch04-civcrim",
+    "c08-social_science-hees2-ch04-appeal"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "The Supreme Court of India",
+   "labs": [
+    "c08-social_science-hees2-ch04-courts",
+    "c08-social_science-hees2-ch04-appeal"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Writ, original, appellate and advisory jurisdiction",
+   "labs": [
+    "c08-social_science-hees2-ch04-juris"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "The National Green Tribunal and other tribunals",
+   "labs": [
+    "c08-social_science-hees2-ch04-ngt"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-social_science-hees2-ch04-courts",
+   "topic": "4.2",
+   "template": "govern",
+   "title": {
+    "en": "Which court hears it?",
+    "hi": "कौन-सी अदालत सुनेगी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "courts",
+    "options": {
+     "cards": [
+      "c-states",
+      "c-appeal-hc",
+      "c-supervise",
+      "c-appeal-dc",
+      "c-land",
+      "c-murder"
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c-land",
+     "expect": "picked:c-land",
+     "say": {
+      "en": "Tap the card 'A land dispute between two neighbours'.",
+      "hi": "'दो पड़ोसियों के बीच ज़मीन का विवाद' कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:district",
+     "expect": "placed",
+     "say": {
+      "en": "Tap the court in every district where most cases begin.",
+      "hi": "हर ज़िले की वह अदालत छुओ जहाँ अधिकतर मामले शुरू होते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two States quarrel over river water. Which court hears this?",
+      "hi": "दो राज्य नदी के पानी पर झगड़ते हैं। यह कौन-सी अदालत सुनेगी?"
+     },
+     "options": [
+      {
+       "id": "sc",
+       "en": "The Supreme Court",
+       "hi": "सर्वोच्च न्यायालय"
+      },
+      {
+       "id": "dc",
+       "en": "A District Court",
+       "hi": "ज़िला न्यायालय"
+      },
+      {
+       "id": "hc",
+       "en": "A High Court",
+       "hi": "उच्च न्यायालय"
+      }
+     ],
+     "answer": "sc"
+    },
+    {
+     "kind": "do",
+     "target": "card:c-states",
+     "expect": "picked:c-states",
+     "say": {
+      "en": "Pick the card about the dispute between two States.",
+      "hi": "दो राज्यों के विवाद वाला कार्ड चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:supreme",
+     "expect": "placed",
+     "say": {
+      "en": "Place it in the highest court of India.",
+      "hi": "उसे भारत की सबसे बड़ी अदालत में रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has one connected system of courts. Most cases begin in the District Court. If a person is unhappy, they can appeal to the High Court of the State, which also watches over the courts below it. The Supreme Court in Delhi is the highest court and the final court of appeal; it also hears disputes between States or between the Union and a State.",
+      "hi": "भारत में अदालतों की एक जुड़ी हुई व्यवस्था है। अधिकतर मामले ज़िला न्यायालय में शुरू होते हैं। असंतुष्ट व्यक्ति राज्य के उच्च न्यायालय में अपील कर सकता है, जो अपने नीचे की अदालतों की निगरानी भी करता है। दिल्ली में सर्वोच्च न्यायालय सबसे बड़ी अदालत और अपील की अंतिम अदालत है; वह राज्यों के बीच या संघ और राज्य के बीच के विवाद भी सुनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where do most ordinary cases begin?",
+        "hi": "अधिकतर सामान्य मामले कहाँ शुरू होते हैं?"
+       },
+       "options": [
+        {
+         "en": "District Court",
+         "hi": "ज़िला न्यायालय"
+        },
+        {
+         "en": "Supreme Court",
+         "hi": "सर्वोच्च न्यायालय"
+        },
+        {
+         "en": "Parliament",
+         "hi": "संसद"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Most cases begin in the District Court, close to the people.",
+        "hi": "अधिकतर मामले लोगों के पास, ज़िला न्यायालय में शुरू होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Supreme Court hears only special cases at first.",
+         "hi": "सर्वोच्च न्यायालय पहले केवल विशेष मामले सुनता है।"
+        },
+        {
+         "en": "Parliament makes laws; it is not a court.",
+         "hi": "संसद क़ानून बनाती है; वह अदालत नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which court is the final court of appeal?",
+        "hi": "अपील की अंतिम अदालत कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "High Court",
+         "hi": "उच्च न्यायालय"
+        },
+        {
+         "en": "Supreme Court",
+         "hi": "सर्वोच्च न्यायालय"
+        },
+        {
+         "en": "District Court",
+         "hi": "ज़िला न्यायालय"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "After the Supreme Court there is no further appeal.",
+        "hi": "सर्वोच्च न्यायालय के बाद कोई और अपील नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "A High Court's judgement can be appealed to the Supreme Court.",
+         "hi": "उच्च न्यायालय के फ़ैसले की अपील सर्वोच्च न्यायालय में हो सकती है।"
+        },
+        "",
+        {
+         "en": "A District Court's judgement can be appealed higher.",
+         "hi": "ज़िला न्यायालय के फ़ैसले की अपील ऊपर हो सकती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the other cards. Which court would you go to first if a neighbour does not return your land?",
+      "hi": "बाक़ी कार्ड रखो। पड़ोसी तुम्हारी ज़मीन न लौटाए तो पहले किस अदालत में जाओगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch04-civcrim",
+   "topic": "4.3",
+   "template": "sort",
+   "title": {
+    "en": "Civil or criminal?",
+    "hi": "दीवानी या फ़ौजदारी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "civil",
+      "label": {
+       "en": "Civil dispute",
+       "hi": "दीवानी विवाद"
+      }
+     },
+     {
+      "id": "crim",
+      "label": {
+       "en": "Criminal case",
+       "hi": "फ़ौजदारी मामला"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "land",
+      "text": {
+       "en": "Two neighbours quarrel over a boundary wall",
+       "hi": "दो पड़ोसी सीमा की दीवार पर झगड़ते हैं"
+      },
+      "bin": "civil",
+      "why": {
+       "en": "A dispute between people over property is a civil matter.",
+       "hi": "संपत्ति पर लोगों का विवाद दीवानी मामला है।"
+      }
+     },
+     {
+      "id": "rent",
+      "text": {
+       "en": "A tenant and a landlord disagree about rent",
+       "hi": "किराएदार और मकान-मालिक में किराए पर असहमति"
+      },
+      "bin": "civil",
+      "why": {
+       "en": "A disagreement on money and rights between people is civil.",
+       "hi": "धन और अधिकारों पर लोगों में असहमति दीवानी होती है।"
+      }
+     },
+     {
+      "id": "pay",
+      "text": {
+       "en": "A shopkeeper does not pay for goods he received",
+       "hi": "दुकानदार प्राप्त माल का भुगतान नहीं करता"
+      },
+      "bin": "civil",
+      "why": {
+       "en": "The supplier can go to court to get his money; this is civil.",
+       "hi": "आपूर्तिकर्ता अपना धन पाने के लिए अदालत जा सकता है; यह दीवानी है।"
+      }
+     },
+     {
+      "id": "marriage",
+      "text": {
+       "en": "A couple asks the court for a divorce",
+       "hi": "एक दंपती अदालत से तलाक़ माँगता है"
+      },
+      "bin": "civil",
+      "why": {
+       "en": "Family and marriage matters are civil.",
+       "hi": "परिवार और विवाह के मामले दीवानी हैं।"
+      }
+     },
+     {
+      "id": "theft",
+      "text": {
+       "en": "A person is accused of stealing a phone",
+       "hi": "एक व्यक्ति पर फ़ोन चुराने का आरोप"
+      },
+      "bin": "crim",
+      "why": {
+       "en": "Theft is an offence against the law, so it is a criminal case.",
+       "hi": "चोरी क़ानून के विरुद्ध अपराध है, इसलिए फ़ौजदारी मामला है।"
+      }
+     },
+     {
+      "id": "murder",
+      "text": {
+       "en": "A person is accused of murder",
+       "hi": "एक व्यक्ति पर हत्या का आरोप"
+      },
+      "bin": "crim",
+      "why": {
+       "en": "Serious crimes are tried by a Sessions Court and punished by the State.",
+       "hi": "गंभीर अपराधों का मुक़दमा सत्र न्यायालय में चलता है और राज्य दंड देता है।"
+      }
+     },
+     {
+      "id": "assault",
+      "text": {
+       "en": "Someone is accused of beating another person",
+       "hi": "किसी पर दूसरे की पिटाई का आरोप"
+      },
+      "bin": "crim",
+      "why": {
+       "en": "Hurting someone is an offence; the State prosecutes it.",
+       "hi": "किसी को चोट पहुँचाना अपराध है; राज्य अभियोग चलाता है।"
+      }
+     },
+     {
+      "id": "fraud",
+      "text": {
+       "en": "A trader is accused of cheating customers",
+       "hi": "एक व्यापारी पर ग्राहकों को धोखा देने का आरोप"
+      },
+      "bin": "crim",
+      "why": {
+       "en": "Cheating is a crime that the State prosecutes.",
+       "hi": "धोखाधड़ी अपराध है जिस पर राज्य अभियोग चलाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:land",
+     "expect": "placed:land",
+     "say": {
+      "en": "Tap the boundary-wall card and pick a group.",
+      "hi": "सीमा-दीवार वाला कार्ड चुनो और समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A person is accused of theft. Can the court send them to jail if proved guilty?",
+      "hi": "किसी पर चोरी का आरोप है। दोषी सिद्ध होने पर क्या अदालत उसे जेल भेज सकती है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, in a criminal case it can punish",
+       "hi": "हाँ, फ़ौजदारी मामले में वह दंड दे सकती है"
+      },
+      {
+       "id": "no",
+       "en": "No, courts never punish",
+       "hi": "नहीं, अदालतें दंड नहीं देतीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:theft",
+     "expect": "placed:theft",
+     "say": {
+      "en": "Place the theft card.",
+      "hi": "चोरी वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the others and press check.",
+      "hi": "बाक़ी रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Courts hear two main kinds of cases. A civil case is a dispute between people about property, money, rent or family matters; the court decides who is right and what must be done. A criminal case is about an offence such as theft or murder; the State brings the accused to trial and the court may punish them if proved guilty.",
+      "hi": "अदालतें दो मुख्य प्रकार के मामले सुनती हैं। दीवानी मामला संपत्ति, धन, किराए या परिवार के विषय में लोगों का विवाद है; अदालत तय करती है कि कौन सही है और क्या करना होगा। फ़ौजदारी मामला चोरी या हत्या जैसे अपराध का होता है; राज्य आरोपी पर मुक़दमा चलाता है और दोषी सिद्ध होने पर अदालत दंड दे सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a civil case?",
+        "hi": "इनमें से दीवानी मामला कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "A dispute over rent",
+         "hi": "किराए का विवाद"
+        },
+        {
+         "en": "A murder",
+         "hi": "हत्या"
+        },
+        {
+         "en": "A theft",
+         "hi": "चोरी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is a dispute between two persons about money.",
+        "hi": "यह दो व्यक्तियों के बीच धन का विवाद है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Murder is a criminal offence.",
+         "hi": "हत्या फ़ौजदारी अपराध है।"
+        },
+        {
+         "en": "Theft is a criminal offence.",
+         "hi": "चोरी फ़ौजदारी अपराध है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A murder trial is heard first by…",
+        "hi": "हत्या का मुक़दमा पहले कौन सुनता है…"
+       },
+       "options": [
+        {
+         "en": "The Sessions Court of the district",
+         "hi": "ज़िले का सत्र न्यायालय"
+        },
+        {
+         "en": "The Supreme Court",
+         "hi": "सर्वोच्च न्यायालय"
+        },
+        {
+         "en": "A panchayat",
+         "hi": "पंचायत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Serious crimes are tried by the Sessions Court of the district.",
+        "hi": "गंभीर अपराधों का मुक़दमा ज़िले का सत्र न्यायालय सुनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Supreme Court usually hears appeals, not first trials of this kind.",
+         "hi": "सर्वोच्च न्यायालय आम तौर पर अपीलें सुनता है, ऐसे प्रथम मुक़दमे नहीं।"
+        },
+        {
+         "en": "A panchayat does not try criminal cases like murder.",
+         "hi": "पंचायत हत्या जैसे फ़ौजदारी मुक़दमे नहीं चलाती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why is it important that an accused person gets a fair trial before being punished?",
+      "hi": "सज़ा से पहले आरोपी को निष्पक्ष सुनवाई क्यों मिलनी चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch04-juris",
+   "topic": "4.5",
+   "template": "match",
+   "title": {
+    "en": "Four powers of the Supreme Court",
+    "hi": "सर्वोच्च न्यायालय की चार शक्तियाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "original",
+      "left": {
+       "en": "Original jurisdiction",
+       "hi": "मूल अधिकारिता"
+      },
+      "right": {
+       "en": "Hears some cases directly, such as a dispute between two States",
+       "hi": "कुछ मामले सीधे सुनता है, जैसे दो राज्यों का विवाद"
+      }
+     },
+     {
+      "id": "appellate",
+      "left": {
+       "en": "Appellate jurisdiction",
+       "hi": "अपीलीय अधिकारिता"
+      },
+      "right": {
+       "en": "Hears appeals against judgements of lower courts",
+       "hi": "निचली अदालतों के फ़ैसलों के विरुद्ध अपीलें सुनता है"
+      }
+     },
+     {
+      "id": "advisory",
+      "left": {
+       "en": "Advisory jurisdiction",
+       "hi": "सलाहकारी अधिकारिता"
+      },
+      "right": {
+       "en": "Gives its opinion on a question of law when the President asks",
+       "hi": "राष्ट्रपति के पूछने पर क़ानूनी प्रश्न पर राय देता है"
+      }
+     },
+     {
+      "id": "writ",
+      "left": {
+       "en": "Writ jurisdiction",
+       "hi": "रिट अधिकारिता"
+      },
+      "right": {
+       "en": "Orders that protect a citizen's fundamental rights",
+       "hi": "नागरिक के मौलिक अधिकारों की रक्षा करने वाले आदेश"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:original",
+     "expect": "matched:original",
+     "say": {
+      "en": "Tap 'Original jurisdiction', then tap what it means.",
+      "hi": "'मूल अधिकारिता' चुनो, फिर उसका अर्थ चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which power would a citizen use when a fundamental right is denied?",
+      "hi": "मौलिक अधिकार छीने जाने पर नागरिक कौन-सी शक्ति काम में लेगा?"
+     },
+     "options": [
+      {
+       "id": "writ",
+       "en": "Writ jurisdiction",
+       "hi": "रिट अधिकारिता"
+      },
+      {
+       "id": "adv",
+       "en": "Advisory jurisdiction",
+       "hi": "सलाहकारी अधिकारिता"
+      }
+     ],
+     "answer": "writ"
+    },
+    {
+     "kind": "do",
+     "target": "left:writ",
+     "expect": "matched:writ",
+     "say": {
+      "en": "Match the writ power.",
+      "hi": "रिट शक्ति को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other two and press check.",
+      "hi": "बाक़ी दोनों मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "'Jurisdiction' means the power of a court to hear a type of case. The Supreme Court has original jurisdiction in some disputes, appellate jurisdiction to hear appeals, advisory jurisdiction when the President seeks its opinion, and it can issue writs to protect fundamental rights. These powers make it the guardian of the Constitution.",
+      "hi": "'अधिकारिता' का अर्थ है किसी अदालत की किसी प्रकार के मामले सुनने की शक्ति। सर्वोच्च न्यायालय को कुछ विवादों में मूल अधिकारिता, अपीलें सुनने की अपीलीय अधिकारिता, राष्ट्रपति के राय माँगने पर सलाहकारी अधिकारिता है और वह मौलिक अधिकारों की रक्षा के लिए रिट जारी कर सकता है। इन शक्तियों से वह संविधान का संरक्षक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who asks the Supreme Court for advice on a question of law?",
+        "hi": "क़ानूनी प्रश्न पर सर्वोच्च न्यायालय से राय कौन माँगता है?"
+       },
+       "options": [
+        {
+         "en": "The President",
+         "hi": "राष्ट्रपति"
+        },
+        {
+         "en": "A shopkeeper",
+         "hi": "एक दुकानदार"
+        },
+        {
+         "en": "A school",
+         "hi": "एक विद्यालय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This is its advisory jurisdiction.",
+        "hi": "यह उसकी सलाहकारी अधिकारिता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ordinary people use writs or appeals, not advice requests.",
+         "hi": "आम लोग रिट या अपील का उपयोग करते हैं, राय माँगने का नहीं।"
+        },
+        {
+         "en": "Schools do not send questions for advice in this way.",
+         "hi": "विद्यालय इस तरह राय के लिए प्रश्न नहीं भेजते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does appellate jurisdiction mean?",
+        "hi": "अपीलीय अधिकारिता का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Hearing appeals against lower courts' judgements",
+         "hi": "निचली अदालतों के फ़ैसलों पर अपीलें सुनना"
+        },
+        {
+         "en": "Making laws",
+         "hi": "क़ानून बनाना"
+        },
+        {
+         "en": "Running elections",
+         "hi": "चुनाव कराना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A person unhappy with a lower court's decision may appeal.",
+        "hi": "निचली अदालत के फ़ैसले से असंतुष्ट व्यक्ति अपील कर सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Law-making is Parliament's work.",
+         "hi": "क़ानून बनाना संसद का काम है।"
+        },
+        {
+         "en": "Elections are run by the Election Commission.",
+         "hi": "चुनाव निर्वाचन आयोग कराता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why do you think we need a court that can check even the government's actions?",
+      "hi": "तुम्हें क्या लगता है हमें ऐसी अदालत क्यों चाहिए जो सरकार के कामों को भी परख सके?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch04-appeal",
+   "topic": "4.3",
+   "template": "sequence",
+   "title": {
+    "en": "Climbing the court ladder",
+    "hi": "अदालतों की सीढ़ी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "file",
+      "text": {
+       "en": "A dispute is filed in the District Court",
+       "hi": "विवाद ज़िला न्यायालय में दाख़िल होता है"
+      }
+     },
+     {
+      "id": "judge",
+      "text": {
+       "en": "The District Court hears both sides and gives its judgement",
+       "hi": "ज़िला न्यायालय दोनों पक्ष सुनकर फ़ैसला देता है"
+      }
+     },
+     {
+      "id": "hc",
+      "text": {
+       "en": "The unhappy side appeals to the High Court",
+       "hi": "असंतुष्ट पक्ष उच्च न्यायालय में अपील करता है"
+      }
+     },
+     {
+      "id": "hcj",
+      "text": {
+       "en": "The High Court re-examines the case and gives its judgement",
+       "hi": "उच्च न्यायालय मामले की फिर जाँच कर फ़ैसला देता है"
+      }
+     },
+     {
+      "id": "sc",
+      "text": {
+       "en": "A further appeal can go to the Supreme Court, the final court",
+       "hi": "आगे की अपील सर्वोच्च न्यायालय, अंतिम अदालत, में जा सकती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:file",
+     "expect": "placed:file",
+     "say": {
+      "en": "Tap the first step and drop it in a slot.",
+      "hi": "पहला चरण चुनो और किसी स्थान में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can a person who loses in a District Court ever go to a higher court?",
+      "hi": "ज़िला न्यायालय में हारा व्यक्ति क्या कभी ऊँची अदालत में जा सकता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, by appeal",
+       "hi": "हाँ, अपील द्वारा"
+      },
+      {
+       "id": "no",
+       "en": "No, the case ends there",
+       "hi": "नहीं, मामला वहीं ख़त्म"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all five steps in order and press check.",
+      "hi": "पाँचों चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The courts of India are linked in a ladder. A case usually begins in a District Court. If someone is not satisfied, they can appeal to the High Court of their State, and then to the Supreme Court. The ladder gives people a chance to correct mistakes and makes justice fairer.",
+      "hi": "भारत की अदालतें सीढ़ी की तरह जुड़ी हैं। मामला आम तौर पर ज़िला न्यायालय से शुरू होता है। असंतुष्ट व्यक्ति अपने राज्य के उच्च न्यायालय में और फिर सर्वोच्च न्यायालय में अपील कर सकता है। इस सीढ़ी से भूल सुधारने का अवसर मिलता है और न्याय अधिक निष्पक्ष होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is there a chance to appeal?",
+        "hi": "अपील का अवसर क्यों है?"
+       },
+       "options": [
+        {
+         "en": "To correct mistakes and be fairer",
+         "hi": "भूल सुधारने और अधिक निष्पक्ष होने के लिए"
+        },
+        {
+         "en": "To make cases longer for fun",
+         "hi": "मज़े के लिए मामलों को लंबा करने के लिए"
+        },
+        {
+         "en": "To keep judges busy",
+         "hi": "न्यायाधीशों को व्यस्त रखने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A higher court can look again and set right a mistake of a lower court.",
+        "hi": "ऊँची अदालत फिर से देखकर निचली अदालत की भूल सुधार सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Appeals are for justice, not for fun.",
+         "hi": "अपीलें न्याय के लिए हैं, मज़े के लिए नहीं।"
+        },
+        {
+         "en": "The aim is fairness, not busyness.",
+         "hi": "उद्देश्य निष्पक्षता है, व्यस्तता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why might many people find it hard to go to a higher court? What could make justice easier to reach?",
+      "hi": "बहुत से लोगों को ऊँची अदालत जाना कठिन क्यों लगता है? न्याय तक पहुँच कैसे आसान हो सकती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch04-ngt",
+   "topic": "4.6",
+   "template": "scenario",
+   "title": {
+    "en": "A polluted river",
+    "hi": "प्रदूषित नदी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "river",
+    "role": {
+     "en": "A member of the school eco club",
+     "hi": "विद्यालय के पर्यावरण क्लब के सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "A factory upstream is letting untreated waste into your town's river. Fish are dying and the water smells bad. What do you do first?",
+       "hi": "ऊपर की ओर एक कारख़ाना बिना शोधन का कचरा नदी में छोड़ रहा है। मछलियाँ मर रही हैं और पानी से बदबू आती है। तुम पहले क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "report",
+        "text": {
+         "en": "Collect photos and facts, and report to elders and the pollution authorities",
+         "hi": "फ़ोटो और तथ्य जुटाओ और बड़ों व प्रदूषण-अधिकारियों को बताओ"
+        },
+        "next": "tribunal",
+        "feedback": {
+         "en": "Facts and a proper complaint are the right first step.",
+         "hi": "तथ्य और सही शिकायत उचित पहला क़दम है।"
+        },
+        "good": true
+       },
+       {
+        "id": "stones",
+        "text": {
+         "en": "Throw stones at the factory gate",
+         "hi": "कारख़ाने के फाटक पर पत्थर फेंको"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Breaking things is lawless; it will not clean the river and can bring harm to you.",
+         "hi": "तोड़-फोड़ अराजकता है; इससे नदी साफ़ नहीं होगी और तुम पर आफ़त आ सकती है।"
+        },
+        "good": false
+       },
+       {
+        "id": "silent",
+        "text": {
+         "en": "Say nothing; it is not your job",
+         "hi": "चुप रहो; यह तुम्हारा काम नहीं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "If no one speaks up, the pollution continues.",
+         "hi": "कोई न बोले तो प्रदूषण चलता रहता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "tribunal",
+      "text": {
+       "en": "The factory keeps polluting despite the complaint. Is there a court that looks into such environmental cases?",
+       "hi": "शिकायत के बावजूद कारख़ाना प्रदूषण करता रहता है। क्या ऐसे पर्यावरण के मामले देखने वाली कोई अदालत है?"
+      },
+      "choices": [
+       {
+        "id": "ngt",
+        "text": {
+         "en": "Take the matter, with elders and a lawyer, to the National Green Tribunal",
+         "hi": "बड़ों और वकील के साथ मामला राष्ट्रीय हरित अधिकरण में ले जाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The National Green Tribunal exists to decide environmental cases quickly.",
+         "hi": "राष्ट्रीय हरित अधिकरण पर्यावरण के मामलों का शीघ्र निपटारा करने के लिए है।"
+        },
+        "good": true
+       },
+       {
+        "id": "quit",
+        "text": {
+         "en": "Give up and move on",
+         "hi": "हार मानकर आगे बढ़ो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Giving up leaves the river poisoned.",
+         "hi": "हार मानने से नदी ज़हरीली ही रहेगी।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A factory pollutes your river. What is the right way to act?",
+      "hi": "एक कारख़ाना तुम्हारी नदी प्रदूषित करता है। कार्य करने का सही तरीक़ा क्या है?"
+     },
+     "options": [
+      {
+       "id": "law",
+       "en": "Use the law: report and go to the right court or tribunal",
+       "hi": "क़ानून का सहारा लो: शिकायत करो और सही अदालत या अधिकरण में जाओ"
+      },
+      {
+       "id": "fight",
+       "en": "Break the factory gate",
+       "hi": "फाटक तोड़ दो"
+      },
+      {
+       "id": "quiet",
+       "en": "Do nothing",
+       "hi": "कुछ मत करो"
+      }
+     ],
+     "answer": "law"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:report",
+     "expect": "chose:report",
+     "say": {
+      "en": "Choose to collect facts and report them.",
+      "hi": "तथ्य जुटाने और शिकायत करने का विकल्प चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:tribunal:ngt",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose to go to the National Green Tribunal.",
+      "hi": "राष्ट्रीय हरित अधिकरण जाने का विकल्प चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A tribunal is a special body that decides particular kinds of disputes. The National Green Tribunal hears environmental cases such as pollution. Everyone has the right to approach the law in a peaceful way. Courts and tribunals protect the rights of people and nature when someone else harms them.",
+      "hi": "अधिकरण एक विशेष संस्था है जो ख़ास प्रकार के विवाद निपटाती है। राष्ट्रीय हरित अधिकरण प्रदूषण जैसे पर्यावरण के मामले सुनता है। हर किसी को शांतिपूर्ण ढंग से क़ानून की शरण लेने का अधिकार है। अदालतें और अधिकरण तब लोगों और प्रकृति के अधिकारों की रक्षा करते हैं जब कोई उन्हें हानि पहुँचाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which body decides environmental cases such as pollution?",
+        "hi": "प्रदूषण जैसे पर्यावरण के मामले कौन तय करता है?"
+       },
+       "options": [
+        {
+         "en": "National Green Tribunal",
+         "hi": "राष्ट्रीय हरित अधिकरण"
+        },
+        {
+         "en": "Election Commission",
+         "hi": "निर्वाचन आयोग"
+        },
+        {
+         "en": "A cricket club",
+         "hi": "एक क्रिकेट क्लब"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The National Green Tribunal is meant for environmental disputes.",
+        "hi": "राष्ट्रीय हरित अधिकरण पर्यावरण विवादों के लिए है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Election Commission runs elections.",
+         "hi": "निर्वाचन आयोग चुनाव कराता है।"
+        },
+        {
+         "en": "A club has no legal power over factories.",
+         "hi": "क्लब को कारख़ानों पर कानूनी शक्ति नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and choose other options. What happens to the river? Find out what a pollution control board does in your State.",
+      "hi": "फिर खेलो और दूसरे विकल्प चुनो। नदी का क्या होता है? पता करो कि तुम्हारे राज्य का प्रदूषण नियंत्रण बोर्ड क्या करता है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.4",
+   "use": "Opens the chapter",
+   "shows": "The Supreme Court building in Delhi in clear daylight with its dome and steps",
+   "view": "Wide, 16:9",
+   "right": "Whole building, dome and steps",
+   "avoid": "Crowds, banners, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "A district court",
+   "shows": "A district court complex with a lawyer's black coat and files seen from behind on the steps",
+   "view": "Wide, 16:9",
+   "right": "Brick building, files, corridor",
+   "avoid": "Faces, signboards"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Scales and gavel",
+   "shows": "Cut-outs of a pair of scales and a wooden gavel",
+   "view": "Front, PNG",
+   "right": "Balanced scales, wooden gavel",
+   "avoid": "Text, brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "4.2",
+   "use": "Court ladder",
+   "shows": "An empty three-step pyramid with room for three court names",
+   "view": "PNG, transparent",
+   "right": "Three equal steps, arrows between",
+   "avoid": "Any text"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "4.6",
+   "use": "River before and after",
+   "shows": "A river bank shown polluted with foam and waste, then cleaned up with clear water and grass",
+   "view": "Same camera, 2 files, 16:9",
+   "right": "Same bend of river in both",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Inside a courtroom",
+   "shows": "An empty courtroom with the judge's raised bench, witness box and benches, soft light",
+   "view": "Wide, 16:9",
+   "right": "Wooden fittings, scale of justice emblem without text",
+   "avoid": "People, readable text"
+  }
+ ]
+}

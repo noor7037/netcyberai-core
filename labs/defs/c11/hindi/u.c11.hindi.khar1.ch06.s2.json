@@ -1,0 +1,555 @@
+{
+ "chapter_key": "u.c11.hindi.khar1.ch06.s2",
+ "class": 11,
+ "subject_id": "hindi",
+ "title": "हे भूख! मत मचल; हे मेरे जूही के फूल जैसे ईश्वर",
+ "source": "https://ncert.nic.in/textbook/pdf/khar114.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "The senses Akka speaks to (इंद्रियों से संवाद)",
+   "labs": [
+    "c11-hindi-khar1-ch06-akka-senses"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "The begging bowl (भिक्षा का वचन)",
+   "labs": [
+    "c11-hindi-khar1-ch06-akka-begging"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Akka Mahadevi and the Virashaiva movement (कवयित्री)",
+   "labs": [],
+   "why_no_lab": "The life of Akka and the Virashaiva movement are best read aloud with photographs of the region."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-hindi-khar1-ch06-akka-senses",
+   "topic": "6.1",
+   "template": "match",
+   "title": {
+    "en": "The senses Akka speaks to",
+    "hi": "अक्क जिनसे बात करती हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "bhookh",
+      "left": {
+       "en": "Hunger",
+       "hi": "भूख"
+      },
+      "right": {
+       "en": "Keeps thinking of the next meal",
+       "hi": "अगले भोजन की चिंता में लगाए रखती है"
+      },
+      "why": {
+       "en": "Akka asks it not to make her restless.",
+       "hi": "अक्क उससे कहती हैं कि मुझे बेचैन मत करो।"
+      }
+     },
+     {
+      "id": "neend",
+      "left": {
+       "en": "Sleep",
+       "hi": "नींद"
+      },
+      "right": {
+       "en": "Steals the time that could be used for worship",
+       "hi": "उपासना का समय छीन लेती है"
+      },
+      "why": {
+       "en": "She asks it not to trouble her.",
+       "hi": "वे उससे सताना छोड़ने को कहती हैं।"
+      }
+     },
+     {
+      "id": "krodh",
+      "left": {
+       "en": "Anger",
+       "hi": "क्रोध"
+      },
+      "right": {
+       "en": "Raises storms in the mind",
+       "hi": "मन में उथल-पुथल मचाता है"
+      },
+      "why": {
+       "en": "She asks it not to cause turmoil.",
+       "hi": "वे उससे उथल-पुथल न मचाने को कहती हैं।"
+      }
+     },
+     {
+      "id": "moh",
+      "left": {
+       "en": "Attachment",
+       "hi": "मोह"
+      },
+      "right": {
+       "en": "Ties us in its noose",
+       "hi": "हमें अपने फंदे में बाँध लेता है"
+      },
+      "why": {
+       "en": "She asks the noose to loosen.",
+       "hi": "वे फंदे को ढीला करने को कहती हैं।"
+      }
+     },
+     {
+      "id": "lobh",
+      "left": {
+       "en": "Greed",
+       "hi": "लोभ"
+      },
+      "right": {
+       "en": "Tempts us toward things",
+       "hi": "चीज़ों की ओर ललचाता है"
+      },
+      "why": {
+       "en": "She asks it not to tempt her.",
+       "hi": "वे उससे ललचाने को मना करती हैं।"
+      }
+     },
+     {
+      "id": "mad",
+      "left": {
+       "en": "Pride",
+       "hi": "मद"
+      },
+      "right": {
+       "en": "Makes us dizzy with ego",
+       "hi": "अहंकार से मदहोश कर देता है"
+      },
+      "why": {
+       "en": "She asks it not to intoxicate her.",
+       "hi": "वे उससे मदहोश न करने को कहती हैं।"
+      }
+     },
+     {
+      "id": "irshya",
+      "left": {
+       "en": "Envy",
+       "hi": "ईर्ष्या"
+      },
+      "right": {
+       "en": "Burns the heart as we look at others",
+       "hi": "दूसरों को देखकर मन जलाती है"
+      },
+      "why": {
+       "en": "She asks it not to burn her.",
+       "hi": "वे उससे जलाने को मना करती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Akka Mahadevi speaks to hunger, sleep, anger and envy. What does she ask of them?",
+      "hi": "अक्क महादेवी भूख, नींद, क्रोध और ईर्ष्या से बात करती हैं। वे उनसे क्या माँगती हैं?"
+     },
+     "options": [
+      {
+       "id": "stop",
+       "en": "To stop troubling her so she can find her Lord",
+       "hi": "कि वे उसे सताना छोड़ दें ताकि वह अपने प्रभु को पा सके"
+      },
+      {
+       "id": "more",
+       "en": "To stay with her",
+       "hi": "कि वे उसके साथ रहें"
+      },
+      {
+       "id": "help",
+       "en": "To help her win a prize",
+       "hi": "कि वे उसे इनाम जिताने में मदद करें"
+      }
+     ],
+     "answer": "stop"
+    },
+    {
+     "kind": "do",
+     "target": "left:bhookh",
+     "expect": "matched:bhookh",
+     "say": {
+      "en": "Match Hunger with what it does.",
+      "hi": "भूख को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:moh",
+     "expect": "matched:moh",
+     "say": {
+      "en": "Match Attachment.",
+      "hi": "मोह को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाकी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the first vachana, Akka speaks to hunger, thirst, sleep, anger, attachment, greed, pride and envy as if they were people. She asks each to loosen its grip so that she can give her whole mind to her Lord Chennamallikarjuna and not waste the chance of this life.",
+      "hi": "पहले वचन में अक्क भूख, प्यास, नींद, क्रोध, मोह, लोभ, मद और ईर्ष्या से ऐसे बात करती हैं जैसे वे इंसान हों। वे हर एक से पकड़ ढीली करने को कहती हैं ताकि वे अपना पूरा मन अपने प्रभु चन्नमल्लिकार्जुन को दे सकें और इस जीवन का अवसर न चूकें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does Akka talk to hunger and sleep as if they were people?",
+        "hi": "अक्क भूख और नींद से ऐसे क्यों बात करती हैं जैसे वे इंसान हों?"
+       },
+       "options": [
+        {
+         "en": "To show she is firm and in control of her own mind",
+         "hi": "यह दिखाने के लिए कि वे दृढ़ हैं और अपने मन पर क़ाबू रखती हैं"
+        },
+        {
+         "en": "Because she is afraid of them",
+         "hi": "क्योंकि वे उनसे डरती हैं"
+        },
+        {
+         "en": "To make a joke",
+         "hi": "मज़ाक करने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Talking to them directly shows her will to rule them.",
+        "hi": "सीधे उनसे बात करना उन पर नियंत्रण की उनकी इच्छा दिखाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Her tone is firm, not afraid.",
+         "hi": "उनका स्वर दृढ़ है, डरा हुआ नहीं।"
+        },
+        {
+         "en": "The tone is serious, not a joke.",
+         "hi": "स्वर गंभीर है, मज़ाक का नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the Lord named in the vachana?",
+        "hi": "वचन में प्रभु का नाम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Chennamallikarjuna",
+         "hi": "चन्नमल्लिकार्जुन"
+        },
+        {
+         "en": "Krishna",
+         "hi": "कृष्ण"
+        },
+        {
+         "en": "Rama",
+         "hi": "राम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Akka calls Shiva by this name, which means ‘the Lord white as jasmine’.",
+        "hi": "अक्क शिव को इसी नाम से पुकारती हैं, जिसका अर्थ है ‘चमेली जैसे श्वेत प्रभु’।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Krishna is Meera's Lord.",
+         "hi": "कृष्ण मीरा के प्रभु हैं।"
+        },
+        {
+         "en": "Rama is not named in these vachanas.",
+         "hi": "इन वचनों में राम का नाम नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which one of these eight pulls you the most? Write how you try to control it.",
+      "hi": "इन आठों में से कौन तुम्हें सबसे ज़्यादा खींचता है? लिखो कि तुम उसे कैसे क़ाबू में रखते हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khar1-ch06-akka-begging",
+   "topic": "6.2",
+   "template": "sequence",
+   "title": {
+    "en": "The begging bowl",
+    "hi": "भिक्षा की झोली"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "ask",
+      "text": {
+       "en": "She asks the Lord to make her go begging",
+       "hi": "वे प्रभु से कहती हैं कि मुझसे भीख मँगवाओ"
+      }
+     },
+     {
+      "id": "forget",
+      "text": {
+       "en": "She wishes to forget her home completely",
+       "hi": "वे चाहती हैं कि अपना घर पूरी तरह भूल जाएँ"
+      }
+     },
+     {
+      "id": "spread",
+      "text": {
+       "en": "She spreads her bowl, but gets no alms",
+       "hi": "वे झोली फैलाती हैं, पर भीख नहीं मिलती"
+      }
+     },
+     {
+      "id": "fall",
+      "text": {
+       "en": "If someone offers a gift, it falls to the ground",
+       "hi": "कोई कुछ देने को हाथ बढ़ाए तो वह नीचे गिर जाता है"
+      }
+     },
+     {
+      "id": "dog",
+      "text": {
+       "en": "If she bends to pick it up, a dog snatches it",
+       "hi": "वे उठाने झुकें तो कोई कुत्ता उसे छीन ले जाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:ask",
+     "expect": "placed:ask",
+     "say": {
+      "en": "Tap the card about asking the Lord and put it in place 1.",
+      "hi": "प्रभु से माँगने वाला कार्ड छुओ और जगह 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Akka wants her bowl to stay empty. Do you think she is sad about this or glad?",
+      "hi": "अक्क चाहती हैं कि उनकी झोली ख़ाली रहे। तुम्हें क्या लगता है, वे इससे दुखी हैं या ख़ुश?"
+     },
+     "options": [
+      {
+       "id": "glad",
+       "en": "Glad, because she wants to be free of ‘I’",
+       "hi": "ख़ुश, क्योंकि वे “मैं” से मुक्त होना चाहती हैं"
+      },
+      {
+       "id": "sad",
+       "en": "Sad, because she is poor",
+       "hi": "दुखी, क्योंकि वे ग़रीब हैं"
+      },
+      {
+       "id": "angry",
+       "en": "Angry with the Lord",
+       "hi": "प्रभु से नाराज़"
+      }
+     ],
+     "answer": "glad"
+    },
+    {
+     "kind": "do",
+     "target": "item:dog",
+     "expect": "placed:dog",
+     "say": {
+      "en": "Put the card about the dog in its place.",
+      "hi": "कुत्ते वाला कार्ड उसकी जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Press Check when all the cards are placed.",
+      "hi": "सब कार्ड लगाकर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the second vachana, Akka wants to lose every sense of ‘I’ and ‘mine’. She asks the Lord to make her beg, forget her home, and then even to deny her what she begs for. A gift that falls, a dog that snatches it: each takes away a little more of her pride and ownership.",
+      "hi": "दूसरे वचन में अक्क हर “मैं” और “मेरा” को खो देना चाहती हैं। वे प्रभु से कहती हैं कि मुझसे भीख मँगवाओ, मेरा घर भुला दो, और जो माँगूँ वह भी मत मिलने दो। गिरा हुआ दान और उसे छीन ले जाता कुत्ता: हर बात उनके अहंकार और अपनेपन को थोड़ा और घटाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does Akka want to forget her home?",
+        "hi": "अक्क अपना घर क्यों भूलना चाहती हैं?"
+       },
+       "options": [
+        {
+         "en": "To become free of attachment and ego",
+         "hi": "ताकि मोह और अहंकार से मुक्त हो सकें"
+        },
+        {
+         "en": "Because it was burnt",
+         "hi": "क्योंकि वह जल गया था"
+        },
+        {
+         "en": "Because she dislikes her neighbours",
+         "hi": "क्योंकि उन्हें पड़ोसी पसंद नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "She wants nothing to stand between her and her Lord.",
+        "hi": "वे चाहती हैं कि उनके और प्रभु के बीच कुछ न रहे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The vachana says nothing about a burnt house.",
+         "hi": "वचन में जले हुए घर की कोई बात नहीं।"
+        },
+        {
+         "en": "Neighbours are not mentioned.",
+         "hi": "पड़ोसियों का ज़िक्र नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the dog snatching the gift show?",
+        "hi": "उपहार छीनता कुत्ता क्या दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "That nothing may be kept, not even a gift",
+         "hi": "कि कुछ भी रखा नहीं जा सकता, उपहार भी नहीं"
+        },
+        {
+         "en": "That dogs are greedy",
+         "hi": "कि कुत्ते लालची होते हैं"
+        },
+        {
+         "en": "That she dislikes dogs",
+         "hi": "कि उन्हें कुत्ते नापसंद हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Even what she receives is taken away, so she is left with only her Lord.",
+        "hi": "जो मिलता है वह भी छिन जाता है, तब सिर्फ़ प्रभु बचते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The dog is an image, not the point about greed.",
+         "hi": "कुत्ता एक चित्र है, लालच की बात नहीं।"
+        },
+        {
+         "en": "Akka's dislike of dogs is not the point.",
+         "hi": "अक्क को कुत्ते नापसंद हैं, यह बात नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine a day when you give up one thing you love. How might it change how you feel about it?",
+      "hi": "सोचो किसी दिन तुम अपनी प्रिय चीज़ों में से एक छोड़ देते हो। उसके बारे में तुम्हारा भाव कैसे बदलेगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Hook of the chapter",
+   "shows": "A small stone Shiva shrine on a Karnataka hillside at dawn with a lamp and white flowers",
+   "view": "Eye level, soft mist",
+   "right": "Grey stone, white jasmine flowers, small flame",
+   "avoid": "Devotees' faces, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "The Lord's flower",
+   "shows": "A bunch of white jasmine (juhi) flowers",
+   "view": "Top-down on a transparent background",
+   "right": "White petals, green leaves",
+   "avoid": "Wilted flowers"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "The bowl",
+   "shows": "A folded cloth bag (jholi) held open, empty, by two hands",
+   "view": "Front, close",
+   "right": "Plain cotton cloth, open hands",
+   "avoid": "Faces, coins"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "The road",
+   "shows": "A dusty village road with a stray dog, a mud wall and bright morning light",
+   "view": "Eye level, wide",
+   "right": "Short-haired brown dog, warm light",
+   "avoid": "People, text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Her country",
+   "shows": "Rolling hills and a river valley of north Karnataka at sunrise",
+   "view": "Wide, eye level",
+   "right": "Green slopes, mist, red soil",
+   "avoid": "Signboards, vehicles"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "6.1",
+   "use": "Where she lived",
+   "shows": "A relief map of the Deccan plateau and Karnataka with rivers, no names or borders",
+   "view": "Top-down, 4:3",
+   "right": "Western Ghats edge, Tungabhadra and Krishna valleys",
+   "avoid": "Names, state borders"
+  }
+ ]
+}
